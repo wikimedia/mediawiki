@@ -1,6 +1,9 @@
 <?php
 /** Cornish (Kernewek)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -119,7 +122,8 @@ $messages = array(
 'postcomment'      => 'Tregh nowyth',
 'talk'             => 'Dadhelva',
 'toolbox'          => 'Boks toulys',
-'otherlanguages'   => 'Tavosow erell',
+'otherlanguages'   => 'Tavosow erel',
+'jumpto'           => 'Lamma dhe:',
 'jumptonavigation' => 'lewyans',
 'jumptosearch'     => 'hwilas',
 
@@ -132,7 +136,7 @@ $messages = array(
 'mainpage'             => 'Pennfolen',
 'mainpage-description' => 'Pennfolen',
 'portal'               => 'Porth kemmynieth',
-'portal-url'           => 'Project:Porth kemmynieth',
+'portal-url'           => 'Project:Porth Kemmynieth',
 
 'ok'                 => 'Sur',
 'youhavenewmessages' => 'Yma $1 dhis ($2).',
@@ -146,7 +150,7 @@ $messages = array(
 'red-link-title'     => '$1 (nyns eus folenn hynwys yndelma na hwath)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-main'      => 'Ethygel',
+'nstab-main'      => 'Erthygel',
 'nstab-user'      => 'Devnydhyer',
 'nstab-special'   => 'Folen arbennek',
 'nstab-project'   => 'Folen towl',
@@ -189,15 +193,19 @@ $messages = array(
 'newpassword' => 'Ger-tremena nowyth:',
 
 # Edit page toolbar
-'link_tip'  => 'Kevren bervedhel',
-'image_tip' => 'Restren neythys',
-'media_tip' => 'Kevren restren',
+'bold_sample'   => 'Tekst tew',
+'italic_sample' => 'Tekst italek',
+'italic_tip'    => 'Tekst italek',
+'link_tip'      => 'Kevren bervedhel',
+'image_tip'     => 'Restren neythys',
+'media_tip'     => 'Kevren restren',
 
 # Edit pages
 'minoredit'    => 'Hemm yw chanj bian',
 'watchthis'    => 'Golyas an folen ma',
 'savearticle'  => 'Gwitha',
 'preview'      => 'Ragwel',
+'showpreview'  => 'Diskwedhes ragwel',
 'showdiff'     => 'Diskwedhes chanjyow',
 'loginreqlink' => 'omgelmi',
 'newarticle'   => '(Nowyth)',
@@ -376,7 +384,7 @@ $messages = array(
 'emailsend' => 'Danvon',
 
 # Watchlist
-'watchlist'     => 'Ow rol goelyas',
+'watchlist'     => 'Ow rol golyas',
 'mywatchlist'   => 'Ow rol golyas',
 'watchlistfor'  => "(rag '''$1''')",
 'watch'         => 'Golyas',
@@ -443,7 +451,9 @@ $messages = array(
 'import-upload-filename'  => 'Hanow-restren:',
 
 # Tooltip help for the actions
+'tooltip-pt-userpage'    => 'Dha folen devnydhyer',
 'tooltip-pt-preferences' => 'Teythi ow akont',
+'tooltip-pt-mycontris'   => 'Rol a dha hevrohow',
 'tooltip-pt-logout'      => 'Omdenna',
 'tooltip-ca-addsection'  => 'Dalleth tregh nowyth',
 'tooltip-ca-protect'     => 'Difres an folen ma',
@@ -455,6 +465,11 @@ $messages = array(
 'tooltip-t-upload'       => 'Ughkarga restrennow',
 'tooltip-t-specialpages' => 'Rol a bub folenn arbennik',
 'tooltip-t-print'        => 'Versyon pryntyadow an folen ma',
+'tooltip-save'           => 'Gwitha dha janjyow',
+
+# Attribution
+'siteuser'  => 'devnydhyer {{SITENAME}} $1',
+'siteusers' => '{{PLURAL:$2|devnydhyer|devnydhyoryon}} {{SITENAME}} $1',
 
 # Media information
 'show-big-image' => 'Klerder leun',

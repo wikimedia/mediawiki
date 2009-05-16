@@ -1,6 +1,9 @@
 <?php
 /** Kabyle (Taqbaylit)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -846,7 +849,7 @@ Ma tesɛiḍ tugna-nni s resolution tameqqrant, azen-it, ma ulac beddel isem-is.
 'imagelinks'                => 'Izdayen',
 'linkstoimage'              => 'isebtar-agi sɛan azday ar afaylu-agi',
 'nolinkstoimage'            => 'Ulaḥedd seg isebtar sɛan azday ar afaylu-agi.',
-'sharedupload'              => 'Afaylu-yagi yettuseqdac sɣur wiki tiyaḍ. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => 'Afaylu-yagi yettuseqdac sɣur wiki tiyaḍ.', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki'          => 'Ẓer $1 iwakken ad tessneḍ kter.',
 'shareduploadwiki-linktext' => 'Asebter n weglam n ufaylu',
 'noimage'                   => 'Afaylu s yisem-agi ulac-it, tzemreḍ ad $1.',

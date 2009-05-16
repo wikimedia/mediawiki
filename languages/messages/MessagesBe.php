@@ -1,6 +1,9 @@
 <?php
 /** Belarusian (Беларуская)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -1359,7 +1362,7 @@ $2',
 'morelinkstoimage'          => 'Паказаць [[Special:WhatLinksHere/$1|больш спасылак]] на гэты файл.',
 'redirectstofile'           => "Наступны{{PLURAL:$1| файл з'яўляецца перасылкай|я $1 файлы з'яўляюцца перасылкамі}} да гэтага файла:",
 'duplicatesoffile'          => "Наступн{{PLURAL:$1|ы файл з'яўляецца дублікатам|ыя $1 файлы з'яўляюцца дублікатамі}} гэтага файла:",
-'sharedupload'              => 'Гэты файл паданы для супольнага карыстання, і можа быць выкарыстаны ў іншых праектах. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => 'Гэты файл паданы для супольнага карыстання, і можа быць выкарыстаны ў іншых праектах.', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki'          => 'Падрабязнасці глядзіце на $1.',
 'shareduploadwiki-desc'     => 'Апісанне $1 у агульным сховішчы паказанае ніжэй.',
 'shareduploadwiki-linktext' => 'старонка з апісаннем файла',
@@ -1441,7 +1444,7 @@ $2',
 'statistics-mostpopular'       => 'Самыя папулярныя старонкі',
 
 'disambiguations'      => 'Неадназначнасці',
-'disambiguationspage'  => '[[Шаблон:Неадназначнасць]]',
+'disambiguationspage'  => 'Template:Неадназначнасць',
 'disambiguations-text' => "Гэтыя старонкі спасылаюцца на '''старонкі развязкі неадназначнасцяў'''.
 Лепей, каб яны спасылаліся на канкрэтныя тэматычныя старонкі.<br />
 Старонка лічыцца старонкай развязкі, калі ў яе ўлучаецца такі шаблон, на які спасылаецца [[MediaWiki:Disambiguationspage]]",
@@ -2790,7 +2793,7 @@ $1',
 'specialpages'                   => 'Адмысловыя старонкі',
 'specialpages-note'              => '----
 * Агульныя адмысловыя старонкі.
-* <span class="mw-specialpagerestricted">Абмежаваныя адмысловыя старонкі.</span>',
+* <strong class="mw-specialpagerestricted">Абмежаваныя адмысловыя старонкі.</strong>',
 'specialpages-group-maintenance' => 'Звесткі аб працы',
 'specialpages-group-other'       => 'Іншыя адмысловыя старонкі',
 'specialpages-group-login'       => 'Прадстаўленне / рэгістрацыя',

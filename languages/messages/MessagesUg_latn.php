@@ -1,10 +1,14 @@
 <?php
 /** Uighur (Latin) (Uyghurche‎ / ئۇيغۇرچە (Latin))
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
  * @author Jose77
+ * @author M.erdem
  * @author לערי ריינהארט
  */
 
@@ -12,11 +16,13 @@ $rtl = true;
 
 $messages = array(
 # Dates
-'sunday'    => 'Yakshanbe',
-'tuesday'   => 'Seyshanbe',
-'wednesday' => 'Qarshenbe',
-'thursday'  => 'Payshanbe',
-'saturday'  => 'Shanba',
+'sunday'    => 'Yekshenbe',
+'monday'    => 'Düshenbe',
+'tuesday'   => 'Seyshenbe',
+'wednesday' => 'Charshenbe',
+'thursday'  => 'Peyshenbe',
+'friday'    => 'Jüme',
+'saturday'  => 'Shenbe',
 'january'   => 'Yanwar',
 'february'  => 'Féwral',
 'march'     => 'Mart',
@@ -40,22 +46,22 @@ $messages = array(
 'searcharticle'    => 'Kuchush',
 'history_short'    => 'Tarih',
 'printableversion' => 'Basma Nushisi',
-'permalink'        => 'Manguluk Bet',
+'permalink'        => 'Menggülük bet',
 'edit'             => 'Uzgartish',
 'delete'           => 'Yukhutush',
 'protect'          => 'Koghdash',
 'talkpagelinktext' => 'Monazire',
 'talk'             => 'Monazire',
-'toolbox'          => 'Kural Sandukleri',
-'otherlanguages'   => 'Bashkha tillarda',
+'toolbox'          => 'Qural sanduqlari',
+'otherlanguages'   => 'Bashqa tillarda',
 'jumptosearch'     => 'izdash',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'currentevents'        => 'Hazirkhi Wakhalar',
+'currentevents'        => 'Hazirqi weqeler',
 'edithelp'             => 'Uzgartish yardemi',
 'mainpage'             => 'Bash Bet',
 'mainpage-description' => 'Bash Bet',
-'portal'               => 'Tor Jamiyeti',
+'portal'               => 'Tor Jemiyiti',
 
 'ok'             => 'MAQUL',
 'editsection'    => 'uzgartish',
@@ -103,14 +109,14 @@ $messages = array(
 'timezoneregion-europe' => 'Yawropa',
 
 # Recent changes
-'recentchanges' => 'Yengi Uzgurush',
+'recentchanges' => 'Yéngi özgirish',
 
 # Recent changes linked
-'recentchangeslinked'      => 'Yekhinkhi Uzgurushler',
+'recentchangeslinked'      => 'Yéqinqi özgirishler',
 'recentchangeslinked-page' => 'Betning ismi:',
 
 # Upload
-'upload'          => 'Yengi Hujjat Kirguzush',
+'upload'          => 'Yéngi höjjet kirgüzush',
 'uploadbtn'       => 'Yengi Hujjat Kirguzush',
 'filedesc'        => 'Hulasa',
 'watchthisupload' => 'Bu Batka Kharang',
@@ -155,7 +161,7 @@ $messages = array(
 'sp-contributions-submit' => 'Izdash',
 
 # What links here
-'whatlinkshere'      => 'Bashkha Tor Batleri',
+'whatlinkshere'      => 'Bashqa tor betler',
 'whatlinkshere-page' => 'Bet:',
 
 # Block/unblock
@@ -195,6 +201,6 @@ $messages = array(
 'table_pager_limit_submit' => 'Kuchush',
 
 # Special:SpecialPages
-'specialpages' => 'Alahida Tor Batleri',
+'specialpages' => 'Alahide tor betleri',
 
 );

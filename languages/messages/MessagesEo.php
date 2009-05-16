@@ -1,6 +1,9 @@
 <?php
 /** Esperanto (Esperanto)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -168,7 +171,7 @@ $messages = array(
 'tog-hidepatrolled'           => 'Kaŝi patrolitajn redaktojn en lastaj ŝanĝoj',
 'tog-newpageshidepatrolled'   => 'Kaŝi patrolitajn paĝojn de listo de novaj paĝoj',
 'tog-extendwatchlist'         => 'Etendi la atentaron por montri ĉiujn ŝanĝon, ne nur la plej lastaj',
-'tog-usenewrc'                => 'Novstila Lastaj Ŝanĝoj (bezonas JavaSkripton)',
+'tog-usenewrc'                => 'Uzi progresan "Lastaj Ŝanĝoj" (bezonas JavaSkripton)',
 'tog-numberheadings'          => 'Aŭtomate numerigi sekciojn',
 'tog-showtoolbar'             => 'Montri eldonilaron',
 'tog-editondblclick'          => 'Redakti per duobla alklako (JavaScript)',
@@ -176,7 +179,7 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Ŝalti sekcian redaktadon per dekstra musklako de sekciaj titoloj (kun JavaScript)',
 'tog-showtoc'                 => 'Montri liston de enhavoj (por paĝojn kun pli ol 3 sekciojn)',
 'tog-rememberpassword'        => 'Rememori mian pasvorton',
-'tog-editwidth'               => 'Redaktilo estu plenlarĝa',
+'tog-editwidth'               => 'Plenekranigi la redaktilon',
 'tog-watchcreations'          => 'Aldoni de mi kreitajn paĝojn al mia atentaro',
 'tog-watchdefault'            => 'Priatenti redaktintajn paĝojn de vi',
 'tog-watchmoves'              => 'Aldoni paĝojn, kiujn mi movas, al mia atentaro',
@@ -190,7 +193,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Sendi al mi ankaŭ retmesaĝojn por malgrandaj redaktoj de paĝoj',
 'tog-enotifrevealaddr'        => 'Malkaŝi mian retadreson en informaj retpoŝtaĵoj',
 'tog-shownumberswatching'     => 'Montri la nombron da priatentaj uzantoj',
-'tog-fancysig'                => 'Simpla subskribo (sen aŭtomata ligo)',
+'tog-fancysig'                => 'Trakti subskribon kiel vikitekston (sen aŭtomata ligo)',
 'tog-externaleditor'          => 'Uzi defaŭlte eksteran tekstprilaborilon',
 'tog-externaldiff'            => 'Uzi defaŭlte eksteran ŝanĝmontrilon',
 'tog-showjumplinks'           => 'Ebligi alirligojn "salti al"
@@ -288,7 +291,7 @@ $messages = array(
 
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Listo de konfiguraĵoj] (angla)
 * [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki Oftaj Demandoj] (angla)
-* [http://lists.wikipedia.org/mailman/listinfo/mediawiki-announce MediaWiki dissendolisto pri anoncoj] (angla)",
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki dissendolisto pri anoncoj] (angla)",
 
 'about'          => 'Enkonduko',
 'article'        => 'Artikolo',
@@ -644,7 +647,6 @@ Vi povas ignori ĉi mesaĝon, se ĉi konto estis kreita erare.',
 'resetpass-wrong-oldpass'   => 'Nevalida provizora aŭ nuna pasvorto.
 Vi eble jam ŝanĝis vian pasvorton aŭ petis novan provizoran pasvorton.',
 'resetpass-temp-password'   => 'Provizora pasvorto:',
-'resetpass-no-others'       => 'Vi ne povas reŝanĝi la pasvorton por aliaj uzantoj.',
 'resetpass-log'             => 'Loglibro de pasvortaj reŝanĝoj',
 'resetpass-logtext'         => 'Jen protokolo de uzantoj kies pasvortoj estis reŝanĝitaj de administranto.',
 'resetpass-logentry'        => 'ŝanĝis la pasvorton por $1',
@@ -664,7 +666,7 @@ Vi eble jam ŝanĝis vian pasvorton aŭ petis novan provizoran pasvorton.',
 'math_sample'     => 'Enmeti formulon ĉi tien',
 'math_tip'        => 'Matematika formulo (LaTeX)',
 'nowiki_sample'   => 'Enigi ne formatitan tekston ĉi tien',
-'nowiki_tip'      => 'Ignoru vikiformatadon',
+'nowiki_tip'      => 'Ignori vikiformatadon',
 'image_sample'    => 'Ekzemplo.jpg',
 'image_tip'       => 'Enŝutita bildo',
 'media_sample'    => 'Ekzemplo.ogg',
@@ -892,13 +894,15 @@ Provu [[Special:Search|serĉi en la vikio]] por rilataj novaj paĝoj.',
 'rev-deleted-comment'            => '(komento forigita)',
 'rev-deleted-user'               => '(uzanto-nomo forigita)',
 'rev-deleted-event'              => '(protokola ago forigita)',
-'rev-deleted-text-permission'    => "Ĉi tiu revizio de la paĝo estis '''forigita de publikaj arĥivoj'''.
+'rev-deleted-text-permission'    => "Ĉi tiu revizio de la paĝo estis '''forigita'''.
 Eble estas detaloj en la [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} protokolo de forigoj].",
-'rev-deleted-text-view'          => 'Ĉi versio de la paĝo estis forigita de publikaj arĥivoj.
-Kiel administranto de {{SITENAME}} vi povas rigardi ĝin;
-povas esti detaloj en la [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} protokolo de forigoj].',
-'rev-deleted-no-diff'            => 'Vi ne povas vidi ĉi tiun diferencon ĉar unu el la revizioj estis forigitaj el la publikaj arkivoj.
-Eble estas detaloj en la [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Protokolo pri forigoj].',
+'rev-deleted-text-view'          => "Ĉi tiu revizio de la paĝo estis '''forigita'''.
+Kiel administranto vi povas rigardi ĝin; eble estas detaloj en la [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} protokolo pri forigoj].",
+'rev-deleted-no-diff'            => "Vi ne povas vidi ĉi tiun diferencon ĉar unu el la revizioj estis '''forigitaj'''.
+Eble estas detaloj en la [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} protokolo pri forigoj].",
+'rev-deleted-unhide-diff'        => "Unu el la revizioj de ĉi tiu diferenco estis '''forigita'''.
+Eble estas detaloj en la [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} protokolo de forigoj].
+Kiel administranto vi povas ankoraŭ [$1 vidi ĉi tiun diferencon] se vi volas kontinui.",
 'rev-delundel'                   => 'montri/kaŝi',
 'revisiondelete'                 => 'Forigi/malforigi versiojn',
 'revdelete-nooldid-title'        => 'Nevalida cela versio',
@@ -1456,7 +1460,7 @@ Se vi ankoraŭ volas alŝuti vian dosieron, bonvolu retroigi kaj uzi novan nomon
 'sourcefilename'              => 'Fonta dosiernomo:',
 'destfilename'                => 'Celdosiernomo:',
 'upload-maxfilesize'          => 'Maksimuma dosier-pezo: $1',
-'watchthisupload'             => 'Atenti ĉi tiun paĝon',
+'watchthisupload'             => 'Atenti ĉi tiun dosieron',
 'filewasdeleted'              => 'Dosiero de ĉi nomo estis antaŭe alŝutita kaj poste redaktita. Vi kontrolu la $1 antaux alŝutante ĝin denove.',
 'upload-wasdeleted'           => "'''Averto: Vi alŝutas dosieron kiu estis antaŭe forigita.'''
 
@@ -1523,7 +1527,7 @@ La jena listo montras la {{PLURAL:$1|unua paĝligilo|unuaj $1 paĝligiloj}} al n
 'morelinkstoimage'          => 'Rigardi [[Special:WhatLinksHere/$1|pliajn ligilojn]] al ĉi tiu dosiero.',
 'redirectstofile'           => 'Jen {{PLURAL:$1|dosiero liganta|dosieroj ligantaj}} al ĉi tiu dosiero:',
 'duplicatesoffile'          => 'La {{PLURAL:$1|jena dosiero estas duplikato|jenaj dosieroj estas duplikatoj}} de ĉi tiu dosiero ([[Special:FileDuplicateSearch/$2|pluaj detaloj]]):',
-'sharedupload'              => 'Ĉi tiu dosiero estas de $1 kaj estas uzebla de aliaj projektoj. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => 'Ĉi tiu dosiero estas de $1 kaj estas uzebla de aliaj projektoj.', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki'          => 'Bonvolu vidi la $1 por plua informo.',
 'shareduploadwiki-desc'     => 'Jen la priskribo de ties $1 sube.',
 'shareduploadwiki-linktext' => 'paĝon pri dosiera priskribo',
@@ -2247,8 +2251,8 @@ ne movis la diskuto-paĝon ĉar jam ekzistas tia ĉe la nova titolo.
 Bonvolu permane kunigi ilin.',
 'movedto'                      => 'alinomita al',
 'movetalk'                     => 'Transigi ankaŭ la "diskuto"-paĝon, se ĝi ekzistas.',
-'move-subpages'                => 'Alinomigi ĉiujn subpaĝojn (maksimume $1), se fareble.',
-'move-talk-subpages'           => 'Alinomigi subpaĝojn de diskuto-paĝo (ĝis $1), se fareble.',
+'move-subpages'                => 'Alinomigi ĉiujn subpaĝojn (maksimume $1)',
+'move-talk-subpages'           => 'Alinomigi subpaĝojn de diskuto-paĝo (ĝis $1)',
 'movepage-page-exists'         => 'La paĝo $1 jam ekzistas kaj ne povas esti aŭtomate anstataŭigita.',
 'movepage-page-moved'          => 'La paĝo $1 estis alinomita al $2.',
 'movepage-page-unmoved'        => 'La paĝo $1 ne povas esti alinomigita al $2.',
@@ -2517,7 +2521,7 @@ $1',
 # Media information
 'mediawarning'         => "'''Warning''': This file may contain malicious code, by executing it your system may be compromised.
 <hr />",
-'imagemaxsize'         => 'Elmontri bildojn en bildpriskribaj paĝoj je maksimume:',
+'imagemaxsize'         => "Limo por bildoj:<br />''(por dosieraj priskribo-paĝoj)''",
 'thumbsize'            => 'Grandeco de bildetoj:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|paĝo|paĝoj}}',
 'file-info'            => '(pezo de dosiero: $1, MIME-tipo: $2)',
@@ -3000,7 +3004,7 @@ Enigu la dosiernomon sen la "{{ns:file}}:" prefikso.',
 'specialpages'                   => 'Specialaj paĝoj',
 'specialpages-note'              => '----
 * Normaj specialaj paĝoj.
-* <span class="mw-specialpagerestricted">Limigitaj specialaj paĝoj.</span>',
+* <strong class="mw-specialpagerestricted">Limigitaj specialaj paĝoj.</strong>',
 'specialpages-group-maintenance' => 'Raportoj pri prizorgado',
 'specialpages-group-other'       => 'Aliaj specialaj paĝoj',
 'specialpages-group-login'       => 'Ensaluti / Krei novan konton',

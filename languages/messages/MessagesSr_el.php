@@ -1,6 +1,9 @@
 <?php
 /** latinica (latinica)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -1028,7 +1031,7 @@ molimo vratite se i pošaljite ovaj fajl pod novim imenom. [[File:$1|thumb|cente
 'imagelinks'                => 'Upotreba slike',
 'linkstoimage'              => 'Sledeće stranice koriste ovaj fajl:',
 'nolinkstoimage'            => 'Nema stranica koje koriste ovaj fajl.',
-'sharedupload'              => 'Ova slika je sa zajedničke ostave i možda je koriste ostali projekti. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => 'Ova slika je sa zajedničke ostave i možda je koriste ostali projekti.', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki'          => 'Molimo pogledajte $1 za dalje informacije.',
 'shareduploadwiki-linktext' => 'strana za opis fajla',
 'noimage'                   => 'Ne postoji fajl sa ovim imenom, možete ga $1',

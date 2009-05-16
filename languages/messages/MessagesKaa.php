@@ -1,6 +1,9 @@
 <?php
 /** Kara-Kalpak (Qaraqalpaqsha)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -1261,7 +1264,7 @@ Barlıq mag'lıwmat tu'rin (sonın' ishinde sa'wbet betlerdi, shablonlardı h.t.
 'imagelinks'                => 'Fayl siltewleri',
 'linkstoimage'              => "To'mendegi {{PLURAL:$1|bet|$1 bet}} bul faylg'a siltelgen:",
 'nolinkstoimage'            => "Bul faylg'a hesh bir bet siltelmegen.",
-'sharedupload'              => "Bul ortalıq fayl ha'm basqa proektlerde paydalanılsa boladı. $2", # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => '$1 ortalıq faylı basqa proektlerde paydalanılsa boladı.', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki-linktext' => "fayl juwmag'ının' beti",
 'noimage'                   => "Bunday atlı fayl joq, biraq sizde $1 mu'mkinshiligi bar.",
 'noimage-linktext'          => 'usını aploud qılıw',
@@ -1611,7 +1614,7 @@ Aqırg'ı o'shirilgenlerdin' dizimin ko'riw ushin \$2 ni qaran'",
 'undelete-revision'        => "$1 betinin' $4, $5 waqtındag'ı $3 paydalanıwshı ta'repinen o'shirilgen nusqası:",
 'undelete-nodiff'          => "Hesh aldıng'ı nusqa tabılmadı.",
 'undeletebtn'              => 'Qayta tiklew',
-'undeletelink'             => 'qayta tiklew',
+'undeletelink'             => "ko'riw/qayta tiklew",
 'undeletecomment'          => 'Kommentariy:',
 'undeletedarticle'         => '"[[$1]]" qayta tiklendi',
 'undeletedrevisions'       => '{{PLURAL:$1|1 nusqa|$1 nusqa}} qayta tiklendi',
@@ -1866,6 +1869,7 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'tooltip-watch'                   => "Bul betti baqlaw dizimin'izge qosıw",
 'tooltip-upload'                  => 'Aploudtı basla',
 'tooltip-rollback'                => "\"Biykar etiw\" arqalı usı betke aqırg'ı u'les qosıwshının' kirgizgen o'zgerislerin qaytarıw mu'mkinshiligine iyesiz",
+'tooltip-undo'                    => "\"Qaytarıw\" arqalı bul o'zgeristi artqa qaytarıw ha'm onı aldınnan ko'riw formasında baqlaw menen birge qaytarıwdın' sebebin ko'rsetiw mu'mkinshiligine iyesiz.",
 
 # Attribution
 'anonymous'        => "{{SITENAME}} saytının' anonim {{PLURAL:$1|paydalanıwshısı|paydalanıwshıları}}",

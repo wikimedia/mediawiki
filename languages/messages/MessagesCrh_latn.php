@@ -1,6 +1,9 @@
 <?php
 /** Crimean Turkish (Latin) (Qırımtatarca (Latin))
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -554,7 +557,6 @@ Siz oturım açıp paroliñizni şimdi deñiştirmek kereksiñiz.
 'resetpass-wrong-oldpass'   => 'Ruhsetsiz muvaqqat ya da al-azırki parоl.
 Parоliñizni endi muvafaqiyetnen deñiştirdiñiz ya da yañı bir muvaqqat parоl istediñiz.',
 'resetpass-temp-password'   => 'Muvaqqat parol:',
-'resetpass-no-others'       => 'Diger qullanıcılarnıñ parollerini sıfırlap olamaysıñız.',
 
 # Edit page toolbar
 'bold_sample'     => 'Qalın yazılış',
@@ -1059,7 +1061,7 @@ Sutun serlevasına bir basuv sortirlemeniñ tertibini deñiştirir.',
 'imagelinks'                => 'Fayl bağlantıları',
 'linkstoimage'              => 'Bu faylğa bağlantı olğan $1 saife:',
 'nolinkstoimage'            => 'Bu faylğa bağlanğan saife yoq.',
-'sharedupload'              => 'Bu fayl $1 saytına yüklengen ve diger proyektlerde de qullanılıp оla. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => 'Bu fayl $1 saytına yüklengen ve diger proyektlerde de qullanılıp оla.', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki'          => 'Tafsilâtnı $1 saifesinde tapmaq mümkün.',
 'shareduploadwiki-linktext' => 'fayl malümat saifesi',
 'noimage'                   => 'Bu isimde fayl yoq, amma siz $1.',

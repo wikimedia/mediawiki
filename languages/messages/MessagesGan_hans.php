@@ -1,6 +1,9 @@
 <?php
 /** Simplified Gan script (赣语(简体))
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -936,7 +939,7 @@ $2',
 'imagelinks'                => '链接',
 'linkstoimage'              => '底下𠮶页面链接到个只档案:',
 'nolinkstoimage'            => '冇页面链接到个只档案。',
-'sharedupload'              => '个只档案系只共用𠮶上传，佢可以应用到别𠮶项目。 $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => '个只档案系只共用𠮶上传，佢可以应用到别𠮶项目。', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki'          => '更多信息请参看$1。',
 'shareduploadwiki-linktext' => '档案描述页',
 'noimage'                   => '同名𠮶档案伓存在，倷可以$1。',
@@ -963,7 +966,7 @@ $2',
 'filedelete-success'          => "'''$1'''删吥嘞。",
 'filedelete-success-old'      => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\'于 $2 $3 𠮶版本删吥嘞。</span>',
 'filedelete-nofile'           => "{{SITENAME}}个只网站伓存在'''$1'''。",
-'filedelete-nofile-old'       => "按到指定属性𠮶情况，个首冇'''$1'''到$2 $3𠮶版本。",
+'filedelete-nofile-old'       => "按到指定属性𠮶情况，个首冇'''$1'''到𠮶版本。",
 'filedelete-otherreason'      => '别𠮶/附加缘故:',
 'filedelete-reason-otherlist' => '别𠮶缘故',
 'filedelete-reason-dropdown'  => '*常用删除理由

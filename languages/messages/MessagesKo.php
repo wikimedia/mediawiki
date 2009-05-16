@@ -1,6 +1,9 @@
 <?php
 /** Korean (한국어)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -281,7 +284,7 @@ $messages = array(
 'tog-enotifminoredits'        => '사소한 편집에도 이메일을 보내기',
 'tog-enotifrevealaddr'        => '알림 메일에 내 이메일 주소를 밝히기',
 'tog-shownumberswatching'     => '주시 사용자 수를 보여주기',
-'tog-fancysig'                => '서명에 링크를 걸지 않기',
+'tog-fancysig'                => '서명을 위키텍스트로 취급하기(자동 링크를 걸지 않기)',
 'tog-externaleditor'          => '외부 입력기를 기본값으로 사용하기 (숙련자용, 컴퓨터에 특별한 설정이 필요합니다)',
 'tog-externaldiff'            => '외부 비교 툴을 기본값으로 사용하기 (숙련자용, 컴퓨터에 특별한 설정이 필요합니다)',
 'tog-showjumplinks'           => '접근성을 위한 "이동" 링크 쓰기 (일부 스킨에서만 작동)',
@@ -710,7 +713,6 @@ $messages = array(
 'resetpass-wrong-oldpass'   => '비밀번호가 잘못되었거나 현재의 비밀번호와 같습니다.
 당신은 이미 비밀번호를 성공적으로 변경하였거나 새 임시 비밀번호를 발급받았을 수 있습니다.',
 'resetpass-temp-password'   => '임시 비밀번호:',
-'resetpass-no-others'       => '당신은 다른 사용자의 비밀번호를 변경할 수 없습니다.',
 'resetpass-log'             => '비밀번호 변경 기록',
 'resetpass-logtext'         => '다음은 관리자에 의해 비밀번호가 변경된 사용자에 대한 기록입니다.',
 'resetpass-logentry'        => '$1 사용자의 비밀번호를 변경',
@@ -1506,7 +1508,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'sourcefilename'              => '원본 파일 이름:',
 'destfilename'                => '파일의 새 이름:',
 'upload-maxfilesize'          => '파일의 최대 크기: $1',
-'watchthisupload'             => '이 문서 주시하기',
+'watchthisupload'             => '이 파일 주시하기',
 'filewasdeleted'              => '같은 이름을 가진 파일이 올라온 적이 있었고, 그 후에 삭제되었습니다. 올리기 전에 $1을 확인해 주시기 바랍니다.',
 'upload-wasdeleted'           => "'''경고: 삭제된 적이 있는 파일을 다시 올리려 하고 있습니다.'''
 
@@ -1544,7 +1546,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'upload-curl-error28'      => '업로드 시간 초과',
 'upload-curl-error28-text' => '사이트에서 응답하는 시간이 너무 깁니다. 사이트 접속이 가능한지 확인한 다음 다시 시도해주세요. 해당 사이트에 접속이 많을 경우, 접속이 원활한 시간대에 시도해주세요.',
 
-'license'            => '라이센스:',
+'license'            => '라이선스:',
 'nolicense'          => '선택하지 않음',
 'license-nopreview'  => '(미리보기 불가능)',
 'upload_source_url'  => ' (유효하고, 모든 사람이 접근 가능한 URL)',
@@ -1588,7 +1590,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'morelinkstoimage'          => '이 파일이 쓰이고 있는 문서 목록 [[Special:WhatLinksHere/$1|더 보기]].',
 'redirectstofile'           => '다음 {{PLURAL:$1|파일|$1개의 파일}}이 이 파일로 넘겨주고 있습니다:',
 'duplicatesoffile'          => '다음 {{PLURAL:$1|파일이|$1개의 파일이}} 이 파일과 중복됩니다 ([[Special:FileDuplicateSearch/$2|자세한 정보]]):',
-'sharedupload'              => '이 자료는 $1에 있습니다. 다른 프로젝트에서 사용하고 있을 가능성이 있습니다. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => '이 자료는 $1으로부터 왔고, 다른 프로젝트에서 사용하고 있을 가능성이 있습니다.', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki'          => '$1에서 더 자세한 정보를 얻을 수 있습니다.',
 'shareduploadwiki-desc'     => '$1의 설명을 아래에 표시합니다.',
 'shareduploadwiki-linktext' => '자료의 설명 문서',
@@ -1670,7 +1672,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'statistics-jobqueue'          => '[http://www.mediawiki.org/wiki/Manual:Job_queue Job queue]의 길이',
 'statistics-users'             => '등록된 [[Special:ListUsers|사용자]]',
 'statistics-users-active'      => '활동 중인 사용자',
-'statistics-users-active-desc' => '지난 $1일간 활동한 사용자',
+'statistics-users-active-desc' => '최근 $1일간 활동한 사용자',
 'statistics-mostpopular'       => '가장 많이 읽힌 문서',
 
 'disambiguations'      => '동음이의 문서 목록',
@@ -1805,7 +1807,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'deletedcontributions-title' => '삭제된 기여 목록',
 
 # Special:LinkSearch
-'linksearch'       => '웹 링크 찾기',
+'linksearch'       => '웹 링크 검색',
 'linksearch-pat'   => '검색 패턴:',
 'linksearch-ns'    => '이름공간:',
 'linksearch-ok'    => '검색',
@@ -2157,7 +2159,7 @@ $1',
 'ipbotheroption'                  => '수동으로 지정',
 'ipbotherreason'                  => '다른 이유/추가적인 이유:',
 'ipbhidename'                     => '사용자 이름을 목록과 편집기록에서 숨깁니다.',
-'ipbwatchuser'                    => '이 사용자의 사용자 문서와 토론 문서를 주시하기',
+'ipbwatchuser'                    => '이 사용자 문서와 사용자토론 문서를 주시하기',
 'ipballowusertalk'                => '차단되어 있는 중에도 자신의 토론 문서를 편집할 수 있게 허용',
 'ipb-change-block'                => '이 설정으로 이 사용자를 다시 차단합니다',
 'badipaddress'                    => '잘못된 IP 주소',
@@ -2276,7 +2278,7 @@ $1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습�
 'move-watch'                   => '이 문서 주시하기',
 'movepagebtn'                  => '이동',
 'pagemovedsub'                 => '문서 이동함',
-'movepage-moved'               => "<big>'''‘$1’ 문서를 ‘$2’ 문서로 이동함'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
+'movepage-moved'               => "<big>'''‘$1’ 문서를 ‘$2’ 문서로 이동했습니다.'''</big>", # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'movepage-moved-redirect'      => '넘겨주기 문서가 생성되었습니다.',
 'movepage-moved-noredirect'    => '넘겨주기 문서가 생성되지 않았습니다.',
 'articleexists'                => '문서가 이미 존재하거나, 문서 이름이 올바르지 않습니다. 다른 제목으로 시도해주세요.',
@@ -2284,8 +2286,8 @@ $1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습�
 'talkexists'                   => "'''문서는 이동되었습니다. 하지만 딸린 토론 문서의 새 이름으로 된 문서가 이미 존재해서, 토론 문서는 이동하지 않았습니다. 직접 문서를 합쳐 주세요.'''",
 'movedto'                      => '새 이름',
 'movetalk'                     => '딸린 토론도 함께 이동합니다.',
-'move-subpages'                => '하위 문서도 함께 ($1으로) 이동합니다.',
-'move-talk-subpages'           => '가능하다면, 토론 문서의 하위 문서도 함께 이동합니다. ($1로 이동합니다)',
+'move-subpages'                => '하위 문서도 함께 ($1개 이하) 이동합니다.',
+'move-talk-subpages'           => '토론 문서의 하위 문서도 ($1개까지) 함께 이동합니다.',
 'movepage-page-exists'         => '이동할 수 없습니다. ‘$1’ 문서가 이미 존재합니다.',
 'movepage-page-moved'          => '$1 문서가 $2 (으)로 이동되었습니다.',
 'movepage-page-unmoved'        => '$1 문서를 $2로 이동할 수 없습니다.',
@@ -2565,7 +2567,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''경고''': 이 파일에는 시스템을 위험하게 만드는 악성 코드가 들어있을 수 있습니다.<hr />",
-'imagemaxsize'         => '파일 설명 문서의 그림 크기를 제한하기:',
+'imagemaxsize'         => "그림 크기를 제한하기:<br />''(파일 설명 페이지)''",
 'thumbsize'            => '섬네일 크기:',
 'widthheightpage'      => '$1×$2, $3페이지',
 'file-info'            => '(파일 크기: $1, MIME 종류: $2)',
@@ -3053,7 +3055,7 @@ $1',
 'specialpages'                   => '특수 문서 목록',
 'specialpages-note'              => '----
 * 일반 특수 문서.
-* <span class="mw-specialpagerestricted">제한된 특수 문서.</span>',
+* <strong class="mw-specialpagerestricted">제한된 특수 문서.</strong>',
 'specialpages-group-maintenance' => '관리용 목록',
 'specialpages-group-other'       => '다른 특수문서',
 'specialpages-group-login'       => '로그인 / 등록',

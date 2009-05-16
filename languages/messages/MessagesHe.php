@@ -1,6 +1,9 @@
 <?php
 /** Hebrew (עברית)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -323,7 +326,7 @@ $messages = array(
 'tog-hidepatrolled'           => 'הסתרת שינויים בדוקים ברשימת השינויים האחרונים',
 'tog-newpageshidepatrolled'   => 'הסתרת דפים בדוקים ברשימת הדפים החדשים',
 'tog-extendwatchlist'         => 'הרחבת רשימת המעקב כך שתציג את כל השינויים, לא רק את השינויים האחרונים בכל דף',
-'tog-usenewrc'                => 'רשימת שינויים אחרונים משופרת (דרוש JavaScript)',
+'tog-usenewrc'                => 'שימוש ברשימת שינויים אחרונים משופרת (דרוש JavaScript)',
 'tog-numberheadings'          => 'מספור כותרות אוטומטי',
 'tog-showtoolbar'             => 'הצגת סרגל העריכה (דרוש JavaScript)',
 'tog-editondblclick'          => 'עריכת דפים בלחיצה כפולה (דרוש JavaScript)',
@@ -331,7 +334,7 @@ $messages = array(
 'tog-editsectiononrightclick' => 'עריכת פסקאות על ידי לחיצה ימנית על כותרות הפסקאות (דרוש JavaScript)',
 'tog-showtoc'                 => 'הצגת תוכן עניינים (עבור דפים עם יותר מ־3 כותרות)',
 'tog-rememberpassword'        => 'זכירת הכניסה שלי במחשב זה',
-'tog-editwidth'               => 'תיבת העריכה ברוחב מלא',
+'tog-editwidth'               => 'הרחבת תיבת העריכה כך שתמלא את החלון כולו',
 'tog-watchcreations'          => 'מעקב אחרי דפים שיצרתי',
 'tog-watchdefault'            => 'מעקב אחרי דפים שערכתי',
 'tog-watchmoves'              => 'מעקב אחרי דפים שהעברתי',
@@ -345,7 +348,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'שליחת דוא"ל אליך גם על עריכות משניות של דפים',
 'tog-enotifrevealaddr'        => 'חשיפת כתובת הדוא"ל שלך בהודעות דואר',
 'tog-shownumberswatching'     => 'הצגת מספר המשתמשים העוקבים אחרי הדף',
-'tog-fancysig'                => 'הצגת חתימה מסוגננת',
+'tog-fancysig'                => 'טיפול בחתימה כקוד ויקי (ללא קישור אוטומטי)',
 'tog-externaleditor'          => 'שימוש בעורך חיצוני כברירת מחדל (למשתמשים מומחים בלבד, דורש הגדרות מיוחדות במחשב)',
 'tog-externaldiff'            => 'שימוש בתוכנת השוואת הגרסאות החיצונית כברירת מחדל (למשתמשים מומחים בלבד, דורש הגדרות מיוחדות במחשב)',
 'tog-showjumplinks'           => 'הצגת קישורי נגישות מסוג "קפוץ אל"',
@@ -724,7 +727,7 @@ $2',
 'nologinlink'                => 'אתם מוזמנים להירשם',
 'createaccount'              => 'יצירת משתמש חדש',
 'gotaccount'                 => 'כבר נרשמתם? $1.',
-'gotaccountlink'             => 'הכנסו לחשבון',
+'gotaccountlink'             => 'היכנסו לחשבון',
 'createaccountmail'          => 'באמצעות דוא"ל',
 'badretype'                  => 'הסיסמאות שהזנתם אינן מתאימות.',
 'userexists'                 => 'שם המשתמש שבחרתם נמצא בשימוש.
@@ -776,7 +779,7 @@ $2',
 ואינכם רוצים עוד לשנות אותה, באפשרותכם להתעלם מהודעה זו ולהמשיך להשתמש בסיסמתכם הישנה.',
 'noemail'                    => 'לא רשומה כתובת דואר אלקטרוני עבור משתמש  "$1".',
 'passwordsent'               => 'סיסמה חדשה נשלחה לכתובת הדואר האלקטרוני הרשומה עבור "$1".
-אנא הכנסו חזרה לאתר אחרי שתקבלו אותה.',
+אנא היכנסו חזרה לאתר אחרי שתקבלו אותה.',
 'blocked-mailpassword'       => 'כתובת ה־IP שלכם חסומה מעריכה, ולפיכך אינכם מורשים להשתמש באפשרות שחזור הסיסמה כדי למנוע ניצול לרעה של התכונה.',
 'eauthentsent'               => 'דוא"ל אישור נשלח לכתובת הדוא"ל שקבעת. לפני שדברי דוא"ל אחרים נשלחים לחשבון הזה, תצטרך לפעול לפי ההוראות בדוא"ל כדי לוודא שהדוא"ל הוא אכן שלך.',
 'throttled-mailpassword'     => 'כבר נעשה שימוש באפשרות שחזור הסיסמה ב{{PLURAL:$1|שעה האחרונה|־$1 השעות האחרונות}}. כדי למנוע ניצול לרעה, רק דואר אחד כזה יכול להישלח כל {{PLURAL:$1|שעה אחת|$1 שעות}}.',
@@ -817,7 +820,6 @@ $2',
 'resetpass-wrong-oldpass'   => 'הסיסמה הזמנית או הנוכחית אינה תקינה.
 ייתכן שכבר שיניתם את סיסמתכם או שכבר ביקשתם סיסמה זמנית חדשה.',
 'resetpass-temp-password'   => 'סיסמה זמנית:',
-'resetpass-no-others'       => 'אינכם מורשים לאפס סיסמה למשתמשים אחרים.',
 'resetpass-log'             => 'יומן איפוס סיסמאות',
 'resetpass-logtext'         => 'זהו יומן של המשתמשים שסיסמתם אופסה על ידי מנהל האתר.',
 'resetpass-logentry'        => 'שינה את הסיסמה עבור $1',
@@ -1058,13 +1060,13 @@ $2',
 'rev-deleted-comment'            => '(תקציר העריכה הוסתר)',
 'rev-deleted-user'               => '(שם המשתמש הוסתר)',
 'rev-deleted-event'              => '(פעולת היומן הוסתרה)',
-'rev-deleted-text-permission'    => "גרסת הדף הזו '''הוסרה מהארכיונים הציבוריים'''.
+'rev-deleted-text-permission'    => "גרסת הדף הזו '''נמחקה'''.
 ייתכן שישנם פרטים נוספים על כך ב[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} יומן המחיקות].",
-'rev-deleted-text-view'          => "גרסת הדף הזו '''הוסרה מהארכיונים הציבוריים'''.
+'rev-deleted-text-view'          => "גרסת הדף הזו '''נמחקה'''.
 כיוון שאתם בעלי הרשאות מפעיל מערכת, באפשרותכם לצפות בגרסה; ייתכן שישנם פרטים נוספים על כך ב[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} יומן המחיקות].",
-'rev-deleted-no-diff'            => "אינכם יכולים לצפות בהבדלים בין הגרסאות שציינתם משום שאחת מהן '''הוסרה מהארכיונים הציבוריים'''.
+'rev-deleted-no-diff'            => "אינכם יכולים לצפות בהבדלים בין הגרסאות שציינתם משום שאחת מהן '''נמחקה'''.
 ייתכן שישנם פרטים נוספים על כך ב[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} יומן המחיקות].",
-'rev-deleted-unhide-diff'        => "אחת מהגרסאות שציינתם '''הוסרה מהארכיונים הציבוריים'''.
+'rev-deleted-unhide-diff'        => "אחת מהגרסאות שציינתם '''נמחקה'''.
 ייתכן שישנם פרטים נוספים על כך ב[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} יומן המחיקות].
 כיוון שאתם בעלי הרשאות מפעיל מערכת, באפשרותכם [$1 לצפות בהבדלים בין הגרסאות] אם ברצונכם להמשיך.",
 'rev-delundel'                   => 'הצגה/הסתרה',
@@ -1624,7 +1626,7 @@ $2',
 'sourcefilename'              => 'שם הקובץ:',
 'destfilename'                => 'שמור קובץ בשם:',
 'upload-maxfilesize'          => 'גודל הקובץ המקסימלי: $1',
-'watchthisupload'             => 'מעקב אחרי דף זה',
+'watchthisupload'             => 'מעקב אחרי קובץ זה',
 'filewasdeleted'              => 'קובץ בשם זה כבר הועלה בעבר, ולאחר מכן נמחק. אנא בדקו את הדף $1 לפני שתמשיכו להעלותו שנית.',
 'upload-wasdeleted'           => "'''אזהרה: הנכם מעלים קובץ שנמחק בעבר.'''
 
@@ -1704,7 +1706,7 @@ PICT # שונות
 'morelinkstoimage'          => 'ראו [[Special:WhatLinksHere/$1|דפים נוספים]] המשתמשים בקובץ זה.',
 'redirectstofile'           => '{{PLURAL:$1|הדף הבא הוא דף הפניה|הדפים הבאים הם דפי הפניה}} לקובץ זה:',
 'duplicatesoffile'          => '{{PLURAL:$1|הקובץ הבא זהה|הקבצים הבאים זהים}} לקובץ זה ([[Special:FileDuplicateSearch/$2|לפרטים נוספים]]):',
-'sharedupload'              => 'זהו קובץ מתוך $1 וניתן להשתמש בו גם במיזמים אחרים. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => 'זהו קובץ מתוך $1 וניתן להשתמש בו גם במיזמים אחרים.', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki'          => 'למידע נוסף, ראו את $1.',
 'shareduploadwiki-desc'     => 'תיאורו ב$1 המקורי מוצג למטה.',
 'shareduploadwiki-linktext' => 'דף תיאור הקובץ',
@@ -2423,8 +2425,8 @@ $1 כבר נחסם. האם ברצונכם לשנות את הגדרות החסי�
 'talkexists'                   => 'הדף עצמו הועבר בהצלחה, אבל דף השיחה לא הועבר כיוון שקיים כבר דף שיחה במיקום החדש. אנא מזגו אותם ידנית.',
 'movedto'                      => 'הועבר ל',
 'movetalk'                     => 'העברה גם של דף השיחה',
-'move-subpages'                => 'העברת כל דפי המשנה (עד $1), אם אפשר',
-'move-talk-subpages'           => 'העברת כל דפי המשנה של דף השיחה (עד $1), אם אפשר',
+'move-subpages'                => 'העברת כל דפי המשנה (עד $1)',
+'move-talk-subpages'           => 'העברת כל דפי המשנה של דף השיחה (עד $1)',
 'movepage-page-exists'         => 'הדף $1 קיים כבר ולא ניתן לדרוס אותו אוטומטית.',
 'movepage-page-moved'          => 'הדף $1 הועבר לשם $2.',
 'movepage-page-unmoved'        => 'לא ניתן להעביר את הדף $1 לשם $2.',
@@ -2718,8 +2720,8 @@ $1',
 
 # Media information
 'mediawarning'         => "'''אזהרה:''' קובץ זה עלול להכיל קוד זדוני, שהרצתו עלולה לסכן את המערכת שלכם.<hr />",
-'imagemaxsize'         => 'הגבלת תמונות בדפי תיאור הקובץ ל:',
-'thumbsize'            => 'הקטן לגודל של:',
+'imagemaxsize'         => 'גודל תמונה מירבי:<br />(לדפי תיאור קובץ)',
+'thumbsize'            => 'הקטנה לגודל של:',
 'widthheightpage'      => '$1×$2, {{PLURAL:$3|דף אחד|$3 דפים}}',
 'file-info'            => '(גודל הקובץ: $1, סוג MIME: $2)',
 'file-info-size'       => '($1 × $2 פיקסלים, גודל הקובץ: $3, סוג MIME: $4)',
@@ -3261,7 +3263,7 @@ $1',
 'specialpages'                   => 'דפים מיוחדים',
 'specialpages-note'              => '----
 * דפים מיוחדים רגילים.
-* <span class="mw-specialpagerestricted">דפים מיוחדים מוגבלים.</span>',
+* <strong class="mw-specialpagerestricted">דפים מיוחדים מוגבלים.</span>',
 'specialpages-group-maintenance' => 'דיווחי תחזוקה',
 'specialpages-group-other'       => 'דפים מיוחדים אחרים',
 'specialpages-group-login'       => 'כניסה / הרשמה לחשבון',

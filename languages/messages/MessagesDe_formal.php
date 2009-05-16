@@ -1,6 +1,9 @@
 <?php
 /** German (formal address) (Deutsch (Sie-Form))
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -112,7 +115,6 @@ Bitte warten Sie, bevor Sie es erneut probieren.',
 'resetpass-no-info'       => 'Sie müssen sich anmelden, um auf diese Seite direkt zuzugreifen.',
 'resetpass-wrong-oldpass' => 'Ungültiges temporäres oder aktuelles Passwort.
 Möglicherweise haben Sie Ihr Passwort bereits erfolgreich geändert oder ein neues temporäres Passwort beantragt.',
-'resetpass-no-others'     => 'Sie können das Passwort anderer Benutzer nicht zurücksetzen.',
 
 # Edit page toolbar
 'sig_tip' => 'Ihre Signatur mit Zeitstempel',
@@ -227,12 +229,12 @@ Zu Ihrer Information folgt das Lösch-Logbuch mit der Begründung für die vorhe
 'edit-no-change'                   => 'Ihre Bearbeitung wurde ignoriert, da keine Änderung an dem Text vorgenomme wurde.',
 
 # Revision deletion
-'rev-deleted-text-view'   => "Diese Version wurde gelöscht und ist '''nicht mehr öffentlich einsehbar'''.
+'rev-deleted-text-view'   => "Diese Version wurde '''gelöscht'''.
 Als Administrator können Sie sie weiterhin einsehen.
 Nähere Angaben zum Löschvorgang sowie eine Begründung finden sich im [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Lösch-Logbuch].",
-'rev-deleted-no-diff'     => "Sie können diesen Unterschied nicht betrachten, da eine der Versionen '''aus den öffentlichen Archiven entfernt wurde'''.
+'rev-deleted-no-diff'     => "Sie können diesen Unterschied nicht betrachten, da eine der Versionen '''gelöscht''' wurde.
 Details stehen im [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Lösch-Logbuch].",
-'rev-deleted-unhide-diff' => "Eine der Versionen dieses Unterschieds wurde '''aus den öffentlichen Archiven entfernt'''.
+'rev-deleted-unhide-diff' => "Eine der Versionen dieses Unterschieds wurde '''gelöscht'''.
 Details stehen im [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Lösch-Logbuch].
 Einem Administrator können Sie [$1 diesen Link zum Versionsunterschied] nennen.",
 'revdelete-nooldid-text'  => 'Sie haben entweder keine Version angegeben, auf die diese Aktion ausgeführt werden soll, die gewählte Version ist nicht vorhanden oder Sie versuchen, die aktuelle Version zu entfernen.',

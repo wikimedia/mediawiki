@@ -1,6 +1,9 @@
 <?php
 /** Basque (Euskara)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -126,7 +129,7 @@ $messages = array(
 'tog-hidepatrolled'           => 'Izkutatu patruilatutako aldaketa azken aldaketetan',
 'tog-newpageshidepatrolled'   => 'Izkutatu patruilatutako orriak, orri-zerrenda berritik',
 'tog-extendwatchlist'         => 'Jarraipen-zerrenda zabaldu aldaketa guztiak ikusteko, ez bakarrik azken aldaketak',
-'tog-usenewrc'                => 'Hobetutako azken aldaketak (JavaScript)',
+'tog-usenewrc'                => 'Hobetutako azken aldaketak (JavaScript behar da)',
 'tog-numberheadings'          => 'Goiburukoak automatikoki zenbakitu',
 'tog-showtoolbar'             => 'Aldaketen tresna-barra erakutsi (JavaScript)',
 'tog-editondblclick'          => 'Klik bikoitzaren bitartez orrialdeak aldatu (JavaScript)',
@@ -134,7 +137,7 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Atalen izenburuetan klik eginez atala<br />aldatzea gaitu (JavaScript)',
 'tog-showtoc'                 => 'Edukien taula erakutsi (3 goiburukotik gorako orrialdeentzako)',
 'tog-rememberpassword'        => 'Nire saioa ordenagailu honetan gogoratu (gomendatua)',
-'tog-editwidth'               => 'Zabalera osoko aldaketa koadroa',
+'tog-editwidth'               => 'Testuaren taula zabaldu pantaila osoa bete dadin',
 'tog-watchcreations'          => 'Sortzen ditudan orrialdeak nire segimendu zerrendara gehitu',
 'tog-watchdefault'            => 'Aldatzen ditudan orrialdeak nire segimendu zerrendara gehitu',
 'tog-watchmoves'              => 'Izena aldatutako orrialdeak segimendu zerrendan erakutsi',
@@ -148,7 +151,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Aldaketa txikiak direnean ere e-posta jaso',
 'tog-enotifrevealaddr'        => 'Jakinarazpen mezuetan nire e-posta helbidea erakutsi',
 'tog-shownumberswatching'     => 'Jarraitzen duen erabiltzaile kopurua erakutsi',
-'tog-fancysig'                => 'Lotura automatikorik gabeko sinadura',
+'tog-fancysig'                => 'Sinadura wikitestu gisa tratatu (lotura automatikorik gabe)',
 'tog-externaleditor'          => 'Lehenetsi bezala kanpoko editore bat erabili',
 'tog-externaldiff'            => 'Lehenetsi bezala kanpoko diff erreminta erabili (adituentzako bakarrik, zure ordenagailuak konfigurazio berezia izan behar du)',
 'tog-showjumplinks'           => '"Hona jo" irisgarritasun loturak gaitu',
@@ -599,7 +602,6 @@ Berriro saiatu aurretik itxoin ezazu, mesedez.',
 'resetpass-wrong-oldpass'   => 'Behin-behineko edo oraintxuko pasahitza ez da baliagarria. 
 Agian dagoeneko ondo aldatu duzu zure pasahitza edo behin-behineko pasahitza bat eskatu duzu.',
 'resetpass-temp-password'   => 'Behin-behineko pasahitza:',
-'resetpass-no-others'       => 'Ezin duzu beste erabiltzaile batzuen pasahitza berritu.',
 'resetpass-log'             => 'Pasahitza berrezartze erregistroa',
 'resetpass-logtext'         => 'Hemen azpian administratzaile batek pasahitza berrezarri dien erabiltzaileen zerrenda bat dago.',
 'resetpass-logentry'        => '$1(e)n pasahitza aldatu da',
@@ -829,10 +831,12 @@ Legenda: (orain) = oraingo bertsioarekiko ezberdintasuna,
 'rev-deleted-comment'            => '(iruzkina ezabatu da)',
 'rev-deleted-user'               => '(erabiltzailea ezabatu da)',
 'rev-deleted-event'              => '(log ekintza ezabatu da)',
-'rev-deleted-text-permission'    => 'Orrialdearen berrikuspen hau artxibo publikoetatik kendu da. Xehetasunak [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} ezabaketa erregistroan] ikus daitezke.',
-'rev-deleted-text-view'          => 'Orrialdearen berrikuspen hau artxibo publikoetatik kendu da. Guneko administratzaile bezala ikusteko aukera daukazu ordea; xehetasunak [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} ezabaketa erregistroan] ikus ditzakezu.',
-'rev-deleted-no-diff'            => 'Ezin duzu ezberdintasun hau ikusi, berrikuspenetako bat ezabatua izan delako artxibo publikotik.
-[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Ezabapen erregistroan] zehaztasun gehiago aurki ditzazkezu.',
+'rev-deleted-text-permission'    => "Orrialdearen berrikuspen hau '''ezabatu''' egin da.
+Xehetasunak [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} ezabaketa erregistroan] ikus daitezke.",
+'rev-deleted-text-view'          => "Orrialdearen berrikuspen hau '''ezabatu''' egin da. 
+Guneko administratzaile bezala ikusteko aukera daukazu ordea; xehetasunak [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} ezabaketa erregistroan] ikus ditzakezu.",
+'rev-deleted-no-diff'            => "Ezin duzu ezberdintasun hau ikusi, berrikuspenetako bat '''ezabatua''' izan delako.
+Xehetasunak [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Ezabapen erregistroan] aurki ditzazkezu.",
 'rev-delundel'                   => 'erakutsi/ezkutatu',
 'revisiondelete'                 => 'Berrikuspenak ezabatu/leheneratu',
 'revdelete-nooldid-title'        => 'Helburu berrikuspenik ez',
@@ -1385,7 +1389,7 @@ Oraindik ere fitxategia igo nahi baduzu atzera itzuli eta izen berri bat erabili
 'sourcefilename'              => 'Iturri-fitxategiaren izena:',
 'destfilename'                => 'Helburu fitxategi izena:',
 'upload-maxfilesize'          => 'Fitxategien gehienezko tamaina: $1',
-'watchthisupload'             => 'Orrialde hau jarraitu',
+'watchthisupload'             => 'Fitxategi hau jarraitu',
 'filewasdeleted'              => 'Izen hau duen fitxategi bat igo eta ezabatu da jada. $1 aztertu beharko zenuke berriz igo aurretik.',
 'upload-wasdeleted'           => "'''Oharra: Lehenago ezabatutako fitxategia igotzen ari zara.'''
 
@@ -1451,7 +1455,7 @@ Ondorengo zerrendak fitxategira dauden {{PLURAL:$1|lehen lotura|lehen $1 loturak
 'morelinkstoimage'          => 'Ikusi fitxategi honen [[Special:WhatLinksHere/$1|lotura gehiago]].',
 'redirectstofile'           => 'Honako {{PLURAL:$1|artxiboak fitxategi honetara birzuzentzen du:|$1 artxiboek fitxategi honetara birzuzentzen dute:}}',
 'duplicatesoffile'          => 'Ondorengo fitxategi {{PLURAL:$1|hau beste honen berdina da|$1 hauek beste honen berdinak dira}} ([[Special:FileDuplicateSearch/$2|zehaztasun gehiago]]):',
-'sharedupload'              => 'Elkarbanatutako fitxategi hau $1-ko igoera bat da eta beste proiektuek ere erabil dezakete. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => 'Elkarbanatutako fitxategi hau $1-(e)ko igoera bat da eta beste proiektuek ere erabil dezakete.', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki'          => 'Informazio gehiagorako $1 ikusi mesedez.',
 'shareduploadwiki-desc'     => 'Deskribapena $1-(e)an erakusten da azpian.',
 'shareduploadwiki-linktext' => 'fitxategiaren deskribapen orrialdea',
@@ -2025,7 +2029,7 @@ $1',
 'ipboptions'                      => '2 ordu:2 hours,egun 1:1 day,3 egun:3 days,aste 1:1 week,2 aste:2 weeks,hilabete 1:1 month,3 hilabete:3 months,6 hilabete:6 months,urte 1:1 year,betirako:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'                  => 'beste bat',
 'ipbotherreason'                  => 'Arrazoi gehigarria:',
-'ipbhidename'                     => 'Lankide izena blokeo logetik, oraingo blokeo zerrendatik eta lankide zerrendatik izkutatu.',
+'ipbhidename'                     => 'Lankide izena aldaketa eta zerrendetatik ezkutatu',
 'ipbwatchuser'                    => 'Erabiltzaile honen erabiltzaile eta eztabaida orrialdeak jarraitu',
 'ipballowusertalk'                => 'Blokeatuta izanagatik ere, lankide honek bere eztabaida-orria aldatzea baimendu',
 'ipb-change-block'                => 'Lankidea honako balioekin bir-blokeatu',
@@ -2078,6 +2082,7 @@ Ikus [[Special:IPBlockList|IP blokeoen zerrenda]] blokeoak aztertzeko.',
 'block-log-flags-noemail'         => 'e-posta blokeatuta',
 'block-log-flags-nousertalk'      => 'ezin da aldatu norbere eztabaida-orria',
 'block-log-flags-angry-autoblock' => 'hobetutako autoblokeoa gaituta',
+'block-log-flags-hiddenname'      => 'lankide-izen ezkutua',
 'range_block_disabled'            => 'Administratzaileak IP eremuak blokeatzeko gaitasuna ezgaituta dago.',
 'ipb_expiry_invalid'              => 'Baliogabeko iraungipen denbora',
 'ipb_expiry_temp'                 => 'Izkutuan dauden lankide izenen blokeoa betierekikoa izan behar du.',
@@ -2146,8 +2151,8 @@ Kasu horietan orrialdea eskuz mugitu edo bestearekin bateratu beharko duzu.",
 'talkexists'                   => "'''Orrialde hau arazorik gabe mugitu da, baina eztabaida orrialde ezin izan da mugitu izenburu berriarekin jada bat existitzen delako. Mesedez, eskuz batu itzazu biak.'''",
 'movedto'                      => 'hona mugitu da:',
 'movetalk'                     => 'Eztabaida orrialdea ere mugitu, ahal bada.',
-'move-subpages'                => 'Ahal izanez gero, azpiorrialde guztiak ($1-tik gora) ere mugitu',
-'move-talk-subpages'           => 'Ahal izanez gero, eztabaida orrialdearen azpiorrialde guztiak ($1-tik gora) ere mugitu',
+'move-subpages'                => 'Azpiorrialde guztiak ($1-tik gora) mugitu',
+'move-talk-subpages'           => 'Azpiorrialdeen eztabaida orrialde guztiak ($1-tik gora) mugitu',
 'movepage-page-exists'         => '$1 orrialdea jada badago eta ezin da automatikoki gainetik idatzi.',
 'movepage-page-moved'          => '$1 orrialdea $2(e)ra mugitu da.',
 'movepage-page-unmoved'        => '$1 orrialdea ezin da $2(e)ra mugitu.',
@@ -2420,7 +2425,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Oharra''': Fitxategi honek kode mingarria izan lezake; zure sisteman exekutatzea arriskutsua izan liteke.<hr />",
-'imagemaxsize'         => 'Irudiak deskribapen-orrialdetan hurrengo tamainara txikitu:',
+'imagemaxsize'         => "Irudiaren tamainaren muga:<br />''(fitxategi deskribapen-orrietarako)''",
 'thumbsize'            => 'Irudi txikiaren tamaina:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|orrialde|orrialde}}',
 'file-info'            => '(fitxategiaren tamaina: $1, MIME mota: $2)',
@@ -2636,8 +2641,8 @@ Zerrenda elementuak (hasieran * duten lerroak) baino ez dira kontuan hartzen. Le
 'exif-subjectdistance-value' => '$1 metro',
 
 'exif-meteringmode-0'   => 'Ezezaguna',
-'exif-meteringmode-1'   => 'Bataz-bestekoa',
-'exif-meteringmode-2'   => 'ZentruanNeurketaBataz-bestekoa',
+'exif-meteringmode-1'   => 'Bataz bestekoa',
+'exif-meteringmode-2'   => 'ZentruanNeurketaBatazBestekoa',
 'exif-meteringmode-3'   => 'Puntua',
 'exif-meteringmode-4'   => 'MultiPuntua',
 'exif-meteringmode-5'   => 'Eredua',
@@ -2928,7 +2933,7 @@ Fitxategiaren izena sartu "{{ns:file}}:" aurrizkia gabe.',
 'specialpages'                   => 'Aparteko orrialdeak',
 'specialpages-note'              => '----
 * Orrialde berezi arruntak.
-* <span class="mw-specialpagerestricted">Mugatutako orrialde bereziak.</span>',
+* <strong class="mw-specialpagerestricted">Mugatutako orrialde bereziak.</strong>',
 'specialpages-group-maintenance' => 'Mantentze-oharrak',
 'specialpages-group-other'       => 'Beste orrialde berezi batzuk',
 'specialpages-group-login'       => 'Sartu / Izena eman',

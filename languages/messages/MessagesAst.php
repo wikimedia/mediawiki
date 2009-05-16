@@ -1,6 +1,9 @@
 <?php
 /** Asturian (Asturianu)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -1371,7 +1374,7 @@ Hai disponible una [[Special:WhatLinksHere/$2|llista completa]].",
 'morelinkstoimage'          => 'Ver [[Special:WhatLinksHere/$1|más enllaces]] a esti archivu.',
 'redirectstofile'           => '{{PLURAL:$1|El siguiente archivu redirixe|Los siguientes $1 archivos redirixen}} a esti archivu:',
 'duplicatesoffile'          => "{{PLURAL:$1|El siguiente archivu ye un duplicáu|Los siguientes $1 archivos son duplicaos}} d'esti archivu ([[Special:FileDuplicateSearch/$2|más detalles]]):",
-'sharedupload'              => "L'archivu ye una xubida compartida y pue tar siendo usáu por otros proyeutos. $2", # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => "L'archivu ye una xubida compartida y pue tar siendo usáu por otros proyeutos.", # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki'          => 'Por favor mira la $1 pa más información.',
 'shareduploadwiki-desc'     => "La descripción de la so $1 nel direutoriu compartíu ye l'amosada embaxo.",
 'shareduploadwiki-linktext' => 'páxina de descripción del archivu',
@@ -2081,8 +2084,8 @@ Nestos casos vas tener que treslladar o fusionar la páxina manualmente.",
 'talkexists'                   => "'''La páxina treslladóse correutamente, pero non la so páxina d'alderique porque yá esiste una col títulu nuevu. Por favor, fusiónala manualmente.'''",
 'movedto'                      => 'treslladáu a',
 'movetalk'                     => "Mover la páxina d'alderique asociada",
-'move-subpages'                => 'Treslladar les subpáxines (hasta $1), si ye posible',
-'move-talk-subpages'           => "Treslladar les subpáxines de la páxina d'alderique (hasta $1), si ye posible",
+'move-subpages'                => 'Treslladar les subpáxines (hasta $1)',
+'move-talk-subpages'           => "Treslladar les subpáxines de la páxina d'alderique (hasta $1)",
 'movepage-page-exists'         => 'La páxina $1 yá esiste y nun se pue sobreescribir automáticamente.',
 'movepage-page-moved'          => 'Treslladóse la páxina $1 a $2.',
 'movepage-page-unmoved'        => 'Nun se pudo treslladar la páxina $1 a $2.',
@@ -2827,7 +2830,7 @@ Escribi\'l nome del archivu ensin el prefixu "{{ns:file}}:".',
 'specialpages'                   => 'Páxines especiales',
 'specialpages-note'              => '----
 * Páxines especiales normales.
-* <span class="mw-specialpagerestricted">Páxines especiales restrinxíes.</span>',
+* <strong class="mw-specialpagerestricted">Páxines especiales restrinxíes.</strong>',
 'specialpages-group-maintenance' => 'Informes de mantenimientu',
 'specialpages-group-other'       => 'Otres páxines especiales',
 'specialpages-group-login'       => 'Entrar / Crear cuenta',

@@ -1,6 +1,9 @@
 <?php
 /** Kazakh (Latin) (Қазақша (Latin))
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -1531,7 +1534,7 @@ Bağannıñ bas jolın nuqığanda surıptawdıñ rettewi özgertiledi.',
 'morelinkstoimage'          => 'Bul faýldıñ [[{{#special:Whatlinkshere}}/$1|köbirek siltemelerin]] qaraw.',
 'redirectstofile'           => 'Kelesi {{PLURAL:$1|faýl|$1 faýl}} bul faýlğa aýdaýdı:',
 'duplicatesoffile'          => 'Kelesi {{PLURAL:$1|faýl bul faýldıñ telnusqası|$1 faýl bul faýldıñ telnusqaları}}:',
-'sharedupload'              => 'Bul faýl ortaq qoýmağa qotarıp berilgen sondıqtan basqa jobalarda qoldanwı mümkin. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => 'Bul faýl ortaq qoýmağa qotarıp berilgen sondıqtan basqa jobalarda qoldanwı mümkin.', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki'          => 'Bılaýğı aqparat üşin $1 degendi qarañız.',
 'shareduploadwiki-desc'     => 'Bul $1 degen faýldıñ ortaq qoýmadağı mälimetteri tömende körsetiledi.',
 'shareduploadwiki-linktext' => 'faýldıñ sïpattama beti',
@@ -2176,8 +2179,8 @@ Osı oraýda, qalawıñız bolsa, betti qoldan jıljıta ne qosa alasız.",
 Bunı qolmen qosıñız.'''",
 'movedto'                 => 'mınağan jıljıtıldı:',
 'movetalk'                => 'Qawımdastı talqılaw betin jıljıtw',
-'move-subpages'           => 'Barlıq betşelerin jıljıtw, eger qoldanbalı bolsa',
-'move-talk-subpages'      => 'Talqılaw betiniñ barlıq betşelerin jıljıtw, eger qoldanbalı bolsa',
+'move-subpages'           => 'Barlıq betşelerin jıljıtw',
+'move-talk-subpages'      => 'Talqılaw betiniñ barlıq betşelerin jıljıtw',
 'movepage-page-exists'    => '$1 degen bet aldaqaşan bar jäne üstine özdiktik jazılmaýdı.',
 'movepage-page-moved'     => '$1 degen bet $2 degenge jıljıtıldı.',
 'movepage-page-unmoved'   => '$1 degen bet $2 degenge jıljıtılmaýdı.',
@@ -2976,7 +2979,7 @@ Faýl atawın «{{ns:file}}:» degen bastawışsız engiziñiz.',
 'specialpages'                   => 'Arnaýı better',
 'specialpages-note'              => '----
 * Kädimgi arnaýı better.
-* <span class="mw-specialpagerestricted">Şektelgen arnaýı better.</span>',
+* <strong class="mw-specialpagerestricted">Şektelgen arnaýı better.</strong>',
 'specialpages-group-maintenance' => 'Baptaw bayanattarı',
 'specialpages-group-other'       => 'Tağı basqa arnaýı better',
 'specialpages-group-login'       => 'Kirw / tirkelw',

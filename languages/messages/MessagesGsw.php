@@ -1,6 +1,9 @@
 <?php
 /** Swiss German (Alemannisch)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -119,7 +122,7 @@ $messages = array(
 'tog-hidepatrolled'           => 'Vum Fäldhieter aagluegti Änderige in dr „Letschte Änderige“ usblände',
 'tog-newpageshidepatrolled'   => 'Aagluegti Syten uf dr Lischt „Neiji Syte“ verstecke',
 'tog-extendwatchlist'         => 'Beobachtungslischte erwytere go alli Änderige aazeige, nit numme di letschte',
-'tog-usenewrc'                => 'Erwytereti «letschti Änderige» (geit nid uf allne Browser)',
+'tog-usenewrc'                => 'Erwytereti «letschti Änderige» (brucht JavaScript)',
 'tog-numberheadings'          => 'Überschrifte outomatisch numeriere',
 'tog-showtoolbar'             => 'Editier-Wärchzüüg aazeige',
 'tog-editondblclick'          => 'Syte ändere mit Doppelklick i d Syte (JavaScript)',
@@ -127,7 +130,7 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Einzelni Absätz ändere mit Rächtsclick (Javascript)',
 'tog-showtoc'                 => 'Inhaltsverzeichnis aazeige bi Artikle mit meh als drei Überschrifte',
 'tog-rememberpassword'        => 'Passwort spychere (Cookie)',
-'tog-editwidth'               => 'Fäld zum Täkscht yygee het di voll Breiti',
+'tog-editwidth'               => 'Fäld zum Täkscht yygee mit dr volle Breiti',
 'tog-watchcreations'          => 'Sälber gmachti Sytene beobachte',
 'tog-watchdefault'            => 'Vo dir nöi gmachti oder verändereti Syte beobachte',
 'tog-watchmoves'              => 'Sälber verschobeni Sytene beobachte',
@@ -141,7 +144,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Benachrichtigungsmail ou bi chlyne Sytenänderige',
 'tog-enotifrevealaddr'        => 'Dyni E-Mail-Adrässe wird i Benachrichtigungsmails zeigt',
 'tog-shownumberswatching'     => 'Aazahl Benutzer aazeige, wo ne Syten am Aaluege sy (i den Artikelsyte, i de «letschten Änderigen» und i der Beobachtigslischte)',
-'tog-fancysig'                => 'Kei outomatischi Verlinkig vor Signatur uf d Benutzersyte',
+'tog-fancysig'                => 'Signatur as Wikitext behandle (ohni automatischi Vergleichig)',
 'tog-externaleditor'          => 'Externe Editor als Standard bruche (nume fir Experte, doderzue brucht s speziälli Yystellige uf em Computer)',
 'tog-externaldiff'            => 'Externi diff als default',
 'tog-showjumplinks'           => '«Wächsle-zu»-Links ermügleche',
@@ -586,7 +589,6 @@ Wänn s Benutzerkonto us Versäh aaglait woren isch, chasch die Nochricht ignori
 'resetpass-wrong-oldpass'   => 'S temporär oder aktuäll Passwort isch nimi giltig.
 Villicht hesch Dyy Passwort scho gänderet oder e nej temporär Passwort aagforderet.',
 'resetpass-temp-password'   => 'Temporär Passwort:',
-'resetpass-no-others'       => 'Du chasch s Passwort vu andere Benutzer nit zrucksetze.',
 'resetpass-log'             => 'Logbuech vu dr zruckgsetzte Passwerter',
 'resetpass-logtext'         => 'Unte findsch e Logbuech vu dr Benutzer, wu s Passwort vun ene zruckgsetzt woren isch dur e Ammann.',
 'resetpass-logentry'        => 'het s Passwort fir $1 gänderet',
@@ -830,15 +832,15 @@ Erklärig: (aktuell) = Underschid zu jetz,
 'rev-deleted-comment'            => '(Bearbeitigskommentar uusegnuh)',
 'rev-deleted-user'               => '(Benutzername uusegnuh)',
 'rev-deleted-event'              => '(Logbuechaktion uusegnuh)',
-'rev-deleted-text-permission'    => "Die Version isch '''us dr effentlige Archiv glescht''' glescht wore.
+'rev-deleted-text-permission'    => "Die Version isch '''glescht''' wore.
 Information zue dr Leschig un e Begrindig het s im [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Lesch-Logbuech].",
-'rev-deleted-text-view'          => "Die Version isch '''us dr effentlige Archiv glescht''' wore. As Amman chasch si aber alno aaluege uf {{SITENAME}}.
+'rev-deleted-text-view'          => "Die Version isch '''glescht''' wore. As Amman chasch si aber alno aaluege.
 Informatione zue dr Leschig un e Begrindig het s im [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Lesch-Logbuech].",
-'rev-deleted-no-diff'            => "Du chasch die Änderig nit aaluege, wel eini vu dr Versione '''us dr effentlige Archiv glescht''' woren isch.
+'rev-deleted-no-diff'            => "Du chasch die Änderig nit aaluege, wel eini vu dr Versione '''glescht''' woren isch.
 Villicht het s Detail im [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Lesch-Logbuech].",
-'rev-deleted-unhide-diff'        => "Eini vu dr Versione isch '''us dr effentlige Archiv glescht''' wore.
+'rev-deleted-unhide-diff'        => "Eini vu dr Versione isch '''glescht''' wore.
 Villicht het s Detail im [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Lesch-Logbuech].
-Wänn Du Ammann bisch uf {{SITENAME}} chasch [$1 dä Unterschid aaluege] wänn Du wytermache witt.",
+Wänn Du Ammann bisch, chasch [$1 dä Unterschid aaluege] wänn Du wytermache witt.",
 'rev-delundel'                   => 'zeig/versteck',
 'revisiondelete'                 => 'Versione lesche/widerherstelle',
 'revdelete-nooldid-title'        => 'Kei Version aagee',
@@ -965,7 +967,7 @@ Stell sicher, ass d Versionsgschicht vun eme Artikel historisch korrekt isch.',
 'diff-th'                 => "e '''Spalteiberschrift'''",
 'diff-br'                 => "e '''Zyleteumbruch'''",
 'diff-hr'                 => "e '''horizontali Linie'''",
-'diff-code'               => "e '''Beryych Computercode'''",
+'diff-code'               => "e '''Computercode-Beryych'''",
 'diff-dl'                 => "e '''Definitionslischt'''",
 'diff-dt'                 => "e '''Definitionsterm'''",
 'diff-dd'                 => "e '''Definition'''",
@@ -1459,7 +1461,7 @@ E [[Special:WhatLinksHere/$2|vollständigi Lischt]] isch verfiegbar.',
 'morelinkstoimage'          => '[[Special:WhatLinksHere/$1|Meh Gleicher]] fir die Datei.',
 'redirectstofile'           => 'Die {{PLURAL:$1|Datei leitet|$1 Dateie leite}} uf die Datei wyter:',
 'duplicatesoffile'          => 'Die {{PLURAL:$1|Datei isch e Duplikat|$1 Dateie sin Duplikat}} vu däre Datei ([[Special:FileDuplicateSearch/$2|meh Detail]]):',
-'sharedupload'              => 'Die Datei isch vu $1. S cha syy, ass si vu andere Projekt brucht wird. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => 'Die Datei isch vu $1. S cha syy, ass si vu andere Projekt brucht wird.', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki'          => 'Fir wyteri Informatione lueg d $1.',
 'shareduploadwiki-desc'     => 'Do chunnt dr Bschryybig vum $1.',
 'shareduploadwiki-linktext' => 'Datei-Bschryybigssyte',
@@ -2147,8 +2149,8 @@ I söttigne Fäll müessti d Diskussionssyten allefalls vo Hand kopiert wärde."
 'talkexists'                   => 'D Syte sälber isch erfolgrych verschobe worde, nid aber d Diskussionssyte, wil s under em nöue Titel scho eini het gä. Bitte setz se vo Hand zäme.',
 'movedto'                      => 'verschoben uf',
 'movetalk'                     => 'Diskussionssyte nach Müglechkeit mitverschiebe',
-'move-subpages'                => 'Alli Untersyte (bis $1), wu s git, mitschiebe',
-'move-talk-subpages'           => 'Alli Untersyte vu Diskussionssyte (bis $1), wu s git, mitverschiebe',
+'move-subpages'                => 'Untersyte verschiebe (bis $1)',
+'move-talk-subpages'           => 'Untersyte vu dr Diskussionssyte verschiebe (bis $1)',
 'movepage-page-exists'         => 'D Syte „$1“ gits scho un cha nüt automatisch überschribe werde.',
 'movepage-page-moved'          => 'D Syte „$1“ isch uf „$2“ verschobe worde.',
 'movepage-page-unmoved'        => 'D Syte „$1“ het nüt chönne uf „$2“ verschobe werde.',
@@ -2403,7 +2405,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Obacht:''' In däre Art Datei chend s e beswillige Programmcode din ha. Wänn du die Datei abeladsch oder effnesch, cha dr Computer bschädigt wäre.<hr />",
-'imagemaxsize'         => 'Maximali Gröössi vo de Bilder uf de Bildbeschrybigs-Sytene:',
+'imagemaxsize'         => "Maximali Gressi vu Bilder :<br />'' (uf Bildbschrybigs-Syte)''",
 'thumbsize'            => 'Bildvorschou-Gröössi:',
 'widthheightpage'      => '$1×$2, {{PLURAL:$3|1 Syte|$3 Syte}}',
 'file-info'            => '(Dateigressi: $1, MIME-Typ: $2)',
@@ -2888,7 +2890,7 @@ D Yygab muess ohni dr Zuesatz „{{ns:file}}:“ erfolge.',
 'specialpages'                   => 'Spezialsytene',
 'specialpages-note'              => '----
 * D Spezialsyte für alli
-* <span class="mw-specialpagerestricted">d Spezialsyte für d Benutzer mit bsundri Rächt</span>',
+* <strong class="mw-specialpagerestricted">d Spezialsyte für d Benutzer mit bsundri Rächt</strong>',
 'specialpages-group-maintenance' => 'Wartigslischte',
 'specialpages-group-other'       => 'Andri Spezialsyte',
 'specialpages-group-login'       => 'Aamälde',
@@ -2918,7 +2920,7 @@ D Yygab muess ohni dr Zuesatz „{{ns:file}}:“ erfolge.',
 
 # Special:Tags
 'tags'                    => 'Änderigs-Tag priefe',
-'tag-filter'              => '[[Special:Tag|Tag]]-Filter:',
+'tag-filter'              => '[[Special:Tags|Markierigs]]filter:',
 'tag-filter-submit'       => 'Filter',
 'tags-title'              => 'Tag',
 'tags-intro'              => 'Die Syte zeigt alli Tag, wu Bearbeitige mit markiert wäre un derzue d Bedytig vun ene.',

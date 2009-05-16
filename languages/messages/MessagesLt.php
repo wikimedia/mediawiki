@@ -1,6 +1,9 @@
 <?php
 /** Lithuanian (Lietuvių)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -169,7 +172,7 @@ $messages = array(
 'tog-justify'                 => 'Lygiuoti pastraipas pagal abi puses',
 'tog-hideminor'               => 'Slėpti smulkius pakeitimus naujausių keitimų sąraše',
 'tog-newpageshidepatrolled'   => 'Slėpti patikrintus puslapius iš naujausių straipsnių sąrašo',
-'tog-extendwatchlist'         => 'Išplėsti stebimų sąrašą, kad rodytų visus tinkamus keitimus',
+'tog-extendwatchlist'         => 'Išplėsti stebimųjų sąrašą, kad rodytų visus tinkamus keitimus, ne tik pačius naujausius.',
 'tog-usenewrc'                => 'Pažangiai rodomi naujausi keitimai (JavaScript)',
 'tog-numberheadings'          => 'Automatiškai numeruoti skyrelius',
 'tog-showtoolbar'             => 'Rodyti redagavimo įrankinę (JavaScript)',
@@ -192,7 +195,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Siųsti man laišką, kai puslapio keitimas yra smulkus',
 'tog-enotifrevealaddr'        => 'Rodyti mano el. pašto adresą priminimo laiškuose',
 'tog-shownumberswatching'     => 'Rodyti stebinčių naudotojų skaičių',
-'tog-fancysig'                => 'Parašas be automatinių nuorodų',
+'tog-fancysig'                => 'Laikyti parašą vikitekstu (be automatinių nuorodų)',
 'tog-externaleditor'          => 'Pagal nutylėjimą naudoti išorinį redaktorių',
 'tog-externaldiff'            => 'Pagal nutylėjimą naudoti išorinę skirtumų rodymo programą',
 'tog-showjumplinks'           => 'Įjungti „peršokti į“ pasiekiamumo nuorodas',
@@ -570,6 +573,8 @@ Jį turi sudaryti ne daugiau kaip $1 {{PLURAL:$1|simbolis|simboliai|simbolių}}.
 'gender-unknown'             => 'Nenurodyta',
 'gender-male'                => 'Vyras',
 'gender-female'              => 'Moteris',
+'prefs-help-gender'          => 'Pasirinktinai: naudojama teisingam sistemos kreipimuisi į jus.
+Ši informacija yra vieša.',
 'email'                      => 'El. paštas',
 'prefs-help-realname'        => 'Tikrasis vardas yra neprivalomas.
 Jei jūs jį įvesite, jis bus naudojamas pažymėti jūsų darbą.',
@@ -645,7 +650,6 @@ Jūs galite nekreipti dėmesio į laišką, jei ši paskyra buvo sukurta per kla
 'resetpass-wrong-oldpass'   => 'Klaidingas laikinas ar esamas slaptažodis.
 Jūs galbūt jau sėkmingai pakeitėte savo slaptažodį ar gavote naują laikiną slaptažodį.',
 'resetpass-temp-password'   => 'Laikinas slaptažodis:',
-'resetpass-no-others'       => 'Jūs negalite atstatyti slaptažodžio kitiems naudotojams.',
 'resetpass-log'             => 'Slaptažodžio atstatymų sąrašas',
 'resetpass-logtext'         => 'Čia pateikiamas sąrašas naudotojų, kurių slaptažodis buvo atstatytas administratoriaus.',
 'resetpass-logentry'        => 'pakeistas $1 slaptažodis',
@@ -892,11 +896,11 @@ Pamėginkite [[Special:Search|ieškoti projekte]] susijusių naujų puslapių.',
 'rev-deleted-comment'         => '(komentaras pašalintas)',
 'rev-deleted-user'            => '(naudotojo vardas pašalintas)',
 'rev-deleted-event'           => '(įrašas pašalintas)',
-'rev-deleted-text-permission' => 'Ši puslapio versija buvo pašalinta iš viešųjų archyvų.
-[{{fullurl:{{ns:special}}:Log/delete|page={{FULLPAGENAMEE}}}} Trynimo istorijoje] gali būti detalių.',
-'rev-deleted-text-view'       => 'Ši puslapio versija buvo pašalinta iš viešųjų archyvų.
+'rev-deleted-text-permission' => "Ši puslapio versija buvo '''pašalinta iš viešųjų archyvų'''.
+[{{fullurl:{{ns:special}}:Log/delete|page={{FULLPAGENAMEE}}}} Trynimo istorijoje] gali būti detalių.",
+'rev-deleted-text-view'       => "Ši puslapio versija buvo '''pašalinta iš viešųjų archyvų'''.
 Kaip šios svetainės administratorius, jūs galite jį pamatyti;
-[{{fullurl:{{ns:special}}:Log/delete|page={{FULLPAGENAMEE}}}} trynimo istorijoje] gali būti detalių.',
+[{{fullurl:{{ns:special}}:Log/delete|page={{FULLPAGENAMEE}}}} trynimo istorijoje] gali būti detalių.",
 'rev-delundel'                => 'rodyti/slėpti',
 'revisiondelete'              => 'Trinti/atkurti versijas',
 'revdelete-nooldid-title'     => 'Neleistina paskirties versija',
@@ -1172,6 +1176,8 @@ Kiti administratoriai šiame projekte vis dar galės pasiekti paslėptą turinį
 'defaultns'                 => 'Pagal nutylėjimą ieškoti šiose vardų srityse:',
 'default'                   => 'pagal nutylėjimą',
 'files'                     => 'Failai',
+'prefs-custom-css'          => 'Asmeninis CSS',
+'prefs-custom-js'           => 'Asmeninis JavaSript',
 
 # User rights
 'userrights'                  => 'Naudotojų teisių valdymas', # Not used as normal message but as header for the special page itself
@@ -1252,7 +1258,7 @@ teisės",
 'right-suppressionlog'       => 'Žiūrėti privačius įvykių sąrašus',
 'right-block'                => 'Blokuoti redagavimo galimybę kitiems naudotojams',
 'right-blockemail'           => 'Blokuoti elektroninio pašto siuntimo galimybę naudotojui',
-'right-hideuser'             => 'Blokuoti naudotojo vardą, paslėpiant jį nuo viešinimo',
+'right-hideuser'             => 'Blokuoti naudotojo vardą, paslepiant jį nuo viešinimo',
 'right-ipblock-exempt'       => 'Apeiti IP blokavimus, autoblokavimus ir pakopinius blokavimus',
 'right-proxyunbannable'      => 'Apeiti automatinius proxy serverių blokavimus',
 'right-protect'              => 'Pakeisti apsaugos lygius ir redaguoti apsaugotus puslapius',
@@ -1494,7 +1500,7 @@ Pilnas sąrašas pasiekiamas [[Special:WhatLinksHere/$2|čia]].',
 'morelinkstoimage'          => 'Žiūrėti [[Special:WhatLinksHere/$1|daugiau nuorodų]] į šį failą.',
 'redirectstofile'           => '{{PLURAL:$1|Šis failas|$1 failai}} peradresuoja į šį failą:',
 'duplicatesoffile'          => 'Šis failas turi {{PLURAL:$1|$1 dublikatą|$1 dublikatus|$1 dublikatų}} ([[Special:FileDuplicateSearch/$2|daugiau informacijos]]):',
-'sharedupload'              => 'Šis failas yra iš $1 ir gali būti naudojamas kituose projektuose. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => 'Šis failas yra iš $1 ir gali būti naudojamas kituose projektuose.', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki'          => 'Žiūrėkite $1 tolimesnei informacijai.',
 'shareduploadwiki-desc'     => 'Aprašymas iš jo $1 yra rodomas žemiau.',
 'shareduploadwiki-linktext' => 'failo aprašymo puslapio',
@@ -2016,6 +2022,7 @@ $1',
 'sp-contributions-newbies-sub'   => 'Naujoms paskyroms',
 'sp-contributions-newbies-title' => 'Naudotojų keitimai naujoms paskyroms',
 'sp-contributions-blocklog'      => 'Blokavimų istorija',
+'sp-contributions-logs'          => 'Specialiųjų veiksmų istorija',
 'sp-contributions-search'        => 'Ieškoti įnašo',
 'sp-contributions-username'      => 'IP adresas arba naudotojo vardas:',
 'sp-contributions-submit'        => 'Ieškoti',
@@ -2215,8 +2222,8 @@ pavadinimo puslapis jau turėjo aptarimų puslapį.
 Prašome sujungti šiuos puslapius.'''",
 'movedto'                      => 'pervardintas į',
 'movetalk'                     => 'Perkelti susijusį aptarimo puslapį.',
-'move-subpages'                => 'Perkelti visus subpuslapius (baigiant $1), jei tai įmanoma',
-'move-talk-subpages'           => 'Perkelti visus aptarimo subpuslapius (iki $1), jei tai įmanoma',
+'move-subpages'                => 'Perkelti visus subpuslapius (baigiant $1)',
+'move-talk-subpages'           => 'Perkelti visus aptarimo subpuslapius (iki $1)',
 'movepage-page-exists'         => 'Puslapis $1 jau egzistuoja ir negali būti automatiškai perrašytas.',
 'movepage-page-moved'          => 'Puslapis $1 perkeltas į $2.',
 'movepage-page-unmoved'        => 'Puslapio $1 negalima perkelti į $2.',
@@ -2980,7 +2987,7 @@ Jūs taip pat galite [[Special:Watchlist/edit|naudoti standartinį redaktorių]]
 'specialpages'                   => 'Specialieji puslapiai',
 'specialpages-note'              => '----
 * Normalūs specialieji puslapiai.
-* <span class="mw-specialpagerestricted">Apriboti specialieji puslapiai.</span>',
+* <strong class="mw-specialpagerestricted">Apriboti specialieji puslapiai.</strong>',
 'specialpages-group-maintenance' => 'Sistemos palaikymo pranešimai',
 'specialpages-group-other'       => 'Kiti specialieji puslapiai',
 'specialpages-group-login'       => 'Prisijungimas / Registracija',
@@ -3003,6 +3010,7 @@ Jūs taip pat galite [[Special:Watchlist/edit|naudoti standartinį redaktorių]]
 #Įrašykite standartinių išraiškų fragmentus (tik dalį tarp //)
 #Juos bus bandoma sutapdinti su išorinių paveikslėlių adresais
 #Tie, kurie sutaps, bus rodomi kaip paveikslėliai, o kiti bus rodomi tik kaip nuorodos
+#Raidžių dydis nėra svarbus
 #Eilutės, prasidedančios # yra komentarai
 
 #Įterpkite visus standartinių išraiškų fragmentus prieš šią eilutę. Palikite šią eilutę, tokią kokia yra </pre>',

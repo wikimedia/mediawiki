@@ -1,6 +1,9 @@
 <?php
 /** Ganda (Luganda)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -362,7 +365,7 @@ oba ku gano agali ku lupapula luno.<br />
 'imagelinks'          => 'Empapula eziriko enyunzi ezigguka ku kifaananyi kino',
 'linkstoimage'        => 'Empapula eziriko enyunzi ezigguka ku fayiro eno ze zino:',
 'nolinkstoimage'      => 'Tewali mpapula ziriko nyunzi ezigguka ku fayiro eno.',
-'sharedupload'        => "Fayiro eno y'emu esobola okuba nga empapula nyingi zigikozesa $2", # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'        => "Fayiro eno y'emu esobola okuba nga empapula nyingi zigikozesa", # $1 is the repo name, $2 is shareduploadwiki(-desc)
 
 # Random page
 'randompage' => 'Nondera olupapula muwawa',

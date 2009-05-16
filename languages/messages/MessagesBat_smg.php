@@ -1,6 +1,9 @@
 <?php
 /** Samogitian (Žemaitėška)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -1004,7 +1007,7 @@ Paspaude ont štolpelė ontraštės pakeisėt ėšruokavėma.',
 'imagelinks'                => 'Faila nūruodas',
 'linkstoimage'              => '{{PLURAL:$1|Šėts poslapis|Šėtė poslapē}} nuruod i šėta faila:',
 'nolinkstoimage'            => 'I faila neruod anėjuoks poslapis.',
-'sharedupload'              => 'Tas fails īr ėš $1 ė gal būtė nauduojams kėtūs pruojektūs. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => 'Tas fails īr ėš $1 ė gal būtė nauduojams kėtūs pruojektūs.', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki'          => 'Veizėkiet $1 tolėmesnē infuormacėjē.',
 'shareduploadwiki-desc'     => 'Aprašīms ėš anuo $1 ruoduoms žemiau īr.',
 'shareduploadwiki-linktext' => 'faila aprašīma poslapi',
@@ -1906,7 +1909,7 @@ Tamsta tēpuogi galėt [[Special:Watchlist/raw|redagoutė grīnaji keravuojamu s
 'specialpages'                   => 'Specēlė̅jė poslapē',
 'specialpages-note'              => '----
 * Normalūs specēlė̅jė puslapē.
-* <span class="mw-specialpagerestricted">Apribuotė specēlė̅jė puslapē.</span>',
+* <strong class="mw-specialpagerestricted">Apribuotė specēlė̅jė puslapē.</strong>',
 'specialpages-group-maintenance' => 'Sėstemas palaikīma pranešėmā',
 'specialpages-group-other'       => 'Kėtė specēlė̅jė poslapē',
 'specialpages-group-login'       => 'Prisėjongėms / Registracėjė',

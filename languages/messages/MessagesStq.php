@@ -1,6 +1,9 @@
 <?php
 /** Seeltersk (Seeltersk)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -38,7 +41,7 @@ $messages = array(
 'tog-hideminor'               => 'Litje Annerengen uutbländje',
 'tog-hidepatrolled'           => 'Kontrollierde Annerengen in do "Lääste Annerengen" uutbländje',
 'tog-newpageshidepatrolled'   => 'Kontrollierde Sieden ap ju Lieste „Näie Sieden“ ferbierge',
-'tog-extendwatchlist'         => 'Uutdiende Beooboachtengslieste',
+'tog-extendwatchlist'         => 'Uutgediende Beooboachtengslieste tou Anwiesenge fon aal Annerengen',
 'tog-usenewrc'                => 'Fermeerde Deerstaalenge (bruukt Javascript)',
 'tog-numberheadings'          => 'Uurschrifte automatisk nuumerierje',
 'tog-showtoolbar'             => 'Beoarbaidengs-Reewen anwiese',
@@ -489,7 +492,6 @@ In dän Fal dät Benutserkonto uut Fersjoon anlaid wuude, koast du disse Ätterg
 'resetpass-wrong-oldpass'   => 'Uungultich tiedelk of aktuell Paaswoud.
 Muugelkerwiese hääst du dien Paaswoud al mäd Ärfoulch annerd of n näi tiedelk Paaswoud fräiged.',
 'resetpass-temp-password'   => 'Tiedelk Paaswoud:',
-'resetpass-no-others'       => 'Du koast dät Paaswoud fon uur Benutsere nit touräächsätte.',
 'resetpass-log'             => 'Paaswoudtouräächsättengs-Logbouk',
 'resetpass-logtext'         => 'Hierunner wäd n Logbouk fon Benutsere anwiesd, fon do dät Paaswoud truch n Administrator touräächsät wuude.',
 'resetpass-logentry'        => 'annerde dät Paaswoud foar $1',
@@ -740,13 +742,13 @@ Legende: (Aktuäl) = Unnerscheed tou ju aktuälle Version,
 'rev-deleted-comment'            => '(Beoarbaidengskommentoar wächhoald)',
 'rev-deleted-user'               => '(Benutsernoome wächhoald)',
 'rev-deleted-event'              => '(Logbouk-Aktion wächhoald)',
-'rev-deleted-text-permission'    => 'Disse Version wuude läsked un is nit moor eepentelk ientousjoon.
-Naiere Angoawen toun Läskfoargong as uk ne Begründenge fiende sik in dät [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Läsk-Logbouk].',
-'rev-deleted-text-view'          => 'Disse Version wuude läsked un is nit moor eepentelk ientousjoon.
+'rev-deleted-text-permission'    => "Disse Version wuude läsked un is '''nit moor eepentelk ientousjoon'''.
+Naiere Angoawen toun Läskfoargong as uk ne Begründenge fiende sik in dät [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Läsk-Logbouk].",
+'rev-deleted-text-view'          => "Disse Version wuude läsked un is '''nit moor eepentelk ientousjoon'''.
 As Administrator koast du ju wieders ienkiekje.
-Naiere Angoawen toun Läskfoargong as uk ne Begründenge fiende sik in dät [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Läsk-Logbouk].',
-'rev-deleted-no-diff'            => 'Du koast dissen Unnerscheed nit betrachtje, deer een fon do Versione uut do eepentelke Archive wáchhoald wuud.
-Details stounde in dän [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Läsk-Logbouk].',
+Naiere Angoawen toun Läskfoargong as uk ne Begründenge fiende sik in dät [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Läsk-Logbouk].",
+'rev-deleted-no-diff'            => "Du koast dissen Unnerscheed nit betrachtje, deer een fon do Versione '''uut do eepentelke Archive wächhoald wuud'''.
+Details stounde in dät [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Läsk-Logbouk].",
 'rev-delundel'                   => 'wiese/ferbierge',
 'revisiondelete'                 => 'Versione läskje/wier häärstaale',
 'revdelete-nooldid-title'        => 'Uunjäildige Siel-Beoarbaidenge',
@@ -1373,7 +1375,7 @@ Ne [[Special:WhatLinksHere/$2|fulständige Lieste]] is ferföigboar.',
 'morelinkstoimage'          => '[[Special:WhatLinksHere/$1|Wiedere Ferbiendengen]] foar disse Doatäi.',
 'redirectstofile'           => '{{PLURAL:$1|Ju foulgjende Doatäi laitet|Do foulgjende $1 Doatäie laitje}} ap disse Doatäi fääre:',
 'duplicatesoffile'          => '{{PLURAL:$1|Ju foulgjende Doatäi is n Duplikoat|Do foulgjende $1 Doatäie sunt Duplikoate}} fon disse Doatäi ([[Special:FileDuplicateSearch/$2|wiedere Details]]):',
-'sharedupload'              => 'Disse Doatäi stamt uut $1 un duur fon uur Projekte ferwoand wäide. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => 'Disse Doatäi stamt uut $1 un duur fon uur Projekte ferwoand wäide.', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki'          => 'Jädden sjuch dän $1 foar wiedere Information.',
 'shareduploadwiki-desc'     => 'Hier foulget die Inhoold fon $1.',
 'shareduploadwiki-linktext' => 'Doatäi-Beschrieuwengssiede',
@@ -2074,8 +2076,8 @@ Fersäik jädden n uur Noome.',
 'talkexists'                   => 'Ju Siede sälwen wuude mäd Ärfoulch ferschäuwen, man ju Diskussionssiede nit, deer al een mäd dän näie Tittel bestoant. Glieke jädden do Inhoolde fon Hounde ou.',
 'movedto'                      => 'ferschäuwen ätter',
 'movetalk'                     => 'Ju Diskussionssiede mee ferschuuwe, wan muugelk.',
-'move-subpages'                => 'Aal Unnersieden (bit tou $1), fals deer, meeferschuuwe',
-'move-talk-subpages'           => 'Aal Unnersieden fon Diskussionssieden (bit tou $1), fals deer, meeferschuuwe',
+'move-subpages'                => 'Aal Unnersieden (bit tou $1) meeferschuuwe',
+'move-talk-subpages'           => 'Aal Unnersieden fon Diskussionssieden (bit tou $1) meeferschuuwe',
 'movepage-page-exists'         => 'Ju Siede „$1“ is al deer un kon nit automatisk uurschrieuwen wäide.',
 'movepage-page-moved'          => 'Ju Siede „$1“ wuude ätter „$2“ ferschäuwen.',
 'movepage-page-unmoved'        => 'Ju Siede „$1“ kuude nit ätter „$2“ ferschäuwen wäide.',
@@ -2122,6 +2124,7 @@ Alternativ is die Export uk mäd de Syntax [[{{#Special:Export}}/{{MediaWiki:Mai
 'export-submit'     => 'Sieden exportierje',
 'export-addcattext' => 'Sieden uut Kategorie bietouföigje:',
 'export-addcat'     => 'Bietouföigje',
+'export-addns'      => 'Bietouföigje',
 'export-download'   => 'As XML-Doatäi spiekerje',
 'export-templates'  => 'Inklusive Foarloagen',
 'export-pagelinks'  => 'Ferlinkede Sieden automatisk mee exportierje, bit tou ju Rekursionsjupte fon:',
@@ -2827,7 +2830,7 @@ Ju Iengoawe mout sunner dän Tousats „{{ns:file}}:“ geböäre.',
 'specialpages'                   => 'Spezioalsieden',
 'specialpages-note'              => '----
 * Spezioalsieden foar Älkuneen
-* <span class="mw-specialpagerestricted">Spezioalsieden foar Benutsere mäd ärwiederde Gjuchte</span>',
+* <strong class="mw-specialpagerestricted">Spezioalsieden foar Benutsere mäd ärwiederde Gjuchte</strong>',
 'specialpages-group-maintenance' => 'Fersuurgengsliesten',
 'specialpages-group-other'       => 'Uur Spezioalsieden',
 'specialpages-group-login'       => 'Anmäldje',

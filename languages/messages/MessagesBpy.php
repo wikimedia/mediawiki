@@ -1,6 +1,9 @@
 <?php
 /** Bishnupria Manipuri (ইমার ঠার/বিষ্ণুপ্রিয়া মণিপুরী)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -544,7 +547,7 @@ $messages = array(
 'imagelinks'                => 'জুরিসিতা',
 'linkstoimage'              => 'এরে ফাইলর লগে {{PLURAL:$1|পাতার মিলাপ|$1 পাতাহানির মিলাপ}} আসে:',
 'nolinkstoimage'            => 'ফাইল এগর লগে মিলাপ অসে অসাদে কোন পাতা নেই।',
-'sharedupload'              => 'ফাইল এগ শেয়ার আপলোডে আসে, মনে অর আর আর প্রকল্পউ আতিতারা। $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => 'ফাইল এগ শেয়ার আপলোডে আসে, মনে অর আর আর প্রকল্পউ আতিতারা।', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'noimage'                   => 'এরে নাঙর কোন ফাইল নেই, তি পারর $1।',
 'noimage-linktext'          => 'আপলোড কর',
 'uploadnewversion-linktext' => 'এরে ফাইল এগর নুৱা সংস্করনহান আপলোড কর',

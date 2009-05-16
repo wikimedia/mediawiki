@@ -1,6 +1,9 @@
 <?php
 /** German (Deutsch)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -324,7 +327,7 @@ $messages = array(
 'tog-hidepatrolled'           => 'Kontrollierte Änderungen in den „Letzten Änderungen“ ausblenden',
 'tog-newpageshidepatrolled'   => 'Kontrollierte Seiten auf der Liste „Neue Seiten“ verbergen',
 'tog-extendwatchlist'         => 'Erweiterte Beobachtungsliste zur Anzeige aller Änderungen',
-'tog-usenewrc'                => 'Erweiterte Darstellung (benötigt JavaScript)',
+'tog-usenewrc'                => 'Erweiterte Darstellung von den „Letzten Änderungen“ (benötigt JavaScript)',
 'tog-numberheadings'          => 'Überschriften automatisch nummerieren',
 'tog-showtoolbar'             => 'Bearbeiten-Werkzeugleiste anzeigen',
 'tog-editondblclick'          => 'Seiten mit Doppelklick bearbeiten (benötigt JavaScript)',
@@ -332,7 +335,7 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Einzelne Abschnitte per Rechtsklick bearbeiten (benötigt JavaScript)',
 'tog-showtoc'                 => 'Anzeigen eines Inhaltsverzeichnisses bei Seiten mit mehr als drei Überschriften',
 'tog-rememberpassword'        => 'Benutzer soll auf diesem Computer dauerhaft angemeldet bleiben',
-'tog-editwidth'               => 'Text-Eingabefeld mit voller Breite',
+'tog-editwidth'               => 'Eingabefeld erweitern, um den ganzen Bildschirm auszufüllen',
 'tog-watchcreations'          => 'Selbst erstellte Seiten automatisch beobachten',
 'tog-watchdefault'            => 'Selbst geänderte und neu erstellte Seiten automatisch beobachten',
 'tog-watchmoves'              => 'Selbst verschobene Seiten automatisch beobachten',
@@ -346,7 +349,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Auch bei kleinen Änderungen an beobachteten Seiten E-Mails senden',
 'tog-enotifrevealaddr'        => 'Deine E-Mail-Adresse wird in Benachrichtigungs-E-Mails angezeigt',
 'tog-shownumberswatching'     => 'Anzahl der beobachtenden Benutzer anzeigen',
-'tog-fancysig'                => 'Signatur ohne Verlinkung zur Benutzerseite',
+'tog-fancysig'                => 'Signatur als Wikitext behandeln (ohne automatische Verlinkung)',
 'tog-externaleditor'          => 'Externen Editor als Standard benutzen (nur für Experten, es müssen spezielle Einstellungen auf dem eigenen Computer vorgenommen werden)',
 'tog-externaldiff'            => 'Externes Diff-Programm als Standard benutzen (nur für Experten, es müssen spezielle Einstellungen auf dem eigenen Computer vorgenommen werden)',
 'tog-showjumplinks'           => '„Wechseln zu“-Links aktivieren',
@@ -724,7 +727,7 @@ Vergiss nicht, deine [[Special:Preferences|{{SITENAME}}-Einstellungen]] anzupass
 'prefs-help-realname'        => 'Optional. Dein echter Name wird deinen Beiträgen zugeordnet.',
 'loginerror'                 => 'Fehler bei der Anmeldung',
 'prefs-help-email'           => 'Die Angabe einer E-Mail ist optional, ermöglicht aber die Zusendung eines Ersatzpasswortes, wenn du dein Passwort vergessen hast.
-Mit anderen Benutzer kannst du auch über die Benutzerdiskussionsseiten Kontakt aufnehmen, ohne dass du deine Identität offenlegen musst.',
+Mit anderen Benutzern kannst du auch über die Benutzerdiskussionsseiten Kontakt aufnehmen, ohne dass du deine Identität offenlegen musst.',
 'prefs-help-email-required'  => 'Es wird eine gültige E-Mail-Adresse benötigt.',
 'nocookiesnew'               => 'Der Benutzerzugang wurde erstellt, aber du bist nicht angemeldet. {{SITENAME}} benötigt für diese Funktion Cookies, bitte aktiviere diese und melde dich dann mit deinem neuen Benutzernamen und dem zugehörigen Passwort an.',
 'nocookieslogin'             => '{{SITENAME}} benutzt Cookies zur Anmeldung der Benutzer. Du hast Cookies deaktiviert, bitte aktiviere diese und versuchen es erneut.',
@@ -791,7 +794,6 @@ Falls das Benutzerkonto irrtümlich angelegt wurde, kannst du diese Nachricht ig
 'resetpass-wrong-oldpass'   => 'Ungültiges temporäres oder aktuelles Passwort.
 Möglicherweise hast du dein Passwort bereits erfolgreich geändert oder ein neues temporäres Passwort beantragt.',
 'resetpass-temp-password'   => 'Temporäres Passwort:',
-'resetpass-no-others'       => 'Du kannst das Passwort anderer Benutzer nicht zurücksetzen.',
 'resetpass-log'             => 'Passwortzurücksetzungs-Logbuch',
 'resetpass-logtext'         => 'Unten wird ein Logbuch von Benutzern angezeigt, deren Passwort durch einen Administrator zurückgesetzt wurde.',
 'resetpass-logentry'        => 'änderte das Passwort für $1',
@@ -898,7 +900,7 @@ Das Passwort für dieses neue Benutzerkonto kann auf der Spezialseite „[[Speci
 'anontalkpagetext'                 => "----''Diese Seite dient dazu, einem nicht angemeldeten Benutzer Nachrichten zu hinterlassen. Es wird seine IP-Adresse zur Identifizierung verwendet. IP-Adressen können von mehreren Benutzern gemeinsam verwendet werden. Wenn du mit den Kommentaren auf dieser Seite nichts anfangen kannst, richten sie sich vermutlich an einen früheren Inhaber deiner IP-Adresse und du kannst sie ignorieren. Du kannst dir auch ein [[Special:UserLogin/signup|Benutzerkonto erstellen]] oder dich [[Special:UserLogin|anmelden]], um künftig Verwechslungen mit anderen anonymen Benutzern zu vermeiden.''",
 'noarticletext'                    => 'Diese Seite enthält momentan noch keinen Text.
 Du kannst diesen Titel auf den anderen Seiten [[Special:Search/{{PAGENAME}}|suchen]],
-<span class="plainlinks"> in den zugehörigen [{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} Logbüchern suchen] oder dieser Seite [{{fullurl:{{FULLPAGENAME}}|action=edit}} bearbeiten]</span>.',
+<span class="plainlinks"> in den zugehörigen [{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} Logbüchern suchen] oder diese Seite [{{fullurl:{{FULLPAGENAME}}|action=edit}} bearbeiten]</span>.',
 'userpage-userdoesnotexist'        => 'Das Benutzerkonto „$1“ ist nicht vorhanden. Bitte prüfe, ob du diese Seite wirklich erstellen/bearbeiten willst.',
 'clearyourcache'                   => "'''Hinweis - Leere nach dem Speichern den Browser-Cache, um die Änderungen sehen zu können:''' '''Mozilla/Firefox/Safari:''' ''Shift'' gedrückt halten und auf ''Aktualisieren'' klicken oder alternativ entweder ''Strg-F5'' oder ''Strg-R'' (''Befehlstaste-R'' bei Macintosh) drücken; '''Konqueror: '''Auf ''Aktualisieren'' klicken oder ''F5'' drücken; '''Opera:''' Cache unter ''Extras → Einstellungen'' leeren; '''Internet Explorer:''' ''Strg-F5'' drücken oder ''Strg'' gedrückt halten und dabei ''Aktualisieren'' anklicken.",
 'usercssjsyoucanpreview'           => "'''Tipp:''' Benutze den Vorschau-Button, um dein neues CSS/JS vor dem Speichern zu testen.",
@@ -1041,14 +1043,14 @@ Grund der Sperre: ''$2''",
 'rev-deleted-comment'            => '(Bearbeitungskommentar entfernt)',
 'rev-deleted-user'               => '(Benutzername entfernt)',
 'rev-deleted-event'              => '(Logbuchaktion entfernt)',
-'rev-deleted-text-permission'    => "Diese Version wurde gelöscht und ist '''nicht mehr öffentlich einsehbar'''.
+'rev-deleted-text-permission'    => "Diese Version wurde '''gelöscht'''.
 Nähere Angaben zum Löschvorgang sowie eine Begründung finden sich im [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Lösch-Logbuch].",
-'rev-deleted-text-view'          => "Diese Version wurde gelöscht und ist '''nicht mehr öffentlich einsehbar'''.
+'rev-deleted-text-view'          => "Diese Version wurde '''gelöscht'''.
 Als Administrator kannst du sie weiterhin einsehen.
 Nähere Angaben zum Löschvorgang sowie eine Begründung finden sich im [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Lösch-Logbuch].",
-'rev-deleted-no-diff'            => "Du kannst diesen Unterschied nicht betrachten, da eine der Versionen '''aus den öffentlichen Archiven entfernt wurde'''.
+'rev-deleted-no-diff'            => "Du kannst diesen Unterschied nicht betrachten, da eine der Versionen '''gelöscht''' wurde.
 Details stehen im [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Lösch-Logbuch].",
-'rev-deleted-unhide-diff'        => "Eine der Versionen dieses Unterschieds wurde '''aus den öffentlichen Archiven entfernt'''.
+'rev-deleted-unhide-diff'        => "Eine der Versionen dieses Unterschieds wurde '''gelöscht'''.
 Details stehen im [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Lösch-Logbuch].
 Einem Administrator kannst du [$1 diesen Link zum Versionsunterschied] nennen.",
 'rev-delundel'                   => 'zeige/verstecke',
@@ -1302,8 +1304,8 @@ Wenn du dich mit dem Thema auskennst, kannst du selbst [[:$1|die Seite verfassen
 'restoreprefs'              => 'Alle Standardeinstellungen wiederherstellen',
 'textboxsize'               => 'Bearbeiten',
 'prefs-edit-boxsize'        => 'Größe des Bearbeitungsfensters:',
-'rows'                      => 'Zeilen',
-'columns'                   => 'Spalten',
+'rows'                      => 'Zeilen:',
+'columns'                   => 'Spalten:',
 'searchresultshead'         => 'Suche',
 'resultsperpage'            => 'Treffer pro Seite:',
 'contextlines'              => 'Zeilen pro Treffer:',
@@ -1423,7 +1425,7 @@ Wenn du dich mit dem Thema auskennst, kannst du selbst [[:$1|die Seite verfassen
 'right-proxyunbannable'       => 'Ausnahme von automatischen Proxysperren',
 'right-protect'               => 'Seitenschutzstatus ändern',
 'right-editprotected'         => 'Geschützte Seiten bearbeiten (ohne Kaskadenschutz)',
-'right-editinterface'         => 'Benutzerinterface bearbeiten',
+'right-editinterface'         => 'Benutzeroberfläche bearbeiten',
 'right-editusercssjs'         => 'Bearbeiten fremder CSS- und JS-Dateien',
 'right-rollback'              => 'Schnelles zurücksetzen',
 'right-markbotedits'          => 'Schnell zurückgesetzte Bearbeitungen als Bot-Bearbeitung markieren',
@@ -1608,7 +1610,7 @@ Wenn du diese Datei trotzdem hochladen möchtest, gehe bitte zurück und ändere
 'sourcefilename'              => 'Quelldatei:',
 'destfilename'                => 'Zielname:',
 'upload-maxfilesize'          => 'Maximale Dateigröße: $1',
-'watchthisupload'             => 'Diese Seite beobachten',
+'watchthisupload'             => 'Diese Datei beobachten',
 'filewasdeleted'              => 'Eine Datei mit diesem Namen wurde schon einmal hochgeladen und zwischenzeitlich wieder gelöscht. Bitte prüfe zuerst den Eintrag im $1, bevor du die Datei wirklich speicherst.',
 'upload-wasdeleted'           => "'''Achtung: Du lädst eine Datei hoch, die bereits früher gelöscht wurde.'''
 
@@ -1689,7 +1691,7 @@ Eine [[Special:WhatLinksHere/$2|vollständige Liste]] ist verfügbar.',
 'morelinkstoimage'          => '[[Special:WhatLinksHere/$1|Weitere Links]] für diese Datei.',
 'redirectstofile'           => 'Die {{PLURAL:$1|folgende Datei leitet|folgenden $1 Dateien leiten}} auf diese Datei weiter:',
 'duplicatesoffile'          => 'Die {{PLURAL:$1|folgende Datei ist ein Duplikat|folgenden $1 Dateien sind Duplikate}} dieser Datei ([[Special:FileDuplicateSearch/$2|weitere Details]]):',
-'sharedupload'              => 'Diese Datei stammt aus $1 und darf von anderen Projekten verwendet werden. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => 'Diese Datei stammt aus $1 und darf von anderen Projekten verwendet werden.', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki'          => 'Für weitere Informationen siehe die $1.',
 'shareduploadwiki-desc'     => 'Es folgt der Inhalt der $1.',
 'shareduploadwiki-linktext' => 'Datei-Beschreibungsseite',
@@ -2397,8 +2399,8 @@ Bitte den '''neuen''' Titel unter '''Ziel''' eintragen, darunter die Umbenennung
 'talkexists'                   => 'Die Seite selbst wurde erfolgreich verschoben, aber die zugehörige Diskussionsseite nicht, da bereits eine mit dem neuen Titel existiert. Bitte gleiche die Inhalte von Hand ab.',
 'movedto'                      => 'verschoben nach',
 'movetalk'                     => 'Die Diskussionsseite mitverschieben, wenn möglich',
-'move-subpages'                => 'Alle Unterseiten (bis zu $1), falls vorhanden, mitverschieben',
-'move-talk-subpages'           => 'Alle Unterseiten von Diskussionsseiten (bis zu $1), falls vorhanden, mitverschieben',
+'move-subpages'                => 'Unterseiten verschieben (bis zu $1)',
+'move-talk-subpages'           => 'Unterseiten der Diskussionsseite verschieben (bis zu $1)',
 'movepage-page-exists'         => 'Die Seite „$1“ ist bereits vorhanden und kann nicht automatisch überschrieben werden.',
 'movepage-page-moved'          => 'Die Seite „$1“ wurde nach „$2“ verschoben.',
 'movepage-page-unmoved'        => 'Die Seite „$1“ konnte nicht nach „$2“ verschoben werden.',
@@ -2584,14 +2586,7 @@ Alle Transwiki-Import-Aktionen werden im [[Special:Log/import|Import-Logbuch]] p
 'standard.css'    => '/* CSS an dieser Stelle wirkt sich auf den Klassik-Skin aus. Für allgemeingültige Skin-Anpassungen bitte [[MediaWiki:Common.css]] bearbeiten. */',
 'nostalgia.css'   => '/* CSS an dieser Stelle wirkt sich auf den Nostalgie-Skin aus. Für allgemeingültige Skin-Anpassungen bitte [[MediaWiki:Common.css]] bearbeiten. */',
 'cologneblue.css' => '/* CSS an dieser Stelle wirkt sich auf den Kölnisch-Blau-Skin aus. Für allgemeingültige Skin-Anpassungen bitte [[MediaWiki:Common.css]] bearbeiten. */',
-'monobook.css'    => '/* CSS an dieser Stelle wirkt sich auf den Monobook-Skin aus. Für allgemeingültige Skin-Anpassungen bitte [[MediaWiki:Common.css]] bearbeiten. */
-/* Kleinschreibung nicht erzwingen */
-.portlet h5,
-.portlet h6,
-#p-personal ul,
-#p-cactions li a {
-	text-transform: none;
-}',
+'monobook.css'    => '/* CSS an dieser Stelle wirkt sich auf den Monobook-Skin aus. Für allgemeingültige Skin-Anpassungen bitte [[MediaWiki:Common.css]] bearbeiten. */',
 'myskin.css'      => '/* CSS an dieser Stelle wirkt sich auf den MySkin-Skin aus. Für allgemeingültige Skin-Anpassungen bitte [[MediaWiki:Common.css]] bearbeiten. */',
 'chick.css'       => '/* CSS an dieser Stelle wirkt sich auf den Küken-Skin aus. Für allgemeingültige Skin-Anpassungen bitte [[MediaWiki:Common.css]] bearbeiten. */',
 'simple.css'      => '/* CSS an dieser Stelle wirkt sich auf den Einfach-Skin aus. Für allgemeingültige Skin-Anpassungen bitte [[MediaWiki:Common.css]] bearbeiten. */',
@@ -2707,7 +2702,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Warnung:''' Diese Art von Datei kann böswilligen Programmcode enthalten. Durch das Herunterladen und Öffnen der Datei kann dein Computer beschädigt werden.<hr />",
-'imagemaxsize'         => 'Maximale Bildgröße auf Bildbeschreibungsseiten:',
+'imagemaxsize'         => "Maximale Bildgröße:<br />''(für Dateibeschreibungsseiten)''",
 'thumbsize'            => 'Standardgröße der Vorschaubilder (thumbnails):',
 'widthheightpage'      => '$1×$2, {{PLURAL:$3|1 Seite|$3 Seiten}}',
 'file-info'            => '(Dateigröße: $1, MIME-Typ: $2)',
@@ -3199,7 +3194,7 @@ Die Eingabe muss ohne den Zusatz „{{ns:file}}:“ erfolgen.',
 'specialpages'                   => 'Spezialseiten',
 'specialpages-note'              => '----
 * Spezialseiten für Jedermann
-* <span class="mw-specialpagerestricted">Spezialseiten für Benutzer mit erweiterten Rechten</span>',
+* <strong class="mw-specialpagerestricted">Spezialseiten für Benutzer mit erweiterten Rechten</strong>',
 'specialpages-group-maintenance' => 'Wartungslisten',
 'specialpages-group-other'       => 'Andere Spezialseiten',
 'specialpages-group-login'       => 'Anmelden',
@@ -3243,7 +3238,7 @@ Die Eingabe muss ohne den Zusatz „{{ns:file}}:“ erfolgen.',
 # Database error messages
 'dberr-header'      => 'Dieses Wiki hat ein Problem',
 'dberr-problems'    => 'Entschuldigung. Diese Seite hat momentan technische Schwierigkeiten.',
-'dberr-again'       => 'Versuche einige Minuten zu warten und dann neu zuladen.',
+'dberr-again'       => 'Warte einige Minuten und versuche dann neu zuladen.',
 'dberr-info'        => '(Kann keine Verbindung zum Datenbank-Server herstellen: $1)',
 'dberr-usegoogle'   => 'Du könntest in der Zwischenzeit mit Google suchen.',
 'dberr-outofdate'   => 'Beachte, dass der Suchindex unserer Inhalte veraltet sein kann.',

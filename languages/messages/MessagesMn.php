@@ -1,6 +1,9 @@
 <?php
 /** Mongolian (Монгол)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -1130,7 +1133,7 @@ URL нь зөв болон сайт ажиллагаатай байгаа эсэ
 'imagelinks'                => 'Линкүүд',
 'linkstoimage'              => 'Дараах {{PLURAL:$1|хуудас уг файлтай|$1 хуудас уг файлтай}} холбогдсон байна:',
 'nolinkstoimage'            => 'Энэ файлд холбогдсон хуудас байхгүй байна.',
-'sharedupload'              => 'Энэ файл нь өөр төслүүд ч хэрэглэж болохоор оруулагдсан байна. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => 'Энэ файл нь өөр төслүүд ч хэрэглэж болохоор оруулагдсан байна.', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki'          => 'Дэлгэрэнгүй мэдээллийг $1-с авна уу.',
 'shareduploadwiki-desc'     => '$1 дээрх тайлбарыг доор үзүүлэв.',
 'shareduploadwiki-linktext' => 'файлын тайлбарын хуудас',

@@ -1,6 +1,9 @@
 <?php
 /** Ossetic (Иронау)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -334,7 +337,6 @@ $messages = array(
 'resetpass_forbidden'       => 'Пароль баивæн нæй',
 'resetpass-submit-loggedin' => 'Пароль баив',
 'resetpass-temp-password'   => 'Рæстæгмæ пароль:',
-'resetpass-no-others'       => 'Æндæр архайæджы пароль аппарын дæ бон нæу.',
 'resetpass-log'             => 'Парольтæ аппарыны лог',
 'resetpass-comment'         => 'Пароль аппарын цæмæн бахъуыд:',
 

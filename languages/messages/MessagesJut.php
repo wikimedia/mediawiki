@@ -1,12 +1,14 @@
 <?php
 /** Jutish (Jysk)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
  * @author Huslåke
  * @author Urhixidur
- * @author Verdy p
  * @author Ælsån
  */
 
@@ -523,7 +525,7 @@ hersenenge, (førge) = førskel til den førge hersenenge, l = lile til mendre �
 'imagelinks'                => 'Billethenvesnenger',
 'linkstoimage'              => 'De følgende sider henveser til dette billet:',
 'nolinkstoimage'            => 'Der er engen sider der henveser til dette billet.',
-'sharedupload'              => 'Denne gøret er en fælles læĝenge og ken bruges åf andre projekter. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => 'Denne gøret er en fælles læĝenge og ken bruges åf andre projekter.', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'noimage'                   => 'Der er engen gøret ve dette nav, du ken $1',
 'noimage-linktext'          => 'læĝge den åp',
 'uploadnewversion-linktext' => 'Læĝ en ny hersenenge åf denne gøret åp',

@@ -1,6 +1,9 @@
 <?php
 /** Friulian (Furlan)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -835,7 +838,7 @@ Par includi une figure intune pagjine, dopre un leam inte form
 'imagelinks'                => 'Leams de figure',
 'linkstoimage'              => '{{PLURAL:$1|La pagjine ca sot e je leade|Lis $1 pagjinis ca sot a son leadis}} a cheste figure:',
 'nolinkstoimage'            => 'No son pagjinis leadis a chest file.',
-'sharedupload'              => 'Chest file al è condivîs e al pues jessi doprât di altris progjets. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => 'Chest file al è condivîs e al pues jessi doprât di altris progjets.', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki'          => 'Cjale par plasê la [pagjine di descrizion dal file $1] par altris informazions.',
 'shareduploadwiki-desc'     => 'La descrizion su la $1 intal dipuesit condividût e ven mostrade ca sot.',
 'shareduploadwiki-linktext' => 'pagjine di descrizion dal file',
@@ -1492,7 +1495,7 @@ Se il file al è stât cambiât rispiet al so stât origjinâl, cualchi informaz
 'specialpages'                   => 'Pagjinis speciâls',
 'specialpages-note'              => '----
 * Pagjinis speciâls no riservadis.
-* <span class="mw-specialpagerestricted">Pagjinis speciâls a ciertis categoriis di utents.</span>',
+* <strong class="mw-specialpagerestricted">Pagjinis speciâls a ciertis categoriis di utents.</strong>',
 'specialpages-group-maintenance' => 'Rapuarts di manutenzion',
 'specialpages-group-other'       => 'Altris pagjinis speciâls',
 'specialpages-group-login'       => 'Jentrade / regjistrazion',

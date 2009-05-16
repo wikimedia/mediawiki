@@ -1,6 +1,9 @@
 <?php
 /** Georgian (ქართული)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -204,6 +207,7 @@ $messages = array(
 'hidden-category-category'      => 'დამალული კატეგორიები', # Name of the category where hidden categories will be listed
 'category-subcat-count'         => '{{PLURAL:$2|ეს კატეგორია შეიცავს მხოლოდ შემდეგ ქვეკატეგორიას.|ამ კატეგორიაში მოცემულია $1 ქვეკატეგორია $2-დან.}}',
 'category-subcat-count-limited' => 'ეს კატეგორია მოიცავს შემდეგ $1 ქვეკატეგორიას.',
+'category-article-count'        => '{{PLURAL:$2|ეს კატეგორია შეიცავს მხოლოდ ამ გვერდს.|ამ კატეგორიაში არის შემდეგი $1 გვერდი , საერთო $2-დან.}}',
 'category-file-count-limited'   => 'შემდეგი {{PLURAL:$1|ფაილი|$1 ფაილები}} ამ კატეგორიაშია.',
 'listingcontinuesabbrev'        => 'გაგრძ.',
 
@@ -296,6 +300,7 @@ $messages = array(
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => '{{SITENAME}}-ის შესახებ',
 'aboutpage'            => 'Project:შესახებ',
+'copyright'            => 'შინაარსი წარმოდგენილია $1 პირობებით.',
 'copyrightpagename'    => 'ვიკიპედია საავტორო უფლებები',
 'copyrightpage'        => '{{ns:project}}:საავტორო უფლებები',
 'currentevents'        => 'მიმდინარე მოვლენები',
@@ -390,6 +395,7 @@ $1',
 'readonlytext'         => 'მონაცემთა ბაზა ამჟამად დახურული ახალი რედაქტირებისთვის და სხვა ცვლილებებისთვის, სავარაუდოდ პერიოდული ბაზის გამართვის სამუშაოების გამო, რის შემდეგაც ის კვლავ ნორმალურ ფუნქციას დაუბრუნდება.
 
 ადმინისტრატორმა, რომელმაც ის დაბლოკა, შემდეგი მიზეზი მოიყვანა: $1',
+'missingarticle-rev'   => '(ჩასწორება#: $1)',
 'readonly_lag'         => 'მონაცემთა ბაზა ავტომატურად დაიხურა, სანამ შვილობილი ბაზის სერვერები მთავარ ბაზასთან სინქრონიზაციას ახდენს',
 'internalerror'        => 'შიდა შეცდომა',
 'internalerror_info'   => 'შიდა შეცდომა: $1',
@@ -701,6 +707,7 @@ $1 საათში.',
 'viewpagelogs'           => 'ამ გვერდისთვის სარეგისტრაციო ჟურნალების ჩვენება',
 'nohistory'              => 'ამ გვერდს განხილვის გვერდი ცარიელი აქვს.',
 'currentrev'             => 'მიმდინარე შესწორება',
+'currentrev-asof'        => 'მიმდინარე ცვლილება $1 მდგომარეობით',
 'revisionasof'           => '$1-ის ვერსია',
 'revision-info'          => '$1-ის ვერსია, შეტანილი $2-ის მიერ', # Additionally available: $3: revision id
 'previousrevision'       => '←წინა ვერსია',
@@ -746,6 +753,7 @@ $1 საათში.',
 'deletedhist'               => 'წაშლილი ისტორია',
 'revdelete-content'         => 'შინაარსი',
 'revdelete-uname'           => 'მომხმარებლის სახელი',
+'revdelete-hid'             => 'დამალა $1',
 
 # History merging
 'mergehistory'                => 'გვერდების ისტორიის შერწყმა',
@@ -753,6 +761,9 @@ $1 საათში.',
 'mergehistory-empty'          => 'რაიმე ცვლილების შერწყმა შეუძლებელია.',
 'mergehistory-no-destination' => 'დანიშნულების გვერდი $1 არ არსებობს.',
 'mergehistory-autocomment'    => '[[:$1]] შეერთდა [[:$2]]-სთან',
+
+# Merge log
+'revertmerge' => 'შერწყმის გაუქმება',
 
 # Diffs
 'history-title'           => '"$1" ცვლილებათა ისტორია',
@@ -770,7 +781,7 @@ $1 საათში.',
 'searchresults'                => 'ძიების შედეგები',
 'searchresults-title'          => 'ძიების შედეგები "$1"',
 'searchresulttext'             => 'მეტი ინფორმაციისათვის ვიკიპედიის საძიებლის შესახებ გთხოვთ ნახოთ [[{{ns:project}}:ძიება|ძიება {{SITENAME}}]].',
-'searchsubtitle'               => "თქვენ მოიძიეთ '''[[:$1]]'''",
+'searchsubtitle'               => 'თქვენ მოიძიეთ \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|ყველა გვერდი დაწყებული "$1"-ით]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|ყველა გვერდი ბმულით "$1"-ზე]])',
 'searchsubtitleinvalid'        => "თქვენ მოიძიეთ '''$1'''",
 'noexactmatch'                 => "'''გვერდი ამ სათაურით \"\$1\" არ არსებობს.''' თქვენ შეგიძლიათ [[:\$1|შექმნათ ეს გვერდი]].",
 'noexactmatch-nocreate'        => "'''გვერდი ამ სათაურით \"\$1\" არ არსებობს.'''",
@@ -801,6 +812,7 @@ $1 საათში.',
 'nonefound'                    => "'''შენიშვნა''': სტანდარტული ძიება ყველა სახელთა სივრცეში არ ხორციელდება.
 მოსაძიებელ სიტყვას ან სიტყვათა ჯგუფს წინ წაუმძღვარეთ ''all:'' იმისათვის, რათა ძიება ყველგან განხორციელდეს (განხილვის გვერდების, თარგების და ა.შ. ჩათვლით) ან მიუთითეთ თქვენთვის სასურველი სახელთა სივრცე.",
 'powersearch'                  => 'ძიება',
+'powersearch-legend'           => 'გაფართოებული ძიება',
 'powersearch-ns'               => 'ძიება სახელთა სივრცეებში:',
 'powersearch-redir'            => 'გადამისამართებების სიის ჩვენება',
 'powersearch-field'            => 'მოძებნე',
@@ -964,6 +976,7 @@ $1 საათში.',
 'rc_categories'                     => 'მხოლოდ კატეგორიებიდან (განაცალკევეთ "|"-ის მიხედვით)',
 'rc_categories_any'                 => 'ნებისმიერი',
 'newsectionsummary'                 => '/* $1 */ ახალი სექცია',
+'rc-enhanced-expand'                => 'დეტალების ჩვენება (მოითხოვს ჯავასკრიპტს)',
 'rc-enhanced-hide'                  => 'დეტალების დამალვა',
 
 # Recent changes linked
@@ -1035,7 +1048,7 @@ $1 საათში.',
 'uploadvirus'                 => 'ფაილი ვირუსს შეიცავს! დეტალები: $1',
 'sourcefilename'              => 'წყარო:',
 'destfilename'                => 'საბოლოო სახელი:',
-'watchthisupload'             => 'უთვალთვალე ამ გვერდს',
+'watchthisupload'             => 'უთვალთვალე ამ ფაილს',
 'filewasdeleted'              => 'ამ სახელწოდების ფაილი უკვე არსებობდა, მაგრამ წაშლილ იქნა. ხელმეორედ ჩატვირთვამდე იხილეთ $1.',
 'upload-wasdeleted'           => "'''გაფრთხილეა: თქვენ ტვირთავთ ფაილს, რომელიც წინათ წაიშალა.'''
 
@@ -1083,7 +1096,7 @@ $1 საათში.',
 'imagelinks'                => 'ფაილების ბმულები',
 'linkstoimage'              => 'მომდევნო {{PLURAL:$1|გვერდი|გვერდები}} ებმის ამ ფაილს:',
 'nolinkstoimage'            => 'არ არსებობს ამ ფაილთან დაკავშირებული გვერდები.',
-'sharedupload'              => 'ეს ფაილი $1-დანაა და შეიძლება გამოყენებულ იქნეს სხვა პროექტების მიერ. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => 'ეს ფაილი $1-დანაა და შეიძლება სხვა პროექტებიც იყენებდეს.', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki'          => 'გთხოვთ, იხილოთ $1 შემდგომი ინფორმაციის მისაღებად.',
 'shareduploadwiki-linktext' => 'ფაილის აღწერის გვერდი',
 'noimage'                   => 'ამ სახელის მქონე ფაილი არ არსებობს, თქვენ შეგიძლიათ $1.',
@@ -1190,7 +1203,7 @@ $1 საათში.',
 'mostcategories'          => 'ყველაზე მეტი კატეგორიის მქონე სტატიები',
 'mostimages'              => 'ყველაზე მეტი ბმულების მქონე სურათები',
 'mostrevisions'           => 'ყველაზე მეტად რედაქტირებული სტატიები',
-'prefixindex'             => 'საძიებელი სიტყვის დასაწყისის მიხედვით',
+'prefixindex'             => 'ყველა გვერდი (თავსართით)',
 'shortpages'              => 'მოკლე გვერდები',
 'longpages'               => 'გრძელი გვერდები',
 'deadendpages'            => 'ჩიხის გვერდები',
@@ -1232,6 +1245,7 @@ $1 საათში.',
 'nextpage'          => 'შემდეგი გვერდი ($1)',
 'prevpage'          => 'წინა გვერდი ($1)',
 'allpagesfrom'      => 'გვერდების ჩვენება დაწყებული:',
+'allpagesto'        => 'გვერდები, რომლებიც სრულდება:',
 'allarticles'       => 'ყველა სტატია',
 'allinnamespace'    => 'ყველა გვერდი ($1 სახელთა სივრცეში)',
 'allnotinnamespace' => 'ყველა გვერდი ($1 სახელთა სივრცის გარეშე)',
@@ -1413,7 +1427,7 @@ $NEWPAGE
 იხილეთ ქვემოთ ამჟამინდელი პარამეტრები გვერდისთვის '''$1''':",
 'protect-cascadeon'           => 'ეს გვერდი ამჟამად დაცულია, ვინაიდან იგი ნაწილია ამ {{PLURAL:$1|გვერდის, რომელსაც|გვერდების, რომელთაც}} კასკადური დაცვა აქვს ჩართული.
 თქვენ შეგიძლიათ ამ გვერდის დაცვის დონე შეცვალოთ, თუმცა ეს კასკადურ დაცვაზე გავლენას არ იქონიებს.',
-'protect-default'             => '(სტანდარტული)',
+'protect-default'             => 'ყველა მომხმარებელი',
 'protect-fallback'            => 'საჭიროა "$1"-ის უფლება',
 'protect-level-autoconfirmed' => 'ახალი და არარეგისტრირებული მომხმარებლების დაბლოკვა',
 'protect-level-sysop'         => 'მხოლოდ ადმინისტრატორები',
@@ -1692,11 +1706,13 @@ $NEWPAGE
 'tooltip-n-randompage'            => 'შემთხვევითი გვერდის ჩვენება',
 'tooltip-n-help'                  => 'გვერდი, სადაც იპოვით.',
 'tooltip-t-whatlinkshere'         => 'ყველა ვიკი გვერდის სია, რომლებშიც ეს გვერდია მითითებული',
+'tooltip-t-recentchangeslinked'   => 'ბოლო ცვლილებები ამ გვერდთან დაკავშირებულ გვერდებზე',
 'tooltip-t-contributions'         => 'იხილეთ ამ მომხმარებლის წვლილის სია',
 'tooltip-t-emailuser'             => 'გაუგზავნე ელ. ფოსტა ამ მომხმარებელს',
 'tooltip-t-upload'                => 'ჩატვირთეთ მედიაფაილები',
 'tooltip-t-specialpages'          => 'ყველა სპეციალური გვერდის სია',
 'tooltip-t-print'                 => 'ამ გვერდის დასაბეჭდი ვერსია',
+'tooltip-t-permalink'             => 'მუდმივი ბმული გვერდის ამ ვერსიაზე',
 'tooltip-ca-nstab-main'           => 'შინაარსის ჩვენება',
 'tooltip-ca-nstab-user'           => 'მომხმარებლის გვერდის ჩვენება',
 'tooltip-ca-nstab-special'        => 'ეს სპეციალური გვერდია. მისი რედაქტირება არ შეგიძლიათ.',

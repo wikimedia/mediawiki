@@ -1,6 +1,9 @@
 <?php
 /** Icelandic (Íslenska)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -1348,7 +1351,7 @@ Gjörðu svo vel og endurnefndu skrána og hladdu henni inn aftur.',
 'imagelinks'                => 'Skráatenglar',
 'linkstoimage'              => 'Eftirfarandi {{PLURAL:$1|síða tengist|$1 síður tengjast}} í þessa skrá:',
 'nolinkstoimage'            => 'Engar síður tengja í þessa skrá.',
-'sharedupload'              => 'Þessari skrá er deilt meðal annarra verkefna og nýtist því þar. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => 'Þessari skrá er deilt meðal annarra verkefna og nýtist því þar.', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki-linktext' => 'skráarlýsingarsíða',
 'noimage'                   => 'Engin skrá með þessu nafni er til, en þú getur $1.',
 'noimage-linktext'          => 'hlaða einni inn',
@@ -1915,8 +1918,8 @@ Vinsamlegast veldu annan titil.',
 Gjörðu svo vel og færðu hana handvirkt.'''",
 'movedto'                   => 'fært á',
 'movetalk'                  => 'Færa meðfylgjandi spjallsíðu',
-'move-subpages'             => 'Færa undirstíður (upp að $1), ef mögulegt',
-'move-talk-subpages'        => 'Færa undirstíður spjallsíðunnar (upp að $1), ef mögulegt',
+'move-subpages'             => 'Færa undirstíður (upp að $1)',
+'move-talk-subpages'        => 'Færa undirstíður spjallsíðunnar (upp að $1)',
 'movepage-page-exists'      => 'Síðan $1 er nú þegar til og er ekki hægt að yfirskrifa sjálfkrafa.',
 'movepage-page-moved'       => 'Síðan $1 hefur verið færð á $2.',
 'movepage-page-unmoved'     => 'Ekki var hægt að færa síðuna $1 á $2.',

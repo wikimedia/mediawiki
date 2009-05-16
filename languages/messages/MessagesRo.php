@@ -1,6 +1,9 @@
 <?php
 /** Romanian (Română)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -648,7 +651,6 @@ Ignoraţi acest mesaj, dacă acea creare a fost o greşeală.',
 'resetpass-wrong-oldpass'   => 'Parolă curentă sau temporară incorectă. 
 Este posibil să fi reuşit deja schimbarea parolei sau să fi cerut o parolă temporară nouă.',
 'resetpass-temp-password'   => 'Parolă temporară:',
-'resetpass-no-others'       => 'Nu poţi reseta parola pentru alţi utilizatori.',
 'resetpass-log'             => 'Jurnalul resetărilor parolei',
 'resetpass-logtext'         => 'Mai jos este jurnalul utilizatorilor care au avut parola resetată de un administrator.',
 'resetpass-logentry'        => 'a fost schimbată parola pentru $1',
@@ -1498,7 +1500,7 @@ O [[Special:WhatLinksHere/$2|listă completă]] este disponibilă.',
 'redirectstofile'           => 'The following {{PLURAL:$1|file redirects|$1 files redirect}} to this file:
 {{PLURAL:$1|Fişierul următor|Următoarele $1 fişiere}} redirectează la acest fişier:',
 'duplicatesoffile'          => '{{PLURAL:$1|Fişierul următor este duplicat|Următoarele $1 fişiere sunt duplicate}} ale acestui fişier ([[Special:FileDuplicateSearch/$2|mai multe detalii]]):',
-'sharedupload'              => 'Acest fişier este de la $1 şi poate fi folosit şi de alte proiecte. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => 'Acest fişier este de la $1 şi poate fi folosit şi de alte proiecte.', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki'          => 'Vă rugăm citiţi [$1 pagina de descriere a fişierului] pentru alte informaţii.',
 'shareduploadwiki-desc'     => 'Descrierea din pagina $1 este disponibilă mai jos.',
 'shareduploadwiki-linktext' => 'pagina descriptivă a fişierului',
@@ -2204,8 +2206,8 @@ manual paginile de discuţii, dacă doreşti acest lucru.",
 'talkexists'                => "'''Pagina în sine a fost mutată, dar pagina de discuţii nu a putut fi mutată deoarece deja există o alta cu acelaşi nume. Te rugăm să unifici manual cele două pagini de discuţii.'''",
 'movedto'                   => 'mutată la',
 'movetalk'                  => 'Mută şi pagina de "discuţii" dacă se poate.',
-'move-subpages'             => 'Mută subpaginile (până la $1), dacă este nevoie',
-'move-talk-subpages'        => 'Mută subpaginile paginii de discuţii (până la $1), dacă se poate',
+'move-subpages'             => 'Mută subpaginile (până la $1)',
+'move-talk-subpages'        => 'Mută subpaginile paginii de discuţii (până la $1)',
 'movepage-page-exists'      => 'Pagina $1 există deja şi nu poate fi rescrisă automat.',
 'movepage-page-moved'       => 'Pagina $1 a fost mutată la $2.',
 'movepage-page-unmoved'     => 'Pagina $1 nu a putut fi mutată la $2.',
@@ -2940,7 +2942,7 @@ Introdu numele fişierului fără prefixul "{{ns:file}}:".',
 'specialpages'                   => 'Pagini speciale',
 'specialpages-note'              => '----
 * Pagini speciale normale.
-* <span class="mw-specialpagerestricted">Pagini speciale restricţionate.</span>',
+* <strong class="mw-specialpagerestricted">Pagini speciale restricţionate.</strong>',
 'specialpages-group-maintenance' => 'Întreţinere',
 'specialpages-group-other'       => 'Alte pagini speciale',
 'specialpages-group-login'       => 'Autentificare / Înregistrare',

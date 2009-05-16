@@ -1,16 +1,23 @@
 <?php
 /** Interlingue (Interlingue)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
  * @author Jmb
  * @author Malafaya
  * @author Remember the dot
+ * @author Valodnieks
  * @author לערי ריינהארט
  */
 
 $messages = array(
+'underline-always' => 'Sempre',
+'underline-never'  => 'Nequande',
+
 # Dates
 'sunday'        => 'soledí',
 'monday'        => 'lunedí',

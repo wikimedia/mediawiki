@@ -1,6 +1,9 @@
 <?php
 /** Pfälzisch (Pfälzisch)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -371,7 +374,7 @@ Saire uff [[Special:Watchlist|Dainer Beowachdungslischt]] sin '''fett'''.",
 'filehist-comment'          => 'Kommentar',
 'imagelinks'                => 'Dateilinks',
 'linkstoimage'              => 'Die {{PLURAL:$1|Said verwaist|$1 Saire verwaise}} uff die Datei:',
-'sharedupload'              => 'Die Datei isch vun $1 un s kann sai, dass se ach vun annere Projekt gebraucht werd. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => 'Die Datei isch vun $1 un s kann sai, dass se ach vun annere Projekt gebraucht werd.', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki-desc'     => 'Do unne hot s d Bschraiwung vun $1.',
 'shareduploadwiki-linktext' => 'Datei-Bschraiwungssaid',
 'uploadnewversion-linktext' => 'E naiere Version vun derre Datei hochlare',

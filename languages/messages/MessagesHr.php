@@ -1,6 +1,9 @@
 <?php
 /** Croatian (Hrvatski)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -764,7 +767,6 @@ Možete zanemariti ovu poruku, ako je suradnički račun stvoren nenamjerno.',
 'resetpass-wrong-oldpass'   => 'Pogrešna privremena ili trenutačna lozinka. 
 Možda ste već uspješno promijenili vašu lozinku ili ste zatražili novu privremenu lozinku.',
 'resetpass-temp-password'   => 'Privremena lozinka:',
-'resetpass-no-others'       => "Ne možete poništiti (''resetirati'') lozinku drugog suradnika.",
 'resetpass-log'             => 'Evidencija poništavanja lozinki',
 'resetpass-logtext'         => 'Slijedi evidencija suradnika kojima su administratori poništili lozinke.',
 'resetpass-logentry'        => 'promijenjena lozinka suradnika $1',
@@ -1626,7 +1628,7 @@ Slijedeći popis prikazuje {{PLURAL:$1|stranice koje|prvih $1 stranica koje}} vo
 'morelinkstoimage'          => 'Pogledaj [[Special:WhatLinksHere/$1|više poveznica]] za ovu datoteku.',
 'redirectstofile'           => '{{PLURAL:$1|Sljedeća datoteka preusmjerava|$1 Sljedeće datoteke preusmjeravaju}} na ovu datoteku:',
 'duplicatesoffile'          => '{{PLURAL:$1|Sljedeća datoteka je kopija|$1 sljedeće datoteke su kopije|$1 sljedećih datoteka su kopije}} ove datoteke ([[Special:FileDuplicateSearch/$2|više detalja]]):',
-'sharedupload'              => 'Ova je datoteka postavljena na $1 i mogu je koristiti ostali wikiji. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => 'Ova je datoteka postavljena na $1 i mogu je koristiti ostali projekti.', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki'          => 'Za podrobnije informacije vidi $1.',
 'shareduploadwiki-desc'     => 'Opis datoteke $1 na zajedničkom poslužitelju je prikazan ispod',
 'shareduploadwiki-linktext' => 'stranica s opisom datoteke',
@@ -2343,8 +2345,8 @@ Molimo odaberite drugo ime.',
 'talkexists'                   => "'''Sama stranica je uspješno prenesena, ali stranicu za razgovor nije bilo moguće prenijeti jer na odredištu već postoji stranica za razgovor. Molimo da ih ručno spojite.'''",
 'movedto'                      => 'premješteno na',
 'movetalk'                     => 'Premjesti i njezinu stranicu za razgovor ako je moguće.',
-'move-subpages'                => 'Premjesti podstranice (na $1), ako je moguće',
-'move-talk-subpages'           => 'Premjesti podstranice od stranice za razgovor (na $1), ako je moguće',
+'move-subpages'                => 'Premjesti podstranice (na $1)',
+'move-talk-subpages'           => 'Premjesti podstranice od stranice za razgovor (na $1)',
 'movepage-page-exists'         => 'Stranica $1 već postoji i ne može biti automatski prepisana',
 'movepage-page-moved'          => 'Stranica $1 je premještena na $2.',
 'movepage-page-unmoved'        => 'Stranica $1 nije mogla biti premještena na $2.',
@@ -3109,7 +3111,7 @@ Unesite ime datoteke bez prefiksa "{{ns:file}}:"',
 'specialpages'                   => 'Posebne stranice',
 'specialpages-note'              => '----
 * Normalne posebne stranice
-*<span class="mw-specialpagerestricted">Posebne stranice s ograničenim pristupom</span>',
+*<strong class="mw-specialpagerestricted">Posebne stranice s ograničenim pristupom</span>',
 'specialpages-group-maintenance' => 'Izvještaji za održavanje',
 'specialpages-group-other'       => 'Ostale posebne stranice',
 'specialpages-group-login'       => 'Prijava / Otvaranje računa',

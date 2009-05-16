@@ -1,6 +1,9 @@
 <?php
 /** Finnish (Suomi)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -280,7 +283,7 @@ $messages = array(
 'tog-hidepatrolled'           => 'Piilota tarkastetut muutokset tuoreet muutokset -listasta',
 'tog-newpageshidepatrolled'   => 'Piilota tarkastetut sivut uusien sivujen listalta',
 'tog-extendwatchlist'         => 'Laajenna tarkkailulista näyttämään kaikki tehdyt muutokset eikä vain viimeisimmät',
-'tog-usenewrc'                => 'Kehittynyt tuoreet muutokset -listaus (JavaScript)',
+'tog-usenewrc'                => 'Käytä kehittynyttä tuoreet muutokset -listausta (JavaScript)',
 'tog-numberheadings'          => 'Numeroi otsikot',
 'tog-showtoolbar'             => 'Näytä työkalupalkki',
 'tog-editondblclick'          => 'Muokkaa sivuja kaksoisnapsautuksella (JavaScript)',
@@ -288,7 +291,7 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Muokkaa osioita napsauttamalla otsikkoa hiiren oikealla painikkeella (JavaScript)',
 'tog-showtoc'                 => 'Näytä sisällysluettelo sivuille, joilla yli 3 otsikkoa',
 'tog-rememberpassword'        => 'Muista kirjautuminen eri istuntojen välillä',
-'tog-editwidth'               => 'Muokkauskenttä on sivun levyinen',
+'tog-editwidth'               => 'Laajenna muokkauskenttä sivun levyiseksi',
 'tog-watchcreations'          => 'Lisää luomani sivut tarkkailulistalle',
 'tog-watchdefault'            => 'Lisää muokkaamani sivut tarkkailulistalle',
 'tog-watchmoves'              => 'Lisää siirtämäni sivut tarkkailulistalle',
@@ -736,7 +739,6 @@ Sinun ei tarvitse huomioida tätä viestiä, jos tunnus on luotu virheellisesti.
 'resetpass-wrong-oldpass'   => 'Virheellinen väliaikainen tai nykyinen salasana.
 Olet saattanut jo onnistuneesti vaihtaa salasanasi tai pyytää uutta väliaikaista salasanaa.',
 'resetpass-temp-password'   => 'Väliaikainen salasana:',
-'resetpass-no-others'       => 'Et voi alustaa salasanaa muille käyttäjille.',
 'resetpass-log'             => 'Salasanojen alustusloki',
 'resetpass-logtext'         => 'Alla on loki käyttäjistä, joiden salasanat on alustettu ylläpitäjän toimesta.',
 'resetpass-logentry'        => 'vaihtoi salasanan käyttäjälle $1',
@@ -959,9 +961,11 @@ Kokeile [[Special:Search|hakua]] löytääksesi asiaan liittyviä sivuja.',
 'rev-deleted-comment'            => '(kommentti poistettu)',
 'rev-deleted-user'               => '(käyttäjänimi poistettu)',
 'rev-deleted-event'              => '(lokitapahtuma poistettu)',
-'rev-deleted-text-permission'    => "Tämä versio on '''poistettu julkisesta arkistosta'''. [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} Poistolokissa] saattaa olla lisätietoja.",
-'rev-deleted-text-view'          => 'Tämä versio on poistettu julkisesta arkistosta.',
-'rev-deleted-no-diff'            => "Et voi katsoa tätä muokkausta, koska yksi versioista on '''poistettu julkisista arkistoista'''.
+'rev-deleted-text-permission'    => "Tämä versio on '''poistettu'''.
+[{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} Poistolokissa] saattaa olla lisätietoja.",
+'rev-deleted-text-view'          => "Tämä versio on '''poistettu'''.
+Ylläpitäjänä voit nähdä sen. Lisätietoja saattaa olla [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} poistolokissa].",
+'rev-deleted-no-diff'            => "Et voi katsoa tätä muokkausta, koska yksi versioista on '''poistettu'''.
 Lisätietoja saattaa olla [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} poistolokissa].",
 'rev-delundel'                   => 'näytä tai piilota',
 'revisiondelete'                 => 'Poista tai palauta versioita',
@@ -1508,7 +1512,7 @@ Jos sinulla on tämän kuvan alkuperäinen versio, tallenna se. Muussa tapaukses
 'sourcefilename'              => 'Lähdenimi',
 'destfilename'                => 'Kohdenimi',
 'upload-maxfilesize'          => 'Suurin sallittu tiedostokoko: $1',
-'watchthisupload'             => 'Tarkkaile tätä sivua',
+'watchthisupload'             => 'Tarkkaile tätä tiedostoa',
 'filewasdeleted'              => 'Tämän niminen tiedosto on lisätty ja poistettu aikaisemmin. Tarkista $1 ennen jatkamista.',
 'upload-wasdeleted'           => "'''Varoitus: Olet tallentamassa tiedostoa, joka on jo aikaisemmin poistettu.'''
 
@@ -1570,7 +1574,7 @@ Seuraava lista näyttää {{PLURAL:$1|ensimmäisen linkittävän sivun|$1 ensimm
 'morelinkstoimage'          => 'Näytä [[Special:WhatLinksHere/$1|lisää linkkejä]] tähän tiedostoon.',
 'redirectstofile'           => '{{PLURAL:$1|Seuraava tiedosto ohjaa|Seuraavat $1 tiedostoa ohjaavat}} tähän tiedostoon:',
 'duplicatesoffile'          => '{{PLURAL:$1|Seuraava tiedosto on tämän tiedoston kaksoiskappale|Seuraavat $1 tiedostoa ovat tämän tiedoston kaksoiskappaleita}} ([[Special:FileDuplicateSearch/$2|lisätietoja]]):',
-'sharedupload'              => 'Tämä tiedosto on jaettu kohteesta $1 ja muut projektit saattavat käyttää sitä. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => 'Tämä tiedosto on jaettu kohteesta $1 ja muut projektit saattavat käyttää sitä.', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki'          => 'Katso $1 lisätietoja.',
 'shareduploadwiki-desc'     => 'Tiedot tiedoston $1 näkyvät alla.',
 'shareduploadwiki-linktext' => 'kuvaussivulta',
@@ -1827,7 +1831,7 @@ Lisätietoa yksittäisistä käyttäjäoikeuksista saattaa löytyä [[{{MediaWik
 'emailpage'        => 'Lähetä sähköpostia käyttäjälle',
 'emailpagetext'    => 'Jos tämä käyttäjä on antanut asetuksissaan kelvollisen sähköpostiosoitteen, alla olevalla lomakkeella voit lähettää hänelle viestin. [[Special:Preferences|Omissa asetuksissasi]] annettu sähköpostiosoite näkyy sähköpostin lähettäjän osoitteena, jotta vastaanottaja voi suoraan vastata viestiin.',
 'usermailererror'  => 'Postitus palautti virheen:',
-'defemailsubject'  => '{{SITENAME}}-sähköposti',
+'defemailsubject'  => 'Sähköpostia sivustolta {{SITENAME}}',
 'noemailtitle'     => 'Ei sähköpostiosoitetta',
 'noemailtext'      => 'Tämä käyttäjä ei ole määritellyt kelvollista sähköpostiosoitetta.',
 'nowikiemailtitle' => 'Sähköpostin lähettäminen ei sallittu',
@@ -2128,7 +2132,7 @@ $1',
 'ipboptions'                      => '2 tuntia:2 hours,1 päivä:1 day,3 päivää:3 days,1 viikko:1 week,2 viikkoa:2 weeks,1 kuukausi:1 month,3 kuukautta:3 months,6 kuukautta:6 months,1 vuosi:1 year,ikuinen:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'                  => 'Muu kesto',
 'ipbotherreason'                  => 'Muu syy tai tarkennus',
-'ipbhidename'                     => 'Piilota IP-osoite tai tunnus estolokista, muokkausestolistasta ja käyttäjälistasta',
+'ipbhidename'                     => 'Piilota tunnus muokkauksista ja listauksista',
 'ipbwatchuser'                    => 'Tarkkaile tämän käyttäjän käyttäjä- ja keskustelusivua',
 'ipballowusertalk'                => 'Salli tämän käyttäjän muokata omaa keskustelusivuaan ollessaan estetty',
 'ipb-change-block'                => 'Estä uudelleen näillä asetuksilla',
@@ -2185,6 +2189,7 @@ Nykyiset estot löytyvät [[Special:IPBlockList|estolistalta]].',
 'range_block_disabled'            => 'Ylläpitäjän oikeus luoda alue-estoja ei ole käytössä.',
 'ipb_expiry_invalid'              => 'Virheellinen umpeutumisaika.',
 'ipb_expiry_temp'                 => 'Piilotettujen käyttäjätunnusten estojen tulee olla pysyviä.',
+'ipb_hide_invalid'                => 'Tämän tunnuksen piilottaminen ei onnistu. Sillä saattaa olla liikaa muokkauksia.',
 'ipb_already_blocked'             => '”$1” on jo estetty.',
 'ipb-needreblock'                 => '== Estetty jo ==
 $1 on jo estetty. Haluatko muuttaa eston asetuksia?',
@@ -2255,8 +2260,8 @@ Näissä tapauksissa sivut täytyy siirtää tai yhdistää käsin.",
 'talkexists'                   => 'Sivun siirto onnistui, mutta keskustelusivua ei voitu siirtää, koska uuden otsikon alla on jo keskustelusivu. Keskustelusivujen sisältö täytyy yhdistää käsin.',
 'movedto'                      => 'Siirretty uudelle otsikolle',
 'movetalk'                     => 'Siirrä myös keskustelusivu.',
-'move-subpages'                => 'Siirrä kaikki alasivut (enintään $1), jos mahdollista',
-'move-talk-subpages'           => 'Siirrä kaikki keskustelusivun alasivut (enintään $1), jos mahdollista',
+'move-subpages'                => 'Siirrä kaikki alasivut (enintään $1)',
+'move-talk-subpages'           => 'Siirrä kaikki keskustelusivun alasivut (enintään $1)',
 'movepage-page-exists'         => 'Sivu $1 on jo olemassa ja sitä ei voi automaattisesti korvata.',
 'movepage-page-moved'          => 'Sivu $1 on siirretty nimelle $2.',
 'movepage-page-unmoved'        => 'Sivua $1 ei voitu siirtää nimelle $2.',
@@ -3018,7 +3023,7 @@ Kirjoita tiedostonimi ilman ”{{ns:file}}:”-etuliitettä.',
 'specialpages'                   => 'Toimintosivut',
 'specialpages-note'              => '----
 * Normaalit toimintosivut.
-* <span class="mw-specialpagerestricted">Rajoitetut toimintosivut.</span>',
+* <strong class="mw-specialpagerestricted">Rajoitetut toimintosivut.</strong>',
 'specialpages-group-maintenance' => 'Ylläpito',
 'specialpages-group-other'       => 'Muut',
 'specialpages-group-login'       => 'Kirjautuminen ja tunnusten luonti',
@@ -3064,7 +3069,7 @@ Kirjoita tiedostonimi ilman ”{{ns:file}}:”-etuliitettä.',
 'dberr-problems'    => 'Tällä sivustolla on teknisiä ongelmia.',
 'dberr-again'       => 'Odota hetki ja lataa sivu uudelleen.',
 'dberr-info'        => '(Tietokantapalvelimeen yhdistäminen epäonnistui: $1)',
-'dberr-usegoogle'   => 'Voit koittaa etsiä Googlesta kunnes virhe korjataan.',
+'dberr-usegoogle'   => 'Voit koettaa hakea Googlesta, kunnes virhe korjataan.',
 'dberr-outofdate'   => 'Googlen indeksi ei välttämättä ole ajan tasalla.',
 'dberr-cachederror' => 'Alla on välimuistissa oleva sivun versio, joka ei välttämättä ole ajan tasalla.',
 

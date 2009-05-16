@@ -1,6 +1,9 @@
 <?php
 /** Dutch (Nederlands)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -13,6 +16,7 @@
  * @author GerardM
  * @author Hamaryns
  * @author McDutchie
+ * @author Mwpnl
  * @author Niels
  * @author SPQRobin
  * @author Servien
@@ -304,7 +308,7 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Bewerken van deelpagina’s mogelijk maken met een rechtermuisklik op een tussenkop (vereist JavaScript)',
 'tog-showtoc'                 => 'Inhoudsopgave weergeven (voor pagina’s met minstens 3 tussenkoppen)',
 'tog-rememberpassword'        => 'Wachtwoord onthouden',
-'tog-editwidth'               => 'Bewerkingsveld over volle breedte',
+'tog-editwidth'               => 'Bewerkingsveld over volle breedte van het scherm weergeven',
 'tog-watchcreations'          => 'Pagina’s die ik aanmaak automatisch volgen',
 'tog-watchdefault'            => 'Pagina’s die ik bewerk automatisch volgen',
 'tog-watchmoves'              => 'Pagina’s die ik hernoem automatisch volgen',
@@ -318,7 +322,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Mij e-mailen bij kleine bewerkingen van pagina’s op mijn volglijst',
 'tog-enotifrevealaddr'        => 'Mijn e-mailadres weergeven in e-mailberichten',
 'tog-shownumberswatching'     => 'Het aantal gebruikers weergeven dat deze pagina volgt',
-'tog-fancysig'                => 'Ondertekenen zonder verwijzing naar gebruikerspagina',
+'tog-fancysig'                => 'Als wikitekst behandelen (zonder automatische verwijzing)',
 'tog-externaleditor'          => 'Standaard een externe tekstbewerker gebruiken (alleen voor experts - voor deze functie zijn speciale instellingen nodig)',
 'tog-externaldiff'            => 'Standaard een extern vergelijkingsprogramma gebruiken (alleen voor experts - voor deze functie zijn speciale instellingen nodig)',
 'tog-showjumplinks'           => '“ga naar”-toegankelijkheidsverwijzingen inschakelen',
@@ -797,7 +801,6 @@ U hebt uw wachtwoord al gewijzigd of een nieuw tijdelijk wachtwoord aangevraagd.
 'resetpass-wrong-oldpass'   => 'Het huidige of tijdelijke wachtwoord is ongeldig.
 Mogelijk hebt u uw wachtwoord al gewijzigd of een nieuw tijdelijk wachtwoord aangevraagd.',
 'resetpass-temp-password'   => 'Tijdelijk wachtwoord:',
-'resetpass-no-others'       => 'U kunt geen wachtwoorden voor andere gebruikers opnieuw instellen.',
 'resetpass-log'             => 'Wachtwoordherinstellingenlogboek',
 'resetpass-logtext'         => 'Deze pagina bevat een logboek met gebruikers waarvan het wachtwoord opnieuw is ingesteld door een beheerder.',
 'resetpass-logentry'        => 'heeft het wachtwoord voor $1 gewijzigd',
@@ -1060,14 +1063,14 @@ Wellicht is die verwijderd of hernoemd.
 'rev-deleted-comment'            => '(opmerking verwijderd)',
 'rev-deleted-user'               => '(gebruiker verwijderd)',
 'rev-deleted-event'              => '(logboekregel verwijderd)',
-'rev-deleted-text-permission'    => "Deze bewerking is '''uit de publieke archieven verwijderd'''.
+'rev-deleted-text-permission'    => "Deze bewerking is '''verwijderd'''.
 Er kunnen details aanwezig zijn in het [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} verwijderingslogboek].",
-'rev-deleted-text-view'          => "Deze bewerking is '''uit de publieke archieven verwijderd'''.
+'rev-deleted-text-view'          => "Deze bewerking is '''verwijderd'''.
 Als beheerder kunt u deze zien;
 er kunnen details aanwezig zijn in het [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} verwijderingslogboek].",
-'rev-deleted-no-diff'            => "U kunt de verschillen niet bekijken omdat een van de versies '''uit de publieke archieven verwijderd''' is.
+'rev-deleted-no-diff'            => "U kunt de verschillen niet bekijken omdat een van de versies is '''verwijderd'''.
 Achtergronden zijn mogelijk te vinden in het [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} verwijderlogboek].",
-'rev-deleted-unhide-diff'        => "Een van de bewerkingen voor de verschillen die u hebt opgevraagd is '''uit de publieke archieven verwijderd'''.
+'rev-deleted-unhide-diff'        => "Een van de bewerkingen voor de verschillen die u hebt opgevraagd is '''verwijderd'''.
 Achtergronden zijn mogelijk te vinden in het [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} verwijderlogboek].
 Als beheerder kunt u [$1 de verschillen bekijken] als u wilt.",
 'rev-delundel'                   => 'weergeven/verbergen',
@@ -1125,7 +1128,7 @@ In de [[Special:IPBlockList|IP-blokkeerlijst]] zijn de huidige blokkades te beki
 # History merging
 'mergehistory'                     => "Geschiedenis van pagina's samenvoegen",
 'mergehistory-header'              => 'Via deze pagina kunt u versies van de geschiedenis van een bronpagina naar een nieuwere pagina samenvoegen.
-Zorg dat u deze wijziging de geschiedenisdoorlopendheid van de pagina behoudt.',
+Zorg dat deze wijziging de geschiedenisdoorlopendheid van de pagina behoudt.',
 'mergehistory-box'                 => "Versies van twee pagina's samenvoegen:",
 'mergehistory-from'                => 'Bronpagina:',
 'mergehistory-into'                => 'Bestemmingspagina:',
@@ -1326,7 +1329,7 @@ Ga na of latex, dvips en gs correct geïnstalleerd zijn en zet om',
 'prefs-resetpass'           => 'Wachtwoord wijzigen',
 'saveprefs'                 => 'Opslaan',
 'resetprefs'                => 'Niet opgeslagen wijzigingen herstellen',
-'restoreprefs'              => 'Terug naar standaardinstellingen',
+'restoreprefs'              => 'Voorkeuren herstellen',
 'textboxsize'               => 'Bewerken',
 'prefs-edit-boxsize'        => 'Afmetingen van het bewerkingsvenster.',
 'rows'                      => 'Regels:',
@@ -1352,7 +1355,7 @@ Ga na of latex, dvips en gs correct geïnstalleerd zijn en zet om',
 'timezoneregion-africa'     => 'Afrika',
 'timezoneregion-america'    => 'Amerika',
 'timezoneregion-antarctica' => 'Antarctica',
-'timezoneregion-arctic'     => 'Arctis',
+'timezoneregion-arctic'     => 'Arctisch',
 'timezoneregion-asia'       => 'Azië',
 'timezoneregion-atlantic'   => 'Atlantische Oceaan',
 'timezoneregion-australia'  => 'Australië',
@@ -1646,7 +1649,7 @@ Controleer het bestand en upload het opnieuw.',
 'sourcefilename'              => 'Oorspronkelijke bestandsnaam:',
 'destfilename'                => 'Opslaan als:',
 'upload-maxfilesize'          => 'Maximale bestandsgrootte: $1',
-'watchthisupload'             => 'Deze pagina volgen',
+'watchthisupload'             => 'Dit bestand volgen',
 'filewasdeleted'              => 'Er is eerder een bestand met deze naam verwijderd.
 Raadpleeg het $1 voordat u het opnieuw toevoegt.',
 'upload-wasdeleted'           => "'''Waarschuwing: u bent een bestand dat eerder verwijderd was aan het uploaden.'''
@@ -1733,7 +1736,7 @@ Er is ook een [[Special:WhatLinksHere/$2|volledige lijst]].',
 'morelinkstoimage'          => '[[Special:WhatLinksHere/$1|Meer verwijzingen]] naar dit bestand bekijken.',
 'redirectstofile'           => '{{PLURAL:$1|Het volgende bestand verwijst|De volgende $1 bestanden verwijzen}} door naar dit bestand:',
 'duplicatesoffile'          => '{{PLURAL:$1|Het volgende bestand is|De volgende $1 bestanden zijn}} identiek aan dit bestand ([[Special:FileDuplicateSearch/$2|meer details]]):',
-'sharedupload'              => 'Dit bestand komt van $1 en kan ook door andere projecten gebruikt worden. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => 'Dit bestand komt van $1 en kan ook door andere projecten gebruikt worden.', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki'          => 'Zie de $1 voor verdere informatie.',
 'shareduploadwiki-desc'     => 'De beschijving in de $1 wordt hieronder weergegeven.',
 'shareduploadwiki-linktext' => 'bestandsbeschrijving',
@@ -2272,7 +2275,7 @@ $1',
 'sp-contributions-newbies'       => 'Alleen de bijdragen van nieuwe gebruikers bekijken',
 'sp-contributions-newbies-sub'   => 'Voor nieuwelingen',
 'sp-contributions-newbies-title' => 'Bijdragen van nieuwe gebruikers',
-'sp-contributions-blocklog'      => 'Blokkeerlogboek',
+'sp-contributions-blocklog'      => 'blokkeerlogboek',
 'sp-contributions-logs'          => 'logboeken',
 'sp-contributions-search'        => 'Zoeken naar bijdragen',
 'sp-contributions-username'      => 'IP-adres of gebruikersnaam:',
@@ -2467,8 +2470,8 @@ Kies een andere paginanaam.',
 Combineer de overlegpagina's handmatig.'''",
 'movedto'                      => 'hernoemd naar',
 'movetalk'                     => 'Bijbehorende overlegpagina hernoemen',
-'move-subpages'                => "Subpagina's hernoemen (maximaal $1), als van toepassing",
-'move-talk-subpages'           => "Subpagina's van overlegpagina's hernoemen (maximaal $1), als van toepassing",
+'move-subpages'                => "Subpagina's hernoemen (maximaal $1)",
+'move-talk-subpages'           => "Subpagina's van overlegpagina's hernoemen (maximaal $1)",
 'movepage-page-exists'         => 'De pagina $1 bestaat al en kan niet automatisch verwijderd worden.',
 'movepage-page-moved'          => 'De pagina $1 is hernoemd naar $2.',
 'movepage-page-unmoved'        => 'De pagina $1 kon niet hernoemd worden naar $2.',
@@ -2689,10 +2692,10 @@ U kunt in de bewerkingssamenvatting een reden opgeven.',
 # Attribution
 'anonymous'        => 'Anonieme {{PLURAL:$1|gebruiker|gebruikers}} van {{SITENAME}}',
 'siteuser'         => '{{SITENAME}}-gebruiker $1',
-'lastmodifiedatby' => 'Deze pagina is het laatst bewerkt op $2, $1 door $3.', # $1 date, $2 time, $3 user
+'lastmodifiedatby' => 'Deze pagina is het laatst bewerkt op $1 om $2 door $3.', # $1 date, $2 time, $3 user
 'othercontribs'    => 'Gebaseerd op werk van $1.',
 'others'           => 'anderen',
-'siteusers'        => '{{SITENAME}}-{{PLURAL:$2|gebruikers|gebruikers}} $1',
+'siteusers'        => '{{SITENAME}}-{{PLURAL:$2|gebruiker|gebruikers}} $1',
 'creditspage'      => 'Auteurspagina',
 'nocredits'        => 'Er is geen auteursinformatie beschikbaar voor deze pagina.',
 
@@ -2770,7 +2773,8 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Waarschuwing''': dit bestand bevat mogelijk programmacode die uw systeem schade kan berokkenen.<hr />",
-'imagemaxsize'         => 'Maximale grootte van afbeeldingen op de beschrijvingspagina:',
+'imagemaxsize'         => "Maximale afmetingen van afbeeldingen:<br />
+''(voor op de beschrijvingspagina)''",
 'thumbsize'            => 'Grootte miniatuurafbeelding:',
 'widthheight'          => '$1x$2',
 'widthheightpage'      => "$1×$2, $3 {{PLURAL:$3|pagina|pagina's}}",
@@ -3288,7 +3292,7 @@ Voer de bestandsnaam in zonder het voorvoegsel "{{ns:file}}:".',
 'specialpages'                   => "Speciale pagina's",
 'specialpages-note'              => '----
 * Normale speciale pagina\'s
-* <span class="mw-specialpagerestricted">Beperkt toegankelijke speciale pagina\'s</span>',
+* <strong class="mw-specialpagerestricted">Beperkt toegankelijke speciale pagina\'s</strong>',
 'specialpages-group-maintenance' => 'Onderhoudsrapporten',
 'specialpages-group-other'       => "Overige speciale pagina's",
 'specialpages-group-login'       => 'Aanmelden / registreren',

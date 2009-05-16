@@ -1,6 +1,9 @@
 <?php
 /** Volapük (Volapük)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -808,8 +811,8 @@ Kanol [[Special:Search|sukön]] padis nulik tefik.',
 'rev-deleted-comment'            => '(küpet pemoükon)',
 'rev-deleted-user'               => '(gebananem pemoükon)',
 'rev-deleted-event'              => '(lisedadun pemoükon)',
-'rev-deleted-text-permission'    => 'Padafomam at pemoükon se ragivs notidik.
-Pats tefik ba patuvons in [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} jenotalised moükamas].',
+'rev-deleted-text-permission'    => "Padafomam at '''pemoükon'''.
+Pats tefik ba patuvons in [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} jenotalised moükamas].",
 'rev-deleted-text-view'          => 'Padafomam at pemoükon se registar notidik. As guvan in {{SITENAME}}, kanol logön oni. Pats tefik ba binons in  [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} jenotalised moükamas].',
 'rev-delundel'                   => 'jonön/klänedön',
 'revisiondelete'                 => 'Moükön/sädunön moükami fomamas',
@@ -1415,7 +1418,7 @@ Lised dono jonon {{PLURAL:$1|padayümi balid|padayümis balid $1}} te lü ragiv 
 'morelinkstoimage'          => 'Logolös [[Special:WhatLinksHere/$1|yümis pluik]] ad ragiv at.',
 'redirectstofile'           => '{{PLURAL:$1|Ragiv sököl lüodükon|Ragivs sököl $1 lüodükons}} ad ragiv at:',
 'duplicatesoffile'          => '{{Plural:$1|Ragiv fovik leigon|Ragivs fovik $1 leigons}} ko ragiv at ([[Special:FileDuplicateSearch/$2|nüns pluik]]):',
-'sharedupload'              => 'Ragiv at binon se $1 e kanon pagebön fa proyegs votik. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => 'Ragiv at binon se $1 e kanon pagebön fa proyegs votik.', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki'          => 'Logolös eli $1 ad getön nünis pluik.',
 'shareduploadwiki-desc'     => 'Bepenam su $1 ona us pajonon dono.',
 'shareduploadwiki-linktext' => 'bepenamapad ragiva',
@@ -2035,6 +2038,7 @@ $1',
 'block-log-flags-noemail'         => 'ladet leäktronik peblokon',
 'block-log-flags-nousertalk'      => 'no dalon redakön bespikapadi okik',
 'block-log-flags-angry-autoblock' => 'blokam itjäfidik gudikum pemögükon',
+'block-log-flags-hiddenname'      => 'gebananem peklänedon',
 'range_block_disabled'            => 'Fäg guvana ad jafön ladetemis penemögükon.',
 'ipb_expiry_invalid'              => 'Blokamadul no lonöfon.',
 'ipb_expiry_temp'                 => 'Gebananemiblokams klänedik mutons binön laidüpiks.',
@@ -2110,8 +2114,8 @@ Välolös nemi votik.',
 'talkexists'                   => "'''Pad it petopätükon benosekiko, ab bespikapad onik no petopätükon bi ya dabinon pad labü tiäd ona. Ol it balolös onis.'''",
 'movedto'                      => 'petöpätükon lü',
 'movetalk'                     => 'Topätükolöd bespikapadi tefik',
-'move-subpages'                => 'Topätükön donapadis (jü $1), if dabinons',
-'move-talk-subpages'           => 'Topätükön donapadis (jü $1) bespikapada, if dabinons',
+'move-subpages'                => 'Topätükön donapadis (jü $1)',
+'move-talk-subpages'           => 'Topätükön donapadis (jü $1) bespikapada',
 'movepage-page-exists'         => 'Pad: $1 ya dabinon; pad nulik no dalon palovepladön sui on itjäfidiko.',
 'movepage-page-moved'          => 'Pad: $1 petopätükon lü $2.',
 'movepage-page-unmoved'        => 'No eplöpos ad topätükön padi: $1 ad pad: $2.',
@@ -2807,7 +2811,7 @@ Penolös ragivanemi nen foyümot: „{{ns:file}}:“.',
 'specialpages'                   => 'Pads patik',
 'specialpages-note'              => '----
 * Pads patik nomik.
-* <span class="mw-specialpagerestricted">Pads patik pemiedüköl.</span>',
+* <strong class="mw-specialpagerestricted">Pads patik pemiedüköl.</strong>',
 'specialpages-group-maintenance' => 'Nunods tefü kiped',
 'specialpages-group-other'       => 'Pads patik votik',
 'specialpages-group-login'       => 'Nunädön oki / jafön kali',

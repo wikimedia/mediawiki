@@ -1,6 +1,9 @@
 <?php
 /** Dzongkha (ཇོང་ཁ)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -372,7 +375,7 @@ $messages = array(
 'imagelinks'                => 'འབྲེལ་ལམ།',
 'linkstoimage'              => 'འོག་གི་ཤོག་ལེབ་ཚུ་ ཡིག་སྣོད་འདི་དང་འབྲེལ་བ་འདུག:',
 'nolinkstoimage'            => 'ཡིག་སྣོད་དེ་དང་འབྲེལ་བ་ཡོད་པའི་ཤོག་ལེབ་མིན་འདུག།',
-'sharedupload'              => 'ཡིག་སྣོད་འདི་རུབ་སྤྱོད་ཅན་གྱི་སྐྱེལ་བཙུགས་ཅིག་ཨིནམ་ལས་ ལས་འགུལ་གཞན་ཚུ་གིས་ལག་ལེན་འཐབ་འོང་། $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => 'ཡིག་སྣོད་འདི་རུབ་སྤྱོད་ཅན་གྱི་སྐྱེལ་བཙུགས་ཅིག་ཨིནམ་ལས་ ལས་འགུལ་གཞན་ཚུ་གིས་ལག་ལེན་འཐབ་འོང་།', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'noimage'                   => 'དེ་བཟུམ་གྱི་པར་སྣོད་མིན་འདུག་  ཁྱོད་ཀྱིས་ $1',
 'noimage-linktext'          => 'དེ་ སྐྱེལ་བཙུགས་འབད།',
 'uploadnewversion-linktext' => 'ཡིག་སྣོད་དེ་གི་ཐོ་རིམ་གསརཔ་ཅིག་ སྐྱེལ་བཙུགས་འབད།',

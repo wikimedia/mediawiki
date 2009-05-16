@@ -1,6 +1,9 @@
 <?php
 /** Portuguese (Português)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -159,13 +162,13 @@ $specialPageAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Sublinhar hiperligações:',
-'tog-highlightbroken'         => 'Formatar links quebrados <a href="" class="new">como isto</a> (alternativa: como isto<a href="" class="internal">?</a>).',
+'tog-highlightbroken'         => 'Formatar links quebrados <a href="" class="new">assim</a> (alternativa: assim<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Justificar parágrafos',
 'tog-hideminor'               => 'Esconder edições secundárias nas mudanças recentes',
 'tog-hidepatrolled'           => 'Esconder edições patrulhadas nas mudanças recentes',
 'tog-newpageshidepatrolled'   => 'Ocultar páginas patrulhadas da lista de páginas novas',
 'tog-extendwatchlist'         => 'Expandir a lista de vigiados para mostrar todas as alterações, e não apenas as mais recentes',
-'tog-usenewrc'                => 'Mudanças recentes melhoradas (JavaScript)',
+'tog-usenewrc'                => 'Usar a versão melhorada das mudanças recentes (requer JavaScript)',
 'tog-numberheadings'          => 'Auto-numerar cabeçalhos',
 'tog-showtoolbar'             => 'Mostrar barra de edição (JavaScript)',
 'tog-editondblclick'          => 'Editar páginas quando houver clique duplo (JavaScript)',
@@ -173,7 +176,7 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Habilitar edição de secção por clique com o botão direito no título da secção (JavaScript)',
 'tog-showtoc'                 => 'Mostrar Tabela de Conteúdos (para páginas com mais de três cabeçalhos)',
 'tog-rememberpassword'        => 'Lembrar palavra-chave entre sessões',
-'tog-editwidth'               => 'Caixa de edição com largura completa',
+'tog-editwidth'               => 'Aumentar a largura da caixa de edição para preencher todo o ecrã',
 'tog-watchcreations'          => 'Adicionar páginas criadas por mim à minha lista de vigiados',
 'tog-watchdefault'            => 'Adicionar páginas editadas por mim à minha lista de vigiados',
 'tog-watchmoves'              => 'Adicionar páginas movidas por mim à minha lista de vigiados',
@@ -187,7 +190,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Enviar-me um email também quando forem edições menores',
 'tog-enotifrevealaddr'        => 'Revelar o meu endereço de email nas notificações',
 'tog-shownumberswatching'     => 'Mostrar o número de utilizadores a vigiar',
-'tog-fancysig'                => 'Assinaturas sem atalhos automáticos',
+'tog-fancysig'                => 'Tratar assinatura como wikitexto (sem ligação automática)',
 'tog-externaleditor'          => 'Utilizar editor externo por defeito (apenas para usuários avançados, já que serão necessárias configurações adicionais em seus computadores)',
 'tog-externaldiff'            => 'Utilizar diferenças externas por defeito (apenas para usuários avançados, já que serão necessárias configurações adicionais em seus computadores)',
 'tog-showjumplinks'           => 'Activar hiperligações de acessibilidade "ir para"',
@@ -309,7 +312,7 @@ $messages = array(
 'metadata_help' => 'Metadados:',
 
 'errorpagetitle'    => 'Erro',
-'returnto'          => 'Retornar para $1.',
+'returnto'          => 'Voltar para $1.',
 'tagline'           => 'De {{SITENAME}}',
 'help'              => 'Ajuda',
 'search'            => 'Pesquisa',
@@ -635,7 +638,6 @@ Você pode ignorar esta mensagem caso a conta tenha sido criada por engano.',
 'resetpass-wrong-oldpass'   => 'Palavra-chave temporária ou actual inválida. 
 Você pode já ter alterado com sucesso a sua palavra-chave, ou solicitado uma nova palavra-chave temporária.',
 'resetpass-temp-password'   => 'Palavra-chave temporária:',
-'resetpass-no-others'       => 'Você não pode repor a palavra-chave para outros utilizadores.',
 'resetpass-log'             => 'Registo de reposições de palavra-chave',
 'resetpass-logtext'         => 'Abaixo encontra-se um registo dos utilizadores que tiveram a sua palavra-chave reposta por um administrador.',
 'resetpass-logentry'        => 'alterou a palavra-chave de $1',
@@ -891,13 +893,15 @@ Tente [[Special:Search|pesquisar na wiki]] por páginas relevantes.',
 'rev-deleted-comment'            => '(comentário removido)',
 'rev-deleted-user'               => '(nome de utilizador removido)',
 'rev-deleted-event'              => '(entrada removida)',
-'rev-deleted-text-permission'    => 'Esta edição desta página foi removida dos arquivos públicos.
-Poderão existir detalhes no [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registo de eliminação].',
-'rev-deleted-text-view'          => 'Esta edição desta página foi removida dos arquivos públicos.
-Por ser um administrador desta wiki, poderá vê-la;
-mais detalhes no [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registo de eliminação].',
-'rev-deleted-no-diff'            => 'Você não pode ver estas diferenças porque uma das revisões foi removida dos arquivos públicos.
-Poderá haver detalhes no [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registo de eliminações].',
+'rev-deleted-text-permission'    => "Esta edição desta página foi '''eliminada'''.
+Poderão existir detalhes no [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registo de eliminação].",
+'rev-deleted-text-view'          => "Esta edição desta página foi '''eliminada'''.
+Por ser um administrador, você pode vê-la; poderão existir detalhes no [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registo de eliminação].",
+'rev-deleted-no-diff'            => "Você não pode ver estas diferenças porque uma das revisões foi '''eliminada'''.
+Poderá haver detalhes no [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registo de eliminações].",
+'rev-deleted-unhide-diff'        => "Uma das revisões destas diferenças foi '''eliminada'''.
+Poderá haver detalhes no [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registo de eliminações].
+Por ser um administrador, você pode mesmo assim [$1 ver estas diferenças], se desejar prosseguir.",
 'rev-delundel'                   => 'mostrar/esconder',
 'revisiondelete'                 => 'Eliminar/restaurar edições',
 'revdelete-nooldid-title'        => 'Edição de destino inválida',
@@ -1451,7 +1455,7 @@ Caso deseje mesmo assim enviar seu ficheiro, volte atrás e carregue-o sob um no
 'sourcefilename'              => 'Nome do ficheiro de origem:',
 'destfilename'                => 'Nome do ficheiro de destino:',
 'upload-maxfilesize'          => 'Tamanho máximo do ficheiro: $1',
-'watchthisupload'             => 'Vigiar esta página',
+'watchthisupload'             => 'Vigiar este ficheiro',
 'filewasdeleted'              => 'Um ficheiro com este nome foi carregado anteriormente e subsequentemente eliminado. Você precisa verificar o $1 antes de proceder ao carregamento novamente.',
 'upload-wasdeleted'           => "'''Atenção: Você está enviando um ficheiro eliminado anteriormente.'''
 
@@ -1533,7 +1537,7 @@ Uma [[Special:WhatLinksHere/$2|listagem completa]] se encontra disponível.',
 'morelinkstoimage'          => 'Ver [[Special:WhatLinksHere/$1|mais ligações]] para este ficheiro.',
 'redirectstofile'           => '{{PLURAL:$1|O seguinte ficheiro redirecciona|Os seguintes ficheiros redireccionam}} para este ficheiro:',
 'duplicatesoffile'          => '{{PLURAL:$1|O seguinte ficheiro é duplicado|Os seguintes $1 ficheiros são duplicados}} deste ficheiro ([[Special:FileDuplicateSearch/$2|mais detalhes]]):',
-'sharedupload'              => 'Este ficheiro provém de $1 e pode ser utilizado por outros projectos. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => 'Este ficheiro provém de $1 e pode ser utilizado por outros projectos.', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki'          => 'Por favor, consulte a $1 para mais informações.',
 'shareduploadwiki-desc'     => 'A descrição lá na sua $1 é mostrada abaixo.',
 'shareduploadwiki-linktext' => 'página de descrição de ficheiro',
@@ -2107,7 +2111,7 @@ Isto só deve ser feito para prevenir vandalismo, e de acordo com a [[{{MediaWik
 'ipboptions'                      => '2 horas:2 hours,1 dia:1 day,3 dias:3 days,1 semana:1 week,2 semanas:2 weeks,1 mês:1 month,3 meses:3 months,6 meses:6 months,1 ano:1 year,indefinido:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'                  => 'outro',
 'ipbotherreason'                  => 'Outro motivo/motivo adicional:',
-'ipbhidename'                     => 'Ocultar utilizador/IP do registo de bloqueios, lista de bloqueios e lista de utilizadores',
+'ipbhidename'                     => 'Ocultar nome de utilizador em edições e listas',
 'ipbwatchuser'                    => 'Vigiar as páginas de utilizador e de discussão deste utilizador',
 'ipballowusertalk'                => 'Permitir que este utilizador edite sua própria página de discussão mesmo estando bloqueado',
 'ipb-change-block'                => 'Re-bloquear o utilizador com estes parâmetros',
@@ -2166,6 +2170,7 @@ Consulte a [[Special:IPBlockList|lista de IPs bloqueados]] para obter a lista de
 'range_block_disabled'            => 'A funcionalidade de bloquear gamas de IPs encontra-se desactivada.',
 'ipb_expiry_invalid'              => 'Tempo de expiração inválido.',
 'ipb_expiry_temp'                 => 'Bloqueios com nome de utilizador ocultado devem ser permanentes.',
+'ipb_hide_invalid'                => 'Não foi possível suprimir esta conta; ela poderá ter demasiadas edições.',
 'ipb_already_blocked'             => '"$1" já se encontra bloqueado',
 'ipb-needreblock'                 => '== Já se encontra bloqueado ==
 $1 já se encontra bloqueado. Deseja alterar as configurações?',
@@ -2240,14 +2245,14 @@ Por favor, escolha outro nome.',
 'talkexists'                   => "'''A página em si foi movida com sucesso. No entanto, a página de discussão não foi movida, uma vez que já existia uma com este título. Por favor, mescle-as manualmente.'''",
 'movedto'                      => 'movido para',
 'movetalk'                     => 'Mover também a página de discussão associada.',
-'move-subpages'                => 'Mover subpáginas (até $1), se aplicável',
-'move-talk-subpages'           => 'Mover subpáginas da página de discussão (até $1), se aplicável',
+'move-subpages'                => 'Mover subpáginas (até $1)',
+'move-talk-subpages'           => 'Mover subpáginas da página de discussão (até $1)',
 'movepage-page-exists'         => 'A página $1 já existe e não pode ser substituída.',
 'movepage-page-moved'          => 'A página $1 foi movida para $2',
 'movepage-page-unmoved'        => 'A página $1 não pôde ser movida para $2.',
 'movepage-max-pages'           => 'O limite de $1 {{PLURAL:$1|página movida|páginas movidas}} foi atingido; não será possível mover mais páginas de forma automática.',
 '1movedto2'                    => 'moveu [[$1]] para [[$2]]',
-'1movedto2_redir'              => 'moveu [[$1]] para [[$2]] sobre redireccionamento',
+'1movedto2_redir'              => '[[$1]] foi movido para [[$2]] sob redirecionamento',
 'move-redirect-suppressed'     => 'redirecionamento suprimido',
 'movelogpage'                  => 'Registo de movimento',
 'movelogpagetext'              => 'Abaixo encontra-se uma lista de páginas movidas.',
@@ -2518,7 +2523,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Aviso''': Este ficheiro pode conter código malicioso. Ao executar, o seu sistema poderá estar comprometido.<hr />",
-'imagemaxsize'         => 'Limitar imagens nas páginas de descrição a:',
+'imagemaxsize'         => "Limite de tamanho de imagens:<br />''(para páginas de descrição)''",
 'thumbsize'            => 'Tamanho de miniaturas:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|página|páginas}}',
 'file-info'            => '(tamanho: $1, tipo MIME: $2)',
@@ -3006,7 +3011,7 @@ Entre com o nome de ficheiro sem fornecer o prefixo "{{ns:file}}:".',
 'specialpages'                   => 'Páginas especiais',
 'specialpages-note'              => '----
 * Páginas especiais normais.
-* <span class="mw-specialpagerestricted">Páginas especiais restritas.</span>',
+* <strong class="mw-specialpagerestricted">Páginas especiais restritas.</strong>',
 'specialpages-group-maintenance' => 'Relatórios de manutenção',
 'specialpages-group-other'       => 'Outras páginas especiais',
 'specialpages-group-login'       => 'Entrar / registar-se',

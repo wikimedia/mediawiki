@@ -1,12 +1,16 @@
 <?php
 /** Kashubian (Kaszëbsczi)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
  * @author Kaszeba
  * @author Leinad
  * @author MinuteElectron
+ * @author RobertL
  * @author Warszk
  * @author לערי ריינהארט
  */

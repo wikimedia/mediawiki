@@ -1,6 +1,9 @@
 <?php
 /** Slovenian (Slovenščina)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -1068,7 +1071,7 @@ PICT # mešano
 'linkstoimage'              => 'Datoteka je del {{PLURAL:$1|naslednje strani|naslednjih $1 strani|naslednjih $1 strani|naslednjih $1 strani}} {{GRAMMAR:rodilnik|{{SITENAME}}}} (strani drugih projektov niso navedene):',
 'nolinkstoimage'            => 'Z datoteko se ne povezuje nobena stran.',
 'redirectstofile'           => 'Na to datoteko {{PLURAL:$1|preusmerja naslednja datoteka|preusmerjata naslednji datoteki|preusmerjajo naslednje $1 datoteke|preusmerja naslednjih $1 datotek|preusmerja naslednjih $1 datotek}}:',
-'sharedupload'              => 'Datoteka je del $1 in se s tega mesta lahko uporabi tudi v drugih projektih. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => 'Datoteka je del $1 in se s tega mesta lahko uporabi tudi v drugih projektih.', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki'          => 'Nadaljnje informacije najdete na strani $1.',
 'shareduploadwiki-desc'     => 'Spodaj je prikazan opis iz $1.',
 'shareduploadwiki-linktext' => 'Opisna stran datoteke',
@@ -1423,6 +1426,8 @@ Zadnja sprememba od uporabnika [[User:$3|$3]] ([[User talk:$3|Pogovor]]).',
 'protect_expiry_old'          => 'Čas izteka je v preteklosti.',
 'protect-unchain'             => 'Deblokiraj dovoljenja za premikanje',
 'protect-text'                => "Tu si lahko ogledate in spremenite raven zaščitenosti strani '''<nowiki>$1</nowiki>'''.",
+'protect-locked-access'       => "Vaš uporabniški račun nima dovoljenja za spreminjanje stopnje zaščite strani. 
+Trenutne nastavitve za stran '''$1''' so:",
 'protect-default'             => 'Omogoči urejanje vsem uporabnikom',
 'protect-fallback'            => 'Potrebujete pravice »$1«',
 'protect-level-autoconfirmed' => 'Blokiraj nove in neregistrirane uporabnike',
@@ -1430,6 +1435,7 @@ Zadnja sprememba od uporabnika [[User:$3|$3]] ([[User talk:$3|Pogovor]]).',
 'protect-summary-cascade'     => 'kaskadno',
 'protect-expiring'            => 'poteče $1 (UTC)',
 'protect-cascade'             => 'Zaščiti strani, ki so vključene v to stran (kaskadna zaščita)',
+'protect-cantedit'            => 'Ne morete spreminjati stopnje zaščite te strani, ker nimate dovoljenja za njeno urejanje.',
 'protect-dropdown'            => '*Pogosti razlogi za zaščito
 ** Prekomeren vandalizem
 ** Vztrajno dodajanje reklamnih povezav

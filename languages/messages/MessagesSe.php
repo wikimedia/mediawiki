@@ -1,6 +1,9 @@
 <?php
 /** Northern Sami (Sámegiella)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -670,7 +673,7 @@ $1 | $2',
 'imagelinks'                => 'Čujuheamit siidduin',
 'linkstoimage'              => 'Čuovvovaš siidduin čujuhuvvo dán fiilii:',
 'nolinkstoimage'            => 'Dán fiilii ii čujuhuvo ovttage siiddus.',
-'sharedupload'              => 'Dát fiila lea juhkojuvvon ja eará prošeavttat sáhtet geavahit dan. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => 'Dát fiila lea juhkojuvvon ja eará prošeavttat sáhtet geavahit dan.', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki'          => 'Geahča $1 lassedieđuid.',
 'shareduploadwiki-linktext' => 'govvadussiiddus',
 'noimage'                   => 'Dán nammasaš fiila ii dihtto. Sáhtat $1 {{GRAMMAR:illative|{{SITENAME}}}}.',

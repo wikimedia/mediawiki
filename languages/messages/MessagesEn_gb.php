@@ -1,6 +1,9 @@
 <?php
 /** British English (British English)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -48,11 +51,16 @@ If the file has been modified from its original state, some details may not full
 'exif-exposureprogram-5' => 'Creative programme (biased toward depth of field)',
 'exif-exposureprogram-6' => 'Action programme (biased toward fast shutter speed)',
 
+'exif-subjectdistance-value' => '$1 metres',
+
 'exif-sensingmethod-2' => 'One-chip colour area sensor',
 'exif-sensingmethod-3' => 'Two-chip colour area sensor',
 'exif-sensingmethod-4' => 'Three-chip colour area sensor',
 'exif-sensingmethod-5' => 'Colour sequential area sensor',
 'exif-sensingmethod-8' => 'Colour sequential linear sensor',
+
+# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+'exif-gpsspeed-k' => 'Kilometres per hour',
 
 # E-mail address confirmation
 'confirmemail_invalidated' => 'E-mail address confirmation cancelled',

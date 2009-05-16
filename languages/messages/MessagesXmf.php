@@ -1,6 +1,9 @@
 <?php
 /** Mingrelian (მარგალური)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -373,7 +376,7 @@ $messages = array(
 'imagelinks'          => 'რსხილეფ',
 'linkstoimage'        => 'გეჸვენჯი {{PLURAL:$1|ხასილა|ხასილეფ}} მორცხუ თე ფაილს',
 'nolinkstoimage'      => 'ვა რე თე ფაილწკუმა მერსხილ ხასილეფ.',
-'sharedupload'        => 'თენა ფაილ გეთებულ რე საართო სარგებლობაშოთ დო შილებე თიში გიმორინაფა შხვა პროექტეფს. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'        => 'თენა ფაილ გეთებულ რე საართო სარგებლობაშოთ დო შილებე თიში გიმორინაფა შხვა პროექტეფს.', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'noimage'             => 'ფაილ თე სახელით ვაარსეენც, თქვან შეგილებუნთ $1.',
 
 # MIME search

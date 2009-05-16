@@ -1,6 +1,9 @@
 <?php
 /** Lingua Franca Nova (Lingua Franca Nova)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -352,7 +355,7 @@ Ante alga otra eposta es enviada a la conta, tu va nesesa segue la instruis en l
 'italic_tip'      => 'Testo en leteras italica',
 'link_sample'     => 'Titulo de lia',
 'link_tip'        => 'Lia interna',
-'extlink_sample'  => 'http://www.esemplo.com titulo de lia',
+'extlink_sample'  => 'http://www.example.com titulo de lia',
 'extlink_tip'     => 'Lia esterna (recorda la prefis http://)',
 'headline_sample' => 'Testo de titulo',
 'headline_tip'    => 'Titulo de nivel 2',
@@ -580,7 +583,7 @@ Pajes a [[Special:Watchlist|tu lista de pajes oservada]] es en leteras '''forte'
 'imagelinks'                => 'Lias de fix',
 'linkstoimage'              => 'Esta {{PLURAL:$1|paje|pajes}} lia a esta fix:',
 'nolinkstoimage'            => 'Es no pajes ce lia a esta fix.',
-'sharedupload'              => 'Esta fix es parte de $1 e pote es usada par otra projetas. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => 'Esta fix es parte de $1 e pote es usada par otra projetas.', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'noimage'                   => 'Es no fix con esta nom, ma tu pote $1.',
 'noimage-linktext'          => 'envia un',
 'uploadnewversion-linktext' => 'Envia un varia nova de esta fix',

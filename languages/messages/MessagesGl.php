@@ -1,6 +1,9 @@
 <?php
 /** Galician (Galego)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -202,7 +205,7 @@ $messages = array(
 'tog-hidepatrolled'           => 'Agochar as edicións patrulladas nos cambios recentes',
 'tog-newpageshidepatrolled'   => 'Agochar as páxinas revisadas da lista de páxinas novas',
 'tog-extendwatchlist'         => 'Expandir a lista de vixilancia para mostrar todos os cambios e non só os máis recentes',
-'tog-usenewrc'                => 'Cambios recentes avanzados (JavaScript)',
+'tog-usenewrc'                => 'Usar os cambios recentes avanzados (require JavaScript)',
 'tog-numberheadings'          => 'Numerar automaticamente as cabeceiras',
 'tog-showtoolbar'             => 'Mostrar a caixa de ferramentas de edición (JavaScript)',
 'tog-editondblclick'          => 'Editar as páxinas logo de facer dobre clic (JavaScript)',
@@ -210,7 +213,7 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Permitir a edición de seccións premendo co botón dereito <br /> nos títulos das seccións (JavaScript)',
 'tog-showtoc'                 => 'Mostrar o índice (para páxinas con máis de tres cabeceiras)',
 'tog-rememberpassword'        => 'Lembrar o meu contrasinal neste ordenador',
-'tog-editwidth'               => 'A caixa de edición ten largo total',
+'tog-editwidth'               => 'Alargar a caixa de edición para encher toda a pantalla',
 'tog-watchcreations'          => 'Engadir as páxinas creadas por min á miña lista de artigos vixiados',
 'tog-watchdefault'            => 'Engadir as páxinas que edite á miña lista de vixilancia',
 'tog-watchmoves'              => 'Engadir as páxinas que mova á miña lista de vixilancia',
@@ -224,7 +227,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Envíenme tamén unha mensaxe de correo electrónico cando se produzan pequenos cambios nas páxinas',
 'tog-enotifrevealaddr'        => 'Revelar o meu enderezo de correo electrónico nos correos de notificación',
 'tog-shownumberswatching'     => 'Mostrar o número de usuarios que están a vixiar',
-'tog-fancysig'                => 'Sinatura tal como está, sen ligazón automática',
+'tog-fancysig'                => 'Tratar a sinatura como se fose texto wiki (sen ligazón automática)',
 'tog-externaleditor'          => 'Usar un editor externo por omisión (só para expertos, precisa duns parámetros especiais no seu computador)',
 'tog-externaldiff'            => 'Usar diferenzas externas (dif) por omisión (só para expertos, precisa duns parámetros especiais no seu computador)',
 'tog-showjumplinks'           => 'Permitir as ligazóns de accesibilidade "ir a"',
@@ -682,7 +685,6 @@ Pode facer caso omiso desta mensaxe se se creou esta conta por erro.',
 'resetpass-wrong-oldpass'   => 'Contrasinal temporal ou actual inválido. 
 Pode ser que xa cambiase o seu contrasinal ou que solicitase un novo contrasinal temporal.',
 'resetpass-temp-password'   => 'Contrasinal temporal:',
-'resetpass-no-others'       => 'Non pode restablecer o contrasinal doutros usuarios.',
 'resetpass-log'             => 'Rexistro de restablecementos de contrasinais',
 'resetpass-logtext'         => 'A continuación hai un rexistro cos usuarios aos que un administrador lles restableceu o seu contrasinal.',
 'resetpass-logentry'        => 'cambiou o contrasinal de $1',
@@ -937,15 +939,15 @@ Probe a [[Special:Search|buscar no wiki]] para atopar as páxinas relacionadas.'
 'rev-deleted-comment'            => '(comentario eliminado)',
 'rev-deleted-user'               => '(nome de usuario eliminado)',
 'rev-deleted-event'              => '(rexistro de evento eliminado)',
-'rev-deleted-text-permission'    => "Esta revisión da páxina foi '''eliminada dos arquivos públicos'''.
+'rev-deleted-text-permission'    => "Esta revisión da páxina foi '''eliminada'''.
 Pode ampliar os detalles no [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rexistro de borrados].",
-'rev-deleted-text-view'          => "Esta revisión da páxina foi '''eliminada dos arquivos públicos'''.
-Como administrador de {{SITENAME}} pode vela; pode ampliar os detalles no [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rexistro de borrados].",
-'rev-deleted-no-diff'            => "Non pode ver esta diferenza porque unha das revisións foi '''eliminada dos arquivos públicos'''.
+'rev-deleted-text-view'          => "Esta revisión da páxina foi '''eliminada'''.
+Como administrador pode vela; pode ampliar os detalles no [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rexistro de borrados].",
+'rev-deleted-no-diff'            => "Non pode ver esta diferenza porque unha das revisións foi '''eliminada'''.
 Pode ampliar os detalles no [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rexistro de borrados].",
-'rev-deleted-unhide-diff'        => "Unha das revisións desta diferenza foi '''eliminada dos arquivos públicos'''.
+'rev-deleted-unhide-diff'        => "Unha das revisións desta diferenza foi '''eliminada'''.
 Pode ampliar os detalles no [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rexistro de borrados].
-Como administrador de {{SITENAME}} aínda podería [$1 ver esta diferenza] se quixese.",
+Como administrador aínda podería [$1 ver esta diferenza] se quixese.",
 'rev-delundel'                   => 'mostrar/agochar',
 'revisiondelete'                 => 'Borrar/restaurar revisións',
 'revdelete-nooldid-title'        => 'Revisión inválida',
@@ -1504,7 +1506,7 @@ Se aínda quere cargar o seu ficheiro, por favor, volte atrás e use outro nome.
 'sourcefilename'              => 'Nome do ficheiro a cargar:',
 'destfilename'                => 'Nome do ficheiro de destino:',
 'upload-maxfilesize'          => 'Tamaño máximo para o ficheiro: $1',
-'watchthisupload'             => 'Vixiar esta páxina',
+'watchthisupload'             => 'Vixiar este ficheiro',
 'filewasdeleted'              => 'Un ficheiro con ese nome foi cargado con anterioridade e a continuación borrado.
 Debe comprobar o $1 antes de proceder a cargalo outra vez.',
 'upload-wasdeleted'           => "'''Aviso: está enviando un ficheiro que foi previamente borrado.'''
@@ -1589,7 +1591,7 @@ Hai dispoñible [[Special:WhatLinksHere/$2|unha lista completa]].',
 'morelinkstoimage'          => 'Ver [[Special:WhatLinksHere/$1|máis ligazóns]] cara a este ficheiro.',
 'redirectstofile'           => '{{PLURAL:$1|O seguinte ficheiro redirixe|Os seguintes $1 ficheiros redirixen}} cara a este:',
 'duplicatesoffile'          => '{{PLURAL:$1|O seguinte ficheiro é un duplicado|Os seguintes $1 ficheiros son duplicados}} destoutro ([[Special:FileDuplicateSearch/$2|máis detalles]]):',
-'sharedupload'              => 'Este ficheiro é da $1 e pode ser usado por outros proxectos. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => 'Este ficheiro é da $1 e pode ser usado por outros proxectos.', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki'          => 'Por favor, vexa a $1 para máis información.',
 'shareduploadwiki-desc'     => 'A continuación móstrase a descrición que alí hai na $1.',
 'shareduploadwiki-linktext' => 'páxina de descrición do ficheiro',
@@ -1720,7 +1722,7 @@ Unha páxina trátase como páxina de homónimos cando nela se usa un modelo que
 'wantedfiles'             => 'Ficheiros requiridos',
 'wantedtemplates'         => 'Modelos requiridos',
 'mostlinked'              => 'Páxinas máis enlazadas',
-'mostlinkedcategories'    => 'Categorías máis enlazadas',
+'mostlinkedcategories'    => 'Categorías máis ligadas',
 'mostlinkedtemplates'     => 'Modelos máis enlazados',
 'mostcategories'          => 'Artigos con máis categorías',
 'mostimages'              => 'Ficheiros máis enlazados',
@@ -2307,8 +2309,8 @@ Por favor, escolla outro nome.',
 'talkexists'                   => "'''Só foi movida con éxito a páxina, pero a páxina de conserva non puido ser movida porque xa existe unha co novo título. Por favor, mestúreas de xeito manual.'''",
 'movedto'                      => 'movido a',
 'movetalk'                     => 'Mover a páxina de conversa, se cómpre',
-'move-subpages'                => 'Mover as subpáxinas (ata $1), se cómpre',
-'move-talk-subpages'           => 'Mover as subpáxinas da páxina de conversa (ata $1), se cómpre',
+'move-subpages'                => 'Mover as subpáxinas (ata $1)',
+'move-talk-subpages'           => 'Mover as subpáxinas da páxina de conversa (ata $1)',
 'movepage-page-exists'         => 'A páxina "$1" xa existe e non pode ser sobreescrita automaticamente.',
 'movepage-page-moved'          => 'A páxina "$1" foi movida a "$2".',
 'movepage-page-unmoved'        => 'A páxina "$1" non pode ser movida a "$2".',
@@ -2374,7 +2376,7 @@ Por favor, visite a [http://www.mediawiki.org/wiki/Localisation localización Me
 # Thumbnails
 'thumbnail-more'           => 'Agrandado',
 'filemissing'              => 'O ficheiro non se dá atopado',
-'thumbnail_error'          => 'Erro ao crear a imaxe en miniatura: $1',
+'thumbnail_error'          => 'Erro ao crear a miniatura: $1',
 'djvu_page_error'          => 'Páxina DjVu fóra de rango',
 'djvu_no_xml'              => 'Foi imposíbel obter o XML para o ficheiro DjVu',
 'thumbnail_invalid_params' => 'Parámetros de miniatura non válidos',
@@ -2464,7 +2466,7 @@ Gráveo no seu disco duro e cárgueo aquí.',
 'tooltip-feed-atom'               => 'Fonte de noticias Atom para esta páxina',
 'tooltip-t-contributions'         => 'Ver a lista de contribucións deste usuario',
 'tooltip-t-emailuser'             => 'Enviarlle unha mensaxe a este usuario por correo electrónico',
-'tooltip-t-upload'                => 'Enviar ficheiros',
+'tooltip-t-upload'                => 'Cargar os ficheiros',
 'tooltip-t-specialpages'          => 'Lista de todas as páxinas especiais',
 'tooltip-t-print'                 => 'Versión imprimíbel desta páxina',
 'tooltip-t-permalink'             => 'Ligazón permanente a esta versión da páxina',
@@ -2576,7 +2578,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Aviso''': este ficheiro pode conter código malicioso; o seu sistema pode quedar comprometido se chega a executalo.<hr />",
-'imagemaxsize'         => 'Limitar as imaxes nas páxinas de descrición de ficheiros a:',
+'imagemaxsize'         => "Límite de tamaño das imaxes:<br />''(nas páxinas de descrición de ficheiros)''",
 'thumbsize'            => 'Tamaño da miniatura:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|páxina|páxinas}}',
 'file-info'            => 'Tamaño do ficheiro: $1, tipo MIME: $2',
@@ -3071,7 +3073,7 @@ Introduza o nome do ficheiro sen o prefixo "{{ns:file}}:".',
 'specialpages'                   => 'Páxinas especiais',
 'specialpages-note'              => '----
 * Páxinas especiais normais.
-* <span class="mw-specialpagerestricted">Páxinas especiais restrinxidas.</span>',
+* <strong class="mw-specialpagerestricted">Páxinas especiais restrinxidas.</strong>',
 'specialpages-group-maintenance' => 'Informes de mantemento',
 'specialpages-group-other'       => 'Outras páxinas especiais',
 'specialpages-group-login'       => 'Rexistro',

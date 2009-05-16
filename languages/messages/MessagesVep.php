@@ -1,6 +1,9 @@
 <?php
 /** Veps (Vepsan kel')
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -93,7 +96,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Oigeta minei e-počt eskai siloi, konz toižetused oma minimaližed',
 'tog-enotifrevealaddr'        => 'Ozutada minun počtadres tedotuzkirjeižiš',
 'tog-shownumberswatching'     => 'Ozutada niiden kävutajiden lugu, kudambad oma mülütanuded lehtpolen ičeze kaclendnimikirjutesihe',
-'tog-fancysig'                => 'Ičeze allekirjutesen wiki-znamišt (avtomatižes kosketusespäi)',
+'tog-fancysig'                => 'Ičeze allekirjutesen wiki-znamišt (avtomatižeta kosketuseta)',
 'tog-externaleditor'          => 'Kävutada irdredaktor augotižjärgendusen mödhe (vaiše ekspertoiden täht; pidab järgeta specialižikš kompjuter)',
 'tog-externaldiff'            => 'Kävutada irdprogramm versijoiden rindatades (vaiše ekspertoiden täht; pidab järgeta specialižikš kompjuter)',
 'tog-showjumplinks'           => 'Ližata "hüpähtada..."-abukosketused',
@@ -527,7 +530,6 @@ Voib olda, tö olet jo vajehtanuded teiden peitsana vai olet pakinuded sistemalp
 'resetpass-wrong-oldpass'   => 'Vär pordaigaine vai nügüdläine peitsana.
 Voib olda, tö olet jo toižetanuded peitsanan vai pakinuded uden peitsanan.',
 'resetpass-temp-password'   => 'Pordaigaline peitsana:',
-'resetpass-no-others'       => 'Teile ei sa vajehtada toižen kävutajan peitsanad.',
 'resetpass-log'             => 'Peitsanoiden heitmižen aigkirj',
 'resetpass-logtext'         => 'Alemba om niiden kävutajiden nimikirjutez, kudambiden peitsanad oma heittud administratoril.',
 'resetpass-logentry'        => 'om vajehtanu $1-kävutajan peitsanan',
@@ -629,6 +631,7 @@ vai [{{fullurl:{{FULLPAGENAME}}|action=edit}} redaktiruida nece lehtpol\']</span
 'updated'                          => '(Udištadud)',
 'note'                             => "'''Homaičend:'''",
 'previewnote'                      => "'''Muštkat, miše nece om vaiše ezikacund. Teiden toižetused ei olgoi völ kirjutadud!'''",
+'previewconflict'                  => "Tekst redaktiruindan üläiknas kuvazub neche ezikacundha muga, kut se nägub lopkirjutamižen jäl'ghe.",
 'editing'                          => '$1-lehtpolen redaktiruind',
 'editingsection'                   => '$1-lehtpolen redaktiruind (jaguz)',
 'editingcomment'                   => "$1-lehtpolen redaktiruind (uz' jaguz)",
@@ -657,6 +660,9 @@ Olgat hüväd, jagakat lehtpol' penembihe paloihe.",
 Ei voi kirjutada muštho.",
 'protectedpagewarning'             => "'''VARUTUZ: nece lehtpol' om luklostadud, sidä voidas redaktiruida vaiše administratorad.'''",
 'semiprotectedpagewarning'         => "'''Tedotuz:''' Nece lehtpol' om kaitud redaktiruindaspäi; vaiše registriruidud kävutajad voidas redaktiruida sidä.",
+'cascadeprotectedwarning'          => "'''Homaikat:''' Nece lehtpol' om luklostadud muga, miše vaiše kävutajad administratoriden privilegijoidenke voidas 
+redaktiruida sidä, sikš miše se oli mülütadud {{PLURAL:$1|neche lehtpol'he, kudamban|nenihe lehtpolihe, kudambiden}} 
+täht oli sätud kaskadkaičend:",
 'templatesused'                    => 'Necil lehtpolel kävutadud šablonad:',
 'templatesusedpreview'             => 'Ezikactud lehtpolel kävutadud šablonad:',
 'templatesusedsection'             => 'Šablonad, kudambad kävutadas neciš sekcijas:',
@@ -684,6 +690,7 @@ Voib olda, se om jo čutud.",
 Wikiš om jo mugoi lehtpol'.",
 
 # Parser/template warnings
+'expensive-parserfunction-category'       => 'Lehtpoled, kudambil kävutadas äjahko resursokahid funkcijoid',
 'post-expand-template-inclusion-warning'  => 'Varutuz: lehtpolele pandud šablonoiden suruz om surehk.
 Ei voi mülütada erasid šablonoid.',
 'post-expand-template-inclusion-category' => 'Lehtpoled, kudambiden mülütadud šablonoiden suruz om ülitadud',
@@ -733,12 +740,12 @@ Naprigat [[Special:Search|ectä wikišpäi]] sättujid lehtpolid.",
 'rev-deleted-comment'            => '(komment om čutud poiš)',
 'rev-deleted-user'               => '(avtoran nimi om čutud poiš)',
 'rev-deleted-event'              => '(kirjutez om čutud poiš)',
-'rev-deleted-text-permission'    => 'Nece lehtpolen versii om čutud ühthižes arhivaspäi.
-Voib olda, süd oma anttud [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} čudandoiden aigkirjas].',
-'rev-deleted-text-view'          => 'Nece lehtpolen versii om čutud ühthižes arhivaspäi.
+'rev-deleted-text-permission'    => "Nece lehtpolen versii om '''čutud'''.
+Voib olda, süd oma anttud [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} čudandoiden aigkirjas].",
+'rev-deleted-text-view'          => "Nece lehtpolen versii om '''čutud'''.
 Tö voit lugeda sidä, sikš ku olet saitan administrator.
-Voib olda, süd oma anttud [{{fullurl:{{ns:special}}:Log/delete|page={{FULLPAGENAMEE}}}} čudandoiden aigkirjas].',
-'rev-deleted-no-diff'            => "Tö et voigoi kacta necidä versijoiden erod, sikš miše üks' toižetusišpäi om čutud ühthižes arhivaspäi.
+Voib olda, süd oma anttud [{{fullurl:{{ns:special}}:Log/delete|page={{FULLPAGENAMEE}}}} čudandoiden aigkirjas].",
+'rev-deleted-no-diff'            => "Tö et voigoi kacta necidä versijoiden erod, sikš miše üks' toižetusišpäi om '''čutud'''.
 Detalid voidas olda [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} čudandoiden aigkirjas].",
 'rev-delundel'                   => 'ozutada/peitta',
 'revisiondelete'                 => 'Čuta poiš/endištada lehtpolen versijad',
@@ -766,6 +773,7 @@ Olgat hüväd, meletagat völ kerdan, todest-ik tahtoit tehta necidä, el'gendat
 'revdelete-hide-image'           => 'Peitta failan südäimišt',
 'revdelete-unsuppress'           => 'Heitta kaidendused endištadud versijoilpäi',
 'revdelete-log'                  => 'Homaičend:',
+'revdelete-submit'               => 'Lattä valitud versijaha',
 'revdelete-logentry'             => "Om vajehtanu sen, kut nägub lehtpol' [[$1]]",
 'logdelete-logentry'             => 'Om toižetanu sen, kut nägub tego [[$1]]',
 'revdel-restore'                 => 'Toižetada nägubuz',
@@ -1098,6 +1106,7 @@ kc. math/README järgendamižen täht.',
 'right-block'                => "Kel'ta toižid kävutajid redaktiruindas",
 'right-blockemail'           => "Kel'ta kävutajad e-počtad oigendamas",
 'right-hideuser'             => "Kävutajan nimen kel'dand da sen peitand",
+'right-ipblock-exempt'       => 'Ümbärta IP-blokiruindad, avtoblokiruindad da diapazoniden blokiruindad',
 'right-proxyunbannable'      => 'Ümbärta proksiden avtomatine blokiruind',
 'right-protect'              => 'Vajehtada lehtpoliden kaičendan tazopind i redaktiruida kaitud lehtpoled',
 'right-editprotected'        => 'Redaktiruida kaitud lehtpoled (kaskadkaičemata)',
@@ -1214,6 +1223,8 @@ kc. math/README järgendamižen täht.',
 'upload-prohibited'          => "Kel'tud failoiden tipad: $1.",
 'uploadlog'                  => 'jügetoitusiden aigkirj',
 'uploadlogpage'              => 'Jügutoitusiden aigkirj',
+'uploadlogpagetext'          => 'Alemba om tantoižiden jügutoitusiden nimikirjutez.
+[[Special:NewFiles|Uziden failoiden galerejas]] informacii tantoižiš jügutoitusiš anttas vizualižikš.',
 'filename'                   => 'Failan nimi:',
 'filedesc'                   => 'Lühüd ümbrikirjutand',
 'fileuploadsummary'          => 'Lühüd ümbrikirjutand:',
@@ -1242,6 +1253,7 @@ Lasktud {{PLURAL:\$3|failan tip om|failoiden tipad oma}} \$2.",
 'uploaddisabled'             => "Jügutoitand om kel'tud",
 'uploaddisabledtext'         => 'Failoiden jügutoitand om sauptud.',
 'php-uploaddisabledtext'     => 'Failoiden jügutoitand om kel\'tud PHP:n järgendusiš. Kodvgat "file_uploads"-järgenduz.',
+'uploadscripted'             => 'Neciš failas om HTML-kod vai skript, kudamban kaclim voiži interpretiruida värin.',
 'uploadvirus'                => 'Failas om virus! Kc: $1',
 'sourcefilename'             => 'Failan purdenimi:',
 'destfilename'               => 'Failan metnimi:',
@@ -1302,7 +1314,7 @@ Plok pachan pälkirjutesele toižetab sortiruindan järgenduz.',
 'morelinkstoimage'          => 'Ozutada [[Special:WhatLinksHere/$1|toižid kosketusid]] necile failale.',
 'redirectstofile'           => '{{PLURAL:$1|Nece fail läbikosketab|$1 Nened failad läbikosketadas}} necile failale:',
 'duplicatesoffile'          => '{{PLURAL:$1|Nece fail om|$1 Nened failad oma}} ([[Special:FileDuplicateSearch/$2|ližainformacii]])-failan {{PLURAL:$1|dublikat|$1 dublikatad}}:',
-'sharedupload'              => 'Nece fail om ühthižes $1-varaaitaspäi, sidä voiži kävutada mugažo toižiš projektoiš. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => 'Nece fail om ühthižes $1-varaaitaspäi, sidä voiži kävutada mugažo toižiš projektoiš.', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki'          => "Olgat hüväd, lugekat $1-lehtpol't, miše sada ližainformacijad.",
 'shareduploadwiki-desc'     => 'Sen $1:n südäimišt om ozutadud alemba.',
 'shareduploadwiki-linktext' => "failoiden ümbrikirjutandan lehtpol'",
@@ -1498,6 +1510,7 @@ Plok pachan pälkirjutesele toižetab sortiruindan järgenduz.',
 'categoriespagetext'            => 'Neniš kategorijoiš om lehtpolid vai mediafailoid.
 [[Special:UnusedCategories|Kävumatomid kategorijoid]] ei ozutagoi naku.
 Kc. mugažo [[Special:WantedCategories|ectud kategorijoiden nimikirjutez]].',
+'categoriesfrom'                => 'Ozutada kategorijad, necišpäi augotaden:',
 'special-categories-sort-count' => 'järgeta lugumäran mödhe',
 'special-categories-sort-abc'   => 'järgeta kirjamišton mödhe',
 
@@ -1841,7 +1854,7 @@ Kirjutagat sü alemba.',
 'ipboptions'                      => "2 časud:2 hours,1 päiv:1 day,3 päiväd:3 days,1 nedal':1 week,2 nedalid:2 weeks,1 ku:1 month,3 kud:3 months,6 kud:6 months,1 voz':1 year,strokuta:infinite", # display1:time1,display2:time2,...
 'ipbotheroption'                  => 'toine',
 'ipbotherreason'                  => 'Toine sü/Ližasü:',
-'ipbhidename'                     => 'Peitta kävutajan nimi vai IP-adres blokiruindoiden aigkirjas, blokiruidud kävutajiden nimikirjuteses da ühthižes kävutajiden nimikirjuteses',
+'ipbhidename'                     => 'Peitta kävutajan nimi redakcijoišpäi da nimikirjutesišpäi',
 'ipbwatchuser'                    => "Kacelta necen kävutajan personališt lehtpol't da lodulehtpol't",
 'ipballowusertalk'                => "Laskta necile blokiruidud kävutajale redaktiruida ičeze lodulehtpol'",
 'ipb-change-block'                => 'Blokirujda kävutajad udes neniden järgendusidenke',
@@ -2599,7 +2612,7 @@ Kävutagat normaline ezikacund.',
 'specialpages'                   => 'Specialižed lehtpoled',
 'specialpages-note'              => '----
 * Järgeližed specialižed lehtpoled.
-* <span class="mw-specialpagerestricted">Kaitud specialižed lehtpoled.</span>',
+* <strong class="mw-specialpagerestricted">Kaitud specialižed lehtpoled.</strong>',
 'specialpages-group-maintenance' => 'Tehnižen holitandan satusenladindad',
 'specialpages-group-other'       => 'Toižed specialižed lehtpoled',
 'specialpages-group-login'       => 'Kirjutadas sistemha / Sada registracii',

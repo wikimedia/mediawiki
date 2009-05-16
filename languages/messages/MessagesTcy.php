@@ -1,6 +1,9 @@
 <?php
 /** Tulu (ತುಳು)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -511,7 +514,7 @@ $1',
 'filehist-comment'          => 'ಕಮೆಂಟ್',
 'imagelinks'                => 'ಫೈಲ್ ಲಿಂಕ್’ಲು',
 'linkstoimage'              => 'ಈ ಫೈಲ್’ಗ್ ತಿರ್ತ್’ದ ಈ {{PLURAL:$1|ಪುಟ|$1 ಪುಟೊಲು}} ಲಿಂಕ್ ಕೊರ್ಪುಂಡು.',
-'sharedupload'              => 'ಈ ಫೈಲ್’ನ್ ಮಸ್ತ್ ಜನ ಪಟ್ಟ್’ದುಲ್ಲೆರ್ ಅಂಚೆನೆ ಉಂದು ಮಸ್ತ್ ಪ್ರೊಜೆಕ್ಟ್’ಲೆಡ್ ಉಪಯೋಗಡುಪ್ಪು. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => 'ಈ ಫೈಲ್’ನ್ ಮಸ್ತ್ ಜನ ಪಟ್ಟ್’ದುಲ್ಲೆರ್ ಅಂಚೆನೆ ಉಂದು ಮಸ್ತ್ ಪ್ರೊಜೆಕ್ಟ್’ಲೆಡ್ ಉಪಯೋಗಡುಪ್ಪು.', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki-desc'     => '$1 ಡ್ ಉಪ್ಪುನ ವಿವರೊಲೆನ್ ತಿರ್ತ್ ತೊಜ್ಪಾದ್’ನ್ಡ್.',
 'shareduploadwiki-linktext' => 'ಫೈಲ್’ದ ಮಾಹಿತಿ ಪುಟ',
 

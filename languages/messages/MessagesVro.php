@@ -1,6 +1,9 @@
 <?php
 /** Võro (Võro)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -1000,7 +1003,7 @@ Kas olõt kimmäs, et tahat taad üles laatiq? Kaeq ka sissekirotust taa teedüs
 'imagelinks'                => 'Teedüstülingiq',
 'linkstoimage'              => 'Taa pildi pääle {{PLURAL:$1|näütäs lehekülg|näütäseq leheküleq}}:',
 'nolinkstoimage'            => 'Taa pildi pääle näütä-i ütski lehekülg.',
-'sharedupload'              => 'Taa om ütine teedüstü, taad võivaq pruukiq ka tõõsõq vikiq. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => 'Taa om ütine teedüstü, taad võivaq pruukiq ka tõõsõq vikiq.', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki'          => 'Taa kotsilõ saa lähkümbält kaiaq $1.',
 'shareduploadwiki-linktext' => 'seletüsleheküle päält',
 'noimage'                   => 'Olõ-i säänest teedüstüt, võit taa esiq $1.',
@@ -2158,7 +2161,7 @@ Prooviq harilikku kaehust.',
 'specialpages'                   => 'Tallitusleheküleq',
 'specialpages-note'              => '----
 * Hariliguq tallitusleheq.
-* <span class="mw-specialpagerestricted">Piiredüq tallitusleheq.</span>',
+* <strong class="mw-specialpagerestricted">Piiredüq tallitusleheq.</strong>',
 'specialpages-group-maintenance' => 'Kõrranpidämisteedüseq',
 'specialpages-group-other'       => 'Muuq tallitusleheq',
 'specialpages-group-login'       => 'Nimega sisseminek / Pruukjanime luuminõ',

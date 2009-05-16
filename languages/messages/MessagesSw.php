@@ -1,6 +1,9 @@
 <?php
 /** Swahili (Kiswahili)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -234,7 +237,7 @@ $messages = array(
 'cancel'         => 'Batilisha',
 'qbfind'         => 'Gundua',
 'qbedit'         => 'Hariri',
-'qbpageoptions'  => 'Ukarasa huu',
+'qbpageoptions'  => 'Ukurasa huu',
 'qbmyoptions'    => 'Kurasa zangu',
 'qbspecialpages' => 'Kurasa za pekee',
 'moredotdotdot'  => 'Zaidi...',
@@ -268,11 +271,11 @@ $messages = array(
 'protect_change'    => 'badilisha',
 'protectthispage'   => 'Linda ukurasa huu',
 'unprotect'         => 'Usilinde',
-'unprotectthispage' => 'Ondoa tunzo la ukarasa',
+'unprotectthispage' => 'Ondoa tunzo la ukurasa',
 'newpage'           => 'Ukurasa mpya',
-'talkpage'          => 'Jadilia ukarasa huu',
+'talkpage'          => 'Jadilia ukurasa huu',
 'talkpagelinktext'  => 'Majadiliano',
-'specialpage'       => 'Ukarasa maalumu',
+'specialpage'       => 'Ukurasa maalumu',
 'personaltools'     => 'Vifaa binafsi',
 'postcomment'       => 'Fungu jipya',
 'talk'              => 'Majadiliano',
@@ -287,7 +290,7 @@ $messages = array(
 'otherlanguages'    => 'Lugha nyingine',
 'redirectedfrom'    => '(Elekezwa kutoka $1)',
 'redirectpagesub'   => 'Elekeza ukurasa',
-'lastmodifiedat'    => 'Ukarasa huu umebadilisha mara iliyopita tarehe $1, saa $2.', # $1 date, $2 time
+'lastmodifiedat'    => 'Ukurasa huu umebadilishwa kwa mara ya mwisho tarehe $1, saa $2.', # $1 date, $2 time
 'protectedpage'     => 'Kurasa iliyolindwa',
 'jumpto'            => 'Rukia:',
 'jumptonavigation'  => 'urambazaji',
@@ -325,6 +328,7 @@ $messages = array(
 'editold'             => 'hariri',
 'viewsourceold'       => 'view source',
 'editlink'            => 'hariri',
+'viewsourcelink'      => 'onyesha kodi za ukurasa',
 'editsectionhint'     => 'Hariri kipande: $1',
 'toc'                 => 'Yaliyomo',
 'showtoc'             => 'fichua',
@@ -349,7 +353,7 @@ $messages = array(
 'error'              => 'Kosa',
 'badtitle'           => 'Jina halifai',
 'badtitletext'       => 'Jina la ukurasa ulilotaka ni batilifu, tupu, au limeungwa vibaya na jina la lugha nyingine au Wiki nyingine.  Labda linazo herufi moja a zaidi ambazo hazitumiki katika majina.',
-'viewsource'         => 'Tazama chanzo',
+'viewsource'         => 'Onyesha kodi za ukurasa',
 'viewsourcefor'      => 'kwa $1',
 'protectedpagetext'  => 'Ukurasa huu umefungwa ili kuepuka uhariri.',
 'viewsourcetext'     => 'Unaweza kutazama na kuiga chanzo cha ukurasa huu:',
@@ -420,13 +424,13 @@ Tafadhali, ondoa kizuizi hicho, baadaye jaribu tena.',
 'mailmypassword'            => 'Nitume nywila mpya kwa barua pepe',
 'passwordremindertitle'     => 'Nywila mpya ya muda kwa {{SITENAME}}',
 'passwordremindertext'      => 'Mtu mmoja (yamkini wewe, kutoka anwani ya IP $1)
-ambaye ameulizia nywila mpya kwa {{SITENAME}} ($4).
-Nywila kwa mtumiaji "$2" sasa ni "$3".
-Inatakiwa uingie na ubadilishe nywila yako sasa.
+ameulizia nywila mpya kwa {{SITENAME}} ($4).
+Nywila ya muda kwa mtumiaji "$2" sasa ni "$3".
+Inatakiwa uingie na ubadilishe nywila yako sasa. Nywila yako ya muda itaishia baada ya siku {{PLURAL:$5|moja|$5}}.
 
 Kama mtu mwingine ametoa ombi hili au kama umekumbuka nywila yako na
 umeamua kutoibadilisha, unaweza kupuuza ujumbe huu na
-endelea kutumia nywila yako ya awali.',
+kuendelea kutumia nywila yako ya awali.',
 'noemail'                   => 'Hatuna anwani ya barua pepe kwa mtumiaji  "$1".',
 'passwordsent'              => 'Neno mpya la siri limeshatumia kwenye anwani ya baruapepe ya "$1".
 Tafadhali, ingia baada ya kulipokea.',
@@ -554,30 +558,36 @@ Ufunguo: (sasa) = tofauti na toleo la sasa, (kabla) = tofauti na toleo lililotan
 'diff-multi'              => '(Hatuonyeshi {{PLURAL:$1|sahihisho moja la katikati|masahihisho $1 ya katikati}}.)',
 
 # Search results
-'searchresults'             => 'Matokeo ya utafutaji',
-'searchresults-title'       => 'Matokeo ya utafutaji kwa ajili ya "$1"',
-'searchsubtitle'            => 'Ulitafuta \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|kurasa zote zinazoanza "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|kurasa zote zinazoungwa na "$1"]])',
-'searchsubtitleinvalid'     => "Ulitafuta '''$1'''",
-'noexactmatch'              => "'''Hakuna ukurasa wenye jina \"\$1\".''' Unaweza [[:\$1|kuanza ukurasa huu]].",
-'notitlematches'            => 'Jina hili la ukurasa halikupatikana',
-'prevn'                     => '$1 iliyotangulia',
-'nextn'                     => '$1 ijayo',
-'viewprevnext'              => 'Tazama ($1) ($2) ($3)',
-'searchhelp-url'            => 'Help:Yaliyomo',
-'searchmenu-prefix'         => '[[Special:PrefixIndex/$1|Tafuta kurasa kwenye eneo hili la wiki]]',
-'searchprofile-project'     => 'Kurasa za mradi',
-'searchprofile-images'      => 'Mafaili',
-'searchprofile-everything'  => 'Zote',
-'searchprofile-advanced'    => 'Hali ya juu',
-'search-result-size'        => '$1 ({{PLURAL:$2|neno 1|maneno $2}})',
-'search-suggest'            => 'Je, ulitaka kutafuta: $1',
-'search-interwiki-default'  => 'Matokeo toka $1:',
-'search-interwiki-more'     => '(zaidi)',
-'search-mwsuggest-enabled'  => 'na mapendekezo',
-'search-mwsuggest-disabled' => 'bila makendekezo',
-'powersearch'               => 'Tafuta kwa hali ya juu',
-'powersearch-legend'        => 'Tafuta kwa hali ya juu',
-'powersearch-field'         => 'Tafuta huu:',
+'searchresults'                => 'Matokeo ya utafutaji',
+'searchresults-title'          => 'Matokeo ya utafutaji kwa ajili ya "$1"',
+'searchsubtitle'               => 'Ulitafuta \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|kurasa zote zinazoanza "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|kurasa zote zinazoungwa na "$1"]])',
+'searchsubtitleinvalid'        => "Ulitafuta '''$1'''",
+'noexactmatch'                 => "'''Hakuna ukurasa wenye jina \"\$1\".''' Unaweza [[:\$1|kuanza ukurasa huu]].",
+'notitlematches'               => 'Jina hili la ukurasa halikupatikana',
+'prevn'                        => '$1 iliyotangulia',
+'nextn'                        => '$1 ijayo',
+'viewprevnext'                 => 'Tazama ($1) ($2) ($3)',
+'searchmenu-legend'            => 'Hitiari za kutafuta',
+'searchhelp-url'               => 'Help:Yaliyomo',
+'searchmenu-prefix'            => '[[Special:PrefixIndex/$1|Tafuta kurasa kwenye eneo hili la wiki]]',
+'searchprofile-project'        => 'Kurasa za mradi',
+'searchprofile-images'         => 'Mafaili',
+'searchprofile-everything'     => 'Zote',
+'searchprofile-advanced'       => 'Hali ya juu',
+'searchprofile-images-tooltip' => 'Tafuta mafaili',
+'search-result-size'           => '$1 ({{PLURAL:$2|neno 1|maneno $2}})',
+'search-suggest'               => 'Je, ulitaka kutafuta: $1',
+'search-interwiki-default'     => 'Matokeo toka $1:',
+'search-interwiki-more'        => '(zaidi)',
+'search-mwsuggest-enabled'     => 'na mapendekezo',
+'search-mwsuggest-disabled'    => 'bila makendekezo',
+'searchall'                    => 'zote',
+'showingresultstotal'          => "{{PLURAL:$4|Tokeo '''$1''' kati ya jumla ya '''$3'''|Matokeo '''$1 - $2''' kati ya jumla ya '''$3'''}} yanaorodheshwa chini.",
+'powersearch'                  => 'Tafuta kwa hali ya juu',
+'powersearch-legend'           => 'Tafuta kwa hali ya juu',
+'powersearch-ns'               => 'Tafuta kwenye maeneo ya wiki yafuatayo:',
+'powersearch-redir'            => 'Orodhesha kurasa za kuelekeza',
+'powersearch-field'            => 'Tafuta huu:',
 
 # Preferences page
 'preferences'               => 'Mapendekezo',
@@ -588,6 +598,7 @@ Ufunguo: (sasa) = tofauti na toleo la sasa, (kabla) = tofauti na toleo lililotan
 'saveprefs'                 => 'Hifadhi',
 'rows'                      => 'Mistari:',
 'columns'                   => 'Safu:',
+'searchresultshead'         => 'Kutafuta',
 'timezonelegend'            => 'Ukanda saa',
 'timezoneselect'            => 'Ukanda saa:',
 'timezoneregion-africa'     => 'Afrika',
@@ -600,6 +611,7 @@ Ufunguo: (sasa) = tofauti na toleo la sasa, (kabla) = tofauti na toleo lililotan
 'timezoneregion-europe'     => 'Ulaya',
 'timezoneregion-indian'     => 'Bahari ya Hindi',
 'timezoneregion-pacific'    => 'Bahari ya Pasifiki',
+'prefs-searchoptions'       => 'Hitiari za kutafuta',
 'files'                     => 'Mafaili',
 
 # Groups
@@ -674,7 +686,7 @@ Ufunguo: (sasa) = tofauti na toleo la sasa, (kabla) = tofauti na toleo lililotan
 'imagelinks'                => 'Viungo vya mafaili',
 'linkstoimage'              => '{{PLURAL:$1|Ukurasa huu|Kurasa hizi $1}} zimeunganishwa na faili hili:',
 'nolinkstoimage'            => 'Hakuna kurasa zozote zilizounganishwa na faili hii.',
-'sharedupload'              => 'Faili hii inatoka $1 na inaweza kushirikiwa na miradi mingine. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => 'Faili hili linatoka $1 na linaweza kushirikiwa na miradi mingine.', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki-linktext' => 'ukurasa wa maelezo ya faili',
 'noimage'                   => 'Hakuna faili yenye jina hili, $1 kama unayo.',
 'noimage-linktext'          => 'pakia faili',
@@ -714,7 +726,7 @@ Ufunguo: (sasa) = tofauti na toleo la sasa, (kabla) = tofauti na toleo lililotan
 'statistics-edits-average'     => 'Wastani wa uhariri kwa kurasa',
 'statistics-views-total'       => 'Onyesha kwa jumla',
 'statistics-views-peredit'     => 'Onyesha kwa uhariri',
-'statistics-jobqueue'          => '[http://www.mediawiki.org/wiki/Manual:Job_queue Job queue] Urefu',
+'statistics-jobqueue'          => 'Urefu wa [http://www.mediawiki.org/wiki/Manual:Job_queue foleni ya kazi]',
 'statistics-users'             => '[[Special:ListUsers|Watumiaji]] waliojisajiri',
 'statistics-users-active'      => 'Watumiaji wanaofanya kazi',
 'statistics-users-active-desc' => 'Watumiaji waliofanya kazi katika siku {{PLURAL:$1|siku|$1 zilizopita}}',
@@ -872,7 +884,7 @@ Hivi ni vipimo kwa ukurasa '''$1''':",
 'undeletebtn'     => 'Rudisha',
 
 # Namespace form on various pages
-'namespace'      => 'Eneo la majina:',
+'namespace'      => 'Chagua eneo la wiki:',
 'invert'         => 'Geuza uteuzi',
 'blanknamespace' => '(Kuu)',
 
@@ -911,7 +923,7 @@ Hivi ni vipimo kwa ukurasa '''$1''':",
 'unblocklink'   => 'acha kuzuia',
 'contribslink'  => 'michango',
 'blocklogpage'  => 'Kumbukumbu ya uzuio',
-'blocklogentry' => '[[$1]] imezuiwa mpaka $2 $3',
+'blocklogentry' => 'amemzuia [[$1]] mpaka $2 $3',
 
 # Move page
 'move-page-legend' => 'Sogeza ukurasa',
@@ -942,6 +954,7 @@ Kama tayari kuna ukurasa au ukifuta tiki, itabidi usogeze au uunganishe ukurasa 
 'move-watch'       => 'Fuatilia ukurasa huu',
 'movepagebtn'      => 'Sogeza ukurasa',
 'pagemovedsub'     => 'Umefaulu kusogeza ukurasa',
+'movepage-moved'   => '<big>\'\'\'"$1" imesogezwa kwenye "$2"\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
 'articleexists'    => 'Tayari kuna ukurasa wenye jina hilo, au
 jina ulilochagua ni batilifu.
 Chagua jina lengine.',
@@ -1014,7 +1027,7 @@ Chagua jina lengine.',
 # Attribution
 'anonymous'        => '{{PLURAL:$1|mtumiaji bila jina|watumiaji bila majina}} wa {{SITENAME}}',
 'siteuser'         => 'mtumiaji $1 wa {{SITENAME}}',
-'lastmodifiedatby' => 'Ukurasa huu ulibadilishwa mwishoni saa $2, tarehe $1 na $3.', # $1 date, $2 time, $3 user
+'lastmodifiedatby' => 'Ukurasa huu umebadilishwa kwa mara ya mwisho saa $2, tarehe $1 na $3.', # $1 date, $2 time, $3 user
 'othercontribs'    => 'Ukurasa uliandikwa pia na $1.',
 'others'           => 'wengine',
 'siteusers'        => '{{PLURAL:$2|mtumiaji|watumiaji}} wa {{SITENAME}} $1',
@@ -1060,6 +1073,12 @@ likifupishwa. Nyuga zingine zitafichwa kama chaguo-msingi.
 * exposuretime
 * fnumber
 * focallength', # Do not translate list items
+
+# EXIF tags
+'exif-componentsconfiguration' => 'Maana ya kila kijenzi',
+'exif-makernote'               => 'Maelezo ya mtengenezaji',
+'exif-usercomment'             => 'Maoni ya mtumiaji',
+'exif-relatedsoundfile'        => 'Faili ya sauti inayohusika',
 
 # External editor support
 'edit-externally'      => 'Tumia programu ya nje kuhariri faili hii',

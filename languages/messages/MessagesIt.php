@@ -1,6 +1,9 @@
 <?php
 /** Italian (Italiano)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -167,9 +170,9 @@ $messages = array(
 'tog-justify'                 => 'Allineamento dei paragrafi giustificato',
 'tog-hideminor'               => 'Nascondi le modifiche minori nelle ultime modifiche',
 'tog-hidepatrolled'           => 'Nascondi le modifiche verificate nelle ultime modifiche',
-'tog-newpageshidepatrolled'   => "Nascondi le pagine verificate dell'elenco delle pagine più recenti",
+'tog-newpageshidepatrolled'   => "Nascondi le pagine verificate dall'elenco delle pagine più recenti",
 'tog-extendwatchlist'         => "Mostra tutte le modifiche agli osservati speciali, non solo l'ultima",
-'tog-usenewrc'                => 'Ultime modifiche avanzate (richiede JavaScript)',
+'tog-usenewrc'                => 'Utilizza le ultime modifiche avanzate (richiede JavaScript)',
 'tog-numberheadings'          => 'Numerazione automatica dei titoli di sezione',
 'tog-showtoolbar'             => 'Mostra barra degli strumenti di modifica (richiede JavaScript)',
 'tog-editondblclick'          => 'Modifica delle pagine tramite doppio clic (richiede JavaScript)',
@@ -191,7 +194,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Segnalami via e-mail anche le modifiche minori',
 'tog-enotifrevealaddr'        => 'Rivela il mio indirizzo e-mail nei messaggi di avviso',
 'tog-shownumberswatching'     => 'Mostra il numero di utenti che hanno la pagina in osservazione',
-'tog-fancysig'                => 'Non modificare il markup della firma (usare per firme non standard)',
+'tog-fancysig'                => 'Interpreta i comandi wiki nella firma (senza collegamento automatico)',
 'tog-externaleditor'          => "Usa per default un editor di testi esterno (solo per utenti esperti, richiede l'uso di impostazioni particolari sul proprio computer)",
 'tog-externaldiff'            => "Usa per default un programma di diff esterno (solo per utenti esperti, richiede l'uso di impostazioni particolari sul proprio computer)",
 'tog-showjumplinks'           => 'Attiva i collegamenti accessibili "vai a"',
@@ -342,7 +345,7 @@ I seguenti collegamenti sono in lingua inglese:
 'unprotectthispage' => 'Togli la protezione a questa pagina',
 'newpage'           => 'Nuova pagina',
 'talkpage'          => 'Pagina di discussione',
-'talkpagelinktext'  => 'discussione',
+'talkpagelinktext'  => 'Discussione',
 'specialpage'       => 'Pagina speciale',
 'personaltools'     => 'Strumenti personali',
 'postcomment'       => 'Nuova sezione',
@@ -636,7 +639,6 @@ Riprovare più tardi.',
 'resetpass-wrong-oldpass'   => 'Password temporanea o corrente non valida.
 La password potrebbe essere stata già cambiata, oppure potrebbe essere stata richiesta una nuova password temporanea.',
 'resetpass-temp-password'   => 'Password temporanea:',
-'resetpass-no-others'       => 'Non puoi reimpostare la password di altri utenti.',
 'resetpass-log'             => 'Reimpostazione password',
 'resetpass-logtext'         => 'Di seguito sono elencati gli utenti la cui password è stata reimpostata da un amministratore.',
 'resetpass-logentry'        => 'ha modificato la password di $1',
@@ -868,16 +870,15 @@ Legenda: '''({{int:cur}})''' = differenze con la versione corrente, '''({{int:la
 'rev-deleted-comment'            => '(commento rimosso)',
 'rev-deleted-user'               => '(nome utente rimosso)',
 'rev-deleted-event'              => '(azione del log rimossa)',
-'rev-deleted-text-permission'    => "Questa versione della pagina è stata '''rimossa dagli archivi visibili al pubblico'''.
+'rev-deleted-text-permission'    => "Questa versione della pagina è stata '''cancellata'''.
 Consultare il [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} log di cancellazione] per ulteriori dettagli.",
-'rev-deleted-text-view'          => "Questa versione della pagina è stata '''rimossa dagli archivi visibili al pubblico'''.
-Il testo può essere visualizzato soltanto dagli amministratori del sito.
+'rev-deleted-text-view'          => "Questa versione della pagina è stata '''cancellata'''.
+Gli amministratori possono ancora visualizzarla; consultare il [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} log di cancellazione] per ulteriori dettagli.",
+'rev-deleted-no-diff'            => "Non è possibile visualizzare questo diff perché una delle revisioni è stata '''cancellata'''.
 Consultare il [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} log di cancellazione] per ulteriori dettagli.",
-'rev-deleted-no-diff'            => "Non è possibile visualizzare questo diff perché una delle revisioni è stata '''rimossa dagli archivi visibili al pubblico'''.
-Consultare il [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} log di cancellazione] per ulteriori dettagli.",
-'rev-deleted-unhide-diff'        => "Una delle revisioni di questo diff è stata '''rimossa dagli archivi visibili al pubblico'''.
+'rev-deleted-unhide-diff'        => "Una delle revisioni di questa diff è stata '''cancellata'''.
 Consultare il [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} log di cancellazione] per ulteriori dettagli.
-Da amministratore è possibile ancora [$1 visualizzare questo diff] se si desidera procedere.",
+Agli amministratori è ancora consentito [$1 visualizzare questa diff] se necessario.",
 'rev-delundel'                   => 'mostra/nascondi',
 'revisiondelete'                 => 'Cancella o ripristina versioni',
 'revdelete-nooldid-title'        => 'Versione non specificata',
@@ -1500,7 +1501,7 @@ Di seguito sono elencate solo {{PLURAL:$1|la prima pagina che punta|le prime $1 
 'morelinkstoimage'          => 'Visualizza [[Special:WhatLinksHere/$1|altri link]] a questo file.',
 'redirectstofile'           => '{{PLURAL:$1|Il seguente|I seguenti $1}} file {{PLURAL:$1|è|sono}} un redirect a questo file:',
 'duplicatesoffile'          => '{{PLURAL:$1|Il seguente file è un duplicato|I seguenti $1 file sono duplicati}} di questo file ([[Special:FileDuplicateSearch/$2|ulteriori dettagli]]):',
-'sharedupload'              => 'Questo file proviene da $1 e può essere utilizzato da altri progetti. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => 'Questo file proviene da $1 e può essere utilizzato da altri progetti.', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki'          => 'Si veda $1 per ulteriori informazioni.',
 'shareduploadwiki-desc'     => 'La descrizione che appare sulla relativa $1 viene mostrata di seguito.',
 'shareduploadwiki-linktext' => 'pagina di descrizione del file',
@@ -2194,8 +2195,8 @@ Scegliere un titolo diverso per la pagina.',
 'talkexists'                   => "'''La pagina è stata spostata correttamente, ma non è stato possibile spostare la pagina di discussione perché ne esiste già un'altra con il nuovo titolo. Integrare manualmente i contenuti delle due pagine.'''",
 'movedto'                      => 'spostata a',
 'movetalk'                     => 'Sposta anche la pagina di discussione.',
-'move-subpages'                => 'Sposta le sottopagine (sino a $1), se possibile',
-'move-talk-subpages'           => 'Sposta le sottopagine di discussione (fino a $1), se possibile',
+'move-subpages'                => 'Sposta le sottopagine (sino a $1)',
+'move-talk-subpages'           => 'Sposta le sottopagine di discussione (fino a $1)',
 'movepage-page-exists'         => 'La pagina $1 esiste già e non può essere automaticamente sovrascritta.',
 'movepage-page-moved'          => 'La pagina $1 è stata spostata a $2.',
 'movepage-page-unmoved'        => 'La pagina $1 non può essere spostata a $2.',
@@ -2476,7 +2477,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Attenzione''': Questo file potrebbe contenere codice maligno, la sua esecuzione potrebbe danneggiare il tuo sistema.<hr />",
-'imagemaxsize'         => 'Dimensione massima delle immagini sulle relative pagine di discussione:',
+'imagemaxsize'         => "Dimensione massima delle immagini:<br />''(per le pagine di descrizione del file)''",
 'thumbsize'            => 'Grandezza delle miniature:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|pagina|pagine}}',
 'file-info'            => '(dimensione del file: $1, tipo MIME: $2)',
@@ -2968,7 +2969,7 @@ Inserire il nome del file senza il prefisso \"{{ns:file}}:\"",
 'specialpages'                   => 'Pagine speciali',
 'specialpages-note'              => '----
 * Pagine speciali non riservate.
-* <span class="mw-specialpagerestricted">Pagine speciali riservate ad alcune categorie di utenti.</span>',
+* <strong class="mw-specialpagerestricted">Pagine speciali riservate ad alcune categorie di utenti.</strong>',
 'specialpages-group-maintenance' => 'Resoconti di manutenzione',
 'specialpages-group-other'       => 'Altre pagine speciali',
 'specialpages-group-login'       => 'Login / registrazione',

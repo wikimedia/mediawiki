@@ -1,6 +1,9 @@
 <?php
 /** Extremaduran (Estremeñu)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -1054,7 +1057,7 @@ Pursa nel entítulu la coluna pa chambal el ordin.',
 'imagelinks'                => 'Atihus',
 'linkstoimage'              => '{{PLURAL:$1|El siguienti artículu atiha|Los siguientis $1 artículus atihan}} a esti archivu:',
 'nolinkstoimage'            => 'Nu ai denguna páhina qu´atihi a esti archivu.',
-'sharedupload'              => 'Esti archivu está compartiu i puei gastalsi dendi otrus proyeutus. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => 'Esti archivu está compartiu i puei gastalsi dendi otrus proyeutus.', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki'          => 'Pa mas enhormación, puei consurtal $1.',
 'shareduploadwiki-linktext' => 'páhina e descrición el archivu',
 'noimage'                   => 'Nu desisti dengún archivu llamau asina, pueis $1.',
@@ -1120,7 +1123,7 @@ Pursa nel entítulu la coluna pa chambal el ordin.',
 'statistics-mostpopular'  => 'Páhinas mas visoreás',
 
 'disambiguations'      => 'Páhinas de desambiguáncia',
-'disambiguationspage'  => 'Prantilla:desambiguáncia',
+'disambiguationspage'  => 'Template:desambiguáncia',
 'disambiguations-text' => "Las siguientis páhinas atihan a una '''páhina e desambiguáncia'''. Estas eberian atihal al artículu apropiau.<br />Una páhina se consiera e desambiguáncia si gasta una prantilla qu'está atihá endi [[MediaWiki:Disambiguationspage]]",
 
 'doubleredirects' => 'Redirecionis dobris',

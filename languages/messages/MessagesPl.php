@@ -1,6 +1,9 @@
 <?php
 /** Polish (Polski)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -227,7 +230,7 @@ $messages = array(
 'tog-hidepatrolled'           => 'Ukryj sprawdzone edycje w ostatnich zmianach',
 'tog-newpageshidepatrolled'   => 'Ukryj sprawdzone strony z listy nowych stron',
 'tog-extendwatchlist'         => 'Pokaż na liście obserwowanych wszystkie a nie tylko ostatnie zmiany',
-'tog-usenewrc'                => 'Rozszerzenie ostatnich zmian (JavaScript)',
+'tog-usenewrc'                => 'Używaj rozszerzenia ostatnich zmian (JavaScript)',
 'tog-numberheadings'          => 'Automatyczna numeracja nagłówków',
 'tog-showtoolbar'             => 'Pokaż pasek narzędzi (JavaScript)',
 'tog-editondblclick'          => 'Podwójne kliknięcie rozpoczyna edycję (JavaScript)',
@@ -235,7 +238,7 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Kliknięcie prawym klawiszem myszy na tytule sekcji rozpoczyna jej edycję (JavaScript)',
 'tog-showtoc'                 => 'Pokaż spis treści (na stronach o więcej niż 3 nagłówkach)',
 'tog-rememberpassword'        => 'Pamiętaj hasło między sesjami na tym komputerze',
-'tog-editwidth'               => 'Obszar edycji o pełnej szerokości',
+'tog-editwidth'               => 'Rozszerz obszar edycji do wielkości ekranu',
 'tog-watchcreations'          => 'Dodaj do obserwowanych strony tworzone przeze mnie',
 'tog-watchdefault'            => 'Dodaj do obserwowanych strony, które edytuję',
 'tog-watchmoves'              => 'Dodaj do obserwowanych strony, które przenoszę',
@@ -470,7 +473,7 @@ $messages = array(
 'toc'                     => 'Spis treści',
 'showtoc'                 => 'pokaż',
 'hidetoc'                 => 'ukryj',
-'thisisdeleted'           => 'Pokazać czy odtworzyć $1?',
+'thisisdeleted'           => 'Pokazać lub odtworzyć $1?',
 'viewdeleted'             => 'Zobacz $1',
 'restorelink'             => '{{PLURAL:$1|jedną usuniętą wersję|$1 usunięte wersje|$1 usuniętych wersji}}',
 'feedlinks'               => 'Kanały:',
@@ -711,7 +714,6 @@ Być może zakończyłeś już proces zmiany hasła lub poprosiłeś o nowe has�
 'resetpass-wrong-oldpass'   => 'Nieprawidłowe tymczasowe lub aktualne hasło. 
 Być może właśnie zmieniłeś swoje hasło lub poprosiłeś o nowe tymczasowe hasło.',
 'resetpass-temp-password'   => 'Tymczasowe hasło:',
-'resetpass-no-others'       => 'Nie masz uprawnień do zerowania haseł innych użytkowników.',
 'resetpass-log'             => 'Rejestr zerowania haseł',
 'resetpass-logtext'         => 'Rejestr użytkowników których hasła zerowali administratorzy.',
 'resetpass-logentry'        => 'zmienił hasło $1',
@@ -915,7 +917,7 @@ Niektóre szablony nie zostaną użyte.',
 'post-expand-template-argument-warning'   => 'Uwaga – strona zawiera co najmniej jeden argument szablonu, który po rozwinięciu jest zbyt duży.
 Argument ten będzie pominięty.',
 'post-expand-template-argument-category'  => 'Strony, w których użyto szablon z pominięciem argumentów',
-'parser-template-loop-warning'            => 'Wykryto szablon zapętlenia: [[$1]]',
+'parser-template-loop-warning'            => 'Wykryto pętlę w szablonie [[$1]]',
 'parser-template-recursion-depth-warning' => 'Przekroczno limit głębokości rekurencji szablonu ($1)',
 
 # "Undo" feature
@@ -967,16 +969,15 @@ Spróbuj [[Special:Search|poszukać]] tej strony.',
 'rev-deleted-comment'            => '(komentarz usunięty)',
 'rev-deleted-user'               => '(użytkownik usunięty)',
 'rev-deleted-event'              => '(wpis usunięty)',
-'rev-deleted-text-permission'    => "Ta wersja strony została '''usunięta i nie jest dostępna publicznie'''.
-Powody usunięcia mogą znajdować się w [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rejestrze usunięć].",
-'rev-deleted-text-view'          => "Ta wersja strony została '''usunięta i nie jest dostępna publicznie'''.
-Jednak jako administrator {{GRAMMAR:D.lp|{{SITENAME}}}} możesz ją obejrzeć.
-Powody usunięcia mogą znajdować się w [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rejestrze usunięć].",
-'rev-deleted-no-diff'            => "Nie możesz zobaczyć różnic pomiędzy wersjami, ponieważ jedna z tych wersji została '''usunięta i nie jest dostępna publicznie'''.
-Powody usunięcia mogą znajdować się w [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rejestrze usunięć].",
-'rev-deleted-unhide-diff'        => "Jedna z wersji tej strony została '''usunięta i nie jest dostępna publicznie'''.
-Powody usunięcia mogą znajdować się w [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rejestrze usunięć].
-Jednak jako administrator {{GRAMMAR:D.lp|{{SITENAME}}}} możesz [$1 obejrzeć porównanie wersji].",
+'rev-deleted-text-permission'    => "Ta wersja strony została '''usunięta'''.
+Szczegółowe informacje mogą znajdować się w [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rejestrze usunięć].",
+'rev-deleted-text-view'          => "Ta wersja strony została '''usunięta'''.
+Jednak jako administrator możesz ją obejrzeć. Szczegółowe informacje mogą znajdować się w [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rejestrze usunięć].",
+'rev-deleted-no-diff'            => "Nie możesz zobaczyć różnic pomiędzy wersjami, ponieważ jedna z tych wersji została '''usunięta'''.
+Szczegółowe informacje mogą znajdować się w [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rejestrze usunięć].",
+'rev-deleted-unhide-diff'        => "Jedna z wersji tej strony została '''usunięta'''.
+Szczegółowe informacje mogą znajdować się w [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rejestrze usunięć].
+Jako administrator {{GRAMMAR:D.lp|{{SITENAME}}}} możesz [$1 obejrzeć porównanie wersji].",
 'rev-delundel'                   => 'pokaż/ukryj',
 'revisiondelete'                 => 'Usuń/przywróć wersje',
 'revdelete-nooldid-title'        => 'Nieprawidłowa wersja do przeprowadzenia operacji',
@@ -1244,9 +1245,9 @@ Zapoznaj się z math/README w celu konfiguracji.',
 'contextlines'              => 'Pierwsze wiersze stron',
 'contextchars'              => 'Litery kontekstu w linijce',
 'stub-threshold'            => 'Maksymalny (w bajtach) rozmiar strony oznaczanej jako <a href="#" class="stub">zalążek (stub)</a>',
-'recentchangesdays'         => 'Liczba dni do pokazania w ostatnich zmianach',
+'recentchangesdays'         => 'Liczba dni prezentowanych w ostatnich zmianach',
 'recentchangesdays-max'     => '(maksymalnie $1 {{PLURAL:$1|dzień|dni}})',
-'recentchangescount'        => 'Domyślna liczba pozycji do wyświetlenia na liście ostatnich zmian, w historii stron i na stronach rejestrów',
+'recentchangescount'        => 'Domyślna liczba pozycji wyświetlanych na liście ostatnich zmian, w historii stron i na stronach rejestrów',
 'savedprefs'                => 'Twoje preferencje zostały zapisane.',
 'timezonelegend'            => 'Strefa czasowa',
 'timezonetext'              => '¹Liczba godzin różnicy między Twoim czasem lokalnym, a czasem uniwersalnym (UTC).',
@@ -1542,7 +1543,7 @@ Sprawdź plik i załaduj poprawną wersję.',
 'sourcefilename'              => 'Nazwa oryginalna',
 'destfilename'                => 'Nazwa docelowa',
 'upload-maxfilesize'          => 'Wielkość pliku ograniczona jest do $1',
-'watchthisupload'             => 'Obserwuj',
+'watchthisupload'             => 'Obserwuj ten plik',
 'filewasdeleted'              => 'Plik o tej nazwie istniał, ale został usunięty.
 Zanim załadujesz go ponownie, sprawdź $1.',
 'upload-wasdeleted'           => "'''Uwaga! Ładujesz plik, który został usunięty.'''
@@ -1628,7 +1629,7 @@ Dostępna jest też [[Special:WhatLinksHere/$2|pełna lista]].',
 'morelinkstoimage'          => 'Pokaż [[Special:WhatLinksHere/$1|więcej odnośników]] do tego pliku.',
 'redirectstofile'           => '{{PLURAL:$1|Następujący plik przekierowuje|Następujące pliki przekierowują}} do tego pliku:',
 'duplicatesoffile'          => '{{PLURAL:$1|Następujący plik jest kopią|Następujące pliki są kopiami}} pliku ([[Special:FileDuplicateSearch/$2|więcej informacji]]):',
-'sharedupload'              => 'Ten plik znajduje się na wspólnym serwerze plików $1 i może być używany w innych projektach. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => 'Ten plik znajduje się na $1 i może być używany w innych projektach.', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki'          => 'Więcej informacji odnajdziesz na $1.',
 'shareduploadwiki-desc'     => 'Opis znajdujący się na $1 we współdzielonych zasobach możesz zobaczyć poniżej.',
 'shareduploadwiki-linktext' => 'stronie opisu pliku',
@@ -2352,8 +2353,8 @@ Wybierz inną nazwę.',
 'talkexists'                   => "'''Strona treści została przeniesiona, natomiast strona dyskusji nie, ponieważ strona dyskusji o nowym tytule już istnieje. Połącz teksty obu dyskusji ręcznie.'''",
 'movedto'                      => 'przeniesiono do',
 'movetalk'                     => 'Przenieś także stronę dyskusji, jeśli to możliwe.',
-'move-subpages'                => 'Jeśli to możliwe przenieś podstrony (nie więcej niż $1)',
-'move-talk-subpages'           => 'Jeśli to możliwe przenieś strony dyskusji podstron (nie więcej niż $1)',
+'move-subpages'                => 'Przenieś podstrony (nie więcej niż $1)',
+'move-talk-subpages'           => 'Przenieś strony dyskusji podstron (nie więcej niż $1)',
 'movepage-page-exists'         => 'Strona $1 istnieje. Automatyczne nadpisanie nie jest możliwe.',
 'movepage-page-moved'          => 'Strona $1 została przeniesiona do $2.',
 'movepage-page-unmoved'        => 'Nazwa strony $1 nie może zostać zmieniona na $2.',
@@ -2650,7 +2651,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Uwaga!''' Plik może zawierać złośliwy kod. Jeśli go otworzysz, możesz zarazić swój system.<hr />",
-'imagemaxsize'         => 'Na stronach opisu plików ogranicz rozmiar obrazków do',
+'imagemaxsize'         => "Ograniczenie wielkości obrazków<br />''(na stronach opisu plików)''",
 'thumbsize'            => 'Rozmiar miniaturki',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|strona|strony|stron}}',
 'file-info'            => '(rozmiar pliku: $1, typ MIME: $2)',
@@ -3187,7 +3188,7 @@ Wpisz nazwę pliku z pominięciem prefiksu „{{ns:file}}:”.',
 'specialpages'                   => 'Strony specjalne',
 'specialpages-note'              => '----
 * Strony specjalne ogólnie dostępne.
-* <span class="mw-specialpagerestricted">Strony specjalne o ograniczonym dostępie.</span>',
+* <strong class="mw-specialpagerestricted">Strony specjalne o ograniczonym dostępie.</strong>',
 'specialpages-group-maintenance' => 'Raporty konserwacyjne',
 'specialpages-group-other'       => 'Inne strony specjalne',
 'specialpages-group-login'       => 'Logowanie i rejestracja',
@@ -3232,7 +3233,7 @@ Wpisz nazwę pliku z pominięciem prefiksu „{{ns:file}}:”.',
 'dberr-header'      => 'Ta wiki nie działa poprawnie',
 'dberr-problems'    => 'Przepraszamy! Witryna ma problemy techniczne.',
 'dberr-again'       => 'Spróbuj przeładować stronę za kilka minut.',
-'dberr-info'        => '(Brak komunikacji z serwerem bazy danych $1)',
+'dberr-info'        => '(Brak komunikacji z serwerem bazy danych – $1)',
 'dberr-usegoogle'   => 'Możesz spróbować wyszukać w międzyczasie za pomocą Google.',
 'dberr-outofdate'   => 'Uwaga – indeksy zawartości serwisu mogą być nieaktualne.',
 'dberr-cachederror' => 'Strona została pobrana z pamięci podręcznej i może być nieaktualna.',

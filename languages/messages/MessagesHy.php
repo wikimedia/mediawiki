@@ -1,6 +1,9 @@
 <?php
 /** Armenian (Հայերեն)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -1216,7 +1219,7 @@ $3 մասնակիցը տվել է հետևյալ պատճառը. ''$2''",
 'imagelinks'                => 'Ֆայլի հղումներ',
 'linkstoimage'              => 'Հետևյալ  {{PLURAL:$1|էջը հղվում է|$1 էջերը հղվում են}} այս ֆայլին՝',
 'nolinkstoimage'            => 'Այս ֆայլին հղվող էջեր չկան։',
-'sharedupload'              => 'Այս ֆայլը $1 զետեղարանից է և կարող է օգտագործվել այլ նախագծերում։ $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => 'Այս ֆայլը $1 զետեղարանից է և կարող է օգտագործվել այլ նախագծերում։', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki'          => 'Հավելյալ տեղեկությունների համար տես $1։',
 'shareduploadwiki-desc'     => 'Նրա $1 էջի պարունակությունը բերված է ստորև։',
 'shareduploadwiki-linktext' => 'ֆայլի նկարագրության էջը',
@@ -2227,7 +2230,7 @@ $1',
 'specialpages'                   => 'Սպասարկող էջեր',
 'specialpages-note'              => '----
 * Հասարակ հատուկ էջեր։
-* <span class="mw-specialpagerestricted">Սահմանափակված հատուկ էջեր։</span>',
+* <strong class="mw-specialpagerestricted">Սահմանափակված հատուկ էջեր։</strong>',
 'specialpages-group-maintenance' => 'Տեխնիկական սպասարկման տեղեկատուներ',
 'specialpages-group-other'       => 'Այլ հատուկ էջեր',
 'specialpages-group-login'       => 'Մտնել / Գրանցվել',

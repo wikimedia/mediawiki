@@ -1,6 +1,9 @@
 <?php
 /** Bikol Central (Bikol Central)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -653,7 +656,7 @@ Kun itatagama mo ini, mawawarà an mga pagbabàgong nagibo poon kan pagpakarahá
 'copyrightwarning'          => "Giromdomon tabì na an gabos na kontribusyon sa {{SITENAME}} pigkokonsiderar na $2 (hilingón an $1 para sa mga detalye). Kun habò mong mahirá an saimomg sinurat na mayong pakimàno, dai tabì iyan isumiter digdi.<br />
 Pigpropromesa mo man samuyà na ika an kagsurat kaini, o kinopya mo ini sa dominiong panpubliko o sarong parehong libreng rekurso (hilingón an $1 para sa mga detalye).
 '''DAI TABÌ MAGSUMITIR NIN MGA GIBONG IPINAPANGALAD NA KOPYAHON NIN MAYONG PERMISO!'''",
-'copyrightwarning2'         => "Giromdomon tabì na an gabos na kontribusyon sa Betawiki pwedeng hirahón, bàgohon o halion kan ibang mga parágamit. Kun habô mong mahirá an saimomg sinurat na mayong pakimàno, pues, dai tabì isumitir iyan digdi.<br />
+'copyrightwarning2'         => "Giromdomon tabì na an gabos na kontribusyon sa {{SITENAME}} pwedeng hirahón, bàgohon o halion kan ibang mga parágamit. Kun habô mong mahirá an saimomg sinurat na mayong pakimàno, pues, dai tabì isumitir iyan digdi.<br />
 Pigpapangakò mo man samuyà na ika an nagsurat kaini, o pigkopya mo ini sa dominiong panpubliko o sarong parehong libreng rekurso (hilingon an $1 para sa mga detalye). '''DAI TABÌ MAGSUMITIR NIN MGA GIBONG IPINAPANGALAD NA KOPYAHON NIN MAYONG PERMISO!'''",
 'longpagewarning'           => "'''PATANID: $1 na kilobytes na kalabà an pahinang ini; an ibang mga browser pwedeng magkaproblema sa paghirá nin mga pahinang haros o sobra sa 32 kb.
 Paki bangâ ini sa saradit na seksyon.'''",
@@ -1037,7 +1040,7 @@ An historial nin pagparâ kan ''file'' nakakaag digdi para sa konbenyensya:",
 'imagelinks'                => 'Mga takod',
 'linkstoimage'              => 'An mga minasunod na pahina nakatakod sa dokumentong ini:',
 'nolinkstoimage'            => 'Mayong mga pahinang nakatakod sa dokumentong ini.',
-'sharedupload'              => "Ining ''file'' sarong bakas na pagkarga asin pwede ser na gamiton kan ibang mga proyekto. $2", # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => "Ining ''file'' sarong bakas na pagkarga asin pwede ser na gamiton kan ibang mga proyekto.", # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki'          => 'Hilingon tabi an $1 para sa iba pang talastas.',
 'shareduploadwiki-linktext' => "páhina nin descripsyón kan ''file''",
 'noimage'                   => 'Mayong file na may arog kaining pangaran, pwede kang $1.',

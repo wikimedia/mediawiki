@@ -1,6 +1,9 @@
 <?php
 /** Nahuatl (Nāhuatl)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -159,7 +162,7 @@ $messages = array(
 # Categories related messages
 'pagecategories'                 => '{{PLURAL:$1|Neneuhcāyōtl|Neneuhcāyōtl}}',
 'category_header'                => 'Tlahcuilōlli "$1" neneuhcāyōc',
-'subcategories'                  => 'Neneuhcāyōtzintli',
+'subcategories'                  => 'Tlanineneuhcāyōtl',
 'category-media-header'          => 'Media "$1" neneuhcāyōc',
 'category-empty'                 => "''Cah ahtlein inīn neneuhcāyōc.''",
 'hidden-categories'              => 'Neneuhcāyōtl {{PLURAL:$1|ōmotlāti|ōmotlātih}}',
@@ -174,7 +177,7 @@ $messages = array(
 
 'mainpagetext' => "<big>'''MediaHuiqui cualli ōmotlahtlāli.'''</big>",
 
-'about'          => 'Ītechcopa',
+'about'          => 'Ītechpa',
 'article'        => 'tlahcuilōlli',
 'newwindow'      => '(Motlapoāz cē yancuīc tlanexillōtl)',
 'cancel'         => 'Ticcuepāz',
@@ -276,7 +279,7 @@ $messages = array(
 'badaccess-group0' => 'Tehhuātl ahmo tiquichīhua inōn tiquiēlēhuia.',
 'badaccess-groups' => 'Inōn tiquiēlēhuia zan quichīhuah tlatequitiltilīlli {{PLURAL:$2|oncān|oncān}}: $1.',
 
-'ok'                      => 'Cualli',
+'ok'                      => 'Nopan iti',
 'retrievedfrom'           => 'Īhuīcpa "$1"',
 'youhavenewmessages'      => 'Tiquimpiya $1 ($2).',
 'newmessageslink'         => 'yancuīc tlahcuilōltzintli',
@@ -435,12 +438,14 @@ Occeppa xicalaqui niman ticmatīz.',
 'italic_tip'      => 'Italic tlahcuilōlli',
 'link_sample'     => 'Tzonhuiliztli ītōcā',
 'link_tip'        => 'Tzonhuiliztli tlahtic',
-'extlink_sample'  => 'http://www.tlamantli.com Tōcāitl',
+'extlink_sample'  => 'http://www.example.com Tōcāitl',
 'extlink_tip'     => 'Tzonhuilizcallān (xitequitiltia http://)',
 'headline_sample' => 'Cuātlahcuilōlli',
 'headline_tip'    => 'Iuhcāyōtl 2 tōcāyōtl',
 'math_sample'     => 'Xihcuiloa nicān',
 'math_tip'        => 'Tlapōhualmatiliztlahtōl (LaTeX)',
+'image_sample'    => 'Machiyōtl.jpg',
+'media_sample'    => 'Machiyōtl.ogg',
 'media_tip'       => 'Mēdiahuīc tzonhuiliztli',
 'sig_tip'         => 'Motōcā īca cāhuitl',
 'hr_tip'          => 'Pāntli',
@@ -827,7 +832,7 @@ Timitztlātlauhtiah, xitlahcuiloa occē tōcāitl.",
 'morelinkstoimage'          => 'Tiquinttāz [[Special:WhatLinksHere/$1|achi tzonhuiliztli]] inīn tlahcuilōlhuīc.',
 'redirectstofile'           => 'Inōn {{PLURAL:$1|tlahcuilōlli mocuepa|$1 tlahcuilōlli mocuepah}} nicān:',
 'duplicatesoffile'          => 'Inōn {{PLURAL:$1|tlahcuilōlli cah|$1 tlahcuilōlli cateh}} neneuhqui inīn:',
-'sharedupload'              => 'Inīn īxiptli huelīti motequitiltia zāzocāmpa $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => 'Inīn īxiptli huelīti motequitiltia zāzocāmpa', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'noimage'                   => 'Ahmo ia inōn tlahcuilōlli; $1',
 'noimage-linktext'          => 'ticquetzāz cē',
 'uploadnewversion-linktext' => 'Ticquetzāz yancuīc tlahcuilōlli',
@@ -1448,7 +1453,7 @@ Niman tihuelīti timocalaqui auh quiyōlēhua huiqui.',
 'specialpages'                 => 'Nōncuahquīzqui āmatl',
 'specialpages-note'            => '----
 * Nōncuahquīzqui.
-* <span class="mw-specialpagerestricted">Tzacuilic.</span>',
+* <strong class="mw-specialpagerestricted">Tzacuilic.</strong>',
 'specialpages-group-other'     => 'Occequīntīn nōncuahquīzqui zāzaniltin',
 'specialpages-group-login'     => 'Ximocalaqui / ximomachiyōmaca',
 'specialpages-group-changes'   => 'Yancuīc tlapatlaliztli īhuān tlahcuilōlloh',

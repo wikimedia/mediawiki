@@ -1,6 +1,9 @@
 <?php
 /** Western Frisian (Frysk)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -1461,7 +1464,7 @@ Der is ek in [[Special:WhatLinksHere/$2|folsleine list]].',
 'morelinkstoimage'          => '[[Special:WhatLinksHere/$1|Mear ferwizings]] nei dizze triem besjen.',
 'redirectstofile'           => '{{PLURAL:$1|De folgjende triem ferwiist|De folgjende $1 triemmen ferwize}} troch nei dizze triem:',
 'duplicatesoffile'          => '{{PLURAL:$1|De folgjende triem is|De folgjende $1 triemmen binne}} idintyk oan dizze triem:',
-'sharedupload'              => 'Dizze triem is in dielde oanbieding en kin ek troch oare projekten brûkt wurde. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => 'Dizze triem is in dielde oanbieding en kin ek troch oare projekten brûkt wurde.', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki'          => 'Sjoch de $1 foar fierdere ynformaasje.',
 'shareduploadwiki-desc'     => "De $1 yn 'e dielde triemmebank wurdt hjirûnder werjûn.",
 'shareduploadwiki-linktext' => 'triembeskriuwing',
@@ -2408,7 +2411,7 @@ Wolle jo de side wier op 'e nij skriuwe?",
 'specialpages'                   => 'Bysûndere siden',
 'specialpages-note'              => '----
 * Normale bysûndere siden.
-* <span class="mw-specialpagerestricted">Beheinde bysûndere siden.</span>',
+* <strong class="mw-specialpagerestricted">Beheinde bysûndere siden.</strong>',
 'specialpages-group-maintenance' => 'Underhâld siden',
 'specialpages-group-other'       => 'Oare bysûndere siden',
 'specialpages-group-login'       => 'Oanmelde',

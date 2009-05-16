@@ -1,6 +1,9 @@
 <?php
 /** Swedish (Svenska)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -13,8 +16,11 @@
  * @author Leo Johannes
  * @author Lokal Profil
  * @author M.M.S.
+ * @author MagnusA
  * @author Micke
+ * @author NH
  * @author Najami
+ * @author Petter Strandmark
  * @author S.Örvarr.S
  * @author Sannab
  * @author Skalman
@@ -271,7 +277,7 @@ $messages = array(
 'tog-hidepatrolled'           => 'Dölj patrullerade redigeringar i senaste ändringar',
 'tog-newpageshidepatrolled'   => 'Göm patrullerade sidor från listan över nya sidor',
 'tog-extendwatchlist'         => 'Utöka bevakningslistan till att visa alla ändringar, inte bara den senaste',
-'tog-usenewrc'                => 'Avancerad Senaste ändringar (Javascript)',
+'tog-usenewrc'                => 'Använd avancerad senaste ändringar (kräver JavaScript)',
 'tog-numberheadings'          => 'Numrerade rubriker',
 'tog-showtoolbar'             => 'Visa verktygsrad (Javascript)',
 'tog-editondblclick'          => 'Redigera sidor med dubbelklick (Javascript)',
@@ -279,7 +285,7 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Aktivera redigering av avsnitt genom högerklick på underrubriker (Javascript)',
 'tog-showtoc'                 => 'Visa innehållsförteckning (för sidor som har minst fyra rubriker)',
 'tog-rememberpassword'        => 'Kom ihåg lösenordet till nästa besök',
-'tog-editwidth'               => 'Full bredd på redigeringsrutan',
+'tog-editwidth'               => 'Utvidga redigeringsrutan till att fylla hela skärmen',
 'tog-watchcreations'          => 'Lägg till sidor jag skapar i min bevakningslista',
 'tog-watchdefault'            => 'Lägg till sidor jag redigerar i min bevakningslista',
 'tog-watchmoves'              => 'Lägg till sidor jag flyttar i min bevakningslista',
@@ -293,7 +299,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Skicka mig e-post även för små redigeringar',
 'tog-enotifrevealaddr'        => 'Visa min e-postadress i e-post från systemet',
 'tog-shownumberswatching'     => 'Visa antalet användare som bevakar',
-'tog-fancysig'                => 'Rå signatur, utan automatisk länk',
+'tog-fancysig'                => 'Rå signatur som wikitext (utan en automatisk länk)',
 'tog-externaleditor'          => 'Använd extern texteditor som standard (avancerat, kräver speciella inställningar i din dator)',
 'tog-externaldiff'            => 'Använd externt diff-verktyg (avancerat, kräver speciella inställningar i din dator)',
 'tog-showjumplinks'           => 'Aktivera "hoppa till"-tillgänglighetslänkar',
@@ -740,7 +746,6 @@ Vänta innan du försöker igen.',
 'resetpass-wrong-oldpass'   => 'Ogiltigt tillfälligt eller nuvarande lösenord.
 Du kanske redan har lyckats ändra ditt lösenord eller begärt ett nytt tillfälligt lösenord.',
 'resetpass-temp-password'   => 'Tillfälligt lösenord:',
-'resetpass-no-others'       => 'Du kan inte återställa lösenordet för andra användare.',
 'resetpass-log'             => 'Logg för återställning av lösenord',
 'resetpass-logtext'         => 'Nedan finns en logg över användare som fått sina lösenord återställda av en administratör.',
 'resetpass-logentry'        => 'ändrade lösenordet för $1',
@@ -966,7 +971,7 @@ Anledningen till blockeringen var "$2".',
 'next'                   => 'nästa',
 'last'                   => 'föregående',
 'page_first'             => 'första',
-'page_last'              => 'sista',
+'page_last'              => 'senaste',
 'histlegend'             => "Val av diff: markera i klickrutorna för att jämföra versioner och tryck enter eller knappen längst ner.<br />
 Förklaring: (nuvarande) = skillnad mot nuvarande version; (föregående) = skillnad mot föregående version; '''m''' = mindre ändring.",
 'history-fieldset-title' => 'Bläddra i historiken',
@@ -988,15 +993,15 @@ Prova att [[Special:Search|söka på wikin]] för relevanta nya sidor.',
 'rev-deleted-comment'            => '(kommentar borttagen)',
 'rev-deleted-user'               => '(användarnamn borttaget)',
 'rev-deleted-event'              => '(loggåtgärd borttagen)',
-'rev-deleted-text-permission'    => "Denna version av sidan har '''avlägsnats från de öppna arkiven'''.
+'rev-deleted-text-permission'    => "Denna version av sidan har '''raderats'''.
 Det kan finnas mer information i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} borttagningsloggen].",
-'rev-deleted-text-view'          => "Denna version av sidan har '''avlägsnats från de öppna arkiven'''.
-Som administratör på {{SITENAME}} kan du se den. Det kan finnas mer information i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} borttagningsloggen].",
-'rev-deleted-no-diff'            => "Du kan inte se denna diff på grund av att en av versionerna har '''tagits bort från de öppna arkiven'''.
-Det kan finnas detaljer i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} raderingsloggen].",
-'rev-deleted-unhide-diff'        => "En av versionerna för denna diff har '''tagits bort från de öppna arkiven'''.
-Det kan finnas detaljer i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} borttagningsloggen].
-Som administratör på {{SITENAME}} kan du fortfarande [$1 se denna diff] om du önskar fortsätta.",
+'rev-deleted-text-view'          => "Denna version av sidan har '''raderats'''.
+Som administratör kan du se den; det kan finnas mer information i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} borttagningsloggen].",
+'rev-deleted-no-diff'            => "Du kan inte se den här diffen på grund av att en av versionerna har '''raderats'''.
+Det kan finnas mer information i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} borttagningsloggen].",
+'rev-deleted-unhide-diff'        => "En av versionerna för den här diffen har '''raderats'''.
+Det kan finnas mer information i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} borttagningsloggen].
+Som administratör kan du fortfarande [$1 se den här diffen] om du önskar att fortsätta.",
 'rev-delundel'                   => 'visa/göm',
 'revisiondelete'                 => 'Ta bort/återställ versioner',
 'revdelete-nooldid-title'        => 'Ogiltig målversion',
@@ -1186,7 +1191,7 @@ Se till att sidhistorikens kontinuitet behålls när du sammanfogar historik.',
 'search-section'                   => '(avsnitt $1)',
 'search-suggest'                   => 'Menade du: $1',
 'search-interwiki-caption'         => 'Systerprojekt',
-'search-interwiki-default'         => '$1 resultat:',
+'search-interwiki-default'         => 'Resultat i $1:',
 'search-interwiki-more'            => '(mer)',
 'search-mwsuggest-enabled'         => 'med förslag',
 'search-mwsuggest-disabled'        => 'inga förslag',
@@ -1553,7 +1558,7 @@ Om du ändå vill ladda upp din fil, gå då tillbaka och använd ett annat namn
 'sourcefilename'              => 'Ursprungsfilens namn:',
 'destfilename'                => 'Nytt filnamn:',
 'upload-maxfilesize'          => 'Maximal filstorlek: $1',
-'watchthisupload'             => 'Bevaka denna sida',
+'watchthisupload'             => 'Bevaka den här filen',
 'filewasdeleted'              => 'En fil med detta namn har tidigare laddats upp och därefter tagits bort. Du bör kontrollera $1 innan du fortsätter att ladda upp den.',
 'upload-wasdeleted'           => "'''Varning: Du håller på att ladda upp en fil som tidigare raderats.'''
 
@@ -1635,7 +1640,7 @@ Det finns en [[Special:WhatLinksHere/$2|fullständig lista]].',
 'morelinkstoimage'          => 'Visa [[Special:WhatLinksHere/$1|fler länkar]] till den här filen.',
 'redirectstofile'           => 'Följande {{PLURAL:$1|fil är en omdirigering|filer är omdirigeringar}} till den här filen:',
 'duplicatesoffile'          => 'Följande {{PLURAL:$1|fil är en dubblett|filer är dubbletter}} till den här filen ([[Special:FileDuplicateSearch/$2|mer detaljer]]):',
-'sharedupload'              => 'Denna fil är från $1 och kan användas av andra projekt. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => 'Den här filen är från $1 och kan användas av andra projekt.', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki'          => 'Vänligen se $1 för mer information.',
 'shareduploadwiki-desc'     => 'Innehållet på $1 där visas nedan.',
 'shareduploadwiki-linktext' => 'filens beskrivningssida',
@@ -2017,7 +2022,7 @@ Se $2 för noteringar om de senaste raderingarna.',
 'rollbacklink'     => 'rulla tillbaka',
 'rollbackfailed'   => 'Tillbakarullning misslyckades',
 'cantrollback'     => 'Det gick inte att rulla tillbaka, då sidan endast redigerats av en användare.',
-'alreadyrolled'    => 'Det gick inte att rulla tillbaka den sista redigeringen av [[User:$2|$2]] ([[User talk:$2|diskussion]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) på sidan [[:$1|$1]]. Någon annan har redan rullat tillbaka eller redigerat sidan.
+'alreadyrolled'    => 'Det gick inte att rulla tillbaka den senaste redigeringen av [[User:$2|$2]] ([[User talk:$2|diskussion]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) på sidan [[:$1|$1]]. Någon annan har redan rullat tillbaka eller redigerat sidan.
 
 Sidan ändrades senast av [[User:$3|$3]] ([[User talk:$3|diskussion]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]).',
 'editcomment'      => "Redigeringskommentaren var: \"''\$1''\".", # only shown if there is an edit comment
@@ -2156,7 +2161,7 @@ $1',
 'sp-contributions-newbies-sub'   => 'Från nya konton',
 'sp-contributions-newbies-title' => 'Bidrag från nya konton',
 'sp-contributions-blocklog'      => 'Blockeringslogg',
-'sp-contributions-logs'          => 'loggar',
+'sp-contributions-logs'          => 'Loggar',
 'sp-contributions-search'        => 'Sök efter användarbidrag',
 'sp-contributions-username'      => 'IP-adress eller användarnamn:',
 'sp-contributions-submit'        => 'Sök',
@@ -2345,8 +2350,8 @@ Välj något annat namn istället.',
 Försök att sammanfoga dem manuellt.'''",
 'movedto'                      => 'flyttad till',
 'movetalk'                     => 'Flytta tillhörande diskussionssida',
-'move-subpages'                => 'Flytta undersidor (upp till $1), om det finns sådana',
-'move-talk-subpages'           => 'Flytta undersidor av diskussionssidan (upp till $1), om det finns sådana',
+'move-subpages'                => 'Flytta undersidor (upp till $1)',
+'move-talk-subpages'           => 'Flytta undersidor av diskussionssidan (upp till $1)',
 'movepage-page-exists'         => 'Sidan $1 finns redan och kan inte skrivas över automatiskt.',
 'movepage-page-moved'          => 'Sidan $1 har flyttats till $2.',
 'movepage-page-unmoved'        => 'Sidan $1 kunde inte flyttas till $2.',
@@ -2640,7 +2645,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Varning:''': Denna fil kan innehålla programkod som, om den körs, kan skada din dator.",
-'imagemaxsize'         => 'Begränsa bilders storlek på filbeskrivningssidor till:',
+'imagemaxsize'         => "Begränsa bilders storlek:<br />''(för filbeskrivningssidor)''",
 'thumbsize'            => 'Storlek på minibild:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|sida|sidor}}',
 'file-info'            => '(filstorlek: $1, MIME-typ: $2)',
@@ -3134,7 +3139,7 @@ Skriv filnamnet utan prefixet "{{ns:file}}:" .',
 'specialpages'                   => 'Specialsidor',
 'specialpages-note'              => '----
 * Normala specialsidor.
-* <span class="mw-specialpagerestricted">Specialsidor med begränsad åtkomst.</span>',
+* <strong class="mw-specialpagerestricted">Specialsidor med begränsad åtkomst.</strong>',
 'specialpages-group-maintenance' => 'Underhållsrapporter',
 'specialpages-group-other'       => 'Övriga specialsidor',
 'specialpages-group-login'       => 'Inloggning/registrering',
@@ -3163,15 +3168,15 @@ Skriv filnamnet utan prefixet "{{ns:file}}:" .',
 #Skriv alla fragment av reguljära uttryck ovanför den här raden. Lämna den här raden precis som den är</pre>',
 
 # Special:Tags
-'tags'                    => 'Giltiga ändringstaggar',
-'tag-filter'              => 'Filter för [[Special:Tags|taggar]]:',
+'tags'                    => 'Giltiga ändringsmärken',
+'tag-filter'              => 'Filter för [[Special:Tags|märken]]:',
 'tag-filter-submit'       => 'Filter',
-'tags-title'              => 'Taggar',
-'tags-intro'              => 'Denna sida listar taggarna som mjukvaran kan markera en redigering med, och deras betydelse.',
-'tags-tag'                => 'Internt taggnamn',
+'tags-title'              => 'Märken',
+'tags-intro'              => 'Denna sida listar märkena som mjukvaran kan markera en redigering med, och deras betydelse.',
+'tags-tag'                => 'Internt märkesnamn',
 'tags-display-header'     => 'Utseende på listor över ändringar',
 'tags-description-header' => 'Full beskrivning av betydelse',
-'tags-hitcount-header'    => 'Taggade ändringar',
+'tags-hitcount-header'    => 'Märkta ändringar',
 'tags-edit'               => 'redigering',
 'tags-hitcount'           => '$1 {{PLURAL:$1|ändring|ändringar}}',
 

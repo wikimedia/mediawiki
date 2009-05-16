@@ -1,6 +1,9 @@
 <?php
 /** Aragonese (Aragonés)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -121,8 +124,8 @@ $messages = array(
 'tog-hideminor'               => 'Amagar edizions menors en a pachina de "zaguers cambeos"',
 'tog-hidepatrolled'           => 'Amagar as edizions patrullatas en os zaguers cambeos',
 'tog-newpageshidepatrolled'   => "Amagar as pachinas patrulladas d'a lista de pachinas nuebas",
-'tog-extendwatchlist'         => 'Enamplar a lista de seguimiento ta amostrar toz os cambeos afeutatos.',
-'tog-usenewrc'                => 'Presentazión amillorada d\'os "zaguers cambeos" (cal JavaScript)',
+'tog-extendwatchlist'         => "Expandir a lista de seguimiento t'amostrar toz os cambeos, no nomás os más rezients.",
+'tog-usenewrc'                => 'Zaguers cambeos con presentazión amillorada (cal JavaScript)',
 'tog-numberheadings'          => 'Numerar automaticament os encabezaus',
 'tog-showtoolbar'             => "Amostrar a barra de ferramientas d'edizión (cal JavaScript)",
 'tog-editondblclick'          => 'Autibar edizión de pachinas fendo-ie doble click (cal JavaScript)',
@@ -130,7 +133,7 @@ $messages = array(
 'tog-editsectiononrightclick' => "Autibar a edizión de sezions punchando con o botón dreito d'a rateta <br /> en os títols de sezions (cal JavaScript)",
 'tog-showtoc'                 => 'Amostrar o endize de contenius (ta pachinas con más de 3 encabezaus)',
 'tog-rememberpassword'        => 'Remerar a palabra de paso entre sesions',
-'tog-editwidth'               => "O cuatrón d'edizión tien l'amplaria masima",
+'tog-editwidth'               => "Enamplar a caixa d'edizión ta plenar toda a pantalla",
 'tog-watchcreations'          => 'Cosirar as pachinas que creye',
 'tog-watchdefault'            => 'Cosirar as pachinas que edite',
 'tog-watchmoves'              => 'Cosirar as pachinas que treslade',
@@ -144,7 +147,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Nimbiar-me un correu tamién cuan bi aiga edizions menors de pachinas',
 'tog-enotifrevealaddr'        => 'Fer beyer a mía adreza de correu-e en os correus de notificazión',
 'tog-shownumberswatching'     => "Amostrar o numero d'usuarios que cosiran un articlo",
-'tog-fancysig'                => 'Siñaduras simplas (sin de binclo automatico)',
+'tog-fancysig'                => 'Tratar as siñaduras como wikitesto (sin de binclo automatico)',
 'tog-externaleditor'          => "Fer serbir l'editor esterno por defeuto (nomás ta espiertos, cal confegurar o suyo ordenador).",
 'tog-externaldiff'            => 'Fer serbir o bisualizador de cambeos esterno por defeuto (nomás ta espiertos, cal confegurar o suyo ordenador)',
 'tog-showjumplinks'           => 'Autibar binclos d\'azesibilidat "blincar enta"',
@@ -512,6 +515,7 @@ Abría de tener menos de $1 {{PLURAL:$1|caráuter|caráuters}}.',
 'gender-unknown'             => 'No espezificato',
 'gender-male'                => 'Ombre',
 'gender-female'              => 'Muller',
+'prefs-help-gender'          => 'Opzional: Emplegada ta correzión de chenero por o software. Ista informazión será publica.',
 'email'                      => 'Adreza de correu-e',
 'prefs-help-realname'        => "* Nombre reyal (opzional): si esliche escribir-lo, se ferá serbir ta l'atribuzión d'a suya faina.",
 'loginerror'                 => 'Error en enzetar a sesión',
@@ -578,6 +582,10 @@ Si a cuenta s\'ha creyato por error, simplament innore iste mensache.',
 
 Puet estar que ya aiga cambeato a suya palabra de paso u aiga demandato una nueba palabra de paso temporal.',
 'resetpass-temp-password'   => 'Palabra de paso temporal:',
+'resetpass-log'             => 'Rechistro de restablimiento de palabras de paso',
+'resetpass-logtext'         => "En o cobaixo s'amuestra o rechistro d'os usuarios que un almenistrador lis ha restablito as suyas palabras de paso.",
+'resetpass-logentry'        => "S'ha cambiato a palabra de paso de $1",
+'resetpass-comment'         => 'Razón ta restablir a palabra de paso:',
 
 # Edit page toolbar
 'bold_sample'     => 'Testo en negreta',
@@ -719,7 +727,7 @@ A esplicazión ufierta por l'almenistrador que bloqueyó a base de datos ye ista
 'protectedpagewarning'             => "'''PARE CUENTA: Ista pachina ha estato protechita ta que sólo os usuarios con premisos d'almenistrador puedan editar-la.'''",
 'semiprotectedpagewarning'         => "'''Nota:''' Ista pachina ha estato protechita ta que nomás usuarios rechistratos puedan editar-la.",
 'cascadeprotectedwarning'          => "'''Pare cuenta:''' Ista pachina ye protechita ta que nomás os almenistrador puedan editar-la, porque ye encluyita en {{PLURAL:$1|a siguient pachina, protechita|as siguients pachinas, protechitas}} con a opzión de ''cascada'' :",
-'titleprotectedwarning'            => "'''PARE CUENTA:  Ista pachina ye bloqueyata ta que sólo bels usuarios puedan creyar-la.'''",
+'titleprotectedwarning'            => "'''PARE CUENTA:  Ista pachina s'ha bloqueyato, y s'aprezisan [[Special:ListGroupRights|dreitos espezificos]] ta creyar-la.'''",
 'templatesused'                    => 'Plantillas emplegatas en ista pachina:',
 'templatesusedpreview'             => 'Plantillas emplegatas en ista ambiesta prebia:',
 'templatesusedsection'             => 'Plantillas usatas en ista sezión:',
@@ -810,11 +818,10 @@ Prebe de [[Special:Search|mirar en o wiki]] atras pachinas relebants.",
 'rev-deleted-comment'            => "(s'ha sacato iste comentario)",
 'rev-deleted-user'               => "(s'ha sacato iste nombre d'usuario)",
 'rev-deleted-event'              => "(Aizión borrata d'o rechistro)",
-'rev-deleted-text-permission'    => "Ista bersión d'a pachina ye estata sacata d'os archibos publicos.
-Puede trobar más detalles en o [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rechistro de borrau].",
-'rev-deleted-text-view'          => "Ista bersión d'a pachina ye sacata d'os archibos publicos.
-Puede beyer-la porque ye almenistrador/a d'iste wiki;
-puede trobar más detalles en o [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rechistro de borrau].",
+'rev-deleted-text-permission'    => "Ista bersión d'a pachina s'ha '''borrato'''.
+Puede trobar más detalles en o [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rechistro de borratos].",
+'rev-deleted-text-view'          => "Ista bersión d'a pachina s'ha '''borrato'''.
+La puet beyer porque ye almenistrador/a; puede trobar más detalles en o [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rechistro de borratos].",
 'rev-delundel'                   => 'amostrar/amagar',
 'revisiondelete'                 => 'Borrar/esfer borrau de bersions',
 'revdelete-nooldid-title'        => 'A bersión de destino no ye conforme',
@@ -1419,7 +1426,7 @@ Tamién puez consultar a [[Special:WhatLinksHere/$2|lista completa]].',
 'morelinkstoimage'          => 'Amostrar [[Special:WhatLinksHere/$1|más binclos]] ta iste archibo.',
 'redirectstofile'           => '{{PLURAL:$1|O siguient archibo reendreza|Os siguients $1 archibos reendrezan}} enta iste archibo:',
 'duplicatesoffile'          => "{{PLURAL:$1|O siguient archibo ye un duplicato|Os siguients $1 archibos son duplicatos}} d'iste archibo ([[Special:FileDuplicateSearch/$2|más detalles]]):",
-'sharedupload'              => 'Iste archibo ye compartito y puede estar que siga emplegato en atros procheutos. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => 'Iste fichero ye de $1 y talment siga emplegato en atros procheutos.', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki'          => 'Ta más informazión, consulte $1.',
 'shareduploadwiki-desc'     => "A descripzión d'a $1 en o reposte compartito s'amuestra en o cobaxo.",
 'shareduploadwiki-linktext' => "pachina de descripzión de l'archibo",
@@ -1885,7 +1892,7 @@ Si s'ha creyato una nueba pachina con o mesmo nombre dende que se borró a orich
 'undeleterevision-missing'     => "Bersión no conforme u no trobata. Regular que o binclo sia incorreuto u que a bersión aiga estato restaurata u borrata de l'archibo.",
 'undelete-nodiff'              => "No s'ha trobato garra bersión anterior.",
 'undeletebtn'                  => 'Restaurar!',
-'undeletelink'                 => 'restaurar',
+'undeletelink'                 => 'amostrar/restaurar',
 'undeletereset'                => 'Prenzipiar',
 'undeleteinvert'               => 'Contornar selezión',
 'undeletecomment'              => 'Razón ta restaurar:',
@@ -2114,8 +2121,8 @@ En ixos casos, si lo deseya, abrá de tresladar u combinar manualment o conteniu
 'talkexists'                   => "A pachina s'ha tresladato correutament, pero a descusión no s'ha puesto tresladar porque ya esiste una con o nuebo títol. Por fabor, encorpore manualment o suyo conteniu.",
 'movedto'                      => 'tresladato ta',
 'movetalk'                     => 'Tresladar a pachina de descusión asoziata.',
-'move-subpages'                => 'Tresladar as sozpachinas (dica $1), si ye posible',
-'move-talk-subpages'           => "Tresladar todas as sozpachinas d'a pachina de descusión (dica $1), si ye posible",
+'move-subpages'                => 'Tresladar as sozpachinas (dica $1)',
+'move-talk-subpages'           => "Tresladar todas as sozpachinas d'a pachina de descusión (dica $1)",
 'movepage-page-exists'         => 'A pachina $1 ya esiste y no se puede sobrescribir automaticament.',
 'movepage-page-moved'          => "S'ha tresladato a pachina $1 ta $2.",
 'movepage-page-unmoved'        => "No s'ha puesto tresladar a pachina $1 ta $2.",
@@ -2851,7 +2858,7 @@ Escriba o nombre de l\'archibo sin o prefixo "{{ns:file}}:".',
 'specialpages'                   => 'Pachinas espezials',
 'specialpages-note'              => '----
 * Pachinas espezials normals.
-* <span class="mw-specialpagerestricted">Pachinas espezials restrinchitas.</span>',
+* <strong class="mw-specialpagerestricted">Pachinas espezials restrinchitas.</strong>',
 'specialpages-group-maintenance' => 'Informes de mantenimiento',
 'specialpages-group-other'       => 'Atras pachinas espezials',
 'specialpages-group-login'       => 'Inizio de sesión / rechistro',

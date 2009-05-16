@@ -1,6 +1,9 @@
 <?php
 /** Javanese (Basa Jawa)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -166,7 +169,7 @@ $messages = array(
 == Miwiti panggunan  ==
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Daftar pangaturan préférènsi]
 * [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
-* [http://mail.wikimedia.org/mailman/listinfo/mediawiki-announce Milis rilis MediaWiki]",
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Milis rilis MediaWiki]",
 
 'about'          => 'Prakara',
 'article'        => 'Artikel',
@@ -1290,7 +1293,7 @@ Dhaftar ing ngisor nuduhaké {{PLURAL:$1|kaca pisanan kanthi pranala langsung|$1
 'morelinkstoimage'          => 'Ndeleng [[Special:WhatLinksHere/$1|luwih akèh pranala]] menyang berkas iki.',
 'redirectstofile'           => '{{PLURAL:$1|berkas kaalihaké|$1 berkas-berkas kaalihaké}} menyang berkas iki:',
 'duplicatesoffile'          => 'Ing ngisor iki {{PLURAL:$1|berkas arupa duplikat|$1 berkas-berkas arupa duplikat}} saka berkas iki:',
-'sharedupload'              => 'Berkas iki saka $1 lan bisa digunakaké déning proyèk-proyèk liya. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => 'Berkas iki saka $1 lan bisa digunakaké déning proyèk-proyèk liya.', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki'          => 'Mangga mirsani $1 kanggo informasi sabanjuré.',
 'shareduploadwiki-desc'     => 'Dhèskripsi ing $1 ditampilaké ing ngisor.',
 'shareduploadwiki-linktext' => 'kaca dèskripsi berkas',
@@ -1982,8 +1985,8 @@ Ing kasus-kasus iku, yèn panjenengan gayuh, panjenengan bisa mindhahaké utawa 
 'talkexists'                => 'Kaca iku kasil dipindhahaké, nanging kaca dhiskusi saka kaca iku ora bisa dipindhahaké amerga wis ana kaca dhiskusi ing irah-irahan (judhul) sing anyar. Mangga kaca-kaca dhiskusi wau digabung sacara manual.',
 'movedto'                   => 'dipindhah menyang',
 'movetalk'                  => 'Pindahna kaca dhiskusi sing ana gandhèngané.',
-'move-subpages'             => 'Pindhahen kabèh anak-kaca, yèn ana',
-'move-talk-subpages'        => 'Pindhahen kabèh anak-kaca wicara, yèn ana',
+'move-subpages'             => 'Pindhahen kabèh anak-kaca',
+'move-talk-subpages'        => 'Pindhahen kabèh anak-kaca wicara',
 'movepage-page-exists'      => 'Kaca $1 wis ana lan ora bisa ditindhes sacara otomatis.',
 'movepage-page-moved'       => 'Kaca $1 wis dipindhah menyang $2.',
 'movepage-page-unmoved'     => 'Kaca $1 ora bisa dialihaké menyang $2.',
@@ -2713,7 +2716,7 @@ Lebokna jeneng berkas tanpa imbuhan awal "{{ns:file}}:".',
 'specialpages-note'              => '----
 Katrangan tampilan:
 * Kaca astamèwa normal
-* <span class="mw-specialpagerestricted">Kaca astamèwa winates</span>',
+* <strong class="mw-specialpagerestricted">Kaca astamèwa winates</strong>',
 'specialpages-group-maintenance' => 'Lapuran pangopènan',
 'specialpages-group-other'       => 'Kaca-kaca astaméwa liyané',
 'specialpages-group-login'       => 'Mlebu log / ndaftar',

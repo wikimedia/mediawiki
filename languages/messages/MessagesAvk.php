@@ -1,6 +1,9 @@
 <?php
 /** Kotava (Kotava)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -1154,7 +1157,7 @@ Sulara \"log\" va batu bu krafiason batlize zo nedir :",
 'morelinkstoimage'          => 'Rupera va [[Special:WhatLinksHere/$1|lofi skedasiki]] va bat iyeltak.',
 'redirectstofile'           => 'Vlevef {{PLURAL:$1|graskan iyeltak|$1 graskan iyeltak}} va bat iyeltak :',
 'duplicatesoffile'          => 'Bat {{PLURAL:$1|iyeltak tir|$1 iyeltak tid}} jontolaca ke bat iyeltak ([[Special:FileDuplicateSearch/$2|lo pinta]]) :',
-'sharedupload'              => 'Bat iyeltak tir ke $1 ise gan ar abdumimaks zo rofaver. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => 'Bat iyeltak tir ke $1 ise gan ar abdumimaks zo rofaver.', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki'          => 'Ta lo giva va $1 vay disukel !',
 'shareduploadwiki-desc'     => 'Pimtara icde intaf $1 vleveon zo nedir.',
 'shareduploadwiki-linktext' => 'Iyeltakpimtarabu',
@@ -1747,8 +1750,8 @@ Dans ce cas, vous devrez renommer ou fusionner la page manuellement si vous le d
 'talkexists'              => "La page elle-même a été déplacée avec succès, mais la page de discussion n'a pas pu être déplacée car il en existait déjà une sous le nouveau nom. S'il vous plait, fusionnez les manuellement.",
 'movedto'                 => 'Tolyoltayan ton',
 'movetalk'                => "Renommer aussi la page « discussion », s'il y a lieu.",
-'move-subpages'           => 'Arrundara va volveybueem, ede rotisa',
-'move-talk-subpages'      => 'Arrundara va volveybueem ke prilarabu, ede rotisa',
+'move-subpages'           => 'Arrundara va volveybueem',
+'move-talk-subpages'      => 'Arrundara va volveybueem ke prilarabu',
 'movepage-page-exists'    => '$1 bu ixam tir nume me balkon zo rotolsuter.',
 'movepage-page-moved'     => '$1 bu ko $2 su zo arrundar.',
 'movepage-page-unmoved'   => '$1 bu ko $2 me al zo rotarrundar.',

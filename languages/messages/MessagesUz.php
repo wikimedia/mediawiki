@@ -1,6 +1,9 @@
 <?php
 /** Uzbek (O'zbek)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -419,7 +422,7 @@ Bu yerda: (joriy) = hozirgi koʻrinish bilan farq,
 'imagelinks'                => 'Fayllarga ishoratlar',
 'linkstoimage'              => 'Bu faylga quyidagi {{PLURAL:$1|sahifa|$1 sahifalar}} bogʻlangan:',
 'nolinkstoimage'            => 'Bu faylga bogʻlangan sahifalar yoʻq.',
-'sharedupload'              => 'Ushbu fayl umumiy joyga yuklangandir va boshqa loyihalarda ishlatilishi mumkin. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => 'Ushbu fayl umumiy joyga yuklangandir va boshqa loyihalarda ishlatilishi mumkin.', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki-linktext' => 'fayl haqida sahifa',
 'uploadnewversion-linktext' => 'Bu faylning yangi versiyasini yukla',
 

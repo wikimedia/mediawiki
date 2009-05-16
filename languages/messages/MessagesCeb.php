@@ -1,6 +1,9 @@
 <?php
 /** Cebuano (Cebuano)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -413,7 +416,7 @@ Ang mga panid sa [[Special:Watchlist|imong gibantayan]] '''nakalugom'''.",
 'filehist-comment'  => 'Komento',
 'imagelinks'        => 'Mga sumpay',
 'linkstoimage'      => 'Ang mosunod nga {{PLURAL:$1|mga panid misumpay|$1 panid misumpay}} niining payl:',
-'sharedupload'      => 'Ang kining payl usa ka shared upload ug mahimong gigamit sa ubang mga proyekto. $2', # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'      => 'Ang kining payl usa ka shared upload ug mahimong gigamit sa ubang mga proyekto.', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 
 # Random page
 'randompage' => 'Bisan unsang panid',

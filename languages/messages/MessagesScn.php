@@ -1,6 +1,9 @@
 <?php
 /** Sicilian (Sicilianu)
  *
+ * See MessagesQqq.php for message documentation incl. usage of parameters
+ * To improve a translation please visit http://translatewiki.net
+ *
  * @ingroup Language
  * @file
  *
@@ -1391,7 +1394,7 @@ Di sècutu sunnu alincati sulu {{PLURAL:$1|la prima pàggina ca punta|li primi $
 'morelinkstoimage'          => 'Visualizza [[Special:WhatLinksHere/$1|àutri link]] a stu file.',
 'redirectstofile'           => '{{PLURAL:$1|Chistu|Chisti $1}} file {{PLURAL:$1|è|sunnu}} nu redirect a stu file:',
 'duplicatesoffile'          => '{{PLURAL:$1|Chistu|Chisti $1}} file {{PLURAL:$1|è nu dupppiuni|sunnu duppiuni}} di stu file ([[Special:FileDuplicateSearch/$2|cchiù dittagli]]):',
-'sharedupload'              => "Chistu file è n'upload condivisu; pò èssiri quinni utilizzatu di cchiù pruggetti wiki. $2", # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => 'Stu file veni di $1 e pò èssiri utilizzatu di àutri pruggetti wiki.', # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki'          => 'Si preja di taliari $1 pi ultiriuri nfurmazzioni.',
 'shareduploadwiki-desc'     => 'La discrizzioni ca appari supra la rilativa $1 veni ammustrata sutta.',
 'shareduploadwiki-linktext' => "pàggina di discrizzioni dû ''file''",
@@ -2069,8 +2072,8 @@ Nta sti casi, tu hai a spustari o agghiùnciri manuarmenti la pàggina di discus
 'talkexists'                   => "'''La pàggina hà statu spustata currettamenti, ma nun hà statu pussìbbili spustari la pàggina di discussioni pirchì nn'esisti già n'àutra cu lu tìtulu novu. Ntigrari manuarmenti li cuntinuti dî dui pàggini.'''",
 'movedto'                      => 'spustata a',
 'movetalk'                     => 'Sposta puru la pàggina di discussioni, eventuarmenti.',
-'move-subpages'                => 'Sposta tutti li suttapàggini, si è pussìbbili',
-'move-talk-subpages'           => 'Sposta tutti li suttapàggini di discussioni, si è pussìbbili',
+'move-subpages'                => 'Sposta tutti li suttapàggini',
+'move-talk-subpages'           => 'Sposta tutti li suttapàggini di discussioni',
 'movepage-page-exists'         => 'La pàggina $1 esisti ggià e nun pò èssiri autumaticamenti suprascrivuta.',
 'movepage-page-moved'          => 'La pàggina $1 fu spustata a $2.',
 'movepage-page-unmoved'        => 'La pàggina $1 nun pò èssiri spustata a $2.',
@@ -2824,7 +2827,7 @@ Nziriri lu nomu di lu file senza lu prifissu \"{{ns:file}}:\"",
 'specialpages'                   => 'Pàggini spiciali',
 'specialpages-note'              => '----
 * Pàggini spiciali non risirvati.
-* <span class="mw-specialpagerestricted">Pàggini spiciali risirvati sulu a quarchi catigurìa d\'utenti.</span>',
+* <strong class="mw-specialpagerestricted">Pàggini spiciali risirvati sulu a quarchi catigurìa d\'utenti.</strong>',
 'specialpages-group-maintenance' => 'Resocunti di manutinzioni',
 'specialpages-group-other'       => 'Autri pàggini spiciali',
 'specialpages-group-login'       => 'Trasi / riggìstrazzioni',
