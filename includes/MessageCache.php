@@ -500,7 +500,7 @@ class MessageCache {
 	 *                         functionality), or if it is a true boolean then
 	 *                         use the wikis content language (also as a
 	 *                         fallback).
-	 * @param bool $isFullKey Specifies whether $key is a two part key "lang/msg".
+	 * @param bool $isFullKey Specifies whether $key is a two part key "msg/lang".
 	 */
 	function get( $key, $useDB = true, $langcode = true, $isFullKey = false ) {
 		global $wgContLanguageCode, $wgContLang;
@@ -522,13 +522,13 @@ class MessageCache {
 		# Try the MediaWiki namespace
 		if( !$this->mDisable && $useDB ) {
 			$title = $wgContLang->ucfirst( $lckey );
-			if(!$isFullKey && ($langcode != $wgContLanguageCode) ) {
+			if(!$isFullKey && ( $langcode != $wgContLanguageCode ) ) {
 				$title .= '/' . $langcode;
 			}
 			$message = $this->getMsgFromNamespace( $title, $langcode );
 		}
-		if($message === false)
-			wfRunHooks('MessageNotInMwNs', array(&$message,$lckey,$langcode,$isFullKey));
+		if( $message === false )
+			wfRunHooks( 'MessageNotInMwNs', array( &$message, $lckey, $langcode, $isFullKey ) );
 
 		# Try the extension array
 		if ( $message === false && isset( $this->mExtensionMessages[$langcode][$lckey] ) ) {
