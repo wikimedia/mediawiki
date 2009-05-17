@@ -69,30 +69,30 @@ if( isset( $options['full'] ) ) {
 	$dumper->dump( WikiExporter::LOGS );
 } else {
 	$dumper->progress( <<<ENDS
-This script dumps the wiki page database into an XML interchange wrapper
-format for export or backup.
+This script dumps the wiki page or logging database into an
+XML interchange wrapper format for export or backup.
 
 XML output is sent to stdout; progress reports are sent to stderr.
 
 Usage: php dumpBackup.php <action> [<options>]
 Actions:
-  --full      Dump complete history of every page.
-  --current   Includes only the latest revision of each page.
-  --logs      Dump action logs for every page.
+  --full      Dump all revisions of every page.
+  --current   Dump only the latest revision of every page.
+  --logs      Dump all log events.
 
 Options:
   --quiet     Don't dump status reports to stderr.
   --report=n  Report position and speed after every n pages processed.
               (Default: 100)
   --server=h  Force reading from MySQL server h
-  --start=n   Start from page_id n
-  --end=n     Stop before page_id n (exclusive)
+  --start=n   Start from page_id or log_id n
+  --end=n     Stop before page_id or log_id n (exclusive)
   --skip-header Don't output the <mediawiki> header
   --skip-footer Don't output the </mediawiki> footer
   --stub      Don't perform old_text lookups; for 2-pass dump
   --uploads   Include upload records (experimental)
 
-Fancy stuff:
+Fancy stuff: (Works? Add examples please.)
   --plugin=<class>[:<file>]   Load a dump plugin class
   --output=<type>:<file>      Begin a filtered output stream;
                               <type>s: file, gzip, bzip2, 7zip
@@ -101,5 +101,3 @@ Fancy stuff:
 ENDS
 );
 }
-
-
