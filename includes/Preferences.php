@@ -11,8 +11,8 @@ class Preferences {
 		if (self::$defaultPreferences)
 			return self::$defaultPreferences;
 	
-		global $wgLang, $wgRCMaxAge;
-		
+		global $wgRCMaxAge;
+
 		$defaultPreferences = array();
 
 		self::profilePreferences( $user, $defaultPreferences );
@@ -26,9 +26,9 @@ class Preferences {
 		self::watchlistPreferences( $user, $defaultPreferences );
 		self::searchPreferences( $user, $defaultPreferences );
 		self::miscPreferences( $user, $defaultPreferences );
-				
+
 		wfRunHooks( 'GetPreferences', array( $user, &$defaultPreferences ) );
-				
+
 		## Prod in defaults from the user
 		global $wgDefaultUserOptions;
 		foreach( $defaultPreferences as $name => &$info ) {
