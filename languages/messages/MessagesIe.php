@@ -10,10 +10,14 @@
  * @author Jmb
  * @author Malafaya
  * @author Remember the dot
+ * @author Valodnieks
  * @author לערי ריינהארט
  */
 
 $messages = array(
+'underline-always' => 'Sempre',
+'underline-never'  => 'Nequande',
+
 # Dates
 'sunday'        => 'soledí',
 'monday'        => 'lunedí',
