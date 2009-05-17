@@ -192,7 +192,7 @@ class ProtectionForm {
 				$titles .= '* [[:' . $title->getPrefixedText() . "]]\n";
 			}
 
-			$wgOut->wrapWikiMsg( "$1\n$titles", array( 'protect-cascadeon', count($cascadeSources) ) );
+			$wgOut->wrapWikiMsg( "<div id=\"mw-protect-cascadeon\">$1\n" . $titles . "</div>", array( 'protect-cascadeon', count($cascadeSources) ) );
 		}
 
 		$sk = $wgUser->getSkin();

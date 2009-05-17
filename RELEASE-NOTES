@@ -125,6 +125,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   $wgSysopEmailBans
 * (bug 16912) Tooltips on images with link= disappear
 * (bug 18389) Localise numbers in EXIF data
+* (bug 18522) Wrap MediaWiki:Protect-cascadeon in a div for identification
 
 == API changes in 1.16 ==
 
