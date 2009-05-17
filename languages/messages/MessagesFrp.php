@@ -1450,7 +1450,7 @@ Vos pouede asse-ben tornar èprovar a una hora de muendra afluence.',
 
 # Special:ListFiles
 'listfiles-summary'     => 'Ceta pâge spèciâla montre tôs los fichiérs tèlèchargiês.
-Per dèfôt, los dèrriérs fichiérs tèlèchargiês sont montrâs d’amont de lista.
+Per dèfôt, los dèrriérs fichiérs tèlèchargiês sont montrâs d’amont de la lista.
 Clicar sur un en-téta de colona pèrmèt de changiér l’ôrdre de visualisacion.',
 'listfiles_search_for'  => 'Rechèrchiér un nom de mèdia :',
 'imgfile'               => 'fichiér',
@@ -1963,11 +1963,12 @@ Vos pouede changiér lo nivél de protèccion de ceta pâge sen que cen afècte 
 
 # Undelete
 'undelete'                     => 'Vêre les pâges suprimâs',
-'undeletepage'                 => 'Vêre et rèstorar la pâge suprimâ',
-'undeletepagetitle'            => "'''La lista siuventa contint des vèrsions suprimâs de [[:$1]].'''",
-'viewdeletedpage'              => 'Historico de la pâge suprimâ',
-'undeletepagetext'             => '{{PLURAL:$1|Ceta pâge at étâ suprimâ et sè trove|Cetes pâges ont étâ suprimâs et sè trovont}} dens les arch·ives, de yô que {{PLURAL:$1|pôt|pôvont}} adés étre rèstorâ{{PLURAL:$1||s}}.
+'undeletepage'                 => 'Vêre et refâre des pâges suprimâs',
+'undeletepagetitle'            => "'''Ceta lista contint des vèrsions suprimâs de [[:$1|$1]].'''",
+'viewdeletedpage'              => 'Visualisar les pâges suprimâs',
+'undeletepagetext'             => '{{PLURAL:$1|Ceta pâge at étâ suprimâ et sè trove|Cetes pâges ont étâ suprimâs et sè trovont}} dens les arch·ives, de yô que {{PLURAL:$1|pôt|pôvont}} adés étre {{PLURAL:$1|refêta|refêtes}}.
 Les arch·ives pôvont étre èfaciês règuliérement.',
+'undelete-fieldset-title'      => 'Refâre les vèrsions',
 'undeleteextrahelp'            => "Por rèstorar totes les vèrsions de cela pâge, lèssiéd vouedes totes les câses a marcar, et pués clicâd dessus '''''Rèstorar !'''''.<br /> Por fâre una rèstoracion sèlèctiva, marcâd les câses corrèspondent a les vèrsions que sont a rèstorar, et pués clicâd dessus '''''Rèstorar !'''''.<br /> En cliquent sur lo boton '''''Tornar inicialisar''''', la bouèta de rèsumâ et les câses marcâs seront remêses a zérô.",
 'undeleterevisions'            => '$1 {{PLURAL:$1|vèrsion arch·ivâ|vèrsions arch·ivâs}}',
 'undeletehistory'              => 'Se vos rèstorâd la pâge, totes les vèrsions seront replaciês dens l’historico.
@@ -1979,7 +1980,7 @@ les vèrsions rèstorâs aparètront dens l’historico prècèdent et la vèrsi
 'undelete-revision'            => 'Vèrsion suprimâ de $1 (vèrsion du $4 a $5) per $3 :',
 'undeleterevision-missing'     => 'Vèrsion envalida ou manquenta. Vos avéd pôt-étre un môvés lim, ou la vèrsion at étâ rèstorâ ou suprimâ de les arch·ives.',
 'undelete-nodiff'              => 'Niona vèrsion prècèdenta trovâ.',
-'undeletebtn'                  => 'Rèstorar !',
+'undeletebtn'                  => 'Refâre',
 'undeletelink'                 => 'vêre/rètablir',
 'undeletereset'                => 'Tornar inicialisar',
 'undeletecomment'              => 'Rèsumâ :',

@@ -233,12 +233,13 @@ $messages = array(
 'personaltools'     => 'Fitaovana manokana',
 'postcomment'       => 'Hametraka fanamarihana',
 'articlepage'       => "Hijery ny votoatin'ny pejy",
-'talk'              => 'Dinika',
+'talk'              => 'dinika',
 'views'             => 'Fijerena',
 'toolbox'           => 'Fitaovana',
 'userpage'          => "Hijery ny pejy manokan'ny mpikambana",
 'projectpage'       => 'Pejy meta',
 'imagepage'         => "Jereo ny pejin'ny sary",
+'mediawikipage'     => "Jereo ny peji n'ilay afatra",
 'templatepage'      => "Jereo ny pejin'ny endrika",
 'viewhelppage'      => "Jereo ny pejin'ny fanampiana",
 'categorypage'      => "Jereo ny pejin'ny sokajy",
@@ -247,8 +248,10 @@ $messages = array(
 'redirectedfrom'    => "(tonga teto avy amin'ny $1)",
 'redirectpagesub'   => 'Pejy fihodinana',
 'lastmodifiedat'    => "Voaova farany tamin'ny $1 amin'ny $2 ity pejy ity<br />",
+'viewcount'         => 'in-$1 ity pejy ity no nisy nijery.',
 'protectedpage'     => 'Pejy voaaro',
 'jumpto'            => 'Hanketo:',
+'jumptonavigation'  => 'Fikarohana',
 'jumptosearch'      => 'karohy',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
@@ -320,8 +323,7 @@ Mitaky version $1-n'i MediaWiki",
 
 # Main script and global functions
 'nosuchaction'      => 'Asa tsy fantatra',
-'nosuchactiontext'  => "
-Ny asa voafaritra tao amin'ny URL dia tsy fantatr'ity wiki ity",
+'nosuchactiontext'  => "Ny asa voafaritra tao amin'ny URL dia tsy fantatr'ity wiki ity",
 'nosuchspecialpage' => 'Tsy misy io pejy manokana io',
 'nospecialpagetext' => 'Nangataka pejy manokana tsy misy ianao, azonao jerena eto [[Special:SpecialPages|{{int:specialpages}}]] ny lisitry ny pejy manokana.',
 
@@ -376,6 +378,7 @@ Mihidy ho azy aloha ny banky angona mandra-pahatratran'ny serveur andevo ny tomp
 Mety tsy misy fifandraisana amin'ny zavamisy ankehitriny ny zavamisy ao anatin'ity pejy ity..",
 'viewsource'           => 'Hijery fango',
 'viewsourcefor'        => "ho an'ny $1",
+'viewsourcetext'       => "Azonao atao no mijery sy mandrika ny votoatin'ity pejy ity :",
 'editinginterface'     => "'''Tandremo :''' manova pejy ampiasan'ny lôjisialy wiki ianao. Mety hita ny mpikambana sàsany izy io. Rehefa tia mandika teny ianao, jereo ny volavola MediaWiki ho an'ny internationalisation ny hafatra [http://translatewiki.net/wiki/Main_Page?setlang=fr translatewiki.net].",
 'sqlhidden'            => '(nafenina ny requête SQL)',
 'titleprotected'       => "Voaaro mba tsy ho amboarina ilay lohateny, i [[User:$1|$1]] no nanao an'io.
@@ -449,12 +452,13 @@ Alohan'ny handraisanao imailaka hafa, dia araho ny torolalana ao anatin'io imail
 mba hanaporofoana fa anao io kaonty io.",
 'mailerror'                  => "Nisy olana tamin'ny fandefasana imailaka: $1",
 'acct_creation_throttle_hit' => 'Miala tsiny, efa nanokatra kaonty miisa $1 ianao, ka tsy afaka mamorona hafa intsony.',
-'emailauthenticated'         => "Voamarina tamin'ny $1 ny adiresy imailakao.",
+'emailauthenticated'         => "Voamarina tamin'ny $2 $3 ny adiresy imailakao.",
 'emailnotauthenticated'      => "Tsy mbola voamarina ny adiresinao. Tsy mbola afaka mandefa hafatra ianao amin'ireto zavatra azo atao manaraka ireto.",
 'noemailprefs'               => 'Manomeza adiresy imailaka raha hampiasa ireo fitaovana ireo ianao.',
 'emailconfirmlink'           => 'Hamarino ny adiresy imailakao',
 'invalidemailaddress'        => 'Tsy mety io imailaka nalefanao io satria tsy manaraka ny firafitra tokony ho izy.
 Azafady manomeza adiresy voasoratra tsara na avelao ho banga io toerana io.',
+'accountcreated'             => 'Kaonty voaforona',
 'createaccount-text'         => "Nisy olona nanokatra kaonty hoan'ny adiresy imailakao eo amin'ny {{SITENAME}} ($4) mitondra anarana « $2 » miarak'amin'ny tenimiafina « $3 ».<br />
 Tokony miditra na manokatra kaonty ianao ary manova ny tenimiafinao dian-izao.
 
@@ -522,8 +526,27 @@ Afaka antsoinao i $1 na [[{{MediaWiki:Grouppage-sysop}}|ny mpandrindra]] mba hir
 Afaka andefasanao imailaka ra nampiditra ny adiresy imailakanao ianao ao anatin'ny [[Special:Preferences|mombamombanao]].
 '''$3''' ny adiresy IP-nao ary ny ''identifiant de blocage''-nao dia #$5.
 Asio ao anaty ny fangatahanao io adiresy io.",
+'autoblockedtext'        => "Voasakana ny adiresy IP anareo satria nampiasain'ny olon-kafa io adiresy ampiasainao io. Ary voasakan'i $1 ilay olona nampiasa ny adiresinao.<br />
+Ity ny antony navoakany
+
+:''$2''
+
+* nanomboka tamin'ny $8 ilay fisakanana
+* Amin'ny $6 ilay fisakanana no mijanona
+* $7 no anaran'ilay kaonty voasakana
+
+Afaka antsoinao i $1 na miantso ny [[{{MediaWiki:Grouppage-sysop}}|mpandrindra]] mba hiresaka momba ny fanakananao.
+
+Jereo koa fa tsy afaka mampiasa ny asa ''emailuser'' ianao ra tsy nanometraka ny adiresy imailakao anatin'ny [[special:Preferences|zavatra tianao]]. Jereo koa ra tsy nesorinao ny asa ''emailuser''.
+
+$3 izao ny adiresinao, ary ny isa ny fisakananai dia $5.
+Soraty ireo fanoroana ireo anatin'ny fangatahana ataonao.",
+'blockednoreason'        => 'tsy nisy antony nomeny',
+'blockedoriginalsource'  => "Eto amban'ny kaody fango ny '''$1''' :",
+'blockededitsource'      => "Eo amban'ny votoatin'ny '''nosoratanao''' nataonao tamin'ny '''$1'''",
 'whitelistedittitle'     => 'Midira/Misorata anarana',
 'whitelistedittext'      => "Mila $1 aloha ianao vao afaka manova/mamorona pejy eto amin'ity wiki ity.",
+'nosuchsectiontitle'     => 'Ts ampy fitapahana',
 'loginreqtitle'          => 'Mila fidirana',
 'loginreqlink'           => 'hiditra',
 'loginreqpagetext'       => 'Tokony $1 ianao raha te hijery pejy hafa.',
@@ -540,8 +563,7 @@ Raha toa moa ka tsy nieritreritra ny hamorona ity takelaka ity ianao dia miveren
 'clearyourcache'         => "'''Fanamarihana:''' Aorian'ny fanovana, dia mila mamafa ny cache ianao vao mahita ny fiovana.
 '''Mozilla / Firefox / Safari:''' Tsindrio ny ''Shift'' rehefa manindry ''Reload'', na tsindrio ''Ctrl-Shift-R'' (''Cmd-Shift-R'' ho an'ny Apple Mac); '''IE:''' tsindrio ''Ctrl'' rehefa manindry ''Refresh'', na tsindrio ''Ctrl-F5''; '''Konqueror:''': tsindrio fotsiny ny bokotra ''Reload'' na ''F5''; ny mpampiasa '''Opera''' angamba dia tokony hamafa ny cache-ny ao amin'ny ''Tools&rarr;Preferences''.",
 'usercssjsyoucanpreview' => "'''Fika:''' Ampiasao ny bokotra 'Tsipalotra' mialoha ny hitehirizanao ny CSS/JS-nao vaovao.",
-'usercsspreview'         => "
-'''Tadidio fa mijery tsipalotra ny fivoakan'ny takilan'angalinao (CSS) vaovao fotsiny ihany ianao fa tsy mbola voatahiry akory izy io!'''",
+'usercsspreview'         => "'''Tadidio fa mijery tsipalotra ny fivoakan'ny takilan'angalinao (CSS) vaovao fotsiny ihany ianao fa tsy mbola voatahiry akory izy io!'''",
 'userjspreview'          => "
 '''Tadidio fa manandrana/mijery tsipalotra ny fivoakan'ny JavaScript-nao fotsiny ihany ianao fa tsy mbola voatahiry akory izy io!'''",
 'updated'                => '(Voaova)',
@@ -601,25 +623,26 @@ Tadidio: (ank) = fampitahana amin'ny votoatin'ny pejy ankehitriny,
 'compareselectedversions' => 'Ampitahao ireo version voafidy',
 
 # Search results
-'searchresults'     => 'Valim-pikarohana',
-'searchresulttext'  => "Jereo ny [[{{MediaWiki:Helppage}}|fanazavana fanampiny momba ny fikarohana eto amin'ny {{SITENAME}}]].",
-'titlematches'      => "Mifanitsy amin'ny lohatenin'ny lahatsoratra",
-'notitlematches'    => 'Tsy nahitana lohateny mifanaraka',
-'textmatches'       => "Mifanitsy amin'ny votoatin'ny pejy",
-'notextmatches'     => 'Tsy nahitana votoatim-pejy mifanaraka',
-'prevn'             => '$1 taloha',
-'nextn'             => '$1 manaraka',
-'viewprevnext'      => 'Hijery ($1) ($2) ($3).',
-'searchhelp-url'    => 'Help:Fanoroana',
-'showingresults'    => "Omeo ny valiny miisa hatramin'ny <b>$1</b> manomboka ny #<b>$2</b>.",
-'showingresultsnum' => 'Omeo ny valiny miisa <b>$3</b> manomboka ny #<b>$2</b>.',
-'nonefound'         => "
+'searchresults'      => 'Valim-pikarohana',
+'searchresulttext'   => "Jereo ny [[{{MediaWiki:Helppage}}|fanazavana fanampiny momba ny fikarohana eto amin'ny {{SITENAME}}]].",
+'titlematches'       => "Mifanitsy amin'ny lohatenin'ny lahatsoratra",
+'notitlematches'     => 'Tsy nahitana lohateny mifanaraka',
+'textmatches'        => "Mifanitsy amin'ny votoatin'ny pejy",
+'notextmatches'      => 'Tsy nahitana votoatim-pejy mifanaraka',
+'prevn'              => '$1 taloha',
+'nextn'              => '$1 manaraka',
+'viewprevnext'       => 'Hijery ($1) ($2) ($3).',
+'searchhelp-url'     => 'Help:Fanoroana',
+'search-result-size' => '$1 (teny $2)',
+'showingresults'     => "Omeo ny valiny miisa hatramin'ny <b>$1</b> manomboka ny #<b>$2</b>.",
+'showingresultsnum'  => 'Omeo ny valiny miisa <b>$3</b> manomboka ny #<b>$2</b>.',
+'nonefound'          => "
 '''Fanamarihana''': ny mahatonga ny fikarohana tsy hahita vokany matetika dia ny 
 fampiasanao teny miasa matetika toy ny \"izay\" sy ny \"tsy\",
 na ny fanomezanao teny mihoatra ny iray (ny pejy ahitana ny teny rehetra hokarohina
 ihany no miseho amin'ny vokatry ny karoka).",
-'powersearch'       => 'Fitadiavana',
-'searchdisabled'    => "Tsy nalefa ny karoka eto amin'i {{SITENAME}}. Afaka mampiasa an'i Google aloha ianao mandra-paha. Nefa fantaro fa mety ho efa lany daty ny valiny omeny.",
+'powersearch'        => 'Fitadiavana',
+'searchdisabled'     => "Tsy nalefa ny karoka eto amin'i {{SITENAME}}. Afaka mampiasa an'i Google aloha ianao mandra-paha. Nefa fantaro fa mety ho efa lany daty ny valiny omeny.",
 
 # Preferences page
 'preferences'         => 'Ny momba anao',
@@ -1061,6 +1084,7 @@ mihatra amin'ny adiresy IP na solonanarana iray.",
 'expiringblock'               => "tapitra amin'ny $1",
 'blocklink'                   => 'sakano',
 'unblocklink'                 => 'esory ny sakana',
+'contribslink'                => "fandraisan'anjara",
 'autoblocker'                 => "Voasakana satria ny adiresy IP-nao dia vao avy nampiasain'i \"[[User:\$1|\$1]]\". Ny anton'ny fanakanana dia: \"'''\$2'''\"",
 'blocklogpage'                => "Tantaran'ny sakana",
 'blocklogentry'               => 'voasakana i "[[$1]]" mandritra ny $2',
