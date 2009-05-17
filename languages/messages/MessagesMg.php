@@ -16,6 +16,7 @@
 $fallback = 'fr';
 
 $namespaceNames = array(
+	NS_MEDIA            => 'Rakitra',
 	NS_SPECIAL          => 'Manokana',
 	NS_TALK             => 'Dinika',
 	NS_USER             => 'Mpikambana',
@@ -34,6 +35,7 @@ $namespaceNames = array(
 );
 
 $namespaceAliases = array(
+	'Média' => NS_MEDIA,
 	'Discuter' => NS_TALK,
 	'Utilisateur' => NS_USER,
 	'Discussion_Utilisateur' => NS_USER_TALK,
@@ -46,6 +48,23 @@ $namespaceAliases = array(
 	'Discussion_Aide' => NS_HELP_TALK,
 	'Catégorie' => NS_CATEGORY,
 	'Discussion_Catégorie' => NS_CATEGORY_TALK,
+);
+
+$specialPageAliases = array(
+	'Recentchanges'             => array( 'Fanovàna farany' ),
+	'Randompage'                => array( 'Kisendra' ),
+	'Uncategorizedpages'        => array( 'Pejy tsy misy sokajy' ),
+	'Uncategorizedcategories'   => array( 'Sokajy tsy misy sokajy' ),
+	'Uncategorizedimages'       => array( 'Sary tsy misy sokajy', 'Rakitra tsy misy sokajy' ),
+	'Uncategorizedtemplates'    => array( 'Endrika tsy misy sokajy' ),
+	'Unusedcategories'          => array( 'Sokajy tsy miasa' ),
+	'Unusedimages'              => array( 'Rakitra tsy miasa' ),
+	'Wantedpages'               => array( 'Pejy tadiavina' ),
+	'Wantedcategories'          => array( 'Sokajy tadiavina' ),
+	'Wantedfiles'               => array( 'Rakitra tadiavina' ),
+	'Wantedtemplates'           => array( 'Endrika tadiavina' ),
+	'Mostcategories'            => array( 'Pejy be sokajy indrindra' ),
+	'Mostrevisions'             => array( 'Pejy be mpanova indrindra' ),
 );
 
 $messages = array(
