@@ -1088,9 +1088,9 @@ class FormatExif {
 			return $wgLang->commaList( $out );
 		}
 		if ( preg_match( '/^(\d+)\/(\d+)$/', $num, $m ) )
-			return $m[2] != 0 ? $m[1] / $m[2] : $num;
+			return $wgLang->formatNum( $m[2] != 0 ? $m[1] / $m[2] : $num );
 		else
-			return $num;
+			return $wgLang->formatNum( $num );
 	}
 
 	/**

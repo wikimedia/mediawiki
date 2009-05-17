@@ -34,7 +34,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   "{{GROUPCONVERT:xxx}}" enabled for this new feature. You can set related
   conversion rules in [[MediaWiki:Groupconversiontable-xxx/language_code]].
 * Superfluous border="0" removed from images
-* Added new hook 'MessageCacheReplace' into MessageCache.php. For instance 
+* Added new hook 'MessageCacheReplace' into MessageCache.php. For instance
   to allow extensions to update caches in similar way as MediaWiki invalidates
   a cached MonoBook sidebar
 * Special:AllPages: Move hardcoded styles from code to CSS
@@ -42,19 +42,19 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   {{REVISIONTIMESTAMP}}  (and friends) and {{REVISIONUSER}} magic words
 * (bug 18529) New hook: SoftwareInfo for adding information about the software
   to Special:Version
-* Added $wgExtPGAlteredFields to allow extensions to easily alter the data 
+* Added $wgExtPGAlteredFields to allow extensions to easily alter the data
   type of columns when using the Postgres backend.
 * (bug 16950) Show move log when viewing/creating a deleted page
-* (bug 18242) Show the Subversion revision number per extensions in 
+* (bug 18242) Show the Subversion revision number per extensions in
   Special:Version
 * (bug 18420) Missing file revisions are handled gracefully now
 * (bug 9219) Auth plugins can control editing RealName/Email/Nick preferences
-* New hook: MessageNotInMwNs to handle localised messages that aren't in the 
+* New hook: MessageNotInMwNs to handle localised messages that aren't in the
   Mediawiki Namespace, before checking the message files
 
 === Bug fixes in 1.16 ===
 
-* (bug 18031) Make namespace selector on Special:Export remember the previous 
+* (bug 18031) Make namespace selector on Special:Export remember the previous
   selection
 * The svn-version version numbers on Special:Version have been removed
 * (bug 17374) Special:Export no longer exports two copies of the same page
@@ -62,7 +62,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 17617) HTML cleanup for ImagePage
 * (bug 17964) namespaceDupes.php no longer fails on an empty interwiki table
 * Improved error handling for image moving
-* (bug 17974) On Special:SpecialPages, restricted special pages are now marked 
+* (bug 17974) On Special:SpecialPages, restricted special pages are now marked
   with <strong> tags, helps with text-based browsers
 * (bug 18259) Special:DeletedContributions now also uses
   MediaWiki:Sp-contributions-logs for the link to Special:Log
@@ -104,24 +104,27 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 17191) Registration date now listed on preferences page.
 * Note that this change will break some extensions which have not been adapted
   for it.
-* (bug 17020) Adding fallback encodings for Traditional and Simplified Chinese 
+* (bug 17020) Adding fallback encodings for Traditional and Simplified Chinese
   languages while the the text is typed as URLs.
 * (bug 18535) Search tab tool-tops are corrupted
-* (bug 17614) Prev / Next links not need on ImagePage file history if less than limit
+* (bug 17614) Prev / Next links not need on ImagePage file history if less than
+  limit
 * (bug 18207) Strange spacing before [[irc:...]] links
 * Removed float from the user login form in RTL interface - caused display
   problems in FF2
 * (bug 15008) Redirect images are now subject to Bad image list rules
 * (bug 6802) profileinfo.php now also work on other database servers than MySQL
-* (bug 16925) Diffs no longer fail when $wgExternalDiffEngine is set to 'wikidiff'
-  or 'wikidiff2' but extension is not installed
+* (bug 16925) Diffs no longer fail when $wgExternalDiffEngine is set to
+  'wikidiff' or 'wikidiff2' but extension is not installed
 * (bug 18326) Chmod errors in file repos have been hidden
 * (bug 18718) Comma after a } create a error in IE
 * (bug 18716) Removed redundant class in Modern skin CSS for category links and
   tweaked spacing.
 * (bug 18656) Use proper directory separators in wfMkdirParents()
-* (bug 18549) Make Special:Blockip respect $wgEnableUserEmail and $wgSysopEmailBans
+* (bug 18549) Make Special:Blockip respect $wgEnableUserEmail and
+  $wgSysopEmailBans
 * (bug 16912) Tooltips on images with link= disappear
+* (bug 18389) Localise numbers in EXIF data
 
 == API changes in 1.16 ==
 
@@ -146,7 +149,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 18730) Add version information to action=paraminfo output
 * (bug 18743) Add ucprop=size to list=usercontribs
 * (bug 18749) Add generator flag to action=paraminfo output
-* Make action=block respect $wgEnableUserEmail and $wgSysopEmailBans 
+* Make action=block respect $wgEnableUserEmail and $wgSysopEmailBans
 
 === Languages updated in 1.16 ===
 
@@ -161,7 +164,8 @@ changes to languages because of MediaZilla reports.
 * Add PLURAL function for Scots Gaelic (gd)
 * Add Estonian letters äöõšüž to linktrail (et)
 * (bug 18776) Native name of Burmese language (my)
-* (bug 18806) Use correct unicode characters in spelling of native Chuvash (Чӑвашла)
+* (bug 18806) Use correct unicode characters in spelling of native Chuvash
+  (Чӑвашла)
 
 == Compatibility ==
 
