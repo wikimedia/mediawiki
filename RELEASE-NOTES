@@ -53,6 +53,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   Mediawiki Namespace, before checking the message files
 * (bug 18466) Add note or warning when overruling a move (semi-)protection
 * (bug 18342) insertTags works in edit summary box
+* (bug 18411) The upload form also checks post_max_size
 
 === Bug fixes in 1.16 ===
 
