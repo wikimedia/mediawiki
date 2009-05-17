@@ -2820,6 +2820,8 @@ cannot move a page over itself.',
 'imageinvalidfilename'         => 'The target file name is invalid',
 'fix-double-redirects'         => 'Update any redirects that point to the original title',
 'move-leave-redirect'          => 'Leave a redirect behind',
+'protectedpagemovewarning'     => "'''WARNING: This page has been locked so that only users with administrator privileges can move it.",
+'semiprotectedpagemovewarning' => "'''Note:''' This page has been locked so that only registered users can move it.",
 
 # Export
 'export'            => 'Export pages',

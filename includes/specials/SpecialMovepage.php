@@ -166,6 +166,22 @@ class MovePageForm {
 			}
 		}
 
+		if ( $this->oldTitle->isProtected( 'move' ) ) {
+			# Is the title semi-protected?
+			if ( $this->oldTitle->isSemiProtected( 'move' ) ) {
+				$noticeMsg = 'semiprotectedpagemovewarning';
+				$classes[] = 'mw-textarea-sprotected';
+			} else {
+				# Then it must be protected based on static groups (regular)
+				$noticeMsg = 'protectedpagemovewarning';
+				$classes[] = 'mw-textarea-protected';
+			}
+			$wgOut->addHTML( "<div class='mw-warning-with-logexcerpt'>\n" );
+			$wgOut->addWikiMsg( $noticeMsg );
+			LogEventsList::showLogExtract( $wgOut, 'protect', $this->oldTitle->getPrefixedText(), '', 1 );
+			$wgOut->addHTML( "</div>\n" );
+		}
+
 		$wgOut->addHTML(
 			 Xml::openElement( 'form', array( 'method' => 'post', 'action' => $titleObj->getLocalURL( 'action=submit' ), 'id' => 'movepage' ) ) .
 			 Xml::openElement( 'fieldset' ) .
