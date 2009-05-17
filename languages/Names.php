@@ -283,6 +283,7 @@
 	'simple' => 'Simple English',	# Simple English
 	'sk' => 'Slovenčina',	# Slovak
 	'sl' => 'Slovenščina',	# Slovenian
+	'sli' => 'Schläsch',	# Lower Selisian
 	'sm' => 'Gagana Samoa',	# Samoan
 	'sma' => 'Åarjelsaemien',	# Southern Sami
 	'sn' => 'chiShona',		# Shona
@@ -328,7 +329,7 @@
 	'tzm' => 'ⵜⴰⵎⴰⵣⵉⵖⵜ',	# (Central Morocco) Tamazight
 	'udm' => 'Удмурт',	# Udmurt
 	'ug' => 'Uyghurche‎ / ئۇيغۇرچە',	# Uyghur (multiple scripts - defaults to Latin)
-	#'ug-arab' => 'ئۇيغۇرچە', # Uyghur (Arabic script). Disabled until sufficient localisation can be committed
+	'ug-arab' => 'ئۇيغۇرچە', # Uyghur (Arabic script)
 	'ug-latn' => 'Uyghurche‎', # Uyghur (Latin script - default)
 	'uk' => 'Українська',	# Ukrainian
 	'ur' => 'اردو',	# Urdu
