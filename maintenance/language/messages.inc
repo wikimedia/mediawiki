@@ -1967,6 +1967,8 @@ $wgMessageStructure = array(
 		'imageinvalidfilename',
 		'fix-double-redirects',
 		'move-leave-redirect',
+		'protectedpagemovewarning',
+		'semiprotectedpagemovewarning',
 	),
 	'export' => array(
 		'export',
