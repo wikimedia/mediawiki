@@ -154,6 +154,9 @@ MediaWiki supports over 300 languages. Many localisations are updated
 regularly. Below only new and removed languages are listed, as well as
 changes to languages because of MediaZilla reports.
 
+* Lower Silesian (sli) (new)
+* Uyghur (Arabic script) (ug-arab) (new)
+
 * (bug 18474) Sorani (ckb - Central Kurdish) (renamed from ku-arab)
 * Add PLURAL function for Scots Gaelic (gd)
 * Add Estonian letters äöõšüž to linktrail (et)
