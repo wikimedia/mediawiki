@@ -1242,16 +1242,13 @@ span.changedby {
 }
 
 .previewnote {
-	text-indent: 3em;
 	color: #c00;
-	border-bottom: 1px solid #aaa;
-	padding-bottom: 1em;
 	margin-bottom: 1em;
 }
 
 .previewnote p {
-	margin: 0;
-	padding: 0;
+	text-indent: 3em;
+	margin: 0.8em 0;
 }
 
 .editExternally {

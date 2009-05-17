@@ -1797,11 +1797,15 @@ END
 			}
 		}
 
-		$previewhead = '<h2>' . htmlspecialchars( wfMsg( 'preview' ) ) . "</h2>\n" .
-			"<div class='previewnote'>" . $wgOut->parse( $note ) . "</div>\n";
-		if ( $this->isConflict ) {
-			$previewhead .='<h2>' . htmlspecialchars( wfMsg( 'previewconflict' ) ) . "</h2>\n";
+		if( $this->isConflict ) {
+			$conflict = '<h2 id="mw-previewconflict">' . htmlspecialchars( wfMsg( 'previewconflict' ) ) . "</h2>\n";
+		} else {
+			$conflict = '<hr />';
 		}
+
+		$previewhead = "<div class='previewnote'>\n" .
+			'<h2 id="mw-previewheader">' . htmlspecialchars( wfMsg( 'preview' ) ) . "</h2>" .
+			$wgOut->parse( $note ) . $conflict . "</div>\n";
 
 		wfProfileOut( __METHOD__ );
 		return $previewhead . $previewHTML;
