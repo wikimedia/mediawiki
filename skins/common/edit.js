@@ -1,3 +1,5 @@
+var currentFocused;
+
 // this function generates the actual toolbar buttons with localized text
 // we use it to avoid creating the toolbar where javascript is not enabled
 function addButton(imageFile, speedTip, tagOpen, tagClose, sampleText, imageId) {
@@ -62,7 +64,7 @@ function mwSetupToolbar() {
 function insertTags(tagOpen, tagClose, sampleText) {
 	var txtarea;
 	if (document.editform) {
-		txtarea = document.editform.wpTextbox1;
+		txtarea = currentFocused;
 	} else {
 		// some alternate form? take the first one we can find
 		var areas = document.getElementsByTagName('textarea');
@@ -77,7 +79,7 @@ function insertTags(tagOpen, tagClose, sampleText) {
 			var winScroll = document.documentElement.scrollTop
 		else if (document.body)
 			var winScroll = document.body.scrollTop;
-		//get current selection  
+		//get current selection
 		txtarea.focus();
 		var range = document.selection.createRange();
 		selText = range.text;
@@ -88,10 +90,10 @@ function insertTags(tagOpen, tagClose, sampleText) {
 		if (isSample && range.moveStart) {
 			if (window.opera)
 				tagClose = tagClose.replace(/\n/g,'');
-			range.moveStart('character', - tagClose.length - selText.length); 
-			range.moveEnd('character', - tagClose.length); 
+			range.moveStart('character', - tagClose.length - selText.length);
+			range.moveEnd('character', - tagClose.length);
 		}
-		range.select();   
+		range.select();
 		//restore window scroll position
 		if (document.documentElement && document.documentElement.scrollTop)
 			document.documentElement.scrollTop = winScroll
@@ -122,7 +124,7 @@ function insertTags(tagOpen, tagClose, sampleText) {
 		}
 		//restore textarea scroll position
 		txtarea.scrollTop = textScroll;
-	} 
+	}
 
 	function checkSelectedText(){
 		if (!selText) {
@@ -131,7 +133,7 @@ function insertTags(tagOpen, tagClose, sampleText) {
 		} else if (selText.charAt(selText.length - 1) == ' ') { //exclude ending space char
 			selText = selText.substring(0, selText.length - 1);
 			tagClose += ' '
-		} 
+		}
 	}
 
 }
@@ -148,9 +150,17 @@ function scrollEditBox() {
 		if( scrollTop.value )
 			editBox.scrollTop = scrollTop.value;
 		addHandler( editForm, 'submit', function() {
-			document.getElementById( 'wpScrolltop' ).value = document.getElementById( 'wpTextbox1' ).scrollTop; 
+			document.getElementById( 'wpScrolltop' ).value = document.getElementById( 'wpTextbox1' ).scrollTop;
 		} );
 	}
 }
 hookEvent( 'load', scrollEditBox );
 hookEvent( 'load', mwSetupToolbar );
+hookEvent( 'load', function() {
+	if ( document.editform ) {
+		currentFocused = document.editform.wpTextbox1;
+		document.editform.wpTextbox1.onfocus = function() { currentFocused = document.editform.wpTextbox1; };
+		document.editform.wpSummary.onfocus = function() { currentFocused = document.editform.wpSummary; };
+	}
+} );
+
