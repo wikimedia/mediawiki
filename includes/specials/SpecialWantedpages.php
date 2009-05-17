@@ -27,19 +27,19 @@ class WantedPagesPage extends WantedQueryPage {
 		$pagelinks = $dbr->tableName( 'pagelinks' );
 		$page      = $dbr->tableName( 'page' );
 		$sql = "SELECT 'Wantedpages' AS type,
-			        pl_namespace AS namespace,
-			        pl_title AS title,
-			        COUNT(*) AS value
-			 FROM $pagelinks
-			 LEFT JOIN $page AS pg1
-			 ON pl_namespace = pg1.page_namespace AND pl_title = pg1.page_title
-			 LEFT JOIN $page AS pg2
-			 ON pl_from = pg2.page_id
-			 WHERE pg1.page_namespace IS NULL
-			 AND pl_namespace NOT IN ( 2, 3 )
-			 AND pg2.page_namespace != 8
-			 GROUP BY pl_namespace, pl_title
-			 HAVING COUNT(*) > $count";
+				pl_namespace AS namespace,
+				pl_title AS title,
+				COUNT(*) AS value
+			FROM $pagelinks
+			LEFT JOIN $page AS pg1
+			ON pl_namespace = pg1.page_namespace AND pl_title = pg1.page_title
+			LEFT JOIN $page AS pg2
+			ON pl_from = pg2.page_id
+			WHERE pg1.page_namespace IS NULL
+			AND pl_namespace NOT IN ( " . NS_USER . ", ". NS_USER_TALK . ")
+			AND pg2.page_namespace != " . NS_MEDIAWIKI . "
+			GROUP BY pl_namespace, pl_title
+			HAVING COUNT(*) > $count";
 
 		wfRunHooks( 'WantedPages::getSQL', array( &$this, &$sql ) );
 		return $sql;
