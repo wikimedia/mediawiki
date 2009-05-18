@@ -334,7 +334,8 @@ function wfSpecialWatchlist( $par ) {
 	$dbr->dataSeek( $res, 0 );
 
 	$list = ChangesList::newFromUser( $wgUser );
-
+	$list->setWatchlistDivs();
+	
 	$s = $list->beginRecentChangesList();
 	$counter = 1;
 	while ( $obj = $dbr->fetchObject( $res ) ) {
