@@ -299,6 +299,11 @@ td.os-suggest-result-hl {
     border: 1px dashed #aaa;
 }
 
+/* Special:Contributions styling */
+.mw-uctop {
+	font-weight: bold;
+}
+
 /*
  * Special:ListGroupRights styling
  * Special:Statistics styling 

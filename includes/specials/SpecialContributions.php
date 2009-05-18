@@ -491,7 +491,7 @@ class ContribsPager extends ReverseChronologicalPager {
 		# Mark current revisions
 		$difftext = $topmarktext = '';
 		if( $row->rev_id == $row->page_latest ) {
-			$topmarktext .= '<strong>' . $this->messages['uctop'] . '</strong>';
++			$topmarktext .= '<span class="mw-uctop">' . $this->messages['uctop'] . '</span>';
 			if( !$row->page_is_new ) {
 				$difftext .= '(' . $sk->makeKnownLinkObj( $page, $this->messages['diff'], 'diff=0' ) . ')';
 				# Add rollback link
