@@ -1,5 +1,5 @@
 <?php
-/** Simplified Chinese (‪中文(简体)‬)
+/** Simplified Chinese (‪中文(简化字)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -2273,6 +2273,8 @@ $1已经被封锁。您是否想更改这个设置？',
 'imageinvalidfilename'         => '目标文件名称无效',
 'fix-double-redirects'         => '更新所有指向原始标题的重定向',
 'move-leave-redirect'          => '保留重定向',
+'protectedpagemovewarning'     => "'''警告：'''这个页面已经被锁上，只有拥有管理员权限的用户才可以移动它。",
+'semiprotectedpagemovewarning' => "'''注意：'''这个页面已经被锁上，只有已经注册的用户才可以移动它。",
 
 # Export
 'export'            => '导出页面',

@@ -1,5 +1,5 @@
 <?php
-/** Traditional Chinese (‪中文(繁體)‬)
+/** Traditional Chinese (‪中文(傳統字)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -2250,6 +2250,8 @@ $1已經被封鎖。您是否想更改這個設定？',
 'imageinvalidfilename'         => '目標檔案名稱是無效的',
 'fix-double-redirects'         => '更新指到原先標題的任何重新定向',
 'move-leave-redirect'          => '留下重新定向',
+'protectedpagemovewarning'     => "'''警告：'''這個頁面已經被鎖上，只有擁有管理員權限的用戶才可以移動它。",
+'semiprotectedpagemovewarning' => "'''注意：'''這個頁面已經被鎖上，只有已經註冊的用戶才可以移動它。",
 
 # Export
 'export'            => '匯出頁面',

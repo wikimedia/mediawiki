@@ -1956,6 +1956,8 @@ $1已被禁矣。爾是否改此置？',
 'imageinvalidfilename'         => '標之檔名乃無效也',
 'fix-double-redirects'         => '更指原題之任渡',
 'move-leave-redirect'          => '留渡',
+'protectedpagemovewarning'     => "'''警：'''本頁已錮，有秩移之。",
+'semiprotectedpagemovewarning' => "'''注：'''本頁已錮，注簿移之。",
 
 # Export
 'export'            => '出匯',

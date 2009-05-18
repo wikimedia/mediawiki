@@ -1,5 +1,5 @@
 <?php
-/** Yue (粵語)
+/** Cantonese (粵語/廣東話)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -2213,6 +2213,8 @@ $1已經被封鎖。你係咪想更改呢個設定？',
 'imageinvalidfilename'         => '個目標檔名係無效嘅',
 'fix-double-redirects'         => '更新指到原先標題嘅任何跳轉',
 'move-leave-redirect'          => '留底跳轉',
+'protectedpagemovewarning'     => "'''警告：'''呢一版已經鎖咗，淨係得有管理員權限嘅用戶先至可以去搬佢。",
+'semiprotectedpagemovewarning' => "'''留意：'''呢一版已經鎖咗，淨係畀註冊咗嘅用戶去搬佢。",
 
 # Export
 'export'            => '倒出/導出/匯出（Export）頁面',
