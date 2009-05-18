@@ -1109,7 +1109,7 @@ class FormatExif {
 			$gcd = $this->gcd( $numerator, $denominator );
 			if( $gcd != 0 ) {
 				// 0 shouldn't happen! ;)
-				return $numerator / $gcd . '/' . $denominator / $gcd;
+				return $this->formatNum( $numerator / $gcd ) . '/' . $this->formatNum( $denominator / $gcd );
 			}
 		}
 		return $this->formatNum( $num );
