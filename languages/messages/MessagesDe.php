@@ -2073,6 +2073,7 @@ Um die Einstellungen deiner Beobachtungsliste anzupassen, besuche: {{fullurl:Spe
 'rollback'         => 'Zurücksetzen der Änderungen',
 'rollback_short'   => 'Zurücksetzen',
 'rollbacklink'     => 'Zurücksetzen',
+'rollbacklinkcount'=> 'Setzen $1 {{PLURAL:$2|Änderung|Änderungen}} zurück',
 'rollbackfailed'   => 'Zurücksetzen gescheitert',
 'cantrollback'     => 'Die Änderung kann nicht zurückgesetzt werden, da es keine früheren Autoren gibt.',
 'alreadyrolled'    => 'Das Zurücksetzen der Änderungen von [[User:$2|$2]] ([[User talk:$2|Diskussion]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) an [[:$1]] ist gescheitert, da in der Zwischenzeit ein anderer Benutzer die Seite geändert hat.

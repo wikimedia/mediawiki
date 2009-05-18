@@ -1763,6 +1763,8 @@ $1 = the name of the page',
 'rollback'         => '{{Identical|Rollback}}',
 'rollback_short'   => '{{Identical|Rollback}}',
 'rollbacklink'     => '{{Identical|Rollback}}',
+'rollbacklinkcount'=> '* $1: the number of edit that can rollback
+* $2: the number of edit that can rollback for PLURAL',
 'rollbackfailed'   => '{{Identical|Rollback}}',
 'cantrollback'     => '{{Identical|Revert}}
 {{Identical|Rollback}}',
