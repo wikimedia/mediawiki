@@ -1621,56 +1621,7 @@ class Linker {
 		}
 		$query['token'] = $wgUser->editToken( array( $title->getPrefixedText(),
 			$rev->getUserText() ) );
-
-		$dbr = wfGetDB( DB_MASTER );
-
-		// Latest edits by this user, up to 10; if too expensive, use only on smaller wikis
-		$res = $dbr->select( 'revision',
-			array( 'rev_id' ),
-			array(  'rev_page' => $rev->getPage(), 
-				'rev_user_text' => $rev->getUserText()
-			), __METHOD__, 
-			array(  'USE INDEX' => 'page_timestamp',
-				'ORDER BY' => 'rev_timestamp DESC',
-				'LIMIT' => 10 ) 
-			);
-
-		// Swiped from Article::commitRollback()
-		$user = intval( $rev->getUser() );
-		$user_text = $dbr->addQuotes( $rev->getUserText() );
-
-		// Get the last edit not by this guy
-		$s = $dbr->selectRow( 'revision',
-			array( 'rev_id', 'rev_timestamp', 'rev_deleted' ),
-			array(  'rev_page' => $rev->getPage(),
-				"rev_user != {$user} OR rev_user_text != {$user_text}"
-			), __METHOD__,
-			array(  'USE INDEX' => 'page_timestamp',
-				'ORDER BY'  => 'rev_timestamp DESC' )
-			);
-
-		if( $s === false ) {
-			// No one else ever edited this page
-			return false;
-		} 
-		elseif( $s->rev_deleted & REVISION::DELETED_TEXT || $s->rev_deleted & REVISION::DELETED_USER ) {
-			// Only admins can see this text
-			return false;
-		}
-
-		$editCount = 0;
-		while( $row = $dbr->fetchObject( $res ) ) {
-			$editCount++;
-			if( $s->rev_id > $row->rev_id ) {
-				break;
-			}
-		}
-
-		// We only bother to count up to 10
-		if( $editCount == 10 )
-			$editCount = '10+';
-
-		return $this->link( $title, wfMsgHtml( 'rollbacklink', $editCount ),
+		return $this->link( $title, wfMsgHtml( 'rollbacklink' ),
 			array( 'title' => wfMsg( 'tooltip-rollback' ) ),
 			$query,	array( 'known', 'noclasses' ) );
 	}
