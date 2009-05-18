@@ -188,11 +188,12 @@ class UserMailer {
 				$headers .= "{$endl}Reply-To: " . $replyto->toString();
 			}
 
+			wfDebug( "Sending mail via internal mail() function\n" );
+			
 			$wgErrorString = '';
 			$html_errors = ini_get( 'html_errors' );
 			ini_set( 'html_errors', '0' );
 			set_error_handler( array( 'UserMailer', 'errorHandler' ) );
-			wfDebug( "Sending mail via internal mail() function\n" );
 
 			if (function_exists('mail')) {
 				if (is_array($to)) {
