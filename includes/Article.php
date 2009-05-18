@@ -3617,7 +3617,6 @@ class Article {
 			$poTemplates = array();
 			foreach ( $parserOutput->getTemplates() as $ns => $templates ) {
 				foreach ( $templates as $dbk => $id ) {
-					$key = $row->tl_namespace . ':'. $row->tl_title;
 					$poTemplates["$ns:$dbk"] = true;
 				}
 			}
