@@ -25,6 +25,7 @@ class RCCacheEntry extends RecentChange {
 class ChangesList {
 	# Called by history lists and recent changes
 	public $skin;
+	protected $watchlist = false;
 
 	/**
 	* Changeslist contructor
@@ -51,6 +52,14 @@ class ChangesList {
 		} else {
 			return $list;
 		}
+	}
+	
+	/**
+	 * Sets the list to use a <div class="watchlist-(namespace)-(page)"> tag
+	 * @param bool $value
+	 */
+	public function setWatchlistDivs( $value = true ) {
+		$this->watchlist = $value;
 	}
 
 	/**
@@ -447,11 +456,19 @@ class OldChangesList extends ChangesList {
 			$s .= ' ' . wfMsgExt( 'number_of_watching_users_RCview', 
 				array( 'parsemag', 'escape' ), $wgLang->formatNum( $rc->numberofWatchingusers ) );
 		}
+		
+		if( $this->watchlist ) {
+			$watchlist_start = Xml::openElement( 'div', array( 'class' => Sanitizer::escapeClass( 'watchlist-'.$rc->mAttribs['rc_namespace'].'-'.$rc->mAttribs['rc_title'] ) ) );
+			$watchlist_end = Xml::closeElement( 'div' );
+		}
+		else {
+			$watchlist_start = $watchlist_end = null;
+		}
 
 		wfRunHooks( 'OldChangesListRecentChangesLine', array(&$this, &$s, $rc) );
 
 		wfProfileOut( __METHOD__ );
-		return "$dateheader<li class=\"".implode( ' ', $classes )."\">$s</li>\n";
+		return "$dateheader<li class=\"".implode( ' ', $classes )."\">".$watchlist_start.$s.$watchlist_end."</li>\n";
 	}
 }
 
