@@ -2428,6 +2428,7 @@ proceed with caution.',
 'rollback'         => 'Roll back edits',
 'rollback_short'   => 'Rollback',
 'rollbacklink'     => 'rollback',
+'rollbacklinkcount'=> 'rollback $1 {{PLURAL:$2|edit|edits}}',
 'rollbackfailed'   => 'Rollback failed',
 'cantrollback'     => 'Cannot revert edit;
 last contributor is only author of this page.',
