@@ -1031,9 +1031,10 @@ function wfShowingResultsNum( $offset, $limit, $num ) {
 function wfViewPrevNext( $offset, $limit, $link, $query = '', $atend = false ) {
 	global $wgLang;
 	$fmtLimit = $wgLang->formatNum( $limit );
+	// FIXME: Why on earth this needs one message for the text and another one for tooltip??
 	# Get prev/next link display text
-	$prev = wfMsgHtml( 'prevn', $fmtLimit );
-	$next = wfMsgHtml( 'nextn', $fmtLimit );
+	$prev =  wfMsgExt( 'prevn', array('parsemag','escape'), $fmtLimit );
+	$next =  wfMsgExt( 'nextn', array('parsemag','escape'), $fmtLimit );
 	# Get prev/next link title text
 	$pTitle = wfMsgExt( 'prevn-title', array('parsemag','escape'), $fmtLimit );
 	$nTitle = wfMsgExt( 'nextn-title', array('parsemag','escape'), $fmtLimit );
