@@ -239,7 +239,7 @@ def RemoveSameChar( src_table ):
 
 def main():
     #Get Unihan.zip:
-    url  = 'ftp://ftp.unicode.org/Public/UNIDATA/Unihan.zip'
+    url  = 'http://www.unicode.org/Public/UNIDATA/Unihan.zip'
     han_dest = 'Unihan.zip'
     GetFileFromURL( url, han_dest )
     
