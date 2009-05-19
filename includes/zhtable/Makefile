@@ -23,7 +23,7 @@ all: ZhConversion.php tradphrases.notsure simpphrases.notsure wordlist toHans.di
 
 # Download Unihan database and Traditional Chinese / Simplified Chinese phrases files
 Unihan.zip:
-	wget -nc ftp://ftp.unicode.org/Public/UNIDATA/Unihan.zip
+	wget -nc http://www.unicode.org/Public/UNIDATA/Unihan.zip
 
 scim-tables-$(SCIM_TABLES_VER).tar.gz:
 	wget -nc http://$(SF_MIRROR).dl.sourceforge.net/sourceforge/scim/scim-tables-$(SCIM_TABLES_VER).tar.gz
