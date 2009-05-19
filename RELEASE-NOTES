@@ -20,6 +20,10 @@ will be made on the development trunk and appear in the next quarterly release.
 Those wishing to use the latest code instead of a branch release can obtain
 it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 
+=== Changes since 1.15.0rc1 ===
+
+* Removed category redirect feature (bug 3311)
+
 === Configuration changes in 1.15 ===
 
 * Added $wgNewPasswordExpiry, to specify an expiry time (in seconds) to
