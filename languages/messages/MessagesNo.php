@@ -21,6 +21,7 @@
  * @author Kph-no
  * @author Laaknor
  * @author Najami
+ * @author Nghtwlkr
  * @author Piivaat
  * @author Samuelsen
  * @author Stigmj
@@ -890,9 +891,13 @@ Det kan være detaljer i [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} slet
 'rev-deleted-text-unhide'        => "Denne sideversjonen er blitt '''slettet'''.
 Det kan være mer informasjon i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} sletteloggen].
 Som administrator kan du fremdeles [$1 se denne versjonen] hvis du ønsker å fortsette.",
-'rev-deleted-text-view'          => 'Denne revisjonen har blitt fjernet fra det offentlige arkivet. Som administrator har du mulighet til å se den; det kan være detaljer i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} slettingsloggen].',
-'rev-deleted-no-diff'            => 'Du kan ikke vise denne diffen fordi en av revisjonene har blitt fjernet fra de offentlige arkivene.
-Det kan være mer detaljer i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}}sletteloggen].',
+'rev-deleted-text-view'          => "Denne sideversjonen har blitt '''slettet'''.
+Som administrator kan du se den. Det kan finnes flere detaljer i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} sletteloggen].",
+'rev-deleted-no-diff'            => "Du kan ikke vise forskjellen fordi en av versjonene har blitt '''slettet'''.
+Det kan finnes flere detaljer i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}}sletteloggen].",
+'rev-deleted-unhide-diff'        => "Én av versjonene i denne forskjellen har blitt '''slettet'''.
+Det kan finnes flere detaljer i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} sletteloggen].
+Som administrator kan du fortsatt [$1 se forskjellen] om du ønsker å fortsette.",
 'rev-delundel'                   => 'vis/skjul',
 'revisiondelete'                 => 'Slett/gjenopprett revisjoner',
 'revdelete-nooldid-title'        => 'Ugyldig målversjon',
@@ -905,9 +910,13 @@ Det kan være mer detaljer i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}
 'revdelete-nologid-text'         => 'Du har enten ikke spesifisert ett loggelement å utføre på denne funksjonen, eller spesifisert element finnes ikke.',
 'revdelete-selected'             => "'''{{PLURAL:$2|Valgt revisjon|Valgte revisjoner}} av [[:$1]]:'''",
 'logdelete-selected'             => "'''{{PLURAL:$1|Valgt loggoppføring|Valgte loggoppføringer}}:'''",
-'revdelete-text'                 => "'''Slettede revisjoner vil fortsatt vises i sidehistorikken, men innholdet vil ikke være tilgjengelig for offentligheten.'''
+'revdelete-text'                 => "'''Slettede versjoner og oppføringer vil fortsatt vises i sidehistorikken og loggene, men deler av innholdet vil ikke lenger bli offentliggjort.'''
 
-Andre administratorer på {{SITENAME}} vil fortsatt kunne se det skjulte innholdet, og kan gjenopprette det, med mindre videre begrensninger blir gitt av sideoperatørene.",
+Andre administratorer på {{SITENAME}} vil fortsatt kunne se det skjulte innholdet, og kan gjenopprette det, med mindre videre begrensninger blir gitt av sideoperatørene.
+Vennligst bekreft at du vil gjøre dette, og at du skjønner følgene, og at du gjør dette i henhold til [[{{MediaWiki:Policy-url}}|MediaWiki sine retningslinjer]].",
+'revdelete-suppress-text'        => "Utelatelse bør '''kun''' brukes i følgende tilfeller:
+* Upassende personlige opplysninger
+*: ''hjemmeadresser og -telefonnummer, personnummer og lignende''",
 'revdelete-legend'               => 'Fastsett synlighetsbegrensninger',
 'revdelete-hide-text'            => 'Skjul revisjonstekst',
 'revdelete-hide-name'            => 'Skjul handling og mål',
@@ -1086,6 +1095,7 @@ Forsikre deg om at denne endringen vil opprettholde historisk sidekontinuitet.',
 'showingresults'                   => "Nedenfor vises opptil {{PLURAL:$1|'''ett''' resultat|'''$1''' resultater}} fra og med nummer <b>$2</b>.",
 'showingresultsnum'                => "Nedenfor vises {{PLURAL:$3|'''ett''' resultat|'''$3''' resultater}} fra og med nummer '''$2'''.",
 'showingresultstotal'              => "Viser resultat {{PLURAL:$4|'''$1''' av '''$3'''|'''$1&ndash;$2''' av '''$3'''}} nedenfor",
+'showingresultsheader'             => "{{PLURAL:$5|Resultat '''$1''' av '''$3'''|Resultat '''$1 - $2''' av '''$3'''}} for '''$4'''",
 'nonefound'                        => "'''Merk:''' Som standard søkes det kun i enkelte navnerom. For å søke i alle, bruk prefikset ''all:'' (inkluderer diskusjonssider, maler etc.), eller bruk det ønskede navnerommet som prefiks.",
 'search-nonefound'                 => 'Det var ingen resultater som passet til søket.',
 'powersearch'                      => 'Avansert søk',
@@ -2257,7 +2267,7 @@ I disse tilfellene er du nødt til å flytte eller flette sammen siden manuelt."
 'move-redirect-suppressed'     => 'ingen omdirigering',
 'movelogpage'                  => 'Flyttelogg',
 'movelogpagetext'              => 'Her er ei liste over sider som har blitt flyttet.',
-'movesubpage'                  => 'Undersider',
+'movesubpage'                  => '{{PLURAL:$1|Underside|Undersider}}',
 'movesubpagetext'              => 'Denne siden har {{PLURAL:$1|én underside|$1 undersider}} som vises nedenfor.',
 'movenosubpage'                => 'Denne siden har ingen undersider.',
 'movereason'                   => 'Årsak:',
@@ -2278,6 +2288,8 @@ Målsiden «[[:$1]]» finnes allerede. Vil du slette den så denne siden kan fly
 'imageinvalidfilename'         => 'Målnavnet er ugyldig',
 'fix-double-redirects'         => 'Oppdater omdirigeringer som fører til den gamle tittelen',
 'move-leave-redirect'          => 'La det være igjen en omdirigering',
+'protectedpagemovewarning'     => "'''Advarsel:''' Denne siden har blitt låst slik at kun brukere med administratorrettigheter kan flytte den.",
+'semiprotectedpagemovewarning' => "'''Merk:''' Denne siden har blitt låst slik at kun registrerte brukere kan flytte den.",
 
 # Export
 'export'            => 'Eksportsider',
@@ -2916,7 +2928,7 @@ Denne bekreftelseskoden utgår $4.',
 'scarytranscludetoolong'  => '[URL-en er for lang]',
 
 # Trackbacks
-'trackbackbox'      => 'Tilbakesporinger for denne artikkelen:<br />
+'trackbackbox'      => 'Tilbakesporinger for denne siden:<br />
 $1',
 'trackbackremove'   => '([$1 Slett])',
 'trackbacklink'     => 'Tilbakesporing',
@@ -3085,11 +3097,12 @@ Skriv inn filnavn uten «{{ns:file}}:»-prefikset.',
 'intentionallyblankpage' => 'Denne siden er tom med vilje',
 
 # External image whitelist
-'external_image_whitelist' => ' #La denne linja være som den er<pre>
+'external_image_whitelist' => '#La denne linja være som den er<pre>
 #Skriv fragmenter av regulære uttrykk (delen som går mellom //) nedenfor
 #Disse vil sjekkes mot adresser til bilder fra eksterne sider
 #De som blir godkjent vil vises, ellers vil det gis en lenke til bildet
 #Linjer som begynner med # anses som kommentarer
+#Det skilles ikke mellom store og små bokstaver
 
 #Skriv alle fragmenter av regulære uttrykk over denne lina. La denne linja være som den er</pre>',
 
@@ -3116,6 +3129,9 @@ Skriv inn filnavn uten «{{ns:file}}:»-prefikset.',
 'dberr-cachederror' => 'Følgende er en mellomlagret kopi av den etterspurte siden, og kan være foreldet.',
 
 # HTML forms
+'htmlform-invalid-input'       => 'Det er problemer med noen av inndatene dine',
+'htmlform-select-badoption'    => 'Verdien du valgte er ikke et gyldig alternativ.',
+'htmlform-int-invalid'         => 'Verdien du valgte er ikke et heltall.',
 'htmlform-int-toolow'          => 'Verdien du valgte er mindre enn minimum på $1',
 'htmlform-int-toohigh'         => 'Verdien du valgte er over det mulige $1',
 'htmlform-submit'              => 'Lagre',

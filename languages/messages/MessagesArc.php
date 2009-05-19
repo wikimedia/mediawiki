@@ -22,7 +22,10 @@ $defaultUserOptionOverrides = array(
 
 $messages = array(
 # User preference toggles
-'tog-hideminor' => 'ܛܫܝ ܫܘܚܠܦ̈ܐ ܙܥܘܪ̈ܐ ܒܫܘܚܠܦ̈ܐ ܚܕܬ̈ܐ',
+'tog-hideminor'      => 'ܛܫܝ ܫܘܚܠܦ̈ܐ ܙܥܘܪ̈ܐ ܒܫܘܚܠܦ̈ܐ ܚܕܬ̈ܐ',
+'tog-watchcreations' => 'ܬܘܣܦ ܦܐܬܘܬ̈ܐ ܕ ܒܪܐ ܐܢܐ ܠܪ̈ܗܝܬܝ',
+'tog-watchdefault'   => 'ܬܘܣܦ ܦܐܬܘܬ̈ܐ ܕ ܫܚܠܦ ܐܢܐ ܠܪ̈ܗܝܬܝ',
+'tog-watchmoves'     => 'ܬܘܣܦ ܦܐܬܘܬ̈ܐ ܕ ܫܢܐ ܐܢܐ ܠܪ̈ܗܝܬܝ',
 
 'underline-never' => 'ܠܐ ܡܡܬܘܡ',
 
@@ -84,7 +87,7 @@ $messages = array(
 'article'       => 'ܡܓܠܬܐ',
 'newwindow'     => '(ܦܬܚ ܒܟܘܬܐ ܚܕܬܐ)',
 'cancel'        => 'ܒܛܘܠ',
-'moredotdotdot' => '...ܝܬܝܪ̈ܐ',
+'moredotdotdot' => '...ܝܬܝܪ',
 'mypage'        => 'ܦܐܬܝ',
 'mytalk'        => 'ܕܘܪܫܝ',
 'anontalk'      => 'ܡܡܠܠܐ ܠܗܢܐ IP',
@@ -94,8 +97,8 @@ $messages = array(
 # Cologne Blue skin
 'qbedit'         => 'ܫܚܠܦ',
 'qbpageoptions'  => 'ܗܕܐ ܦܐܬܐ',
-'qbmyoptions'    => 'ܓܒܝܘ̈ܬܝ',
-'qbspecialpages' => 'ܦܐܬܘܬܐ ܪܫܝܬܐ',
+'qbmyoptions'    => 'ܓܒܝܬ̈ܝ',
+'qbspecialpages' => 'ܦܐܬܘܬ̈ܐ ܪ̈ܫܝܬܐ',
 
 'errorpagetitle'    => 'ܦܘܕܐ',
 'returnto'          => 'ܕܥܘܪ ܠ$1.',
@@ -156,20 +159,21 @@ $messages = array(
 
 'badaccess' => 'ܦܘܕܐ ܠܦܣܣܐ',
 
-'ok'                  => 'ܛܒ',
-'youhavenewmessages'  => 'ܐܝܬ ܠܟ/ܠܟܝ $1 ($2).',
-'newmessageslink'     => 'ܐܓܪ̈ܬܐ ܚܕ̈ܬܬܐ',
-'newmessagesdifflink' => 'ܫܘܚܠܦܐ ܐܚܪܝܐ',
-'editsection'         => 'ܫܚܠܦ',
-'editold'             => 'ܫܚܠܦ',
-'viewsourceold'       => 'ܚܙܝ ܥܩܪܐ',
-'editlink'            => 'ܫܚܠܦ',
-'viewsourcelink'      => 'ܚܙܝ ܥܩܪܐ',
-'editsectionhint'     => 'ܫܚܠܦ ܡܢܬܐ: $1',
-'toc'                 => 'ܚܒܝܫܬ̈ܐ',
-'showtoc'             => 'ܚܘܝ',
-'hidetoc'             => 'ܛܫܝ',
-'viewdeleted'         => 'ܚܙܝ $1?',
+'ok'                      => 'ܛܒ',
+'youhavenewmessages'      => 'ܐܝܬ ܠܟ/ܠܟܝ $1 ($2).',
+'newmessageslink'         => 'ܐܓܪ̈ܬܐ ܚܕ̈ܬܬܐ',
+'newmessagesdifflink'     => 'ܫܘܚܠܦܐ ܐܚܪܝܐ',
+'youhavenewmessagesmulti' => 'ܐܝܬ ܠܟ ܐܓܪ̈ܬܐ ܚܕܬܬ̈ܐ ܒ $1',
+'editsection'             => 'ܫܚܠܦ',
+'editold'                 => 'ܫܚܠܦ',
+'viewsourceold'           => 'ܚܙܝ ܥܩܪܐ',
+'editlink'                => 'ܫܚܠܦ',
+'viewsourcelink'          => 'ܚܙܝ ܥܩܪܐ',
+'editsectionhint'         => 'ܫܚܠܦ ܡܢܬܐ: $1',
+'toc'                     => 'ܚܒܝܫܬ̈ܐ',
+'showtoc'                 => 'ܚܘܝ',
+'hidetoc'                 => 'ܛܫܝ',
+'viewdeleted'             => 'ܚܙܝ $1?',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'ܦܐܬܐ',
@@ -201,8 +205,8 @@ Note that some pages may continue to be displayed as if you were still logged in
 Do not forget to change your [[Special:Preferences|{{SITENAME}} preferences]].',
 'yourname'                => 'ܫܡܐ ܕܡܦܠܚܢܐ:',
 'login'                   => 'ܥܘܠ',
-'nav-login-createaccount' => 'ܥܘܠ \\ ܒܪܝ ܚܘܫܒܢܐ',
-'userlogin'               => 'ܥܘܠ \\ ܒܪܝ ܚܘܫܒܢܐ',
+'nav-login-createaccount' => 'ܥܘܠ / ܒܪܝ ܚܘܫܒܢܐ',
+'userlogin'               => 'ܥܘܠ / ܒܪܝ ܚܘܫܒܢܐ',
 'logout'                  => 'ܦܠܛܐ',
 'userlogout'              => 'ܦܠܘܛ',
 'nologin'                 => 'ܠܝܬ ܠܟ/ܠܟܝ ܚܘܫܒܢܐ؟ $1.',
@@ -296,7 +300,7 @@ Do not forget to change your [[Special:Preferences|{{SITENAME}} preferences]].',
 
 # Recent changes
 'recentchanges'        => 'ܫܘܚܠܦ̈ܐ ܚܕܬ̈ܐ',
-'recentchanges-legend' => 'ܓܘܒܝܘܬ̈ܐ ܕܫܘܚܠܦ̈ܐ ܚܕܬ̈ܐ',
+'recentchanges-legend' => 'ܓܒܝܬ̈ܐ ܕܫܘܚܠܦ̈ܐ ܚܕܬ̈ܐ',
 'recentchangestext'    => 'ܥܩܒ ܫܘܚܠܦ̈ܐ ܚܕܬ ܡܢ ܟܠ ܠܘܝܩܝ ܡܢ ܦܐܬܐ ܗܕܐ.',
 'rclistfrom'           => 'ܚܘܝ ܫܘܚܠܦ̈ܐ ܚܕܬ̈ܐ ܡܢ $1',
 'rcshowhideminor'      => '$1 ܫܘܚܠܦ̈ܐ ܙܥܘܪ̈ܐ',
@@ -330,11 +334,16 @@ Do not forget to change your [[Special:Preferences|{{SITENAME}} preferences]].',
 'randompage' => 'ܡܓܠܬ̈ܐ ܚܘ̈ܝܚܐ',
 
 # Miscellaneous special pages
-'newpages'      => 'ܦܐܬܘ̈ܬܐ ܚܕ̈ܬܬܐ',
-'move'          => 'ܫܢܝ',
-'movethispage'  => 'ܫܢܝ ܦܐܬܐ ܗܕܐ',
-'pager-newer-n' => '{{PLURAL:$1|1 ܝܬܝܪ ܚܕܬܐ  1|$1 ܝܬܝܪ ܚܕܬܐ }}',
-'pager-older-n' => '{{PLURAL:$1|1 ܝܬܝܪ ܥܬܝܩܐ  1|$1 ܝܬܝܪ ܥܬܝܩܐ  }}',
+'uncategorizedpages'      => 'ܦܐܬܘܬ̈ܐ ܠܐ ܣܕܝܪ̈ܐ',
+'uncategorizedcategories' => 'ܣܕܪ̈ܐ ܠܐ ܣܕܝܪ̈ܐ',
+'uncategorizedimages'     => 'ܠܦܦ̈ܐ ܠܐ ܣܕܝܪ̈ܐ',
+'uncategorizedtemplates'  => 'ܩܠܒ̈ܐ ܠܐ ܣܕܝܪ̈ܐ',
+'wantedtemplates'         => 'ܩܠܒ̈ܐ ܒܥܝܐ',
+'newpages'                => 'ܦܐܬܘ̈ܬܐ ܚܕ̈ܬܬܐ',
+'move'                    => 'ܫܢܝ',
+'movethispage'            => 'ܫܢܝ ܦܐܬܐ ܗܕܐ',
+'pager-newer-n'           => '{{PLURAL:$1|1 ܝܬܝܪ ܚܕܬܐ  1|$1 ܝܬܝܪ ܚܕܬܐ }}',
+'pager-older-n'           => '{{PLURAL:$1|1 ܝܬܝܪ ܥܬܝܩܐ  1|$1 ܝܬܝܪ ܥܬܝܩܐ  }}',
 
 # Book sources
 'booksources'    => 'ܙܠ',
@@ -360,11 +369,13 @@ Do not forget to change your [[Special:Preferences|{{SITENAME}} preferences]].',
 'emailsubject' => 'ܡܠܘܐܐ:',
 'emailmessage' => 'ܐܓܪܬܐ:',
 'emailsend'    => 'ܫܕܪ',
+'emailccme'    => 'ܫܕܪ ܠܝ ܨܚܚܐ ܡܢ ܐܓܪ̈ܬܐ ܕܝܠܝ.',
 
 # Watchlist
 'watchlist'     => 'ܪ̈ܗܝܬܝ',
 'mywatchlist'   => 'ܪ̈ܗܝܬܝ',
 'watchlistfor'  => "(ܠ'''$1''')",
+'addedwatch'    => 'ܬܘܣܦ ܠܪ̈ܗܝܬܐ',
 'watch'         => 'ܪܗܝ',
 'watchthispage' => 'ܪܗܝ ܗܕܐ ܦܐܬܐ',
 'unwatch'       => 'ܠܐ ܪܗܝ',
@@ -382,7 +393,9 @@ Do not forget to change your [[Special:Preferences|{{SITENAME}} preferences]].',
 'deletereasonotherlist' => 'ܥܠܬܐ ܐܚܪܬܐ',
 
 # Protect
-'restriction-type' => 'ܦܣܣܐ:',
+'protect-fallback'    => 'ܒܥܝ "$1" ܦܣܣܐ',
+'protect-level-sysop' => 'ܡܕܒܪ̈ܢܐ ܒܠܚܘܕ',
+'restriction-type'    => 'ܦܣܣܐ:',
 
 # Restrictions (nouns)
 'restriction-edit' => 'ܫܚܠܦ',
@@ -428,12 +441,17 @@ Do not forget to change your [[Special:Preferences|{{SITENAME}} preferences]].',
 'move-watch'              => 'ܪܗܝ ܦܐܬܐ ܗܕܐ',
 'movepagebtn'             => 'ܫܢܝ ܦܐܬܐ',
 'pagemovedsub'            => 'ܫܘܢܝܐ ܐܬܓܡܪ',
+'movedto'                 => 'ܐܬܫܢܝ ܠ',
 'movelogpage'             => 'ܣܓܠܐ ܕܫܘܢܝܐ',
 'movereason'              => 'ܥܠܬܐ:',
 'delete_and_move'         => 'ܫܘܦ ܘܫܢܝ',
 'delete_and_move_confirm' => 'ܐܝܢ, ܫܘܦ ܦܐܬܐ',
 
+# Export
+'export-addcattext' => 'ܬܘܣܦ ܦܐܬܘܬ̈ܐ ܡܢ ܣܕܪܐ:',
+
 # Namespace 8 related
+'allmessages'     => 'ܐܓܪ̈̈ܬܐ ܕܛܟܣܐ',
 'allmessagesname' => 'ܫܡܐ',
 
 # Thumbnails

@@ -20,6 +20,7 @@
  * @author Qllach
  * @author SMP
  * @author Smeira
+ * @author Solde
  * @author Spacebirdy
  * @author Toniher
  * @author Vriullop
@@ -1162,7 +1163,7 @@ Assegureu-vos que aquest canvi mantindrà la continuïtat històrica de la pàgi
 No es podrà desfer el canvi.',
 'prefs-emailconfirm-label'  => 'Confirmació de correu electrònic:',
 'prefs-textboxsize'         => "Mida de la caixa d'edició",
-'youremail'                 => 'Adreça electrònica *',
+'youremail'                 => 'Correu electrònic:',
 'username'                  => "Nom d'usuari:",
 'uid'                       => "Identificador d'usuari:",
 'prefs-memberingroups'      => 'Membre dels {{PLURAL:$1|grup|grups}}:',
@@ -1179,7 +1180,7 @@ Ha de tenir com a molt {{PLURAL:$1|un caràcter|$1 caràcters}}.',
 'gender-male'               => 'Masculí',
 'gender-female'             => 'Femení',
 'prefs-help-gender'         => "Opcional: s'usa perquè el programari se us adreci amb missatges amb el gènere adient. Aquesta informació serà pública.",
-'email'                     => 'Adreça electrònica',
+'email'                     => 'Correu electrònic',
 'prefs-help-realname'       => "* Nom real (opcional): si escolliu donar aquesta informació serà utilitzada per a donar-vos l'atribució de la vostra feina.",
 'prefs-help-email'          => "L'adreça electrònica és opcional, però permet l'enviament d'una nova contrasenya en cas d'oblit de l'actual.
 També podeu contactar amb altres usuaris a través de la vostra pàgina d'usuari o de discussió, sense que així calgui revelar la vostra identitat.",
@@ -2088,10 +2089,10 @@ això només s'hauria de fer per prevenir el vandalisme, i
 d'acord amb la [[{{MediaWiki:Policy-url}}|política del projecte]].
 Empleneu el diàleg de sota amb un motiu específic (per exemple, citant
 quines pàgines en concret estan sent vandalitzades).",
-'ipaddress'                       => 'Adreça IP',
+'ipaddress'                       => 'Adreça IP:',
 'ipadressorusername'              => "Adreça IP o nom de l'usuari",
 'ipbexpiry'                       => 'Venciment',
-'ipbreason'                       => 'Motiu',
+'ipbreason'                       => 'Motiu:',
 'ipbreasonotherlist'              => 'Un altre motiu',
 'ipbreason-dropdown'              => "*Motius de bloqueig més freqüents
 ** Inserció d'informació falsa
@@ -2285,6 +2286,8 @@ La pàgina de destinació, «[[:$1]]», ja existeix. Voleu eliminar-la per a fer
 'imageinvalidfilename'         => 'El nom de fitxer indicat no és vàlid',
 'fix-double-redirects'         => "Actualitza també les redireccions que apuntin a l'article original",
 'move-leave-redirect'          => 'Deixar enrera una redirecció',
+'protectedpagemovewarning'     => "'''AVÍS: Aquesta pàgina està blocada i només els usuaris que tenen drets d'administrador la poden reanomenar.",
+'semiprotectedpagemovewarning' => "'''Nota:''' Aquesta pàgina està bloquejada i només els usuaris registrats la poden moure.",
 
 # Export
 'export'            => 'Exporta les pàgines',
@@ -2307,7 +2310,7 @@ En el darrer cas, podeu fer servir un enllaç com ara [[{{#Special:Export}}/{{Me
 
 # Namespace 8 related
 'allmessages'               => 'Tots els missatges del sistema',
-'allmessagesname'           => 'Etiqueta',
+'allmessagesname'           => 'Nom',
 'allmessagesdefault'        => 'Text per defecte',
 'allmessagescurrent'        => 'Text actual',
 'allmessagestext'           => "Tot seguit hi ha una llista dels missatges del sistema que es troben a l'espai de noms ''MediaWiki''. La traducció genèrica d'aquests missatges no s'hauria de fer localment sinó a la traducció del programari MediaWiki. Si voleu ajudar-hi visiteu [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] i [http://translatewiki.net translatewiki.net].",

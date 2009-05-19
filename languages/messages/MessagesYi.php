@@ -1273,7 +1273,7 @@ $2',
 
 # MIME search
 'mimesearch' => 'זוך MIME',
-'download'   => 'אראפלאדירן',
+'download'   => 'אַראָפלאָדן',
 
 # List redirects
 'listredirects' => 'ליסטע פון ווײַטערפֿירונגען',
@@ -1978,7 +1978,7 @@ $NEWPAGE
 'tooltip-feed-atom'               => 'לייג צו אן אטאמאטישער אפדעיט דורך אטאם Atom',
 'tooltip-t-contributions'         => 'אלע בײַשטײַערונגען פון דעם באניצער',
 'tooltip-t-emailuser'             => 'שיקט אן אימעיל פאר דעם באניצער',
-'tooltip-t-upload'                => 'לייגט ארויף פיילס און בילדער',
+'tooltip-t-upload'                => 'ארויפלאדן טעקעס',
 'tooltip-t-specialpages'          => 'אלע ספעציעלע בלעטער',
 'tooltip-t-print'                 => 'דרוק ווערסיע פון דעם בלאט',
 'tooltip-t-permalink'             => 'פערמאנענטע פֿארבינדונג צו דער דאזיגער ווערסיע פֿונעם בלאט',

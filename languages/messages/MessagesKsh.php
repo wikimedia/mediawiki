@@ -2524,6 +2524,8 @@ Di Sigg „[[:$1]]“ jitt et ald. Wollts De se fottschmieße, öm hee di Sigg �
 'imageinvalidfilename'         => 'Dä Ziel-Name för de Datei es verkeht',
 'fix-double-redirects'         => 'Don noh em Ömnenne de Ömleidunge automattesch ändere, di noch op dä ahle Tittel zeije, also de neu entshtande dubbelte Ömleidunge oplöse.',
 'move-leave-redirect'          => 'Donn en Ömleidung doför ennreschte',
+'protectedpagemovewarning'     => "'''Opjepaß:''' Hee di Sigg es jespert su dat blooß de Wiki-Kööbeße se ömnänne künne.",
+'semiprotectedpagemovewarning' => "'''Opjepaß:''' Hee di Sigg es jespert su dat blooß aanjemeldte Metmaacher se ömnänne künne.",
 
 # Export
 'export'            => 'Sigge Exporteere',

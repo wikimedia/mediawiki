@@ -968,6 +968,8 @@ $1 is the relevance of this result in per cent.
 'recentchangesdays-max'     => 'Shown as hint in [[Special:Preferences]], tab "Recent changes"',
 'recentchangescount'        => 'Used in [[Special:Preferences]], tab "Recent changes".',
 'savedprefs'                => 'This message appears after saving changes to your user preferences.',
+'timezonelegend'            => '{{Identical|Time zone}}',
+'timezoneselect'            => '{{Identical|Time zone}}',
 'timezoneoffset'            => "Text next to input box in [[Special:Preferences]], tab 'date and time', section 'timezone'.",
 'allowemail'                => 'Used in [[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}.',
 'prefs-searchoptions'       => '{{Identical|Search options}}',
@@ -2051,52 +2053,54 @@ See also {{msg-mw|Blocklistline}}.',
 'lockfilenotwritable' => "'No longer needed' on wikipedia.",
 
 # Move page
-'move-page'                 => 'Header of the special page to move pages. $1 is the name of the page to be moved.',
-'move-page-backlink'        => '{{optional|Translate it only if you have to change it, i.e. for RTL wikis}}
+'move-page'                    => 'Header of the special page to move pages. $1 is the name of the page to be moved.',
+'move-page-backlink'           => '{{optional|Translate it only if you have to change it, i.e. for RTL wikis}}
 
 Shown as subtitle of [[Special:MovePage/testpage]]. $1 is the title of the page to be moved.',
-'move-page-legend'          => 'Legend of the fieldset around the input form of [[Special:MovePage/testpage]].
+'move-page-legend'             => 'Legend of the fieldset around the input form of [[Special:MovePage/testpage]].
 
 {{Identical|Move page}}',
-'movepagetext'              => 'Introduction shown when moving a page ([[Special:MovePage]]).',
-'movepagetalktext'          => "Text on the special 'Move page'. This text only appears if the talk page is not empty.",
-'movearticle'               => 'The text before the name of the page that you are moving.
+'movepagetext'                 => 'Introduction shown when moving a page ([[Special:MovePage]]).',
+'movepagetalktext'             => "Text on the special 'Move page'. This text only appears if the talk page is not empty.",
+'movearticle'                  => 'The text before the name of the page that you are moving.
 
 {{Identical|Move page}}',
-'movenologin'               => '{{Identical|Not logged in}}',
-'movenologintext'           => "Text of message on special page 'Permissions Errors', which appears when somebody tries to move a page without being logged in.",
-'newtitle'                  => 'Used in the special page "[[Special:MovePage]]". The text for the inputbox to give the new page title.',
-'move-watch'                => 'The text of the checkbox to watch the page you are moving.
+'movenologin'                  => '{{Identical|Not logged in}}',
+'movenologintext'              => "Text of message on special page 'Permissions Errors', which appears when somebody tries to move a page without being logged in.",
+'newtitle'                     => 'Used in the special page "[[Special:MovePage]]". The text for the inputbox to give the new page title.',
+'move-watch'                   => 'The text of the checkbox to watch the page you are moving.
 
 {{Identical|Watch this page}}',
-'movepagebtn'               => "Button label on the special 'Move page'.
+'movepagebtn'                  => "Button label on the special 'Move page'.
 
 {{Identical|Move page}}",
-'pagemovedsub'              => 'Message displayed as aheader of the body, after succesfully moving a page from source to target name.',
-'movepage-moved'            => 'Message displayed after succesfully moving a page from source to target name.
+'pagemovedsub'                 => 'Message displayed as aheader of the body, after succesfully moving a page from source to target name.',
+'movepage-moved'               => 'Message displayed after succesfully moving a page from source to target name.
 * $1 is the source page as a link with display name
 * $2 is the target page as a link with display name
 * $3 (optional) is the source page name without a link
 * $4 (optional) is the target page name without a link',
-'movepage-moved-noredirect' => 'The message is shown after pagemove if checkbox "{{int:move-leave-redirect}}" was unselected before moving.',
-'movetalk'                  => 'The text of the checkbox to watch the associated talk page to the page you are moving. This only appears when the talk page is not empty.',
-'move-subpages'             => 'The text of an option on the special page [[Special:MovePage|MovePage]]. If this option is ticked, any subpages will be moved with the main page to a new title.',
-'move-talk-subpages'        => 'The text of an option on the special page [[Special:MovePage|MovePage]]. If this option is ticked, any subpages will be moved with the talk page to a new title.',
-'1movedto2'                 => "This is ''logentry'' message. $1 is the original page name, $2 is the destination page name.",
-'1movedto2_redir'           => "This is ''logentry'' message. $1 is the original page name, $2 is the destination page name.",
-'movelogpage'               => 'Title of [[Special:Log/move]]. Used as heading on that page, and in the dropdown menu on log pages.',
-'movelogpagetext'           => "Text on the special page 'Move log'.",
-'movesubpage'               => "This is a page header.
+'movepage-moved-noredirect'    => 'The message is shown after pagemove if checkbox "{{int:move-leave-redirect}}" was unselected before moving.',
+'movetalk'                     => 'The text of the checkbox to watch the associated talk page to the page you are moving. This only appears when the talk page is not empty.',
+'move-subpages'                => 'The text of an option on the special page [[Special:MovePage|MovePage]]. If this option is ticked, any subpages will be moved with the main page to a new title.',
+'move-talk-subpages'           => 'The text of an option on the special page [[Special:MovePage|MovePage]]. If this option is ticked, any subpages will be moved with the talk page to a new title.',
+'1movedto2'                    => "This is ''logentry'' message. $1 is the original page name, $2 is the destination page name.",
+'1movedto2_redir'              => "This is ''logentry'' message. $1 is the original page name, $2 is the destination page name.",
+'movelogpage'                  => 'Title of [[Special:Log/move]]. Used as heading on that page, and in the dropdown menu on log pages.',
+'movelogpagetext'              => "Text on the special page 'Move log'.",
+'movesubpage'                  => "This is a page header.
 Parameters:
 *'''$1''' = number of subpages
 <!--{{Note|Plural is supported if you need it, the number of subpages is available in <code>$1</code>.}}-->",
-'movereason'                => 'Used in [[Special:MovePage]]. The text for the inputbox to give a reason for the page move.
+'movereason'                   => 'Used in [[Special:MovePage]]. The text for the inputbox to give a reason for the page move.
 
 {{Identical|Reason}}',
-'revertmove'                => '{{Identical|Revert}}',
-'delete_and_move_text'      => 'Used when moving a page, but the destination page already exists and needs deletion. This message is to confirm that you really want to delete the page. See also {{msg|delete and move confirm}}.',
-'delete_and_move_confirm'   => 'Used when moving a page, but the destination page already exists and needs deletion. This message is for a checkbox to confirm that you really want to delete the page. See also {{msg|delete and move text}}.',
-'fix-double-redirects'      => 'This is a checkbox in [[Special:MovePage]] which allows to move all redirects from the old title to the new title.',
+'revertmove'                   => '{{Identical|Revert}}',
+'delete_and_move_text'         => 'Used when moving a page, but the destination page already exists and needs deletion. This message is to confirm that you really want to delete the page. See also {{msg|delete and move confirm}}.',
+'delete_and_move_confirm'      => 'Used when moving a page, but the destination page already exists and needs deletion. This message is for a checkbox to confirm that you really want to delete the page. See also {{msg|delete and move text}}.',
+'fix-double-redirects'         => 'This is a checkbox in [[Special:MovePage]] which allows to move all redirects from the old title to the new title.',
+'protectedpagemovewarning'     => 'Related message: [[MediaWiki:protectedpagewarning/{{#titleparts:{{PAGENAME}}|1|2}}]]',
+'semiprotectedpagemovewarning' => 'Related message: [[MediaWiki:Semiprotectedpagewarning/{{#titleparts:{{PAGENAME}}|1|2}}]]',
 
 # Export
 'export'           => 'Page title of [[Special:Export]], a page where a user can export pages from a wiki to a file.',

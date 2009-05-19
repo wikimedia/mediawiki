@@ -2319,6 +2319,8 @@ Cieľová stránka „[[:$1]]“ už existuje. Chcete ho vymazať a vytvoriť ta
 'imageinvalidfilename'         => 'Cieľový názov obrázka nie je platný',
 'fix-double-redirects'         => 'Aktualizovať všetky presmerovania odkazujúce na pôvodný názov',
 'move-leave-redirect'          => 'Zanechať presmerovanie',
+'protectedpagemovewarning'     => "'''Upozornenie:''' Táto stránka bola zamknutá, aby ju mohli presunúť iba používatelia s oprávnením správcu.",
+'semiprotectedpagemovewarning' => "'''Upozornenie:''' Táto stránka bola zamknutá, aby ju mohli presunúť iba zaregistrovaní používatelia.",
 
 # Export
 'export'            => 'Export stránok',

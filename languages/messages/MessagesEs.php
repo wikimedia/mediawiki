@@ -2316,6 +2316,8 @@ La página de destino ("[[:$1]]") ya existe. ¿Quiere borrarla para permitir al 
 'imageinvalidfilename'         => 'El nombre del fichero de destino no es válido',
 'fix-double-redirects'         => 'Actualizar las redirecciones que apuntan al título original',
 'move-leave-redirect'          => 'Dejar una redirección',
+'protectedpagemovewarning'     => "'''Advertencia:''' Esta página ha sido bloqueada tal que solamente usuarios con privilegios de administrador pueden moverla.",
+'semiprotectedpagemovewarning' => "'''Nota:''' Esta página ha sido bloqueada tal que solamente usuarios registrados pueden moverla.",
 
 # Export
 'export'            => 'Exportar páginas',
