@@ -3818,10 +3818,3 @@ $wgInvalidUsernameCharacters = '@';
  * modify the user rights of those users via Special:UserRights
  */
 $wgUserrightsInterwikiDelimiter = '@';
-
-/**
- * The $wgSectionContainers variable is used by the parser to determine if it should
- * wrap each section of an article in a div. It is automatically enabled if the EditSectionHiliteLink
- * extension is installed.
- */
-$wgSectionContainers = false;
