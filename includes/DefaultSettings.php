@@ -2496,8 +2496,14 @@ $wgDefaultUserOptions = array(
 	'disablemail'			  => 0,
 );
 
-/** Whether or not to allow and use real name fields. Defaults to true. */
+/** 
+ * Whether or not to allow and use real name fields. 
+ * @deprecated in 1.16, use $wgHiddenPrefs[] = 'realname' below 
+ */
 $wgAllowRealName = true;
+
+/** An array of preferences to not show for the user */
+$wgHiddenPrefs = array();
 
 /*****************************************************************************
  *  Extensions

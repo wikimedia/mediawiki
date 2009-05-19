@@ -24,6 +24,10 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * $wgSessionHandler can be used to configure session.save_handler
 * $wgLocalFileRepo/$wgForeignFileRepos now have a 'fileMode' parameter to
   be used when uploading/moving files
+* (bug 18761) $wgHiddenPrefs is a new array for specifying preferences not
+  to be shown to users
+* $wgAllowRealName was deprecated in favor of $wgHiddenPrefs[] = 'realname',
+  but the former is still retained for backwards-compatibility
 
 === New features in 1.16 ===
 
