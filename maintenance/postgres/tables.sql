@@ -443,6 +443,13 @@ CREATE INDEX logging_type_name ON logging (log_type, log_timestamp);
 CREATE INDEX logging_user_time ON logging (log_timestamp, log_user);
 CREATE INDEX logging_page_time ON logging (log_namespace, log_title, log_timestamp);
 
+CREATE TABLE log_search (
+  ls_field   TEXT     NOT NULL,
+  ls_value   TEXT     NOT NULL,
+  ls_log_id  INTEGER  NOT NULL DEFAULT 0,
+  PRIMARY KEY (ls_field,ls_value,ls_log_id)
+);
+CREATE INDEX ls_log_id ON log_search (ls_log_id);
 
 CREATE SEQUENCE trackbacks_tb_id_seq;
 CREATE TABLE trackbacks (
@@ -580,13 +587,13 @@ CREATE TABLE valid_tag (
   vt_tag TEXT NOT NULL PRIMARY KEY
 );
 
-CREATE TABLE user_properties(
-  up_user   INTEGER      NULL  REFERENCES mwuser(user_id) ON DELETE CASCADE,
-  up_property TEXT NOT NULL,
-  up_value TEXT
+CREATE TABLE user_properties (
+  up_user     INTEGER      NULL  REFERENCES mwuser(user_id) ON DELETE CASCADE,
+  up_property TEXT     NOT NULL,
+  up_value    TEXT
 );
-CREATE UNIQUE INDEX user_properties_user_property on user_properties (up_user,up_property);
-CREATE INDEX user_properties_property on user_properties (up_property);
+CREATE UNIQUE INDEX user_properties_user_property ON user_properties (up_user,up_property);
+CREATE INDEX user_properties_property ON user_properties (up_property);
 
 CREATE TABLE mediawiki_version (
   type         TEXT         NOT NULL,
