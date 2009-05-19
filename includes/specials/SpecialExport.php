@@ -68,7 +68,7 @@ class SpecialExport extends SpecialPage {
 			$page = $wgRequest->getText( 'pages' );
 			$nsindex = $wgRequest->getText( 'nsindex', '' );
 			
-			if ( $nsindex !== '' && $nsindex !== null && $nsindex !== false ) {
+			if ( strval( $nsindex ) !== ''  ) {
 				/**
 				 * Same implementation as above, so same @fixme
 				 */
