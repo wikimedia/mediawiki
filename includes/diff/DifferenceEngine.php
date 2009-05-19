@@ -625,12 +625,16 @@ CONTROL;
 		global $wgExternalDiffEngine;
 		if ( $wgExternalDiffEngine == 'wikidiff' && !function_exists( 'wikidiff_do_diff' ) ) {
 			wfProfileIn( __METHOD__ . '-php_wikidiff.so' );
-			@dl( 'php_wikidiff.so' );
+			wfSuppressWarnings();
+			dl( 'php_wikidiff.so' );
+			wfRestoreWarnings();
 			wfProfileOut( __METHOD__ . '-php_wikidiff.so' );
 		}
 		else if ( $wgExternalDiffEngine == 'wikidiff2' && !function_exists( 'wikidiff2_do_diff' ) ) {
 			wfProfileIn( __METHOD__ . '-php_wikidiff2.so' );
-			@dl( 'php_wikidiff2.so' );
+			wfSuppressWarnings();
+			dl( 'php_wikidiff2.so' );
+			wfRestoreWarnings();
 			wfProfileOut( __METHOD__ . '-php_wikidiff2.so' );
 		}
 	}
