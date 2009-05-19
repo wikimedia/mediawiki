@@ -373,13 +373,10 @@ class PageHistory {
 	function revLink( $rev ) {
 		global $wgLang;
 		$date = $wgLang->timeanddate( wfTimestamp(TS_MW, $rev->getTimestamp()), true );
-		if( $rev->userCan( Revision::DELETED_TEXT ) ) {
+		if( !$rev->isDeleted( Revision::DELETED_TEXT ) ) {
 			$link = $this->mSkin->makeKnownLinkObj( $this->mTitle, $date, "oldid=" . $rev->getId() );
 		} else {
-			$link = $date;
-		}
-		if( $rev->isDeleted( Revision::DELETED_TEXT ) ) {
-			$link = "<span class=\"history-deleted\">$link</span>";
+			$link = "<span class=\"history-deleted\">$date</span>";
 		}
 		return $link;
 	}

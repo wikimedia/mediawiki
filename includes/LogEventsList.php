@@ -654,7 +654,6 @@ class LogPager extends ReverseChronologicalPager {
 		$tables = array( 'logging', 'user' );
 		$this->mConds[] = 'user_id = log_user';
 		$groupBy = false;
-		$index = array();
 		# Add log_search table if there are conditions on it
 		if( array_key_exists('ls_field',$this->mConds) ) {
 			$tables[] = 'log_search';
