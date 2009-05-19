@@ -237,7 +237,7 @@ $messages = array(
 'category-subcat-count-limited'  => 'Kategoria honek {{PLURAL:$1|azpikategoria hau du|$1 azpikategoria hauek ditu}}.',
 'category-article-count'         => '{{PLURAL:$2|Kategoria honek honako orrialdea baino ez du.|Honako {{PLURAL:$1|orrialdea kategoria honetan dago|$1 orrialdeak kategoria hauetan daude}}, guztira dauden $2tik.}}',
 'category-article-count-limited' => 'Honako orrialde {{PLURAL:$1|hau kategoria honetan dago|$1 hauek kategoria hauetan daude}}:',
-'category-file-count'            => '{{PLURAL:$2|Kategoria honek fitxagegi hau baino ez du.|Honako {{PLURAL:$1|fitxategia kategoria honetan dago|$1 fitxategiak kategoria honetan daude}} guztira dauden $2tik.}}',
+'category-file-count'            => '{{PLURAL:$2|Kategoria honek fitxategi hau baino ez du.|Honako {{PLURAL:$1|fitxategia kategoria honetan dago|$1 fitxategiak kategoria honetan daude}} guztira dauden $2tik.}}',
 'category-file-count-limited'    => 'Ondorengo {{PLURAL:$1|artxiboa kategoria honetan dago.|$1 artxiboak kategoria honetan daude.}}',
 'listingcontinuesabbrev'         => 'jarr.',
 
@@ -1095,6 +1095,7 @@ Saia zaitez zure eskeraren aurretik ''all:'' jartzen eduki guztien artean bilatz
 'username'                  => 'Erabiltzaile izena:',
 'uid'                       => 'Erabiltzaile zenbakia:',
 'prefs-memberingroups'      => '{{PLURAL:$1|Taldeko|taldeetako}} kidea:',
+'prefs-registration'        => 'Erregistratzeko unea:',
 'yourrealname'              => 'Benetako izena:',
 'yourlanguage'              => 'Hizkuntza:',
 'yourvariant'               => 'Aldaera',
@@ -1791,6 +1792,7 @@ Laguntza:
 'historywarning'         => 'Kontuz! Ezabatuko duzun orrialdeak honako historia du:',
 'confirmdeletetext'      => 'Orrialde edo irudi bat eta beste historia guztia datu-basetik ezabatzear zaude. Mesedez, egiaztatu hori egin nahi duzula, ondorioak zeintzuk diren badakizula, eta [[{{MediaWiki:Policy-url}}|politikak]] errespetatuz egingo duzula.',
 'actioncomplete'         => 'Ekintza burutu da',
+'actionfailed'           => 'Ekintzak huts egin du',
 'deletedtext'            => '"<nowiki>$1</nowiki>" ezabatu egin da. Ikus $2 azken ezabaketen erregistroa ikusteko.',
 'deletedarticle'         => '"[[$1]]" ezabatu da',
 'suppressedarticle'      => '"[[$1]]" kendua',
@@ -2989,6 +2991,8 @@ Fitxategiaren izena sartu "{{ns:file}}:" aurrizkia gabe.',
 'dberr-cachederror' => 'Ondorengoa eskatutako orriaren katxedun kopia da, eta eguneratu gabe egon daiteke.',
 
 # HTML forms
-'htmlform-reset' => 'Aldaketak desegin',
+'htmlform-submit'              => 'Bidali',
+'htmlform-reset'               => 'Aldaketak desegin',
+'htmlform-selectorother-other' => 'Beste bat',
 
 );

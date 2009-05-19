@@ -2430,6 +2430,8 @@ Da li je želite obrisati kako bi ste mogli izvršiti premještanje?',
 'imageinvalidfilename'         => 'Ciljno ime datoteke nije valjano',
 'fix-double-redirects'         => 'Ažuriraj sva preusmjerenja koja vode ka originalnom naslovu',
 'move-leave-redirect'          => 'Ostavi preusmjerenje',
+'protectedpagemovewarning'     => "'''UPOZORENJE:''' Ova stranica je zaključana tako da je mogu premještati samo korisnici sa ovlastima administratora.",
+'semiprotectedpagemovewarning' => "'''Napomena:''' Ova stranica je zaključana tako da je mogu uređivati samo registrovani korisnici.",
 
 # Export
 'export'            => 'Izvezite stranice',

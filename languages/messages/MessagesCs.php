@@ -2371,6 +2371,8 @@ Cílová stránka „[[:$1]]“ již existuje. Přejete si ji smazat pro uvolně
 'imageinvalidfilename'         => 'Název cílového souboru není platný',
 'fix-double-redirects'         => 'Opravit všechna přesměrování směřující na původní název',
 'move-leave-redirect'          => 'Ponechat přesměrování',
+'protectedpagemovewarning'     => "'''VAROVÁNÍ:''' Tato stránka byla zamčena, takže ji mohou přesouvat pouze správci.",
+'semiprotectedpagemovewarning' => "'''Poznámka:''' Tato stránka byla zamčena, takže ji mohou přesouvat pouze registrovaní uživatelé.",
 
 # Export
 'export'            => 'Exportovat stránky',

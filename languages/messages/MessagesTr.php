@@ -2265,6 +2265,8 @@ Lütfen başka bir isim deneyiniz.',
 'imageinvalidfilename'         => 'Hedef dosya adı geçersiz',
 'fix-double-redirects'         => 'Orijinal başlığa işaret eden yönlendirmeleri güncelle',
 'move-leave-redirect'          => 'Arkada bir yönlendirme bırak',
+'protectedpagemovewarning'     => "'''UYARI:''' Bu sayfa kilitlenmiş, sadece yönetici ayrıcalıklarına sahip kullanıcılar taşıyabilir.",
+'semiprotectedpagemovewarning' => "'''Not:''' Bu sayfa kilitlenmiş, sadece kayıtlı kullanıcılar taşıyabilir.",
 
 # Export
 'export'            => 'Sayfa kaydet',

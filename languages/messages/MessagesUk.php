@@ -10,6 +10,7 @@
  * @author AS
  * @author Ahonc
  * @author Aleksandrit
+ * @author AlexSm
  * @author Dubyk
  * @author EugeneZelenko
  * @author Gutsul (Gutsul.ua at Google Mail)
@@ -1408,7 +1409,7 @@ $3 зазначив таку причину: ''$2''",
 'rcshowhideanons'                   => '$1 анонімів',
 'rcshowhidepatr'                    => '$1 перевірені',
 'rcshowhidemine'                    => '$1 мої редагування',
-'rclinks'                           => 'Показати останні $1 редагувань за $2 {{PLURAL:$2|день|дні|днів}};<br />$3.',
+'rclinks'                           => 'Показати останні $1 редагувань за $2 днів<br />$3',
 'diff'                              => 'різн.',
 'hist'                              => 'історія',
 'hide'                              => 'сховати',

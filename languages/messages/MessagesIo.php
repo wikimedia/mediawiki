@@ -297,6 +297,7 @@ $messages = array(
 'aboutsite'            => 'Pri {{SITENAME}}',
 'aboutpage'            => 'Project:Pri {{SITENAME}}',
 'copyright'            => 'La kontenajo esas disponebla sub $1.',
+'copyrightpagename'    => '{{SITENAME}} kopiyuro',
 'currentevents'        => 'Aktualaji',
 'currentevents-url'    => 'Project:Aktualaji',
 'disclaimers'          => 'Legala averto',
@@ -366,15 +367,15 @@ On povas trovar listo di valida specala pagini en [[Special:SpecialPages|{{int:s
 'error'               => 'Eroro',
 'databaseerror'       => 'Datumarala eroro',
 'readonly'            => 'Datumaro esas blokusita',
-'enterlockreason'     => 'Explikez la motivo por la blokusado, inkluzante 
+'enterlockreason'     => 'Explikez la motivo por la blokuso, inkluzante 
 evaluo pri kande eventos la desblokuso',
 'missingarticle-rev'  => '(versiono#: $1)',
 'missingarticle-diff' => '(Difero: $1, $2)',
 'internalerror'       => 'Interna eroro',
 'internalerror_info'  => 'Interna eroro: $1',
-'filecopyerror'       => 'Onu ne povis kopiar la arkivo "$1" a "$2".',
-'filerenameerror'     => 'Onu ne povas rinomizar la arkivo "$1" ad "$2".',
-'filedeleteerror'     => 'Onu ne povis efacar la arkivo "$1".',
+'filecopyerror'       => 'Ne povis kopiar l\'arkivo "$1" a "$2".',
+'filerenameerror'     => 'Ne povas rinomizar l\'arkivo "$1" ad "$2".',
+'filedeleteerror'     => 'Onu ne povis efacar l\'arkivo "$1".',
 'filenotfound'        => 'Onu ne povas trovar la arkivo "$1".',
 'unexpected'          => 'Nevartita valoro: "$1"="$2".',
 'formerror'           => 'Eroro: Onu ne povis sendar la kontenajo di la formularo',
@@ -414,7 +415,7 @@ Voluntez, ne obliviez chanjor vua preferaji.',
 'createaccount'              => 'Krear nova konto',
 'gotaccount'                 => 'Ka vu ja havas konto? $1.',
 'gotaccountlink'             => 'Enirar',
-'createaccountmail'          => 'per elek-posto',
+'createaccountmail'          => 'per e-posto',
 'badretype'                  => 'La pasovorti vu donis ne esas sama.',
 'userexists'                 => 'La uzantonomo, quan vu skribis, ja selektesis antee.
 Voluntez, elektez ula diferanta uzantonomo.',
@@ -825,7 +826,7 @@ Videz rezumo plu vidala en la [[Special:NewFiles|galerio di nova arkivi]].',
 'filename'          => 'Arkivo-nomo',
 'filedesc'          => 'Titulo',
 'fileuploadsummary' => 'Rezumo:',
-'filestatus'        => "Stando di ''copyright'':",
+'filestatus'        => 'Stando di kopiyuro:',
 'filesource'        => 'Fonto:',
 'uploadedfiles'     => 'Adkargita arkivi',
 'ignorewarning'     => 'Ignorar la averto e gardar la arkivo irgakaze.',
@@ -1160,6 +1161,14 @@ restauris ad lasta versiono da $2.',
 'ipbexpiry'          => 'Expiro:',
 'ipbreason'          => 'Motivo:',
 'ipbreasonotherlist' => 'Altra motivo',
+'ipbreason-dropdown' => '*Ordinara motivi por blokuso
+** Insertar nevera informi
+** Efacar kontenajo de pagini
+** Insertadar ligili ad extera reti
+** Insertar radoto aden pagini
+** Timidiganta ago
+** Trouzar multa konti
+** Neaceptebla uzanto-nomo',
 'ipbanononly'        => 'Blokusez nur anonimala uzanti',
 'ipbcreateaccount'   => 'Preventez kreo di konti',
 'ipbsubmit'          => 'Blokusar ica uzanto',

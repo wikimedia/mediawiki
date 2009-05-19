@@ -2186,6 +2186,8 @@ Cilowa strona „[[:$1]]” hižo eksistuje. Chceš ju wušmórnyć, zo by so p�
 'imageinvalidfilename'         => 'Mjeno ciloweje dataje je njepłaćiwe',
 'fix-double-redirects'         => 'Daleposrědkowanja aktualizować, kotrež na prěnjotny titul pokazuja',
 'move-leave-redirect'          => 'Daleposrědkowanje zawostajić',
+'protectedpagemovewarning'     => "'''WARNOWANJE:''' Tuta strona bu zawrjena, zo bychu jenož wužiwarjo z prawami administratora móhli ju přesunyć.",
+'semiprotectedpagemovewarning' => "'''Kedźbu:''' Tuta strona bu zawrjena, zo bychu jenož zregistrowani wužiwarjo móhli ju přesunyć.",
 
 # Export
 'export'            => 'Strony eksportować',
@@ -2351,7 +2353,7 @@ W poslednim padźe móžeš tež wotkaz wužiwać, na př. „[[{{#Special:Expor
 'anonymous'        => '{{PLURAL:$1|Anonymny wužiwar|Anonymnaj wužiwarjej|Anonymni wužiwarjo|Anonymni wužiwarjo}} we {{GRAMMAR:lokatiw|{{SITENAME}}}}',
 'siteuser'         => 'wužiwar {{GRAMMAR:genitiw|{{SITENAME}}}} $1',
 'lastmodifiedatby' => 'Strona bu dnja $1 w $2 hodź. wot wužiwarja $4 změnjena.',
-'othercontribs'    => 'Bazěruje na dźěle {{PLURAL:$1|wužiwar|wužiwarjow|wužiwarjow|wužiwarjow}} $1.',
+'othercontribs'    => 'Bazěruje na dźěle $1.',
 'others'           => 'druhich',
 'siteusers'        => '{{SITENAME}}  {{PLURAL:$2|wužiwar|wužiwarjej|wužiwarjo|wužiwarjow}} $1',
 'creditspage'      => 'Dźak awtoram',

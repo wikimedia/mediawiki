@@ -2309,6 +2309,8 @@ Målsida «[[:$1]]» finst allereie. Vil du slette ho for å gje rom for flyttin
 'imageinvalidfilename'         => 'Målnamnet er ugyldig',
 'fix-double-redirects'         => 'Oppdater omdirigeringar som viser til den gamle tittelen',
 'move-leave-redirect'          => 'La det vere att ei omdirigering',
+'protectedpagemovewarning'     => "'''ÅTVARING:''' Denne sida har vorte låst, slik at berre brukarar med rettar som administrator kan flytta henne.",
+'semiprotectedpagemovewarning' => "'''Notér:''' Denne sida har vorte låst, slik at berre registrerte brukarar kan flytta henne.",
 
 # Export
 'export'            => 'Eksporter sider',

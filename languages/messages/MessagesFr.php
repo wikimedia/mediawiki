@@ -2454,6 +2454,8 @@ impossible de renommer une page sur elle-même.',
 'imageinvalidfilename'         => 'Le nom du fichier cible est incorrect',
 'fix-double-redirects'         => 'Mettre à jour les redirections pointant vers le titre original',
 'move-leave-redirect'          => 'Laisser une redirection vers le nouveau titre',
+'protectedpagemovewarning'     => "'''ATTENTION:''' Cette page a été bloqué afin que seuls les utilisateurs ayant les droits d'administrateurs puissent la renommer.",
+'semiprotectedpagemovewarning' => "'''Note:''' Cette page a été bloqué afin que seul les utilisateurs enregistrés puissent la renommer.",
 
 # Export
 'export'            => 'Exporter des pages',

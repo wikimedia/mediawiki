@@ -789,6 +789,7 @@ Pe piacere conferme ca tu vuè ccu face sta cose, ca tu è capite le conseguenze
 'revdelete-logentry'             => "ha state cangete 'a visibbilità d'a revisione de [[$1]]",
 'logdelete-logentry'             => "ha state cangete 'a visibbilità de l'evende de [[$1]]",
 'revdelete-success'              => "'''Visibbilità de le revisiune 'mbostate correttamende.'''",
+'revdelete-failure'              => "''' 'A visibbilità de le revisiune pò essere ca non g'è 'mbostate.'''",
 'logdelete-success'              => "'''Log visibility successfully set.'''
 '''Visibbilità de l'archivije 'mbostate correttamende.'''",
 'revdel-restore'                 => "Cange 'a visibilità",
@@ -2047,6 +2048,7 @@ non ge se pò movere 'na pàgene sus a sè stesse.",
 'immobile-target-page'      => 'Non ge puè spustà sus a stu titele de destinazione.',
 'imagetypemismatch'         => "L'estenziona nove d'u file non ge se accocchie cu 'u tipe sue",
 'imageinvalidfilename'      => "'U nome d'u file de destinazzione jè invalide",
+'move-leave-redirect'       => "Lasse 'nu ridirezionamende rréte",
 
 # Export
 'export'            => 'Pàggene esportete',
@@ -2366,6 +2368,10 @@ Otre avènene scunnute pe defolt.
 'exif-gpsspeed-m' => 'Miglie pe ore',
 'exif-gpsspeed-n' => 'Knots',
 
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'Chilomètre',
+'exif-gpsdestdistance-m' => 'Miglia',
+
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Direziona vere',
 'exif-gpsdirection-m' => 'Direziona magnetiche',
@@ -2543,13 +2549,19 @@ Mitte 'u nome d'u file senze 'u \"{{ns:file}}:\" prefisse.",
 'tags-hitcount'           => '$1 {{PLURAL:$1|cangiamende|cangiaminde}}',
 
 # Database error messages
-'dberr-header'    => "Sta Uicchi tène 'nu probbleme",
-'dberr-problems'  => "Simw spiacende! Stu site stè 'ngondre de le diffcoltà tecniche.",
-'dberr-again'     => 'Aspitte quacche minute e pò recareche.',
-'dberr-info'      => "(Non ge riuscime a condattà 'u server d'u database: $1)",
-'dberr-usegoogle' => 'Pu mumende tu puè pruvà a cercà cu Google.',
+'dberr-header'      => "Sta Uicchi tène 'nu probbleme",
+'dberr-problems'    => "Simw spiacende! Stu site stè 'ngondre de le diffcoltà tecniche.",
+'dberr-again'       => 'Aspitte quacche minute e pò recareche.',
+'dberr-info'        => "(Non ge riuscime a condattà 'u server d'u database: $1)",
+'dberr-usegoogle'   => 'Pu mumende tu puè pruvà a cercà cu Google.',
+'dberr-cachederror' => "Queste jè 'na copie ''cache'' d'a pàgene ca è cercate e allore non g'à puè cangià.",
 
 # HTML forms
+'htmlform-invalid-input'       => 'Stonne probbleme cu certe input ca tu è mise',
+'htmlform-select-badoption'    => "'U valore ca è specificate non g'è 'n'opziona valide.",
+'htmlform-int-invalid'         => "'U valore ca è specificate non g'è 'n'indere.",
+'htmlform-int-toolow'          => "'U valore ca è specificate jè sotte a 'u minime de $1",
+'htmlform-int-toohigh'         => "'U valore ca è specificate jè suverchie a 'u massime de $1",
 'htmlform-submit'              => 'Conferme',
 'htmlform-reset'               => 'Annulle le cangiaminde',
 'htmlform-selectorother-other' => 'Otre',

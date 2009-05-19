@@ -2313,6 +2313,8 @@ $1 は、すでにブロックされています。設定を変更しますか�
 'imageinvalidfilename'         => '指定したファイル名が無効です',
 'fix-double-redirects'         => 'このページへのリダイレクトがあればそのリダイレクトを修正する',
 'move-leave-redirect'          => '移動元にリダイレクトを作成する',
+'protectedpagemovewarning'     => "'''警告:''' このページは管理者権限をもつ利用者のみが移動できるように保護されています。",
+'semiprotectedpagemovewarning' => "'''注意:''' このページは登録利用者のみが移動できるように保護されています。",
 
 # Export
 'export'            => 'ページデータの書き出し',

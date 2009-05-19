@@ -1105,8 +1105,8 @@ Uuden ja vanhan sivun muutoksien pitää muodostaa jatkumo – ne eivät saa men
 'notextmatches'                    => 'Hakusanaa ei löytynyt sivujen teksteistä',
 'prevn'                            => '← $1 edellistä',
 'nextn'                            => '$1 seuraavaa →',
-'prevn-title'                      => '{{PLURAL:$1|Edellinen $1 osuma|Seuraavat $1 osumaa}}',
-'nextn-title'                      => '{{PLURAL:$1|Seuraava $1 osuma|Seuraavat $1 osumaa}}',
+'prevn-title'                      => '{{PLURAL:$1|Edellinen osuma|Edelliset $1 osumaa}}',
+'nextn-title'                      => '{{PLURAL:$1|Seuraava osuma|Seuraavat $1 osumaa}}',
 'shown-title'                      => 'Näytä $1 {{PLURAL:$1|osuma|osumaa}} sivulla',
 'viewprevnext'                     => 'Näytä [$3] kerralla.
 
