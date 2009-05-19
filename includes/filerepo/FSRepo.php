@@ -204,7 +204,7 @@ class FSRepo extends FileRepo {
 				}
 			}
 			if ( $good ) {
-				@chmod( $dstPath, $this->fileMode );
+				$this->chmod( $dstPath );
 				$status->successCount++;
 			} else {
 				$status->failCount++;
@@ -390,7 +390,7 @@ class FSRepo extends FileRepo {
 				$status->successCount++;
 				wfDebug(__METHOD__.": wrote tempfile $srcPath to $dstPath\n");
 				// Thread-safe override for umask
-				@chmod( $dstPath, $this->fileMode );
+				$this->chmod( $dstPath );
 			} else {
 				$status->failCount++;
 			}
@@ -467,7 +467,7 @@ class FSRepo extends FileRepo {
 					$status->error( 'filerenameerror', $srcPath, $archivePath );
 					$good = false;
 				} else {
-					@chmod( $archivePath, $this->fileMode );
+					$this->chmod( $archivePath );
 				}
 			}
 			if ( $good ) {
@@ -560,6 +560,16 @@ class FSRepo extends FileRepo {
 			}
 		}
 		return strtr( $param, $this->simpleCleanPairs );
+	}
+	
+	/**
+	 * Chmod a file, supressing the warnings.
+	 * @param String $path The path to change
+	 */
+	protected function chmod( $path ) {
+		wfSuppressWarnings();
+		chmod( $path, $this->fileMode );
+		wfRestoreWarnings();
 	}
 
 }
