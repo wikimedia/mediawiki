@@ -191,19 +191,19 @@ CREATE INDEX /*i*/un_user_ip ON /*_*/user_newtalk (user_ip);
 -- 2) We can more easily do bulk lookups, statistics, or modifications of
 --    saved options since it's a sane table structure.
 --
-CREATE TABLE /*_*/user_properties(
+CREATE TABLE /*_*/user_properties (
   -- Foreign key to user.user_id
-  up_user int not null,
+  up_user int NOT NULL,
   
   -- Name of the option being saved. This is indexed for bulk lookup.
-  up_property varbinary(32) not null,
+  up_property varbinary(32) NOT NULL,
   
   -- Property value as a string.
   up_value blob
 ) /*$wgDBTableOptions*/;
 
-CREATE UNIQUE INDEX /*i*/user_properties_user_property on /*_*/user_properties (up_user,up_property);
-CREATE INDEX /*i*/user_properties_property on /*_*/user_properties (up_property);
+CREATE UNIQUE INDEX /*i*/user_properties_user_property ON /*_*/user_properties (up_user,up_property);
+CREATE INDEX /*i*/user_properties_property ON /*_*/user_properties (up_property);
 
 --
 -- Core of the wiki: each page has an entry here which identifies
