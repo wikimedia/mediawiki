@@ -567,6 +567,8 @@ class Language {
 	 *
 	 *    xkY  Y (full year) in Thai solar calendar. Months and days are
 	 *                       identical to the Gregorian calendar
+	 *    xoY  Y (full year) in Minguo calendar. Months and days are
+	 *                       identical to the Gregorian calendar
 	 *
 	 * Characters enclosed in double quotes will be considered literal (with
 	 * the quotes themselves removed). Unmatched quotes will be considered
@@ -598,6 +600,7 @@ class Language {
 		$hebrew = false;
 		$hijri = false;
 		$thai = false;
+		$minguo = false;
 		for ( $p = 0; $p < strlen( $format ); $p++ ) {
 			$num = false;
 			$code = $format[$p];
@@ -605,7 +608,7 @@ class Language {
 				$code .= $format[++$p];
 			}
 
-			if ( ( $code === 'xi' || $code == 'xj' || $code == 'xk' || $code == 'xm' ) && $p < strlen( $format ) - 1 ) {
+			if ( ( $code === 'xi' || $code == 'xj' || $code == 'xk' || $code == 'xm' || $code == 'xo' ) && $p < strlen( $format ) - 1 ) {
 				$code .= $format[++$p];
 			}
 
@@ -751,6 +754,10 @@ class Language {
 				case 'xkY':
 					if ( !$thai ) $thai = self::tsToThai( $ts );
 					$num = $thai[0];
+					break;
+				case 'xoY':
+					if ( !$minguo ) $minguo = self::tsToMinguo( $ts );
+					$num = $minguo[0];
 					break;
 				case 'y':
 					$num = substr( $ts, 2, 2 );
@@ -1132,6 +1139,25 @@ class Language {
 		return array( $gy_thai, $gm, $gd );
 	}
 
+	/**
+	 * Algorithm to convert Gregorian dates to Minguo dates.
+	 *
+	 * Link: http://en.wikipedia.org/wiki/Minguo_calendar
+	 *
+	 * @param $ts String: 14-character timestamp
+	 * @return array converted year, month, day
+	 */
+	private static function tsToMinguo( $ts ) {
+		$gy = substr( $ts, 0, 4 );
+		$gm = substr( $ts, 4, 2 );
+		$gd = substr( $ts, 6, 2 );
+
+		# Deduct 1911 years from the Gregorian calendar
+		# Months and days are identical
+		$gy_minguo = $gy - 1911;
+
+		return array( $gy_minguo, $gm, $gd );
+	}
 
 	/**
 	 * Roman number formatting up to 3000

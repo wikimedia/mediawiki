@@ -38,6 +38,29 @@ $namespaceNames = array(
 	NS_CATEGORY_TALK    => '分類討論'
 );
 
+$datePreferences = array(
+	'default',
+	'minguo',
+	'CNS 7648',
+	'ISO 8601',
+);
+
+$defaultDateFormat = 'zh';
+
+$dateFormats = array(
+	'zh time' => 'H:i',
+	'zh date' => 'Y年n月j日 (l)',
+	'zh both' => 'Y年n月j日 (D) H:i',
+
+	'minguo time' => 'H:i',
+	'minguo date' => 'xoY年n月j日 (l)',
+	'minguo both' => 'xoY年n月j日 (D) H:i',
+
+	'CNS 7648 time' => 'H:i',
+	'CNS 7648 date' => 'R.O.C. xoY-m-d (l)',
+	'CNS 7648 both' => 'R.O.C. xoY-m-d (D) H:i',
+);
+
 $messages = array(
 # User preference toggles
 'tog-underline'            => '鏈結標注底線',
