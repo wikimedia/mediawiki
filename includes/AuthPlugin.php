@@ -123,38 +123,22 @@ class AuthPlugin {
 	}
 
 	/**
+	 * Allow a property change? Properties are the same as preferences
+	 * and use the same keys. 'Realname' 'Emailaddress' and 'Nickname'
+	 * all reference this.
+	 *
+	 * @return bool
+	 */
+	public function allowPropChange( $prop = '' ) {
+		return true;
+	}
+
+	/**
 	 * Can users change their passwords?
 	 *
 	 * @return bool
 	 */
 	public function allowPasswordChange() {
-		return true;
-	}
-	
-	/**
-	 * Can users change their Real Name?
-	 *
-	 * @return bool
-	 */
-	public function allowRealNameChange() {
-		return true;
-	}
-
-	/**
-	 * Can users change their email address?
-	 *
-	 * @return bool
-	 */
-	public function allowEmailChange() {
-		return true;
-	}
-
-	/**
-	 * Can users change their Nickname?
-	 *
-	 * @return bool
-	 */
-	public function allowNickChange() {
 		return true;
 	}
 
