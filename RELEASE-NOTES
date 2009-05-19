@@ -55,6 +55,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 18342) insertTags works in edit summary box
 * (bug 18411) The upload form also checks post_max_size
 * Watchlist now has a specialized <div> tag that contains a unique class for each page
+* Added Minguo calendar support for the Taiwan Chinese language
 
 === Bug fixes in 1.16 ===
 
