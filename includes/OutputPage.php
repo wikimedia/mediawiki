@@ -1875,7 +1875,7 @@ class OutputPage {
 	 *
 	 * In the $wrap, $1 is replaced with the first message, $2 with the second, and so
 	 * on. The subsequent arguments may either be strings, in which case they are the
-	 * message names, or an arrays, in which case the first element is the message name,
+	 * message names, or arrays, in which case the first element is the message name,
 	 * and subsequent elements are the parameters to that message.
 	 *
 	 * The special named parameter 'options' in a message specification array is passed
