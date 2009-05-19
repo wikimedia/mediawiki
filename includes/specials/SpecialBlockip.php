@@ -46,7 +46,7 @@ class IPBlockForm {
 	const HIDEUSER_CONTRIBLIMIT = 1000;
 
 	public function __construct( $par ) {
-		global $wgRequest, $wgUser, $wgBlockAllowsUTEdit, $wgSysopEmailBans, $wgEnableUserEmail;
+		global $wgRequest, $wgUser, $wgBlockAllowsUTEdit;
 
 		$this->BlockAddress = $wgRequest->getVal( 'wpBlockAddress', $wgRequest->getVal( 'ip', $par ) );
 		$this->BlockAddress = strtr( $this->BlockAddress, '_', ' ' );
