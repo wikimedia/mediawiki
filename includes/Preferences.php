@@ -29,6 +29,14 @@ class Preferences {
 
 		wfRunHooks( 'GetPreferences', array( $user, &$defaultPreferences ) );
 
+		## Remove preferences that wikis don't want to use
+		global $wgHiddenPrefs;
+		foreach ( $wgHiddenPrefs as $pref ) {
+			if ( isset( $defaultPreferences[$pref] ) ) {
+				unset( $defaultPreferences[ $pref ] );
+			}
+		}
+
 		## Prod in defaults from the user
 		global $wgDefaultUserOptions;
 		foreach( $defaultPreferences as $name => &$info ) {
@@ -138,19 +146,16 @@ class Preferences {
 		}
 				
 		// Actually changeable stuff
-		global $wgAllowRealName, $wgAuth;
-		if ($wgAllowRealName) {
-			$defaultPreferences['realname'] =
-					array(
-						'type' => $wgAuth->allowPropChange( 'realname' ) ? 'text' : 'info',
-						'default' => $user->getRealName(),
-						'section' => 'personal/info',
-						'label-message' => 'yourrealname',
-						'help-message' => 'prefs-help-realname',
-					);
-		}
-		
-		
+		global $wgAuth;
+		$defaultPreferences['realname'] =
+				array(
+					'type' => $wgAuth->allowPropChange( 'realname' ) ? 'text' : 'info',
+					'default' => $user->getRealName(),
+					'section' => 'personal/info',
+					'label-message' => 'yourrealname',
+					'help-message' => 'prefs-help-realname',
+				);
+
 		$defaultPreferences['gender'] =
 				array(
 					'type' => 'select',

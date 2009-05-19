@@ -201,6 +201,12 @@ $wgContLanguageCode = $wgLanguageCode;
 # If file cache or squid cache is on, just disable this (DWIMD).
 if( $wgUseFileCache || $wgUseSquid ) $wgShowIPinHeader = false;
 
+# $wgAllowRealName was removed in 1.16 in favor of $wgHiddenPrefs,
+# handle b/c here
+if( !$wgAllowRealName ) {
+	$wgHiddenPrefs[] = 'realname';
+}
+
 wfProfileOut( $fname.'-misc1' );
 wfProfileIn( $fname.'-memcached' );
 
