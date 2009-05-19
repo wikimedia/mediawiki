@@ -62,7 +62,7 @@ class IPBlockForm {
 		$this->BlockCreateAccount = $wgRequest->getBool( 'wpCreateAccount', $byDefault );
 		$this->BlockEnableAutoblock = $wgRequest->getBool( 'wpEnableAutoblock', $byDefault );
 		$this->BlockEmail = false;
-		if( $wgEnableUserEmail && $wgSysopEmailBans && $wgUser->isAllowed( 'blockemail' ) ) {
+		if( self::canBlockEmail( $wgUser ) ) {
 			$this->BlockEmail = $wgRequest->getBool( 'wpEmailBan', false );
 		}
 		$this->BlockWatchUser = $wgRequest->getBool( 'wpWatchUser', false );
@@ -233,8 +233,7 @@ class IPBlockForm {
 			</tr>"
 		);
 
-		global $wgSysopEmailBans, $wgBlockAllowsUTEdit, $wgEnableUserEmail;
-		if( $wgEnableUserEmail && $wgSysopEmailBans && $wgUser->isAllowed( 'blockemail' ) ) {
+		if( self::canBlockEmail( $wgUser ) ) {
 			$wgOut->addHTML("
 				<tr id='wpEnableEmailBan'>
 					<td>&nbsp;</td>
@@ -272,6 +271,9 @@ class IPBlockForm {
 				</td>
 			</tr>"
 		);
+		
+		# Can we explicitly disallow the use of user_talk?
+		global $wgBlockAllowsUTEdit;
 		if( $wgBlockAllowsUTEdit ){
 			$wgOut->addHTML("
 				<tr id='wpAllowUsertalkRow'>
@@ -310,6 +312,16 @@ class IPBlockForm {
 		} elseif( preg_match( '/^\w{1,4}:\w{1,4}:\w{1,4}:\w{1,4}:\w{1,4}:\w{1,4}:\w{1,4}:\w{1,4}/', $this->BlockAddress ) ) {
 			$this->showLogFragment( $wgOut, Title::makeTitle( NS_USER, $this->BlockAddress ) );
 		}
+	}
+	
+	/**
+	 * Can we do an email block?
+	 * @param User $user The sysop wanting to make a block
+	 * @return boolean
+	 */
+	protected function canBlockEmail( $user ) {
+		global $wgEnableUserEmail, $wgSysopEmailBans;
+		return ($wgEnableUserEmail && $wgSysopEmailBans && $user->isAllowed( 'blockemail' ));
 	}
 
 	/**
