@@ -328,7 +328,8 @@ class SpecialRecentChanges extends SpecialPage {
 					'USE INDEX' =>  array('recentchanges' => 'new_name_timestamp') ),
 				$join_conds );
 			# Join the two fast queries, and sort the result set
-			$sql = "($sqlNew) UNION ($sqlOld) ORDER BY rc_timestamp DESC LIMIT $limit";
+			$sql = $dbr->unionQueries(array($sqlNew, $sqlOld), false).' ORDER BY rc_timestamp DESC';
+			$sql = $dbr->limitResult($sql, $limit, false);
 			$res = $dbr->query( $sql, __METHOD__ );
 		}
 

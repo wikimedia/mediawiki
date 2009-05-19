@@ -155,9 +155,10 @@ class SpecialRecentchangeslinked extends SpecialRecentchanges {
 			$sql = $subsql[0];
 		else {
 			// need to resort and relimit after union
-			$sql = "(" . implode( ") UNION (", $subsql ) . ") ORDER BY rc_timestamp DESC LIMIT {$limit}";
+			$sql = $dbr->unionQueries($subsql, false).' ORDER BY rc_timestamp DESC';
+			$sql = $dbr->limitResult($sql, $limit, false);
 		}
-
+		
 		$res = $dbr->query( $sql, __METHOD__ );
 
 		if( $res->numRows() == 0 )

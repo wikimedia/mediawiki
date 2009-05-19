@@ -1829,6 +1829,19 @@ class Database {
 	}
 
 	/**
+	 * Construct a UNION query
+	 * This is used for providing overload point for other DB abstractions
+	 * not compatible with the MySQL syntax.
+	 * @param $sqls Array: SQL statements to combine
+	 * @param $all Boolean: use UNION ALL
+	 * @return String: SQL fragment
+	 */
+	function unionQueries($sqls, $all) {
+		$glue = $all ? ') UNION ALL (' : ') UNION (';
+		return '('.implode( $glue, $sqls ) . ')';
+	}
+
+	/**
 	 * Returns an SQL expression for a simple conditional.
 	 * Uses IF on MySQL.
 	 *
