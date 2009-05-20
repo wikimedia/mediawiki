@@ -1161,14 +1161,14 @@ class Language {
 			if (($gy < 1989) || (($gy == 1989) && ($gm == 1) && ($gd < 8))) {
 				# Shōwa period
 				$gy_gannen = $gy - 1926 + 1;
-				$gy_offset = $gy_gannen + $gy_offset;
+				$gy_offset = $gy_gannen;
 				if ($gy_gannen == 1)
 					$gy_offset = '元';
 				$gy_offset = '昭和'.$gy_offset;
 			} else {
 				# Heisei period
 				$gy_gannen = $gy - 1989 + 1;
-				$gy_offset = $gy_gannen + $gy_offset;
+				$gy_offset = $gy_gannen;
 				if ($gy_gannen == 1)
 					$gy_offset = '元';
 				$gy_offset = '平成'.$gy_offset;
