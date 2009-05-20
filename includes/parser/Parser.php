@@ -2341,6 +2341,7 @@ class Parser
 		wfSuppressWarnings(); // E_STRICT system time bitching
 		$localTimestamp = date( 'YmdHis', $ts );
 		$localMonth = date( 'm', $ts );
+		$localMonth1 = date( 'n', $ts );
 		$localMonthName = date( 'n', $ts );
 		$localDay = date( 'j', $ts );
 		$localDay2 = date( 'd', $ts );
@@ -2356,6 +2357,8 @@ class Parser
 		switch ( $index ) {
 			case 'currentmonth':
 				return $this->mVarCache[$index] = $wgContLang->formatNum( gmdate( 'm', $ts ) );
+			case 'currentmonth1':
+				return $this->mVarCache[$index] = $wgContLang->formatNum( gmdate( 'n', $ts ) );
 			case 'currentmonthname':
 				return $this->mVarCache[$index] = $wgContLang->getMonthName( gmdate( 'n', $ts ) );
 			case 'currentmonthnamegen':
@@ -2368,6 +2371,8 @@ class Parser
 				return $this->mVarCache[$index] = $wgContLang->formatNum( gmdate( 'd', $ts ) );
 			case 'localmonth':
 				return $this->mVarCache[$index] = $wgContLang->formatNum( $localMonth );
+			case 'localmonth1':
+				return $this->mVarCache[$index] = $wgContLang->formatNum( $localMonth1 );
 			case 'localmonthname':
 				return $this->mVarCache[$index] = $wgContLang->getMonthName( $localMonthName );
 			case 'localmonthnamegen':

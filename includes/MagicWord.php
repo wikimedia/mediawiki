@@ -36,6 +36,7 @@ class MagicWord {
 	static public $mVariableIDsInitialised = false;
 	static public $mVariableIDs = array(
 		'currentmonth',
+		'currentmonth1',
 		'currentmonthname',
 		'currentmonthnamegen',
 		'currentmonthabbrev',
@@ -46,6 +47,7 @@ class MagicWord {
 		'currenttime',
 		'currenthour',
 		'localmonth',
+		'localmonth1',
 		'localmonthname',
 		'localmonthnamegen',
 		'localmonthabbrev',
@@ -106,6 +108,7 @@ class MagicWord {
 	/* Array of caching hints for ParserCache */
 	static public $mCacheTTLs = array (
 		'currentmonth' => 86400,
+		'currentmonth1' => 86400,
 		'currentmonthname' => 86400,
 		'currentmonthnamegen' => 86400,
 		'currentmonthabbrev' => 86400,
@@ -116,6 +119,7 @@ class MagicWord {
 		'currenttime' => 3600,
 		'currenthour' => 3600,
 		'localmonth' => 86400,
+		'localmonth1' => 86400,
 		'localmonthname' => 86400,
 		'localmonthnamegen' => 86400,
 		'localmonthabbrev' => 86400,
