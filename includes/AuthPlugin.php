@@ -139,6 +139,7 @@ class AuthPlugin {
 	 * @return bool
 	 */
 	public function allowRealNameChange() {
+		wfDeprecated( __METHOD__ );
 		return $this->allowPropChange( 'realname' );
 	}
 
@@ -148,6 +149,7 @@ class AuthPlugin {
 	 * @return bool
 	 */
 	public function allowEmailChange() {
+		wfDeprecated( __METHOD__ );
 		return $this->allowPropChange( 'emailaddress' );
 	}
 
@@ -157,6 +159,7 @@ class AuthPlugin {
 	 * @return bool
 	 */
 	public function allowNickChange() {
+		wfDeprecated( __METHOD__ );
 		return $this->allowPropChange( 'nickname' );
 	}
 
