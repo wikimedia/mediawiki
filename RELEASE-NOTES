@@ -62,6 +62,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Added Minguo calendar support for the Taiwan Chinese language
 * Database: unionQueries function to be used for UNION sql construction, so 
   it can be overloaded on DB abstraction level for DB specific functionality
+* (bug 18849) Implement Japanese and North Korean calendars
 
 === Bug fixes in 1.16 ===
 

@@ -48,13 +48,13 @@ $datePreferences = array(
 $defaultDateFormat = 'zh';
 
 $dateFormats = array(
-	'zh time' => 'H:i',
-	'zh date' => 'Y年n月j日 (l)',
-	'zh both' => 'Y年n月j日 (D) H:i',
+	'zh time'       => 'H:i',
+	'zh date'       => 'Y年n月j日 (l)',
+	'zh both'       => 'Y年n月j日 (D) H:i',
 
-	'minguo time' => 'H:i',
-	'minguo date' => 'xoY年n月j日 (l)',
-	'minguo both' => 'xoY年n月j日 (D) H:i',
+	'minguo time'   => 'H:i',
+	'minguo date'   => 'xoY年n月j日 (l)',
+	'minguo both'   => 'xoY年n月j日 (D) H:i',
 
 	'CNS 7648 time' => 'H:i',
 	'CNS 7648 date' => 'R.O.C. xoY-m-d (l)',
