@@ -134,6 +134,33 @@ class AuthPlugin {
 	}
 
 	/**
+	 * Can users change their Real Name?
+	 * @deprecated Use allowPropChange()
+	 * @return bool
+	 */
+	public function allowRealNameChange() {
+		return $this->allowPropChange( 'realname' );
+	}
+
+	/**
+	 * Can users change their email address?
+	 * @deprecated Use allowPropChange()
+	 * @return bool
+	 */
+	public function allowEmailChange() {
+		return $this->allowPropChange( 'emailaddress' );
+	}
+
+	/**
+	 * Can users change their Nickname?
+	 * @deprecated Use allowPropChange()
+	 * @return bool
+	 */
+	public function allowNickChange() {
+		return $this->allowPropChange( 'nickname' );
+	}
+
+	/**
 	 * Can users change their passwords?
 	 *
 	 * @return bool
