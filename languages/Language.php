@@ -1154,11 +1154,25 @@ class Language {
 			# Months and days are identical
 			$gy_offset = $gy - 1911;
 		} else if (!strcmp($cName,'tenno')) {
-			# Minguo dates up to Showa period
+			# Nengō dates up to Meiji period
 			# Deduct years from the Gregorian calendar
 			# depending on the nengo periods
 			# Months and days are identical
-			if (($gy < 1989) || (($gy == 1989) && ($gm == 1) && ($gd < 8))) {
+			if (($gy < 1912) || (($gy == 1912) && ($gm < 7)) || (($gy == 1912) && ($gm == 7) && ($gd < 31))) {
+				# Meiji period
+				$gy_gannen = $gy - 1868 + 1;
+				$gy_offset = $gy_gannen;
+				if ($gy_gannen == 1)
+					$gy_offset = '元';
+				$gy_offset = '明治'.$gy_offset;
+			} else if ((($gy == 1912) && ($gm == 7) && ($gd == 31)) || (($gy == 1912) && ($gm >= 8)) || (($gy > 1912) && ($gy < 1926)) || (($gy == 1926) && ($gm < 12)) || (($gy == 1926) && ($gm == 12) && ($gd < 26))) {
+				# Taishō period
+				$gy_gannen = $gy - 1912 + 1;
+				$gy_offset = $gy_gannen;
+				if ($gy_gannen == 1)
+					$gy_offset = '元';
+				$gy_offset = '大正'.$gy_offset;
+			} else if ((($gy == 1926) && ($gm == 12) && ($gd >= 26)) || (($gy > 1926) && ($gy < 1989)) || (($gy == 1989) && ($gm == 1) && ($gd < 8))) {
 				# Shōwa period
 				$gy_gannen = $gy - 1926 + 1;
 				$gy_offset = $gy_gannen;
