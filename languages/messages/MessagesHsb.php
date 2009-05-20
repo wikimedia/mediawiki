@@ -1142,12 +1142,12 @@ Smě mjenje hač $1 {{PLURAL:$1|znamješko|znamješce|znamješka|znamješkow}} d
 
 # Groups
 'group'               => 'Skupina:',
-'group-user'          => 'Wužiwarjo',
+'group-user'          => 'wužiwarjo',
 'group-autoconfirmed' => 'awtomatisce potwjerdźeny',
 'group-bot'           => 'Boty',
 'group-sysop'         => 'administratorojo',
-'group-bureaucrat'    => 'Běrokraća',
-'group-suppress'      => 'Dohladowarjo',
+'group-bureaucrat'    => 'běrokraća',
+'group-suppress'      => 'dohladowarjo',
 'group-all'           => '(wšě)',
 
 'group-user-member'          => 'Wužiwar',

@@ -1469,7 +1469,7 @@ Také můžete dovolit ostatním uživatelům vás prostřednictvím uživatelsk
 'rcshowhideanons'                   => '$1 anonymní uživatele',
 'rcshowhidepatr'                    => '$1 prověřené editace',
 'rcshowhidemine'                    => '$1 moje editace',
-'rclinks'                           => 'Ukázat $1 posledních změn během {{PLURAL:$2|posledního dne|posledních $2 dnů|posledních $2 dnů}}<br />
+'rclinks'                           => 'Ukázat $1 posledních změn během posledních $2 dnů<br />
 $3',
 'diff'                              => 'rozdíl',
 'hist'                              => 'historie',
