@@ -32,15 +32,20 @@
 
 $datePreferences = array(
 	'default',
+	'nengo',
 	'ISO 8601',
 );
 
 $defaultDateFormat = 'ja';
 
 $dateFormats = array(
-	'ja time' => 'H:i',
-	'ja date' => 'Y年n月j日 (D)',
-	'ja both' => 'Y年n月j日 (D) H:i',
+	'ja time'    => 'H:i',
+	'ja date'    => 'Y年n月j日 (D)',
+	'ja both'    => 'Y年n月j日 (D) H:i',
+
+	'nengo time' => 'H:i',
+	'nengo date' => 'xtY年n月j日 (D)',
+	'nengo both' => 'xtY年n月j日 (D) H:i',
 );
 
 $namespaceNames = array(

@@ -247,11 +247,20 @@ $bookstoreList = array(
 	'inherit' => true,
 );
 
+$datePreferences = array(
+	'default',
+	'juche',
+	'ISO 8601',
+);
 $defaultDateFormat = 'ko';
 $dateFormats = array(
-	'ko time' => 'H:i',
-	'ko date' => 'Y년 M월 j일 (D)',
-	'ko both' => 'Y년 M월 j일 (D) H:i',
+	'ko time'    => 'H:i',
+	'ko date'    => 'Y년 M월 j일 (D)',
+	'ko both'    => 'Y년 M월 j일 (D) H:i',
+
+	'juche time' => 'H:i',
+	'juche date' => 'xoY년 M월 j일 (D)',
+	'juche both' => 'xoY년 M월 j일 (D) H:i',
 );
 
 $messages = array(
