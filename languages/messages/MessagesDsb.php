@@ -1160,11 +1160,11 @@ Móžoš toś ten bok wužywaś, aby slědk stajił swóje nastajenja na standar
 
 # Groups
 'group'               => 'Kupka:',
-'group-user'          => 'Wužywarje',
-'group-autoconfirmed' => 'Wobkšuśone wužywarje',
+'group-user'          => 'wužywarje',
+'group-autoconfirmed' => 'wobkšuśone wužywarje',
 'group-bot'           => 'awtomatiske programy (boty)',
-'group-sysop'         => 'Administratory',
-'group-bureaucrat'    => 'Běrokraty',
+'group-sysop'         => 'administratory',
+'group-bureaucrat'    => 'běrokraty',
 'group-suppress'      => 'Doglědowanja',
 'group-all'           => '(wše)',
 

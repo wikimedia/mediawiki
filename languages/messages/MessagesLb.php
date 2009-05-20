@@ -2474,6 +2474,7 @@ $1',
 'filedelete-missing'              => 'De Fichier "$1" kann net geläscht ginn, well et e net gëtt.',
 'filedelete-old-unregistered'     => 'Déi Versioun vum Fichier déi Dir uginn hutt "$1" gëtt et an der Datebank net.',
 'filedelete-current-unregistered' => 'Dee Fichier "$1" ass net an der Datebank.',
+'filedelete-archive-read-only'    => 'Op den Archiv-Repertoire „$1“ ka vum Webserver aus näischt geschriwwe ginn.',
 
 # Browsing diffs
 'previousdiff' => '← Méi al Ännerung',
@@ -2684,6 +2685,7 @@ Duerno sti Linken déi Ausnamen definéieren, a deenen hirem Kontext dat Bild aw
 'exif-lightsource-17'  => 'Standardluucht A',
 'exif-lightsource-18'  => 'Standardluucht B',
 'exif-lightsource-19'  => 'Standardluucht C',
+'exif-lightsource-24'  => 'ISO Studio Konschtliicht',
 'exif-lightsource-255' => 'Aner Liichtquell',
 
 # Flash modes

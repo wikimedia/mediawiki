@@ -1377,7 +1377,7 @@ Je kunnen oek aandere luui in staot stellen um per netpos kontak mit joe op te n
 'right-autopatrol'            => 'Bewarkingen wonnen autematisch as econtreleerd emarkeerd',
 'right-patrolmarks'           => 'Controletekens in leste wiezigingen bekieken',
 'right-unwatchedpages'        => "Bekiek een lieste mit pagina's dee neet op een volglieste staon",
-'right-trackback'             => 'Een weerummespoor opgeven',
+'right-trackback'             => 'Een trackback opgeven',
 'right-mergehistory'          => "De geschiedenisse van pagina's bie mekaar doon",
 'right-userrights'            => 'Alle gebrukersrechen bewarken',
 'right-userrights-interwiki'  => "Gebrukersrechen van gebrukers in aandere wiki's wiezigen",
@@ -2350,6 +2350,8 @@ De overige pagina's wonnen neet autematisch herneumd.",
 'imageinvalidfilename'         => 'De nieje bestansnaam is ongeldig',
 'fix-double-redirects'         => 'Alle deurverwiezingen dee naor de ouwe titel verwiezen, herneumen naor de nieje titel',
 'move-leave-redirect'          => 'Een deurverwiezing achterlaoten',
+'protectedpagemovewarning'     => "'''Waorschuwing:''' Disse pagina kan allinnig deur beheerders herneumd wonnen.",
+'semiprotectedpagemovewarning' => "'''Waorschuwing:''' Disse pagina kan allinnig deur eregistreren gebrukers herneumd wonnen.",
 
 # Export
 'export'            => "Pagina's uutvoeren",
