@@ -41,6 +41,7 @@ $namespaceNames = array(
 $datePreferences = array(
 	'default',
 	'minguo',
+	'minguo shorttext',
 	'minguo text',
 	'minguo fulltext',
 	'CNS 7648',
@@ -58,6 +59,10 @@ $dateFormats = array(
 	'minguo time'            => 'H:i',
 	'minguo date'            => 'xoY年n月j日 (l)',
 	'minguo both'            => 'xoY年n月j日 (D) H:i',
+
+	'minguo shorttext time'  => 'H:i',
+	'minguo shorttext date'  => '民xoY年n月j日 (l)',
+	'minguo shorttext both'  => '民xoY年n月j日 (D) H:i',
 
 	'minguo text time'       => 'H:i',
 	'minguo text date'       => '民國xoY年n月j日 (l)',
