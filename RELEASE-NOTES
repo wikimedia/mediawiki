@@ -63,6 +63,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Database: unionQueries function to be used for UNION sql construction, so 
   it can be overloaded on DB abstraction level for DB specific functionality
 * (bug 18849) Implement Japanese and North Korean calendars
+* (bug 5755) Introduce {{CURRENTMONTH1}} and {{LOCALMONTH1}} to display the
+  month number without the leading zero
 
 === Bug fixes in 1.16 ===
 
