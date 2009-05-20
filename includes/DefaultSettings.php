@@ -2498,7 +2498,8 @@ $wgDefaultUserOptions = array(
 
 /** 
  * Whether or not to allow and use real name fields. 
- * @deprecated in 1.16, use $wgHiddenPrefs[] = 'realname' below 
+ * @deprecated in 1.16, use $wgHiddenPrefs[] = 'realname' below to disable real
+ * names
  */
 $wgAllowRealName = true;
 
