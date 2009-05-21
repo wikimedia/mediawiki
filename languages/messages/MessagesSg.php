@@ -10,6 +10,8 @@
  * @author sg.wikipedia.org sysops
  */
 
+$fallback = 'fr';
+
 $messages = array(
 'mytalk' => 'kpere tî mbï',
 
