@@ -399,7 +399,7 @@ class Preferences {
 				array(
 					'type' => 'radio',
 					'options' => $settings,
-					'section' => 'skin',
+					'section' => 'rendering/skin',
 					'label-message' => 'qbsettings',
 				);
 		}
@@ -449,7 +449,7 @@ class Preferences {
 						'type' => 'radio',
 						'options' => $dateOptions,
 						'label-message' => 'dateformat',
-						'section' => 'datetime',
+						'section' => 'datetime/dateformat',
 					);
 		}
 		
@@ -465,7 +465,7 @@ class Preferences {
 					'raw' => 1,
 					'label-message' => 'servertime',
 					'default' => $nowserver,
-					'section' => 'datetime',
+					'section' => 'datetime/timeoffset',
 				);
 				
 		$defaultPreferences['nowlocal'] =
@@ -474,7 +474,7 @@ class Preferences {
 					'raw' => 1,
 					'label-message' => 'localtime',
 					'default' => $nowlocal,
-					'section' => 'datetime',
+					'section' => 'datetime/timeoffset',
 				);
 		
 		// Grab existing pref.
@@ -493,7 +493,7 @@ class Preferences {
 					'label-message' => 'timezonelegend',
 					'options' => self::getTimezoneOptions(),
 					'default' => $tzSetting,
-					'section' => 'datetime',
+					'section' => 'datetime/timeoffset',
 				);
 	}
 	
@@ -508,7 +508,7 @@ class Preferences {
 						wfMsg( 'underline-default' ) => 2,
 					),
 					'label-message' => 'tog-underline',
-					'section' => 'rendering',
+					'section' => 'rendering/advanced',
 				);
 				
 		$stubThresholdValues = array( 0, 50, 100, 500, 1000, 2000, 5000, 10000 );
@@ -520,50 +520,50 @@ class Preferences {
 		$defaultPreferences['stubthreshold'] =
 				array(
 					'type' => 'selectorother',
-					'section' => 'rendering',
+					'section' => 'rendering/advanced',
 					'options' => $stubThresholdOptions,
 					'label' => wfMsg('stub-threshold'), // Raw HTML message. Yay?
 				);
 		$defaultPreferences['highlightbroken'] =
 				array(
 					'type' => 'toggle',
-					'section' => 'rendering',
+					'section' => 'rendering/advanced',
 					'label' => wfMsg('tog-highlightbroken'), // Raw HTML
 				);
 		$defaultPreferences['showtoc'] =
 				array(
 					'type' => 'toggle',
-					'section' => 'rendering',
+					'section' => 'rendering/advanced',
 					'label-message' => 'tog-showtoc',
 				);
 		$defaultPreferences['nocache'] =
 				array(
 					'type' => 'toggle',
 					'label-message' => 'tog-nocache',
-					'section' => 'rendering',
+					'section' => 'rendering/advanced',
 				);
 		$defaultPreferences['showhiddencats'] =
 				array(
 					'type' => 'toggle',
-					'section' => 'rendering',
+					'section' => 'rendering/advanced',
 					'label-message' => 'tog-showhiddencats'
 				);
 		$defaultPreferences['showjumplinks'] =
 				array(
 					'type' => 'toggle',
-					'section' => 'rendering',
+					'section' => 'rendering/advanced',
 					'label-message' => 'tog-showjumplinks',
 				);
 		$defaultPreferences['justify'] =
 				array(
 					'type' => 'toggle',
-					'section' => 'rendering',
+					'section' => 'rendering/advanced',
 					'label-message' => 'tog-justify',
 				);
 		$defaultPreferences['numberheadings'] =
 				array(
 					'type' => 'toggle',
-					'section' => 'rendering',
+					'section' => 'rendering/advanced',
 					'label-message' => 'tog-numberheadings',
 				);
 	}
@@ -589,73 +589,73 @@ class Preferences {
 		$defaultPreferences['previewontop'] =
 				array(
 					'type' => 'toggle',
-					'section' => 'editing',
+					'section' => 'editing/advanced',
 					'label-message' => 'tog-previewontop',
 				);
 		$defaultPreferences['previewonfirst'] =
 				array(
 					'type' => 'toggle',
-					'section' => 'editing',
+					'section' => 'editing/advanced',
 					'label-message' => 'tog-previewonfirst',
 				);
 		$defaultPreferences['editsection'] =
 				array(
 					'type' => 'toggle',
-					'section' => 'editing',
+					'section' => 'editing/advanced',
 					'label-message' => 'tog-editsection',
 				);
 		$defaultPreferences['editsectiononrightclick'] =
 				array(
 					'type' => 'toggle',
-					'section' => 'editing',
+					'section' => 'editing/advanced',
 					'label-message' => 'tog-editsectiononrightclick',
 				);
 		$defaultPreferences['editondblclick'] =
 				array(
 					'type' => 'toggle',
-					'section' => 'editing',
+					'section' => 'editing/advanced',
 					'label-message' => 'tog-editondblclick',
 				);
 		$defaultPreferences['editwidth'] =
 				array(
 					'type' => 'toggle',
-					'section' => 'editing',
+					'section' => 'editing/advanced',
 					'label-message' => 'tog-editwidth',
 				);
 		$defaultPreferences['showtoolbar'] =
 				array(
 					'type' => 'toggle',
-					'section' => 'editing',
+					'section' => 'editing/advanced',
 					'label-message' => 'tog-showtoolbar',
 				);
 		$defaultPreferences['minordefault'] =
 				array(
 					'type' => 'toggle',
-					'section' => 'editing',
+					'section' => 'editing/advanced',
 					'label-message' => 'tog-minordefault',
 				);
 		$defaultPreferences['externaleditor'] =
 				array(
 					'type' => 'toggle',
-					'section' => 'editing',
+					'section' => 'editing/advanced',
 					'label-message' => 'tog-externaleditor',
 				);
 		$defaultPreferences['externaldiff'] =
 				array(
 					'type' => 'toggle',
-					'section' => 'editing',
+					'section' => 'editing/advanced',
 					'label-message' => 'tog-externaldiff',
 				);
 		$defaultPreferences['forceeditsummary'] =
 				array(
 					'type' => 'toggle',
-					'section' => 'editing',
+					'section' => 'editing/advanced',
 					'label-message' => 'tog-forceeditsummary',
 				);
 		$defaultPreferences['uselivepreview'] =
 				array(
 					'type' => 'toggle',
-					'section' => 'editing',
+					'section' => 'editing/advanced',
 					'label-message' => 'tog-uselivepreview',
 				);
 	}
@@ -667,7 +667,7 @@ class Preferences {
 				array(
 					'type' => 'int',
 					'label-message' => 'recentchangesdays',
-					'section' => 'rc',
+					'section' => 'rc/display',
 					'min' => 1,
 					'max' => ceil($wgRCMaxAge / (3600*24)),
 				);
@@ -675,19 +675,20 @@ class Preferences {
 				array(
 					'type' => 'int',
 					'label-message' => 'recentchangescount',
-					'section' => 'rc',
+					'help-message' => 'prefs-help-recentchangescount',
+					'section' => 'rc/display',
 				);
 		$defaultPreferences['usenewrc'] =
 				array(
 					'type' => 'toggle',
 					'label-message' => 'tog-usenewrc',
-					'section' => 'rc',
+					'section' => 'rc/advanced',
 				);
 		$defaultPreferences['hideminor'] =
 				array(
 					'type' => 'toggle',
 					'label-message' => 'tog-hideminor',
-					'section' => 'rc',
+					'section' => 'rc/advanced',
 				);
 				
 		global $wgUseRCPatrol;
@@ -695,13 +696,13 @@ class Preferences {
 			$defaultPreferences['hidepatrolled'] =
 					array(
 						'type' => 'toggle',
-						'section' => 'rc',
+						'section' => 'rc/advanced',
 						'label-message' => 'tog-hidepatrolled',
 					);
 			$defaultPreferences['newpageshidepatrolled'] =
 					array(
 						'type' => 'toggle',
-						'section' => 'rc',
+						'section' => 'rc/advanced',
 						'label-message' => 'tog-newpageshidepatrolled',
 					);
 		}
@@ -711,7 +712,7 @@ class Preferences {
 			$defaultPreferences['shownumberswatching'] =
 					array(
 						'type' => 'toggle',
-						'section' => 'rc',
+						'section' => 'rc/advanced',
 						'label-message' => 'tog-shownumberswatching',
 					);
 		}
@@ -720,56 +721,56 @@ class Preferences {
 	static function watchlistPreferences( $user, &$defaultPreferences ) {
 		global $wgUseRCPatrol;
 		## Watchlist #####################################
+		$defaultPreferences['watchlistdays'] =
+				array(
+					'type' => 'int',
+					'min' => 0,
+					'max' => 7,
+					'section' => 'watchlist/display',
+					'label-message' => 'prefs-watchlist-days',
+				);
 		$defaultPreferences['wllimit'] =
 				array(
 					'type' => 'int',
 					'min' => 0,
 					'max' => 1000,
 					'label-message' => 'prefs-watchlist-edits',
-					'section' => 'watchlist'
-				);
-		$defaultPreferences['watchlistdays'] =
-				array(
-					'type' => 'int',
-					'min' => 0,
-					'max' => 7,
-					'section' => 'watchlist',
-					'label-message' => 'prefs-watchlist-days',
+					'section' => 'watchlist/display'
 				);
 		$defaultPreferences['extendwatchlist'] =
 				array(
 					'type' => 'toggle',
-					'section' => 'watchlist',
+					'section' => 'watchlist/advanced',
 					'label-message' => 'tog-extendwatchlist',
 				);
 		$defaultPreferences['watchlisthideminor'] =
 				array(
 					'type' => 'toggle',
-					'section' => 'watchlist',
+					'section' => 'watchlist/advanced',
 					'label-message' => 'tog-watchlisthideminor',
 				);
 		$defaultPreferences['watchlisthidebots'] =
 				array(
 					'type' => 'toggle',
-					'section' => 'watchlist',
+					'section' => 'watchlist/advanced',
 					'label-message' => 'tog-watchlisthidebots',
 				);
 		$defaultPreferences['watchlisthideown'] =
 				array(
 					'type' => 'toggle',
-					'section' => 'watchlist',
+					'section' => 'watchlist/advanced',
 					'label-message' => 'tog-watchlisthideown',
 				);
 		$defaultPreferences['watchlisthideanons'] =
 				array(
 					'type' => 'toggle',
-					'section' => 'watchlist',
+					'section' => 'watchlist/advanced',
 					'label-message' => 'tog-watchlisthideanons',
 				);
 		$defaultPreferences['watchlisthideliu'] =
 				array(
 					'type' => 'toggle',
-					'section' => 'watchlist',
+					'section' => 'watchlist/advanced',
 					'label-message' => 'tog-watchlisthideliu',
 				);
 		
@@ -777,7 +778,7 @@ class Preferences {
 			$defaultPreferences['watchlisthidepatrolled'] =
 					array(
 						'type' => 'toggle',
-						'section' => 'watchlist',
+						'section' => 'watchlist/advanced',
 						'label-message' => 'tog-watchlisthidepatrolled',
 					);
 		}
@@ -795,7 +796,7 @@ class Preferences {
 			if ( $user->isAllowed( $action ) ) {
 				$defaultPreferences[$pref] = array(
 					'type' => 'toggle',
-					'section' => 'watchlist',
+					'section' => 'watchlist/advanced',
 					'label-message' => "tog-$pref",
 				);
 			}
@@ -810,21 +811,21 @@ class Preferences {
 				array(
 					'type' => 'int',
 					'label-message' => 'resultsperpage',
-					'section' => 'searchoptions',
+					'section' => 'searchoptions/display',
 					'min' => 0,
 				);
 		$defaultPreferences['contextlines'] =
 				array(
 					'type' => 'int',
 					'label-message' => 'contextlines',
-					'section' => 'searchoptions',
+					'section' => 'searchoptions/display',
 					'min' => 0,
 				);
 		$defaultPreferences['contextchars'] =
 				array(
 					'type' => 'int',
 					'label-message' => 'contextchars',
-					'section' => 'searchoptions',
+					'section' => 'searchoptions/display',
 					'min' => 0,
 				);		
 		global $wgEnableMWSuggest;
@@ -833,7 +834,7 @@ class Preferences {
 					array(
 						'type' => 'toggle',
 						'label-message' => 'mwsuggest-disable',
-						'section' => 'searchoptions',
+						'section' => 'searchoptions/display',
 					);
 		}		
 		
@@ -855,7 +856,7 @@ class Preferences {
 					'type' => 'multiselect',
 					'label-message' => 'defaultns',
 					'options' => $nsOptions,
-					'section' => 'searchoptions',
+					'section' => 'searchoptions/advanced',
 					'prefix' => 'searchNs',
 				);
 	}
@@ -865,13 +866,13 @@ class Preferences {
 		$defaultPreferences['diffonly'] =
 				array(
 					'type' => 'toggle',
-					'section' => 'misc',
+					'section' => 'misc/diffs',
 					'label-message' => 'tog-diffonly',
 				);
 		$defaultPreferences['norollbackdiff'] =
 				array(
 					'type' => 'toggle',
-					'section' => 'misc',
+					'section' => 'misc/diffs',
 					'label-message' => 'tog-norollbackdiff',
 				);
 	}
