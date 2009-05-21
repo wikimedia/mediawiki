@@ -1709,7 +1709,7 @@ Günlük tipini, kullanıcı adını (büyük-küçük harf duyarlı), ya da etk
 
 # Special:Categories
 'categories'                    => 'Kategoriler',
-'categoriespagetext'            => "Aşağıdaki kategoriler sayfa veya ortam içerir.
+'categoriespagetext'            => "Aşağıdaki {{PLURAL:$1|kategori|kategoriler}} sayfa veya ortam içerir.
 [[Special:UnusedCategories|Kullanılmayan kategoriler]] burada gösterilmemektedir.
 Ayrıca [[Special:WantedCategories|İstenen kategoriler]]'e bakınız.",
 'categoriesfrom'                => 'Şununla başlayan kategorileri görüntüle:',

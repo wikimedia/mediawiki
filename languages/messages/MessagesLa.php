@@ -934,7 +934,7 @@ Try prefixing your query with ''all:'' to search all content (including talk pag
 'recentchangesdays'         => 'Quot dies in nuper mutatis monstrandi:',
 'recentchangescount'        => 'Quantum rerum in nuper mutatis, historiis et actis:',
 'savedprefs'                => 'Praeferentiae tuae servatae sunt.',
-'timezonelegend'            => 'Zona temporis',
+'timezonelegend'            => 'Zona temporis:',
 'localtime'                 => 'Hora indigena:',
 'timezoneuseoffset'         => 'Alia (da dissimilitudinem cinguli horae)',
 'timezoneoffset'            => 'Dissimilitudo cinguli horae¹:',
@@ -1406,7 +1406,7 @@ Adspectum graciliorem potes facere modum indicum, nomen usoris (cave litteras ma
 
 # Special:Categories
 'categories'                    => 'Categoriae',
-'categoriespagetext'            => 'Categoriae subter paginas vel fasciculos continent.
+'categoriespagetext'            => '{{PLURAL:$1|Categoria subter paginas vel fasciculos continet.|Categoriae subter paginas vel fasciculos continent.}}
 [[Special:UnusedCategories|Categoriae non in usu]] non monstrantur.
 Vide etiam [[Special:WantedCategories|categorias desideratas]].',
 'special-categories-sort-count' => 'ordinare secundum numerum',

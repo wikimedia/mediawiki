@@ -2361,6 +2361,8 @@ Lo volètz suprimir per permetre lo cambiament de nom ?',
 'imageinvalidfilename'         => 'Lo nom del fichièr cibla es incorrècte',
 'fix-double-redirects'         => 'Metre a jorn las redireccions que puntant cap al títol ancian',
 'move-leave-redirect'          => 'Daissar una redireccion darrièr',
+'protectedpagemovewarning'     => "'''ATENCION:''' Aquesta pagina es estada blocada per que sonque los utilizaires qu'an los dreches d'administrators la pòscan tornar nomenar.",
+'semiprotectedpagemovewarning' => "'''Nòta :''' Aquesta pagina es estada blocada per que sonque los utilizaires enregistrats la pòscan tornar nomenar.",
 
 # Export
 'export'            => 'Exportar de paginas',

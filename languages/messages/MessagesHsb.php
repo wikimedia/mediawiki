@@ -1656,7 +1656,7 @@ Slědowaca lisćina pokazuje jenož {{PLURAL:$1|prěni wotkaz strony|prěnjej $1
 
 # Special:Categories
 'categories'                    => 'Kategorije',
-'categoriespagetext'            => 'Slědowace kategorije wobsahuja strony abo medije.
+'categoriespagetext'            => '{{PLURAL:Slědowaca kategorija wobsahuje|Slědowacej kategoriji wobsahujetej|Slědowace kategorije wobsahuja|Slědowace kategorije wobsahuja}} strony abo medije.
 [[Special:UnusedCategories|Njewužiwane kategorije]] so tu njepokazuja.
 Hlej tež [[Special:WantedCategories|požadane kategorije]].',
 'categoriesfrom'                => 'Kategorije pokazać, započinajo z:',

@@ -1890,7 +1890,7 @@ Die Ausgabe kann durch die Auswahl des Logbuchtyps, des Benutzers oder des Seite
 
 # Special:Categories
 'categories'                    => 'Kategorien',
-'categoriespagetext'            => 'Folgende Kategorien enthalten Seiten oder Dateien.
+'categoriespagetext'            => 'Folgende {{PLURAL:$1|Kategorie enthält|Kategorien enthalten}} Seiten oder Dateien.
 [[Special:UnusedCategories|Unbenutzte Kategorien]] werden hier nicht aufgeführt.
 Siehe auch die Liste der [[Special:WantedCategories|gewünschten Kategorien]].',
 'categoriesfrom'                => 'Zeige Kategorien ab:',
