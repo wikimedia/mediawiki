@@ -1,5 +1,5 @@
 <?php
-/** Zhuang (Sawcuengh)
+/** Zhuang (Vahcuengh)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -51,6 +51,7 @@ $messages = array(
 'help'             => 'Caeuq',
 'search'           => 'Cwmh',
 'searchbutton'     => 'Cwmh',
+'go'               => 'Bae',
 'searcharticle'    => 'Bae',
 'history'          => 'Lizsij',
 'history_short'    => 'Doenghmatq',
@@ -120,6 +121,9 @@ $messages = array(
 'filedesc'          => 'Saegmangj',
 'fileuploadsummary' => 'Saegmangj:',
 'watchthisupload'   => 'Demq mae-nej',
+
+# Special:ListFiles
+'listfiles_user' => 'Bouxyungh',
 
 # File description page
 'filehist-user' => 'Bouxsawjyungh',
@@ -198,5 +202,8 @@ $messages = array(
 
 # Special:SpecialPages
 'specialpages' => 'Doenghmae daegxsei',
+
+# Special:Tags
+'tags-edit' => 'gaij',
 
 );

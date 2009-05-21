@@ -824,7 +824,9 @@ Als Administrateur kënnt Dir [$1 mat dësem Link de Versiounsënnerschied kucke
 'revdelete-nooldid-title'        => 'Ongülteg Zilversioun',
 'revdelete-nooldid-text'         => 'Dir hutt entweder keng Versioun uginn fir dës Funktioun ze benotzen, déi Versioun déi Diruginn huet gëtt et net, oder dir versicht déi aktuell Versioun ze verstoppen.',
 'revdelete-nologtype-title'      => 'Keen Typ vu Logbuch uginn',
+'revdelete-nologtype-text'       => 'Dir hutt keen Typ vu Logbuch ugi fir dës Aktioun ze maachen.',
 'revdelete-toomanytargets-title' => 'Zevill Ziler',
+'revdelete-toomanytargets-text'  => 'Et goufen zevill Type vun Ziler, op deenen dës Aktioun gemaach soll ginn, definéiert.',
 'revdelete-nologid-title'        => 'Net valbele Wert am Logbuch',
 'revdelete-selected'             => "'''{{PLURAL:$2|Gewielte Versioun|Gewielte Versioune}} vu(n) '''$1''' :'''",
 'logdelete-selected'             => "'''Ausgewielten {{PLURAL:$1|Evenement|Evenementer}} aus dem Logbuch:'''",
@@ -2244,7 +2246,7 @@ Wann nëmmen déi aktuell Versioun exportéiert soll ginn, kënnt Dir och e Link
 'allmessagestext'           => "Dëst ass eng Lëscht vun alle '''Messagen am MediaWiki:Nummraum, déi vun der MediaWiki-Software benotzt ginn.
 Besicht w.e.g. [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisatioun] a [http://translatewiki.net translatewiki.net] wann Dir wëllt bei de MediaWiki Iwwersetzunge matschaffen.",
 'allmessagesnotsupportedDB' => "Dës Säit kann net benotzt gi well '''\$wgUseDatabaseMessages''' ausgeschalt ass.",
-'allmessagesfilter'         => 'Noriichtennummfilter:',
+'allmessagesfilter'         => 'Filter vun de Systemmessagen:',
 'allmessagesmodified'       => 'Nëmme geännerter weisen',
 
 # Thumbnails

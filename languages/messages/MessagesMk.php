@@ -1246,7 +1246,7 @@ $2',
 'stub-threshold'            => 'Минимална големина за <a href="#" class="stub">никулци</a> (бајти):',
 'recentchangesdays'         => 'Денови за прикажување во скорешни промени:',
 'recentchangesdays-max'     => '(максимум $1 {{PLURAL:$1|ден|денови}})',
-'recentchangescount'        => 'Број на уредувања кои ќе се прикажуват во скорешни промени, историја на страница и во дневници, по основно:',
+'recentchangescount'        => 'Број на уредувања кои ќе се прикажат по основно:',
 'savedprefs'                => 'Вашите нагодувања се зачувани.',
 'timezonelegend'            => 'Временска зона',
 'localtime'                 => 'Локално време:',
@@ -1302,6 +1302,9 @@ $2',
 'prefs-info'                => 'Основни информации',
 'prefs-i18n'                => 'Интернационализација',
 'prefs-signature'           => 'Потпис',
+'prefs-dateformat'          => 'Формат на датум',
+'prefs-timeoffset'          => 'Временско отстапување',
+'prefs-diffs'               => 'Разлики',
 
 # User rights
 'userrights'                     => 'Управување со кориснички права',
@@ -1860,9 +1863,9 @@ PICT # misc.
 
 # Special:Categories
 'categories'                    => 'Категории',
-'categoriespagetext'            => 'Следниве категории содржат страници или медија.
+'categoriespagetext'            => '{{PLURAL:$1|Следната категорија содржи|Следните категории содржат}} страници или медија.
 [[Special:UnusedCategories|Неискористените категории]] не се прикажани овде.
-Исто така види [[Special:WantedCategories|барани категории]].',
+Исто така видете [[Special:WantedCategories|барани категории]].',
 'categoriesfrom'                => 'Приказ на категории почнувајќи од:',
 'special-categories-sort-count' => 'нумеричко подредување',
 'special-categories-sort-abc'   => 'алфанумеричко подредување по',

@@ -1172,7 +1172,7 @@ Las búsquedas fallidas suelen producirse al buscar palabras comunes como «la»
 'stub-threshold'            => 'Límite para formato de <a href="#" class="stub">enlace a esbozo</a> (bytes):',
 'recentchangesdays'         => 'Días a mostrar en cambios recientes:',
 'recentchangesdays-max'     => '(máximo {{PLURAL:$1|un día|$1 días}})',
-'recentchangescount'        => 'Número de ediciones a mostrar en cambios recientes, historiales y registros, por defecto:',
+'recentchangescount'        => 'Número de ediciones a mostrar por defecto:',
 'savedprefs'                => 'Sus preferencias han sido grabadas.',
 'timezonelegend'            => 'Huso horario',
 'localtime'                 => 'Hora local:',
@@ -1228,6 +1228,8 @@ También puede permitir a otros usuarios que contacten con usted a través de su
 'prefs-info'                => 'Información básica',
 'prefs-i18n'                => 'Internacionalización',
 'prefs-signature'           => 'Firma',
+'prefs-dateformat'          => 'Formato de fecha',
+'prefs-display'             => 'Mostrar opciones',
 
 # User rights
 'userrights'                  => 'Configuración de permisos de usuarios',
@@ -1766,8 +1768,8 @@ Puedes filtrar la vista seleccionando un tipo de registro, el nombre del usuario
 
 # Special:Categories
 'categories'                    => 'Categorías',
-'categoriespagetext'            => 'Las siguientes categorías contienen páginas o ficheros.
-No se muestran las [[Special:UnusedCategories|categorías sin uso]].
+'categoriespagetext'            => 'Las siguientes {{PLURAL:$1|categoría contiene|categorías contienen}} páginas o medios.
+No se muestran aquí las [[Special:UnusedCategories|categorías sin uso]].
 Véase también las [[Special:WantedCategories|categorías requeridas]].',
 'categoriesfrom'                => 'Mostrar categorías que empiecen por:',
 'special-categories-sort-count' => 'ordenar por conteo',

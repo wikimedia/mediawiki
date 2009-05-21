@@ -1187,7 +1187,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'prefs-misc'                => 'その他',
 'prefs-resetpass'           => 'パスワードの変更',
 'prefs-email'               => 'メールオプション',
-'prefs-rendering'           => '見栄え',
+'prefs-rendering'           => '見た目',
 'saveprefs'                 => '設定を保存',
 'resetprefs'                => '変更を破棄',
 'restoreprefs'              => '初期設定に戻す',
