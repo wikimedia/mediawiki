@@ -1910,7 +1910,7 @@ PICT # שונות
 
 # Special:Categories
 'categories'                    => 'קטגוריות',
-'categoriespagetext'            => 'הקטגוריות הבאות כוללות דפים או קובצי מדיה.
+'categoriespagetext'            => '{{PLURAL:$1|הקטגוריה הבאה כוללת|הקטגוריות הבאות כוללות}} דפים או קובצי מדיה.
 [[Special:UnusedCategories|קטגוריות שאינן בשימוש]] אינן מוצגות כאן.
 ראו גם את [[Special:WantedCategories|רשימת הקטגוריות המבוקשות]].',
 'categoriesfrom'                => 'הצגת קטגוריות החל מ:',
