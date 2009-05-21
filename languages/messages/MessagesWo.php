@@ -1999,7 +1999,6 @@ Manoo tudewaat aw xët ci wenn tur wi.',
 Dëgëlël ni bëgg ngaa sakkaat xët wii.",
 
 # Separators for various lists, etc.
-'pipe-separator' => '&#32;•&#32;',
 
 # Auto-summaries
 'autoredircomment' => 'Jubluwaat fii [[$1]]',
