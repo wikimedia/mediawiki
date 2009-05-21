@@ -586,7 +586,6 @@ $messages = array(
 'prefs-skin'                => 'Όψην',
 'skin-preview'              => 'Πρώτον τέρεμαν',
 'prefs-math'                => 'Απόδοσην μαθηματικίων',
-'dateformat'                => 'Μορφή ημερομηνίας',
 'prefs-datetime'            => 'Ημερομηνίαν και ώραν',
 'prefs-rc'                  => 'Υστερνά αλλαγάς',
 'prefs-misc'                => 'Διαφ',

@@ -678,7 +678,6 @@ Gözlegiňiziň başyna '''all:''' pristawkasyny goşup tutuş mazmuny (şol san
 'changepassword'            => 'Paroly üýtget',
 'skin-preview'              => 'Deslapky syn',
 'prefs-math'                => 'Matematiki formulalar',
-'dateformat'                => 'Sene formaty',
 'prefs-datetime'            => 'Sene we wagt',
 'prefs-personal'            => 'Ulanyjy maglumatlary',
 'prefs-rc'                  => 'Soňky üýtgeşmeler',

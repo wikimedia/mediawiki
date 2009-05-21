@@ -490,7 +490,6 @@ $1 ਘੰਟੇ ਵਿੱਚ। ਨੁਕਸਾਨ ਤੋਂ ਬਚਣ ਲਈ, $
 'prefs-skin'          => 'ਸਕਿਨ',
 'skin-preview'        => 'ਝਲਕ',
 'prefs-math'          => 'ਗਣਿਤ',
-'dateformat'          => 'ਮਿਤੀ ਫਾਰਮੈਟ',
 'datedefault'         => 'ਕੋਈ ਪਸੰਦ ਨਹੀਂ',
 'prefs-datetime'      => 'ਮਿਤੀ ਅਤੇ ਸਮਾਂ',
 'prefs-personal'      => 'ਯੂਜ਼ਰ ਪਰੋਫਾਇਲ',

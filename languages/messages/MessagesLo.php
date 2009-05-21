@@ -516,7 +516,6 @@ $messages = array(
 'prefs-skin'            => 'ລວດລາຍ',
 'skin-preview'          => 'ລອງເບິ່ງ',
 'prefs-math'            => 'ຄະນິດສາດ',
-'dateformat'            => 'ແບບວັນເດືອນປີ',
 'datedefault'           => 'ແນວໃດກໍ່ໄດ້',
 'prefs-datetime'        => 'ວັນ ແລະ ເວລາ',
 'prefs-personal'        => 'ຂໍ້ມູນຫຼັກຜູ້ໃຊ້',

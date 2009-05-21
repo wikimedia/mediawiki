@@ -584,7 +584,6 @@ Ufunguo: (sasa) = tofauti na toleo la sasa, (kabla) = tofauti na toleo lililotan
 'columns'                   => 'Safu:',
 'searchresultshead'         => 'Kutafuta',
 'timezonelegend'            => 'Ukanda saa',
-'timezoneselect'            => 'Ukanda saa:',
 'timezoneregion-africa'     => 'Afrika',
 'timezoneregion-america'    => 'Marekani',
 'timezoneregion-antarctica' => 'Antaktika',

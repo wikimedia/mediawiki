@@ -678,7 +678,6 @@ $messages = array(
 'prefs-skin'                => 'আৱৰন',
 'skin-preview'              => 'খচৰা',
 'prefs-math'                => 'গণিত',
-'dateformat'                => 'তাৰিখৰ সজ্জা',
 'datedefault'               => 'বিশেষ পচন্দ নাই',
 'prefs-datetime'            => 'তাৰিখ আৰু সময়',
 'prefs-personal'            => 'সদস্যৰ বিৱৰণ',

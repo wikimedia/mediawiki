@@ -453,7 +453,6 @@ $messages = array(
 'rows'                      => 'Рæнхътæ:',
 'timezonelegend'            => 'Сахаты таг',
 'localtime'                 => 'Бынæттон рæстæг:',
-'timezoneselect'            => 'Сахатон таг:',
 'timezoneoffset'            => 'Хъауджыдæрдзинад',
 'timezoneregion-africa'     => 'Африкæ',
 'timezoneregion-america'    => 'Америкæ',

@@ -971,7 +971,6 @@ $1 is the relevance of this result in per cent.
 'recentchangescount'        => 'Used in [[Special:Preferences]], tab "Recent changes".',
 'savedprefs'                => 'This message appears after saving changes to your user preferences.',
 'timezonelegend'            => '{{Identical|Time zone}}',
-'timezoneselect'            => '{{Identical|Time zone}}',
 'timezoneoffset'            => "Text next to input box in [[Special:Preferences]], tab 'date and time', section 'timezone'.",
 'allowemail'                => 'Used in [[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}.',
 'prefs-searchoptions'       => '{{Identical|Search options}}',

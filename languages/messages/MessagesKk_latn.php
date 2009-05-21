@@ -1182,7 +1182,6 @@ Añğartpa: {{SITENAME}} torabınıñ mağlumat tizbeleri eskirgen bolwı mümki
 'prefs-skin'                => 'Mänerler',
 'skin-preview'              => 'Qarap şığw',
 'prefs-math'                => 'Örnekter',
-'dateformat'                => 'Kün-aý pişimi',
 'datedefault'               => 'Eş qalawsız',
 'prefs-datetime'            => 'Waqıt',
 'prefs-personal'            => 'Jeke derekteri',

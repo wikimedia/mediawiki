@@ -854,7 +854,6 @@ $messages = array(
 'prefs-skin'                => 'Пӯст',
 'skin-preview'              => 'Пешнамоиш',
 'prefs-math'                => 'Риёзиёт',
-'dateformat'                => 'Қолаби сана',
 'datedefault'               => 'Бе тарҷиҳ',
 'prefs-datetime'            => 'Сана ва вақт',
 'prefs-personal'            => 'Додаҳои корбар',

@@ -267,7 +267,6 @@ Spiegazziún di símbui: (cur) = difərenza cun la versiún curénta, (ültima) 
 'changepassword'     => "Mudifega la paròla d'urdin",
 'prefs-skin'         => "Aspett de l'interfacia",
 'prefs-math'         => 'Matem',
-'dateformat'         => 'Furmaa da la data',
 'datedefault'        => 'Nissüna preferenza',
 'prefs-datetime'     => 'Data e urari',
 'prefs-personal'     => 'Carateristich dal druvat',

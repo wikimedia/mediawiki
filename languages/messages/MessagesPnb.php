@@ -517,7 +517,6 @@ $messages = array(
 'searchresultshead'         => 'کھوج',
 'timezonelegend'            => 'ویلے دا علاقہ',
 'localtime'                 => 'مقامی ویلا:',
-'timezoneselect'            => 'ویلیاں دے علاقے:',
 'prefs-files'               => 'فائلاں',
 'youremail'                 => 'ای میل:',
 'username'                  => 'ورتن آلے دا ناں:',

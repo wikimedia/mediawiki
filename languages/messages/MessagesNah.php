@@ -634,7 +634,6 @@ Hueliz ōmopolo huiqui nozo ōmozacac.
 'changepassword'            => 'Ticpatlāz motlahtōlichtacāyo',
 'skin-preview'              => 'Xiquitta quemeh yez',
 'prefs-math'                => 'Tlapōhualmatiliztli',
-'dateformat'                => 'Cāuhtiliztli iuhcāyōtl',
 'datedefault'               => 'Ayāc tlanequiliztli',
 'prefs-datetime'            => 'Cāuhtiliztli īhuān cāhuitl',
 'prefs-personal'            => 'Motlācatlanōnōtzaliz',

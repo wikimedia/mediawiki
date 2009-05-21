@@ -386,7 +386,6 @@ $messages = array(
 'prefs-skin'            => 'Phôe',
 'skin-preview'          => 'Chhì khoàⁿ',
 'prefs-math'            => 'Sò·-ha̍k ê rendering',
-'dateformat'            => 'Ji̍t-kî keh-sek',
 'datedefault'           => 'Chhìn-chhái',
 'prefs-datetime'        => 'Ji̍t-kî kap sî-kan',
 'prefs-personal'        => 'Iōng-chiá chu-liāu',

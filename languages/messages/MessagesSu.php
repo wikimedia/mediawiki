@@ -899,7 +899,6 @@ Coba susud dimimitian ku ''all:'' pikeun nyusud sakabéh kandunganana (kaasup ka
 'prefs-skin'                => 'Kulit',
 'skin-preview'              => 'Pramidang',
 'prefs-math'                => 'Maté',
-'dateformat'                => 'Format titimangsa',
 'datedefault'               => 'Tanpa préferénsi',
 'prefs-datetime'            => 'Titimangsa jeung wanci',
 'prefs-personal'            => 'Data pamaké',

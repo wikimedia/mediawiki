@@ -783,7 +783,6 @@ taispeáintear sna toraidh ach na leathanaigh ina bhfuil go leoir na téarmaí c
 'prefs-skin'                => 'Craiceann',
 'skin-preview'              => 'Réamhamharc',
 'prefs-math'                => 'Matamaitice',
-'dateformat'                => 'Formáid dáta',
 'datedefault'               => 'Is cuma liom',
 'prefs-datetime'            => 'Dáta agus am',
 'prefs-personal'            => 'Sonraí úsáideora',

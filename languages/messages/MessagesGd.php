@@ -262,7 +262,6 @@ Ma dh'fhoilleachas tu rudeigin an seo, bidh tu a' dearbhadh gun do sgrìobh thu 
 'changepassword' => 'Atharraich facal-faire',
 'prefs-skin'     => 'Bian',
 'skin-preview'   => 'Roi-shealladh',
-'dateformat'     => 'Cruth nan ceann-latha',
 'prefs-personal' => "Dàta a' chleachdair",
 'saveprefs'      => 'Sàbhail roghainnean',
 'resetprefs'     => 'Ath-shuidhich taghaidhean',

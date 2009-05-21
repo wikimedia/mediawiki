@@ -603,7 +603,6 @@ $1 хутшăнакан патне, е ытти [[{{MediaWiki:Grouppage-sysop}}|
 'changepassword'            => 'Пароле улăштар',
 'prefs-skin'                => 'Ерешленӳ',
 'skin-preview'              => 'Малтанхи курăну',
-'dateformat'                => 'Дата формачĕ',
 'datedefault'               => 'Палăртман чухнехи',
 'prefs-rc'                  => 'Юлашки улшăнусен страници',
 'prefs-watchlist'           => 'Сăнав списокĕ',

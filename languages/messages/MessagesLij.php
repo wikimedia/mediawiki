@@ -547,7 +547,6 @@ Leggenda: (corr) = differense co-a verscion corrente, (prec) = differense co-a v
 'mypreferences'       => 'Mæ preferense',
 'changepassword'      => 'Cangiâ a pòula segretta',
 'skin-preview'        => 'Anteprimma',
-'dateformat'          => 'Formato da a data',
 'prefs-datetime'      => 'Data e oùa',
 'saveprefs'           => 'Sarva',
 'prefs-editing'       => 'Cangia',

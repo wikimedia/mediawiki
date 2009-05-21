@@ -216,7 +216,6 @@ $messages = array(
 # Preferences page
 'preferences'       => 'Malúli',
 'mypreferences'     => 'Malúli ma ngáí',
-'dateformat'        => 'bokomi ya mokɔlɔ',
 'prefs-datetime'    => 'Mokɔlɔ mpé ntángo',
 'prefs-rc'          => 'Mbóngwana ya nsúka',
 'saveprefs'         => 'kobómbisa',

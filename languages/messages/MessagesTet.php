@@ -385,7 +385,6 @@ Check your spelling, ka [[Special:UserLogin/signup|kria konta foun]].',
 # Preferences page
 'preferences'               => 'Preferénsia',
 'mypreferences'             => "Ha'u-nia preferénsia",
-'dateformat'                => 'Formatu tempu nian',
 'prefs-rc'                  => 'Mudansa foufoun sira',
 'prefs-watchlist'           => 'Lista hateke',
 'prefs-editing'             => 'Edita',
