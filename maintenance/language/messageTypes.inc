@@ -154,6 +154,7 @@ $wgIgnoredMessages = array(
 	'upload-summary',
 	'newuserlogentry',
 	'wantedtemplates-summary',
+	'pipe-separator',
 );
 
 /** Optional messages, which may be translated only if changed in the target language. */
@@ -325,7 +326,6 @@ $wgOptionalMessages = array(
 	'semicolon-separator',
 	'comma-separator',
 	'colon-separator',
-	'pipe-separator',
 	'word-separator',
 	'ellipsis',
 	'percent',
