@@ -453,9 +453,12 @@ class Block {
 		# Unset ipb_enable_autoblock for IP blocks, makes no sense
 		if ( !$this->mUser ) {
 			$this->mEnableAutoblock = 0;
-			$this->mBlockEmail = 0; //Same goes for email...
+			
 		}
-
+		# bug 18860: non-anon-only IP blocks should be allowed to block email
+		if ( !$this->mUser && $this->mAnonOnly ) {
+			$this->mBlockEmail = 0;
+		}
 		if( !$this->mByName ) {
 			if( $this->mBy ) {
 				$this->mByName = User::whoIs( $this->mBy );

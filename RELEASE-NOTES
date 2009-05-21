@@ -66,6 +66,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 5755) Introduce {{CURRENTMONTH1}} and {{LOCALMONTH1}} to display the
   month number without the leading zero
 * (bug 13456) categoriespagetext supports PLURAL
+* (bug 18860) Blocks of IPs affecting registered users can now block email
 
 === Bug fixes in 1.16 ===
 

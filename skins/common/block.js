@@ -42,11 +42,6 @@ function updateBlockOptions() {
 	if( autoblockRow ) {
 		autoblockRow.style.display = isIp && !isEmpty ? 'none' : '';
 	}
-
-	var emailblockRow = document.getElementById('wpEnableEmailBan');
-	if( emailblockRow ) {
-		emailblockRow.style.display = isIp && !isEmpty ? 'none' : '';
-	}
 	
 	var hideuserRow = document.getElementById('wpEnableHideUser');
 	if( hideuserRow ) {
