@@ -16,7 +16,7 @@ function wfSpecialCategories( $par=null ) {
 	$cap->doQuery();
 	$wgOut->addHTML(
 		XML::openElement( 'div', array('class' => 'mw-spcontent') ) .
-		wfMsgExt( 'categoriespagetext', array( 'parse' ) ) .
+		wfMsgExt( 'categoriespagetext', array( 'parse' ), $cap->getNumRows() ) .
 		$cap->getStartForm( $from ) .
 		$cap->getNavigationBar() .
 		'<ul>' . $cap->getBody() . '</ul>' .
