@@ -2241,7 +2241,7 @@ It may contain one or more characters which cannot be used in titles.',
 # Special:Categories
 'categories'                    => 'Categories',
 'categories-summary'            => '', # do not translate or duplicate this message to other languages
-'categoriespagetext'            => 'The following categories contain pages or media.
+'categoriespagetext'            => 'The following {{PLURAL:$1|category contains|categories contain}} pages or media.
 [[Special:UnusedCategories|Unused categories]] are not shown here.
 Also see [[Special:WantedCategories|wanted categories]].',
 'categoriesfrom'                => 'Display categories starting at:',
