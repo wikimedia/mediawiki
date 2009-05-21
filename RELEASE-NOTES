@@ -183,6 +183,7 @@ changes to languages because of MediaZilla reports.
 * (bug 18776) Native name of Burmese language (my)
 * (bug 18806) Use correct unicode characters in spelling of native Chuvash
   (Чӑвашла)
+* (bug 18864) Update autonym for Zhuang language
 
 == Compatibility ==
 
