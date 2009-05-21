@@ -800,7 +800,6 @@ Pakitandanan mung maliaring e no makapanaun deng karelang index king kalamnan ni
 'changepassword'            => 'Alilan ya ing password',
 'prefs-skin'                => 'Balat',
 'skin-preview'              => 'I-preview',
-'dateformat'                => 'Ayus ning petsa',
 'datedefault'               => 'Alang mepili',
 'prefs-datetime'            => 'Petsa ampong oras',
 'prefs-personal'            => 'Impormasiun tungkul king talagamit (user profile)',

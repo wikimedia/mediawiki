@@ -167,7 +167,6 @@ $messages = array(
 # Preferences page
 'preferences'       => 'Түзөө',
 'changepassword'    => 'Сырсөздү өзгөртүү',
-'dateformat'        => 'Датанын форматы',
 'prefs-datetime'    => 'Дата жана убакыт',
 'prefs-rc'          => 'Соңку өзгөрүүлөр',
 'prefs-watchlist'   => 'Байкоо тизме',

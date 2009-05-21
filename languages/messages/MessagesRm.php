@@ -505,7 +505,6 @@ En il ''log da stidar'' che suonda pos ti guardar daco che la pagina è vegnida 
 'prefsnologintext'          => 'Ti stos esser <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} annunzià]</span> per midar tias preferenzas.',
 'changepassword'            => 'Midar pled-clav',
 'skin-preview'              => 'Prevista',
-'dateformat'                => 'format da las datas',
 'datedefault'               => 'Nagina preferenza',
 'prefs-datetime'            => 'Data e temp',
 'prefs-personal'            => 'datas dal utilisader',

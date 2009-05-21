@@ -711,7 +711,6 @@ Pagaidām vari meklēt, izmantojot Google vai Yahoo.
 'prefs-skin'                => 'Apdare',
 'skin-preview'              => 'Priekšskats',
 'prefs-math'                => 'Formulas',
-'dateformat'                => 'Datuma formāts',
 'datedefault'               => 'Vienalga',
 'prefs-datetime'            => 'Datums un laiks',
 'prefs-personal'            => 'Lietotāja dati',

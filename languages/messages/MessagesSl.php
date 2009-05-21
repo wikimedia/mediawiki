@@ -816,7 +816,6 @@ Prosimo, potrdite, da ste s tem seznanjeni, da razumete posledice dejanja in da 
 'prefs-skin'                => 'Koža',
 'skin-preview'              => 'Predogled',
 'prefs-math'                => 'Prikaz matematičnega besedila',
-'dateformat'                => 'Zapis datuma',
 'datedefault'               => 'Kakor koli',
 'prefs-datetime'            => 'Datum in čas',
 'prefs-personal'            => 'Podatki o uporabniku',

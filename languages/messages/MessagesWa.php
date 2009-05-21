@@ -635,7 +635,6 @@ Les ôtes manaedjeus so ç' wiki ci pôront todi vey li contnou catchî eyet l' 
 'prefs-skin'            => 'Pea',
 'skin-preview'          => 'vey divant',
 'prefs-math'            => 'Formules matematikes',
-'dateformat'            => 'Cogne del date',
 'datedefault'           => 'Nole preferince',
 'prefs-datetime'        => 'Cogne del date',
 'prefs-personal'        => 'Dinêyes da vosse',

@@ -522,7 +522,6 @@ Bákannà ẹ tún ṣèlérí fún wa wípé ẹ̀yin lẹkọ́ fúnra arayín
 'prefsnologintext'          => 'Ẹ gbọ́dọ̀ <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} wọlé]</span> láti to àwọn ìfẹ́ràn oníṣe.',
 'changepassword'            => 'Ìyípadà ọ̀rọ̀ìpamọ́',
 'prefs-skin'                => 'Skin (Àwọ̀)',
-'dateformat'                => 'Ìṣájúètò ọjọ́',
 'datedefault'               => 'Kò sí ìfẹ́ràn',
 'prefs-datetime'            => 'Ọjọ́ àti àkókò',
 'prefs-personal'            => 'Ọ̀rọ̀ nípa oníṣe',

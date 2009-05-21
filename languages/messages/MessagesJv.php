@@ -898,7 +898,6 @@ Gunakna tombol radio kanggo nggabungaké révisi-révisi sing digawé sadurungé
 'prefs-skin'                => 'Kulit',
 'skin-preview'              => 'Pratilik',
 'prefs-math'                => 'Matématika',
-'dateformat'                => 'Format tanggal',
 'datedefault'               => 'Ora ana préferènsi',
 'prefs-datetime'            => 'Tanggal lan wektu',
 'prefs-personal'            => 'Profil panganggo',

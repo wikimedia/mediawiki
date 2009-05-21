@@ -815,7 +815,6 @@ Cunsulthà lu [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rigisthru d
 'prefs-skin'                => 'Aipettu gràficu',
 'skin-preview'              => 'antiprimma',
 'prefs-math'                => 'Fòimmuri matemàtigghi',
-'dateformat'                => 'Fuimmaddu di la data',
 'datedefault'               => 'Nisciuna prifirènzia',
 'prefs-datetime'            => 'Data e ora',
 'prefs-personal'            => 'Profiru utenti',
