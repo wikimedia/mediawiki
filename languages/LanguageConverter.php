@@ -184,8 +184,17 @@ class LanguageConverter {
 			// preference is loaded
 			if( array_key_exists( 'HTTP_ACCEPT_LANGUAGE', $_SERVER ) ) {
 				$acceptLanguage = str_replace( '_', '-', strtolower($_SERVER["HTTP_ACCEPT_LANGUAGE"]));
-				$languages = preg_split('/[,;]/', $acceptLanguage);
+				
+				// take the part of the string up to the first semicolon
+				if($semiPos = strpos( $acceptLanguage, ';' ) !== false )
+					$acceptLanguage = substr( $acceptLanguage, 0, $semiPos );
+
+				// explode by comma
+				$languages = explode(',', $acceptLanguage);
+
 				foreach( $languages as $language ) {
+					// strip whitespace
+					$language = trim( $language );
 					if( in_array( $language, $this->mVariants ) ) {
 						return $language;
 						break;
