@@ -81,7 +81,7 @@ class DoubleRedirectsPage extends PageQueryPage {
 		$titleC = Title::makeTitle( $result->nsc, $result->tc );
 
 		$linkA = $skin->makeKnownLinkObj( $titleA, '', 'redirect=no' );
-		$edit = $skin->makeBrokenLinkObj( $titleA, "(".wfMsg("qbedit").")" , 'redirect=no');
+		$edit = $skin->makeBrokenLinkObj( $titleA, "(".wfMsgHtml("qbedit").")" , 'redirect=no');
 		$linkB = $skin->makeKnownLinkObj( $titleB, '', 'redirect=no' );
 		$linkC = $skin->makeKnownLinkObj( $titleC );
 		$arr = $wgContLang->getArrow() . $wgContLang->getDirMark();

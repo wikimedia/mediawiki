@@ -513,7 +513,7 @@ class ContribsPager extends ReverseChronologicalPager {
 
 		$comment = $wgContLang->getDirMark() . $sk->revComment( $rev, false, true );
 		$date = $wgLang->timeanddate( wfTimestamp( TS_MW, $row->rev_timestamp ), true );
-		$d = $sk->makeKnownLinkObj( $page, $date, 'oldid='.intval($row->rev_id) );
+		$d = $sk->makeKnownLinkObj( $page, htmlspecialchars($date), 'oldid='.intval($row->rev_id) );
 
 		if( $this->target == 'newbies' ) {
 			$userlink = ' . . ' . $sk->userLink( $row->rev_user, $row->rev_user_text );

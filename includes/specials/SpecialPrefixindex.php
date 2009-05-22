@@ -170,7 +170,7 @@ class SpecialPrefixindex extends SpecialAllpages {
 						$nsForm .
 					'</td>
 					<td id="mw-prefixindex-nav-form">' .
-						$sk->makeKnownLinkObj( $self, wfMsg ( 'allpages' ) );
+						$sk->makeKnownLinkObj( $self, wfMsgHtml( 'allpages' ) );
 
 			if( isset( $res ) && $res && ( $n == $this->maxPerPage ) && ( $s = $res->fetchObject() ) ) {
 				$namespaceparam = $namespace ? "&namespace=$namespace" : "";

@@ -176,7 +176,7 @@ class ChangesList {
 			if( '' != $this->lastdate ) {
 				$s .= "</ul>\n";
 			}
-			$s .= '<h4>'.$date."</h4>\n<ul class=\"special\">";
+			$s .= Xml::element( 'h4', null, $date ) . "\n<ul class=\"special\">";
 			$this->lastdate = $date;
 			$this->rclistOpen = true;
 		}
@@ -517,7 +517,7 @@ class EnhancedChangesList extends ChangesList {
 			# Process current cache
 			$ret = $this->recentChangesBlock();
 			$this->rc_cache = array();
-			$ret .= "<h4>{$date}</h4>\n";
+			$ret .= Xml::element( 'h4', null, $date );
 			$this->lastdate = $date;
 		}
 

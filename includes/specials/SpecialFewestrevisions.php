@@ -57,9 +57,9 @@ class FewestrevisionsPage extends QueryPage {
 
 		$plink = $skin->makeKnownLinkObj( $nt, $text );
 
-		$nl = wfMsgExt( 'nrevisions', array( 'parsemag', 'escape'),
+		$nl = wfMsgExt( 'nrevisions', array( 'parsemag', 'escape' ),
 			$wgLang->formatNum( $result->value ) );
-		$redirect = $result->redirect ? ' - ' . wfMsg( 'isredirect' ) : '';
+		$redirect = $result->redirect ? ' - ' . wfMsgHtml( 'isredirect' ) : '';
 		$nlink = $skin->makeKnownLinkObj( $nt, $nl, 'action=history' ) . $redirect;
 
 

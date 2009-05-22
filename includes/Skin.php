@@ -1634,20 +1634,20 @@ END;
 	}
 
 	function historyLink() {
-		return $this->link( $this->mTitle, wfMsg( 'history' ),
+		return $this->link( $this->mTitle, wfMsgHtml( 'history' ),
 			array( 'rel' => 'archives' ), array( 'action' => 'history' ) );
 	}
 
 	function whatLinksHere() {
 		return $this->makeKnownLinkObj(
 			SpecialPage::getTitleFor( 'Whatlinkshere', $this->mTitle->getPrefixedDBkey() ),
-			wfMsg( 'whatlinkshere' ) );
+			wfMsgHtml( 'whatlinkshere' ) );
 	}
 
 	function userContribsLink() {
 		return $this->makeKnownLinkObj(
 			SpecialPage::getTitleFor( 'Contributions', $this->mTitle->getDBkey() ),
-			wfMsg( 'contributions' ) );
+			wfMsgHtml( 'contributions' ) );
 	}
 
 	function showEmailUser( $id ) {

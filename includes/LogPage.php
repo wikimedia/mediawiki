@@ -173,7 +173,7 @@ class LogPage {
 		}
 		if( isset( $wgLogActions[$key] ) ) {
 			if( is_null( $title ) ) {
-				$rv = wfMsg( $wgLogActions[$key] );
+				$rv = wfMsgHtml( $wgLogActions[$key] );
 			} else {
 				$titleLink = self::getTitleLink( $type, $skin, $title, $params );
 				if( $key == 'rights/rights' ) {
@@ -194,9 +194,9 @@ class LogPage {
 				}
 				if( count( $params ) == 0 ) {
 					if ( $skin ) {
-						$rv = wfMsg( $wgLogActions[$key], $titleLink );
+						$rv = wfMsgHtml( $wgLogActions[$key], $titleLink );
 					} else {
-						$rv = wfMsgForContent( $wgLogActions[$key], $titleLink );
+						$rv = wfMsgExt( $wgLogActions[$key], array( 'parsemag', 'escape', 'replaceafter', 'content' ), $titleLink );
 					}
 				} else {
 					$details = '';
@@ -243,7 +243,11 @@ class LogPage {
 						$nfield = intval( substr( $params[3], 7 ) ); // <nfield=x>
 						$details .= ': '.RevisionDeleter::getLogMessage( $count, $nfield, $ofield, true );
 					}
-					$rv = wfMsgReal( $wgLogActions[$key], $params, true, !$skin ) . $details;
+					if ( $skin ) {
+						$rv = wfMsgHtml( $wgLogActions[$key], $params ) . $details;
+					} else {
+						$rv = wfMsgExt( $wgLogActions[$key], array( 'parsemag', 'escape', 'replaceafter', 'content' ), $params ) . $details;
+					}
 				}
 			}
 		} else {

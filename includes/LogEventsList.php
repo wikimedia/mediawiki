@@ -355,6 +355,8 @@ class LogEventsList {
 			$revert = '<span class="mw-logevent-actionlink">' . $revert . '</span>';
 		}
 
+		$time = htmlspecialchars( $time );
+
 		return Xml::tags( 'li', array( "class" => implode( ' ', $classes ) ),
 			$del . $time . ' ' . $userLink . ' ' . $action . ' ' . $comment . ' ' . $revert . " $tagDisplay" ) . "\n";
 	}

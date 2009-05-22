@@ -897,7 +897,7 @@ class UndeleteForm {
 					$targetPage,
 					wfMsgHtml(
 						'revisionasof',
-						$wgLang->timeanddate( $rev->getTimestamp(), true )
+						htmlspecialchars( $wgLang->timeanddate( $rev->getTimestamp(), true ) )
 					),
 					array(),
 					$targetQuery
@@ -1150,7 +1150,7 @@ class UndeleteForm {
 			}
 		} else {
 			$checkBox = '';
-			$pageLink = $wgLang->timeanddate( $ts, true );
+			$pageLink = htmlspecialchars( $wgLang->timeanddate( $ts, true ) );
 			$last = wfMsgHtml('diff');
 		}
 		$userLink = $sk->revUserTools( $rev );
@@ -1224,10 +1224,12 @@ class UndeleteForm {
 	function getPageLink( $rev, $titleObj, $ts, $sk ) {
 		global $wgLang;
 
+		$time = htmlspecialchars( $wgLang->timeanddate( $ts, true ) );
+
 		if( !$rev->userCan(Revision::DELETED_TEXT) ) {
-			return '<span class="history-deleted">' . $wgLang->timeanddate( $ts, true ) . '</span>';
+			return '<span class="history-deleted">' . $time . '</span>';
 		} else {
-			$link = $sk->makeKnownLinkObj( $titleObj, $wgLang->timeanddate( $ts, true ),
+			$link = $sk->makeKnownLinkObj( $titleObj, $time,
 				"target=".$this->mTargetObj->getPrefixedUrl()."&timestamp=$ts" );
 			if( $rev->isDeleted(Revision::DELETED_TEXT) )
 				$link = '<span class="history-deleted">' . $link . '</span>';

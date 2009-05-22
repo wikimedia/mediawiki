@@ -254,7 +254,7 @@ class SpecialNewpages extends SpecialPage {
 		$dm = $wgContLang->getDirMark();
 
 		$title = Title::makeTitleSafe( $result->rc_namespace, $result->rc_title );
-		$time = $wgLang->timeAndDate( $result->rc_timestamp, true );
+		$time = htmlspecialchars( $wgLang->timeAndDate( $result->rc_timestamp, true ) );
 		$query = $this->patrollable( $result ) ? "rcid={$result->rc_id}&redirect=no" : 'redirect=no';
 		$plink = $this->skin->makeKnownLinkObj( $title, '', $query );
 		$hist = $this->skin->makeKnownLinkObj( $title, wfMsgHtml( 'hist' ), 'action=history' );
