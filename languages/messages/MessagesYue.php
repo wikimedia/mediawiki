@@ -1144,6 +1144,16 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'prefs-info'                => '基本資料',
 'prefs-i18n'                => '國際化',
 'prefs-signature'           => '簽名',
+'prefs-dateformat'            => '日期格式',
+'prefs-timeoffset'            => '時間偏移',
+'prefs-advancedediting'       => '進階選項',
+'prefs-advancedrc'            => '進階選項',
+'prefs-advancedrendering'     => '進階選項',
+'prefs-advancedsearchoptions' => '進階選項',
+'prefs-advancedwatchlist'     => '進階選項',
+'prefs-display'               => '顯示選項',
+'prefs-diffs'                 => '差異',
+
 
 # User rights
 'userrights'                  => '用戶權限管理',
