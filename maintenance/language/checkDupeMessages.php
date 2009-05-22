@@ -40,10 +40,12 @@ END;
 
 // Check file exists
 if ( $runTest ) {
-	$langCode = ucfirst(strtolower(preg_replace('/-/','_',$options['lang'])));
-	$langCodeC = ucfirst(strtolower(preg_replace('/-/','_',$options['clang'])));
-	$messagesFile = $messagesDir.'Messages'.$langCode.'.php';
-	$messagesFileC = $messagesDir.'Messages'.$langCodeC.'.php';
+	$langCode = $options['lang'];
+	$langCodeC = $options['clang'];
+	$langCodeF = ucfirst(strtolower(preg_replace('/-/','_',$langCode)));
+	$langCodeFC = ucfirst(strtolower(preg_replace('/-/','_',$langCodeC)));
+	$messagesFile = $messagesDir.'Messages'.$langCodeF.'.php';
+	$messagesFileC = $messagesDir.'Messages'.$langCodeFC.'.php';
 	if (file_exists($messagesFile) && file_exists($messagesFileC)) {
 		$run = true;
 	}
@@ -68,7 +70,7 @@ if ( $run ) {
 	foreach ($wgMessages[$langCodeC] as $key => $value) {
 		foreach ($wgMessages[$langCode] as $ckey => $cvalue) {
 			if (!strcmp($key,$ckey)) {
-				if (!strcmp($value,$cvalue)) {
+				if ((!strcmp($key,$ckey)) && (!strcmp($value,$cvalue))) {
 					if (!strcmp($runMode,'raw')) {
 						print("$key\n");
 					} else if (!strcmp($runMode,'wiki')) {
@@ -84,9 +86,9 @@ if ( $run ) {
 	}
 	if (!strcmp($runMode,'text')) {
 		if ($count == 1) {
-			echo "\nThere are $count duplicated message in ".$options['lang'].", against to ".$options['clang'].".\n";
+			echo "\nThere are $count duplicated message in $langCode, against to $langCodeC.\n";
 		} else {
-			echo "\nThere are $count duplicated messages in ".$options['lang'].", against to ".$options['clang'].".\n";
+			echo "\nThere are $count duplicated messages in $langCode, against to $langCodeC.\n";
 		}
 	}	
 }
