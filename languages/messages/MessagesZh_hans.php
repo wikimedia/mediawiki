@@ -2957,6 +2957,10 @@ $1',
 'confirm-purge-top'    => '要清除此页面的缓存吗?',
 'confirm-purge-bottom' => '清理一页将会清除快取以及强迫显示最现时之修订版本。',
 
+# Separators for various lists, etc.
+'comma-separator' => '、',
+'word-separator' => '',
+
 # Multipage image navigation
 'imgmultipageprev' => '← 上一页',
 'imgmultipagenext' => '下一页 →',

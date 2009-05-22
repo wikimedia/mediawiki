@@ -2132,6 +2132,10 @@ $1',
 'confirm_purge_button' => '做得',
 'confirm-purge-top'    => '想清卟箇頁嗰緩存?',
 
+# Separators for various lists, etc.
+'comma-separator' => '、',
+'word-separator' => '',
+
 # Multipage image navigation
 'imgmultipageprev' => '← 上頁',
 'imgmultipagenext' => '下頁 →',

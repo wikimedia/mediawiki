@@ -2042,6 +2042,10 @@ $1',
 'confirm_purge_button' => '做得',
 'confirm-purge-top'    => '想清卟个页𠮶缓存?',
 
+# Separators for various lists, etc.
+'comma-separator' => '、',
+'word-separator' => '',
+
 # Multipage image navigation
 'imgmultipageprev' => '← 上页',
 'imgmultipagenext' => '下页 →',

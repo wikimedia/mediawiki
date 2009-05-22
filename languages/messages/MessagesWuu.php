@@ -838,6 +838,10 @@ Variants for Chinese language
 # action=purge
 'confirm_purge_button' => '确定',
 
+# Separators for various lists, etc.
+'comma-separator' => '、',
+'word-separator' => '',
+
 # Multipage image navigation
 'imgmultipageprev' => '← 上一页',
 'imgmultipagenext' => '下一页 →',
