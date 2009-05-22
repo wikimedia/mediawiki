@@ -2934,6 +2934,10 @@ $1',
 'confirm-purge-top'    => '要清除此頁面的快取嗎?',
 'confirm-purge-bottom' => '清理一頁將會清除快取以及強迫顯示最現時之修訂版本。',
 
+# Separators for various lists, etc.
+'comma-separator' => '、',
+'word-separator' => '',
+
 # Multipage image navigation
 'imgmultipageprev' => '← 上一頁',
 'imgmultipagenext' => '下一頁 →',

@@ -2910,6 +2910,10 @@ $1',
 'confirm-purge-top'    => '肯定要洗咗呢版個快取版本？',
 'confirm-purge-bottom' => '清理一版係會清除快取同埋強迫顯示最現時嘅修訂。',
 
+# Separators for various lists, etc.
+'comma-separator' => '、',
+'word-separator' => '',
+
 # Multipage image navigation
 'imgmultipageprev' => '← 上一版',
 'imgmultipagenext' => '下一版 →',
