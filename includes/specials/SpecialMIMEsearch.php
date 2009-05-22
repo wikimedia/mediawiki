@@ -65,15 +65,15 @@ class MIMEsearchPage extends QueryPage {
 
 		$nt = Title::makeTitle( $result->namespace, $result->title );
 		$text = $wgContLang->convert( $nt->getText() );
-		$plink = $skin->makeLink( $nt->getPrefixedText(), $text );
+		$plink = $skin->makeLink( $nt->getPrefixedText(), htmlspecialchars($text) );
 
 		$download = $skin->makeMediaLinkObj( $nt, wfMsgHtml( 'download' ) );
 		$bytes = wfMsgExt( 'nbytes', array( 'parsemag', 'escape'),
 			$wgLang->formatNum( $result->img_size ) );
 		$dimensions = wfMsgHtml( 'widthheight', $wgLang->formatNum( $result->img_width ),
 			$wgLang->formatNum( $result->img_height ) );
-		$user = $skin->link( Title::makeTitle( NS_USER, $result->img_user_text ), $result->img_user_text );
-		$time = $wgLang->timeanddate( $result->img_timestamp );
+		$user = $skin->link( Title::makeTitle( NS_USER, $result->img_user_text ), htmlspecialchars( $result->img_user_text ) );
+		$time = htmlspecialchars( $wgLang->timeanddate( $result->img_timestamp ) );
 
 		return "($download) $plink . . $dimensions . . $bytes . . $user . . $time";
 	}
@@ -90,6 +90,7 @@ function wfSpecialMIMEsearch( $par = null ) {
 	$wgOut->addHTML(
 		Xml::openElement( 'form', array( 'id' => 'specialmimesearch', 'method' => 'get', 'action' => SpecialPage::getTitleFor( 'MIMEsearch' )->getLocalUrl() ) ) .
 		Xml::openElement( 'fieldset' ) .
+		Xml::hidden( 'title', SpecialPage::getTitleFor( 'MIMEsearch' )->getPrefixedText() ) .
 		Xml::element( 'legend', null, wfMsg( 'mimesearch' ) ) .
 		Xml::inputLabel( wfMsg( 'mimetype' ), 'mime', 'mime', 20, $mime ) . ' ' .
 		Xml::submitButton( wfMsg( 'ilsubmit' ) ) .
