@@ -44,12 +44,11 @@ if ( $runTest ) {
 	$langCodeC = ucfirst(strtolower(preg_replace('/-/','_',$options['clang'])));
 	$messagesFile = $messagesDir.'Messages'.$langCode.'.php';
 	$messagesFileC = $messagesDir.'Messages'.$langCodeC.'.php';
-	print("$messagesFile\n$messagesFileC\n");
 	if (file_exists($messagesFile) && file_exists($messagesFileC)) {
 		$run = true;
 	}
 	else {
-		echo "Languages file(s) could not found.\nMake sure both files are exists.\n";
+		echo "Messages file(s) could not be found.\nMake sure both files are exists.\n";
 	}
 }
 
@@ -84,6 +83,10 @@ if ( $run ) {
 		}
 	}
 	if (!strcmp($runMode,'text')) {
-		echo "\nThere are $count duplicates messages in ".$options['lang'].", against to ".$options['clang']."\n";
+		if ($count == 1) {
+			echo "\nThere are $count duplicated message in ".$options['lang'].", against to ".$options['clang'].".\n";
+		} else {
+			echo "\nThere are $count duplicated messages in ".$options['lang'].", against to ".$options['clang'].".\n";
+		}
 	}	
 }
