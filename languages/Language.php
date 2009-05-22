@@ -2049,7 +2049,7 @@ class Language {
 	function commaList( $list ) {
 		return implode(
 			$list,
-			wfMsgExt( 'comma-separator', array( 'escapenoentities', 'language' => $this ) ) );
+			wfMsgExt( 'comma-separator', array( 'parsemag', 'escapenoentities', 'language' => $this ) ) );
 	}
 
 	/**
@@ -2061,7 +2061,7 @@ class Language {
 	function semicolonList( $list ) {
 		return implode(
 			$list,
-			wfMsgExt( 'semicolon-separator', array( 'escapenoentities', 'language' => $this ) ) );
+			wfMsgExt( 'semicolon-separator', array( 'parsemag', 'escapenoentities', 'language' => $this ) ) );
 	}
 
 	/**

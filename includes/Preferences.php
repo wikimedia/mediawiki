@@ -122,7 +122,7 @@ class Preferences {
 					'type' => 'info',
 					'label' => wfMsgExt( 'prefs-memberingroups', 'parseinline',
 								count($userEffectiveGroupsArray) ),
-					'default' => htmlspecialchars( $wgLang->commaList( $userEffectiveGroupsArray ) ),
+					'default' => $wgLang->commaList( $userEffectiveGroupsArray ),
 					'raw' => true,
 					'section' => 'personal/info',
 				);
