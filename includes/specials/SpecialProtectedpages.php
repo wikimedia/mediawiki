@@ -86,7 +86,7 @@ class ProtectedPagesForm {
 			$expiry_description = wfMsg( 'protect-expiring' , $wgLang->timeanddate( $expiry ) , 
 				$wgLang->date( $expiry ) , $wgLang->time( $expiry ) );
 
-			$description_items[] = $expiry_description;
+			$description_items[] = htmlspecialchars($expiry_description);
 		}
 
 		if(!is_null($size = $row->page_len)) {

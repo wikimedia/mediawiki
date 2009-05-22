@@ -122,7 +122,7 @@ class Preferences {
 					'type' => 'info',
 					'label' => wfMsgExt( 'prefs-memberingroups', 'parseinline',
 								count($userEffectiveGroupsArray) ),
-					'default' => $wgLang->commaList( $userEffectiveGroupsArray ),
+					'default' => htmlspecialchars( $wgLang->commaList( $userEffectiveGroupsArray ) ),
 					'raw' => true,
 					'section' => 'personal/info',
 				);
@@ -301,19 +301,19 @@ class Preferences {
 					$time = $wgLang->timeAndDate( $user->getEmailAuthenticationTimestamp(), true );
 					$d = $wgLang->date( $user->getEmailAuthenticationTimestamp(), true );
 					$t = $wgLang->time( $user->getEmailAuthenticationTimestamp(), true );
-					$emailauthenticated = wfMsg('emailauthenticated', $time, $d, $t ).'<br />';
+					$emailauthenticated = htmlspecialchars(wfMsg('emailauthenticated', $time, $d, $t )).'<br />';
 					$disableEmailPrefs = false;
 				} else {
 					$disableEmailPrefs = true;
 					global $wgUser; // wgUser is okay here, it's for display
 					$skin = $wgUser->getSkin();
-					$emailauthenticated = wfMsg('emailnotauthenticated').'<br />' .
+					$emailauthenticated = wfMsgHtml('emailnotauthenticated').'<br />' .
 						$skin->makeKnownLinkObj( SpecialPage::getTitleFor( 'Confirmemail' ),
 							wfMsg( 'emailconfirmlink' ) ) . '<br />';
 				}
 			} else {
 				$disableEmailPrefs = true;
-				$emailauthenticated = wfMsg( 'noemailprefs' );
+				$emailauthenticated = wfMsgHtml( 'noemailprefs' );
 			}
 			
 			$defaultPreferences['emailauthentication'] =
@@ -413,7 +413,7 @@ class Preferences {
 					array(
 						'type' => 'radio',
 						'options' =>
-							array_flip( array_map( 'wfMsg', $wgLang->getMathNames() ) ),
+							array_flip( array_map( 'wfMsgHtml', $wgLang->getMathNames() ) ),
 						'label' => '&nbsp;',
 						'section' => 'rendering/math',
 					);
@@ -848,6 +848,7 @@ class Preferences {
 			
 			if (!$displayNs) $displayNs = wfMsg( 'blanknamespace' );
 			
+			$displayNs = htmlspecialchars( $displayNs );
 			$nsOptions[$displayNs] = $ns;
 		}
 		
@@ -882,7 +883,7 @@ class Preferences {
 		$ret = array();
 		
 		$mptitle = Title::newMainPage();
-		$previewtext = wfMsg( 'skin-preview' );
+		$previewtext = wfMsgHtml( 'skin-preview' );
 		# Only show members of Skin::getSkinNames() rather than
 		# $skinNames (skins is all skin names from Language.php)
 		$validSkinNames = Skin::getUsableSkins();
@@ -892,7 +893,7 @@ class Preferences {
 			$msgName = "skinname-{$skinkey}";
 			$localisedSkinName = wfMsg( $msgName );
 			if ( !wfEmptyMsg( $msgName, $localisedSkinName ) )  {
-				$skinname = $localisedSkinName;
+				$skinname = htmlspecialchars($localisedSkinName);
 			}
 		}
 		asort($validSkinNames);
@@ -905,7 +906,7 @@ class Preferences {
 			global $wgAllowUserCss, $wgAllowUserJs;
 			if( $wgAllowUserCss ) {
 				$cssPage = Title::makeTitleSafe( NS_USER, $user->getName().'/'.$skinkey.'.css' );
-				$customCSS = $sk->link( $cssPage, wfMsgExt( 'prefs-custom-css', array() ) );
+				$customCSS = $sk->link( $cssPage, wfMsgHtml( 'prefs-custom-css' ) );
 				$extraLinks .= " ($customCSS)";
 			}
 			if( $wgAllowUserJs ) {
@@ -914,7 +915,7 @@ class Preferences {
 				$extraLinks .= " ($customJS)";
 			}
 			if( $skinkey == $wgDefaultSkin )
-				$sn .= ' (' . wfMsg( 'default' ) . ')';
+				$sn .= ' (' . wfMsgHtml( 'default' ) . ')';
 			$display = "$sn $previewlink{$extraLinks}";
 			$ret[$display] = $skinkey;
 		}
@@ -933,9 +934,9 @@ class Preferences {
 			$epoch = '20010115161234'; # Wikipedia day
 			foreach( $dateopts as $key ) {
 				if( $key == 'default' ) {
-					$formatted = wfMsg( 'datedefault' );
+					$formatted = wfMsgHtml( 'datedefault' );
 				} else {
-					$formatted = $wgLang->timeanddate( $epoch, false, $key );
+					$formatted = htmlspecialchars($wgLang->timeanddate( $epoch, false, $key ));
 				}
 				$ret[$formatted] = $key;
 			}
@@ -1222,7 +1223,7 @@ class PreferencesForm extends HTMLForm {
 		$sk = $wgUser->getSkin();
 		$t = SpecialPage::getTitleFor( 'Preferences', 'reset' );
 		
-		$html .= "\n" . $sk->link( $t, wfMsg( 'restoreprefs' ) );
+		$html .= "\n" . $sk->link( $t, wfMsgHtml( 'restoreprefs' ) );
 		
 		$html = Xml::tags( 'div', array( 'class' => 'mw-prefs-buttons' ), $html );
 		

@@ -171,7 +171,7 @@ class SpecialRecentchangeslinked extends SpecialRecentchanges {
 		$opts->consumeValues( array( 'showlinkedto', 'target' ) );
 		$extraOpts = array();
 		$extraOpts['namespace'] = $this->namespaceFilterForm( $opts );
-		$extraOpts['target'] = array( wfMsg( 'recentchangeslinked-page' ),
+		$extraOpts['target'] = array( wfMsgHtml( 'recentchangeslinked-page' ),
 			Xml::input( 'target', 40, str_replace('_',' ',$opts['target']) ) .
 			Xml::check( 'showlinkedto', $opts['showlinkedto'], array('id' => 'showlinkedto') ) . ' ' .
 			Xml::label( wfMsg("recentchangeslinked-to"), 'showlinkedto' ) );

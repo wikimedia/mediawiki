@@ -737,7 +737,7 @@ CONTROL;
 
 	function localiseLineNumbersCb( $matches ) {
 		global $wgLang;
-		return wfMsgExt( 'lineno', array (), $wgLang->formatNum( $matches[1] ) );
+		return wfMsgExt( 'lineno', 'escape', $wgLang->formatNum( $matches[1] ) );
 	}
 
 
@@ -840,7 +840,7 @@ CONTROL;
 		$this->mNewPage = $this->mNewRev->getTitle();
 		if( $this->mNewRev->isCurrent() ) {
 			$newLink = $this->mNewPage->escapeLocalUrl( 'oldid=' . $this->mNewid );
-			$this->mPagetitle = wfMsgHTML( 'currentrev-asof', $timestamp );
+			$this->mPagetitle = htmlspecialchars( wfMsg( 'currentrev-asof', $timestamp ) );
 			$newEdit = $this->mNewPage->escapeLocalUrl( 'action=edit' );
 
 			$this->mNewtitle = "<a href='$newLink'>{$this->mPagetitle}</a>";
@@ -848,7 +848,7 @@ CONTROL;
 		} else {
 			$newLink = $this->mNewPage->escapeLocalUrl( 'oldid=' . $this->mNewid );
 			$newEdit = $this->mNewPage->escapeLocalUrl( 'action=edit&oldid=' . $this->mNewid );
-			$this->mPagetitle = wfMsgHTML( 'revisionasof', $timestamp );
+			$this->mPagetitle = htmlspecialchars( wfMsg( 'revisionasof', $timestamp ) );
 
 			$this->mNewtitle = "<a href='$newLink'>{$this->mPagetitle}</a>";
 			$this->mNewtitle .= " (<a href='$newEdit'>" . wfMsgHtml( $editable ? 'editold' : 'viewsourceold' ) . "</a>)";

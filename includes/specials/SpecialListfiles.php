@@ -127,7 +127,7 @@ class ImageListPager extends TablePager {
 		global $wgLang;
 		switch ( $field ) {
 			case 'img_timestamp':
-				return $wgLang->timeanddate( $value, true );
+				return htmlspecialchars( $wgLang->timeanddate( $value, true ) );
 			case 'img_name':
 				static $imgfile = null;
 				if ( $imgfile === null ) $imgfile = wfMsg( 'imgfile' );

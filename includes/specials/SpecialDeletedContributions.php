@@ -83,7 +83,7 @@ class DeletedContribsPager extends IndexPager {
 		$limits = $wgLang->pipeList( $limitLinks );
 
 		$this->mNavigationBar = "(" . $wgLang->pipeList( array( $pagingLinks['first'], $pagingLinks['last'] ) ) . ") " .
-			wfMsgExt( 'viewprevnext', array( 'parsemag' ), $pagingLinks['prev'], $pagingLinks['next'], $limits );
+			wfMsgExt( 'viewprevnext', array( 'parsemag', 'escape', 'replaceafter' ), $pagingLinks['prev'], $pagingLinks['next'], $limits );
 		return $this->mNavigationBar;
 	}
 
@@ -145,7 +145,7 @@ class DeletedContribsPager extends IndexPager {
 			"&diff=prev" );
 
 		$comment = $sk->revComment( $rev );
-		$d = $wgLang->timeanddate( $rev->getTimestamp(), true );
+		$d = htmlspecialchars( $wgLang->timeanddate( $rev->getTimestamp(), true ) );
 
 		if( $rev->isDeleted( Revision::DELETED_TEXT ) ) {
 			$d = '<span class="history-deleted">' . $d . '</span>';

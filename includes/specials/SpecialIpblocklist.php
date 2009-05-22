@@ -384,11 +384,10 @@ class IPUnblockForm {
 		if( is_null( $msg ) ) {
 			$msg = array();
 			$keys = array( 'infiniteblock', 'expiringblock', 'unblocklink', 'change-blocklink',
-				'anononlyblock', 'createaccountblock', 'noautoblockblock', 'emailblock', 'blocklist-nousertalk' );
+				'anononlyblock', 'createaccountblock', 'noautoblockblock', 'emailblock', 'blocklist-nousertalk', 'blocklistline' );
 			foreach( $keys as $key ) {
 				$msg[$key] = wfMsgHtml( $key );
 			}
-			$msg['blocklistline'] = wfMsg( 'blocklistline' );
 		}
 
 		# Prepare links to the blocker's user and talk pages
@@ -405,7 +404,7 @@ class IPUnblockForm {
 				. $sk->userToolLinks( $block->mUser, $block->mAddress, false, Linker::TOOL_LINKS_NOBLOCK );
 		}
 
-		$formattedTime = $wgLang->timeanddate( $block->mTimestamp, true );
+		$formattedTime = htmlspecialchars( $wgLang->timeanddate( $block->mTimestamp, true ) );
 
 		$properties = array();
 		$properties[] = Block::formatExpiry( $block->mExpiry );
@@ -443,7 +442,7 @@ class IPUnblockForm {
 
 			# Create changeblocklink for all blocks with exception of autoblocks
 			if( !$block->mAuto ) {
-				$changeblocklink = wfMsg( 'pipe-separator' ) .
+				$changeblocklink = wfMsgExt( 'pipe-separator', 'escapenoentities' ) .
 					$sk->link( SpecialPage::getTitleFor( 'Blockip', $block->mAddress ), 
 						$msg['change-blocklink'],
 						array(), array(), 'known' );
@@ -451,7 +450,7 @@ class IPUnblockForm {
 			$toolLinks = "($unblocklink$changeblocklink)";
 		}
 
-		$comment = $sk->commentBlock( $block->mReason );
+		$comment = $sk->commentBlock( htmlspecialchars($block->mReason) );
 
 		$s = "{$line} $comment";
 		if ( $block->mHideName )

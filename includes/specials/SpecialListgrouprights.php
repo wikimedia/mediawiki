@@ -41,7 +41,7 @@ class SpecialListGroupRights extends SpecialPage {
 		);
 
 		foreach( $wgGroupPermissions as $group => $permissions ) {
-			$groupname = ( $group == '*' ) ? 'all' : htmlspecialchars( $group ); // Replace * with a more descriptive groupname
+			$groupname = ( $group == '*' ) ? 'all' : $group; // Replace * with a more descriptive groupname
 
 			$msg = wfMsg( 'group-' . $groupname );
 			if ( wfEmptyMsg( 'group-' . $groupname, $msg ) || $msg == '' ) {
@@ -59,9 +59,9 @@ class SpecialListGroupRights extends SpecialPage {
 
 			if( $group == '*' ) {
 				// Do not make a link for the generic * group
-				$grouppage = $groupnameLocalized;
+				$grouppage = htmlspecialchars($groupnameLocalized);
 			} else {
-				$grouppage = $this->skin->makeLink( $grouppageLocalized, $groupnameLocalized );
+				$grouppage = $this->skin->makeLink( $grouppageLocalized, htmlspecialchars($groupnameLocalized) );
 			}
 
 			if ( $group === 'user' ) {

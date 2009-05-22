@@ -128,7 +128,7 @@ function wfSpecialNewimages( $par, $specialPage ) {
 		$nt = Title::newFromText( $name, NS_FILE );
 		$ul = $sk->link( Title::makeTitle( NS_USER, $ut ), $ut );
 
-		$gallery->add( $nt, "$ul<br />\n<i>".$wgLang->timeanddate( $s->img_timestamp, true )."</i><br />\n" );
+		$gallery->add( $nt, "$ul<br />\n<i>".htmlspecialchars($wgLang->timeanddate( $s->img_timestamp, true ))."</i><br />\n" );
 
 		$timestamp = wfTimestamp( TS_MW, $s->img_timestamp );
 		if( empty( $firstTimestamp ) ) {
@@ -170,7 +170,7 @@ function wfSpecialNewimages( $par, $specialPage ) {
 	$now = wfTimestampNow();
 	$d = $wgLang->date( $now, true );
 	$t = $wgLang->time( $now, true );
-	$dateLink = $sk->makeKnownLinkObj( $titleObj, wfMsgHtml( 'sp-newimages-showfrom', $d, $t ), 
+	$dateLink = $sk->makeKnownLinkObj( $titleObj, htmlspecialchars( wfMsg( 'sp-newimages-showfrom', $d, $t ) ), 
 		'from='.$now.$botpar.$searchpar );
 
 	$botLink = $sk->makeKnownLinkObj($titleObj, wfMsgHtml( 'showhidebots', 

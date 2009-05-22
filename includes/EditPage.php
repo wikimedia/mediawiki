@@ -1286,8 +1286,8 @@ class EditPage {
 		#if ( "no" == $redirect ) { $q .= "&redirect=no"; }
 		$action = $wgTitle->escapeLocalURL( $q );
 
-		$summary = wfMsg( 'summary' );
-		$subject = wfMsg( 'subject' );
+		$summary = wfMsgExt( 'summary', 'parseinline' );
+		$subject = wfMsgExt( 'subject', 'parseinline' );
 
 		$cancel = $sk->makeKnownLink( $wgTitle->getPrefixedText(),
 				wfMsgExt('cancel', array('parseinline')) );
@@ -1384,7 +1384,8 @@ class EditPage {
 			$editsummary = "<div class='editOptions'>\n";
 			global $wgParser;
 			$formattedSummary = wfMsgForContent( 'newsectionsummary', $wgParser->stripSectionName( $this->summary ) );
-			$subjectpreview = $summarytext && $this->preview ? "<div class=\"mw-summary-preview\">". wfMsg('subject-preview') . $sk->commentBlock( $formattedSummary, $this->mTitle, true )."</div>\n" : '';
+			$subjectpreview = $summarytext && $this->preview ?
+				"<div class=\"mw-summary-preview\">". wfMsgExt('subject-preview', 'parseinline') . $sk->commentBlock( $formattedSummary, $this->mTitle, true )."</div>\n" : '';
 			$summarypreview = '';
 		} else {
 			$commentsubject = '';
@@ -1414,7 +1415,7 @@ class EditPage {
 				$summarypreview =
 					Xml::tags( 'div',
 						array( 'class' => 'mw-summary-preview' ),
-						wfMsg( 'summary-preview' ) .
+						wfMsgExt( 'summary-preview', 'parseinline' ) .
 							$sk->commentBlock( $this->summary, $this->mTitle )
 					);
 			}

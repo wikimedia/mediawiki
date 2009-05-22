@@ -701,7 +701,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 	private function logLine( $row ) {
 		global $wgLang;
 
-		$date = $wgLang->timeanddate( $row->log_timestamp );
+		$date = htmlspecialchars( $wgLang->timeanddate( $row->log_timestamp ) );
 		$paramArray = LogPage::extractParams( $row->log_params );
 		$title = Title::makeTitle( $row->log_namespace, $row->log_title );
 

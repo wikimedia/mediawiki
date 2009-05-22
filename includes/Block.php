@@ -826,7 +826,7 @@ class Block {
 	 * Convert a DB-encoded expiry into a real string that humans can read.
 	 *
 	 * @param $encoded_expiry String: Database encoded expiry time
-	 * @return String
+	 * @return Html-escaped String
 	 */
 	public static function formatExpiry( $encoded_expiry ) {
 		static $msg = null;
@@ -844,7 +844,7 @@ class Block {
 			$expirystr = $msg['infiniteblock'];
 		} else {
 			global $wgLang;
-			$expiretimestr = $wgLang->timeanddate( $expiry, true );
+			$expiretimestr = htmlspecialchars($wgLang->timeanddate( $expiry, true ));
 			$expirystr = wfMsgReplaceArgs( $msg['expiringblock'], array($expiretimestr) );
 		}
 		return $expirystr;
