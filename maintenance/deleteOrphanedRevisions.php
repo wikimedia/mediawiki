@@ -12,7 +12,7 @@
  
 $options = array( 'report', 'help' );
 require_once( 'commandLine.inc' );
-require_once( 'deleteOrphanedRevisions.inc.php' );
+require_once( 'deleteOrphanedRevisions.inc' );
 echo( "Delete Orphaned Revisions\n" );
 
 if( isset( $options['help'] ) ) {

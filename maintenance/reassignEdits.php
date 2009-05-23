@@ -11,7 +11,7 @@
 
 $options = array( 'force', 'norc', 'quiet', 'report' );
 require_once( 'commandLine.inc' );
-require_once( 'reassignEdits.inc.php' );
+require_once( 'reassignEdits.inc' );
 
 # Set silent mode; --report overrides --quiet
 if( !@$options['report'] && @$options['quiet'] )

@@ -150,6 +150,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Fix array logic in Sanitizer::removeHTMLtags so that it doesn't strip good tags
   that were redundantly defined.
 * (bug 14118) SpecialPage::getTitleFor does not return a localised name
+* (bug 18698) Renaming non entry point maintenance scripts from .inc.php to .inc
 
 == API changes in 1.16 ==
 
