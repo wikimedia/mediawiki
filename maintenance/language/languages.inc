@@ -14,6 +14,7 @@ class languages {
 
 	protected $mRawMessages; # Raw list of the messages in each language
 	protected $mMessages; # Messages in each language (except for English), divided to groups
+	protected $mFallback; # Fallback language in each language
 	protected $mGeneralMessages; # General messages in English, divided to groups
 	protected $mIgnoredMessages; # All the messages which should be exist only in the English file
 	protected $mOptionalMessages; # All the messages which may be translated or not, depending on the language
@@ -76,6 +77,7 @@ class languages {
 	 */
 	protected function loadFile( $code ) {
 		if ( isset( $this->mRawMessages[$code] ) &&
+			isset( $this->mFallback[$code] ) &&
 			isset( $this->mNamespaceNames[$code] ) &&
 			isset( $this->mNamespaceAliases[$code] ) &&
 			isset( $this->mMagicWords[$code] ) &&
@@ -83,6 +85,7 @@ class languages {
 			return;
 		}
 		$this->mRawMessages[$code] = array();
+		$this->mFallback[$code] = '';
 		$this->mNamespaceNames[$code] = array();
 		$this->mNamespaceAliases[$code] = array();
 		$this->mMagicWords[$code] = array();
@@ -92,6 +95,9 @@ class languages {
 			require( $filename );
 			if ( isset( $messages ) ) {
 				$this->mRawMessages[$code] = $messages;
+			}
+			if ( isset( $fallback ) ) {
+				$this->mFallback[$code] = $fallback;
 			}
 			if ( isset( $namespaceNames ) ) {
 				$this->mNamespaceNames[$code] = $namespaceNames;
@@ -204,6 +210,18 @@ class languages {
 	public function getGeneralMessages() {
 		$this->loadGeneralMessages();
 		return $this->mGeneralMessages;
+	}
+
+	/**
+	 * Get fallback language code for a specific language.
+	 *
+	 * @param $code The language code.
+	 *
+	 * @return Fallback code.
+	 */
+	public function getFallback( $code ) {
+		$this->loadFile( $code );
+		return $this->mFallback[$code];
 	}
 
 	/**

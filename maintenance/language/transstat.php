@@ -71,6 +71,7 @@ $output->heading();
 $output->blockstart();
 $output->element( 'Language', true );
 $output->element( 'Code', true );
+$output->element( 'Fallback', true );
 $output->element( 'Translated', true );
 $output->element( '%', true );
 $output->element( 'Obsolete', true );
@@ -90,6 +91,7 @@ foreach ( $wgLanguages->getLanguages() as $code ) {
 
 	# Calculate the numbers
 	$language = $wgContLang->getLanguageName( $code );
+	$fallback = $wgLanguages->getFallback( $code );
 	$messages = $wgLanguages->getMessages( $code );
 	$messagesNumber = count( $messages['translated'] );
 	$requiredMessagesNumber = count( $messages['required'] );
@@ -108,6 +110,7 @@ foreach ( $wgLanguages->getLanguages() as $code ) {
 	$output->blockstart();
 	$output->element( "$language" );
 	$output->element( "$code" );
+	$output->element( "$fallback" );
 	$output->element( "$requiredMessagesNumber/$wgRequiredMessagesNumber" );
 	$output->element( $requiredMessagesPercent );
 	$output->element( "$obsoleteMessagesNumber/$messagesNumber" );
