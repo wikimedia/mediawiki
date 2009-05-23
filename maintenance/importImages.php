@@ -11,7 +11,7 @@
 
 $optionsWithArgs = array( 'extensions', 'comment', 'comment-file', 'comment-ext', 'user', 'license' );
 require_once( 'commandLine.inc' );
-require_once( 'importImages.inc.php' );
+require_once( 'importImages.inc' );
 $added = $skipped = $overwritten = 0;
 
 echo( "Import Images\n\n" );
