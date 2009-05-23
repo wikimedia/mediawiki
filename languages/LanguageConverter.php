@@ -185,12 +185,21 @@ class LanguageConverter {
 			if( array_key_exists( 'HTTP_ACCEPT_LANGUAGE', $_SERVER ) ) {
 				$acceptLanguage = str_replace( '_', '-', strtolower($_SERVER["HTTP_ACCEPT_LANGUAGE"]));
 				
-				// take the part of the string up to the first semicolon
-				if($semiPos = strpos( $acceptLanguage, ';' ) !== false )
-					$acceptLanguage = substr( $acceptLanguage, 0, $semiPos );
-
 				// explode by comma
-				$languages = explode(',', $acceptLanguage);
+				$result = explode(',', $acceptLanguage);
+				
+				$languages  = array();
+
+				foreach( $result as $elem ) {
+					// if $elem likes 'zh-cn;q=0.9'
+					if(($posi = strpos( $elem, ';' )) !== false ) {
+						// get the real language code likes 'zh-cn'
+						$languages[] = substr( $elem, 0, $posi );
+					}
+					else {
+						$languages[] = $elem;
+					}
+				}
 
 				foreach( $languages as $language ) {
 					// strip whitespace
