@@ -1997,6 +1997,9 @@ Manoo tudewaat aw xët ci wenn tur wi.',
 : ''$2''
 Dëgëlël ni bëgg ngaa sakkaat xët wii.",
 
+# Separators for various lists, etc.
+'pipe-separator' => '&#32;•&#32;',
+
 # Auto-summaries
 'autoredircomment' => 'Jubluwaat fii [[$1]]',
 'autosumm-new'     => 'Xët wu bees : $1',

@@ -1147,7 +1147,7 @@ Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desat
 'recentchangesdays-max'     => '(máximo: $1 {{PLURAL:$1|dia|dias}})',
 'recentchangescount'        => 'Número de edições a serem exibidas nas mudanças recentes, históricos de páginas e páginas de registos, por padrão:',
 'savedprefs'                => 'As suas preferências foram salvas.',
-'timezonelegend'            => 'Fuso horário',
+'timezonelegend'            => 'Fuso horário:',
 'localtime'                 => 'Horário local:',
 'timezoneuseserverdefault'  => 'Usa padrão do servidor',
 'timezoneuseoffset'         => 'Outro (especifique diferença horária)',

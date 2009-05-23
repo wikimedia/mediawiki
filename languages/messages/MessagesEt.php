@@ -12,6 +12,7 @@
  * @author Jaan513
  * @author KalmerE.
  * @author Ker
+ * @author Silvar
  * @author Võrok
  * @author WikedKentaur
  * @author לערי ריינהארט
@@ -310,8 +311,8 @@ ning [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide kasutusjuhendit].'
 'badaccess-group0' => 'Sul ei ole õigust läbi viia toimingut, mida üritasid.',
 'badaccess-groups' => 'Tegevus, mida üritasid, on piiratud kasutajatele {{PLURAL:$2|grupis|ühes neist gruppidest}}: $1.',
 
-'versionrequired'     => 'MediaWiki versioon $1 nõutav',
-'versionrequiredtext' => 'MediaWiki versioon $1 on selle lehe kasutamiseks nõutav.
+'versionrequired'     => 'Nõutav MediaWiki versioon $1',
+'versionrequiredtext' => 'Selle lehe kasutamiseks on nõutav MediaWiki versioon $1.
 Vaata [[Special:Version|versiooni lehekülge]].',
 
 'ok'                      => 'OK',
@@ -425,8 +426,9 @@ Päring: $2',
 'virus-unknownscanner' => 'tundmatu viirusetõrje:',
 
 # Login and logout pages
-'logouttext'                 => 'Te olete välja loginud.
-Võite kasutada süsteemi anonüümselt, aga ka sama või mõne teise kasutajana uuesti sisse logida.',
+'logouttext'                 => "'''Te olete nüüd välja loginud.'''
+
+Te võite jätkata {{SITENAME}} kasutamist anonüümselt, aga ka sama või mõne teise kasutajana uuesti [[Special:UserLogin|sisse logida]].",
 'welcomecreation'            => '<h2>Tere tulemast, $1!</h2><p>Teie konto on loodud. Ärge unustage seada oma eelistusi.',
 'yourname'                   => 'Teie kasutajanimi',
 'yourpassword'               => 'Teie parool',
@@ -579,10 +581,10 @@ Teie praegune IP on $3 ning blokeeringu number on #$5. Lisage need andmed kõigi
 
 Seda parooli on võimalik muuta ''[[Special:ChangePassword|parooli muutmise lehel]]'' peale uuele kontole sisse logimist.",
 'newarticle'                       => '(Uus)',
-'newarticletext'                   => "Seda lehekülge veel ei ole.
-Lehekülje loomiseks hakake kirjutama all olevasse tekstikasti
+'newarticletext'                   => "Sellist lehekülge ei ole veel loodud. Lehekülje loomiseks hakake kirjutama all olevasse tekstikasti
 (lisainfo saamiseks vaadake [[{{MediaWiki:Helppage}}|juhendit]]).
-Kui sattusite siia kogemata, klõpsake lihtsalt brauseri ''back''-nupule või lingile ''tühista''.",
+
+Kui sattusite siia kogemata, klõpsake lihtsalt brauseri ''tagasi''-nupule või lingile ''tühista''.",
 'anontalkpagetext'                 => "---- ''See on arutelulehekülg anonüümse kasutaja jaoks, kes ei ole loonud kontot või ei kasuta seda. Sellepärast tuleb meil kasutaja identifitseerimiseks kasutada tema IP-aadressi.
 Sellisel IP-aadressilt võib portaali kasutada mitu inimest.
 Kui oled osutatud IP kasutaja ning leiad, et siinsed kommentaarid ei puutu kuidagi sinusse, siis palun [[Special:UserLogin|loo konto või logi sisse]], et sind edaspidi teiste anonüümsete kasutajatega segi ei aetaks.''",

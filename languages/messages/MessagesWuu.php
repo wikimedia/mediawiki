@@ -840,7 +840,6 @@ Variants for Chinese language
 
 # Separators for various lists, etc.
 'comma-separator' => '、',
-'word-separator' => '',
 
 # Multipage image navigation
 'imgmultipageprev' => '← 上一页',

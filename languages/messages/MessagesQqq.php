@@ -70,6 +70,7 @@
  * @author Srhat
  * @author Tgr
  * @author UV
+ * @author Umherirrender
  * @author Urhixidur
  * @author Verdy p
  * @author Vinhtantran
@@ -646,13 +647,14 @@ Parameters:
 * <tt>$7</tt> is the intended target of the block (what the blocking user specified in the blocking form)
 * <tt>$8</tt> is the timestamp when the block started',
 'blockednoreason'                  => '{{Identical|No reason given}}',
-'whitelistedittext'                => '* $1: link to Special:UserLogin with {{msg|loginreqlink}} as link description',
+'whitelistedittext'                => '* $1 is a link to [[Special:UserLogin]] with {{msg-mw|loginreqlink}} as link description',
 'nosuchsectiontext'                => 'This message is displayed when a user tries to edit a section that does not exist. 
 
 Parameter $1 is the content of section parameter in the URL (for example 1234 in the URL http://translatewiki.net/w/i.php?title=Sandbox&action=edit&section=1234)',
-'loginreqlink'                     => 'Take a look on inflection. Used as parameter in {{msg|loginreqpagetext}} and {{msg|whitelistedittext}}.
+'loginreqlink'                     => 'Take a look on inflection. Used as parameter in {{msg-mw|loginreqpagetext}}, {{msg-mw|whitelistedittext}} and {{msg-mw|watchlistanontext‎}}.
 
 {{Identical|Log in}}',
+'loginreqpagetext'                 => '* $1 is a link to [[Special:UserLogin]] with {{msg-mw|loginreqlink}} as link description',
 'accmailtitle'                     => 'Page title when temporary password was sent to a user via email.',
 'accmailtext'                      => "The message shown when a temporary password has been sent to the user's email address.
 
@@ -881,10 +883,10 @@ Viewprevnext is sometimes preceded by the {{msg-mw|Showingresults}} or {{msg-mw|
 'searchhelp-url'                 => '{{Identical|HelpContent}}
 Description: The URL of the search help page.
 {{doc-important|Do not change "Help:" part.}}',
-'searchprofile-articles'         => 'A quick link in the advanced search box on [[Special:Search]]. Clicking on this link starts a search in the content pages of the wiki.',
-'searchprofile-project'          => 'An option in the [http://translatewiki.net/wiki/Special:Search Special:search] page.
+'searchprofile-articles'         => 'A quick link in the advanced search box on [[Special:Search]]. Clicking on this link starts a search in the content pages of the wiki.
 
-{{Identical|Help}}',
+{{Identical|Content page}}',
+'searchprofile-project'          => 'An option in the [[Special:Search]] page.',
 'searchprofile-images'           => 'An option in the [http://translatewiki.net/wiki/Special:Search Special:search] page.',
 'searchprofile-everything'       => 'An option in the [http://translatewiki.net/wiki/Special:Search Special:search] page.',
 'searchprofile-advanced'         => 'An option in the [http://translatewiki.net/wiki/Special:Search Special:search] page.',
@@ -1003,6 +1005,7 @@ Shown as legend of the second fieldset of the tab 'Search' in [[Special:Preferen
 'email'                     => '{{Identical|E-mail}}',
 'prefs-help-realname'       => 'In user preferences.',
 'prefs-help-email'          => 'Shown as explanation text on [[Special:Preferences]].',
+'prefs-display'             => '"Display" is a noun that specifies the kind of "options". So translate as "options about display", not as "display the options".',
 
 # User rights
 'userrights'                     => 'Page title of [[Special:UserRights]].',
@@ -1704,6 +1707,7 @@ Special:EmailUser appears when you click on the link "E-mail this user" in the s
 *$1: Username of current user
 {{Identical|For $1}}',
 'nowatchlist'          => 'Displayed when there is no pages in the watchlist.',
+'watchlistanontext'    => '* $1 is a link to [[Special:UserLogin]] with {{msg-mw|loginreqlink}} as link description',
 'watchnologin'         => '{{Identical|Not logged in}}',
 'addedwatch'           => 'Page title displayed when clicking on {{msg|watch}} tab (only when not using the AJAX feauture which allows watching a page without reloading the page or such). See also {{msg|addedwatchtext}}.',
 'addedwatchtext'       => 'Explanation shown when clicking on the {{msg|watch}} tab. See also {{msg|addedwatch}}.',

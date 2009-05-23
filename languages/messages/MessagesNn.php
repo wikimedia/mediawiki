@@ -1246,6 +1246,7 @@ Du kan òg velje å la andre brukarar kontakte deg på e-post via brukarsida di 
 'prefs-info'                => 'Grunnleggjande informasjon',
 'prefs-i18n'                => 'Internasjonalisering',
 'prefs-signature'           => 'Signatur',
+'prefs-dateformat'          => 'Datoformat',
 
 # User rights
 'userrights'                  => 'Administrering av brukartilgang',
