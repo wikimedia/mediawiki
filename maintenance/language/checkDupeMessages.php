@@ -18,6 +18,8 @@ if ( isset( $options['lang'] ) && isset( $options['clang'] )) {
 	} else {
 		if (!strcmp($options['mode'],'wiki')) {
 			$runMode = 'wiki';
+		} else if (!strcmp($options['mode'],'php')) {
+			$runMode = 'php';
 		} else if (!strcmp($options['mode'],'raw')) {
 			$runMode = 'raw';
 		} else {
@@ -34,6 +36,7 @@ Options:
 	* mode:  Output format, can be either:
 		* text:   Text output on the console (default)
 		* wiki:   Wiki format, with * at beginning of each line
+		* php:    Output text as PHP syntax in a array $dupeMessages
 		* raw:    Raw output for duplicates
 END;
 }
@@ -67,12 +70,18 @@ if ( $run ) {
 	$wgMessages[$langCodeC] = $messages;
 	$count = 0;
 
+	if (!strcmp($runMode,'php')) {
+		print("<?php\n");
+		print('$dupeMessages = array('."\n");
+	}
 	foreach ($wgMessages[$langCodeC] as $key => $value) {
 		foreach ($wgMessages[$langCode] as $ckey => $cvalue) {
 			if (!strcmp($key,$ckey)) {
 				if ((!strcmp($key,$ckey)) && (!strcmp($value,$cvalue))) {
 					if (!strcmp($runMode,'raw')) {
 						print("$key\n");
+					} else if (!strcmp($runMode,'php')) {
+						print("'$key' => '',\n");
 					} else if (!strcmp($runMode,'wiki')) {
 						$uKey = ucfirst($key);
 						print("* MediaWiki:$uKey/$langCode\n");
@@ -83,6 +92,9 @@ if ( $run ) {
 				}
 			}
 		}
+	}
+	if (!strcmp($runMode,'php')) {
+		print(");\n");
 	}
 	if (!strcmp($runMode,'text')) {
 		if ($count == 1) {
