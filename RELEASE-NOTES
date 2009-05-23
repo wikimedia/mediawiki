@@ -29,6 +29,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * $wgAllowRealName was deprecated in favor of $wgHiddenPrefs[] = 'realname',
   but the former is still retained for backwards-compatibility
 * (bug 9257) $wgRCMaxAge now defaults to three months
+* $wgDevelopmentWarnings can be set to true to show warnings about deprecated
+  functions and other potential errors when developing.
 
 === New features in 1.16 ===
 
@@ -147,6 +149,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 18432) Updated documentation for dumpBackup.php
 * Fix array logic in Sanitizer::removeHTMLtags so that it doesn't strip good tags
   that were redundantly defined.
+* (bug 14118) SpecialPage::getTitleFor does not return a localised name
 
 == API changes in 1.16 ==
 

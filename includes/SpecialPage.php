@@ -597,6 +597,18 @@ class SpecialPage
 		$aliases = $wgContLang->getSpecialPageAliases();
 		if ( isset( $aliases[$name][0] ) ) {
 			$name = $aliases[$name][0];
+		} else {
+			// Try harder in case someone misspelled the correct casing
+			$found = false;
+			foreach ( $aliases as $n => $values ) {
+				if ( strcasecmp( $name, $n ) === 0 ) {
+					wfWarn( "Found $n for $name with casefix" );
+					$name = $values[0];
+					$found = true;
+					break;
+				}
+			}
+			if ( !$found ) wfWarn( "Did not found name for special page $name" );
 		}
 		if ( $subpage !== false && !is_null( $subpage ) ) {
 			$name = "$name/$subpage";

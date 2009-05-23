@@ -3012,19 +3012,19 @@ function wfMaxlagError( $host, $lag, $maxLag ) {
 }
 
 /**
- * Throws an E_USER_NOTICE saying that $function is deprecated
+ * Throws a warning that $function is deprecated
  * @param string $function
  * @return null
  */
 function wfDeprecated( $function ) {
-	global $wgDebugLogFile;
-	if ( !$wgDebugLogFile ) {
-		return;
-	}
+	wfWarn( "Use of $function is deprecated.", 2 );
+}
+
+function wfWarn( $msg, $callerOffset = 1, $level = E_USER_NOTICE ) {
 	$callers = wfDebugBacktrace();
-	if( isset( $callers[2] ) ){
-		$callerfunc = $callers[2];
-		$callerfile = $callers[1];
+	if( isset( $callers[$callerOffset+1] ) ){
+		$callerfunc = $callers[$callerOffset+1];
+		$callerfile = $callers[$callerOffset];
 		if( isset( $callerfile['file'] ) && isset( $callerfile['line'] ) ){
 			$file = $callerfile['file'] . ' at line ' . $callerfile['line'];
 		} else {
@@ -3034,11 +3034,15 @@ function wfDeprecated( $function ) {
 		if( isset( $callerfunc['class'] ) )
 			$func .= $callerfunc['class'] . '::';
 		$func .= @$callerfunc['function'];
-		$msg = "Use of $function is deprecated. Called from $func in $file";
-	} else {
-		$msg = "Use of $function is deprecated.";
+		$msg .= " [Called from $func in $file]";
 	}
-	wfDebug( "$msg\n" );
+
+	global $wgDevelopmentWarnings;
+	if ( $wgDevelopmentWarnings ) {
+		trigger_error( $msg, $level );
+	} else {
+		wfDebug( "$msg\n" );
+	}
 }
 
 /**

@@ -1088,6 +1088,12 @@ $wgShowExceptionDetails = false;
 $wgShowHostnames = false;
 
 /**
+ * If set to true MediaWiki will throw notices for some possible error
+ * conditions and for deprecated functions.
+ */
+$wgDevelopmentWarnings = false;
+
+/**
  * Use experimental, DMOZ-like category browser
  */
 $wgUseCategoryBrowser   = false;
