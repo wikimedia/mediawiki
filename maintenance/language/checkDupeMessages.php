@@ -65,42 +65,54 @@ if ( $run ) {
 		$runMode = 'raw';
 	}
 	include( $messagesFile );
-	$wgMessages[$langCode] = $messages;
+	$messageExist = isset($messages);
+	if ($messageExist)
+		$wgMessages[$langCode] = $messages;
 	include( $messagesFileC );
-	$wgMessages[$langCodeC] = $messages;
+	$messageCExist = isset($messages);
+	if ($messageCExist)
+		$wgMessages[$langCodeC] = $messages;
 	$count = 0;
 
-	if (!strcmp($runMode,'php')) {
-		print("<?php\n");
-		print('$dupeMessages = array('."\n");
-	}
-	foreach ($wgMessages[$langCodeC] as $key => $value) {
-		foreach ($wgMessages[$langCode] as $ckey => $cvalue) {
-			if (!strcmp($key,$ckey)) {
-				if ((!strcmp($key,$ckey)) && (!strcmp($value,$cvalue))) {
-					if (!strcmp($runMode,'raw')) {
-						print("$key\n");
-					} else if (!strcmp($runMode,'php')) {
-						print("'$key' => '',\n");
-					} else if (!strcmp($runMode,'wiki')) {
-						$uKey = ucfirst($key);
-						print("* MediaWiki:$uKey/$langCode\n");
-					} else {
-						print("* $key\n");
+	if (($messageExist) && ($messageCExist)) {
+
+		if (!strcmp($runMode,'php')) {
+			print("<?php\n");
+			print('$dupeMessages = array('."\n");
+		}
+		foreach ($wgMessages[$langCodeC] as $key => $value) {
+			foreach ($wgMessages[$langCode] as $ckey => $cvalue) {
+				if (!strcmp($key,$ckey)) {
+					if ((!strcmp($key,$ckey)) && (!strcmp($value,$cvalue))) {
+						if (!strcmp($runMode,'raw')) {
+							print("$key\n");
+						} else if (!strcmp($runMode,'php')) {
+							print("'$key' => '',\n");
+						} else if (!strcmp($runMode,'wiki')) {
+							$uKey = ucfirst($key);
+							print("* MediaWiki:$uKey/$langCode\n");
+						} else {
+							print("* $key\n");
+						}
+						$count++;
 					}
-					$count++;
 				}
 			}
 		}
-	}
-	if (!strcmp($runMode,'php')) {
-		print(");\n");
-	}
-	if (!strcmp($runMode,'text')) {
-		if ($count == 1) {
-			echo "\nThere are $count duplicated message in $langCode, against to $langCodeC.\n";
-		} else {
-			echo "\nThere are $count duplicated messages in $langCode, against to $langCodeC.\n";
+		if (!strcmp($runMode,'php')) {
+			print(");\n");
 		}
+		if (!strcmp($runMode,'text')) {
+			if ($count == 1) {
+				echo "\nThere are $count duplicated message in $langCode, against to $langCodeC.\n";
+			} else {
+				echo "\nThere are $count duplicated messages in $langCode, against to $langCodeC.\n";
+			}
+		}
+	} else {
+		if (!$messageExist)
+			echo "There are no messages defined in $langCode.\n";
+		if (!$messageCExist)
+			echo "There are no messages defined in $langCodeC.\n";
 	}	
 }
