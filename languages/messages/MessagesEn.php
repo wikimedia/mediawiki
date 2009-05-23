@@ -3664,7 +3664,7 @@ Please confirm that you really want to recreate this page.",
 'comma-separator'     => ',&#32;', # only translate this message to other languages if you have to change it
 'colon-separator'     => ':&#32;', # only translate this message to other languages if you have to change it
 'autocomment-prefix'  => '-&#32;', # only translate this message to other languages if you have to change it
-'pipe-separator'      => '&#32;|&#32;', # do not translate or duplicate this message to other languages
+'pipe-separator'      => '&#32;|&#32;', # only translate this message to other languages if you have to change it
 'word-separator'      => '&#32;', # only translate this message to other languages if you have to change it
 'ellipsis'            => '…', # only translate this message to other languages if you have to change it
 'percent'             => '$1%', # only translate this message to other languages if you have to change it

@@ -1051,7 +1051,7 @@ Prašome patvirtinti, kad jūs tikrai to norite, kad suprantate pasekmes, ir kad
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Ieškoti puslapių su šiuo priešdėliu]]',
 'searchprofile-articles'           => 'Turinio puslapiai',
 'searchprofile-project'            => 'Projekto puslapiai',
-'searchprofile-images'             => 'Failai',
+'searchprofile-images'             => 'Daugialypės terpės failai',
 'searchprofile-everything'         => 'Viskas',
 'searchprofile-advanced'           => 'Išplėstinė',
 'searchprofile-articles-tooltip'   => 'Ieškoti čia: $1',
@@ -1133,7 +1133,7 @@ Prašome patvirtinti, kad jūs tikrai to norite, kad suprantate pasekmes, ir kad
 'recentchangesdays-max'     => '(daugiausiai $1 {{PLURAL:$1|diena|dienų|dienos}})',
 'recentchangescount'        => 'Numatytasis keitimų skaičius, rodomas naujausių keitimų, puslapių istorijose ir įvykių sąrašuose:',
 'savedprefs'                => 'Nustatymai sėkmingai išsaugoti.',
-'timezonelegend'            => 'Laiko juosta',
+'timezonelegend'            => 'Laiko juosta:',
 'localtime'                 => 'Vietinis laikas:',
 'timezoneuseserverdefault'  => 'Naudoti pagal nutylėjimą iš serverio',
 'timezoneuseoffset'         => 'Kita (patikslinti skirtumą)',
@@ -2820,6 +2820,11 @@ Visos kitos nuorodos toje pačioje eilutėje yra laikomos išimtimis, t. y. pusl
 'exif-gpsspeed-k' => 'Kilometrai per valandą',
 'exif-gpsspeed-m' => 'Mylios per valandą',
 'exif-gpsspeed-n' => 'Mazgai',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'Kilometrai',
+'exif-gpsdestdistance-m' => 'Mylios',
+'exif-gpsdestdistance-n' => 'Jūrmylės',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Tikroji kryptis',

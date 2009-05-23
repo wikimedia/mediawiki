@@ -94,8 +94,8 @@ $messages = array(
 'tog-ccmeonemails'         => '當我寄電子郵件給其他使用者時，也寄一份複本到我的信箱。',
 
 # Categories related messages
-'category_header'               => '類別「$1」中的頁面',
-'subcategories'                 => '子分類',
+'category_header' => '類別「$1」中的頁面',
+'subcategories'   => '子分類',
 
 'mainpagetext'      => "<big>'''已成功安裝 MediaWiki。'''</big>",
 'mainpagedocfooter' => '請參閱 [http://meta.wikimedia.org/wiki/Help:Contents 使用者手冊] 以獲得使用此 wiki 軟體的訊息！
@@ -106,19 +106,19 @@ $messages = array(
 * [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki 常見問題解答]
 * [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki 發佈郵件清單]',
 
-# Metadata in edit box
-'help'              => '使用說明',
-'search'            => '搜尋',
-'searchbutton'      => '搜尋',
-'history'           => '修訂記錄',
-'history_short'     => '歷史',
-'print'             => '列印',
-'protect_change'    => '更改保護',
-'postcomment'       => '發表評論',
-'userpage'          => '查看使用者頁面',
-'projectpage'       => '查看計畫頁面',
-'lastmodifiedat'    => '本頁最後更動時間在 $1 $2。',
-'jumptosearch'      => '搜尋',
+'help'           => '使用說明',
+'search'         => '搜尋',
+'searchbutton'   => '搜尋',
+'history'        => '修訂記錄',
+'history_short'  => '歷史',
+'print'          => '列印',
+'protect_change' => '更改保護',
+'postcomment'    => '發表評論',
+'userpage'       => '查看使用者頁面',
+'projectpage'    => '查看計畫頁面',
+'templatepage'   => '檢視模板頁面',
+'lastmodifiedat' => '本頁最後更動時間在 $1 $2。',
+'jumptosearch'   => '搜尋',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => '關於{{SITENAME}}',
