@@ -394,7 +394,7 @@ class Sanitizer {
 		$extratags = array_flip( $extratags );
 		$removetags = array_flip( $removetags );
 		$htmlpairs = array_merge( $extratags, $htmlpairsStatic );
-		$htmlelements = array_diff( array_unique( array_merge( $extratags, $htmlelementsStatic ) ), $removetags );
+		$htmlelements = array_diff_key( array_merge( $extratags, $htmlelementsStatic ) , $removetags );
 
 		# Remove HTML comments
 		$text = Sanitizer::removeHTMLcomments( $text );
