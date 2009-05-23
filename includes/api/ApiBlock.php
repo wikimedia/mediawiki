@@ -49,7 +49,7 @@ class ApiBlock extends ApiBase {
 	 * of success. If it fails, the result will specify the nature of the error.
 	 */
 	public function execute() {
-		global $wgUser, $wgBlockAllowsUTEdit, $wgEnableUserEmail, $wgSysopEmailBans;
+		global $wgUser, $wgBlockAllowsUTEdit;
 		$params = $this->extractRequestParams();
 
 		if($params['gettoken'])
@@ -69,7 +69,7 @@ class ApiBlock extends ApiBase {
 			$this->dieUsageMsg(array('cantblock'));
 		if($params['hidename'] && !$wgUser->isAllowed('hideuser'))
 			$this->dieUsageMsg(array('canthide'));
-		if($params['noemail'] && $wgEnableUserEmail && $wgSysopEmailBans && !$wgUser->isAllowed('blockemail'))
+		if($params['noemail'] && !IPBlockForm::canBlockEmail($wgUser) )
 			$this->dieUsageMsg(array('cantblock-email'));
 
 		$form = new IPBlockForm('');
