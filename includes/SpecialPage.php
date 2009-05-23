@@ -608,7 +608,7 @@ class SpecialPage
 					break;
 				}
 			}
-			if ( !$found ) wfWarn( "Did not found name for special page $name" );
+			if ( !$found ) wfWarn( "Did not find name for special page $name" );
 		}
 		if ( $subpage !== false && !is_null( $subpage ) ) {
 			$name = "$name/$subpage";
