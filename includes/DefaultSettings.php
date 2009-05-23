@@ -2150,9 +2150,9 @@ $wgPutIPinRC = true;
 /**
  * Recentchanges items are periodically purged; entries older than this many
  * seconds will go.
- * For one week : 7 * 24 * 3600
+ * Default: 13 weeks = about three monts
  */
-$wgRCMaxAge = 7 * 24 * 3600;
+$wgRCMaxAge = 13 * 7 * 24 * 3600;
 
 /**
  * Filter $wgRCLinkDays by $wgRCMaxAge to avoid showing links for numbers higher than what will be stored.

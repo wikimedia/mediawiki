@@ -28,6 +28,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   to be shown to users
 * $wgAllowRealName was deprecated in favor of $wgHiddenPrefs[] = 'realname',
   but the former is still retained for backwards-compatibility
+* (bug 9257) $wgRCMaxAge now defaults to three months
 
 === New features in 1.16 ===
 
