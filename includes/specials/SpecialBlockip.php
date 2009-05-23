@@ -319,7 +319,7 @@ class IPBlockForm {
 	 * @param User $user The sysop wanting to make a block
 	 * @return boolean
 	 */
-	protected function canBlockEmail( $user ) {
+	public static function canBlockEmail( $user ) {
 		global $wgEnableUserEmail, $wgSysopEmailBans;
 		return ($wgEnableUserEmail && $wgSysopEmailBans && $user->isAllowed( 'blockemail' ));
 	}
