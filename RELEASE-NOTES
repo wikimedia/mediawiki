@@ -60,7 +60,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 18411) The upload form also checks post_max_size
 * Watchlist now has a specialized <div> tag that contains a unique class for each page
 * Added Minguo calendar support for the Taiwan Chinese language
-* Database: unionQueries function to be used for UNION sql construction, so 
+* Database: unionQueries function to be used for UNION sql construction, so
   it can be overloaded on DB abstraction level for DB specific functionality
 * (bug 18849) Implement Japanese and North Korean calendars
 * (bug 5755) Introduce {{CURRENTMONTH1}} and {{LOCALMONTH1}} to display the
@@ -144,6 +144,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 18522) Wrap MediaWiki:Protect-cascadeon in a div for identification
 * (bug 18438) Tweak HTML for preview bar for consistency and accessibility
 * (bug 18432) Updated documentation for dumpBackup.php
+* Fix array logic in Sanitizer::removeHTMLtags so that it doesn't strip good tags
+  that were redundantly defined.
 
 == API changes in 1.16 ==
 
