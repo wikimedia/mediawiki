@@ -152,8 +152,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 14118) SpecialPage::getTitleFor does not return a localised name
 * (bug 18698) Renaming non entry point maintenance scripts from .inc.php to
   .inc
-* Deprecated methods userCanCreate(), userCanEdit() and userCanMove() have been
-  removed
+* Deprecated methods Title::getInterwikiLink, Title::userCanCreate(),
+  Title::userCanEdit() and Title::userCanMove() have been removed
 
 == API changes in 1.16 ==
 
