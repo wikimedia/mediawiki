@@ -75,7 +75,7 @@ class Credits {
 	 * @param $article Article object
 	 */
 	protected static function getAuthor( Article $article ){
-		global $wgLang, $wgAllowRealName;
+		global $wgLang;
 
 		$user = User::newFromId( $article->getUser() );
 
@@ -98,7 +98,7 @@ class Credits {
 	 * @return String: html
 	 */
 	protected static function getContributors( Article $article, $cnt, $showIfMax ) {
-		global $wgLang, $wgAllowRealName;
+		global $wgLang, $wgHiddenPrefs;
 	
 		$contributors = $article->getContributors();
 	
@@ -120,7 +120,7 @@ class Credits {
 			$cnt--;
 			if( $user->isLoggedIn() ){
 				$link = self::link( $user );
-				if( $wgAllowRealName && $user->getRealName() )
+				if( !in_array( 'realname', $wgHiddenPrefs ) && $user->getRealName() )
 					$real_names[] = $link;
 				else
 					$user_names[] = $link;
@@ -162,15 +162,15 @@ class Credits {
 	 * @return String: html
 	 */
 	protected static function link( User $user ) {
-		global $wgUser, $wgAllowRealName;
-		if( $wgAllowRealName )
+		global $wgHiddenPrefs;
+		if( !in_array( 'realname', $wgHiddenPrefs ) )
 			$real = $user->getRealName();
 		else
 			$real = false;
 
-		$skin = $wgUser->getSkin();
+		$skin = $user->getSkin();
 		$page = $user->getUserPage();
-			
+
 		return $skin->link( $page, htmlspecialchars( $real ? $real : $user->getName() ) );
 	}
 
@@ -181,12 +181,12 @@ class Credits {
 	 * @return String: html
 	 */
 	protected static function userLink( User $user ) {
-		global $wgUser, $wgAllowRealName;
 		if( $user->isAnon() ){
 			return wfMsgExt( 'anonymous', array( 'parseinline' ), 1 );
 		} else {
+			global $wgHiddenPrefs;
 			$link = self::link( $user );
-			if( $wgAllowRealName && $user->getRealName() )
+			if( !in_array( 'realname', $wgHiddenPrefs ) && $user->getRealName() )
 				return $link;
 			else 
 				return wfMsgExt( 'siteuser', array( 'parseinline', 'replaceafter' ), $link );
