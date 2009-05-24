@@ -18,12 +18,44 @@ require_once( 'writeMessagesArray.inc' );
  * @param $write Write to the messages file?
  * @param $listUnknown List the unknown messages?
  * @param $removeUnKnown Remove the unknown messages?
+ * @param $removeDupes Remove the duplicated messages?
+ * @param $dupeMsgSource The source file intended to remove from the array.
  */
-function rebuildLanguage( $code, $write, $listUnknown, $removeUnknown ) {
+function rebuildLanguage( $code, $write, $listUnknown, $removeUnknown, $removeDupes, $dupeMsgSource ) {
 	global $wgLanguages;
 	$messages = $wgLanguages->getMessages( $code );
 	$messages = $messages['all'];
+	if ($removeDupes) {
+		$messages = removeDupes( $messages, $dupeMsgSource );
+	}
 	MessageWriter::writeMessagesToFile( $messages, $code, $write, $listUnknown, $removeUnknown );
+}
+
+/**
+ * Remove duplicates from a message array.
+ *
+ * @param $oldMsgArray The input message array.
+ * @param $dupeMsgSource The source file path for duplicates.
+ * @return $newMsgArray The output message array, with duplicates removed.
+ */
+function removeDupes( $oldMsgArray, $dupeMsgSource ) {
+	if (file_exists($dupeMsgSource)) {
+		include($dupeMsgSource);
+		if (!isset($dupeMessages)) {
+			echo("There are no duplicated messages in the source file provided.");
+			exit(1);
+		}
+	} else {
+		echo ("The specified file $dupeMsgSource cannot be found.");
+		exit(1);
+	}
+	$newMsgArray = $oldMsgArray;
+	foreach ($oldMsgArray as $key => $value) {
+		if ( array_key_exists( $key, $dupeMessages ) ) {
+			unset($newMsgArray[$key]);
+		}
+	}
+	return $newMsgArray;
 }
 
 # Show help
@@ -37,6 +69,7 @@ Options:
 	* dry-run: Do not write the array to the file.
 	* no-unknown: Do not list the unknown messages.
 	* remove-unknown: Remove unknown messages.
+	* remove-duplicates: Remove duplicated messages based on a PHP source file.
 
 END;
 	exit(1);
@@ -49,10 +82,18 @@ if ( isset( $options['lang'] ) ) {
 	$wgCode = $wgContLang->getCode();
 }
 
+# Get the duplicate message source
+if ( isset( $options['remove-duplicates'] ) && ( strcmp( $options['remove-duplicates'], '' ) ) ) {
+	$wgDupeMessageSource = $options['remove-duplicates'];
+} else {
+	$wgDupeMessageSource = '';
+}
+
 # Get the options
 $wgWriteToFile = !isset( $options['dry-run'] );
 $wgListUnknownMessages = !isset( $options['no-unknown'] );
 $wgRemoveUnknownMessages = isset( $options['remove-unknown'] );
+$wgRemoveDuplicateMessages = isset( $options['remove-duplicates'] );
 
 # Get language objects
 $wgLanguages = new languages();
@@ -60,8 +101,8 @@ $wgLanguages = new languages();
 # Write all the language
 if ( $wgCode == 'all' ) {
 	foreach ( $wgLanguages->getLanguages() as $language ) {
-		rebuildLanguage( $language, $wgWriteToFile, $wgListUnknownMessages, $wgRemoveUnknownMessages );
+		rebuildLanguage( $language, $wgWriteToFile, $wgListUnknownMessages, $wgRemoveUnknownMessages, $wgRemoveDuplicateMessages, $wgDupeMessageSource );
 	}
 } else {
-	rebuildLanguage( $wgCode, $wgWriteToFile, $wgListUnknownMessages, $wgRemoveUnknownMessages );
+	rebuildLanguage( $wgCode, $wgWriteToFile, $wgListUnknownMessages, $wgRemoveUnknownMessages, $wgRemoveDuplicateMessages, $wgDupeMessageSource );
 }
