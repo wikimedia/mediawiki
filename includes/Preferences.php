@@ -379,20 +379,17 @@ class Preferences {
 	
 	static function skinPreferences( $user, &$defaultPreferences ) {
 		## Skin #####################################
-		global $wgAllowUserSkin, $wgLang;
-		
-		if ($wgAllowUserSkin) {
-			$defaultPreferences['skin'] =
-					array(
-						'type' => 'radio',
-						'options' => self::generateSkinOptions( $user ),
-						'label' => '&nbsp;',
-						'section' => 'rendering/skin',
-					);
-		}
+		$defaultPreferences['skin'] =
+				array(
+					'type' => 'radio',
+					'options' => self::generateSkinOptions( $user ),
+					'label' => '&nbsp;',
+					'section' => 'rendering/skin',
+				);
 		
 		$selectedSkin = $user->getOption( 'skin' );
 		if ( in_array( $selectedSkin, array( 'cologneblue', 'standard' ) ) ) {
+			global $wgLang;
 			$settings = array_flip($wgLang->getQuickbarSettings());
 			
 			$defaultPreferences['quickbar'] =
@@ -1151,8 +1148,8 @@ class Preferences {
 		}
 		
 		// Fortunately, the realname field is MUCH simpler
-		global $wgAllowRealName;
-		if ($wgAllowRealName) {
+		global $wgHiddenPrefs;
+		if ( !in_array( 'realname', $wgHiddenPrefs ) ) {
 			$realName = $formData['realname'];
 			$wgUser->setRealName( $realName );
 		}

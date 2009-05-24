@@ -2398,7 +2398,10 @@ $wgValidateAllHtml = false;
 /** See list of skins and their symbolic names in languages/Language.php */
 $wgDefaultSkin = 'monobook';
 
-/** Should we allow the user's to select their own skin that will override the default? */
+/**
+* Should we allow the user's to select their own skin that will override the default?
+* @deprecated in 1.16, use $wgHiddenPrefs[] = 'skin' to disable it
+*/
 $wgAllowUserSkin = true;
 
 /**

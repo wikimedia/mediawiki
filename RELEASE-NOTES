@@ -26,8 +26,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   be used when uploading/moving files
 * (bug 18761) $wgHiddenPrefs is a new array for specifying preferences not
   to be shown to users
-* $wgAllowRealName was deprecated in favor of $wgHiddenPrefs[] = 'realname',
-  but the former is still retained for backwards-compatibility
+* $wgAllowRealName and $wgAllowUserSkin were deprecated in favor of
+  $wgHiddenPrefs[] = 'realname', but the former are still retained
+  for backwards-compatibility
 * (bug 9257) $wgRCMaxAge now defaults to three months
 * $wgDevelopmentWarnings can be set to true to show warnings about deprecated
   functions and other potential errors when developing.

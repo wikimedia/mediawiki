@@ -44,7 +44,7 @@ class LoginForm {
 	 * @param WebRequest $request A WebRequest object passed by reference
 	 */
 	function LoginForm( &$request, $par = '' ) {
-		global $wgLang, $wgAllowRealName, $wgEnableEmail;
+		global $wgLang, $wgHiddenPrefs, $wgEnableEmail;
 		global $wgAuth, $wgRedirectOnLogin;
 
 		$this->mType = ( $par == 'signup' ) ? $par : $request->getText( 'type' ); # Check for [[Special:Userlogin/signup]]
@@ -75,7 +75,7 @@ class LoginForm {
 		} else {
 			$this->mEmail = '';
 		}
-		if( $wgAllowRealName ) {
+		if( !in_array( 'realname', $wgHiddenPrefs ) ) {
 		    $this->mRealName = $request->getText( 'wpRealName' );
 		} else {
 		    $this->mRealName = '';
@@ -798,7 +798,7 @@ class LoginForm {
 	 * @private
 	 */
 	function mainLoginForm( $msg, $msgtype = 'error' ) {
-		global $wgUser, $wgOut, $wgAllowRealName, $wgEnableEmail;
+		global $wgUser, $wgOut, $wgHiddenPrefs, $wgEnableEmail;
 		global $wgCookiePrefix, $wgLoginLanguageSelector;
 		global $wgAuth, $wgEmailConfirmToEdit, $wgCookieExpiration;
 		
@@ -874,7 +874,7 @@ class LoginForm {
 		$template->set( 'message', $msg );
 		$template->set( 'messagetype', $msgtype );
 		$template->set( 'createemail', $wgEnableEmail && $wgUser->isLoggedIn() );
-		$template->set( 'userealname', $wgAllowRealName );
+		$template->set( 'userealname', !in_array( 'realname', $wgHiddenPrefs ) );
 		$template->set( 'useemail', $wgEnableEmail );
 		$template->set( 'emailrequired', $wgEmailConfirmToEdit );
 		$template->set( 'canreset', $wgAuth->allowPasswordChange() );
