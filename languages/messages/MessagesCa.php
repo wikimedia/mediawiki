@@ -1047,8 +1047,8 @@ Assegureu-vos que aquest canvi mantindrà la continuïtat històrica de la pàgi
 'searchmenu-new'                   => "'''Creeu la pàgina «[[:$1]]» en aquest wiki!'''",
 'searchhelp-url'                   => 'Help:Ajuda',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Mostra pàgines amb aquest prefix]]',
-'searchprofile-articles'           => 'Articles',
-'searchprofile-project'            => 'Ajuda',
+'searchprofile-articles'           => 'Pàgines de contingut',
+'searchprofile-project'            => "Pàgines d'ajuda i de projecte",
 'searchprofile-images'             => 'Multimèdia',
 'searchprofile-everything'         => 'Tot',
 'searchprofile-advanced'           => 'Avançat',
@@ -1194,7 +1194,7 @@ També podeu contactar amb altres usuaris a través de la vostra pàgina d'usuar
 'prefs-advancedrendering'       => 'Opcions avançades',
 'prefs-advancedsearchoptions'   => 'Opcions avançades',
 'prefs-advancedwatchlist'       => 'Opcions avançades',
-'prefs-display'                 => 'Mostra les opcions',
+'prefs-display'                 => "Opcions d'aparença",
 'prefs-diffs'                   => 'Difs.',
 
 # User rights

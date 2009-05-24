@@ -1087,7 +1087,7 @@ Nota que usar los enlaces de navegación borrará las selecciones de esta column
 'searchhelp-url'                   => 'Help:Ayuda',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Otras páginas con este prefijo]]',
 'searchprofile-articles'           => 'páginas de contenido',
-'searchprofile-project'            => 'Ayuda y páginas de proyectos',
+'searchprofile-project'            => 'Páginas de ayuda y de proyecto',
 'searchprofile-images'             => 'Multimedia',
 'searchprofile-everything'         => 'Todo',
 'searchprofile-advanced'           => 'Avanzado',
@@ -1235,7 +1235,7 @@ También puede permitir a otros usuarios que contacten con usted a través de su
 'prefs-advancedrendering'       => 'Opciones avanzadas',
 'prefs-advancedsearchoptions'   => 'Opciones avanzadas',
 'prefs-advancedwatchlist'       => 'Opciones avanzadas',
-'prefs-display'                 => 'Mostrar opciones',
+'prefs-display'                 => 'Opciones de mostrado',
 
 # User rights
 'userrights'                  => 'Configuración de permisos de usuarios',
@@ -1310,7 +1310,7 @@ También puede permitir a otros usuarios que contacten con usted a través de su
 'right-deleterevision'        => 'Borrar y restaurar revisiones específicas de páginas',
 'right-deletedhistory'        => 'Ver el historial de páginas borradas, sin el texto asociado',
 'right-browsearchive'         => 'Buscar páginas borradas',
-'right-undelete'              => 'Deshacer el borrado de una página',
+'right-undelete'              => 'Restaurar una página',
 'right-suppressrevision'      => 'Revisar y restaurar revisiones escondidas por administradores',
 'right-suppressionlog'        => 'Ver registros privados',
 'right-block'                 => 'Bloquear a otros usuarios para que no editen',
@@ -1939,7 +1939,7 @@ consecuencias, y que lo estás haciendo de acuerdo con [[{{MediaWiki:Policy-url}
 'actionfailed'           => 'Acción fracasó',
 'deletedtext'            => '"<nowiki>$1</nowiki>" ha sido borrado.
 Véase $2 para un registro de los borrados recientes.',
-'deletedarticle'         => '«[[$1]]» borrado',
+'deletedarticle'         => 'borró «[[$1]]»',
 'suppressedarticle'      => 'se ha suprimido «[[$1]]»',
 'dellogpage'             => 'Registro de borrados',
 'dellogpagetext'         => 'A continuación se muestra una lista de los borrados más recientes.',
@@ -1975,7 +1975,7 @@ Por favor, pulsa "Atrás", recarga la página de la que viniste e inténtalo de 
 # Protect
 'protectlogpage'              => 'Protecciones de páginas',
 'protectlogtext'              => 'Abajo se presenta una lista de protección y desprotección de página. Véase [[Special:ProtectedPages|Esta página está protegida]] para más información.',
-'protectedarticle'            => '«[[$1]]» protegido',
+'protectedarticle'            => 'protegió «[[$1]]»',
 'modifiedarticleprotection'   => 'cambiado el nivel de protección de «[[$1]]»',
 'unprotectedarticle'          => 'desprotegió [[$1]]',
 'movedarticleprotection'      => 'cambiadas protecciones de «[[$2]]» a «[[$1]]»',

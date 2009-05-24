@@ -45,6 +45,7 @@
  * @author McDutchie
  * @author Meno25
  * @author MichaelFrey
+ * @author Mihai
  * @author Mormegil
  * @author Mpradeep
  * @author Najami
@@ -932,80 +933,99 @@ $1 is the relevance of this result in per cent.
 'qbsettings-none' => '{{Identical|None}}',
 
 # Preferences page
-'preferences'               => '{{Identical|Preferences}}',
-'mypreferences'             => '{{Identical|My preferences}}',
-'prefs-edits'               => 'In user preferences.',
-'prefsnologin'              => '{{Identical|Not logged in}}',
-'changepassword'            => "Section heading on [[Special:Preferences]], tab 'User profile'.",
-'prefs-skin'                => 'Used in user preferences.',
-'skin-preview'              => 'The link beside each skin name in [[Special:Preferences|your user preferences]], tab "skin".
+'preferences'                   => '{{Identical|Preferences}}',
+'mypreferences'                 => '{{Identical|My preferences}}',
+'prefs-edits'                   => 'In user preferences.',
+'prefsnologin'                  => '{{Identical|Not logged in}}',
+'changepassword'                => "Section heading on [[Special:Preferences]], tab 'User profile'.",
+'prefs-skin'                    => 'Used in user preferences.',
+'skin-preview'                  => 'The link beside each skin name in [[Special:Preferences|your user preferences]], tab "skin".
 
 {{Identical|Preview}}',
-'prefs-math'                => 'Used in user preferences.',
-'prefs-datetime'            => '{{Identical|Date}}',
-'prefs-personal'            => 'Title of a tab in [[Special:Preferences]].',
-'prefs-rc'                  => 'Used in user preferences.
+'prefs-math'                    => 'Used in user preferences.',
+'prefs-datetime'                => '{{Identical|Date}}',
+'prefs-personal'                => 'Title of a tab in [[Special:Preferences]].',
+'prefs-rc'                      => 'Used in user preferences.
 
 {{Identical|Recent changes}}',
-'prefs-watchlist'           => 'Used in user preferences.',
-'prefs-watchlist-days'      => 'Used in [[Special:Preferences]], tab "Watchlist".',
-'prefs-watchlist-days-max'  => 'Shown as hint in [[Special:Preferences]], tab "Watchlist"',
-'prefs-watchlist-edits'     => 'Used in [[Special:Preferences]], tab "Watchlist".',
-'prefs-watchlist-edits-max' => 'Shown as hint in [[Special:Preferences]], tab "Watchlist"',
-'prefs-misc'                => 'Used in user preferences.',
-'prefs-resetpass'           => 'Button on user data tab in user preferences. When you click the button you go to the special page [[Special:ResetPass]].',
-'prefs-rendering'           => 'Title of tab in [[Special:Preferences]].',
-'saveprefs'                 => 'Button for saving changes in the preferences page.
+'prefs-watchlist'               => 'Used in user preferences.',
+'prefs-watchlist-days'          => 'Used in [[Special:Preferences]], tab "Watchlist".',
+'prefs-watchlist-days-max'      => 'Shown as hint in [[Special:Preferences]], tab "Watchlist"',
+'prefs-watchlist-edits'         => 'Used in [[Special:Preferences]], tab "Watchlist".',
+'prefs-watchlist-edits-max'     => 'Shown as hint in [[Special:Preferences]], tab "Watchlist"',
+'prefs-misc'                    => 'Used in user preferences.',
+'prefs-resetpass'               => 'Button on user data tab in user preferences. When you click the button you go to the special page [[Special:ResetPass]].',
+'prefs-rendering'               => 'Title of tab in [[Special:Preferences]].',
+'saveprefs'                     => 'Button for saving changes in the preferences page.
 
 {{Identical|Save}}',
-'resetprefs'                => 'Button for resetting changes in the preferences page.',
-'restoreprefs'              => 'Used in [[Special:Preferences]]',
-'prefs-editing'             => 'Title of a tab in [[Special:Preferences]].',
-'rows'                      => 'Used on [[Special:Preferences]], "Editing" section in the "Size of editing window" fieldset',
-'columns'                   => 'Used on [[Special:Preferences]], "Editing" section in the "Size of editing window" fieldset',
-'searchresultshead'         => 'This is the label of the tab in [[Special:Preferences|my preferences]] which contains options for searching the wiki.
+'resetprefs'                    => 'Button for resetting changes in the preferences page.',
+'restoreprefs'                  => 'Used in [[Special:Preferences]]',
+'prefs-editing'                 => 'Title of a tab in [[Special:Preferences]].',
+'rows'                          => 'Used on [[Special:Preferences]], "Editing" section in the "Size of editing window" fieldset',
+'columns'                       => 'Used on [[Special:Preferences]], "Editing" section in the "Size of editing window" fieldset',
+'searchresultshead'             => 'This is the label of the tab in [[Special:Preferences|my preferences]] which contains options for searching the wiki.
 
 {{Identical|Search}}',
-'contextchars'              => 'Used in Preferences/Search tab',
-'stub-threshold'            => 'Used in [[Special:Preferences]], tab "Misc".',
-'recentchangesdays'         => 'Used in [[Special:Preferences]], tab "Recent changes".',
-'recentchangesdays-max'     => 'Shown as hint in [[Special:Preferences]], tab "Recent changes"',
-'recentchangescount'        => 'Used in [[Special:Preferences]], tab "Recent changes".',
-'savedprefs'                => 'This message appears after saving changes to your user preferences.',
-'timezonelegend'            => '{{Identical|Time zone}}',
-'timezoneoffset'            => "Text next to input box in [[Special:Preferences]], tab 'date and time', section 'timezone'.",
-'allowemail'                => 'Used in [[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}.',
-'prefs-searchoptions'       => '{{Identical|Search options}}',
-'prefs-namespaces'          => "{{Identical|Namespaces}}
+'contextchars'                  => 'Used in Preferences/Search tab',
+'stub-threshold'                => 'Used in [[Special:Preferences]], tab "Misc".',
+'recentchangesdays'             => 'Used in [[Special:Preferences]], tab "Recent changes".',
+'recentchangesdays-max'         => 'Shown as hint in [[Special:Preferences]], tab "Recent changes"',
+'recentchangescount'            => 'Used in [[Special:Preferences]], tab "Recent changes".',
+'prefs-help-recentchangescount' => 'Used in [[Special:Preferences]], tab "Recent changes".',
+'savedprefs'                    => 'This message appears after saving changes to your user preferences.',
+'timezonelegend'                => '{{Identical|Time zone}}',
+'timezoneoffset'                => "Text next to input box in [[Special:Preferences]], tab 'date and time', section 'timezone'.",
+'allowemail'                    => 'Used in [[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}.',
+'prefs-searchoptions'           => '{{Identical|Search options}}',
+'prefs-namespaces'              => "{{Identical|Namespaces}}
 Shown as legend of the second fieldset of the tab 'Search' in [[Special:Preferences]]",
-'defaultns'                 => 'Used in [[Special:Preferences]], tab "Search".',
-'default'                   => '{{Identical|Default}}',
-'prefs-files'               => 'Title of a tab in [[Special:Preferences]].',
-'prefs-custom-css'          => 'visible on [[Special:Preferences]] -[Skins].',
-'prefs-reset-intro'         => 'Used in [[Special:Preferences/reset]].',
-'prefs-emailconfirm-label'  => 'Used in [[Special:Preferences]].',
-'youremail'                 => '{{Identical|E-mail}}',
-'username'                  => '{{Identical|Username}}',
-'uid'                       => '{{Identical|User ID}}',
-'prefs-memberingroups'      => 'This message is shown on [[Special:Preferences]], first tab, where it is follwed by a colon.',
-'prefs-registration'        => 'Used in [[Special:Preferences]].',
-'yourrealname'              => 'Used in [[Special:Preferences]], first tab.
+'defaultns'                     => 'Used in [[Special:Preferences]], tab "Search".',
+'default'                       => '{{Identical|Default}}',
+'prefs-files'                   => 'Title of a tab in [[Special:Preferences]].',
+'prefs-custom-css'              => 'visible on [[Special:Preferences]] -[Skins].',
+'prefs-reset-intro'             => 'Used in [[Special:Preferences/reset]].',
+'prefs-emailconfirm-label'      => 'Used in [[Special:Preferences]].',
+'youremail'                     => '{{Identical|E-mail}}',
+'username'                      => '{{Identical|Username}}',
+'uid'                           => '{{Identical|User ID}}',
+'prefs-memberingroups'          => 'This message is shown on [[Special:Preferences]], first tab, where it is follwed by a colon.',
+'prefs-registration'            => 'Used in [[Special:Preferences]].',
+'yourrealname'                  => 'Used in [[Special:Preferences]], first tab.
 {{Identical|Real name}}',
-'yourlanguage'              => 'Used in [[Special:Preferences]], first tab.
+'yourlanguage'                  => 'Used in [[Special:Preferences]], first tab.
 {{Identical|Language}}',
-'yourvariant'               => 'Used in [[Special:Preferences]], first tab, when the wiki content language has variants only.
+'yourvariant'                   => 'Used in [[Special:Preferences]], first tab, when the wiki content language has variants only.
 {{optional}}',
-'yournick'                  => 'Used in [[Special:Preferences]], first tab.',
-'badsig'                    => 'Error message displayed when entering invalid signature in user preferences',
-'badsiglength'              => 'Warning message that is displayed on [[Special:Preferences]] when trying to save a signature that is too long. Parameter $1 is the maximum number of characters that is allowed in a signature (multi-byte characters are counted as one character).',
-'yourgender'                => 'Used in [[Special:Preferences]], first tab.',
-'gender-unknown'            => 'Used in [[Special:Preferences]], first tab, as one of the selectable options of the {{msg-mw|gender}} prompt. Choosing it indicates that the grammatical gender of the user name is not to be made public, or cannot be determined, or matches none of the other choices preset in the select.',
-'gender-male'               => 'Used in [[Special:Preferences]], first tab, as one of the selectable options of the {{msg-mw|gender}} prompt. Choosing it indicates that the grammatical gender of the user name should be "male" for those languages having a "normal" male grammatical gender.',
-'gender-female'             => 'Used in [[Special:Preferences]], first tab, as one of the selectable options of the {{msg-mw|gender}} prompt. Choosing it indicates that the grammatical gender of the user name should be "female" for those languages having a "normal" female grammatical gender.',
-'email'                     => '{{Identical|E-mail}}',
-'prefs-help-realname'       => 'In user preferences.',
-'prefs-help-email'          => 'Shown as explanation text on [[Special:Preferences]].',
-'prefs-display'             => '"Display" is a noun that specifies the kind of "options". So translate as "options about display", not as "display the options".',
+'yournick'                      => 'Used in [[Special:Preferences]], first tab.
+
+{{Identical|Signature}}',
+'badsig'                        => 'Error message displayed when entering invalid signature in user preferences',
+'badsiglength'                  => 'Warning message that is displayed on [[Special:Preferences]] when trying to save a signature that is too long. Parameter $1 is the maximum number of characters that is allowed in a signature (multi-byte characters are counted as one character).',
+'yourgender'                    => 'Used in [[Special:Preferences]], first tab.',
+'gender-unknown'                => 'Used in [[Special:Preferences]], first tab, as one of the selectable options of the {{msg-mw|gender}} prompt. Choosing it indicates that the grammatical gender of the user name is not to be made public, or cannot be determined, or matches none of the other choices preset in the select.',
+'gender-male'                   => 'Used in [[Special:Preferences]], first tab, as one of the selectable options of the {{msg-mw|gender}} prompt. Choosing it indicates that the grammatical gender of the user name should be "male" for those languages having a "normal" male grammatical gender.',
+'gender-female'                 => 'Used in [[Special:Preferences]], first tab, as one of the selectable options of the {{msg-mw|gender}} prompt. Choosing it indicates that the grammatical gender of the user name should be "female" for those languages having a "normal" female grammatical gender.',
+'email'                         => '{{Identical|E-mail}}',
+'prefs-help-realname'           => 'In user preferences.',
+'prefs-help-email'              => 'Shown as explanation text on [[Special:Preferences]].',
+'prefs-signature'               => '{{Identical|Signature}}',
+'prefs-dateformat'              => 'Used in [[Special:Preferences]], tab "Date and time".',
+'prefs-timeoffset'              => 'Used in [[Special:Preferences]], tab "Date and time".',
+'prefs-advancedediting'         => 'Used in [[Special:Preferences]], tab "Editing".
+{{Identical|Advanced options}}',
+'prefs-advancedrc'              => 'Used in [[Special:Preferences]], tab "Recent changes".
+{{Identical|Advanced options}}',
+'prefs-advancedrendering'       => 'Used in [[Special:Preferences]], tab "Appearence".
+{{Identical|Advanced options}}',
+'prefs-advancedsearchoptions'   => 'Used in [[Special:Preferences]], tab "Search options".
+{{Identical|Advanced options}}',
+'prefs-advancedwatchlist'       => 'Used in [[Special:Preferences]], tab "Watchlist".
+{{Identical|Advanced options}}',
+'prefs-display'                 => '"Display" is a noun that specifies the kind of "options". So translate as "options about display", not as "display the options".
+
+Used in [[Special:Preferences]], tab "Recent changes".',
+'prefs-diffs'                   => 'Used in [[Special:Preferences]], tab "Misc".',
 
 # User rights
 'userrights'                     => 'Page title of [[Special:UserRights]].',

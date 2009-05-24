@@ -2959,7 +2959,7 @@ $1',
 
 # Separators for various lists, etc.
 'comma-separator' => '、',
-'word-separator' => '',
+'word-separator'  => '',
 
 # Multipage image navigation
 'imgmultipageprev' => '← 上一页',

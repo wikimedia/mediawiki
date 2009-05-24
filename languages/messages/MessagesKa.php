@@ -14,6 +14,7 @@
  * @author Temuri rajavi
  * @author ka.wikipedia.org sysops
  * @author לערי ריינהארט
+ * @author გიორგიმელა
  */
 
 $namespaceNames = array(
@@ -734,6 +735,7 @@ $1 საათში.',
 
 # History merging
 'mergehistory'                => 'გვერდების ისტორიის შერწყმა',
+'mergehistory-from'           => 'წყაროს გვერდი:',
 'mergehistory-submit'         => 'ცვლილებების შერწყმა',
 'mergehistory-empty'          => 'რაიმე ცვლილების შერწყმა შეუძლებელია.',
 'mergehistory-no-destination' => 'დანიშნულების გვერდი $1 არ არსებობს.',
@@ -757,7 +759,7 @@ $1 საათში.',
 # Search results
 'searchresults'                => 'ძიების შედეგები',
 'searchresults-title'          => 'ძიების შედეგები "$1"',
-'searchresulttext'             => 'მეტი ინფორმაციისათვის ვიკიპედიის საძიებლის შესახებ გთხოვთ ნახოთ [[{{ns:project}}:ძიება|ძიება {{SITENAME}}]].',
+'searchresulttext'             => 'მეტი ინფორმაციისათვის {{SITENAME}}-ის საძიებლის შესახებ გთხოვთ ნახოთ [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'               => 'თქვენ მოიძიეთ \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|ყველა გვერდი დაწყებული "$1"-ით]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|ყველა გვერდი ბმულით "$1"-ზე]])',
 'searchsubtitleinvalid'        => "თქვენ მოიძიეთ '''$1'''",
 'noexactmatch'                 => "'''გვერდი ამ სათაურით \"\$1\" არ არსებობს.''' თქვენ შეგიძლიათ [[:\$1|შექმნათ ეს გვერდი]].",

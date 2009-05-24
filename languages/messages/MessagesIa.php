@@ -1191,6 +1191,7 @@ Si tu opta pro dar lo, isto essera usate pro dar te attribution pro tu contribut
 'prefs-i18n'                    => 'Internationalisation',
 'prefs-signature'               => 'Signatura',
 'prefs-dateformat'              => 'Formato de data',
+'prefs-timeoffset'              => 'Differentia de tempore',
 'prefs-advancedediting'         => 'Optiones avantiate',
 'prefs-advancedrc'              => 'Optiones avantiate',
 'prefs-advancedrendering'       => 'Optiones avantiate',
