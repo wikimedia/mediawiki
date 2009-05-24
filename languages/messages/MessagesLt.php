@@ -793,7 +793,8 @@ Jūs galite grįžti ir redaguoti jau esantį puslapį, arba [[Special:UserLogin
 Jūs turite nuspręsti, ar tinka toliau redaguoti šį puslapį.
 Dėl patogumo čia pateikta šio puslapio šalinimų istorija:",
 'moveddeleted-notice'              => 'Šis puslapis buvo panaikintas.
-Panaikinto puslapio versijų sąrašas pateiktas žemiau peržiūrėjimui.',
+Puslapio panaikinimo ir perkėlimų istorija pateikta žemiau peržiūrėjimui.',
+'log-fulllog'                      => 'Rodyti visą istoriją',
 'edit-hook-aborted'                => 'Keitimas nutrauktas užlūžimo.
 Tam nėra paaiškinimo.',
 'edit-gone-missing'                => 'Negalima atnaujinti puslapio.
@@ -1050,7 +1051,7 @@ Prašome patvirtinti, kad jūs tikrai to norite, kad suprantate pasekmes, ir kad
 'searchhelp-url'                   => 'Help:Turinys',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Ieškoti puslapių su šiuo priešdėliu]]',
 'searchprofile-articles'           => 'Turinio puslapiai',
-'searchprofile-project'            => 'Projekto puslapiai',
+'searchprofile-project'            => 'Pagalbos ir projekto puslapiai',
 'searchprofile-images'             => 'Daugialypės terpės failai',
 'searchprofile-everything'         => 'Viskas',
 'searchprofile-advanced'           => 'Išplėstinė',
@@ -1131,7 +1132,7 @@ Prašome patvirtinti, kad jūs tikrai to norite, kad suprantate pasekmes, ir kad
 'stub-threshold'            => 'Puslapį žymėti <a href="#" class="stub">nebaigtu</a>, jei mažesnis nei:',
 'recentchangesdays'         => 'Rodomos dienos paskutinių keitimų sąraše:',
 'recentchangesdays-max'     => '(daugiausiai $1 {{PLURAL:$1|diena|dienų|dienos}})',
-'recentchangescount'        => 'Numatytasis keitimų skaičius, rodomas naujausių keitimų, puslapių istorijose ir įvykių sąrašuose:',
+'recentchangescount'        => 'Numatytasis rodomas keitimų skaičius:',
 'savedprefs'                => 'Nustatymai sėkmingai išsaugoti.',
 'timezonelegend'            => 'Laiko juosta:',
 'localtime'                 => 'Vietinis laikas:',
@@ -1502,9 +1503,9 @@ Paspaudę ant stulpelio antraštės pakeiste išrikiavimą.',
 'filehist-comment'          => 'Komentaras',
 'imagelinks'                => 'Failų nuorodos',
 'linkstoimage'              => '{{PLURAL:$1|Šis puslapis|Šie puslapiai}} nurodo į šį failą:',
-'linkstoimage-more'         => 'Daugiau nei $1 {{PLURAL:$1|puslapis|puslapiai}} rodo į šį failą.
-Žemiau esantis sąrašas rodo tik {{PLURAL:$1|pirmo puslapio|pirmų $1 puslapių}} nuorodas į šį failą.
-Pilnas sąrašas pasiekiamas [[Special:WhatLinksHere/$2|čia]].',
+'linkstoimage-more'         => 'Daugiau nei $1 {{PLURAL:$1|puslapis|puslapiai|puslapių}} rodo į šį failą.
+Žemiau esantis sąrašas rodo tik $1 {{PLURAL:$1|puslapio|pirmų $1 puslapių|pirmų $1 puslapių}} nuorodas į šį failą.
+Yra pasiekiamas ir [[Special:WhatLinksHere/$2|visas sąrašas].',
 'nolinkstoimage'            => 'Į failą nenurodo joks puslapis.',
 'morelinkstoimage'          => 'Žiūrėti [[Special:WhatLinksHere/$1|daugiau nuorodų]] į šį failą.',
 'redirectstofile'           => '{{PLURAL:$1|Šis failas|$1 failai}} peradresuoja į šį failą:',
@@ -1967,8 +1968,8 @@ Dabar veikiančių puslapių apsaugų sąrašą rasite [[Special:ProtectedPages|
 'undeletepage'                 => 'Rodyti ir atkurti ištrintus puslapius',
 'undeletepagetitle'            => "'''Tai sudaryta iš ištrintų [[:$1]] versijų'''.",
 'viewdeletedpage'              => 'Rodyti ištrintus puslapius',
-'undeletepagetext'             => 'Žemiau išvardinti puslapiai yra ištrinti, bet dar laikomi
-archyve, todėl gali būti atstatyti. Archyvas gali būti periodiškai valomas.',
+'undeletepagetext'             => '{{PLURAL:$1|Šis $1 puslapis buvo ištrintas|Šie $1 puslapiai buvo ištrinti|Šie $1 puslapių buvo ištrinti}}, bet dar yra archyve ir gali būti {{PLURAL:$1|atkurtas|atkurti|atkurti}}.
+Archyvas gali būti periodiškai valomas.',
 'undelete-fieldset-title'      => 'Atstatyti versijas',
 'undeleteextrahelp'            => "Norėdami atkurti visą puslapį, palikite visas varneles nepažymėtas ir
 spauskite '''''Atkurti'''''. Norėdami atlikti pasirinktinį atstatymą, pažymėkite varneles tų versijų, kurias norėtumėte atstatyti, ir spauskite '''''Atkurti'''''. Paspaudus
@@ -2085,7 +2086,7 @@ $1',
 'ipboptions'                      => '2 valandos:2 hours,1 diena:1 day,3 dienos:3 days,1 savaitė:1 week,2 savaitės:2 weeks,1 mėnesis:1 month,3 mėnesiai:3 months,6 mėnesiai:6 months,1 metai:1 year,neribotai:infinite',
 'ipbotheroption'                  => 'kita',
 'ipbotherreason'                  => 'Kita/papildoma priežastis',
-'ipbhidename'                     => 'Slėpti naudotojo vardą adresą iš blokavimų istorijos, aktyvių blokavimų sąrašo ir naudotojų sąrašo',
+'ipbhidename'                     => 'Slėpti naudotojo vardą keitimuose bei sąrašuose',
 'ipbwatchuser'                    => 'Stebėti šio naudotojo puslapį ir jo aptarimų puslapį',
 'ipballowusertalk'                => 'Leisti šiam naudotojui, kol jis yra blokuotas, redaguoti savo aptarimų puslapį.',
 'ipb-change-block'                => 'Perblokuoti šį naudotoją su šiais nustatymais',
@@ -2141,9 +2142,11 @@ Jei norite pamatyti dabar blokuojamus adresus, žiūrėkite [[Special:IPBlockLis
 'block-log-flags-noemail'         => 'el. paštas užblokuotas',
 'block-log-flags-nousertalk'      => 'negali redaguoti savo naudotojo aptarimo puslapio',
 'block-log-flags-angry-autoblock' => 'išplėstasis automatinis blokavimas įjungtas',
+'block-log-flags-hiddenname'      => 'naudotojo vardas paslėptas',
 'range_block_disabled'            => 'Administratoriaus galimybė kurti intevalinius blokus yra išjungta.',
 'ipb_expiry_invalid'              => 'Galiojimo laikas neleistinas.',
 'ipb_expiry_temp'                 => 'Paslėptų naudotojų vardų blokavimas turi būti nuolatinis.',
+'ipb_hide_invalid'                => 'Negalima paslėpti šios paskyros; ji gali turėti per daug keitimų.',
 'ipb_already_blocked'             => '„$1“ jau užblokuotas',
 'ipb-needreblock'                 => '== Jau užblokuotas ==
 $1 jau yra užblokuotas. Ar norite pakeisti nustatymus?',
@@ -2244,6 +2247,8 @@ Prašome sujungti šiuos puslapius.'''",
 'move-redirect-suppressed'     => 'nukreipimas nesukurtas',
 'movelogpage'                  => 'Pervardinimų istorija',
 'movelogpagetext'              => 'Pervardintų puslapių sąrašas.',
+'movesubpage'                  => '{{PLURAL:$1|Subpuslapis|Subpuslapiai}}',
+'movesubpagetext'              => 'Žemiau yra šio puslapio $1 {{PLURAL:$1|subpuslapis|subpuslapiai|subpuslapių}}.',
 'movenosubpage'                => 'Šis puslapis neturi subpuslapių.',
 'movereason'                   => 'Priežastis:',
 'revertmove'                   => 'atmesti',
@@ -2279,9 +2284,11 @@ Pastaruoju atveju, jūs taip pat galite naudoti nuorodą, pvz. [[{{#Special:Expo
 'export-submit'     => 'Eksportuoti',
 'export-addcattext' => 'Pridėti puslapius iš kategorijos:',
 'export-addcat'     => 'Pridėti',
+'export-addnstext'  => 'Pridėti puslapius iš vardų srities:',
 'export-addns'      => 'Pridėti',
 'export-download'   => 'Saugoti kaip failą',
 'export-templates'  => 'Įtraukti šablonus',
+'export-pagelinks'  => 'Įtraukti susietus puslapius iki šio gylio:',
 
 # Namespace 8 related
 'allmessages'               => 'Visi sistemos tekstai bei pranešimai',
@@ -2311,6 +2318,7 @@ Versijų datos ir redaktorių vardai bus išlaikyti.
 Visi tarpprojektiniai importo veiksmai yra registruojami  [[Special:Log/import|importo istorijoje]].',
 'import-interwiki-source'    => 'Šaltinio wiki projektas/puslapis:',
 'import-interwiki-history'   => 'Kopijuoti visas istorijos versijas šiam puslapiui',
+'import-interwiki-templates' => 'Įtraukti visus šablonus',
 'import-interwiki-submit'    => 'Importuoti',
 'import-interwiki-namespace' => 'Paskirties vardų sritis:',
 'import-upload-filename'     => 'Failo pavadinimas:',
@@ -2517,7 +2525,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Dėmesio''': Šis failas gali turėti kenksmingą kodą, jį paleidus jūsų sistema gali būti pažeista.<hr />",
-'imagemaxsize'         => 'Riboti paveikslėlių dydį jų aprašymo puslapyje iki:',
+'imagemaxsize'         => "Riboti paveikslėlių dydį:<br />''(failų aprašymo puslapiuose)''",
 'thumbsize'            => 'Sumažintų paveikslėlių dydis:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|puslapis|puslapiai|puslapių}}',
 'file-info'            => '(failo dydis: $1, MIME tipas: $2)',
@@ -2810,6 +2818,10 @@ Visos kitos nuorodos toje pačioje eilutėje yra laikomos išimtimis, t. y. pusl
 'exif-gpslongitude-e' => 'Rytų ilguma',
 'exif-gpslongitude-w' => 'Vakarų ilguma',
 
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-0' => 'Metrai aukščiau jūros lygio',
+'exif-gpsaltitude-1' => 'Metrai žemiau jūros lygio',
+
 'exif-gpsstatus-a' => 'Matavimas vykdyme',
 'exif-gpsstatus-v' => 'Matuojamas programinis sąveikumas',
 
@@ -3043,15 +3055,26 @@ Jūs taip pat galite [[Special:Watchlist/edit|naudoti standartinį redaktorių]]
 #Įterpkite visus standartinių išraiškų fragmentus prieš šią eilutę. Palikite šią eilutę, tokią kokia yra </pre>',
 
 # Special:Tags
+'tags'                    => 'Leistinos keitimų žymės',
+'tag-filter'              => '[[Special:Tags|Žymų]] filtras:',
 'tag-filter-submit'       => 'Filtras',
 'tags-title'              => 'Žymos',
-'tags-description-header' => 'Pilnas reikšmės aprašymas',
+'tags-intro'              => 'Šiame puslapyje yra žymų, kuriomis programinė įranga gali pažymėti keitimus, sąrašas bei jų reikšmės.',
+'tags-tag'                => 'Vidinis žymos pavadinimas',
+'tags-display-header'     => 'Išvaizda keitimų sąrašuose',
+'tags-description-header' => 'Visas reikšmės aprašymas',
+'tags-hitcount-header'    => 'Pažymėti pakeitimai',
 'tags-edit'               => 'taisyti',
 'tags-hitcount'           => '$1 {{PLURAL:$1|pakeitimas|pakeitimai|pakeitimų}}',
 
 # Database error messages
-'dberr-problems' => 'Atsiprašome! Svetainei iškilo techninių problemų.',
-'dberr-again'    => 'Palaukite kelias minutes ir perkraukite puslapį.',
+'dberr-header'      => 'Ši svetainė turi problemų.',
+'dberr-problems'    => 'Atsiprašome! Svetainei iškilo techninių problemų.',
+'dberr-again'       => 'Palaukite kelias minutes ir perkraukite puslapį.',
+'dberr-info'        => '(Nepavyksta pasiekti duomenų bazės serverio: $1)',
+'dberr-usegoogle'   => 'Šiuo metu jūs galite ieškoti per „Google“.',
+'dberr-outofdate'   => 'Mūsų turinio kopijos ten gali būti pasenusios.',
+'dberr-cachederror' => 'Tai prašomo puslapio išsaugota kopija, ji gali būti pasenusi.',
 
 # HTML forms
 'htmlform-submit'              => 'Siųsti',

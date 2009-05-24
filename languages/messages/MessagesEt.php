@@ -912,6 +912,7 @@ See ei tohi olla pikem kui $1 {{PLURAL:$1|sümbol|sümbolit}}.',
 'userrights-editusergroup' => 'Kasutajagrupi valik',
 'saveusergroups'           => 'Salvesta grupi muudatused',
 'userrights-groupsmember'  => 'Kuulub gruppi:',
+'userrights-reason'        => 'Muutmise põhjus:',
 'userrights-no-interwiki'  => 'Sul ei ole luba muuta kasutajaõigusi teistes vikides.',
 'userrights-notallowed'    => 'Sulle pole antud luba jagada kasutajatele õigusi.',
 
@@ -933,22 +934,31 @@ See ei tohi olla pikem kui $1 {{PLURAL:$1|sümbol|sümbolit}}.',
 'grouppage-sysop' => '{{ns:project}}:administraatorid',
 
 # Rights
-'right-minoredit'      => 'Märgi muudatused pisimuudatustena',
+'right-read'           => 'Lugeda lehekülgi',
+'right-edit'           => 'Redigeerida lehekülje sisu',
+'right-createpage'     => 'Luua lehekülgi (mis pole arutelu leheküljed)',
+'right-createtalk'     => 'Luua arutelu lehekülgi',
+'right-createaccount'  => 'Luua uusi kasutaja kontosid',
+'right-minoredit'      => 'Märkida muudatusi pisimuudatustena',
+'right-move'           => 'Teisaldada lehekülgi',
+'right-move-subpages'  => 'Teisaldada lehekülgi koos nende alam-lehtedega',
+'right-movefile'       => 'Teisaldada faile',
 'right-upload'         => 'Lae faile üles',
-'right-reupload'       => 'Kirjuta olemasolev fail üle',
+'right-reupload'       => 'Kirjutada olemasolevaid faile üle',
+'right-writeapi'       => 'Kasutada {{SITENAME}} kirjutamise liidest',
 'right-delete'         => 'Kustuta lehekülgi',
-'right-bigdelete'      => 'Kustuta leheküljed pikkade ajalugudega',
-'right-browsearchive'  => 'Otsi kustutatud lehekülgi',
+'right-bigdelete'      => 'Kustutada pikka ajalooga lehekülgi',
+'right-browsearchive'  => 'Otsida kustutatud lehekülgi',
 'right-undelete'       => 'Taasta lehekülg',
 'right-suppressionlog' => 'Vaata privaatlogisid',
-'right-block'          => 'Blokeeri kasutajad toimetamisest',
-'right-blockemail'     => 'Blokeeri kasutaja e-kirja saatmisel',
+'right-block'          => 'Keelata lehekülgede muutmist mõnel kasutajal',
+'right-blockemail'     => 'Keelata kasutajal e-kirjade saatmine',
 'right-hideuser'       => 'Blokeeri kasutajanimi, peites see avalikkuse eest',
 'right-import'         => 'Impordi lehekülgi teistest vikidest',
 'right-importupload'   => 'Impordi lehekülgi faili üleslaadimisest',
 'right-patrol'         => 'Märgista teiste redigeerimised patrullituks',
 'right-patrolmarks'    => 'Vaata viimaste muudatuste patrullimärkeid',
-'right-unwatchedpages' => 'Vaata jälgimata lehekülgede nimekirja',
+'right-unwatchedpages' => 'Vaadata jälgimata lehekülgede nimekirja',
 
 # User rights log
 'rightslog'     => 'Kasutaja õiguste logi',
@@ -1497,9 +1507,17 @@ Kindlasti tuleb täita ka väli \"põhjus\", paigutades sinna näiteks viited ko
 'ipbexpiry'                  => 'Kehtivus',
 'ipbreason'                  => 'Põhjus',
 'ipbreasonotherlist'         => 'Muul põhjusel',
+'ipbreason-dropdown'         => '*Tavalised blokeerimise põhjused
+** Lehtedelt sisu kustutamine
+** Sodimine
+** Taunitav käitumine, isiklikud rünnakud
+** Mittesobiv kasutajanimi
+** Spämmi levitamine
+** Vale info levitamine',
 'ipbanononly'                => 'Blokeeri ainult anonüümsed kasutajad',
 'ipbcreateaccount'           => 'Takista konto loomist',
-'ipbemailban'                => 'Takista kasutaja poolt e-maili saatmist',
+'ipbemailban'                => 'Takista kasutaja poolt ka e-maili saatmine',
+'ipbenableautoblock'         => "Blokeeri automaatselt ka selle kasutaja poolt kasutatud IP aadress, ning ka kõik sarnased IP'd millelt võidakse proovida sodida",
 'ipbsubmit'                  => 'Blokeeri see aadress',
 'ipbother'                   => 'Muu tähtaeg',
 'ipboptions'                 => '2 tundi:2 hours,1 päev:1 day,3 päeva:3 days,1 nädal:1 week,2 nädalat:2 weeks,1 kuu:1 month,3 kuud:3 months,6 kuud:6 months,1 aasta:1 year,igavene:infinite',
@@ -1510,6 +1528,7 @@ Kindlasti tuleb täita ka väli \"põhjus\", paigutades sinna näiteks viited ko
 'blockipsuccesssub'          => 'Blokeerimine õnnestus',
 'blockipsuccesstext'         => '[[Special:Contributions/$1|$1]] on blokeeritud.<br />
 Kehtivaid blokeeringuid vaata [[Special:IPBlockList|blokeeringute loendist]].',
+'ipb-blocklist'              => 'Vaata kehtivaid keelde',
 'unblockip'                  => 'Lõpeta IP aadressi blokeerimine',
 'unblockiptext'              => 'Kasutage allpool olevat vormi redigeerimisõiguste taastamiseks varem blokeeritud IP aadressile.',
 'unblocked'                  => '[[User:$1|$1]] blokeering võeti maha.',
@@ -1593,7 +1612,13 @@ kasutajaks ja [[Special:UserLogin|sisse logima]]',
 'delete_and_move_reason'  => 'Kustutatud, et asemele tõsta teine lehekülg',
 
 # Export
-'export' => 'Lehekülgede eksport',
+'export'        => 'Lehekülgede eksport',
+'exporttext'    => 'Sa saad siin eksportida kindla lehekülje või nende kogumi, tekstid, koos kogu nende muudatuste ajalooga, XML kujule viiduna. Seda saad sa vajadusel kasutada teksti ülekandmiseks teise vikisse, kasutades selleks MediaWiki [[Special:Import|impordi lehekülge]].
+
+Et eksportida lehekülgi, sisesta nende pealkirjad all olevasse teksti kasti, iga pealkiri ise reale, ning vali kas sa soovid saada leheküljest kõiki selle vanemaid versioone (muudatusi) või soovid sa saada leheküljest vaid hetke versiooni.
+
+Viimasel juhul võid sa näiteks "[[{{MediaWiki:Mainpage}}]]" lehekülje, jaoks kasutada samuti linki kujul:  [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]].',
+'exportcuronly' => 'Lisa vaid viimane versioon lehest, ning mitte kogu ajalugu',
 
 # Namespace 8 related
 'allmessages'        => 'Kõik süsteemi sõnumid',

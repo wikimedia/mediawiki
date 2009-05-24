@@ -407,6 +407,9 @@ fangatahana : $2",
 'viewsourcetext'       => "Azonao atao no mijery sy mandrika ny votoatin'ity pejy ity :",
 'editinginterface'     => "'''Tandremo :''' manova pejy ampiasan'ny lôjisialy wiki ianao. Mety hita ny mpikambana sàsany izy io. Rehefa tia mandika teny ianao, jereo ny volavola MediaWiki ho an'ny internationalisation ny hafatra [http://translatewiki.net/wiki/Main_Page?setlang=fr translatewiki.net].",
 'sqlhidden'            => '(nafenina ny requête SQL)',
+'namespaceprotected'   => "Tsy manana alalàna manova ny toeran'anarana « '''$1''' » ianao.",
+'customcssjsprotected' => "Tsy azonao atao no manova n'ity pejy ity, satria manana ny safidy nà mpikambana ny votoatiny.",
+'ns-specialprotected'  => "Tsy afaka ovaina ny pejy anatin'ny toeran'anarana « {{ns:special}} » .",
 'titleprotected'       => "Voaaro mba tsy ho amboarina ilay lohateny, i [[User:$1|$1]] no nanao an'io.
 Io ny antony : « ''$2'' ».",
 
@@ -454,6 +457,7 @@ Mila manaiky cookies ianao raha te hiditra amin'ny {{SITENAME}}.",
 'loginsuccess'               => "'''Tafiditra amin'ny {{SITENAME}} ianao ry \"\$1\".'''",
 'nosuchuser'                 => 'Tsy misy mpikambana manana izany solonanarana "$1" izany. Hamarino ny tsipelina na manokafa kaonty vaovao.',
 'nosuchusershort'            => 'Tsy misy mpikambana hoe "<nowiki>$1</nowiki>". Hamarino ny tsipelina.',
+'nouserspecified'            => 'Tsy maintsy mampiditra solonanarana ianao.',
 'wrongpassword'              => 'Diso ny tenimiafina. Manandrama tenimiafina hafa azafady.',
 'wrongpasswordempty'         => 'Tsy nampiditra tenimiafina ianao, azafady mba avereno indray.',
 'passwordtooshort'           => 'Fohy loatra io tenimiafina io.
@@ -485,6 +489,8 @@ mba hanaporofoana fa anao io kaonty io.",
 'invalidemailaddress'        => 'Tsy mety io imailaka nalefanao io satria tsy manaraka ny firafitra tokony ho izy.
 Azafady manomeza adiresy voasoratra tsara na avelao ho banga io toerana io.',
 'accountcreated'             => 'Kaonty voaforona',
+'accountcreatedtext'         => "Voasokatra ilay kaonty hoan'i $1.",
+'createaccount-title'        => "Fanokafana kaonty hoan'ny/i {{SITENAME}}",
 'createaccount-text'         => "Nisy olona nanokatra kaonty hoan'ny adiresy imailakao eo amin'ny {{SITENAME}} ($4) mitondra anarana « $2 » miarak'amin'ny tenimiafina « $3 ».<br />
 Tokony miditra na manokatra kaonty ianao ary manova ny tenimiafinao dian-izao.
 
@@ -498,6 +504,7 @@ Aza mijery an'ity afatra ity ianao ra voaforona an-tsipetezana ilay kaonty io.",
 'newpassword'               => 'Tenimiafina vaovao:',
 'retypenew'                 => 'Avereno ampidirina ny tenimiafina vaovao:',
 'resetpass_submit'          => 'Ovay ny tenimiafina ary midira',
+'resetpass_success'         => 'Voasolo soa aman-tsara ny tenimiafinao ! Mampiditranao izao ankehitriny...',
 'resetpass_forbidden'       => 'Tsy afaka ovaina ny tenimiafina',
 'resetpass-no-info'         => "Tsy maintsy miditra/nanokatra kaonty ato ianao mba hafaka hitsidika n'ity pejy ity.",
 'resetpass-submit-loggedin' => 'Ovay ny tenimiafina',
@@ -528,19 +535,21 @@ Mety efa nanova tenimiafina na nanontany tenimiafina miserana angamba ianao.',
 'hr_tip'          => 'Tsipika mitsivalana (aza anaranam-po loatra)',
 
 # Edit pages
-'summary'                => 'Ambangovangony:',
-'subject'                => 'Lohateny:',
-'minoredit'              => 'Fanovàna kely',
-'watchthis'              => 'Araho maso ity pejy ity',
-'savearticle'            => 'Tehirizo',
-'preview'                => 'Topi-maso',
-'showpreview'            => 'Asehoy aloha',
-'showlivepreview'        => 'Topi-maso maikamaika',
-'showdiff'               => 'Asehoy ny fiovana',
-'anoneditwarning'        => "'''Tandremo :''' tsy niditra/nanokatra kaonty tato ianao. Voasoratra anatin'ny tantaran'asa n'ity pejy ity ny adiresy IP-nao",
-'summary-preview'        => "Topi-maso n'ilay ambangovangony :",
-'blockedtitle'           => 'Mpikambana voasakana',
-'blockedtext'            => "<big>'''Voasakana ny solonanaranao na ny adiresy IP anao.'''</big>
+'summary'                          => 'Ambangovangony:',
+'subject'                          => 'Lohateny:',
+'minoredit'                        => 'Fanovàna kely',
+'watchthis'                        => 'Araho maso ity pejy ity',
+'savearticle'                      => 'Tehirizo',
+'preview'                          => 'Topi-maso',
+'showpreview'                      => 'Asehoy aloha',
+'showlivepreview'                  => 'Topi-maso maikamaika',
+'showdiff'                         => 'Asehoy ny fiovana',
+'anoneditwarning'                  => "'''Tandremo :''' tsy niditra/nanokatra kaonty tato ianao. Voasoratra anatin'ny tantaran'asa n'ity pejy ity ny adiresy IP-nao",
+'missingcommenttext'               => 'Ampidiro ny ambangovangony azafady.',
+'summary-preview'                  => "Topi-maso n'ilay ambangovangony :",
+'subject-preview'                  => 'Topi maso ny lazaina :',
+'blockedtitle'                     => 'Mpikambana voasakana',
+'blockedtext'                      => "<big>'''Voasakana ny solonanaranao na ny adiresy IP anao.'''</big>
 
 Nataon'i $1 ny fisakanana.
 Ny antony : ''$2''.
@@ -553,7 +562,7 @@ Afaka antsoinao i $1 na [[{{MediaWiki:Grouppage-sysop}}|ny mpandrindra]] mba hir
 Afaka andefasanao imailaka ra nampiditra ny adiresy imailakanao ianao ao anatin'ny [[Special:Preferences|mombamombanao]].
 '''$3''' ny adiresy IP-nao ary ny ''identifiant de blocage''-nao dia #$5.
 Asio ao anaty ny fangatahanao io adiresy io.",
-'autoblockedtext'        => "Voasakana ny adiresy IP anareo satria nampiasain'ny olon-kafa io adiresy ampiasainao io. Ary voasakan'i $1 ilay olona nampiasa ny adiresinao.<br />
+'autoblockedtext'                  => "Voasakana ny adiresy IP anareo satria nampiasain'ny olon-kafa io adiresy ampiasainao io. Ary voasakan'i $1 ilay olona nampiasa ny adiresinao.<br />
 Ity ny antony navoakany
 
 :''$2''
@@ -568,70 +577,82 @@ Jereo koa fa tsy afaka mampiasa ny asa ''emailuser'' ianao ra tsy nanometraka ny
 
 $3 izao ny adiresinao, ary ny isa ny fisakananai dia $5.
 Soraty ireo fanoroana ireo anatin'ny fangatahana ataonao.",
-'blockednoreason'        => 'tsy nisy antony nomeny',
-'blockedoriginalsource'  => "Eto amban'ny kaody fango ny '''$1''' :",
-'blockededitsource'      => "Eo amban'ny votoatin'ny '''nosoratanao''' nataonao tamin'ny '''$1'''",
-'whitelistedittitle'     => 'Midira/Misorata anarana',
-'whitelistedittext'      => "Mila $1 aloha ianao vao afaka manova/mamorona pejy eto amin'ity wiki ity.",
-'nosuchsectiontitle'     => 'Ts ampy fitapahana',
-'loginreqtitle'          => 'Mila fidirana',
-'loginreqlink'           => 'hiditra',
-'loginreqpagetext'       => 'Tokony $1 ianao raha te hijery pejy hafa.',
-'accmailtitle'           => 'Lasa ny tenimiafina.',
-'accmailtext'            => 'Lasa any amin\'i $2 ny tenimiafin\'i "$1".',
-'newarticle'             => '(Vaovao)',
-'newarticletext'         => "Mbola tsy misy ity takelaka ity koa azonao atao ny mamorona azy eto ambany. Jereo ny [[{{MediaWiki:Helppage}}|Fanoroana]] raha misy fanazavana ilainao.
+'blockednoreason'                  => 'tsy nisy antony nomeny',
+'blockedoriginalsource'            => "Eto amban'ny kaody fango ny '''$1''' :",
+'blockededitsource'                => "Eo amban'ny votoatin'ny '''nosoratanao''' nataonao tamin'ny '''$1'''",
+'whitelistedittitle'               => 'Midira/Misorata anarana',
+'whitelistedittext'                => "Mila $1 aloha ianao vao afaka manova/mamorona pejy eto amin'ity wiki ity.",
+'nosuchsectiontitle'               => 'Ts ampy fitapahana',
+'loginreqtitle'                    => 'Mila fidirana',
+'loginreqlink'                     => 'hiditra',
+'loginreqpagetext'                 => 'Tokony $1 ianao raha te hijery pejy hafa.',
+'accmailtitle'                     => 'Lasa ny tenimiafina.',
+'accmailtext'                      => 'Lasa any amin\'i $2 ny tenimiafin\'i "$1".',
+'newarticle'                       => '(Vaovao)',
+'newarticletext'                   => "Mbola tsy misy ity takelaka ity koa azonao atao ny mamorona azy eto ambany. Jereo ny [[{{MediaWiki:Helppage}}|Fanoroana]] raha misy fanazavana ilainao.
 
 Raha toa moa ka tsy nieritreritra ny hamorona ity takelaka ity ianao dia miverena etsy amin'ny fandraisana.",
-'anontalkpagetext'       => "----''Eto no sehatra iresahana ho an'ny mpikambana tsy mitonona anarana, izany hoe tsy nisoratra anarana na tsy mampiasa ny solonanarany. Voatery noho izany isika mampiasa ny adiresy IP ho marika hanondroana azy. Io adiresy IP io dia mety hikambanana amin'ny olona maro hafa. Raha tsy mitonona anarana ianao ary mahatsapa fa misy fanamarihana tsy miantefa aminao loatra voarainao, dia iangaviana ianao mba [[Special:UserLogin|hisoratra anarana ho mpikambana na hiditra]] mba tsy hifangaroanao amin'ny mpikambana tsy mitonona anarana hafa intsony.''",
-'noarticletext'          => "'''Tsy mbola nisy namorona io lahatsoratra io... azonao atao ny mamorona azy.'''
+'anontalkpagetext'                 => "----''Eto no sehatra iresahana ho an'ny mpikambana tsy mitonona anarana, izany hoe tsy nisoratra anarana na tsy mampiasa ny solonanarany. Voatery noho izany isika mampiasa ny adiresy IP ho marika hanondroana azy. Io adiresy IP io dia mety hikambanana amin'ny olona maro hafa. Raha tsy mitonona anarana ianao ary mahatsapa fa misy fanamarihana tsy miantefa aminao loatra voarainao, dia iangaviana ianao mba [[Special:UserLogin|hisoratra anarana ho mpikambana na hiditra]] mba tsy hifangaroanao amin'ny mpikambana tsy mitonona anarana hafa intsony.''",
+'noarticletext'                    => "'''Tsy mbola nisy namorona io lahatsoratra io... azonao atao ny mamorona azy.'''
 * '''[{{SERVER}}{{localurl:{{NAMESPACE}}:{{PAGENAME}}|action=edit}} Forony eto ny lahatsoratra momba ny {{PAGENAME}}]'''.
 * [[{{ns:special}}:Search/{{PAGENAME}}|Tadiavo ny momba ny {{PAGENAME}}]] ato.",
-'clearyourcache'         => "'''Fanamarihana:''' Aorian'ny fanovana, dia mila mamafa ny cache ianao vao mahita ny fiovana.
+'clearyourcache'                   => "'''Fanamarihana:''' Aorian'ny fanovana, dia mila mamafa ny cache ianao vao mahita ny fiovana.
 '''Mozilla / Firefox / Safari:''' Tsindrio ny ''Shift'' rehefa manindry ''Reload'', na tsindrio ''Ctrl-Shift-R'' (''Cmd-Shift-R'' ho an'ny Apple Mac); '''IE:''' tsindrio ''Ctrl'' rehefa manindry ''Refresh'', na tsindrio ''Ctrl-F5''; '''Konqueror:''': tsindrio fotsiny ny bokotra ''Reload'' na ''F5''; ny mpampiasa '''Opera''' angamba dia tokony hamafa ny cache-ny ao amin'ny ''Tools&rarr;Preferences''.",
-'usercssjsyoucanpreview' => "'''Fika:''' Ampiasao ny bokotra 'Tsipalotra' mialoha ny hitehirizanao ny CSS/JS-nao vaovao.",
-'usercsspreview'         => "'''Tadidio fa mijery tsipalotra ny fivoakan'ny takilan'angalinao (CSS) vaovao fotsiny ihany ianao fa tsy mbola voatahiry akory izy io!'''",
-'userjspreview'          => "
+'usercssjsyoucanpreview'           => "'''Fika:''' Ampiasao ny bokotra 'Tsipalotra' mialoha ny hitehirizanao ny CSS/JS-nao vaovao.",
+'usercsspreview'                   => "'''Tadidio fa mijery tsipalotra ny fivoakan'ny takilan'angalinao (CSS) vaovao fotsiny ihany ianao fa tsy mbola voatahiry akory izy io!'''",
+'userjspreview'                    => "
 '''Tadidio fa manandrana/mijery tsipalotra ny fivoakan'ny JavaScript-nao fotsiny ihany ianao fa tsy mbola voatahiry akory izy io!'''",
-'updated'                => '(Voaova)',
-'note'                   => "'''Fanamarihana:'''",
-'previewnote'            => "'''Topi-maso ihany ity hitanao ity, tsy mbola voatahiry ny fanovana nataonao!'''",
-'previewconflict'        => "
+'updated'                          => '(Voaova)',
+'note'                             => "'''Fanamarihana:'''",
+'previewnote'                      => "'''Topi-maso ihany ity hitanao ity, tsy mbola voatahiry ny fanovana nataonao!'''",
+'previewconflict'                  => "
 Ity topi-maso ity no mifanaraka amin'ny lahatsoratra ao amin'ny faritra eo ambony,
 ary toy izao no ho fisehon'ny pejy raha misafidy ny hitahiry azy ianao.",
-'session_fail_preview'   => "'''Miala tsiny. Tsy afaka atao ny asa ilainao satria misy very ny fampahalalana ilaina momba ny session. Azafady mba andramo fanindroany. Raha tena mbola tsy mety dia manandrama mivoaka mihitsy aloha dia miditra indray avy eo!'''",
-'editing'                => 'Manova ny $1',
-'editingsection'         => 'Fanovana $1 (fizaràna)',
-'editingcomment'         => 'Fanovana $1 (fanamarihana)',
-'editconflict'           => 'Fanovana mifandona: $1',
-'explainconflict'        => "
+'session_fail_preview'             => "'''Miala tsiny. Tsy afaka atao ny asa ilainao satria misy very ny fampahalalana ilaina momba ny session. Azafady mba andramo fanindroany. Raha tena mbola tsy mety dia manandrama mivoaka mihitsy aloha dia miditra indray avy eo!'''",
+'editing'                          => 'Manova ny $1',
+'editingsection'                   => 'Fanovana $1 (fizaràna)',
+'editingcomment'                   => 'Fanovana $1 (fanamarihana)',
+'editconflict'                     => 'Fanovana mifandona: $1',
+'explainconflict'                  => "
 Nisy olon-kafa koa nanova ity pejy ity taorian'ny nanombohanao nanova azy.
 Ireto ny votoatin'ny pejy, ilay eo ambony ny votoatiny araka izay endriny ankehitriny,
 ilay eo ambany no misy ny fanovana saika hataonao.
 Mila mampiditra ny fanovana nataonao ao anatin'ny votoatiny ankehitriny ianao.
 Ny lahatsoratra ao amin'ilay faritra ambony <b>ihany</b> no ho voatahiry rehefa manidry
 ilay bokotra \"Tehirizo\" ianao. <br />",
-'yourtext'               => 'Lahatsoratrao',
-'storedversion'          => 'Votoatiny voatahiry',
-'nonunicodebrowser'      => "'''FAMPITANDREMANA: Tsy mifanaraka tanteraka amin'ny unicode ny navigateur-nao. Misy ihany anefa fika napetraka hahafahanao manova ny lahatsoratra: Ny litera tsy ASCII dia hiseho amin'ny fango isa ta-enina ambin'ny folo.'''",
-'editingold'             => "'''FAMPITANDREMANA: Ity pejy ity dia efa lany daty io votoatiny ovainao io.
+'yourtext'                         => 'Lahatsoratrao',
+'storedversion'                    => 'Votoatiny voatahiry',
+'nonunicodebrowser'                => "'''FAMPITANDREMANA: Tsy mifanaraka tanteraka amin'ny unicode ny navigateur-nao. Misy ihany anefa fika napetraka hahafahanao manova ny lahatsoratra: Ny litera tsy ASCII dia hiseho amin'ny fango isa ta-enina ambin'ny folo.'''",
+'editingold'                       => "'''FAMPITANDREMANA: Ity pejy ity dia efa lany daty io votoatiny ovainao io.
 Raha io no tahirizinao, dia ho very ny fanovana ity pejy ity rehetra taorian'io fanovana io.'''",
-'yourdiff'               => 'Fampitahana',
-'longpagewarning'        => "'''FAMPITANDREMANA: Mahatratra $1 kilooktety ny hangezan'ity pejy ity; 
+'yourdiff'                         => 'Fampitahana',
+'copyrightwarning'                 => "Ny zavatra rehetra apetraka amin'ny {{SITENAME}} dia raisina ho azo adika malalaka araka ny fahazoan-dalana $2 (Jereo $1 ny fanazavana fanampiny). Raha toa ka tianao ho anao manokana ny tahirin-kevitra dia aleo tsy apetraka ato.
+
+<b>AZA MAMPIASA TAHIRINKEVITRA TSY NAHAZOAN-DALANA</b>",
+'longpagewarning'                  => "'''FAMPITANDREMANA: Mahatratra $1 kilooktety ny hangezan'ity pejy ity; 
 Ny navigateur sasantsasany dia mety hanana olana
 amin'ny fanovana ny pejy manakaiky na mihoatra ny 32 ko.
 Tsara raha saratsarahinao ho fizarana maromaro ity pejy ity.'''",
-'readonlywarning'        => "'''FAMPITANDREMANA: Nohidiana noho ny antony fikolokoloana aloha ny banky angona,
+'readonlywarning'                  => "'''FAMPITANDREMANA: Nohidiana noho ny antony fikolokoloana aloha ny banky angona,
 koa tsy afaka mitahiry ny fanovana nataonao aloha ianao izao. Angamba tokony hanao Couper coller aloha 
 ianao dia tehirizo anaty rakitra ny fanovanao mandra-paha.'''",
-'protectedpagewarning'   => "'''FAMPITANDREMANA:  Voaaro ity pejy ity ka ny mpikambana manana ny fahazoan-dàlana sysop ihany no afaka manova azy.'''",
-'templatesused'          => "endrika miasa eto amin'ity pejy ity:",
-'templatesusedpreview'   => "endrika miasa anatin'ity topi-maso ity :",
-'template-protected'     => '(voaaro)',
-'template-semiprotected' => '(voaaro an-tàpany)',
-'hiddencategories'       => 'anaty sokajy nasitrika $1 ity pejy ity',
-'nocreatetitle'          => 'Voafetra ny famoronana pejy',
-'nocreatetext'           => " Voafetra ihany ny fahafahana mamorona pejy eto amin'ity sehatra ity.  Ny pejy efa misy no azonao ovaina, na [[Special:UserLogin|midira na mamoròna kaonty]].",
+'protectedpagewarning'             => "'''FAMPITANDREMANA:  Voaaro ity pejy ity ka ny mpikambana manana ny fahazoan-dàlana sysop ihany no afaka manova azy.'''",
+'templatesused'                    => "endrika miasa eto amin'ity pejy ity:",
+'templatesusedpreview'             => "endrika miasa anatin'ity topi-maso ity :",
+'templatesusedsection'             => "Endrika miasa anatin'ity fizaràna ity :",
+'template-protected'               => '(voaaro)',
+'template-semiprotected'           => '(voaaro an-tàpany)',
+'hiddencategories'                 => 'anaty sokajy nasitrika $1 ity pejy ity',
+'nocreatetitle'                    => 'Voafetra ny famoronana pejy',
+'nocreatetext'                     => " Voafetra ihany ny fahafahana mamorona pejy eto amin'ity sehatra ity.  Ny pejy efa misy no azonao ovaina, na [[Special:UserLogin|midira na mamoròna kaonty]].",
+'nocreate-loggedin'                => 'Tsy mahazo ataonao no manamboatra pejy vao.',
+'permissionserrors'                => 'Tsy azonao atao',
+'permissionserrorstext-withaction' => 'Tsy manana alalàna ianao $2. Io ny antony :',
+'edit-conflict'                    => 'Adi-panovàna.',
+
+# Parser/template warnings
+'post-expand-template-inclusion-category' => 'Pejy be be endrika',
+'parser-template-loop-warning'            => 'endrika vono hita tao : [[$1]]',
 
 # History pages
 'viewpagelogs'           => "Hijery ny fanovan'ity pejy ity",
@@ -644,6 +665,8 @@ ianao dia tehirizo anaty rakitra ny fanovanao mandra-paha.'''",
 'cur'                    => 'ank',
 'next'                   => 'manaraka',
 'last'                   => 'farany',
+'page_first'             => 'voalohany',
+'page_last'              => 'farany',
 'histlegend'             => "
 Fifidianana ny votoatiny hampitahaina: mariho eo anilan'ny versions hampitahaina dia tsindrio ny bokotra Entrée na ny bokotra etsy ambany.<br />
 Tadidio: (ank) = fampitahana amin'ny votoatin'ny pejy ankehitriny,
@@ -652,10 +675,26 @@ Tadidio: (ank) = fampitahana amin'ny votoatin'ny pejy ankehitriny,
 'deletedrev'             => '[voafafa]',
 'histfirst'              => 'Ny vao indrindra',
 'histlast'               => 'Antintra indrindra',
+'historysize'            => '$1 oktety',
+'historyempty'           => '(tsy misy)',
+
+# Revision feed
+'history-feed-title' => 'Tantara ny fanovàna',
 
 # Revision deletion
-'rev-delundel'   => 'jereo/asitrio',
-'revdel-restore' => 'Ovay ny fahitàna',
+'rev-delundel'           => 'jereo/asitrio',
+'revdelete-legend'       => 'Ampetraho ny restriction nà fijerena :',
+'revdelete-hide-text'    => "Asitrio ny lahatsoratr'ity version ity",
+'revdelete-hide-name'    => 'Asitrio ny asa sy ny tarigehitra',
+'revdelete-hide-comment' => 'asitrio ny ambangovangony',
+'revdelete-hide-user'    => "Asitrio ny solonanaran'ny mpikambana/adiresy IP",
+'revdelete-hide-image'   => "asitrio ny votoatin'ilay rakitra",
+'revdelete-log'          => "Anbangovangon'ny tantaran'asa :",
+'revdelete-submit'       => "Ataovy amin'ny version nosafidiako",
+'revdelete-logentry'     => "nanova ny fahitan'ny/i [[$1]]",
+'logdelete-logentry'     => "nanova ny fahitan'ny zava-mitranga ny/n'i [[$1]]",
+'revdelete-success'      => "'''Voaova soa aman-tsara ny fahitàn'ny version.'''",
+'revdel-restore'         => 'Ovay ny fahitàna',
 
 # Merge log
 'revertmerge' => 'Sarao',
@@ -707,43 +746,47 @@ ihany no miseho amin'ny vokatry ny karoka).",
 'searchdisabled'            => "Tsy nalefa ny karoka eto amin'i {{SITENAME}}. Afaka mampiasa an'i Google aloha ianao mandra-paha. Nefa fantaro fa mety ho efa lany daty ny valiny omeny.",
 
 # Preferences page
-'preferences'         => 'Ny momba anao',
-'mypreferences'       => 'Ny safidiko',
-'prefs-edits'         => 'isa ny fanovàna :',
-'prefsnologin'        => 'Tsy tafiditra',
-'prefsnologintext'    => '[[Special:UserLogin|Midira]] aloha izay vao manova ny mombamomba anao.',
-'changepassword'      => 'Hanova tenimiafina',
-'prefs-skin'          => 'Endrika',
-'skin-preview'        => 'Tsipalotra',
-'prefs-datetime'      => 'Daty sy ora',
-'prefs-personal'      => 'Mombamomba anao',
-'prefs-rc'            => 'Vao niova',
-'prefs-misc'          => 'Hafa',
-'saveprefs'           => 'Tehirizo',
-'resetprefs'          => 'Avereno',
-'prefs-editing'       => 'Fanovana',
-'searchresultshead'   => 'Fikarohana',
-'recentchangescount'  => "Lohateny amin'ny vao niova:",
-'savedprefs'          => 'Voatahiry ny mombamomba anao.',
-'servertime'          => "Fahelan'ny lohamilina",
-'guesstimezone'       => "
+'preferences'               => 'Ny momba anao',
+'mypreferences'             => 'Ny safidiko',
+'prefs-edits'               => 'isa ny fanovàna :',
+'prefsnologin'              => 'Tsy tafiditra',
+'prefsnologintext'          => '[[Special:UserLogin|Midira]] aloha izay vao manova ny mombamomba anao.',
+'changepassword'            => 'Hanova tenimiafina',
+'prefs-skin'                => 'Endrika',
+'skin-preview'              => 'Tsipalotra',
+'prefs-datetime'            => 'Daty sy ora',
+'prefs-personal'            => 'Mombamomba anao',
+'prefs-rc'                  => 'Vao niova',
+'prefs-misc'                => 'Hafa',
+'saveprefs'                 => 'Tehirizo',
+'resetprefs'                => 'Avereno',
+'prefs-editing'             => 'Fanovana',
+'searchresultshead'         => 'Fikarohana',
+'recentchangescount'        => "Lohateny amin'ny vao niova:",
+'savedprefs'                => 'Voatahiry ny mombamomba anao.',
+'servertime'                => "Fahelan'ny lohamilina",
+'guesstimezone'             => "
 Fenoy araka ny datin'ny solosainan'ny mpitsidika",
-'allowemail'          => "Ekeo ny handraisana imailaka avy amin'ny mpikambana hafa",
-'prefs-files'         => 'Rakitra',
-'youremail'           => 'Imailaka:',
-'username'            => 'Solonanarana:',
-'uid'                 => "Laharan'ny mpikambana:",
-'yourrealname'        => 'Tena anarana marina:',
-'yourlanguage'        => 'Tenim-pirenena:',
-'yournick'            => 'Anaram-bositra:',
-'badsig'              => 'Tsy mety io sonia io; hamarino ny kialo HTML.',
-'badsiglength'        => "Lava laotra ny sonianao.
+'allowemail'                => "Ekeo ny handraisana imailaka avy amin'ny mpikambana hafa",
+'prefs-files'               => 'Rakitra',
+'youremail'                 => 'Imailaka:',
+'username'                  => 'Solonanarana:',
+'uid'                       => "Laharan'ny mpikambana:",
+'prefs-memberingroups'      => "mpikamban'ny gropy :",
+'yourrealname'              => 'Tena anarana marina:',
+'yourlanguage'              => 'Tenim-pirenena:',
+'yournick'                  => 'Anaram-bositra:',
+'badsig'                    => 'Tsy mety io sonia io; hamarino ny kialo HTML.',
+'badsiglength'              => "Lava laotra ny sonianao.
 Tokony mba manana lohavy ambanimbany kokoa non'ny $1",
-'gender-male'         => 'Lehilahy',
-'gender-female'       => 'Vehivavy',
-'email'               => 'Imailaka',
-'prefs-help-realname' => "Anarana marina (afaka tsy fenoina): raha fenoinao ity dia hampiasaina hanomezana anao tambin'ny asa izay efainao eto.",
-'prefs-help-email'    => "Imailaka (afaka tsy asiana): Hahafahan'ny olona mifandray aminao amin'ny alalan'ny pejinao manokana na ny pejin-dresakao, nefa tsy aseho azy ny anaranao.",
+'yourgender'                => 'lahy/vavy :',
+'gender-unknown'            => 'Tsy voalaza',
+'gender-male'               => 'Lehilahy',
+'gender-female'             => 'Vehivavy',
+'email'                     => 'Imailaka',
+'prefs-help-realname'       => "Anarana marina (afaka tsy fenoina): raha fenoinao ity dia hampiasaina hanomezana anao tambin'ny asa izay efainao eto.",
+'prefs-help-email'          => "Imailaka (afaka tsy asiana): Hahafahan'ny olona mifandray aminao amin'ny alalan'ny pejinao manokana na ny pejin-dresakao, nefa tsy aseho azy ny anaranao.",
+'prefs-help-email-required' => 'Ilaina ny adiresy imailaka',
 
 # User rights
 'userrights'               => 'Fandrindràna ny fahazoan-dàlana',
@@ -880,6 +923,7 @@ Hamarino tsara aloha dia avereno alefa indray.',
 'filehist-thumb'            => 'sari-tapaka',
 'filehist-thumbtext'        => "Vignette hoan'ny $1",
 'filehist-user'             => 'Mpikambana',
+'filehist-dimensions'       => 'Hangeza',
 'filehist-comment'          => 'resaka',
 'imagelinks'                => "Fampiasan'io rakitra io",
 'linkstoimage'              => "Ireto avy no pejy mirohy amin'io rakitra io:",
@@ -947,8 +991,9 @@ wiki ity aza izy.</p>",
 'pager-older-n'           => '$1 taloha',
 
 # Book sources
-'booksources'    => 'boky tsiahy',
-'booksources-go' => 'Ataovy lisitra',
+'booksources'               => 'boky tsiahy',
+'booksources-search-legend' => "hikaroka anatin'ny boky todika",
+'booksources-go'            => 'Ataovy lisitra',
 
 # Special:Log
 'specialloguserlabel'  => 'Mpikambana:',
@@ -1033,6 +1078,7 @@ Aoriana, raha irinao ny hanaisotra azy ao amin'ny PejyArahiMaso-nao, dia tsindri
 'unwatchthispage'      => 'Aza arahi-maso intsony',
 'notanarticle'         => 'Tsy votoatim-pejy',
 'watchnochange'        => 'Tsy misy niova nandritra ny fotoana voafaritra ny pejy arahinao maso.',
+'watchlist-details'    => 'Lisitra ny pejy $1 arahanao-mason, tsy miisa eto ny pejin-dresaka.',
 'wlheader-enotif'      => "* Mandeha ny fampilazana amin'ny imailaka.",
 'wlheader-showupdated' => "* Ny pejy niova hatramin'ny namakiana azy farany dia aseho amin'ny '''tarehin-tsoratra matavy'''",
 'watchmethod-recent'   => "fitanisana ny pejy arahi-maso amin'ny isan'izay vao niova",
@@ -1130,6 +1176,8 @@ Ny fanovana farany dia nataon'i [[User:$3|$3]] ([[User talk:$3|Dinika]]).",
 Ity ny sokajy ny pejy '''$1''' :",
 'protect-locked-dblock'       => "Tsy afaka solona ny sokajy ny fiarovana satria ny voatohana ny fotom-pandraisana.
 Ity ny reglajy ny pejy  '''$1'''",
+'protect-locked-access'       => "Tsy manan'ny alalàna ilaina ianao momba ny fanovàn'ny fiarovan'ny pejy.
+Ity ny réglage ny pejy '''$1''' :",
 'protect-cascadeon'           => "Voaaro ity pejy ity satria ao anatin'ny ireto pejy izy, voaaro izy io miarak'amin'ny « fiarovana an-driana ». Afaka solonao ny sokaji-piarovana an'ity pejy fa tsy ho voakitika ny fiarovana an-driana.",
 'protect-default'             => 'Avela daholo ny mpikambana',
 'protect-fallback'            => 'Mila manana sata « $1 »',
@@ -1189,6 +1237,7 @@ pejy vaovao io ny tantaran'ity pejy voafafa ity, fa tsy ho voafafa akory.",
 'sp-contributions-blocklog'   => "tantaran'asa ny fanakanana",
 'sp-contributions-talk'       => 'Dinika',
 'sp-contributions-userrights' => 'Fandrindràna ny fahazoan-dàlana',
+'sp-contributions-search'     => "Hikaroka fandraisan'anjara",
 'sp-contributions-username'   => 'Adiresy IP na anaram-pikambana :',
 'sp-contributions-submit'     => 'Hikaroka',
 
@@ -1199,8 +1248,10 @@ pejy vaovao io ny tantaran'ity pejy voafafa ity, fa tsy ho voafafa akory.",
 'linkshere'                => "Ireto avy no pejy mirohy eto: '''[[:$1]]'''",
 'nolinkshere'              => 'Tsy misy pejy mirohy eto.',
 'isredirect'               => 'pejina redirekta',
+'istemplate'               => 'fanometrahany',
 'isimage'                  => 'rakitra mifatotra',
 'whatlinkshere-prev'       => '$1 taloha',
+'whatlinkshere-next'       => '$1 manaraka',
 'whatlinkshere-links'      => '← rohy',
 'whatlinkshere-hideredirs' => '$1 ny redirekt',
 'whatlinkshere-hidetrans'  => '$1 ny nampidirana',
@@ -1364,6 +1415,7 @@ Ampesao ny topi-maso aloha no mihatiry.",
 'tooltip-search-go'               => "Mandana any amina pejy mitondra n'io anarana io ra misy.",
 'tooltip-search-fulltext'         => "Tadiavo ny pejy misy an'io lahatsoratra io.",
 'tooltip-n-mainpage'              => 'Jereo ny renipejy',
+'tooltip-n-portal'                => 'Mombamomba ny tetikasa',
 'tooltip-n-currentevents'         => "Tadiavo ny fampandrenesana momba amin'ny hetsika vao ankehitriny",
 'tooltip-n-recentchanges'         => "Ny lisitra ny fanovàna eo amin'io wiki io",
 'tooltip-n-randompage'            => 'Hjery pejy kisendra',
@@ -1376,6 +1428,7 @@ Ampesao ny topi-maso aloha no mihatiry.",
 'tooltip-t-emailuser'             => 'Andefaso imailaka io mpikambana io',
 'tooltip-t-upload'                => 'Handefa sary na rakitra',
 'tooltip-t-specialpages'          => 'Listry ny pejy manokana rehetra',
+'tooltip-t-print'                 => "Version azo avoaka taratasy n'ity pejy",
 'tooltip-t-permalink'             => "rohy maharitra amin'ity pejy ity manokana",
 'tooltip-ca-nstab-main'           => 'Jereo ny takelaka',
 'tooltip-ca-nstab-user'           => 'Jereo ilay peji-mpikambana',
@@ -1390,6 +1443,7 @@ Ampesao ny topi-maso aloha no mihatiry.",
 'tooltip-diff'                    => "Asehoy izay novainao tamin'ny lahatsoratra.",
 'tooltip-compareselectedversions' => "Jereo ny fahasamihafana amin'ireo votoatin'ny pejy anankiroa ireo.",
 'tooltip-watch'                   => "Ampidiro amin'ny lisitry ny pejy arahinao maso ity pejy ity",
+'tooltip-rollback'                => "Manala ny fanovan'ny mpikambana farany nanova azy ilay asa « foano » (Rollback) .",
 
 # Stylesheets
 'monobook.css' => "/* Ovay ity rakitra ity raha hampiasa takilan'angaly (stylesheet) anao manokana amin'ny wiki iray manontolo */",

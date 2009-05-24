@@ -926,6 +926,14 @@ $2',
 'diff-width'              => 'ברייט',
 'diff-height'             => 'הייך',
 'diff-p'                  => "א '''פאַראַגראַף'''",
+'diff-blockquote'         => "אַ '''ציטאַט'''",
+'diff-h1'                 => "'''קעפל (שטאפל 1)'''",
+'diff-h2'                 => "'''קעפל (שטאפל 2)'''",
+'diff-h3'                 => "'''קעפל (שטאפל 3)'''",
+'diff-h4'                 => "'''קעפל (שטאפל 4)'''",
+'diff-h5'                 => "'''קעפל (שטאפל 5)'''",
+'diff-pre'                => "אַ '''פֿארמאַטירטער בלאק'''",
+'diff-div'                => "אַן '''אָפטייל'''",
 'diff-table'              => "א '''טאבעלע'''",
 'diff-tr'                 => "א '''שורה'''",
 'diff-td'                 => "א '''צעל'''",
@@ -957,8 +965,8 @@ $2',
 'searchmenu-new'                 => "'''באַשאַפֿן דעם בלאַט \"[[:\$1]]\" אויף דער וויקי'''",
 'searchhelp-url'                 => 'Help:אינהאַלט',
 'searchprofile-articles'         => 'אינהאלט בלעטער',
-'searchprofile-project'          => 'פראיעקט בלעטער',
-'searchprofile-images'           => 'טעקעס',
+'searchprofile-project'          => 'הילף און פראיעקט בלעטער',
+'searchprofile-images'           => 'מולטימעדיע',
 'searchprofile-everything'       => 'אלץ',
 'searchprofile-advanced'         => 'פֿארגעשריטן',
 'searchprofile-articles-tooltip' => 'זוכן אין $1',
@@ -1026,9 +1034,9 @@ $2',
 'contextlines'              => 'שורות פער רעזולטאט',
 'contextchars'              => 'קאנטעקסט פער שורה',
 'recentchangesdays'         => 'צאל פון טעג צו ווייזן אין די לעצטע ענדערונגן:',
-'recentchangescount'        => 'די צאָל רעדאַקטירונגען צו ווײַזן גרונטלעך אין די לעצטע ענדערונגען , בלאט היסטאריעס און לאג־ביכער:',
+'recentchangescount'        => 'די צאָל רעדאַקטירונגען צו ווײַזן גרונטלעך:',
 'savedprefs'                => 'אייערע פרעפערענצן איז אפגעהיטן געווארן.',
-'timezonelegend'            => 'צייט זאנע',
+'timezonelegend'            => 'צײַט זאנע:',
 'localtime'                 => 'לאקאלע צייט:',
 'timezoneregion-africa'     => 'אפריקע',
 'timezoneregion-america'    => 'אמעריקע',
@@ -1219,7 +1227,7 @@ $2',
 'sourcefilename'      => 'מקור טעקע נאמען:',
 'destfilename'        => 'ציל טעקע נאמען:',
 'upload-maxfilesize'  => 'מאַקסימום טעקע גרייס: $1',
-'watchthisupload'     => 'פאס אויף דעם בלאט',
+'watchthisupload'     => 'אויפֿפאַסן דעם בלאט',
 
 # Special:ListFiles
 'imgfile'               => 'טעקע',
@@ -1418,10 +1426,10 @@ $2',
 
 # Special:Categories
 'categories'         => 'קאַטעגאָריעס',
-'categoriespagetext' => 'די פאלגענדע קאַטעגאָריעס אנטהאלטן בלעטער אדער מעדיע.
+'categoriespagetext' => 'די פֿאלגענדע {{PLURAL:$1| קאַטעגאָריע אַנטהאַלט|קאַטעגאָריעס אַנטהאַלטן}} בלעטער אדער מעדיע.
 [[Special:UnusedCategories|אומבאַניצטע קאַטעגאריעס]] זענען נישט געוויזן דא.
 זעט אויך [[Special:WantedCategories|געזוכטע קאַטעגאריעס]].',
-'categoriesfrom'     => 'ווײַזן קאטעגאריעס אנהייבנדיג פֿון:',
+'categoriesfrom'     => 'ווײַזן קאַטעגאריעס אָנהייבנדיג פֿון:',
 
 # Special:DeletedContributions
 'deletedcontributions'       => 'אויסגעמעקטע באַניצער בײַשטײַערונגען',
@@ -1434,6 +1442,7 @@ $2',
 'linksearch-line' => '$1 פֿאַרבונדן פֿון $2',
 
 # Special:ListUsers
+'listusersfrom'      => 'ווײַזן באניצער אנהייבנדיג פון:',
 'listusers-submit'   => 'ווײַז',
 'listusers-noresult' => 'קיין באניצער נישט געטראפֿן.',
 
@@ -1664,6 +1673,7 @@ $NEWPAGE
 'undeleteinvert'            => 'איבערקערן דעם אויסקלויב',
 'undeletecomment'           => 'הערה:',
 'undeletedarticle'          => 'צוריק געשטעלט "[[$1]]"',
+'undeletedrevisions'        => '{{PLURAL:$1|1 רעוויזיע|$1 רעוויזיעס}} צוריקגעשטעלט',
 'cannotundelete'            => 'צוריקשטעלונג איז דורכגעפאלן; עס איז מעגליך אז אן אנדערע האט דאס שוין צוריקגעשטעלט.',
 'undeletedpage'             => "'''דער בלאט $1 איז געווארן צוריקגעשטעלט.'''
 
@@ -2308,6 +2318,7 @@ $5
 'iranian-calendar-m12' => 'עספֿאַנד',
 
 # Hebrew month names
+'hebrew-calendar-m9'      => 'סיון',
 'hebrew-calendar-m1-gen'  => 'תשרי',
 'hebrew-calendar-m2-gen'  => 'חשוון',
 'hebrew-calendar-m3-gen'  => 'כסלו',
@@ -2318,7 +2329,7 @@ $5
 'hebrew-calendar-m6b-gen' => "אדר ב'",
 'hebrew-calendar-m7-gen'  => 'ניסן',
 'hebrew-calendar-m8-gen'  => 'אייר',
-'hebrew-calendar-m9-gen'  => 'סיוון',
+'hebrew-calendar-m9-gen'  => 'סיון',
 'hebrew-calendar-m10-gen' => 'תמוז',
 'hebrew-calendar-m11-gen' => 'אב',
 'hebrew-calendar-m12-gen' => 'אלול',
