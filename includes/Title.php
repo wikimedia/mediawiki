@@ -1464,33 +1464,6 @@ class Title {
 	}
 
 	/**
-	 * Can $wgUser edit this page?
-	 * @return \type{\bool} TRUE or FALSE
-	 * @deprecated use userCan('edit')
-	 */
-	public function userCanEdit( $doExpensiveQueries = true ) {
-		return $this->userCan( 'edit', $doExpensiveQueries );
-	}
-
-	/**
-	 * Can $wgUser create this page?
-	 * @return \type{\bool} TRUE or FALSE
-	 * @deprecated use userCan('create')
-	 */
-	public function userCanCreate( $doExpensiveQueries = true ) {
-		return $this->userCan( 'create', $doExpensiveQueries );
-	}
-
-	/**
-	 * Can $wgUser move this page?
-	 * @return \type{\bool} TRUE or FALSE
-	 * @deprecated use userCan('move')
-	 */
-	public function userCanMove( $doExpensiveQueries = true ) {
-		return $this->userCan( 'move', $doExpensiveQueries );
-	}
-
-	/**
 	 * Would anybody with sufficient privileges be able to move this page?
 	 * Some pages just aren't movable.
 	 *

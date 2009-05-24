@@ -38,9 +38,6 @@ class FakeTitle extends Title {
 	function isProtected( $action = '' ) { $this->error(); }
 	function userIsWatching() { $this->error(); }
 	function userCan( $action, $doExpensiveQueries = true ) { $this->error(); }
-	function userCanCreate() { $this->error(); }
-	function userCanEdit( $doExpensiveQueries = true ) { $this->error(); }
-	function userCanMove() { $this->error(); }
 	function isMovable() { $this->error(); }
 	function userCanRead() { $this->error(); }
 	function isTalkPage() { $this->error(); }
