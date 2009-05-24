@@ -301,10 +301,10 @@ class ApiQueryInfo extends ApiQueryBase {
 					$this->protections[$title->getNamespace()][$title->getDBkey()];
 			$this->getResult()->setIndexedTagName($pageInfo['protection'], 'pr');
 		}
-		if($this->fld_talkid && isset($this->talkids[$title->getNamespace()][$title->getDBKey()]))
-			$pageInfo['talkid'] = $this->talkids[$title->getNamespace()][$title->getDBKey()];
-		if($this->fld_subjectid && isset($this->subjectids[$title->getNamespace()][$title->getDBKey()]))
-			$pageInfo['subjectid'] = $this->subjectids[$title->getNamespace()][$title->getDBKey()];
+		if($this->fld_talkid && isset($this->talkids[$title->getNamespace()][$title->getDBkey()]))
+			$pageInfo['talkid'] = $this->talkids[$title->getNamespace()][$title->getDBkey()];
+		if($this->fld_subjectid && isset($this->subjectids[$title->getNamespace()][$title->getDBkey()]))
+			$pageInfo['subjectid'] = $this->subjectids[$title->getNamespace()][$title->getDBkey()];
 		if($this->fld_url) {
 			$pageInfo['fullurl'] = $title->getFullURL();
 			$pageInfo['editurl'] = $title->getFullURL('action=edit');
@@ -404,7 +404,7 @@ class ApiQueryInfo extends ApiQueryBase {
 		$images = $others = array();
 		foreach ($this->everything as $title)
 			if ($title->getNamespace() == NS_FILE)
-				$images[] = $title->getDBKey();
+				$images[] = $title->getDBkey();
 			else
 				$others[] = $title;
 

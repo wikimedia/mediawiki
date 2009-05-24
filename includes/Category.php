@@ -26,7 +26,7 @@ class Category {
 	 */
 	protected function initialize() {
 		if ( $this->mName === null && $this->mTitle ) 
-			$this->mName = $title->getDBKey();
+			$this->mName = $title->getDBkey();
 
 		if( $this->mName === null && $this->mID === null ) {
 			throw new MWException( __METHOD__.' has both names and IDs null' );
@@ -50,7 +50,7 @@ class Category {
 			if ( $this->mTitle ) {
 				# If there is a title object but no record in the category table, treat this as an empty category
 				$this->mID      = false;
-				$this->mName    = $this->mTitle->getDBKey();
+				$this->mName    = $this->mTitle->getDBkey();
 				$this->mPages   = 0;
 				$this->mSubcats = 0;
 				$this->mFiles   = 0;
@@ -91,7 +91,7 @@ class Category {
 		}
 
 		$cat->mTitle = $title;
-		$cat->mName = $title->getDBKey();
+		$cat->mName = $title->getDBkey();
 
 		return $cat;
 	}
@@ -106,7 +106,7 @@ class Category {
 		$cat = new self();
 
 		$cat->mTitle = $title;
-		$cat->mName = $title->getDBKey();
+		$cat->mName = $title->getDBkey();
 
 		return $cat;
 	}
@@ -149,7 +149,7 @@ class Category {
 				# but we can't know that here...
 				return false;
 			} else {
-				$cat->mName = $title->getDBKey(); # if we have a title object, fetch the category name from there
+				$cat->mName = $title->getDBkey(); # if we have a title object, fetch the category name from there
 			}
 
 			$cat->mID =   false;

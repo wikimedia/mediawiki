@@ -112,7 +112,7 @@ class Article {
 			array(
 				'rd_from' => $this->getID(),
 				'rd_namespace' => $retval->getNamespace(),
-				'rd_title' => $retval->getDBKey()
+				'rd_title' => $retval->getDBkey()
 			),
 			__METHOD__
 		);
@@ -2619,7 +2619,7 @@ class Article {
 			$dbw->delete( 'recentchanges',
 				array( 'rc_type != '.RC_LOG, 
 					'rc_namespace' => $this->mTitle->getNamespace(),
-					'rc_title' => $this->mTitle->getDBKey() ),
+					'rc_title' => $this->mTitle->getDBkey() ),
 				__METHOD__ );
 			$dbw->delete( 'recentchanges',
 				array( 'rc_type != '.RC_LOG, 'rc_cur_id' => $id ),

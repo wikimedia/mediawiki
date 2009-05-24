@@ -527,7 +527,7 @@ class IPBlockForm {
 		$delAction = LogPage::DELETED_ACTION | Revision::DELETED_RESTRICTED;
 		# Normalize user name
 		$userTitle = Title::makeTitleSafe( NS_USER, $name );
-		$userDbKey = $userTitle->getDBKey();
+		$userDbKey = $userTitle->getDBkey();
 		# To suppress, we OR the current bitfields with Revision::DELETED_USER
 		# to put a 1 in the username *_deleted bit. To unsuppress we AND the
 		# current bitfields with the inverse of Revision::DELETED_USER. The

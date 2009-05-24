@@ -110,7 +110,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		else
 			$this->addFields($resultPageSet->getPageTableFields());
 		$this->addFields('page_is_redirect');
-		$this->addWhereFld($this->bl_title, $this->rootTitle->getDBKey());
+		$this->addWhereFld($this->bl_title, $this->rootTitle->getDBkey());
 		if($this->hasNS)
 			$this->addWhereFld($this->bl_ns, $this->rootTitle->getNamespace());
 		$this->addWhereFld('page_namespace', $this->params['namespace']);
@@ -143,14 +143,14 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		// We can't use LinkBatch here because $this->hasNS may be false
 		$titleWhere = array();
 		foreach($this->redirTitles as $t)
-			$titleWhere[] = "{$this->bl_title} = ".$db->addQuotes($t->getDBKey()).
+			$titleWhere[] = "{$this->bl_title} = ".$db->addQuotes($t->getDBkey()).
 					($this->hasNS ? " AND {$this->bl_ns} = '{$t->getNamespace()}'" : "");
 		$this->addWhere($db->makeList($titleWhere, LIST_OR));
 		$this->addWhereFld('page_namespace', $this->params['namespace']);
 		if(!is_null($this->redirID))
 		{
 			$first = $this->redirTitles[0];
-			$title = $db->strencode($first->getDBKey());
+			$title = $db->strencode($first->getDBkey());
 			$ns = $first->getNamespace();
 			$from = $this->redirID;
 			if($this->hasNS)

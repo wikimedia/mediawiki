@@ -422,7 +422,7 @@ class MovePageForm {
 		} elseif( $this->moveTalk ) {
 			$conds = array(
 				'page_namespace' => $ot->getTalkPage()->getNamespace(),
-				'page_title' => $ot->getDBKey()
+				'page_title' => $ot->getDBkey()
 			);
 		} else {
 			# Skip the query
@@ -450,9 +450,9 @@ class MovePageForm {
 			}
 
 			$newPageName = preg_replace(
-				'#^'.preg_quote( $ot->getDBKey(), '#' ).'#',
-				$nt->getDBKey(),
-				$oldSubpage->getDBKey()
+				'#^'.preg_quote( $ot->getDBkey(), '#' ).'#',
+				$nt->getDBkey(),
+				$oldSubpage->getDBkey()
 			);
 			if( $oldSubpage->isTalkPage() ) {
 				$newNs = $nt->getTalkPage()->getNamespace();

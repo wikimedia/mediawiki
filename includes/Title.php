@@ -2599,7 +2599,7 @@ class Title {
 				if( $nt->getText() != wfStripIllegalFilenameChars( $nt->getText() ) ) {
 					$errors[] = array('imageinvalidfilename');
 				}
-				if( !File::checkExtensionCompatibility( $file, $nt->getDBKey() ) ) {
+				if( !File::checkExtensionCompatibility( $file, $nt->getDBkey() ) ) {
 					$errors[] = array('imagetypemismatch');
 				}
 			}
@@ -3018,8 +3018,8 @@ class Title {
 				// don't move it twice
 				continue;
 			$newPageName = preg_replace(
-					'#^'.preg_quote( $this->getDBKey(), '#' ).'#',
-					$nt->getDBKey(), $oldSubpage->getDBKey() );
+					'#^'.preg_quote( $this->getDBkey(), '#' ).'#',
+					$nt->getDBkey(), $oldSubpage->getDBkey() );
 			if( $oldSubpage->isTalkPage() ) {
 				$newNs = $nt->getTalkPage()->getNamespace();
 			} else {
@@ -3381,7 +3381,7 @@ class Title {
 		case NS_FILE:
 			return wfFindFile( $this );  // file exists, possibly in a foreign repo
 		case NS_SPECIAL:
-			return SpecialPage::exists( $this->getDBKey() );  // valid special page
+			return SpecialPage::exists( $this->getDBkey() );  // valid special page
 		case NS_MAIN:
 			return $this->mDbkeyform == '';  // selflink, possibly with fragment
 		case NS_MEDIAWIKI:
