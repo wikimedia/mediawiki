@@ -1171,7 +1171,7 @@ class Title {
 			
 			if( !$user->isAllowed( 'move' ) ) {
 				// User can't move anything
-				$errors[] = $user->isAnon() ? array ( 'movenologintext' ) : array ('movenotallowed');
+				$errors[] = array ('movenotallowed');
 			}
 		} elseif ( $action == 'create' ) {
 			if( ( $this->isTalkPage() && !$user->isAllowed( 'createtalk' ) ) ||
@@ -1182,7 +1182,7 @@ class Title {
 		} elseif( $action == 'move-target' ) {
 			if( !$user->isAllowed( 'move' ) ) {
 				// User can't move anything
-				$errors[] = $user->isAnon() ? array ( 'movenologintext' ) : array ('movenotallowed');
+				$errors[] = array ('movenotallowed');
 			} elseif( !$user->isAllowed( 'move-rootuserpages' )
 				&& $this->getNamespace() == NS_USER && !$this->isSubpage() )
 			{

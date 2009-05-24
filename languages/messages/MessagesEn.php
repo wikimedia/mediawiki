@@ -2000,8 +2000,8 @@ Please see the [$2 file description page] for further information.',
 'sharedupload-desc-here'    => 'This file is from $1 and may be used by other projects.
 The description on its [$2 file description page] there is shown below.',
 'shareddescriptionfollows'  => '-', # do not translate or duplicate this message to other languages
-'noimage'                   => 'No file by this name exists, but you can $1.',
-'noimage-linktext'          => 'upload one',
+'filepage-nofile'			=> 'No file by this name exists.',
+'filepage-nofile-link'		=> 'Click here to upload it.',
 'uploadnewversion-linktext' => 'Upload a new version of this file',
 'shared-repo-from'          => 'from $1',
 'shared-repo'               => 'a shared repository',
@@ -2776,8 +2776,6 @@ please be sure you understand the consequences of this before proceeding.",
 
 In those cases, you will have to move or merge the page manually if desired.",
 'movearticle'                  => 'Move page:',
-'movenologin'                  => 'Not logged in',
-'movenologintext'              => 'You must be a registered user and [[Special:UserLogin|logged in]] to move a page.',
 'movenotallowed'               => 'You do not have permission to move pages.',
 'movenotallowedfile'           => 'You do not have permission to move files.',
 'cant-move-user-page'          => 'You do not have permission to move user pages (apart from subpages).',
@@ -3843,7 +3841,7 @@ You can also [[Special:Watchlist/edit|use the standard editor]].',
 'version-hook-name'                => 'Hook name',
 'version-hook-subscribedby'        => 'Subscribed by',
 'version-version'                  => '(Version $1)',
-'version-svn-revision'             => '(r$2)', # only translate this message to other languages if you have to change it
+'version-svn-revision'             => 'r$2', # only translate this message to other languages if you have to change it
 'version-license'                  => 'License',
 'version-software'                 => 'Installed software',
 'version-software-product'         => 'Product',
