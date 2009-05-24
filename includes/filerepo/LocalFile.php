@@ -642,7 +642,7 @@ class LocalFile extends File
 		$fields = OldLocalFile::selectFields();
 		$conds = $opts = $join_conds = array();
 		$eq = $inc ? "=" : "";
-		$conds[] = "oi_name = " . $dbr->addQuotes( $this->title->getDBKey() );
+		$conds[] = "oi_name = " . $dbr->addQuotes( $this->title->getDBkey() );
 		if( $start ) {
 			$conds[] = "oi_timestamp <$eq " . $dbr->addQuotes( $dbr->timestamp( $start ) );
 		}
@@ -1796,7 +1796,7 @@ class LocalFileMoveBatch {
 		$this->file = $file;
 		$this->target = $target;
 		$this->oldHash = $this->file->repo->getHashPath( $this->file->getName() );
-		$this->newHash = $this->file->repo->getHashPath( $this->target->getDBKey() );
+		$this->newHash = $this->file->repo->getHashPath( $this->target->getDBkey() );
 		$this->oldName = $this->file->getName();
 		$this->newName = $this->file->repo->getNameFromTitle( $this->target );
 		$this->oldRel = $this->oldHash . $this->oldName;

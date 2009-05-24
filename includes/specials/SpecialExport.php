@@ -389,7 +389,7 @@ class SpecialExport extends SpecialPage {
 									   array_merge( $join,
 												   array(
 														 'page_namespace' => $title->getNamespace(),
-														 'page_title' => $title->getDBKey() ) ),
+														 'page_title' => $title->getDBkey() ) ),
 									   __METHOD__ );
 				foreach( $result as $row ) {
 					$template = Title::makeTitle( $row->namespace, $row->title );

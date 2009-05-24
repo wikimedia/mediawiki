@@ -69,7 +69,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 			return $this->tryShowFile( $this->file );
 		}
 		# Logs must have a type given
-		if( $this->logids && !strpos($this->page->getDBKey(),'/') ) {
+		if( $this->logids && !strpos($this->page->getDBkey(),'/') ) {
 			return $wgOut->showErrorPage( 'revdelete-nologtype-title', 'revdelete-nologtype-text' );
 		}
 		# Give a link to the logs/hist for this page
@@ -270,7 +270,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 			$result = $dbr->select( 'archive', '*',
 				array(
 					'ar_namespace' => $this->page->getNamespace(),
-					'ar_title'     => $this->page->getDBKey(),
+					'ar_title'     => $this->page->getDBkey(),
 					'ar_timestamp' => $where
 				),
 				__METHOD__
@@ -372,11 +372,11 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		if( $this->deleteKey == 'oldimage' ) {
 			// Run through and pull all our data in one query
 			foreach( $this->ofiles as $timestamp ) {
-				$where[] = $timestamp.'!'.$this->page->getDBKey();
+				$where[] = $timestamp.'!'.$this->page->getDBkey();
 			}
 			$result = $dbr->select( 'oldimage', '*',
 				array(
-					'oi_name'         => $this->page->getDBKey(),
+					'oi_name'         => $this->page->getDBkey(),
 					'oi_archive_name' => $where
 				),
 				__METHOD__
@@ -388,7 +388,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 			}
 			// Check through our images
 			foreach( $this->ofiles as $timestamp ) {
-				$archivename = $timestamp.'!'.$this->page->getDBKey();
+				$archivename = $timestamp.'!'.$this->page->getDBkey();
 				if( !isset($filesObjs[$archivename]) ) {
 					continue;
 				} else if( !$filesObjs[$archivename]->userCan(File::DELETED_RESTRICTED) ) {
@@ -411,7 +411,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 			}
 			$result = $dbr->select( 'filearchive', '*',
 				array(
-					'fa_name' => $this->page->getDBKey(),
+					'fa_name' => $this->page->getDBkey(),
 					'fa_id'   => $where
 				),
 				__METHOD__
@@ -501,7 +501,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		foreach( $this->events as $logid ) {
 			$where[] = intval($logid);
 		}
-		list($log,$logtype) = explode( '/',$this->page->getDBKey(), 2 );
+		list($log,$logtype) = explode( '/',$this->page->getDBkey(), 2 );
 		$result = $dbr->select( 'logging', '*',
 			array( 'log_type' => $logtype, 'log_id' => $where ),
 			__METHOD__
@@ -960,7 +960,7 @@ class RevisionDeleter {
 		$result = $this->dbw->select( 'archive', '*',
 			array(
 				'ar_namespace' => $title->getNamespace(),
-				'ar_title' => $title->getDBKey(),
+				'ar_title' => $title->getDBkey(),
 				'ar_timestamp' => $where
 			), __METHOD__
 		);
@@ -1026,10 +1026,10 @@ class RevisionDeleter {
 		$set = array();
 		// Run through and pull all our data in one query
 		foreach( $items as $timestamp ) {
-			$where[] = $timestamp.'!'.$title->getDBKey();
+			$where[] = $timestamp.'!'.$title->getDBkey();
 		}
 		$result = $this->dbw->select( 'oldimage', '*',
-			array( 'oi_name' => $title->getDBKey(), 'oi_archive_name' => $where ),
+			array( 'oi_name' => $title->getDBkey(), 'oi_archive_name' => $where ),
 			__METHOD__
 		);
 		while( $row = $this->dbw->fetchObject( $result ) ) {
@@ -1039,7 +1039,7 @@ class RevisionDeleter {
 		}
 		// To work!
 		foreach( $items as $timestamp ) {
-			$archivename = $timestamp.'!'.$title->getDBKey();
+			$archivename = $timestamp.'!'.$title->getDBkey();
 			if( !isset($filesObjs[$archivename]) ) {
 				$success = false;
 				continue; // Must exist
@@ -1121,7 +1121,7 @@ class RevisionDeleter {
 			$where[] = intval($id);
 		}
 		$result = $this->dbw->select( 'filearchive', '*',
-			array( 'fa_name' => $title->getDBKey(),
+			array( 'fa_name' => $title->getDBkey(),
 				'fa_id' => $where ),
 			__METHOD__ );
 		while( $row = $this->dbw->fetchObject( $result ) ) {
@@ -1175,7 +1175,7 @@ class RevisionDeleter {
 		foreach( $items as $logid ) {
 			$where[] = intval($logid);
 		}
-		list($log,$logtype) = explode( '/',$title->getDBKey(), 2 );
+		list($log,$logtype) = explode( '/',$title->getDBkey(), 2 );
 		$result = $this->dbw->select( 'logging', '*',
 			array( 'log_type' => $logtype, 'log_id' => $where ),
 			__METHOD__
@@ -1348,7 +1348,7 @@ class RevisionDeleter {
 		$this->dbw->update( 'archive',
 			array( 'ar_deleted' => $bitfield ),
 			array( 'ar_namespace' => $title->getNamespace(),
-				'ar_title'     => $title->getDBKey(),
+				'ar_title'     => $title->getDBkey(),
 				// use timestamp for index
 				'ar_timestamp' => $this->dbw->timestamp( $rev->getTimestamp() ),
 				'ar_rev_id'    => $rev->getId()

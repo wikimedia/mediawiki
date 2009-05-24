@@ -125,8 +125,8 @@ class SpecialAllpages extends IncludableSpecialPage {
 
 		$from = Title::makeTitleSafe( $namespace, $from );
 		$to = Title::makeTitleSafe( $namespace, $to );
-		$from = ( $from && $from->isLocal() ) ? $from->getDBKey() : null;
-		$to = ( $to && $to->isLocal() ) ? $to->getDBKey() : null;
+		$from = ( $from && $from->isLocal() ) ? $from->getDBkey() : null;
+		$to = ( $to && $to->isLocal() ) ? $to->getDBkey() : null;
 
 		if( isset($from) )
 			$where[] = 'page_title >= '.$dbr->addQuotes( $from );

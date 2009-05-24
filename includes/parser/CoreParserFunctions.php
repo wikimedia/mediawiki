@@ -175,7 +175,7 @@ class CoreParserFunctions {
 		if( !is_null( $title ) ) {
 			# Convert NS_MEDIA -> NS_FILE
 			if( $title->getNamespace() == NS_MEDIA ) {
-				$title = Title::makeTitle( NS_FILE, $title->getDBKey() );
+				$title = Title::makeTitle( NS_FILE, $title->getDBkey() );
 			}
 			if( !is_null( $arg ) ) {
 				$text = $title->$func( $arg );
