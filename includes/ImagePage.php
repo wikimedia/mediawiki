@@ -275,7 +275,8 @@ class ImagePage extends Article {
 	}
 
 	protected function openShowImage() {
-		global $wgOut, $wgUser, $wgImageLimits, $wgRequest, $wgLang, $wgContLang;
+		global $wgOut, $wgUser, $wgImageLimits, $wgRequest,
+			$wgLang, $wgContLang, $wgEnableUploads;
 
 		$this->loadFile();
 
@@ -468,12 +469,17 @@ EOT
 			}
 		} else {
 			# Image does not exist
-
-			$title = SpecialPage::getTitleFor( 'Upload' );
-			$link = $sk->makeKnownLinkObj($title, wfMsgHtml('noimage-linktext'),
-				'wpDestFile=' . urlencode( $this->displayImg->getName() ) );
+			$nofile = wfMsgHtml( 'filepage-nofile' );
+			if ( $wgEnableUploads && $wgUser->isAllowed( 'upload' ) ) {
+				// Only show an upload link if the user can upload
+				$nofile .= ' '.$sk->makeKnownLinkObj(
+					SpecialPage::getTitleFor( 'Upload' ),
+					wfMsgHtml('filepage-nofile-link'),
+					'wpDestFile=' . urlencode( $this->displayImg->getName() )
+				);
+			}
 			$wgOut->setRobotPolicy( 'noindex,nofollow' );
-			$wgOut->addHTML( wfMsgWikiHtml( 'noimage', $link ) );
+			$wgOut->addHTML( '<div id="mw-imagepage-nofile">' . $nofile . '</div>' );
 		}
 	}
 
@@ -516,7 +522,9 @@ EOT
 	 * external editing (and instructions link) etc.
 	 */
 	protected function uploadLinksBox() {
-		global $wgUser, $wgOut;
+		global $wgUser, $wgOut, $wgEnableUploads;
+
+		if( !$wgEnableUploads ) { return; }
 
 		$this->loadFile();
 		if( !$this->img->isLocal() )

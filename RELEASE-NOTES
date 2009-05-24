@@ -155,6 +155,10 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   .inc
 * Deprecated methods Title::getInterwikiLink, Title::userCanCreate(),
   Title::userCanEdit() and Title::userCanMove() have been removed
+* Only show upload links on file description if $wgEnableUploads = true
+  and user can upload
+* Don't say "You need to log in to upload/move", because it's possible that
+  uploading/moving is disabled for registered users as well (e.g. only sysops)
 
 == API changes in 1.16 ==
 
