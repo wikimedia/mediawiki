@@ -468,18 +468,6 @@ class Title {
 	}
 
 	/**
-	 * Returns the URL associated with an interwiki prefix
-	 * @param $key \type{\string} the interwiki prefix (e.g. "MeatBall")
-	 * @return \type{\string} the associated URL, containing "$1", 
-	 * 	which should be replaced by an article title
-	 * @static (arguably)
-	 * @deprecated See Interwiki class
-	 */
-	public function getInterwikiLink( $key )  {
-		return Interwiki::fetch( $key )->getURL( );
-	}
-
-	/**
 	 * Determine whether the object refers to a page within
 	 * this project.
 	 *
