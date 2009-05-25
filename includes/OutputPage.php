@@ -1272,7 +1272,7 @@ class OutputPage {
 			$text = wfMsgNoTrans( 'permissionserrorstext', count($errors)). "\n\n";
 		} else {
 			global $wgLang;
-			$action_desc = wfMsg( "action-$action" );
+			$action_desc = wfMsgNoTrans( "action-$action" );
 			$text = wfMsgNoTrans( 'permissionserrorstext-withaction', count($errors), $action_desc ) . "\n\n";
 		}
 
@@ -1287,7 +1287,7 @@ class OutputPage {
 			}
 			$text .= '</ul>';
 		} else {
-			$text .= '<div class="permissions-errors">' . call_user_func_array( 'wfMsgNoTrans', reset( $errors ) ) . '</div>';
+			$text .= "<div class=\"permissions-errors\">\n" . call_user_func_array( 'wfMsgNoTrans', reset( $errors ) ) . "\n</div>";
 		}
 
 		return $text;
