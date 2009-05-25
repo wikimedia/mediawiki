@@ -844,8 +844,9 @@ class Block {
 			$expirystr = $msg['infiniteblock'];
 		} else {
 			global $wgLang;
-			$expiretimestr = htmlspecialchars($wgLang->timeanddate( $expiry, true ));
-			$expirystr = wfMsgReplaceArgs( $msg['expiringblock'], array($expiretimestr) );
+			$expiredatestr = htmlspecialchars($wgLang->date( $expiry, true ));
+			$expiretimestr = htmlspecialchars($wgLang->time( $expiry, true ));
+			$expirystr = wfMsgReplaceArgs( $msg['expiringblock'], array( $expiredatestr, $expiretimestr ) );
 		}
 		return $expirystr;
 	}

@@ -62,7 +62,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 18466) Add note or warning when overruling a move (semi-)protection
 * (bug 18342) insertTags works in edit summary box
 * (bug 18411) The upload form also checks post_max_size
-* Watchlist now has a specialized <div> tag that contains a unique class for each page
+* Watchlist now has a specialized <div> tag that contains a unique class for
+  each page
 * Added Minguo calendar support for the Taiwan Chinese language
 * Database: unionQueries function to be used for UNION sql construction, so
   it can be overloaded on DB abstraction level for DB specific functionality
@@ -71,6 +72,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   month number without the leading zero
 * (bug 13456) categoriespagetext supports PLURAL
 * (bug 18860) Blocks of IPs affecting registered users can now block email
+* (bug 17093) Date and time are separate parameters in Special:BlockList
 
 === Bug fixes in 1.16 ===
 
