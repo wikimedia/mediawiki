@@ -1131,8 +1131,6 @@ $wgMessageStructure = array(
 		'uploadbtn',
 		'reupload',
 		'reuploaddesc',
-		'uploadnologin',
-		'uploadnologintext',
 		'upload_directory_missing',
 		'upload_directory_read_only',
 		'uploaderror',
