@@ -460,7 +460,7 @@ EOT
 <span class="fileInfo">$longDesc</span>
 </div>
 EOT
-						);
+					);
 				}
 			}
 
@@ -471,10 +471,11 @@ EOT
 			# Image does not exist
 			if ( $wgEnableUploads && $wgUser->isAllowed( 'upload' ) ) {
 				// Only show an upload link if the user can upload
-                		$uploadTitle = SpecialPage::getTitleFor( 'Upload' );
-				$nofile = wfMsgHtml('filepage-nofile-link',
-					$uploadTitle->getFullUrl( 'wpDestFile=' . urlencode( $this->img->getName() ) )
-					);
+				$uploadTitle = SpecialPage::getTitleFor( 'Upload' );
+				$nofile = wfMsgHtml(
+					'filepage-nofile-link',
+					$uploadTitle->getFullUrl( array( 'wpDestFile' => urlencode( $this->img->getName() ) ) )
+				);
 			}
 			else
 			{
@@ -516,7 +517,10 @@ EOT
 	public function getUploadUrl() {
 		$this->loadFile();
 		$uploadTitle = SpecialPage::getTitleFor( 'Upload' );
-		return $uploadTitle->getFullUrl( 'wpDestFile=' . urlencode( $this->img->getName() ) . '&wpForReUpload=1' );
+		return $uploadTitle->getFullUrl( array(
+			'wpDestFile' => urlencode( $this->img->getName() ),
+			'wpForReUpload' => 1
+		 ) );
 	}
 
 	/**
