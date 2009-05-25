@@ -744,9 +744,6 @@ i yesɛan akk awalen i banen-d).",
 'uploadbtn'                   => 'Azen afaylu',
 'reupload'                    => 'Ɛiwed azen',
 'reuploaddesc'                => 'Uɣal-d ar talɣa n tuznin.',
-'uploadnologin'               => 'Ur tekcimeḍ ara',
-'uploadnologintext'           => 'Yessefk [[Special:UserLogin|ad tkecmeḍ]]
-iwakken ad tazneḍ afaylu.',
 'upload_directory_read_only'  => 'Weserver/serveur Web ur yezmir ara ad yaru deg ($1).',
 'uploaderror'                 => 'Agul deg usekcam',
 'uploadtext'                  => "Sseqdec talɣa deg ukessar akken ad tazeneḍ tugnawin, akken ad teẓred neɣ ad tnadiḍ tugnawin yettwaznen, ruḥ ɣer [[Special:FileList|umuɣ n usekcam n tugnawin]], Amezruy n usekcam d umḥay hatent daɣen deg [[Special:Log/upload|amezruy n usekcam]].
@@ -834,8 +831,6 @@ Ma tesɛiḍ tugna-nni s resolution tameqqrant, azen-it, ma ulac beddel isem-is.
 'linkstoimage'              => 'isebtar-agi sɛan azday ar afaylu-agi',
 'nolinkstoimage'            => 'Ulaḥedd seg isebtar sɛan azday ar afaylu-agi.',
 'sharedupload'              => 'Afaylu-yagi yettuseqdac sɣur wiki tiyaḍ.',
-'noimage'                   => 'Afaylu s yisem-agi ulac-it, tzemreḍ ad $1.',
-'noimage-linktext'          => 't-tazneḍ',
 'uploadnewversion-linktext' => 'tazneḍ tasiwelt tamaynut n ufaylu-yagi',
 
 # MIME search
@@ -1178,9 +1173,6 @@ Yernu, tzemreḍ ad tesmimeḍ asebter ɣer isem-is aqdim ma tɣelṭeḍ.",
 
 Lukan akka, yessefk a t-tedmeḍ weḥdek.",
 'movearticle'             => 'Smimeḍ asebter',
-'movenologin'             => 'Ur tekcimeḍ ara',
-'movenologintext'         => 'Yessefk ad tesɛuḍ isem n wemseqdac u [[Special:UserLogin|tkecmeḍ]]
-iwakken ad tesmimḍeḍ asebter.',
 'newtitle'                => 'Ar azwel amaynut',
 'move-watch'              => 'Ɛass asebter-agi',
 'movepagebtn'             => 'Smimeḍ asebter',

@@ -646,8 +646,6 @@ E paggine in osservassion son dipinte in '''grascietto'''.",
 'linkstoimage'              => "Queste son e pagine che appóntan a st'archivio",
 'nolinkstoimage'            => "No gh'è nisciûnn-a paggina collegâa con 'st'archivvio.",
 'sharedupload'              => "'St'archivvio o l'è condiviso; sajeiva a dî c'o pêu ese dêuviòu da ciû progetti wiki.",
-'noimage'                   => "No gh'è nisciûn archivvio con quello nomme, o se pêu $1.",
-'noimage-linktext'          => 'Caregâlo òua',
 'uploadnewversion-linktext' => "Carega 'na nêuva verscion de 'st'archivvio chì",
 
 # File deletion

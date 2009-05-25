@@ -1073,8 +1073,6 @@ Coba susud dimimitian ku ''all:'' pikeun nyusud sakabéh kandunganana (kaasup ka
 'uploadbtn'                   => 'Muatkeun koropak',
 'reupload'                    => 'Muat ulang',
 'reuploaddesc'                => 'Balik ka formulir muatan.',
-'uploadnologin'               => 'Can asup log',
-'uploadnologintext'           => 'Anjeun kudu [[Special:UserLogin|asup log]] pikeun ngamuat koropak.',
 'upload_directory_read_only'  => 'Diréktori muatan ($1) teu bisa ditulis ku server ramat.',
 'uploaderror'                 => 'Kasalahan muat',
 'uploadtext'                  => "<strong>HEUP!</strong> Méméh anjeun ngamuat di dieu, pastikeun yén anjeun geus maca sarta tumut ka kawijakan maké gambar.
@@ -1177,8 +1175,6 @@ Catet yén salaku kaca wiki, nu séjén bisa ngarobah atawa ngahapus muatan anje
 'linkstoimage'              => 'Kaca ieu  {{PLURAL:$1|numbu|$1 numbu}} ka gambar ieu :',
 'nolinkstoimage'            => 'Teu aya kaca nu numbu ka gambar ieu.',
 'sharedupload'              => 'Ieu koropak téh ti $1 nu bisa jadi dipaké ku proyék-proyék lianna.',
-'noimage'                   => 'Euweuh koropak nu ngaranna kitu, tapi anjeun bisa $1.',
-'noimage-linktext'          => 'muatkeun',
 'uploadnewversion-linktext' => 'ngamuatkeun vérsi anyar koropak ieu',
 
 # File reversion
@@ -1764,8 +1760,6 @@ anjeun kudu bener-bener ngarti kana hal ieu.",
 
 Dina kajadian kitu, mun hayang (jeung perlu) anjeun kudu mindahkeun atawa ngagabungkeun kacana sacara manual.",
 'movearticle'             => 'Pindahkeun kaca',
-'movenologin'             => 'Can asup log',
-'movenologintext'         => 'Anjeun kudu jadi pamaké nu kadaptar tur [[Special:UserLogin|asup log]] pikeun mindahkeun kaca.',
 'movenotallowed'          => 'Anjeung teu boga kawenangan mindahkeun kaca.',
 'newtitle'                => 'Ka judul anyar',
 'move-watch'              => 'Awaskeuneun kaca ieu',

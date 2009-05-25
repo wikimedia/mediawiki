@@ -81,9 +81,6 @@ $messages = array(
 'minoreditletter' => 'гI.-м.',
 'newpageletter'   => 'ЦI',
 
-# Upload
-'uploadnologin' => 'Дуца цIар бицун гьечIо',
-
 # Random page
 'randompage' => 'Цебе ккараб гьумер',
 

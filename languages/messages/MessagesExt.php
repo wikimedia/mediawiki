@@ -923,9 +923,6 @@ Las páhinas de la tu [[Special:Watchlist|lista e seguimientu]] están en '''neg
 'uploadbtn'                   => 'Empuntal archivu',
 'reupload'                    => 'Re-empuntal',
 'reuploaddesc'                => 'Cancelal el empuntu i gorvel al hormuláriu.',
-'uploadnologin'               => 'Nu estás rustriu',
-'uploadnologintext'           => 'Ebis estal [[Special:UserLogin|rustriu]]
-pa empuntal archivus.',
 'upload_directory_read_only'  => "Nu puei escrebilsi nel diretoriu d'empuntu ($1) el sirviol.",
 'uploaderror'                 => 'Marru d´empuntu',
 'uploadtext'                  => "Gasta el hormuláriu d'embahu pa empuntal archivus, pa vel u landeal imahin ya empuntás vaiti pala [[Special:FileList|lista d'archivus empuntaus]]. Tantu los archivus empuntaus cumu los esborraus se rustrin nel [[Special:Log/upload|rustrihu d'empuntu]].
@@ -1042,8 +1039,6 @@ Pursa nel entítulu la coluna pa chambal el ordin.',
 'linkstoimage'              => '{{PLURAL:$1|El siguienti artículu atiha|Los siguientis $1 artículus atihan}} a esti archivu:',
 'nolinkstoimage'            => 'Nu ai denguna páhina qu´atihi a esti archivu.',
 'sharedupload'              => 'Esti archivu está compartiu i puei gastalsi dendi otrus proyeutus.',
-'noimage'                   => 'Nu desisti dengún archivu llamau asina, pueis $1.',
-'noimage-linktext'          => 'empuntalu',
 'uploadnewversion-linktext' => 'Empuntal una nueva velsión d´esti archivu',
 
 # File reversion
@@ -1550,7 +1545,7 @@ Escrebi una razón concreta embahu (pol sabulugal, almientandu páhinas qu'aigan
 'ipblocklist-submit'          => 'Landeal',
 'blocklistline'               => '$1, $2 ataruga a $3 ($4)',
 'infiniteblock'               => 'enfinitu',
-'expiringblock'               => 'acabiha $1',
+'expiringblock'               => 'acabiha $1 $2',
 'anononlyblock'               => 'solu anón.',
 'noautoblockblock'            => 'autu-tarugu esativau',
 'createaccountblock'          => 'criaeru e páhinas atarugau',
@@ -1626,8 +1621,6 @@ pol favol, asigurati e qu'entiendis las consecuéncias enantis d'acontinal.",
 
 En dambus los dos chascus, si lo deseas, tendrás que movel u mestural la páhina manualmenti.",
 'movearticle'             => 'Movel páhina:',
-'movenologin'             => "Nu t'alcuentras rustriu",
-'movenologintext'         => 'Ebis estal rustriu i [[Special:UserLogin|entral ena tu cuenta]] pa movel una páhina.',
 'movenotallowed'          => 'Nu tiinis premisu pa mual páhinas nesti güiqui.',
 'newtitle'                => 'Nuevu entítulu:',
 'move-watch'              => 'Vehilal esta páhina',

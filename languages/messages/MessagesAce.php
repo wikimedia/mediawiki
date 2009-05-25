@@ -430,8 +430,6 @@ Meunyo neupasoë, euntreuk nan Droëneuh nyan geupeuleumah mangat jitupeuë soë
 'linkstoimage'              => 'Ôn di yup nyoë na {{PLURAL:$1|hubông|$1 hubông}} u beureukah nyoë:',
 'nolinkstoimage'            => 'Hana ôn nyang na hubông u beureukah nyoë.',
 'sharedupload'              => 'Beureukah nyoë dari $1 ngön kadang geunguy lé buët-buët la’én.',
-'noimage'                   => 'Hana beureukah ngön nan nyan, Droëneuh jeuët $1.',
-'noimage-linktext'          => 'peutamong beureukah',
 'uploadnewversion-linktext' => 'Peulöt seunalén nyang leubèh barô nibak beureukah nyoë.',
 
 # MIME search

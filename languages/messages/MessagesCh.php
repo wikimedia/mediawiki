@@ -805,8 +805,6 @@ Yanggen un decidi mamo'lu, ma'usa ha' sempre para muna'i hao ni kreditu ni che'c
 'linkstoimage'              => 'Umachetton i sigiente {{PLURAL:$1|na påhina|$1 na påhina siha}} yan este na atkibu:',
 'nolinkstoimage'            => "Tåya' na påhina siha umachetton yan este na atkibu.",
 'sharedupload'              => "Ma'apatte este na atkibu ya buente ha' ma'usa gi otru proyektu siha.",
-'noimage'                   => "Tåya' atkibu mafa'na'an enao, siña un $1.",
-'noimage-linktext'          => "na'kåtga hulu'",
 'uploadnewversion-linktext' => "Na'kåtga hulu' un tinilaikan atkibu mas nuebu",
 
 # MIME search

@@ -801,8 +801,6 @@ Dagiti panid iti [[Special:Watchlist|listaan ti bambantayam]] ket '''naipuskol''
 'upload'                 => 'Mangipan iti file',
 'uploadbtn'              => 'Ipan ti file',
 'reupload'               => 'I-upload manen',
-'uploadnologin'          => 'Saan a nakastrek',
-'uploadnologintext'      => 'Nasken a [[Special:UserLogin|nakaserrekka]] tapno makaipanka iti files.',
 'uploaderror'            => 'Kammali iti panangipan',
 'upload-permitted'       => 'Dagiti mapalubosan a tipo ti file: $1.',
 'upload-preferred'       => 'Dagiti mabalbalin a file types: $1.',
@@ -881,8 +879,6 @@ Dagiti panid iti [[Special:Watchlist|listaan ti bambantayam]] ket '''naipuskol''
 'redirectstofile'           => 'Dagiti sumaganad a files ket ag-redirect iti daytoy a file:',
 'duplicatesoffile'          => 'Dagiti sumaganad a files ket duplikado daytoy a file:',
 'sharedupload'              => 'Daytoy a file ket pagraranudan nga upload ket mabalin nga aramaten ti sabsabali pay a projectos.',
-'noimage'                   => 'Awan ti file iti kasta a nagan, mabalinmo ti $1.',
-'noimage-linktext'          => 'ipanen',
 'uploadnewversion-linktext' => 'Mangipan iti kabarbaro a version daytoy a file',
 
 # File reversion
@@ -1268,7 +1264,7 @@ Binsiren ti [[Special:Log/delete|log ti naik-ikkat]] para iti rekord dagiti naud
 'ipblocklist-submit'          => 'Agbirok',
 'blocklistline'               => 'Ni $1, $2 sinerraanna ni $3 ($4)',
 'infiniteblock'               => "inggana't inggana",
-'expiringblock'               => 'agpaso into no $1',
+'expiringblock'               => 'agpaso into no $1 $2',
 'anononlyblock'               => 'anon. laeng',
 'createaccountblock'          => 'napengdan ti pannakapartuat ti account',
 'emailblock'                  => 'naserraan ti email',
@@ -1324,8 +1320,6 @@ pangngaasim ta pasingkedam a maawatam ti ibunga dayoty sakbay nga agtuloyka a ma
 
 Kadagitoy a kaso, masapul nga iyakar wenno itiponmo a manual ti panid no kayatmo.",
 'movearticle'             => 'Iyakar ti panid',
-'movenologin'             => 'Saan a nakastrek',
-'movenologintext'         => 'Nasken a nakarehistroka nga agar-aramat ken [[Special:UserLogin|nakastrek]] tapno makaiyakarka iti panid.',
 'movenotallowed'          => 'Awanka iti pammalubos nga agiyakar iti pampanid.',
 'newtitle'                => 'Iti baro a titulo:',
 'move-watch'              => 'Bantayan daytoy a panid',

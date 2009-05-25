@@ -1272,8 +1272,6 @@ Jo kinne ek oaren de mûglikheid jaan kontakt mei jo op te nimmen troch in ferwi
 'uploadbtn'                   => 'Bied triem oan',
 'reupload'                    => "Op 'e nij oanbiede",
 'reuploaddesc'                => 'Werom nei oanbied-side.',
-'uploadnologin'               => 'Net oanmelde',
-'uploadnologintext'           => 'Jo moatte [[Special:UserLogin|oanmeld]] wêze om in triem oanbiede te kinnen.',
 'upload_directory_missing'    => 'De heechlaadmap ($1) is der net en koe net oanmakke wurde troch de webserver.',
 'upload_directory_read_only'  => 'De webserver kin net skriuwe yn de oanbiedpad ($1).',
 'uploaderror'                 => 'Oanbiedfout',
@@ -1443,8 +1441,6 @@ Der is ek in [[Special:WhatLinksHere/$2|folsleine list]].',
 'redirectstofile'           => '{{PLURAL:$1|De folgjende triem ferwiist|De folgjende $1 triemmen ferwize}} troch nei dizze triem:',
 'duplicatesoffile'          => '{{PLURAL:$1|De folgjende triem is|De folgjende $1 triemmen binne}} idintyk oan dizze triem:',
 'sharedupload'              => 'Dizze triem is in dielde oanbieding en kin ek troch oare projekten brûkt wurde.',
-'noimage'                   => 'Der bestiet gjin triem mei dizze namme. Jo kinne it $1.',
-'noimage-linktext'          => 'bied triem oan',
 'uploadnewversion-linktext' => 'Bied in nije ferzje fan dizze triem oan',
 
 # File reversion
@@ -2025,8 +2021,6 @@ daalks weromneame as jo in flater meitsje, mar jo kinne in oare side net oerskri
 
 In dizze gefallen is it oan jo hoe't jo de oerlisside werneame of ynfoegje wolle.",
 'movearticle'             => 'Werneam side',
-'movenologin'             => 'Net oameld',
-'movenologintext'         => 'Jo moatte [[Special:UserLogin|oanmeld]] wêze om in side wer te neamen.',
 'newtitle'                => 'As nij titel',
 'move-watch'              => 'Folch dizze side',
 'movepagebtn'             => 'Werneam side',

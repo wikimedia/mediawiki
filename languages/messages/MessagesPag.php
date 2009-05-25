@@ -196,8 +196,7 @@ San ipropromisam met ya insulat mo yan dili o kinopyam ya manlapo ed sakey ya pu
 'listfiles_name' => 'Ngaran',
 
 # File description page
-'imagelinks'       => 'Saray Gawing',
-'noimage-linktext' => 'I-segep ya',
+'imagelinks' => 'Saray Gawing',
 
 # MIME search
 'download' => 'mangileksab (download)',
@@ -320,7 +319,7 @@ Pinengneng so $2 para ed listaan na saray abural ran balo.',
 'ipusubmit'          => 'Aga la isebel so ayan address',
 'ipblocklist'        => 'Listaan na saray sebel ran IP address san username',
 'ipblocklist-submit' => 'Anapen',
-'expiringblock'      => 'nabalang no $1',
+'expiringblock'      => 'nabalang no $1 $2',
 'blocklink'          => 'isara',
 'contribslink'       => 'saray entolong to',
 

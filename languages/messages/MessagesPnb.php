@@ -622,7 +622,6 @@ $messages = array(
 'uploadbtn'          => 'فائل چڑھاؤ',
 'reupload'           => 'دوبارہ چڑھاؤ',
 'reuploaddesc'       => 'فائل چڑانا چھڑو تے فائل چڑانے آلے فارم تے واپس ٹرو',
-'uploadnologin'      => 'لاگ ان نئیں ہوۓ',
 'uploaderror'        => 'فائل چڑاندیاں مسئلا ہویا اے',
 'uploadlogpage'      => 'اپلوڈ لاگ',
 'filename'           => 'فائل دا ناں',
@@ -680,8 +679,6 @@ $messages = array(
 'linkstoimage'              => 'تھلے دتے گۓ {{PLURAL:$1|$1 صفحے}} اس فائل نال جڑدے نے',
 'nolinkstoimage'            => 'اس فائل نال جڑیا کوئی صفحہ نہیں۔',
 'sharedupload'              => 'اے فائل $1 مشترکہ اپلوڈ اے تے اے دوجے منصوبے وی استعمال کر سکدے نے۔',
-'noimage'                   => 'اس ناں دی کوئی فائل نہيں، مگر تسی $1 بنا سکدے او۔',
-'noimage-linktext'          => 'اک چڑھاؤ',
 'uploadnewversion-linktext' => 'اس فائل دا نوا ورژن چھڑھاؤ',
 
 # File reversion

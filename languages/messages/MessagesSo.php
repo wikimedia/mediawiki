@@ -404,7 +404,6 @@ Waa in aysan ka badanin $1 {{PLURAL:$1|eray|erayo}}.',
 'recentchangeslinked' => "Isbedelada la'xiriira",
 
 # Upload
-'uploadnologin'   => 'Gudaha kuma jirtid',
 'ignorewarning'   => 'Iska dhagooley digniinta ee faylka keedi',
 'ignorewarnings'  => 'Iska dhagooley digkiinwalba',
 'minlength1'      => 'Faylka magaciisa waa in uu ugu yaraan noqdaa hal xaraf.',
@@ -561,7 +560,6 @@ Hadii aad rabootid in aad boggan ka saartid wardiyeynta, dhagsii \"Ha' wardiyeyn
 'block-log-flags-nocreate' => 'sameynta gudagalah lamaogola',
 
 # Move page
-'movenologin'     => 'Gudaha kuma jirtid',
 'movedto'         => 'loo wareejiyey',
 'movetalk'        => "Wareejiyey bogga wadahadalka la'xiriira",
 '1movedto2'       => '[[$1]] waxaa loo wareejiyey [[$2]]',

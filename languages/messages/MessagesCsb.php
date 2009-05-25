@@ -610,7 +610,6 @@ Starnë z [[Special:Watchlist|lëstë ùzérónëch artiklów]] są '''pògrëbi
 'upload'            => 'Wladënk lopka',
 'uploadbtn'         => 'Wladëjë lopk',
 'reupload'          => 'Wëslë jesz rôz',
-'uploadnologin'     => 'Felënk logòwaniô',
 'uploadtext'        => "Brëkùjë negò fòrmùlara do wladënkù lopków.
 Jeżlë chcesz przezdrzec abò szëkac w dotenczas wladowónëch lopkach, biéj do [[Special:FileList|lësta lopków]]. Kòżdi wladënk je registrowóny w [[Special:Log/upload|registrze wladënkù]], a rëmniãcé w [[Special:Log/delete|registrze rëmaniô]].
 
@@ -866,7 +865,6 @@ Biéj do [[Special:IPBlockList|lëstë zascëgónëch adresów IP]] abë òbacz�
 # Move page
 'move-page-legend'        => 'Przeniesë starnã',
 'movearticle'             => 'Przeniesë artikel',
-'movenologin'             => 'Felënk logòwaniô',
 'newtitle'                => 'Nowi titel:',
 'move-watch'              => 'Ùzérôj tã starnã',
 'movepagebtn'             => 'Przeniesë starnã',

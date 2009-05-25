@@ -686,8 +686,6 @@ $2',
 'imagelinks'                => 'Сылтамалар',
 'linkstoimage'              => 'Бу файлга киләчәк {{PLURAL:$1|бит|$1 бит}} сылтый:',
 'nolinkstoimage'            => 'Бу файлга сылтаган битләр юк.',
-'noimage'                   => 'Бу атлы файлны барлыкта юк, $1 сез булдырасыз.',
-'noimage-linktext'          => 'аны йөкләргә',
 'uploadnewversion-linktext' => 'Бу файлның яңа юрамасыны йөкләргә',
 
 # MIME search

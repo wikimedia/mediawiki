@@ -777,8 +777,6 @@ Leiende: (cur) = difarencis cun la version atuâl, (prec) = difarencis cun la ve
 'upload'             => 'Cjame sù un file',
 'uploadbtn'          => 'Cjame sù un file',
 'reupload'           => 'Torne a cjamâ sù',
-'uploadnologin'      => 'No jentrât',
-'uploadnologintext'  => 'Tu scugnis [[Special:UserLogin|jentrâ]] cul to non utent par cjamâ sù files.',
 'uploaderror'        => 'Erôr cjamant sù',
 'uploadtext'         => "Dopre la form ca sot par cjamâ sù un file, par cjalâ o cirî i files cjamâts sù in precedence va te [[Special:FileList|liste dai files cjamâts sù]], lis cjamadis e lis eliminazions a son ancje regjistrâts tal [[Special:Log/upload|regjistri des cjamadis]].
 
@@ -834,8 +832,6 @@ Par includi une figure intune pagjine, dopre un leam inte form
 'linkstoimage'              => '{{PLURAL:$1|La pagjine ca sot e je leade|Lis $1 pagjinis ca sot a son leadis}} a cheste figure:',
 'nolinkstoimage'            => 'No son pagjinis leadis a chest file.',
 'sharedupload'              => 'Chest file al è condivîs e al pues jessi doprât di altris progjets.',
-'noimage'                   => 'Nol esist un file cun chest non, ma tu puedis $1 tu.',
-'noimage-linktext'          => 'cjamâlu sù',
 'uploadnewversion-linktext' => 'Cjame sù une gnove version di chest file',
 
 # File deletion
@@ -1202,8 +1198,6 @@ tu âs di cognossi lis conseguencis prime di lâ indevant.",
 
 In chescj câs, tu varâs di movi o unî a man lis informazions contignudis te pagjine di discussion, se tu lu desideris.",
 'movearticle'      => 'Môf la vôs',
-'movenologin'      => 'No tu sês jentrât',
-'movenologintext'  => 'Tu âs di jessi un utent regjistrât e <a href="{{localurl:Special:UserLogin}}">jentrât</a> par movi une pagjine.',
 'newtitle'         => 'Al gnûf titul',
 'move-watch'       => 'Ten di voli cheste pagjine',
 'movepagebtn'      => 'Môf pagjine',

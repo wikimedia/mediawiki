@@ -936,8 +936,6 @@ Takođe možete podesiti da drugi mogu da vas kontaktiraju preko vaše korisnič
 'uploadbtn'                   => 'Pošalji fajl',
 'reupload'                    => 'Ponovo pošalji',
 'reuploaddesc'                => 'Vrati se na upitnik za slanje.',
-'uploadnologin'               => 'Niste prijavljeni',
-'uploadnologintext'           => 'Morate biti [[Special:UserLogin|prijavljeni]] da biste slali fajlove.',
 'upload_directory_read_only'  => 'Na direktorijum za slanje ($1) server ne može da piše.',
 'uploaderror'                 => 'Greška pri slanju',
 'uploadtext'                  => "Koristite donji obrazac da pošaljete fajlove.
@@ -1015,8 +1013,6 @@ molimo vratite se i pošaljite ovaj fajl pod novim imenom. [[File:$1|thumb|cente
 'linkstoimage'              => 'Sledeće stranice koriste ovaj fajl:',
 'nolinkstoimage'            => 'Nema stranica koje koriste ovaj fajl.',
 'sharedupload'              => 'Ova slika je sa zajedničke ostave i možda je koriste ostali projekti.',
-'noimage'                   => 'Ne postoji fajl sa ovim imenom, možete ga $1',
-'noimage-linktext'          => 'poslati',
 'uploadnewversion-linktext' => 'Pošaljite noviju verziju ovog fajla',
 
 # MIME search
@@ -1366,7 +1362,7 @@ ranije blokiranoj IP adresi ili korisničkom imenu.',
 'ipblocklist'                 => 'Spisak blokiranih IP adresa i korisnika',
 'blocklistline'               => '$1, $2 blokirao korisnika [[User:$3|$3]], (ističe $4)',
 'infiniteblock'               => 'beskonačan',
-'expiringblock'               => 'ističe $1',
+'expiringblock'               => 'ističe $1 $2',
 'anononlyblock'               => 'samo anonimni',
 'noautoblockblock'            => 'Autoblokiranje je onemogućeno',
 'createaccountblock'          => 'blokirano pravljenje naloga',
@@ -1440,9 +1436,6 @@ nastavite.",
 
 U tim slučajevima, moraćete ručno da premestite ili spojite stranicu ukoliko to želite.",
 'movearticle'             => 'Premesti stranicu',
-'movenologin'             => 'Niste prijavljeni',
-'movenologintext'         => 'Morate biti registrovani korisnik i [[Special:UserLogin|prijavljeni]]
-da biste premestili stranicu.',
 'newtitle'                => 'Novi naslov',
 'movepagebtn'             => 'premesti stranicu',
 'pagemovedsub'            => 'Premeštanje uspelo',

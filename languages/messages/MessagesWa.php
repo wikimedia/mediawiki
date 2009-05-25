@@ -747,8 +747,6 @@ Les ôtes manaedjeus so ç' wiki ci pôront todi vey li contnou catchî eyet l' 
 'uploadbtn'                   => 'Eberweter',
 'reupload'                    => 'En erî',
 'reuploaddesc'                => "Rivni al pådje d' eberwetaedje.",
-'uploadnologin'               => 'Nén elodjî',
-'uploadnologintext'           => 'I vs fåt esse [[Special:UserLogin|elodjî]] por vos pleur eberweter des fitchîs.',
 'upload_directory_read_only'  => "Li sierveu waibe èn pout nén scrire sol ridant d' eberwetaedje ($1).",
 'uploaderror'                 => "Aroke d' eberwetaedje",
 'uploadtext'                  => "Eployîz les boesses d' intrêye chal pa dzo po-z eberweter des noveas fitchîs d' imådjes po vos årtikes. Sol plupårt des betchteus, vos voeroz on boton «Foyter...» (ou «Browse...») ki vs permetrè di foyter dins les ridants del deure plake da vosse po tchoezi l' fitchî, çou ki rimplirè otomaticmint li tchamp do no do fitchî k' est a costé.
@@ -817,8 +815,6 @@ ou co po les sons
 'linkstoimage'              => '{{PLURAL:$1|Li pådje shuvante|Les pådjes shuvantes}} eployèt ciste imådje chal:',
 'nolinkstoimage'            => "I n' a nole pådje k' eploye ciste imådje chal.",
 'sharedupload'              => "Ci fitchî ci est so on ridant pårtaedjî ey i s' pout k' i soeye eployî pa ds ôtes pordjets.",
-'noimage'                   => "I n' a nou fitchî avou ç' no la, vos l' poloz $1",
-'noimage-linktext'          => 'eberweter',
 'uploadnewversion-linktext' => 'Eberweter ene nouve modêye di ci fitchî ci',
 
 # File reversion
@@ -1164,7 +1160,7 @@ stî vandalijheyes).",
 'ipblocklist-submit'          => 'Cweri',
 'blocklistline'               => '$1, $2 a bloké $3 ($4)',
 'infiniteblock'               => 'po todi',
-'expiringblock'               => "disk' å $1",
+'expiringblock'               => "disk' å $1 $2",
 'blocklink'                   => 'bloker',
 'unblocklink'                 => 'disbloker',
 'contribslink'                => 'contribouwaedjes',
@@ -1206,8 +1202,6 @@ Dins ces cas la, vos dvroz displaecî l' pådje di copene al mwin, ou rcopyî
 si contnou, si vos l' vloz mete adlé l' novea no
 d' l' årtike.",
 'movearticle'             => 'Displaecî di',
-'movenologin'             => 'Nén elodjî',
-'movenologintext'         => 'I vs fåt esse èn uzeu eredjîstré eyet esse [[Special:UserLogin|elodjî]] por vos pleur displaecî ene pådje.',
 'newtitle'                => "Viè l' novea tite",
 'move-watch'              => 'Shuve cisse pådje cial',
 'movepagebtn'             => 'Displaecî',

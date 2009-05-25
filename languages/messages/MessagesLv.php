@@ -872,8 +872,6 @@ Lapas, kas ir tavā [[Special:Watchlist|uzraugāmo rakstu sarakstā]] ir '''trek
 'uploadbtn'              => 'Augšuplādēt',
 'reupload'               => 'Vēlreiz augšuplādēt',
 'reuploaddesc'           => 'Atcelt augšupielādi un atgriezties pie augšupielādes veidnes.',
-'uploadnologin'          => 'Neesi iegājis',
-'uploadnologintext'      => 'Tev jābūt [[Special:UserLogin|iegājušam]], lai augšuplādētu failus.',
 'uploaderror'            => 'Augšupielādes kļūda',
 'uploadtext'             => "'''STOP!''' Pirms tu kaut ko augšupielādē, noteikti izlasi un ievēro [[Project:Attēlu izmantošanas noteikumi|attēlu izmantošanas noteikumus]].
 
@@ -986,8 +984,6 @@ Uzklikšķinot uz kādas kolonnas virsraksta, var sakārtot pēc kāda cita para
 'linkstoimage'              => '{{PLURAL:$1|Šajā lapā ir saite|Šajās $1 lapās ir saites}} uz šo failu:',
 'nolinkstoimage'            => 'Nevienā lapā nav norāžu uz šo attēlu.',
 'sharedupload'              => 'Šis fails ir augšupielādēts koplietojams citos projektos.',
-'noimage'                   => 'Ar šādu nosaukumu nav neviena faila, bet tu vari [$1].',
-'noimage-linktext'          => 'augšuplādēt to',
 'uploadnewversion-linktext' => 'Augšupielādēt jaunu šī faila versiju',
 
 # File reversion
@@ -1448,7 +1444,7 @@ Visus blokus var apskatīties [[Special:IPBlockList|IP bloku sarakstā]].',
 'ipblocklist'              => 'Bloķētās IP adreses un lietotājvārdi',
 'ipblocklist-username'     => 'Lietotāja vārds vai IP adrese:',
 'blocklistline'            => '$1 $2 bloķēja $3 (termiņš $4)',
-'expiringblock'            => 'beidzas $1',
+'expiringblock'            => 'beidzas $1 $2',
 'blocklink'                => 'bloķēt',
 'unblocklink'              => 'atbloķēt',
 'contribslink'             => 'devums',
@@ -1487,8 +1483,6 @@ pirms turpināšanas vēlreiz pārdomā, vai tu izproti visas iespējamās sekas
 
 Ja tomēr vēlēsies, tad tev šī diskusiju lapa būs jāpārvieto vai jāapvieno pašam.",
 'movearticle'             => 'Pārvietot lapu',
-'movenologin'             => 'Neesi iegājis kā reģistrēts lietotājs',
-'movenologintext'         => 'Tev ir jābūt reģistrētam lietotājam un jābūt [[Special:UserLogin|iegājušam]] {{grammar:lokatīvs|{{SITENAME}}}}, lai pārvietotu lapu.',
 'movenotallowed'          => 'Tev nav tiesību pārvietot lapas.',
 'newtitle'                => 'Uz šādu lapu',
 'move-watch'              => 'Uzraudzīt šo lapu',

@@ -394,7 +394,6 @@ $messages = array(
 'upload'            => 'Файлды киирер',
 'uploadbtn'         => 'Файлды киирер',
 'reupload'          => 'Катап киирер',
-'uploadnologin'     => 'Кирбес',
 'uploaderror'       => 'Кииреринге алдаг',
 'filename'          => 'файлдың ады:',
 'filedesc'          => 'Түңнел',
@@ -424,7 +423,6 @@ $messages = array(
 'filehist-filesize'  => 'Файл хемчээли',
 'filehist-comment'   => 'Комментарий',
 'imagelinks'         => 'Холбаалар',
-'noimage-linktext'   => 'Ону киирер',
 
 # File reversion
 'filerevert-comment' => 'Комментарий:',

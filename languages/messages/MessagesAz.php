@@ -523,7 +523,6 @@ Açıqlama: (hh) = hal-hazırkı versiya ilə olan fərqlər,
 'uploadbtn'         => 'Sənəd yüklə',
 'reupload'          => 'Təkrar yüklə',
 'reuploaddesc'      => 'Return to the upload form.',
-'uploadnologintext' => 'Fayl yükləmək üçün [[Special:UserLogin|daxil olmalısınız]].',
 'uploaderror'       => 'Yükləyiş xətası',
 'uploadlog'         => 'yükleme kaydı',
 'uploadlogpage'     => 'Yükləmə qeydləri',
@@ -561,7 +560,6 @@ Bu səhifə üçün silmə qeydləri aşağıda göstərilmişdir:",
 
 # File description page
 'imagelinks'                => 'İstifadə edilən səhifələr',
-'noimage-linktext'          => 'faylı yüklə',
 'uploadnewversion-linktext' => 'Bu faylın yeni versiyasını yüklə',
 
 # File deletion
@@ -876,7 +874,7 @@ Məqalələrin bərpa edilməsi və silinməsi haqqında son dəyişiklikləri n
 'ipblocklist-submit'          => 'Axtar',
 'blocklistline'               => '$1, $2 bloklandı $3 ($4)',
 'infiniteblock'               => 'qeyri-müəyyən müddətə',
-'expiringblock'               => 'son tarix $1',
+'expiringblock'               => 'son tarix $1 $2',
 'anononlyblock'               => 'yalnız anonim istifadəçi',
 'createaccountblock'          => 'Yeni hesab yaratma bloklanıb',
 'blocklink'                   => 'blokla',

@@ -1,5 +1,5 @@
 <?php
-/** Traditional Chinese (‪中文(傳統字)‬)
+/** Traditional Chinese (‪中文(繁體)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -2113,7 +2113,7 @@ $1',
 'ipblocklist-submit'              => '搜尋',
 'blocklistline'                   => '$1，$2禁封$3 ($4)',
 'infiniteblock'                   => '永久',
-'expiringblock'                   => '$1 到期',
+'expiringblock'                   => '$1 $2 到期',
 'anononlyblock'                   => '僅限匿名用戶',
 'noautoblockblock'                => '禁用自動查封',
 'createaccountblock'              => '禁止創建賬戶',

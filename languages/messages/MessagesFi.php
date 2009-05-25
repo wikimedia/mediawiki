@@ -1451,8 +1451,6 @@ Kokeile lisätä haun alkuun ''all:'', niin haku kohdistuu kaikkeen sisältöön
 'uploadbtn'                   => 'Tallenna',
 'reupload'                    => 'Lähetä uudelleen',
 'reuploaddesc'                => 'Peruuta tallennus ja palaa tallennuslomakkeelle.',
-'uploadnologin'               => 'Et ole kirjautunut sisään',
-'uploadnologintext'           => 'Sinun pitää olla [[Special:UserLogin|kirjautuneena sisään]], jotta voisit tallentaa tiedostoja.',
 'upload_directory_missing'    => 'Tallennushakemisto $1 puuttuu, eikä palvelin pysty luomaan sitä.',
 'upload_directory_read_only'  => 'Palvelimella ei ole kirjoitusoikeuksia tallennushakemistoon ”<tt>$1</tt>”.',
 'uploaderror'                 => 'Tallennusvirhe',
@@ -1584,8 +1582,8 @@ Seuraava lista näyttää {{PLURAL:$1|ensimmäisen linkittävän sivun|$1 ensimm
 Katso [$2 tiedoston kuvaussivulta] lisätietoja.',
 'sharedupload-desc-here'    => 'Tämä tiedosto on jaettu kohteesta $1 ja muut projektit saattavat käyttää sitä.
 Tiedot [$2 tiedoston kuvaussivulta] näkyvät alla.',
-'noimage'                   => 'Tämän nimistä tiedostoa ei ole olemassa, mutta voit $1.',
-'noimage-linktext'          => 'tallentaa sen',
+'filepage-nofile'           => 'Tämän nimistä tiedostoa ei ole olemassa.',
+'filepage-nofile-link'      => 'Tämän nimistä tiedostoa ei ole olemassa, mutta voit [$1 tallentaa sen].',
 'uploadnewversion-linktext' => 'Tallenna uusi versio tästä tiedostosta',
 'shared-repo-from'          => 'kohteesta $1',
 'shared-repo'               => 'jaettu mediavarasto',
@@ -2174,7 +2172,7 @@ Nykyiset estot löytyvät [[Special:IPBlockList|estolistalta]].',
 'ipblocklist-submit'              => 'Hae',
 'blocklistline'                   => '$1 – $2 on estänyt käyttäjän $3 ($4)',
 'infiniteblock'                   => 'ikuisesti',
-'expiringblock'                   => 'vanhenee $1',
+'expiringblock'                   => 'vanhenee $1 $2',
 'anononlyblock'                   => 'vain kirjautumattomat',
 'noautoblockblock'                => 'ei automaattista IP-osoitteiden estoa',
 'createaccountblock'              => 'tunnusten luonti estetty',
@@ -2256,8 +2254,6 @@ Tämä saattaa olla suuri ja odottamaton muutos suositulle sivulle. Varmista, et
 
 Näissä tapauksissa sivut täytyy siirtää tai yhdistää käsin.",
 'movearticle'                  => 'Siirrä sivu',
-'movenologin'                  => 'Et ole kirjautunut sisään',
-'movenologintext'              => 'Sinun pitää olla rekisteröitynyt käyttäjä ja [[Special:UserLogin|kirjautua sisään]], jotta voisit siirtää sivun.',
 'movenotallowed'               => 'Sinulla ei ole oikeuksia siirtää sivuja.',
 'movenotallowedfile'           => 'Sinulla ei ole oikeuksia siirtää tiedostoja.',
 'cant-move-user-page'          => 'Sinulla ei ole lupaa siirtää käyttäjäsivuja (lukuun ottamatta alasivuja).',
@@ -2856,6 +2852,10 @@ Vain *-merkillä alkavat rivit otetaan huomioon. Ensimmäisen linkin on osoitett
 # Pseudotags used for GPSLongitudeRef and GPSDestLongitudeRef
 'exif-gpslongitude-e' => 'Itäistä pituutta',
 'exif-gpslongitude-w' => 'Läntistä pituutta',
+
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-0' => 'Metriä merenpinnan yläpuolella',
+'exif-gpsaltitude-1' => 'Metriä merenpinnan alapuolella',
 
 'exif-gpsstatus-a' => 'Mittaus käynnissä',
 'exif-gpsstatus-v' => 'Ristiinmittaus',

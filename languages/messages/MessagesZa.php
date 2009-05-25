@@ -118,7 +118,6 @@ $messages = array(
 'diff'          => 'Faenbied',
 
 # Upload
-'uploadnologin'     => 'Maengx laezhaej',
 'filedesc'          => 'Saegmangj',
 'fileuploadsummary' => 'Saegmangj:',
 'watchthisupload'   => 'Demq mae-nej',
@@ -181,7 +180,6 @@ $messages = array(
 # Move page
 'move-page-legend' => 'Caen doengh mae',
 'movearticle'      => 'Caen doengh mae:',
-'movenologin'      => 'Maengx laezhaej',
 'move-watch'       => 'Demq mae-nej',
 'movepagebtn'      => 'Caen doengh mae',
 'movedto'          => 'Caen bei',

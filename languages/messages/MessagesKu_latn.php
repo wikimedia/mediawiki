@@ -827,8 +827,6 @@ Sedemê qedexekirinê ji $3 ev e: ''$2''",
 'uploadbtn'              => 'Wêneyê (ya tiştekî din ya mêdya) barbike',
 'reupload'               => 'Dîsa barbike',
 'reuploaddesc'           => 'Barkirinê biskîne û dîsa here rûpela barkirinê.',
-'uploadnologin'          => 'Xwe qeyd nekir',
-'uploadnologintext'      => 'Ji bo barkirina wêneyan divê ku tu [[Special:UserLogin|têkevî]].',
 'uploaderror'            => 'Şaşbûn bo barkirinê',
 'uploadtext'             => "Berê tu wêneyên nû bar bikî, ji bo dîtin an vedîtina wêneyên ku ji xwe hene binêre: [[Special:FileList|lîsteya wêneyên barkirî]]. Herwisa wêneyên ku hatine barkirin an jî jê birin li vir dikarî bibînî: [[Special:Log/upload|reşahîya barkirîyan]].
 
@@ -914,8 +912,6 @@ Zanibe, ku ev barkirina kê were qebûlkirin ya na.
 'imagelinks'                => 'Lînkên vî wêneyî',
 'linkstoimage'              => 'Di van rûpelan de lînkek ji vî wêneyî re heye:',
 'nolinkstoimage'            => 'Rûpelekî ku ji vî wêneyî re girêdankê çêdike nîne.',
-'noimage'                   => 'Medyayek bi vê navî tune, lê tu kanî $1',
-'noimage-linktext'          => 'wê barbike',
 'uploadnewversion-linktext' => 'Versyonekî nû yê vê datayê barbike',
 
 # File reversion
@@ -1332,7 +1328,7 @@ Sedemekê binivîse!',
 'ipblocklist-submit'          => 'Lêbigere',
 'blocklistline'               => '$1, $2 $3 asteng kir ($4)',
 'infiniteblock'               => 'ji her demê ra',
-'expiringblock'               => 'heta $1',
+'expiringblock'               => 'heta $1 $2',
 'anononlyblock'               => 'bes kesên netên zanîn',
 'noautoblockblock'            => 'astengkirina otomatîk hatîye temirandin',
 'createaccountblock'          => "çêkirina account'an hatîye qedexekirin",
@@ -1374,9 +1370,6 @@ Eger ev mişkla çêbû, tu gireke vê rûpelê bi xwe bigerînê.
 
 Xêra xwe navî nuh û sedemê navgerandinê binivisîne.",
 'movearticle'               => 'Rûpelê bigerîne',
-'movenologin'               => 'Xwe qeyd nekir',
-'movenologintext'           => 'Tu dive bikarhênereke qeydkirî bî û [[Special:UserLogin|werî nav sîstemê]]
-da bikarî navê wê rûpelê biguherînî.',
 'movenotallowed'            => 'Mafên te bo guherandina navên gotaran tune ye.',
 'movenotallowedfile'        => "Mafê te bo guherandina navên data'yan tune ye.",
 'cant-move-user-page'       => 'Mafê te bo guherandina navên rûpelên bikarhêneran tune ye.',

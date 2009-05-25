@@ -954,6 +954,8 @@ See ei tohi olla pikem kui $1 {{PLURAL:$1|sümbol|sümbolit}}.',
 'right-block'          => 'Keelata lehekülgede muutmist mõnel kasutajal',
 'right-blockemail'     => 'Keelata kasutajal e-kirjade saatmine',
 'right-hideuser'       => 'Blokeeri kasutajanimi, peites see avalikkuse eest',
+'right-editinterface'  => 'Muuta kasutaja liidest',
+'right-editusercssjs'  => 'Redigeerida teiste kasutajate CSS ja JS faile',
 'right-import'         => 'Impordi lehekülgi teistest vikidest',
 'right-importupload'   => 'Impordi lehekülgi faili üleslaadimisest',
 'right-patrol'         => 'Märgista teiste redigeerimised patrullituks',
@@ -961,9 +963,10 @@ See ei tohi olla pikem kui $1 {{PLURAL:$1|sümbol|sümbolit}}.',
 'right-unwatchedpages' => 'Vaadata jälgimata lehekülgede nimekirja',
 
 # User rights log
-'rightslog'     => 'Kasutaja õiguste logi',
-'rightslogtext' => 'See on logi kasutajate õiguste muutuste kohta.',
-'rightsnone'    => '(puuduvad)',
+'rightslog'      => 'Kasutaja õiguste logi',
+'rightslogtext'  => 'See on logi kasutajate õiguste muutuste kohta.',
+'rightslogentry' => 'muutis kasutaja $1 õigusi, õigused varem $2 ning õigused nüüd $3',
+'rightsnone'     => '(puuduvad)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read'             => 'loe seda lehekülge',
@@ -973,6 +976,7 @@ See ei tohi olla pikem kui $1 {{PLURAL:$1|sümbol|sümbolit}}.',
 'action-createaccount'    => 'loo see kasutajakonto',
 'action-minoredit'        => 'märgista see muudatus kui pisimuudatus',
 'action-move'             => 'teisalda see lehekülg',
+'action-movefile'         => 'teisalda see fail',
 'action-delete'           => 'kustuta see lehekülg',
 'action-deleterevision'   => 'kustuta see redigeerimine',
 'action-deletedhistory'   => 'vaata selle lehekülje kustutatud ajalugu',
@@ -1027,8 +1031,6 @@ Leheküljed, mis lähevad [[Special:Watchlist|Jälgimisloendi]] koosseisu, on es
 'uploadbtn'            => 'Lae fail',
 'reupload'             => 'Uuesti üleslaadimine',
 'reuploaddesc'         => 'Tagasi üleslaadimise vormi juurde.',
-'uploadnologin'        => 'sisse logimata',
-'uploadnologintext'    => 'Kui Te soovite faile üles laadida, peate [[Special:UserLogin|sisse logima]].',
 'uploaderror'          => 'Faili laadimine ebaõnnestus',
 'uploadtext'           => "Järgnevat vormi võid kasutada failide üles laadimiseks.
 
@@ -1111,8 +1113,6 @@ Palun pöörduge tagasi ja laadige fail üles mõne teise nime all. [[File:$1|th
 'linkstoimage'              => 'Sellele pildile {{PLURAL:$1|viitab järgmine lehekülg|viitavad järgmised leheküljed}}:',
 'nolinkstoimage'            => 'Sellele pildile ei viita ükski lehekülg.',
 'sharedupload'              => 'See fail pärineb allikast $1 ning võib olla kasutusel ka teistes projektides.',
-'noimage'                   => 'Sellise nimega faili pole, võite selle $1.',
-'noimage-linktext'          => 'üles laadida',
 'uploadnewversion-linktext' => 'Lae üles selle faili uus versioon',
 
 # File deletion
@@ -1536,7 +1536,7 @@ Kehtivaid blokeeringuid vaata [[Special:IPBlockList|blokeeringute loendist]].',
 'ipblocklist'                => 'Blokeeritud IP-aadresside ja kasutajakontode loend',
 'blocklistline'              => '$1, $2 blokeeris $3 ($4)',
 'infiniteblock'              => 'igavene',
-'expiringblock'              => 'aegub $1',
+'expiringblock'              => 'aegub $1 $2',
 'ipblocklist-empty'          => 'Blokeerimiste loend on tühi.',
 'blocklink'                  => 'blokeeri',
 'unblocklink'                => 'lõpeta blokeerimine',
@@ -1588,9 +1588,6 @@ enne muudatuse tegemist mõelge palun järele, mis võib olla selle tagajärjeks
 
 Neil juhtudel teisaldage arutelulehekülg soovi korral eraldi või ühendage ta omal käel uue aruteluleheküljega.",
 'movearticle'             => 'Teisalda artiklilehekülg',
-'movenologin'             => 'Te ei ole sisse loginud',
-'movenologintext'         => 'Et lehekülge teisaldada, peate registreeruma
-kasutajaks ja [[Special:UserLogin|sisse logima]]',
 'newtitle'                => 'Uue pealkirja alla',
 'move-watch'              => 'Jälgi seda lehekülge',
 'movepagebtn'             => 'Teisalda artikkel',
@@ -1860,6 +1857,11 @@ Kinnituskood aegub $4.',
 'imgmultipageprev' => '← eelmine lehekülg',
 'imgmultipagenext' => 'järgmine lehekülg →',
 
+# Table pager
+'table_pager_prev'  => 'Eelmine lehekülg',
+'table_pager_first' => 'Esimene lehekülg',
+'table_pager_last'  => 'Viimane lehekülg',
+
 # Auto-summaries
 'autosumm-blank'   => 'Kustutatud kogu lehekülje sisu',
 'autosumm-replace' => "Lehekülg asendatud tekstiga '$1'",
@@ -1867,13 +1869,20 @@ Kinnituskood aegub $4.',
 'autosumm-new'     => "Uus lehekülg: '$1'",
 
 # Watchlist editor
-'watchlistedit-numitems'       => 'Teie jälgimisloendis on {{PLURAL:$1|1 leht|$1 lehte}}, ilma arutelulehtedeta.',
+'watchlistedit-numitems'       => 'Teie jälgimisloendis on ilma arutelulehtedeta {{PLURAL:$1|1 leht|$1 lehte}}.',
 'watchlistedit-noitems'        => 'Teie jälgimisloend ei sisalda ühtegi lehekülge.',
 'watchlistedit-normal-title'   => 'Jälgimisloendi redigeerimine',
 'watchlistedit-normal-legend'  => 'Jälgimisloendist lehtede eemaldamine',
-'watchlistedit-normal-explain' => "Siin on lehed, mis on teie jälgimisloendis.Et lehti eemaldada, tehke vastavatesse kastidesse linnukesed ja vajutage nuppu '''Eemalda valitud lehed'''. Te võite ka [[Special:Watchlist/raw|redigeerida lähtefaili]].",
+'watchlistedit-normal-explain' => "Need lehed on teie jälgimisloendis.
+Et lehti jälgimisloendist eemaldada, tehke vastava lehe ees olevasse kastikesse linnuke ja vajutage siis nuppu '''Eemalda valitud lehed'''. Kuid teil on võimalus muuta siit ka [[Special:Watchlist/raw|jälgimisloendi algandmeid]].",
 'watchlistedit-normal-submit'  => 'Eemalda valitud lehed',
-'watchlistedit-normal-done'    => '{{PLURAL:$1|1 leht|Järgmised $1 lehte}} on Teie jälgimisloendist eemaldatud:',
+'watchlistedit-normal-done'    => 'Teie jälgimisloendist eemaldati {{PLURAL:$1|1 leht|$1 lehte}}:',
+'watchlistedit-raw-title'      => 'Jälgimisloendi algandmed',
+'watchlistedit-raw-legend'     => 'Redigeeritavad jälgimisloendi algandmed',
+'watchlistedit-raw-explain'    => 'Sinu jälgimisloendi pealkirjad on kuvatud all asuvas tekstikastis, kus sa saad neid lisada ja/või eemaldada;
+Iga pealkiri asub ise real.
+Kui sa oled lõpetanud, vajuta all nuppu Uuenda jälgimisloendit.
+Aga samuti võid sa [[Special:Watchlist/edit|kasutada harilikku redaktorit]].',
 'watchlistedit-raw-submit'     => 'Uuenda jälgimisloendit',
 'watchlistedit-raw-done'       => 'Teie jälgimisloend on uuendatud.',
 'watchlistedit-raw-added'      => '{{PLURAL:$1|1 lehekülg|$1 lehekülge}} lisatud:',
@@ -1881,14 +1890,18 @@ Kinnituskood aegub $4.',
 # Watchlist editing tools
 'watchlisttools-view' => 'Näita vastavaid muudatusi',
 'watchlisttools-edit' => 'Vaata ja redigeeri jälgimisloendit',
-'watchlisttools-raw'  => 'Redigeeri lähtefaili',
 
 # Special:Version
-'version'              => 'Versioon',
-'version-specialpages' => 'Erileheküljed',
+'version'                  => 'Versioon',
+'version-specialpages'     => 'Erileheküljed',
+'version-parserhooks'      => 'Süntaksianalüsaatori lisad (Parser hooks)',
+'version-software'         => 'Installeeritud tarkvara',
+'version-software-product' => 'Toode',
+'version-software-version' => 'Versioon',
 
 # Special:FilePath
-'filepath' => 'Failitee',
+'filepath'      => 'Failitee',
+'filepath-page' => 'Fail:',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Otsi faili duplikaate',

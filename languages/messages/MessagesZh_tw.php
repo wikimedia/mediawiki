@@ -361,8 +361,6 @@ $messages = array(
 'filehist-revert'    => '復原',
 'filehist-user'      => '使用者',
 'imagelinks'         => '連結',
-'noimage'            => '不存在此名稱的檔案，您可以$1。',
-'noimage-linktext'   => '上傳它',
 
 # File reversion
 'filerevert'                => '復原$1',
@@ -620,8 +618,6 @@ $NEWPAGE
 <b>警告！</b>
 對一個經常被訪問的頁面而言這可能是一個重大與唐突的更改；
 請在行動前先了結其所可能帶來的後果。",
-'movenologintext' => '您必須是一名登記使用者並且[[Special:UserLogin|登入]]
-後才可移動一個頁面。',
 'movenotallowed'  => '您在這個wiki中度並沒有許可權去移動頁面。',
 'movetalk'        => '如果可能的話，請同時移動對話頁。',
 'movelogpagetext' => '以下是已經移動的頁面清單:',

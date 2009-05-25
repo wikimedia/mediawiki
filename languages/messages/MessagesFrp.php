@@ -883,10 +883,10 @@ Rapelâd-vos que les pâges a sè avouéc èxtensions .css et .js utilisont des 
 'previewnote'                      => "'''Rapelâd-vos que ceti tèxto est ren qu’una prèvisualisacion.'''
 '''Il at p’oncor étâ sôvâ !'''",
 'previewconflict'                  => 'Ceta prèvisualisacion montre lo tèxto de la bouèta d’èdicion de d’amont coment aparètrat se vos chouèsésséd de lo sôvar.',
-'session_fail_preview'             => "'''Dèsolâ ! Nos povens pas enregistrar voutron changement a côsa d’una pèrta d’enformacions en rapôrt avouéc voutra sèssion.'''
+'session_fail_preview'             => "'''Dèsolâ ! Nos povens pas enregistrar voutron changement a côsa d’una pèrta d’enformacions en rapôrt avouéc voutra sèance.'''
 Volyéd tornar èprovar.
 Se cen tôrne pas reussir, volyéd [[Special:UserLogout|vos dèbranchiér]], et pués vos tornar branchiér.",
-'session_fail_preview_html'        => "'''Dèsolâ ! Nos povens pas enregistrar voutron changement a côsa d’una pèrta d’enformacions en rapôrt avouéc voutra sèssion.'''
+'session_fail_preview_html'        => "'''Dèsolâ ! Nos povens pas enregistrar voutron changement a côsa d’una pèrta d’enformacions en rapôrt avouéc voutra sèance.'''
 
 ''Perce que {{SITENAME}} at activâ l’HTML bruto, la prèvisualisacion at étâ cachiê por prèvegnir les ataques per JavaScript.''
 
@@ -1449,7 +1449,7 @@ Vos pouede asse-ben dècidar de lèssiér los ôtros sè veriér vers vos avoué
 'right-block'                 => 'Blocar en ècritura d’ôtros utilisators',
 'right-blockemail'            => 'Empachiér un utilisator de mandar des mèls',
 'right-hideuser'              => 'Blocar un utilisator en cachient son nom u publico',
-'right-ipblock-exempt'        => 'Pas étre afèctâ per les IP blocâs, los blocâjos ôtomaticos et los blocâjos de plages d’IP',
+'right-ipblock-exempt'        => 'Pas étre afèctâ per les adrèces IP blocâs, los blocâjos ôtomaticos et los blocâjos de plages d’adrèces IP',
 'right-proxyunbannable'       => "Pas étre afèctâ per los blocâjos ôtomaticos de sèrvors mandatèros (''proxies'')",
 'right-protect'               => 'Changiér lo nivél de protèccion de les pâges et changiér les pâges protègiês',
 'right-editprotected'         => 'Changiér les pâges protègiês (sen protèccion en cascâda)',
@@ -1558,8 +1558,6 @@ Les pâges de voutra [[Special:Watchlist|lista de survelyence]] sont '''en grâs
 'uploadbtn'                   => 'Tèlèchargiér lo fichiér',
 'reupload'                    => 'Tornar tèlèchargiér',
 'reuploaddesc'                => 'Anular lo tèlèchargement et tornar u formulèro de tèlèchargement.',
-'uploadnologin'               => 'Pas branchiê',
-'uploadnologintext'           => 'Vos dête étre [[Special:UserLogin|branchiê]] por tèlèchargiér des fichiérs sur lo sèrvor.',
 'upload_directory_missing'    => 'Lo rèpèrtouèro de tèlèchargement ($1) est entrovâblo et at pas possu étre fêt per lo sèrvor Vouèbe.',
 'upload_directory_read_only'  => 'Lo rèpèrtouèro de tèlèchargement ($1) est pas accèssiblo en ècritura dês lo sèrvor Vouèbe.',
 'uploaderror'                 => 'Èrror de tèlèchargement',
@@ -1734,8 +1732,8 @@ Una [[Special:WhatLinksHere/$2|lista complèta]] est disponibla.',
 Vêde sa [$2 pâge de dèscripcion] por més d’enformacions.',
 'sharedupload-desc-here'    => 'Ceti fichiér vint de $1 et pôt étre utilisâ per d’ôtros projèts.
 La dèscripcion de sa [$2 pâge de dèscripcion] est montrâ ce-desot.',
-'noimage'                   => 'Nion fichiér ègziste desot cél nom, mas vos pouede $1.',
-'noimage-linktext'          => 'nen tèlèchargiér yon',
+'filepage-nofile'           => 'Nion fichiér de cél nom ègziste.',
+'filepage-nofile-link'      => 'Nion fichiér de cél nom ègziste, mas vos pouede [$1 nen tèlèchargiér yon].',
 'uploadnewversion-linktext' => 'Tèlèchargiér una novèla vèrsion de ceti fichiér',
 'shared-repo-from'          => 'de $1',
 'shared-repo'               => 'un dèpôt de fichiérs partagiê',
@@ -2137,8 +2135,8 @@ Lo dèrriér changement de la pâge at étâ fêt per [[User:$3|$3]] ([[User tal
 'revertpage'       => 'Rèvocacion des changements de [[Special:Contributions/$2|$2]] ([[User talk:$2|Discutar]]) vers la dèrriére vèrsion de [[User:$1|$1]]',
 'rollback-success' => 'Rèvocacion des changements fêts per $1 ;
 rètablissement de la dèrriére vèrsion per $2.',
-'sessionfailure'   => 'Voutra sèssion de branchement semble avêr des problèmos ;
-cela accion at étâ anulâ en prèvencion d’un piratâjo de sèssion.
+'sessionfailure'   => 'Voutra sèance de branchement semble avêr des problèmos ;
+cela accion at étâ anulâ en prèvencion d’un piratâjo de sèance.
 Volyéd clicar dessus « Devant », rechargiér la pâge de yô que vos vegnéd, et pués tornar èprovar.',
 
 # Protect
@@ -2360,7 +2358,7 @@ Vêde la [[Special:IPBlockList|lista des utilisators et de les adrèces IP bloc�
 'ipblocklist-submit'              => 'Rechèrchiér',
 'blocklistline'                   => '$1 : $2 at blocâ $3 ; $4',
 'infiniteblock'                   => 'sen fin',
-'expiringblock'                   => 'èxpire lo $1',
+'expiringblock'                   => 'èxpire lo $1 a $2',
 'anononlyblock'                   => 'ren que los utilisators pas enregistrâs',
 'noautoblockblock'                => 'blocâjo ôtomatico dèsactivâ',
 'createaccountblock'              => 'crèacion de compto blocâ',
@@ -2454,8 +2452,6 @@ assurâd-vos de nen avêr comprês les consèquences devant que continuar.",
 
 Dens celos câs, vos devréd renomar ou ben fusionar la pâge a la man se vos lo dèsirâd.",
 'movearticle'                  => 'Renomar la pâge :',
-'movenologin'                  => 'Pas branchiê',
-'movenologintext'              => 'Por povêr renomar una pâge, vos dête étre [[Special:UserLogin|branchiê]] coment utilisator enregistrâ.',
 'movenotallowed'               => 'Vos avéd pas la pèrmission de renomar les pâges.',
 'movenotallowedfile'           => 'Vos avéd pas la pèrmission de renomar los fichiérs.',
 'cant-move-user-page'          => 'Vos avéd pas la pèrmission de renomar les pâges principâles d’utilisators (en defôr de lors sot-pâges).',
@@ -2556,54 +2552,65 @@ Volyéd visitar la [http://www.mediawiki.org/wiki/Localisation Localisacion de M
 
 # Special:Import
 'import'                     => 'Importar des pâges',
-'importinterwiki'            => 'Impôrt entèrvouiqui',
-'import-interwiki-text'      => 'Sèlèccionâd un vouiqui et un titro de pâge a importar.
-Les dâtes de les vèrsions et los noms des èditors seront presèrvâs.
-Totes les accions d’importacion entèrvouiqui sont consèrvâs dens lo [[Special:Log/import|jornal d’impôrt]].',
+'importinterwiki'            => 'Importacion entèrvouiqui',
+'import-interwiki-text'      => 'Chouèsésséd un vouiqui et un titro de pâge a importar.
+Les dâtes de les vèrsions et los noms des contributors seront presèrvâs.
+Totes les accions d’importacion entèrvouiqui sont consignês dens lo [[Special:Log/import|jornal de les importacions]].',
+'import-interwiki-source'    => 'Vouiqui et pâge sôrses :',
 'import-interwiki-history'   => 'Copiyér totes les vèrsions de l’historico de ceta pâge',
+'import-interwiki-templates' => 'Encllure tôs los modèlos',
 'import-interwiki-submit'    => 'Importar',
-'import-interwiki-namespace' => 'Transferar les pâges dens l’èspâço de nom :',
+'import-interwiki-namespace' => 'Èspâço de nom de dèstinacion :',
+'import-upload-filename'     => 'Nom du fichiér :',
 'import-comment'             => 'Comentèro :',
-'importtext'                 => 'Volyéd èxportar lo fichiér dês lo vouiqui d’origina en utilisent l’outil [[Special:Export]], lo sôvar sur voutron disco dur et pués lo copiyér ique.',
-'importstart'                => 'Impôrt de les pâges...',
-'import-revision-count'      => '$1 {{PLURAL:$1|vèrsion|vèrsions}}',
+'importtext'                 => 'Volyéd èxportar lo fichiér dês lo vouiqui d’origina en utilisent son [[Special:Export|outil d’èxportacion]].
+Sôvâd-lo sur voutron disco dur et pués tèlèchargiéd-lo ique.',
+'importstart'                => 'Importacion de les pâges...',
+'import-revision-count'      => '$1 vèrsion{{PLURAL:$1||s}}',
 'importnopages'              => 'Niona pâge a importar.',
-'importfailed'               => 'Falyita de l’impôrt : $1',
-'importunknownsource'        => 'Tipo de la sôrsa d’impôrt encognu',
+'importfailed'               => 'Falyita de l’importacion : <nowiki>$1</nowiki>',
+'importunknownsource'        => 'Tipo de la sôrsa a importar encognu',
 'importcantopen'             => 'Empossiblo d’uvrir lo fichiér a importar',
-'importbadinterwiki'         => 'Môvés lim entèrvouiqui',
-'importnotext'               => 'Vouedo ou sen tèxte',
-'importsuccess'              => 'L’impôrt at reussi !',
-'importhistoryconflict'      => 'Y at un conflit dens l’historico de les vèrsions (ceta pâge at possu étre importâ dês devant).',
-'importnosources'            => 'Niona sôrsa entèrvouiqui at étâ dèfenia et la copia drêta d’historico est dèsactivâ.',
-'importnofile'               => 'Nion fichiér at étâ importâ.',
-'importuploaderrorsize'      => 'Lo tèlèchargement du fichiér a importar at pas reussi. Sa talye est ples granta que cela ôtorisâ.',
-'importuploaderrorpartial'   => 'Lo tèlèchargement du fichiér a importar at pas reussi. Ceti l’at étâ ren qu’a mêtiêt.',
-'importuploaderrortemp'      => 'Lo tèlèchargement du fichiér a importar at pas reussi. Un dossiér temporèro est manquent.',
-'import-parse-failure'       => 'Arrét dens l’analisa de l’impôrt XML',
+'importbadinterwiki'         => 'Crouyo lim entèrvouiqui',
+'importnotext'               => 'Vouedo ou ben sen tèxto',
+'importsuccess'              => 'L’importacion at reussia !',
+'importhistoryconflict'      => 'Un conflit at étâ dècelâ dens l’historico de les vèrsions (ceta pâge at possu étre importâ dês devant).',
+'importnosources'            => 'Niona sôrsa d’importacion entèrvouiqui at étâ dèfenia et los tèlèchargements drêts d’historicos sont dèsactivâs.',
+'importnofile'               => 'Nion fichiér a importar at étâ tèlèchargiê.',
+'importuploaderrorsize'      => 'Lo tèlèchargement du fichiér a importar at pas reussi.
+Sa talye est ples granta que cela ôtorisâ.',
+'importuploaderrorpartial'   => 'Lo tèlèchargement du fichiér a importar at pas reussi.
+Son contegnu at étâ tèlèchargiê ren qu’a mêtiêt.',
+'importuploaderrortemp'      => 'Lo tèlèchargement du fichiér a importar at pas reussi.
+Un dossiér temporèro est manquent.',
+'import-parse-failure'       => 'Falyita pendent l’analisa du XML a importar',
 'import-noarticle'           => 'Niona pâge a importar !',
 'import-nonewrevisions'      => 'Totes les vèrsions ont étâ importâs dês devant.',
-'xml-error-string'           => '$1 a la legne $2, col $3 (octèt $4) : $5',
+'xml-error-string'           => '$1 a la legne $2, colona $3 (octèt $4) : $5',
+'import-upload'              => 'Tèlèchargement de balyês XML',
+'import-token-mismatch'      => 'Pèrta de les balyês de sèance.
+Volyéd tornar èprovar.',
+'import-invalid-interwiki'   => 'Empossiblo d’importar dês lo vouiqui spècefiâ.',
 
 # Import log
-'importlogpage'                    => 'Historico de les importacions de pâges',
-'importlogpagetext'                => 'Impôrts administratifs de pâges avouéc l’historico dês los ôtros vouiquis.',
-'import-logentry-upload'           => 'at importâ (tèlèchargement) [[$1]]',
-'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|vèrsion|vèrsions}}',
-'import-logentry-interwiki'        => 'at importâ (entèrvouiqui) [[$1]]',
-'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|vèrsion|vèrsions}} dês $2',
+'importlogpage'                    => 'Jornal de les importacions',
+'importlogpagetext'                => 'Importacions administratives de pâges avouéc lor historico de changements dês d’ôtros vouiquis.',
+'import-logentry-upload'           => 'at importâ [[$1]] per tèlèchargement de fichiér',
+'import-logentry-upload-detail'    => '$1 vèrsion{{PLURAL:$1||s}}',
+'import-logentry-interwiki'        => 'at importâ [[$1]] per entèrvouiqui',
+'import-logentry-interwiki-detail' => '$1 vèrsion{{PLURAL:$1||s}} dês $2',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Voutra pâge utilisator',
-'tooltip-pt-anonuserpage'         => 'La pâge utilisator de l’IP avouéc laquinta vos contribuâd',
+'tooltip-pt-anonuserpage'         => 'La pâge utilisator de l’adrèce IP avouéc laquinta vos contribuâd',
 'tooltip-pt-mytalk'               => 'Voutra pâge de discussion',
-'tooltip-pt-anontalk'             => 'La pâge de discussion por ceta adrèce IP',
-'tooltip-pt-preferences'          => 'Mes prèferences',
-'tooltip-pt-watchlist'            => 'La lista de les pâges que vos siude',
+'tooltip-pt-anontalk'             => 'La pâge de discussion por les contribucions dês cela adrèce IP',
+'tooltip-pt-preferences'          => 'Voutres prèferences',
+'tooltip-pt-watchlist'            => 'La lista de les pâges que vos siude los changements',
 'tooltip-pt-mycontris'            => 'La lista de voutres contribucions',
-'tooltip-pt-login'                => 'Vos éte envitâ a vos identifiar, mas cen est pas oblegatouèro.',
-'tooltip-pt-anonlogin'            => 'Vos éte envitâ a vos identifiar, mas cen est pas oblegatouèro.',
-'tooltip-pt-logout'               => 'Sè dèconèctar',
+'tooltip-pt-login'                => 'Vos éte encoragiê a vos branchiér ; portant, o est pas oblegatouèro.',
+'tooltip-pt-anonlogin'            => 'Vos éte encoragiê a vos branchiér ; portant, o est pas oblegatouèro.',
+'tooltip-pt-logout'               => 'Sè dèbranchiér',
 'tooltip-ca-talk'                 => 'Discussion a propôs de ceta pâge',
 'tooltip-ca-edit'                 => 'Vos pouede modifiar ceta pâge. Marci de prèvisualisar devant qu’enregistrar.',
 'tooltip-ca-addsection'           => 'Comenciér una novèla sèccion',

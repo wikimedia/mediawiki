@@ -625,8 +625,6 @@ Matlakala ago ba [[Special:Watchlist|lenanong la gago la matlakala ditlhapetšo]
 'linkstoimage'              => '{{PLURAL:$1|Letlakala le ke |$1 ya matlakala a}} latelago a hlomaganya go faele ye:',
 'nolinkstoimage'            => 'Gago matlakala a hlomaganyago faeleng ye.',
 'sharedupload'              => 'Faele ye e hlakanetšwe ka fao e kabe e šumišwa ke ditirotherwa tše dingwe.',
-'noimage'                   => 'Ga gona faele ya leina le, efela  o ka $1.',
-'noimage-linktext'          => 'Lokele ye tee',
 'uploadnewversion-linktext' => 'Lokela peoletšo ye mphsa ya faele',
 
 # File reversion

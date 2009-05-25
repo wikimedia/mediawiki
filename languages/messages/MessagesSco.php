@@ -739,8 +739,6 @@ there micht be parteeculars in the [{{fullurl:Special:Log/delete|page={{FULLPAGE
 'uploadbtn'                   => 'Uplaid file',
 'reupload'                    => 'Re-uplaid',
 'reuploaddesc'                => 'Gang back tae the uplaid form.',
-'uploadnologin'               => 'Nae loggit in',
-'uploadnologintext'           => 'Ye maun be [[Special:UserLogin|loggit in]] til uplaid files.',
 'uploaderror'                 => 'Uplaid error',
 'uploadtext'                  => "Uise the form ablo tae uplaid new files;
 tae keek at or rake throu aareadies uplaidit eimages gang tae the [[Special:FileList|leet o uplaidit files]];
@@ -782,7 +780,6 @@ Tae pit the eimage intae a page, uise an airtin i the form
 'imagelinks'     => 'Eimage airtins',
 'linkstoimage'   => 'The follaein $1 pages airts tae this image:',
 'nolinkstoimage' => "The'r nae pages airts tae this eimage.",
-'noimage'        => 'Nae file wi this name exists, ye can [$1 uplaid it]',
 
 # MIME search
 'download' => 'dounlaid',
@@ -1019,8 +1016,6 @@ This can be a drastic and unexpectit chynge for a popular page;
 please be siccar ye unnerstaun the consequences o this afore proceedin.",
 'movepagetalktext'        => "The associate Collogue page, gin onie, will be autaematically flittit alang wi it '''unless:''' *Ye'r flittin the page across namespaces, *A collogue page that isna tuim aareadies exists unner the new name, or *Ye tak the tick oot o the box ablo. In thae cases, ye maun flit or merge the page manually later gin ye hae saicont thochts.",
 'movearticle'             => 'Flit page:',
-'movenologin'             => 'No loggit in',
-'movenologintext'         => 'Ye maun be a registert uiser an [[Special:UserLogin|loggit in]] tae flit a page.',
 'newtitle'                => 'Tae new teitle',
 'movepagebtn'             => 'Flit page',
 'pagemovedsub'            => 'Flittin succeedit',

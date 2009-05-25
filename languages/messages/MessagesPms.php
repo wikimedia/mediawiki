@@ -888,9 +888,6 @@ për podej specifiché ij sò gust.',
 'uploadbtn'                   => 'Carié',
 'reupload'                    => 'Caria torna',
 'reuploaddesc'                => 'Torné al mòdulo ëd domanda për carié archivi',
-'uploadnologin'               => "A dev rintré ant ël sistema për podej fé st'operassion-sì",
-'uploadnologintext'           => "A dev [[Special:UserLogin|rintré ant ël sistema]]
-për podej carié dj'archivi.",
 'upload_directory_read_only'  => 'Ël programa webserver a-i la fa nen a scrive ansima a la diretriss ëd càrich ($1).',
 'uploaderror'                 => 'Eror dëmentré che as cariava',
 'uploadtext'                  => "'''DOSMAN!''' Anans che carié dla ròba ansima a {{SITENAME}}, che a sia motobin sigur d'avej bin lesù e capì
@@ -1040,8 +1037,6 @@ Ch'a-i bata 'n colp col rat ansima a j'antestassion dle colòne për cangé órd
 'linkstoimage'              => "Le pàgine sì sota a l'han andrinta dj'anliure a sta figura-sì:",
 'nolinkstoimage'            => "Pa gnun-a pàgina che a l'abia n'anliura a sta figura-sì.",
 'sharedupload'              => "St'archivi-sì a l'é stait carià an comun; donca a peul esse dovrà antra vàire proget wiki diferent.",
-'noimage'                   => 'A-i é pa gnun archivi che as ciama parej, a peul $1.',
-'noimage-linktext'          => 'carijlo',
 'uploadnewversion-linktext' => "Carié na version neuva dë st'archivi-sì",
 
 # File reversion
@@ -1551,7 +1546,7 @@ Che a varda la [[Special:IPBlockList|lista dj\'IP blocà]].',
 'ipblocklist-submit'          => 'Arsërca',
 'blocklistline'               => "$1, $2 a l'ha blocà $3 ($4)",
 'infiniteblock'               => 'për sempe',
-'expiringblock'               => 'fin-a al $1',
+'expiringblock'               => 'fin-a al $1 $2',
 'anononlyblock'               => "mach j'utent anònim",
 'noautoblockblock'            => 'blòch automàtich nen ativ',
 'createaccountblock'          => 'creassion dij cont blocà',
@@ -1631,9 +1626,6 @@ Se a l'ha dij dùbit, che a contata pura n'aministrator për ciameje 'd consej."
 *a l'ha deselessionà ël quadrèt ëd conferma ambelessì sota.
 Ant costi cas-sì, se a chërd dë felo, a-j farà da manca dë tramudesse la pàgina ëd discussion daspërchiel, a man.",
 'movearticle'             => "Cang-je nòm a l'artìcol",
-'movenologin'             => "Che a varda che chiel (chila) a l'è pa rintrà ant ël sistema",
-'movenologintext'         => "A venta esse n'Utent registrà e esse [[Special:UserLogin|rintrà ant ël sistema]]
-për podej tramudé na pàgina.",
 'movenotallowed'          => "A l'ha pa ij përmess dont a fa da manca për tramudé pàgine.",
 'newtitle'                => 'Neuv tìtol ëd',
 'move-watch'              => 'Ten sot euj sta pàgina-sì',
