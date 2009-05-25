@@ -241,8 +241,8 @@ class ImagePage extends Article {
 	 * @return string
 	 */
 	protected function makeMetadataTable( $metadata ) {
-		$r = "<div class=\"mw-imagepage-section-metadata\">\n";
-		$r .= wfMsg( 'metadata-help' );
+		$r = "<div class=\"mw-imagepage-section-metadata\">";
+		$r .= wfMsgNoTrans( 'metadata-help' );
 		$r .= "<table id=\"mw_metadata\" class=\"mw_metadata\">\n";
 		foreach ( $metadata as $type => $stuff ) {
 			foreach ( $stuff as $v ) {
@@ -474,7 +474,7 @@ EOT
 				$uploadTitle = SpecialPage::getTitleFor( 'Upload' );
 				$nofile = wfMsgHtml(
 					'filepage-nofile-link',
-					$uploadTitle->getFullUrl( array( 'wpDestFile' => urlencode( $this->img->getName() ) ) )
+					$uploadTitle->getFullUrl( array( 'wpDestFile' => $this->img->getName() ) )
 				);
 			}
 			else
@@ -518,7 +518,7 @@ EOT
 		$this->loadFile();
 		$uploadTitle = SpecialPage::getTitleFor( 'Upload' );
 		return $uploadTitle->getFullUrl( array(
-			'wpDestFile' => urlencode( $this->img->getName() ),
+			'wpDestFile' => $this->img->getName(),
 			'wpForReUpload' => 1
 		 ) );
 	}
