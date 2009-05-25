@@ -138,7 +138,6 @@ Isape a vostrã ira adratã. Nu agãrshits s-le alãxits alidzerle-a vostre ti {
 # Upload
 'upload'          => 'Pitritsets file',
 'uploadbtn'       => 'Pitritsets file',
-'uploadnologin'   => 'Nu hits ligats',
 'filedesc'        => 'Rezime',
 'watchthisupload' => 'Mutrits-u frãndzã aistã',
 

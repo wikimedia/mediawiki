@@ -440,8 +440,6 @@ Dov dorje värrhtoedimmie gååvnese bielieh, jallh [[Special:UserLogin|logge s�
 'linkstoimage'              => 'Tjuovvovasj bielieh lïenghkeh gåajkoe dïhte baalka:',
 'nolinkstoimage'            => 'Dïhte lea ijje bielieh goh nuhtjie dïhte baalka.',
 'sharedupload'              => 'Dïhte baalka lea sadde goh juaka jih dorje sjädta nuhtjie dejstie jeatjebh prosjekte.',
-'noimage'                   => 'Ijje baalka meatan dïhte nomme gååvnese, dov dorje $1.',
-'noimage-linktext'          => 'sadde dïhte',
 'uploadnewversion-linktext' => 'Sadde orre låhkoe dejstie dïhte baalka',
 
 # MIME search

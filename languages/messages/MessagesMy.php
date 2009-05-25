@@ -1,5 +1,5 @@
 <?php
-/** Burmese (Myanmasa)
+/** Burmese (မြန်မာဘာသာ)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -235,7 +235,6 @@ $messages = array(
 # Upload
 'upload'            => 'ဖိုင်​တင်​ရန်​',
 'uploadbtn'         => 'ဖိုင်​တင်​ရန်​',
-'uploadnologin'     => 'မှတ်​ပုံ​တင်​ဖြင့်​မ​ဝင်​ရ​သေး​ပါ​',
 'filename'          => 'ဖိုင်အမည်',
 'filedesc'          => 'အ​ကျဉ်း​ချုပ်​',
 'fileuploadsummary' => 'အ​ကျဉ်း​ချုပ်:',
@@ -338,12 +337,11 @@ $messages = array(
 'ipboptions'         => '၂ နာရီ:2 hours,၁ နေ့:1 day,၃ နေ့:3 days,၁ ပတ်:1 week,၂ ပတ်:2 weeks,၁ လ:1 month,၃ လ:3 months,၆ လ:6 months,၁ နှစ်:1 year,အနန္တ:infinite',
 'ipbotheroption'     => 'အခြား',
 'ipblocklist-submit' => 'ရှာ​ဖွေ​ရန်​',
-'expiringblock'      => '$1 ဆုံးမည်',
+'expiringblock'      => '$1 $2 ဆုံးမည်',
 
 # Move page
 'move-page-legend' => 'စာ​မျက်​နှာ​အား​ရွေ့​ပြောင်း​ပါ​',
 'movearticle'      => 'စာ​မျက်​နှာ​အား​ရွေ့​ပြောင်း​ပါ​',
-'movenologin'      => 'မှတ်​ပုံ​တင်​ဖြင့်​မ​ဝင်​ရ​သေး​ပါ​',
 'movepagebtn'      => 'စာ​မျက်​နှာ​အား​ရွေ့​ပြောင်း​ပါ​',
 'pagemovedsub'     => 'ပြောင်းရွှေ့ခြင်းအောင်မြင်သည်',
 'movedto'          => 'ရွေ့​ပြောင်း​ရန်​နေ​ရာ​',

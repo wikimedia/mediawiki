@@ -201,9 +201,7 @@ ikhawundi lakho liyadalwa. musa ukukhohlwa ukuguqula amakhethelo a-{{SITENAME}} 
 'nolicense' => 'Ubekhetha lutho',
 
 # File description page
-'nolinkstoimage'   => 'Akukho amakhasi akhomba kuleli fayela.',
-'noimage'          => 'Akukho ifayela elinaleli gama, unga $1.',
-'noimage-linktext' => 'Layisha',
+'nolinkstoimage' => 'Akukho amakhasi akhomba kuleli fayela.',
 
 # Random page
 'randompage' => 'Ikhasi elingaphandle kokucabanga',
@@ -282,7 +280,6 @@ ikhawundi lakho liyadalwa. musa ukukhohlwa ukuguqula amakhethelo a-{{SITENAME}} 
 # Move page
 'move-page-legend'        => 'Thuthisa ikhasi',
 'movearticle'             => 'Thuthisa ikhasi',
-'movenologin'             => 'Awungenile',
 'movepagebtn'             => 'Thuthisa ikhasi',
 'movedto'                 => 'Lithuthiselwe e',
 'movereason'              => 'Isizathu',

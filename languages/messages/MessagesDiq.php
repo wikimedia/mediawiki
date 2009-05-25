@@ -537,7 +537,6 @@ If you choose to provide it, this will be used for giving you attribution for yo
 'imagelinks'                => 'Gıreyê dosya',
 'linkstoimage'              => 'Ena {{PLURAL:$1|pelge şın|$1 pelgayan şın}} ena dosya:',
 'sharedupload'              => 'Ena dosya $1 ra u belki projeyê binan dı hewitiyeno.',
-'noimage-linktext'          => 'Bar ke',
 'uploadnewversion-linktext' => 'Versiyonê newiyerê ena dosya bar ke',
 
 # File deletion

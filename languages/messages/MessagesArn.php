@@ -292,7 +292,6 @@ $messages = array(
 'recentchangeslinked-page' => 'Pakina ñi üy:',
 
 # Upload
-'uploadnologin'   => 'Petu konlaymi',
 'watchthisupload' => 'Llaytun tüfachi pakina',
 
 'nolicense' => 'Chemnorume dullinnongey',
@@ -424,7 +423,7 @@ $messages = array(
 'ipboptions'                 => '2 ora:2 hours,1 aṉtü:1 day,3 aṉtü:3 days,1 semana:1 week,2 semana:2 weeks,1 küyeṉ:1 month,3 küyeṉ:3 months,6 küyeṉ:6 months,1 tripantu:1 year,rumel:infinite',
 'ipbotheroption'             => 'Kakelu',
 'ipblocklist-submit'         => 'Kintun',
-'expiringblock'              => 'afi $1',
+'expiringblock'              => 'afi $1 $2',
 'block-log-flags-hiddenname' => 'Üy kellufe ellkan',
 'proxyblocksuccess'          => 'Dewmangey.',
 
@@ -432,7 +431,6 @@ $messages = array(
 'move-page'               => 'Nengümün $1',
 'move-page-legend'        => 'Nengümün pakina',
 'movearticle'             => 'Nengümün pakina',
-'movenologin'             => 'Konlaymi',
 'newtitle'                => 'We üy püle',
 'move-watch'              => 'Llaytun tüfachi pakina',
 'movepagebtn'             => 'Nengümün pakina',

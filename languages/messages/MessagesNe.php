@@ -294,7 +294,6 @@ $messages = array(
 # Upload
 'upload'            => 'फाइल अपलोड',
 'uploadbtn'         => 'फाइल अपलोड गर्नु',
-'uploadnologin'     => 'प्रवेश (लग ईन) नगरिएको',
 'filename'          => 'फाइलनाम',
 'filedesc'          => 'सारांश',
 'fileuploadsummary' => 'सारांश:',
@@ -311,8 +310,7 @@ $messages = array(
 'listfiles_description' => 'वर्णन',
 
 # File description page
-'nolinkstoimage'   => 'यो फाईलसंग लिंकभएको कुनै पृष्ठ छैन.',
-'noimage-linktext' => 'अपलोड गर्नुहोस्',
+'nolinkstoimage' => 'यो फाईलसंग लिंकभएको कुनै पृष्ठ छैन.',
 
 # MIME search
 'download' => 'डाउनलोड',
@@ -461,7 +459,6 @@ $messages = array(
 # Move page
 'move-page-legend'        => 'पृष्ठ सार्नुहोस्',
 'movearticle'             => 'पृष्ठ सार्नुहोस्',
-'movenologin'             => 'प्रवेश (लग ईन) नगरिएको',
 'movepagebtn'             => 'पृष्ठ सार्नुहोस्',
 'pagemovedsub'            => 'सार्ने काम सफल भयो',
 'movedto'                 => 'मा सारियो',

@@ -1246,9 +1246,6 @@ Síður á [[Special:Watchlist|vaktlistanum þínum]] eru '''feitletraðar'''.",
 'uploadbtn'              => 'Hlaða inn skrá',
 'reupload'               => 'Hlaða aftur inn',
 'reuploaddesc'           => 'Aftur á innhlaðningarformið.',
-'uploadnologin'          => 'Óinnskráð(ur)',
-'uploadnologintext'      => 'Þú verður að vera [[Special:UserLogin|skráð(ur) inn]]
-til að hlaða inn skrám.',
 'uploaderror'            => 'Villa í innhlaðningu',
 'uploadtext'             => "Notaðu eyðublaðið hér fyrir neðan til að hlaða inn skrám.
 Til að skoða eða leita í áður innhlöðnum skrám ferðu á [[Special:FileList|skráarlistann]], (endur)innhlaðnar skrár eru skráðar í [[Special:Log/upload|innhlaðningarskránni]], eyðingar í [[Special:Log/delete|eyðingaskránni]].
@@ -1337,8 +1334,6 @@ Gjörðu svo vel og endurnefndu skrána og hladdu henni inn aftur.',
 'linkstoimage'              => 'Eftirfarandi {{PLURAL:$1|síða tengist|$1 síður tengjast}} í þessa skrá:',
 'nolinkstoimage'            => 'Engar síður tengja í þessa skrá.',
 'sharedupload'              => 'Þessari skrá er deilt meðal annarra verkefna og nýtist því þar.',
-'noimage'                   => 'Engin skrá með þessu nafni er til, en þú getur $1.',
-'noimage-linktext'          => 'hlaða einni inn',
 'uploadnewversion-linktext' => 'Hlaða inn nýrri útgáfu af þessari skrá',
 
 # File reversion
@@ -1824,7 +1819,7 @@ Sjá [[Special:IPBlockList|bannaðar notendur og vistföng]] fyrir yfirlit yfir 
 'ipblocklist-submit'          => 'Leita',
 'blocklistline'               => '$1, $2 bannaði $3 (rennur út $4)',
 'infiniteblock'               => 'aldrei',
-'expiringblock'               => 'rennur út  $1',
+'expiringblock'               => 'rennur út  $1 $2',
 'anononlyblock'               => 'bara ónafngreindir',
 'noautoblockblock'            => 'sjálfbönnun óvirk',
 'createaccountblock'          => 'bann við stofnun nýrra aðganga',
@@ -1888,8 +1883,6 @@ Athugaðu að þessi aðgerð getur kallað fram viðbrögð annarra notenda og 
 * Þú veljir að færa hana ekki
 Í þeim tilfellum verður að færa hana handvirkt.',
 'movearticle'               => 'Færa síðu:',
-'movenologin'               => 'Óinnskráð(ur)',
-'movenologintext'           => 'Þú verður að vera [[Special:UserLogin|innskráð(ur)]] til að geta fært síður.',
 'movenotallowed'            => 'Þú hefur ekki leyfi til að færa síður.',
 'cant-move-user-page'       => 'Þú hefur ekki leyfi til að færa notandasíðu (fyrir utan undirsíður).',
 'cant-move-to-user-page'    => 'Þú hefur ekki leyfi til að færa síðu á notandasíðu (að frátöldum undirsíðum notanda).',

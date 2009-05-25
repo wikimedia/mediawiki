@@ -563,8 +563,6 @@ Nışannar: (bitki) = şindiki versiyalan aradaki fark,
 'linkstoimage'              => 'Bu fayla baalantısı olan sayfalar:',
 'nolinkstoimage'            => 'Yok sayfalar ani bu fayla baalı.',
 'sharedupload'              => 'Bu fayl üklendi ortak kullanmak erinä hem var nicä kullanılsın übür proektlärdä.',
-'noimage'                   => 'Bu adda fayl yok. Siz $1.',
-'noimage-linktext'          => 'var nicä üklemää',
 'uploadnewversion-linktext' => 'Eni fayl ükle',
 
 # MIME search

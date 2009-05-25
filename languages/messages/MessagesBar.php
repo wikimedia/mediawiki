@@ -425,8 +425,6 @@ Wãnn'st di mid dem Thema auskennst, kãnnst [[:$1|de Seitn söiwa schreim]].",
 # Upload
 'upload'            => 'Aufelådn',
 'reupload'          => 'Abbrecha',
-'uploadnologin'     => 'Net ogmeidt',
-'uploadnologintext' => "Sie miassn [[Special:UserLogin|ogmeidt sei]], wenn S' Dateien hoachladn wolln.",
 'uploadlog'         => 'Datei-Logbuach',
 'uploadlogpage'     => 'Datei-Logbuach',
 'uploadlogpagetext' => 'Des is des Logbuach vo de hoachgladna Dateien, schaug aa unta [[Special:NewFiles|neie Dateien]].',
@@ -470,7 +468,6 @@ A [[Special:WhatLinksHere/$2|voiständige Listn]] gibt's aa.",
 'duplicatesoffile'          => "{{PLURAL:$1|D'foignde Datei is a Duplikat|De foigndn $1 Datein han Duplikate}} vu dea Datei ([[Special:FileDuplicateSearch/$2|weidare Deteus]]):",
 'sharedupload'              => 'De Datei stãmmt aus $1 und deaf bei ãndare Projekte vawendt wean.',
 'sharedupload-desc-there'   => "De Datei stãmmt aus $1 und deaf bei ãndera Projekte vawendt wean. Schau auf'd [$2 Dateibeschreibungsseitn] fia weidare Infoamazionen.",
-'noimage'                   => "A Datei mit dem Nam existiert net, Sie kinnan s' abe $1.",
 'uploadnewversion-linktext' => 'A neie Version vo dera Datei hoachladn',
 
 # File reversion

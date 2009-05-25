@@ -262,7 +262,6 @@ Mehmba se sohmtehm dehm indeks-dehm noh ohp-tu-det {{SITENAME}}.',
 # Upload
 'upload'          => 'Òplod fail',
 'uploadbtn'       => 'Ohplod fail',
-'uploadnologin'   => 'Yu noh kam insai di sait yet',
 'watchthisupload' => 'Wach dis pej-ya',
 
 # File description page
@@ -337,8 +336,7 @@ Di [[Special:WhatLinksHere/$2|ful list]] de yah.',
 'contribslink'       => 'kòntribyushòn-dèm',
 
 # Move page
-'movenologin' => 'Yu noh kam insai di sait yet',
-'move-watch'  => 'Wach dis pej-ya',
+'move-watch' => 'Wach dis pej-ya',
 
 # Thumbnails
 'thumbnail-more'  => 'Mek i big',

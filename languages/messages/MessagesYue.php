@@ -1,5 +1,5 @@
 <?php
-/** Cantonese (粵語/廣東話)
+/** Yue (粵語)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -2084,7 +2084,7 @@ $1',
 'ipblocklist-submit'              => '搵',
 'blocklistline'                   => '$1，$2已經封鎖咗$3（$4）',
 'infiniteblock'                   => '不設期限',
-'expiringblock'                   => '$1 期滿',
+'expiringblock'                   => '$1 $2 期滿',
 'anononlyblock'                   => '只限匿名',
 'noautoblockblock'                => '自動封鎖已經停用',
 'createaccountblock'              => '封咗開新戶口',

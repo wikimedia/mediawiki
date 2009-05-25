@@ -918,9 +918,6 @@ An ibang mga administrador sa ining wiki pwede pang maghiling kan mga nakatagong
 'uploadbtn'                   => 'Ikargá an file',
 'reupload'                    => 'Ikargá giraray',
 'reuploaddesc'                => 'Magbalik sa pormulario kan pagkarga.',
-'uploadnologin'               => 'Dai nakalaog',
-'uploadnologintext'           => "Kaipuhan ika si [[Special:UserLogin|nakadagos]]
-para makakarga nin mga ''file''.",
 'upload_directory_read_only'  => 'An directoriong pagkarga na ($1) dai puedeng suratan kan serbidor nin web.',
 'uploaderror'                 => 'Salâ an pagkarga',
 'uploadtext'                  => "Gamiton tabî an pormulario sa babâ para magkarga nin mga ''file'', para maghiling o maghanap kan mga ladawan na dating kinarga magduman tabi sa [[Special:FileList|lista nin mga pigkargang ''file'']], an mga kinarga asin mga pinarâ nakalista man sa [[Special:Log/upload|historial nin pagkarga]].
@@ -1025,8 +1022,6 @@ An historial nin pagparâ kan ''file'' nakakaag digdi para sa konbenyensya:",
 'linkstoimage'              => 'An mga minasunod na pahina nakatakod sa dokumentong ini:',
 'nolinkstoimage'            => 'Mayong mga pahinang nakatakod sa dokumentong ini.',
 'sharedupload'              => "Ining ''file'' sarong bakas na pagkarga asin pwede ser na gamiton kan ibang mga proyekto.",
-'noimage'                   => 'Mayong file na may arog kaining pangaran, pwede kang $1.',
-'noimage-linktext'          => 'ikarga ini',
 'uploadnewversion-linktext' => 'Magkarga nin bàgong bersyon kaining file',
 
 # File reversion
@@ -1508,7 +1503,7 @@ Magkaag nin espisipikong rason (halimbawa, magtao nin ehemplo kan mga páhinang 
 'ipblocklist-submit'          => 'Hanápon',
 'blocklistline'               => '$1, $2 binagat $3 ($4)',
 'infiniteblock'               => 'daing siring',
-'expiringblock'               => 'minapasó $1',
+'expiringblock'               => 'minapasó $1 $2',
 'anononlyblock'               => 'anon. sana',
 'noautoblockblock'            => 'pigpopondo an enseguidang pagbagat',
 'createaccountblock'          => 'binagat an paggibo nin kuenta',
@@ -1573,8 +1568,6 @@ Pwede na dakulà asin dai seguradong pagbàgo ini kan sarong popular na pahina; 
 
 Sa mga kasong iyan, kaipuhan mong ibalyo o isalak an páhina nin mano-mano kun boot mo.",
 'movearticle'             => 'Ibalyó an pahina:',
-'movenologin'             => 'Mayô sa laog',
-'movenologintext'         => 'Kaipuhan na rehistradong parágamit ka asin si [[Special:UserLogin|nakalaog]] tangarig makabalyó ka nin páhina.',
 'movenotallowed'          => 'Mayô kang permiso na ibalyó an mga pahina sa wiki na ini.',
 'newtitle'                => 'Sa bàgong titulong:',
 'move-watch'              => 'Bantayán ining pahina',

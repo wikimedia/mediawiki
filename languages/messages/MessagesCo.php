@@ -285,10 +285,9 @@ U to indirizzu IP serà registratu indu a cronolugia di ista pagina.",
 'listfiles_user' => 'Utilizatore',
 
 # File description page
-'filehist'         => "Cronolugia di l'imagine",
-'filehist-user'    => 'Utilizatore',
-'imagelinks'       => 'Ligami',
-'noimage-linktext' => 'incaricà lu',
+'filehist'      => "Cronolugia di l'imagine",
+'filehist-user' => 'Utilizatore',
+'imagelinks'    => 'Ligami',
 
 # Unused templates
 'unusedtemplateswlh' => 'altri ligami',

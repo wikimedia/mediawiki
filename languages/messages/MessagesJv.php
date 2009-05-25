@@ -1133,8 +1133,6 @@ Panjenengan uga bisa milih supaya wong liya ngubungi panjenengan liwat jeneng pa
 'uploadbtn'                   => 'Unggahna berkas',
 'reupload'                    => 'Unggah ulang',
 'reuploaddesc'                => 'Bali ing formulir pamotan',
-'uploadnologin'               => 'Durung mlebu log',
-'uploadnologintext'           => 'Panjenengan kudu [[Special:UserLogin|mlebu log]] supaya olèh ngunggahaké gambar utawa berkas liyané.',
 'upload_directory_missing'    => 'Direktori pamunggahan ($1) ora ditemokaké lan ora bisa digawé déning server wèb.',
 'upload_directory_read_only'  => 'Dirèktori pangunggahan ($1) ora bisa ditulis déning server wèb.',
 'uploaderror'                 => 'Kaluputan pangunggahan berkas',
@@ -1273,8 +1271,6 @@ Dhaftar ing ngisor nuduhaké {{PLURAL:$1|kaca pisanan kanthi pranala langsung|$1
 'redirectstofile'           => '{{PLURAL:$1|berkas kaalihaké|$1 berkas-berkas kaalihaké}} menyang berkas iki:',
 'duplicatesoffile'          => 'Ing ngisor iki {{PLURAL:$1|berkas arupa duplikat|$1 berkas-berkas arupa duplikat}} saka berkas iki:',
 'sharedupload'              => 'Berkas iki saka $1 lan bisa digunakaké déning proyèk-proyèk liya.',
-'noimage'                   => 'Ora ana berkas mawa jeneng iku, nanging panjenengan bisa $1.',
-'noimage-linktext'          => 'ngunggahaké sawiji',
 'uploadnewversion-linktext' => 'Unggahna vèrsi sing luwih anyar tinimbang gambar iki',
 
 # File reversion
@@ -1867,7 +1863,7 @@ Lebokna alesan panjenengan ing ngisor iki (contoné njupuk conto kaca sing wis t
 'ipblocklist-submit'              => 'Golèk',
 'blocklistline'                   => '$1, $2 mblokir $3 ($4)',
 'infiniteblock'                   => 'salawasé',
-'expiringblock'                   => 'kadaluwarsa $1',
+'expiringblock'                   => 'kadaluwarsa $1 $2',
 'anononlyblock'                   => 'namung anon',
 'noautoblockblock'                => 'pamblokiran otomatis dipatèni',
 'createaccountblock'              => 'ndamelipun akun dipunblokir',
@@ -1949,8 +1945,6 @@ pastekaké dhisik panjenengan ngerti konsekwènsi saka panggayuh panjenengan sad
 
 Ing kasus-kasus iku, yèn panjenengan gayuh, panjenengan bisa mindhahaké utawa nggabung kaca iku sacara manual.",
 'movearticle'               => 'Pindhah kaca',
-'movenologin'               => 'Durung mlebu log',
-'movenologintext'           => 'Panjenengan kudu dadi panganggo sing wis ndaftar lan wis [[Special:UserLogin|mlebu log]] kanggo mindhah kaca.',
 'movenotallowed'            => 'Panjenengan ora pareng ngalihaké kaca.',
 'cant-move-user-page'       => 'Panjenengan ora nduwèni hak aksès kanggo mindhahaké kaca panganggo (kapisah saka anak-kaca).',
 'cant-move-to-user-page'    => 'Panjenengan ora nduwèni hak aksès kanggo mindhahaké kaca menyang sawijining kaca panganggoa (kajaba menyang anak-kaca panganggo).',

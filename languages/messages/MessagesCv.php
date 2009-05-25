@@ -693,8 +693,6 @@ $1 хутшăнакан патне, е ытти [[{{MediaWiki:Grouppage-sysop}}|
 # Upload
 'upload'             => 'Файла кĕртесси',
 'uploadbtn'          => 'Файла кĕрт',
-'uploadnologin'      => 'Эсир сайта кĕмен.',
-'uploadnologintext'  => 'Файла кĕртес умĕн сирĕн малтан [[Special:UserLogin|сайта кĕмелле]].',
 'uploaderror'        => 'Файла кĕртне чухне йăнăш пулчĕ',
 'uploadlog'          => 'Файлсене кĕртнин логĕ',
 'uploadlogpage'      => 'Файлсене кĕртнине кăтартакан журнал',
@@ -749,8 +747,6 @@ $1 хутшăнакан патне, е ытти [[{{MediaWiki:Grouppage-sysop}}|
 'imagelinks'                => 'Ссылкăсем',
 'linkstoimage'              => 'Çак страницăсем ку файл çине кăтартаççĕ:',
 'nolinkstoimage'            => 'Ку файл çине кăтартакан страницăсем çук.',
-'noimage'                   => 'Ун пек ятлă файл çук, эсир ăна $1.',
-'noimage-linktext'          => 'кĕртме пултаратăр',
 'uploadnewversion-linktext' => 'Ку файлăн çĕнĕ версине кĕрт',
 
 # File reversion
@@ -1007,7 +1003,6 @@ $1 хутшăнакан патне, е ытти [[{{MediaWiki:Grouppage-sysop}}|
 # Move page
 'move-page-legend'        => 'Страницăна куçарнă',
 'movearticle'             => 'Страницăн ятне улăштар',
-'movenologin'             => 'Система сирĕн ята пĕлмест',
 'newtitle'                => 'Çĕнĕ ят',
 'move-watch'              => 'Ку страницăна сăнамаллисем шутне хуш',
 'movepagebtn'             => 'Страницăн ятне улăштар',

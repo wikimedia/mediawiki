@@ -634,7 +634,7 @@ Antes de que se envíe cualquier otro correo a la cuenta tienes que seguir las i
 'throttled-mailpassword'     => 'Ya se ha enviado un recordatorio de password en {{PLURAL:$1|la última hora|las últimas $1 horas}}.
 Para evitar los abusos, solo se enviará un recordatorio de password cada {{PLURAL:$1|hora|$1 horas}}.',
 'mailerror'                  => 'Error al enviar correo: $1',
-'acct_creation_throttle_hit' => 'Los visitantes a esta wiki usando su dirección IP han creado {{PLURAL:$1|una cuenta|$1 cuentas}} en el último día. lo cual es lo máximo permitido en este periodo de tiempo.
+'acct_creation_throttle_hit' => 'Los visitantes a esta wiki usando su dirección IP han creado {{PLURAL:$1|una cuenta|$1 cuentas}} en el último día, lo cual es lo máximo permitido en este periodo de tiempo.
 Como resultado, los visitantes usando esta dirección IP no pueden crear más cuentas en este momento.',
 'emailauthenticated'         => 'Su dirección electrónica fue autenticada en $2 a $3.',
 'emailnotauthenticated'      => 'Aún no has confirmado tu dirección de correo electrónico.
@@ -1424,8 +1424,6 @@ También puede permitir a otros usuarios que contacten con usted a través de su
 'uploadbtn'                   => 'Subir un archivo',
 'reupload'                    => 'Subir otra vez',
 'reuploaddesc'                => 'Regresar al formulario para subir.',
-'uploadnologin'               => 'No ha iniciado sesión',
-'uploadnologintext'           => 'Tienes que [[Special:UserLogin|iniciar sesión]] para poder subir archivos.',
 'upload_directory_missing'    => 'El directorio de subida de archivos ($1) no existe, y no puede ser creado por el servidor.',
 'upload_directory_read_only'  => 'El servidor web no puede escribir en el directorio de subida de archivos ($1).',
 'uploaderror'                 => 'Error al intentar subir archivo',
@@ -1573,8 +1571,6 @@ También puedes consultar la [[Special:WhatLinksHere/$2|lista completa]].',
 Por favor mira la [$2 página de descripción del archivo] para información adicional.',
 'sharedupload-desc-here'    => 'Este archivo es de $1 y puede ser usado por otros proyectos.
 La descripción en su [$2 página de descripción del archivo] está mostrada debajo.',
-'noimage'                   => 'No existe un archivo con este nombre, pero puede $1.',
-'noimage-linktext'          => 'subir uno',
 'uploadnewversion-linktext' => 'Subir una nueva versión de este archivo',
 'shared-repo-from'          => 'de $1',
 'shared-repo'               => 'un repositorio compartido',
@@ -2185,7 +2181,7 @@ las páginas en particular que han sido objeto de vandalismo).',
 'ipblocklist-submit'              => 'Buscar',
 'blocklistline'                   => '$1, $2 bloquea a $3 ($4)',
 'infiniteblock'                   => 'infinito',
-'expiringblock'                   => 'expira $1',
+'expiringblock'                   => 'expira $1 $2',
 'anononlyblock'                   => 'sólo anón.',
 'noautoblockblock'                => 'Bloqueo automático deshabilitado',
 'createaccountblock'              => 'Creación de cuenta bloqueada.',
@@ -2271,8 +2267,6 @@ por favor, asegúrate de entender las consecuencias del procedimiento antes de s
 
 En estos casos, deberá trasladar manualmente el contenido de la página de discusión.",
 'movearticle'                  => 'Renombrar página',
-'movenologin'                  => 'No ha iniciado sesión',
-'movenologintext'              => 'Es necesario ser usuario registrado y [[Special:UserLogin|haber iniciado sesión]] para renombrar una página.',
 'movenotallowed'               => 'No tienes permiso para trasladar páginas.',
 'movenotallowedfile'           => 'No tienes permiso para mover archivos.',
 'cant-move-user-page'          => 'No tienes permiso para mover páginas de usuario (excepto subpáginas).',

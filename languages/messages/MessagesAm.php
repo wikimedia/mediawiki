@@ -981,8 +981,6 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'uploadbtn'                   => 'ፋይሉ ይላክ',
 'reupload'                    => 'እንደገና ለመላክ',
 'reuploaddesc'                => 'ለመሰረዝና ወደ መላኪያ ማመልከቻ ለመመለስ',
-'uploadnologin'               => 'ገና አልገቡም',
-'uploadnologintext'           => 'ፋይል ለመላክ አስቀድሞ [[Special:UserLogin|መግባት]] ያስፈልግዎታል።',
 'uploaderror'                 => 'የመላክ ስሕተት',
 'uploadtext'                  => "በዚህ ማመልከቻ ላይ ፋይል ለመላክ ይችላሉ። ቀድሞ የተላኩት ስዕሎች [[Special:FileList|በፋይል / ሥዕሎች ዝርዝር]] ናቸው፤ ከዚህ በላይ የሚጨመረው ፋይል ሁሉ [[Special:Log/upload|በፋይሎች መዝገብ]] ይዘረዝራሉ።
 
@@ -1098,8 +1096,6 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'redirectstofile'           => 'ለዚህ ፋይል {{PLURAL:$1|የሚከተለው ፋይል መምሪያ መንገድ አለ|የሚከተሉት $1 ፋይሎች መምሪያ መንገዶች አሉ}}፦',
 'duplicatesoffile'          => '{{PLURAL:$1|የሚከተለው ፋይል የዚህ ፋይል ቅጂ ነው|የሚከተሉት $1 ፋይሎች የዚሁ ፋይል ቅጂዎች ናቸው}}፦',
 'sharedupload'              => 'ይህ ፋይል ከጋራ ምንጭ ($1) የተቀሰመ ነው። በማንኛውም ዊኪ ላይ ሊጠቅም ይቻላል።',
-'noimage'                   => 'በዚህ ስም የሚታወቅ ፋይል የለም፤ እርስዎ ግን $1 ይችላሉ።',
-'noimage-linktext'          => 'ሊልኩት',
 'uploadnewversion-linktext' => 'ለዚሁ ፋይል አዲስ ዕትም ለመላክ',
 
 # File reversion
@@ -1611,7 +1607,7 @@ $1',
 'ipblocklist-submit'          => 'ይፈለግ',
 'blocklistline'               => '$1 (እ.ኤ.አ.)፦ $2 በ$3 ላይ ማገጃ ጣለ ($4)',
 'infiniteblock'               => 'መቸም ይማያልቅ',
-'expiringblock'               => 'በ$1 እ.ኤ.አ. ያልቃል',
+'expiringblock'               => 'በ$1 $2 እ.ኤ.አ. ያልቃል',
 'anononlyblock'               => 'ያልገቡት የቁ.# ብቻ',
 'noautoblockblock'            => 'የቀጥታ ማገጃ እንዳይሠራ ተደረገ',
 'createaccountblock'          => 'ስም ከማውጣት ተከለከለ',
@@ -1678,8 +1674,6 @@ $1 አሁን ገና ታግዷል። ዝርዝሩን ማስተካከል ፈለጉ
 :
 :ከነውይይቱ ገጽ አንድላይ አይዛወሩም። የዚያን ጊዜ የውይይቱን ገጽ ለማዛወር ከወደዱ በእጅ ማድረግ ያስፈልግዎታል።",
 'movearticle'               => 'የቆየ አርእስት፡',
-'movenologin'               => 'ገና አልገቡም',
-'movenologintext'           => 'ገጽ ለማዛወር [[Special:UserLogin|በብዕር ስም መግባት]] ይኖርብዎታል።',
 'movenotallowed'            => 'በዚህ ዊኪ ገጾችን ለማዛወር ፈቃድ የለዎም።',
 'movenotallowedfile'        => 'ፋይልን ለማዛወር ፈቃድ የለዎም።',
 'cant-move-user-page'       => 'ከንዑስ ገጾች በቀር፣ የአባል ገጽ ለማዛወር ፈቃድ የለዎም።',

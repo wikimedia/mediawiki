@@ -525,8 +525,6 @@ hersenenge, (førge) = førskel til den førge hersenenge, l = lile til mendre �
 'linkstoimage'              => 'De følgende sider henveser til dette billet:',
 'nolinkstoimage'            => 'Der er engen sider der henveser til dette billet.',
 'sharedupload'              => 'Denne gøret er en fælles læĝenge og ken bruges åf andre projekter.',
-'noimage'                   => 'Der er engen gøret ve dette nav, du ken $1',
-'noimage-linktext'          => 'læĝge den åp',
 'uploadnewversion-linktext' => 'Læĝ en ny hersenenge åf denne gøret åp',
 
 # MIME search

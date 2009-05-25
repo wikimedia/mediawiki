@@ -281,7 +281,6 @@ Mit anderen Benutzer können Sie auch über die Benutzerdiskussionsseiten Kontak
 Seiten auf Ihrer [[Special:Watchlist|Beobachtungsliste]] sind '''fett''' dargestellt.",
 
 # Upload
-'uploadnologintext'           => 'Sie müssen [[Special:UserLogin|angemeldet sein]], um Dateien hochladen zu können.',
 'uploadtext'                  => "Benutzen Sie dieses Formular, um neue Dateien hochzuladen. 
 
 Gehen Sie zu der [[Special:FileList|Liste hochgeladener Dateien]], um vorhandene Dateien zu suchen und anzuzeigen. Siehe auch das [[Special:Log/upload|Datei-]]- und [[Special:Log/upload|Lösch-Logbuch]].
@@ -342,8 +341,8 @@ Wenn das Problem weiter besteht, informieren Sie einen [[Special:ListUsers/sysop
 'upload_source_file' => ' (eine Datei auf Ihrem Computer)',
 
 # File description page
-'filehist-help' => 'Klicken Sie auf einen Zeitpunkt, um diese Version zu laden.',
-'noimage'       => 'Eine Datei mit diesem Namen existiert nicht, Sie können sie jedoch $1.',
+'filehist-help'        => 'Klicken Sie auf einen Zeitpunkt, um diese Version zu laden.',
+'filepage-nofile-link' => 'Es existiert keine Datei mit diesem Namen, aber Sie können [$1 diese Datei hochladen].',
 
 # File reversion
 'filerevert-intro' => "Sie setzen die Datei '''[[Media:$1|$1]]''' auf die [$4 Version vom $2, $3 Uhr] zurück.",
@@ -472,8 +471,6 @@ Sie sollten daher die Konsequenzen verstanden haben, bevor Sie fortfahren.",
 In diesen Fällen müssen Sie, falls gewünscht, den Inhalt der Seite von Hand verschieben oder zusammenführen.
 
 Bitte den '''neuen''' Titel unter '''Ziel''' eintragen, darunter die Umbenennung bitte '''begründen.'''",
-'movenologin'            => 'Sie sind nicht angemeldet',
-'movenologintext'        => 'Sie müssen ein registrierter Benutzer und [[Special:UserLogin|angemeldet]] sein, um eine Seite zu verschieben.',
 'movenotallowed'         => 'Sie haben keine Berechtigung, Seiten zu verschieben.',
 'movenotallowedfile'     => 'Sie haben keine Berechtigung, Dateien zu verschieben.',
 'cant-move-user-page'    => 'Sie haben keine Berechtigung, Benutzerhauptseiten zu verschieben.',

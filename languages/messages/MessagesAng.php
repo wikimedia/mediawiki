@@ -376,12 +376,11 @@ Bidde behycge þæt þu bricst þone tramet intō smalrum dǣlum.',
 'recentchangeslinked' => 'Sibba hweorfunga',
 
 # Upload
-'uploadnologin' => 'Ne inmeldod',
-'filename'      => 'Þrǣdnama',
-'filedesc'      => 'Scortnes',
-'filesource'    => 'Fruma:',
-'badfilename'   => 'Onlīcnesnama wearþ gewend tō "$1(e/an)".',
-'savefile'      => 'Sparian þrǣd',
+'filename'    => 'Þrǣdnama',
+'filedesc'    => 'Scortnes',
+'filesource'  => 'Fruma:',
+'badfilename' => 'Onlīcnesnama wearþ gewend tō "$1(e/an)".',
+'savefile'    => 'Sparian þrǣd',
 
 'nolicense' => 'Nǣnne gecorenne',
 
@@ -398,7 +397,6 @@ Bidde behycge þæt þu bricst þone tramet intō smalrum dǣlum.',
 'imagelinks'     => 'Biliþbendas',
 'linkstoimage'   => 'Þā folgendan trametas bindaþ tō þissum biliðe:',
 'nolinkstoimage' => 'Þǣr sind nāne trametas þe bindaþ tō þissum biliðe.',
-'noimage'        => 'Nān þrǣd mid þissum naman stendeþ nū oþþe nā mā, ac þu canst þēah hine $1.',
 
 # File deletion
 'filedelete-submit' => 'āfeorsian',
@@ -566,7 +564,7 @@ Bidde behycge þæt þu bricst þone tramet intō smalrum dǣlum.',
 'ipbotherreason'     => 'Ōðeru/geīecendlicu racu:',
 'ipblocklist-submit' => 'Sēcan',
 'infiniteblock'      => 'unendiendlic',
-'expiringblock'      => 'forealdaþ $1',
+'expiringblock'      => 'forealdaþ $1 $2',
 'contribslink'       => 'forðunga',
 'proxyblocksuccess'  => 'Gedōn.',
 

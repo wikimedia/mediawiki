@@ -1267,7 +1267,6 @@ Does not work under $wgMiserMode ([[mwr:48986|r48986]]).',
 'uploadbtn'                   => 'Button name in [[Special:Upload]].
 
 {{Identical|Upload file}}',
-'uploadnologin'               => '{{Identical|Not logged in}}',
 'uploadtext'                  => 'Text displayed when uploading a file using [[Special:Upload]].',
 'upload-permitted'            => 'Used in [[Special:Upload]].',
 'upload-preferred'            => 'Used in [[Special:Upload]].',
@@ -1388,8 +1387,6 @@ Example: [[:Image:Addon-icn.png]]',
 {{doc-important|Do not customise this message. Just translate it.|Customisation should be done by local wikis.}}',
 'sharedupload-desc-there' => ':See also: {{msg-mw|Sharedupload}}',
 'sharedupload-desc-here'  => ':See also: {{msg-mw|Sharedupload}}',
-'noimage'                 => 'In image description page when there is no file by that name.  The variable $1 comes from {{msg|noimage-linktext}}, which is only substituted in this message.',
-'noimage-linktext'        => 'This message is used as a variable in {{msg|noimage}}, and will not be used anywhere else.',
 'shared-repo-from'        => 'This message is shown on an image description page when a duplicate of the image exists on a shared repository such as Wikimedia Commons.
 
 Example: http://test.wikipedia.org/wiki/File:Wiki.png#filelinks
@@ -1827,11 +1824,10 @@ Shown as subtitle of the protection form. $1 is the title of the page to be (un)
 'protect-default'           => '{{Identical|Default}}',
 'protect-fallback'          => 'This message is used as an option in the protection form on wikis were extra protection levels have been configured.',
 'protect-summary-cascade'   => 'Used in edit summary when cascade protecting a page.',
-'protect-expiring'          => 'Used in page history, and in [[Special:Protectedtitles]], [[Special:Protectedpages]].
-
-$1 = date and time,
-$2 = date,
-$3 = time.
+'protect-expiring'          => 'Used in page history, and in [[Special:Protectedtitles]], [[Special:Protectedpages]], and extension FlaggedRevs.
+* $1 is a date and time
+* $2 is a date (optional)
+* $3 is a time (optional)
 
 {{Identical|Expires $1 (UTC)}}',
 'protect-cascade'           => 'See [[meta:Protect]] for more information.',
@@ -2090,8 +2086,6 @@ Shown as subtitle of [[Special:MovePage/testpage]]. $1 is the title of the page 
 'movearticle'                  => 'The text before the name of the page that you are moving.
 
 {{Identical|Move page}}',
-'movenologin'                  => '{{Identical|Not logged in}}',
-'movenologintext'              => "Text of message on special page 'Permissions Errors', which appears when somebody tries to move a page without being logged in.",
 'newtitle'                     => 'Used in the special page "[[Special:MovePage]]". The text for the inputbox to give the new page title.',
 'move-watch'                   => 'The text of the checkbox to watch the page you are moving.
 
