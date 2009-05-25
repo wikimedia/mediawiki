@@ -469,17 +469,19 @@ EOT
 			}
 		} else {
 			# Image does not exist
-			$nofile = wfMsgHtml( 'filepage-nofile' );
 			if ( $wgEnableUploads && $wgUser->isAllowed( 'upload' ) ) {
 				// Only show an upload link if the user can upload
-				$nofile .= ' '.$sk->makeKnownLinkObj(
-					SpecialPage::getTitleFor( 'Upload' ),
-					wfMsgHtml('filepage-nofile-link'),
-					'wpDestFile=' . urlencode( $this->displayImg->getName() )
-				);
+                		$uploadTitle = SpecialPage::getTitleFor( 'Upload' );
+				$nofile = wfMsgHtml('filepage-nofile-link',
+					$uploadTitle->getFullUrl( 'wpDestFile=' . urlencode( $this->img->getName() ) )
+					);
+			}
+			else
+			{
+				$nofile = wfMsgHtml( 'filepage-nofile' );
 			}
 			$wgOut->setRobotPolicy( 'noindex,nofollow' );
-			$wgOut->addHTML( '<div id="mw-imagepage-nofile">' . $nofile . '</div>' );
+			$wgOut->addHTML( '<div id="mw-imagepage-nofile" class="plainlinks">' . $nofile . '</div>' );
 		}
 	}
 
