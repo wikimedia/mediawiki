@@ -902,7 +902,6 @@ class UndeleteForm {
 					array(),
 					$targetQuery
 				) .
-				( $isDeleted ? ' ' . wfMsgHtml( 'deletedrev' ) : '' ) .
 			'</strong></div>' .
 			'<div id="mw-diff-'.$prefix.'title2">' .
 				$sk->revUserTools( $rev ) . '<br/>' .

@@ -180,9 +180,6 @@ class DeletedContribsPager extends IndexPager {
 		}
 
 		$ret = "{$del}{$link} ({$last}) ({$dellog}) ({$reviewlink}) . . {$mflag} {$pagelink} {$comment}";
-		if( $rev->isDeleted( Revision::DELETED_TEXT ) ) {
-			$ret .= ' ' . wfMsgHtml( 'deletedrev' );
-		}
 
 		$ret = "<li>$ret</li>\n";
 

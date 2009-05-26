@@ -599,7 +599,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		global $wgLang, $wgUser;
 
 		$date = $wgLang->timeanddate( $rev->getTimestamp() );
-		$difflink = $del = '';
+		$difflink = '';
 		// Live revisions
 		if( $this->deleteKey == 'oldid' ) {
 			$tokenParams = '&unhide=1&token='.urlencode( $wgUser->editToken( $rev->getId() ) );
@@ -618,7 +618,6 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		// Check permissions; items may be "suppressed"
 		if( $rev->isDeleted(Revision::DELETED_TEXT) ) {
 			$revlink = '<span class="history-deleted">'.$revlink.'</span>';
-			$del = ' <tt>' . wfMsgHtml( 'deletedrev' ) . '</tt>';
 			if( !$rev->userCan(Revision::DELETED_TEXT) ) {
 				$revlink = '<span class="history-deleted">'.$date.'</span>';
 				$difflink = '(' . wfMsgHtml('diff') . ')';
@@ -627,7 +626,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		$userlink = $this->skin->revUserLink( $rev );
 		$comment = $this->skin->revComment( $rev );
 
-		return "<li>$difflink $revlink $userlink $comment{$del}</li>";
+		return "<li>$difflink $revlink $userlink $comment</li>";
 	}
 
 	/**
@@ -640,10 +639,8 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		$target = $this->page->getPrefixedText();
 		$date = $wgLang->timeanddate( $file->getTimestamp(), true  );
 
-		$del = '';
 		# Hidden files...
 		if( $file->isDeleted(File::DELETED_FILE) ) {
-			$del = ' <tt>' . wfMsgHtml( 'deletedrev' ) . '</tt>';
 			if( !$file->userCan(File::DELETED_FILE) ) {
 				$pageLink = $date;
 			} else {
@@ -663,7 +660,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		$data = htmlspecialchars( $data );
 
 		return "<li>$pageLink ".$this->fileUserTools( $file )." $data ".
-			$this->fileComment( $file )."$del</li>";
+			$this->fileComment( $file )."</li>";
 	}
 
 	/**
@@ -680,18 +677,13 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		$pageLink = $this->skin->makeKnownLinkObj( $undelete, $date,
 			"target=$target&file={$file->getKey()}" );
 
-		$del = '';
-		if( $file->isDeleted(File::DELETED_FILE) ) {
-			$del = ' <tt>' . wfMsgHtml( 'deletedrev' ) . '</tt>';
-		}
-
 		$data = wfMsg( 'widthheight', $wgLang->formatNum( $file->getWidth() ),
 			$wgLang->formatNum( $file->getHeight() ) ) .
 			' (' . wfMsgExt( 'nbytes', 'parsemag', $wgLang->formatNum( $file->getSize() ) ) . ')';
 		$data = htmlspecialchars( $data );
 
 		return "<li>$pageLink ".$this->fileUserTools( $file )." $data ".
-			$this->fileComment( $file )."$del</li>";
+			$this->fileComment( $file )."</li>";
 	}
 
 	/**
