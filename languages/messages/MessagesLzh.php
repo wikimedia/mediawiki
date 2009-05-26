@@ -661,7 +661,6 @@ $2',
 'histlegend'             => "辨異：擇二孔後，按Enter、或點下鈕以辨之。<br />
 釋義：'''（{{int:cur}}）'''與今審辨；'''（{{int:last}}）'''與前審辨；'''{{int:minoreditletter}}'''，校文",
 'history-fieldset-title' => '誌覽',
-'deletedrev'             => '刪矣',
 'histfirst'              => '初',
 'histlast'               => '末',
 'historysize'            => '（$1位元組）',

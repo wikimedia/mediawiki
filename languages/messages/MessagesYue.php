@@ -805,7 +805,6 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'histlegend'             => "選擇唔同版本：響兩個唔同版本嘅圓框分別撳一下，再撳最底的「比較被選修訂」掣以作比較。<br />
 說明：'''（{{int:cur}}）'''= 同現時修訂版本嘅差別，'''（{{int:last}}）'''= 同前一個修訂版本嘅差別，'''{{int:minoreditletter}}''' = 小修改。",
 'history-fieldset-title' => '瀏覽歷史',
-'deletedrev'             => '[刪除咗]',
 'histfirst'              => '最早',
 'histlast'               => '最近',
 'historysize'            => '($1 {{PLURAL:$1|byte|bytes}})',
