@@ -1968,9 +1968,7 @@ function wfGetCachedNotice( $name ) {
 	}
 
 	wfProfileOut( $fname );
-	// Use $wgContLang to get a converted string by language.
-	global $wgContLang;
-	return $wgContLang->convert( $notice );
+	return $notice;
 }
 
 function wfGetNamespaceNotice() {
