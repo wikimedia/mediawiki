@@ -162,13 +162,13 @@ class Credits {
 	 * @return String: html
 	 */
 	protected static function link( User $user ) {
-		global $wgHiddenPrefs;
+		global $wgUser, $wgHiddenPrefs;
 		if( !in_array( 'realname', $wgHiddenPrefs ) )
 			$real = $user->getRealName();
 		else
 			$real = false;
 
-		$skin = $user->getSkin();
+		$skin = $wgUser->getSkin();
 		$page = $user->getUserPage();
 
 		return $skin->link( $page, htmlspecialchars( $real ? $real : $user->getName() ) );
