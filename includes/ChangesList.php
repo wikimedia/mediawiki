@@ -55,7 +55,7 @@ class ChangesList {
 	}
 	
 	/**
-	 * Sets the list to use a <div class="watchlist-(namespace)-(page)"> tag
+	 * Sets the list to use a <li class="watchlist-(namespace)-(page)"> tag
 	 * @param bool $value
 	 */
 	public function setWatchlistDivs( $value = true ) {
@@ -458,17 +458,13 @@ class OldChangesList extends ChangesList {
 		}
 		
 		if( $this->watchlist ) {
-			$watchlist_start = Xml::openElement( 'div', array( 'class' => Sanitizer::escapeClass( 'watchlist-'.$rc->mAttribs['rc_namespace'].'-'.$rc->mAttribs['rc_title'] ) ) );
-			$watchlist_end = Xml::closeElement( 'div' );
+			$classes[] = Sanitizer::escapeClass( 'watchlist-'.$rc->mAttribs['rc_namespace'].'-'.$rc->mAttribs['rc_title'] );
 		}
-		else {
-			$watchlist_start = $watchlist_end = null;
-		}
-
+		
 		wfRunHooks( 'OldChangesListRecentChangesLine', array(&$this, &$s, $rc) );
 
 		wfProfileOut( __METHOD__ );
-		return "$dateheader<li class=\"".implode( ' ', $classes )."\">".$watchlist_start.$s.$watchlist_end."</li>\n";
+		return "$dateheader<li class=\"".implode( ' ', $classes )."\">".$s."</li>\n";
 	}
 }
 
