@@ -1,5 +1,5 @@
 <?php
-/** Simplified Chinese (‪中文(简体)‬)
+/** Simplified Chinese (‪中文(简化字)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -1526,7 +1526,7 @@ $2',
 'sharedupload-desc-here'    => '该文件来自于$1，它可能在其它计划项目中被应用。
 它在[$2 文件描述页面]那边上的描述于下面显示。',
 'filepage-nofile'           => '不存在此名称的文件。',
-'filepage-nofile-link'      => '点击这里上传它',
+'filepage-nofile-link'      => '不存在此名称的文件，但您可以[$1 上传它]。',
 'uploadnewversion-linktext' => '上传该文件的新版本',
 'shared-repo-from'          => '出自$1',
 'shared-repo'               => '一个共用文件库',
