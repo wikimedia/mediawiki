@@ -17,7 +17,4 @@ $messages = array(
 # User preference toggles
 'tog-norollbackdiff' => '进行回退后略过差异比较',
 
-# Move page
-'move-redirect-suppressed' => '已禁止重新定向',
-
 );
