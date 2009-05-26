@@ -1,5 +1,5 @@
 <?php
-/** Traditional Chinese (‪中文(繁體)‬)
+/** Traditional Chinese (‪中文(傳統字)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -1502,7 +1502,7 @@ $2',
 'sharedupload-desc-here'    => '該檔案來自於$1，它可能在其它計劃項目中被應用。
 它在[$2 檔案描述頁面]那邊上的描述於下面顯示。',
 'filepage-nofile'           => '不存在此名稱的檔案。',
-'filepage-nofile-link'      => '點擊這裏上傳它',
+'filepage-nofile-link'      => '不存在此名稱的檔案，但您可以[$1 上傳它]。',
 'uploadnewversion-linktext' => '上傳該檔案的新版本',
 'shared-repo-from'          => '出自$1',
 'shared-repo'               => '一個共用檔案庫',

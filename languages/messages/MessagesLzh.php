@@ -1281,7 +1281,7 @@ $2',
 'sharedupload-desc-here'    => '此檔為$1之共傳，可另項用也。
 於共庫上[$2 檔述]之示。',
 'filepage-nofile'           => '查無此檔。',
-'filepage-nofile-link'      => '點此貢焉',
+'filepage-nofile-link'      => '查無此檔，爾可[$1 貢焉]。',
 'uploadnewversion-linktext' => '更新此檔',
 
 # File reversion

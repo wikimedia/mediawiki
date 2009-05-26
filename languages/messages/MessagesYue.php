@@ -1,5 +1,5 @@
 <?php
-/** Yue (粵語)
+/** Cantonese (粵語/廣東話)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -1487,7 +1487,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'sharedupload-desc-here'    => '呢個檔案係出自$1，可以喺其他計劃中使用。
 佢響嗰邊嘅[$2 檔案描述頁]響下面度顯示。',
 'filepage-nofile'           => '冇同名嘅檔案存在。',
-'filepage-nofile-link'      => '撳呢度上載佢。',
+'filepage-nofile-link'      => '冇同名嘅檔案存在，但係你可以[$1 上載佢]。',
 'uploadnewversion-linktext' => '上載呢個檔案嘅一個新版本',
 'shared-repo-from'          => '出自 $1',
 'shared-repo'               => '一個共用檔案庫',
