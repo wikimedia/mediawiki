@@ -73,6 +73,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 13456) categoriespagetext supports PLURAL
 * (bug 18860) Blocks of IPs affecting registered users can now block email
 * (bug 17093) Date and time are separate parameters in Special:BlockList
+* (bug 11484) Added ISO speed rating to default collapsed EXIF metadata view
 
 === Bug fixes in 1.16 ===
 
