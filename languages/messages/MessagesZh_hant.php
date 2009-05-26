@@ -823,7 +823,6 @@ $2',
 'histlegend'             => "差異選擇: 標記要比較修訂版本的單選按鈕並點擊底部的按鈕進行比較。<br />
 說明: '''({{int:cur}})''' 指與當前修訂版本比較，'''({{int:last}})''' 指與前一個修訂修訂版本比較，'''{{int:minoreditletter}}''' = 小修改。",
 'history-fieldset-title' => '瀏覽歷史',
-'deletedrev'             => '[已刪除]',
 'histfirst'              => '最早版本',
 'histlast'               => '最新版本',
 'historysize'            => '($1 位元組)',

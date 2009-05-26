@@ -847,7 +847,6 @@ $2',
 'histlegend'             => "差异选择：标记要比较修订版本的单选按钮并点击底部的按钮进行比较。<br />
 说明：'''({{int:cur}})''' 指与当前修订版本比较，'''({{int:last}})''' 指与前一个修订版本比较，'''{{int:minoreditletter}}''' = 小修改。",
 'history-fieldset-title' => '浏览历史',
-'deletedrev'             => '[已删除]',
 'histfirst'              => '最早版本',
 'histlast'               => '最新版本',
 'historysize'            => '（$1字节）',
