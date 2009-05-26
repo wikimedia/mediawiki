@@ -925,7 +925,6 @@ La rason balhada per $3 èra ''$2''.",
 'histlegend'             => 'Legenda : ({{MediaWiki:Cur}}) = diferéncia amb la version actuala ,
 ({{MediaWiki:Last}}) = diferéncia amb la version precedenta, <b>m</b> = cambiament menor',
 'history-fieldset-title' => "Percórrer l'istoric",
-'deletedrev'             => '[suprimit]',
 'histfirst'              => 'Primièras contribucions',
 'histlast'               => 'Darrièras contribucions',
 'historysize'            => '({{PLURAL:$1|1 octet|$1 octets}})',
@@ -1465,6 +1464,9 @@ Tanben podètz causir de permetre a d’autres de vos contactar amb l'ajuda de v
 'uploadbtn'                   => 'Importar lo fichièr',
 'reupload'                    => 'Importar tornarmai',
 'reuploaddesc'                => 'Anullar lo cargament e tornar al formulari.',
+'uploadnologin'               => 'Vos sètz pas identificat(ada)',
+'uploadnologintext'           => 'Vos cal èsser [[Special:UserLogin|connectat(ada)]]
+per copiar de fichièrs sul servidor.',
 'upload_directory_missing'    => 'Lo repertòri d’impòrt ($1) es mancant e a pas pogut èsser creat pel servidor web.',
 'upload_directory_read_only'  => 'Lo servidor Web pòt escriure dins lo dorsièr cibla ($1).',
 'uploaderror'                 => 'Error',
@@ -2311,6 +2313,9 @@ Avètz la responsabilitat de vos assegurar que los ligams contunhen de puntar ca
 
 Dins aqueste cas, vos caldrà desplaçar o fusionar la pagina manualament se o volètz.",
 'movearticle'                  => "Tornar nomenar l'article",
+'movenologin'                  => 'Vos sètz pas identificat(ada)',
+'movenologintext'              => "Per poder tornar nomenar un article, vos cal èsser [[Special:UserLogin|connectat(ada)]]
+en tant qu'utilizaire enregistrat.",
 'movenotallowed'               => 'Avètz pas la permission de tornar nomenar de paginas.',
 'movenotallowedfile'           => 'Avètz pas la permission de desplaçar los fichièrs.',
 'cant-move-user-page'          => "Avètz pas la permission de tornar nomenar de paginas d'utilizaires raices sus aqueste wiki.",

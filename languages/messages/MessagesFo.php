@@ -499,7 +499,6 @@ Vinarliga umhugsa at býta síðuna sundur í styttri pettir.'''",
 'histlegend'          => 'Frágreiðing:<br />
 (nú) = munur til núverandi útgávu,
 (síðst) = munur til síðsta útgávu, m = minni rættingar',
-'deletedrev'          => '[strikað]',
 'histfirst'           => 'Elsta',
 'histlast'            => 'Nýggjasta',
 'historysize'         => '({{PLURAL:$1|1 být|$1 být}})',
@@ -629,6 +628,9 @@ Vinarliga umhugsa at býta síðuna sundur í styttri pettir.'''",
 # Upload
 'upload'            => 'Legg fílu upp',
 'uploadbtn'         => 'Legg fílu upp',
+'uploadnologin'     => 'Ikki ritað inn',
+'uploadnologintext' => 'Tú mást hava [[Special:UserLogin|ritað inn]]
+fyri at leggja fílur upp.',
 'uploadlog'         => 'fílu logg',
 'uploadlogpage'     => 'Fílugerðabók',
 'filename'          => 'Fílunavn',
@@ -950,6 +952,7 @@ Tú kanst ikki skriva yvir eina verandi síðu.
 Hetta kann vera ein ógvuslig og óvæntað flyting av einari vældámdari síðu.
 Vinarliga tryggja tær, at tú skilur avleiðingarnar av hesum áðrenn tú heldur áfam.",
 'movearticle'             => 'Flyt síðu:',
+'movenologin'             => 'Hevur ikki ritað inn',
 'newtitle'                => 'Til nýtt heiti:',
 'move-watch'              => 'Hav eftirlit við hesi síðuni',
 'movepagebtn'             => 'Flyt síðu',

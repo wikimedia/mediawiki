@@ -605,7 +605,6 @@ Sedemê qedexekirinê ji $3 ev e: ''$2''",
 'page_last'           => 'paşîn',
 'histlegend'          => 'Legend: (ferq) = cudayî nav vê û versiyon a niha,
 (berê) = cudayî nav vê û yê berê vê, B = guhêrka biçûk',
-'deletedrev'          => '[jêbir]',
 'histfirst'           => 'Kevintirîn',
 'histlast'            => 'Nûtirîn',
 'historysize'         => '({{PLURAL:$1|1 byte|$1 bytes}})',
@@ -827,6 +826,8 @@ Sedemê qedexekirinê ji $3 ev e: ''$2''",
 'uploadbtn'              => 'Wêneyê (ya tiştekî din ya mêdya) barbike',
 'reupload'               => 'Dîsa barbike',
 'reuploaddesc'           => 'Barkirinê biskîne û dîsa here rûpela barkirinê.',
+'uploadnologin'          => 'Xwe qeyd nekir',
+'uploadnologintext'      => 'Ji bo barkirina wêneyan divê ku tu [[Special:UserLogin|têkevî]].',
 'uploaderror'            => 'Şaşbûn bo barkirinê',
 'uploadtext'             => "Berê tu wêneyên nû bar bikî, ji bo dîtin an vedîtina wêneyên ku ji xwe hene binêre: [[Special:FileList|lîsteya wêneyên barkirî]]. Herwisa wêneyên ku hatine barkirin an jî jê birin li vir dikarî bibînî: [[Special:Log/upload|reşahîya barkirîyan]].
 
@@ -1370,6 +1371,9 @@ Eger ev mişkla çêbû, tu gireke vê rûpelê bi xwe bigerînê.
 
 Xêra xwe navî nuh û sedemê navgerandinê binivisîne.",
 'movearticle'               => 'Rûpelê bigerîne',
+'movenologin'               => 'Xwe qeyd nekir',
+'movenologintext'           => 'Tu dive bikarhênereke qeydkirî bî û [[Special:UserLogin|werî nav sîstemê]]
+da bikarî navê wê rûpelê biguherînî.',
 'movenotallowed'            => 'Mafên te bo guherandina navên gotaran tune ye.',
 'movenotallowedfile'        => "Mafê te bo guherandina navên data'yan tune ye.",
 'cant-move-user-page'       => 'Mafê te bo guherandina navên rûpelên bikarhêneran tune ye.',

@@ -463,7 +463,6 @@ Bákannà ẹ tún ṣèlérí fún wa wípé ẹ̀yin lẹkọ́ fúnra arayín
 'page_first'             => 'àkọ́kọ́',
 'page_last'              => 'tógbẹ̀yìn',
 'history-fieldset-title' => 'Ìtàn Ìṣíwò',
-'deletedrev'             => '[tiparẹ́]',
 'histfirst'              => 'Pípẹ́jùlọ',
 'histlast'               => 'Tuntunjùlọ',
 'historyempty'           => '(òfo)',

@@ -415,7 +415,7 @@ $messages = array(
 'versionrequired'     => 'Cal la versió $1 del MediaWiki',
 'versionrequiredtext' => 'Cal la versió $1 del MediaWiki per a utilitzar aquesta pàgina. Vegeu [[Special:Version]]',
 
-'ok'                      => "D'acord",
+'ok'                      => 'OK',
 'retrievedfrom'           => 'Obtingut de «$1»',
 'youhavenewmessages'      => 'Teniu $1 ($2).',
 'newmessageslink'         => 'nous missatges',
@@ -845,7 +845,6 @@ El motiu donat per $3 és ''$2''",
 'histlegend'             => 'Simbologia: (act) = diferència amb la versió actual,
 (prev) = diferència amb la versió anterior, m = edició menor',
 'history-fieldset-title' => "Cerca a l'historial",
-'deletedrev'             => '[suprimit]',
 'histfirst'              => 'El primer',
 'histlast'               => 'El darrer',
 'historysize'            => '({{PLURAL:$1|1 octet|$1 octets}})',
@@ -1385,6 +1384,9 @@ Les pàgines de la vostra [[Special:Watchlist|llista de seguiment]] apareixen en
 'uploadbtn'                   => 'Carrega un fitxer',
 'reupload'                    => 'Carrega de nou',
 'reuploaddesc'                => 'Torna al formulari per apujar.',
+'uploadnologin'               => 'No heu iniciat una sessió',
+'uploadnologintext'           => "Heu d'[[Special:UserLogin|iniciar una sessió]]
+per a penjar-hi fitxers.",
 'upload_directory_missing'    => "No s'ha trobat el directori de càrrega ($1) i tampoc no ha pogut ser creat pel servidor web.",
 'upload_directory_read_only'  => 'El servidor web no pot escriure al directori de càrrega ($1)',
 'uploaderror'                 => "S'ha produït un error en l'intent de carregar",
@@ -1525,7 +1527,7 @@ Si us plau vegeu la [$2 pàgina de descripció del fitxer] per a més informaci�
 'sharedupload-desc-here'    => 'Aquest fitxer prové de $1 i pot ser usat per altres projectes.
 La descripció de la seva [$2 pàgina de descripció] es mostra a continuació.',
 'filepage-nofile'           => 'No hi ha cap fitxer amb aquest nom.',
-'filepage-nofile-link'      => 'Cliqui aquí per a carregar-ho.',
+'filepage-nofile-link'      => '$1 - URL de la pàgina de càrrega per aquest fitxer.',
 'uploadnewversion-linktext' => "Carrega una nova versió d'aquest fitxer",
 'shared-repo-from'          => 'des de $1',
 'shared-repo'               => 'un repositori compartit',
@@ -2145,7 +2147,7 @@ l'accés a l'escriptura a una adreça IP o un usuari prèviament bloquejat.",
 'ipblocklist-submit'              => 'Cerca',
 'blocklistline'                   => '$1, $2 bloca $3 ($4)',
 'infiniteblock'                   => 'infinit',
-'expiringblock'                   => 'venç el $1 $2',
+'expiringblock'                   => 'venç el $1 a $2',
 'anononlyblock'                   => 'només usuari anònim',
 'noautoblockblock'                => "S'ha inhabilitat el bloqueig automàtic",
 'createaccountblock'              => "s'ha blocat la creació de nous comptes",
@@ -2236,6 +2238,9 @@ assegureu-vos d'entendre les conseqüències que comporta abans de seguir endava
 
 En aquests casos, haureu de traslladar o fusionar la pàgina manualment si ho desitgeu.",
 'movearticle'                  => 'Reanomena la pàgina',
+'movenologin'                  => "No sou a dins d'una sessió",
+'movenologintext'              => "Heu de ser un usuari registrat i estar [[Special:UserLogin|dintre d'una sessió]]
+per reanomenar una pàgina.",
 'movenotallowed'               => 'No teniu permís per a moure pàgines.',
 'movenotallowedfile'           => 'No teniu el permís per a moure fitxers.',
 'cant-move-user-page'          => "No teniu permís per a moure pàgines d'usuari (independentment de les subpàgines).",
@@ -2936,7 +2941,7 @@ Confirmeu que realment voleu tornar-la a crear.",
 'recreate'            => 'Torna a crear',
 
 # action=purge
-'confirm_purge_button' => "D'acord",
+'confirm_purge_button' => 'OK',
 'confirm-purge-top'    => "Voleu buidar la memòria cau d'aquesta pàgina?",
 'confirm-purge-bottom' => "Purgar una pàgina força que hi aparegui la versió més actual i n'esborra la memòria cau.",
 

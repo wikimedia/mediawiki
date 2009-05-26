@@ -486,7 +486,6 @@ S'arregistru de is fuliaduras e moviduras de sa pàgina est amostau pro informat
 
 Legenda: '''({{int:cur}})''' = diferèntzias cun sa versione currente, '''({{int:last}})''' = diferèntzias cun sa versione in antis, '''{{int:minoreditletter}}''' = acontzu minore",
 'history-fieldset-title' => "Isfògia s'istòria",
-'deletedrev'             => '[fuliada]',
 'histfirst'              => 'Prima',
 'histlast'               => 'Ùrtima',
 'historyempty'           => '(bùida)',

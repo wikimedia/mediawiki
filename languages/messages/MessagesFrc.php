@@ -543,7 +543,6 @@ Les notes d'ôtage pour cette page sont données ici pour vous aider:",
 'page_last'           => 'dernier',
 'histlegend'          => 'Choisir une version: Marquez les ronds pour les versions que vous voulez comparer et cliquez "enter" ou le bouton en bas.<br />
 Clé: (cour.) = différence avec la version courante, (dernier) = différence avec la version avant, m = petit changement.',
-'deletedrev'          => '[ôté]',
 'histfirst'           => 'Premiers changements',
 'histlast'            => 'Derniers changements',
 'historyempty'        => '(vide)',

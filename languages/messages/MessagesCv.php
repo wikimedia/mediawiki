@@ -546,7 +546,6 @@ $1 хутшăнакан патне, е ытти [[{{MediaWiki:Grouppage-sysop}}|
 'last'                => 'малт.',
 'page_first'          => 'пĕрремĕш',
 'page_last'           => 'юлашки',
-'deletedrev'          => '[кăларса пăрахнă]',
 'histfirst'           => 'Пĕрремĕш',
 'histlast'            => 'Юлашки',
 'historysize'         => '$1 байт',

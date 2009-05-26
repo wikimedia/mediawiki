@@ -271,7 +271,6 @@ Putite cuntinuà a ausà {{SITENAME}} comme n'utente senza nomme, o si nò putit
 
 # History pages
 'currentrev' => "Verzione 'e mmo",
-'deletedrev' => '[scancellata]',
 
 # Revision deletion
 'rev-delundel' => 'faje vedé/annascunne',

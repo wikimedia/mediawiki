@@ -566,7 +566,6 @@ Il regjistri di eliminazion pe pagjine al ven mostrât ca sot par informazion.',
 
 Leiende: (cur) = difarencis cun la version atuâl, (prec) = difarencis cun la version precedente, '''p''' = piçul cambiament",
 'history-fieldset-title' => 'Sgarfe tal storic',
-'deletedrev'             => '[eliminade]',
 'histfirst'              => 'Prime',
 'histlast'               => 'Ultime',
 'historysize'            => '({{PLURAL:$1|1 byte|$1 bytes}})',

@@ -466,7 +466,6 @@ Sedi ya phumulo ya letlakala e re:",
 'histlegend'          => "Tlhaolo ya diphapano: swaya lepokisi la phetogo go bapetša ke moka o thwanye ''enter'' tlase-tlase<br />
 Nane: (bjale) = phapang le diphetogo tša bjale,
 (mafelelo) = phapang le diphetogo tša pele, M = diphetogo tše nyenyane.",
-'deletedrev'          => '[phumutšwe]',
 'histfirst'           => 'Pelepele',
 'histlast'            => 'Ntshwantshwa',
 'historysize'         => '({{PLURAL:$1|1 byte|$1 bytes}})',

@@ -694,7 +694,6 @@ La rasgioni frunidda da $3 è ''$2''",
 'histlegend'          => "Cunfrontu i li versioni: isciubarà li caselli curripundenti a li versioni disizaddi e incalchà Inviu o lu buttoni in giossu.
 
 Ippiegazioni: (curr) = diffarènzi cu la versioni currenti, (priz) = diffarènzi cu la versioni prizzidenti, '''m''' = mudìfigga minori, '''b''' = mudìfigga d'un bot, '''N''' = pàgina noba",
-'deletedrev'          => '[canzilladda]',
 'histfirst'           => 'Primma',
 'histlast'            => 'Ulthima',
 'historysize'         => '({{PLURAL:$1|1 byte|$1 bytes}})',
@@ -942,6 +941,8 @@ Cunsulthà lu [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rigisthru d
 'uploadbtn'                   => 'Carrigga',
 'reupload'                    => 'Carrigga di nobu',
 'reuploaddesc'                => 'Canzella lu carriggamentu e turra a lu mòdulu',
+'uploadnologin'               => 'Intradda nò effettuadda',
+'uploadnologintext'           => 'È nezzessàriu [[Special:UserLogin|intrà]] pa carriggà file.',
 'upload_directory_read_only'  => "L'elaburaddori sivvidori nò è bonu à ischribì i' la carthella di carriggamentu ($1).",
 'uploaderror'                 => "Errori i' lu carriggamentu",
 'uploadtext'                  => "Usà lu mòdulu in giossu pà carriggà file.
@@ -1559,6 +1560,8 @@ Azzirthati d'abé cumpresu li cunsiguènzi di l'ippusthamentu!",
 
 In chisthi casi, si lu vói avveru, débi ippusthà o aggiugnì a manu le infuimmazioni cuntinuddi i' la pàgina di dischussioni.",
 'movearticle'             => 'Ippustha la pàgina',
+'movenologin'             => 'Intradda nò effettuadda',
+'movenologintext'         => "L'ippusthamentu di li pàgini è cunsintiddu soru a l'utenti registhraddi chi so [[Special:UserLogin|intraddi]] i' lu situ.",
 'movenotallowed'          => "Nò si diponi di li primmissi nezzessàri a l'ippusthamentu di pàgini.",
 'newtitle'                => 'Nobu tìturu:',
 'move-watch'              => "Aggiungi a l'abbaidaddi ippiziari",

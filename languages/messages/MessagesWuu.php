@@ -337,7 +337,6 @@ $messages = array(
 'cur'          => '当前',
 'last'         => '上个',
 'histlegend'   => '选择比较版本：标记要比较个两只版本，回车或者揿页面底里个揿钮。<br /> 图例：(当前) = 搭当前版本有啥两样， (上个) = 搭上个版本有啥两样，小 = 小改动。',
-'deletedrev'   => '[已删]',
 'histfirst'    => '顶早',
 'histlast'     => '顶晏',
 'historyempty' => '（空）',

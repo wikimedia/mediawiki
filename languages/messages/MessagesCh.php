@@ -544,7 +544,6 @@ Nina'i i rasion ''$2'' as $3",
 'histlegend'          => "Seleksion ni diferensia: ayek i kahon rediu siha ni tinilaika ni para un akompara ya yemme' \"enter\" pat i batunes gi sanpapa'.<br />
 Leyendu: (på'go) = i diferensia yan i rebision på'go,
 (halacha) = i diferensia yan i tinilaika ma'pos, M = dikike' na tinilaika.",
-'deletedrev'          => '[mafunas]',
 'histfirst'           => 'I mas bihu',
 'histlast'            => 'I mas nuebu',
 'historysize'         => '({{PLURAL:$1|1 byte|$1 bytes}})',

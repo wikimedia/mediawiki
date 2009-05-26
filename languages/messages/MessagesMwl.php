@@ -497,7 +497,6 @@ Ambaixo stá l registro de las eileminaçones pa refréncia.',
 Legenda: (atu) = defrénças de la berson atual,
 (red) = defrénça de la redadeira berson, m = eidiçon pequerrixa',
 'history-fieldset-title' => 'Nabegar pul stórico',
-'deletedrev'             => '[apagada]',
 'histfirst'              => 'Mais antigas',
 'histlast'               => 'Redadeiras',
 

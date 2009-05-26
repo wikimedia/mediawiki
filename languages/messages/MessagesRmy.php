@@ -248,7 +248,6 @@ Kana avilyan kathe doshatar, ja palpale.',
 'last'             => 'purani',
 'histlegend'       => 'Xalyaripen: (akanutni) = ververimata mamui i akanutni versiya,
 (purani) = ververimata mamui i puraneder versiya, T = tikno editisaripen',
-'deletedrev'       => '[khoslo]',
 'histfirst'        => 'O mai purano',
 'histlast'         => 'O mai nevo',
 

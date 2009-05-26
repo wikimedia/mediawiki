@@ -213,7 +213,6 @@ $messages = array(
 'previousrevision'    => '←Revisi riolo',
 'currentrevisionlink' => 'Revisi tannapa',
 'page_first'          => 'séuwani',
-'deletedrev'          => '[ripeddé]',
 'histfirst'           => 'Poŋ loa',
 'histlast'            => 'Poŋ nappa',
 'historysize'         => '($1 {{PLURAL:$1|bita|bita}})',
