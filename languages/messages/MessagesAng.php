@@ -376,11 +376,12 @@ Bidde behycge þæt þu bricst þone tramet intō smalrum dǣlum.',
 'recentchangeslinked' => 'Sibba hweorfunga',
 
 # Upload
-'filename'    => 'Þrǣdnama',
-'filedesc'    => 'Scortnes',
-'filesource'  => 'Fruma:',
-'badfilename' => 'Onlīcnesnama wearþ gewend tō "$1(e/an)".',
-'savefile'    => 'Sparian þrǣd',
+'uploadnologin' => 'Ne inmeldod',
+'filename'      => 'Þrǣdnama',
+'filedesc'      => 'Scortnes',
+'filesource'    => 'Fruma:',
+'badfilename'   => 'Onlīcnesnama wearþ gewend tō "$1(e/an)".',
+'savefile'      => 'Sparian þrǣd',
 
 'nolicense' => 'Nǣnne gecorenne',
 

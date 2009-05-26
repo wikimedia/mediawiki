@@ -896,7 +896,6 @@ A razón dada por $3 foi ''$2''",
 Lenda: (actual) = diferenza coa versión actual,
 (última) = diferenza coa versión precedente, m = edición pequena.',
 'history-fieldset-title' => 'Navegar polo historial',
-'deletedrev'             => '[borrado]',
 'histfirst'              => 'Primeiras',
 'histlast'               => 'Últimas',
 'historysize'            => '({{PLURAL:$1|1 byte|$1 bytes}})',
@@ -1439,6 +1438,8 @@ As páxinas da súa [[Special:Watchlist|lista de vixilancia]] aparecen en '''neg
 'uploadbtn'                   => 'Cargar o ficheiro',
 'reupload'                    => 'Volver cargar',
 'reuploaddesc'                => 'Cancelar a carga e voltar ao formulario de carga',
+'uploadnologin'               => 'Non está dentro do sistema',
+'uploadnologintext'           => 'Debe [[Special:UserLogin|acceder ao sistema]] para poder cargar ficheiros.',
 'upload_directory_missing'    => 'Falta o directorio de carga ($1) e non pode ser creado polo servidor da páxina web.',
 'upload_directory_read_only'  => 'Non se pode escribir no directorio de subida ($1) do servidor web.',
 'uploaderror'                 => 'Erro ao cargar',
@@ -2308,6 +2309,8 @@ por favor, asegúrese de que entende as consecuencias disto antes de proseguir."
 
 Nestes casos, terá que mover ou mesturar a páxina manualmente se o desexa.",
 'movearticle'                  => 'Mover esta páxina:',
+'movenologin'                  => 'Non está dentro do sistema',
+'movenologintext'              => 'Debe ser un usuario rexistrado e [[Special:UserLogin|acceder ao sistema]] para mover unha páxina.',
 'movenotallowed'               => 'Non ten os permisos necesarios para mover páxinas.',
 'movenotallowedfile'           => 'Non ten os permisos necesarios para mover ficheiros.',
 'cant-move-user-page'          => 'Non ten os permisos necesarios para mover páxinas de usuario (agás subpáxinas).',
@@ -2551,6 +2554,16 @@ Isto, probabelmente, se debe a unha ligazón cara a un sitio externo que está n
 'numwatchers'    => 'Número de vixiantes: $1',
 'numauthors'     => 'Número de autores distintos (artigo): $1',
 'numtalkauthors' => 'Número de autores distintos (páxina de conversa): $1',
+
+# Skin names
+'skinname-standard'    => 'Clásica',
+'skinname-nostalgia'   => 'Morriña',
+'skinname-cologneblue' => 'Azul colonial',
+'skinname-monobook'    => 'MonoBook',
+'skinname-myskin'      => 'A miña apariencia',
+'skinname-chick'       => 'Parrulo',
+'skinname-simple'      => 'Sinxela',
+'skinname-modern'      => 'Moderna',
 
 # Math options
 'mw_math_png'    => 'Orixinar sempre unha imaxe PNG',

@@ -244,7 +244,6 @@ Aipórõ, eñeha'ãna emboja'o ne rembiapo, vore michĩvévape.'''",
 # History pages
 'cur'         => "ko'ag̃agua",
 'last'        => 'ipaha',
-'deletedrev'  => '[oñembogue]',
 'historysize' => '($1 bytes)',
 
 # Revision deletion

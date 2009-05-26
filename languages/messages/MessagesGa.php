@@ -679,7 +679,6 @@ Tá an log scriosta ar fáil anseo mar áis:",
 'histlegend'             => 'Chun difríochtaí a roghnú, marcáil na cnaipíní de na heagráin atá tú ag iarraidh comparáid a dhéanamh astu, agus brúigh Iontráil nó an cnaipe ag bun an leathanaigh.<br />
 Treoir: (rth) = difríocht ón leagan reatha, (rmh) = difríocht ón leagan roimhe, <b>m</b> = mionathrú.',
 'history-fieldset-title' => 'Brabhsáil an stáir',
-'deletedrev'             => '[scriosta]',
 'histfirst'              => 'An ceann is luaithe',
 'histlast'               => 'An ceann is déanaí',
 'historysize'            => '({{PLURAL:$1|Beart amháin|$1 bearta}})',
@@ -934,6 +933,8 @@ Tá na leathanaigh ar do [[Special:Watchlist|liosta faire]] i '''gcló trom'''."
 'uploadbtn'            => 'Uaslódaigh comhad',
 'reupload'             => 'Athuaslódáil',
 'reuploaddesc'         => 'Dul ar ais chuig an fhoirm uaslódála.',
+'uploadnologin'        => 'Nil tú logáilte isteach',
+'uploadnologintext'    => 'Ní mór duit [[Special:UserLogin|logáil isteach]] chun comhaid a huaslódáil.',
 'uploaderror'          => 'Earráid uaslódála',
 'uploadtext'           => "Bain úsáid as an bhfoirm thíos chun comhaid a uaslódáil.
 Chun comhaid atá ann cheana a fheiceáil nó a chuardach téigh chuig an [[Special:FileList|liosta comhad uaslódáilte]]. Gheobhaidh tú liosta de chomhaid uaslódáilte sa [[Special:Log/upload|loga uaslódála]] agus liosta de chomhaid scriosta sa [[Special:Log/delete|loga scriosta]] freisin.
@@ -1534,6 +1535,8 @@ cinntigh go dtuigeann tú na hiarmhairtí go léir roimh dul ar aghaigh.",
 
 Sna cásanna sin, caithfidh tú an leathanach a aistrigh nó a chumasc tú féin más maith leat.",
 'movearticle'             => 'Athainmnigh an leathanach',
+'movenologin'             => 'Níl tú logáilte isteach',
+'movenologintext'         => "Ní mór duit bheith i d'úsáideoir cláraithe agus [[Special:UserLogin|logáilte isteach]] chun leathanach a hathainmniú.",
 'movenotallowed'          => 'Níl cead agat leathanaigh a athainmniú.',
 'newtitle'                => 'Go teideal nua',
 'move-watch'              => 'Déan faire an leathanach seo',

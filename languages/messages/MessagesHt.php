@@ -718,7 +718,6 @@ Sistèm an ap montre, anba paj sa, jounal tout vèsyon paj an ki efase pou sèvi
 'page_last'              => 'dènye',
 'histlegend'             => 'Lejand : ({{MediaWiki:Cur}}) = diferans ak vèsyon kounye a, ({{MediaWiki:Last}}) = diferans ak vèsyon anvan, <b>m</b> = modifikasyon ki pa enpòtan',
 'history-fieldset-title' => 'Navige nan istorik paj sa',
-'deletedrev'             => '[efase]',
 'histfirst'              => 'Premye kontribisyon yo',
 'histlast'               => 'Dènye kontribisyon yo',
 'historysize'            => '({{PLURAL:$1|$1 okte|$1 okte yo}})',

@@ -281,6 +281,7 @@ Mit anderen Benutzer können Sie auch über die Benutzerdiskussionsseiten Kontak
 Seiten auf Ihrer [[Special:Watchlist|Beobachtungsliste]] sind '''fett''' dargestellt.",
 
 # Upload
+'uploadnologintext'           => 'Sie müssen [[Special:UserLogin|angemeldet sein]], um Dateien hochladen zu können.',
 'uploadtext'                  => "Benutzen Sie dieses Formular, um neue Dateien hochzuladen. 
 
 Gehen Sie zu der [[Special:FileList|Liste hochgeladener Dateien]], um vorhandene Dateien zu suchen und anzuzeigen. Siehe auch das [[Special:Log/upload|Datei-]]- und [[Special:Log/upload|Lösch-Logbuch]].
@@ -471,6 +472,8 @@ Sie sollten daher die Konsequenzen verstanden haben, bevor Sie fortfahren.",
 In diesen Fällen müssen Sie, falls gewünscht, den Inhalt der Seite von Hand verschieben oder zusammenführen.
 
 Bitte den '''neuen''' Titel unter '''Ziel''' eintragen, darunter die Umbenennung bitte '''begründen.'''",
+'movenologin'            => 'Sie sind nicht angemeldet',
+'movenologintext'        => 'Sie müssen ein registrierter Benutzer und [[Special:UserLogin|angemeldet]] sein, um eine Seite zu verschieben.',
 'movenotallowed'         => 'Sie haben keine Berechtigung, Seiten zu verschieben.',
 'movenotallowedfile'     => 'Sie haben keine Berechtigung, Dateien zu verschieben.',
 'cant-move-user-page'    => 'Sie haben keine Berechtigung, Benutzerhauptseiten zu verschieben.',

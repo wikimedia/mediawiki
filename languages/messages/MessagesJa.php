@@ -928,7 +928,6 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'histlegend'             => "差分を表示するには比較したい版のラジオボタンを選択し、エンターキーを押すか、下部のボタンを押します。<br />
 凡例: '''({{int:cur}})''' = 最新版との比較、'''({{int:last}})''' = 直前の版との比較、'''{{int:minoreditletter}}''' = 細部の編集",
 'history-fieldset-title' => '履歴の検索',
-'deletedrev'             => '[削除済み]',
 'histfirst'              => '最古',
 'histlast'               => '最新',
 'historysize'            => '($1 バイト)',
@@ -1454,6 +1453,8 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'uploadbtn'                   => 'アップロード',
 'reupload'                    => '再アップロード',
 'reuploaddesc'                => 'アップロードのフォームへ戻る',
+'uploadnologin'               => 'ログインしていません',
+'uploadnologintext'           => 'ファイルをアップロードするには[[Special:UserLogin|ログイン]]する必要があります。',
 'upload_directory_missing'    => 'アップロードディレクトリ ($1) が見つからずウェブサーバによっても作成できませんでした。',
 'upload_directory_read_only'  => 'アップロード先のディレクトリ ($1) にウェブサーバーが書き込めません。',
 'uploaderror'                 => 'アップロードのエラー',
@@ -2274,6 +2275,8 @@ $1 は、すでにブロックされています。設定を変更しますか�
 
 これらの場合、ノートページを移動する場合には、別に作業する必要があります。',
 'movearticle'                  => '移動するページ',
+'movenologin'                  => 'ログインしていません',
+'movenologintext'              => 'ページを移動するためには、アカウント作成の上、[[Special:UserLogin|ログイン]]している必要があります。',
 'movenotallowed'               => 'あなたにはページを移動する権限がありません。',
 'movenotallowedfile'           => 'あなたにはファイルを移動させる権限がありません。',
 'cant-move-user-page'          => 'あなたは、（サブページは別にして）利用者ページを移動させる権限を持っていません。',

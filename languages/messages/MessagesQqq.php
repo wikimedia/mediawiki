@@ -728,9 +728,6 @@ Please report at [[Support]] if you are unable to properly translate this messag
 {{Identical|Last}}",
 'histlegend'             => 'Text in history page. Refers to {{msg-mw|cur}}, {{msg-mw|last}}, and {{msg-mw|minoreditletter}}.',
 'history-fieldset-title' => 'Fieldset label in the edit history pages.',
-'deletedrev'             => 'When comparing deleted revisions for sysops
-
-{{Identical|Deleted}}',
 'histfirst'              => 'Used in page history.',
 'histlast'               => 'Used in page history.',
 'historyempty'           => 'Text in page history for empty page revisions
@@ -1267,6 +1264,7 @@ Does not work under $wgMiserMode ([[mwr:48986|r48986]]).',
 'uploadbtn'                   => 'Button name in [[Special:Upload]].
 
 {{Identical|Upload file}}',
+'uploadnologin'               => '{{Identical|Not logged in}}',
 'uploadtext'                  => 'Text displayed when uploading a file using [[Special:Upload]].',
 'upload-permitted'            => 'Used in [[Special:Upload]].',
 'upload-preferred'            => 'Used in [[Special:Upload]].',
@@ -1387,6 +1385,10 @@ Example: [[:Image:Addon-icn.png]]',
 {{doc-important|Do not customise this message. Just translate it.|Customisation should be done by local wikis.}}',
 'sharedupload-desc-there' => ':See also: {{msg-mw|Sharedupload}}',
 'sharedupload-desc-here'  => ':See also: {{msg-mw|Sharedupload}}',
+'filepage-nofile'         => 'This message only appears, if the user cannot upload files, or file uploads are disabled. (Otherwise, see {{msg-mw|Filepage-nofie-link}})',
+'filepage-nofile-link'    => 'This message only appears, if the user can upload files, and file uploads are enabled. (Otherwise, see {{msg-mw|Filepage-nofile}})
+
+$1 - URL of upload page for this file.',
 'shared-repo-from'        => 'This message is shown on an image description page when a duplicate of the image exists on a shared repository such as Wikimedia Commons.
 
 Example: http://test.wikipedia.org/wiki/File:Wiki.png#filelinks
@@ -2086,6 +2088,8 @@ Shown as subtitle of [[Special:MovePage/testpage]]. $1 is the title of the page 
 'movearticle'                  => 'The text before the name of the page that you are moving.
 
 {{Identical|Move page}}',
+'movenologin'                  => '{{Identical|Not logged in}}',
+'movenologintext'              => "Text of message on special page 'Permissions Errors', which appears when somebody tries to move a page without being logged in.",
 'newtitle'                     => 'Used in the special page "[[Special:MovePage]]". The text for the inputbox to give the new page title.',
 'move-watch'                   => 'The text of the checkbox to watch the page you are moving.
 

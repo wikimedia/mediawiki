@@ -427,7 +427,6 @@ $1 ਘੰਟੇ ਵਿੱਚ। ਨੁਕਸਾਨ ਤੋਂ ਬਚਣ ਲਈ, $
 'last'                => 'ਆਖਰੀ',
 'page_first'          => 'ਪਹਿਲਾਂ',
 'page_last'           => 'ਆਖਰੀ',
-'deletedrev'          => '[ਹਟਾਇਆ]',
 'histfirst'           => 'ਸਭ ਤੋਂ ਪਹਿਲਾਂ',
 'histlast'            => 'ਸਭ ਤੋਂ ਨਵਾਂ',
 'historysize'         => '($1 ਬਾਈਟ)',
@@ -560,6 +559,9 @@ $1 ਘੰਟੇ ਵਿੱਚ। ਨੁਕਸਾਨ ਤੋਂ ਬਚਣ ਲਈ, $
 'uploadbtn'            => 'ਫਾਇਲ ਅੱਪਲੋਡ ਕਰੋ',
 'reupload'             => 'ਰੀ-ਅੱਪਲੋਡ',
 'reuploaddesc'         => 'ਅੱਪਲੋਡ ਫਾਰਮ ਉੱਤੇ ਜਾਓ।',
+'uploadnologin'        => 'ਲਾਗਇਨ ਨਹੀਂ ਹੋ',
+'uploadnologintext'    => 'ਤੁਹਾਨੂੰ[[Special:UserLogin|logged in] ਕਰਨਾ ਪਵੇਗਾ]
+to upload files.',
 'uploaderror'          => 'ਅੱਪਲੋਡ ਗਲਤੀ',
 'uploadlog'            => 'ਅੱਪਲੋਡ ਲਾਗ',
 'uploadlogpage'        => 'ਅੱਪਲੋਡ ਲਾਗ',
@@ -813,6 +815,8 @@ $1 ਘੰਟੇ ਵਿੱਚ। ਨੁਕਸਾਨ ਤੋਂ ਬਚਣ ਲਈ, $
 # Move page
 'move-page-legend' => 'ਪੇਜ ਮੂਵ ਕਰੋ',
 'movearticle'      => 'ਪੇਜ ਮੂਵ ਕਰੋ:',
+'movenologin'      => 'ਲਾਗਇਨ ਨਹੀਂ ਹੋ',
+'movenologintext'  => 'ਇੱਕ ਪੇਜ ਮੂਵ ਕਰਨ ਲਈ ਤੁਸੀਂ ਰਜਿਸਟਰਡ ਮੈਂਬਰ ਹੋਣੇ ਚਾਹੀਦੇ ਹੋ ਅਤੇ [[Special:UserLogin|ਲਾਗਡ ਇਨ]] ਕੀਤਾ ਹੋਣਾ ਚਾਹੀਦਾ ਹੈ।',
 'newtitle'         => 'ਨਵੇਂ ਟਾਇਟਲ ਲਈ:',
 'move-watch'       => 'ਇਹ ਪੇਜ ਵਾਚ ਕਰੋ',
 'movepagebtn'      => 'ਪੇਜ ਮੂਵ ਕਰੋ',

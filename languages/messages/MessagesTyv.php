@@ -309,7 +309,6 @@ $messages = array(
 'last'                => 'бурунгу',
 'page_first'          => 'бирги',
 'page_last'           => 'сөөлгү',
-'deletedrev'          => '[ап каан]',
 'histfirst'           => 'Эң эрте',
 'histlast'            => 'Эң дээм чаагы',
 'historysize'         => '($1 байт)',

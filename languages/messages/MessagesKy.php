@@ -154,9 +154,8 @@ $messages = array(
 'yourdiff'           => 'Айырмалар',
 
 # History pages
-'next'       => 'кийинки',
-'last'       => 'соңку',
-'deletedrev' => '[өчүрүлдү]',
+'next' => 'кийинки',
+'last' => 'соңку',
 
 # Diffs
 'difference' => '(Оңдоолордун айырмасы)',

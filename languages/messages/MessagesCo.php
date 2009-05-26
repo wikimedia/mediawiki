@@ -202,7 +202,6 @@ U to indirizzu IP serà registratu indu a cronolugia di ista pagina.",
 # History pages
 'currentrev'  => 'Ultima revisione',
 'page_first'  => 'prima',
-'deletedrev'  => '[supprimatu]',
 'histfirst'   => 'Prima',
 'histlast'    => 'Ultima',
 'historysize' => '({{PLURAL:$1|1 ottettu|$1 ottetti}})',

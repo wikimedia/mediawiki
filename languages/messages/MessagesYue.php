@@ -1,5 +1,5 @@
 <?php
-/** Cantonese (粵語/廣東話)
+/** Yue (粵語)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -1342,6 +1342,8 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'uploadbtn'                   => '上載檔案',
 'reupload'                    => '再上載',
 'reuploaddesc'                => '取消上載再返到去上載表格',
+'uploadnologin'               => '重未登入',
+'uploadnologintext'           => '你必須先[[Special:UserLogin|登入]]去上載檔案。',
 'upload_directory_missing'    => '嗰個上載嘅目錄 ($1) 唔見咗，唔可以由網頁伺服器建立。',
 'upload_directory_read_only'  => '嗰個上載嘅目錄 ($1) 而家唔能夠被網頁伺服器寫入。',
 'uploaderror'                 => '上載錯誤',
@@ -2167,6 +2169,8 @@ $1已經被封鎖。你係咪想更改呢個設定？',
 
 喺呢啲情況下，需要嘅話你唯有手動搬同合併個頁。",
 'movearticle'                  => '搬頁:',
+'movenologin'                  => '未登入',
+'movenologintext'              => '你要係註冊用戶而且要[[Special:UserLogin|登入]]咗先可以搬頁',
 'movenotallowed'               => '你並無權限去搬版。',
 'movenotallowedfile'           => '你並無權限去搬檔。',
 'cant-move-user-page'          => '你並無權限去搬用戶版（佢嘅細版之外）。',
@@ -2907,7 +2911,6 @@ $1',
 
 # Separators for various lists, etc.
 'comma-separator' => '、',
-'word-separator'  => '',
 
 # Multipage image navigation
 'imgmultipageprev' => '← 上一版',

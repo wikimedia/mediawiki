@@ -746,7 +746,6 @@ Možete se vratiti i urediti već postojeću stranu ili [[Special:UserLogin|se p
 'histlegend'          => 'Odabiranje razlika: odaberite kutijice revizija za upoređivanje i pritisnite enter ili dugme na dnu.<br />
 Objašnjenje: (tren) = razlika sa trenutnom verzijom,
 (posl) = razlika sa prethodnom verzijom, M = mala izmena',
-'deletedrev'          => '[obrisan]',
 'histfirst'           => 'Najranije',
 'histlast'            => 'Poslednje',
 
@@ -936,6 +935,8 @@ Takođe možete podesiti da drugi mogu da vas kontaktiraju preko vaše korisnič
 'uploadbtn'                   => 'Pošalji fajl',
 'reupload'                    => 'Ponovo pošalji',
 'reuploaddesc'                => 'Vrati se na upitnik za slanje.',
+'uploadnologin'               => 'Niste prijavljeni',
+'uploadnologintext'           => 'Morate biti [[Special:UserLogin|prijavljeni]] da biste slali fajlove.',
 'upload_directory_read_only'  => 'Na direktorijum za slanje ($1) server ne može da piše.',
 'uploaderror'                 => 'Greška pri slanju',
 'uploadtext'                  => "Koristite donji obrazac da pošaljete fajlove.
@@ -1436,6 +1437,9 @@ nastavite.",
 
 U tim slučajevima, moraćete ručno da premestite ili spojite stranicu ukoliko to želite.",
 'movearticle'             => 'Premesti stranicu',
+'movenologin'             => 'Niste prijavljeni',
+'movenologintext'         => 'Morate biti registrovani korisnik i [[Special:UserLogin|prijavljeni]]
+da biste premestili stranicu.',
 'newtitle'                => 'Novi naslov',
 'movepagebtn'             => 'premesti stranicu',
 'pagemovedsub'            => 'Premeštanje uspelo',

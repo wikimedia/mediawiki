@@ -663,7 +663,6 @@ De deur $3 opeheven reeën is ''$2''",
 'page_last'           => 'lèste',
 'histlegend'          => "Selectie voe diff: sillecteer de te verheliek'n versies en toets ENTER of de knoppe onderan.<br />
 Verklaerieng afkortiengen: (udig) = verschil mie udihe versie, (vorihe) = verschil mie voorhaende versie, k = kleine wiezigieng",
-'deletedrev'          => '[verwiederd]',
 'histfirst'           => 'Oussen',
 'histlast'            => 'Nieuwsen',
 'historysize'         => '({{PLURAL:$1|1 byte|$1 bytes}})',

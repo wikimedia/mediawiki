@@ -629,7 +629,6 @@ Apzīmējumi:
 "ar iepriekšējo" = salīdzināt ar iepriekšējo versiju,
 m = maznozīmīgs labojums.',
 'history-fieldset-title' => 'Meklēt hronoloģijā',
-'deletedrev'             => '[izdzēsta]',
 'histfirst'              => 'Senākās',
 'histlast'               => 'Jaunākās',
 'historysize'            => '({{PLURAL:$1|1 baits|$1 baiti}})',
@@ -872,6 +871,8 @@ Lapas, kas ir tavā [[Special:Watchlist|uzraugāmo rakstu sarakstā]] ir '''trek
 'uploadbtn'              => 'Augšuplādēt',
 'reupload'               => 'Vēlreiz augšuplādēt',
 'reuploaddesc'           => 'Atcelt augšupielādi un atgriezties pie augšupielādes veidnes.',
+'uploadnologin'          => 'Neesi iegājis',
+'uploadnologintext'      => 'Tev jābūt [[Special:UserLogin|iegājušam]], lai augšuplādētu failus.',
 'uploaderror'            => 'Augšupielādes kļūda',
 'uploadtext'             => "'''STOP!''' Pirms tu kaut ko augšupielādē, noteikti izlasi un ievēro [[Project:Attēlu izmantošanas noteikumi|attēlu izmantošanas noteikumus]].
 
@@ -1483,6 +1484,8 @@ pirms turpināšanas vēlreiz pārdomā, vai tu izproti visas iespējamās sekas
 
 Ja tomēr vēlēsies, tad tev šī diskusiju lapa būs jāpārvieto vai jāapvieno pašam.",
 'movearticle'             => 'Pārvietot lapu',
+'movenologin'             => 'Neesi iegājis kā reģistrēts lietotājs',
+'movenologintext'         => 'Tev ir jābūt reģistrētam lietotājam un jābūt [[Special:UserLogin|iegājušam]] {{grammar:lokatīvs|{{SITENAME}}}}, lai pārvietotu lapu.',
 'movenotallowed'          => 'Tev nav tiesību pārvietot lapas.',
 'newtitle'                => 'Uz šādu lapu',
 'move-watch'              => 'Uzraudzīt šo lapu',

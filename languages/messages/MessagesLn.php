@@ -197,7 +197,6 @@ $messages = array(
 'cur'                 => 'sika',
 'next'                => 'bolɛngɛli',
 'last'                => 'ya nsúka',
-'deletedrev'          => '[elímwísámí]',
 
 # Revision deletion
 'rev-delundel' => 'komɔ́nisa/kobomba',

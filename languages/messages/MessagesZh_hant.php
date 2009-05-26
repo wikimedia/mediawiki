@@ -1,5 +1,5 @@
 <?php
-/** Traditional Chinese (‪中文(傳統字)‬)
+/** Traditional Chinese (‪中文(繁體)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -1358,6 +1358,9 @@ $2',
 'uploadbtn'                   => '上傳檔案',
 'reupload'                    => '重新上載',
 'reuploaddesc'                => '取消上載並返回上載表單',
+'uploadnologin'               => '未登入',
+'uploadnologintext'           => '您必須先[[Special:UserLogin|登入]]
+才能上載檔案。',
 'upload_directory_missing'    => '上傳目錄($1)遺失，不能由網頁伺服器建立。',
 'upload_directory_read_only'  => '上傳目錄($1)不存在或無寫權限。',
 'uploaderror'                 => '上載錯誤',
@@ -2201,6 +2204,9 @@ $1已經被封鎖。您是否想更改這個設定？',
 
 在這些情況下，您在必要時必須手工移動或合併頁面。",
 'movearticle'                  => '移動頁面:',
+'movenologin'                  => '未登入',
+'movenologintext'              => '您必須是一名登記用戶並且[[Special:UserLogin|登入]]
+後才可移動一個頁面。',
 'movenotallowed'               => '您並沒有許可權去移動頁面。',
 'movenotallowedfile'           => '您並沒有許可權去移動檔案。',
 'cant-move-user-page'          => '您並沒有許可權去移動用戶頁面（它的字頁面除外）。',
@@ -2929,7 +2935,6 @@ $1',
 
 # Separators for various lists, etc.
 'comma-separator' => '、',
-'word-separator'  => '',
 
 # Multipage image navigation
 'imgmultipageprev' => '← 上一頁',

@@ -629,7 +629,6 @@ Denki fosi efu na wan bun sani fu meki a papira disi baka. A log buku fu puru so
 'page_last'           => 'laste',
 'histlegend'          => "Teki den difrenti: marki den versi fu san yu wan si den difrenti, dan naki ENTER noso a knopo na ondrosey.<br />
 Den syatu: (disi) = a difrenti nanga a versi disi, (a wan n'en fesi) = a difrenti nanga a versi na en fesi, p = pikin kenki",
-'deletedrev'          => '[ben e trowe]',
 'histfirst'           => 'A moro owru wan',
 'histlast'            => 'A moro nyun wan',
 'historysize'         => '({{PLURAL:$1|wan byte|$1 byte}})',

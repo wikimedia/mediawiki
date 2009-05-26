@@ -552,7 +552,6 @@ Tzemreḍ a d-uɣaleḍ u tbeddleḍ asebter i yellan, neɣ ad [[Special:UserLog
 'histlegend'          => 'Axtiri n umgerrad: rcem tankulin akken ad teẓreḍ imgerraden ger tisiwal u wekki ɣef enter/entrée neɣ ɣef taqeffalt deg ukessar.<br />
 Tabadut: (tura) = amgirred akk d tasiwelt n tura,
 (amgirred) = amgirred akk d tasiwelt ssabeq, M = abeddel afessas.',
-'deletedrev'          => '[yettumḥa]',
 'histfirst'           => 'Tikkin timezwura',
 'histlast'            => 'Tikkin tineggura',
 'historysize'         => '($1 bytes/octets)',

@@ -331,7 +331,6 @@ Hadii aad keydisid, waxaa dhumidoona caddadyadii kan ka dambeeyey.'''",
 'last'                => 'Ugu dambeeyo',
 'page_first'          => 'Ugu horeeyo',
 'page_last'           => 'ugu dambeeyo',
-'deletedrev'          => "[la'tirtiray]",
 
 # Revision feed
 'history-feed-title' => 'Taariikhda caddadyaasha',

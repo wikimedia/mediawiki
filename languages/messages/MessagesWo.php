@@ -704,7 +704,6 @@ Ngirtey téye gi $3 joxe, mooy ne: ''$2''.",
 
 (teew) = li mu wuuteek sumb bi teew, (jii) = li mu wuuteek sumb bi jiitu, <b>c</b> = coppite yu néewal.',
 'history-fieldset-title' => 'Joowal ci jaar-jaar gi',
-'deletedrev'             => '[far nañ ko]',
 'histfirst'              => 'Cëru yi njëkk',
 'histlast'               => 'Cëru yi mujj',
 'historysize'            => '({{PLURAL:$1|$1 byte|$1 byte}})',

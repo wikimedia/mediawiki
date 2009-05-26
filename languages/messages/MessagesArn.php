@@ -190,7 +190,6 @@ $messages = array(
 # History pages
 'page_first'             => 'wünen',
 'history-fieldset-title' => 'Kintun pünon mew',
-'deletedrev'             => '[ñamümüngelu]',
 'historyempty'           => '(welli)',
 
 # Revision feed
@@ -292,6 +291,7 @@ $messages = array(
 'recentchangeslinked-page' => 'Pakina ñi üy:',
 
 # Upload
+'uploadnologin'   => 'Petu konlaymi',
 'watchthisupload' => 'Llaytun tüfachi pakina',
 
 'nolicense' => 'Chemnorume dullinnongey',
@@ -431,6 +431,7 @@ $messages = array(
 'move-page'               => 'Nengümün $1',
 'move-page-legend'        => 'Nengümün pakina',
 'movearticle'             => 'Nengümün pakina',
+'movenologin'             => 'Konlaymi',
 'newtitle'                => 'We üy püle',
 'move-watch'              => 'Llaytun tüfachi pakina',
 'movepagebtn'             => 'Nengümün pakina',

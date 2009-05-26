@@ -633,7 +633,6 @@ La rason butà da $3 për ël blocagi a l'é staita: ''$2''",
 'histlegend'          => 'Confront antra version diferente: che as selession-a le casele dle version che a veul e peui che a sgnaca ël boton për anandié ël process.<br />
 Legenda: (cor) = diferense con la version corenta,
 (prim) = diferense con la version prima, M = modìfica cita',
-'deletedrev'          => '[scancelà]',
 'histfirst'           => 'Prima',
 'histlast'            => 'Ùltima',
 'historysize'         => '({{PLURAL:$1|1|$1}} byte)',
@@ -888,6 +887,9 @@ për podej specifiché ij sò gust.',
 'uploadbtn'                   => 'Carié',
 'reupload'                    => 'Caria torna',
 'reuploaddesc'                => 'Torné al mòdulo ëd domanda për carié archivi',
+'uploadnologin'               => "A dev rintré ant ël sistema për podej fé st'operassion-sì",
+'uploadnologintext'           => "A dev [[Special:UserLogin|rintré ant ël sistema]]
+për podej carié dj'archivi.",
 'upload_directory_read_only'  => 'Ël programa webserver a-i la fa nen a scrive ansima a la diretriss ëd càrich ($1).',
 'uploaderror'                 => 'Eror dëmentré che as cariava',
 'uploadtext'                  => "'''DOSMAN!''' Anans che carié dla ròba ansima a {{SITENAME}}, che a sia motobin sigur d'avej bin lesù e capì
@@ -1626,6 +1628,9 @@ Se a l'ha dij dùbit, che a contata pura n'aministrator për ciameje 'd consej."
 *a l'ha deselessionà ël quadrèt ëd conferma ambelessì sota.
 Ant costi cas-sì, se a chërd dë felo, a-j farà da manca dë tramudesse la pàgina ëd discussion daspërchiel, a man.",
 'movearticle'             => "Cang-je nòm a l'artìcol",
+'movenologin'             => "Che a varda che chiel (chila) a l'è pa rintrà ant ël sistema",
+'movenologintext'         => "A venta esse n'Utent registrà e esse [[Special:UserLogin|rintrà ant ël sistema]]
+për podej tramudé na pàgina.",
 'movenotallowed'          => "A l'ha pa ij përmess dont a fa da manca për tramudé pàgine.",
 'newtitle'                => 'Neuv tìtol ëd',
 'move-watch'              => 'Ten sot euj sta pàgina-sì',

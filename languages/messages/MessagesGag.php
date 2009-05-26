@@ -453,7 +453,6 @@ Sayfanın silmää jurnalı raatlık için yazılêr burada:",
 'histlegend'          => "Fark seçimi: 2 versiyanın angısını isteersiniz karşılaştırmaa, önündeki kutucaa tuşlayıp, enter'a basın yaki tuşlayın butona angısı sayfanın en altında bulunêr.<br />
 Nışannar: (bitki) = şindiki versiyalan aradaki fark,
 (ilerki) = bir ilerki versiyalan aradaki fark, K = küçük diişmäk",
-'deletedrev'          => '[silindi]',
 'histfirst'           => 'En eski',
 'histlast'            => 'En eni',
 'historysize'         => '({{PLURAL:$1|1 bayt|$1 bayt}})',

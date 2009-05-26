@@ -556,7 +556,6 @@ Rae' zo xuniim $3 mii coccebj ''$2''",
 'histlegend'          => "Seleccionde quiíx: xuniim cui radio zode vercion zode comparar ö click 'enter' jöx click bazoniiniitöxamde vyu !-cmaa uisan.<br />
 Informacion: (curt) = quiíxde vercion currentua,
 (hunl) = quiíxde vercion precedatöxuam, b = ticpatlöx bajlöxam.",
-'deletedrev'          => '[ëjmet]',
 'histfirst'           => 'Xepe',
 'histlast'            => 'Cmaa',
 'historysize'         => '($1 bytenám)',

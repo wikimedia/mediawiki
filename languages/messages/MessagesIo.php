@@ -581,7 +581,6 @@ La efaco-registraro e movo-registraro dil pagino provizesar sequante por refero.
 Surskriburo: '''({{int:cur}})''' = diferi kun l'aktuala versiono, 
 '''({{int:last}})''' = diferi kun l'antea versiono, 
 '''{{int:minoreditletter}}''' = mikra redakto.",
-'deletedrev'          => '[efacita]',
 'histfirst'           => 'Maxim anciena',
 'histlast'            => 'Maxim nova',
 'historysize'         => '({{PLURAL:$1|1 bicoko|$1 bicoki}})',

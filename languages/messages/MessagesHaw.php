@@ -424,7 +424,6 @@ E ʻoluʻolu, e hōʻoia i ka hoʻokūkū ʻana i lalo, a laila, e mālama i nā
 'last'                => 'hope',
 'page_first'          => 'mua',
 'page_last'           => 'hope',
-'deletedrev'          => '[ua kāpae ‘ia]',
 'histfirst'           => 'Kahiko loa',
 'histlast'            => 'Hou loa',
 'historysize'         => '({{PLURAL:$1|1 ‘ai|$1 ‘ai}})',

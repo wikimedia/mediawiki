@@ -331,7 +331,6 @@ Zu deina Information folgt des Lösch-Logbuach mit da Begründung fia de vorheri
 'histlegend'      => 'Zum Ozoagn vo Änderungen einfach de zwoa Versionen auswähln und auf de Schaltfläche „{{int:compareselectedversions}}“ klicken.<br />
 * (Aktuell) = Untaschied zur aktuellen Version, (Vorherige) = Untaschied zur vorherigen Version
 * Uhrzeit/Datum = Version zu dera Zeit, Benutzername/IP-Adresse vom Bearbeiter, K = Kloane Änderung',
-'deletedrev'      => '[glöscht]',
 'histlast'        => 'Neiste',
 'historyempty'    => '(laa)',
 

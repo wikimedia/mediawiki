@@ -447,7 +447,6 @@ Du gest ons hiermit denne Zusoage, dass du dan Text '''selbst verfasst''' host, 
 * (Aktuell) = Underschied zerr aktuella Version, (Vurherige) = Underschied zerr vurheriga Version
 * Seegerzeit/Datum = Version zu dieser Zeit, Benutzername/IP-Atresse des Beorbeeters, K = Kleene Ännerong',
 'history-fieldset-title' => 'Suche ei dar Versionsgeschichtla',
-'deletedrev'             => '[gelöscht]',
 'histfirst'              => 'aalteste',
 'histlast'               => 'Neueste',
 'historyempty'           => '(laar)',

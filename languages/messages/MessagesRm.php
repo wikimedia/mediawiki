@@ -460,7 +460,6 @@ En il ''log da stidar'' che suonda pos ti guardar daco che la pagina è vegnida 
 * (davosa) = differenza cun la versiun precedenta
 * M = Midà be bagatellas',
 'history-fieldset-title' => 'tschertgar en la cronica',
-'deletedrev'             => '[stidà]',
 'histfirst'              => 'pli veglia',
 'histlast'               => 'pli nova',
 'historyempty'           => '(vid)',
