@@ -447,10 +447,6 @@ class OldChangesList extends ChangesList {
 		# For subclasses
 		$this->insertExtra( $s, $rc, $classes );
 		
-		# Mark revision as deleted if so
-		if( !$rc->mAttribs['rc_log_type'] && $this->isDeleted($rc,Revision::DELETED_TEXT) ) {
-		   $s .= ' <tt>' . wfMsgHtml( 'deletedrev' ) . '</tt>';
-		}
 		# How many users watch this page
 		if( $rc->numberofWatchingusers > 0 ) {
 			$s .= ' ' . wfMsgExt( 'number_of_watching_users_RCview', 
@@ -865,11 +861,6 @@ class EnhancedChangesList extends ChangesList {
 			$this->insertRollback( $r, $rcObj );
 			# Tags
 			$this->insertTags( $r, $rcObj, $classes );
-			
-			# Mark revision as deleted
-			if( !$rc_log_type && $this->isDeleted($rcObj,Revision::DELETED_TEXT) ) {
-				$r .= ' <tt>' . wfMsgHtml( 'deletedrev' ) . '</tt>';
-			}
 
 			$r .= "</td></tr>\n";
 		}

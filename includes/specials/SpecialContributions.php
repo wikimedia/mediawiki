@@ -554,9 +554,6 @@ class ContribsPager extends ReverseChronologicalPager {
 		}
 
 		$ret = "{$del}{$d} {$histlink} {$difftext} {$nflag}{$mflag} {$link}{$userlink} {$comment} {$topmarktext}";
-		if( $rev->isDeleted( Revision::DELETED_TEXT ) ) {
-			$ret .= ' ' . wfMsgHtml( 'deletedrev' );
-		}
 
 		# Tags, if any.
 		list($tagSummary, $newClasses) = ChangeTags::formatSummaryRow( $row->ts_tags, 'contributions' );
