@@ -1171,7 +1171,14 @@ class Title {
 			
 			if( !$user->isAllowed( 'move' ) ) {
 				// User can't move anything
-				$errors[] = array ('movenotallowed');
+				global $wgGroupPermissions;
+				if( $user->isAnon() && ( $wgGroupPermissions['user']['move']
+				|| $wgGroupPermissions['autoconfirmed']['move'] ) ) {
+					// custom message if logged-in users without any special rights can move
+					$errors[] = array ( 'movenologintext' );
+				} else {
+					$errors[] = array ('movenotallowed');
+				}
 			}
 		} elseif ( $action == 'create' ) {
 			if( ( $this->isTalkPage() && !$user->isAllowed( 'createtalk' ) ) ||
