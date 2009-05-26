@@ -244,8 +244,15 @@ class UploadForm {
 		}
 
 		# Check permissions
+		global $wgGroupPermissions;
 		if( !$wgUser->isAllowed( 'upload' ) ) {
-			$wgOut->permissionRequired( 'upload' );
+			if( !$wgUser->isLoggedIn() && ( $wgGroupPermissions['user']['upload']
+				|| $wgGroupPermissions['autoconfirmed']['upload'] ) ) {
+				// Custom message if logged-in users without any special rights can upload
+				$wgOut->showErrorPage( 'uploadnologin', 'uploadnologintext' );
+			} else {
+				$wgOut->permissionRequired( 'upload' );
+			}
 			return;
 		}
 
