@@ -1246,7 +1246,6 @@ Legend: '''({{int:cur}})''' = difference with current revision,
 '''({{int:last}})''' = difference with preceding revision, '''{{int:minoreditletter}}''' = minor edit.",
 'history-fieldset-title' => 'Browse history',
 'history_copyright'      => '-', # do not translate or duplicate this message to other languages
-'deletedrev'             => '[deleted]',
 'histfirst'              => 'Earliest',
 'histlast'               => 'Latest',
 'historysize'            => '({{PLURAL:$1|1 byte|$1 bytes}})',
