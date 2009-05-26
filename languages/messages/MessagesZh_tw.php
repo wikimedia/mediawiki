@@ -672,6 +672,8 @@ $NEWPAGE
 'tooltip-ca-nstab-help'           => '查看說明頁面',
 'tooltip-minoredit'               => '標記為細微修改',
 'tooltip-compareselectedversions' => '查看本頁被點選的兩個版本間的差異',
+'tooltip-rollback'                => '『{{int:rollbacklink}}』可以一按恢復上一位貢獻者對這個頁面的編輯',
+'tooltip-undo'                    => '『{{int:editundo}}』可以在編輯模式上開啟編輯表格以便復原。它容許在摘要中加入原因。',
 
 # Stylesheets
 'monobook.css' => '/* 此處的 CSS 將影響使用 Monobook 面板的使用者 */',
