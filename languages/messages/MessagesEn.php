@@ -3273,6 +3273,7 @@ Others will be hidden by default.
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength',
 
 # EXIF tags
