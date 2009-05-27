@@ -796,6 +796,7 @@ Papira ini [[Special:Watchlist|yu Tan Luku réy]] '''fatu'''.",
 'upload'            => 'Lai wan file poti',
 'uploadbtn'         => 'Lai file poti',
 'reupload'          => 'Ri-uploti',
+'uploadnologin'     => 'No kon',
 'uploaderror'       => 'Uplotifowtu',
 'uploadlog'         => 'uplotibuku',
 'uploadlogpage'     => 'Log buku fu den lai-poti',
@@ -1110,6 +1111,7 @@ Ben suri taki den folo abrasi ben pre yu disi aksi du.",
 * A takipapira ondro a nyun nen da ala ben;
 * Yu a ondroben box odu.",
 'movearticle'      => 'Dribi papira:',
+'movenologin'      => 'No kon',
 'newtitle'         => 'Na nyun papiranen:',
 'move-watch'       => 'Disi papira si',
 'movepagebtn'      => 'Dribi papira',
@@ -1234,6 +1236,7 @@ Trawan o kibri.
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength',
 
 # External editor support

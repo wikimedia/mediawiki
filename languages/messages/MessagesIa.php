@@ -749,7 +749,7 @@ Si tu lo publica, tote le modificationes facite post iste version essera perdite
 'copyrightwarning'                 => "Nota ben que tote le contributiones a {{SITENAME}} se considera publicate sub le $2 (vide plus detalios in $1).
 Si tu non vole que tu scripto sia modificate impietosemente e redistribuite a voluntate, alora non lo submitte hic.<br />
 In addition, tu nos garanti que tu es le autor de isto, o que tu lo ha copiate de un ressource a dominio public o alteremente libere de derectos.
-'''NON SUBMITTE MATERIAL SUBJECTE A COPYRIGHT SIN AUTORISATION EXPRESSE!'''",
+'''Non submitte material subjecte a copyright sin autorisation expresse!'''",
 'copyrightwarning2'                => "Nota ben que tote le contributiones a {{SITENAME}} pote esser redigite, alterate, o eliminate per altere contributores.
 Si tu non vole que tu scripto sia modificate impietosemente, alora non lo submitte hic.<br />
 In addition, tu nos garanti que tu es le autor de isto, o que tu lo ha copiate de un ressource a dominio public o alteremente libere de derectos (vide detalios in $1).
@@ -828,7 +828,7 @@ Le motivo que $3 dava es ''$2''",
 'viewpagelogs'           => 'Vider le entratas del registro pro iste pagina',
 'nohistory'              => 'Non existe un historia de modificationes pro iste pagina.',
 'currentrev'             => 'Version actual',
-'currentrev-asof'        => 'Version actual in data del $1',
+'currentrev-asof'        => 'Version actual del $1',
 'revisionasof'           => 'Version del $1',
 'revision-info'          => 'Version del $1 per $2',
 'previousrevision'       => '← Version precedente',
@@ -839,9 +839,9 @@ Le motivo que $3 dava es ''$2''",
 'last'                   => 'prec',
 'page_first'             => 'prime',
 'page_last'              => 'ultime',
-'histlegend'             => 'Pro detaliar le differentias inter duo versiones: marca lor circulos correspondente, e preme <code>Enter</code> o clicca le button in basso.<br />
-Legenda: (actu) = comparar con le version actual,
-(prec) = comparar con le version precedente, M = modification minor.',
+'histlegend'             => "Pro comparar duo versiones: marca lor circulos correspondente, e preme <code>Enter</code> o clicca le button in basso.<br />
+Legenda: '''({{int:cur}})''' = comparar con le version actual,
+'''({{int:last}})''' = comparar con le version precedente, '''{{int:minoreditletter}}''' = modification minor.",
 'history-fieldset-title' => 'Examinar historia',
 'histfirst'              => 'Prime',
 'histlast'               => 'Ultime',
@@ -1075,7 +1075,8 @@ Tu pote [[:\$1|crear iste pagina]].",
 'showingresultsnum'                => "Infra se monstra {{PLURAL:$3|'''1''' resultato|'''$3''' resultatos}} a partir del numero '''$2'''.",
 'showingresultstotal'              => "Infra se monstra le {{PLURAL:$4|resultato '''$1''' de '''$3'''|resultatos '''$1 - $2''' de '''$3'''}}",
 'showingresultsheader'             => "{{PLURAL:$5|Resultato '''$1'''|Resultatos '''$1 - $2'''}} de '''$3''' pro '''$4'''",
-'nonefound'                        => "'''Nota:''' Normalmente, se cerca solmente in alcun spatios de nomines. Prova prefixar tu consulta con ''all:'' pro cercar in tote le contento (includente paginas de discussion, patronos, etc.), o usa le spatio de nomines desirate como prefixo.",
+'nonefound'                        => "'''Nota:''' Normalmente, es cercate solmente in alcun spatios de nomines.
+Tenta prefixar tu consulta con ''all:'' pro cercar in tote le contento (includente paginas de discussion, patronos, etc.), o usa le spatio de nomines desirate como prefixo.",
 'search-nonefound'                 => 'Le recerca non ha producite resultatos.',
 'powersearch'                      => 'Recerca avantiate',
 'powersearch-legend'               => 'Recerca avantiate',
@@ -1551,7 +1552,7 @@ Tu pote reordinar le lista con un clic super le titulo de un columna.',
 'linkstoimage-more'         => 'Plus de $1 {{PLURAL:$1|pagina ha un ligamine|paginas ha ligamines}} verso iste file.
 Le sequente lista monstra le {{PLURAL:$1|prime pagina|prime $1 paginas}} que puncta a iste file specific.
 Un [[Special:WhatLinksHere/$2|lista complete]] es disponibile.',
-'nolinkstoimage'            => 'Nulle pagina se liga verso iste file.',
+'nolinkstoimage'            => 'Nulle pagina usa iste file.',
 'morelinkstoimage'          => 'Vider [[Special:WhatLinksHere/$1|plus ligamines]] a iste file.',
 'redirectstofile'           => 'Le sequente {{PLURAL:$1|file|$1 files}} se redirige a iste file:',
 'duplicatesoffile'          => 'Le sequente {{PLURAL:$1|file es un duplicato|$1 files es duplicatos}} de iste file ([[Special:FileDuplicateSearch/$2|plus detalios]]):',
@@ -1654,7 +1655,7 @@ Cata linea contine ligamines al prime e al secunde redirection, con le destinati
 'double-redirect-fixer'      => 'Corrector de redirectiones',
 
 'brokenredirects'        => 'Redirectiones rupte',
-'brokenredirectstext'    => 'Le redirectiones sequente se liga verso articulos inexistente:',
+'brokenredirectstext'    => 'Le sequente redirectiones mena a paginas non existente:',
 'brokenredirects-edit'   => '(modificar)',
 'brokenredirects-delete' => '(deler)',
 
@@ -2121,7 +2122,7 @@ $1',
 'whatlinkshere-title'      => 'Paginas con ligamines verso $1',
 'whatlinkshere-page'       => 'Pagina:',
 'linkshere'                => "Le sequente paginas contine ligamines a '''[[:$1]]''':",
-'nolinkshere'              => "Necun pagina se liga a '''[[:$1]]'''.",
+'nolinkshere'              => "Nulle pagina contine un ligamine verso '''[[:$1]]'''.",
 'nolinkshere-ns'           => "Nulle pagina liga a '''[[:$1]]''' in le spatio de nomines seligite.",
 'isredirect'               => 'pagina de redirection',
 'istemplate'               => 'transclusion',
@@ -2445,15 +2446,17 @@ Immagazina lo in tu disco e carga lo hic.',
 'tooltip-pt-mytalk'               => 'Tu pagina de discussion',
 'tooltip-pt-anontalk'             => 'Discussion super le modificationes facite desde iste adresse IP',
 'tooltip-pt-preferences'          => 'Mi preferentias',
-'tooltip-pt-watchlist'            => 'Le lista de paginas que tu survelia pro modificationes',
+'tooltip-pt-watchlist'            => 'Le lista de paginas del quales tu seque le modificationes',
 'tooltip-pt-mycontris'            => 'Lista de tu contributiones',
 'tooltip-pt-login'                => 'Nos recommenda que tu te identifica, ma il non es obligatori.',
 'tooltip-pt-anonlogin'            => 'Nos te invita a aperir un session, ma il non es obligatori.',
 'tooltip-pt-logout'               => 'Clauder session',
 'tooltip-ca-talk'                 => 'Discussiones a proposito del pagina de contento',
-'tooltip-ca-edit'                 => 'Tu pote modificar iste pagina. Per favor usa le button "Monstrar previsualisation" ante que tu publica tu modificationes.',
+'tooltip-ca-edit'                 => 'Tu pote modificar iste pagina.
+Per favor usa le previsualisation ante de publicar.',
 'tooltip-ca-addsection'           => 'Initiar un nove section',
-'tooltip-ca-viewsource'           => 'Iste pagina es protegite. Tu pote vider le codice-fonte de illo.',
+'tooltip-ca-viewsource'           => 'Iste pagina es protegite.
+Tu pote vider su codice-fonte.',
 'tooltip-ca-history'              => 'Versiones anterior de iste pagina',
 'tooltip-ca-protect'              => 'Proteger iste pagina',
 'tooltip-ca-delete'               => 'Deler iste pagina',
@@ -2500,7 +2503,8 @@ Immagazina lo in tu disco e carga lo hic.',
 'tooltip-recreate'                => 'Recrear le pagina nonobstante que illo ha essite delite',
 'tooltip-upload'                  => 'Comencia cargar',
 'tooltip-rollback'                => '"Revocar" reverte le modification(es) de iste pagina del ultime contributor con un singule clic.',
-'tooltip-undo'                    => '"Annullar" reverte iste modification e aperi le formulario de modification in modo de previsualistion. Permitte adder un motivo in le summario.',
+'tooltip-undo'                    => '"Annullar" reverte iste modification e aperi le formulario de modification in modo de previsualistion.
+Es possibile adder un motivo in le summario.',
 
 # Stylesheets
 'common.css'      => '/* Le CSS placiate hic se applicara a tote le stilos */',
@@ -2631,7 +2635,7 @@ $1',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|pagina|paginas}}',
 'file-info'            => '(grandor del file: $1, typo MIME: $2)',
 'file-info-size'       => '($1 × $2 pixel, grandor del file: $3, typo MIME: $4)',
-'file-nohires'         => '<small>Non es disponibile un resolution plus alte.</small>',
+'file-nohires'         => '<small>Non disponibile in resolution plus alte.</small>',
 'svg-long-desc'        => '(File SVG, dimensiones nominal: $1 × $2 pixels, grandor del file: $3)',
 'show-big-image'       => 'Plen resolution',
 'show-big-image-thumb' => '<small>Dimensiones de iste previsualisation: $1 × $2 pixels</small>',
@@ -2668,6 +2672,7 @@ Le alteres essera initialmente celate.
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength',
 
 # EXIF tags

@@ -2556,6 +2556,7 @@ Altele vor fi ascunse implicit.
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength',
 
 # EXIF tags

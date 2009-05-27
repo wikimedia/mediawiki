@@ -713,6 +713,7 @@ mayn nniḍn ad itwasenfar.
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength',
 
 # External editor support

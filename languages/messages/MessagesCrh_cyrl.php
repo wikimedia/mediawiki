@@ -1691,6 +1691,7 @@ MediaWiki интерфейсининъ чешит тиллерге терджи�
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength',
 
 # EXIF tags

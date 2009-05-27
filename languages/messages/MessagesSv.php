@@ -21,6 +21,7 @@
  * @author NH
  * @author Najami
  * @author Petter Strandmark
+ * @author Poxnar
  * @author S.Örvarr.S
  * @author Sannab
  * @author Skalman
@@ -2563,6 +2564,7 @@ Ger möjlighet att skriva en motivering i redigeringssammanfattningen',
 'chick.css'       => '/* CSS som skrivs här kommer att påverka alla användare av skalet Chick */',
 'simple.css'      => '/* CSS som skrivs här kommer att påverka alla användare av skalet Enkelt */',
 'modern.css'      => '/* CSS som skrivs här kommer att påverka alla användare av skalet Modern */',
+'print.css'       => '/* CSS som placeras här kommer att påverka utskriftsversionen */',
 
 # Scripts
 'common.js'      => '/* JavaScript som skrivs här körs varje gång en användare laddar en sida. */',
@@ -2719,6 +2721,7 @@ Den första länken på en rad måste vara en länk till en otillåten fil.
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength',
 
 # EXIF tags

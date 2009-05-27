@@ -2661,12 +2661,13 @@ As ligazóns posteriores da mesma liña considéranse excepcións, isto é, páx
 'metadata-expand'   => 'Mostrar os detalles',
 'metadata-collapse' => 'Agochar os detalles',
 'metadata-fields'   => 'Os campos de datos meta EXIF listados nesta mensaxe incluiranse ao exhibir a páxina da imaxe cando se reduza a táboa dos datos meta.
-Outros agocharanse por omisión.
+Os demais agocharanse por omisión.
 * make
 * model
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength',
 
 # EXIF tags

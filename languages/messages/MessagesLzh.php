@@ -2261,6 +2261,7 @@ $1已被禁矣。爾是否改此置？',
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength',
 
 # EXIF tags

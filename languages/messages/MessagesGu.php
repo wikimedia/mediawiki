@@ -1292,6 +1292,7 @@ Please log in again after you receive it.
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength',
 
 # EXIF tags

@@ -621,6 +621,7 @@ $messages = array(
 'uploadbtn'          => 'فائل چڑھاؤ',
 'reupload'           => 'دوبارہ چڑھاؤ',
 'reuploaddesc'       => 'فائل چڑانا چھڑو تے فائل چڑانے آلے فارم تے واپس ٹرو',
+'uploadnologin'      => 'لاگ ان نئیں ہوۓ',
 'uploaderror'        => 'فائل چڑاندیاں مسئلا ہویا اے',
 'uploadlogpage'      => 'اپلوڈ لاگ',
 'filename'           => 'فائل دا ناں',
@@ -1195,6 +1196,7 @@ $messages = array(
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength',
 
 # EXIF tags

@@ -2130,6 +2130,7 @@ $NEWPAGE
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength',
 
 # EXIF tags

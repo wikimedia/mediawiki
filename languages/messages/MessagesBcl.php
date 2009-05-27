@@ -330,7 +330,7 @@ $messages = array(
 'editsection'             => 'liwatón',
 'editold'                 => 'Liwatón',
 'viewsourceold'           => 'hilingón an ginikánan',
-'editlink'                => 'ligwatón',
+'editlink'                => 'liwatón',
 'viewsourcelink'          => 'hilingón an toltolan',
 'editsectionhint'         => 'Liwatón an seksyon: $1',
 'toc'                     => 'Mga laog',
@@ -616,7 +616,7 @@ Probaran tabì giraray. Kun dai man giraray magibo, probaran na magluwas dangan 
 'token_suffix_mismatch'      => "'''Dai pigtogotan an paghirá mo ta sinabrit kan client mo an punctuation characters.
 Dai pigtogotan ining paghirá tangarig maibitaran na maraot an teksto kan pahina.
 Nanyayari nanggad ini kun naggagamit ka nin bakong maraháy asin dai bistong web-based proxy service.'''",
-'editing'                    => 'Pigliligwat an $1',
+'editing'                    => 'Pigliliwat an $1',
 'editingsection'             => 'Pighihira an $1 (seksyon)',
 'editingcomment'             => 'Pighihira an $1 (komento)',
 'editconflict'               => 'Komplikto sa paghihira: $1',

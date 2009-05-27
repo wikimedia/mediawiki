@@ -1271,6 +1271,8 @@ Jo kinne ek oaren de mûglikheid jaan kontakt mei jo op te nimmen troch in ferwi
 'uploadbtn'                   => 'Bied triem oan',
 'reupload'                    => "Op 'e nij oanbiede",
 'reuploaddesc'                => 'Werom nei oanbied-side.',
+'uploadnologin'               => 'Net oanmelde',
+'uploadnologintext'           => 'Jo moatte [[Special:UserLogin|oanmeld]] wêze om in triem oanbiede te kinnen.',
 'upload_directory_missing'    => 'De heechlaadmap ($1) is der net en koe net oanmakke wurde troch de webserver.',
 'upload_directory_read_only'  => 'De webserver kin net skriuwe yn de oanbiedpad ($1).',
 'uploaderror'                 => 'Oanbiedfout',
@@ -2020,6 +2022,8 @@ daalks weromneame as jo in flater meitsje, mar jo kinne in oare side net oerskri
 
 In dizze gefallen is it oan jo hoe't jo de oerlisside werneame of ynfoegje wolle.",
 'movearticle'             => 'Werneam side',
+'movenologin'             => 'Net oameld',
+'movenologintext'         => 'Jo moatte [[Special:UserLogin|oanmeld]] wêze om in side wer te neamen.',
 'newtitle'                => 'As nij titel',
 'move-watch'              => 'Folch dizze side',
 'movepagebtn'             => 'Werneam side',
@@ -2230,6 +2234,7 @@ Alle folgjende links dy't op deselde rigel steane, wurde behannele as útsûnder
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength',
 
 # EXIF tags

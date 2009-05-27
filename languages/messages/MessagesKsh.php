@@ -368,6 +368,7 @@ Em Appachtemang <span class="plainlinks">[{{fullurl:Special:AllPages|namespace={
 'permalink'         => 'Als Permalink',
 'print'             => 'Drocke',
 'edit'              => 'Ändere',
+'view'              => 'Aanloore',
 'create'            => 'Aanläje',
 'editthispage'      => 'De Sigg ändere',
 'create-this-page'  => 'Neu aanläje',
@@ -2858,6 +2859,7 @@ Donoh kumme, en däsellve Reih, Links op Sigge wo die Datei trotz dämm jenehm e
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength',
 
 # EXIF tags

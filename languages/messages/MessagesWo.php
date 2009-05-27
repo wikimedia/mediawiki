@@ -1178,6 +1178,8 @@ Jéemala bindaale ''all'' ngir seet ci biir ëmbit gépp (boolewaale ci xëti wa
 'upload'                      => 'Yeb ab dencukaay',
 'uploadbtn'                   => 'Yeb ŋara wi',
 'reupload'                    => 'Yebaat ko',
+'uploadnologin'               => 'Duggoo',
+'uploadnologintext'           => 'Faaw nga [[Special:UserLogin|dugg]] ngir man a yebi ŋara.',
 'upload_directory_missing'    => 'Wayndareb yeb bu ($1) nekku fi te joxekaayub web bi manu koo sos.',
 'upload_directory_read_only'  => 'Joxekaayub web bi manuta bind ci wayndareb yeb bu ($1).',
 'uploaderror'                 => 'Njuumte ci yeb gi',
@@ -1781,6 +1783,7 @@ Xéj-na keeneen loppanti na ko ba noppi',
 # Move page
 'move-page-legend'             => 'Tuddewaat aw xët',
 'movearticle'                  => 'Tuddewaatal jukki bi',
+'movenologintext'              => 'Ngir man a tuddewaat aw xët, da ngaa war a [[Special:UserLogin|dugg]] ni jëfëndikookat bu bindu te saw sàq war naa am yaggaa bi mu laaj.',
 'newtitle'                     => 'Koj bu bees',
 'move-watch'                   => 'Topp xët wii',
 'movepagebtn'                  => 'Tuddewaat xët wi',
@@ -1965,6 +1968,7 @@ Manoo tudewaat aw xët ci wenn tur wi.',
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength',
 
 # EXIF tags

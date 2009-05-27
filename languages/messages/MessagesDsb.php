@@ -985,8 +985,8 @@ Móžoš bok ale teke [[:$1|sam załožyś]].",
 'notitlematches'                   => 'Boki z wótpowědujucym napismom njeeksistěruju.',
 'textmatches'                      => 'Boki z wótpowědujucym tekstom',
 'notextmatches'                    => 'Boki z wótpowědujucym tekstom njeeksistěruju.',
-'prevn'                            => 'zachadne $1',
-'nextn'                            => 'pśiduce $1',
+'prevn'                            => '{{PLURAL:$1|zachadny $1|zachadnej $1|zachadne $1|zachadnych $1}}',
+'nextn'                            => '{{PLURAL:$1|pśiducy $1|pśiducej $1|pśiduce $1|pśiducych $1}}',
 'prevn-title'                      => '{{PLURAL:$1|Pjerwjejšny wuslědk|Pjerwjejšnej $1 wuslědka|Pjerwjejšne $1 wuslědki|Pjerwjejšnych $1 wuslědkow}}',
 'nextn-title'                      => '{{PLURAL:$1|Pśiducy wuslědk|Pśiducej $1 wuslědka|Pśiduce $1 wuslědki|Pśiducych $1 wuslědkow}}',
 'shown-title'                      => '$1 {{PLURAL:$1|wuslědk|wuslědka|wuslědki|wuslědkow}} na bok pokazaś',
@@ -2516,6 +2516,7 @@ Slědujuce wótkaze w tej samej smužce se za wuwześa naglědaju, w kótarychž
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength',
 
 # EXIF tags

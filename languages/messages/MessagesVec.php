@@ -2504,6 +2504,7 @@ I colegamenti sucessivi, su la stessa riga, i xe considerà come ecezion (cioè 
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength",
 
 # EXIF tags

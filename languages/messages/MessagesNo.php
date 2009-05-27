@@ -1563,7 +1563,7 @@ Se [$2 filbeskrivelsessida] for mer informasjon.',
 'sharedupload-desc-here'    => 'Denne fila er fra $1 og kan brukes av andre prosjekter.
 Beskrivelsen fra [$2 filbeskrivelsessida] vises nedenfor.',
 'filepage-nofile'           => 'Det finnes ingen fil med dette navnet.',
-'filepage-nofile-link'      => 'Klikk her for å laste det opp.',
+'filepage-nofile-link'      => 'Ingen fil med dette navnet eksisterer, men du kan [$1 laste den opp].',
 'uploadnewversion-linktext' => 'Last opp en ny versjon av denne fila',
 'shared-repo-from'          => 'fra $1',
 'shared-repo'               => 'et delt fillager',
@@ -2155,7 +2155,7 @@ Se [[Special:IPBlockList|blokkeringslisten]] for alle blokkeringer.',
 'ipblocklist-submit'              => 'Søk',
 'blocklistline'                   => '$1, $2 blokkerte $3 ($4)',
 'infiniteblock'                   => 'uendelig',
-'expiringblock'                   => 'utgår $1 $2',
+'expiringblock'                   => 'utgår den $1 kl $2',
 'anononlyblock'                   => 'kun uregistrerte',
 'noautoblockblock'                => 'autoblokkering slått av',
 'createaccountblock'              => 'kontooppretting blokkert',
@@ -2610,6 +2610,7 @@ Kun listeelementer (linjer som starter med *) tas med. Den første lenka på en 
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength',
 
 # EXIF tags

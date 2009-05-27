@@ -959,6 +959,8 @@ $2',
 'uploadbtn'                   => 'ಫೈಲನ್ನು ಅಪ್ಲೋಡ್ ಮಾಡಿ',
 'reupload'                    => 'ಮರು-ಅಪ್ಲೋಡ್',
 'reuploaddesc'                => 'ಅಪ್ಲೋಡ್ ಅನ್ನು ನಿಲ್ಲಿಸಿ ಮತ್ತೆ ಅಪ್ಲೋಡ್ ವಕ್ಕಣೆಗೆ ಹಿಂದಿರುಗಿ',
+'uploadnologin'               => 'ಲಾಗಿನ್ ಆಗಿಲ್ಲ',
+'uploadnologintext'           => 'ಫೈಲುಗಳನ್ನು ಅಪ್ಲೋಡ್ ಮಾಡಲು ನೀವು [[Special:UserLogin|ಲಾಗ್ ಇನ್]] ಆಗಬೇಕು.',
 'uploaderror'                 => 'ಅಪ್ಲೋಡ್ ದೋಷ',
 'upload-permitted'            => 'ಅಂಗೀಕೃತ ಫೈಲು ಮಾದರಿಗಳು: $1.',
 'upload-preferred'            => 'ಐಚ್ಛಿಕ ಫೈಲು ಮಾದರಿಗಳು: $1.',
@@ -1513,6 +1515,8 @@ $2',
 
 ಈ ಪ್ರಸಂಗಗಳಲ್ಲಿ ನೀವು ಸ್ವತಃ ಚರ್ಚೆ ಪುಟವನ್ನು ಸ್ಥಳಾಂತರಿಸಬೇಕು ಅಥವ ಒಂದುಗೂಡಿಸಬೇಕು.",
 'movearticle'             => 'ಪುಟವನ್ನು ಸ್ಥಳಾಂತರಿಸಿ',
+'movenologin'             => 'ಲಾಗಿನ್ ಆಗಿಲ್ಲ',
+'movenologintext'         => 'ಪುಟವನ್ನು ಸ್ಥಳಾಂತರಿಸಲು ನೀವು ನೋಂದಾಯಿತ ಸದಸ್ಯರಾಗಿದ್ದು [[Special:UserLogin|ಲಾಗಿನ್]] ಆಗಿರಬೇಕು.',
 'movenotallowed'          => 'ನಿಮಗೆ {{SITENAME}} ಅಲ್ಲಿ ಪುಟಗಳನ್ನು ಸ್ಥಳಾಂತರಿಸುವ ಅನುಮತಿ ಇಲ್ಲ.',
 'newtitle'                => 'ಈ ಹೊಸ ಶೀರ್ಷಿಕೆಗೆ:',
 'move-watch'              => 'ಈ ಪುಟವನ್ನು ವೀಕ್ಷಿಸು',
@@ -1713,6 +1717,7 @@ $1',
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength',
 
 # EXIF tags

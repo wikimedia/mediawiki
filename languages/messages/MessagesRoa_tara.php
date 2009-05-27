@@ -2269,6 +2269,7 @@ Otre avènene scunnute pe defolt.
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength",
 
 # EXIF tags

@@ -2294,6 +2294,7 @@ Të tjerat do të fshihen.
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength',
 
 # EXIF tags

@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Chrisportelli
  * @author MF-Warburg
  * @author Malafaya
  * @author Nov ialiste
@@ -102,7 +103,7 @@ $messages = array(
 'printableversion' => 'Printindi versione',
 'permalink'        => 'Permananti linke',
 'print'            => 'Printa',
-'edit'             => 'Modifika',
+'edit'             => 'Immodifika',
 'editthispage'     => 'Modifika disi pagine',
 'delete'           => 'Ekarta',
 'deletethispage'   => 'Ekarta disi pagine',
@@ -143,7 +144,7 @@ $messages = array(
 'newmessageslink'         => 'novi mesajes',
 'newmessagesdifflink'     => 'lasti chanjo',
 'youhavenewmessagesmulti' => 'Vu have novi mesajes pri $1',
-'editsection'             => 'modifika',
+'editsection'             => 'editja',
 'editold'                 => 'modifika',
 'restorelink'             => '{{PLURAL:$1|unu ekartati modifiko|$1 ekartati modifikos}}',
 
@@ -263,6 +264,7 @@ Proba [[Special:Search|sercho sur li wiki]] por relatet pagines.',
 
 # Upload
 'upload'            => 'Enporta',
+'uploadnologin'     => 'Non ensignatat',
 'filedesc'          => 'Resume',
 'fileuploadsummary' => 'Resume:',
 'watchthisupload'   => 'Observa disi pagine',
@@ -281,8 +283,9 @@ Proba [[Special:Search|sercho sur li wiki]] por relatet pagines.',
 # Random page
 'randompage' => 'Arbitriari pagine',
 
-'brokenredirects'     => 'Rupteti ri-adresos',
-'brokenredirectstext' => 'Li sekuenti ri-adresos linka a non-existanti pagines:',
+'brokenredirects'      => 'Rupteti ri-adresos',
+'brokenredirectstext'  => 'Li sekuenti ri-adresos linka a non-existanti pagines:',
+'brokenredirects-edit' => '(editja)',
 
 'fewestrevisions' => 'Artikles kun minim multi revisiones',
 
@@ -392,6 +395,7 @@ Si vu voli plu tardim ekarta li pagine fro vun observa-liste, klikta \"Desobserv
 
 # Move page
 'movearticle'             => 'Mova pagine',
+'movenologin'             => 'Non ensignatat',
 'move-watch'              => 'Observa disi pagine',
 'movedto'                 => 'movat a',
 '1movedto2'               => '[[$1]] movat a [[$2]]',

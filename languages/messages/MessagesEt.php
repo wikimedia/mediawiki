@@ -1789,6 +1789,7 @@ Kui faili on muudetud mõne tarkvara programmiga, siis võivad osad andmed olla 
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength',
 
 # EXIF tags

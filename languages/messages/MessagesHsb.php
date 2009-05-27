@@ -965,8 +965,8 @@ Móžeš [[:\$1|tutu stronu wutworić]].",
 'notitlematches'                   => 'Žane strony z wotpowědowacym titulom',
 'textmatches'                      => 'Strony z wotpowědowacym tekstom',
 'notextmatches'                    => 'Žane strony z wotpowědowacym tekstom',
-'prevn'                            => 'předchadne $1',
-'nextn'                            => 'přichodne $1',
+'prevn'                            => '{{PLURAL:$1|předchadny $1|předchadnej $1|předchadne $1|předchadnych $1}}',
+'nextn'                            => '{{PLURAL:$1|přichodny $1|přichodnej $1|přichodne $1|přichodnych $1}}',
 'prevn-title'                      => '{{PLURAL:$1|Předchadny wuslědk|Předchadnej $1 wuslědkaj|Předchadne $1 wuslědki|Předchadnych $1 wuslědkow}}',
 'nextn-title'                      => '{{PLURAL:$1|Přichodny wuslědk|Přichodnej $1 wuslědkaj|Přichodne $1 wuslědki|Přichodnych $1 wuslědkow}}',
 'shown-title'                      => '$1 {{PLURAL:$1|wuslědk|wuslědkaj|wuslědki|wuslědkow}} na stronu pokazać',
@@ -1665,7 +1665,7 @@ Slědowaca lisćina pokazuje jenož {{PLURAL:$1|prěni wotkaz strony|prěnjej $1
 
 # Special:Categories
 'categories'                    => 'Kategorije',
-'categoriespagetext'            => '{{PLURAL:Slědowaca kategorija wobsahuje|Slědowacej kategoriji wobsahujetej|Slědowace kategorije wobsahuja|Slědowace kategorije wobsahuja}} strony abo medije.
+'categoriespagetext'            => '{{PLURAL:$1|Slědowaca kategorija wobsahuje|Slědowacej kategoriji wobsahujetej|Slědowace kategorije wobsahuja|Slědowace kategorije wobsahuja}} strony abo medije.
 [[Special:UnusedCategories|Njewužiwane kategorije]] so tu njepokazuja.
 Hlej tež [[Special:WantedCategories|požadane kategorije]].',
 'categoriesfrom'                => 'Kategorije pokazać, započinajo z:',
@@ -2490,6 +2490,7 @@ Nasledne wotkazy na samsnej lince definuja wuwzaća, hdźež so wobraz smě naje
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength',
 
 # EXIF tags

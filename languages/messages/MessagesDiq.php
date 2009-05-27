@@ -862,12 +862,13 @@ Eg ena dosya, kondisyonê orcinali ra bıvuriya, belki detayanê hemi nıeseno.'
 'metadata-collapse' => 'extended details bınım',
 'metadata-fields'   => 'Ke tabloyê metadatayi nıeseno, ma EXIF metadata (eno mesaj dı) zerri pele resimi ri ken de. 
 Ma aya bini numnen.
-*kar
-*model
-*seatzemanoricinal
-*demoexposuri
-*famar
-*focaldergi',
+* make
+* model
+* datetimeoriginal
+* exposuretime
+* fnumber
+* isospeedratings
+* focallength',
 
 'exif-gaincontrol-0' => 'çino',
 

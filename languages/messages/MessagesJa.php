@@ -2643,12 +2643,13 @@ Variants for Chinese language
 'metadata-help'     => 'このファイルはデジタルカメラ・スキャナなどが付加した追加情報を含んでいます。このファイルがオリジナルの状態から変更されている場合、いくつかの項目は変更を完全に反映していないかもしれません。',
 'metadata-expand'   => '拡張項目を表示',
 'metadata-collapse' => '拡張項目を隠す',
-'metadata-fields'   => 'ここに挙げたEXIF情報のフィールドのみが標準で表示されます。
+'metadata-fields'   => 'ここに挙げたEXIF情報のフィールドはメタデータの表が折りたたまれている状態のときに表示されます。他のものは標準では表示されません。
 * make
 * model
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength',
 
 # EXIF tags

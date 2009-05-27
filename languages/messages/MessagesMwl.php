@@ -1083,6 +1083,7 @@ Causo l fexeiro tenga sido demudado a partir de l sou stado oureginal, alguns de
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength',
 
 # External editor support
