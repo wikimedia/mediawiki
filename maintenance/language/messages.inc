@@ -184,6 +184,7 @@ $wgMessageStructure = array(
 		'permalink',
 		'print',
 		'edit',
+		'view',
 		'create',
 		'editthispage',
 		'create-this-page',
