@@ -2469,7 +2469,13 @@ class Article {
 
 			if( $wgUser->isAllowed( 'editinterface' ) ) {
 				$skin = $wgUser->getSkin();
-				$link = $skin->makeLink ( 'MediaWiki:Deletereason-dropdown', wfMsgHtml( 'delete-edit-reasonlist' ) );
+				$title = Title::newFromText( 'Deletereason-dropdown', NS_MEDIAWIKI );
+				$link = $skin->link(
+					$title,
+					wfMsgHtml( 'delete-edit-reasonlist' ),
+					array(),
+					array( 'action' => 'edit' )
+				);
 				$form .= '<p class="mw-delete-editreasons">' . $link . '</p>';
 			}
 
