@@ -467,7 +467,7 @@ class IPBlockForm {
 
 			# Set *_deleted fields if requested
 			if( $this->BlockHideName ) {
-				self::suppressUserName( $this->BlockAddress, $userId, $reasonstr );
+				self::suppressUserName( $this->BlockAddress, $userId );
 			}
 
 			# Only show watch link when this is no range block
@@ -497,20 +497,7 @@ class IPBlockForm {
 		}
 	}
 	
-	public static function suppressUserName( $name, $userId, $reason = '' ) {
-		$user = User::newFromName( $name, false );
-		# Delete the user pages that exists
-		$title = $user->getUserPage();
-		if( ($id = $title->getArticleID(GAID_FOR_UPDATE)) ) {
-			$article = new Article( $title );
-			$article->doDeleteArticle( $reason, true /*suppress*/, $id );
-		}
-		# Delete the user talk pages that exists
-		$title = $user->getTalkPage();
-		if( $id = $title->getArticleID(GAID_FOR_UPDATE) ) {
-			$article = new Article( $title );
-			$article->doDeleteArticle( $reason, true /*suppress*/, $id );
-		}
+	public static function suppressUserName( $name, $userId ) {
 		$op = '|'; // bitwise OR
 		return self::setUsernameBitfields( $name, $userId, $op );
 	}
