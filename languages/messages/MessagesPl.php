@@ -2722,6 +2722,7 @@ Pozostałe pola zostaną domyślnie ukryte.
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength',
 
 # EXIF tags

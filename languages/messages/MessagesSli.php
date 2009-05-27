@@ -613,17 +613,19 @@ Wenn du dich miet dam Thema oauskennst, koast du selbst [[:$1|die Seite verfassa
 'recentchangeslinked-to'      => 'Zeige Änneronga uff Seita, de hierher verlinka',
 
 # Upload
-'upload'          => 'Huchloada',
-'uploadbtn'       => 'Datei huchloada',
-'reupload'        => 'Oabbrecha',
-'reuploaddesc'    => 'Oabbrecha un zurieck zur Huchloada-Seete',
-'uploaderror'     => 'Fehler beim Huchloada',
-'uploadlogpage'   => 'Datei-Logbuch',
-'filename'        => 'Dateinoame',
-'filedesc'        => 'Beschreibung',
-'savefile'        => 'Datei speichern',
-'uploadedimage'   => 'hoot „[[$1]]“ huchgeloada',
-'watchthisupload' => 'Diese Seite beobachta',
+'upload'            => 'Huchloada',
+'uploadbtn'         => 'Datei huchloada',
+'reupload'          => 'Oabbrecha',
+'reuploaddesc'      => 'Oabbrecha un zurieck zur Huchloada-Seete',
+'uploadnologin'     => 'Nä oangemeldet',
+'uploadnologintext' => 'Du musst [[Special:UserLogin|oangemeldet sein]], um Dateia huchloada zu könna.',
+'uploaderror'       => 'Fehler beim Huchloada',
+'uploadlogpage'     => 'Datei-Logbuch',
+'filename'          => 'Dateinoame',
+'filedesc'          => 'Beschreibung',
+'savefile'          => 'Datei speichern',
+'uploadedimage'     => 'hoot „[[$1]]“ huchgeloada',
+'watchthisupload'   => 'Diese Seite beobachta',
 
 # Special:ListFiles
 'imgfile'        => 'Datei',
@@ -965,6 +967,7 @@ Darauf folgende Seitalinks ei derselba Zeile definiera Ausnahma, ei deren Kontex
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength',
 
 'exif-exposureprogram-1' => 'Manuell',

@@ -2785,6 +2785,7 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength',
 
 # EXIF tags

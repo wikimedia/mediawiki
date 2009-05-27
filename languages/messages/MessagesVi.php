@@ -2659,6 +2659,7 @@ Những thông tin khác mặc định sẽ được ẩn đi.
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength',
 
 # EXIF tags

@@ -960,6 +960,7 @@ MySQL قايتۇرغان خاتالىقى"$3: $4"',
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength',
 
 # External editor support

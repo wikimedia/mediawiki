@@ -2473,6 +2473,7 @@ Cuddir y meysydd eraill trwy ragosodiad.
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength",
 
 # EXIF tags

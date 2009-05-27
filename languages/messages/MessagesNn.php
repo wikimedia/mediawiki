@@ -2633,6 +2633,7 @@ Dei andre felta er gøymde som standard.
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength',
 
 # EXIF tags

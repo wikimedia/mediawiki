@@ -1014,6 +1014,8 @@ You could also reset the notification flags for all your watched pages on your w
 
 له‌و حاڵه‌تانه‌دا، ئه‌گه‌ر بته‌وێت بیگوازیته‌وه‌ ناچار ده‌بیت به‌ شێوه‌ی ده‌ستی بیگوازیته‌وه‌ یان هه‌ردوکیان تێکه‌ڵ بکه‌ی.",
 'movearticle'           => 'ئەم پەڕە بگوازەوە:',
+'movenologin'           => 'نەچوویتەتە ژوورەوە',
+'movenologintext'       => 'بۆ گواستنەوەی پەڕەیەک، ئەشێ ببی بە ئەندام و [[Special:UserLogin|لە ژوورەوە]] بیت.',
 'newtitle'              => 'بۆ ناوی نوێی:',
 'move-watch'            => 'ئەم پەڕە چاودێری بکە',
 'movepagebtn'           => 'ئەم پەڕە بگوازەوە',
@@ -1161,6 +1163,7 @@ You could also reset the notification flags for all your watched pages on your w
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength',
 
 # External editor support

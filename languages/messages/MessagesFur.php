@@ -776,6 +776,8 @@ Leiende: (cur) = difarencis cun la version atuâl, (prec) = difarencis cun la ve
 'upload'             => 'Cjame sù un file',
 'uploadbtn'          => 'Cjame sù un file',
 'reupload'           => 'Torne a cjamâ sù',
+'uploadnologin'      => 'No jentrât',
+'uploadnologintext'  => 'Tu scugnis [[Special:UserLogin|jentrâ]] cul to non utent par cjamâ sù files.',
 'uploaderror'        => 'Erôr cjamant sù',
 'uploadtext'         => "Dopre la form ca sot par cjamâ sù un file, par cjalâ o cirî i files cjamâts sù in precedence va te [[Special:FileList|liste dai files cjamâts sù]], lis cjamadis e lis eliminazions a son ancje regjistrâts tal [[Special:Log/upload|regjistri des cjamadis]].
 
@@ -1197,6 +1199,8 @@ tu âs di cognossi lis conseguencis prime di lâ indevant.",
 
 In chescj câs, tu varâs di movi o unî a man lis informazions contignudis te pagjine di discussion, se tu lu desideris.",
 'movearticle'      => 'Môf la vôs',
+'movenologin'      => 'No tu sês jentrât',
+'movenologintext'  => 'Tu âs di jessi un utent regjistrât e <a href="{{localurl:Special:UserLogin}}">jentrât</a> par movi une pagjine.',
 'newtitle'         => 'Al gnûf titul',
 'move-watch'       => 'Ten di voli cheste pagjine',
 'movepagebtn'      => 'Môf pagjine',
@@ -1374,6 +1378,7 @@ Se il file al è stât cambiât rispiet al so stât origjinâl, cualchi informaz
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength',
 
 # EXIF tags

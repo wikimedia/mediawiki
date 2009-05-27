@@ -534,9 +534,9 @@ $messages = array(
 Возможно вы допустили опечатку при наборе URL или перешли по ошибочной ссылке.
 Это может также указывать на ошибку в проекте {{SITENAME}}.',
 'nosuchspecialpage' => 'Такой специальной страницы нет',
-'nospecialpagetext' => "<big>'''Запрошенной вами служебной страницы не существует.'''</big>
+'nospecialpagetext' => "<big>'''Запрошенной вами специальной страницы не существует.'''</big>
 
-См. [[Special:SpecialPages|список служебных страниц]].",
+Список существующих специальных страниц: [[Special:SpecialPages|{{int:specialpages}}]].",
 
 # General errors
 'error'                => 'Ошибка',
@@ -2135,7 +2135,7 @@ $1',
 
 # Namespace form on various pages
 'namespace'      => 'Пространство имён:',
-'invert'         => 'Обратить выделенное',
+'invert'         => 'Обратить выбранное',
 'blanknamespace' => '(Основное)',
 
 # Contributions
@@ -2690,6 +2690,7 @@ $1',
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength',
 
 # EXIF tags

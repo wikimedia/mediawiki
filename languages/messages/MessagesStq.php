@@ -2369,6 +2369,7 @@ wiedere standdoardmäitich "ienklapte" Details konnen anwiesd wäide.
 * make
 * model
 * fnumber
+* isospeedratings
 * datetimeoriginal
 * exposuretime
 * focallength',

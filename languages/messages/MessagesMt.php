@@ -265,7 +265,7 @@ $messages = array(
 'tog-numberheadings'          => 'Innumera awtomatikament it-titli tas-sezzjonijiet',
 'tog-showtoolbar'             => 'Uri l-kolonna tal-għodda għall-modifikar (JavaScript)',
 'tog-editondblclick'          => "Editja l-paġni ma' żewġ għafsiet (JavaScript)",
-'tog-editsection'             => "Ġiegħel modifiki ta' sezzjonijiet mil-links [modifika]",
+'tog-editsection'             => 'L-immodifikar tas-sezzjonijiet permezz tal-ħolqa [editja]',
 'tog-editsectiononrightclick' => "Ġiegħel modifiki ta' sezzjonijiet b'għafsa lemina fuq it-titli ta' sezzjonijiet (JavaScript)",
 'tog-showtoc'                 => "Uri t-tabella tal-kontenut (għal paġni b'aktar minn tliet titli)",
 'tog-rememberpassword'        => 'Ftakar il-password (tirrikjedi li taċċetta cookie)',
@@ -492,12 +492,12 @@ $messages = array(
 'newmessageslink'         => 'messaġġi ġodda',
 'newmessagesdifflink'     => 'l-aħħar bidla',
 'youhavenewmessagesmulti' => 'Għandek messaġġi ġodda fuq $1',
-'editsection'             => 'modifika',
+'editsection'             => 'editja',
 'editold'                 => 'modifika',
-'viewsourceold'           => 'ara l-fonti',
+'viewsourceold'           => 'ara s-sors',
 'editlink'                => 'editja',
 'viewsourcelink'          => 'ara l-fonti',
-'editsectionhint'         => 'Modifika s-sezzjoni: $1',
+'editsectionhint'         => 'Immodifika s-sezzjoni: $1',
 'toc'                     => 'Kontenut',
 'showtoc'                 => 'uri',
 'hidetoc'                 => 'aħbi',
@@ -521,7 +521,7 @@ $messages = array(
 'nstab-project'   => 'Paġna tal-proġett',
 'nstab-image'     => 'Fajl',
 'nstab-mediawiki' => 'Messaġġ',
-'nstab-template'  => 'Template',
+'nstab-template'  => 'Mudell',
 'nstab-help'      => 'Paġna tal-għajnuna',
 'nstab-category'  => 'Kategorija',
 
@@ -590,7 +590,7 @@ Rikjesta: $2',
 'actionthrottledtext'  => "Bħala miżura għal kontra l-ispam, inti limitat li tagħmel din l-azzjoni għal ħafna drabi f'spazju ta' ħin żgħir, u inti qbiżt dan il-limitu.
 Jekk jogħġbok erġa' prova fi ftit minuti oħra.",
 'protectedpagetext'    => "Din il-paġna ġiet magħluqa sabiex twaqqaf kull tip ta' modifika.",
-'viewsourcetext'       => "Inti tista' tara jew tikopja l-kodiċi sorġenti ta' din il-paġna:",
+'viewsourcetext'       => "Tista' tara u tikkopja s-sors ta' din il-paġna:",
 'protectedinterface'   => "Din il-paġna għanda element li tagħmel parti ''mill-interface'' ta' software, u għaldaqstant ġiet protetta sabiex ma jkunx hemm abbuż.",
 'editinginterface'     => "'''Avviż:''' Qiegħed tagħmel modifiki lejn paġna li qegħdha tintuża biex tipprovdi interfaċċa għall-messaġġi tas-software. Kull modifika f'din il-paġna se taffetwa l-apparenza tal-faċċata tal-utenti kollha. Għat-traduzzjonijiet, ikkunsidra l-possibilità li tuża'  [http://translatewiki.net/wiki/Main_Page?setlang=mt translatewiki.net], il-proġett MediaWiki għal-lokalizzazzjoni.",
 'sqlhidden'            => '(SQL rikjesta moħbija)',
@@ -774,7 +774,7 @@ Għandek tkun taf li ma tistax tuża l-faċilità ta' \"ibgħat email lil dan l-
 L-IP kurrenti tiegħek huwa \$3, u l-ID ta' l-imblukkar huwa #\$5.<br />
 Jekk jogħġbok inkludi mqar wieħed minn dawn it-tnejn f'kwalunkwe rikjesta.",
 'blockednoreason'                  => 'ma ingħatat l-ebda raġuni',
-'blockedoriginalsource'            => "Il-Fonti tal-paġna '''$1''' jinsab hawn taħt:",
+'blockedoriginalsource'            => "Is-sors tal-paġna '''$1''' jinsab hawn taħt:",
 'blockededitsource'                => "It-test tal-'''modifiki tiegħek''' f' '''$1''' jinstab hawn taħt:",
 'whitelistedittitle'               => "Trid tidħol sabiex tkun tista' timmodifika l-paġna",
 'whitelistedittext'                => "Int trid $1 biex tkun tista' timodifika l-paġni.",
@@ -823,7 +823,7 @@ Din il-modifika ma ġietx aċċettata sabiex ma jkunx hemm żballji fit-test tal
 'editing'                          => 'Qiegħed jiġi modifikat l-artiklu $1',
 'editingsection'                   => "Modifikar ta' $1 (sezzjoni)",
 'editingcomment'                   => 'Qed jiġi editjat $1 (sezzjoni ġdida)',
-'editconflict'                     => "Kunflitt ta' modifika: $1",
+'editconflict'                     => "Kunflitt t'editjar: $1",
 'explainconflict'                  => "Xi ħadd modifika din il-paġna sakemm int kont qiegħed tagħmel il-modifiki. <br />
 Fiż-Żona tal-modifika superjuri jinsab il-kliem tal-paġna kif teżisti bħalissa, kif ġiet modifikata mill-utent l-ieħor. Il-Verżjoni bil-modifiki tiegħek jinsab fiż-żona ta' modifika inferjuri. Jekk trid il-modifiki tiegħek jiġu salvati, inti trid tgħaqqad il-modifiki tiegħek mat-test kif jeżisti bħalissa fiż-żona superjuri.
 Meta tagħfas ''Modifika'', se jiġi salvat '''biss''' it-test li jinsab fiż-żona superjuri.",
@@ -868,7 +868,7 @@ Tista' tmur lura u tagħmel modifiki ta' paġni eżistenti, inkella [[Special:Us
 'nocreate-loggedin'                => "M'għandekx permess li toħloq paġni ġodda.",
 'permissionserrors'                => 'Problemi bil-permessi',
 'permissionserrorstext'            => "Inti m'għandhekx dritt li tagħmel hekk, għar-{{PLURAL:$1|raġuni|raġunijiet}} segwenti:",
-'permissionserrorstext-withaction' => "Inti m'għandekx permess għal $2, għar-{{PLURAL:$1|raġuni|raġunijiet}} segwenti:",
+'permissionserrorstext-withaction' => "M'għandekx il-permess neċessarji biex $2, għar-{{PLURAL:$1|raġuni|raġunijiet}} segwenti:",
 'recreate-moveddeleted-warn'       => "'''Twissija: Inti qiegħed toħloq mill-ġdid paġna li ġiet imħassra.'''
 
 Aċċerta ruħek jekk huwiex opportun li tkompli timmodifika din il-paġna.
@@ -1137,7 +1137,7 @@ Innota però li l-werreja tal-kontenut ta' {{SITENAME}} f'dawn is-siti, jistgħu
 'prefs-rendering'             => 'Dehra',
 'saveprefs'                   => 'Żomm il-preferenzi',
 'resetprefs'                  => 'Neħħi modifiki mhux salvati',
-'prefs-editing'               => 'Modifika',
+'prefs-editing'               => 'Modifiki',
 'prefs-edit-boxsize'          => 'Daqs tat-tieqa tal-immodifikar.',
 'rows'                        => 'Filieri:',
 'columns'                     => 'Kolonni:',
@@ -1310,7 +1310,7 @@ Innota però li l-werreja tal-kontenut ta' {{SITENAME}} f'dawn is-siti, jistgħu
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-read'           => 'aqra din il-paġna',
-'action-edit'           => 'immodifika din il-paġna',
+'action-edit'           => 'timmodifika din il-paġna',
 'action-createpage'     => 'oħloq paġni',
 'action-createtalk'     => "oħloq paġni ta' diskussjoni",
 'action-createaccount'  => 'oħloq dan il-kont tal-utent',
@@ -2510,6 +2510,7 @@ Minħabba veduta predefinita ,l-oħrajn se jiġu moħbija.
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength",
 
 # EXIF tags

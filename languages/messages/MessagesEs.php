@@ -1572,6 +1572,8 @@ También puedes consultar la [[Special:WhatLinksHere/$2|lista completa]].',
 Por favor mira la [$2 página de descripción del archivo] para información adicional.',
 'sharedupload-desc-here'    => 'Este archivo es de $1 y puede ser usado por otros proyectos.
 La descripción en su [$2 página de descripción del archivo] está mostrada debajo.',
+'filepage-nofile'           => 'No existe archivo con este nombre.',
+'filepage-nofile-link'      => 'No existe archivo con este nombre, pero puedes [$1 cargarlo].',
 'uploadnewversion-linktext' => 'Subir una nueva versión de este archivo',
 'shared-repo-from'          => 'de $1',
 'shared-repo'               => 'un repositorio compartido',
@@ -2182,7 +2184,7 @@ las páginas en particular que han sido objeto de vandalismo).',
 'ipblocklist-submit'              => 'Buscar',
 'blocklistline'                   => '$1, $2 bloquea a $3 ($4)',
 'infiniteblock'                   => 'infinito',
-'expiringblock'                   => 'expira $1 $2',
+'expiringblock'                   => 'expira en $1 en $2',
 'anononlyblock'                   => 'sólo anón.',
 'noautoblockblock'                => 'Bloqueo automático deshabilitado',
 'createaccountblock'              => 'Creación de cuenta bloqueada.',
@@ -2625,6 +2627,7 @@ Existen otros campos que se mantendrán ocultos por defecto.
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength',
 
 # EXIF tags

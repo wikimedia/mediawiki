@@ -681,6 +681,8 @@ Is pàginas de sa [[Special:Watchlist|watchlist tua]] sunt in '''grassetu'''.",
 'uploadbtn'         => 'Carriga file',
 'reupload'          => 'Torra a carrigai',
 'reuploaddesc'      => 'Torra a su mòdulu pro su carrigamentu.',
+'uploadnologin'     => 'Non ses intrau',
+'uploadnologintext' => 'Su carrigamentu de files est permìtiu isceti a pustis de àere fatu su [[Special:UserLogin|log in]].',
 'uploaderror'       => 'Faddina de carrigamentu',
 'uploadtext'        => "Imprea su modulu a suta pro carrigare files nous. 
 Pro castiare o chircare is files giai carrigaus, bae a sa [[Special:FileList|lista de is files carrigaus]]. Carrigamentos de files e de noas versiones de files sunt arregistradas in su [[Special:Log/upload|registru de carrigamentu]], is burraduras in su [[Special:Log/delete|registru burraduras]].
@@ -1057,6 +1059,8 @@ pro preghere depis èssere siguru de àere cumpresu is cunseguèntzias prima de 
 
 In custus casos, chi boles, depis mòvere a manu su cuntentu de sa pàgina.",
 'movearticle'        => 'Movi sa pàgina:',
+'movenologin'        => 'Non hai effettuato il login',
+'movenologintext'    => 'Depis èssere unu usuàriu registrau e [[Special:UserLogin|intrau]] pro poder mòvere una pàgina',
 'newtitle'           => 'Tìtulu nou:',
 'move-watch'         => 'Pone ogru a custa pàgina',
 'movepagebtn'        => 'Movi sa pàgina',
@@ -1184,6 +1188,7 @@ Is acàpius chi sighint in sa matessi lìnia sunt cunsideraus comente eccetzione
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength",
 
 # EXIF tags

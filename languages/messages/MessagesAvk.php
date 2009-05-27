@@ -1995,6 +1995,7 @@ Kotari milconhafi gluyasiki roklon zo krafiar.',
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength',
 
 # EXIF tags

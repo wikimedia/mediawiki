@@ -1620,6 +1620,8 @@ Una [[Special:WhatLinksHere/$2|tièra completa]] es disponibla.',
 'sharedupload'              => 'Aqueste fichièr proven de $1 e pòt èsser utilizat per d’autres projèctes.',
 'sharedupload-desc-there'   => "Aqueste fichièr proven de $1 e pòt èsser utilizat per d'autres projèctes. Vejatz [$2 sa pagina de descripcion] per mai d'entresenhas.",
 'sharedupload-desc-here'    => "Aqueste fichièr proven de $1 e pòt èsser utilizat per d'autres projèctes. La descripcion de [$2 sa pagina de descripcion] es afichada çaijós.",
+'filepage-nofile'           => 'Cap de fichièr amb aqueste nom existís pas.',
+'filepage-nofile-link'      => 'Cap de fichièr amb aqueste nom existís pas, mas ne podètz [$1 telecargar un].',
 'uploadnewversion-linktext' => "Importar una version novèla d'aqueste fichièr",
 'shared-repo-from'          => 'de $1',
 'shared-repo'               => 'un depaus partejat',
@@ -2230,7 +2232,7 @@ a partir d'una adreça IP precedentament blocada.",
 'ipblocklist-submit'              => 'Recercar',
 'blocklistline'                   => '$1, $2 a blocat $3 ($4)',
 'infiniteblock'                   => 'permanent',
-'expiringblock'                   => 'expira lo $1 $2',
+'expiringblock'                   => 'expira lo $1 a $2',
 'anononlyblock'                   => 'utilizaire anonim unicament',
 'noautoblockblock'                => 'blocatge automatic desactivat',
 'createaccountblock'              => 'La creacion de compte es blocada.',
@@ -2675,6 +2677,7 @@ Los autres ligams sus la meteissa linha son considerats coma d'excepcions, per e
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength',
 
 # EXIF tags

@@ -2471,6 +2471,7 @@ Anderi Metadate sy standardmäßig versteckt.
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength',
 
 # EXIF tags

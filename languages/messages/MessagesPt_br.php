@@ -2581,6 +2581,7 @@ Caso o arquivo tenha sido modificado a partir do seu estado original, alguns det
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength',
 
 # EXIF tags

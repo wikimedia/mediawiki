@@ -600,6 +600,7 @@ Paginas sin [[Special:Watchlist|tia glista d'observaziun]] èn '''grassas'''.",
 'uploadbtn'         => 'Chargiar si il file',
 'reupload'          => 'chargiar si danovamain',
 'reuploaddesc'      => 'Anavos tar la pagina da chargiar si.',
+'uploadnologintext' => "Ti stos [[Special:UserLogin|t'annunziar]] per chargiar si files.",
 'uploadtext'        => "Cun il formular sutvart pos ti chargiar si files, per vesair u tschertgar maletgs gia chargiads si, dovra [[Special:FileList|quest link]]. I dat er ina [[Special:Log/upload|glista dals files chargiads si u stidads]].
 
 Per integrar il maletg/purtret en tes artitgel sas ti per exempel duvrar in dals suandants cumonds: 
@@ -896,6 +897,7 @@ sajas conscient da las consequenzas che quai process po avair.",
 
 En quests cas as ti da spustar u colliar manualmain las paginas, sche giavischà.",
 'movearticle'             => 'Spustar artitgel:',
+'movenologintext'         => "Ti stos [[Special:UserLogin|t'annunziar]] per spustar in artitgel.",
 'newtitle'                => 'Al titel nov:',
 'move-watch'              => 'Observar questa pagina',
 'movepagebtn'             => 'Spustar la pagina',
@@ -1062,6 +1064,7 @@ Sche la datoteca è vegnida midada dal status original èn tscherts detagls even
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength',
 
 # External editor support

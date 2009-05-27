@@ -1919,7 +1919,8 @@ $1',
 * model
 * datetimeoriginal
 * exposuretime 
-* fnumber 
+* fnumber
+* isospeedratings 
 * focallength',
 
 # EXIF tags

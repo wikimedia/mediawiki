@@ -1789,6 +1789,7 @@ Beidh na cinn eile ceilte de réir réamhshocraithe.
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength',
 
 # EXIF tags

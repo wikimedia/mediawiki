@@ -2125,6 +2125,7 @@ Ander velde sal versteek wees.
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength',
 
 # EXIF tags

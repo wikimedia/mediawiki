@@ -2074,6 +2074,7 @@ Any subsequent links on the same line are considered to be exceptions, i.e. page
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength',
 
 # EXIF tags

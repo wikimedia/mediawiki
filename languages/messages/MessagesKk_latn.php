@@ -2483,6 +2483,7 @@ Basqaları ädepkiden jasırıladı.
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength',
 
 # EXIF tags

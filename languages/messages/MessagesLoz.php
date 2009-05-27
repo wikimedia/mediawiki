@@ -559,6 +559,9 @@ Informasi: (bye) = petuho a nca selt,
 'upload'            => 'Imegi uplodezi',
 'uploadbtn'         => 'Imegi uplodezi',
 'reupload'          => 'Uplodezi nca',
+'uploadnologin'     => 'Ni menuhile',
+'uploadnologintext' => 'A sa [[Special:UserLogin|menuhile]]
+di uplodezi media.',
 'uploaderror'       => 'Bufosi duplodezi',
 'uploadlogpage'     => 'Desu di uplodezi',
 'filename'          => 'Imegi',
@@ -893,6 +896,7 @@ a sa gukilize di nyanganyisize.",
 
 Teri yaki, a nyanganyisize.",
 'movearticle'      => 'Nyanganyisize petulo:',
+'movenologin'      => 'A ni sa menuhile',
 'newtitle'         => 'Di nca petulo:',
 'move-watch'       => 'Kentezi bye petulo',
 'movepagebtn'      => 'Nyanganyisize petulo',
@@ -1039,6 +1043,7 @@ Xete ling'ki kwa lina sa konsidisize desepo. Petulo dimedi inlinenikusize.",
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength',
 
 # EXIF tags

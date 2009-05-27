@@ -266,7 +266,7 @@ $messages = array(
 'site-atom-feed'          => '$1 — Atom тасмасы',
 'page-rss-feed'           => '«$1» — RSS тасмасы',
 'page-atom-feed'          => '«$1» — Atom тасмасы',
-'red-link-title'          => '$1 (әле язылмаган)',
+'red-link-title'          => '$1 (бит әле барлыкта юк)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Бит',
