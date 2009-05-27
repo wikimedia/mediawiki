@@ -146,11 +146,19 @@ class HTMLForm {
 		$this->mValidationErrorMessage = $msg;
 	}
 	
+	function setIntro( $msg ) {
+		$this->mIntro = $msg;
+	}
+	
 	function displayForm( $submitResult ) {
 		global $wgOut;
 		
 		if ( $submitResult !== false ) {
 			$this->displayErrors( $submitResult );
+		}
+		
+		if ( isset($this->mIntro) ) {
+			$wgOut->addHTML( $this->mIntro );
 		}
 		
 		$html = $this->getBody();
