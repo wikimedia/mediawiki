@@ -1,0 +1,1258 @@
+/* Framework */
+html,
+body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	font-family: sans-serif;
+	font-size: small;
+}
+body.rtl {
+	direction: rtl;
+	unicode-bidi: embed;
+	background-position: top right;
+}
+
+/* Content Base */
+div#content-base {
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 101%;
+	width: 100%;
+}
+	div#content-base > div {
+		height: 100%;
+		margin-left: 12em; /* PANEL WIDTH */
+		background-color: white;
+		background-image: url(images/content-base.png);
+		background-position: top left;
+		background-repeat: repeat-y;
+	}
+	body.rtl div#content-base > div {
+		margin-left: 0;
+		margin-right: 12em; /* PANEL WIDTH */
+		background-position: top right;
+	}
+
+/* Panel Base */
+div#panel-base {
+	position: fixed;
+	top: 0;
+	left: 0;
+	height: 101%;
+	width: 12em; /* PANEL WIDTH */
+	background-image: url(images/page-base.png);
+	background-repeat: repeat;
+}
+body.rtl div#panel-base {
+	left: auto;
+	right: 0;
+}
+
+/* Page */
+div#page {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 100%;
+	width: 100%;
+}
+	div#page div.break {
+		clear: both;
+	}
+
+/* Panel */
+div#panel {
+	margin-top: 155px; /* LOGO HEIGHT */
+	width: 12em; /* PANEL WIDTH */
+}
+	div#panel > div.buffer {
+		padding-top: 1em;
+	}
+	div#panel > div.buffer > div.portal > h5 {
+		font-weight: normal;
+		color: #666666;
+		padding: 0.75em;
+		padding-left: 1.25em;
+		cursor: default;
+	}
+	body.rtl div#panel > div.buffer > div.portal > h5 {
+		padding-left: 0;
+		padding-right: 1.25em;
+	}
+	div#panel > div.buffer > div.portal > div.body {
+		padding: 0.75em;
+		padding-left: 1.25em;
+		background-image: url(images/panel-fade.png);
+		background-repeat: repeat-x;
+		background-position: top left;
+	}
+	body.rtl div#panel > div.buffer > div.portal > div.body {
+		padding-left: 0;
+		padding-right: 1.25em;
+		background-position: top right;
+	}
+	div#panel > div.buffer > div.portal > div.body > ul {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
+	div#panel > div.buffer > div.portal > div.body > ul > li {
+		padding: 0;
+		padding-bottom: 0.5em;
+		margin: 0;
+	}
+	div#panel > div.buffer > div.portal > div.body > ul > li > a {
+		color: #00528c;
+	}
+	div#panel > div.buffer > div.portal > div.body > ul > li > a:visited {
+		color: #2623a5;
+	}
+
+/* Logo */
+#logo {
+	position: absolute;
+	top: 0;
+	left: 0;
+	height: 155px; /* LOGO HEIGHT */
+	width: 12em; /* PANEL WIDTH */
+	overflow: visible;
+	background-image: url(images/page-fade.png);
+	background-position: top left;
+	background-repeat: repeat-x;
+}
+body.rtl #logo {
+	left: auto;
+	right: 0;
+	background-position: top right;
+}
+	#logo > a,
+	#logo > a:hover {
+		display: block;
+		height: 155px; /* LOGO HEIGHT */
+		width: 12em; /* PANEL WIDTH */
+		background-repeat: no-repeat;
+		background-position: center center;
+		text-decoration: none;
+	}
+
+/* Content */
+div#content {
+	float: right;
+	width: 100%;
+	margin-top: 6em; /* HEAD HEIGHT */
+	margin-left: -12em; /* PANEL WIDTH */
+}
+body.rtl div#content {
+	float: left;
+	margin-left: 0;
+	margin-right: -12em; /* PANEL WIDTH */
+}
+	div#content > div.buffer {
+		margin-left: 12em; /* PANEL WIDTH */
+		padding: 10px;
+		background-color: white;
+		background-image: url(images/content-base.png);
+		background-position: top left;
+		background-repeat: repeat-y;
+	}
+	body.rtl div#content > div.buffer {
+		margin-left: 0;
+		margin-right: 12em; /* PANEL WIDTH */
+		background-position: top right;
+	}
+
+/* Head */
+div#head {
+	position: absolute;
+	top: 0;
+	height: 6em; /* HEAD HEIGHT */
+	width: 100%;
+	background-image: url(images/page-fade.png);
+	background-position: top left;
+	background-repeat: repeat-x;
+}
+body.rtl div#head {
+	background-position: top right;
+}
+	div#head > div.buffer {
+		margin-left: 12em; /* PANEL WIDTH */
+		height: 100%;
+		background-image: url(images/head-base.png);
+		background-position: bottom left;
+		background-repeat: repeat-x;
+	}
+	body.rtl div#head > div.buffer {
+		margin-left: 0;
+		margin-right: 12em; /* PANEL WIDTH */
+		background-position: bottom right;
+	}
+	div#head > div.buffer > div.top {
+		height: 3em; /* HALF HEAD HEIGHT */
+		float: right;
+	}
+	body.rtl div#head > div.buffer > div.top {
+		float: left;
+	}
+	div#head > div.buffer > div.bottom {
+		height: 3em; /* HALF HEAD HEIGHT */
+		float: right;
+	}
+	body.rtl div#head > div.buffer > div.bottom {
+		float: left;
+	}
+	div#head > div.buffer > div.middle {
+		height: 3em; /* HALF HEAD HEIGHT */
+		clear: both;
+		float: left;
+	}
+	body.rtl div#head > div.buffer > div.middle {
+		float: right;
+	}
+
+/* Foot */
+div#foot {
+	margin-left: 12em; /* PANEL WIDTH */
+	background-image: url(images/page-base.png);
+	background-repeat: repeat;
+}
+body.rtl div#foot {
+	margin-left: 0;
+	margin-right: 12em; /* PANEL WIDTH */
+	background-position: top right;
+}
+	div#foot > div.buffer {
+		background-image: url(images/foot-base.png);
+		background-position: top left;
+		background-repeat: repeat-x;
+		padding: 0.75em;
+	}
+	body.rtl div#foot > div.buffer {
+		margin-left: 0;
+		margin-right: 1px;
+		background-position: top right;
+	}
+	div#foot ul {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+	div#foot li {
+		font-size: x-small;
+		color: #666666;
+	}
+	div#foot a {
+		color: #00528c;
+		
+	}
+	div#foot a:visited {
+		color: #2623a5;
+	}
+
+/* Foot Icons */
+ul#foot-icons {
+	float: right;
+	width: 88px;
+	margin-right: 0.75em;
+}
+	body.rtl ul#foot-icons {
+		float: left;
+		margin-left: 0.75em;
+		margin-right: 0;
+	}
+	ul#foot-icons > li {
+		margin-bottom: 0.75em;
+		margin-top: 0.2em;
+	}
+
+/* Foot Info */
+ul#foot-info {
+	float: left;
+}
+	body.rtl ul#foot-info {
+		float: right;
+	}
+	ul#foot-info > li {
+		padding: 0em;
+		padding-bottom: 0.5em;
+		margin: 0em;
+		margin-bottom: 0.5em;
+		border-bottom: dashed 1px #DEDEDE;
+	}
+
+/* Foot Places */
+ul#foot-places {
+	clear: left;
+	float: left;
+}
+	body.rtl ul#foot-places {
+		clear: right;
+		float: right;
+	}
+	ul#foot-places > li {
+		float: left;
+		padding: 0;
+		padding-bottom: 0.5em;
+		margin: 0;
+		margin-right: 1.5em;
+	}
+	body.rtl ul#foot-places > li {
+		float: right;
+		margin-left: 1.5em;
+		margin-right: 0;
+	}
+
+/* Namespaces */
+div#namespaces {
+	float: left;
+	height: 3em; /* HALF HEAD HEIGHT */
+	background-image: url(images/head-break.png);
+	background-position: bottom right;
+	background-repeat: no-repeat;
+	padding-right: 1px;
+}
+body.rtl div#namespaces {
+	float: right;
+	background-position: bottom left;
+	padding-right: 0;
+	padding-left: 1px;
+}
+	div#namespaces h5 {
+		display: none;
+	}
+	div#namespaces > ul {
+		height: 100%;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+	div#namespaces > ul > li {
+		float: left;
+		height: 100%;
+		margin: 0;
+		padding: 0;
+		background-image: url(images/namespace-normal-fade.png);
+		background-position: bottom left;
+		background-repeat: repeat-x;
+	}
+	body.rtl div#namespaces > ul > li {
+		float: right;
+		background-position: bottom right;
+	}
+	div#namespaces > ul > li > a {
+		display: block;
+		height: 100%;
+		line-height: 4em;
+		padding-left: 0.5em;
+		padding-right: 0.5em;
+		background-image: url(images/head-break.png);
+		background-position: bottom left;
+		background-repeat: no-repeat;
+	}
+	body.rtl div#namespaces > ul > li > a {
+		background-position: bottom right;
+	}
+	div#namespaces > ul > li > a,
+	div#namespaces > ul > li > a:visited {
+		color: #00528c;
+	}
+	div#namespaces > ul > li.selected > a,
+	div#namespaces > ul > li.selected > a:visited{
+		color: #333333;
+		cursor: default;
+		text-decoration: none;
+	}
+	div#namespaces > ul > li.new > a,
+	div#namespaces > ul > li.new > a:visited{
+		color: #a55858;
+	}
+	div#namespaces > ul > li.selected {
+		background-image: url(images/namespace-current-fade.png);
+		background-position: bottom left;
+		background-repeat: repeat-x;
+	}
+	body.rtl div#namespaces > ul > li.selected {
+		background-position: bottom right;
+	}
+
+/* Views */
+div#views {
+	float: left;
+	height: 3em; /* HALF HEAD HEIGHT */
+	background-image: url(images/head-break.png);
+	background-position: bottom right;
+	background-repeat: no-repeat;
+	padding-right: 1px;
+}
+body.rtl div#views {
+	float: right;
+	background-position: bottom left;
+	padding-right: 0;
+	padding-left: 1px;
+}
+	div#views h5 {
+		display: none;
+	}
+	div#views > ul {
+		height: 100%;
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+	div#views > ul > li {
+		float: left;
+		height: 100%;
+		margin: 0;
+		padding: 0;
+		background-image: url(images/view-normal-fade.png);
+		background-position: bottom left;
+		background-repeat: repeat-x;
+	}
+	body.rtl div#views > ul > li {
+		float: right;
+		background-position: bottom right;
+	}
+	div#views > ul > li > a {
+		display: block;
+		height: 100%;
+		line-height: 4em;
+		padding-left: 0.5em;
+		padding-right: 0.5em;
+		background-image: url(images/head-break.png);
+		background-position: bottom left;
+		background-repeat: no-repeat;
+	}
+	body.rtl div#views > ul > li > a {
+		background-position: bottom right;
+	}
+	div#views > ul > li > a,
+	div#views > ul > li > a:visited {
+		color: #00528c;
+	}
+	div#views > ul > li.selected > a,
+	div#views > ul > li.selected > a:visited{
+		color: #333333;
+		cursor: default;
+		text-decoration: none;
+	}
+	div#views > ul > li.new > a,
+	div#views > ul > li.new > a:visited{
+		color: #a55858;
+	}
+	div#views > ul > li.selected {
+		background-image: url(images/view-current-fade.png);
+		background-position: bottom left;
+		background-repeat: repeat-x;
+	}
+	body.rlt div#views > ul > li.selected {
+		background-position: bottom right;
+	}
+
+/* Actions */
+div#actions {
+	float: left;
+	height: 3em; /* HALF HEAD HEIGHT */
+	background-image: url(images/head-break.png);
+	background-position: bottom right;
+	background-repeat: no-repeat;
+	padding-right: 1px;
+}
+body.rtl div#actions {
+	float: right;
+	background-position: bottom left;
+	padding-right: 0;
+	padding-left: 1px;
+}
+	div#actions > h5 {
+		height: 100%;
+		margin: 0;
+		padding: 0;
+		background-image: url(images/action-normal-fade.png);
+		background-position: bottom left;
+		background-repeat: repeat-x;
+	}
+	body.rtl div#actions > h5 {
+		background-position: bottom right;
+	}
+	div#actions > h5 > div.icon {
+		height: 80%;
+		width: 16px;
+		margin-left: 0.25em;
+		margin-right: 0.25em;
+		background-image: url(images/arrow-down-icon.png);
+		background-position: bottom center;
+		background-repeat: no-repeat;
+		cursor: default;
+	}
+	div#actions > h5 > div.icon > span {
+		display: none;
+	}
+	div#actions > div.menu {
+		display: none;
+	}
+	div#actions:hover > div.menu {
+		display: block;
+	}
+	div#actions > div.menu > ul {
+		position: absolute;
+		list-style: none;
+		background-color: white;
+		border: solid 1px silver;
+		border-top-width: 0;
+		margin: 0;
+		margin-left: -1px;
+		padding: 0;
+	}
+	body.rtl div#actions > div.menu > ul {
+		margin-left: 0;
+		margin-right: -1px;
+	}
+	div#actions > div.menu > ul > li {
+		margin: 0;
+		padding: 0;
+	}
+	div#actions > div.menu > ul > li > a {
+		display: block;
+		padding-top: 0.25em;
+		padding-left: 0.5em;
+		padding-right: 0.5em;
+	}
+	div#actions > div.menu > ul > li > a,
+	div#actions > div.menu > ul > li > a:visited {
+		color: #00528c;
+	}
+
+/* I DON"T THINK THIS IS AWESOME, BUT IT"S SOMETHING... */
+
+/* Variants */
+div#variants {
+	float: left;
+	height: 3em; /* HALF HEAD HEIGHT */
+	background-image: url(images/head-break.png);
+	background-position: bottom right;
+	background-repeat: no-repeat;
+	padding-right: 1px;
+}
+body.rtl div#variants {
+	float: right;
+	background-position: bottom left;
+	padding-right: 0;
+	padding-left: 1px;
+}
+	div#variants > h5 {
+		height: 100%;
+		margin: 0;
+		padding: 0;
+		background-image: url(images/action-normal-fade.png);
+		background-position: bottom left;
+		background-repeat: repeat-x;
+	}
+	body.rtl div#variants > h5 {
+		background-position: bottom right;
+	}
+	div#variants > h5 > div.icon {
+		height: 80%;
+		width: 16px;
+		margin-left: 0.25em;
+		margin-right: 0.25em;
+		background-image: url(images/arrow-down-icon.png);
+		background-position: bottom center;
+		background-repeat: no-repeat;
+		cursor: default;
+	}
+	div#variants > h5 > div.icon > span {
+		display: none;
+	}
+	div#variants > div.menu {
+		display: none;
+	}
+	div#variants:hover > div.menu {
+		display: block;
+	}
+	div#variants > div.menu > ul {
+		position: absolute;
+		list-style: none;
+		background-color: white;
+		border: solid 1px silver;
+		border-top-width: 0;
+		margin: 0;
+		margin-left: -1px;
+		padding: 0;
+	}
+	body.rtl div#variants > div.menu > ul {
+		margin-left: 0;
+		margin-right: -1px;
+	}
+	div#variants > div.menu > ul > li {
+		margin: 0;
+		padding: 0;
+	}
+	div#variants > div.menu > ul > li > a {
+		display: block;
+		padding-top: 0.25em;
+		padding-left: 0.5em;
+		padding-right: 0.5em;
+	}
+	div#variants > div.menu > ul > li > a,
+	div#variants > div.menu > ul > li > a:visited {
+		color: #00528c;
+	}
+
+/* END OF STUFF I"M NOT SURE ABOUT... */
+
+/* Search */
+div#search {
+	margin-top: 0.75em;
+	margin-right: 0.5em;
+	margin-left: 0.75em;
+	float: left;
+}
+body.rtl div#search {
+	margin-right: 0.75em;
+	margin-left: 0.5em;
+	float: right;
+}
+	div#search h5 {
+		display: none;
+	}
+
+/* Personal */
+div#personal {
+	float: right;
+	margin-top: 0.25em;
+	margin-right: 0.75em;
+	margin-left: 0.75em;
+}
+body.rtl div#personal {
+	float: left;
+}
+	div#personal > div.buffer > h5 {
+		display: none;
+	}
+	div#personal > div.buffer > ul {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+	}
+	div#personal > div.buffer > ul > li {
+		float: left;
+		margin: 0;
+		padding-bottom: 0.5em;
+		padding-left: 1em;
+		font-size: 0.9em;
+	}
+	body.rtl div#personal > div.buffer > ul > li {
+		float: right;
+		padding-left: 0;
+		padding-right: 1em;
+	}
+	div#personal > div.buffer > ul > li > a,
+	div#personal > div.buffer > ul > li > a:visited {
+		color: #00528c;
+	}
+	div#personal > div.buffer > ul > li > a.new,
+	div#personal > div.buffer > ul > li > a.new:visited {
+		color: #a55858;
+	}
+
+/*
+ * 
+ * The following code is highly modified from monobook. It would be nice if the
+ * preftoc id was more human readable like preferences-toc for instance,
+ * howerver this would require backporting the other skins.
+ * 
+ */
+
+/* Preferences */
+#preftoc {
+	/* Tabs */
+	width: 100%;
+	clear: both;
+	margin: 0;
+	padding: 0;
+	padding-left: 1px;
+	height: 2.25em;
+	background-image: url(images/preferences-break.png);
+	background-position: bottom left;
+	background-repeat: no-repeat;
+}
+body.rtl #preftoc {
+	padding-left: 0;
+	padding-right: 1px;
+	background-position: bottom right;
+}
+	#preftoc li {
+		/* Tab */
+		float: left;
+		position: relative;
+		margin: 0;
+		padding: 0;
+		padding-right: 1px;
+		height: 2.25em;
+		white-space: nowrap;
+		list-style-type: none;
+		list-style-image: none;
+		background-image: url(images/preferences-break.png);
+		background-position: bottom right;
+		background-repeat: no-repeat;
+	}
+	body.rtl #preftoc li {
+		float: right;
+		padding-left: 1px;
+		padding-right: 0;
+		background-position: bottom left;
+	}
+	#preftoc a,
+	#preftoc a:active {
+		/* Tab Label */
+		display: block;
+		position: relative;
+		color: #00528c;
+		padding: 0.5em;
+		text-decoration: none;
+		background-image: none;
+	}
+	#preftoc a:hover {
+		text-decoration: underline;
+	}
+	#preftoc li.selected a {
+		/* Selected Tab Label */
+		cursor: default;
+		background-image: url(images/preferences-fade.png);
+		background-position: bottom;
+		background-repeat: repeat-x;
+		color: #333333;
+		cursor: default;
+		text-decoration: none;
+	}
+#preferences {
+	margin: 0;
+	clear: both;
+	padding: 1em;
+	padding-top: 0;
+	margin-top: -0.5em;
+	border: solid 1px #cccccc;
+	background-color: #f9f9f9;
+	background-image: url(images/preferences-base.png);
+}
+#preferences > fieldset.prefsection {
+	border: none;
+	padding: 0;
+	margin: 0;
+}
+#preferences > fieldset.prefsection > fieldset {
+	border: none;
+	border-top: solid 1px #cccccc;
+}
+#preferences legend {
+	color: #666666;
+}
+#preferences > fieldset.prefsection > legend.mainLegend {
+	display: none;
+}
+#preferences td {
+	padding-left: 0.5em;
+	padding-right: 0.5em;
+}
+#preferences td.htmlform-tip {
+	font-size: x-small;
+	padding: .2em 2em;
+	color: #666;
+}
+
+/*
+ * 
+ * The following code is slightly modified from monobook
+ * 
+ */
+
+/* Links */
+a {
+	text-decoration: none;
+	color: #002bb8;
+	background: none;
+}
+a:visited {
+	color: #5a3696;
+}
+a:active {
+	color: #faa700;
+}
+a:hover {
+	text-decoration: underline;
+}
+a.stub {
+	color: #772233;
+}
+a.new, #p-personal a.new {
+	color: #ba0000;
+}
+a.new:visited, #p-personal a.new:visited {
+	color: #a55858;
+}
+
+/* Inline Elements */
+img {
+	border: none;
+	vertical-align: middle;
+}
+hr {
+	height: 1px;
+	color: #aaa;
+	background-color: #aaa;
+	border: 0;
+	margin: .2em 0 .2em 0;
+}
+
+/* Structural Elements */
+h1, h2, h3, h4, h5, h6 {
+	color: black;
+	background: none;
+	font-weight: normal;
+	margin: 0;
+	padding-top: .5em;
+	padding-bottom: .17em;
+	border-bottom: 1px solid #aaa;
+	width: auto;
+}
+h1 { font-size: 188%; }
+h1 .editsection { font-size: 53%; }
+h2 { font-size: 150%; }
+h2 .editsection { font-size: 67%; }
+h3, h4, h5, h6 {
+	border-bottom: none;
+	font-weight: bold;
+}
+h3 { font-size: 132%; }
+h3 .editsection { font-size: 76%; font-weight: normal; }
+h4 { font-size: 116%; }
+h4 .editsection { font-size: 86%; font-weight: normal; }
+h5 { font-size: 100%; }
+h5 .editsection { font-weight: normal; }
+h6 { font-size: 80%;  }
+h6 .editsection { font-size: 125%; font-weight: normal; }
+body.rtl .editsection {
+	float: left;
+	margin-right: 5px;
+	margin-left: 0; /* bug 9122: undo default LTR */
+}
+p {
+	margin: .4em 0 .5em 0;
+	line-height: 1.5em;
+}
+	p img {
+		margin: 0;
+	}
+abbr,
+acronym,
+.explain {
+	border-bottom: 1px dotted black;
+	color: black;
+	background: none;
+	cursor: help;
+}
+q {
+	font-family: Times, "Times New Roman", serif;
+	font-style: italic;
+}
+/* Disabled for now
+blockquote {
+	font-family: Times, "Times New Roman", serif;
+	font-style: italic;
+}*/
+code {
+	background-color: #f9f9f9;
+}
+pre {
+	padding: 1em;
+	border: 1px dashed #2f6fab;
+	color: black;
+	background-color: #f9f9f9;
+	line-height: 1.1em;
+}
+ul {
+	line-height: 1.5em;
+	list-style-type: square;
+	margin: .3em 0 0 1.5em;
+	padding: 0;
+	list-style-image: url(images/bullet-icon.png);
+}
+body.rtl ul {
+	margin-left: 0;
+	margin-right: 1.5em;
+}
+ol {
+	line-height: 1.5em;
+	margin: .3em 0 0 3.2em;
+	padding: 0;
+	list-style-image: none;
+}
+body.rtl ol {
+	margin-left: 0;
+	margin-right: 2.4em;
+}
+li {
+	margin-bottom: .1em;
+}
+dt {
+	font-weight: bold;
+	margin-bottom: .1em;
+}
+dl {
+	margin-top: .2em;
+	margin-bottom: .5em;
+}
+dd {
+	line-height: 1.5em;
+	margin-left: 2em;
+	margin-bottom: .1em;
+}
+body.rtl dd {
+	margin-left: 0;
+	margin-right: 1.6em;
+}
+/**
+ * The following lines don't have a visible effect on non-Gecko browsers
+ * They fix a problem ith Gecko browsers rendering lists to the right of
+ * left-floated objects in an RTL layout.
+ */
+body.rtl div#content ul {
+	display: table;
+	text-align: right;
+	margin-left: 0;
+	margin-right: 1.5em;
+}
+body.rtl div#content ul#filetoc {
+	display: block;
+	text-align: right;
+}
+
+/* Tables */
+table {
+	font-size: 100%;
+	color: black;
+	/* we don't want the bottom borders of <h2>s to be visible through
+	 * floated tables */
+	background-color: white;
+}
+fieldset table {
+	/* but keep table layouts in forms clean... */
+	background: none;
+}
+
+/* Forms */
+fieldset {
+	border: 1px solid #2f6fab;
+	margin: 1em 0 1em 0;
+	padding: 0 1em 1em;
+	line-height: 1.5em;
+}
+	fieldset.nested {
+		margin: 0 0 0.5em 0;
+		padding: 0 0.5em 0.5em;
+	}
+legend {
+	padding: .5em;
+	font-size: 95%;
+}
+form {
+	border: none;
+	margin: 0;
+}
+textarea {
+	width: 100%;
+	padding: .1em;
+}
+select {
+	vertical-align: top;
+}
+
+/* Table of Contents */
+#toc,
+.toc,
+.mw-warning {
+	border: 1px solid #aaa;
+	background-color: #f9f9f9;
+	padding: 5px;
+	font-size: 95%;
+}
+#toc h2,
+.toc h2 {
+	display: inline;
+	border: none;
+	padding: 0;
+	font-size: 100%;
+	font-weight: bold;
+}
+#toc #toctitle,
+.toc #toctitle,
+#toc .toctitle,
+.toc .toctitle {
+	text-align: center;
+}
+#toc ul,
+.toc ul {
+	list-style-type: none;
+	list-style-image: none;
+	margin-left: 0;
+	padding-left: 0;
+	text-align: left;
+}
+#toc ul ul,
+.toc ul ul {
+	margin: 0 0 0 2em;
+}
+#toc .toctoggle,
+.toc .toctoggle {
+	font-size: 94%;
+}
+
+/* Images */
+div.floatright, table.floatright {
+	clear: right;
+	float: right;
+	position: relative;
+	margin: 0 0 .5em .5em;
+	border: 0;
+}
+div.floatright p { font-style: italic; }
+div.floatleft, table.floatleft {
+	float: left;
+	clear: left;
+	position: relative;
+	margin: 0 .5em .5em 0;
+	border: 0;
+}
+div.floatleft p { font-style: italic; }
+
+/* Thumbnails */
+div.thumb {
+	margin-bottom: .5em;
+	border-style: solid;
+	border-color: white;
+	width: auto;
+}
+div.thumbinner {
+	border: 1px solid #ccc;
+	padding: 3px !important;
+	background-color: #f9f9f9;
+	font-size: 94%;
+	text-align: center;
+	overflow: hidden;
+}
+html .thumbimage {
+	border: 1px solid #ccc;
+}
+html .thumbcaption {
+	border: none;
+	text-align: left;
+	line-height: 1.4em;
+	padding: 3px !important;
+	font-size: 94%;
+}
+div.magnify {
+	float: right;
+	border: none !important;
+	background: none !important;
+}
+div.magnify a, div.magnify img {
+	display: block;
+	border: none !important;
+	background: none !important;
+}
+div.tright {
+	clear: right;
+	float: right;
+	border-width: .5em 0 .8em 1.4em;
+}
+div.tleft {
+	float: left;
+	clear: left;
+	margin-right: .5em;
+	border-width: .5em 1.4em .8em 0;
+}
+img.thumbborder {
+	border: 1px solid #dddddd;
+}
+.hiddenStructure {
+	display: none;
+}
+
+/* Warning */
+.mw-warning {
+	margin-left: 50px;
+	margin-right: 50px;
+	text-align: center;
+}
+
+/* User Message */
+.usermessage {
+	background-color: #ffce7b;
+	border: 1px solid #ffa500;
+	color: black;
+	font-weight: bold;
+	margin: 2em 0 1em;
+	padding: .5em 1em;
+	vertical-align: middle;
+}
+
+/* Site Notice */
+#siteNotice {
+	text-align: center;
+	font-size: 95%;
+	padding-top: 0.9em;
+}
+	#siteNotice p {
+		margin: 0;
+		padding: 0;
+	}
+
+/* Categories */
+.catlinks {
+	border: 1px solid #aaa;
+	background-color: #f9f9f9;
+	padding: 5px;
+	margin-top: 1em;
+	clear: both;
+}
+
+/* Sub-navigation */
+#siteSub {
+	display: none;
+}
+#jump-to-nav {
+	display: none;
+}
+#contentSub, #contentSub2 {
+	font-size: 84%;
+	line-height: 1.2em;
+	margin: 0 0 1.4em 1em;
+	color: #7d7d7d;
+	width: auto;
+}
+span.subpages {
+	display: block;
+}
+
+/* Emulate Center */
+.center {
+	width: 100%;
+	text-align: center;
+}
+*.center * {
+	margin-left: auto;
+	margin-right: auto;
+}
+
+/* Small for tables and similar */
+.small, .small * {
+	font-size: 94%;
+}
+table.small {
+	font-size: 100%;
+}
+
+/* Edge Cases for Content */
+#content h1, #content h2 {
+	margin-bottom: .6em;
+}
+#content h3, #content h4, #content h5 {
+	margin-bottom: .3em;
+}
+#firstHeading {
+	margin-bottom: .1em;
+	line-height: 1.2em;
+	padding-bottom: 0;
+}
+#content a.external,
+#content a[href ^="gopher://"] {
+	background: url(images/external-link-ltr-icon.png) center right no-repeat;
+	padding: 0 13px;
+}
+.rtl #content a.external,
+.rtl #content a[href ^="gopher://"] {
+	background-image: url(images/external-link-rtl-icon.png);
+}
+#content a[href ^="https://"],
+.link-https {
+	background: url(images/lock-icon.png) center right no-repeat;
+	padding: 0 18px;
+}
+#content a[href ^="mailto:"],
+.link-mailto {
+	background: url(images/mail-icon.png) center right no-repeat;
+	padding: 0 18px;
+}
+#content a[href ^="news://"] {
+	background: url(images/news-icon.png) center right no-repeat;
+	padding: 0 18px;
+}
+#content a[href ^="ftp://"],
+.link-ftp {
+	background: url(images/file-icon.png) center right no-repeat;
+	padding: 0 18px;
+}
+#content a[href ^="irc://"],
+#content a.extiw[href ^="irc://"],
+.link-irc {
+	background: url(images/talk-icon.png) center right no-repeat;
+	padding: 0 18px;
+}
+#content a.external[href $=".ogg"], #content a.external[href $=".OGG"],
+#content a.external[href $=".mid"], #content a.external[href $=".MID"],
+#content a.external[href $=".midi"], #content a.external[href $=".MIDI"],
+#content a.external[href $=".mp3"], #content a.external[href $=".MP3"],
+#content a.external[href $=".wav"], #content a.external[href $=".WAV"],
+#content a.external[href $=".wma"], #content a.external[href $=".WMA"],
+.link-audio {
+	background: url("images/audio-icon.png") center right no-repeat;
+	padding: 0 18px;
+}
+#content a.external[href $=".ogm"], #content a.external[href $=".OGM"],
+#content a.external[href $=".avi"], #content a.external[href $=".AVI"],
+#content a.external[href $=".mpeg"], #content a.external[href $=".MPEG"],
+#content a.external[href $=".mpg"], #content a.external[href $=".MPG"],
+.link-video {
+	background: url("images/video-icon.png") center right no-repeat;
+	padding: 0 18px;
+}
+#content a.external[href $=".pdf"], #content a.external[href $=".PDF"],
+#content a.external[href *=".pdf#"], #content a.external[href *=".PDF#"],
+#content a.external[href *=".pdf?"], #content a.external[href *=".PDF?"],
+.link-document {
+	background: url("images/document-icon.png") center right no-repeat;
+	padding: 0 18px;
+}
+.rtl #content a.external {
+	background-position: left;
+	padding-right: 0;
+}
+.rtl #panel a.feedlink {
+	background-position: right;
+	padding-right: 16px;
+	padding-left: 0;
+}
+.ltr #content a.external {
+	padding-left: 0;
+}
+
+/* Interwiki Styling  (Disabled) */
+#content a.extiw,
+#content a.extiw:active {
+	color: #36b;
+	background: none;
+	padding: 0;
+}
+#content a.external {
+	color: #36b;
+}
+#content .plainlinks a {
+	/* this can be used in the content area to switch off special external link
+	 * styling */
+	background: none !important;
+	padding: 0 !important;
+}
+#content .printfooter {
+	display: none;
+}
