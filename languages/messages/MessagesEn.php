@@ -670,6 +670,7 @@ XHTML id names.
 'permalink'         => 'Permanent link',
 'print'             => 'Print',
 'edit'              => 'Edit',
+'view'              => 'View',
 'create'            => 'Create',
 'editthispage'      => 'Edit this page',
 'create-this-page'  => 'Create this page',
