@@ -721,4 +721,7 @@ echo "error!\n";
 		return "SearchOracle";
 	}
 
+	/** No-op */
+	public function setBigSelects( $value = true ) {}
+
 } // end DatabaseOracle class

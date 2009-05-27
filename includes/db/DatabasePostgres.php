@@ -1438,4 +1438,7 @@ END;
 		return "SearchPostgres";
 	}
 
+	/** No-op */
+	public function setBigSelects( $value = true ) {}
+
 } // end DatabasePostgres class
