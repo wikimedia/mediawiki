@@ -1015,6 +1015,8 @@ class DatabaseMssql extends Database {
 		return "SearchEngineDummy";
 	}
 
+	/** No-op */
+	public function setBigSelects( $value = true ) {}
 }
 
 /**

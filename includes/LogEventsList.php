@@ -745,14 +745,10 @@ class LogPager extends ReverseChronologicalPager {
 	}
 
 	public function doQuery() {
-		// Work around MySQL optimizer bug
-		if ( in_array( get_class( $this->mDb ), array( 'Database', 'DatabaseMysql' ) ) ) {
-			$this->mDb->query( 'SET SQL_BIG_SELECTS=1' );
-			parent::doQuery();
-			$this->mDb->query( 'SET SQL_BIG_SELECTS=0' );
-		} else {
-			parent::doQuery();
-		}
+		// Workaround MySQL optimizer bug
+		$this->mDb->setBigSelects();
+		parent::doQuery();
+		$this->mDb->setBigSelects( 'default' );
 	}
 }
 

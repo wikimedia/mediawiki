@@ -497,6 +497,9 @@ class DatabaseSqlite extends Database {
 		return $s;
 	}
 
+	/** No-op */
+	public function setBigSelects( $value = true ) {}
+
 } // end DatabaseSqlite class
 
 /**

@@ -1792,5 +1792,8 @@ SQL;
 		// TODO
 		// see SpecialAncientpages
 	}
+
+	/** No-op */
+	public function setBigSelects( $value = true ) {}
 }
 ?>

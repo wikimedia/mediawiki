@@ -39,6 +39,7 @@ class Database {
 	protected $mErrorCount = 0;
 	protected $mLBInfo = array();
 	protected $mFakeSlaveLag = null, $mFakeMaster = false;
+	protected $mDefaultBigSelects = null;
 
 #------------------------------------------------------------------------------
 # Accessors
@@ -2392,6 +2393,29 @@ class Database {
 	 */
 	public function getSearchEngine() {
 		return "SearchMySQL";
+	}
+
+	/**
+	 * Allow or deny "big selects" for this session only. This is done by setting 
+	 * the sql_big_selects session variable.
+	 *
+	 * This is a MySQL-specific feature. 
+	 *
+	 * @param mixed $value true for allow, false for deny, or "default" to restore the initial value
+	 */
+	public function setBigSelects( $value = true ) {
+		if ( $value === 'default' ) {
+			if ( $this->mDefaultBigSelects === null ) {
+				# Function hasn't been called before so it must already be set to the default
+				return;
+			} else {
+				$value = $this->mDefaultBigSelects;
+			}
+		} elseif ( $this->mDefaultBigSelects === null ) {
+			$this->mDefaultBigSelects = (bool)$this->selectField( false, '@@sql_big_selects' );
+		}
+		$encValue = $value ? '1' : '0';
+		$this->query( "SET sql_big_selects=$encValue", __METHOD__ );
 	}
 }
 
