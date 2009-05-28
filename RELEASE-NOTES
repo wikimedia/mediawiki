@@ -32,6 +32,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 9257) $wgRCMaxAge now defaults to three months
 * $wgDevelopmentWarnings can be set to true to show warnings about deprecated
   functions and other potential errors when developing.
+* (bug 18958) $wgEnableVariants is a new boolean value to turn on or off the 
+  entire variant conversion engine, and the default is set to true. Former 
+  variable $wgDisableLangConversion was superseded by this variable.
 
 === New features in 1.16 ===
 
