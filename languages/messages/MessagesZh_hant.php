@@ -78,7 +78,7 @@ $namespaceAliases = array(
 	"分類討論" => NS_CATEGORY_TALK,
 );
 
-/*$specialPageAliases = array(
+$specialPageAliases = array(
 	'DoubleRedirects'           => array( '雙重重定向頁面' ),
 	'BrokenRedirects'           => array( '損壞的重定向頁' ),
 	'Userlogin'                 => array( '用戶登入' ),
@@ -155,7 +155,7 @@ $namespaceAliases = array(
 	'DeletedContributions'      => array( '已刪除的用戶貢獻' ),
 	'Tags'                      => array( '標籤' ),
 	'Createpage'                => array( '創建頁面' ),
-);*/
+);
 
 $bookstoreList = array(
 	'博客來書店' => 'http://www.books.com.tw/exep/prod/booksfile.php?item=$1',

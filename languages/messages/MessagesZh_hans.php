@@ -73,7 +73,7 @@ $namespaceAliases = array(
 	'分类讨论'=> NS_CATEGORY_TALK,
 );
 
-/*$specialPageAliases = array(
+$specialPageAliases = array(
 	'DoubleRedirects'           => array( '双重重定向页面' ),
 	'BrokenRedirects'           => array( '损坏的重定向页' ),
 	'Disambiguations'           => array( '消歧义页' ),
@@ -162,7 +162,7 @@ $namespaceAliases = array(
 	'DeletedContributions'      => array( '已删除的用户贡献' ),
 	'Tags'                      => array( '标签' ),
 	'Createpage'                => array( '创建页面' ),
-);*/
+);
 
 $datePreferences = array(
 	'default',
