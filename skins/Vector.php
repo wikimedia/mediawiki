@@ -50,7 +50,7 @@ class SkinVector extends SkinTemplate {
 	 */
 	function buildNavigationUrls() {
 		global $wgContLang, $wgLang, $wgOut, $wgUser, $wgRequest;
-		global $wgDisableLangConversion;
+		global $wgEnableVariants;
 
 		wfProfileIn( __METHOD__ );
 
@@ -293,7 +293,7 @@ class SkinVector extends SkinTemplate {
 		// Gets list of language variants
 		$variants = $wgContLang->getVariants();
 		// Checks that language conversion is enabled and variants exist
-		if( !$wgDisableLangConversion && count( $variants ) > 1 ) {
+		if( $wgEnableVariants && count( $variants ) > 1 ) {
 			// Gets preferred variant
 			$preferred = $wgContLang->getPreferredVariant();
 			// Loops over each variant

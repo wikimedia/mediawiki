@@ -60,11 +60,6 @@ $namespaceAliases = array(
 	'Razgovor_o_kategoriji'   => NS_CATEGORY_TALK,
 );
 
-
-$extraUserToggles = array(
-	'nolangconversion',
-);
-
 $datePreferenceMigrationMap = array(
 	'default',
 	'hh:mm d. month y.',

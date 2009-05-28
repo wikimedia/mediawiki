@@ -78,7 +78,7 @@ $namespaceAliases = array(
 	"分類討論" => NS_CATEGORY_TALK,
 );
 
-$specialPageAliases = array(
+/*$specialPageAliases = array(
 	'DoubleRedirects'           => array( '雙重重定向頁面' ),
 	'BrokenRedirects'           => array( '損壞的重定向頁' ),
 	'Userlogin'                 => array( '用戶登入' ),
@@ -155,7 +155,7 @@ $specialPageAliases = array(
 	'DeletedContributions'      => array( '已刪除的用戶貢獻' ),
 	'Tags'                      => array( '標籤' ),
 	'Createpage'                => array( '創建頁面' ),
-);
+);*/
 
 $bookstoreList = array(
 	'博客來書店' => 'http://www.books.com.tw/exep/prod/booksfile.php?item=$1',
@@ -207,7 +207,7 @@ $messages = array(
 'tog-watchlisthideliu'        => '監視列表中隱藏登入用戶',
 'tog-watchlisthideanons'      => '監視列表中隱藏匿名用戶',
 'tog-watchlisthidepatrolled'  => '監視清單中隱藏已巡查的編輯',
-'tog-nolangconversion'        => '不進行用字轉換',
+'tog-variantconversion'       => '進行用字轉換',
 'tog-ccmeonemails'            => '當我寄電子郵件給其他用戶時，也寄一份複本到我的信箱。',
 'tog-diffonly'                => '在比較兩個修訂版本差異時不顯示頁面內容',
 'tog-showhiddencats'          => '顯示隱藏分類',

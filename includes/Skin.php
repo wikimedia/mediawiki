@@ -1268,9 +1268,9 @@ END;
 	function variantLinks() {
 		$s = '';
 		/* show links to different language variants */
-		global $wgDisableLangConversion, $wgLang, $wgContLang;
+		global $wgEnableVariants, $wgLang, $wgContLang;
 		$variants = $wgContLang->getVariants();
-		if( !$wgDisableLangConversion && sizeof( $variants ) > 1 ) {
+		if( $wgEnableVariants && sizeof( $variants ) > 1 ) {
 			foreach( $variants as $code ) {
 				$varname = $wgContLang->getVariantname( $code );
 				if( $varname == 'disable' )

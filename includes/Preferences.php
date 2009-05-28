@@ -213,10 +213,10 @@ class Preferences {
 					'label-message' => 'yourlanguage',
 				);
 				
-		global $wgContLang, $wgDisableLangConversion;
+		global $wgContLang, $wgEnableVariants;
 		/* see if there are multiple language variants to choose from*/
 		$variantArray = array();
-		if(!$wgDisableLangConversion) {
+		if($wgEnableVariants) {
 			$variants = $wgContLang->getVariants();
 
 			$languages = Language::getLanguageNames( true );
@@ -245,7 +245,7 @@ class Preferences {
 			}
 		}
 		
-		if( count($variantArray) > 1 && !$wgDisableLangConversion && !$wgDisableTitleConversion ) {
+		if( count($variantArray) > 1 && $wgEnableVariants && !$wgDisableTitleConversion ) {
 			$defaultPreferences['noconvertlink'] =
 					array(
 						'type' => 'toggle',
