@@ -74,7 +74,6 @@ $messages = array(
 'tog-watchlisthideown'        => 'Zatacë mòjé edicëje z lëstë ùzérónëch artiklów',
 'tog-watchlisthidebots'       => 'Zatacë edicëje botów z lëstë ùzérónëch artiklów',
 'tog-watchlisthideminor'      => 'Zatacë môłi zmianë z lëstë ùzérónëch artiklów',
-'tog-nolangconversion'        => 'Wëłączë kònwersëjã wariantów',
 'tog-ccmeonemails'            => 'Wëslë mie kòpije e-mailów jaczi sélóm do jinëch brëkòwników',
 'tog-diffonly'                => 'Nie pòkazëjë zamkłoscë starnë niżi różnic',
 

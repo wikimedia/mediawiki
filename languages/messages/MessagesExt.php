@@ -49,7 +49,6 @@ $messages = array(
 'tog-watchlisthideown'        => 'Açonchal las mis eicionis ena lista e seguimientu',
 'tog-watchlisthidebots'       => 'Açonchal las eicionis de bots ena lista e seguimientu',
 'tog-watchlisthideminor'      => 'Açonchal las eicionis chiqueninas ena lista e seguimientu',
-'tog-nolangconversion'        => 'Desatival conversionis de luenguahis',
 'tog-ccmeonemails'            => 'Envialmi copias de los emails que enviu a otrus usuárius',
 'tog-diffonly'                => 'Nu muestral el continiu la páhina embahu las defs',
 'tog-showhiddencats'          => 'Muestral categorias açonchás',

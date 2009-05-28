@@ -245,7 +245,6 @@ $messages = array(
 'tog-watchlisthideliu'        => 'Sakrij izmene prijavljenih korisnika sa spiska nadgledanja',
 'tog-watchlisthideanons'      => 'Sakrij izmene anonimnih korisnika sa spiska nadgledanja',
 'tog-watchlisthidepatrolled'  => 'Sakrij patrolirane izmene sa spiska nadgledanja',
-'tog-nolangconversion'        => 'Isključi konverziju varijanti',
 'tog-ccmeonemails'            => 'Pošalji mi kopije imejlova koje šaljem drugim korisnicima',
 'tog-showhiddencats'          => 'Prikaži skrivene kategorije',
 

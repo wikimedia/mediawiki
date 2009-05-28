@@ -453,6 +453,8 @@ $messages = array(
 'upload'            => '上载文物',
 'uploadbtn'         => '上载文件',
 'reupload'          => '重新上载',
+'uploadnologin'     => '朆登录',
+'uploadnologintext' => '倷板定要[[Special:UserLogin|登录]]仔再好上载文件。',
 'uploaderror'       => '上载出错',
 'uploadtext'        => "拿下头只表格来上载文件。要查看或者搜寻之前上载个图片个说法，请到[[Special:FileList|已上载文件列表]]，上载搭仔删脱也记录勒拉[[Special:Log/upload|上载日志]]里向。
 
@@ -689,6 +691,8 @@ $messages = array(
 个作兴会引起对一只热门页面剧烈个、想弗着个改变。
 来操作前头请倷确定倷已经充分了解个能做法个后果。",
 'movearticle'             => '页面捅荡:',
+'movenologin'             => '朆登录',
+'movenologintext'         => '倷板定要是已登记用户且勒拉[[Special:UserLogin|登录]]状态下头再好拿页面捅荡。',
 'newtitle'                => '新个题目:',
 'movepagebtn'             => '页面捅荡',
 'pagemovedsub'            => '捅荡成功哉',

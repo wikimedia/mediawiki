@@ -73,7 +73,6 @@ $messages = array(
 'tog-watchlisthideminor'      => 'Xeyrandinên biçûk pêşneke',
 'tog-watchlisthideliu'        => 'Guherandinên bikarhênerên qeydkirî ji lîsteya şopandinê veşêre',
 'tog-watchlisthideanons'      => 'Guherandinên bikarhênerên neqeydkirî ji lîsteya şopandinê veşêre',
-'tog-nolangconversion'        => 'Konvertkirinê varîyantên zimên biskînîne',
 'tog-ccmeonemails'            => 'Kopîyan ji e-nameyan ji min ra bişîne yê min şande bikarhênerên din',
 'tog-diffonly'                => 'Li cem nîşandinê versyonan bes ferqê nîşanbide, ne rûpel tevda',
 'tog-showhiddencats'          => 'Kategorîyên veşartî bibîne',

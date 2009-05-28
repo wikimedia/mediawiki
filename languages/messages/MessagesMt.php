@@ -292,7 +292,6 @@ $messages = array(
 'tog-watchlisthideown'        => "Aħbi l-modifiki tiegħi mil-lista t'osservazzjoni",
 'tog-watchlisthidebots'       => "Aħbi modifiki tal-bots mil-lista t'osservazzjoni tiegħi",
 'tog-watchlisthideminor'      => "Aħbi modifiki żgħar mil-lista t'osservazzjoni",
-'tog-nolangconversion'        => 'Disattiva konversazzjonijiet fost varjanti lingwistiċi',
 'tog-ccmeonemails'            => "Ibgħatli kopji tal-posti elettroniċi li nibgħat 'l utenti l-oħrajn",
 'tog-diffonly'                => 'Turiex kontenut tal-paġni wara li tkun għamilt paragun bejn il-verżjonijiet',
 'tog-showhiddencats'          => 'Uri kategoriji moħbija',
@@ -2220,7 +2219,7 @@ Fl-Aħħar każ inti tista' tuża link, e.ż.
 'export-templates'  => 'Inkludi templates',
 
 # Namespace 8 related
-'allmessages'               => 'Il-Messaġġi kollha tas-sistema',
+'allmessages'               => 'Messaġġi tas-sistema',
 'allmessagesname'           => 'Isem',
 'allmessagesdefault'        => 'Test predefinit',
 'allmessagescurrent'        => 'It-test attwali',

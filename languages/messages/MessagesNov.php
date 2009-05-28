@@ -144,7 +144,7 @@ $messages = array(
 'newmessageslink'         => 'novi mesajes',
 'newmessagesdifflink'     => 'lasti chanjo',
 'youhavenewmessagesmulti' => 'Vu have novi mesajes pri $1',
-'editsection'             => 'editja',
+'editsection'             => 'modifika',
 'editold'                 => 'modifika',
 'restorelink'             => '{{PLURAL:$1|unu ekartati modifiko|$1 ekartati modifikos}}',
 

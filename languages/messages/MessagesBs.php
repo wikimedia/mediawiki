@@ -418,6 +418,7 @@ $messages = array(
 'permalink'         => 'Trajni link',
 'print'             => 'Štampa',
 'edit'              => 'Uredi',
+'view'              => 'Pregledavati',
 'create'            => 'Napravi',
 'editthispage'      => 'Uredite ovu stranicu',
 'create-this-page'  => 'Napravi ovu stranicu',

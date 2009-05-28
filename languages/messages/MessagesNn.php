@@ -308,7 +308,6 @@ $messages = array(
 'tog-watchlisthideliu'        => 'Gøym endringar av innlogga brukarar frå overvakingslista.',
 'tog-watchlisthideanons'      => 'Gøym endringar av anonyme brukarar frå overvakingslista.',
 'tog-watchlisthidepatrolled'  => 'Løyn patruljerte endringar i overvakingslista',
-'tog-nolangconversion'        => 'Slå av variantkonvertering',
 'tog-ccmeonemails'            => 'Send meg kopi av e-postane eg sender til andre brukarar',
 'tog-diffonly'                => 'Ikkje vis sideinnhaldet under skilnadene mellom versjonane',
 'tog-showhiddencats'          => 'Vis gøymde kategoriar',
@@ -437,6 +436,7 @@ $messages = array(
 'permalink'         => 'Fast lenkje',
 'print'             => 'Skriv ut',
 'edit'              => 'Endre',
+'view'              => 'Vis',
 'create'            => 'Opprett',
 'editthispage'      => 'Endre sida',
 'create-this-page'  => 'Opprett denne sida',
@@ -1794,7 +1794,7 @@ Skildringa frå [$2 filskildringssida] der er vist nedanfor.',
 
 # Special:Categories
 'categories'                    => 'Kategoriar',
-'categoriespagetext'            => 'Følgjande kategoriar inneheld sider eller media.
+'categoriespagetext'            => 'Følgjande {{PLURAL:$1|category contains|kategoriar inneheld}} sider eller media.
 [[Special:UnusedCategories|Unytta kategoriar]] vert ikkje vist her. 
 Sjå òg [[Special:WantedCategories|ønska kategoriar]].',
 'categoriesfrom'                => 'Vis kategoriar frå og med:',
