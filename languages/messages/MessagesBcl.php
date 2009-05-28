@@ -130,7 +130,6 @@ $messages = array(
 'tog-watchlisthideown'        => 'Tagoon an mga saradit na paghirá sa pigbabantayan',
 'tog-watchlisthidebots'       => 'Tagoon an mga paghirá kan bot sa pigbabantayan',
 'tog-watchlisthideminor'      => 'Tagoon an mga saradít na paghirá sa pigbabantayan',
-'tog-nolangconversion'        => 'Pogólon an pagríbay nin mga lain-lain',
 'tog-ccmeonemails'            => 'Padarahán ako nin mga kopya kan e-koreo na pigpadara ko sa ibang mga parágamit',
 'tog-diffonly'                => 'Dai ipahilíng an mga laog nin pahina sa babâ kan kaib',
 'tog-showhiddencats'          => 'Ipahiling an mga nakatagong kategorya',

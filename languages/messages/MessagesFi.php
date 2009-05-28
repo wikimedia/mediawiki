@@ -317,7 +317,6 @@ $messages = array(
 'tog-watchlisthideliu'        => 'Piilota kirjautuneiden käyttäjien muokkaukset tarkkailulistalta',
 'tog-watchlisthideanons'      => 'Piilota anonyymien käyttäjien muokkaukset tarkkailulistalta',
 'tog-watchlisthidepatrolled'  => 'Piilota tarkastetut muokkaukset tarkkailulistalta',
-'tog-nolangconversion'        => 'Älä tee muunnoksia kielivarianttien välillä',
 'tog-ccmeonemails'            => 'Lähetä minulle kopio MediaWikin kautta lähetetyistä sähköposteista',
 'tog-diffonly'                => 'Älä näytä sivun sisältöä versioita vertailtaessa',
 'tog-showhiddencats'          => 'Näytä piilotetut luokat',
@@ -455,6 +454,7 @@ Taivutusmuodot: {{GRAMMAR:genitive|{{SITENAME}}}} (yön) — {{GRAMMAR:partitive
 'permalink'         => 'Ikilinkki',
 'print'             => 'Tulosta',
 'edit'              => 'Muokkaa',
+'view'              => 'Näytä',
 'create'            => 'Luo sivu',
 'editthispage'      => 'Muokkaa tätä sivua',
 'create-this-page'  => 'Luo tämä sivu',
@@ -2349,6 +2349,7 @@ Jos haluat muokata MediaWikin yleistä kotoistusta, käy [http://www.mediawiki.o
 'thumbnail_invalid_params' => 'Virheelliset parametrit pienoiskuvalle',
 'thumbnail_dest_directory' => 'Kohdehakemiston luominen ei onnistunut',
 'thumbnail_image-type'     => 'Kuvamuoto ei ole tuettu',
+'thumbnail_gd-library'     => 'GD-kirjastoa ei ole asennettu oikein. Funktio $1 puuttuu.',
 'thumbnail_image-missing'  => 'Tiedosto näyttää puuttuvan: $1',
 
 # Special:Import

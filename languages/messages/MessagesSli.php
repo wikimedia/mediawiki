@@ -59,7 +59,6 @@ $messages = array(
 'tog-watchlisthideliu'        => 'Bearbeitungen angemeldeter Benutzer ausblenden',
 'tog-watchlisthideanons'      => 'Bearbeitungen anonymer Benutzer (IP-Adressen) ausblenden',
 'tog-watchlisthidepatrolled'  => 'Kontrollierte Änderungen ei der Beobachtungsliste ausblenda',
-'tog-nolangconversion'        => 'Konvertierung von Sprachvarianten deaktivieren',
 'tog-ccmeonemails'            => 'Schicke mir Kopien der E-Mails, die ich anderen Benutzern sende',
 'tog-diffonly'                => 'Zeige beim Versionsvergleich nur die Unterschiede, nicht die vollständige Seite',
 'tog-showhiddencats'          => 'Vestackte Kategorien oazäan',

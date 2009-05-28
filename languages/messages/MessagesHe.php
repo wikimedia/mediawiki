@@ -363,7 +363,6 @@ $messages = array(
 'tog-watchlisthideliu'        => 'הסתרת עריכות של משתמשים רשומים ברשימת המעקב',
 'tog-watchlisthideanons'      => 'הסתרת עריכות של משתמשים אנונימיים ברשימת המעקב',
 'tog-watchlisthidepatrolled'  => 'הסתרת עריכות בדוקות ברשימת המעקב',
-'tog-nolangconversion'        => 'ביטול המרת גרסאות שפה',
 'tog-ccmeonemails'            => 'קבלת העתקים של הודעות דוא"ל הנשלחות ממני למשתמשים אחרים',
 'tog-diffonly'                => 'ביטול הצגת תוכן הדף מתחת להשוואות הגרסאות',
 'tog-showhiddencats'          => 'הצגת קטגוריות מוסתרות',

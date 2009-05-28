@@ -173,7 +173,6 @@ $messages = array(
 'tog-watchlisthideliu'        => 'Itago ang mga pagbabago ng mga lumagdang tagagamit mula sa talaan ng mga binabantayan',
 'tog-watchlisthideanons'      => 'Itago ang mga pagbabago ng hindi nakikilalang mga tagagamit mula sa talaan ng mga binabantayan',
 'tog-watchlisthidepatrolled'  => 'Ikubli ang napatrolyang mga pagbabagong nagmula sa talaan ng binabantayan',
-'tog-nolangconversion'        => 'Huwag paganahin ang pagpapalit ng mga halagang nagkakaibaiba (baryante)',
 'tog-ccmeonemails'            => 'Padalahan ako ng mga kopya ng mga ipinadala kong e-liham sa ibang mga tagagamit',
 'tog-diffonly'                => 'Huwag ipakita ang nilalaman ng pahinang nasa ilalim ng mga pagkakaiba',
 'tog-showhiddencats'          => 'Ipakita ang mga nakatagong kategorya (kaurian)',

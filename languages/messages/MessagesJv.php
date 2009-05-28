@@ -86,7 +86,6 @@ $messages = array(
 'tog-watchlisthideminor'      => 'Delikna suntingan kecil di daftar pangawasan',
 'tog-watchlisthideliu'        => 'Ngumpetaké suntingan panganggo sing mlebu log seka daftar pangawasan',
 'tog-watchlisthideanons'      => 'Ngumpetaké suntingan panganggo anonim seka daftar pangawasan',
-'tog-nolangconversion'        => 'Patènana konvèrsi varian',
 'tog-ccmeonemails'            => 'Kirimana aku salinan layang e-mail sing tak-kirimaké menyang wong liya',
 'tog-diffonly'                => 'Aja dituduhaké isi kaca ing ngisor bédané suntingan',
 'tog-showhiddencats'          => 'Tuduhna kategori sing didelikaké',
@@ -2259,8 +2258,7 @@ Pranala-pranala sabanjuré ing baris sing padha dianggep minangka ''pengecualian
 * datetimeoriginal
 * exposuretime
 * fnumber
-* isospeedratings
-* focallength',
+* isospeedratings',
 
 # EXIF tags
 'exif-imagewidth'                  => 'Jembar',

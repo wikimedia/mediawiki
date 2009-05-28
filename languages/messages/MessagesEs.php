@@ -259,7 +259,6 @@ $messages = array(
 'tog-watchlisthideliu'        => 'Ocultar ediciones de usuarios registrados en la lista de seguimiento',
 'tog-watchlisthideanons'      => 'Ocultar ediciones de usuarios anónimos en la lista de seguimiento',
 'tog-watchlisthidepatrolled'  => 'Ocultar las ediciones patrulladas en la lista de seguimiento',
-'tog-nolangconversion'        => 'Deshabilitar conversión de lenguajes',
 'tog-ccmeonemails'            => 'Recibir copias de los correos que envío a otros usuarios',
 'tog-diffonly'                => 'No mostrar el contenido de la página bajo las diferencias',
 'tog-showhiddencats'          => 'Mostrar categorías escondidas',
@@ -387,6 +386,7 @@ $messages = array(
 'permalink'         => 'Enlace permanente',
 'print'             => 'Imprimir',
 'edit'              => 'Editar',
+'view'              => 'Ver',
 'create'            => 'Crear',
 'editthispage'      => 'Editar esta página',
 'create-this-page'  => 'Crear esta página',
@@ -1235,6 +1235,7 @@ También puede permitir a otros usuarios que contacten con usted a través de su
 'prefs-advancedsearchoptions'   => 'Opciones avanzadas',
 'prefs-advancedwatchlist'       => 'Opciones avanzadas',
 'prefs-display'                 => 'Opciones de mostrado',
+'prefs-diffs'                   => 'Diferencias',
 
 # User rights
 'userrights'                  => 'Configuración de permisos de usuarios',

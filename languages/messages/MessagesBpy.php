@@ -85,7 +85,6 @@ $messages = array(
 'tog-watchlisthideown'        => 'মি পতাসু অতা গুর মর তালাবিত্ত',
 'tog-watchlisthidebots'       => 'বটল পতাসি অতা গুর মর তালাবিত্ত',
 'tog-watchlisthideminor'      => 'হুরু করে পতাসি অতা গুর মর তালাবিত্ত',
-'tog-nolangconversion'        => 'সারুকর সিলপা থেপকর',
 'tog-ccmeonemails'            => 'আরতারে দিয়াপেঠাউরি ইমেইল মরাঙউ কপি আহান যাকগা',
 'tog-diffonly'                => 'ফারাকর তলে পাতাহানর বিষয়বস্তু নাদেখাদি',
 'tog-showhiddencats'          => 'আরুমে আসে থাকহানি ফংকর',
