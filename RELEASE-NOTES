@@ -310,6 +310,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Fixed SQLite indexes, installation and upgrade. Reintroduced it as an option 
   to the installer.
 * (bug 18170) Fixed a PHP warning in Parser::preSaveTransform() in PHP 5.3
+* (bug 8873) Enable variant conversion in text on 'alt' and 'title' attributes
 
 == API changes in 1.15 ==
 
