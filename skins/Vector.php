@@ -721,7 +721,7 @@ class VectorTemplate extends QuickTemplate {
 				<li id="t-recentchangeslinked"><a href="<?php echo htmlspecialchars( $this->data['nav_urls']['recentchangeslinked']['href']) ?>"<?php echo $this->skin->tooltipAndAccesskey( 't-recentchangeslinked') ?>><?php $this->msg( 'recentchangeslinked') ?></a></li>
 				<?php endif; ?>
 			<?php endif; ?>
-			<? if( isset( $this->data['nav_urls']['trackbacklink'])): ?>
+			<?php if( isset( $this->data['nav_urls']['trackbacklink'])): ?>
 			<li id="t-trackbacklink"><a href="<?php echo htmlspecialchars( $this->data['nav_urls']['trackbacklink']['href']) ?>"<?php echo $this->skin->tooltipAndAccesskey( 't-trackbacklink') ?>><?php $this->msg( 'trackbacklink') ?></a></li>
 			<?php endif; ?>
 			<?php if( $this->data['feeds']): ?>
