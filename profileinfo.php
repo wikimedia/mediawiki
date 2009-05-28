@@ -301,10 +301,5 @@ foreach ($points as $point) {
 
 <p>Total time: <tt><?php printf("%5.02f", $totaltime) ?></tt></p>
 <p>Total memory: <tt><?php printf("%5.02f", $totalmemory / 1024 ) ?></tt></p>
-<?php
-
-$res->free();
-
-?>
 </body>
 </html>
