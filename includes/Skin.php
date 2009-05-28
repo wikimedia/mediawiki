@@ -1018,17 +1018,19 @@ END;
 		$action = $wgRequest->getVal( 'action', 'view' );
 
 		if ( $wgUser->isAllowed( 'deletedhistory' ) &&
-			( $this->mTitle->getArticleId() == 0 || $action == 'history' ) &&
-			$n = $this->mTitle->isDeleted() ) {
-			if ( $wgUser->isAllowed( 'undelete' ) ) {
-				$msg = 'thisisdeleted';
-			} else {
-				$msg = 'viewdeleted';
+			( $this->mTitle->getArticleId() == 0 || $action == 'history' ) ) {
+			$n = $this->mTitle->isDeleted();
+			if ( $n ) {
+				if ( $wgUser->isAllowed( 'undelete' ) ) {
+					$msg = 'thisisdeleted';
+				} else {
+					$msg = 'viewdeleted';
+				}
+				return wfMsg( $msg,
+					$this->makeKnownLinkObj(
+						SpecialPage::getTitleFor( 'Undelete', $this->mTitle->getPrefixedDBkey() ),
+						wfMsgExt( 'restorelink', array( 'parsemag', 'escape' ), $wgLang->formatNum( $n ) ) ) );
 			}
-			return wfMsg( $msg,
-				$this->makeKnownLinkObj(
-					SpecialPage::getTitleFor( 'Undelete', $this->mTitle->getPrefixedDBkey() ),
-					wfMsgExt( 'restorelink', array( 'parsemag', 'escape' ), $wgLang->formatNum( $n ) ) ) );
 		}
 		return '';
 	}
