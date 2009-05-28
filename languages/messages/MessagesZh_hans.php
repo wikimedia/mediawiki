@@ -73,7 +73,7 @@ $namespaceAliases = array(
 	'分类讨论'=> NS_CATEGORY_TALK,
 );
 
-$specialPageAliases = array(
+/*$specialPageAliases = array(
 	'DoubleRedirects'           => array( '双重重定向页面' ),
 	'BrokenRedirects'           => array( '损坏的重定向页' ),
 	'Disambiguations'           => array( '消歧义页' ),
@@ -162,11 +162,8 @@ $specialPageAliases = array(
 	'DeletedContributions'      => array( '已删除的用户贡献' ),
 	'Tags'                      => array( '标签' ),
 	'Createpage'                => array( '创建页面' ),
-);
+);*/
 
-$extraUserToggles = array(
-	'nolangconversion',
-);
 $datePreferences = array(
 	'default',
 	'ISO 8601',
@@ -232,7 +229,7 @@ $messages = array(
 'tog-watchlisthideliu'        => '在监视列表中隐藏登录用户',
 'tog-watchlisthideanons'      => '在监视列表中隐藏匿名用户',
 'tog-watchlisthidepatrolled'  => '在监视列表中隐藏已巡查的编辑',
-'tog-nolangconversion'        => '不进行字词转换',
+'tog-variantconversion'       => '进行字词转换',
 'tog-ccmeonemails'            => '把我发送给其他用户的邮件同时发送副本给我自己',
 'tog-diffonly'                => '在比较两个修订版本差异时不显示页面内容',
 'tog-showhiddencats'          => '显示隐藏分类',

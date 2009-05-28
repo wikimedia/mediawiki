@@ -165,7 +165,7 @@ $wgOptionalMessages = array(
 	'sectionlink',
 	'unit-pixel',
 	'userrights-irreversible-marker',
-	'tog-nolangconversion',
+	'tog-variantconversion',
 	'tog-noconvertlink',
 	'yourvariant',
 	'variantname-zh-hans',

@@ -172,6 +172,10 @@ $specialPageAliases = array(
 	'DeletedContributions'      => array( '已删除的用户贡献', '已刪除的用戶貢獻' ),
 );
 
+$extraUserToggles = array(
+	'variantconversion',
+);
+
 $messages = array(
 # User preference toggles
 'tog-norollbackdiff' => '進行回退後略過差異比較',

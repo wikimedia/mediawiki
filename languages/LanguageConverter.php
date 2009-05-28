@@ -426,7 +426,14 @@ class LanguageConverter {
 	 * @public
 	 */
 	function parserConvert( $text, &$parser ) {
-		global $wgDisableLangConversion;
+		global $wgUser, $wgEnableVariants;
+
+		/* disable entire conversion engine if the user had been disabled it */
+		$variantConv = $wgUser->getOption( 'variantconversion' );
+		if ( ( $wgEnableVariants == true ) && ( $variantConv == 0 ) ) { 
+			$wgEnableVariants = false;
+		}
+
 		/* don't do anything if this is the conversion table */
 		if ( $parser->getTitle()->getNamespace() == NS_MEDIAWIKI &&
 				 strpos($parser->mTitle->getText(), 'onversiontable') !== false ) 
@@ -434,7 +441,7 @@ class LanguageConverter {
 			return $text;
 		}
 
-		if ( $wgDisableLangConversion )
+		if ( !$wgEnableVariants )
 			return $text;
 
 		$text = $this->convert( $text );
@@ -573,11 +580,11 @@ class LanguageConverter {
 	 * @public
 	 */
 	function findVariantLink( &$link, &$nt, $ignoreOtherCond = false ) {
-		global $wgDisableLangConversion, $wgDisableTitleConversion, $wgRequest, $wgUser;
+		global $wgEnableVariants, $wgDisableTitleConversion, $wgRequest, $wgUser;
 		$isredir = $wgRequest->getText( 'redirect', 'yes' );
 		$action = $wgRequest->getText( 'action' );
 		$linkconvert = $wgRequest->getText( 'linkconvert', 'yes' );
-		$disableLinkConversion = $wgDisableLangConversion || $wgDisableTitleConversion;
+		$disableLinkConversion = !$wgEnableVariants || $wgDisableTitleConversion;
 		$linkBatch = new LinkBatch();
 
 		$ns=NS_MAIN;

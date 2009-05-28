@@ -818,9 +818,9 @@ class SkinTemplate extends Skin {
 		}
 
 		/* show links to different language variants */
-		global $wgDisableLangConversion;
+		global $wgEnableVariants;
 		$variants = $wgContLang->getVariants();
-		if( !$wgDisableLangConversion && sizeof( $variants ) > 1 ) {
+		if( $wgEnableVariants && sizeof( $variants ) > 1 ) {
 			$preferred = $wgContLang->getPreferredVariant();
 			$vcount=0;
 			foreach( $variants as $code ) {
