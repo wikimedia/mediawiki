@@ -163,6 +163,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Don't say "You need to log in to upload/move", because it's possible that
   uploading/moving is disabled for registered users as well (e.g. only sysops)
 * (bug 18943) Handle invalid titles gracefully at Special:Mostlinked
+* (bug 8873) Enable variant conversion in text on 'alt' and 'title' attributes
 
 == API changes in 1.16 ==
 
