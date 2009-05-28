@@ -235,6 +235,7 @@ $messages = array(
 'permalink'         => '恆鏈',
 'print'             => '印',
 'edit'              => '纂',
+'view'              => '視',
 'create'            => '立',
 'editthispage'      => '纂',
 'create-this-page'  => '立',
