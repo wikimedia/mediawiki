@@ -1,5 +1,5 @@
 <?php
-/** Traditional Chinese (‪中文(繁體)‬)
+/** Traditional Chinese (‪中文(傳統字)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -336,6 +336,7 @@ $messages = array(
 'permalink'         => '永久連結',
 'print'             => '列印',
 'edit'              => '編輯',
+'view'              => '檢視',
 'create'            => '建立',
 'editthispage'      => '編輯本頁',
 'create-this-page'  => '建立本頁',
