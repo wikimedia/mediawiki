@@ -1387,7 +1387,7 @@ Example: [[:Image:Addon-icn.png]]',
 {{doc-important|Do not customise this message. Just translate it.|Customisation should be done by local wikis.}}',
 'sharedupload-desc-there' => ':See also: {{msg-mw|Sharedupload}}',
 'sharedupload-desc-here'  => ':See also: {{msg-mw|Sharedupload}}',
-'filepage-nofile'         => 'This message only appears, if the user cannot upload files, or file uploads are disabled. (Otherwise, see {{msg-mw|Filepage-nofie-link}})',
+'filepage-nofile'         => 'This message only appears, if the user cannot upload files, or file uploads are disabled. (Otherwise, see {{msg-mw|Filepage-nofile-link}})',
 'filepage-nofile-link'    => 'This message only appears, if the user can upload files, and file uploads are enabled. (Otherwise, see {{msg-mw|Filepage-nofile}})
 
 $1 - URL of upload page for this file.',

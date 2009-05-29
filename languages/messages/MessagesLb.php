@@ -300,6 +300,7 @@ $messages = array(
 'permalink'         => 'Zitéierfäege Link',
 'print'             => 'Drécken',
 'edit'              => 'Änneren',
+'view'              => 'Liesen',
 'create'            => 'Uleeën',
 'editthispage'      => 'Dës Säit änneren',
 'create-this-page'  => 'Dës Säit uleeën',
@@ -827,6 +828,7 @@ Als Administrateur kënnt Dir [$1 mat dësem Link de Versiounsënnerschied kucke
 'revdelete-toomanytargets-title' => 'Zevill Ziler',
 'revdelete-toomanytargets-text'  => 'Et goufen zevill Type vun Ziler, op deenen dës Aktioun gemaach soll ginn, definéiert.',
 'revdelete-nologid-title'        => 'Net valbele Wert am Logbuch',
+'revdelete-nologid-text'         => 'Dir hutt kee Logtyp erausgesicht oder de gewielte Logtyp gëtt et net.',
 'revdelete-selected'             => "'''{{PLURAL:$2|Gewielte Versioun|Gewielte Versioune}} vu(n) '''$1''' :'''",
 'logdelete-selected'             => "'''Ausgewielten {{PLURAL:$1|Evenement|Evenementer}} aus dem Logbuch:'''",
 'revdelete-text'                 => "'''Geläschte Versiounen oder aner geäschte Bestanddeeler sinn net méi ëffentlech zougänglech, si stinn awer weiderhinn an der Versiounsgeschicht vun der Säit.'''

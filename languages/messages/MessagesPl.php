@@ -391,6 +391,7 @@ $messages = array(
 'permalink'         => 'Link do tej wersji',
 'print'             => 'Drukuj',
 'edit'              => 'Edytuj',
+'view'              => 'Czytaj',
 'create'            => 'Utwórz',
 'editthispage'      => 'Edytuj tę stronę',
 'create-this-page'  => 'Utwórz tę stronę',
