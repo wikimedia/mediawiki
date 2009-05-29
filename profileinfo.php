@@ -65,14 +65,14 @@ require_once( './includes/WebStart.php' );
 <body>
 <?php
 
-if (!$wgEnableProfileInfo) {
+if ( !$wgEnableProfileInfo ) {
 	echo "disabled\n";
 	exit( 1 );
 }
 
 $expand = array();
-if (isset($_REQUEST['expand']))
-	foreach(explode(",", $_REQUEST['expand']) as $f)
+if ( isset( $_REQUEST['expand'] ) )
+	foreach( explode( ',', $_REQUEST['expand'] ) as $f )
 		$expand[$f] = true;
 
 class profile_point {
@@ -81,7 +81,7 @@ class profile_point {
 	var $time;
 	var $children;
 
-	function profile_point($name, $count, $time, $memory ) {
+	function profile_point( $name, $count, $time, $memory ) {
 		$this->name = $name;
 		$this->count = $count;
 		$this->time = $time;
@@ -89,35 +89,35 @@ class profile_point {
 		$this->children = array();
 	}
 
-	function add_child($child) {
+	function add_child( $child ) {
 		$this->children[] = $child;
 	}
 
 	function display($indent = 0.0) {
 		global $expand, $totaltime, $totalmemory, $totalcount;
-		usort($this->children, "compare_point");
+		usort( $this->children, 'compare_point' );
 
 		$extet = '';
-		if (isset($expand[$this->name()]))
+		if ( isset( $expand[$this->name()] ) )
 			$ex = true;
 		else	$ex = false;
-		if (!$ex) {
-			if (count($this->children)) {
-				$url = makeurl(false, false, $expand + array($this->name() => true));
+		if ( !$ex ) {
+			if ( count( $this->children ) ) {
+				$url = makeurl( false, false, $expand + array( $this->name() => true ) );
 				$extet = " <a href=\"$url\">[+]</a>";
 			} else $extet = '';
 		} else {
 			$e = array();
-			foreach ($expand as $name => $ep)
-				if ($name != $this->name())
-					$e += array($name => $ep);
+			foreach ( $expand as $name => $ep )
+				if ( $name != $this->name() )
+					$e += array( $name => $ep );
 
-			$extet = " <a href=\"" . makeurl(false, false, $e) . "\">[&ndash;]</a>";
+			$extet = " <a href=\"" . makeurl( false, false, $e ) . "\">[&ndash;]</a>";
 		}
 		?>
 		<tr>
 		<td class="name" style="padding-left: <?php echo $indent ?>em;">
-			<?php echo htmlspecialchars($this->name()) . $extet ?>
+			<?php echo htmlspecialchars( $this->name() ) . $extet ?>
 		</td>
 		<td class="timep"><?php echo @wfPercent( $this->time() / $totaltime * 100 ) ?></td>
 		<td class="memoryp"><?php echo @wfPercent( $this->memory() / $totalmemory * 100 ) ?></td>
@@ -129,9 +129,9 @@ class profile_point {
 		<td class="mpr"><?php echo @round( sprintf( '%.2f' ,$this->memory() / $totalcount / 1024 ), 2 ) ?></td>
 		</tr>
 		<?php
-		if ($ex) {
-			foreach ($this->children as $child) {
-				$child->display($indent + 2);
+		if ( $ex ) {
+			foreach ( $this->children as $child ) {
+				$child->display( $indent + 2 );
 			}
 		}
 	}
@@ -153,38 +153,38 @@ class profile_point {
 	}
 	
 	function timePerCall() {
-		return @($this->time / $this->count);
+		return @( $this->time / $this->count );
 	}
 	
 	function memoryPerCall() {
-		return @($this->memory / $this->count);
+		return @( $this->memory / $this->count );
 	}
 	
 	function callsPerRequest() {
 		global $totalcount;
-		return @($this->count / $totalcount);
+		return @( $this->count / $totalcount );
 	}
 	
 	function timePerRequest() {
 		global $totalcount;
-		return @($this->time / $totalcount);
+		return @( $this->time / $totalcount );
 	}
 	
 	function memoryPerRequest() {
 		global $totalcount;
-		return @($this->memory / $totalcount);
+		return @( $this->memory / $totalcount );
 	}
 
 	function fmttime() {
-		return sprintf("%5.02f", $this->time);
+		return sprintf( "%5.02f", $this->time );
 	}
 };
 
-function compare_point($a, $b) {
+function compare_point( $a, $b ) {
 	global $sort;
-	switch ($sort) {
+	switch ( $sort ) {
 	case "name":
-		return strcmp($a->name(), $b->name());
+		return strcmp( $a->name(), $b->name() );
 	case "time":
 		return $a->time() > $b->time() ? -1 : 1;
 	case "memory":
@@ -204,21 +204,23 @@ function compare_point($a, $b) {
 	}
 }
 
-$sorts = array("time","memory","count","calls_per_req","name","time_per_call","memory_per_call","time_per_req","memory_per_req");
+$sorts = array( 'time', 'memory', 'count', 'calls_per_req', 'name',
+	'time_per_call', 'memory_per_call', 'time_per_req', 'memory_per_req' );
 $sort = 'time';
-if (isset($_REQUEST['sort']) && in_array($_REQUEST['sort'], $sorts))
+if ( isset( $_REQUEST['sort'] ) && in_array( $_REQUEST['sort'], $sorts ) )
 	$sort = $_REQUEST['sort'];
 
 
 $dbr = wfGetDB( DB_SLAVE );
 $res = $dbr->select( 'profiling', '*', array(), 'profileinfo.php', array( 'ORDER BY' => 'pf_name ASC' ) );
 
-if (isset($_REQUEST['filter']))
+if (isset( $_REQUEST['filter'] ) )
 	$filter = $_REQUEST['filter'];
-else	$filter = '';
+else
+	$filter = '';
 
 ?>
-<form method="profiling.php">
+<form method="get" action="profileinfo.php">
 <p>
 <input type="text" name="filter" value="<?php echo htmlspecialchars($filter)?>"/>
 <input type="hidden" name="sort" value="<?php echo htmlspecialchars($sort)?>"/>
@@ -229,30 +231,30 @@ else	$filter = '';
 
 <table cellspacing="0" border="1">
 <tr id="top">
-<th><a href="<?php echo makeurl(false, "name") ?>">Name</a></th>
-<th><a href="<?php echo makeurl(false, "time") ?>">Time (%)</a></th>
-<th><a href="<?php echo makeurl(false, "memory") ?>">Memory (%)</a></th>
-<th><a href="<?php echo makeurl(false, "count") ?>">Count</a></th>
-<th><a href="<?php echo makeurl(false, "calls_per_req") ?>">Calls/req</a></th>
-<th><a href="<?php echo makeurl(false, "time_per_call") ?>">ms/call</a></th>
-<th><a href="<?php echo makeurl(false, "memory_per_call") ?>">kb/call</a></th>
-<th><a href="<?php echo makeurl(false, "time_per_req") ?>">ms/req</a></th>
-<th><a href="<?php echo makeurl(false, "memory_per_req") ?>">kb/req</a></th>
+<th><a href="<?php echo makeurl( false, 'name' ) ?>">Name</a></th>
+<th><a href="<?php echo makeurl( false, 'time' ) ?>">Time (%)</a></th>
+<th><a href="<?php echo makeurl( false, 'memory' ) ?>">Memory (%)</a></th>
+<th><a href="<?php echo makeurl( false, 'count' ) ?>">Count</a></th>
+<th><a href="<?php echo makeurl( false, 'calls_per_req' ) ?>">Calls/req</a></th>
+<th><a href="<?php echo makeurl( false, 'time_per_call' ) ?>">ms/call</a></th>
+<th><a href="<?php echo makeurl( false, 'memory_per_call' ) ?>">kb/call</a></th>
+<th><a href="<?php echo makeurl( false, 'time_per_req' ) ?>">ms/req</a></th>
+<th><a href="<?php echo makeurl( false, 'memory_per_req' ) ?>">kb/req</a></th>
 </tr>
 <?php
 $totaltime = 0.0;
 $totalcount = 0;
 $totalmemory = 0.0;
 
-function makeurl($_filter = false, $_sort = false, $_expand = false) {
+function makeurl( $_filter = false, $_sort = false, $_expand = false ) {
 	global $filter, $sort, $expand;
 
-	if ($_expand === false)
+	if ( $_expand === false )
 		$_expand = $expand;
 
 	$nfilter = $_filter ? $_filter : $filter;
 	$nsort = $_sort ? $_sort : $sort;
-	$exp = urlencode(implode(',', array_keys($_expand)));
+	$exp = urlencode( implode( ',', array_keys( $_expand ) ) );
 	return "?filter=$nfilter&amp;sort=$nsort&amp;expand=$exp";
 }
 
@@ -262,20 +264,20 @@ $sqltotal = 0.0;
 
 $last = false;
 foreach( $res as $o ) {
-	$next = new profile_point($o->pf_name, $o->pf_count, $o->pf_time, $o->pf_memory);
+	$next = new profile_point( $o->pf_name, $o->pf_count, $o->pf_time, $o->pf_memory );
 	if( $next->name() == '-total' ) {
 		$totaltime = $next->time();
 		$totalcount = $next->count();
 		$totalmemory = $next->memory();
 	}
-	if ($last !== false) {
-		if (preg_match("/^".preg_quote($last->name(), "/")."/", $next->name())) {
+	if ( $last !== false ) {
+		if ( preg_match( "/^".preg_quote( $last->name(), "/" )."/", $next->name() ) ) {
 			$last->add_child($next);
 			continue;
 		}
 	}
 	$last = $next;
-	if (preg_match("/^query: /", $next->name()) || preg_match("/^query-m: /", $next->name())) {
+	if ( preg_match( "/^query: /", $next->name() ) || preg_match( "/^query-m: /", $next->name() ) ) {
 		$sqltotal += $next->time();
 		$queries[] = $next;
 	} else {
@@ -283,15 +285,15 @@ foreach( $res as $o ) {
 	}
 }
 
-$s = new profile_point("SQL Queries", 0, $sqltotal, 0, 0);
-foreach ($queries as $q)
+$s = new profile_point( "SQL Queries", 0, $sqltotal, 0, 0 );
+foreach ( $queries as $q )
 	$s->add_child($q);
 $points[] = $s;
 
-usort($points, "compare_point");
+usort( $points, "compare_point" );
 
-foreach ($points as $point) {
-	if (strlen($filter) && !strstr($point->name(), $filter))
+foreach ( $points as $point ) {
+	if ( strlen( $filter ) && !strstr( $point->name(), $filter ) )
 		continue;
 
 	$point->display();
