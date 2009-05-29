@@ -35,6 +35,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 18958) $wgEnableVariants is a new boolean value to turn on or off the 
   entire variant conversion engine, and the default is set to true. Former 
   variable $wgDisableLangConversion was superseded by this variable.
+* Subpages are now enabled in the MediaWiki namespace by default.  This is
+  mainly a cosmetic change, and does not in any way affect the MessageCache,
+  which was already effectively treating the namespace as if it had subpages.
 
 === New features in 1.16 ===
 
