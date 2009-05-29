@@ -2134,6 +2134,9 @@ END
 
 		$toolbar.="/*]]>*/\n</script>";
 		$toolbar.="\n</div>";
+		
+		wfRunHooks( 'EditPageBeforeEditToolbar', array( &$toolbar ) );
+		
 		return $toolbar;
 	}
 
