@@ -301,6 +301,7 @@ I seguenti cołegamenti i xe en lengua inglese:
 'permalink'         => 'Colegamento permanente',
 'print'             => 'Stanpa',
 'edit'              => 'Modìfega',
+'view'              => 'Lèzi',
 'create'            => 'Crea',
 'editthispage'      => 'Modìfega sta pagina',
 'create-this-page'  => 'Crea sta pagina',

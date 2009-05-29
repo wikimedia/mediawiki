@@ -454,7 +454,7 @@ Taivutusmuodot: {{GRAMMAR:genitive|{{SITENAME}}}} (yön) — {{GRAMMAR:partitive
 'permalink'         => 'Ikilinkki',
 'print'             => 'Tulosta',
 'edit'              => 'Muokkaa',
-'view'              => 'Näytä',
+'view'              => 'Lue',
 'create'            => 'Luo sivu',
 'editthispage'      => 'Muokkaa tätä sivua',
 'create-this-page'  => 'Luo tämä sivu',

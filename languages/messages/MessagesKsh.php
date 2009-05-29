@@ -367,7 +367,7 @@ Em Appachtemang <span class="plainlinks">[{{fullurl:Special:AllPages|namespace={
 'permalink'         => 'Als Permalink',
 'print'             => 'Drocke',
 'edit'              => 'Ändere',
-'view'              => 'Aanloore',
+'view'              => 'Lesse',
 'create'            => 'Aanläje',
 'editthispage'      => 'De Sigg ändere',
 'create-this-page'  => 'Neu aanläje',

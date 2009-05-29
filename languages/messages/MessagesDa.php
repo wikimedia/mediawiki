@@ -275,7 +275,7 @@ $messages = array(
 'category-subcat-count-limited'  => 'Denne kategori indeholder {{PLURAL:$1|underkategori|$1 underkategorier}}.',
 'category-article-count'         => 'Denne kategori indeholder {{PLURAL:$2|kun den nedenstående side|{{PLURAL:$1|den nedenstående side|de nedenstående $1 sider}} af i alt $2.}}',
 'category-article-count-limited' => 'Kategorien indeholder {{PLURAL:$1|den nedenstående side|de nedenstående $1 sider}}.',
-'category-file-count'            => 'Denne kategori indeholder {{PLURAL:$2|kun den nedenstående fil|{{PLURAL:$1|den nedenstående fil|de nedenstående $1 filer}} af i alt $2.}}',
+'category-file-count'            => 'Denne kategori indeholder {{PLURAL:$2|kun den nedenstående fil.|{{PLURAL:$1|den nedenstående fil|de nedenstående $1 filer}} af i alt $2.}}',
 'category-file-count-limited'    => 'Kategorien indeholder {{PLURAL:$1|den nedenstående fil|de nedenstående $1 filer}}.',
 'listingcontinuesabbrev'         => ' forts.',
 
@@ -323,6 +323,7 @@ $messages = array(
 'permalink'         => 'Permanent henvisning',
 'print'             => 'Udskriv',
 'edit'              => 'Redigér',
+'view'              => 'Vis',
 'create'            => 'opret',
 'editthispage'      => 'Redigér side',
 'create-this-page'  => 'opret ny side',
@@ -767,6 +768,7 @@ Systemadministratoren som låste databasen, gav denne forklaring: $1",
 Overvej om det er passende at genoprette siden. Sletnings- og flyttelogerne for siden er vist nedenfor.",
 'moveddeleted-notice'              => 'Denne side er blevet slettet.
 Sletnings- og flytteloggerne for siden er vist nedenfor.',
+'log-fulllog'                      => 'Vis fuldstændig log',
 'edit-hook-aborted'                => 'Redigering afbrudt af en programfunktion. Ingen tilknyttet forklaring.',
 'edit-gone-missing'                => 'Kunne ikke opdatere siden. 
 Den ser du til at være slettet.',
@@ -1164,6 +1166,7 @@ Du kan også vælge at lade andre brugere kontakte dig gennem din bruger- eller 
 'prefs-advancedsearchoptions'   => 'Avancerede indstillinger',
 'prefs-advancedwatchlist'       => 'Avancerede indstillinger',
 'prefs-display'                 => 'Indstillinger for visning',
+'prefs-diffs'                   => 'Forskelle',
 
 # User rights
 'userrights'                  => 'Håndtering af brugerrettigheder',
@@ -1493,6 +1496,8 @@ En [[Special:WhatLinksHere/$2|komplet liste]] er tilgængelig.',
 Se [$2 filbeskrivelsessiden] for nærmere information.',
 'sharedupload-desc-here'    => 'Denne fil er fra $1 og kan bruges på andre projekter.
 Indholdet på dens [$2 filbeskrivelsesside] er vist herunder.',
+'filepage-nofile'           => 'Der er ingen fil med det navn.',
+'filepage-nofile-link'      => 'Der er ingen fil med det navn, med du kan [$1 lægge den op].',
 'uploadnewversion-linktext' => 'Læg en ny version af denne fil op',
 'shared-repo-from'          => 'fra $1',
 'shared-repo'               => 'et delt filarkiv',
@@ -2219,6 +2224,8 @@ Artiklen "[[:$1]]" eksisterer allerede. Vil du slette den for at lave plads til 
 'imageinvalidfilename'         => 'Destinationsnavnet er ugyldigt',
 'fix-double-redirects'         => 'Opdater henvisninger til det oprindelige navn',
 'move-leave-redirect'          => 'Efterlad en omdirigering',
+'protectedpagemovewarning'     => "'''Bemærk:''' Denne side er låst så kun administratorer kan flytte den.",
+'semiprotectedpagemovewarning' => "'''Bemærk:''' Denne side er låst så kun registrerede brugere kan flytte den.",
 
 # Export
 'export'            => 'Eksportér sider',
@@ -3023,6 +3030,13 @@ Denne side oplister de tags som programmet kan mærke en redigering med, og dere
 'dberr-cachederror' => 'Det følgende er en mellemlagret kopi af den forespurgte side. Den kan være forældet.',
 
 # HTML forms
+'htmlform-invalid-input'       => 'Det er problemer med dine angivelser',
+'htmlform-select-badoption'    => 'Den angivne værdi er ikke gyldigt valg.',
+'htmlform-int-invalid'         => 'Den angivne værdi er ikke et heltal.',
+'htmlform-int-toolow'          => 'Den angivne værdi er under minimumsværdien på $1',
+'htmlform-int-toohigh'         => 'Den angivne værdi er over maksimumsværdien på $1',
+'htmlform-submit'              => 'Gem',
+'htmlform-reset'               => 'Annuller ændringer',
 'htmlform-selectorother-other' => 'Anden',
 
 );

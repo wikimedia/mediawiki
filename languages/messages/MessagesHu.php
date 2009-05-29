@@ -448,6 +448,7 @@ $messages = array(
 'permalink'         => 'Link erre a változatra',
 'print'             => 'Nyomtatás',
 'edit'              => 'Szerkesztés',
+'view'              => 'Olvasás',
 'create'            => 'Létrehozás',
 'editthispage'      => 'Lap szerkesztése',
 'create-this-page'  => 'Oldal létrehozása',

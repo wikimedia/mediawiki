@@ -420,7 +420,7 @@ $messages = array(
 'permalink'         => 'Постоянная ссылка',
 'print'             => 'Печать',
 'edit'              => 'Править',
-'view'              => 'Просмотр',
+'view'              => 'Чтение',
 'create'            => 'Создать',
 'editthispage'      => 'Править эту страницу',
 'create-this-page'  => 'Создать эту страницу',
@@ -533,10 +533,10 @@ $messages = array(
 'nosuchactiontext'  => 'Указанное в URL действие ошибочно.
 Возможно вы допустили опечатку при наборе URL или перешли по ошибочной ссылке.
 Это может также указывать на ошибку в проекте {{SITENAME}}.',
-'nosuchspecialpage' => 'Такой специальной страницы нет',
-'nospecialpagetext' => "<big>'''Запрошенной вами специальной страницы не существует.'''</big>
+'nosuchspecialpage' => 'Нет такой служебной страницы',
+'nospecialpagetext' => "<big>'''Запрошенной вами служебной страницы не существует.'''</big>
 
-Список существующих специальных страниц: [[Special:SpecialPages|{{int:specialpages}}]].",
+Список существующих служебных страниц: [[Special:SpecialPages|{{int:specialpages}}]].",
 
 # General errors
 'error'                => 'Ошибка',
