@@ -1989,6 +1989,7 @@ $NEWPAGE
 'undelete-nodiff'              => '找不到先前的修訂版本。',
 'undeletebtn'                  => '恢復',
 'undeletelink'                 => '查看／恢復',
+'undeleteviewlink'             => '查看',
 'undeletereset'                => '重設',
 'undeleteinvert'               => '反向選擇',
 'undeletecomment'              => '原因',

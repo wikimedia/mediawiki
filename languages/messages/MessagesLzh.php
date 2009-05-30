@@ -1724,6 +1724,7 @@ $NEWPAGE
 'undeleterevision-missing'     => '審謬失；棄、還或鏈亡。',
 'undeletebtn'                  => '還',
 'undeletelink'                 => '察焉，以定還否',
+'undeleteviewlink'             => '察',
 'undeletereset'                => '歸白',
 'undeleteinvert'               => '反相',
 'undeletecomment'              => '贊日',

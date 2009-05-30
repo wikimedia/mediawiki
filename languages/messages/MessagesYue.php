@@ -1957,6 +1957,7 @@ wiki: $PAGEEDITOR_WIKI
 'undelete-nodiff'              => '搵唔到之前嘅修訂。',
 'undeletebtn'                  => '救返',
 'undeletelink'                 => '睇／救',
+'undeleteviewlink'             => '睇',
 'undeletereset'                => '重設',
 'undeleteinvert'               => '反選',
 'undeletecomment'              => '註解：',
