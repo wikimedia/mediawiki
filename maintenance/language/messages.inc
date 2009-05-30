@@ -1735,6 +1735,7 @@ $wgMessageStructure = array(
 		'undelete-nodiff',
 		'undeletebtn',
 		'undeletelink',
+		'undeleteviewlink',
 		'undeletereset',
 		'undeleteinvert',
 		'undeletecomment',
