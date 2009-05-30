@@ -2007,6 +2007,7 @@ $NEWPAGE
 'undelete-nodiff'              => '找不到先前的修订版本。',
 'undeletebtn'                  => '恢复',
 'undeletelink'                 => '查看／恢复',
+'undeleteviewlink'             => '查看',
 'undeletereset'                => '重设',
 'undeleteinvert'               => '反向选择',
 'undeletecomment'              => '评论：',
