@@ -1500,7 +1500,8 @@ class OutputPage {
 		// array_values: We needn't to merge variant's code name
 		// into $this->mKeywords;
 		// array_unique: We should insert a keyword just for once
-		$text = array_unique( array_values( $text ));
+		if( is_array( $text ))
+			$text = array_unique( array_values( $text ));
 		$this->addKeyword( $text );
 		$count = 1;
 		$links2d =& $parserOutput->getLinks();
@@ -1510,7 +1511,8 @@ class OutputPage {
 		foreach ( $links2d as $dbkeys ) {
 			foreach( $dbkeys as $dbkey => $unused ) {
 				$dbkey = $wgContLang->autoConvertToAllVariants( $dbkey );
-				$dbkey = array_unique( array_values( $dbkey ));
+				if( is_array( $dbkey ))
+					$dbkey = array_unique( array_values( $dbkey ));
 				$this->addKeyword( $dbkey );
 				if ( ++$count > 10 ) {
 					break 2;
