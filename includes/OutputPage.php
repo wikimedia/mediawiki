@@ -85,7 +85,14 @@ class OutputPage {
 		array_push( $this->mMetatags, array( $name, $val ) );
 	}
 
-	function addKeyword( $text ) { array_push( $this->mKeywords, $text ); }
+	function addKeyword( $text ) {
+		if( is_array( $text )) {
+			$this->mKeywords = array_merge( $this->mKeywords, $text );
+		}
+		else {
+			array_push( $this->mKeywords, $text );
+		}
+	}
 	function addScript( $script ) { $this->mScripts .= "\t\t".$script; }
 	
 	function addExtensionStyle( $url ) {
@@ -1479,13 +1486,22 @@ class OutputPage {
 	}
 
 	/**
-	 * This function takes the title (first item of mGoodLinks), categories, existing and broken links for the page
+	 * This function takes the title (first item of mGoodLinks), categories,
+	 * existing and broken links for the page
 	 * and uses the first 10 of them for META keywords
 	 *
 	 * @param ParserOutput &$parserOutput
 	 */
 	private function addKeywords( &$parserOutput ) {
-		$this->addKeyword( $this->getTitle()->getPrefixedText() );
+		global $wgContLang;
+		// Get an array of keywords if there are more than one
+		// variant of the site language
+		$text = $wgContLang->autoConvertToAllVariants( $this->getTitle()->getPrefixedText());
+		// array_values: We needn't to merge variant's code name
+		// into $this->mKeywords;
+		// array_unique: We should insert a keyword just for once
+		$text = array_unique( array_values( $text ));
+		$this->addKeyword( $text );
 		$count = 1;
 		$links2d =& $parserOutput->getLinks();
 		if ( !is_array( $links2d ) ) {
@@ -1493,6 +1509,8 @@ class OutputPage {
 		}
 		foreach ( $links2d as $dbkeys ) {
 			foreach( $dbkeys as $dbkey => $unused ) {
+				$dbkey = $wgContLang->autoConvertToAllVariants( $dbkey );
+				$dbkey = array_unique( array_values( $dbkey ));
 				$this->addKeyword( $dbkey );
 				if ( ++$count > 10 ) {
 					break 2;
