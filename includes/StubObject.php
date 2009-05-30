@@ -145,6 +145,45 @@ class StubUserLang extends StubObject {
 		global $wgContLanguageCode, $wgRequest, $wgUser, $wgContLang;
 		$code = $wgRequest->getVal( 'uselang', $wgUser->getOption( 'language' ) );
 
+		# Validate $code
+		if( empty( $code ) || !preg_match( '/^[a-z-]+$/', $code ) || ( $code === 'qqq' ) ) {
+			wfDebug( "Invalid user language code\n" );
+			$code = $wgContLanguageCode;
+		}
+
+		if( $code === $wgContLanguageCode ) {
+			return $wgContLang;
+		} else {
+			$obj = Language::factory( $code );
+			return $obj;
+		}
+	}
+}
+
+/**
+ * Stub object for the user variant. It depends of the user preferences and
+ * "variant" parameter that can be passed to index.php. This object have to be
+ * in $wgVariant global.
+ */
+class StubUserVariant extends StubObject {
+
+	function __construct() {
+		parent::__construct( 'wgVariant' );
+	}
+
+	function __call( $name, $args ) {
+		return $this->_call( $name, $args );
+	}
+
+	function _newObject() {
+		global $wgContLanguageCode, $wgRequest, $wgUser, $wgContLang;
+
+		if( $wgContLang->hasVariants() ) {
+			$code = $wgRequest->getVal( 'variant', $wgUser->getOption( 'variant' ) );
+		} else {
+			$code = $wgRequest->getVal( 'variant', $wgUser->getOption( 'language' ) );
+		}
+
 		// if variant is explicitely selected, use it instead the one from wgUser
 		// see bug #7605
 		if( $wgContLang->hasVariants() && in_array($code, $wgContLang->getVariants()) ){
@@ -155,7 +194,7 @@ class StubUserLang extends StubObject {
 
 		# Validate $code
 		if( empty( $code ) || !preg_match( '/^[a-z-]+$/', $code ) || ( $code === 'qqq' ) ) {
-			wfDebug( "Invalid user language code\n" );
+			wfDebug( "Invalid user variant code\n" );
 			$code = $wgContLanguageCode;
 		}
 

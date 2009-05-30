@@ -38,6 +38,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Subpages are now enabled in the MediaWiki namespace by default.  This is
   mainly a cosmetic change, and does not in any way affect the MessageCache,
   which was already effectively treating the namespace as if it had subpages.
+* (bug 10837) $wgVariant is a user variant selected in the user's preferences 
+  if the $wgContLang does not have variant, then the $wgLang is used instead.
 
 === New features in 1.16 ===
 
@@ -174,6 +176,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   uploading/moving is disabled for registered users as well (e.g. only sysops)
 * (bug 18943) Handle invalid titles gracefully at Special:Mostlinked
 * (bug 8873) Enable variant conversion in text on 'alt' and 'title' attributes
+* (bug 10837) Introducing the StubUserVariant class to determine the variant 
+  variable instead of using this to overrules the user language preference.
 
 == API changes in 1.16 ==
 
