@@ -178,6 +178,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 8873) Enable variant conversion in text on 'alt' and 'title' attributes
 * (bug 10837) Introducing the StubUserVariant class to determine the variant 
   variable instead of using this to overrules the user language preference.
+* (bug 19014) If user had deletedhistory right, but not undeleted right, then 
+  show "view" instead of "view/restore" on logs.
 
 == API changes in 1.16 ==
 

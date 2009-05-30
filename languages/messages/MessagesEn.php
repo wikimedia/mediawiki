@@ -2544,6 +2544,7 @@ You may have a bad link, or the revision may have been restored or removed from 
 'undelete-nodiff'              => 'No previous revision found.',
 'undeletebtn'                  => 'Restore',
 'undeletelink'                 => 'view/restore',
+'undeleteviewlink'             => 'view',
 'undeletereset'                => 'Reset',
 'undeleteinvert'               => 'Invert selection',
 'undeletecomment'              => 'Comment:',
