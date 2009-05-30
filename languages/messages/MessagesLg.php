@@ -356,6 +356,7 @@ olwa 'yogera nange' nga ggwe tewetaaze kulaga bikufaako.",
 'listfiles_user' => 'Memba',
 
 # File description page
+'file-anchor-link'    => 'Fayiro',
 'filehist'            => 'Ebyafaayo ebya fayiro eno',
 'filehist-help'       => "Bw'onyiga ku nnaku n'essaawa, ojjakulaba fayiro nga bwe yali efaanana ku kiseera ekyo.",
 'filehist-datetime'   => "Ennaku n'obudde",

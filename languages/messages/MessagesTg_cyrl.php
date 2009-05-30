@@ -1135,6 +1135,7 @@ $messages = array(
 'listfiles_description' => 'Тавсифот',
 
 # File description page
+'file-anchor-link'          => 'файл',
 'filehist'                  => 'Таърихи файл',
 'filehist-help'             => 'Рӯи таърихҳо клик кунед то нусхаи марбути парвандаро бубинед.',
 'filehist-deleteall'        => 'ҳазфи ҳама',

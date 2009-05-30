@@ -842,6 +842,7 @@ Please log in again after you receive it.
 'listfiles' => 'ફાઇલોની યાદી',
 
 # File description page
+'file-anchor-link'          => 'ફાઇલ/દસ્તાવેજ',
 'filehist'                  => 'ફાઇલનો ઇતિહાસ',
 'filehist-help'             => 'તારિખ/સમય ઉપર ક્લિક કરવાથી તે સમયે ફાઇલ કેવી હતી તે જોવા મળશે',
 'filehist-current'          => 'વર્તમાન',

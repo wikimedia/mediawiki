@@ -334,6 +334,7 @@ Stranice koje su na vašem [[Special:Watchlist|spisku praćenja]] su '''podeblja
 'watchthisupload' => 'Prati ovu stranicu',
 
 # File description page
+'file-anchor-link'          => 'Datoteka',
 'filehist'                  => 'Historija datoteke',
 'filehist-help'             => 'Kliknite na datum/vrijeme da vidite kako je tada izgledala datoteka/fajl.',
 'filehist-revert'           => 'vrati',

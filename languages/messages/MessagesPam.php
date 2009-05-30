@@ -1103,6 +1103,7 @@ Miyalilan ing pamanayus nung i-click ya ing pamagat ning kolum (column header).'
 'listfiles_description' => 'Pamilarawan (description)',
 
 # File description page
+'file-anchor-link'          => 'Simpan (File)',
 'filehist'                  => 'Amlat ning simpan (File history)',
 'filehist-help'             => 'Mag-click kang petsa/oras ba meng akit ing itsura ning simpan aniang panaun a ita.',
 'filehist-deleteall'        => 'buran ing eganagana',

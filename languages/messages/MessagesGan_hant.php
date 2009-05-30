@@ -975,6 +975,7 @@ $2',
 'listfiles_description' => '簡話',
 
 # File description page
+'file-anchor-link'          => '檔案',
 'filehist'                  => '檔案歷史',
 'filehist-help'             => '按到日期／時間去眵吖許時間有過嗰檔案。',
 'filehist-deleteall'        => '全部刪掉',

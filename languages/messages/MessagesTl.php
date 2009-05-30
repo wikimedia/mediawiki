@@ -1478,6 +1478,7 @@ Mababago ang pagkakapangkat-pangkat sa pamamagitan ng pagpindot sa isang paulo n
 'listfiles_count'       => 'Mga bersyon',
 
 # File description page
+'file-anchor-link'          => 'Talaksan',
 'filehist'                  => 'Kasaysayan ng talaksan',
 'filehist-help'             => 'Pindutin ang isang petsa/oras para makita ang anyo ng talaksan noong panahong iyon.',
 'filehist-deleteall'        => 'burahin lahat',

@@ -362,6 +362,7 @@ MySQL nagbalik hin sayop nga "$3: $4".',
 'listfiles_name' => 'Ngaran',
 
 # File description page
+'file-anchor-link'        => 'Fayl',
 'filehist-datetime'       => 'Pitsa/Oras',
 'imagelinks'              => 'Mga sumpay',
 'linkstoimage'            => 'Nasumpay hini nga fayl an mga nasunod nga mga pakli:',

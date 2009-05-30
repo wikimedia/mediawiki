@@ -621,6 +621,7 @@ Per integrar il maletg/purtret en tes artitgel sas ti per exempel duvrar in dals
 'listfiles' => 'Glista dals maletgs',
 
 # File description page
+'file-anchor-link'          => 'Datoteca',
 'filehist'                  => 'Istorgia da las versiuns',
 'filehist-help'             => 'Clicca sin ina data/temps per vesair la versiun da lura.',
 'filehist-current'          => 'actual',

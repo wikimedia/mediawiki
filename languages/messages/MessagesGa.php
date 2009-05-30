@@ -997,6 +997,7 @@ uaslódáil é arís, le do thoil.',
 'listfiles_description' => 'Tuairisc',
 
 # File description page
+'file-anchor-link'          => 'Comhad',
 'filehist'                  => 'Stair comhad',
 'filehist-help'             => 'Clic ar dáta/am chun an comhad a radharc mar a bhí sé ar an am.',
 'filehist-deleteone'        => 'scrios',

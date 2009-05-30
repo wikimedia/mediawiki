@@ -1495,6 +1495,7 @@ Bir sütünun başlığına tıklayarak sıralamayı değiştirebilirsiniz.',
 'listfiles_count'       => 'Sürümler',
 
 # File description page
+'file-anchor-link'          => 'Dosya',
 'filehist'                  => 'Dosya geçmişi',
 'filehist-help'             => 'Dosyanın geçmişini görebilmek için Gün/Zaman bölümündeki tarihleri tıklayınız.',
 'filehist-deleteall'        => 'Hepsini sil',

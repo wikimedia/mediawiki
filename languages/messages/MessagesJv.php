@@ -1247,6 +1247,7 @@ Klik sirahé kolom kanggo ngowahi urutan.',
 'listfiles_description' => 'Dèskripsi',
 
 # File description page
+'file-anchor-link'          => 'Gambar',
 'filehist'                  => 'Sajarah berkas',
 'filehist-help'             => 'Klik ing tanggal/wektu kanggo deleng berkas iki ing wektu iku.',
 'filehist-deleteall'        => 'busaken kabèh',

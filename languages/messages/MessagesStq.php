@@ -1325,6 +1325,7 @@ Wan dät Problem fääre bestoant, informier n [[Special:ListUsers/sysop|System-
 'listfiles_count'       => 'Versione',
 
 # File description page
+'file-anchor-link'          => 'Bielde',
 'filehist'                  => 'Doatäiversione',
 'filehist-help'             => 'Klik ap n Tiedpunkt, uum disse Version tou leeden.',
 'filehist-deleteall'        => 'Aal do Versione läskje',

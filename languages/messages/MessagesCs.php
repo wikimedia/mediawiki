@@ -1629,6 +1629,7 @@ Kliknutím na hlavičku sloupce můžete změnit řazení.',
 'listfiles_count'       => 'Verze',
 
 # File description page
+'file-anchor-link'          => 'Soubor',
 'filehist'                  => 'Historie souboru',
 'filehist-help'             => 'Kliknutím na datum a čas se zobrazí tehdejší verze souboru.',
 'filehist-deleteall'        => 'smazat vše',

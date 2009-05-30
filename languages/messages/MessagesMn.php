@@ -1099,6 +1099,7 @@ URL нь зөв болон сайт ажиллагаатай байгаа эсэ
 'listfiles_description' => 'Тодорхойлолт/Дүрслэл',
 
 # File description page
+'file-anchor-link'          => 'Файл',
 'filehist'                  => 'Файлын түүх',
 'filehist-help'             => 'Огноо/цаг дээр нь дарж тухайн үед файл ямар байсныг харна уу.',
 'filehist-deleteall'        => 'бүгдийг арилга',

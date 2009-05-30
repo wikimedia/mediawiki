@@ -550,6 +550,7 @@ Nışannar: (bitki) = şindiki versiyalan aradaki fark,
 'listfiles' => 'Pätret listası',
 
 # File description page
+'file-anchor-link'          => 'Fayl',
 'filehist'                  => 'Fayl istoriyası',
 'filehist-help'             => 'Fayl istoriyasın görmää deyni Gün/Zaman bölümündeki dataları tıklayınız.',
 'filehist-current'          => 'Şindiki',

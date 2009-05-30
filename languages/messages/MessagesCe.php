@@ -218,6 +218,9 @@ $messages = array(
 'listfiles_name' => 'Файли цІе',
 'listfiles_user' => 'юзер',
 
+# File description page
+'file-anchor-link' => 'Сурт',
+
 # Random page
 'randompage' => 'Ца хууш нисделла таптар',
 

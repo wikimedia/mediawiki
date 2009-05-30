@@ -832,6 +832,7 @@ Kó-yèn ngì yû liá-ke thù-hìn ke vàn-cháng thai-séu.",
 'listfiles_description' => 'Mèu-sut',
 
 # File description page
+'file-anchor-link'          => 'Tóng-on',
 'filehist-deleteone'        => 'chhù-thet',
 'imagelinks'                => 'Lièn-kiet',
 'linkstoimage'              => 'Yî-ha vùn-chông lièn-chiap to pún tóng-on:',

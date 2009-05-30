@@ -1230,6 +1230,7 @@ $wgMessageStructure = array(
 		'listfiles_count',
 	),
 	'filedescription' => array(
+		'file-anchor-link',
 		'filehist',
 		'filehist-help',
 		'filehist-deleteall',

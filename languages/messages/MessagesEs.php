@@ -1543,6 +1543,7 @@ Un click sobre el encabezamiento de la columna cambia el orden.',
 'listfiles_count'       => 'Versiones',
 
 # File description page
+'file-anchor-link'          => 'Archivo',
 'filehist'                  => 'Historial del archivo',
 'filehist-help'             => 'Haga clic sobre una fecha/hora para ver el
 archivo a esa fecha.',

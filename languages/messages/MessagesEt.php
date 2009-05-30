@@ -1101,6 +1101,7 @@ Palun pöörduge tagasi ja laadige fail üles mõne teise nime all. [[File:$1|th
 'listfiles_description' => 'Kirjeldus',
 
 # File description page
+'file-anchor-link'          => 'Pilt',
 'filehist'                  => 'Faili ajalugu',
 'filehist-help'             => 'Klõpsa Kuupäev/kellaaeg, et näha faili sel ajahetkel.',
 'filehist-deleteall'        => 'kustuta kõik',

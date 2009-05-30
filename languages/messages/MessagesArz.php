@@ -1625,6 +1625,7 @@ PICT # misc.
 'listfiles_count'       => 'نسخ',
 
 # File description page
+'file-anchor-link'          => 'فايل',
 'filehist'                  => 'تاريخ الملف',
 'filehist-help'             => 'اضغط على الساعه/التاريخ علشان تشوف الفايل زى ما كان فى  الوقت ده.',
 'filehist-deleteall'        => 'امسح كله',

@@ -835,6 +835,7 @@ $messages = array(
 'listfiles_description' => 'څرګندونه',
 
 # File description page
+'file-anchor-link'          => 'دوتنه',
 'filehist'                  => 'د دوتنې پېښليک',
 'filehist-help'             => 'په يوې نېټې/يوه وخت وټوکۍ چې د هماغه وخت او نېټې دوتنه چې په هماغه وخت کې څنګه ښکارېده هماغسې درښکاره شي.',
 'filehist-deleteall'        => 'ټول ړنګول',

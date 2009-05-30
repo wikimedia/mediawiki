@@ -555,6 +555,7 @@ $3',
 'listfiles' => 'Нывты номхыгъд',
 
 # File description page
+'file-anchor-link'  => 'Ныв',
 'filehist'          => 'Файлы истори',
 'filehist-current'  => 'нырыккон',
 'filehist-datetime' => 'Датæ/рæстæг',

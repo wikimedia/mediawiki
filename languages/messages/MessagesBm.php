@@ -92,6 +92,9 @@ $messages = array(
 # Recent changes
 'hide' => 'dogo',
 
+# File description page
+'file-anchor-link' => 'Janin',
+
 # Random page
 'randompage' => 'Nyɛ min man ni ja',
 

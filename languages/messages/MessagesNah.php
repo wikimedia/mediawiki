@@ -817,6 +817,7 @@ Timitztlātlauhtiah, xitlahcuiloa occē tōcāitl.",
 'listfiles_user'       => 'Tlatequitiltilīlli',
 
 # File description page
+'file-anchor-link'          => 'Īxiptli',
 'filehist'                  => 'Tlahcuilōlli tlahcuilōlloh',
 'filehist-deleteall'        => 'tiquimpolōz mochīntīn',
 'filehist-deleteone'        => 'ticpolōz',

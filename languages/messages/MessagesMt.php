@@ -1504,6 +1504,7 @@ Biex tagħmel modifika fl-ordni tal-kolonna, klikkja fuq it-titlu tal-kolonna st
 'listfiles_count'       => 'Verżjonijiet',
 
 # File description page
+'file-anchor-link'          => 'Fajl',
 'filehist'                  => 'Kronoloġija tal-fajl',
 'filehist-help'             => 'Agħfas fuq il-grupp data/ħin biex tara l-fajl biex tara kif jidher dak il-ħin.',
 'filehist-deleteall'        => 'ħassar kollox',

@@ -457,6 +457,7 @@ $messages = array(
 'listfiles_user' => 'Пайдаланыше',
 
 # File description page
+'file-anchor-link'          => 'Файл',
 'filehist'                  => 'Файлын историй',
 'filehist-help'             => 'Файл ончыч могай ыле манын ончалнет гын, кече/жапым темдал.',
 'filehist-deleteone'        => 'шӧраш',

@@ -823,6 +823,7 @@ Ma tesɛiḍ tugna-nni s resolution tameqqrant, azen-it, ma ulac beddel isem-is.
 'listfiles_description' => 'Aglam',
 
 # File description page
+'file-anchor-link'          => 'Afaylu',
 'filehist-current'          => 'Lux a',
 'filehist-user'             => 'Amseqdac',
 'imagelinks'                => 'Izdayen',

@@ -699,6 +699,7 @@ for directly linking to the file without displaying the file",
 'listfiles_user' => 'بەکارھێنەر',
 
 # File description page
+'file-anchor-link'          => 'پەڕگە',
 'filehist'                  => 'مێژووی پەڕگە',
 'filehist-help'             => 'بە کلیک کردن لەسەر بەروار/کات پەڕگە بەو شێوازە کە لەو کاتەدا بووە نیشان ئەدرێت.',
 'filehist-current'          => 'هەنووکە',

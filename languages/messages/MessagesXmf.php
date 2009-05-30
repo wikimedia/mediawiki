@@ -367,6 +367,7 @@ $messages = array(
 'listfiles_name' => 'სახელ',
 
 # File description page
+'file-anchor-link'    => 'ფაილი',
 'filehist'            => 'ფაილიშ ისტორია',
 'filehist-help'       => 'ქოგეუნჭირით ბორჯის, ნამდა ქოძირათ ფაილი თეშ, მუჭოთ თინა თიწკუმა კილეძირედუ.',
 'filehist-current'    => 'მიმალ',

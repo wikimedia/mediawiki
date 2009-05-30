@@ -130,7 +130,8 @@ $messages = array(
 'listfiles_user' => 'Ta’ata fa’a’ohipa',
 
 # File description page
-'filehist-user' => 'Ta’ata',
+'file-anchor-link' => 'Hōho’a',
+'filehist-user'    => 'Ta’ata',
 
 # Random page
 'randompage' => '’Api mā’iti-haere-noa',

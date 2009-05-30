@@ -352,7 +352,8 @@ MySQL नं इरर "<tt>$3: $4</tt>" क्यंगु दु।',
 'upload' => 'फाइल अपलोड',
 
 # File description page
-'filehist-user' => 'छ्य्‌लामि',
+'file-anchor-link' => 'फाइल',
+'filehist-user'    => 'छ्य्‌लामि',
 
 # Random page
 'randompage' => 'छगु च्वसुइ येंकादिसं',

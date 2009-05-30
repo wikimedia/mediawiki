@@ -1056,6 +1056,7 @@ $2',
 'listfiles_description' => 'ವಿವರ',
 
 # File description page
+'file-anchor-link'          => 'ಚಿತ್ರ',
 'filehist'                  => 'ಕಡತದ ಇತಿಹಾಸ',
 'filehist-help'             => 'ದಿನ/ಕಾಲ ಒತ್ತಿದರೆ ಆ ಸಮಯದಲ್ಲಿ ಈ ಕಡತದ ವಸ್ತುಸ್ಥಿತಿ ತೋರುತ್ತದೆ.',
 'filehist-deleteall'        => 'ಎಲ್ಲವನ್ನೂ ಅಳಿಸು',

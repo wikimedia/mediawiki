@@ -776,6 +776,7 @@ $messages = array(
 'listfiles' => 'ফাইলৰ তালিকা',
 
 # File description page
+'file-anchor-link'          => 'চিত্র',
 'filehist'                  => 'ফাইলৰ ইতিবৃত্ত',
 'filehist-help'             => 'ফাইলৰ আগৰ অৱ্স্থা চাবলৈ সেই তাৰিখ/সময়ত টিপা মাৰক|',
 'filehist-current'          => 'বর্তমান',

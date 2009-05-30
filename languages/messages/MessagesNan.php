@@ -476,9 +476,10 @@ $messages = array(
 'listfiles_description' => 'Soat-bêng',
 
 # File description page
-'imagelinks'     => 'Iáⁿ-siōng liân-kiat',
-'linkstoimage'   => 'Í-hā ê ia̍h liân kàu chit ê iáⁿ-siōng:',
-'nolinkstoimage' => 'Bô poàⁿ ia̍h liân kàu chit tiuⁿ iáⁿ-siōng.',
+'file-anchor-link' => 'Tóng-àn',
+'imagelinks'       => 'Iáⁿ-siōng liân-kiat',
+'linkstoimage'     => 'Í-hā ê ia̍h liân kàu chit ê iáⁿ-siōng:',
+'nolinkstoimage'   => 'Bô poàⁿ ia̍h liân kàu chit tiuⁿ iáⁿ-siōng.',
 
 # MIME search
 'mimesearch' => 'MIME chhiau-chhoē',

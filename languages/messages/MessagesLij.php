@@ -634,6 +634,7 @@ E paggine in osservassion son dipinte in '''grascietto'''.",
 'listfiles_date'       => 'Dæta',
 
 # File description page
+'file-anchor-link'          => 'Archivvio',
 'filehist'                  => "Cronologîa de l'archivvio",
 'filehist-help'             => "Sciacca inscie 'n grûppo data/ôa pe vedde l'archivvio comme o se presentâva into momento indicòu.",
 'filehist-current'          => 'Corrente',

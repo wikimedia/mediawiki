@@ -432,6 +432,7 @@ Zínhar, bu bitneñ wağraq kisäklärgä bülü turında uylap qara.",
 'listfiles' => 'Räsem tezmäse',
 
 # File description page
+'file-anchor-link'    => 'Räsem',
 'filehist-dimensions' => 'Ölçemi',
 'filehist-comment'    => 'Açıqlama',
 'imagelinks'          => 'Räsem läñkerläre',

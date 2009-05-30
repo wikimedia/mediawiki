@@ -1254,6 +1254,7 @@ $2',
 'listfiles_count'       => '擇',
 
 # File description page
+'file-anchor-link'          => '檔',
 'filehist'                  => '檔史',
 'filehist-help'             => '揀日尋檔。',
 'filehist-deleteall'        => '全刪',

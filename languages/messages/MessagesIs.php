@@ -1321,6 +1321,7 @@ Gjörðu svo vel og endurnefndu skrána og hladdu henni inn aftur.',
 'listfiles_description' => 'Lýsing',
 
 # File description page
+'file-anchor-link'          => 'Skrá',
 'filehist'                  => 'Breytingaskrá skjals',
 'filehist-help'             => 'Smelltu á dagsetningu eða tímasetningu til að sjá hvernig hún leit þá út.',
 'filehist-deleteall'        => 'eyða öllu',

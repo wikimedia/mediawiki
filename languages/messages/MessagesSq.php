@@ -1357,6 +1357,7 @@ Shtypni kolonat e tjera për të ndryshuar radhitjen.',
 'listfiles_count'       => 'Versionet',
 
 # File description page
+'file-anchor-link'          => 'Figura',
 'filehist'                  => 'Historiku i dosjes',
 'filehist-help'             => 'Shtypni një datë/kohë për ta parë skedën ashtu si dukej në atë kohë.',
 'filehist-deleteall'        => 'grisi të tëra',

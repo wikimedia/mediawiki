@@ -448,6 +448,7 @@ Zu deina Information folgt des Lösch-Logbuach mit da Begründung fia de vorheri
 'upload_source_file' => ' (a Datei auf deim Computa)',
 
 # File description page
+'file-anchor-link'          => 'Datei',
 'filehist'                  => 'Dateiveasionen',
 'filehist-current'          => 'aktuell',
 'filehist-datetime'         => 'Version vum',

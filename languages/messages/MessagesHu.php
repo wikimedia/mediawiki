@@ -1632,6 +1632,7 @@ Az oszlopok címeire kattintva változtathatod meg a rendezést.',
 'listfiles_count'       => 'Változatok',
 
 # File description page
+'file-anchor-link'          => 'Fájl',
 'filehist'                  => 'Fájltörténet',
 'filehist-help'             => 'Kattints egy időpontra, hogy a fájl akkori állapotát láthasd.',
 'filehist-deleteall'        => 'összes törlése',

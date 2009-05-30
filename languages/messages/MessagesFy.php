@@ -1417,6 +1417,7 @@ Klikken op in kolomkop feroaret de sortearring.',
 'listfiles_count'       => 'Ferzjes',
 
 # File description page
+'file-anchor-link'          => 'Triem',
 'filehist'                  => 'Triem skiednis',
 'filehist-help'             => 'Klik op in tiid om de ferzje fan de triem op dat stuit te sjen.',
 'filehist-deleteall'        => 'wiskje alles',

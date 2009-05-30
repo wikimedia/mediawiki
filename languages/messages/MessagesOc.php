@@ -1594,6 +1594,7 @@ Un clic en tèsta de colomna càmbia l’òrdre d’afichatge.',
 'listfiles_count'       => 'Versions',
 
 # File description page
+'file-anchor-link'          => 'Fichièr',
 'filehist'                  => 'Istoric del fichièr',
 'filehist-help'             => 'Clicar sus una data e una ora per veire lo fichièr tal coma èra a aqueste moment',
 'filehist-deleteall'        => 'suprimir tot',

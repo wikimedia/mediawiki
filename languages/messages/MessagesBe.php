@@ -1316,6 +1316,7 @@ $2',
 'listfiles_count'       => 'Версіі',
 
 # File description page
+'file-anchor-link'          => 'Файл',
 'filehist'                  => 'Гісторыя файла',
 'filehist-help'             => 'Націснуць на даце з часам, каб паказаць файл, якім ён тады быў.',
 'filehist-deleteall'        => 'выдаліць усё',

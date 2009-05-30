@@ -1672,6 +1672,7 @@ Wenn das Problem weiter besteht, informiere einen [[Special:ListUsers/sysop|Syst
 'listfiles_count'       => 'Versionen',
 
 # File description page
+'file-anchor-link'          => 'Datei',
 'filehist'                  => 'Dateiversionen',
 'filehist-help'             => 'Klicke auf einen Zeitpunkt, um diese Version zu laden.',
 'filehist-deleteall'        => 'Alle Versionen löschen',

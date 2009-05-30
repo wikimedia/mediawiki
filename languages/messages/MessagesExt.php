@@ -1023,6 +1023,7 @@ Pursa nel entítulu la coluna pa chambal el ordin.',
 'listfiles_description' => 'Descrición',
 
 # File description page
+'file-anchor-link'          => 'Archivu',
 'filehist'                  => 'Estorial el archivu',
 'filehist-help'             => 'Pursa nuna fecha/ora pa vel cumu era el archivu nesi momentu.',
 'filehist-deleteall'        => 'esborral tós',

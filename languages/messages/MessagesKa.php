@@ -1075,6 +1075,7 @@ $1 საათში.',
 'listfiles_count'       => 'ვერსიები',
 
 # File description page
+'file-anchor-link'          => 'ფაილი',
 'filehist'                  => 'ფაილის ისტორია',
 'filehist-help'             => 'დააწკაპუნეთ თარიღზე/დროზე, რათა იხილოთ ფაილი, როგორც ის მაშინ გამოიყურებოდა.',
 'filehist-deleteall'        => 'წაშალე ყველა',

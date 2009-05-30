@@ -1622,6 +1622,7 @@ Genom att klicka på rubrikerna för kolumnerna kan man ändra sorteringsordning
 'listfiles_count'       => 'Versioner',
 
 # File description page
+'file-anchor-link'          => 'Fil',
 'filehist'                  => 'Filhistorik',
 'filehist-help'             => 'Klicka på ett datum/klockslag för att se filen som den såg ut då.',
 'filehist-deleteall'        => 'radera alla',

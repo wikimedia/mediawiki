@@ -1494,6 +1494,7 @@ $2',
 'listfiles_count'       => 'Верзије',
 
 # File description page
+'file-anchor-link'          => 'Слика',
 'filehist'                  => 'Историја фајла',
 'filehist-help'             => 'Кликните на датум/време да видите верзију фајла из тог времена.',
 'filehist-deleteall'        => 'обриши све',

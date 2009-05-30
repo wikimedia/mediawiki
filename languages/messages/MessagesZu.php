@@ -201,7 +201,8 @@ ikhawundi lakho liyadalwa. musa ukukhohlwa ukuguqula amakhethelo a-{{SITENAME}} 
 'nolicense' => 'Ubekhetha lutho',
 
 # File description page
-'nolinkstoimage' => 'Akukho amakhasi akhomba kuleli fayela.',
+'file-anchor-link' => 'Ifayela',
+'nolinkstoimage'   => 'Akukho amakhasi akhomba kuleli fayela.',
 
 # Random page
 'randompage' => 'Ikhasi elingaphandle kokucabanga',

@@ -1468,6 +1468,7 @@ Sletningsloggen for denne fil er gengivet herunder.",
 'listfiles_count'       => 'Versioner',
 
 # File description page
+'file-anchor-link'          => 'Fil',
 'filehist'                  => 'Filhistorik',
 'filehist-help'             => 'Klik på en dato/tid for at se den version af filen.',
 'filehist-deleteall'        => 'slet alle',

@@ -146,6 +146,7 @@ $messages = array(
 'upload' => 'Парвиниз шикил',
 
 # File description page
+'file-anchor-link'  => 'Шикил',
 'filehist'          => 'Шикил тарих',
 'filehist-datetime' => 'Югъ/Заман',
 

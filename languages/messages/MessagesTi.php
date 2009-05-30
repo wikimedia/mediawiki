@@ -126,6 +126,9 @@ $messages = array(
 'listfiles_name' => 'ሽም',
 'listfiles_user' => 'ኣባል',
 
+# File description page
+'file-anchor-link' => 'ምስሊ',
+
 # Miscellaneous special pages
 'nbytes'            => '$1 {{PLURAL:$1|ባይት|ባይታት}}',
 'longpages'         => 'ነዋሕቲ ፅሑፋት',

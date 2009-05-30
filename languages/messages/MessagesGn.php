@@ -319,6 +319,7 @@ Reomĩsérõ ta'ãnga peteĩ kuatiaroguépe, eipuru peteĩ joaju:
 'listfiles_user' => 'Puruhára',
 
 # File description page
+'file-anchor-link'  => 'Ñongatupy',
 'filehist-revert'   => 'embojevy',
 'filehist-current'  => "ko'ag̃agua",
 'filehist-datetime' => 'Ára/Aravo',

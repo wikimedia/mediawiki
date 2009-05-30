@@ -1280,6 +1280,7 @@ $3ने ''$2'' कारण दिले आहे.",
 'listfiles_description' => 'वर्णन',
 
 # File description page
+'file-anchor-link'          => 'संचिका',
 'filehist'                  => 'संचिकेचा इतिहास',
 'filehist-help'             => 'संचिकेची पूर्वीची आवृत्ती बघण्यासाठी दिनांक/वेळ वर टिचकी द्या.',
 'filehist-deleteall'        => 'सर्व वगळा',

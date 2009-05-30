@@ -1393,6 +1393,7 @@ $3 макссь туфталсь - ''$2''",
 'listfiles_count'       => 'Верзиет',
 
 # File description page
+'file-anchor-link'          => 'Файл',
 'filehist'                  => 'Файлонь историясь',
 'filehist-help'             => 'Люпштак шить/пингть лангс ся пингонь файлть верзинц няфтеманкса.',
 'filehist-deleteall'        => 'нардамс сембе',

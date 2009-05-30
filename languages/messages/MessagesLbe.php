@@ -75,7 +75,8 @@ $messages = array(
 'recentchanges' => 'Махъсса дахханашивурту',
 
 # File description page
-'filehist-user' => 'Гьурттучув',
+'file-anchor-link' => 'Сурат',
+'filehist-user'    => 'Гьурттучув',
 
 # Miscellaneous special pages
 'move' => 'ЦIа даххана дан',

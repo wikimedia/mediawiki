@@ -1400,6 +1400,7 @@ Gallwch newid trefn y rhestr trwy bwyso ar bennawd colofn.",
 'listfiles_count'       => 'Fersiynau',
 
 # File description page
+'file-anchor-link'          => 'Ffeil',
 'filehist'                  => 'Hanes y ffeil',
 'filehist-help'             => 'Cliciwch ar ddyddiad/amser i weld y ffeil fel ag yr oedd bryd hynny.',
 'filehist-deleteall'        => 'eu dileu i gyd',

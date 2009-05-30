@@ -1585,6 +1585,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'listfiles_count'       => '버전',
 
 # File description page
+'file-anchor-link'          => '파일',
 'filehist'                  => '파일 역사',
 'filehist-help'             => '날짜/시간 링크를 클릭하면 해당 시간의 파일을 볼 수 있습니다.',
 'filehist-deleteall'        => '모두 삭제',

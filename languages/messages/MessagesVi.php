@@ -1558,6 +1558,7 @@ Hãy nhấn chuột vào tiêu đề cột để thay đổi thứ tự sắp x�
 'listfiles_count'       => 'Số phiên bản',
 
 # File description page
+'file-anchor-link'          => 'Tập tin',
 'filehist'                  => 'Lịch sử tập tin',
 'filehist-help'             => 'Nhấn vào một ngày/giờ để xem nội dung tập tin tại thời điểm đó.',
 'filehist-deleteall'        => 'xóa toàn bộ',

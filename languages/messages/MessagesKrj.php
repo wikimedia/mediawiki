@@ -234,6 +234,9 @@ Lantawa sa [[Special:Version|version kang page]].',
 # Special:ListFiles
 'imgfile' => 'inayap',
 
+# File description page
+'file-anchor-link' => 'Inayap',
+
 # File deletion
 'filedelete-submit' => 'Para',
 

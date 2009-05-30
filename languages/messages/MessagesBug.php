@@ -315,6 +315,7 @@ $messages = array(
 'listfiles_name' => 'Aseŋ',
 
 # File description page
+'file-anchor-link'    => 'Rapang',
 'filehist-user'       => 'Papaké',
 'filehist-dimensions' => 'Dimensi',
 'imagelinks'          => 'Liŋke',

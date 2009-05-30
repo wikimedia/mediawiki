@@ -1485,6 +1485,7 @@ Paspaudę ant stulpelio antraštės pakeiste išrikiavimą.',
 'listfiles_count'       => 'Versijos',
 
 # File description page
+'file-anchor-link'          => 'Failas',
 'filehist'                  => 'Paveikslėlio istorija',
 'filehist-help'             => 'Paspauskite ant datos/laiko, kad pamatytumėte failą tokį, koks jis buvo tuo metu.',
 'filehist-deleteall'        => 'trinti visus',

@@ -1174,6 +1174,7 @@ $messages = array(
 'listfiles_count'       => 'Ἐκδόσεις',
 
 # File description page
+'file-anchor-link'          => 'Ἀρχεῖον',
 'filehist'                  => 'Τοῦ ἀρχείου συγγραφή',
 'filehist-help'             => 'Πατήσατε ἐπὶ χρονολογίας/ὥρας τινὸς ἵνα ἴδητε τὸ ἀρχεῖον ὡς ἐμφανισθὲν ἐν ᾗπερ ὥρᾳ ᾗ.',
 'filehist-deleteall'        => 'διαγράφειν ἅπαντα',

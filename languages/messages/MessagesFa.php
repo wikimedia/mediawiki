@@ -1737,6 +1737,7 @@ $2',
 'listfiles_count'       => 'نسخه‌ها',
 
 # File description page
+'file-anchor-link'          => 'تصویر',
 'filehist'                  => 'تاریخچه پرونده',
 'filehist-help'             => 'روی تاریخ‌ها کلیک کنید تا نسخهٔ مربوط را ببینید.',
 'filehist-deleteall'        => 'حذف همه',

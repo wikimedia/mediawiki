@@ -1119,6 +1119,7 @@ Sulara \"log\" va batu bu krafiason batlize zo nedir :",
 'listfiles_count'       => 'Siatos',
 
 # File description page
+'file-anchor-link'          => 'Ewava',
 'filehist'                  => 'Iyeltakizvot',
 'filehist-help'             => 'Ta da va iyeltak wil dum in batoulon awir va evla/bartiv vulegal !',
 'filehist-deleteall'        => 'Sulara va kotcoba',

@@ -310,7 +310,8 @@ $messages = array(
 'listfiles_description' => 'वर्णन',
 
 # File description page
-'nolinkstoimage' => 'यो फाईलसंग लिंकभएको कुनै पृष्ठ छैन.',
+'file-anchor-link' => 'फाईल',
+'nolinkstoimage'   => 'यो फाईलसंग लिंकभएको कुनै पृष्ठ छैन.',
 
 # MIME search
 'download' => 'डाउनलोड',

@@ -1636,6 +1636,7 @@ Klikom na zaglavlje kolone možete promjeniti način sortiranja.',
 'listfiles_count'       => 'Verzije',
 
 # File description page
+'file-anchor-link'          => 'Datoteka',
 'filehist'                  => 'Historija datoteke',
 'filehist-help'             => 'Kliknite na datum/vrijeme da vidite verziju datoteke iz tog vremena.',
 'filehist-deleteall'        => 'izbriši sve',

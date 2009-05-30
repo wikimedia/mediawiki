@@ -324,8 +324,9 @@ Putite cuntinuà a ausà {{SITENAME}} comme n'utente senza nomme, o si nò putit
 'listfiles_name' => 'Nomme',
 
 # File description page
-'filehist-user' => 'Utente',
-'imagelinks'    => 'Jonte ê ffiure',
+'file-anchor-link' => 'Fiura',
+'filehist-user'    => 'Utente',
+'imagelinks'       => 'Jonte ê ffiure',
 
 # Random page
 'randompage'         => 'Na paggena qualsiase',

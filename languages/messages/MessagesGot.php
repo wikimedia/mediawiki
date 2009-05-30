@@ -294,6 +294,7 @@ $messages = array(
 'listfiles' => 'Feilans tala',
 
 # File description page
+'file-anchor-link'    => 'Feilans',
 'filehist'            => 'Feilans áiris',
 'filehist-current'    => 'nu',
 'filehist-datetime'   => 'Ƕeila',

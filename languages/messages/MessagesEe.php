@@ -278,6 +278,7 @@ Wòateŋu [[:\$1|adze axa sia gɔme]].",
 'uploadbtn' => 'Ɖo agbalẽ ɖa',
 
 # File description page
+'file-anchor-link'  => 'Agbalẽ',
 'filehist-help'     => 'Tia ŋkeke/gaƒoƒo ɖeka ne wòadi be yea kpɔ axa sia ƒe tata le ɣemaɣi',
 'filehist-datetime' => 'Ŋkeke/Gaƒoƒo',
 'filehist-user'     => 'Ezãla',

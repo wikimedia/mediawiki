@@ -716,6 +716,7 @@ Càstia sa [[Special:NewFiles|galleria de files nous]] pro una presentatzione pr
 'listfiles_count'       => 'Versiones',
 
 # File description page
+'file-anchor-link'          => 'File',
 'filehist'                  => 'Istòria de su file',
 'filehist-help'             => 'Craca unu grupu data/ora pro castiari su file comente si presentada in su tempus indicau.',
 'filehist-deleteall'        => 'fùlia totu',

@@ -413,6 +413,7 @@ Bu yerda: (joriy) = hozirgi koʻrinish bilan farq,
 'listfiles' => 'Fayllar roʻyxati',
 
 # File description page
+'file-anchor-link'          => 'Fayl',
 'filehist'                  => 'Fayl tarixi',
 'filehist-help'             => 'Faylning biror paytdagi holatini koʻrish uchun tegishli sana/vaqtga bosingiz.',
 'filehist-current'          => 'joriy',

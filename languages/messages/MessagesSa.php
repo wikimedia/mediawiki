@@ -426,6 +426,7 @@ $messages = array(
 'imgfile' => 'संचिका',
 
 # File description page
+'file-anchor-link'   => 'संचिका',
 'filehist-deleteone' => 'विलोप',
 
 # Random page

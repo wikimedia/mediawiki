@@ -829,6 +829,7 @@ $1 {{PLURAL:$1|simwoldan|simwoldan}} köp bolmaly däl.',
 'listfiles_count'       => 'Wersiýalar',
 
 # File description page
+'file-anchor-link'          => 'Faýl',
 'filehist'                  => 'Faýlyň geçmişi',
 'filehist-help'             => 'Faýlyň geçmişini görmek üçin Sene/Wagt bölümündäki senelere tyklaň.',
 'filehist-deleteall'        => 'ählisini öçür',

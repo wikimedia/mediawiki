@@ -1503,6 +1503,7 @@ $2',
 'listfiles_count'       => 'Версии',
 
 # File description page
+'file-anchor-link'          => 'Файл',
 'filehist'                  => 'История на файла',
 'filehist-help'             => 'Избирането на дата/час ще покаже как е изглеждал файлът към онзи момент.',
 'filehist-deleteall'        => 'изтриване на всички',

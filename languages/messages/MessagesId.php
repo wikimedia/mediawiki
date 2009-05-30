@@ -1551,6 +1551,7 @@ Klik pada kepala kolom untuk mengubah urutan.',
 'listfiles_count'       => 'Versi',
 
 # File description page
+'file-anchor-link'          => 'Berkas',
 'filehist'                  => 'Riwayat berkas',
 'filehist-help'             => 'Klik pada tanggal/waktu untuk melihat berkas ini pada saat tersebut.',
 'filehist-deleteall'        => 'hapus semua',

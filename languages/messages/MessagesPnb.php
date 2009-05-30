@@ -662,6 +662,7 @@ $messages = array(
 'listfiles_description' => 'تفصیل',
 
 # File description page
+'file-anchor-link'          => 'فائل',
 'filehist'                  => 'پچھلی حالت',
 'filehist-help'             => 'فائل نو اس ویلے دی حالت وچ ویکھن واسطے تاریخ/ویلے تے کلک کرو۔',
 'filehist-deleteall'        => 'سب نوں مٹاؤ',

@@ -328,6 +328,7 @@ $messages = array(
 'listfiles_user' => 'Devnydhyer',
 
 # File description page
+'file-anchor-link'    => 'Restren',
 'filehist'            => 'Istori an folen',
 'filehist-deleteone'  => 'dilea',
 'filehist-datetime'   => 'Dydh/Eur',

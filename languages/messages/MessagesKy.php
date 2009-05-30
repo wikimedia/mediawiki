@@ -211,7 +211,8 @@ $messages = array(
 'listfiles' => 'Файлдар тизмеси',
 
 # File description page
-'imagelinks' => 'Шилтемелер',
+'file-anchor-link' => 'Файл',
+'imagelinks'       => 'Шилтемелер',
 
 # Unused templates
 'unusedtemplates'    => 'Колдонулбаган нускалар',

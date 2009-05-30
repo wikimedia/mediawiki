@@ -1370,6 +1370,7 @@ Klikolös tiädi padüla ad votükön sökaleodi at.',
 'listfiles_count'       => 'Fomams',
 
 # File description page
+'file-anchor-link'          => 'Ragiv',
 'filehist'                  => 'Jenotem ragiva',
 'filehist-help'             => 'Välolös däti/timi ad logön ragivi soäsä äbinon ün tim at.',
 'filehist-deleteall'        => 'moükön valikis',

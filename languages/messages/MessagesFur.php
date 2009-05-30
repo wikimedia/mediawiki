@@ -819,6 +819,7 @@ Par includi une figure intune pagjine, dopre un leam inte form
 'listfiles_count'       => 'Versions',
 
 # File description page
+'file-anchor-link'          => 'Figure',
 'filehist'                  => 'Storic dal file',
 'filehist-help'             => 'Frache suntune date/ore par viodi il file cemût che al jere in chel moment.',
 'filehist-current'          => 'corint',

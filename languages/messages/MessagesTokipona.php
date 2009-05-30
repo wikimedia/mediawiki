@@ -130,6 +130,9 @@ kin la sina toki e ni: toki sina ni li tan sina taso anu lipu pi ken ali.
 'filedesc'          => 'ante li seme',
 'fileuploadsummary' => 'ante li seme:',
 
+# File description page
+'file-anchor-link' => 'Lipu nanpa',
+
 # Random page
 'randompage' => 'mi wile lukin e lipu ante',
 

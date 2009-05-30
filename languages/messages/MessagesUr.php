@@ -663,9 +663,10 @@ HTML tags جانچئے.',
 'listfiles' => 'فہرست فائل',
 
 # File description page
-'imagelinks'     => 'روابط',
-'linkstoimage'   => 'اس ملف (فائل) سے درج ذیل صفحات رابطہ رکھتے ہیں:',
-'nolinkstoimage' => 'ایسے کوئی صفحات نہیں جو اس ملف (فائل) سے رابطہ رکھتے ہوں۔',
+'file-anchor-link' => 'مسل',
+'imagelinks'       => 'روابط',
+'linkstoimage'     => 'اس ملف (فائل) سے درج ذیل صفحات رابطہ رکھتے ہیں:',
+'nolinkstoimage'   => 'ایسے کوئی صفحات نہیں جو اس ملف (فائل) سے رابطہ رکھتے ہوں۔',
 
 # MIME search
 'download' => 'زیراثقال (ڈاؤن لوڈ)',

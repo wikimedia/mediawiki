@@ -1453,6 +1453,7 @@ Kuckt w.e.g. no op kee Feeler an der URL ass an op de Site och online ass.',
 'listfiles_count'       => 'Versiounen',
 
 # File description page
+'file-anchor-link'          => 'Fichier',
 'filehist'                  => 'Versiounen',
 'filehist-help'             => 'Klickt op e bestëmmten Zäitpunkt fir déi respektiv Versioun vum Fichier ze kucken.',
 'filehist-deleteall'        => 'All Versioune läschen',

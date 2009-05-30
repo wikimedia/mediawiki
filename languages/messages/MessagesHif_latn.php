@@ -1369,6 +1369,7 @@ Column header me click kare se sorting badal jaai.',
 'listfiles_count'       => 'Versions',
 
 # File description page
+'file-anchor-link'          => 'File',
 'filehist'                  => 'File ke itihaas',
 'filehist-help'             => 'File ke dekhe khatir, jaise uu time dekhe me lagat rahaa, date/time pe click karo.',
 'filehist-deleteall'        => 'sab ke mitao',

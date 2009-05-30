@@ -1578,6 +1578,7 @@ Poredak datoteka mijenja se pritiskom na naslov stupca.',
 'listfiles_count'       => 'Inačice',
 
 # File description page
+'file-anchor-link'          => 'Slika',
 'filehist'                  => 'Povijest datoteke',
 'filehist-help'             => 'Kliknite na datum/vrijeme kako biste vidjeli datoteku kakva je tada bila.',
 'filehist-deleteall'        => 'izbriši sve',

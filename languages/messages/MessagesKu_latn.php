@@ -898,6 +898,7 @@ Zanibe, ku ev barkirina kê were qebûlkirin ya na.
 'listfiles_description' => 'Wesif',
 
 # File description page
+'file-anchor-link'          => 'Wêne',
 'filehist'                  => 'Dîroka datayê',
 'filehist-help'             => 'Li demekê xe ji bo dîtina verzyona wê demê',
 'filehist-deleteall'        => 'giştika jêbibe',

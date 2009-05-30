@@ -1721,6 +1721,7 @@ Klikken op een kolomkop verandert de sortering.',
 'listfiles_count'       => 'Versies',
 
 # File description page
+'file-anchor-link'          => 'Bestand',
 'filehist'                  => 'Bestandsgeschiedenis',
 'filehist-help'             => 'Klik op een datum/tijd om het bestand te zien zoals het destijds was.',
 'filehist-deleteall'        => 'alle versies verwijderen',

@@ -589,6 +589,7 @@ $1 {{PLURAL:$1|اکر|اکرن}} کان ننڍي هوڻ گھرجي.',
 'listfiles' => 'فائيل فهرست',
 
 # File description page
+'file-anchor-link'          => 'فائيل',
 'filehist'                  => 'فائيل جي سوانح',
 'filehist-help'             => 'ڪنهن به تاريخ/وقت تي ڪلڪ ڪري ڏسندا ته تڏڻي اهو فائيل ڪيئن هو.',
 'filehist-current'          => 'هاڻوڪو',

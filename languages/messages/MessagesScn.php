@@ -1349,6 +1349,7 @@ Pi canciari l'urdinamentu, fari clic supra a la ntistazzioni dâ culonna scigghi
 'listfiles_count'       => 'Virsioni',
 
 # File description page
+'file-anchor-link'          => 'Mmàggini',
 'filehist'                  => 'Crunuluggìa dô file',
 'filehist-help'             => 'Fari clic supra nu gruppu data/ura pi vìdiri lu file comu si prisintava ntô mumentu nnicatu.',
 'filehist-deleteall'        => 'cancilla tuttu',

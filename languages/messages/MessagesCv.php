@@ -742,6 +742,7 @@ $1 хутшăнакан патне, е ытти [[{{MediaWiki:Grouppage-sysop}}|
 'listfiles_description' => 'Ăнлантаркăч',
 
 # File description page
+'file-anchor-link'          => 'Файл',
 'filehist'                  => 'Файл историйĕ',
 'imagelinks'                => 'Ссылкăсем',
 'linkstoimage'              => 'Çак страницăсем ку файл çине кăтартаççĕ:',

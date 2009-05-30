@@ -559,6 +559,7 @@ Bu səhifə üçün silmə qeydləri aşağıda göstərilmişdir:",
 'listfiles_user' => 'İstifadəçi',
 
 # File description page
+'file-anchor-link'          => 'Fayl',
 'imagelinks'                => 'İstifadə edilən səhifələr',
 'uploadnewversion-linktext' => 'Bu faylın yeni versiyasını yüklə',
 

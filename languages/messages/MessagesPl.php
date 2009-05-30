@@ -1605,6 +1605,7 @@ Kliknięcie w nagłówek kolumny zmienia sposób sortowania.',
 'listfiles_count'       => 'Wersje',
 
 # File description page
+'file-anchor-link'          => 'Plik',
 'filehist'                  => 'Historia pliku',
 'filehist-help'             => 'Kliknij na datę/czas, aby zobaczyć, jak plik wyglądał w tym czasie.',
 'filehist-deleteall'        => 'usuń wszystkie',
