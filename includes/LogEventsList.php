@@ -39,7 +39,7 @@ class LogEventsList {
 		// Precache various messages
 		if( !isset( $this->message ) ) {
 			$messages = array( 'revertmerge', 'protect_change', 'unblocklink', 'change-blocklink',
-				'revertmove', 'undeletelink', 'revdel-restore', 'rev-delundel', 'hist', 'diff',
+				'revertmove', 'undeletelink', 'undeleteviewlink', 'revdel-restore', 'rev-delundel', 'hist', 'diff',
 				'pipe-separator' );
 			foreach( $messages as $msg ) {
 				$this->message[$msg] = wfMsgExt( $msg, array( 'escapenoentities' ) );
@@ -250,9 +250,13 @@ class LogEventsList {
 					'&wpMovetalk=0' ) . ')';
 			}
 		// Show undelete link
-		} else if( self::typeAction($row,array('delete','suppress'),'delete','delete') ) {
+		} else if( self::typeAction($row,array('delete','suppress'),'delete','deletedhistory') ) {
+			if( !$wgUser->isAllowed( 'undelete' ) ) 
+				$viewdeleted = $this->message['undeleteviewlink'];
+			else 
+				$viewdeleted = $this->message['undeletelink'];
 			$revert = '(' . $this->skin->makeKnownLinkObj( SpecialPage::getTitleFor( 'Undelete' ),
-				$this->message['undeletelink'], 'target='. urlencode( $title->getPrefixedDBkey() ) ) . ')';
+				$viewdeleted, 'target='. urlencode( $title->getPrefixedDBkey() ) ) . ')';
 		// Show unblock/change block link
 		} else if( self::typeAction($row,array('block','suppress'),array('block','reblock'),'block') ) {
 			$revert = '(' .
