@@ -35,8 +35,6 @@ class SkinVector extends SkinTemplate {
 	 * @param object $out Output page to add styles to
 	 */
 	public function setupSkinUserCss( OutputPage $out ) {
-		global $wgHandheldStyle;
-		
 		parent::setupSkinUserCss( $out );
 		
 		// Append to the default screen common & print styles...
