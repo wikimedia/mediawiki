@@ -649,6 +649,7 @@ MySQL قايتۇرغان خاتالىقى"$3: $4"',
 'uploadedimage' => '"[[$1]]" يۈكلەنگەن',
 
 # File description page
+'file-anchor-link'          => 'ھۆججەت',
 'filehist'                  => 'ھۆججەت تارىخى',
 'filehist-help'             => 'چېسلا/ۋاقىت چېكىلسە ئەينى ۋاقىتتا كۆرۈلگەن ھۆججەتنى كۆرسىتىدۇ.',
 'filehist-current'          => 'نۆۋەتتىكى',

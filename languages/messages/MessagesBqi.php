@@ -459,6 +459,7 @@ $1',
 'listfiles' => 'لیست فایل',
 
 # File description page
+'file-anchor-link'          => 'فایل',
 'filehist'                  => 'گزارش تاریخی فایل',
 'filehist-help'             => 'رو تاریخ‌ها کلیک کنید تا نسخه مرتبط را ببینین.',
 'filehist-current'          => 'جاری',

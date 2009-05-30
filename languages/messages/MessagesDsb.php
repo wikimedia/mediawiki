@@ -1458,6 +1458,7 @@ PICT # misc.
 'listfiles_count'       => 'Wersije',
 
 # File description page
+'file-anchor-link'          => 'Dataja',
 'filehist'                  => 'Stawizny dataje',
 'filehist-help'             => 'Tłoc na datum/cas aby tencasna wersija se lodowała.',
 'filehist-deleteall'        => 'Wšykno wulašowaś',

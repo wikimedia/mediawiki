@@ -1249,6 +1249,7 @@ Jaar-jaaru far gi man na laa dimbali ci nga see ndaxam jar na nga yebaat ko.",
 'listfiles_count'       => 'Sumb',
 
 # File description page
+'file-anchor-link'          => 'Dencukaay',
 'filehist'                  => 'Jaar-jaaru dencukaay bi',
 'filehist-help'             => 'Cuqal cib taariix/waxtu ngir gis ni ŋara wi meloo ca jamono jooju.',
 'filehist-deleteall'        => 'Far lépp',

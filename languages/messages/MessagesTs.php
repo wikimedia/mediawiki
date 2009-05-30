@@ -304,6 +304,7 @@ U hi tshembisa nakambe leswaku hi wena mutsari wa leswi nyikeriwaka laha, kumbe 
 'listfiles_name' => 'vito',
 
 # File description page
+'file-anchor-link'   => 'Fayili',
 'filehist-deleteall' => 'sula hinkwaswo',
 'filehist-deleteone' => 'Dlaya',
 'filehist-revert'    => 'thlerisela',

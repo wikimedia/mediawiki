@@ -693,6 +693,7 @@ Páiginas que steian ne ls [[Special:Watchlist|tous begiados]] son amostradas an
 'listfiles_description' => 'Çcriçon',
 
 # File description page
+'file-anchor-link'          => 'Fexeiro',
 'filehist'                  => 'Stórico de l fexeiro',
 'filehist-help'             => 'Clique an ua data/hora para ber l fexeiro tal cumo el staba naquel sfergante.',
 'filehist-current'          => 'atual',

@@ -247,6 +247,7 @@ $messages = array(
 'listfiles_date' => 'နေ့စွဲ',
 
 # File description page
+'file-anchor-link'   => 'ဖိုင်',
 'filehist'           => 'ဖိုင်မှတ်တမ်း',
 'filehist-deleteall' => 'အားလုံးဖျက်',
 'filehist-deleteone' => 'ဖျက်',

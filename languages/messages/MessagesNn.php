@@ -1570,6 +1570,7 @@ PICT # div.
 'listfiles_count'       => 'Versjonar',
 
 # File description page
+'file-anchor-link'          => 'Fil',
 'filehist'                  => 'Filhistorikk',
 'filehist-help'             => 'Klikk på dato/klokkeslett for å sjå fila slik ho var på det tidspunktet.',
 'filehist-deleteall'        => 'slett alle',

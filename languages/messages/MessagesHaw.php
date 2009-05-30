@@ -527,6 +527,7 @@ Hiki iā ‘oe ke [[:\$1|hoʻokumu i kēia ‘ao‘ao]].",
 'listfiles_name' => 'Inoa',
 
 # File description page
+'file-anchor-link'    => 'Waihona',
 'filehist'            => 'Mo‘olelo o ka waihona',
 'filehist-current'    => 'o kēia manawa',
 'filehist-datetime'   => 'Manawa',

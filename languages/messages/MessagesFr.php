@@ -1664,6 +1664,7 @@ Cliquer sur un en-tête de colonne permet de changer l’ordre d’affichage.',
 'listfiles_count'       => 'Versions',
 
 # File description page
+'file-anchor-link'          => 'Fichier',
 'filehist'                  => 'Historique du fichier',
 'filehist-help'             => 'Cliquer sur une date et heure pour voir le fichier tel qu’il était à ce moment-là.',
 'filehist-deleteall'        => 'supprimer tout',

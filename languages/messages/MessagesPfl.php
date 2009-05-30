@@ -365,6 +365,7 @@ Saire uff [[Special:Watchlist|Dainer Beowachdungslischt]] sin '''fett'''.",
 'uploadedimage' => 'hot "[[$1]]" hochglare',
 
 # File description page
+'file-anchor-link'          => 'Datei',
 'filehist'                  => 'Dateigschicht',
 'filehist-help'             => 'Drick uff e Zaidpunkt zum aazääche, wie s dort ausgsähne hot.',
 'filehist-current'          => 'aktuell',

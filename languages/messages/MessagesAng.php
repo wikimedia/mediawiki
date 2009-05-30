@@ -394,10 +394,11 @@ Bidde behycge þæt þu bricst þone tramet intō smalrum dǣlum.',
 'listfiles_description' => 'Tōwritennes',
 
 # File description page
-'filehist-user'  => 'Brūcend',
-'imagelinks'     => 'Biliþbendas',
-'linkstoimage'   => 'Þā folgendan trametas bindaþ tō þissum biliðe:',
-'nolinkstoimage' => 'Þǣr sind nāne trametas þe bindaþ tō þissum biliðe.',
+'file-anchor-link' => 'Mētung',
+'filehist-user'    => 'Brūcend',
+'imagelinks'       => 'Biliþbendas',
+'linkstoimage'     => 'Þā folgendan trametas bindaþ tō þissum biliðe:',
+'nolinkstoimage'   => 'Þǣr sind nāne trametas þe bindaþ tō þissum biliðe.',
 
 # File deletion
 'filedelete-submit' => 'āfeorsian',

@@ -592,6 +592,7 @@ Ko e ʻuhinga loka ko e $1 ia.",
 'listfiles_description' => 'Fakamahino',
 
 # File description page
+'file-anchor-link'          => 'Faitā',
 'filehist-datetime'         => 'ʻAho/Taimi',
 'filehist-user'             => 'Ko e ʻetita',
 'imagelinks'                => 'Ngaahi fehokotaki',

@@ -595,6 +595,7 @@ $messages = array(
 'listfiles' => 'ລາຍຊື່ໄຟລ໌',
 
 # File description page
+'file-anchor-link'    => 'ໄຟລ໌',
 'filehist'            => 'ປະຫວັດໄຟລ໌',
 'filehist-current'    => 'ປະຈຸບັນ',
 'filehist-datetime'   => 'ວັນເວລາ',

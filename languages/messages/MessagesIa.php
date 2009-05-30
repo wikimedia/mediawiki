@@ -1533,6 +1533,7 @@ Tu pote reordinar le lista con un clic super le titulo de un columna.',
 'listfiles_count'       => 'Versiones',
 
 # File description page
+'file-anchor-link'          => 'File',
 'filehist'                  => 'Historia del file',
 'filehist-help'             => 'Clicca super un data/hora pro vider le file como appareva a ille tempore.',
 'filehist-deleteall'        => 'deler totes',

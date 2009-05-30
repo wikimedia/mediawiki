@@ -1512,6 +1512,7 @@ PICT # misc.
 'listfiles_count'       => 'نسخ',
 
 # File description page
+'file-anchor-link'          => 'فایل',
 'filehist'                  => 'تاریح فایل',
 'filehist-help'             => 'اور تاریح/زمان کلیک کنیت دان فایلا په داب هما تاریح بگندیت',
 'filehist-deleteall'        => 'کل حذف',

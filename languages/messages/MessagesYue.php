@@ -1460,6 +1460,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'listfiles_count'       => '版本',
 
 # File description page
+'file-anchor-link'          => '檔案',
 'filehist'                  => '檔案歷史',
 'filehist-help'             => '撳個日期／時間去睇響嗰個時間出現過嘅檔案。',
 'filehist-deleteall'        => '刪除全部',

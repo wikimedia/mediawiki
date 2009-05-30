@@ -144,7 +144,8 @@ $messages = array(
 'upload' => 'Læg en fil op',
 
 # File description page
-'filehist-user' => 'Pineqartoq',
+'file-anchor-link' => 'Assiliaq',
+'filehist-user'    => 'Pineqartoq',
 
 # MIME search
 'mimesearch' => 'MIME ujaarlerit',

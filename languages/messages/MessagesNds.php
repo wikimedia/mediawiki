@@ -1503,6 +1503,7 @@ Kann angahn, dat dat beter geiht, wenn du dat to en Tiet versöchst, to de op de
 'listfiles_count'       => 'Versionen',
 
 # File description page
+'file-anchor-link'          => 'Bild',
 'filehist'                  => 'Datei-Historie',
 'filehist-help'             => 'Klick op de Tiet, dat du de Datei ankieken kannst, so as se do utseeg.',
 'filehist-deleteall'        => 'all wegsmieten',

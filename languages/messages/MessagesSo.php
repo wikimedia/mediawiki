@@ -411,7 +411,8 @@ Waa in aysan ka badanin $1 {{PLURAL:$1|eray|erayo}}.',
 'watchthisupload' => 'Boggaan waardiyey',
 
 # File description page
-'nolinkstoimage' => "Ma'ay jiraan beyjaj ku xiran faylkaan.",
+'file-anchor-link' => 'Fayl',
+'nolinkstoimage'   => "Ma'ay jiraan beyjaj ku xiran faylkaan.",
 
 # File deletion
 'filedelete'         => 'Tirtir $1',

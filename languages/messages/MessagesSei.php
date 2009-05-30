@@ -757,6 +757,7 @@ Informacion: (curt) = quiíxde vercion currentua,
 'listfiles_description' => 'Discripcion',
 
 # File description page
+'file-anchor-link'          => 'Ciúchan',
 'filehist'                  => 'Historiade ciúchan',
 'filehist-deleteall'        => 'delatom jömde man',
 'filehist-deleteone'        => 'delatom jande man',

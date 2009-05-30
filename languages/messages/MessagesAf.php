@@ -1266,6 +1266,7 @@ Klik op die opskrifte om die tabel anders te sorteer.',
 'listfiles_description' => 'Beskrywing',
 
 # File description page
+'file-anchor-link'          => 'Beeld',
 'filehist'                  => 'Lêergeskiedenis',
 'filehist-help'             => 'Klik op die datum/tyd om te sien hoe die lêer destyds gelyk het.',
 'filehist-deleteall'        => 'verwyder alles',

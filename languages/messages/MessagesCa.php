@@ -1497,6 +1497,7 @@ Clicant al capdamunt de les columnes podeu canviar-ne l'ordenació.",
 'listfiles_count'       => 'Versions',
 
 # File description page
+'file-anchor-link'          => 'Fitxer',
 'filehist'                  => 'Historial del fitxer',
 'filehist-help'             => 'Cliqueu una data/hora per veure el fitxer tal com era aleshores.',
 'filehist-deleteall'        => 'elimina-ho tot',

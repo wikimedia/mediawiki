@@ -1438,6 +1438,7 @@ Wänn s Problem alno uftritt, informier e [[Special:ListUsers/sysop|Ammann]].',
 'listfiles_count'       => 'Versione',
 
 # File description page
+'file-anchor-link'          => 'Bildli',
 'filehist'                  => 'Dateiversione',
 'filehist-help'             => 'Klick uf e Zytpunkt zu aazeige, wie s dert usgsäh het.',
 'filehist-deleteall'        => 'Alli Versione lesche',

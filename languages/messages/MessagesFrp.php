@@ -1705,6 +1705,7 @@ Clicar sur un en-téta de colona pèrmèt de changiér l’ôrdre de visualisaci
 'listfiles_count'       => 'Vèrsions',
 
 # File description page
+'file-anchor-link'          => 'Fichiér',
 'filehist'                  => 'Historico du fichiér',
 'filehist-help'             => 'Clicar sur una dâta et hora por vêre lo fichiér coment il ére a cél moment.',
 'filehist-deleteall'        => 'tot suprimar',

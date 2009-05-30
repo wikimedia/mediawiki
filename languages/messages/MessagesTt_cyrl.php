@@ -687,6 +687,7 @@ $2',
 'listfiles_description' => 'Тасвир',
 
 # File description page
+'file-anchor-link'          => 'Файл',
 'filehist'                  => 'Файлның тарихы',
 'filehist-help'             => 'Датага/сәгатькә басыгыз, шул вакытта бит нинди булды дип карау өчен.',
 'filehist-current'          => 'агымдагы',

@@ -1589,6 +1589,7 @@ $2',
 'listfiles_count'       => 'Вэрсіі',
 
 # File description page
+'file-anchor-link'          => 'Файл',
 'filehist'                  => 'Гісторыя файла',
 'filehist-help'             => 'Націсьніце на дату/час, каб паглядзець, як тады выглядаў файл.',
 'filehist-deleteall'        => 'выдаліць усе',

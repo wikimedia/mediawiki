@@ -652,6 +652,7 @@ $1 | $2',
 'listfiles_description' => 'Govvádus',
 
 # File description page
+'file-anchor-link'          => 'Fiila',
 'filehist'                  => 'Fiilla historjá',
 'filehist-help'             => 'Go deaddilat beaivemeari, oainnat makká fiila lei dalle.',
 'filehist-deleteall'        => 'sihko buot',

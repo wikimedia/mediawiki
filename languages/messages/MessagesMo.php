@@ -122,9 +122,10 @@ $messages = array(
 'upload' => 'Тримите фишиер',
 
 # File description page
-'filehist'      => 'Историкул фишиерулуй',
-'filehist-user' => 'Утилизатор',
-'imagelinks'    => 'Легэтурь',
+'file-anchor-link' => 'Фишиер',
+'filehist'         => 'Историкул фишиерулуй',
+'filehist-user'    => 'Утилизатор',
+'imagelinks'       => 'Легэтурь',
 
 # Miscellaneous special pages
 'nbytes' => '{{PLURAL:$1|ун октет|$1 октець}}',

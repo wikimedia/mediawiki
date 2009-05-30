@@ -221,7 +221,8 @@ $messages = array(
 'listfiles_description' => 'Uñt’ayawi',
 
 # File description page
-'filehist-user' => 'Apnaqiri',
+'file-anchor-link' => "Q'ipi",
+'filehist-user'    => 'Apnaqiri',
 
 # Miscellaneous special pages
 'move' => 'Qillqaraña',

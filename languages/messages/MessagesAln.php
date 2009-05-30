@@ -450,6 +450,7 @@ Ju lutem kërkoni {{SITENAME}}-n para se me krijue një artikull të ri se munet
 'upload' => 'Ngarkoni skeda',
 
 # File description page
+'file-anchor-link'    => 'Figura',
 'filehist'            => 'Historiku i dosjes',
 'filehist-datetime'   => 'Data/Ora',
 'filehist-user'       => 'Përdoruesi',

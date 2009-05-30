@@ -1338,6 +1338,7 @@ Sinde a me, vue ccu pruève quanne ste mene casine?",
 'listfiles_count'       => 'Versiune',
 
 # File description page
+'file-anchor-link'          => 'File',
 'filehist'                  => 'cunde',
 'filehist-help'             => "Cazze sus 'na date/orarie pe vedè 'u fail a cumme asseva jndr'à quidde timbe.",
 'filehist-deleteall'        => 'scangille tutte',

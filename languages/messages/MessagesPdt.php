@@ -343,6 +343,7 @@ Bitte nemm eenen aundren.',
 'listfiles_user' => 'Brucker',
 
 # File description page
+'file-anchor-link'    => 'Datei',
 'filehist-datetime'   => 'Tiet',
 'filehist-user'       => 'Brucker',
 'filehist-dimensions' => 'Moten',

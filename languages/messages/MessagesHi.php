@@ -1176,6 +1176,7 @@ PICT # misc.
 'listfiles_description' => 'ज़ानकारी',
 
 # File description page
+'file-anchor-link'          => 'चित्र',
 'filehist'                  => 'फ़ाईलका इतिहास',
 'filehist-help'             => 'फ़ाईलका पुराना अवतरण देखनेके लिये दिनांक/समय पर क्लीक करें।',
 'filehist-deleteall'        => 'सभी हटायें',

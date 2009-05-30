@@ -416,6 +416,7 @@ Meunyo neupasoë, euntreuk nan Droëneuh nyan geupeuleumah mangat jitupeuë soë
 'listfiles' => 'Dapeuta beureukah',
 
 # File description page
+'file-anchor-link'          => 'Beureukah',
 'filehist'                  => 'Riwayat beureukah',
 'filehist-help'             => 'Teugon bak tanggay/watèë keu eu beureukah nyoë ‘oh watèë nyan.',
 'filehist-current'          => 'jinoë hat',

@@ -346,7 +346,8 @@ Kana avilyan kathe doshatar, ja palpale.',
 'listfiles' => 'Patrinipen le chitrengo',
 
 # File description page
-'imagelinks' => 'Chitroske phandimata',
+'file-anchor-link' => 'Chitro',
+'imagelinks'       => 'Chitroske phandimata',
 
 # Unused templates
 'unusedtemplates'    => 'Bilabyarde sikavne',

@@ -1555,6 +1555,7 @@ Harkitse, haluatko jatkaa tämän tiedoston tallentamista. Tiedoston poistoloki 
 'listfiles_count'       => 'Versioita',
 
 # File description page
+'file-anchor-link'          => 'Tiedosto',
 'filehist'                  => 'Tiedoston historia',
 'filehist-help'             => 'Päiväystä napsauttamalla näet millainen tiedosto oli sillä ajan hetkellä.',
 'filehist-deleteall'        => 'poista kaikki',

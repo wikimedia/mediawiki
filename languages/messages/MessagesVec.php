@@ -1456,6 +1456,7 @@ Par modificar l'ordinamento, struca su l'intestazion de la colona presièlta.",
 'listfiles_count'       => 'Versioni',
 
 # File description page
+'file-anchor-link'          => 'File',
 'filehist'                  => 'Cronologia del file',
 'filehist-help'             => 'Maca su un grupo data/ora par védar el file come el se presentava nel momento indicà.',
 'filehist-deleteall'        => 'scancela tuto',

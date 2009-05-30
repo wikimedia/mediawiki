@@ -1076,6 +1076,7 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'listfiles_description' => 'ማጠቃለያ',
 
 # File description page
+'file-anchor-link'          => 'ፋይል',
 'filehist'                  => 'የፋይሉ ታሪክ',
 'filehist-help'             => 'የቀድሞው ዕትም ካለ ቀን/ሰዓቱን በመጫን መመልከት ይቻላል።',
 'filehist-deleteall'        => 'ሁሉን ለማጥፋት',

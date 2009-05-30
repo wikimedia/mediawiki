@@ -491,6 +491,7 @@ $messages = array(
 'listfiles_description' => '描述',
 
 # File description page
+'file-anchor-link'          => '文物',
 'filehist'                  => '文物历史',
 'filehist-deleteall'        => '全删',
 'filehist-deleteone'        => '删',

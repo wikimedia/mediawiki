@@ -1577,6 +1577,7 @@ Premendo nunha cabeceira da columna cambia a ordenación.',
 'listfiles_count'       => 'Versións',
 
 # File description page
+'file-anchor-link'          => 'Ficheiro',
 'filehist'                  => 'Historial do ficheiro',
 'filehist-help'             => 'Faga clic nunha data/hora para ver o ficheiro tal e como estaba nese momento.',
 'filehist-deleteall'        => 'borrar todo',

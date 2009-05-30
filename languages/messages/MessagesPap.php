@@ -240,6 +240,9 @@ Bo por kambia página libremente, pero tene kuenta ku lo nota bo IP adrès den e
 'hide'              => 'Skonde',
 'show'              => 'Mustra',
 
+# File description page
+'file-anchor-link' => 'Imagen',
+
 # Unwatched pages
 'unwatchedpages' => 'Páginanan no observá',
 

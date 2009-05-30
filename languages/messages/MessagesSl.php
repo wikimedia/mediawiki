@@ -1092,6 +1092,7 @@ PICT # mešano
 'listfiles_count'       => 'Različice',
 
 # File description page
+'file-anchor-link'          => 'Datoteka',
 'filehist'                  => 'Zgodovina datoteke',
 'filehist-help'             => 'Klikni na datum in čas za ogled datoteke, ki je bila takrat naložena.',
 'filehist-deleteall'        => 'izbriši vse',

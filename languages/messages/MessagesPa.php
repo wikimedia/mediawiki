@@ -611,6 +611,7 @@ to upload files.',
 'listfiles_description' => 'ਵੇਰਵਾ',
 
 # File description page
+'file-anchor-link'          => 'ਫਾਇਲ',
 'filehist'                  => 'ਫਾਇਲ ਅਤੀਤ',
 'filehist-deleteall'        => 'ਸਭ ਹਟਾਓ',
 'filehist-deleteone'        => 'ਇਹ ਹਟਾਓ',

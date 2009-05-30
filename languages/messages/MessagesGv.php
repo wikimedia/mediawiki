@@ -607,6 +607,7 @@ Ta duillagyn er [[Special:Watchlist|dty rolley arrey]] ayns '''clou trome'''.",
 'listfiles_description' => 'Coontey',
 
 # File description page
+'file-anchor-link'          => 'Coadan',
 'filehist'                  => 'Shennaghys y choadan',
 'filehist-help'             => 'Crig er date/traa ennagh son dy ‘akin y coadan myr v’eh ec y traa shen.',
 'filehist-deleteall'        => 'scryss ooilley',

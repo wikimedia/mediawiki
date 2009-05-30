@@ -1557,6 +1557,7 @@ Wachup umanpi ñit'ispaqa allichaytam hukchanki.",
 'listfiles_count'       => 'Musuqchasqakuna',
 
 # File description page
+'file-anchor-link'          => 'Rikcha',
 'filehist'                  => 'Willañiqip wiñay kawsaynin',
 'filehist-help'             => "P'unchaw/pacha nisqapi ñit'iy chaypacha willañiqi kachkasqata qhawanaykipaq.",
 'filehist-deleteall'        => 'tukuyta qulluy',

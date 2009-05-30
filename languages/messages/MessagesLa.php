@@ -1203,6 +1203,7 @@ Commodule notatio fasciculorum deletorum hic datur:",
 'listfiles_count'       => 'Emendationes',
 
 # File description page
+'file-anchor-link'          => 'Fasciculus',
 'filehist'                  => 'Historia fasciculi',
 'filehist-help'             => 'Ad emendationem fasciculi inspiciendum, preme in diem/tempus.',
 'filehist-deleteall'        => 'delere omnes emendationes',

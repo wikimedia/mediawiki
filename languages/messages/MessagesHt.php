@@ -874,6 +874,7 @@ Eseye pou wè si ak prefiks ''all:'' pou chache nan tout kontni a (anndann nou a
 'listfiles' => 'Lis fichye yo',
 
 # File description page
+'file-anchor-link'          => 'Fichye',
 'filehist'                  => 'Istorik fichye a',
 'filehist-help'             => 'Klike anlè yon dat epi yon lè pou fichye a jan li te ye nan moman sa a.',
 'filehist-current'          => 'Kounye a',

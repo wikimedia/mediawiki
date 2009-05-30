@@ -1443,6 +1443,7 @@ PICT # misc.
 'listfiles_count'       => 'Wersije',
 
 # File description page
+'file-anchor-link'          => 'Dataja',
 'filehist'                  => 'Wersije dataje',
 'filehist-help'             => 'Klikń na wěsty čas, zo by wersiju dataje w tutym času zwobraznił.',
 'filehist-deleteall'        => 'wšě wersije wušmórnyć',

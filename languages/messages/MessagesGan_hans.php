@@ -908,6 +908,7 @@ $2',
 'listfiles_description' => '简话',
 
 # File description page
+'file-anchor-link'          => '文件',
 'filehist'                  => '档案历史',
 'filehist-help'             => '按到日期／时间去眵吖许时间有过𠮶档案。',
 'filehist-deleteall'        => '全部删掉',

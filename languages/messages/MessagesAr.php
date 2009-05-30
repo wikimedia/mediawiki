@@ -1802,6 +1802,7 @@ PICT # متنوع
 'listfiles_count'       => 'نسخ',
 
 # File description page
+'file-anchor-link'          => 'ملف',
 'filehist'                  => 'تاريخ الملف',
 'filehist-help'             => 'اضغط على وقت/زمن لرؤية الملف كما بدا في هذا الزمن.',
 'filehist-deleteall'        => 'احذف الكل',

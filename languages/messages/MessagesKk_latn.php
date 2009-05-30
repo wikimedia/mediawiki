@@ -1492,6 +1492,7 @@ Bağannıñ bas jolın nuqığanda surıptawdıñ rettewi özgertiledi.',
 'listfiles_description' => 'Sïpattaması',
 
 # File description page
+'file-anchor-link'          => 'Faýl beti',
 'filehist'                  => 'Faýl tarïxı',
 'filehist-help'             => 'Faýldıñ qaý waqıtta qalaý körinetin üşin Kün-aý/Waqıt degendi nuqıñız.',
 'filehist-deleteall'        => 'barlığın joý',

@@ -1225,6 +1225,7 @@ Rejer wyćepań tygo plika je podany půńižej, cobyś miou wygoda:",
 'listfiles_description' => 'Uopis',
 
 # File description page
+'file-anchor-link'          => 'Plik',
 'filehist'                  => 'Gyszichta pliku',
 'filehist-help'             => 'Klikńij na data/čas, coby uobejřeć plik taki jak wtedy wyglůndou.',
 'filehist-deleteall'        => 'wyćep wszyske',

@@ -632,6 +632,7 @@ Wenn du dich miet dam Thema oauskennst, koast du selbst [[:$1|die Seite verfassa
 'listfiles_user' => 'Benutzer',
 
 # File description page
+'file-anchor-link'          => 'Datei',
 'filehist'                  => 'Dateiversiona',
 'filehist-help'             => 'Klicke uff eenen Zeitpunkt, im diese Version zu loada.',
 'filehist-current'          => 'aktuell',

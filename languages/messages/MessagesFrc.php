@@ -615,6 +615,9 @@ Des autres administrateurs sus ce wiki ont la permission de voir et de rétablir
 # User rights
 'editinguser' => "Changement de '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 
+# File description page
+'file-anchor-link' => 'Dossier',
+
 # Miscellaneous special pages
 'move'         => 'Renommer',
 'movethispage' => 'Renommer cette page',

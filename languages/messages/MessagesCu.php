@@ -369,6 +369,7 @@ $messages = array(
 'listfiles_size' => 'мѣ́ра',
 
 # File description page
+'file-anchor-link'   => 'ви́дъ',
 'filehist-deleteone' => 'поничьжє́ниѥ',
 'filehist-current'   => 'нꙑнѣщьн҄ь о́браꙁъ',
 'filehist-user'      => 'по́льꙃєватєл҄ь',

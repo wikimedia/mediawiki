@@ -1541,6 +1541,7 @@ Kliknutím na hlavičku stĺpca zmeníte poradie triedenia.',
 'listfiles_count'       => 'Verzie',
 
 # File description page
+'file-anchor-link'          => 'Súbor',
 'filehist'                  => 'História súboru',
 'filehist-help'             => 'Po kliknutí na dátum/čas uvidíte súbor ako vyzeral vtedy.',
 'filehist-deleteall'        => 'zmazať všetky',

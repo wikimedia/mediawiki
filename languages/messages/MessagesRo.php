@@ -1481,6 +1481,7 @@ O apăsare pe antetul coloanei schimbă sortarea.',
 'listfiles_count'       => 'Versiuni',
 
 # File description page
+'file-anchor-link'          => 'Fişier',
 'filehist'                  => 'Istoricul fişierului',
 'filehist-help'             => 'Faceţi click pe o dată/timp pentru a vizualiza fişierul de la timpul respectiv.',
 'filehist-deleteall'        => 'şterge tot',

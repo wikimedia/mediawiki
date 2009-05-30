@@ -1415,6 +1415,7 @@ Zutabe baten goi-buruaren egin klik sailkatzeko era aldatzeko.',
 'listfiles_count'       => 'Bertsioak',
 
 # File description page
+'file-anchor-link'          => 'Fitxategia',
 'filehist'                  => 'Fitxategiaren historia',
 'filehist-help'             => 'Data/orduan klik egin fitxategiak orduan zuen itxura ikusteko.',
 'filehist-deleteall'        => 'guztiak ezabatu',

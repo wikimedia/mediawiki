@@ -366,6 +366,7 @@ $messages = array(
 'listfiles' => 'ཡིག་སྣོད་ཐོ་ཡིག།',
 
 # File description page
+'file-anchor-link'          => 'ཡིག་སྣོད།',
 'filehist'                  => 'ཡིག་སྣོད་སྤྱོད་ཤུལ།',
 'filehist-help'             => 'ཡིག་སྣོད་འདི་ དེ་བསྒང་སྟོན་དོ་བཟུམ་སྦེ་ བལྟ་ནི་གི་དོན་ལུ་ ཚེས་གྲངས་/ཆུ་ཚོད་གུ་ ཨེབ་གཏང་འབད།',
 'filehist-current'          => 'ད་ལྟོ།',

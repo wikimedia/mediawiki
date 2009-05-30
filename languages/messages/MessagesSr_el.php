@@ -1004,6 +1004,7 @@ molimo vratite se i pošaljite ovaj fajl pod novim imenom. [[File:$1|thumb|cente
 'listfiles_description' => 'Opis slike',
 
 # File description page
+'file-anchor-link'          => 'Slika',
 'imagelinks'                => 'Upotreba slike',
 'linkstoimage'              => 'Sledeće stranice koriste ovaj fajl:',
 'nolinkstoimage'            => 'Nema stranica koje koriste ovaj fajl.',

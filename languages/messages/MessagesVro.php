@@ -971,6 +971,7 @@ Kas olõt kimmäs, et tahat taad üles laatiq? Kaeq ka sissekirotust taa teedüs
 'listfiles_description' => 'Seletüs',
 
 # File description page
+'file-anchor-link'          => 'Pilt',
 'filehist'                  => 'Teedüstü aolugu',
 'filehist-help'             => "Klõpsaq kuupäävä/kelläao pääl, et nätäq määne taa teedüstü sis oll'.",
 'filehist-deleteall'        => 'kistudaq kõik ärq',

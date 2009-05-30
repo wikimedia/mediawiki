@@ -1076,6 +1076,7 @@ $3-এর দেয়া কারণ হল ''$2''",
 'listfiles_description' => 'বিবরণ',
 
 # File description page
+'file-anchor-link'          => 'ফাইল',
 'filehist'                  => 'ফাইলের ইতিহাস',
 'filehist-help'             => 'তারিখ/সময়ে ক্লিক করে দেখুন ফাইলটি তখন কী অবস্থায় ছিল।',
 'filehist-deleteall'        => 'সব মুছে ফেলুন',

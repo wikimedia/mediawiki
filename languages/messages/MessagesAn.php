@@ -1375,6 +1375,7 @@ Fendo click en un encabezau de colunna se cambia o criterio d'ordenazión.",
 'listfiles_count'       => 'Bersions',
 
 # File description page
+'file-anchor-link'          => 'Imachen',
 'filehist'                  => "Istorial de l'archibo",
 'filehist-help'             => "Punche en una calendata/ora ta beyer l'archibo como amanixeba por ixas engüeltas.",
 'filehist-deleteall'        => 'borrar-lo tot',

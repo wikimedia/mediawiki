@@ -822,6 +822,7 @@ Papira ini [[Special:Watchlist|yu Tan Luku réy]] '''fatu'''.",
 'listfiles_description' => 'Infrumasi',
 
 # File description page
+'file-anchor-link'          => 'File',
 'filehist'                  => 'File historia',
 'filehist-help'             => 'Naki na tapu a dei/ten fu a file fu si fa a ben de na a ten dati.',
 'filehist-deleteall'        => 'trowe ala',

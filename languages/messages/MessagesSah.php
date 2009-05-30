@@ -1384,6 +1384,7 @@ PICT # misc.
 'listfiles_count'       => 'Барыллар',
 
 # File description page
+'file-anchor-link'          => 'Билэ',
 'filehist'                  => 'Билэ устуоруйата',
 'filehist-help'             => 'Ыйын-күнүн/кэмин баттаа, оччотооҕуга баар буолбут.',
 'filehist-deleteall'        => 'барытын сот',

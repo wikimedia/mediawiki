@@ -1316,6 +1316,7 @@ $3 చెప్పిన కారణం: ''$2''",
 'listfiles_count'       => 'కూర్పులు',
 
 # File description page
+'file-anchor-link'          => 'ఫైలు',
 'filehist'                  => 'ఫైలు చరితం',
 'filehist-help'             => 'తేదీ/సమయం ను నొక్కి ఆ సమయాన ఫైలు ఎలా ఉండేదో చూడవచ్చు.',
 'filehist-deleteall'        => 'అన్నిటినీ తొలగించు',

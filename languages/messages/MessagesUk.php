@@ -1596,6 +1596,7 @@ PICT # різні
 'listfiles_count'       => 'Версії',
 
 # File description page
+'file-anchor-link'          => 'Файл',
 'filehist'                  => 'Історія файлу',
 'filehist-help'             => 'Клацніть на дату/час, щоб переглянути, як тоді виглядав файл.',
 'filehist-deleteall'        => 'вилучити всі',

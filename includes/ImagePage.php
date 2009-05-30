@@ -224,7 +224,7 @@ class ImagePage extends Article {
 	protected function showTOC( $metadata ) {
 		global $wgLang;
 		$r = '<ul id="filetoc">
-			<li><a href="#file">' . $wgLang->getNsText( NS_FILE ) . '</a></li>
+			<li><a href="#file">' . wfMsgHtml( 'file-anchor-link' ) . '</a></li>
 			<li><a href="#filehistory">' . wfMsgHtml( 'filehist' ) . '</a></li>
 			<li><a href="#filelinks">' . wfMsgHtml( 'imagelinks' ) . "</a></li>\n" .
 			($metadata ? '			<li><a href="#metadata">' . wfMsgHtml( 'metadata' ) . '</a></li>' : '') . "

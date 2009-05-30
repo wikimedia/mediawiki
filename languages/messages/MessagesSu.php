@@ -1160,6 +1160,7 @@ Catet yén salaku kaca wiki, nu séjén bisa ngarobah atawa ngahapus muatan anje
 'listfiles_description' => 'Pedaran',
 
 # File description page
+'file-anchor-link'          => 'Gambar',
 'filehist'                  => 'Sajarah gambar',
 'filehist-help'             => 'Klik dina titimangsa pikeun nempo koropak nu aya dina mangsa éta.',
 'filehist-deleteall'        => 'hapus kabéh',

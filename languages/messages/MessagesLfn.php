@@ -573,6 +573,7 @@ Pajes a [[Special:Watchlist|tu lista de pajes oservada]] es en leteras '''forte'
 'listfiles_name' => 'Nom',
 
 # File description page
+'file-anchor-link'          => 'Fix',
 'filehist'                  => 'Istoria de fix',
 'filehist-help'             => 'Clica a un data/tempo per vide la fix como el ia aperi alora.',
 'filehist-current'          => 'aora',

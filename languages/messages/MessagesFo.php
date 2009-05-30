@@ -659,6 +659,7 @@ fyri at leggja fílur upp.',
 'listfiles_user' => 'Brúkari',
 
 # File description page
+'file-anchor-link'  => 'Mynd',
 'filehist'          => 'Søga fílu',
 'filehist-current'  => 'streymur',
 'filehist-datetime' => 'Dagur/Tíð',

@@ -533,6 +533,7 @@ $messages = array(
 'listfiles' => 'ছবির তালিকা',
 
 # File description page
+'file-anchor-link'          => 'ফাইল',
 'filehist'                  => 'ফাইলর ইতিহাস',
 'filehist-help'             => 'দিন/সময়-র গজে যাতিলে ঔ খেন্তাম পেয়া হঙিসে ফাইলগ চ পারতেই।',
 'filehist-current'          => 'এপাগা',

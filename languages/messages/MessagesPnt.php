@@ -726,6 +726,7 @@ $messages = array(
 'listfiles_description' => 'Σχόλιον',
 
 # File description page
+'file-anchor-link'          => 'Εικόνα',
 'filehist'                  => "Ιστορικόν τ' αρχείου",
 'filehist-help'             => "Εφτάτε κλικ σ' έναν ημερομηνίαν/ώραν απάν αέτς για να τερείτε πως έτον τ' αρχείον σ' εκείνεν την ώραν.",
 'filehist-current'          => 'υστερινά',

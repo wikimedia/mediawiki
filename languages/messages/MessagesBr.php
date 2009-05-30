@@ -1407,6 +1407,7 @@ Klikañ war penn ar bann a cheñch an urzh kinnig.',
 'listfiles_count'       => 'Stummoù',
 
 # File description page
+'file-anchor-link'          => 'Skeudenn',
 'filehist'                  => 'Istor ar restr',
 'filehist-help'             => 'Klikañ war un deiziad/eur da welet ar restr evel ma oa da neuze.',
 'filehist-deleteall'        => 'diverkañ pep tra',

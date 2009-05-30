@@ -225,6 +225,7 @@ $3',
 'upload' => 'trimiţe fişirul',
 
 # File description page
+'file-anchor-link'    => 'Fişirul',
 'filehist'            => 'Historia fişirulu',
 'filehist-current'    => 'kurentu',
 'filehist-datetime'   => 'Data/Temp',

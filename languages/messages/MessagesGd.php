@@ -315,7 +315,8 @@ Ma dh'fhoilleachas tu rudeigin an seo, bidh tu a' dearbhadh gun do sgrìobh thu 
 'listfiles' => 'Liosta nan ìomhaigh',
 
 # File description page
-'filehist-user' => 'Neach-cleachdaidh',
+'file-anchor-link' => 'Ìomhaigh',
+'filehist-user'    => 'Neach-cleachdaidh',
 
 # Random page
 'randompage' => 'Duilleag thuairmeach',

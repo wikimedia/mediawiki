@@ -971,6 +971,9 @@ De lèste lienk is bedoeld voe mediabestan'n die an hin plaetje zien.",
 'badfilename'                => 'Bestandsnaem is veranderd nae "$1".',
 'watchthisupload'            => 'Volg deêze bladzie',
 
+# File description page
+'file-anchor-link' => 'Bestand',
+
 # Random page
 'randompage' => 'Bladzie op goed geluk',
 

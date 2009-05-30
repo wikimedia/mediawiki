@@ -235,6 +235,9 @@ $messages = array(
 'fileuploadsummary' => 'ᓱᕕᑦ:',
 'watchthisupload'   => 'ᐅᕝᕙ',
 
+# File description page
+'file-anchor-link' => 'ᐊᒋᐅᑦ',
+
 # List redirects
 'listredirects' => 'ᓂᐱ ᖃᓂᖓᓂ ᑲᒪᒋᔭᖅ ᐋᓯᑦ ᓇᑭᑦ',
 

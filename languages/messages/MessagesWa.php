@@ -806,6 +806,7 @@ ou co po les sons
 'listfiles_description' => 'Discrijhaedje',
 
 # File description page
+'file-anchor-link'          => 'Imådje',
 'filehist-deleteall'        => 'disfacer ttafwait',
 'filehist-deleteone'        => 'disfacer çouci',
 'filehist-datetime'         => 'Date/Eure',

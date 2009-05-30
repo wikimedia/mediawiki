@@ -1646,6 +1646,7 @@ PICT # διάφορα
 'listfiles_count'       => 'Εκδόσεις',
 
 # File description page
+'file-anchor-link'          => 'Αρχείο',
 'filehist'                  => 'Ιστορικό αρχείου',
 'filehist-help'             => 'Πατήστε σε μια ημερομηνία/ώρα για να δείτε το αρχείο όπως εμφανιζόταν εκείνη την ώρα.',
 'filehist-deleteall'        => 'διαγραφή όλων',

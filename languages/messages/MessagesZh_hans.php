@@ -1496,6 +1496,7 @@ $2',
 'listfiles_count'       => '版本',
 
 # File description page
+'file-anchor-link'          => '文件',
 'filehist'                  => '文件历史',
 'filehist-help'             => '点击日期／时间以查看当时出现过的文件。',
 'filehist-deleteall'        => '删除全部',

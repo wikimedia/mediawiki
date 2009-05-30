@@ -405,6 +405,7 @@ Ang mga panid sa [[Special:Watchlist|imong gibantayan]] '''nakalugom'''.",
 'upload' => 'Pagsumiter og payl',
 
 # File description page
+'file-anchor-link'  => 'Payl',
 'filehist'          => 'Kaagi sa payl',
 'filehist-help'     => 'I-klik ang petsa/oras aron makit-an ang hulagway sa payl niadtong panahona.',
 'filehist-current'  => 'kasamtangan',

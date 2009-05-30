@@ -1229,6 +1229,7 @@ Siz ja'ne de basqa paydalanıwshılarg'a siz benen (adresin'izdi bilmegen halda)
 'listfiles_description' => 'Kommentariy',
 
 # File description page
+'file-anchor-link'          => 'Fayl beti',
 'filehist'                  => 'Fayl tariyxı',
 'filehist-help'             => "Aldın usı fayl qanday ko'riniste bolg'anın ko'riw ushin ku'n-ay/waqıt degendi basın'.",
 'filehist-deleteall'        => "ha'mmesin o'shir",

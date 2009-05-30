@@ -501,6 +501,7 @@ $messages = array(
 'uploadedimage' => '"[[$1]]" ಅಪ್ಲೋಡ್ ಆಂಡ್',
 
 # File description page
+'file-anchor-link'    => 'ಫೈಲ್',
 'filehist'            => 'ಫೈಲ್’ದ ಇತಿಹಾಸ',
 'filehist-help'       => 'ಫೈಲ್ ಆ ದಿನೊಟು ಎಂಚ ಇತ್ತ್’ನ್ಡ್’ನ್ದ್ ತೂಯೆರೆ ಆ ದಿನ/ಪೊರ್ತುದ ಮಿತ್ತ್ ಕ್ಲಿಕ್ ಮಲ್ಪುಲೆ.',
 'filehist-current'    => 'ಪ್ರಸಕ್ತ',

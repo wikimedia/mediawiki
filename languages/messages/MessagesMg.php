@@ -916,6 +916,7 @@ Hamarino tsara aloha dia avereno alefa indray.',
 'listfiles' => 'Lisitry ny rakitra',
 
 # File description page
+'file-anchor-link'          => 'Rakitra',
 'filehist'                  => 'Tantara ny rakitra',
 'filehist-current'          => 'ankehitriny',
 'filehist-datetime'         => 'Daty sy ora',

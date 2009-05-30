@@ -1328,6 +1328,7 @@ Calcando na cabecera d'una columna camúdase l'orde acordies con ella.",
 'listfiles_count'       => 'Versiones',
 
 # File description page
+'file-anchor-link'          => 'Archivu',
 'filehist'                  => 'Historial del archivu',
 'filehist-help'             => "Calca nuna fecha/hora pa ver l'archivu como taba daquélla.",
 'filehist-deleteall'        => 'esborrar too',

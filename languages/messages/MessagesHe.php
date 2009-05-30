@@ -1687,6 +1687,7 @@ PICT # שונות
 'listfiles_count'       => 'גרסאות',
 
 # File description page
+'file-anchor-link'          => 'קובץ',
 'filehist'                  => 'היסטוריית הקובץ',
 'filehist-help'             => 'לחצו על תאריך/שעה כדי לראות את הקובץ כפי שנראה בעת זו.',
 'filehist-deleteall'        => 'מחיקת כל הגרסאות',

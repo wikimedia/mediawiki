@@ -1151,6 +1151,7 @@ $1 பயனரையோ அல்லது வேறு [[{{MediaWiki:Grouppage
 'listfiles_description' => 'விளக்கம்',
 
 # File description page
+'file-anchor-link'          => 'கோப்பு',
 'filehist'                  => 'கோப்பு வரலாறு',
 'filehist-help'             => 'குறித்த நேரத்தில் இருந்த படிமத்தைப் பார்க்க அந்நேரத்தின் மீது சொடுகவும்.',
 'filehist-deleteall'        => 'சகலதையும் நீக்கு',

@@ -636,6 +636,7 @@ Abë dodac lopk do starnë, ùżëjë ùniższegò lënka wedle nôslédnëch m�
 'listfiles_user' => 'Brëkòwnik',
 
 # File description page
+'file-anchor-link'          => 'Òbrôzk',
 'filehist'                  => 'Historëjô lopka',
 'filehist-current'          => 'aktualny',
 'filehist-datetime'         => 'Datum/Czas',

@@ -1184,6 +1184,7 @@ $3 մասնակիցը տվել է հետևյալ պատճառը. ''$2''",
 'listfiles_count'       => 'Տարբերակ',
 
 # File description page
+'file-anchor-link'          => 'Ֆայլ',
 'filehist'                  => 'Ֆայլի պատմություն',
 'filehist-help'             => 'Մատնահարեք օրվան/ժամին՝ ֆայլի այդ պահին տեսքը դիտելու համար։',
 'filehist-deleteall'        => 'ջնջել բոլորը',

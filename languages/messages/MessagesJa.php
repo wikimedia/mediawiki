@@ -1574,6 +1574,7 @@ PICT # misc.
 'listfiles_count'       => '版数',
 
 # File description page
+'file-anchor-link'          => 'ファイル',
 'filehist'                  => 'ファイルの履歴',
 'filehist-help'             => '過去の版のファイルを表示するには、表示したい版の日付/時刻をクリックしてください。',
 'filehist-deleteall'        => '全て削除',

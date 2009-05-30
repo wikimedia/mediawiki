@@ -675,6 +675,7 @@ Pia unaweza kuchagua kuacha watumiaji wengine kuwasiliana nao kwa kutumia ukuras
 'listfiles' => 'Orodha ya mafaili',
 
 # File description page
+'file-anchor-link'          => 'Faili',
 'filehist'                  => 'Historia ya faili',
 'filehist-help'             => 'Bonyeza tarehe/saa kuona faili kama ilivyoonekana wakati huo.',
 'filehist-current'          => 'sasa hivi',

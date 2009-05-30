@@ -1587,6 +1587,7 @@ Klikken op een kelomkop veraandert de sortering.',
 'listfiles_count'       => 'Versies',
 
 # File description page
+'file-anchor-link'          => 'Ofbeelding',
 'filehist'                  => 'Bestansgeschiedenisse',
 'filehist-help'             => "Klik op een daotum/tied um 't bestand te zien zoas 't to was.",
 'filehist-deleteall'        => 'alles vortdoon',

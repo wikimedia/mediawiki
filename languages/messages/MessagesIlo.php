@@ -862,6 +862,7 @@ Dagiti panid iti [[Special:Watchlist|listaan ti bambantayam]] ket '''naipuskol''
 'listfiles_description' => 'Deskripsion',
 
 # File description page
+'file-anchor-link'          => 'File',
 'filehist'                  => 'Pakasaritaan ti file',
 'filehist-help'             => 'Mangiklikka iti maysa a petsa/oras tapno makitam ti file iti kasisigudna a langa iti dayta nga oras.',
 'filehist-deleteall'        => 'ikkaten amin',

@@ -1514,6 +1514,7 @@ Um clique sobre um cabeçalho de coluna altera a ordenação.',
 'listfiles_count'       => 'Versões',
 
 # File description page
+'file-anchor-link'          => 'Arquivo',
 'filehist'                  => 'Histórico do arquivo',
 'filehist-help'             => 'Clique em uma data/horário para ver o arquivo tal como ele se encontrava em tal momento.',
 'filehist-deleteall'        => 'eliminar todas',

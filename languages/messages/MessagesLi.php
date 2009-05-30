@@ -1428,6 +1428,7 @@ Klikke op 'ne kolomkop verangert de sortering.",
 'listfiles_count'       => 'Versies',
 
 # File description page
+'file-anchor-link'          => 'Besjtandj',
 'filehist'                  => 'Bestandsgesjiedenis',
 'filehist-help'             => "Klik op 'ne datum/tied om 't besjtandj te zeen wie 't destieds waor.",
 'filehist-deleteall'        => 'wis alles',

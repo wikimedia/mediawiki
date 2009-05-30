@@ -1971,6 +1971,7 @@ A click on a column header changes the sorting.',
 'listfiles_count'       => 'Versions',
 
 # File description page
+'file-anchor-link'          => 'File',
 'filehist'                  => 'File history',
 'filehist-help'             => 'Click on a date/time to view the file as it appeared at that time.',
 'filehist-deleteall'        => 'delete all',

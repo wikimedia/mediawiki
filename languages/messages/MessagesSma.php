@@ -428,6 +428,7 @@ Dov dorje värrhtoedimmie gååvnese bielieh, jallh [[Special:UserLogin|logge s�
 'listfiles_size'       => 'Stoerre',
 
 # File description page
+'file-anchor-link'          => 'Baalka',
 'filehist'                  => 'Baalka histovrije',
 'filehist-help'             => 'Diedtedh nille biejjie ihke vuajna man baalkan lij bealese dïhte tïjje.',
 'filehist-current'          => 'daaletje',

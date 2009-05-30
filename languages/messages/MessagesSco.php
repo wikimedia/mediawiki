@@ -776,9 +776,10 @@ Tae pit the eimage intae a page, uise an airtin i the form
 'listfiles' => 'Eimage leet',
 
 # File description page
-'imagelinks'     => 'Eimage airtins',
-'linkstoimage'   => 'The follaein $1 pages airts tae this image:',
-'nolinkstoimage' => "The'r nae pages airts tae this eimage.",
+'file-anchor-link' => 'Eimage',
+'imagelinks'       => 'Eimage airtins',
+'linkstoimage'     => 'The follaein $1 pages airts tae this image:',
+'nolinkstoimage'   => "The'r nae pages airts tae this eimage.",
 
 # MIME search
 'download' => 'dounlaid',

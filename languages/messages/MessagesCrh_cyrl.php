@@ -1036,6 +1036,7 @@ $3 мына бойле бир себеп бельгиледи: ''$2''",
 'listfiles_description' => 'Тасвир',
 
 # File description page
+'file-anchor-link'          => 'Файл',
 'filehist'                  => 'Файлнынъ кечмиши',
 'filehist-help'             => 'Файлнынъ керекли аньки алыны корьмек ичюн тарихкъа/сааткъа басынъыз.',
 'filehist-deleteall'        => 'эписини ёкъ эт',

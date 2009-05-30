@@ -513,6 +513,7 @@ hersenenge, (førge) = førskel til den førge hersenenge, l = lile til mendre �
 'listfiles' => 'Billetliste',
 
 # File description page
+'file-anchor-link'          => 'Billet',
 'filehist'                  => 'Billetskigt',
 'filehist-help'             => "Klik på'n dato/tid før at se den hersenenge åf gøret.",
 'filehist-current'          => 'nuværende',

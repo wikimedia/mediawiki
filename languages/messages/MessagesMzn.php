@@ -230,6 +230,7 @@ $2، $1',
 'listfiles' => 'هارشی ئون ره لیست',
 
 # File description page
+'file-anchor-link'  => 'فایل',
 'filehist'          => 'فایل چه‌کوت',
 'filehist-current'  => 'ئه‌سا',
 'filehist-datetime' => 'تاریخ/زمون',

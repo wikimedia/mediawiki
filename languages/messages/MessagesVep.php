@@ -1280,6 +1280,7 @@ Plok pachan pälkirjutesele toižetab sortiruindan järgenduz.',
 'listfiles_count'       => 'Versijad',
 
 # File description page
+'file-anchor-link'          => 'Fail',
 'filehist'                  => 'Failan istorii',
 'filehist-help'             => 'Paingat datale/aigale, miše nägištada, mitte oli olnu fail siloi (möhembita toižetusita).',
 'filehist-deleteall'        => 'Čuta poiš kaik',

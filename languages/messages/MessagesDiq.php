@@ -525,6 +525,7 @@ If you choose to provide it, this will be used for giving you attribution for yo
 'listfiles_user' => 'Karber',
 
 # File description page
+'file-anchor-link'          => 'Dosya',
 'filehist'                  => 'Tarixê dosya',
 'filehist-help'             => 'Klik bık ser yew tarih u aye tarih dı versionê dosya bıvin.',
 'filehist-current'          => 'nıkayên',

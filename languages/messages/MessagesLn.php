@@ -258,7 +258,8 @@ $messages = array(
 'listfiles_date' => 'Mokɔlɔ',
 
 # File description page
-'filehist' => 'Mokóló ya kásá',
+'file-anchor-link' => 'Elilingi',
+'filehist'         => 'Mokóló ya kásá',
 
 # File deletion
 'filedelete-submit' => 'Kolímwisa',

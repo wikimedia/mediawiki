@@ -584,6 +584,7 @@ di uplodezi media.',
 'listfiles_user' => 'Sebelu',
 
 # File description page
+'file-anchor-link'          => 'Imegi',
 'filehist'                  => 'Imegi bundau',
 'filehist-help'             => 'Tampa datum/taimi di kamukile imegi a sa kwa bye datum.',
 'filehist-current'          => 'bye',

@@ -1504,6 +1504,7 @@ PICT # විවිධ.
 'listfiles_description' => 'විස්තරය',
 
 # File description page
+'file-anchor-link'          => 'ගොනුව',
 'filehist'                  => 'ගොනු ඉතිහාසය',
 'filehist-help'             => 'එම අවස්ථාවෙහිදී  ගොනුව පැවැති ආකාරය නැරඹීම ඔබ හට රිසි නම්  දිනය/වේලාව මත ක්ලික් කරන්න.',
 'filehist-deleteall'        => 'සියල්ල මකන්න',

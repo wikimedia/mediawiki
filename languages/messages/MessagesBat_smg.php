@@ -980,6 +980,7 @@ Paspaude ont štolpelė ontraštės pakeisėt ėšruokavėma.',
 'listfiles_count'       => 'Versėjės',
 
 # File description page
+'file-anchor-link'          => 'Fails',
 'filehist'                  => 'Abruozdielė istuorėjė',
 'filehist-help'             => 'Paspauskėt ont datas/čiesa, ka paveizietomėt faila tuoki, kokis ons bova tū čiesu.',
 'filehist-deleteall'        => 'trintė vėsus',

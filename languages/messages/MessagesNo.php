@@ -1533,6 +1533,7 @@ Om problemet fortsetter, kontakt en [[Special:ListUsers/sysop|administrator]].',
 'listfiles_count'       => 'Versjoner',
 
 # File description page
+'file-anchor-link'          => 'Fil',
 'filehist'                  => 'Filhistorikk',
 'filehist-help'             => 'Klikk på en dato/klokkeslett for å se filen slik den var på den tiden.',
 'filehist-deleteall'        => 'slett alt',

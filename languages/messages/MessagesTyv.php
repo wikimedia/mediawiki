@@ -413,6 +413,7 @@ $messages = array(
 'listfiles_description' => 'Тодарадып бижээни',
 
 # File description page
+'file-anchor-link'   => 'Файл',
 'filehist'           => 'Файлдың төөгүзү',
 'filehist-deleteall' => 'шуптуну ап каар',
 'filehist-deleteone' => 'мону ап каар',

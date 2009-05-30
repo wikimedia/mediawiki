@@ -1258,6 +1258,7 @@ $2',
 'listfiles_count'       => 'ווערסיעס',
 
 # File description page
+'file-anchor-link'          => 'בילד טעקע',
 'filehist'                  => 'היסטאריע פֿון דער טעקע',
 'filehist-help'             => 'קליקט אויף א דאטע/צײַט צו זען דאס בילד אזוי ווי עס איז דעמאלסט געווען',
 'filehist-deleteall'        => 'אויסמעקן אלץ',

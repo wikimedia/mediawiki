@@ -265,6 +265,7 @@ Mehmba se sohmtehm dehm indeks-dehm noh ohp-tu-det {{SITENAME}}.',
 'watchthisupload' => 'Wach dis pej-ya',
 
 # File description page
+'file-anchor-link'   => 'Fail',
 'filehist-deleteone' => 'ires',
 'filehist-datetime'  => 'Det/Taim',
 'filehist-thumb'     => 'Tohmnel',

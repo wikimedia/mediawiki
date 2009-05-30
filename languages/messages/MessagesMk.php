@@ -1635,6 +1635,7 @@ PICT # misc.
 'listfiles_count'       => 'Верзии',
 
 # File description page
+'file-anchor-link'          => 'Податотека',
 'filehist'                  => 'Историја на податотека',
 'filehist-help'             => 'Кликнете на датум/време за да ја видите податотеката како изгледала тогаш.',
 'filehist-deleteall'        => 'бриши се',

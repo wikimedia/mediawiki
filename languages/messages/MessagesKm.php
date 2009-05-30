@@ -1422,6 +1422,7 @@ $2',
 'listfiles_description' => 'ការពិពណ៌នា',
 
 # File description page
+'file-anchor-link'          => 'ឯកសារ',
 'filehist'                  => 'ប្រវត្តិ​ឯកសារ',
 'filehist-help'             => "ចុចលើ'''ម៉ោងនិងកាលបរិច្ឆេទ'''ដើម្បីមើលឯកសារដែលបានផ្ទុកនៅពេលនោះ។",
 'filehist-deleteall'        => 'លុបទាំងអស់',

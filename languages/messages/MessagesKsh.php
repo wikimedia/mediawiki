@@ -1704,6 +1704,7 @@ Velleich probees De et och zo en Zick, wo winnijer loss es.',
 'listfiles_count'       => 'Versione',
 
 # File description page
+'file-anchor-link'          => 'Datei',
 'filehist'                  => 'De Versione vun dä Datei',
 'filehist-help'             => 'Di domohlije Version kriß De jezeich övver dä Link op em Dattum.',
 'filehist-deleteall'        => 'All Versione fottschmieße',

@@ -843,6 +843,7 @@ Videz rezumo plu vidala en la [[Special:NewFiles|galerio di nova arkivi]].',
 'listfiles_count' => 'Versioni',
 
 # File description page
+'file-anchor-link'          => 'Arkivo',
 'filehist'                  => 'Historio dil arkivo',
 'filehist-help'             => 'Kliktez sur la dato/horo por vidar arkivo quale ol aparis ye ta tempo.',
 'filehist-current'          => 'aktuala',
