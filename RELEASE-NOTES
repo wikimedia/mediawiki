@@ -82,6 +82,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 11484) Added ISO speed rating to default collapsed EXIF metadata view
 * (bug 18958) Added ability to disable entire variant conversion engine 
   per user preferences
+* (bug 19012) Introduce {{NUMBEROFCONTRIBS}} variable to display the number
+  of contributions a user has.
 
 === Bug fixes in 1.16 ===
 

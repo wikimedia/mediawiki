@@ -340,6 +340,7 @@ $magicWords = array(
 	'index'                  => array( 1,    '__INDEX__'              ),
 	'noindex'                => array( 1,    '__NOINDEX__'            ),
 	'numberingroup'          => array( 1,    'NUMBERINGROUP', 'NUMINGROUP' ),
+	'numberofcontribs'       => array( 1,    'NUMBEROFCONTRIBS', 'USERCONTRIBS', 'NUMOFCONTRIBS' ),
 	'staticredirect'         => array( 1,    '__STATICREDIRECT__'     ),
 	'protectionlevel'        => array( 1,    'PROTECTIONLEVEL'        ),
 	'formatdate'             => array( 0,    'formatdate', 'dateformat' ),
