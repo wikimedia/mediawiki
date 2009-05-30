@@ -183,7 +183,7 @@ class LanguageConverter {
 			// variable in case this is called before the user's
 			// preference is loaded
 			if( array_key_exists( 'HTTP_ACCEPT_LANGUAGE', $_SERVER ) ) {
-				$acceptLanguage = str_replace( '_', '-', strtolower($_SERVER["HTTP_ACCEPT_LANGUAGE"]));
+				$acceptLanguage = strtolower( $_SERVER['HTTP_ACCEPT_LANGUAGE'] );
 				
 				// explode by comma
 				$result = explode(',', $acceptLanguage);
