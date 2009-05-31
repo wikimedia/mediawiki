@@ -131,7 +131,7 @@ $specialPageAliases = array(
 
 $magicWords = array(
 	'redirect'              => array( '0', '#යළියොමුව', '#REDIRECT' ),
-	'currentmonth'          => array( '1', 'වත්මන්මාසය', 'CURRENTMONTH' ),
+	'currentmonth'          => array( '1', 'වත්මන්මාසය', 'CURRENTMONTH', 'CURRENTMONTH2' ),
 	'currentmonthname'      => array( '1', 'වත්මන්මාසනාමය', 'CURRENTMONTHNAME' ),
 	'currentmonthabbrev'    => array( '1', 'වත්මන්මාසයකෙටි', 'CURRENTMONTHABBREV' ),
 	'currentday'            => array( '1', 'වත්මන්දිනය', 'CURRENTDAY' ),
@@ -140,7 +140,7 @@ $magicWords = array(
 	'currentyear'           => array( '1', 'වත්මන්වසර', 'CURRENTYEAR' ),
 	'currenttime'           => array( '1', 'වත්මන්වේලාව', 'CURRENTTIME' ),
 	'currenthour'           => array( '1', 'වත්මන්පැය', 'CURRENTHOUR' ),
-	'localmonth'            => array( '1', 'දේශීයමාසය', 'LOCALMONTH' ),
+	'localmonth'            => array( '1', 'දේශීයමාසය', 'LOCALMONTH', 'LOCALMONTH2' ),
 	'localmonthname'        => array( '1', 'දේශීයමාසනාමය', 'LOCALMONTHNAME' ),
 	'localmonthabbrev'      => array( '1', 'දේශීයමාසයකෙටි', 'LOCALMONTHABBREV' ),
 	'localday'              => array( '1', 'දේශීයදිනය', 'LOCALDAY' ),

@@ -60,7 +60,7 @@ $specialPageAliases = array(
 );
 
 $magicWords = array(
-	'currentmonth'          => array( '1', 'KĒIAMAHINA', 'KEIAMAHINA', 'CURRENTMONTH' ),
+	'currentmonth'          => array( '1', 'KĒIAMAHINA', 'KEIAMAHINA', 'CURRENTMONTH', 'CURRENTMONTH2' ),
 	'currentmonthname'      => array( '1', 'KĒIAINOAMAHINA', 'KEIAINOAMAHINA', 'CURRENTMONTHNAME' ),
 	'currentday'            => array( '1', 'KĒIALĀ', 'KEIALA', 'CURRENTDAY' ),
 	'currentday2'           => array( '1', 'KĒIALĀ2', 'KEIALA2', 'CURRENTDAY2' ),

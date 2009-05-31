@@ -38,14 +38,14 @@ $namespaceNames = array(
 $magicWords = array(
 	'namespace'             => array( '1', 'ESPAZIODENOMBRES', 'NAMESPACE' ),
 	'namespacee'            => array( '1', 'ESPAZIODENOMBRESE', 'NAMESPACEE' ),
-	'img_right'             => array( '1', 'dreita', 'right' ),
-	'img_left'              => array( '1', 'cucha', 'zurda', 'left' ),
+	'img_right'             => array( '1', 'dreita', 'derecha', 'dcha', 'der', 'right' ),
+	'img_left'              => array( '1', 'cucha', 'zurda', 'izquierda', 'izda', 'izq', 'left' ),
 	'ns'                    => array( '0', 'EN:', 'EDN:', 'NS:' ),
-	'displaytitle'          => array( '1', 'TÍTOL', 'DISPLAYTITLE' ),
-	'currentversion'        => array( '1', 'BERSIÓNAUTUAL', 'BERSIONAUTUAL', 'CURRENTVERSION' ),
+	'displaytitle'          => array( '1', 'TÍTOL', 'MOSTRARTÍTULO', 'MOSTRARTITULO', 'DISPLAYTITLE' ),
+	'currentversion'        => array( '1', 'BERSIÓNAUTUAL', 'BERSIONAUTUAL', 'REVISIÓNACTUAL', 'CURRENTVERSION' ),
 	'language'              => array( '0', '#LENGUACHE:', '#LUENGA:', '#IDIOMA:', '#LANGUAGE:' ),
 	'special'               => array( '0', 'espezial', 'special' ),
-	'defaultsort'           => array( '1', 'ORDENAR:', 'DEFAULTSORT:', 'DEFAULTSORTKEY:', 'DEFAULTCATEGORYSORT:' ),
+	'defaultsort'           => array( '1', 'ORDENAR:', 'ORDENAR', 'DEFAULTSORT:', 'DEFAULTSORTKEY:', 'DEFAULTCATEGORYSORT:' ),
 );
 
 $specialPageAliases = array(

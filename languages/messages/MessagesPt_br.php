@@ -158,7 +158,7 @@ $specialPageAliases = array(
 
 $magicWords = array(
 	'redirect'              => array( '0', '#REDIRECIONAMENTO', '#REDIRECT' ),
-	'currentmonth'          => array( '1', 'MESATUAL', 'CURRENTMONTH' ),
+	'currentmonth'          => array( '1', 'MESATUAL', 'CURRENTMONTH', 'CURRENTMONTH2' ),
 	'currentmonthname'      => array( '1', 'NOMEDOMESATUAL', 'CURRENTMONTHNAME' ),
 	'currentday'            => array( '1', 'DIAATUAL', 'CURRENTDAY' ),
 	'currentday2'           => array( '1', 'DIAATUAL2', 'CURRENTDAY2' ),
@@ -166,7 +166,7 @@ $magicWords = array(
 	'currentyear'           => array( '1', 'ANOATUAL', 'CURRENTYEAR' ),
 	'currenttime'           => array( '1', 'HORARIOATUAL', 'CURRENTTIME' ),
 	'currenthour'           => array( '1', 'HORAATUAL', 'CURRENTHOUR' ),
-	'localmonth'            => array( '1', 'MESLOCAL', 'LOCALMONTH' ),
+	'localmonth'            => array( '1', 'MESLOCAL', 'LOCALMONTH', 'LOCALMONTH2' ),
 	'localmonthname'        => array( '1', 'NOMEDOMESLOCAL', 'LOCALMONTHNAME' ),
 	'localday'              => array( '1', 'DIALOCAL', 'LOCALDAY' ),
 	'localday2'             => array( '1', 'DIALOCAL2', 'LOCALDAY2' ),

@@ -109,13 +109,13 @@ $bookstoreList = array(
 );
 
 $magicWords = array(
-	'redirect'              => array( '0', '#REDIRECT', '#PŘESMĚRUJ' ),
+	'redirect'              => array( '0', '#PŘESMĚRUJ', '#REDIRECT' ),
 	'notoc'                 => array( '0', '__BEZOBSAHU__', '__NOTOC__' ),
 	'nogallery'             => array( '0', '__BEZGALERIE__', '__NOGALLERY__' ),
 	'forcetoc'              => array( '0', '__VŽDYOBSAH__', '__FORCETOC__' ),
 	'toc'                   => array( '0', '__OBSAH__', '__TOC__' ),
 	'noeditsection'         => array( '0', '__BEZEDITOVATČÁST__', '__NOEDITSECTION__' ),
-	'currentmonth'          => array( '1', 'AKTUÁLNÍMĚSÍC', 'CURRENTMONTH' ),
+	'currentmonth'          => array( '1', 'AKTUÁLNÍMĚSÍC', 'CURRENTMONTH', 'CURRENTMONTH2' ),
 	'currentmonthname'      => array( '1', 'AKTUÁLNÍMĚSÍCJMÉNO', 'CURRENTMONTHNAME' ),
 	'currentmonthnamegen'   => array( '1', 'AKTUÁLNÍMĚSÍCGEN', 'CURRENTMONTHNAMEGEN' ),
 	'currentmonthabbrev'    => array( '1', 'AKTUÁLNÍMĚSÍCZKR', 'CURRENTMONTHABBREV' ),
@@ -125,7 +125,7 @@ $magicWords = array(
 	'currentyear'           => array( '1', 'AKTUÁLNÍROK', 'CURRENTYEAR' ),
 	'currenttime'           => array( '1', 'AKTUÁLNÍČAS', 'CURRENTTIME' ),
 	'currenthour'           => array( '1', 'AKTUÁLNÍHODINA', 'CURRENTHOUR' ),
-	'localmonth'            => array( '1', 'MÍSTNÍMĚSÍC', 'LOCALMONTH' ),
+	'localmonth'            => array( '1', 'MÍSTNÍMĚSÍC', 'LOCALMONTH', 'LOCALMONTH2' ),
 	'localmonthname'        => array( '1', 'MÍSTNÍMĚSÍCJMÉNO', 'LOCALMONTHNAME' ),
 	'localmonthnamegen'     => array( '1', 'MÍSTNÍMĚSÍCGEN', 'LOCALMONTHNAMEGEN' ),
 	'localmonthabbrev'      => array( '1', 'MÍSTNÍMĚSÍCZKR', 'LOCALMONTHABBREV' ),

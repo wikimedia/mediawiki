@@ -105,7 +105,7 @@ $specialPageAliases = array(
 
 $magicWords = array(
 	'redirect'              => array( '0', '#چوريو', '#REDIRECT' ),
-	'localmonth'            => array( '1', 'مقاميمهينو', 'LOCALMONTH' ),
+	'localmonth'            => array( '1', 'مقاميمهينو', 'LOCALMONTH', 'LOCALMONTH2' ),
 	'localmonthname'        => array( '1', 'مقاميمهينونالو', 'LOCALMONTHNAME' ),
 	'localday'              => array( '1', 'مقاميڏينهن', 'LOCALDAY' ),
 	'localday2'             => array( '1', 'مقاميڏينهن2', 'LOCALDAY2' ),

@@ -96,7 +96,7 @@ $specialPageAliases = array(
 );
 
 $magicWords = array(
-	'redirect' => array( 0   , '#REDIRECT', '#გადამისამართება' ),
+	'redirect'              => array( '0', '#გადამისამართება', '#REDIRECT' ),
 );
 
 $linkPrefixExtension = true;

@@ -32,13 +32,13 @@ $namespaceNames = array(
 );
 
 $magicWords = array(
-	'currentmonth'          => array( '1', 'BULANNGONYAN', 'CURRENTMONTH' ),
+	'currentmonth'          => array( '1', 'BULANNGONYAN', 'CURRENTMONTH', 'CURRENTMONTH2' ),
 	'currentmonthname'      => array( '1', 'NGARANBULANNGONYAN', 'CURRENTMONTHNAME' ),
 	'currentday'            => array( '1', 'ALDAWNGONYAN', 'CURRENTDAY' ),
 	'currentyear'           => array( '1', 'TAONNGONYAN', 'CURRENTYEAR' ),
 	'currenttime'           => array( '1', 'PANAHONNGONYAN', 'CURRENTTIME' ),
 	'currenthour'           => array( '1', 'ORASNGONYAN', 'CURRENTHOUR' ),
-	'localmonth'            => array( '1', 'LOKALBULAN', 'LOCALMONTH' ),
+	'localmonth'            => array( '1', 'LOKALBULAN', 'LOCALMONTH', 'LOCALMONTH2' ),
 	'localmonthname'        => array( '1', 'NGARANLOKALBULAN', 'LOCALMONTHNAME' ),
 	'localday'              => array( '1', 'LOKALALDAW', 'LOCALDAY' ),
 	'localday2'             => array( '1', 'LOKALALDAW2', 'LOCALDAY2' ),
