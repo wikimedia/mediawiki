@@ -587,7 +587,7 @@ Check codes (ideally, all of them should result 0; all the checks are executed b
 	* untranslated: Messages which are required to translate, but are not translated.
 	* duplicate: Messages which translation equal to fallback
 	* obsolete: Messages which are untranslatable, but translated.
-	* variables: Messages without variables which should be used, or with variables which shouldn't be used.
+	* variables: Messages without variables which should be used, or with variables which should not be used.
 	* empty: Empty messages.
 	* whitespace: Messages which have trailing whitespace.
 	* xhtml: Messages which are not well-formed XHTML (checks only few common errors).
@@ -646,6 +646,8 @@ ENDS;
 $checkBlacklist = array(
 #'code'        => array( 'check1', 'check2' ... )
 'gan'          => array( 'plural' ),
+'gan-hans'     => array( 'plural' ),
+'gan-hant'     => array( 'plural' ),
 'gn'           => array( 'plural' ),
 'hak'          => array( 'plural' ),
 'hu'           => array( 'plural' ),
@@ -655,6 +657,7 @@ $checkBlacklist = array(
 'kk-cyrl'      => array( 'plural' ),
 'kk-latn'      => array( 'plural' ),
 'ko'           => array( 'plural' ),
+'lzh'          => array( 'plural' ),
 'mn'           => array( 'plural' ),
 'ms'           => array( 'plural' ),
 'my'           => array( 'chars' ),  // Uses a lot zwnj
