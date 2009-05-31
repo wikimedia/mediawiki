@@ -833,7 +833,14 @@ class Preferences {
 						'label-message' => 'mwsuggest-disable',
 						'section' => 'searchoptions/display',
 					);
-		}		
+		}
+		
+		$defaultPreferences['searcheverything'] =
+				array(
+					'type' => 'toggle',
+					'label-message' => 'searcheverything-enable',
+					'section' => 'searchoptions/advancedsearchoptions',
+				);
 		
 		// Searchable namespaces back-compat with old format
 		$searchableNamespaces = SearchEngine::searchableNamespaces();
@@ -857,6 +864,9 @@ class Preferences {
 					'section' => 'searchoptions/advancedsearchoptions',
 					'prefix' => 'searchNs',
 				);
+		
+
+		
 	}
 	
 	static function miscPreferences( $user, &$defaultPreferences ) {
