@@ -16,11 +16,11 @@ if( !defined( 'MEDIAWIKI' ) )
  * @ingroup Skins
  */
 class SkinVector extends SkinTemplate {
-	
+
 	/* Functions */
-	
+
 	/**
-	 * Intializes output page and sets up skin-specific parameters
+	 * Initializes output page and sets up skin-specific parameters
 	 * @param object $out Output page object to initialize
 	 */
 	public function initPage( OutputPage $out ) {
@@ -29,18 +29,18 @@ class SkinVector extends SkinTemplate {
 		$this->stylename = 'vector';
 		$this->template  = 'VectorTemplate';
 	}
-	
+
 	/**
 	 * Defines CSS files to be included
 	 * @param object $out Output page to add styles to
 	 */
 	public function setupSkinUserCss( OutputPage $out ) {
 		parent::setupSkinUserCss( $out );
-		
+
 		// Append to the default screen common & print styles...
 		$out->addStyle( 'vector/main.css', 'screen' );
 	}
- 
+
 	/**
 	 * A structured array of edit links by default used for the tabs
 	 * @return array
@@ -58,21 +58,21 @@ class SkinVector extends SkinTemplate {
 			'actions' => array(),
 			'variants' => array()
 		);
-		
+
 		// Detects parameters
 		$action = $wgRequest->getVal( 'action', 'view' );
 		$section = $wgRequest->getVal( 'section' );
-		
+
 		// Checks if page is some kind of content
 		if( $this->iscontent ) {
-			
+
 			// Gets page objects for the related namespaces
 			$subjectPage = $this->mTitle->getSubjectPage();
 			$talkPage = $this->mTitle->getTalkPage();
-			
+
 			// Determines if this is a talk page
 			$isTalk = $this->mTitle->isTalkPage();
-			
+
 			// Generates XML IDs from namespace names
 			$subjectId = $wgContLang->lc( $this->mTitle->getSubjectNsText() );
 			if ( $subjectId == '' ) {
@@ -80,7 +80,7 @@ class SkinVector extends SkinTemplate {
 			}
 			$talkId = "{$subjectId}_talk";
 			$currentId = $isTalk ? $talkId : $subjectId;
-			
+
 			// Adds namespace links
 			$links['namespaces'][$subjectId] = $this->tabAction(
 				$subjectPage, 'nstab-' . $subjectId, !$isTalk, '', true
@@ -88,7 +88,7 @@ class SkinVector extends SkinTemplate {
 			$links['namespaces'][$talkId] = $this->tabAction(
 				$talkPage, 'talk', $isTalk, '', true
 			);
-			
+
 			// Adds view view link
 			if ( $this->mTitle->exists() ) {
 				$links['views']['view'] = $this->tabAction(
@@ -96,9 +96,9 @@ class SkinVector extends SkinTemplate {
 						'view', ( $action == 'view' ), '', true
 				);
 			}
-			
+
 			wfProfileIn( __METHOD__ . '-edit' );
-			
+
 			// Checks if user can...
 			if (
 				// edit the current page
@@ -112,7 +112,7 @@ class SkinVector extends SkinTemplate {
 			) {
 				// Builds CSS class for talk page links
 				$isTalkClass = $isTalk ? ' istalk' : '';
-				
+
 				// Determines if we're in edit mode
 				$selected = (
 					( $action == 'edit' || $action == 'submit' ) &&
@@ -145,7 +145,7 @@ class SkinVector extends SkinTemplate {
 			} elseif ( $this->mTitle->isKnown() ) {
 				// Adds view source view link
 				$links['views']['viewsource'] = array(
-					'class' => ( $action == 'edit') ? 'selected' : false,
+					'class' => ( $action == 'edit' ) ? 'selected' : false,
 					'text' => wfMsg( 'viewsource' ),
 					'href' =>
 						$this->mTitle->getLocalUrl( $this->editUrlOptions() )
@@ -154,7 +154,7 @@ class SkinVector extends SkinTemplate {
 			wfProfileOut( __METHOD__ . '-edit' );
 
 			wfProfileIn( __METHOD__ . '-live' );
-			
+
 			// Checks if the page exists
 			if ( $this->mTitle->exists() ) {
 				// Adds history view link
@@ -164,7 +164,7 @@ class SkinVector extends SkinTemplate {
 					'href' => $this->mTitle->getLocalUrl( 'action=history' ),
 					'rel' => 'archives',
 				);
-				
+
 				if( $wgUser->isAllowed( 'delete' ) ) {
 					$links['actions']['delete'] = array(
 						'class' => ($action == 'delete') ? 'selected' : false,
@@ -183,7 +183,7 @@ class SkinVector extends SkinTemplate {
 						'href' => $moveTitle->getLocalUrl()
 					);
 				}
-				
+
 				if (
 					$this->mTitle->getNamespace() !== NS_MEDIAWIKI &&
 					$wgUser->isAllowed( 'protect' )
@@ -262,7 +262,7 @@ class SkinVector extends SkinTemplate {
 					// Adds watch action link
 					$links['actions']['watch'] = array(
 						'class' =>
-							( $action == 'watch' or $action == 'unwatch') ?
+							( $action == 'watch' or $action == 'unwatch' ) ?
 								'selected' : false,
 						'text' => wfMsg( 'watch' ),
 						'href' => $this->mTitle->getLocalUrl( 'action=watch' )
@@ -278,12 +278,12 @@ class SkinVector extends SkinTemplate {
 					);
 				}
 			}
-		
+
 		// If it's not content, it's got to be a special page
 		} else {
 			$links['namespaces']['special'] = array(
 				'class' => 'selected',
-				'text' => wfMsg('nstab-special'),
+				'text' => wfMsg( 'nstab-special' ),
 				'href' => $wgRequest->getRequestURL()
 			);
 		}
@@ -306,7 +306,7 @@ class SkinVector extends SkinTemplate {
 				}
 				// Appends variant link
 				$links['variants'][$vcount] = array(
-					'class' => ( $code == $preferred )? 'selected' : false,
+					'class' => ( $code == $preferred ) ? 'selected' : false,
 					'text' => $varname,
 					'href' => $this->mTitle->getLocalURL( '', $code )
 				);
@@ -315,7 +315,7 @@ class SkinVector extends SkinTemplate {
 		}
 
 		wfProfileOut( __METHOD__ );
-		
+
 		return $links;
 	}
 }
@@ -325,29 +325,29 @@ class SkinVector extends SkinTemplate {
  * @ingroup Skins
  */
 class VectorTemplate extends QuickTemplate {
-	
+
 	/* Members */
-	
+
 	/**
 	 * @var Cached skin object
 	 */
 	var $skin;
-	
+
 	/* Functions */
-	
+
 	/**
 	 * Outputs the entire contents of the XHTML page
 	 */
 	public function execute() {
 		global $wgRequest, $wgUseTwoButtonsSearchForm;
-		
+
 		$this->skin = $this->data['skin'];
 		$action = $wgRequest->getText( 'action' );
-		
+
 		// Suppress warnings to prevent notices about missing indexes in
 		// $this->data (is this really the best way to handle this?)
 		wfSuppressWarnings();
-		
+
 		// Build additional attributes for navigation urls
 		$nav = $this->skin->buildNavigationUrls();
 		foreach ( $nav as $section => $links ) {
@@ -379,7 +379,7 @@ class VectorTemplate extends QuickTemplate {
 		$this->data['view_urls'] = $nav['views'];
 		$this->data['action_urls'] = $nav['actions'];
 		$this->data['variant_urls'] = $nav['variants'];
-		
+
 		// Build additional attributes for personal_urls
 		foreach ( $this->data['personal_urls'] as $key => $item) {
 			$this->data['personal_urls'][$key]['attributes'] = 
@@ -391,7 +391,7 @@ class VectorTemplate extends QuickTemplate {
 			$this->data['personal_urls'][$key]['key'] =
 				$this->skin->tooltipAndAccesskey('pt-'.$key);
 		}
-		
+
 		// Generate additional footer links
 		$footerlinks = array(
 			'info' => array(
@@ -408,7 +408,7 @@ class VectorTemplate extends QuickTemplate {
 				'disclaimer',
 			),
 		);
-		
+
 		// Build list of valid footer links
 		$validFooterLinks = array();
 		foreach( $footerlinks as $category => $links ) {
@@ -419,7 +419,7 @@ class VectorTemplate extends QuickTemplate {
 				}
 			}
 		}
-		
+
 		// Begin content output
 ?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="<?php $this->text('xhtmldefaultnamespace') ?>" <?php foreach($this->data['xhtmlnamespaces'] as $tag => $ns): ?>xmlns:<?php echo "{$tag}=\"{$ns}\" "; ?><?php endforeach ?>xml:lang="<?php $this->text('lang') ?>" lang="<?php $this->text('lang') ?>" dir="<?php $this->text('dir') ?>">
@@ -524,7 +524,7 @@ class VectorTemplate extends QuickTemplate {
 						<?php if($this->data['catlinks']) { $this->html('catlinks'); } ?>
 						<!-- /catlinks -->
 						<!-- dataAfterContent -->
-						<?php if($this->data['dataAfterContent']) { $this->html ('dataAfterContent'); } ?>
+						<?php if($this->data['dataAfterContent']) { $this->html('dataAfterContent'); } ?>
 						<!-- /dataAfterContent -->
 						<div class="visualClear"></div>
 					</div>
@@ -605,16 +605,16 @@ class VectorTemplate extends QuickTemplate {
 						<!-- search -->
 						<div id="search">
 							<div class="buffer">
-								<h5 <?php echo $this->langAttributes( ) ?>><label for="searchInput"><?php $this->msg( 'search') ?></label></h5>
-								<form action="<?php $this->text( 'wgScript') ?>" id="searchform">
+								<h5 <?php echo $this->langAttributes() ?>><label for="searchInput"><?php $this->msg( 'search' ) ?></label></h5>
+								<form action="<?php $this->text( 'wgScript' ) ?>" id="searchform">
 									<div>
-										<input type='hidden' name="title" value="<?php $this->text( 'searchtitle') ?>"/>
-										<input id="searchInput" name="search" type="text" <?php echo $this->skin->tooltipAndAccesskey( 'search'); ?> <?php if(  isset(  $this->data['search'] ) ): ?> value="<?php $this->text( 'search') ?>"<?php endif; ?> />
-										<input type='submit' name="go" class="searchButton" id="searchGoButton"	value="<?php $this->msg( 'searcharticle') ?>"<?php echo $this->skin->tooltipAndAccesskey(  'search-go' ); ?> />
-										<?php if (  $wgUseTwoButtonsSearchForm ): ?>
-										<input type='submit' name="fulltext" class="searchButton" id="mw-searchButton" value="<?php $this->msg( 'searchbutton') ?>"<?php echo $this->skin->tooltipAndAccesskey(  'search-fulltext' ); ?> />
+										<input type='hidden' name="title" value="<?php $this->text( 'searchtitle' ) ?>"/>
+										<input id="searchInput" name="search" type="text" <?php echo $this->skin->tooltipAndAccesskey( 'search' ); ?> <?php if( isset( $this->data['search'] ) ): ?> value="<?php $this->text( 'search' ) ?>"<?php endif; ?> />
+										<input type='submit' name="go" class="searchButton" id="searchGoButton"	value="<?php $this->msg( 'searcharticle' ) ?>"<?php echo $this->skin->tooltipAndAccesskey( 'search-go' ); ?> />
+										<?php if ( $wgUseTwoButtonsSearchForm ): ?>
+										<input type="submit" name="fulltext" class="searchButton" id="mw-searchButton" value="<?php $this->msg( 'searchbutton' ) ?>"<?php echo $this->skin->tooltipAndAccesskey( 'search-fulltext' ); ?> />
 										<?php else: ?>
-										<div><a href="<?php $this->text( 'searchaction') ?>" rel="search"><?php $this->msg( 'powersearch-legend') ?></a></div>
+										<div><a href="<?php $this->text( 'searchaction' ) ?>" rel="search"><?php $this->msg( 'powersearch-legend' ) ?></a></div>
 										<?php endif; ?>
 									</div>
 								</form>
@@ -661,11 +661,11 @@ class VectorTemplate extends QuickTemplate {
 			<div id="foot">
 				<div class="buffer">
 					<ul id="foot-icons">
-						<?php if( $this->data['poweredbyico']): ?>
-						<li id="foot-icon-poweredby"><?php $this->html( 'poweredbyico') ?></li>
+						<?php if( $this->data['poweredbyico'] ): ?>
+						<li id="foot-icon-poweredby"><?php $this->html( 'poweredbyico' ) ?></li>
 						<?php endif; ?>
-						<?php if( $this->data['copyrightico']): ?>
-						<li id="foot-icon-copyright"><?php $this->html( 'copyrightico') ?></li>
+						<?php if( $this->data['copyrightico'] ): ?>
+						<li id="foot-icon-copyright"><?php $this->html( 'copyrightico' ) ?></li>
 						<?php endif; ?>
 					</ul>
 					<?php foreach( $validFooterLinks as $category => $links ): ?>
@@ -673,7 +673,7 @@ class VectorTemplate extends QuickTemplate {
 						<ul id="foot-<?php echo $category ?>">
 							<?php foreach( $links as $link ): ?>
 								<?php if( isset( $this->data[$link] ) && $this->data[$link] ): ?>
-								<li id="foot-<?php echo $category ?>-<?php echo $link ?>"><?php $this->html( $link) ?></li>
+								<li id="foot-<?php echo $category ?>-<?php echo $link ?>"><?php $this->html( $link ) ?></li>
 								<?php endif; ?>
 							<?php endforeach; ?>
 						</ul>
@@ -690,78 +690,78 @@ class VectorTemplate extends QuickTemplate {
 			<a style="background-image: url(<?php $this->text('logopath') ?>);" href="<?php echo htmlspecialchars( $this->data['nav_urls']['mainpage']['href'] ) ?>" <?php echo $this->skin->tooltipAndAccesskey('p-logo') ?>></a>
 		</div>
 		<!-- /logo -->
-		<?php $this->html( 'bottomscripts'); /* JS call to runBodyOnloadHook */ ?>
-		<?php $this->html( 'reporttime') ?>
-		<?php if (  $this->data['debug'] ): ?>
+		<?php $this->html( 'bottomscripts' ); /* JS call to runBodyOnloadHook */ ?>
+		<?php $this->html( 'reporttime' ) ?>
+		<?php if ( $this->data['debug'] ): ?>
 		<!-- Debug output:
-		<?php $this->text(  'debug' ); ?>
+		<?php $this->text( 'debug' ); ?>
 		-->
 		<?php endif; ?>
 	</body>
 </html>
 <?php
 		// We're done with abusing arrays now...
-		wfRestoreWarnings( );
+		wfRestoreWarnings();
 	}
 
 	/**
 	 * Outputs a box with a list of tools
 	 */
-	private function toolBox( ) {
+	private function toolBox() {
 ?>
 	<div class="portal" id="p-tb">
-		<h5 <?php echo $this->langAttributes( ) ?>><?php $this->msg( 'toolbox') ?></h5>
+		<h5 <?php echo $this->langAttributes() ?>><?php $this->msg( 'toolbox' ) ?></h5>
 		<div class="body">
 			<ul>
-			<?php if( $this->data['notspecialpage']): ?>
-				<li id="t-whatlinkshere"><a href="<?php echo htmlspecialchars( $this->data['nav_urls']['whatlinkshere']['href']) ?>"<?php echo $this->skin->tooltipAndAccesskey( 't-whatlinkshere') ?>><?php $this->msg( 'whatlinkshere') ?></a></li>
-				<?php if(  $this->data['nav_urls']['recentchangeslinked'] ): ?>
-				<li id="t-recentchangeslinked"><a href="<?php echo htmlspecialchars( $this->data['nav_urls']['recentchangeslinked']['href']) ?>"<?php echo $this->skin->tooltipAndAccesskey( 't-recentchangeslinked') ?>><?php $this->msg( 'recentchangeslinked') ?></a></li>
+			<?php if( $this->data['notspecialpage'] ): ?>
+				<li id="t-whatlinkshere"><a href="<?php echo htmlspecialchars( $this->data['nav_urls']['whatlinkshere']['href'] ) ?>"<?php echo $this->skin->tooltipAndAccesskey( 't-whatlinkshere' ) ?>><?php $this->msg( 'whatlinkshere' ) ?></a></li>
+				<?php if( $this->data['nav_urls']['recentchangeslinked'] ): ?>
+				<li id="t-recentchangeslinked"><a href="<?php echo htmlspecialchars( $this->data['nav_urls']['recentchangeslinked']['href'] ) ?>"<?php echo $this->skin->tooltipAndAccesskey( 't-recentchangeslinked' ) ?>><?php $this->msg( 'recentchangeslinked' ) ?></a></li>
 				<?php endif; ?>
 			<?php endif; ?>
-			<?php if( isset( $this->data['nav_urls']['trackbacklink'])): ?>
-			<li id="t-trackbacklink"><a href="<?php echo htmlspecialchars( $this->data['nav_urls']['trackbacklink']['href']) ?>"<?php echo $this->skin->tooltipAndAccesskey( 't-trackbacklink') ?>><?php $this->msg( 'trackbacklink') ?></a></li>
+			<?php if( isset( $this->data['nav_urls']['trackbacklink'] ) ): ?>
+			<li id="t-trackbacklink"><a href="<?php echo htmlspecialchars( $this->data['nav_urls']['trackbacklink']['href'] ) ?>"<?php echo $this->skin->tooltipAndAccesskey( 't-trackbacklink' ) ?>><?php $this->msg( 'trackbacklink' ) ?></a></li>
 			<?php endif; ?>
 			<?php if( $this->data['feeds']): ?>
 			<li id="feedlinks">
-				<?php foreach( $this->data['feeds'] as $key => $feed): ?>
-				<a id="<?php echo Sanitizer::escapeId(  "feed-$key" ) ?>" href="<?php echo htmlspecialchars( $feed['href']) ?>" rel="alternate" type="application/<?php echo $key ?>+xml" class="feedlink"<?php echo $this->skin->tooltipAndAccesskey( 'feed-'.$key) ?>><?php echo htmlspecialchars( $feed['text'])?></a>
+				<?php foreach( $this->data['feeds'] as $key => $feed ): ?>
+				<a id="<?php echo Sanitizer::escapeId( "feed-$key" ) ?>" href="<?php echo htmlspecialchars( $feed['href'] ) ?>" rel="alternate" type="application/<?php echo $key ?>+xml" class="feedlink"<?php echo $this->skin->tooltipAndAccesskey( 'feed-' . $key ) ?>><?php echo htmlspecialchars( $feed['text'] ) ?></a>
 				<?php endforeach; ?>
 			</li>
 			<?php endif; ?>
-			<?php foreach(  array( 'contributions', 'log', 'blockip', 'emailuser', 'upload', 'specialpages') as $special ): ?>
+			<?php foreach( array( 'contributions', 'log', 'blockip', 'emailuser', 'upload', 'specialpages' ) as $special ): ?>
 				<?php if( $this->data['nav_urls'][$special]): ?>
-				<li id="t-<?php echo $special ?>"><a href="<?php echo htmlspecialchars( $this->data['nav_urls'][$special]['href']) ?>"<?php echo $this->skin->tooltipAndAccesskey( 't-'.$special) ?>><?php $this->msg( $special) ?></a></li>
+				<li id="t-<?php echo $special ?>"><a href="<?php echo htmlspecialchars( $this->data['nav_urls'][$special]['href'] ) ?>"<?php echo $this->skin->tooltipAndAccesskey( 't-' . $special ) ?>><?php $this->msg( $special ) ?></a></li>
 				<?php endif; ?>
 			<?php endforeach; ?>
-			<?php if( !empty( $this->data['nav_urls']['print']['href'])): ?>
-			<li id="t-print"><a href="<?php echo htmlspecialchars( $this->data['nav_urls']['print']['href']) ?>" rel="alternate"<?php echo $this->skin->tooltipAndAccesskey( 't-print') ?>><?php $this->msg( 'printableversion') ?></a></li>
+			<?php if( !empty( $this->data['nav_urls']['print']['href'] ) ): ?>
+			<li id="t-print"><a href="<?php echo htmlspecialchars( $this->data['nav_urls']['print']['href'] ) ?>" rel="alternate"<?php echo $this->skin->tooltipAndAccesskey( 't-print' ) ?>><?php $this->msg( 'printableversion' ) ?></a></li>
 			<?php endif; ?>
 			<?php if (  !empty(  $this->data['nav_urls']['permalink']['href'] ) ): ?>
-			<li id="t-permalink"><a href="<?php echo htmlspecialchars( $this->data['nav_urls']['permalink']['href']) ?>"<?php echo $this->skin->tooltipAndAccesskey( 't-permalink') ?>><?php $this->msg( 'permalink') ?></a></li>
-			<?php elseif ( $this->data['nav_urls']['permalink']['href'] === ''): ?>
-			<li id="t-ispermalink"<?php echo $this->skin->tooltip( 't-ispermalink') ?>><?php $this->msg( 'permalink') ?></li>
+			<li id="t-permalink"><a href="<?php echo htmlspecialchars( $this->data['nav_urls']['permalink']['href'] ) ?>"<?php echo $this->skin->tooltipAndAccesskey( 't-permalink' ) ?>><?php $this->msg( 'permalink' ) ?></a></li>
+			<?php elseif ( $this->data['nav_urls']['permalink']['href'] === '' ): ?>
+			<li id="t-ispermalink"<?php echo $this->skin->tooltip( 't-ispermalink' ) ?>><?php $this->msg( 'permalink' ) ?></li>
 			<?php endif; ?>
-			<?php wfRunHooks(  'VectorTemplateToolboxEnd', array(  &$this ) ); ?>
-			<?php wfRunHooks(  'SkinTemplateToolboxEnd', array(  &$this ) ); ?>
+			<?php wfRunHooks( 'VectorTemplateToolboxEnd', array( &$this ) ); ?>
+			<?php wfRunHooks( 'SkinTemplateToolboxEnd', array( &$this ) ); ?>
 			</ul>
 		</div>
 	</div>
 <?php
 	}
-	
+
 	/**
 	 * Outputs a box with a list of alternative languages for this page
 	 */
-	private function languageBox( ) {
-		if(  $this->data['language_urls'] ) {
+	private function languageBox() {
+		if( $this->data['language_urls'] ) {
 ?>
 <div class="portal" id="p-lang">
-	<h5 <?php echo $this->langAttributes( ) ?>><?php $this->msg( 'otherlanguages') ?></h5>
+	<h5 <?php echo $this->langAttributes() ?>><?php $this->msg( 'otherlanguages' ) ?></h5>
 	<div class="body">
 		<ul>
-		<?php foreach (  $this->data['language_urls'] as $langlink ): ?>
-			<li class="<?php echo htmlspecialchars(  $langlink['class'] ) ?>"><a href="<?php echo htmlspecialchars(  $langlink['href'] ) ?>"><?php echo $langlink['text'] ?></a></li>
+		<?php foreach ( $this->data['language_urls'] as $langlink ): ?>
+			<li class="<?php echo htmlspecialchars(  $langlink['class'] ) ?>"><a href="<?php echo htmlspecialchars( $langlink['href'] ) ?>"><?php echo $langlink['text'] ?></a></li>
 		<?php endforeach; ?>
 		</ul>
 	</div>
@@ -771,19 +771,19 @@ class VectorTemplate extends QuickTemplate {
 	}
 
 	/**
-	 * Ouptus a box with a custom list of items or HTML content
+	 * Outputs a box with a custom list of items or HTML content
 	 * @param string $bar Message name for title of box
 	 * @param mixed $content HTML or array of items to build a list from
 	 */
-	private function customBox(  $bar, $content ) {
+	private function customBox( $bar, $content ) {
 ?>
-<div class="portal" id='<?php echo Sanitizer::escapeId(  "p-$bar" ) ?>'<?php echo $this->skin->tooltip( 'p-'.$bar) ?>>
-	<h5 <?php echo $this->langAttributes( ) ?>><?php $out = wfMsg(  $bar ); if ( wfEmptyMsg( $bar, $out)) echo htmlspecialchars( $bar); else echo htmlspecialchars( $out); ?></h5>
-	<div class='body'>
-		<?php if (  is_array(  $content ) ): ?>
+<div class="portal" id='<?php echo Sanitizer::escapeId( "p-$bar" ) ?>'<?php echo $this->skin->tooltip( 'p-' . $bar ) ?>>
+	<h5 <?php echo $this->langAttributes() ?>><?php $out = wfMsg( $bar ); if ( wfEmptyMsg( $bar, $out ) ) echo htmlspecialchars( $bar ); else echo htmlspecialchars( $out ); ?></h5>
+	<div class="body">
+		<?php if ( is_array( $content ) ): ?>
 		<ul>
-		<?php foreach( $content as $key => $val): ?>
-			<li id="<?php echo Sanitizer::escapeId( $val['id']) ?>"<?php if (  $val['active'] ): ?> class="active" <?php endif; ?>><a href="<?php echo htmlspecialchars(  $val['href'] ) ?>"<?php echo $this->skin->tooltipAndAccesskey( $val['id']) ?>><?php echo htmlspecialchars( $val['text']) ?></a></li>
+		<?php foreach( $content as $key => $val ): ?>
+			<li id="<?php echo Sanitizer::escapeId( $val['id'] ) ?>"<?php if ( $val['active'] ): ?> class="active" <?php endif; ?>><a href="<?php echo htmlspecialchars( $val['href'] ) ?>"<?php echo $this->skin->tooltipAndAccesskey( $val['id'] ) ?>><?php echo htmlspecialchars( $val['text'] ) ?></a></li>
 		<?php endforeach; ?>
 		</ul>
 		<?php else: ?>
@@ -798,7 +798,7 @@ class VectorTemplate extends QuickTemplate {
 	 * Build attributes describing user language
 	 * @return HTML and XML Language attributes
 	 */
-	private function langAttributes( ) {
+	private function langAttributes() {
 		return 'lang="' . $this->data['userlang'] . '" xml:lang="' . $this->data['userlang'] . '"';
 	}
 }
