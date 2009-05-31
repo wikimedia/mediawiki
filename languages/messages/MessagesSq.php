@@ -99,7 +99,7 @@ $specialPageAliases = array(
 
 $magicWords = array(
 	'redirect'              => array( '0', '#RIDREJTO', '#REDIRECT' ),
-	'currentmonth'          => array( '1', 'MUAJIMOMENTAL', 'CURRENTMONTH' ),
+	'currentmonth'          => array( '1', 'MUAJIMOMENTAL', 'CURRENTMONTH', 'CURRENTMONTH2' ),
 	'currentmonthname'      => array( '1', 'EMRIIMUAJITMOMENTAL', 'CURRENTMONTHNAME' ),
 	'currentday'            => array( '1', 'DITASOT', 'CURRENTDAY' ),
 	'currentday2'           => array( '1', 'DITASOT2', 'CURRENTDAY2' ),
@@ -107,7 +107,7 @@ $magicWords = array(
 	'currentyear'           => array( '1', 'SIVJET', 'CURRENTYEAR' ),
 	'currenttime'           => array( '1', 'KOHATANI', 'CURRENTTIME' ),
 	'currenthour'           => array( '1', 'ORATANI', 'CURRENTHOUR' ),
-	'localmonth'            => array( '1', 'MUAJILOKAL', 'LOCALMONTH' ),
+	'localmonth'            => array( '1', 'MUAJILOKAL', 'LOCALMONTH', 'LOCALMONTH2' ),
 	'localmonthname'        => array( '1', 'EMRIIMUAJITLOKAL', 'LOCALMONTHNAME' ),
 	'localday'              => array( '1', 'DITALOKALE', 'LOCALDAY' ),
 	'localday2'             => array( '1', 'DITALOKALE2', 'LOCALDAY2' ),

@@ -136,7 +136,7 @@ $magicWords = array(
 	'notoc'                 => array( '0', '__ไม่มีสารบัญ__', '__NOTOC__' ),
 	'nogallery'             => array( '0', '__ไม่มีแกลเลอรี่__', '__NOGALLERY__' ),
 	'noeditsection'         => array( '0', '__ไม่มีแก้เฉพาะส่วน__', '__NOEDITSECTION__' ),
-	'currentmonth'          => array( '1', 'เดือนปัจจุบัน', 'CURRENTMONTH' ),
+	'currentmonth'          => array( '1', 'เดือนปัจจุบัน', 'CURRENTMONTH', 'CURRENTMONTH2' ),
 	'currentmonthname'      => array( '1', 'ชื่อเดือนปัจจุบัน', 'CURRENTMONTHNAME' ),
 );
 

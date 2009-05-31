@@ -101,7 +101,7 @@ $specialPageAliases = array(
 
 $magicWords = array(
 	'redirect'              => array( '0', '#BIRZUZENDU', '#REDIRECT' ),
-	'currentmonth'          => array( '1', 'ORAINGOHILABETE', 'CURRENTMONTH' ),
+	'currentmonth'          => array( '1', 'ORAINGOHILABETE', 'CURRENTMONTH', 'CURRENTMONTH2' ),
 	'currentmonthname'      => array( '1', 'ORAINGOHILABETEIZEN', 'CURRENTMONTHNAME' ),
 	'currentday'            => array( '1', 'ORAINGOEGUN', 'CURRENTDAY' ),
 	'currentday2'           => array( '1', 'ORAINGOEGUN2', 'CURRENTDAY2' ),

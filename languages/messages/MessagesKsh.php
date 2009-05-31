@@ -184,9 +184,9 @@ $specialPageAliases = array(
 );
 
 $magicWords = array(
-	'redirect'              => array( '0', '#ÖMLEIDUNG', '#REDIRECT' ),
-	'language'              => array( '0', '#SHPROOCH', '#SPROCH:', '#SPRACHE:', '#LANGUAGE:' ),
-	'hiddencat'             => array( '1', '__VERSHTOCHE_SAACHJRUPP__', '__WARTUNGSKATEGORIE__', '__HIDDENCAT__' ),
+	'redirect'              => array( '0', '#ÖMLEIDUNG', '#WEITERLEITUNG', '#REDIRECT' ),
+	'language'              => array( '0', '#SHPROOCH', '#SPROCH:', '#SPRACHE:', '#SPRACHE:', '#LANGUAGE:' ),
+	'hiddencat'             => array( '1', '__VERSHTOCHE_SAACHJRUPP__', '__WARTUNGSKATEGORIE__', '__VERSTECKTE_KATEGORIE__', '__WARTUNGSKATEGORIE__', '__HIDDENCAT__' ),
 );
 
 $imageFiles = array(

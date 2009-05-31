@@ -31,7 +31,7 @@ $namespaceNames = array(
 );
 
 $magicWords = array(
-	'currentmonth'          => array( '1', 'KGWEDI_BJALE', 'CURRENTMONTH' ),
+	'currentmonth'          => array( '1', 'KGWEDI_BJALE', 'CURRENTMONTH', 'CURRENTMONTH2' ),
 	'currentmonthname'      => array( '1', 'LEINA_KGWEDI_BJALE', 'CURRENTMONTHNAME' ),
 	'currentday'            => array( '1', 'LEHONO_LETSATSI', 'CURRENTDAY' ),
 	'currentday2'           => array( '1', 'LEHONO_LETSATSI2', 'CURRENTDAY2' ),
