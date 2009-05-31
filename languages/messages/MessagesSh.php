@@ -359,6 +359,14 @@ Stranice koje su na vašem [[Special:Watchlist|spisku praćenja]] su '''podeblja
 'filedelete-otherreason'      => 'Ostali/dodatni razlog/zi:',
 'filedelete-reason-otherlist' => 'Ostali razlog/zi',
 
+# Random page
+'randompage'         => 'Slučajna stranica',
+'randompage-nopages' => 'Nema stranica u imenskom prostoru "$1".',
+
+# Random redirect
+'randomredirect'         => 'Slučajno preusmjerenje',
+'randomredirect-nopages' => 'Nema preusmjerenja u imenskom prostoru "$1".',
+
 # Statistics
 'statistics' => 'Statistike',
 
@@ -368,14 +376,20 @@ Stranice koje su na vašem [[Special:Watchlist|spisku praćenja]] su '''podeblja
 'withoutinterwiki-submit'  => 'Prikaži',
 
 # Miscellaneous special pages
-'nbytes'        => '$1 {{PLURAL:$1|bajt|bajtova}}',
-'nmembers'      => '$1 {{PLURAL:$1|član|članova}}',
-'prefixindex'   => 'Sve stranice sa prefiksom',
-'newpages'      => 'Nove stranice',
-'move'          => 'Premjesti',
-'movethispage'  => 'Premjesti ovu stranicu',
-'pager-newer-n' => '{{PLURAL:$1|novija 1|novije $1}}',
-'pager-older-n' => '{{PLURAL:$1|starija 1|starije $1}}',
+'nbytes'               => '$1 {{PLURAL:$1|bajt|bajtova}}',
+'nmembers'             => '$1 {{PLURAL:$1|član|članova}}',
+'mostlinked'           => 'Stranice sa najviše linkova',
+'mostlinkedcategories' => 'Kategorije sa najviše linkova',
+'mostlinkedtemplates'  => 'Šabloni sa najviše linkova',
+'mostcategories'       => 'Stranice sa najviše kategorija',
+'mostimages'           => 'Datoteke sa najviše linkova',
+'mostrevisions'        => 'Stranice sa najviše izmjena',
+'prefixindex'          => 'Sve stranice sa prefiksom',
+'newpages'             => 'Nove stranice',
+'move'                 => 'Premjesti',
+'movethispage'         => 'Premjesti ovu stranicu',
+'pager-newer-n'        => '{{PLURAL:$1|novija 1|novije $1}}',
+'pager-older-n'        => '{{PLURAL:$1|starija 1|starije $1}}',
 
 # Book sources
 'booksources'               => 'Književni izvori',

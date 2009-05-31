@@ -939,6 +939,9 @@ Een nie anekruusd vienkvakje beteêken da de gebruker hin lid is van de hroep.",
 'uploadbtn'                  => "Bestand upload'n",
 'reupload'                   => "Opnieuw upload'n",
 'reuploaddesc'               => "Upload annuleern en teruggaene ni 't uploadformelier",
+'uploadnologin'              => 'Nie anemeld',
+'uploadnologintext'          => "Je mò [[Special:UserLogin|anemeld]] zien
+om bestan'n te upload'n.",
 'upload_directory_read_only' => 'De webserver kan nie schrieven in de uploadmap ($1).',
 'uploaderror'                => 'Uploadfout',
 'uploadtext'                 => "Gebruuk 't onderstaende formelier om bestan'n te uploaden.

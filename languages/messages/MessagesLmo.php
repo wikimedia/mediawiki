@@ -343,6 +343,7 @@ Spiegazziún di símbui: (cur) = difərenza cun la versiún curénta, (ültima) 
 # Upload
 'upload'            => 'Carga sü un file',
 'uploadbtn'         => 'Carga sü',
+'uploadnologin'     => 'Minga cuness',
 'filedesc'          => 'Sumari',
 'fileuploadsummary' => 'Sumari:',
 'ignorewarnings'    => 'Ignora tücc i avertimeent',

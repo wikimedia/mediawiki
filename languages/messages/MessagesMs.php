@@ -321,6 +321,7 @@ $messages = array(
 'permalink'         => 'Pautan kekal',
 'print'             => 'Cetak',
 'edit'              => 'Sunting',
+'view'              => 'Baca',
 'create'            => 'Cipta',
 'editthispage'      => 'Sunting laman ini',
 'create-this-page'  => 'Cipta laman ini',
@@ -759,11 +760,12 @@ Anda boleh berundur dan menyunting laman yang sedia ada, atau [[Special:UserLogi
 'permissionserrors'                => 'Tidak Dibenarkan',
 'permissionserrorstext'            => 'Anda tidak mempunyai keizinan untuk berbuat demikian atas {{PLURAL:$1|sebab|sebab-sebab}} berikut:',
 'permissionserrorstext-withaction' => 'Anda tidak mempunyai keizinan untuk $2, atas {{PLURAL:$1|sebab|sebab-sebab}} berikut:',
-'recreate-moveddeleted-warn'       => "'''Amaran: Anda sedang mencipta semula sebuah laman yang pernah dihapuskan.''',
+'recreate-moveddeleted-warn'       => "'''Amaran: Anda sedang mencipta semula sebuah laman yang pernah dihapuskan.'''
 
 Anda harus mempertimbangkan perlunya menyunting laman ini.
 Untuk rujukan, yang berikut ialah log penghapusan bagi laman ini:",
-'moveddeleted-notice'              => 'Laman ini telah dihapuskan. Log penghapusan bagi laman ini dilampirkan di bawah untuk rujukan.',
+'moveddeleted-notice'              => 'Laman ini telah dihapuskan. 
+Log penghapusan bagi laman ini dilampirkan di bawah untuk rujukan.',
 'log-fulllog'                      => 'Lihat log lengkap',
 'edit-hook-aborted'                => 'Suntingan anda telah dibatalkan oleh penyangkuk. Tiada sebab diberikan.',
 'edit-gone-missing'                => 'Laman tersebut telah dihapuskan dan tidak dapat dikemaskinikan.',
@@ -1020,7 +1022,7 @@ Sila pastikan bahawa perubahan ini akan mengekalkan kesinambungan sejarah laman.
 'searchhelp-url'                   => 'Help:Kandungan',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Senarai laman dengan awalan ini]]',
 'searchprofile-articles'           => 'Laman kandungan',
-'searchprofile-project'            => 'Laman projek',
+'searchprofile-project'            => 'Laman bantuan dan projek',
 'searchprofile-images'             => 'Fail',
 'searchprofile-everything'         => 'Semua',
 'searchprofile-advanced'           => 'Maju',
@@ -1101,9 +1103,9 @@ Cuba berikan awalan ''all:'' untuk menggelintar semua kandungan (termasuk laman 
 'stub-threshold'            => 'Ambang bagi pemformatan <a href="#" class="stub">pautan ke rencana ringkas</a> (bait):',
 'recentchangesdays'         => 'Bilangan hari dalam perubahan terkini:',
 'recentchangesdays-max'     => '(had $1 hari)',
-'recentchangescount'        => 'Bilangan suntingan yang dipaparkan dalam perubahan terkini, sejarah laman, dan log, ketika lalai:',
+'recentchangescount'        => 'Bilangan suntingan yang dipaparkan mengikut ketetapan:',
 'savedprefs'                => 'Keutamaan anda disimpan.',
-'timezonelegend'            => 'Zon waktu',
+'timezonelegend'            => 'Zon waktu:',
 'localtime'                 => 'Waktu tempatan:',
 'timezoneuseserverdefault'  => 'Gunakan nilai pelayan',
 'timezoneuseoffset'         => 'Lain-lain (nyatakan imbangan)',
@@ -1151,6 +1153,8 @@ Cuba berikan awalan ''all:'' untuk menggelintar semua kandungan (termasuk laman 
 'prefs-help-email-required' => 'Alamat e-mel adalah wajib.',
 'prefs-info'                => 'Maklumat asas',
 'prefs-signature'           => 'Tandatangan',
+'prefs-dateformat'          => 'Format tarikh',
+'prefs-display'             => 'Papar pilihan',
 
 # User rights
 'userrights'                  => 'Pengurusan hak pengguna',
@@ -2229,6 +2233,7 @@ Laman destinasi "[[:$1]]" telah pun wujud. Adakah anda mahu menghapuskannya supa
 'imageinvalidfilename'         => 'Nama fail imej sasaran tidak sah',
 'fix-double-redirects'         => 'Kemas kinikan semua lencongan yang menuju ke tajuk asal',
 'move-leave-redirect'          => 'Lencongkan ke tajuk baru',
+'semiprotectedpagemovewarning' => "'''Nota:''' Laman ini telah dikunci agar hanya pengguna berdaftar sahaja yang boleh memindahkannya.",
 
 # Export
 'export'            => 'Eksport laman',
@@ -3040,10 +3045,11 @@ Sila masukkan nama fail tanpa awalan "{{ns:file}}:".',
 'dberr-cachederror' => 'Yang berikut ialah salinan bagi laman yang diminta yang diambil daripada cache, dan mungkin bukan yang terkini.',
 
 # HTML forms
-'htmlform-invalid-input'    => 'Terdapat beberapa masalah dengan input anda',
-'htmlform-select-badoption' => 'Nilai yang anda tentukan bukan satu pilihan yang sah.',
-'htmlform-int-invalid'      => 'Nilai yang anda tetapkan bukan satu integer.',
-'htmlform-submit'           => 'Hantar',
-'htmlform-reset'            => 'Undur perubahan',
+'htmlform-invalid-input'       => 'Terdapat beberapa masalah dengan input anda',
+'htmlform-select-badoption'    => 'Nilai yang anda tentukan bukan satu pilihan yang sah.',
+'htmlform-int-invalid'         => 'Nilai yang anda tetapkan bukan satu integer.',
+'htmlform-submit'              => 'Hantar',
+'htmlform-reset'               => 'Undur perubahan',
+'htmlform-selectorother-other' => 'Lain-lain',
 
 );

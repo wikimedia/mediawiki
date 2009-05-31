@@ -816,7 +816,7 @@ als Administrateur kënnt Dir [$1 dës Versioun kucken] wann Dir weiderfuere wë
 Als Administrateur kënnt Dir se weiderhi gesinn; Dir fannt eventuell méi Detailer am  [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Läsch-Logbuch].",
 'rev-deleted-no-diff'            => "Dir kënnt dësen Ënnerscheed net gesinn, well eng vun de Versiounen '''geläscht gouf'''.
 Detailer stinn eventuell am [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Läsch-Logbuch].",
-'rev-deleted-unhide-diff'        => "Eng vun de Versiounen vun dësem Ënnerscheed gouf '''geläscht'''.
+'rev-deleted-unhide-diff'        => "Eng vun de Versioune vun dësem Ënnerscheed gouf '''geläscht'''.
 Detailer stinn eventuell am [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Logbuch vun de Läschungen].
 Als Administrateur kënnt Dir [$1 mat dësem Link de Versiounsënnerschied kucke] wann Dir weiderfuere wëllt.",
 'rev-delundel'                   => 'weisen/verstoppen',
@@ -983,8 +983,8 @@ Dir kënnt [[:\$1|déi Säit uleeën]].",
 'notitlematches'                   => 'Keng Iwwereneestëmmunge mat Säitentitelen',
 'textmatches'                      => 'Säitentext Iwwerdeneestëmmungen',
 'notextmatches'                    => 'Keng Iwwereneestëmmungen',
-'prevn'                            => 'vireg $1',
-'nextn'                            => 'nächst $1',
+'prevn'                            => 'vireg {{PLURAL:$1|$1}}',
+'nextn'                            => 'nächst {{PLURAL:$1|$1}}',
 'prevn-title'                      => 'Vireg $1 {{PLURAL:$1|Resultat|Resultater}}',
 'nextn-title'                      => 'Nächst $1 {{PLURAL:$1|Resultat|Resultater}}',
 'shown-title'                      => '$1 {{PLURAL:$1|Resultat|Resultater}} pro Säit weisen',
@@ -1961,6 +1961,7 @@ An esou Fäll däerf déi neiste Versioun net markéiert ginn oder déi neiste g
 'undelete-nodiff'              => 'Et si keng méi al Versiounen do.',
 'undeletebtn'                  => 'Restauréieren',
 'undeletelink'                 => 'weisen/restauréieren',
+'undeleteviewlink'             => 'weisen',
 'undeletereset'                => 'Ofbriechen',
 'undeleteinvert'               => 'Auswiel ëmdréinen',
 'undeletecomment'              => 'Grond:',
@@ -2398,7 +2399,7 @@ Erlaabt et e Grond an de Resumé derbäizesetzen.',
 'modern.css'      => "/* Dës CSS huet nëmmen Afloss op de Skin ''Modern''  */",
 
 # Scripts
-'common.js' => '/* All JavaScript hei gëtt fir all Benotzer beim Lueden vun all Säit gelueden. */',
+'common.js' => '/* All JavaScript hei gëtt fir all Benotzer beim Luede vun all Säit gelueden. */',
 
 # Metadata
 'nodublincore'      => 'Dublin Core RDF Metadata ass op dësem Server ausgeschalt.',
@@ -2664,9 +2665,9 @@ Duerno sti Linken déi Ausnamen definéieren, a deenen hirem Kontext dat Bild aw
 'exif-orientation-2' => 'Horizontal gedréit',
 'exif-orientation-3' => 'Ëm 180° gedréit',
 'exif-orientation-4' => 'Vertikal gedréit',
-'exif-orientation-5' => "90° géint d'Richtung vun den Zären vun der Auer gedréint a vertikal ëmgedréint",
+'exif-orientation-5' => "90° géint d'Richtung vun den Zäre vun der Auer gedréint a vertikal ëmgedréint",
 'exif-orientation-6' => "Ëm 90° an d'Richtung vun den Zäre vun der Auer gedréint",
-'exif-orientation-7' => '90° an der Richtung vun den Zären vun der Auer gedréint a vertikal ëmgedréint',
+'exif-orientation-7' => '90° an der Richtung vun den Zäre vun der Auer gedréint a vertikal ëmgedréint',
 'exif-orientation-8' => "Ëm 90° géint d'Richtung vun den Zäre vun der Auer gedréint",
 
 'exif-componentsconfiguration-0' => 'Gëtt et net',
@@ -2676,7 +2677,7 @@ Duerno sti Linken déi Ausnamen definéieren, a deenen hirem Kontext dat Bild aw
 'exif-exposureprogram-2' => 'Standardprogramm',
 'exif-exposureprogram-3' => 'Zäitautomatik',
 'exif-exposureprogram-4' => 'Blendenautomatik',
-'exif-exposureprogram-7' => 'Portrait-Programm (fir Fotoen vun no mat engem net-scharfen Hannergrond)',
+'exif-exposureprogram-7' => 'Portrait-Programm (fir Fotoe vun no mat engem net-scharfen Hannergrond)',
 'exif-exposureprogram-8' => 'Landschaftsopnamen',
 
 'exif-subjectdistance-value' => '$1 Meter',
