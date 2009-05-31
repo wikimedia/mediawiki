@@ -638,7 +638,7 @@ class SpecialSearch {
 		$selectNoneButton = Xml::openElement('input', array('type'=>'button', 'id' => 'mw-search-togglenone', 'onclick' => 'mwToggleSearchCheckboxes("none");',
 			'value' => wfMsg( 'powersearch-togglenone' ) )) . '</input>';
 			
-		$selectOptionsText = "<td id='mw-search-togglebox' align='right'>" . $selectOptionsLabel . $selectAllButton . $selectNoneButton . "</td>";
+		$selectOptionsText = "<td id='mw-search-togglebox' align='right'>" . $selectOptionsLabel . ' ' . $selectAllButton . $selectNoneButton . "</td>";
 
 		$searchButton = Xml::submitButton( wfMsg( 'powersearch' ) ) . "\n";
 		$searchTitle = SpecialPage::getTitleFor( 'Search' );
