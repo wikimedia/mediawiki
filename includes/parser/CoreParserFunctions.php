@@ -607,8 +607,8 @@ class CoreParserFunctions {
 			return '';
 		}
 		$u = User::newFromName( $user );
-		$u->load();
-		return self::formatRaw( $u->mEditCount, $raw );
+		$id = User::idFromName( $u->mName );
+		return self::formatRaw( User::edits( $id ), $raw );
 	}
 
 	/**
