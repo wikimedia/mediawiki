@@ -2117,7 +2117,7 @@ Vezi [[Special:IPBlockList|lista de adrese IP şi conturi blocate]] pentru a rev
 'ipblocklist-submit'              => 'Caută',
 'blocklistline'                   => '$1, $2 a blocat $3 ($4)',
 'infiniteblock'                   => 'termen nelimitat',
-'expiringblock'                   => 'expiră la $1 $2',
+'expiringblock'                   => 'expiră în $1 la $2',
 'anononlyblock'                   => 'doar anonimi',
 'noautoblockblock'                => 'autoblocare dezactivată',
 'createaccountblock'              => 'crearea de conturi blocată',

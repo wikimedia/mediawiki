@@ -1504,7 +1504,7 @@ Paspaudę ant stulpelio antraštės pakeiste išrikiavimą.',
 'linkstoimage'              => '{{PLURAL:$1|Šis puslapis|Šie puslapiai}} nurodo į šį failą:',
 'linkstoimage-more'         => 'Daugiau nei $1 {{PLURAL:$1|puslapis|puslapiai|puslapių}} rodo į šį failą.
 Žemiau esantis sąrašas rodo tik $1 {{PLURAL:$1|puslapio|pirmų $1 puslapių|pirmų $1 puslapių}} nuorodas į šį failą.
-Yra pasiekiamas ir [[Special:WhatLinksHere/$2|visas sąrašas].',
+Yra pasiekiamas ir [[Special:WhatLinksHere/$2|visas sąrašas]].',
 'nolinkstoimage'            => 'Į failą nenurodo joks puslapis.',
 'morelinkstoimage'          => 'Žiūrėti [[Special:WhatLinksHere/$1|daugiau nuorodų]] į šį failą.',
 'redirectstofile'           => '{{PLURAL:$1|Šis failas|$1 failai}} peradresuoja į šį failą:',

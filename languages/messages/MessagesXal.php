@@ -55,12 +55,15 @@ $messages = array(
 'november'  => 'Үкр',
 'december'  => 'Бар',
 
-'article' => 'Халх',
-'mytalk'  => 'Мини күүндлһн бəəрм',
+'article'    => 'Халх',
+'cancel'     => 'Уга кех',
+'mytalk'     => 'Мини күүндлһн бəəрм',
+'navigation' => 'Орм медлһн',
 
 # Cologne Blue skin
 'qbspecialpages' => 'Көдлхнә халхс',
 
+'errorpagetitle'   => 'Эндү',
 'help'             => 'Дөң',
 'search'           => 'Хәәлһн',
 'searchbutton'     => 'Хәәлһн',
@@ -72,11 +75,17 @@ $messages = array(
 'permalink'        => 'Даңгин заалһ',
 'edit'             => 'Чиклх',
 'create'           => 'Бүтәх',
+'editthispage'     => 'Эн халхиг чиклҗ',
 'delete'           => 'Һарһх',
+'newpage'          => 'Шин халх',
 'talkpage'         => 'Ухалвр',
 'talkpagelinktext' => 'Ухалвр',
+'personaltools'    => 'Күүнә зер-зев',
 'talk'             => 'Ухалвр',
+'toolbox'          => 'Зер-зев',
 'otherlanguages'   => 'Талдан келнд',
+'jumptonavigation' => 'Һазр медлһн',
+'jumptosearch'     => 'хәәлһн',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'currentevents'        => 'Ода болсн йовдл',
@@ -84,13 +93,21 @@ $messages = array(
 'mainpage-description' => 'Эклц',
 'portal'               => 'Бүрдәцин хурал',
 
-'ok'              => 'Чик',
-'retrievedfrom'   => '"$1" гидг халхас йовулсн',
-'editsectionhint' => '$1 гидг хүвиг чиклх',
+'ok'                  => 'Чик',
+'retrievedfrom'       => '"$1" гидг халхас йовулсн',
+'youhavenewmessages'  => 'Та $1 ($2)-та бәәнәт.',
+'newmessageslink'     => 'шин зәңгс',
+'newmessagesdifflink' => 'кенз сольлһн',
+'editsection'         => 'чиклх',
+'editsectionhint'     => '$1 гидг хүвиг чиклх',
+'showtoc'             => 'үзүлх',
+'hidetoc'             => 'бултулх',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'     => 'Халх',
 'nstab-user'     => 'Орлцач',
+'nstab-special'  => 'Көдлхнә халх',
+'nstab-image'    => 'Боомг',
 'nstab-template' => 'Зура',
 'nstab-help'     => 'Цəəлһлһн',
 'nstab-category' => 'Янз',
@@ -100,39 +117,147 @@ $messages = array(
 Таднар шин бичгдлһн бүтв.
 Тадна [[Special:Preferences|{{SITENAME}} preferences]] сольҗ бичә мартн.',
 'yourname'                => 'Орлцачна нернь:',
-'yourpassword'            => 'Түлкүр үг (Нуувчин бооцсн үг):',
+'yourpassword'            => 'Түлкүр үг:',
 'yourpasswordagain'       => 'Түлкүр үгиг давтн:',
+'remembermypassword'      => 'Мини нерн эн тоолвртд тодлх',
 'login'                   => 'Оруллһн',
 'nav-login-createaccount' => 'Орх аль бичгдлһиг бүтәх',
 'userlogin'               => 'Орх аль бичгдлһиг бүтәх',
+'logout'                  => 'Һарх',
 'userlogout'              => 'Һарх',
+'nologinlink'             => 'Бичгдлһиг бүтәх',
 'createaccount'           => 'Выль вики-авторлэн регистрациез',
 'loginsuccesstitle'       => 'Йовудта оруллһн',
 'wrongpassword'           => 'Буру түлкүр үг бичв.
 Дәкәд арһ хәәтн.',
 
+# Edit page toolbar
+'bold_sample'   => 'Тарһн текст',
+'bold_tip'      => 'Тарһн текст',
+'italic_sample' => 'Өкәсн текст',
+'italic_tip'    => 'Өкәсн текст',
+'link_tip'      => 'Өвр заалһ',
+'extlink_tip'   => 'Һаза заалһ (http:// гидг эклц бичә мартн)',
+'math_tip'      => 'Эсвин бичг (LaTeX)',
+'image_tip'     => 'Орцулсн боомг',
+'media_tip'     => 'Боомгин заалһ',
+'sig_tip'       => 'Тана тәвсн һар цагин темдгтә',
+
+# Edit pages
+'minoredit'       => 'Эн баһ чикллһн бәәнә',
+'watchthis'       => 'Эн халхиг хәләх',
+'savearticle'     => 'Халхиг хадһлх',
+'showpreview'     => 'Хәләвриг үзүлх',
+'showdiff'        => 'Сольлһдудиг үзүлх',
+'anoneditwarning' => "'''Урдаснь зәңг:''' та орв биш.
+Тадна IP хайг эн халха чикллһнә бүртклд бичҗ авх.",
+'newarticle'      => '(Шин)',
+'previewnote'     => "'''Эн хәләвр бәәҗ тускар тодлтн.'''
+Тана сольлһдуд ода чигн хадһлсн уга!",
+'templatesused'   => 'Зурад эн халхд олзлсн:',
+
+# Diffs
+'editundo' => 'уга кех',
+
+# Search results
+'searchresults'       => 'Хәәлһнә ашуд',
+'searchresults-title' => 'Хәәлһнә ашуд "$1" төлә',
+'search-suggest'      => 'Та эниг таанат: $1 ?',
+'powersearch'         => 'Күчн хәәлһн',
+'powersearch-legend'  => 'Күчн хәәлһн',
+'powersearch-field'   => 'Хәәх',
+
 # Preferences page
 'preferences'   => 'Дурллһн',
 'mypreferences' => 'Мини көгүд',
+
+# Groups
+'group-sysop' => 'Дарһас',
+
+# Associated actions - in the sentence "You do not have permission to X"
+'action-edit' => 'эн халхиг чиклҗ',
+
+# Recent changes
+'recentchanges'   => 'Кенз чикллһдүд',
+'rcshowhideminor' => 'баһ чиклһдүдиг $1',
+'rcshowhidebots'  => 'ботмудиг $1',
+'rcshowhideliu'   => 'орлцачнриг $1',
+'rcshowhideanons' => 'нер уга орлцачнриг $1',
+'rcshowhidemine'  => 'мини чиклһдүд $1',
+
+# Recent changes linked
+'recentchangeslinked-page' => 'Халхна нернь:',
+
+# Upload
+'upload' => 'Боомгиг тәвх',
 
 # File description page
 'filehist-user' => 'Орлцач',
 
 # Miscellaneous special pages
-'move' => 'Көндәх',
+'newpages' => 'Шин халхс',
+'move'     => 'Көндәх',
+
+# Book sources
+'booksources-go' => 'Ор',
 
 # Special:AllPages
+'allpages'       => 'Цуг халхс',
 'allpagessubmit' => 'Орх',
 
+# Special:LinkSearch
+'linksearch' => 'Һаза заалһуд',
+
+# Special:Log/newusers
+'newuserlog-create-entry' => 'Шин орлцачна бичгдлһн',
+
 # Watchlist
-'watchlist'   => 'Шинҗллһнә бүрткл бичг',
-'mywatchlist' => 'Мини шинҗллһнә бүрткл бичг',
-'watch'       => 'Хәләх',
+'watchlist'     => 'Шинҗллһнә бүрткл бичг',
+'mywatchlist'   => 'Мини шинҗллһнә бүрткл бичг',
+'watch'         => 'Хәләх',
+'watchthispage' => 'Эн халхиг хәләҗ',
+'unwatch'       => 'Хәләх биш',
+
+# Delete
+'deletepage' => 'Эн халхиг һарһҗ',
 
 # Contributions
 'contributions' => 'Орлцачна өгүллһдүд',
 'mycontris'     => 'Мини өгүллһдүд',
 
-'sp-contributions-talk' => 'Ухалвр',
+'sp-contributions-talk'     => 'Ухалвр',
+'sp-contributions-username' => 'IP хайг аль нернь:',
+'sp-contributions-submit'   => 'Хәәлһн',
+
+# What links here
+'whatlinkshere-page' => 'Халх:',
+
+# Block/unblock
+'contribslink' => 'өгллһн',
+
+# Move page
+'movearticle'  => 'Халхиг йовулх:',
+'newtitle'     => 'Шин нернь:',
+'move-watch'   => 'Эн халхиг хәләх',
+'movepagebtn'  => 'Халхиг йовулх',
+'pagemovedsub' => 'Йовудта йовуллһн',
+'movereason'   => 'Учр:',
+
+# Tooltip help for the actions
+'tooltip-pt-mytalk'  => 'Тадна күндллһнә халх',
+'tooltip-pt-logout'  => 'Һарх',
+'tooltip-ca-delete'  => 'Эн халхиг һарһҗ',
+'tooltip-ca-unwatch' => 'Эн халхиг мини шинҗллһнә бүрткл бичгәс һарһх',
+'tooltip-search-go'  => 'Эн чик нертә халхд, эн бәәхлә, орх',
+'tooltip-n-mainpage' => 'Һол халхд орх',
+'tooltip-t-print'    => 'Эн халхна барин бәәдл',
+'tooltip-save'       => 'Тана сольлһдудиг хадһлтн',
+
+# 'all' in various places, this might be different for inflected languages
+'watchlistall2' => 'цуг',
+'monthsall'     => 'цуг',
+
+# action=purge
+'confirm_purge_button' => 'Чик',
 
 );

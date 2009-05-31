@@ -1053,6 +1053,9 @@ Aramanızın başına '''all:''' önekini ekleyerek tüm içeriği aramayı (tar
 'powersearch-ns'                   => 'Ad alanlarında ara:',
 'powersearch-redir'                => 'Yönlendirmeleri listele',
 'powersearch-field'                => 'Ara:',
+'powersearch-togglelabel'          => 'Seç:',
+'powersearch-toggleall'            => 'Hepsi',
+'powersearch-togglenone'           => 'Hiçbiri',
 'search-external'                  => 'Dış arama',
 'searchdisabled'                   => '{{SITENAME}} sitesinde arama yapma geçici olarak durdurulmuştur. Bu arada Google kullanarak {{SITENAME}} içinde arama yapabilirsiniz. Arama sitelerinde indekslemelerinin biraz eski kalmış olabileceğini göz önünde bulundurunuz.',
 
@@ -2006,6 +2009,7 @@ Revizyon onarılmış veya arşivden silinmiş olabilir ya da sahip olduğunuz b
 'undelete-nodiff'              => 'Önceki bir revizyon bulunamadı.',
 'undeletebtn'                  => 'Geri getir!',
 'undeletelink'                 => 'görüntüle/geri getir',
+'undeleteviewlink'             => 'görüntüle',
 'undeletereset'                => 'Vazgeç',
 'undeleteinvert'               => 'Seçimi ters çevir',
 'undeletecomment'              => 'Neden:',

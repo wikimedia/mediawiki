@@ -347,6 +347,7 @@ $messages = array(
 'permalink'         => 'Enllaç permanent',
 'print'             => "Envia aquesta pàgina a la cua d'impressió",
 'edit'              => 'Edita',
+'view'              => 'Llegeix',
 'create'            => 'Crea',
 'editthispage'      => 'Edita la pàgina',
 'create-this-page'  => 'Crea aquesta pàgina',

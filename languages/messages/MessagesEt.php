@@ -95,7 +95,7 @@ $messages = array(
 'tog-hideminor'               => 'Peida pisiparandused viimastes muudatustes',
 'tog-hidepatrolled'           => 'Peida viimaste muudatuste loetelus jälgimisloendis esitatavad muudatused',
 'tog-extendwatchlist'         => 'Laienda jälgimisloendit, et näha kõiki muudatusi, mitte vaid kõige värskemaid',
-'tog-usenewrc'                => 'Laiendatud viimased muudatused (mitte kõikide brauserite puhul)',
+'tog-usenewrc'                => 'Laiendatud viimased muudatused (nõutav JavaScripti olemasolu)',
 'tog-numberheadings'          => 'Pealkirjade automaatnummerdus',
 'tog-showtoolbar'             => 'Redigeerimise tööriistariba näitamine',
 'tog-editondblclick'          => 'Artiklite redigeerimine topeltklõpsu peale (JavaScript)',
@@ -117,7 +117,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Teata meili teel ka pisiparandustest',
 'tog-enotifrevealaddr'        => 'Näita minu e-posti aadressi teatavakstegemiste e-kirjades.',
 'tog-shownumberswatching'     => 'Näita jälgivate kasutajate hulka',
-'tog-fancysig'                => 'Kasuta lihtsaid allkirju (ilma linkideta kasutajalehele)',
+'tog-fancysig'                => 'Kasuta vikiteksti vormingus allkirja (ilma automaatse lingita kasutajalehele)',
 'tog-externaleditor'          => 'Kasuta vaikimisi välist redaktorit',
 'tog-externaldiff'            => 'Kasuta vaikimisi välist võrdlusvahendit (ainult ekspertidele, tarvilikud on kasutaja arvuti eriseadistused)',
 'tog-forceeditsummary'        => 'Nõua redigeerimisel resümee välja täitmist',
@@ -247,6 +247,7 @@ ning [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide kasutusjuhendit].'
 'permalink'         => 'Püsilink',
 'print'             => 'Prindi',
 'edit'              => 'redigeeri',
+'view'              => 'Loe',
 'create'            => 'Loo',
 'editthispage'      => 'Redigeeri seda artiklit',
 'create-this-page'  => 'Loo see lehekülg',
@@ -260,7 +261,7 @@ ning [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide kasutusjuhendit].'
 'unprotectthispage' => 'Ära kaitse seda artiklit',
 'newpage'           => 'Uus artikkel',
 'talkpage'          => 'Selle artikli arutelu',
-'talkpagelinktext'  => 'Arutelu',
+'talkpagelinktext'  => 'arutelu',
 'specialpage'       => 'Erilehekülg',
 'personaltools'     => 'Personaalsed tööriistad',
 'postcomment'       => 'Uus alalõik',
@@ -325,7 +326,7 @@ Vaata [[Special:Version|versiooni lehekülge]].',
 'editsection-brackets'    => '[$1]',
 'editold'                 => 'redigeeri',
 'viewsourceold'           => 'vaata lähteteksti',
-'editlink'                => 'toimeta',
+'editlink'                => 'redigeeri',
 'viewsourcelink'          => 'vaata lähteteksti',
 'editsectionhint'         => 'Redigeeri alaosa $1',
 'toc'                     => 'Sisukord',
@@ -646,9 +647,9 @@ Te võite pöörduda tagasi ja toimetada olemasolevat lehekülge või [[Special:
 'recreate-moveddeleted-warn'       => "'''Hoiatus: Te loote uuesti lehte, mis on varem kustutatud.'''
 
 Kaaluge, kas lehe uuesti loomine on kohane.
-Lehe eelnevad kustutamised:",
+Lehe eelnevad kustutamised ja teisaldamised:",
 'moveddeleted-notice'              => 'See lehekülg on kustutatud.
-Allpool on esitatud lehekülje kustutamislogi.',
+Allpool on esitatud lehekülje kustutamis- ja teisaldamislogi.',
 'edit-gone-missing'                => 'Polnud võimalik lehekülge uuendada.
 Tundub, et see on kustutatud.',
 'edit-conflict'                    => 'Redigeerimiskonflikt.',
@@ -784,15 +785,15 @@ Legend: (viim) = erinevused võrreldes viimase redaktsiooniga,
 'notitlematches'               => 'Artikli pealkirjades otsitavat ei leitud',
 'textmatches'                  => 'Vasted artikli tekstides',
 'notextmatches'                => 'Artikli tekstides otsitavat ei leitud',
-'prevn'                        => 'eelmised $1',
-'nextn'                        => 'järgmised $1',
+'prevn'                        => 'eelmised {{PLURAL:$1|$1}}',
+'nextn'                        => 'järgmised {{PLURAL:$1|$1}}',
 'viewprevnext'                 => 'Näita ($1) ($2) ($3).',
 'searchmenu-legend'            => 'Otsingu sätted',
 'searchmenu-new'               => "'''Loo siia wikisse lehekülg pealkirjaga \"[[:\$1]]\"!'''",
 'searchhelp-url'               => 'Help:Juhend',
 'searchprofile-articles'       => 'Sisuleheküljed',
-'searchprofile-project'        => 'Projektilehed',
-'searchprofile-images'         => 'Failid',
+'searchprofile-project'        => 'Abi- ja projektilehed',
+'searchprofile-images'         => 'Multimeedia',
 'searchprofile-everything'     => 'Kõik',
 'searchprofile-images-tooltip' => 'Failiotsing',
 'search-result-size'           => '$1 ({{PLURAL:$2|1 sõna|$2 sõna}})',
@@ -850,6 +851,7 @@ päringu ees prefiksit ''all:''. Konkreetsest nimeruumist otsimiseks kasuta pref
 'prefs-resetpass'           => 'Muuda parooli',
 'saveprefs'                 => 'Salvesta eelistused',
 'resetprefs'                => 'Lähtesta eelistused',
+'restoreprefs'              => 'Taasta kõikjal vaikesätted',
 'prefs-editing'             => 'Redigeerimisseaded',
 'prefs-edit-boxsize'        => 'Toimetamise akna suurus.',
 'rows'                      => 'Redaktoriakna ridade arv:',
@@ -859,9 +861,9 @@ päringu ees prefiksit ''all:''. Konkreetsest nimeruumist otsimiseks kasuta pref
 'contextlines'              => 'Ridu tulemis',
 'contextchars'              => 'Konteksti pikkus real',
 'recentchangesdays'         => 'Mitu päeva näidata viimastes muudatustes:',
-'recentchangescount'        => 'Mitut pealkirja näidata vaikimisi viimaste muudatuste lehel, artiklite ajaloolehtedel ja logides:',
+'recentchangescount'        => 'Mitut redaktsiooni vaikimisi näidata:',
 'savedprefs'                => 'Teie eelistused on salvestatud.',
-'timezonelegend'            => 'Ajavöönd',
+'timezonelegend'            => 'Ajavöönd:',
 'localtime'                 => 'Kohalik aeg:',
 'timezoneoffset'            => 'Ajavahe¹:',
 'servertime'                => 'Serveri aeg:',
@@ -905,23 +907,31 @@ See ei tohi olla pikem kui $1 {{PLURAL:$1|sümbol|sümbolit}}.',
 'prefs-dateformat'          => 'Kuupäeva vorming',
 
 # User rights
-'userrights'               => 'Kasutaja õiguste muutmine',
-'userrights-lookup-user'   => 'Muuda kasutajagruppi',
-'userrights-user-editname' => 'Sisesta kasutajatunnus:',
-'editusergroup'            => 'Muuda kasutajagruppi',
-'editinguser'              => "Muudan kasutaja '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]]) õigusi",
-'userrights-editusergroup' => 'Kasutajagrupi valik',
-'saveusergroups'           => 'Salvesta grupi muudatused',
-'userrights-groupsmember'  => 'Kuulub gruppi:',
-'userrights-reason'        => 'Muutmise põhjus:',
-'userrights-no-interwiki'  => 'Sul ei ole luba muuta kasutajaõigusi teistes vikides.',
-'userrights-notallowed'    => 'Sulle pole antud luba jagada kasutajatele õigusi.',
+'userrights'                  => 'Kasutaja õiguste muutmine',
+'userrights-lookup-user'      => 'Muuda kasutajagruppi',
+'userrights-user-editname'    => 'Sisesta kasutajatunnus:',
+'editusergroup'               => 'Muuda kasutajagruppi',
+'editinguser'                 => "Muudan kasutaja '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]]) õigusi",
+'userrights-editusergroup'    => 'Kasutajagrupi valik',
+'saveusergroups'              => 'Salvesta grupi muudatused',
+'userrights-groupsmember'     => 'Kuulub gruppi:',
+'userrights-groups-help'      => 'Sa võid muuta selle kasutaja kuuluvust eri kasutajagruppidesse:
+* Märgitud kast tähendab, et kasutaja kuulub sellesse gruppi.
+* Mitte märgitud kast tähendab, et kasutaja sellesse gruppi ei kuulu
+* Aga * kasutajagrupi juures tähistab õigust, mida sa peale lisamist enam eemaldada ei saa, või siis ka vastupidi.',
+'userrights-reason'           => 'Muutmise põhjus:',
+'userrights-no-interwiki'     => 'Sul ei ole luba muuta kasutajaõigusi teistes vikides.',
+'userrights-nodatabase'       => 'Andmebaasi $1 ei ole olemas või pole see kohalik.',
+'userrights-nologin'          => 'Kasutaja õiguste muutmiseks, pead sa administreerimis õigustega kontole [[Special:UserLogin|sisse logima]].',
+'userrights-notallowed'       => 'Sulle pole antud luba jagada kasutajatele õigusi.',
+'userrights-changeable-col'   => 'Grupid, mida sa saad muuta',
+'userrights-unchangeable-col' => 'Grupid, mida sa muuta ei saa',
 
 # Groups
 'group'               => 'Grupp:',
 'group-user'          => 'Kasutajad',
 'group-autoconfirmed' => 'Automaatselt kinnitatud kasutajad',
-'group-bot'           => 'Botid',
+'group-bot'           => 'Robotid',
 'group-sysop'         => 'Administraatorid',
 'group-bureaucrat'    => 'Bürokraadid',
 'group-all'           => '(kõik)',
@@ -932,7 +942,11 @@ See ei tohi olla pikem kui $1 {{PLURAL:$1|sümbol|sümbolit}}.',
 'group-sysop-member'         => 'Administraator',
 'group-bureaucrat-member'    => 'Bürokraat',
 
-'grouppage-sysop' => '{{ns:project}}:administraatorid',
+'grouppage-user'          => '{{ns:project}}:Kasutajad',
+'grouppage-autoconfirmed' => '{{ns:project}}:Automaatselt kinnitatud kasutajad',
+'grouppage-bot'           => '{{ns:project}}:Robotid',
+'grouppage-sysop'         => '{{ns:project}}:Administraatorid',
+'grouppage-bureaucrat'    => '{{ns:project}}:Bürokraadid',
 
 # Rights
 'right-read'            => 'Lugeda lehekülgi',
@@ -959,8 +973,8 @@ See ei tohi olla pikem kui $1 {{PLURAL:$1|sümbol|sümbolit}}.',
 'right-editusercssjs'   => 'Redigeerida teiste kasutajate CSS ja JS faile',
 'right-import'          => 'Impordi lehekülgi teistest vikidest',
 'right-importupload'    => 'Impordi lehekülgi faili üleslaadimisest',
-'right-patrol'          => 'Märgista teiste redigeerimised patrullituks',
-'right-patrolmarks'     => 'Vaata viimaste muudatuste patrullimärkeid',
+'right-patrol'          => 'Märgista teiste redigeerimised kontrollituks',
+'right-patrolmarks'     => 'Vaadata viimaste muudatuste kontrollimise märkeid',
 'right-unwatchedpages'  => 'Vaadata jälgimata lehekülgede nimekirja',
 'right-siteadmin'       => 'Panna lukku ja lukust lahti teha andmebaasi',
 'right-reset-passwords' => 'Määrata teistele kasutajatele paroole',
@@ -1115,7 +1129,7 @@ Palun pöörduge tagasi ja laadige fail üles mõne teise nime all. [[File:$1|th
 'filehist-dimensions'       => 'Mõõtmed',
 'filehist-filesize'         => 'Faili suurus',
 'filehist-comment'          => 'Kommentaar',
-'imagelinks'                => 'Viited failidele',
+'imagelinks'                => 'Viited failile',
 'linkstoimage'              => 'Sellele pildile {{PLURAL:$1|viitab järgmine lehekülg|viitavad järgmised leheküljed}}:',
 'nolinkstoimage'            => 'Sellele pildile ei viita ükski lehekülg.',
 'sharedupload'              => 'See fail pärineb allikast $1 ning võib olla kasutusel ka teistes projektides.',
@@ -1263,10 +1277,13 @@ Palun pöörduge tagasi ja laadige fail üles mõne teise nime all. [[File:$1|th
 
 # Special:Categories
 'categories'         => 'Kategooriad',
-'categoriespagetext' => 'Vikis on järgmised kategooriad.
-Siin ei näidata [[Special:UnusedCategories|Unused categories]].
-Vaata ka [[Special:WantedCategories|wanted categories]].',
+'categoriespagetext' => 'Vikis on {{PLURAL:$1|järgmine kategooria|järgmised kategooriad}}.
+Siin ei näidata [[Special:UnusedCategories|kasutamata kategooriaid]].
+Vaata ka [[Special:WantedCategories|puuduvaid kategooriaid]].',
 'categoriesfrom'     => 'Näita kategooriaid alates:',
+
+# Special:DeletedContributions
+'deletedcontributions' => 'Kasutaja kustutatud kaastööd',
 
 # Special:LinkSearch
 'linksearch'    => 'Välislingid',
@@ -1644,14 +1661,36 @@ Kui soovid MediaWiki tarkvara tõlkimises osaleda siis vaata lehti [http://www.m
 'thumbnail_error' => 'Viga pisipildi loomisel: $1',
 
 # Special:Import
-'import'          => 'Lehekülgede import',
-'importinterwiki' => 'Vikidevaheline import',
-'import-comment'  => 'Kommentaar:',
-'importfailed'    => 'Importimine ebaõnnestus: $1',
-'importnosources' => 'Ühtegi transwiki impordiallikat ei ole defineeritud ning ajaloo otseimpordi funktsioon on välja lülitatud.',
+'import'                   => 'Lehekülgede import',
+'importinterwiki'          => 'Vikidevaheline import',
+'import-upload-filename'   => 'Failinimi:',
+'import-comment'           => 'Kommentaar:',
+'importtext'               => 'Palun ekspordi fail allikaks olevast vikist kasutades [[Special:Export|lehekülgede ekspordi vahendit]].
+Salvesta see oma arvutisse ning lae see siia ülesse.',
+'importstart'              => 'Impordin lehekülgi...',
+'import-revision-count'    => '$1 {{PLURAL:$1|versioon|versiooni}}',
+'importnopages'            => 'Ei olnud imporditavaid lehekülgi.',
+'importfailed'             => 'Importimine ebaõnnestus: <nowiki>$1</nowiki>',
+'importunknownsource'      => 'Unknown import source type
+Tundmatu tüüpi algallikas',
+'importcantopen'           => 'Ei saa imporditavat faili avada',
+'importbadinterwiki'       => 'Vigane interwiki link',
+'importnotext'             => 'Tühi või ilma tekstita',
+'importsuccess'            => 'Importimine edukalt lõpetatud!',
+'importhistoryconflict'    => 'Konfliktne muudatuste ajalugu (võimalik, et seda lehekülge juba varem imporditud)',
+'importnosources'          => 'Ühtegi transwiki impordiallikat ei ole defineeritud ning ajaloo otseimpordi funktsioon on välja lülitatud.',
+'importnofile'             => 'Faili importimiseks, ei laetud ühtki faili ülesse.',
+'importuploaderrorsize'    => 'Üleslaaditava faili import ebaõnnestus.
+Fail on lubatust suurem.',
+'importuploaderrorpartial' => 'Üleslaaditava faili import ebaõnnestus.
+Fail oli vaid osaliselt üleslaetud.',
+'importuploaderrortemp'    => 'Üleslaaditava faili import ebaõnnestus.
+Puudub ajutine kataloog.',
+'import-noarticle'         => 'Ühtki lehekülge polnud importida!',
 
 # Import log
-'importlogpage' => 'Impordi logi',
+'importlogpage'          => 'Impordi logi',
+'import-logentry-upload' => 'faili impordi abil imporditud [[$1]] lehekülg',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Sinu kasutajaleht',
@@ -1745,9 +1784,12 @@ Samuti võimaldab see resümee reale põhjenduse lisamist.',
 'math_syntax_error'     => 'Süntaksiviga',
 
 # Patrolling
-'markaspatrolleddiff' => 'Märgi kui patrullitud',
-'markaspatrolledtext' => 'Märgista see leht kui patrullitud',
-'markedaspatrolled'   => 'Märgistatud kui patrullitud',
+'markaspatrolleddiff' => 'Märgi kui kontrollitud',
+'markaspatrolledtext' => 'Märgi see leht kontrollituks',
+'markedaspatrolled'   => 'Kontrollituks märgitud',
+
+# Image deletion
+'deletedrevision' => 'Kustutatud vanem variant $1',
 
 # Browsing diffs
 'previousdiff' => '← Eelmised erinevused',
@@ -1755,7 +1797,7 @@ Samuti võimaldab see resümee reale põhjenduse lisamist.',
 
 # Media information
 'mediawarning'         => "'''Hoiatus''': See fail võib sisaldada pahatahtlikku koodi, mille käivitamime võib kahjustada teie arvutisüsteemi.<hr />",
-'imagemaxsize'         => 'Maksimaalne faili suurus kirjelduslehekülgedel:',
+'imagemaxsize'         => "Maksimaalne pildi suurus:<br />''kirjelduslehekülgedel''",
 'thumbsize'            => 'Pisipildi suurus:',
 'file-info-size'       => '($1 × $2 pikslit, faili suurus: $3, MIME tüüp: $4)',
 'file-nohires'         => '<small>Sellest suuremat pilti pole.</small>',
@@ -1767,7 +1809,7 @@ Samuti võimaldab see resümee reale põhjenduse lisamist.',
 'newimages'             => 'Uute meediafailide galerii',
 'imagelisttext'         => "
 Järgnevas loendis, mis on sorteeritud $2, on '''$1''' {{PLURAL:$1|fail|faili}}.",
-'showhidebots'          => '($1 bottide kaastööd)',
+'showhidebots'          => '($1 robotite kaastööd)',
 'ilsubmit'              => 'Otsi',
 'bydate'                => 'kuupäeva järgi',
 'sp-newimages-showfrom' => 'Näita uusi faile alates $2 $1',
@@ -1801,8 +1843,11 @@ Kui faili on muudetud mõne tarkvara programmiga, siis võivad osad andmed olla 
 'exif-software'                 => 'Kasutatud tarkvara',
 'exif-artist'                   => 'Autor',
 'exif-copyright'                => 'Autoriõiguste omanik',
+'exif-exifversion'              => 'Exif versioon',
+'exif-makernote'                => 'Tootja märkmed',
+'exif-usercomment'              => 'Kasutaja kommentaarid',
 'exif-exposuretime'             => 'Säriaeg',
-'exif-aperturevalue'            => 'Ava',
+'exif-aperturevalue'            => 'Avaarv',
 'exif-brightnessvalue'          => 'Heledus',
 'exif-flash'                    => 'Välk',
 'exif-focallength'              => 'Fookuskaugus',
@@ -1905,6 +1950,7 @@ Aga samuti võid sa [[Special:Watchlist/edit|kasutada harilikku redaktorit]].',
 # Watchlist editing tools
 'watchlisttools-view' => 'Näita vastavaid muudatusi',
 'watchlisttools-edit' => 'Vaata ja redigeeri jälgimisloendit',
+'watchlisttools-raw'  => 'Muuda lähteteksti',
 
 # Special:Version
 'version'                  => 'Versioon',
@@ -1934,7 +1980,7 @@ Aga samuti võid sa [[Special:Watchlist/edit|kasutada harilikku redaktorit]].',
 'specialpages-group-users'       => 'Kasutajad ja õigused',
 'specialpages-group-highuse'     => 'Tihti kasutatud leheküljed',
 'specialpages-group-pagetools'   => 'Töö lehekülgedega',
-'specialpages-group-wiki'        => 'Wiki andmed ja tööriistad',
+'specialpages-group-wiki'        => 'Viki andmed ja tööriistad',
 'specialpages-group-redirects'   => 'Ümbersuunavad erilehed',
 'specialpages-group-spam'        => 'Töö spämmiga',
 

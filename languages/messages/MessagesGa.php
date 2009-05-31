@@ -8,6 +8,7 @@
  * @file
  *
  * @author Alison
+ * @author D.de.loinsigh
  * @author Kwekubo
  * @author Moilleadóir
  * @author Spacebirdy
@@ -93,6 +94,8 @@ $messages = array(
 (rogha malartach: mar seo<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Comhfhadaigh na paragraif',
 'tog-hideminor'               => 'Ná taispeáin mionathruithe i measc na n-athruithe is déanaí',
+'tog-hidepatrolled'           => 'Folaigh giotaí eagartha smachtaithe sna athruithe is déanaí',
+'tog-newpageshidepatrolled'   => 'Folaigh leathanaigh smachtaithe ó liosta leathanaigh úire',
 'tog-extendwatchlist'         => 'Leathnaigh an liosta faire chun gach athrú cuí a thaispeáint',
 'tog-usenewrc'                => 'Stíl nua do na hathruithe is déanaí (JavaScript riachtanach)',
 'tog-numberheadings'          => 'Uimhrigh ceannteidil go huathoibríoch',
@@ -250,6 +253,7 @@ agus an [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Lámhleabhar ú
 'permalink'         => 'Nasc buan',
 'print'             => 'Priontáil',
 'edit'              => 'Athraigh an lch seo',
+'view'              => 'Léigh',
 'create'            => 'Cruthaigh',
 'editthispage'      => 'Athraigh an lch seo',
 'create-this-page'  => 'Cruthaigh an lch seo',
@@ -342,7 +346,7 @@ agus an [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Lámhleabhar ú
 'site-atom-feed'          => '$1 Fotha Atom',
 'page-rss-feed'           => '"$1" Fotha RSS',
 'page-atom-feed'          => '"$1" Fotha Atom',
-'red-link-title'          => '$1 (níor scríobheadh fós)',
+'red-link-title'          => '$1 (níl an leathanach ann)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Alt',
@@ -403,6 +407,8 @@ Murab fhíor é seo, is féidir go bhfuair tú fabht sa bhogearraí. Beimid buí
 'filedeleteerror'      => 'Ní féidir an comhad "$1" a scriosaigh amach.',
 'directorycreateerror' => 'Ní féidir an chomhadlann "$1" a chruth.',
 'filenotfound'         => 'Ní bhfuarthas an comhad "$1".',
+'fileexistserror'      => 'Unable to write to file  file exists
+Ní-abálta scríobh chuif comhad "$1": is ann don chomhad',
 'unexpected'           => 'Luach gan súil leis: "$1"="$2".',
 'formerror'            => 'Earráid: ní féidir an foirm a tabhair isteach',
 'badarticleerror'      => 'Ní féidir an gníomh seo a dhéanamh ar an leathanach seo.',
@@ -417,6 +423,9 @@ Feidhm: $1<br />
 Iarratas: $2',
 'viewsource'           => 'Féach ar fhoinse',
 'viewsourcefor'        => 'le haghaidh $1',
+'actionthrottled'      => 'Gníomh scóigthe',
+'actionthrottledtext'  => 'Mar theicníc frithurscair, ní féidir lear an gníomh seo a dhéanamh barraíocht taobh istigh de thréimhse ghairid ama, agus tá an méid sáraithe agat.
+Bain trial arís as i gcionn cúpla bomaite más é do thoil é.',
 'protectedpagetext'    => 'Tá an leathanach seo glasáilte chun coisc ar eagarthóireacht.',
 'viewsourcetext'       => 'Is féidir foinse an leathanach seo a fheiceáil ná a cóipeáil:',
 'editinginterface'     => "'''Rabhadh:''' Tá tú ag athrú leathanaigh a bhfuil téacs comhéadain do na bogearraí air. Cuirfear athruithe ar an leathanach seo i bhfeidhm ar an gcomhéadan úsáideora.
@@ -580,6 +589,7 @@ Is é $3 do sheoladh IP agus #$5 do ID coisc. Déan tagairt don seoladh seo le g
 'blockedoriginalsource'      => "Tá an foinse '''$1''' le feiceáil a leanas:",
 'whitelistedittitle'         => 'Logáil isteach chun athrú a dhéanamh',
 'whitelistedittext'          => 'Ní mór duit $1 chun ailt a athrú.',
+'nosuchsectiontitle'         => 'Níl a leithéad de shliocht tofa ann',
 'loginreqtitle'              => 'Tá logáil isteach de dhíth ort',
 'loginreqlink'               => 'logáil isteach',
 'loginreqpagetext'           => 'Caithfidh tú $1 chun leathanaigh a amharc.',
@@ -650,10 +660,10 @@ An fáth ar thug an riarthóir a ghlasáil é: $1",
 Is féidir leat dul ar ais chun leathanach láithreach a athrú, nó [[Special:UserLogin|log isteach nó cruthaigh cuntas nua]].',
 'nocreate-loggedin'          => 'Níl cead agat leathanaigh nua a chruthú.',
 'permissionserrors'          => 'Cead rochtana earráidí',
-'recreate-moveddeleted-warn' => "'''Rabhadh: Tá tú ag athchruthú leathanach ina bhfuil scriostha roimhe.'''
+'recreate-moveddeleted-warn' => "'''Rabhadh: Tá tú ag athchruthú leathanaigh a scriosadh cheana.'''
 
-Bhreithneoidh tú cibé go bhfuil sé oiriúnach chun lean an leathanach seo a cur in eagar.<br />
-Tá an log scriosta ar fáil anseo mar áis:",
+An bhfuil tú cinnte go bhfuil sé oiriúnach an leathanach seo a cur in eagar?
+Cuirtear an loga scriosta ar fáil anseo mar áis:",
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Ní féidir cuntas a chruthú',

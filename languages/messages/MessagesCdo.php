@@ -439,6 +439,8 @@ Siók-mìng: (dāng) = gâe̤ng dék sĭng bēng-buōng bī-piâng, (sèng) = g�
 'uploadbtn'         => 'Siông-duòng ùng-giông',
 'reupload'          => 'Dṳ̀ng-sĭng siông-diòng',
 'reuploaddesc'      => 'Duōng kó̤ siông-duòng dăng-dăng.',
+'uploadnologin'     => 'Mò̤ láuk-diē',
+'uploadnologintext' => 'Sĕng [[Special:UserLogin|láuk-diē]] ciáh â̤-sāi siông-duòng ùng-giông.',
 'uploaderror'       => 'Siông-duòng ô dâng',
 'uploadlog'         => 'siông-duòng nĭk-cé',
 'uploadlogpage'     => 'Siông-duòng nĭk-cé',
@@ -772,6 +774,8 @@ Cé̤ṳ-é, nâ ô găk sĭng dà̤-mĕ̤k gô-dā̤ mò̤ ùng-ciŏng (mò̤ b
 
 Nâ cūng-kuāng, nṳ̄ â̤-sāi cê-gă iè-dông hĕ̤k-ciā sê hăk-biáng hiĕk-miêng.",
 'movearticle'             => 'Iè-dông ùng-ciŏng',
+'movenologin'             => 'Muôi láuk-diē',
+'movenologintext'         => 'Sĕng [[Special:UserLogin|láuk-diē]] ciáh â̤-sāi iè-dông hiĕk-miêng.',
 'newtitle'                => 'Gáu sĭng dà̤-mĕ̤k',
 'move-watch'              => 'Gáng-sê ciā hiĕk',
 'movepagebtn'             => 'Iè-dông hiĕk-miêng',

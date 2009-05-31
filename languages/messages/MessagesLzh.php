@@ -2372,6 +2372,7 @@ $1',
 'comma-separator'     => '、',
 'colon-separator'     => '：',
 'pipe-separator'      => '｜',
+'word-separator'      => '',
 'ellipsis'            => '……',
 
 # Multipage image navigation
