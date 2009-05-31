@@ -87,7 +87,6 @@ $specialPageAliases = array(
 	'Preferences'               => array( '參數設置' ),
 	'Watchlist'                 => array( '監視列表' ),
 	'Recentchanges'             => array( '最近更改' ),
-	'Recentchangeslinked'       => array( '連出更改' ),
 	'Upload'                    => array( '上載檔案' ),
 	'Listfiles'                 => array( '檔案列表' ),
 	'Newimages'                 => array( '新建檔案' ),
@@ -128,6 +127,7 @@ $specialPageAliases = array(
 	'Emailuser'                 => array( '電郵用戶' ),
 	'Confirmemail'              => array( '確認電子郵件' ),
 	'Whatlinkshere'             => array( '連入頁面' ),
+	'Recentchangeslinked'       => array( '連出更改' ),
 	'Movepage'                  => array( '移動頁面' ),
 	'Booksources'               => array( '網路書源' ),
 	'Categories'                => array( '頁面分類' ),
@@ -154,7 +154,6 @@ $specialPageAliases = array(
 	'Blankpage'                 => array( '空白頁面' ),
 	'DeletedContributions'      => array( '已刪除的用戶貢獻' ),
 	'Tags'                      => array( '標籤' ),
-	'Createpage'                => array( '創建頁面' ),
 );
 
 $bookstoreList = array(

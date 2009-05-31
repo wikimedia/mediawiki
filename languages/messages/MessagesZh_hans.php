@@ -161,7 +161,6 @@ $specialPageAliases = array(
 	'LinkSearch'                => array( '搜索网页链接' ),
 	'DeletedContributions'      => array( '已删除的用户贡献' ),
 	'Tags'                      => array( '标签' ),
-	'Createpage'                => array( '创建页面' ),
 );
 
 $datePreferences = array(
