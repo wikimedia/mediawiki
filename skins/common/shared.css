@@ -222,12 +222,8 @@ td#mw-search-togglebox {
         text-align: right;
 }
 
-div#mw-search-redirbox {
-        width:100%;
-}
-
-table#mw-search-redirtable {
-        width:95%;
+table#mw-search-powertable {
+	width:100%;
 }
 
 

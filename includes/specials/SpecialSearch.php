@@ -623,7 +623,7 @@ class SpecialSearch {
 		$redirectText = '';
 		// show redirects check only if backend supports it
 		if( $this->searchEngine->acceptListRedirects() ) {
-			$redirectText = "<td id='powersearch-rediropt'>". $redirect . " " . $redirectLabel ."</td>";
+			$redirectText = $redirect . " " . $redirectLabel;
 		}
 		
  
@@ -632,29 +632,27 @@ class SpecialSearch {
 
 		// toggle for turning on and off all checkboxes
 		$selectOptionsLabel = Xml::label( wfMsg( 'powersearch-togglelabel' ), 'mw-search-togglelabel' );
-		$selectAllButton = Xml::openElement('button', array('type'=>'button', 'id' => 'mw-search-toggleall', 'onclick' => 'mwToggleSearchCheckboxes("all");' ))
-			. wfMsg( 'powersearch-toggleall' ) . Xml::closeElement('button');
+		$selectAllButton = Xml::openElement('input', array('type'=>'button', 'id' => 'mw-search-toggleall', 'onclick' => 'mwToggleSearchCheckboxes("all");', 
+			'value' => wfMsg( 'powersearch-toggleall' ) )) . '</input>';
 			
-		$selectNoneButton = Xml::openElement('button', array('type'=>'button', 'id' => 'mw-search-togglenone', 'onclick' => 'mwToggleSearchCheckboxes("none");' ))
-			. wfMsg( 'powersearch-togglenone' ) . Xml::closeElement('button');
+		$selectNoneButton = Xml::openElement('input', array('type'=>'button', 'id' => 'mw-search-togglenone', 'onclick' => 'mwToggleSearchCheckboxes("none");',
+			'value' => wfMsg( 'powersearch-togglenone' ) )) . '</input>';
 			
-		$selectOptionsText = "<td id='mw-search-togglebox'>" . $selectOptionsLabel . $selectAllButton . $selectNoneButton . "</td>";
+		$selectOptionsText = "<td id='mw-search-togglebox' align='right'>" . $selectOptionsLabel . $selectAllButton . $selectNoneButton . "</td>";
 
 		$searchButton = Xml::submitButton( wfMsg( 'powersearch' ) ) . "\n";
 		$searchTitle = SpecialPage::getTitleFor( 'Search' );
 
-		$optionsText = "<div id='mw-search-redirbox'><table id='mw-search-redirtable'><tr>" . $redirectText . $selectOptionsText . "</tr></table></div>";
+		$topText = "<table id='mw-search-powertable'><tr><td>" . wfMsgExt( 'powersearch-ns', array( 'parseinline' ) ). '</td>' . $selectOptionsText . "</tr></table>";
 
 		$out = Xml::openElement( 'form', array(	'id' => 'powersearch', 'method' => 'get', 'action' => $wgScript ) ) .
 			Xml::hidden( 'title', $searchTitle->getPrefixedText() ) . "\n" .
-			"<p>" .
-			wfMsgExt( 'powersearch-ns', array( 'parseinline' ) ) .
-			"</p>\n" .
+			$topText .
 			'<input type="hidden" name="advanced" value="'.$this->searchAdvanced."\"/>\n".
 			$tables .
 			"<hr style=\"clear: both;\" />\n".
-			$optionsText . "\n".
-			"<div style=\"padding-top:4px;padding-bottom:2px;text-align:center;\">".
+			$redirectText . "\n".
+			"<div style=\"padding-top:4px;padding-bottom:2px;\">".
 			$searchField .
 			"&nbsp;" .
 			Xml::hidden( 'fulltext', 'Advanced search' ) . "\n" .
