@@ -424,6 +424,11 @@ $1 is <nowiki>{{SITENAME}}</nowiki>.
 HTML markup cannot be used.",
 'feed-atom'               => '{{optional}}',
 'feed-rss'                => '{{optional}}',
+'sitenotice'              => "Translators: don't translate this message.
+
+MediaWiki:Sitenotice is displayed above the page title for all users if it is defined, unless it is superseded by another notice. 'Defined' means it exists and has content other than the single character '-'.
+
+Manual: [[mw:Manual:Interface/Sitenotice]]",
 'red-link-title'          => 'Title for red hyperlinks. Indicates, that the page is empty, not written yet.',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
@@ -716,6 +721,9 @@ Please report at [[Support]] if you are unable to properly translate this messag
 * $1 indicates the time of that revision and 
 * $2 the author of the revision
 * (optional) $3 is the revision ID',
+'revision-info-current'  => '* $1: time of revision
+* $2: author of revision
+* (optional) $3: revision ID',
 'currentrevisionlink'    => '{{Identical|Current revision}}',
 'cur'                    => 'Link in page history',
 'next'                   => 'Link in page history
@@ -1497,6 +1505,7 @@ $1 is the name of the shared repository. On wikimedia sites, $1 is {{msg-mw|shar
 
 * \$1: Value of \$wgRCMaxAge in days",
 'statistics-mostpopular'       => 'Used in [[Special:Statistics]]',
+'statistics-footer'            => "{{doc-important|You don't need to edit this page.|This message is used in [[Special:Statistics]] for local customisation.}}",
 
 'disambiguations'      => 'Name of a special page displayed in [[Special:SpecialPages]].',
 'disambiguationspage'  => 'This message is the name of the template used for marking disambiguation pages. It is used by [[Special:Disambiguations]] to find all pages that links to disambiguation pages.
@@ -1530,64 +1539,75 @@ $1 is the name of the shared repository. On wikimedia sites, $1 is {{msg-mw|shar
 'fewestrevisions' => 'Name of a special page displayed in [[Special:SpecialPages]].',
 
 # Miscellaneous special pages
-'nbytes'                  => 'Message used on the history page of a wiki page. Each version of a page consist of a number of bytes. $1 is the number of bytes that the page uses. Uses plural as configured for a language based on $1.',
-'ncategories'             => "Used in the special page '[[Special:MostCategories]]' in brackets after each entry on the list signifying how many categories a page is part of. $1 is the number of categories.",
-'nlinks'                  => 'This appears in brackets after each entry on the special page [[Special:MostLinked]]. $1 is the number of wiki links.',
-'nmembers'                => 'Appears in brackets after each category listed on the special page [[Special:WantedCategories]]. $1 is the number of members of the category.',
-'nrevisions'              => 'Number of revisions.',
-'nviews'                  => 'This message is used on [[Special:PopularPages]] to say how many times each page has been viewed. Parameter $1 is the number of views.',
-'specialpage-empty'       => 'Used on a special page when there is no data. For example on [[Special:Unusedimages]] when all images are used.',
-'lonelypages'             => 'Name of [[Special:LonelyPages]] displayed in [[Special:SpecialPages]]',
-'lonelypagestext'         => 'Text displayed in [[Special:LonelyPages]]',
-'uncategorizedpages'      => 'Name of a special page displayed in [[Special:SpecialPages]].',
-'uncategorizedcategories' => 'Name of special page displayed in [[Special:SpecialPages]]',
-'uncategorizedimages'     => 'The title of the special page [[Special:UncategorizedImages]].',
-'uncategorizedtemplates'  => 'The title of the special page [[Special:UncategorizedTemplates]].',
-'unusedcategories'        => 'Name of special page displayed in [[Special:SpecialPages]]',
-'unusedimages'            => 'Name of special page displayed in [[Special:SpecialPages]]',
-'popularpages'            => 'Name of special page displayed in [[Special:SpecialPages]]',
-'wantedcategories'        => 'Name of special page displayed in [[Special:SpecialPages]]',
-'wantedpages'             => 'Name of special page displayed in [[Special:SpecialPages]]',
-'wantedpages-badtitle'    => "Error message shown when [[Special:WantedPages]] is listing a page with a title that shouldn't exist.
+'nbytes'                      => 'Message used on the history page of a wiki page. Each version of a page consist of a number of bytes. $1 is the number of bytes that the page uses. Uses plural as configured for a language based on $1.',
+'ncategories'                 => "Used in the special page '[[Special:MostCategories]]' in brackets after each entry on the list signifying how many categories a page is part of. $1 is the number of categories.",
+'nlinks'                      => 'This appears in brackets after each entry on the special page [[Special:MostLinked]]. $1 is the number of wiki links.',
+'nmembers'                    => 'Appears in brackets after each category listed on the special page [[Special:WantedCategories]]. $1 is the number of members of the category.',
+'nrevisions'                  => 'Number of revisions.',
+'nviews'                      => 'This message is used on [[Special:PopularPages]] to say how many times each page has been viewed. Parameter $1 is the number of views.',
+'specialpage-empty'           => 'Used on a special page when there is no data. For example on [[Special:Unusedimages]] when all images are used.',
+'lonelypages'                 => 'Name of [[Special:LonelyPages]] displayed in [[Special:SpecialPages]]',
+'lonelypagestext'             => 'Text displayed in [[Special:LonelyPages]]',
+'uncategorizedpages'          => 'Name of a special page displayed in [[Special:SpecialPages]].',
+'uncategorizedcategories'     => 'Name of special page displayed in [[Special:SpecialPages]]',
+'uncategorizedimages'         => 'The title of the special page [[Special:UncategorizedImages]].',
+'uncategorizedimages-summary' => 'used in [[Special:Uncategorizedimages]]',
+'uncategorizedtemplates'      => 'The title of the special page [[Special:UncategorizedTemplates]].',
+'unusedcategories'            => 'Name of special page displayed in [[Special:SpecialPages]]',
+'unusedimages'                => 'Name of special page displayed in [[Special:SpecialPages]]',
+'popularpages'                => 'Name of special page displayed in [[Special:SpecialPages]]',
+'wantedcategories'            => 'Name of special page displayed in [[Special:SpecialPages]]',
+'wantedpages'                 => 'Name of special page displayed in [[Special:SpecialPages]]',
+'wantedpages-badtitle'        => "Error message shown when [[Special:WantedPages]] is listing a page with a title that shouldn't exist.
 
 $1 is a page title",
-'wantedfiles'             => 'Name of special page displayed in [[Special:SpecialPages]] and title of [[Special:WantedFiles]].',
-'wantedtemplates'         => 'The page name of [[Special:WantedTemplates]].',
-'mostlinked'              => 'Name of special page displayed in [[Special:SpecialPages]]',
-'mostlinkedcategories'    => 'Name of special page displayed in [[Special:SpecialPages]]',
-'mostlinkedtemplates'     => 'Name of special page displayed in [[Special:SpecialPages]]',
-'mostcategories'          => 'Name of special page displayed in [[Special:SpecialPages]]',
-'mostimages'              => 'Name of special page displayed in [[Special:SpecialPages]]',
-'mostrevisions'           => 'Name of special page displayed in [[Special:SpecialPages]]',
-'prefixindex'             => 'The page title of [[Special:PrefixIndex]]. When the user limits the list to a certain namespace, {{msg-mw|allinnamespace}} is used instead.',
-'shortpages'              => 'Name of special page displayed in [[Special:SpecialPages]]',
-'longpages'               => 'Name of special page displayed in [[Special:SpecialPages]]',
-'deadendpages'            => 'Name of special page displayed in [[Special:SpecialPages]]',
-'deadendpagestext'        => 'Introductory text for [[Special:DeadendPages]]',
-'protectedpages'          => 'Name of special page displayed in [[Special:SpecialPages]]',
-'protectedpages-indef'    => 'Option in [[Special:ProtectedPages]]',
-'protectedpages-cascade'  => 'Option in [[Special:ProtectedPages]]',
-'protectedpagestext'      => 'Shown on top of [[Special:ProtectedPages]]',
-'protectedtitles'         => 'Name of special page displayed in [[Special:SpecialPages]]',
-'protectedtitlestext'     => 'Shown on top of list of titles on [[Special:ProtectedTitles]]. If the list is empty the message [[MediaWiki:Protectedtitlesempty]] appears instead of this. See the [http://www.mediawiki.org/wiki/Project:Protected_titles help page on Mediawiki] for more information.',
-'protectedtitlesempty'    => 'Used on [[Special:ProtectedTitles]]. This text appears if the list of protected titles is empty. See the [http://www.mediawiki.org/wiki/Project:Protected_titles help page on Mediawiki] for more information.',
-'listusers'               => 'Name of special page displayed in [[Special:SpecialPages]]',
-'listusers-editsonly'     => 'Option in [[Special:ListUsers]].',
-'listusers-creationsort'  => 'Option in [[Special:ListUsers]].',
-'usereditcount'           => 'Shown behind every username on [[Special:ListUsers]].',
-'usercreated'             => 'Used in [[Special:ListUsers]].
+'wantedfiles'                 => 'Name of special page displayed in [[Special:SpecialPages]] and title of [[Special:WantedFiles]].',
+'wantedtemplates'             => 'The page name of [[Special:WantedTemplates]].',
+'mostlinked'                  => 'Name of special page displayed in [[Special:SpecialPages]]',
+'mostlinkedcategories'        => 'Name of special page displayed in [[Special:SpecialPages]]',
+'mostlinkedtemplates'         => 'Name of special page displayed in [[Special:SpecialPages]]',
+'mostcategories'              => 'Name of special page displayed in [[Special:SpecialPages]]',
+'mostimages'                  => 'Name of special page displayed in [[Special:SpecialPages]]',
+'mostimages-summary'          => "The summary displayed at the top of [[Special:Mostimages]]. '''Do not translate or duplicate this message to other languages'''. [[mw:Manual:Interface/Special pages summary|mw manual]].",
+'mostrevisions'               => 'Name of special page displayed in [[Special:SpecialPages]]',
+'mostrevisions-summary'       => "The summary displayed at the top of [[Special:Mostrevisions]]. '''Do not translate or duplicate this message to other languages'''. [[mw:Manual:Interface/Special pages summary|mw manual]].",
+'prefixindex'                 => 'The page title of [[Special:PrefixIndex]]. When the user limits the list to a certain namespace, {{msg-mw|allinnamespace}} is used instead.',
+'prefixindex-summary'         => "The summary displayed at the top of [[Special:Prefixindex]]. '''Do not translate or duplicate this message to other languages'''. [[mw:Manual:Interface/Special pages summary|mw manual]].",
+'shortpages'                  => 'Name of special page displayed in [[Special:SpecialPages]]',
+'shortpages-summary'          => "The summary displayed at the top of [[Special:Shortpages]]. '''Do not translate or duplicate this message to other languages'''. [[mw:Manual:Interface/Special pages summary|mw manual]].",
+'longpages'                   => 'Name of special page displayed in [[Special:SpecialPages]]',
+'longpages-summary'           => "The summary displayed at the top of [[Special:Longpages]]. '''Do not translate or duplicate this message to other languages'''. [[mw:Manual:Interface/Special pages summary|mw manual]].",
+'deadendpages'                => 'Name of special page displayed in [[Special:SpecialPages]]',
+'deadendpages-summary'        => "The summary displayed at the top of [[Special:Deadendpages]]. '''Do not translate or duplicate this message to other languages'''. [[mw:Manual:Interface/Special pages summary|mw manual]].",
+'deadendpagestext'            => 'Introductory text for [[Special:DeadendPages]]',
+'protectedpages'              => 'Name of special page displayed in [[Special:SpecialPages]]',
+'protectedpages-indef'        => 'Option in [[Special:ProtectedPages]]',
+'protectedpages-summary'      => "The summary displayed at the top of [[Special:Protectedpages]]. '''Do not translate or duplicate this message to other languages'''. [[mw:Manual:Interface/Special pages summary|mw manual]].",
+'protectedpages-cascade'      => 'Option in [[Special:ProtectedPages]]',
+'protectedpagestext'          => 'Shown on top of [[Special:ProtectedPages]]',
+'protectedtitles'             => 'Name of special page displayed in [[Special:SpecialPages]]',
+'protectedtitles-summary'     => "The summary displayed at the top of [[Special:Protectedtitles]]. '''Do not translate or duplicate this message to other languages'''. [[mw:Manual:Interface/Special pages summary|mw manual]].",
+'protectedtitlestext'         => 'Shown on top of list of titles on [[Special:ProtectedTitles]]. If the list is empty the message [[MediaWiki:Protectedtitlesempty]] appears instead of this. See the [http://www.mediawiki.org/wiki/Project:Protected_titles help page on Mediawiki] for more information.',
+'protectedtitlesempty'        => 'Used on [[Special:ProtectedTitles]]. This text appears if the list of protected titles is empty. See the [http://www.mediawiki.org/wiki/Project:Protected_titles help page on Mediawiki] for more information.',
+'listusers'                   => 'Name of special page displayed in [[Special:SpecialPages]]',
+'listusers-summary'           => "The summary displayed at the top of [[Special:Listusers]]. '''Do not translate or duplicate this message to other languages'''. [[mw:Manual:Interface/Special pages summary|mw manual]].",
+'listusers-editsonly'         => 'Option in [[Special:ListUsers]].',
+'listusers-creationsort'      => 'Option in [[Special:ListUsers]].',
+'usereditcount'               => 'Shown behind every username on [[Special:ListUsers]].',
+'usercreated'                 => 'Used in [[Special:ListUsers]].
 * <code>$1</code> is a date
 * <code>$2</code> is a time',
-'newpages'                => 'Name of special page displayed in [[Special:SpecialPages]]',
-'newpages-username'       => '{{Identical|Username}}',
-'ancientpages'            => 'The page title of [[Special:Ancientpages]]. [[mw:Manual:Interface/Special pages title|mw manual]]',
-'move'                    => 'Name of Move tab. Should be in the imperative mood.
+'newpages'                    => 'Name of special page displayed in [[Special:SpecialPages]]',
+'newpages-summary'            => "The summary displayed at the top of [[Special:Newpages]]. '''Do not translate or duplicate this message to other languages'''. [[mw:Manual:Interface/Special pages summary|mw manual]].",
+'newpages-username'           => '{{Identical|Username}}',
+'ancientpages'                => 'The page title of [[Special:Ancientpages]]. [[mw:Manual:Interface/Special pages title|mw manual]]',
+'move'                        => 'Name of Move tab. Should be in the imperative mood.
 
 {{Identical|Move}}',
-'movethispage'            => '{{Identical|Move this page}}',
-'unusedimagestext'        => 'Header message of [[Special:UnusedFiles]]',
-'pager-newer-n'           => "This is part of the navigation message on the top and bottom of Special pages which are lists of things in date order, e.g. the User's contributions page. It is passed as the second argument of {{msg-mw|Viewprevnext}}. $1 is the number of items shown per page.",
-'pager-older-n'           => "This is part of the navigation message on the top and bottom of Special pages which are lists of things in date order, e.g. the User's contributions page. It is passed as the first argument of {{msg-mw|Viewprevnext}}. $1 is the number of items shown per page.",
+'movethispage'                => '{{Identical|Move this page}}',
+'unusedimagestext'            => 'Header message of [[Special:UnusedFiles]]',
+'pager-newer-n'               => "This is part of the navigation message on the top and bottom of Special pages which are lists of things in date order, e.g. the User's contributions page. It is passed as the second argument of {{msg-mw|Viewprevnext}}. $1 is the number of items shown per page.",
+'pager-older-n'               => "This is part of the navigation message on the top and bottom of Special pages which are lists of things in date order, e.g. the User's contributions page. It is passed as the first argument of {{msg-mw|Viewprevnext}}. $1 is the number of items shown per page.",
 
 # Book sources
 'booksources'      => 'Name of special page displayed in [[Special:SpecialPages]]',
@@ -1901,6 +1921,7 @@ Shown as subtitle of the protection form. $1 is the title of the page to be (un)
 'undeletelink'               => 'Display name of link to undelete a page used on [[Special:Log/delete]]
 
 {{Identical|Restore}}',
+'undeleteviewlink'           => 'First part of {{msg-mw|undeletelink}}',
 'undeletereset'              => 'Shown on [[Special:Undelete]] as button caption.
 {{Identical|Reset}}',
 'undeleteinvert'             => '{{Identical|Invert selection}}',
@@ -2178,6 +2199,7 @@ Import failed: XML import parse failure at line 1, col 1 (byte 3; "- <mediawiki 
 Related messages: {{msg|right-importupload|pl=yes}} (the user right for this).',
 
 # Import log
+'importlogpage'          => '',
 'importlogpagetext'      => 'This text appears at the top of the [http://translatewiki.net/w/i.php?title=Special%3ALog&type=import&user=&page=&year=&month=-1 import log] special page.',
 'import-logentry-upload' => 'This is the text of an entry in the Import log (and Recent Changes), after hour (and date, only in the Import log) and sysop name:
 * $1 is the name of the imported file',
@@ -2859,6 +2881,9 @@ Hint: the text "Remove Titles" is in {{msg-mw|watchlistedit-normal-submit}}',
 'hebrew-calendar-m12-gen' => 'Name of month in Hebrew calender.',
 
 # Signatures
+'signature'    => "This will be substituted in the signature (~<nowiki></nowiki>~~ or ~~<nowiki></nowiki>~~ excluding timestamp)
+* $1: the username that are currently login
+* $2: the customized signature which is specified in [[Special:Preferences|user's preferences]] as non-raw",
 'timezone-utc' => '{{optional}}',
 
 # Core parser functions
