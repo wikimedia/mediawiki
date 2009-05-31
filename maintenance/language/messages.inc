@@ -807,6 +807,7 @@ $wgMessageStructure = array(
 		'search-mwsuggest-disabled',
 		'search-relatedarticle',
 		'mwsuggest-disable',
+		'searcheverything-enable',
 		'searchrelated',
 		'searchall',
 		'showingresults',
@@ -826,7 +827,6 @@ $wgMessageStructure = array(
 		'search-external',
 		'searchdisabled',
 		'googlesearch',
-		'searcheverything-enable',
 	),
 	'opensearch' => array(
 		'opensearch-desc',
