@@ -596,16 +596,19 @@ class CoreParserFunctions {
 	}
 	
 	/**
-	* Returns the number of contributions by a certain user
+	* Returns the number of contributions by a certain user. This is an 
+	* expensive parser function and can't be called too many times per page
 	*/
-	static function numberofcontribs( $parser, $user = null ) {
-		if ( is_null($user) || !User::isValidUserName( $user ) )
+	static function numberofcontribs( $parser, $user = null, $raw = null ) {
+		if ( is_null($user) || !User::isValidUserName( $user ) ) {
 			return '';
-			
+		}
+		if ( !$parser->incrementExpensiveFunctionCount() ) {
+			return '';
+		}
 		$u = User::newFromName( $user );
 		$u->load();
-
-		return wfEscapeWikiText( $u->edits( $u->mId ) );
+		return self::formatRaw( $u->mEditCount, $raw );
 	}
 
 	/**
