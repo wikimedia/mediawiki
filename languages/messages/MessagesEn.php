@@ -1490,7 +1490,7 @@ Try prefixing your query with ''all:'' to search all content (including talk pag
 'powersearch-ns'                   => 'Search in namespaces:',
 'powersearch-redir'                => 'List redirects',
 'powersearch-field'                => 'Search for',
-'powersearch-togglelabel'          => 'Check: ',
+'powersearch-togglelabel'          => 'Check:',
 'powersearch-toggleall'            => 'All', 
 'powersearch-togglenone'           => 'None',
 'search-external'                  => 'External search',
