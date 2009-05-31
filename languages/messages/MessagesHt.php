@@ -15,24 +15,22 @@
 $fallback = 'fr';
 
 $namespaceNames = array(
-	NS_MEDIA          => 'Medya',
-	NS_SPECIAL        => 'Espesyal',
-	NS_MAIN           => '',
-	NS_TALK           => 'Diskite',
-	NS_USER           => 'Itilizatè',
-	NS_USER_TALK      => 'Diskisyon_Itilizatè',
-	# NS_PROJECT set by $wgMetaNamespace
-	NS_PROJECT_TALK   => 'Diskisyon_$1',
-	NS_FILE           => 'Imaj',
-	NS_FILE_TALK      => 'Diskisyon_Imaj',
-	NS_MEDIAWIKI      => 'MedyaWiki',
-	NS_MEDIAWIKI_TALK => 'Diskisyon_MedyaWiki',
-	NS_TEMPLATE       => 'Modèl',
-	NS_TEMPLATE_TALK  => 'Diskisyon_Modèl',
-	NS_HELP           => 'Èd',
-	NS_HELP_TALK      => 'Diskisyon_Èd',
-	NS_CATEGORY       => 'Kategori',
-	NS_CATEGORY_TALK  => 'Diskisyon_Kategori'
+	NS_MEDIA            => 'Medya',
+	NS_SPECIAL          => 'Espesyal',
+	NS_TALK             => 'Diskite',
+	NS_USER             => 'Itilizatè',
+	NS_USER_TALK        => 'Diskisyon_Itilizatè',
+	NS_PROJECT_TALK     => 'Diskisyon_$1',
+	NS_FILE             => 'Imaj',
+	NS_FILE_TALK        => 'Diskisyon_Imaj',
+	NS_MEDIAWIKI        => 'MedyaWiki',
+	NS_MEDIAWIKI_TALK   => 'Diskisyon_MedyaWiki',
+	NS_TEMPLATE         => 'Modèl',
+	NS_TEMPLATE_TALK    => 'Diskisyon_Modèl',
+	NS_HELP             => 'Èd',
+	NS_HELP_TALK        => 'Diskisyon_Èd',
+	NS_CATEGORY         => 'Kategori',
+	NS_CATEGORY_TALK    => 'Diskisyon_Kategori',
 );
 
 $specialPageAliases = array(

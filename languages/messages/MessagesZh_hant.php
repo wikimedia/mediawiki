@@ -25,11 +25,9 @@ $fallback8bitEncoding = 'windows-950';
 $namespaceNames = array(
 	NS_MEDIA            => '媒體',
 	NS_SPECIAL          => '特殊',
-	NS_MAIN             => '',
 	NS_TALK             => '討論',
 	NS_USER             => '用戶',
 	NS_USER_TALK        => '用戶討論',
-	# NS_PROJECT set by $wgMetaNamespace
 	NS_PROJECT_TALK     => '$1討論',
 	NS_FILE             => '檔案',
 	NS_FILE_TALK        => '檔案討論',
@@ -40,7 +38,7 @@ $namespaceNames = array(
 	NS_HELP             => '幫助',
 	NS_HELP_TALK        => '幫助討論',
 	NS_CATEGORY         => '分類',
-	NS_CATEGORY_TALK    => '分類討論'
+	NS_CATEGORY_TALK    => '分類討論',
 );
 
 $namespaceAliases = array(

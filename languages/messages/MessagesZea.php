@@ -24,11 +24,9 @@ $fallback = 'nl';
 $namespaceNames = array(
 	NS_MEDIA            => 'Media',
 	NS_SPECIAL          => 'Speciaol',
-	NS_MAIN             => '',
 	NS_TALK             => 'Overleg',
 	NS_USER             => 'Gebruker',
 	NS_USER_TALK        => 'Overleg_gebruker',
-	# NS_PROJECT set by $wgMetaNamespace
 	NS_PROJECT_TALK     => 'Overleg_$1',
 	NS_FILE             => 'Plaetje',
 	NS_FILE_TALK        => 'Overleg_plaetje',

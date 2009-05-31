@@ -13,24 +13,22 @@
  */
 
 $namespaceNames = array(
-        NS_MEDIA            => 'Media',
-        NS_SPECIAL          => 'Maxsus',
-        NS_MAIN             => '',
-        NS_TALK             => 'Bäxäs',
-        NS_USER             => 'Äğzä',
-        NS_USER_TALK        => "Äğzä_bäxäse",
-        # NS_PROJECT set by $wgMetaNamespace
-        NS_PROJECT_TALK     => '$1_bäxäse',
-        NS_FILE             => "Räsem",
-        NS_FILE_TALK        => "Räsem_bäxäse",
-        NS_MEDIAWIKI        => "MediaWiki",
-        NS_MEDIAWIKI_TALK   => "MediaWiki_bäxäse",
-        NS_TEMPLATE         => "Ürnäk",
-        NS_TEMPLATE_TALK    => "Ürnäk_bäxäse",
-        NS_HELP             => "Yärdäm",
-        NS_HELP_TALK        => "Yärdäm_bäxäse",
-        NS_CATEGORY         => "Törkem",
-        NS_CATEGORY_TALK    => "Törkem_bäxäse",
+	NS_MEDIA            => 'Media',
+	NS_SPECIAL          => 'Maxsus',
+	NS_TALK             => 'Bäxäs',
+	NS_USER             => 'Äğzä',
+	NS_USER_TALK        => 'Äğzä_bäxäse',
+	NS_PROJECT_TALK     => '$1_bäxäse',
+	NS_FILE             => 'Räsem',
+	NS_FILE_TALK        => 'Räsem_bäxäse',
+	NS_MEDIAWIKI        => 'MediaWiki',
+	NS_MEDIAWIKI_TALK   => 'MediaWiki_bäxäse',
+	NS_TEMPLATE         => 'Ürnäk',
+	NS_TEMPLATE_TALK    => 'Ürnäk_bäxäse',
+	NS_HELP             => 'Yärdäm',
+	NS_HELP_TALK        => 'Yärdäm_bäxäse',
+	NS_CATEGORY         => 'Törkem',
+	NS_CATEGORY_TALK    => 'Törkem_bäxäse',
 );
 
 $datePreferences = false;

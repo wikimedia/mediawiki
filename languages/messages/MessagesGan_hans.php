@@ -23,7 +23,7 @@ $namespaceNames = array(
 	NS_MEDIAWIKI_TALK   => 'MediaWiki谈詑',
 	NS_TEMPLATE_TALK    => '模板谈詑',
 	NS_HELP_TALK        => '帮助谈詑',
-	NS_CATEGORY_TALK    => '分类谈詑'
+	NS_CATEGORY_TALK    => '分类谈詑',
 );
 
 $messages = array(

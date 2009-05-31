@@ -15,24 +15,22 @@
  */
 
 $namespaceNames = array(
-	NS_MEDIA          => 'ਮੀਡੀਆ',
-	NS_SPECIAL        => 'ਖਾਸ',
-	NS_MAIN           => '',
-	NS_TALK           => 'ਚਰਚਾ',
-	NS_USER           => 'ਮੈਂਬਰ',
-	NS_USER_TALK      => 'ਮੈਂਬਰ_ਚਰਚਾ',
-	# NS_PROJECT set by $wgMetaNamespace
-	NS_PROJECT_TALK   => '$1_ਚਰਚਾ',
-	NS_FILE           => 'ਤਸਵੀਰ',
-	NS_FILE_TALK      => 'ਤਸਵੀਰ_ਚਰਚਾ',
-	NS_MEDIAWIKI      => 'ਮੀਡੀਆਵਿਕਿ',
-	NS_MEDIAWIKI_TALK => 'ਮੀਡੀਆਵਿਕਿ_ਚਰਚਾ',
-	NS_TEMPLATE       => 'ਨਮੂਨਾ',
-	NS_TEMPLATE_TALK  => 'ਨਮੂਨਾ_ਚਰਚਾ',
-	NS_HELP           => 'ਮਦਦ',
-	NS_HELP_TALK      => 'ਮਦਦ_ਚਰਚਾ',
-	NS_CATEGORY       => 'ਸ਼੍ਰੇਣੀ',
-	NS_CATEGORY_TALK  => 'ਸ਼੍ਰੇਣੀ_ਚਰਚਾ'
+	NS_MEDIA            => 'ਮੀਡੀਆ',
+	NS_SPECIAL          => 'ਖਾਸ',
+	NS_TALK             => 'ਚਰਚਾ',
+	NS_USER             => 'ਮੈਂਬਰ',
+	NS_USER_TALK        => 'ਮੈਂਬਰ_ਚਰਚਾ',
+	NS_PROJECT_TALK     => '$1_ਚਰਚਾ',
+	NS_FILE             => 'ਤਸਵੀਰ',
+	NS_FILE_TALK        => 'ਤਸਵੀਰ_ਚਰਚਾ',
+	NS_MEDIAWIKI        => 'ਮੀਡੀਆਵਿਕਿ',
+	NS_MEDIAWIKI_TALK   => 'ਮੀਡੀਆਵਿਕਿ_ਚਰਚਾ',
+	NS_TEMPLATE         => 'ਨਮੂਨਾ',
+	NS_TEMPLATE_TALK    => 'ਨਮੂਨਾ_ਚਰਚਾ',
+	NS_HELP             => 'ਮਦਦ',
+	NS_HELP_TALK        => 'ਮਦਦ_ਚਰਚਾ',
+	NS_CATEGORY         => 'ਸ਼੍ਰੇਣੀ',
+	NS_CATEGORY_TALK    => 'ਸ਼੍ਰੇਣੀ_ਚਰਚਾ',
 );
 
 $digitTransformTable = array(

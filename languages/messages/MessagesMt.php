@@ -15,7 +15,7 @@
  */
 
 $namespaceNames = array(
-	NS_MEDIA            => 'Midja',
+	NS_MEDIA            => 'Medja',
 	NS_SPECIAL          => 'Speċjali',
 	NS_TALK             => 'Diskussjoni',
 	NS_USER             => 'Utent',
@@ -34,7 +34,7 @@ $namespaceNames = array(
 );
 
 $namespaceAliases = array(
-	'Medja' => NS_MEDIA,
+	'Midja' => NS_MEDIA,
 	'Diskuti' => NS_TALK,
 	'Diskuti_utent' => NS_USER_TALK,
 	'$1_diskuti' => NS_PROJECT_TALK,

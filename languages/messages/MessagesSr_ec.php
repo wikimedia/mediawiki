@@ -20,18 +20,16 @@
  */
 
 $namespaceNames = array(
-	NS_MEDIA            => "Медија",
-	NS_SPECIAL          => "Посебно",
-	NS_MAIN             => "",
-	NS_TALK             => "Разговор",
-	NS_USER             => "Корисник",
-	NS_USER_TALK        => "Разговор_са_корисником",
-	# NS_PROJECT set by $wgMetaNamespace
-	NS_PROJECT_TALK     => "Разговор_о_$1",
-	NS_FILE             => "Слика",
-	NS_FILE_TALK        => "Разговор_о_слици",
-	NS_MEDIAWIKI        => "МедијаВики",
-	NS_MEDIAWIKI_TALK   => "Разговор_о_МедијаВикију",
+	NS_MEDIA            => 'Медија',
+	NS_SPECIAL          => 'Посебно',
+	NS_TALK             => 'Разговор',
+	NS_USER             => 'Корисник',
+	NS_USER_TALK        => 'Разговор_са_корисником',
+	NS_PROJECT_TALK     => 'Разговор_о_$1',
+	NS_FILE             => 'Слика',
+	NS_FILE_TALK        => 'Разговор_о_слици',
+	NS_MEDIAWIKI        => 'МедијаВики',
+	NS_MEDIAWIKI_TALK   => 'Разговор_о_МедијаВикију',
 	NS_TEMPLATE         => 'Шаблон',
 	NS_TEMPLATE_TALK    => 'Разговор_о_шаблону',
 	NS_HELP             => 'Помоћ',

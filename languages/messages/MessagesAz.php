@@ -19,7 +19,6 @@ $namespaceNames = array(
 	NS_TALK             => 'Müzakirə',
 	NS_USER             => 'İstifadəçi',
 	NS_USER_TALK        => 'İstifadəçi_müzakirəsi',
-	# NS_PROJECT set by $wgMetaNamespace
 	NS_PROJECT_TALK     => '$1_müzakirəsi',
 	NS_FILE             => 'Şəkil',
 	NS_FILE_TALK        => 'Şəkil_müzakirəsi',

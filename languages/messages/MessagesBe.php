@@ -33,24 +33,22 @@ $dateFormats = array(
 );
 
 $namespaceNames = array(
-        NS_MEDIA            => 'Мультымедыя',
-        NS_SPECIAL          => 'Адмысловае',
-        NS_MAIN             => '',
-        NS_TALK             => 'Размовы',
-        NS_USER             => 'Удзельнік',
-        NS_USER_TALK        => 'Размовы_з_удзельнікам',
-	# NS_PROJECT set by $wgMetaNamespace
-        NS_PROJECT_TALK     => '$1_размовы',
-        NS_FILE             => 'Выява',
-        NS_FILE_TALK        => 'Размовы_пра_выяву',
-        NS_MEDIAWIKI        => 'MediaWiki',
-        NS_MEDIAWIKI_TALK   => 'Размовы_пра_MediaWiki',
-        NS_TEMPLATE         => 'Шаблон',
-        NS_TEMPLATE_TALK    => 'Размовы_пра_шаблон',
-        NS_HELP             => 'Даведка',
-        NS_HELP_TALK        => 'Размовы_пра_даведку',
-        NS_CATEGORY         => 'Катэгорыя',
-        NS_CATEGORY_TALK    => 'Размовы_пра_катэгорыю'
+	NS_MEDIA            => 'Мультымедыя',
+	NS_SPECIAL          => 'Адмысловае',
+	NS_TALK             => 'Размовы',
+	NS_USER             => 'Удзельнік',
+	NS_USER_TALK        => 'Размовы_з_удзельнікам',
+	NS_PROJECT_TALK     => '$1_размовы',
+	NS_FILE             => 'Выява',
+	NS_FILE_TALK        => 'Размовы_пра_выяву',
+	NS_MEDIAWIKI        => 'MediaWiki',
+	NS_MEDIAWIKI_TALK   => 'Размовы_пра_MediaWiki',
+	NS_TEMPLATE         => 'Шаблон',
+	NS_TEMPLATE_TALK    => 'Размовы_пра_шаблон',
+	NS_HELP             => 'Даведка',
+	NS_HELP_TALK        => 'Размовы_пра_даведку',
+	NS_CATEGORY         => 'Катэгорыя',
+	NS_CATEGORY_TALK    => 'Размовы_пра_катэгорыю',
 );
 
 $separatorTransformTable = array(',' => '.', '.' => ',' );

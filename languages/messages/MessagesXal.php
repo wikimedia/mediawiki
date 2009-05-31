@@ -15,11 +15,9 @@
 $namespaceNames = array(
 	NS_MEDIA            => 'Аһар',
 	NS_SPECIAL          => 'Көдлхнə',
-	NS_MAIN             => '',
 	NS_TALK             => 'Ухалвр',
 	NS_USER             => 'Орлцач',
 	NS_USER_TALK        => 'Орлцачна_тускар_ухалвр',
-	# NS_PROJECT set by $wgMetaNamespace
 	NS_PROJECT_TALK     => '$1_тускар_ухалвр',
 	NS_FILE             => 'Зург',
 	NS_FILE_TALK        => 'Зургин_тускар_ухалвр',

@@ -18,11 +18,9 @@ $fallback = 'zh-hans';
 $namespaceNames = array(
 	NS_MEDIA            => 'Media',
 	NS_SPECIAL          => 'Special',
-	NS_MAIN             => '',
 	NS_TALK             => 'Talk',
 	NS_USER             => 'User',
 	NS_USER_TALK        => 'User_talk',
-	# NS_PROJECT set by $wgMetaNamespace
 	NS_PROJECT_TALK     => '$1_talk',
 	NS_FILE             => 'File',
 	NS_FILE_TALK        => 'File_talk',
@@ -33,7 +31,7 @@ $namespaceNames = array(
 	NS_HELP             => 'Help',
 	NS_HELP_TALK        => 'Help_talk',
 	NS_CATEGORY         => 'Category',
-	NS_CATEGORY_TALK    => 'Category_talk'
+	NS_CATEGORY_TALK    => 'Category_talk',
 );
 
 $namespaceAliases = array(

@@ -21,24 +21,22 @@ $fallback = 'nl';
 
 
 $namespaceNames = array(
-	NS_MEDIA          => 'Media',
-	NS_SPECIAL        => 'Speciaal',
-	NS_MAIN           => '',
-	NS_TALK           => 'Euverlèk',
-	NS_USER           => 'Gebroeker',
-	NS_USER_TALK      => 'Euverlèk_gebroeker',
-	# NS_PROJECT set by $wgMetaNamespace
-	NS_PROJECT_TALK   => 'Euverlèk_$1',
-	NS_FILE           => 'Plaetje',
-	NS_FILE_TALK      => 'Euverlèk_plaetje',
-	NS_MEDIAWIKI      => 'MediaWiki',
-	NS_MEDIAWIKI_TALK => 'Euverlèk_MediaWiki',
-	NS_TEMPLATE       => 'Sjabloon',
-	NS_TEMPLATE_TALK  => 'Euverlèk_sjabloon',
-	NS_HELP           => 'Help',
-	NS_HELP_TALK      => 'Euverlèk_help',
-	NS_CATEGORY       => 'Categorie',
-	NS_CATEGORY_TALK  => 'Euverlèk_categorie'
+	NS_MEDIA            => 'Media',
+	NS_SPECIAL          => 'Speciaal',
+	NS_TALK             => 'Euverlèk',
+	NS_USER             => 'Gebroeker',
+	NS_USER_TALK        => 'Euverlèk_gebroeker',
+	NS_PROJECT_TALK     => 'Euverlèk_$1',
+	NS_FILE             => 'Plaetje',
+	NS_FILE_TALK        => 'Euverlèk_plaetje',
+	NS_MEDIAWIKI        => 'MediaWiki',
+	NS_MEDIAWIKI_TALK   => 'Euverlèk_MediaWiki',
+	NS_TEMPLATE         => 'Sjabloon',
+	NS_TEMPLATE_TALK    => 'Euverlèk_sjabloon',
+	NS_HELP             => 'Help',
+	NS_HELP_TALK        => 'Euverlèk_help',
+	NS_CATEGORY         => 'Categorie',
+	NS_CATEGORY_TALK    => 'Euverlèk_categorie',
 );
 
 $namespaceAliases = array(

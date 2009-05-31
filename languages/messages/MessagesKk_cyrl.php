@@ -32,11 +32,9 @@ $fallback8bitEncoding = 'windows-1251';
 $namespaceNames = array(
 	NS_MEDIA            => 'Таспа',
 	NS_SPECIAL          => 'Арнайы',
-	NS_MAIN             => '',
 	NS_TALK             => 'Талқылау',
 	NS_USER             => 'Қатысушы',
 	NS_USER_TALK        => 'Қатысушы_талқылауы',
-	# NS_PROJECT set by $wgMetaNamespace
 	NS_PROJECT_TALK     => '$1_талқылауы',
 	NS_FILE             => 'Сурет',
 	NS_FILE_TALK        => 'Сурет_талқылауы',
@@ -47,7 +45,7 @@ $namespaceNames = array(
 	NS_HELP             => 'Анықтама',
 	NS_HELP_TALK        => 'Анықтама_талқылауы',
 	NS_CATEGORY         => 'Санат',
-	NS_CATEGORY_TALK    => 'Санат_талқылауы'
+	NS_CATEGORY_TALK    => 'Санат_талқылауы',
 );
 
 $namespaceAliases = array(

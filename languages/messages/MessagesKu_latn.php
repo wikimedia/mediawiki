@@ -15,11 +15,9 @@
 $namespaceNames = array(
 	NS_MEDIA            => 'Medya',
 	NS_SPECIAL          => 'Taybet',
-	NS_MAIN             => '',
 	NS_TALK             => 'Nîqaş',
 	NS_USER             => 'Bikarhêner',
 	NS_USER_TALK        => 'Bikarhêner_nîqaş',
-	# NS_PROJECT set by $wgMetaNamespace
 	NS_PROJECT_TALK     => '$1_nîqaş',
 	NS_FILE             => 'Wêne',
 	NS_FILE_TALK        => 'Wêne_nîqaş',
@@ -30,7 +28,7 @@ $namespaceNames = array(
 	NS_HELP             => 'Alîkarî',
 	NS_HELP_TALK        => 'Alîkarî_nîqaş',
 	NS_CATEGORY         => 'Kategorî',
-	NS_CATEGORY_TALK    => 'Kategorî_nîqaş'
+	NS_CATEGORY_TALK    => 'Kategorî_nîqaş',
 );
 
 $messages = array(

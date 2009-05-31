@@ -27,24 +27,22 @@ $digitTransformTable = array(
 );
 
 $namespaceNames = array(
-	NS_MEDIA          => 'মিডিয়া',
-	NS_SPECIAL        => 'বিশেষ',
-	NS_MAIN           => '',
-	NS_TALK           => 'য়্যারী',
-	NS_USER           => 'আতাকুরা',
-	NS_USER_TALK      => 'আতাকুরার_য়্যারী',
-	# NS_PROJECT set by $wgMetaNamespace
-	NS_PROJECT_TALK   => '$1_য়্যারী',
-	NS_FILE           => 'ছবি',
-	NS_FILE_TALK      => 'ছবি_য়্যারী',
-	NS_MEDIAWIKI      => 'মিডিয়াউইকি',
-	NS_MEDIAWIKI_TALK => 'মিডিয়াউইকির_য়্যারী',
-	NS_TEMPLATE       => 'মডেল',
-	NS_TEMPLATE_TALK  => 'মডেলর_য়্যারী',
-	NS_HELP           => 'পাংলাক',
-	NS_HELP_TALK      => 'পাংলাকর_য়্যারী',
-	NS_CATEGORY       => 'থাক',
-	NS_CATEGORY_TALK  => 'থাকর_য়্যারী',
+	NS_MEDIA            => 'মিডিয়া',
+	NS_SPECIAL          => 'বিশেষ',
+	NS_TALK             => 'য়্যারী',
+	NS_USER             => 'আতাকুরা',
+	NS_USER_TALK        => 'আতাকুরার_য়্যারী',
+	NS_PROJECT_TALK     => '$1_য়্যারী',
+	NS_FILE             => 'ছবি',
+	NS_FILE_TALK        => 'ছবি_য়্যারী',
+	NS_MEDIAWIKI        => 'মিডিয়াউইকি',
+	NS_MEDIAWIKI_TALK   => 'মিডিয়াউইকির_য়্যারী',
+	NS_TEMPLATE         => 'মডেল',
+	NS_TEMPLATE_TALK    => 'মডেলর_য়্যারী',
+	NS_HELP             => 'পাংলাক',
+	NS_HELP_TALK        => 'পাংলাকর_য়্যারী',
+	NS_CATEGORY         => 'থাক',
+	NS_CATEGORY_TALK    => 'থাকর_য়্যারী',
 );
 
 $messages = array(

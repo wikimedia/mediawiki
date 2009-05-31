@@ -18,11 +18,9 @@
 $namespaceNames = array(
 	NS_MEDIA            => 'Media',
 	NS_SPECIAL          => 'Specjalnô',
-	NS_MAIN             => '',
 	NS_TALK             => 'Diskùsëjô',
 	NS_USER             => 'Brëkòwnik',
 	NS_USER_TALK        => 'Diskùsëjô_brëkòwnika',
-	# NS_PROJECT set by $wgMetaNamespace
 	NS_PROJECT_TALK     => 'Diskùsëjô_$1',
 	NS_FILE             => 'Òbrôzk',
 	NS_FILE_TALK        => 'Diskùsëjô_òbrôzków',
@@ -33,7 +31,7 @@ $namespaceNames = array(
 	NS_HELP             => 'Pòmòc',
 	NS_HELP_TALK        => 'Diskùsëjô_Pòmòcë',
 	NS_CATEGORY         => 'Kategòrëjô',
-	NS_CATEGORY_TALK    => 'Diskùsëjô_Kategòrëji'
+	NS_CATEGORY_TALK    => 'Diskùsëjô_Kategòrëji',
 );
 
 $messages = array(

@@ -15,13 +15,11 @@
 $fallback = 'ru';
 
 $namespaceNames = array(
-	NS_MEDIA            => 'Media', //чтоб не писать "Мультимедия"
+	NS_MEDIA            => 'Media',
 	NS_SPECIAL          => 'Сæрмагонд',
-	NS_MAIN             => '',
 	NS_TALK             => 'Дискусси',
 	NS_USER             => 'Архайæг',
 	NS_USER_TALK        => 'Архайæджы_дискусси',
-	# NS_PROJECT set by $wgMetaNamespace
 	NS_PROJECT_TALK     => 'Дискусси_$1',
 	NS_FILE             => 'Ныв',
 	NS_FILE_TALK        => 'Нывы_тыххæй_дискусси',
