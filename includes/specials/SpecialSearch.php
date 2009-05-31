@@ -632,8 +632,12 @@ class SpecialSearch {
 
 		// toggle for turning on and off all checkboxes
 		$selectOptionsLabel = Xml::label( wfMsg( 'powersearch-togglelabel' ), 'mw-search-togglelabel' );
-		$selectAllButton = Xml::submitButton( wfMsg( 'powersearch-toggleall' ), array( 'id' => 'mw-search-toggleall', 'onclick' => 'mwToggleSearchCheckboxes(this);return false;' ) );
-		$selectNoneButton = Xml::submitButton( wfMsg( 'powersearch-togglenone' ), array( 'id' => 'mw-search-togglenone', 'onclick' => 'mwToggleSearchCheckboxes(this);return false;' ) );
+		$selectAllButton = Xml::openElement('button', array('type'=>'button', 'id' => 'mw-search-toggleall', 'onclick' => 'mwToggleSearchCheckboxes("all");' ))
+			. wfMsg( 'powersearch-toggleall' ) . Xml::closeElement('button');
+			
+		$selectNoneButton = Xml::openElement('button', array('type'=>'button', 'id' => 'mw-search-togglenone', 'onclick' => 'mwToggleSearchCheckboxes("none");' ))
+			. wfMsg( 'powersearch-togglenone' ) . Xml::closeElement('button');
+			
 		$selectOptionsText = "<td id='mw-search-togglebox'>" . $selectOptionsLabel . $selectAllButton . $selectNoneButton . "</td>";
 
 		$searchButton = Xml::submitButton( wfMsg( 'powersearch' ) ) . "\n";
@@ -657,10 +661,6 @@ class SpecialSearch {
 			$searchButton .
 			"</div>".
 			"</form>";
-		$t = Title::newFromText( $term );
-		/* if( $t != null && count($this->namespaces) === 1 ) {
-			$out .= wfMsgExt( 'searchmenu-prefix', array('parseinline'), $term );
-		} */
 		return Xml::openElement( 'fieldset', array('id' => 'mw-searchoptions','style' => 'margin:0em;') ) .
 			Xml::element( 'legend', null, wfMsg('powersearch-legend') ) .
 			$out . $this->didYouMeanHtml .
