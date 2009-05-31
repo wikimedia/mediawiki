@@ -502,9 +502,10 @@ class IP {
      */
     public static function isInRange( $addr, $range ) {
     // Convert to IPv6 if needed
-        $unsignedIP = self::toHex( $addr );
+        $unsignedIP = self::toUnsigned( $addr );
         list( $start, $end ) = self::parseRange( $range );
-        return (($unsignedIP >= $start) && ($unsignedIP <= $end));
+        return (($unsignedIP >= base_convert($start, 16, 10)) &&
+		($unsignedIP <= base_convert($end, 16, 10)));
     }
 
     /**
