@@ -201,6 +201,7 @@ class SpecialSearch {
 		$filePrefix = $wgContLang->getFormattedNsText(NS_FILE).':';
 		if( '' === trim( $term ) || $filePrefix === trim( $term ) ) {
 			$wgOut->addHTML( $this->searchAdvanced ? $this->powerSearchFocus() : $this->searchFocus() );
+			$wgOut->addHTML( $this->formHeader($term, 0, 0));
 			// Empty query -- straight view of search form
 			wfProfileOut( __METHOD__ );
 			return;

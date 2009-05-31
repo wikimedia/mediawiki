@@ -11,9 +11,12 @@ function mwSearchHeaderClick(obj){
 	var searchterm = searchbox.value;
 	var parts = obj.href.split("search=");
 	var lastpart = '';
-	if( parts[1].indexOf('&') >= 0 )
+	var prefix = "search=";
+	if( parts.length > 1 && parts[1].indexOf('&') >= 0 )
 		lastpart = parts[1].substring( parts[1].indexOf('&') )
-	obj.href = parts[0] + "search=" + encodeURIComponent(searchterm) + lastpart;
+	else 
+		prefix = "&search=";
+	obj.href = parts[0] + prefix + encodeURIComponent(searchterm) + lastpart;
 }
 
 function mwToggleSearchCheckboxes( btn ) {
