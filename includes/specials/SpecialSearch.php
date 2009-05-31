@@ -322,6 +322,8 @@ class SpecialSearch {
 		}
 		$wgOut->setArticleRelated( false );
 		$wgOut->setRobotPolicy( 'noindex,nofollow' );
+		// add javascript specific to special:search
+		$wgOut->addScriptFile( 'search.js' );
 	}
 
 	/**
@@ -535,7 +537,7 @@ class SpecialSearch {
 			$out .= $this->showInterwikiHit( $result, $prev, $terms, $query, $customCaptions );
 			$prev = $result->getInterwikiPrefix();
 		}
-		// FIXME: should support paging in a non-confusing way (not sure how though, maybe via ajax)..
+		// TODO: should support paging in a non-confusing way (not sure how though, maybe via ajax)..
 		$out .= "</ul></div>\n";
 
 		// convert the whole thing to desired language variant
@@ -612,19 +614,31 @@ class SpecialSearch {
 		$namespaces = SearchEngine::searchableNamespaces();
 
 		$tables = $this->namespaceTables( $namespaces );
-
+		
+		// include redirects in the search
 		$redirect = Xml::check( 'redirs', $this->searchRedirects, array( 'value' => '1', 'id' => 'redirs' ) );
 		$redirectLabel = Xml::label( wfMsg( 'powersearch-redir' ), 'redirs' );
-		$searchField = Xml::inputLabel( wfMsg('powersearch-field'), 'search', 'powerSearchText', 50, $term,
-			array( 'type' => 'text') );
-		$searchButton = Xml::submitButton( wfMsg( 'powersearch' ) ) . "\n";
-		$searchTitle = SpecialPage::getTitleFor( 'Search' );
 
 		$redirectText = '';
 		// show redirects check only if backend supports it
 		if( $this->searchEngine->acceptListRedirects() ) {
-			$redirectText = "<p>". $redirect . " " . $redirectLabel ."</p>";
+			$redirectText = "<td id='powersearch-rediropt'>". $redirect . " " . $redirectLabel ."</td>";
 		}
+		
+ 
+		$searchField = Xml::inputLabel( wfMsg( 'powersearch-field' ), 'search', 'powerSearchText', 50, $term,
+			array( 'type' => 'text') );
+
+		// toggle for turning on and off all checkboxes
+		$selectOptionsLabel = Xml::label( wfMsg( 'powersearch-togglelabel' ), 'mw-search-togglelabel' );
+		$selectAllButton = Xml::submitButton( wfMsg( 'powersearch-toggleall' ), array( 'id' => 'mw-search-toggleall', 'onclick' => 'mwToggleSearchCheckboxes(this);return false;' ) );
+		$selectNoneButton = Xml::submitButton( wfMsg( 'powersearch-togglenone' ), array( 'id' => 'mw-search-togglenone', 'onclick' => 'mwToggleSearchCheckboxes(this);return false;' ) );
+		$selectOptionsText = "<td id='mw-search-togglebox'>" . $selectOptionsLabel . $selectAllButton . $selectNoneButton . "</td>";
+
+		$searchButton = Xml::submitButton( wfMsg( 'powersearch' ) ) . "\n";
+		$searchTitle = SpecialPage::getTitleFor( 'Search' );
+
+		$optionsText = "<div id='mw-search-redirbox'><table id='mw-search-redirtable'><tr>" . $redirectText . $selectOptionsText . "</tr></table></div>";
 
 		$out = Xml::openElement( 'form', array(	'id' => 'powersearch', 'method' => 'get', 'action' => $wgScript ) ) .
 			Xml::hidden( 'title', $searchTitle->getPrefixedText() ) . "\n" .
@@ -634,8 +648,8 @@ class SpecialSearch {
 			'<input type="hidden" name="advanced" value="'.$this->searchAdvanced."\"/>\n".
 			$tables .
 			"<hr style=\"clear: both;\" />\n".
-			$redirectText ."\n".
-			"<div style=\"padding-top:2px;padding-bottom:2px;\">".
+			$optionsText . "\n".
+			"<div style=\"padding-top:4px;padding-bottom:2px;text-align:center;\">".
 			$searchField .
 			"&nbsp;" .
 			Xml::hidden( 'fulltext', 'Advanced search' ) . "\n" .
@@ -691,7 +705,7 @@ class SpecialSearch {
 		if( $this->active == 'default' ) {
 			$out .= Xml::element( 'strong', array( 'title'=>$tt ), $m );
 		} else {
-			$out .= $this->makeSearchLink( $bareterm, SearchEngine::defaultNamespaces(), $m, $tt );
+			$out .= $this->makeSearchLink( $bareterm, SearchEngine::defaultNamespaces(), $m, $tt);
 		}
 		$out .= $sep;
 
@@ -777,13 +791,7 @@ class SpecialSearch {
 		$out .= Xml::input( 'search', 50, $term, array( 'type' => 'text', 'id' => 'searchText' ) ) . "\n";
 		$out .= Xml::hidden( 'fulltext', 'Search' );
 		$out .= Xml::submitButton( wfMsg( 'searchbutton' ) );
-		//$out .= ' (' . wfMsgExt('searchmenu-help',array('parseinline') ) . ')';
 		$out .= Xml::closeElement( 'form' );
-		// Add prefix link for single-namespace searches
-		$t = Title::newFromText( $term );
-		/*if( $t != null && count($this->namespaces) === 1 ) {
-			$out .= wfMsgExt( 'searchmenu-prefix', array('parseinline'), $term );
-		}*/
 		return $out . $this->didYouMeanHtml;		
 	}
 
@@ -799,7 +807,9 @@ class SpecialSearch {
 		$stParams = wfArrayToCGI( array( 'search' => $term, 'fulltext' => wfMsg( 'search' ) ), $opt );
 
 		return Xml::element( 'a',
-			array( 'href'=> $st->getLocalURL( $stParams ), 'title' => $tooltip ),
+			array( 'href'=> $st->getLocalURL( $stParams ), 'title' => $tooltip, 
+			       'onmousedown' => 'mwSearchHeaderClick(this);',
+			       'onkeydown' => 'mwSearchHeaderClick(this);'),
 			$label );
 	}
 
