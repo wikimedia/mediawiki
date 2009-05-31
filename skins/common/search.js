@@ -28,13 +28,13 @@ function mwToggleSearchCheckboxes( btn ) {
 	for ( var i = 0; i < nsInputs.length; i++ ) {
 		var pattern = /^ns/;
 		if ( ( nsInputs[i].type == 'checkbox' ) && ( pattern.test( nsInputs[i].name ) ) ) {
-			switch ( btn.value ) {
-				case "None":
+			switch ( btn ) {
+				case "none":
 					if ( nsInputs[i].checked ) {
 						nsInputs[i].checked = false;
 					}
 					break;
-				case "All": 
+				case "all": 
 					if ( !nsInputs[i].checked ) {
 						nsInputs[i].checked = true;
 					}
