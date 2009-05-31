@@ -20,11 +20,9 @@
 $namespaceNames = array(
 	NS_MEDIA            => 'ಮೀಡಿಯ',
 	NS_SPECIAL          => 'ವಿಶೇಷ',
-	NS_MAIN             => '',
 	NS_TALK             => 'ಚರ್ಚೆಪುಟ',
 	NS_USER             => 'ಸದಸ್ಯ',
 	NS_USER_TALK        => 'ಸದಸ್ಯರ_ಚರ್ಚೆಪುಟ',
-	# NS_PROJECT set by $wgMetaNamespace
 	NS_PROJECT_TALK     => '$1_ಚರ್ಚೆ',
 	NS_FILE             => 'ಚಿತ್ರ',
 	NS_FILE_TALK        => 'ಚಿತ್ರ_ಚರ್ಚೆಪುಟ',
@@ -35,7 +33,7 @@ $namespaceNames = array(
 	NS_HELP             => 'ಸಹಾಯ',
 	NS_HELP_TALK        => 'ಸಹಾಯ_ಚರ್ಚೆ',
 	NS_CATEGORY         => 'ವರ್ಗ',
-	NS_CATEGORY_TALK    => 'ವರ್ಗ_ಚರ್ಚೆ'
+	NS_CATEGORY_TALK    => 'ವರ್ಗ_ಚರ್ಚೆ',
 );
 
 $digitTransformTable = array(

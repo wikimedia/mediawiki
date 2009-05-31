@@ -61,13 +61,11 @@ $magicWords = array(
 );
 
 $namespaceNames = array(
-	NS_MEDIA	          => 'Meán',
+	NS_MEDIA            => 'Meán',
 	NS_SPECIAL          => 'Speisialta',
-	NS_MAIN             => '',
 	NS_TALK             => 'Plé',
 	NS_USER             => 'Úsáideoir',
 	NS_USER_TALK        => 'Plé_úsáideora',
-	# NS_PROJECT set by $wgMetaNamespace
 	NS_PROJECT_TALK     => 'Plé_{{grammar:genitive|$1}}',
 	NS_FILE             => 'Íomhá',
 	NS_FILE_TALK        => 'Plé_íomhá',
@@ -78,7 +76,7 @@ $namespaceNames = array(
 	NS_HELP             => 'Cabhair',
 	NS_HELP_TALK        => 'Plé_cabhrach',
 	NS_CATEGORY         => 'Catagóir',
-	NS_CATEGORY_TALK    => 'Plé_catagóire'
+	NS_CATEGORY_TALK    => 'Plé_catagóire',
 );
 
 $namespaceAliases = array(

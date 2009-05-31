@@ -56,11 +56,10 @@ $fallback8bitEncoding = 'windows-1256';
 $namespaceNames = array(
 	NS_MEDIA            => 'تاسپا',
 	NS_SPECIAL          => 'ارنايى',
-	NS_MAIN	            => '',
-	NS_TALK	            => 'تالقىلاۋ',
+	NS_MAIN             => '',
+	NS_TALK             => 'تالقىلاۋ',
 	NS_USER             => 'قاتىسۋشى',
 	NS_USER_TALK        => 'قاتىسۋشى_تالقىلاۋى',
-	# NS_PROJECT set by $wgMetaNamespace
 	NS_PROJECT_TALK     => '$1_تالقىلاۋى',
 	NS_FILE             => 'سۋرەت',
 	NS_FILE_TALK        => 'سۋرەت_تالقىلاۋى',
@@ -71,7 +70,7 @@ $namespaceNames = array(
 	NS_HELP             => 'انىقتاما',
 	NS_HELP_TALK        => 'انىقتاما_تالقىلاۋى',
 	NS_CATEGORY         => 'سانات',
-	NS_CATEGORY_TALK    => 'سانات_تالقىلاۋى'
+	NS_CATEGORY_TALK    => 'سانات_تالقىلاۋى',
 );
 
 $namespaceAliases = array(

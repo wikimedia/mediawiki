@@ -20,11 +20,9 @@ $fallback = 'id';
 $namespaceNames = array(
 	NS_MEDIA            => 'Media',
 	NS_SPECIAL          => 'Astamiwa',
-	NS_MAIN             => '',
 	NS_TALK             => 'Dhiskusi',
 	NS_USER             => 'Panganggo',
 	NS_USER_TALK        => 'Dhiskusi_Panganggo',
-	# NS_PROJECT set by $wgMetaNamespace
 	NS_PROJECT_TALK     => 'Dhiskusi_$1',
 	NS_FILE             => 'Gambar',
 	NS_FILE_TALK        => 'Dhiskusi_Gambar',
@@ -35,7 +33,7 @@ $namespaceNames = array(
 	NS_HELP             => 'Pitulung',
 	NS_HELP_TALK        => 'Dhiskusi_Pitulung',
 	NS_CATEGORY         => 'Kategori',
-	NS_CATEGORY_TALK    => 'Dhiskusi_Kategori'
+	NS_CATEGORY_TALK    => 'Dhiskusi_Kategori',
 );
 
 $namespaceAliases = array(

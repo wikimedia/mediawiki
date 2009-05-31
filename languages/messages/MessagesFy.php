@@ -36,22 +36,22 @@ $datePreferenceMigrationMap = array(
 );
 
 $namespaceNames = array(
-	NS_MEDIA          => 'Media',
-	NS_SPECIAL        => 'Wiki',
-	NS_TALK           => 'Oerlis',
-	NS_USER           => 'Meidogger',
-	NS_USER_TALK      => 'Meidogger_oerlis',
-	NS_PROJECT_TALK   => '$1_oerlis',
-	NS_FILE           => 'Ofbyld',
-	NS_FILE_TALK      => 'Ofbyld_oerlis',
-	NS_MEDIAWIKI      => 'MediaWiki',
-	NS_MEDIAWIKI_TALK => 'MediaWiki_oerlis',
-	NS_TEMPLATE       => 'Berjocht',
-	NS_TEMPLATE_TALK  => 'Berjocht_oerlis',
-	NS_HELP           => 'Hulp',
-	NS_HELP_TALK      => 'Hulp_oerlis',
-	NS_CATEGORY       => 'Kategory',
-	NS_CATEGORY_TALK  => 'Kategory_oerlis'
+	NS_MEDIA            => 'Media',
+	NS_SPECIAL          => 'Wiki',
+	NS_TALK             => 'Oerlis',
+	NS_USER             => 'Meidogger',
+	NS_USER_TALK        => 'Meidogger_oerlis',
+	NS_PROJECT_TALK     => '$1_oerlis',
+	NS_FILE             => 'Ofbyld',
+	NS_FILE_TALK        => 'Ofbyld_oerlis',
+	NS_MEDIAWIKI        => 'MediaWiki',
+	NS_MEDIAWIKI_TALK   => 'MediaWiki_oerlis',
+	NS_TEMPLATE         => 'Berjocht',
+	NS_TEMPLATE_TALK    => 'Berjocht_oerlis',
+	NS_HELP             => 'Hulp',
+	NS_HELP_TALK        => 'Hulp_oerlis',
+	NS_CATEGORY         => 'Kategory',
+	NS_CATEGORY_TALK    => 'Kategory_oerlis',
 );
 
 $namespaceAliases = array(

@@ -14,24 +14,22 @@
  */
 
 $namespaceNames = array(
-	NS_MEDIA          => "Media",
-	NS_SPECIAL        => "Arbennig",
-	NS_MAIN           => "",
-	NS_TALK           => "Sgwrs",
-	NS_USER           => "Defnyddiwr",
-	NS_USER_TALK      => "Sgwrs_Defnyddiwr",
-	# NS_PROJECT set by $wgMetaNamespace
-	NS_PROJECT_TALK   => "Sgwrs_$1",
-	NS_FILE           => "Delwedd",
-	NS_FILE_TALK      => "Sgwrs_Delwedd",
-	NS_MEDIAWIKI      => "MediaWici",
-	NS_MEDIAWIKI_TALK => "Sgwrs_MediaWici",
-	NS_TEMPLATE       => "Nodyn",
-	NS_TEMPLATE_TALK  => "Sgwrs_Nodyn",
-	NS_CATEGORY		  => "Categori",
-	NS_CATEGORY_TALK  => "Sgwrs_Categori",
-	NS_HELP			  => "Cymorth",
-	NS_HELP_TALK	  => "Sgwrs Cymorth"
+	NS_MEDIA            => 'Media',
+	NS_SPECIAL          => 'Arbennig',
+	NS_TALK             => 'Sgwrs',
+	NS_USER             => 'Defnyddiwr',
+	NS_USER_TALK        => 'Sgwrs_Defnyddiwr',
+	NS_PROJECT_TALK     => 'Sgwrs_$1',
+	NS_FILE             => 'Delwedd',
+	NS_FILE_TALK        => 'Sgwrs_Delwedd',
+	NS_MEDIAWIKI        => 'MediaWici',
+	NS_MEDIAWIKI_TALK   => 'Sgwrs_MediaWici',
+	NS_TEMPLATE         => 'Nodyn',
+	NS_TEMPLATE_TALK    => 'Sgwrs_Nodyn',
+	NS_HELP             => 'Cymorth',
+	NS_HELP_TALK        => 'Sgwrs Cymorth',
+	NS_CATEGORY         => 'Categori',
+	NS_CATEGORY_TALK    => 'Sgwrs_Categori',
 );
 
 

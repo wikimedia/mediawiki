@@ -22,11 +22,9 @@
 $namespaceNames = array(
 	NS_MEDIA            => 'Media',
 	NS_SPECIAL          => 'Special',
-	NS_MAIN             => '',
 	NS_TALK             => 'Diskusija',
 	NS_USER             => 'Lietotājs',
 	NS_USER_TALK        => 'Lietotāja_diskusija',
-	# NS_PROJECT set by $wgMetaNamespace
 	NS_PROJECT_TALK     => '{{grammar:ģenitīvs|$1}}_diskusija',
 	NS_FILE             => 'Attēls',
 	NS_FILE_TALK        => 'Attēla_diskusija',

@@ -11,22 +11,22 @@
  */
 
 $namespaceNames = array(
-	NS_MEDIA          => 'Media',
-	NS_SPECIAL        => 'Espesiál',
-	NS_TALK           => 'Diskusaun',
-	NS_USER           => 'Uza-na\'in',
-	NS_USER_TALK      => 'Diskusaun_Uza-na\'in',
-	NS_PROJECT_TALK   => 'Diskusaun_$1',
-	NS_FILE           => 'Imajen',
-	NS_FILE_TALK      => 'Diskusaun_Imajen',
-	NS_MEDIAWIKI      => 'MediaWiki',
-	NS_MEDIAWIKI_TALK => 'Diskusaun_MediaWiki',
-	NS_TEMPLATE       => 'Template',
-	NS_TEMPLATE_TALK  => 'Diskusaun_Template',
-	NS_HELP           => 'Ajuda',
-	NS_HELP_TALK      => 'Diskusaun_Ajuda',
-	NS_CATEGORY       => 'Kategoria',
-	NS_CATEGORY_TALK  => 'Diskusaun_Kategoria',
+	NS_MEDIA            => 'Media',
+	NS_SPECIAL          => 'Espesiál',
+	NS_TALK             => 'Diskusaun',
+	NS_USER             => 'Uza-na\'in',
+	NS_USER_TALK        => 'Diskusaun_Uza-na\'in',
+	NS_PROJECT_TALK     => 'Diskusaun_$1',
+	NS_FILE             => 'Imajen',
+	NS_FILE_TALK        => 'Diskusaun_Imajen',
+	NS_MEDIAWIKI        => 'MediaWiki',
+	NS_MEDIAWIKI_TALK   => 'Diskusaun_MediaWiki',
+	NS_TEMPLATE         => 'Template',
+	NS_TEMPLATE_TALK    => 'Diskusaun_Template',
+	NS_HELP             => 'Ajuda',
+	NS_HELP_TALK        => 'Diskusaun_Ajuda',
+	NS_CATEGORY         => 'Kategoria',
+	NS_CATEGORY_TALK    => 'Diskusaun_Kategoria',
 );
 
 $namespaceAliases = array(

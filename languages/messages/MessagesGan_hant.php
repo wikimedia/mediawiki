@@ -22,7 +22,7 @@ $namespaceNames = array(
 	NS_MEDIAWIKI_TALK   => 'MediaWiki談詑',
 	NS_TEMPLATE_TALK    => '模板談詑',
 	NS_HELP_TALK        => '幫助談詑',
-	NS_CATEGORY_TALK    => '分類談詑'
+	NS_CATEGORY_TALK    => '分類談詑',
 );
 
 $specialPageAliases = array(

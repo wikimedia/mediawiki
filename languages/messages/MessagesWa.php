@@ -37,24 +37,22 @@ $dateFormats = array(
 );
 
 $namespaceNames = array(
-	NS_MEDIA          => "Media", /* Media */
-	NS_SPECIAL        => "Sipeciås", /* Special */
-	NS_MAIN           => "",
-	NS_TALK           => "Copene", /* Talk */
-	NS_USER	          => "Uzeu", /* User */
-	NS_USER_TALK      => "Uzeu_copene", /* User_talk */
-	# NS_PROJECT set by $wgMetaNamespace
-	NS_PROJECT_TALK   => '$1_copene',
-	NS_FILE           => "Imådje", /* Image */
-	NS_FILE_TALK      => "Imådje_copene", /* Image_talk */
-	NS_MEDIAWIKI      => "MediaWiki", /* MediaWiki */
-	NS_MEDIAWIKI_TALK => "MediaWiki_copene", /* MediaWiki_talk */
-	NS_TEMPLATE       => "Modele",
-	NS_TEMPLATE_TALK  => "Modele_copene",
-	NS_HELP           => "Aidance",
-	NS_HELP_TALK      => "Aidance_copene",
-	NS_CATEGORY       => "Categoreye",
-	NS_CATEGORY_TALK  => "Categoreye_copene",
+	NS_MEDIA            => 'Media',
+	NS_SPECIAL          => 'Sipeciås',
+	NS_TALK             => 'Copene',
+	NS_USER             => 'Uzeu',
+	NS_USER_TALK        => 'Uzeu_copene',
+	NS_PROJECT_TALK     => '$1_copene',
+	NS_FILE             => 'Imådje',
+	NS_FILE_TALK        => 'Imådje_copene',
+	NS_MEDIAWIKI        => 'MediaWiki',
+	NS_MEDIAWIKI_TALK   => 'MediaWiki_copene',
+	NS_TEMPLATE         => 'Modele',
+	NS_TEMPLATE_TALK    => 'Modele_copene',
+	NS_HELP             => 'Aidance',
+	NS_HELP_TALK        => 'Aidance_copene',
+	NS_CATEGORY         => 'Categoreye',
+	NS_CATEGORY_TALK    => 'Categoreye_copene',
 );
 
 # definixha del cogne po les limeros

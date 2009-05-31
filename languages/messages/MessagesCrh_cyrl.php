@@ -21,24 +21,22 @@ $separatorTransformTable = array(','     => '.', '.'     => ',' );
 $linkTrail = '/^([a-zâçğıñöşüа-яё“»]+)(.*)$/sDu';
 
 $namespaceNames = array(
-    NS_MEDIA                     => 'Медиа',
-    NS_SPECIAL                   => 'Махсус',
-    NS_MAIN                      => '',
-    NS_TALK                      => 'Музакере',
-    NS_USER                      => 'Къулланыджы',
-    NS_USER_TALK                 => 'Къулланыджы_музакереси',
-    # NS_PROJECT set by $wgMetaNamespace
-    NS_PROJECT_TALK              => '$1_музакереси',
-    NS_FILE                      => 'Ресим',
-    NS_FILE_TALK                 => 'Ресим_музакереси',
-    NS_MEDIAWIKI                 => 'МедиаВики',
-    NS_MEDIAWIKI_TALK            => 'МедиаВики_музакереси',
-    NS_TEMPLATE                  => 'Шаблон',
-    NS_TEMPLATE_TALK             => 'Шаблон_музакереси',
-    NS_HELP                      => 'Ярдым',
-    NS_HELP_TALK                 => 'Ярдым_музакереси',
-    NS_CATEGORY                  => 'Категория',
-    NS_CATEGORY_TALK             => 'Категория_музакереси',
+	NS_MEDIA            => 'Медиа',
+	NS_SPECIAL          => 'Махсус',
+	NS_TALK             => 'Музакере',
+	NS_USER             => 'Къулланыджы',
+	NS_USER_TALK        => 'Къулланыджы_музакереси',
+	NS_PROJECT_TALK     => '$1_музакереси',
+	NS_FILE             => 'Ресим',
+	NS_FILE_TALK        => 'Ресим_музакереси',
+	NS_MEDIAWIKI        => 'МедиаВики',
+	NS_MEDIAWIKI_TALK   => 'МедиаВики_музакереси',
+	NS_TEMPLATE         => 'Шаблон',
+	NS_TEMPLATE_TALK    => 'Шаблон_музакереси',
+	NS_HELP             => 'Ярдым',
+	NS_HELP_TALK        => 'Ярдым_музакереси',
+	NS_CATEGORY         => 'Категория',
+	NS_CATEGORY_TALK    => 'Категория_музакереси',
 );
 
 # Aliases to latin namespaces

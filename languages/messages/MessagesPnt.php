@@ -15,22 +15,22 @@
  */
 
 $namespaceNames = array(
-	NS_MEDIA          => 'Μέσον',
-	NS_SPECIAL        => 'Ειδικόν',
-	NS_TALK           => 'Καλάτσεμαν',
-	NS_USER           => 'Χρήστες',
-	NS_USER_TALK      => 'Καλάτσεμαν_χρήστε',
-	NS_PROJECT_TALK   => '$1_καλάτσεμαν',
-	NS_FILE           => 'Εικόναν',
-	NS_FILE_TALK      => 'Καλάτσεμαν_εικόνας',
-	NS_MEDIAWIKI      => 'MediaWiki',
-	NS_MEDIAWIKI_TALK => 'MediaWiki_talk',
-	NS_TEMPLATE       => 'Πρότυπον',
-	NS_TEMPLATE_TALK  => 'Καλάτσεμαν_πρότυπι',
-	NS_HELP           => 'Βοήθειαν',
-	NS_HELP_TALK      => 'Καλάτσεμαν_βοήθειας',
-	NS_CATEGORY       => 'Κατηγορίαν',
-	NS_CATEGORY_TALK  => 'Καλάτσεμαν_κατηγορίας',
+	NS_MEDIA            => 'Μέσον',
+	NS_SPECIAL          => 'Ειδικόν',
+	NS_TALK             => 'Καλάτσεμαν',
+	NS_USER             => 'Χρήστες',
+	NS_USER_TALK        => 'Καλάτσεμαν_χρήστε',
+	NS_PROJECT_TALK     => '$1_καλάτσεμαν',
+	NS_FILE             => 'Εικόναν',
+	NS_FILE_TALK        => 'Καλάτσεμαν_εικόνας',
+	NS_MEDIAWIKI        => 'MediaWiki',
+	NS_MEDIAWIKI_TALK   => 'MediaWiki_talk',
+	NS_TEMPLATE         => 'Πρότυπον',
+	NS_TEMPLATE_TALK    => 'Καλάτσεμαν_πρότυπι',
+	NS_HELP             => 'Βοήθειαν',
+	NS_HELP_TALK        => 'Καλάτσεμαν_βοήθειας',
+	NS_CATEGORY         => 'Κατηγορίαν',
+	NS_CATEGORY_TALK    => 'Καλάτσεμαν_κατηγορίας',
 );
 
 $datePreferences = array(

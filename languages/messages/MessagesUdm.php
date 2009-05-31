@@ -16,11 +16,9 @@ $fallback = 'ru';
 $namespaceNames = array(
 	NS_MEDIA            => 'Медиа',
 	NS_SPECIAL          => 'Панель',
-	NS_MAIN             => '',
 	NS_TALK             => 'Вераськон',
 	NS_USER             => 'Викиавтор',
 	NS_USER_TALK        => 'Викиавтор_сярысь_вераськон',
-	# NS_PROJECT set by $wgMetaNamespace
 	NS_PROJECT_TALK     => '$1_сярысь_вераськон',
 	NS_FILE             => 'Суред',
 	NS_FILE_TALK        => 'Суред_сярысь_вераськон',

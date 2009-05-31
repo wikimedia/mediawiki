@@ -17,11 +17,9 @@
 $namespaceNames = array(
 	NS_MEDIA            => 'Media',
 	NS_SPECIAL          => 'Uslig',
-	NS_MAIN             => '',
 	NS_TALK             => 'Mmeslay',
 	NS_USER             => 'Amseqdac',
 	NS_USER_TALK        => 'Amyannan_umsqedac',
-	# NS_PROJECT set by $wgMetaNamespace
 	NS_PROJECT_TALK     => 'Amyannan_n_$1',
 	NS_FILE             => 'Tugna',
 	NS_FILE_TALK        => 'Amyannan_n_tugna',
@@ -32,7 +30,7 @@ $namespaceNames = array(
 	NS_HELP             => 'Tallat',
 	NS_HELP_TALK        => 'Amyannan_n_tallat',
 	NS_CATEGORY         => 'Taggayt',
-	NS_CATEGORY_TALK    => 'Amyannan_n_taggayt'
+	NS_CATEGORY_TALK    => 'Amyannan_n_taggayt',
 );
 
 $namespaceAliases = array(

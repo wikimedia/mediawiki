@@ -18,22 +18,22 @@
 $fallback = 'id';
 
 $namespaceNames = array(
-	NS_MEDIA          => 'Média',
-	NS_SPECIAL        => 'Husus',
-	NS_TALK           => 'Obrolan',
-	NS_USER           => 'Pamaké',
-	NS_USER_TALK      => 'Obrolan_pamaké',
-	NS_PROJECT_TALK   => 'Obrolan_$1',
-	NS_FILE           => 'Gambar',
-	NS_FILE_TALK      => 'Obrolan_gambar',
-	NS_MEDIAWIKI      => 'MédiaWiki',
-	NS_MEDIAWIKI_TALK => 'Obrolan MédiaWiki',
-	NS_TEMPLATE       => 'Citakan',
-	NS_TEMPLATE_TALK  => 'Obrolan_citakan',
-	NS_HELP           => 'Pitulung',
-	NS_HELP_TALK      => 'Obrolan_pitulung',
-	NS_CATEGORY       => 'Kategori',
-	NS_CATEGORY_TALK  => 'Obrolan_kategori',
+	NS_MEDIA            => 'Média',
+	NS_SPECIAL          => 'Husus',
+	NS_TALK             => 'Obrolan',
+	NS_USER             => 'Pamaké',
+	NS_USER_TALK        => 'Obrolan_pamaké',
+	NS_PROJECT_TALK     => 'Obrolan_$1',
+	NS_FILE             => 'Gambar',
+	NS_FILE_TALK        => 'Obrolan_gambar',
+	NS_MEDIAWIKI        => 'MédiaWiki',
+	NS_MEDIAWIKI_TALK   => 'Obrolan MédiaWiki',
+	NS_TEMPLATE         => 'Citakan',
+	NS_TEMPLATE_TALK    => 'Obrolan_citakan',
+	NS_HELP             => 'Pitulung',
+	NS_HELP_TALK        => 'Obrolan_pitulung',
+	NS_CATEGORY         => 'Kategori',
+	NS_CATEGORY_TALK    => 'Obrolan_kategori',
 );
 
 $namespaceAliases = array(

@@ -15,22 +15,22 @@
 $fallback = 'de';
 
 $namespaceNames = array(
-	NS_MEDIA          => 'Media',
-	NS_SPECIAL        => 'Spezial',
-	NS_TALK           => 'Diskussion',
-	NS_USER           => 'Benutser',
-	NS_USER_TALK      => 'Benutser_Diskussion',
-	NS_PROJECT_TALK   => '$1_Diskussion',
-	NS_FILE           => 'Bielde',
-	NS_FILE_TALK      => 'Bielde_Diskussion',
-	NS_MEDIAWIKI      => 'MediaWiki',
-	NS_MEDIAWIKI_TALK => 'MediaWiki_Diskussion',
-	NS_TEMPLATE       => 'Foarloage',
-	NS_TEMPLATE_TALK  => 'Foarloage_Diskussion',
-	NS_HELP           => 'Hälpe',
-	NS_HELP_TALK      => 'Hälpe_Diskussion',
-	NS_CATEGORY       => 'Kategorie',
-	NS_CATEGORY_TALK  => 'Kategorie_Diskussion',
+	NS_MEDIA            => 'Media',
+	NS_SPECIAL          => 'Spezial',
+	NS_TALK             => 'Diskussion',
+	NS_USER             => 'Benutser',
+	NS_USER_TALK        => 'Benutser_Diskussion',
+	NS_PROJECT_TALK     => '$1_Diskussion',
+	NS_FILE             => 'Bielde',
+	NS_FILE_TALK        => 'Bielde_Diskussion',
+	NS_MEDIAWIKI        => 'MediaWiki',
+	NS_MEDIAWIKI_TALK   => 'MediaWiki_Diskussion',
+	NS_TEMPLATE         => 'Foarloage',
+	NS_TEMPLATE_TALK    => 'Foarloage_Diskussion',
+	NS_HELP             => 'Hälpe',
+	NS_HELP_TALK        => 'Hälpe_Diskussion',
+	NS_CATEGORY         => 'Kategorie',
+	NS_CATEGORY_TALK    => 'Kategorie_Diskussion',
 );
 
 $messages = array(

@@ -36,11 +36,9 @@ $fallback8bitEncoding = 'windows-1254';
 $namespaceNames = array(
 	NS_MEDIA            => 'Taspa',
 	NS_SPECIAL          => 'Arnaýı',
-	NS_MAIN             => '',
 	NS_TALK             => 'Talqılaw',
 	NS_USER             => 'Qatıswşı',
 	NS_USER_TALK        => 'Qatıswşı_talqılawı',
-	# NS_PROJECT set by $wgMetaNamespace
 	NS_PROJECT_TALK     => '$1_talqılawı',
 	NS_FILE             => 'Swret',
 	NS_FILE_TALK        => 'Swret_talqılawı',
@@ -51,7 +49,7 @@ $namespaceNames = array(
 	NS_HELP             => 'Anıqtama',
 	NS_HELP_TALK        => 'Anıqtama_talqılawı',
 	NS_CATEGORY         => 'Sanat',
-	NS_CATEGORY_TALK    => 'Sanat_talqılawı'
+	NS_CATEGORY_TALK    => 'Sanat_talqılawı',
 );
 
 $namespaceAliases = array(

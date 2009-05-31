@@ -19,11 +19,9 @@ $linkPrefixExtension = true;
 $namespaceNames = array(
 	NS_MEDIA            => 'Медиа',
 	NS_SPECIAL          => 'Ятарлă',
-	NS_MAIN             => '',
 	NS_TALK             => 'Сӳтсе явасси',
 	NS_USER             => 'Хутшăнакан',
 	NS_USER_TALK        => 'Хутшăнаканăн_канашлу_страници',
-	# NS_PROJECT set by $wgMetaNamespace
 	NS_PROJECT_TALK     => '$1_сӳтсе_явмалли',
 	NS_FILE             => 'Ӳкерчĕк',
 	NS_FILE_TALK        => 'Ӳкерчĕке_сӳтсе_явмалли',

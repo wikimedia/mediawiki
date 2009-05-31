@@ -17,24 +17,22 @@ $fallback8bitEncoding = 'windows-1254';
 $separatorTransformTable = array(','     => '.', '.'     => ',' );
 
 $namespaceNames = array(
-    NS_MEDIA                     => 'Media',
-    NS_SPECIAL                   => 'Mahsus',
-    NS_MAIN                      => '',
-    NS_TALK                      => 'Muzakere',
-    NS_USER                      => 'Qullanıcı',
-    NS_USER_TALK                 => 'Qullanıcı_muzakeresi',
-    # NS_PROJECT set by $wgMetaNamespace
-    NS_PROJECT_TALK              => '$1_muzakeresi',
-    NS_FILE                      => 'Resim',
-    NS_FILE_TALK                 => 'Resim_muzakeresi',
-    NS_MEDIAWIKI                 => 'MediaViki',
-    NS_MEDIAWIKI_TALK            => 'MediaViki_muzakeresi',
-    NS_TEMPLATE                  => 'Şablon',
-    NS_TEMPLATE_TALK             => 'Şablon_muzakeresi',
-    NS_HELP                      => 'Yardım',
-    NS_HELP_TALK                 => 'Yardım_muzakeresi',
-    NS_CATEGORY                  => 'Kategoriya',
-    NS_CATEGORY_TALK             => 'Kategoriya_muzakeresi',
+	NS_MEDIA            => 'Media',
+	NS_SPECIAL          => 'Mahsus',
+	NS_TALK             => 'Muzakere',
+	NS_USER             => 'Qullanıcı',
+	NS_USER_TALK        => 'Qullanıcı_muzakeresi',
+	NS_PROJECT_TALK     => '$1_muzakeresi',
+	NS_FILE             => 'Resim',
+	NS_FILE_TALK        => 'Resim_muzakeresi',
+	NS_MEDIAWIKI        => 'MediaViki',
+	NS_MEDIAWIKI_TALK   => 'MediaViki_muzakeresi',
+	NS_TEMPLATE         => 'Şablon',
+	NS_TEMPLATE_TALK    => 'Şablon_muzakeresi',
+	NS_HELP             => 'Yardım',
+	NS_HELP_TALK        => 'Yardım_muzakeresi',
+	NS_CATEGORY         => 'Kategoriya',
+	NS_CATEGORY_TALK    => 'Kategoriya_muzakeresi',
 );
 
 # Aliases to cyril namespaces
