@@ -241,6 +241,18 @@ class SearchEngine {
 	 * @return Array
 	 */
 	public static function userNamespaces( $user ) {
+		global $wgSearchEverythingOnlyLoggedIn;
+		
+		// get search everything preference, that can be set to be read for logged-in users
+		$searcheverything = false;
+		if( ( $wgSearchEverythingOnlyLoggedIn && $user->isLoggedIn() )
+		    || !$wgSearchEverythingOnlyLoggedIn )
+			$searcheverything = $user->getOption('searcheverything');
+		
+		// searcheverything overrides other options 
+		if( $searcheverything )
+			return array_keys(SearchEngine::searchableNamespaces());
+		
 		$arr = Preferences::loadOldSearchNs( $user );
 		$searchableNamespaces = SearchEngine::searchableNamespaces();
 		

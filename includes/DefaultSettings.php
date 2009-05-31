@@ -1998,6 +1998,13 @@ $wgNamespacesToBeSearchedHelp = array(
 $wgUseOldSearchUI = true; // temp testing variable
 
 /**
+ * If set to true the 'searcheverything' preference will be effective only for logged-in users.
+ * Useful for big wikis to maintain different search profiles for anonymous and logged-in users.
+ *
+ */
+$wgSearchEverythingOnlyLoggedIn = false;
+
+/**
  * Site notice shown at the top of each page
  *
  * This message can contain wiki text, and can also be set through the

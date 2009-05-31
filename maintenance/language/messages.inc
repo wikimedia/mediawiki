@@ -826,6 +826,7 @@ $wgMessageStructure = array(
 		'search-external',
 		'searchdisabled',
 		'googlesearch',
+		'searcheverything-enable',
 	),
 	'opensearch' => array(
 		'opensearch-desc',
