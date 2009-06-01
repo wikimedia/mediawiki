@@ -927,69 +927,67 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 [[Special:Search|위키 검색 기능]]을 이용해 관련 문서를 찾아보세요.',
 
 # Revision deletion
-'rev-deleted-comment'            => '(편집 요약 삭제됨)',
-'rev-deleted-user'               => '(계정 이름 삭제됨)',
-'rev-deleted-event'              => '(로그 삭제됨)',
-'rev-deleted-text-permission'    => '이 문서의 편집은 문서 역사에서 제거되었습니다.
+'rev-deleted-comment'         => '(편집 요약 삭제됨)',
+'rev-deleted-user'            => '(계정 이름 삭제됨)',
+'rev-deleted-event'           => '(로그 삭제됨)',
+'rev-deleted-text-permission' => '이 문서의 편집은 문서 역사에서 제거되었습니다.
 [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} 삭제 기록]에서 자세한 내용을 볼 수 있습니다..',
-'rev-deleted-text-unhide'        => "이 페이지의 판은 '''삭제되었습니다.'''
+'rev-deleted-text-unhide'     => "이 페이지의 판은 '''삭제되었습니다.'''
 자세한 내용은 [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} 삭제기록]에 있을 것입니다.
 관리자로서 확인을 원한다면 [$1 특정판 보기]를 할 수 있습니다.",
-'rev-deleted-text-view'          => '이 문서의 편집은 문서 역사에서 제거되었습니다.
+'rev-deleted-text-view'       => '이 문서의 편집은 문서 역사에서 제거되었습니다.
 당신은 {{SITENAME}}의 관리자로서, 삭제된 편집을 볼 수 있습니다;
 [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} 삭제 기록]에서 자세한 내용을 볼 수 있습니다.',
-'rev-deleted-no-diff'            => '당신은 특정 판이 문서 역사에서 제거되었기 때문에 이 차이를 확인할 수 없습니다.
+'rev-deleted-no-diff'         => '당신은 특정 판이 문서 역사에서 제거되었기 때문에 이 차이를 확인할 수 없습니다.
 [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} 삭제 기록]에서 자세한 내용을 볼 수 있습니다..',
-'rev-deleted-unhide-diff'        => '특정판의 차이가 문서 역사에서 삭제되었습니다.
+'rev-deleted-unhide-diff'     => '특정판의 차이가 문서 역사에서 삭제되었습니다.
 [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} 삭제 기록]에서 자세한 내용을 볼 수 있습니다.
 {{SITENAME}}의 관리자로서 작업하기를 원하다면 [$1 차이보기]에서 차이를 볼 수 있습니다.',
-'rev-delundel'                   => '보이기/숨기기',
-'revisiondelete'                 => '버전 삭제/복구',
-'revdelete-nooldid-title'        => '대상 판이 잘못되었습니다.',
-'revdelete-nooldid-text'         => '당신은 이 기능을 수행할 특정 판을 제시하지 않았거나, 해당 판이 존재하지 않습니다. 또는 현재 판을 숨기려 하고 있을 수도 있습니다.',
-'revdelete-nologtype-title'      => '기록의 종류가 제시되지 않았습니다.',
-'revdelete-nologtype-text'       => '당신은 이 명령을 수행할 기록의 종류를 제시하지 않았습니다.',
-'revdelete-toomanytargets-title' => '대상이 너무 많습니다.',
-'revdelete-toomanytargets-text'  => '당신은 명령을 수행할 대상을 너무 많이 입력하였습니다.',
-'revdelete-nologid-title'        => '잘못된 기록',
-'revdelete-nologid-text'         => '당신은 이 기능을 수행할 특정 기록을 제시하지 않았거나 제시한 기록이 존재하지 않습니다.',
-'revdelete-selected'             => "'''[[:$1]]의 선택된 판:'''",
-'logdelete-selected'             => "'''선택한 로그:'''",
-'revdelete-text'                 => "'''삭제된 판과 기록은 문서 역사와 기록에 계속 나타나지만, 내용은 공개되지 않을 것입니다.'''
+'rev-delundel'                => '보이기/숨기기',
+'revisiondelete'              => '버전 삭제/복구',
+'revdelete-nooldid-title'     => '대상 판이 잘못되었습니다.',
+'revdelete-nooldid-text'      => '당신은 이 기능을 수행할 특정 판을 제시하지 않았거나, 해당 판이 존재하지 않습니다. 또는 현재 판을 숨기려 하고 있을 수도 있습니다.',
+'revdelete-nologtype-title'   => '기록의 종류가 제시되지 않았습니다.',
+'revdelete-nologtype-text'    => '당신은 이 명령을 수행할 기록의 종류를 제시하지 않았습니다.',
+'revdelete-nologid-title'     => '잘못된 기록',
+'revdelete-nologid-text'      => '당신은 이 기능을 수행할 특정 기록을 제시하지 않았거나 제시한 기록이 존재하지 않습니다.',
+'revdelete-selected'          => "'''[[:$1]]의 선택된 판:'''",
+'logdelete-selected'          => "'''선택한 로그:'''",
+'revdelete-text'              => "'''삭제된 판과 기록은 문서 역사와 기록에 계속 나타나지만, 내용은 공개되지 않을 것입니다.'''
 
 {{SITENAME}}의 다른 관리자는 다른 제한이 설정되어 있지 않는 한, 숨겨진 내용을 볼 수 있고, 같은 도구를 이용해 복구할 수 있습니다.
 이 도구를 사용하는 것의 결과를 인식하고 [[{{MediaWiki:Policy-url}}|정책]]에 맞게 사용하십시오.",
-'revdelete-suppress-text'        => "숨기기는 '''다음 경우에만''' 사용되어야 합니다:
+'revdelete-suppress-text'     => "숨기기는 '''다음 경우에만''' 사용되어야 합니다:
 * 부적절한 개인 정보
 *: 집 주소, 전화번호, 주민등록번호 등",
-'revdelete-legend'               => '보이기 제한을 설정',
-'revdelete-hide-text'            => '판의 내용을 숨기기',
-'revdelete-hide-name'            => '로그 내용과 대상을 숨기기',
-'revdelete-hide-comment'         => '편집 요약을 숨기기',
-'revdelete-hide-user'            => '편집자의 계정 이름/IP를 숨기기',
-'revdelete-hide-restricted'      => '관리자도 보지 못하게 숨기기',
-'revdelete-suppress'             => '문서 내용을 관리자에게도 보이지 않게 숨기기',
-'revdelete-hide-image'           => '파일을 숨기기',
-'revdelete-unsuppress'           => '복구된 판에 대한 제한을 해제',
-'revdelete-log'                  => '이유:',
-'revdelete-submit'               => '선택된 판에 적용',
-'revdelete-logentry'             => '[[$1]]의 판의 보이기 설정을 변경함',
-'logdelete-logentry'             => '[[$1]]의 로그 보이기 설정을 변경함',
-'revdelete-success'              => "'''판의 보이기 설정이 성공적으로 변경되었습니다.'''",
-'revdelete-failure'              => "'''개정판 보기가 준비되지 않았습니다.'''",
-'logdelete-success'              => "'''기록의 보이기 설정이 성공적으로 변경되었습니다.'''",
-'revdel-restore'                 => '보이기 설정 변경',
-'pagehist'                       => '문서 역사',
-'deletedhist'                    => '삭제된 역사',
-'revdelete-content'              => '내용',
-'revdelete-summary'              => '편집 요약',
-'revdelete-uname'                => '사용자 이름',
-'revdelete-restricted'           => '관리자에게 제한을 적용함',
-'revdelete-unrestricted'         => '관리자에 대한 제한을 해제함',
-'revdelete-hid'                  => '$1을 숨김',
-'revdelete-unhid'                => '$1을 숨김 해제함',
-'revdelete-log-message'          => '$2개의 판에 대해 $1',
-'logdelete-log-message'          => '$2개의 로그에 대해 $1',
+'revdelete-legend'            => '보이기 제한을 설정',
+'revdelete-hide-text'         => '판의 내용을 숨기기',
+'revdelete-hide-name'         => '로그 내용과 대상을 숨기기',
+'revdelete-hide-comment'      => '편집 요약을 숨기기',
+'revdelete-hide-user'         => '편집자의 계정 이름/IP를 숨기기',
+'revdelete-hide-restricted'   => '관리자도 보지 못하게 숨기기',
+'revdelete-suppress'          => '문서 내용을 관리자에게도 보이지 않게 숨기기',
+'revdelete-hide-image'        => '파일을 숨기기',
+'revdelete-unsuppress'        => '복구된 판에 대한 제한을 해제',
+'revdelete-log'               => '이유:',
+'revdelete-submit'            => '선택된 판에 적용',
+'revdelete-logentry'          => '[[$1]]의 판의 보이기 설정을 변경함',
+'logdelete-logentry'          => '[[$1]]의 로그 보이기 설정을 변경함',
+'revdelete-success'           => "'''판의 보이기 설정이 성공적으로 변경되었습니다.'''",
+'revdelete-failure'           => "'''개정판 보기가 준비되지 않았습니다.'''",
+'logdelete-success'           => "'''기록의 보이기 설정이 성공적으로 변경되었습니다.'''",
+'revdel-restore'              => '보이기 설정 변경',
+'pagehist'                    => '문서 역사',
+'deletedhist'                 => '삭제된 역사',
+'revdelete-content'           => '내용',
+'revdelete-summary'           => '편집 요약',
+'revdelete-uname'             => '사용자 이름',
+'revdelete-restricted'        => '관리자에게 제한을 적용함',
+'revdelete-unrestricted'      => '관리자에 대한 제한을 해제함',
+'revdelete-hid'               => '$1을 숨김',
+'revdelete-unhid'             => '$1을 숨김 해제함',
+'revdelete-log-message'       => '$2개의 판에 대해 $1',
+'logdelete-log-message'       => '$2개의 로그에 대해 $1',
 
 # Suppression log
 'suppressionlog'     => '숨기기 기록',

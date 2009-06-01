@@ -855,64 +855,62 @@ E posibil să fi fost ştearsă sau redenumită.
 Încearcă să [[Special:Search|cauţi]] pe wiki pentru pagini noi semnificative.',
 
 # Revision deletion
-'rev-deleted-comment'            => '(comentariu şters)',
-'rev-deleted-user'               => '(nume de utilizator şters)',
-'rev-deleted-event'              => '(intrare ştearsă)',
-'rev-deleted-text-permission'    => "Revizia acestei pagini a fost '''ştearsă'''.
+'rev-deleted-comment'         => '(comentariu şters)',
+'rev-deleted-user'            => '(nume de utilizator şters)',
+'rev-deleted-event'           => '(intrare ştearsă)',
+'rev-deleted-text-permission' => "Revizia acestei pagini a fost '''ştearsă'''.
 Mai multe detalii în [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} jurnalul de ştergeri].",
-'rev-deleted-text-view'          => "Revizia acestei pagini a fost '''ştearsă'''.
+'rev-deleted-text-view'       => "Revizia acestei pagini a fost '''ştearsă'''.
 Ca administrator la acest site poţi să o vezi; s-ar putea să găseşti mai multe detalii la [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} jurnalul de ştergeri].",
-'rev-deleted-no-diff'            => "Nu poţi vedea acestă diferenţă deoarece una dintre revizii a fost '''ştearsă'''.
+'rev-deleted-no-diff'         => "Nu poţi vedea acestă diferenţă deoarece una dintre revizii a fost '''ştearsă'''.
 Pot exista mai multe detalii [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} jurnalul ştergerilor].",
-'rev-deleted-unhide-diff'        => "Una din reviziile acestui istoric a fost '''ştearsă'''.
+'rev-deleted-unhide-diff'     => "Una din reviziile acestui istoric a fost '''ştearsă'''.
 Pot exista detalii în [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} jurnalul ştergerilor].
 Ca administrator poţi  [$1 vedea acest istoric] dacă doreşti.",
-'rev-delundel'                   => 'arată/ascunde',
-'revisiondelete'                 => 'Şterge/recuperează revizii',
-'revdelete-nooldid-title'        => 'Revizie invalidă',
-'revdelete-nooldid-text'         => 'Nu ai specificat revizie pentru a efectua această
+'rev-delundel'                => 'arată/ascunde',
+'revisiondelete'              => 'Şterge/recuperează revizii',
+'revdelete-nooldid-title'     => 'Revizie invalidă',
+'revdelete-nooldid-text'      => 'Nu ai specificat revizie pentru a efectua această
 funcţie, revizia specificată nu există, sau eşti pe cale să ascunzi revizia curentă.',
-'revdelete-nologtype-title'      => 'Niciun tip de jurnal specificat',
-'revdelete-nologtype-text'       => 'Nu ai specificat niciun tip de jurnal pentru a putea efectua această acţiune.',
-'revdelete-toomanytargets-title' => 'Prea multe ţinte',
-'revdelete-toomanytargets-text'  => 'Aţi specificat prea multe tipuri de obiective pentru a putea efectua această acţiune.',
-'revdelete-nologid-title'        => 'Intrare în jurnal invalidă',
-'revdelete-nologid-text'         => 'Ori nu nu ai specificat o ţintă pentru jurnal pentru a efectua această funcţie sau intrarea specificată nu există.',
-'revdelete-selected'             => "'''{{PLURAL:$2|Revizia aleasă|Reviziile alese}} pentru [[:$1]]:'''",
-'logdelete-selected'             => "'''{{PLURAL:$1|Revizia aleasă|Reviziile alese}}:'''",
-'revdelete-text'                 => "'''Reviziile şterse vor apărea în istoricul paginii, dar conţinutul lor nu va fi accesibil publicului.'''
+'revdelete-nologtype-title'   => 'Niciun tip de jurnal specificat',
+'revdelete-nologtype-text'    => 'Nu ai specificat niciun tip de jurnal pentru a putea efectua această acţiune.',
+'revdelete-nologid-title'     => 'Intrare în jurnal invalidă',
+'revdelete-nologid-text'      => 'Ori nu nu ai specificat o ţintă pentru jurnal pentru a efectua această funcţie sau intrarea specificată nu există.',
+'revdelete-selected'          => "'''{{PLURAL:$2|Revizia aleasă|Reviziile alese}} pentru [[:$1]]:'''",
+'logdelete-selected'          => "'''{{PLURAL:$1|Revizia aleasă|Reviziile alese}}:'''",
+'revdelete-text'              => "'''Reviziile şterse vor apărea în istoricul paginii, dar conţinutul lor nu va fi accesibil publicului.'''
 
 Alţi administratori {{SITENAME}} vor putea accesa conţinutul ascuns şi îl pot recupera prin aceeaşi interfaţă, dacă nu este impusă altă restricţie de către operatorii sitului. Confirmă că doreşti să finalizezi acţiunea, că înţelegi consecinţele şi că faci acest lucru în concordanţă cu [[{{MediaWiki:Policy-url}}|politica sitului]].",
-'revdelete-suppress-text'        => "Suprimarea trebuie folosită '''doar''' în următoarele cazuri:
+'revdelete-suppress-text'     => "Suprimarea trebuie folosită '''doar''' în următoarele cazuri:
 * Informaţii personale inadecvate
 *: ''adrese şi numere de telefon personale, CNP, numere de securitate socială, etc.''",
-'revdelete-legend'               => 'Setează restricţii pentru vizualizare',
-'revdelete-hide-text'            => 'Ascunde textul reviziei',
-'revdelete-hide-name'            => 'Ascunde acţiunea şi destinaţia',
-'revdelete-hide-comment'         => 'Ascunde descrierea modificării',
-'revdelete-hide-user'            => 'Ascunde numele de utilizator/IP-ul editorului',
-'revdelete-hide-restricted'      => 'Ascunde informaţiile faţă de administratori şi faţă de alţi utilizatori',
-'revdelete-suppress'             => 'Ascunde de asemenea reviziile faţă de administratori',
-'revdelete-hide-image'           => 'Ascunde conţinutul fişierului',
-'revdelete-unsuppress'           => 'Elimină restricţiile în reviziile restaurate',
-'revdelete-log'                  => 'Comentariu log:',
-'revdelete-submit'               => 'Aplică reviziilor selectate',
-'revdelete-logentry'             => 'vizibilitatea reviziei pentru [[$1]] a fost modificată',
-'logdelete-logentry'             => 'a fost modificată vizibilitatea evenimentului [[$1]]',
-'revdelete-success'              => "'''Vizibilitatea versiunilor a fost schimbată cu succes.'''",
-'logdelete-success'              => "'''Jurnalul vizibilităţii a fost configurat cu succes.'''",
-'revdel-restore'                 => 'Schimbă vizibilitatea',
-'pagehist'                       => 'Istoricul paginii',
-'deletedhist'                    => 'Istoric şters',
-'revdelete-content'              => 'conţinut',
-'revdelete-summary'              => 'sumarul modificărilor',
-'revdelete-uname'                => 'nume de utilizator',
-'revdelete-restricted'           => 'restricţii aplicate administratorilor',
-'revdelete-unrestricted'         => 'restricţii eliminate pentru administratori',
-'revdelete-hid'                  => 'ascuns $1',
-'revdelete-unhid'                => 'arată $1',
-'revdelete-log-message'          => '$1 pentru $2 {{PLURAL:$2|versiune|versiuni}}',
-'logdelete-log-message'          => '$1 pentru $2 {{PLURAL:$2|eveniment|evenimente}}',
+'revdelete-legend'            => 'Setează restricţii pentru vizualizare',
+'revdelete-hide-text'         => 'Ascunde textul reviziei',
+'revdelete-hide-name'         => 'Ascunde acţiunea şi destinaţia',
+'revdelete-hide-comment'      => 'Ascunde descrierea modificării',
+'revdelete-hide-user'         => 'Ascunde numele de utilizator/IP-ul editorului',
+'revdelete-hide-restricted'   => 'Ascunde informaţiile faţă de administratori şi faţă de alţi utilizatori',
+'revdelete-suppress'          => 'Ascunde de asemenea reviziile faţă de administratori',
+'revdelete-hide-image'        => 'Ascunde conţinutul fişierului',
+'revdelete-unsuppress'        => 'Elimină restricţiile în reviziile restaurate',
+'revdelete-log'               => 'Comentariu log:',
+'revdelete-submit'            => 'Aplică reviziilor selectate',
+'revdelete-logentry'          => 'vizibilitatea reviziei pentru [[$1]] a fost modificată',
+'logdelete-logentry'          => 'a fost modificată vizibilitatea evenimentului [[$1]]',
+'revdelete-success'           => "'''Vizibilitatea versiunilor a fost schimbată cu succes.'''",
+'logdelete-success'           => "'''Jurnalul vizibilităţii a fost configurat cu succes.'''",
+'revdel-restore'              => 'Schimbă vizibilitatea',
+'pagehist'                    => 'Istoricul paginii',
+'deletedhist'                 => 'Istoric şters',
+'revdelete-content'           => 'conţinut',
+'revdelete-summary'           => 'sumarul modificărilor',
+'revdelete-uname'             => 'nume de utilizator',
+'revdelete-restricted'        => 'restricţii aplicate administratorilor',
+'revdelete-unrestricted'      => 'restricţii eliminate pentru administratori',
+'revdelete-hid'               => 'ascuns $1',
+'revdelete-unhid'             => 'arată $1',
+'revdelete-log-message'       => '$1 pentru $2 {{PLURAL:$2|versiune|versiuni}}',
+'logdelete-log-message'       => '$1 pentru $2 {{PLURAL:$2|eveniment|evenimente}}',
 
 # Suppression log
 'suppressionlog'     => 'Înlătură jurnalul',

@@ -861,69 +861,67 @@ La kialo donata de $3 estas ''$2''.",
 Provu [[Special:Search|serĉi en la vikio]] por rilataj novaj paĝoj.',
 
 # Revision deletion
-'rev-deleted-comment'            => '(komento forigita)',
-'rev-deleted-user'               => '(uzanto-nomo forigita)',
-'rev-deleted-event'              => '(protokola ago forigita)',
-'rev-deleted-text-permission'    => "Ĉi tiu revizio de la paĝo estis '''forigita'''.
+'rev-deleted-comment'         => '(komento forigita)',
+'rev-deleted-user'            => '(uzanto-nomo forigita)',
+'rev-deleted-event'           => '(protokola ago forigita)',
+'rev-deleted-text-permission' => "Ĉi tiu revizio de la paĝo estis '''forigita'''.
 Eble estas detaloj en la [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} protokolo de forigoj].",
-'rev-deleted-text-unhide'        => "Ĉi tiu revizio de la paĝo estis '''forigita'''.
+'rev-deleted-text-unhide'     => "Ĉi tiu revizio de la paĝo estis '''forigita'''.
 Eble estas detaloj en la [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} protokolo de forigoj].
 Kiel administranto, vi ankoraŭ povas [$1 vidi ĉi tiun revizio] se vi volas kontinui.",
-'rev-deleted-text-view'          => "Ĉi tiu revizio de la paĝo estis '''forigita'''.
+'rev-deleted-text-view'       => "Ĉi tiu revizio de la paĝo estis '''forigita'''.
 Kiel administranto vi povas rigardi ĝin; eble estas detaloj en la [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} protokolo pri forigoj].",
-'rev-deleted-no-diff'            => "Vi ne povas vidi ĉi tiun diferencon ĉar unu el la revizioj estis '''forigitaj'''.
+'rev-deleted-no-diff'         => "Vi ne povas vidi ĉi tiun diferencon ĉar unu el la revizioj estis '''forigitaj'''.
 Eble estas detaloj en la [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} protokolo pri forigoj].",
-'rev-deleted-unhide-diff'        => "Unu el la revizioj de ĉi tiu diferenco estis '''forigita'''.
+'rev-deleted-unhide-diff'     => "Unu el la revizioj de ĉi tiu diferenco estis '''forigita'''.
 Eble estas detaloj en la [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} protokolo de forigoj].
 Kiel administranto vi povas ankoraŭ [$1 vidi ĉi tiun diferencon] se vi volas kontinui.",
-'rev-delundel'                   => 'montri/kaŝi',
-'revisiondelete'                 => 'Forigi/malforigi versiojn',
-'revdelete-nooldid-title'        => 'Nevalida cela versio',
-'revdelete-nooldid-text'         => 'Vi ne specifis celan version aŭ versiojn fari ĉi tiun 
+'rev-delundel'                => 'montri/kaŝi',
+'revisiondelete'              => 'Forigi/malforigi versiojn',
+'revdelete-nooldid-title'     => 'Nevalida cela versio',
+'revdelete-nooldid-text'      => 'Vi ne specifis celan version aŭ versiojn fari ĉi tiun 
 funkcion, la specifigita versio ne ekzistas, aŭ vi estas provanta kaŝi la nunan version.',
-'revdelete-nologtype-title'      => 'Neniu protokol-tipo estis donita',
-'revdelete-nologtype-text'       => 'Vi ne specifigis protokolan tipon por fari ĉi tiun funkcion.',
-'revdelete-toomanytargets-title' => 'Tro multaj celoj',
-'revdelete-toomanytargets-text'  => 'Vi specifis tro tipojn da celoj por fari ĉi tiun agon.',
-'revdelete-nologid-title'        => 'Nevalida protokol-linio',
-'revdelete-nologid-text'         => 'Vi aŭ ne specifis celan protokolan eventon por fari ĉi tiun funkcion aŭ la specifa protokolero ne ekzistas.',
-'revdelete-selected'             => "'''{{PLURAL:$2|Selektata versio|Selektataj versioj}} de [[:$1]]:'''",
-'logdelete-selected'             => "'''{{PLURAL:$1|Selektata protokola evento|Selektataj protokolaj eventoj}}:'''",
-'revdelete-text'                 => "'''Forigitaj versioj kaj eventoj plu aperos en la historipaĝoj, sed iliaj tekstoj ne estos alireblaj de la publiko.'''
+'revdelete-nologtype-title'   => 'Neniu protokol-tipo estis donita',
+'revdelete-nologtype-text'    => 'Vi ne specifigis protokolan tipon por fari ĉi tiun funkcion.',
+'revdelete-nologid-title'     => 'Nevalida protokol-linio',
+'revdelete-nologid-text'      => 'Vi aŭ ne specifis celan protokolan eventon por fari ĉi tiun funkcion aŭ la specifa protokolero ne ekzistas.',
+'revdelete-selected'          => "'''{{PLURAL:$2|Selektata versio|Selektataj versioj}} de [[:$1]]:'''",
+'logdelete-selected'          => "'''{{PLURAL:$1|Selektata protokola evento|Selektataj protokolaj eventoj}}:'''",
+'revdelete-text'              => "'''Forigitaj versioj kaj eventoj plu aperos en la historipaĝoj, sed iliaj tekstoj ne estos alireblaj de la publiko.'''
 
 Aliaj administrantoj ĉe {{SITENAME}} plu povos aliri la kaŝitan entenon kaj restarigi ĝin per la sama interfaco, krom se plia limigo estas metita de la paĝaradministrantoj.
 Bonvolu konfirmi ke vi intencias fari ĉi tiel, ke vi komprenas la konsekvencojn, kaj ke vi faras ĉi tiel laŭ [[{{MediaWiki:Policy-url}}|la regularo]].",
-'revdelete-suppress-text'        => "Subpremo '''nur''' estu uzata por la jenaj kazoj:
+'revdelete-suppress-text'     => "Subpremo '''nur''' estu uzata por la jenaj kazoj:
 * Netaŭga persona informo
 *: ''hejmaj adresoj kaj telefonnumeroj, ŝtataj identnumeroj, ktp.''",
-'revdelete-legend'               => 'Fari videblecajn limigojn',
-'revdelete-hide-text'            => 'Kaŝi tekston de versio',
-'revdelete-hide-name'            => 'Kaŝi agon kaj celon',
-'revdelete-hide-comment'         => 'Kaŝi komenton de redakto',
-'revdelete-hide-user'            => 'Kaŝi nomon aŭ IP-adreson de redaktinto',
-'revdelete-hide-restricted'      => 'Subpremi ĉi tiujn datenojn de administrantoj kaj ankaŭ aliaj',
-'revdelete-suppress'             => 'Subpremi datenojn de kaj administrantoj kaj aliaj',
-'revdelete-hide-image'           => 'Kaŝi enhavon de dosieroj',
-'revdelete-unsuppress'           => 'Forigi limigojn al restarigitaj versioj',
-'revdelete-log'                  => 'Komento por protokolo:',
-'revdelete-submit'               => 'Apliki al la selektita versio',
-'revdelete-logentry'             => 'ŝanĝis videblecon de versio por [[$1]]',
-'logdelete-logentry'             => 'ŝanĝis eventan videblecon de [[$1]]',
-'revdelete-success'              => "'''Revizia videbleco estas sukcese farita.'''",
-'revdelete-failure'              => "'''Videblecon de revizio ne eblis agordi.'''",
-'logdelete-success'              => "'''Videbleco de evento sukcese farita.'''",
-'revdel-restore'                 => 'Ŝanĝi videblecon',
-'pagehist'                       => 'Paĝa historio',
-'deletedhist'                    => 'Forigita historio',
-'revdelete-content'              => 'enhavo',
-'revdelete-summary'              => 'redakti resumon',
-'revdelete-uname'                => 'salutnomo',
-'revdelete-restricted'           => 'aplikis limojn al administrantoj',
-'revdelete-unrestricted'         => 'forigis limojn por administrantoj',
-'revdelete-hid'                  => 'kaŝis $1',
-'revdelete-unhid'                => 'malkaŝis $1',
-'revdelete-log-message'          => '$1 por $2 {{PLURAL:$2|versio|versioj}}',
-'logdelete-log-message'          => '$1 por $2 {{PLURAL:$2|evento|eventoj}}',
+'revdelete-legend'            => 'Fari videblecajn limigojn',
+'revdelete-hide-text'         => 'Kaŝi tekston de versio',
+'revdelete-hide-name'         => 'Kaŝi agon kaj celon',
+'revdelete-hide-comment'      => 'Kaŝi komenton de redakto',
+'revdelete-hide-user'         => 'Kaŝi nomon aŭ IP-adreson de redaktinto',
+'revdelete-hide-restricted'   => 'Subpremi ĉi tiujn datenojn de administrantoj kaj ankaŭ aliaj',
+'revdelete-suppress'          => 'Subpremi datenojn de kaj administrantoj kaj aliaj',
+'revdelete-hide-image'        => 'Kaŝi enhavon de dosieroj',
+'revdelete-unsuppress'        => 'Forigi limigojn al restarigitaj versioj',
+'revdelete-log'               => 'Komento por protokolo:',
+'revdelete-submit'            => 'Apliki al la selektita versio',
+'revdelete-logentry'          => 'ŝanĝis videblecon de versio por [[$1]]',
+'logdelete-logentry'          => 'ŝanĝis eventan videblecon de [[$1]]',
+'revdelete-success'           => "'''Revizia videbleco estas sukcese farita.'''",
+'revdelete-failure'           => "'''Videblecon de revizio ne eblis agordi.'''",
+'logdelete-success'           => "'''Videbleco de evento sukcese farita.'''",
+'revdel-restore'              => 'Ŝanĝi videblecon',
+'pagehist'                    => 'Paĝa historio',
+'deletedhist'                 => 'Forigita historio',
+'revdelete-content'           => 'enhavo',
+'revdelete-summary'           => 'redakti resumon',
+'revdelete-uname'             => 'salutnomo',
+'revdelete-restricted'        => 'aplikis limojn al administrantoj',
+'revdelete-unrestricted'      => 'forigis limojn por administrantoj',
+'revdelete-hid'               => 'kaŝis $1',
+'revdelete-unhid'             => 'malkaŝis $1',
+'revdelete-log-message'       => '$1 por $2 {{PLURAL:$2|versio|versioj}}',
+'logdelete-log-message'       => '$1 por $2 {{PLURAL:$2|evento|eventoj}}',
 
 # Suppression log
 'suppressionlog'     => 'Protokolo pri subigado',

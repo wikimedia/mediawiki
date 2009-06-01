@@ -922,68 +922,66 @@ Kemungkinan telah dihapus dari wiki, atau diberi nama baru.
 Coba [[Special:Search|lakukan pencarian di wiki]] untuk halaman baru yang relevan.',
 
 # Revision deletion
-'rev-deleted-comment'            => '(komentar dihapus)',
-'rev-deleted-user'               => '(nama pengguna dihapus)',
-'rev-deleted-event'              => '(isi dihapus)',
-'rev-deleted-text-permission'    => "Riwayat revisi halaman ini telah '''dihapus'''.
+'rev-deleted-comment'         => '(komentar dihapus)',
+'rev-deleted-user'            => '(nama pengguna dihapus)',
+'rev-deleted-event'           => '(isi dihapus)',
+'rev-deleted-text-permission' => "Riwayat revisi halaman ini telah '''dihapus'''.
 Detil mungkin tersedia di [{{fullurl:{{ns:special}}:Log/delete|page={{FULLPAGENAMEE}}}} log penghapusan].",
-'rev-deleted-text-unhide'        => "Riwayat revisi halaman ini telah '''dihapus'''.
+'rev-deleted-text-unhide'     => "Riwayat revisi halaman ini telah '''dihapus'''.
 Detil mungkin tersedia di [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} log penghapusan].
 Sebagai seorang pengurus Anda masih dapat [$1 melihat revisi ini] jika Anda ingin.",
-'rev-deleted-text-view'          => "Riwayat revisi halaman ini telah '''dihapus'''.
+'rev-deleted-text-view'       => "Riwayat revisi halaman ini telah '''dihapus'''.
 Sebagai seorang pengurus, Anda dapat melihatnya; detil mungkin tersedia di [{{fullurl:{{ns:special}}:Log/delete|page={{FULLPAGENAMEE}}}} log penghapusan].",
-'rev-deleted-no-diff'            => "Anda tak dapat melihat perbedaan ini karena salah satu dari revisi tersebut telah '''dihapus'''.
+'rev-deleted-no-diff'         => "Anda tak dapat melihat perbedaan ini karena salah satu dari revisi tersebut telah '''dihapus'''.
 Detil mungkin tersedia di [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} log penghapusan].",
-'rev-deleted-unhide-diff'        => "Satu atau lebih revisi dari perbedaan ini telah '''dihapus'''.
+'rev-deleted-unhide-diff'     => "Satu atau lebih revisi dari perbedaan ini telah '''dihapus'''.
 Detil mungkin tersedia di [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} log penghapusan].
 Sebagai seorang pengurus, Anda masih dapat [$1 melihat perbedaan ini] jika Anda ingin.",
-'rev-delundel'                   => 'tampilkan/sembunyikan',
-'revisiondelete'                 => 'Hapus/batal hapus revisi',
-'revdelete-nooldid-title'        => 'Target revisi tak ditemukan',
-'revdelete-nooldid-text'         => 'Anda belum memberikan target revisi untuk menjalankan fungsi ini.',
-'revdelete-nologtype-title'      => 'Tipe log tak diberikan',
-'revdelete-nologtype-text'       => 'Anda tidak memberikan suatu tipe log untuk menerapkan tindakan ini.',
-'revdelete-toomanytargets-title' => 'Target terlalu banyak',
-'revdelete-toomanytargets-text'  => 'Anda memberikan terlalu banyak tipe target untuk melakukan tindakan ini.',
-'revdelete-nologid-title'        => 'Entri log tak valid',
-'revdelete-nologid-text'         => 'Anda mungkin tidak menyebutkan suatu log peristiwa target untuk menjalankan fungsi ini atau entri yang dimaksud tak ditemukan.',
-'revdelete-selected'             => "'''{{PLURAL:$2|Revisi|Revisi-revisi}} pilihan dari '''$1''''''",
-'logdelete-selected'             => "'''{{PLURAL:$1|Log|Log-log}} pilihan untuk:'''",
-'revdelete-text'                 => "'''Revisi-revisi dan tindakan-tindakan yang telah dihapus akan tetap muncul di halaman versi terdahulu dan halaman log, tapi teks isi tidak bisa diakses publik.'''
+'rev-delundel'                => 'tampilkan/sembunyikan',
+'revisiondelete'              => 'Hapus/batal hapus revisi',
+'revdelete-nooldid-title'     => 'Target revisi tak ditemukan',
+'revdelete-nooldid-text'      => 'Anda belum memberikan target revisi untuk menjalankan fungsi ini.',
+'revdelete-nologtype-title'   => 'Tipe log tak diberikan',
+'revdelete-nologtype-text'    => 'Anda tidak memberikan suatu tipe log untuk menerapkan tindakan ini.',
+'revdelete-nologid-title'     => 'Entri log tak valid',
+'revdelete-nologid-text'      => 'Anda mungkin tidak menyebutkan suatu log peristiwa target untuk menjalankan fungsi ini atau entri yang dimaksud tak ditemukan.',
+'revdelete-selected'          => "'''{{PLURAL:$2|Revisi|Revisi-revisi}} pilihan dari '''$1''''''",
+'logdelete-selected'          => "'''{{PLURAL:$1|Log|Log-log}} pilihan untuk:'''",
+'revdelete-text'              => "'''Revisi-revisi dan tindakan-tindakan yang telah dihapus akan tetap muncul di halaman versi terdahulu dan halaman log, tapi teks isi tidak bisa diakses publik.'''
 
 Pengurus {{SITENAME}} lainnya akan tetap dapat mengakses isi yang tersembunyi ini dan dapat membatalkan penghapusannya menggunakan antarmuka yang sama, kecuali ada pembatasan lain yang dibuat oleh operator situs.
 Harap konfirmasikan bahwa Anda memang ingin melakukan tindakan ini, bahwa Anda mengerti akibat-akibatnya, dan bahwa tindakan ini telah sesuai dengan [[{{MediaWiki:Policy-url}}|kebijakan]].",
-'revdelete-suppress-text'        => "Penghilangan '''hanya''' digunakan untuk kasus-kasus berikut:
+'revdelete-suppress-text'     => "Penghilangan '''hanya''' digunakan untuk kasus-kasus berikut:
 * Informasi pribadi yang tak sepantasnya
 *: ''alamat rumah dan nomor telepon, nomor perlindungan sosial, dll.''",
-'revdelete-legend'               => 'Atur batasan:',
-'revdelete-hide-text'            => 'Sembunyikan teks revisi',
-'revdelete-hide-name'            => 'Sembunyikan tindakan dan target',
-'revdelete-hide-comment'         => 'Tampilkan/sembunyikan ringkasan suntingan',
-'revdelete-hide-user'            => 'Sembunyikan nama pengguna/IP penyunting',
-'revdelete-hide-restricted'      => 'Sembunyikan data dari opsis juga',
-'revdelete-suppress'             => 'Sembunyikan juga dari pengurus',
-'revdelete-hide-image'           => 'Sembunyikan isi berkas',
-'revdelete-unsuppress'           => 'Hapus batasan pada revisi yang dikembalikan',
-'revdelete-log'                  => 'Log ringkasan:',
-'revdelete-submit'               => 'Terapkan pada revisi terpilih',
-'revdelete-logentry'             => 'ubah tampilan revisi untuk [[$1]]',
-'logdelete-logentry'             => 'ubah aturan penyembunyian dari [[$1]]',
-'revdelete-success'              => 'Aturan penyembunyian revisi berhasil diterapkan.',
-'revdelete-failure'              => "'''Mode tampilan revisi tak dapat diterapkan.'''",
-'logdelete-success'              => 'Aturan penyembunyian tindakan berhasil diterapkan.',
-'revdel-restore'                 => 'Ubah tampilan',
-'pagehist'                       => 'Sejarah halaman',
-'deletedhist'                    => 'Sejarah yang dihapus',
-'revdelete-content'              => 'konten',
-'revdelete-summary'              => 'ringkasan',
-'revdelete-uname'                => 'nama pengguna',
-'revdelete-restricted'           => 'akses telah dibatasi untuk opsis',
-'revdelete-unrestricted'         => 'pembatasan akses opsis dihapuskan',
-'revdelete-hid'                  => 'sembunyikan $1',
-'revdelete-unhid'                => 'tampilkan $1',
-'revdelete-log-message'          => '$1 untuk $2 {{PLURAL:$2|revisi|revisi}}',
-'logdelete-log-message'          => '$1 untuk $2 {{PLURAL:$2|peristiwa|peristiwa}}',
+'revdelete-legend'            => 'Atur batasan:',
+'revdelete-hide-text'         => 'Sembunyikan teks revisi',
+'revdelete-hide-name'         => 'Sembunyikan tindakan dan target',
+'revdelete-hide-comment'      => 'Tampilkan/sembunyikan ringkasan suntingan',
+'revdelete-hide-user'         => 'Sembunyikan nama pengguna/IP penyunting',
+'revdelete-hide-restricted'   => 'Sembunyikan data dari opsis juga',
+'revdelete-suppress'          => 'Sembunyikan juga dari pengurus',
+'revdelete-hide-image'        => 'Sembunyikan isi berkas',
+'revdelete-unsuppress'        => 'Hapus batasan pada revisi yang dikembalikan',
+'revdelete-log'               => 'Log ringkasan:',
+'revdelete-submit'            => 'Terapkan pada revisi terpilih',
+'revdelete-logentry'          => 'ubah tampilan revisi untuk [[$1]]',
+'logdelete-logentry'          => 'ubah aturan penyembunyian dari [[$1]]',
+'revdelete-success'           => 'Aturan penyembunyian revisi berhasil diterapkan.',
+'revdelete-failure'           => "'''Mode tampilan revisi tak dapat diterapkan.'''",
+'logdelete-success'           => 'Aturan penyembunyian tindakan berhasil diterapkan.',
+'revdel-restore'              => 'Ubah tampilan',
+'pagehist'                    => 'Sejarah halaman',
+'deletedhist'                 => 'Sejarah yang dihapus',
+'revdelete-content'           => 'konten',
+'revdelete-summary'           => 'ringkasan',
+'revdelete-uname'             => 'nama pengguna',
+'revdelete-restricted'        => 'akses telah dibatasi untuk opsis',
+'revdelete-unrestricted'      => 'pembatasan akses opsis dihapuskan',
+'revdelete-hid'               => 'sembunyikan $1',
+'revdelete-unhid'             => 'tampilkan $1',
+'revdelete-log-message'       => '$1 untuk $2 {{PLURAL:$2|revisi|revisi}}',
+'logdelete-log-message'       => '$1 untuk $2 {{PLURAL:$2|peristiwa|peristiwa}}',
 
 # Suppression log
 'suppressionlog'     => 'Log penyembunyian',

@@ -939,69 +939,67 @@ Benlèu es estada escafada o renomenada.
 Ensajatz de [[Special:Search|recercar sul wiki]] per trobar de paginas en rapòrt.',
 
 # Revision deletion
-'rev-deleted-comment'            => '(comentari suprimit)',
-'rev-deleted-user'               => '(nom d’utilizaire suprimit)',
-'rev-deleted-event'              => '(entrada suprimida)',
-'rev-deleted-text-permission'    => "Aquesta version de la pagina es estada '''suprimida'''.
+'rev-deleted-comment'         => '(comentari suprimit)',
+'rev-deleted-user'            => '(nom d’utilizaire suprimit)',
+'rev-deleted-event'           => '(entrada suprimida)',
+'rev-deleted-text-permission' => "Aquesta version de la pagina es estada '''suprimida'''.
 I pòt aver de detalhs dins l'[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} istoric de las supressions].",
-'rev-deleted-text-unhide'        => "Aquesta version de la pagina es estada '''suprimida'''.
+'rev-deleted-text-unhide'     => "Aquesta version de la pagina es estada '''suprimida'''.
 I pòt aver mai de detalhs dins [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} lo jornal de las supressions].
 Coma administrator, podètz encara [$1 veire aquesta version] s'o volètz.",
-'rev-deleted-text-view'          => "Aquesta version de la pagina es estada '''suprimida'''.
+'rev-deleted-text-view'       => "Aquesta version de la pagina es estada '''suprimida'''.
 En tant qu’administrator, la podètz visualizar ; i pòt aver de detalhs dins lo [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} jornal de las supressions].",
-'rev-deleted-no-diff'            => "Podètz pas veire aquesta dif per que una de las versions es estada '''suprimida'''.
+'rev-deleted-no-diff'         => "Podètz pas veire aquesta dif per que una de las versions es estada '''suprimida'''.
 I pòt aver mai de detalhs dins lo [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} jornal de las supressions].",
-'rev-deleted-unhide-diff'        => "Una de las revisions d'aquesta diferéncia es estada '''suprimida'''.
+'rev-deleted-unhide-diff'     => "Una de las revisions d'aquesta diferéncia es estada '''suprimida'''.
 I pòt aver mai de detalhs dins lo [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} jornal de las supressions].
 En tant qu'administrator, podètz encara [$1 veire aquesta diferéncia] se o volètz.",
-'rev-delundel'                   => 'afichar/amagar',
-'revisiondelete'                 => 'Suprimir/Restablir de versions',
-'revdelete-nooldid-title'        => 'Cibla per la revision invalida',
-'revdelete-nooldid-text'         => "Avètz pas precisat la o las revision(s) cibla(s) per utilizar aquesta foncion, la revision cibla existís pas, o alara la revision cibla es la qu'es en cors.",
-'revdelete-nologtype-title'      => 'Cap de tipe de jornal pas balhat',
-'revdelete-nologtype-text'       => 'Avètz pas especificat un tipe de jornal sul qual aquesta accion deu èsser realizada.',
-'revdelete-toomanytargets-title' => 'Tròp de ciblas',
-'revdelete-toomanytargets-text'  => 'Avètz especificat tròp de tipes de ciblas diferentas sus las qualas aquesta accion deu èsser realizada.',
-'revdelete-nologid-title'        => 'Entrada del jornal invalida',
-'revdelete-nologid-text'         => 'Siá avètz pas especificat un eveniment del jornal sul qual aquesta accion se deu realizar, siá existís pas.',
-'revdelete-selected'             => "'''{{PLURAL:$2|Version seleccionada|Versions seleccionadas}} de [[:$1]] :'''",
-'logdelete-selected'             => "'''{{PLURAL:$1|Eveniment d'istoric seleccionat|Eveniments d'istoric seleccionats}} :'''",
-'revdelete-text'                 => "'''Las revisions e eveniments suprimits apareisseràn encara dins l’istoric e los jornals de la pagina, mas lor contengut textual serà inaccessible al public.'''
+'rev-delundel'                => 'afichar/amagar',
+'revisiondelete'              => 'Suprimir/Restablir de versions',
+'revdelete-nooldid-title'     => 'Cibla per la revision invalida',
+'revdelete-nooldid-text'      => "Avètz pas precisat la o las revision(s) cibla(s) per utilizar aquesta foncion, la revision cibla existís pas, o alara la revision cibla es la qu'es en cors.",
+'revdelete-nologtype-title'   => 'Cap de tipe de jornal pas balhat',
+'revdelete-nologtype-text'    => 'Avètz pas especificat un tipe de jornal sul qual aquesta accion deu èsser realizada.',
+'revdelete-nologid-title'     => 'Entrada del jornal invalida',
+'revdelete-nologid-text'      => 'Siá avètz pas especificat un eveniment del jornal sul qual aquesta accion se deu realizar, siá existís pas.',
+'revdelete-selected'          => "'''{{PLURAL:$2|Version seleccionada|Versions seleccionadas}} de [[:$1]] :'''",
+'logdelete-selected'          => "'''{{PLURAL:$1|Eveniment d'istoric seleccionat|Eveniments d'istoric seleccionats}} :'''",
+'revdelete-text'              => "'''Las revisions e eveniments suprimits apareisseràn encara dins l’istoric e los jornals de la pagina, mas lor contengut textual serà inaccessible al public.'''
 
 D’autres administrators sus {{SITENAME}} poiràn totjorn accedir al contengut amagat e lo restablir tornarmai a travèrs d'aquesta meteissa interfàcia, a mens qu’una restriccion suplementària siá mesa en plaça pels operators del sit.
 
 Confirmatz qu'aquò es plan çò que voliatz far, que comprenètz las consequéncias, e qu'o fasètz en acòrd amb las [[{{MediaWiki:Policy-url}}|règlas]].",
-'revdelete-suppress-text'        => "La supression deu èsser utilizada '''sonque''' dins los cases seguents :
+'revdelete-suppress-text'     => "La supression deu èsser utilizada '''sonque''' dins los cases seguents :
 * Informacions personalas inapropriadas
 *: ''adreça, numèro de telefòn, numèro de seguretat sociala, ...''",
-'revdelete-legend'               => 'Metre en plaça de restriccions de version :',
-'revdelete-hide-text'            => 'Amagar lo tèxte de la version',
-'revdelete-hide-name'            => 'Amagar l’accion e la cibla',
-'revdelete-hide-comment'         => 'Amagar lo comentari de modificacion',
-'revdelete-hide-user'            => 'Amagar lo pseudonim o l’adreça IP del contributor.',
-'revdelete-hide-restricted'      => 'Suprimir aquestas donadas als administrators e mai als autres',
-'revdelete-suppress'             => 'Suprimir las donadas dels administrators e tanben dels autres utilizaires',
-'revdelete-hide-image'           => 'Amagar lo contengut del fichièr',
-'revdelete-unsuppress'           => 'Levar las restriccions sus las versions restablidas',
-'revdelete-log'                  => "Comentari per l'istoric :",
-'revdelete-submit'               => 'Aplicar a la version seleccionada',
-'revdelete-logentry'             => 'La visibilitat de la version es estada modificada per [[$1]]',
-'logdelete-logentry'             => 'La visibilitat de l’eveniment es estada modificada per [[$1]]',
-'revdelete-success'              => "'''Visibilitat de las versions cambiadas amb succès.'''",
-'revdelete-failure'              => "'''La visibilitat de la revision a pas pogut èsser definida.'''",
-'logdelete-success'              => "'''Jornal de las visibilitat parametrat amb succès.'''",
-'revdel-restore'                 => 'Modificar la visibilitat',
-'pagehist'                       => 'Istoric de la pagina',
-'deletedhist'                    => 'Istoric de las supressions',
-'revdelete-content'              => 'contengut',
-'revdelete-summary'              => 'modificar lo somari',
-'revdelete-uname'                => 'nom d’utilizaire',
-'revdelete-restricted'           => 'aplicar las restriccions als administrators',
-'revdelete-unrestricted'         => 'restriccions levadas pels administrators',
-'revdelete-hid'                  => 'amagar $1',
-'revdelete-unhid'                => 'afichar $1',
-'revdelete-log-message'          => '$1 per $2 {{PLURAL:$2|revision|revisions}}',
-'logdelete-log-message'          => '$1 sus $2 {{PLURAL:$2|eveniment|eveniments}}',
+'revdelete-legend'            => 'Metre en plaça de restriccions de version :',
+'revdelete-hide-text'         => 'Amagar lo tèxte de la version',
+'revdelete-hide-name'         => 'Amagar l’accion e la cibla',
+'revdelete-hide-comment'      => 'Amagar lo comentari de modificacion',
+'revdelete-hide-user'         => 'Amagar lo pseudonim o l’adreça IP del contributor.',
+'revdelete-hide-restricted'   => 'Suprimir aquestas donadas als administrators e mai als autres',
+'revdelete-suppress'          => 'Suprimir las donadas dels administrators e tanben dels autres utilizaires',
+'revdelete-hide-image'        => 'Amagar lo contengut del fichièr',
+'revdelete-unsuppress'        => 'Levar las restriccions sus las versions restablidas',
+'revdelete-log'               => "Comentari per l'istoric :",
+'revdelete-submit'            => 'Aplicar a la version seleccionada',
+'revdelete-logentry'          => 'La visibilitat de la version es estada modificada per [[$1]]',
+'logdelete-logentry'          => 'La visibilitat de l’eveniment es estada modificada per [[$1]]',
+'revdelete-success'           => "'''Visibilitat de las versions cambiadas amb succès.'''",
+'revdelete-failure'           => "'''La visibilitat de la revision a pas pogut èsser definida.'''",
+'logdelete-success'           => "'''Jornal de las visibilitat parametrat amb succès.'''",
+'revdel-restore'              => 'Modificar la visibilitat',
+'pagehist'                    => 'Istoric de la pagina',
+'deletedhist'                 => 'Istoric de las supressions',
+'revdelete-content'           => 'contengut',
+'revdelete-summary'           => 'modificar lo somari',
+'revdelete-uname'             => 'nom d’utilizaire',
+'revdelete-restricted'        => 'aplicar las restriccions als administrators',
+'revdelete-unrestricted'      => 'restriccions levadas pels administrators',
+'revdelete-hid'               => 'amagar $1',
+'revdelete-unhid'             => 'afichar $1',
+'revdelete-log-message'       => '$1 per $2 {{PLURAL:$2|revision|revisions}}',
+'logdelete-log-message'       => '$1 sus $2 {{PLURAL:$2|eveniment|eveniments}}',
 
 # Suppression log
 'suppressionlog'     => 'Jornal de las supressions',

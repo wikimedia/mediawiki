@@ -1262,80 +1262,84 @@ It may have been deleted from the wiki, or renamed.
 Try [[Special:Search|searching on the wiki]] for relevant new pages.',
 
 # Revision deletion
-'rev-deleted-comment'            => '(comment removed)',
-'rev-deleted-user'               => '(username removed)',
-'rev-deleted-event'              => '(log action removed)',
-'rev-deleted-text-permission'    => "This page revision has been '''deleted'''.
+'rev-deleted-comment'         => '(comment removed)',
+'rev-deleted-user'            => '(username removed)',
+'rev-deleted-event'           => '(log action removed)',
+'rev-deleted-text-permission' => "This page revision has been '''deleted'''.
 There may be details in the [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} deletion log].",
-'rev-deleted-text-unhide'        => "This page revision has been '''deleted'''.
+'rev-deleted-text-unhide'     => "This page revision has been '''deleted'''.
 There may be details in the [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} deletion log].
 As an administrator you can still [$1 view this revision] if you wish to proceed.",
-'rev-deleted-text-view'          => "This page revision has been '''deleted'''.
+'rev-deleted-text-view'       => "This page revision has been '''deleted'''.
 As an administrator you can view it; there may be details in the [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} deletion log].",
-'rev-deleted-no-diff'            => "You cannot view this diff because one of the revisions has been '''deleted'''.
+'rev-deleted-no-diff'         => "You cannot view this diff because one of the revisions has been '''deleted'''.
 There may be details in the [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} deletion log].",
-'rev-deleted-unhide-diff'        => "One of the revisions of this diff has been '''deleted'''.
+'rev-deleted-unhide-diff'     => "One of the revisions of this diff has been '''deleted'''.
 There may be details in the [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} deletion log].
 As an administrator you can still [$1 view this diff] if you wish to proceed.",
-'rev-delundel'                   => 'show/hide',
-'revisiondelete'                 => 'Delete/undelete revisions',
-'revdelete-nooldid-title'        => 'Invalid target revision',
-'revdelete-nooldid-text'         => 'You have either not specified a target revision(s) to perform this
+'rev-delundel'                => 'show/hide',
+'revisiondelete'              => 'Delete/undelete revisions',
+'revdelete-nooldid-title'     => 'Invalid target revision',
+'revdelete-nooldid-text'      => 'You have either not specified a target revision(s) to perform this
 function, the specified revision does not exist, or you are attempting to hide the current revision.',
-'revdelete-nologtype-title'      => 'No log type given',
-'revdelete-nologtype-text'       => 'You have not specified a log type to perform this action on.',
-'revdelete-nologid-title'        => 'Invalid log entry',
-'revdelete-nologid-text'         => 'You have either not specified a target log event to perform this function or the specified entry does not exist.',
-'revdelete-no-file'              => 'The file specified does not exist.',
-'revdelete-show-file-confirm'    => 'Are you sure you want to view a deleted revision of the file "<nowiki>$1</nowiki>" from $2 at $3?',
-'revdelete-show-file-submit'     => 'Yes',
-'revdelete-selected'             => "'''{{PLURAL:$2|Selected revision|Selected revisions}} of [[:$1]]:'''",
-'logdelete-selected'             => "'''{{PLURAL:$1|Selected log event|Selected log events}}:'''",
-'revdelete-text'                 => "'''Deleted revisions and events will still appear in the page history and logs, but parts of their content will be inaccessible to the public.'''
+'revdelete-nologtype-title'   => 'No log type given',
+'revdelete-nologtype-text'    => 'You have not specified a log type to perform this action on.',
+'revdelete-nologid-title'     => 'Invalid log entry',
+'revdelete-nologid-text'      => 'You have either not specified a target log event to perform this function or the specified entry does not exist.',
+'revdelete-no-file'           => 'The file specified does not exist.',
+'revdelete-show-file-confirm' => 'Are you sure you want to view a deleted revision of the file "<nowiki>$1</nowiki>" from $2 at $3?',
+'revdelete-show-file-submit'  => 'Yes',
+'revdelete-selected'          => "'''{{PLURAL:$2|Selected revision|Selected revisions}} of [[:$1]]:'''",
+'logdelete-selected'          => "'''{{PLURAL:$1|Selected log event|Selected log events}}:'''",
+'revdelete-text'              => "'''Deleted revisions and events will still appear in the page history and logs, but parts of their content will be inaccessible to the public.'''
 Other administrators on {{SITENAME}} will still be able to access the hidden content and can undelete it again through this same interface, unless additional restrictions are set.
 
 Please confirm that you intend to do this, that you understand the consequences, and that you are doing this in accordance with [[{{MediaWiki:Policy-url}}|the policy]].",
-'revdelete-suppress-text'        => "Suppression should '''only''' be used for the following cases:
+'revdelete-suppress-text'     => "Suppression should '''only''' be used for the following cases:
 * Inappropriate personal information
 *: ''home addresses and telephone numbers, social security numbers, etc.''",
-'revdelete-legend'               => 'Set visibility restrictions',
-'revdelete-hide-text'            => 'Hide revision text',
-'revdelete-hide-name'            => 'Hide action and target',
-'revdelete-hide-comment'         => 'Hide edit comment',
-'revdelete-hide-user'            => "Hide editor's username/IP",
-'revdelete-hide-restricted'      => 'Suppress data from administrators as well as others',
-'revdelete-suppress'             => 'Suppress data from administrators as well as others',
-'revdelete-hide-image'           => 'Hide file content',
-'revdelete-unsuppress'           => 'Remove restrictions on restored revisions',
-'revdelete-log'                  => 'Log comment:',
-'revdelete-submit'               => 'Apply to selected revision',
-'revdelete-logentry'             => 'changed revision visibility of [[$1]]',
-'logdelete-logentry'             => 'changed event visibility of [[$1]]',
-'revdelete-success'              => "'''Revision visibility successfully set.'''",
-'revdelete-failure'              => "'''Revision visibility could not be set: '''
+'revdelete-legend'            => 'Set visibility restrictions',
+'revdelete-hide-text'         => 'Hide revision text',
+'revdelete-hide-name'         => 'Hide action and target',
+'revdelete-hide-comment'      => 'Hide edit comment',
+'revdelete-hide-user'         => "Hide editor's username/IP",
+'revdelete-hide-restricted'   => 'Suppress data from administrators as well as others',
+'revdelete-suppress'          => 'Suppress data from administrators as well as others',
+'revdelete-hide-image'        => 'Hide file content',
+'revdelete-unsuppress'        => 'Remove restrictions on restored revisions',
+'revdelete-log'               => 'Log comment:',
+'revdelete-submit'            => 'Apply to selected revision',
+'revdelete-logentry'          => 'changed revision visibility of [[$1]]',
+'logdelete-logentry'          => 'changed event visibility of [[$1]]',
+'revdelete-success'           => "'''Revision visibility successfully set.'''",
+'revdelete-failure'           => "'''Revision visibility could not be set: '''
 $1",
-'logdelete-success'              => "'''Log visibility successfully set.'''",
-'logdelete-failure'              => "'''Log visibility could not be set: '''
+'logdelete-success'           => "'''Log visibility successfully set.'''",
+'logdelete-failure'           => "'''Log visibility could not be set:'''
 $1",
-'revdel-restore'                 => 'change visibility',
-'pagehist'                       => 'Page history',
-'deletedhist'                    => 'Deleted history',
-'revdelete-content'              => 'content',
-'revdelete-summary'              => 'edit summary',
-'revdelete-uname'                => 'username',
-'revdelete-restricted'           => 'applied restrictions to administrators',
-'revdelete-unrestricted'         => 'removed restrictions for administrators',
-'revdelete-hid'                  => 'hid $1',
-'revdelete-unhid'                => 'unhid $1',
-'revdelete-log-message'          => '$1 for $2 {{PLURAL:$2|revision|revisions}}',
-'logdelete-log-message'          => '$1 for $2 {{PLURAL:$2|event|events}}',
-'revdelete-hide-current'         => 'Error hiding the item dated $1: this is the current revision and so can\'t be hidden.',
-'revdelete-show-no-access'       => 'Error showing the item dated $1: this item has been marked "restricted", you do not have access to it.',
-'revdelete-modify-no-access'     => 'Error modifying the item dated $1: this item has been marked "restrited", you do not have access to it.',
-'revdelete-modify-missing'       => 'Error modifying item ID $1: it\'s missing from the database!',
-'revdelete-no-change'            => 'Warning: the item dated $1 already had the requested visibility settings.',
-'revdelete-concurrent-change'    => 'Error modifying the item dated $1: its status appears to have been changed by someone else while we were attempting to modify it. Please check the logs.',
-'revdelete-only-restricted'      => 'You cannot suppress items from view by administrators without also selecting one of the other suppression options.',
+'revdel-restore'              => 'change visibility',
+'pagehist'                    => 'Page history',
+'deletedhist'                 => 'Deleted history',
+'revdelete-content'           => 'content',
+'revdelete-summary'           => 'edit summary',
+'revdelete-uname'             => 'username',
+'revdelete-restricted'        => 'applied restrictions to administrators',
+'revdelete-unrestricted'      => 'removed restrictions for administrators',
+'revdelete-hid'               => 'hid $1',
+'revdelete-unhid'             => 'unhid $1',
+'revdelete-log-message'       => '$1 for $2 {{PLURAL:$2|revision|revisions}}',
+'logdelete-log-message'       => '$1 for $2 {{PLURAL:$2|event|events}}',
+'revdelete-hide-current'      => 'Error hiding the item dated $1: this is the current revision.
+It cannot be hidden.',
+'revdelete-show-no-access'    => 'Error showing the item dated $1: this item has been marked "restricted".
+You do not have access to it.',
+'revdelete-modify-no-access'  => 'Error modifying the item dated $1: this item has been marked "restricted".
+You do not have access to it.',
+'revdelete-modify-missing'    => 'Error modifying item ID $1: it is missing from the database!',
+'revdelete-no-change'         => "'''Warning:''' the item dated $1 already had the requested visibility settings.",
+'revdelete-concurrent-change' => 'Error modifying the item dated $1: its status appears to have been changed by someone else while you attempted to modify it.
+Please check the logs.',
+'revdelete-only-restricted'   => 'You cannot suppress items from view by administrators without also selecting one of the other suppression options.',
 
 # Suppression log
 'suppressionlog'     => 'Suppression log',

@@ -762,69 +762,67 @@ Marteze eo bet diverket eus ar wiki, pe adanvet.
 Implijit [[Special:Search|klaskit er wiki]] evit kavout pajennoù all a c'hallfe klotañ.",
 
 # Revision deletion
-'rev-deleted-comment'            => '(evezhiadenn diverket)',
-'rev-deleted-user'               => '(anv implijer diverket)',
-'rev-deleted-event'              => '(elfenn dilamet)',
-'rev-deleted-text-permission'    => "'''Diverket''' eo bet ar stumm-mañ eus ar bajenn.
+'rev-deleted-comment'         => '(evezhiadenn diverket)',
+'rev-deleted-user'            => '(anv implijer diverket)',
+'rev-deleted-event'           => '(elfenn dilamet)',
+'rev-deleted-text-permission' => "'''Diverket''' eo bet ar stumm-mañ eus ar bajenn.
 Marteze e kavot munudoù war [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} roll ar pajennoù diverket].",
-'rev-deleted-text-unhide'        => "'''Diverket''' eo bet ar stumm-mañ eus ar bajenn.
+'rev-deleted-text-unhide'     => "'''Diverket''' eo bet ar stumm-mañ eus ar bajenn.
 Marteze e kavot munudo war [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} marilh ar pajennoù diverket].
 Evel merour e c'hallit [$1 gwelet ar stumm-se] c'hoazh mar fell deoc'h kenderc'hel.",
-'rev-deleted-text-view'          => "'''Diverket''' eo bet ar stumm-mañ eus ar bajenn.
+'rev-deleted-text-view'       => "'''Diverket''' eo bet ar stumm-mañ eus ar bajenn.
 Dre ma'z oc'h merour e c'hallit sellet outañ;
 Marteze e kavot munudoù all war [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} marilh ar pajennoù diverket].",
-'rev-deleted-no-diff'            => "N'hallit ket gwelet an diff-mañ rak '''diverket''' eo bet unan eus ar stummoù.
+'rev-deleted-no-diff'         => "N'hallit ket gwelet an diff-mañ rak '''diverket''' eo bet unan eus ar stummoù.
 Marteze ez eus muioc'h a vunudoù war [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} marilh an diverkadennoù].",
-'rev-deleted-unhide-diff'        => "'''Diverket''' eo bet unan eus stummoù an diforc'h-mañ. 
+'rev-deleted-unhide-diff'     => "'''Diverket''' eo bet unan eus stummoù an diforc'h-mañ. 
 Marteze e kavot muoic'h a ditouroù war [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} marilh an diverkadennoù].
 Evel merour ez oc'h aotreet da [$1 sellet ouzh an diforc'h-mañ] ma karit.",
-'rev-delundel'                   => 'diskouez/kuzhat',
-'revisiondelete'                 => 'Diverkañ/diziverkañ stummoù',
-'revdelete-nooldid-title'        => "N'eus stumm pal ebet evit an degasadennoù",
-'revdelete-nooldid-text'         => "Pe n'eo ket bet spisaet ganeoc'h ar stumm(où) pal da implijout an arc'hwel-mañ evito. pe n'eus ket eus ar stummoù spisaet, pe emaoc'h o klask kuzhat ar stumm red.",
-'revdelete-nologtype-title'      => "N'eus bet resisaet seurt marilh ebet",
-'revdelete-nologtype-text'       => "N'eus ket bet spisaet ganeoc'h seurt marilh ebet da lakaat an ober-mañ da c'hoarvezout warnañ.",
-'revdelete-toomanytargets-title' => 'Re a wennoù',
-'revdelete-toomanytargets-text'  => "Spisaet hoc'h eus re a wennoù disheñvel da vezañ sevenet an ober-mañ warno.",
-'revdelete-nologid-title'        => 'Enmont ar marilh direizh',
-'revdelete-nologid-text'         => "Pe n'hoc'h eus ket spisaet enmont ebet er marilh da vezañ sevenet an ober-mañ warnañ, pe n'eus ket eus an darvoud merket.",
-'revdelete-selected'             => "'''{{PLURAL:$2|Stumm dibabet|Stummoù dibabet}} eus [[:$1]] :'''",
-'logdelete-selected'             => "'''{{PLURAL:$1|Darvoud eus ar marilh diuzet|Darvoud eus ar marilh diuzet}} :'''",
-'revdelete-text'                 => "'''Derc'hel a raio ar stummoù ha darvoudoù diverket da zont war wel war istor ar bajenn hag er marilhoù, met dazrn eus ar boued n'hallo ket bezañ gwelet gant an dud.'''
+'rev-delundel'                => 'diskouez/kuzhat',
+'revisiondelete'              => 'Diverkañ/diziverkañ stummoù',
+'revdelete-nooldid-title'     => "N'eus stumm pal ebet evit an degasadennoù",
+'revdelete-nooldid-text'      => "Pe n'eo ket bet spisaet ganeoc'h ar stumm(où) pal da implijout an arc'hwel-mañ evito. pe n'eus ket eus ar stummoù spisaet, pe emaoc'h o klask kuzhat ar stumm red.",
+'revdelete-nologtype-title'   => "N'eus bet resisaet seurt marilh ebet",
+'revdelete-nologtype-text'    => "N'eus ket bet spisaet ganeoc'h seurt marilh ebet da lakaat an ober-mañ da c'hoarvezout warnañ.",
+'revdelete-nologid-title'     => 'Enmont ar marilh direizh',
+'revdelete-nologid-text'      => "Pe n'hoc'h eus ket spisaet enmont ebet er marilh da vezañ sevenet an ober-mañ warnañ, pe n'eus ket eus an darvoud merket.",
+'revdelete-selected'          => "'''{{PLURAL:$2|Stumm dibabet|Stummoù dibabet}} eus [[:$1]] :'''",
+'logdelete-selected'          => "'''{{PLURAL:$1|Darvoud eus ar marilh diuzet|Darvoud eus ar marilh diuzet}} :'''",
+'revdelete-text'              => "'''Derc'hel a raio ar stummoù ha darvoudoù diverket da zont war wel war istor ar bajenn hag er marilhoù, met dazrn eus ar boued n'hallo ket bezañ gwelet gant an dud.'''
 
 Gouest e vo merourien all {{SITENAME}} da dapout krog en testennoù kuzhet ha da ziziverkañ anezho en-dro dre an hevelep etrefas, nemet e vije bet lakaet e plas strishadurioù ouzhpenn.
 Kadarnait eo mat an dra-se a fell deoc'h ober, e komprenit mat ar pezh a empleg, hag en grit en ur zoujañ d'ar [[{{MediaWiki:Policy-url}}|reolennoù]].",
-'revdelete-suppress-text'        => "Ne zlefe an dilemel bezañ implijet '''nemet''' abalamour d'an abegoù da-heul :
+'revdelete-suppress-text'     => "Ne zlefe an dilemel bezañ implijet '''nemet''' abalamour d'an abegoù da-heul :
 * Titouroù personel dizere
 *: ''chomlec'hioù, niverennoù pellgomz pe surentez sokial personel, hag all''",
-'revdelete-legend'               => 'Lakaat strishadurioù gwelet',
-'revdelete-hide-text'            => 'Kuzhat testenn ar stumm',
-'revdelete-hide-name'            => 'Kuzhat an ober hag ar vukadenn',
-'revdelete-hide-comment'         => "Kuzhat notenn ar c'hemm",
-'revdelete-hide-user'            => "Kuzhat anv implijer pe chomlec'h IP an aozer",
-'revdelete-hide-restricted'      => "Diverkañ ar roadennoù kement d'ar verourien ha d'ar re all",
-'revdelete-suppress'             => 'Diverkañ roadennoù ar verourien hag ar re all',
-'revdelete-hide-image'           => 'Kuzhat danvez ar restr',
-'revdelete-unsuppress'           => 'Lemel ar strishadurioù war ar stummoù assavet',
-'revdelete-log'                  => 'Notenn evit ar marilh :',
-'revdelete-submit'               => 'Lakaat da dalvezout evit ar stumm diuzet',
-'revdelete-logentry'             => 'Cheñchet eo bet hewelusted ar stumm evit [[$1]]',
-'logdelete-logentry'             => 'kemmet eo bet gwelusted an darvoud evit [[$1]]',
-'revdelete-success'              => "'''Gwelusted ar stummoù kaset da benn vat.'''",
-'revdelete-failure'              => "'''Dibosupl termeniñ gweluster ar stumm-mañ.'''",
-'logdelete-success'              => "'''Gwelusted an darvoud kaset da benn vat.'''",
-'revdel-restore'                 => 'Cheñch ar gweluster',
-'pagehist'                       => 'Istor ar bajenn',
-'deletedhist'                    => 'Diverkañ an istor',
-'revdelete-content'              => 'danvez',
-'revdelete-summary'              => 'kemmañ an diverrañ',
-'revdelete-uname'                => 'anv implijer',
-'revdelete-restricted'           => 'Lakaat ar strishadurioù da dalvezout evit ar verourien',
-'revdelete-unrestricted'         => 'dilemel ar strishadurioù evit ar verourien',
-'revdelete-hid'                  => 'kuzhat $1',
-'revdelete-unhid'                => 'diguzhat $1',
-'revdelete-log-message'          => '$1 evit $2 {{PLURAL:$2|adweladenn|adweladenn}}',
-'logdelete-log-message'          => '$1 evit $2 {{PLURAL:$2|darvoud|darvoud}}',
+'revdelete-legend'            => 'Lakaat strishadurioù gwelet',
+'revdelete-hide-text'         => 'Kuzhat testenn ar stumm',
+'revdelete-hide-name'         => 'Kuzhat an ober hag ar vukadenn',
+'revdelete-hide-comment'      => "Kuzhat notenn ar c'hemm",
+'revdelete-hide-user'         => "Kuzhat anv implijer pe chomlec'h IP an aozer",
+'revdelete-hide-restricted'   => "Diverkañ ar roadennoù kement d'ar verourien ha d'ar re all",
+'revdelete-suppress'          => 'Diverkañ roadennoù ar verourien hag ar re all',
+'revdelete-hide-image'        => 'Kuzhat danvez ar restr',
+'revdelete-unsuppress'        => 'Lemel ar strishadurioù war ar stummoù assavet',
+'revdelete-log'               => 'Notenn evit ar marilh :',
+'revdelete-submit'            => 'Lakaat da dalvezout evit ar stumm diuzet',
+'revdelete-logentry'          => 'Cheñchet eo bet hewelusted ar stumm evit [[$1]]',
+'logdelete-logentry'          => 'kemmet eo bet gwelusted an darvoud evit [[$1]]',
+'revdelete-success'           => "'''Gwelusted ar stummoù kaset da benn vat.'''",
+'revdelete-failure'           => "'''Dibosupl termeniñ gweluster ar stumm-mañ.'''",
+'logdelete-success'           => "'''Gwelusted an darvoud kaset da benn vat.'''",
+'revdel-restore'              => 'Cheñch ar gweluster',
+'pagehist'                    => 'Istor ar bajenn',
+'deletedhist'                 => 'Diverkañ an istor',
+'revdelete-content'           => 'danvez',
+'revdelete-summary'           => 'kemmañ an diverrañ',
+'revdelete-uname'             => 'anv implijer',
+'revdelete-restricted'        => 'Lakaat ar strishadurioù da dalvezout evit ar verourien',
+'revdelete-unrestricted'      => 'dilemel ar strishadurioù evit ar verourien',
+'revdelete-hid'               => 'kuzhat $1',
+'revdelete-unhid'             => 'diguzhat $1',
+'revdelete-log-message'       => '$1 evit $2 {{PLURAL:$2|adweladenn|adweladenn}}',
+'logdelete-log-message'       => '$1 evit $2 {{PLURAL:$2|darvoud|darvoud}}',
 
 # Suppression log
 'suppressionlog'     => 'Marilh diverkañ',

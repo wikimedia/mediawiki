@@ -1035,69 +1035,67 @@ Wellicht is die verwijderd of hernoemd.
 [[Special:Search|Doorzoek de wiki]] voor relevante pagina's.",
 
 # Revision deletion
-'rev-deleted-comment'            => '(opmerking verwijderd)',
-'rev-deleted-user'               => '(gebruiker verwijderd)',
-'rev-deleted-event'              => '(logboekregel verwijderd)',
-'rev-deleted-text-permission'    => "Deze bewerking is '''verwijderd'''.
+'rev-deleted-comment'         => '(opmerking verwijderd)',
+'rev-deleted-user'            => '(gebruiker verwijderd)',
+'rev-deleted-event'           => '(logboekregel verwijderd)',
+'rev-deleted-text-permission' => "Deze bewerking is '''verwijderd'''.
 Er kunnen details aanwezig zijn in het [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} verwijderingslogboek].",
-'rev-deleted-text-unhide'        => "Deze versie van de pagina is '''verwijderd'''.
+'rev-deleted-text-unhide'     => "Deze versie van de pagina is '''verwijderd'''.
 Achtergronden zijn mogelijk te vinden in het [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} verwijderlogboek].
 Als beheerder kunt u [$1 deze versie bekijken] als u wilt.",
-'rev-deleted-text-view'          => "Deze bewerking is '''verwijderd'''.
+'rev-deleted-text-view'       => "Deze bewerking is '''verwijderd'''.
 Als beheerder kunt u deze zien;
 er kunnen details aanwezig zijn in het [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} verwijderingslogboek].",
-'rev-deleted-no-diff'            => "U kunt de verschillen niet bekijken omdat een van de versies is '''verwijderd'''.
+'rev-deleted-no-diff'         => "U kunt de verschillen niet bekijken omdat een van de versies is '''verwijderd'''.
 Achtergronden zijn mogelijk te vinden in het [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} verwijderlogboek].",
-'rev-deleted-unhide-diff'        => "Een van de bewerkingen voor de verschillen die u hebt opgevraagd is '''verwijderd'''.
+'rev-deleted-unhide-diff'     => "Een van de bewerkingen voor de verschillen die u hebt opgevraagd is '''verwijderd'''.
 Achtergronden zijn mogelijk te vinden in het [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} verwijderlogboek].
 Als beheerder kunt u [$1 de verschillen bekijken] als u wilt.",
-'rev-delundel'                   => 'weergeven/verbergen',
-'revisiondelete'                 => 'Versies verwijderen/terugplaatsen',
-'revdelete-nooldid-title'        => 'Geen doelversie',
-'revdelete-nooldid-text'         => 'U hebt geen doelversie(s) voor deze handeling opgegeven, de aangegeven versie bestaat niet, of u probeert de laatste versie te verbergen.',
-'revdelete-nologtype-title'      => 'Er is geen logboektype opgegeven',
-'revdelete-nologtype-text'       => 'U hebt geen logboektype opgegeven om deze handeling op uit te voeren.',
-'revdelete-toomanytargets-title' => 'Te veel doelen',
-'revdelete-toomanytargets-text'  => 'U hebt te veel doelen gegeven om deze handeling op uit te voeren.',
-'revdelete-nologid-title'        => 'Ongeldige logboekregel',
-'revdelete-nologid-text'         => 'U hebt ofwel geen doellogboekregel opgegeven of de aangegeven logboekregel bestaat niet.',
-'revdelete-selected'             => "'''Geselecteerde {{PLURAL:$2|bewerking|bewerkingen}} van [[:$1]]:'''",
-'logdelete-selected'             => "'''{{PLURAL:$1|Geselecteerde logboekactie|Geselecteerde logboekacties}}:'''",
-'revdelete-text'                 => "'''Verwijderde bewerkingen zijn zichtbaar in de geschiedenis en logboeken, maar delen van de inhoud zijn niet langer publiek toegankelijk.'''
+'rev-delundel'                => 'weergeven/verbergen',
+'revisiondelete'              => 'Versies verwijderen/terugplaatsen',
+'revdelete-nooldid-title'     => 'Geen doelversie',
+'revdelete-nooldid-text'      => 'U hebt geen doelversie(s) voor deze handeling opgegeven, de aangegeven versie bestaat niet, of u probeert de laatste versie te verbergen.',
+'revdelete-nologtype-title'   => 'Er is geen logboektype opgegeven',
+'revdelete-nologtype-text'    => 'U hebt geen logboektype opgegeven om deze handeling op uit te voeren.',
+'revdelete-nologid-title'     => 'Ongeldige logboekregel',
+'revdelete-nologid-text'      => 'U hebt ofwel geen doellogboekregel opgegeven of de aangegeven logboekregel bestaat niet.',
+'revdelete-selected'          => "'''Geselecteerde {{PLURAL:$2|bewerking|bewerkingen}} van [[:$1]]:'''",
+'logdelete-selected'          => "'''{{PLURAL:$1|Geselecteerde logboekactie|Geselecteerde logboekacties}}:'''",
+'revdelete-text'              => "'''Verwijderde bewerkingen zijn zichtbaar in de geschiedenis en logboeken, maar delen van de inhoud zijn niet langer publiek toegankelijk.'''
 
 Andere beheerders van {{SITENAME}} kunnen de verborgen inhoud benaderen en de verwijdering ongedaan maken met behulp van dit scherm, tenzij er aanvullende beperkingen gelden die zijn ingesteld door de systeembeheerder.
 Bevestig dat u dit wilde doen, dat u de consequenties begrijpt en dat u dit doet in overeenstemming met het geldende [[{{MediaWiki:Policy-url}}|beleid]].",
-'revdelete-suppress-text'        => "Versies verbergen dient '''alleen''' gebruikt te worden in de volgende gevallen:
+'revdelete-suppress-text'     => "Versies verbergen dient '''alleen''' gebruikt te worden in de volgende gevallen:
 * Ongepaste persoonlijke informatie
 *: ''woonadres, telefoonnummers, Burger Service Nummers, enzovoort.''",
-'revdelete-legend'               => 'Zichtbaarheidsbeperkingen instellen',
-'revdelete-hide-text'            => 'De bewerkte tekst verbergen',
-'revdelete-hide-name'            => 'Actie en doel verbergen',
-'revdelete-hide-comment'         => 'De bewerkingssamenvatting verbergen',
-'revdelete-hide-user'            => 'Gebruikersnaam/IP van de gebruiker verbergen',
-'revdelete-hide-restricted'      => 'Deze beperkingen ook op beheerders toepassen',
-'revdelete-suppress'             => 'Gegevens voor zowel beheerders als anderen onderdrukken',
-'revdelete-hide-image'           => 'Bestandsinhoud verbergen',
-'revdelete-unsuppress'           => 'Beperkingen op teruggezette wijzigingen verwijderen',
-'revdelete-log'                  => 'Opmerking in logboek:',
-'revdelete-submit'               => 'Toepassen op de geselecteerde bewerking',
-'revdelete-logentry'             => 'zichtbaarheid van bewerkingen is gewijzigd voor [[$1]]',
-'logdelete-logentry'             => 'wijzigde zichtbaarheid van gebeurtenis [[$1]]',
-'revdelete-success'              => "'''Zichtbaarheid van de wijziging succesvol ingesteld.'''",
-'revdelete-failure'              => "'''De zichtbaarheid voor de versie kon niet ingesteld worden.'''",
-'logdelete-success'              => "'''Zichtbaarheid van de gebeurtenis succesvol ingesteld.'''",
-'revdel-restore'                 => 'Zichtbaarheid wijzigen',
-'pagehist'                       => 'Paginageschiedenis',
-'deletedhist'                    => 'Verwijderde geschiedenis',
-'revdelete-content'              => 'inhoud',
-'revdelete-summary'              => 'samenvatting bewerken',
-'revdelete-uname'                => 'gebruikersnaam',
-'revdelete-restricted'           => 'heeft beperkingen aan beheerders opgelegd',
-'revdelete-unrestricted'         => 'heeft beperkingen voor beheerders opgeheven',
-'revdelete-hid'                  => 'heeft $1 verborgen',
-'revdelete-unhid'                => 'heeft $1 zichtbaar gemaakt',
-'revdelete-log-message'          => '$1 voor $2 {{PLURAL:$2|versie|versies}}',
-'logdelete-log-message'          => '$1 voor $2 {{PLURAL:$2|logboekregel|logboekregels}}',
+'revdelete-legend'            => 'Zichtbaarheidsbeperkingen instellen',
+'revdelete-hide-text'         => 'De bewerkte tekst verbergen',
+'revdelete-hide-name'         => 'Actie en doel verbergen',
+'revdelete-hide-comment'      => 'De bewerkingssamenvatting verbergen',
+'revdelete-hide-user'         => 'Gebruikersnaam/IP van de gebruiker verbergen',
+'revdelete-hide-restricted'   => 'Deze beperkingen ook op beheerders toepassen',
+'revdelete-suppress'          => 'Gegevens voor zowel beheerders als anderen onderdrukken',
+'revdelete-hide-image'        => 'Bestandsinhoud verbergen',
+'revdelete-unsuppress'        => 'Beperkingen op teruggezette wijzigingen verwijderen',
+'revdelete-log'               => 'Opmerking in logboek:',
+'revdelete-submit'            => 'Toepassen op de geselecteerde bewerking',
+'revdelete-logentry'          => 'zichtbaarheid van bewerkingen is gewijzigd voor [[$1]]',
+'logdelete-logentry'          => 'wijzigde zichtbaarheid van gebeurtenis [[$1]]',
+'revdelete-success'           => "'''Zichtbaarheid van de wijziging succesvol ingesteld.'''",
+'revdelete-failure'           => "'''De zichtbaarheid voor de versie kon niet ingesteld worden.'''",
+'logdelete-success'           => "'''Zichtbaarheid van de gebeurtenis succesvol ingesteld.'''",
+'revdel-restore'              => 'Zichtbaarheid wijzigen',
+'pagehist'                    => 'Paginageschiedenis',
+'deletedhist'                 => 'Verwijderde geschiedenis',
+'revdelete-content'           => 'inhoud',
+'revdelete-summary'           => 'samenvatting bewerken',
+'revdelete-uname'             => 'gebruikersnaam',
+'revdelete-restricted'        => 'heeft beperkingen aan beheerders opgelegd',
+'revdelete-unrestricted'      => 'heeft beperkingen voor beheerders opgeheven',
+'revdelete-hid'               => 'heeft $1 verborgen',
+'revdelete-unhid'             => 'heeft $1 zichtbaar gemaakt',
+'revdelete-log-message'       => '$1 voor $2 {{PLURAL:$2|versie|versies}}',
+'logdelete-log-message'       => '$1 voor $2 {{PLURAL:$2|logboekregel|logboekregels}}',
 
 # Suppression log
 'suppressionlog'     => 'Verbergingslogboek',

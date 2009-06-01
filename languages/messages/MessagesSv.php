@@ -963,70 +963,68 @@ Den kan ha tagits bort från wikin eller bytt namn.
 Prova att [[Special:Search|söka på wikin]] för relevanta nya sidor.',
 
 # Revision deletion
-'rev-deleted-comment'            => '(kommentar borttagen)',
-'rev-deleted-user'               => '(användarnamn borttaget)',
-'rev-deleted-event'              => '(loggåtgärd borttagen)',
-'rev-deleted-text-permission'    => "Denna version av sidan har '''raderats'''.
+'rev-deleted-comment'         => '(kommentar borttagen)',
+'rev-deleted-user'            => '(användarnamn borttaget)',
+'rev-deleted-event'           => '(loggåtgärd borttagen)',
+'rev-deleted-text-permission' => "Denna version av sidan har '''raderats'''.
 Det kan finnas mer information i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} borttagningsloggen].",
-'rev-deleted-text-unhide'        => "Den här versionen av sidan har '''raderats'''.
+'rev-deleted-text-unhide'     => "Den här versionen av sidan har '''raderats'''.
 Det kan finnas mer information i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} borttagningsloggen].
 Som administratör kan du fortfarande [$1 se den här versionen] om du önskar att fortsätta.",
-'rev-deleted-text-view'          => "Denna version av sidan har '''raderats'''.
+'rev-deleted-text-view'       => "Denna version av sidan har '''raderats'''.
 Som administratör kan du se den; det kan finnas mer information i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} borttagningsloggen].",
-'rev-deleted-no-diff'            => "Du kan inte se den här diffen på grund av att en av versionerna har '''raderats'''.
+'rev-deleted-no-diff'         => "Du kan inte se den här diffen på grund av att en av versionerna har '''raderats'''.
 Det kan finnas mer information i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} borttagningsloggen].",
-'rev-deleted-unhide-diff'        => "En av versionerna för den här diffen har '''raderats'''.
+'rev-deleted-unhide-diff'     => "En av versionerna för den här diffen har '''raderats'''.
 Det kan finnas mer information i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} borttagningsloggen].
 Som administratör kan du fortfarande [$1 se den här diffen] om du önskar att fortsätta.",
-'rev-delundel'                   => 'visa/göm',
-'revisiondelete'                 => 'Ta bort/återställ versioner',
-'revdelete-nooldid-title'        => 'Ogiltig målversion',
-'revdelete-nooldid-text'         => 'Antingen har du inte angivit någon sidversion att utföra funktionen på,
+'rev-delundel'                => 'visa/göm',
+'revisiondelete'              => 'Ta bort/återställ versioner',
+'revdelete-nooldid-title'     => 'Ogiltig målversion',
+'revdelete-nooldid-text'      => 'Antingen har du inte angivit någon sidversion att utföra funktionen på,
 eller så finns inte den version du angav,
 eller så försöker du gömma den senaste versionen av sidan.',
-'revdelete-nologtype-title'      => 'Ingen loggtyp specificerad',
-'revdelete-nologtype-text'       => 'Du har inte specificerat en loggtyp att utföra denna handling på.',
-'revdelete-toomanytargets-title' => 'För många mål',
-'revdelete-toomanytargets-text'  => 'Du har specificerat för många måltyper att utföra denna handling på.',
-'revdelete-nologid-title'        => 'Ogiltig logpost',
-'revdelete-nologid-text'         => 'Du har antingen inte specificerat en loggpost att utföra denna funktion på eller så existerar inte den specificerade posten.',
-'revdelete-selected'             => "'''{{PLURAL:$2|Vald version|Valda versioner}} av [[:$1]]:'''",
-'logdelete-selected'             => "'''{{PLURAL:$1|Vald loggåtgärd|Valda loggåtgärder}}:'''",
-'revdelete-text'                 => "'''Borttagna versioner och åtgärder kommer fortfarande att synas i historiken och i loggar, men deras innehåll kommer ej att vara tillgängligt för allmänheten.'''
+'revdelete-nologtype-title'   => 'Ingen loggtyp specificerad',
+'revdelete-nologtype-text'    => 'Du har inte specificerat en loggtyp att utföra denna handling på.',
+'revdelete-nologid-title'     => 'Ogiltig logpost',
+'revdelete-nologid-text'      => 'Du har antingen inte specificerat en loggpost att utföra denna funktion på eller så existerar inte den specificerade posten.',
+'revdelete-selected'          => "'''{{PLURAL:$2|Vald version|Valda versioner}} av [[:$1]]:'''",
+'logdelete-selected'          => "'''{{PLURAL:$1|Vald loggåtgärd|Valda loggåtgärder}}:'''",
+'revdelete-text'              => "'''Borttagna versioner och åtgärder kommer fortfarande att synas i historiken och i loggar, men deras innehåll kommer ej att vara tillgängligt för allmänheten.'''
 
 Andra administratörer på {{SITENAME}} kommer fortfarande att kunna läsa det dolda innehållet och kan återställa sidan genom samma gränssnitt, om inte ytterligare begränsningar finns.
 Vänligen bekräfta att detta är vad du avser göra, att du förstår konsekvenserna, och att du gör detta i enlighet med [[{{MediaWiki:Policy-url}}|riktlinjerna]].",
-'revdelete-suppress-text'        => "Undanhållande ska '''bara''' användas i följande fall:
+'revdelete-suppress-text'     => "Undanhållande ska '''bara''' användas i följande fall:
 * Opassande personlig information
 *: ''hemadresser och telefonnummer, personnummer, etc.''",
-'revdelete-legend'               => 'Ändra synlighet',
-'revdelete-hide-text'            => 'Dölj versionstext',
-'revdelete-hide-name'            => 'Dölj åtgärd och sidnamn',
-'revdelete-hide-comment'         => 'Dölj redigeringskommentar',
-'revdelete-hide-user'            => 'Dölj skribentens användarnamn/IP-adress',
-'revdelete-hide-restricted'      => 'Undanhåll data från administratörer så väl som från övriga',
-'revdelete-suppress'             => 'Undanhåll data även från administratörer',
-'revdelete-hide-image'           => 'Dölj filinnehåll',
-'revdelete-unsuppress'           => 'Ta bort begränsningar på återställda versioner',
-'revdelete-log'                  => 'Kommentar:',
-'revdelete-submit'               => 'Tillämpa på vald version',
-'revdelete-logentry'             => 'ändrade synlighet för versioner av [[$1]]',
-'logdelete-logentry'             => 'ändrade synlighet för åtgärder i [[$1]]',
-'revdelete-success'              => "'''Versionens synlighet har ändrats.'''",
-'revdelete-failure'              => "'''Synlighet för sidversioner kunde inte ställas in.'''",
-'logdelete-success'              => "'''Loggåtgärdens synlighet har ändrats.'''",
-'revdel-restore'                 => 'Ändra synlighet',
-'pagehist'                       => 'Sidhistorik',
-'deletedhist'                    => 'Raderad historik',
-'revdelete-content'              => 'innehåll',
-'revdelete-summary'              => 'sammanfattning',
-'revdelete-uname'                => 'användarnamn',
-'revdelete-restricted'           => 'satte begränsningar för administratörer',
-'revdelete-unrestricted'         => 'tog bort begränsningar för administratörer',
-'revdelete-hid'                  => 'dolde $1',
-'revdelete-unhid'                => 'synliggjorde $1',
-'revdelete-log-message'          => '$1 för $2 {{PLURAL:$2|sidversion|sidversioner}}',
-'logdelete-log-message'          => '$1 för $2 {{PLURAL:$2|åtgärd|åtgärder}}',
+'revdelete-legend'            => 'Ändra synlighet',
+'revdelete-hide-text'         => 'Dölj versionstext',
+'revdelete-hide-name'         => 'Dölj åtgärd och sidnamn',
+'revdelete-hide-comment'      => 'Dölj redigeringskommentar',
+'revdelete-hide-user'         => 'Dölj skribentens användarnamn/IP-adress',
+'revdelete-hide-restricted'   => 'Undanhåll data från administratörer så väl som från övriga',
+'revdelete-suppress'          => 'Undanhåll data även från administratörer',
+'revdelete-hide-image'        => 'Dölj filinnehåll',
+'revdelete-unsuppress'        => 'Ta bort begränsningar på återställda versioner',
+'revdelete-log'               => 'Kommentar:',
+'revdelete-submit'            => 'Tillämpa på vald version',
+'revdelete-logentry'          => 'ändrade synlighet för versioner av [[$1]]',
+'logdelete-logentry'          => 'ändrade synlighet för åtgärder i [[$1]]',
+'revdelete-success'           => "'''Versionens synlighet har ändrats.'''",
+'revdelete-failure'           => "'''Synlighet för sidversioner kunde inte ställas in.'''",
+'logdelete-success'           => "'''Loggåtgärdens synlighet har ändrats.'''",
+'revdel-restore'              => 'Ändra synlighet',
+'pagehist'                    => 'Sidhistorik',
+'deletedhist'                 => 'Raderad historik',
+'revdelete-content'           => 'innehåll',
+'revdelete-summary'           => 'sammanfattning',
+'revdelete-uname'             => 'användarnamn',
+'revdelete-restricted'        => 'satte begränsningar för administratörer',
+'revdelete-unrestricted'      => 'tog bort begränsningar för administratörer',
+'revdelete-hid'               => 'dolde $1',
+'revdelete-unhid'             => 'synliggjorde $1',
+'revdelete-log-message'       => '$1 för $2 {{PLURAL:$2|sidversion|sidversioner}}',
+'logdelete-log-message'       => '$1 för $2 {{PLURAL:$2|åtgärd|åtgärder}}',
 
 # Suppression log
 'suppressionlog'     => 'Undanhållandelogg',

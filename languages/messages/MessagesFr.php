@@ -1005,68 +1005,66 @@ Elle a peut-être été effacée ou renommée.
 Essayez de [[Special:Search|rechercher sur le wiki]] pour trouver des pages en rapport.',
 
 # Revision deletion
-'rev-deleted-comment'            => '(commentaire supprimé)',
-'rev-deleted-user'               => '(nom d’utilisateur supprimé)',
-'rev-deleted-event'              => '(entrée supprimée)',
-'rev-deleted-text-permission'    => "Cette version de la page a été '''supprimée'''.
+'rev-deleted-comment'         => '(commentaire supprimé)',
+'rev-deleted-user'            => '(nom d’utilisateur supprimé)',
+'rev-deleted-event'           => '(entrée supprimée)',
+'rev-deleted-text-permission' => "Cette version de la page a été '''supprimée'''.
 Il peut y avoir des détails dans l’[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} historique des suppressions].",
-'rev-deleted-text-unhide'        => "Cette version de la page a été '''supprimée'''.
+'rev-deleted-text-unhide'     => "Cette version de la page a été '''supprimée'''.
 Il peut y avoir plus de détails dans [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} le journal des suppression].
 Comme administrateur, vous pouvez toujours [$1 voir cette version] si vous le voulez.",
-'rev-deleted-text-view'          => "Cette version de la page a été '''supprimée'''.
+'rev-deleted-text-view'       => "Cette version de la page a été '''supprimée'''.
 En tant qu’administrateur, vous pouvez la visualiser ; il peut y avoir des détails dans le [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} journal des suppressions].",
-'rev-deleted-no-diff'            => "Vous ne pouvez par voir ce diff parce qu’une des versions a été '''supprimée'''.
+'rev-deleted-no-diff'         => "Vous ne pouvez par voir ce diff parce qu’une des versions a été '''supprimée'''.
 Il peut y avoir plus de détails dans le [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} jounral des suppressions].",
-'rev-deleted-unhide-diff'        => "Une des révisions de cette différence a été '''supprimée'''.
+'rev-deleted-unhide-diff'     => "Une des révisions de cette différence a été '''supprimée'''.
 Il peut y avoir plus de détails dans le [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} journal des suppressions].
 En tant qu’administrateur vous pouvez toujours [$1 voir cette différence] si vous le voulez.",
-'rev-delundel'                   => 'afficher/masquer',
-'revisiondelete'                 => 'Supprimer ou restaurer des événements',
-'revdelete-nooldid-title'        => 'Version cible non valide',
-'revdelete-nooldid-text'         => 'Vous n’avez pas précisé la version cible de cette fonction, elle n’existe pas, ou il s’agit de la version actuelle.',
-'revdelete-nologtype-title'      => 'Aucun type de journal spécifié',
-'revdelete-nologtype-text'       => 'Vous n’avez pas spécifié un type de journal sur lequel cette action doit être réalisée.',
-'revdelete-toomanytargets-title' => 'Trop de cibles',
-'revdelete-toomanytargets-text'  => 'Vous avez spécifié trop de types de cibles différentes sur lesquelles cette action doit être réalisée.',
-'revdelete-nologid-title'        => 'Entrée du journal invalide',
-'revdelete-nologid-text'         => 'Vous n’avez pas spécifié une entrée du journal sur laquelle cette action doit être effectuée, ou alors l’événement spécifié n’existe pas.',
-'revdelete-selected'             => "'''{{PLURAL:$2|Version sélectionnée|Versions sélectionnées}} de '''[[:$1]]''' :'''",
-'logdelete-selected'             => "'''{{PLURAL:$1|Événement d’historique sélectionné|Événements d’historique sélectionnés}} :'''",
-'revdelete-text'                 => "'''Les versions et événements supprimés seront encore présents dans l’historique de la page et dans les journaux, mais leur contenu textuel sera inaccessible au public.'''
+'rev-delundel'                => 'afficher/masquer',
+'revisiondelete'              => 'Supprimer ou restaurer des événements',
+'revdelete-nooldid-title'     => 'Version cible non valide',
+'revdelete-nooldid-text'      => 'Vous n’avez pas précisé la version cible de cette fonction, elle n’existe pas, ou il s’agit de la version actuelle.',
+'revdelete-nologtype-title'   => 'Aucun type de journal spécifié',
+'revdelete-nologtype-text'    => 'Vous n’avez pas spécifié un type de journal sur lequel cette action doit être réalisée.',
+'revdelete-nologid-title'     => 'Entrée du journal invalide',
+'revdelete-nologid-text'      => 'Vous n’avez pas spécifié une entrée du journal sur laquelle cette action doit être effectuée, ou alors l’événement spécifié n’existe pas.',
+'revdelete-selected'          => "'''{{PLURAL:$2|Version sélectionnée|Versions sélectionnées}} de '''[[:$1]]''' :'''",
+'logdelete-selected'          => "'''{{PLURAL:$1|Événement d’historique sélectionné|Événements d’historique sélectionnés}} :'''",
+'revdelete-text'              => "'''Les versions et événements supprimés seront encore présents dans l’historique de la page et dans les journaux, mais leur contenu textuel sera inaccessible au public.'''
 
 Les autres administrateurs de {{SITENAME}} pourront toujours accéder au contenu caché et le restaurer à travers cette même interface, à moins que des restrictions supplémentaires ne soit mises en place.
 Confirmez que ceci est bien ce que vous avez l’intention de faire, que vous en comprenez les conséquences, et que vous faîtes ceci en respect des [[{{MediaWiki:Policy-url}}|règles établies]].",
-'revdelete-suppress-text'        => "La suppression ne doit être utilisée '''que''' dans les cas suivants :
+'revdelete-suppress-text'     => "La suppression ne doit être utilisée '''que''' dans les cas suivants :
 * Informations personnelles inappropriées
 *: ''adresse, numéro de téléphone, numéro de sécurité sociale, ...''",
-'revdelete-legend'               => 'Mettre en place des restrictions de visibilité :',
-'revdelete-hide-text'            => 'Masquer le texte de la version',
-'revdelete-hide-name'            => 'Masquer l’action et la cible',
-'revdelete-hide-comment'         => 'Masquer le commentaire de modification',
-'revdelete-hide-user'            => 'Masquer le pseudo ou l’adresse IP du contributeur.',
-'revdelete-hide-restricted'      => 'Supprimer ces données aux administrateurs ainsi qu’aux autres',
-'revdelete-suppress'             => 'Cacher les données également pour les administrateurs',
-'revdelete-hide-image'           => 'Masquer le contenu du fichier',
-'revdelete-unsuppress'           => 'Enlever les restrictions sur les versions restaurées',
-'revdelete-log'                  => 'Commentaire pour le journal :',
-'revdelete-submit'               => 'Appliquer à la version sélectionnée',
-'revdelete-logentry'             => 'a modifié la visibilité de la version de [[$1]]',
-'logdelete-logentry'             => 'a modifié la visibilité de l’événement de [[$1]]',
-'revdelete-success'              => "'''Visibilité des versions changée avec succès.'''",
-'revdelete-failure'              => "'''La visibilité de la révision n’a pas pu être définie.'''",
-'logdelete-success'              => "'''Visibilité du journal paramétrée avec succès.'''",
-'revdel-restore'                 => 'Modifier la visibilité',
-'pagehist'                       => 'Historique de la page',
-'deletedhist'                    => 'Historique supprimé',
-'revdelete-content'              => 'contenu',
-'revdelete-summary'              => 'résumé de modification',
-'revdelete-uname'                => 'nom d’utilisateur',
-'revdelete-restricted'           => 'a appliqué les restrictions aux administrateurs',
-'revdelete-unrestricted'         => 'restrictions retirées pour les administrateurs',
-'revdelete-hid'                  => 'a caché $1',
-'revdelete-unhid'                => 'a démasqué $1',
-'revdelete-log-message'          => '$1 pour $2 version{{PLURAL:$2||s}}',
-'logdelete-log-message'          => '$1 sur $2 évènement{{PLURAL:$2||s}}',
+'revdelete-legend'            => 'Mettre en place des restrictions de visibilité :',
+'revdelete-hide-text'         => 'Masquer le texte de la version',
+'revdelete-hide-name'         => 'Masquer l’action et la cible',
+'revdelete-hide-comment'      => 'Masquer le commentaire de modification',
+'revdelete-hide-user'         => 'Masquer le pseudo ou l’adresse IP du contributeur.',
+'revdelete-hide-restricted'   => 'Supprimer ces données aux administrateurs ainsi qu’aux autres',
+'revdelete-suppress'          => 'Cacher les données également pour les administrateurs',
+'revdelete-hide-image'        => 'Masquer le contenu du fichier',
+'revdelete-unsuppress'        => 'Enlever les restrictions sur les versions restaurées',
+'revdelete-log'               => 'Commentaire pour le journal :',
+'revdelete-submit'            => 'Appliquer à la version sélectionnée',
+'revdelete-logentry'          => 'a modifié la visibilité de la version de [[$1]]',
+'logdelete-logentry'          => 'a modifié la visibilité de l’événement de [[$1]]',
+'revdelete-success'           => "'''Visibilité des versions changée avec succès.'''",
+'revdelete-failure'           => "'''La visibilité de la révision n’a pas pu être définie.'''",
+'logdelete-success'           => "'''Visibilité du journal paramétrée avec succès.'''",
+'revdel-restore'              => 'Modifier la visibilité',
+'pagehist'                    => 'Historique de la page',
+'deletedhist'                 => 'Historique supprimé',
+'revdelete-content'           => 'contenu',
+'revdelete-summary'           => 'résumé de modification',
+'revdelete-uname'             => 'nom d’utilisateur',
+'revdelete-restricted'        => 'a appliqué les restrictions aux administrateurs',
+'revdelete-unrestricted'      => 'restrictions retirées pour les administrateurs',
+'revdelete-hid'               => 'a caché $1',
+'revdelete-unhid'             => 'a démasqué $1',
+'revdelete-log-message'       => '$1 pour $2 version{{PLURAL:$2||s}}',
+'logdelete-log-message'       => '$1 sur $2 évènement{{PLURAL:$2||s}}',
 
 # Suppression log
 'suppressionlog'     => 'Journal des suppressions',

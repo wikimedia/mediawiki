@@ -934,70 +934,68 @@ Mogła zostać usunięta lub jej nazwa została zmieniona.
 Spróbuj [[Special:Search|poszukać]] tej strony.',
 
 # Revision deletion
-'rev-deleted-comment'            => '(komentarz usunięty)',
-'rev-deleted-user'               => '(użytkownik usunięty)',
-'rev-deleted-event'              => '(wpis usunięty)',
-'rev-deleted-text-permission'    => "Ta wersja strony została '''usunięta'''.
+'rev-deleted-comment'         => '(komentarz usunięty)',
+'rev-deleted-user'            => '(użytkownik usunięty)',
+'rev-deleted-event'           => '(wpis usunięty)',
+'rev-deleted-text-permission' => "Ta wersja strony została '''usunięta'''.
 Szczegółowe informacje mogą znajdować się w [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rejestrze usunięć].",
-'rev-deleted-text-unhide'        => "Ta wersja strony została '''usunięta'''.
+'rev-deleted-text-unhide'     => "Ta wersja strony została '''usunięta'''.
 Szczegółowe informacje mogą znajdować się w [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rejestrze usunięć].
 Jako administrator {{GRAMMAR:D.lp|{{SITENAME}}}} możesz [$1 obejrzeć tę wersję].",
-'rev-deleted-text-view'          => "Ta wersja strony została '''usunięta'''.
+'rev-deleted-text-view'       => "Ta wersja strony została '''usunięta'''.
 Jednak jako administrator możesz ją obejrzeć. Szczegółowe informacje mogą znajdować się w [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rejestrze usunięć].",
-'rev-deleted-no-diff'            => "Nie możesz zobaczyć różnic pomiędzy wersjami, ponieważ jedna z tych wersji została '''usunięta'''.
+'rev-deleted-no-diff'         => "Nie możesz zobaczyć różnic pomiędzy wersjami, ponieważ jedna z tych wersji została '''usunięta'''.
 Szczegółowe informacje mogą znajdować się w [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rejestrze usunięć].",
-'rev-deleted-unhide-diff'        => "Jedna z wersji tej strony została '''usunięta'''.
+'rev-deleted-unhide-diff'     => "Jedna z wersji tej strony została '''usunięta'''.
 Szczegółowe informacje mogą znajdować się w [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rejestrze usunięć].
 Jako administrator {{GRAMMAR:D.lp|{{SITENAME}}}} możesz [$1 obejrzeć porównanie wersji].",
-'rev-delundel'                   => 'pokaż/ukryj',
-'revisiondelete'                 => 'Usuń/przywróć wersje',
-'revdelete-nooldid-title'        => 'Nieprawidłowa wersja do przeprowadzenia operacji',
-'revdelete-nooldid-text'         => 'Nie wybrano wersji, na których ma zostać wykonana ta operacja,
+'rev-delundel'                => 'pokaż/ukryj',
+'revisiondelete'              => 'Usuń/przywróć wersje',
+'revdelete-nooldid-title'     => 'Nieprawidłowa wersja do przeprowadzenia operacji',
+'revdelete-nooldid-text'      => 'Nie wybrano wersji, na których ma zostać wykonana ta operacja,
 wybrana wersja nie istnieje lub próbowano ukryć wersję bieżącą.',
-'revdelete-nologtype-title'      => 'Brak typu rejestru',
-'revdelete-nologtype-text'       => 'Nie określiłeś rodzaju rejestru do przeprowadzenia tej operacji.',
-'revdelete-toomanytargets-title' => 'Zbyt wiele obiektów',
-'revdelete-toomanytargets-text'  => 'Wskazałeś zbyt wiele rodzajów obiektów aby przeprowadzić tę operację.',
-'revdelete-nologid-title'        => 'Nieprawidłowy wpis w rejestrze',
-'revdelete-nologid-text'         => 'Albo nie określiłeś wpisu w rejestrze do przeprowadzenie operacji albo wybrany wpis nie istnieje.',
-'revdelete-selected'             => "'''{{PLURAL:$2|Zaznaczona wersja|Zaznaczone wersje}} strony [[:$1]]:'''",
-'logdelete-selected'             => "'''Zaznaczone {{PLURAL:$1|zdarzenie|zdarzenia}} z rejestru:'''",
-'revdelete-text'                 => "'''Usunięte wersje i czynności będą nadal widoczne w historii strony i rejestrach, ale ich treść nie będzie publicznie dostępna.'''
+'revdelete-nologtype-title'   => 'Brak typu rejestru',
+'revdelete-nologtype-text'    => 'Nie określiłeś rodzaju rejestru do przeprowadzenia tej operacji.',
+'revdelete-nologid-title'     => 'Nieprawidłowy wpis w rejestrze',
+'revdelete-nologid-text'      => 'Albo nie określiłeś wpisu w rejestrze do przeprowadzenie operacji albo wybrany wpis nie istnieje.',
+'revdelete-selected'          => "'''{{PLURAL:$2|Zaznaczona wersja|Zaznaczone wersje}} strony [[:$1]]:'''",
+'logdelete-selected'          => "'''Zaznaczone {{PLURAL:$1|zdarzenie|zdarzenia}} z rejestru:'''",
+'revdelete-text'              => "'''Usunięte wersje i czynności będą nadal widoczne w historii strony i rejestrach, ale ich treść nie będzie publicznie dostępna.'''
 
 Inni administratorzy {{GRAMMAR:D.lp|{{SITENAME}}}} nadal będą mieć dostęp do ukrytych treści oraz będą mogli je odtworzyć używając standardowych mechanizmów, chyba że operator serwisu nałożył dodatkowe ograniczenia.
 
 Potwierdź, że jesteś pewien tego co robisz, rozumiesz konsekwencje oraz, że działasz zgodnie z [[{{MediaWiki:Policy-url}}|zasadami]].",
-'revdelete-suppress-text'        => "Ukrywanie powinno być używane '''wyłącznie''' w sytuacji:
+'revdelete-suppress-text'     => "Ukrywanie powinno być używane '''wyłącznie''' w sytuacji:
 * Ujawnienie danych osobowych
 *: ''adres domowy, numer telefonu, numer PESEL itp''",
-'revdelete-legend'               => 'Ustaw ograniczenia widoczności dla wersji',
-'revdelete-hide-text'            => 'Ukryj tekst wersji',
-'revdelete-hide-name'            => 'Ukryj akcję i cel',
-'revdelete-hide-comment'         => 'Ukryj komentarz edycji',
-'revdelete-hide-user'            => 'Ukryj nazwę użytkownika/adres IP',
-'revdelete-hide-restricted'      => 'Ukryj informacje przed administratorami tak samo jak przed innymi',
-'revdelete-suppress'             => 'Utajnij informacje przed administratorami, tak samo jak przed innymi',
-'revdelete-hide-image'           => 'Ukryj zawartość pliku',
-'revdelete-unsuppress'           => 'Wyłącz utajnianie dla odtwarzanej historii zmian',
-'revdelete-log'                  => 'Komentarz',
-'revdelete-submit'               => 'Zaakceptuj dla wybranych wersji',
-'revdelete-logentry'             => 'zmienił widoczność wersji w [[$1]]',
-'logdelete-logentry'             => 'zmienił widoczność zdarzenia dla [[$1]]',
-'revdelete-success'              => "'''Zmieniono widoczność wersji.'''",
-'revdelete-failure'              => "'''Widoczność wersji nie może zostać ustawiona.'''",
-'logdelete-success'              => "'''Zmieniono widoczność zdarzeń.'''",
-'revdel-restore'                 => 'Zmień widoczność',
-'pagehist'                       => 'Historia edycji strony',
-'deletedhist'                    => 'Usunięta historia edycji',
-'revdelete-content'              => 'zawartość',
-'revdelete-summary'              => 'opis zmian',
-'revdelete-uname'                => 'nazwę użytkownika',
-'revdelete-restricted'           => 'ustaw ograniczenia dla administratorów',
-'revdelete-unrestricted'         => 'usuń ograniczenia dla administratorów',
-'revdelete-hid'                  => 'ukryj $1',
-'revdelete-unhid'                => 'nie ukrywaj $1',
-'revdelete-log-message'          => '$1 – $2 {{PLURAL:$2|wersja|wersje|wersji}}',
-'logdelete-log-message'          => '$1 – $2 {{PLURAL:$2|zdarzenie|zdarzenia|zdarzeń}}',
+'revdelete-legend'            => 'Ustaw ograniczenia widoczności dla wersji',
+'revdelete-hide-text'         => 'Ukryj tekst wersji',
+'revdelete-hide-name'         => 'Ukryj akcję i cel',
+'revdelete-hide-comment'      => 'Ukryj komentarz edycji',
+'revdelete-hide-user'         => 'Ukryj nazwę użytkownika/adres IP',
+'revdelete-hide-restricted'   => 'Ukryj informacje przed administratorami tak samo jak przed innymi',
+'revdelete-suppress'          => 'Utajnij informacje przed administratorami, tak samo jak przed innymi',
+'revdelete-hide-image'        => 'Ukryj zawartość pliku',
+'revdelete-unsuppress'        => 'Wyłącz utajnianie dla odtwarzanej historii zmian',
+'revdelete-log'               => 'Komentarz',
+'revdelete-submit'            => 'Zaakceptuj dla wybranych wersji',
+'revdelete-logentry'          => 'zmienił widoczność wersji w [[$1]]',
+'logdelete-logentry'          => 'zmienił widoczność zdarzenia dla [[$1]]',
+'revdelete-success'           => "'''Zmieniono widoczność wersji.'''",
+'revdelete-failure'           => "'''Widoczność wersji nie może zostać ustawiona.'''",
+'logdelete-success'           => "'''Zmieniono widoczność zdarzeń.'''",
+'revdel-restore'              => 'Zmień widoczność',
+'pagehist'                    => 'Historia edycji strony',
+'deletedhist'                 => 'Usunięta historia edycji',
+'revdelete-content'           => 'zawartość',
+'revdelete-summary'           => 'opis zmian',
+'revdelete-uname'             => 'nazwę użytkownika',
+'revdelete-restricted'        => 'ustaw ograniczenia dla administratorów',
+'revdelete-unrestricted'      => 'usuń ograniczenia dla administratorów',
+'revdelete-hid'               => 'ukryj $1',
+'revdelete-unhid'             => 'nie ukrywaj $1',
+'revdelete-log-message'       => '$1 – $2 {{PLURAL:$2|wersja|wersje|wersji}}',
+'logdelete-log-message'       => '$1 – $2 {{PLURAL:$2|zdarzenie|zdarzenia|zdarzeń}}',
 
 # Suppression log
 'suppressionlog'     => 'Rejestr utajniania',

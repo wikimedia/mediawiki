@@ -804,68 +804,66 @@ Wellich is d'r gewis of vernäömp.
 [[Special:Search|Doorzeuk de wiki]] veur relevante pazjena's.",
 
 # Revision deletion
-'rev-deleted-comment'            => '(opmerking weggehaold)',
-'rev-deleted-user'               => '(gebroeker weggehaold)',
-'rev-deleted-event'              => '(actie weggehaold)',
-'rev-deleted-text-permission'    => "Dees bewerking is '''gewusj oet de publieke archieve'''.
+'rev-deleted-comment'         => '(opmerking weggehaold)',
+'rev-deleted-user'            => '(gebroeker weggehaold)',
+'rev-deleted-event'           => '(actie weggehaold)',
+'rev-deleted-text-permission' => "Dees bewerking is '''gewusj oet de publieke archieve'''.
 Dao kónne details aanwezig zeen in 't [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} wusjlogbook].",
-'rev-deleted-text-unhide'        => "Dees versie van de pagina is '''verwijderd'''.
+'rev-deleted-text-unhide'     => "Dees versie van de pagina is '''verwijderd'''.
 Achtergrönj zeen meugelik te vinje in 't [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} verwijderlogbook].
 As beheerder kins se [$1 dees versie bekieke] as se wils.",
-'rev-deleted-text-view'          => "Dees bewèrking is '''gewösj oet de publieke archieve'''.
+'rev-deleted-text-view'       => "Dees bewèrking is '''gewösj oet de publieke archieve'''.
 Es beheerder kèns te deze zeen;
 dao kónne details aanwezig zeen in 't [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} wusjlogbook].",
-'rev-deleted-no-diff'            => "De kins de versjille neet bekieke omdet ein van de versies oet 't '''publieke archief is verwiederd'''.
+'rev-deleted-no-diff'         => "De kins de versjille neet bekieke omdet ein van de versies oet 't '''publieke archief is verwiederd'''.
 Achtergrönj zeen meugelik te vinje in t [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} verwiederlogbook].",
-'rev-deleted-unhide-diff'        => "Eine venne angerversjiller is '''gwösj oete pebliek archiever'''.
+'rev-deleted-unhide-diff'     => "Eine venne angerversjiller is '''gwösj oete pebliek archiever'''.
 Details in 't [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} wislog].
 Es behieërder kèns se nag [$1 de angering zeen] es se doearch wils gaon.",
-'rev-delundel'                   => 'tuun/verberg',
-'revisiondelete'                 => 'Verwijder/herstel bewerkinge',
-'revdelete-nooldid-title'        => 'Geine doelverzie',
-'revdelete-nooldid-text'         => "Doe höbs gein(e) doelverzie(s) veur deze hanjeling opgegaeve, d'n aangaeving besteit neet, of doe perbeers de letste versie te verberge.",
-'revdelete-nologtype-title'      => "d'r Is gein logbooktype opgegaeve",
-'revdelete-nologtype-text'       => 'De höbs gein logbooktype opgegaeve om deze handeling op oet te voere.',
-'revdelete-toomanytargets-title' => 'Te väöl doele',
-'revdelete-toomanytargets-text'  => 'De hebs te väöl doele gegaeve om deze handeling op oet te voere.',
-'revdelete-nologid-title'        => 'Ongeldige logbookregel',
-'revdelete-nologid-text'         => 'De höbs ofwaal gein doellogbookregel opgegaeve of de aangegaeve logbookregel besteit neet.',
-'revdelete-selected'             => "'''Geselecteerde {{PLURAL:$2|bewerking|bewerkinge}} van '''[[:$1]]''':'''",
-'logdelete-selected'             => "'''{{PLURAL:$1|Geselecteerde log gebeurtenis|Geselecteerde log gebeurtenisse}}:'''",
-'revdelete-text'                 => "'''Gewisjde bewerkinge zeen zichbaar in de gesjiedenis, maar de inhoud is neet langer publiek toegankelik.'''
+'rev-delundel'                => 'tuun/verberg',
+'revisiondelete'              => 'Verwijder/herstel bewerkinge',
+'revdelete-nooldid-title'     => 'Geine doelverzie',
+'revdelete-nooldid-text'      => "Doe höbs gein(e) doelverzie(s) veur deze hanjeling opgegaeve, d'n aangaeving besteit neet, of doe perbeers de letste versie te verberge.",
+'revdelete-nologtype-title'   => "d'r Is gein logbooktype opgegaeve",
+'revdelete-nologtype-text'    => 'De höbs gein logbooktype opgegaeve om deze handeling op oet te voere.',
+'revdelete-nologid-title'     => 'Ongeldige logbookregel',
+'revdelete-nologid-text'      => 'De höbs ofwaal gein doellogbookregel opgegaeve of de aangegaeve logbookregel besteit neet.',
+'revdelete-selected'          => "'''Geselecteerde {{PLURAL:$2|bewerking|bewerkinge}} van '''[[:$1]]''':'''",
+'logdelete-selected'          => "'''{{PLURAL:$1|Geselecteerde log gebeurtenis|Geselecteerde log gebeurtenisse}}:'''",
+'revdelete-text'              => "'''Gewisjde bewerkinge zeen zichbaar in de gesjiedenis, maar de inhoud is neet langer publiek toegankelik.'''
 
 Anger beheerders van {{SITENAME}} kinne de verborge inhoud benäöjere en de verwiedering ongedaon make mit behölp van dit sjerm, tenzij d'r additionele restricties gelje die zeen ingesteld door de systeembeheerder. Confirmeer det se dit wils doon, es se de consekwensies begrieps, en detse dit mit de [[{{MediaWiki:Policy-url}}|beleid]] deis.",
-'revdelete-suppress-text'        => "Versies verbèrge deentj '''allein''' gebroek te waere in de volgende gevalle:
+'revdelete-suppress-text'     => "Versies verbèrge deentj '''allein''' gebroek te waere in de volgende gevalle:
 * Ongepaste perseunlike informatie
 *: ''woonadres, telefoonnummers, Burger Service Nummers, enzovoors.''",
-'revdelete-legend'               => 'Stel zichbaarheidsbeperkinge in',
-'revdelete-hide-text'            => 'Verberg de bewerkte teks',
-'revdelete-hide-name'            => 'Actie en doel verberge',
-'revdelete-hide-comment'         => 'De bewerkingssamevatting verberge',
-'revdelete-hide-user'            => 'Verberg gebroekersnaam/IP van de gebroeker',
-'revdelete-hide-restricted'      => 'Pas deze beperkinge toe op zowaal beheerders es angere',
-'revdelete-suppress'             => 'Ongerdruk gegaeves veur zowaal admins es angere',
-'revdelete-hide-image'           => 'Verberg bestandjsinhoud',
-'revdelete-unsuppress'           => 'Verwijder beperkinge op truuk gezatte wieziginge',
-'revdelete-log'                  => 'Opmerking in logbook:',
-'revdelete-submit'               => 'Pas toe op de geselecteerde bewèrking',
-'revdelete-logentry'             => 'zichbaarheid van bewerkinge is gewiezig veur [[$1]]',
-'logdelete-logentry'             => 'gewiezigde zichbaarheid van gebeurtenis [[$1]]',
-'revdelete-success'              => "'''Wieziging zichbaarheid succesvol ingesteld.'''",
-'revdelete-failure'              => "'''De zichbaarheid veur de versie kos neet ingesteld waere.'''",
-'logdelete-success'              => "'''Zichbaarheid van de gebeurtenis succesvol ingesteld.'''",
-'revdel-restore'                 => 'Zichbaarheid wiezige',
-'pagehist'                       => 'Pazjenagesjiedenis',
-'deletedhist'                    => 'Verwiederde gesjiedenis',
-'revdelete-content'              => 'inhoud',
-'revdelete-summary'              => 'samevatting bewerke',
-'revdelete-uname'                => 'gebroekersnaam',
-'revdelete-restricted'           => 'haet beperkinge aan beheerders opgelag',
-'revdelete-unrestricted'         => 'haet beperkinge veur beheerders opgehaeve',
-'revdelete-hid'                  => 'haet $1 verborge',
-'revdelete-unhid'                => 'haet $1 zichbaar gemaak',
-'revdelete-log-message'          => '$1 veur $2 {{PLURAL:$2|versie|versies}}',
-'logdelete-log-message'          => '$1 veur $2 {{PLURAL:$2|logbookregel|logbookregels}}',
+'revdelete-legend'            => 'Stel zichbaarheidsbeperkinge in',
+'revdelete-hide-text'         => 'Verberg de bewerkte teks',
+'revdelete-hide-name'         => 'Actie en doel verberge',
+'revdelete-hide-comment'      => 'De bewerkingssamevatting verberge',
+'revdelete-hide-user'         => 'Verberg gebroekersnaam/IP van de gebroeker',
+'revdelete-hide-restricted'   => 'Pas deze beperkinge toe op zowaal beheerders es angere',
+'revdelete-suppress'          => 'Ongerdruk gegaeves veur zowaal admins es angere',
+'revdelete-hide-image'        => 'Verberg bestandjsinhoud',
+'revdelete-unsuppress'        => 'Verwijder beperkinge op truuk gezatte wieziginge',
+'revdelete-log'               => 'Opmerking in logbook:',
+'revdelete-submit'            => 'Pas toe op de geselecteerde bewèrking',
+'revdelete-logentry'          => 'zichbaarheid van bewerkinge is gewiezig veur [[$1]]',
+'logdelete-logentry'          => 'gewiezigde zichbaarheid van gebeurtenis [[$1]]',
+'revdelete-success'           => "'''Wieziging zichbaarheid succesvol ingesteld.'''",
+'revdelete-failure'           => "'''De zichbaarheid veur de versie kos neet ingesteld waere.'''",
+'logdelete-success'           => "'''Zichbaarheid van de gebeurtenis succesvol ingesteld.'''",
+'revdel-restore'              => 'Zichbaarheid wiezige',
+'pagehist'                    => 'Pazjenagesjiedenis',
+'deletedhist'                 => 'Verwiederde gesjiedenis',
+'revdelete-content'           => 'inhoud',
+'revdelete-summary'           => 'samevatting bewerke',
+'revdelete-uname'             => 'gebroekersnaam',
+'revdelete-restricted'        => 'haet beperkinge aan beheerders opgelag',
+'revdelete-unrestricted'      => 'haet beperkinge veur beheerders opgehaeve',
+'revdelete-hid'               => 'haet $1 verborge',
+'revdelete-unhid'             => 'haet $1 zichbaar gemaak',
+'revdelete-log-message'       => '$1 veur $2 {{PLURAL:$2|versie|versies}}',
+'logdelete-log-message'       => '$1 veur $2 {{PLURAL:$2|logbookregel|logbookregels}}',
 
 # Suppression log
 'suppressionlog'     => 'Verbergingslogbook',

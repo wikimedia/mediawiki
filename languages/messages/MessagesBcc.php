@@ -840,70 +840,68 @@ Legend: (cur) = تفاوتان گون هنوکین نسخه,
 آزمایش کن[[Special:Search|گردگ ته ویکی]] په مربطین نوکین صفحات.',
 
 # Revision deletion
-'rev-deleted-comment'            => '(نظر زورگ بیتت)',
-'rev-deleted-user'               => '(نام کاربری زورگ بیتت)',
-'rev-deleted-event'              => '(کار آمار زورگ بیتت)',
-'rev-deleted-text-permission'    => "ای بازبینی صفحه چه آرشیو عمومی '''زورگ''' بیتت.
+'rev-deleted-comment'         => '(نظر زورگ بیتت)',
+'rev-deleted-user'            => '(نام کاربری زورگ بیتت)',
+'rev-deleted-event'           => '(کار آمار زورگ بیتت)',
+'rev-deleted-text-permission' => "ای بازبینی صفحه چه آرشیو عمومی '''زورگ''' بیتت.
 شاید جزییاتی ته [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} حذف آمار]. بیت",
-'rev-deleted-text-unhide'        => "ای اصلاح چه ای صفحه '''زورگ بوتت'''.
+'rev-deleted-text-unhide'     => "ای اصلاح چه ای صفحه '''زورگ بوتت'''.
 ممکن انت اطلاعات مرتبط گون آیی ءَ [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} سیاهگ حذف] بگندیت.
 شما په عنوان یک مدیر هنوچوش توایت اگر بلوٹیت [$1 ای نسخه را بچاریت].",
-'rev-deleted-text-view'          => "ای بازبینی صفحه چه آرشیو عمومی '''زورگ''' بیتت.
+'rev-deleted-text-view'       => "ای بازبینی صفحه چه آرشیو عمومی '''زورگ''' بیتت.
 په عنوان مدیر ته {{SITENAME}}  شما تونیت آیء بگنیت;
 شاید جزییاتی ته ببیت [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} آمار حذف].",
-'rev-deleted-no-diff'            => "شما نه تونیت تفاوت ای نسخه بچارت په چی که یکی چه نسخ چه عمومی آرشیو '''زورگ''' بوتت.
+'rev-deleted-no-diff'         => "شما نه تونیت تفاوت ای نسخه بچارت په چی که یکی چه نسخ چه عمومی آرشیو '''زورگ''' بوتت.
 ممکن انت [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} سیاهگ حذف]  جزئیاتی ببیت.",
-'rev-deleted-unhide-diff'        => "یکی چه ای دو نسخهٔ  '''حذف بوتت'''.
+'rev-deleted-unhide-diff'     => "یکی چه ای دو نسخهٔ  '''حذف بوتت'''.
 ممکن انت اطلاعات این شی باره [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} سیاهگ حذف] موجود ببیت.
 شما په عنوان یک مدیر هنگت توانیت اگر بلوٹیت [$1 ای تفاوت را بچاریت].",
-'rev-delundel'                   => 'پیش دار/پناه کن',
-'revisiondelete'                 => 'حذف/حذف مکن بازبینیء',
-'revdelete-nooldid-title'        => 'نامعتبر بازبینی هدف',
-'revdelete-nooldid-text'         => 'شما یا یک بازبینی هدفی په اجرای ای عمل مشخص نه کتت
+'rev-delundel'                => 'پیش دار/پناه کن',
+'revisiondelete'              => 'حذف/حذف مکن بازبینیء',
+'revdelete-nooldid-title'     => 'نامعتبر بازبینی هدف',
+'revdelete-nooldid-text'      => 'شما یا یک بازبینی هدفی په اجرای ای عمل مشخص نه کتت
 ،بازبینی مشخص موجود نهنت، یا شما تلاش کنیت هنوکین بازبینی پناه کنیت.',
-'revdelete-nologtype-title'      => 'نوع لیست سیاهگ مشخص نهنت',
-'revdelete-nologtype-text'       => 'شما هیچ دابین نوع سیاهگی مشخص نکتت په اجرای ای کار.',
-'revdelete-toomanytargets-title' => 'بازگین مقصد',
-'revdelete-toomanytargets-text'  => 'شما بازگین نوع هدف مشخص کتت په اجرای ای هدف.',
-'revdelete-nologid-title'        => 'نامعتبرین ورودی سیاهگ',
-'revdelete-nologid-text'         => 'شما یک چیزی ته سیاهگ هدف برای اجرای ای کار مشخص نکتت یا ورودی مشخص این موجود نهنت.',
-'revdelete-selected'             => "'''{{PLURAL:$2|بازبینی انتخابی|بازبینی ان انتخابی}} چه [[:$1]]:'''",
-'logdelete-selected'             => "'''{{PLURAL:$1|رویداد آمار انتخابی|رویداد ان آمار انتخابی}}:'''",
-'revdelete-text'                 => "'''حذفین بازبینی آن و رویداد ان هنگت ته تاریح و آمار صفحه جاه کاینت، بله لهتی چه محتوا آيان په عام قابل دسترسی نه بنت.'''
+'revdelete-nologtype-title'   => 'نوع لیست سیاهگ مشخص نهنت',
+'revdelete-nologtype-text'    => 'شما هیچ دابین نوع سیاهگی مشخص نکتت په اجرای ای کار.',
+'revdelete-nologid-title'     => 'نامعتبرین ورودی سیاهگ',
+'revdelete-nologid-text'      => 'شما یک چیزی ته سیاهگ هدف برای اجرای ای کار مشخص نکتت یا ورودی مشخص این موجود نهنت.',
+'revdelete-selected'          => "'''{{PLURAL:$2|بازبینی انتخابی|بازبینی ان انتخابی}} چه [[:$1]]:'''",
+'logdelete-selected'          => "'''{{PLURAL:$1|رویداد آمار انتخابی|رویداد ان آمار انتخابی}}:'''",
+'revdelete-text'              => "'''حذفین بازبینی آن و رویداد ان هنگت ته تاریح و آمار صفحه جاه کاینت، بله لهتی چه محتوا آيان په عام قابل دسترسی نه بنت.'''
 
 دگه مدیران ته {{SITENAME}} هنگت نوننت په پناهین محتوا دسترسیش بیت و توننت آیء چه طریق همی دستبری آی> تریننت، مگر شی که گیشین محدودیت بلیت.
 لطفا تایید کنیت که شما لوٹیت ای کارءَ انجام دهید و چه آیی نتیجه سهی گیت و ای کار هم داب په [[{{MediaWiki:Policy-url}}|سیاست]]انجام دهید",
-'revdelete-suppress-text'        => "فرونشانی بایدن '''فقط''' په جهلگین موارد استفاده بیت:
+'revdelete-suppress-text'     => "فرونشانی بایدن '''فقط''' په جهلگین موارد استفاده بیت:
 * اطلاعات نامناسب شخصی
 *: ''نشانی لوگ، شماره تلفن، شماره تامین اجتماعی و دگه.''",
-'revdelete-legend'               => 'تنظیم محدودیت آن دیستن',
-'revdelete-hide-text'            => 'پناه کن متن بازبینیء',
-'revdelete-hide-name'            => 'پناه کن کار  و هدفء',
-'revdelete-hide-comment'         => 'پناه کن اصلاح نظرء',
-'revdelete-hide-user'            => 'پناه کن اصلاح کنوکء نام کاربری/آی پی',
-'revdelete-hide-restricted'      => 'ای محدودیت آنء په مدیران سیستم و دگران بل',
-'revdelete-suppress'             => 'توقیف کن دیتاء چه مدیران سیستم و دگران',
-'revdelete-hide-image'           => 'پناه کن فایل محتواء',
-'revdelete-unsuppress'           => 'بزور محدودیت آنء جه ترینتگین بازبینی آن',
-'revdelete-log'                  => 'آمار نظر:',
-'revdelete-submit'               => 'بلی اور انتخابی بازبینی',
-'revdelete-logentry'             => 'عوض بوت ظاهر بیگ بازبینی  [[$1]]',
-'logdelete-logentry'             => 'عوض بیت ظاهر بوتن رویداد چه  [[$1]]',
-'revdelete-success'              => "'''ظاهر بازبینی گون موفقیت تنظیم بوت.'''",
-'revdelete-failure'              => "'''پیشدارگ نسخ قابل تنظیم نه بیتن.'''",
-'logdelete-success'              => "''''آمار ظاهر بیگ گون موفقیت تنظیم بوت.''''",
-'revdel-restore'                 => 'عوض کن ظاهر بیگء',
-'pagehist'                       => 'تاریح صفحه',
-'deletedhist'                    => 'تاریح حذف بوت',
-'revdelete-content'              => 'محتوا',
-'revdelete-summary'              => 'خلاصه اصلاح',
-'revdelete-uname'                => 'نام کاربری',
-'revdelete-restricted'           => 'محدودیت آن په مدیران سیستم بوت',
-'revdelete-unrestricted'         => 'به زور چه مدیران سیستم محدودیتان',
-'revdelete-hid'                  => 'پناه $1',
-'revdelete-unhid'                => ' $1پنهاه مکن',
-'revdelete-log-message'          => '$1 په $2 {{PLURAL:$2|بازبینی|بازبینی ان}}',
-'logdelete-log-message'          => '$1 په $2 {{PLURAL:$2|رویداد|رویدادان}}',
+'revdelete-legend'            => 'تنظیم محدودیت آن دیستن',
+'revdelete-hide-text'         => 'پناه کن متن بازبینیء',
+'revdelete-hide-name'         => 'پناه کن کار  و هدفء',
+'revdelete-hide-comment'      => 'پناه کن اصلاح نظرء',
+'revdelete-hide-user'         => 'پناه کن اصلاح کنوکء نام کاربری/آی پی',
+'revdelete-hide-restricted'   => 'ای محدودیت آنء په مدیران سیستم و دگران بل',
+'revdelete-suppress'          => 'توقیف کن دیتاء چه مدیران سیستم و دگران',
+'revdelete-hide-image'        => 'پناه کن فایل محتواء',
+'revdelete-unsuppress'        => 'بزور محدودیت آنء جه ترینتگین بازبینی آن',
+'revdelete-log'               => 'آمار نظر:',
+'revdelete-submit'            => 'بلی اور انتخابی بازبینی',
+'revdelete-logentry'          => 'عوض بوت ظاهر بیگ بازبینی  [[$1]]',
+'logdelete-logentry'          => 'عوض بیت ظاهر بوتن رویداد چه  [[$1]]',
+'revdelete-success'           => "'''ظاهر بازبینی گون موفقیت تنظیم بوت.'''",
+'revdelete-failure'           => "'''پیشدارگ نسخ قابل تنظیم نه بیتن.'''",
+'logdelete-success'           => "''''آمار ظاهر بیگ گون موفقیت تنظیم بوت.''''",
+'revdel-restore'              => 'عوض کن ظاهر بیگء',
+'pagehist'                    => 'تاریح صفحه',
+'deletedhist'                 => 'تاریح حذف بوت',
+'revdelete-content'           => 'محتوا',
+'revdelete-summary'           => 'خلاصه اصلاح',
+'revdelete-uname'             => 'نام کاربری',
+'revdelete-restricted'        => 'محدودیت آن په مدیران سیستم بوت',
+'revdelete-unrestricted'      => 'به زور چه مدیران سیستم محدودیتان',
+'revdelete-hid'               => 'پناه $1',
+'revdelete-unhid'             => ' $1پنهاه مکن',
+'revdelete-log-message'       => '$1 په $2 {{PLURAL:$2|بازبینی|بازبینی ان}}',
+'logdelete-log-message'       => '$1 په $2 {{PLURAL:$2|رویداد|رویدادان}}',
 
 # Suppression log
 'suppressionlog'     => 'آمار توقیف',

@@ -632,18 +632,17 @@ It micht hae been deletit frae the wiki, or the name micht hae been chynged.
 Try [[Special:Search|rakin on the wiki]] for new pages ye micht be interestit in.',
 
 # Revision deletion
-'rev-deleted-comment'            => '(jottin removit)',
-'rev-deleted-user'               => '(uisername removit)',
-'rev-deleted-event'              => '(entry removit)',
-'rev-deleted-text-permission'    => 'This page revision haes been removit frae the public archives.
+'rev-deleted-comment'         => '(jottin removit)',
+'rev-deleted-user'            => '(uisername removit)',
+'rev-deleted-event'           => '(entry removit)',
+'rev-deleted-text-permission' => 'This page revision haes been removit frae the public archives.
 There micht be parteeculars in the [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} deletion log].',
-'rev-deleted-text-view'          => 'This page revision haes been removit frae the public archives.
+'rev-deleted-text-view'       => 'This page revision haes been removit frae the public archives.
 Acause yer an admeenistrator on this site, ye can leuk at it;
 there micht be parteeculars in the [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} deletion log].',
-'rev-delundel'                   => 'shaw/scug',
-'revisiondelete'                 => 'Delete/undelete revisions',
-'revdelete-nooldid-title'        => 'Nae target revision',
-'revdelete-toomanytargets-title' => 'Ower mony targets',
+'rev-delundel'                => 'shaw/scug',
+'revisiondelete'              => 'Delete/undelete revisions',
+'revdelete-nooldid-title'     => 'Nae target revision',
 
 # Diffs
 'difference'              => '(Difference atween revisions)',

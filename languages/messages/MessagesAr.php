@@ -1129,69 +1129,67 @@ $2',
 حاول [[Special:Search|البحث في الويكي]] عن صفحات جديدة ذات صلة.',
 
 # Revision deletion
-'rev-deleted-comment'            => '(التعليق تمت إزالته)',
-'rev-deleted-user'               => '(اسم المستخدم تمت إزالته)',
-'rev-deleted-event'              => '(فعل السجل تمت إزالته)',
-'rev-deleted-text-permission'    => "مراجعة الصفحة هذه تم '''حذفها'''.
+'rev-deleted-comment'         => '(التعليق تمت إزالته)',
+'rev-deleted-user'            => '(اسم المستخدم تمت إزالته)',
+'rev-deleted-event'           => '(فعل السجل تمت إزالته)',
+'rev-deleted-text-permission' => "مراجعة الصفحة هذه تم '''حذفها'''.
 ربما تكون هناك تفاصيل في [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} سجل الحذف].",
-'rev-deleted-text-unhide'        => "مراجعة الصفحة هذه تم '''حذفها'''.
+'rev-deleted-text-unhide'     => "مراجعة الصفحة هذه تم '''حذفها'''.
 ربما تكون هناك تفاصيل في [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} سجل الحذف].
 كإداري مازال بإمكانك [$1 رؤية هذه المراجعة] لو أنك تود المتابعة.",
-'rev-deleted-text-view'          => "مراجعة الصفحة هذه تم '''حذفها'''.
+'rev-deleted-text-view'       => "مراجعة الصفحة هذه تم '''حذفها'''.
 كإداري يمكنك رؤيتها؛ ربما تكون هناك تفاصيل في [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} سجل الحذف].",
-'rev-deleted-no-diff'            => "لا يمكنك رؤية هذا الفرق لأن واحدة من المراجعات تم '''حذفها'''.
+'rev-deleted-no-diff'         => "لا يمكنك رؤية هذا الفرق لأن واحدة من المراجعات تم '''حذفها'''.
 ربما تكون هناك تفاصيل في [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} سجل الحذف].",
-'rev-deleted-unhide-diff'        => "واحدة من مراجعتي هذا الفرق تم '''حذفها'''.
+'rev-deleted-unhide-diff'     => "واحدة من مراجعتي هذا الفرق تم '''حذفها'''.
 ربما تكون هناك هناك تفاصيل [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} سجل الحذف].
 كإداري مازال بإمكانك [$1 رؤية هذا الفرق] لو أنك تود المتابعة.",
-'rev-delundel'                   => 'عرض/إخفاء',
-'revisiondelete'                 => 'حذف/استرجاع المراجعات',
-'revdelete-nooldid-title'        => 'مراجعة هدف غير صحيحة',
-'revdelete-nooldid-text'         => 'أنت إما أنك لم تحدد مراجعة (مراجعات) معينة كهدف لأداء هذا الفعل، المراجعة المحددة غير موجودة، أو أنك تحاول إخفاء المراجعة الحالية.',
-'revdelete-nologtype-title'      => 'لا نوع سجل تم إعطاؤه',
-'revdelete-nologtype-text'       => 'أنت لم تحدد نوع سجل لعمل هذا الفعل عليه.',
-'revdelete-toomanytargets-title' => 'أهداف كثيرة',
-'revdelete-toomanytargets-text'  => 'أنت حددت عددا كبيرا من أنواع الأهداف لعمل هذا الفعل عليها.',
-'revdelete-nologid-title'        => 'مدخلة سجل غير صحيحة',
-'revdelete-nologid-text'         => 'أنت إما أنك لم تحدد حدث سجل مستهدف لعمل هذه الوظيفة أو أن المدخلة المحددة غير موجودة.',
-'revdelete-selected'             => "'''{{PLURAL:$2|المراجعة المختارة|المراجعات المختارة}} ل[[:$1]]:'''",
-'logdelete-selected'             => "'''{{PLURAL:$1|حدث السجل المختار|أحداث السجل المختارة}}:'''",
-'revdelete-text'                 => "'''المراجعات والأحداث المحذوفة ستظل تظهر في تاريخ الصفحة والسجلات،'''
+'rev-delundel'                => 'عرض/إخفاء',
+'revisiondelete'              => 'حذف/استرجاع المراجعات',
+'revdelete-nooldid-title'     => 'مراجعة هدف غير صحيحة',
+'revdelete-nooldid-text'      => 'أنت إما أنك لم تحدد مراجعة (مراجعات) معينة كهدف لأداء هذا الفعل، المراجعة المحددة غير موجودة، أو أنك تحاول إخفاء المراجعة الحالية.',
+'revdelete-nologtype-title'   => 'لا نوع سجل تم إعطاؤه',
+'revdelete-nologtype-text'    => 'أنت لم تحدد نوع سجل لعمل هذا الفعل عليه.',
+'revdelete-nologid-title'     => 'مدخلة سجل غير صحيحة',
+'revdelete-nologid-text'      => 'أنت إما أنك لم تحدد حدث سجل مستهدف لعمل هذه الوظيفة أو أن المدخلة المحددة غير موجودة.',
+'revdelete-selected'          => "'''{{PLURAL:$2|المراجعة المختارة|المراجعات المختارة}} ل[[:$1]]:'''",
+'logdelete-selected'          => "'''{{PLURAL:$1|حدث السجل المختار|أحداث السجل المختارة}}:'''",
+'revdelete-text'              => "'''المراجعات والأحداث المحذوفة ستظل تظهر في تاريخ الصفحة والسجلات،'''
 لكن أجزاء من محتواها لن يكون مسموحا للعامة برؤيتها.
 
 الإداريون الآخرون في {{SITENAME}} سيظل بإمكانهم رؤية المحتوى المخفي ويمكنهم استرجاعه مجددا من خلال هذه الواجهة نفسها، مالم يتم وضع قيود إضافية.
 من فضلك أكد أنك تنوي فعل هذا، وأنك تفهم العواقب، وأنك تفعل هذا بالتوافق مع [[{{MediaWiki:Policy-url}}|السياسة]].",
-'revdelete-suppress-text'        => "الإخفاء ينبغي أن يتم استخدامه '''فقط''' في الحالات التالية:
+'revdelete-suppress-text'     => "الإخفاء ينبغي أن يتم استخدامه '''فقط''' في الحالات التالية:
 * معلومات شخصية غير ملائمة
 *: ''عناوين المنازل وأرقام التليفونات، أرقام الضمان الاجتماعي، إلى آخره.''",
-'revdelete-legend'               => 'وضع ضوابط رؤية',
-'revdelete-hide-text'            => 'إخفاء نص المراجعة',
-'revdelete-hide-name'            => 'إخفاء الفعل والهدف',
-'revdelete-hide-comment'         => 'إخفاء تعليق التعديل',
-'revdelete-hide-user'            => 'إخفاء اسم/عنوان المستخدم',
-'revdelete-hide-restricted'      => 'أخف البيانات عن الإداريين إضافة إلى الآخرين',
-'revdelete-suppress'             => 'إخفاء البيانات عن مديري النظام بجانب الآخرين',
-'revdelete-hide-image'           => 'إخفاء محتوى الملف',
-'revdelete-unsuppress'           => 'إزالة الضوابط من المراجعات المسترجعة',
-'revdelete-log'                  => 'تعليق السجل:',
-'revdelete-submit'               => 'طبق على المراجعة المختارة',
-'revdelete-logentry'             => 'غير رؤية المراجعة ل[[$1]]',
-'logdelete-logentry'             => 'غير رؤية الحدث ل[[$1]]',
-'revdelete-success'              => "'''تم ضبط رؤية المراجعات بنجاح.'''",
-'revdelete-failure'              => "'''رؤية المراجعة لم يمكن ضبطها.'''",
-'logdelete-success'              => "'''تم ضبط رؤية السجلات بنجاح.'''",
-'revdel-restore'                 => 'تغيير الرؤية',
-'pagehist'                       => 'تاريخ الصفحة',
-'deletedhist'                    => 'التاريخ المحذوف',
-'revdelete-content'              => 'محتوى',
-'revdelete-summary'              => 'ملخص التعديل',
-'revdelete-uname'                => 'اسم المستخدم',
-'revdelete-restricted'           => 'طبق الضوابط لمديري النظام',
-'revdelete-unrestricted'         => 'أزال الضوابط لمديري النظام',
-'revdelete-hid'                  => 'أخفى $1',
-'revdelete-unhid'                => 'أظهر $1',
-'revdelete-log-message'          => '$1 ل$2 {{PLURAL:$2|مراجعة|مراجعة}}',
-'logdelete-log-message'          => '$1 ل$2 {{PLURAL:$2|حدث|حدث}}',
+'revdelete-legend'            => 'وضع ضوابط رؤية',
+'revdelete-hide-text'         => 'إخفاء نص المراجعة',
+'revdelete-hide-name'         => 'إخفاء الفعل والهدف',
+'revdelete-hide-comment'      => 'إخفاء تعليق التعديل',
+'revdelete-hide-user'         => 'إخفاء اسم/عنوان المستخدم',
+'revdelete-hide-restricted'   => 'أخف البيانات عن الإداريين إضافة إلى الآخرين',
+'revdelete-suppress'          => 'إخفاء البيانات عن مديري النظام بجانب الآخرين',
+'revdelete-hide-image'        => 'إخفاء محتوى الملف',
+'revdelete-unsuppress'        => 'إزالة الضوابط من المراجعات المسترجعة',
+'revdelete-log'               => 'تعليق السجل:',
+'revdelete-submit'            => 'طبق على المراجعة المختارة',
+'revdelete-logentry'          => 'غير رؤية المراجعة ل[[$1]]',
+'logdelete-logentry'          => 'غير رؤية الحدث ل[[$1]]',
+'revdelete-success'           => "'''تم ضبط رؤية المراجعات بنجاح.'''",
+'revdelete-failure'           => "'''رؤية المراجعة لم يمكن ضبطها.'''",
+'logdelete-success'           => "'''تم ضبط رؤية السجلات بنجاح.'''",
+'revdel-restore'              => 'تغيير الرؤية',
+'pagehist'                    => 'تاريخ الصفحة',
+'deletedhist'                 => 'التاريخ المحذوف',
+'revdelete-content'           => 'محتوى',
+'revdelete-summary'           => 'ملخص التعديل',
+'revdelete-uname'             => 'اسم المستخدم',
+'revdelete-restricted'        => 'طبق الضوابط لمديري النظام',
+'revdelete-unrestricted'      => 'أزال الضوابط لمديري النظام',
+'revdelete-hid'               => 'أخفى $1',
+'revdelete-unhid'             => 'أظهر $1',
+'revdelete-log-message'       => '$1 ل$2 {{PLURAL:$2|مراجعة|مراجعة}}',
+'logdelete-log-message'       => '$1 ل$2 {{PLURAL:$2|حدث|حدث}}',
 
 # Suppression log
 'suppressionlog'     => 'سجل الإخفاء',

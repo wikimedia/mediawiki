@@ -815,70 +815,68 @@ Legenda: '''({{int:cur}})''' = difarense con la versión corente,
 'history-feed-empty'          => 'La pàxena richiesta no la esiste; la podarìa èssar stà scancełà dal sito o rinominà. Verifica con la [[Special:Search|pàxena de riçerca]] se ghe xè nove pàxene.',
 
 # Revision deletion
-'rev-deleted-comment'            => '(comento cavà)',
-'rev-deleted-user'               => '(nome utente cavà)',
-'rev-deleted-event'              => '(elemento cavà)',
-'rev-deleted-text-permission'    => "Sta version de la pagina la xe stà '''scancelà'''.
+'rev-deleted-comment'         => '(comento cavà)',
+'rev-deleted-user'            => '(nome utente cavà)',
+'rev-deleted-event'           => '(elemento cavà)',
+'rev-deleted-text-permission' => "Sta version de la pagina la xe stà '''scancelà'''.
 Consulta el [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} registro de scancelazion] par ulteriori detagli.",
-'rev-deleted-text-unhide'        => "Sta version de la pàxena la xe sta '''scancelà'''.
+'rev-deleted-text-unhide'     => "Sta version de la pàxena la xe sta '''scancelà'''.
 Consulta el [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} registro de scancelassion] par ulteriori detagli.
 Ai aministradori xe ancora consentìo [$1 vardar sta version] se necessario.",
-'rev-deleted-text-view'          => "Sta version de la pagina la xe stà '''scancelà'''.
+'rev-deleted-text-view'       => "Sta version de la pagina la xe stà '''scancelà'''.
 El testo el pode èssar visualizà soltanto dai aministradori del sito.
 Consulta el [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registro de scancelazion] par ulteriori detagli.",
-'rev-deleted-no-diff'            => "No te pode vardar sta difarensa parché una de le revision la xe stà '''scancelà'''.
+'rev-deleted-no-diff'         => "No te pode vardar sta difarensa parché una de le revision la xe stà '''scancelà'''.
 Consulta el [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registro de scancelassion] par savérghene piessè.",
-'rev-deleted-unhide-diff'        => "Una dele revision de sta difarensa la xe stà '''scancelà'''.
+'rev-deleted-unhide-diff'     => "Una dele revision de sta difarensa la xe stà '''scancelà'''.
 Consulta el [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} registro de scancelassion] par ulteriori detagli.
 I aministradori i pode ancora [$1 vardar sta difarensa] se i vole.",
-'rev-delundel'                   => 'mostra/scondi',
-'revisiondelete'                 => 'Scanceła o ripristina version',
-'revdelete-nooldid-title'        => 'Version mìa specificà',
-'revdelete-nooldid-text'         => 'No xe stà specificà alcuna version de la pagina su cui eseguir sta funzion.',
-'revdelete-nologtype-title'      => 'Nissun tipo de registro specificà',
-'revdelete-nologtype-text'       => "No ti gà indicà nissun tipo de registro su cui eseguir l'azion.",
-'revdelete-toomanytargets-title' => 'Massa destinassioni',
-'revdelete-toomanytargets-text'  => 'Te ghè indicà massa tipi de destinassion su cui eseguir sta operassion.',
-'revdelete-nologid-title'        => 'Eròr de indicazion dei registri',
-'revdelete-nologid-text'         => "Par eseguir sta funsion no te ghè indicà na destinassion par el registro opure el registro no l'esiste.",
-'revdelete-selected'             => "'''{{PLURAL:$2|Version selezionà|Versioni selezionà}} de [[:$1]]:'''",
-'logdelete-selected'             => "'''{{PLURAL:$1|Evento del registro selezionà|Eventi del registro selezionè}}:'''",
-'revdelete-text'                 => "'''Le revision e le azion scancelàe le restarà visibili ne la cronologia de la pagina, ma parte del testo contegnùo no'l sarà visìbile al publico.'''
+'rev-delundel'                => 'mostra/scondi',
+'revisiondelete'              => 'Scanceła o ripristina version',
+'revdelete-nooldid-title'     => 'Version mìa specificà',
+'revdelete-nooldid-text'      => 'No xe stà specificà alcuna version de la pagina su cui eseguir sta funzion.',
+'revdelete-nologtype-title'   => 'Nissun tipo de registro specificà',
+'revdelete-nologtype-text'    => "No ti gà indicà nissun tipo de registro su cui eseguir l'azion.",
+'revdelete-nologid-title'     => 'Eròr de indicazion dei registri',
+'revdelete-nologid-text'      => "Par eseguir sta funsion no te ghè indicà na destinassion par el registro opure el registro no l'esiste.",
+'revdelete-selected'          => "'''{{PLURAL:$2|Version selezionà|Versioni selezionà}} de [[:$1]]:'''",
+'logdelete-selected'          => "'''{{PLURAL:$1|Evento del registro selezionà|Eventi del registro selezionè}}:'''",
+'revdelete-text'              => "'''Le revision e le azion scancelàe le restarà visibili ne la cronologia de la pagina, ma parte del testo contegnùo no'l sarà visìbile al publico.'''
 
 I altri aministradori de {{SITENAME}} i podarà vardar istesso i contenuti sconti e ripristinarli atraverso questa stessa interfacia, se no xe stà inpostà altre limitazion.
 Par piaser conferma che te voli dal bon far sta scancelassion, che te conossi le conseguense e che te sì drio operar in conformità de le [[{{MediaWiki:Policy-url}}|linee-guida]].",
-'revdelete-suppress-text'        => "La sopression la se dovarìa doparar '''solo''' in sti casi qua:
+'revdelete-suppress-text'     => "La sopression la se dovarìa doparar '''solo''' in sti casi qua:
 
 * Informassion personali mia apropriate
 *: ''indirissi de casa e nùmari de telefono, nùmari de previdensa sociale, etc.''",
-'revdelete-legend'               => 'Inposta le seguenti limitazion su le versioni scancelàe:',
-'revdelete-hide-text'            => 'Scondi el testo de ła version',
-'revdelete-hide-name'            => 'Scondi azion e ogeto de la stessa',
-'revdelete-hide-comment'         => "Scondi l'oggetto de ła modifega",
-'revdelete-hide-user'            => "Scondi el nome o l'indirisso IP dell'autore",
-'revdelete-hide-restricted'      => 'Scóndighe le informassion indicà anca ai aministradori',
-'revdelete-suppress'             => 'Scondi le informazion anca ai aministradori',
-'revdelete-hide-image'           => 'Scondi i contenuti del file',
-'revdelete-unsuppress'           => 'Elimina le limitazion su le revision ripristinà',
-'revdelete-log'                  => 'Comento par el registro:',
-'revdelete-submit'               => 'Àplica a ła revixion selezionà',
-'revdelete-logentry'             => 'gà modificà la visibilità par una revision de [[$1]]',
-'logdelete-logentry'             => "gà modificà la visibilità de l'evento [[$1]]",
-'revdelete-success'              => "'''Visibilità de la revision inpostà coretamente.'''",
-'revdelete-failure'              => "'''No se riesse a inpostar la visibilità de la version.'''",
-'logdelete-success'              => "'''Visibilità de l'evento inpostà coretamente.'''",
-'revdel-restore'                 => 'Canbia visibilità',
-'pagehist'                       => 'Cronologia de la pagina',
-'deletedhist'                    => 'Cronologia scancelà',
-'revdelete-content'              => 'contenuto',
-'revdelete-summary'              => 'modifica ogeto',
-'revdelete-uname'                => 'nome utente',
-'revdelete-restricted'           => 'aplicà restrizioni ai aministradori',
-'revdelete-unrestricted'         => 'gà cavà le limitazion par i aministradori',
-'revdelete-hid'                  => 'scondar $1',
-'revdelete-unhid'                => 'mostrar $1',
-'revdelete-log-message'          => '$1 par $2 {{PLURAL:$2|revision|revisioni}}',
-'logdelete-log-message'          => '$1 par $2 {{PLURAL:$2|evento|eventi}}',
+'revdelete-legend'            => 'Inposta le seguenti limitazion su le versioni scancelàe:',
+'revdelete-hide-text'         => 'Scondi el testo de ła version',
+'revdelete-hide-name'         => 'Scondi azion e ogeto de la stessa',
+'revdelete-hide-comment'      => "Scondi l'oggetto de ła modifega",
+'revdelete-hide-user'         => "Scondi el nome o l'indirisso IP dell'autore",
+'revdelete-hide-restricted'   => 'Scóndighe le informassion indicà anca ai aministradori',
+'revdelete-suppress'          => 'Scondi le informazion anca ai aministradori',
+'revdelete-hide-image'        => 'Scondi i contenuti del file',
+'revdelete-unsuppress'        => 'Elimina le limitazion su le revision ripristinà',
+'revdelete-log'               => 'Comento par el registro:',
+'revdelete-submit'            => 'Àplica a ła revixion selezionà',
+'revdelete-logentry'          => 'gà modificà la visibilità par una revision de [[$1]]',
+'logdelete-logentry'          => "gà modificà la visibilità de l'evento [[$1]]",
+'revdelete-success'           => "'''Visibilità de la revision inpostà coretamente.'''",
+'revdelete-failure'           => "'''No se riesse a inpostar la visibilità de la version.'''",
+'logdelete-success'           => "'''Visibilità de l'evento inpostà coretamente.'''",
+'revdel-restore'              => 'Canbia visibilità',
+'pagehist'                    => 'Cronologia de la pagina',
+'deletedhist'                 => 'Cronologia scancelà',
+'revdelete-content'           => 'contenuto',
+'revdelete-summary'           => 'modifica ogeto',
+'revdelete-uname'             => 'nome utente',
+'revdelete-restricted'        => 'aplicà restrizioni ai aministradori',
+'revdelete-unrestricted'      => 'gà cavà le limitazion par i aministradori',
+'revdelete-hid'               => 'scondar $1',
+'revdelete-unhid'             => 'mostrar $1',
+'revdelete-log-message'       => '$1 par $2 {{PLURAL:$2|revision|revisioni}}',
+'logdelete-log-message'       => '$1 par $2 {{PLURAL:$2|evento|eventi}}',
 
 # Suppression log
 'suppressionlog'     => 'Registro dei ocultamenti',

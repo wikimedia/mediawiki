@@ -881,68 +881,66 @@ Grunnen som ble oppgitt av $3 er ''$2''",
 'history-feed-empty'          => 'Den etterspurte siden finnes ikke. Den kan ha blitt slettet fra wikien, eller fått et nytt navn. Prøv å [[Special:Search|søke]] etter beslektede sider.',
 
 # Revision deletion
-'rev-deleted-comment'            => '(kommentar fjernet)',
-'rev-deleted-user'               => '(brukernavn fjernet)',
-'rev-deleted-event'              => '(fjernet loggoppføring)',
-'rev-deleted-text-permission'    => "Denne revisjonen har blitt '''slettet'''. 
+'rev-deleted-comment'         => '(kommentar fjernet)',
+'rev-deleted-user'            => '(brukernavn fjernet)',
+'rev-deleted-event'           => '(fjernet loggoppføring)',
+'rev-deleted-text-permission' => "Denne revisjonen har blitt '''slettet'''. 
 Det kan være detaljer i [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} slettingsloggen].",
-'rev-deleted-text-unhide'        => "Denne sideversjonen er blitt '''slettet'''.
+'rev-deleted-text-unhide'     => "Denne sideversjonen er blitt '''slettet'''.
 Det kan være mer informasjon i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} sletteloggen].
 Som administrator kan du fremdeles [$1 se denne versjonen] hvis du ønsker å fortsette.",
-'rev-deleted-text-view'          => "Denne sideversjonen har blitt '''slettet'''.
+'rev-deleted-text-view'       => "Denne sideversjonen har blitt '''slettet'''.
 Som administrator kan du se den. Det kan finnes flere detaljer i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} sletteloggen].",
-'rev-deleted-no-diff'            => "Du kan ikke vise forskjellen fordi en av versjonene har blitt '''slettet'''.
+'rev-deleted-no-diff'         => "Du kan ikke vise forskjellen fordi en av versjonene har blitt '''slettet'''.
 Det kan finnes flere detaljer i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}}sletteloggen].",
-'rev-deleted-unhide-diff'        => "Én av versjonene i denne forskjellen har blitt '''slettet'''.
+'rev-deleted-unhide-diff'     => "Én av versjonene i denne forskjellen har blitt '''slettet'''.
 Det kan finnes flere detaljer i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} sletteloggen].
 Som administrator kan du fortsatt [$1 se forskjellen] om du ønsker å fortsette.",
-'rev-delundel'                   => 'vis/skjul',
-'revisiondelete'                 => 'Slett/gjenopprett revisjoner',
-'revdelete-nooldid-title'        => 'Ugyldig målversjon',
-'revdelete-nooldid-text'         => 'Du har ikke angitt en målversjon for denne funksjonen, den angitte versjonen finnes ikke, eller du forsøker å skjule den nåværende versjonen.',
-'revdelete-nologtype-title'      => 'Ingen loggtype spesifisert',
-'revdelete-nologtype-text'       => 'Du har ikke spesifisert en loggtype å utføre denne handlingen på.',
-'revdelete-toomanytargets-title' => 'For mange mål',
-'revdelete-toomanytargets-text'  => 'Du har spesifisert for mange måltyper å utføre denne handlingen på.',
-'revdelete-nologid-title'        => 'Ugyldig loggelement',
-'revdelete-nologid-text'         => 'Du har enten ikke spesifisert ett loggelement å utføre på denne funksjonen, eller spesifisert element finnes ikke.',
-'revdelete-selected'             => "'''{{PLURAL:$2|Valgt revisjon|Valgte revisjoner}} av [[:$1]]:'''",
-'logdelete-selected'             => "'''{{PLURAL:$1|Valgt loggoppføring|Valgte loggoppføringer}}:'''",
-'revdelete-text'                 => "'''Slettede versjoner og oppføringer vil fortsatt vises i sidehistorikken og loggene, men deler av innholdet vil ikke lenger bli offentliggjort.'''
+'rev-delundel'                => 'vis/skjul',
+'revisiondelete'              => 'Slett/gjenopprett revisjoner',
+'revdelete-nooldid-title'     => 'Ugyldig målversjon',
+'revdelete-nooldid-text'      => 'Du har ikke angitt en målversjon for denne funksjonen, den angitte versjonen finnes ikke, eller du forsøker å skjule den nåværende versjonen.',
+'revdelete-nologtype-title'   => 'Ingen loggtype spesifisert',
+'revdelete-nologtype-text'    => 'Du har ikke spesifisert en loggtype å utføre denne handlingen på.',
+'revdelete-nologid-title'     => 'Ugyldig loggelement',
+'revdelete-nologid-text'      => 'Du har enten ikke spesifisert ett loggelement å utføre på denne funksjonen, eller spesifisert element finnes ikke.',
+'revdelete-selected'          => "'''{{PLURAL:$2|Valgt revisjon|Valgte revisjoner}} av [[:$1]]:'''",
+'logdelete-selected'          => "'''{{PLURAL:$1|Valgt loggoppføring|Valgte loggoppføringer}}:'''",
+'revdelete-text'              => "'''Slettede versjoner og oppføringer vil fortsatt vises i sidehistorikken og loggene, men deler av innholdet vil ikke lenger bli offentliggjort.'''
 
 Andre administratorer på {{SITENAME}} vil fortsatt kunne se det skjulte innholdet, og kan gjenopprette det, med mindre videre begrensninger blir gitt av sideoperatørene.
 Vennligst bekreft at du vil gjøre dette, og at du skjønner følgene, og at du gjør dette i henhold til [[{{MediaWiki:Policy-url}}|MediaWiki sine retningslinjer]].",
-'revdelete-suppress-text'        => "Utelatelse bør '''kun''' brukes i følgende tilfeller:
+'revdelete-suppress-text'     => "Utelatelse bør '''kun''' brukes i følgende tilfeller:
 * Upassende personlige opplysninger
 *: ''hjemmeadresser og -telefonnummer, personnummer og lignende''",
-'revdelete-legend'               => 'Fastsett synlighetsbegrensninger',
-'revdelete-hide-text'            => 'Skjul revisjonstekst',
-'revdelete-hide-name'            => 'Skjul handling og mål',
-'revdelete-hide-comment'         => 'Skjul redigeringsforklaring',
-'revdelete-hide-user'            => 'Skjul bidragsyters brukernavn eller IP',
-'revdelete-hide-restricted'      => 'La disse begrensningene gjelde for administratorer også, og steng dette grensesnittet',
-'revdelete-suppress'             => 'Fjern informasjon også fra administratorer',
-'revdelete-hide-image'           => 'Skjul filinnhold',
-'revdelete-unsuppress'           => 'Fjern betingelser på gjenopprettede revisjoner',
-'revdelete-log'                  => 'Kommentar:',
-'revdelete-submit'               => 'Utfør for valgte revisjoner',
-'revdelete-logentry'             => 'endre revisjonssynlighet for [[$1]]',
-'logdelete-logentry'             => 'endre hendelsessynlighet for [[$1]]',
-'revdelete-success'              => "'''Revisjonssynlighet satt.'''",
-'revdelete-failure'              => "'''Kunne ikke endre versjonssynligheten.'''",
-'logdelete-success'              => "'''Hendelsessynlighet satt.'''",
-'revdel-restore'                 => 'Ender synlighet',
-'pagehist'                       => 'Sidehistorikk',
-'deletedhist'                    => 'Slettet historikk',
-'revdelete-content'              => 'innhold',
-'revdelete-summary'              => 'redigeringssammendrag',
-'revdelete-uname'                => 'brukernavn',
-'revdelete-restricted'           => 'begrensninger gjelder også administratorer',
-'revdelete-unrestricted'         => 'fjernet begrensninger for administratorer',
-'revdelete-hid'                  => 'skjulte $1',
-'revdelete-unhid'                => 'synliggjorde $1',
-'revdelete-log-message'          => '$1 for $2 {{PLURAL:$2|revisjon|revisjoner}}',
-'logdelete-log-message'          => '$1 for $2 {{PLURAL:$2|element|elementer}}',
+'revdelete-legend'            => 'Fastsett synlighetsbegrensninger',
+'revdelete-hide-text'         => 'Skjul revisjonstekst',
+'revdelete-hide-name'         => 'Skjul handling og mål',
+'revdelete-hide-comment'      => 'Skjul redigeringsforklaring',
+'revdelete-hide-user'         => 'Skjul bidragsyters brukernavn eller IP',
+'revdelete-hide-restricted'   => 'La disse begrensningene gjelde for administratorer også, og steng dette grensesnittet',
+'revdelete-suppress'          => 'Fjern informasjon også fra administratorer',
+'revdelete-hide-image'        => 'Skjul filinnhold',
+'revdelete-unsuppress'        => 'Fjern betingelser på gjenopprettede revisjoner',
+'revdelete-log'               => 'Kommentar:',
+'revdelete-submit'            => 'Utfør for valgte revisjoner',
+'revdelete-logentry'          => 'endre revisjonssynlighet for [[$1]]',
+'logdelete-logentry'          => 'endre hendelsessynlighet for [[$1]]',
+'revdelete-success'           => "'''Revisjonssynlighet satt.'''",
+'revdelete-failure'           => "'''Kunne ikke endre versjonssynligheten.'''",
+'logdelete-success'           => "'''Hendelsessynlighet satt.'''",
+'revdel-restore'              => 'Ender synlighet',
+'pagehist'                    => 'Sidehistorikk',
+'deletedhist'                 => 'Slettet historikk',
+'revdelete-content'           => 'innhold',
+'revdelete-summary'           => 'redigeringssammendrag',
+'revdelete-uname'             => 'brukernavn',
+'revdelete-restricted'        => 'begrensninger gjelder også administratorer',
+'revdelete-unrestricted'      => 'fjernet begrensninger for administratorer',
+'revdelete-hid'               => 'skjulte $1',
+'revdelete-unhid'             => 'synliggjorde $1',
+'revdelete-log-message'       => '$1 for $2 {{PLURAL:$2|revisjon|revisjoner}}',
+'logdelete-log-message'       => '$1 for $2 {{PLURAL:$2|element|elementer}}',
 
 # Suppression log
 'suppressionlog'     => 'Sidefjerningslogg',

@@ -878,69 +878,67 @@ Villicht is se löscht worrn oder hett en annern Naam kregen.
 Versöök [[Special:Search|dat Söken]] na annere relevante Sieden.',
 
 # Revision deletion
-'rev-deleted-comment'            => '(Kommentar rutnahmen)',
-'rev-deleted-user'               => '(Brukernaam rutnahmen)',
-'rev-deleted-event'              => '(Logbook-Indrag rutnahmen)',
-'rev-deleted-text-permission'    => 'Disse Version is nu wegdaan un is nich mehr apen in’t Archiv to sehn.
+'rev-deleted-comment'         => '(Kommentar rutnahmen)',
+'rev-deleted-user'            => '(Brukernaam rutnahmen)',
+'rev-deleted-event'           => '(Logbook-Indrag rutnahmen)',
+'rev-deleted-text-permission' => 'Disse Version is nu wegdaan un is nich mehr apen in’t Archiv to sehn.
 Details dorto staht in dat [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Lösch-Logbook].',
-'rev-deleted-text-unhide'        => 'Disse Version is nu wegdaan un is nich mehr apen in’t Archiv to sehn.
+'rev-deleted-text-unhide'     => 'Disse Version is nu wegdaan un is nich mehr apen in’t Archiv to sehn.
 Details dorto staht in dat [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Lösch-Logbook].
 As Administrator kannst du de Version [$1 över dissen Lenk] ankieken.',
-'rev-deleted-text-view'          => 'Disse Version is wegsmeten worrn un is nich mehr apen in’t Archiv to sehn.
+'rev-deleted-text-view'       => 'Disse Version is wegsmeten worrn un is nich mehr apen in’t Archiv to sehn.
 As Administrater op {{SITENAME}} kannst du ehr aver noch jümmer sehn.
 Mehr över dat Wegsmieten is in dat [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Lösch-Logbook] to finnen.',
-'rev-deleted-no-diff'            => 'Du kannst dissen Ünnerscheed nich ankieken. Een von de Versionen is nich mehr apen in’t Archiv to sehn.
+'rev-deleted-no-diff'         => 'Du kannst dissen Ünnerscheed nich ankieken. Een von de Versionen is nich mehr apen in’t Archiv to sehn.
 Mehr dorto steiht in dat [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Wegsmiet-Logbook].',
-'rev-deleted-unhide-diff'        => 'Een vun de Versionen vun dissen Ünnerscheed is nich mehr apen in’t Archiv to sehn.
+'rev-deleted-unhide-diff'     => 'Een vun de Versionen vun dissen Ünnerscheed is nich mehr apen in’t Archiv to sehn.
 Details staht in’t [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Wegsmiet-Logbook].
 As Administrater kannst du [$1 mit dissen Lenk] den Ünnerscheed ankieken.',
-'rev-delundel'                   => 'wiesen/versteken',
-'revisiondelete'                 => 'Versionen wegsmieten/wedderhalen',
-'revdelete-nooldid-title'        => 'kene Versionen dor, de passt',
-'revdelete-nooldid-text'         => 'Du hest keen Version för disse Akschoon angeven, de utwählte Version gifft dat nich oder du versöchst, de ne’este Version wegtodoon.',
-'revdelete-nologtype-title'      => 'Keen Logbooktyp angeven',
-'revdelete-nologtype-text'       => 'Du hest keen Logtyp för disse Akschoon angeven.',
-'revdelete-toomanytargets-title' => 'To veel Telen',
-'revdelete-toomanytargets-text'  => 'Du hest to veel Logtypen för disse Akschoon angeven.',
-'revdelete-nologid-title'        => 'Ungüllig Logindrag',
-'revdelete-nologid-text'         => 'Is keen Logtyp utwählt oder den utwählten Logtyp gifft dat nich.',
-'revdelete-selected'             => "'''{{PLURAL:$2|Wählte Version|Wählte Versionen}} vun [[:$1]]:'''",
-'logdelete-selected'             => "'''{{PLURAL:$1|Wählt Logbook-Indrag|Wählte Logbook-Indrääg}}:'''",
-'revdelete-text'                 => "'''Wegsmetene Versionen un Akschonen staht noch jümmer in de Versionsgeschicht un Logböker, sünd aver nich mehr apen intosehn.'''
+'rev-delundel'                => 'wiesen/versteken',
+'revisiondelete'              => 'Versionen wegsmieten/wedderhalen',
+'revdelete-nooldid-title'     => 'kene Versionen dor, de passt',
+'revdelete-nooldid-text'      => 'Du hest keen Version för disse Akschoon angeven, de utwählte Version gifft dat nich oder du versöchst, de ne’este Version wegtodoon.',
+'revdelete-nologtype-title'   => 'Keen Logbooktyp angeven',
+'revdelete-nologtype-text'    => 'Du hest keen Logtyp för disse Akschoon angeven.',
+'revdelete-nologid-title'     => 'Ungüllig Logindrag',
+'revdelete-nologid-text'      => 'Is keen Logtyp utwählt oder den utwählten Logtyp gifft dat nich.',
+'revdelete-selected'          => "'''{{PLURAL:$2|Wählte Version|Wählte Versionen}} vun [[:$1]]:'''",
+'logdelete-selected'          => "'''{{PLURAL:$1|Wählt Logbook-Indrag|Wählte Logbook-Indrääg}}:'''",
+'revdelete-text'              => "'''Wegsmetene Versionen un Akschonen staht noch jümmer in de Versionsgeschicht un Logböker, sünd aver nich mehr apen intosehn.'''
 
 {{SITENAME}}-Administraters köönt de Sieden noch jümmer sehn un ok wedderhalen, solang dat nich extra fastleggt is, dat ok Administraters dat nich mehr mehr dröfft.
 Segg also to, dat du dat ok würklich wullt, dat du de Konsequenzen versteist un dat dat mit de [[{{MediaWiki:Policy-url}}|Richtlienen]] övereen geit.",
-'revdelete-suppress-text'        => "Ünnerdrücken schull '''blot''' bi disse Fäll bruukt warrn:
+'revdelete-suppress-text'     => "Ünnerdrücken schull '''blot''' bi disse Fäll bruukt warrn:
 * Nich passliche persönliche Information
 *: ''Adressen, Telefonnummern, Sozialversekerungsnummern etc.''",
-'revdelete-legend'               => 'Inschränkungen för de Sichtborkeit setten',
-'revdelete-hide-text'            => 'Versiontext versteken',
-'revdelete-hide-name'            => 'Akschoon un Teel versteken',
-'revdelete-hide-comment'         => 'Kommentar versteken',
-'revdelete-hide-user'            => 'Brukernaam/IP vun’n Schriever versteken',
-'revdelete-hide-restricted'      => 'Ok för Administraters versteken',
-'revdelete-suppress'             => 'Grund för dat Wegsmieten ok för Administraters versteken',
-'revdelete-hide-image'           => 'Dateiinholt versteken',
-'revdelete-unsuppress'           => 'Inschränkungen för wedderhaalte Versionen wegdoon',
-'revdelete-log'                  => 'Kommentar:',
-'revdelete-submit'               => 'Op utwählte Version anwennen',
-'revdelete-logentry'             => 'Sichtborkeit vun Version för [[$1]] ännert',
-'logdelete-logentry'             => 'Sichtborkeit vun Begeevnis för [[$1]] ännert',
-'revdelete-success'              => "'''Sichtborkeit vun Version mit Spood ännert.'''",
-'revdelete-failure'              => "'''Sichtborkeit vun de Version kann nich ännert warrn.'''",
-'logdelete-success'              => "'''Sichtborkeit in Logbook mit Spood ännert.'''",
-'revdel-restore'                 => 'Sichtborkeit ännern',
-'pagehist'                       => 'Versionshistorie',
-'deletedhist'                    => 'wegsmetene Versionen',
-'revdelete-content'              => 'Inholt',
-'revdelete-summary'              => 'Tosamenfaten',
-'revdelete-uname'                => 'Brukernaam',
-'revdelete-restricted'           => 'Inschränkungen för Administraters instellt',
-'revdelete-unrestricted'         => 'Inschränkungen för Administraters rutnahmen',
-'revdelete-hid'                  => 'hett $1 versteken',
-'revdelete-unhid'                => 'hett $1 wedder sichtbor maakt',
-'revdelete-log-message'          => '$1 för $2 {{PLURAL:$2|Version|Versionen}}',
-'logdelete-log-message'          => '$1 för $2 {{PLURAL:$2|Logbook-Indrag|Logbook-Indrääg}}',
+'revdelete-legend'            => 'Inschränkungen för de Sichtborkeit setten',
+'revdelete-hide-text'         => 'Versiontext versteken',
+'revdelete-hide-name'         => 'Akschoon un Teel versteken',
+'revdelete-hide-comment'      => 'Kommentar versteken',
+'revdelete-hide-user'         => 'Brukernaam/IP vun’n Schriever versteken',
+'revdelete-hide-restricted'   => 'Ok för Administraters versteken',
+'revdelete-suppress'          => 'Grund för dat Wegsmieten ok för Administraters versteken',
+'revdelete-hide-image'        => 'Dateiinholt versteken',
+'revdelete-unsuppress'        => 'Inschränkungen för wedderhaalte Versionen wegdoon',
+'revdelete-log'               => 'Kommentar:',
+'revdelete-submit'            => 'Op utwählte Version anwennen',
+'revdelete-logentry'          => 'Sichtborkeit vun Version för [[$1]] ännert',
+'logdelete-logentry'          => 'Sichtborkeit vun Begeevnis för [[$1]] ännert',
+'revdelete-success'           => "'''Sichtborkeit vun Version mit Spood ännert.'''",
+'revdelete-failure'           => "'''Sichtborkeit vun de Version kann nich ännert warrn.'''",
+'logdelete-success'           => "'''Sichtborkeit in Logbook mit Spood ännert.'''",
+'revdel-restore'              => 'Sichtborkeit ännern',
+'pagehist'                    => 'Versionshistorie',
+'deletedhist'                 => 'wegsmetene Versionen',
+'revdelete-content'           => 'Inholt',
+'revdelete-summary'           => 'Tosamenfaten',
+'revdelete-uname'             => 'Brukernaam',
+'revdelete-restricted'        => 'Inschränkungen för Administraters instellt',
+'revdelete-unrestricted'      => 'Inschränkungen för Administraters rutnahmen',
+'revdelete-hid'               => 'hett $1 versteken',
+'revdelete-unhid'             => 'hett $1 wedder sichtbor maakt',
+'revdelete-log-message'       => '$1 för $2 {{PLURAL:$2|Version|Versionen}}',
+'logdelete-log-message'       => '$1 för $2 {{PLURAL:$2|Logbook-Indrag|Logbook-Indrääg}}',
 
 # Suppression log
 'suppressionlog'     => 'Oversight-Logbook',

@@ -885,70 +885,68 @@ Možno bola zmazaná z wiki alebo premenovaná.
 Skúste [[Special:Search|vyhľadávať na wiki]] relevantné nové stránky.',
 
 # Revision deletion
-'rev-deleted-comment'            => '(komentár odstránený)',
-'rev-deleted-user'               => '(používateľské meno odstránené)',
-'rev-deleted-event'              => '(činnosť odstránená zo záznamu)',
-'rev-deleted-text-permission'    => "Táto revízia stránky bola '''zmazaná'''.
+'rev-deleted-comment'         => '(komentár odstránený)',
+'rev-deleted-user'            => '(používateľské meno odstránené)',
+'rev-deleted-event'           => '(činnosť odstránená zo záznamu)',
+'rev-deleted-text-permission' => "Táto revízia stránky bola '''zmazaná'''.
 Podrobnosti nájdete v [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} zázname mazaní].",
-'rev-deleted-text-unhide'        => "Táto revízia stránky bola '''zmazaná'''.
+'rev-deleted-text-unhide'     => "Táto revízia stránky bola '''zmazaná'''.
 Podrobnosti nájdete v [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} zázname mazaní].
 Ako správca máte stále možnosť [$1 zobraziť túto revíziu] ak chcete.",
-'rev-deleted-text-view'          => "Táto revízia stránky bola '''zmazaná'''.
+'rev-deleted-text-view'       => "Táto revízia stránky bola '''zmazaná'''.
 Ako správca {{GRAMMAR:genitív|{{SITENAME}}}} si ju môžete prezrieť;
 podrobnosti môžu byť v [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} zázname mazaní].",
-'rev-deleted-no-diff'            => "Tento rozdiel nemôžete zobraziť, pretože bol '''zmazaný'''.
+'rev-deleted-no-diff'         => "Tento rozdiel nemôžete zobraziť, pretože bol '''zmazaný'''.
 Podrobnosti môžete nájsť v [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} zázname mazaní].",
-'rev-deleted-unhide-diff'        => "Jedna z revízií tohto rozdielu bola '''zmazaná'''.
+'rev-deleted-unhide-diff'     => "Jedna z revízií tohto rozdielu bola '''zmazaná'''.
 Podrobnosti môžete nájsť v [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} zázname mazaní].
 Ako správca {{GRAMMAR:genitív|{{SITENAME}}}} si [$1 tento rozdiel môžete prezrieť];",
-'rev-delundel'                   => 'zobraziť/skryť',
-'revisiondelete'                 => 'Zmazať/obnoviť revízie',
-'revdelete-nooldid-title'        => 'Neplatná cieľová revízia',
-'revdelete-nooldid-text'         => 'Neuviedli ste cieľovú revíziu alebo revízie, na ktorých sa má táto funkcia vykonať, uvedená revízia neexistuje alebo sa pokúšate skryť aktuálnu revíziu.',
-'revdelete-nologtype-title'      => 'Nebol zadaný typ záznamu',
-'revdelete-nologtype-text'       => 'Nezadali ste typ záznamu, na ktorom sa má vykonať táto operácia.',
-'revdelete-toomanytargets-title' => 'Príliš mnoho cieľov',
-'revdelete-toomanytargets-text'  => 'Zadali ste príliš veľa cieľov, na ktorých sa má vykonať táto operácia.',
-'revdelete-nologid-title'        => 'Neplatná položka záznamu',
-'revdelete-nologid-text'         => 'Buď ste neuviedli cieľovú udalosť záznamu, na ktorej sa má vykonať táto operácia alebo zadaná položka neexistuje.',
-'revdelete-selected'             => "'''{{PLURAL:$2|Vybraná jedna revízia|Vybrané $2 revízie|Vybraných $2 revízií}} z [[:$1]]:'''",
-'logdelete-selected'             => "'''{{PLURAL:$1|Vybraná udalosť záznamu|Vybrané udalosti záznamu}}:'''",
-'revdelete-text'                 => "'''Zmazané revízie a udalosti sú stále viditeľné v histórii úprav stránky, ale časti ich obsahu nebudú prístupné verejnosti.'''
+'rev-delundel'                => 'zobraziť/skryť',
+'revisiondelete'              => 'Zmazať/obnoviť revízie',
+'revdelete-nooldid-title'     => 'Neplatná cieľová revízia',
+'revdelete-nooldid-text'      => 'Neuviedli ste cieľovú revíziu alebo revízie, na ktorých sa má táto funkcia vykonať, uvedená revízia neexistuje alebo sa pokúšate skryť aktuálnu revíziu.',
+'revdelete-nologtype-title'   => 'Nebol zadaný typ záznamu',
+'revdelete-nologtype-text'    => 'Nezadali ste typ záznamu, na ktorom sa má vykonať táto operácia.',
+'revdelete-nologid-title'     => 'Neplatná položka záznamu',
+'revdelete-nologid-text'      => 'Buď ste neuviedli cieľovú udalosť záznamu, na ktorej sa má vykonať táto operácia alebo zadaná položka neexistuje.',
+'revdelete-selected'          => "'''{{PLURAL:$2|Vybraná jedna revízia|Vybrané $2 revízie|Vybraných $2 revízií}} z [[:$1]]:'''",
+'logdelete-selected'          => "'''{{PLURAL:$1|Vybraná udalosť záznamu|Vybrané udalosti záznamu}}:'''",
+'revdelete-text'              => "'''Zmazané revízie a udalosti sú stále viditeľné v histórii úprav stránky, ale časti ich obsahu nebudú prístupné verejnosti.'''
 
 Iní správcovia {{GRAMMAR:genitív|{{SITENAME}}}} budú stále môcť pristupovať k skrytému obsahu a môžu
 ho znova obnoviť použitím tohto rozhrania v prípade, že nie sú stanovené ďalšie obmedzenia.
 Potvrďte prosím, že toto je vaším zámerom, že rozumiete dôsledkom a že tak  robíte v súlade s [[{{int:Policy-url}}|politikou]].",
-'revdelete-suppress-text'        => "Zatajenie by sa malo používať '''výlučne''' v nasledovných prípadoch:
+'revdelete-suppress-text'     => "Zatajenie by sa malo používať '''výlučne''' v nasledovných prípadoch:
 * Nevhodné osobné údaje
 *: ''adresy, telefóne čísla, rodné čísla a pod.''",
-'revdelete-legend'               => 'Nastaviť obmedzenia viditeľnosti',
-'revdelete-hide-text'            => 'Skryť text revízie',
-'revdelete-hide-name'            => 'Skryť činnosť a cieľ',
-'revdelete-hide-comment'         => 'Skryť zhrnutie úprav',
-'revdelete-hide-user'            => 'Skryť používateľské meno/IP',
-'revdelete-hide-restricted'      => 'Zatajiť údaje pred všetkými, aj pred správcami',
-'revdelete-suppress'             => 'Skryť údaje pred správcami rovnako ako pred ostatnými',
-'revdelete-hide-image'           => 'Skryť obsah súboru',
-'revdelete-unsuppress'           => 'Odstrániť obmedzenia obnovených revízií',
-'revdelete-log'                  => 'Komentár záznamu:',
-'revdelete-submit'               => 'Použiť na zvolenú revíziu',
-'revdelete-logentry'             => 'viditeľnosť revízie bola zmenená pre [[$1]]',
-'logdelete-logentry'             => 'viditeľnosť udalosti [[$1]] bola zmenená',
-'revdelete-success'              => "'''Viditeľnosť revízie bola úspešne nastavená.'''",
-'revdelete-failure'              => "'''Nebolo možné nastaviť viditeľnosť revízie.'''",
-'logdelete-success'              => "'''Viditeľnosť záznamu bola úspešne nastavená.'''",
-'revdel-restore'                 => 'Zmeniť viditeľnosť',
-'pagehist'                       => 'História stránky',
-'deletedhist'                    => 'Zmazaná história',
-'revdelete-content'              => 'obsah',
-'revdelete-summary'              => 'zhrnutie úprav',
-'revdelete-uname'                => 'používateľské meno',
-'revdelete-restricted'           => 'obmedzenia správcov použité',
-'revdelete-unrestricted'         => 'obmedzenia správcov odstránené',
-'revdelete-hid'                  => 'skryl $1',
-'revdelete-unhid'                => 'odkryl $1',
-'revdelete-log-message'          => '$1 $2 {{PLURAL:$2|revíziu|revízie|revízií}}',
-'logdelete-log-message'          => '$1 $2 {{PLURAL:$2|udalosť|udalosti|udalostí}}',
+'revdelete-legend'            => 'Nastaviť obmedzenia viditeľnosti',
+'revdelete-hide-text'         => 'Skryť text revízie',
+'revdelete-hide-name'         => 'Skryť činnosť a cieľ',
+'revdelete-hide-comment'      => 'Skryť zhrnutie úprav',
+'revdelete-hide-user'         => 'Skryť používateľské meno/IP',
+'revdelete-hide-restricted'   => 'Zatajiť údaje pred všetkými, aj pred správcami',
+'revdelete-suppress'          => 'Skryť údaje pred správcami rovnako ako pred ostatnými',
+'revdelete-hide-image'        => 'Skryť obsah súboru',
+'revdelete-unsuppress'        => 'Odstrániť obmedzenia obnovených revízií',
+'revdelete-log'               => 'Komentár záznamu:',
+'revdelete-submit'            => 'Použiť na zvolenú revíziu',
+'revdelete-logentry'          => 'viditeľnosť revízie bola zmenená pre [[$1]]',
+'logdelete-logentry'          => 'viditeľnosť udalosti [[$1]] bola zmenená',
+'revdelete-success'           => "'''Viditeľnosť revízie bola úspešne nastavená.'''",
+'revdelete-failure'           => "'''Nebolo možné nastaviť viditeľnosť revízie.'''",
+'logdelete-success'           => "'''Viditeľnosť záznamu bola úspešne nastavená.'''",
+'revdel-restore'              => 'Zmeniť viditeľnosť',
+'pagehist'                    => 'História stránky',
+'deletedhist'                 => 'Zmazaná história',
+'revdelete-content'           => 'obsah',
+'revdelete-summary'           => 'zhrnutie úprav',
+'revdelete-uname'             => 'používateľské meno',
+'revdelete-restricted'        => 'obmedzenia správcov použité',
+'revdelete-unrestricted'      => 'obmedzenia správcov odstránené',
+'revdelete-hid'               => 'skryl $1',
+'revdelete-unhid'             => 'odkryl $1',
+'revdelete-log-message'       => '$1 $2 {{PLURAL:$2|revíziu|revízie|revízií}}',
+'logdelete-log-message'       => '$1 $2 {{PLURAL:$2|udalosť|udalosti|udalostí}}',
 
 # Suppression log
 'suppressionlog'     => 'Záznam potlačení',

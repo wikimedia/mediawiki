@@ -977,71 +977,69 @@ Lehet, hogy törölték a wikiből, vagy átnevezték.
 Próbálkozhatsz a témával kapcsolatos lapok [[Special:Search|keresésével]].',
 
 # Revision deletion
-'rev-deleted-comment'            => '(megjegyzés eltávolítva)',
-'rev-deleted-user'               => '(szerkesztőnév eltávolítva)',
-'rev-deleted-event'              => '(bejegyzés eltávolítva)',
-'rev-deleted-text-permission'    => "Ez a változat '''törölték'''.
+'rev-deleted-comment'         => '(megjegyzés eltávolítva)',
+'rev-deleted-user'            => '(szerkesztőnév eltávolítva)',
+'rev-deleted-event'           => '(bejegyzés eltávolítva)',
+'rev-deleted-text-permission' => "Ez a változat '''törölték'''.
 További információkat a [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} törlési naplóban] találhatsz.",
-'rev-deleted-text-unhide'        => "Ez a lapváltozat '''törölve''' lett.
+'rev-deleted-text-unhide'     => "Ez a lapváltozat '''törölve''' lett.
 További részleteket a [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} törlési naplóban] találhatsz.
 Mivel adminisztrátor vagy, még mindig [$1 megtekintheted a tartalmát], ha szeretnéd.",
-'rev-deleted-text-view'          => "Ez a változat '''törölték'''.
+'rev-deleted-text-view'       => "Ez a változat '''törölték'''.
 Mivel adminisztrátor vagy, te megtekintheted; további részleteket a [{{fullurl:Special:Napló/delete|page={{FULLPAGENAMEE}}}} törlési naplóban] találhatsz.",
-'rev-deleted-no-diff'            => "Nem nézheted meg a két változat közötti eltérést, mert a változatok egyikét '''törölték'''.
+'rev-deleted-no-diff'         => "Nem nézheted meg a két változat közötti eltérést, mert a változatok egyikét '''törölték'''.
 További részleteket a [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} törlési naplóban] találhatsz.",
-'rev-deleted-unhide-diff'        => "Az változatok közötti eltéréshez kiválasztott változatok egyike '''törölve''' lett.
+'rev-deleted-unhide-diff'     => "Az változatok közötti eltéréshez kiválasztott változatok egyike '''törölve''' lett.
 További részleteket a [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} törlési naplóban] találhatsz.
 Mivel adminisztrátor vagy, még mindig [$1 megtekintheted a változatok közötti eltérést], ha szeretnéd.",
-'rev-delundel'                   => 'megjelenítés/elrejtés',
-'revisiondelete'                 => 'Változatok törlése vagy helyreállítása',
-'revdelete-nooldid-title'        => 'Érvénytelen célváltozat',
-'revdelete-nooldid-text'         => 'Nem adtad meg a célváltozato(ka)t, a megadott változat nem létezik,
+'rev-delundel'                => 'megjelenítés/elrejtés',
+'revisiondelete'              => 'Változatok törlése vagy helyreállítása',
+'revdelete-nooldid-title'     => 'Érvénytelen célváltozat',
+'revdelete-nooldid-text'      => 'Nem adtad meg a célváltozato(ka)t, a megadott változat nem létezik,
 vagy a legutolsó változatot próbáltad meg elrejteni.',
-'revdelete-nologtype-title'      => 'Nem adtad meg a napló típusát',
-'revdelete-nologtype-text'       => 'Nem adtad meg, hogy melyik naplón szeretnéd elvégezni a műveletet.',
-'revdelete-toomanytargets-title' => 'Túl sok célpont',
-'revdelete-toomanytargets-text'  => 'Túl sok naplótípust adtál meg, amiken el szeretnéd végezni a műveletet.',
-'revdelete-nologid-title'        => 'Érvénytelen naplóbejegyzés',
-'revdelete-nologid-text'         => 'Nem adtad meg azt a naplóbejegyzést, amin el szeretnéd végezni a műveletet, vagy olyat adtál meg, ami nem létezik.',
-'revdelete-selected'             => "'''A(z) [[:$1]] lap {{PLURAL:$2|kiválasztott változata|kiválasztott változatai}}:'''",
-'logdelete-selected'             => "'''{{PLURAL:$1|Kiválasztott naplóesemény|Kiválasztott naplóesemények}}:'''",
-'revdelete-text'                 => "'''A törölt változatok és események továbbra is megjelennek a laptörténetben és a naplókban,
+'revdelete-nologtype-title'   => 'Nem adtad meg a napló típusát',
+'revdelete-nologtype-text'    => 'Nem adtad meg, hogy melyik naplón szeretnéd elvégezni a műveletet.',
+'revdelete-nologid-title'     => 'Érvénytelen naplóbejegyzés',
+'revdelete-nologid-text'      => 'Nem adtad meg azt a naplóbejegyzést, amin el szeretnéd végezni a műveletet, vagy olyat adtál meg, ami nem létezik.',
+'revdelete-selected'          => "'''A(z) [[:$1]] lap {{PLURAL:$2|kiválasztott változata|kiválasztott változatai}}:'''",
+'logdelete-selected'          => "'''{{PLURAL:$1|Kiválasztott naplóesemény|Kiválasztott naplóesemények}}:'''",
+'revdelete-text'              => "'''A törölt változatok és események továbbra is megjelennek a laptörténetben és a naplókban,
 azonban a tartalmuk egyes részei el lesznek rejtve a nyilvánosság elől.'''
 
 A(z) {{SITENAME}} wiki adminisztrátorai továbbra is meg tudják tekinteni az elrejtett tartalmat, és helyre tudják állítani ugyanezen a felületen keresztül, amennyiben nincs további korlátozás beállítva.
 
 Kérlek, erősítsd meg, hogy valóban ez a szándékod, tisztában vagy a következményekkel, és hogy az [[{{MediaWiki:Policy-url}}|irányelveknek]] megfelelően cselekszel.",
-'revdelete-suppress-text'        => "Az elrejtés '''csak''' a következő esetekben használható:
+'revdelete-suppress-text'     => "Az elrejtés '''csak''' a következő esetekben használható:
 * Illetlen személyes információk
 *: ''otthoni címek és telefonszámok, társadalombiztosítási számok stb.''",
-'revdelete-legend'               => 'Korlátozások megadása:',
-'revdelete-hide-text'            => 'Változat szövegének elrejtése',
-'revdelete-hide-name'            => 'Művelet és cél elrejtése',
-'revdelete-hide-comment'         => 'Megjegyzés módosításának elrejtése',
-'revdelete-hide-user'            => 'A szerkesztő felhasználónevének/IP-címének elrejtése',
-'revdelete-hide-restricted'      => 'Adatok elrejtése az adminisztrátorok és mindenki más elől',
-'revdelete-suppress'             => 'Adatok elrejtése az adminisztrátorok és a többi felhasználó elől is',
-'revdelete-hide-image'           => 'A fájl tartalomának elrejtése',
-'revdelete-unsuppress'           => 'Korlátozások eltávolítása a visszaállított változatokról',
-'revdelete-log'                  => 'Megjegyzés:',
-'revdelete-submit'               => 'Alkalmazás a kiválasztott változatra',
-'revdelete-logentry'             => '[[$1]] változatának láthatóságának módosítása',
-'logdelete-logentry'             => '[[$1]] eseményének láthatóságának módosítása',
-'revdelete-success'              => "'''A változat láthatóságának beállítása sikeresen elvégezve.'''",
-'revdelete-failure'              => "'''Nem sikerült módosítani a változat láthatóságát.'''",
-'logdelete-success'              => "'''Az esemény láthatóságának beállítása sikeresen elvégezve.'''",
-'revdel-restore'                 => 'Láthatóság megváltoztatása',
-'pagehist'                       => 'Laptörténet',
-'deletedhist'                    => 'Törölt változatok',
-'revdelete-content'              => 'a tartalmát',
-'revdelete-summary'              => 'a szerkesztési összefoglalóját',
-'revdelete-uname'                => 'a szerkesztőjének nevét',
-'revdelete-restricted'           => 'elrejtett az adminisztrátorok elől',
-'revdelete-unrestricted'         => 'felfedett az adminisztrátoroknak',
-'revdelete-hid'                  => 'elrejtette $1',
-'revdelete-unhid'                => 'felfedte $1',
-'revdelete-log-message'          => '$1 {{PLURAL:$1|egy|$2}} változatot',
-'logdelete-log-message'          => '$1 {{PLURAL:$2|egy|$2}} eseményt',
+'revdelete-legend'            => 'Korlátozások megadása:',
+'revdelete-hide-text'         => 'Változat szövegének elrejtése',
+'revdelete-hide-name'         => 'Művelet és cél elrejtése',
+'revdelete-hide-comment'      => 'Megjegyzés módosításának elrejtése',
+'revdelete-hide-user'         => 'A szerkesztő felhasználónevének/IP-címének elrejtése',
+'revdelete-hide-restricted'   => 'Adatok elrejtése az adminisztrátorok és mindenki más elől',
+'revdelete-suppress'          => 'Adatok elrejtése az adminisztrátorok és a többi felhasználó elől is',
+'revdelete-hide-image'        => 'A fájl tartalomának elrejtése',
+'revdelete-unsuppress'        => 'Korlátozások eltávolítása a visszaállított változatokról',
+'revdelete-log'               => 'Megjegyzés:',
+'revdelete-submit'            => 'Alkalmazás a kiválasztott változatra',
+'revdelete-logentry'          => '[[$1]] változatának láthatóságának módosítása',
+'logdelete-logentry'          => '[[$1]] eseményének láthatóságának módosítása',
+'revdelete-success'           => "'''A változat láthatóságának beállítása sikeresen elvégezve.'''",
+'revdelete-failure'           => "'''Nem sikerült módosítani a változat láthatóságát.'''",
+'logdelete-success'           => "'''Az esemény láthatóságának beállítása sikeresen elvégezve.'''",
+'revdel-restore'              => 'Láthatóság megváltoztatása',
+'pagehist'                    => 'Laptörténet',
+'deletedhist'                 => 'Törölt változatok',
+'revdelete-content'           => 'a tartalmát',
+'revdelete-summary'           => 'a szerkesztési összefoglalóját',
+'revdelete-uname'             => 'a szerkesztőjének nevét',
+'revdelete-restricted'        => 'elrejtett az adminisztrátorok elől',
+'revdelete-unrestricted'      => 'felfedett az adminisztrátoroknak',
+'revdelete-hid'               => 'elrejtette $1',
+'revdelete-unhid'             => 'felfedte $1',
+'revdelete-log-message'       => '$1 {{PLURAL:$1|egy|$2}} változatot',
+'logdelete-log-message'       => '$1 {{PLURAL:$2|egy|$2}} eseményt',
 
 # Suppression log
 'suppressionlog'     => 'Adatvédelmibiztos-napló',

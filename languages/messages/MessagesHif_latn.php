@@ -721,67 +721,65 @@ Saait iske wiki me se mitae dewa gae hoi, nai to iske naam badal dewa gae hoi.
 Try karo [[Special:Search|wiki me khije ke]] aur nawaa panna ke.',
 
 # Revision deletion
-'rev-deleted-comment'            => '(comment ke hatae dewa gais hai)',
-'rev-deleted-user'               => '(username ke hatae dewa gais hai)',
-'rev-deleted-event'              => '(log action ke hatae dewa gais hai)',
-'rev-deleted-text-permission'    => 'Panna ke ii badlao ke mitae dewa gais hai.
+'rev-deleted-comment'         => '(comment ke hatae dewa gais hai)',
+'rev-deleted-user'            => '(username ke hatae dewa gais hai)',
+'rev-deleted-event'           => '(log action ke hatae dewa gais hai)',
+'rev-deleted-text-permission' => 'Panna ke ii badlao ke mitae dewa gais hai.
 Iske baare me aur jaankari [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} deletion log] me saait hoi.',
-'rev-deleted-text-unhide'        => "Ii panna ke badlao ke '''mitae''' dewa gais hai.
+'rev-deleted-text-unhide'     => "Ii panna ke badlao ke '''mitae''' dewa gais hai.
 Iske baare me aur jaankari saait [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} deletion log] me hoi.
 Ek administrator rahe se aap fir bhi [$1 view this revision] agar aap aage barrhe mangtaa hai tab.",
-'rev-deleted-text-view'          => 'Panna ke ii badlao ke mitae dewa gais hai.
+'rev-deleted-text-view'       => 'Panna ke ii badlao ke mitae dewa gais hai.
 Aap ek administrator hoe ke kaaran iske dekhe sakta hai; iske baare me aur jaankari [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} deletion log] me saait hoi.',
-'rev-deleted-no-diff'            => 'Aap ii diff ke nai dekhe saktaa hai kahe ki ek badlao mitae dewa gais hai.
+'rev-deleted-no-diff'         => 'Aap ii diff ke nai dekhe saktaa hai kahe ki ek badlao mitae dewa gais hai.
 [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} deletion log] me sait kuch aur jaankari hoi.',
-'rev-deleted-unhide-diff'        => "Ii diff me se ek badlao ke '''mitae''' dewa gais hai.
+'rev-deleted-unhide-diff'     => "Ii diff me se ek badlao ke '''mitae''' dewa gais hai.
 Aur jaankari saait [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} deletion log] me hoi.
 Ek administrator hoe ke kaaran aap fir bhi [$1 view this diff] agar aap aage barrhe mangtaa hai tab.",
-'rev-delundel'                   => 'dekhao/lukao',
-'revisiondelete'                 => 'Badlao ke mitao/nai mitao',
-'revdelete-nooldid-title'        => 'Target revision jon ki valid nai hai',
-'revdelete-nooldid-text'         => 'Aap chaahe target revision(s) ke specify nai karaa hai, ii function ke perform kare ke khatir, specified revision haiye nai, nai to aap abhi ke badlao ke lukae ke kosis karta hai.',
-'revdelete-nologtype-title'      => 'Koi log type ke nai dewa gais hai',
-'revdelete-nologtype-text'       => 'Aap ii action ke kare khatir koi log type ke specify nai karaa hai.',
-'revdelete-toomanytargets-title' => 'Bahut jaada target hai',
-'revdelete-toomanytargets-text'  => 'Aap bahut jaada target ke specify karaa hai ii chij kare ke khatir.',
-'revdelete-nologid-title'        => 'Log entry valid nai hai',
-'revdelete-nologid-text'         => 'Chaahe aap target log event ke specify nai karaa hai ii chij kare ke khatir nai to batawa gais entry nai hai.',
-'revdelete-selected'             => "'''{{PLURAL:$2|Selected badlao|Selected badlao}} of [[:$1]]:'''",
-'logdelete-selected'             => "'''{{PLURAL:$1|Chuna gais log event|Chuna gais log events}}:'''",
-'revdelete-text'                 => "'''Mitawa gae badlao aur ghatna panna ke itihaas me dekhai, lekin content ke kuch part janta nai access kare saki.'''
+'rev-delundel'                => 'dekhao/lukao',
+'revisiondelete'              => 'Badlao ke mitao/nai mitao',
+'revdelete-nooldid-title'     => 'Target revision jon ki valid nai hai',
+'revdelete-nooldid-text'      => 'Aap chaahe target revision(s) ke specify nai karaa hai, ii function ke perform kare ke khatir, specified revision haiye nai, nai to aap abhi ke badlao ke lukae ke kosis karta hai.',
+'revdelete-nologtype-title'   => 'Koi log type ke nai dewa gais hai',
+'revdelete-nologtype-text'    => 'Aap ii action ke kare khatir koi log type ke specify nai karaa hai.',
+'revdelete-nologid-title'     => 'Log entry valid nai hai',
+'revdelete-nologid-text'      => 'Chaahe aap target log event ke specify nai karaa hai ii chij kare ke khatir nai to batawa gais entry nai hai.',
+'revdelete-selected'          => "'''{{PLURAL:$2|Selected badlao|Selected badlao}} of [[:$1]]:'''",
+'logdelete-selected'          => "'''{{PLURAL:$1|Chuna gais log event|Chuna gais log events}}:'''",
+'revdelete-text'              => "'''Mitawa gae badlao aur ghatna panna ke itihaas me dekhai, lekin content ke kuch part janta nai access kare saki.'''
 Duusra admins {{SITENAME}} me, lukawa gais content ke khole sake aur iske mitae bhi sake hai interface use kar ke, jab tak ki aur rukawat nai lagawa jaae.
 Meharbaani kar ke ii confirm karo ki aap ii chij kare mangta hai, aap iske natija samajhta hai, aur aap iske [[{{MediaWiki:Policy-url}}|the policy]] ke niche karta hai.",
-'revdelete-suppress-text'        => "Suppression ke '''khaali''' ii chij ke khatir kaam me lawa jaae sake hai:
+'revdelete-suppress-text'     => "Suppression ke '''khaali''' ii chij ke khatir kaam me lawa jaae sake hai:
 * Aapan baare me jaankari thik nai hai
 *: ''ghar ke address aur telephone number, social security number, etc.''",
-'revdelete-legend'               => 'Dekhe waala rukawat set karo',
-'revdelete-hide-text'            => 'Badlawa gais text ke lukao',
-'revdelete-hide-name'            => 'Kaam aur manjil ke lukao',
-'revdelete-hide-comment'         => 'Badlao ke baare me comment ke lukao',
-'revdelete-hide-user'            => "Editor's username/IP ke lukao",
-'revdelete-hide-restricted'      => 'Ii rukawat ke administrator aur duusra log se lukao.',
-'revdelete-suppress'             => 'Sysops ke saathe saathe aur sab se data ke suppress karo',
-'revdelete-hide-image'           => 'File content ke lukao',
-'revdelete-unsuppress'           => 'Restored revisions me se rukawat hatao',
-'revdelete-log'                  => 'Comment ke log karo:',
-'revdelete-submit'               => 'Chuna gae badlao ke apply karo',
-'revdelete-logentry'             => 'badla gae revision visibility of [[$1]]',
-'logdelete-logentry'             => 'badla gais event visibility of [[$1]]',
-'revdelete-success'              => "'''Badlao dekhe khatir taiyaar hai.'''",
-'revdelete-failure'              => "'''Revision visibility set nai hoe sakis.'''",
-'logdelete-success'              => "'''Log dekhe khatir taiyaar hai.'''",
-'revdel-restore'                 => 'Visibility ke badlo',
-'pagehist'                       => 'Panna ke itihaas',
-'deletedhist'                    => 'Mitawa gae itihass',
-'revdelete-content'              => 'suchi',
-'revdelete-summary'              => 'summary ke badlo',
-'revdelete-uname'                => 'username',
-'revdelete-restricted'           => 'sysops pe llabu restrictions',
-'revdelete-unrestricted'         => 'sysops se hatawa gae rukawat',
-'revdelete-hid'                  => '$1 lukaya',
-'revdelete-unhid'                => '$1 ke fir se dekhaya',
-'revdelete-log-message'          => '$1 for $2 {{PLURAL:$2|badlao|badlao}}',
-'logdelete-log-message'          => '$1 for $2 {{PLURAL:$2|ghatna|ghatna}}',
+'revdelete-legend'            => 'Dekhe waala rukawat set karo',
+'revdelete-hide-text'         => 'Badlawa gais text ke lukao',
+'revdelete-hide-name'         => 'Kaam aur manjil ke lukao',
+'revdelete-hide-comment'      => 'Badlao ke baare me comment ke lukao',
+'revdelete-hide-user'         => "Editor's username/IP ke lukao",
+'revdelete-hide-restricted'   => 'Ii rukawat ke administrator aur duusra log se lukao.',
+'revdelete-suppress'          => 'Sysops ke saathe saathe aur sab se data ke suppress karo',
+'revdelete-hide-image'        => 'File content ke lukao',
+'revdelete-unsuppress'        => 'Restored revisions me se rukawat hatao',
+'revdelete-log'               => 'Comment ke log karo:',
+'revdelete-submit'            => 'Chuna gae badlao ke apply karo',
+'revdelete-logentry'          => 'badla gae revision visibility of [[$1]]',
+'logdelete-logentry'          => 'badla gais event visibility of [[$1]]',
+'revdelete-success'           => "'''Badlao dekhe khatir taiyaar hai.'''",
+'revdelete-failure'           => "'''Revision visibility set nai hoe sakis.'''",
+'logdelete-success'           => "'''Log dekhe khatir taiyaar hai.'''",
+'revdel-restore'              => 'Visibility ke badlo',
+'pagehist'                    => 'Panna ke itihaas',
+'deletedhist'                 => 'Mitawa gae itihass',
+'revdelete-content'           => 'suchi',
+'revdelete-summary'           => 'summary ke badlo',
+'revdelete-uname'             => 'username',
+'revdelete-restricted'        => 'sysops pe llabu restrictions',
+'revdelete-unrestricted'      => 'sysops se hatawa gae rukawat',
+'revdelete-hid'               => '$1 lukaya',
+'revdelete-unhid'             => '$1 ke fir se dekhaya',
+'revdelete-log-message'       => '$1 for $2 {{PLURAL:$2|badlao|badlao}}',
+'logdelete-log-message'       => '$1 for $2 {{PLURAL:$2|ghatna|ghatna}}',
 
 # Suppression log
 'suppressionlog'     => 'Dabae waala log',

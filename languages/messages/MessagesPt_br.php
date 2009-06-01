@@ -873,69 +873,67 @@ Poderá ter sido eliminada da wiki ou renomeada.
 Tente [[Special:Search|pesquisar na wiki]] por páginas relevantes.',
 
 # Revision deletion
-'rev-deleted-comment'            => '(comentário removido)',
-'rev-deleted-user'               => '(nome de usuário removido)',
-'rev-deleted-event'              => '(entrada removida)',
-'rev-deleted-text-permission'    => "Esta revisão desta página foi '''removida'''.
+'rev-deleted-comment'         => '(comentário removido)',
+'rev-deleted-user'            => '(nome de usuário removido)',
+'rev-deleted-event'           => '(entrada removida)',
+'rev-deleted-text-permission' => "Esta revisão desta página foi '''removida'''.
 Poderão existir detalhes no [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registro de eliminação].",
-'rev-deleted-text-unhide'        => "Esta revisão desta página foi '''removida'''.
+'rev-deleted-text-unhide'     => "Esta revisão desta página foi '''removida'''.
 Poderão existir detalhes no [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registro de eliminação].
 Como administrador, você ainda pode [$1 ver esta revisão] se desejar continuar.",
-'rev-deleted-text-view'          => "A revisão desta página foi '''removida'''.
+'rev-deleted-text-view'       => "A revisão desta página foi '''removida'''.
 Como administrador desta wiki você pode visualizá-la;
 mais detalhes no [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registro de eliminação].",
-'rev-deleted-no-diff'            => "Você não pode ver esta modificação porque uma das revisões foi '''removida'''.
+'rev-deleted-no-diff'         => "Você não pode ver esta modificação porque uma das revisões foi '''removida'''.
 Podem haver detalhes no [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registro de eliminação].",
-'rev-deleted-unhide-diff'        => "Uma das revisões destas diferenças foi '''removida dos arquivos públicos'''.
+'rev-deleted-unhide-diff'     => "Uma das revisões destas diferenças foi '''removida dos arquivos públicos'''.
 Poderá haver detalhes no [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registo de eliminações].
 Como administrador, você pode mesmo assim [$1 ver estas diferenças], se desejar prosseguir.",
-'rev-delundel'                   => 'mostrar/esconder',
-'revisiondelete'                 => 'Eliminar/restaurar edições',
-'revdelete-nooldid-title'        => 'Nenhuma revisão selecionada',
-'revdelete-nooldid-text'         => 'Você ou não especificou uma(s) edição(ões) de destino, a edição especificada não existe ou, ainda, você está tentando ocultar a edição atual.',
-'revdelete-nologtype-title'      => 'Tipo de registo não especificado',
-'revdelete-nologtype-text'       => 'Você não especificou um tipo de registro sobre o qual executar esta ação.',
-'revdelete-toomanytargets-title' => 'Demasiados alvos',
-'revdelete-toomanytargets-text'  => 'Você especificou demasiados tipos de alvos sobre os quais executar esta ação.',
-'revdelete-nologid-title'        => 'Entrada de registro inválida',
-'revdelete-nologid-text'         => 'Você não especificou um evento de registro alvo para executar esta função ou a entrada especificada não existe.',
-'revdelete-selected'             => "'''{{PLURAL:$2|Edição selecionada|Edições selecionadas}} de [[:$1]]:'''",
-'logdelete-selected'             => "'''{{PLURAL:$1|Evento de registro selecionado|Eventos de registro selecionados}}:'''",
-'revdelete-text'                 => "'''Revisões eliminadas e eventos continuarão aparecendo no histórico da página e nos registros, apesar de o seu conteúdo textual estar inacessível ao público.'''
+'rev-delundel'                => 'mostrar/esconder',
+'revisiondelete'              => 'Eliminar/restaurar edições',
+'revdelete-nooldid-title'     => 'Nenhuma revisão selecionada',
+'revdelete-nooldid-text'      => 'Você ou não especificou uma(s) edição(ões) de destino, a edição especificada não existe ou, ainda, você está tentando ocultar a edição atual.',
+'revdelete-nologtype-title'   => 'Tipo de registo não especificado',
+'revdelete-nologtype-text'    => 'Você não especificou um tipo de registro sobre o qual executar esta ação.',
+'revdelete-nologid-title'     => 'Entrada de registro inválida',
+'revdelete-nologid-text'      => 'Você não especificou um evento de registro alvo para executar esta função ou a entrada especificada não existe.',
+'revdelete-selected'          => "'''{{PLURAL:$2|Edição selecionada|Edições selecionadas}} de [[:$1]]:'''",
+'logdelete-selected'          => "'''{{PLURAL:$1|Evento de registro selecionado|Eventos de registro selecionados}}:'''",
+'revdelete-text'              => "'''Revisões eliminadas e eventos continuarão aparecendo no histórico da página e nos registros, apesar de o seu conteúdo textual estar inacessível ao público.'''
 
 Outros administradores no {{SITENAME}} continuarão podendo acessar ao conteúdo escondido e restaurá-lo através desta mesma ''interface'', a menos que uma restrição adicional seja definida.
 Por favor confirme que deseja fazê-lo, que entende as consequências e que está fazendo isto de acordo com [[{{MediaWiki:Policy-url}}|a política]].",
-'revdelete-suppress-text'        => "A supressão deverá ser usada '''apenas''' para os seguintes casos:
+'revdelete-suppress-text'     => "A supressão deverá ser usada '''apenas''' para os seguintes casos:
 * Informação pessoal inapropriada
 *: ''endereços de domicílio e números de telefone, números da segurança social, etc''",
-'revdelete-legend'               => 'Definir restrições de visualização',
-'revdelete-hide-text'            => 'Ocultar texto da edição',
-'revdelete-hide-name'            => 'Ocultar acção e alvo',
-'revdelete-hide-comment'         => 'Esconder comentário de edição',
-'revdelete-hide-user'            => 'Esconder nome de usuário/IP do editor',
-'revdelete-hide-restricted'      => 'Suprimir dados de administradores assim como de outros',
-'revdelete-suppress'             => 'Suprimir dados de administradores, bem como de outros',
-'revdelete-hide-image'           => 'Ocultar conteúdos do arquivo',
-'revdelete-unsuppress'           => 'Remover restrições das edições restauradas',
-'revdelete-log'                  => 'Comentário de registro:',
-'revdelete-submit'               => 'Aplicar à edição selecionada',
-'revdelete-logentry'             => 'modificou visibilidade de revisão para [[$1]]',
-'logdelete-logentry'             => 'alterada visibilidade de eventos para [[$1]]',
-'revdelete-success'              => 'Visibilidade de edição definida com sucesso.',
-'revdelete-failure'              => "'''Visibilidade da revisão não poderia ser configurada.'''",
-'logdelete-success'              => "'''Visibilidade de evento definida com sucesso.'''",
-'revdel-restore'                 => 'Alterar visibilidade',
-'pagehist'                       => 'Histórico da página',
-'deletedhist'                    => 'Histórico de eliminações',
-'revdelete-content'              => 'conteúdo',
-'revdelete-summary'              => 'sumário de edição',
-'revdelete-uname'                => 'nome do usuário',
-'revdelete-restricted'           => 'restrições a administradores aplicadas',
-'revdelete-unrestricted'         => 'restrições a administradores removidas',
-'revdelete-hid'                  => 'ocultado $1',
-'revdelete-unhid'                => 'desocultado $1',
-'revdelete-log-message'          => '$1 para $2 {{PLURAL:$2|revisão|revisões}}',
-'logdelete-log-message'          => '$1 para $2 {{PLURAL:$2|evento|eventos}}',
+'revdelete-legend'            => 'Definir restrições de visualização',
+'revdelete-hide-text'         => 'Ocultar texto da edição',
+'revdelete-hide-name'         => 'Ocultar acção e alvo',
+'revdelete-hide-comment'      => 'Esconder comentário de edição',
+'revdelete-hide-user'         => 'Esconder nome de usuário/IP do editor',
+'revdelete-hide-restricted'   => 'Suprimir dados de administradores assim como de outros',
+'revdelete-suppress'          => 'Suprimir dados de administradores, bem como de outros',
+'revdelete-hide-image'        => 'Ocultar conteúdos do arquivo',
+'revdelete-unsuppress'        => 'Remover restrições das edições restauradas',
+'revdelete-log'               => 'Comentário de registro:',
+'revdelete-submit'            => 'Aplicar à edição selecionada',
+'revdelete-logentry'          => 'modificou visibilidade de revisão para [[$1]]',
+'logdelete-logentry'          => 'alterada visibilidade de eventos para [[$1]]',
+'revdelete-success'           => 'Visibilidade de edição definida com sucesso.',
+'revdelete-failure'           => "'''Visibilidade da revisão não poderia ser configurada.'''",
+'logdelete-success'           => "'''Visibilidade de evento definida com sucesso.'''",
+'revdel-restore'              => 'Alterar visibilidade',
+'pagehist'                    => 'Histórico da página',
+'deletedhist'                 => 'Histórico de eliminações',
+'revdelete-content'           => 'conteúdo',
+'revdelete-summary'           => 'sumário de edição',
+'revdelete-uname'             => 'nome do usuário',
+'revdelete-restricted'        => 'restrições a administradores aplicadas',
+'revdelete-unrestricted'      => 'restrições a administradores removidas',
+'revdelete-hid'               => 'ocultado $1',
+'revdelete-unhid'             => 'desocultado $1',
+'revdelete-log-message'       => '$1 para $2 {{PLURAL:$2|revisão|revisões}}',
+'logdelete-log-message'       => '$1 para $2 {{PLURAL:$2|evento|eventos}}',
 
 # Suppression log
 'suppressionlog'     => 'Registro de supressões',

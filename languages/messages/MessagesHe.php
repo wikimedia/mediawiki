@@ -1027,68 +1027,66 @@ $2',
 נסו [[Special:Search|לחפש]] אחר דפים רלוונטיים חדשים.',
 
 # Revision deletion
-'rev-deleted-comment'            => '(תקציר העריכה הוסתר)',
-'rev-deleted-user'               => '(שם המשתמש הוסתר)',
-'rev-deleted-event'              => '(פעולת היומן הוסתרה)',
-'rev-deleted-text-permission'    => "גרסת הדף הזו '''נמחקה'''.
+'rev-deleted-comment'         => '(תקציר העריכה הוסתר)',
+'rev-deleted-user'            => '(שם המשתמש הוסתר)',
+'rev-deleted-event'           => '(פעולת היומן הוסתרה)',
+'rev-deleted-text-permission' => "גרסת הדף הזו '''נמחקה'''.
 ייתכן שישנם פרטים נוספים על כך ב[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} יומן המחיקות].",
-'rev-deleted-text-unhide'        => "גרסת הדף הזו '''נמחקה'''.
+'rev-deleted-text-unhide'     => "גרסת הדף הזו '''נמחקה'''.
 ייתכן שישנם פרטים נוספים על כך ב[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} יומן המחיקות].
 כיוון שאתם בעלי הרשאות מפעיל מערכת, באפשרותכם [$1 לצפות בגרסה] אם ברצונכם להמשיך.",
-'rev-deleted-text-view'          => "גרסת הדף הזו '''נמחקה'''.
+'rev-deleted-text-view'       => "גרסת הדף הזו '''נמחקה'''.
 כיוון שאתם בעלי הרשאות מפעיל מערכת, באפשרותכם לצפות בגרסה; ייתכן שישנם פרטים נוספים על כך ב[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} יומן המחיקות].",
-'rev-deleted-no-diff'            => "אינכם יכולים לצפות בהבדלים בין הגרסאות שציינתם משום שאחת מהן '''נמחקה'''.
+'rev-deleted-no-diff'         => "אינכם יכולים לצפות בהבדלים בין הגרסאות שציינתם משום שאחת מהן '''נמחקה'''.
 ייתכן שישנם פרטים נוספים על כך ב[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} יומן המחיקות].",
-'rev-deleted-unhide-diff'        => "אחת מהגרסאות שציינתם '''נמחקה'''.
+'rev-deleted-unhide-diff'     => "אחת מהגרסאות שציינתם '''נמחקה'''.
 ייתכן שישנם פרטים נוספים על כך ב[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} יומן המחיקות].
 כיוון שאתם בעלי הרשאות מפעיל מערכת, באפשרותכם [$1 לצפות בהבדלים בין הגרסאות] אם ברצונכם להמשיך.",
-'rev-delundel'                   => 'הצגה/הסתרה',
-'revisiondelete'                 => 'מחיקת ושחזור גרסאות',
-'revdelete-nooldid-title'        => 'גרסת מטרה בלתי תקינה',
-'revdelete-nooldid-text'         => 'הגרסה או הגרסאות עליהן תבוצע פעולה זו אינן תקינות. ייתכן שלא ציינתם אותן, ייתכן שהגרסה אינה קיימת, וייתכן שאתם מנסים להסתיר את הגרסה הנוכחית.',
-'revdelete-nologtype-title'      => 'לא נבחר סוג יומן',
-'revdelete-nologtype-text'       => 'לא ציינתם את סוג היומן שעליו תבוצע הפעולה.',
-'revdelete-toomanytargets-title' => 'מטרות רבות מדי',
-'revdelete-toomanytargets-text'  => 'ציינתם יותר מדי סוגים של מטרות שעליהן תבוצע הפעולה.',
-'revdelete-nologid-title'        => 'רישום יומן בלתי תקין',
-'revdelete-nologid-text'         => 'או שלא ציינתם את האירוע או האירועים ביומן שעליהם תבוצע הפעולה, או שרישום היומן שציינתם אינו קיים.',
-'revdelete-selected'             => "'''{{PLURAL:$2|הגרסה שנבחרה|הגרסאות שנבחרו}} של [[:$1]]:'''",
-'logdelete-selected'             => "'''{{PLURAL:$1|פעולת היומנים שנבחרה|פעולות היומנים שנבחרו}}:'''",
-'revdelete-text'                 => "'''גרסאות ופעולות יומנים שנמחקו עדיין יופיעו בהיסטוריית הדף ובדפי היומנים, אך חלקים מתוכנם שלהם לא יהיה זמין לציבור.'''
+'rev-delundel'                => 'הצגה/הסתרה',
+'revisiondelete'              => 'מחיקת ושחזור גרסאות',
+'revdelete-nooldid-title'     => 'גרסת מטרה בלתי תקינה',
+'revdelete-nooldid-text'      => 'הגרסה או הגרסאות עליהן תבוצע פעולה זו אינן תקינות. ייתכן שלא ציינתם אותן, ייתכן שהגרסה אינה קיימת, וייתכן שאתם מנסים להסתיר את הגרסה הנוכחית.',
+'revdelete-nologtype-title'   => 'לא נבחר סוג יומן',
+'revdelete-nologtype-text'    => 'לא ציינתם את סוג היומן שעליו תבוצע הפעולה.',
+'revdelete-nologid-title'     => 'רישום יומן בלתי תקין',
+'revdelete-nologid-text'      => 'או שלא ציינתם את האירוע או האירועים ביומן שעליהם תבוצע הפעולה, או שרישום היומן שציינתם אינו קיים.',
+'revdelete-selected'          => "'''{{PLURAL:$2|הגרסה שנבחרה|הגרסאות שנבחרו}} של [[:$1]]:'''",
+'logdelete-selected'          => "'''{{PLURAL:$1|פעולת היומנים שנבחרה|פעולות היומנים שנבחרו}}:'''",
+'revdelete-text'              => "'''גרסאות ופעולות יומנים שנמחקו עדיין יופיעו בהיסטוריית הדף ובדפי היומנים, אך חלקים מתוכנם שלהם לא יהיה זמין לציבור.'''
 מפעילי מערכת אחרים באתר עדיין יוכלו לגשת לתוכן הנסתר ויוכלו לשחזר אותו שוב דרך הממשק הזה, אלא אם כן יוגדרו הגבלות נוספות.
 
 אנא אשרו שזה אכן מה שאתם מתכוונים לעשות, שאתם מבינים את התוצאות של מעשה כזה, ושהמעשה מבוצע בהתאם ל[[{{MediaWiki:Policy-url}}|נהלי האתר]].",
-'revdelete-suppress-text'        => "יש להשתמש בהסתרה מלאה '''אך ורק''' במקרים הבאים:
+'revdelete-suppress-text'     => "יש להשתמש בהסתרה מלאה '''אך ורק''' במקרים הבאים:
 * חשיפת מידע אישי
 *: '''כתובות בתים ומספרי טלפון, מספרי ביטוח לאומי, וכדומה'''",
-'revdelete-legend'               => 'הגדרת הגבלות התצוגה',
-'revdelete-hide-text'            => 'הסתרת תוכן הגרסה',
-'revdelete-hide-name'            => 'הסתרת הפעולה ודף היעד',
-'revdelete-hide-comment'         => 'הסתרת תקציר העריכה',
-'revdelete-hide-user'            => 'הסתרת שם המשתמש או כתובת ה־IP של העורך',
-'revdelete-hide-restricted'      => 'הסתרת המידע גם ממפעילי המערכת',
-'revdelete-suppress'             => 'הסתרת המידע גם ממפעילי המערכת',
-'revdelete-hide-image'           => 'הסתרת תוכן הקובץ',
-'revdelete-unsuppress'           => 'הסרת הגבלות בגרסאות המשוחזרות',
-'revdelete-log'                  => 'הערה ביומן:',
-'revdelete-submit'               => 'ביצוע על הגרסה שנבחרה',
-'revdelete-logentry'             => 'שינה את הסתרת הגרסה של [[$1]]',
-'logdelete-logentry'             => 'שינה את הסתרת פעולת היומן של [[$1]]',
-'revdelete-success'              => "'''הסתרת הגרסה הושלמה בהצלחה.'''",
-'revdelete-failure'              => "'''לא ניתן היה לבצע את הסתרת הגרסה.'''",
-'logdelete-success'              => "'''הסתרת פעולת היומן הושלמה בהצלחה.'''",
-'revdel-restore'                 => 'שינוי ההצגה',
-'pagehist'                       => 'היסטוריית הדף',
-'deletedhist'                    => 'הגרסאות המחוקות',
-'revdelete-content'              => 'התוכן',
-'revdelete-summary'              => 'תקציר העריכה',
-'revdelete-uname'                => 'שם המשתמש',
-'revdelete-restricted'           => 'נוספו הגבלות למפעילי מערכת',
-'revdelete-unrestricted'         => 'הוסרו הגבלות ממפעילי מערכת',
-'revdelete-hid'                  => 'הסתיר את $1',
-'revdelete-unhid'                => 'ביטל את הסתרת $1',
-'revdelete-log-message'          => '$1 עבור {{PLURAL:$2|גרסה אחת|$2 גרסאות}}',
-'logdelete-log-message'          => '$1 עבור {{PLURAL:$2|אירוע אחד|$2 אירועים}}',
+'revdelete-legend'            => 'הגדרת הגבלות התצוגה',
+'revdelete-hide-text'         => 'הסתרת תוכן הגרסה',
+'revdelete-hide-name'         => 'הסתרת הפעולה ודף היעד',
+'revdelete-hide-comment'      => 'הסתרת תקציר העריכה',
+'revdelete-hide-user'         => 'הסתרת שם המשתמש או כתובת ה־IP של העורך',
+'revdelete-hide-restricted'   => 'הסתרת המידע גם ממפעילי המערכת',
+'revdelete-suppress'          => 'הסתרת המידע גם ממפעילי המערכת',
+'revdelete-hide-image'        => 'הסתרת תוכן הקובץ',
+'revdelete-unsuppress'        => 'הסרת הגבלות בגרסאות המשוחזרות',
+'revdelete-log'               => 'הערה ביומן:',
+'revdelete-submit'            => 'ביצוע על הגרסה שנבחרה',
+'revdelete-logentry'          => 'שינה את הסתרת הגרסה של [[$1]]',
+'logdelete-logentry'          => 'שינה את הסתרת פעולת היומן של [[$1]]',
+'revdelete-success'           => "'''הסתרת הגרסה הושלמה בהצלחה.'''",
+'revdelete-failure'           => "'''לא ניתן היה לבצע את הסתרת הגרסה.'''",
+'logdelete-success'           => "'''הסתרת פעולת היומן הושלמה בהצלחה.'''",
+'revdel-restore'              => 'שינוי ההצגה',
+'pagehist'                    => 'היסטוריית הדף',
+'deletedhist'                 => 'הגרסאות המחוקות',
+'revdelete-content'           => 'התוכן',
+'revdelete-summary'           => 'תקציר העריכה',
+'revdelete-uname'             => 'שם המשתמש',
+'revdelete-restricted'        => 'נוספו הגבלות למפעילי מערכת',
+'revdelete-unrestricted'      => 'הוסרו הגבלות ממפעילי מערכת',
+'revdelete-hid'               => 'הסתיר את $1',
+'revdelete-unhid'             => 'ביטל את הסתרת $1',
+'revdelete-log-message'       => '$1 עבור {{PLURAL:$2|גרסה אחת|$2 גרסאות}}',
+'logdelete-log-message'       => '$1 עבור {{PLURAL:$2|אירוע אחד|$2 אירועים}}',
 
 # Suppression log
 'suppressionlog'     => 'יומן הסתרות',
