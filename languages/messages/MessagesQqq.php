@@ -2725,8 +2725,10 @@ Please leave the link http://www.mediawiki.org/wiki/Manual:External_editors exac
 *$1 is the IP adress of the user that changed the e-mail adress
 *$2 is the name of the user
 *$3 is a URL to [[Special:ConfirmEmail]]
-*$4 is a time and date 
-*$5 is a URL to [[Special:InvalidateEmail]]',
+*$4 is a time and date (duplicated by $6 and $7)
+*$5 is a URL to [[Special:InvalidateEmail]]
+*$6 is a date 
+*$7 is a time',
 'confirmemail_invalidated' => 'This is the text of the special page [[Special:InvalidateEmail|InvalidateEmail]] (with the title in [[Mediawiki:Invalidateemail]]) where user goes if he chooses the cancel e-mail confirmation link from the confirmation e-mail.',
 'invalidateemail'          => "This is the '''name of the special page''' where user goes if he chooses the cancel e-mail confirmation link from the confirmation e-mail.",
 
