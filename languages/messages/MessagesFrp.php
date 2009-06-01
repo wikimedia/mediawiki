@@ -1048,6 +1048,9 @@ la vèrsion ciba ègziste pas, ou ben o est la vèrsion d’ora.',
 'revdelete-nologtype-text'    => 'Vos éd pas spècefiâ un tipo de jornal sur loquint cela accion dêt étre rèalisâ.',
 'revdelete-nologid-title'     => 'Entrâ du jornal envalida',
 'revdelete-nologid-text'      => 'Ou ben vos éd pas spècefiâ una entrâ du jornal sur laquinta cela accion dêt étre rèalisâ, ou ben l’entrâ ègziste pas.',
+'revdelete-no-file'           => 'Lo fichiér spècefiâ ègziste pas.',
+'revdelete-show-file-confirm' => 'Éte-vos de sûr de volêr vêre una vèrsion suprimâ du fichiér « <nowiki>$1</nowiki> » que dâte du $2 a $3 ?',
+'revdelete-show-file-submit'  => 'Ouè',
 'revdelete-selected'          => "'''{{PLURAL:$2|Vèrsion chouèsia|Vèrsions chouèsies}} de [[:$1]] :'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Entrâ du jornal chouèsia|Entrâs du jornal chouèsies}} :'''",
 'revdelete-text'              => "'''Les vèrsions et les entrâs suprimâs aparètront adés dens l’historico de la pâge et dens los jornals, mas lor contegnu tèxtuèl serat pas accèssiblo u publico.'''
@@ -1071,9 +1074,12 @@ Volyéd confirmar qu’o est franc cen que vos voléd fâre, que vos en compregn
 'revdelete-submit'            => 'Aplicar a la vèrsion chouèsia',
 'revdelete-logentry'          => 'at changiê la visibilitât de la vèrsion de [[$1]]',
 'logdelete-logentry'          => 'at changiê la visibilitât de l’entrâ de [[$1]]',
-'revdelete-success'           => "'''Visibilitât de la vèrsion changiê avouéc reusséta.'''",
-'revdelete-failure'           => "'''La visibilitât de la vèrsion at pas possu étre dèfenia.'''",
-'logdelete-success'           => "'''Visibilitât du jornal paramètrâ avouéc reusséta.'''",
+'revdelete-success'           => "'''Visibilitât de la vèrsion dèfenia avouéc reusséta.'''",
+'revdelete-failure'           => "'''La visibilitât de la vèrsion at pas possu étre dèfenia :'''
+$1",
+'logdelete-success'           => "'''Visibilitât du jornal dèfenia avouéc reusséta.'''",
+'logdelete-failure'           => "'''La visibilitât du jornal at pas possu étre dèfenia :'''
+$1",
 'revdel-restore'              => 'Changiér la visibilitât',
 'pagehist'                    => 'Historico de la pâge',
 'deletedhist'                 => 'Historico suprimâ',
@@ -1234,6 +1240,7 @@ Vos pouede [[:$1|fâre cela pâge]].",
 'search-mwsuggest-disabled'        => 'sen consèlys',
 'search-relatedarticle'            => 'Raportâ',
 'mwsuggest-disable'                => 'Dèsactivar los consèlys AJAX',
+'searcheverything-enable'          => 'Rechèrchiér dens tôs los èspâços de nom',
 'searchrelated'                    => 'raportâ',
 'searchall'                        => 'Tôs',
 'showingresults'                   => "Visualisacion de '''$1''' rèsultat{{PLURAL:$1||s}} dês lo numerô '''$2'''.",
@@ -1248,6 +1255,9 @@ Vos pouede [[:$1|fâre cela pâge]].",
 'powersearch-ns'                   => 'Rechèrchiér dens los èspâços de nom :',
 'powersearch-redir'                => 'Fâre vêre les redirèccions',
 'powersearch-field'                => 'Rechèrchiér',
+'powersearch-togglelabel'          => 'Pouentar :',
+'powersearch-toggleall'            => 'Tot',
+'powersearch-togglenone'           => 'Niona',
 'search-external'                  => 'Rechèrche de defôr',
 'searchdisabled'                   => 'La rechèrche dessus {{SITENAME}} est dèsactivâ.
 En atendent la rèactivacion, vos pouede fâre una rechèrche per Google.
@@ -1318,10 +1328,10 @@ Atencion, lor endèxacion du contegnu de {{SITENAME}} pôt pas étre a jorn.',
 'timezoneregion-europe'         => 'Eropa',
 'timezoneregion-indian'         => 'Ocèan endien',
 'timezoneregion-pacific'        => 'Ocèan pacefico',
-'allowemail'                    => 'Ôtorisar l’èxpèdicion de mèl vegnent d’ôtros utilisators',
+'allowemail'                    => 'Ôtorisar l’èxpèdicion de mèl que vint d’ôtros utilisators',
 'prefs-searchoptions'           => 'Chouèx de rechèrche',
 'prefs-namespaces'              => 'Èspâços de nom',
-'defaultns'                     => 'Rechèrchiér per dèfôt dens cetos èspâços de nom :',
+'defaultns'                     => 'Ôtrament rechèrchiér dens cetos èspâços de nom :',
 'default'                       => 'dèfôt',
 'prefs-files'                   => 'Fichiérs',
 'prefs-custom-css'              => 'CSS pèrsonalisâ',
@@ -1428,7 +1438,7 @@ Vos pouede asse-ben dècidar de lèssiér los ôtros sè veriér vers vos avoué
 'right-reupload'              => 'Ècrasar un fichiér ègzistent',
 'right-reupload-own'          => 'Ècrasar un fichiér qu’on at sè-mémo tèlèchargiê',
 'right-reupload-shared'       => 'Ècrasar localament un fichiér present sur un dèpôt de fichiérs partagiê',
-'right-upload_by_url'         => 'Tèlèchargiér un fichiér dês una adrèce URL',
+'right-upload_by_url'         => 'Tèlèchargiér un fichiér dês una URL',
 'right-purge'                 => 'Purgiér lo cache de les pâges sen demanda de confirmacion',
 'right-autoconfirmed'         => 'Changiér les pâges mié-protègiês',
 'right-bot'                   => 'Étre trètâ coment una pratica ôtomatisâ',
@@ -1615,7 +1625,7 @@ Volyéd controlar lo fichiér '''<tt>$1</tt>'''.<br />
 Se lo fichiér controlâ est la méma émâge (dens una rèsolucion mèlyora), y at pas fôta de tèlèchargiér una vèrsion rèduita.",
 'file-thumbnail-no'           => "Lo nom du fichiér comence per '''<tt>$1</tt>'''.
 O est possiblo que seye una vèrsion rèduita ''(figura)''.
-Se vos avéd lo fichiér en rèsolucion hôta, tèlèchargiéd-lo, ôtrament volyéd changiér son nom.",
+Se vos avéd lo fichiér en rèsolucion ples hôta, tèlèchargiéd-lo, ôtrament volyéd changiér son nom.",
 'fileexists-forbidden'        => 'Un fichiér avouéc cél nom ègziste ja et pôt pas étre ècrasâ.
 Se vos voléd adés tèlèchargiér voutron fichiér, volyéd tornar arriér et pués utilisar un ôtro nom. [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Un fichiér avouéc cél nom ègziste ja dens lo dèpôt de fichiérs partagiê.
@@ -1718,6 +1728,7 @@ Clicar sur un en-téta de colona pèrmèt de changiér l’ôrdre de visualisaci
 'filehist-dimensions'       => 'Dimensions',
 'filehist-filesize'         => 'Talye du fichiér',
 'filehist-comment'          => 'Comentèro',
+'filehist-missing'          => 'Fichiér manquent',
 'imagelinks'                => 'Usâjos du fichiér',
 'linkstoimage'              => '{{PLURAL:$1|Ceta pâge utilise|Cetes $1 pâges utilisont}} ceti fichiér :',
 'linkstoimage-more'         => 'Més de {{PLURAL:$1|yona pâge utilise|$1 pâges utilisont}} ceti fichiér.
@@ -2686,7 +2697,7 @@ Pèrmèt de rètablir la vèrsion devant et pués d’apondre una rêson dens la
 'anonymous'        => '{{PLURAL:$1|Utilisator pas enregistrâ|Utilisators pas enregistrâs}} dessus {{SITENAME}}',
 'siteuser'         => 'Utilisator $1 de {{SITENAME}}',
 'lastmodifiedatby' => 'Ceta pâge at étâ changiê por lo dèrriér côp lo $1 a $2 per $3.',
-'othercontribs'    => 'Bâsâ sur l’ôvra a $1.',
+'othercontribs'    => 'Basâ sur l’ôvra a $1.',
 'others'           => 'ôtros',
 'siteusers'        => '{{PLURAL:$2|l’utilisator|los utilisators}} $1 dessus {{SITENAME}}',
 'creditspage'      => 'Crèdits de la pâge',
@@ -3030,15 +3041,15 @@ Los ôtros champs seront cachiês per dèfôt.
 
 'exif-scenetype-1' => 'Émâge fotografiâ tot drêt',
 
-'exif-customrendered-0' => 'Mètoda normala',
-'exif-customrendered-1' => 'Mètoda pèrsonalisâ',
+'exif-customrendered-0' => 'Maniére normala',
+'exif-customrendered-1' => 'Maniére pèrsonalisâ',
 
-'exif-exposuremode-0' => 'Ôtomatica',
-'exif-exposuremode-1' => 'Manuèla',
-'exif-exposuremode-2' => 'Misa entre-mié parentèses ôtomatica',
+'exif-exposuremode-0' => 'Èxposicion ôtomatica',
+'exif-exposuremode-1' => 'Èxposicion manuèla',
+'exif-exposuremode-2' => 'Forchèta ôtomatica',
 
-'exif-whitebalance-0' => 'Ôtomatica',
-'exif-whitebalance-1' => 'Manuèla',
+'exif-whitebalance-0' => 'Balance des blancs ôtomatica',
+'exif-whitebalance-1' => 'Balance des blancs manuèla',
 
 'exif-scenecapturetype-0' => 'Estandârd',
 'exif-scenecapturetype-1' => 'Payisâjo',
@@ -3046,18 +3057,18 @@ Los ôtros champs seront cachiês per dèfôt.
 'exif-scenecapturetype-3' => 'Scèna de nuet',
 
 'exif-gaincontrol-0' => 'Nion',
-'exif-gaincontrol-1' => 'Ôgmentacion fêbla de l’aquis',
-'exif-gaincontrol-2' => 'Ôgmentacion fôrta de l’aquis',
-'exif-gaincontrol-3' => 'Rèduccion fêbla de l’aquis',
-'exif-gaincontrol-4' => 'Rèduccion fôrta de l’aquis',
+'exif-gaincontrol-1' => 'Guen fêblament positif',
+'exif-gaincontrol-2' => 'Guen fôrtament positif',
+'exif-gaincontrol-3' => 'Guen fêblament nègatif',
+'exif-gaincontrol-4' => 'Guen fôrtament nègatif',
 
 'exif-contrast-0' => 'Normal',
 'exif-contrast-1' => 'Fêblo',
 'exif-contrast-2' => 'Fôrt',
 
 'exif-saturation-0' => 'Normala',
-'exif-saturation-1' => 'Fêbla',
-'exif-saturation-2' => 'Hôta',
+'exif-saturation-1' => 'Saturacion fêbla',
+'exif-saturation-2' => 'Saturacion hôta',
 
 'exif-sharpness-0' => 'Normala',
 'exif-sharpness-1' => 'Doce',
@@ -3069,12 +3080,16 @@ Los ôtros champs seront cachiês per dèfôt.
 'exif-subjectdistancerange-3' => 'Vision de luen',
 
 # Pseudotags used for GPSLatitudeRef and GPSDestLatitudeRef
-'exif-gpslatitude-n' => "Bise (''nord'')",
-'exif-gpslatitude-s' => "Mié-jorn (''sud'')",
+'exif-gpslatitude-n' => "Latituda bise (''nord'')",
+'exif-gpslatitude-s' => "Latituda mié-jorn (''sud'')",
 
 # Pseudotags used for GPSLongitudeRef and GPSDestLongitudeRef
-'exif-gpslongitude-e' => "Levant (''èst'')",
-'exif-gpslongitude-w' => "Ponant (''ouèst'')",
+'exif-gpslongitude-e' => "Longituda levant (''èst'')",
+'exif-gpslongitude-w' => "Longituda ponant (''ouèst'')",
+
+# Pseudotags used for GPSAltitudeRef
+'exif-gpsaltitude-0' => 'Mètres en-d’amont du nivél de la mar',
+'exif-gpsaltitude-1' => 'Mètres en-desot du nivél de la mar',
 
 'exif-gpsstatus-a' => 'Mesera en cors',
 'exif-gpsstatus-v' => 'Entèropèrabilitât de la mesera',
@@ -3083,17 +3098,22 @@ Los ôtros champs seront cachiês per dèfôt.
 'exif-gpsmeasuremode-3' => 'Mesera a 3 dimensions',
 
 # Pseudotags used for GPSSpeedRef
-'exif-gpsspeed-k' => 'Kilomètre per hora',
-'exif-gpsspeed-m' => 'Mile per hora',
-'exif-gpsspeed-n' => 'Nuod',
+'exif-gpsspeed-k' => 'Kilomètres per hora',
+'exif-gpsspeed-m' => 'Miles per hora',
+'exif-gpsspeed-n' => 'Nuods',
+
+# Pseudotags used for GPSDestDistanceRef
+'exif-gpsdestdistance-k' => 'Kilomètres',
+'exif-gpsdestdistance-m' => 'Miles',
+'exif-gpsdestdistance-n' => 'Miles marins',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Veré dirèccion',
-'exif-gpsdirection-m' => "Bise magnètica (''nord magnètico'')",
+'exif-gpsdirection-m' => 'Dirèccion magnètica',
 
 # External editor support
-'edit-externally'      => 'Modifiar ceti fichiér en utilisent una aplicacion de defôr',
-'edit-externally-help' => '(Consultâd les [http://www.mediawiki.org/wiki/Manual:External_editors enstruccions d’enstalacion] por més d’enformacions)',
+'edit-externally'      => 'Changiér ceti fichiér en utilisent una aplicacion de defôr',
+'edit-externally-help' => '(Vêde les [http://www.mediawiki.org/wiki/Manual:External_editors enstruccions d’enstalacion] por més d’enformacions)',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'totes',
@@ -3103,25 +3123,32 @@ Los ôtros champs seront cachiês per dèfôt.
 'monthsall'        => 'tôs',
 
 # E-mail address confirmation
-'confirmemail'            => 'Confirmar l’adrèce de mèl',
-'confirmemail_noemail'    => 'L’adrèce de mèl configurâ dens voutres [[Special:Preferences|prèferences]] est envalida.',
-'confirmemail_text'       => '{{SITENAME}} at fôta du contrôlo de voutra adrèce de mèl devant que povêr utilisar tota fonccion de mèssageria. Utilisâd lo boton ce-desot por emmandar un mèl de confirmacion a voutra adrèce. Lo mèl contindrat un lim contegnent un code, chargiéd cél lim dens voutron navigator por validar voutra adrèce.',
-'confirmemail_pending'    => 'Un code de confirmacion vos at ja étâ emmandâ per mèl ; se vos vegnéd de crèar voutron compto, volyéd atendre doux-três menutes que lo mèl arreve devant que demandar un code novél.',
-'confirmemail_send'       => 'Emmandar un code de confirmacion',
-'confirmemail_sent'       => 'Mèl de confirmacion emmandâ.',
-'confirmemail_oncreate'   => 'Un code de confirmacion at étâ emmandâ a voutra adrèce de mèl. Cél code est pas requis por sè conèctar, mas vos en aréd fôta por activar les fonccionalitâts liyês ux mèls sur ceti vouiqui.',
-'confirmemail_sendfailed' => 'Empossiblo d’emmandar lo mèl de confirmacion. Controlâd voutra adrèce.
+'confirmemail'             => 'Confirmar l’adrèce de mèl',
+'confirmemail_noemail'     => 'Vos éd pas dèfeni una adrèce de mèl valida dens voutres [[Special:Preferences|prèferences]].',
+'confirmemail_text'        => '{{SITENAME}} at fôta du contrôlo de voutra adrèce de mèl devant que povêr utilisar tota fonccion de mèssageria.
+Utilisâd lo boton ce-desot por mandar un mèl de confirmacion a voutra adrèce.
+Lo mèl encllurat un lim que contint un code a usâjo solèt et limitâ dens lo temps ;
+chargiéd cél lim dens voutron navigator por confirmar que voutra adrèce de mèl est valida.',
+'confirmemail_pending'     => 'Un code de confirmacion vos at ja étâ mandâ per mèl ;
+se vos vegnéd de fâre voutron compto, volyéd atendre doux-três menutes que lo mèl arreve devant que demandar un code novél.',
+'confirmemail_send'        => 'Mandar un code de confirmacion',
+'confirmemail_sent'        => 'Mèl de confirmacion mandâ.',
+'confirmemail_oncreate'    => 'Un code de confirmacion at étâ mandâ a voutra adrèce de mèl.
+Cél code est pas nècèssèro por sè branchiér, mas vos lo devréd balyér por activar tota fonccionalitât liyê ux mèls sur ceti vouiqui.',
+'confirmemail_sendfailed'  => '{{SITENAME}} vos at pas possu mandar lo mèl de confirmacion.
+Volyéd controlar que voutra adrèce de mèl contint gins de caractèro dèfendu.
 
-Retôrn du programe de mèl : $1',
-'confirmemail_invalid'    => 'Code de confirmacion fôx. Lo code at pôt-étre èxpirâ.',
-'confirmemail_needlogin'  => 'Vos dête vos $1 por confirmar voutra adrèce de mèl.',
-'confirmemail_success'    => 'Voutra adrèce de mèl est confirmâ. Orendrêt, vos pouede vos conèctar et profitar du vouiqui.',
-'confirmemail_loggedin'   => 'Voutra adrèce est confirmâ ora.',
-'confirmemail_error'      => 'Un problèmo est arrevâ en volent enregistrar voutra confirmacion.',
-'confirmemail_subject'    => 'Confirmacion d’adrèce de mèl por {{SITENAME}}',
-'confirmemail_body'       => 'Quârqu’un, probâblament vos, avouéc l’adrèce IP $1,
-at enregistrâ un compto « $2 » avouéc ceta adrèce de mèl
-sur lo seto {{SITENAME}}.
+Lo programo d’èxpèdicion de mèl at retornâ ceta endicacion : $1',
+'confirmemail_invalid'     => 'Code de confirmacion fôx.
+Ceti at pôt-étre èxpirâ.',
+'confirmemail_needlogin'   => 'Vos vos dête $1 por confirmar voutra adrèce de mèl.',
+'confirmemail_success'     => 'Voutra adrèce de mèl at étâ confirmâ.
+Orendrêt, vos vos pouede [[Special:UserLogin|branchiér]] et profitar du vouiqui.',
+'confirmemail_loggedin'    => 'Orendrêt, voutra adrèce de mèl est confirmâ.',
+'confirmemail_error'       => 'Un problèmo est arrevâ pendent l’enregistrament de voutra confirmacion.',
+'confirmemail_subject'     => 'Confirmacion d’adrèce de mèl por {{SITENAME}}',
+'confirmemail_body'        => 'Quârqu’un, probâblament vos, avouéc l’adrèce IP $1,
+at enregistrâ un compto « $2 » avouéc ceta adrèce de mèl sur lo seto {{SITENAME}}.
 
 Por confirmar que cél compto est franc a vos et por
 activar les fonccions de mèssageria dessus {{SITENAME}},
@@ -3136,51 +3163,55 @@ confirmacion de voutra adrèce de mèl :
 $5
 
 Cél code de confirmacion èxpirerat lo $4.',
+'confirmemail_invalidated' => 'Confirmacion de l’adrèce de mèl anulâ',
+'invalidateemail'          => 'Anular la confirmacion de l’adrèce de mèl',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[La transcllusion entèrvouiqui est dèsactivâ]',
-'scarytranscludefailed'   => '[La rècupèracion de modèlo at pas reussia por $1 ; dèsolâ]',
-'scarytranscludetoolong'  => '[L’URL est trop longe ; dèsolâ]',
+'scarytranscludefailed'   => '[La rècupèracion de modèlo at pas reussia por $1]',
+'scarytranscludetoolong'  => '[L’URL est trop longe]',
 
 # Trackbacks
-'trackbackbox'      => 'Rètrolims vers ceti articllo :<br />
+'trackbackbox'      => 'Rètrolims de vers ceta pâge :<br />
 $1',
 'trackbackremove'   => '([$1 Suprimar])',
 'trackbacklink'     => 'Rètrolim',
 'trackbackdeleteok' => 'Lo rètrolim at étâ suprimâ avouéc reusséta.',
 
 # Delete conflict
-'deletedwhileediting' => 'Atencion : ceta pâge at étâ suprimâ aprés que vos éd comenciê a la modifiar !',
-'confirmrecreate'     => "L’utilisator [[User:$1|$1]] ([[User talk:$1|Discussion]]) at suprimâ ceta pâge, pendent que vos aviâd comenciê a l’èditar, por la rêson siuventa :
+'deletedwhileediting' => "'''Atencion :''' ceta pâge at étâ suprimâ aprés que vos vos éte betâ a la changiér !",
+'confirmrecreate'     => "L’utilisator [[User:$1|$1]] ([[User talk:$1|Discussion]]) at suprimâ ceta pâge, pendent que vos vos érâd betâ a la changiér, por ceta rêson :
 : ''$2''
-Volyéd confirmar que vos dèsirâd recrèar ceti articllo.",
-'recreate'            => 'Recrèar',
+Volyéd confirmar que vos dèsirâd franc refâre cela pâge.",
+'recreate'            => 'Refâre',
 
 # action=purge
 'confirm_purge_button' => 'Confirmar',
 'confirm-purge-top'    => 'Voléd-vos rafrèchir ceta pâge (purgiér lo cache) ?',
+'confirm-purge-bottom' => 'Purgiér una pâge èface lo cache et pués fôrce la dèrriére vèrsion a étre montrâ.',
 
 # Multipage image navigation
-'imgmultipageprev' => '← pâge prècèdenta',
-'imgmultipagenext' => 'pâge siuventa →',
-'imgmultigo'       => 'Accèdar !',
+'imgmultipageprev' => '← pâge devant',
+'imgmultipagenext' => 'pâge aprés →',
+'imgmultigo'       => 'Listar !',
+'imgmultigoto'     => 'Alar a la pâge $1',
 
 # Table pager
-'ascending_abbrev'         => 'crès',
-'descending_abbrev'        => 'dècr',
-'table_pager_next'         => 'Pâge siuventa',
-'table_pager_prev'         => 'Pâge prècèdenta',
+'ascending_abbrev'         => 'que crêt',
+'descending_abbrev'        => 'que dècrêt',
+'table_pager_next'         => 'Pâge aprés',
+'table_pager_prev'         => 'Pâge devant',
 'table_pager_first'        => 'Premiére pâge',
 'table_pager_last'         => 'Dèrriére pâge',
-'table_pager_limit'        => 'Montrar $1 èlèments per pâge',
-'table_pager_limit_submit' => 'Accèdar',
+'table_pager_limit'        => 'Montrar $1 èlèment{{PLURAL:$1||s}} per pâge',
+'table_pager_limit_submit' => 'Listar',
 'table_pager_empty'        => 'Nion rèsultat',
 
 # Auto-summaries
-'autosumm-blank'   => 'Rèsumâ ôtomatico : blanchiment',
-'autosumm-replace' => 'Rèsumâ ôtomatico : contegnu remplaciê per « $1 ».',
-'autoredircomment' => 'Redirèccion vers [[$1]]',
-'autosumm-new'     => 'Novèla pâge : $1',
+'autosumm-blank'   => 'Pâge blanchia',
+'autosumm-replace' => 'Contegnu remplaciê per « $1 »',
+'autoredircomment' => 'Pâge redirigiê vers [[$1]]',
+'autosumm-new'     => 'Pâge fêta avouéc « $1 »',
 
 # Size units
 'size-bytes'     => '$1 o',
@@ -3189,38 +3220,43 @@ Volyéd confirmar que vos dèsirâd recrèar ceti articllo.",
 'size-gigabytes' => '$1 Go',
 
 # Live preview
-'livepreview-loading' => 'Chargement…',
-'livepreview-ready'   => 'Chargement… chavonâ !',
-'livepreview-failed'  => 'La vua rapida at pas reussia !
+'livepreview-loading' => 'Chargement...',
+'livepreview-ready'   => 'Chargement... chavonâ !',
+'livepreview-failed'  => 'La vua vito fêta at pas reussia !
 Èprovâd la prèvisualisacion normala.',
-'livepreview-error'   => 'Empossiblo de sè conèctar : $1 « $2 ».
+'livepreview-error'   => 'Empossiblo de sè branchiér : $1 « $2 ».
 Èprovâd la prèvisualisacion normala.',
 
 # Friendlier slave lag warnings
 'lag-warn-normal' => 'Los changements que dâtont de muens de $1 {{PLURAL:$1|seconda|secondes}} pôvont pas aparêtre dens ceta lista.',
-'lag-warn-high'   => 'En rêson d’una fôrta charge de les bâses de balyês, los changements que dâtont de muens de $1 {{PLURAL:$1|seconda|secondes}} pôvont pas aparêtre dens ceta lista.',
+'lag-warn-high'   => 'En rêson d’un retârd important du sèrvor de bâsa de balyês, los changements que dâtont de muens de $1 {{PLURAL:$1|seconda|secondes}} pôvont pas aparêtre dens ceta lista.',
 
 # Watchlist editor
-'watchlistedit-numitems'       => 'Voutra lista de siuvu contint {{PLURAL:$1|yona pâge|$1 pâges}}, sen comptar les pâges de discussion.',
-'watchlistedit-noitems'        => 'Voutra lista de siuvu contint gins de pâge.',
-'watchlistedit-normal-title'   => 'Modificacion de la lista de siuvu',
-'watchlistedit-normal-legend'  => 'Enlevar des pâges de la lista de siuvu',
-'watchlistedit-normal-explain' => 'Les pâges de voutra lista de siuvu sont visibles ce-desot, cllassiês per èspâço de nom. Por enlevar una pâge (et sa pâge de discussion) de la lista, sèlèccionâd la câsa a coutâ et pués clicâd sur lo boton d’avâl. Vos pouede asse-ben [[Special:Watchlist/raw|la modifiar en fôrma bruta]].',
-'watchlistedit-normal-submit'  => 'Enlevar les pâges sèlèccionâs',
-'watchlistedit-normal-done'    => '{{PLURAL:$1|Yona pâge at étâ enlevâ|$1 pâges ont étâ enlevâs}} de voutra lista de siuvu :',
-'watchlistedit-raw-title'      => 'Modificacion de la lista de siuvu (fôrma bruta)',
-'watchlistedit-raw-legend'     => 'Modificacion de la lista de siuvu en fôrma bruta',
-'watchlistedit-raw-explain'    => 'La lista de les pâges de voutra lista de siuvu est montrâ ce-desot, sen les pâges de discussion (ôtomaticament encllues) et triyês per èspâço de nom. Vos pouede modifiar la lista : apondéd les pâges que vos voléd siuvre (yô que seye), yona pâge per legne, et enlevâd les pâges que vos voléd pas més siuvre. Quand vos éd feni, clicâd sur lo boton d’avâl por betar la lista a jorn. Vos pouede asse-ben utilisar l’[[Special:Watchlist/edit|èditor normal]].',
-'watchlistedit-raw-titles'     => 'Pâges :',
-'watchlistedit-raw-submit'     => 'Betar a jorn la lista de siuvu',
-'watchlistedit-raw-done'       => 'Voutra lista de siuvu at étâ betâ a jorn.',
-'watchlistedit-raw-added'      => '{{PLURAL:$1|Yona pâge at étâ apondua|$1 pâges ont étâ apondues}} :',
-'watchlistedit-raw-removed'    => '{{PLURAL:$1|Yona pâge at étâ enlevâ|$1 pâges ont étâ enlevâs}} :',
+'watchlistedit-numitems'       => 'Voutra lista de survelyence contint {{PLURAL:$1|yon titro|$1 titros}}, sen comptar les pâges de discussion.',
+'watchlistedit-noitems'        => 'Voutra lista de survelyence contint gins de titro.',
+'watchlistedit-normal-title'   => 'Changiér la lista de survelyence',
+'watchlistedit-normal-legend'  => 'Enlevar des titros de la lista de survelyence',
+'watchlistedit-normal-explain' => 'Los titros de voutra lista de survelyence sont visiblos ce-desot.
+Por enlevar un titro (et sa pâge de discussion), pouentâd la câsa a coutâ et pués clicâd sur lo boton « Enlevar los titros chouèsis ».
+Vos pouede asse-ben changiér la [[Special:Watchlist/raw|lista en fôrma bruta]].',
+'watchlistedit-normal-submit'  => 'Enlevar los titros chouèsis',
+'watchlistedit-normal-done'    => '{{PLURAL:$1|Yon titro at étâ enlevâ|$1 titros ont étâ enlevâs}} de voutra lista de survelyence :',
+'watchlistedit-raw-title'      => 'Changiér la lista de survelyence en fôrma bruta',
+'watchlistedit-raw-legend'     => 'Changement de la lista de survelyence en fôrma bruta',
+'watchlistedit-raw-explain'    => 'Los titros de voutra lista de survelyence sont montrâs ce-desot et pôvont étre changiês en los apondent ou ben en los enlevent de la lista ;
+yon titro per legne.
+Quand vos éd feni, clicâd sur lo boton « Betar a jorn la lista de survelyence ».
+Vos pouede asse-ben utilisar l’[[Special:Watchlist/edit|èditor normal]].',
+'watchlistedit-raw-titles'     => 'Titros :',
+'watchlistedit-raw-submit'     => 'Betar a jorn la lista de survelyence',
+'watchlistedit-raw-done'       => 'Voutra lista de survelyence at étâ betâ a jorn.',
+'watchlistedit-raw-added'      => '{{PLURAL:$1|Yon titro at étâ apondu|$1 titros ont étâ apondus}} :',
+'watchlistedit-raw-removed'    => '{{PLURAL:$1|Yon titro at étâ enlevâ|$1 titros ont étâ enlevâs}} :',
 
 # Watchlist editing tools
-'watchlisttools-view' => 'Lista de siuvu',
-'watchlisttools-edit' => 'Vêre et modifiar la lista de siuvu',
-'watchlisttools-raw'  => 'Modifiar la lista de siuvu (fôrma bruta)',
+'watchlisttools-view' => 'Lista de survelyence',
+'watchlisttools-edit' => 'Vêre et changiér la lista de survelyence',
+'watchlisttools-raw'  => 'Changiér la lista de survelyence en fôrma bruta',
 
 # Iranian month names
 'iranian-calendar-m1'  => 'de farvardin',
@@ -3268,37 +3304,80 @@ Volyéd confirmar que vos dèsirâd recrèar ceti articllo.",
 
 # Core parser functions
 'unknown_extension_tag' => 'Balisa d’èxtension « $1 » encognua',
+'duplicate-defaultsort' => "'''Atencion :''' la cllâf de tri per dèfôt « $2 » ècrâse cela « $1 ».",
 
 # Special:Version
 'version'                          => 'Vèrsion',
-'version-extensions'               => 'Vèrsions enstalâs',
+'version-extensions'               => 'Èxtensions enstalâs',
 'version-specialpages'             => 'Pâges spèciâles',
-'version-parserhooks'              => 'Apèls d’analises',
+'version-parserhooks'              => 'Grèfons du parsor',
 'version-variables'                => 'Variâbles',
 'version-other'                    => 'De totes sôrtes',
 'version-mediahandlers'            => 'Maneyors de mèdia',
-'version-hooks'                    => 'Apèls',
-'version-extension-functions'      => 'Fonccions de les èxtensions',
-'version-parser-extensiontags'     => 'Balises d’analises vegnent de les èxtensions',
-'version-parser-function-hooks'    => 'Apèls de les fonccions d’analisa',
-'version-skin-extension-functions' => 'Fonccions d’entèrface d’èxtensions',
-'version-hook-name'                => 'Nom de l’apèl',
-'version-hook-subscribedby'        => 'Dèfeni per',
+'version-hooks'                    => 'Grèfons',
+'version-extension-functions'      => 'Fonccions d’èxtension de dedens',
+'version-parser-extensiontags'     => 'Balises ètendues du parsor',
+'version-parser-function-hooks'    => 'Fonccions ètendues du parsor',
+'version-skin-extension-functions' => 'Fonccions d’èxtension de l’habelyâjo',
+'version-hook-name'                => 'Nom du grèfon',
+'version-hook-subscribedby'        => 'Soscrit per',
 'version-version'                  => '(Vèrsion $1)',
 'version-license'                  => 'Licence',
-'version-software'                 => 'Programeria enstalâ',
+'version-software'                 => 'Programeries enstalâs',
 'version-software-product'         => 'Produit',
 'version-software-version'         => 'Vèrsion',
 
 # Special:FilePath
-'filepath'         => 'Chemin d’accès d’un fichiér',
+'filepath'         => 'Chemin d’accès du fichiér',
 'filepath-page'    => 'Fichiér :',
 'filepath-submit'  => 'Chemin d’accès',
-'filepath-summary' => 'Ceta pâge afiche lo chemin d’accès complèt d’un fichiér ; les émâges sont montrâs en rèsolucion hôta, los fichiérs ôdiô et vidèô s’ègzécutont avouéc lor programe associyê.
+'filepath-summary' => 'Ceta pâge spèciâla montre lo chemin d’accès complèt d’un fichiér.
+Les émâges sont montrâs dens lor plêna rèsolucion, los ôtros fichiérs sont chargiês et dèmarrâs tot drêt avouéc lor programo associyê.
 
-Entrâd lo nom du fichiér sen lo prèfixe « {{ns:file}}: ».',
+Buchiéd lo nom du fichiér sen lo prèfixo « {{ns:file}}: ».',
+
+# Special:FileDuplicateSearch
+'fileduplicatesearch'          => 'Rechèrche des fichiérs en doblo',
+'fileduplicatesearch-summary'  => 'Rechèrche des fichiérs en doblo d’aprés lor mârca de chaplâjo.
+
+Buchiéd lo nom du fichiér sen lo prèfixo « {{ns:file}}: ».',
+'fileduplicatesearch-legend'   => 'Rechèrche d’un doblo',
+'fileduplicatesearch-filename' => 'Nom du fichiér :',
+'fileduplicatesearch-submit'   => 'Rechèrchiér',
+'fileduplicatesearch-info'     => '$1 × $2 pixèls<br />Talye du fichiér : $3<br />Tipo MIME : $4',
+'fileduplicatesearch-result-1' => 'Lo fichiér « $1 » at gins de doblo pariér.',
+'fileduplicatesearch-result-n' => 'Lo fichiér « $1 » at $2 {{PLURAL:$2|doblo pariér|doblos pariérs}}.',
 
 # Special:SpecialPages
-'specialpages' => 'Pâges spèciâles',
+'specialpages'                   => 'Pâges spèciâles',
+'specialpages-note'              => '----
+* Pâges spèciâles normales.
+* <strong class="mw-specialpagerestricted">Pâges spèciâles rètrentes.</strong>',
+'specialpages-group-maintenance' => 'Rapôrts de mantegnence',
+'specialpages-group-other'       => 'Ôtres pâges spèciâles',
+'specialpages-group-login'       => 'Branchement / enregistrament',
+'specialpages-group-changes'     => 'Dèrriérs changements et jornals',
+'specialpages-group-media'       => 'Rapôrts et tèlèchargements de fichiérs multimèdia',
+'specialpages-group-users'       => 'Utilisators et drêts apondus',
+'specialpages-group-highuse'     => 'Pâges d’usâjo important',
+'specialpages-group-pages'       => 'Listes de pâges',
+'specialpages-group-pagetools'   => 'Outils por les pâges',
+'specialpages-group-wiki'        => 'Balyês du vouiqui et outils',
+'specialpages-group-redirects'   => 'Pâges spèciâles redirigiês',
+'specialpages-group-spam'        => 'Outils anti-spame',
+
+# Special:BlankPage
+'blankpage'              => 'Pâge voueda',
+'intentionallyblankpage' => 'Ceta pâge est lèssiê èxprès voueda.',
+
+# External image whitelist
+'external_image_whitelist' => '  #Lèssiéd ceta legne justo d’ense<pre>
+#Endicâd los bocons d’èxprèssions règuliéres (*RegEx*) (ren que la partia endicâ entre-mié los //) ce-desot
+#Corrèspondront avouéc los lims hipèrtèxtos de les émâges (ben liyês) de defôr
+#Celos que corrèspondont sè montreront coment des émâges, ôtrament solament un lim de vers l’émâge serat montrâ
+#Les legnes que començont per un # seront considèrâs coment des comentèros
+#Ceta lista est pas sensibla a la câssa
+
+#Betâd tôs los bocons d’èxprèssions règuliéres (*RegEx*) en-dessus de ceta legne. Lèssiéd ceta legne justo d’ense.</pre>',
 
 );

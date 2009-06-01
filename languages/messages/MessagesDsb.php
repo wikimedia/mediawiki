@@ -834,6 +834,9 @@ Ako administrator móžoš hyšći se [$1 toś ten rozdźěl woglědaś], jolic 
 'revdelete-nologtype-text'    => 'Njejsy pódał protokolowy typ, aby wuwjadł toś tu akciju.',
 'revdelete-nologid-title'     => 'Njepłaśiwy protokolowy zapisk',
 'revdelete-nologid-text'      => 'Pak njejsy pódał celowe protokolowe tšojenje, aby wuwjadł toś tu funkciju pak pódany zapisk njeeksistěrujo.',
+'revdelete-no-file'           => 'Pódana dataja njeeksistěrujo.',
+'revdelete-show-file-confirm' => 'Coš se napšawdu wulašowanu wersiju dataje "<nowiki>$1</nowiki>" wót $2 $3 woglědaś?',
+'revdelete-show-file-submit'  => 'Jo',
 'revdelete-selected'          => "'''{{PLURAL:$2|Wuzwólona wersija|Wuzwólonej wersiji|Wuzwólone wersije}} wót [[:$1]].'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Wuzwólony protokolowe tšojenje|Wuzwólonej protokolowe tšojeni|wuzwólone protokolowe tšojenja}}:'''",
 'revdelete-text'              => "'''Wulašowane wersije a tšojenja budu se dalej w stawiznach boka a w protokolach pokazaś, ale źěle jich wopśimjeśa njebudu pśistupne za zjawnosć.'''
@@ -857,8 +860,11 @@ Pšosym wobkšuś, až coš to cyniś, až rozmějoš slědy a až cyniš to wó
 'revdelete-logentry'          => 'Woglědanje wersije změnjone za [[$1]]',
 'logdelete-logentry'          => 'wiźobnosć za [[$1]] změnjona.',
 'revdelete-success'           => "'''Wiźobnosć wersije jo se z wuspěchom změniła.'''",
-'revdelete-failure'           => "'''Wersijowa widobnosć njedajo se nastajiś.'''",
+'revdelete-failure'           => "'''Wersijowa widobnosć njedajo se nastajiś:'''
+$1",
 'logdelete-success'           => "'''Wiźobnosć log-lisćiny z wuspěchom změnjona.'''",
+'logdelete-failure'           => "'''Protokolowa wiźobnosć njejo se dała nastajiś:'''
+$1",
 'revdel-restore'              => 'Widobnosć změniś',
 'pagehist'                    => 'stawizny boka',
 'deletedhist'                 => 'wulašowane stawizny',
@@ -871,6 +877,17 @@ Pšosym wobkšuś, až coš to cyniś, až rozmějoš slědy a až cyniš to wó
 'revdelete-unhid'             => 'zasej wótkšy $1',
 'revdelete-log-message'       => '$1 za $2 {{PLURAL:$2|wersiju|wersiji|wersije|wersijow}}',
 'logdelete-log-message'       => '$1 za $2 {{PLURAL:$2|tšojenje|tšojeni|tšojenja|tšojenjow}}',
+'revdelete-hide-current'      => 'Zmólka pśi chowanju zapiska wót $2, $1: to jo aktualna wersija.
+Njedajo se schowaś.',
+'revdelete-show-no-access'    => 'Zmólka pśi pokazowanju zapiska wót $2, $1: toś ten zapisk jo se ako "wobgranicowany" markěrował.
+Njamaš pśistup na njen.',
+'revdelete-modify-no-access'  => 'Zmólka pśi změnjanju zapiska wót $2, $1: toś ten zapisk jo se ako "wobgranicowany" markěrował.
+Njamaš pśistup na njen.',
+'revdelete-modify-missing'    => 'Zmólka pśi změnjanju zapiska ID $1: felujo w datowej bance!',
+'revdelete-no-change'         => "'''Warnowanje:''' zapisk wót $2, $1 jo južo měł pominane nastajenja wiźobnosći.",
+'revdelete-concurrent-change' => 'Zmólka pśi změnjanju zapiska wót $2, $1: zda se, až jogo status jo se změnił wót někogo drugego, mjaztym až sy wopytał jen změniś.
+Pšosym pśeglědaj protokole.',
+'revdelete-only-restricted'   => 'Njamóžoš zapiski pśed wócami administratorow  pódtłocyś, mimo až teke wuběraš jadnu z drugich pódtłócwańskich opcijow.',
 
 # Suppression log
 'suppressionlog'     => 'Protokol pódłocowanjow',
@@ -1475,6 +1492,7 @@ PICT # misc.
 'filehist-dimensions'       => 'rozměry',
 'filehist-filesize'         => 'Wjelikosć dataje',
 'filehist-comment'          => 'Komentar',
+'filehist-missing'          => 'Dataja felujo',
 'imagelinks'                => 'Datajowe wótkaze',
 'linkstoimage'              => '{{PLURAL:$1|Slědujucy bok wótkazujo|Slědujucej $1 boka wótkazujotej|Slědujuce $1 boki wótkazuju|Slědujucych $1 bokow wótkazujo}} na toś tu dataju:',
 'linkstoimage-more'         => 'Wěcej nježli $1 {{PLURAL:$1|bok wótkazujo|boka wótkazujotej|boki wótkazuju|bokow wótkazujo}} na toś tu dataju.

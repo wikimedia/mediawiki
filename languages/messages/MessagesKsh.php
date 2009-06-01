@@ -1001,7 +1001,7 @@ Dattum+Uhrzigg = don de Version fun dämm Daach un dä Zigg aanzeije.',
 # Revision feed
 'history-feed-title'          => 'De Versione',
 'history-feed-description'    => 'Ählere Versione vun dä Sigg en de {{SITENAME}}',
-'history-feed-item-nocomment' => '$1 öm $2',
+'history-feed-item-nocomment' => '$1 aam $3 öm $4 Uhr',
 'history-feed-empty'          => 'De aanjefrochte Sigg jitt et nit. Künnt sin, dat se enzwesche fottjeschmesse udder ömjenannt woode es. Kanns jo ens [[Special:Search|em Wiki söke looße]], öm de zopass, neu Sigge ze finge.',
 
 # Revision deletion
@@ -1025,6 +1025,9 @@ Als ene Wiki_Köbes kanns De [$1 de Ungerscheide ävver aankike] wann De wells."
 'revdelete-nologtype-text'    => 'Do häs kein Zoot vun Enndrääsh em Logboch aanjejovve, woh mer dat met maache sulle.',
 'revdelete-nologid-title'     => 'Dat es ene onjöltijje Enndraach em Logboch.',
 'revdelete-nologid-text'      => 'Do häs keine Enndraach em Logboch aanjejovve, woh mer dat met maache sulle, udder dä Enndraach jidd_et jaa_nit.',
+'revdelete-no-file'           => 'De aanjejovve Dattei jidd_et nit.',
+'revdelete-show-file-confirm' => 'Beß De sescher, dat De de fottjeschmeße Version vun dä Dattei „<nowiki>$1</nowiki>“ vum $2 oö $3 Uhr aanloore wells?',
+'revdelete-show-file-submit'  => 'Lohß Jonn!',
 'revdelete-selected'          => "'''{{PLURAL:$2|Ein usjewählte Version|$2 usjewählte Versione|Kein Version usjewählt}} vun [[:$1]]:'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Dä ußjewählte Logboch-Endrach|De Ußjewählte Logboch-Endrähsch}}:'''",
 'revdelete-text'              => "'''Dä fottjeschmesse Sigge ehre Enhald kanns De nit mieh aanluure. Se blieve ävver en de Liss met de Versione un en de Logböcher dren.'''
@@ -1050,8 +1053,9 @@ Bes esu joot un don bestääteje, dat De dat maache wells, dat De versteihß wat
 'revdelete-logentry'          => 'Zojang zo de Versione verändert för „[[$1]]“',
 'logdelete-logentry'          => '„[[$1]]“ verstoche udder widder seeschba jemaat',
 'revdelete-success'           => "'''De Version woot verstoche odder seeschba jemaat.'''",
-'revdelete-failure'           => "'''Dä Version ier Seeschbaakeit kunnte mer nit ändere.'''",
+'revdelete-failure'           => "'''Dä Version ier Seeschbaakeit kunnte mer nit ändere:''' $1",
 'logdelete-success'           => "'''Dä Enndraach em Logboch woot verstoche odder seeschba jemaat.'''",
+'logdelete-failure'           => "'''Däm Enndraach em Logbooch sing Seeschbaakeit kunnte mer nit ändere:''' $1",
 'revdel-restore'              => 'Versteische udder Seeschba maache',
 'pagehist'                    => 'Älldere Versione',
 'deletedhist'                 => 'Fottjeschmesse Versione',
@@ -1064,6 +1068,13 @@ Bes esu joot un don bestääteje, dat De dat maache wells, dat De versteihß wat
 'revdelete-unhid'             => '$1 weder seeschbaa jemaat',
 'revdelete-log-message'       => 'hät för {{PLURAL:$1|eij Version|$2 Versione|nix}} $1',
 'logdelete-log-message'       => '$1 för {{PLURAL:$2|eine Endraach|$2 Endräch|keine Endraach}} em Logbooch',
+'revdelete-hide-current'      => 'Ene Fähler es opjetodde beim Verschteische. De Version vum $1 öm $2 Uhr es de neuste Version, un kann dröm nit verschtoche wääde.',
+'revdelete-show-no-access'    => 'Ene Fähler es opjetodde beim Aanloore. De Version vum $1 öm $2 Uhr es verschtoche, un De häß dröm keine Zohjang doh drop.',
+'revdelete-modify-no-access'  => 'Ene Fähler es opjetodde beim Ändere. De Version vum $1 öm $2 Uhr es verschtoche, un De häß dröm keine Zohjang doh drop.',
+'revdelete-modify-missing'    => 'Ene Fähler es opjetodde beim Ändere. De Version vum $1 öm $2 Uhr es nit en de Daatebangk.',
+'revdelete-no-change'         => "'''Opjepaß:''' Dä Version vum $1 öm $2 Uhr ier Seeschbaakeit es ald esu, wi De se han wells.",
+'revdelete-concurrent-change' => 'Ene Fähler es opjetodde beim Ändere. Dä Version vum $1 öm $2 Uhr ier Seeschbaakeit schingk ald esu ze sinn, wi De se han wullts. Looer Der de Logbööscher aan.',
+'revdelete-only-restricted'   => 'Do kanns kein Enndrääsch vör de Wiki_Köbeße verschteijsche, oohne noch en Zoot Verschteijsche ußzewähle',
 
 # Suppression log
 'suppressionlog'     => 'Et Logboch fum Versteiche',
@@ -1721,6 +1732,7 @@ Velleich probees De et och zo en Zick, wo winnijer loss es.',
 'filehist-dimensions'       => 'Pixelle Breed×Hühte (Dateiömfang)',
 'filehist-filesize'         => 'Dateiömfang',
 'filehist-comment'          => 'Aanmerkung',
+'filehist-missing'          => 'Di Datei es nit doh',
 'imagelinks'                => 'Lenks op hee die Datei',
 'linkstoimage'              => 'Hee {{PLURAL:$1|kütt di Sigg|kumme de $1 Sigge|sin keij Sigge}}, die op die Datei linke {{PLURAL:$1|deiht|dun|dun}}:',
 'linkstoimage-more'         => 'Mieh wie {{PLURAL:$1|ein Sigg link|$1 Sigge linke|kein Sigg link}} op di Datei.

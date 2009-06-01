@@ -952,6 +952,8 @@ Ylläpitäjänä voit silti [$1 katsoa tämän muutoksen].",
 'revdelete-nologtype-text'    => 'Et ole määritellyt lokin tyyppiä tälle toiminnolle.',
 'revdelete-nologid-title'     => 'Epäkelpo lokitapahtuma',
 'revdelete-nologid-text'      => 'Joko et ole määritellyt kohdetta lokitapahtumalle tämän toiminnon suorittamiseksi tai määriteltyä tapahtumaa ei ole.',
+'revdelete-no-file'           => 'Määritettyä tiedostoa ei ole olemassa.',
+'revdelete-show-file-submit'  => 'Kyllä',
 'revdelete-selected'          => "'''{{PLURAL:$2|Valittu versio|Valitut versiot}} sivusta '''$1:''''''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Valittu lokimerkintä|Valitut lokimerkinnät}}:'''",
 'revdelete-text'              => "'''Poistetut versiot näkyvät sivun historiassa, mutta niiden sisältö ei ole julkisesti saatavilla.'''
@@ -975,8 +977,11 @@ Varmista, että haluat tehdä tämän, ymmärrät seuraukset ja teet tämän [[{
 'revdelete-logentry'          => 'muutti sivun [[$1]] version näkyvyyttä',
 'logdelete-logentry'          => 'muutti sivun [[$1]] näkyvyyttä',
 'revdelete-success'           => 'Version näkyvyys asetettu.',
-'revdelete-failure'           => "'''Version näkyvyyttä ei voitu asettaa.'''",
+'revdelete-failure'           => "'''Version näkyvyyttä ei voitu asettaa:'''
+$1",
 'logdelete-success'           => 'Tapahtuman näkyvyys asetettu.',
+'logdelete-failure'           => "'''Lokin näkyvyyttä ei voitu asettaa:'''
+$1",
 'revdel-restore'              => 'Muuta näkyvyyttä',
 'pagehist'                    => 'Muutoshistoria',
 'deletedhist'                 => 'Poistettu muutoshistoria',
@@ -1573,6 +1578,7 @@ Harkitse, haluatko jatkaa tämän tiedoston tallentamista. Tiedoston poistoloki 
 'filehist-dimensions'       => 'Koko',
 'filehist-filesize'         => 'Tiedostokoko',
 'filehist-comment'          => 'Kommentti',
+'filehist-missing'          => 'Tiedosto puuttuu',
 'imagelinks'                => 'Tiedostolinkit',
 'linkstoimage'              => '{{PLURAL:$1|Seuraavalta sivulta|$1 sivulla}} on linkki tähän tiedostoon:',
 'linkstoimage-more'         => 'Enemmän kuin $1 {{PLURAL:$1|sivu|sivua}} linkittää tähän tiedostoon.

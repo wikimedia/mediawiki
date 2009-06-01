@@ -813,6 +813,9 @@ Jako administrator móžeš hišće [$1 sej tutón rozdźěl wobhladać], jeli c
 'revdelete-nologtype-text'    => 'Njejsy protokolowy typ podał, zo by tutu akciju wuwjedł.',
 'revdelete-nologid-title'     => 'Njepłaćiwy protokolowy zapisk',
 'revdelete-nologid-text'      => 'Pak njejsy cilowy protokolowy podawk podał, zo by tutu funkciju wuwjedł pak podaty zapisk njeeksistuje.',
+'revdelete-no-file'           => 'Podata dataja njeeksistuje.',
+'revdelete-show-file-confirm' => 'Chceš sej woprawdźe wušmórnjenu wersiju dataje "<nowiki>$1</nowiki>" wot $2 $3  wobhladać?',
+'revdelete-show-file-submit'  => 'Haj',
 'revdelete-selected'          => "'''{{PLURAL:$2|Wubrana wersija|Wubranej wersiji|Wubrane wersije|Wubranych wersijow}} wot [[:$1]]:'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Wubrany zapisk z protokola|Wubranej zapiskaj z protokola|Wubrane zapiski z protokola|Wubrane zapiski z protokola}} za '''$1:''''''",
 'revdelete-text'              => "'''Wušmórnjene wersije a podawki so w stawiznach a protokolach dale jewja, ale dźěle jich wobsaha budu njepřistupne za zjawnosć.'''
@@ -837,8 +840,11 @@ Prošu wobkruć, zo chceš to činić, zo rozumiš sćěhi a zo činiš to wotpo
 'revdelete-logentry'          => 'Widźomnosć wersije změnjena za [[$1]]',
 'logdelete-logentry'          => 'je widźomnosć za [[$1]] změnił',
 'revdelete-success'           => "'''Widźomnosć wersije bu wuspěšnje změnjena.'''",
-'revdelete-failure'           => "'''Wersijowa widźomnosć njeda so nastajić.'''",
+'revdelete-failure'           => "'''Wersijowa widźomnosć njeda so nastajić:'''
+$1",
 'logdelete-success'           => 'Widźomnosć zapiska bu wuspěšnje změnjena.',
+'logdelete-failure'           => "'''Protokolowa widźomnosć njeda so nastajić:'''
+$1",
 'revdel-restore'              => 'Widźomnosć změnić',
 'pagehist'                    => 'Stawizny strony',
 'deletedhist'                 => 'Wušmórnjene stawizny',
@@ -851,6 +857,17 @@ Prošu wobkruć, zo chceš to činić, zo rozumiš sćěhi a zo činiš to wotpo
 'revdelete-unhid'             => '$1 pokazany',
 'revdelete-log-message'       => '$1 za $2 {{PLURAL:$2|wersija|wersiji|wersije|wersijow}}',
 'logdelete-log-message'       => '$1 za $2 {{PLURAL:$2|podawk|podawkaj|podawki|podawkow}}',
+'revdelete-hide-current'      => 'Zmylk při chowanju zapiska wot $2, $1: to je aktualna wersija.
+Njeda so schować.',
+'revdelete-show-no-access'    => 'Zmylk při pokazowanju zapiska wot $2, $1: tutón zapisk bu jako "wobmjezowany" markěrowany.
+Nimaš přistup na njón.',
+'revdelete-modify-no-access'  => 'Zmylk při změnjenju zapiska wot $2, $1: tutón zapisk bu jako "wobmjezowany" markěrowany.
+Nimaš přistup na njón.',
+'revdelete-modify-missing'    => 'Zmylk při změnjenju zapiska ID $2, $1: pobrachuje w datowej bance!',
+'revdelete-no-change'         => "'''Warnowanje:''' zapisk wot $2, $1 je hižo požadane nastajenja widźomnosće měł.",
+'revdelete-concurrent-change' => 'Zmylk při změnjenju zapiska wot $2, $1: zda so, zo jeho status je so wot někoho druheho změnił, mjeztym zo sy spytał jón změnić.
+Prošu přepruwuj protokole.',
+'revdelete-only-restricted'   => 'Njemóžeš zapiski před wočemi administratorow potłóčić, bjez toho zo wuběraš tež jednu z druhich potłóčowanskich opcijow.',
 
 # Suppression log
 'suppressionlog'     => 'Protokol potłóčenjow',
@@ -1460,6 +1477,7 @@ PICT # misc.
 'filehist-dimensions'       => 'Rozeznaće',
 'filehist-filesize'         => 'Wulkosć dataje',
 'filehist-comment'          => 'Komentar',
+'filehist-missing'          => 'Dataja pobrachuje',
 'imagelinks'                => 'Datajowe wotkazy',
 'linkstoimage'              => '{{PLURAL:$1|Slědowaca strona wotkazuje|Slědowacej $1 stronje wotkazujetej|Slědowace $1 strony wotkazuja|Slědowacych $1 stronow wotkazuje}} na tutu dataju:',
 'linkstoimage-more'         => 'Wjace hač $1 {{PLURAL:$1|strona wotkazuje|stronje wotkazujetej|strony wotkazuja|stronow wotkazuje}} na tutu dataju.
