@@ -14,7 +14,7 @@ class SpecialAllpages extends IncludableSpecialPage {
 	/**
 	 * Maximum number of pages to show on single index subpage.
 	 */
-	protected $maxLineCount = 200;
+	protected $maxLineCount = 100;
 
 	/**
 	 * Maximum number of chars to show for an entry.
@@ -48,7 +48,8 @@ class SpecialAllpages extends IncludableSpecialPage {
 
 		$namespaces = $wgContLang->getNamespaces();
 
-		$wgOut->setPagetitle( ( $namespace > 0 && in_array( $namespace, array_keys( $namespaces) ) )  ?
+		$wgOut->setPagetitle( 
+			( $namespace > 0 && in_array( $namespace, array_keys( $namespaces) ) ) ?
 			wfMsg( 'allinnamespace', str_replace( '_', ' ', $namespaces[$namespace] ) ) :
 			wfMsg( 'allarticles' )
 		);
@@ -189,7 +190,7 @@ class SpecialAllpages extends IncludableSpecialPage {
 		// Instead, display the first section directly.
 		if( count( $lines ) <= 2 ) {
 			if( !empty($lines) ) {
-				$this->showChunk( $namespace, $lines[0], $lines[count($lines)-1] );
+				$this->showChunk( $namespace, $from, $to );
 			} else {
 				$wgOut->addHTML( $this->namespaceForm( $namespace, $from, $to ) );
 			}
@@ -343,7 +344,9 @@ class SpecialAllpages extends IncludableSpecialPage {
 					'page_title',
 					array( 'page_namespace' => $namespace, 'page_title < '.$dbr->addQuotes($from) ),
 					__METHOD__,
-					array( 'ORDER BY' => 'page_title DESC', 'LIMIT' => $this->maxPerPage, 'OFFSET' => ($this->maxPerPage - 1 ) )
+					array( 'ORDER BY' => 'page_title DESC', 
+						'LIMIT' => $this->maxPerPage, 'OFFSET' => ($this->maxPerPage - 1 )
+					)
 				);
 
 				# Get first title of previous complete chunk
