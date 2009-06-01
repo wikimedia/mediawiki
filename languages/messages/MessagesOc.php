@@ -240,18 +240,18 @@ $magicWords = array(
 	'pagesize'              => array( '1', 'TALHAPAGINA', 'PAGESIZE' ),
 );
 
+$datePreferences = array(
+	'default',
+	'oc normal',
+	'ISO 8601',
+);
+
+$defaultDateFormat = 'oc normal';
+
 $dateFormats = array(
-	'mdy time' => 'H:i',
-	'mdy date' => 'M j, Y',
-	'mdy both' => 'M j, Y "a" H:i',
-
-	'dmy time' => 'H:i',
-	'dmy date' => 'j M Y',
-	'dmy both' => 'j M Y "a" H:i',
-
-	'ymd time' => 'H:i',
-	'ymd date' => 'Y M j',
-	'ymd both' => 'Y M j "a" H:i',
+	'oc normal time' => 'H.i',
+	'oc normal date' => 'j F "de" Y',
+	'oc normal both' => 'j F "de" Y "a" H.i',
 );
 
 $separatorTransformTable = array( ',' => "\xc2\xa0", '.' => ',' );
