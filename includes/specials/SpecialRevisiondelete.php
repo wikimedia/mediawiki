@@ -366,8 +366,8 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 	}
 	
 	/**
-	* @param int $bitfields, aggregate bitfield of all the bitfields
-	* @returns string HTML
+	* @param $bitfields Interger: aggregate bitfield of all the bitfields
+	* @return String: HTML
 	*/
 	protected function buildCheckBoxes( $bitfields ) {
 		$html = '';
@@ -384,7 +384,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 
 	/**
 	 * UI entry point for form submission.
-	 * @param WebRequest $request
+	 * @param $request WebRequest
 	 */
 	protected function submit( $request ) {
 		global $wgUser, $wgOut;
@@ -434,8 +434,8 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 
 	/**
 	 * Put together a rev_deleted bitfield from the submitted checkboxes
-	 * @param WebRequest $request
-	 * @return int
+	 * @param $request WebRequest
+	 * @return Integer
 	 */
 	protected function extractBitfield( $request ) {
 		$bitfield = 0;
@@ -472,11 +472,11 @@ class RevisionDeleter {
 	 * Checks for a change in the bitfield for a certain option and updates the
 	 * provided array accordingly.
 	 *
-	 * @param String $desc Description to add to the array if the option was
+	 * @param $desc String: description to add to the array if the option was
 	 * enabled / disabled.
-	 * @param int $field The bitmask describing the single option.
-	 * @param int $diff The xor of the old and new bitfields.
-	 * @param array $arr The array to update.
+	 * @param $field Integer: the bitmask describing the single option.
+	 * @param $diff Integer: The xor of the old and new bitfields.
+	 * @param $arr Array: The array to update.
 	 */
 	protected static function checkItem( $desc, $field, $diff, $new, &$arr ) {
 		if( $diff & $field ) {
@@ -492,8 +492,8 @@ class RevisionDeleter {
 	 * a single string, which can be one of "applied restrictions to sysops",
 	 * "removed restrictions from sysops", or null.
 	 *
-	 * @param int $n The new bitfield.
-	 * @param int $o The old bitfield.
+	 * @param $n Integer: the new bitfield.
+	 * @param $o Integer: the old bitfield.
 	 * @return An array as described above.
 	 */
 	protected static function getChanges( $n, $o ) {
@@ -521,10 +521,10 @@ class RevisionDeleter {
 	 * message will be of the form "[hid {content, edit summary, username}];
 	 * [unhid {...}][applied restrictions to sysops] for $count revisions: $comment".
 	 *
-	 * @param int $count The number of effected revisions.
-	 * @param int $nbitfield The new bitfield for the revision.
-	 * @param int $obitfield The old bitfield for the revision.
-	 * @param bool $isForLog
+	 * @param $count Integer: The number of effected revisions.
+	 * @param $nbitfield Integer: The new bitfield for the revision.
+	 * @param $obitfield Integer: The old bitfield for the revision.
+	 * @param $isForLog Boolean
 	 */
 	public static function getLogMessage( $count, $nbitfield, $obitfield, $isForLog = false ) {
 		global $wgLang;
