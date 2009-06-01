@@ -166,6 +166,10 @@ div#mw-search-interwiki {
 	margin-top: 2ex;
 }
 
+.rtl div#mw-search-interwiki {
+	float: left;
+}
+
 div#mw-search-interwiki li {
 	font-size: 95%;
 }
@@ -173,6 +177,10 @@ div#mw-search-interwiki li {
 .mw-search-interwiki-more {
 	float: right;
 	font-size: 90%;
+}
+
+.rtl .mw-search-interwiki-more {
+	float: left;
 }
 
 div#mw-search-interwiki-caption {
@@ -192,6 +200,9 @@ div#mw-search-interwiki-caption {
 	border-top:1px solid #BBBBBB;
 }
 
+.rtl .mw-search-interwiki-project {
+	text-align: right;
+}
 
 span.searchalttitle {
 	font-size: 95%;
