@@ -3477,23 +3477,19 @@ class Parser
 				elseif ( $level < $prevlevel && $toclevel > 1 ) {
 					# Decrease TOC level, find level to jump to
 
-					if ( $toclevel == 2 && $level <= $levelCount[1] ) {
-						# Can only go down to level 1
-						$toclevel = 1;
-					} else {
-						for ($i = $toclevel; $i > 0; $i--) {
-							if ( $levelCount[$i] == $level ) {
-								# Found last matching level
-								$toclevel = $i;
-								break;
-							}
-							elseif ( $levelCount[$i] < $level ) {
-								# Found first matching level below current level
-								$toclevel = $i + 1;
-								break;
-							}
+					for ($i = $toclevel; $i > 0; $i--) {
+						if ( $levelCount[$i] == $level ) {
+							# Found last matching level
+							$toclevel = $i;
+							break;
+						}
+						elseif ( $levelCount[$i] < $level ) {
+							# Found first matching level below current level
+							$toclevel = $i + 1;
+							break;
 						}
 					}
+					if( $i == 0 ) $toclevel = 1;
 					if( $toclevel<$wgMaxTocLevel ) {
 						if($prevtoclevel < $wgMaxTocLevel) {
 							# Unindent only if the previous toc level was shown :p
