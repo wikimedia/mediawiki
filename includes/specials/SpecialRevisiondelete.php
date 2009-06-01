@@ -170,11 +170,13 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		$qc = $this->getLogQueryCond();
 		# Show relevant lines from the deletion log
 		$wgOut->addHTML( "<h2>" . htmlspecialchars( LogPage::logName( 'delete' ) ) . "</h2>\n" );
-		LogEventsList::showLogExtract( $wgOut, 'delete', $this->targetObj->getPrefixedText(), '', 25, $qc );
+		LogEventsList::showLogExtract( $wgOut, 'delete',
+			$this->targetObj->getPrefixedText(), '', 25, $qc );
 		# Show relevant lines from the suppression log
 		if( $wgUser->isAllowed( 'suppressionlog' ) ) {
 			$wgOut->addHTML( "<h2>" . htmlspecialchars( LogPage::logName( 'suppress' ) ) . "</h2>\n" );
-			LogEventsList::showLogExtract( $wgOut, 'suppress', $this->targetObj->getPrefixedText(), '', 25, $qc );
+			LogEventsList::showLogExtract( $wgOut, 'suppress',
+				$this->targetObj->getPrefixedText(), '', 25, $qc );
 		}
 	}
 
@@ -293,7 +295,8 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		if ( $this->typeName == 'logging' ) {
 			$wgOut->addWikiMsg( 'logdelete-selected', $wgLang->formatNum( count($this->ids) ) );
 		} else {
-			$wgOut->addWikiMsg( 'revdelete-selected', $this->targetObj->getPrefixedText(), count( $this->ids ) );
+			$wgOut->addWikiMsg( 'revdelete-selected',
+				$this->targetObj->getPrefixedText(), count( $this->ids ) );
 		}
 
 		$bitfields = 0;
@@ -644,7 +647,8 @@ abstract class RevDel_List {
 				$opType = 'modify';
 			}
 
-			if ( $item->isCurrent() && $opType == 'hide' ) {
+			// TODO: use FILE::DELETED_FILE, though value is the same
+			if ( $item->isCurrent() && ($newBits & Revision::DELETED_TEXT) ) {
 				// Cannot hide current version text
 				$status->error( 'revdelete-hide-current', $item->formatDate(), $item->formatTime() );
 				$status->failCount++;
