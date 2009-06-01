@@ -160,13 +160,16 @@ class PageHistory {
 			$revdel = SpecialPage::getTitleFor( 'Revisiondelete' );
 			$s .= Xml::openElement( 'form',
 				array(
-					'action' => $revdel->getFullUrl(),
-					'method' => 'get', 'id' => 'mw-history-revdeleteform',
+					'action' => $revdel->getLocalURL( array( 
+						'type' => 'revision',
+						'target' => $this->mTitle->getPrefixedDbKey()
+					) ),
+					'method' => 'post', 
+					'id' => 'mw-history-revdeleteform',
 					'style'  => 'visibility:hidden;float:right;'
 				)
 			);
-			$s .= Xml::hidden( 'target', $this->mTitle->getPrefixedDbKey() );
-			$s .= Xml::hidden( 'oldid', '', array('id'=>'revdel-oldid') );
+			$s .= Xml::hidden( 'ids', '', array('id'=>'revdel-oldid') );
 			$s .= Xml::submitButton( wfMsg( 'showhideselectedversions' ) );
 			$s .= Xml::closeElement( 'form' );
 		}
@@ -296,8 +299,10 @@ class PageHistory {
 				$jsCall = 'updateShowHideForm('.$rev->getId().',this.checked)';
 				$del = Xml::check( 'showhiderevisions', false,
 					$hidden + array('onchange' => $jsCall) );
-				$query = array( 'target' => $this->mTitle->getPrefixedDbkey(),
-					'oldid' => $rev->getId() );
+				$query = array(
+					'type' => 'revision',
+					'target' => $this->mTitle->getPrefixedDbkey(),
+					'ids' => $rev->getId() );
 				$del .= $this->mSkin->revDeleteLink( $query,
 					$rev->isDeleted( Revision::DELETED_RESTRICTED ) );
 			}

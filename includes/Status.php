@@ -159,7 +159,7 @@ class Status {
 			if ( $longContext ) {
 				$s = wfMsgNoTrans( $longContext, $s );
 			} elseif ( $shortContext ) {
-				$s = wfMsgNoTrans( $shortContext, "\n* $s\n" );
+				$s = wfMsgNoTrans( $shortContext, "\n$s\n" );
 			}
 		}
 		return $s;

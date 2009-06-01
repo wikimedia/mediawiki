@@ -298,19 +298,18 @@ class LogEventsList {
 				$revdel = SpecialPage::getTitleFor( 'Revisiondelete' );
 				// Different revision types use different URL params...
 				$key = $paramArray[0];
-				// $paramArray[1] is a CVS of the IDs
+				// $paramArray[1] is a CSV of the IDs
 				$Ids = explode( ',', $paramArray[1] );
 				$query = urlencode($paramArray[1]);
 				$revert = array();
 				// Diff link for single rev deletions
-				if( $key === 'oldid' && count($Ids) == 1 ) {
-					$token = urlencode( $wgUser->editToken( intval($Ids[0]) ) );
+				if( ( $key === 'oldid' || $key == 'revision' ) && count($Ids) == 1 ) {
 					$revert[] = $this->skin->makeKnownLinkObj( $title, $this->message['diff'], 
-						'diff='.intval($Ids[0])."&unhide=1&token=$token" );
+						'diff='.intval($Ids[0])."&unhide=1" );
 				}
 				// View/modify link...
 				$revert[] = $this->skin->makeKnownLinkObj( $revdel, $this->message['revdel-restore'],
-					'target='.$title->getPrefixedUrl()."&$key=$query" );
+					'target='.$title->getPrefixedUrl()."&type=$key&ids=$query" );
 				// Pipe links
 				$revert = '(' . implode(' | ',$revert) . ')';
 			}
@@ -318,12 +317,12 @@ class LogEventsList {
 		} else if( self::typeAction($row,array('delete','suppress'),'event','deleterevision') ) {
 			if( count($paramArray) >= 1 ) {
 				$revdel = SpecialPage::getTitleFor( 'Revisiondelete' );
-				// $paramArray[1] is a CVS of the IDs
+				// $paramArray[1] is a CSV of the IDs
 				$Ids = explode( ',', $paramArray[0] );
 				$query = urlencode($paramArray[0]);
 				// Link to each hidden object ID, $paramArray[1] is the url param
 				$revert = '(' . $this->skin->makeKnownLinkObj( $revdel, $this->message['revdel-restore'], 
-					'target='.$title->getPrefixedUrl()."&logid=$query" ) . ')';
+					'target='.$title->getPrefixedUrl()."&type=logging&ids=$query" ) . ')';
 			}
 		// Self-created users
 		} else if( self::typeAction($row,'newusers','create2') ) {
@@ -370,7 +369,6 @@ class LogEventsList {
 	 * @return string
 	 */
 	private function getShowHideLinks( $row ) {
-		$revdel = SpecialPage::getTitleFor( 'Revisiondelete' );
 		// If event was hidden from sysops
 		if( !self::userCan( $row, LogPage::DELETED_RESTRICTED ) ) {
 			$del = Xml::tags( 'span', array( 'class'=>'mw-revdelundel-link' ),
@@ -380,8 +378,11 @@ class LogEventsList {
 		} else {
 			$target = SpecialPage::getTitleFor( 'Log', $row->log_type );
 			$page = Title::makeTitle( $row->log_namespace, $row->log_title );
-			$query = array( 'target' => $target->getPrefixedDBkey(),
-				'logid' => $row->log_id, 'page' => $page->getPrefixedDBkey() );
+			$query = array( 
+				'target' => $target->getPrefixedDBkey(),
+				'type' => 'logging',
+				'ids' => $row->log_id, 
+			);
 			$del = $this->skin->revDeleteLink( $query,
 				self::isDeleted( $row, LogPage::DELETED_RESTRICTED ) );
 		}

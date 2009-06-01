@@ -255,8 +255,10 @@ CONTROL;
 				// If revision was hidden from sysops
 				$ldel = Xml::tags( 'span', array( 'class'=>'mw-revdelundel-link' ), '('.wfMsgHtml( 'rev-delundel' ).')' );
 			} else {
-				$query = array( 'target' => $this->mOldRev->mTitle->getPrefixedDbkey(),
-					'oldid' => $this->mOldRev->getId()
+				$query = array( 
+					'type' => 'revision',
+					'target' => $this->mOldRev->mTitle->getPrefixedDbkey(),
+					'ids' => $this->mOldRev->getId()
 				);
 				$ldel = $sk->revDeleteLink( $query, $this->mOldRev->isDeleted( Revision::DELETED_RESTRICTED ) );
 			}
@@ -268,8 +270,10 @@ CONTROL;
 				// If revision was hidden from sysops
 				$rdel = Xml::tags( 'span', array( 'class'=>'mw-revdelundel-link' ), '('.wfMsgHtml( 'rev-delundel' ).')' );
 			} else {
-				$query = array( 'target' =>  $this->mNewRev->mTitle->getPrefixedDbkey(),
-					'oldid' => $this->mNewRev->getId()
+				$query = array( 
+					'type' => 'revision',
+					'target' =>  $this->mNewRev->mTitle->getPrefixedDbkey(),
+					'ids' => $this->mNewRev->getId()
 				);
 				$rdel = $sk->revDeleteLink( $query, $this->mNewRev->isDeleted( Revision::DELETED_RESTRICTED ) );
 			}
@@ -301,8 +305,7 @@ CONTROL;
 					array( 'rev-deleted-no-diff' ) );
 			} else {
 				# Give explanation and add a link to view the diff...
-				$link = $this->mTitle->getFullUrl( "diff={$this->mNewid}&oldid={$this->mOldid}".
-					'&unhide=1&token='.urlencode( $wgUser->editToken($this->mNewid) ) );
+				$link = $this->mTitle->getFullUrl( "diff={$this->mNewid}&oldid={$this->mOldid}&unhide=1" );
 				$wgOut->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1</div>\n",
 					array( 'rev-deleted-unhide-diff', $link ) );
 			}

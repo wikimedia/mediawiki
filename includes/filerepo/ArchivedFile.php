@@ -203,6 +203,13 @@ class ArchivedFile
 	}
 
 	/**
+	 * Return the FileStore key (overriding base File class)
+	 */
+	public function getStorageKey() {
+		return $this->getKey();
+	}
+
+	/**
 	 * Return the FileStore storage group
 	 */
 	public function getGroup() {

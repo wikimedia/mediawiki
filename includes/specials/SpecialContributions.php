@@ -545,7 +545,10 @@ class ContribsPager extends ReverseChronologicalPager {
 					'(' . $this->message['rev-delundel'] . ')' ) . ' ';
 			// Otherwise, show the link...
 			} else {
-				$query = array( 'target' => $page->getPrefixedDbkey(), 'oldid' => $rev->getId() );
+				$query = array(
+					'type' => 'revision',
+					'target' => $page->getPrefixedDbkey(),
+					'ids' => $rev->getId() );
 				$del = $this->mSkin->revDeleteLink( $query,
 					$rev->isDeleted( Revision::DELETED_RESTRICTED ) ) . ' ';
 			}

@@ -67,6 +67,30 @@ class Revision {
 	}
 
 	/**
+	 * Make a fake revision object from an archive table row. This is queried
+	 * for permissions or even inserted (as in Special:Undelete)
+	 * @fixme: should be a subclass for RevisionDelete. [TS]
+	 */
+	public static function newFromArchiveRow( $row, $overrides = array() ) {
+		$attribs = $overrides + array(
+			'page'       => isset( $row->page_id ) ? $row->page_id : null,
+			'id'         => isset( $row->ar_rev_id ) ? $row->ar_rev_id : null,
+			'comment'    => $row->ar_comment,
+			'user'       => $row->ar_user,
+			'user_text'  => $row->ar_user_text,
+			'timestamp'  => $row->ar_timestamp,
+			'minor_edit' => $row->ar_minor_edit,
+			'text_id'    => isset( $row->ar_text_id ) ? $row->ar_text_id : null,
+			'deleted'    => $row->ar_deleted,
+			'len'        => $row->ar_len);
+		if ( isset( $row->ar_text ) && !$row->ar_text_id ) {
+			// Pre-1.5 ar_text row
+			$attribs['text'] = $row->ar_text;
+		}
+		return new self( $attribs );
+	}
+
+	/**
 	 * Load a page revision from a given revision ID number.
 	 * Returns null if no such revision can be found.
 	 *
@@ -864,15 +888,17 @@ class Revision {
 	 *
 	 * @return string
 	 */
-	private function loadText() {
+	protected function loadText() {
 		wfProfileIn( __METHOD__ );
 
 		// Caching may be beneficial for massive use of external storage
 		global $wgRevisionCacheExpiry, $wgMemc;
-		$key = wfMemcKey( 'revisiontext', 'textid', $this->getTextId() );
+		$textId = $this->getTextId();
+		$key = wfMemcKey( 'revisiontext', 'textid', $textId );
 		if( $wgRevisionCacheExpiry ) {
 			$text = $wgMemc->get( $key );
 			if( is_string( $text ) ) {
+				wfDebug( __METHOD__. ": got id $textId from cache\n" );
 				wfProfileOut( __METHOD__ );
 				return $text;
 			}

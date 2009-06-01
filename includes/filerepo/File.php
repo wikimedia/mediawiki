@@ -1128,6 +1128,19 @@ abstract class File {
 	}
 
 	/**
+	 * Get the deletion archive key, <sha1>.<ext>
+	 */
+	function getStorageKey() {
+		$hash = $this->getSha1();
+		if ( !$hash ) {
+			return false;
+		}
+		$ext = $this->getExtension();
+		$dotExt = $ext === '' ? '' : ".$ext";
+		return $hash . $dotExt;				
+	}
+
+	/**
 	 * Determine if the current user is allowed to view a particular
 	 * field of this file, if it's marked as deleted.
 	 * STUB

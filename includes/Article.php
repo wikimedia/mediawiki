@@ -792,8 +792,7 @@ class Article {
 
 		# Allow admins to see deleted content if explicitly requested
 		$delId = $diff ? $diff : $oldid;
-		$unhide = $wgRequest->getInt('unhide') == 1
-			&& $wgUser->matchEditToken( $wgRequest->getVal('token'), $delId );
+		$unhide = $wgRequest->getInt('unhide') == 1;
 		# If we got diff and oldid in the query, we want to see a
 		# diff page instead of the article.
 		if( !is_null( $diff ) ) {
@@ -950,8 +949,7 @@ class Article {
 						// If the user needs to confirm that they want to see it...
 						} else if( !$unhide ) {
 							# Give explanation and add a link to view the revision...
-							$link = $this->mTitle->getFullUrl( "oldid={$oldid}".
-								'&unhide=1&token='.urlencode( $wgUser->editToken($oldid) ) );
+							$link = $this->mTitle->getFullUrl( "oldid={$oldid}&unhide=1" );
 							$wgOut->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1</div>\n",
 								array('rev-deleted-text-unhide',$link) );
 							$wgOut->setPageTitle( $this->mTitle->getPrefixedText() );
@@ -3084,8 +3082,9 @@ class Article {
 			} else {
 				$cdel = $sk->makeKnownLinkObj( $revdel,
 					wfMsgHtml('rev-delundel'),
-					'target=' . urlencode( $this->mTitle->getPrefixedDbkey() ) .
-					'&oldid=' . urlencode( $oldid ) );
+					'type=revision' . 
+					'&target=' . urlencode( $this->mTitle->getPrefixedDbkey() ) .
+					'&ids=' . urlencode( $oldid ) );
 				// Bolden oversighted content
 				if( $revision->isDeleted( Revision::DELETED_RESTRICTED ) )
 					$cdel = "<strong>$cdel</strong>";

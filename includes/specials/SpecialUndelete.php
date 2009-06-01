@@ -188,20 +188,7 @@ class PageArchive {
 			       'ar_timestamp' => $dbr->timestamp( $timestamp ) ),
 			__METHOD__ );
 		if( $row ) {
-			return new Revision( array(
-				'page'       => $this->title->getArticleId(),
-				'id'         => $row->ar_rev_id,
-				'text'       => ($row->ar_text_id
-					? null
-					: Revision::getRevisionText( $row, 'ar_' ) ),
-				'comment'    => $row->ar_comment,
-				'user'       => $row->ar_user,
-				'user_text'  => $row->ar_user_text,
-				'timestamp'  => $row->ar_timestamp,
-				'minor_edit' => $row->ar_minor_edit,
-				'text_id'    => $row->ar_text_id,
-				'deleted'    => $row->ar_deleted,
-				'len'        => $row->ar_len) );
+			return Revision::newFromArchiveRow( $row, array( 'page' => $this->title->getArticleId() ) );
 		} else {
 			return null;
 		}
@@ -475,37 +462,18 @@ class PageArchive {
 		$restored = 0;
 
 		while( $row = $ret->fetchObject() ) {
-			if( $row->ar_text_id ) {
-				// Revision was deleted in 1.5+; text is in
-				// the regular text table, use the reference.
-				// Specify null here so the so the text is
-				// dereferenced for page length info if needed.
-				$revText = null;
-			} else {
-				// Revision was deleted in 1.4 or earlier.
-				// Text is squashed into the archive row, and
-				// a new text table entry will be created for it.
-				$revText = Revision::getRevisionText( $row, 'ar_' );
-			}
 			// Check for key dupes due to shitty archive integrity.
 			if( $row->ar_rev_id ) {
 				$exists = $dbw->selectField( 'revision', '1', array('rev_id' => $row->ar_rev_id), __METHOD__ );
 				if( $exists ) continue; // don't throw DB errors
 			}
-			
-			$revision = new Revision( array(
-				'page'       => $pageId,
-				'id'         => $row->ar_rev_id,
-				'text'       => $revText,
-				'comment'    => $row->ar_comment,
-				'user'       => $row->ar_user,
-				'user_text'  => $row->ar_user_text,
-				'timestamp'  => $row->ar_timestamp,
-				'minor_edit' => $row->ar_minor_edit,
-				'text_id'    => $row->ar_text_id,
-				'deleted' 	 => $unsuppress ? 0 : $row->ar_deleted,
-				'len'        => $row->ar_len
+
+			$revision = Revision::newFromArchiveRow( $row, 
+				array( 
+					'page' => $pageId, 
+					'deleted' => $unsuppress ? 0 : $row->ar_deleted
 				) );
+			
 			$revision->insertOn( $dbw );
 			$restored++;
 
@@ -527,16 +495,18 @@ class PageArchive {
 			// Attach the latest revision to the page...
 			$wasnew = $article->updateIfNewerOn( $dbw, $revision, $previousRevId );
 			if( $newid || $wasnew ) {
-				// Update site stats, link tables, etc
-				$article->createUpdates( $revision );
 				// We don't handle well with top revision deleted
+				// FIXME: any sysop can unsuppress any revision by just undeleting it into a non-existent page!
 				if( $revision->getVisibility() ) {
 					$dbw->update( 'revision', 
 						array( 'rev_deleted' => 0 ),
 						array( 'rev_id' => $revision->getId() ),
 						__METHOD__
 					);
+					$revision->mDeleted = 0; // Don't pollute the parser cache
 				}
+				// Update site stats, link tables, etc
+				$article->createUpdates( $revision );
 			}
 
 			if( $newid ) {
@@ -883,8 +853,10 @@ class UndeleteForm {
 					'(' . wfMsgHtml('rev-delundel') . ')' );
 			// Otherwise, show the link...
 			} else {
-				$query = array( 'target' => $this->mTargetObj->getPrefixedDbkey(),
-					'artimestamp' => $rev->getTimestamp() );
+				$query = array( 
+					'type' => 'archive',
+					'target' => $this->mTargetObj->getPrefixedDbkey(),
+					'ids' => $rev->getTimestamp() );
 				$del = ' ' . $sk->revDeleteLink( $query,
 					$rev->isDeleted( Revision::DELETED_RESTRICTED ) );
 			}
@@ -950,8 +922,11 @@ class UndeleteForm {
 		$wgRequest->response()->header( 'Cache-Control: no-cache, no-store, max-age=0, must-revalidate' );
 		$wgRequest->response()->header( 'Pragma: no-cache' );
 
-		$store = FileStore::get( 'deleted' );
-		$store->stream( $key );
+		global $IP;
+		require_once( "$IP/includes/StreamFile.php" );
+		$repo = RepoGroup::singleton()->getLocalRepo();		
+		$path = $repo->getZonePath( 'deleted' ) . '/' . $repo->getDeletedHashPath( $key ) . $key;
+		wfStreamFile( $path );
 	}
 
 	private function showHistory( ) {
@@ -1114,16 +1089,8 @@ class UndeleteForm {
 	private function formatRevisionRow( $row, $earliestLiveTime, $remaining, $sk ) {
 		global $wgUser, $wgLang;
 
-		$rev = new Revision( array(
-				'page'       => $this->mTargetObj->getArticleId(),
-				'comment'    => $row->ar_comment,
-				'user'       => $row->ar_user,
-				'user_text'  => $row->ar_user_text,
-				'timestamp'  => $row->ar_timestamp,
-				'minor_edit' => $row->ar_minor_edit,
-				'deleted'    => $row->ar_deleted,
-				'len'        => $row->ar_len ) );
-
+		$rev = Revision::newFromArchiveRow( $row, 
+			array( 'page' => $this->mTargetObj->getArticleId() ) );
 		$stxt = '';
 		$ts = wfTimestamp( TS_MW, $row->ar_timestamp );
 		if( $this->mAllowed ) {
@@ -1165,8 +1132,10 @@ class UndeleteForm {
 				$revdlink = Xml::tags( 'span', array( 'class'=>'mw-revdelundel-link' ),
 					'('.wfMsgHtml('rev-delundel').')' );
 			} else {
-				$query = array( 'target' => $this->mTargetObj->getPrefixedDBkey(),
-					'artimestamp' => $ts
+				$query = array(
+					'type' => 'archive',
+					'target' => $this->mTargetObj->getPrefixedDBkey(),
+					'ids' => $ts
 				);
 				$revdlink = $sk->revDeleteLink( $query, $rev->isDeleted( Revision::DELETED_RESTRICTED ) );
 			}
@@ -1207,8 +1176,10 @@ class UndeleteForm {
 			// If revision was hidden from sysops
 				$revdlink = Xml::tags( 'span', array( 'class'=>'mw-revdelundel-link' ), '('.wfMsgHtml('rev-delundel').')' );
 			} else {
-				$query = array( 'target' => $this->mTargetObj->getPrefixedDBkey(),
-					'fileid' => $row->fa_id
+				$query = array(
+					'type' => 'filearchive',
+					'target' => $this->mTargetObj->getPrefixedDBkey(),
+					'ids' => $row->fa_id
 				);
 				$revdlink = $sk->revDeleteLink( $query, $file->isDeleted( File::DELETED_RESTRICTED ) );
 			}
