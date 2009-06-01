@@ -77,7 +77,9 @@ function diffcheck() {
 				} else {
 					inputs[1].style.visibility = 'visible';
 				}
-				lis[i].className = lis[i].classNameOriginal;
+				if ( typeof lis[i].classNameOriginal != 'undefined' ) {
+					lis[i].className = lis[i].classNameOriginal;
+				}
 			}
 		}
 	}
