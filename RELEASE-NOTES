@@ -32,13 +32,13 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 9257) $wgRCMaxAge now defaults to three months
 * $wgDevelopmentWarnings can be set to true to show warnings about deprecated
   functions and other potential errors when developing.
-* (bug 18958) $wgEnableVariants is a new boolean value to turn on or off the 
-  entire variant conversion engine, and the default is set to true. Former 
+* (bug 18958) $wgEnableVariants is a new boolean value to turn on or off the
+  entire variant conversion engine, and the default is set to true. Former
   variable $wgDisableLangConversion was superseded by this variable.
 * Subpages are now enabled in the MediaWiki namespace by default.  This is
   mainly a cosmetic change, and does not in any way affect the MessageCache,
   which was already effectively treating the namespace as if it had subpages.
-* (bug 10837) $wgVariant is a user variant selected in the user's preferences 
+* (bug 10837) $wgVariant is a user variant selected in the user's preferences
   if the $wgContLang does not have variant, then the $wgLang is used instead.
 
 === New features in 1.16 ===
@@ -82,7 +82,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 18860) Blocks of IPs affecting registered users can now block email
 * (bug 17093) Date and time are separate parameters in Special:BlockList
 * (bug 11484) Added ISO speed rating to default collapsed EXIF metadata view
-* (bug 18958) Added ability to disable entire variant conversion engine 
+* (bug 18958) Added ability to disable entire variant conversion engine
   per user preferences
 * (bug 19012) Introduce {{NUMBEROFCONTRIBS}} variable to display the number
   of contributions a user has.
@@ -176,12 +176,13 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   uploading/moving is disabled for registered users as well (e.g. only sysops)
 * (bug 18943) Handle invalid titles gracefully at Special:Mostlinked
 * (bug 8873) Enable variant conversion in text on 'alt' and 'title' attributes
-* (bug 10837) Introducing the StubUserVariant class to determine the variant 
+* (bug 10837) Introducing the StubUserVariant class to determine the variant
   variable instead of using this to overrules the user language preference.
-* (bug 19014) If user had deletedhistory right, but not undeleted right, then 
+* (bug 19014) If user had deletedhistory right, but not undeleted right, then
   show "view" instead of "view/restore" on logs.
 * (bug 19017) TOC level calculation error in an odd case
 * (bug 18999) CSS update for RTL interwiki links
+* (bug 18925) history.js removes class names of list elements on initialization
 
 == API changes in 1.16 ==
 
