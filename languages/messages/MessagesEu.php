@@ -237,7 +237,7 @@ $messages = array(
 'category-subcat-count-limited'  => 'Kategoria honek {{PLURAL:$1|azpikategoria hau du|$1 azpikategoria hauek ditu}}.',
 'category-article-count'         => '{{PLURAL:$2|Kategoria honek honako orrialdea baino ez du.|Honako {{PLURAL:$1|orrialdea kategoria honetan dago|$1 orrialdeak kategoria hauetan daude}}, guztira dauden $2tik.}}',
 'category-article-count-limited' => 'Honako orrialde {{PLURAL:$1|hau kategoria honetan dago|$1 hauek kategoria hauetan daude}}:',
-'category-file-count'            => '{{PLURAL:$2|Kategoria honek fitxagegi hau baino ez du.|Honako {{PLURAL:$1|fitxategia kategoria honetan dago|$1 fitxategiak kategoria honetan daude}} guztira dauden $2tik.}}',
+'category-file-count'            => '{{PLURAL:$2|Kategoria honek fitxategi hau baino ez du.|Honako {{PLURAL:$1|fitxategia kategoria honetan dago|$1 fitxategiak kategoria honetan daude}} guztira dauden $2tik.}}',
 'category-file-count-limited'    => 'Ondorengo {{PLURAL:$1|artxiboa kategoria honetan dago.|$1 artxiboak kategoria honetan daude.}}',
 'listingcontinuesabbrev'         => 'jarr.',
 
@@ -1103,7 +1103,7 @@ Saia zaitez zure eskeraren aurretik ''all:'' jartzen eduki guztien artean bilatz
 'recentchangesdays-max'     => '(gehienez {{PLURAL:$1|egun $1|$1 egun}})',
 'recentchangescount'        => 'Aldaketa berrietan, historian eta erregistroetan erakusteko aldaketa kopurua, lehenetsita:',
 'savedprefs'                => 'Zure hobespenak gorde egin dira.',
-'timezonelegend'            => 'Ordu zona',
+'timezonelegend'            => 'Ordu-eremua:',
 'timezonetext'              => 'Zure ordu lokala eta zerbitzariaren orduaren (UTC) arteko ezberdintasuna.',
 'localtime'                 => 'Ordu lokala:',
 'timezoneselect'            => 'Ordutegi-eremua:',
@@ -2469,6 +2469,7 @@ Zerrenda elementuak (hasieran * duten lerroak) baino ez dira kontuan hartzen. Le
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength', # Do not translate list items
 
 # EXIF tags

@@ -1138,7 +1138,7 @@ Cuba berikan awalan ''all:'' untuk menggelintar semua kandungan (termasuk laman 
 'recentchangesdays-max'     => '(had $1 hari)',
 'recentchangescount'        => 'Bilangan suntingan yang dipaparkan dalam perubahan terkini, sejarah laman, dan log, ketika lalai:',
 'savedprefs'                => 'Keutamaan anda disimpan.',
-'timezonelegend'            => 'Zon waktu',
+'timezonelegend'            => 'Zon waktu:',
 'timezonetext'              => 'Beza waktu dalam jam antara waktu tempatan anda dengan waktu UTC (8 untuk Kuala Lumpur).',
 'localtime'                 => 'Waktu tempatan:',
 'timezoneselect'            => 'Zon waktu:',
@@ -2516,6 +2516,7 @@ Ruangan lain akan disembunyikan.
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength', # Do not translate list items
 
 # EXIF tags

@@ -145,7 +145,7 @@ $messages = array(
 'tog-hidepatrolled'           => 'ته نوکین تغییرات اصلاحاتی که گردگ بیتگن پناه کن',
 'tog-newpageshidepatrolled'   => 'پناه کتن صفحاتی که گردگ بوتگن چه لیست نوکین صفحه',
 'tog-extendwatchlist'         => 'لیست چارگ مزن کن دان کل تغییرات پیش داریت نه که فقط نوکینءَ',
-'tog-usenewrc'                => 'تغییرات نوکین بهتر بوتگین(جاوا اسکریپت)',
+'tog-usenewrc'                => 'کارمرز کتن تغییرات نوکین بهتر بوتگین(جاوا اسکریپت)',
 'tog-numberheadings'          => 'اتوماتیک شماره کتن عناوین',
 'tog-showtoolbar'             => 'میله ابزار اصلاح پیش درا(جاوا)',
 'tog-editondblclick'          => 'صفحات گون دو کلیک اصلاح کن(جاوا)',
@@ -153,7 +153,7 @@ $messages = array(
 'tog-editsectiononrightclick' => 'فعال کتن اصلاح کسمت گون کلیک راست اور کسمت عناوین(جاوا)',
 'tog-showtoc'                 => 'جدول محتوای‌ء پیش دار( په صفحیانی که گیش چه 3 عنوانش هست)',
 'tog-rememberpassword'        => 'منی وارد بیگ ته ای کامپیوتر هیال کن',
-'tog-editwidth'               => 'جعبه اصلاح کل پهنات هست',
+'tog-editwidth'               => 'جعبه اصلاح مزنی کن تا کل صفحه بگریت',
 'tog-watchcreations'          => 'هور کن منی صفحاتی که من ته لیست چارگ شرکتت',
 'tog-watchdefault'            => 'هورکن صفحاتی که من اصلاح کتن ته منی لیست چارگ',
 'tog-watchmoves'              => 'هور کن صفحاتی که من جاه په جاه کت ته منی لیست چارگ',
@@ -1156,7 +1156,7 @@ Legend: (cur) = تفاوتان گون هنوکین نسخه,
 'recentchangesdays-max'     => '(حداکثر $1 {{PLURAL:$1|روچ|روچ}})',
 'recentchangescount'        => 'تعداد اصلاحات به پیش دارگ ته نوکین تغییرات , تاریح صفحات و ته سیاهگ به طور پیش فرض :',
 'savedprefs'                => 'شمی ترجیحات ذخیره بوتن',
-'timezonelegend'            => 'وهد ملک',
+'timezonelegend'            => 'وهد ملک:',
 'timezonetext'              => '¹تعداد ساعاتی که شمی ملکی وهد چه زمان سرور فرق کنت (UTC).',
 'localtime'                 => 'ملکی وهد:',
 'timezoneselect'            => 'منطقه وهد:',
@@ -1451,7 +1451,7 @@ Legend: (cur) = تفاوتان گون هنوکین نسخه,
 'sourcefilename'              => 'منبع نام فایل:',
 'destfilename'                => 'مقصد نام فایل',
 'upload-maxfilesize'          => 'آهرین هد اندازه فایل : $1',
-'watchthisupload'             => 'ای صفحه بچار',
+'watchthisupload'             => 'ای فایل بچار',
 'filewasdeleted'              => 'یک فایلی گو ای نام پیشتر آپلود بوتت و رندا حذف بوت.
 شما بایدن کنترل کنیت  $1 پیش چه شی که دگه آپلود کنیت.',
 'upload-wasdeleted'           => "'''هوژاری: شما یک فایلی آپلود کنگیت که پیشتر حذف بوتت.'''
@@ -2278,7 +2278,7 @@ $1',
 'move-redirect-suppressed'     => 'تغییر مسیر بند بوت',
 'movelogpage'                  => 'جاه په جاهی ورود',
 'movelogpagetext'              => 'جهلء یک لیستی چه صفحات جاه په جاه بوتگین هست',
-'movesubpage'                  => 'چیرتاک',
+'movesubpage'                  => '{{PLURAL:$1|زیرتاک|زیرتاکان}}',
 'movesubpagetext'              => 'ای صفحه $1 {{PLURAL:$1|چیرتاک|چیرتاک}} هستن که جهلءَ پیش دارگنت.',
 'movenosubpage'                => 'ای صفحه ءَ هچ چیر تاکی نیست',
 'movereason'                   => 'دلیل:',
@@ -2547,7 +2547,7 @@ $1',
 
 # Media information
 'mediawarning'         => "''''هوژاری:'''' ای فایل شاید شامل بد واهین کد بوت،اجرای آیی ته وتی سیستم شاید توافقی بیت.<hr />",
-'imagemaxsize'         => 'محدودیت تصاویر ته فایل صفحات توضیح ته:',
+'imagemaxsize'         => "محدودیت تصاویر: <br />''(په صفحات توضیح فایل)''",
 'thumbsize'            => 'اندازه پیج انگشتی',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|صفحه|صفحات}}',
 'file-info'            => '(اندازه فایل: $1, مایم نوع: $2)',
@@ -2632,6 +2632,7 @@ Variants for Chinese language
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength', # Do not translate list items
 
 # EXIF tags

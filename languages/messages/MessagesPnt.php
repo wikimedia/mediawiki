@@ -557,7 +557,7 @@ $messages = array(
 'diff-width'              => 'πλάτος',
 'diff-height'             => 'ύψος',
 'diff-td'                 => "'''κελλίον'''",
-'diff-dt'                 => "εις '''όρον ορισμού'''",
+'diff-dt'                 => "'''όρον ορισμού'''",
 'diff-strike'             => "'''εγκάρσιον σβήσεμαν'''",
 
 # Search results
@@ -744,7 +744,7 @@ $messages = array(
 'imagelinks'                => 'Συνδέσμ αρχείων',
 'linkstoimage'              => "Ατά τα {{PLURAL:$1|σελίδαν δεκνίζ'|$1 σελίδας δεκνίζ'νε}} σην εικόναν:",
 'nolinkstoimage'            => "'Κ εχ σελίδας ντο δεκνίζνε σ' αβούτεν εικόναν.",
-'sharedupload'              => "Αούτον τ' αρχείον εφορτώθεν ασό $1 για κοινόν κουλάνεμαν κι επορεί να χρησιμοπισκάται και σ' άλλα έργα.", # $1 is the repo name, $2 is shareduploadwiki(-desc)
+'sharedupload'              => "Αούτον τ' αρχείον εφορτώθεν ασό $1 για κοινόν κουλάνεμαν κι επορεί να χρησιμοποισκάται και σ' άλλα έργα.", # $1 is the repo name, $2 is shareduploadwiki(-desc)
 'shareduploadwiki-desc'     => "Το γράψιμον αση $1 ευρίκετε ατο κι αλλ' αφκά.",
 'shareduploadwiki-linktext' => "σελίδα ντ'εξηγίζ' τ'αρχείον",
 'noimage'                   => "Αρχείον με αΐκον όνεμαν 'κ έχ', άμα επορείς να $1.",
@@ -813,7 +813,7 @@ $messages = array(
 'longpages'               => 'Τρανά σελίδας',
 'deadendpages'            => 'Αδιέξοδα σελίδας',
 'protectedpages'          => 'Ασπαλιγμένα σελίδας',
-'listusers'               => 'Κατάλογον χρήστιων',
+'listusers'               => 'Κατάλογον χρηστίων',
 'newpages'                => 'Καινούρεα σελίδας',
 'newpages-username'       => 'Όνεμα χρήστε:',
 'ancientpages'            => 'Ασ’ όλιον παλαιά σελίδας',
@@ -1143,7 +1143,7 @@ $messages = array(
 'tooltip-compareselectedversions' => "Τερέστε τα διαφοράς τ' εκδωσίων τη σελίδας",
 'tooltip-watch'                   => 'Βαλέστεν την σελίδαν σην λίσταν ωριαγματί νεσουν',
 'tooltip-rollback'                => "Μ'έναν κλικ σην \"αναστροφήν\" θα χάται τ' υστερνόν η αλλαγή σ'αούτον τη σελίδαν.",
-'tooltip-undo'                    => 'Με την "Αναίρεση" χάται αούτον η αλλαγή και ανοίγ\' η φόρμα αλλαγματί άμον πρώτον τέρεμαν. Επιτρέπ\' την προστήκην αιτίας σην περίληψην.',
+'tooltip-undo'                    => 'Με την "Αναίρεση" χάται αούτον η αλλαγή και ανοίγ\' η φόρμα αλλαγματί άμον πρώτον τέρεμαν. Επιτρέπ\' την προσθήκην αιτίας ση περίληψην.',
 
 # Attribution
 'others' => "άλλ'",
@@ -1192,6 +1192,7 @@ $messages = array(
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength", # Do not translate list items
 
 # EXIF tags

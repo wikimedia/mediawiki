@@ -130,7 +130,8 @@ $messages = array(
 'tog-highlightbroken'         => 'Afiche <a href="" class="new">nan koulè wouj</a> lyen yo ki ap mene nan paj ki pa egziste (oubyen : tankou <a href="" class="internal">?</a>)',
 'tog-justify'                 => 'Aliyen paragraf yo',
 'tog-hideminor'               => 'Kache tout modifikasyon resan yo ki pa enpòtan',
-'tog-extendwatchlist'         => 'Itilize lis swivi ki miyò a',
+'tog-hidepatrolled'           => 'Kache modifikasyon yo ki fèk fèt pou moun ki ap veye yo',
+'tog-extendwatchlist'         => 'Etann lis swivi pou ou kapab wè tout chanjman yo, pa sèlman sa ki fèk fèt yo',
 'tog-usenewrc'                => 'Itilize lis swivi ki miyò a (JavaScript)',
 'tog-numberheadings'          => 'Nimewote otomatiman tit yo',
 'tog-showtoolbar'             => 'Montre panèl meni modifikasyon an',
@@ -139,7 +140,7 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Pemèt edite yon seksyon pa klike a dwat tit seksyon an (JavaScrip)',
 'tog-showtoc'                 => 'Montre tab de matyè yo (pou tout paj ki gen plis ke twa tit)',
 'tog-rememberpassword'        => 'Sonje login mwen nan òdinatè sa',
-'tog-editwidth'               => 'Lajè bwat edite-a plen',
+'tog-editwidth'               => 'Montre fenèt pou modifikasyon yo nan mitan paj lan',
 'tog-watchcreations'          => 'Ajoute paj yo ke mwen ap kreye nan lis swivi mwen.',
 'tog-watchdefault'            => 'Mete paj mwen edite yo nan lis veye m',
 'tog-watchmoves'              => 'Mete paj mwen deplase nan lis veye m',
@@ -1256,6 +1257,7 @@ Nenpòt lòt lyen nan menm lign nan konsidere kòm yon eksèpsyon, i.e. paj kote
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength', # Do not translate list items
 
 # External editor support

@@ -1226,7 +1226,7 @@ Ver merksam på at registra deira kan vera utdaterte.',
 'recentchangesdays-max'     => '(høgst $1 {{PLURAL:$1|dag|dagar}})',
 'recentchangescount'        => 'Tal på endringar som skal verta viste i «siste endringar», sidehistorikkar og i loggar som standard:',
 'savedprefs'                => 'Brukarinnstillingane er lagra.',
-'timezonelegend'            => 'Tidssone',
+'timezonelegend'            => 'Tidssone:',
 'timezonetext'              => 'Tal timar lokal tid skil seg frå tenaren si tid.',
 'localtime'                 => 'Lokaltid:',
 'timezoneselect'            => 'Tidssona:',
@@ -2606,6 +2606,7 @@ Dei andre felta er gøymde som standard.
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength', # Do not translate list items
 
 # EXIF tags

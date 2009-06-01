@@ -1246,7 +1246,7 @@ Atencion, lor indexacion de contengut {{SITENAME}} benlèu es pas a jorn.',
 'recentchangesdays-max'     => '(maximum $1 {{PLURAL:$1|jorn|jorns}})',
 'recentchangescount'        => "Nombre de modificacions d'afichar dins los darrièrs cambiaments, paginas d'istorics e d'operacions, per defaut :",
 'savedprefs'                => 'Las preferéncias son estadas salvadas.',
-'timezonelegend'            => 'Zòna orària',
+'timezonelegend'            => 'Fus orari :',
 'timezonetext'              => '¹Nombre d’oras de decalatge entre vòstra ora locala e l’ora del servidor (UTC).',
 'localtime'                 => 'Ora locala :',
 'timezoneselect'            => 'Zòna orària :',
@@ -2651,6 +2651,7 @@ Los autres ligams sus la meteissa linha son considerats coma d'excepcions, per e
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength', # Do not translate list items
 
 # EXIF tags

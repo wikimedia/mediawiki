@@ -957,7 +957,7 @@ $2',
 'recentchangesdays-max'     => '（最大有$1）',
 'recentchangescount'        => '修著凡幾︰',
 'savedprefs'                => '簿註書矣',
-'timezonelegend'            => '時區',
+'timezonelegend'            => '時區：',
 'timezonetext'              => '¹與伺服器偏時有',
 'localtime'                 => '本地時：',
 'timezoneselect'            => '時區：',
@@ -1108,7 +1108,7 @@ $2',
 'action-upload'               => '貢檔',
 'action-reupload'             => '蓋現檔',
 'action-reupload-shared'      => '蓋庫檔',
-'action-upload_by_url'        => '自URLm貢檔',
+'action-upload_by_url'        => '自URL貢檔',
 'action-writeapi'             => '寫API',
 'action-delete'               => '刪頁',
 'action-deleterevision'       => '刪審',
@@ -2234,6 +2234,7 @@ $1已被禁矣。爾是否改此置？',
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength', # Do not translate list items
 
 # EXIF tags
@@ -2328,6 +2329,7 @@ $1',
 'comma-separator'     => '、',
 'colon-separator'     => '：',
 'pipe-separator'      => '｜',
+'word-separator'      => '',
 'ellipsis'            => '……',
 
 # Multipage image navigation

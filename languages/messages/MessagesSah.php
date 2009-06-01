@@ -1036,7 +1036,7 @@ long, which is longer than the maximum of $2 kilobytes. It cannot be saved.'''
 'recentchangesdays-max'     => '(улааппыта $1 күн)',
 'recentchangescount'        => 'Саҥа уларытыылар тиһиктэригэр, сирэйдэр историяларыгар уонна сурунаалларга көрдөрүллэр саҥа уларытыылар ахсааннара:',
 'savedprefs'                => 'Эн туруорууларыҥ олохтоннулар.',
-'timezonelegend'            => 'Олохтоох кэм',
+'timezonelegend'            => 'Олохтоох кэм:',
 'timezonetext'              => '¹Олохтоох кэмиҥ сиэрбэр (Гринвич, UTC) кэмиттэн хас чаас уратылааҕын киллэр.',
 'localtime'                 => 'Олохтоох кэмим:',
 'timezoneselect'            => 'Олохтоох кэм:',
@@ -2447,6 +2447,7 @@ $1',
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength', # Do not translate list items
 
 # EXIF tags

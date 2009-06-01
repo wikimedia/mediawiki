@@ -1108,7 +1108,7 @@ prief di korrekt Installation vu latex, dvips, gs un convert',
 'recentchangesdays-max'     => '(Maximal $1 {{PLURAL:$1|Tag|Täg}})',
 'recentchangescount'        => 'Aazahl vu dr Yyträg in dr «letschte Änderige», in dr Versionsgschicht un in dr Logbiecher:',
 'savedprefs'                => 'Dyni Ystellige sy gspycheret worde.',
-'timezonelegend'            => 'Zytzone',
+'timezonelegend'            => 'Zytzone:',
 'timezonetext'              => 'Zytdifferänz i Stunden aagä zwüsche der Serverzyt u dyre Lokalzyt',
 'localtime'                 => 'Ortszyt:',
 'timezoneselect'            => 'Zytzone:',
@@ -1142,7 +1142,7 @@ prief di korrekt Installation vu latex, dvips, gs un convert',
 'userrights-user-editname'    => 'Benutzername:',
 'editusergroup'               => 'Ändere vo Benutzerrächt',
 'editinguser'                 => "Benutzerrächt ändere vu '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup'    => 'Bearbeit d Gruppezuegherigkeit vum Benutzers',
+'userrights-editusergroup'    => 'Bearbeit d Gruppezuegherigkeit vum Benutzer',
 'saveusergroups'              => 'Spychere d Gruppezuegherigkeit',
 'userrights-groupsmember'     => 'Mitgliid vu:',
 'userrights-groups-help'      => 'Du chasch d Gruppezuegherigkeit fir dää Benutzer ändere:
@@ -2447,6 +2447,7 @@ Anderi Metadate sy standardmäßig versteckt.
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength', # Do not translate list items
 
 # EXIF tags

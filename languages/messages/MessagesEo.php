@@ -1168,7 +1168,7 @@ indekso pro troŝarĝita servilo. Intertempe, vi povas serĉi per <i>guglo</i> a
 'recentchangesdays-max'     => '(maksimume $1 {{PLURAL:$1|tago|tagoj}})',
 'recentchangescount'        => "Nombro de redaktoj por montri en 'Lastaj ŝanĝoj', paĝaj historioj, kaj en protokoloj, laŭ defaŭlto:",
 'savedprefs'                => 'Viaj preferoj estas konservitaj.',
-'timezonelegend'            => 'Horzono',
+'timezonelegend'            => 'Horzono:',
 'timezonetext'              => 'Indiku je kiom da horoj via
 loka horzono malsamas disde tiu de la servilo (UTC).
 Ekzemple, por la Centra Eŭropa Horzono, indiku "1" vintre aŭ "2" dum somertempo.',
@@ -2562,6 +2562,7 @@ Sekvaj ligilo en la sama linio estas konsiderata kiel esceptoj (paĝoj kiel la b
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength', # Do not translate list items
 
 # EXIF tags

@@ -1190,7 +1190,7 @@ Uistite sa, že táto zmena zachová historickú kontinuitu zmien stránky.',
 'recentchangesdays-max'     => '(maximálne $1 {{PLURAL:$1|deň|dni|dní}})',
 'recentchangescount'        => 'Počet úprav štandardne zobrazovaných v posledných úpravách, históriách stránok a záznamoch:',
 'savedprefs'                => 'Vaše nastavenia boli uložené.',
-'timezonelegend'            => 'Časové pásmo',
+'timezonelegend'            => 'Časové pásmo:',
 'timezonetext'              => '¹Počet hodín, o ktorý sa váš miestny čas odlišuje od času na serveri (UTC).',
 'localtime'                 => 'Miestny čas:',
 'timezoneselect'            => 'Časová zóna:',
@@ -2602,6 +2602,7 @@ Každý ďalší odkaz na rovnakom riadku sa považuje za výnimku, t.j. článk
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength', # Do not translate list items
 
 # EXIF tags

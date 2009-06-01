@@ -1679,6 +1679,7 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength', # Do not translate list items
 
 # EXIF tags

@@ -1070,6 +1070,7 @@ Sche la datoteca è vegnida midada dal status original èn tscherts detagls even
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength', # Do not translate list items
 
 # External editor support

@@ -325,7 +325,7 @@ $2',
 'loginsuccesstitle'          => '登入成功',
 'loginsuccess'               => '你現在以 "$1"的身份登入{{SITENAME}}。',
 'nosuchuser'                 => '找不到使用者 "$1"。
-檢查您的拼寫，或者用下面的表格建立一個新帳號。',
+檢查您的拼寫，或者用下面的表格[[Special:UserLogin/signup|建立一個新帳號]]。',
 'nosuchusershort'            => '沒有一個名為「<nowiki>$1</nowiki>」的使用者。請檢查您輸入的文字是否有錯誤。',
 'nouserspecified'            => '你需要指定一個使用者帳號。',
 'wrongpassword'              => '您輸入的密碼錯誤，請再試一次。',
@@ -1552,6 +1552,8 @@ $1',
 'tooltip-watch'                   => '將此頁加入您的監視列表',
 'tooltip-recreate'                => '重建該頁面，無論是否被刪除。',
 'tooltip-upload'                  => '開始上傳',
+'tooltip-rollback'                => '『{{int:rollbacklink}}』可以一按恢復上一位貢獻者對這個頁面的編輯',
+'tooltip-undo'                    => '『{{int:editundo}}』可以在編輯模式上開啟編輯表格以便復原。它容許在摘要中加入原因。',
 
 # Stylesheets
 'common.css'   => '/* 此處的 CSS 將應用於所有的面板 */',

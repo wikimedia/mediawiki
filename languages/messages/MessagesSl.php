@@ -1872,7 +1872,8 @@ $1',
 * model
 * datetimeoriginal
 * exposuretime 
-* fnumber 
+* fnumber
+* isospeedratings
 * focallength', # Do not translate list items
 
 # EXIF tags

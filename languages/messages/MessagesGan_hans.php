@@ -1734,6 +1734,7 @@ $1',
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength', # Do not translate list items
 
 # EXIF tags
@@ -2046,6 +2047,9 @@ $1',
 # action=purge
 'confirm_purge_button' => '做得',
 'confirm-purge-top'    => '想清卟个页𠮶缓存?',
+
+# Separators for various lists, etc.
+'comma-separator' => '、',
 
 # Multipage image navigation
 'imgmultipageprev' => '← 上页',

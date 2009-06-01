@@ -20,6 +20,7 @@
  * @author Qllach
  * @author SMP
  * @author Smeira
+ * @author Solde
  * @author Spacebirdy
  * @author Toniher
  * @author Vriullop
@@ -412,7 +413,7 @@ $messages = array(
 'versionrequired'     => 'Cal la versió $1 del MediaWiki',
 'versionrequiredtext' => 'Cal la versió $1 del MediaWiki per a utilitzar aquesta pàgina. Vegeu [[Special:Version]]',
 
-'ok'                      => "D'acord",
+'ok'                      => 'OK',
 'retrievedfrom'           => 'Obtingut de «$1»',
 'youhavenewmessages'      => 'Teniu $1 ($2).',
 'newmessageslink'         => 'nous missatges',
@@ -565,7 +566,7 @@ No oblideu de canviar les vostres [[Special:Preferences|preferències de {{SITEN
 'createaccountmail'          => 'per correu electrònic',
 'badretype'                  => 'Les contrasenyes que heu introduït no coincideixen.',
 'userexists'                 => 'El nom que heu entrat ja és en ús. Escolliu-ne un de diferent.',
-'youremail'                  => 'Adreça electrònica *',
+'youremail'                  => 'Correu electrònic:',
 'username'                   => "Nom d'usuari:",
 'uid'                        => "Identificador d'usuari:",
 'prefs-memberingroups'       => 'Membre dels {{PLURAL:$1|grup|grups}}:',
@@ -581,7 +582,7 @@ Ha de tenir com a molt {{PLURAL:$1|un caràcter|$1 caràcters}}.',
 'gender-male'                => 'Masculí',
 'gender-female'              => 'Femení',
 'prefs-help-gender'          => "Opcional: s'usa perquè el programari se us adreci amb missatges amb el gènere adient. Aquesta informació serà pública.",
-'email'                      => 'Adreça electrònica',
+'email'                      => 'Correu electrònic',
 'prefs-help-realname'        => "* Nom real (opcional): si escolliu donar aquesta informació serà utilitzada per a donar-vos l'atribució de la vostra feina.",
 'loginerror'                 => "Error d'inici de sessió",
 'prefs-help-email'           => "L'adreça electrònica és opcional, però permet l'enviament d'una nova contrasenya en cas d'oblit de l'actual.
@@ -1166,7 +1167,7 @@ Assegureu-vos que aquest canvi mantindrà la continuïtat històrica de la pàgi
 'recentchangesdays-max'     => '(màxim $1 {{PLURAL:$1|dia|dies}})',
 'recentchangescount'        => "Nombre d'edicions a mostrar per defecte als canvis recents, historials de pàgina i registres:",
 'savedprefs'                => "S'han desat les vostres preferències",
-'timezonelegend'            => 'Fus horari',
+'timezonelegend'            => 'Fus horari:',
 'timezonetext'              => "¹El nombre d'hores de diferència entre la vostra hora local i la del servidor (UTC).",
 'localtime'                 => 'Hora local:',
 'timezoneselect'            => 'Zona horària:',
@@ -2085,10 +2086,10 @@ això només s'hauria de fer per prevenir el vandalisme, i
 d'acord amb la [[{{MediaWiki:Policy-url}}|política del projecte]].
 Empleneu el diàleg de sota amb un motiu específic (per exemple, citant
 quines pàgines en concret estan sent vandalitzades).",
-'ipaddress'                       => 'Adreça IP',
+'ipaddress'                       => 'Adreça IP:',
 'ipadressorusername'              => "Adreça IP o nom de l'usuari",
 'ipbexpiry'                       => 'Venciment',
-'ipbreason'                       => 'Motiu',
+'ipbreason'                       => 'Motiu:',
 'ipbreasonotherlist'              => 'Un altre motiu',
 'ipbreason-dropdown'              => "*Motius de bloqueig més freqüents
 ** Inserció d'informació falsa
@@ -2304,7 +2305,7 @@ En el darrer cas, podeu fer servir un enllaç com ara [[{{#Special:Export}}/{{Me
 
 # Namespace 8 related
 'allmessages'               => 'Tots els missatges del sistema',
-'allmessagesname'           => 'Etiqueta',
+'allmessagesname'           => 'Nom',
 'allmessagesdefault'        => 'Text per defecte',
 'allmessagescurrent'        => 'Text actual',
 'allmessagestext'           => "Tot seguit hi ha una llista dels missatges del sistema que es troben a l'espai de noms ''MediaWiki''. La traducció genèrica d'aquests missatges no s'hauria de fer localment sinó a la traducció del programari MediaWiki. Si voleu ajudar-hi visiteu [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] i [http://translatewiki.net translatewiki.net].",
@@ -2564,6 +2565,7 @@ La resta d'enllaços de la línia són les excepcions, és a dir, les pàgines o
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength', # Do not translate list items
 
 # EXIF tags
@@ -2905,7 +2907,7 @@ Confirmeu que realment voleu tornar-la a crear.",
 'recreate'            => 'Torna a crear',
 
 # action=purge
-'confirm_purge_button' => "D'acord",
+'confirm_purge_button' => 'OK',
 'confirm-purge-top'    => "Voleu buidar la memòria cau d'aquesta pàgina?",
 'confirm-purge-bottom' => "Purgar una pàgina força que hi aparegui la versió més actual i n'esborra la memòria cau.",
 

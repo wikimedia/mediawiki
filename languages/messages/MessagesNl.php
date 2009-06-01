@@ -982,7 +982,7 @@ Een beheerder heeft de database geblokkeerd om de volgende reden: $1",
 U kunt reeds bestaande pagina's wijzigen, of u kunt [[Special:UserLogin|zich aanmelden of registreren]].",
 'nocreate-loggedin'                => "U hebt geen rechten om nieuwe pagina's te maken.",
 'permissionserrors'                => 'Fouten in rechten',
-'permissionserrorstext'            => 'U hebt geen rechten om dit te doen wegens de volgende {{PLURAL:$1|reden|redenen}}:',
+'permissionserrorstext'            => 'U hebt geen rechten om dit te doen om de volgende {{PLURAL:$1|reden|redenen}}:',
 'permissionserrorstext-withaction' => 'U hebt geen rechten om $2 om de volgende {{PLURAL:$1|reden|redenen}}:',
 'recreate-deleted-warn'            => "'''Waarschuwing: u bent bezig met het aanmaken van een pagina die in het verleden verwijderd is.'''
 
@@ -1343,10 +1343,10 @@ Ga na of latex, dvips en gs correct geïnstalleerd zijn en zet om',
 'recentchangesdays-max'     => '(maximaal $1 {{PLURAL:$1|dag|dagen}})',
 'recentchangescount'        => "Standaard aantal bewerkingen in recente wijzigingen, paginageschiedenis en logboekpagina's:",
 'savedprefs'                => 'Uw voorkeuren zijn opgeslagen.',
-'timezonelegend'            => 'Tijdzone',
+'timezonelegend'            => 'Tijdzone:',
 'timezonetext'              => '¹Het aantal uren dat uw plaatselijke tijd afwijkt van de servertijd (UTC).',
 'localtime'                 => 'Plaatselijke tijd:',
-'timezoneselect'            => 'Tijdzone',
+'timezoneselect'            => 'Tijdzone:',
 'timezoneuseserverdefault'  => 'Servertijd gebruiken',
 'timezoneuseoffset'         => 'Anders (tijdverschil aangeven)',
 'timezoneoffset'            => 'Tijdsverschil¹:',
@@ -1769,10 +1769,10 @@ Er is ook een [[Special:WhatLinksHere/$2|volledige lijst]].',
 'filedelete-nofile-old'       => "Er is geen versie van '''$1''' in het archief met de aangegeven eigenschappen.",
 'filedelete-otherreason'      => 'Andere reden:',
 'filedelete-reason-otherlist' => 'Andere reden',
-'filedelete-reason-dropdown'  => '*Veelvoorkomende redenen voor verwijdering
+'filedelete-reason-dropdown'  => '*Veel voorkomende redenen voor verwijderen
 ** Auteursrechtenschending
 ** Duplicaatbestand',
-'filedelete-edit-reasonlist'  => 'Redenen voor verwijdering bewerken',
+'filedelete-edit-reasonlist'  => 'Redenen voor verwijderen bewerken',
 
 # MIME search
 'mimesearch'         => 'Zoeken op MIME-type',
@@ -2113,11 +2113,11 @@ Zie het $2 voor een overzicht van recente verwijderingen.',
 'deletecomment'          => 'Reden voor verwijderen:',
 'deleteotherreason'      => 'Andere/eventuele reden:',
 'deletereasonotherlist'  => 'Andere reden',
-'deletereason-dropdown'  => '*Veelvoorkomende verwijderingsredenen
+'deletereason-dropdown'  => '*Veel voorkomende verwijderredenen
 ** Op aanvraag van auteur
 ** Schending van auteursrechten
 ** Vandalisme',
-'delete-edit-reasonlist' => 'Redenen voor verwijdering bewerken',
+'delete-edit-reasonlist' => 'Redenen voor verwijderen bewerken',
 'delete-toobig'          => "Deze pagina heeft een lange bewerkingsgeschiedenis, meer dan $1 {{PLURAL:$1|versie|versies}}.
 Het verwijderen van dit soort pagina's is met rechten beperkt om het per ongeluk verstoren van de werking van {{SITENAME}} te voorkomen.",
 'delete-warning-toobig'  => 'Deze pagina heeft een lange bewerkingsgeschiedenis, meer dan $1 {{PLURAL:$1|versie|versies}}.
@@ -2136,7 +2136,8 @@ Iemand anders heeft deze pagina al bewerkt of hersteld naar een eerdere versie.
 De meest recente bewerking is gemaakt door [[User:$3|$3]] ([[User talk:$3|overleg]]{{int:pipe-separator}}[[Special:Contributions/$3|bijdragen]]).',
 'editcomment'      => "De bewerkingssamenvatting was: \"''\$1''\".", # only shown if there is an edit comment
 'revertpage'       => 'Wijzigingen door [[Special:Contributions/$2|$2]] ([[User talk:$2|Overleg]]) hersteld tot de laatste versie door [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'rollback-success' => 'Wijzigingen door $1 teruggedraaid; laatste versie van $2 hersteld.',
+'rollback-success' => 'De wijzigingen door $1 zijn teruggedraaid.
+De laatste versie van $2 is hersteld.',
 'sessionfailure'   => 'Er lijkt een probleem te zijn met uw aanmeldsessie.
 Uw handeling is gestopt uit voorzorg tegen een beveiligingsrisico (dat bestaat uit mogelijke "hijacking" van deze sessie).
 Ga een pagina terug, laad die pagina opnieuw en probeer het nog eens.',
@@ -2171,7 +2172,7 @@ Het beveiligingsniveau wijzigen heeft geen enkel effect.",
 'protect-level-autoconfirmed' => 'Blokkeren voor nieuwe en anonieme gebruikers',
 'protect-level-sysop'         => 'Alleen beheerders',
 'protect-summary-cascade'     => 'cascade',
-'protect-expiring'            => 'vervalt op $1',
+'protect-expiring'            => 'vervalt op $2 om $3 (UTC)',
 'protect-expiry-indefinite'   => 'vervalt niet',
 'protect-cascade'             => "Cascadebeveiliging: hiermee worden alle pagina's en sjablonen die in deze pagina opgenomen zijn beveiligd (let op: dit kan grote gevolgen hebben)",
 'protect-cantedit'            => 'U kunt het beveiligingsniveau van deze pagina niet wijzigen, omdat u geen rechten hebt om het te bewerken.',
@@ -2180,7 +2181,7 @@ Het beveiligingsniveau wijzigen heeft geen enkel effect.",
 'protect-existing-expiry'     => 'Bestaande vervaldatum: $2 om $3',
 'protect-otherreason'         => 'Overige/additionele reden:',
 'protect-otherreason-op'      => 'overige/additionele reden',
-'protect-dropdown'            => '*Veelvoorkomende redenen voor beveiliging
+'protect-dropdown'            => '*Veel voorkomende redenen voor beveiliging
 ** Vandalisme
 ** Spam
 ** Bewerkingsoorlog
@@ -2648,7 +2649,7 @@ U kunt wel de broncode bekijken.',
 'tooltip-ca-nstab-help'           => 'Hulppagina bekijken',
 'tooltip-ca-nstab-category'       => 'Categoriepagina bekijken',
 'tooltip-minoredit'               => 'Deze wijziging als een kleine wijziging markeren',
-'tooltip-save'                    => 'Uw wijzigen opslaan',
+'tooltip-save'                    => 'Uw wijzigingen opslaan',
 'tooltip-preview'                 => 'Een voorvertoning maken.
 Gebruik dit!',
 'tooltip-diff'                    => 'Gemaakte wijzigingen bekijken (zoals het in de geschiedenis zal te zien zijn)',
@@ -2820,6 +2821,7 @@ Andere velden worden verborgen.
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength', # Do not translate list items
 
 # EXIF tags

@@ -10,6 +10,7 @@
  * @author AS
  * @author Ahonc
  * @author Aleksandrit
+ * @author AlexSm
  * @author Dubyk
  * @author EugeneZelenko
  * @author Gutsul (Gutsul.ua at Google Mail)
@@ -1119,7 +1120,7 @@ $3 зазначив таку причину: ''$2''",
 # Search results
 'searchresults'                    => 'Результати пошуку',
 'searchresults-title'              => 'Результати пошуку для «$1»',
-'searchresulttext'                 => 'Для отримання детальнішої інформації про пошук у проекті, див. [[{{ns:project}}:Пошук]].',
+'searchresulttext'                 => 'Для отримання детальнішої інформації про пошук у проекті, див. [[{{MediaWiki:Helppage}}|розділ допомоги]].',
 'searchsubtitle'                   => 'Ви шукали «[[:$1]]» ([[Special:Prefixindex/$1|усі сторінки, що починаються на «$1»]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|усі сторінки, що мають посилання на «$1»]])',
 'searchsubtitleinvalid'            => 'На запит «$1»',
 'noexactmatch'                     => "'''Сторінка з назвою «$1» не існує.'''
@@ -1235,7 +1236,7 @@ $3 зазначив таку причину: ''$2''",
 'recentchangesdays-max'     => '(максимум $1 {{PLURAL:$1|день|дні|днів}})',
 'recentchangescount'        => 'Кількість редагувань, які показуються у списку нових редагувань, історіях сторінок, журналах, за замовчуванням:',
 'savedprefs'                => 'Ваші налаштування збережено.',
-'timezonelegend'            => 'Часовий пояс',
+'timezonelegend'            => 'Часовий пояс:',
 'timezonetext'              => '¹Зміщення вашого місцевого часу (в годинах) від часу сервера (UTC — за Гринвічем).',
 'localtime'                 => 'Місцевий час:',
 'timezoneselect'            => 'Часовий пояс:',
@@ -1422,7 +1423,7 @@ $3 зазначив таку причину: ''$2''",
 'rcshowhideanons'                   => '$1 анонімів',
 'rcshowhidepatr'                    => '$1 перевірені',
 'rcshowhidemine'                    => '$1 мої редагування',
-'rclinks'                           => 'Показати останні $1 редагувань за $2 {{PLURAL:$2|день|дні|днів}};<br />$3.',
+'rclinks'                           => 'Показати останні $1 редагувань за $2 днів<br />$3',
 'diff'                              => 'різн.',
 'hist'                              => 'історія',
 'hide'                              => 'сховати',
@@ -1523,8 +1524,8 @@ $3 зазначив таку причину: ''$2''",
 'successfulupload'            => 'Завантаження успішно завершено',
 'uploadwarning'               => 'Попередження',
 'savefile'                    => 'Зберегти файл',
-'uploadedimage'               => 'завантажено «[[$1]]»',
-'overwroteimage'              => 'завантажена нова версія «[[$1]]»',
+'uploadedimage'               => 'завантажив «[[$1]]»',
+'overwroteimage'              => 'завантажив нову версію «[[$1]]»',
 'uploaddisabled'              => 'Завантаження заборонене',
 'uploaddisabledtext'          => 'Можливість завантаження файлів відключена.',
 'php-uploaddisabledtext'      => 'Завантаження файлів вимкнене у налаштуваннях PHP. Будь ласка, перевірте значення file_uploads.',
@@ -2657,6 +2658,7 @@ $1',
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength', # Do not translate list items
 
 # EXIF tags

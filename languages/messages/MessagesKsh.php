@@ -614,8 +614,7 @@ Denk dran, Do künnts Der [[Special:Preferences|Ding Enstellunge hee op de {{SIT
 'yourvariant'                => 'Ding Variant',
 'yournick'                   => 'Name för en Ding Ungerschreff:',
 'badsig'                     => 'Di Ungeschreff jëijd_esu nit — luer noh dem HTML do_dren un maach et rėshtėsh.',
-'badsiglength'               => 'Ding „Unterschref“ es zoo lang.
-Et dörve darf nit nieh wi {{PLURAL:$1|eij|$1|keij}} Zeische do dren sin.',
+'badsiglength'               => 'Ding „Ungerschref“ es zoo lang. Et dörve nit nieh wi {{PLURAL:$1|eij|$1|keij}} Zeische do dren sin.',
 'yourgender'                 => 'Do bes *',
 'gender-unknown'             => 'wesse mer nit',
 'gender-male'                => 'Kääl odder Jung',
@@ -1326,7 +1325,7 @@ Wiki-Köbes, enem Sörver-Minsch, oder luur ens en de
 'recentchangescount'        => 'Aanzahl Änderunge en de Liss met de „{{int:recentchanges}}“,
 de Versione uß de Fojangeheit, un de Logbööcher — als Standad:',
 'savedprefs'                => 'Ding Enstellunge sin jetz jesechert.',
-'timezonelegend'            => 'Ziggzon-Affstand',
+'timezonelegend'            => 'Ziggzon:',
 'timezonetext'              => '¹ Dat sin de Stunde un Minutte zwesche de Zigg op de Uhre bei Dir am Oot un däm Sörver, dä met UTC läuf.',
 'localtime'                 => 'De Zigg op Dingem Kompjuter:',
 'timezoneselect'            => 'De Ziggzon es:',
@@ -2194,7 +2193,7 @@ Di Sigg '''„$1“:''' es jetz jrad:",
 'protect-level-autoconfirmed' => 'Donn neu Metmaacher un namelose Metmaacher nit dranlooße',
 'protect-level-sysop'         => 'Nor de Wiki-Köbesse dranlooße',
 'protect-summary-cascade'     => 'met Schotz-Kaskad',
-'protect-expiring'            => 'bes öm $2 Uhr (UTC) aam $3',
+'protect-expiring'            => 'bes öm $3 Uhr (UTC) aam $2',
 'protect-expiry-indefinite'   => 'för iewich',
 'protect-cascade'             => 'Maach en Schoz-Kaskaade — all de Schablone en dä Sigg krijje dersellve Schoz, wi die Sigg sellver en kritt.',
 'protect-cantedit'            => 'Do kanns dä Siggeschotz hee nit ändere, esu lang wie De di Sigg nit ändere darfs.',
@@ -2838,6 +2837,7 @@ Donoh kumme, en däsellve Reih, Links op Sigge wo die Datei trotz dämm jenehm e
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength', # Do not translate list items
 
 # EXIF tags

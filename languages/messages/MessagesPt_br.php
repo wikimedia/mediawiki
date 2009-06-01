@@ -10,6 +10,7 @@
  * @author Bani
  * @author Brunoy Anastasiya Seryozhenko
  * @author Carla404
+ * @author Crazymadlover
  * @author Eduardo.mps
  * @author GKnedo
  * @author Heldergeovane
@@ -1179,7 +1180,7 @@ Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desat
 'recentchangesdays-max'     => '(máximo: $1 {{PLURAL:$1|dia|dias}})',
 'recentchangescount'        => 'Número de edições a serem exibidas nas mudanças recentes, históricos de páginas e páginas de registos, por padrão:',
 'savedprefs'                => 'As suas preferências foram salvas.',
-'timezonelegend'            => 'Fuso horário',
+'timezonelegend'            => 'Fuso horário:',
 'timezonetext'              => '¹Número de horas que o seu horário local difere do horário do servidor (UTC).',
 'localtime'                 => 'Horário local:',
 'timezoneselect'            => 'Fuso horário:',
@@ -2567,6 +2568,7 @@ Caso o arquivo tenha sido modificado a partir do seu estado original, alguns det
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength', # Do not translate list items
 
 # EXIF tags

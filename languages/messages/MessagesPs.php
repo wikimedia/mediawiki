@@ -1394,12 +1394,13 @@ $messages = array(
 'metadata-expand'   => 'غځېدلی تفصيل ښکاره کړی',
 'metadata-collapse' => 'غځېدلی تفصيل پټ کړی',
 'metadata-fields'   => 'د EXIF ميټاډاټا ډګرونه چې لړليک يې په همدې پيغام کې په لاندې توګه راغلی د انځوريز مخ په ښکارېدنه کې به هغه وخت ورګډ شي کله چې د مېټاډاټا چوکاټ پرانيستل کېږي.
-* جوړول
-* ماډل
-* آرنۍ وخت او نېټه
+* make
+* model
+* datetimeoriginal
 * exposuretime
-* fشمېره
-* فوکل واټن', # Do not translate list items
+* fnumber
+* isospeedratings
+* focallength', # Do not translate list items
 
 # EXIF tags
 'exif-datetime'         => 'د دوتنې د بدلون وخت او نېټه',

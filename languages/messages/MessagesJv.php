@@ -1861,7 +1861,7 @@ Lebokna alesan panjenengan ing ngisor iki (contoné njupuk conto kaca sing wis t
 'ipboptions'                      => '2 jam:2 hours,1 dina:1 day,3 dina:3 days,1 minggu:1 week,2 minggu:2 weeks,1 sasi:1 month,3 sasi:3 months,6 sasi:6 months,1 taun:1 year,tanpa wates:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'                  => 'liyané',
 'ipbotherreason'                  => 'Alesan liya/tambahan',
-'ipbhidename'                     => 'Delikna jeneng panganggo utawa alamat IP saka log pamblokiran, daftar blokir aktif, sarta daftar panganggo',
+'ipbhidename'                     => 'Delikna jeneng panganggo saka suntingan lan dhaptar',
 'ipbwatchuser'                    => 'Ngawasi kaca panganggo lan kaca-kaca dhiskusi panganggo iki',
 'ipballowusertalk'                => 'Idinaké panganggo iki nyunting kaca wicarané dhéwé nalika diblokir',
 'ipb-change-block'                => 'Blokir manèh panganggo kanthi sèting iki',
@@ -2270,7 +2270,8 @@ Pranala-pranala sabanjuré ing baris sing padha dianggep minangka ''pengecualian
 * model
 * datetimeoriginal
 * exposuretime
-* fnumber', # Do not translate list items
+* fnumber
+* isospeedratings', # Do not translate list items
 
 # EXIF tags
 'exif-imagewidth'                  => 'Jembar',

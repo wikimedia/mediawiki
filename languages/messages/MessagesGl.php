@@ -222,9 +222,9 @@ $messages = array(
 'tog-previewontop'            => 'Mostrar o botón de vista previa antes da caixa de edición e non despois dela',
 'tog-previewonfirst'          => 'Mostrar a vista previa na primeira edición',
 'tog-nocache'                 => 'Deshabilitar a memoria caché das páxinas',
-'tog-enotifwatchlistpages'    => 'Envíenme unha mensaxe de correo electrónico cando unha páxina da miña lista de vixilancia cambie',
-'tog-enotifusertalkpages'     => 'Envíenme unha mensaxe de correo electrónico cando a miña páxina de conversa cambie',
-'tog-enotifminoredits'        => 'Envíenme tamén unha mensaxe de correo electrónico cando se produzan pequenos cambios nas páxinas',
+'tog-enotifwatchlistpages'    => 'Enviádeme unha mensaxe de correo electrónico cando unha páxina da miña lista de vixilancia cambie',
+'tog-enotifusertalkpages'     => 'Enviádeme unha mensaxe de correo electrónico cando a miña páxina de conversa cambie',
+'tog-enotifminoredits'        => 'Enviádeme tamén unha mensaxe de correo electrónico cando se produzan edicións pequenas nas páxinas',
 'tog-enotifrevealaddr'        => 'Revelar o meu enderezo de correo electrónico nos correos de notificación',
 'tog-shownumberswatching'     => 'Mostrar o número de usuarios que están a vixiar',
 'tog-fancysig'                => 'Tratar a sinatura como se fose texto wiki (sen ligazón automática)',
@@ -243,6 +243,7 @@ $messages = array(
 'tog-ccmeonemails'            => 'Enviar ao meu enderezo copia das mensaxes que envíe a outros usuarios',
 'tog-diffonly'                => 'Non mostrar o contido da páxina debaixo das diferenzas entre edicións (dif)',
 'tog-showhiddencats'          => 'Mostrar as categorías ocultas',
+'tog-noconvertlink'           => 'Desactivar a conversión dos títulos de ligazón',
 'tog-norollbackdiff'          => 'Omitir as diferenzas despois de levar a cabo unha reversión de edicións',
 
 'underline-always'  => 'Sempre',
@@ -405,7 +406,7 @@ $messages = array(
 'aboutsite'            => 'Acerca de {{SITENAME}}',
 'aboutpage'            => 'Project:Acerca de',
 'copyright'            => 'Todo o texto está dispoñíbel baixo $1.',
-'copyrightpagename'    => 'Dereitos de autor (copyright) de {{SITENAME}}',
+'copyrightpagename'    => 'Dereitos de autor de {{SITENAME}}',
 'copyrightpage'        => '{{ns:project}}:Dereitos de autor',
 'currentevents'        => 'Actualidade',
 'currentevents-url'    => 'Project:Actualidade',
@@ -786,7 +787,11 @@ Pode [[Special:Search/{{PAGENAME}}|procurar polo título desta páxina]] noutras
 <span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} ollar os rexistros relacionados]
 ou [{{fullurl:{{FULLPAGENAME}}|action=edit}} editar a páxina].',
 'userpage-userdoesnotexist'        => 'A conta do usuario "$1" non está rexistrada. Comprobe se desexa crear/editar esta páxina.',
-'clearyourcache'                   => "'''Nota: despois de gravar cómpre limpar a memoria caché do seu navegador para ver os cambios.''' '''Mozilla / Firefox / Safari:''' prema ''Maiúsculas'' á vez que en ''Recargar'', ou prema en ''Ctrl-F5'' ou ''Ctrl-R'' (''Command-R'' nos Macintosh); '''Konqueror:''' faga clic en ''Recargar'' ou prema en ''F5''; '''Opera:''' limpe a súa memoria caché en ''Ferramentas → Preferencias''; '''Internet Explorer:''' prema ''Ctrl'' ao tempo que fai clic en ''Refrescar'', ou prema ''Ctrl-F5''.",
+'clearyourcache'                   => "'''Nota: despois de gravar cómpre limpar a memoria caché do seu navegador para ver os cambios.'''
+'''Mozilla / Firefox / Safari:''' prema ''Maiúsculas'' á vez que en ''Recargar'', ou prema en ''Ctrl-F5'' ou ''Ctrl-R'' (''Command-R'' nos Macintosh);
+'''Konqueror:''' faga clic en ''Recargar'' ou prema en ''F5'';
+'''Opera:''' limpe a súa memoria caché en ''Ferramentas → Preferencias'';
+'''Internet Explorer:''' prema ''Ctrl'' ao tempo que fai clic en ''Refrescar'', ou prema ''Ctrl-F5''.",
 'usercssjsyoucanpreview'           => "'''Nota:''' use o botón \"Mostrar a vista previa\" para verificar o novo CSS/JS antes de gardalo.",
 'usercsspreview'                   => "'''Lembre que só está vendo a vista previa do seu CSS de usuario.'''
 '''Este aínda non foi gardado!'''",
@@ -1215,7 +1220,7 @@ Note que os seus índices do contido de {{SITENAME}} poden estar desactualizados
 'recentchangesdays-max'     => '(máximo {{PLURAL:$1|un día|$1 días}})',
 'recentchangescount'        => 'Número de edicións a mostrar, por defecto, nas páxinas dos cambios recentes, historiais e rexistros:',
 'savedprefs'                => 'As súas preferencias foron gardadas.',
-'timezonelegend'            => 'Zona horaria',
+'timezonelegend'            => 'Zona horaria:',
 'timezonetext'              => '¹Insira o número de horas de diferenza entre a súa hora local e a do servidor (UTC).',
 'localtime'                 => 'Hora local:',
 'timezoneselect'            => 'Zona horaria:',
@@ -1477,11 +1482,12 @@ Por favor, verifique se realmente quere cargar este ficheiro.',
 'fileexists'                  => "Xa existe un ficheiro con ese nome. Por favor, verifique '''<tt>$1</tt>''' se non está seguro de que quere cambialo.",
 'filepageexists'              => "A páxina de descrición deste ficheiro xa foi creada en '''<tt>$1</tt>''', pero polo de agora non existe ningún ficheiro con este nome. O resumo que escribiu non aparecerá na páxina de descrición. Para facer que o resumo apareza alí, necesitará editar a páxina manualmente",
 'fileexists-extension'        => "Xa existe un ficheiro cun nome semellante:<br />
-Nome do ficheiro que tenta cargar: '''<tt>$1</tt>'''<br />
+Nome do ficheiro que intenta cargar: '''<tt>$1</tt>'''<br />
 Nome de ficheiro existente: '''<tt>$2</tt>'''<br />
 Por favor, escolla un nome diferente.",
 'fileexists-thumb'            => "<center>'''Imaxe existente'''</center>",
-'fileexists-thumbnail-yes'    => "Parece que o ficheiro é unha imaxe de tamaño reducido ''(miniatura)''. Comprobe o ficheiro '''<tt>$1</tt>'''.<br />
+'fileexists-thumbnail-yes'    => "Parece que o ficheiro é unha imaxe de tamaño reducido ''(miniatura)''.
+Por favor, comprobe o ficheiro '''<tt>$1</tt>'''.<br />
 Se o ficheiro seleccionado é a mesma imaxe de tamaño orixinal non é preciso enviar unha miniatura adicional.",
 'file-thumbnail-no'           => "O nome do ficheiro comeza por '''<tt>$1</tt>'''.
 Parece tratarse dunha imaxe de tamaño reducido ''(miniatura)''.
@@ -1513,7 +1519,8 @@ Debe comprobar o $1 antes de proceder a cargalo outra vez.',
 
 Debe considerar se é apropiado continuar enviando este ficheiro.
 O rexistro de borrado proporciónase aquí por se quere consultalo:",
-'filename-bad-prefix'         => "O nome do ficheiro que está cargando comeza con '''\"\$1\"''', que é un típico nome non descritivo asignado automaticamente polas cámaras dixitais. Por favor, escolla un nome máis descritivo para o seu ficheiro.",
+'filename-bad-prefix'         => "O nome do ficheiro que está cargando comeza con '''\"\$1\"''', que é un típico nome non descritivo asignado automaticamente polas cámaras dixitais.
+Por favor, escolla un nome máis descritivo para o seu ficheiro.",
 'filename-prefix-blacklist'   => ' #<!-- deixe esta liña exactamente como está --> <pre>
 # A sintaxe é a seguinte:
 #   * Todo o que estea desde o carácter "#" até o final da liña é un comentario
@@ -1680,10 +1687,11 @@ Lembre verificar outras ligazóns cara aos modelos antes de borralos.',
 'disambiguationspage'  => 'Template:Homónimos',
 'disambiguations-text' => "As seguintes páxinas ligan cunha '''páxina de homónimos'''.
 No canto de ligar cos homónimos deben apuntar cara á páxina apropiada.<br />
-Unha páxina trátase como páxina de homónimos cando nela se usa un modelo que está ligado desde a [[MediaWiki:Disambiguationspage|páxina de homónimos]].",
+Unha páxina trátase como páxina de homónimos cando nela se usa un modelo que está ligado desde [[MediaWiki:Disambiguationspage]].",
 
 'doubleredirects'            => 'Redireccións dobres',
-'doubleredirectstext'        => 'Esta lista contén as páxinas que redirixen cara a outras páxinas de redirección. Cada ringleira contén ligazóns cara á primeira e segunda redireccións, e tamén á primeira liña da segunda redirección, que é frecuentemente o artigo "real", á que a primeira redirección debera apuntar.',
+'doubleredirectstext'        => 'Esta lista contén as páxinas que redirixen cara a outras páxinas de redirección.
+Cada ringleira contén ligazóns cara á primeira e segunda redireccións, e tamén á primeira liña da segunda redirección, que é frecuentemente o artigo "real", á que a primeira redirección debera apuntar.',
 'double-redirect-fixed-move' => 'A páxina "[[$1]]" foi movida, agora é unha redirección cara a "[[$2]]"',
 'double-redirect-fixer'      => 'Amañador de redireccións',
 
@@ -2183,13 +2191,13 @@ Olle a [[Special:IPBlockList|lista de enderezos IP e usuarios bloqueados]] para 
 'ipb-unblock-addr'                => 'Desbloquear a "$1"',
 'ipb-unblock'                     => 'Desbloquear un usuario ou enderezo IP',
 'ipb-blocklist-addr'              => 'Bloqueos vixentes de "$1"',
-'ipb-blocklist'                   => 'Ver bloqueos vixentes',
+'ipb-blocklist'                   => 'Ver os bloqueos vixentes',
 'ipb-blocklist-contribs'          => 'Contribucións de "$1"',
 'unblockip'                       => 'Desbloquear o usuario',
 'unblockiptext'                   => 'Use o seguinte formulario para dar de novo acceso de escritura a un enderezo IP ou usuario que estea bloqueado.',
 'ipusubmit'                       => 'Retirar este bloqueo',
-'unblocked'                       => '[[User:$1|$1]] foi desbloqueado',
-'unblocked-id'                    => 'Eliminouse o bloqueo de $1',
+'unblocked'                       => '"[[User:$1|$1]]" foi desbloqueado',
+'unblocked-id'                    => 'O bloqueo $1 foi eliminado',
 'ipblocklist'                     => 'Enderezos IP e usuarios bloqueados',
 'ipblocklist-legend'              => 'Buscar un usuario bloqueado',
 'ipblocklist-username'            => 'Nome de usuario ou enderezo IP:',
@@ -2458,7 +2466,7 @@ Gráveo no seu disco duro e cárgueo aquí.',
 'tooltip-n-portal'                => 'Acerca do proxecto, o que vostede pode facer, onde atopar cousas',
 'tooltip-n-currentevents'         => 'Atopar documentación acerca de acontecementos de actualidade',
 'tooltip-n-recentchanges'         => 'A lista de modificacións recentes no wiki.',
-'tooltip-n-randompage'            => 'Carregar unha páxina ao chou',
+'tooltip-n-randompage'            => 'Cargar unha páxina ao chou',
 'tooltip-n-help'                  => 'O lugar para informarse.',
 'tooltip-t-whatlinkshere'         => 'Lista de todas as páxinas do wiki que ligan cara a aquí',
 'tooltip-t-recentchangeslinked'   => 'Cambios recentes nas páxinas ligadas desde esta',
@@ -2530,6 +2538,16 @@ Isto, probabelmente, se debe a unha ligazón cara a un sitio externo que está n
 'numwatchers'    => 'Número de vixiantes: $1',
 'numauthors'     => 'Número de autores distintos (artigo): $1',
 'numtalkauthors' => 'Número de autores distintos (páxina de conversa): $1',
+
+# Skin names
+'skinname-standard'    => 'Clásica',
+'skinname-nostalgia'   => 'Morriña',
+'skinname-cologneblue' => 'Azul colonial',
+'skinname-monobook'    => 'MonoBook',
+'skinname-myskin'      => 'A miña apariencia',
+'skinname-chick'       => 'Parrulo',
+'skinname-simple'      => 'Sinxela',
+'skinname-modern'      => 'Moderna',
 
 # Math options
 'mw_math_png'    => 'Orixinar sempre unha imaxe PNG',
@@ -2616,12 +2634,13 @@ As ligazóns posteriores da mesma liña considéranse excepcións, isto é, páx
 'metadata-expand'   => 'Mostrar os detalles',
 'metadata-collapse' => 'Agochar os detalles',
 'metadata-fields'   => 'Os campos de datos meta EXIF listados nesta mensaxe incluiranse ao exhibir a páxina da imaxe cando se reduza a táboa dos datos meta.
-Outros agocharanse por omisión.
+Os demais agocharanse por omisión.
 * make
 * model
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength', # Do not translate list items
 
 # EXIF tags
@@ -2654,14 +2673,14 @@ Outros agocharanse por omisión.
 'exif-model'                       => 'Modelo da cámara',
 'exif-software'                    => 'Software utilizado',
 'exif-artist'                      => 'Autor',
-'exif-copyright'                   => 'Titular dos dereitos de autor (copyright)',
+'exif-copyright'                   => 'Titular dos dereitos de autor',
 'exif-exifversion'                 => 'Versión Exif',
 'exif-flashpixversion'             => 'Versión de Flashpix soportada',
 'exif-colorspace'                  => 'Espazo de cor',
 'exif-componentsconfiguration'     => 'Significado de cada compoñente',
 'exif-compressedbitsperpixel'      => 'Modo de compresión da imaxe',
-'exif-pixelydimension'             => 'Anchura da imaxe válida',
-'exif-pixelxdimension'             => 'Altura da imaxe válida',
+'exif-pixelydimension'             => 'Ancho de imaxe válido',
+'exif-pixelxdimension'             => 'Altura de imaxe válida',
 'exif-makernote'                   => 'Notas do fabricante',
 'exif-usercomment'                 => 'Comentarios do usuario',
 'exif-relatedsoundfile'            => 'Ficheiro de audio relacionado',
@@ -2719,7 +2738,7 @@ Outros agocharanse por omisión.
 'exif-gpslongitude'                => 'Lonxitude',
 'exif-gpsaltituderef'              => 'Referencia da altitude',
 'exif-gpsaltitude'                 => 'Altitude',
-'exif-gpstimestamp'                => 'Hora GPS (reloxio atómico)',
+'exif-gpstimestamp'                => 'Hora GPS (reloxo atómico)',
 'exif-gpssatellites'               => 'Satélites utilizados para a medida',
 'exif-gpsstatus'                   => 'Estado do receptor',
 'exif-gpsmeasuremode'              => 'Modo de medida',
@@ -2770,7 +2789,7 @@ Outros agocharanse por omisión.
 'exif-exposureprogram-4' => 'Prioridade da obturación',
 'exif-exposureprogram-5' => 'Programa creativo (preferencia pola profundidade de campo)',
 'exif-exposureprogram-6' => 'Programa de acción (preferencia por unha velocidade de exposición máis rápida)',
-'exif-exposureprogram-7' => 'Modo retrato (para primeiros planos co fondo fóra de foco)',
+'exif-exposureprogram-7' => 'Modo retrato (para primeiros planos co fondo desenfocado)',
 'exif-exposureprogram-8' => 'Modo paisaxe (para paisaxes co fondo enfocado)',
 
 'exif-subjectdistance-value' => '$1 metros',

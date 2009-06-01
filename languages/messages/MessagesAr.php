@@ -1430,7 +1430,7 @@ $2',
 'recentchangesdays-max'     => '(حد أقصى $1 {{PLURAL:$1|يوم|يوم}})',
 'recentchangescount'        => 'عدد التعديلات للعرض في أحدث التغييرات، تواريخ الصفحات، وفي السجلات، افتراضيا:',
 'savedprefs'                => 'تم حفظ تفضيلاتك.',
-'timezonelegend'            => 'المنطقة الزمنية',
+'timezonelegend'            => 'المنطقة الزمنية:',
 'timezonetext'              => '¹عدد الساعات بين توقيتك المحلي وتوقيت الخادم (UTC).',
 'localtime'                 => 'الوقت المحلي:',
 'timezoneselect'            => 'المنطقة الزمنية:',
@@ -2420,7 +2420,7 @@ $1',
 'ipb-unblock'                     => 'رفع المنع عن مستخدم أو عنوان أيبي',
 'ipb-blocklist-addr'              => 'عمليات المنع الموجودة ل$1',
 'ipb-blocklist'                   => 'عرض حالات المنع الحالية',
-'ipb-blocklist-contribs'          => 'المساهمات ل$1',
+'ipb-blocklist-contribs'          => 'مساهمات $1',
 'unblockip'                       => 'رفع المنع عن المستخدم',
 'unblockiptext'                   => 'استخدم الاستمارة أدناه لاسترجاع صلاحية الكتابة الخاصة بعنوان أيبي أو مستخدم تم سحبها منه مسبقا.',
 'ipusubmit'                       => 'رفع هذا المنع',
@@ -2875,7 +2875,7 @@ $1',
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
 'video-dims'     => '$1، $2×$3',
 'seconds-abbrev' => 'ث',
-'minutes-abbrev' => 'ق',
+'minutes-abbrev' => 'د',
 'hours-abbrev'   => 'س',
 
 # Bad image list
@@ -2898,6 +2898,7 @@ $1',
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength', # Do not translate list items
 
 # EXIF tags

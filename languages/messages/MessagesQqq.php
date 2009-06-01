@@ -70,6 +70,7 @@
  * @author Srhat
  * @author Tgr
  * @author UV
+ * @author Umherirrender
  * @author Urhixidur
  * @author Verdy p
  * @author Vinhtantran
@@ -84,7 +85,8 @@ $messages = array(
 'tog-highlightbroken'         => "[[Special:Preferences]], tab 'Misc'. Offers user a choice how format internal links to non-existing pages. As red links or with a trailing question mark.",
 'tog-justify'                 => "[[Special:Preferences]], tab 'Misc'. Offers user a choice to justify paragraphs or not.",
 'tog-hideminor'               => "[[Special:Preferences]], tab 'Recent changes'. Offers user to hide minor edits in recent changes or not.",
-'tog-hidepatrolled'           => 'Option in Recent changes tab of [[Special:Preferences]]',
+'tog-hidepatrolled'           => 'Option in Recent changes tab of [[Special:Preferences]] (if [[mw:Manual:$wgUseRCPatrol|$wgUseRCPatrol]] is enabled)',
+'tog-newpageshidepatrolled'   => 'Toggle in [[Special:Preferences]], section "Recent changes" (if [[mw:Manual:$wgUseRCPatrol|$wgUseRCPatrol]] is enabled)',
 'tog-extendwatchlist'         => "[[Special:Preferences]], tab 'Watchlist'. Offers user to show all applicable changes in watchlist (by default only the last change to a page on the watchlist is shown).",
 'tog-usenewrc'                => "[[Special:Preferences]], tab 'Recent changes'. Offers user to use alternative reprsentation of [[Special:RecentChanges]].",
 'tog-numberheadings'          => "[[Special:Preferences]], tab 'Misc'. Offers numbered headings on content pages to user.",
@@ -445,8 +447,9 @@ HTML markup cannot be used.",
 
 # Main script and global functions
 'nosuchspecialpage' => 'The title of the error you get when trying to open a special page which does not exist. The text of the warning is the message {{msg-mw|nospecialpagetext}}. Example: [[Special:Nosuchpage]]',
-'nospecialpagetext' => 'The text of the error you get when trying to open a special page which does not exist.
-The title of the warning is the message {{msg-mw|nosuchspecialpage}}. <code><nowiki>[[Special:SpecialPages|{{int:specialpages}}]]</nowiki></code> should remain untranslated. Example: [[Special:Nosuchpage]]',
+'nospecialpagetext' => 'This error is shown when trying to open a special page which does not exist, e.g. [[Special:Nosuchpage]].
+* The title of this error is the message {{msg-mw|nosuchspecialpage}}. 
+* Link <code><nowiki>[[Special:SpecialPages|{{int:specialpages}}]]</nowiki></code> should remain untranslated.',
 
 # General errors
 'error'                => '{{Identical|Error}}',
@@ -535,7 +538,9 @@ The title of the warning is the message {{msg-mw|nosuchspecialpage}}. <code><now
 {{Identical|Language}}',
 'yourvariant'                => 'Used in [[Special:Preferences]], first tab, when the wiki content language has variants only.
 {{optional}}',
-'yournick'                   => 'Used in [[Special:Preferences]], first tab.',
+'yournick'                   => 'Used in [[Special:Preferences]], first tab.
+
+{{Identical|Signature}}',
 'badsig'                     => 'Error message displayed when entering invalid signature in user preferences',
 'badsiglength'               => 'Warning message that is displayed on [[Special:Preferences]] when trying to save a signature that is too long. Parameter $1 is the maximum number of characters that is allowed in a signature (multi-byte characters are counted as one character).',
 'yourgender'                 => 'Used in [[Special:Preferences]], first tab.',
@@ -591,6 +596,7 @@ $1 is the minimum number of characters in the password.',
 'oldpassword'               => "Used on the 'User profile' tab of 'my preferences'. This is the text next to an entry box for the old password in the 'change password' section.",
 'newpassword'               => '{{Identical|New password}}',
 'retypenew'                 => "Appears on the 'User profile' tab of the 'Preferences' special page in the 'Change password' section. It appears next to the text box for entering the new password a second time.",
+'resetpass_submit'          => 'Submit button on [[Special:Resetpass]]',
 'resetpass-submit-loggedin' => 'Button on [[Special:ResetPass]] to submit new password.',
 'resetpass-wrong-oldpass'   => 'Error message shown on [[Special:Resetpass]] when the old password is not valid.',
 'resetpass-temp-password'   => 'The label of the input box for the temporary password (received by e-mail) on the form displayed after logging in with a temporary password.',
@@ -664,13 +670,14 @@ Parameters:
 * <tt>$7</tt> is the intended target of the block (what the blocking user specified in the blocking form)
 * <tt>$8</tt> is the timestamp when the block started',
 'blockednoreason'                  => '{{Identical|No reason given}}',
-'whitelistedittext'                => '* $1: link to Special:UserLogin with {{msg|loginreqlink}} as link description',
+'whitelistedittext'                => '* $1 is a link to [[Special:UserLogin]] with {{msg-mw|loginreqlink}} as link description',
 'nosuchsectiontext'                => 'This message is displayed when a user tries to edit a section that does not exist. 
 
 Parameter $1 is the content of section parameter in the URL (for example 1234 in the URL http://translatewiki.net/w/i.php?title=Sandbox&action=edit&section=1234)',
-'loginreqlink'                     => 'Take a look on inflection. Used as parameter in {{msg|loginreqpagetext}} and {{msg|whitelistedittext}}.
+'loginreqlink'                     => 'Take a look on inflection. Used as parameter in {{msg-mw|loginreqpagetext}}, {{msg-mw|whitelistedittext}} and {{msg-mw|watchlistanontext‎}}.
 
 {{Identical|Log in}}',
+'loginreqpagetext'                 => '* $1 is a link to [[Special:UserLogin]] with {{msg-mw|loginreqlink}} as link description',
 'accmailtitle'                     => 'Page title when temporary password was sent to a user via email.',
 'accmailtext'                      => "The message shown when a temporary password has been sent to the user's email address.
 
@@ -986,7 +993,9 @@ $1 is the relevance of this result in per cent.
 'recentchangesdays-max'     => 'Shown as hint in [[Special:Preferences]], tab "Recent changes"',
 'recentchangescount'        => 'Used in [[Special:Preferences]], tab "Recent changes".',
 'savedprefs'                => 'This message appears after saving changes to your user preferences.',
+'timezonelegend'            => '{{Identical|Time zone}}',
 'timezonetext'              => "Additional explanation given in [[Special:Preferences]], tab 'date and time' with the preference in message ''timezoneoffset''",
+'timezoneselect'            => '{{Identical|Time zone}}',
 'timezoneoffset'            => "Text next to input box in [[Special:Preferences]], tab 'date and time', section 'timezone'.",
 'allowemail'                => 'Used in [[Special:Preferences]] > {{int:prefs-personal}} > {{int:email}}.',
 'prefs-searchoptions'       => '{{Identical|Search options}}',
@@ -1265,8 +1274,8 @@ Does not work under $wgMiserMode ([[mwr:48986|r48986]]).',
 'file-thumbnail-no'           => 'Error message at [[Special:Upload]]',
 'fileexists-shared-forbidden' => 'Error message at [[Special:Upload]]',
 'savefile'                    => 'When uploading a file',
-'uploadedimage'               => 'This is the text of an entry in the [[Special:Log|upload log]] (and Recent Changes), after hour (and date, only in the Upload log) and sysop name. $1 is the name of the file uploaded.',
-'overwroteimage'              => 'This is the text of an entry in the [[Special:Log|upload log]] (and Recent Changes), after hour (and date, only in the Upload log) and sysop name. $1 is the name of the file uploaded.',
+'uploadedimage'               => 'This is the text of an entry in the [[Special:Log|upload log]] (and Recent Changes), after hour (and date, only in the Upload log) and user name. $1 is the name of the file uploaded.',
+'overwroteimage'              => 'This is the text of an entry in the [[Special:Log|upload log]] (and Recent Changes), after hour (and date, only in the Upload log) and user name. $1 is the name of the file uploaded.',
 'uploaddisabled'              => 'Title of the Special:Upload page when upload is disabled.',
 'uploaddisabledtext'          => 'This message can have parameter $1, which contains the name of the target file. See r22243 and [https://bugzilla.wikimedia.org/show_bug.cgi?id=8818 bug 8818].',
 'php-uploaddisabledtext'      => 'This means that file uploading is disabled in PHP, not upload of PHP-files.',
@@ -1702,6 +1711,7 @@ Special:EmailUser appears when you click on the link "E-mail this user" in the s
 *$1: Username of current user
 {{Identical|For $1}}',
 'nowatchlist'          => 'Displayed when there is no pages in the watchlist.',
+'watchlistanontext'    => '* $1 is a link to [[Special:UserLogin]] with {{msg-mw|loginreqlink}} as link description',
 'watchnologin'         => '{{Identical|Not logged in}}',
 'addedwatch'           => 'Page title displayed when clicking on {{msg|watch}} tab (only when not using the AJAX feauture which allows watching a page without reloading the page or such). See also {{msg|addedwatchtext}}.',
 'addedwatchtext'       => 'Explanation shown when clicking on the {{msg|watch}} tab. See also {{msg|addedwatch}}.',
@@ -1801,11 +1811,10 @@ Shown as subtitle of the protection form. $1 is the title of the page to be (un)
 'protect-default'           => '{{Identical|Default}}',
 'protect-fallback'          => 'This message is used as an option in the protection form on wikis were extra protection levels have been configured.',
 'protect-summary-cascade'   => 'Used in edit summary when cascade protecting a page.',
-'protect-expiring'          => 'Used in page history, and in [[Special:Protectedtitles]], [[Special:Protectedpages]].
-
-$1 = date and time,
-$2 = date,
-$3 = time.
+'protect-expiring'          => 'Used in page history, and in [[Special:Protectedtitles]], [[Special:Protectedpages]], and extension FlaggedRevs.
+* $1 is a date and time
+* $2 is a date (optional)
+* $3 is a time (optional)
 
 {{Identical|Expires $1 (UTC)}}',
 'protect-cascade'           => 'See [[meta:Protect]] for more information.',
@@ -1888,7 +1897,7 @@ $3 = time.
 
 # Namespace form on various pages
 'namespace'      => '{{Identical|Namespace}}',
-'invert'         => 'Displayed in [[Special:RecentChanges]].
+'invert'         => 'Displayed in [[Special:RecentChanges|RecentChanges]], [[Special:RecentChangesLinked|RecentChangesLinked]] and [[Special:Watchlist|Watchlist]]
 
 {{Identical|Invert selection}}',
 'blanknamespace' => 'Name for main namespace (blank namespace) in drop-down menus at [[Special:RecentChanges]] and other special pages.',
@@ -1928,10 +1937,14 @@ Displayed in Special:WhatLinksHere (see [[Special:WhatLinksHere/Template:New por
 'isimage'                  => 'This message is displayed on [[Special:WhatLinksHere]] for images. It means that the image is used on the page (as opposed to just being linked to like an non-image page).',
 'whatlinkshere-prev'       => 'This is part of the navigation message on the top and bottom of Whatlinkshere pages, where it is used as the first argument of {{msg-mw|Viewprevnext}}.
 $1 is the number of items shown per page. It is not used when $1 is zero; not sure what happens when $1 is one.
-Special pages use {{msg-mw|Prevn}} instead (still as an argument to {{msg-mw|Viewprevnext}}).',
+Special pages use {{msg-mw|Prevn}} instead (still as an argument to {{msg-mw|Viewprevnext}}).
+
+{{Identical|Previous}}',
 'whatlinkshere-next'       => 'This is part of the navigation message on the top and bottom of Whatlinkshere pages, where it is used as the second argument of {{msg-mw|Viewprevnext}}.
 $1 is the number of items shown per page. It is not used when $1 is zero; not sure what happens when $1 is one.
-Special pages use {{msg-mw|Nextn}} instead (still as an argument to {{msg-mw|Viewprevnext}}).',
+Special pages use {{msg-mw|Nextn}} instead (still as an argument to {{msg-mw|Viewprevnext}}).
+
+{{Identical|Next}}',
 'whatlinkshere-links'      => 'Used on [[Special:WhatLinksHere]]. It is a link to the WhatLinksHere page of that page.
 
 Example line:

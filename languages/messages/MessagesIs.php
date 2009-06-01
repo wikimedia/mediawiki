@@ -1674,6 +1674,7 @@ Sjáðu [[Special:ProtectedPages|listann yfir verndaðar síður]] fyrir núvera
 'protectedarticle'            => 'verndaði „[[$1]]“',
 'modifiedarticleprotection'   => 'breytti verndunarstigi fyrir "[[$1]]"',
 'unprotectedarticle'          => 'afverndaði „[[$1]]“',
+'movedarticleprotection'      => 'verndunarstilling hefur verið færð frá „[[$2]]“ á „[[$1]]“',
 'protect-title'               => 'Vernda „$1“',
 'prot_1movedto2'              => '[[$1]] færð á [[$2]]',
 'protect-legend'              => 'Verndunarstaðfesting',
@@ -2178,6 +2179,7 @@ Ef skránni hefur verið breytt, kann að vera að einhverjar upplýsingar eigi 
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength', # Do not translate list items
 
 # EXIF tags

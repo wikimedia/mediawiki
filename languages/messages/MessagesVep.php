@@ -2236,6 +2236,7 @@ Ku fail redaktiruidihe sändan polhe, erased parametrad voidas erineda nügüdl�
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength', # Do not translate list items
 
 # EXIF tags

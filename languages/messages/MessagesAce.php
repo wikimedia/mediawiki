@@ -773,6 +773,7 @@ Hubông-hubông lheuëh nyan bak baréh nyang saban geukira sibagoë keucuali, n
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength', # Do not translate list items
 
 # External editor support

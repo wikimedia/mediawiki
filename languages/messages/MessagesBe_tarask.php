@@ -1248,7 +1248,7 @@ $2',
 'recentchangesdays-max'     => '(максымальна $1 {{PLURAL:$1|дзень|дні|дзён}})',
 'recentchangescount'        => 'Колькасьць рэдагаваньняў для паказу ў апошніх зьменах, гісторыях старонак і ў журналах, па змоўчваньні:',
 'savedprefs'                => 'Вашыя ўстаноўкі былі захаваныя.',
-'timezonelegend'            => 'Часавы пояс',
+'timezonelegend'            => 'Часавы пояс:',
 'timezonetext'              => '¹На колькі гадзінаў Ваш мясцовы час адрозьніваецца ад сэрвэрнага (UTC).',
 'localtime'                 => 'Мясцовы час:',
 'timezoneselect'            => 'Часавы пояс:',
@@ -2651,6 +2651,7 @@ $1',
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength', # Do not translate list items
 
 # EXIF tags

@@ -727,7 +727,11 @@ Pare proprie ca l'onne scangellete.",
 
 Avessere a essere mene de $2 {{PLURAL:$2|chiamate|chiamate}}, 'nvece mò {{PLURAL:$1|ste $1 chiamate|ne stonne $1 chiamate}}.",
 'expensive-parserfunction-category'       => 'Pàggene cu troppe chiamate a le funziune de analisi',
+'post-expand-template-inclusion-warning'  => "Attenziò: 'a dimenzione d'u template jè troppe granne.
+Certe template ponne non essere 'ngluse.",
 'post-expand-template-inclusion-category' => "Pàggene addò le dimenziune d'u template sonde assaije proprie",
+'post-expand-template-argument-warning'   => "Attenziò: Sta pàgene tène almene 'n'argomende de 'nu template ca jè troppe larie.
+Ste argumende onne state luete.",
 'post-expand-template-argument-category'  => 'Pàggene ca condenene template cu quacche argomende zumbete',
 'parser-template-loop-warning'            => "Amme acchiete 'nu cicle de template: [[$1]]",
 'parser-template-recursion-depth-warning' => "Ha state supranete 'u limite di ricorsione de le template ($1)",
@@ -782,6 +786,10 @@ Pruève a [[Special:Search|cercò sus a Uicchi]] 'mbrà le vosce cchiù rilevand
 'rev-deleted-comment'            => '(commende scangillete)',
 'rev-deleted-user'               => '(nome utende scangillete)',
 'rev-deleted-event'              => "(azione de l'archivie scangillete)",
+'rev-deleted-text-permission'    => "Sta revisione d'a pàgene ha state '''scangellate'''.
+Puè acchijà cchiù 'mbormaziune sus a [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} l'archivije de le scangallaminde].",
+'rev-deleted-text-view'          => "Sta revisione d'a pàgene ha state '''scangellate'''.
+Cumme a 'n'amministratore tu a puè vedè angore; stonne cchiù 'mbormaziune jndr'à l'[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} archiviè de le scangellaminde].",
 'rev-delundel'                   => 'fa vedè/scunne',
 'revisiondelete'                 => 'Scangille/Repristine revisiune',
 'revdelete-nooldid-title'        => 'Revisione de destinazione invalida',
@@ -1297,7 +1305,7 @@ Pe piacere condrolle 'u file e carechele 'n'otra vote.",
 'sourcefilename'             => "Nome d'u fail d'origgine:",
 'destfilename'               => "Nome d'u file de destinazione:",
 'upload-maxfilesize'         => "Dimenzione massima d'u file: $1",
-'watchthisupload'            => 'Condrolle sta pàgene',
+'watchthisupload'            => 'Condrolle stu file',
 'filewasdeleted'             => "'Nu file ca se chiamave cumme a quidde tue ha state apprime carecate e pò ha state scangellete.
 Tu avissa condrollà 'u $1 apprime ca condinue cu 'u carecamende.",
 'upload-wasdeleted'          => "'''FA ATTENZIO': Tu ste careche 'nu file ca apprime ha state scangellete.'''
@@ -1866,6 +1874,7 @@ $1",
 'sp-contributions-newbies'     => 'Fà vedè sulamende le condrebbute de le utinde nueve',
 'sp-contributions-newbies-sub' => "Pe l'utinde nuève",
 'sp-contributions-blocklog'    => 'Archivije de le Bloccaminde',
+'sp-contributions-logs'        => 'archivije',
 'sp-contributions-search'      => 'Ricerche pe condrebbute',
 'sp-contributions-username'    => "Indirizze IP o nome de l'utende:",
 'sp-contributions-submit'      => 'Cirche',
@@ -2051,6 +2060,7 @@ non ge se pò movere 'na pàgene sus a sè stesse.",
 'immobile-target-page'      => 'Non ge puè spustà sus a stu titele de destinazione.',
 'imagetypemismatch'         => "L'estenziona nove d'u file non ge se accocchie cu 'u tipe sue",
 'imageinvalidfilename'      => "'U nome d'u file de destinazzione jè invalide",
+'move-leave-redirect'       => "Lasse 'nu ridirezionamende rréte",
 
 # Export
 'export'            => 'Pàggene esportete',
@@ -2263,6 +2273,7 @@ Otre avènene scunnute pe defolt.
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength", # Do not translate list items
 
 # EXIF tags
@@ -2534,10 +2545,11 @@ Mitte 'u nome d'u file senze 'u \"{{ns:file}}:\" prefisse.",
 'tags-hitcount'           => '$1 {{PLURAL:$1|cangiamende|cangiaminde}}',
 
 # Database error messages
-'dberr-header'    => "Sta Uicchi tène 'nu probbleme",
-'dberr-problems'  => "Simw spiacende! Stu site stè 'ngondre de le diffcoltà tecniche.",
-'dberr-again'     => 'Aspitte quacche minute e pò recareche.',
-'dberr-info'      => "(Non ge riuscime a condattà 'u server d'u database: $1)",
-'dberr-usegoogle' => 'Pu mumende tu puè pruvà a cercà cu Google.',
+'dberr-header'      => "Sta Uicchi tène 'nu probbleme",
+'dberr-problems'    => "Simw spiacende! Stu site stè 'ngondre de le diffcoltà tecniche.",
+'dberr-again'       => 'Aspitte quacche minute e pò recareche.',
+'dberr-info'        => "(Non ge riuscime a condattà 'u server d'u database: $1)",
+'dberr-usegoogle'   => 'Pu mumende tu puè pruvà a cercà cu Google.',
+'dberr-cachederror' => "Queste jè 'na copie ''cache'' d'a pàgene ca è cercate e allore non g'à puè cangià.",
 
 );

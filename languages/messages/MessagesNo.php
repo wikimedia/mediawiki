@@ -21,6 +21,7 @@
  * @author Kph-no
  * @author Laaknor
  * @author Najami
+ * @author Nghtwlkr
  * @author Piivaat
  * @author Samuelsen
  * @author Stigmj
@@ -862,9 +863,13 @@ Grunnen som ble oppgitt av $3 er ''$2''",
 'rev-deleted-event'              => '(fjernet loggoppføring)',
 'rev-deleted-text-permission'    => "Denne revisjonen har blitt '''slettet'''. 
 Det kan være detaljer i [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} slettingsloggen].",
-'rev-deleted-text-view'          => 'Denne revisjonen har blitt fjernet fra det offentlige arkivet. Som administrator har du mulighet til å se den; det kan være detaljer i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} slettingsloggen].',
-'rev-deleted-no-diff'            => 'Du kan ikke vise denne diffen fordi en av revisjonene har blitt fjernet fra de offentlige arkivene.
-Det kan være mer detaljer i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}}sletteloggen].',
+'rev-deleted-text-view'          => "Denne sideversjonen har blitt '''slettet'''.
+Som administrator kan du se den. Det kan finnes flere detaljer i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} sletteloggen].",
+'rev-deleted-no-diff'            => "Du kan ikke vise forskjellen fordi en av versjonene har blitt '''slettet'''.
+Det kan finnes flere detaljer i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}}sletteloggen].",
+'rev-deleted-unhide-diff'        => "Én av versjonene i denne forskjellen har blitt '''slettet'''.
+Det kan finnes flere detaljer i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} sletteloggen].
+Som administrator kan du fortsatt [$1 se forskjellen] om du ønsker å fortsette.",
 'rev-delundel'                   => 'vis/skjul',
 'revisiondelete'                 => 'Slett/gjenopprett revisjoner',
 'revdelete-nooldid-title'        => 'Ugyldig målversjon',
@@ -877,9 +882,13 @@ Det kan være mer detaljer i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}
 'revdelete-nologid-text'         => 'Du har enten ikke spesifisert ett loggelement å utføre på denne funksjonen, eller spesifisert element finnes ikke.',
 'revdelete-selected'             => "'''{{PLURAL:$2|Valgt revisjon|Valgte revisjoner}} av [[:$1]]:'''",
 'logdelete-selected'             => "'''{{PLURAL:$1|Valgt loggoppføring|Valgte loggoppføringer}}:'''",
-'revdelete-text'                 => "'''Slettede revisjoner vil fortsatt vises i sidehistorikken, men innholdet vil ikke være tilgjengelig for offentligheten.'''
+'revdelete-text'                 => "'''Slettede versjoner og oppføringer vil fortsatt vises i sidehistorikken og loggene, men deler av innholdet vil ikke lenger bli offentliggjort.'''
 
-Andre administratorer på {{SITENAME}} vil fortsatt kunne se det skjulte innholdet, og kan gjenopprette det, med mindre videre begrensninger blir gitt av sideoperatørene.",
+Andre administratorer på {{SITENAME}} vil fortsatt kunne se det skjulte innholdet, og kan gjenopprette det, med mindre videre begrensninger blir gitt av sideoperatørene.
+Vennligst bekreft at du vil gjøre dette, og at du skjønner følgene, og at du gjør dette i henhold til [[{{MediaWiki:Policy-url}}|MediaWiki sine retningslinjer]].",
+'revdelete-suppress-text'        => "Utelatelse bør '''kun''' brukes i følgende tilfeller:
+* Upassende personlige opplysninger
+*: ''hjemmeadresser og -telefonnummer, personnummer og lignende''",
 'revdelete-legend'               => 'Fastsett synlighetsbegrensninger',
 'revdelete-hide-text'            => 'Skjul revisjonstekst',
 'revdelete-hide-name'            => 'Skjul handling og mål',
@@ -1124,7 +1133,7 @@ se math/README for oppsett.',
 'recentchangesdays-max'     => '(maksimum $1 {{PLURAL:$1|dag|dager}})',
 'recentchangescount'        => 'Antall redigeringer som skal vises i «Siste endringer», historikker og logger som standard:',
 'savedprefs'                => 'Innstillingene ble lagret.',
-'timezonelegend'            => 'Tidssone',
+'timezonelegend'            => 'Tidssone:',
 'timezonetext'              => '¹Tast inn antall timer lokaltid differerer fra tjenertiden (UTC).',
 'localtime'                 => 'Lokaltid:',
 'timezoneselect'            => 'Tidssone:',
@@ -1920,7 +1929,7 @@ Den siste redigeringen ble foretatt av [[User:$3|$3]] ([[User talk:$3|diskusjon]
 ** Redigeringskrig
 ** Side med mange besøkende',
 'protect-edit-reasonlist'     => 'Rediger låsingsgrunner',
-'protect-expiry-options'      => '2 timep:2 hours,1 dag:1 day,3 dager:3 days,1 uke:1 week,2 uker:2 weeks,1 måned:1 month,3 måneder:3 months,6 måneder:6 months,1 år:1 year,uendelig:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1 time:1 hour,1 dag:1 day,1 uke:1 week,2 uker:2 weeks,1 måned:1 month,3 måneder:3 months,6 måneder:6 months,1 år:1 year,uendelig:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Tillatelse',
 'restriction-level'           => 'Restriksjonsnivå',
 'minimum-size'                => 'Minimumstørrelse',
@@ -2201,7 +2210,7 @@ I disse tilfellene er du nødt til å flytte eller flette sammen siden manuelt."
 'move-redirect-suppressed'     => 'ingen omdirigering',
 'movelogpage'                  => 'Flyttelogg',
 'movelogpagetext'              => 'Her er ei liste over sider som har blitt flyttet.',
-'movesubpage'                  => 'Undersider',
+'movesubpage'                  => '{{PLURAL:$1|Underside|Undersider}}',
 'movesubpagetext'              => 'Denne siden har {{PLURAL:$1|én underside|$1 undersider}} som vises nedenfor.',
 'movenosubpage'                => 'Denne siden har ingen undersider.',
 'movereason'                   => 'Årsak:',
@@ -2520,6 +2529,7 @@ Kun listeelementer (linjer som starter med *) tas med. Den første lenka på en 
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength', # Do not translate list items
 
 # EXIF tags
@@ -2836,7 +2846,7 @@ Denne bekreftelseskoden utgår $4.',
 'scarytranscludetoolong'  => '[URL-en er for lang]',
 
 # Trackbacks
-'trackbackbox'      => 'Tilbakesporinger for denne artikkelen:<br />
+'trackbackbox'      => 'Tilbakesporinger for denne siden:<br />
 $1',
 'trackbackremove'   => '([$1 Slett])',
 'trackbacklink'     => 'Tilbakesporing',
@@ -3005,11 +3015,12 @@ Skriv inn filnavn uten «{{ns:file}}:»-prefikset.',
 'intentionallyblankpage' => 'Denne siden er tom med vilje',
 
 # External image whitelist
-'external_image_whitelist' => ' #La denne linja være som den er<pre>
+'external_image_whitelist' => '#La denne linja være som den er<pre>
 #Skriv fragmenter av regulære uttrykk (delen som går mellom //) nedenfor
 #Disse vil sjekkes mot adresser til bilder fra eksterne sider
 #De som blir godkjent vil vises, ellers vil det gis en lenke til bildet
 #Linjer som begynner med # anses som kommentarer
+#Det skilles ikke mellom store og små bokstaver
 
 #Skriv alle fragmenter av regulære uttrykk over denne lina. La denne linja være som den er</pre>',
 

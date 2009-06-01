@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Crazymadlover
  * @author Jorge Morais
  * @author Leonardo.stabile
  * @author Lijealso
@@ -1166,7 +1167,7 @@ Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desac
 'recentchangesdays-max'     => '(máximo: $1 {{PLURAL:$1|dia|dias}})',
 'recentchangescount'        => 'Número de edições a serem exibidas nas mudanças recentes, históricos de páginas e páginas de registos, por defeito:',
 'savedprefs'                => 'As suas preferências foram gravadas.',
-'timezonelegend'            => 'Fuso horário',
+'timezonelegend'            => 'Fuso horário:',
 'timezonetext'              => '¹Número de horas que o seu horário local difere do horário do servidor (UTC).',
 'localtime'                 => 'Horário local:',
 'timezoneselect'            => 'Fuso horário:',
@@ -2563,6 +2564,7 @@ Caso o ficheiro tenha sido modificado a partir do seu estado original, alguns de
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength', # Do not translate list items
 
 # EXIF tags

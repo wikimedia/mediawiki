@@ -1695,6 +1695,7 @@ Er satır * işaretinen başlamalı. Satırnıñ birinci bağlantısı qоşmağ
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength', # Do not translate list items
 
 # EXIF tags

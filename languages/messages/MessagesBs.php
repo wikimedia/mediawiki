@@ -1276,7 +1276,7 @@ Pokušajte u Vaš upit uključiti prefiks ''all:'' da bi ste pretražili sav sad
 'recentchangesdays-max'     => '(najviše $1 {{PLURAL:$1|dan|dana}})',
 'recentchangescount'        => 'Broj naslova za prikaz u nedavnim izmjenama, historijama stranice i zapisnicima, po pretpostavkama:',
 'savedprefs'                => 'Vaša podešavanja su sačuvana.',
-'timezonelegend'            => 'Vremenska zona',
+'timezonelegend'            => 'Vremenska zona:',
 'timezonetext'              => 'Unesite broj sati za koji se Vaše lokalno vrijeme razlikuje od serverskog vremena (UTC).',
 'localtime'                 => 'Lokalno vrijeme:',
 'timezoneselect'            => 'Vremenska zona:',
@@ -2736,6 +2736,7 @@ Svi drugi linkovi u istoj liniji se smatraju izuzecima, npr. kod stranica gdje s
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength", # Do not translate list items
 
 # EXIF tags

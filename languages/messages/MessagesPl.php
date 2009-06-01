@@ -335,9 +335,9 @@ $messages = array(
 'category-empty'                 => "''Obecnie w tej kategorii brak stron oraz plików.''",
 'hidden-categories'              => '{{PLURAL:$1|Ukryta kategoria|Ukryte kategorie}}',
 'hidden-category-category'       => 'Ukryte kategorie', # Name of the category where hidden categories will be listed
-'category-subcat-count'          => '{{PLURAL:$2|Ta kategoria ma tylko jedną podkategorię.|Poniżej wyświetlono {{PLURAL:$1|jedną podkategorię|$1 podkategorie|$1 podkategorii}} spośród wszystkich $2 podkategorii tej kategorii.}}',
+'category-subcat-count'          => '{{PLURAL:$2|Ta kategoria ma tylko jedną podkategorię.|Poniżej wyświetlono $1 spośród wszystkich $2 podkategorii tej kategorii.}}',
 'category-subcat-count-limited'  => 'Ta kategoria ma {{PLURAL:$1|1 podkategorię|$1 podkategorie|$1 podkategorii}}.',
-'category-article-count'         => '{{PLURAL:$2|W tej kategorii jest tylko jedna strona.|Poniżej wyświetlono {{PLURAL:$1|jedną stronę|$1 strony|$1 stron}} spośród wszystkich $2 stron tej kategorii.}}',
+'category-article-count'         => '{{PLURAL:$2|W tej kategorii jest tylko jedna strona.|Poniżej wyświetlono $1 spośród wszystkich $2 stron tej kategorii.}}',
 'category-article-count-limited' => 'W tej kategorii {{PLURAL:$1|jest 1 strona|są $1 strony|jest $1 stron}}.',
 'category-file-count'            => '{{PLURAL:$2|W tej kategorii znajduje się tylko jeden plik.|W tej kategorii {{PLURAL:$1|jest 1 plik|są $1 pliki|jest $1 plików}} z ogólnej liczby $2 plików.}}',
 'category-file-count-limited'    => 'W tej kategorii {{PLURAL:$1|jest 1 plik|są $1 pliki|jest $1 plików}}.',
@@ -649,7 +649,7 @@ Spróbuj ponownie po ich odblokowaniu.',
 'loginsuccesstitle'          => 'Zalogowano pomyślnie',
 'loginsuccess'               => "'''{{GENDER:|Zalogowałeś|Zalogowałaś}} się do {{GRAMMAR:D.lp|{{SITENAME}}}} jako „$1”.'''",
 'nosuchuser'                 => 'Brak użytkownika o nazwie „$1”.
-W nazwa użytkownika ma znaczenie wielkość znaków.
+W nazwie użytkownika ma znaczenie wielkość znaków.
 Sprawdź pisownię lub [[Special:UserLogin/signup|utwórz nowe konto]].',
 'nosuchusershort'            => 'Brak użytkownika o nazwie „<nowiki>$1</nowiki>”.
 Sprawdź poprawność pisowni.',
@@ -1916,7 +1916,7 @@ Adres e‐mailowy, który został przez Ciebie wprowadzony w [[Special:Preferenc
 'watchnologintext'     => 'Musisz się [[Special:UserLogin|zalogować]] przed modyfikacją listy obserwowanych stron.',
 'addedwatch'           => 'Dodana do listy obserwowanych',
 'addedwatchtext'       => "Strona „[[:$1|$1]]” została dodana do Twojej [[Special:Watchlist|listy obserwowanych]].
-Każda zmiana treści tej strony lub związanej z nią strony dyskusji zostanie odnotowana na poniższej liście. Dodatkowo nazwa strony zostanie '''wytłuszczona''' na [[Special:RecentChanges|liście ostatnich zmian]], aby ułatwić Ci zauważenie faktu zmiany.",
+Każda zmiana treści tej strony lub związanej z nią strony dyskusji zostanie odnotowana na tej liście. Dodatkowo nazwa strony zostanie '''wytłuszczona''' na [[Special:RecentChanges|liście ostatnich zmian]], aby ułatwić Ci zauważenie faktu zmiany.",
 'removedwatch'         => 'Usunięto z listy obserwowanych',
 'removedwatchtext'     => 'Strona „[[:$1]]” została usunięta z Twojej [[Special:Watchlist|listy obserwowanych]].',
 'watch'                => 'Obserwuj',
@@ -2696,6 +2696,7 @@ Pozostałe pola zostaną domyślnie ukryte.
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength', # Do not translate list items
 
 # EXIF tags

@@ -2030,6 +2030,7 @@ Detang aliwa tambing (by default) lang makasalikut.
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength', # Do not translate list items
 
 # EXIF tags

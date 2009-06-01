@@ -42,7 +42,7 @@ $messages = array(
 'tog-justify'                 => '對到段落',
 'tog-hideminor'               => '該朝子嗰改動弆到嗰細修改',
 'tog-extendwatchlist'         => '增加監視清單來顯示全部用得正嗰改動，不光係最晏嗰改動',
-'tog-usenewrc'                => '加強該朝子嗰改動(JavaScript)',
+'tog-usenewrc'                => '更高級嗰最晏嗰改動(JavaScript)',
 'tog-numberheadings'          => '標題自動編號',
 'tog-showtoolbar'             => '顯示編輯工具欄(JavaScript)',
 'tog-editondblclick'          => '按兩下改吖(JavaScript)',
@@ -50,7 +50,7 @@ $messages = array(
 'tog-editsectiononrightclick' => '可以按右鍵來編寫隻把子段落(JavaScript)',
 'tog-showtoc'                 => '超過三隻標題就顯到目錄',
 'tog-rememberpassword'        => '到箇隻電腦記到我嗰密碼',
-'tog-editwidth'               => '編輯欄嗰最闊度',
+'tog-editwidth'               => '加闊編輯框到適合整個屏幕',
 'tog-watchcreations'          => '拿我開嗰頁面加到我嗰監視列表',
 'tog-watchdefault'            => '拿我改嗰頁面加到我嗰監視列表',
 'tog-watchmoves'              => '拿我動嗰頁面加到我嗰監視列表',
@@ -214,7 +214,7 @@ $messages = array(
 'toolbox'           => '工具盒',
 'userpage'          => '眵吖用戶頁',
 'projectpage'       => '眵吖計劃頁',
-'imagepage'         => '眵吖媒體頁',
+'imagepage'         => '眵吖文件頁',
 'mediawikipage'     => '眵吖消息頁',
 'templatepage'      => '眵吖模板頁',
 'viewhelppage'      => '眵吖幫助頁',
@@ -280,7 +280,7 @@ $messages = array(
 'restorelink'             => '$1隻拕刪吥嗰版本',
 'feedlinks'               => '鎖定:',
 'feed-invalid'            => '冇用嗰鎖定類型。',
-'feed-unavailable'        => '同步訂閱源到{{SITENAME}}用伓正',
+'feed-unavailable'        => '同步訂閱源冇得用',
 'site-rss-feed'           => '$1嗰RSS訊息',
 'site-atom-feed'          => '$1嗰Atom訊息',
 'page-rss-feed'           => '"$1"嗰RSS訊息',
@@ -336,6 +336,7 @@ $1',
 如果不係咁，倷可能係尋到軟件裡頭嗰bug。
 請記得 URL 嗰地址，向[[Special:ListUsers/sysop|管理員]]報告。',
 'missingarticle-rev'   => '（修訂#: $1）',
+'missingarticle-diff'  => '(差異: $1, $2)',
 'readonly_lag'         => '附屬資料庫服務器拿緩存更新到主服務器，資料庫自動鎖到嘞',
 'internalerror'        => '內部錯誤',
 'internalerror_info'   => '內部錯誤: $1',
@@ -1813,6 +1814,7 @@ $1',
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength', # Do not translate list items
 
 # EXIF tags

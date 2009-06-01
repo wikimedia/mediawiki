@@ -1097,7 +1097,7 @@ Spytaj swoje naprašowanje z prefiksom ''all:'' wužiwać, zo by wšón wobsah (
 'recentchangesdays-max'     => '(Maksimalnje $1 {{PLURAL:$1|dźeń|dnjej|dny|dnjow}})',
 'recentchangescount'        => 'Ličba stron w lisćinje aktualnych změnow, w stawiznach a w protokolach, po standardźe:',
 'savedprefs'                => 'Nastajenja buchu składowane.',
-'timezonelegend'            => 'Časowe pasmo',
+'timezonelegend'            => 'Časowe pasmo:',
 'timezonetext'              => '¹Zapisaj ličbu hodźin, wo kotrež so twój lokalny čas wot časa serwera (UTC) wotchila.',
 'localtime'                 => 'Lokalny čas:',
 'timezoneselect'            => 'Časowe pasmo',
@@ -1148,12 +1148,12 @@ Spytaj swoje naprašowanje z prefiksom ''all:'' wužiwać, zo by wšón wobsah (
 
 # Groups
 'group'               => 'Skupina:',
-'group-user'          => 'Wužiwarjo',
+'group-user'          => 'wužiwarjo',
 'group-autoconfirmed' => 'awtomatisce potwjerdźeny',
 'group-bot'           => 'Boty',
 'group-sysop'         => 'administratorojo',
-'group-bureaucrat'    => 'Běrokraća',
-'group-suppress'      => 'Dohladowarjo',
+'group-bureaucrat'    => 'běrokraća',
+'group-suppress'      => 'dohladowarjo',
 'group-all'           => '(wšě)',
 
 'group-user-member'          => 'Wužiwar',
@@ -2346,8 +2346,8 @@ W poslednim padźe móžeš tež wotkaz wužiwać, na př. „[[{{#Special:Expor
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Anonymny wužiwar|Anonymnaj wužiwarjej|Anonymni wužiwarjo|Anonymni wužiwarjo}} we {{GRAMMAR:lokatiw|{{SITENAME}}}}',
 'siteuser'         => 'wužiwar {{GRAMMAR:genitiw|{{SITENAME}}}} $1',
-'lastmodifiedatby' => 'Strona bu dnja $1 w $2 hodź. wot wužiwarja $4 změnjena.', # $1 date, $2 time, $3 user
-'othercontribs'    => 'Bazěruje na dźěle {{PLURAL:$1|wužiwar|wužiwarjow|wužiwarjow|wužiwarjow}} $1.',
+'lastmodifiedatby' => 'Strona bu dnja $1 w $2 hodź. wot $3 změnjena.', # $1 date, $2 time, $3 user
+'othercontribs'    => 'Bazěruje na dźěle $1.',
 'others'           => 'druhich',
 'siteusers'        => '{{SITENAME}}  {{PLURAL:$2|wužiwar|wužiwarjej|wužiwarjo|wužiwarjow}} $1',
 'creditspage'      => 'Dźak awtoram',
@@ -2466,6 +2466,7 @@ Nasledne wotkazy na samsnej lince definuja wuwzaća, hdźež so wobraz smě naje
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength', # Do not translate list items
 
 # EXIF tags

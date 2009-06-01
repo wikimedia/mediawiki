@@ -8,6 +8,7 @@
  * @file
  *
  * @author Mayooranathan
+ * @author Naveen
  * @author Sundar
  * @author Trengarasu
  * @author Ulmo
@@ -1024,6 +1025,8 @@ $1 பயனரையோ அல்லது வேறு [[{{MediaWiki:Grouppage
 'action-movefile'      => 'இந்தக் கோப்பை நகர்த்தவும்',
 'action-upload'        => 'இந்தக் கோப்பைப் பதிவிறக்கவும்',
 'action-delete'        => 'இந்தப் பக்கத்தை நீக்கவும்',
+'action-browsearchive' => 'அழிக்கப்பட்ட  பக்கங்களை தேடு',
+'action-undelete'      => 'அழித்த பக்கத்தை மறுபடியும் கொண்டு வா',
 
 # Recent changes
 'nchanges'                          => '{{PLURAL:$1|ஒரு மாற்றம்|$1 மாற்றங்கள்}}',
@@ -2034,6 +2037,7 @@ $1',
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength', # Do not translate list items
 
 # EXIF tags

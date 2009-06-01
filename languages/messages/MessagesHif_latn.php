@@ -2303,6 +2303,7 @@ Wahii line pe aur koi link exception consider karaa jai i.e. jahan par panna sak
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength', # Do not translate list items
 
 # EXIF tags

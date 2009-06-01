@@ -19,6 +19,7 @@
  * @author Gianfranco
  * @author Martorell
  * @author Marzedu
+ * @author McDutchie
  * @author Melos
  * @author Nemo bis
  * @author Nick1915
@@ -1140,7 +1141,7 @@ Conferma che è tua intenzione procedere a tale cancellazione, che hai piena con
 'recentchangesdays-max'     => '(massimo $1 {{PLURAL:$1|giorno|giorni}})',
 'recentchangescount'        => 'Numero di righe nelle ultime modifiche, cronologie e registri (valore predefinito):',
 'savedprefs'                => 'Le preferenze sono state salvate.',
-'timezonelegend'            => 'Fuso orario',
+'timezonelegend'            => 'Fuso orario:',
 'timezonetext'              => "Numero di ore di differenza fra l'ora locale e l'ora del server (UTC).",
 'localtime'                 => 'Ora locale:',
 'timezoneselect'            => 'Fuso orario:',
@@ -1788,7 +1789,7 @@ Potrebbero esserci [[{{MediaWiki:Listgrouprights-helppage}}|ulteriori informazio
 D'ora in poi, le modifiche apportate alla pagina e alla sua discussione verranno elencate in quella sede;
 il titolo della pagina apparirà in '''grassetto''' nella pagina delle [[Special:RecentChanges|ultime modifiche]] per renderlo più visibile.",
 'removedwatch'         => 'Pagina eliminata dalla lista degli osservati speciali',
-'removedwatchtext'     => 'La pagina "[[:$1]]" è stata eliminata dalla lista degli osservati speciali.',
+'removedwatchtext'     => 'La pagina "[[:$1]]" è stata eliminata dalla [[Special:Watchlist|lista degli osservati speciali]].',
 'watch'                => 'Segui',
 'watchthispage'        => 'Segui questa pagina',
 'unwatch'              => 'Non seguire',
@@ -2516,6 +2517,7 @@ I collegamenti successivi, sulla stessa riga, sono considerati come eccezioni (o
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength", # Do not translate list items
 
 # EXIF tags

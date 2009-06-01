@@ -723,7 +723,7 @@ Wann de Problem dann ëmmer nach bestoe sollt, da versicht iech [[Special:UserLo
 
 '''Wann dir eng berechtigt Ännerung maache wëllt, da versicht et w.e.g. nach eng Kéier. 
 Wann de Problem dann ëmmer nach bestoe sollt, versicht iech [[Special:UserLogout|auszeloggen]] an dann erëm anzeloggen.'''",
-'editing'                          => 'Ännere vun $1',
+'editing'                          => 'Ännere vu(n) $1',
 'editingsection'                   => 'Ännere vun $1 (Abschnitt)',
 'editingcomment'                   => 'Ännere vun $1 (neien Abschnitt)',
 'editconflict'                     => 'Ännerungskonflikt: $1',
@@ -788,6 +788,7 @@ Et däerfen net méi wéi $2 {{PLURAL:$2|Ufro|Ufroe}} sinn, aktuell {{PLURAL:$2|
 'expensive-parserfunction-category'       => 'Säiten, déi komplex Parserfunktiounen ze dacks opruffen',
 'post-expand-template-inclusion-warning'  => "Opgepasst: D'Gréisst vun den agebonnene Schablounen ass ze grouss, e puer Schabloune kënnen net agebonne ginn.",
 'post-expand-template-inclusion-category' => "Säiten, op denen d'maximal Gréist vun agebonnene Schablounen iwwerschratt ass",
+'post-expand-template-argument-warning'   => "'''Warnung: Op dëser Säit ass mindestens een Argument an enger Schabloun dat eng ze grouss Expansiounsgréisst huet. Dës Argumenter goufen ewechgelooss.",
 'post-expand-template-argument-category'  => 'Säiten, op dene mindestens e Parameter vun enger Schabloun vergiess ginn ass',
 'parser-template-loop-warning'            => 'Endlos Schleef an der Schabloun: [[$1]] entdeckt',
 
@@ -845,7 +846,7 @@ Dir fannt eventuell méi Informatiounen an der [{{fullurl:Special:Log/delete|pag
 Als Administrateur kënnt Dir se weiderhi gesinn; Dir fannt eventuell méi Detailer am  [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Läsch-Logbuch].",
 'rev-deleted-no-diff'            => "Dir kënnt dësen Ënnerscheed net gesinn, well eng vun de Versiounen '''geläscht gouf'''.
 Detailer stinn eventuell am [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Läsch-Logbuch].",
-'rev-deleted-unhide-diff'        => "Eng vun de Versiounen vun dësem Ënnerscheed gouf '''geläscht'''.
+'rev-deleted-unhide-diff'        => "Eng vun de Versioune vun dësem Ënnerscheed gouf '''geläscht'''.
 Detailer stinn eventuell am [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Logbuch vun de Läschungen].
 Als Administrateur kënnt Dir [$1 mat dësem Link de Versiounsënnerschied kucke] wann Dir weiderfuere wëllt.",
 'rev-delundel'                   => 'weisen/verstoppen',
@@ -853,8 +854,11 @@ Als Administrateur kënnt Dir [$1 mat dësem Link de Versiounsënnerschied kucke
 'revdelete-nooldid-title'        => 'Ongülteg Zilversioun',
 'revdelete-nooldid-text'         => 'Dir hutt entweder keng Versioun uginn fir dës Funktioun ze benotzen, déi Versioun déi Diruginn huet gëtt et net, oder dir versicht déi aktuell Versioun ze verstoppen.',
 'revdelete-nologtype-title'      => 'Keen Typ vu Logbuch uginn',
+'revdelete-nologtype-text'       => 'Dir hutt keen Typ vu Logbuch ugi fir dës Aktioun ze maachen.',
 'revdelete-toomanytargets-title' => 'Zevill Ziler',
+'revdelete-toomanytargets-text'  => 'Et goufen zevill Type vun Ziler, op deenen dës Aktioun gemaach soll ginn, definéiert.',
 'revdelete-nologid-title'        => 'Net valbele Wert am Logbuch',
+'revdelete-nologid-text'         => 'Dir hutt kee Logtyp erausgesicht oder de gewielte Logtyp gëtt et net.',
 'revdelete-selected'             => "'''{{PLURAL:$2|Gewielte Versioun|Gewielte Versioune}} vu(n) '''$1''' :'''",
 'logdelete-selected'             => "'''Ausgewielten {{PLURAL:$1|Evenement|Evenementer}} aus dem Logbuch:'''",
 'revdelete-text'                 => "'''Geläschte Versiounen oder aner geäschte Bestanddeeler sinn net méi ëffentlech zougänglech, si stinn awer weiderhinn an der Versiounsgeschicht vun der Säit.'''
@@ -907,6 +911,9 @@ Passt op, datt d'Versiounsgeschicht der Säit historesch korrekt ass.
 'mergehistory-from'                => 'Originalsäit:',
 'mergehistory-into'                => 'Zilsäit:',
 'mergehistory-list'                => 'Versiounen, déi zesummegeluecht kënne ginn',
+'mergehistory-merge'               => "Dës Versioune vun [[:$1]] kënnen matt [[:$2]] zesummegeluecht ginn. 
+Benotzt d'Radio-Knäppecher fir nëmmen déi Versiunen ze fusonnéieren déi zu engem spezifischen Zäitpunkt oder virdrun ugeluecht goufen.
+Denkt w.e.g drunn datt d'Navigatiounslinken d'Wiel vun de Versiounen nees zrécksetzen.",
 'mergehistory-go'                  => 'Weis déi Versiounen, déi zesummegeluecht kënne ginn',
 'mergehistory-submit'              => 'Versioune verschmelzen',
 'mergehistory-empty'               => 'Et kënne keng Versioune zesummegeluecht ginn.',
@@ -1033,7 +1040,7 @@ Dir kënnt [[:\$1|déi Säit uleeën]].",
 'search-result-score'              => 'Relevanz: $1 %',
 'search-redirect'                  => '(Viruleedung $1)',
 'search-section'                   => '(Abschnitt $1)',
-'search-suggest'                   => 'Méngt Dir: $1',
+'search-suggest'                   => 'Mengt Dir: $1',
 'search-interwiki-caption'         => 'Schwesterprojeten',
 'search-interwiki-default'         => '$1 Resultater:',
 'search-interwiki-more'            => '(méi)',
@@ -1110,7 +1117,7 @@ iwwerpréift déi korrekt Installatioun vu LaTeX, dvips, gs a convert",
 'recentchangesdays-max'     => '(Maximal $1 {{PLURAL:$1|Dag|Deeg}})',
 'recentchangescount'        => 'Zuel vun den Ännerungen déi bei de rezenten Ännerungen de Versiounen an den Log-Säite, als Standard gewise ginn:',
 'savedprefs'                => 'Är Astellunge goufe gespäichert.',
-'timezonelegend'            => 'Zäitzon',
+'timezonelegend'            => 'Zäitzon:',
 'timezonetext'              => "¹Gitt d'Zuel vun de Stonnen an, déi tëscht ärer Zäitzon an der Serverzäit (UTC) leien .",
 'localtime'                 => 'Lokalzäit:',
 'timezoneselect'            => 'Zäitzon:',
@@ -2243,7 +2250,7 @@ Wann nëmmen déi aktuell Versioun exportéiert soll ginn, kënnt Dir och e Link
 'allmessagestext'           => "Dëst ass eng Lëscht vun alle '''Messagen am MediaWiki:Nummraum, déi vun der MediaWiki-Software benotzt ginn.
 Besicht w.e.g. [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisatioun] a [http://translatewiki.net translatewiki.net] wann Dir wëllt bei de MediaWiki Iwwersetzunge matschaffen.",
 'allmessagesnotsupportedDB' => "Dës Säit kann net benotzt gi well '''\$wgUseDatabaseMessages''' ausgeschalt ass.",
-'allmessagesfilter'         => 'Noriichtennummfilter:',
+'allmessagesfilter'         => 'Filter vun de Systemmessagen:',
 'allmessagesmodified'       => 'Nëmme geännerter weisen',
 
 # Thumbnails
@@ -2377,7 +2384,7 @@ Erlaabt et e Grond an de Resumé derbäizesetzen.',
 'modern.css'      => "/* Dës CSS huet nëmmen Afloss op de Skin ''Modern''  */",
 
 # Scripts
-'common.js' => '/* All JavaScript hei gëtt fir all Benotzer beim Lueden vun all Säit gelueden. */',
+'common.js' => '/* All JavaScript hei gëtt fir all Benotzer beim Luede vun all Säit gelueden. */',
 
 # Metadata
 'nodublincore'      => 'Dublin Core RDF Metadata ass op dësem Server ausgeschalt.',
@@ -2457,6 +2464,7 @@ $1',
 'filedelete-missing'              => 'De Fichier "$1" kann net geläscht ginn, well et e net gëtt.',
 'filedelete-old-unregistered'     => 'Déi Versioun vum Fichier déi Dir uginn hutt "$1" gëtt et an der Datebank net.',
 'filedelete-current-unregistered' => 'Dee Fichier "$1" ass net an der Datebank.',
+'filedelete-archive-read-only'    => 'Op den Archiv-Repertoire „$1“ ka vum Webserver aus näischt geschriwwe ginn.',
 
 # Browsing diffs
 'previousdiff' => '← Méi al Ännerung',
@@ -2506,6 +2514,7 @@ Duerno sti Linken déi Ausnamen definéieren, a deenen hirem Kontext dat Bild aw
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength", # Do not translate list items
 
 # EXIF tags
@@ -2630,9 +2639,9 @@ Duerno sti Linken déi Ausnamen definéieren, a deenen hirem Kontext dat Bild aw
 'exif-orientation-2' => 'Horizontal gedréit', # 0th row: top; 0th column: right
 'exif-orientation-3' => 'Ëm 180° gedréit', # 0th row: bottom; 0th column: right
 'exif-orientation-4' => 'Vertikal gedréit', # 0th row: bottom; 0th column: left
-'exif-orientation-5' => "90° géint d'Richtung vun den Zären vun der Auer gedréint a vertikal ëmgedréint", # 0th row: left; 0th column: top
+'exif-orientation-5' => "90° géint d'Richtung vun den Zäre vun der Auer gedréint a vertikal ëmgedréint", # 0th row: left; 0th column: top
 'exif-orientation-6' => "Ëm 90° an d'Richtung vun den Zäre vun der Auer gedréint", # 0th row: right; 0th column: top
-'exif-orientation-7' => '90° an der Richtung vun den Zären vun der Auer gedréint a vertikal ëmgedréint', # 0th row: right; 0th column: bottom
+'exif-orientation-7' => '90° an der Richtung vun den Zäre vun der Auer gedréint a vertikal ëmgedréint', # 0th row: right; 0th column: bottom
 'exif-orientation-8' => "Ëm 90° géint d'Richtung vun den Zäre vun der Auer gedréint", # 0th row: left; 0th column: bottom
 
 'exif-componentsconfiguration-0' => 'Gëtt et net',
@@ -2642,7 +2651,7 @@ Duerno sti Linken déi Ausnamen definéieren, a deenen hirem Kontext dat Bild aw
 'exif-exposureprogram-2' => 'Standardprogramm',
 'exif-exposureprogram-3' => 'Zäitautomatik',
 'exif-exposureprogram-4' => 'Blendenautomatik',
-'exif-exposureprogram-7' => 'Portrait-Programm (fir Fotoen vun no mat engem net-scharfen Hannergrond)',
+'exif-exposureprogram-7' => 'Portrait-Programm (fir Fotoe vun no mat engem net-scharfen Hannergrond)',
 'exif-exposureprogram-8' => 'Landschaftsopnamen',
 
 'exif-subjectdistance-value' => '$1 Meter',
@@ -2667,6 +2676,7 @@ Duerno sti Linken déi Ausnamen definéieren, a deenen hirem Kontext dat Bild aw
 'exif-lightsource-17'  => 'Standardluucht A',
 'exif-lightsource-18'  => 'Standardluucht B',
 'exif-lightsource-19'  => 'Standardluucht C',
+'exif-lightsource-24'  => 'ISO Studio Konschtliicht',
 'exif-lightsource-255' => 'Aner Liichtquell',
 
 # Flash modes
@@ -2845,7 +2855,7 @@ $1",
 Benotzt w.e.g. d'Funktioun fir déi nach net gespäichert Versioun ze kucken (Kucken ouni ofzespäicheren).",
 
 # Friendlier slave lag warnings
-'lag-warn-normal' => 'Ännerunge vun {{PLURAL:$1|der leschter Sekonn|de leschte(n) $1 Sekonnen}} kënne an dëser Lëscht net gewise ginn.',
+'lag-warn-normal' => 'Ännerunge vun {{PLURAL:$1|der leschter Sekonn|de leschte(n) $1 Sekonnen}} kënnen an dëser Lëscht net gewise ginn.',
 'lag-warn-high'   => 'Duerch eng héich Serverbelaaschtung kënne Verännerungen déi viru manner wéi $1 {{PLURAL:$1|Sekonn|Sekonne}} gemaach goufen, net an dëser Lëscht ugewise ginn.',
 
 # Watchlist editor

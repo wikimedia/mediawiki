@@ -2247,6 +2247,7 @@ Alle folgjende links dy't op deselde rigel steane, wurde behannele as útsûnder
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength', # Do not translate list items
 
 # EXIF tags

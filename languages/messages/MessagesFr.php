@@ -1300,7 +1300,7 @@ Essayez en utilisant le préfixe ''all:'' pour rechercher dans tout le contenu (
 'recentchangesdays-max'     => '(maximum $1 jour{{PLURAL:$1||s}})',
 'recentchangescount'        => 'Nombre de modifications à afficher dans les modifications récentes, pages d’historiques et d’opérations, par défaut :',
 'savedprefs'                => 'Les préférences ont été sauvegardées.',
-'timezonelegend'            => 'Fuseau horaire',
+'timezonelegend'            => 'Fuseau horaire :',
 'timezonetext'              => 'Nombre d’heures de décalage entre votre heure locale et l’heure du serveur (UTC).',
 'localtime'                 => 'Heure locale :',
 'timezoneselect'            => 'Zone horaire',
@@ -2749,6 +2749,7 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength', # Do not translate list items
 
 # EXIF tags

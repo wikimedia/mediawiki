@@ -1120,7 +1120,7 @@ Assicùrete che la continuità storica de la pagina no la vegna alterà.',
 'recentchangesdays-max'     => '($1 {{PLURAL:$1|zorno|zorni}} massimo)',
 'recentchangescount'        => 'Nùmaro de modìfeghe da mostrar in ultime modìfeghe, cronologia e pagine de registro:',
 'savedprefs'                => 'Le to preferense łe xè stà salvae.',
-'timezonelegend'            => 'Fuso orario',
+'timezonelegend'            => 'Fuso orario:',
 'timezonetext'              => "¹Inserissi el nùmaro de ore de difarensa fra la to ora locale e l'ora del server (UTC).",
 'localtime'                 => 'Ora locale:',
 'timezoneselect'            => 'Fuso orario:',
@@ -2477,6 +2477,7 @@ I colegamenti sucessivi, su la stessa riga, i xe considerà come ecezion (cioè 
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength", # Do not translate list items
 
 # EXIF tags

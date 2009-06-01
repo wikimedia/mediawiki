@@ -1288,7 +1288,7 @@ Pokud na začátek dotazu přidáte ''all:'', bude se hledat všude (včetně di
 'recentchangesdays-max'     => '(maximálně $1 {{PLURAL:$1|den|dny|dní}})',
 'recentchangescount'        => 'Počet záznamů implicitně zobrazených v posledních změnách, historii a knihách záznamů:',
 'savedprefs'                => 'Vaše nastavení bylo uloženo.',
-'timezonelegend'            => 'Časové pásmo',
+'timezonelegend'            => 'Časové pásmo:',
 'timezonetext'              => '¹O kolik se váš místní čas liší od času na serveru (UTC).',
 'localtime'                 => 'Místní čas:',
 'timezoneselect'            => 'Časové pásmo:',
@@ -1475,7 +1475,7 @@ Pokud na začátek dotazu přidáte ''all:'', bude se hledat všude (včetně di
 'rcshowhideanons'                   => '$1 anonymní uživatele',
 'rcshowhidepatr'                    => '$1 prověřené editace',
 'rcshowhidemine'                    => '$1 moje editace',
-'rclinks'                           => 'Ukázat $1 posledních změn během {{PLURAL:$2|posledního dne|posledních $2 dnů|posledních $2 dnů}}<br />
+'rclinks'                           => 'Ukázat $1 posledních změn během posledních $2 dnů<br />
 $3',
 'diff'                              => 'rozdíl',
 'hist'                              => 'historie',
@@ -2664,6 +2664,7 @@ Obsahuje pouze seznam s odrážkami (řádka začíná s *). První odkaz na ř�
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength', # Do not translate list items
 
 # EXIF tags

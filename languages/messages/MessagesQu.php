@@ -131,7 +131,7 @@ $messages = array(
 'tog-hidepatrolled'           => "Patrullasqa llamk'apusqakunata ñaqha hukchasqapi pakay",
 'tog-newpageshidepatrolled'   => "Patrullasqa llamk'apusqakunata musuq p'anqakunapi pakay",
 'tog-extendwatchlist'         => "Watiqana sutisuyuta tukuy rurachinalla hukchaykunaman mast'ay, ama lliwmanta aswan ñaqhallachu",
-'tog-usenewrc'                => "Sananchasqa ñaqha hukchasqakuna (JavaScript: manam tukuy wamp'unakunapichu llamk'an)",
+'tog-usenewrc'                => "Sananchasqa ñaqha hukchasqakuna (JavaScript nisqallawanmi llamk'an)",
 'tog-numberheadings'          => "Uma siq'ikunata kikinmanta yupay",
 'tog-showtoolbar'             => "Llamk'apuna sillwita rikuchiy",
 'tog-editondblclick'          => "P'anqakunata llamk'apuy iskaylla ñit'iywan (JavaScript)",
@@ -139,7 +139,7 @@ $messages = array(
 'tog-editsectiononrightclick' => "Rakirilla llamk'apuyta saqillay paña butunta rakirip sutinpi ñit'ispa (JavaScript)",
 'tog-showtoc'                 => "Yuyarina wachuchasqata rikuchiy (kimsamanta aswan uma siq'iyuq p'anqakunapaq)",
 'tog-rememberpassword'        => "Yaykuna rimata yuyaykuy llamk'ay tiyaypura",
-'tog-editwidth'               => "Llamk'apuna k'itiqa lliwmanta aswan sunim",
+'tog-editwidth'               => "Llamk'apuna k'itita mast'ariy lliw qhawana pampata hunt'ananpaq",
 'tog-watchcreations'          => "Qallarisqay p'anqakunata watiqay.",
 'tog-watchdefault'            => "Hukchasqay p'anqakunata watiqay",
 'tog-watchmoves'              => "Astasqay p'anqakunata watiqay",
@@ -1088,7 +1088,7 @@ Takyachikuy kay hukchayqa allin wiñay kawsay ñiqita ama waqllichunchu chaylla.
 'recentchangesdays-max'     => "(ama $1-manta aswan {{PLURAL:$1|p'unchaw|p'unchaw}} kachunchu)",
 'recentchangescount'        => "Ñaqha hukchasqakunapi, wiñay kawsaykunapi, hallch'asqakunapipas p'anqa sutikunap yupaynin, kikinmanta:",
 'savedprefs'                => "Allinkachinaykikunaqa hallch'asqañam.",
-'timezonelegend'            => "Pacha t'urpi",
+'timezonelegend'            => "Pacha t'urpi:",
 'timezonetext'              => "¹Hayk'a urataq qampa tiyayllaykip pachan sirwiqpa pachanmanta (UTC).",
 'localtime'                 => 'Tiyaylla pacha:',
 'timezoneselect'            => 'Pacha suyu:',
@@ -1377,7 +1377,7 @@ Kay churkunayki rikcha hunt'a chhikan kayniyuq kaptinqa, chay hunt'atam churkuy,
 'sourcefilename'              => 'Qallariy willañiqip sutin:',
 'destfilename'                => 'Tukuna willañiqip sutin:',
 'upload-maxfilesize'          => 'Lliwmanta aswan willañiqi chhikan kay: $1',
-'watchthisupload'             => "Kay p'anqata watiqay",
+'watchthisupload'             => 'Kay willañiqita watiqay',
 'filewasdeleted'              => 'Kay sutiyuq willañiqi huk kutiña churkusqa karqaspa chaymanta qullusqam karqan. $1-ta llanchinaykim tiyanman manaraq musuqmanta churkuspayki.',
 'upload-wasdeleted'           => "'''Paqtataq: Huk kutiña qullusqa willañiqitam churkuykachachkanki.'''
 
@@ -2418,7 +2418,7 @@ $1",
 
 # Media information
 'mediawarning'         => "'''Paqtataq''': Kay willañiqiqa millay wakichi qillqayuqchá, payta rurachiyqa antañiqiqniykita llikaykitapas waqllinqachá.<hr />",
-'imagemaxsize'         => "Willana p'anqakunapi rikchakunata kaykama saywachay:",
+'imagemaxsize'         => "Rikchap chhikan kayninta kaykama saywachay:<br />''(willañiqi ch'uyanchana p'anqakunapaq)''",
 'thumbsize'            => "Ch'iñicha rikchachap chhikan kaynin:",
 'widthheightpage'      => "$1×$2, $3 {{PLURAL:$3|p'anqa|p'anqakuna}}",
 'file-info'            => '(willañiqip chhikan kaynin: $1; MIME laya: $2)',
@@ -2457,6 +2457,7 @@ Kikin siq'ipi ima qatiq t'inkillapas sapaqllatam hamut'arisqa, ahinataq siq'ipi 
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength", # Do not translate list items
 
 # EXIF tags

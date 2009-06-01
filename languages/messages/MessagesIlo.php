@@ -1531,6 +1531,7 @@ ODagiti dadduma ket sigud a nakalemmeng.
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength', # Do not translate list items
 
 # EXIF tags

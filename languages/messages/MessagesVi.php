@@ -842,7 +842,7 @@ Bạn phải đảm bảo với chúng tôi rằng chính bạn là người vi�
 'readonlywarning'                  => "'''CẢNH BÁO: Cơ sở dữ liệu đã bị khóa để bảo dưỡng, do đó bạn không thể lưu các sửa đổi của mình. Bạn nên cắt-dán đoạn bạn vừa sửa vào một tập tin và lưu nó lại để sửa đổi sau này.'''
 
 Người quản lý khi khóa dữ liệu đã đưa ra lý do: $1",
-'protectedpagewarning'             => "'''CẢNH BÁO:  Trang này đã bị khoá, chỉ có các thành viên có quyền quản lý mới sửa được.'''",
+'protectedpagewarning'             => "'''CẢNH BÁO: Trang này đã bị khóa, chỉ có các thành viên có quyền quản lý mới sửa được.'''",
 'semiprotectedpagewarning'         => "'''Ghi chú:''' Trang này đã bị khóa, chỉ cho phép các thành viên đã đăng ký sửa đổi.",
 'cascadeprotectedwarning'          => "'''Cảnh báo:''' Trang này đã bị khóa, chỉ có thành viên có quyền quản lý mới có thể sửa đổi được, vì nó được nhúng vào {{PLURAL:$1|trang|những trang}} bị khóa theo tầng sau:",
 'titleprotectedwarning'            => "'''CẢNH BÁO:  Trang này đã bị khóa vì vậy bạn cần một số [[Special:ListGroupRights|quyền]] mới có thể tạo trang.'''",
@@ -1117,7 +1117,7 @@ Xin hãy bảo đảm giữ vững tính liên tục của lịch sử trang.',
 'searchhelp-url'                   => 'Help:Nội dung',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Duyệt các trang với tiền tố này]]',
 'searchprofile-articles'           => 'Trang có nội dung',
-'searchprofile-articles-and-proj'  => 'Trang có nội dung & Trang dự án',
+'searchprofile-articles-and-proj'  => 'Trang có nội dung & trang dự án',
 'searchprofile-project'            => 'Trang dự án',
 'searchprofile-images'             => 'Tập tin',
 'searchprofile-everything'         => 'Tất cả',
@@ -1210,7 +1210,7 @@ Xin hãy bảo đảm giữ vững tính liên tục của lịch sử trang.',
 'recentchangesdays-max'     => '(tối đa $1 {{PLURAL:$1|ngày|ngày}})',
 'recentchangescount'        => 'Số sửa đổi hiển thị trong trang thay đổi gần đây, lịch sử của trang và nhật trình, theo mặc định là:',
 'savedprefs'                => 'Đã lưu các tùy chọn cá nhân.',
-'timezonelegend'            => 'Múi giờ',
+'timezonelegend'            => 'Múi giờ:',
 'timezonetext'              => '¹Số giờ chênh lệch giữa giờ địa phương của bạn với giờ máy chủ (UTC)',
 'localtime'                 => 'Giờ hiện tại:',
 'timezoneselect'            => 'Múi giờ:',
@@ -2458,7 +2458,7 @@ Lưu nó vào máy tính của bạn rồi tải nó lên đây.',
 'tooltip-t-specialpages'          => 'Danh sách các trang đặc biệt',
 'tooltip-t-print'                 => 'Bản để in ra của trang',
 'tooltip-t-permalink'             => 'Liên kết thường trực đến phiên bản này của trang',
-'tooltip-ca-nstab-main'           => 'Xem trang này',
+'tooltip-ca-nstab-main'           => 'Xem trang nội dung này',
 'tooltip-ca-nstab-user'           => 'Xem trang về người này',
 'tooltip-ca-nstab-media'          => 'Xem trang phương tiện',
 'tooltip-ca-nstab-special'        => 'Đây là một trang đặc biệt, bạn không thể sửa đổi được nó.',
@@ -2635,6 +2635,7 @@ Những thông tin khác mặc định sẽ được ẩn đi.
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength', # Do not translate list items
 
 # EXIF tags

@@ -1383,7 +1383,7 @@ Bevestig dat dit de bedoeling is, da-j de gevolgen dervan begriepen en da-j dit 
 'right-autopatrol'            => 'Bewarkingen wonnen autematisch as econtreleerd emarkeerd',
 'right-patrolmarks'           => 'Controletekens in leste wiezigingen bekieken',
 'right-unwatchedpages'        => "Bekiek een lieste mit pagina's dee neet op een volglieste staon",
-'right-trackback'             => 'Een weerummespoor opgeven',
+'right-trackback'             => 'Een trackback opgeven',
 'right-mergehistory'          => "De geschiedenisse van pagina's bie mekaar doon",
 'right-userrights'            => 'Alle gebrukersrechen bewarken',
 'right-userrights-interwiki'  => "Gebrukersrechen van gebrukers in aandere wiki's wiezigen",
@@ -2630,6 +2630,7 @@ Alle volgende verwiezingen dee op dezelfde regel staon, wonnen behaandeld as uut
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength', # Do not translate list items
 
 # EXIF tags

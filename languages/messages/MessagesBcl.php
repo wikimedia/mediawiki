@@ -249,7 +249,7 @@ $messages = array(
 'printableversion'  => 'Naipiprentang bersyon',
 'permalink'         => 'Permanenteng takod',
 'print'             => 'Iprenta',
-'edit'              => 'Ligwatón',
+'edit'              => 'Liwatón',
 'create'            => 'Maggibo',
 'editthispage'      => 'Hirahón ining pahina',
 'create-this-page'  => 'Gibohon ining pahina',
@@ -300,7 +300,7 @@ $messages = array(
 'disclaimers'          => 'Mga renunsya',
 'disclaimerpage'       => 'Project:Heneral na renunsya',
 'edithelp'             => 'Paghirá kan pagtabang',
-'edithelppage'         => 'Help:Pagligwat',
+'edithelppage'         => 'Help:Pagliwat',
 'faq'                  => 'HD',
 'faqpage'              => 'Project:HD',
 'helppage'             => 'Help:Mga laog',
@@ -325,12 +325,12 @@ $messages = array(
 'newmessageslink'         => 'mga bàgong mensahe',
 'newmessagesdifflink'     => 'huring pagbàgo',
 'youhavenewmessagesmulti' => 'Igwa ka nin mga bàgong mensahe sa $1',
-'editsection'             => 'ligwatón',
-'editold'                 => 'Ligwatón',
+'editsection'             => 'liwatón',
+'editold'                 => 'Liwatón',
 'viewsourceold'           => 'hilingón an ginikánan',
-'editlink'                => 'ligwatón',
+'editlink'                => 'liwatón',
 'viewsourcelink'          => 'hilingón an toltolan',
-'editsectionhint'         => 'Ligwatón an seksyon: $1',
+'editsectionhint'         => 'Liwatón an seksyon: $1',
 'toc'                     => 'Mga laog',
 'showtoc'                 => 'ipahilíng',
 'hidetoc'                 => 'tagoon',
@@ -638,7 +638,7 @@ Probaran tabì giraray. Kun dai man giraray magibo, probaran na magluwas dangan 
 'token_suffix_mismatch'     => "'''Dai pigtogotan an paghirá mo ta sinabrit kan client mo an punctuation characters.
 Dai pigtogotan ining paghirá tangarig maibitaran na maraot an teksto kan pahina.
 Nanyayari nanggad ini kun naggagamit ka nin bakong maraháy asin dai bistong web-based proxy service.'''",
-'editing'                   => 'Pigliligwat an $1',
+'editing'                   => 'Pigliliwat an $1',
 'editingsection'            => 'Pighihira an $1 (seksyon)',
 'editingcomment'            => 'Pighihira an $1 (komento)',
 'editconflict'              => 'Komplikto sa paghihira: $1',
@@ -681,7 +681,7 @@ Pwede kang bumalik dangan maghirá nin presenteng pahina, o [[Special:UserLogin|
 
 Dapat mong isipon kun kaipuhan na ipadagos an paghirá kaining pahina.
 An paghalì kan historial para sa pahinang ini yaon digdi para sa saimong kombenyensya:",
-'edit-conflict'             => 'Igwang iregularidad sa pagligwat.',
+'edit-conflict'             => 'Igwang iregularidad sa pagliwat.',
 'edit-already-exists'       => 'Dai maggibo an bàgong pahina.
 Igwa na kaini.',
 
@@ -1578,7 +1578,7 @@ Dai babàgohon an mga takod sa dating titulo kan pahina;
 seguradohon tabì na mayong doble o raot na mga redirekta.
 Ika an responsable sa pagpaseguro na an mga takod nakatokdô kun sain dapat.
 
-Giromdomon tabì na an pahina '''dai''' ibabalyó kun igwa nang pahina sa bàgong titulo, apwera kun mayò ining laog o sarong redirekta asin uusipón nin mga dating pagligwat. An boot sabihon kaini, pwede mong ibalik an dating pangaran kan pahina kun sain ini pigribayan nin pangaran kun napasalà ka, asin dai mo man sosoknongan an presenteng pahina.
+Giromdomon tabì na an pahina '''dai''' ibabalyó kun igwa nang pahina sa bàgong titulo, apwera kun mayò ining laog o sarong redirekta asin uusipón nin mga dating pagliwat. An boot sabihon kaini, pwede mong ibalik an dating pangaran kan pahina kun sain ini pigribayan nin pangaran kun napasalà ka, asin dai mo man sosoknongan an presenteng pahina.
 
 '''PATANID!'''
 Pwede na dakulà asin dai seguradong pagbàgo ini kan sarong popular na pahina; seguradohon tabì na aram mo an konsekwensya kaini bago magdagos.",

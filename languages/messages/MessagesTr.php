@@ -1136,7 +1136,7 @@ ayarlamak için math/README'ye bakın.",
 'recentchangesdays-max'     => '(maksimum $1 {{PLURAL:$1|gün|gün}})',
 'recentchangescount'        => 'Son değişiklikler, sayfa geçmişi ve günlüklerde varsayılan olarak gösterilecek değişiklik sayısı',
 'savedprefs'                => 'Ayarlar kaydedildi.',
-'timezonelegend'            => 'Saat dilimi',
+'timezonelegend'            => 'Saat dilimi:',
 'timezonetext'              => '¹Viki sunucusu (UTC/GMT) ile aranızdaki saat farkı. (Türkiye için +02:00)',
 'localtime'                 => 'Yerel saat:',
 'timezoneselect'            => 'Saat dilimi:',
@@ -2558,6 +2558,7 @@ Ondan sonraki link(ler) kural dışı olarak kabul edilir, örneğin: resim sayf
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength', # Do not translate list items
 
 # EXIF tags

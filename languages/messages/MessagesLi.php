@@ -2467,6 +2467,7 @@ Alle volgende links die op dezelfde regel sjtaon, waere behanjeld es oetzunjerin
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength", # Do not translate list items
 
 # EXIF tags

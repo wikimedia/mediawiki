@@ -1281,7 +1281,7 @@ $2',
 # Search results
 'searchresults'                    => 'نتایج جستجو',
 'searchresults-title'              => 'نتایج جستجو برای «$1»',
-'searchresulttext'                 => 'برای اطلاعات بیشتر دربارهٔ جستجوی {{SITENAME}}، به [[{{ns:project}}:جستجو کردن|جستجوی {{SITENAME}}]] مراجعه کنید.',
+'searchresulttext'                 => 'برای اطلاعات بیشتر دربارهٔ جستجوی {{SITENAME}}، به [[{{MediaWiki:Helppage}}|{{int:help}}]] مراجعه کنید.',
 'searchsubtitle'                   => "شما '''[[:$1]]''' را جستید ([[Special:Prefixindex/$1|صفحه‌هایی که با «$1» شروع می‌شوند]]{{int:pipe-separator}}
 [[Special:WhatLinksHere/$1|صفحه‌هایی که به «$1» پیوند دارند]])",
 'searchsubtitleinvalid'            => 'برای پرس‌وجوی «$1»',
@@ -1398,7 +1398,7 @@ $2',
 'recentchangesdays-max'     => '(حداکثر $1 {{PLURAL:$1|روز|روز}})',
 'recentchangescount'        => 'تعداد عناوین در تغییرات اخیر، تاریخچهٔ صفحه‌ها، و سیاهه‌ها، به طور پیش‌فرض:',
 'savedprefs'                => 'ترجیحات شما ذخیره شد.',
-'timezonelegend'            => 'منطقهٔ زمانی',
+'timezonelegend'            => 'منطقهٔ زمانی:',
 'timezonetext'              => 'تفاوت تعداد ساعت زمان محلی‌تان با زمان خادم (وقت گرینیچ) را وارد کنید.',
 'localtime'                 => 'زمان محلی:',
 'timezoneselect'            => 'منطقه زمانی:',
@@ -2202,7 +2202,7 @@ $NEWPAGE
 'protect-otherreason-op'      => 'دلیل دیگر/اضافی',
 'protect-dropdown'            => '*دلایل متداول محافظت
 ** خرابکاری گسترده
-** هرزنگاری گسترده
+** هرزنویسی گسترده
 ** جنگ ویرایشی غیر سازنده
 ** صفحهٔ پر بازدید',
 'protect-edit-reasonlist'     => 'ویرایش دلایل محافظت',
@@ -2327,7 +2327,7 @@ $1',
 'ipbreasonotherlist'              => 'دیگر دلایل',
 'ipbreason-dropdown'              => '**وارد کردن اطلاعات نادرست
 **پاک کردن اطلاعات مفید از صفحه‌ها
-**هرزنگاری از طریق درج مکرر پیوند به وب‌گاه‌ها
+**هرزنویسی از طریق درج مکرر پیوند به وب‌گاه‌ها
 **درج چرندیات یا نوشته‌های بی‌معنا در صفحه‌ها
 **تهدید یا ارعاب دیگر کاربرها
 **سوء استفاده از چند حساب کاربری زاپاس
@@ -2795,6 +2795,7 @@ $1',
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength', # Do not translate list items
 
 # EXIF tags
@@ -3324,7 +3325,7 @@ $1',
 'specialpages-group-pagetools'   => 'ابزارهای صفحه‌ها',
 'specialpages-group-wiki'        => 'اطلاعات و ابزارهای ویکی',
 'specialpages-group-redirects'   => 'صفحه‌های ویژهٔ تغییر مسیر دهنده',
-'specialpages-group-spam'        => 'ابزارهای مرتبط با هرزنگاری',
+'specialpages-group-spam'        => 'ابزارهای مرتبط با هرزنویسی',
 
 # Special:BlankPage
 'blankpage'              => 'صفحهٔ خالی',

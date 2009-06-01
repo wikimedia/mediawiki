@@ -1113,7 +1113,7 @@ Móžoš bok ale teke [[:$1|sam załožyś]].",
 'recentchangesdays-max'     => '(maksimalnje $1 {{PLURAL:$1|źeń|dnja|dny|dnjow}})',
 'recentchangescount'        => 'Licba změnow w „Aktualne změny“, stawiznach boka a w protokolach pó standarźe:',
 'savedprefs'                => 'Twóje nastajenja su se składowali.',
-'timezonelegend'            => 'Casowa cona',
+'timezonelegend'            => 'Casowa cona:',
 'timezonetext'              => '¹Pódaj licbu góźinow, kótarež laže mjazy twójeju casoweju conu a UTC.',
 'localtime'                 => 'Městny cas:',
 'timezoneselect'            => 'Casowa cona',
@@ -1164,11 +1164,11 @@ Móžoš bok ale teke [[:$1|sam załožyś]].",
 
 # Groups
 'group'               => 'Kupka:',
-'group-user'          => 'Wužywarje',
-'group-autoconfirmed' => 'Wobkšuśone wužywarje',
+'group-user'          => 'wužywarje',
+'group-autoconfirmed' => 'wobkšuśone wužywarje',
 'group-bot'           => 'awtomatiske programy (boty)',
-'group-sysop'         => 'Administratory',
-'group-bureaucrat'    => 'Běrokraty',
+'group-sysop'         => 'administratory',
+'group-bureaucrat'    => 'běrokraty',
 'group-suppress'      => 'Doglědowanja',
 'group-all'           => '(wše)',
 
@@ -2490,6 +2490,7 @@ Slědujuce wótkaze w tej samej smužce se za wuwześa naglědaju, w kótarychž
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength', # Do not translate list items
 
 # EXIF tags

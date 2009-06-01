@@ -164,8 +164,8 @@ $messages = array(
 'returnto'          => 'Torra a $1.',
 'tagline'           => 'Dae {{SITENAME}}',
 'help'              => 'Agiudu',
-'search'            => 'Chirca',
-'searchbutton'      => 'Chirca',
+'search'            => 'Kirca',
+'searchbutton'      => 'Kirca',
 'go'                => 'Bae',
 'searcharticle'     => 'Bae',
 'history'           => 'Istòria de sa pàgina',
@@ -189,12 +189,12 @@ $messages = array(
 'talkpage'          => 'Pàgina de cuntierra',
 'talkpagelinktext'  => 'Cuntierra',
 'specialpage'       => 'Pàgina Ispetziale',
-'personaltools'     => 'Istrumentos personales',
+'personaltools'     => 'Ainas personales',
 'postcomment'       => 'Setzione noa',
 'articlepage'       => "Càstia s'artìculu",
 'talk'              => 'Cuntierras',
 'views'             => 'Bisuras',
-'toolbox'           => 'Istrumentos',
+'toolbox'           => 'Ainas',
 'userpage'          => 'Càstia sa pàgina usuàriu',
 'projectpage'       => 'Càstia sa pàgina meta',
 'imagepage'         => 'Càstia sa pàgina de su file',
@@ -207,7 +207,7 @@ $messages = array(
 'protectedpage'     => 'Pàgina amparada',
 'jumpto'            => 'Bae a:',
 'jumptonavigation'  => 'navigadura',
-'jumptosearch'      => 'chirca',
+'jumptosearch'      => 'kirca',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'A propòsitu de {{SITENAME}}',
@@ -434,7 +434,7 @@ Pro pregheri ispetzìfica totu is particolares in antis in carchi siat pregunta 
 Pro creare sa pagina, iscrie in su box inoghe in basciu (abàida sa [[{{MediaWiki:Helppage}}|pàgina de agiudu]] pro àteras informatziones).
 Chi ses intrau inoghe pro isballiu, clicca in su browser tuo su butoni '''back/indietro'''.",
 'noarticletext'                    => 'In custu momentu sa pàgina est bùida.
-Podes [[Special:Search/{{PAGENAME}}|chircare custu tìtulu]] in àteras pàginas, <span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} chircare ne is registros ligados] oppuru [{{fullurl:{{FULLPAGENAME}}|action=edit}} acontzare sa pàgina]</span>.',
+Podes [[Special:Search/{{PAGENAME}}|kircare custu tìtulu]] in àteras pàginas, <span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} kircare ne is registros ligados] oppuru [{{fullurl:{{FULLPAGENAME}}|action=edit}} acontzare sa pàgina]</span>.',
 'updated'                          => '(Agiornau)',
 'note'                             => "'''Nota:'''",
 'previewnote'                      => "'''Arregodadia  ca custa est isceti una ANTIPRIMA. Sa versione tua no est istada ancora allogada!'''",
@@ -516,10 +516,10 @@ Legenda: '''({{int:cur}})''' = diferèntzias cun sa versione currente, '''({{int
 'diff-with-final'         => '&#32;e $1 $2',
 
 # Search results
-'searchresults'                  => 'Arresurtaus de sa chirca',
-'searchresults-title'            => 'Arresurtaus pro sa chirca de "$1"',
-'searchresulttext'               => 'Pro àteras informatziones pro sa chirca interna a {{SITENAME}}, càstia [[{{MediaWiki:Helppage}}|Chirca in {{SITENAME}}]].',
-'searchsubtitle'                 => 'Chirca de \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|totu is pàginas ca incumentzant pro "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|totu is pàginas ca ligant a "$1"]])',
+'searchresults'                  => 'Arresurtadus de sa kirca',
+'searchresults-title'            => 'Arresurtadus pro sa kirca de "$1"',
+'searchresulttext'               => 'Pro àteras informatziones pro sa kirca intre de {{SITENAME}}, càstia [[{{MediaWiki:Helppage}}|Kirca in {{SITENAME}}]].',
+'searchsubtitle'                 => 'Kirca de \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|totu is pàginas ca incumentzant pro "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|totu is pàginas ca ligant a "$1"]])',
 'searchsubtitleinvalid'          => 'As chircadu "$1"',
 'noexactmatch'                   => "'''Sa pàgina \"\$1\" no esistit.''' 
 Podes [[:\$1|creare custa pàgina]].",
@@ -538,7 +538,7 @@ Podes [[:\$1|creare custa pàgina]].",
 'search-result-size'             => '$1 ({{PLURAL:$2|1 fueddu|$2 fueddus}})',
 'search-redirect'                => '(redirect $1)',
 'search-section'                 => '(setzione $1)',
-'search-suggest'                 => 'Forsis fias chirchende: $1',
+'search-suggest'                 => 'Fortzis fias kirchende: $1',
 'search-interwiki-caption'       => 'Progetos frades',
 'search-interwiki-default'       => '$1 arresurtaus:',
 'search-interwiki-more'          => '(àteru)',
@@ -549,11 +549,11 @@ Podes [[:\$1|creare custa pàgina]].",
 'showingresultstotal'            => "Sighende {{PLURAL:$4|benit amostau s'arresurtau '''$1''' de '''$3'''|benint amostaus is arresurtaos '''$1 - $2''' de '''$3'''}}",
 'nonefound'                      => "'''Annota''': sa chirca est fata pro difetu isceti in unos Nòmene-logos. 
 Prova a scioberai ''totu:'' pro chircare in totu su cuntènnidu (includius pàginas de cuntierra, template, etc), oppuru sciobera comente prefissu su pretzisu Nòmene-logu chi boles.",
-'powersearch'                    => 'Chirca',
-'powersearch-legend'             => 'Chirca avantzada',
-'powersearch-ns'                 => 'Chirca in su Nòmene-logu:',
+'powersearch'                    => 'Kirca',
+'powersearch-legend'             => 'Kirca delantada',
+'powersearch-ns'                 => 'Kirca in su nòmene-logu:',
 'powersearch-redir'              => 'Lista re-indiritzamentos',
-'powersearch-field'              => 'Chirca',
+'powersearch-field'              => 'Kirca',
 
 # Preferences page
 'preferences'              => 'Preferèntzias',
@@ -1099,7 +1099,7 @@ Podes castiare sa mitza sua',
 'tooltip-ca-unwatch'              => 'Tira custa pàgina da sa watchlist tua',
 'tooltip-search'                  => 'Chirca a intru de {{SITENAME}}',
 'tooltip-search-go'               => 'Bae a una pàgina cun custu nòmene, chi esistit',
-'tooltip-search-fulltext'         => 'Chirca custu testu ne is pàginas',
+'tooltip-search-fulltext'         => 'Kirca custu testu in sas pàginas',
 'tooltip-n-mainpage'              => 'Vìsita sa pàgina printzipale',
 'tooltip-n-portal'                => 'Descritzioni de su progetu, ita podes faghere, ainnui agatas cosas',
 'tooltip-n-currentevents'         => 'Informatziones subra acuntèssias atuales',
@@ -1176,6 +1176,7 @@ Is acàpius chi sighint in sa matessi lìnia sunt cunsideraus comente eccetzione
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength", # Do not translate list items
 
 # EXIF tags

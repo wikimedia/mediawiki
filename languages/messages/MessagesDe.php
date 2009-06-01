@@ -1315,7 +1315,7 @@ Wenn du dich mit dem Thema auskennst, kannst du selbst [[:$1|die Seite verfassen
 'recentchangesdays-max'     => '(Maximal $1 {{PLURAL:$1|Tag|Tage}})',
 'recentchangescount'        => 'Anzahl der Einträge in der Liste der letzten Änderungen, der Versionsgeschichte und den Logbüchern:',
 'savedprefs'                => 'Deine Einstellungen wurden gespeichert.',
-'timezonelegend'            => 'Zeitzone',
+'timezonelegend'            => 'Zeitzone:',
 'timezonetext'              => '¹Gib die Anzahl der Stunden ein, die zwischen deiner Zeitzone und UTC liegen.',
 'localtime'                 => 'Ortszeit:',
 'timezoneselect'            => 'Zeitzone:',
@@ -2623,8 +2623,8 @@ Alle Transwiki-Import-Aktionen werden im [[Special:Log/import|Import-Logbuch]] p
 'anonymous'        => '{{PLURAL:$1|Anonymer Benutzer|Anonyme Benutzer}} auf {{SITENAME}}',
 'siteuser'         => '{{SITENAME}}-Benutzer $1',
 'lastmodifiedatby' => 'Diese Seite wurde zuletzt am $1 um $2 Uhr von $3 geändert.', # $1 date, $2 time, $3 user
-'othercontribs'    => 'Basiert auf der Arbeit von $1',
-'others'           => 'andere',
+'othercontribs'    => 'Basierend auf der Arbeit von $1.',
+'others'           => 'anderen',
 'siteusers'        => '{{SITENAME}}-{{PLURAL:$2|Benutzer|Benutzer}} $1',
 'creditspage'      => 'Seiteninformationen',
 'nocredits'        => 'Für diese Seite sind keine Informationen vorhanden.',
@@ -2741,6 +2741,7 @@ Darauf folgende Seitenlinks in derselben Zeile definieren Ausnahmen, in deren Ko
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength', # Do not translate list items
 
 # EXIF tags
@@ -3224,7 +3225,7 @@ Die Eingabe muss ohne den Zusatz „{{ns:file}}:“ erfolgen.',
 
 # Special:Tags
 'tags'                    => 'Gültige Änderungsmarkierungen',
-'tag-filter'              => '[[Special:Tags|Tag]]-Filter:',
+'tag-filter'              => '[[Special:Tags|Markierungs]]-Filter:',
 'tag-filter-submit'       => 'Filter',
 'tags-title'              => 'Markierungen',
 'tags-intro'              => 'Diese Seite zeigt alle Markierungen, die für Bearbeitungen verwendet werden, sowie deren Bedeutung.',

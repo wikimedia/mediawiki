@@ -2474,6 +2474,7 @@ Kement liamm all war an hevelep linenn a seller outañ evel un nemedenn, da skou
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength", # Do not translate list items
 
 # EXIF tags

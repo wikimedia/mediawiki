@@ -1692,6 +1692,7 @@ Pārējie lauki, pēc noklusējuma, būs paslēpti.
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength', # Do not translate list items
 
 # EXIF tags
