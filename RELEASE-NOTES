@@ -180,6 +180,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   variable instead of using this to overrules the user language preference.
 * (bug 19014) If user had deletedhistory right, but not undeleted right, then 
   show "view" instead of "view/restore" on logs.
+* (bug 19017) TOC level calculation error in an odd case
 
 == API changes in 1.16 ==
 
