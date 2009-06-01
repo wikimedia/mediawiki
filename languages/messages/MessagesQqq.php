@@ -1229,7 +1229,9 @@ This action allows editing of all of the "user rights", not just the rights of t
 'rcnotefrom'           => 'This message is displayed at [[Special:RecentChanges]] when viewing recentchanges from some specific time.
 
 Parameter $1 is the maximum number of changes that are displayed.
-Parameter $2 is a date and time.',
+Parameter $2 is a date and time.
+Parameter $3 is a date.
+Parameter $4 is a time.',
 'rclistfrom'           => 'Used on [[Special:RecentChanges]]. Parameter $1 is a date.',
 'rcshowhideminor'      => 'Option text in [[Special:RecentChanges]]',
 'rcshowhidebots'       => "Option text in [[Special:RecentChanges]]. $1 is the 'show/hide' command, with the text taken from either [[Mediawiki:Show]] or [[Mediawiki:Hide]].

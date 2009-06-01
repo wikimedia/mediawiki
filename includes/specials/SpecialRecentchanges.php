@@ -623,7 +623,9 @@ class SpecialRecentChanges extends SpecialPage {
 		if( $options['from'] ) {
 			$note .= wfMsgExt( 'rcnotefrom', array( 'parseinline' ),
 				$wgLang->formatNum( $options['limit'] ),
-				$wgLang->timeanddate( $options['from'], true ) ) . '<br />';
+				$wgLang->timeanddate( $options['from'], true ),
+				$wgLang->date( $options['from'], true ),
+				$wgLang->time( $options['from'], true ) ) . '<br />';
 		}
 
 		# Sort data for display and make sure it's unique after we've added user data.
