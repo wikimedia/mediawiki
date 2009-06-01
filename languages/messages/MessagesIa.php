@@ -857,70 +857,68 @@ Es possibile que illo esseva delite del wiki, o renominate.
 Prova [[Special:Search|cercar nove paginas relevante]] in le wiki.',
 
 # Revision deletion
-'rev-deleted-comment'            => '(commento eliminate)',
-'rev-deleted-user'               => '(nomine de usator eliminate)',
-'rev-deleted-event'              => '(entrata eliminate)',
-'rev-deleted-text-permission'    => "Iste version del pagina ha essite '''delite'''.
+'rev-deleted-comment'         => '(commento eliminate)',
+'rev-deleted-user'            => '(nomine de usator eliminate)',
+'rev-deleted-event'           => '(entrata eliminate)',
+'rev-deleted-text-permission' => "Iste version del pagina ha essite '''delite'''.
 Es possibile que se trova detalios in le [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registro de deletiones].",
-'rev-deleted-text-unhide'        => "Iste version del pagina ha essite '''delite'''.
+'rev-deleted-text-unhide'     => "Iste version del pagina ha essite '''delite'''.
 Es possibile que se trova detalios in le [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registro de deletiones].
 Tu, qua administrator, pote ancora [$1 vider iste version] si tu vole proceder.",
-'rev-deleted-text-view'          => "Iste version del pagina ha essite '''delite'''.
+'rev-deleted-text-view'       => "Iste version del pagina ha essite '''delite'''.
 Tu, qua administrator, pote vider lo;
 es possibile que se trova detalios in le [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registro de deletiones].",
-'rev-deleted-no-diff'            => "Tu non pote vider iste diff proque un del versiones ha essite '''delite'''.
+'rev-deleted-no-diff'         => "Tu non pote vider iste diff proque un del versiones ha essite '''delite'''.
 Es possibile que se trova detalios in le [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registro de deletiones].",
-'rev-deleted-unhide-diff'        => "Un del versiones de iste diff ha essite '''delite'''.
+'rev-deleted-unhide-diff'     => "Un del versiones de iste diff ha essite '''delite'''.
 Es possibile que se trova detalios in le [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registro de deletiones].
 Tu, qua administrator, pote ancora [$1 vider iste diff] si tu vole proceder.",
-'rev-delundel'                   => 'revelar/celar',
-'revisiondelete'                 => 'Deler/restaurar versiones',
-'revdelete-nooldid-title'        => 'Le version de destination es invalide',
-'revdelete-nooldid-text'         => 'O tu non ha specificate alcun version(es) de destination pro executar iste 
+'rev-delundel'                => 'revelar/celar',
+'revisiondelete'              => 'Deler/restaurar versiones',
+'revdelete-nooldid-title'     => 'Le version de destination es invalide',
+'revdelete-nooldid-text'      => 'O tu non ha specificate alcun version(es) de destination pro executar iste 
 function, o le version specificate non existe, o tu essaya celar le version actual.',
-'revdelete-nologtype-title'      => 'Typo de registro non specificate',
-'revdelete-nologtype-text'       => 'Tu non ha specificate un typo de registro super le qual iste action debe esser executate.',
-'revdelete-toomanytargets-title' => 'Troppo de destinationes',
-'revdelete-toomanytargets-text'  => 'Tu ha specificate troppo de typos de destinationes super le quales iste action debe esser executate.',
-'revdelete-nologid-title'        => 'Entrata de registro invalide',
-'revdelete-nologid-text'         => 'O tu non ha specificate un evento de registro de destination super le qual iste action debe esser executate, o le entrata specificate non existe.',
-'revdelete-selected'             => "'''{{PLURAL:$2|Version seligite|Versiones seligite}} de [[:$1]]:'''",
-'logdelete-selected'             => "'''{{PLURAL:$1|Evento|Eventos}} de registro seligite:'''",
-'revdelete-text'                 => "'''Le versiones e eventos delite continuara a apparer in le historia e registro del pagina, sed partes de lor contento essera inaccessibile al publico.'''
+'revdelete-nologtype-title'   => 'Typo de registro non specificate',
+'revdelete-nologtype-text'    => 'Tu non ha specificate un typo de registro super le qual iste action debe esser executate.',
+'revdelete-nologid-title'     => 'Entrata de registro invalide',
+'revdelete-nologid-text'      => 'O tu non ha specificate un evento de registro de destination super le qual iste action debe esser executate, o le entrata specificate non existe.',
+'revdelete-selected'          => "'''{{PLURAL:$2|Version seligite|Versiones seligite}} de [[:$1]]:'''",
+'logdelete-selected'          => "'''{{PLURAL:$1|Evento|Eventos}} de registro seligite:'''",
+'revdelete-text'              => "'''Le versiones e eventos delite continuara a apparer in le historia e registro del pagina, sed partes de lor contento essera inaccessibile al publico.'''
 
 Altere administratores in {{SITENAME}} continuara a poter acceder al contento celate e pote restaurar lo per medio de iste mesme interfacie, si non se ha definite restrictiones additional.
 Per favor confirma que tu ha le intention de facer isto, que tu comprende le consequentias, e que tu face isto in conformitate con [[{{MediaWiki:Policy-url}}|le politica]].",
-'revdelete-suppress-text'        => "Le suppression debe '''solmente''' esser usate pro le sequente casos:
+'revdelete-suppress-text'     => "Le suppression debe '''solmente''' esser usate pro le sequente casos:
 * Informationes personal inappropriate
 *: ''adresses de domicilio e numeros de telephono, numeros de securitate social, etc.''",
-'revdelete-legend'               => 'Definir restrictiones de visibilitate',
-'revdelete-hide-text'            => 'Celar texto del version',
-'revdelete-hide-name'            => 'Celar action e objectivo',
-'revdelete-hide-comment'         => 'Celar commento de modification',
-'revdelete-hide-user'            => 'Celar nomine de usator o adresse IP del modificator',
-'revdelete-hide-restricted'      => 'Supprimer le datos a administratores assi como a alteres',
-'revdelete-suppress'             => 'Supprimer le datos a administratores assi como a alteres',
-'revdelete-hide-image'           => 'Celar contento del file',
-'revdelete-unsuppress'           => 'Eliminar restrictiones super versiones restaurate',
-'revdelete-log'                  => 'Commento pro registro:',
-'revdelete-submit'               => 'Applicar al version seligite',
-'revdelete-logentry'             => 'cambiava le visibilitate de versiones pro [[$1]]',
-'logdelete-logentry'             => 'cambiava le visibilitate de eventos pro [[$1]]',
-'revdelete-success'              => "'''Le visibilitate de versiones ha essite definite con successo.'''",
-'revdelete-failure'              => "'''Le visibilitate del version non poteva esser cambiate.'''",
-'logdelete-success'              => "'''Le visibilitate del registro ha essite definite con successo.'''",
-'revdel-restore'                 => 'Cambiar visibilitate',
-'pagehist'                       => 'Historia del pagina',
-'deletedhist'                    => 'Historia delite',
-'revdelete-content'              => 'contento',
-'revdelete-summary'              => 'summario del modification',
-'revdelete-uname'                => 'nomine de usator',
-'revdelete-restricted'           => 'restrictiones applicate al administratores',
-'revdelete-unrestricted'         => 'restrictiones eliminate pro administratores',
-'revdelete-hid'                  => 'celava $1',
-'revdelete-unhid'                => 'revelava $1',
-'revdelete-log-message'          => '$1 pro $2 {{PLURAL:$2|version|versiones}}',
-'logdelete-log-message'          => '$1 pro $2 {{PLURAL:$2|evento|eventos}}',
+'revdelete-legend'            => 'Definir restrictiones de visibilitate',
+'revdelete-hide-text'         => 'Celar texto del version',
+'revdelete-hide-name'         => 'Celar action e objectivo',
+'revdelete-hide-comment'      => 'Celar commento de modification',
+'revdelete-hide-user'         => 'Celar nomine de usator o adresse IP del modificator',
+'revdelete-hide-restricted'   => 'Supprimer le datos a administratores assi como a alteres',
+'revdelete-suppress'          => 'Supprimer le datos a administratores assi como a alteres',
+'revdelete-hide-image'        => 'Celar contento del file',
+'revdelete-unsuppress'        => 'Eliminar restrictiones super versiones restaurate',
+'revdelete-log'               => 'Commento pro registro:',
+'revdelete-submit'            => 'Applicar al version seligite',
+'revdelete-logentry'          => 'cambiava le visibilitate de versiones pro [[$1]]',
+'logdelete-logentry'          => 'cambiava le visibilitate de eventos pro [[$1]]',
+'revdelete-success'           => "'''Le visibilitate de versiones ha essite definite con successo.'''",
+'revdelete-failure'           => "'''Le visibilitate del version non poteva esser cambiate.'''",
+'logdelete-success'           => "'''Le visibilitate del registro ha essite definite con successo.'''",
+'revdel-restore'              => 'Cambiar visibilitate',
+'pagehist'                    => 'Historia del pagina',
+'deletedhist'                 => 'Historia delite',
+'revdelete-content'           => 'contento',
+'revdelete-summary'           => 'summario del modification',
+'revdelete-uname'             => 'nomine de usator',
+'revdelete-restricted'        => 'restrictiones applicate al administratores',
+'revdelete-unrestricted'      => 'restrictiones eliminate pro administratores',
+'revdelete-hid'               => 'celava $1',
+'revdelete-unhid'             => 'revelava $1',
+'revdelete-log-message'       => '$1 pro $2 {{PLURAL:$2|version|versiones}}',
+'logdelete-log-message'       => '$1 pro $2 {{PLURAL:$2|evento|eventos}}',
 
 # Suppression log
 'suppressionlog'     => 'Registro de suppressiones',

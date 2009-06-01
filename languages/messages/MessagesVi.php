@@ -900,70 +900,68 @@ Chú giải: (hiện) = khác với phiên bản hiện hành,
 'history-feed-empty'          => 'Trang bạn yêu cầu không tồn tại. Có thể là nó đã bị xóa khỏi wiki hay được đổi tên. Hãy [[Special:Search|tìm kiếm trong wiki]] về các trang mới có liên quan.',
 
 # Revision deletion
-'rev-deleted-comment'            => '(bàn luận đã xóa)',
-'rev-deleted-user'               => '(tên người dùng đã xóa)',
-'rev-deleted-event'              => '(tác vụ nhật trình đã xóa)',
-'rev-deleted-text-permission'    => "Phiên bản này đã bị '''xóa'''.
+'rev-deleted-comment'         => '(bàn luận đã xóa)',
+'rev-deleted-user'            => '(tên người dùng đã xóa)',
+'rev-deleted-event'           => '(tác vụ nhật trình đã xóa)',
+'rev-deleted-text-permission' => "Phiên bản này đã bị '''xóa'''.
 Có thể có thêm chi tiết tại [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} nhật trình xóa].",
-'rev-deleted-text-unhide'        => "Phiên bản này đã bị '''xóa'''.
+'rev-deleted-text-unhide'     => "Phiên bản này đã bị '''xóa'''.
 Có thể có thêm chi tiết tại [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} nhật trình xóa].
 Vì là người quản lý, bạn vẫn có thể [$1 xem phiên bản này] nếu muốn.",
-'rev-deleted-text-view'          => "Phiên bản này đã bị '''xóa'''.
+'rev-deleted-text-view'       => "Phiên bản này đã bị '''xóa'''.
 Vì là người quản lý bạn vẫn có thể xem nó;có thể có thêm chi tiết tại [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} nhật trình xóa].",
-'rev-deleted-no-diff'            => "Bạn không thể xem khác biệt giữa các phiên bản vì một phiên bản đã bị '''xóa'''.
+'rev-deleted-no-diff'         => "Bạn không thể xem khác biệt giữa các phiên bản vì một phiên bản đã bị '''xóa'''.
 Bạn có thể xem thêm chi tiết trong [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} nhật trình xóa].",
-'rev-deleted-unhide-diff'        => "Một trong những phiên bản của khác biệt này đã bị '''xóa'''.
+'rev-deleted-unhide-diff'     => "Một trong những phiên bản của khác biệt này đã bị '''xóa'''.
 Bạn có thể xem thêm chi tiết tại [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} nhật trình xóa].
 Vì là người quản lý, bạn vẫn có thể [$1 xem khác biệt này] nếu muốn.",
-'rev-delundel'                   => 'hiện/ẩn',
-'revisiondelete'                 => 'Xóa hay phục hồi phiên bản',
-'revdelete-nooldid-title'        => 'Chưa chọn phiên bản',
-'revdelete-nooldid-text'         => 'Có thể bạn chưa xác định (các) phiên bản đích để thực hiện tác vụ,
+'rev-delundel'                => 'hiện/ẩn',
+'revisiondelete'              => 'Xóa hay phục hồi phiên bản',
+'revdelete-nooldid-title'     => 'Chưa chọn phiên bản',
+'revdelete-nooldid-text'      => 'Có thể bạn chưa xác định (các) phiên bản đích để thực hiện tác vụ,
 hoặc phiên bản đích không tồn tại,
 hoặc bạn đang tìm cách ẩn phiên bản hiện tại.',
-'revdelete-nologtype-title'      => 'Chưa cung cấp kiểu nhật trình',
-'revdelete-nologtype-text'       => 'Bạn chưa chỉ định một kiểu nhật trình mà tác vụ này sẽ ghi vào.',
-'revdelete-toomanytargets-title' => 'Có quá nhiều mục tiêu',
-'revdelete-toomanytargets-text'  => 'Bạn đã chỉ định quá nhiều mục tiêu cho tác vụ này.',
-'revdelete-nologid-title'        => 'Mục nhật trình không hợp lệ',
-'revdelete-nologid-text'         => 'Bạn chưa chỉ định sự kiện nhật trình mục tiêu mà chức năng này ghi vào hoặc mục nhật trình chỉ định không tồn tại.',
-'revdelete-selected'             => "'''{{PLURAL:$2|Phiên bản|Các phiên bản}} được chọn của [[:$1]]:'''",
-'logdelete-selected'             => "'''{{PLURAL:$1|Nhật trình đã chọn|Các nhật trình đã chọn}}:'''",
-'revdelete-text'                 => "'''Các phiên bản và sự kiện bị xóa sẽ vẫn xuất hiện trong lịch sử trang và nhật trình, nhưng mọi người sẽ không xem được một số phần của các nội dung đó.'''
+'revdelete-nologtype-title'   => 'Chưa cung cấp kiểu nhật trình',
+'revdelete-nologtype-text'    => 'Bạn chưa chỉ định một kiểu nhật trình mà tác vụ này sẽ ghi vào.',
+'revdelete-nologid-title'     => 'Mục nhật trình không hợp lệ',
+'revdelete-nologid-text'      => 'Bạn chưa chỉ định sự kiện nhật trình mục tiêu mà chức năng này ghi vào hoặc mục nhật trình chỉ định không tồn tại.',
+'revdelete-selected'          => "'''{{PLURAL:$2|Phiên bản|Các phiên bản}} được chọn của [[:$1]]:'''",
+'logdelete-selected'          => "'''{{PLURAL:$1|Nhật trình đã chọn|Các nhật trình đã chọn}}:'''",
+'revdelete-text'              => "'''Các phiên bản và sự kiện bị xóa sẽ vẫn xuất hiện trong lịch sử trang và nhật trình, nhưng mọi người sẽ không xem được một số phần của các nội dung đó.'''
 
 Các quản lý khác ở {{SITENAME}} vẫn có thể truy nhập vào nội dung ẩn và phục hồi lại bằng cách dùng giao diện này, trừ trường hợp thiết lập thêm một số hạn chế.
 Xin hãy xác nhận rằng bạn thực sự muốn làm điều này, hiểu được hệ quả của nó, và làm theo đúng [[{{MediaWiki:Policy-url}}|quy định]].",
-'revdelete-suppress-text'        => "Việc ẩn giấu '''chỉ''' nên dùng trong các trường hợp sau:
+'revdelete-suppress-text'     => "Việc ẩn giấu '''chỉ''' nên dùng trong các trường hợp sau:
 * Thông tin cá nhân không thích hợp
 *: ''địa chỉ nhà và số điện thoại, số an sinh xã hội, v.v.''",
-'revdelete-legend'               => 'Thiết lập hạn chế khả kiến',
-'revdelete-hide-text'            => 'Ẩn nội dung phiên bản',
-'revdelete-hide-name'            => 'Ẩn tác vụ và đích của tác vụ',
-'revdelete-hide-comment'         => 'Ẩn tóm lược sửa đổi',
-'revdelete-hide-user'            => 'Ẩn tên người dùng hay địa chỉ IP của người viết trang',
-'revdelete-hide-restricted'      => 'Ẩn giấu thông tin khỏi các Quản lý lẫn thành viên khác',
-'revdelete-suppress'             => 'Che dữ liệu đối với người quản lý cũng như các thành viên khác',
-'revdelete-hide-image'           => 'Ẩn nội dung tập tin',
-'revdelete-unsuppress'           => 'Bỏ các hạn chế trên các phiên bản được phục hồi',
-'revdelete-log'                  => 'Tóm lược trong nhật trình:',
-'revdelete-submit'               => 'Áp dụng vào phiên bản được chọn',
-'revdelete-logentry'             => 'đã thay đổi khả năng nhìn thấy phiên bản của [[$1]]',
-'logdelete-logentry'             => 'đã thay đổi khả năng nhìn thấy sự kiện của [[$1]]',
-'revdelete-success'              => "'''Khả năng nhìn thấy của phiên bản đã được thiết lập thành công.'''",
-'revdelete-failure'              => "'''Không thể thiết lập khả năng hiển thị của phiên bản.'''",
-'logdelete-success'              => "'''Khả năng nhìn thấy của sự kiện đã được thiết lập thành công.'''",
-'revdel-restore'                 => 'Thay đổi mức khả kiến',
-'pagehist'                       => 'Lịch sử trang',
-'deletedhist'                    => 'Lịch sử đã xóa',
-'revdelete-content'              => 'nội dung',
-'revdelete-summary'              => 'tóm lược sửa đổi',
-'revdelete-uname'                => 'tên người dùng',
-'revdelete-restricted'           => 'áp dụng hạn chế này cho sysop',
-'revdelete-unrestricted'         => 'gỡ bỏ hạn chế này cho sysop',
-'revdelete-hid'                  => 'đã ẩn $1',
-'revdelete-unhid'                => 'đã hiện $1',
-'revdelete-log-message'          => '$2 {{PLURAL:$2|phiên bản|phiên bản}} được $1',
-'logdelete-log-message'          => '$1 của $2 {{PLURAL:$2|sự kiện|sự kiện}}',
+'revdelete-legend'            => 'Thiết lập hạn chế khả kiến',
+'revdelete-hide-text'         => 'Ẩn nội dung phiên bản',
+'revdelete-hide-name'         => 'Ẩn tác vụ và đích của tác vụ',
+'revdelete-hide-comment'      => 'Ẩn tóm lược sửa đổi',
+'revdelete-hide-user'         => 'Ẩn tên người dùng hay địa chỉ IP của người viết trang',
+'revdelete-hide-restricted'   => 'Ẩn giấu thông tin khỏi các Quản lý lẫn thành viên khác',
+'revdelete-suppress'          => 'Che dữ liệu đối với người quản lý cũng như các thành viên khác',
+'revdelete-hide-image'        => 'Ẩn nội dung tập tin',
+'revdelete-unsuppress'        => 'Bỏ các hạn chế trên các phiên bản được phục hồi',
+'revdelete-log'               => 'Tóm lược trong nhật trình:',
+'revdelete-submit'            => 'Áp dụng vào phiên bản được chọn',
+'revdelete-logentry'          => 'đã thay đổi khả năng nhìn thấy phiên bản của [[$1]]',
+'logdelete-logentry'          => 'đã thay đổi khả năng nhìn thấy sự kiện của [[$1]]',
+'revdelete-success'           => "'''Khả năng nhìn thấy của phiên bản đã được thiết lập thành công.'''",
+'revdelete-failure'           => "'''Không thể thiết lập khả năng hiển thị của phiên bản.'''",
+'logdelete-success'           => "'''Khả năng nhìn thấy của sự kiện đã được thiết lập thành công.'''",
+'revdel-restore'              => 'Thay đổi mức khả kiến',
+'pagehist'                    => 'Lịch sử trang',
+'deletedhist'                 => 'Lịch sử đã xóa',
+'revdelete-content'           => 'nội dung',
+'revdelete-summary'           => 'tóm lược sửa đổi',
+'revdelete-uname'             => 'tên người dùng',
+'revdelete-restricted'        => 'áp dụng hạn chế này cho sysop',
+'revdelete-unrestricted'      => 'gỡ bỏ hạn chế này cho sysop',
+'revdelete-hid'               => 'đã ẩn $1',
+'revdelete-unhid'             => 'đã hiện $1',
+'revdelete-log-message'       => '$2 {{PLURAL:$2|phiên bản|phiên bản}} được $1',
+'logdelete-log-message'       => '$1 của $2 {{PLURAL:$2|sự kiện|sự kiện}}',
 
 # Suppression log
 'suppressionlog'     => 'Nhật trình ẩn giấu',

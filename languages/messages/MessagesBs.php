@@ -963,68 +963,66 @@ Moguće da je izbrisana sa wikija, ili preimenovana.
 Pokušajte [[Special:Search|pretražiti wiki]] za slične stranice.',
 
 # Revision deletion
-'rev-deleted-comment'            => '(komentar uklonjen)',
-'rev-deleted-user'               => '(korisničko ime uklonjeno)',
-'rev-deleted-event'              => '(stavka zapisa obrisana)',
-'rev-deleted-text-permission'    => "Revizija ove stranice je '''obrisana'''.
+'rev-deleted-comment'         => '(komentar uklonjen)',
+'rev-deleted-user'            => '(korisničko ime uklonjeno)',
+'rev-deleted-event'           => '(stavka zapisa obrisana)',
+'rev-deleted-text-permission' => "Revizija ove stranice je '''obrisana'''.
 Detalje možete vidjeti u [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} zapisu brisanja].",
-'rev-deleted-text-unhide'        => "Revizija ove stranice je '''obrisana'''.
+'rev-deleted-text-unhide'     => "Revizija ove stranice je '''obrisana'''.
 Detalje o tome možer vidjeti u [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} zapisniku brisanja].
 Kao administrator još uvijek možete [$1 vidjeti ovu reviziju] ako želite.",
-'rev-deleted-text-view'          => "Revizija ove stranice je '''obrisana'''.
+'rev-deleted-text-view'       => "Revizija ove stranice je '''obrisana'''.
 Kao administrator na {{SITENAME}} Vi je možete vidjeti; detalji o tome se mogu vidjeti u [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} zapisu brisanja].",
-'rev-deleted-no-diff'            => "Ne možete vidjeti ove razlike jer je jedna od revizija '''obrisana'''.
+'rev-deleted-no-diff'         => "Ne možete vidjeti ove razlike jer je jedna od revizija '''obrisana'''.
 Možete pregledati detalje u [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} zapisima brisanja].",
-'rev-deleted-unhide-diff'        => "Jedna od revizija u ovom pregledu razlika je '''obrisana'''.
+'rev-deleted-unhide-diff'     => "Jedna od revizija u ovom pregledu razlika je '''obrisana'''.
 Možete pregledati detalje u [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} zapisniku brisanja].
 Kao administrator na {{SITENAME}} Vi još uvijek možete [$1 vidjeti ove razlike] ako želite da nastavite.",
-'rev-delundel'                   => 'pokaži/sakrij',
-'revisiondelete'                 => 'Obriši/vrati revizije',
-'revdelete-nooldid-title'        => 'Nije unesena tačna revizija',
-'revdelete-nooldid-text'         => 'Niste precizno odredili odredišnu reviziju/revizije da se izvrši ova funkcija, ili ta revizija nepostoji, ili pokušavate sakriti trenutnu reviziju.',
-'revdelete-nologtype-title'      => 'Nije naveden tip zapisa',
-'revdelete-nologtype-text'       => 'Niste odredili tip zapisa za izvršavanje ove akcije na njemu.',
-'revdelete-toomanytargets-title' => 'Previše ciljeva',
-'revdelete-toomanytargets-text'  => 'Naveli ste previše tipova ciljeva za izvršavanje ove akcije na njima.',
-'revdelete-nologid-title'        => 'Nevaljana stavka zapisa',
-'revdelete-nologid-text'         => 'Niste odredili ciljnu stavku zapisa za izvršavanje ove funkcije ili navedena stavka ne postoji.',
-'revdelete-selected'             => "'''{{PLURAL:$2|Odabrana revizija|Odabrane revizije}} od [[:$1]]:'''",
-'logdelete-selected'             => "'''{{PLURAL:$1|Označena stavka zapisa|Označene stavke zapisa}}:'''",
-'revdelete-text'                 => "'''Obrisane revizije i događaji će i dalje biti vidljivi u historiji stranice i zapisima, ali dijelovi njenog sadržaja neće biti dostupni javnosti.'''
+'rev-delundel'                => 'pokaži/sakrij',
+'revisiondelete'              => 'Obriši/vrati revizije',
+'revdelete-nooldid-title'     => 'Nije unesena tačna revizija',
+'revdelete-nooldid-text'      => 'Niste precizno odredili odredišnu reviziju/revizije da se izvrši ova funkcija, ili ta revizija nepostoji, ili pokušavate sakriti trenutnu reviziju.',
+'revdelete-nologtype-title'   => 'Nije naveden tip zapisa',
+'revdelete-nologtype-text'    => 'Niste odredili tip zapisa za izvršavanje ove akcije na njemu.',
+'revdelete-nologid-title'     => 'Nevaljana stavka zapisa',
+'revdelete-nologid-text'      => 'Niste odredili ciljnu stavku zapisa za izvršavanje ove funkcije ili navedena stavka ne postoji.',
+'revdelete-selected'          => "'''{{PLURAL:$2|Odabrana revizija|Odabrane revizije}} od [[:$1]]:'''",
+'logdelete-selected'          => "'''{{PLURAL:$1|Označena stavka zapisa|Označene stavke zapisa}}:'''",
+'revdelete-text'              => "'''Obrisane revizije i događaji će i dalje biti vidljivi u historiji stranice i zapisima, ali dijelovi njenog sadržaja neće biti dostupni javnosti.'''
 
 Drugi administratori projekta {{SITENAME}} će i dalje moći pristupiti sakrivenom sadržaju i mogu ga ponovo vratiti kroz ovaj interfejs, osim ako nisu postavljena dodatna ograničenja.
 Molimo potvrdite da namjeravate ovo učiniti, da razumijete posljedice i da to činite u skladu s [[{{MediaWiki:Policy-url}}|pravilima]].",
-'revdelete-suppress-text'        => "Ograničenja bi trebala biti korištena '''samo''' u slijedećim slučajevima:
+'revdelete-suppress-text'     => "Ograničenja bi trebala biti korištena '''samo''' u slijedećim slučajevima:
 * Osjetljive korisničke informacije
 *: ''kućne adrese, brojevi telefona, brojevi bankovnih kartica itd.''",
-'revdelete-legend'               => 'Postavi ograničenja vidljivosti',
-'revdelete-hide-text'            => 'Sakrij tekst revizije',
-'revdelete-hide-name'            => 'Sakrij akciju i cilj',
-'revdelete-hide-comment'         => 'Sakrij izmjene komentara',
-'revdelete-hide-user'            => 'Sakrij korisničko ime urednika/IP',
-'revdelete-hide-restricted'      => 'Ograniči podatke za administratore kao i za druge korisnike',
-'revdelete-suppress'             => 'Sakrij podatke od administratora kao i od drugih',
-'revdelete-hide-image'           => 'Sakrij sadržaj datoteke',
-'revdelete-unsuppress'           => 'Ukloni ograničenja na vraćenim revizijama',
-'revdelete-log'                  => 'Komentar evidencije:',
-'revdelete-submit'               => 'Primijeni na odabranu reviziju',
-'revdelete-logentry'             => 'promijenjena vidljivost revizije [[$1]]',
-'logdelete-logentry'             => 'promijenjena vidljivost događaja [[$1]]',
-'revdelete-success'              => "'''Vidljivost revizije uspješno postavljena.'''",
-'revdelete-failure'              => "'''Vidljivost revizije nije mogla biti postavljena.'''",
-'logdelete-success'              => "'''Vidljivost evidencije uspješno postavljena.'''",
-'revdel-restore'                 => 'Promijeni dostupnost',
-'pagehist'                       => 'Historija stranice',
-'deletedhist'                    => 'Izbrisana historija',
-'revdelete-content'              => 'sadržaj',
-'revdelete-summary'              => 'sažetak',
-'revdelete-uname'                => 'korisničko ime',
-'revdelete-restricted'           => 'primijenjena ograničenja za administratore',
-'revdelete-unrestricted'         => 'uklonjena ograničenja za administratore',
-'revdelete-hid'                  => 'sakrij $1',
-'revdelete-unhid'                => 'otkrij $1',
-'revdelete-log-message'          => '$1 za $2 {{PLURAL:$2|izmjenu|izmjene|izmjena}}',
-'logdelete-log-message'          => '$1 za $2 {{PLURAL:$2|događaj|događaja}}',
+'revdelete-legend'            => 'Postavi ograničenja vidljivosti',
+'revdelete-hide-text'         => 'Sakrij tekst revizije',
+'revdelete-hide-name'         => 'Sakrij akciju i cilj',
+'revdelete-hide-comment'      => 'Sakrij izmjene komentara',
+'revdelete-hide-user'         => 'Sakrij korisničko ime urednika/IP',
+'revdelete-hide-restricted'   => 'Ograniči podatke za administratore kao i za druge korisnike',
+'revdelete-suppress'          => 'Sakrij podatke od administratora kao i od drugih',
+'revdelete-hide-image'        => 'Sakrij sadržaj datoteke',
+'revdelete-unsuppress'        => 'Ukloni ograničenja na vraćenim revizijama',
+'revdelete-log'               => 'Komentar evidencije:',
+'revdelete-submit'            => 'Primijeni na odabranu reviziju',
+'revdelete-logentry'          => 'promijenjena vidljivost revizije [[$1]]',
+'logdelete-logentry'          => 'promijenjena vidljivost događaja [[$1]]',
+'revdelete-success'           => "'''Vidljivost revizije uspješno postavljena.'''",
+'revdelete-failure'           => "'''Vidljivost revizije nije mogla biti postavljena.'''",
+'logdelete-success'           => "'''Vidljivost evidencije uspješno postavljena.'''",
+'revdel-restore'              => 'Promijeni dostupnost',
+'pagehist'                    => 'Historija stranice',
+'deletedhist'                 => 'Izbrisana historija',
+'revdelete-content'           => 'sadržaj',
+'revdelete-summary'           => 'sažetak',
+'revdelete-uname'             => 'korisničko ime',
+'revdelete-restricted'        => 'primijenjena ograničenja za administratore',
+'revdelete-unrestricted'      => 'uklonjena ograničenja za administratore',
+'revdelete-hid'               => 'sakrij $1',
+'revdelete-unhid'             => 'otkrij $1',
+'revdelete-log-message'       => '$1 za $2 {{PLURAL:$2|izmjenu|izmjene|izmjena}}',
+'logdelete-log-message'       => '$1 za $2 {{PLURAL:$2|događaj|događaja}}',
 
 # Suppression log
 'suppressionlog'     => 'Zapisi sakrivanja',

@@ -790,69 +790,67 @@ Legenda: (akt) = rozdźěl k tuchwilnej wersiji, (posl) = rozdźěl k předchadn
 'history-feed-empty'          => 'Strona, kotruž sy požadał, njeeksistuje. Bu snano z wikija wotstronjena abo přesunjena. Móžeš tu [[Special:Search|w {{SITENAME}}]] za stronami z podobnym titulom pytać.',
 
 # Revision deletion
-'rev-deleted-comment'            => '(komentar wotstronjeny)',
-'rev-deleted-user'               => '(wužiwarske mjeno wotstronjene)',
-'rev-deleted-event'              => '(Protokolowa akcija bu wotstronjena)',
-'rev-deleted-text-permission'    => "Tuta wersija strony bu '''wušmórnjena'''.
+'rev-deleted-comment'         => '(komentar wotstronjeny)',
+'rev-deleted-user'            => '(wužiwarske mjeno wotstronjene)',
+'rev-deleted-event'           => '(Protokolowa akcija bu wotstronjena)',
+'rev-deleted-text-permission' => "Tuta wersija strony bu '''wušmórnjena'''.
 Hlej podrobnosće w [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} protokolu wušmórnjenjow].",
-'rev-deleted-text-unhide'        => "Tuta wersija strony bu '''wušmórnjena'''.
+'rev-deleted-text-unhide'     => "Tuta wersija strony bu '''wušmórnjena'''.
 Hlej podrobnosće w [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} protokolu wušmórnjenjow].
 Jako administrator móžeš [$1 sej tutu wersiju wobhladać], jeli chceš pokročować.",
-'rev-deleted-text-view'          => "Tuta wersija strony bu '''wušmórnjena'''.
+'rev-deleted-text-view'       => "Tuta wersija strony bu '''wušmórnjena'''.
 Jako administrator móžeš sej ju wobhladać; hlej podrobnosće w [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} protokolu wušmórnjenjow].",
-'rev-deleted-no-diff'            => "Njemóžeš sej tutón rozdźěl wobhladać, dokelž jedna z wersijow bu '''wušmórnjena'''.
+'rev-deleted-no-diff'         => "Njemóžeš sej tutón rozdźěl wobhladać, dokelž jedna z wersijow bu '''wušmórnjena'''.
 Hlej ewentuelne podrobnosće w [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} protokolu wušmórnjenjow].",
-'rev-deleted-unhide-diff'        => "Jedna z wersijow tutoho rozdźěla bu '''wušmórnjena'''.
+'rev-deleted-unhide-diff'     => "Jedna z wersijow tutoho rozdźěla bu '''wušmórnjena'''.
 Podrobnosće hlej w [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} protokol wušmórnjenjow].
 Jako administrator móžeš hišće [$1 sej tutón rozdźěl wobhladać], jeli chceš pokročować.",
-'rev-delundel'                   => 'pokazać/schować',
-'revisiondelete'                 => 'Wersije wušmórnyć/wobnowić',
-'revdelete-nooldid-title'        => 'Njepłaćiwa cilowa wersija',
-'revdelete-nooldid-text'         => 'Pak njejsy cilowu wersiju podał, zo by tutu funkciju wuwjedł, podata wersija njeeksistuje pak pospytuješ aktualnu wersiju schować.',
-'revdelete-nologtype-title'      => 'Žadyn protokolowy typ podaty',
-'revdelete-nologtype-text'       => 'Njejsy protokolowy typ podał, zo by tutu akciju wuwjedł.',
-'revdelete-toomanytargets-title' => 'Přewjele cilow',
-'revdelete-toomanytargets-text'  => 'Sy přewjele cilowych typow podał, zo by tutu akciju wuwjedł.',
-'revdelete-nologid-title'        => 'Njepłaćiwy protokolowy zapisk',
-'revdelete-nologid-text'         => 'Pak njejsy cilowy protokolowy podawk podał, zo by tutu funkciju wuwjedł pak podaty zapisk njeeksistuje.',
-'revdelete-selected'             => "'''{{PLURAL:$2|Wubrana wersija|Wubranej wersiji|Wubrane wersije|Wubranych wersijow}} wot [[:$1]]:'''",
-'logdelete-selected'             => "'''{{PLURAL:$1|Wubrany zapisk z protokola|Wubranej zapiskaj z protokola|Wubrane zapiski z protokola|Wubrane zapiski z protokola}} za '''$1:''''''",
-'revdelete-text'                 => "'''Wušmórnjene wersije a podawki so w stawiznach a protokolach dale jewja, ale dźěle jich wobsaha budu njepřistupne za zjawnosć.'''
+'rev-delundel'                => 'pokazać/schować',
+'revisiondelete'              => 'Wersije wušmórnyć/wobnowić',
+'revdelete-nooldid-title'     => 'Njepłaćiwa cilowa wersija',
+'revdelete-nooldid-text'      => 'Pak njejsy cilowu wersiju podał, zo by tutu funkciju wuwjedł, podata wersija njeeksistuje pak pospytuješ aktualnu wersiju schować.',
+'revdelete-nologtype-title'   => 'Žadyn protokolowy typ podaty',
+'revdelete-nologtype-text'    => 'Njejsy protokolowy typ podał, zo by tutu akciju wuwjedł.',
+'revdelete-nologid-title'     => 'Njepłaćiwy protokolowy zapisk',
+'revdelete-nologid-text'      => 'Pak njejsy cilowy protokolowy podawk podał, zo by tutu funkciju wuwjedł pak podaty zapisk njeeksistuje.',
+'revdelete-selected'          => "'''{{PLURAL:$2|Wubrana wersija|Wubranej wersiji|Wubrane wersije|Wubranych wersijow}} wot [[:$1]]:'''",
+'logdelete-selected'          => "'''{{PLURAL:$1|Wubrany zapisk z protokola|Wubranej zapiskaj z protokola|Wubrane zapiski z protokola|Wubrane zapiski z protokola}} za '''$1:''''''",
+'revdelete-text'              => "'''Wušmórnjene wersije a podawki so w stawiznach a protokolach dale jewja, ale dźěle jich wobsaha budu njepřistupne za zjawnosć.'''
 
 Druzy administratorojo na {{GRAMMAR:lokatiw|{{SITENAME}}}} móža hišće na schowany tekst přistup měć a jón z pomocu samsneho interfejsa wobnowić, chibazo tež přidatne prawa su wobmjezowane.
 
 Prošu wobkruć, zo chceš to činić, zo rozumiš sćěhi a zo činiš to wotpowědujo [[{{MediaWiki:Policy-url}}|zasadam]].",
-'revdelete-suppress-text'        => "Potłóčenje dyrbjało so '''jenož''' za slědowace pady wužiwać:
+'revdelete-suppress-text'     => "Potłóčenje dyrbjało so '''jenož''' za slědowace pady wužiwać:
 * Njepřihódne wosobinske informacije
 *: ''bydlenske adresy a telefonowe čisła, čisła socialneho zawěsćenja atd.''",
-'revdelete-legend'               => 'Wobmjezowanja za widźomnosć nastajić',
-'revdelete-hide-text'            => 'Tekst tuteje wersije schować',
-'revdelete-hide-name'            => 'Akciju w protokolach schować',
-'revdelete-hide-comment'         => 'Zjeće schować',
-'revdelete-hide-user'            => 'Wužiwarske mjeno/IP-adresu schować',
-'revdelete-hide-restricted'      => 'Daty wot administratorow kaž tež te druhich wužiwarjow potłóčić',
-'revdelete-suppress'             => 'Přičinu wušmórnjenja tež za administratorow schować',
-'revdelete-hide-image'           => 'Wobsah wobraza schować',
-'revdelete-unsuppress'           => 'Wobmjezowanja za wobnowjene wersije zběhnyć',
-'revdelete-log'                  => 'Komentar w protokolu:',
-'revdelete-submit'               => 'Na wubranu wersiju nałožować',
-'revdelete-logentry'             => 'Widźomnosć wersije změnjena za [[$1]]',
-'logdelete-logentry'             => 'je widźomnosć za [[$1]] změnił',
-'revdelete-success'              => "'''Widźomnosć wersije bu wuspěšnje změnjena.'''",
-'revdelete-failure'              => "'''Wersijowa widźomnosć njeda so nastajić.'''",
-'logdelete-success'              => 'Widźomnosć zapiska bu wuspěšnje změnjena.',
-'revdel-restore'                 => 'Widźomnosć změnić',
-'pagehist'                       => 'Stawizny strony',
-'deletedhist'                    => 'Wušmórnjene stawizny',
-'revdelete-content'              => 'wobsah',
-'revdelete-summary'              => 'zjeće wobdźěłać',
-'revdelete-uname'                => 'wužiwarske mjeno',
-'revdelete-restricted'           => 'na administratorow nałožene wobmjezowanja',
-'revdelete-unrestricted'         => 'Wobmjezowanja za administratorow wotstronjene',
-'revdelete-hid'                  => '$1 schowany',
-'revdelete-unhid'                => '$1 pokazany',
-'revdelete-log-message'          => '$1 za $2 {{PLURAL:$2|wersija|wersiji|wersije|wersijow}}',
-'logdelete-log-message'          => '$1 za $2 {{PLURAL:$2|podawk|podawkaj|podawki|podawkow}}',
+'revdelete-legend'            => 'Wobmjezowanja za widźomnosć nastajić',
+'revdelete-hide-text'         => 'Tekst tuteje wersije schować',
+'revdelete-hide-name'         => 'Akciju w protokolach schować',
+'revdelete-hide-comment'      => 'Zjeće schować',
+'revdelete-hide-user'         => 'Wužiwarske mjeno/IP-adresu schować',
+'revdelete-hide-restricted'   => 'Daty wot administratorow kaž tež te druhich wužiwarjow potłóčić',
+'revdelete-suppress'          => 'Přičinu wušmórnjenja tež za administratorow schować',
+'revdelete-hide-image'        => 'Wobsah wobraza schować',
+'revdelete-unsuppress'        => 'Wobmjezowanja za wobnowjene wersije zběhnyć',
+'revdelete-log'               => 'Komentar w protokolu:',
+'revdelete-submit'            => 'Na wubranu wersiju nałožować',
+'revdelete-logentry'          => 'Widźomnosć wersije změnjena za [[$1]]',
+'logdelete-logentry'          => 'je widźomnosć za [[$1]] změnił',
+'revdelete-success'           => "'''Widźomnosć wersije bu wuspěšnje změnjena.'''",
+'revdelete-failure'           => "'''Wersijowa widźomnosć njeda so nastajić.'''",
+'logdelete-success'           => 'Widźomnosć zapiska bu wuspěšnje změnjena.',
+'revdel-restore'              => 'Widźomnosć změnić',
+'pagehist'                    => 'Stawizny strony',
+'deletedhist'                 => 'Wušmórnjene stawizny',
+'revdelete-content'           => 'wobsah',
+'revdelete-summary'           => 'zjeće wobdźěłać',
+'revdelete-uname'             => 'wužiwarske mjeno',
+'revdelete-restricted'        => 'na administratorow nałožene wobmjezowanja',
+'revdelete-unrestricted'      => 'Wobmjezowanja za administratorow wotstronjene',
+'revdelete-hid'               => '$1 schowany',
+'revdelete-unhid'             => '$1 pokazany',
+'revdelete-log-message'       => '$1 za $2 {{PLURAL:$2|wersija|wersiji|wersije|wersijow}}',
+'logdelete-log-message'       => '$1 za $2 {{PLURAL:$2|podawk|podawkaj|podawki|podawkow}}',
 
 # Suppression log
 'suppressionlog'     => 'Protokol potłóčenjow',

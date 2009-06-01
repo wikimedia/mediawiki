@@ -897,69 +897,67 @@ Puede haber sido borrada del wiki o renombrada.
 Prueba a [[Special:Search|buscar en el wiki]] nuevas páginas relevantes.',
 
 # Revision deletion
-'rev-deleted-comment'            => '(comentario eliminado)',
-'rev-deleted-user'               => '(nombre de usuario eliminado)',
-'rev-deleted-event'              => '(entrada borrada)',
-'rev-deleted-text-permission'    => "Esta revisión de la página ha sido '''borrada'''.
+'rev-deleted-comment'         => '(comentario eliminado)',
+'rev-deleted-user'            => '(nombre de usuario eliminado)',
+'rev-deleted-event'           => '(entrada borrada)',
+'rev-deleted-text-permission' => "Esta revisión de la página ha sido '''borrada'''.
 Puede haber detalles en el [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registro de borrado].",
-'rev-deleted-text-unhide'        => "Esta revisión de página ha sido '''borrada'''.
+'rev-deleted-text-unhide'     => "Esta revisión de página ha sido '''borrada'''.
 Puede haber detalles en el [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registro de borrado].
 Como administrador todavía puedes [$1 ver esta revisión] si deseas proceder.",
-'rev-deleted-text-view'          => "Esta revisión de la página ha sido '''borrada'''.
+'rev-deleted-text-view'       => "Esta revisión de la página ha sido '''borrada'''.
 Como administrador en {{SITENAME}} puedes verla;
 puede haber detalles en el [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registro de borrado].",
-'rev-deleted-no-diff'            => "No puede visualizarse este cambio debido a que las revisiones han sido '''borradas'''.
+'rev-deleted-no-diff'         => "No puede visualizarse este cambio debido a que las revisiones han sido '''borradas'''.
 Puede haber detalles en el [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registro de borrado].",
-'rev-deleted-unhide-diff'        => "Una de las revisiones de este cambio ha sido '''borrada'''.
+'rev-deleted-unhide-diff'     => "Una de las revisiones de este cambio ha sido '''borrada'''.
 Puede haber detalles en el [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registro de borrado].
 Como administrador todavía puedes [$1 ver este cambio] si deseas proceder.",
-'rev-delundel'                   => 'mostrar/ocultar',
-'revisiondelete'                 => 'Borrar/deshacer borrado revisiones',
-'revdelete-nooldid-title'        => 'No hay revisión destino',
-'revdelete-nooldid-text'         => 'No se ha especificado una revisión o revisiones destino sobre las que realizar esta función.',
-'revdelete-nologtype-title'      => 'ningún nombre dado',
-'revdelete-nologtype-text'       => 'usted no ha especificado ningún nombre para ejecutar esta acción.',
-'revdelete-toomanytargets-title' => 'demasiados objetivos',
-'revdelete-toomanytargets-text'  => 'usted ha especificado demasiados tipos de objetivos para ejecutar esta acción.',
-'revdelete-nologid-title'        => 'ingreso inválido',
-'revdelete-nologid-text'         => 'Usted tampoco ha especificado un objetivo de eventos para ejecutar esta función o la entrada especificada no existe.',
-'revdelete-selected'             => "'''{{PLURAL:$2|Revisión seleccionada|Revisiones seleccionadas}} de [[:$1]]:'''",
-'logdelete-selected'             => "'''{{PLURAL:$1|Seleccionado un evento|Seleccionados eventos}}:'''",
-'revdelete-text'                 => "Las revisiones borradas aún aparecerán en el historial de la página y en los registros, pero sus contenidos no serán accesibles al público.'''
+'rev-delundel'                => 'mostrar/ocultar',
+'revisiondelete'              => 'Borrar/deshacer borrado revisiones',
+'revdelete-nooldid-title'     => 'No hay revisión destino',
+'revdelete-nooldid-text'      => 'No se ha especificado una revisión o revisiones destino sobre las que realizar esta función.',
+'revdelete-nologtype-title'   => 'ningún nombre dado',
+'revdelete-nologtype-text'    => 'usted no ha especificado ningún nombre para ejecutar esta acción.',
+'revdelete-nologid-title'     => 'ingreso inválido',
+'revdelete-nologid-text'      => 'Usted tampoco ha especificado un objetivo de eventos para ejecutar esta función o la entrada especificada no existe.',
+'revdelete-selected'          => "'''{{PLURAL:$2|Revisión seleccionada|Revisiones seleccionadas}} de [[:$1]]:'''",
+'logdelete-selected'          => "'''{{PLURAL:$1|Seleccionado un evento|Seleccionados eventos}}:'''",
+'revdelete-text'              => "Las revisiones borradas aún aparecerán en el historial de la página y en los registros, pero sus contenidos no serán accesibles al público.'''
 
 Otros administradores de {{SITENAME}} aún podrán acceder al contenido oculto y podrán deshacer el borrado a través de la misma interfaz, a menos que se establezcan restricciones adicionales.
 Por favor confirme que está intentando hacer esto, que usted entiende las consecuencias, y que lo esta haciendo de acuerso con [[{{MediaWiki:Policy-url}}|la política]].",
-'revdelete-suppress-text'        => "Supresión debería '''solamente''' ser usado para los siguientes casos:
+'revdelete-suppress-text'     => "Supresión debería '''solamente''' ser usado para los siguientes casos:
 * Información personal inapropiada
 *: ''dirección domiciliaria y números telefónicos, números de seguridad social, etc.''",
-'revdelete-legend'               => 'Establecer restricciones de revisión:',
-'revdelete-hide-text'            => 'Ocultar el texto de la revisión',
-'revdelete-hide-name'            => 'Ocultar acción y objetivo',
-'revdelete-hide-comment'         => 'Ocultar comentario de edición',
-'revdelete-hide-user'            => 'Ocultar el nombre/IP del editor',
-'revdelete-hide-restricted'      => 'Suprimir datos de los administradores tal como al resto',
-'revdelete-suppress'             => 'Eliminar datos de los administradores tal como al resto',
-'revdelete-hide-image'           => 'Ocultar el contenido del archivo',
-'revdelete-unsuppress'           => 'Eliminar restricciones de revisiones restauradas',
-'revdelete-log'                  => 'Comentario de registro:',
-'revdelete-submit'               => 'Aplicar a la revisión seleccionada',
-'revdelete-logentry'             => 'cambiada la visibilidad de la revisión para [[$1]]',
-'logdelete-logentry'             => 'cambiada la visibilidad de eventos de [[$1]]',
-'revdelete-success'              => 'Visibilidad de revisiones cambiada correctamente.',
-'revdelete-failure'              => "'''La visibilidad de la revisión no se ha podido establecer.'''",
-'logdelete-success'              => 'Visibilidad de eventos cambiada correctamente.',
-'revdel-restore'                 => 'Cambiar visibilidad',
-'pagehist'                       => 'Historial de la página',
-'deletedhist'                    => 'Historial borrado',
-'revdelete-content'              => 'contenido',
-'revdelete-summary'              => 'editar resumen',
-'revdelete-uname'                => 'nombre de usuario',
-'revdelete-restricted'           => 'restricciones para sysops aplicadas',
-'revdelete-unrestricted'         => 'restricciones para sysops eliminadas',
-'revdelete-hid'                  => 'ocultar $1',
-'revdelete-unhid'                => 'mostrar $1',
-'revdelete-log-message'          => '$1 para $2 {{PLURAL:$2|revisión|revisiones}}',
-'logdelete-log-message'          => '$1 de $2 {{PLURAL:$2|evento|eventos}}',
+'revdelete-legend'            => 'Establecer restricciones de revisión:',
+'revdelete-hide-text'         => 'Ocultar el texto de la revisión',
+'revdelete-hide-name'         => 'Ocultar acción y objetivo',
+'revdelete-hide-comment'      => 'Ocultar comentario de edición',
+'revdelete-hide-user'         => 'Ocultar el nombre/IP del editor',
+'revdelete-hide-restricted'   => 'Suprimir datos de los administradores tal como al resto',
+'revdelete-suppress'          => 'Eliminar datos de los administradores tal como al resto',
+'revdelete-hide-image'        => 'Ocultar el contenido del archivo',
+'revdelete-unsuppress'        => 'Eliminar restricciones de revisiones restauradas',
+'revdelete-log'               => 'Comentario de registro:',
+'revdelete-submit'            => 'Aplicar a la revisión seleccionada',
+'revdelete-logentry'          => 'cambiada la visibilidad de la revisión para [[$1]]',
+'logdelete-logentry'          => 'cambiada la visibilidad de eventos de [[$1]]',
+'revdelete-success'           => 'Visibilidad de revisiones cambiada correctamente.',
+'revdelete-failure'           => "'''La visibilidad de la revisión no se ha podido establecer.'''",
+'logdelete-success'           => 'Visibilidad de eventos cambiada correctamente.',
+'revdel-restore'              => 'Cambiar visibilidad',
+'pagehist'                    => 'Historial de la página',
+'deletedhist'                 => 'Historial borrado',
+'revdelete-content'           => 'contenido',
+'revdelete-summary'           => 'editar resumen',
+'revdelete-uname'             => 'nombre de usuario',
+'revdelete-restricted'        => 'restricciones para sysops aplicadas',
+'revdelete-unrestricted'      => 'restricciones para sysops eliminadas',
+'revdelete-hid'               => 'ocultar $1',
+'revdelete-unhid'             => 'mostrar $1',
+'revdelete-log-message'       => '$1 para $2 {{PLURAL:$2|revisión|revisiones}}',
+'logdelete-log-message'       => '$1 de $2 {{PLURAL:$2|evento|eventos}}',
 
 # Suppression log
 'suppressionlog'     => 'Log de supresiones',

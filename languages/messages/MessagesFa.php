@@ -1091,68 +1091,66 @@ $2',
 [[Special:Search|جستجوی]] صفحه‌های جدید مرتبطِ موجود در این ویکی را هم بیازمایید. شاید افاقه کرد.',
 
 # Revision deletion
-'rev-deleted-comment'            => '(توضیحات پاک شد)',
-'rev-deleted-user'               => '(نام کاربری حذف شده‌است)',
-'rev-deleted-event'              => '(مورد پاک شد)',
-'rev-deleted-text-permission'    => "این ویرایش از این صفحه '''حذف شده‌است'''.
+'rev-deleted-comment'         => '(توضیحات پاک شد)',
+'rev-deleted-user'            => '(نام کاربری حذف شده‌است)',
+'rev-deleted-event'           => '(مورد پاک شد)',
+'rev-deleted-text-permission' => "این ویرایش از این صفحه '''حذف شده‌است'''.
 ممکن است اطلاعات مرتبط با آن در [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} سیاههٔ حذف] موجود باشد.",
-'rev-deleted-text-unhide'        => "این ویرایش از این صفحه '''حذف شده‌است'''.
+'rev-deleted-text-unhide'     => "این ویرایش از این صفحه '''حذف شده‌است'''.
 ممکن است اطلاعات مرتبط با آن در [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} سیاههٔ حذف] موجود باشد.
 شما به عنوان یک مدیر کماکان می‌توانید در صورت تمایل [$1 این نسخه را ببینید].",
-'rev-deleted-text-view'          => "این ویرایش از این صفحه '''حذف شده‌است'''.
+'rev-deleted-text-view'       => "این ویرایش از این صفحه '''حذف شده‌است'''.
 شما به عنوان یک مدیر می‌توانید آن را ببینید؛ ممکن است اطلاعات مرتبط با آن در [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} سیاههٔ حذف] موجود باشد.",
-'rev-deleted-no-diff'            => "شما نمی‌توانید این تفاوت را مشاهده کنید زیرا یکی از دو نسخه '''حذف شده‌است'''.
+'rev-deleted-no-diff'         => "شما نمی‌توانید این تفاوت را مشاهده کنید زیرا یکی از دو نسخه '''حذف شده‌است'''.
 ممکن است اطلاعات مرتبط با آن در [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} سیاههٔ حذف] موجود باشد.",
-'rev-deleted-unhide-diff'        => "یکی از دو نسخهٔ این تفاوت '''حذف شده‌است'''.
+'rev-deleted-unhide-diff'     => "یکی از دو نسخهٔ این تفاوت '''حذف شده‌است'''.
 ممکن است اطلاعات مرتبط با آن در [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} سیاههٔ حذف] موجود باشد.
 شما به عنوان یک مدیر کماکان می‌توانید در صورت تمایل [$1 این تفاوت را ببینید].",
-'rev-delundel'                   => 'نمایش/نهفتن',
-'revisiondelete'                 => 'حذف/احیای نسخه‌ها',
-'revdelete-nooldid-title'        => 'هیچ نسخه‌ای انتخاب نشده‌است',
-'revdelete-nooldid-text'         => 'نسخه یا نسخه‌هایی از صفحهٔ مورد نظر را که می‌خواهید تحت تاثیر قرار بگیرند انتخاب نکرده‌اید.',
-'revdelete-nologtype-title'      => 'نوع سیاهه مشخص نشده‌است',
-'revdelete-nologtype-text'       => 'شما هیچ نوع سیاهه‌ای را برای این کار مشخص نکردید.',
-'revdelete-toomanytargets-title' => 'اهداف بیش از اندازه',
-'revdelete-toomanytargets-text'  => 'انواع سیاهه‌هایی که برای این کار مشخص کردید بیش از اندازه است.',
-'revdelete-nologid-title'        => 'مدخل غیر مجاز در سیاهه',
-'revdelete-nologid-text'         => 'شما یا یک رخداد در سیاههٔ هدف مشخص نکردید یا موردی را مشخص کردید که وجود ندارد.',
-'revdelete-selected'             => "'''{{PLURAL:$2|نسخهٔ|نسخه‌های}} انتخاب شده از '''$1:''''''",
-'logdelete-selected'             => "'''{{PLURAL:$1|مورد|موارد}} انتخاب شده از سیاهه:'''",
-'revdelete-text'                 => "'''نسخه‌ها و موارد حذف شده کماکان از طریق تاریخچهٔ صفحه و سیاهه‌ها قابل مشاهده هستند، اما بخش‌هایی از محتوای آن‌ها توسط عموم قابل مشاهده نخواهد بود.'''
+'rev-delundel'                => 'نمایش/نهفتن',
+'revisiondelete'              => 'حذف/احیای نسخه‌ها',
+'revdelete-nooldid-title'     => 'هیچ نسخه‌ای انتخاب نشده‌است',
+'revdelete-nooldid-text'      => 'نسخه یا نسخه‌هایی از صفحهٔ مورد نظر را که می‌خواهید تحت تاثیر قرار بگیرند انتخاب نکرده‌اید.',
+'revdelete-nologtype-title'   => 'نوع سیاهه مشخص نشده‌است',
+'revdelete-nologtype-text'    => 'شما هیچ نوع سیاهه‌ای را برای این کار مشخص نکردید.',
+'revdelete-nologid-title'     => 'مدخل غیر مجاز در سیاهه',
+'revdelete-nologid-text'      => 'شما یا یک رخداد در سیاههٔ هدف مشخص نکردید یا موردی را مشخص کردید که وجود ندارد.',
+'revdelete-selected'          => "'''{{PLURAL:$2|نسخهٔ|نسخه‌های}} انتخاب شده از '''$1:''''''",
+'logdelete-selected'          => "'''{{PLURAL:$1|مورد|موارد}} انتخاب شده از سیاهه:'''",
+'revdelete-text'              => "'''نسخه‌ها و موارد حذف شده کماکان از طریق تاریخچهٔ صفحه و سیاهه‌ها قابل مشاهده هستند، اما بخش‌هایی از محتوای آن‌ها توسط عموم قابل مشاهده نخواهد بود.'''
 
 سایر مدیران {{SITENAME}} هنوز می‌توانند این محتوای پنهان را ببینند و از همین طریق موارد حذف شده را احیا کنند، مگر آن که محدودیت‌های دیگری اعمال گردد.
 لطفاً تایید کنید که می‌خواهید این عمل را انجام دهید، نتایج آن را درک می‌کنید و این کار را مطابق [[{{MediaWiki:Policy-url}}|سیاست]] انجام می‌دهید.",
-'revdelete-suppress-text'        => "فرونشانی باید '''تنها''' برای موارد زیر استفاده شود:
+'revdelete-suppress-text'     => "فرونشانی باید '''تنها''' برای موارد زیر استفاده شود:
 * اطلاعات نامناسب شخصی
 *: ''نشانی منزل، شماره تلفن، شماره تامین اجتماعی و غیره.''",
-'revdelete-legend'               => 'تنظیم محدودیت‌های نسخه:',
-'revdelete-hide-text'            => 'نهفتن متن نسخه',
-'revdelete-hide-name'            => 'نهفتن عمل و هدف',
-'revdelete-hide-comment'         => 'نهفتن توضیح ویرایش',
-'revdelete-hide-user'            => 'نام کاربری/نشانی آی‌پی ویراستار مخفی شود',
-'revdelete-hide-restricted'      => 'فرونشانی اطلاعات برای مدیران به همراه دیگران',
-'revdelete-suppress'             => 'از دسترسی مدیران به داده نیز مانند سایر کاربران جلوگیری به عمل آید.',
-'revdelete-hide-image'           => 'نهفتن محتویات پرونده',
-'revdelete-unsuppress'           => 'خاتمهٔ محدودیت‌ها در مورد نسخه‌های انتخاب شده',
-'revdelete-log'                  => 'توضیح سیاهه:',
-'revdelete-submit'               => 'اِعمال بر نسخهٔ انتخاب‌شده',
-'revdelete-logentry'             => 'تغییر پیدایی نسخه در [[$1]]',
-'logdelete-logentry'             => 'تغییر پیدایی مورد در [[$1]]',
-'revdelete-success'              => 'تغییر پیدایی نسخه با موفقیت انجام شد.',
-'revdelete-failure'              => "'''پیدایی نسخه‌ها قابل تنظیم نیست.'''",
-'logdelete-success'              => 'تغییر پیدایی مورد با موفقیت انجام شد.',
-'revdel-restore'                 => 'تغییر پیدایی',
-'pagehist'                       => 'تاریخچهٔ صفحه',
-'deletedhist'                    => 'تاریخچهٔ حذف شده',
-'revdelete-content'              => 'محتوا',
-'revdelete-summary'              => 'خلاصه ویرایش',
-'revdelete-uname'                => 'نام کاربر',
-'revdelete-restricted'           => 'مدیران را محدود کرد',
-'revdelete-unrestricted'         => 'محدودیت مدیران را لغو کرد',
-'revdelete-hid'                  => '$1 را پنهان کرد',
-'revdelete-unhid'                => '$1 را از حالت پنهان در آورد',
-'revdelete-log-message'          => '$1 برای $2 {{PLURAL:$2|نسخه|نسخه}}',
-'logdelete-log-message'          => '$1 برای $2 {{PLURAL:$2|رخداد|رخداد}}',
+'revdelete-legend'            => 'تنظیم محدودیت‌های نسخه:',
+'revdelete-hide-text'         => 'نهفتن متن نسخه',
+'revdelete-hide-name'         => 'نهفتن عمل و هدف',
+'revdelete-hide-comment'      => 'نهفتن توضیح ویرایش',
+'revdelete-hide-user'         => 'نام کاربری/نشانی آی‌پی ویراستار مخفی شود',
+'revdelete-hide-restricted'   => 'فرونشانی اطلاعات برای مدیران به همراه دیگران',
+'revdelete-suppress'          => 'از دسترسی مدیران به داده نیز مانند سایر کاربران جلوگیری به عمل آید.',
+'revdelete-hide-image'        => 'نهفتن محتویات پرونده',
+'revdelete-unsuppress'        => 'خاتمهٔ محدودیت‌ها در مورد نسخه‌های انتخاب شده',
+'revdelete-log'               => 'توضیح سیاهه:',
+'revdelete-submit'            => 'اِعمال بر نسخهٔ انتخاب‌شده',
+'revdelete-logentry'          => 'تغییر پیدایی نسخه در [[$1]]',
+'logdelete-logentry'          => 'تغییر پیدایی مورد در [[$1]]',
+'revdelete-success'           => 'تغییر پیدایی نسخه با موفقیت انجام شد.',
+'revdelete-failure'           => "'''پیدایی نسخه‌ها قابل تنظیم نیست.'''",
+'logdelete-success'           => 'تغییر پیدایی مورد با موفقیت انجام شد.',
+'revdel-restore'              => 'تغییر پیدایی',
+'pagehist'                    => 'تاریخچهٔ صفحه',
+'deletedhist'                 => 'تاریخچهٔ حذف شده',
+'revdelete-content'           => 'محتوا',
+'revdelete-summary'           => 'خلاصه ویرایش',
+'revdelete-uname'             => 'نام کاربر',
+'revdelete-restricted'        => 'مدیران را محدود کرد',
+'revdelete-unrestricted'      => 'محدودیت مدیران را لغو کرد',
+'revdelete-hid'               => '$1 را پنهان کرد',
+'revdelete-unhid'             => '$1 را از حالت پنهان در آورد',
+'revdelete-log-message'       => '$1 برای $2 {{PLURAL:$2|نسخه|نسخه}}',
+'logdelete-log-message'       => '$1 برای $2 {{PLURAL:$2|رخداد|رخداد}}',
 
 # Suppression log
 'suppressionlog'     => 'سیاههٔ فرونشانی',

@@ -798,34 +798,32 @@ Erklärig: (aktuell) = Underschid zu jetz,
 'history-feed-empty'          => 'Di aagforderet Syte git s nid. Villicht isch si glescht oder verschobe wore. [[Special:Search|Suech]] {{SITENAME}} fir neji Syte, wu passe.',
 
 # Revision deletion
-'rev-deleted-comment'            => '(Bearbeitigskommentar uusegnuh)',
-'rev-deleted-user'               => '(Benutzername uusegnuh)',
-'rev-deleted-event'              => '(Logbuechaktion uusegnuh)',
-'rev-deleted-text-permission'    => "Die Version isch '''glescht''' wore.
+'rev-deleted-comment'         => '(Bearbeitigskommentar uusegnuh)',
+'rev-deleted-user'            => '(Benutzername uusegnuh)',
+'rev-deleted-event'           => '(Logbuechaktion uusegnuh)',
+'rev-deleted-text-permission' => "Die Version isch '''glescht''' wore.
 Information zue dr Leschig un e Begrindig het s im [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Lesch-Logbuech].",
-'rev-deleted-text-unhide'        => "Die Version isch '''glescht''' wore.
+'rev-deleted-text-unhide'     => "Die Version isch '''glescht''' wore.
 Detail stehn im [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Lesch-Logbuech].
 As Ammann chasch Du [$1 des Gelich aaluege], wänn du witt wytermache.",
-'rev-deleted-text-view'          => "Die Version isch '''glescht''' wore. As Amman chasch si aber alno aaluege.
+'rev-deleted-text-view'       => "Die Version isch '''glescht''' wore. As Amman chasch si aber alno aaluege.
 Informatione zue dr Leschig un e Begrindig het s im [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Lesch-Logbuech].",
-'rev-deleted-no-diff'            => "Du chasch die Änderig nit aaluege, wel eini vu dr Versione '''glescht''' woren isch.
+'rev-deleted-no-diff'         => "Du chasch die Änderig nit aaluege, wel eini vu dr Versione '''glescht''' woren isch.
 Villicht het s Detail im [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Lesch-Logbuech].",
-'rev-deleted-unhide-diff'        => "Eini vu dr Versione isch '''glescht''' wore.
+'rev-deleted-unhide-diff'     => "Eini vu dr Versione isch '''glescht''' wore.
 Villicht het s Detail im [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Lesch-Logbuech].
 Wänn Du Ammann bisch, chasch [$1 dä Unterschid aaluege] wänn Du wytermache witt.",
-'rev-delundel'                   => 'zeig/versteck',
-'revisiondelete'                 => 'Versione lesche/widerherstelle',
-'revdelete-nooldid-title'        => 'Kei Version aagee',
-'revdelete-nooldid-text'         => 'Du hesch entwäder kei Version aagee, wu die Aktion soll usgfiert wäre, die usgwehlt Version git s nid oder Du versuechsch di aktuäll Version z verstecke.',
-'revdelete-nologtype-title'      => 'Kei Logtyp aagee',
-'revdelete-nologtype-text'       => 'S isch kei Logtyp fir die Aktion aagee wore.',
-'revdelete-toomanytargets-title' => 'Zvyyl Ziil',
-'revdelete-toomanytargets-text'  => 'S sin zvyyl Logtype fir die Aktion aagee wore.',
-'revdelete-nologid-title'        => 'Uugiltige Logyytrag',
-'revdelete-nologid-text'         => 'S isch kei Logtyp usgwählt wore oder dr gwählt Logtyp git s nit.',
-'revdelete-selected'             => "'''{{PLURAL:$2|Usgwehlti Version|Usgwehlti Versione}} vu [[:$1]]:'''",
-'logdelete-selected'             => "'''{{PLURAL:$1|Usgwehlte Logbuechyytrag|Usgwehlti Logbuechyytreg}}:'''",
-'revdelete-text'                 => "'''Dr Inhalt oder anderi Bstandteil vu gleschte Versione chenne nimi aagluegt wäre, si erschyyne aber alno as Yytreg in dr Versiongschicht.'''
+'rev-delundel'                => 'zeig/versteck',
+'revisiondelete'              => 'Versione lesche/widerherstelle',
+'revdelete-nooldid-title'     => 'Kei Version aagee',
+'revdelete-nooldid-text'      => 'Du hesch entwäder kei Version aagee, wu die Aktion soll usgfiert wäre, die usgwehlt Version git s nid oder Du versuechsch di aktuäll Version z verstecke.',
+'revdelete-nologtype-title'   => 'Kei Logtyp aagee',
+'revdelete-nologtype-text'    => 'S isch kei Logtyp fir die Aktion aagee wore.',
+'revdelete-nologid-title'     => 'Uugiltige Logyytrag',
+'revdelete-nologid-text'      => 'S isch kei Logtyp usgwählt wore oder dr gwählt Logtyp git s nit.',
+'revdelete-selected'          => "'''{{PLURAL:$2|Usgwehlti Version|Usgwehlti Versione}} vu [[:$1]]:'''",
+'logdelete-selected'          => "'''{{PLURAL:$1|Usgwehlte Logbuechyytrag|Usgwehlti Logbuechyytreg}}:'''",
+'revdelete-text'              => "'''Dr Inhalt oder anderi Bstandteil vu gleschte Versione chenne nimi aagluegt wäre, si erschyyne aber alno as Yytreg in dr Versiongschicht.'''
 
 {{SITENAME}}-Ammanne chenne dr Inhalt, wu glescht isch, oder di andre gleschte Bstandteil alno aaluege un au widerherstelle, user s isch feschtgleit, ass d Zuegangsbschränkige au fir Ammanne gälte.
 
@@ -833,37 +831,37 @@ Wänn Du Ammann bisch, chasch [$1 dä Unterschid aaluege] wänn Du wytermache wi
 
 Anderi Ammanne uf {{SITENAME}} hän alno Zuegriff uf dr versteckt Inhalt un chenne ne mit dr glyche Syte widerhärstelle, wänn s keini zuesätzlige Yyschränkige git.
 Bitte bstätig, ass Du des witt mache, ass Du d Konsequänze verstohsch un ass des mit dr [[{{MediaWiki:Policy-url}}|Richtlinie]] ibereinstimmt.",
-'revdelete-suppress-text'        => "Unterdruckige sotte '''nume''' in däne Fäll bruucht wäre:
+'revdelete-suppress-text'     => "Unterdruckige sotte '''nume''' in däne Fäll bruucht wäre:
 * Nit aabrochti Informatione
 *: ''Adrässe, Telifonnummere, Sozialversicherigsnummere usw.''",
-'revdelete-legend'               => 'Setze vu dr Sichtbarkeits-Yyschränkige',
-'revdelete-hide-text'            => 'Täxt vu dr Version versteckle',
-'revdelete-hide-name'            => 'Logbuech-Aktion versteckle',
-'revdelete-hide-comment'         => 'Bearbeitigskommentar versteckle',
-'revdelete-hide-user'            => 'Benutzername/d IP vum Bearbeiter versteckle',
-'revdelete-hide-restricted'      => 'Date vu Ammanne glyych unterdrucke wie vu andere',
-'revdelete-suppress'             => 'Grund vu dr Leschig au vor dr Ammanne versteckle',
-'revdelete-hide-image'           => 'Bildinhalt versteckle',
-'revdelete-unsuppress'           => 'Yyhscränkige fir di widerhergstellte Versione ufhebe',
-'revdelete-log'                  => 'Kommentar/Begrindig (erschyynt im Logbuech):',
-'revdelete-submit'               => 'Uf usgwehlti Version aawände',
-'revdelete-logentry'             => 'het d Versionsaasicht fir „[[$1]]“ gänderet',
-'logdelete-logentry'             => 'het d Sichtbarkeit fir „[[$1]]“ gänderet',
-'revdelete-success'              => "'''Versionsaasicht erfolgryych gänderet.'''",
-'revdelete-failure'              => "'''Versionssichtbarkeit het nit chenne gsetzt wäre.'''",
-'logdelete-success'              => "'''Logbuechaasicht erfolgryych gänderet.'''",
-'revdel-restore'                 => 'Sichtbarkeit ändere',
-'pagehist'                       => 'Versionsgeschicht',
-'deletedhist'                    => 'Gleschti Versione',
-'revdelete-content'              => 'Syteinhalt',
-'revdelete-summary'              => 'Zämmefassig',
-'revdelete-uname'                => 'Benutzername',
-'revdelete-restricted'           => 'Yyschränkige gälte au fir Ammanne',
-'revdelete-unrestricted'         => 'Yyschränkige fir Ammanne ufghobe',
-'revdelete-hid'                  => 'versteckleti $1',
-'revdelete-unhid'                => 'macht $1 wider effetlig',
-'revdelete-log-message'          => '$1 fir $2 {{PLURAL:$2|Version|Versione}}',
-'logdelete-log-message'          => '$1 fir $2 {{PLURAL:$2|Logbuechyytrag|Logbuechyytreg}}',
+'revdelete-legend'            => 'Setze vu dr Sichtbarkeits-Yyschränkige',
+'revdelete-hide-text'         => 'Täxt vu dr Version versteckle',
+'revdelete-hide-name'         => 'Logbuech-Aktion versteckle',
+'revdelete-hide-comment'      => 'Bearbeitigskommentar versteckle',
+'revdelete-hide-user'         => 'Benutzername/d IP vum Bearbeiter versteckle',
+'revdelete-hide-restricted'   => 'Date vu Ammanne glyych unterdrucke wie vu andere',
+'revdelete-suppress'          => 'Grund vu dr Leschig au vor dr Ammanne versteckle',
+'revdelete-hide-image'        => 'Bildinhalt versteckle',
+'revdelete-unsuppress'        => 'Yyhscränkige fir di widerhergstellte Versione ufhebe',
+'revdelete-log'               => 'Kommentar/Begrindig (erschyynt im Logbuech):',
+'revdelete-submit'            => 'Uf usgwehlti Version aawände',
+'revdelete-logentry'          => 'het d Versionsaasicht fir „[[$1]]“ gänderet',
+'logdelete-logentry'          => 'het d Sichtbarkeit fir „[[$1]]“ gänderet',
+'revdelete-success'           => "'''Versionsaasicht erfolgryych gänderet.'''",
+'revdelete-failure'           => "'''Versionssichtbarkeit het nit chenne gsetzt wäre.'''",
+'logdelete-success'           => "'''Logbuechaasicht erfolgryych gänderet.'''",
+'revdel-restore'              => 'Sichtbarkeit ändere',
+'pagehist'                    => 'Versionsgeschicht',
+'deletedhist'                 => 'Gleschti Versione',
+'revdelete-content'           => 'Syteinhalt',
+'revdelete-summary'           => 'Zämmefassig',
+'revdelete-uname'             => 'Benutzername',
+'revdelete-restricted'        => 'Yyschränkige gälte au fir Ammanne',
+'revdelete-unrestricted'      => 'Yyschränkige fir Ammanne ufghobe',
+'revdelete-hid'               => 'versteckleti $1',
+'revdelete-unhid'             => 'macht $1 wider effetlig',
+'revdelete-log-message'       => '$1 fir $2 {{PLURAL:$2|Version|Versione}}',
+'logdelete-log-message'       => '$1 fir $2 {{PLURAL:$2|Logbuechyytrag|Logbuechyytreg}}',
 
 # Suppression log
 'suppressionlog'     => 'Oversight-Logbuech',

@@ -1024,70 +1024,68 @@ El at pôt-étre étâ suprimâ ou ben renomâ.
 Tâchiéd de [[Special:Search|rechèrchiér sur lo vouiqui]] por trovar des novèles pâges que vont avouéc.',
 
 # Revision deletion
-'rev-deleted-comment'            => '(comentèro suprimâ)',
-'rev-deleted-user'               => '(nom d’utilisator suprimâ)',
-'rev-deleted-event'              => '(entrâ suprimâ)',
-'rev-deleted-text-permission'    => "Ceta vèrsion de la pâge at étâ '''suprimâ'''.
+'rev-deleted-comment'         => '(comentèro suprimâ)',
+'rev-deleted-user'            => '(nom d’utilisator suprimâ)',
+'rev-deleted-event'           => '(entrâ suprimâ)',
+'rev-deleted-text-permission' => "Ceta vèrsion de la pâge at étâ '''suprimâ'''.
 Y pôt avêr més de dètalys dens lo [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].",
-'rev-deleted-text-unhide'        => "Ceta vèrsion de la pâge at étâ '''suprimâ'''.
+'rev-deleted-text-unhide'     => "Ceta vèrsion de la pâge at étâ '''suprimâ'''.
 Y pôt avêr més de dètalys dens lo [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].
 Coment administrator, vos pouede adés [$1 vêre cela vèrsion] se vos lo voléd.",
-'rev-deleted-text-view'          => "Ceta vèrsion de la pâge at étâ '''suprimâ'''.
+'rev-deleted-text-view'       => "Ceta vèrsion de la pâge at étâ '''suprimâ'''.
 Coment administrator, vos la pouede visualisar ; y pôt avêr més de dètalys dens lo [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].",
-'rev-deleted-no-diff'            => "Vos pouede pas vêre ceti dif perce que yona de les vèrsions at étâ '''suprimâ'''.
+'rev-deleted-no-diff'         => "Vos pouede pas vêre ceti dif perce que yona de les vèrsions at étâ '''suprimâ'''.
 Y pôt avêr més de dètalys dens lo [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].",
-'rev-deleted-unhide-diff'        => "Yona de les vèrsions de ceti dif at étâ '''suprimâ'''.
+'rev-deleted-unhide-diff'     => "Yona de les vèrsions de ceti dif at étâ '''suprimâ'''.
 Y pôt avêr més de dètalys dens lo [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].
 Coment administrator, vos pouede adés [$1 vêre cél dif] se vos lo voléd.",
-'rev-delundel'                   => 'fâre vêre / cachiér',
-'revisiondelete'                 => 'Suprimar / refâre des vèrsions',
-'revdelete-nooldid-title'        => 'Vèrsion ciba envalida',
-'revdelete-nooldid-text'         => 'Vos éd pas spècefiâ la vèrsion ciba ou ben les vèrsions cibes de cela fonccion,
+'rev-delundel'                => 'fâre vêre / cachiér',
+'revisiondelete'              => 'Suprimar / refâre des vèrsions',
+'revdelete-nooldid-title'     => 'Vèrsion ciba envalida',
+'revdelete-nooldid-text'      => 'Vos éd pas spècefiâ la vèrsion ciba ou ben les vèrsions cibes de cela fonccion,
 la vèrsion ciba ègziste pas, ou ben o est la vèrsion d’ora.',
-'revdelete-nologtype-title'      => 'Nion tipo de jornal spècefiâ',
-'revdelete-nologtype-text'       => 'Vos éd pas spècefiâ un tipo de jornal sur loquint cela accion dêt étre rèalisâ.',
-'revdelete-toomanytargets-title' => 'Trop de cibes',
-'revdelete-toomanytargets-text'  => 'Vos éd spècefiâ trop de tipos de cibes difèrentes sur lesquintes cela accion dêt étre rèalisâ.',
-'revdelete-nologid-title'        => 'Entrâ du jornal envalida',
-'revdelete-nologid-text'         => 'Ou ben vos éd pas spècefiâ una entrâ du jornal sur laquinta cela accion dêt étre rèalisâ, ou ben l’entrâ ègziste pas.',
-'revdelete-selected'             => "'''{{PLURAL:$2|Vèrsion chouèsia|Vèrsions chouèsies}} de [[:$1]] :'''",
-'logdelete-selected'             => "'''{{PLURAL:$1|Entrâ du jornal chouèsia|Entrâs du jornal chouèsies}} :'''",
-'revdelete-text'                 => "'''Les vèrsions et les entrâs suprimâs aparètront adés dens l’historico de la pâge et dens los jornals, mas lor contegnu tèxtuèl serat pas accèssiblo u publico.'''
+'revdelete-nologtype-title'   => 'Nion tipo de jornal spècefiâ',
+'revdelete-nologtype-text'    => 'Vos éd pas spècefiâ un tipo de jornal sur loquint cela accion dêt étre rèalisâ.',
+'revdelete-nologid-title'     => 'Entrâ du jornal envalida',
+'revdelete-nologid-text'      => 'Ou ben vos éd pas spècefiâ una entrâ du jornal sur laquinta cela accion dêt étre rèalisâ, ou ben l’entrâ ègziste pas.',
+'revdelete-selected'          => "'''{{PLURAL:$2|Vèrsion chouèsia|Vèrsions chouèsies}} de [[:$1]] :'''",
+'logdelete-selected'          => "'''{{PLURAL:$1|Entrâ du jornal chouèsia|Entrâs du jornal chouèsies}} :'''",
+'revdelete-text'              => "'''Les vèrsions et les entrâs suprimâs aparètront adés dens l’historico de la pâge et dens los jornals, mas lor contegnu tèxtuèl serat pas accèssiblo u publico.'''
 
 Los ôtros administrators de {{SITENAME}} porront tojorn arrevar u contegnu cachiê et lo refâre per cela méma entèrface, a muens que des rèstriccions de ples seyont betâs en place.
 
 Volyéd confirmar qu’o est franc cen que vos voléd fâre, que vos en compregnéd les consèquences et pués que vos féte cen en acôrd avouéc les [[{{MediaWiki:Policy-url}}|règlles de dedens]].",
-'revdelete-suppress-text'        => "La suprèssion dêt étre utilisâ '''ren que''' dens cetos câs :
+'revdelete-suppress-text'     => "La suprèssion dêt étre utilisâ '''ren que''' dens cetos câs :
 * enformacions a sè que vont pas avouéc
 *: ''adrèce, numerô de tèlèfone, numerô de sècuritât sociâla, ...''",
-'revdelete-legend'               => 'Betar en place des rèstriccions de visibilitât :',
-'revdelete-hide-text'            => 'Cachiér lo tèxto de la vèrsion',
-'revdelete-hide-name'            => 'Cachiér l’accion et la ciba',
-'revdelete-hide-comment'         => 'Cachiér lo comentèro de changement',
-'revdelete-hide-user'            => 'Cachiér lo nom ou l’adrèce IP u contributor.',
-'revdelete-hide-restricted'      => 'Cachiér les balyês ux administrators et pués ux ôtros',
-'revdelete-suppress'             => 'Suprimar les balyês ux administrators et pués ux ôtros',
-'revdelete-hide-image'           => 'Cachiér lo contegnu du fichiér',
-'revdelete-unsuppress'           => 'Enlevar les rèstriccions sur les vèrsions refêtes',
-'revdelete-log'                  => 'Comentèro por lo jornal :',
-'revdelete-submit'               => 'Aplicar a la vèrsion chouèsia',
-'revdelete-logentry'             => 'at changiê la visibilitât de la vèrsion de [[$1]]',
-'logdelete-logentry'             => 'at changiê la visibilitât de l’entrâ de [[$1]]',
-'revdelete-success'              => "'''Visibilitât de la vèrsion changiê avouéc reusséta.'''",
-'revdelete-failure'              => "'''La visibilitât de la vèrsion at pas possu étre dèfenia.'''",
-'logdelete-success'              => "'''Visibilitât du jornal paramètrâ avouéc reusséta.'''",
-'revdel-restore'                 => 'Changiér la visibilitât',
-'pagehist'                       => 'Historico de la pâge',
-'deletedhist'                    => 'Historico suprimâ',
-'revdelete-content'              => 'contegnu',
-'revdelete-summary'              => 'rèsumâ de changement',
-'revdelete-uname'                => 'nom d’utilisator',
-'revdelete-restricted'           => 'at aplicâ les rèstriccions ux administrators',
-'revdelete-unrestricted'         => 'rèstriccions enlevâs por los administrators',
-'revdelete-hid'                  => 'at cachiê $1',
-'revdelete-unhid'                => 'at montrâ $1',
-'revdelete-log-message'          => '$1 por $2 vèrsion{{PLURAL:$2||s}}',
-'logdelete-log-message'          => '$1 sur $2 entrâ{{PLURAL:$2||s}}',
+'revdelete-legend'            => 'Betar en place des rèstriccions de visibilitât :',
+'revdelete-hide-text'         => 'Cachiér lo tèxto de la vèrsion',
+'revdelete-hide-name'         => 'Cachiér l’accion et la ciba',
+'revdelete-hide-comment'      => 'Cachiér lo comentèro de changement',
+'revdelete-hide-user'         => 'Cachiér lo nom ou l’adrèce IP u contributor.',
+'revdelete-hide-restricted'   => 'Cachiér les balyês ux administrators et pués ux ôtros',
+'revdelete-suppress'          => 'Suprimar les balyês ux administrators et pués ux ôtros',
+'revdelete-hide-image'        => 'Cachiér lo contegnu du fichiér',
+'revdelete-unsuppress'        => 'Enlevar les rèstriccions sur les vèrsions refêtes',
+'revdelete-log'               => 'Comentèro por lo jornal :',
+'revdelete-submit'            => 'Aplicar a la vèrsion chouèsia',
+'revdelete-logentry'          => 'at changiê la visibilitât de la vèrsion de [[$1]]',
+'logdelete-logentry'          => 'at changiê la visibilitât de l’entrâ de [[$1]]',
+'revdelete-success'           => "'''Visibilitât de la vèrsion changiê avouéc reusséta.'''",
+'revdelete-failure'           => "'''La visibilitât de la vèrsion at pas possu étre dèfenia.'''",
+'logdelete-success'           => "'''Visibilitât du jornal paramètrâ avouéc reusséta.'''",
+'revdel-restore'              => 'Changiér la visibilitât',
+'pagehist'                    => 'Historico de la pâge',
+'deletedhist'                 => 'Historico suprimâ',
+'revdelete-content'           => 'contegnu',
+'revdelete-summary'           => 'rèsumâ de changement',
+'revdelete-uname'             => 'nom d’utilisator',
+'revdelete-restricted'        => 'at aplicâ les rèstriccions ux administrators',
+'revdelete-unrestricted'      => 'rèstriccions enlevâs por los administrators',
+'revdelete-hid'               => 'at cachiê $1',
+'revdelete-unhid'             => 'at montrâ $1',
+'revdelete-log-message'       => '$1 por $2 vèrsion{{PLURAL:$2||s}}',
+'logdelete-log-message'       => '$1 sur $2 entrâ{{PLURAL:$2||s}}',
 
 # Suppression log
 'suppressionlog'     => 'Jornal de les suprèssions',

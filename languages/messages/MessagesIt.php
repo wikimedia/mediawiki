@@ -891,68 +891,66 @@ Legenda: '''({{int:cur}})''' = differenze con la versione corrente, '''({{int:la
 'history-feed-empty'          => 'La pagina richiesta non esiste; potrebbe essere stata cancellata dal sito o rinominata. Verificare con la [[Special:Search|pagina di ricerca]] se vi sono nuove pagine.',
 
 # Revision deletion
-'rev-deleted-comment'            => '(commento rimosso)',
-'rev-deleted-user'               => '(nome utente rimosso)',
-'rev-deleted-event'              => '(azione del log rimossa)',
-'rev-deleted-text-permission'    => "Questa versione della pagina è stata '''cancellata'''.
+'rev-deleted-comment'         => '(commento rimosso)',
+'rev-deleted-user'            => '(nome utente rimosso)',
+'rev-deleted-event'           => '(azione del log rimossa)',
+'rev-deleted-text-permission' => "Questa versione della pagina è stata '''cancellata'''.
 Consultare il [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} log di cancellazione] per ulteriori dettagli.",
-'rev-deleted-text-unhide'        => "Questa versione della pagina è stata '''cancellata'''.
+'rev-deleted-text-unhide'     => "Questa versione della pagina è stata '''cancellata'''.
 Consultare il [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} log di cancellazione] per ulteriori dettagli.
 Agli amministratori è ancora consentito [$1 visualizzare questa versione] se necessario.",
-'rev-deleted-text-view'          => "Questa versione della pagina è stata '''cancellata'''.
+'rev-deleted-text-view'       => "Questa versione della pagina è stata '''cancellata'''.
 Gli amministratori possono ancora visualizzarla; consultare il [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} log di cancellazione] per ulteriori dettagli.",
-'rev-deleted-no-diff'            => "Non è possibile visualizzare questo diff perché una delle revisioni è stata '''cancellata'''.
+'rev-deleted-no-diff'         => "Non è possibile visualizzare questo diff perché una delle revisioni è stata '''cancellata'''.
 Consultare il [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} log di cancellazione] per ulteriori dettagli.",
-'rev-deleted-unhide-diff'        => "Una delle revisioni di questa diff è stata '''cancellata'''.
+'rev-deleted-unhide-diff'     => "Una delle revisioni di questa diff è stata '''cancellata'''.
 Consultare il [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} log di cancellazione] per ulteriori dettagli.
 Agli amministratori è ancora consentito [$1 visualizzare questa diff] se necessario.",
-'rev-delundel'                   => 'mostra/nascondi',
-'revisiondelete'                 => 'Cancella o ripristina versioni',
-'revdelete-nooldid-title'        => 'Versione non specificata',
-'revdelete-nooldid-text'         => 'Non è stata specificata alcuna versione della pagina su cui eseguire questa funzione.',
-'revdelete-nologtype-title'      => 'Nessun tipo di registro specificato',
-'revdelete-nologtype-text'       => "Non è stato specificato alcun tipo di registro su cui eseguire l'azione.",
-'revdelete-toomanytargets-title' => 'Troppi target',
-'revdelete-toomanytargets-text'  => "Hai specificato troppi tipi di target per eseguire quest'operazione.",
-'revdelete-nologid-title'        => 'Errore di indicazione del log',
-'revdelete-nologid-text'         => 'Per eseguire questa funzione non hai specificato un target per il log oppure il log non esiste.',
-'revdelete-selected'             => "'''{{PLURAL:$2|Versione selezionata|Versioni selezionate}} di [[:$1]]:'''",
-'logdelete-selected'             => "'''{{PLURAL:$1|Evento del registro selezionato|Eventi del registro selezionati}}:'''",
-'revdelete-text'                 => "'''Le versioni cancellate restano visibili nella cronologia della pagina, mentre il testo contenuto non è accessibile al pubblico.'''
+'rev-delundel'                => 'mostra/nascondi',
+'revisiondelete'              => 'Cancella o ripristina versioni',
+'revdelete-nooldid-title'     => 'Versione non specificata',
+'revdelete-nooldid-text'      => 'Non è stata specificata alcuna versione della pagina su cui eseguire questa funzione.',
+'revdelete-nologtype-title'   => 'Nessun tipo di registro specificato',
+'revdelete-nologtype-text'    => "Non è stato specificato alcun tipo di registro su cui eseguire l'azione.",
+'revdelete-nologid-title'     => 'Errore di indicazione del log',
+'revdelete-nologid-text'      => 'Per eseguire questa funzione non hai specificato un target per il log oppure il log non esiste.',
+'revdelete-selected'          => "'''{{PLURAL:$2|Versione selezionata|Versioni selezionate}} di [[:$1]]:'''",
+'logdelete-selected'          => "'''{{PLURAL:$1|Evento del registro selezionato|Eventi del registro selezionati}}:'''",
+'revdelete-text'              => "'''Le versioni cancellate restano visibili nella cronologia della pagina, mentre il testo contenuto non è accessibile al pubblico.'''
 
 Gli altri amministratori di {{SITENAME}} potranno accedere comunque ai contenuti nascosti e ripristinarli attraverso questa stessa interfaccia, se non sono state impostate altre limitazioni in fase di installazione del sito.
 Conferma che è tua intenzione procedere a tale cancellazione, che hai piena consapevolezza delle conseguenze della tua azione e che essa è conforme alle linee guida stabilite in [[{{MediaWiki:Policy-url}}]].",
-'revdelete-suppress-text'        => "La rimozione deve essere utilizzata '''unicamente''' nei seguenti casi:
+'revdelete-suppress-text'     => "La rimozione deve essere utilizzata '''unicamente''' nei seguenti casi:
 * Dati personali inopportuni
 *: ''indirizzi, numeri di telefono, codici fiscali, ecc.''",
-'revdelete-legend'               => 'Imposta le seguenti limitazioni sulle versioni cancellate:',
-'revdelete-hide-text'            => 'Nascondi il testo della versione',
-'revdelete-hide-name'            => 'Nascondi azione e oggetto della stessa',
-'revdelete-hide-comment'         => "Nascondi l'oggetto della modifica",
-'revdelete-hide-user'            => "Nascondi il nome o l'indirizzo IP dell'autore",
-'revdelete-hide-restricted'      => 'Nascondi le informazioni indicate anche agli amministratori',
-'revdelete-suppress'             => 'Nascondi le informazioni anche agli amministratori',
-'revdelete-hide-image'           => 'Nascondi i contenuti del file',
-'revdelete-unsuppress'           => 'Elimina le limitazioni sulle revisioni ripristinate',
-'revdelete-log'                  => 'Commento per il log:',
-'revdelete-submit'               => 'Applica alla revisione selezionata',
-'revdelete-logentry'             => 'ha modificato la visibilità per una revisione di [[$1]]',
-'logdelete-logentry'             => "ha modificato la visibilità dell'evento [[$1]]",
-'revdelete-success'              => "'''Visibilità della revisione impostata correttamente.'''",
-'revdelete-failure'              => "'''La visibilità della versione non può essere impostata.'''",
-'logdelete-success'              => "'''Visibilità dell'evento impostata correttamente.'''",
-'revdel-restore'                 => 'Cambia la visibilità',
-'pagehist'                       => 'Cronologia della pagina',
-'deletedhist'                    => 'Cronologia cancellata',
-'revdelete-content'              => 'contenuto',
-'revdelete-summary'              => 'riassunto della modifica',
-'revdelete-uname'                => 'nome utente',
-'revdelete-restricted'           => 'limitazioni ai soli amministratori attivate',
-'revdelete-unrestricted'         => 'limitazioni ai soli amministratori rimosse',
-'revdelete-hid'                  => 'nascondi $1',
-'revdelete-unhid'                => 'rendi visibile $1',
-'revdelete-log-message'          => '$1 per $2 {{PLURAL:$2|revisione|revisioni}}',
-'logdelete-log-message'          => '$1 per $2 {{PLURAL:$2|evento|eventi}}',
+'revdelete-legend'            => 'Imposta le seguenti limitazioni sulle versioni cancellate:',
+'revdelete-hide-text'         => 'Nascondi il testo della versione',
+'revdelete-hide-name'         => 'Nascondi azione e oggetto della stessa',
+'revdelete-hide-comment'      => "Nascondi l'oggetto della modifica",
+'revdelete-hide-user'         => "Nascondi il nome o l'indirizzo IP dell'autore",
+'revdelete-hide-restricted'   => 'Nascondi le informazioni indicate anche agli amministratori',
+'revdelete-suppress'          => 'Nascondi le informazioni anche agli amministratori',
+'revdelete-hide-image'        => 'Nascondi i contenuti del file',
+'revdelete-unsuppress'        => 'Elimina le limitazioni sulle revisioni ripristinate',
+'revdelete-log'               => 'Commento per il log:',
+'revdelete-submit'            => 'Applica alla revisione selezionata',
+'revdelete-logentry'          => 'ha modificato la visibilità per una revisione di [[$1]]',
+'logdelete-logentry'          => "ha modificato la visibilità dell'evento [[$1]]",
+'revdelete-success'           => "'''Visibilità della revisione impostata correttamente.'''",
+'revdelete-failure'           => "'''La visibilità della versione non può essere impostata.'''",
+'logdelete-success'           => "'''Visibilità dell'evento impostata correttamente.'''",
+'revdel-restore'              => 'Cambia la visibilità',
+'pagehist'                    => 'Cronologia della pagina',
+'deletedhist'                 => 'Cronologia cancellata',
+'revdelete-content'           => 'contenuto',
+'revdelete-summary'           => 'riassunto della modifica',
+'revdelete-uname'             => 'nome utente',
+'revdelete-restricted'        => 'limitazioni ai soli amministratori attivate',
+'revdelete-unrestricted'      => 'limitazioni ai soli amministratori rimosse',
+'revdelete-hid'               => 'nascondi $1',
+'revdelete-unhid'             => 'rendi visibile $1',
+'revdelete-log-message'       => '$1 per $2 {{PLURAL:$2|revisione|revisioni}}',
+'logdelete-log-message'       => '$1 per $2 {{PLURAL:$2|evento|eventi}}',
 
 # Suppression log
 'suppressionlog'     => 'Log delle soppressioni',

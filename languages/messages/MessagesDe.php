@@ -1016,69 +1016,67 @@ Grund der Sperre: ''$2''",
 'history-feed-empty'          => 'Die angeforderte Seite existiert nicht. Vielleicht wurde sie gelöscht oder verschoben. [[Special:Search|Durchsuche]] {{SITENAME}} für passende neue Seiten.',
 
 # Revision deletion
-'rev-deleted-comment'            => '(Bearbeitungskommentar entfernt)',
-'rev-deleted-user'               => '(Benutzername entfernt)',
-'rev-deleted-event'              => '(Logbuchaktion entfernt)',
-'rev-deleted-text-permission'    => "Diese Version wurde '''gelöscht'''.
+'rev-deleted-comment'         => '(Bearbeitungskommentar entfernt)',
+'rev-deleted-user'            => '(Benutzername entfernt)',
+'rev-deleted-event'           => '(Logbuchaktion entfernt)',
+'rev-deleted-text-permission' => "Diese Version wurde '''gelöscht'''.
 Nähere Angaben zum Löschvorgang sowie eine Begründung finden sich im [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Lösch-Logbuch].",
-'rev-deleted-text-unhide'        => "Diese Version wurde '''gelöscht'''.
+'rev-deleted-text-unhide'     => "Diese Version wurde '''gelöscht'''.
 Details stehen im [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Lösch-Logbuch].
 Einem Administrator kannst du [$1 diesen Link zur Version] nennen.",
-'rev-deleted-text-view'          => "Diese Version wurde '''gelöscht'''.
+'rev-deleted-text-view'       => "Diese Version wurde '''gelöscht'''.
 Als Administrator kannst du sie weiterhin einsehen.
 Nähere Angaben zum Löschvorgang sowie eine Begründung finden sich im [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Lösch-Logbuch].",
-'rev-deleted-no-diff'            => "Du kannst diesen Unterschied nicht betrachten, da eine der Versionen '''gelöscht''' wurde.
+'rev-deleted-no-diff'         => "Du kannst diesen Unterschied nicht betrachten, da eine der Versionen '''gelöscht''' wurde.
 Details stehen im [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Lösch-Logbuch].",
-'rev-deleted-unhide-diff'        => "Eine der Versionen dieses Unterschieds wurde '''gelöscht'''.
+'rev-deleted-unhide-diff'     => "Eine der Versionen dieses Unterschieds wurde '''gelöscht'''.
 Details stehen im [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Lösch-Logbuch].
 Einem Administrator kannst du [$1 diesen Link zum Versionsunterschied] nennen.",
-'rev-delundel'                   => 'zeige/verstecke',
-'revisiondelete'                 => 'Versionen löschen/wiederherstellen',
-'revdelete-nooldid-title'        => 'Keine Version angegeben',
-'revdelete-nooldid-text'         => 'Du hast entweder keine Version angegeben, auf die diese Aktion ausgeführt werden soll, die gewählte Version ist nicht vorhanden oder du versuchst, die aktuelle Version zu entfernen.',
-'revdelete-nologtype-title'      => 'Kein Logtyp angegeben',
-'revdelete-nologtype-text'       => 'Es wurde kein Logtyp für diese Aktion angegeben.',
-'revdelete-toomanytargets-title' => 'Zu viele Ziele',
-'revdelete-toomanytargets-text'  => 'Es wurden zu viele Logtypen für diese Aktion angegeben.',
-'revdelete-nologid-title'        => 'Ungültiger Logeintrag',
-'revdelete-nologid-text'         => 'Es wurde kein Logtyp ausgewählt oder der gewählte Logtyp existiert nicht.',
-'revdelete-selected'             => "'''{{PLURAL:$2|Ausgewählte Version|Ausgewählte Versionen}} von [[:$1]]:'''",
-'logdelete-selected'             => "'''{{PLURAL:$1|Ausgewählter Logbucheintrag|Ausgewählte Logbucheinträge}}:'''",
-'revdelete-text'                 => "'''Gelöschte Versionen und Aktionen verbleiben in der Versionsgeschichte und den Logbüchern, jedoch sind Teile davon für die Öffentlichkeit unzugänglich.'''
+'rev-delundel'                => 'zeige/verstecke',
+'revisiondelete'              => 'Versionen löschen/wiederherstellen',
+'revdelete-nooldid-title'     => 'Keine Version angegeben',
+'revdelete-nooldid-text'      => 'Du hast entweder keine Version angegeben, auf die diese Aktion ausgeführt werden soll, die gewählte Version ist nicht vorhanden oder du versuchst, die aktuelle Version zu entfernen.',
+'revdelete-nologtype-title'   => 'Kein Logtyp angegeben',
+'revdelete-nologtype-text'    => 'Es wurde kein Logtyp für diese Aktion angegeben.',
+'revdelete-nologid-title'     => 'Ungültiger Logeintrag',
+'revdelete-nologid-text'      => 'Es wurde kein Logtyp ausgewählt oder der gewählte Logtyp existiert nicht.',
+'revdelete-selected'          => "'''{{PLURAL:$2|Ausgewählte Version|Ausgewählte Versionen}} von [[:$1]]:'''",
+'logdelete-selected'          => "'''{{PLURAL:$1|Ausgewählter Logbucheintrag|Ausgewählte Logbucheinträge}}:'''",
+'revdelete-text'              => "'''Gelöschte Versionen und Aktionen verbleiben in der Versionsgeschichte und den Logbüchern, jedoch sind Teile davon für die Öffentlichkeit unzugänglich.'''
 
 Andere Administratoren auf {{SITENAME}} haben Zugriff auf den versteckten Inhalt und können ihn mit der gleichen Seite wiederherstellen, sofern nicht zusätzliche Einschränkungen bestehen.
 Bitte bestätige, dass du beabsichtigst, dies zu tun, die Konsequenzen verstehst und es in Übereinstimmung mit den [[{{MediaWiki:Policy-url}}|Richtlinien]] tust.",
-'revdelete-suppress-text'        => "Unterdrückungen sollten '''nur''' in den folgenden Fällen vorgenommen werden:
+'revdelete-suppress-text'     => "Unterdrückungen sollten '''nur''' in den folgenden Fällen vorgenommen werden:
 * Unangebrachte persönliche Informationen
 *: ''Adressen, Telefonnummern, Sozialversicherungsnummern etc.''",
-'revdelete-legend'               => 'Setzen der Sichtbarkeits-Einschränkungen',
-'revdelete-hide-text'            => 'Text der Version verstecken',
-'revdelete-hide-name'            => 'Logbuch-Aktion verstecken',
-'revdelete-hide-comment'         => 'Bearbeitungskommentar verstecken',
-'revdelete-hide-user'            => 'Benutzername/die IP des Bearbeiters verstecken',
-'revdelete-hide-restricted'      => 'Daten auch vor Administratoren und anderen unterdrücken',
-'revdelete-suppress'             => 'Grund der Löschung auch vor Administratoren verstecken',
-'revdelete-hide-image'           => 'Bildinhalt verstecken',
-'revdelete-unsuppress'           => 'Einschränkungen für wiederhergestellte Versionen aufheben',
-'revdelete-log'                  => 'Kommentar/Begründung (erscheint im Logbuch):',
-'revdelete-submit'               => 'Auf ausgewählte Version anwenden',
-'revdelete-logentry'             => 'hat die Versionsansicht für „[[$1]]“ geändert',
-'logdelete-logentry'             => 'hat die Sichtbarkeit für „[[$1]]“ geändert',
-'revdelete-success'              => "'''Versionsansicht erfolgreich geändert.'''",
-'revdelete-failure'              => "'''Versionssichtbarkeit kann nicht geändert werden.'''",
-'logdelete-success'              => "'''Logbuchansicht erfolgreich geändert.'''",
-'revdel-restore'                 => 'Sichtbarkeit ändern',
-'pagehist'                       => 'Versionsgeschichte',
-'deletedhist'                    => 'Gelöschte Versionen',
-'revdelete-content'              => 'Seiteninhalt',
-'revdelete-summary'              => 'Zusammenfassungskommentar',
-'revdelete-uname'                => 'Benutzername',
-'revdelete-restricted'           => 'Einschränkungen gelten auch für Administratoren',
-'revdelete-unrestricted'         => 'Einschränkungen für Administratoren aufgehoben',
-'revdelete-hid'                  => 'versteckte $1',
-'revdelete-unhid'                => 'machte $1 wieder öffentlich',
-'revdelete-log-message'          => '$1 für $2 {{PLURAL:$2|Version|Versionen}}',
-'logdelete-log-message'          => '$1 für $2 {{PLURAL:$2|Logbucheintrag|Logbucheinträge}}',
+'revdelete-legend'            => 'Setzen der Sichtbarkeits-Einschränkungen',
+'revdelete-hide-text'         => 'Text der Version verstecken',
+'revdelete-hide-name'         => 'Logbuch-Aktion verstecken',
+'revdelete-hide-comment'      => 'Bearbeitungskommentar verstecken',
+'revdelete-hide-user'         => 'Benutzername/die IP des Bearbeiters verstecken',
+'revdelete-hide-restricted'   => 'Daten auch vor Administratoren und anderen unterdrücken',
+'revdelete-suppress'          => 'Grund der Löschung auch vor Administratoren verstecken',
+'revdelete-hide-image'        => 'Bildinhalt verstecken',
+'revdelete-unsuppress'        => 'Einschränkungen für wiederhergestellte Versionen aufheben',
+'revdelete-log'               => 'Kommentar/Begründung (erscheint im Logbuch):',
+'revdelete-submit'            => 'Auf ausgewählte Version anwenden',
+'revdelete-logentry'          => 'hat die Versionsansicht für „[[$1]]“ geändert',
+'logdelete-logentry'          => 'hat die Sichtbarkeit für „[[$1]]“ geändert',
+'revdelete-success'           => "'''Versionsansicht erfolgreich geändert.'''",
+'revdelete-failure'           => "'''Versionssichtbarkeit kann nicht geändert werden.'''",
+'logdelete-success'           => "'''Logbuchansicht erfolgreich geändert.'''",
+'revdel-restore'              => 'Sichtbarkeit ändern',
+'pagehist'                    => 'Versionsgeschichte',
+'deletedhist'                 => 'Gelöschte Versionen',
+'revdelete-content'           => 'Seiteninhalt',
+'revdelete-summary'           => 'Zusammenfassungskommentar',
+'revdelete-uname'             => 'Benutzername',
+'revdelete-restricted'        => 'Einschränkungen gelten auch für Administratoren',
+'revdelete-unrestricted'      => 'Einschränkungen für Administratoren aufgehoben',
+'revdelete-hid'               => 'versteckte $1',
+'revdelete-unhid'             => 'machte $1 wieder öffentlich',
+'revdelete-log-message'       => '$1 für $2 {{PLURAL:$2|Version|Versionen}}',
+'logdelete-log-message'       => '$1 für $2 {{PLURAL:$2|Logbucheintrag|Logbucheinträge}}',
 
 # Suppression log
 'suppressionlog'     => 'Oversight-Logbuch',

@@ -829,68 +829,66 @@ Sayfa vikiden silinmiş ya da ismi değiştirilmiş olabilir.
 Konu ile alakalı diğer sayfaları bulmak için [[Special:Search|vikide arama yapmayı]] deneyin.',
 
 # Revision deletion
-'rev-deleted-comment'            => '(yorum silindi)',
-'rev-deleted-user'               => '(kullanıcı adı silindi)',
-'rev-deleted-event'              => '(kayıt işlemi silindi)',
-'rev-deleted-text-permission'    => "Bu sayfa revizyonu '''silinmiş'''.
+'rev-deleted-comment'         => '(yorum silindi)',
+'rev-deleted-user'            => '(kullanıcı adı silindi)',
+'rev-deleted-event'           => '(kayıt işlemi silindi)',
+'rev-deleted-text-permission' => "Bu sayfa revizyonu '''silinmiş'''.
 [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Silme kayıtlarında] ayrıntıları bulunabilir.",
-'rev-deleted-text-unhide'        => "Bu sayfa revizyonu '''silinmiş'''.
+'rev-deleted-text-unhide'     => "Bu sayfa revizyonu '''silinmiş'''.
 [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Silme kayıtlarında] ayrıntıları bulunabilir.
 Bir yönetici olarak eğer devam ederseniz [$1 bu revizyonu görebilirsiniz].",
-'rev-deleted-text-view'          => "Bu sayfa revizyonu '''silinmiş'''.
+'rev-deleted-text-view'       => "Bu sayfa revizyonu '''silinmiş'''.
 Bir yönetici olarak sayfayı görebilirsiniz; [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} silme kayıtlarında] ayrıntılar bulunabilir.",
-'rev-deleted-no-diff'            => "Bu sayfa değişikliğini göremezsiniz çünkü revizyonlardan biri '''silinmiş'''.
+'rev-deleted-no-diff'         => "Bu sayfa değişikliğini göremezsiniz çünkü revizyonlardan biri '''silinmiş'''.
 [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Silme günlüğünde] ayrıntılar bulunabilir.",
-'rev-deleted-unhide-diff'        => "Bu sayfa değişikliğinin revizyonlarından birisi '''silinmiş'''.
+'rev-deleted-unhide-diff'     => "Bu sayfa değişikliğinin revizyonlarından birisi '''silinmiş'''.
 [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Silme kayıtları]nda daha ayrıntılı bilgi bulunabilir.
 Bir yönetici olarak eğer devam ederseniz [$1 bu değişikliği görebilirsiniz].",
-'rev-delundel'                   => 'göster/gizle',
-'revisiondelete'                 => 'Sürümleri sil/geri getir',
-'revdelete-nooldid-title'        => 'Hedef sürüm geçersiz',
-'revdelete-nooldid-text'         => 'Bu fonksiyonu uygulamak için belirli hedef değişiklik veya değişikileriniz yok. Sunulmuş olan revizyon mevcut değil, veya mevcut revizyonu gizlemeye çalışıyorsunuz.',
-'revdelete-nologtype-title'      => 'Hiçbir kayıt tipi verilmedi',
-'revdelete-nologtype-text'       => 'Bu işlemi devreye sokmak için bir kayıt tipi belirtmediniz.',
-'revdelete-toomanytargets-title' => 'Çok fazla hedef',
-'revdelete-toomanytargets-text'  => 'Bu işlemi gerçekleştirmek için çok fazla çeşit hedef belirttiniz.',
-'revdelete-nologid-title'        => 'Geçersiz günlük girdisi',
-'revdelete-nologid-text'         => 'Bu fonksiyonu uygulamak için hiçbir kayıt tipi belirtilmedi veya belirtilen kayıt tipi mevcut değil.',
-'revdelete-selected'             => "'''[[:$1]] sayfasının {{PLURAL:$2|seçili değişikliği|seçili değişiklikleri}}:'''",
-'logdelete-selected'             => "'''{{PLURAL:$1|Seçili kayıt olayı|Seçili kayıt olayları}}:'''",
-'revdelete-text'                 => "'''Silinen revizyonlar ve olaylar hala sayfa geçmişinde ve günlüklerde görünecektir, fakat içeriğin parçaları umumi olarak erişilemeyecektir.'''
+'rev-delundel'                => 'göster/gizle',
+'revisiondelete'              => 'Sürümleri sil/geri getir',
+'revdelete-nooldid-title'     => 'Hedef sürüm geçersiz',
+'revdelete-nooldid-text'      => 'Bu fonksiyonu uygulamak için belirli hedef değişiklik veya değişikileriniz yok. Sunulmuş olan revizyon mevcut değil, veya mevcut revizyonu gizlemeye çalışıyorsunuz.',
+'revdelete-nologtype-title'   => 'Hiçbir kayıt tipi verilmedi',
+'revdelete-nologtype-text'    => 'Bu işlemi devreye sokmak için bir kayıt tipi belirtmediniz.',
+'revdelete-nologid-title'     => 'Geçersiz günlük girdisi',
+'revdelete-nologid-text'      => 'Bu fonksiyonu uygulamak için hiçbir kayıt tipi belirtilmedi veya belirtilen kayıt tipi mevcut değil.',
+'revdelete-selected'          => "'''[[:$1]] sayfasının {{PLURAL:$2|seçili değişikliği|seçili değişiklikleri}}:'''",
+'logdelete-selected'          => "'''{{PLURAL:$1|Seçili kayıt olayı|Seçili kayıt olayları}}:'''",
+'revdelete-text'              => "'''Silinen revizyonlar ve olaylar hala sayfa geçmişinde ve günlüklerde görünecektir, fakat içeriğin parçaları umumi olarak erişilemeyecektir.'''
 
 {{SITENAME}} sitesindeki diğer yöneticiler gizli içeriğe erişebilir ve ilave kısıtlamalar ayarlanmadıysa bu arayüz ile geri getirebilir.
 Lütfen, bunu yapmak istediğinizi , sonuçlarını anladığınızı, ve bunu [[{{MediaWiki:Policy-url}}|ilkelere]] göre yapıyor olduğunuzu onaylayın.",
-'revdelete-suppress-text'        => "Saklama '''sadece''' aşağıdaki durumlar için kullanılmalıdır:
+'revdelete-suppress-text'     => "Saklama '''sadece''' aşağıdaki durumlar için kullanılmalıdır:
 * Uygunsuz kişisel bilgi
 *: ''ev adresleri ve telefon numaraları, sosyal güvenlik numaraları, vs.''",
-'revdelete-legend'               => 'Görünürlük kısıtlamaları ayarla',
-'revdelete-hide-text'            => 'Değişiklik yazısını gizle',
-'revdelete-hide-name'            => 'Olayı ve hedefi gizle',
-'revdelete-hide-comment'         => 'Özeti gösterme',
-'revdelete-hide-user'            => "Değişikliği yapan kullanıcı adını/IP'i gizle",
-'revdelete-hide-restricted'      => 'Verileri yöneticilerle birlikte diğerlerinden de sakla',
-'revdelete-suppress'             => 'Hem diğerlerinden hem de yöneticilerden veriyi gizle',
-'revdelete-hide-image'           => 'Dosya içeriğini gizle',
-'revdelete-unsuppress'           => 'Geri döndürülmüş revizyonlardaki kısıtlamaları kaldır',
-'revdelete-log'                  => 'Log açıklama:',
-'revdelete-submit'               => 'Seçilen sürüme uygula',
-'revdelete-logentry'             => '[[$1]] için revizyon görünürlüğü değişti',
-'logdelete-logentry'             => '[[$1]] için olay görünürlüğü değişti',
-'revdelete-success'              => "'''Revizyon görünürlüğü başarıyla ayarlandı.'''",
-'revdelete-failure'              => "'''Revizyon görünürlüğü ayarlanamıyor.'''",
-'logdelete-success'              => "'''Günlük görünürlüğü başarıyla ayarlandı.'''",
-'revdel-restore'                 => 'Görünürlüğü değiştir',
-'pagehist'                       => 'Sayfa geçmişi',
-'deletedhist'                    => 'Silinmiş geçmiş',
-'revdelete-content'              => 'içerik',
-'revdelete-summary'              => 'değişiklik özeti',
-'revdelete-uname'                => 'kullanıcı adı',
-'revdelete-restricted'           => 'hizmetliler için uygulanmış kısıtlamalar',
-'revdelete-unrestricted'         => 'hizmetliler için kaldırılmış kısıtlamalar',
-'revdelete-hid'                  => 'gizle $1',
-'revdelete-unhid'                => 'göster $1',
-'revdelete-log-message'          => '$2 {{PLURAL:$2|revizyon|revizyon}} için $1',
-'logdelete-log-message'          => '$2 {{PLURAL:$2|olay|olay}} için $1',
+'revdelete-legend'            => 'Görünürlük kısıtlamaları ayarla',
+'revdelete-hide-text'         => 'Değişiklik yazısını gizle',
+'revdelete-hide-name'         => 'Olayı ve hedefi gizle',
+'revdelete-hide-comment'      => 'Özeti gösterme',
+'revdelete-hide-user'         => "Değişikliği yapan kullanıcı adını/IP'i gizle",
+'revdelete-hide-restricted'   => 'Verileri yöneticilerle birlikte diğerlerinden de sakla',
+'revdelete-suppress'          => 'Hem diğerlerinden hem de yöneticilerden veriyi gizle',
+'revdelete-hide-image'        => 'Dosya içeriğini gizle',
+'revdelete-unsuppress'        => 'Geri döndürülmüş revizyonlardaki kısıtlamaları kaldır',
+'revdelete-log'               => 'Log açıklama:',
+'revdelete-submit'            => 'Seçilen sürüme uygula',
+'revdelete-logentry'          => '[[$1]] için revizyon görünürlüğü değişti',
+'logdelete-logentry'          => '[[$1]] için olay görünürlüğü değişti',
+'revdelete-success'           => "'''Revizyon görünürlüğü başarıyla ayarlandı.'''",
+'revdelete-failure'           => "'''Revizyon görünürlüğü ayarlanamıyor.'''",
+'logdelete-success'           => "'''Günlük görünürlüğü başarıyla ayarlandı.'''",
+'revdel-restore'              => 'Görünürlüğü değiştir',
+'pagehist'                    => 'Sayfa geçmişi',
+'deletedhist'                 => 'Silinmiş geçmiş',
+'revdelete-content'           => 'içerik',
+'revdelete-summary'           => 'değişiklik özeti',
+'revdelete-uname'             => 'kullanıcı adı',
+'revdelete-restricted'        => 'hizmetliler için uygulanmış kısıtlamalar',
+'revdelete-unrestricted'      => 'hizmetliler için kaldırılmış kısıtlamalar',
+'revdelete-hid'               => 'gizle $1',
+'revdelete-unhid'             => 'göster $1',
+'revdelete-log-message'       => '$2 {{PLURAL:$2|revizyon|revizyon}} için $1',
+'logdelete-log-message'       => '$2 {{PLURAL:$2|olay|olay}} için $1',
 
 # Suppression log
 'suppressionlog'     => 'Gizleme kayıtları',

@@ -859,71 +859,69 @@ Potser ha estat esborrada o reanomenada.
 Intenteu [[Special:Search|cercar al mateix wiki]] per a noves pàgines rellevants.',
 
 # Revision deletion
-'rev-deleted-comment'            => "(s'ha suprimit el comentari)",
-'rev-deleted-user'               => "(s'ha suprimit el nom d'usuari)",
-'rev-deleted-event'              => "(s'ha suprimit el registre d'accions)",
-'rev-deleted-text-permission'    => "Aquesta versió de la pàgina ha estat '''eliminada'''.
+'rev-deleted-comment'         => "(s'ha suprimit el comentari)",
+'rev-deleted-user'            => "(s'ha suprimit el nom d'usuari)",
+'rev-deleted-event'           => "(s'ha suprimit el registre d'accions)",
+'rev-deleted-text-permission' => "Aquesta versió de la pàgina ha estat '''eliminada'''.
 Hi poden haver més detalls al [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registre d'esborrats].",
-'rev-deleted-text-unhide'        => "La revisió d'aquesta pàgina ha estat '''eliminada'''.
+'rev-deleted-text-unhide'     => "La revisió d'aquesta pàgina ha estat '''eliminada'''.
 Hi poden haver més detalls al [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registre d'esborrats].
 Com a administrador encara podeu [$1 veure aquesta revisió] si així ho desitgeu.",
-'rev-deleted-text-view'          => "Aquesta versió de la pàgina ha estat '''eliminada'''.
+'rev-deleted-text-view'       => "Aquesta versió de la pàgina ha estat '''eliminada'''.
 Com a administrador podeu veure-la; vegeu-ne més detalls al [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registre d'esborrats].",
-'rev-deleted-no-diff'            => "No podeu veure aquesta comparativa perquè una de les versions ha estat '''esborrada'''.
+'rev-deleted-no-diff'         => "No podeu veure aquesta comparativa perquè una de les versions ha estat '''esborrada'''.
 Potser trobareu detalls al [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registre d'esborrats].",
-'rev-deleted-unhide-diff'        => "Una de les revisions d'aquesta comparativa ha estat '''eliminada'''.
+'rev-deleted-unhide-diff'     => "Una de les revisions d'aquesta comparativa ha estat '''eliminada'''.
 Potser trobareu detalls al [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registre d'esborrats].
 Com a administrador encara podeu [$1 veure aquesta comparativa] si així ho desitgeu.",
-'rev-delundel'                   => 'mostra/amaga',
-'revisiondelete'                 => 'Esborrar/restaurar revisions',
-'revdelete-nooldid-title'        => 'La revisió objectiu no és vàlida',
-'revdelete-nooldid-text'         => "No heu especificat unes revisions objectius per a realitzar aquesta
+'rev-delundel'                => 'mostra/amaga',
+'revisiondelete'              => 'Esborrar/restaurar revisions',
+'revdelete-nooldid-title'     => 'La revisió objectiu no és vàlida',
+'revdelete-nooldid-text'      => "No heu especificat unes revisions objectius per a realitzar aquesta
 funció, la revisió especificada no existeix, o bé esteu provant d'amagar l'actual revisió.",
-'revdelete-nologtype-title'      => "No s'ha donat el tipus de registre",
-'revdelete-nologtype-text'       => 'No heu especificat un tipus de registre on dur a terme aquesta acció.',
-'revdelete-toomanytargets-title' => 'Massa objectius',
-'revdelete-toomanytargets-text'  => 'Heu especificat massa tipus de llocs als quals aplicar aquesta acció.',
-'revdelete-nologid-title'        => 'Entrada de registre no vàlida',
-'revdelete-nologid-text'         => 'Heu especificat un esdeveniment del registre que no existeix o al que no se li pot aplicar aquesta funció.',
-'revdelete-selected'             => "'''{{PLURAL:$2|Revisió seleccionada|Revisions seleccionades}} de [[:$1]]:'''",
-'logdelete-selected'             => "'''{{PLURAL:$1|Esdeveniment del registre seleccionat|Esdeveniments del registre seleccionats}}:'''",
-'revdelete-text'                 => "'''Les revisions esborrades es mostraran encara als historials de les pàgines i als registres, si bé part del seu contingut serà inaccessible al públic.'''
+'revdelete-nologtype-title'   => "No s'ha donat el tipus de registre",
+'revdelete-nologtype-text'    => 'No heu especificat un tipus de registre on dur a terme aquesta acció.',
+'revdelete-nologid-title'     => 'Entrada de registre no vàlida',
+'revdelete-nologid-text'      => 'Heu especificat un esdeveniment del registre que no existeix o al que no se li pot aplicar aquesta funció.',
+'revdelete-selected'          => "'''{{PLURAL:$2|Revisió seleccionada|Revisions seleccionades}} de [[:$1]]:'''",
+'logdelete-selected'          => "'''{{PLURAL:$1|Esdeveniment del registre seleccionat|Esdeveniments del registre seleccionats}}:'''",
+'revdelete-text'              => "'''Les revisions esborrades es mostraran encara als historials de les pàgines i als registres, si bé part del seu contingut serà inaccessible al públic.'''
 
 Els altres administradors de {{SITENAME}} encara podran accedir al contingut amagat i restituir-lo de nou mitjançant aquesta mateixa interfície, si no hi ha cap altra restricció addicional.
 
 Si us plau, confirmeu que és això el que desitjeu fer, que enteneu les conseqüències, i que esteu fent-ho d'acord amb [[{{MediaWiki:Policy-url}}|les polítiques acordades]].",
-'revdelete-suppress-text'        => "Les supressions '''només''' han de ser portades a terme en els següents casos:
+'revdelete-suppress-text'     => "Les supressions '''només''' han de ser portades a terme en els següents casos:
 * Informació personal inapropiada
 *: ''adreces personals, números de telèfon, números de la seguretat social, etc.''",
-'revdelete-legend'               => 'Defineix restriccions en la visibilitat',
-'revdelete-hide-text'            => 'Amaga el text de revisió',
-'revdelete-hide-name'            => "Acció d'amagar i objectiu",
-'revdelete-hide-comment'         => "Amaga el comentari de l'edició",
-'revdelete-hide-user'            => "Amaga el nom d'usuari o la IP de l'editor",
-'revdelete-hide-restricted'      => 'Suprimir les dades als administradors així com a la resta.',
-'revdelete-suppress'             => 'Suprimeix també les dades dels administradors',
-'revdelete-hide-image'           => 'Amaga el contingut del fitxer',
-'revdelete-unsuppress'           => 'Suprimir les restriccions de les revisions restaurades',
-'revdelete-log'                  => 'Comentari del registre:',
-'revdelete-submit'               => 'Aplica a la revisió seleccionada',
-'revdelete-logentry'             => "s'ha canviat la visibilitat de la revisió de [[$1]]",
-'logdelete-logentry'             => "s'ha canviat la visibilitat de [[$1]]",
-'revdelete-success'              => "'''S'ha establert correctament la visibilitat d'aquesta revissió.'''",
-'revdelete-failure'              => "'''La visibilitat de la revisió no ha pogut establir-se.'''",
-'logdelete-success'              => "'''S'ha establert correctament la visibilitat d'aquest element.'''",
-'revdel-restore'                 => "Canvia'n la visibilitat",
-'pagehist'                       => 'Historial',
-'deletedhist'                    => "Historial d'esborrat",
-'revdelete-content'              => 'el contingut',
-'revdelete-summary'              => "el resum d'edició",
-'revdelete-uname'                => "el nom d'usuari",
-'revdelete-restricted'           => 'ha aplicat restriccions al administradors',
-'revdelete-unrestricted'         => 'ha esborrat les restriccions per a administradors',
-'revdelete-hid'                  => 'ha amagat $1',
-'revdelete-unhid'                => 'ha tornat a mostrar $1',
-'revdelete-log-message'          => '$1 de {{PLURAL:$2|la revisió|les revisions}}
+'revdelete-legend'            => 'Defineix restriccions en la visibilitat',
+'revdelete-hide-text'         => 'Amaga el text de revisió',
+'revdelete-hide-name'         => "Acció d'amagar i objectiu",
+'revdelete-hide-comment'      => "Amaga el comentari de l'edició",
+'revdelete-hide-user'         => "Amaga el nom d'usuari o la IP de l'editor",
+'revdelete-hide-restricted'   => 'Suprimir les dades als administradors així com a la resta.',
+'revdelete-suppress'          => 'Suprimeix també les dades dels administradors',
+'revdelete-hide-image'        => 'Amaga el contingut del fitxer',
+'revdelete-unsuppress'        => 'Suprimir les restriccions de les revisions restaurades',
+'revdelete-log'               => 'Comentari del registre:',
+'revdelete-submit'            => 'Aplica a la revisió seleccionada',
+'revdelete-logentry'          => "s'ha canviat la visibilitat de la revisió de [[$1]]",
+'logdelete-logentry'          => "s'ha canviat la visibilitat de [[$1]]",
+'revdelete-success'           => "'''S'ha establert correctament la visibilitat d'aquesta revissió.'''",
+'revdelete-failure'           => "'''La visibilitat de la revisió no ha pogut establir-se.'''",
+'logdelete-success'           => "'''S'ha establert correctament la visibilitat d'aquest element.'''",
+'revdel-restore'              => "Canvia'n la visibilitat",
+'pagehist'                    => 'Historial',
+'deletedhist'                 => "Historial d'esborrat",
+'revdelete-content'           => 'el contingut',
+'revdelete-summary'           => "el resum d'edició",
+'revdelete-uname'             => "el nom d'usuari",
+'revdelete-restricted'        => 'ha aplicat restriccions al administradors',
+'revdelete-unrestricted'      => 'ha esborrat les restriccions per a administradors',
+'revdelete-hid'               => 'ha amagat $1',
+'revdelete-unhid'             => 'ha tornat a mostrar $1',
+'revdelete-log-message'       => '$1 de {{PLURAL:$2|la revisió|les revisions}}
 $2',
-'logdelete-log-message'          => "$1 per {{PLURAL:$2|l'esdeveniment|els esdeveniments}} $2",
+'logdelete-log-message'       => "$1 per {{PLURAL:$2|l'esdeveniment|els esdeveniments}} $2",
 
 # Suppression log
 'suppressionlog'     => 'Registre de supressió',

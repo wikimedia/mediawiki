@@ -832,70 +832,68 @@ Mungkin ia telah dihapuskan atau namanya telah ditukar.
 Cuba [[Special:Search|cari]] laman lain yang mungkin berkaitan.',
 
 # Revision deletion
-'rev-deleted-comment'            => '(komen dibuang)',
-'rev-deleted-user'               => '(nama pengguna dibuang)',
-'rev-deleted-event'              => '(entri dibuang)',
-'rev-deleted-text-permission'    => "Semakan laman ini telah '''dihapuskan'''.
+'rev-deleted-comment'         => '(komen dibuang)',
+'rev-deleted-user'            => '(nama pengguna dibuang)',
+'rev-deleted-event'           => '(entri dibuang)',
+'rev-deleted-text-permission' => "Semakan laman ini telah '''dihapuskan'''.
 Butiran lanjut mungkin boleh didapati dalam [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} log penghapusan].",
-'rev-deleted-text-unhide'        => "Semakan laman ini telah '''dihapuskan'''.
+'rev-deleted-text-unhide'     => "Semakan laman ini telah '''dihapuskan'''.
 Butiran lanjut mungkin boleh didapati dalam [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} log penghapusan].
 Sebagai pentadbir anda masih boleh [$1 melihat semakan ini] jika anda ingin.",
-'rev-deleted-text-view'          => "Semakan laman ini telah '''dihapuskan'''.
+'rev-deleted-text-view'       => "Semakan laman ini telah '''dihapuskan'''.
 Sebagai seorang pentadbir anda boleh melihatnya; butiran lanjut mungkin boleh didapati dalam [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} log penghapusan].",
-'rev-deleted-no-diff'            => "Anda tidak boleh melihat perbezaan ini kerana satu daripada semakan yang dibandingkan telah '''dihapuskan'''.
+'rev-deleted-no-diff'         => "Anda tidak boleh melihat perbezaan ini kerana satu daripada semakan yang dibandingkan telah '''dihapuskan'''.
 Butiran lanjut mungkin boleh didapati dalam [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} log penghapusan].",
-'rev-deleted-unhide-diff'        => "Salah satu semakan laman ini telah '''dihapuskan'''.
+'rev-deleted-unhide-diff'     => "Salah satu semakan laman ini telah '''dihapuskan'''.
 Butiran lanjut mungkin boleh didapati dalam [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} log penghapusan].
 Sebagai pentadbir anda masih boleh [$1 melihat semakan ini] jika anda ingin.",
-'rev-delundel'                   => 'tunjuk/sembunyi',
-'revisiondelete'                 => 'Hapus/nyahhapus semakan',
-'revdelete-nooldid-title'        => 'Tiada semakan sasaran',
-'revdelete-nooldid-text'         => 'Anda tidak menyatakan semakan sasaran.',
-'revdelete-nologtype-title'      => 'Jenis log tidak diberi',
-'revdelete-nologtype-text'       => 'Anda tidak menyatakan jenis log untuk tindakan ini.',
-'revdelete-toomanytargets-title' => 'Terlalu banyak sasaran',
-'revdelete-toomanytargets-text'  => 'Anda telah menyatakan terlalu banyak jenis sasaran untuk tindakan ini.',
-'revdelete-nologid-title'        => 'Entri log tidak sah',
-'revdelete-nologid-text'         => 'Anda tidak menyatakan peristiwa log sasaran perkara untuk melakukan fungsi ini atau entri ynag dinyatakan tidak wujud.',
-'revdelete-selected'             => "'''{{PLURAL:$2|Versi|Versi-versi}} '''$1''' yang dipilih:'''",
-'logdelete-selected'             => "'''{{PLURAL:$1|Peristiwa|Peristiwa-peristiwa}} log yang dipilih:'''",
-'revdelete-text'                 => "'''Semakan dan peristiwa yang dihapuskan akan tetap muncul dalam sejarah laman dan log,
+'rev-delundel'                => 'tunjuk/sembunyi',
+'revisiondelete'              => 'Hapus/nyahhapus semakan',
+'revdelete-nooldid-title'     => 'Tiada semakan sasaran',
+'revdelete-nooldid-text'      => 'Anda tidak menyatakan semakan sasaran.',
+'revdelete-nologtype-title'   => 'Jenis log tidak diberi',
+'revdelete-nologtype-text'    => 'Anda tidak menyatakan jenis log untuk tindakan ini.',
+'revdelete-nologid-title'     => 'Entri log tidak sah',
+'revdelete-nologid-text'      => 'Anda tidak menyatakan peristiwa log sasaran perkara untuk melakukan fungsi ini atau entri ynag dinyatakan tidak wujud.',
+'revdelete-selected'          => "'''{{PLURAL:$2|Versi|Versi-versi}} '''$1''' yang dipilih:'''",
+'logdelete-selected'          => "'''{{PLURAL:$1|Peristiwa|Peristiwa-peristiwa}} log yang dipilih:'''",
+'revdelete-text'              => "'''Semakan dan peristiwa yang dihapuskan akan tetap muncul dalam sejarah laman dan log,
 tetapi kandungannya tidak boleh diakses awam.'''
 
 Pentadbir {{SITENAME}} boleh melihat kandungan tersebut dan menyahhapuskannya
 semula melalui laman ini melainkan mempunyai batasan.
 Sila sahkan bahawa anda hendak lakukan ini dan memahami akibatnya, dan anda mematuhi [[{{MediaWiki:Policy-url}}|polisi]].",
-'revdelete-suppress-text'        => "Pembatasan ini '''hanya''' untuk digunakan dalam kes-kes berikut:
+'revdelete-suppress-text'     => "Pembatasan ini '''hanya''' untuk digunakan dalam kes-kes berikut:
 * Maklumat peribadi tidak sesuai
 *: ''alamat rumah dan nombor telefon, nombor keselamatan sosial, dsbg.''",
-'revdelete-legend'               => 'Tetapkan batasan:',
-'revdelete-hide-text'            => 'Sembunyikan teks semakan',
-'revdelete-hide-name'            => 'Sembunyikan tindakan dan sasaran',
-'revdelete-hide-comment'         => 'Sembunyikan komen suntingan',
-'revdelete-hide-user'            => 'Sembunyikan nama pengguna/IP penyunting',
-'revdelete-hide-restricted'      => 'Sekat data daripada penyelia dan pengguna lain',
-'revdelete-suppress'             => 'Sekat data daripada semua pengguna, termasuk penyelia',
-'revdelete-hide-image'           => 'Sembunyikan kandungan fail',
-'revdelete-unsuppress'           => 'Buang batasan pada semakan yang dipulihkan',
-'revdelete-log'                  => 'Komen log:',
-'revdelete-submit'               => 'Kenakan ke atas versi yang dipilih',
-'revdelete-logentry'             => 'menukar kebolehnampakan semakan [[$1]]',
-'logdelete-logentry'             => 'menukar kebolehnampakan peristiwa bagi [[$1]]',
-'revdelete-success'              => 'Kebolehnampakan semakan ditetapkan.',
-'revdelete-failure'              => "'''Keterlihatan semakan tidak dapat ditetapkan.'''",
-'logdelete-success'              => 'Kebolehnampakan peristiwa ditetapkan.',
-'revdel-restore'                 => 'Tukar kebolehnampakan',
-'pagehist'                       => 'Sejarah laman',
-'deletedhist'                    => 'Sejarah yang dihapuskan',
-'revdelete-content'              => 'kandungan',
-'revdelete-summary'              => 'ringkasan',
-'revdelete-uname'                => 'nama pengguna',
-'revdelete-restricted'           => 'mengenakan sekatan pada penyelia',
-'revdelete-unrestricted'         => 'menarik sekatan daripada penyelia',
-'revdelete-hid'                  => 'menyembunyikan $1',
-'revdelete-unhid'                => 'memunculkan $1',
-'revdelete-log-message'          => '$1 bagi {{PLURAL:$2|sebuah|$2 buah}} semakan',
-'logdelete-log-message'          => '$1 bagi $2 peristiwa',
+'revdelete-legend'            => 'Tetapkan batasan:',
+'revdelete-hide-text'         => 'Sembunyikan teks semakan',
+'revdelete-hide-name'         => 'Sembunyikan tindakan dan sasaran',
+'revdelete-hide-comment'      => 'Sembunyikan komen suntingan',
+'revdelete-hide-user'         => 'Sembunyikan nama pengguna/IP penyunting',
+'revdelete-hide-restricted'   => 'Sekat data daripada penyelia dan pengguna lain',
+'revdelete-suppress'          => 'Sekat data daripada semua pengguna, termasuk penyelia',
+'revdelete-hide-image'        => 'Sembunyikan kandungan fail',
+'revdelete-unsuppress'        => 'Buang batasan pada semakan yang dipulihkan',
+'revdelete-log'               => 'Komen log:',
+'revdelete-submit'            => 'Kenakan ke atas versi yang dipilih',
+'revdelete-logentry'          => 'menukar kebolehnampakan semakan [[$1]]',
+'logdelete-logentry'          => 'menukar kebolehnampakan peristiwa bagi [[$1]]',
+'revdelete-success'           => 'Kebolehnampakan semakan ditetapkan.',
+'revdelete-failure'           => "'''Keterlihatan semakan tidak dapat ditetapkan.'''",
+'logdelete-success'           => 'Kebolehnampakan peristiwa ditetapkan.',
+'revdel-restore'              => 'Tukar kebolehnampakan',
+'pagehist'                    => 'Sejarah laman',
+'deletedhist'                 => 'Sejarah yang dihapuskan',
+'revdelete-content'           => 'kandungan',
+'revdelete-summary'           => 'ringkasan',
+'revdelete-uname'             => 'nama pengguna',
+'revdelete-restricted'        => 'mengenakan sekatan pada penyelia',
+'revdelete-unrestricted'      => 'menarik sekatan daripada penyelia',
+'revdelete-hid'               => 'menyembunyikan $1',
+'revdelete-unhid'             => 'memunculkan $1',
+'revdelete-log-message'       => '$1 bagi {{PLURAL:$2|sebuah|$2 buah}} semakan',
+'logdelete-log-message'       => '$1 bagi $2 peristiwa',
 
 # Suppression log
 'suppressionlog'     => 'Log penahanan',

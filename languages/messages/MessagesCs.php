@@ -982,69 +982,67 @@ Mohla být smazána či přejmenována.
 Zkuste [[Special:Search|hledání]].',
 
 # Revision deletion
-'rev-deleted-comment'            => '(komentář odstraněn)',
-'rev-deleted-user'               => '(uživatelské jméno odstraněno)',
-'rev-deleted-event'              => '(záznam odstraněn)',
-'rev-deleted-text-permission'    => "Tato revize byla '''smazána'''.
+'rev-deleted-comment'         => '(komentář odstraněn)',
+'rev-deleted-user'            => '(uživatelské jméno odstraněno)',
+'rev-deleted-event'           => '(záznam odstraněn)',
+'rev-deleted-text-permission' => "Tato revize byla '''smazána'''.
 Podrobnosti mohou být uvedeny v [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} knize smazaných stránek].",
-'rev-deleted-text-unhide'        => "Tato revize byla '''smazána'''.
+'rev-deleted-text-unhide'     => "Tato revize byla '''smazána'''.
 Podrobnosti mohou být uvedeny v [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} knize smazaných stránek].
 Jako správce si však můžete [$1 tuto revizi prohlédnout], pokud chcete.",
-'rev-deleted-text-view'          => "Tato revize byla '''smazána'''.
+'rev-deleted-text-view'       => "Tato revize byla '''smazána'''.
 Jako správce si ji můžete prohlédnout; podrobnosti mohou být uvedeny v [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} knize smazaných stránek].",
-'rev-deleted-no-diff'            => "Tento rozdíl si nemůžete prohlédnout, protože jedna z&nbsp;revizí byla '''smazána'''.
+'rev-deleted-no-diff'         => "Tento rozdíl si nemůžete prohlédnout, protože jedna z&nbsp;revizí byla '''smazána'''.
 Podrobnosti mohou být uvedeny v&nbsp;[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} knize smazaných stránek].",
-'rev-deleted-unhide-diff'        => "Jedna z revizí k tomuto porovnání byla '''smazána'''.
+'rev-deleted-unhide-diff'     => "Jedna z revizí k tomuto porovnání byla '''smazána'''.
 Podrobnosti mohou být uvedeny v [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} knize smazaných stránek].
 Jako správce si však můžete [$1 tento rozdíl prohlédnout], pokud chcete.",
-'rev-delundel'                   => 'skrýt/zobrazit',
-'revisiondelete'                 => 'Smazat/obnovit revize',
-'revdelete-nooldid-title'        => 'Nezadána revize',
-'revdelete-nooldid-text'         => 'Nezvolili jste revize, na které chcete tuto funkci použít.',
-'revdelete-nologtype-title'      => 'Nebyl určen typ protokolu',
-'revdelete-nologtype-text'       => '{{GENDER:|Neurčil|Neurčila|Neurčili}} jste knihu protokolovacích záznamů, na které se má operace provést.',
-'revdelete-toomanytargets-title' => 'Příliš mnoho cílů',
-'revdelete-toomanytargets-text'  => 'Určili jste příliš mnoho cílů, na kterých se má tato operace provést.',
-'revdelete-nologid-title'        => 'Neplatný protokolovací záznam',
-'revdelete-nologid-text'         => 'Buď jste nezadali cílový záznam v protokolu nebo zadaný záznam neexistuje.',
-'revdelete-selected'             => "'''{{PLURAL:$2|Vybraná|Vybrané}} revize stránky [[:$1]]:'''",
-'logdelete-selected'             => "'''{{PLURAL:$1|Vybraná protokolovaná událost|Vybrané protokolované události}}:'''",
-'revdelete-text'                 => "'''Smazané verze a události budou nadále zobrazeny v historii stránky a protokolovacích záznamech, ale některé jejich části nebudou veřejně dostupné.'''
+'rev-delundel'                => 'skrýt/zobrazit',
+'revisiondelete'              => 'Smazat/obnovit revize',
+'revdelete-nooldid-title'     => 'Nezadána revize',
+'revdelete-nooldid-text'      => 'Nezvolili jste revize, na které chcete tuto funkci použít.',
+'revdelete-nologtype-title'   => 'Nebyl určen typ protokolu',
+'revdelete-nologtype-text'    => '{{GENDER:|Neurčil|Neurčila|Neurčili}} jste knihu protokolovacích záznamů, na které se má operace provést.',
+'revdelete-nologid-title'     => 'Neplatný protokolovací záznam',
+'revdelete-nologid-text'      => 'Buď jste nezadali cílový záznam v protokolu nebo zadaný záznam neexistuje.',
+'revdelete-selected'          => "'''{{PLURAL:$2|Vybraná|Vybrané}} revize stránky [[:$1]]:'''",
+'logdelete-selected'          => "'''{{PLURAL:$1|Vybraná protokolovaná událost|Vybrané protokolované události}}:'''",
+'revdelete-text'              => "'''Smazané verze a události budou nadále zobrazeny v historii stránky a protokolovacích záznamech, ale některé jejich části nebudou veřejně dostupné.'''
 
 Ostatní správci {{GRAMMAR:2sg|{{SITENAME}}}} si budou moci skrytý obsah prohlížet a pomocí stejného rozhraní jej také obnovit,
 pokud nebyla nastavena další omezení.
 Prosím potvrďte, že to opravdu chcete učinit, že si uvědomujete důsledky a že je to v souladu s [[{{MediaWiki:Policy-url}}|pravidly]].",
-'revdelete-suppress-text'        => "Utajování by se mělo používat '''pouze''' v následujících případech:
+'revdelete-suppress-text'     => "Utajování by se mělo používat '''pouze''' v následujících případech:
 * Nevhodné osobní údaje
 *: ''adresy bydliště a telefonní čísla, rodná čísla apod.''",
-'revdelete-legend'               => 'Nastavit omezení k revizi:',
-'revdelete-hide-text'            => 'Skrýt text revize',
-'revdelete-hide-name'            => 'Skrýt událost a cíl',
-'revdelete-hide-comment'         => 'Skrýt editační komentář',
-'revdelete-hide-user'            => 'Skrýt uživatelské jméno/IP adresu',
-'revdelete-hide-restricted'      => 'Utajit data i před správci',
-'revdelete-suppress'             => 'Utajit data i před správci',
-'revdelete-hide-image'           => 'Skrýt obsah souboru',
-'revdelete-unsuppress'           => 'Odstranit omezení na vrácené verze',
-'revdelete-log'                  => 'Komentář:',
-'revdelete-submit'               => 'Aplikovat nastavení',
-'revdelete-logentry'             => 'změnil viditelnost revizí u [[$1]]',
-'logdelete-logentry'             => 'mění viditelnost události [[$1]]',
-'revdelete-success'              => "'''Viditelnost revize úspěšně nastavena.'''",
-'revdelete-failure'              => "'''Není možné nastavit viditelnost revize.'''",
-'logdelete-success'              => "'''Viditelnost události úspěšně nastavena.'''",
-'revdel-restore'                 => 'Změnit viditelnost',
-'pagehist'                       => 'Historie stránky',
-'deletedhist'                    => 'Smazaná historie',
-'revdelete-content'              => 'obsah',
-'revdelete-summary'              => 'shrnutí editace',
-'revdelete-uname'                => 'uživatelské jméno',
-'revdelete-restricted'           => 'omezení správců použito',
-'revdelete-unrestricted'         => 'omezení správců odstraněno',
-'revdelete-hid'                  => 'skryl $1',
-'revdelete-unhid'                => 'odkryl $1',
-'revdelete-log-message'          => '$1 $2 reviz{{PLURAL:$2|i|e|í}}',
-'logdelete-log-message'          => '$1 $2 událost{{PLURAL:$2||i|í}}',
+'revdelete-legend'            => 'Nastavit omezení k revizi:',
+'revdelete-hide-text'         => 'Skrýt text revize',
+'revdelete-hide-name'         => 'Skrýt událost a cíl',
+'revdelete-hide-comment'      => 'Skrýt editační komentář',
+'revdelete-hide-user'         => 'Skrýt uživatelské jméno/IP adresu',
+'revdelete-hide-restricted'   => 'Utajit data i před správci',
+'revdelete-suppress'          => 'Utajit data i před správci',
+'revdelete-hide-image'        => 'Skrýt obsah souboru',
+'revdelete-unsuppress'        => 'Odstranit omezení na vrácené verze',
+'revdelete-log'               => 'Komentář:',
+'revdelete-submit'            => 'Aplikovat nastavení',
+'revdelete-logentry'          => 'změnil viditelnost revizí u [[$1]]',
+'logdelete-logentry'          => 'mění viditelnost události [[$1]]',
+'revdelete-success'           => "'''Viditelnost revize úspěšně nastavena.'''",
+'revdelete-failure'           => "'''Není možné nastavit viditelnost revize.'''",
+'logdelete-success'           => "'''Viditelnost události úspěšně nastavena.'''",
+'revdel-restore'              => 'Změnit viditelnost',
+'pagehist'                    => 'Historie stránky',
+'deletedhist'                 => 'Smazaná historie',
+'revdelete-content'           => 'obsah',
+'revdelete-summary'           => 'shrnutí editace',
+'revdelete-uname'             => 'uživatelské jméno',
+'revdelete-restricted'        => 'omezení správců použito',
+'revdelete-unrestricted'      => 'omezení správců odstraněno',
+'revdelete-hid'               => 'skryl $1',
+'revdelete-unhid'             => 'odkryl $1',
+'revdelete-log-message'       => '$1 $2 reviz{{PLURAL:$2|i|e|í}}',
+'logdelete-log-message'       => '$1 $2 událost{{PLURAL:$2||i|í}}',
 
 # Suppression log
 'suppressionlog'     => 'Záznam utajení',

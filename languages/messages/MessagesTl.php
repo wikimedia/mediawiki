@@ -848,69 +848,67 @@ Nabura ito mula sa wiki, o napalitan ng pangalan.
 Subukang [[Special:Search|hanapin sa wiki]] para sa mga kaugnay na mga bagong pahina.',
 
 # Revision deletion
-'rev-deleted-comment'            => '(tinanggal ang kumento/puna)',
-'rev-deleted-user'               => '(tinanggal ang pangalan ng tagagamit)',
-'rev-deleted-event'              => '(tinanggal ang galaw sa talaan)',
-'rev-deleted-text-permission'    => "'''Binura''' ang pagbabago ng pahinang ito.
+'rev-deleted-comment'         => '(tinanggal ang kumento/puna)',
+'rev-deleted-user'            => '(tinanggal ang pangalan ng tagagamit)',
+'rev-deleted-event'           => '(tinanggal ang galaw sa talaan)',
+'rev-deleted-text-permission' => "'''Binura''' ang pagbabago ng pahinang ito.
 Maaaring may mga detalye sa loob ng [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} talaan ng pagbura].",
-'rev-deleted-text-unhide'        => "'''Binura''' ang pagbabago ng pahinang ito.
+'rev-deleted-text-unhide'     => "'''Binura''' ang pagbabago ng pahinang ito.
 Maaaring may mga detalye sa loob ng [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} talaan ng pagbura].
 Bilang isang tagapangasiwa, maaari mo pa ring [$1 tingnan ang pagbabagong ito] kung nais mong magpatuloy.",
-'rev-deleted-text-view'          => "'''Binura''' ang pagbabago ng pahinang ito.
+'rev-deleted-text-view'       => "'''Binura''' ang pagbabago ng pahinang ito.
 Bilang isang tagapangasiwa, maaari mo itong makita;
 maaaring may mga detalye sa loob ng [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} talaan ng pagbura].",
-'rev-deleted-no-diff'            => "Hindi mo maaaring makita ang pagkakaibang ito dahil '''binura''' ang isa sa mga pagbabago.  Maaaring may mga detalye mula sa loob ng [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} talaan ng pagbura].",
-'rev-deleted-unhide-diff'        => "'''Binura''' ang isa sa mga pagbababago ng pagkakaibang ito.
+'rev-deleted-no-diff'         => "Hindi mo maaaring makita ang pagkakaibang ito dahil '''binura''' ang isa sa mga pagbabago.  Maaaring may mga detalye mula sa loob ng [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} talaan ng pagbura].",
+'rev-deleted-unhide-diff'     => "'''Binura''' ang isa sa mga pagbababago ng pagkakaibang ito.
 Maaaring may mga detalye sa loob ng [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} talaan ng pagbura].
 Bilang isang tagapangasiwa, maaari mo pa ring [$1 tingnan ang pagkakaiba] kung nais mong magpatuloy.",
-'rev-delundel'                   => 'ipakita/itago',
-'revisiondelete'                 => 'Burahin/ibalik ang mga pagbabago',
-'revdelete-nooldid-title'        => 'Hindi tanggap na puntiryang pagbabago',
-'revdelete-nooldid-text'         => 'Hindi ka nagbigay ng pupuntahang pagbabago o mga pagbabago para magampanan ang paraan na ito.',
-'revdelete-nologtype-title'      => 'Walang uri ng tala/pagtatalang ibinigay',
-'revdelete-nologtype-text'       => 'Hindi ka tumukoy ng isang uri ng talang pagsasagawaan ng galaw na ito.',
-'revdelete-toomanytargets-title' => 'Napakaraming mga puntirya',
-'revdelete-toomanytargets-text'  => 'Napakarami mong tinukoy na mga uri ng mga puntirya na pagsasagawaan ng galaw na ito.',
-'revdelete-nologid-title'        => 'Hindi tanggap na entrada/ipinasok sa tala.',
-'revdelete-nologid-text'         => 'Hindi ka tumukoy ng isang pinupuntiryang kaganapang pangtala upang maisagawa ang tungkuling ito o hindi umiiral ang tinukoy na entrada/ipinasok.',
-'revdelete-selected'             => "{{PLURAL:$2|Piniling|Mga piniling}} pagbabago ng '''$1:'''",
-'logdelete-selected'             => '{{PLURAL:$1|Piniling tala ng pangyayari|Piniling tala ng mga pangyayari}}:',
-'revdelete-text'                 => "'''Makikita pa rin ang mga binurang pagbabago at mga kaganapan sa pahina ng kasaysayan at mga talaan, ngunit hindi mapupuntahan ng madla ang mga bahagi ng kanilang nilalaman.
+'rev-delundel'                => 'ipakita/itago',
+'revisiondelete'              => 'Burahin/ibalik ang mga pagbabago',
+'revdelete-nooldid-title'     => 'Hindi tanggap na puntiryang pagbabago',
+'revdelete-nooldid-text'      => 'Hindi ka nagbigay ng pupuntahang pagbabago o mga pagbabago para magampanan ang paraan na ito.',
+'revdelete-nologtype-title'   => 'Walang uri ng tala/pagtatalang ibinigay',
+'revdelete-nologtype-text'    => 'Hindi ka tumukoy ng isang uri ng talang pagsasagawaan ng galaw na ito.',
+'revdelete-nologid-title'     => 'Hindi tanggap na entrada/ipinasok sa tala.',
+'revdelete-nologid-text'      => 'Hindi ka tumukoy ng isang pinupuntiryang kaganapang pangtala upang maisagawa ang tungkuling ito o hindi umiiral ang tinukoy na entrada/ipinasok.',
+'revdelete-selected'          => "{{PLURAL:$2|Piniling|Mga piniling}} pagbabago ng '''$1:'''",
+'logdelete-selected'          => '{{PLURAL:$1|Piniling tala ng pangyayari|Piniling tala ng mga pangyayari}}:',
+'revdelete-text'              => "'''Makikita pa rin ang mga binurang pagbabago at mga kaganapan sa pahina ng kasaysayan at mga talaan, ngunit hindi mapupuntahan ng madla ang mga bahagi ng kanilang nilalaman.
 
 Makikita pa rin ng iba pang mga tagapangasiwang nasa {{SITENAME}} ang mga tinagong nilalaman
 at maaaring ibalik ito mula sa pagkakabura sa pamamagitan ng kaparehong ugnayang-hangganan, maliban na lamang kung may itinakdang karagdagang mga restriksyon.
 Pakitiyak kung ito ang nais mong gawin, na nauunawaan mo ang mga kahihinatnan, at ginagawa mo ito alinsunod sa [[{{MediaWiki:Policy-url}}|patakaran]].",
-'revdelete-suppress-text'        => "Ang paglilingid ay dapat na gamitin '''lamang''' para sa sumusunod na mga pagkakataon:
+'revdelete-suppress-text'     => "Ang paglilingid ay dapat na gamitin '''lamang''' para sa sumusunod na mga pagkakataon:
 * Hindi naaangkop na kabatirang pansarili
 *: ''mga adres ng tahanan at bilang na pangtelepono, mga bilang na pangseguridad na sosyal, atbp.''",
-'revdelete-legend'               => 'Itakda ang mga kaantasan ng pagpapakita',
-'revdelete-hide-text'            => 'Itago ang teksto ng pagbabago',
-'revdelete-hide-name'            => 'Itago ang galaw at puntirya',
-'revdelete-hide-comment'         => 'Itago ang kumento sa pagbabago',
-'revdelete-hide-user'            => 'Itago ang pangalang pantagagamit/IP ng patnugot',
-'revdelete-hide-restricted'      => 'Ilingid ang dato mula sa mga tagapangasiwa at maging sa mga iba pa',
-'revdelete-suppress'             => 'Supilin ang datos mula sa mga tagapangasiwa gayon din sa iba',
-'revdelete-hide-image'           => 'Itago ang nilalaman ng talaksan',
-'revdelete-unsuppress'           => 'Tanggalin ang mga pagbabawal sa naibalik na mga pagbabago',
-'revdelete-log'                  => 'Itala ang puna/kumento:',
-'revdelete-submit'               => 'Pairalin para sa napiling pagbabago',
-'revdelete-logentry'             => 'binago ang antas ng pagpapakita ng pagbabago kay [[$1]]',
-'logdelete-logentry'             => 'binago ang antas ng pagpapakita ng kaganapan kay [[$1]]',
-'revdelete-success'              => "'''Matagumpay na naitakda ang kaantasan ng pagpapakita ng pagbabago.'''",
-'revdelete-failure'              => "'''Hindi maitakda ang kaantasan ng pagpapakita ng rebisyon.'''",
-'logdelete-success'              => "'''Matagumpay na naitakda ang kaantasan ng pagpapakita ng tala.'''",
-'revdel-restore'                 => 'Baguhin ang kaantasan ng pagpapakita',
-'pagehist'                       => 'Kasaysayan ng pahina',
-'deletedhist'                    => 'Naburang kasaysayan',
-'revdelete-content'              => 'nilalaman',
-'revdelete-summary'              => 'buod ng pagbabago',
-'revdelete-uname'                => 'pangalang pantagagamit',
-'revdelete-restricted'           => 'nilapat na mga paghihigpit sa mga tagapangasiwa',
-'revdelete-unrestricted'         => 'tinanggal ang mga pagbabawal para sa mga tagapangasiwa',
-'revdelete-hid'                  => 'itinago $1',
-'revdelete-unhid'                => 'pinalitaw $1',
-'revdelete-log-message'          => '$1 para sa $2 {{PLURAL:$2|pagbabago|mga pagbabago}}',
-'logdelete-log-message'          => '$1 para sa $2 {{PLURAL:$2|kaganapan|mga kaganapan}}',
+'revdelete-legend'            => 'Itakda ang mga kaantasan ng pagpapakita',
+'revdelete-hide-text'         => 'Itago ang teksto ng pagbabago',
+'revdelete-hide-name'         => 'Itago ang galaw at puntirya',
+'revdelete-hide-comment'      => 'Itago ang kumento sa pagbabago',
+'revdelete-hide-user'         => 'Itago ang pangalang pantagagamit/IP ng patnugot',
+'revdelete-hide-restricted'   => 'Ilingid ang dato mula sa mga tagapangasiwa at maging sa mga iba pa',
+'revdelete-suppress'          => 'Supilin ang datos mula sa mga tagapangasiwa gayon din sa iba',
+'revdelete-hide-image'        => 'Itago ang nilalaman ng talaksan',
+'revdelete-unsuppress'        => 'Tanggalin ang mga pagbabawal sa naibalik na mga pagbabago',
+'revdelete-log'               => 'Itala ang puna/kumento:',
+'revdelete-submit'            => 'Pairalin para sa napiling pagbabago',
+'revdelete-logentry'          => 'binago ang antas ng pagpapakita ng pagbabago kay [[$1]]',
+'logdelete-logentry'          => 'binago ang antas ng pagpapakita ng kaganapan kay [[$1]]',
+'revdelete-success'           => "'''Matagumpay na naitakda ang kaantasan ng pagpapakita ng pagbabago.'''",
+'revdelete-failure'           => "'''Hindi maitakda ang kaantasan ng pagpapakita ng rebisyon.'''",
+'logdelete-success'           => "'''Matagumpay na naitakda ang kaantasan ng pagpapakita ng tala.'''",
+'revdel-restore'              => 'Baguhin ang kaantasan ng pagpapakita',
+'pagehist'                    => 'Kasaysayan ng pahina',
+'deletedhist'                 => 'Naburang kasaysayan',
+'revdelete-content'           => 'nilalaman',
+'revdelete-summary'           => 'buod ng pagbabago',
+'revdelete-uname'             => 'pangalang pantagagamit',
+'revdelete-restricted'        => 'nilapat na mga paghihigpit sa mga tagapangasiwa',
+'revdelete-unrestricted'      => 'tinanggal ang mga pagbabawal para sa mga tagapangasiwa',
+'revdelete-hid'               => 'itinago $1',
+'revdelete-unhid'             => 'pinalitaw $1',
+'revdelete-log-message'       => '$1 para sa $2 {{PLURAL:$2|pagbabago|mga pagbabago}}',
+'logdelete-log-message'       => '$1 para sa $2 {{PLURAL:$2|kaganapan|mga kaganapan}}',
 
 # Suppression log
 'suppressionlog'     => 'Tala ng pagpipigil',

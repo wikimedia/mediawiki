@@ -804,67 +804,65 @@ Vläicht gouf se geläscht oder geréckelt.
 [[Special:Search|Sich op]] {{SITENAME}} no passenden neie Säiten.',
 
 # Revision deletion
-'rev-deleted-comment'            => '(Bemierkung geläscht)',
-'rev-deleted-user'               => '(Benotzernumm ewechgeholl)',
-'rev-deleted-event'              => '(Aktioun aus dem Logbuch erausgeholl)',
-'rev-deleted-text-permission'    => "Dës Versioun vun der Säit gouf '''geläscht'''.
+'rev-deleted-comment'         => '(Bemierkung geläscht)',
+'rev-deleted-user'            => '(Benotzernumm ewechgeholl)',
+'rev-deleted-event'           => '(Aktioun aus dem Logbuch erausgeholl)',
+'rev-deleted-text-permission' => "Dës Versioun vun der Säit gouf '''geläscht'''.
 Dir fannt eventuell méi Informatiounen an der [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Läschlëscht].",
-'rev-deleted-text-unhide'        => "Diese Versioun gouf '''geläscht'''.
+'rev-deleted-text-unhide'     => "Diese Versioun gouf '''geläscht'''.
 Detailer kënnen am [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Lösch-Logbuch] fonnt ginn.
 als Administrateur kënnt Dir [$1 dës Versioun kucken] wann Dir weiderfuere wëllt.",
-'rev-deleted-text-view'          => "Dës Versioun vun der Säit gouf '''eläscht'''.
+'rev-deleted-text-view'       => "Dës Versioun vun der Säit gouf '''eläscht'''.
 Als Administrateur kënnt Dir se weiderhi gesinn; Dir fannt eventuell méi Detailer am  [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Läsch-Logbuch].",
-'rev-deleted-no-diff'            => "Dir kënnt dësen Ënnerscheed net gesinn, well eng vun de Versiounen '''geläscht gouf'''.
+'rev-deleted-no-diff'         => "Dir kënnt dësen Ënnerscheed net gesinn, well eng vun de Versiounen '''geläscht gouf'''.
 Detailer stinn eventuell am [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Läsch-Logbuch].",
-'rev-deleted-unhide-diff'        => "Eng vun de Versioune vun dësem Ënnerscheed gouf '''geläscht'''.
+'rev-deleted-unhide-diff'     => "Eng vun de Versioune vun dësem Ënnerscheed gouf '''geläscht'''.
 Detailer stinn eventuell am [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Logbuch vun de Läschungen].
 Als Administrateur kënnt Dir [$1 mat dësem Link de Versiounsënnerschied kucke] wann Dir weiderfuere wëllt.",
-'rev-delundel'                   => 'weisen/verstoppen',
-'revisiondelete'                 => 'Versioune läschen/restauréieren',
-'revdelete-nooldid-title'        => 'Ongülteg Zilversioun',
-'revdelete-nooldid-text'         => 'Dir hutt entweder keng Versioun uginn fir dës Funktioun ze benotzen, déi Versioun déi Diruginn huet gëtt et net, oder dir versicht déi aktuell Versioun ze verstoppen.',
-'revdelete-nologtype-title'      => 'Keen Typ vu Logbuch uginn',
-'revdelete-nologtype-text'       => 'Dir hutt keen Typ vu Logbuch ugi fir dës Aktioun ze maachen.',
-'revdelete-toomanytargets-title' => 'Zevill Ziler',
-'revdelete-toomanytargets-text'  => 'Et goufen zevill Type vun Ziler, op deenen dës Aktioun gemaach soll ginn, definéiert.',
-'revdelete-nologid-title'        => 'Net valbele Wert am Logbuch',
-'revdelete-nologid-text'         => 'Dir hutt kee Logtyp erausgesicht oder de gewielte Logtyp gëtt et net.',
-'revdelete-selected'             => "'''{{PLURAL:$2|Gewielte Versioun|Gewielte Versioune}} vu(n) '''$1''' :'''",
-'logdelete-selected'             => "'''Ausgewielten {{PLURAL:$1|Evenement|Evenementer}} aus dem Logbuch:'''",
-'revdelete-text'                 => "'''Geläschte Versiounen oder aner geäschte Bestanddeeler sinn net méi ëffentlech zougänglech, si stinn awer weiderhinn an der Versiounsgeschicht vun der Säit.'''
+'rev-delundel'                => 'weisen/verstoppen',
+'revisiondelete'              => 'Versioune läschen/restauréieren',
+'revdelete-nooldid-title'     => 'Ongülteg Zilversioun',
+'revdelete-nooldid-text'      => 'Dir hutt entweder keng Versioun uginn fir dës Funktioun ze benotzen, déi Versioun déi Diruginn huet gëtt et net, oder dir versicht déi aktuell Versioun ze verstoppen.',
+'revdelete-nologtype-title'   => 'Keen Typ vu Logbuch uginn',
+'revdelete-nologtype-text'    => 'Dir hutt keen Typ vu Logbuch ugi fir dës Aktioun ze maachen.',
+'revdelete-nologid-title'     => 'Net valbele Wert am Logbuch',
+'revdelete-nologid-text'      => 'Dir hutt kee Logtyp erausgesicht oder de gewielte Logtyp gëtt et net.',
+'revdelete-selected'          => "'''{{PLURAL:$2|Gewielte Versioun|Gewielte Versioune}} vu(n) '''$1''' :'''",
+'logdelete-selected'          => "'''Ausgewielten {{PLURAL:$1|Evenement|Evenementer}} aus dem Logbuch:'''",
+'revdelete-text'              => "'''Geläschte Versiounen oder aner geäschte Bestanddeeler sinn net méi ëffentlech zougänglech, si stinn awer weiderhinn an der Versiounsgeschicht vun der Säit.'''
 
 Aner {{SITENAME}}-Administrateure kënnen de geläschten Inhalt oder aner geläschte Bestanddeeler weiderhi gesinn a restauréieren, et sief, et gouf festgeluecht, datt déi Limitatioune vum Accès och fir Administrateure gëllen.
 Confirméiert w.eg. datt Dir dëst maache wellt, datt dir d'Konsequenzen dovu verstitt an datt Dir dëst am Aklang mat de [[{{MediaWiki:Policy-url}}|Richtlinne]] maacht.",
-'revdelete-suppress-text'        => "Ënnerdréckung sollt '''nëmmen''' an dëse Fäll benotzt ginn:
+'revdelete-suppress-text'     => "Ënnerdréckung sollt '''nëmmen''' an dëse Fäll benotzt ginn:
 * Net ubruechte perséinlechen Informatiounen
 *: ''Adressen, Telefonsnummeren, Sozialversécherungsnummeren asw.''",
-'revdelete-legend'               => "Limitatioune fir d'Sichtbarkeet festleeën",
-'revdelete-hide-text'            => 'Text vun der Versioun verstoppen',
-'revdelete-hide-name'            => 'Logbuch-Aktioun verstoppen',
-'revdelete-hide-comment'         => 'Bemierkung verstoppen',
-'revdelete-hide-user'            => 'Dem Auteur säi Benotzernumm/IP verstoppen',
-'revdelete-hide-restricted'      => 'Donnéeën och fir Administrateuren suppriméieren geneesou wéi fir déi Aner',
-'revdelete-suppress'             => 'Grond vum Läschen och fir Administrateure verstoppt',
-'revdelete-hide-image'           => 'Bildinhalt verstoppen',
-'revdelete-unsuppress'           => 'Limitatiounen fir restauréiert Versiounen ophiewen',
-'revdelete-log'                  => "Bemierkung (fir d'Logbicher/Lëschten):",
-'revdelete-submit'               => 'Op déi gewielte Versioun uwenden',
-'revdelete-logentry'             => 'Sichtbarkeet vun der Versioun gouf geännert fir [[$1]]',
-'logdelete-logentry'             => "huet d'Sichtbarkeet vun [[$1]] geännert",
-'revdelete-success'              => "'''Sichtbarkeet vun de Versioune geännert.''''",
-'logdelete-success'              => "'''Sichbarkeet vum Logbuch geännert.'''",
-'revdel-restore'                 => 'Sichtbarkeet änneren',
-'pagehist'                       => 'Versioune vun dëser Säit',
-'deletedhist'                    => 'Geläschte Versiounen',
-'revdelete-content'              => 'Inhalt',
-'revdelete-summary'              => 'Résumé änneren',
-'revdelete-uname'                => 'Benotzernumm',
-'revdelete-restricted'           => 'Limitatioune fir Administrateuren ageschalt',
-'revdelete-unrestricted'         => 'Limitatioune fir Administrateuren opgehuewen',
-'revdelete-hid'                  => '$1 verstoppen',
-'revdelete-unhid'                => '$1 weisen',
-'revdelete-log-message'          => '$1 fir $2 {{PLURAL:$2|Versioun|Versiounen}}',
-'logdelete-log-message'          => '$1 fir $2 {{PLURAL:$2|Evenement|Evenementer}}',
+'revdelete-legend'            => "Limitatioune fir d'Sichtbarkeet festleeën",
+'revdelete-hide-text'         => 'Text vun der Versioun verstoppen',
+'revdelete-hide-name'         => 'Logbuch-Aktioun verstoppen',
+'revdelete-hide-comment'      => 'Bemierkung verstoppen',
+'revdelete-hide-user'         => 'Dem Auteur säi Benotzernumm/IP verstoppen',
+'revdelete-hide-restricted'   => 'Donnéeën och fir Administrateuren suppriméieren geneesou wéi fir déi Aner',
+'revdelete-suppress'          => 'Grond vum Läschen och fir Administrateure verstoppt',
+'revdelete-hide-image'        => 'Bildinhalt verstoppen',
+'revdelete-unsuppress'        => 'Limitatiounen fir restauréiert Versiounen ophiewen',
+'revdelete-log'               => "Bemierkung (fir d'Logbicher/Lëschten):",
+'revdelete-submit'            => 'Op déi gewielte Versioun uwenden',
+'revdelete-logentry'          => 'Sichtbarkeet vun der Versioun gouf geännert fir [[$1]]',
+'logdelete-logentry'          => "huet d'Sichtbarkeet vun [[$1]] geännert",
+'revdelete-success'           => "'''Sichtbarkeet vun de Versioune geännert.''''",
+'logdelete-success'           => "'''Sichbarkeet vum Logbuch geännert.'''",
+'revdel-restore'              => 'Sichtbarkeet änneren',
+'pagehist'                    => 'Versioune vun dëser Säit',
+'deletedhist'                 => 'Geläschte Versiounen',
+'revdelete-content'           => 'Inhalt',
+'revdelete-summary'           => 'Résumé änneren',
+'revdelete-uname'             => 'Benotzernumm',
+'revdelete-restricted'        => 'Limitatioune fir Administrateuren ageschalt',
+'revdelete-unrestricted'      => 'Limitatioune fir Administrateuren opgehuewen',
+'revdelete-hid'               => '$1 verstoppen',
+'revdelete-unhid'             => '$1 weisen',
+'revdelete-log-message'       => '$1 fir $2 {{PLURAL:$2|Versioun|Versiounen}}',
+'logdelete-log-message'       => '$1 fir $2 {{PLURAL:$2|Evenement|Evenementer}}',
 
 # Suppression log
 'suppressionlog'     => 'Lëscht vun de verstoppten a geläschte Säiten',

@@ -954,69 +954,67 @@ De deur $3 op-egeven rejen is ''$2''",
 'history-feed-empty'          => "De op-evreugen pagina besteet neet. 't Is meugelijk dat disse pagina vort-edaon is of dat 't herneumd is. Prebeer te [[Special:Search|zeuken]] veur relevante nieje pagina's.",
 
 # Revision deletion
-'rev-deleted-comment'            => '(commentaar vort-ehaold)',
-'rev-deleted-user'               => '(gebrukersnaam vort-edaon)',
-'rev-deleted-event'              => '(antekening vort-edaon)',
-'rev-deleted-text-permission'    => "Disse bewarking is uut de peblieke archieven ewis.
+'rev-deleted-comment'         => '(commentaar vort-ehaold)',
+'rev-deleted-user'            => '(gebrukersnaam vort-edaon)',
+'rev-deleted-event'           => '(antekening vort-edaon)',
+'rev-deleted-text-permission' => "Disse bewarking is uut de peblieke archieven ewis.
 As der meer infermasie is, ku-j dat vienen in 't [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} logboek vort-edaone pagina's].",
-'rev-deleted-text-unhide'        => "Disse versie van de pagina is '''vort-edaon'''.
+'rev-deleted-text-unhide'     => "Disse versie van de pagina is '''vort-edaon'''.
 Achtergronden ku-j meugelijk vienen in 't [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} logboek vort-edaone pagina's].
 As beheerder ku-j [$1 disse versie bekieken] a-j willen.",
-'rev-deleted-text-view'          => "Disse bewarking is uut de peblieke archieven ewis.
+'rev-deleted-text-view'       => "Disse bewarking is uut de peblieke archieven ewis.
 As beheerder van disse wiki ku-j 't wel zien;
 as der meer infermasie is, ku-j dat vienen in 't [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} logboek vort-edaone pagina's].",
-'rev-deleted-no-diff'            => "Je kunnen de verschillen neet bekieken umdat één van de versies uut 't peblieke archief vort-edaon is.
+'rev-deleted-no-diff'         => "Je kunnen de verschillen neet bekieken umdat één van de versies uut 't peblieke archief vort-edaon is.
 De achtergronden ku-j meugelijk vienen in 't [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} logboek mit vort-edaone pagina's].",
-'rev-deleted-unhide-diff'        => "Eén van de bewarkingen van disse vergeliekingen is uut de peblieke archieven ewis.
+'rev-deleted-unhide-diff'     => "Eén van de bewarkingen van disse vergeliekingen is uut de peblieke archieven ewis.
 Achtergronden ku-j meugelijk vienen in 't [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} logboek vort-edaone pagina's].
 As beheerder ku-j [$1 de verschillen bekieken] a-j willen.",
-'rev-delundel'                   => 'teun/verbarg',
-'revisiondelete'                 => 'Wiezigingen vortdoon/herstellen',
-'revdelete-nooldid-title'        => 'Gien doelversie',
-'revdelete-nooldid-text'         => 'Je hemmen gien versie an-egeven waor disse actie op uut-evoerd mut wonnen.',
-'revdelete-nologtype-title'      => 'Der is gien logboektype op-egeven',
-'revdelete-nologtype-text'       => 'Je hemmen gien logboektype op-egeven um disse haandeling op uut te voeren.',
-'revdelete-toomanytargets-title' => 'Te veul doelen',
-'revdelete-toomanytargets-text'  => 'Je hemmen te veul doelen egeven um disse haandeling op uut te voeren.',
-'revdelete-nologid-title'        => 'Ongeldige logboekregel',
-'revdelete-nologid-text'         => 'Of je hemmen gien doellogboekregel op-egeven of de an-egeven logboekregel besteet neet.',
-'revdelete-selected'             => "'''{{PLURAL:$2|Esillekteren bewarking|Esillekteren bewarkingen}} van '''[[:$1]]''':'''",
-'logdelete-selected'             => "'''{{PLURAL:$1|Esillecteren logboekboekactie|Esillecteren logboekacties}}:'''",
-'revdelete-text'                 => "'''Vort-edaone bewarkingen staon nog altied in de geschiedenisse en in logboeken, mar neet iederene kan de inhoud zomar bekieken.'''
+'rev-delundel'                => 'teun/verbarg',
+'revisiondelete'              => 'Wiezigingen vortdoon/herstellen',
+'revdelete-nooldid-title'     => 'Gien doelversie',
+'revdelete-nooldid-text'      => 'Je hemmen gien versie an-egeven waor disse actie op uut-evoerd mut wonnen.',
+'revdelete-nologtype-title'   => 'Der is gien logboektype op-egeven',
+'revdelete-nologtype-text'    => 'Je hemmen gien logboektype op-egeven um disse haandeling op uut te voeren.',
+'revdelete-nologid-title'     => 'Ongeldige logboekregel',
+'revdelete-nologid-text'      => 'Of je hemmen gien doellogboekregel op-egeven of de an-egeven logboekregel besteet neet.',
+'revdelete-selected'          => "'''{{PLURAL:$2|Esillekteren bewarking|Esillekteren bewarkingen}} van '''[[:$1]]''':'''",
+'logdelete-selected'          => "'''{{PLURAL:$1|Esillecteren logboekboekactie|Esillecteren logboekacties}}:'''",
+'revdelete-text'              => "'''Vort-edaone bewarkingen staon nog altied in de geschiedenisse en in logboeken, mar neet iederene kan de inhoud zomar bekieken.'''
 
 Beheerders van {{SITENAME}} kunnen de verbörgen inhoud bekieken en 't weerummeplaosen deur dit scharm te gebruken, behalven as der aandere beparkingen in-esteld bin.
 Bevestig dat dit de bedoeling is, da-j de gevolgen dervan begriepen en da-j dit doon in overeenstemming mit [[{{MediaWiki:Policy-url}}|'t beleid]] van disse wiki.",
-'revdelete-suppress-text'        => "Onderdrokken ma-j '''allinnig''' gebruken in de volgende gevallen:
+'revdelete-suppress-text'     => "Onderdrokken ma-j '''allinnig''' gebruken in de volgende gevallen:
 * Ongepassen persoonlijke infermasie
 *: ''adressen en tillefoonnummers, burgerservicenummers, en gao zo mar deur.''",
-'revdelete-legend'               => 'Stel versiebeparkingen in:',
-'revdelete-hide-text'            => 'Verbarg de bewarken tekse',
-'revdelete-hide-name'            => 'Verbarg logboekactie',
-'revdelete-hide-comment'         => 'Verbarg bewarkingssamenvatting',
-'revdelete-hide-user'            => 'Verbarg gebrukersnamen en IP-adressen van aandere luui.',
-'revdelete-hide-restricted'      => 'Gegevens veur beheerders en aander volk onderdrokken',
-'revdelete-suppress'             => 'Gegevens veur beheerders en aander volk onderdrokken',
-'revdelete-hide-image'           => 'Verbarg bestansinhoud',
-'revdelete-unsuppress'           => 'Beparkingen veur weerummezetten versies vortdoon',
-'revdelete-log'                  => 'Logopmarkingen:',
-'revdelete-submit'               => 'De esillecteren versie toepassen',
-'revdelete-logentry'             => 'zichbaorheid van bewarkingen is ewiezig veur [[$1]]',
-'logdelete-logentry'             => 'wiezigen zichbaorheid van gebeurtenisse [[$1]]',
-'revdelete-success'              => 'Zichbaorheid van de wieziging succesvol in-esteld.',
-'revdelete-failure'              => "'''De zichbaorheid veur de versie kon neet in-esteld wonnen.'''",
-'logdelete-success'              => "'''Zichbaorheid van de gebeurtenisse is succesvol in-esteld.'''",
-'revdel-restore'                 => 'Zichbaorheid wiezigen',
-'pagehist'                       => 'Paginageschiedenisse',
-'deletedhist'                    => 'Geschiedenisse dee vort-ehaold is',
-'revdelete-content'              => 'inhoud',
-'revdelete-summary'              => 'samenvatting bewarken',
-'revdelete-uname'                => 'gebrukersnaam',
-'revdelete-restricted'           => 'hef beparkingen an beheerders op-eleg',
-'revdelete-unrestricted'         => 'hef beparkingen veur beheerders derof ehaold',
-'revdelete-hid'                  => 'hef $1 verbörgen',
-'revdelete-unhid'                => 'hef $1 zichbaor emaak',
-'revdelete-log-message'          => '$1 veur $2 {{PLURAL:$2|versie|versies}}',
-'logdelete-log-message'          => '$1 veur $2 {{PLURAL:$2|logboekregel|logboekregels}}',
+'revdelete-legend'            => 'Stel versiebeparkingen in:',
+'revdelete-hide-text'         => 'Verbarg de bewarken tekse',
+'revdelete-hide-name'         => 'Verbarg logboekactie',
+'revdelete-hide-comment'      => 'Verbarg bewarkingssamenvatting',
+'revdelete-hide-user'         => 'Verbarg gebrukersnamen en IP-adressen van aandere luui.',
+'revdelete-hide-restricted'   => 'Gegevens veur beheerders en aander volk onderdrokken',
+'revdelete-suppress'          => 'Gegevens veur beheerders en aander volk onderdrokken',
+'revdelete-hide-image'        => 'Verbarg bestansinhoud',
+'revdelete-unsuppress'        => 'Beparkingen veur weerummezetten versies vortdoon',
+'revdelete-log'               => 'Logopmarkingen:',
+'revdelete-submit'            => 'De esillecteren versie toepassen',
+'revdelete-logentry'          => 'zichbaorheid van bewarkingen is ewiezig veur [[$1]]',
+'logdelete-logentry'          => 'wiezigen zichbaorheid van gebeurtenisse [[$1]]',
+'revdelete-success'           => 'Zichbaorheid van de wieziging succesvol in-esteld.',
+'revdelete-failure'           => "'''De zichbaorheid veur de versie kon neet in-esteld wonnen.'''",
+'logdelete-success'           => "'''Zichbaorheid van de gebeurtenisse is succesvol in-esteld.'''",
+'revdel-restore'              => 'Zichbaorheid wiezigen',
+'pagehist'                    => 'Paginageschiedenisse',
+'deletedhist'                 => 'Geschiedenisse dee vort-ehaold is',
+'revdelete-content'           => 'inhoud',
+'revdelete-summary'           => 'samenvatting bewarken',
+'revdelete-uname'             => 'gebrukersnaam',
+'revdelete-restricted'        => 'hef beparkingen an beheerders op-eleg',
+'revdelete-unrestricted'      => 'hef beparkingen veur beheerders derof ehaold',
+'revdelete-hid'               => 'hef $1 verbörgen',
+'revdelete-unhid'             => 'hef $1 zichbaor emaak',
+'revdelete-log-message'       => '$1 veur $2 {{PLURAL:$2|versie|versies}}',
+'logdelete-log-message'       => '$1 veur $2 {{PLURAL:$2|logboekregel|logboekregels}}',
 
 # Suppression log
 'suppressionlog'     => 'Verbargingslogboek',

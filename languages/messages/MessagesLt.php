@@ -862,69 +862,67 @@ Jis galėjo būti ištrintas iš projekto, arba pervardintas.
 Pamėginkite [[Special:Search|ieškoti projekte]] susijusių naujų puslapių.',
 
 # Revision deletion
-'rev-deleted-comment'            => '(komentaras pašalintas)',
-'rev-deleted-user'               => '(naudotojo vardas pašalintas)',
-'rev-deleted-event'              => '(įrašas pašalintas)',
-'rev-deleted-text-permission'    => "Ši puslapio versija buvo '''pašalinta'''.
+'rev-deleted-comment'         => '(komentaras pašalintas)',
+'rev-deleted-user'            => '(naudotojo vardas pašalintas)',
+'rev-deleted-event'           => '(įrašas pašalintas)',
+'rev-deleted-text-permission' => "Ši puslapio versija buvo '''pašalinta'''.
 Daugiau detalių galima rasti [{{fullurl:{{ns:special}}:Log/delete|page={{FULLPAGENAMEE}}}} trynimų istorijoje].",
-'rev-deleted-text-view'          => "Ši puslapio versija buvo '''pašalinta'''.
+'rev-deleted-text-view'       => "Ši puslapio versija buvo '''pašalinta'''.
 Kaip šios svetainės administratorius, jūs galite jį pamatyti;
 daugiau detalių gali būti [{{fullurl:{{ns:special}}:Log/delete|page={{FULLPAGENAMEE}}}} trynimų istorijoje].",
-'rev-deleted-no-diff'            => "Jūs negalite peržiūrėti šio skirtumo, nes viena iš versijų yra '''ištrinta'''.
+'rev-deleted-no-diff'         => "Jūs negalite peržiūrėti šio skirtumo, nes viena iš versijų yra '''ištrinta'''.
 Daugiau detalių gali būti [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} trynimų istorijoje].",
-'rev-deleted-unhide-diff'        => "One of the revisions of this diff has been '''deleted'''.
+'rev-deleted-unhide-diff'     => "One of the revisions of this diff has been '''deleted'''.
 There may be details in the [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} deletion log].
 As an administrator you can still [$1 view this diff] if you wish to proceed.
 
 Viena šio skirtumo versijų yra '''ištrinta'''.
 Daugiau detalių gali būti [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} trynimų istorijoje].
 Kaip administratorius, jei norite, jūs vis tiek [$1 galite pamatyti šį skirtumą].",
-'rev-delundel'                   => 'rodyti/slėpti',
-'revisiondelete'                 => 'Trinti/atkurti versijas',
-'revdelete-nooldid-title'        => 'Neleistina paskirties versija',
-'revdelete-nooldid-text'         => 'Jūs nenurodėte versijos (-ų), kurioms įvykdyti šią funkciją, nurodyta versija neegzistuoja arba jūs bandote paslėpti esamą versiją.',
-'revdelete-nologtype-title'      => 'Nenurodytas istorijos tipas',
-'revdelete-nologtype-text'       => 'Jūs nenurodėte istorijos tipo, kuriam atlikti šį veiksmą.',
-'revdelete-toomanytargets-title' => 'Per daug paskirčių',
-'revdelete-toomanytargets-text'  => 'Jūs nurodėte per daug paskirčių tipų, kuriems atlikti šį veiksmą.',
-'revdelete-nologid-title'        => 'Neleistinas istorijos įrašas',
-'revdelete-nologid-text'         => 'Jūs arba nenurodėte paskirties istorijos įvykio, kuriam atlikti šį veiksmą, arba nurodytas įrašas neegzistuoja.',
-'revdelete-selected'             => "'''{{PLURAL:$2|Pasirinkta [[:$1]] versija|Pasirinktos [[:$1]] versijos}}:'''",
-'logdelete-selected'             => "'''{{PLURAL:$1|Pasirinktas istorijos įvykis|Pasirinkti istorijos įvykiai}}:'''",
-'revdelete-text'                 => "'''Ištrintos versijos bei įvykiai vistiek dar bus rodomi puslapio istorijoje ir specialiųjų veiksmų istorijoje, bet jų turinio dalys nebus viešai prieinamos.'''
+'rev-delundel'                => 'rodyti/slėpti',
+'revisiondelete'              => 'Trinti/atkurti versijas',
+'revdelete-nooldid-title'     => 'Neleistina paskirties versija',
+'revdelete-nooldid-text'      => 'Jūs nenurodėte versijos (-ų), kurioms įvykdyti šią funkciją, nurodyta versija neegzistuoja arba jūs bandote paslėpti esamą versiją.',
+'revdelete-nologtype-title'   => 'Nenurodytas istorijos tipas',
+'revdelete-nologtype-text'    => 'Jūs nenurodėte istorijos tipo, kuriam atlikti šį veiksmą.',
+'revdelete-nologid-title'     => 'Neleistinas istorijos įrašas',
+'revdelete-nologid-text'      => 'Jūs arba nenurodėte paskirties istorijos įvykio, kuriam atlikti šį veiksmą, arba nurodytas įrašas neegzistuoja.',
+'revdelete-selected'          => "'''{{PLURAL:$2|Pasirinkta [[:$1]] versija|Pasirinktos [[:$1]] versijos}}:'''",
+'logdelete-selected'          => "'''{{PLURAL:$1|Pasirinktas istorijos įvykis|Pasirinkti istorijos įvykiai}}:'''",
+'revdelete-text'              => "'''Ištrintos versijos bei įvykiai vistiek dar bus rodomi puslapio istorijoje ir specialiųjų veiksmų istorijoje, bet jų turinio dalys nebus viešai prieinamos.'''
 Kiti administratoriai iš {{SITENAME}} vistiek galės pasiekti paslėptą turinį ir galės jį atkurti vėl per tą pačią sąsają, nebent yra nustatyti papildomi apribojimai.
 
 Prašome patvirtinti, kad jūs tikrai to norite, kad suprantate pasekmes, ir kad jūs tai darote atsižvelgdami į [[{{MediaWiki:Policy-url}}|politiką]].",
-'revdelete-suppress-text'        => "Ištrynimas turėtų būti taikomas '''tik''' šiais atvejais:
+'revdelete-suppress-text'     => "Ištrynimas turėtų būti taikomas '''tik''' šiais atvejais:
 * Netinkama asmeninė informacija
 *: ''namų adresai, telefonų numeriai, asmens kodai ir t. t.''",
-'revdelete-legend'               => 'Nustatyti matomumo apribojimus:',
-'revdelete-hide-text'            => 'Slėpti versijos tekstą',
-'revdelete-hide-name'            => 'Slėpti veiksmą ir paskirtį',
-'revdelete-hide-comment'         => 'Slėpti redagavimo komentarą',
-'revdelete-hide-user'            => 'Slėpti redagavusiojo naudotojo vardą ar IP adresą',
-'revdelete-hide-restricted'      => 'Nuslėpti duomenis nuo adminstratorių kaip ir nuo kitų',
-'revdelete-suppress'             => 'Slėpti duomenis nuo administratorių kaip ir nuo kitų',
-'revdelete-hide-image'           => 'Slėpti failo turinį',
-'revdelete-unsuppress'           => 'Šalinti apribojimus atkurtose versijose',
-'revdelete-log'                  => 'Komentaras:',
-'revdelete-submit'               => 'Taikyti pasirinktai versijai',
-'revdelete-logentry'             => 'pakeistas [[$1]] versijos matomumas',
-'logdelete-logentry'             => 'pakeistas [[$1]] įvykio matomumas',
-'revdelete-success'              => "'''Versijos matomumas sėkmingai nustatytas.'''",
-'logdelete-success'              => "'''Įvykio matomumas sėkmingai nustatytas.'''",
-'revdel-restore'                 => 'Keisti matomumą',
-'pagehist'                       => 'Puslapio istorija',
-'deletedhist'                    => 'Ištrinta istorija',
-'revdelete-content'              => 'turinys',
-'revdelete-summary'              => 'keitimo komentaras',
-'revdelete-uname'                => 'naudotojo vardas',
-'revdelete-restricted'           => 'uždėti apribojimai administratoriams',
-'revdelete-unrestricted'         => 'pašalinti apribojimai administratoriams',
-'revdelete-hid'                  => 'slėpti $1',
-'revdelete-unhid'                => 'atslėpti $1',
-'revdelete-log-message'          => '$1 $2 {{PLURAL:$2|versijai|versijoms|versijų}}',
-'logdelete-log-message'          => '$1 $2 {{PLURAL:$2|įvykiui|įvykiams|įvykių}}',
+'revdelete-legend'            => 'Nustatyti matomumo apribojimus:',
+'revdelete-hide-text'         => 'Slėpti versijos tekstą',
+'revdelete-hide-name'         => 'Slėpti veiksmą ir paskirtį',
+'revdelete-hide-comment'      => 'Slėpti redagavimo komentarą',
+'revdelete-hide-user'         => 'Slėpti redagavusiojo naudotojo vardą ar IP adresą',
+'revdelete-hide-restricted'   => 'Nuslėpti duomenis nuo adminstratorių kaip ir nuo kitų',
+'revdelete-suppress'          => 'Slėpti duomenis nuo administratorių kaip ir nuo kitų',
+'revdelete-hide-image'        => 'Slėpti failo turinį',
+'revdelete-unsuppress'        => 'Šalinti apribojimus atkurtose versijose',
+'revdelete-log'               => 'Komentaras:',
+'revdelete-submit'            => 'Taikyti pasirinktai versijai',
+'revdelete-logentry'          => 'pakeistas [[$1]] versijos matomumas',
+'logdelete-logentry'          => 'pakeistas [[$1]] įvykio matomumas',
+'revdelete-success'           => "'''Versijos matomumas sėkmingai nustatytas.'''",
+'logdelete-success'           => "'''Įvykio matomumas sėkmingai nustatytas.'''",
+'revdel-restore'              => 'Keisti matomumą',
+'pagehist'                    => 'Puslapio istorija',
+'deletedhist'                 => 'Ištrinta istorija',
+'revdelete-content'           => 'turinys',
+'revdelete-summary'           => 'keitimo komentaras',
+'revdelete-uname'             => 'naudotojo vardas',
+'revdelete-restricted'        => 'uždėti apribojimai administratoriams',
+'revdelete-unrestricted'      => 'pašalinti apribojimai administratoriams',
+'revdelete-hid'               => 'slėpti $1',
+'revdelete-unhid'             => 'atslėpti $1',
+'revdelete-log-message'       => '$1 $2 {{PLURAL:$2|versijai|versijoms|versijų}}',
+'logdelete-log-message'       => '$1 $2 {{PLURAL:$2|įvykiui|įvykiams|įvykių}}',
 
 # Suppression log
 'suppressionlog'     => 'Trynimo istorija',

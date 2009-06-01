@@ -929,68 +929,66 @@ Se on saatettu poistaa wikistä tai nimetä uudelleen.
 Kokeile [[Special:Search|hakua]] löytääksesi asiaan liittyviä sivuja.',
 
 # Revision deletion
-'rev-deleted-comment'            => '(kommentti poistettu)',
-'rev-deleted-user'               => '(käyttäjänimi poistettu)',
-'rev-deleted-event'              => '(lokitapahtuma poistettu)',
-'rev-deleted-text-permission'    => "Tämä versio on '''poistettu'''.
+'rev-deleted-comment'         => '(kommentti poistettu)',
+'rev-deleted-user'            => '(käyttäjänimi poistettu)',
+'rev-deleted-event'           => '(lokitapahtuma poistettu)',
+'rev-deleted-text-permission' => "Tämä versio on '''poistettu'''.
 [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} Poistolokissa] saattaa olla lisätietoja.",
-'rev-deleted-text-unhide'        => "Tämä versio sivusta on '''poistettu'''.
+'rev-deleted-text-unhide'     => "Tämä versio sivusta on '''poistettu'''.
 Lisätietoja saattaa olla [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} poistolokissa].
 Ylläpitäjänä voit silti [$1 katsoa tämän version].",
-'rev-deleted-text-view'          => "Tämä versio on '''poistettu'''.
+'rev-deleted-text-view'       => "Tämä versio on '''poistettu'''.
 Ylläpitäjänä voit nähdä sen. Lisätietoja saattaa olla [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} poistolokissa].",
-'rev-deleted-no-diff'            => "Et voi katsoa tätä muokkausta, koska yksi versioista on '''poistettu'''.
+'rev-deleted-no-diff'         => "Et voi katsoa tätä muokkausta, koska yksi versioista on '''poistettu'''.
 Lisätietoja saattaa olla [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} poistolokissa].",
-'rev-deleted-unhide-diff'        => "Yksi tämän muutoksen versioista on '''poistettu'''.
+'rev-deleted-unhide-diff'     => "Yksi tämän muutoksen versioista on '''poistettu'''.
 Lisätietoja saattaa olla [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} poistolokissa].
 Ylläpitäjänä voit silti [$1 katsoa tämän muutoksen].",
-'rev-delundel'                   => 'näytä tai piilota',
-'revisiondelete'                 => 'Poista tai palauta versioita',
-'revdelete-nooldid-title'        => 'Ei kohdeversiota',
-'revdelete-nooldid-text'         => 'Et ole valinnut kohdeversiota tai -versioita.',
-'revdelete-nologtype-title'      => 'Lokityyppiä ei annettu',
-'revdelete-nologtype-text'       => 'Et ole määritellyt lokin tyyppiä tälle toiminnolle.',
-'revdelete-toomanytargets-title' => 'Liian monta kohdetta',
-'revdelete-toomanytargets-text'  => 'Olet määrittänyt liian monta kohteen tyyppiä tämän toiminnon suorittamiseksi.',
-'revdelete-nologid-title'        => 'Epäkelpo lokitapahtuma',
-'revdelete-nologid-text'         => 'Joko et ole määritellyt kohdetta lokitapahtumalle tämän toiminnon suorittamiseksi tai määriteltyä tapahtumaa ei ole.',
-'revdelete-selected'             => "'''{{PLURAL:$2|Valittu versio|Valitut versiot}} sivusta '''$1:''''''",
-'logdelete-selected'             => "'''{{PLURAL:$1|Valittu lokimerkintä|Valitut lokimerkinnät}}:'''",
-'revdelete-text'                 => "'''Poistetut versiot näkyvät sivun historiassa, mutta niiden sisältö ei ole julkisesti saatavilla.'''
+'rev-delundel'                => 'näytä tai piilota',
+'revisiondelete'              => 'Poista tai palauta versioita',
+'revdelete-nooldid-title'     => 'Ei kohdeversiota',
+'revdelete-nooldid-text'      => 'Et ole valinnut kohdeversiota tai -versioita.',
+'revdelete-nologtype-title'   => 'Lokityyppiä ei annettu',
+'revdelete-nologtype-text'    => 'Et ole määritellyt lokin tyyppiä tälle toiminnolle.',
+'revdelete-nologid-title'     => 'Epäkelpo lokitapahtuma',
+'revdelete-nologid-text'      => 'Joko et ole määritellyt kohdetta lokitapahtumalle tämän toiminnon suorittamiseksi tai määriteltyä tapahtumaa ei ole.',
+'revdelete-selected'          => "'''{{PLURAL:$2|Valittu versio|Valitut versiot}} sivusta '''$1:''''''",
+'logdelete-selected'          => "'''{{PLURAL:$1|Valittu lokimerkintä|Valitut lokimerkinnät}}:'''",
+'revdelete-text'              => "'''Poistetut versiot näkyvät sivun historiassa, mutta niiden sisältö ei ole julkisesti saatavilla.'''
 
 Muut ylläpitäjät {{GRAMMAR:inessive|{{SITENAME}}}} voivat silti lukea piilotetun sisällön ja he voivat palauttaa sen tämän käyttöliittymän kautta, ellei sitä ole rajoitettu.
 Varmista, että haluat tehdä tämän, ymmärrät seuraukset ja teet tämän [[{{MediaWiki:Policy-url}}|käytäntöjen]] mukaisesti.",
-'revdelete-suppress-text'        => "Häivytystä pitäisi käyttää '''vain''' seuraavissa tapauksissa:
+'revdelete-suppress-text'     => "Häivytystä pitäisi käyttää '''vain''' seuraavissa tapauksissa:
 * Sopimattomat henkilötiedot
 *: ''kotiosoitteet, puhelinnumerot, sosiaaliturvatunnukset ja muut.''",
-'revdelete-legend'               => 'Version rajoitukset',
-'revdelete-hide-text'            => 'Piilota version sisältö',
-'revdelete-hide-name'            => 'Piilota toiminto ja kohde',
-'revdelete-hide-comment'         => 'Piilota yhteenveto',
-'revdelete-hide-user'            => 'Piilota tekijän tunnus tai IP-osoite',
-'revdelete-hide-restricted'      => 'Piilota tiedot ylläpitäjiltä kuten muilta',
-'revdelete-suppress'             => 'Piilota myös ylläpitäjiltä',
-'revdelete-hide-image'           => 'Piilota tiedoston sisältö',
-'revdelete-unsuppress'           => 'Poista rajoitukset palautetuilta versiolta',
-'revdelete-log'                  => 'Lokimerkintä',
-'revdelete-submit'               => 'Toteuta',
-'revdelete-logentry'             => 'muutti sivun [[$1]] version näkyvyyttä',
-'logdelete-logentry'             => 'muutti sivun [[$1]] näkyvyyttä',
-'revdelete-success'              => 'Version näkyvyys asetettu.',
-'revdelete-failure'              => "'''Version näkyvyyttä ei voitu asettaa.'''",
-'logdelete-success'              => 'Tapahtuman näkyvyys asetettu.',
-'revdel-restore'                 => 'Muuta näkyvyyttä',
-'pagehist'                       => 'Muutoshistoria',
-'deletedhist'                    => 'Poistettu muutoshistoria',
-'revdelete-content'              => 'sisällön',
-'revdelete-summary'              => 'yhteenvedon',
-'revdelete-uname'                => 'käyttäjänimen',
-'revdelete-restricted'           => 'asetti rajoitukset ylläpitäjille',
-'revdelete-unrestricted'         => 'poisti rajoitukset ylläpitäjiltä',
-'revdelete-hid'                  => 'piilotti $1',
-'revdelete-unhid'                => 'palautti näkyviin $1',
-'revdelete-log-message'          => '$1 koskien $2 {{PLURAL:$2|versiota}}',
-'logdelete-log-message'          => '$1 koskien $2 {{PLURAL:$2|tapahtumaa}}',
+'revdelete-legend'            => 'Version rajoitukset',
+'revdelete-hide-text'         => 'Piilota version sisältö',
+'revdelete-hide-name'         => 'Piilota toiminto ja kohde',
+'revdelete-hide-comment'      => 'Piilota yhteenveto',
+'revdelete-hide-user'         => 'Piilota tekijän tunnus tai IP-osoite',
+'revdelete-hide-restricted'   => 'Piilota tiedot ylläpitäjiltä kuten muilta',
+'revdelete-suppress'          => 'Piilota myös ylläpitäjiltä',
+'revdelete-hide-image'        => 'Piilota tiedoston sisältö',
+'revdelete-unsuppress'        => 'Poista rajoitukset palautetuilta versiolta',
+'revdelete-log'               => 'Lokimerkintä',
+'revdelete-submit'            => 'Toteuta',
+'revdelete-logentry'          => 'muutti sivun [[$1]] version näkyvyyttä',
+'logdelete-logentry'          => 'muutti sivun [[$1]] näkyvyyttä',
+'revdelete-success'           => 'Version näkyvyys asetettu.',
+'revdelete-failure'           => "'''Version näkyvyyttä ei voitu asettaa.'''",
+'logdelete-success'           => 'Tapahtuman näkyvyys asetettu.',
+'revdel-restore'              => 'Muuta näkyvyyttä',
+'pagehist'                    => 'Muutoshistoria',
+'deletedhist'                 => 'Poistettu muutoshistoria',
+'revdelete-content'           => 'sisällön',
+'revdelete-summary'           => 'yhteenvedon',
+'revdelete-uname'             => 'käyttäjänimen',
+'revdelete-restricted'        => 'asetti rajoitukset ylläpitäjille',
+'revdelete-unrestricted'      => 'poisti rajoitukset ylläpitäjiltä',
+'revdelete-hid'               => 'piilotti $1',
+'revdelete-unhid'             => 'palautti näkyviin $1',
+'revdelete-log-message'       => '$1 koskien $2 {{PLURAL:$2|versiota}}',
+'logdelete-log-message'       => '$1 koskien $2 {{PLURAL:$2|tapahtumaa}}',
 
 # Suppression log
 'suppressionlog'     => 'Häivytysloki',
