@@ -170,8 +170,10 @@ class DeletedContribsPager extends IndexPager {
 					'(' . $this->message['rev-delundel'] . ')' ) . ' ';
 			// Otherwise, show the link...
 			} else {
-				$query = array( 'target' => $page->getPrefixedDbkey(),
-					'artimestamp' => $rev->getTimestamp() );
+				$query = array(
+					'type' => 'archive',
+					'target' => $page->getPrefixedDbkey(),
+					'ids' => $rev->getTimestamp() );
 				$del = $this->mSkin->revDeleteLink( $query,
 					$rev->isDeleted( Revision::DELETED_RESTRICTED ) ) . ' ';
 			}

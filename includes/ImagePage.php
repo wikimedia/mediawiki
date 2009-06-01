@@ -795,7 +795,6 @@ class ImageHistoryList {
 		$user = $file->getUser('id');
 		$usertext = $file->getUser('text');
 		$description = $file->getDescription();
-		$sha1 = $file->getSha1();
 
 		$local = $this->current->isLocal();
 		$row = $css = $selected = '';
@@ -828,7 +827,11 @@ class ImageHistoryList {
 					list( $ts, $name ) = explode( '!', $img, 2 );
 					$del = $this->skin->link( $revdel, wfMsgHtml( 'rev-delundel' ),
 						array(),
-						array( 'target' => $wgTitle->getPrefixedText(), 'oldimage' => $ts ),
+						array( 
+							'type' => 'oldimage',
+							'target' => $wgTitle->getPrefixedText(), 
+							'ids' => $ts,
+						),
 						array( 'known' )
 					);
 					// Bolden oversighted content
@@ -871,7 +874,9 @@ class ImageHistoryList {
 			$revdel = SpecialPage::getTitleFor( 'Revisiondelete' );
 			# Make a link to review the image
 			$url = $this->skin->makeKnownLinkObj( $revdel, $wgLang->timeAndDate( $timestamp, true ),
-				"target=".$wgTitle->getPrefixedText()."&file=$sha1.".$this->current->getExtension() );
+				"target=".$wgTitle->getPrefixedUrl().
+				"&file=" . urlencode( $img ) .
+				"&token=" . urlencode( $wgUser->editToken( $img ) ) );
 			$row .= '<span class="history-deleted">'.$url.'</span>';
 		} elseif( $file->isMissing() ) {
 			# Don't link to missing files
