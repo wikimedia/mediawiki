@@ -632,7 +632,7 @@ abstract class RevDel_List {
 			// Make error messages less vague
 			$oldBits = $item->getBits();
 			if ( $oldBits == $newBits ) {
-				$status->warning( 'revdelete-no-change', $item->formatDateTime() );
+				$status->warning( 'revdelete-no-change', $item->formatDate(), $item->formatTime() );
 				$status->failCount++;
 				continue;
 			} elseif ( $oldBits == 0 && $newBits != 0 ) {
@@ -645,14 +645,14 @@ abstract class RevDel_List {
 
 			if ( $item->isCurrent() && $opType == 'hide' ) {
 				// Cannot hide current version text
-				$status->error( 'revdelete-hide-current', $item->formatDateTime() );
+				$status->error( 'revdelete-hide-current', $item->formatDate(), $item->formatTime() );
 				$status->failCount++;
 				continue;
 			}
 			if ( !$item->canView() ) {
 				// Cannot access this revision
 				$msg = $opType == 'show' ? 'revdelete-show-no-access' : 'revdelete-modify-no-access';
-				$status->error( $msg, $item->formatDateTime() );
+				$status->error( $msg, $item->formatDate(), $item->formatTime() );
 				$status->failCount++;
 				continue;
 			}
@@ -664,7 +664,7 @@ abstract class RevDel_List {
 				$idsForLog[] = $item->getId();
 				$status->successCount++;
 			} else {
-				$status->error( 'revdelete-concurrent-change', $item->formatDateTime() );
+				$status->error( 'revdelete-concurrent-change', $item->formatDate(), $item->formatTime() );
 				$status->failCount++;
 			}
 		}
@@ -876,11 +876,19 @@ abstract class RevDel_Item {
 	}
 
 	/**
-	 * Get the timestamp, formatted with $wgLang
+	 * Get the date, formatted with $wgLang
 	 */
-	public function formatDateTime() {
+	public function formatDate() {
 		global $wgLang;
-		return $wgLang->timeanddate( $this->getTimestamp() );
+		return $wgLang->date( $this->getTimestamp() );
+	}
+
+	/**
+	 * Get the date, formatted with $wgLang
+	 */
+	public function formatTime() {
+		global $wgLang;
+		return $wgLang->time( $this->getTimestamp() );
 	}
 
 	/**

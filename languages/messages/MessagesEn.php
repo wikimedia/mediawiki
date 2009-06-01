@@ -1329,15 +1329,15 @@ $1",
 'revdelete-unhid'             => 'unhid $1',
 'revdelete-log-message'       => '$1 for $2 {{PLURAL:$2|revision|revisions}}',
 'logdelete-log-message'       => '$1 for $2 {{PLURAL:$2|event|events}}',
-'revdelete-hide-current'      => 'Error hiding the item dated $1: this is the current revision.
+'revdelete-hide-current'      => 'Error hiding the item dated $2, $1: this is the current revision.
 It cannot be hidden.',
-'revdelete-show-no-access'    => 'Error showing the item dated $1: this item has been marked "restricted".
+'revdelete-show-no-access'    => 'Error showing the item dated $2, $1: this item has been marked "restricted".
 You do not have access to it.',
-'revdelete-modify-no-access'  => 'Error modifying the item dated $1: this item has been marked "restricted".
+'revdelete-modify-no-access'  => 'Error modifying the item dated $2, $1: this item has been marked "restricted".
 You do not have access to it.',
-'revdelete-modify-missing'    => 'Error modifying item ID $1: it is missing from the database!',
-'revdelete-no-change'         => "'''Warning:''' the item dated $1 already had the requested visibility settings.",
-'revdelete-concurrent-change' => 'Error modifying the item dated $1: its status appears to have been changed by someone else while you attempted to modify it.
+'revdelete-modify-missing'    => 'Error modifying item ID $2, $1: it is missing from the database!',
+'revdelete-no-change'         => "'''Warning:''' the item dated $2, $1 already had the requested visibility settings.",
+'revdelete-concurrent-change' => 'Error modifying the item dated $2, $1: its status appears to have been changed by someone else while you attempted to modify it.
 Please check the logs.',
 'revdelete-only-restricted'   => 'You cannot suppress items from view by administrators without also selecting one of the other suppression options.',
 
