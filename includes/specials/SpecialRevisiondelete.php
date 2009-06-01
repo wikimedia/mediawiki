@@ -885,7 +885,7 @@ abstract class RevDel_Item {
 	}
 
 	/**
-	 * Get the date, formatted with $wgLang
+	 * Get the time, formatted with $wgLang
 	 */
 	public function formatTime() {
 		global $wgLang;
