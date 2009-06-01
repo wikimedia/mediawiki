@@ -163,7 +163,7 @@ $messages = array(
 # User preference toggles
 'tog-underline'               => 'Understreg henvisninger',
 'tog-highlightbroken'         => 'Brug røde henvisninger til tomme sider',
-'tog-justify'                 => 'Vis artikler med lige marginer',
+'tog-justify'                 => 'Vis afsnit med lige marginer',
 'tog-hideminor'               => 'Skjul mindre ændringer i listen over seneste ændringer',
 'tog-hidepatrolled'           => 'Skjul patruljerede redigeringer i seneste ændringer',
 'tog-newpageshidepatrolled'   => 'Skjul patruljerede sider på listen over nye sider',
@@ -265,7 +265,7 @@ $messages = array(
 
 # Categories related messages
 'pagecategories'                 => '{{PLURAL:$1|Kategori|Kategorier}}',
-'category_header'                => 'Artikler i kategorien "$1"',
+'category_header'                => 'Sider i kategorien "$1"',
 'subcategories'                  => 'Underkategorier',
 'category-media-header'          => 'Medier i kategorien „$1“',
 'category-empty'                 => "''Denne kategori indeholder for øjeblikket hverken sider eller medie-filer.''",
@@ -732,14 +732,15 @@ Du er nødt til at sammenflette dine ændringer med den eksisterende tekst.
 'editingold'                       => "'''ADVARSEL: Du redigerer en gammel version af denne side.
 Hvis du gemmer den, vil alle ændringer foretaget siden denne revision blive overskrevet.'''",
 'yourdiff'                         => 'Forskelle',
-'copyrightwarning'                 => "'''Husk: <big>kopier ingen websider</big>, som ikke tilhører dig selv, brug <big>ingen ophavsretsligt beskyttede værker</big> uden tilladelse fra ejeren!'''<br />
-Du lover os hermed, at du selv '''har skrevet teksten''', at teksten tilhører almenheden, er ('''public domain'''), eller at '''ophavsrets-indehaveren''' har givet sin '''tilladelse'''. Hvis denne tekst allerede er offentliggkort andre steder, skriv det venligst på diskussionssiden.
-<i>Bemærk venligst, at alle {{SITENAME}}-artikler automatisk står under „$2“ (se $1 for detaljer). Hvis du ikke vil, at dit arbejde her ændres og udbredes af andre, så tryk ikke på „Gem“.</i>",
-'copyrightwarning2'                => "Bemærk venligst, at alle artikler på {{SITENAME}} kan bearbejdes, ændres eller slettes af andre brugere.
+'copyrightwarning'                 => "Bemærk venligst at alle bidrag til {{SITENAME}} er at betragte som udgivne under $2 (se $1 for detaljer).
+Hvis du ikke ønsker at din tekst skal udsættes for nådesløse redigeringer og at den kan blive kopieret efter forgodtbefindende, så skal du ikke placere den her.<br />
+Du lover os også, at du selv har forfattet teksten eller har kopieret den fra en public domain-kilde eller en tilsvarende fri kilde. 
+'''Læg aldrig materiale her som er beskyttet af andres ophavsret uden deres tilladelse!'''",
+'copyrightwarning2'                => "Bemærk venligst at alle bidrag til {{SITENAME}} kan bearbejdes, ændres eller slettes af andre brugere.
 Læg ingen tekster ind, hvis du ikke kan acceptere at disse kan ændres.
 
-Du bekræfter hermed også, at du selv har skrevet denne tekst eller kopieret den fra en offentlig kilde
-(se $1 for detaljer). '''OVERFØR IKKE OPHAVSRETSLIGT BESKYTTET INDHOLD!'''",
+Du bekræfter hermed også, at du selv har skrevet denne tekst eller kopieret den fra en fri kilde (se $1 for detaljer).
+'''OVERFØR IKKE OPHAVSRETSLIGT BESKYTTET INDHOLD UDEN TILLADELSE!'''",
 'longpagewarning'                  => "'''ADVARSEL: Denne side er $1 kilobyte stor; nogle browsere kan have problemer med at redigere sider der nærmer sig eller er større end 32 kb. 
 Overvej om siden kan opdeles i mindre dele.'''",
 'longpageerror'                    => "'''FEJL: Teksten, som du ville gemme, er $1 kB stor. Det er større end det tilladet maksimum på $2 kB. Det er ikke muligt at gemme.'''",
@@ -1004,8 +1005,8 @@ Vær opmæksom på at bevare kontinuiteten i sidehistorikken.
 'notitlematches'                   => 'Ingen artikeltitler opfyldte forespørgslen',
 'textmatches'                      => 'Artikeltekster der opfyldte forespørgslen',
 'notextmatches'                    => 'Ingen artikeltekster opfyldte forespørgslen',
-'prevn'                            => 'forrige $1',
-'nextn'                            => 'næste $1',
+'prevn'                            => 'forrige {{PLURAL:$1|$1}}',
+'nextn'                            => 'næste {{PLURAL:$1|$1}}',
 'prevn-title'                      => 'Forrige $1 {{PLURAL:$1|resultat|resultater}}',
 'nextn-title'                      => 'Næste $1 {{PLURAL:$1|resultat|resultater}}',
 'shown-title'                      => 'Vis $1 {{PLURAL:$1|resultat|resultater}} per side',
@@ -1037,6 +1038,7 @@ Vær opmæksom på at bevare kontinuiteten i sidehistorikken.
 'search-mwsuggest-disabled'        => 'ingen forslag',
 'search-relatedarticle'            => 'Relateret',
 'mwsuggest-disable'                => 'Slå AJAX-forslag fra',
+'searcheverything-enable'          => 'Søg i alle navnerum',
 'searchrelated'                    => 'relateret',
 'searchall'                        => 'alle',
 'showingresults'                   => 'Nedenfor vises <b>$1</b> {{PLURAL:$1|resultat|resultater}} startende med nummer <b>$2</b>.',
@@ -1051,6 +1053,9 @@ Du kan prøve at bruge \"all:\" som præfiks for at søge i alt indhold (inkl. d
 'powersearch-ns'                   => 'Søg i navnerummene:',
 'powersearch-redir'                => 'Vis omdirigeringer',
 'powersearch-field'                => 'Søg efter',
+'powersearch-togglelabel'          => 'Marker:',
+'powersearch-toggleall'            => 'Alle',
+'powersearch-togglenone'           => 'Ingen',
 'search-external'                  => 'Brug anden søgemaskine',
 'searchdisabled'                   => '<p>Beklager! Fuldtekstsøgningen er midlertidigt afbrudt på grund af for stor belastning på serverne. I mellemtidem kan du anvende Google- eller Yahoo!-søgefelterne herunder. Bemærk at deres kopier af {{SITENAME}}s indhold kan være forældet.</p>',
 
@@ -1122,7 +1127,7 @@ Du kan prøve at bruge \"all:\" som præfiks for at søge i alt indhold (inkl. d
 'allowemail'                    => 'Tillad e-mails fra andre brugere',
 'prefs-searchoptions'           => 'Søgeindstillinger',
 'prefs-namespaces'              => 'Navnerum',
-'defaultns'                     => 'Søg som standard i disse navnerum:',
+'defaultns'                     => 'Ellers søg i disse navnerum:',
 'default'                       => 'standard',
 'prefs-files'                   => 'Filer',
 'prefs-custom-css'              => 'Personlig CSS',
@@ -1576,7 +1581,7 @@ Husk at kontrollere for andre henvisninger til skabelonerne før de slettes.',
 'statistics-users-active-desc' => 'Brugere som har udført handlinger i {{PLURAL:$1|det sidste døgn|de sidste $1 dage}}',
 'statistics-mostpopular'       => 'Mest besøgte sider',
 
-'disambiguations'      => 'Artikler med flertydige titler',
+'disambiguations'      => 'Sider med flertydige titler',
 'disambiguationspage'  => 'Template:Flertydig',
 'disambiguations-text' => 'De følgende sider henviser til en flertydig titel. De bør henvise direkte til det passende emne i stedet. En side behandles som en side med en flertydig titel hvis den bruger en skabelon som er henvist til fra [[MediaWiki:Disambiguationspage]].',
 
@@ -1605,7 +1610,7 @@ Husk at kontrollere for andre henvisninger til skabelonerne før de slettes.',
 'nrevisions'              => '{{PLURAL:$1|1 ændring|$1 ændringer}}',
 'nviews'                  => '{{PLURAL:$1|1 visning|$1 visninger}}',
 'specialpage-empty'       => 'Der er ingen resultater at vise.',
-'lonelypages'             => 'Forældreløse artikler',
+'lonelypages'             => 'Forældreløse sider',
 'lonelypagestext'         => 'Følgende sider er ikke henvist til eller inkluderet på andre sider på {{SITENAME}}:',
 'uncategorizedpages'      => 'Ukategoriserede sider',
 'uncategorizedcategories' => 'Ukategoriserede kategorier',
@@ -1613,9 +1618,9 @@ Husk at kontrollere for andre henvisninger til skabelonerne før de slettes.',
 'uncategorizedtemplates'  => 'Ikke kategoriserede skabeloner',
 'unusedcategories'        => 'Ubrugte kategorier',
 'unusedimages'            => 'Ubrugte filer',
-'popularpages'            => 'Populære artikler',
+'popularpages'            => 'Populære sider',
 'wantedcategories'        => 'Ønskede kategorier',
-'wantedpages'             => 'Ønskede artikler',
+'wantedpages'             => 'Ønskede sider',
 'wantedpages-badtitle'    => 'Ugyldig titel i resultaterne: $1',
 'wantedfiles'             => 'Ønskede filer',
 'wantedtemplates'         => 'Ønskede skabeloner',
@@ -1626,8 +1631,8 @@ Husk at kontrollere for andre henvisninger til skabelonerne før de slettes.',
 'mostimages'              => 'Mest brugte filer',
 'mostrevisions'           => 'Sider med de fleste ændringer',
 'prefixindex'             => 'Alle sider med præfiks',
-'shortpages'              => 'Korte artikler',
-'longpages'               => 'Lange artikler',
+'shortpages'              => 'Korte sider',
+'longpages'               => 'Lange sider',
 'deadendpages'            => 'Blindgydesider',
 'deadendpagestext'        => 'De følgende sider henviser ikke til andre sider i denne wiki.',
 'protectedpages'          => 'Skrivebeskyttede sider',
@@ -1643,9 +1648,9 @@ Husk at kontrollere for andre henvisninger til skabelonerne før de slettes.',
 'listusers-creationsort'  => 'Sorter efter oprettelsesdato',
 'usereditcount'           => '{{PLURAL:$1|én redigering|$1 redigeringer}}',
 'usercreated'             => 'Oprettet den $1 $2',
-'newpages'                => 'Nyeste artikler',
+'newpages'                => 'Nyeste sider',
 'newpages-username'       => 'Brugernavn:',
-'ancientpages'            => 'Ældste artikler',
+'ancientpages'            => 'Ældste sider',
 'move'                    => 'Flyt',
 'movethispage'            => 'Flyt side',
 'unusedimagestext'        => '<p>Læg mærke til, at andre websider såsom de andre internationale {{SITENAME}}er måske henviser til et billede med en direkte URL, så det kan stadig være listet her, selvom det er i aktivt brug.',
@@ -1676,7 +1681,7 @@ Du kan afgrænse visningen ved at vælge en logtype, brugernavn eller påvirket 
 'log-title-wildcard'   => 'Søg i titler som begynder med teksten',
 
 # Special:AllPages
-'allpages'          => 'Alle artikler',
+'allpages'          => 'Alle sider',
 'alphaindexline'    => '$1 til $2',
 'nextpage'          => 'Næste side ($1)',
 'prevpage'          => 'Forrige side ($1)',
@@ -1967,6 +1972,7 @@ Teksten i de slettede versioner er kun tilgængelig for administratorer.',
 'undelete-nodiff'              => 'Der findes ingen tidligere version.',
 'undeletebtn'                  => 'Gendan',
 'undeletelink'                 => 'vis/gendan',
+'undeleteviewlink'             => 'vis',
 'undeletereset'                => 'Afbryd',
 'undeleteinvert'               => 'Omvend valget af versioner',
 'undeletecomment'              => 'Begrundelse:',
@@ -1997,7 +2003,7 @@ $1',
 # Namespace form on various pages
 'namespace'      => 'Navnerum:',
 'invert'         => 'Udeluk valgt navnerum',
-'blanknamespace' => '(Artikler)',
+'blanknamespace' => '(Hoved)',
 
 # Contributions
 'contributions'       => 'Brugerbidrag',

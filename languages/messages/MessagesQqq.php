@@ -710,7 +710,7 @@ Please report at [[Support]] if you are unable to properly translate this messag
 'viewpagelogs'           => 'Link displayed in history of pages',
 'currentrev'             => '{{Identical|Current revision}}',
 'currentrev-asof'        => 'The text appears at the right side when comparing 2 different edits of the same page. For example: [http://translatewiki.net/w/i.php?title=FreeCol%3AIntegerAboveZero%2Fca&diff=788645&oldid=788644]',
-'revisionasof'           => "Used on a difference page when comparing different versions of a page or when viewing an non-current version of a page. \$1 is the date/time at which the revision was created. Example: \"''Revision as of 14:44, 24 January 2008''\". \$2 is the date at which the revision was created. \$3 is the time at which the revision was created.",
+'revisionasof'           => 'Used on a difference page when comparing different versions of a page or when viewing an non-current version of a page. $1 is the date/time at which the revision was created. Example: "\'\'Revision as of 14:44, 24 January 2008\'\'". $2 is the date at which the revision was created. $3 is the time at which the revision was created.',
 'revision-info'          => 'Appears just below the page title when an old version of the page is being viewed.
 
 * $1 indicates the time of that revision and 
@@ -744,69 +744,91 @@ Please report at [[Support]] if you are unable to properly translate this messag
 * '''$4''' - time.",
 
 # Revision deletion
-'rev-delundel'              => 'Link in page history for oversight',
-'revisiondelete'            => '{{RevisionDelete}}
+'rev-delundel'                => 'Link in page history for oversight',
+'revisiondelete'              => '{{RevisionDelete}}
 It is the page title of [[Special:RevisionDelete]].',
-'revdelete-nooldid-title'   => '{{RevisionDelete}}',
-'revdelete-nooldid-text'    => '{{RevisionDelete}}',
-'revdelete-selected'        => '{{RevisionDelete}}',
-'logdelete-selected'        => '{{RevisionDelete}}',
-'revdelete-text'            => '{{RevisionDelete}}
+'revdelete-nooldid-title'     => '{{RevisionDelete}}',
+'revdelete-nooldid-text'      => '{{RevisionDelete}}',
+'revdelete-show-file-confirm' => '* $1 is a file name
+* $2 is a date
+* $3 is a time',
+'revdelete-show-file-submit'  => 'Reply to {{msg-mw|Revdelete-show-file-confirm}}.
+
+{{Identical|Yes}}',
+'revdelete-selected'          => '{{RevisionDelete}}',
+'logdelete-selected'          => '{{RevisionDelete}}',
+'revdelete-text'              => '{{RevisionDelete}}
 This is the introduction explaining the feature.',
-'revdelete-legend'          => '{{RevisionDelete}}',
-'revdelete-hide-text'       => 'Option for oversight',
-'revdelete-hide-name'       => 'Option for oversight',
-'revdelete-hide-comment'    => 'Option for oversight',
-'revdelete-hide-user'       => 'Option for oversight',
-'revdelete-hide-restricted' => 'Option for oversight.',
-'revdelete-suppress'        => 'Option for oversight',
-'revdelete-hide-image'      => 'Option for <del>oversight</del> [[:mw:RevisionDelete|RevisionDelete]] feature.',
-'revdelete-unsuppress'      => '{{RevisionDelete}}',
-'revdelete-log'             => 'Log comment text for oversight
+'revdelete-legend'            => '{{RevisionDelete}}',
+'revdelete-hide-text'         => 'Option for oversight',
+'revdelete-hide-name'         => 'Option for oversight',
+'revdelete-hide-comment'      => 'Option for oversight',
+'revdelete-hide-user'         => 'Option for oversight',
+'revdelete-hide-restricted'   => 'Option for oversight.',
+'revdelete-suppress'          => 'Option for oversight',
+'revdelete-hide-image'        => 'Option for <del>oversight</del> [[:mw:RevisionDelete|RevisionDelete]] feature.',
+'revdelete-unsuppress'        => '{{RevisionDelete}}',
+'revdelete-log'               => 'Log comment text for oversight
 
 {{Identical|Log comment}}',
-'revdelete-submit'          => '{{RevisionDelete}}
+'revdelete-submit'            => '{{RevisionDelete}}
 This is the submit button on [[Special:RevisionDelete]].',
-'revdelete-logentry'        => '{{RevisionDelete}}
+'revdelete-logentry'          => '{{RevisionDelete}}
 This is the message for the log entry in [[Special:Log/delete]] when changing visibility restrictions for page revisions. It is followed by the message {{msg|revdelete-log-message}} in brackets.
 
 The parameter $1 is the page name.
 
 The name of the user doing this task appears before this message.',
-'logdelete-logentry'        => '{{RevisionDelete}}
+'logdelete-logentry'          => '{{RevisionDelete}}
 This is the message for the log entry in [[Special:Log/delete]] when changing visibility restrictions for log events. It is followed by the message {{msg|logdelete-log-message}} in brackets.
 
 The parameter $1 is the log name in brackets.
 
 The name of the user who did this task appears before this message.',
-'revdelete-success'         => '{{RevisionDelete}}',
-'logdelete-success'         => '{{RevisionDelete}}',
-'revdel-restore'            => '{{RevisionDelete}}',
-'revdelete-content'         => 'This message is used as parameter $1 in {{msg|revdelete-hid}} and {{msg|revdelete-unhid}} when hiding or unhiding the content of a revision or event.',
-'revdelete-summary'         => 'This message is used as parameter $1 in {{msg|revdelete-hid}} and {{msg|revdelete-unhid}} when hiding or unhiding the edit summary of a revision or event.',
-'revdelete-uname'           => 'This message is used as parameter $1 in {{msg|revdelete-hid}} and {{msg|revdelete-unhid}} when hiding or unhiding the username for a revision or event.
+'revdelete-success'           => '{{RevisionDelete}}',
+'logdelete-success'           => '{{RevisionDelete}}',
+'revdel-restore'              => '{{RevisionDelete}}',
+'revdelete-content'           => 'This message is used as parameter $1 in {{msg|revdelete-hid}} and {{msg|revdelete-unhid}} when hiding or unhiding the content of a revision or event.',
+'revdelete-summary'           => 'This message is used as parameter $1 in {{msg|revdelete-hid}} and {{msg|revdelete-unhid}} when hiding or unhiding the edit summary of a revision or event.',
+'revdelete-uname'             => 'This message is used as parameter $1 in {{msg|revdelete-hid}} and {{msg|revdelete-unhid}} when hiding or unhiding the username for a revision or event.
 
 {{Identical|Username}}',
-'revdelete-restricted'      => 'This message is used as parameter $1 in {{msg|revdelete-log-message}} when setting visibility restrictions for administrators.',
-'revdelete-unrestricted'    => 'This message is used as parameter $1 in {{msg|revdelete-log-message}} when removing visibility restrictions for administrators.',
-'revdelete-hid'             => 'This message is used as parameter $1 in {{msg|revdelete-log-message}} when hiding revisions, and {{msg|logdelete-log-message}} when hiding information in the log entry about hiding revisions.
+'revdelete-restricted'        => 'This message is used as parameter $1 in {{msg|revdelete-log-message}} when setting visibility restrictions for administrators.',
+'revdelete-unrestricted'      => 'This message is used as parameter $1 in {{msg|revdelete-log-message}} when removing visibility restrictions for administrators.',
+'revdelete-hid'               => 'This message is used as parameter $1 in {{msg|revdelete-log-message}} when hiding revisions, and {{msg|logdelete-log-message}} when hiding information in the log entry about hiding revisions.
 
 Parameter $1 is either {{msg|revdelete-content}} (when hiding the page content), {{msg|revdelete-summary}} (when hiding the edit summary), {{msg|revdelete-uname}} (when hiding the user name), or a combination of these three messages.',
-'revdelete-unhid'           => 'This message is used as parameter $1 in {{msg|revdelete-log-message}} when unhiding revisions, and {{msg|logdelete-log-message}} when unhiding information in the log entry about unhiding revisions.
+'revdelete-unhid'             => 'This message is used as parameter $1 in {{msg|revdelete-log-message}} when unhiding revisions, and {{msg|logdelete-log-message}} when unhiding information in the log entry about unhiding revisions.
 
 Parameter $1 is either {{msg|revdelete-content}} (when unhiding the page content), {{msg|revdelete-summary}} (when unhiding the edit summary), {{msg|revdelete-uname}} (when unhiding the user name), or a combination of these three messages.',
-'revdelete-log-message'     => 'This log message is used together with {{msg|revdelete-logentry}} in the deletion or suppression logs when changing visibility restrictions for page revisions.
+'revdelete-log-message'       => 'This log message is used together with {{msg|revdelete-logentry}} in the deletion or suppression logs when changing visibility restrictions for page revisions.
 
 *Parameter $1 is either {{msg|revdelete-hid}} (when hiding data), {{msg|revdelete-unhid}} (when unhiding data), {{msg|revdelete-restricted}} (when applying restrictions for sysops),  {{msg|revdelete-unrestricted}} (when removing restrictions for sysops), or a combination of those messages.
 *Parameter $2 is the number of revisions for which the restrictions are changed.
 
 Please note that the parameters in a log entry will appear in the log only in the default language of the wiki. View [[Special:Log]] for examples on translatewiki.net with English default language.',
-'logdelete-log-message'     => 'This log message appears in brackets after the message {{msg|logdelete-logentry}} in the deletion or suppression logs when changing the visibility of a log entry for events. For a brief description of the process of changing the visibility of events and their log entries see this [http://www.mediawiki.org/wiki/RevisionDelete mediawiki explanation]. 
+'logdelete-log-message'       => 'This log message appears in brackets after the message {{msg|logdelete-logentry}} in the deletion or suppression logs when changing the visibility of a log entry for events. For a brief description of the process of changing the visibility of events and their log entries see this [http://www.mediawiki.org/wiki/RevisionDelete mediawiki explanation]. 
 
 *Parameter $1 is either {{msg|revdelete-hid}} (when hiding data), {{msg|revdelete-unhid}} (when unhiding data), {{msg|revdelete-restricted}} (when applying restrictions for sysops),  {{msg|revdelete-unrestricted}} (when removing restrictions for sysops), or a combination of those messages.
 *Parameter $2 is the number of events for which the restrictions are changed.
 
 Please note that the parameters in a log entry will appear in the log only in the default language of the wiki. View [[Special:Log]] for examples on translatewiki.net with English default language.',
+'revdelete-hide-current'      => 'Parameters:
+* $1 is a date
+* $2 is a time',
+'revdelete-show-no-access'    => 'Parameters:
+* $1 is a date
+* $2 is a time',
+'revdelete-modify-no-access'  => 'Parameters:
+* $1 is a date
+* $2 is a time',
+'revdelete-modify-missing'    => '* $1 is a revision ID',
+'revdelete-no-change'         => 'Parameters:
+* $1 is a date
+* $2 is a time',
+'revdelete-concurrent-change' => 'Parameters:
+* $1 is a date
+* $2 is a time',
 
 # Suppression log
 'suppressionlog'     => 'Title of the suppression log. Shown in the drop down menu at [[Special:log]] and as header of [[Special:log/suppress]].',

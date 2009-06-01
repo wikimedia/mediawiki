@@ -957,6 +957,9 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'revdelete-nologtype-text'    => 'この操作を実行するログ種類を指定していません。',
 'revdelete-nologid-title'     => 'ログ項目が無効',
 'revdelete-nologid-text'      => 'この機能を実行する対象ログイベントをしていないか、指定した項目は存在しません。',
+'revdelete-no-file'           => '指定されたファイルは存在しません。',
+'revdelete-show-file-confirm' => '本当にファイル「<nowiki>$1</nowiki>」の $2 $3 の削除された版を閲覧しますか？',
+'revdelete-show-file-submit'  => 'はい',
 'revdelete-selected'          => "'''[[:$1]]の特定版:'''",
 'logdelete-selected'          => "'''選択されたログの記録:'''",
 'revdelete-text'              => "'''削除された版や記録はページの履歴やログに表示され続けますが、一般の利用者はその内容にアクセスできなくなります。'''
@@ -979,8 +982,11 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'revdelete-logentry'          => '[[$1]]の版の閲覧レベルを変更しました',
 'logdelete-logentry'          => '[[$1]]の操作の閲覧レベルを変更しました',
 'revdelete-success'           => "'''版の閲覧レベルを変更しました。'''",
-'revdelete-failure'           => "'''版の可視性を設定できませんでした。'''",
+'revdelete-failure'           => "'''版の可視性を設定できませんでした。'''
+$1",
 'logdelete-success'           => "'''ログの閲覧レベルを変更しました。'''",
+'logdelete-failure'           => "'''ログの可視性を設定できませんでした。'''
+$1",
 'revdel-restore'              => '閲覧レベルを変更',
 'pagehist'                    => 'ページの履歴',
 'deletedhist'                 => '削除された履歴',
@@ -993,6 +999,13 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'revdelete-unhid'             => '$1の秘匿を解除しました',
 'revdelete-log-message'       => '$2版に対して$1',
 'logdelete-log-message'       => '$2の操作に対して$1',
+'revdelete-hide-current'      => '$2 $1 の項目の秘匿に失敗しました: これは最新版であるため、秘匿できません。',
+'revdelete-show-no-access'    => '$2 $1 の項目の表示に失敗しました: この項目は「制限付き」に設定されているため、あなたにはアクセスすることができません。',
+'revdelete-modify-no-access'  => '$2 $1 の項目の変更に失敗しました: この項目は「制限付き」に設定されているため、あなたにはアクセスすることができません。',
+'revdelete-modify-missing'    => 'ID $1 の項目の変更に失敗しました: データベースに見当たりません！',
+'revdelete-no-change'         => "'''警告:''' $2 $1 の項目には既に要求された可視性が設定されています。",
+'revdelete-concurrent-change' => '$2 $1 の項目の変更に失敗しました: あなたが変更を加えている間に他の利用者によってその項目の状態が変更されたようです。ログを確認してください。',
+'revdelete-only-restricted'   => '管理者の画面から項目を表示されないようにするには、他の非表示設定のうちどれかをさらに選択しなければなりません。',
 
 # Suppression log
 'suppressionlog'     => '秘匿記録',
@@ -1591,6 +1604,7 @@ PICT # misc.
 'filehist-dimensions'       => '解像度',
 'filehist-filesize'         => 'ファイルサイズ',
 'filehist-comment'          => 'コメント',
+'filehist-missing'          => 'ファイルがみつかりません',
 'imagelinks'                => 'ファイルリンク',
 'linkstoimage'              => 'このファイルは以下の{{PLURAL:$1|ページ|$1ページ}}で使用されています:',
 'linkstoimage-more'         => '$1 以上のページがこのファイルにリンクしています。以下のリストはこのファイルにリンクしている最初の$1ページのリンクのみを表示しています。[[Special:WhatLinksHere/$2|完全なリスト]]も参照してください。',
@@ -2059,7 +2073,7 @@ $NEWPAGE
 'undeleteextrahelp'            => '全ての版を復帰する場合は、全ての版のチェックボックスを選択していない状態で「{{int:undeletebtn}}」ボタンをクリックしてください。
 特定の版を復帰する場合は、復帰する版のチェックボックスを選択した状態で「{{int:undeletebtn}}」ボタンをクリックしてください。
 「{{int:undeletereset}}」ボタンををクリックするとコメント欄と全てのチェックボックスがクリアされます。',
-'undeleterevisions'            => '$1版保管',
+'undeleterevisions'            => '$1版を保管しました',
 'undeletehistory'              => 'ページの復帰を行うと、全ての特定版が履歴に復帰します。ページが削除された後に、同じ名前で新しいページが作成されていた場合、復帰した特定版は、その前の履歴として出現します。',
 'undeleterevdel'               => 'トップページの版が一時的に削除されているものに対しては、復帰処理を実行できません。このような場合、まずは最新の削除履歴に対するチェックまたは隠蔽を解除する必要があります。ファイル履歴を表示する権限がない場合も、復帰させることはできません。',
 'undeletehistorynoadmin'       => '過去にこのページの全てもしくは一部が削除されています。以下に示すのは削除記録と削除された版の履歴です。削除された各版の内容は{{int:group-sysop}}のみが閲覧できます。',
@@ -2073,9 +2087,9 @@ $NEWPAGE
 'undeleteinvert'               => '選択を逆転する',
 'undeletecomment'              => 'コメント:',
 'undeletedarticle'             => '"$1" を復帰しました。',
-'undeletedrevisions'           => '$1 版を復帰しました。',
+'undeletedrevisions'           => '$1版を復帰しました',
 'undeletedrevisions-files'     => '$1 版のページと $2 ファイルを復帰しました',
-'undeletedfiles'               => '$1 ファイルを復帰しました',
+'undeletedfiles'               => '$1個のファイルを復帰しました',
 'cannotundelete'               => '復帰に失敗しました。誰かがすでにこのページを復帰しています。',
 'undeletedpage'                => "<big>'''$1 を復帰しました。'''</big>
 
@@ -2303,7 +2317,7 @@ $1 は、すでにブロックされています。設定を変更しますか�
 'movepage-page-exists'         => '$1 という名前のページは既に存在するため自動的な上書きは行われませんでした。',
 'movepage-page-moved'          => '$1 は $2 へ移動されました。',
 'movepage-page-unmoved'        => '$1 を $2 へ移動できませんでした。',
-'movepage-max-pages'           => '自動的に移動できるのは $1ページ までで、それ以上は移動されません。',
+'movepage-max-pages'           => '自動的に移動できるページは $1件までで、それ以上は移動されません。',
 '1movedto2'                    => 'ページ [[$1]] を [[$2]] へ移動',
 '1movedto2_redir'              => 'ページ [[$1]] をこのページあてのリダイレクト [[$2]] へ移動',
 'move-redirect-suppressed'     => 'リダイレクト非作成',

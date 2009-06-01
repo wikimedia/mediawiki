@@ -882,6 +882,9 @@ function, o le version specificate non existe, o tu essaya celar le version actu
 'revdelete-nologtype-text'    => 'Tu non ha specificate un typo de registro super le qual iste action debe esser executate.',
 'revdelete-nologid-title'     => 'Entrata de registro invalide',
 'revdelete-nologid-text'      => 'O tu non ha specificate un evento de registro de destination super le qual iste action debe esser executate, o le entrata specificate non existe.',
+'revdelete-no-file'           => 'Le file specificate non existe.',
+'revdelete-show-file-confirm' => 'Es tu secur de voler vider un version delite del file  "<nowiki>$1</nowiki>" del $2 a $3?',
+'revdelete-show-file-submit'  => 'Si',
 'revdelete-selected'          => "'''{{PLURAL:$2|Version seligite|Versiones seligite}} de [[:$1]]:'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Evento|Eventos}} de registro seligite:'''",
 'revdelete-text'              => "'''Le versiones e eventos delite continuara a apparer in le historia e registro del pagina, sed partes de lor contento essera inaccessibile al publico.'''
@@ -905,8 +908,11 @@ Per favor confirma que tu ha le intention de facer isto, que tu comprende le con
 'revdelete-logentry'          => 'cambiava le visibilitate de versiones pro [[$1]]',
 'logdelete-logentry'          => 'cambiava le visibilitate de eventos pro [[$1]]',
 'revdelete-success'           => "'''Le visibilitate de versiones ha essite definite con successo.'''",
-'revdelete-failure'           => "'''Le visibilitate del version non poteva esser cambiate.'''",
+'revdelete-failure'           => "'''Le visibilitate del version non poteva esser cambiate:'''
+$1",
 'logdelete-success'           => "'''Le visibilitate del registro ha essite definite con successo.'''",
+'logdelete-failure'           => "'''Le visibilitate del registro non poteva esser cambiate:'''
+$1",
 'revdel-restore'              => 'Cambiar visibilitate',
 'pagehist'                    => 'Historia del pagina',
 'deletedhist'                 => 'Historia delite',
@@ -919,6 +925,17 @@ Per favor confirma que tu ha le intention de facer isto, que tu comprende le con
 'revdelete-unhid'             => 'revelava $1',
 'revdelete-log-message'       => '$1 pro $2 {{PLURAL:$2|version|versiones}}',
 'logdelete-log-message'       => '$1 pro $2 {{PLURAL:$2|evento|eventos}}',
+'revdelete-hide-current'      => 'Error de celar le entrata del $2 a $1: iste es le version actual.
+Illo non pote esser celate.',
+'revdelete-show-no-access'    => 'Error de revelar le entrata del $2 a $1: iste entrata ha essite marcate como "restringite".
+Tu non ha accesso a illo.',
+'revdelete-modify-no-access'  => 'Error de modificar le entrata del $2 a $1: iste entrata ha essite marcate como "restringite".
+Tu non ha accesso a illo.',
+'revdelete-modify-missing'    => 'Error de modificar le entrata con ID $2, $1: illo manca in le base de datos!',
+'revdelete-no-change'         => "'''Attention:''' le entrata del $2, $1 jam habeva le configuration requestate de visibilitate.",
+'revdelete-concurrent-change' => 'Error de modificar le entrata del $2, $1: il pare que alcuno altere ha cambiate su stato durante que tu tentava modificar lo.
+Per favor verifica le registros.',
+'revdelete-only-restricted'   => 'Tu non pote render entratas inaccessibile a administratores sin seliger tamben un del altere optiones de suppression.',
 
 # Suppression log
 'suppressionlog'     => 'Registro de suppressiones',
@@ -1067,6 +1084,7 @@ Tu pote [[:\$1|crear iste pagina]].",
 'search-mwsuggest-disabled'        => 'sin suggestiones',
 'search-relatedarticle'            => 'Connexe',
 'mwsuggest-disable'                => 'Disactivar suggestiones via AJAX',
+'searcheverything-enable'          => 'Cercar in tote le spatios de nomines',
 'searchrelated'                    => 'connexe',
 'searchall'                        => 'totes',
 'showingresults'                   => "Infra se monstra non plus de {{PLURAL:$1|'''1''' resultato|'''$1''' resultatos}} a partir del numero '''$2'''.",
@@ -1157,7 +1175,7 @@ Nota que lor indices del contento de {{SITENAME}} pote esser obsolete.',
 'allowemail'                    => 'Activar reception de e-mail de altere usatores',
 'prefs-searchoptions'           => 'Optiones de recerca',
 'prefs-namespaces'              => 'Spatios de nomines',
-'defaultns'                     => 'Cercar initialmente in iste spatios de nomines:',
+'defaultns'                     => 'Alteremente cercar in iste spatios de nomines:',
 'default'                       => 'predefinite',
 'prefs-files'                   => 'Files',
 'prefs-custom-css'              => 'CSS personalisate',
@@ -1549,6 +1567,7 @@ Tu pote reordinar le lista con un clic super le titulo de un columna.',
 'filehist-dimensions'       => 'Dimensiones',
 'filehist-filesize'         => 'Grandor del file',
 'filehist-comment'          => 'Commento',
+'filehist-missing'          => 'File mancante',
 'imagelinks'                => 'Ligamines verso iste file',
 'linkstoimage'              => 'Le sequente {{PLURAL:$1|pagina ha un ligamine|$1 paginas ha ligamines}} verso iste file:',
 'linkstoimage-more'         => 'Plus de $1 {{PLURAL:$1|pagina ha un ligamine|paginas ha ligamines}} verso iste file.

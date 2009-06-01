@@ -1059,6 +1059,9 @@ Als beheerder kunt u [$1 de verschillen bekijken] als u wilt.",
 'revdelete-nologtype-text'    => 'U hebt geen logboektype opgegeven om deze handeling op uit te voeren.',
 'revdelete-nologid-title'     => 'Ongeldige logboekregel',
 'revdelete-nologid-text'      => 'U hebt ofwel geen doellogboekregel opgegeven of de aangegeven logboekregel bestaat niet.',
+'revdelete-no-file'           => 'Het aangegeven bestand bestaat niet.',
+'revdelete-show-file-confirm' => 'Weet u zeker dat u de verwijderde versie van het bestand "<nowiki>$1</nowiki>" van $2 om $3 wilt bekijken?',
+'revdelete-show-file-submit'  => 'Ja',
 'revdelete-selected'          => "'''Geselecteerde {{PLURAL:$2|bewerking|bewerkingen}} van [[:$1]]:'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Geselecteerde logboekactie|Geselecteerde logboekacties}}:'''",
 'revdelete-text'              => "'''Verwijderde bewerkingen zijn zichtbaar in de geschiedenis en logboeken, maar delen van de inhoud zijn niet langer publiek toegankelijk.'''
@@ -1082,8 +1085,11 @@ Bevestig dat u dit wilde doen, dat u de consequenties begrijpt en dat u dit doet
 'revdelete-logentry'          => 'zichtbaarheid van bewerkingen is gewijzigd voor [[$1]]',
 'logdelete-logentry'          => 'wijzigde zichtbaarheid van gebeurtenis [[$1]]',
 'revdelete-success'           => "'''Zichtbaarheid van de wijziging succesvol ingesteld.'''",
-'revdelete-failure'           => "'''De zichtbaarheid voor de versie kon niet ingesteld worden.'''",
+'revdelete-failure'           => "'''De zichtbaarheid voor de versie kon niet ingesteld worden:'''
+$1",
 'logdelete-success'           => "'''Zichtbaarheid van de gebeurtenis succesvol ingesteld.'''",
+'logdelete-failure'           => "'''De zichtbaarheid van de logboekregel kon niet ingesteld worden:'''
+$1",
 'revdel-restore'              => 'Zichtbaarheid wijzigen',
 'pagehist'                    => 'Paginageschiedenis',
 'deletedhist'                 => 'Verwijderde geschiedenis',
@@ -1096,6 +1102,17 @@ Bevestig dat u dit wilde doen, dat u de consequenties begrijpt en dat u dit doet
 'revdelete-unhid'             => 'heeft $1 zichtbaar gemaakt',
 'revdelete-log-message'       => '$1 voor $2 {{PLURAL:$2|versie|versies}}',
 'logdelete-log-message'       => '$1 voor $2 {{PLURAL:$2|logboekregel|logboekregels}}',
+'revdelete-hide-current'      => 'Er is een fout opgetreden bij het verbergen van het object van $1 om $2 uur: dit is de huidige versie.
+Deze versie kan niet verborgen worden.',
+'revdelete-show-no-access'    => 'Er is een fout opgetreden bij het weergeven van het object van $1 om $2 uur: dit object is gemarkeerd als "beschermd".
+U hebt geen toegang tot dit object.',
+'revdelete-modify-no-access'  => 'Er is een fout opgetreden bij het wijzigen van het object van $1 om $2 uur: dit object is gemarkeerd als "beschermd".
+U hebt geen toegang tot dit object.',
+'revdelete-modify-missing'    => 'Er is een fout opgetreden bij het wijzigen van versienummer $1: het komt niet voor in de database!',
+'revdelete-no-change'         => "'''Waarschuwing:''' het object van $1 om $2 uur had al de aangegeven zichtbaarheidsinstellingen.",
+'revdelete-concurrent-change' => 'Er is een fout opgetreden bij het wijzigen van het object van $1 om $2 uur: de status is inmiddels gewijzigd door iemand anders.
+Controleer de logboeken.',
+'revdelete-only-restricted'   => 'U kunt geen objecten voor beheerders onderdrukken zonder ook de andere opties voor onderdrukken te selecteren.',
 
 # Suppression log
 'suppressionlog'     => 'Verbergingslogboek',
@@ -1738,6 +1755,7 @@ Klikken op een kolomkop verandert de sortering.',
 'filehist-dimensions'       => 'Afmetingen',
 'filehist-filesize'         => 'Bestandsgrootte',
 'filehist-comment'          => 'Opmerking',
+'filehist-missing'          => 'Het bestand is niet aangetroffen',
 'imagelinks'                => 'Bestandsverwijzingen',
 'linkstoimage'              => "Dit bestand wordt op de volgende {{PLURAL:$1|pagina|$1 pagina's}} gebruikt:",
 'linkstoimage-more'         => 'Er {{PLURAL:$2|is|zijn}} meer dan $1 {{PLURAL:$1|verwijzing|verwijzingen}} naar dit bestand.

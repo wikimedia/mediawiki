@@ -937,7 +937,8 @@ Conferma che è tua intenzione procedere a tale cancellazione, che hai piena con
 'revdelete-logentry'          => 'ha modificato la visibilità per una revisione di [[$1]]',
 'logdelete-logentry'          => "ha modificato la visibilità dell'evento [[$1]]",
 'revdelete-success'           => "'''Visibilità della revisione impostata correttamente.'''",
-'revdelete-failure'           => "'''La visibilità della versione non può essere impostata.'''",
+'revdelete-failure'           => "'''La visibilità della versione non può essere impostata:'''
+$1",
 'logdelete-success'           => "'''Visibilità dell'evento impostata correttamente.'''",
 'revdel-restore'              => 'Cambia la visibilità',
 'pagehist'                    => 'Cronologia della pagina',

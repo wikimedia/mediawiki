@@ -1040,6 +1040,9 @@ Einem Administrator kannst du [$1 diesen Link zum Versionsunterschied] nennen.",
 'revdelete-nologtype-text'    => 'Es wurde kein Logtyp für diese Aktion angegeben.',
 'revdelete-nologid-title'     => 'Ungültiger Logeintrag',
 'revdelete-nologid-text'      => 'Es wurde kein Logtyp ausgewählt oder der gewählte Logtyp existiert nicht.',
+'revdelete-no-file'           => 'Die angegebene Datei existiert nicht.',
+'revdelete-show-file-confirm' => 'Bist du sicher, dass du die gelöschte Version der Datei „<nowiki>$1</nowiki>“ vom $2 um $3 Uhr ansehen willst?',
+'revdelete-show-file-submit'  => 'Ja',
 'revdelete-selected'          => "'''{{PLURAL:$2|Ausgewählte Version|Ausgewählte Versionen}} von [[:$1]]:'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Ausgewählter Logbucheintrag|Ausgewählte Logbucheinträge}}:'''",
 'revdelete-text'              => "'''Gelöschte Versionen und Aktionen verbleiben in der Versionsgeschichte und den Logbüchern, jedoch sind Teile davon für die Öffentlichkeit unzugänglich.'''
@@ -1063,8 +1066,11 @@ Bitte bestätige, dass du beabsichtigst, dies zu tun, die Konsequenzen verstehst
 'revdelete-logentry'          => 'hat die Versionsansicht für „[[$1]]“ geändert',
 'logdelete-logentry'          => 'hat die Sichtbarkeit für „[[$1]]“ geändert',
 'revdelete-success'           => "'''Versionsansicht erfolgreich geändert.'''",
-'revdelete-failure'           => "'''Versionssichtbarkeit kann nicht geändert werden.'''",
+'revdelete-failure'           => "'''Versionssichtbarkeit kann nicht geändert werden:'''
+$1",
 'logdelete-success'           => "'''Logbuchansicht erfolgreich geändert.'''",
+'logdelete-failure'           => "'''Logbuchsichtbarkeit kann nicht geändert werden:'''
+$1",
 'revdel-restore'              => 'Sichtbarkeit ändern',
 'pagehist'                    => 'Versionsgeschichte',
 'deletedhist'                 => 'Gelöschte Versionen',
@@ -1077,6 +1083,17 @@ Bitte bestätige, dass du beabsichtigst, dies zu tun, die Konsequenzen verstehst
 'revdelete-unhid'             => 'machte $1 wieder öffentlich',
 'revdelete-log-message'       => '$1 für $2 {{PLURAL:$2|Version|Versionen}}',
 'logdelete-log-message'       => '$1 für $2 {{PLURAL:$2|Logbucheintrag|Logbucheinträge}}',
+'revdelete-hide-current'      => 'Fehler beim Verstecken des Eintrags mit dem Datum $2, $1: dies ist die aktuelle Version.
+Sie kann nicht versteckt werden.',
+'revdelete-show-no-access'    => 'Fehler beim Anzeigen des Eintrags mit dem Datum $2, $1: dieser Eintrag wurde als „eingeschränkt“ markiert.
+Du hast darauf keinen Zugriff.',
+'revdelete-modify-no-access'  => 'Fehler beim Bearbeiten des Eintrags mit dem Datum $2, $1: dieser Eintrag wurde als „eingeschränkt“ markiert.
+Du hast darauf keinen Zugriff.',
+'revdelete-modify-missing'    => 'Fehler beim Bearbeiten von ID $1: Es fehlt in der Datenbank!',
+'revdelete-no-change'         => "'''Warnung:''' der Eintrag mit dem Datum $2, $1 besitzt bereits die gewünschten Sichtbarkeitseinstellungen.",
+'revdelete-concurrent-change' => 'Fehler beim Bearbeiten des Eintrags mit dem Datum $2, $1: es scheint, als ob der Status von jemandem geändert wurde, bevor du vorhattest, ihn zu bearbeiten.
+Bitte prüfe die Logbücher.',
+'revdelete-only-restricted'   => 'Du kannst keine Einträge vor Administratoren unterdrücken, ohne dass du auch eine der anderen Unterdrückungsoptionen ausgewählt hast.',
 
 # Suppression log
 'suppressionlog'     => 'Oversight-Logbuch',
@@ -1693,6 +1710,7 @@ Wenn das Problem weiter besteht, informiere einen [[Special:ListUsers/sysop|Syst
 'filehist-dimensions'       => 'Maße',
 'filehist-filesize'         => 'Dateigröße',
 'filehist-comment'          => 'Kommentar',
+'filehist-missing'          => 'Datei fehlt',
 'imagelinks'                => 'Dateiverwendungen',
 'linkstoimage'              => 'Die {{PLURAL:$1|folgende Seite verwendet|folgenden $1 Seiten verwenden}} diese Datei:',
 'linkstoimage-more'         => 'Mehr als {{PLURAL:$1|eine Seite verlinkt|$1 Seiten verlinken}} auf diese Datei.
@@ -1853,7 +1871,7 @@ Jede Zeile enthält Links zu der ersten und zweiten Weiterleitung sowie das Ziel
 'listusers-editsonly'     => 'Zeige nur Benutzer mit Beiträgen',
 'listusers-creationsort'  => 'Nach Erstelldatum sortieren',
 'usereditcount'           => '$1 {{PLURAL:$1|Bearbeitung|Bearbeitungen}}',
-'usercreated'             => 'Erstellt am $1 um $2',
+'usercreated'             => 'Erstellt am $1 um $2 Uhr',
 'newpages'                => 'Neue Seiten',
 'newpages-username'       => 'Benutzername:',
 'ancientpages'            => 'Seit längerem unbearbeitete Seiten',

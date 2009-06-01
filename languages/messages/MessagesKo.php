@@ -915,7 +915,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'history-fieldset-title' => '문서의 변경 내력 찾기',
 'histfirst'              => '처음',
 'histlast'               => '마지막',
-'historysize'            => '($1 바이트)',
+'historysize'            => '({{PLURAL:$1|1|$1}} 바이트)',
 'historyempty'           => '(비었음)',
 
 # Revision feed
@@ -1720,7 +1720,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'fewestrevisions' => '편집 역사가 짧은 문서 목록',
 
 # Miscellaneous special pages
-'nbytes'                  => '$1 {{PLURAL:$1|바이트|바이트들}}',
+'nbytes'                  => '$1 {{PLURAL:$1|바이트|바이트}}',
 'ncategories'             => '$1 {{PLURAL:$1|분류|분류들}}',
 'nlinks'                  => '$1 {{PLURAL:$1|링크|링크들}}',
 'nmembers'                => '$1개의 항목',

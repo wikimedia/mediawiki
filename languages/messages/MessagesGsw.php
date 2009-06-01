@@ -821,6 +821,9 @@ Wänn Du Ammann bisch, chasch [$1 dä Unterschid aaluege] wänn Du wytermache wi
 'revdelete-nologtype-text'    => 'S isch kei Logtyp fir die Aktion aagee wore.',
 'revdelete-nologid-title'     => 'Uugiltige Logyytrag',
 'revdelete-nologid-text'      => 'S isch kei Logtyp usgwählt wore oder dr gwählt Logtyp git s nit.',
+'revdelete-no-file'           => 'D Datei, wu Du aagee hesch, git s nit.',
+'revdelete-show-file-confirm' => 'Bisch sicher, ass Du di glescht Version vu dr Datei „<nowiki>$1</nowiki>“ vum $2 am $3 witt aaluege?',
+'revdelete-show-file-submit'  => 'Jo',
 'revdelete-selected'          => "'''{{PLURAL:$2|Usgwehlti Version|Usgwehlti Versione}} vu [[:$1]]:'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Usgwehlte Logbuechyytrag|Usgwehlti Logbuechyytreg}}:'''",
 'revdelete-text'              => "'''Dr Inhalt oder anderi Bstandteil vu gleschte Versione chenne nimi aagluegt wäre, si erschyyne aber alno as Yytreg in dr Versiongschicht.'''
@@ -848,7 +851,8 @@ Bitte bstätig, ass Du des witt mache, ass Du d Konsequänze verstohsch un ass d
 'revdelete-logentry'          => 'het d Versionsaasicht fir „[[$1]]“ gänderet',
 'logdelete-logentry'          => 'het d Sichtbarkeit fir „[[$1]]“ gänderet',
 'revdelete-success'           => "'''Versionsaasicht erfolgryych gänderet.'''",
-'revdelete-failure'           => "'''Versionssichtbarkeit het nit chenne gsetzt wäre.'''",
+'revdelete-failure'           => "'''Versionssichtbarkeit het nit chenne gsetzt wäre.'''
+$1",
 'logdelete-success'           => "'''Logbuechaasicht erfolgryych gänderet.'''",
 'revdel-restore'              => 'Sichtbarkeit ändere',
 'pagehist'                    => 'Versionsgeschicht',
