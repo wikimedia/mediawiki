@@ -560,9 +560,12 @@ class PageHistory {
 
 		if( $rev->getComment() == '' ) {
 			global $wgContLang;
+			$ts = $rev->getTimestamp();
 			$title = wfMsgForContent( 'history-feed-item-nocomment',
-			$rev->getUserText(),
-			$wgContLang->timeanddate( $rev->getTimestamp() ) );
+				$rev->getUserText(),
+				$wgContLang->timeanddate( $ts ),
+				$wgContLang->date( $ts ),
+				$wgContLang->time( $ts ) );
 		} else {
 			$title = $rev->getUserText() . wfMsgForContent( 'colon-separator' ) . FeedItem::stripComment( $rev->getComment() );
 		}

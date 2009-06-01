@@ -738,10 +738,10 @@ Please report at [[Support]] if you are unable to properly translate this messag
 
 # Revision feed
 'history-feed-item-nocomment' => "Title for each revision when viewing the RSS/Atom feed for a page history:
-
-'''$1''' - user name
-
-'''$2''' - date/time",
+* '''$1''' - user name,
+* '''$2''' - date/time,
+* '''$3''' - date,
+* '''$4''' - time.",
 
 # Revision deletion
 'rev-delundel'              => 'Link in page history for oversight',
