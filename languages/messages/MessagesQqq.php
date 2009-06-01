@@ -1359,7 +1359,10 @@ Parameter $1 is a link to the deletion log, with the text in {{msg|deletionlog}}
 'filehist-thumb'          => 'Shown in the file history list of a file desription page.
 
 Example: [[:Image:Addon-icn.png]]',
-'filehist-thumbtext'      => "Shown in the file history list of a file description page. '''$1''' is a time followed by a date, e.g. ''10:23, 18 april 2007''.
+'filehist-thumbtext'      => "Shown in the file history list of a file description page.
+* '''$1''' is a time followed by a date, e.g. ''10:23, 18 april 2007''.
+* '''$2''' is the date,
+* '''$3''' is the time.
 
 Example: [[wikipedia:Image:Madeleine close2.jpg]]",
 'filehist-nothumb'        => 'Shown if no thumbnail is available in the file history list of a file desription page.
