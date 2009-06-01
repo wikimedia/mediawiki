@@ -939,7 +939,10 @@ class ImageHistoryList {
 
 			$thumbnail = $file->transform( $params );
 			$options = array(
-				'alt' => wfMsg( 'filehist-thumbtext', $wgLang->timeAndDate( $timestamp, true ) ),
+				'alt' => wfMsg( 'filehist-thumbtext',
+					$wgLang->timeAndDate( $timestamp, true ),
+					$wgLang->date( $timestamp, true ),
+					$wgLang->time( $timestamp, true ) ),
 				'file-link' => true,
 			);
 			
