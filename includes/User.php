@@ -2840,7 +2840,9 @@ class User {
 				$this->getName(),
 				$url,
 				$wgLang->timeanddate( $expiration, false ),
-				$invalidateURL ) );
+				$invalidateURL,
+				$wgLang->date( $expiration, false ),
+				$wgLang->time( $expiration, false ) ) );
 	}
 
 	/**
