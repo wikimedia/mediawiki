@@ -1335,7 +1335,7 @@ It cannot be hidden.',
 You do not have access to it.',
 'revdelete-modify-no-access'  => 'Error modifying the item dated $2, $1: this item has been marked "restricted".
 You do not have access to it.',
-'revdelete-modify-missing'    => 'Error modifying item ID $2, $1: it is missing from the database!',
+'revdelete-modify-missing'    => 'Error modifying item ID $1: it is missing from the database!',
 'revdelete-no-change'         => "'''Warning:''' the item dated $2, $1 already had the requested visibility settings.",
 'revdelete-concurrent-change' => 'Error modifying the item dated $2, $1: its status appears to have been changed by someone else while you attempted to modify it.
 Please check the logs.',
