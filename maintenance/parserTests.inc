@@ -1032,6 +1032,7 @@ class ParserTest {
 	 */
 	private function requireHook( $name ) {
 		global $wgParser;
+		$wgParser->firstCallInit( ); //make sure hooks are loaded.
 		if( isset( $wgParser->mTagHooks[$name] ) ) {
 			$this->hooks[$name] = $wgParser->mTagHooks[$name];
 		} else {
@@ -1047,6 +1048,7 @@ class ParserTest {
 	 */
 	private function requireFunctionHook( $name ) {
 		global $wgParser;
+		$wgParser->firstCallInit( ); //make sure hooks are loaded.
 		if( isset( $wgParser->mFunctionHooks[$name] ) ) {
 			$this->functionHooks[$name] = $wgParser->mFunctionHooks[$name];
 		} else {
