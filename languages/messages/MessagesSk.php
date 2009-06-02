@@ -959,7 +959,7 @@ Nemožno ju skryť.',
 Nemáte k nej prístup.',
 'revdelete-modify-no-access'  => 'Chyba pri zmene položky s dátumom $2, $1: toto je položka s obmedzeným prístupom.
 Nemáte k nej prístup.',
-'revdelete-modify-missing'    => 'Chyba pri zmene položky s dátumom $2, $1: chýba v databáze!',
+'revdelete-modify-missing'    => 'Chyba pri zmene položky s ID $1: chýba v databáze!',
 'revdelete-no-change'         => "'''Upozornenie:''' položka s dátumom $2, $1 už mala požadované parametre viditeľnosti.",
 'revdelete-concurrent-change' => 'Chyba pri zmene položky s dátumom $2, $1: zdá sa, že kým ste ju menili vykonal zmenu niekto iný.
 Pozrite sa prosím do záznamov.',

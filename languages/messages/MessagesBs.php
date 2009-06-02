@@ -986,6 +986,9 @@ Kao administrator na {{SITENAME}} Vi još uvijek možete [$1 vidjeti ove razlike
 'revdelete-nologtype-text'    => 'Niste odredili tip zapisa za izvršavanje ove akcije na njemu.',
 'revdelete-nologid-title'     => 'Nevaljana stavka zapisa',
 'revdelete-nologid-text'      => 'Niste odredili ciljnu stavku zapisa za izvršavanje ove funkcije ili navedena stavka ne postoji.',
+'revdelete-no-file'           => 'Navedena datoteka ne postoji.',
+'revdelete-show-file-confirm' => 'Da li ste sigurni da želite pogledati obrisanu reviziju datoteke "<nowiki>$1</nowiki>" od $2 u $3?',
+'revdelete-show-file-submit'  => 'Da',
 'revdelete-selected'          => "'''{{PLURAL:$2|Odabrana revizija|Odabrane revizije}} od [[:$1]]:'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Označena stavka zapisa|Označene stavke zapisa}}:'''",
 'revdelete-text'              => "'''Obrisane revizije i događaji će i dalje biti vidljivi u historiji stranice i zapisima, ali dijelovi njenog sadržaja neće biti dostupni javnosti.'''
@@ -1009,8 +1012,11 @@ Molimo potvrdite da namjeravate ovo učiniti, da razumijete posljedice i da to �
 'revdelete-logentry'          => 'promijenjena vidljivost revizije [[$1]]',
 'logdelete-logentry'          => 'promijenjena vidljivost događaja [[$1]]',
 'revdelete-success'           => "'''Vidljivost revizije uspješno postavljena.'''",
-'revdelete-failure'           => "'''Vidljivost revizije nije mogla biti postavljena.'''",
+'revdelete-failure'           => "'''Vidljivost revizije nije mogla biti postavljena:'''
+$1",
 'logdelete-success'           => "'''Vidljivost evidencije uspješno postavljena.'''",
+'logdelete-failure'           => "'''Zapisnik vidljivosti nije mogao biti postavljen:'''
+$1",
 'revdel-restore'              => 'Promijeni dostupnost',
 'pagehist'                    => 'Historija stranice',
 'deletedhist'                 => 'Izbrisana historija',
@@ -1023,6 +1029,17 @@ Molimo potvrdite da namjeravate ovo učiniti, da razumijete posljedice i da to �
 'revdelete-unhid'             => 'otkrij $1',
 'revdelete-log-message'       => '$1 za $2 {{PLURAL:$2|izmjenu|izmjene|izmjena}}',
 'logdelete-log-message'       => '$1 za $2 {{PLURAL:$2|događaj|događaja}}',
+'revdelete-hide-current'      => 'Greška pri sakrivanju stavke od $2, $1: ovo je trenutna revizija.
+Ne može biti sakrivena.',
+'revdelete-show-no-access'    => 'Greška pri prikazivanju stavke od $2, $1: ova stavka je označena kao "zaštićena".
+Nemate pristup do ove stavke.',
+'revdelete-modify-no-access'  => 'Greška pri izmjeni stavke od $2, $1: ova stavka je označena kao "zaštićena".
+Nemate pristup ovoj stavci.',
+'revdelete-modify-missing'    => 'Greška pri mijenjanju stavke ID $1: nedostaje u bazi podataka!',
+'revdelete-no-change'         => "'''Upozorenje:''' stavka od $2, $1 već posjeduje zatražene postavke vidljivosti.",
+'revdelete-concurrent-change' => 'Greška pri mijenjanju stavke od $2, $1: njen status je izmijenjen od strane nekog drugog dok ste je pokušavali mijenjati.
+Molimo provjerite zapise.',
+'revdelete-only-restricted'   => 'Ne možete ukloniti stavke od pregledavanja administratora bez da odaberete neku od drugih opcija za uklanjanje.',
 
 # Suppression log
 'suppressionlog'     => 'Zapisi sakrivanja',
@@ -1653,6 +1670,7 @@ Klikom na zaglavlje kolone možete promjeniti način sortiranja.',
 'filehist-dimensions'       => 'Dimenzije',
 'filehist-filesize'         => 'Veličina datoteke',
 'filehist-comment'          => 'Komentar',
+'filehist-missing'          => 'Datoteka nedostaje',
 'imagelinks'                => 'Linkovi datoteke',
 'linkstoimage'              => '{{PLURAL:$1|Slijedeća stranica koristi|Slijedećih $1 stranica koriste}} ovu sliku:',
 'linkstoimage-more'         => 'Više od $1 {{PLURAL:$1|datoteke|datoteka}} je povezano s ovom datotekom.

@@ -189,6 +189,7 @@ $messages = array(
 'permalink'         => 'بەسته‌ری ھەمیشەیی',
 'print'             => 'چاپ',
 'edit'              => 'دەستكاری',
+'view'              => 'خوێندنەوە',
 'create'            => 'دروستکردن',
 'editthispage'      => 'ده‌ستكاری ئه‌م په‌ڕه‌یه‌ بكه‌',
 'create-this-page'  => 'ئەم پەڕە دروست بکە',
@@ -370,6 +371,7 @@ $2',
 'yourdomainname'          => 'ناوی دۆمه‌ینی خۆت',
 'login'                   => 'تێکەوە (login)',
 'nav-login-createaccount' => 'چوونەژوورەوە / دروستکردنی هەژمار',
+'loginprompt'             => 'تۆئەبێ بۆ چونەژورەوه کوکیه کان یان فعال بێت {{SITENAME}}.',
 'userlogin'               => 'دروست کردنی ھەژمار/چوونە ژورەوە',
 'logout'                  => 'ده‌رچوون',
 'userlogout'              => 'دەرچوون',
@@ -455,6 +457,8 @@ $2',
 'missingcommenttext'               => 'تکایە لە خوارەوە شرۆڤەیەک بنووسە.',
 'summary-preview'                  => 'پێشبینینی کورتە:',
 'blockedtitle'                     => 'به‌کار هینه‌ر له‌کار خراوه',
+'loginreqtitle'                    => 'پێویستە بچیه ژور',
+'loginreqlink'                     => 'چونه‌ژور',
 'accmailtitle'                     => 'وشه‌ی نهێنی ناردرا.',
 'newarticle'                       => '(نوێ)',
 'newarticletext'                   => "بە دوای بەستەری پەڕەیەک کەوتووی کە ھێشتا دروست نەکراوە. <br /> بۆ دروست کردنی پەڕەکە، لە چوارچێوەکەی خوارەوە دەست کە بە تایپ کردن. (بۆ زانیاری زورتر[[یارمەتی|{{MediaWiki:Helppage}}]] ببینە). <br />  ئەگەر بە ھەڵەوە ھاتویتە ئەگرە، لە سەر دوگمەی '''back'''ی وێبگەڕەکەت کلیک کە.",
@@ -650,6 +654,7 @@ $2',
 'minoreditletter'                => 'ب',
 'newpageletter'                  => 'ن',
 'boteditletter'                  => 'بات',
+'rc_categories_any'              => 'هەرکام',
 'rc-enhanced-expand'             => 'وردەکارییەکان پیشان بدە (پێویستی بە جاڤاسکریپتە)',
 'rc-enhanced-hide'               => 'وردەکارییەکان بشارەوە',
 
@@ -695,6 +700,8 @@ for directly linking to the file without displaying the file",
 'destfilename'        => 'ناوی مەبەست:',
 'upload-maxfilesize'  => 'ئەو پەری قەبارەی فایل: $1',
 'watchthisupload'     => 'چاودێڕی ئەم پەڕە بکە',
+
+'nolicense' => 'هیچ‌کام هەڵنەبژاردراوە',
 
 # Special:ListFiles
 'imgfile'        => 'پەڕگە',
@@ -1234,5 +1241,8 @@ You could also reset the notification flags for all your watched pages on your w
 
 # Special:BlankPage
 'blankpage' => 'پەڕەی واڵا',
+
+# HTML forms
+'htmlform-reset' => 'گەڕانەوەی گۆڕانکاری',
 
 );

@@ -2088,7 +2088,7 @@ $NEWPAGE
 'undeletecomment'              => 'コメント:',
 'undeletedarticle'             => '"$1" を復帰しました。',
 'undeletedrevisions'           => '$1版を復帰しました',
-'undeletedrevisions-files'     => '$1 版のページと $2 ファイルを復帰しました',
+'undeletedrevisions-files'     => 'ページの$1版と$2個のファイルを復帰しました',
 'undeletedfiles'               => '$1個のファイルを復帰しました',
 'cannotundelete'               => '復帰に失敗しました。誰かがすでにこのページを復帰しています。',
 'undeletedpage'                => "<big>'''$1 を復帰しました。'''</big>
@@ -2976,8 +2976,8 @@ Variants for Chinese language
 'confirmemail_loggedin'    => 'あなたのメールアドレスは確認されました。',
 'confirmemail_error'       => 'あなたの確認を保存する際に内部エラーが発生しました。',
 'confirmemail_subject'     => '{{SITENAME}} メールアドレスの確認',
-'confirmemail_body'        => 'どなたか（IPアドレス $1 の使用者）がこのメールアドレスを
-{{SITENAME}} のアカウント "$2" に登録しました。
+'confirmemail_body'        => 'どなたか（IPアドレス $1 の使用者）がこのメールアドレスで
+{{SITENAME}} のアカウント「$2」を登録しました。
 
 このアカウントがあなたのものであるか確認してください。
 あなたの登録したアカウントであるならば、{{SITENAME}}
@@ -2985,15 +2985,12 @@ Variants for Chinese language
 
 $3
 
-もし {{SITENAME}} について身に覚えがない場合は、リンクを開かず
+もしアカウントの登録をした覚えがない場合は、リンクを開かず、
 次のURLにアクセスしてメール登録を解除ください:
 
 $5
 
-確認用コードは $4 に期限切れになります。
--- 
-{{SITENAME}}
-{{SERVER}}/',
+この確認用コードは $4 に期限切れになります。',
 'confirmemail_invalidated' => 'メールアドレスの認証がキャンセルされました',
 'invalidateemail'          => 'メールアドレスの認証をキャンセルする',
 

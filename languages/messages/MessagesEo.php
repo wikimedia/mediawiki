@@ -887,6 +887,7 @@ funkcion, la specifigita versio ne ekzistas, aŭ vi estas provanta kaŝi la nuna
 'revdelete-nologid-title'     => 'Nevalida protokol-linio',
 'revdelete-nologid-text'      => 'Vi aŭ ne specifis celan protokolan eventon por fari ĉi tiun funkcion aŭ la specifa protokolero ne ekzistas.',
 'revdelete-no-file'           => 'La dosiero specifigita ne ekzistas.',
+'revdelete-show-file-confirm' => 'Ĉu vi certas ke vi volas vidi forigitan revizion de la dosiero "<nowiki>$1</nowiki>" de $2, $3?',
 'revdelete-show-file-submit'  => 'Jes',
 'revdelete-selected'          => "'''{{PLURAL:$2|Selektata versio|Selektataj versioj}} de [[:$1]]:'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Selektata protokola evento|Selektataj protokolaj eventoj}}:'''",
@@ -928,7 +929,17 @@ $1",
 'revdelete-unhid'             => 'malkaŝis $1',
 'revdelete-log-message'       => '$1 por $2 {{PLURAL:$2|versio|versioj}}',
 'logdelete-log-message'       => '$1 por $2 {{PLURAL:$2|evento|eventoj}}',
+'revdelete-hide-current'      => 'Eraro kaŝante la aĵon de $2, $1: ĉi tiu estas la nuna revizio.
+Ĝi ne estas kaŝebla.',
+'revdelete-show-no-access'    => 'Eraro montrante la aĵon de $2, $1: ĉi tiu estas markita "limigita".
+Vi ne rajtas atingi ĝin.',
+'revdelete-modify-no-access'  => 'Eraro ŝanĝante la aĵon de $2, $1: ĉi tiu estas markita "limigita".
+Vi ne rajtas atingi ĝin.',
+'revdelete-modify-missing'    => 'Eraro ŝanĝante aĵon ID $1: ĝi ne estas trovita en la datumbazo!',
 'revdelete-no-change'         => "'''Averto:''' la aĵo de $2, $1 jam havas la petitan videblecan agordon.",
+'revdelete-concurrent-change' => 'Eraro ŝanĝante la aĵon de $2, $1: ĝia statuso estis ŝanĝita de alia uzanto dume dum vi provis ŝanĝi ĝin.
+Bonvolu kontroli la protokolojn.',
+'revdelete-only-restricted'   => 'Vi ne povas subpremi aĵojn de vido de administrantoj sen ankaux selekti unu el la aliaj subpremo-opcioj.',
 
 # Suppression log
 'suppressionlog'     => 'Protokolo pri subigado',

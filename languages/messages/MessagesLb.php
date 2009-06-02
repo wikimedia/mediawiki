@@ -853,7 +853,11 @@ Confirméiert w.eg. datt Dir dëst maache wellt, datt dir d'Konsequenzen dovu ve
 'revdelete-logentry'          => 'Sichtbarkeet vun der Versioun gouf geännert fir [[$1]]',
 'logdelete-logentry'          => "huet d'Sichtbarkeet vun [[$1]] geännert",
 'revdelete-success'           => "'''Sichtbarkeet vun de Versioune geännert.''''",
+'revdelete-failure'           => "'''Sichtbarkeet vun der Versioun konnt net agestallt ginn:'''
+$1",
 'logdelete-success'           => "'''Sichbarkeet vum Logbuch geännert.'''",
+'logdelete-failure'           => "'''D'Sichtbarkeet vum Logbuch konnt net agestllt ginn:'''
+$1",
 'revdel-restore'              => 'Sichtbarkeet änneren',
 'pagehist'                    => 'Versioune vun dëser Säit',
 'deletedhist'                 => 'Geläschte Versiounen',
@@ -868,6 +872,7 @@ Confirméiert w.eg. datt Dir dëst maache wellt, datt dir d'Konsequenzen dovu ve
 'logdelete-log-message'       => '$1 fir $2 {{PLURAL:$2|Evenement|Evenementer}}',
 'revdelete-hide-current'      => 'Feeler beim Verstoppe vum Objet vum $2 ëm $1: et ass déi aktuell Versioun.
 Si kann net verstoppt ginn.',
+'revdelete-modify-missing'    => 'Feeler beim Ännere vun der ID $1: si feelt an der Datebank!',
 'revdelete-only-restricted'   => 'Dir kënnt keng Objete virun den Administrateure verstoppen ouni och eng vun den anere Läschoptiounen erauszesichen.',
 
 # Suppression log

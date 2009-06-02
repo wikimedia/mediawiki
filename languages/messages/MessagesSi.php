@@ -1150,7 +1150,15 @@ $3 විසින් සපයා ඇති හේතුව ''$2'' වේ",
 'servertime'                => 'සේවාදායකයේ වේලාව:',
 'guesstimezone'             => 'බ්‍රවුසරයෙන් පුරවන්න',
 'timezoneregion-africa'     => 'අප්‍රිකාව',
+'timezoneregion-america'    => 'ඇමරිකාව',
+'timezoneregion-antarctica' => 'ඇන්ටාටිකාව',
+'timezoneregion-arctic'     => 'අත්ලාන්තික්',
+'timezoneregion-asia'       => 'ආසියාව',
+'timezoneregion-atlantic'   => 'අත්ලාන්තික් සාගරය',
+'timezoneregion-australia'  => 'ඔස්ට්‍රේලියාව',
+'timezoneregion-europe'     => 'යුරෝපය',
 'timezoneregion-indian'     => 'ඉන්දියානු සාගරය',
+'timezoneregion-pacific'    => 'පැසිපික් සාගරය',
 'allowemail'                => 'අනෙකුත් පරිශීලකයන්ගෙන් විද්‍යුත්-තැපෑල ලැබීම සක්‍රීය කරන්න',
 'prefs-searchoptions'       => 'ගවේෂණ විකල්පයන්',
 'prefs-namespaces'          => 'නාමඅවකාශ',
@@ -3215,5 +3223,8 @@ $1',
 
 # Special:Tags
 'tags-edit' => 'සංස්කරණය',
+
+# HTML forms
+'htmlform-selectorother-other' => 'වෙනත්',
 
 );

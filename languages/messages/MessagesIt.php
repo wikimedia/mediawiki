@@ -914,6 +914,9 @@ Agli amministratori è ancora consentito [$1 visualizzare questa diff] se necess
 'revdelete-nologtype-text'    => "Non è stato specificato alcun tipo di registro su cui eseguire l'azione.",
 'revdelete-nologid-title'     => 'Errore di indicazione del log',
 'revdelete-nologid-text'      => 'Per eseguire questa funzione non hai specificato un target per il log oppure il log non esiste.',
+'revdelete-no-file'           => 'Il file specificato non esiste.',
+'revdelete-show-file-confirm' => 'Si desidera visualizzare la versione cancellata del file "<nowiki>$1</nowiki>" del $2 alle $3?',
+'revdelete-show-file-submit'  => 'Sì',
 'revdelete-selected'          => "'''{{PLURAL:$2|Versione selezionata|Versioni selezionate}} di [[:$1]]:'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Evento del registro selezionato|Eventi del registro selezionati}}:'''",
 'revdelete-text'              => "'''Le versioni cancellate restano visibili nella cronologia della pagina, mentre il testo contenuto non è accessibile al pubblico.'''
@@ -940,6 +943,8 @@ Conferma che è tua intenzione procedere a tale cancellazione, che hai piena con
 'revdelete-failure'           => "'''La visibilità della versione non può essere impostata:'''
 $1",
 'logdelete-success'           => "'''Visibilità dell'evento impostata correttamente.'''",
+'logdelete-failure'           => "'''La visibilità dell'evento non può essere impostata:'''
+$1",
 'revdel-restore'              => 'Cambia la visibilità',
 'pagehist'                    => 'Cronologia della pagina',
 'deletedhist'                 => 'Cronologia cancellata',
@@ -1096,6 +1101,7 @@ $1",
 'search-mwsuggest-disabled'        => 'senza suggerimenti',
 'search-relatedarticle'            => 'Risultati correlati',
 'mwsuggest-disable'                => 'Disattiva suggerimenti AJAX',
+'searcheverything-enable'          => 'Cerca in tutti i namespace',
 'searchrelated'                    => 'correlati',
 'searchall'                        => 'tutti',
 'showingresults'                   => "Di seguito {{PLURAL:$1|viene presentato al massimo '''1''' risultato|vengono presentati al massimo '''$1''' risultati}} a partire dal numero '''$2'''.",

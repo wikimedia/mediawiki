@@ -863,7 +863,7 @@ Njeda so schować.',
 Nimaš přistup na njón.',
 'revdelete-modify-no-access'  => 'Zmylk při změnjenju zapiska wot $2, $1: tutón zapisk bu jako "wobmjezowany" markěrowany.
 Nimaš přistup na njón.',
-'revdelete-modify-missing'    => 'Zmylk při změnjenju zapiska ID $2, $1: pobrachuje w datowej bance!',
+'revdelete-modify-missing'    => 'Zmylk při změnjenju zapiska ID $1: pobrachuje w datowej bance!',
 'revdelete-no-change'         => "'''Warnowanje:''' zapisk wot $2, $1 je hižo požadane nastajenja widźomnosće měł.",
 'revdelete-concurrent-change' => 'Zmylk při změnjenju zapiska wot $2, $1: zda so, zo jeho status je so wot někoho druheho změnił, mjeztym zo sy spytał jón změnić.
 Prošu přepruwuj protokole.',

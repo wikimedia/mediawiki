@@ -990,7 +990,7 @@ Grund der Sperre: ''$2''",
 'nohistory'              => 'Es gibt keine Versionsgeschichte für diese Seite.',
 'currentrev'             => 'Aktuelle Version',
 'currentrev-asof'        => 'Aktuelle Version vom $1',
-'revisionasof'           => 'Version vom $1',
+'revisionasof'           => 'Version vom $2, $3 Uhr',
 'revision-info'          => 'Dies ist eine alte Version. Zeitpunkt der Bearbeitung: $1 durch $2.',
 'previousrevision'       => '← Nächstältere Version',
 'nextrevision'           => 'Nächstjüngere Version →',
@@ -1012,7 +1012,7 @@ Grund der Sperre: ''$2''",
 # Revision feed
 'history-feed-title'          => 'Versionsgeschichte',
 'history-feed-description'    => 'Versionsgeschichte für diese Seite in {{SITENAME}}',
-'history-feed-item-nocomment' => '$1 um $2',
+'history-feed-item-nocomment' => '$1 am $3 um $4 Uhr',
 'history-feed-empty'          => 'Die angeforderte Seite existiert nicht. Vielleicht wurde sie gelöscht oder verschoben. [[Special:Search|Durchsuche]] {{SITENAME}} für passende neue Seiten.',
 
 # Revision deletion
@@ -1704,7 +1704,7 @@ Wenn das Problem weiter besteht, informiere einen [[Special:ListUsers/sysop|Syst
 'filehist-current'          => 'aktuell',
 'filehist-datetime'         => 'Version vom',
 'filehist-thumb'            => 'Vorschaubild',
-'filehist-thumbtext'        => 'Vorschaubild für Version vom $1',
+'filehist-thumbtext'        => 'Vorschaubild für Version vom $2, $3 Uhr',
 'filehist-nothumb'          => 'Kein Vorschaubild vorhanden',
 'filehist-user'             => 'Benutzer',
 'filehist-dimensions'       => 'Maße',
@@ -3095,7 +3095,7 @@ Bitte prüfe die E-Mail-Adresse auf ungültige Zeichen.
 Rückmeldung des Mailservers: $1',
 'confirmemail_invalid'     => 'Ungültiger Bestätigungscode. Möglicherweise ist der Bestätigungszeitraum verstrichen. Versuche bitte, die Bestätigung zu wiederholen.',
 'confirmemail_needlogin'   => 'Du musst dich $1, um deine E-Mail-Adresse zu bestätigen.',
-'confirmemail_success'     => 'Deine E-Mail-Adresse wurde erfolgreich bestätigt. Du kannst dich jetzt einloggen.',
+'confirmemail_success'     => 'Deine E-Mail-Adresse wurde erfolgreich bestätigt. Du kannst dich jetzt [[Special:UserLogin|anmelden]].',
 'confirmemail_loggedin'    => 'Deine E-Mail-Adresse wurde erfolgreich bestätigt.',
 'confirmemail_error'       => 'Es gab einen Fehler bei der Bestätigung deiner E-Mail-Adresse.',
 'confirmemail_subject'     => '[{{SITENAME}}] - Bestätigung der E-Mail-Adresse',
@@ -3114,7 +3114,7 @@ Wenn du das genannte Benutzerkonto *nicht* registriert hast, folge diesem Link, 
 
 $5
 
-Dieser Bestätigungscode ist gültig bis $4.',
+Dieser Bestätigungscode ist gültig bis $6, $7 Uhr.',
 'confirmemail_invalidated' => 'E-Mail-Adressbestätigung abbrechen',
 'invalidateemail'          => 'E-Mail-Adressbestätigung abbrechen',
 
@@ -3147,7 +3147,7 @@ Bitte bestätige, dass du diese Seite wirklich neu erstellen möchten.",
 'percent' => '$1&nbsp;%',
 
 # Multipage image navigation
-'imgmultipageprev' => '← vorige Seite',
+'imgmultipageprev' => '← vorherige Seite',
 'imgmultipagenext' => 'nächste Seite →',
 'imgmultigo'       => 'OK',
 'imgmultigoto'     => 'Gehe zu Seite $1',

@@ -670,9 +670,9 @@ $messages = array(
 'passwordsent'               => '‘$1’ 계정의 새로운 암호를 이메일로 보냈습니다. 암호를 받고 다시 로그인해 주세요.',
 'blocked-mailpassword'       => '당신의 IP 주소는 편집이 차단되어 있습니다. 따라서 암호 되살리기 기능은 악용 방지를 위해 금지됩니다.',
 'eauthentsent'               => '확인 이메일을 보냈습니다. 이메일 내용의 지시대로 계정 확인 절차를 실행해 주십시오.',
-'throttled-mailpassword'     => '비밀번호 확인 이메일을 이미 최근 $1시간 안에 보냈습니다. 악용을 방지하기 위해 비밀번호 확인은 $1시간마다 하나씩만 보낼 수 있습니다.',
+'throttled-mailpassword'     => '비밀번호 확인 이메일을 이미 최근 {{PLURAL:$1|시간|$1 시간}} 안에 보냈습니다. 악용을 방지하기 위해 비밀번호 확인 메일은 {{PLURAL:$1|시간|$1 시간}}마다 오직 하나씩만 보낼 수 있습니다.',
 'mailerror'                  => '메일 보내기 오류: $1',
-'acct_creation_throttle_hit' => '당신의 IP 주소를 이용한 방문자가 이전에 이미 $1개의 계정을 생성하여, 계정 생성 한도를 초과하였습니다.
+'acct_creation_throttle_hit' => '당신의 IP 주소를 이용한 방문자가 최근에 이미 {{PLURAL:$1|1 계정|1 계정}}을 생성하여, 일정 기간동안의 계정 생성 최대 한도를 다 채웠습니다.
 따라서 현재로서는 이 IP 주소로는 계정을 더 이상 만들 수 없습니다.',
 'emailauthenticated'         => '당신의 이메일 주소는 $2 $3에 인증되었습니다.',
 'emailnotauthenticated'      => '이메일 주소를 인증하지 않았습니다. 이메일 확인 절차를 거치지 않으면 다음 이메일 기능을 사용할 수 없습니다.',
@@ -839,14 +839,14 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 잠근 관리자가 남긴 설명은 다음과 같습니다: $1",
 'protectedpagewarning'             => "'''경고: 이 문서는 관리자만이 편집할 수 있도록 보호되어 있습니다.'''",
 'semiprotectedpagewarning'         => "'''안내:''' 이 문서는 가입한지 3일이 지난 사용자만이 편집할 수 있도록 잠겨 있습니다.",
-'cascadeprotectedwarning'          => "'''주의''': 이 문서는 자동으로 잠겨 있어 관리자만 편집할 수 있습니다. 연쇄적 보호가 걸린 다음의 문서에서 이 문서를 사용하고 있습니다:",
+'cascadeprotectedwarning'          => "'''경고''': 이 문서는 잠겨 있어 관리자만 편집할 수 있습니다. 연쇄적 보호가 걸린 다음 {{PLURAL:$1|페이지|페이지}}에서 이 문서를 사용하고 있습니다:",
 'titleprotectedwarning'            => "'''경고: 이 문서는 잠겨 있어, 문서를 생성하려면 [[Special:ListGroupRights|특정 권한]]이 필요합니다.'''",
 'templatesused'                    => '이 문서에서 사용한 틀:',
 'templatesusedpreview'             => '이 미리 보기에서 사용하고 있는 틀:',
 'templatesusedsection'             => '이 부분에서 사용하고 있는 틀:',
 'template-protected'               => '(보호됨)',
 'template-semiprotected'           => '(준보호됨)',
-'hiddencategories'                 => '이 문서는 다음 $1개의 숨은 분류에 속해 있습니다:',
+'hiddencategories'                 => '이 문서는 다음 {{PLURAL:$1|1개의|$1개의}} 숨은 분류에 속해 있습니다:',
 'edittools'                        => '<!-- 이 문서는 편집 창과 파일 올리기 창에 출력됩니다. -->',
 'nocreatetitle'                    => '문서 생성 제한',
 'nocreatetext'                     => '{{SITENAME}}에서 새로운 문서를 생성하는 것은 제한되어 있습니다. 이미 존재하는 다른 문서를 편집하거나, [[Special:UserLogin|로그인하거나 계정을 만들 수 있습니다]].',
@@ -871,9 +871,9 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 문서가 이미 존재합니다.',
 
 # Parser/template warnings
-'expensive-parserfunction-warning'        => '경고: 이 문서는 너무 많은 파서 함수를 포함하고 있습니다.
+'expensive-parserfunction-warning'        => "'''경고:''' 이 문서는 너무 많은 파서 함수를 포함하고 있습니다.
 
-현재 $1개의 함수가 포함되어 있으며, 파서 함수는 $2개 이하로 하는 것이 좋습니다.',
+현재 {{PLURAL:$1|$1개의 함수}}가 포함되어 있으며, 파서 함수는 {{PLURAL:$2|$2개}} 이하로 하는 것이 좋습니다.",
 'expensive-parserfunction-category'       => '느린 파서 함수 호출을 너무 많이 하는 문서',
 'post-expand-template-inclusion-warning'  => '경고: 틀 포함 크기가 너무 큽니다.
 일부 틀은 포함되지 않을 수 있습니다.',
@@ -951,6 +951,8 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'revdelete-nologtype-text'    => '당신은 이 명령을 수행할 기록의 종류를 제시하지 않았습니다.',
 'revdelete-nologid-title'     => '잘못된 기록',
 'revdelete-nologid-text'      => '당신은 이 기능을 수행할 특정 기록을 제시하지 않았거나 제시한 기록이 존재하지 않습니다.',
+'revdelete-no-file'           => '명시된 파일이 존재하지 않습니다.',
+'revdelete-show-file-submit'  => '제출합니다',
 'revdelete-selected'          => "'''[[:$1]]의 선택된 판:'''",
 'logdelete-selected'          => "'''선택한 로그:'''",
 'revdelete-text'              => "'''삭제된 판과 기록은 문서 역사와 기록에 계속 나타나지만, 내용은 공개되지 않을 것입니다.'''
@@ -974,8 +976,11 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'revdelete-logentry'          => '[[$1]]의 판의 보이기 설정을 변경함',
 'logdelete-logentry'          => '[[$1]]의 로그 보이기 설정을 변경함',
 'revdelete-success'           => "'''판의 보이기 설정이 성공적으로 변경되었습니다.'''",
-'revdelete-failure'           => "'''개정판 보기가 준비되지 않았습니다.'''",
+'revdelete-failure'           => "'''개정판 보기가 준비되지 않았습니다.'''
+$1",
 'logdelete-success'           => "'''기록의 보이기 설정이 성공적으로 변경되었습니다.'''",
+'logdelete-failure'           => "'''로그 보이기 설정을 바꾸지 못했습니다:'''
+$1",
 'revdel-restore'              => '보이기 설정 변경',
 'pagehist'                    => '문서 역사',
 'deletedhist'                 => '삭제된 역사',
@@ -988,6 +993,9 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'revdelete-unhid'             => '$1을 숨김 해제함',
 'revdelete-log-message'       => '$2개의 판에 대해 $1',
 'logdelete-log-message'       => '$2개의 로그에 대해 $1',
+'revdelete-concurrent-change' => '$1 $2에 수정된 항목을 갱신하면서 오류가 발생했습니다 : 이런 현상은 당신이 편집을 시도하고 있었을 때 다른 사람이 문서를 편집했기 때문에 발생합니다.
+관련 로그를 확인해 보세요.',
+'revdelete-only-restricted'   => '다른 숨기기 설정을 같이 설정하면서 관리자가 보지 못하도록 특정 판을 숨길 수 없습니다.',
 
 # Suppression log
 'suppressionlog'     => '숨기기 기록',
@@ -1104,8 +1112,8 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'notextmatches'                    => '해당하는 문서 없음',
 'prevn'                            => '이전의 {{PLURAL:$1|$1}}',
 'nextn'                            => '다음 {{PLURAL:$1|$1}}',
-'prevn-title'                      => '이전 $1개의 결과',
-'nextn-title'                      => '다음 $1개의 결과',
+'prevn-title'                      => '이전의 $1 {{PLURAL:$1|결과|결과}}',
+'nextn-title'                      => '다음 $1 {{PLURAL:$1|결과|결과}}',
 'shown-title'                      => '페이지당 $1개의 결과 보이기',
 'viewprevnext'                     => '보기: ($1) ($2) ($3).',
 'searchmenu-legend'                => '검색 설정',
@@ -1123,7 +1131,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'searchprofile-images-tooltip'     => '파일 찾기',
 'searchprofile-everything-tooltip' => '토론 문서를 포함한 모든 문서 찾기',
 'searchprofile-advanced-tooltip'   => '다음 설정된 이름공간에서 찾기',
-'search-result-size'               => '$1 ($2개 단어)',
+'search-result-size'               => '$1 ({{PLURAL:$2|1 단어|$2 단어들}})',
 'search-result-score'              => '유사도: $1%',
 'search-redirect'                  => '($1에서 넘어옴)',
 'search-section'                   => '($1 문단)',
@@ -1135,6 +1143,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'search-mwsuggest-disabled'        => '검색어 제한 없음',
 'search-relatedarticle'            => '관련',
 'mwsuggest-disable'                => 'AJAX 추천 기능 끄기',
+'searcheverything-enable'          => '모든 이름 공간에서 검색',
 'searchrelated'                    => '관련',
 'searchall'                        => '모두',
 'showingresults'                   => '<strong>$2</strong>번 부터 <strong>$1</strong>개의 결과입니다.',
@@ -1222,7 +1231,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'allowemail'                    => '다른 사용자로부터의 이메일 허용',
 'prefs-searchoptions'           => '검색 설정',
 'prefs-namespaces'              => '이름공간',
-'defaultns'                     => '기본으로 다음의 이름공간에서 찾기:',
+'defaultns'                     => '이 이름 공간에서 다른 검색:',
 'default'                       => '기본값',
 'prefs-files'                   => '파일',
 'prefs-custom-css'              => '사용자 CSS',
@@ -1410,7 +1419,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'action-siteadmin'            => '데이터베이스를 잠그거나 잠금 해제하기',
 
 # Recent changes
-'nchanges'                          => '$1개 바뀜',
+'nchanges'                          => '$1 {{PLURAL:$1|바뀜|바뀜}}',
 'recentchanges'                     => '최근 바뀜',
 'recentchanges-legend'              => '최근 바뀜 설정',
 'recentchangestext'                 => '위키의 최근 바뀜 내역이 나와 있습니다.',
@@ -1601,6 +1610,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'filehist-dimensions'       => '크기',
 'filehist-filesize'         => '파일 크기',
 'filehist-comment'          => '내용',
+'filehist-missing'          => '잃어버린 파일',
 'imagelinks'                => '파일 링크',
 'linkstoimage'              => '다음 $1개의 문서가 이 파일을 사용하고 있습니다:',
 'linkstoimage-more'         => '$1개 이상의 문서들이 이 파일을 가리키고 있습니다.
@@ -1693,7 +1703,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'statistics-jobqueue'          => '[http://www.mediawiki.org/wiki/Manual:Job_queue Job queue]의 길이',
 'statistics-users'             => '등록된 [[Special:ListUsers|사용자]]',
 'statistics-users-active'      => '활동 중인 사용자',
-'statistics-users-active-desc' => '최근 $1일간 활동한 사용자',
+'statistics-users-active-desc' => '최근 {{PLURAL:$1|일|$1 일}}에 활동한 사용자',
 'statistics-mostpopular'       => '가장 많이 읽힌 문서',
 
 'disambiguations'      => '동음이의 문서 목록',
@@ -1763,7 +1773,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'listusers'               => '사용자 목록',
 'listusers-editsonly'     => '기여가 있는 사용자만 보기',
 'listusers-creationsort'  => '계정 등록일 순으로 정렬',
-'usereditcount'           => '$1개의 편집',
+'usereditcount'           => '$1 {{PLURAL:$1|편집|편집}}',
 'usercreated'             => '$1 $2에 계정 생성됨',
 'newpages'                => '새 문서 목록',
 'newpages-username'       => '이름:',
@@ -2328,7 +2338,7 @@ $1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습�
 'movelogpage'                  => '이동 기록',
 'movelogpagetext'              => '아래는 옮겨진 문서의 목록입니다.',
 'movesubpage'                  => '하위 문서',
-'movesubpagetext'              => '이 문서에는 다음 $1개의 하위 문서가 있습니다.',
+'movesubpagetext'              => '이 문서에는 다음 $1개의 하위 {{PLURAL:$1|문서가|문서들이}} 있습니다.',
 'movenosubpage'                => '이 문서에는 하위 문서가 존재하지 않습니다.',
 'movereason'                   => '이유',
 'revertmove'                   => '되돌리기',
@@ -3036,7 +3046,7 @@ $1',
 
 # Friendlier slave lag warnings
 'lag-warn-normal' => '최근 $1 초 안에 변경된 문서 목록은 표시되지 않을 수 있습니다.',
-'lag-warn-high'   => '데이터베이스 서버의 과도한 부하 때문에 최근 $1 초 안에 변경된 문서 목록은 표시되지 않을 수 있습니다.',
+'lag-warn-high'   => '데이터베이스 서버의 과도한 부하 때문에 최근 {{PLURAL:$1|$1초}} 안에 변경된 문서 목록은 표시되지 않을 수 있습니다.',
 
 # Watchlist editor
 'watchlistedit-numitems'       => '주시문서 목록에는 토론 문서를 제외하고 $1개의 문서가 들어 있습니다.',
@@ -3053,7 +3063,7 @@ $1',
 'watchlistedit-raw-titles'     => '목록:',
 'watchlistedit-raw-submit'     => '주시문서 목록 갱신',
 'watchlistedit-raw-done'       => '주시문서 목록을 갱신했습니다.',
-'watchlistedit-raw-added'      => '$1개 문서를 추가했습니다:',
+'watchlistedit-raw-added'      => '{{PLURAL:$1|1 제목이|1 제목이}} 추가되었습니다:',
 'watchlistedit-raw-removed'    => '$1개 문서를 제거했습니다:',
 
 # Watchlist editing tools
@@ -3063,7 +3073,7 @@ $1',
 
 # Core parser functions
 'unknown_extension_tag' => '알 수 없는 확장 기능 태그 "$1"',
-'duplicate-defaultsort' => '경고: 기본 정렬 키 "$2"가 이전의 기본 정렬 키 "$2"를 덮어쓰고 있습니다.',
+'duplicate-defaultsort' => '\'\'\'경고:\'\'\' 기본 정렬 키 "$2"가 이전의 기본 정렬 키 "$1"를 덮어쓰고 있습니다.',
 
 # Special:Version
 'version'                          => '버전',
@@ -3150,7 +3160,7 @@ $1',
 'tags-description-header' => '태그에 대한 설명',
 'tags-hitcount-header'    => '태그된 바뀜',
 'tags-edit'               => '편집',
-'tags-hitcount'           => '$1개의 바뀜',
+'tags-hitcount'           => '$1 {{PLURAL:$1|바뀜|바뀜}}',
 
 # Database error messages
 'dberr-header'      => '이 위키에 문제가 있습니다.',

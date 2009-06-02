@@ -901,7 +901,7 @@ Gizlenemez.',
 Erişiminiz yok.',
 'revdelete-modify-no-access'  => '$2 $1 tarihli öğe değiştirilirken hata: bu öğe "kısıtlı" olarak işaretlenmiş.
 Erişiminiz yok.',
-'revdelete-modify-missing'    => "$2 $1 ID'li öğe değiştirilirken hata: veritabanında kayıp!",
+'revdelete-modify-missing'    => "$1 ID'li öğe değiştirilirken hata: veritabanında kayıp!",
 'revdelete-no-change'         => "'''Uyarı:'''  $2 $1 tarihli öğe için zaten görünürlük ayarı istenmiş.",
 'revdelete-concurrent-change' => '$2 $1 tarihli öğe değiştirilirken hata: öğenin durumu siz değiştirmeye çalışırken bir başkası tarafından değiştirilmiş görünüyor.
 Lütfen günlükleri kontrol edin.',
