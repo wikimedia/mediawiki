@@ -869,8 +869,8 @@ class UndeleteForm {
 					$targetPage,
 					wfMsgHtml(
 						'revisionasof',
-						htmlspecialchars( $wgLang->timeanddate( $rev->getTimestamp(), true ),
-						htmlspecialchars( $wgLang->date( $rev->getTimestamp(), true ),
+						htmlspecialchars( $wgLang->timeanddate( $rev->getTimestamp(), true ) ),
+						htmlspecialchars( $wgLang->date( $rev->getTimestamp(), true ) ),
 						htmlspecialchars( $wgLang->time( $rev->getTimestamp(), true ) )
 					),
 					array(),
