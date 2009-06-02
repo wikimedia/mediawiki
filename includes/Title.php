@@ -457,7 +457,7 @@ class Title {
 		return trim( $t );
 	}
 
-	/*
+	/**
 	 * Make a prefixed DB key from a DB key and a namespace index
 	 * @param $ns \type{\int} numerical representation of the namespace
 	 * @param $title \type{\string} the DB key form the title
