@@ -152,6 +152,14 @@ class Title {
 	}
 
 	/**
+	 * THIS IS NOT THE FUNCTION YOU WANT. Use Title::newFromText().
+	 *
+	 * Example of wrong and broken code:
+	 * $title = Title::newFromURL( $wgRequest->getVal( 'title' ) );
+	 *
+	 * Example of right code:
+	 * $title = Title::newFromText( $wgRequest->getVal( 'title' ) );
+	 *
 	 * Create a new Title from URL-encoded text. Ensures that
 	 * the given title's length does not exceed the maximum.
 	 * @param $url \type{\string} the title, as might be taken from a URL
