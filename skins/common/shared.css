@@ -491,9 +491,6 @@ table.wikitable {
 	border: none;
 }
 
-/* visualClear used to be defined in MonoBook, however code which used this
- * class which is not particular to MonoBook has not justified this being here
- */
 .visualClear {
 	clear: both;
 }
