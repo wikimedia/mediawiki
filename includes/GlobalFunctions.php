@@ -3127,3 +3127,17 @@ function wfArrayInsertAfter( $array, $insert, $after ) {
 	
 	return $output;
 }
+
+/* Recursively converts the parameter (an object) to an array with the same data */
+function wfObjectToArray( $object, $recursive = true ) {
+	$array = array();
+	foreach ( get_object_vars($object) as $key => $value ) {
+		if ( is_object($value) && $recursive ) {
+			$value = wfObjectToArray( $value );
+		}
+		
+		$array[$key] = $value;
+	}
+	
+	return $array;
+}
