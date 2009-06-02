@@ -854,6 +854,8 @@ Bitte bstätig, ass Du des witt mache, ass Du d Konsequänze verstohsch un ass d
 'revdelete-failure'           => "'''Versionssichtbarkeit het nit chenne gsetzt wäre.'''
 $1",
 'logdelete-success'           => "'''Logbuechaasicht erfolgryych gänderet.'''",
+'logdelete-failure'           => "'''Logbuchsichtbarkeit cha nit gänderet wäre:'''
+$1",
 'revdel-restore'              => 'Sichtbarkeit ändere',
 'pagehist'                    => 'Versionsgeschicht',
 'deletedhist'                 => 'Gleschti Versione',
@@ -866,6 +868,17 @@ $1",
 'revdelete-unhid'             => 'macht $1 wider effetlig',
 'revdelete-log-message'       => '$1 fir $2 {{PLURAL:$2|Version|Versione}}',
 'logdelete-log-message'       => '$1 fir $2 {{PLURAL:$2|Logbuechyytrag|Logbuechyytreg}}',
+'revdelete-hide-current'      => 'Fähler bim Verstecke vum Yytrag mit em Datum $2, $1: des isch di aktuäll Version.
+Si cha nit versteckt wäre.',
+'revdelete-show-no-access'    => 'Fähler bim Aazeige vum Yytrag mit em Datum $2, $1: dää Yytrag isch as „yygschränkt“ markiert wore.
+Du hesch kei Zuegriff druf.',
+'revdelete-modify-no-access'  => 'Fähler bim Bearbeite vum Yytrag mit em Datum $2, $1: dää Yytrag isch as „yygschränkt“ markiert wore.
+Du hesch kei Zuegriff druf.',
+'revdelete-modify-missing'    => 'Fähler bim Bearbeite vum Yytrag ID $1: Är fählt in dr Datebank!',
+'revdelete-no-change'         => "'''Warnig:''' dr Yytrag mit em Datum $2, $1 het scho di gwinscht Sichtbarkeitsyystellige.",
+'revdelete-concurrent-change' => 'Fähler bim Bearbeite vum yytrag mit em Datum $2, $1: schyns isch dr Status vu eberem gänderet wore, voreb Du vorghaa hesch, e z bearbeite.
+Bitte prief d Logbiecher.',
+'revdelete-only-restricted'   => 'Du chasch kei Yyträg vor Adminischtratore unterdrucke, ohni ass Du au eini vu dr andere Unterdruckigsoptione uusgwehlt hesch.',
 
 # Suppression log
 'suppressionlog'     => 'Oversight-Logbuech',
@@ -1459,6 +1472,7 @@ Wänn s Problem alno uftritt, informier e [[Special:ListUsers/sysop|Ammann]].',
 'filehist-dimensions'       => 'Mäß',
 'filehist-filesize'         => 'Dateigrößi',
 'filehist-comment'          => 'Kommentar',
+'filehist-missing'          => 'Datei fählt',
 'imagelinks'                => 'Dateigleicher',
 'linkstoimage'              => 'Di {{PLURAL:$1|Syte|$1 Sytene}} händ en Link zu dem Bild:',
 'linkstoimage-more'         => 'Meh as {{PLURAL:$1|ei Syte vergleicht|$1 Syte vergleiche}} uf die Datei.

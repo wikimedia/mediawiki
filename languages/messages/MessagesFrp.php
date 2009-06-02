@@ -336,9 +336,11 @@ $messages = array(
 'tog-watchlisthideliu'        => 'Cachiér los changements fêts per los utilisators enregistrâs de la lista de survelyence',
 'tog-watchlisthideanons'      => 'Cachiér los changements fêts per los utilisators pas enregistrâs de la lista de survelyence',
 'tog-watchlisthidepatrolled'  => 'Cachiér los changements survelyês de la lista de survelyence',
+'tog-variantconversion'       => 'Activar la convèrsion de les variantes de lengoua',
 'tog-ccmeonemails'            => 'Mè mandar una copia des mèls que mando ux ôtros utilisators',
 'tog-diffonly'                => 'Pas montrar lo contegnu de les pâges desot los difs',
 'tog-showhiddencats'          => 'Fâre vêre les catègories cachiês',
+'tog-noconvertlink'           => 'Dèsactivar la convèrsion des titros',
 'tog-norollbackdiff'          => 'Pas montrar lo dif aprés avêr fêt una rèvocacion',
 
 'underline-always'  => 'tojorn',
@@ -754,7 +756,7 @@ Volyéd atendre devant que tornar èprovar.',
 'resetpass'                 => 'Changiér lo mot de pâssa',
 'resetpass_announce'        => 'Vos vos éte branchiê avouéc un mot de pâssa temporèro mandâ per mèl.
 Por chavonar lo branchement, vos dête buchiér un novél mot de pâssa ique :',
-'resetpass_text'            => '<!-- Apond de tèxte ique -->',
+'resetpass_text'            => '<!-- Apondéd lo tèxto ique -->',
 'resetpass_header'          => 'Changiér lo mot de pâssa du compto',
 'oldpassword'               => 'Viely mot de pâssa :',
 'newpassword'               => 'Novél mot de pâssa :',
@@ -941,7 +943,7 @@ Cela protèccion at étâ fêta perce que ceta pâge est encllua dens {{PLURAL:$
 'template-protected'               => '(protègiê)',
 'template-semiprotected'           => '(mié-protègiê)',
 'hiddencategories'                 => '{{PLURAL:$1|Catègorie cachiê|Catègories cachiês}} que ceta pâge est avouéc :',
-'edittools'                        => '<!-- Tot tèxte entrâ ique serat afichiê desot les bouètes d’èdicion ou d’impôrt de fichiér. -->',
+'edittools'                        => '<!-- Tot tèxto buchiê ique serat montrâ desot les bouètes d’èdicion ou ben desot los formulèros de tèlèchargement de fichiér. -->',
 'nocreatetitle'                    => 'Crèacion de pâge limitâ',
 'nocreatetext'                     => '{{SITENAME}} at rètrent la possibilitât de fâre de novèles pâges.
 Vos pouede tornar arriér et pués changiér una pâge ègzistenta, ou ben [[Special:UserLogin|vos branchiér ou fâre un compto]].',
@@ -1305,7 +1307,7 @@ Atencion, lor endèxacion du contegnu de {{SITENAME}} pôt pas étre a jorn.',
 'resultsperpage'                => 'Nombro de rèponses per pâge :',
 'contextlines'                  => 'Nombro de legnes per rèponsa :',
 'contextchars'                  => 'Nombro de caractèros de contèxto per legne :',
-'stub-threshold'                => 'Limita de d’amont por los <a href="#" class="stub">lims de vers los començons</a> (octèts) :',
+'stub-threshold'                => 'Limita d’amont por los <a href="#" class="stub">lims de vers los començons</a> (octèts) :',
 'recentchangesdays'             => 'Nombro de jorns a fâre vêre dens los dèrriérs changements :',
 'recentchangesdays-max'         => '(tot u ples $1 jorn{{PLURAL:$1||s}})',
 'recentchangescount'            => 'Nombro de changements a fâre vêre per dèfôt :',
@@ -1347,7 +1349,7 @@ Cen pôt pas étre dèfêt.',
 'prefs-registration'            => 'Dâta d’enregistrament :',
 'yourrealname'                  => 'Veré nom :',
 'yourlanguage'                  => 'Lengoua de l’entèrface :',
-'yourvariant'                   => 'Varianta :',
+'yourvariant'                   => 'Varianta de lengoua :',
 'yournick'                      => 'Signatura por les discussions :',
 'badsig'                        => 'Signatura bruta fôssa.
 Controlâd voutres balises HTML.',
@@ -1499,7 +1501,7 @@ Vos pouede asse-ben dècidar de lèssiér los ôtros sè veriér vers vos avoué
 'action-upload'               => 'tèlèchargiér cél fichiér',
 'action-reupload'             => 'ècrasar cél fichiér ègzistent',
 'action-reupload-shared'      => 'ècrasar localament cél fichiér present sur un dèpôt de fichiérs partagiê',
-'action-upload_by_url'        => 'tèlèchargiér cél fichiér dês una adrèce URL',
+'action-upload_by_url'        => 'tèlèchargiér cél fichiér dês una URL',
 'action-writeapi'             => 'utilisar l’API d’ècritura',
 'action-delete'               => 'suprimar cela pâge',
 'action-deleterevision'       => 'suprimar cela vèrsion',
@@ -1658,16 +1660,16 @@ Demandâd-vos s’o est franc favorâblo de continuar son tèlèchargement.
 Lo jornal de les suprèssions de cél fichiér est montrâ ce-desot :",
 'filename-bad-prefix'         => "Lo nom du fichiér que vos tèlèchargiéd comence per '''« $1 »''' qu’est tipicament un nom balyê ôtomaticament per los aparèlys-fotô numericos.
 Volyéd chouèsir un nom de fichiér dèscriptif.",
-'filename-prefix-blacklist'   => ' #<!-- lèssiéd ceta legne justo d’ense --> <pre>
-# La sintaxa est la siuventa :
-#  * Tot caractèro siuvent « # » tant qu’a la fin de la legne serat entèrprètâ coment un comentèro.
-#  * Tota legne pas voueda est un prèfixe por noms de fichiér qu’est g·ènèralament balyê per los aparèlys-fotô numericos.
+'filename-prefix-blacklist'   => '  #<!-- lèssiéd ceta legne justo d’ense --> <pre>
+# La sintaxa est ceta :
+#  * Tot tèxto que siut un « # » est considèrâ coment un comentèro.
+#  * Tota legne pas voueda est un prèfixo tipico de nom de fichiér balyê ôtomaticament per los aparèlys-fotô numericos :
 CIMG # Casio
 DSC_ # Nikon
 DSCF # Fuji
 DSCN # Nikon
-DUW # cèrtins enfatâblos
-IMG # comon
+DUW # quârques enfatâblos
+IMG # g·ènèrico
 JD # Jenoptik
 MGP # Pentax
 PICT # de totes sôrtes
@@ -2681,8 +2683,15 @@ Portant, vos en pouede vêre lo tèxto sôrsa.',
 Pèrmèt de rètablir la vèrsion devant et pués d’apondre una rêson dens la bouèta de rèsumâ.',
 
 # Stylesheets
-'common.css'   => '/* Lo CSS placiê ique serat aplicâ a totes les entèrfaces. */',
-'monobook.css' => '/* Lo CSS placiê ique afècterat los utilisators de l’entèrface Monobook. */',
+'common.css'      => '/* Lo code CSS placiê ique serat aplicâ a tôs los habelyâjos. */',
+'standard.css'    => '/* Lo code CSS placiê ique afècterat los utilisators de l’habelyâjo « Estandârd ». */',
+'nostalgia.css'   => '/* Lo code CSS placiê ique afècterat los utilisators de l’habelyâjo « Cafârd ». */',
+'cologneblue.css' => '/* Lo code CSS placiê ique afècterat los utilisators de l’habelyâjo « Blu de Cologne ». */',
+'monobook.css'    => '/* Lo code CSS placiê ique afècterat los utilisators de l’habelyâjo « MonoBook ». */',
+'myskin.css'      => '/* Lo code CSS placiê ique afècterat los utilisators de l’habelyâjo « MonHabelyâjo ». */',
+'chick.css'       => '/* Lo code CSS placiê ique afècterat los utilisators de l’habelyâjo « Pugin ». */',
+'simple.css'      => '/* Lo code CSS placiê ique afècterat los utilisators de l’habelyâjo « Simplo ». */',
+'modern.css'      => '/* Lo code CSS placiê ique afècterat los utilisators de l’habelyâjo « Modèrno ». */',
 
 # Scripts
 'common.js'   => '/* Quint que seye lo JavaScript placiê ique serat chargiê por tôs los utilisators et por châque pâge accèdâ. */',
@@ -2725,7 +2734,7 @@ Cen est probâblament côsâ per un lim dessus lista nêre que pouente vers un s
 'skinname-nostalgia'   => 'Cafârd',
 'skinname-cologneblue' => 'Blu de Cologne',
 'skinname-monobook'    => 'MonoBook',
-'skinname-myskin'      => 'MySkin',
+'skinname-myskin'      => 'MonHabelyâjo',
 'skinname-chick'       => 'Pugin',
 'skinname-simple'      => 'Simplo',
 'skinname-modern'      => 'Modèrno',
@@ -3379,5 +3388,37 @@ Buchiéd lo nom du fichiér sen lo prèfixo « {{ns:file}}: ».',
 #Ceta lista est pas sensibla a la câssa
 
 #Betâd tôs los bocons d’èxprèssions règuliéres (*RegEx*) en-dessus de ceta legne. Lèssiéd ceta legne justo d’ense.</pre>',
+
+# Special:Tags
+'tags'                    => 'Balises des changements valides',
+'tag-filter'              => 'Filtrar les [[Special:Tags|balises]] :',
+'tag-filter-submit'       => 'Filtrar',
+'tags-title'              => 'Balises',
+'tags-intro'              => 'Ceta pâge liste les balises que la programeria pôt utilisar por marcar un changement avouéc, et lor significacion.',
+'tags-tag'                => 'Nom de dedens de la balisa',
+'tags-display-header'     => 'Aparence dens les listes de changements',
+'tags-description-header' => 'Dèscripcion complèta de la balisa',
+'tags-hitcount-header'    => 'Changements balisâs',
+'tags-edit'               => 'changiér',
+'tags-hitcount'           => '$1 changement{{PLURAL:$1||s}}',
+
+# Database error messages
+'dberr-header'      => 'Ceti vouiqui at un problèmo',
+'dberr-problems'    => 'Dèsolâ ! Ceti seto rencontre des dificultâts tècniques.',
+'dberr-again'       => 'Tâchiéd d’atendre doux-três menutes et pués rechargiéd.',
+'dberr-info'        => '(Branchement u sèrvor de bâsa de balyês empossiblo : $1)',
+'dberr-usegoogle'   => 'Vos pouede tâchiér de chèrchiér avouéc Google pendent cél temps.',
+'dberr-outofdate'   => 'Notâd que lors endèxos de noutron contegnu pôvont étre dèpassâs.',
+'dberr-cachederror' => 'Cen est una copia cachiê de la pâge demandâ et pôt étre dèpassâ.',
+
+# HTML forms
+'htmlform-invalid-input'       => 'Des problèmos sont arrevâs avouéc quârques valors',
+'htmlform-select-badoption'    => 'La valor que vos éd spècefiâ est pas un chouèx valido.',
+'htmlform-int-invalid'         => 'La valor que vos éd spècefiâ est pas un entiér.',
+'htmlform-int-toolow'          => 'La valor que vos éd spècefiâ est en-desot du muens de $1',
+'htmlform-int-toohigh'         => 'La valor que vos éd spècefiâ est en-dessus du més de $1',
+'htmlform-submit'              => 'Sometre',
+'htmlform-reset'               => 'Dèfâre los changements',
+'htmlform-selectorother-other' => 'Ôtro',
 
 );

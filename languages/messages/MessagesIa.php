@@ -931,7 +931,7 @@ Illo non pote esser celate.',
 Tu non ha accesso a illo.',
 'revdelete-modify-no-access'  => 'Error de modificar le entrata del $2 a $1: iste entrata ha essite marcate como "restringite".
 Tu non ha accesso a illo.',
-'revdelete-modify-missing'    => 'Error de modificar le entrata con ID $2, $1: illo manca in le base de datos!',
+'revdelete-modify-missing'    => 'Error de modificar le entrata con ID $1: illo manca in le base de datos!',
 'revdelete-no-change'         => "'''Attention:''' le entrata del $2, $1 jam habeva le configuration requestate de visibilitate.",
 'revdelete-concurrent-change' => 'Error de modificar le entrata del $2, $1: il pare que alcuno altere ha cambiate su stato durante que tu tentava modificar lo.
 Per favor verifica le registros.',

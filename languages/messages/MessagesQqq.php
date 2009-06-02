@@ -654,7 +654,7 @@ Parameters:
 'nosuchsectiontext'                => 'This message is displayed when a user tries to edit a section that does not exist. 
 
 Parameter $1 is the content of section parameter in the URL (for example 1234 in the URL http://translatewiki.net/w/i.php?title=Sandbox&action=edit&section=1234)',
-'loginreqlink'                     => 'Take a look on inflection. Used as parameter in {{msg-mw|loginreqpagetext}}, {{msg-mw|whitelistedittext}} and {{msg-mw|watchlistanontext‎}}.
+'loginreqlink'                     => 'Take a look on inflection. Used as parameter in {{msg-mw|loginreqpagetext}}, {{msg-mw|whitelistedittext}}, {{msg-mw|watchlistanontext‎}} and {{msg-mw|Confirmemail needlogin}}.
 
 {{Identical|Log in}}',
 'loginreqpagetext'                 => '* $1 is a link to [[Special:UserLogin]] with {{msg-mw|loginreqlink}} as link description',
@@ -710,7 +710,10 @@ Please report at [[Support]] if you are unable to properly translate this messag
 'viewpagelogs'           => 'Link displayed in history of pages',
 'currentrev'             => '{{Identical|Current revision}}',
 'currentrev-asof'        => 'The text appears at the right side when comparing 2 different edits of the same page. For example: [http://translatewiki.net/w/i.php?title=FreeCol%3AIntegerAboveZero%2Fca&diff=788645&oldid=788644]',
-'revisionasof'           => 'Used on a difference page when comparing different versions of a page or when viewing an non-current version of a page. $1 is the date/time at which the revision was created. Example: "\'\'Revision as of 14:44, 24 January 2008\'\'". $2 is the date at which the revision was created. $3 is the time at which the revision was created.',
+'revisionasof'           => 'Used on a difference page when comparing different versions of a page or when viewing an non-current version of a page.
+* $1 is the date/time at which the revision was created. Example: "\'\'Revision as of 14:44, 24 January 2008\'\'".
+* $2 is the date at which the revision was created.
+* $3 is the time at which the revision was created.',
 'revision-info'          => 'Appears just below the page title when an old version of the page is being viewed.
 
 * $1 indicates the time of that revision and 
@@ -1254,7 +1257,7 @@ Parameter $1 is the maximum number of changes that are displayed.
 Parameter $2 is a date and time.
 Parameter $3 is a date.
 Parameter $4 is a time.',
-'rclistfrom'           => 'Used on [[Special:RecentChanges]]. Parameter $1 is a date.',
+'rclistfrom'           => 'Used on [[Special:RecentChanges]]. Parameter $1 is a link to the revision of a specific date and time. The date and the time are the link anchor.',
 'rcshowhideminor'      => 'Option text in [[Special:RecentChanges]]',
 'rcshowhidebots'       => "Option text in [[Special:RecentChanges]]. $1 is the 'show/hide' command, with the text taken from either [[Mediawiki:Show]] or [[Mediawiki:Hide]].
 
@@ -1364,6 +1367,7 @@ Parameter $1 is a link to the deletion log, with the text in {{msg|deletionlog}}
 'listfiles_count'       => 'One of the table column headers in [[Special:Listfiles]] denoting the amount of saved versions of that file.',
 
 # File description page
+'file-anchor-link'        => '{{Identical|File}}',
 'filehist'                => 'Text shown on a media description page. Heads the section where the different versions of the file are displayed.',
 'filehist-help'           => 'In file description page',
 'filehist-deleteall'      => 'Link in image description page for admins.',
@@ -2746,7 +2750,8 @@ Please leave the link http://www.mediawiki.org/wiki/Manual:External_editors exac
 {{Identical|All}}',
 
 # E-mail address confirmation
-'confirmemail_needlogin'   => 'Used on [[Special:ConfirmEmail]] when you are logged out. Parameter $1 is a link to the log in form.',
+'confirmemail_needlogin'   => 'Used on [[Special:ConfirmEmail]] when you are logged out.
+* $1 is a link to [[Special:UserLogin]] with {{msg-mw|loginreqlink}} as link description',
 'confirmemail_body'        => 'This message is sent as an e-mail to users when they add or change their e-mail adress in [[Special:Preferences]].
 
 *$1 is the IP adress of the user that changed the e-mail adress

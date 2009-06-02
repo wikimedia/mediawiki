@@ -83,8 +83,9 @@ $messages = array(
 'tog-watchlisthideanons'   => 'Cua is acontzos de is usuàrios anonimus dae sa watchlist',
 'tog-showhiddencats'       => 'Amosta is categorias cuadas',
 
-'underline-always' => 'Semper',
-'underline-never'  => 'Mai',
+'underline-always'  => 'Semper',
+'underline-never'   => 'Mai',
+'underline-default' => 'Definiduras dae su browser tuo',
 
 # Dates
 'sunday'        => 'Domìniga',
@@ -155,7 +156,7 @@ $messages = array(
 
 'about'         => 'A propòsitu de',
 'article'       => 'Artìculu',
-'newwindow'     => "(aberit in d'una fentana noa)",
+'newwindow'     => '(oberit in d-una fentana noa)',
 'cancel'        => 'Burra',
 'moredotdotdot' => 'Àteru…',
 'mypage'        => 'Sa pàgina mea',
@@ -165,7 +166,7 @@ $messages = array(
 'and'           => '&#32;e',
 
 # Cologne Blue skin
-'qbfind'         => 'Agata',
+'qbfind'         => 'Busca',
 'qbbrowse'       => 'Nàviga',
 'qbedit'         => 'Acontza',
 'qbpageoptions'  => 'Possibbilidades de sa pàgina',
@@ -188,7 +189,7 @@ $messages = array(
 'history_short'     => 'Istòria',
 'info_short'        => 'Informatziones',
 'printableversion'  => 'Versione de imprentai',
-'permalink'         => 'Acàpiu permanente',
+'permalink'         => 'Acàpiu fitianu',
 'print'             => 'Imprenta',
 'edit'              => 'Acontza',
 'create'            => 'Crea',
@@ -196,6 +197,7 @@ $messages = array(
 'create-this-page'  => 'Crea custa pàgina',
 'delete'            => 'Fùlia',
 'deletethispage'    => 'Fùlia custa pàgina',
+'undelete_short'    => 'Restaurare {{PLURAL:$1|un acontzu|$1 acontzos}}',
 'protect'           => 'Ampara',
 'protect_change'    => 'mudàntzia',
 'protectthispage'   => 'Ampara custa pàgina',
@@ -214,7 +216,11 @@ $messages = array(
 'userpage'          => 'Càstia sa pàgina usuàriu',
 'projectpage'       => 'Càstia sa pàgina meta',
 'imagepage'         => 'Càstia sa pàgina de su file',
+'mediawikipage'     => 'Càstia su messàgiu',
+'templatepage'      => 'Càstia su template',
+'viewhelppage'      => 'Càstia sa pàgina de agiudu',
 'categorypage'      => 'Càstia sa categoria',
+'viewtalkpage'      => 'Càstia cuntierras',
 'otherlanguages'    => 'Àteras limbas',
 'redirectedfrom'    => '(Reindiritzadu dae $1)',
 'redirectpagesub'   => 'Pàgina de reindiritzadura',
@@ -263,6 +269,7 @@ $messages = array(
 'toc'                     => 'Cuntènnidu',
 'showtoc'                 => 'amosta',
 'hidetoc'                 => 'cua',
+'thisisdeleted'           => 'Càstiare o recuperare $1?',
 'viewdeleted'             => 'Bisi $1?',
 'feedlinks'               => 'Feed:',
 'site-rss-feed'           => 'Feed Atom de $1',
@@ -274,14 +281,16 @@ $messages = array(
 'red-link-title'          => '$1 (sa pàgina no esistit)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-main'     => 'Pàgina',
-'nstab-user'     => 'Pàgina usuàriu',
-'nstab-special'  => 'Pàgina ispetziale',
-'nstab-project'  => 'Pàgina de servìtziu',
-'nstab-image'    => 'File',
-'nstab-template' => 'Template',
-'nstab-help'     => 'Agiudu',
-'nstab-category' => 'Categoria',
+'nstab-main'      => 'Pàgina',
+'nstab-user'      => 'Pàgina usuàriu',
+'nstab-media'     => 'File multimediale',
+'nstab-special'   => 'Pàgina ispetziale',
+'nstab-project'   => 'Pàgina de servìtziu',
+'nstab-image'     => 'File',
+'nstab-mediawiki' => 'Messàgiu',
+'nstab-template'  => 'Template',
+'nstab-help'      => 'Agiudu',
+'nstab-category'  => 'Categoria',
 
 # Main script and global functions
 'nosuchaction'      => 'Atzione non connota',
@@ -294,39 +303,41 @@ Custu iat a poder esser unu bug de {{SITENAME}}.",
 Una lista de pàginas ispetziales bàlidas d'agatas in [[Special:SpecialPages|{{int:specialpages}}]].",
 
 # General errors
-'error'              => 'Faddina',
-'databaseerror'      => 'Faddina de su database',
-'dberrortext'        => 'Faddina de sintassi in sa pregunta fata a su database.
+'error'               => 'Faddina',
+'databaseerror'       => 'Faddina de su database',
+'dberrortext'         => 'Faddina de sintassi in sa pregunta fata a su database.
 Custu podet indicare unu isballiu de su software.
 S\'ùrtima consulta chi as tentadu fiat:
 <blockquote><tt>$1</tt></blockquote>
 aintru de sa funtzione "<tt>$2</tt>".
 MySQL at torradu custa faddina "<tt>$3: $4</tt>".',
-'readonly'           => 'Database bloccadu',
-'enterlockreason'    => 'Inserta su motivu de su bloccu, ispetzifichende su momentu probabile chi su bloccu at a acabai',
-'readonlytext'       => "In custu momentu su database est bloccadu dae aciunturas e àteras modificas, probabilmente pro ordinaria manutentzione a su database, a pustis de custas at a èssere normale torra.
+'readonly'            => 'Database bloccadu',
+'enterlockreason'     => 'Inserta su motivu de su bloccu, ispetzifichende su momentu probabile chi su bloccu at a acabai',
+'readonlytext'        => "In custu momentu su database est bloccadu dae aciunturas e àteras modificas, probabilmente pro ordinaria manutentzione a su database, a pustis de custas at a èssere normale torra.
 
 S'aministradore chi dd'at bloccadu at donadu custa ispiegatzione: $1",
-'missing-article'    => 'Su database no at agatau su testu de una pàgina chi diat àere agatau a suta de su nòmene "$1" $2.
+'missing-article'     => 'Su database no at agatau su testu de una pàgina chi diat àere agatau a suta de su nòmene "$1" $2.
 
 Custu a su sòlitu si verìficat candu du est unu acàpiu in s\'istòria o in d\'unu cunfruntu tra arrevisiones de una pàgina chi est istada fuliada.
 
 Si no est custu su casu, s\'est agatada una faddina de su software. 
 Pro praxeri signala s\'acuntèssiu a unu [[Special:ListUsers/sysop|aministradore]] spetzifichede su URL de sa faddina.',
-'missingarticle-rev' => '(arrevisioni nùmeru: $1)',
-'internalerror'      => 'Faddina interna',
-'filecopyerror'      => 'Non è stato possibile copiare il file "$1" come "$2".',
-'filerenameerror'    => 'Non è stato possibile rinominare il file "$1" in "$2".',
-'filedeleteerror'    => 'Non è stato possibile cancellare il file "$1".',
-'filenotfound'       => 'No est istadu possìbili agatare "$1".',
-'unexpected'         => 'Valore imprevisto: "$1"="$2".',
-'formerror'          => 'Errore: il modulo non è stato inviato correttamente',
-'badarticleerror'    => 'Questa operazione non è consentita su questa pagina.',
-'cannotdelete'       => "Impossibile cancellare la pagina o l'immagine richiesta.",
-'badtitle'           => 'Titolo non corretto',
-'badtitletext'       => "Su tìtulu de sa pagina c'as pediu est bùidu, isbaliau, o iscritu ne is cullegamentus inter-wiki in modu non curregiu o cun carateres no amitius.",
-'viewsource'         => 'Càstia mitza',
-'viewsourcefor'      => 'pro $1',
+'missingarticle-rev'  => '(arrevisioni nùmeru: $1)',
+'missingarticle-diff' => '(Dif: $1, $2)',
+'internalerror'       => 'Faddina interna',
+'filecopyerror'       => 'Non è stato possibile copiare il file "$1" come "$2".',
+'filerenameerror'     => 'Non è stato possibile rinominare il file "$1" in "$2".',
+'filedeleteerror'     => 'Non è stato possibile cancellare il file "$1".',
+'filenotfound'        => 'No est istadu possìbili agatare "$1".',
+'unexpected'          => 'Valore imprevisto: "$1"="$2".',
+'formerror'           => 'Errore: il modulo non è stato inviato correttamente',
+'badarticleerror'     => 'Questa operazione non è consentita su questa pagina.',
+'cannotdelete'        => "Impossibile cancellare la pagina o l'immagine richiesta.",
+'badtitle'            => 'Titolo non corretto',
+'badtitletext'        => "Su tìtulu de sa pagina c'as pediu est bùidu, isbaliau, o iscritu ne is cullegamentus inter-wiki in modu non curregiu o cun carateres no amitius.",
+'viewsource'          => 'Càstia mitza',
+'viewsourcefor'       => 'pro $1',
+'ns-specialprotected' => 'Is pàginas ispetziales non podent èssere acontzadas.',
 
 # Login and logout pages
 'logouttext'              => 'Logout effettuato.
@@ -389,7 +400,7 @@ Pro pregheri, candu d\'arretzis faghe su login.',
 'italic_tip'      => 'Corsivu',
 'link_sample'     => 'Tìtulu cullegamentu',
 'link_tip'        => 'Cullegamentu internu',
-'extlink_sample'  => 'http://www.example.com tìtulu de sa liga',
+'extlink_sample'  => "http://www.example.com tìtulu de s'acàpiu",
 'extlink_tip'     => 'Acàpiu a foras (amenta su prefissu http://)',
 'headline_sample' => 'Testu de su tìtulu',
 'headline_tip'    => 'Tìtulu de secundu livellu',
@@ -413,8 +424,8 @@ Pro pregheri, candu d\'arretzis faghe su login.',
 'preview'                          => 'Antiprima',
 'showpreview'                      => "Amosta s'antiprima",
 'showdiff'                         => 'Amosta mudàntzias',
-'anoneditwarning'                  => "'''Atentzioni:''' Non ses intrau (log in). 
-S'indiritzu IP tuo at a èssere arregistrau in s'istòria de custa pàgina.",
+'anoneditwarning'                  => "'''Atentzione:''' Non ses intrau (log in). 
+S'indiritzu IP tuo at a èssere arregistradu in s'istòria de custa pàgina.",
 'summary-preview'                  => 'Antiprima ogetu:',
 'subject-preview'                  => 'Antiprima tema/tìtulu:',
 'blockedtitle'                     => "S'usuàriu est istadu bloccau",
@@ -461,9 +472,10 @@ Cun s'imbiu de custu iscritu ses garantende, a responsabilidade tua, chi s'iscri
 'templatesused'                    => 'Templates impreaus in custa pàgina:',
 'templatesusedpreview'             => 'Templates impreadus in custa antiprima:',
 'templatesusedsection'             => 'Templates impreaus in custa setzione:',
-'template-protected'               => '(amparau)',
-'template-semiprotected'           => '(semi-amparau)',
+'template-protected'               => '(amparadu)',
+'template-semiprotected'           => '(semi-amparadu)',
 'hiddencategories'                 => 'Custa pàgina faghet parti de {{PLURAL:$1|1 categoria cuada|$1 categorias cuadas}}:',
+'permissionserrors'                => 'Faddina de permissos',
 'permissionserrorstext-withaction' => 'Non tenes su permissu de $2, pro {{PLURAL:$1|custu motivu|custus motivus}}:',
 'moveddeleted-notice'              => "Custa pàgina est istada fuliada. 
 S'arregistru de is fuliaduras e moviduras de sa pàgina est amostau pro informatzione.",
@@ -494,13 +506,15 @@ Legenda: '''({{int:cur}})''' = diferèntzias cun sa versione currente, '''({{int
 'history-feed-item-nocomment' => '$1 su $2',
 
 # Revision deletion
-'rev-delundel'          => 'amosta/cua',
-'revdel-restore'        => 'Muda sa visibilidadi',
-'pagehist'              => 'Istòria de sa pàgina',
-'deletedhist'           => 'Istòria fuliada',
-'revdelete-hid'         => 'cua $1',
-'revdelete-unhid'       => 'amosta $1',
-'revdelete-log-message' => '$1 pro $2 {{PLURAL:$2|arrevisione|arrevisiones}}',
+'rev-delundel'               => 'amosta/cua',
+'revdelete-show-file-submit' => 'Eja',
+'revdel-restore'             => 'Muda sa visibilidadi',
+'pagehist'                   => 'Istòria de sa pàgina',
+'deletedhist'                => 'Istòria fuliada',
+'revdelete-uname'            => 'Nòmene usuàriu',
+'revdelete-hid'              => 'cua $1',
+'revdelete-unhid'            => 'amosta $1',
+'revdelete-log-message'      => '$1 pro $2 {{PLURAL:$2|arrevisione|arrevisiones}}',
 
 # History merging
 'mergehistory-reason' => 'Motivu:',
@@ -533,8 +547,8 @@ Podes [[:\$1|creare custa pàgina]].",
 'notitlematches'                 => 'Peruna currispondentzia de is tìtulos de pàgina',
 'textmatches'                    => 'Nel testo degli articoli',
 'notextmatches'                  => "Peruna currispondèntzia in su testu de s'artìculu",
-'prevn'                          => 'cabudianos $1',
-'nextn'                          => 'imbenientes $1',
+'prevn'                          => '{{PLURAL:$1|cabudianu|cabudianos $1}}',
+'nextn'                          => '{{PLURAL:$1|imbeniente|imbenientes $1}}',
 'viewprevnext'                   => 'Càstia ($1) ($2) ($3).',
 'searchhelp-url'                 => 'Help:Agiudu',
 'searchprofile-articles-tooltip' => 'Chirca in $1',
@@ -551,7 +565,7 @@ Podes [[:\$1|creare custa pàgina]].",
 'search-mwsuggest-disabled'      => 'chentza impostos',
 'searchall'                      => 'totu',
 'showingresults'                 => "Innoe sighende {{PLURAL:$1|benit amostau '''1''' arresurtau|benint amostaus '''$1''' arresurtaos}} incumentzende dae su numeru '''$2'''.",
-'showingresultstotal'            => "Sighende {{PLURAL:$4|benit amostau s'arresurtau '''$1''' de '''$3'''|benint amostaus is arresurtaos '''$1 - $2''' de '''$3'''}}",
+'showingresultstotal'            => "Sighende {{PLURAL:$4|benit amostadu s'arresurtadu '''$1''' de '''$3'''|benint amostados is arresurtados '''$1 - $2''' de '''$3'''}}",
 'nonefound'                      => "'''Annota''': sa chirca est fata pro difetu isceti in unos Nòmene-logos. 
 Prova a scioberai ''totu:'' pro chircare in totu su cuntènnidu (includius pàginas de cuntierra, template, etc), oppuru sciobera comente prefissu su pretzisu Nòmene-logu chi boles.",
 'powersearch'                    => 'Kirca',
@@ -559,6 +573,8 @@ Prova a scioberai ''totu:'' pro chircare in totu su cuntènnidu (includius pàgi
 'powersearch-ns'                 => 'Kirca in su nòmene-logu:',
 'powersearch-redir'              => 'Lista re-indiritzamentos',
 'powersearch-field'              => 'Kirca',
+'powersearch-toggleall'          => 'Totu',
+'powersearch-togglenone'         => 'Nudda',
 
 # Quickbar
 'qbsettings'               => 'Settaggio della barra menu',
@@ -569,41 +585,44 @@ Prova a scioberai ''totu:'' pro chircare in totu su cuntènnidu (includius pàgi
 'qbsettings-floatingright' => 'Fluttuante a destra',
 
 # Preferences page
-'preferences'           => 'Preferèntzias',
-'mypreferences'         => 'Preferèntzias meas',
-'prefs-edits'           => 'Nùmeru de acontzos:',
-'prefsnologin'          => 'Non ses intrau',
-'prefsnologintext'      => 'Depis èssere <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} intrau]</span> pro scioberai is preferèntzias.',
-'changepassword'        => 'Càmbia password',
-'prefs-skin'            => 'Bisura',
-'skin-preview'          => 'Antiprima',
-'prefs-datetime'        => 'Data e ora',
-'prefs-watchlist'       => 'Watchlist',
-'prefs-resetpass'       => 'Càmbia password',
-'saveprefs'             => 'Sarva preferèntzias',
-'resetprefs'            => 'Resetta preferenze',
-'prefs-editing'         => 'Box de acontzadura',
-'rows'                  => 'Lìnias:',
-'columns'               => 'Colunnas:',
-'searchresultshead'     => 'Settaggio delle preferenze per la ricerca',
-'resultsperpage'        => 'Risultati da visualizzare per pagina',
-'contextlines'          => 'Righe di testo da mostrare per ciascun risultato',
-'contextchars'          => 'Caratteri per linea',
-'recentchangescount'    => 'Nùmeru de lìnias ne in ùrtimas mudàntzias (predefinidu):',
-'savedprefs'            => 'Le tue preferenze sono state salvate.',
-'localtime'             => 'Ora locale:',
-'timezoneoffset'        => 'Diferèntzia¹:',
-'timezoneregion-africa' => 'Àfrica',
-'timezoneregion-asia'   => 'Àsia',
-'timezoneregion-europe' => 'Europa',
-'prefs-files'           => 'Files',
-'youremail'             => 'E-mail:',
-'username'              => 'Nòmene usuàriu:',
-'uid'                   => 'ID usuàriu:',
-'yourrealname'          => 'Nòmene beru:',
-'yourlanguage'          => 'Limba:',
-'yournick'              => 'Sa firma tua:',
-'email'                 => 'E-mail',
+'preferences'              => 'Preferèntzias',
+'mypreferences'            => 'Preferèntzias meas',
+'prefs-edits'              => 'Nùmeru de acontzos:',
+'prefsnologin'             => 'Non ses intrau',
+'prefsnologintext'         => 'Depis èssere <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} intrau]</span> pro scioberai is preferèntzias.',
+'changepassword'           => 'Càmbia password',
+'prefs-skin'               => 'Bisura',
+'skin-preview'             => 'Antiprima',
+'prefs-datetime'           => 'Data e ora',
+'prefs-watchlist'          => 'Watchlist',
+'prefs-resetpass'          => 'Càmbia password',
+'saveprefs'                => 'Sarva preferèntzias',
+'resetprefs'               => 'Resetta preferenze',
+'prefs-editing'            => 'Box de acontzadura',
+'rows'                     => 'Lìnias:',
+'columns'                  => 'Colunnas:',
+'searchresultshead'        => 'Settaggio delle preferenze per la ricerca',
+'resultsperpage'           => 'Risultati da visualizzare per pagina',
+'contextlines'             => 'Righe di testo da mostrare per ciascun risultato',
+'contextchars'             => 'Caratteri per linea',
+'recentchangescount'       => 'Nùmeru de acontzos de amostare pro definidura:',
+'savedprefs'               => 'Le tue preferenze sono state salvate.',
+'localtime'                => 'Ora locale:',
+'timezoneoffset'           => 'Diferèntzia¹:',
+'timezoneregion-africa'    => 'Àfrica',
+'timezoneregion-america'   => 'Amèrica',
+'timezoneregion-asia'      => 'Àsia',
+'timezoneregion-australia' => 'Austràlia',
+'timezoneregion-europe'    => 'Europa',
+'prefs-files'              => 'Files',
+'youremail'                => 'E-mail:',
+'username'                 => 'Nòmene usuàriu:',
+'uid'                      => 'ID usuàriu:',
+'yourrealname'             => 'Nòmene beru:',
+'yourlanguage'             => 'Limba:',
+'yournick'                 => 'Sa firma tua:',
+'email'                    => 'E-mail',
+'prefs-diffs'              => 'Diferèntzias',
 
 # User rights
 'editinguser'                    => "Cambiamentu de is deretos usuàriu de s'usuàriu '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
@@ -797,8 +816,8 @@ Ogni riga contiene i link al primo ed al secondo redirect, oltre alla prima riga
 'pager-older-n'     => '{{PLURAL:$1|1 prus betzu|$1 prus betzos}}',
 
 # Book sources
-'booksources'               => 'Fontes librarias',
-'booksources-search-legend' => 'Chirca fontes librarias',
+'booksources'               => 'Fontes libràrias',
+'booksources-search-legend' => 'Kirca fontes libràrias',
 'booksources-isbn'          => 'ISBN:',
 'booksources-go'            => 'Bae',
 
@@ -866,7 +885,7 @@ Is mudàntzias de custa pàgina e de sa pàgina de cuntierras sua ant a bennere 
 'notanarticle'      => 'Custa pàgina no est unu artìculu',
 'watchlist-details' => 'Sa watchlist tua cuntènnit {{PLURAL:$1|$1 pàgina|$1 pàginas}}, chentza contare is pàginas de cuntierras.',
 'wlshowlast'        => 'Amosta is ùrtimas $1 oras $2 dies $3',
-'watchlist-options' => 'Possibilidades de sa watchlist',
+'watchlist-options' => 'Possibilidades subra sa watchlist',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Aciungendi a sa watchlist...',
@@ -886,7 +905,7 @@ Is mudàntzias de custa pàgina e de sa pàgina de cuntierras sua ant a bennere 
 'delete-legend'         => 'Fuliare',
 'confirmdeletetext'     => "Ses acanta de burrare una pàgina cun totu s'istòria sua.
 Pro pregheri, cunfirma ca est intentzioni tua faghere custu, ca connosches is conseguentzias de s'atzione tua, a ca custa est cunforme a is [[{{MediaWiki:Policy-url}}|lìnias polìtigas]].",
-'actioncomplete'        => 'Atzione cumpletada',
+'actioncomplete'        => "Acabada s'atzione",
 'deletedtext'           => 'Sa pàgina "<nowiki>$1</nowiki>" est istada fuliada.
 Càstia su log $2 pro unu registru de is ùrtimas fuliaduras.',
 'deletedarticle'        => 'at fuliadu "[[$1]]"',
@@ -924,7 +943,7 @@ Is impostatziones atuales pro sa pàgina '''$1''':",
 'protect-level-autoconfirmed' => 'Blocca is usuàrios nobos o non registrados',
 'protect-level-sysop'         => 'Isceti aministradores',
 'protect-summary-cascade'     => 'ricorsiva',
-'protect-expiring'            => 'Iscadèntzia: $1 (UTC)',
+'protect-expiring'            => 'iscadèntzia: $1 (UTC)',
 'protect-cascade'             => 'Ampara totu is pàginas inclùdias in custa (amparadura ricorsiva)',
 'protect-cantedit'            => 'Non podes cambiare is livellus de amparadura pro sa pàgina, pro ite non tenes su permissu de acontzare sa pàgina etotu.',
 'protect-expiry-options'      => '1 ora:1 hour,1 die:1 day,1 chida:1 week,2 chidas:2 weeks,1 mese:1 month,3 meses:3 months,6 meses:6 months,1 annu:1 year,infinidu:infinite',
@@ -950,12 +969,12 @@ Chi est istada creada una pàgina cun su matessi tìtulu, is arrevisiones recupe
 
 # Namespace form on various pages
 'namespace'      => 'Nòmene-logu:',
-'invert'         => 'Fùrria sa seletzioni',
+'invert'         => 'Fùrria sa seletzione',
 'blanknamespace' => '(Printzipale)',
 
 # Contributions
 'contributions'       => 'Contributziones usuàriu',
-'contributions-title' => "Contributzione de s'usuàriu pro $1",
+'contributions-title' => 'Contributziones de $1',
 'mycontris'           => 'Contributziones meas',
 'contribsub2'         => 'Pro $1 ($2)',
 'nocontribs'          => 'Nessuna modifica trovata conformemente a questi criteri.',
@@ -968,7 +987,7 @@ Chi est istada creada una pàgina cun su matessi tìtulu, is arrevisiones recupe
 'sp-contributions-talk'     => 'cuntierra',
 'sp-contributions-search'   => 'Chirca contributziones',
 'sp-contributions-username' => 'Indiritzu IP o nòmene usuàriu:',
-'sp-contributions-submit'   => 'Chirca',
+'sp-contributions-submit'   => 'Kirca',
 
 # What links here
 'whatlinkshere'            => 'Pàginas chi ligant a custa',
@@ -1129,10 +1148,10 @@ Podes castiare sa mitza sua',
 'tooltip-t-upload'                => 'Carriga file multimediale',
 'tooltip-t-specialpages'          => 'Lista de is pàginas ispetziales',
 'tooltip-t-print'                 => "Versione de custa pàgina pro s'imprenta",
-'tooltip-t-permalink'             => 'Acàpiu permanente a custa versione de sa pàgina',
+'tooltip-t-permalink'             => 'Cullegamentu permanente a custa versione de sa pàgina',
 'tooltip-ca-nstab-main'           => 'Càstia su cuntènnidu de sa pàgina',
 'tooltip-ca-nstab-user'           => 'Càstia sa pàgina usuàriu',
-'tooltip-ca-nstab-special'        => 'Custa est una pàgina ispetziale, non da podes acontzare',
+'tooltip-ca-nstab-special'        => 'Custa est una pàgina ispetziale, non dda podes acontzare',
 'tooltip-ca-nstab-project'        => 'Càstia sa pàgina de servìtziu',
 'tooltip-ca-nstab-image'          => 'Càstia sa pàgina de su file',
 'tooltip-ca-nstab-template'       => 'Càstia su template',
@@ -1222,6 +1241,7 @@ Is acàpius chi sighint in sa matessi lìnia sunt cunsideraus comente eccetzione
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'totu',
+'imagelistall'     => 'totu',
 'watchlistall2'    => 'totu',
 'namespacesall'    => 'totu',
 'monthsall'        => 'totu',
@@ -1242,10 +1262,14 @@ Is acàpius chi sighint in sa matessi lìnia sunt cunsideraus comente eccetzione
 'percent'             => '$1%',
 
 # Multipage image navigation
-'imgmultigo'   => 'Bae!',
-'imgmultigoto' => 'Bae a sa pàgina $1',
+'imgmultipageprev' => '← pàgina in antis',
+'imgmultipagenext' => 'pàgina in fatu →',
+'imgmultigo'       => 'Bae!',
+'imgmultigoto'     => 'Bae a sa pàgina $1',
 
 # Table pager
+'table_pager_first'        => 'Primu pàgina',
+'table_pager_last'         => 'Ùrtima pàgina',
 'table_pager_limit_submit' => 'Bae',
 
 # Auto-summaries
@@ -1271,13 +1295,20 @@ Is acàpius chi sighint in sa matessi lìnia sunt cunsideraus comente eccetzione
 
 # Special:Version
 'version'                  => 'Versione',
+'version-specialpages'     => 'Pàginas ispetziales',
 'version-version'          => '(Versione $1)',
 'version-software-version' => 'Versione',
 
 # Special:FilePath
 'filepath-page' => 'Nòmene de su file:',
 
+# Special:FileDuplicateSearch
+'fileduplicatesearch-submit' => 'Kirca',
+
 # Special:SpecialPages
 'specialpages' => 'Pàginas ispetziales',
+
+# HTML forms
+'htmlform-selectorother-other' => 'Àteru',
 
 );

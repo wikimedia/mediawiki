@@ -988,6 +988,9 @@ eller så försöker du gömma den senaste versionen av sidan.',
 'revdelete-nologtype-text'    => 'Du har inte specificerat en loggtyp att utföra denna handling på.',
 'revdelete-nologid-title'     => 'Ogiltig logpost',
 'revdelete-nologid-text'      => 'Du har antingen inte specificerat en loggpost att utföra denna funktion på eller så existerar inte den specificerade posten.',
+'revdelete-no-file'           => 'Den specificerade filen finns inte.',
+'revdelete-show-file-confirm' => 'Är du säker på att du vill visa en raderad version av filen "<nowiki>$1</nowiki>" från den $2 klockan $3?',
+'revdelete-show-file-submit'  => 'Ja',
 'revdelete-selected'          => "'''{{PLURAL:$2|Vald version|Valda versioner}} av [[:$1]]:'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Vald loggåtgärd|Valda loggåtgärder}}:'''",
 'revdelete-text'              => "'''Borttagna versioner och åtgärder kommer fortfarande att synas i historiken och i loggar, men deras innehåll kommer ej att vara tillgängligt för allmänheten.'''
@@ -1011,8 +1014,11 @@ Vänligen bekräfta att detta är vad du avser göra, att du förstår konsekven
 'revdelete-logentry'          => 'ändrade synlighet för versioner av [[$1]]',
 'logdelete-logentry'          => 'ändrade synlighet för åtgärder i [[$1]]',
 'revdelete-success'           => "'''Versionens synlighet har ändrats.'''",
-'revdelete-failure'           => "'''Synlighet för sidversioner kunde inte ställas in.'''",
+'revdelete-failure'           => "'''Synlighet för sidversioner kunde inte ställas in.'''
+$1",
 'logdelete-success'           => "'''Loggåtgärdens synlighet har ändrats.'''",
+'logdelete-failure'           => "'''Loggens synlighet kunde inte ställas in:'''
+$1",
 'revdel-restore'              => 'Ändra synlighet',
 'pagehist'                    => 'Sidhistorik',
 'deletedhist'                 => 'Raderad historik',
@@ -1640,6 +1646,7 @@ Genom att klicka på rubrikerna för kolumnerna kan man ändra sorteringsordning
 'filehist-dimensions'       => 'Dimensioner',
 'filehist-filesize'         => 'Filstorlek',
 'filehist-comment'          => 'Kommentar',
+'filehist-missing'          => 'Fil saknas',
 'imagelinks'                => 'Fillänkar',
 'linkstoimage'              => 'Följande {{PLURAL:$1|sida|$1 sidor}} länkar till den här filen:',
 'linkstoimage-more'         => 'Mer är {{PLURAL:$1|en sida|$1 sidor}} länkar till den här filen.
