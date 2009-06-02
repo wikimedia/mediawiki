@@ -69,12 +69,12 @@ $dateFormats = array(
 	'minguo fulltext both'   => '中華民國xoY年n月j日 (D) H:i',
 
 	'CNS 7648 time'          => 'H:i',
-	'CNS 7648 date'          => 'R.O.C. xoY-m-d (l)',
-	'CNS 7648 both'          => 'R.O.C. xoY-m-d (D) H:i',
+	'CNS 7648 date'          => '"R.O.C." xoY-m-d (l)',
+	'CNS 7648 both'          => '"R.O.C." xoY-m-d (D) H:i',
 
 	'CNS 7648 compact time'  => 'H:i',
-	'CNS 7648 compact date'  => 'ROC xoY-m-d (l)',
-	'CNS 7648 compact both'  => 'ROC xoY-m-d (D) H:i',
+	'CNS 7648 compact date'  => '"ROC" xoY-m-d (l)',
+	'CNS 7648 compact both'  => '"ROC" xoY-m-d (D) H:i',
 );
 
 $messages = array(
