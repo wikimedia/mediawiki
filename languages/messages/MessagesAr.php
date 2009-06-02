@@ -168,6 +168,7 @@ $magicWords = array(
 	'noeditsection'         => array( '0', '__لاتحريرقسم__', '__NOEDITSECTION__' ),
 	'noheader'              => array( '0', '__لاعنوان__', '__NOHEADER__' ),
 	'currentmonth'          => array( '1', 'شهر_حالي', 'شهر', 'CURRENTMONTH', 'CURRENTMONTH2' ),
+	'currentmonth1'         => array( '1', 'شهر_حالي1', 'CURRENTMONTH1' ),
 	'currentmonthname'      => array( '1', 'اسم_الشهر_الحالي', 'اسم_شهر_حالي', 'اسم_شهر', 'CURRENTMONTHNAME' ),
 	'currentmonthnamegen'   => array( '1', 'اسم_الشهر_الحالي_المولد', 'اسم_شهر_حالي_مولد', 'CURRENTMONTHNAMEGEN' ),
 	'currentmonthabbrev'    => array( '1', 'اختصار_الشهر_الحالي', 'اختصار_شهر_حالي', 'CURRENTMONTHABBREV' ),
@@ -178,6 +179,7 @@ $magicWords = array(
 	'currenttime'           => array( '1', 'وقت_حالي', 'وقت', 'CURRENTTIME' ),
 	'currenthour'           => array( '1', 'ساعة_حالية', 'ساعة', 'CURRENTHOUR' ),
 	'localmonth'            => array( '1', 'شهر_محلي', 'LOCALMONTH', 'LOCALMONTH2' ),
+	'localmonth1'           => array( '1', 'شهر_محلي1', 'LOCALMONTH1' ),
 	'localmonthname'        => array( '1', 'اسم_الشهر_المحلي', 'اسم_شهر_محلي', 'LOCALMONTHNAME' ),
 	'localmonthnamegen'     => array( '1', 'اسم_الشهر_المحلي_المولد', 'اسم_شهر_محلي_مولد', 'LOCALMONTHNAMEGEN' ),
 	'localmonthabbrev'      => array( '1', 'اختصار_الشهر_المحلي', 'اختصار_شهر_محلي', 'LOCALMONTHABBREV' ),
@@ -295,6 +297,7 @@ $magicWords = array(
 	'index'                 => array( '1', '__فهرسة__', '__INDEX__' ),
 	'noindex'               => array( '1', '__لافهرسة__', '__NOINDEX__' ),
 	'numberingroup'         => array( '1', 'عدد_في_المجموعة', 'عدد_في_مجموعة', 'NUMBERINGROUP', 'NUMINGROUP' ),
+	'numberofcontribs'      => array( '1', 'عدد_المساهمات', 'مساهمات_المستخدم', 'NUMBEROFCONTRIBS', 'USERCONTRIBS', 'NUMOFCONTRIBS' ),
 	'staticredirect'        => array( '1', '__تحويلة_إستاتيكية__', '__تحويلة_ساكنة__', '__STATICREDIRECT__' ),
 	'protectionlevel'       => array( '1', 'مستوى_الحماية', 'مستوى_حماية', 'PROTECTIONLEVEL' ),
 	'formatdate'            => array( '0', 'تهيئة_التاريخ', 'تهيئة_تاريخ', 'formatdate', 'dateformat' ),
@@ -396,7 +399,7 @@ $specialPageAliases = array(
  * the first group, and the remainder of the string as the second group. Modified to match
  * Arabic trails too.
  */
-$linkTrail = '/^([a-z\x{0600}-\x{06FF}]+)(.*)$/suD';
+$linkTrail = '/^([a-zء-ي]+)(.*)$/sDu';
 
 $imageFiles = array(
 	'button-bold'     => 'ar/button_bold.png',
