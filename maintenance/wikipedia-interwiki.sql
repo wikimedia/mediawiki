@@ -21,6 +21,7 @@ REPLACE INTO /*$wgDBprefix*/interwiki (iw_prefix,iw_url,iw_local) VALUES
 ('ang','http://ang.wikipedia.org/wiki/$1',1),
 ('ar','http://ar.wikipedia.org/wiki/$1',1),
 ('arc','http://arc.wikipedia.org/wiki/$1',1),
+('arz','http://arz.wikipedia.org/wiki/$1',1),
 ('as','http://as.wikipedia.org/wiki/$1',1),
 ('ast','http://ast.wikipedia.org/wiki/$1',1),
 ('av','http://av.wikipedia.org/wiki/$1',1),
