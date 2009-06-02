@@ -7,15 +7,8 @@
 class WikiMap {
 	static function getWiki( $wikiID ) {
 		global $wgConf, $IP;
-		static $initialiseSettingsDone = false;
-
-		// This is a damn dirty hack
-		if ( !$initialiseSettingsDone ) {
-			$initialiseSettingsDone = true;
-			if( file_exists( "$IP/InitialiseSettings.php" ) ) {
-				require_once "$IP/InitialiseSettings.php";
-			}
-		}
+		
+		$wgConf->loadFullData();
 
 		list( $major, $minor ) = $wgConf->siteFromDB( $wikiID );
 		if( isset( $major ) ) {
