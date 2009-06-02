@@ -170,11 +170,13 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		$qc = $this->getLogQueryCond();
 		# Show relevant lines from the deletion log
 		$wgOut->addHTML( "<h2>" . htmlspecialchars( LogPage::logName( 'delete' ) ) . "</h2>\n" );
-		LogEventsList::showLogExtract( $wgOut, 'delete', $this->targetObj->getPrefixedText(), '', 25, $qc );
+		LogEventsList::showLogExtract( $wgOut, 'delete',
+			$this->targetObj->getPrefixedText(), '', 25, $qc );
 		# Show relevant lines from the suppression log
 		if( $wgUser->isAllowed( 'suppressionlog' ) ) {
 			$wgOut->addHTML( "<h2>" . htmlspecialchars( LogPage::logName( 'suppress' ) ) . "</h2>\n" );
-			LogEventsList::showLogExtract( $wgOut, 'suppress', $this->targetObj->getPrefixedText(), '', 25, $qc );
+			LogEventsList::showLogExtract( $wgOut, 'suppress',
+				$this->targetObj->getPrefixedText(), '', 25, $qc );
 		}
 	}
 
@@ -293,7 +295,8 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		if ( $this->typeName == 'logging' ) {
 			$wgOut->addWikiMsg( 'logdelete-selected', $wgLang->formatNum( count($this->ids) ) );
 		} else {
-			$wgOut->addWikiMsg( 'revdelete-selected', $this->targetObj->getPrefixedText(), count( $this->ids ) );
+			$wgOut->addWikiMsg( 'revdelete-selected',
+				$this->targetObj->getPrefixedText(), count( $this->ids ) );
 		}
 
 		$bitfields = 0;
@@ -734,7 +737,8 @@ abstract class RevDel_List {
 		$logParams = $this->getLogParams( $params );
 		// Actually add the deletion log entry
 		$log = new LogPage( $logType );
-		$logid = $log->addEntry( $this->getLogAction(), $params['title'], $params['comment'], $logParams );
+		$logid = $log->addEntry( $this->getLogAction(), $params['title'],
+			$params['comment'], $logParams );
 		// Allow for easy searching of deletion log items for revision/log items
 		$log->addRelations( $field, $params['ids'], $logid );
 	}
@@ -1032,7 +1036,8 @@ class RevDel_RevisionItem extends RevDel_Item {
 			),
 			array(
 				'rc_this_oldid' => $this->revision->getId(), // condition
-				'rc_timestamp' => $dbw->timestamp( $this->revision->getTimestamp() ), // non-unique index
+				// non-unique timestamp index
+				'rc_timestamp' => $dbw->timestamp( $this->revision->getTimestamp() ),
 			),
 			__METHOD__
 		);
