@@ -7309,6 +7309,17 @@ Spacing of numbers in formatted dates
 </p>
 !! end
 
+!! test
+Spacing of numbers in formatted dates (linked)
+!! config
+wgUseDynamicDates=true
+!! input
+[[January 15]]
+!! result
+<p><span class="mw-formatted-date" title="01-15"><a href="/index.php?title=January_15&amp;action=edit&amp;redlink=1" class="new" title="January 15 (page does not exist)">January 15</a></span>
+</p>
+!! end
+
 #
 #
 #
