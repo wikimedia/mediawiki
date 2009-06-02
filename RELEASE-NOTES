@@ -183,6 +183,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 19017) TOC level calculation error in an odd case
 * (bug 18999) CSS update for RTL interwiki links
 * (bug 18925) history.js removes class names of list elements on initialization
+* Multiple whitespace in TOC anchors is now stripped, for consistency with the
+  link from the edit comment
 
 == API changes in 1.16 ==
 

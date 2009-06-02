@@ -3543,6 +3543,7 @@ class Parser
 
 			# For the anchor, strip out HTML-y stuff period
 			$safeHeadline = preg_replace( '/<.*?'.'>/', '', $safeHeadline );
+			$safeHeadline = preg_replace( '/[ _]+/', ' ', $safeHeadline );
 			$safeHeadline = trim( $safeHeadline );
 
 			# Save headline for section edit hint before it's escaped
