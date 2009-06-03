@@ -240,7 +240,6 @@ $magicWords = array(
 	'staticredirect'        => array( '1', '__СТАТИЧЕСКОЕ_ПЕРЕНАПРАВЛЕНИЕ__', '__STATICREDIRECT__' ),
 	'protectionlevel'       => array( '1', 'УРОВЕНЬ_ЗАЩИТЫ', 'PROTECTIONLEVEL' ),
 	'formatdate'            => array( '0', 'форматдаты', 'formatdate', 'dateformat' ),
-	'groupconvert'          => array( '0', 'ГРУППОВОЙ_КОНВЕРТ:', 'ГК:', 'GROUPCONVERT:', 'GC:' ),
 );
 
 $imageFiles = array(

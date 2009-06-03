@@ -204,7 +204,6 @@ $magicWords = array(
 	'staticredirect'        => array( '1', '__STATISCHEDOORVERWIJZING__', '__STATISCHEREDIRECT__', '__STATICREDIRECT__' ),
 	'protectionlevel'       => array( '1', 'BEVEILIGINGSNIVEAU', 'PROTECTIONLEVEL' ),
 	'formatdate'            => array( '0', 'datumopmaak', 'formatdate', 'dateformat' ),
-	'groupconvert'          => array( '0', 'GROEPCONVERSIE:', 'GROUPCONVERT:', 'GC:' ),
 );
 
 $specialPageAliases = array(
