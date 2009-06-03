@@ -1130,7 +1130,7 @@ Se quere, pode [[:\$1|creala]].",
 'search-section'                   => '(sección $1)',
 'search-suggest'                   => 'Quizais quixo dicir: $1',
 'search-interwiki-caption'         => 'Proxectos irmáns',
-'search-interwiki-default'         => '$1 resultados:',
+'search-interwiki-default'         => 'Resultados en $1:',
 'search-interwiki-more'            => '(máis)',
 'search-mwsuggest-enabled'         => 'con suxestións',
 'search-mwsuggest-disabled'        => 'sen suxestións',
@@ -2138,7 +2138,7 @@ Comprobe o [[Special:Log/delete|rexistro de borrados]] para ver as entradas rece
 'undelete-error-long'          => 'Atopáronse erros ao desfacer a eliminación do ficheiro:
 
 $1',
-'undelete-show-file-confirm'   => 'Está seguro de que desexa ver unha versión borrada do ficheiro "<nowiki>$1</nowiki>" con data de $2 ás $3?',
+'undelete-show-file-confirm'   => 'Está seguro de querer ver unha revisión borrada do ficheiro "<nowiki>$1</nowiki>" do día $2 ás $3?',
 'undelete-show-file-submit'    => 'Si',
 
 # Namespace form on various pages

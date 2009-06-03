@@ -645,7 +645,7 @@ Volyéd tornar èprovar dens doux-três menutes.',
 'protectedinterface'   => 'Ceta pâge fât de tèxto d’entèrface por la programeria et est protègiê por èvitar los abus.',
 'editinginterface'     => "'''Atencion :''' vos éte aprés changiér una pâge utilisâ por fâre lo tèxto d’entèrface por la programeria.
 Los changements sè cognetront, d’aprés lo contèxto, sur totes ou ben quârques pâges visibles per los ôtros utilisators.
-Por les traduccions, nos vos envitens a utilisar lo seto [http://translatewiki.net/wiki/Main_Page?setlang=frp translatewiki.net], lo projèt de localisacion g·ènèrica de MediaWiki.",
+Por les traduccions, nos vos envitens a utilisar lo seto [http://translatewiki.net/wiki/Main_Page?setlang=frp translatewiki.net], lo projèt de localisacion de MediaWiki.",
 'sqlhidden'            => '(Requéta SQL cachiê)',
 'cascadeprotected'     => 'Orendrêt, cela pâge est protègiê perce qu’el est encllua dens {{PLURAL:$1|ceta pâge|cetes pâges}}, {{PLURAL:$1|qu’at étâ protègiê|qu’ont étâ protègiês}} avouéc lo chouèx « protèccion en cascâda » activâ :
 $2',
@@ -923,10 +923,10 @@ Vos nos assurâd asse-ben que vos éd cen ècrit vos-mémo, ou ben que vos l’�
 Se vos dèsirâd pas que voutros ècrits seyont changiês et distribuâs a volontât, los volyéd pas sometre ique.<br />
 Vos nos assurâd asse-ben que vos éd cen ècrit vos-mémo, ou ben que vos l’éd copiyê d’una sôrsa que vint du domêno publico, ou ben d’una ressôrsa abada (vêde $1 por més de dètalys).<br />
 '''UTILISÂD PAS D’ÔVRES DESOT DRÊT D’ÔTOR SEN ÔTORISACION ÈXPRÈSSA !'''",
-'longpagewarning'                  => "'''ATENCION :''' ceta pâge at una longior de $1 ko ;
-quârques navigators g·èront mâl lo changement de les pâges aprochient ou ben dèpassent 32 ko.
+'longpagewarning'                  => "'''ATENCION :''' ceta pâge at una longior de $1 Kio ;
+quârques navigators g·èront mâl lo changement de les pâges aprochient ou ben dèpassent 32 Kio.
 Pôt-étre devriâd-vos divisar la pâge en sèccions ples petiôtes.",
-'longpageerror'                    => "'''ÈRROR : lo tèxto que vos éd somês fât $1 ko, cen que dèpâsse la limita fixâ a $2 ko.'''
+'longpageerror'                    => "'''ÈRROR : lo tèxto que vos éd somês fât $1 Kio, cen que dèpâsse la limita fixâ a $2 Kio.'''
 Lo tèxto pôt pas étre sôvâ.",
 'readonlywarning'                  => "'''ATENCION : la bâsa de balyês at étâ vèrrolyê por mantegnence, vos porréd vêr pas sôvar voutros changements d’abôrd.'''
 Vos pouede copiyér lo tèxto dens un fichiér tèxto et pués lo sôvar por ples târd.
@@ -2683,19 +2683,28 @@ Portant, vos en pouede vêre lo tèxto sôrsa.',
 Pèrmèt de rètablir la vèrsion devant et pués d’apondre una rêson dens la bouèta de rèsumâ.',
 
 # Stylesheets
-'common.css'      => '/* Lo code CSS placiê ique serat aplicâ a tôs los habelyâjos. */',
-'standard.css'    => '/* Lo code CSS placiê ique afècterat los utilisators de l’habelyâjo « Estandârd ». */',
-'nostalgia.css'   => '/* Lo code CSS placiê ique afècterat los utilisators de l’habelyâjo « Cafârd ». */',
-'cologneblue.css' => '/* Lo code CSS placiê ique afècterat los utilisators de l’habelyâjo « Blu de Cologne ». */',
-'monobook.css'    => '/* Lo code CSS placiê ique afècterat los utilisators de l’habelyâjo « MonoBook ». */',
-'myskin.css'      => '/* Lo code CSS placiê ique afècterat los utilisators de l’habelyâjo « MonHabelyâjo ». */',
-'chick.css'       => '/* Lo code CSS placiê ique afècterat los utilisators de l’habelyâjo « Pugin ». */',
-'simple.css'      => '/* Lo code CSS placiê ique afècterat los utilisators de l’habelyâjo « Simplo ». */',
-'modern.css'      => '/* Lo code CSS placiê ique afècterat los utilisators de l’habelyâjo « Modèrno ». */',
+'common.css'      => '/* Lo code CSS betâ ique serat aplicâ a tôs los habelyâjos. */',
+'standard.css'    => '/* Lo code CSS betâ ique afècterat los utilisators de l’habelyâjo « Estandârd ». */',
+'nostalgia.css'   => '/* Lo code CSS betâ ique afècterat los utilisators de l’habelyâjo « Cafârd ». */',
+'cologneblue.css' => '/* Lo code CSS betâ ique afècterat los utilisators de l’habelyâjo « Blu de Cologne ». */',
+'monobook.css'    => '/* Lo code CSS betâ ique afècterat los utilisators de l’habelyâjo « MonoBook ». */',
+'myskin.css'      => '/* Lo code CSS betâ ique afècterat los utilisators de l’habelyâjo « MonHabelyâjo ». */',
+'chick.css'       => '/* Lo code CSS betâ ique afècterat los utilisators de l’habelyâjo « Pugin ». */',
+'simple.css'      => '/* Lo code CSS betâ ique afècterat los utilisators de l’habelyâjo « Simplo ». */',
+'modern.css'      => '/* Lo code CSS betâ ique afècterat los utilisators de l’habelyâjo « Modèrno ». */',
+'print.css'       => '/* Lo code CSS betâ ique afècterat les emprèssions. */',
+'handheld.css'    => '/* Lo code CSS betâ ique afècterat los aparèlys mobilos d’aprés l’habelyâjo configurâ dedens « $wgHandheldStyle ». */',
 
 # Scripts
-'common.js'   => '/* Quint que seye lo JavaScript placiê ique serat chargiê por tôs los utilisators et por châque pâge accèdâ. */',
-'monobook.js' => '/* Dèplaciê vers [[MediaWiki:Common.js]]. */',
+'common.js'      => '/* Tot code JavaScript betâ ique serat chargiê avouéc châque pâge accèdâ per quint que seye utilisator. */',
+'standard.js'    => '/* Tot code JavaScript betâ ique serat chargiê avouéc les pâges accèdâs per ren que los utilisators de l’habelyâjo « Estandârd ». */',
+'nostalgia.js'   => '/* Tot code JavaScript betâ ique serat chargiê avouéc les pâges accèdâs per ren que los utilisators de l’habelyâjo « Cafârd ». */',
+'cologneblue.js' => '/* Tot code JavaScript betâ ique serat chargiê avouéc les pâges accèdâs per ren que los utilisators de l’habelyâjo « Blu de Cologne ». */',
+'monobook.js'    => '/* Tot code JavaScript betâ ique serat chargiê avouéc les pâges accèdâs per ren que los utilisators de l’habelyâjo « MonoBook ». */',
+'myskin.js'      => '/* Tot code JavaScript betâ ique serat chargiê avouéc les pâges accèdâs per ren que los utilisators de l’habelyâjo « MonHabelyâjo ». */',
+'chick.js'       => '/* Tot code JavaScript betâ ique serat chargiê avouéc les pâges accèdâs per ren que los utilisators de l’habelyâjo « Pugin ». */',
+'simple.js'      => '/* Tot code JavaScript betâ ique serat chargiê avouéc les pâges accèdâs per ren que los utilisators de l’habelyâjo « Simplo ». */',
+'modern.js'      => '/* Tot code JavaScript betâ ique serat chargiê avouéc les pâges accèdâs per ren que los utilisators de l’habelyâjo « Modèrno ». */',
 
 # Metadata
 'nodublincore'      => 'Les mètabalyês « Dublin Core RDF » sont dèsactivâs sur ceti sèrvor.',
@@ -2984,6 +2993,7 @@ Los ôtros champs seront cachiês per dèfôt.
 'exif-colorspace-ffff.h' => 'Pas calibrâ',
 
 'exif-componentsconfiguration-0' => 'Ègziste pas',
+'exif-componentsconfiguration-5' => 'V',
 
 'exif-exposureprogram-0' => 'Pas dèfeni',
 'exif-exposureprogram-1' => 'Manuèl',
@@ -3027,9 +3037,9 @@ Los ôtros champs seront cachiês per dèfôt.
 # Flash modes
 'exif-flash-fired-0'    => 'Èludo pas dècllenchiê',
 'exif-flash-fired-1'    => 'Èludo dècllenchiê',
-'exif-flash-return-0'   => 'nion stroboscope retorne una fonccion de dètèccion',
-'exif-flash-return-2'   => 'lo stroboscope retorne una lumiére pas dècelâ',
-'exif-flash-return-3'   => 'lo stroboscope retorne una lumiére dècelâ',
+'exif-flash-return-0'   => 'nion stroboscopo retorne una fonccion de dètèccion',
+'exif-flash-return-2'   => 'lo stroboscopo retorne una lumiére pas dècelâ',
+'exif-flash-return-3'   => 'lo stroboscopo retorne una lumiére dècelâ',
 'exif-flash-mode-1'     => 'lumiére de l’èludo oblegatouèra',
 'exif-flash-mode-2'     => 'suprèssion de l’èludo oblegatouèra',
 'exif-flash-mode-3'     => 'fôrma ôtomatica',
@@ -3199,6 +3209,12 @@ Volyéd confirmar que vos dèsirâd franc refâre cela pâge.",
 'confirm-purge-top'    => 'Voléd-vos rafrèchir ceta pâge (purgiér lo cache) ?',
 'confirm-purge-bottom' => 'Purgiér una pâge èface lo cache et pués fôrce la dèrriére vèrsion a étre montrâ.',
 
+# Separators for various lists, etc.
+'semicolon-separator' => '&nbsp;;&#32;',
+'colon-separator'     => '&nbsp;:&#32;',
+'autocomment-prefix'  => '&#32;–&#32;',
+'percent'             => '$1&nbsp;%',
+
 # Multipage image navigation
 'imgmultipageprev' => '← pâge devant',
 'imgmultipagenext' => 'pâge aprés →',
@@ -3224,9 +3240,9 @@ Volyéd confirmar que vos dèsirâd franc refâre cela pâge.",
 
 # Size units
 'size-bytes'     => '$1 o',
-'size-kilobytes' => '$1 ko',
-'size-megabytes' => '$1 Mo',
-'size-gigabytes' => '$1 Go',
+'size-kilobytes' => '$1 Kio',
+'size-megabytes' => '$1 Mio',
+'size-gigabytes' => '$1 Gio',
 
 # Live preview
 'livepreview-loading' => 'Chargement...',

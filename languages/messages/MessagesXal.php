@@ -233,6 +233,7 @@ $messages = array(
 
 # Special:AllPages
 'allpages'       => 'Цуг халхс',
+'allarticles'    => 'Цуг халхс',
 'allpagessubmit' => 'Орх',
 
 # Special:LinkSearch

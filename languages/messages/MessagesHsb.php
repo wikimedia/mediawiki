@@ -1318,7 +1318,7 @@ Smě mjenje hač $1 {{PLURAL:$1|znamješko|znamješce|znamješka|znamješkow}} d
 'rc_categories'                     => 'Jenož kategorije (dźělene z "|")',
 'rc_categories_any'                 => 'wšě',
 'rc-change-size'                    => '$1 {{PLURAL:$1|bajt|bajtaj|bajty|bajtow}}',
-'newsectionsummary'                 => 'nowy wotrězk: /* $1 */',
+'newsectionsummary'                 => 'Nowy wotrězk: /* $1 */',
 'rc-enhanced-expand'                => 'Podrobnosće pokazać (wužaduje JavaScript)',
 'rc-enhanced-hide'                  => 'Podrobnosće schować',
 
