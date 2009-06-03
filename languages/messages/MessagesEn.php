@@ -3689,7 +3689,7 @@ Please confirm that you really want to recreate this page.",
 'autocomment-prefix'  => '-&#32;', # only translate this message to other languages if you have to change it
 'pipe-separator'      => '&#32;|&#32;', # only translate this message to other languages if you have to change it
 'word-separator'      => '&#32;', # only translate this message to other languages if you have to change it
-'ellipsis'            => '…', # only translate this message to other languages if you have to change it
+'ellipsis'            => '...', # only translate this message to other languages if you have to change it
 'percent'             => '$1%', # only translate this message to other languages if you have to change it
 
 # Multipage image navigation
@@ -3746,8 +3746,8 @@ Please confirm that you really want to recreate this page.",
 'size-gigabytes' => '$1 GB', # only translate this message to other languages if you have to change it
 
 # Live preview
-'livepreview-loading' => 'Loading…',
-'livepreview-ready'   => 'Loading… Ready!',
+'livepreview-loading' => 'Loading...',
+'livepreview-ready'   => 'Loading... Ready!',
 'livepreview-failed'  => 'Live preview failed! Try normal preview.',
 'livepreview-error'   => 'Failed to connect: $1 "$2".
 Try normal preview.',
