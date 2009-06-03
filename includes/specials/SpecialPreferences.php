@@ -65,6 +65,7 @@ class SpecialPreferences extends SpecialPage {
 	static function submitReset( $formData ) {
 		global $wgUser, $wgOut;
 		$wgUser->resetOptions();
+		$wgUser->saveSettings();
 
 		$url = SpecialPage::getTitleFor( 'Preferences' )->getFullURL( 'success' );
 
