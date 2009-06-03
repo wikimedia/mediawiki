@@ -202,6 +202,7 @@ class CoreParserFunctions {
 	}
 
 	static function gender( $parser, $user ) {
+		wfProfileIn( __METHOD__ );
 		$forms = array_slice( func_get_args(), 2);
 
 		// default
@@ -221,7 +222,9 @@ class CoreParserFunctions {
 			global $wgUser;
 			$gender = $wgUser->getOption( 'gender' );
 		}
-		return $parser->getFunctionLang()->gender( $gender, $forms );
+		$ret = $parser->getFunctionLang()->gender( $gender, $forms );
+		wfProfileOut( __METHOD__ );
+		return $ret;
 	}
 	static function plural( $parser, $text = '') {
 		$forms = array_slice( func_get_args(), 2);
