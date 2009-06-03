@@ -430,7 +430,7 @@ class LanguageConverter {
 
 		/* disable entire conversion engine if the user had been disabled it */
 		$variantConv = $wgUser->getOption( 'variantconversion' );
-		if ( ( $wgEnableVariants == true ) && ( $variantConv == 0 ) ) { 
+		if ( ( $wgEnableVariants == true ) && ( $variantConv === 0 ) ) { 
 			$wgEnableVariants = false;
 		}
 
