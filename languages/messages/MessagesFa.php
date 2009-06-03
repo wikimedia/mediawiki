@@ -375,7 +375,6 @@ $magicWords = array(
 	'staticredirect'        => array( '1', '__تغییرمسیرثابت__', '__STATICREDIRECT__' ),
 	'protectionlevel'       => array( '1', 'سطح‌حغاطت', 'سطح_حفاظت', 'PROTECTIONLEVEL' ),
 	'formatdate'            => array( '0', 'آرایش‌تاریخ', 'آرایش_تاریخ', 'formatdate', 'dateformat' ),
-	'groupconvert'          => array( '0', 'تبدیل‌گروهی:', 'تبدیل_گروهی:', 'GROUPCONVERT:', 'GC:' ),
 );
 
 # Harakat are intentionally not included in the linkTrail. Their addition should
