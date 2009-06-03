@@ -752,9 +752,13 @@ Please report at [[Support]] if you are unable to properly translate this messag
 It is the page title of [[Special:RevisionDelete]].',
 'revdelete-nooldid-title'     => '{{RevisionDelete}}',
 'revdelete-nooldid-text'      => '{{RevisionDelete}}',
-'revdelete-show-file-confirm' => '* $1 is a file name
-* $2 is a date
-* $3 is a time',
+'revdelete-show-file-confirm' => 'A confirmation message shown on Special:Revisiondelete when the request does not contain a valid token (e.g. when a user clicks a link received in mail).
+
+* <code>$1</code> is a file name
+* <code>$2</code> is a date
+* <code>$3</code> is a time
+
+{{identical|Are you sure you want to view the deleted revision of the file...}}',
 'revdelete-show-file-submit'  => 'Reply to {{msg-mw|Revdelete-show-file-confirm}}.
 
 {{Identical|Yes}}',
@@ -950,7 +954,7 @@ $1 is the relevance of this result in per cent.
 'powersearch-ns'                 => 'Used in the extended search form at [[Special:Search]]',
 'powersearch-redir'              => 'Used in the extended search form at [[Special:Search]]',
 'powersearch-field'              => 'Used in the extended search form at [[Special:Search]]',
-'powersearch-togglelabel'        => 'Used in Advanced search: http://translatewiki.net/w/i.php?title=Special:Search&advanced=1',
+'powersearch-togglelabel'        => 'Used in [http://translatewiki.net/w/i.php?title=Special:Search&advanced=1 Advanced search]. Synomym: "select" as verb.',
 'powersearch-toggleall'          => '"All" refers to namespaces. It is used in Advanced search: http://translatewiki.net/w/i.php?title=Special:Search&advanced=1
 {{Identical|All}}',
 'powersearch-togglenone'         => '"None" refers to namespaces. It is used in Advanced search: http://translatewiki.net/w/i.php?title=Special:Search&advanced=1
@@ -1947,7 +1951,9 @@ Shown as subtitle of the protection form. $1 is the title of the page to be (un)
 'undelete-show-file-confirm' => 'A confirmation message shown on Special:Undelete when the request does not contain a valid token (e.g. when a user clicks a link received in mail).
 * <code>$1</code> is the name of the file being undeleted.
 * <code>$2</code> is the date of the displayed revision.
-* <code>$3</code> is the time of the displayed revision.',
+* <code>$3</code> is the time of the displayed revision.
+
+{{identical|Are you sure you want to view the deleted revision of the file...}}',
 'undelete-show-file-submit'  => '{{Identical|Yes}}',
 
 # Namespace form on various pages

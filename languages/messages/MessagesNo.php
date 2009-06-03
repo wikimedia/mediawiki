@@ -905,6 +905,9 @@ Som administrator kan du fortsatt [$1 se forskjellen] om du ønsker å fortsette
 'revdelete-nologtype-text'    => 'Du har ikke spesifisert en loggtype å utføre denne handlingen på.',
 'revdelete-nologid-title'     => 'Ugyldig loggelement',
 'revdelete-nologid-text'      => 'Du har enten ikke spesifisert ett loggelement å utføre på denne funksjonen, eller spesifisert element finnes ikke.',
+'revdelete-no-file'           => 'Den spesifiserte filen finnes ikke.',
+'revdelete-show-file-confirm' => 'Er du sikker på at du ønsker å vise en slettet versjon av filen «<nowiki>$1</nowiki>» fra den $2 klokken $3?',
+'revdelete-show-file-submit'  => 'Ja',
 'revdelete-selected'          => "'''{{PLURAL:$2|Valgt revisjon|Valgte revisjoner}} av [[:$1]]:'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Valgt loggoppføring|Valgte loggoppføringer}}:'''",
 'revdelete-text'              => "'''Slettede versjoner og oppføringer vil fortsatt vises i sidehistorikken og loggene, men deler av innholdet vil ikke lenger bli offentliggjort.'''
@@ -928,8 +931,11 @@ Vennligst bekreft at du vil gjøre dette, og at du skjønner følgene, og at du 
 'revdelete-logentry'          => 'endre revisjonssynlighet for [[$1]]',
 'logdelete-logentry'          => 'endre hendelsessynlighet for [[$1]]',
 'revdelete-success'           => "'''Revisjonssynlighet satt.'''",
-'revdelete-failure'           => "'''Kunne ikke endre versjonssynligheten.'''",
+'revdelete-failure'           => "'''Kunne ikke endre versjonssynligheten:'''
+$1",
 'logdelete-success'           => "'''Hendelsessynlighet satt.'''",
+'logdelete-failure'           => "'''Loggens synlighet kunne ikke bli stilt inn:'''
+$1",
 'revdel-restore'              => 'Ender synlighet',
 'pagehist'                    => 'Sidehistorikk',
 'deletedhist'                 => 'Slettet historikk',

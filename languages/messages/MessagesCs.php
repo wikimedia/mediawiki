@@ -1005,6 +1005,9 @@ Jako správce si však můžete [$1 tento rozdíl prohlédnout], pokud chcete.",
 'revdelete-nologtype-text'    => '{{GENDER:|Neurčil|Neurčila|Neurčili}} jste knihu protokolovacích záznamů, na které se má operace provést.',
 'revdelete-nologid-title'     => 'Neplatný protokolovací záznam',
 'revdelete-nologid-text'      => 'Buď jste nezadali cílový záznam v protokolu nebo zadaný záznam neexistuje.',
+'revdelete-no-file'           => 'Uvedený soubor neexistuje.',
+'revdelete-show-file-confirm' => 'Určitě si chcete prohlédnout smazanou revizi souboru „<nowiki>$1</nowiki>“ z $2, $3?',
+'revdelete-show-file-submit'  => 'Ano',
 'revdelete-selected'          => "'''{{PLURAL:$2|Vybraná|Vybrané}} revize stránky [[:$1]]:'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Vybraná protokolovaná událost|Vybrané protokolované události}}:'''",
 'revdelete-text'              => "'''Smazané verze a události budou nadále zobrazeny v historii stránky a protokolovacích záznamech, ale některé jejich části nebudou veřejně dostupné.'''
@@ -1029,8 +1032,11 @@ Prosím potvrďte, že to opravdu chcete učinit, že si uvědomujete důsledky 
 'revdelete-logentry'          => 'změnil viditelnost revizí u [[$1]]',
 'logdelete-logentry'          => 'mění viditelnost události [[$1]]',
 'revdelete-success'           => "'''Viditelnost revize úspěšně nastavena.'''",
-'revdelete-failure'           => "'''Není možné nastavit viditelnost revize.'''",
+'revdelete-failure'           => "'''Nepodařilo se nastavit viditelnost revize:'''
+$1",
 'logdelete-success'           => "'''Viditelnost události úspěšně nastavena.'''",
+'logdelete-failure'           => "'''Nepodařilo se nastavit viditelnost protokolu:'''
+$1",
 'revdel-restore'              => 'Změnit viditelnost',
 'pagehist'                    => 'Historie stránky',
 'deletedhist'                 => 'Smazaná historie',
@@ -1043,6 +1049,17 @@ Prosím potvrďte, že to opravdu chcete učinit, že si uvědomujete důsledky 
 'revdelete-unhid'             => 'odkryl $1',
 'revdelete-log-message'       => '$1 $2 reviz{{PLURAL:$2|i|e|í}}',
 'logdelete-log-message'       => '$1 $2 událost{{PLURAL:$2||i|í}}',
+'revdelete-hide-current'      => 'Chyba při skrývání položky z $1 $2: jedná se o současnou revizi.
+Tu nelze skrýt.',
+'revdelete-show-no-access'    => 'Chyba při zobrazování položky z $1 $2: je vyžadováno zvláštní oprávnění.
+Nemáte k ní přístup.',
+'revdelete-modify-no-access'  => 'Chyba při změně položky z $1 $2: je vyžadováno zvláštní oprávnění.
+Nemáte k ní přístup.',
+'revdelete-modify-missing'    => 'Chyba při změně položky s ID $1: položka nenalezena v databázi!',
+'revdelete-no-change'         => "'''Upozornění:''' položka z $1 $2 už měla viditelnost nastavenou tak, jak bylo požadováno.",
+'revdelete-concurrent-change' => 'Chyba při změně položky z $1 $2: zdá se, že mezitím její stav změnil někdo jiný.
+Prohlédněte si protokolovací záznamy.',
+'revdelete-only-restricted'   => 'Nemůžete položky pouze skrýt před správci, aniž byste současně vybrali i některou z dalších možností utajení.',
 
 # Suppression log
 'suppressionlog'     => 'Záznam utajení',
@@ -1647,6 +1664,7 @@ Kliknutím na hlavičku sloupce můžete změnit řazení.',
 'filehist-dimensions'       => 'Rozměry',
 'filehist-filesize'         => 'Velikost souboru',
 'filehist-comment'          => 'Komentář',
+'filehist-missing'          => 'Soubor chybí',
 'imagelinks'                => 'Odkazy na soubor',
 'linkstoimage'              => 'Na soubor {{plural:$1|odkazuje tato stránka|odkazují tyto stránky}}:',
 'linkstoimage-more'         => 'Na tento soubor {{PLURAL:$1|odkazuje více stránek|odkazují více než $1 stránky|odkazuje více než $1 stránek}}.

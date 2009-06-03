@@ -494,9 +494,9 @@ S'arregistru de is fuliaduras e moviduras de sa pàgina est amostau pro informat
 'last'                   => 'ant',
 'page_first'             => 'prima',
 'page_last'              => 'ùrtima',
-'histlegend'             => "Cunfruntu fra versiones: scebera sa casella de sa versione chi boles e craca Invio o su butone in bàsciu.
-
-Legenda: '''({{int:cur}})''' = diferèntzias cun sa versione currente, '''({{int:last}})''' = diferèntzias cun sa versione in antis, '''{{int:minoreditletter}}''' = acontzu minore",
+'histlegend'             => "Cunfruntu intre versiones: scebera sa casella de sa versione chi boles e craca Invio o su butone in bàsciu.<br />
+Legenda: '''({{int:cur}})''' = diferèntzias cun sa versione currente, 
+'''({{int:last}})''' = diferèntzias cun sa versione in antis, '''{{int:minoreditletter}}''' = acontzu minore.",
 'history-fieldset-title' => "Isfògia s'istòria",
 'histfirst'              => 'Prima',
 'histlast'               => 'Ùrtima',
