@@ -145,8 +145,15 @@ if (!defined('MEDIAWIKI')) {
 				}
 				if(isset($this->prop['emailable']) && $user->canReceiveEmail())
 					$data[$name]['emailable'] = '';
-				if(isset($this->prop['gender']))
-					$data[$name]['gender'] = $user->getOption( 'gender' );
+
+				if(isset($this->prop['gender'])) {
+					$gender = $user->getOption( 'gender' );
+					if ( strval( $gender ) === '' ) {
+						$gender = 'unknown';
+					}
+					$data[$name]['gender'] = $gender;
+				}
+
 				if(!is_null($params['token']))
 				{
 					$tokenFunctions = $this->getTokenFunctions();
