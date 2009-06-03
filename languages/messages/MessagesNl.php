@@ -1573,6 +1573,8 @@ U kunt ook anderen in staat stellen per e-mail contact met u op te nemen via een
 
 # Recent changes linked
 'recentchangeslinked'          => 'Verwante wijzigingen',
+'recentchangeslinked-feed'     => 'Verwante wijzigingen',
+'recentchangeslinked-toolbox'  => 'Verwante wijzigingen',
 'recentchangeslinked-title'    => 'Wijzigingen verwant aan "$1"',
 'recentchangeslinked-noresult' => "Er zijn in de opgegeven periode geen bewerkingen geweest op de pagina's waarheen vanaf hier verwezen wordt.",
 'recentchangeslinked-summary'  => "Deze speciale pagina geeft de laatste bewerkingen weer op pagina's waarheen verwezen wordt vanaf een aangegeven pagina, of vanuit pagina's in een aangegeven pagina een categorie.

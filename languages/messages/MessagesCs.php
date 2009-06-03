@@ -1513,6 +1513,8 @@ $3',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Související změny',
+'recentchangeslinked-feed'     => 'Související změny',
+'recentchangeslinked-toolbox'  => 'Související změny',
 'recentchangeslinked-title'    => 'Související změny pro stránku "$1"',
 'recentchangeslinked-noresult' => 'V zadaném období nebyly na odkazovaných stránkách žádné změny.',
 'recentchangeslinked-summary'  => "Níže je seznam nedávných změn stránek odkazovaných ze zadané stránky (nebo patřících do dané kategorie). Vaše [[Special:Watchlist|sledované stránky]] jsou '''zvýrazněny'''.",

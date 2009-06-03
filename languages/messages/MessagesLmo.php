@@ -338,7 +338,9 @@ Spiegazziún di símbui: (cur) = difərenza cun la versiún curénta, (ültima) 
 'show'              => 'Famm vedè',
 
 # Recent changes linked
-'recentchangeslinked' => 'Cambiament culegaa',
+'recentchangeslinked'         => 'Cambiament culegaa',
+'recentchangeslinked-feed'    => 'Cambiament culegaa',
+'recentchangeslinked-toolbox' => 'Cambiament culegaa',
 
 # Upload
 'upload'            => 'Carga sü un file',

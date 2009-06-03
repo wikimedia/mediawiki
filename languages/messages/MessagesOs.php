@@ -533,7 +533,9 @@ $3',
 'rc-enhanced-hide'   => 'Лыстæгдзинæдтæ бамбæхс',
 
 # Recent changes linked
-'recentchangeslinked' => 'Баст ивддзинæдтæ',
+'recentchangeslinked'         => 'Баст ивддзинæдтæ',
+'recentchangeslinked-feed'    => 'Баст ивддзинæдтæ',
+'recentchangeslinked-toolbox' => 'Баст ивддзинæдтæ',
 
 # Upload
 'upload'           => 'Ног файл сæвæр',

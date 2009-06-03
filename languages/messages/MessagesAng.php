@@ -373,7 +373,9 @@ Bidde behycge þæt þu bricst þone tramet intō smalrum dǣlum.',
 'show'            => 'īewan',
 
 # Recent changes linked
-'recentchangeslinked' => 'Sibba hweorfunga',
+'recentchangeslinked'         => 'Sibba hweorfunga',
+'recentchangeslinked-feed'    => 'Sibba hweorfunga',
+'recentchangeslinked-toolbox' => 'Sibba hweorfunga',
 
 # Upload
 'uploadnologin' => 'Ne inmeldod',

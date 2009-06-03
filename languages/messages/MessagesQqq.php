@@ -1291,6 +1291,8 @@ Does not work under $wgMiserMode ([[mwr:48986|r48986]]).',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Title of [[Special:RecentChangesLinked]] and display name of page on [[Special:SpecialPages]].',
+'recentchangeslinked-feed'     => 'Title of [[Special:RecentChangesLinked]] and display name of page on [[Special:SpecialPages]].',
+'recentchangeslinked-toolbox'  => 'Title of [[Special:RecentChangesLinked]] and display name of page on [[Special:SpecialPages]].',
 'recentchangeslinked-title'    => 'Message used as title and page header on [[Special:RecentChangesLinked]] (needs an argument like "/Main Page"). Related changes are all recent change to pages that are linked from \'\'this page\'\'. "$1" is the name of the page for which related changes as show.',
 'recentchangeslinked-backlink' => '{{optional}}',
 'recentchangeslinked-summary'  => 'Summary of [[Special:RecentChangesLinked]].',

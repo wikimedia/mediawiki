@@ -1377,6 +1377,8 @@ Dat kann nich wedder ungeschehn maakt warrn.',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Ännern an lenkte Sieden',
+'recentchangeslinked-feed'     => 'Ännern an lenkte Sieden',
+'recentchangeslinked-toolbox'  => 'Ännern an lenkte Sieden',
 'recentchangeslinked-title'    => 'Ännern an Sieden, de vun „$1“ ut lenkt sünd',
 'recentchangeslinked-noresult' => 'In disse Tiet hett nüms de lenkten Sieden ännert.',
 'recentchangeslinked-summary'  => "Disse List wiest de letzten Ännern an de Sieden, de vun en bestimmte Siet ut verlenkt oder in en bestimmte Kategorie in sünd. Sieden, de op diene [[Special:Watchlist|Oppasslist]] staht, sünd '''fett''' schreven.",

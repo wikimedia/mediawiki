@@ -930,6 +930,8 @@ Cunsulthà lu [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rigisthru d
 
 # Recent changes linked
 'recentchangeslinked'          => 'Mudìfigghi curriraddi',
+'recentchangeslinked-feed'     => 'Mudìfigghi curriraddi',
+'recentchangeslinked-toolbox'  => 'Mudìfigghi curriraddi',
 'recentchangeslinked-title'    => 'Mudìfigghi curriraddi a "$1"',
 'recentchangeslinked-noresult' => "Nisciuna mudìfigga a li pàgini curriraddi i' lu perìodu sciubaraddu.",
 'recentchangeslinked-summary'  => "Chistha pàgina ippiziari musthra li mudìfigghi più rizzenti a li pàgini curriraddi a chidda sciubaradda (o a li membri di un'ippizzifica categuria). Li [[Special:Watchlist|pàgini abbaidaddi]] so evidenziaddi in '''grasseddu'''.",

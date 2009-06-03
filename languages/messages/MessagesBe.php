@@ -1190,6 +1190,8 @@ $2',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Звязаныя праўкі',
+'recentchangeslinked-feed'     => 'Звязаныя праўкі',
+'recentchangeslinked-toolbox'  => 'Звязаныя праўкі',
 'recentchangeslinked-title'    => 'Змяненні, якія датычаць "$1"',
 'recentchangeslinked-noresult' => 'Без змяненняў на далучаных старонках за азначаны перыяд.',
 'recentchangeslinked-summary'  => "Гэта пералік нядаўніх змяненняў старонак, на якія спасылаецца азначаная старонка, або змяненняў складнікаў азначанай катэгорыі.

@@ -442,8 +442,10 @@ Note that some pages may continue to be displayed as if you were still logged in
 'rc-enhanced-hide'     => 'ܛܫܝ ܐܪ̈ܝܟܬܐ',
 
 # Recent changes linked
-'recentchangeslinked'      => 'ܫܘܚܠܦ̈ܐ ܕܡܝ̈ܐ',
-'recentchangeslinked-page' => 'ܫܡܐ ܕܦܐܬܐ:',
+'recentchangeslinked'         => 'ܫܘܚܠܦ̈ܐ ܕܡܝ̈ܐ',
+'recentchangeslinked-feed'    => 'ܫܘܚܠܦ̈ܐ ܕܡܝ̈ܐ',
+'recentchangeslinked-toolbox' => 'ܫܘܚܠܦ̈ܐ ܕܡܝ̈ܐ',
+'recentchangeslinked-page'    => 'ܫܡܐ ܕܦܐܬܐ:',
 
 # Upload
 'upload'            => 'ܐܛܥܢ ܠܦܦܐ',

@@ -538,7 +538,9 @@ Ko e ʻuhinga loka ko e $1 ia.",
 'rc-enhanced-hide'   => 'Toi ngaahi ʻeu',
 
 # Recent changes linked
-'recentchangeslinked' => 'Ngaahi liliu fekauʻaki',
+'recentchangeslinked'         => 'Ngaahi liliu fekauʻaki',
+'recentchangeslinked-feed'    => 'Ngaahi liliu fekauʻaki',
+'recentchangeslinked-toolbox' => 'Ngaahi liliu fekauʻaki',
 
 # Upload
 'upload'                      => 'Hiki hake ʻa e faile',

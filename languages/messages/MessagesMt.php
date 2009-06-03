@@ -1371,6 +1371,8 @@ Innota però li l-werreja tal-kontenut ta' {{SITENAME}} f'dawn is-siti, jistgħu
 
 # Recent changes linked
 'recentchangeslinked'          => 'Tibdil relatat',
+'recentchangeslinked-feed'     => 'Tibdil relatat',
+'recentchangeslinked-toolbox'  => 'Tibdil relatat',
 'recentchangeslinked-title'    => 'Modifiki relatati ma\' "$1"',
 'recentchangeslinked-noresult' => 'L-ebda modifika ma saret fuq il-paġni relatati waqt il-perjodu speċifikat.',
 'recentchangeslinked-summary'  => "Din il-paġna speċjali turi l-modifiki l-aktar riċenti f'paġni relatati ma' dik speċifikata. Il-paġni segwiti fil-[[Special:Watchlist|lista ta' osservazzjoni]] huma mmarkati b''''tipa ħoxna'''.",

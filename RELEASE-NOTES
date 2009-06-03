@@ -81,6 +81,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   per user preferences
 * (bug 19012) Introduce {{NUMBEROFCONTRIBS}} variable to display the number
   of contributions a user has.
+* (bug 14866) Messages 'recentchangeslinked-toolbox' and
+  'recentchangeslinked-toolbox' were added to allow more fine grained
+  customisation of the user interface
 
 === Bug fixes in 1.16 ===
 

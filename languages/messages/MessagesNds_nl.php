@@ -1453,6 +1453,8 @@ Je kunnen oek aandere luui in staot stellen um per netpos kontak mit joe op te n
 
 # Recent changes linked
 'recentchangeslinked'          => 'Volg verwiezigingen',
+'recentchangeslinked-feed'     => 'Volg verwiezigingen',
+'recentchangeslinked-toolbox'  => 'Volg verwiezigingen',
 'recentchangeslinked-title'    => 'Wiezigingen verwant an $1',
 'recentchangeslinked-noresult' => 'Gien wiezigingen of pagina waornaor verwezen wonnen in disse periode.',
 'recentchangeslinked-summary'  => "Op disse speciale pagina steet een lieste mit de leste wieziginen op pagina's waornaor verwezen wonnen. Pagina's op joew volglieste staon '''vet-edrok'''.",

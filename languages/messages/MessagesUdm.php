@@ -87,7 +87,9 @@ $messages = array(
 'hist'          => 'история',
 
 # Recent changes linked
-'recentchangeslinked' => 'Герӟаськем тупатонъёс',
+'recentchangeslinked'         => 'Герӟаськем тупатонъёс',
+'recentchangeslinked-feed'    => 'Герӟаськем тупатонъёс',
+'recentchangeslinked-toolbox' => 'Герӟаськем тупатонъёс',
 
 # Upload
 'upload' => 'Файл поныны',

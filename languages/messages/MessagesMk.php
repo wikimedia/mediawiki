@@ -1484,6 +1484,8 @@ $2',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Поврзани промени',
+'recentchangeslinked-feed'     => 'Поврзани промени',
+'recentchangeslinked-toolbox'  => 'Поврзани промени',
 'recentchangeslinked-title'    => 'Промени поврзани со "$1"',
 'recentchangeslinked-backlink' => '← $1',
 'recentchangeslinked-noresult' => 'Нема промени на поврзаните страници во зададениот период.',

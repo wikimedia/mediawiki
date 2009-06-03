@@ -1184,6 +1184,8 @@ Ku tö kirjutat sen, nece nimi kävutadas, miše ozutada lehtpolen toižetajad.'
 
 # Recent changes linked
 'recentchangeslinked'          => 'Sidotud toižetused',
+'recentchangeslinked-feed'     => 'Sidotud toižetused',
+'recentchangeslinked-toolbox'  => 'Sidotud toižetused',
 'recentchangeslinked-title'    => '"$1"-lehtpol\'he sidotud toižetused',
 'recentchangeslinked-backlink' => '← $1',
 'recentchangeslinked-noresult' => 'Sidotud lehtpolil ei olend toižetusid anttud pordon aigan.',

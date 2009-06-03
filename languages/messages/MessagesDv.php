@@ -313,7 +313,9 @@ $messages = array(
 'show'              => 'ދައްކަވާ',
 
 # Recent changes linked
-'recentchangeslinked' => 'ގުޅުންހުރި ބަދަލުތައް',
+'recentchangeslinked'         => 'ގުޅުންހުރި ބަދަލުތައް',
+'recentchangeslinked-feed'    => 'ގުޅުންހުރި ބަދަލުތައް',
+'recentchangeslinked-toolbox' => 'ގުޅުންހުރި ބަދަލުތައް',
 
 # Upload
 'upload'            => 'ފައިލު ފޮނުވާ',

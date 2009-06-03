@@ -1200,6 +1200,8 @@ Tamién pues escoyer permitir a los demás contautar contigo al traviés de la t
 
 # Recent changes linked
 'recentchangeslinked'          => 'Cambeos rellacionaos',
+'recentchangeslinked-feed'     => 'Cambeos rellacionaos',
+'recentchangeslinked-toolbox'  => 'Cambeos rellacionaos',
 'recentchangeslinked-title'    => 'Cambeos rellacionaos con "$1"',
 'recentchangeslinked-noresult' => 'Nun hebo cambeos nes páxines enllaciaes nel periodu conseñáu.',
 'recentchangeslinked-summary'  => "Esta ye una llista de los caberos cambeos fechos nes páxines enllaciaes dende una páxina determinada (o nos miembros d'una categoría determinada). Les páxines de [[Special:Watchlist|la to llista de vixilancia]] tán en '''negrina'''.",

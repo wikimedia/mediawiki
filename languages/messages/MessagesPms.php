@@ -875,6 +875,8 @@ për podej specifiché ij sò gust.',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Modìfiche colegà',
+'recentchangeslinked-feed'     => 'Modìfiche colegà',
+'recentchangeslinked-toolbox'  => 'Modìfiche colegà',
 'recentchangeslinked-title'    => 'Modìfiche ch\'a-i intro con "$1"',
 'recentchangeslinked-noresult' => "Ant ël moment dont ës parla a-i é pa staie gnun-a modìfica a le pàgine con dj'anliure ch'a men-o ambelessì.",
 'recentchangeslinked-summary'  => "Sta pàgina special-sì a la smon j'ùltime modìfiche a le pàgine ch'a son colegà për anliura a costa. Le pàgine che chiel/chila as ten sot euj a resto marcà an '''grassèt'''.",

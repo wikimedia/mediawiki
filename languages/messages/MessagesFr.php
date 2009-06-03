@@ -1525,6 +1525,8 @@ Vous pouvez également décider de laisser les autres vous contacter via votre p
 
 # Recent changes linked
 'recentchangeslinked'          => 'Suivi des pages liées',
+'recentchangeslinked-feed'     => 'Suivi des pages liées',
+'recentchangeslinked-toolbox'  => 'Suivi des pages liées',
 'recentchangeslinked-title'    => 'Suivi des pages associées à « $1 »',
 'recentchangeslinked-noresult' => 'Il n’y a pas de modification sur les pages liées pendant la période choisie.',
 'recentchangeslinked-summary'  => "Cette page spéciale montre les modifications récentes sur les pages qui sont liées. Les pages de votre liste de suivi sont '''en gras'''.",

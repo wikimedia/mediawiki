@@ -181,7 +181,9 @@ San ipropromisam met ya insulat mo yan dili o kinopyam ya manlapo ed sakey ya pu
 'show'          => 'Ipanengneng',
 
 # Recent changes linked
-'recentchangeslinked' => 'Kabiangan ran binalo',
+'recentchangeslinked'         => 'Kabiangan ran binalo',
+'recentchangeslinked-feed'    => 'Kabiangan ran binalo',
+'recentchangeslinked-toolbox' => 'Kabiangan ran binalo',
 
 # Upload
 'upload'          => 'Mangisigep na file',

@@ -272,7 +272,9 @@ $messages = array(
 'boteditletter'   => 'b',
 
 # Recent changes linked
-'recentchangeslinked' => 'Trocamientos conectados',
+'recentchangeslinked'         => 'Trocamientos conectados',
+'recentchangeslinked-feed'    => 'Trocamientos conectados',
+'recentchangeslinked-toolbox' => 'Trocamientos conectados',
 
 # Upload
 'upload' => 'Cargar un dosyé',

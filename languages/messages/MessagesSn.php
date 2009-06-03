@@ -125,7 +125,9 @@ Akaunzi yako yagadzirwa. Usakanganwe kuchinga mapreferences ako eWikipedia.',
 'recentchanges' => 'Zvaba Kuchinjwa',
 
 # Recent changes linked
-'recentchangeslinked' => 'Zvinoenderana nezvachinjwa',
+'recentchangeslinked'         => 'Zvinoenderana nezvachinjwa',
+'recentchangeslinked-feed'    => 'Zvinoenderana nezvachinjwa',
+'recentchangeslinked-toolbox' => 'Zvinoenderana nezvachinjwa',
 
 # Upload
 'upload'          => 'Isa fayera',

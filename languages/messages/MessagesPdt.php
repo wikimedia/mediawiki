@@ -324,6 +324,8 @@ Bitte nemm eenen aundren.',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Endarunge aun velinkte Siede',
+'recentchangeslinked-feed'     => 'Endarunge aun velinkte Siede',
+'recentchangeslinked-toolbox'  => 'Endarunge aun velinkte Siede',
 'recentchangeslinked-title'    => 'Endarunge aun Siede, woone von "$1" velinkt send',
 'recentchangeslinked-backlink' => '← $1',
 'recentchangeslinked-noresult' => 'Em utjesochten Tietrum es aun dee velinkte Siede nuscht aundasch jemoakt worde.',

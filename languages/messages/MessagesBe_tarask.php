@@ -1470,6 +1470,8 @@ $1",
 
 # Recent changes linked
 'recentchangeslinked'          => 'Зьвязаныя праўкі',
+'recentchangeslinked-feed'     => 'Зьвязаныя праўкі',
+'recentchangeslinked-toolbox'  => 'Зьвязаныя праўкі',
 'recentchangeslinked-title'    => 'Зьвязаныя праўкі для «$1»',
 'recentchangeslinked-noresult' => 'Не было ніякіх зьменаў на зьвязаных старонках за вызначаны пэрыяд.',
 'recentchangeslinked-summary'  => "Гэта сьпіс апошніх зьменаў старонак, на якія спасылаецца азначаная старонка (ці ўсіх старонак, якія належаць азначанай катэгорыі).

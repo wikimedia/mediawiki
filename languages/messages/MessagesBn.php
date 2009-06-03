@@ -969,6 +969,8 @@ $3-এর দেয়া কারণ হল ''$2''",
 
 # Recent changes linked
 'recentchangeslinked'          => 'সম্পর্কিত পরিবর্তন',
+'recentchangeslinked-feed'     => 'সম্পর্কিত পরিবর্তন',
+'recentchangeslinked-toolbox'  => 'সম্পর্কিত পরিবর্তন',
 'recentchangeslinked-title'    => '"$1"-এর সাথে সম্পর্কিত পরিবর্তনসমূহ',
 'recentchangeslinked-noresult' => 'সংযোগকৃত পাতাগুলিতে প্রদত্ত সময়সীমার জন্য কোন পরিবর্তন হয়নি।',
 'recentchangeslinked-summary'  => "একটি নির্দিষ্ট পাতা (অথবা নির্দিষ্ট বিষয়শ্রেণীতে) থেকে সংযুক্ত এ পাতার সাম্প্রতিক পরিবর্তনের তালিকা দেওয়া হয়েছে। আপনার [[Special:Watchlist|আপনার নজরতালিকায়]] রাখা পাতাগুলি '''গাঢ়''' করে দেখানো হয়েছে।",

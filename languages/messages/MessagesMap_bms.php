@@ -57,7 +57,9 @@ $messages = array(
 'recentchanges' => 'Pengobahan',
 
 # Recent changes linked
-'recentchangeslinked' => 'Pengobahan terkait',
+'recentchangeslinked'         => 'Pengobahan terkait',
+'recentchangeslinked-feed'    => 'Pengobahan terkait',
+'recentchangeslinked-toolbox' => 'Pengobahan terkait',
 
 # Random page
 'randompage' => 'Kaca Liya',

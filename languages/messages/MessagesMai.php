@@ -198,8 +198,10 @@ $messages = array(
 'boteditletter'   => 'ब',
 
 # Recent changes linked
-'recentchangeslinked'       => 'संबंधित परिवर्त्तन',
-'recentchangeslinked-title' => '"$1" मे भेल परिवर्तन',
+'recentchangeslinked'         => 'संबंधित परिवर्त्तन',
+'recentchangeslinked-feed'    => 'संबंधित परिवर्त्तन',
+'recentchangeslinked-toolbox' => 'संबंधित परिवर्त्तन',
+'recentchangeslinked-title'   => '"$1" मे भेल परिवर्तन',
 
 # Upload
 'upload'        => 'फाइल अपलोड करू',

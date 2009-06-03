@@ -1150,6 +1150,8 @@ U kan ook besluit om e-pos te ontvang as ander gebruikers u gebruikers- of bespr
 
 # Recent changes linked
 'recentchangeslinked'          => 'Verwante veranderings',
+'recentchangeslinked-feed'     => 'Verwante veranderings',
+'recentchangeslinked-toolbox'  => 'Verwante veranderings',
 'recentchangeslinked-title'    => 'Wysigings verwant aan "$1"',
 'recentchangeslinked-noresult' => 'Geen veranderinge op geskakelde bladsye gedurende die periode nie.',
 'recentchangeslinked-summary'  => "Hier volg 'n lys van wysigings wat onlangs gemaak is aan bladsye wat van die gespesifiseerde bladsy geskakel word (of van bladsye van die gespesifiseerde kategorie).

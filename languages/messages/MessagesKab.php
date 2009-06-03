@@ -733,6 +733,8 @@ i yesɛan akk awalen i banen-d).",
 
 # Recent changes linked
 'recentchangeslinked'          => 'Ibeddlen imaynuten n isebtar myezdin',
+'recentchangeslinked-feed'     => 'Ibeddlen imaynuten n isebtar myezdin',
+'recentchangeslinked-toolbox'  => 'Ibeddlen imaynuten n isebtar myezdin',
 'recentchangeslinked-noresult' => 'Ulac abeddel deg isebtar myezdin deg tawala i textareḍ.',
 
 # Upload

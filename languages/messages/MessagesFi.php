@@ -1447,6 +1447,8 @@ Kokeile lisätä haun alkuun ''all:'', niin haku kohdistuu kaikkeen sisältöön
 
 # Recent changes linked
 'recentchangeslinked'          => 'Linkitettyjen sivujen muutokset',
+'recentchangeslinked-feed'     => 'Linkitettyjen sivujen muutokset',
+'recentchangeslinked-toolbox'  => 'Linkitettyjen sivujen muutokset',
 'recentchangeslinked-title'    => 'Sivulta $1 linkitettyjen sivujen muutokset',
 'recentchangeslinked-noresult' => 'Ei muutoksia linkitettyihin sivuihin annetulla aikavälillä.',
 'recentchangeslinked-summary'  => "Tämä toimintosivu näyttää muutokset sivuihin, joihin on viitattu tältä sivulta. [[Special:Watchlist|Tarkkailulistallasi]] olevat sivut on '''lihavoitu'''.",

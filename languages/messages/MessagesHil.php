@@ -190,7 +190,9 @@ Indi pagkalimti ang pag ilis sang imo mga pagpasulabi sa {{SITENAME}}.',
 'newpageletter' => 'B',
 
 # Recent changes linked
-'recentchangeslinked' => 'May labot nga pag-ilis',
+'recentchangeslinked'         => 'May labot nga pag-ilis',
+'recentchangeslinked-feed'    => 'May labot nga pag-ilis',
+'recentchangeslinked-toolbox' => 'May labot nga pag-ilis',
 
 # Upload
 'upload'            => 'Karga file',

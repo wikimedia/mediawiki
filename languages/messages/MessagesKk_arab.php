@@ -1392,6 +1392,8 @@ $3 كەلتىرىلگەن سەبەبى: ''$2''",
 
 # Recent changes linked
 'recentchangeslinked'          => 'قاتىستى وزگەرىستەر',
+'recentchangeslinked-feed'     => 'قاتىستى وزگەرىستەر',
+'recentchangeslinked-toolbox'  => 'قاتىستى وزگەرىستەر',
 'recentchangeslinked-title'    => '«$1» دەگەنگە قاتىستى وزگەرىستەر',
 'recentchangeslinked-noresult' => 'سىلتەلگەن بەتتەردە كەلتىرىلگەن مەرزىمدە ەشقانداي وزگەرىس بولماعان.',
 'recentchangeslinked-summary'  => "بۇل تىزىمدە وزىندىك بەتتەن سىلتەلگەن بەتتەردەگى (نە وزىندىك سانات مۇشەلەرىندەگى) ىستەلگەن جۋىقتاعى وزگەرىستەر بەرىلەدى.

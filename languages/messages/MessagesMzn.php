@@ -220,7 +220,9 @@ $2، $1',
 'boteditletter'   => 'ربوت',
 
 # Recent changes linked
-'recentchangeslinked' => 'واری دچیه‌ن‌ئون',
+'recentchangeslinked'         => 'واری دچیه‌ن‌ئون',
+'recentchangeslinked-feed'    => 'واری دچیه‌ن‌ئون',
+'recentchangeslinked-toolbox' => 'واری دچیه‌ن‌ئون',
 
 # Upload
 'upload'        => 'باربیه‌شته‌ن فایل',

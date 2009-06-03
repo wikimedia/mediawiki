@@ -596,6 +596,8 @@ Mòżesz zezwòlëc jinszim brëkòwniką na łączbã z Tobą przez Twòją sta
 
 # Recent changes linked
 'recentchangeslinked'          => 'Zmianë w dolënkòwónëch',
+'recentchangeslinked-feed'     => 'Zmianë w dolënkòwónëch',
+'recentchangeslinked-toolbox'  => 'Zmianë w dolënkòwónëch',
 'recentchangeslinked-title'    => 'Zjinaczi w lënkòwónëch z "$1"',
 'recentchangeslinked-backlink' => '← $1',
 'recentchangeslinked-summary'  => "Niżi nachôdô sã lësta slédnëch zjinaków na lënkòwónëch starnach z pòdóny starnë (abò we wszëtczich starnach przënôleżącëch do pòdóny kategòrëji).

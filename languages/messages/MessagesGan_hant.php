@@ -873,6 +873,8 @@ $2',
 
 # Recent changes linked
 'recentchangeslinked'          => '連結頁嗰更改',
+'recentchangeslinked-feed'     => '連結頁嗰更改',
+'recentchangeslinked-toolbox'  => '連結頁嗰更改',
 'recentchangeslinked-title'    => '連結頁嗰改動到 "$1"',
 'recentchangeslinked-noresult' => '箇段時間嗰連結頁冇更改。',
 'recentchangeslinked-summary'  => "箇隻特殊頁列出箇頁連出去頁面嗰最晏改動（或係某隻分類嗰頁面）。

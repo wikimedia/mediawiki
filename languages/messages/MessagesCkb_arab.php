@@ -660,6 +660,8 @@ $2',
 
 # Recent changes linked
 'recentchangeslinked'         => 'گۆڕانکارییە پەیوەندی‌دارەکان',
+'recentchangeslinked-feed'    => 'گۆڕانکارییە پەیوەندی‌دارەکان',
+'recentchangeslinked-toolbox' => 'گۆڕانکارییە پەیوەندی‌دارەکان',
 'recentchangeslinked-title'   => 'گۆڕانکارییە پەیوەندیدارەکان بە "$1" ـەوە',
 'recentchangeslinked-summary' => "Ev rûpela taybetî guherandinên dawî ji rûpelên lînkkirî nîşandide.
 ئەو پەڕانە کە لە [[Special:Watchlist|لیستی چاودێڕییەکانت]]دان '''ئەستوورن'''",

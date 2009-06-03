@@ -611,7 +611,9 @@ HTML tags جانچئے.',
 'boteditletter'     => ' خودکار',
 
 # Recent changes linked
-'recentchangeslinked' => 'متعلقہ تبدیلیاں',
+'recentchangeslinked'         => 'متعلقہ تبدیلیاں',
+'recentchangeslinked-feed'    => 'متعلقہ تبدیلیاں',
+'recentchangeslinked-toolbox' => 'متعلقہ تبدیلیاں',
 
 # Upload
 'upload'            => 'فائل بھیجیں',

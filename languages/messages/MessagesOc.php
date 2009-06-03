@@ -1455,6 +1455,8 @@ Tanben podètz causir de permetre a d’autres de vos contactar amb l'ajuda de v
 
 # Recent changes linked
 'recentchangeslinked'          => 'Seguit dels ligams',
+'recentchangeslinked-feed'     => 'Seguit dels ligams',
+'recentchangeslinked-toolbox'  => 'Seguit dels ligams',
 'recentchangeslinked-title'    => 'Seguit dels ligams associats a "$1"',
 'recentchangeslinked-noresult' => 'Cap de cambiament sus las paginas ligadas pendent lo periòde causit.',
 'recentchangeslinked-summary'  => "Aquesta pagina especiala mòstra los darrièrs cambiaments sus las paginas que son ligadas. Las paginas de [[Special:Watchlist|vòstra tièra de seguit]] son '''en gras'''.",

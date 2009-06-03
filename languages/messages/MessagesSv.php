@@ -1486,6 +1486,8 @@ Du kan också välja att låta andra användare kontakta dig genom din användar
 
 # Recent changes linked
 'recentchangeslinked'          => 'Relaterade ändringar',
+'recentchangeslinked-feed'     => 'Relaterade ändringar',
+'recentchangeslinked-toolbox'  => 'Relaterade ändringar',
 'recentchangeslinked-title'    => 'Ändringar relaterade till $1',
 'recentchangeslinked-noresult' => 'Inga ändringar på länkade sidor under den angivna tidsperioden.',
 'recentchangeslinked-summary'  => "Detta är en lista över de senaste ändringarna på sidor som länkas till från en given sida (eller på sidor som hör till en viss kategori).

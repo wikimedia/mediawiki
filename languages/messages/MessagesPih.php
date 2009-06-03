@@ -57,7 +57,9 @@ $messages = array(
 'recentchanges' => 'Dem Riisent Chayng',
 
 # Recent changes linked
-'recentchangeslinked' => 'Dem Riilated Chayng',
+'recentchangeslinked'         => 'Dem Riilated Chayng',
+'recentchangeslinked-feed'    => 'Dem Riilated Chayng',
+'recentchangeslinked-toolbox' => 'Dem Riilated Chayng',
 
 # Upload
 'upload' => 'Upload Faail',

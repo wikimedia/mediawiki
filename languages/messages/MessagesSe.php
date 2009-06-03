@@ -589,8 +589,10 @@ $1 | $2',
 'rc_categories_any'                 => 'Mii beare',
 
 # Recent changes linked
-'recentchangeslinked'       => 'Dán siiddu varas rievdadusat',
-'recentchangeslinked-title' => '"$1" laktaseaddji rievdadusat',
+'recentchangeslinked'         => 'Dán siiddu varas rievdadusat',
+'recentchangeslinked-feed'    => 'Dán siiddu varas rievdadusat',
+'recentchangeslinked-toolbox' => 'Dán siiddu varas rievdadusat',
+'recentchangeslinked-title'   => '"$1" laktaseaddji rievdadusat',
 
 # Upload
 'upload'             => 'Lasit fiilla',

@@ -1289,6 +1289,8 @@ Gainera beste lankideek zurekin kontakta dezakete zure lankide edo lankide_eztab
 
 # Recent changes linked
 'recentchangeslinked'          => 'Lotutako orrialdeen aldaketak',
+'recentchangeslinked-feed'     => 'Lotutako orrialdeen aldaketak',
+'recentchangeslinked-toolbox'  => 'Lotutako orrialdeen aldaketak',
 'recentchangeslinked-title'    => '"$1"(e)kin harremanetan dauden aldaketak',
 'recentchangeslinked-noresult' => 'Emandako epean ez da egon aldaketarik loturiko orrialdetan.',
 'recentchangeslinked-summary'  => "Zerrenda honetan zehazturiko orrialde bati (edo kategoria berezi bateko azkeneko kideei) lotura duten orrietan eginiko azken aldaketak agertzen dira.

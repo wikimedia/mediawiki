@@ -225,7 +225,9 @@ $messages = array(
 'recentchangestext' => '{{grammar:genitive|{{SITENAME}}}}. биттәрендә индерелгән һуңғы үҙгәртеүҙәр исемлеге',
 
 # Recent changes linked
-'recentchangeslinked' => 'Бәйле үҙгәртеүҙәр',
+'recentchangeslinked'         => 'Бәйле үҙгәртеүҙәр',
+'recentchangeslinked-feed'    => 'Бәйле үҙгәртеүҙәр',
+'recentchangeslinked-toolbox' => 'Бәйле үҙгәртеүҙәр',
 
 # Special:ListFiles
 'listfiles_user' => 'Ҡатнашыусы',

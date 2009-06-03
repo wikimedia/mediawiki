@@ -1081,6 +1081,8 @@ $3 մասնակիցը տվել է հետևյալ պատճառը. ''$2''",
 
 # Recent changes linked
 'recentchangeslinked'          => 'Կապված փոփոխություններ',
+'recentchangeslinked-feed'     => 'Կապված փոփոխություններ',
+'recentchangeslinked-toolbox'  => 'Կապված փոփոխություններ',
 'recentchangeslinked-title'    => '«$1» էջին կապված փոփոխությունները',
 'recentchangeslinked-noresult' => 'Կապակցված էջերում նշված ժամանակաընթացքում փոփոխություններ չեն եղել։',
 'recentchangeslinked-summary'  => "Այս սպասարկող էջում բերված են հղվող էջերում կատարված վերջին փոփոխությունները։ Ձեր հսկացանկի էջերը ներկայացված են '''թավատառ'''։",

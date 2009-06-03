@@ -710,8 +710,10 @@ Informacion: (curt) = quiíxde vercion currentua,
 'newsectionsummary'                 => '/* $1 */ hunseccion',
 
 # Recent changes linked
-'recentchangeslinked'       => 'Quiix hámíigonix',
-'recentchangeslinked-title' => 'Quiix hámíigonixde "$1"',
+'recentchangeslinked'         => 'Quiix hámíigonix',
+'recentchangeslinked-feed'    => 'Quiix hámíigonix',
+'recentchangeslinked-toolbox' => 'Quiix hámíigonix',
+'recentchangeslinked-title'   => 'Quiix hámíigonixde "$1"',
 
 # Upload
 'upload'            => 'Ciúchan uploadan',

@@ -730,7 +730,9 @@ there micht be parteeculars in the [{{fullurl:Special:Log/delete|page={{FULLPAGE
 'rc_categories_any'                 => 'Ony',
 
 # Recent changes linked
-'recentchangeslinked' => 'Relatit chynges',
+'recentchangeslinked'         => 'Relatit chynges',
+'recentchangeslinked-feed'    => 'Relatit chynges',
+'recentchangeslinked-toolbox' => 'Relatit chynges',
 
 # Upload
 'upload'                      => 'Uplaid file',

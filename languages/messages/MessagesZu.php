@@ -189,7 +189,9 @@ ikhawundi lakho liyadalwa. musa ukukhohlwa ukuguqula amakhethelo a-{{SITENAME}} 
 'show'          => 'Bukisa',
 
 # Recent changes linked
-'recentchangeslinked' => 'Izinguquko ezilandiweyo',
+'recentchangeslinked'         => 'Izinguquko ezilandiweyo',
+'recentchangeslinked-feed'    => 'Izinguquko ezilandiweyo',
+'recentchangeslinked-toolbox' => 'Izinguquko ezilandiweyo',
 
 # Upload
 'upload'           => 'Layisha ifayili',

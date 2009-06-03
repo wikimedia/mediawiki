@@ -260,7 +260,9 @@ Proba [[Special:Search|sercho sur li wiki]] por relatet pagines.',
 'newpageletter'   => 'N',
 
 # Recent changes linked
-'recentchangeslinked' => 'Afini chanjos',
+'recentchangeslinked'         => 'Afini chanjos',
+'recentchangeslinked-feed'    => 'Afini chanjos',
+'recentchangeslinked-toolbox' => 'Afini chanjos',
 
 # Upload
 'upload'            => 'Enporta',

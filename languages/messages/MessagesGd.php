@@ -298,8 +298,10 @@ Ma dh'fhoilleachas tu rudeigin an seo, bidh tu a' dearbhadh gun do sgrìobh thu 
 'boteditletter'     => 'r',
 
 # Recent changes linked
-'recentchangeslinked'      => 'Mùthaidhean buntainneach',
-'recentchangeslinked-page' => 'Ainm na duilleige:',
+'recentchangeslinked'         => 'Mùthaidhean buntainneach',
+'recentchangeslinked-feed'    => 'Mùthaidhean buntainneach',
+'recentchangeslinked-toolbox' => 'Mùthaidhean buntainneach',
+'recentchangeslinked-page'    => 'Ainm na duilleige:',
 
 # Upload
 'upload'        => 'Cuir ri fhaidhle',

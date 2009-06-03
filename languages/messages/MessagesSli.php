@@ -606,6 +606,8 @@ Wenn du dich miet dam Thema oauskennst, koast du selbst [[:$1|die Seite verfassa
 
 # Recent changes linked
 'recentchangeslinked'         => 'Änderunga oa verlinkta Seyta',
+'recentchangeslinked-feed'    => 'Änderunga oa verlinkta Seyta',
+'recentchangeslinked-toolbox' => 'Änderunga oa verlinkta Seyta',
 'recentchangeslinked-title'   => 'Änneronga oa Seyta, de voo „$1“ verlinkt sein',
 'recentchangeslinked-summary' => "Diese Spezialseyte listet de letzta Änderunga oa dan verlinkta Seyta uff (bzw. bei Kategoria oa dan Mitgliedern dieser Kategorie). Seyta uff denner [[Special:Watchlist|Beobachtungsliste]] sein '''fett''' dargestellt.",
 'recentchangeslinked-page'    => 'Seyte:',

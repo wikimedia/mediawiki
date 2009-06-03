@@ -219,7 +219,9 @@ $3',
 'boteditletter'   => 'b',
 
 # Recent changes linked
-'recentchangeslinked' => 'Modifikări korelate',
+'recentchangeslinked'         => 'Modifikări korelate',
+'recentchangeslinked-feed'    => 'Modifikări korelate',
+'recentchangeslinked-toolbox' => 'Modifikări korelate',
 
 # Upload
 'upload' => 'trimiţe fişirul',

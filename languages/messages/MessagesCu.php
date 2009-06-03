@@ -346,8 +346,10 @@ $messages = array(
 'boteditletter'   => 'а҃ѵ',
 
 # Recent changes linked
-'recentchangeslinked'      => 'съвѧ́ꙁанꙑ страни́цѧ',
-'recentchangeslinked-page' => 'страни́цѧ и́мѧ :',
+'recentchangeslinked'         => 'съвѧ́ꙁанꙑ страни́цѧ',
+'recentchangeslinked-feed'    => 'съвѧ́ꙁанꙑ страни́цѧ',
+'recentchangeslinked-toolbox' => 'съвѧ́ꙁанꙑ страни́цѧ',
+'recentchangeslinked-page'    => 'страни́цѧ и́мѧ :',
 
 # Upload
 'upload'            => 'положє́ниѥ дѣ́ла',

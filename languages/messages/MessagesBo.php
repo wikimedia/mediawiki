@@ -170,7 +170,9 @@ $messages = array(
 'newpageletter'   => 'ཎེ',
 
 # Recent changes linked
-'recentchangeslinked' => 'འབྲེལ་བའི་བཟོ་བཅོས།',
+'recentchangeslinked'         => 'འབྲེལ་བའི་བཟོ་བཅོས།',
+'recentchangeslinked-feed'    => 'འབྲེལ་བའི་བཟོ་བཅོས།',
+'recentchangeslinked-toolbox' => 'འབྲེལ་བའི་བཟོ་བཅོས།',
 
 # Upload
 'upload'            => 'ཡར་འཇོག',

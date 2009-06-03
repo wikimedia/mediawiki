@@ -270,8 +270,10 @@ Wòateŋu [[:\$1|adze axa sia gɔme]].",
 'newpageletter'        => 'Y',
 
 # Recent changes linked
-'recentchangeslinked'       => 'Tɔtrɔ siwo kaa afii',
-'recentchangeslinked-title' => 'Tɔtrɔ siwo ku ɖe "$1" ŋu',
+'recentchangeslinked'         => 'Tɔtrɔ siwo kaa afii',
+'recentchangeslinked-feed'    => 'Tɔtrɔ siwo kaa afii',
+'recentchangeslinked-toolbox' => 'Tɔtrɔ siwo kaa afii',
+'recentchangeslinked-title'   => 'Tɔtrɔ siwo ku ɖe "$1" ŋu',
 
 # Upload
 'upload'    => 'Ɖo agbalẽ ɖa',

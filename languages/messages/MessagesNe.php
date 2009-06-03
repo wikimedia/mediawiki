@@ -289,7 +289,9 @@ $messages = array(
 'rc_categories_any' => 'कुनै',
 
 # Recent changes linked
-'recentchangeslinked' => 'संबन्धित परिवर्तनहरु',
+'recentchangeslinked'         => 'संबन्धित परिवर्तनहरु',
+'recentchangeslinked-feed'    => 'संबन्धित परिवर्तनहरु',
+'recentchangeslinked-toolbox' => 'संबन्धित परिवर्तनहरु',
 
 # Upload
 'upload'            => 'फाइल अपलोड',

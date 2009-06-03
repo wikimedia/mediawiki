@@ -550,7 +550,9 @@ $1 ਘੰਟੇ ਵਿੱਚ। ਨੁਕਸਾਨ ਤੋਂ ਬਚਣ ਲਈ, $
 'rc_categories_any' => 'ਕੋਈ ਵੀ',
 
 # Recent changes linked
-'recentchangeslinked' => 'ਸਬੰਧਿਤ ਬਦਲਾਅ',
+'recentchangeslinked'         => 'ਸਬੰਧਿਤ ਬਦਲਾਅ',
+'recentchangeslinked-feed'    => 'ਸਬੰਧਿਤ ਬਦਲਾਅ',
+'recentchangeslinked-toolbox' => 'ਸਬੰਧਿਤ ਬਦਲਾਅ',
 
 # Upload
 'upload'               => 'ਫਾਇਲ ਅੱਪਲੋਡ ਕਰੋ',

@@ -967,6 +967,8 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 
 # Recent changes linked
 'recentchangeslinked'          => 'የተዛመዱ ለውጦች',
+'recentchangeslinked-feed'     => 'የተዛመዱ ለውጦች',
+'recentchangeslinked-toolbox'  => 'የተዛመዱ ለውጦች',
 'recentchangeslinked-title'    => 'በ«$1» በተዛመዱ ገጾች ቅርብ ለውጦች',
 'recentchangeslinked-noresult' => 'በተመለከተው ጊዜ ውስጥ ከዚህ በተያየዙት ገጾች ላይ ምንም ለውጥ አልነበረም።',
 'recentchangeslinked-summary'  => "ከዚሁ ገጽ የተያየዙት ሌሎች ጽሑፎች ቅርብ ለውጦች ከታች ይዘረዝራሉ።

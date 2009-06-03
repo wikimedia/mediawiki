@@ -1061,6 +1061,8 @@ Coba susud dimimitian ku ''all:'' pikeun nyusud sakabéh kandunganana (kaasup ka
 
 # Recent changes linked
 'recentchangeslinked'          => 'Parobahan nu patali',
+'recentchangeslinked-feed'     => 'Parobahan nu patali',
+'recentchangeslinked-toolbox'  => 'Parobahan nu patali',
 'recentchangeslinked-title'    => 'Parobahan patali ka "$1"',
 'recentchangeslinked-noresult' => 'Dina selang waktu anu dipénta, euweuh parobahan dina kaca-kaca anu numbu.',
 'recentchangeslinked-summary'  => "Ieu kaca husus ngabéréndélkeun parobahan anyar anu numbu ti kaca husus (atawa uesi katagori husus). Kaca anu [[Special:Watchlist|diawaskeun]] némbongan '''kandel'''.",

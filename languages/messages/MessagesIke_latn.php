@@ -198,6 +198,8 @@ pigivuq qatannguti uikipitia kiinaujaqutiqarvik isuillingaitjapaa. iqtuu suqusiq
 
 # Recent changes linked
 'recentchangeslinked'          => 'asiaNngutuq mitsaasijuq',
+'recentchangeslinked-feed'     => 'asiaNngutuq mitsaasijuq',
+'recentchangeslinked-toolbox'  => 'asiaNngutuq mitsaasijuq',
 'recentchangeslinked-noresult' => '0 asiaNngutuq itsivimmiusiqpaa mappitaq takuvallatuq sulluk tamatumani tumiku',
 
 # Upload

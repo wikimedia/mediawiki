@@ -397,6 +397,8 @@ Mahimo mong [[:\$1|isulat kini nga panid]].",
 
 # Recent changes linked
 'recentchangeslinked'         => 'Mga may kalabotang kausaban',
+'recentchangeslinked-feed'    => 'Mga may kalabotang kausaban',
+'recentchangeslinked-toolbox' => 'Mga may kalabotang kausaban',
 'recentchangeslinked-title'   => 'Mga pag-usab nga may kalabotan sa "$1"',
 'recentchangeslinked-summary' => "Kini ang talaan sa mga bag-ong kausaban sa mga panid nga misumpay sa espesipikong panid (o sa mga sakop sa espesipikong kategoriya).
 Ang mga panid sa [[Special:Watchlist|imong gibantayan]] '''nakalugom'''.",

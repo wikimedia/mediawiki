@@ -1450,6 +1450,8 @@ Možete omogućiti drugima da vas kontaktiraju na suradničkoj stranici ili stra
 
 # Recent changes linked
 'recentchangeslinked'          => 'Povezane stranice',
+'recentchangeslinked-feed'     => 'Povezane stranice',
+'recentchangeslinked-toolbox'  => 'Povezane stranice',
 'recentchangeslinked-title'    => 'Povezane promjene sa "$1"',
 'recentchangeslinked-noresult' => 'Nema promjena na povezanim stranicama u zadanom periodu.',
 'recentchangeslinked-summary'  => "Ova posebna stranica pokazuje nedavne promjene na povezanim stranicama (ili stranicama određene kategorije). Stranice koje su na [[Special:Watchlist|vašem popisu praćenja]] su '''podebljane'''.",

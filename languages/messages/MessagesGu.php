@@ -823,6 +823,8 @@ Please log in again after you receive it.
 
 # Recent changes linked
 'recentchangeslinked'          => 'આની સાથે જોડાયેલા ફેરફાર',
+'recentchangeslinked-feed'     => 'આની સાથે જોડાયેલા ફેરફાર',
+'recentchangeslinked-toolbox'  => 'આની સાથે જોડાયેલા ફેરફાર',
 'recentchangeslinked-title'    => '"$1" ને લગતા ફેરફારો',
 'recentchangeslinked-noresult' => 'સંકળાયેલાં પાનાંમાં સુચવેલા સમય દરમ્યાન કોઇ ફેરફાર થયાં નથી.',
 'recentchangeslinked-summary'  => "આ એવા ફેરફારોની યાદી છે જે આ ચોક્કસ પાના (કે શ્રેણીનાં સભ્ય પાનાઓ) સાથે જોડાયેલા પાનાઓમાં તાજેતરમાં કરવામાં આવ્યા હોય.

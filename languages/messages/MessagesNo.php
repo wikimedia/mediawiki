@@ -1401,6 +1401,8 @@ Du kan også la velge å la andre brukere kontakte deg via brukersiden din uten 
 
 # Recent changes linked
 'recentchangeslinked'          => 'Relaterte endringer',
+'recentchangeslinked-feed'     => 'Relaterte endringer',
+'recentchangeslinked-toolbox'  => 'Relaterte endringer',
 'recentchangeslinked-title'    => 'Endringer relatert til «$1»',
 'recentchangeslinked-noresult' => 'Ingen endringer på lenkede sider i den gitte perioden.',
 'recentchangeslinked-summary'  => "Denne spesialsiden lister opp alle de siste endringene som har skjedd på sider som ''lenkes til'' fra denne.

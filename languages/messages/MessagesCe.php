@@ -208,7 +208,9 @@ $messages = array(
 'hist'          => 'терахь',
 
 # Recent changes linked
-'recentchangeslinked' => 'Xиттина Xийцамаш',
+'recentchangeslinked'         => 'Xиттина Xийцамаш',
+'recentchangeslinked-feed'    => 'Xиттина Xийцамаш',
+'recentchangeslinked-toolbox' => 'Xиттина Xийцамаш',
 
 # Upload
 'upload'   => 'Чуоза Файл',

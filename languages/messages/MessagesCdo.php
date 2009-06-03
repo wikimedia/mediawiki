@@ -432,7 +432,9 @@ Siók-mìng: (dāng) = gâe̤ng dék sĭng bēng-buōng bī-piâng, (sèng) = g�
 'boteditletter'     => '^',
 
 # Recent changes linked
-'recentchangeslinked' => 'Siŏng-guăng gì gāi-biéng',
+'recentchangeslinked'         => 'Siŏng-guăng gì gāi-biéng',
+'recentchangeslinked-feed'    => 'Siŏng-guăng gì gāi-biéng',
+'recentchangeslinked-toolbox' => 'Siŏng-guăng gì gāi-biéng',
 
 # Upload
 'upload'            => 'Siông-duòng ùng-giông',

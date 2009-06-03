@@ -1466,6 +1466,8 @@ $2',
 
 # Recent changes linked
 'recentchangeslinked'          => 'تعديلات  ليها علاقه',
+'recentchangeslinked-feed'     => 'تعديلات  ليها علاقه',
+'recentchangeslinked-toolbox'  => 'تعديلات  ليها علاقه',
 'recentchangeslinked-title'    => 'التعديلات المرتبطه  ب "$1"',
 'recentchangeslinked-noresult' => 'مافيش تعديلات حصلت فى الصفحات اللى ليها وصلات هنا خلال الفترة المحدده.',
 'recentchangeslinked-summary'  => "دى صفحة مخصوصه بتعرض اخر التغييرات فى الصفحات الموصوله (أو إلى الأعضاء ضمن تصنيف معين).

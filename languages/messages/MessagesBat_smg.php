@@ -884,6 +884,8 @@ Ana gal sodarītė ne daugiau kāp $1 {{PLURAL:$1|sėmbuolis|sėmbuolē|sėmbuol
 
 # Recent changes linked
 'recentchangeslinked'          => 'Sosėjėn pakeitėmā',
+'recentchangeslinked-feed'     => 'Sosėjėn pakeitėmā',
+'recentchangeslinked-toolbox'  => 'Sosėjėn pakeitėmā',
 'recentchangeslinked-title'    => 'So $1 sosėje pakeitimā',
 'recentchangeslinked-noresult' => 'Nier juokiū pakeitėmu sosėitous poslapious douto čieso.',
 'recentchangeslinked-summary'  => "Šėtom specēliajam poslapi ruodomė vielībė̅jė pakeitėmā poslapiūs, i katrūs īr nuruodoma. Poslapē ėš Tamstas [[Special:Watchlist|keravuojamu sāraša]] īr '''pastuorėntė'''.",

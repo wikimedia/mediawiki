@@ -320,6 +320,8 @@ Pokušajte u svoju pretragu staviti ''all:'' da se pretražuje cjelokupan sadrž
 
 # Recent changes linked
 'recentchangeslinked'         => 'Srodne izmjene',
+'recentchangeslinked-feed'    => 'Srodne izmjene',
+'recentchangeslinked-toolbox' => 'Srodne izmjene',
 'recentchangeslinked-title'   => 'Srodne promjene sa "$1"',
 'recentchangeslinked-summary' => "Ova posebna stranica prikazuje promjene na povezanim stranicama. 
 Stranice koje su na vašem [[Special:Watchlist|spisku praćenja]] su '''podebljane'''.",

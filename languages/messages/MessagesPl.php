@@ -1461,6 +1461,8 @@ Jeśli zdecydujesz się je podać, zostaną użyte, by udokumentować Twoje auto
 
 # Recent changes linked
 'recentchangeslinked'          => 'Zmiany w dolinkowanych',
+'recentchangeslinked-feed'     => 'Zmiany w dolinkowanych',
+'recentchangeslinked-toolbox'  => 'Zmiany w dolinkowanych',
 'recentchangeslinked-title'    => 'Zmiany w linkowanych z „$1”',
 'recentchangeslinked-noresult' => 'Nie było żadnych zmian na (zależnie od ustawień) linkowanych lub linkujących stronach w wybranym okresie.',
 'recentchangeslinked-summary'  => "Poniżej znajduje się lista ostatnich zmian na stronach linkowanych z podanej strony (lub we wszystkich stronach należących do podanej kategorii).

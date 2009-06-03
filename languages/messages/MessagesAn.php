@@ -1238,6 +1238,8 @@ Abría de tener menos de $1 {{PLURAL:$1|caráuter|caráuters}}.',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Cambeos en pachinas relazionadas',
+'recentchangeslinked-feed'     => 'Cambeos en pachinas relazionadas',
+'recentchangeslinked-toolbox'  => 'Cambeos en pachinas relazionadas',
 'recentchangeslinked-title'    => 'Cambeos relazionatos con "$1"',
 'recentchangeslinked-noresult' => 'No bi abió cambeos en as pachinas binculatas en o entrebalo de tiempo endicato.',
 'recentchangeslinked-summary'  => "Ista ye una lista de cambios rezients en pachinas con binclos dende una pachina espezifica (u a miembros d'una categoría espezificata).  S'amuestran en '''negreta''' as pachinas d'a suya [[Special:Watchlist|lista de seguimiento]].",

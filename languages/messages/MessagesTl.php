@@ -1341,6 +1341,8 @@ Mapipili mo ring payagan ang ibang tagagamit na makapagugnayan sa iyo sa pamamag
 
 # Recent changes linked
 'recentchangeslinked'          => 'Kaugnay na mga pagbabago',
+'recentchangeslinked-feed'     => 'Kaugnay na mga pagbabago',
+'recentchangeslinked-toolbox'  => 'Kaugnay na mga pagbabago',
 'recentchangeslinked-title'    => 'Mga pagbabagong kaugnay ng "$1"',
 'recentchangeslinked-noresult' => 'Walang mga pagbabago sa mga pahinang nakakawing sa ibinigay na kapanahunan.',
 'recentchangeslinked-summary'  => "Nililista ng natatanging pahina na ito ang huling mga pagbabago na nakaugnay. Naka '''matapang na teksto''' ang iyong mga binabantayan.",

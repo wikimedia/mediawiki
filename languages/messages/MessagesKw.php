@@ -311,8 +311,10 @@ $messages = array(
 'rc-enhanced-hide'  => 'Kudha manylyon',
 
 # Recent changes linked
-'recentchangeslinked'      => 'Chanjyow dhe folennow kevahal',
-'recentchangeslinked-page' => 'Hanow an folen:',
+'recentchangeslinked'         => 'Chanjyow dhe folennow kevahal',
+'recentchangeslinked-feed'    => 'Chanjyow dhe folennow kevahal',
+'recentchangeslinked-toolbox' => 'Chanjyow dhe folennow kevahal',
+'recentchangeslinked-page'    => 'Hanow an folen:',
 
 # Upload
 'upload'          => 'Ughkarga restren',

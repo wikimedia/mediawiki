@@ -441,6 +441,8 @@ $messages = array(
 
 # Recent changes linked
 'recentchangeslinked'          => 'Siong-koan ê kái-piàn',
+'recentchangeslinked-feed'     => 'Siong-koan ê kái-piàn',
+'recentchangeslinked-toolbox'  => 'Siong-koan ê kái-piàn',
 'recentchangeslinked-noresult' => 'Lí chí-tēng ê tiâu-kiaⁿ lāi-té chhōe bô jīn-hô kái-piàn.',
 
 # Upload

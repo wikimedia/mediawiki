@@ -912,6 +912,8 @@ Em de bu vikideki saifeñizden diger qullanıcılarğa siznen bağlanmağa imkâ
 
 # Recent changes linked
 'recentchangeslinked'          => 'Bağlı deñişiklikler',
+'recentchangeslinked-feed'     => 'Bağlı deñişiklikler',
+'recentchangeslinked-toolbox'  => 'Bağlı deñişiklikler',
 'recentchangeslinked-title'    => '"$1" ile bağlı deñişiklikler',
 'recentchangeslinked-noresult' => 'Saylanğan vaqıtta bağlı saifelerde iç deñişiklik yoq edi.',
 'recentchangeslinked-summary'  => "Bu mahsus saifede bağlı saifelerde soñki yapqan deñişiklikler cedveli mevcut. [[Special:Watchlist|Közetüv cedveliñiz]]deki saifeler '''qalın''' olaraq kösterile.",

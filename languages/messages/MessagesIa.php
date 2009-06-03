@@ -1395,6 +1395,8 @@ Si tu opta pro dar lo, isto essera usate pro dar te attribution pro tu contribut
 
 # Recent changes linked
 'recentchangeslinked'          => 'Modificationes ligate',
+'recentchangeslinked-feed'     => 'Modificationes ligate',
+'recentchangeslinked-toolbox'  => 'Modificationes ligate',
 'recentchangeslinked-title'    => 'Modificationes associate a "$1"',
 'recentchangeslinked-noresult' => 'Nulle modificationes in paginas ligate durante iste periodo.',
 'recentchangeslinked-summary'  => "Isto es un lista de modificationes facite recentemente in paginas ligate ab un pagina specific (o in membros de un categoria specific).

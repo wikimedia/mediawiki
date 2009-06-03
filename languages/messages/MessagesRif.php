@@ -346,6 +346,8 @@ mala tucit-id, ataf Lxdant inec a tetwassan ila inec.',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Tiẓṛigin ag ta',
+'recentchangeslinked-feed'     => 'Tiẓṛigin ag ta',
+'recentchangeslinked-toolbox'  => 'Tiẓṛigin ag ta',
 'recentchangeslinked-title'    => 'Tiẓṛigin ssaɣant-id ɣar "$1"',
 'recentchangeslinked-noresult' => 'War llint ca n tiẓṛigin di Tasna ya di lwaqt id-tucid .',
 'recentchangeslinked-summary'  => "Ta d Tabdart n tirra itwaggen εad mamk di Tasna id-izedyen zeg ijjen n Tasna nniḍn (niɣ iwdan zi category nniḍn).

@@ -133,7 +133,9 @@ $messages = array(
 'recentchanges' => 'Veisau vovou',
 
 # Recent changes linked
-'recentchangeslinked' => 'Veisau e veiwekani',
+'recentchangeslinked'         => 'Veisau e veiwekani',
+'recentchangeslinked-feed'    => 'Veisau e veiwekani',
+'recentchangeslinked-toolbox' => 'Veisau e veiwekani',
 
 # Upload
 'upload'            => 'Vakasinaita',

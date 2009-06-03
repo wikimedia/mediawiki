@@ -267,7 +267,9 @@ U to indirizzu IP serà registratu indu a cronolugia di ista pagina.",
 'show'            => 'mustrà',
 
 # Recent changes linked
-'recentchangeslinked' => 'Cambiamenti assuciati',
+'recentchangeslinked'         => 'Cambiamenti assuciati',
+'recentchangeslinked-feed'    => 'Cambiamenti assuciati',
+'recentchangeslinked-toolbox' => 'Cambiamenti assuciati',
 
 # Upload
 'upload'     => 'Incaricà un schedariu',

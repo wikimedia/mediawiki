@@ -857,6 +857,8 @@ Ja tu izvēlies to norādīt, šo lietos lai identificētu tavu darbu (ieguldīj
 
 # Recent changes linked
 'recentchangeslinked'          => 'Saistītās izmaiņas',
+'recentchangeslinked-feed'     => 'Saistītās izmaiņas',
+'recentchangeslinked-toolbox'  => 'Saistītās izmaiņas',
 'recentchangeslinked-title'    => 'Izmaiņas, kas saistītas ar "$1"',
 'recentchangeslinked-noresult' => 'Norādītajā laika periodā saistītajās lapās izmaiņu nebija.',
 'recentchangeslinked-summary'  => "Šiet ir nesen izdarītās izmaiņas lapās, uz kurām ir saites no norādītās lapas (vai norādītajā kategorijā ietilpstošās lapas).

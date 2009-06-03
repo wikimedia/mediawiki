@@ -1186,6 +1186,8 @@ Mäd uur Benutsere koast du uk uur do Benutserdiskussionssieden Kontakt apnieme,
 
 # Recent changes linked
 'recentchangeslinked'          => 'Annerengen an ferlinkede Sieden',
+'recentchangeslinked-feed'     => 'Annerengen an ferlinkede Sieden',
+'recentchangeslinked-toolbox'  => 'Annerengen an ferlinkede Sieden',
 'recentchangeslinked-title'    => 'Annerengen an Sieden, do der fon „$1“ ferbuunden sunt',
 'recentchangeslinked-noresult' => 'In dän uutwäälde Tiedruum wuuden an do ferbuundene Sieden neen Annerengen foarnuumen.',
 'recentchangeslinked-summary'  => "Disse Spezioalsiede liestet do lääste Annerengen fon ferbuundene Sieden ap (blw. bie Kategorien an do Meegliedere fon disse Kategorie). Sieden ap dien Beooboachtengslieste sunt '''fat''' schrieuwen.",

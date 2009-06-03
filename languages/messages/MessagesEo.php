@@ -1395,6 +1395,8 @@ Vi povas ankaŭ elekti permesigi aliaj uzantoj kontakti vin per via uzanto-paĝo
 
 # Recent changes linked
 'recentchangeslinked'          => 'Rilataj paĝoj',
+'recentchangeslinked-feed'     => 'Rilataj paĝoj',
+'recentchangeslinked-toolbox'  => 'Rilataj paĝoj',
 'recentchangeslinked-title'    => 'Ŝanĝoj rilataj al "$1"',
 'recentchangeslinked-noresult' => 'Neniuj ŝanĝoj en ligitaj paĝoj dum la donata periodo.',
 'recentchangeslinked-summary'  => "Jen listo de ŝanĝoj faritaj lastatempe al paĝoj ligitaj el specifa paĝo (aŭ al membroj de specifa kategorio).

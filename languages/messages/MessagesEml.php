@@ -103,7 +103,9 @@ Putiv cuntinuèr ad usèr {{SITENAME}} anonimamèint, o putiv cunnètterv dòp c
 'hist'          => 'stôria',
 
 # Recent changes linked
-'recentchangeslinked' => 'Mudéffic curelèdi',
+'recentchangeslinked'         => 'Mudéffic curelèdi',
+'recentchangeslinked-feed'    => 'Mudéffic curelèdi',
+'recentchangeslinked-toolbox' => 'Mudéffic curelèdi',
 
 # Upload
 'upload'            => 'Carghèr un file',

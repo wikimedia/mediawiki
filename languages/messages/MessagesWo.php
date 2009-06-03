@@ -1167,6 +1167,8 @@ Jéemala bindaale ''all'' ngir seet ci biir ëmbit gépp (boolewaale ci xëti wa
 
 # Recent changes linked
 'recentchangeslinked'          => 'Coppite yi ko ñeel',
+'recentchangeslinked-feed'     => 'Coppite yi ko ñeel',
+'recentchangeslinked-toolbox'  => 'Coppite yi ko ñeel',
 'recentchangeslinked-title'    => 'Coppite yi ñeel $1',
 'recentchangeslinked-backlink' => '← $1',
 'recentchangeslinked-noresult' => 'Benn coppite amul ci xët yi mu lëkkalool ci diir bi nga wax.',

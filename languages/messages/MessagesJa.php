@@ -1458,6 +1458,8 @@ $1",
 
 # Recent changes linked
 'recentchangeslinked'          => '関連ページの更新状況',
+'recentchangeslinked-feed'     => '関連ページの更新状況',
+'recentchangeslinked-toolbox'  => '関連ページの更新状況',
 'recentchangeslinked-title'    => '"$1" と関連するページの更新状況',
 'recentchangeslinked-noresult' => '指定期間中に指定ページのリンク先に更新はありませんでした。',
 'recentchangeslinked-summary'  => "以下は指定されたページからリンクしているページ（もしくは指定されたカテゴリに含まれているページ）に最近加えられた変更の一覧です。[[Special:Watchlist|あなたのウォッチリスト]]にあるページは'''太字'''で表示されています。",

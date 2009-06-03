@@ -351,6 +351,8 @@ $messages = array(
 
 # Recent changes linked
 'recentchangeslinked'          => 'འབྲེལ་བ་ཅན་གྱི་བསྒྱུར་བཅོས།',
+'recentchangeslinked-feed'     => 'འབྲེལ་བ་ཅན་གྱི་བསྒྱུར་བཅོས།',
+'recentchangeslinked-toolbox'  => 'འབྲེལ་བ་ཅན་གྱི་བསྒྱུར་བཅོས།',
 'recentchangeslinked-title'    => '"$1" དང་འབྲེལ་བ་ཡོད་པའི་བསྒྱུར་བཅོས་ཚུ།',
 'recentchangeslinked-noresult' => 'དུས་བཀོད་ཀྱི་སྐབས་ལུ་ འབྲེལ་མཐུད་ཅན་གྱི་ཤོག་ལེབ་ལུ་བསྒྱུར་བཅོས་མེད།',
 'recentchangeslinked-summary'  => "དམིགས་བསལ་ཤོག་ལེབ་འདི་གིས་ འབྲེལ་མཐུད་ཅན་གྱི་ཤོག་ལེབ་གུ་ མཇུག་ཀྱི་བསྒྱུར་བཅོས་ཚུ་ ཐོ་བཀོད་འབདཝ་ཨིན།

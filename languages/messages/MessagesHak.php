@@ -744,6 +744,8 @@ Tshòng-tón pit-sî chhai $1-ke sṳ-ngièn yî-ha.',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Lièn-chhut kiên-kói',
+'recentchangeslinked-feed'     => 'Lièn-chhut kiên-kói',
+'recentchangeslinked-toolbox'  => 'Lièn-chhut kiên-kói',
 'recentchangeslinked-noresult' => 'Chhai liá yit-thon sṳ̀-kiên chûng lièn-kiet ke hong-mien pin-mò kiên-kói.',
 'recentchangeslinked-summary'  => "Liá-ke thi̍t-sû hong-mien lie̍t-sṳ lièn-chhut hong-mien chui-khiûn ke kiên-kói. Chhai kam-sṳ lie̍t-péu chûng ke hong-mien chhiu-voi yî '''chhû-thí''' péu-sṳ.",
 

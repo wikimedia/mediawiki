@@ -1355,6 +1355,8 @@ Legend: (cur) = تفاوتان گون هنوکین نسخه,
 
 # Recent changes linked
 'recentchangeslinked'          => 'مربوطین تغییرات',
+'recentchangeslinked-feed'     => 'مربوطین تغییرات',
+'recentchangeslinked-toolbox'  => 'مربوطین تغییرات',
 'recentchangeslinked-title'    => 'تغییراتی مربوط په "$1"',
 'recentchangeslinked-noresult' => 'هچ تغییری ته صفحات لینک بوتگین ته داتگین دوره نیست',
 'recentchangeslinked-summary'  => "شی یک لیستی چه تغییراتی هستنت که نوکی اعمال بوتگنت په صفحاتی که چه یک صفحه خاصی لینک بوته( یا په اعضای یک خاصین دسته).

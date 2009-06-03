@@ -1423,6 +1423,8 @@ Anda juga dapat memilih untuk memungkinkan orang lain menghubungi Anda melalui h
 
 # Recent changes linked
 'recentchangeslinked'          => 'Perubahan terkait',
+'recentchangeslinked-feed'     => 'Perubahan terkait',
+'recentchangeslinked-toolbox'  => 'Perubahan terkait',
 'recentchangeslinked-title'    => 'Perubahan yang terkait dengan "$1"',
 'recentchangeslinked-noresult' => 'Tidak terjadi perubahan pada halaman-halaman terkait selama periode yang telah ditentukan.',
 'recentchangeslinked-summary'  => "Halaman istimewa ini memberikan daftar perubahan terakhir pada halaman-halaman terkait. Halaman yang Anda pantau ditandai dengan '''cetak tebal'''.",

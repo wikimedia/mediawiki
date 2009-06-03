@@ -1257,6 +1257,8 @@ Jo kinne ek oaren de mûglikheid jaan kontakt mei jo op te nimmen troch in ferwi
 
 # Recent changes linked
 'recentchangeslinked'          => 'Folgje keppelings',
+'recentchangeslinked-feed'     => 'Folgje keppelings',
+'recentchangeslinked-toolbox'  => 'Folgje keppelings',
 'recentchangeslinked-title'    => 'Feroarings yn ferbân mei "$1"',
 'recentchangeslinked-noresult' => "Der hawwe gjin bewurkings yn 'e bedoelde perioade west op'e siden dy't hjirwei linke wurde.",
 'recentchangeslinked-summary'  => "Dizze spesjale side lit de lêste bewurkings sjen op siden dy't keppele wurde fan in spesifisearre side ôf (of fan in spesifisearre Kategory ôf). Siden dy't op [[Special:Watchlist|jo folchlist]] steane, wurde '''tsjûk''' werjûn.",

@@ -1546,6 +1546,8 @@ Mit anderen Benutzern kannst du auch über die Benutzerdiskussionsseiten Kontakt
 
 # Recent changes linked
 'recentchangeslinked'          => 'Änderungen an verlinkten Seiten',
+'recentchangeslinked-feed'     => 'Änderungen an verlinkten Seiten',
+'recentchangeslinked-toolbox'  => 'Änderungen an verlinkten Seiten',
 'recentchangeslinked-title'    => 'Änderungen an Seiten, die von „$1“ verlinkt sind',
 'recentchangeslinked-noresult' => 'Im ausgewählten Zeitraum wurden an den verlinkten Seiten keine Änderungen vorgenommen.',
 'recentchangeslinked-summary'  => "Diese Spezialseite listet die letzten Änderungen an den verlinkten Seiten auf (bzw. bei Kategorien an den Mitgliedern dieser Kategorie). Seiten auf deiner [[Special:Watchlist|Beobachtungsliste]] sind '''fett''' dargestellt.",

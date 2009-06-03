@@ -803,6 +803,8 @@ Ol mustas ne havar plu kam $1 {{PLURAL:$1|litero|literi}}.',
 
 # Recent changes linked
 'recentchangeslinked'         => 'Relatanta chanji',
+'recentchangeslinked-feed'    => 'Relatanta chanji',
+'recentchangeslinked-toolbox' => 'Relatanta chanji',
 'recentchangeslinked-title'   => 'Chanji pri "$1"',
 'recentchangeslinked-summary' => "Co esas listo di recenta chanji ad pagini ligita da specigita pagino, od pagini en specigita kategorio.
 Pagini en [[Special:Watchlist|vua surveryo-listo]] esas '''dika'''.",

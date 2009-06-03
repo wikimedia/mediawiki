@@ -1415,6 +1415,8 @@ Musí obsahovať menej ako $1 {{PLURAL:$1|znak|znaky|znakov}}.',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Súvisiace úpravy',
+'recentchangeslinked-feed'     => 'Súvisiace úpravy',
+'recentchangeslinked-toolbox'  => 'Súvisiace úpravy',
 'recentchangeslinked-title'    => 'Zmeny týkajúce sa „$1”',
 'recentchangeslinked-noresult' => 'V zadanom období neboli odkazované stránky zmenené.',
 'recentchangeslinked-summary'  => "Táto špeciálna stránka obsahuje zoznam posledných úprav stránok, ''na ktoré odkazuje'' zadaná stránka (alebo ktoré patria do zadanej kategórie).

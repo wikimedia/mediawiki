@@ -1434,6 +1434,8 @@ Bạn cũng có thể lựa chọn cho phép người khác liên lạc với b�
 
 # Recent changes linked
 'recentchangeslinked'          => 'Thay đổi liên quan',
+'recentchangeslinked-feed'     => 'Thay đổi liên quan',
+'recentchangeslinked-toolbox'  => 'Thay đổi liên quan',
 'recentchangeslinked-title'    => 'Thay đổi liên quan tới “$1”',
 'recentchangeslinked-noresult' => 'Không có thay đổi nào trên trang được liên kết đến trong khoảng thời gian đã chọn.',
 'recentchangeslinked-summary'  => "Đây là danh sách các thay đổi được thực hiện gần đây tại những trang được liên kết đến từ một trang nào đó (hoặc tại các trang thuộc một thể loại nào đó).

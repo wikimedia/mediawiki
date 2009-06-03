@@ -447,7 +447,9 @@ $messages = array(
 'newsectionsummary' => '/* $1 */ 新段落',
 
 # Recent changes linked
-'recentchangeslinked' => '搭界个改动',
+'recentchangeslinked'         => '搭界个改动',
+'recentchangeslinked-feed'    => '搭界个改动',
+'recentchangeslinked-toolbox' => '搭界个改动',
 
 # Upload
 'upload'            => '上载文物',

@@ -116,7 +116,9 @@ $messages = array(
 'newpageletter'   => 'Н',
 
 # Recent changes linked
-'recentchangeslinked' => 'Скимбарь корелате',
+'recentchangeslinked'         => 'Скимбарь корелате',
+'recentchangeslinked-feed'    => 'Скимбарь корелате',
+'recentchangeslinked-toolbox' => 'Скимбарь корелате',
 
 # Upload
 'upload' => 'Тримите фишиер',

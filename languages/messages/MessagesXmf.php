@@ -353,6 +353,8 @@ $messages = array(
 
 # Recent changes linked
 'recentchangeslinked'          => 'აკოხვალამირ თირაფეფ',
+'recentchangeslinked-feed'     => 'აკოხვალამირ თირაფეფ',
+'recentchangeslinked-toolbox'  => 'აკოხვალამირ თირაფეფ',
 'recentchangeslinked-title'    => '"$1"-წკუმა მებუნაფილ თირაფეფი',
 'recentchangeslinked-noresult' => 'წურაფილ პერიოდს თირაფეფ აკოხვალამირ ხასილეფს ვა ჸოფერენ.',
 

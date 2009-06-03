@@ -589,6 +589,8 @@ En il ''log da stidar'' che suonda pos ti guardar daco che la pagina è vegnida 
 
 # Recent changes linked
 'recentchangeslinked'          => 'midadas sin paginas cun links',
+'recentchangeslinked-feed'     => 'midadas sin paginas cun links',
+'recentchangeslinked-toolbox'  => 'midadas sin paginas cun links',
 'recentchangeslinked-title'    => 'Midadas en artitgels ch\'èn colliads cun "$1"',
 'recentchangeslinked-noresult' => 'Naginas midadas sin artitgels collads durant la perioda endatada.',
 'recentchangeslinked-summary'  => "Quest è ina glista da las midadas ch'èn vegnidas fatgas da curt en artitgels ch'èn colliads cun ina pagina specifica (ni en commembers d'ina categoria specifica). 

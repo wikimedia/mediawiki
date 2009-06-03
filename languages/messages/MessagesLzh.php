@@ -1182,6 +1182,8 @@ $1",
 
 # Recent changes linked
 'recentchangeslinked'          => '援引',
+'recentchangeslinked-feed'     => '援引',
+'recentchangeslinked-toolbox'  => '援引',
 'recentchangeslinked-title'    => '「$1」援引近易',
 'recentchangeslinked-noresult' => '限期內無近易。',
 'recentchangeslinked-summary'  => "此奇頁乃列''由''頁援之近易（或對類之員）。

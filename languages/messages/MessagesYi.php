@@ -1193,6 +1193,8 @@ $2',
 
 # Recent changes linked
 'recentchangeslinked'          => 'פֿאַרבונדענע ענדערונגען',
+'recentchangeslinked-feed'     => 'פֿאַרבונדענע ענדערונגען',
+'recentchangeslinked-toolbox'  => 'פֿאַרבונדענע ענדערונגען',
 'recentchangeslinked-title'    => 'ענדערונגען פֿארבונדן מיט $1',
 'recentchangeslinked-noresult' => 'נישט געווען קיין ענדערונגען אין פֿארבונדענע בלעטער אין דער תקופה.',
 'recentchangeslinked-summary'  => "אט א רשימה פון נייע ענדערונגען צו בלעטער פארבונדן פון א ספעציפישן בלאט (אדער מיטגליד בלעטער פון א ספעציפישער קאטעגאריע).

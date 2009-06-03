@@ -1216,6 +1216,8 @@ Tu puè pure scacchià de lassà otre condatte ausanne l'utende tue o le pàggen
 
 # Recent changes linked
 'recentchangeslinked'          => 'Cangiaminde culleghete',
+'recentchangeslinked-feed'     => 'Cangiaminde culleghete',
+'recentchangeslinked-toolbox'  => 'Cangiaminde culleghete',
 'recentchangeslinked-title'    => 'Cangiaminde culleghete a "$1"',
 'recentchangeslinked-backlink' => '← $1',
 'recentchangeslinked-noresult' => "Non g'onne state fatte cangiaminde sus 'a sta pàgene jndr'à 'u periede selezionete.",

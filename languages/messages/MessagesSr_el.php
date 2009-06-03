@@ -918,8 +918,10 @@ Takođe možete podesiti da drugi mogu da vas kontaktiraju preko vaše korisnič
 'rc_categories_any'                 => 'Bilo koji',
 
 # Recent changes linked
-'recentchangeslinked'      => 'Srodne promene',
-'recentchangeslinked-page' => 'Ime stranice:',
+'recentchangeslinked'         => 'Srodne promene',
+'recentchangeslinked-feed'    => 'Srodne promene',
+'recentchangeslinked-toolbox' => 'Srodne promene',
+'recentchangeslinked-page'    => 'Ime stranice:',
 
 # Upload
 'upload'                      => 'Pošalji fajl',

@@ -1354,6 +1354,8 @@ $3 келтірілген себебі: ''$2''",
 
 # Recent changes linked
 'recentchangeslinked'          => 'Қатысты өзгерістер',
+'recentchangeslinked-feed'     => 'Қатысты өзгерістер',
+'recentchangeslinked-toolbox'  => 'Қатысты өзгерістер',
 'recentchangeslinked-title'    => '«$1» дегенге қатысты өзгерістер',
 'recentchangeslinked-noresult' => 'Сілтеген беттерде келтірілген мерзімде ешқандай өзгеріс болмаған.',
 'recentchangeslinked-summary'  => "Бұл тізімде өзіндік бетке сілтеген беттердегі (не өзіндік санат мүшелеріндегі) істелген жуықтағы өзгерістер беріледі.

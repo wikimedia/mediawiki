@@ -114,8 +114,10 @@ $messages = array(
 'recentchanges' => 'Yéngi özgirish',
 
 # Recent changes linked
-'recentchangeslinked'      => 'Yéqinqi özgirishler',
-'recentchangeslinked-page' => 'Betning ismi:',
+'recentchangeslinked'         => 'Yéqinqi özgirishler',
+'recentchangeslinked-feed'    => 'Yéqinqi özgirishler',
+'recentchangeslinked-toolbox' => 'Yéqinqi özgirishler',
+'recentchangeslinked-page'    => 'Betning ismi:',
 
 # Upload
 'upload'          => 'Yéngi höjjet kirgüzush',

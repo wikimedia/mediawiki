@@ -856,10 +856,12 @@ Tokony mba manana lohavy ambanimbany kokoa non'ny $1",
 'rc-enhanced-hide'                  => 'Asitrio ny adidiny',
 
 # Recent changes linked
-'recentchangeslinked'       => 'Novaina',
-'recentchangeslinked-title' => "Fanaraha-maso ny pejy miarak'amin'ny « $1 »",
-'recentchangeslinked-page'  => 'anaram-pejy :',
-'recentchangeslinked-to'    => "Ampisehoy ny fanovàn'ny pejy misy rohy makany amin'ny pejy fa tsy atao mivadika",
+'recentchangeslinked'         => 'Novaina',
+'recentchangeslinked-feed'    => 'Novaina',
+'recentchangeslinked-toolbox' => 'Novaina',
+'recentchangeslinked-title'   => "Fanaraha-maso ny pejy miarak'amin'ny « $1 »",
+'recentchangeslinked-page'    => 'anaram-pejy :',
+'recentchangeslinked-to'      => "Ampisehoy ny fanovàn'ny pejy misy rohy makany amin'ny pejy fa tsy atao mivadika",
 
 # Upload
 'upload'                      => 'Handefa rakitra',

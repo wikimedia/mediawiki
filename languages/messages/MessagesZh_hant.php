@@ -1359,6 +1359,8 @@ $1",
 
 # Recent changes linked
 'recentchangeslinked'          => '鏈出更改',
+'recentchangeslinked-feed'     => '鏈出更改',
+'recentchangeslinked-toolbox'  => '鏈出更改',
 'recentchangeslinked-title'    => '對於「$1」有關的鏈出更改',
 'recentchangeslinked-noresult' => '在這一段時間中連結的頁面並無更改。',
 'recentchangeslinked-summary'  => "這一個特殊頁面列示''由''所給出的一個頁面之連結到頁面的最近更改（或者是對於指定分類的成員）。

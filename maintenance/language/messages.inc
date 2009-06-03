@@ -1132,6 +1132,8 @@ $wgMessageStructure = array(
 	),
 	'recentchangeslinked' => array(
 		'recentchangeslinked',
+		'recentchangeslinked-feed',
+		'recentchangeslinked-toolbox',
 		'recentchangeslinked-title',
 		'recentchangeslinked-backlink',
 		'recentchangeslinked-noresult',

@@ -764,6 +764,8 @@ Leiende: (cur) = difarencis cun la version atuâl, (prec) = difarencis cun la ve
 
 # Recent changes linked
 'recentchangeslinked'          => 'Cambiaments leâts',
+'recentchangeslinked-feed'     => 'Cambiaments leâts',
+'recentchangeslinked-toolbox'  => 'Cambiaments leâts',
 'recentchangeslinked-title'    => 'Cambiaments leâts a "$1"',
 'recentchangeslinked-noresult' => 'Nissun cambiament aes pagjinis leadis tal periodi specificât.',
 'recentchangeslinked-summary'  => "Cheste pagjine speciâl e mostre i cambiaments plui recents aes pagjinis leadis a chê specificade (o leadis ai elements intune categorie specificade). Lis [[Special:Watchlist|pagjinis tignudis di voli]] a son mostradis in '''gruessut'''.",

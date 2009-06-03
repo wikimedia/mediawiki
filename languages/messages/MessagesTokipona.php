@@ -123,7 +123,9 @@ kin la sina toki e ni: toki sina ni li tan sina taso anu lipu pi ken ali.
 'newpageletter'   => 'lipu sin',
 
 # Recent changes linked
-'recentchangeslinked' => 'ante sama',
+'recentchangeslinked'         => 'ante sama',
+'recentchangeslinked-feed'    => 'ante sama',
+'recentchangeslinked-toolbox' => 'ante sama',
 
 # Upload
 'upload'            => 'o pana e lipu nanpa',

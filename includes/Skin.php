@@ -1676,7 +1676,7 @@ END;
 		} else {
 			return $this->makeKnownLinkObj(
 				SpecialPage::getTitleFor( 'Recentchangeslinked', $this->mTitle->getPrefixedDBkey() ),
-				wfMsg( 'recentchangeslinked' ) );
+				wfMsg( 'recentchangeslinked-toolbox' ) );
 		}
 	}
 

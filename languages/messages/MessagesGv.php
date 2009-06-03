@@ -570,6 +570,8 @@ My bailliu eh y chiarail, bee eh ymmydit son cur gys lieh y chur dhyt er son yn 
 
 # Recent changes linked
 'recentchangeslinked'          => 'Caghlaaghyn-vooinjerys',
+'recentchangeslinked-feed'     => 'Caghlaaghyn-vooinjerys',
+'recentchangeslinked-toolbox'  => 'Caghlaaghyn-vooinjerys',
 'recentchangeslinked-title'    => 'Caghlaaghyn bentyn rish "$1"',
 'recentchangeslinked-noresult' => 'Cha nel caghlaa erbee er duillagyn kianglt car y traa taishbynit.',
 'recentchangeslinked-summary'  => "Shoh rolley caghlaaghyn va jeant er duillagyn kianglt veih duillag sonrit (ny er olteynyn ronney sonrit).<br />
