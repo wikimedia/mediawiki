@@ -637,6 +637,8 @@ MySQL قايتۇرغان خاتالىقى"$3: $4"',
 
 # Recent changes linked
 'recentchangeslinked'         => 'مۇناسىۋەتلىك ئۆزگەرتىشلەر',
+'recentchangeslinked-feed'    => 'مۇناسىۋەتلىك ئۆزگەرتىشلەر',
+'recentchangeslinked-toolbox' => 'مۇناسىۋەتلىك ئۆزگەرتىشلەر',
 'recentchangeslinked-title'   => '"$1" مۇناسىۋەتلىك ئۇلانما ئۆزگەردى',
 'recentchangeslinked-summary' => "بۇ ئالاھىدە بەت يۈزى كۆرسەتكەن بەتتىن ئۇلىنىپ چىققان يېقىنقى ئۆزگەرتىش تىزىملىكى (ياكى ئالاھىدە تۈرنىڭ ئەزاسى).
  [[Special:Watchlist|كۆزەت تىزىملىكىڭىز]] دىكى بەت يۈزى '''توم''' كۆرسىتىلىدۇ.",

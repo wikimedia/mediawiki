@@ -912,6 +912,8 @@ $3 мына бойле бир себеп бельгиледи: ''$2''",
 
 # Recent changes linked
 'recentchangeslinked'          => 'Багълы денъишикликлер',
+'recentchangeslinked-feed'     => 'Багълы денъишикликлер',
+'recentchangeslinked-toolbox'  => 'Багълы денъишикликлер',
 'recentchangeslinked-title'    => '"$1" иле багълы денъишикликлер',
 'recentchangeslinked-noresult' => 'Сайлангъан вакъытта багълы саифелерде ич денъишиклик ёкъ эди.',
 'recentchangeslinked-summary'  => "Бу махсус саифеде багълы саифелерде сонъки япкъан денъишикликлер джедвели мевджут. [[Special:Watchlist|Козетюв джедвелинъиз]]деки саифелер '''къалын''' оларакъ косьтериле.",

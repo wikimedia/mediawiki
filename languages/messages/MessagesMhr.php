@@ -436,6 +436,8 @@ $messages = array(
 
 # Recent changes linked
 'recentchangeslinked'          => 'Ваш кылдалтше тӧрлатымаш-влак',
+'recentchangeslinked-feed'     => 'Ваш кылдалтше тӧрлатымаш-влак',
+'recentchangeslinked-toolbox'  => 'Ваш кылдалтше тӧрлатымаш-влак',
 'recentchangeslinked-title'    => '"$1" лаштыклан кылдалтше тӧрлатымаш-влак',
 'recentchangeslinked-noresult' => 'Ончыктымо пагытыште кылдалтше лаштыклаште вашталтыш лийын огыл.',
 'recentchangeslinked-summary'  => "Тиде шукертсе огыл тӧрлымӧ лаштык-влакын, кудыжо палемдыме лаштык дене кылдалтыныт (ала пелемдыме категорийыш пурат) лӱмерже.

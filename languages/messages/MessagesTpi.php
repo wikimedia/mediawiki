@@ -161,7 +161,9 @@ Na tu yu tok tru nau olsem yu raitim dispela yu yet, o yu kisim long wanpela hap
 'rc_categories_any' => 'Olgeta',
 
 # Recent changes linked
-'recentchangeslinked' => 'Ol senis klostu',
+'recentchangeslinked'         => 'Ol senis klostu',
+'recentchangeslinked-feed'    => 'Ol senis klostu',
+'recentchangeslinked-toolbox' => 'Ol senis klostu',
 
 # Upload
 'upload' => 'Salim media fail',

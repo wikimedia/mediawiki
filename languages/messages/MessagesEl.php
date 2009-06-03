@@ -1503,6 +1503,8 @@ $2',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Σχετικές αλλαγές',
+'recentchangeslinked-feed'     => 'Σχετικές αλλαγές',
+'recentchangeslinked-toolbox'  => 'Σχετικές αλλαγές',
 'recentchangeslinked-title'    => 'Αλλαγές σχετικές με το "$1"',
 'recentchangeslinked-noresult' => 'Δεν υπάρχουν αλλαγές στις συνδεδεμένες σελίδες κατά τη διάρκεια της δοσμένης περιόδου.',
 'recentchangeslinked-summary'  => "Αυτός είναι ένα κατάλογος αλλαγών που έγιναν πρόσφατα σε σελίδες που συνδέονται από μια καθορισμένη σελίδα (ή σε μέλη μιας καθορισμένης κατηγορίας).

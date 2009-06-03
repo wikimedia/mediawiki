@@ -313,7 +313,9 @@ Putite cuntinuà a ausà {{SITENAME}} comme n'utente senza nomme, o si nò putit
 'rc_categories_any' => 'Qualònca',
 
 # Recent changes linked
-'recentchangeslinked' => 'Cagnamiénte cullegate',
+'recentchangeslinked'         => 'Cagnamiénte cullegate',
+'recentchangeslinked-feed'    => 'Cagnamiénte cullegate',
+'recentchangeslinked-toolbox' => 'Cagnamiénte cullegate',
 
 # Upload
 'upload'           => 'Careca file',

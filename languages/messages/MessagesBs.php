@@ -1501,6 +1501,8 @@ Također omogućuje drugim korisnicima da vas kontaktiraju preko vaše korisnič
 
 # Recent changes linked
 'recentchangeslinked'          => 'Srodne izmjene',
+'recentchangeslinked-feed'     => 'Srodne izmjene',
+'recentchangeslinked-toolbox'  => 'Srodne izmjene',
 'recentchangeslinked-title'    => 'Srodne promjene sa "$1"',
 'recentchangeslinked-noresult' => 'Nema izmjena na povezanim stranicama u zadanom periodu.',
 'recentchangeslinked-summary'  => "Ova posebna stranica prikazuje promjene na povezanim stranicama. 

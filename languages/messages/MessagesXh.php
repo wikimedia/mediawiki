@@ -113,7 +113,9 @@ I Account yakhgo ivuliwe, ungalibali ukutshitsha izinto ozithandayo ngo {{SITENA
 'minoreditletter' => 'nc',
 
 # Recent changes linked
-'recentchangeslinked' => 'Utsitsho olufana nolu',
+'recentchangeslinked'         => 'Utsitsho olufana nolu',
+'recentchangeslinked-feed'    => 'Utsitsho olufana nolu',
+'recentchangeslinked-toolbox' => 'Utsitsho olufana nolu',
 
 # Upload
 'upload'          => 'Faka Ifile',

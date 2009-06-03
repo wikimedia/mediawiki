@@ -967,6 +967,8 @@ $1 үсгээс богино байх ёстой.',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Холбогдох өөрчлөлтүүд',
+'recentchangeslinked-feed'     => 'Холбогдох өөрчлөлтүүд',
+'recentchangeslinked-toolbox'  => 'Холбогдох өөрчлөлтүүд',
 'recentchangeslinked-title'    => '"$1"-тай холбоотой засварууд',
 'recentchangeslinked-noresult' => 'Өгөгдсөн хугацаанд холбогдсон хуудсууд дээр засвар хийгдээгүй байна.',
 'recentchangeslinked-summary'  => "Энэ хуудас бол тодорхой хуудаснаас (эсвэл тодорхой ангиллын доторх хуудсууд) холбогдсон хуудсуудад хийгдсэн өөрчлөлтийн жагсаалт юм.

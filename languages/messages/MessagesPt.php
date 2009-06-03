@@ -1365,6 +1365,8 @@ Pode também escolher permitir que outros entrem em contacto consigo através da
 
 # Recent changes linked
 'recentchangeslinked'          => 'Alterações relacionadas',
+'recentchangeslinked-feed'     => 'Alterações relacionadas',
+'recentchangeslinked-toolbox'  => 'Alterações relacionadas',
 'recentchangeslinked-title'    => 'Alterações relacionadas com "$1"',
 'recentchangeslinked-noresult' => 'Não ocorreram alterações em páginas relacionadas no intervalo de tempo fornecido.',
 'recentchangeslinked-summary'  => "Esta página especial lista as alterações mais recentes de páginas que possuam um link a outra (ou de membros de uma categoria especificada).

@@ -305,7 +305,9 @@ $messages = array(
 'boteditletter'   => 'b',
 
 # Recent changes linked
-'recentchangeslinked' => 'Pappakapinra terkait',
+'recentchangeslinked'         => 'Pappakapinra terkait',
+'recentchangeslinked-feed'    => 'Pappakapinra terkait',
+'recentchangeslinked-toolbox' => 'Pappakapinra terkait',
 
 # Upload
 'upload'    => 'Lureng berkas',

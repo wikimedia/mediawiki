@@ -856,6 +856,8 @@ Eseye pou wè si ak prefiks ''all:'' pou chache nan tout kontni a (anndann nou a
 
 # Recent changes linked
 'recentchangeslinked'          => 'Swivi pou lyen yo',
+'recentchangeslinked-feed'     => 'Swivi pou lyen yo',
+'recentchangeslinked-toolbox'  => 'Swivi pou lyen yo',
 'recentchangeslinked-title'    => 'Chanjman ki an relasyon ak "$1"',
 'recentchangeslinked-noresult' => 'Pa genyen pyès chanjman nan paj sa yo pou peryòd ou chwazi an.e.',
 'recentchangeslinked-summary'  => "Paj espesyal sa a ap montre dènye chanjman nan paj ki genyen lyen sou yo. Paj yo ki nan [[Special:Watchlist|lis swivi]] ou an ap ekri '''fonse'''",

@@ -138,7 +138,9 @@ $messages = array(
 'boteditletter'   => 'b',
 
 # Recent changes linked
-'recentchangeslinked' => 'Allannguutit naleqqiussat',
+'recentchangeslinked'         => 'Allannguutit naleqqiussat',
+'recentchangeslinked-feed'    => 'Allannguutit naleqqiussat',
+'recentchangeslinked-toolbox' => 'Allannguutit naleqqiussat',
 
 # Upload
 'upload' => 'Læg en fil op',

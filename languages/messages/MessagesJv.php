@@ -1118,6 +1118,8 @@ Panjenengan uga bisa milih supaya wong liya ngubungi panjenengan liwat jeneng pa
 
 # Recent changes linked
 'recentchangeslinked'          => 'Pranala Pilihan',
+'recentchangeslinked-feed'     => 'Pranala Pilihan',
+'recentchangeslinked-toolbox'  => 'Pranala Pilihan',
 'recentchangeslinked-title'    => 'Owah-owahan sing ana gandhèngané karo "$1"',
 'recentchangeslinked-noresult' => 'Ora ana owah-owahan ing kaca-kaca kagandhèng iki salawasé periode sing wis ditemtokaké.',
 'recentchangeslinked-summary'  => "Kaca astaméwa (kaca kusus) iki mènèhi daftar owah-owahan pungkasan ing kaca-kaca sing kagandhèng (utawa anggota sawijining kateogri). Kaca sing [[Special:Watchlist|panjenengan awasi]] ditandhani '''kandel'''.",

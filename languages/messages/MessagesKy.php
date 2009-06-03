@@ -195,7 +195,9 @@ $messages = array(
 'newpageletter' => 'Ж',
 
 # Recent changes linked
-'recentchangeslinked' => 'Тиешелүү өзгөрүүлөр',
+'recentchangeslinked'         => 'Тиешелүү өзгөрүүлөр',
+'recentchangeslinked-feed'    => 'Тиешелүү өзгөрүүлөр',
+'recentchangeslinked-toolbox' => 'Тиешелүү өзгөрүүлөр',
 
 # Upload
 'upload'            => 'Файл жүктөө',

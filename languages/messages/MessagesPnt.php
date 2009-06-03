@@ -687,6 +687,8 @@ $messages = array(
 
 # Recent changes linked
 'recentchangeslinked'          => 'Σχετικά αλλαγάς',
+'recentchangeslinked-feed'     => 'Σχετικά αλλαγάς',
+'recentchangeslinked-toolbox'  => 'Σχετικά αλλαγάς',
 'recentchangeslinked-title'    => 'Αλλαγάς τη "$1"',
 'recentchangeslinked-noresult' => "Σ' αβούτα τα σελίδας 'κ εγένταν αλλαγάς.",
 'recentchangeslinked-summary'  => "Αβούτος εν κατάλογον με τ' υστερνά τ' αλλαγάς σελιδίων με σύνδεσμον ασ' έναν συγκεκριμένον σελίδαν (για σε σελίδας συγκεκριμένου κατηγορίας).

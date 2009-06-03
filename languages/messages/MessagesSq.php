@@ -1224,6 +1224,8 @@ Ju mund [[:\$1|të e krijoni këtë faqe]].",
 
 # Recent changes linked
 'recentchangeslinked'          => 'Ndryshimet fqinje',
+'recentchangeslinked-feed'     => 'Ndryshimet fqinje',
+'recentchangeslinked-toolbox'  => 'Ndryshimet fqinje',
 'recentchangeslinked-title'    => 'Ndryshimet në lidhje me "$1"',
 'recentchangeslinked-noresult' => 'Nuk ka pasur ndryshime tek faqet e lidhura gjatë kohës së dhënë.',
 'recentchangeslinked-summary'  => "Kjo është një listë e ndryshimeve së fundmi të faqeve të lidhura nga faqja e dhënë (ose bëjnë pjesë tek kategoria e dhënë).

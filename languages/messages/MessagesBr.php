@@ -1260,6 +1260,8 @@ Gallout a rit lezel tud all da vont e darempred ganeoc'h dre ho pajennoù implij
 
 # Recent changes linked
 'recentchangeslinked'          => 'Heuliañ al liammoù',
+'recentchangeslinked-feed'     => 'Heuliañ al liammoù',
+'recentchangeslinked-toolbox'  => 'Heuliañ al liammoù',
 'recentchangeslinked-title'    => 'Kemmoù a denn da "$1"',
 'recentchangeslinked-noresult' => 'Kemm ebet war ar pajennoù liammet e-pad an amzer spisaet.',
 'recentchangeslinked-summary'  => "Rollet eo war ar bajenn zibar-mañ ar c'hemmoù diwezhañ bet degaset war ar pajennoù liammet ouzh ur bajenn lakaet (pe ouzh izili ur rummad lakaet). 

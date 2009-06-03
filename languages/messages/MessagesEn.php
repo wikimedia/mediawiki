@@ -1827,6 +1827,8 @@ You can also choose to let others contact you through your user or talk page wit
 
 # Recent changes linked
 'recentchangeslinked'          => 'Related changes',
+'recentchangeslinked-feed'     => 'Related changes',
+'recentchangeslinked-toolbox'  => 'Related changes',
 'recentchangeslinked-title'    => 'Changes related to "$1"',
 'recentchangeslinked-backlink' => '← $1', # only translate this message to other languages if you have to change it
 'recentchangeslinked-noresult' => 'No changes on linked pages during the given period.',

@@ -800,6 +800,8 @@ $1 {{PLURAL:$1|simwoldan|simwoldan}} köp bolmaly däl.',
 
 # Recent changes linked
 'recentchangeslinked'         => 'Degişli üýtgeşmeler',
+'recentchangeslinked-feed'    => 'Degişli üýtgeşmeler',
+'recentchangeslinked-toolbox' => 'Degişli üýtgeşmeler',
 'recentchangeslinked-title'   => '"$1" bilen baglanyşykly üýtgeşmeler',
 'recentchangeslinked-summary' => "Aşakdaky sanaw, görkezilen sahypa (ýa-da görkezilen kategoriýanyň agzalaryna) çykgyt berýän sahypalarda edilen üýtgeşmeleriň sanawydyr.
 [[Special:Watchlist|Gözegçilik sanawyňyzdaky]] sahypalar '''goýy''' ýazgy bilen görkezilýär.",

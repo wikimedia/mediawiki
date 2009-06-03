@@ -1330,6 +1330,8 @@ Des cha nimmi ruckgängig gmacht wäre.',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Verlinktes prüefe',
+'recentchangeslinked-feed'     => 'Verlinktes prüefe',
+'recentchangeslinked-toolbox'  => 'Verlinktes prüefe',
 'recentchangeslinked-title'    => 'Änderigen a Sytene, wo „$1“ druf verlinkt',
 'recentchangeslinked-noresult' => 'Kener Änderigen a verlinkte Sytenen im usgwählte Zytruum.',
 'recentchangeslinked-summary'  => "Die Spezialsyte zeigt d Änderige vo allne Syte, wo ei vo dir bestimmti Syte druf verlinkt, bzw. vo allne Syte, wo zu eire vo dir bestimmte Kategorie ghöre.

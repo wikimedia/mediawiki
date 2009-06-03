@@ -1494,6 +1494,8 @@ Ezen kívül más szerkesztők is kapcsolatba lépjenek veled a szerkesztői vag
 
 # Recent changes linked
 'recentchangeslinked'          => 'Kapcsolódó változtatások',
+'recentchangeslinked-feed'     => 'Kapcsolódó változtatások',
+'recentchangeslinked-toolbox'  => 'Kapcsolódó változtatások',
 'recentchangeslinked-title'    => 'A(z) $1 laphoz kapcsolódó változtatások',
 'recentchangeslinked-noresult' => 'A megadott időtartam alatt nem történt változás a kapcsolódó lapokon.',
 'recentchangeslinked-summary'  => "Ez a lap azon lapoknak a legutóbbi változtatásait listázza, amelyek linkelve vannak a megadott oldalról (vagy tagjai a megadott kategóriának).

@@ -55,7 +55,9 @@ $messages = array(
 'searchresultshead' => 'ସନ୍ଧାନ',
 
 # Recent changes linked
-'recentchangeslinked' => 'ସମ୍ବଧ୍ହିତ ପରିବର୍ତନ',
+'recentchangeslinked'         => 'ସମ୍ବଧ୍ହିତ ପରିବର୍ତନ',
+'recentchangeslinked-feed'    => 'ସମ୍ବଧ୍ହିତ ପରିବର୍ତନ',
+'recentchangeslinked-toolbox' => 'ସମ୍ବଧ୍ହିତ ପରିବର୍ତନ',
 
 # Upload
 'filedesc'          => 'ସାରକଥା',

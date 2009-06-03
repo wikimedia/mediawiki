@@ -582,6 +582,8 @@ Le swanela goba fase ga $1 {{PLURAL:$1|ya tlhaka|ya ditlhaka}}',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Diphetogo tša go tswalana',
+'recentchangeslinked-feed'     => 'Diphetogo tša go tswalana',
+'recentchangeslinked-toolbox'  => 'Diphetogo tša go tswalana',
 'recentchangeslinked-title'    => 'Diphetogo tša go tswalana le "$1"',
 'recentchangeslinked-noresult' => 'Gago na diphetogo go matlakala a hlomaganya ka sebaka/sekga seo o se kgethilego.',
 'recentchangeslinked-summary'  => "Letlakala le le laetša diphetogo tša bjale matlakaleng a go hlomaganya. 

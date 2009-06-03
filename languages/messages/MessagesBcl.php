@@ -916,6 +916,8 @@ An ibang mga administrador sa ining wiki pwede pang maghiling kan mga nakatagong
 
 # Recent changes linked
 'recentchangeslinked'          => 'Mga angay na pagbabàgo',
+'recentchangeslinked-feed'     => 'Mga angay na pagbabàgo',
+'recentchangeslinked-toolbox'  => 'Mga angay na pagbabàgo',
 'recentchangeslinked-title'    => 'Mga pagbabàgong angay sa "$1"',
 'recentchangeslinked-noresult' => 'Warang mga pagbabago sa mga pahinang nakatakod sa itinaong pagkalawig.',
 'recentchangeslinked-summary'  => "Ini an lista nin mga pagsangli na ginibo pa sana sa mga pahinang nakatakod halì sa sarong espesyal na pahina (o sa mga myembro nin sarong espesyal na kategorya).

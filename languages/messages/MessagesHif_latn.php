@@ -1225,6 +1225,8 @@ Aap duusra log ke aap se aapan user_talk panna se aap ke contact kar le de sakta
 
 # Recent changes linked
 'recentchangeslinked'          => 'Panna ke jurraa badlao',
+'recentchangeslinked-feed'     => 'Panna ke jurraa badlao',
+'recentchangeslinked-toolbox'  => 'Panna ke jurraa badlao',
 'recentchangeslinked-title'    => '"$1" ke badlao',
 'recentchangeslinked-noresult' => 'Linked pages me ii time ke bhitar koi changes nai bhae.',
 'recentchangeslinked-summary'  => "Ii panna pahile waala badlao jon panna hian par linked hai ke list kare hai (nai to visesh vibhag ke sadasya).

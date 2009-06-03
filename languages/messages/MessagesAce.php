@@ -400,6 +400,8 @@ Meunyo neupasoë, euntreuk nan Droëneuh nyan geupeuleumah mangat jitupeuë soë
 
 # Recent changes linked
 'recentchangeslinked'          => 'Seundi meuhubông',
+'recentchangeslinked-feed'     => 'Seundi meuhubông',
+'recentchangeslinked-toolbox'  => 'Seundi meuhubông',
 'recentchangeslinked-title'    => 'Neu’ubah nyang meuhubông ngön $1',
 'recentchangeslinked-noresult' => 'Hana neu’ubah bak ôn-ôn meuhubông silawét masa nyang ka geupeuteuntèë.',
 'recentchangeslinked-summary'  => "Ôn husôh nyoë geupeuleumah dapeuta neu’ubah keuneulheuëh bak ôn ôn meuhubông. Ôn nyang neukalön geubri tanda ngön '''citak teubay'''.",

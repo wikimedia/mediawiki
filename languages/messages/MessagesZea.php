@@ -929,6 +929,8 @@ Een nie anekruusd vienkvakje beteêken da de gebruker hin lid is van de hroep.",
 
 # Recent changes linked
 'recentchangeslinked'          => 'Gerelateerde bewerkiengen',
+'recentchangeslinked-feed'     => 'Gerelateerde bewerkiengen',
+'recentchangeslinked-toolbox'  => 'Gerelateerde bewerkiengen',
 'recentchangeslinked-title'    => 'Wiezigiengen verwant an "$1"',
 'recentchangeslinked-noresult' => "Der zien hin bewerkiengen in de heheven periode ewist op de pagina's die an vanaf ier elienkt worn.",
 'recentchangeslinked-page'     => 'Paginanaem:',

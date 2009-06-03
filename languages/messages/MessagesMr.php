@@ -1163,6 +1163,8 @@ $3ने ''$2'' कारण दिले आहे.",
 
 # Recent changes linked
 'recentchangeslinked'          => 'या पृष्ठासंबंधीचे बदल',
+'recentchangeslinked-feed'     => 'या पृष्ठासंबंधीचे बदल',
+'recentchangeslinked-toolbox'  => 'या पृष्ठासंबंधीचे बदल',
 'recentchangeslinked-title'    => '"$1" च्या संदर्भातील बदल',
 'recentchangeslinked-noresult' => 'जोडलेल्या पानांमध्ये दिलेल्या कालावधीत काहीही बदल झालेले नाहीत.',
 'recentchangeslinked-summary'  => "हे पृष्ठ एखाद्या विशिष्ट पानाशी (किंवा एखाद्या विशिष्ट वर्गात असणार्‍या पानांशी) जोडलेल्या पानांवरील बदल दर्शवते.

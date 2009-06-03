@@ -688,6 +688,8 @@ Prova a scioberai ''totu:'' pro chircare in totu su cuntènnidu (includius pàgi
 
 # Recent changes linked
 'recentchangeslinked'          => 'Mudàntzias ligadas',
+'recentchangeslinked-feed'     => 'Mudàntzias ligadas',
+'recentchangeslinked-toolbox'  => 'Mudàntzias ligadas',
 'recentchangeslinked-title'    => 'Mudàntzias ligadas a "$1"',
 'recentchangeslinked-backlink' => '← $1',
 'recentchangeslinked-summary'  => "Custa est una lista de is mudàntzias fatas urtimamenti a is pàginas ligadas a cussa ispetzificada. 

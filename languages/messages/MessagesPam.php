@@ -972,6 +972,8 @@ Nung ibie me, magamit ya bang kilalanan ing kekang ambag.',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Miyalilan a makaugne',
+'recentchangeslinked-feed'     => 'Miyalilan a makaugne',
+'recentchangeslinked-toolbox'  => 'Miyalilan a makaugne',
 'recentchangeslinked-title'    => 'Deng miyalilan a maki kaugnayan king "$1"',
 'recentchangeslinked-noresult' => 'Alang miyalilan kareng bulung a pakasuglung ketang mebanggit a panaun.',
 'recentchangeslinked-summary'  => "Makalista la king bulung a iti deng tauling mengayalilan kareng 

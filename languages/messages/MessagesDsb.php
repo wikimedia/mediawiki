@@ -1339,6 +1339,8 @@ Móžoš toś ten bok wužywaś, aby slědk stajił swóje nastajenja na standar
 
 # Recent changes linked
 'recentchangeslinked'          => 'Změny w zwězanych bokach',
+'recentchangeslinked-feed'     => 'Změny w zwězanych bokach',
+'recentchangeslinked-toolbox'  => 'Změny w zwězanych bokach',
 'recentchangeslinked-title'    => 'Změny na bokach, kótarež su z „$1“ zalinkowane',
 'recentchangeslinked-noresult' => 'Zalinkowane boki njejsu we wuzwólonem casu se změnili.',
 'recentchangeslinked-summary'  => "To jo lisćina slědnych změnow, kótarež buchu na wótkazanych bokach cynjone (resp. pśi wěstych kategorijach na cłonkach kategorije).

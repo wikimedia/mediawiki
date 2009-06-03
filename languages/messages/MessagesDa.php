@@ -1348,6 +1348,8 @@ Du kan også vælge at lade andre brugere kontakte dig gennem din bruger- eller 
 
 # Recent changes linked
 'recentchangeslinked'          => 'Relaterede ændringer',
+'recentchangeslinked-feed'     => 'Relaterede ændringer',
+'recentchangeslinked-toolbox'  => 'Relaterede ændringer',
 'recentchangeslinked-title'    => 'Ændringer der relaterer til $1',
 'recentchangeslinked-noresult' => 'I det valgte tidsrum blev der ikke foretaget ændringer på sider der henvises til.',
 'recentchangeslinked-summary'  => "Denne specialside viser de seneste ændringer på de sider der henvises til. Sider på din overvågningsliste er vist med '''fed''' skrift.",

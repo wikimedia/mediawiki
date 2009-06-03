@@ -1380,6 +1380,8 @@ teisės",
 
 # Recent changes linked
 'recentchangeslinked'          => 'Susiję keitimai',
+'recentchangeslinked-feed'     => 'Susiję keitimai',
+'recentchangeslinked-toolbox'  => 'Susiję keitimai',
 'recentchangeslinked-title'    => 'Su „$1“ susiję keitimai',
 'recentchangeslinked-noresult' => 'Nėra jokių pakeitimų susietuose puslapiuose duotu periodu.',
 'recentchangeslinked-summary'  => "Tai paskutinių keitimų, atliktų puslapiuose, į kuriuos yra nuoroda iš nurodyto puslapio (arba į nurodytos kategorijos narius), sąrašas.

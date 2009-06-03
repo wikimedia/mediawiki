@@ -1450,6 +1450,8 @@ $1",
 
 # Recent changes linked
 'recentchangeslinked'          => '가리키는 글의 바뀜',
+'recentchangeslinked-feed'     => '가리키는 글의 바뀜',
+'recentchangeslinked-toolbox'  => '가리키는 글의 바뀜',
 'recentchangeslinked-title'    => '‘$1’ 문서에 관련된 문서 바뀜',
 'recentchangeslinked-noresult' => '여기를 가리키는 글 중에는 주어진 기간 동안의 최근 바뀜이 없습니다.',
 'recentchangeslinked-summary'  => "여기를 가리키는 문서(분류일 경우 이 분류에 포함된 문서)에 대한 최근 바뀜이 나와 있습니다.

@@ -1441,6 +1441,8 @@ Du kan òg velje å la andre brukarar kontakte deg på e-post via brukarsida di 
 
 # Recent changes linked
 'recentchangeslinked'          => 'Relaterte endringar',
+'recentchangeslinked-feed'     => 'Relaterte endringar',
+'recentchangeslinked-toolbox'  => 'Relaterte endringar',
 'recentchangeslinked-title'    => 'Endringar relaterte til "$1"',
 'recentchangeslinked-backlink' => '← $1',
 'recentchangeslinked-noresult' => 'Det er ikkje gjort endringar på sidene som var lenkja hit i den oppgjevne perioden.',

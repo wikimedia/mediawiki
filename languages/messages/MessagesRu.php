@@ -1474,6 +1474,8 @@ $1",
 
 # Recent changes linked
 'recentchangeslinked'          => 'Связанные правки',
+'recentchangeslinked-feed'     => 'Связанные правки',
+'recentchangeslinked-toolbox'  => 'Связанные правки',
 'recentchangeslinked-title'    => 'Связанные правки для $1',
 'recentchangeslinked-noresult' => 'На связанных страницах не было изменений за указанный период.',
 'recentchangeslinked-summary'  => "Это список недавних изменений в страницах, на которые ссылается указанная страница (или входящих в указанную категорию).

@@ -945,6 +945,8 @@ $2',
 
 # Recent changes linked
 'recentchangeslinked'          => 'ಸಂಬಂಧಪಟ್ಟ ಬದಲಾವಣೆಗಳು',
+'recentchangeslinked-feed'     => 'ಸಂಬಂಧಪಟ್ಟ ಬದಲಾವಣೆಗಳು',
+'recentchangeslinked-toolbox'  => 'ಸಂಬಂಧಪಟ್ಟ ಬದಲಾವಣೆಗಳು',
 'recentchangeslinked-title'    => '"$1" ಪುಟಕ್ಕೆ ಸಂಬಂಧಿಸಿದ ಬದಲಾವಣೆಗಳು',
 'recentchangeslinked-noresult' => 'ಸೂಚಿತ ಕಾಲದಲ್ಲಿ ಸಂಪರ್ಕ ಹೊಂದಿರುವ ಪುಟಗಳಲ್ಲಿ ಯಾವ ಬದಲಾವಣೆಗಳೂ ಇಲ್ಲ.',
 'recentchangeslinked-summary'  => "ಒಂದು ನಿರ್ದಿಷ್ಟ ಪುಟದಿಂದ (ಅಥವ ನಿರ್ದಿಷ್ಟ ವರ್ಗಕ್ಕೆ ಸೇರಿರುವ ಪುಟಗಳಿಂದ) ಸಂಪರ್ಕ ಹೊಂದಿರುವ ಪುಟಗಳಲ್ಲಿ ಇತ್ತೀಚೆಗೆ ಮಾಡಲಾಗಿರುವ ಬದಲಾವಣೆಗಳನ್ನು ಈ ಕೆಳಗೆ ಪಟ್ಟಿ ಮಾಡಲಾಗಿದೆ. 

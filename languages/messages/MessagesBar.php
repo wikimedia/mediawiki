@@ -419,7 +419,9 @@ Wãnn'st di mid dem Thema auskennst, kãnnst [[:$1|de Seitn söiwa schreim]].",
 'boteditletter'        => 'B',
 
 # Recent changes linked
-'recentchangeslinked' => 'Valinkts prüfn',
+'recentchangeslinked'         => 'Valinkts prüfn',
+'recentchangeslinked-feed'    => 'Valinkts prüfn',
+'recentchangeslinked-toolbox' => 'Valinkts prüfn',
 
 # Upload
 'upload'            => 'Aufelådn',

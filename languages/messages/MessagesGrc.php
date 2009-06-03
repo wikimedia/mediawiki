@@ -1086,6 +1086,8 @@ $1",
 
 # Recent changes linked
 'recentchangeslinked'          => 'Οἰκεῖαι μεταβολαί',
+'recentchangeslinked-feed'     => 'Οἰκεῖαι μεταβολαί',
+'recentchangeslinked-toolbox'  => 'Οἰκεῖαι μεταβολαί',
 'recentchangeslinked-title'    => 'Μεταβολαὶ οἰκεῖαι "$1"',
 'recentchangeslinked-noresult' => 'Οὐδεμία ἀλλαγὴ τῶν συνδεδεμένων δέλτων ἐν τῇ δεδομένῃ χρονικῇ περιόδῳ.',
 'recentchangeslinked-summary'  => "Ὅδε ἐστὶ κατάλογος τῶν νέων μεταβόλων κατὰ δέλτους συνδεδεμένας σὺν δέλτῳ τινί (ἢ κατὰ μέλη κατηγορίας τινός).

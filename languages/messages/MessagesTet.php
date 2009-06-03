@@ -475,8 +475,10 @@ Check your spelling, ka [[Special:UserLogin/signup|kria konta foun]].',
 'boteditletter'   => 'b',
 
 # Recent changes linked
-'recentchangeslinked'       => 'Muda sira',
-'recentchangeslinked-title' => 'Mudansa iha pájina sira-ne\'ebé iha ligasaun husi "$1"',
+'recentchangeslinked'         => 'Muda sira',
+'recentchangeslinked-feed'    => 'Muda sira',
+'recentchangeslinked-toolbox' => 'Muda sira',
+'recentchangeslinked-title'   => 'Mudansa iha pájina sira-ne\'ebé iha ligasaun husi "$1"',
 
 # Upload
 'upload'          => 'Tau iha arkivu laran',

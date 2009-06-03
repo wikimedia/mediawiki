@@ -499,6 +499,8 @@ hersenenge, (førge) = førskel til den førge hersenenge, l = lile til mendre �
 
 # Recent changes linked
 'recentchangeslinked'          => 'Relaterede ændrenger',
+'recentchangeslinked-feed'     => 'Relaterede ændrenger',
+'recentchangeslinked-toolbox'  => 'Relaterede ændrenger',
 'recentchangeslinked-title'    => 'Ændrenger der vegånde til "$1"',
 'recentchangeslinked-noresult' => 'I det udvalgte tidsrum blev der ekke føretaget ændrenger på siderne der henveses til.',
 'recentchangeslinked-summary'  => "Denne sonstside beser de seneste ændrenger på de sider der henveses til. Sider på din åvervågnengsliste er vest ve '''fed''' skreft.",

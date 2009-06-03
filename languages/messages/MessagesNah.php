@@ -768,9 +768,11 @@ Intlā ticnequi, tlācah quimatīzqueh motequi.',
 'newsectionsummary'                 => 'Yancuīc tlahtōltzintli: /* $1 */',
 
 # Recent changes linked
-'recentchangeslinked'       => 'Tlapatlaliztli tzonhuilizpan',
-'recentchangeslinked-title' => 'Tlapatlaliztli "$1" ītechcopa',
-'recentchangeslinked-page'  => 'Zāzanilli ītōcā:',
+'recentchangeslinked'         => 'Tlapatlaliztli tzonhuilizpan',
+'recentchangeslinked-feed'    => 'Tlapatlaliztli tzonhuilizpan',
+'recentchangeslinked-toolbox' => 'Tlapatlaliztli tzonhuilizpan',
+'recentchangeslinked-title'   => 'Tlapatlaliztli "$1" ītechcopa',
+'recentchangeslinked-page'    => 'Zāzanilli ītōcā:',
 
 # Upload
 'upload'                 => 'Tlahcuilōlquetza',

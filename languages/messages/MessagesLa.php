@@ -1127,6 +1127,8 @@ Si vis, sinit etiam aliis tecum loqui per tuam paginam usoris vel disputationis,
 
 # Recent changes linked
 'recentchangeslinked'         => 'Nuper mutata annexorum',
+'recentchangeslinked-feed'    => 'Nuper mutata annexorum',
+'recentchangeslinked-toolbox' => 'Nuper mutata annexorum',
 'recentchangeslinked-title'   => 'Nuper mutata in paginis quibus pagina "$1" nectit',
 'recentchangeslinked-summary' => "Ecce mutationes recentissimas commentationum quae aut paginae cuidam adnectuntur, aut in categoria quadam includuntur. Paginae a [[Special:Watchlist|te custoditae]] '''litteris pinguibus''' monstrantur.",
 'recentchangeslinked-page'    => 'Titulus paginae:',

@@ -1363,6 +1363,8 @@ HTML ටැගයන් පිරික්සන්න.',
 
 # Recent changes linked
 'recentchangeslinked'          => 'සහසම්බන්ධිත වෙනස්වීම්',
+'recentchangeslinked-feed'     => 'සහසම්බන්ධිත වෙනස්වීම්',
+'recentchangeslinked-toolbox'  => 'සහසම්බන්ධිත වෙනස්වීම්',
 'recentchangeslinked-title'    => '"$1" ට සහසම්බන්ධිත වෙනස්වීම්',
 'recentchangeslinked-backlink' => '← $1',
 'recentchangeslinked-noresult' => 'සලකා බැලූ කාලසීමාවෙහිදී, සබැඳි පිටු වල කිසිදු වෙනසක් සිදුවී නොමැත.',

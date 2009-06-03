@@ -776,6 +776,8 @@ Yanggen un decidi mamo'lu, ma'usa ha' sempre para muna'i hao ni kreditu ni che'c
 
 # Recent changes linked
 'recentchangeslinked'          => 'Umachetton na tinilaika siha',
+'recentchangeslinked-feed'     => 'Umachetton na tinilaika siha',
+'recentchangeslinked-toolbox'  => 'Umachetton na tinilaika siha',
 'recentchangeslinked-title'    => 'Tinilaika pumarehu yan "$1"',
 'recentchangeslinked-noresult' => "Tåya' na tinilaika siha ni maninachetton na påhina gi tiempon ma'ayek.",
 'recentchangeslinked-summary'  => "Lista este ni tinilaika siha gi halacha ginen un påhina ma'ayek (pat ni miembro siha ginen un katigoria ma'ayek).

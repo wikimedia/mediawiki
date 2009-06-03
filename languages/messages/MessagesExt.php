@@ -910,6 +910,8 @@ Ebi tenel menus de $1 {{PLURAL:$1|caratel|carateris}}.',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Chambus relacionaus',
+'recentchangeslinked-feed'     => 'Chambus relacionaus',
+'recentchangeslinked-toolbox'  => 'Chambus relacionaus',
 'recentchangeslinked-title'    => 'Chambus relacionaus con "$1"',
 'recentchangeslinked-noresult' => 'Nu ai chambus enas páhinas atihás nel períu lihiu.',
 'recentchangeslinked-summary'  => "Nesta páhina especial ai una lista colos úrtimus chambus en páhinas qu'están atihás dendi una páhina concreta (u en miembrus de una detelminá categoria).

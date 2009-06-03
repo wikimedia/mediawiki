@@ -286,7 +286,7 @@ class MonoBookTemplate extends QuickTemplate {
 			if( $this->data['nav_urls']['recentchangeslinked'] ) { ?>
 				<li id="t-recentchangeslinked"><a href="<?php
 				echo htmlspecialchars($this->data['nav_urls']['recentchangeslinked']['href'])
-				?>"<?php echo $this->skin->tooltipAndAccesskey('t-recentchangeslinked') ?>><?php $this->msg('recentchangeslinked') ?></a></li>
+				?>"<?php echo $this->skin->tooltipAndAccesskey('t-recentchangeslinked') ?>><?php $this->msg('recentchangeslinked-toolbox') ?></a></li>
 <?php 		}
 		}
 		if(isset($this->data['nav_urls']['trackbacklink'])) { ?>

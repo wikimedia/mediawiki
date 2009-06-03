@@ -139,7 +139,9 @@ Ua nimo ke hiki e haau tau manako {{SITENAME}}.',
 'hist'          => 'Liu onoono atu ki tua',
 
 # Recent changes linked
-'recentchangeslinked' => 'Falu hikihiki',
+'recentchangeslinked'         => 'Falu hikihiki',
+'recentchangeslinked-feed'    => 'Falu hikihiki',
+'recentchangeslinked-toolbox' => 'Falu hikihiki',
 
 # Upload
 'upload'            => 'Fakafano e faila',

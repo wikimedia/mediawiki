@@ -251,7 +251,9 @@ Vu posse continuar usar {{SITENAME}} anonimimen, o vu posse aperter un session d
 'minoreditletter'   => 'm',
 
 # Recent changes linked
-'recentchangeslinked' => 'Relatet modificationes',
+'recentchangeslinked'         => 'Relatet modificationes',
+'recentchangeslinked-feed'    => 'Relatet modificationes',
+'recentchangeslinked-toolbox' => 'Relatet modificationes',
 
 # Upload
 'upload'    => 'Cargar file',

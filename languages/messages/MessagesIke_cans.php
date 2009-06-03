@@ -226,6 +226,8 @@ $messages = array(
 
 # Recent changes linked
 'recentchangeslinked'          => 'ᐊᓯᐊᙳᑐᖅ ᒥᑦᓵᓯᔪᖅ',
+'recentchangeslinked-feed'     => 'ᐊᓯᐊᙳᑐᖅ ᒥᑦᓵᓯᔪᖅ',
+'recentchangeslinked-toolbox'  => 'ᐊᓯᐊᙳᑐᖅ ᒥᑦᓵᓯᔪᖅ',
 'recentchangeslinked-noresult' => '0 ᐊᓯᐊᙳᑐᖅ ᐃᑦᓯᕕᒻᒥᐅᓯᖅᐹ ᒪᑉᐱᑕᖅ ᑕᑯᕙᓪᓚᑐᖅ ᓱᓪᓗᒃ ᑕᒪᑐᒪᓂ ᑐᒥᑯ',
 
 # Upload

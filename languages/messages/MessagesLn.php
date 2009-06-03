@@ -247,7 +247,9 @@ $messages = array(
 'boteditletter'   => 'b',
 
 # Recent changes linked
-'recentchangeslinked' => 'Bolandi ekangisi',
+'recentchangeslinked'         => 'Bolandi ekangisi',
+'recentchangeslinked-feed'    => 'Bolandi ekangisi',
+'recentchangeslinked-toolbox' => 'Bolandi ekangisi',
 
 # Upload
 'upload'    => 'Kokumbisa (elilingi)',

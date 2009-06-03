@@ -444,6 +444,8 @@ $1',
 
 # Recent changes linked
 'recentchangeslinked'          => 'تغییرات مرتبط',
+'recentchangeslinked-feed'     => 'تغییرات مرتبط',
+'recentchangeslinked-toolbox'  => 'تغییرات مرتبط',
 'recentchangeslinked-title'    => 'تغییرهای مرتبط با $1',
 'recentchangeslinked-noresult' => 'در دوره زمانی داده‌شده تغییری در صفحه‌های لینک داده رخ نداده‌',
 'recentchangeslinked-summary'  => " ای صفحه خاص تغییرات اخیر در صفحه‌های لینک داده شده به این صفحه را نشو اده.

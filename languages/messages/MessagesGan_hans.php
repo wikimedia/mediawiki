@@ -808,6 +808,8 @@ $2',
 
 # Recent changes linked
 'recentchangeslinked'          => '链接页𠮶更改',
+'recentchangeslinked-feed'     => '链接页𠮶更改',
+'recentchangeslinked-toolbox'  => '链接页𠮶更改',
 'recentchangeslinked-title'    => '链接页𠮶改动到 "$1"',
 'recentchangeslinked-noresult' => '个段时间𠮶链接页冇更改。',
 'recentchangeslinked-summary'  => "个只特殊页列出个页连出去页面𠮶最晏改动（或系某只分类𠮶页面）。

@@ -1215,6 +1215,8 @@ S'havi accirtari ca la cuntinuità storica di la pàggina nun veni altirata.",
 
 # Recent changes linked
 'recentchangeslinked'          => 'Canciamenti culligati',
+'recentchangeslinked-feed'     => 'Canciamenti culligati',
+'recentchangeslinked-toolbox'  => 'Canciamenti culligati',
 'recentchangeslinked-title'    => 'Canciamenti culligati a "$1"',
 'recentchangeslinked-noresult' => 'Nuddu canciamentu ê pàggini culligati ntô pirìudu spicificatu.',
 'recentchangeslinked-summary'  => "Chista pàggina spiciali ammustra li canciamenti cchiù ricenti ê pàggini culligati a chidda spicificata. Li pàggini taliati ni la tou [[Special:Watchlist|lista taliata]] sunu evidenziati 'n '''grassettu'''.",

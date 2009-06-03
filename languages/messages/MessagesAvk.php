@@ -1009,6 +1009,8 @@ Gotir le $1 {{PLURAL:$1|staa|staa}}.',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Gluyasikisuzdara',
+'recentchangeslinked-feed'     => 'Gluyasikisuzdara',
+'recentchangeslinked-toolbox'  => 'Gluyasikisuzdara',
 'recentchangeslinked-title'    => 'Betakseem skedas va "$1"',
 'recentchangeslinked-noresult' => 'Meka betara va gluyasikikirafu bu remi bata rekola.',
 'recentchangeslinked-summary'  => "Batu aptafu bu va ironokaf betakseem va gluyasikikirafu bu vexalar.

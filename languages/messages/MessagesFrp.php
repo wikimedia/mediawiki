@@ -1555,6 +1555,8 @@ Vos pouede asse-ben dècidar de lèssiér los ôtros sè veriér vers vos avoué
 
 # Recent changes linked
 'recentchangeslinked'          => 'Changements de les pâges liyês',
+'recentchangeslinked-feed'     => 'Changements de les pâges liyês',
+'recentchangeslinked-toolbox'  => 'Changements de les pâges liyês',
 'recentchangeslinked-title'    => 'Changements de les pâges liyês a « $1 »',
 'recentchangeslinked-noresult' => 'Y at pas de changement sur les pâges liyês pendent lo temps chouèsi.',
 'recentchangeslinked-summary'  => "Ceta pâge spèciâla montre los dèrriérs changements sur les pâges que sont liyês.

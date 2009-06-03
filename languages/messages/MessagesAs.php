@@ -763,6 +763,8 @@ $messages = array(
 
 # Recent changes linked
 'recentchangeslinked'          => 'প্রাসংগিক সম্পাদনানমূহ',
+'recentchangeslinked-feed'     => 'প্রাসংগিক সম্পাদনানমূহ',
+'recentchangeslinked-toolbox'  => 'প্রাসংগিক সম্পাদনানমূহ',
 'recentchangeslinked-title'    => '"$1"ৰ লগত জৰিত সাল-সলনি',
 'recentchangeslinked-noresult' => 'দিয়া সময়ৰ ভিতৰত সংযোজিত পৃষ্ঠা সমূহত সাল-সলনি হোৱা নাই |',
 

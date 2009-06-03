@@ -89,7 +89,9 @@ $messages = array(
 'show'          => 'Whakaaturia',
 
 # Recent changes linked
-'recentchangeslinked' => 'Rerekētanga pū tahi',
+'recentchangeslinked'         => 'Rerekētanga pū tahi',
+'recentchangeslinked-feed'    => 'Rerekētanga pū tahi',
+'recentchangeslinked-toolbox' => 'Rerekētanga pū tahi',
 
 # Upload
 'upload' => 'Tuku atu',

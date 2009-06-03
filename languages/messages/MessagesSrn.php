@@ -787,6 +787,8 @@ Yu kan [[:\$1|meki a papira disi]].",
 
 # Recent changes linked
 'recentchangeslinked'          => 'Kenki di abi wan sani fu du nanga disi',
+'recentchangeslinked-feed'     => 'Kenki di abi wan sani fu du nanga disi',
+'recentchangeslinked-toolbox'  => 'Kenki di abi wan sani fu du nanga disi',
 'recentchangeslinked-title'    => 'Kenki di abi wan sani fu du nanga "$1"',
 'recentchangeslinked-noresult' => 'Noti ben kenki ini den miti papira ini a pisi di gi.',
 'recentchangeslinked-summary'  => "A spesrutu papira disi e sori den laste kenki di ben meki tapu papira di miti tapu wan papira di sori (noso go na memre fu wan grupu di sori).

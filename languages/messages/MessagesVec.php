@@ -1333,6 +1333,8 @@ In più te pol anca farte contatar da altri tramite la to pagina personale o la 
 
 # Recent changes linked
 'recentchangeslinked'          => 'Modìfeghe ligà a sta pàxena',
+'recentchangeslinked-feed'     => 'Modìfeghe ligà a sta pàxena',
+'recentchangeslinked-toolbox'  => 'Modìfeghe ligà a sta pàxena',
 'recentchangeslinked-title'    => 'Modìfeghe ligà a "$1"',
 'recentchangeslinked-noresult' => 'Nel periodo specificà no ghe xe stà nissuna modifica a le pagine colegà.',
 'recentchangeslinked-summary'  => "Sta pagina speciale la fa védar le modifiche piassè recenti a le pagine ligà a quela specificà (o a le pagine contegnù ne la categoria specificà).

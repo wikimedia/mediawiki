@@ -1361,6 +1361,8 @@ Aynı zamanda diğer kullanıcıların kullanıcı ve kullanıcı mesaj sayfalar
 
 # Recent changes linked
 'recentchangeslinked'          => 'İlgili değişiklikler',
+'recentchangeslinked-feed'     => 'İlgili değişiklikler',
+'recentchangeslinked-toolbox'  => 'İlgili değişiklikler',
 'recentchangeslinked-title'    => '"$1" ile ilişkili değişiklikler',
 'recentchangeslinked-noresult' => 'Verilen süre içerisinde belirtilen sayfaya bağlı diğer sayfalarda değişiklik bulunmamaktadır.',
 'recentchangeslinked-summary'  => "Aşağıdaki liste, belirtilen sayfaya (ya da belirtilen kategorinin üyelerine) bağlantı veren sayfalarda yapılan son değişikliklerin listesidir.

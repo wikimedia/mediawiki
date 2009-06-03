@@ -1538,6 +1538,8 @@ dat dänne ihr Daate topaktuell sin,
 
 # Recent changes linked
 'recentchangeslinked'          => 'Änderunge aan Sigge, wo hee drop jelink es',
+'recentchangeslinked-feed'     => 'Änderunge aan Sigge, wo hee drop jelink es',
+'recentchangeslinked-toolbox'  => 'Änderunge aan Sigge, wo hee drop jelink es',
 'recentchangeslinked-title'    => 'Änderunge aan Sigge, die vun „$1“ uß verlink sin',
 'recentchangeslinked-backlink' => '←&nbsp;$1',
 'recentchangeslinked-noresult' => 'Et woodte kein Änderunge aan verlinkte Sigge jemaat en dä Zick.',

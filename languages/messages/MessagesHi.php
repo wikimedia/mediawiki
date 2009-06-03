@@ -1030,6 +1030,8 @@ Don't forget to personalize your {{SITENAME}} preferences.",
 
 # Recent changes linked
 'recentchangeslinked'          => 'पन्ने से जुडे बदलाव',
+'recentchangeslinked-feed'     => 'पन्ने से जुडे बदलाव',
+'recentchangeslinked-toolbox'  => 'पन्ने से जुडे बदलाव',
 'recentchangeslinked-title'    => '"$1" में हुए बदलाव',
 'recentchangeslinked-noresult' => 'जुडे हुए पन्नोंमें दिये हुए अवसरमें कोई भी बदलाव नहीं हुए हैं ।',
 'recentchangeslinked-summary'  => "यह पृष्ठ एक विशेष पृष्ठ से जुड़े हुए पन्नोंके (या एक विशिष्ट श्रेणीमें होनेवाले पन्नोंके) बदलाव दर्शाता हैं। 

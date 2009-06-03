@@ -609,6 +609,8 @@ $messages = array(
 
 # Recent changes linked
 'recentchangeslinked'          => 'ملدیاں جلدیاں تبدیلیاں',
+'recentchangeslinked-feed'     => 'ملدیاں جلدیاں تبدیلیاں',
+'recentchangeslinked-toolbox'  => 'ملدیاں جلدیاں تبدیلیاں',
 'recentchangeslinked-title'    => '"$1" نال تعلق آلیاں تبدیلیاں',
 'recentchangeslinked-noresult' => 'جڑیاں صفحیاں چ دتے ہوۓ ویلے چ کوئی تبدیلیاں نہیں۔',
 'recentchangeslinked-summary'  => "اے اوناں تبدیلیاں دی لسٹ اے جیڑیاں تھوڑا چر پہلاں بنائیاں گئیاں اوناں صفحیاں تے جیڑے خاص صفحے تے جڑدے نے یا کسی خاص کیٹاگری دے ممبراں نوں۔<br />

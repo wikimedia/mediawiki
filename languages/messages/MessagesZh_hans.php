@@ -1380,6 +1380,8 @@ $1",
 
 # Recent changes linked
 'recentchangeslinked'          => '链出更改',
+'recentchangeslinked-feed'     => '链出更改',
+'recentchangeslinked-toolbox'  => '链出更改',
 'recentchangeslinked-title'    => '对于“$1”有关的链出更改',
 'recentchangeslinked-noresult' => '在这一段时间中链接的页面并无更改。',
 'recentchangeslinked-summary'  => "这一个特殊页面列示''由''所给出的一个页面之链接到页面的最近更改（或者是对于指定分类的成员）。

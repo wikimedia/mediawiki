@@ -1422,6 +1422,8 @@ También puede permitir a otros usuarios que contacten con usted a través de su
 
 # Recent changes linked
 'recentchangeslinked'          => 'Cambios relacionados',
+'recentchangeslinked-feed'     => 'Cambios relacionados',
+'recentchangeslinked-toolbox'  => 'Cambios relacionados',
 'recentchangeslinked-title'    => 'Cambios relacionados con "$1"',
 'recentchangeslinked-noresult' => 'No hubo cambios en las páginas enlazadas durante el periodo indicado.',
 'recentchangeslinked-summary'  => "Esta página es una lista de los últimos cambios en las páginas enlazadas desde una página (o en las pertenecientes a una categoría). Las páginas que están en tu [[Special:Watchlist|lista de seguimiento]] aparecen en '''negrita'''.",

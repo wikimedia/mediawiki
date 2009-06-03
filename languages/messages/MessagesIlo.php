@@ -790,6 +790,8 @@ Ngem no kayatmo nga ited, maaramat daytoy kas pammadayaw ken pangpatalged iti ob
 
 # Recent changes linked
 'recentchangeslinked'          => 'Mainaig a balbaliw',
+'recentchangeslinked-feed'     => 'Mainaig a balbaliw',
+'recentchangeslinked-toolbox'  => 'Mainaig a balbaliw',
 'recentchangeslinked-title'    => 'Panangbalbaliw a mainaig iti "$1"',
 'recentchangeslinked-noresult' => 'Awan panamalbaliw kadagiti naisilpo a pampanid kabayatan ti naited a panawen.',
 'recentchangeslinked-summary'  => "Listaan daytoy dagiti kaudian a naaramid a panangbalbaliw kadagiti pampanid a nakasilpo manipud iti maysa a napili a panid (wenno kadagiti kameng ti maysa a napili a categoria).

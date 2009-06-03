@@ -66,7 +66,9 @@ $messages = array(
 'recentchanges' => 'ᎾᏞᎬ ᏗᎦᏁᏟᏴᏍᏗ',
 
 # Recent changes linked
-'recentchangeslinked' => 'ᎪᎱᏍᏗ ᎠᎾᏓᏛᏂ ᏗᎦᏁᏟᏴᏍᏗ',
+'recentchangeslinked'         => 'ᎪᎱᏍᏗ ᎠᎾᏓᏛᏂ ᏗᎦᏁᏟᏴᏍᏗ',
+'recentchangeslinked-feed'    => 'ᎪᎱᏍᏗ ᎠᎾᏓᏛᏂ ᏗᎦᏁᏟᏴᏍᏗ',
+'recentchangeslinked-toolbox' => 'ᎪᎱᏍᏗ ᎠᎾᏓᏛᏂ ᏗᎦᏁᏟᏴᏍᏗ',
 
 # Upload
 'upload' => 'ᎦᎸᎳᏗᏢ ᎠᎧᎵᎢ ᎠᏝᎥᎢ',

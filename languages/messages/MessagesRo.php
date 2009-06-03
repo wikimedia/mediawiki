@@ -1342,6 +1342,8 @@ $3',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Modificări corelate',
+'recentchangeslinked-feed'     => 'Modificări corelate',
+'recentchangeslinked-toolbox'  => 'Modificări corelate',
 'recentchangeslinked-title'    => 'Modificări legate de "$1"',
 'recentchangeslinked-noresult' => 'Nici o schimbare la paginile legate în perioada dată.',
 'recentchangeslinked-summary'  => "Aceasta este o listă a schimbărilor efectuate recent asupra paginilor cu legături de la o anumită pagină (sau asupra membrilor unei anumite categorii).

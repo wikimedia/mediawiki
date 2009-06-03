@@ -1407,6 +1407,8 @@ L'operazione non può essere annullata.",
 
 # Recent changes linked
 'recentchangeslinked'          => 'Modifiche correlate',
+'recentchangeslinked-feed'     => 'Modifiche correlate',
+'recentchangeslinked-toolbox'  => 'Modifiche correlate',
 'recentchangeslinked-title'    => 'Modifiche correlate a "$1"',
 'recentchangeslinked-noresult' => 'Nessuna modifica alle pagine collegate nel periodo specificato.',
 'recentchangeslinked-summary'  => "Questa pagina speciale mostra le modifiche più recenti alle pagine collegate a quella specificata. Le pagine contenute nella propria lista degli [[Special:Watchlist|Osservati Speciali]] sono evidenziate in '''grassetto'''.",

@@ -977,9 +977,11 @@ Poleg tega vpisan e-poštni naslov omogoča drugim, da vam lahko pošiljajo elek
 'rc-enhanced-hide'                  => 'Skrij podrobnosti',
 
 # Recent changes linked
-'recentchangeslinked'       => 'Sorodne spremembe',
-'recentchangeslinked-title' => 'Spremembe, povezane z "$1"',
-'recentchangeslinked-page'  => 'Ime strani:',
+'recentchangeslinked'         => 'Sorodne spremembe',
+'recentchangeslinked-feed'    => 'Sorodne spremembe',
+'recentchangeslinked-toolbox' => 'Sorodne spremembe',
+'recentchangeslinked-title'   => 'Spremembe, povezane z "$1"',
+'recentchangeslinked-page'    => 'Ime strani:',
 
 # Upload
 'upload'                      => 'Naloži datoteko',

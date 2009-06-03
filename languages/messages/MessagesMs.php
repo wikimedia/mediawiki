@@ -1330,6 +1330,8 @@ Cuba berikan awalan ''all:'' untuk menggelintar semua kandungan (termasuk laman 
 
 # Recent changes linked
 'recentchangeslinked'          => 'Perubahan berkaitan',
+'recentchangeslinked-feed'     => 'Perubahan berkaitan',
+'recentchangeslinked-toolbox'  => 'Perubahan berkaitan',
 'recentchangeslinked-title'    => 'Perubahan berkaitan dengan $1',
 'recentchangeslinked-noresult' => 'Tiada perubahan pada semua laman yang dipaut dalam tempoh yang diberikan.',
 'recentchangeslinked-summary'  => "Laman khas ini menyenaraikan perubahan terkini bagi laman-laman yang dipaut. Laman-laman yang terdapat dalam senarai pantau anda ditandakan dengan '''teks tebal'''.",

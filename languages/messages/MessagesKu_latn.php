@@ -816,6 +816,8 @@ Sedemê qedexekirinê ji $3 ev e: ''$2''",
 
 # Recent changes linked
 'recentchangeslinked'         => 'Guherandinên peywend',
+'recentchangeslinked-feed'    => 'Guherandinên peywend',
+'recentchangeslinked-toolbox' => 'Guherandinên peywend',
 'recentchangeslinked-summary' => "Ev rûpela taybetî guherandinên dawî ji rûpelên lînkkirî nîşandide. Ew rûpel yê di lîsteya te ya şopandinê da ne bi nivîsa '''estûr''' tên nîşandan.",
 
 # Upload

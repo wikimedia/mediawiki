@@ -351,7 +351,9 @@ MySQL nagbalik hin sayop nga "$3: $4".',
 'newpageletter'   => 'B',
 
 # Recent changes linked
-'recentchangeslinked' => 'Mga may kalabotan nga binag-o',
+'recentchangeslinked'         => 'Mga may kalabotan nga binag-o',
+'recentchangeslinked-feed'    => 'Mga may kalabotan nga binag-o',
+'recentchangeslinked-toolbox' => 'Mga may kalabotan nga binag-o',
 
 # Upload
 'upload'    => 'Pagkarga hin file',

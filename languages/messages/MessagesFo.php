@@ -623,7 +623,9 @@ Vinarliga umhugsa at býta síðuna sundur í styttri pettir.'''",
 'rc_categories_any' => 'Nakar',
 
 # Recent changes linked
-'recentchangeslinked' => 'Viðkomandi broytingar',
+'recentchangeslinked'         => 'Viðkomandi broytingar',
+'recentchangeslinked-feed'    => 'Viðkomandi broytingar',
+'recentchangeslinked-toolbox' => 'Viðkomandi broytingar',
 
 # Upload
 'upload'            => 'Legg fílu upp',

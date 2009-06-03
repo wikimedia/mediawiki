@@ -230,7 +230,9 @@ $messages = array(
 'boteditletter'   => 'ဆ',
 
 # Recent changes linked
-'recentchangeslinked' => 'ဆက်​ဆပ်​သော​အ​ပြောင်း​အ​လဲ​များ​',
+'recentchangeslinked'         => 'ဆက်​ဆပ်​သော​အ​ပြောင်း​အ​လဲ​များ​',
+'recentchangeslinked-feed'    => 'ဆက်​ဆပ်​သော​အ​ပြောင်း​အ​လဲ​များ​',
+'recentchangeslinked-toolbox' => 'ဆက်​ဆပ်​သော​အ​ပြောင်း​အ​လဲ​များ​',
 
 # Upload
 'upload'            => 'ဖိုင်​တင်​ရန်​',

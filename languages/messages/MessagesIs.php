@@ -1233,6 +1233,8 @@ Ef þú kýst að gefa það upp, verður það notað til að gefa þér heiðu
 
 # Recent changes linked
 'recentchangeslinked'          => 'Skyldar breytingar',
+'recentchangeslinked-feed'     => 'Skyldar breytingar',
+'recentchangeslinked-toolbox'  => 'Skyldar breytingar',
 'recentchangeslinked-title'    => 'Breytingar tengdar "$1"',
 'recentchangeslinked-noresult' => 'Engar breytingar á tengdum síðum á þessu tímabili.',
 'recentchangeslinked-summary'  => "Þetta er listi yfir nýlega gerðar breytingar á síðum sem tengt er í frá tilgreindri síðu (eða á meðlimum úr tilgreindum flokki).

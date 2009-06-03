@@ -1368,6 +1368,8 @@ $2',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Сродне промене',
+'recentchangeslinked-feed'     => 'Сродне промене',
+'recentchangeslinked-toolbox'  => 'Сродне промене',
 'recentchangeslinked-title'    => 'Сродне промене за "$1"',
 'recentchangeslinked-noresult' => 'Нема измена на повезаним страницама за одабрани период.',
 'recentchangeslinked-summary'  => "Ова посебна страница показује списак поселењих промена на страницама које су повезане (или чланови одређене категорије). 

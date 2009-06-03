@@ -930,6 +930,8 @@ do chuid dreachtaí a chur i leith tusa.',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Athruithe gaolmhara',
+'recentchangeslinked-feed'     => 'Athruithe gaolmhara',
+'recentchangeslinked-toolbox'  => 'Athruithe gaolmhara',
 'recentchangeslinked-title'    => 'Athruithe gaolmhara le "$1"',
 'recentchangeslinked-noresult' => 'Níl aon athraithe ar na leathanaigh naiscthe le linn an tréimhse tugtha.',
 'recentchangeslinked-summary'  => "Seo liosta na n-athruithe atá deanta is déanaí le leathanaigh atá naiscthe as leathanach sonraithe (nó baill an chatagóir sonraithe).

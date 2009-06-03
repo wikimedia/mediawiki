@@ -1241,6 +1241,8 @@ Dalol i dälön votikanes kosikön ko ol yufü gebana- u bespikapad olik nes sä
 
 # Recent changes linked
 'recentchangeslinked'          => 'Votükams teföl',
+'recentchangeslinked-feed'     => 'Votükams teföl',
+'recentchangeslinked-toolbox'  => 'Votükams teföl',
 'recentchangeslinked-title'    => 'Votükams tefü pad: "$1"',
 'recentchangeslinked-noresult' => 'Pads ad pad at peyümöls no pevotükons ün period at.',
 'recentchangeslinked-summary'  => "Su pad patik at palisedons votükams padas, lü kels pad pevälöl yumon. 

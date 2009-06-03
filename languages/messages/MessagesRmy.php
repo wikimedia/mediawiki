@@ -330,7 +330,9 @@ Kana avilyan kathe doshatar, ja palpale.',
 'rc_categories_any'                 => 'Savegodi',
 
 # Recent changes linked
-'recentchangeslinked' => 'Pashvipnaske paruvimata',
+'recentchangeslinked'         => 'Pashvipnaske paruvimata',
+'recentchangeslinked-feed'    => 'Pashvipnaske paruvimata',
+'recentchangeslinked-toolbox' => 'Pashvipnaske paruvimata',
 
 # Upload
 'upload'      => 'Bichhal file',

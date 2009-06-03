@@ -350,6 +350,8 @@ Du kannscht awwer [[:\$1|die Said aaleche]].",
 
 # Recent changes linked
 'recentchangeslinked'         => 'Was on verlinkde Seide gemacht worre isch',
+'recentchangeslinked-feed'    => 'Was on verlinkde Seide gemacht worre isch',
+'recentchangeslinked-toolbox' => 'Was on verlinkde Seide gemacht worre isch',
 'recentchangeslinked-title'   => 'Ännerunge an Saire, wu „$1“ druf verlinkt',
 'recentchangeslinked-summary' => "Des isch e Lischt vun Ännerunge, wu erscht gmacht worre sin an Saire, die wu vun ere bstimmte Said verlinkt sin (orrer die wu zu ere bstimmte Kategorie ghere).
 Saire uff [[Special:Watchlist|Dainer Beowachdungslischt]] sin '''fett'''.",

@@ -504,6 +504,8 @@ If you choose to provide it, this will be used for giving you attribution for yo
 
 # Recent changes linked
 'recentchangeslinked'         => 'Ney sero vurnayışi',
+'recentchangeslinked-feed'    => 'Ney sero vurnayışi',
+'recentchangeslinked-toolbox' => 'Ney sero vurnayışi',
 'recentchangeslinked-title'   => 'vurnayışan ser "$1"',
 'recentchangeslinked-summary' => 'Ena liste dı vurnayışê peniyan ser peleyan esta ki ena peleyan gırediyaya yew specifik pele (ya zi yew specifik kategori). Peleyan ki zerre [[Special:Watchlist|your watchlist]] dı qalın herf dı nusiyeyo.',
 'recentchangeslinked-page'    => 'Nameyê pele:',

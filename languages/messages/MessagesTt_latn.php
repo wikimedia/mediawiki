@@ -397,8 +397,10 @@ Zínhar, bu bitneñ wağraq kisäklärgä bülü turında uylap qara.",
 'newpageletter'     => 'Y',
 
 # Recent changes linked
-'recentchangeslinked'       => 'Bäyle üzgärmä',
-'recentchangeslinked-title' => '$1 bilen beyli özgeriş',
+'recentchangeslinked'         => 'Bäyle üzgärmä',
+'recentchangeslinked-feed'    => 'Bäyle üzgärmä',
+'recentchangeslinked-toolbox' => 'Bäyle üzgärmä',
+'recentchangeslinked-title'   => '$1 bilen beyli özgeriş',
 
 # Upload
 'upload'            => 'Birem yökläw',

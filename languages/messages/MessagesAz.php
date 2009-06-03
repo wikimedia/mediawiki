@@ -514,7 +514,9 @@ Açıqlama: (hh) = hal-hazırkı versiya ilə olan fərqlər,
 'newsectionsummary' => '/* $1 */ yeni bölmə',
 
 # Recent changes linked
-'recentchangeslinked' => 'Əlaqəli redaktələr',
+'recentchangeslinked'         => 'Əlaqəli redaktələr',
+'recentchangeslinked-feed'    => 'Əlaqəli redaktələr',
+'recentchangeslinked-toolbox' => 'Əlaqəli redaktələr',
 
 # Upload
 'upload'            => 'Qarşıya yüklə',

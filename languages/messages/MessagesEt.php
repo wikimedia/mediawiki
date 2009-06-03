@@ -1035,6 +1035,8 @@ See ei tohi olla pikem kui $1 {{PLURAL:$1|sümbol|sümbolit}}.',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Seotud muudatused',
+'recentchangeslinked-feed'     => 'Seotud muudatused',
+'recentchangeslinked-toolbox'  => 'Seotud muudatused',
 'recentchangeslinked-title'    => 'Muudatused, mis on seotud "$1"-ga.',
 'recentchangeslinked-backlink' => '← $1',
 'recentchangeslinked-noresult' => 'Antud ajavahemiku jooksul ei ole lingitud lehekülgedel muudatusi tehtud.',

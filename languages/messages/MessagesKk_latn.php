@@ -1354,6 +1354,8 @@ Eger bunı jetistirwdi tañdasañız, bul tüzetwiñizdiñ awtorlığın anıqta
 
 # Recent changes linked
 'recentchangeslinked'          => 'Qatıstı özgerister',
+'recentchangeslinked-feed'     => 'Qatıstı özgerister',
+'recentchangeslinked-toolbox'  => 'Qatıstı özgerister',
 'recentchangeslinked-title'    => '«$1» degenge qatıstı özgerister',
 'recentchangeslinked-noresult' => 'Siltegen betterde keltirilgen merzimde eşqandaý özgeris bolmağan.',
 'recentchangeslinked-summary'  => "Bul tizimde özindik betke siltegen betterdegi (ne özindik sanat müşelerindegi) istelgen jwıqtağı özgerister beriledi.

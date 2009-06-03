@@ -685,7 +685,9 @@ $1 хутшăнакан патне, е ытти [[{{MediaWiki:Grouppage-sysop}}|
 'newsectionsummary' => '/* $1 */ Çĕнĕ тема',
 
 # Recent changes linked
-'recentchangeslinked' => 'Çыхăннă улшăнусем',
+'recentchangeslinked'         => 'Çыхăннă улшăнусем',
+'recentchangeslinked-feed'    => 'Çыхăннă улшăнусем',
+'recentchangeslinked-toolbox' => 'Çыхăннă улшăнусем',
 
 # Upload
 'upload'             => 'Файла кĕртесси',

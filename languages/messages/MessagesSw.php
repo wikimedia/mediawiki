@@ -655,6 +655,8 @@ Pia unaweza kuchagua kuacha watumiaji wengine kuwasiliana nao kwa kutumia ukuras
 
 # Recent changes linked
 'recentchangeslinked'          => 'Mabadiliko husika',
+'recentchangeslinked-feed'     => 'Mabadiliko husika',
+'recentchangeslinked-toolbox'  => 'Mabadiliko husika',
 'recentchangeslinked-title'    => 'Mabadiliko kuhusiana na "$1"',
 'recentchangeslinked-noresult' => 'Hakuna mabadiliko kwenye kurasa zilizounganishwa wakati wa muda huo.',
 'recentchangeslinked-summary'  => "Ukurasa maalum huu unaorodhesha mabadiliko ya hivi karibuni katika kurasa zinazoungwa (au katika jamii fulani).  Kurasa katika [[Special:Watchlist|maangalizi yako]] ni za '''koze'''.",

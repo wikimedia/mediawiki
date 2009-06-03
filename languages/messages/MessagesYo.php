@@ -589,6 +589,8 @@ Tí ẹ bá fisílẹ̀ a ó lòó láti tóka iṣẹ́ yín fún yín.',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Àtúnṣe tó báramu',
+'recentchangeslinked-feed'     => 'Àtúnṣe tó báramu',
+'recentchangeslinked-toolbox'  => 'Àtúnṣe tó báramu',
 'recentchangeslinked-title'    => 'Àtúnṣe tó báramu mọ́ "$1"',
 'recentchangeslinked-noresult' => 'Kò sí ìyàtọ̀ nínú àwọn ojúewé ìjápọ̀ láàrin ìgbà tí ẹ sọ.',
 'recentchangeslinked-summary'  => "Àkójọ àwọn àtúnṣe tí a sẹ̀sẹ̀ ṣe sí àwọn ojúewé tó jápọ̀ wá láti ojúewé pàtó kan (tàbí sí ìkan nìnú ẹ̀ka pàtó kan).

@@ -1608,6 +1608,8 @@ $2',
 
 # Recent changes linked
 'recentchangeslinked'          => 'تغییرات مرتبط',
+'recentchangeslinked-feed'     => 'تغییرات مرتبط',
+'recentchangeslinked-toolbox'  => 'تغییرات مرتبط',
 'recentchangeslinked-title'    => 'تغییرهای مرتبط با $1',
 'recentchangeslinked-backlink' => '→ $1',
 'recentchangeslinked-noresult' => 'در بازهٔ ‌زمانی داده‌شده تغییری در صفحه‌های پیوندداده رخ نداده‌است.',

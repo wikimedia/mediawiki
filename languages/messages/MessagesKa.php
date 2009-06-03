@@ -975,6 +975,8 @@ $1 საათში.',
 
 # Recent changes linked
 'recentchangeslinked'          => 'დაკავშირებული ცვლილებები',
+'recentchangeslinked-feed'     => 'დაკავშირებული ცვლილებები',
+'recentchangeslinked-toolbox'  => 'დაკავშირებული ცვლილებები',
 'recentchangeslinked-title'    => '"$1"-თან დაკავშირებული ცვლილებები',
 'recentchangeslinked-noresult' => 'მითითებულ პერიოდში ცვლილებები დაკავშირებულ გვერდებზე არ მომხდარა.',
 'recentchangeslinked-summary'  => "ეს არის მითითებულ გვერდთან (ან მითითებული კატეგორიის წევრებთან) დაკავშირებულ გვერდებში ბოლო დროს განხორციელებული ცვლილებების სია. 

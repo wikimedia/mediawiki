@@ -773,6 +773,8 @@ $messages = array(
 
 # Recent changes linked
 'recentchangeslinked'          => 'اړونده بدلونونه',
+'recentchangeslinked-feed'     => 'اړونده بدلونونه',
+'recentchangeslinked-toolbox'  => 'اړونده بدلونونه',
 'recentchangeslinked-title'    => '"$1" ته اړونده بدلونونه',
 'recentchangeslinked-noresult' => 'په دې موده، په تړل شويو مخونو کې هېڅ کوم بدلونونه نه دي راپېښ شوي.',
 'recentchangeslinked-summary'  => "دا د هغه بدلونونو لړليک دی چې وروستۍ ځل په تړن لرونکيو مخونو کې د يوه ځانګړي مخ (او يا هم د يوې ځانګړې وېشنيزې غړو) نه رامېنځ ته شوي.

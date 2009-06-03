@@ -133,7 +133,9 @@ Isape a vostrã ira adratã. Nu agãrshits s-le alãxits alidzerle-a vostre ti {
 'recentchanges' => 'Alãxiri',
 
 # Recent changes linked
-'recentchangeslinked' => 'Alãxiri ligate',
+'recentchangeslinked'         => 'Alãxiri ligate',
+'recentchangeslinked-feed'    => 'Alãxiri ligate',
+'recentchangeslinked-toolbox' => 'Alãxiri ligate',
 
 # Upload
 'upload'          => 'Pitritsets file',

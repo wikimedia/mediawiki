@@ -668,6 +668,8 @@ $2',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Бәйләнешле төзәтмәләр',
+'recentchangeslinked-feed'     => 'Бәйләнешле төзәтмәләр',
+'recentchangeslinked-toolbox'  => 'Бәйләнешле төзәтмәләр',
 'recentchangeslinked-title'    => '"$1" битенә бәйләнешле төзәтмәләр',
 'recentchangeslinked-noresult' => 'Күрсәтелгән вакытта сылташкан битләрнең үзгәртелмәләре юк иде.',
 'recentchangeslinked-summary'  => "Бу күрсәтелгән бит белән сылталган (йә күрсәтелгән төркемгә керткән) битләрнең үзгәртелмәләре исемлеге.

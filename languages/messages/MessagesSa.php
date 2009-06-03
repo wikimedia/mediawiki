@@ -417,7 +417,9 @@ $messages = array(
 'boteditletter'   => 'य',
 
 # Recent changes linked
-'recentchangeslinked' => 'सम्भन्दिन् परिवर्त',
+'recentchangeslinked'         => 'सम्भन्दिन् परिवर्त',
+'recentchangeslinked-feed'    => 'सम्भन्दिन् परिवर्त',
+'recentchangeslinked-toolbox' => 'सम्भन्दिन् परिवर्त',
 
 # Upload
 'upload' => 'भारं न्यस्यति सञ्चिका',

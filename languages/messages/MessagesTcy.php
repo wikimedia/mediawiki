@@ -488,6 +488,8 @@ $messages = array(
 
 # Recent changes linked
 'recentchangeslinked'          => 'ಸಂಬಂಧ ಉಪ್ಪುನಂಚಿನ ಬದಲಾವಣೆಲು',
+'recentchangeslinked-feed'     => 'ಸಂಬಂಧ ಉಪ್ಪುನಂಚಿನ ಬದಲಾವಣೆಲು',
+'recentchangeslinked-toolbox'  => 'ಸಂಬಂಧ ಉಪ್ಪುನಂಚಿನ ಬದಲಾವಣೆಲು',
 'recentchangeslinked-title'    => '"$1" ಪುಟೊಟು ಆತಿನ ಬದಲಾವಣೆಲು',
 'recentchangeslinked-noresult' => 'ಕೊರ್ತಿನ ಸಮಯೊಡು ಲಿಂಕ್ ಉಪ್ಪುನ ಪುಟೊಲೆಡ್ ಓವುಲಾ ಬದಲಾವಣೆಲು ಆತಿಜಿ.',
 'recentchangeslinked-summary'  => "ಒಂಜಿ ನಿರ್ದಿಷ್ಟ ಪುಟೊರ್ದು (ಅತ್ತ್’ನ್ಡ ನಿರ್ದಿಷ್ಟ ವರ್ಗೊಗು ಸೇರ್ದಿನ ಪುಟೊಲೆರ್ದ್) ಸಂಪರ್ಕ ಉಪ್ಪುನ ಪುಟೊಲೆಡ್ ಇಂಚಿಪ ಮಲ್ತಿನಂಚಿನ ಬದಲಾವಣೆಲೆನ್ ತಿರ್ತ್ ಪಟ್ಟಿ ಮಲ್ಪೆರಾತ್’ನ್ಡ್. 

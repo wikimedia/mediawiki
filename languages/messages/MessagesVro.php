@@ -879,6 +879,8 @@ Taa tohe-i ollaq rohkõmb ku $1 {{PLURAL:$1|märk|märki}}.",
 
 # Recent changes linked
 'recentchangeslinked'          => 'Siiäq putvaq muutmisõq',
+'recentchangeslinked-feed'     => 'Siiäq putvaq muutmisõq',
+'recentchangeslinked-toolbox'  => 'Siiäq putvaq muutmisõq',
 'recentchangeslinked-title'    => 'Muutusõq noidõ lehti pääl, kohe näüdätäs lähe päält "$1"',
 'recentchangeslinked-noresult' => 'Taaha putvit lehti olõ-i taa ao seen muudõt.',
 'recentchangeslinked-summary'  => "Taan nimekirän ommaq noidõ lehti muutmisõq, mink pääle näütäs seo lehe päält linke. Naad leheq ommaq [[Special:Watchlist|perräkaemisnimekirän]] märgidüq '''paksu kiräga'''.",

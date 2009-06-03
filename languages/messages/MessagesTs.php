@@ -292,7 +292,9 @@ U hi tshembisa nakambe leswaku hi wena mutsari wa leswi nyikeriwaka laha, kumbe 
 'show'          => 'Komba',
 
 # Recent changes linked
-'recentchangeslinked' => 'Kuncica loku yelanaka',
+'recentchangeslinked'         => 'Kuncica loku yelanaka',
+'recentchangeslinked-feed'    => 'Kuncica loku yelanaka',
+'recentchangeslinked-toolbox' => 'Kuncica loku yelanaka',
 
 # Upload
 'upload' => 'Khandziyisa fayili',

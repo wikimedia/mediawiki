@@ -738,7 +738,9 @@ Les ôtes manaedjeus so ç' wiki ci pôront todi vey li contnou catchî eyet l' 
 'newsectionsummary'                 => '/* $1 */ novele seccion',
 
 # Recent changes linked
-'recentchangeslinked' => 'Candjmints aloyîs',
+'recentchangeslinked'         => 'Candjmints aloyîs',
+'recentchangeslinked-feed'    => 'Candjmints aloyîs',
+'recentchangeslinked-toolbox' => 'Candjmints aloyîs',
 
 # Upload
 'upload'                      => 'Eberweter on fitchî',

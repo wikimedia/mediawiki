@@ -1020,6 +1020,8 @@ $messages = array(
 
 # Recent changes linked
 'recentchangeslinked'          => 'Таъғироти монандӣ',
+'recentchangeslinked-feed'     => 'Таъғироти монандӣ',
+'recentchangeslinked-toolbox'  => 'Таъғироти монандӣ',
 'recentchangeslinked-title'    => 'Тағйирҳои алоқаманд ба "$1"',
 'recentchangeslinked-noresult' => 'Дар давоми замони додашуда тағйире дар саҳифаҳои пайваста рух надодааст.',
 'recentchangeslinked-summary'  => "Ин феҳристи тағйироти охир барои саҳифаҳои пайваста аз саҳифаи мушаххасшуда мебошад (ё ба аъзоёни гурӯҳи мушаххасшуда). 

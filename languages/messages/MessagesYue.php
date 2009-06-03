@@ -1344,6 +1344,8 @@ $1",
 
 # Recent changes linked
 'recentchangeslinked'          => '連結頁嘅更改',
+'recentchangeslinked-feed'     => '連結頁嘅更改',
+'recentchangeslinked-toolbox'  => '連結頁嘅更改',
 'recentchangeslinked-title'    => '對「$1」有關嘅更改',
 'recentchangeslinked-noresult' => '響呢一段時間內連結頁並無更改。',
 'recentchangeslinked-summary'  => "呢一個特別頁列示咗''由''所畀到嘅一版連結到頁嘅最近更改（或者係指定分類嘅成員）。

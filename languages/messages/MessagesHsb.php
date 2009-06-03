@@ -1324,6 +1324,8 @@ Smě mjenje hač $1 {{PLURAL:$1|znamješko|znamješce|znamješka|znamješkow}} d
 
 # Recent changes linked
 'recentchangeslinked'          => 'Změny zwjazanych stron',
+'recentchangeslinked-feed'     => 'Změny zwjazanych stron',
+'recentchangeslinked-toolbox'  => 'Změny zwjazanych stron',
 'recentchangeslinked-title'    => 'Změny na stronach, kotrež su z „$1“ wotkazane',
 'recentchangeslinked-noresult' => 'Njejsu změny zwajzanych stron we wubranej dobje.',
 'recentchangeslinked-summary'  => "Tuta strona nalistuje poslednje změny na wotkazanych stronach (resp. pola kategorijow na čłonach kategorije). 

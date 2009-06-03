@@ -316,6 +316,8 @@ $messages = array(
 
 # Recent changes linked
 'recentchangeslinked'         => '相關頁面修訂記錄',
+'recentchangeslinked-feed'    => '相關頁面修訂記錄',
+'recentchangeslinked-toolbox' => '相關頁面修訂記錄',
 'recentchangeslinked-title'   => '$1 內連結頁面的修訂記錄',
 'recentchangeslinked-summary' => "這一個特殊頁面列示這一頁連出頁面的近期變動。在您監視列表中的頁面會以'''粗體'''表示。",
 

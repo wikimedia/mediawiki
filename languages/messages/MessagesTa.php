@@ -1040,6 +1040,8 @@ $1 பயனரையோ அல்லது வேறு [[{{MediaWiki:Grouppage
 
 # Recent changes linked
 'recentchangeslinked'          => 'தொடர்பான மாற்றங்கள்',
+'recentchangeslinked-feed'     => 'தொடர்பான மாற்றங்கள்',
+'recentchangeslinked-toolbox'  => 'தொடர்பான மாற்றங்கள்',
 'recentchangeslinked-title'    => '"$1" பக்கத்துடன் தொடர்புடைய மாற்றங்கள்',
 'recentchangeslinked-noresult' => 'குறித்த நேரத்தில் இப்பக்கத்துடன் இணைக்கப்பட்ட பக்கங்களில் மாற்றங்கள் ஏதுமில்லை.',
 'recentchangeslinked-summary'  => "இணைக்கப்பட்டப் பக்கங்களுக்கு (அல்லது பகுப்பொன்றின் அங்கத்தர்வர்களுக்கு) செய்யபட்ட அண்மைய மாற்றங்களை இச்சிறப்புப் பக்கம் பட்டியலிடுகிறது. [[Special:Watchlist|உங்கள் கவணிப்புப் பட்டியலில்]] உள்ளப் பக்கங்கள் '''தடித்த எழுத்துக்களில்''' உள்ளன.",

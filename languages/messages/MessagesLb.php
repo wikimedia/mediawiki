@@ -1334,6 +1334,8 @@ Dir kënnt et och zouloossen datt aner Benotzer iech - iwwert e Link op ärer Be
 
 # Recent changes linked
 'recentchangeslinked'          => 'Ännerungen op verlinkte Säiten',
+'recentchangeslinked-feed'     => 'Ännerungen op verlinkte Säiten',
+'recentchangeslinked-toolbox'  => 'Ännerungen op verlinkte Säiten',
 'recentchangeslinked-title'    => 'Ännerungen a Verbindung mat "$1"',
 'recentchangeslinked-noresult' => 'Am ausgewielten Zäitraum goufen op de verlinkte Säite keng Ännerunge gemaach.',
 'recentchangeslinked-summary'  => "Dëst ass eng Lëscht mat Ännerunge vu verlinkte Säiten op eng bestëmmte Säit (oder vu Membersäite vun der spetifizéierter Kategorie).

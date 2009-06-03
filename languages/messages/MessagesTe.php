@@ -1190,6 +1190,8 @@ $3 చెప్పిన కారణం: ''$2''",
 
 # Recent changes linked
 'recentchangeslinked'          => 'సంబంధిత మార్పులు',
+'recentchangeslinked-feed'     => 'సంబంధిత మార్పులు',
+'recentchangeslinked-toolbox'  => 'సంబంధిత మార్పులు',
 'recentchangeslinked-title'    => '$1 కు సంబంధించిన మార్పులు',
 'recentchangeslinked-noresult' => 'మీరిచ్చిన కాలంలో ఇక్కడికి లింకు ఉన్న పేజీలలో ఎటువంటు మార్పులూ జరగలేదు.',
 'recentchangeslinked-summary'  => "దీనికి లింకై ఉన్న పేజీల్లో జరిగిన చివరి మార్పులు ఇక్కడ చూడవచ్చు. మీ వీక్షణ జాబితాలో ఉన్న పేజీలు '''బొద్దు'''గా ఉంటాయి.",

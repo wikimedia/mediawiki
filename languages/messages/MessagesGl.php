@@ -1447,6 +1447,8 @@ Tamén pode deixar que outras persoas se poñan en contacto con vostede desde a 
 
 # Recent changes linked
 'recentchangeslinked'          => 'Cambios relacionados',
+'recentchangeslinked-feed'     => 'Cambios relacionados',
+'recentchangeslinked-toolbox'  => 'Cambios relacionados',
 'recentchangeslinked-title'    => 'Cambios relacionados con "$1"',
 'recentchangeslinked-noresult' => 'Non se produciron cambios nas páxinas vinculadas a esta durante o período de tempo seleccionado.',
 'recentchangeslinked-summary'  => "Esta é unha lista dos cambios que se realizaron recentemente nas páxinas vinculadas a esta (ou dos membros da categoría especificada).

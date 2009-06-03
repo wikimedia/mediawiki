@@ -1560,6 +1560,8 @@ $1",
 
 # Recent changes linked
 'recentchangeslinked'          => 'שינויים בדפים המקושרים',
+'recentchangeslinked-feed'     => 'שינויים בדפים המקושרים',
+'recentchangeslinked-toolbox'  => 'שינויים בדפים המקושרים',
 'recentchangeslinked-title'    => 'שינויים בדפים המקושרים לדף $1',
 'recentchangeslinked-backlink' => '→ $1',
 'recentchangeslinked-noresult' => 'לא היו שינויים בדפים המקושרים בתקופה זו.',

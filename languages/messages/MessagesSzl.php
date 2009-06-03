@@ -1105,6 +1105,8 @@ Možeš [[:\$1|tako utwořyć]], abo sprůbować pounygo šnupańo.",
 
 # Recent changes linked
 'recentchangeslinked'          => 'Pomjyńańa we adresowanych',
+'recentchangeslinked-feed'     => 'Pomjyńańa we adresowanych',
+'recentchangeslinked-toolbox'  => 'Pomjyńańa we adresowanych',
 'recentchangeslinked-title'    => 'Pomjyńyńo w adrésowanych s "$1"',
 'recentchangeslinked-noresult' => 'Nikt nic niy pomjyńoł w dolinkowanych bez čas uo kery žeś pytou.',
 'recentchangeslinked-summary'  => "To je ekstra zajta, na kerej možeš uobočyć zmjany w artiklach adresowanych do podanyj zajty.

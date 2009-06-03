@@ -1238,6 +1238,8 @@ $1 {{PLURAL:$1|бэлиэттэн|бэлиэттэн (буукубаттан)}} 
 
 # Recent changes linked
 'recentchangeslinked'          => 'Сигэнэр уларытыылар',
+'recentchangeslinked-feed'     => 'Сигэнэр уларытыылар',
+'recentchangeslinked-toolbox'  => 'Сигэнэр уларытыылар',
 'recentchangeslinked-title'    => '"$1" кытта сибээстээх уларытыылар',
 'recentchangeslinked-noresult' => 'Сигэммит сирэйдэргэ этиллибит кэмҥэ уларытыылар оҥоһуллубатылар.',
 'recentchangeslinked-summary'  => "Бу анал сирэйгэ сигэнэр сирэйдэр бүтэһик уларыйыылара көһүннүлэр. [[Special:Watchlist|Кэтэнэр сирэйдэр]] '''модьу бичигинэн''' бэлиэтэннилэр.",
