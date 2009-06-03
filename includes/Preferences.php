@@ -885,6 +885,20 @@ class Preferences {
 					'section' => 'misc/diffs',
 					'label-message' => 'tog-norollbackdiff',
 				);
+				
+		// Stuff from Language::getExtraUserToggles()
+		global $wgContLang;
+		
+		$toggles = $wgContLang->getExtraUserToggles();
+		
+		foreach( $toggles as $toggle ) {
+			$defaultPreferences[$toggle] =
+				array(
+					'type' => 'toggle',
+					'section' => 'personal/i18n',
+					'label-message' => "tog-$toggle",
+				);
+		}
 	}
 	
 	static function generateSkinOptions( $user ) {
