@@ -62,7 +62,7 @@ class SpecialTags extends SpecialPage {
 		$desc .= ' (' . $sk->link( Title::makeTitle( NS_MEDIAWIKI, "Tag-$tag-description" ), wfMsg( 'tags-edit' ) ) . ')';
 		$newRow .= Xml::tags( 'td', null, $desc );
 
-		$hitcount = wfMsg( 'tags-hitcount', $hitcount );
+		$hitcount = wfMsgExt( 'tags-hitcount', array( 'parsemag' ), $hitcount );
 		$hitcount = $sk->link( SpecialPage::getTitleFor( 'RecentChanges' ), $hitcount, array(), array( 'tagfilter' => $tag ) );
 		$newRow .= Xml::tags( 'td', null, $hitcount );
 
