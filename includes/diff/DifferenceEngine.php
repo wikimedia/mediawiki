@@ -46,7 +46,12 @@ class DifferenceEngine {
 	function __construct( $titleObj = null, $old = 0, $new = 0, $rcid = 0,
 		$refreshCache = false, $htmldiff = false, $unhide = false )
 	{
-		$this->mTitle = $titleObj;
+		if ( $titleObj ) {
+			$this->mTitle = $titleObj;
+		} else {
+			global $wgTitle;
+			$this->mTitle = $wgTitle;
+		}
 		wfDebug("DifferenceEngine old '$old' new '$new' rcid '$rcid'\n");
 
 		if ( 'prev' === $new ) {
