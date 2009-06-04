@@ -700,7 +700,6 @@ class SpecialSearch {
 		$m = wfMsg( 'searchprofile-articles' );
 		$tt = wfMsg( 'searchprofile-articles-tooltip',
 			$wgLang->commaList( SearchEngine::namespacesAsText( SearchEngine::defaultNamespaces() ) ) );
-		$tt = Sanitizer::decodeCharReferences( $tt ); // need to allow entities
 		if( $this->active == 'default' ) {
 			$out .= Xml::element( 'strong', array( 'title'=>$tt ), $m );
 		} else {
@@ -720,7 +719,6 @@ class SpecialSearch {
 		$m = wfMsg( 'searchprofile-project' );
 		$tt = wfMsg( 'searchprofile-project-tooltip',
 			$wgLang->commaList( SearchEngine::namespacesAsText( SearchEngine::helpNamespaces() ) ) );
-		$tt = Sanitizer::decodeCharReferences( $tt ); // need to allow entities
 		if( $this->active == 'help' ) {
 			$out .= Xml::element( 'strong', array( 'title'=>$tt ), $m );
 		} else {
