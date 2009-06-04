@@ -491,35 +491,34 @@ table.rimage {
 ** this is css3, the validator doesn't like it when validating as css2
 */
 #bodyContent a.external,
-#bodyContent a[href ^="gopher://"] {
+#bodyContent a.external[href ^="gopher://"] {
 	background: url(external.png) center right no-repeat;
 	padding: 0 13px;
 }
 .rtl #bodyContent a.external,
-.rtl #bodyContent a[href ^="gopher://"] {
+.rtl #bodyContent a.external[href ^="gopher://"] {
 	background-image: url(external-rtl.png);
 }
-#bodyContent a[href ^="https://"],
+#bodyContent a.external[href ^="https://"],
 .link-https {
 	background: url(lock_icon.gif) center right no-repeat;
 	padding: 0 16px;
 }
-#bodyContent a[href ^="mailto:"],
+#bodyContent a.external[href ^="mailto:"],
 .link-mailto {
 	background: url(mail_icon.gif) center right no-repeat;
 	padding: 0 18px;
 }
-#bodyContent a[href ^="news://"] {
+#bodyContent a.external[href ^="news://"] {
 	background: url(news_icon.png) center right no-repeat;
 	padding: 0 18px;
 }
-#bodyContent a[href ^="ftp://"],
+#bodyContent a.external[href ^="ftp://"],
 .link-ftp {
 	background: url(file_icon.gif) center right no-repeat;
 	padding: 0 18px;
 }
-#bodyContent a[href ^="irc://"],
-#bodyContent a.extiw[href ^="irc://"],
+#bodyContent a.external[href ^="irc://"],
 .link-irc {
 	background: url(discussionitem_icon.gif) center right no-repeat;
 	padding: 0 18px;
@@ -562,8 +561,7 @@ table.rimage {
 }
 
 /* correction for ltr wikis */
-.ltr #bodyContent a.external,
-.ltr #bodyContent a.extiw {
+.ltr #bodyContent a.external {
 	padding-left: 0;
 }
 
@@ -571,8 +569,6 @@ table.rimage {
 #bodyContent a.extiw,
 #bodyContent a.extiw:active {
 	color: #36b;
-	background: none;
-	padding: 0;
 }
 #bodyContent a.external {
 	color: #36b;
