@@ -575,6 +575,16 @@ class MessageCache {
 		if( $message === false ) {
 			return '&lt;' . htmlspecialchars($key) . '&gt;';
 		}
+
+		# Fix whitespace
+		$message = strtr( $message, 
+			array(
+				# Fix for trailing whitespace, removed by textarea
+				'&#32;' => ' ',
+				# Fix for NBSP, converted to space by firefox
+				'&nbsp;' => "\xc2\xa0",
+			) );
+
 		return $message;
 	}
 
