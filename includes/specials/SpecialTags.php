@@ -63,7 +63,7 @@ class SpecialTags extends SpecialPage {
 		$newRow .= Xml::tags( 'td', null, $desc );
 
 		$hitcount = wfMsgExt( 'tags-hitcount', array( 'parsemag' ), $hitcount );
-		$hitcount = $sk->link( SpecialPage::getTitleFor( 'RecentChanges' ), $hitcount, array(), array( 'tagfilter' => $tag ) );
+		$hitcount = $sk->link( SpecialPage::getTitleFor( 'Recentchanges' ), $hitcount, array(), array( 'tagfilter' => $tag ) );
 		$newRow .= Xml::tags( 'td', null, $hitcount );
 
 		$doneTags[] = $tag;
