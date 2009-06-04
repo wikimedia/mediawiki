@@ -51,6 +51,10 @@ $defaultUserOptionOverrides = array(
 	'underline' => 0,
 );
 
+$extraUserToggles = array(
+	'nolangconversion'
+);
+
 $fallback8bitEncoding = 'windows-1256';
 
 $namespaceNames = array(

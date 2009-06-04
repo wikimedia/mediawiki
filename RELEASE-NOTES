@@ -32,9 +32,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 9257) $wgRCMaxAge now defaults to three months
 * $wgDevelopmentWarnings can be set to true to show warnings about deprecated
   functions and other potential errors when developing.
-* (bug 18958) $wgEnableVariants is a new boolean value to turn on or off the
-  entire variant conversion engine, and the default is set to true. Former
-  variable $wgDisableLangConversion was superseded by this variable.
 * Subpages are now enabled in the MediaWiki namespace by default.  This is
   mainly a cosmetic change, and does not in any way affect the MessageCache,
   which was already effectively treating the namespace as if it had subpages.
@@ -77,8 +74,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 18860) Blocks of IPs affecting registered users can now block email
 * (bug 17093) Date and time are separate parameters in Special:BlockList
 * (bug 11484) Added ISO speed rating to default collapsed EXIF metadata view
-* (bug 18958) Added ability to disable entire variant conversion engine
-  per user preferences
 * (bug 19012) Introduce {{NUMBEROFCONTRIBS}} variable to display the number
   of contributions a user has.
 * (bug 14866) Messages 'recentchangeslinked-toolbox' and
