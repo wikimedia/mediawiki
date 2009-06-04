@@ -22,7 +22,7 @@ require_once( 'updateSearchIndex.inc' );
 if ( isset( $options['p'] ) ) {
 	$posFile = $options['p'];
 } else {
-	$posFile = 'searchUpdate.pos';
+	$posFile = 'searchUpdate.' . wfWikiId() . '.pos';
 }
 
 if ( isset( $options['e'] ) ) {
@@ -33,6 +33,11 @@ if ( isset( $options['e'] ) ) {
 
 if ( isset( $options['s'] ) ) {
 	$start = $options['s'];
+elseif( is_readable( 'searchUpdate.pos' ) ) {
+	# B/c to the old position file name which was hardcoded
+	# We can safely delete the file when we're done though.
+	$start = file_get_contents( 'searchUpdate.pos' );
+	unlink( 'searchUpdate.pos' );
 } else {
 	$start = @file_get_contents( $posFile );
 	if ( !$start ) {
