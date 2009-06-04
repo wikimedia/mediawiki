@@ -224,7 +224,7 @@ class DjVuImage {
 	 * @return string
 	 */
 	function retrieveMetaData() {
-		global $wgDjvuToXML, $wgDjvuDump;
+		global $wgDjvuToXML, $wgDjvuDump, $wgDjvuTxt;
 		if ( isset( $wgDjvuDump ) ) {
 			# djvudump is faster as of version 3.5
 			# http://sourceforge.net/tracker/index.php?func=detail&aid=1704049&group_id=32953&atid=406583
@@ -241,6 +241,22 @@ class DjVuImage {
 			wfProfileOut( 'djvutoxml' );
 		} else {
 			$xml = null;
+		}
+		# Text layer
+		if ( isset( $wgDjvuTxt ) ) { 
+			wfProfileIn( 'djvutxt' );
+			$cmd = wfEscapeShellArg( $wgDjvuTxt ) . ' --detail=page ' . wfEscapeShellArg( $this->mFilename ) ;
+			wfDebug( __METHOD__.": $cmd\n" );
+			$txt = wfShellExec( $cmd, $retval );
+			wfProfileOut( 'djvutxt' );
+			if( $retval == 0) {
+				$txt = htmlspecialchars($txt);
+				$txt = preg_replace( "/\(page\s\d*\s\d*\s\d*\s\d*\s*\&quot;(.*?)\&quot;\s*\)/s", "<PAGE value=\"$1\" />", $txt  );
+				$txt = preg_replace( "/\(\)/", "<PAGE value=\"\" />", $txt );
+				$txt = "<DjVuTxt>\n<HEAD></HEAD>\n<BODY>\n" . $txt . "</BODY>\n</DjVuTxt>\n";
+				$xml = preg_replace( "/<DjVuXML>/", "<mw-djvu><DjVuXML>", $xml );
+				$xml = $xml . $txt. '</mw-djvu>' ;
+			}
 		}
 		return $xml;
 	}
