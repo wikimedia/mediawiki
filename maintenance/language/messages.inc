@@ -2211,6 +2211,7 @@ $wgMessageStructure = array(
 		'chick.css',
 		'simple.css',
 		'modern.css',
+		'vector.css',
 		'print.css',
 		'handheld.css',
 	),
@@ -2224,6 +2225,7 @@ $wgMessageStructure = array(
 		'chick.js',
 		'simple.js',
 		'modern.js',
+		'vector.js',
 	),
 	'metadata_cc' => array(
 		'nodublincore',
@@ -2265,6 +2267,7 @@ $wgMessageStructure = array(
 		'skinname-chick',
 		'skinname-simple',
 		'skinname-modern',
+		'skinname-vector',
 	),
 	'math' => array(
 		'mw_math_png',
