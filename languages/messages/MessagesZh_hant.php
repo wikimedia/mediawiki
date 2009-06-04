@@ -2441,6 +2441,7 @@ $1已經被封鎖。您是否想更改這個設定？',
 'chick.css'       => '/* 此處的 CSS 將影響使用 Chick 面板的用戶 */',
 'simple.css'      => '/* 此處的 CSS 將影響使用 Simple 面板的用戶 */',
 'modern.css'      => '/* 此處的 CSS 將影響使用 Modern 面板的用戶 */',
+'vector.css'      => '/* 此處的 CSS 將影響使用 Vector 面板的用戶 */',
 'print.css'       => '/* 此處的 CSS 將影響打印輸出 */',
 'handheld.css'    => '/* 此處的 CSS 將影響在 $wgHandheldStyle 設定手提裝置面板 */',
 
@@ -2454,6 +2455,7 @@ $1已經被封鎖。您是否想更改這個設定？',
 'chick.js'       => '/* 此處的JavaScript將載入於使用Chick面板的用戶 */',
 'simple.js'      => '/* 此處的JavaScript將載入於使用Simple面板的用戶 */',
 'modern.js'      => '/* 此處的JavaScript將載入於使用Modern面板的用戶 */',
+'vector.js'      => '/* 此處的JavaScript將載入於使用Vector面板的用戶 */',
 
 # Metadata
 'nodublincore'      => 'Dublin Core RDF 元數據在該伺服器不可使用。',

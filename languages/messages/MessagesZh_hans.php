@@ -2461,6 +2461,7 @@ $1已经被封锁。您是否想更改这个设置？',
 'chick.css'       => '/* 此处的 CSS 将影响使用 Chick 皮肤的用户 */',
 'simple.css'      => '/* 此处的 CSS 将影响使用 Simple 皮肤的用户 */',
 'modern.css'      => '/* 此处的 CSS 将影响使用 Modern 皮肤的用户 */',
+'vector.css'      => '/* 此处的 CSS 将影响使用 Vector 皮肤的用户 */',
 'print.css'       => '/* 此处的 CSS 将影响打印输出 */',
 'handheld.css'    => '/* 此处的 CSS 将影响在 $wgHandheldStyle 设置手提装置面板 */',
 
@@ -2474,6 +2475,7 @@ $1已经被封锁。您是否想更改这个设置？',
 'chick.js'       => '/* 此处的JavaScript将加载于使用Chick皮肤的用户 */',
 'simple.js'      => '/* 此处的JavaScript将加载于使用Simple皮肤的用户 */',
 'modern.js'      => '/* 此处的JavaScript将加载于使用Modern皮肤的用户 */',
+'vector.js'      => '/* 此处的JavaScript将加载于使用Vector皮肤的用户 */',
 
 # Metadata
 'nodublincore'      => 'Dublin Core RDF 元数据在该服务器不可用。',

@@ -2138,6 +2138,7 @@ $1已被禁矣。爾是否改此置？',
 'chick.css'       => '/* 此之 CSS 用於窈窕面之簿也 */',
 'simple.css'      => '/* 此之 CSS 用於簡明面之簿也 */',
 'modern.css'      => '/* 此之 CSS 用於時髦面之簿也 */',
+'vector.css'      => '/* 此之 CSS 用於動力面之簿也 */',
 'print.css'       => '/* 此之 CSS 用於印之出力也 */',
 'handheld.css'    => '/* 此之 CSS 用於 $wgHandheldStyle 之手置面也 */',
 
@@ -2151,6 +2152,7 @@ $1已被禁矣。爾是否改此置？',
 'chick.js'       => '/* 此之JavaScript將載於用窈窕面之簿 */',
 'simple.js'      => '/* 此之JavaScript將載於用簡明面之簿 */',
 'modern.js'      => '/* 此之JavaScript將載於用時髦面之簿 */',
+'vector.js'      => '/* 此之JavaScript將載於用動力面之簿 */',
 
 # Attribution
 'anonymous'        => '{{SITENAME}}無{{PLURAL:$1|簿|簿}}者',
@@ -2188,6 +2190,7 @@ $1已被禁矣。爾是否改此置？',
 'skinname-chick'       => '窈窕',
 'skinname-simple'      => '簡明',
 'skinname-modern'      => '時髦',
+'skinname-modern'      => '動力',
 
 # Math options
 'mw_math_png'    => '屢作PNG',
