@@ -139,7 +139,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   for it.
 * (bug 17020) Adding fallback encodings for Traditional and Simplified Chinese
   languages while the the text is typed as URLs.
-* (bug 18535) Search tab tool-tops are corrupted
 * (bug 17614) Prev / Next links not need on ImagePage file history if less than
   limit
 * (bug 18207) Strange spacing before [[irc:...]] links
