@@ -2403,6 +2403,7 @@ $1已經被封鎖。你係咪想更改呢個設定？',
 'chick.css'       => '/* 響呢度放 CSS 碼去改用戶用嘅俏畫面 */',
 'simple.css'      => '/* 響呢度放 CSS 碼去改用戶用嘅簡單畫面 */',
 'modern.css'      => '/* 響呢度放 CSS 碼去改用戶用嘅摩登畫面 */',
+'vector.css'      => '/* 響呢度放 CSS 碼去改用戶用嘅域達畫面 */',
 'print.css'       => '/* 響呢度放 CSS 碼去改打印輸出 */',
 'handheld.css'    => '/* 響呢度放 CSS 碼去改響 $wgHandheldStyle 設定手提裝置畫面 */',
 
@@ -2416,6 +2417,7 @@ $1已經被封鎖。你係咪想更改呢個設定？',
 'chick.js'       => '/* 響每一次個頁面載入時，用俏畫面嘅用戶都會載入呢度任何嘅JavaScript */',
 'simple.js'      => '/* 響每一次個頁面載入時，用簡單畫面嘅用戶都會載入呢度任何嘅JavaScript */',
 'modern.js'      => '/* 響每一次個頁面載入時，用摩登畫面嘅用戶都會載入呢度任何嘅JavaScript */',
+'vector.js'      => '/* 響每一次個頁面載入時，用域達畫面嘅用戶都會載入呢度任何嘅JavaScript */',
 
 # Metadata
 'nodublincore'      => 'Dublin Core RDF metadata 已經喺呢一個伺服器上停用。',
@@ -2458,6 +2460,7 @@ $1已經被封鎖。你係咪想更改呢個設定？',
 'skinname-chick'       => '俏',
 'skinname-simple'      => '簡單',
 'skinname-modern'      => '摩登',
+'skinname-vector'      => '域達',
 
 # Math options
 'mw_math_png'    => '全部用PNG表示',
