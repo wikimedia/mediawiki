@@ -646,8 +646,6 @@ function wfMsgGetKey( $key, $useDB, $langCode = false, $transform = true ) {
 		$message = $wgMessageCache->get( $key, $useDB, $langCode );
 		if ( $transform ) {
 			$message = $wgMessageCache->transform( $message );
-			// Decode two entities used in messages, to allow them "pass" htmlspecialchars
-			$message = str_replace( array( '&#32;', '&nbsp;' ), array( ' ', "\xc2\xa0" ), $message );
 		}
 	} else {
 		$lang = wfGetLangObj( $langCode );
@@ -798,8 +796,6 @@ function wfMsgExt( $key, $options ) {
 			$string = $wgMessageCache->transform( $string,
 				!$forContent,
 				is_object( $langCode ) ? $langCode : null );
-			// Decode two entities used in messages, to allow them "pass" htmlspecialchars
-			$string = str_replace( array( '&#32;', '&nbsp;' ), array( ' ', "\xc2\xa0" ), $string );
 		}
 	}
 
