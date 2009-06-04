@@ -13,10 +13,6 @@
 
 $fallback = 'kk-cyrl';
 
-$extraUserToggles = array(
-	'variantconversion'
-);
-
 $messages = array(
 # Edit pages
 'edittools' => '<!-- Мындағы мәтін өңдеу және қотару пішіндердің астында көрсетіледі. -->',

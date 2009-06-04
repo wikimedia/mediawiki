@@ -53,7 +53,7 @@ $wgMessageStructure = array(
 		'tog-watchlisthideliu',
 		'tog-watchlisthideanons',
 		'tog-watchlisthidepatrolled',
-		'tog-variantconversion',
+		'tog-nolangconversion',
 		'tog-ccmeonemails',
 		'tog-diffonly',
 		'tog-showhiddencats',

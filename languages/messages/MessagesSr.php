@@ -14,10 +14,6 @@
 $fallback = 'sr-ec';
 $linkTrail = '/^([abvgdđežzijklljmnnjoprstćufhcčdžšабвгдђежзијклљмнњопрстћуфхцчџш]+)(.*)$/usD';
 
-$extraUserToggles = array(
-	'variantconversion',
-);
-
 $messages = array(
 # Special:LinkSearch
 'linksearch'       => 'Претрага интернет веза',

@@ -887,7 +887,7 @@ $wgEnableSerializedMessages = true;
 $wgCheckSerialized = true;
 
 /** Whether to enable language variant conversion. */
-$wgEnableVariants = true;
+$wgDisableLangConversion = false;
 
 /** Whether to enable language variant conversion for links. */
 $wgDisableTitleConversion = false;
