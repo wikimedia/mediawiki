@@ -135,7 +135,7 @@ class DjVuHandler extends ImageHandler {
 	/**
 	 * Cache a document tree for the DjVu XML metadata
 	 */
-	function getMetaTree( $image ) {
+	function getMetaTree( $image , $gettext = false ) {
 		if ( isset( $image->dejaMetaTree ) ) {
 			return $image->dejaMetaTree;
 		}
@@ -149,15 +149,32 @@ class DjVuHandler extends ImageHandler {
 
 		wfSuppressWarnings();
 		try {
-			$image->dejaMetaTree = new SimpleXMLElement( $metadata );
-		} catch( Exception $e ) {
-			wfDebug( "Bogus multipage XML metadata on '$image->name'\n" );
 			// Set to false rather than null to avoid further attempts
 			$image->dejaMetaTree = false;
+			$image->djvuTextTree = false;
+			$tree = new SimpleXMLElement( $metadata );
+			if( $tree->getName() == 'mw-djvu' ) {
+				foreach($tree->children() as $b){ 
+					if( $b->getName() == 'DjVuTxt' ) {
+						$image->djvuTextTree = $b;
+					}
+					else if ( $b->getName() == 'DjVuXML' ) {
+						$image->dejaMetaTree = $b;
+					}
+				}
+			} else {
+				$image->dejaMetaTree = $tree;
+			}
+		} catch( Exception $e ) {
+			wfDebug( "Bogus multipage XML metadata on '$image->name'\n" );
 		}
 		wfRestoreWarnings();
 		wfProfileOut( __METHOD__ );
-		return $image->dejaMetaTree;
+		if( $gettext ) {
+			return $image->djvuTextTree;
+		} else {
+			return $image->dejaMetaTree;
+		}
 	}
 
 	function getImageSize( $image, $path ) {
@@ -211,4 +228,21 @@ class DjVuHandler extends ImageHandler {
 			return false;
 		}
 	}
+
+	function getPageText( $image, $page ){
+		$tree = $this->getMetaTree( $image, true );
+		if ( !$tree ) {
+			return false;
+		}
+
+		$o = $tree->BODY[0]->PAGE[$page-1];
+		if ( $o ) {
+			$txt = $o['value'];
+			return $txt;
+		} else {
+			return false;
+		}
+
+	}
+
 }
