@@ -237,6 +237,10 @@ table#mw-search-powertable {
 	width:100%;
 }
 
+form#powersearch {
+	clear: both;
+}
+
 
 /*
  * UserRights stuff
