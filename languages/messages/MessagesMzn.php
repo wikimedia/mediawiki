@@ -187,8 +187,8 @@ $2، $1',
 'editundo' => 'واچیه‌ن',
 
 # Search results
-'prevn'                 => 'پـیـشـیـن $1',
-'nextn'                 => 'پـسـیـن $1',
+'prevn'                 => 'پـیـشـیـن {{PLURAL:$1|$1}}',
+'nextn'                 => 'پـسـیـن {{PLURAL:$1|$1}}',
 'search-result-size'    => '$1 ({{PLURAL:$2|1 واجه|$2 واجه}})',
 'search-suggest'        => 'شه‌ما اینتا ره نه‌خواسته‌نی؟ $1',
 'search-interwiki-more' => '(ویشته‌ر)',

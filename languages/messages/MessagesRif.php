@@ -300,8 +300,8 @@ Tasarut: (cur) = imṣebḍiyen ag tunɣilt n ruxa,
 # Search results
 'noexactmatch' => "'''war telli ca n Tasna qarn-as \"\$1\".'''
 tzemred ad [[:\$1|tarnid cek]].",
-'prevn'        => 'zzat $1',
-'nextn'        => 'deffar $1',
+'prevn'        => 'zzat {{PLURAL:$1|$1}}',
+'nextn'        => 'deffar {{PLURAL:$1|$1}}',
 'viewprevnext' => 'Ẓar ($1) ($2) ($3)',
 'searchall'    => 'maṛṛa',
 'powersearch'  => 'Tarezzut cwa-cway',

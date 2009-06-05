@@ -355,6 +355,7 @@ $messages = array(
 'tog-watchlisthideliu'        => 'Masquer les modifications faites par des utilisateurs inscrits dans la liste de suivi',
 'tog-watchlisthideanons'      => 'Masquer les modifications anonymes dans la liste de suivi',
 'tog-watchlisthidepatrolled'  => 'Masquer les modifications surveillées de la liste de suivi',
+'tog-nolangconversion'        => 'Désactiver la conversion des variantes de langue',
 'tog-ccmeonemails'            => 'M’envoyer une copie des courriels que j’envoie aux autres utilisateurs',
 'tog-diffonly'                => 'Ne pas montrer le contenu des pages sous les diffs',
 'tog-showhiddencats'          => 'Afficher les catégories cachées',
@@ -1071,6 +1072,17 @@ $1",
 'revdelete-unhid'             => 'a démasqué $1',
 'revdelete-log-message'       => '$1 pour $2 version{{PLURAL:$2||s}}',
 'logdelete-log-message'       => '$1 sur $2 évènement{{PLURAL:$2||s}}',
+'revdelete-hide-current'      => "Erreur lors de la suppression de l'élément daté du $1 à $2 : il est la révision courante.
+Il ne peut pas être supprimé.",
+'revdelete-show-no-access'    => "Erreur lors de l'affichage de l'élément daté du $1 à $2 : il est marqué comme « restreint ».
+Vous n'y avez pas accès.",
+'revdelete-modify-no-access'  => "Erreur lors de la modification de l'élément daté du $1 à $2 : il est marqué comme « restreint ».
+Vous n'y avez pas accès.",
+'revdelete-modify-missing'    => "Erreur lors de la modification de l'élément avec l'ID $1 : il est manquant dans la base de données !",
+'revdelete-no-change'         => "'''Attention :''' l'élément daté du $1 à $2 a déjà les paramètres de visibilité demandés.",
+'revdelete-concurrent-change' => "Erreur lors de la modification de l'élément daté du $1 à $2 : son statut a été changé par quelqu'un d'autre pendant que vous le modifiez.
+Vérifiez les journaux.",
+'revdelete-only-restricted'   => 'Vous ne pouvez pas supprimer ces éléments aux administrateurs sans également sélectionner des autres options de suppression.',
 
 # Suppression log
 'suppressionlog'     => 'Journal des suppressions',

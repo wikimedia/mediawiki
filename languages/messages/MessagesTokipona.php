@@ -110,8 +110,8 @@ kin la sina toki e ni: toki sina ni li tan sina taso anu lipu pi ken ali.
 'histlast'  => 'sin taso',
 
 # Search results
-'prevn'        => 'nanpa $1 pini',
-'nextn'        => 'nanpa $1 kama',
+'prevn'        => 'nanpa {{PLURAL:$1|$1}} pini',
+'nextn'        => 'nanpa {{PLURAL:$1|$1}} kama',
 'viewprevnext' => 'o lukin e ($1) ($2) ($3).',
 
 # Preferences page

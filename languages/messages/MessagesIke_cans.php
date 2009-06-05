@@ -200,7 +200,7 @@ $messages = array(
 'diff-multi'    => '({{PLURAL:$1|ᐊᑕᐅᓯᖅ ᑭᒻᒥᐅᕗᖅ ᑎᑎᕋᖅᑕᐅᒋᐊᕐᖓᕈᑦ|$1 ᑭᒻᒥᐅᕗᖅ ᑎᑎᕋᖅᑕᐅᒋᐊᕐᖓᕈᑦ}} ᐊᔪᖅᑐᖅ ᐅᕝᕙ.)',
 
 # Search results
-'nextn'       => 'ᑕᒡᒐ $1',
+'nextn'       => 'ᑕᒡᒐ {{PLURAL:$1|$1}}',
 'powersearch' => 'ᕿᓐᓇᕆᒃᓴᕐᓂᖅ',
 
 # Preferences page

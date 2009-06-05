@@ -248,7 +248,7 @@ $messages = array(
 # Search results
 'notitlematches' => 'कुनैपनि पृष्ठको शिर्षक संग मिल्दैन',
 'notextmatches'  => 'अक्षरस् पेज भेटिएन',
-'nextn'          => 'अर्को $1',
+'nextn'          => 'अर्को {{PLURAL:$1|$1}}',
 
 # Preferences page
 'preferences'           => 'रोजाईहरू',

@@ -891,7 +891,7 @@ Used in the final position of a {{msg-mw|comma-separator}} separated list headed
 'notextmatches'                  => 'Error message when there are no results',
 'prevn'                          => "This is part of the navigation message on the top and bottom of Special pages (lists of things in alphabetical order, i.e. the '[[Special:Categories]]' page), where it is used as the first argument of {{msg-mw|Viewprevnext}}.
 It is also used by Category pages (which do ''not'' use {{msg-mw|Viewprevnext}}).
-$1 is the number of items shown per page. It is not used when $1 is zero; not sure what happens when $1 is one.
+{{PLURAL:$1|$1}} is the number of items shown per page. It is not used when {{PLURAL:$1|$1}} is zero; not sure what happens when {{PLURAL:$1|$1}} is one.
 [[Special:WhatLinksHere|Whatlinkshere]] pages use {{msg-mw|Whatlinkshere-prev}} instead (still as an argument to {{msg-mw|Viewprevnext}}).
 
 {{Identical|Previous}}",

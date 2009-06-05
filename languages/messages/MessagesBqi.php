@@ -403,8 +403,8 @@ $1',
 # Search results
 'noexactmatch'   => "'''صفحه ای باای عنوان نه  \"\$1\".'''
 ایسا ترین [[:\$1| ای صفحه را ایجاد کنین]].",
-'prevn'          => 'قبلی $1',
-'nextn'          => 'بعدی $1',
+'prevn'          => 'قبلی {{PLURAL:$1|$1}}',
+'nextn'          => 'بعدی {{PLURAL:$1|$1}}',
 'viewprevnext'   => 'مشاهده ($1) ($2) ($3)',
 'searchhelp-url' => 'Help:محتوا',
 'powersearch'    => 'جستجوی کاملتر',

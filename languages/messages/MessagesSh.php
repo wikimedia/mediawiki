@@ -262,8 +262,8 @@ Možete [[:\$1|stvoriti ovu stranicu]].",
 'noexactmatch-nocreate'     => "'''Ne postoji stranica sa naslovom \"\$1\".'''",
 'notitlematches'            => 'Nijedan naslov stranice ne odgovara',
 'notextmatches'             => 'Tekst stranice ne odgovara',
-'prevn'                     => 'prethodna $1',
-'nextn'                     => 'sljedećih $1',
+'prevn'                     => 'prethodna {{PLURAL:$1|$1}}',
+'nextn'                     => 'sljedećih {{PLURAL:$1|$1}}',
 'viewprevnext'              => 'Pogledaj ($1) ($2) ($3)',
 'search-result-size'        => '$1 ({{PLURAL:$2|1 riječ|$2 riječi}})',
 'search-redirect'           => '(preusmjeravanje $1)',
@@ -713,6 +713,7 @@ Dozvoljava unošenje razloga za to u sažetku.',
 'show-big-image-thumb' => '<small>Veličina ovog prikaza: $1 × $2 piksela</small>',
 
 # Special:NewFiles
+'newimages'    => 'Galerija novih slika',
 'showhidebots' => '($1 botove)',
 
 # Bad image list
@@ -771,5 +772,24 @@ Svi drugi linkovi u istoj liniji se smatraju izuzecima, npr. kod stranica gdje s
 # Special:BlankPage
 'blankpage'              => 'Prazna stranica',
 'intentionallyblankpage' => 'Ova je stranica namjerno ostavljena praznom.',
+
+# Database error messages
+'dberr-header'      => 'Ovaj wiki ima problem',
+'dberr-problems'    => 'Žao nam je! Ova stranica ima tehničke poteškoće.',
+'dberr-again'       => 'Pokušajte pričekati nekoliko minuta i ponovno učitati.',
+'dberr-info'        => '(Ne može se spojiti server baze podataka: $1)',
+'dberr-usegoogle'   => 'U međuvremenu pokušajte pretraživati preko Googlea.',
+'dberr-outofdate'   => 'Uzmite u obzir da njihovi indeksi našeg sadržaja ne moraju uvijek biti ažurni.',
+'dberr-cachederror' => 'Sljedeći tekst je keširana kopija tražene stranice i možda nije potpuno ažurirana.',
+
+# HTML forms
+'htmlform-invalid-input'       => 'Postoje određeni problemi sa Vašim unosom',
+'htmlform-select-badoption'    => 'Vrijednost koju ste unijeli nije valjana opcija.',
+'htmlform-int-invalid'         => 'Vrijednost koju ste unijeli nije cijeli broj.',
+'htmlform-int-toolow'          => 'Vrijednost koju ste unijeli je ispod minimuma od $1',
+'htmlform-int-toohigh'         => 'Vrijednost koju ste unijeli je iznad maksimuma od $1',
+'htmlform-submit'              => 'Unesi',
+'htmlform-reset'               => 'Vrati izmjene',
+'htmlform-selectorother-other' => 'Ostalo',
 
 );

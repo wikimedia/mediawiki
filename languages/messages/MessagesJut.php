@@ -455,8 +455,8 @@ hersenenge, (førge) = førskel til den førge hersenenge, l = lile til mendre �
 
 # Search results
 'noexactmatch'   => "'''{{SITENAME}} har engen ertikel ve dette nav.''' Du ken [[:$1|åprette en ertikel ve dette nav]].",
-'prevn'          => 'førge $1',
-'nextn'          => 'nægste $1',
+'prevn'          => 'førge {{PLURAL:$1|$1}}',
+'nextn'          => 'nægste {{PLURAL:$1|$1}}',
 'viewprevnext'   => 'Ves ($1) ($2) ($3)',
 'searchhelp-url' => 'Help:Hjælpførside',
 'searchall'      => 'ål',

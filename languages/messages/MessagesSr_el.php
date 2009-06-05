@@ -247,6 +247,7 @@ $messages = array(
 'tog-watchlisthideliu'        => 'Sakrij izmene prijavljenih korisnika sa spiska nadgledanja',
 'tog-watchlisthideanons'      => 'Sakrij izmene anonimnih korisnika sa spiska nadgledanja',
 'tog-watchlisthidepatrolled'  => 'Sakrij patrolirane izmene sa spiska nadgledanja',
+'tog-nolangconversion'        => 'Isključi konverziju varijanti',
 'tog-ccmeonemails'            => 'Pošalji mi kopije imejlova koje šaljem drugim korisnicima',
 'tog-showhiddencats'          => 'Prikaži skrivene kategorije',
 
@@ -794,8 +795,8 @@ Ostali administratori na ovoj Vikipediji će i dalje imati mogućnost da vide sk
 'notitlematches'        => 'Nijedan naslov stranice ne odgovara',
 'textmatches'           => 'Tekst stranice odgovara',
 'notextmatches'         => 'Nijedan tekst stranice ne odgovara',
-'prevn'                 => 'prethodnih $1',
-'nextn'                 => 'sledećih $1',
+'prevn'                 => 'prethodnih {{PLURAL:$1|$1}}',
+'nextn'                 => 'sledećih {{PLURAL:$1|$1}}',
 'viewprevnext'          => 'Pogledaj ($1) ($2) ($3).',
 'searchhelp-url'        => 'Help:Sadržaj',
 'showingresults'        => "Prikazujem ispod '''$1''' rezultata počev od #'''$2'''.",

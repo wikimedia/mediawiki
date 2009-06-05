@@ -606,7 +606,7 @@ Les ôtes manaedjeus so ç' wiki ci pôront todi vey li contnou catchî eyet l' 
 'textmatches'           => 'Årtikes avou do tecse ki corespond',
 'notextmatches'         => 'Nol årtike avou do tecse ki corespond',
 'prevn'                 => '$1 di dvant',
-'nextn'                 => '$1 shuvants',
+'nextn'                 => '{{PLURAL:$1|$1}} shuvants',
 'viewprevnext'          => 'Vey ($1) ($2) ($3).',
 'searchhelp-url'        => 'Help:Aidance',
 'showingresults'        => "Chal pa dzo {{PLURAL:$1|'''1''' rizultat|'''$1''' rizultats}} a pårti do limero '''$2'''.",

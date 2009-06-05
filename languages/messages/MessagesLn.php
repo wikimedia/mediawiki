@@ -207,8 +207,8 @@ $messages = array(
 'editundo'      => 'kozóngela',
 
 # Search results
-'prevn'        => '$1 ya libosó',
-'nextn'        => 'bolɛngɛli $1',
+'prevn'        => '{{PLURAL:$1|$1}} ya libosó',
+'nextn'        => 'bolɛngɛli {{PLURAL:$1|$1}}',
 'viewprevnext' => 'Komɔ́na ($1) ($2) ($3)',
 'powersearch'  => 'Boluki',
 

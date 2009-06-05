@@ -106,7 +106,7 @@ $messages = array(
 'watchthis' => 'Watsch des Blatt',
 
 # Search results
-'nextn'              => 'neegschte $1',
+'nextn'              => 'neegschte {{PLURAL:$1|$1}}',
 'search-result-size' => '$1 ({{PLURAL:$2|1 Wadd|$2 Wadde}})',
 'powersearch'        => 'Guuck uff',
 

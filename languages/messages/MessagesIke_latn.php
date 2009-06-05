@@ -177,7 +177,7 @@ pigivuq qatannguti uikipitia kiinaujaqutiqarvik isuillingaitjapaa. iqtuu suqusiq
 'diff-multi'    => '({{PLURAL:$1|atausiq kimmiuvuq titiraqtaugiarngarut|$1 kimmiuvuq titiraqtaugiarngarut}} ajuqtuq uvva.)',
 
 # Search results
-'nextn'       => 'tagga $1',
+'nextn'       => 'tagga {{PLURAL:$1|$1}}',
 'powersearch' => 'ivaaqpuq',
 
 # Preferences page

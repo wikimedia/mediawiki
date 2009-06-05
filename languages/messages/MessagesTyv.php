@@ -330,8 +330,8 @@ $messages = array(
 
 # Search results
 'searchresults'  => 'Түңнелдер',
-'prevn'          => 'бүрүнгү $1',
-'nextn'          => 'соонда $1',
+'prevn'          => 'бүрүнгү {{PLURAL:$1|$1}}',
+'nextn'          => 'соонда {{PLURAL:$1|$1}}',
 'viewprevnext'   => '($1) ($2) ($3) көөр',
 'searchhelp-url' => 'Help:Допчузу',
 'powersearch'    => 'Дилээр',

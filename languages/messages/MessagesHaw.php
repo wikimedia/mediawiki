@@ -445,8 +445,8 @@ E ʻoluʻolu, e hōʻoia i ka hoʻokūkū ʻana i lalo, a laila, e mālama i nā
 'searchsubtitleinvalid'     => "Ua huli ʻoe iā '''$1'''",
 'noexactmatch'              => "'''‘A‘ohe ʻaoʻao me ka inoa \"\$1\".'''
 Hiki iā ‘oe ke [[:\$1|hoʻokumu i kēia ‘ao‘ao]].",
-'prevn'                     => '$1 ma mua',
-'nextn'                     => '$1 ma hope',
+'prevn'                     => '{{PLURAL:$1|$1}} ma mua',
+'nextn'                     => '{{PLURAL:$1|$1}} ma hope',
 'viewprevnext'              => 'Nānā i nā ($1) ($2) ($3)',
 'searchhelp-url'            => 'Help:Papa kuhikuhi',
 'search-result-size'        => '$1 ({{PLURAL:$2|1 huaʻōlelo|$2 mau huaʻōlelo}})',

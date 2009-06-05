@@ -382,12 +382,12 @@ $messages = array(
 'dec'           => '12月',
 
 # Categories related messages
-'pagecategories'                 => 'カテゴリ',
+'pagecategories'                 => '{{PLURAL:$1|カテゴリ}}',
 'category_header'                => 'カテゴリ “$1” にあるページ',
 'subcategories'                  => 'サブカテゴリ',
 'category-media-header'          => 'カテゴリ “$1” にあるメディア',
 'category-empty'                 => "''このカテゴリにはページまたはメディアがひとつもありません。''",
-'hidden-categories'              => '隠しカテゴリ',
+'hidden-categories'              => '{{PLURAL:$1|隠しカテゴリ}}',
 'hidden-category-category'       => '隠しカテゴリ',
 'category-subcat-count'          => '{{PLURAL:$2|このカテゴリへは次の1サブカテゴリしか属していません。|以下にこのカテゴリへ属しているサブカテゴリ $2 個中 $1 個を表示しています。}}',
 'category-subcat-count-limited'  => 'このカテゴリへは以下のサブカテゴリ $1 個が属しています。',
@@ -1140,7 +1140,7 @@ $1",
 'searchprofile-images-tooltip'     => 'ファイルを検索',
 'searchprofile-everything-tooltip' => '全ページ (ノート、会話ページ含む) を検索',
 'searchprofile-advanced-tooltip'   => '名前空間を指定して検索',
-'search-result-size'               => '$1 ($2語)',
+'search-result-size'               => '$1 ({{PLURAL:$2|$2語}})',
 'search-result-score'              => '関連度: $1%',
 'search-redirect'                  => '($1 のリダイレクト)',
 'search-section'                   => '(セクション $1)',
@@ -1544,7 +1544,7 @@ $1",
 
 このままアップロードを行うことが適切かどうか確認してください。参考として以下にこのファイルの削除記録を表示しています:",
 'filename-bad-prefix'         => "アップロードしようとしている '''\"\$1\"''' のファイル名が、デジタルカメラによって自動的に付与されるような名称となっています。どのようなファイルであるのか、ファイル名を見ただけでも分かるような名称にしてください。",
-'filename-prefix-blacklist'   => ' #<!-- leave this line exactly as it is --> <pre>
+'filename-prefix-blacklist'   => ' #<!-- この行はそのままにしておいてください --> <pre>
 # 構文は以下:
 #   * "#" 記号から行末まではすべてがコメント
 #   * 空でないすべての行はデジタルカメラによって自動的に付けられる典型的なファイル名の接頭辞
@@ -1557,7 +1557,7 @@ IMG # 一般
 JD # Jenoptik
 MGP # ペンタックス
 PICT # misc.
- #</pre> <!-- leave this line exactly as it is -->',
+ #</pre> <!-- この行はそのままにしておいてください -->',
 
 'upload-proto-error'      => '不正なプロトコル',
 'upload-proto-error-text' => 'アップロード元のURLは <code>http://</code> か <code>ftp://</code> で始まっている必要があります。',
@@ -1720,10 +1720,10 @@ PICT # misc.
 'fewestrevisions' => '編集履歴の少ないページ',
 
 # Miscellaneous special pages
-'nbytes'                  => '$1 バイト',
+'nbytes'                  => '$1 {{PLURAL:$1|バイト}}',
 'ncategories'             => '$1 のカテゴリ',
 'nlinks'                  => '$1 個のリンク',
-'nmembers'                => '$1項目',
+'nmembers'                => '$1{{PLURAL:$1|項目}}',
 'nrevisions'              => '$1 の版',
 'nviews'                  => '$1 回表示',
 'specialpage-empty'       => '合致するものがありません。',
@@ -1917,7 +1917,7 @@ PICT # misc.
 'watchmethod-list'     => '最近編集された中からウォッチしているページを抽出',
 'watchlistcontains'    => 'あなたのウォッチリストには $1件のページが登録されています。',
 'iteminvalidname'      => '"$1" をウォッチリストから削除できません。ページ名が不正です。',
-'wlnote'               => '以下は最近 <strong>$2</strong> 時間に編集された <strong>$1</strong> ページです。',
+'wlnote'               => "以下は最近 '''$2'''時間における最も新しい '''$1'''件の編集です。",
 'wlshowlast'           => '最近 [$1時間] [$2日間] [$3] のものを表示する',
 'watchlist-options'    => 'ウォッチリストのオプション',
 
@@ -2506,6 +2506,7 @@ $1 は、すでにブロックされています。設定を変更しますか�
 'chick.css'       => '/* ここに記述したCSSはチック・スキンの利用者に影響します */',
 'simple.css'      => '/* ここに記述したCSSはシンプル・スキンの利用者に影響します */',
 'modern.css'      => '/* ここに記述したCSSはモダン・スキンの利用者に影響します */',
+'vector.css'      => '/* ここに記述したCSSはベクター・スキンの利用者に影響します */',
 'print.css'       => '/* ここに記述したCSSは印刷出力に影響します */',
 'handheld.css'    => '/* ここに記述したCSSは $wgHandheldStyle で設定されたスキンに基づく携帯機器に影響します */',
 
@@ -2519,6 +2520,7 @@ $1 は、すでにブロックされています。設定を変更しますか�
 'chick.js'       => '/* ここに記述したJavaScriptはチック・スキンの利用者に影響します */',
 'simple.js'      => '/* ここに記述したJavaScriptはシンプル・スキンの利用者に影響します */',
 'modern.js'      => '/* ここに記述したJavaScriptはモダン・スキンの利用者に影響します */',
+'vector.js'      => '/* ここに記述したJavaScriptはベクター・スキンの利用者に影響します */',
 
 # Metadata
 'nodublincore'      => 'このサーバーでは Dublin Core RDF メタデータが許可されていません。',
@@ -2560,6 +2562,7 @@ $1 は、すでにブロックされています。設定を変更しますか�
 'skinname-chick'       => 'チック',
 'skinname-simple'      => 'シンプル',
 'skinname-modern'      => 'モダン',
+'skinname-vector'      => 'ベクター',
 
 # Math options
 'mw_math_png'    => '常にPNG',

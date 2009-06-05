@@ -237,8 +237,8 @@ $messages = array(
 'diff-strike' => "'''treuslinys'''",
 
 # Search results
-'prevn'                    => 'kyns $1',
-'nextn'                    => 'nessa $1',
+'prevn'                    => 'kyns {{PLURAL:$1|$1}}',
+'nextn'                    => 'nessa {{PLURAL:$1|$1}}',
 'searchhelp-url'           => 'Help:Gweres',
 'searchprofile-images'     => 'Restrennow',
 'searchprofile-everything' => 'Puptra',

@@ -211,7 +211,7 @@ Bo por kambia página libremente, pero tene kuenta ku lo nota bo IP adrès den e
 'histlast'            => 'Último',
 
 # Search results
-'nextn'          => 'siguiente $1',
+'nextn'          => 'siguiente {{PLURAL:$1|$1}}',
 'searchhelp-url' => 'Help:Kontenido',
 
 # Preferences page
