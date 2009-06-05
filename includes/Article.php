@@ -1446,7 +1446,8 @@ class Article {
 	}
 
 	/**
-	 * @deprecated use Article::doEdit()
+	 * This function is not deprecated until somebody fixes the core not to use
+	 * it. Nevertheless, use Article::doEdit() instead.
 	 */
 	function insertNewArticle( $text, $summary, $isminor, $watchthis, $suppressRC=false, $comment=false, $bot=false ) {
 		$flags = EDIT_NEW | EDIT_DEFER_UPDATES | EDIT_AUTOSUMMARY |
