@@ -49,20 +49,22 @@ class SpecialTags extends SpecialPage {
 		if ( in_array( $tag, $doneTags ) ) {
 			return '';
 		}
+
+		global $wgLang;
 		
 		$newRow = '';
 		$newRow .= Xml::tags( 'td', null, Xml::element( 'tt', null, $tag ) );
 
 		$disp = ChangeTags::tagDescription( $tag );
-		$disp .= ' (' . $sk->link( Title::makeTitle( NS_MEDIAWIKI, "Tag-$tag" ), wfMsg( 'tags-edit' ) ) . ')';
+		$disp .= ' (' . $sk->link( Title::makeTitle( NS_MEDIAWIKI, "Tag-$tag" ), wfMsgHtml( 'tags-edit' ) ) . ')';
 		$newRow .= Xml::tags( 'td', null, $disp );
 
 		$desc = wfMsgExt( "tag-$tag-description", 'parseinline' );
 		$desc = wfEmptyMsg( "tag-$tag-description", $desc ) ? '' : $desc;
-		$desc .= ' (' . $sk->link( Title::makeTitle( NS_MEDIAWIKI, "Tag-$tag-description" ), wfMsg( 'tags-edit' ) ) . ')';
+		$desc .= ' (' . $sk->link( Title::makeTitle( NS_MEDIAWIKI, "Tag-$tag-description" ), wfMsgHtml( 'tags-edit' ) ) . ')';
 		$newRow .= Xml::tags( 'td', null, $desc );
 
-		$hitcount = wfMsgExt( 'tags-hitcount', array( 'parsemag' ), $hitcount );
+		$hitcount = wfMsgExt( 'tags-hitcount', array( 'parsemag' ), $wgLang->formatNum( $hitcount ) );
 		$hitcount = $sk->link( SpecialPage::getTitleFor( 'Recentchanges' ), $hitcount, array(), array( 'tagfilter' => $tag ) );
 		$newRow .= Xml::tags( 'td', null, $hitcount );
 
