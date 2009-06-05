@@ -196,6 +196,7 @@ body.rtl div#head {
 		float: left;
 	}
 	div#head > div.buffer > div.bottom {
+		margin-top: -3em; /* HALF HEAD HEIGHT */
 		height: 3em; /* HALF HEAD HEIGHT */
 		float: right;
 	}
@@ -204,8 +205,8 @@ body.rtl div#head {
 	}
 	div#head > div.buffer > div.middle {
 		height: 3em; /* HALF HEAD HEIGHT */
+		width: 100%;
 		clear: both;
-		float: left;
 	}
 	body.rtl div#head > div.buffer > div.middle {
 		float: right;
