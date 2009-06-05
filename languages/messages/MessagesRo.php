@@ -184,6 +184,8 @@ $dateFormats = array(
 
 $fallback8bitEncoding = 'iso8859-2';
 
+$linkTrail = '/^([a-zăâîşţșțĂÂÎŞŢȘȚ]+)(.*)$/sDu';
+
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Subliniază legăturile',
