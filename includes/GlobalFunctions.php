@@ -1831,8 +1831,8 @@ function wfTimestamp($outputtype=TS_UNIX,$ts=0) {
 	} elseif (preg_match('/^\d{1,13}$/D',$ts)) {
 		# TS_UNIX
 		$uts = $ts;
-	} elseif (preg_match('/^\d{1,2}-...-\d\d(?:\d\d)? \d\d\.\d\d\.\d\d/', $ts)) {
-		# TS_ORACLE
+	} elseif (preg_match('/^\d{2}-\d{2}-\d{4} \d{2}:\d{2}:\d{2}.\d{6}$/', $ts)) {
+		# TS_ORACLE // session altered to DD-MM-YYYY HH24:MI:SS.FF6
 		$uts = strtotime(preg_replace('/(\d\d)\.(\d\d)\.(\d\d)(\.(\d+))?/', "$1:$2:$3",
 				str_replace("+00:00", "UTC", $ts)));
 	} elseif (preg_match('/^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2}):(\d{2})(?:\.*\d*)?Z$/', $ts, $da)) {
@@ -1869,7 +1869,8 @@ function wfTimestamp($outputtype=TS_UNIX,$ts=0) {
 		case TS_RFC2822:
 			return gmdate( 'D, d M Y H:i:s', $uts ) . ' GMT';
 		case TS_ORACLE:
-			return gmdate( 'd-M-y h.i.s A', $uts) . ' +00:00';
+			return gmdate( 'd-m-Y H:i:s.000000', $uts);
+			//return gmdate( 'd-M-y h.i.s A', $uts) . ' +00:00';
 		case TS_POSTGRES:
 			return gmdate( 'Y-m-d H:i:s', $uts) . ' GMT';
 		case TS_DB2:
