@@ -78,10 +78,6 @@ class ApiDelete extends ApiBase {
 				$this->dieUsageMsg(reset($retval));
 		} else {
 			$articleObj = new Article($titleObj);
-			if($articleObj->isBigDeletion() && !$wgUser->isAllowed('bigdelete')) {
-				global $wgDeleteRevisionsLimit;
-				$this->dieUsageMsg(array('delete-toobig', $wgDeleteRevisionsLimit));
-			}
 			$retval = self::delete($articleObj, $params['token'], $reason);
 			
 			if(count($retval))
@@ -122,6 +118,10 @@ class ApiDelete extends ApiBase {
 	public static function delete(&$article, $token, &$reason = NULL)
 	{
 		global $wgUser;
+		if($article->isBigDeletion() && !$wgUser->isAllowed('bigdelete')) {
+			global $wgDeleteRevisionsLimit;
+			return array(array('delete-toobig', $wgDeleteRevisionsLimit)));
+		}
 		$title = $article->getTitle();
 		$errors = self::getPermissionsError($title, $token);
 		if (count($errors)) return $errors;
@@ -164,7 +164,7 @@ class ApiDelete extends ApiBase {
 			$oldfile = RepoGroup::singleton()->getLocalRepo()->newFromArchiveName( $title, $oldimage );
 			
 		if( !FileDeleteForm::haveDeletableFile($file, $oldfile, $oldimage) )
-			return array(array('nofile'));
+			return self::delete(new Article($title), $token, $reason);
 		if (is_null($reason)) # Log and RC don't like null reasons
 			$reason = '';
 		$status = FileDeleteForm::doDelete( $title, $file, $oldimage, $reason, $suppress );
