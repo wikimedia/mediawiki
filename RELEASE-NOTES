@@ -37,6 +37,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   which was already effectively treating the namespace as if it had subpages.
 * (bug 10837) $wgVariant is a user variant selected in the user's preferences
   if the $wgContLang does not have variant, then the $wgLang is used instead.
+* Oracle: maintenance/ora/user.sql script for creating DB user on oracle with
+  appropriate privileges
 
 === New features in 1.16 ===
 

@@ -25,8 +25,18 @@ class AncientPagesPage extends QueryPage {
 		$db = wfGetDB( DB_SLAVE );
 		$page = $db->tableName( 'page' );
 		$revision = $db->tableName( 'revision' );
-		$epoch = $wgDBtype == 'mysql' ? 'UNIX_TIMESTAMP(rev_timestamp)' :
-			'EXTRACT(epoch FROM rev_timestamp)';
+
+		switch ($wgDBtype) {
+			case 'mysql': 
+				$epoch = 'UNIX_TIMESTAMP(rev_timestamp)'; 
+				break;
+			case 'oracle': 
+				$epoch = '((trunc(rev_timestamp) - to_date(\'19700101\',\'YYYYMMDD\')) * 86400)'; 
+				break;
+			default:
+				$epoch = 'EXTRACT(epoch FROM rev_timestamp)';
+		}
+
 		return
 			"SELECT 'Ancientpages' as type,
 					page_namespace as namespace,
