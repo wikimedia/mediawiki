@@ -373,8 +373,8 @@ Nagatimaan ka usab nga ikaw mismo ang nagsulat niini, o gikopya nimo kini gikan 
 # Search results
 'noexactmatch'   => "'''Walay panid nga ginganla'g \"\$1\".'''
 Mahimo mong [[:\$1|isulat kini nga panid]].",
-'prevn'          => 'miaging $1',
-'nextn'          => 'sunod $1',
+'prevn'          => 'miaging {{PLURAL:$1|$1}}',
+'nextn'          => 'sunod {{PLURAL:$1|$1}}',
 'viewprevnext'   => 'Tan-awa sa ($1) ($2) ($3)',
 'searchhelp-url' => 'Help:Mga sulod',
 'powersearch'    => 'Abansadong pagpangita',

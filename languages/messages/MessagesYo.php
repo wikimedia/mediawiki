@@ -496,7 +496,7 @@ Bákannà ẹ tún ṣèlérí fún wa wípé ẹ̀yin lẹkọ́ fúnra arayín
 Ẹ le [[:\$1|ṣ'èdá ojúewé yìí]].",
 'noexactmatch-nocreate'     => "'''Kò sí ojúewé pẹ̀lú àkọlé \"\$1\".'''",
 'prevn'                     => 'titẹ́lẹ̀ $1',
-'nextn'                     => 'tókàn $1',
+'nextn'                     => 'tókàn {{PLURAL:$1|$1}}',
 'viewprevnext'              => 'Ẹ wo ($1) ($2) ($3)',
 'searchhelp-url'            => 'Help:Àwon ohunnú',
 'search-result-size'        => '$1 ({{PLURAL:$2|ọ̀rọ̀ 1|àwọn ọ̀rọ̀ $2}})',

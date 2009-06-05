@@ -101,8 +101,8 @@ $messages = array(
 'lineno' => 'Nzila ya $1:',
 
 # Search results
-'prevn'        => 'biyita $1',
-'nextn'        => 'bilandi $1',
+'prevn'        => 'biyita {{PLURAL:$1|$1}}',
+'nextn'        => 'bilandi {{PLURAL:$1|$1}}',
 'viewprevnext' => 'Mona ($1) ($2) ($3).',
 'powersearch'  => 'Sosa',
 

@@ -83,6 +83,7 @@ $messages = array(
 'tog-watchlisthideown'        => 'মি পতাসু অতা গুর মর তালাবিত্ত',
 'tog-watchlisthidebots'       => 'বটল পতাসি অতা গুর মর তালাবিত্ত',
 'tog-watchlisthideminor'      => 'হুরু করে পতাসি অতা গুর মর তালাবিত্ত',
+'tog-nolangconversion'        => 'সারুকর সিলপা থেপকর',
 'tog-ccmeonemails'            => 'আরতারে দিয়াপেঠাউরি ইমেইল মরাঙউ কপি আহান যাকগা',
 'tog-diffonly'                => 'ফারাকর তলে পাতাহানর বিষয়বস্তু নাদেখাদি',
 'tog-showhiddencats'          => 'আরুমে আসে থাকহানি ফংকর',
@@ -463,8 +464,8 @@ $messages = array(
 # Search results
 'noexactmatch'   => "'''\"\$1\" চিংনাঙর কোন পাতা নেই।'''
 তি [[:\$1|পাতা এহান হঙকরে পারর]]।",
-'prevn'          => 'পিসেদে $1',
-'nextn'          => 'থাংনাত $1',
+'prevn'          => 'পিসেদে {{PLURAL:$1|$1}}',
+'nextn'          => 'থাংনাত {{PLURAL:$1|$1}}',
 'viewprevnext'   => 'চা ($1) ($2) ($3)',
 'searchhelp-url' => 'Help:পাংলাক',
 'powersearch'    => 'এডভান্স বিসারানি',

@@ -45,6 +45,7 @@ $messages = array(
 'tog-watchlisthideown'        => 'Čiega iežas rievdadusaid',
 'tog-watchlisthidebots'       => 'Čiega bohtaid rievdadusaid',
 'tog-watchlisthideminor'      => 'Čiega unna rievdadusaid',
+'tog-nolangconversion'        => 'Ále daga rievdadusaid giellavarianttaid gaskal',
 'tog-ccmeonemails'            => 'Sádde munnje kopiija e-poasttain, maid sádden eará geavaheddjiide',
 
 'underline-always' => 'Álo',
@@ -465,8 +466,8 @@ Eará bajasdoallit sáhtet lohkat čihkojuvvon sisdoalu ja máhcahit dan.",
 'searchsubtitleinvalid' => 'Ohcan tearpmain $1',
 'noexactmatch'          => 'Siidu ”$1” ii dihtto. Sáhtat [[$1|álggahit ođđa siiddu]].',
 'notitlematches'        => 'Ohcansátni ii dihtton ovttasge bájilčállagis',
-'prevn'                 => '← $1 ovddit',
-'nextn'                 => '$1 čuovvovaš →',
+'prevn'                 => '← {{PLURAL:$1|$1}} ovddit',
+'nextn'                 => '{{PLURAL:$1|$1}} čuovvovaš →',
 'viewprevnext'          => 'Čájet [$3] oktanaga.
 
 $1 | $2',

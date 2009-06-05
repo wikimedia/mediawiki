@@ -97,8 +97,8 @@ $messages = array(
 'newarticle'   => '(Yéngi)',
 
 # Search results
-'prevn'       => 'aldinqi $1',
-'nextn'       => 'kéyinki $1',
+'prevn'       => 'aldinqi {{PLURAL:$1|$1}}',
+'nextn'       => 'kéyinki {{PLURAL:$1|$1}}',
 'powersearch' => 'Izdash',
 
 # Preferences page

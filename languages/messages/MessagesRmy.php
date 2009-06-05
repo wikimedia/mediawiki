@@ -256,8 +256,8 @@ Kana avilyan kathe doshatar, ja palpale.',
 'compareselectedversions' => 'Dikh ververimata mashkar alosarde versiye',
 
 # Search results
-'prevn'             => 'mai neve $1',
-'nextn'             => 'mai purane $1',
+'prevn'             => 'mai neve {{PLURAL:$1|$1}}',
+'nextn'             => 'mai purane {{PLURAL:$1|$1}}',
 'viewprevnext'      => 'Dikh ($1) ($2) ($3).',
 'searchhelp-url'    => 'Help:Zhutipen',
 'showingresults'    => 'Tele si <b>$1</b> rezultaturya shirdindoi le ginestar <b>$2</b>.',

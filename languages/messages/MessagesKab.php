@@ -76,6 +76,7 @@ $messages = array(
 'tog-watchlisthideown'        => 'Ffer ibeddlen inu seg wumuɣ n uɛessi inu',
 'tog-watchlisthidebots'       => 'Ffer ibeddlen n iboṭiyen seg wumuɣ n uɛessi inu',
 'tog-watchlisthideminor'      => 'Ffer ibeddlen ifessasen seg wumuɣ n uɛessi inu',
+'tog-nolangconversion'        => 'Kkes abeddel n yimeskilen',
 'tog-ccmeonemails'            => 'Azen-iyi-d email n wayen uzneɣ i imseqdacen wiyaḍ',
 'tog-diffonly'                => 'Ur temliḍ-iyi-d ara ayen yellan seddaw imgerraden',
 
@@ -614,8 +615,8 @@ Inedbalen wiyaḍ deg wiki-yagi zemren ad ẓren imuren i yettwafren u zemren a 
 'notitlematches'        => 'Ulac ayen yecban azwel n umegrad',
 'textmatches'           => 'Ayen yecban azwel n usebter',
 'notextmatches'         => 'ulac ayen yecban azwel n usebter',
-'prevn'                 => '$1 ssabeq',
-'nextn'                 => '$1 ameḍfir',
+'prevn'                 => '{{PLURAL:$1|$1}} ssabeq',
+'nextn'                 => '{{PLURAL:$1|$1}} ameḍfir',
 'viewprevnext'          => 'Ẓer ($1) ($2) ($3).',
 'searchhelp-url'        => 'Help:Agbur',
 'showingresults'        => "Tamuli n {{PLURAL:$1|'''Yiwen''' wegmud|'''$1''' n yigmad}} seg  #'''$2'''.",

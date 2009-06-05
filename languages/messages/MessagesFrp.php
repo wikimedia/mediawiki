@@ -336,7 +336,7 @@ $messages = array(
 'tog-watchlisthideliu'        => 'Cachiér los changements fêts per los utilisators enregistrâs de la lista de survelyence',
 'tog-watchlisthideanons'      => 'Cachiér los changements fêts per los utilisators pas enregistrâs de la lista de survelyence',
 'tog-watchlisthidepatrolled'  => 'Cachiér los changements survelyês de la lista de survelyence',
-'tog-variantconversion'       => 'Activar la convèrsion de les variantes de lengoua',
+'tog-nolangconversion'        => 'Dèsactivar la convèrsion de les variantes de lengoua',
 'tog-ccmeonemails'            => 'Mè mandar una copia des mèls que mando ux ôtros utilisators',
 'tog-diffonly'                => 'Pas montrar lo contegnu de les pâges desot los difs',
 'tog-showhiddencats'          => 'Fâre vêre les catègories cachiês',
@@ -404,7 +404,7 @@ $messages = array(
 'category_header'                => 'Pâges dens la catègorie « $1 »',
 'subcategories'                  => 'Sot-catègories',
 'category-media-header'          => 'Fichiérs multimèdia dens la catègorie « $1 »',
-'category-empty'                 => "''Orendrêt, ceta catègorie contint gins de pâge, de sot-catègorie ou ben de fichiér multimèdia.''",
+'category-empty'                 => "''Ora, ceta catègorie contint gins de pâge, de sot-catègorie ou ben de fichiér multimèdia.''",
 'hidden-categories'              => '{{PLURAL:$1|Catègorie cachiê|Catègories cachiês}}',
 'hidden-category-category'       => 'Catègories cachiês',
 'category-subcat-count'          => 'Ceta catègorie at {{PLURAL:$2|ren que la sot-catègorie|$2 sot-catègories, que {{PLURAL:$1|cela|les $1}}}} ce-desot.',
@@ -419,7 +419,6 @@ $messages = array(
 'mainpagedocfooter' => 'Vêde lo [http://meta.wikimedia.org/wiki/Aide:Contenu guido d’utilisator] por més d’enformacions sur l’usâjo de la programeria vouiqui.
 
 == Dèmarrar avouéc MediaWiki ==
-
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Lista des paramètres de configuracion]
 * [http://www.mediawiki.org/wiki/Manual:FAQ/fr FDQ sur MediaWiki]
 * [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Lista de discussion sur les distribucions de MediaWiki]',
@@ -600,7 +599,7 @@ MySQL at retornâ l’èrror « $3 : $4 ».',
 'laggedslavemode'      => 'Atencion : cela pâge pôt pas contegnir tôs los dèrriérs changements fêts.',
 'readonly'             => 'Bâsa de balyês vèrrolyê',
 'enterlockreason'      => 'Endicâd la rêson du vèrrolyâjo et pués una èstimacion de son temps',
-'readonlytext'         => 'Orendrêt, les aponses et les mises a jorn de la bâsa de balyês sont blocâs, probâblament por pèrmetre la mantegnence de la bâsa, aprés què, tot rentrerat dedens l’ôrdre.
+'readonlytext'         => 'Ora, les aponses et les mises a jorn de la bâsa de balyês sont blocâs, probâblament por pèrmetre la mantegnence de la bâsa, aprés què, tot rentrerat dedens l’ôrdre.
 
 L’administrator qu’at vèrrolyê la bâsa de balyês at balyê ceta èxplicacion : $1',
 'missing-article'      => 'La bâsa de balyês at pas trovâ lo tèxto d’una pâge qu’el arêt diu trovar, avouéc lo titro « $1 » $2.
@@ -627,10 +626,10 @@ La volyéd signalar a un [[Special:ListUsers/sysop|administrator]] sen oubliar d
 La suprèssion at pôt-étre ja étâ fêta per quârqu’un d’ôtro.',
 'badtitle'             => 'Crouyo titro',
 'badtitletext'         => 'Lo titro de la pâge demandâ est fôx, vouedo, ou ben o est un titro entèrlengoua ou entèrvouiqui mâl-liyê.
-Contint sûrement yon ou plusiors caractèros que pôvont pas étre utilisâs dens los titros.',
+Contint sûrement yon ou ben un mouél de caractèros que pôvont pas étre utilisâs dens los titros.',
 'perfcached'           => 'Cetes balyês sont en cache et pôvont pas étre a jorn.',
 'perfcachedts'         => 'Cetes balyês sont en cache, sont vêr pas forciêment a jorn. La dèrriére actualisacion dâte du $1.',
-'querypage-no-updates' => 'Orendrêt, les mises a jorn por ceta pâge sont dèsactivâs.
+'querypage-no-updates' => 'Ora, les mises a jorn por ceta pâge sont dèsactivâs.
 Les balyês ce-desot sont pas betâs a jorn.',
 'wrong_wfQuery_params' => 'Paramètres fôx dessus wfQuery()<br />
 Fonccion : $1<br />
@@ -647,7 +646,7 @@ Volyéd tornar èprovar dens doux-três menutes.',
 Los changements sè cognetront, d’aprés lo contèxto, sur totes ou ben quârques pâges visibles per los ôtros utilisators.
 Por les traduccions, nos vos envitens a utilisar lo seto [http://translatewiki.net/wiki/Main_Page?setlang=frp translatewiki.net], lo projèt de localisacion de MediaWiki.",
 'sqlhidden'            => '(Requéta SQL cachiê)',
-'cascadeprotected'     => 'Orendrêt, cela pâge est protègiê perce qu’el est encllua dens {{PLURAL:$1|ceta pâge|cetes pâges}}, {{PLURAL:$1|qu’at étâ protègiê|qu’ont étâ protègiês}} avouéc lo chouèx « protèccion en cascâda » activâ :
+'cascadeprotected'     => 'Ora, cela pâge est protègiê perce qu’el est encllua dens {{PLURAL:$1|ceta pâge|cetes pâges}}, {{PLURAL:$1|qu’at étâ protègiê|qu’ont étâ protègiês}} avouéc lo chouèx « protèccion en cascâda » activâ :
 $2',
 'namespaceprotected'   => "Vos avéd pas la pèrmission de changiér les pâges de l’èspâço de nom '''« $1 »'''.",
 'customcssjsprotected' => 'Vos avéd pas la pèrmission de changiér ceta pâge perce que contint les prèferences a un ôtro utilisator.',
@@ -661,12 +660,11 @@ La rêson avanciê est « ''$2'' ».",
 'virus-unknownscanner' => 'antivirus encognu :',
 
 # Login and logout pages
-'logouttext'                 => "'''Orendrêt, vos éte dèbranchiê.'''
+'logouttext'                 => "'''Ora, vos éte dèbranchiê.'''
 
 Vos pouede continuar a utilisar {{SITENAME}} de façon anonima, ou ben [[Special:UserLogin|vos tornar branchiér]] desot lo mémo nom ou ben un ôtro.
 Notâd que quârques pâges pôvont étre adés montrâs coment se vos érâd tojorn branchiê, tant que vos èfaciéd lo cache de voutron navigator.",
 'welcomecreation'            => '== Benvegnua, $1 ! ==
-
 Voutron compto utilisator at étâ fêt.
 Oubliâd pas de pèrsonalisar voutres [[Special:Preferences|prèferences dessus {{SITENAME}}]].',
 'yourname'                   => 'Voutron nom d’utilisator :',
@@ -699,7 +697,7 @@ Los volyéd activar et pués vos tornar branchiér avouéc lo mémo nom et lo m�
 Los volyéd activar et pués vos tornar branchiér.",
 'noname'                     => 'Vos éd pas buchiê un nom d’utilisator valido.',
 'loginsuccesstitle'          => 'Branchement reussi.',
-'loginsuccess'               => "'''Orendrêt, vos éte branchiê a {{SITENAME}} coment « $1 ».'''",
+'loginsuccess'               => "'''Ora, vos éte branchiê a {{SITENAME}} coment « $1 ».'''",
 'nosuchuser'                 => 'L’utilisator « $1 » ègziste pas.
 Los noms d’utilisator sont sensiblos a la câssa.
 Controlâd l’ortografia, ou ben [[Special:UserLogin/signup|féte un novél compto]].',
@@ -863,7 +861,7 @@ Por fâre cela pâge, buchiéd voutron tèxto dens la bouèta ce-desot (vos poue
 Se vos éte arrevâ ice per èrror, clicâd sur lo boton '''Devant''' de voutron navigator.",
 'anontalkpagetext'                 => "---- ''Vos éte sur la pâge de discussion a un utilisator pas enregistrâ qu’at p’oncor fêt un compto ou ben que nen utilise pas.
 Por celes rêsons, nos devens utilisar son adrèce IP por l’identifiar.
-Una adrèce IP pôt étre partagiê per plusiors utilisators.
+Una adrèce IP pôt étre partagiê per un mouél d’utilisators.
 Se vos éte un utilisator pas enregistrâ et se vos constatâd que des comentèros que vos regârdont pas vos ont étâ adrèciês, vos pouede [[Special:UserLogin/signup|fâre un compto]] ou ben [[Special:UserLogin|vos branchiér]] por èvitar tota confusion que vint avouéc d’ôtros contributors pas enregistrâs.''",
 'noarticletext'                    => 'Y at por lo moment gins de tèxto sur ceta pâge.
 Vos pouede [[Special:Search/{{PAGENAME}}|fâre una rechèrche de ceti titro de pâge]] dens les ôtres pâges,
@@ -909,7 +907,7 @@ Vos voléd devêr fusionar voutros changements dens lo tèxto ègzistent.
 '''Solament''' lo tèxto de la zona de d’amont serat sôvâ quand vos cliqueréd dessus « Sôvar ceta pâge ».",
 'yourtext'                         => 'Voutron tèxto',
 'storedversion'                    => 'Vèrsion enregistrâ',
-'nonunicodebrowser'                => "'''ATENCION : voutron navigator supôrte pas l’Unicode.'''
+'nonunicodebrowser'                => "'''ATENCION : voutron navigator recognêt pas l’Unicode.'''
 Una solucion de rechanjo at étâ trovâ por vos pèrmetre de changiér en tota suretât una pâge : los caractèros nan-ASCII aparètront dens voutra bouèta d’èdicion coment codes hèxadècimâls.
 Vos devriâd utilisar un navigator ples novél.",
 'editingold'                       => "'''ATENCION : vos éte aprés changiér una vielye vèrsion de cela pâge.'''
@@ -1056,7 +1054,6 @@ la vèrsion ciba ègziste pas, ou ben o est la vèrsion d’ora.',
 'revdelete-selected'          => "'''{{PLURAL:$2|Vèrsion chouèsia|Vèrsions chouèsies}} de [[:$1]] :'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Entrâ du jornal chouèsia|Entrâs du jornal chouèsies}} :'''",
 'revdelete-text'              => "'''Les vèrsions et les entrâs suprimâs aparètront adés dens l’historico de la pâge et dens los jornals, mas lor contegnu tèxtuèl serat pas accèssiblo u publico.'''
-
 Los ôtros administrators de {{SITENAME}} porront tojorn arrevar u contegnu cachiê et lo refâre per cela méma entèrface, a muens que des rèstriccions de ples seyont betâs en place.
 
 Volyéd confirmar qu’o est franc cen que vos voléd fâre, que vos en compregnéd les consèquences et pués que vos féte cen en acôrd avouéc les [[{{MediaWiki:Policy-url}}|règlles de dedens]].",
@@ -1094,6 +1091,17 @@ $1",
 'revdelete-unhid'             => 'at montrâ $1',
 'revdelete-log-message'       => '$1 por $2 vèrsion{{PLURAL:$2||s}}',
 'logdelete-log-message'       => '$1 sur $2 entrâ{{PLURAL:$2||s}}',
+'revdelete-hide-current'      => 'Èrror pendent la suprèssion de l’èlèment datâ du $1 a $2 : o est la vèrsion d’ora.
+Pôt pas étre suprimâ.',
+'revdelete-show-no-access'    => 'Èrror pendent la visualisacion de l’èlèment datâ du $1 a $2 : il est marcâ coment « rètrent ».
+Vos y avéd pas accès.',
+'revdelete-modify-no-access'  => 'Èrror pendent lo changement de l’èlèment datâ du $1 a $2 : il est marcâ coment « rètrent ».
+Vos y avéd pas accès.',
+'revdelete-modify-missing'    => 'Èrror pendent lo changement de l’èlèment avouéc l’identifiant $1 : il est manquent dens la bâsa de balyês !',
+'revdelete-no-change'         => "'''Atencion :''' l’èlèment datâ du $1 a $2 at ja los paramètres de visibilitât demandâs.",
+'revdelete-concurrent-change' => 'Èrror pendent lo changement de l’èlèment datâ du $1 a $2 : son statut at étâ changiê per quârqu’un d’ôtro pendent que vos lo changiéd.
+Controlâd los jornals.',
+'revdelete-only-restricted'   => 'Vos pouede pas suprimar celos èlèments ux administrators sen chouèsir avouéc des ôtros chouèx de suprèssion.',
 
 # Suppression log
 'suppressionlog'     => 'Jornal de les suprèssions',
@@ -1889,10 +1897,10 @@ Châque entrâ contint des lims de vers la premiére et la seconda redirèccion,
 'protectedpages-indef'    => 'Ren que les protèccions sen fin',
 'protectedpages-cascade'  => 'Ren que les protèccions en cascâda',
 'protectedpagestext'      => 'Cetes pâges sont protègiês contre los changements et/ou lo changement de nom :',
-'protectedpagesempty'     => 'Orendrêt, niona pâge est protègiê avouéc celos paramètres.',
+'protectedpagesempty'     => 'Ora, niona pâge est protègiê avouéc celos paramètres.',
 'protectedtitles'         => 'Titros protègiês',
 'protectedtitlestext'     => 'Cetos titros sont protègiês a la crèacion :',
-'protectedtitlesempty'    => 'Orendrêt, nion titro est protègiê avouéc celos paramètres.',
+'protectedtitlesempty'    => 'Ora, nion titro est protègiê avouéc celos paramètres.',
 'listusers'               => 'Lista ux utilisators',
 'listusers-editsonly'     => 'Montrar ren que los utilisators qu’ont u muens yona contribucion',
 'listusers-creationsort'  => 'Triyér per dâta de crèacion',
@@ -1946,7 +1954,7 @@ Vos pouede rètrendre la vua en chouèséssent un tipo de jornal, un nom d’uti
 'allpagessubmit'    => 'Listar',
 'allpagesprefix'    => 'Fâre vêre les pâges que començont per lo prèfixo :',
 'allpagesbadtitle'  => 'Lo titro de la pâge endicâ est fôx ou ben at un prèfixo entèrlengoua ou entèrvouiqui resèrvâ.
-Contint sûrement yon ou plusiors caractèros que pôvont pas étre utilisâs dens los titros.',
+Contint sûrement yon ou ben un mouél de caractèros que pôvont pas étre utilisâs dens los titros.',
 'allpages-bad-ns'   => '{{SITENAME}} at pas d’èspâço de nom « $1 ».',
 
 # Special:Categories
@@ -2177,7 +2185,7 @@ Vê-que los règllâjos d’ora de la pâge '''$1''' :",
 Vê-que los règllâjos d’ora de la pâge '''$1''' :",
 'protect-locked-access'       => "Vos avéd pas los drêts nècèssèros por changiér los nivéls de protèccion de pâges.
 Vê-que los règllâjos d’ora de la pâge '''$1''' :",
-'protect-cascadeon'           => 'Orendrêt, ceta pâge est protègiê perce qu’el est encllua dens {{PLURAL:$1|ceta pâge|cetes pâges}}, {{PLURAL:$1|qu’at étâ protègiê|qu’ont étâ protègiês}} avouéc lo chouèx « Protèccion en cascâda » activâ.
+'protect-cascadeon'           => 'Ora, ceta pâge est protègiê perce qu’el est encllua dens {{PLURAL:$1|ceta pâge|cetes pâges}}, {{PLURAL:$1|qu’at étâ protègiê|qu’ont étâ protègiês}} avouéc lo chouèx « Protèccion en cascâda » activâ.
 Vos pouede changiér lo nivél de protèccion de ceta pâge sen que cen afècte la protèccion en cascâda.',
 'protect-default'             => 'Ôtorisar tôs los utilisators',
 'protect-fallback'            => 'At fôta de la pèrmission « $1 »',
@@ -2380,7 +2388,7 @@ Vêde la [[Special:IPBlockList|lista ux utilisators et a les adrèces IP blocâs
 'createaccountblock'              => 'crèacion de compto blocâ',
 'emailblock'                      => 'mèl blocâ',
 'blocklist-nousertalk'            => 'pôt pas changiér sa prôpra pâge de discussion',
-'ipblocklist-empty'               => 'Orendrêt, la lista a les adrèces IP blocâs est voueda.',
+'ipblocklist-empty'               => 'Ora, la lista a les adrèces IP blocâs est voueda.',
 'ipblocklist-no-results'          => 'L’adrèce IP ou ben l’utilisator demandâ est pas blocâ.',
 'blocklink'                       => 'blocar',
 'unblocklink'                     => 'dèblocar',
@@ -2409,7 +2417,8 @@ Vêde la [[Special:IPBlockList|lista ux utilisators et a les adrèces IP blocâs
 'ipb_hide_invalid'                => 'Empossiblo de suprimar ceti compto ; semble avêr trop de changements.',
 'ipb_already_blocked'             => '« $1 » est ja blocâ',
 'ipb-needreblock'                 => '== Ja blocâ ==
-$1 est ja blocâ. Voléd-vos changiér los paramètres ?',
+$1 est ja blocâ.
+Voléd-vos changiér los paramètres ?',
 'ipb_cant_unblock'                => 'Èrror : identifiant de blocâjo $1 pas trovâ.
 O est possiblo qu’un dèblocâjo èye ja étâ fêt.',
 'ipb_blocked_as_range'            => 'Èrror : l’adrèce IP $1 est pas blocâ tot drêt et pôt vêr pas étre dèblocâ.
@@ -2419,7 +2428,7 @@ Portant, el est avouéc la plage $2 que pôt étre dèblocâ.',
 'proxyblocker'                    => "Bloquior de sèrvors mandatèros (''proxies'')",
 'proxyblocker-disabled'           => 'Cela fonccion est dèsactivâ.',
 'proxyblockreason'                => "Voutra adrèce IP at étâ blocâ perce qu’o est un sèrvor mandatèro (''proxy'') uvèrt.
-Vos volyéd veriér vers voutron fornissor d’accès u Malyâjo ou ben voutron supôrt tècnico et l’enformar de cél problèmo de sècuritât sèriox.",
+Vos volyéd veriér vers voutron fornissor d’accès u Malyâjo ou ben voutra assistance tècnica et l’enformar de cél problèmo de sècuritât sèriox.",
 'proxyblocksuccess'               => 'Chavonâ.',
 'sorbsreason'                     => "Voutra adrèce IP est listâ coment sèrvor mandatèro (''proxy'') uvèrt dens lo DNSBL utilisâ per {{SITENAME}}.",
 'sorbs_create_account_reason'     => "Voutra adrèce IP est listâ coment sèrvor mandatèro (''proxy'') uvèrt dens lo DNSBL utilisâ per {{SITENAME}}.
@@ -2561,7 +2570,7 @@ Volyéd visitar la [http://www.mediawiki.org/wiki/Localisation Localisacion de M
 'filemissing'              => 'Fichiér manquent',
 'thumbnail_error'          => 'Èrror pendent la crèacion de la figura : $1',
 'djvu_page_error'          => 'Pâge DjVu en defôr de les limites',
-'djvu_no_xml'              => 'Empossiblo d’obtegnir lo XML por lo fichiér DjVu',
+'djvu_no_xml'              => 'Empossiblo de rècupèrar lo XML por lo fichiér DjVu',
 'thumbnail_invalid_params' => 'Paramètres de la figura fôx',
 'thumbnail_dest_directory' => 'Empossiblo de fâre lo rèpèrtouèro de dèstinacion',
 'thumbnail_image-type'     => 'Tipo d’émâge pas recognu',
@@ -2694,6 +2703,7 @@ Pèrmèt de rètablir la vèrsion devant et pués d’apondre una rêson dens la
 'chick.css'       => '/* Lo code CSS betâ ique afècterat los utilisators de l’habelyâjo « Pugin ». */',
 'simple.css'      => '/* Lo code CSS betâ ique afècterat los utilisators de l’habelyâjo « Simplo ». */',
 'modern.css'      => '/* Lo code CSS betâ ique afècterat los utilisators de l’habelyâjo « Modèrno ». */',
+'vector.css'      => '/* Lo code CSS betâ ique afècterat los utilisators de l’habelyâjo « Vèctor ». */',
 'print.css'       => '/* Lo code CSS betâ ique afècterat les emprèssions. */',
 'handheld.css'    => '/* Lo code CSS betâ ique afècterat los aparèlys mobilos d’aprés l’habelyâjo configurâ dedens « $wgHandheldStyle ». */',
 
@@ -2707,6 +2717,7 @@ Pèrmèt de rètablir la vèrsion devant et pués d’apondre una rêson dens la
 'chick.js'       => '/* Tot code JavaScript betâ ique serat chargiê avouéc les pâges accèdâs per ren que los utilisators de l’habelyâjo « Pugin ». */',
 'simple.js'      => '/* Tot code JavaScript betâ ique serat chargiê avouéc les pâges accèdâs per ren que los utilisators de l’habelyâjo « Simplo ». */',
 'modern.js'      => '/* Tot code JavaScript betâ ique serat chargiê avouéc les pâges accèdâs per ren que los utilisators de l’habelyâjo « Modèrno ». */',
+'vector.js'      => '/* Tot code JavaScript betâ ique serat chargiê avouéc les pâges accèdâs per ren que los utilisators de l’habelyâjo « Vèctor ». */',
 
 # Metadata
 'nodublincore'      => 'Les mètabalyês « Dublin Core RDF » sont dèsactivâs sur ceti sèrvor.',
@@ -2749,6 +2760,7 @@ Cen est probâblament côsâ per un lim dessus lista nêre que pouente vers un s
 'skinname-chick'       => 'Pugin',
 'skinname-simple'      => 'Simplo',
 'skinname-modern'      => 'Modèrno',
+'skinname-vector'      => 'Vèctor',
 
 # Math options
 'mw_math_png'    => 'Tojorn fâre una émâge PNG',
@@ -3164,8 +3176,8 @@ Lo programo d’èxpèdicion de mèl at retornâ ceta endicacion : $1',
 Ceti at pôt-étre èxpirâ.',
 'confirmemail_needlogin'   => 'Vos vos dête $1 por confirmar voutra adrèce de mèl.',
 'confirmemail_success'     => 'Voutra adrèce de mèl at étâ confirmâ.
-Orendrêt, vos vos pouede [[Special:UserLogin|branchiér]] et profitar du vouiqui.',
-'confirmemail_loggedin'    => 'Orendrêt, voutra adrèce de mèl est confirmâ.',
+Ora, vos vos pouede [[Special:UserLogin|branchiér]] et profitar du vouiqui.',
+'confirmemail_loggedin'    => 'Ora, voutra adrèce de mèl est confirmâ.',
 'confirmemail_error'       => 'Un problèmo est arrevâ pendent l’enregistrament de voutra confirmacion.',
 'confirmemail_subject'     => 'Confirmacion d’adrèce de mèl por {{SITENAME}}',
 'confirmemail_body'        => 'Quârqu’un, probâblament vos, avouéc l’adrèce IP $1,
@@ -3287,46 +3299,60 @@ Vos pouede asse-ben utilisar l’[[Special:Watchlist/edit|èditor normal]].',
 
 # Iranian month names
 'iranian-calendar-m1'  => 'de farvardin',
-'iranian-calendar-m2'  => 'd’ordibehèch·et',
-'iranian-calendar-m3'  => 'de c’hordād',
+'iranian-calendar-m2'  => 'd’ordibehèch·ete',
+'iranian-calendar-m3'  => 'de c’hordâde',
 'iranian-calendar-m4'  => 'de tir',
-'iranian-calendar-m5'  => 'de mordād',
+'iranian-calendar-m5'  => 'de mordâde',
 'iranian-calendar-m6'  => 'de ch·ahrivar',
 'iranian-calendar-m7'  => 'de mèhr',
-'iranian-calendar-m8'  => 'd’ābān',
-'iranian-calendar-m9'  => 'd’āzar',
-'iranian-calendar-m10' => 'de dèy',
-'iranian-calendar-m11' => 'de bahman',
-'iranian-calendar-m12' => 'd’èsfand',
+'iranian-calendar-m8'  => 'd’âbâne',
+'iranian-calendar-m9'  => 'd’âzar',
+'iranian-calendar-m10' => 'de dê',
+'iranian-calendar-m11' => 'de bahmane',
+'iranian-calendar-m12' => 'd’èsfande',
+
+# Hijri month names
+'hijri-calendar-m1'  => 'de mouharrame',
+'hijri-calendar-m2'  => 'de safar',
+'hijri-calendar-m3'  => 'de rabîʿ al-aval',
+'hijri-calendar-m4'  => 'de rabîʿ at-tânî',
+'hijri-calendar-m5'  => 'de j·oumâda al-oula',
+'hijri-calendar-m6'  => 'de j·oumâda at-tâniya',
+'hijri-calendar-m7'  => 'de raj·abe',
+'hijri-calendar-m8'  => 'de ch·aʿbâne',
+'hijri-calendar-m9'  => 'de ramadâne',
+'hijri-calendar-m10' => 'de ch·avâl',
+'hijri-calendar-m11' => 'de dou l-quaʿda',
+'hijri-calendar-m12' => 'de dou l-hij·a',
 
 # Hebrew month names
 'hebrew-calendar-m1'      => 'de tich·eri',
-'hebrew-calendar-m2'      => 'd’hèch·evan',
+'hebrew-calendar-m2'      => 'd’hèch·evane',
 'hebrew-calendar-m3'      => 'de quislèv',
 'hebrew-calendar-m4'      => 'de tevèt',
-'hebrew-calendar-m5'      => 'de ch·evât',
-'hebrew-calendar-m6'      => 'd’adâr',
-'hebrew-calendar-m6a'     => 'd’adâr I',
-'hebrew-calendar-m6b'     => 'd’adâr II',
-'hebrew-calendar-m7'      => 'de nissan',
-'hebrew-calendar-m8'      => 'd’iyâr',
-'hebrew-calendar-m9'      => 'de sivan',
+'hebrew-calendar-m5'      => 'de ch·evat',
+'hebrew-calendar-m6'      => 'd’adar',
+'hebrew-calendar-m6a'     => 'd’adar-rich·one',
+'hebrew-calendar-m6b'     => 'd’adar-bèt',
+'hebrew-calendar-m7'      => 'de nissane',
+'hebrew-calendar-m8'      => 'd’iyar',
+'hebrew-calendar-m9'      => 'de sivane',
 'hebrew-calendar-m10'     => 'de tamouz',
-'hebrew-calendar-m11'     => 'd’âv',
+'hebrew-calendar-m11'     => 'd’av',
 'hebrew-calendar-m12'     => 'd’èloul',
 'hebrew-calendar-m1-gen'  => 'de tich·eri',
-'hebrew-calendar-m2-gen'  => 'd’hèch·evan',
+'hebrew-calendar-m2-gen'  => 'd’hèch·evane',
 'hebrew-calendar-m3-gen'  => 'de quislèv',
 'hebrew-calendar-m4-gen'  => 'de tevèt',
-'hebrew-calendar-m5-gen'  => 'de ch·evât',
-'hebrew-calendar-m6-gen'  => 'd’adâr',
-'hebrew-calendar-m6a-gen' => 'd’adâr I',
-'hebrew-calendar-m6b-gen' => 'd’adâr II',
-'hebrew-calendar-m7-gen'  => 'de nissan',
-'hebrew-calendar-m8-gen'  => 'd’iyâr',
-'hebrew-calendar-m9-gen'  => 'de sivan',
+'hebrew-calendar-m5-gen'  => 'de ch·evat',
+'hebrew-calendar-m6-gen'  => 'd’adar',
+'hebrew-calendar-m6a-gen' => 'd’adar-rich·one',
+'hebrew-calendar-m6b-gen' => 'd’adar-bèt',
+'hebrew-calendar-m7-gen'  => 'de nissane',
+'hebrew-calendar-m8-gen'  => 'd’iyar',
+'hebrew-calendar-m9-gen'  => 'de sivane',
 'hebrew-calendar-m10-gen' => 'de tamouz',
-'hebrew-calendar-m11-gen' => 'd’âv',
+'hebrew-calendar-m11-gen' => 'd’av',
 'hebrew-calendar-m12-gen' => 'd’èloul',
 
 # Core parser functions

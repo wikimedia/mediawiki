@@ -191,6 +191,7 @@ $messages = array(
 'tog-watchlisthideliu'        => 'İzleme listemde, kayıtlı kullanıcılar tarafından yapılan değişiklikleri gösterme',
 'tog-watchlisthideanons'      => 'İzleme listemde, anonim kullanıcılar tarafından yapılan değişiklikleri gösterme',
 'tog-watchlisthidepatrolled'  => 'İzleme listesinde gözlenmiş değişiklikleri gizle',
+'tog-nolangconversion'        => 'Varyant dönüştürmesini devre dışı bırak',
 'tog-ccmeonemails'            => 'Diğer kullanıcılara gönderdiğim e-postaların kopyalarını bana da gönder',
 'tog-diffonly'                => 'Sayfa içeriğini sürüm farklarının aşağısında gösterme',
 'tog-showhiddencats'          => 'Gizli kategorileri göster',
@@ -905,6 +906,7 @@ Erişiminiz yok.',
 'revdelete-no-change'         => "'''Uyarı:'''  $2 $1 tarihli öğe için zaten görünürlük ayarı istenmiş.",
 'revdelete-concurrent-change' => '$2 $1 tarihli öğe değiştirilirken hata: öğenin durumu siz değiştirmeye çalışırken bir başkası tarafından değiştirilmiş görünüyor.
 Lütfen günlükleri kontrol edin.',
+'revdelete-only-restricted'   => 'Öğeleri, diğer bastırma seçeneklerinden birini seçmeksizin, yönetici görünümden bastıramazsınız.',
 
 # Suppression log
 'suppressionlog'     => 'Gizleme kayıtları',

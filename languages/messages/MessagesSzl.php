@@ -805,9 +805,7 @@ Inkśi admińistratoři {{GRAMMAR:D.lp|{{SITENAME}}}} dali bydům mjeć dostymp 
 'searchresults'                    => 'Wyńiki šnupańo',
 'searchresults-title'              => 'Wyniki sznupańo za „$1”',
 'searchresulttext'                 => 'Coby dowjydźeć śe wjyncyj uo šnupańu w {{GRAMMAR:D.lp|{{SITENAME}}}}, uobezdřij [[{{MediaWiki:Helppage}}|{{int:help}}]].',
-'searchsubtitle'                   => 'Wyńiki šnupańo za "[[:$1]]"
-([[Special:Prefixindex/$1|zajty kere začynajům śe uod „$1”]] |
-[[Special:WhatLinksHere/$1|zajty kere sům adresowane do „$1”]])',
+'searchsubtitle'                   => 'Wyńiki šnupańo za "[[:$1]]" ([[Special:Prefixindex/$1|zajty kere začynajům śe uod „$1”]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|zajty kere sům adresowane do „$1”]])',
 'searchsubtitleinvalid'            => 'Lo zapytańo "$1"',
 'noexactmatch'                     => "'''Ńy mo sam zajtůw nazwanych \"\$1\".'''
 Možeš [[:\$1|tako utwořyć]], abo sprůbować pounygo šnupańo.",
@@ -817,8 +815,8 @@ Možeš [[:\$1|tako utwořyć]], abo sprůbować pounygo šnupańo.",
 'notitlematches'                   => 'Ńy znejdźono we titlach',
 'textmatches'                      => 'Znejdźono na zajtach:',
 'notextmatches'                    => 'Ńy znejdźono we tekście zajtůw',
-'prevn'                            => 'popředńe $1',
-'nextn'                            => 'nastympne $1',
+'prevn'                            => 'popředńe {{PLURAL:$1|$1}}',
+'nextn'                            => 'nastympne {{PLURAL:$1|$1}}',
 'viewprevnext'                     => 'Uobezdřij ($1) ($2) ($3)',
 'searchmenu-legend'                => 'Uopcyje sznupańo',
 'searchmenu-exists'                => "'''Ńy ma zajty uo mjańy \"[[:\$1]]\" na tyj wiki'''",

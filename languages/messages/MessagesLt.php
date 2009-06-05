@@ -208,6 +208,7 @@ $messages = array(
 'tog-watchlisthideliu'        => 'Slėpti prisijungusių naudotojų keitimus stebimųjų sąraše',
 'tog-watchlisthideanons'      => 'Slėpti anoniminių naudotojų keitimus stebimųjų sąraše',
 'tog-watchlisthidepatrolled'  => 'Slėpti patikrintus keitimus stebimųjų sąraše',
+'tog-nolangconversion'        => 'Išjungti variantų keitimą',
 'tog-ccmeonemails'            => 'Siųsti man laiškų, kuriuos siunčiu kitiems naudotojams, kopijas',
 'tog-diffonly'                => 'Nerodyti puslapio turinio po skirtumais',
 'tog-showhiddencats'          => 'Rodyti paslėptas kategorijas',
@@ -1038,8 +1039,8 @@ Prašome patvirtinti, kad jūs tikrai to norite, kad suprantate pasekmes, ir kad
 'notitlematches'                   => 'Jokių pavadinimo atitikmenų',
 'textmatches'                      => 'Puslapio turinio atitikmenys',
 'notextmatches'                    => 'Jokių puslapių teksto atitikmenų',
-'prevn'                            => 'ankstesnius $1',
-'nextn'                            => 'tolimesnius $1',
+'prevn'                            => '{{PLURAL:$1|atgal|ankstesnius $1}}',
+'nextn'                            => '{{PLURAL:$1|toliau|tolimesnius $1}}',
 'prevn-title'                      => '{{PLURAL:$1|Ankstesnis $1 rezultatas|Ankstesni $1 rezultatai|Ankstesni $1 rezultatų}}',
 'nextn-title'                      => '{{PLURAL:$1|Kitas $1 rezultatas|Kiti $1 rezultatai|Kiti $1 rezultatų}}',
 'shown-title'                      => 'Rodyti $1 {{PLURAL:$1|rezultatą|rezultatus|rezultatus}} puslapyje',
@@ -1526,7 +1527,7 @@ Paspaudę ant stulpelio antraštės pakeiste išrikiavimą.',
 'imagelinks'                => 'Failų nuorodos',
 'linkstoimage'              => '{{PLURAL:$1|Šis puslapis|Šie puslapiai}} nurodo į šį failą:',
 'linkstoimage-more'         => 'Daugiau nei $1 {{PLURAL:$1|puslapis|puslapiai|puslapių}} rodo į šį failą.
-Žemiau esantis sąrašas rodo tik $1 {{PLURAL:$1|puslapio|pirmų $1 puslapių|pirmų $1 puslapių}} nuorodas į šį failą.
+Šis sąrašas rodo tik {{PLURAL:$1|puslapio|pirmų $1 puslapių}} nuorodas į šį failą.
 Yra pasiekiamas ir [[Special:WhatLinksHere/$2|visas sąrašas]].',
 'nolinkstoimage'            => 'Į failą nenurodo joks puslapis.',
 'morelinkstoimage'          => 'Žiūrėti [[Special:WhatLinksHere/$1|daugiau nuorodų]] į šį failą.',
@@ -1730,7 +1731,7 @@ Galima sumažinti rezultatų skaičių patikslinant veiksmo rūšį, naudotoją 
 
 # Special:Categories
 'categories'                    => 'Kategorijos',
-'categoriespagetext'            => 'Šios kategorijos turi puslapių ar failų.
+'categoriespagetext'            => '{{PLURAL:$1|Ši kategorija|Šios kategorijos}} turi puslapių ar failų.
 [[Special:UnusedCategories|Nenaudojamos kategorijos]] čia nerodomos.
 Taip pat žiūrėkite [[Special:WantedCategories|trokštamas kategorijas]].',
 'categoriesfrom'                => 'Vaizduoti kategorijas pradedant nuo:',

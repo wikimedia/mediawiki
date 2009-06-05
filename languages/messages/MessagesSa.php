@@ -399,7 +399,7 @@ $messages = array(
 'editundo' => 'पूर्ववत करोसि',
 
 # Search results
-'nextn'       => 'आगामि$1',
+'nextn'       => 'आगामि{{PLURAL:$1|$1}}',
 'powersearch' => 'परिणत शोध',
 
 # Preferences page

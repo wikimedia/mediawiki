@@ -302,8 +302,8 @@ oba ku gano agali ku lupapula luno.<br />
 
 # Search results
 'noexactmatch'   => "'''Tewali lupapula lwa \"\$1\".''' Ob'oyagala, [[:\$1|olupapula olwo gwe osobola okulukolawo]].",
-'prevn'          => '$1 ezikulembedde zino',
-'nextn'          => '$1 eziddako',
+'prevn'          => '{{PLURAL:$1|$1}} ezikulembedde zino',
+'nextn'          => '{{PLURAL:$1|$1}} eziddako',
 'viewprevnext'   => 'Laga ($1) ($2) ($3).',
 'searchhelp-url' => 'Help:Endagiriro',
 'powersearch'    => 'Noonya',

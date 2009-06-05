@@ -292,8 +292,8 @@ Bitte nemm eenen aundren.',
 'editundo' => 'trigjsate',
 
 # Search results
-'prevn'          => '$1 ferhäa',
-'nextn'          => 'näakjste $1',
+'prevn'          => '{{PLURAL:$1|$1}} ferhäa',
+'nextn'          => 'näakjste {{PLURAL:$1|$1}}',
 'searchhelp-url' => 'Help:Enhault',
 'powersearch'    => 'Bätre Sääk',
 

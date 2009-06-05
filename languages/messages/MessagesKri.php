@@ -240,8 +240,8 @@ Sohmtehm dehm dohn ires am.',
 'diff-src'          => 'sòce',
 
 # Search results
-'prevn'              => 'Go bak $1',
-'nextn'              => 'nèks wan $1',
+'prevn'              => 'Go bak {{PLURAL:$1|$1}}',
+'nextn'              => 'nèks wan {{PLURAL:$1|$1}}',
 'searchhelp-url'     => 'Help:Kohntehnt-dehm',
 'powersearch'        => 'Luk fò sòmtin kyaful-wan',
 'powersearch-legend' => 'Luk fò sòmtin fain-wan',

@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Audun
  * @author Boivie
  * @author Byrial
  * @author Eirik
@@ -264,6 +265,7 @@ $messages = array(
 'tog-watchlisthideliu'        => 'Skjul endringer av innloggede brukere fra overvåkningslisten',
 'tog-watchlisthideanons'      => 'Skjul endringer av anonyme brukere fra overvåkningslisten',
 'tog-watchlisthidepatrolled'  => 'Skjul patruljerte endringer fra overvåkningslisten',
+'tog-nolangconversion'        => 'Slå av variantkonvertering',
 'tog-ccmeonemails'            => 'Send meg kopier av e-poster jeg sender til andre brukere',
 'tog-diffonly'                => 'Ikke vis sideinnhold under differ',
 'tog-showhiddencats'          => 'Vis skjulte kategorier',
@@ -948,6 +950,17 @@ $1",
 'revdelete-unhid'             => 'synliggjorde $1',
 'revdelete-log-message'       => '$1 for $2 {{PLURAL:$2|revisjon|revisjoner}}',
 'logdelete-log-message'       => '$1 for $2 {{PLURAL:$2|element|elementer}}',
+'revdelete-hide-current'      => 'Feil under skjuling av objektet datert $2, $1: dette er den gjeldende revisjonen.
+Den kan ikke skjules.',
+'revdelete-show-no-access'    => 'Feil under visning av objekt datert $2, $1: dette objektet har blitt markert "begrenset".
+Du har ikke tilgang til det.',
+'revdelete-modify-no-access'  => 'Feil under endring av objekt datert $2, $1: dette objektet har blitt markert "begrenset".
+Du har ikke tilgang til det.',
+'revdelete-modify-missing'    => 'Feil under endring av objekt ID $1: det mangler i databasen!',
+'revdelete-no-change'         => "'''Advarsel:''' objektet datert $2, $1 hadde allerede etterspurt synlighetsinnstillinger.",
+'revdelete-concurrent-change' => 'Feil under endring av objektet datert $2, $1: dets status ser ut til å ha blitt endret av noen andre mens du prøvde å endre det.
+Vennligst sjekk loggen.',
+'revdelete-only-restricted'   => 'Du kan ikke hindre visning av objekter av administratorer uten å også velge en av de andre visningshindrende alternativene.',
 
 # Suppression log
 'suppressionlog'     => 'Sidefjerningslogg',
@@ -1559,6 +1572,7 @@ Om problemet fortsetter, kontakt en [[Special:ListUsers/sysop|administrator]].',
 'filehist-dimensions'       => 'Dimensjoner',
 'filehist-filesize'         => 'Filstørrelse',
 'filehist-comment'          => 'Kommentar',
+'filehist-missing'          => 'Fil mangler',
 'imagelinks'                => 'Fillenker',
 'linkstoimage'              => 'Følgende {{PLURAL:$1|side|$1 sider}} har lenker til denne fila:',
 'linkstoimage-more'         => 'Mer enn $1 {{PLURAL:$1|side|sider}} lenker til denne fila.

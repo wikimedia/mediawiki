@@ -516,8 +516,8 @@ $messages = array(
 # Search results
 'noexactmatch'      => "'''\"\$1\" جي عنوان سان ڪو به صفحو ناهي.'''
 توهان [[:\$1|اهو صفحو سرجيو]].",
-'prevn'             => 'پويان $1',
-'nextn'             => 'اڳيان $1',
+'prevn'             => 'پويان {{PLURAL:$1|$1}}',
+'nextn'             => 'اڳيان {{PLURAL:$1|$1}}',
 'viewprevnext'      => 'ڏسو ($1) ($2) ($3)',
 'searchhelp-url'    => 'Help:فهرست',
 'powersearch'       => 'نفيس ڳولا',

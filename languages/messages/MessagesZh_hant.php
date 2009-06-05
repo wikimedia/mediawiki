@@ -9,6 +9,7 @@
  *
  * @author Alexsh
  * @author Bencmq
+ * @author FireJackey
  * @author Philip
  * @author Shinjiman
  * @author Skjackey tse
@@ -1020,7 +1021,7 @@ $1",
 'textmatches'                      => '頁面內容相符',
 'notextmatches'                    => '沒有頁面內容匹配',
 'prevn'                            => '前$1個',
-'nextn'                            => '後$1個',
+'nextn'                            => '後{{PLURAL:$1|$1}}個',
 'prevn-title'                      => '前$1項結果',
 'nextn-title'                      => '後$1項結果',
 'shown-title'                      => '每頁顯示$1項結果',
