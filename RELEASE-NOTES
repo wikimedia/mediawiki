@@ -204,6 +204,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 18743) Add ucprop=size to list=usercontribs
 * (bug 18749) Add generator flag to action=paraminfo output
 * Make action=block respect $wgEnableUserEmail and $wgSysopEmailBans
+* Made deleting file description pages without files possible
 
 === Languages updated in 1.16 ===
 
