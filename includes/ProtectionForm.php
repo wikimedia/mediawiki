@@ -447,7 +447,7 @@ class ProtectionForm {
 		$out .= Xml::closeElement( 'fieldset' );
 
 		if ( $wgUser->isAllowed( 'editinterface' ) ) {
-			$title = Title::newFromText( 'Protect-dropdown', NS_MEDIAWIKI );
+			$title = Title::makeTitle( NS_MEDIAWIKI, 'Protect-dropdown' );
 			$link = $wgUser->getSkin()->link(
 				$title,
 				wfMsgHtml( 'protect-edit-reasonlist' ),

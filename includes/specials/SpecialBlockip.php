@@ -636,7 +636,7 @@ class IPBlockForm {
 			$links[] = $this->getContribsLink( $skin );
 		$links[] = $this->getUnblockLink( $skin );
 		$links[] = $this->getBlockListLink( $skin );
-		$title = Title::newFromText( 'Ipbreason-dropdown', NS_MEDIAWIKI );
+		$title = Title::makeTitle( NS_MEDIAWIKI, 'Ipbreason-dropdown' );
 		$links[] = $skin->link(
 			$title,
 			wfMsgHtml( 'ipb-edit-dropdown' ),

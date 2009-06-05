@@ -2467,7 +2467,7 @@ class Article {
 
 			if( $wgUser->isAllowed( 'editinterface' ) ) {
 				$skin = $wgUser->getSkin();
-				$title = Title::newFromText( 'Deletereason-dropdown', NS_MEDIAWIKI );
+				$title = Title::makeTitle( NS_MEDIAWIKI, 'Deletereason-dropdown' );
 				$link = $skin->link(
 					$title,
 					wfMsgHtml( 'delete-edit-reasonlist' ),
