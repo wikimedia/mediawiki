@@ -194,7 +194,7 @@ class FileDeleteForm {
 
 			if ( $wgUser->isAllowed( 'editinterface' ) ) {
 				$skin = $wgUser->getSkin();
-				$title = Title::newFromText( 'filedelete-reason-dropdown', NS_MEDIAWIKI );
+				$title = Title::newFromText( 'Filedelete-reason-dropdown', NS_MEDIAWIKI );
 				$link = $skin->link(
 					$title,
 					wfMsgHtml( 'filedelete-edit-reasonlist' ),
