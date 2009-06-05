@@ -636,7 +636,13 @@ class IPBlockForm {
 			$links[] = $this->getContribsLink( $skin );
 		$links[] = $this->getUnblockLink( $skin );
 		$links[] = $this->getBlockListLink( $skin );
-		$links[] = $skin->makeLink ( 'MediaWiki:Ipbreason-dropdown', wfMsgHtml( 'ipb-edit-dropdown' ) );
+		$title = Title::newFromText( 'Ipbreason-dropdown', NS_MEDIAWIKI );
+		$links[] = $skin->link(
+			$title,
+			wfMsgHtml( 'ipb-edit-dropdown' ),
+			array(),
+			array( 'action' => 'edit' )
+		);
 		return '<p class="mw-ipb-conveniencelinks">' . $wgLang->pipeList( $links ) . '</p>';
 	}
 	
