@@ -1282,15 +1282,18 @@ class EditPage {
 			$wgOut->addHTML( "</div>\n" );
 		}
 
-		$q = 'action='.$this->action;
-		#if ( "no" == $redirect ) { $q .= "&redirect=no"; }
-		$action = $wgTitle->escapeLocalURL( $q );
+		$action = $wgTitle->escapeLocalURL( array( 'action' => $this->action ) );
 
 		$summary = wfMsgExt( 'summary', 'parseinline' );
 		$subject = wfMsgExt( 'subject', 'parseinline' );
 
-		$cancel = $sk->makeKnownLink( $wgTitle->getPrefixedText(),
-				wfMsgExt('cancel', array('parseinline')) );
+		$cancel = $sk->link(
+			$wgTitle->getPrefixedText(),
+			wfMsgExt( 'cancel', array( 'parseinline' ) ),
+			array(),
+			array(),
+			array( 'known', 'noclasses' )
+		);
 		$separator = wfMsgExt( 'pipe-separator' , 'escapenoentities' );
 		$edithelpurl = Skin::makeInternalOrExternalUrl( wfMsgForContent( 'edithelppage' ));
 		$edithelp = '<a target="helpwindow" href="'.$edithelpurl.'">'.
@@ -1674,7 +1677,11 @@ END
 	function doLivePreviewScript() {
 		global $wgOut, $wgTitle;
 		$wgOut->addScriptFile( 'preview.js' );
-		$liveAction = $wgTitle->getLocalUrl( "action={$this->action}&wpPreview=true&live=true" );
+		$liveAction = $wgTitle->getLocalUrl( array(
+			'action' => $this->action,
+			'wpPreview' => 'true',
+			'live' => 'true'
+		) );
 		return "return !lpDoPreview(" .
 			"editform.wpTextbox1.value," .
 			'"' . $liveAction . '"' . ")";
@@ -1864,7 +1871,13 @@ END
 		$skin = $wgUser->getSkin();
 
 		$loginTitle = SpecialPage::getTitleFor( 'Userlogin' );
-		$loginLink = $skin->makeKnownLinkObj( $loginTitle, wfMsgHtml( 'loginreqlink' ), 'returnto=' . $wgTitle->getPrefixedUrl() );
+		$loginLink = $skin->link(
+			$loginTitle,
+			wfMsgHtml( 'loginreqlink' ),
+			array(),
+			array( 'returnto' => $wgTitle->getPrefixedUrl() ),
+			array( 'known', 'noclasses' )
+		);
 
 		$wgOut->setPageTitle( wfMsg( 'whitelistedittitle' ) );
 		$wgOut->setRobotPolicy( 'noindex,nofollow' );
