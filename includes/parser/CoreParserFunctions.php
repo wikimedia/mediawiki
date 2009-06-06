@@ -38,7 +38,6 @@ class CoreParserFunctions {
 		$parser->setFunctionHook( 'numberingroup',    array( __CLASS__, 'numberingroup'    ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'numberofedits',    array( __CLASS__, 'numberofedits'    ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'numberofviews',    array( __CLASS__, 'numberofviews'    ), SFH_NO_HASH );
-		$parser->setFunctionHook( 'numberofcontribs', array( __CLASS__, 'numberofcontribs' ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'language',         array( __CLASS__, 'language'         ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'padleft',          array( __CLASS__, 'padleft'          ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'padright',         array( __CLASS__, 'padright'         ), SFH_NO_HASH );
@@ -483,7 +482,7 @@ class CoreParserFunctions {
 			$rev = Revision::newFromTitle($title);
 			$id = $rev ? $rev->getPage() : 0;
 			$length = $cache[$page] = $rev ? $rev->getSize() : 0;
-			
+	
 			// Register dependency in templatelinks
 			$parser->mOutput->addTemplate( $title, $id, $rev ? $rev->getId() : 0 );
 		}	
@@ -504,22 +503,6 @@ class CoreParserFunctions {
 		global $wgContLang;
 		$lang = $wgContLang->getLanguageName( strtolower( $arg ) );
 		return $lang != '' ? $lang : $arg;
-	}
-	
-	/**
-	* Returns the number of contributions by a certain user. This is an 
-	* expensive parser function and can't be called too many times per page
-	*/
-	static function numberofcontribs( $parser, $user = null, $raw = null ) {
-		if ( is_null($user) || !User::isValidUserName( $user ) ) {
-			return '';
-		}
-		if ( !$parser->incrementExpensiveFunctionCount() ) {
-			return '';
-		}
-		$u = User::newFromName( $user );
-		$id = User::idFromName( $u->mName );
-		return self::formatRaw( User::edits( $id ), $raw );
 	}
 
 	/**

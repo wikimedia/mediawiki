@@ -76,8 +76,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 18860) Blocks of IPs affecting registered users can now block email
 * (bug 17093) Date and time are separate parameters in Special:BlockList
 * (bug 11484) Added ISO speed rating to default collapsed EXIF metadata view
-* (bug 19012) Introduce {{NUMBEROFCONTRIBS}} variable to display the number
-  of contributions a user has.
 * (bug 14866) Messages 'recentchangeslinked-toolbox' and
   'recentchangeslinked-toolbox' were added to allow more fine grained
   customisation of the user interface
