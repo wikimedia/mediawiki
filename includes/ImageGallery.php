@@ -254,7 +254,7 @@ class ImageGallery
 					$sk->link(
 						$nt,
 						htmlspecialchars( $nt->getText() ),
-						array()
+						array(),
 						array(),
 						array( 'known', 'noclasses' )
 					) .
