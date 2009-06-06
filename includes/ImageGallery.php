@@ -299,7 +299,7 @@ class ImageGallery
 			$textlink = $this->mShowFilename ?
 				$sk->link(
 					$nt,
-					htmlspecialchars( $wgLang->truncate( $nt->getText(), 20 ) )
+					htmlspecialchars( $wgLang->truncate( $nt->getText(), 20 ) ),
 					array(),
 					array(),
 					array( 'known', 'noclasses' )
