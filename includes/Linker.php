@@ -1669,9 +1669,19 @@ class Linker {
 					$protected = '';
 				}
 				if( $titleObj->quickUserCan( 'edit' ) ) {
-					$editLink = $this->makeLinkObj( $titleObj, wfMsg('editlink'), 'action=edit' );
+					$editLink = $this->link(
+						$titleObj,
+						wfMsg( 'editlink' ),
+						array(),
+						array( 'action' => 'edit' )
+					);
 				} else {
-					$editLink = $this->makeLinkObj( $titleObj, wfMsg('viewsourcelink'), 'action=edit' );
+					$editLink = $this->link(
+						$titleObj,
+						wfMsg( 'viewsourcelink' ),
+						array(),
+						array( 'action' => 'edit' )
+					);
 				}
 				$outText .= '<li>' . $this->link( $titleObj ) . ' (' . $editLink . ') ' . $protected . '</li>';
 			}
