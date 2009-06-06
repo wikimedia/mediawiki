@@ -94,10 +94,17 @@ class RandomPage extends SpecialPage {
 			AND page_is_redirect = $redirect
 			AND page_random >= $randstr
 			$extra
+			AND (".$this->addExtraSQL().")
 			ORDER BY page_random";
 
 		$sql = $dbr->limitResult( $sql, 1, 0 );
 		$res = $dbr->query( $sql, __METHOD__ );
 		return $dbr->fetchObject( $res );
+	}
+
+	// an alternative to $wgExtraRandompageSQL so extensions
+	// can add their own SQL by overriding this function
+	public function addExtraSQL() {
+		return '';
 	}
 }
