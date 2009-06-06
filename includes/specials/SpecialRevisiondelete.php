@@ -1088,7 +1088,7 @@ class RevDel_RevisionItem extends RevDel_Item {
 				$this->special->skin->link( 
 					$this->list->title, 
 					wfMsgHtml('diff'),
-					array()
+					array(),
 					array(
 						'diff' => $this->revision->getId(),
 						'oldid' => 'prev',
