@@ -332,7 +332,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 
 		$wgOut->addHTML(
 			Xml::openElement( 'form', array( 'method' => 'post',
-				'action' => $this->getTitle()->getLocalUrl( 'action=submit' ), 
+				'action' => $this->getTitle()->getLocalUrl( array( 'action' => 'submit' ) ), 
 				'id' => 'mw-revdel-form-revisions' ) ) .
 			Xml::openElement( 'fieldset' ) .
 			Xml::element( 'legend', null,  wfMsg( 'revdelete-legend' ) ) .
@@ -1065,8 +1065,15 @@ class RevDel_RevisionItem extends RevDel_Item {
 		if ( $this->isDeleted() && !$this->canView() ) {
 			return $date;
 		}
-		return $this->special->skin->makeLinkObj( $this->list->title, $date, 
-			'oldid='.$this->revision->getId() . '&unhide=1' );
+		return $this->special->skin->link(
+			$this->list->title,
+			$date, 
+			array(),
+			array(
+				'oldid' => $this->revision->getId(),
+				'unhide' => 1
+			)
+		);
 	}
 
 	/**
@@ -1078,10 +1085,19 @@ class RevDel_RevisionItem extends RevDel_Item {
 			return wfMsgHtml('diff');
 		} else {
 			return 
-				$this->special->skin->makeKnownLinkObj( 
+				$this->special->skin->link( 
 					$this->list->title, 
 					wfMsgHtml('diff'),
-					'diff=' . $this->revision->getId() . '&oldid=prev&unhide=1' 
+					array()
+					array(
+						'diff' => $this->revision->getId(),
+						'oldid' => 'prev',
+						'unhide' => 1
+					),
+					array(
+						'known',
+						'noclasses'
+					)
 				);
 		}
 	}
