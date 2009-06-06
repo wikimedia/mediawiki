@@ -160,12 +160,32 @@ class ChangesList {
 		# Diff
 		$s .= '(' . $this->message['diff'] . ') (';
 		# Hist
-		$s .= $this->skin->makeKnownLinkObj( $rc->getMovedToTitle(), $this->message['hist'], 
-			'action=history' ) . ') . . ';
+		$s .= $this->skin->link(
+			$rc->getMovedToTitle(),
+			$this->message['hist'],
+			array(),
+			array( 'action' => 'history' ),
+			array( 'known', 'noclasses' )
+		) . ') . . ';
 		# "[[x]] moved to [[y]]"
 		$msg = ( $rc->mAttribs['rc_type'] == RC_MOVE ) ? '1movedto2' : '1movedto2_redir';
-		$s .= wfMsg( $msg, $this->skin->makeKnownLinkObj( $rc->getTitle(), '', 'redirect=no' ),
-			$this->skin->makeKnownLinkObj( $rc->getMovedToTitle(), '' ) );
+		$s .= wfMsg(
+			$msg,
+			$this->skin->link(
+				$rc->getTitle(),
+				null,
+				array(),
+				array( 'redirect' => 'no' ),
+				array( 'known', 'noclasses' )
+			),
+			$this->skin->link(
+				$rc->getMovedToTitle(),
+				null,
+				array(),
+				array(),
+				array( 'known', 'noclasses' )
+			)
+		);
 	}
 
 	protected function insertDateHeader( &$s, $rc_timestamp ) {
@@ -184,7 +204,13 @@ class ChangesList {
 
 	protected function insertLog( &$s, $title, $logtype ) {
 		$logname = LogPage::logName( $logtype );
-		$s .= '(' . $this->skin->makeKnownLinkObj($title, $logname ) . ')';
+		$s .= '(' . $this->skin->link(
+			$title,
+			$logname,
+			array(),
+			array(),
+			array( 'known', 'noclasses' )
+		) . ')';
 	}
 
 	protected function insertDiffHist( &$s, &$rc, $unpatrolled ) {
@@ -194,21 +220,36 @@ class ChangesList {
 		} else if( !$this->userCan($rc,Revision::DELETED_TEXT) ) {
 			$diffLink = $this->message['diff'];
 		} else {
-			$rcidparam = $unpatrolled ? array( 'rcid' => $rc->mAttribs['rc_id'] ) : array();
-			$diffLink = $this->skin->makeKnownLinkObj( $rc->getTitle(), $this->message['diff'],
-				wfArrayToCGI( array(
-					'curid' => $rc->mAttribs['rc_cur_id'],
-					'diff'  => $rc->mAttribs['rc_this_oldid'],
-					'oldid' => $rc->mAttribs['rc_last_oldid'] ),
-					$rcidparam ),
-				'', '', ' tabindex="'.$rc->counter.'"');
+			$query = array(
+				'curid' => $rc->mAttribs['rc_cur_id'],
+				'diff'  => $rc->mAttribs['rc_this_oldid'],
+				'oldid' => $rc->mAttribs['rc_last_oldid']
+			);
+
+			if( $unpatrolled ) {
+				$query['rcid'] = $rc->mAttribs['rc_id'];
+			};
+
+			$diffLink = $this->skin->link(
+				$rc->getTitle(),
+				$this->message['diff'],
+				array( 'tabindex' => $rc->counter ),
+				$query,
+				array( 'known', 'noclasses' )
+			);
 		}
 		$s .= '('.$diffLink.') (';
 		# History link
-		$s .= $this->skin->makeKnownLinkObj( $rc->getTitle(), $this->message['hist'],
-			wfArrayToCGI( array(
+		$s .= $this->skin->link(
+			$rc->getTitle(),
+			$this->message['hist'],
+			array(),
+			array(
 				'curid' => $rc->mAttribs['rc_cur_id'],
-				'action' => 'history' ) ) );
+				'action' => 'history'
+			),
+			array( 'known', 'noclasses' )
+		);
 		$s .= ') . . ';
 	}
 
@@ -216,13 +257,29 @@ class ChangesList {
 		global $wgContLang;
 		# If it's a new article, there is no diff link, but if it hasn't been
 		# patrolled yet, we need to give users a way to do so
-		$params = ( $unpatrolled && $rc->mAttribs['rc_type'] == RC_NEW ) ?
-			'rcid='.$rc->mAttribs['rc_id'] : '';
+		$params = array();
+
+		if ( $unpatrolled && $rc->mAttribs['rc_type'] == RC_NEW ) {
+			$params['rcid'] = $rc->mAttribs['rc_id'];
+		}
+
 		if( $this->isDeleted($rc,Revision::DELETED_TEXT) ) {
-			$articlelink = $this->skin->makeKnownLinkObj( $rc->getTitle(), '', $params );
-			$articlelink = '<span class="history-deleted">'.$articlelink.'</span>';
+			$articlelink = $this->skin->link(
+				$rc->getTitle(),
+				null,
+				array(),
+				$params,
+				array( 'known', 'noclasses' )
+			);
+			$articlelink = '<span class="history-deleted">' . $articlelink . '</span>';
 		} else {
-		    $articlelink = ' '. $this->skin->makeKnownLinkObj( $rc->getTitle(), '', $params );
+			$articlelink = ' '. $this->skin->link(
+				$rc->getTitle(),
+				null,
+				array(),
+				$params,
+				array( 'known', 'noclasses' )
+			);
 		}
 		# Bolden pages watched by this user
 		if( $watched ) {
@@ -332,7 +389,7 @@ class ChangesList {
 		}
 	}
 
-	protected function maybeWatchedLink( $link, $watched=false ) {
+	protected function maybeWatchedLink( $link, $watched = false ) {
 		if( $watched ) {
 			return '<strong class="mw-watched">' . $link . '</strong>';
 		} else {
@@ -569,7 +626,7 @@ class EnhancedChangesList extends ChangesList {
 		$rc->timestamp = $time;
 		$rc->numberofWatchingusers = $baseRC->numberofWatchingusers;
 
-		# Make "cur" and "diff" links.  Don't use link(), it's too slow if
+		# Make "cur" and "diff" links.  Do not use link(), it is too slow if
 		# called too many times (50% of CPU time on RecentChanges!).
 		if( $rc->unpatrolled ) {
 			$rcIdQuery = array( 'rcid' => $rc_id );
@@ -600,7 +657,7 @@ class EnhancedChangesList extends ChangesList {
 
 		# Make "last" link
 		if( !$showdifflinks || !$rc_last_oldid ) {
-		    $lastLink = $this->message['last'];
+			$lastLink = $this->message['last'];
 		} else if( $rc_type == RC_LOG || $rc_type == RC_MOVE || $rc_type == RC_MOVE_OVER_REDIRECT ) {
 			$lastLink = $this->message['last'];
 		} else {
@@ -741,7 +798,7 @@ class EnhancedChangesList extends ChangesList {
 
 		$r .= $wgContLang->getDirMark();
 
-		$curIdEq = 'curid=' . $curId;
+		$queryParams['curid'] = $curId;
 		# Changes message
 		$n = count($block);
 		static $nchanges = array();
@@ -757,8 +814,17 @@ class EnhancedChangesList extends ChangesList {
 			} else if( $isnew ) {
 				$r .= $nchanges[$n];
 			} else {
-				$r .= $this->skin->makeKnownLinkObj( $block[0]->getTitle(),
-					$nchanges[$n], $curIdEq."&diff=$currentRevision&oldid=$oldid" );
+				$params = $queryParams;
+				$params['diff'] = $currentRevision;
+				$params['oldid'] = $oldid;
+				
+				$r .= $this->skin->link(
+					$block[0]->getTitle(),
+					$nchanges[$n],
+					array(),
+					$params,
+					array( 'known', 'noclasses' )
+				);
 			}
 		}
 
@@ -768,8 +834,17 @@ class EnhancedChangesList extends ChangesList {
 		} else if( $namehidden || !$block[0]->getTitle()->exists() ) {
 			$r .= $this->message['semicolon-separator'] . $this->message['hist'] . ')';
 		} else {
-			$r .= $this->message['semicolon-separator'] . $this->skin->makeKnownLinkObj( $block[0]->getTitle(),
-				$this->message['hist'], $curIdEq . '&action=history' ) . ')';
+			$params = $queryParams;
+			$params['action'] = 'history';
+
+			$r .= $this->message['semicolon-separator'] .
+				$this->skin->link(
+					$block[0]->getTitle(),
+					$this->message['hist'],
+					array(),
+					$params,
+					array( 'known', 'noclasses' )
+				) . ')';
 		}
 		$r .= ' . . ';
 
@@ -817,10 +892,12 @@ class EnhancedChangesList extends ChangesList {
 			$r .= $this->recentChangesFlags( $rc_new, $rc_minor, $rcObj->unpatrolled, '&nbsp;', $rc_bot );
 			$r .= '&nbsp;</tt></td><td valign="top">';
 
-			$o = '';
+			$params = $queryParams;
+
 			if( $rc_this_oldid != 0 ) {
-				$o = 'oldid='.$rc_this_oldid;
+				$params['oldid'] = $rc_this_oldid;
 			}
+
 			# Log timestamp
 			if( $rc_type == RC_LOG ) {
 				$link = '<tt>'.$rcObj->timestamp.'</tt> ';
@@ -828,10 +905,18 @@ class EnhancedChangesList extends ChangesList {
 			} else if( !ChangesList::userCan($rcObj,Revision::DELETED_TEXT) ) {
 				$link = '<span class="history-deleted"><tt>'.$rcObj->timestamp.'</tt></span> ';
 			} else {
-				$rcIdEq = ($rcObj->unpatrolled && $rc_type == RC_NEW) ?
-					'&rcid='.$rcObj->mAttribs['rc_id'] : '';
-				$link = '<tt>'.$this->skin->makeKnownLinkObj( $rcObj->getTitle(),
-					$rcObj->timestamp, $curIdEq.'&'.$o.$rcIdEq ).'</tt>';
+				if ( $rcObj->unpatrolled && $rc_type == RC_NEW) {
+					$params['rcid'] = $rcObj->mAttribs['rc_id'];
+				}
+
+				$link = '<tt>' .
+					$this->skin->link(
+						$rcObj->getTitle(),
+						$rcObj->timestamp,
+						array(),
+						$params,
+						array( 'known', 'noclasses' )
+					) . '</tt>';
 				if( $this->isDeleted($rcObj,Revision::DELETED_TEXT) )
 					$link = '<span class="history-deleted">'.$link.'</span> ';
 			}
@@ -938,7 +1023,7 @@ class EnhancedChangesList extends ChangesList {
 		// that explicitly initializes variables.
 		$classes = array(); // TODO implement
 		extract( $rcObj->mAttribs );
-		$curIdEq = "curid={$rc_cur_id}";
+		$query['curid'] = $rc_cur_id;
 
 		$r = '<table cellspacing="0" cellpadding="0" border="0" style="background: none"><tr>';
 		$r .= '<td valign="top" style="white-space: nowrap"><tt>' . $this->spacerArrow() . '&nbsp;';
@@ -953,15 +1038,27 @@ class EnhancedChangesList extends ChangesList {
 		if( $rc_log_type ) {
 			$logtitle = Title::newFromText( "Log/$rc_log_type", NS_SPECIAL );
 			$logname = LogPage::logName( $rc_log_type );
-			$r .= '(' . $this->skin->makeKnownLinkObj($logtitle, $logname ) . ')';
+			$r .= '(' . $this->skin->link(
+				$logtitle,
+				$logname,
+				array(),
+				array(),
+				array( 'known', 'noclasses' )
+			) . ')';
 		} else {
 			$this->insertArticleLink( $r, $rcObj, $rcObj->unpatrolled, $rcObj->watched );
 		}
 		# Diff and hist links
 		if ( $rc_type != RC_LOG ) {
 			$r .= ' ('. $rcObj->difflink . $this->message['semicolon-separator'];
-			$r .= $this->skin->makeKnownLinkObj( $rcObj->getTitle(), $this->message['hist'], 
-				$curIdEq.'&action=history' ) . ')';
+			$query['action'] = 'history';
+			$r .= $this->skin->link(
+				$rcObj->getTitle(),
+				$this->message['hist'],
+				array(),
+				$query,
+				array( 'known', 'noclasses' )
+			) . ')';
 		}
 		$r .= ' . . ';
 		# Character diff

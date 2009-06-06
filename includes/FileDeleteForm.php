@@ -251,7 +251,16 @@ class FileDeleteForm {
 		global $wgOut, $wgUser;
 		$wgOut->setPageTitle( wfMsg( 'filedelete', $this->title->getText() ) );
 		$wgOut->setRobotPolicy( 'noindex,nofollow' );
-		$wgOut->setSubtitle( wfMsg( 'filedelete-backlink', $wgUser->getSkin()->makeKnownLinkObj( $this->title ) ) );
+		$wgOut->setSubtitle( wfMsg(
+			'filedelete-backlink',
+			$wgUser->getSkin()->link(
+				$this->title,
+				null,
+				array(),
+				array(),
+				array( 'known', 'noclasses' )
+			)
+		) );
 	}
 
 	/**
@@ -284,11 +293,10 @@ class FileDeleteForm {
 	 * @return string
 	 */
 	private function getAction() {
-		$q = array();
-		$q[] = 'action=delete';
+		$q['action'] = 'delete';
 		if( $this->oldimage )
-			$q[] = 'oldimage=' . urlencode( $this->oldimage );
-		return $this->title->getLocalUrl( implode( '&', $q ) );
+			$q['oldimage'] = $this->oldimage;
+		return $this->title->getLocalUrl( $q );
 	}
 
 	/**
@@ -299,5 +307,4 @@ class FileDeleteForm {
 	private function getTimestamp() {
 		return $this->oldfile->getTimestamp();
 	}
-
 }

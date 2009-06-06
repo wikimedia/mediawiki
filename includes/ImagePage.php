@@ -381,7 +381,13 @@ class ImagePage extends Article {
 
 					if( $page > 1 ) {
 						$label = $wgOut->parse( wfMsg( 'imgmultipageprev' ), false );
-						$link = $sk->makeKnownLinkObj( $this->mTitle, $label, 'page='. ($page-1) );
+						$link = $sk->link(
+							$this->mTitle,
+							$label,
+							array(),
+							array( 'page' => $page - 1 ),
+							array( 'known', 'noclasses' )
+						);
 						$thumb1 = $sk->makeThumbLinkObj( $this->mTitle, $this->displayImg, $link, $label, 'none',
 							array( 'page' => $page - 1 ) );
 					} else {
@@ -390,7 +396,13 @@ class ImagePage extends Article {
 
 					if( $page < $count ) {
 						$label = wfMsg( 'imgmultipagenext' );
-						$link = $sk->makeKnownLinkObj( $this->mTitle, $label, 'page='. ($page+1) );
+						$link = $sk->link(
+							$this->mTitle,
+							$label,
+							array(),
+							array( 'page' => $page + 1 ),
+							array( 'known', 'noclasses' )
+						);
 						$thumb2 = $sk->makeThumbLinkObj( $this->mTitle, $this->displayImg, $link, $label, 'none',
 							array( 'page' => $page + 1 ) );
 					} else {
@@ -547,7 +559,17 @@ EOT
 		}
 
 		# External editing link
-		$elink = $sk->makeKnownLinkObj( $this->mTitle, wfMsgHtml( 'edit-externally' ), 'action=edit&externaledit=true&mode=file' );
+		$elink = $sk->link(
+			$this->mTitle,
+			wfMsgHtml( 'edit-externally' ),
+			array(),
+			array(
+				'action' => 'edit',
+				'externaledit' => 'true',
+				'mode' => 'file'
+			),
+			array( 'known', 'noclasses' )
+		);
 		$wgOut->addHTML( '<li id="mw-imagepage-edit-external">' . $elink . ' <small>' . wfMsgExt( 'edit-externally-help', array( 'parseinline' ) ) . "</small></li>\n" );
 
 		$wgOut->addHTML( "</ul>\n" );
@@ -615,8 +637,13 @@ EOT
 			$count++;
 			if( $count <= $limit ) {
 				// We have not yet reached the extra one that tells us there is more to fetch
-				$name = Title::makeTitle( $s->page_namespace, $s->page_title );
-				$link = $sk->makeKnownLinkObj( $name, "" );
+				$link = $sk->link(
+					Title::makeTitle( $s->page_namespace, $s->page_title ),
+					null,
+					array(),
+					array(),
+					array( 'known', 'noclasses' )
+				);
 				$wgOut->addHTML( "<li>{$link}</li>\n" );
 			}
 		}
@@ -643,7 +670,13 @@ EOT
 
 		$sk = $wgUser->getSkin();
 		foreach ( $redirects as $title ) {
-			$link = $sk->makeKnownLinkObj( $title, "", "redirect=no" );
+			$link = $sk->link(
+				$title,
+				null,
+				array(),
+				array( 'redirect' => 'no' ),
+				array( 'known', 'noclasses' )
+			);
 			$wgOut->addHTML( "<li>{$link}</li>\n" );
 		}
 		$wgOut->addHTML( "</ul></div>\n" );
@@ -667,9 +700,15 @@ EOT
 		$sk = $wgUser->getSkin();
 		foreach ( $dupes as $file ) {
 			$fromSrc = '';
-			if( $file->isLocal() )
-				$link = $sk->makeKnownLinkObj( $file->getTitle(), "" );
-			else {
+			if( $file->isLocal() ) {
+				$link = $sk->link(
+					$file->getTitle(),
+					null,
+					array(),
+					array(),
+					array( 'known', 'noclasses' )
+				);
+			} else {
 				$link = $sk->makeExternalLink( $file->getDescriptionUrl(),
 					$file->getTitle()->getPrefixedText() );
 				$fromSrc = wfMsg( 'shared-repo-from', $file->getRepo()->getDisplayName() );
@@ -851,13 +890,17 @@ class ImageHistoryList {
 			if( $file->isDeleted(File::DELETED_FILE) ) {
 				$row .= wfMsgHtml('filehist-revert');
 			} else {
-				$q = array();
-				$q[] = 'action=revert';
-				$q[] = 'oldimage=' . urlencode( $img );
-				$q[] = 'wpEditToken=' . urlencode( $wgUser->editToken( $img ) );
-				$row .= $this->skin->makeKnownLinkObj( $this->title,
+				$row .= $this->skin->link(
+					$this->title,
 					wfMsgHtml( 'filehist-revert' ),
-					implode( '&', $q ) );
+					array(),
+					array(
+						'action' => 'revert',
+						'oldimage' => $img,
+						'wpEditToken' => $wgUser->editToken( $img )
+					),
+					array( 'known', 'noclasses' )
+				);
 			}
 		}
 		$row .= '</td>';
@@ -873,10 +916,17 @@ class ImageHistoryList {
 		} elseif( $file->isDeleted(File::DELETED_FILE) ) {
 			$revdel = SpecialPage::getTitleFor( 'Revisiondelete' );
 			# Make a link to review the image
-			$url = $this->skin->makeKnownLinkObj( $revdel, $wgLang->timeAndDate( $timestamp, true ),
-				"target=".$wgTitle->getPrefixedUrl().
-				"&file=" . urlencode( $img ) .
-				"&token=" . urlencode( $wgUser->editToken( $img ) ) );
+			$url = $this->skin->link(
+				$revdel,
+				$wgLang->timeAndDate( $timestamp, true ),
+				array(),
+				array(
+					'target' => $wgTitle->getPrefixedUrl(),
+					'file' => $img,
+					'token' => $wgUser->editToken( $img )
+				),
+				array( 'known', 'noclasses' )
+			);
 			$row .= '<span class="history-deleted">'.$url.'</span>';
 		} elseif( $file->isMissing() ) {
 			# Don't link to missing files
