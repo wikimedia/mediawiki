@@ -1080,6 +1080,8 @@ class FormatExif {
 	 * @return mixed A floating point number or whatever we were fed
 	 */
 	function formatNum( $num ) {
+		global $wgLang;
+
 		$m = array();
 		if ( preg_match( '/^(\d+)\/(\d+)$/', $num, $m ) )
 			return $wgLang->formatNum( $m[2] != 0 ? $m[1] / $m[2] : $num );
