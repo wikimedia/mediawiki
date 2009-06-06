@@ -756,12 +756,12 @@ function wfMsgExt( $key, $options ) {
 	foreach( $options as $arrayKey => $option ) {
 		if( !preg_match( '/^[0-9]+|language$/', $arrayKey ) ) {
 			# An unknown index, neither numeric nor "language"
-			trigger_error( "wfMsgExt called with incorrect parameter key $arrayKey", E_USER_WARNING );
+			wfWarn( "wfMsgExt called with incorrect parameter key $arrayKey", 1, E_USER_WARNING );
 		} elseif( preg_match( '/^[0-9]+$/', $arrayKey ) && !in_array( $option,
 		array( 'parse', 'parseinline', 'escape', 'escapenoentities',
 		'replaceafter', 'parsemag', 'content' ) ) ) {
 			# A numeric index with unknown value
-			trigger_error( "wfMsgExt called with incorrect parameter $option", E_USER_WARNING );
+			wfWarn( "wfMsgExt called with incorrect parameter $option", 1, E_USER_WARNING );
 		}
 	}
 
