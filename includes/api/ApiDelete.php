@@ -120,7 +120,7 @@ class ApiDelete extends ApiBase {
 		global $wgUser;
 		if($article->isBigDeletion() && !$wgUser->isAllowed('bigdelete')) {
 			global $wgDeleteRevisionsLimit;
-			return array(array('delete-toobig', $wgDeleteRevisionsLimit)));
+			return array(array('delete-toobig', $wgDeleteRevisionsLimit));
 		}
 		$title = $article->getTitle();
 		$errors = self::getPermissionsError($title, $token);
