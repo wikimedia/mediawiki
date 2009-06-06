@@ -38,9 +38,6 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 	/** The RevDel_List object, storing the list of items to be deleted/undeleted */
 	var $list;
 
-	/** New bitfield value, used for form display post-submit */
-	var $newBits;
-
 	/**
 	 * Assorted information about each type, needed by the special page.
 	 * TODO Move some of this to the list class
@@ -325,10 +322,6 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 			$wgOut->showErrorPage( 'revdelete-nooldid-title', 'revdelete-nooldid-text' );
 			return;
 		}
-
-		if ( !is_null( $this->newBits ) ) {
-			$bitfields = $this->newBits;
-		}
 		
 		$wgOut->addHTML( "</ul>" );
 		// Explanation text
@@ -422,6 +415,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		global $wgOut;
 		$wgOut->setPagetitle( wfMsg( 'actioncomplete' ) );
 		$wgOut->wrapWikiMsg( '<span class="success">$1</span>', $this->typeInfo['success'] );
+		$this->list->reloadFromMaster();
 		$this->showForm();
 	}
 
@@ -459,7 +453,6 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		if( $bitfield == Revision::DELETED_RESTRICTED ) {
 			return Status::newFatal( 'revdelete-only-restricted' );
 		}
-		$this->newBits = $bitfield;
 		return $this->getList()->setVisibility( array(
 			'value' => $bitfield,
 			'comment' => $reason ) );
@@ -710,6 +703,15 @@ abstract class RevDel_List {
 		// Clear caches
 		$status->merge( $this->doPostCommitUpdates() );
 		return $status;
+	}
+
+	/**
+	 * Reload the list data from the master DB. This can be done after setVisibility()
+	 * to allow $item->getHTML() to show the new data.
+	 */
+	function reloadFromMaster() {
+		$dbw = wfGetDB( DB_MASTER );
+		$this->res = $this->doQuery( $dbw );
 	}
 
 	/**
