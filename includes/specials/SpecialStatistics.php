@@ -184,13 +184,19 @@ class SpecialStatistics extends SpecialPage {
 			} else {
 				$grouppageLocalized = $msg;
 			}
-			$grouppage = $sk->makeLink( $grouppageLocalized, htmlspecialchars( $groupnameLocalized ) );
-			$grouplink = $sk->link( SpecialPage::getTitleFor( 'Listusers' ),
+			$linkTarget = Title::newFromText( $grouppageLocalized );
+			$grouppage = $sk->link(
+				$linkTarget,
+				htmlspecialchars( $groupnameLocalized )
+			);
+			$grouplink = $sk->link(
+				SpecialPage::getTitleFor( 'Listusers' ),
 				wfMsgHtml( 'listgrouprights-members' ),
 				array(),
 				array( 'group' => $group ),
-				'known' );
-				# Add a class when a usergroup contains no members to allow hiding these rows
+				'known'
+			);
+			# Add a class when a usergroup contains no members to allow hiding these rows
 			$classZero = '';
 			$countUsers = SiteStats::numberingroup( $groupname );
 			if( $countUsers == 0 ) {

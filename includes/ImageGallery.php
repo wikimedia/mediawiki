@@ -250,8 +250,15 @@ class ImageGallery
 					. htmlspecialchars( $nt->getText() ) . '</div>';
 			} elseif( $this->mHideBadImages && wfIsBadImage( $nt->getDBkey(), $this->getContextTitle() ) ) {
 				# The image is blacklisted, just show it as a text link.
-				$thumbhtml = "\n\t\t\t".'<div style="height: '.($this->mHeights*1.25+2).'px;">'
-					. $sk->makeKnownLinkObj( $nt, htmlspecialchars( $nt->getText() ) ) . '</div>';
+				$thumbhtml = "\n\t\t\t".'<div style="height: '.($this->mHeights*1.25+2).'px;">' .
+					$sk->link(
+						$nt,
+						htmlspecialchars( $nt->getText() ),
+						array()
+						array(),
+						array( 'known', 'noclasses' )
+					) .
+					'</div>';
 			} elseif( !( $thumb = $img->transform( $params ) ) ) {
 				# Error generating thumbnail.
 				$thumbhtml = "\n\t\t\t".'<div style="height: '.($this->mHeights*1.25+2).'px;">'
@@ -274,7 +281,8 @@ class ImageGallery
 			}
 
 			//TODO
-			//$ul = $sk->makeLink( $wgContLang->getNsText( MWNamespace::getUser() ) . ":{$ut}", $ut );
+			// $linkTarget = Title::newFromText( $wgContLang->getNsText( MWNamespace::getUser() ) . ":{$ut}" );
+			// $ul = $sk->link( $linkTarget, $ut );
 
 			if( $this->mShowBytes ) {
 				if( $img ) {
@@ -289,7 +297,13 @@ class ImageGallery
 			}
 
 			$textlink = $this->mShowFilename ?
-				$sk->makeKnownLinkObj( $nt, htmlspecialchars( $wgLang->truncate( $nt->getText(), 20 ) ) ) . "<br />\n" :
+				$sk->link(
+					$nt,
+					htmlspecialchars( $wgLang->truncate( $nt->getText(), 20 ) )
+					array(),
+					array(),
+					array( 'known', 'noclasses' )
+				) . "<br />\n" :
 				'' ;
 
 			# ATTENTION: The newline after <div class="gallerytext"> is needed to accommodate htmltidy which

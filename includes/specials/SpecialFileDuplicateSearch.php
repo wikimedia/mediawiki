@@ -51,7 +51,10 @@ class FileDuplicateSearchPage extends QueryPage {
 
 		$nt = Title::makeTitle( NS_FILE, $result->title );
 		$text = $wgContLang->convert( $nt->getText() );
-		$plink = $skin->makeLink( $nt->getPrefixedText(), $text );
+		$plink = $skin->link(
+			Title::newFromText( $nt->getPrefixedText() ),
+			$text
+		);
 
 		$user = $skin->link( Title::makeTitle( NS_USER, $result->img_user_text ), $result->img_user_text );
 		$time = $wgLang->timeanddate( $result->img_timestamp );
