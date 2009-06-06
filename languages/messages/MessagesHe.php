@@ -199,7 +199,6 @@ $magicWords = array(
 	'index'                 => array( '1', '__לחיפוש__', '__INDEX__' ),
 	'noindex'               => array( '1', '__לא_לחיפוש__', '__NOINDEX__' ),
 	'numberingroup'         => array( '1', 'מספר בקבוצה', 'NUMBERINGROUP', 'NUMINGROUP' ),
-	'numberofcontribs'      => array( '1', 'מספר תרומות', 'NUMBEROFCONTRIBS', 'USERCONTRIBS', 'NUMOFCONTRIBS' ),
 	'staticredirect'        => array( '1', '__הפניה_קבועה__', '__STATICREDIRECT__' ),
 	'protectionlevel'       => array( '1', 'רמת הגנה', 'PROTECTIONLEVEL' ),
 	'formatdate'            => array( '0', 'עיצוב תאריך', 'formatdate', 'dateformat' ),
