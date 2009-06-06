@@ -1345,7 +1345,12 @@ class Linker {
 			$linkRegexp = '/\[\[(.*?)\]\]' . preg_quote( $trail, '/' ) . '/';
 			if (isset($match[1][0]) && $match[1][0] == ':')
 				$match[1] = substr($match[1], 1);
-			$thelink = $this->makeLink( $match[1], $text, "", $trail );
+			list( $inside, $trail ) = Linker::splitTrail( $trail );
+			$linkTarget = Title::newFromText( $match[1] );
+			$thelink = $this->link(
+				linkTarget,
+				$text . $inside,
+			) . $trail;
 		}
 		$comment = preg_replace( $linkRegexp, StringUtils::escapeRegexReplacement( $thelink ), $comment, 1 );
 

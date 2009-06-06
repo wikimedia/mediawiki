@@ -61,14 +61,29 @@ class SpecialListGroupRights extends SpecialPage {
 				// Do not make a link for the generic * group
 				$grouppage = htmlspecialchars($groupnameLocalized);
 			} else {
-				$grouppage = $this->skin->makeLink( $grouppageLocalized, htmlspecialchars($groupnameLocalized) );
+				$grouppage = $this->skin->link(
+					Title::newFromText( $grouppageLocalized ),
+					htmlspecialchars($groupnameLocalized)
+				);
 			}
 
 			if ( $group === 'user' ) {
 				// Link to Special:listusers for implicit group 'user'
-				$grouplink = '<br />' . $this->skin->makeKnownLinkObj( SpecialPage::getTitleFor( 'Listusers' ), wfMsgHtml( 'listgrouprights-members' ), ''  );
+				$grouplink = '<br />' . $this->skin->link(
+					SpecialPage::getTitleFor( 'Listusers' ),
+					wfMsgHtml( 'listgrouprights-members' ),
+					array(),
+					array(),
+					array( 'known', 'noclasses' )
+				);
 			} elseif ( !in_array( $group, $wgImplicitGroups ) ) {
-				$grouplink = '<br />' . $this->skin->makeKnownLinkObj( SpecialPage::getTitleFor( 'Listusers' ), wfMsgHtml( 'listgrouprights-members' ), 'group=' . $group );
+				$grouplink = '<br />' . $this->skin->link(
+					SpecialPage::getTitleFor( 'Listusers' ),
+					wfMsgHtml( 'listgrouprights-members' ),
+					array(),
+					array( 'group' => $group ),
+					array( 'known', 'noclasses' )
+				);
 			} else {
 				// No link to Special:listusers for other implicit groups as they are unlistable
 				$grouplink = '';
