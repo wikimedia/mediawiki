@@ -177,9 +177,14 @@ class SpecialSearch {
 				$this->powerSearchOptions()
 			);
 
+			$suggestionSnippet = $textMatches->getSuggestionSnippet();
+
+			if( $suggestionSnippet == '' )
+				$suggestionSnippet = null;
+
 			$suggestLink = $sk->linkKnown(
 				$st,
-				$textMatches->getSuggestionSnippet(),
+				$suggestionSnippet,
 				array(),
 				$stParams
 			);
@@ -413,9 +418,14 @@ class SpecialSearch {
 		$sk = $wgUser->getSkin();
 		$t = $result->getTitle();
 
+		$titleSnippet = $result->getTitleSnippet($terms);
+
+		if( $titleSnippet == '' )
+			$titleSnippet = null;
+
 		$link = $this->sk->linkKnown(
 			$t,
-			$result->getTitleSnippet($terms)
+			$titleSnippet
 		);
 
 		//If page content is not readable, just return the title.
@@ -441,7 +451,10 @@ class SpecialSearch {
 		$sectionText = $result->getSectionSnippet($terms);
 		$redirect = '';
 
-		if( !is_null($redirectTitle) )
+		if( !is_null($redirectTitle) ) {
+			if( $redirectText == '' )
+				$redirectText = null;
+
 			$redirect = "<span class='searchalttitle'>" .
 				wfMsg(
 					'search-redirect',
@@ -451,10 +464,15 @@ class SpecialSearch {
 					)
 				) .
 				"</span>";
+		}
 
 		$section = '';
 
-		if( !is_null($sectionTitle) )
+
+		if( !is_null($sectionTitle) ) {
+			if( $sectionText == '' )
+				$sectionText = null;
+
 			$section = "<span class='searchalttitle'>" .
 				wfMsg(
 					'search-section', $this->sk->linkKnown(
@@ -463,6 +481,7 @@ class SpecialSearch {
 					)
 				) .
 				"</span>";
+		}
 
 		// format text extract
 		$extract = "<div class='searchresult'>".$result->getTextSnippet($terms)."</div>";
@@ -603,16 +622,24 @@ class SpecialSearch {
 
 		$t = $result->getTitle();
 
+		$titleSnippet = $result->getTitleSnippet($terms);
+
+		if( $titleSnippet == '' )
+			$titleSnippet = null;
+
 		$link = $this->sk->linkKnown(
 			$t,
-			$result->getTitleSnippet($terms)
+			$titleSnippet
 		);
 
 		// format redirect if any
 		$redirectTitle = $result->getRedirectTitle();
 		$redirectText = $result->getRedirectSnippet($terms);
 		$redirect = '';
-		if( !is_null($redirectTitle) )
+		if( !is_null($redirectTitle) ) {
+			if( $redirectText == '' )
+				$redirectText = null;
+
 			$redirect = "<span class='searchalttitle'>" .
 				wfMsg(
 					'search-redirect',
@@ -622,6 +649,7 @@ class SpecialSearch {
 					)
 				) .
 				"</span>";
+		}
 
 		$out = "";
 		// display project name
@@ -1041,9 +1069,14 @@ class SpecialSearchOld {
 				$this->powerSearchOptions()
 			);
 
+			$suggestionSnippet = $textMatches->getSuggestionSnippet();
+
+			if( $suggestionSnippet )
+				$suggestionSnippet = null;
+
 			$suggestLink = $sk->linkKnown(
 				$st,
-				$textMatches->getSuggestionSnippet(),
+				$suggestionSnippet,
 				array(),
 				$stParams
 			);
@@ -1273,9 +1306,14 @@ class SpecialSearchOld {
 		$t = $result->getTitle();
 		$sk = $wgUser->getSkin();
 
+		$titleSnippet = $result->getTitleSnippet($terms);
+
+		if( $titleSnippet == '' )
+			$titleSnippet = null;
+
 		$link = $sk->linkKnown(
 			$t,
-			$result->getTitleSnippet($terms)
+			$titleSnippet
 		);
 
 		//If page content is not readable, just return the title.
@@ -1301,7 +1339,10 @@ class SpecialSearchOld {
 		$sectionTitle = $result->getSectionTitle();
 		$sectionText = $result->getSectionSnippet($terms);
 		$redirect = '';
-		if( !is_null($redirectTitle) )
+		if( !is_null($redirectTitle) ) {
+			if( $redirectText == '' )
+				$redirectText = null;
+
 			$redirect = "<span class='searchalttitle'>" .
 				wfMsg(
 					'search-redirect',
@@ -1311,8 +1352,14 @@ class SpecialSearchOld {
 					)
 				) .
 				"</span>";
+		}
+
 		$section = '';
-		if( !is_null($sectionTitle) )
+
+		if( !is_null($sectionTitle) ) {
+			if( $sectionText == '' )
+				$sectionText = null;
+
 			$section = "<span class='searchalttitle'>" .
 				wfMsg(
 					'search-section',
@@ -1322,6 +1369,7 @@ class SpecialSearchOld {
 					)
 				) .
 				"</span>";
+		}
 
 		// format text extract
 		$extract = "<div class='searchresult'>".$result->getTextSnippet($terms)."</div>";
@@ -1463,16 +1511,24 @@ class SpecialSearchOld {
 		$t = $result->getTitle();
 		$sk = $wgUser->getSkin();
 
+		$titleSnippet = $result->getTitleSnippet($terms);
+
+		if( $titleSnippet == '' )
+			$titleSnippet = null;
+
 		$link = $sk->linkKnown(
 			$t,
-			$result->getTitleSnippet( $terms )
+			$titleSnippet
 		);
 
 		// format redirect if any
 		$redirectTitle = $result->getRedirectTitle();
 		$redirectText = $result->getRedirectSnippet($terms);
 		$redirect = '';
-		if( !is_null($redirectTitle) )
+		if( !is_null($redirectTitle) ) {
+			if( $redirectText == '' )
+				$redirectText = null;
+
 			$redirect = "<span class='searchalttitle'>" .
 				wfMsg(
 					'search-redirect', 
@@ -1482,6 +1538,7 @@ class SpecialSearchOld {
 					)
 				) .
 				"</span>";
+		}
 
 		$out = "";
 		// display project name
