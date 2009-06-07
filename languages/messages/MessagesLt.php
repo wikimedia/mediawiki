@@ -1523,7 +1523,7 @@ Paspaudę ant stulpelio antraštės pakeiste išrikiavimą.',
 'imagelinks'                => 'Failų nuorodos',
 'linkstoimage'              => '{{PLURAL:$1|Šis puslapis|Šie puslapiai}} nurodo į šį failą:',
 'linkstoimage-more'         => 'Daugiau nei $1 {{PLURAL:$1|puslapis|puslapiai|puslapių}} rodo į šį failą.
-Žemiau esantis sąrašas rodo tik $1 {{PLURAL:$1|puslapio|pirmų $1 puslapių|pirmų $1 puslapių}} nuorodas į šį failą.
+Šis sąrašas rodo tik {{PLURAL:$1|puslapio|pirmų $1 puslapių}} nuorodas į šį failą.
 Yra pasiekiamas ir [[Special:WhatLinksHere/$2|visas sąrašas]].',
 'nolinkstoimage'            => 'Į failą nenurodo joks puslapis.',
 'morelinkstoimage'          => 'Žiūrėti [[Special:WhatLinksHere/$1|daugiau nuorodų]] į šį failą.',
@@ -2452,7 +2452,7 @@ Leidžia pridėti atmetimo priežastį komentaruose',
 'notacceptable'     => 'Projekto serveris negali pateikti duomenų formatu, kurį jūsų klientas galėtų skaityti.',
 
 # Attribution
-'anonymous'        => 'Neregistruotų {{SITENAME}} naudotojų',
+'anonymous'        => '{{SITENAME}} {{PLURAL:$1|anoniminis naudotojas|anoniminiai naudotojai}}',
 'siteuser'         => '{{SITENAME}} naudotojas $1',
 'lastmodifiedatby' => 'Šį puslapį paskutinį kartą redagavo $3 $2, $1.', # $1 date, $2 time, $3 user
 'othercontribs'    => 'Paremta $1 darbu.',

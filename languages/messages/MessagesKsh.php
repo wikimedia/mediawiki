@@ -299,7 +299,7 @@ $messages = array(
 
 # Categories related messages
 'pagecategories'                 => '{{PLURAL:$1|Saachjrupp|Saachjruppe}}',
-'category_header'                => 'Atikkele in de Saachjrupp „$1“',
+'category_header'                => 'Atikkele en dä Saachjrupp „$1“',
 'subcategories'                  => 'Ungerjruppe',
 'category-media-header'          => 'Dateie en de Saachjrupp "$1"',
 'category-empty'                 => "''En dä Saachjrupp hee sin kein Sigge un kein Dateie.''",

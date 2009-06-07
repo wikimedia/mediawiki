@@ -376,12 +376,12 @@ $messages = array(
 'dec'           => '12月',
 
 # Categories related messages
-'pagecategories'                 => 'カテゴリ',
+'pagecategories'                 => '{{PLURAL:$1|カテゴリ}}',
 'category_header'                => 'カテゴリ “$1” にあるページ',
 'subcategories'                  => 'サブカテゴリ',
 'category-media-header'          => 'カテゴリ “$1” にあるメディア',
 'category-empty'                 => "''このカテゴリにはページまたはメディアがひとつもありません。''",
-'hidden-categories'              => '隠しカテゴリ',
+'hidden-categories'              => '{{PLURAL:$1|隠しカテゴリ}}',
 'hidden-category-category'       => '隠しカテゴリ', # Name of the category where hidden categories will be listed
 'category-subcat-count'          => '{{PLURAL:$2|このカテゴリへは次の1サブカテゴリしか属していません。|以下にこのカテゴリへ属しているサブカテゴリ $2 個中 $1 個を表示しています。}}',
 'category-subcat-count-limited'  => 'このカテゴリへは以下のサブカテゴリ $1 個が属しています。',
@@ -1152,7 +1152,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 'searchprofile-advanced-tooltip'   => '名前空間を指定して検索',
 'prefs-search-nsdefault'           => '標準の設定で検索:',
 'prefs-search-nscustom'            => '指定した名前空間を検索:',
-'search-result-size'               => '$1 ($2語)',
+'search-result-size'               => '$1 ({{PLURAL:$2|$2語}})',
 'search-result-score'              => '関連度: $1%',
 'search-redirect'                  => '($1 のリダイレクト)',
 'search-section'                   => '(セクション $1)',
@@ -1521,7 +1521,7 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 
 このままアップロードを行うことが適切かどうか確認してください。参考として以下にこのファイルの削除記録を表示しています:",
 'filename-bad-prefix'         => "アップロードしようとしている '''\"\$1\"''' のファイル名が、デジタルカメラによって自動的に付与されるような名称となっています。どのようなファイルであるのか、ファイル名を見ただけでも分かるような名称にしてください。",
-'filename-prefix-blacklist'   => ' #<!-- leave this line exactly as it is --> <pre>
+'filename-prefix-blacklist'   => ' #<!-- この行はそのままにしておいてください --> <pre>
 # 構文は以下:
 #   * "#" 記号から行末まではすべてがコメント
 #   * 空でないすべての行はデジタルカメラによって自動的に付けられる典型的なファイル名の接頭辞
@@ -1534,7 +1534,7 @@ IMG # 一般
 JD # Jenoptik
 MGP # ペンタックス
 PICT # misc.
- #</pre> <!-- leave this line exactly as it is -->',
+ #</pre> <!-- この行はそのままにしておいてください -->',
 
 'upload-proto-error'      => '不正なプロトコル',
 'upload-proto-error-text' => 'アップロード元のURLは <code>http://</code> か <code>ftp://</code> で始まっている必要があります。',
@@ -1696,10 +1696,10 @@ PICT # misc.
 'fewestrevisions' => '編集履歴の少ないページ',
 
 # Miscellaneous special pages
-'nbytes'                  => '$1 バイト',
+'nbytes'                  => '$1 {{PLURAL:$1|バイト}}',
 'ncategories'             => '$1 のカテゴリ',
 'nlinks'                  => '$1 個のリンク',
-'nmembers'                => '$1項目',
+'nmembers'                => '$1{{PLURAL:$1|項目}}',
 'nrevisions'              => '$1 の版',
 'nviews'                  => '$1 回表示',
 'specialpage-empty'       => '合致するものがありません。',
@@ -1889,7 +1889,7 @@ PICT # misc.
 'watchmethod-list'     => '最近編集された中からウォッチしているページを抽出',
 'watchlistcontains'    => 'あなたのウォッチリストには $1件のページが登録されています。',
 'iteminvalidname'      => '"$1" をウォッチリストから削除できません。ページ名が不正です。',
-'wlnote'               => '以下は最近 <strong>$2</strong> 時間に編集された <strong>$1</strong> ページです。',
+'wlnote'               => "以下は最近 '''$2'''時間における最も新しい '''$1'''件の編集です。",
 'wlshowlast'           => '最近 [$1時間] [$2日間] [$3] のものを表示する',
 'watchlist-options'    => 'ウォッチリストのオプション',
 
@@ -2046,7 +2046,7 @@ $NEWPAGE
 'undeleteextrahelp'            => '全ての版を復帰する場合は、全ての版のチェックボックスを選択していない状態で「{{int:undeletebtn}}」ボタンをクリックしてください。
 特定の版を復帰する場合は、復帰する版のチェックボックスを選択した状態で「{{int:undeletebtn}}」ボタンをクリックしてください。
 「{{int:undeletereset}}」ボタンををクリックするとコメント欄と全てのチェックボックスがクリアされます。',
-'undeleterevisions'            => '$1版保管',
+'undeleterevisions'            => '$1版を保管しました',
 'undeletehistory'              => 'ページの復帰を行うと、全ての特定版が履歴に復帰します。ページが削除された後に、同じ名前で新しいページが作成されていた場合、復帰した特定版は、その前の履歴として出現します。',
 'undeleterevdel'               => 'トップページの版が一時的に削除されているものに対しては、復帰処理を実行できません。このような場合、まずは最新の削除履歴に対するチェックまたは隠蔽を解除する必要があります。ファイル履歴を表示する権限がない場合も、復帰させることはできません。',
 'undeletehistorynoadmin'       => '過去にこのページの全てもしくは一部が削除されています。以下に示すのは削除記録と削除された版の履歴です。削除された各版の内容は{{int:group-sysop}}のみが閲覧できます。',
@@ -2059,9 +2059,9 @@ $NEWPAGE
 'undeleteinvert'               => '選択を逆転する',
 'undeletecomment'              => 'コメント:',
 'undeletedarticle'             => '"$1" を復帰しました。',
-'undeletedrevisions'           => '$1 版を復帰しました。',
-'undeletedrevisions-files'     => '$1 版のページと $2 ファイルを復帰しました',
-'undeletedfiles'               => '$1 ファイルを復帰しました',
+'undeletedrevisions'           => '$1版を復帰しました',
+'undeletedrevisions-files'     => 'ページの$1版と$2個のファイルを復帰しました',
+'undeletedfiles'               => '$1個のファイルを復帰しました',
 'cannotundelete'               => '復帰に失敗しました。誰かがすでにこのページを復帰しています。',
 'undeletedpage'                => "<big>'''$1 を復帰しました。'''</big>
 
@@ -2286,7 +2286,7 @@ $1 は、すでにブロックされています。設定を変更しますか�
 'movepage-page-exists'         => '$1 という名前のページは既に存在するため自動的な上書きは行われませんでした。',
 'movepage-page-moved'          => '$1 は $2 へ移動されました。',
 'movepage-page-unmoved'        => '$1 を $2 へ移動できませんでした。',
-'movepage-max-pages'           => '自動的に移動できるのは $1ページ までで、それ以上は移動されません。',
+'movepage-max-pages'           => '自動的に移動できるページは $1件までで、それ以上は移動されません。',
 '1movedto2'                    => 'ページ [[$1]] を [[$2]] へ移動',
 '1movedto2_redir'              => 'ページ [[$1]] をこのページあてのリダイレクト [[$2]] へ移動',
 'move-redirect-suppressed'     => 'リダイレクト非作成',

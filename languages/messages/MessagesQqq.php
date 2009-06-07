@@ -674,7 +674,7 @@ Parameters:
 'nosuchsectiontext'                => 'This message is displayed when a user tries to edit a section that does not exist. 
 
 Parameter $1 is the content of section parameter in the URL (for example 1234 in the URL http://translatewiki.net/w/i.php?title=Sandbox&action=edit&section=1234)',
-'loginreqlink'                     => 'Take a look on inflection. Used as parameter in {{msg-mw|loginreqpagetext}}, {{msg-mw|whitelistedittext}} and {{msg-mw|watchlistanontext‎}}.
+'loginreqlink'                     => 'Take a look on inflection. Used as parameter in {{msg-mw|loginreqpagetext}}, {{msg-mw|whitelistedittext}}, {{msg-mw|watchlistanontext‎}} and {{msg-mw|Confirmemail needlogin}}.
 
 {{Identical|Log in}}',
 'loginreqpagetext'                 => '* $1 is a link to [[Special:UserLogin]] with {{msg-mw|loginreqlink}} as link description',
@@ -733,7 +733,7 @@ Please report at [[Support]] if you are unable to properly translate this messag
 'revisionasof'           => "Used on a difference page when comparing different versions of a page or when viewing an non-current version of a page. \$1 is the date/time at which the revision was created. Example: \"''Revision as of 14:44, 24 January 2008''\".",
 'revision-info'          => 'Appears just below the page title when an old version of the page is being viewed.
 
-* $1 indicates the time of that revision and 
+* $1 indicates the date and time of that revision
 * $2 the author of the revision
 * (optional) $3 is the revision ID', # Additionally available: $3: revision id
 'currentrevisionlink'    => '{{Identical|Current revision}}',
@@ -1195,7 +1195,7 @@ This action allows editing of all of the "user rights", not just the rights of t
 'rcnote'               => 'Used on [[Special:RecentChanges]].
 * $1 is the number of changes shown,
 * $2 is the number of days for which the changes are shown,
-* $3 is a datetime (deprecated),
+* $3 is a date and time (deprecated),
 * $4 is a date alone,
 * $5 is a time alone.
 
@@ -1204,7 +1204,7 @@ This action allows editing of all of the "user rights", not just the rights of t
 
 Parameter $1 is the maximum number of changes that are displayed.
 Parameter $2 is a date and time.',
-'rclistfrom'           => 'Used on [[Special:RecentChanges]]. Parameter $1 is a date.',
+'rclistfrom'           => 'Used on [[Special:RecentChanges]]. Parameter $1 is a link to the revision of a specific date and time. The date and the time are the link description.',
 'rcshowhideminor'      => 'Option text in [[Special:RecentChanges]]',
 'rcshowhidebots'       => "Option text in [[Special:RecentChanges]]. $1 is the 'show/hide' command, with the text taken from either [[Mediawiki:Show]] or [[Mediawiki:Hide]].
 
@@ -1892,7 +1892,9 @@ Shown as subtitle of the protection form. $1 is the title of the page to be (un)
 'undelete-show-file-confirm' => 'A confirmation message shown on Special:Undelete when the request does not contain a valid token (e.g. when a user clicks a link received in mail).
 * <code>$1</code> is the name of the file being undeleted.
 * <code>$2</code> is the date of the displayed revision.
-* <code>$3</code> is the time of the displayed revision.',
+* <code>$3</code> is the time of the displayed revision.
+
+{{identical|Are you sure you want to view the deleted revision of the file...}}',
 'undelete-show-file-submit'  => '{{Identical|Yes}}',
 
 # Namespace form on various pages
@@ -2158,6 +2160,7 @@ Import failed: XML import parse failure at line 1, col 1 (byte 3; "- <mediawiki 
 Related messages: {{msg|right-importupload|pl=yes}} (the user right for this).',
 
 # Import log
+'importlogpage'          => '',
 'importlogpagetext'      => 'This text appears at the top of the [http://translatewiki.net/w/i.php?title=Special%3ALog&type=import&user=&page=&year=&month=-1 import log] special page.',
 'import-logentry-upload' => 'This is the text of an entry in the Import log (and Recent Changes), after hour (and date, only in the Import log) and sysop name:
 * $1 is the name of the imported file',
@@ -2684,7 +2687,8 @@ Please leave the link http://www.mediawiki.org/wiki/Manual:External_editors exac
 {{Identical|All}}',
 
 # E-mail address confirmation
-'confirmemail_needlogin'   => 'Used on [[Special:ConfirmEmail]] when you are logged out. Parameter $1 is a link to the log in form.',
+'confirmemail_needlogin'   => 'Used on [[Special:ConfirmEmail]] when you are logged out.
+* $1 is a link to [[Special:UserLogin]] with {{msg-mw|loginreqlink}} as link description',
 'confirmemail_body'        => 'This message is sent as an e-mail to users when they add or change their e-mail adress in [[Special:Preferences]].
 
 *$1 is the IP adress of the user that changed the e-mail adress

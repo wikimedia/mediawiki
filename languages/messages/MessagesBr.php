@@ -204,9 +204,9 @@ $messages = array(
 'hidden-category-category'       => 'Rummadoù kuzhet', # Name of the category where hidden categories will be listed
 'category-subcat-count'          => "{{PLURAL:$2|N'eus er rummad-mañ nemet an isrummad da-heul.|{{PLURAL:$1|isrummad|$1 isrummad}} zo d'ar rummad-mañ diwar un hollad a $2.}}",
 'category-subcat-count-limited'  => 'Er rummad-mañ e kaver an {{PLURAL:$1|isrummad-se|$1 isrummadoù-se}}.',
-'category-article-count'         => "{{PLURAL:$2|N'eus er rummad-mañ nemet ar bajenn da-heul.|Emañ ar {{PLURAL:$1|bajenn da-heul|$1 pajenn da-heul}} er rummad-mañ, war un hollad a $2.}}",
+'category-article-count'         => "{{PLURAL:$2|N'eus er rummad-mañ nemet ar bajenn da-heul.|Emañ ar {{PLURAL:$1|bajenn da-heul|$1 pajenn da-heul}} er rummad-mañ, diwar un hollad a $2.}}",
 'category-article-count-limited' => '{{PLURAL:$1|Emañ ar bajenn|Emañ an $1 pajenn}} da-heul er rummad-mañ.',
-'category-file-count'            => "{{PLURAL:$2|N'eus er rummad-mañ nemet ar restr da-heul.|Emañ ar {{PLURAL:$1|restr|$1 restr}} da-heul er rummad-mañ, war un hollad a $2.}}",
+'category-file-count'            => "{{PLURAL:$2|N'eus er rummad-mañ nemet ar restr da-heul.|Emañ ar {{PLURAL:$1|restr|$1 restr}} da-heul er rummad-mañ, diwar un hollad a $2.}}",
 'category-file-count-limited'    => '{{PLURAL:$1|Emañ ar restr|Emañ an $1 restr}} da-heul er rummad-mañ.',
 'listingcontinuesabbrev'         => "(war-lerc'h)",
 
@@ -841,7 +841,7 @@ Kadarnait eo mat an dra-se a fell deoc'h ober, e komprenit mat ar pezh a empleg,
 'revdelete-logentry'             => 'Cheñchet eo bet hewelusted ar stumm evit [[$1]]',
 'logdelete-logentry'             => 'kemmet eo bet gwelusted an darvoud evit [[$1]]',
 'revdelete-success'              => "'''Gwelusted ar stummoù kaset da benn vat.'''",
-'logdelete-success'              => "'''Gwelusted an darvoud kaset da benn vat.'''",
+'logdelete-success'              => "'''Gweluster ar marilh arventennet evel m'eo dleet.'''",
 'revdel-restore'                 => 'Cheñch ar gweluster',
 'pagehist'                       => 'Istor ar bajenn',
 'deletedhist'                    => 'Diverkañ an istor',
@@ -1069,7 +1069,7 @@ Gwiriit ne vo ket torret red istor ar bajenn gant ar c'hemm-mañ.",
 'recentchangesdays-max'     => "(d'ar muiañ $1 {{PLURAL:$1|deiz|deiz}})",
 'recentchangescount'        => "Niver a gemmoù da ziskouez er c'hemmoù diwezhañ, er pajennoù istor hag er marilhoù, dre ziouer",
 'savedprefs'                => 'Enrollet eo bet ar penndibaboù.',
-'timezonelegend'            => 'Takad eur',
+'timezonelegend'            => 'Takad eur :',
 'timezonetext'              => "Mar ne resisait ket al linkadur eur e vo graet gant eur Europa ar C'hornôg dre ziouer.",
 'localtime'                 => "Eur lec'hel :",
 'timezoneselect'            => 'Takad eur :',
@@ -1548,12 +1548,13 @@ Sellet e vez ouzh ur bajenn evel ouzh ur bajenn digejañ ma ra gant ur patrom li
 'fewestrevisions' => 'Pennadoù reizhet an nebeutañ',
 
 # Miscellaneous special pages
-'nbytes'                  => '$1 eizhbit',
-'ncategories'             => '$1 rummad',
-'nlinks'                  => '$1 daveenn',
-'nmembers'                => '$1 pennad',
-'nrevisions'              => '$1 stumm',
-'nviews'                  => '$1 selladenn',
+'nbytes'                  => '$1 {{PLURAL:$1|eizhbit|eizhbit}}',
+'ncategories'             => '
+$1 {{PLURAL:$1|rummad|rummad}}',
+'nlinks'                  => '$1 {{PLURAL:$1|liamm|liamm}}',
+'nmembers'                => '$1 {{PLURAL:$1|elfenn|elfenn}}',
+'nrevisions'              => '$1 {{PLURAL:$1|stumm|stumm}}',
+'nviews'                  => '$1 {{PLURAL:$1|selladenn|selladenn}}',
 'specialpage-empty'       => 'Goullo eo ar bajenn-mañ.',
 'lonelypages'             => 'Pajennoù hep liamm daveto',
 'lonelypagestext'         => "N'eo ket liammet pe enframmet ar pajennoù da-heul ouzh pajenn all ebet eus {{SITENAME}}.",
@@ -1747,9 +1748,9 @@ Evit tennañ ar bajenn-mañ a-ziwar ho rollad evezhiañ. klikit war "Paouez da e
 'wlheader-showupdated' => "* E '''tev''' emañ merket ar pajennoù bet degaset kemmoù enno abaoe ar wech ziwezhañ hoc'h eus sellet outo",
 'watchmethod-recent'   => "Gwiriañ ar c'hemmoù diwezhañ er pajennoù dindan evezh",
 'watchmethod-list'     => "Gwiriañ ar c'hemmoù diwezhañ evit ar pajennoù evezhiet",
-'watchlistcontains'    => '$1 pajenn zo en ho rollad evezhiañ',
+'watchlistcontains'    => '$1 {{PLURAL:$1|pajenn|pajenn}} zo en ho rollad evezhiañ',
 'iteminvalidname'      => "Ur gudenn zo gant ar pennad « $1 » : n'eo ket mat e anv...",
-'wlnote'               => "A-is emañ an $1 kemm diwezhañ abaoe an '''$2''' eurvezh diwezhañ.",
+'wlnote'               => "Setu aze {{PLURAL:$1|ar c'hemm diwezhañ|ar '''$1''' kemm diwezhañ}} e-kerzh an {{PLURAL:$2|eurvezh|'''$2''' eurvezh}} ziwezhañ.",
 'wlshowlast'           => 'Diskouez an $1 eurvezh $2 devezh diwezhañ $3',
 'watchlist-options'    => 'Dibarzhioù ar roll evezhiañ',
 
@@ -1769,7 +1770,7 @@ Evit tennañ ar bajenn-mañ a-ziwar ho rollad evezhiañ. klikit war "Paouez da e
 'enotif_anon_editor'           => 'implijer dizanv $1',
 'enotif_body'                  => '$WATCHINGUSERNAME ker,
 
-$CHANGEDORCREATED Kemmet eo bet ar bajenn {{SITENAME}} evit $PAGETITLE gant $PAGEEDITOR d\'an $PAGEEDITDATE, gwelet $PAGETITLE_URL evit gwelet ar stumm red.
+$CHANGEDORCREATED eo bet ar bajenn {{SITENAME}} evit $PAGETITLE gant $PAGEEDITOR d\'an $PAGEEDITDATE, gwelet $PAGETITLE_URL evit gwelet ar stumm red.
 
 $NEWPAGE
 
@@ -1911,7 +1912,7 @@ Ingal e c'hall an diell bezañ goullonderet.",
 'undeleteextrahelp'            => "Evit diziverkañ ar bajenn en he fezh, laoskit goullo an holl logoù bihan ha klikit war '''''Diziverkañ!'''''. 
 Evit diziverkañ stummoù zo hepken, askit ar logoù bihan a glot gant ar stummoù da vezañ adsavet, ha klikit war '''''Diziverkañ!'''''. 
 Mar klikit war '''''Adderaouiñ''''' e vo naetaet ar stern diverrañ hag al logoù asket.",
-'undeleterevisions'            => "$1 (g/c'h)kemm diellaouet",
+'undeleterevisions'            => '$1 {{PLURAL:$1|stumm|stumm}} diellaouet',
 'undeletehistory'              => "Ma tiziverkit ar bajenn e vo erlec'hiet an holl gemmoù bet degaset enni er roll istor.
 
 Ma'z eus bet krouet ur bajenn nevez dezhi an hevelep anv abaoe an diverkadenn, e teuio war wel ar c'hemmoù assavet er roll istor kent ha ne vo ket erlec'hiet ar stumm red en un doare emgefre ken.",
@@ -1926,9 +1927,9 @@ Ma'z eus bet krouet ur bajenn nevez dezhi an hevelep anv abaoe an diverkadenn, e
 'undeleteinvert'               => 'Eilpennañ diuzadenn',
 'undeletecomment'              => 'Notenn :',
 'undeletedarticle'             => 'Diziverket"$1"',
-'undeletedrevisions'           => '$1 stumm bet diziverket',
-'undeletedrevisions-files'     => 'Diziverket ez eus bet $1 stumm ha $2 restr',
-'undeletedfiles'               => '$1 restr adsavet',
+'undeletedrevisions'           => 'Adsavet {{PLURAL:$1|1 stumm|$1 stumm}}',
+'undeletedrevisions-files'     => 'Adsavet ez ez eus bet {{PLURAL:$1|1 stumm|$1 stumm}} ha {{PLURAL:$2|1 restr|$2 restr}}',
+'undeletedfiles'               => '{{PLURAL:$1|1 restr|$1 restr}} adsavet',
 'cannotundelete'               => "Dibosupl eo diziverkañ; moarvat eo bet diziverket gant unan bennak all araozoc'h.",
 'undeletedpage'                => "<big>'''Diziverket eo bet $1'''</big>
 
@@ -2243,7 +2244,7 @@ Miret eo an holl enporzhiadennoù etrewiki e-barzh [[Special:Log/import|log an e
 'import-comment'             => 'Notenn :',
 'importtext'                 => "Ezporzhiit ur restr adal ar wiki orin en ur implij an arc'hwel Special:Export, enrollit ar bajenn war ho pladenn ha degasit anezhi amañ.",
 'importstart'                => "Oc'h enporzhiañ pajennoù...",
-'import-revision-count'      => '$1 stumm',
+'import-revision-count'      => '$1 {{PLURAL:$1|stumm|stumm}}',
 'importnopages'              => 'Pajenn ebet da enporzhiañ.',
 'importfailed'               => "C'hwitet eo an enporzhiadenn: $1",
 'importunknownsource'        => 'Dianav eo seurt ar vammenn enporzhiañ',
@@ -2269,7 +2270,7 @@ Miret eo an holl enporzhiadennoù etrewiki e-barzh [[Special:Log/import|log an e
 'importlogpage'                    => 'Log an enporzhiadennoù',
 'importlogpagetext'                => "Enporzhiadennoù melestradurel eus pajennoù adal wikioù all gant istor ar c'hemmadennoù degaset enno.",
 'import-logentry-upload'           => 'en/he deus enporzhiet (pellgarget) [[$1]]',
-'import-logentry-upload-detail'    => '$1 stumm',
+'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|stumm|stumm}}',
 'import-logentry-interwiki'        => 'treuzwikiet $1',
 'import-logentry-interwiki-detail' => "$1 {{PLURAL:$1|c'hemm|kemm}} abaoe $2",
 
@@ -2447,7 +2448,7 @@ $1',
 
 # Special:NewFiles
 'newimages'             => 'Roll ar skeudennoù nevez',
-'imagelisttext'         => 'Setu ur roll $1 skeudenn rummet $2.',
+'imagelisttext'         => "Setu aze ur roll '''$1''' {{PLURAL:$1|file|files}} rummet $2.",
 'newimages-summary'     => 'Diskouez a ra ar bajenn zibar-mañ roll ar restroù diwezhañ bet enporzhiet.',
 'newimages-legend'      => 'Sil',
 'newimages-label'       => 'Anv ar restr (pe darn anezhi) :',

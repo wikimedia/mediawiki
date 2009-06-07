@@ -539,7 +539,8 @@ Dúbida: $2',
 'viewsource'           => 'Ver o código fonte',
 'viewsourcefor'        => 'de "$1"',
 'actionthrottled'      => 'Acción ocasional',
-'actionthrottledtext'  => "Como unha medida de loita contra o ''spam'', limítase a realización desta acción a un número determinado de veces nun curto espazo de tempo, e vostede superou este límite. Ténteo de novo nuns minutos.",
+'actionthrottledtext'  => "Como unha medida de loita contra o ''spam'', limítase a realización desta acción a un número determinado de veces nun curto espazo de tempo, e vostede superou este límite.
+Inténteo de novo nuns minutos.",
 'protectedpagetext'    => 'Esta páxina foi protexida para evitar a edición.',
 'viewsourcetext'       => 'Pode ver e copiar o código fonte desta páxina:',
 'protectedinterface'   => 'Esta páxina fornece o texto da interface do software e está protexida para evitar o seu abuso.',
@@ -804,13 +805,13 @@ Lembre que as páxinas .css e .js personalizadas utilizan un título en minúscu
 'previewnote'                      => "'''Lembre que esta é só unha vista previa e que os seus cambios aínda non foron gardados!'''",
 'previewconflict'                  => 'Esta vista previa amosa o texto na área superior tal e como aparecerá se escolle gardar.',
 'session_fail_preview'             => "'''O sistema non pode procesar a súa edición porque se perderon os datos de inicio da sesión.
-Por favor, ténteo de novo.
+Por favor, inténteo de novo.
 Se segue sen funcionar, probe a [[Special:UserLogout|saír do sistema]] e volver entrar.'''",
 'session_fail_preview_html'        => "'''O sistema non pode procesar a súa edición porque se perderon os datos de inicio da sesión.'''
 
 ''Dado que {{SITENAME}} ten activado o HTML simple, agóchase a vista previa como precaución contra ataques mediante JavaScript.''
 
-'''Se este é un intento de facer unha edición lexítima, por favor, ténteo de novo.
+'''Se este é un intento de facer unha edición lexítima, por favor, inténteo de novo.
 Se segue sen funcionar, probe a [[Special:UserLogout|saír do sistema]] e volver entrar.'''",
 'token_suffix_mismatch'            => "'''Rexeitouse a súa edición porque o seu cliente confundiu os signos de puntuación na edición.
 Rexeitouse a edición para evitar que se corrompa o texto do artigo. Isto pode acontecer porque estea a
@@ -987,7 +988,7 @@ Por favor, confirme que esta é a súa intención, que comprende as consecuencia
 'revdelete-logentry'             => 'mudou a visibilidade dunha revisión de "[[$1]]"',
 'logdelete-logentry'             => 'mudouse a visibilidade do evento para [[$1]]',
 'revdelete-success'              => "'''Configurouse sen problemas a visibilidade da revisión.'''",
-'logdelete-success'              => "'''Configurouse a visibilidade do evento sen problemas.'''",
+'logdelete-success'              => "'''Configurouse a visibilidade do rexistro sen problemas.'''",
 'revdel-restore'                 => 'Cambiar a visibilidade',
 'pagehist'                       => 'Historial da páxina',
 'deletedhist'                    => 'Historial de borrado',
@@ -1045,11 +1046,11 @@ Asegúrese de que esta modificación da páxina mantén a continuidade históric
 'editundo'                => 'desfacer',
 'diff-multi'              => '(Non se {{PLURAL:$1|mostra unha revisión|mostran $1 revisións}} do historial.)',
 'diff-movedto'            => 'moveuse a "$1"',
-'diff-styleadded'         => '$1 estilo engadido',
+'diff-styleadded'         => 'estilo $1 engadido',
 'diff-added'              => 'engadiu $1',
 'diff-changedto'          => 'cambiou a $1',
-'diff-movedoutof'         => 'retirou "$1"',
-'diff-styleremoved'       => '$1 estilo eliminado',
+'diff-movedoutof'         => 'retirada de $1',
+'diff-styleremoved'       => 'estilo $1 eliminado',
 'diff-removed'            => 'eliminou $1',
 'diff-changedfrom'        => 'cambiou de $1',
 'diff-src'                => 'orixe',
@@ -1093,7 +1094,7 @@ Asegúrese de que esta modificación da páxina mantén a continuidade históric
 'diff-font'               => "'''fonte'''",
 'diff-big'                => "'''grande'''",
 'diff-del'                => "'''eliminou'''",
-'diff-tt'                 => "'''arranxou o ancho'''",
+'diff-tt'                 => "'''arranxou o largo'''",
 'diff-sub'                => "'''subíndice'''",
 'diff-sup'                => "'''superíndice'''",
 'diff-strike'             => "'''riscado'''",
@@ -1142,7 +1143,7 @@ Se quere, pode [[:\$1|creala]].",
 'search-section'                   => '(sección $1)',
 'search-suggest'                   => 'Quizais quixo dicir: $1',
 'search-interwiki-caption'         => 'Proxectos irmáns',
-'search-interwiki-default'         => '$1 resultados:',
+'search-interwiki-default'         => 'Resultados en $1:',
 'search-interwiki-more'            => '(máis)',
 'search-mwsuggest-enabled'         => 'con suxestións',
 'search-mwsuggest-disabled'        => 'sen suxestións',
@@ -1515,10 +1516,10 @@ Se aínda quere cargar o seu ficheiro, por favor, volte atrás e use outro nome.
 'watchthisupload'             => 'Vixiar este ficheiro',
 'filewasdeleted'              => 'Un ficheiro con ese nome foi cargado con anterioridade e a continuación borrado.
 Debe comprobar o $1 antes de proceder a cargalo outra vez.',
-'upload-wasdeleted'           => "'''Aviso: está enviando un ficheiro que foi previamente borrado.'''
+'upload-wasdeleted'           => "'''Aviso: está cargando un ficheiro que foi previamente borrado.'''
 
-Debe considerar se é apropiado continuar enviando este ficheiro.
-O rexistro de borrado proporciónase aquí por se quere consultalo:",
+Debería considerar se é apropiado continuar a carga deste ficheiro.
+A continuación móstrase o rexistro de borrados deste ficheiro, por se quere consultalo:",
 'filename-bad-prefix'         => "O nome do ficheiro que está cargando comeza con '''\"\$1\"''', que é un típico nome non descritivo asignado automaticamente polas cámaras dixitais.
 Por favor, escolla un nome máis descritivo para o seu ficheiro.",
 'filename-prefix-blacklist'   => ' #<!-- deixe esta liña exactamente como está --> <pre>
@@ -1539,11 +1540,11 @@ PICT # varias
 'upload-proto-error'      => 'Protocolo erróneo',
 'upload-proto-error-text' => 'A carga remota require URLs que comecen por <code>http://</code> ou <code>ftp://</code>.',
 'upload-file-error'       => 'Erro interno',
-'upload-file-error-text'  => 'Produciuse un erro interno ao tentar crear un ficheiro temporal no servidor.
+'upload-file-error-text'  => 'Produciuse un erro interno ao intentar crear un ficheiro temporal no servidor.
 Por favor, contacte cun [[Special:ListUsers/sysop|administrador]] do sistema.',
 'upload-misc-error'       => 'Erro de carga descoñecido',
-'upload-misc-error-text'  => 'Durante a carga ocorreu un erro descoñecido.
-Por favor, comprobe que o enderezo URL é válido e está dispoñíbel e, despois, ténteo de novo.
+'upload-misc-error-text'  => 'Ocorreu un erro descoñecido durante a carga.
+Por favor, comprobe que o enderezo URL é válido e está dispoñíbel e, despois, inténteo de novo.
 Se o problema persiste contacte cun [[Special:ListUsers/sysop|administrador]] do sistema.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
@@ -1551,13 +1552,13 @@ Se o problema persiste contacte cun [[Special:ListUsers/sysop|administrador]] do
 'upload-curl-error6-text'  => 'Non se logrou acceder ao URL que indicou. Comprobe que ese URL é correcto e que o sitio está activo.',
 'upload-curl-error28'      => 'Rematou o tempo de espera',
 'upload-curl-error28-text' => 'O sitio tardou demasiado en responder.
-Por favor, comprobe que está activo, agarde un anaco e ténteo de novo.
+Por favor, comprobe que está activo, agarde un anaco e inténteo de novo.
 Tamén pode reintentalo cando haxa menos actividade.',
 
 'license'            => 'Licenza:',
 'nolicense'          => 'Ningunha (os ficheiros sen licenza teñen que ser eliminados)',
 'license-nopreview'  => '(Vista previa non dispoñíbel)',
-'upload_source_url'  => ' (un URL válido, accesíbel publicamente)',
+'upload_source_url'  => '  (un URL válido, accesible publicamente)',
 'upload_source_file' => ' (un ficheiro no seu ordenador)',
 
 # Special:ListFiles
@@ -1992,7 +1993,9 @@ A última edición fíxoa [[User:$3|$3]] ([[User talk:$3|conversa]]{{int:pipe-se
 'revertpage'       => 'Desfixéronse as edicións de [[Special:Contributions/$2|$2]] ([[User talk:$2|conversa]]); cambiado á última versión feita por [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'Desfixéronse as edicións de $1;
 volveuse á última edición, feita por $2.',
-'sessionfailure'   => 'Parece que hai un problema co rexistro da súa sesión; esta acción cancelouse como precaución fronte ao secuestro de sesións. Prema no botón "atrás", volva cargar a páxina da que proviña e ténteo de novo.',
+'sessionfailure'   => 'Parece que hai un problema co rexistro da súa sesión;
+esta acción cancelouse como precaución fronte ao secuestro de sesións.
+Prema no botón "atrás", volva cargar a páxina da que proviña e inténteo de novo.',
 
 # Protect
 'protectlogpage'              => 'Rexistro de proteccións',
@@ -2104,7 +2107,7 @@ Comprobe o [[Special:Log/delete|rexistro de borrados]] para ver as entradas rece
 'undelete-error-long'          => 'Atopáronse erros ao desfacer a eliminación do ficheiro:
 
 $1',
-'undelete-show-file-confirm'   => 'Está seguro de que desexa ver unha versión borrada do ficheiro "<nowiki>$1</nowiki>" con data de $2 ás $3?',
+'undelete-show-file-confirm'   => 'Está seguro de querer ver unha revisión borrada do ficheiro "<nowiki>$1</nowiki>" do día $2 ás $3?',
 'undelete-show-file-submit'    => 'Si',
 
 # Namespace form on various pages
@@ -2518,7 +2521,7 @@ Gráveo no seu disco duro e cárgueo aquí.',
 'lastmodifiedatby' => 'A última modificación desta páxina foi o $1 ás $2 por $3.', # $1 date, $2 time, $3 user
 'othercontribs'    => 'Baseado no traballo feito por $1.',
 'others'           => 'outros',
-'siteusers'        => '$1 de {{SITENAME}}',
+'siteusers'        => '{{PLURAL:$2|$1}} de {{SITENAME}}',
 'creditspage'      => 'Páxina de créditos',
 'nocredits'        => 'Non hai información de créditos dispoñíbel para esta páxina.',
 

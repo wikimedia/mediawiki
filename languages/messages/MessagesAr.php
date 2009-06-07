@@ -2305,7 +2305,7 @@ $NEWPAGE
 ربما لديك وصلة سيئة، أو ربما المراجعة تم استرجاعها أو إزالتها من الأرشيف.',
 'undelete-nodiff'              => 'لم يتم العثور على مراجعة سابقة.',
 'undeletebtn'                  => 'استرجاع',
-'undeletelink'                 => 'عرض/استعادة',
+'undeletelink'                 => 'اعرض/استعد',
 'undeletereset'                => 'إلغاء',
 'undeleteinvert'               => 'اعكس الاختيار',
 'undeletecomment'              => 'تعليق:',

@@ -9,6 +9,7 @@
  *
  * @author Aurora
  * @author Aviator
+ * @author Diagramma Della Verita
  * @author Izzudin
  * @author Kurniasan
  * @author Meno25
@@ -264,9 +265,9 @@ $messages = array(
 'hidden-categories'              => '{{PLURAL:$1|Kategori tersembunyi|Kategori-kategori tersembunyi}}',
 'hidden-category-category'       => 'Kategori tersembunyi', # Name of the category where hidden categories will be listed
 'category-subcat-count'          => '{{PLURAL:$2|Kategori ini mengandungi sebuah subkategori berikut.|Yang berikut ialah $1 daripada $2 buah subkategori dalam kategori ini.}}',
-'category-subcat-count-limited'  => 'Kategori ini mengandungi $1 subkategori berikut.',
+'category-subcat-count-limited'  => 'Katergori ini mengandungi {{PLURAL:$1|subkategori|$1 subkategori}}.',
 'category-article-count'         => '{{PLURAL:$2|Kategori ini mengandungi sebuah laman berikut.|Yang berikut ialah $1 daripada $2 buah laman dalam kategori ini.}}',
-'category-article-count-limited' => '$1 laman berikut terdapat dalam kategori ini.',
+'category-article-count-limited' => '{{PLURAL:$1|Laman berikut|$1 laman berikut}} kini terkandung dalam kategori terkini.',
 'category-file-count'            => '{{PLURAL:$2|Kategori ini mengandungi sebuah fail berikut.|Yang berikut ialah $1 daripada $2 buah fail dalam kategori ini.}}',
 'category-file-count-limited'    => '$1 fail berikut terdapat dalam kategori ini.',
 'listingcontinuesabbrev'         => 'samb.',
@@ -536,7 +537,7 @@ Akaun anda telah dibuka. Jangan lupa untuk mengubah [[Special:Preferences|keutam
 'youremail'                  => 'E-mel:',
 'username'                   => 'Nama pengguna:',
 'uid'                        => 'ID pengguna:',
-'prefs-memberingroups'       => 'Ahli kumpulan:',
+'prefs-memberingroups'       => 'Ahli {{PLURAL:$1|kumpulan|kumpulan}}:',
 'yourrealname'               => 'Nama sebenar:',
 'yourlanguage'               => 'Bahasa:',
 'yourvariant'                => 'Varian',
@@ -1056,7 +1057,7 @@ Sila pastikan bahawa perubahan ini akan mengekalkan kesinambungan sejarah laman.
 'searchprofile-advanced-tooltip'   => 'Gelintar ruang nama tempahan',
 'prefs-search-nsdefault'           => 'Gelintar menggunakan tetapan lalai:',
 'prefs-search-nscustom'            => 'Gelintar ruang nama tempahan:',
-'search-result-size'               => '$1 ($2 patah perkataan)',
+'search-result-size'               => '$1 ({{PLURAL:$2|$2 patah perkataan}})',
 'search-result-score'              => 'Kaitan: $1%',
 'search-redirect'                  => '(pelencongan $1)',
 'search-section'                   => '(bahagian $1)',
@@ -1590,7 +1591,7 @@ Anda boleh melihat [[Special:WhatLinksHere/$2|senarai penuh]].',
 'fewestrevisions' => 'Laman dengan semakan tersedikit',
 
 # Miscellaneous special pages
-'nbytes'                  => '$1 bait',
+'nbytes'                  => '{{PLURAL:$1|$1 bait}}',
 'ncategories'             => '$1 kategori',
 'nlinks'                  => '$1 pautan',
 'nmembers'                => '$1 ahli',
@@ -1648,8 +1649,8 @@ menggunakan URL langsung walaupun ia disenaraikan di sini.</p>',
 'notargettext'            => 'Anda tidak menyatakan laman atau pengguna sebagai sasaran bagi tindakan ini.',
 'nopagetitle'             => 'Laman sasaran tidak wujud',
 'nopagetext'              => 'Laman sasaran yang anda nyatakan tidak wujud.',
-'pager-newer-n'           => '$1 berikutnya',
-'pager-older-n'           => '$1 sebelumnya',
+'pager-newer-n'           => '{{PLURAL:$1|$1 berikutnya}}',
+'pager-older-n'           => '{{PLURAL:$1|$1 sebelumnya}}',
 'suppress'                => 'Kawalan',
 
 # Book sources

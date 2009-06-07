@@ -215,12 +215,12 @@ $linkTrail = '/^([a-záéíóúñ]+)(.*)$/sDu';
 
 $messages = array(
 # User preference toggles
-'tog-underline'               => 'Subrayar enlaces',
+'tog-underline'               => 'Subrayar enlaces:',
 'tog-highlightbroken'         => 'Destacar enlaces a artículos vacíos <a href="" class="new">como este</a> (alternativa: como éste<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Ajustar párrafos',
 'tog-hideminor'               => 'Ocultar ediciones menores en «cambios recientes»',
 'tog-hidepatrolled'           => 'Ocultar ediciones patrulladas en los cambios recientes',
-'tog-newpageshidepatrolled'   => 'ocultar páginas vigiladas de la nueva lista de páginas',
+'tog-newpageshidepatrolled'   => 'Ocultar páginas patrulladas de la lista de páginas nuevas',
 'tog-extendwatchlist'         => 'Expandir la lista de seguimiento a todos los cambios, no solo a los más recientes.',
 'tog-usenewrc'                => 'Cambios recientes realzados (requiere JavaScript)',
 'tog-numberheadings'          => 'Numerar automáticamente los encabezados',
@@ -1957,7 +1957,7 @@ Véase $2 para un registro de los borrados recientes.',
 
 La última edición fue hecha por [[User:$3|$3]] ([[User talk:$3|discusión]] {{int:pipe-separator}} [[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment'      => "El resumen de la edición fue: \"''\$1''\".", # only shown if there is an edit comment
-'revertpage'       => 'Revertidas las ediciones de [[Special:Contributions/$2|$2]] ([[User talk:$2|Discusión]]) a la última edición de [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'       => 'Revertidos los cambios de [[Special:Contributions/$2|$2]] ([[User talk:$2|disc.]]) a la última edición de [[User:$1|$1]]', # Additionally available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success' => 'Revertidas las ediciones de $1; recuperada la última versión de $2.',
 'sessionfailure'   => 'Parece que hay un problema con tu sesión;
 esta acción ha sido cancelada como medida de precaución contra secuestros de sesión.
@@ -1967,7 +1967,7 @@ Por favor, pulsa "Atrás", recarga la página de la que viniste e inténtalo de 
 'protectlogpage'              => 'Protecciones de páginas',
 'protectlogtext'              => 'Abajo se presenta una lista de protección y desprotección de página. Véase [[Special:ProtectedPages|Esta página está protegida]] para más información.',
 'protectedarticle'            => 'protegió «[[$1]]»',
-'modifiedarticleprotection'   => 'cambiado el nivel de protección de «[[$1]]»',
+'modifiedarticleprotection'   => 'cambió el nivel de protección de «[[$1]]»',
 'unprotectedarticle'          => 'desprotegió [[$1]]',
 'movedarticleprotection'      => 'cambiadas protecciones de «[[$2]]» a «[[$1]]»',
 'protect-title'               => 'Cambiando el nivel de protección de «$1»',
@@ -2005,7 +2005,7 @@ A continuación se muestran las opciones actuales de la página '''$1''':",
 **Guerra de ediciones
 **Página muy visitada',
 'protect-edit-reasonlist'     => 'Editar las razones de protección',
-'protect-expiry-options'      => '1 hora:1 hour,1 día:1 day,1 semana:1 week,2 semanas:2 weeks,1 mes:1 month,3 meses:3 months,6 meses:6 months,1 año:1 year,Para siempre:infinite', # display1:time1,display2:time2,...
+'protect-expiry-options'      => '1 hora:1 hour,1 día:1 day,1 semana:1 week,2 semanas:2 weeks,1 mes:1 month,3 meses:3 months,6 meses:6 months,1 año:1 year,para siempre:infinite', # display1:time1,display2:time2,...
 'restriction-type'            => 'Permiso:',
 'restriction-level'           => 'Nivel de restricción:',
 'minimum-size'                => 'Tamaño mínimo',
@@ -2143,7 +2143,7 @@ las páginas en particular que han sido objeto de vandalismo).',
 'ipbenableautoblock'              => 'Bloquear automáticamente la dirección IP usada por este usuario, y cualquier IP posterior desde la cual intente editar',
 'ipbsubmit'                       => 'Bloquear a este usuario',
 'ipbother'                        => 'Especificar caducidad',
-'ipboptions'                      => '2 horas:2 hours,1 día:1 day,3 días:3 days,1 semana:1 week,2 semanas:2 weeks,1 mes:1 month,3 meses:3 months,6 meses:6 months,1 año:1 year,Para siempre:infinite', # display1:time1,display2:time2,...
+'ipboptions'                      => '2 horas:2 hours,1 día:1 day,3 días:3 days,1 semana:1 week,2 semanas:2 weeks,1 mes:1 month,3 meses:3 months,6 meses:6 months,1 año:1 year,para siempre:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'                  => 'otro',
 'ipbotherreason'                  => 'Otra razón:',
 'ipbhidename'                     => 'Ocultar nombre de usuario de ediciones y listas',
@@ -2161,7 +2161,7 @@ las páginas en particular que han sido objeto de vandalismo).',
 'ipb-blocklist-contribs'          => 'Contribuciones de $1',
 'unblockip'                       => 'Desbloquear usuario',
 'unblockiptext'                   => 'Use el formulario a continuación para devolver los permisos de escritura a una dirección IP que ha sido bloqueada.',
-'ipusubmit'                       => 'Remover este bloqueo',
+'ipusubmit'                       => 'Desactivar este bloqueo',
 'unblocked'                       => '[[User:$1|$1]] ha sido {{GENDER:$1|desbloqueado|desbloqueada}}',
 'unblocked-id'                    => 'Se ha eliminado el bloqueo $1',
 'ipblocklist'                     => 'Lista de direcciones IP y nombres de usuario bloqueadas',
@@ -2175,8 +2175,8 @@ las páginas en particular que han sido objeto de vandalismo).',
 'infiniteblock'                   => 'infinito',
 'expiringblock'                   => 'expira $1',
 'anononlyblock'                   => 'sólo anón.',
-'noautoblockblock'                => 'Bloqueo automático deshabilitado',
-'createaccountblock'              => 'Creación de cuenta bloqueada.',
+'noautoblockblock'                => 'bloqueo automático deshabilitado',
+'createaccountblock'              => 'creación de cuenta bloqueada.',
 'emailblock'                      => 'correo electrónico bloqueado',
 'blocklist-nousertalk'            => 'no puede editar su propia página de discusión',
 'ipblocklist-empty'               => 'La lista de bloqueos está vacía.',
@@ -2189,7 +2189,7 @@ las páginas en particular que han sido objeto de vandalismo).',
 'blocklogpage'                    => 'Bloqueos de usuarios',
 'blocklog-fulllog'                => 'Ver el registro de bloqueos completo',
 'blocklogentry'                   => 'bloqueó a "$1" $3 durante un plazo de "$2".',
-'reblock-logentry'                => 'cambiado el bloqueo para  [[$1]] con una caducidad de $2 $3',
+'reblock-logentry'                => 'cambió el bloqueo para  [[$1]] con una caducidad de $2 $3',
 'blocklogtext'                    => 'Esto es un registro de bloqueos y desbloqueos de usuarios. Las direcciones bloqueadas automáticamente no aparecen aquí. Consulte la [[Special:IPBlockList|lista de direcciones IP bloqueadas]] para ver la lista de prohibiciones y bloqueos actualmente vigente.',
 'unblocklogentry'                 => 'desbloqueó a "$1"',
 'block-log-flags-anononly'        => 'sólo anónimos',
@@ -2270,7 +2270,7 @@ En estos casos, deberá trasladar manualmente el contenido de la página de disc
 'movepagebtn'                  => 'Renombrar página',
 'pagemovedsub'                 => 'Renombrado realizado con éxito',
 'movepage-moved'               => '<big>\'\'\'"$1" ha sido trasladado a "$2".\'\'\'</big>', # The two titles are passed in plain text as $3 and $4 to allow additional goodies in the message.
-'movepage-moved-redirect'      => 'Un redireccionamiento ha sido creado.',
+'movepage-moved-redirect'      => 'Se ha creado una redirección.',
 'movepage-moved-noredirect'    => 'Se ha suprimido la creación de la redirección.',
 'articleexists'                => 'Ya existe una página con ese nombre o el nombre que ha elegido no es válido. Por favor, elija otro nombre.',
 'cantmove-titleprotected'      => 'No se pueden mover páginas a esta ubicacion, porque se ha protegido la creación de este nuevo título.',

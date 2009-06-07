@@ -462,7 +462,7 @@ Lütfen bunu bir [[Special:ListUsers/sysop|hizmetliye]], URL\'yi not ederek ilet
 'internalerror'        => 'Yazılım hatası',
 'internalerror_info'   => 'İç hata: $1',
 'filecopyerror'        => '"$1"  "$2" dosyasına kopyalanamıyor.',
-'filerenameerror'      => '"$1" dosyasının adı "$2" ismine değiştirilemiyor.',
+'filerenameerror'      => '"$1" dosyasının ismi "$2" olarak değiştirilemedi.',
 'filedeleteerror'      => '"$1" dosyası silinemedi.',
 'directorycreateerror' => '"$1" dizini oluşturulamadı',
 'filenotfound'         => '"$1" dosyası bulunamadı.',

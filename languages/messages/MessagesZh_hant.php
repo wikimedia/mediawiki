@@ -9,6 +9,8 @@
  *
  * @author Alexsh
  * @author Bencmq
+ * @author FireJackey
+ * @author Liangent
  * @author Philip
  * @author Shinjiman
  * @author Skjackey tse
@@ -2479,9 +2481,9 @@ $1已經被封鎖。您是否想更改這個設定？',
 
 # Patrol log
 'patrol-log-page'      => '巡查日誌',
-'patrol-log-header'    => '這個是已經巡查過的日誌。',
-'patrol-log-line'      => '$2的版本$1已被標記為已檢查的$3',
-'patrol-log-auto'      => '(自動)',
+'patrol-log-header'    => '這是已巡查的修訂版本的日誌。',
+'patrol-log-line'      => '$2的版本$1已被標記為已巡查$3',
+'patrol-log-auto'      => '（自動）',
 'patrol-log-diff'      => '修訂 $1',
 'log-show-hide-patrol' => '$1巡查記錄',
 

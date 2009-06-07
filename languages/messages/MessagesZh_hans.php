@@ -10,6 +10,7 @@
  * @author Bencmq
  * @author Gaoxuewei
  * @author Gzdavidwong
+ * @author Liangent
  * @author O
  * @author Philip
  * @author Shinjiman
@@ -2489,8 +2490,8 @@ $1已经被封锁。您是否想更改这个设置？',
 
 # Patrol log
 'patrol-log-page'      => '巡查日志',
-'patrol-log-header'    => '这个是已经巡查过的日志。',
-'patrol-log-line'      => '$2的版本$1已被标记为已检查的$3',
+'patrol-log-header'    => '这是已巡查的修订版本的日志。',
+'patrol-log-line'      => '$2的版本$1已被标记为已巡查$3',
 'patrol-log-auto'      => '（自动）',
 'patrol-log-diff'      => '修订 $1',
 'log-show-hide-patrol' => '$1巡查纪录',

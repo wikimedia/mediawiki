@@ -696,6 +696,7 @@ Dozvoljava unošenje razloga za to u sažetku.',
 'show-big-image-thumb' => '<small>Veličina ovog prikaza: $1 × $2 piksela</small>',
 
 # Special:NewFiles
+'newimages'    => 'Galerija novih slika',
 'showhidebots' => '($1 botove)',
 
 # Bad image list
@@ -754,5 +755,14 @@ Svi drugi linkovi u istoj liniji se smatraju izuzecima, npr. kod stranica gdje s
 # Special:BlankPage
 'blankpage'              => 'Prazna stranica',
 'intentionallyblankpage' => 'Ova je stranica namjerno ostavljena praznom.',
+
+# Database error messages
+'dberr-header'      => 'Ovaj wiki ima problem',
+'dberr-problems'    => 'Žao nam je! Ova stranica ima tehničke poteškoće.',
+'dberr-again'       => 'Pokušajte pričekati nekoliko minuta i ponovno učitati.',
+'dberr-info'        => '(Ne može se spojiti server baze podataka: $1)',
+'dberr-usegoogle'   => 'U međuvremenu pokušajte pretraživati preko Googlea.',
+'dberr-outofdate'   => 'Uzmite u obzir da njihovi indeksi našeg sadržaja ne moraju uvijek biti ažurni.',
+'dberr-cachederror' => 'Sljedeći tekst je keširana kopija tražene stranice i možda nije potpuno ažurirana.',
 
 );

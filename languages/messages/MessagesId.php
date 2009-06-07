@@ -1225,7 +1225,7 @@ Perlu diingat bahwa indeks Google untuk konten {{SITENAME}} mungkin belum mencak
 'recentchangesdays-max'     => '(maksimum $1 {{PLURAL:$1|hari|hari}})',
 'recentchangescount'        => 'Jumlah baku suntingan yang ditampilkan di perubahan terbaru, riwayat halaman, dan log:',
 'savedprefs'                => 'Preferensi Anda telah disimpan',
-'timezonelegend'            => 'Zona waktu',
+'timezonelegend'            => 'Zona waktu:',
 'timezonetext'              => 'Masukkan perbedaan waktu (dalam jam) antara waktu setempat dengan waktu server (UTC).',
 'localtime'                 => 'Waktu setempat:',
 'timezoneselect'            => 'Zona waktu:',

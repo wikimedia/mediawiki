@@ -923,7 +923,7 @@ Prosimo, potrdite, da ste s tem seznanjeni, da razumete posledice dejanja in da 
 'rcshowhideanons'                   => '$1 brezimne uporabnike',
 'rcshowhidepatr'                    => '$1 pregledana urejanja',
 'rcshowhidemine'                    => '$1 moja urejanja',
-'rclinks'                           => 'Prikaži {{PLURAL:$1|zadnjo|zadnji|zadnje|zadnjih|zadnjih}} $1 {{PLURAL:$1|spremembo|spremembi|spremembe|sprememb|sprememb}} v {{PLURAL:$2|zadnjem $2 dnevu|zadnjih $2 dneh|zadnjih $2 dneh|zadnjih $2 dneh|zadnjih $2 dneh}};<br />$3',
+'rclinks'                           => 'Prikaži zadnji $1 spremembi v zadnjih $2 dneh;<br />$3',
 'diff'                              => 'prim',
 'hist'                              => 'zgod',
 'hide'                              => 'skrij',
@@ -1548,7 +1548,7 @@ Nedavna brisanja in obnove so zapisani v [[Special:Log/delete|dnevniku brisanja]
 'ipbenableautoblock'          => 'Avtomatično blokiraj zadnji IP naslov tega uporabnika in vse naslednje naslove, ki jih bodo hoteli uporabiti',
 'ipbsubmit'                   => 'Blokiraj naslov',
 'ipbother'                    => 'Drugačen čas',
-'ipboptions'                  => 'nedoločen čas:infinite,15 minut:15 minutes,1 uro:1 hour,3 ure:3 hours,1 dan:1 day,2 dni:2 days,3 dni:3 days,1 teden:1 week,2 tedna:2 weeks,1 mesec:1 month,3 mesece:3 months,6 mesecev:6 months,1 leto:1 year,neomejeno dolgo:infinite', # display1:time1,display2:time2,...
+'ipboptions'                  => '2 ure:2 hours,1 dan:1 day,3 dni:3 days,1 teden:1 week,2 tedna:2 weeks,1 mesec:1 month,3 mesece:3 months,6 mesecev:6 months,1 leto:1 year,neomejeno dolgo:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'              => 'drugo',
 'ipbotherreason'              => 'Drug/dodaten razlog:',
 'badipaddress'                => 'Neveljaven IP-naslov ali uporabniško ime.',
@@ -1873,7 +1873,7 @@ $1',
 * datetimeoriginal
 * exposuretime 
 * fnumber
-* isospeedratings
+* isospeedratings 
 * focallength', # Do not translate list items
 
 # EXIF tags

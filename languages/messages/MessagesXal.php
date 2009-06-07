@@ -37,25 +37,49 @@ $fallback8bitEncoding = "windows-1251";
 
 $messages = array(
 # Dates
-'sunday'    => 'Нарн өдр',
-'monday'    => 'Сарң өдр',
-'tuesday'   => 'Мигмр өдр',
-'wednesday' => 'Үлмҗ өдр',
-'thursday'  => 'Пүрвә өдр',
-'friday'    => 'Басң өдр',
-'saturday'  => 'Бембә өдр',
-'january'   => 'Туула',
-'february'  => 'Лу',
-'march'     => 'Моһа',
-'april'     => 'Мөрн',
-'may_long'  => 'Хөн',
-'june'      => 'Мөчн',
-'july'      => 'Така',
-'august'    => 'Ноха',
-'september' => 'Һаха',
-'october'   => 'Хулһн',
-'november'  => 'Үкр',
-'december'  => 'Бар',
+'sunday'        => 'Нарн өдр',
+'monday'        => 'Сарң өдр',
+'tuesday'       => 'Мигмр өдр',
+'wednesday'     => 'Үлмҗ өдр',
+'thursday'      => 'Пүрвә өдр',
+'friday'        => 'Басң өдр',
+'saturday'      => 'Бембә өдр',
+'january'       => 'Туула',
+'february'      => 'Лу',
+'march'         => 'Моһа',
+'april'         => 'Мөрн',
+'may_long'      => 'Хөн',
+'june'          => 'Мөчн',
+'july'          => 'Така',
+'august'        => 'Ноха',
+'september'     => 'Һаха',
+'october'       => 'Хулһн',
+'november'      => 'Үкр',
+'december'      => 'Бар',
+'january-gen'   => 'Туула',
+'february-gen'  => 'Лу',
+'march-gen'     => 'Моһа',
+'april-gen'     => 'Мөрн',
+'may-gen'       => 'Хөн',
+'june-gen'      => 'Мөчн',
+'july-gen'      => 'Така',
+'august-gen'    => 'Ноха',
+'september-gen' => 'Һаха',
+'october-gen'   => 'Хулһн',
+'november-gen'  => 'Үкр',
+'december-gen'  => 'Бар',
+'jan'           => 'Туу',
+'feb'           => 'Лу',
+'mar'           => 'Моһ',
+'apr'           => 'Мөр',
+'may'           => 'Хөн',
+'jun'           => 'Мөч',
+'jul'           => 'Так',
+'aug'           => 'Нох',
+'sep'           => 'Һах',
+'oct'           => 'Хул',
+'nov'           => 'Үкр',
+'dec'           => 'Бар',
 
 'article'        => 'Халх',
 'cancel'         => 'Уга кех',
@@ -84,6 +108,7 @@ $messages = array(
 'talk'             => 'Ухалвр',
 'toolbox'          => 'Зер-зев',
 'otherlanguages'   => 'Талдан келнд',
+'redirectedfrom'   => '($1 гидг һазрас авч одсмн)',
 'jumptonavigation' => 'Һазр медлһн',
 'jumptosearch'     => 'хәәлһн',
 
@@ -102,6 +127,7 @@ $messages = array(
 'editsectionhint'     => '$1 гидг хүвиг чиклх',
 'showtoc'             => 'үзүлх',
 'hidetoc'             => 'бултулх',
+'red-link-title'      => '$1 (халх бәәшго)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'     => 'Халх',
@@ -147,6 +173,7 @@ $messages = array(
 'minoredit'       => 'Эн баһ чикллһн бәәнә',
 'watchthis'       => 'Эн халхиг хәләх',
 'savearticle'     => 'Халхиг хадһлх',
+'preview'         => 'Хәләвр',
 'showpreview'     => 'Хәләвриг үзүлх',
 'showdiff'        => 'Сольлһдудиг үзүлх',
 'anoneditwarning' => "'''Урдаснь зәңг:''' та орв биш.
@@ -154,6 +181,7 @@ $messages = array(
 'newarticle'      => '(Шин)',
 'previewnote'     => "'''Эн хәләвр бәәҗ тускар тодлтн.'''
 Тана сольлһдуд ода чигн хадһлсн уга!",
+'editing'         => '$1 гидг халхиг чикллһн',
 'templatesused'   => 'Зурад эн халхд олзлсн:',
 
 # Diffs
@@ -184,6 +212,8 @@ $messages = array(
 'rcshowhideliu'   => 'орлцачнриг $1',
 'rcshowhideanons' => 'нер уга орлцачнриг $1',
 'rcshowhidemine'  => 'мини чиклһдүд $1',
+'hide'            => 'бултулх',
+'show'            => 'үзүлх',
 
 # Recent changes linked
 'recentchangeslinked-page' => 'Халхна нернь:',
@@ -203,6 +233,7 @@ $messages = array(
 
 # Special:AllPages
 'allpages'       => 'Цуг халхс',
+'allarticles'    => 'Цуг халхс',
 'allpagessubmit' => 'Орх',
 
 # Special:LinkSearch
@@ -221,6 +252,10 @@ $messages = array(
 # Delete
 'deletepage' => 'Эн халхиг һарһҗ',
 
+# Namespace form on various pages
+'namespace'      => 'Нернә у:',
+'blanknamespace' => '(Һол)',
+
 # Contributions
 'contributions' => 'Орлцачна өгүллһдүд',
 'mycontris'     => 'Мини өгүллһдүд',
@@ -229,6 +264,7 @@ $messages = array(
 'sp-contributions-submit'   => 'Хәәлһн',
 
 # What links here
+'whatlinkshere'      => 'Эн һазрур заалһуд',
 'whatlinkshere-page' => 'Халх:',
 
 # Block/unblock
@@ -243,14 +279,25 @@ $messages = array(
 'movereason'   => 'Учр:',
 
 # Tooltip help for the actions
-'tooltip-pt-mytalk'  => 'Тадна күндллһнә халх',
-'tooltip-pt-logout'  => 'Һарх',
-'tooltip-ca-delete'  => 'Эн халхиг һарһҗ',
-'tooltip-ca-unwatch' => 'Эн халхиг мини шинҗллһнә бүрткл бичгәс һарһх',
-'tooltip-search-go'  => 'Эн чик нертә халхд, эн бәәхлә, орх',
-'tooltip-n-mainpage' => 'Һол халхд орх',
-'tooltip-t-print'    => 'Эн халхна барин бәәдл',
-'tooltip-save'       => 'Тана сольлһдудиг хадһлтн',
+'tooltip-pt-userpage'    => 'Тана орлцачна халх',
+'tooltip-pt-mytalk'      => 'Тадна күндллһнә халх',
+'tooltip-pt-preferences' => 'Тана көгүд',
+'tooltip-pt-login'       => 'Та орсн күцх бәәнәт, болв кергтә биш.',
+'tooltip-pt-logout'      => 'Һарх',
+'tooltip-ca-edit'        => 'Та эн халхиг чиклҗ чаднат.
+Хадһлһна күртл хәләвр олзлтн эрҗәнә.',
+'tooltip-ca-delete'      => 'Эн халхиг һарһҗ',
+'tooltip-ca-move'        => 'Эн халхиг көндәҗ',
+'tooltip-ca-unwatch'     => 'Эн халхиг мини шинҗллһнә бүрткл бичгәс һарһх',
+'tooltip-search-go'      => 'Эн чик нертә халхд, эн бәәхлә, орх',
+'tooltip-n-mainpage'     => 'Һол халхд орх',
+'tooltip-n-randompage'   => 'Болв чигн халхиг үзүлх',
+'tooltip-n-help'         => 'Дөң өггдг һазр',
+'tooltip-t-upload'       => 'Зургиг, әгиг, болв нань чигн тәвх',
+'tooltip-t-specialpages' => 'Цуг көдлхнә халхс',
+'tooltip-t-print'        => 'Эн халхна барин бәәдл',
+'tooltip-ca-nstab-user'  => 'Орлцачна халхиг үзүлх',
+'tooltip-save'           => 'Тана сольлһдудиг хадһлтн',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'цуг',
@@ -258,5 +305,8 @@ $messages = array(
 
 # action=purge
 'confirm_purge_button' => 'Чик',
+
+# Special:SpecialPages
+'specialpages' => 'Көдлхнә халхс',
 
 );

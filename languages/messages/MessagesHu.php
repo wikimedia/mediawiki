@@ -1207,7 +1207,7 @@ Győződj meg róla, hogy a laptörténet folytonossága megmarad.',
 'prefs-search-nscustom'            => 'Egyedi névterek keresése:',
 'search-result-size'               => '$1 ({{PLURAL:$2|egy|$2}} szó)',
 'search-result-score'              => 'Relevancia: $1%',
-'search-redirect'                  => '(átirányítás ide: $1)',
+'search-redirect'                  => '(átirányítva innen: $1)',
 'search-section'                   => '($1. fejezet)',
 'search-suggest'                   => 'Keresési javaslat: $1',
 'search-interwiki-caption'         => 'Társlapok',
@@ -1745,7 +1745,7 @@ A megfelelő szócikkre kellene mutatniuk inkább.<br />
 Egy oldal egyértelműsítő lapnak számít, ha tartalmazza a [[MediaWiki:Disambiguationspage]] oldalról belinkelt sablonok valamelyikét.",
 
 'doubleredirects'            => 'Dupla átirányítások',
-'doubleredirectstext'        => '<strong>Figyelem:</strong> Ez a lista nem feltétlenül pontos. Ennek általában az oka az, hogy a #REDIRECT alatt további szöveg található.<br /> Minden sor tartalmazza az első és a második átirányítást, valamint a második átirányítás cikkének első sorát, ami általában a „valódi” célt tartalmazza, amire az elsőnek mutatnia kellene.',
+'doubleredirectstext'        => '<strong>Figyelem:</strong> Ez a lista nem feltétlenül pontos. Ennek általában az oka az, hogy az #ÁTIRÁNYÍTÁS alatt további szöveg található.<br /> Minden sor tartalmazza az első és a második átirányítást, valamint a második átirányítás cikkének első sorát, ami általában a „valódi” célt tartalmazza, amire az elsőnek mutatnia kellene.',
 'double-redirect-fixed-move' => '[[$1]] átnevezve, a továbbiakban átirányításként működik a(z) [[$2]] lapra',
 'double-redirect-fixer'      => 'Átirányításjavító',
 

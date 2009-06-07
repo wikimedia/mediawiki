@@ -1672,7 +1672,7 @@ PICT # misc.
 'noimage-linktext'          => 'подигни една',
 'uploadnewversion-linktext' => 'Подигни нова верзија на оваа податотека',
 'shared-repo-from'          => 'од $1', # $1 is the repository name
-'shared-repo'               => 'споделено складиште', # used when shared-repo-NAME does not exist
+'shared-repo'               => 'заедничко складиште', # used when shared-repo-NAME does not exist
 
 # File reversion
 'filerevert'                => 'Врати $1',
