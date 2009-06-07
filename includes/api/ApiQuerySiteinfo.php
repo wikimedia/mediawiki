@@ -171,6 +171,9 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 			
 			if( $canonical ) 
 				$data[$ns]['canonical'] = strtr($canonical, '_', ' ');
+			
+			if( MWNamespace::isContent( $ns ) )
+				$data[$ns]['content'] = '';
 		}
 
 		$this->getResult()->setIndexedTagName( $data, 'ns' );

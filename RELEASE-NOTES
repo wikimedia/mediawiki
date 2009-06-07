@@ -203,6 +203,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 18749) Add generator flag to action=paraminfo output
 * Make action=block respect $wgEnableUserEmail and $wgSysopEmailBans
 * Made deleting file description pages without files possible
+* (bug 18773) Add content flag to siprop=namespaces output
 
 === Languages updated in 1.16 ===
 
