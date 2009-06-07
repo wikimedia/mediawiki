@@ -79,7 +79,13 @@ class SkinCologneBlue extends Skin {
 
 		$s .= $this->bottomLinks();
 		$s .= $wgLang->pipeList( array(
-			"\n<br />" . $this->makeKnownLinkObj( Title::newMainPage() ),
+			"\n<br />" . $this->link(
+				Title::newMainPage(),
+				null,
+				array(),
+				array(),
+				array( 'known', 'noclasses' )
+			),
 			$this->aboutLink(),
 			$this->searchForm( wfMsg( 'qbfind' ) )
 		) );
@@ -242,20 +248,35 @@ class SkinCologneBlue extends Skin {
 		$s .= $this->menuHead( 'qbmyoptions' );
 		if ( $wgUser->isLoggedIn() ) {
 			$name = $wgUser->getName();
-			$tl = $this->makeKnownLinkObj( $wgUser->getTalkPage(),
-				wfMsg( 'mytalk' ) );
+			$tl = $this->link(
+				$wgUser->getTalkPage(),
+				wfMsg( 'mytalk' ),
+				array(),
+				array(),
+				array( 'known', 'noclasses' )
+			);
 			if ( $wgUser->getNewtalk() ) {
 				$tl .= " *";
 			}
 
-			$s .= $this->makeKnownLinkObj( $wgUser->getUserPage(),
-				wfMsg( 'mypage' ) )
+			$s .= $this->link(
+				$wgUser->getUserPage(),
+				wfMsg( 'mypage' ),
+				array(),
+				array(),
+				array( 'known', 'noclasses' )
+			  )
 			  . $sep . $tl
 			  . $sep . $this->specialLink( 'watchlist' )
-			  . $sep . $this->makeKnownLinkObj( SpecialPage::getSafeTitleFor( 'Contributions', $wgUser->getName() ),
-			  	wfMsg( 'mycontris' ) )
-		  	  . $sep . $this->specialLink( 'preferences' )
-		  	  . $sep . $this->specialLink( 'userlogout' );
+			  . $sep . $this->link(
+				SpecialPage::getSafeTitleFor( 'Contributions', $wgUser->getName() ),
+				wfMsg( 'mycontris' ),
+				array(),
+				array(),
+				array( 'known', 'noclasses' )
+			  )
+			  . $sep . $this->specialLink( 'preferences' )
+			  . $sep . $this->specialLink( 'userlogout' );
 		} else {
 			$s .= $this->specialLink( 'userlogin' );
 		}
@@ -267,15 +288,21 @@ class SkinCologneBlue extends Skin {
 		if ( $wgUser->isLoggedIn() && $wgEnableUploads ) {
 			$s .= $sep . $this->specialLink( 'upload' );
 		}
+
 		global $wgSiteSupportPage;
+
 		if( $wgSiteSupportPage ) {
 			$s .= $sep . '<a href="' . htmlspecialchars( $wgSiteSupportPage ) . '" class="internal">'
 			      . wfMsg( 'sitesupport' ) . '</a>';
 		}
 
-		$s .= $sep . $this->makeKnownLinkObj(
+		$s .= $sep . $this->link(
 			SpecialPage::getTitleFor( 'Specialpages' ),
-			wfMsg( 'moredotdotdot' ) );
+			wfMsg( 'moredotdotdot' ),
+			array(),
+			array(),
+			array( 'known', 'noclasses' )
+		);
 
 		$s .= $sep . "\n</div>\n";
 		return $s;

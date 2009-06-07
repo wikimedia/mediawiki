@@ -1254,7 +1254,13 @@ class OutputPage {
 		$this->setArticleFlag( false );
 
 		$loginTitle = SpecialPage::getTitleFor( 'Userlogin' );
-		$loginLink = $skin->makeKnownLinkObj( $loginTitle, wfMsgHtml( 'loginreqlink' ), 'returnto=' . $this->getTitle()->getPrefixedUrl() );
+		$loginLink = $skin->link(
+			$loginTitle,
+			wfMsgHtml( 'loginreqlink' ),
+			array(),
+			array( 'returnto' => $this->getTitle()->getPrefixedUrl() ),
+			array( 'known', 'noclasses' )
+		);
 		$this->addHTML( wfMsgWikiHtml( 'loginreqpagetext', $loginLink ) );
 		$this->addHTML( "\n<!--" . $this->getTitle()->getPrefixedUrl() . "-->" );
 
@@ -1336,7 +1342,18 @@ class OutputPage {
 			// Permissions error
 			if( $source ) {
 				$this->setPageTitle( wfMsg( 'viewsource' ) );
-				$this->setSubtitle( wfMsg( 'viewsourcefor', $skin->makeKnownLinkObj( $this->getTitle() ) ) );
+				$this->setSubtitle(
+					wfMsg(
+						'viewsourcefor',
+						$skin->link(
+							$this->getTitle(),
+							null,
+							array(),
+							array(),
+							array( 'known', 'noclasses' )
+						)
+					)
+				);
 			} else {
 				$this->setPageTitle( wfMsg( 'badaccess' ) );
 			}

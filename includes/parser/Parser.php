@@ -1793,6 +1793,7 @@ class Parser
 	function makeKnownLinkHolder( $nt, $text = '', $query = '', $trail = '', $prefix = '' ) {
 		list( $inside, $trail ) = Linker::splitTrail( $trail );
 		$sk = $this->mOptions->getSkin();
+		// FIXME: use link() instead of deprecated makeKnownLinkObj()
 		$link = $sk->makeKnownLinkObj( $nt, $text, $query, $inside, $prefix );
 		return $this->armorLinks( $link ) . $trail;
 	}

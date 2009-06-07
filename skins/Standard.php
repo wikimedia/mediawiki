@@ -221,13 +221,21 @@ class SkinStandard extends Skin {
 					# and to avoid messing with the separator that is prepended to the next item
 					$s .= '<strong>' . wfMsg( 'newpage' ) . '</strong>';
 				}
-
 			}
 
 			# "Post a comment" link
 			if( ( $this->mTitle->isTalkPage() || $wgOut->showNewSectionLink() ) && $action != 'edit' && !$wpPreview )
-				$s .= '<br />' . $this->makeKnownLinkObj( $this->mTitle, wfMsg( 'postcomment' ), 'action=edit&section=new' );
-			
+				$s .= '<br />' . $this->link(
+					$this->mTitle,
+					wfMsg( 'postcomment' ),
+					array(),
+					array(
+						'action' => 'edit',
+						'section' => 'new'
+					),
+					array( 'known', 'noclasses' )
+				);
+
 			#if( $tns%2 && $action!='edit' && !$wpPreview) {
 				#$s.= '<br />'.$this->makeKnownLink($wgTitle->getPrefixedText(),wfMsg('postcomment'),'action=edit&section=new');
 			#}

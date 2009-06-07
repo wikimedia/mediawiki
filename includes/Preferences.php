@@ -310,8 +310,13 @@ class Preferences {
 					global $wgUser; // wgUser is okay here, it's for display
 					$skin = $wgUser->getSkin();
 					$emailauthenticated = wfMsgHtml('emailnotauthenticated').'<br />' .
-						$skin->makeKnownLinkObj( SpecialPage::getTitleFor( 'Confirmemail' ),
-							wfMsg( 'emailconfirmlink' ) ) . '<br />';
+						$skin->link(
+							SpecialPage::getTitleFor( 'Confirmemail' ),
+							wfMsg( 'emailconfirmlink' ),
+							array(),
+							array(),
+							array( 'known', 'noclasses' )
+						) . '<br />';
 				}
 			} else {
 				$disableEmailPrefs = true;
