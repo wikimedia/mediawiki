@@ -60,7 +60,7 @@ function wfSpecialSpecialpages() {
 		$wgOut->addHTML( "<td width='30%' valign='top'><ul>\n" );
 		foreach( $sortedPages as $desc => $specialpage ) {
 			list( $title, $restricted ) = $specialpage;
-			$link = $sk->makeKnownLinkObj( $title , htmlspecialchars( $desc ) );
+			$link = $sk->linkKnown( $title , htmlspecialchars( $desc ) );
 			if( $restricted ) {
 				$includesRestrictedPages = true;
 				$wgOut->addHTML( "<li class='mw-specialpages-page mw-specialpagerestricted'><strong>{$link}</strong></li>\n" );

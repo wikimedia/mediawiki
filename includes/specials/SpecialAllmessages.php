@@ -52,8 +52,8 @@ function wfSpecialAllmessages() {
 		$navText .= wfAllMessagesMakePhp( $messages );
 		$wgOut->addHTML( $wgLang->pipeList( array(
 			'PHP',
-			'<a href="' . $title->escapeLocalUrl( 'ot=html' ) . '">HTML</a>',
-			'<a href="' . $title->escapeLocalUrl( 'ot=xml' ) . '">XML</a>' .
+			'<a href="' . $title->escapeLocalUrl( array( 'ot' => 'html' ) ) . '">HTML</a>',
+			'<a href="' . $title->escapeLocalUrl( array( 'ot' => 'xml' ) ) . '">XML</a>' .
 			'<pre>' . htmlspecialchars( $navText ) . '</pre>'
 		) ) );
 	} else if ( $ot == 'xml' ) {
@@ -62,9 +62,9 @@ function wfSpecialAllmessages() {
 		echo wfAllMessagesMakeXml( $messages );
 	} else {
 		$wgOut->addHTML( $wgLang->pipeList( array(
-			'<a href="' . $title->escapeLocalUrl( 'ot=php' ) . '">PHP</a>',
+			'<a href="' . $title->escapeLocalUrl( array( 'ot' => 'php' ) ) . '">PHP</a>',
 			'HTML',
-			'<a href="' . $title->escapeLocalUrl( 'ot=xml' ) . '">XML</a>'
+			'<a href="' . $title->escapeLocalUrl( array( 'ot' => 'xml' ) ) . '">XML</a>'
 		) ) );
 		$wgOut->addWikiText( $navText );
 		$wgOut->addHTML( wfAllMessagesMakeHTMLText( $messages ) );
@@ -188,14 +188,17 @@ function wfAllMessagesMakeHTMLText( &$messages ) {
 		$mw = htmlspecialchars( $m['msg'] );
 
 		if( array_key_exists( $title, $pageExists[NS_MEDIAWIKI] ) ) {
-			$pageLink = $sk->makeKnownLinkObj( $titleObj, "<span id=\"sp-allmessages-i-$i\">" . 
-				htmlspecialchars( $key ) . '</span>' );
+			// FIXME: the span should be taken care of in $customAttribs, shouldn't it?
+			$pageLink = $sk->linkKnown(
+				$titleObj,
+				"<span id=\"sp-allmessages-i-$i\">" . htmlspecialchars( $key ) . '</span>'
+			);
 		} else {
 			$pageLink = $sk->makeBrokenLinkObj( $titleObj, "<span id=\"sp-allmessages-i-$i\">" . 
 				htmlspecialchars( $key ) . '</span>' );
 		}
 		if( array_key_exists( $title, $pageExists[NS_MEDIAWIKI_TALK] ) ) {
-			$talkLink = $sk->makeKnownLinkObj( $talkPage, htmlspecialchars( $talk ) );
+			$talkLink = $sk->linkKnown( $talkPage, htmlspecialchars( $talk ) );
 		} else {
 			$talkLink = $sk->makeBrokenLinkObj( $talkPage, htmlspecialchars( $talk ) );
 		}

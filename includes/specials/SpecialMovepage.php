@@ -463,7 +463,7 @@ class MovePageForm {
 			# be longer than 255 characters.
 			$newSubpage = Title::makeTitleSafe( $newNs, $newPageName );
 			if( !$newSubpage ) {
-				$oldLink = $skin->makeKnownLinkObj( $oldSubpage );
+				$oldLink = $skin->linkKnown( $oldSubpage );
 				$extraOutput []= wfMsgHtml( 'movepage-page-unmoved', $oldLink,
 					htmlspecialchars(Title::makeName( $newNs, $newPageName )));
 				continue;
@@ -471,7 +471,7 @@ class MovePageForm {
 
 			# This was copy-pasted from Renameuser, bleh.
 			if ( $newSubpage->exists() && !$oldSubpage->isValidMoveTarget( $newSubpage ) ) {
-				$link = $skin->makeKnownLinkObj( $newSubpage );
+				$link = $skin->linkKnown( $newSubpage );
 				$extraOutput []= wfMsgHtml( 'movepage-page-exists', $link );
 			} else {
 				$success = $oldSubpage->moveTo( $newSubpage, true, $this->reason, $createRedirect );
@@ -479,11 +479,16 @@ class MovePageForm {
 					if ( $this->fixRedirects ) {
 						DoubleRedirectJob::fixRedirects( 'move', $oldSubpage, $newSubpage );
 					}
-					$oldLink = $skin->makeKnownLinkObj( $oldSubpage, '', 'redirect=no' );
-					$newLink = $skin->makeKnownLinkObj( $newSubpage );
+					$oldLink = $skin->linkKnown(
+						$oldSubpage,
+						null,
+						array(),
+						array( 'redirect' => 'no' )
+					);
+					$newLink = $skin->linkKnown( $newSubpage );
 					$extraOutput []= wfMsgHtml( 'movepage-page-moved', $oldLink, $newLink );
 				} else {
-					$oldLink = $skin->makeKnownLinkObj( $oldSubpage );
+					$oldLink = $skin->linkKnown( $oldSubpage );
 					$newLink = $skin->link( $newSubpage );
 					$extraOutput []= wfMsgHtml( 'movepage-page-unmoved', $oldLink, $newLink );
 				}

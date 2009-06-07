@@ -44,8 +44,16 @@ class UnwatchedpagesPage extends QueryPage {
 		$nt = Title::makeTitle( $result->namespace, $result->title );
 		$text = $wgContLang->convert( $nt->getPrefixedText() );
 
-		$plink = $skin->makeKnownLinkObj( $nt, htmlspecialchars( $text ) );
-		$wlink = $skin->makeKnownLinkObj( $nt, wfMsgHtml( 'watch' ), 'action=watch' );
+		$plink = $skin->linkKnown(
+			$nt,
+			htmlspecialchars( $text )
+		);
+		$wlink = $skin->linkKnown(
+			$nt,
+			wfMsgHtml( 'watch' ),
+			array(),
+			array( 'action' => 'watch'
+		);
 
 		return wfSpecialList( $plink, $wlink );
 	}

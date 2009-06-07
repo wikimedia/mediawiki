@@ -48,9 +48,15 @@ class PopularPagesPage extends QueryPage {
 	function formatResult( $skin, $result ) {
 		global $wgLang, $wgContLang;
 		$title = Title::makeTitle( $result->namespace, $result->title );
-		$link = $skin->makeKnownLinkObj( $title, htmlspecialchars( $wgContLang->convert( $title->getPrefixedText() ) ) );
-		$nv = wfMsgExt( 'nviews', array( 'parsemag', 'escape'),
-			$wgLang->formatNum( $result->value ) );
+		$link = $skin->linkKnown(
+			$title,
+			htmlspecialchars( $wgContLang->convert( $title->getPrefixedText() ) )
+		);
+		$nv = wfMsgExt(
+			'nviews',
+			array( 'parsemag', 'escape'),
+			$wgLang->formatNum( $result->value )
+		);
 		return wfSpecialList($link, $nv);
 	}
 }
