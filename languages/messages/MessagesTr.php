@@ -465,7 +465,7 @@ Lütfen bunu bir [[Special:ListUsers/sysop|hizmetliye]], URL\'yi not ederek ilet
 'internalerror'        => 'Yazılım hatası',
 'internalerror_info'   => 'İç hata: $1',
 'filecopyerror'        => '"$1"  "$2" dosyasına kopyalanamıyor.',
-'filerenameerror'      => '"$1" dosyasının adı "$2" ismine değiştirilemiyor.',
+'filerenameerror'      => '"$1" dosyasının ismi "$2" olarak değiştirilemedi.',
 'filedeleteerror'      => '"$1" dosyası silinemedi.',
 'directorycreateerror' => '"$1" dizini oluşturulamadı',
 'filenotfound'         => '"$1" dosyası bulunamadı.',
@@ -1526,7 +1526,7 @@ Bir sütünun başlığına tıklayarak sıralamayı değiştirebilirsiniz.',
 'filehist-current'          => 'Şimdiki',
 'filehist-datetime'         => 'Gün/Zaman',
 'filehist-thumb'            => 'Küçük resim',
-'filehist-thumbtext'        => '$1 tarihindeki versiyonun küçültülmüş hali',
+'filehist-thumbtext'        => '$1 tarihindeki sürümün küçültülmüş hali',
 'filehist-nothumb'          => 'Küçük resim yok',
 'filehist-user'             => 'Kullanıcı',
 'filehist-dimensions'       => 'Boyutlar',
@@ -2884,10 +2884,6 @@ Ondan sonraki link(ler) kural dışı olarak kabul edilir, örneğin: resim sayf
 'exif-gpslongitude-e' => 'Doğu boylamı',
 'exif-gpslongitude-w' => 'Batı boylamı',
 
-# Pseudotags used for GPSAltitudeRef
-'exif-gpsaltitude-0' => 'Metre deniz seviyesinden yüksekte',
-'exif-gpsaltitude-1' => 'Metre deniz seviyesinin altında',
-
 'exif-gpsstatus-a' => 'Ölçüm devam ediyor',
 'exif-gpsstatus-v' => 'Ölçüm işlerliği',
 
@@ -2898,11 +2894,6 @@ Ondan sonraki link(ler) kural dışı olarak kabul edilir, örneğin: resim sayf
 'exif-gpsspeed-k' => 'km/s',
 'exif-gpsspeed-m' => 'Mil/saat',
 'exif-gpsspeed-n' => 'Deniz mili',
-
-# Pseudotags used for GPSDestDistanceRef
-'exif-gpsdestdistance-k' => 'Kilometre',
-'exif-gpsdestdistance-m' => 'Mil',
-'exif-gpsdestdistance-n' => 'Deniz mili',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Gerçek yönü',

@@ -2930,10 +2930,6 @@ Variants for Chinese language
 'exif-gpslongitude-e' => 'طول شرقی',
 'exif-gpslongitude-w' => 'طول غربی',
 
-# Pseudotags used for GPSAltitudeRef
-'exif-gpsaltitude-0' => 'متر برزتر چه دریا',
-'exif-gpsaltitude-1' => 'متر جهل سطح دریا',
-
 'exif-gpsstatus-a' => 'اندازه گرگ ته جریاننت',
 'exif-gpsstatus-v' => 'اندازه گرگ بین عملی',
 
@@ -2944,11 +2940,6 @@ Variants for Chinese language
 'exif-gpsspeed-k' => 'کیلومتر ته ساعت',
 'exif-gpsspeed-m' => 'مایل ته ساعت',
 'exif-gpsspeed-n' => 'گرهنان',
-
-# Pseudotags used for GPSDestDistanceRef
-'exif-gpsdestdistance-k' => 'کیلومتر',
-'exif-gpsdestdistance-m' => 'مایل',
-'exif-gpsdestdistance-n' => 'دریایی مایل',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'جهت درست',

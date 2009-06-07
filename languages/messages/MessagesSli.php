@@ -12,6 +12,7 @@
  * @author Schläsinger
  * @author Teutonius
  * @author Timpul
+ * @author Äberlausitzer
  */
 
 $fallback = 'de';
@@ -455,19 +456,21 @@ Du gest ons hiermit denne Zusoage, dass du dan Text '''selbst verfasst''' host, 
 'history-feed-title' => 'Versionsgeschichtla',
 
 # Revision deletion
-'rev-deleted-comment'     => '(Beorbeetungskommentar entfernt)',
-'rev-deleted-user'        => '(Benutzernoame entfernt)',
-'rev-delundel'            => 'zeege/verstecke',
-'revisiondelete'          => 'Versiona löscha/wiederherstella',
-'revdelete-nooldid-title' => 'Keene Version oangegeba',
-'revdelete-hide-text'     => 'Text dar Version verstecka',
-'revdelete-hide-comment'  => 'Beorbeetungskommentar verstecka',
-'revdelete-hide-user'     => 'Benutzernoame/de IP des Beorbeeters verstecka',
-'revdelete-hide-image'    => 'Bildinhalt verstecka',
-'revdel-restore'          => 'Sichtbarkeit ändern',
-'revdelete-uname'         => 'Benutzernoame',
-'revdelete-hid'           => 'versteckte $1',
-'revdelete-log-message'   => '$1 fier $2 {{PLURAL:$2|Version|Versiona}}',
+'rev-deleted-comment'        => '(Beorbeetungskommentar entfernt)',
+'rev-deleted-user'           => '(Benutzernoame entfernt)',
+'rev-delundel'               => 'zeege/verstecke',
+'revisiondelete'             => 'Versiona löscha/wiederherstella',
+'revdelete-nooldid-title'    => 'Keene Version oangegeba',
+'revdelete-show-file-submit' => 'Ju',
+'revdelete-hide-text'        => 'Text dar Version verstecka',
+'revdelete-hide-comment'     => 'Beorbeetungskommentar verstecka',
+'revdelete-hide-user'        => 'Benutzernoame/de IP des Beorbeeters verstecka',
+'revdelete-hide-image'       => 'Bildinhalt verstecka',
+'revdel-restore'             => 'Sichtbarkeit ändern',
+'pagehist'                   => 'Versionsgeschichte',
+'revdelete-uname'            => 'Benutzernoame',
+'revdelete-hid'              => 'versteckte $1',
+'revdelete-log-message'      => '$1 fier $2 {{PLURAL:$2|Version|Versiona}}',
 
 # History merging
 'mergehistory-autocomment' => '„[[:$1]]“ vereinigt noach „[[:$2]]“',
@@ -508,59 +511,85 @@ Du gest ons hiermit denne Zusoage, dass du dan Text '''selbst verfasst''' host, 
 'diff-div'                => "a '''Blockelement'''",
 'diff-ul'                 => "anne '''Liste'''",
 'diff-ol'                 => "anne '''numerierte Liste'''",
+'diff-table'              => "anne '''Tabelle'''",
+'diff-tr'                 => "anne '''Zeile'''",
+'diff-td'                 => "anne '''Zelle'''",
+'diff-hr'                 => "anne '''hurizuntale Linie'''",
+'diff-form'               => "a '''Formular'''",
+'diff-img'                => "a '''Bild'''",
+'diff-span'               => "a '''Span'''",
+'diff-a'                  => "anna '''Link'''",
+'diff-i'                  => "'''kursiv'''",
+'diff-big'                => "'''gruß'''",
 
 # Search results
-'searchresults'             => 'Suchergebnisse',
-'searchresults-title'       => 'Suchergebnisse für "$1"',
-'searchresulttext'          => 'Fier meh Informationa zer Suche siehe de [[{{MediaWiki:Helppage}}|Helfeseite]].',
-'searchsubtitle'            => 'Denne Suchanfroage: „[[:$1|$1]]“ ([[Special:Prefixindex/$1|olle mit „$1“ beginnenda Seita]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|alle Seiten, de noach „$1“ verlinka]])',
-'searchsubtitleinvalid'     => 'Denne Suchanfroage: „$1“.',
-'noexactmatch'              => "'''Is existiert kenne Seite miet dam Tittel „$1“.'''
+'searchresults'                  => 'Suchergebnisse',
+'searchresults-title'            => 'Suchergebnisse für "$1"',
+'searchresulttext'               => 'Fier meh Informationa zer Suche siehe de [[{{MediaWiki:Helppage}}|Helfeseite]].',
+'searchsubtitle'                 => 'Denne Suchanfroage: „[[:$1|$1]]“ ([[Special:Prefixindex/$1|olle mit „$1“ beginnenda Seita]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|alle Seiten, de noach „$1“ verlinka]])',
+'searchsubtitleinvalid'          => 'Denne Suchanfroage: „$1“.',
+'noexactmatch'                   => "'''Is existiert kenne Seite miet dam Tittel „$1“.'''
 Wenn du dich miet dam Thema oauskennst, koast du selbst [[:$1|die Seite verfassa]].",
-'noexactmatch-nocreate'     => "'''Is existiert keene Seyte miet dam Tittel „$1“.'''",
-'notitlematches'            => 'Kenne Iebereinstimmunga miet Seytatitteln',
-'notextmatches'             => 'Kenne Iebereinstimmunga miet Inhalta',
-'prevn'                     => 'vurherige {{PLURAL:$1|$1}}',
-'nextn'                     => 'nächste {{PLURAL:$1|$1}}',
-'viewprevnext'              => 'Zeige ($1) ($2) ($3)',
-'search-result-size'        => '$1 ({{PLURAL:$2|1 Wurt|$2 Wärter}})',
-'search-redirect'           => '(Weiterleitung vun „$1“)',
-'search-section'            => '(Obschnitt $1)',
-'search-suggest'            => 'Meitest du „$1“?',
-'search-interwiki-caption'  => 'Schwasterprujätte',
-'search-interwiki-default'  => '$1 Ergebnisse:',
-'search-interwiki-more'     => '(weitere)',
-'search-mwsuggest-enabled'  => 'miet Vurschläga',
-'search-mwsuggest-disabled' => 'kääne Vurschläge',
-'searchrelated'             => 'verwandt',
-'searchall'                 => 'olle',
-'showingresultstotal'       => "Is {{PLURAL:$4|folgt Suchergebnis '''$1''' voo '''$3:'''|fulga de Suchergebnisse '''$1–$2''' voo '''$3:'''}}",
-'nonefound'                 => "'''Hinweis:''' Is waan standardmäßig ocke eenige Noamensräume dorchsucht. Setze ''all:'' vur denn Suchbegriff, im olle Seita (inkl. Diskussionsseiten, Vorlagen usw.) zu dorchsucha oder gezielt dan Noama des zu dorchsuchenden Noamensraumes.",
-'powersearch'               => 'Erweiterte Suche',
-'powersearch-legend'        => 'Erweiterte Suche',
-'powersearch-ns'            => 'Suche ei Noamasräuma:',
-'powersearch-redir'         => 'Weiterleitunga oanzeega:',
-'powersearch-field'         => 'Suche noach:',
-'search-external'           => 'Externe Suche',
+'noexactmatch-nocreate'          => "'''Is existiert keene Seyte miet dam Tittel „$1“.'''",
+'notitlematches'                 => 'Kenne Iebereinstimmunga miet Seytatitteln',
+'notextmatches'                  => 'Kenne Iebereinstimmunga miet Inhalta',
+'prevn'                          => 'vurherige {{PLURAL:$1|$1}}',
+'nextn'                          => 'nächste {{PLURAL:$1|$1}}',
+'viewprevnext'                   => 'Zeige ($1) ($2) ($3)',
+'searchprofile-project'          => 'Helfe on Projektseyta',
+'searchprofile-everything'       => 'Olles',
+'searchprofile-articles-tooltip' => 'Sucha ei $1',
+'searchprofile-project-tooltip'  => 'Sucha ei $1',
+'searchprofile-images-tooltip'   => 'Noach Bildern sucha',
+'search-result-size'             => '$1 ({{PLURAL:$2|1 Wurt|$2 Wärter}})',
+'search-result-score'            => 'Relevanz: $1 %',
+'search-redirect'                => '(Weiterleitung vun „$1“)',
+'search-section'                 => '(Obschnitt $1)',
+'search-suggest'                 => 'Meitest du „$1“?',
+'search-interwiki-caption'       => 'Schwasterprujätte',
+'search-interwiki-default'       => '$1 Ergebnisse:',
+'search-interwiki-more'          => '(weitere)',
+'search-mwsuggest-enabled'       => 'miet Vurschläga',
+'search-mwsuggest-disabled'      => 'kääne Vurschläge',
+'search-relatedarticle'          => 'Verwandte',
+'searchrelated'                  => 'verwandt',
+'searchall'                      => 'olle',
+'showingresultstotal'            => "Is {{PLURAL:$4|folgt Suchergebnis '''$1''' voo '''$3:'''|fulga de Suchergebnisse '''$1–$2''' voo '''$3:'''}}",
+'nonefound'                      => "'''Hinweis:''' Is waan standardmäßig ocke eenige Noamensräume dorchsucht. Setze ''all:'' vur denn Suchbegriff, im olle Seita (inkl. Diskussionsseiten, Vorlagen usw.) zu dorchsucha oder gezielt dan Noama des zu dorchsuchenden Noamensraumes.",
+'powersearch'                    => 'Erweiterte Suche',
+'powersearch-legend'             => 'Erweiterte Suche',
+'powersearch-ns'                 => 'Suche ei Noamasräuma:',
+'powersearch-redir'              => 'Weiterleitunga oanzeega:',
+'powersearch-field'              => 'Suche noach:',
+'powersearch-toggleall'          => 'Olle',
+'search-external'                => 'Externe Suche',
 
 # Preferences page
-'preferences'       => 'Eenstellunga',
-'mypreferences'     => 'Meene Eistellunga',
-'rows'              => 'Zeila:',
-'searchresultshead' => 'Suche',
-'youremail'         => 'E-Mail-Adresse:',
-'username'          => 'Benutzernoame:',
-'uid'               => 'Benutzer-ID:',
-'yourrealname'      => 'Echter Noame:',
-'yourlanguage'      => 'Sproache der Benutzeroberfläche:',
-'yourvariant'       => 'Variante',
-'yournick'          => 'Unterschrift:',
-'badsiglength'      => 'Ihre Underschrift derf ne länger sein als wie $1 {{PLURAL:$1|character|Zeecha}}.',
-'yourgender'        => 'Geschlecht:',
-'gender-unknown'    => 'ne oagagahn',
-'gender-male'       => 'männlich',
-'gender-female'     => 'weiblich',
-'email'             => 'E-mail',
+'preferences'           => 'Eenstellunga',
+'mypreferences'         => 'Meene Eistellunga',
+'rows'                  => 'Zeila:',
+'searchresultshead'     => 'Suche',
+'timezonelegend'        => 'Zeitzone:',
+'localtime'             => 'Urtszeit:',
+'timezoneoffset'        => 'Underschied¹:',
+'timezoneregion-africa' => 'Offreka',
+'prefs-files'           => 'Dateien',
+'youremail'             => 'E-Mail-Adresse:',
+'username'              => 'Benutzernoame:',
+'uid'                   => 'Benutzer-ID:',
+'yourrealname'          => 'Echter Noame:',
+'yourlanguage'          => 'Sproache der Benutzeroberfläche:',
+'yourvariant'           => 'Variante',
+'yournick'              => 'Unterschrift:',
+'badsiglength'          => 'Ihre Underschrift derf ne länger sein als wie $1 {{PLURAL:$1|character|Zeecha}}.',
+'yourgender'            => 'Geschlecht:',
+'gender-unknown'        => 'ne oagagahn',
+'gender-male'           => 'männlich',
+'gender-female'         => 'weiblich',
+'email'                 => 'E-mail',
+
+# User rights
+'userrights-groupsmember' => 'Mitglied vun:',
 
 # Groups
 'group-user'  => 'Benutzer',
@@ -577,10 +606,13 @@ Wenn du dich miet dam Thema oauskennst, koast du selbst [[:$1|die Seite verfassa
 'grouppage-suppress' => '{{ns:project}}:Oversighter',
 
 # User rights log
-'rightslog' => 'Rechte-Logbuch',
+'rightslog'  => 'Rechte-Logbuch',
+'rightsnone' => '(–)',
 
 # Associated actions - in the sentence "You do not have permission to X"
-'action-edit' => 'de Seite zu beoarbeeta',
+'action-read'       => 'de Seyte zu lasa',
+'action-edit'       => 'de Seite zu beoarbeeta',
+'action-createpage' => 'Seyta zu erschtella',
 
 # Recent changes
 'nchanges'                       => '$1 {{PLURAL:$1|Ännerong|Änneronga}}',
@@ -602,6 +634,7 @@ Wenn du dich miet dam Thema oauskennst, koast du selbst [[:$1|die Seite verfassa
 'minoreditletter'                => 'K',
 'newpageletter'                  => 'N',
 'boteditletter'                  => 'B',
+'rc_categories_any'              => 'Olle',
 'rc-enhanced-expand'             => 'Details oazeega (beneetigt JavaScript)',
 'rc-enhanced-hide'               => 'Details verstecka',
 
@@ -622,17 +655,26 @@ Wenn du dich miet dam Thema oauskennst, koast du selbst [[:$1|die Seite verfassa
 'uploadnologin'     => 'Nä oangemeldet',
 'uploadnologintext' => 'Du musst [[Special:UserLogin|oangemeldet sein]], um Dateia huchloada zu könna.',
 'uploaderror'       => 'Fehler beim Huchloada',
+'uploadlog'         => 'Datei-Logbuch',
 'uploadlogpage'     => 'Datei-Logbuch',
 'filename'          => 'Dateinoame',
 'filedesc'          => 'Beschreibung',
+'filestatus'        => 'Copyright-Status:',
+'filesource'        => 'Quelle:',
 'savefile'          => 'Datei speichern',
 'uploadedimage'     => 'hoot „[[$1]]“ huchgeloada',
+'uploaddisabled'    => 'Huchlada deaktiviert',
 'watchthisupload'   => 'Diese Seite beobachta',
+
+'license' => 'Lizenz:',
 
 # Special:ListFiles
 'imgfile'        => 'Datei',
 'listfiles'      => 'Dateiliste',
+'listfiles_date' => 'Datum',
+'listfiles_name' => 'Noame',
 'listfiles_user' => 'Benutzer',
+'listfiles_size' => 'Greeße',
 
 # File description page
 'file-anchor-link'          => 'Datei',
@@ -649,18 +691,21 @@ Wenn du dich miet dam Thema oauskennst, koast du selbst [[:$1|die Seite verfassa
 'linkstoimage'              => 'De {{PLURAL:$1|folgende Seyte verwendet|folgenden $1 Seyta verwenda}} diese Datei:',
 'sharedupload'              => 'Diese Datei stommt ous $1 on dorf voo andern Projekta verwendet waan.',
 'uploadnewversion-linktext' => 'Eene neue Version dieser Datei huchloada',
+'shared-repo-from'          => 'oaus $1',
 
 # Random page
 'randompage' => 'Zufoallige Seyte',
 
 # Statistics
-'statistics' => 'Statistik',
+'statistics'       => 'Statistik',
+'statistics-pages' => 'Seyta',
 
 'withoutinterwiki-legend' => 'Präfix',
 'withoutinterwiki-submit' => 'Zeige',
 
 # Miscellaneous special pages
 'nbytes'        => '$1 {{PLURAL:$1|Byte|Bytes}}',
+'nlinks'        => '{{PLURAL:$1|1 Link|$1 Links}}',
 'nmembers'      => '{{PLURAL:$1|1 Eentrag|$1 Eenträge}}',
 'prefixindex'   => 'Olle Seita (mit Präfix)',
 'newpages'      => 'Neue Seyta',
@@ -694,7 +739,12 @@ Wenn du dich miet dam Thema oauskennst, koast du selbst [[:$1|die Seite verfassa
 'categories' => 'Kategoria',
 
 # Special:LinkSearch
-'linksearch' => 'Weblink-Suche',
+'linksearch'      => 'Weblink-Suche',
+'linksearch-ok'   => 'Sucha',
+'linksearch-line' => '$1 ies verlinkt vun $2',
+
+# Special:ListUsers
+'listusers-submit' => 'Zeige',
 
 # Special:Log/newusers
 'newuserlogpage'          => 'Neuoameldungs-Logbuch',
@@ -775,9 +825,13 @@ Wenn du de Seyte wieder voo denner Beobachtungsliste entferna mechtest, klicke u
 'protect-cantedit'            => 'Du koast de Sperre dieser Seite nee ändern, doo du keene Berechtigung zim Beoarbeeta dar Seite host.',
 'restriction-type'            => 'Schutzstatus',
 'restriction-level'           => 'Schutzhiehe',
+'minimum-size'                => 'Mindestgreeße',
+'maximum-size'                => 'Maximalgreeße:',
+'pagesize'                    => '(Bytes)',
 
 # Restrictions (nouns)
 'restriction-edit'   => 'Beorbeeta',
+'restriction-create' => 'Erschtella',
 'restriction-upload' => 'Huchloada',
 
 # Restriction levels
@@ -831,6 +885,7 @@ Wenn du de Seyte wieder voo denner Beobachtungsliste entferna mechtest, klicke u
 'ipadressorusername'       => 'IP-Atresse oder Benutzernoame:',
 'ipboptions'               => '2 Stonda:2 hours,1 Taag:1 day,3 Taage:3 days,1 Wuche:1 week,2 Wucha:2 weeks,1 Moonat:1 month,3 Moonate:3 months,6 Moonate:6 months,1 Joahr:1 year,Unbeschränkt:infinite',
 'ipblocklist'              => 'Gesperrte IP-Atressa on Benutzernoama',
+'ipblocklist-submit'       => 'Sucha',
 'blocklistline'            => '$1, $2 sperrte $3 (bis $4)',
 'blocklink'                => 'Sperra',
 'unblocklink'              => 'freigahn',
@@ -840,6 +895,7 @@ Wenn du de Seyte wieder voo denner Beobachtungsliste entferna mechtest, klicke u
 'blocklogentry'            => 'sperrte „[[$1]]“ fier dan Zeitraum: $2 $3',
 'unblocklogentry'          => 'hoot de Sperre voo „[[$1]]“ uffgehoba',
 'block-log-flags-nocreate' => 'Erstellung voo Benutzerkonta gesperrt',
+'proxyblocksuccess'        => 'Fattich',
 
 # Move page
 'move-page'        => 'Verschieba $1',
@@ -878,10 +934,23 @@ Bite dan '''neua''' Tittel under '''Ziel''' eintraga, darunder de Umbenennung bi
 'revertmove'       => 'zerricke scherga',
 
 # Export
-'export' => 'Seyta exportiera',
+'export'        => 'Seyta exportiera',
+'export-submit' => 'Seyta exportiera',
+
+# Namespace 8 related
+'allmessagesname' => 'Noame',
 
 # Thumbnails
 'thumbnail-more' => 'vergrießern',
+
+# Special:Import
+'importinterwiki'         => 'Transwiki-Import',
+'import-interwiki-submit' => 'Import',
+'xml-error-string'        => '$1 Zeile $2, Spalte $3, (Byte $4): $5',
+
+# Import log
+'import-logentry-interwiki'        => 'hoot „[[$1]]“ importiert (Transwiki)',
+'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|Version|Versiona}} vun $2',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Denne Nutzerseyte',
@@ -975,6 +1044,9 @@ Darauf folgende Seitalinks ei derselba Zeile definiera Ausnahma, ei deren Kontex
 
 'exif-exposureprogram-1' => 'Manuell',
 
+'exif-scenecapturetype-0' => 'Standard',
+'exif-scenecapturetype-1' => 'Landschoft',
+
 'exif-gaincontrol-0' => 'Keene',
 
 'exif-contrast-0' => 'Normal',
@@ -1003,10 +1075,16 @@ Darauf folgende Seitalinks ei derselba Zeile definiera Ausnahma, ei deren Kontex
 'confirm_purge_button' => 'OK',
 
 # Multipage image navigation
-'imgmultigo' => 'OK',
+'imgmultipagenext' => 'nächste Seyte →',
+'imgmultigo'       => 'OK',
 
 # Table pager
-'ascending_abbrev' => 'uff',
+'ascending_abbrev'         => 'uff',
+'table_pager_next'         => 'Nächste Seyte',
+'table_pager_prev'         => 'Vorherige Seyte',
+'table_pager_first'        => 'Erschte Seyte',
+'table_pager_last'         => 'Letzte Seyte',
+'table_pager_limit_submit' => 'Luß',
 
 # Live preview
 'livepreview-loading' => 'Loada…',
@@ -1017,7 +1095,11 @@ Darauf folgende Seitalinks ei derselba Zeile definiera Ausnahma, ei deren Kontex
 'watchlisttools-raw'  => 'Listafurmat beoarbeeta (Import/Export)',
 
 # Special:Version
-'version-specialpages' => 'Spezialseyta',
+'version'                  => 'Version',
+'version-specialpages'     => 'Spezialseyta',
+'version-version'          => '(Version $1)',
+'version-license'          => 'Lizenz',
+'version-software-version' => 'Version',
 
 # Special:FilePath
 'filepath-page'   => 'Datei:',
@@ -1043,5 +1125,8 @@ Darauf folgende Seitalinks ei derselba Zeile definiera Ausnahma, ei deren Kontex
 
 # Special:BlankPage
 'blankpage' => 'Laare Seyte',
+
+# Special:Tags
+'tag-filter-submit' => 'Filter',
 
 );

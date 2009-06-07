@@ -2864,10 +2864,6 @@ Caso o ficheiro tenha sido modificado a partir do seu estado original, alguns de
 'exif-gpslongitude-e' => 'Longitude Leste',
 'exif-gpslongitude-w' => 'Longitude Oeste',
 
-# Pseudotags used for GPSAltitudeRef
-'exif-gpsaltitude-0' => 'Metros acima do nível do mar',
-'exif-gpsaltitude-1' => 'Metros abaixo do nível do mar',
-
 'exif-gpsstatus-a' => 'Medição em progresso',
 'exif-gpsstatus-v' => 'Interoperabilidade de medição',
 
@@ -2878,11 +2874,6 @@ Caso o ficheiro tenha sido modificado a partir do seu estado original, alguns de
 'exif-gpsspeed-k' => 'Quilómetros por hora',
 'exif-gpsspeed-m' => 'Milhas por hora',
 'exif-gpsspeed-n' => 'Nós',
-
-# Pseudotags used for GPSDestDistanceRef
-'exif-gpsdestdistance-k' => 'Quilómetros',
-'exif-gpsdestdistance-m' => 'Milhas',
-'exif-gpsdestdistance-n' => 'Miles náuticas',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Direcção real',

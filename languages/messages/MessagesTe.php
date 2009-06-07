@@ -2600,10 +2600,6 @@ $1',
 'exif-gpslongitude-e' => 'తూర్పు రేఖాంశం',
 'exif-gpslongitude-w' => 'పశ్చిమ రేఖాంశం',
 
-# Pseudotags used for GPSAltitudeRef
-'exif-gpsaltitude-0' => 'సముద్రమట్టానికి మీటర్ల ఎగువన',
-'exif-gpsaltitude-1' => 'సముద్రమట్టానికి మీటర్ల దిగువున',
-
 'exif-gpsstatus-a' => 'కొలత జరుగుతూంది',
 'exif-gpsstatus-v' => 'కొలత ఇంటర్‌ఆపరేటబిలిటీ',
 
@@ -2614,11 +2610,6 @@ $1',
 'exif-gpsspeed-k' => 'గంటకి కిలోమీటర్లు',
 'exif-gpsspeed-m' => 'గంటకి మైళ్ళు',
 'exif-gpsspeed-n' => 'ముడులు',
-
-# Pseudotags used for GPSDestDistanceRef
-'exif-gpsdestdistance-k' => 'కిలోమీటర్లు',
-'exif-gpsdestdistance-m' => 'మైళ్ళు',
-'exif-gpsdestdistance-n' => 'నాటికల్ మైళ్ళు',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'వాస్తవ దిశ',

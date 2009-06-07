@@ -2871,10 +2871,6 @@ Kikin siq'ipi ima qatiq t'inkillapas sapaqllatam hamut'arisqa, ahinataq siq'ipi 
 'exif-gpslongitude-e' => 'Anti suni',
 'exif-gpslongitude-w' => 'Kunti suni',
 
-# Pseudotags used for GPSAltitudeRef
-'exif-gpsaltitude-0' => 'Mama quchap hawanmanta hanan mitru (thatki)',
-'exif-gpsaltitude-1' => 'Mama quchap hawanmanta uran mitru (thatki)',
-
 'exif-gpsstatus-a' => 'Tupuchkaspa',
 'exif-gpsstatus-v' => 'Tupuy ruranakunalla kay',
 
@@ -2885,11 +2881,6 @@ Kikin siq'ipi ima qatiq t'inkillapas sapaqllatam hamut'arisqa, ahinataq siq'ipi 
 'exif-gpsspeed-k' => 'Kilumitru uraman',
 'exif-gpsspeed-m' => 'Milla uraman',
 'exif-gpsspeed-n' => 'Muqukuna',
-
-# Pseudotags used for GPSDestDistanceRef
-'exif-gpsdestdistance-k' => 'Kilumitru (waranqa thatki)',
-'exif-gpsdestdistance-m' => 'Milla',
-'exif-gpsdestdistance-n' => "Wamp'una milla",
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Chiqap puririy',

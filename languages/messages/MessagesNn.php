@@ -2901,10 +2901,6 @@ Dei andre felta er gøymde som standard.
 'exif-gpslongitude-e' => 'Austleg lengdegrad',
 'exif-gpslongitude-w' => 'Vestleg lengdegrad',
 
-# Pseudotags used for GPSAltitudeRef
-'exif-gpsaltitude-0' => 'Meter over havnivå',
-'exif-gpsaltitude-1' => 'Meter under havnivå',
-
 'exif-gpsstatus-a' => 'Måling pågår',
 'exif-gpsstatus-v' => 'Målingsinteroperabilitet',
 
@@ -2915,11 +2911,6 @@ Dei andre felta er gøymde som standard.
 'exif-gpsspeed-k' => 'Kilometer per time',
 'exif-gpsspeed-m' => 'Engelsk mil per time',
 'exif-gpsspeed-n' => 'Knop',
-
-# Pseudotags used for GPSDestDistanceRef
-'exif-gpsdestdistance-k' => 'Kilometer',
-'exif-gpsdestdistance-m' => 'Miles',
-'exif-gpsdestdistance-n' => 'Nautiske mil',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Verkeleg retning',

@@ -2799,10 +2799,6 @@ $1',
 'exif-gpslongitude-e' => 'източна дължина',
 'exif-gpslongitude-w' => 'западна дължина',
 
-# Pseudotags used for GPSAltitudeRef
-'exif-gpsaltitude-0' => 'Метри над морското равнище',
-'exif-gpsaltitude-1' => 'Метри под морското равнище',
-
 'exif-gpsstatus-a' => 'Измерване в ход',
 'exif-gpsstatus-v' => 'Оперативна съвместимост на измерването',
 
@@ -2813,11 +2809,6 @@ $1',
 'exif-gpsspeed-k' => 'км/час',
 'exif-gpsspeed-m' => 'мили/час',
 'exif-gpsspeed-n' => 'възли',
-
-# Pseudotags used for GPSDestDistanceRef
-'exif-gpsdestdistance-k' => 'Километри',
-'exif-gpsdestdistance-m' => 'Мили',
-'exif-gpsdestdistance-n' => 'Морски мили',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'истинска',

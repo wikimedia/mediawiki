@@ -2871,10 +2871,6 @@ Vain *-merkillä alkavat rivit otetaan huomioon. Ensimmäisen linkin on osoitett
 'exif-gpslongitude-e' => 'Itäistä pituutta',
 'exif-gpslongitude-w' => 'Läntistä pituutta',
 
-# Pseudotags used for GPSAltitudeRef
-'exif-gpsaltitude-0' => 'Metriä merenpinnan yläpuolella',
-'exif-gpsaltitude-1' => 'Metriä merenpinnan alapuolella',
-
 'exif-gpsstatus-a' => 'Mittaus käynnissä',
 'exif-gpsstatus-v' => 'Ristiinmittaus',
 

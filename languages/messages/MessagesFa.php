@@ -1114,6 +1114,9 @@ $2',
 'revdelete-nologtype-text'    => 'شما هیچ نوع سیاهه‌ای را برای این کار مشخص نکردید.',
 'revdelete-nologid-title'     => 'مدخل غیر مجاز در سیاهه',
 'revdelete-nologid-text'      => 'شما یا یک رخداد در سیاههٔ هدف مشخص نکردید یا موردی را مشخص کردید که وجود ندارد.',
+'revdelete-no-file'           => 'پروندهٔ مشخص شده وجود ندارد.',
+'revdelete-show-file-confirm' => 'آیا مطمئن هستید که می‌خواهید یک نسخهٔ حذف شده از پروندهٔ «<nowiki>$1</nowiki>» مورخ $2 ساعت $3 را ببینید؟',
+'revdelete-show-file-submit'  => 'بلی',
 'revdelete-selected'          => "'''{{PLURAL:$2|نسخهٔ|نسخه‌های}} انتخاب شده از '''$1:''''''",
 'logdelete-selected'          => "'''{{PLURAL:$1|مورد|موارد}} انتخاب شده از سیاهه:'''",
 'revdelete-text'              => "'''نسخه‌ها و موارد حذف شده کماکان از طریق تاریخچهٔ صفحه و سیاهه‌ها قابل مشاهده هستند، اما بخش‌هایی از محتوای آن‌ها توسط عموم قابل مشاهده نخواهد بود.'''
@@ -1137,8 +1140,11 @@ $2',
 'revdelete-logentry'          => 'تغییر پیدایی نسخه در [[$1]]',
 'logdelete-logentry'          => 'تغییر پیدایی مورد در [[$1]]',
 'revdelete-success'           => 'تغییر پیدایی نسخه با موفقیت انجام شد.',
-'revdelete-failure'           => "'''پیدایی نسخه‌ها قابل تنظیم نیست.'''",
+'revdelete-failure'           => "'''پیدایی نسخه‌ها قابل تنظیم نیست:'''
+$1",
 'logdelete-success'           => 'تغییر پیدایی مورد با موفقیت انجام شد.',
+'logdelete-failure'           => "'''پیدایی سیاهه‌ها قابل تنظیم نیست:'''
+$1",
 'revdel-restore'              => 'تغییر پیدایی',
 'pagehist'                    => 'تاریخچهٔ صفحه',
 'deletedhist'                 => 'تاریخچهٔ حذف شده',
@@ -1151,6 +1157,14 @@ $2',
 'revdelete-unhid'             => '$1 را از حالت پنهان در آورد',
 'revdelete-log-message'       => '$1 برای $2 {{PLURAL:$2|نسخه|نسخه}}',
 'logdelete-log-message'       => '$1 برای $2 {{PLURAL:$2|رخداد|رخداد}}',
+'revdelete-hide-current'      => 'خطا در پنهان کردن مورد مورخ $2 ساعت $1: این نسخه، نسخهٔ اخیر می‌باشد و قابل پنهان کردن نیست.',
+'revdelete-show-no-access'    => 'خطا در پنهان کردن مورد مورخ $2 ساعت $1: این نسخه علامت «محدودیت» دارد و شما به آن دسترسی ندارید.',
+'revdelete-modify-no-access'  => 'خطا در پنهان کردن مورد مورخ $2 ساعت $1: این نسخه علامت «محدودیت» دارد و شما به آن دسترسی ندارید.',
+'revdelete-modify-missing'    => 'خطا در پنهان کردن مورد شمارهٔ $1: این نسخه در پایگاه داده وجود ندارد!',
+'revdelete-no-change'         => "'''هشدار:''' مورد مورخ $2 ساعت $1 از قبل تنظیمات پیدایی درخواست شده را دارا می‌باشد.",
+'revdelete-concurrent-change' => 'خطا در پنهان کردن مورد مورخ $2 ساعت $1: به نظر می‌رسد که در مدتی که شما برای تغییر وضعیت آن تلاش می‌کردید وضعیت آن توسط فرد دیگری تغییر یافته است.
+لطفاً سیاهه‌ها را بررسی کنید.',
+'revdelete-only-restricted'   => 'شما نمی‌توانید موارد را از دید مدیران پنهان کنید مگر آن که یکی دیگر از گزینه‌های پنهان‌سازی را نیز انتخاب کنید.',
 
 # Suppression log
 'suppressionlog'     => 'سیاههٔ فرونشانی',
@@ -1756,6 +1770,7 @@ $2',
 'filehist-dimensions'       => 'ابعاد',
 'filehist-filesize'         => 'اندازه پرونده',
 'filehist-comment'          => 'توضیح',
+'filehist-missing'          => 'پروندهٔ ناموجود',
 'imagelinks'                => 'پیوندهای پرونده',
 'linkstoimage'              => '{{PLURAL:$1|صفحهٔ|صفحه‌های}} زیر به این تصویر پیوند {{PLURAL:$1|دارد|دارند}}:',
 'linkstoimage-more'         => 'بیش از $1 صفحه به این پرونده پیوند {{PLURAL:$1|می‌دهد|می‌دهند}}.
@@ -3086,10 +3101,6 @@ $1',
 'exif-gpslongitude-e' => 'طول جغرافیایی شرقی',
 'exif-gpslongitude-w' => 'طول جغرافیایی غربی',
 
-# Pseudotags used for GPSAltitudeRef
-'exif-gpsaltitude-0' => 'متر بالای سطح دریا',
-'exif-gpsaltitude-1' => 'متر زیر سطح دریا',
-
 'exif-gpsstatus-a' => 'در حال اندازه‌گیری',
 'exif-gpsstatus-v' => 'مقایسه‌پذیری اندازه‌گیری',
 
@@ -3100,11 +3111,6 @@ $1',
 'exif-gpsspeed-k' => 'کیلومتر بر ساعت',
 'exif-gpsspeed-m' => 'مایل بر ساعت',
 'exif-gpsspeed-n' => 'گره',
-
-# Pseudotags used for GPSDestDistanceRef
-'exif-gpsdestdistance-k' => 'کیلومتر',
-'exif-gpsdestdistance-m' => 'مایل',
-'exif-gpsdestdistance-n' => 'مایل دریایی',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'جهت درست',

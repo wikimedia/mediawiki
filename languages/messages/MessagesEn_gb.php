@@ -59,15 +59,8 @@ If the file has been modified from its original state, some details may not full
 'exif-sensingmethod-5' => 'Colour sequential area sensor',
 'exif-sensingmethod-8' => 'Colour sequential linear sensor',
 
-# Pseudotags used for GPSAltitudeRef
-'exif-gpsaltitude-0' => 'Metres above sea level',
-'exif-gpsaltitude-1' => 'Metres below sea level',
-
 # Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'Kilometres per hour',
-
-# Pseudotags used for GPSDestDistanceRef
-'exif-gpsdestdistance-k' => 'Kilometres',
 
 # E-mail address confirmation
 'confirmemail_invalidated' => 'E-mail address confirmation cancelled',

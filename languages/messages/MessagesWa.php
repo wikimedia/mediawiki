@@ -494,7 +494,7 @@ Rissayîz s' i vs plait. Si çoula n' va todi nén, sayîz di vs dislodjî eyet 
 'editing'                    => 'Candjant $1',
 'editingsection'             => 'Candjant $1 (seccion)',
 'editingcomment'             => 'Candjant $1 (comintaire)',
-'editconflict'               => 'Conflit inte deus candjmints: $1',
+'editconflict'               => 'Ecramiaedje inte deus candjmints: $1',
 'explainconflict'            => "Ene sakî a candjî l' pådje do tins ki vos estîz a scrire.
 Li boesse di tecse do dzeur mostere li tecse del pådje come il est
 pol moumint sol sierveu. Li tecse da vosse est sol boesse di tecse do dzo.

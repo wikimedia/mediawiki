@@ -2323,10 +2323,6 @@ $1',
 'exif-gpslongitude-e' => 'Ἀνατολικὸν γεωγραφικὸν μῆκος',
 'exif-gpslongitude-w' => 'Δυτικὸν γεωγραφικὸν μῆκος',
 
-# Pseudotags used for GPSAltitudeRef
-'exif-gpsaltitude-0' => 'Μέτρα ὑπεράνω τοῦ ἐπιπέδου θαλάττης',
-'exif-gpsaltitude-1' => 'Μέτρα ὑπὸ τοῦ ἐπιπέδου θαλάττης',
-
 'exif-gpsstatus-a' => 'Μέτρησις ἐν ἐξελίξει',
 'exif-gpsstatus-v' => 'Διαχρηστικότης μετρήσεων',
 
@@ -2337,11 +2333,6 @@ $1',
 'exif-gpsspeed-k' => 'Χιλιόμετρα ἀνὰ ὥρα',
 'exif-gpsspeed-m' => 'Μίλια ἀνὰ ὥρα',
 'exif-gpsspeed-n' => 'Κόμβοι',
-
-# Pseudotags used for GPSDestDistanceRef
-'exif-gpsdestdistance-k' => 'Χιλιόμετρα',
-'exif-gpsdestdistance-m' => 'Μίλια',
-'exif-gpsdestdistance-n' => 'Ναυτικά μίλια',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Ἀληθὴς κατεύθυνσις',

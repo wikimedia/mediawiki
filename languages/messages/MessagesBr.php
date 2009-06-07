@@ -204,9 +204,9 @@ $messages = array(
 'hidden-category-category'       => 'Rummadoù kuzhet',
 'category-subcat-count'          => "{{PLURAL:$2|N'eus er rummad-mañ nemet an isrummad da-heul.|{{PLURAL:$1|isrummad|$1 isrummad}} zo d'ar rummad-mañ diwar un hollad a $2.}}",
 'category-subcat-count-limited'  => 'Er rummad-mañ e kaver an {{PLURAL:$1|isrummad-se|$1 isrummadoù-se}}.',
-'category-article-count'         => "{{PLURAL:$2|N'eus er rummad-mañ nemet ar bajenn da-heul.|Emañ ar {{PLURAL:$1|bajenn da-heul|$1 pajenn da-heul}} er rummad-mañ, war un hollad a $2.}}",
+'category-article-count'         => "{{PLURAL:$2|N'eus er rummad-mañ nemet ar bajenn da-heul.|Emañ ar {{PLURAL:$1|bajenn da-heul|$1 pajenn da-heul}} er rummad-mañ, diwar un hollad a $2.}}",
 'category-article-count-limited' => '{{PLURAL:$1|Emañ ar bajenn|Emañ an $1 pajenn}} da-heul er rummad-mañ.',
-'category-file-count'            => "{{PLURAL:$2|N'eus er rummad-mañ nemet ar restr da-heul.|Emañ ar {{PLURAL:$1|restr|$1 restr}} da-heul er rummad-mañ, war un hollad a $2.}}",
+'category-file-count'            => "{{PLURAL:$2|N'eus er rummad-mañ nemet ar restr da-heul.|Emañ ar {{PLURAL:$1|restr|$1 restr}} da-heul er rummad-mañ, diwar un hollad a $2.}}",
 'category-file-count-limited'    => '{{PLURAL:$1|Emañ ar restr|Emañ an $1 restr}} da-heul er rummad-mañ.',
 'listingcontinuesabbrev'         => "(war-lerc'h)",
 
@@ -260,6 +260,7 @@ $messages = array(
 'permalink'         => "Chomlec'h ar stumm-mañ",
 'print'             => 'Moullañ',
 'edit'              => 'Kemmañ',
+'view'              => 'Lenn',
 'create'            => 'Krouiñ',
 'editthispage'      => 'Kemmañ ar bajenn-mañ',
 'create-this-page'  => 'Krouiñ ar bajenn-mañ',
@@ -787,6 +788,9 @@ Evel merour ez oc'h aotreet da [$1 sellet ouzh an diforc'h-mañ] ma karit.",
 'revdelete-nologtype-text'    => "N'eus ket bet spisaet ganeoc'h seurt marilh ebet da lakaat an ober-mañ da c'hoarvezout warnañ.",
 'revdelete-nologid-title'     => 'Enmont ar marilh direizh',
 'revdelete-nologid-text'      => "Pe n'hoc'h eus ket spisaet enmont ebet er marilh da vezañ sevenet an ober-mañ warnañ, pe n'eus ket eus an darvoud merket.",
+'revdelete-no-file'           => "N'eus ket eus ar restr spisaet ganeoc'h.",
+'revdelete-show-file-confirm' => 'Ha sur oc\'h e fell deoc\'h gwelet stumm diverket ar restr "<nowiki>$1</nowiki>" deiziataet eus an $2 da $3?',
+'revdelete-show-file-submit'  => 'Ya',
 'revdelete-selected'          => "'''{{PLURAL:$2|Stumm dibabet|Stummoù dibabet}} eus [[:$1]] :'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Darvoud eus ar marilh diuzet|Darvoud eus ar marilh diuzet}} :'''",
 'revdelete-text'              => "'''Derc'hel a raio ar stummoù ha darvoudoù diverket da zont war wel war istor ar bajenn hag er marilhoù, met dazrn eus ar boued n'hallo ket bezañ gwelet gant an dud.'''
@@ -810,8 +814,10 @@ Kadarnait eo mat an dra-se a fell deoc'h ober, e komprenit mat ar pezh a empleg,
 'revdelete-logentry'          => 'Cheñchet eo bet hewelusted ar stumm evit [[$1]]',
 'logdelete-logentry'          => 'kemmet eo bet gwelusted an darvoud evit [[$1]]',
 'revdelete-success'           => "'''Gwelusted ar stummoù kaset da benn vat.'''",
-'revdelete-failure'           => "'''Dibosupl termeniñ gweluster ar stumm-mañ.'''",
+'revdelete-failure'           => "'''Dibosupl termeniñ gweluster ar stumm-mañ :'''",
 'logdelete-success'           => "'''Gwelusted an darvoud kaset da benn vat.'''",
+'logdelete-failure'           => "'''N'eus ket bet gallet termeniñ gweluster ar marilh :'''
+$1",
 'revdel-restore'              => 'Cheñch ar gweluster',
 'pagehist'                    => 'Istor ar bajenn',
 'deletedhist'                 => 'Diverkañ an istor',
@@ -946,8 +952,8 @@ Gwiriit ne vo ket torret red istor ar bajenn gant ar c'hemm-mañ.",
 'searchmenu-new'                   => "'''Krouiñ ar bajenn \"[[:\$1]]\" war ar wiki-mañ !'''",
 'searchhelp-url'                   => 'Help:Skoazell',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Furchal er pajennoù a grog gant ar rakger-mañ]]',
-'searchprofile-articles'           => 'Pennadoù',
-'searchprofile-project'            => 'Skoazell',
+'searchprofile-articles'           => 'Pajennoù gant boued',
+'searchprofile-project'            => 'Pajennoù skoazell ha pajennoù ar raktres',
 'searchprofile-images'             => 'Liesmedia',
 'searchprofile-everything'         => 'Pep tra',
 'searchprofile-advanced'           => 'Araokaet',
@@ -981,6 +987,8 @@ Gwiriit ne vo ket torret red istor ar bajenn gant ar c'hemm-mañ.",
 'powersearch-ns'                   => 'Klask en esaouennoù anv :',
 'powersearch-redir'                => 'Roll an adkasoù',
 'powersearch-field'                => 'Klask',
+'powersearch-toggleall'            => 'An holl',
+'powersearch-togglenone'           => 'Hini ebet',
 'search-external'                  => 'Klask diavaez',
 'searchdisabled'                   => "<p>Diweredekaet eo bet an arc'hwel klask war an destenn a-bezh evit ur frapad rak ur samm re vras e oa evit ar servijer. Emichañs e vo tu d'e adlakaat pa vo ur servijer galloudusoc'h ganeomp. Da c'hortoz e c'hallit klask gant Google:</p>",
 
@@ -1029,9 +1037,9 @@ Gwiriit ne vo ket torret red istor ar bajenn gant ar c'hemm-mañ.",
 'stub-threshold'            => 'Bevenn uhelañ evit al <a href="#" class="stub">liammoù war-du an danvez pennadoù</a> (okted) :',
 'recentchangesdays'         => "Niver a zevezhioù da ziskouez er c'hemmoù diwezhañ :",
 'recentchangesdays-max'     => "(d'ar muiañ $1 {{PLURAL:$1|deiz|deiz}})",
-'recentchangescount'        => "Niver a gemmoù da ziskouez er c'hemmoù diwezhañ, er pajennoù istor hag er marilhoù, dre ziouer",
+'recentchangescount'        => 'Niver a gemmoù da ziskouez dre ziouer',
 'savedprefs'                => 'Enrollet eo bet ar penndibaboù.',
-'timezonelegend'            => 'Takad eur',
+'timezonelegend'            => 'Takad eur :',
 'localtime'                 => "Eur lec'hel :",
 'timezoneuseserverdefault'  => 'Ober gant talvoudenn ar servijer',
 'timezoneuseoffset'         => 'Arall (resisaat al linkadur)',
@@ -1051,7 +1059,7 @@ Gwiriit ne vo ket torret red istor ar bajenn gant ar c'hemm-mañ.",
 'allowemail'                => 'Aotren ar posteloù a-berzh implijerien all',
 'prefs-searchoptions'       => 'Dibarzhioù klask',
 'prefs-namespaces'          => 'Esaouennoù',
-'defaultns'                 => 'Klask en esaouennoù-mañ dre ziouer :',
+'defaultns'                 => 'Klask en esaouennoù-anv a-hend-all :',
 'default'                   => 'dre ziouer',
 'prefs-files'               => 'Restroù',
 'prefs-custom-css'          => 'CSS personelaet',
@@ -1084,6 +1092,7 @@ Gallout a rit lezel tud all da vont e darempred ganeoc'h dre ho pajennoù implij
 'prefs-info'                => 'Titouroù diazez',
 'prefs-i18n'                => 'Etrebroadelaat',
 'prefs-signature'           => 'Sinadur',
+'prefs-dateformat'          => 'Furmad an deiziadoù',
 
 # User rights
 'userrights'                  => 'Merañ statud an implijerien',
@@ -1763,7 +1772,7 @@ Evit tennañ ar bajenn-mañ a-ziwar ho rollad evezhiañ. klikit war "Paouez da e
 'enotif_anon_editor'           => 'implijer dizanv $1',
 'enotif_body'                  => '$WATCHINGUSERNAME ker,
 
-$CHANGEDORCREATED Kemmet eo bet ar bajenn {{SITENAME}} evit $PAGETITLE gant $PAGEEDITOR d\'an $PAGEEDITDATE, gwelet $PAGETITLE_URL evit gwelet ar stumm red.
+$CHANGEDORCREATED eo bet ar bajenn {{SITENAME}} evit $PAGETITLE gant $PAGEEDITOR d\'an $PAGEEDITDATE, gwelet $PAGETITLE_URL evit gwelet ar stumm red.
 
 $NEWPAGE
 
@@ -1917,6 +1926,7 @@ Ma'z eus bet krouet ur bajenn nevez dezhi an hevelep anv abaoe an diverkadenn, e
 'undelete-nodiff'              => "N'eus bet kavet stumm kent ebet.",
 'undeletebtn'                  => 'Diziverkañ!',
 'undeletelink'                 => 'gwelet/assevel',
+'undeleteviewlink'             => 'gwelet',
 'undeletereset'                => 'Adderaouiñ',
 'undeleteinvert'               => 'Eilpennañ diuzadenn',
 'undeletecomment'              => 'Notenn :',
@@ -2737,10 +2747,6 @@ Kement liamm all war an hevelep linenn a seller outañ evel un nemedenn, da skou
 'exif-gpslongitude-e' => 'Hedred reter',
 'exif-gpslongitude-w' => 'Hedred kornôg',
 
-# Pseudotags used for GPSAltitudeRef
-'exif-gpsaltitude-0' => 'Metr a-us live ar mor',
-'exif-gpsaltitude-1' => 'Metr dindan live ar mor',
-
 'exif-gpsstatus-a' => 'O vuzuliañ',
 'exif-gpsstatus-v' => 'etreoberatadusted ar muzul',
 
@@ -2751,11 +2757,6 @@ Kement liamm all war an hevelep linenn a seller outañ evel un nemedenn, da skou
 'exif-gpsspeed-k' => 'Kilometr dre eur',
 'exif-gpsspeed-m' => 'Miltir dre eur',
 'exif-gpsspeed-n' => 'Skoulm',
-
-# Pseudotags used for GPSDestDistanceRef
-'exif-gpsdestdistance-k' => 'Kilometr',
-'exif-gpsdestdistance-m' => 'Miltir',
-'exif-gpsdestdistance-n' => 'Miltir',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => "Durc'hadur gwir",

@@ -2970,10 +2970,6 @@ $1',
 'exif-gpslongitude-e' => 'восточной долготы',
 'exif-gpslongitude-w' => 'западной долготы',
 
-# Pseudotags used for GPSAltitudeRef
-'exif-gpsaltitude-0' => 'Метров над уровнем моря',
-'exif-gpsaltitude-1' => 'Метров ниже уровня моря',
-
 'exif-gpsstatus-a' => 'Измерение не закончено',
 'exif-gpsstatus-v' => 'Готов к передаче данных',
 
@@ -2984,11 +2980,6 @@ $1',
 'exif-gpsspeed-k' => 'км/час',
 'exif-gpsspeed-m' => 'миль/час',
 'exif-gpsspeed-n' => 'узлов',
-
-# Pseudotags used for GPSDestDistanceRef
-'exif-gpsdestdistance-k' => 'Километров',
-'exif-gpsdestdistance-m' => 'Миль',
-'exif-gpsdestdistance-n' => 'Морских миль',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'истинный',

@@ -1006,8 +1006,8 @@ De door $3 opgegeven reden is ''$2''",
 'viewpagelogs'           => 'Logboek voor deze pagina bekijken',
 'nohistory'              => 'Deze pagina is niet bewerkt.',
 'currentrev'             => 'Huidige versie',
-'currentrev-asof'        => 'Huidige versie per $1',
-'revisionasof'           => 'Versie op $1',
+'currentrev-asof'        => 'Huidige versie van $2 om $3',
+'revisionasof'           => 'Versie van $2 om $3',
 'revision-info'          => 'Versie op $1 van $2',
 'previousrevision'       => '←Oudere versie',
 'nextrevision'           => 'Nieuwere versie→',
@@ -1750,7 +1750,7 @@ Klikken op een kolomkop verandert de sortering.',
 'filehist-current'          => 'huidige versie',
 'filehist-datetime'         => 'Datum/tijd',
 'filehist-thumb'            => 'Miniatuurafbeelding',
-'filehist-thumbtext'        => 'Miniatuurafbeelding voor versie per $1',
+'filehist-thumbtext'        => 'Miniatuurafbeelding voor de versie van $2 om $3',
 'filehist-nothumb'          => 'Geen miniatuurafbeelding',
 'filehist-user'             => 'Gebruiker',
 'filehist-dimensions'       => 'Afmetingen',
@@ -2259,7 +2259,7 @@ Verwijder in die gevallen de meest recent verwijderde versie uit de selectie.',
 'undeletehistorynoadmin'       => 'Deze pagina is verwijderd.
 De reden hiervoor staat hieronder, samen met de details van de gebruikers die deze pagina hebben bewerkt vóór de verwijdering.
 De verwijderde inhoud van de pagina is alleen zichtbaar voor beheerders.',
-'undelete-revision'            => 'Verwijderde versie van $1 (per $4 om $5) door $3:',
+'undelete-revision'            => 'Dit is de verwijderde versie van $1 van $4 om $5 gemaakt door $3:',
 'undeleterevision-missing'     => 'Ongeldige of missende versie.
 Mogelijk hebt u een verkeerde verwijzing of is de versie hersteld of verwijderd uit het archief.',
 'undelete-nodiff'              => 'Geen eerdere versie gevonden.',
@@ -3131,10 +3131,6 @@ Andere velden worden verborgen.
 'exif-gpslongitude-e' => 'Oosterlengte',
 'exif-gpslongitude-w' => 'Westerlengte',
 
-# Pseudotags used for GPSAltitudeRef
-'exif-gpsaltitude-0' => 'Meter boven zeeniveau',
-'exif-gpsaltitude-1' => 'Meter onder zeeniveau',
-
 'exif-gpsstatus-a' => 'Bezig met meten',
 'exif-gpsstatus-v' => 'Meetinteroperabiliteit',
 
@@ -3145,11 +3141,6 @@ Andere velden worden verborgen.
 'exif-gpsspeed-k' => 'Kilometer per uur',
 'exif-gpsspeed-m' => 'Mijl per uur',
 'exif-gpsspeed-n' => 'Knopen',
-
-# Pseudotags used for GPSDestDistanceRef
-'exif-gpsdestdistance-k' => 'Kilometers',
-'exif-gpsdestdistance-m' => 'Mijlen',
-'exif-gpsdestdistance-n' => 'Knopen',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Eigenlijke richting',
