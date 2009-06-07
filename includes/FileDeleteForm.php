@@ -293,9 +293,12 @@ class FileDeleteForm {
 	 * @return string
 	 */
 	private function getAction() {
+		$q = array();
 		$q['action'] = 'delete';
+
 		if( $this->oldimage )
 			$q['oldimage'] = $this->oldimage;
+
 		return $this->title->getLocalUrl( $q );
 	}
 
