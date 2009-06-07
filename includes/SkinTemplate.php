@@ -290,23 +290,34 @@ class SkinTemplate extends Skin {
 		} else {
 			$tpl->set( 'jsvarurl', false );
 		}
+
 		$newtalks = $wgUser->getNewMessageLinks();
 
 		if( count( $newtalks ) == 1 && $newtalks[0]['wiki'] === wfWikiID() ) {
 			$usertitle = $this->mUser->getUserPage();
 			$usertalktitle = $usertitle->getTalkPage();
+
 			if( !$usertalktitle->equals( $this->mTitle ) ) {
-				$ntl = wfMsg( 'youhavenewmessages',
-					$this->makeKnownLinkObj(
-						$usertalktitle,
-						wfMsgHtml( 'newmessageslink' ),
-						'redirect=no'
-					),
-					$this->makeKnownLinkObj(
-						$usertalktitle,
-						wfMsgHtml( 'newmessagesdifflink' ),
-						'diff=cur'
-					)
+				$newmessageslink = $this->link(
+					$usertalktitle,
+					wfMsgHtml( 'newmessageslink' ),
+					array(),
+					array( 'redirect' => 'no' ),
+					array( 'known', 'noclasses' )
+				);
+
+				$newmessagesdifflink = $this->link(
+					$usertalktitle,
+					wfMsgHtml( 'newmessagesdifflink' ),
+					array(),
+					array( 'diff' => 'cur' ),
+					array( 'known', 'noclasses' )
+				);
+
+				$ntl = wfMsg(
+					'youhavenewmessages',
+					$newmessageslink,
+					$newmessagesdifflink
 				);
 				# Disable Cache
 				$out->setSquidMaxage( 0 );

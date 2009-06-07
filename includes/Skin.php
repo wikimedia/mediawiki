@@ -992,16 +992,34 @@ END;
 			}
 		}
 		if ( 'history' == $action || isset( $diff ) || isset( $oldid ) ) {
-			$s[] .= $this->makeKnownLinkObj( $this->mTitle,
-					wfMsg( 'currentrev' ) );
+			$s[] .= $this->link(
+					$this->mTitle,
+					wfMsg( 'currentrev' ),
+					array(),
+					array(),
+					array( 'known', 'noclasses' )
+			);
 		}
 
 		if ( $wgUser->getNewtalk() ) {
 			# do not show "You have new messages" text when we are viewing our
 			# own talk page
 			if( !$this->mTitle->equals( $wgUser->getTalkPage() ) ) {
-				$tl = $this->makeKnownLinkObj( $wgUser->getTalkPage(), wfMsgHtml( 'newmessageslink' ), 'redirect=no' );
-				$dl = $this->makeKnownLinkObj( $wgUser->getTalkPage(), wfMsgHtml( 'newmessagesdifflink' ), 'diff=cur' );
+				$tl = $this->link(
+					$wgUser->getTalkPage(),
+					wfMsgHtml( 'newmessageslink' ),
+					array(),
+					array( 'redirect' => 'no' ),
+					array( 'known', 'noclasses' )
+				);
+
+				$dl = $this->link(
+					$wgUser->getTalkPage(),
+					wfMsgHtml( 'newmessagesdifflink' ),
+					array(),
+					array( 'diff' => 'cur' ),
+					array( 'known', 'noclasses' )
+				);
 				$s[] = '<strong>'. wfMsg( 'youhavenewmessages', $tl, $dl ) . '</strong>';
 				# disable caching
 				$wgOut->setSquidMaxage( 0 );
@@ -1030,10 +1048,16 @@ END;
 				} else {
 					$msg = 'viewdeleted';
 				}
-				return wfMsg( $msg,
-					$this->makeKnownLinkObj(
+				return wfMsg(
+					$msg,
+					$this->link(
 						SpecialPage::getTitleFor( 'Undelete', $this->mTitle->getPrefixedDBkey() ),
-						wfMsgExt( 'restorelink', array( 'parsemag', 'escape' ), $wgLang->formatNum( $n ) ) ) );
+						wfMsgExt( 'restorelink', array( 'parsemag', 'escape' ), $wgLang->formatNum( $n ) ),
+						array(),
+						array(),
+						array( 'known', 'noclasses' )
+					)
+				);
 			}
 		}
 		return '';
@@ -1094,7 +1118,13 @@ END;
 					$display .= $link;
 					$linkObj = Title::newFromText( $growinglink );
 					if( is_object( $linkObj ) && $linkObj->exists() ){
-						$getlink = $this->makeKnownLinkObj( $linkObj, htmlspecialchars( $display ) );
+						$getlink = $this->link(
+							$linkObj,
+							htmlspecialchars( $display ),
+							array(),
+							array(),
+							array( 'known', 'noclasses' )
+						);
 						$c++;
 						if( $c > 1 ) {
 							$subpages .= wfMsgExt( 'pipe-separator', 'escapenoentities' );
@@ -1503,7 +1533,13 @@ END;
 	}
 
 	function mainPageLink() {
-		$s = $this->makeKnownLinkObj( Title::newMainPage(), wfMsg( 'mainpage' ) );
+		$s = $this->link(
+			Title::newMainPage(),
+			wfMsg( 'mainpage' ),
+			array(),
+			array(),
+			array( 'known', 'noclasses' )
+		);
 		return $s;
 	}
 
@@ -1553,7 +1589,13 @@ END;
 				$t = wfMsg( 'viewsource' );
 			}
 
-			$s = $this->makeKnownLinkObj( $this->mTitle, $t, $this->editUrlOptions() );
+			$s = $this->link(
+				$this->mTitle,
+				$t,
+				array(),
+				$this->editUrlOptions(),
+				array( 'known', 'noclasses' )
+			);
 		}
 		return $s;
 	}
@@ -1562,17 +1604,19 @@ END;
 	 * Return URL options for the 'edit page' link.
 	 * This may include an 'oldid' specifier, if the current page view is such.
 	 *
-	 * @return string
+	 * @return array
 	 * @private
 	 */
 	function editUrlOptions() {
 		global $wgArticle;
 
+		$options = array( 'action' => 'edit' ); 
+
 		if( $this->mRevisionId && ! $wgArticle->isCurrent() ) {
-			return 'action=edit&oldid=' . intval( $this->mRevisionId );
-		} else {
-			return 'action=edit';
+			$options['oldid'] = intval( $this->mRevisionId );
 		}
+
+		return $options;
 	}
 
 	function deleteThisPage() {
@@ -1582,7 +1626,13 @@ END;
 		if ( $this->mTitle->getArticleId() && ( !$diff ) && $wgUser->isAllowed( 'delete' ) ) {
 			$t = wfMsg( 'deletethispage' );
 
-			$s = $this->makeKnownLinkObj( $this->mTitle, $t, 'action=delete' );
+			$s = $this->link(
+				$this->mTitle,
+				$t,
+				array(),
+				array( 'action' => 'delete' ),
+				array( 'known', 'noclasses' )
+			);
 		} else {
 			$s = '';
 		}
@@ -1595,13 +1645,20 @@ END;
 		$diff = $wgRequest->getVal( 'diff' );
 		if ( $this->mTitle->getArticleId() && ( ! $diff ) && $wgUser->isAllowed('protect') ) {
 			if ( $this->mTitle->isProtected() ) {
-				$t = wfMsg( 'unprotectthispage' );
-				$q = 'action=unprotect';
+				$text = wfMsg( 'unprotectthispage' );
+				$query = array( 'action' => 'unprotect' );
 			} else {
-				$t = wfMsg( 'protectthispage' );
-				$q = 'action=protect';
+				$text = wfMsg( 'protectthispage' );
+				$query = array( 'action' => 'protect' );
 			}
-			$s = $this->makeKnownLinkObj( $this->mTitle, $t, $q );
+
+			$s = $this->link(
+				$this->mTitle,
+				$text,
+				array(),
+				$query,
+				array( 'known', 'noclasses' )
+			);
 		} else {
 			$s = '';
 		}
@@ -1614,15 +1671,22 @@ END;
 
 		if ( $wgOut->isArticleRelated() ) {
 			if ( $this->mTitle->userIsWatching() ) {
-				$t = wfMsg( 'unwatchthispage' );
-				$q = 'action=unwatch';
-				$id = 'mw-unwatch-link' . $this->mWatchLinkNum;
+				$text = wfMsg( 'unwatchthispage' );
+				$query = array( 'action' => 'unwatch' );
+				$id = array( 'mw-unwatch-link' => $this->mWatchLinkNum );
 			} else {
-				$t = wfMsg( 'watchthispage' );
-				$q = 'action=watch';
-				$id = 'mw-watch-link' . $this->mWatchLinkNum;
+				$text = wfMsg( 'watchthispage' );
+				$query = array( 'action' => 'watch' );
+				$id = array( 'mw-watch-link' => $this->mWatchLinkNum );
 			}
-			$s = $this->makeKnownLinkObj( $this->mTitle, $t, $q, '', '', " id=\"$id\"" );
+
+			$s = $this->link(
+				$this->mTitle,
+				$text,
+				array( 'id' => $id ),
+				$query,
+				array( 'known', 'noclasses' )
+			);
 		} else {
 			$s = wfMsg( 'notanarticle' );
 		}
@@ -1631,8 +1695,13 @@ END;
 
 	function moveThisPage() {
 		if ( $this->mTitle->quickUserCan( 'move' ) ) {
-			return $this->makeKnownLinkObj( SpecialPage::getTitleFor( 'Movepage' ),
-			  wfMsg( 'movethispage' ), 'target=' . $this->mTitle->getPrefixedURL() );
+			return $this->link(
+				SpecialPage::getTitleFor( 'Movepage' ),
+				wfMsg( 'movethispage' ),
+				array(),
+				array( 'target' => $this->mTitle->getPrefixedURL() ),
+				array( 'known', 'noclasses' )
+			);
 		} else {
 			// no message if page is protected - would be redundant
 			return '';
@@ -1640,20 +1709,32 @@ END;
 	}
 
 	function historyLink() {
-		return $this->link( $this->mTitle, wfMsgHtml( 'history' ),
-			array( 'rel' => 'archives' ), array( 'action' => 'history' ) );
+		return $this->link(
+			$this->mTitle,
+			wfMsgHtml( 'history' ),
+			array( 'rel' => 'archives' ),
+			array( 'action' => 'history' )
+		);
 	}
 
 	function whatLinksHere() {
-		return $this->makeKnownLinkObj(
+		return $this->link(
 			SpecialPage::getTitleFor( 'Whatlinkshere', $this->mTitle->getPrefixedDBkey() ),
-			wfMsgHtml( 'whatlinkshere' ) );
+			wfMsgHtml( 'whatlinkshere' ),
+			array(),
+			array(),
+			array( 'known', 'noclasses' )
+		);
 	}
 
 	function userContribsLink() {
-		return $this->makeKnownLinkObj(
+		return $this->link(
 			SpecialPage::getTitleFor( 'Contributions', $this->mTitle->getDBkey() ),
-			wfMsgHtml( 'contributions' ) );
+			wfMsgHtml( 'contributions' ),
+			array(),
+			array(),
+			array( 'known', 'noclasses' )
+		);
 	}
 
 	function showEmailUser( $id ) {
@@ -1664,9 +1745,13 @@ END;
 	}
 
 	function emailUserLink() {
-		return $this->makeKnownLinkObj(
+		return $this->link(
 			SpecialPage::getTitleFor( 'Emailuser', $this->mTitle->getDBkey() ),
-			wfMsg( 'emailuser' ) );
+			wfMsg( 'emailuser' ),
+			array(),
+			array(),
+			array( 'known', 'noclasses' )
+		);
 	}
 
 	function watchPageLinksLink() {
@@ -1674,9 +1759,13 @@ END;
 		if ( ! $wgOut->isArticleRelated() ) {
 			return '(' . wfMsg( 'notanarticle' ) . ')';
 		} else {
-			return $this->makeKnownLinkObj(
+			return $this->link(
 				SpecialPage::getTitleFor( 'Recentchangeslinked', $this->mTitle->getPrefixedDBkey() ),
-				wfMsg( 'recentchangeslinked-toolbox' ) );
+				wfMsg( 'recentchangeslinked-toolbox' ),
+				array(),
+				array(),
+				array( 'known', 'noclasses' )
+			);
 		}
 	}
 
@@ -1777,7 +1866,7 @@ END;
 		}
 
 		# __NEWSECTIONLINK___ changes behaviour here
-		# If it's present, the link points to this page, otherwise
+		# If it is present, the link points to this page, otherwise
 		# it points to the talk page
 		if( $this->mTitle->isTalkPage() ) {
 			$title = $this->mTitle;
@@ -1787,7 +1876,16 @@ END;
 			$title = $this->mTitle->getTalkPage();
 		}
 
-		return $this->makeKnownLinkObj( $title, wfMsg( 'postcomment' ), 'action=edit&section=new' );
+		return $this->link(
+			$title,
+			wfMsg( 'postcomment' ),
+			array(),
+			array(
+				'action' => 'edit',
+				'section' => 'new'
+			),
+			array( 'known', 'noclasses' )
+		);
 	}
 
 	/* these are used extensively in SkinTemplate, but also some other places */

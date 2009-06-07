@@ -109,6 +109,7 @@ class LogEventsList {
 		$hiddens = ''; // keep track for "go" button
 		foreach( $filter as $type => $val ) {
 			$hideVal = 1 - intval($val);
+			// FIXME: use link() here. Needs changes in getDefaultQuery()
 			$link = $this->skin->makeKnownLinkObj( $wgTitle, $messages[$hideVal],
 				wfArrayToCGI( array( "hide_{$type}_log" => $hideVal ), $this->getDefaultQuery() )
 			);
@@ -242,33 +243,55 @@ class LogEventsList {
 		} else if( self::typeAction($row,'move','move','move') && !empty($paramArray[0]) ) {
 			$destTitle = Title::newFromText( $paramArray[0] );
 			if( $destTitle ) {
-				$revert = '(' . $this->skin->makeKnownLinkObj( SpecialPage::getTitleFor( 'Movepage' ),
+				$revert = '(' . $this->skin->link(
+					SpecialPage::getTitleFor( 'Movepage' ),
 					$this->message['revertmove'],
-					'wpOldTitle=' . urlencode( $destTitle->getPrefixedDBkey() ) .
-					'&wpNewTitle=' . urlencode( $title->getPrefixedDBkey() ) .
-					'&wpReason=' . urlencode( wfMsgForContent( 'revertmove' ) ) .
-					'&wpMovetalk=0' ) . ')';
+					array(),
+					array(
+						'wpOldTitle' => $destTitle->getPrefixedDBkey(),
+						'wpNewTitle' => $title->getPrefixedDBkey(),
+						'wpReason' => wfMsgForContent( 'revertmove' ),
+						'wpMovetalk' => 0
+					),
+					array( 'known', 'noclasses' )
+				) . ')';
 			}
 		// Show undelete link
 		} else if( self::typeAction($row,array('delete','suppress'),'delete','deletedhistory') ) {
-			if( !$wgUser->isAllowed( 'undelete' ) ) 
+			if( !$wgUser->isAllowed( 'undelete' ) ) {
 				$viewdeleted = $this->message['undeleteviewlink'];
-			else 
+			} else {
 				$viewdeleted = $this->message['undeletelink'];
-			$revert = '(' . $this->skin->makeKnownLinkObj( SpecialPage::getTitleFor( 'Undelete' ),
-				$viewdeleted, 'target='. urlencode( $title->getPrefixedDBkey() ) ) . ')';
+			}
+
+			$revert = '(' . $this->skin->link(
+				SpecialPage::getTitleFor( 'Undelete' ),
+				$viewdeleted,
+				array(),
+				array( 'target' => $title->getPrefixedDBkey() ),
+				array( 'known', 'noclasses' )
+			 ) . ')';
 		// Show unblock/change block link
 		} else if( self::typeAction($row,array('block','suppress'),array('block','reblock'),'block') ) {
 			$revert = '(' .
-				$this->skin->link( SpecialPage::getTitleFor( 'Ipblocklist' ),
+				$this->skin->link(
+					SpecialPage::getTitleFor( 'Ipblocklist' ),
 					$this->message['unblocklink'],
 					array(),
-					array( 'action' => 'unblock', 'ip' => $row->log_title ),
-					'known' ) 
-				. $this->message['pipe-separator'] .
-				$this->skin->link( SpecialPage::getTitleFor( 'Blockip', $row->log_title ), 
+					array(
+						'action' => 'unblock',
+						'ip' => $row->log_title
+					),
+					'known'
+				) .
+				$this->message['pipe-separator'] .
+				$this->skin->link(
+					SpecialPage::getTitleFor( 'Blockip', $row->log_title ),
 					$this->message['change-blocklink'],
-					array(), array(), 'known' ) .
+					array(),
+					array(),
+					'known'
+				) .
 				')';
 		// Show change protection link
 		} else if( self::typeAction( $row, 'protect', array( 'modify', 'protect', 'unprotect' ) ) ) {
@@ -276,7 +299,11 @@ class LogEventsList {
 				$this->skin->link( $title,
 					$this->message['hist'],
 					array(),
-					array( 'action' => 'history', 'offset' => $row->log_timestamp ) );
+					array(
+						'action' => 'history',
+						'offset' => $row->log_timestamp
+					)
+				);
 			if( $wgUser->isAllowed( 'protect' ) ) {
 				$revert .= $this->message['pipe-separator'] .
 					$this->skin->link( $title,
@@ -289,9 +316,17 @@ class LogEventsList {
 		// Show unmerge link
 		} else if( self::typeAction($row,'merge','merge','mergehistory') ) {
 			$merge = SpecialPage::getTitleFor( 'Mergehistory' );
-			$revert = '(' .  $this->skin->makeKnownLinkObj( $merge, $this->message['revertmerge'],
-				wfArrayToCGI( array('target' => $paramArray[0], 'dest' => $title->getPrefixedDBkey(), 
-					'mergepoint' => $paramArray[1] ) ) ) . ')';
+			$revert = '(' .  $this->skin->link(
+				$merge,
+				$this->message['revertmerge'],
+				array(),
+				array(
+					'target' => $paramArray[0],
+					'dest' => $title->getPrefixedDBkey(), 
+					'mergepoint' => $paramArray[1]
+				),
+				array( 'known', 'noclasses' )
+			) . ')';
 		// If an edit was hidden from a page give a review link to the history
 		} else if( self::typeAction($row,array('delete','suppress'),'revision','deleterevision') ) {
 			if( count($paramArray) >= 2 ) {
@@ -300,16 +335,33 @@ class LogEventsList {
 				$key = $paramArray[0];
 				// $paramArray[1] is a CSV of the IDs
 				$Ids = explode( ',', $paramArray[1] );
-				$query = urlencode($paramArray[1]);
+				$query = $paramArray[1];
 				$revert = array();
 				// Diff link for single rev deletions
 				if( ( $key === 'oldid' || $key == 'revision' ) && count($Ids) == 1 ) {
-					$revert[] = $this->skin->makeKnownLinkObj( $title, $this->message['diff'], 
-						'diff='.intval($Ids[0])."&unhide=1" );
+					$revert[] = $this->skin->link(
+						$title,
+						$this->message['diff'], 
+						array(),
+						array(
+							'diff' => intval( $Ids[0] ),
+							'unhide' => 1
+						),
+						array( 'known', 'noclasses' )
+					);
 				}
 				// View/modify link...
-				$revert[] = $this->skin->makeKnownLinkObj( $revdel, $this->message['revdel-restore'],
-					'target='.$title->getPrefixedUrl()."&type=$key&ids=$query" );
+				$revert[] = $this->skin->link(
+					$revdel,
+					$this->message['revdel-restore'],
+					array(),
+					array(
+						'target' => $title->getPrefixedUrl(),
+						'type' => $key,
+						'ids' => $query
+					),
+					array( 'known', 'noclasses' )
+				);
 				// Pipe links
 				$revert = '(' . implode(' | ',$revert) . ')';
 			}
@@ -319,10 +371,19 @@ class LogEventsList {
 				$revdel = SpecialPage::getTitleFor( 'Revisiondelete' );
 				// $paramArray[1] is a CSV of the IDs
 				$Ids = explode( ',', $paramArray[0] );
-				$query = urlencode($paramArray[0]);
+				$query = $paramArray[0];
 				// Link to each hidden object ID, $paramArray[1] is the url param
-				$revert = '(' . $this->skin->makeKnownLinkObj( $revdel, $this->message['revdel-restore'], 
-					'target='.$title->getPrefixedUrl()."&type=logging&ids=$query" ) . ')';
+				$revert = '(' . $this->skin->link(
+					$revdel,
+					$this->message['revdel-restore'], 
+					array(),
+					array(
+						'target' => $title->getPrefixedUrl(),
+						'type' => 'logging',
+						'ids' => $query
+					),
+					array( 'known', 'noclasses' )
+				) . ')';
 			}
 		// Self-created users
 		} else if( self::typeAction($row,'newusers','create2') ) {

@@ -45,10 +45,18 @@ class PatrolLog {
 			$link = $skin->link( $title );
 			if( $title->exists() ) {
 				# Generate a diff link
-				$bits[] = 'oldid=' . urlencode( $cur );
-				$bits[] = 'diff=prev';
-				$bits = implode( '&', $bits );
-				$diff = $skin->makeKnownLinkObj( $title, htmlspecialchars( wfMsg( 'patrol-log-diff', $cur ) ), $bits );
+				$query = array(
+					'oldid' => $cur,
+					'diff' => 'prev'
+				);
+
+				$diff = $skin->link(
+					$title,
+					htmlspecialchars( wfMsg( 'patrol-log-diff', $cur ) ),
+					array(),
+					$query,
+					array( 'known', 'noclasses' )
+				);
 			} else {
 				# Don't bother with a diff link, it's useless
 				$diff = htmlspecialchars( wfMsg( 'patrol-log-diff', $cur ) );
