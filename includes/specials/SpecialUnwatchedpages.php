@@ -52,7 +52,7 @@ class UnwatchedpagesPage extends QueryPage {
 			$nt,
 			wfMsgHtml( 'watch' ),
 			array(),
-			array( 'action' => 'watch'
+			array( 'action' => 'watch' )
 		);
 
 		return wfSpecialList( $plink, $wlink );
