@@ -64,6 +64,8 @@ $specialPageAliases = array(
 	'Unusedimages'              => array( 'Nenaudojami paveikslėliai' ),
 	'Wantedpages'               => array( 'Trokštamiausi puslapiai', 'Blogos nuorodos' ),
 	'Wantedcategories'          => array( 'Trokštamiausios kategorijos' ),
+	'Wantedfiles'               => array( 'Trokštami failai' ),
+	'Wantedtemplates'           => array( 'Trokštami šablonai' ),
 	'Mostlinked'                => array( 'Turintys daugiausiai nuorodų' ),
 	'Mostlinkedcategories'      => array( 'Kategorijos turinčios daugiausiai nuorodų' ),
 	'Mostlinkedtemplates'       => array( 'Šablonai' ),
@@ -102,6 +104,7 @@ $specialPageAliases = array(
 	'Unlockdb'                  => array( 'Atrakinti duomenų bazę' ),
 	'Userrights'                => array( 'Naudotojo teisės' ),
 	'MIMEsearch'                => array( 'MIME paieška' ),
+	'FileDuplicateSearch'       => array( 'Failo dublikatų paieška' ),
 	'Unwatchedpages'            => array( 'Nestebimi puslapiai' ),
 	'Listredirects'             => array( 'Peradresavimų sąrašas' ),
 	'Revisiondelete'            => array( 'Redagavimo ištrynimas' ),
@@ -117,6 +120,8 @@ $specialPageAliases = array(
 	'Resetpass'                 => array( 'Slaptažodžio atstatymas' ),
 	'Withoutinterwiki'          => array( 'Be interwiki' ),
 	'MergeHistory'              => array( 'Sujungti istoriją' ),
+	'Blankpage'                 => array( 'Tuščias puslapis' ),
+	'DeletedContributions'      => array( 'Ištrintas indėlis' ),
 );
 
 $magicWords = array(
