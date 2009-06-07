@@ -204,6 +204,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Make action=block respect $wgEnableUserEmail and $wgSysopEmailBans
 * Made deleting file description pages without files possible
 * (bug 18773) Add content flag to siprop=namespaces output
+* (bug 18785) Add siprop=languages to meta=siteinfo
 
 === Languages updated in 1.16 ===
 
