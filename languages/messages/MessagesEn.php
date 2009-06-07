@@ -3586,7 +3586,7 @@ Others will be hidden by default.
 'exif-gpsmeasuremode-2' => '2-dimensional measurement',
 'exif-gpsmeasuremode-3' => '3-dimensional measurement',
 
-# Pseudotags used for GPSSpeedRef and GPSDestDistanceRef
+# Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'Kilometers per hour',
 'exif-gpsspeed-m' => 'Miles per hour',
 'exif-gpsspeed-n' => 'Knots',

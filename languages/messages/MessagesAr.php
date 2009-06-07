@@ -3226,10 +3226,6 @@ $1',
 'exif-gpslongitude-e' => 'خط الطول الشرقي',
 'exif-gpslongitude-w' => 'خط الطول الغربي',
 
-# Pseudotags used for GPSAltitudeRef
-'exif-gpsaltitude-0' => 'متر فوق سطح البحر',
-'exif-gpsaltitude-1' => 'متر تحت سطح البحر',
-
 'exif-gpsstatus-a' => 'عملية القياس الحالية',
 'exif-gpsstatus-v' => 'شمول القياس',
 
@@ -3240,11 +3236,6 @@ $1',
 'exif-gpsspeed-k' => 'كيلومتر في الساعة',
 'exif-gpsspeed-m' => 'ميل في الساعة',
 'exif-gpsspeed-n' => 'عقد',
-
-# Pseudotags used for GPSDestDistanceRef
-'exif-gpsdestdistance-k' => 'كيلومتر',
-'exif-gpsdestdistance-m' => 'ميل',
-'exif-gpsdestdistance-n' => 'ميل بحري',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'الاتجاه الحقيقي',

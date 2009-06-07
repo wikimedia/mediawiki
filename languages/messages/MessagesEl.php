@@ -2994,10 +2994,6 @@ $1',
 'exif-gpslongitude-e' => 'Ανατολικό γεωγραφικό μήκος',
 'exif-gpslongitude-w' => 'Δυτικό γεωγραφικό μήκος',
 
-# Pseudotags used for GPSAltitudeRef
-'exif-gpsaltitude-0' => 'Μέτρα επάνω από το επίπεδο της θάλασσας',
-'exif-gpsaltitude-1' => 'Μέτρα κάτω από το επίπεδο της θάλασσας',
-
 'exif-gpsstatus-a' => 'Μέτρηση εν εξελίξει',
 'exif-gpsstatus-v' => 'Διαλειτουργικότητα μετρήσεων',
 
@@ -3008,11 +3004,6 @@ $1',
 'exif-gpsspeed-k' => 'Χιλιόμετρα/ώρα',
 'exif-gpsspeed-m' => 'Μίλια/ώρα',
 'exif-gpsspeed-n' => 'Κόμβοι',
-
-# Pseudotags used for GPSDestDistanceRef
-'exif-gpsdestdistance-k' => 'Χιλιόμετρα',
-'exif-gpsdestdistance-m' => 'Μίλια',
-'exif-gpsdestdistance-n' => 'Ναυτικά μίλια',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Πραγματική κατεύθυνση',

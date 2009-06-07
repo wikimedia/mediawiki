@@ -1,5 +1,5 @@
 <?php
-/** Simplified Chinese (‪中文(简化字)‬)
+/** Simplified Chinese (‪中文(简体)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -2550,8 +2550,8 @@ $1已经被封锁。您是否想更改这个设置？',
 
 # Patrol log
 'patrol-log-page'      => '巡查日志',
-'patrol-log-header'    => '这个是已经巡查过的日志。',
-'patrol-log-line'      => '$2的版本$1已被标记为已检查的$3',
+'patrol-log-header'    => '这是已巡查的修订版本的日志。',
+'patrol-log-line'      => '$2的版本$1已被标记为已巡查$3',
 'patrol-log-auto'      => '（自动）',
 'patrol-log-diff'      => '修订 $1',
 'log-show-hide-patrol' => '$1巡查纪录',
@@ -2883,10 +2883,6 @@ Variants for Chinese language
 'exif-gpslongitude-e' => '东经',
 'exif-gpslongitude-w' => '西经',
 
-# Pseudotags used for GPSAltitudeRef
-'exif-gpsaltitude-0' => '海拔以上米数',
-'exif-gpsaltitude-1' => '海拔以下米数',
-
 'exif-gpsstatus-a' => '测量过程',
 'exif-gpsstatus-v' => '互动测量',
 
@@ -2897,11 +2893,6 @@ Variants for Chinese language
 'exif-gpsspeed-k' => '公里每小时',
 'exif-gpsspeed-m' => '英里每小时',
 'exif-gpsspeed-n' => '海里每小时(节)',
-
-# Pseudotags used for GPSDestDistanceRef
-'exif-gpsdestdistance-k' => '公里',
-'exif-gpsdestdistance-m' => '英里',
-'exif-gpsdestdistance-n' => '海里',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => '真方位',

@@ -2735,11 +2735,6 @@ $1',
 'exif-gpsspeed-m' => 'Миляны чааска',
 'exif-gpsspeed-n' => 'Узел',
 
-# Pseudotags used for GPSDestDistanceRef
-'exif-gpsdestdistance-k' => 'Километр',
-'exif-gpsdestdistance-m' => 'Миилэ',
-'exif-gpsdestdistance-n' => 'Байҕал миилэтэ',
-
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Дьиҥнээх',
 'exif-gpsdirection-m' => 'Магнитнай',

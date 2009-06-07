@@ -2779,10 +2779,6 @@ Ruangan lain akan disembunyikan.
 'exif-gpslongitude-e' => 'Longitud timur',
 'exif-gpslongitude-w' => 'Longitud barat',
 
-# Pseudotags used for GPSAltitudeRef
-'exif-gpsaltitude-0' => 'Meter di atas aras laut',
-'exif-gpsaltitude-1' => 'Meter di bawah aras laut',
-
 'exif-gpsstatus-a' => 'Pengukuran sedang dijalankan',
 'exif-gpsstatus-v' => 'Interoperabiliti pengukuran',
 
@@ -2793,11 +2789,6 @@ Ruangan lain akan disembunyikan.
 'exif-gpsspeed-k' => 'Kilometer sejam',
 'exif-gpsspeed-m' => 'Batu sejam',
 'exif-gpsspeed-n' => 'Knot',
-
-# Pseudotags used for GPSDestDistanceRef
-'exif-gpsdestdistance-k' => 'Kilometer',
-'exif-gpsdestdistance-m' => 'Batu',
-'exif-gpsdestdistance-n' => 'Batu nautika',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Arah benar',

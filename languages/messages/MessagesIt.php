@@ -2870,10 +2870,6 @@ I collegamenti successivi, sulla stessa riga, sono considerati come eccezioni (o
 'exif-gpslongitude-e' => 'Longitudine est',
 'exif-gpslongitude-w' => 'Longitudine ovest',
 
-# Pseudotags used for GPSAltitudeRef
-'exif-gpsaltitude-0' => 'Metri sopra il livello del mare',
-'exif-gpsaltitude-1' => 'Metri sotto il livello del mare',
-
 'exif-gpsstatus-a' => 'Misurazione in corso',
 'exif-gpsstatus-v' => 'Misurazione interoperabile',
 
@@ -2884,11 +2880,6 @@ I collegamenti successivi, sulla stessa riga, sono considerati come eccezioni (o
 'exif-gpsspeed-k' => 'Chilometri orari',
 'exif-gpsspeed-m' => 'Miglia orarie',
 'exif-gpsspeed-n' => 'Nodi',
-
-# Pseudotags used for GPSDestDistanceRef
-'exif-gpsdestdistance-k' => 'Chilometri',
-'exif-gpsdestdistance-m' => 'Miglia',
-'exif-gpsdestdistance-n' => 'Miglia nautiche',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Direzione reale',

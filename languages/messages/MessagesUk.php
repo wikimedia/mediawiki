@@ -2943,10 +2943,6 @@ $1',
 'exif-gpslongitude-e' => 'східної довготи',
 'exif-gpslongitude-w' => 'західної довготи',
 
-# Pseudotags used for GPSAltitudeRef
-'exif-gpsaltitude-0' => 'Метрів над рівнем моря',
-'exif-gpsaltitude-1' => 'Метрів нижче рівня моря',
-
 'exif-gpsstatus-a' => 'Вимірювання не закінчене',
 'exif-gpsstatus-v' => 'Готовий до передачі даних',
 
@@ -2957,11 +2953,6 @@ $1',
 'exif-gpsspeed-k' => 'км/год',
 'exif-gpsspeed-m' => 'миль/год',
 'exif-gpsspeed-n' => 'вузлів',
-
-# Pseudotags used for GPSDestDistanceRef
-'exif-gpsdestdistance-k' => 'Кілометри',
-'exif-gpsdestdistance-m' => 'Милі',
-'exif-gpsdestdistance-n' => 'Морські милі',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'справжній',

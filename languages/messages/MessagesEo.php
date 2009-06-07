@@ -2864,10 +2864,6 @@ Sekvaj ligilo en la sama linio estas konsiderata kiel esceptoj (paĝoj kiel la b
 'exif-gpslongitude-e' => 'Orienta longitudo',
 'exif-gpslongitude-w' => 'Uesta longitudo',
 
-# Pseudotags used for GPSAltitudeRef
-'exif-gpsaltitude-0' => 'Metroj super marnivelo',
-'exif-gpsaltitude-1' => 'Metroj sub marnivelo',
-
 'exif-gpsstatus-a' => 'Mezurado estanta',
 'exif-gpsstatus-v' => 'Mezurada interoperaciado',
 
@@ -2878,11 +2874,6 @@ Sekvaj ligilo en la sama linio estas konsiderata kiel esceptoj (paĝoj kiel la b
 'exif-gpsspeed-k' => 'Kilometroj por horo',
 'exif-gpsspeed-m' => 'Mejloj por horo',
 'exif-gpsspeed-n' => 'Knotoj',
-
-# Pseudotags used for GPSDestDistanceRef
-'exif-gpsdestdistance-k' => 'Kilometroj',
-'exif-gpsdestdistance-m' => 'Mejloj',
-'exif-gpsdestdistance-n' => 'Maraj mejloj',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Vera direkto',

@@ -2787,10 +2787,6 @@ Kun indholdet af lister (linjer startende med *) bliver brugt. Den første henvi
 'exif-gpslongitude-e' => 'østl. længde',
 'exif-gpslongitude-w' => 'vestl. længde',
 
-# Pseudotags used for GPSAltitudeRef
-'exif-gpsaltitude-0' => 'Meter over havet',
-'exif-gpsaltitude-1' => 'Meter under havniveau',
-
 'exif-gpsstatus-a' => 'Måling kører',
 'exif-gpsstatus-v' => 'Målingens interoperabilitet',
 
@@ -2801,11 +2797,6 @@ Kun indholdet af lister (linjer startende med *) bliver brugt. Den første henvi
 'exif-gpsspeed-k' => 'km/h',
 'exif-gpsspeed-m' => 'mph',
 'exif-gpsspeed-n' => 'Knob',
-
-# Pseudotags used for GPSDestDistanceRef
-'exif-gpsdestdistance-k' => 'Kilometer',
-'exif-gpsdestdistance-m' => 'Miles',
-'exif-gpsdestdistance-n' => 'Sømil',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Faktisk retning',

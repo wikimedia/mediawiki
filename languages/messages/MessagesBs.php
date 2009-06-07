@@ -3043,10 +3043,6 @@ Svi drugi linkovi u istoj liniji se smatraju izuzecima, npr. kod stranica gdje s
 'exif-gpslongitude-e' => 'Istočna dužina',
 'exif-gpslongitude-w' => 'Zapadna dužina',
 
-# Pseudotags used for GPSAltitudeRef
-'exif-gpsaltitude-0' => 'Metara nadmorske visine',
-'exif-gpsaltitude-1' => 'Metara ispod nivoa mora',
-
 'exif-gpsstatus-a' => 'Mjerenje u toku',
 'exif-gpsstatus-v' => 'Mjerenje van funkcije',
 
@@ -3057,11 +3053,6 @@ Svi drugi linkovi u istoj liniji se smatraju izuzecima, npr. kod stranica gdje s
 'exif-gpsspeed-k' => 'Kilometara na sat',
 'exif-gpsspeed-m' => 'Milja na sat',
 'exif-gpsspeed-n' => 'Čvorova',
-
-# Pseudotags used for GPSDestDistanceRef
-'exif-gpsdestdistance-k' => 'Kilometara',
-'exif-gpsdestdistance-m' => 'Milja',
-'exif-gpsdestdistance-n' => 'Nautičkih milja',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Stvarni pravac',

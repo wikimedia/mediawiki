@@ -652,9 +652,6 @@ Note that some pages may continue to be displayed as if you were still logged in
 # Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-m' => 'ܡܝܠܐ ܒܫܥܬܐ',
 
-# Pseudotags used for GPSDestDistanceRef
-'exif-gpsdestdistance-m' => 'ܡܝܠ̈ܐ',
-
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'ܟܠ',
 'imagelistall'     => 'ܟܠ',

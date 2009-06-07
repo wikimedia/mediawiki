@@ -3074,10 +3074,6 @@ Variants for Chinese language
 'exif-gpslongitude-e' => 'Исток',
 'exif-gpslongitude-w' => 'Запад',
 
-# Pseudotags used for GPSAltitudeRef
-'exif-gpsaltitude-0' => 'Метри над морско ниво',
-'exif-gpsaltitude-1' => 'Метри под морско ниво',
-
 'exif-gpsstatus-a' => 'Мерење во тек',
 'exif-gpsstatus-v' => 'Подготвен за пренос',
 
@@ -3088,11 +3084,6 @@ Variants for Chinese language
 'exif-gpsspeed-k' => 'Километри на час',
 'exif-gpsspeed-m' => 'Милји на час',
 'exif-gpsspeed-n' => 'Јазли',
-
-# Pseudotags used for GPSDestDistanceRef
-'exif-gpsdestdistance-k' => 'Километри',
-'exif-gpsdestdistance-m' => 'Милји',
-'exif-gpsdestdistance-n' => 'Наутички милји',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Вистински правец',

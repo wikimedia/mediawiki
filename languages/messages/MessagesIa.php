@@ -2948,10 +2948,6 @@ Le alteres essera initialmente celate.
 'exif-gpslongitude-e' => 'Longitude est',
 'exif-gpslongitude-w' => 'Longitude west',
 
-# Pseudotags used for GPSAltitudeRef
-'exif-gpsaltitude-0' => 'Metros super le nivello del mar',
-'exif-gpsaltitude-1' => 'Metros sub le nivello del mar',
-
 'exif-gpsstatus-a' => 'Mesura in curso',
 'exif-gpsstatus-v' => 'Interoperabilitate del mesura',
 
@@ -2962,11 +2958,6 @@ Le alteres essera initialmente celate.
 'exif-gpsspeed-k' => 'Kilometros per hora',
 'exif-gpsspeed-m' => 'Millias per hora',
 'exif-gpsspeed-n' => 'Nodos',
-
-# Pseudotags used for GPSDestDistanceRef
-'exif-gpsdestdistance-k' => 'Kilometros',
-'exif-gpsdestdistance-m' => 'Millias',
-'exif-gpsdestdistance-n' => 'Millias nautic',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Direction real',

@@ -2986,10 +2986,6 @@ Den första länken på en rad måste vara en länk till en otillåten fil.
 'exif-gpslongitude-e' => 'Östlig longitud',
 'exif-gpslongitude-w' => 'Västlig longitud',
 
-# Pseudotags used for GPSAltitudeRef
-'exif-gpsaltitude-0' => 'Meter över havsnivån',
-'exif-gpsaltitude-1' => 'Meter under havsnivån',
-
 'exif-gpsstatus-a' => 'Mätning pågår',
 'exif-gpsstatus-v' => 'Mätningsinteroperabilitet',
 
@@ -3000,11 +2996,6 @@ Den första länken på en rad måste vara en länk till en otillåten fil.
 'exif-gpsspeed-k' => 'Kilometer i timmen',
 'exif-gpsspeed-m' => 'Miles i timmen',
 'exif-gpsspeed-n' => 'Knop',
-
-# Pseudotags used for GPSDestDistanceRef
-'exif-gpsdestdistance-k' => 'Kilometer',
-'exif-gpsdestdistance-m' => 'Mil',
-'exif-gpsdestdistance-n' => 'Nautiska mil',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Sann bäring',

@@ -2941,10 +2941,6 @@ Những thông tin khác mặc định sẽ được ẩn đi.
 'exif-gpslongitude-e' => 'Kinh độ đông',
 'exif-gpslongitude-w' => 'Kinh độ tây',
 
-# Pseudotags used for GPSAltitudeRef
-'exif-gpsaltitude-0' => 'Mét trên mực nước biển',
-'exif-gpsaltitude-1' => 'Mét dưới mực nước biển',
-
 'exif-gpsstatus-a' => 'Đang đo',
 'exif-gpsstatus-v' => 'Mức độ khả năng liên điều hành',
 
@@ -2955,11 +2951,6 @@ Những thông tin khác mặc định sẽ được ẩn đi.
 'exif-gpsspeed-k' => 'Kilômét một giờ',
 'exif-gpsspeed-m' => 'Dặm một giờ',
 'exif-gpsspeed-n' => 'Hải lý một giờ',
-
-# Pseudotags used for GPSDestDistanceRef
-'exif-gpsdestdistance-k' => 'Kilômét',
-'exif-gpsdestdistance-m' => 'Dặm Anh',
-'exif-gpsdestdistance-n' => 'Hải lý',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Hướng thật',

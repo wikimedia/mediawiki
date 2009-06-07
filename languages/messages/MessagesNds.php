@@ -2812,10 +2812,6 @@ Wat denn noch an Lenken kummt in de Reeg, dat sünd Utnahmen, bi de dat Bild lie
 'exif-gpslongitude-e' => 'Läng Oost',
 'exif-gpslongitude-w' => 'Läng West',
 
-# Pseudotags used for GPSAltitudeRef
-'exif-gpsaltitude-0' => 'Meter över de See',
-'exif-gpsaltitude-1' => 'Meter ünner de See',
-
 'exif-gpsstatus-a' => 'Meten löppt',
 'exif-gpsstatus-v' => 'Meetinteroperabilität',
 
@@ -2826,11 +2822,6 @@ Wat denn noch an Lenken kummt in de Reeg, dat sünd Utnahmen, bi de dat Bild lie
 'exif-gpsspeed-k' => 'Kilometers in’e Stünn',
 'exif-gpsspeed-m' => 'Mielen in’e Stünn',
 'exif-gpsspeed-n' => 'Knoten',
-
-# Pseudotags used for GPSDestDistanceRef
-'exif-gpsdestdistance-k' => 'Kilometers',
-'exif-gpsdestdistance-m' => 'Mielen',
-'exif-gpsdestdistance-n' => 'Seemielen',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Wohre Richtung',

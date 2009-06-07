@@ -2854,10 +2854,6 @@ La resta d'enllaços de la línia són les excepcions, és a dir, les pàgines o
 'exif-gpslongitude-e' => 'Longitud est',
 'exif-gpslongitude-w' => 'Longitud oest',
 
-# Pseudotags used for GPSAltitudeRef
-'exif-gpsaltitude-0' => 'Metres sobre el nivell del mar',
-'exif-gpsaltitude-1' => 'Metres sota el nivell del mar',
-
 'exif-gpsstatus-a' => 'Mesura en curs',
 'exif-gpsstatus-v' => 'Interoperabilitat de mesura',
 
@@ -2868,11 +2864,6 @@ La resta d'enllaços de la línia són les excepcions, és a dir, les pàgines o
 'exif-gpsspeed-k' => 'Quilòmetres per hora',
 'exif-gpsspeed-m' => 'Milles per hora',
 'exif-gpsspeed-n' => 'Nusos',
-
-# Pseudotags used for GPSDestDistanceRef
-'exif-gpsdestdistance-k' => 'Quilòmetres',
-'exif-gpsdestdistance-m' => 'Milles',
-'exif-gpsdestdistance-n' => 'Milles nàutiques',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Direcció real',

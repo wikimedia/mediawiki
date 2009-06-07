@@ -2840,10 +2840,6 @@ Visos kitos nuorodos toje pačioje eilutėje yra laikomos išimtimis, t. y. pusl
 'exif-gpslongitude-e' => 'Rytų ilguma',
 'exif-gpslongitude-w' => 'Vakarų ilguma',
 
-# Pseudotags used for GPSAltitudeRef
-'exif-gpsaltitude-0' => 'Metrai aukščiau jūros lygio',
-'exif-gpsaltitude-1' => 'Metrai žemiau jūros lygio',
-
 'exif-gpsstatus-a' => 'Matavimas vykdyme',
 'exif-gpsstatus-v' => 'Matuojamas programinis sąveikumas',
 
@@ -2854,11 +2850,6 @@ Visos kitos nuorodos toje pačioje eilutėje yra laikomos išimtimis, t. y. pusl
 'exif-gpsspeed-k' => 'Kilometrai per valandą',
 'exif-gpsspeed-m' => 'Mylios per valandą',
 'exif-gpsspeed-n' => 'Mazgai',
-
-# Pseudotags used for GPSDestDistanceRef
-'exif-gpsdestdistance-k' => 'Kilometrai',
-'exif-gpsdestdistance-m' => 'Mylios',
-'exif-gpsdestdistance-n' => 'Jūrmylės',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Tikroji kryptis',

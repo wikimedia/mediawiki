@@ -2852,10 +2852,6 @@ Pranala-pranala selanjutnya pada baris yang sama dianggap sebagai pengecualian, 
 'exif-gpslongitude-e' => 'Bujur timur',
 'exif-gpslongitude-w' => 'Bujur barat',
 
-# Pseudotags used for GPSAltitudeRef
-'exif-gpsaltitude-0' => 'Meter di atas ketinggian air laut',
-'exif-gpsaltitude-1' => 'Meter di bawah ketinggian air laut',
-
 'exif-gpsstatus-a' => 'Pengukuran sedang berlangsung',
 'exif-gpsstatus-v' => 'Interoperabilitas pengukuran',
 
@@ -2866,11 +2862,6 @@ Pranala-pranala selanjutnya pada baris yang sama dianggap sebagai pengecualian, 
 'exif-gpsspeed-k' => 'Kilometer per jam',
 'exif-gpsspeed-m' => 'Mil per jam',
 'exif-gpsspeed-n' => 'Knot',
-
-# Pseudotags used for GPSDestDistanceRef
-'exif-gpsdestdistance-k' => 'Kilometer',
-'exif-gpsdestdistance-m' => 'Mil',
-'exif-gpsdestdistance-n' => 'Mil laut',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Arah sejati',

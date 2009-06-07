@@ -2742,10 +2742,6 @@ Zerrenda elementuak (hasieran * duten lerroak) baino ez dira kontuan hartzen. Le
 'exif-gpslongitude-e' => 'Ekialdeko longitudea',
 'exif-gpslongitude-w' => 'Mendebaldeko longitudea',
 
-# Pseudotags used for GPSAltitudeRef
-'exif-gpsaltitude-0' => 'Metro itsasoaren mailatik gora',
-'exif-gpsaltitude-1' => 'Metro itsasoaren mailatik behera',
-
 'exif-gpsstatus-a' => 'Neurketa burutzen',
 'exif-gpsstatus-v' => 'Neurketen interoperabilitatea',
 
@@ -2756,11 +2752,6 @@ Zerrenda elementuak (hasieran * duten lerroak) baino ez dira kontuan hartzen. Le
 'exif-gpsspeed-k' => 'Kilometro orduko',
 'exif-gpsspeed-m' => 'Milia orduko',
 'exif-gpsspeed-n' => 'Lotailuak',
-
-# Pseudotags used for GPSDestDistanceRef
-'exif-gpsdestdistance-k' => 'Kilometro',
-'exif-gpsdestdistance-m' => 'Milia',
-'exif-gpsdestdistance-n' => 'Itsas milia',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Benetako norabidea',

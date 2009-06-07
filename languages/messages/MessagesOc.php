@@ -301,6 +301,7 @@ $messages = array(
 'tog-watchlisthideliu'        => 'Amaga, de la tièra, las modificacions pels utilizaires connectats',
 'tog-watchlisthideanons'      => 'Amaga, de la tièra, las modificacions anonimas',
 'tog-watchlisthidepatrolled'  => 'Amagar las modificacions susvelhadas de la lista de seguit',
+'tog-nolangconversion'        => 'Desactivar la conversion de las variantas de lenga',
 'tog-ccmeonemails'            => 'Me mandar una còpia dels corrièrs electronics que mandi als autres utilizaires',
 'tog-diffonly'                => 'Mostrar pas lo contengut de las paginas jos las difs',
 'tog-showhiddencats'          => 'Afichar las categorias amagadas',
@@ -962,6 +963,9 @@ En tant qu'administrator, podètz encara [$1 veire aquesta diferéncia] se o vol
 'revdelete-nologtype-text'    => 'Avètz pas especificat un tipe de jornal sul qual aquesta accion deu èsser realizada.',
 'revdelete-nologid-title'     => 'Entrada del jornal invalida',
 'revdelete-nologid-text'      => 'Siá avètz pas especificat un eveniment del jornal sul qual aquesta accion se deu realizar, siá existís pas.',
+'revdelete-no-file'           => 'Lo fichièr especificat existís pas.',
+'revdelete-show-file-confirm' => 'Sètz segur(a) que volètz veire la revision suprimida del fichièr « <nowiki>$1</nowiki> » datant del $2 a $3?',
+'revdelete-show-file-submit'  => 'Òc',
 'revdelete-selected'          => "'''{{PLURAL:$2|Version seleccionada|Versions seleccionadas}} de [[:$1]] :'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Eveniment d'istoric seleccionat|Eveniments d'istoric seleccionats}} :'''",
 'revdelete-text'              => "'''Las revisions e eveniments suprimits apareisseràn encara dins l’istoric e los jornals de la pagina, mas lor contengut textual serà inaccessible al public.'''
@@ -986,8 +990,11 @@ Confirmatz qu'aquò es plan çò que voliatz far, que comprenètz las consequén
 'revdelete-logentry'          => 'La visibilitat de la version es estada modificada per [[$1]]',
 'logdelete-logentry'          => 'La visibilitat de l’eveniment es estada modificada per [[$1]]',
 'revdelete-success'           => "'''Visibilitat de las versions cambiadas amb succès.'''",
-'revdelete-failure'           => "'''La visibilitat de la revision a pas pogut èsser definida.'''",
+'revdelete-failure'           => "'''La visibilitat de la revision a pas pogut èsser definida :'''
+$1",
 'logdelete-success'           => "'''Jornal de las visibilitat parametrat amb succès.'''",
+'logdelete-failure'           => "'''La visibilitat del jornal a pas pogut èsser definida :'''
+$1",
 'revdel-restore'              => 'Modificar la visibilitat',
 'pagehist'                    => 'Istoric de la pagina',
 'deletedhist'                 => 'Istoric de las supressions',
@@ -1000,6 +1007,17 @@ Confirmatz qu'aquò es plan çò que voliatz far, que comprenètz las consequén
 'revdelete-unhid'             => 'afichar $1',
 'revdelete-log-message'       => '$1 per $2 {{PLURAL:$2|revision|revisions}}',
 'logdelete-log-message'       => '$1 sus $2 {{PLURAL:$2|eveniment|eveniments}}',
+'revdelete-hide-current'      => "Error al moment de la supression de l'element datat del $1 e $2 : es la revision correnta.
+Pòt pas èsser suprimit.",
+'revdelete-show-no-access'    => "Error al moment de l'afichatge de l'element datat del $1 e $2 : es marcat coma « restrench ».
+I avètz pas accès.",
+'revdelete-modify-no-access'  => "Error al moment de la modificacion de l'element datat del $1 a $2 : es marcat coma « restrench ».
+I avètz pas accès.",
+'revdelete-modify-missing'    => "Error al moment de la modificacion de l'element amb l'ID $1 : es mancant dins la banca de donadas !",
+'revdelete-no-change'         => "'''Atencion :''' l'element datat del $1 a $2 ja a los paramètres de visibilitat demandats.",
+'revdelete-concurrent-change' => "Error al moment de la modificacion de l'element datat del $1 a $2 : son estatut es estat cambiat per qualqu'un mai pendent qu'o modificatz.
+Verificatz los jornals.",
+'revdelete-only-restricted'   => "Podètz pas suprimir aquestes elements als administrators sens seleccionar tanben d'autras opcions de supression.",
 
 # Suppression log
 'suppressionlog'     => 'Jornal de las supressions',
@@ -1613,6 +1631,7 @@ Un clic en tèsta de colomna càmbia l’òrdre d’afichatge.',
 'filehist-dimensions'       => 'Dimensions',
 'filehist-filesize'         => 'Talha del fichièr',
 'filehist-comment'          => 'Comentari',
+'filehist-missing'          => 'Fichièr mancant',
 'imagelinks'                => 'Paginas que contenon lo fichièr',
 'linkstoimage'              => '{{PLURAL:$1|La pagina çaijós compòrta|Las paginas çaijós compòrtan}} aqueste imatge :',
 'linkstoimage-more'         => 'Mai {{PLURAL:$1|d’un ligam de pagina|de $1 ligams de paginas}} cap a aqueste fichièr.
@@ -2939,10 +2958,6 @@ Los autres ligams sus la meteissa linha son considerats coma d'excepcions, per e
 'exif-gpslongitude-e' => 'Longitud Èst',
 'exif-gpslongitude-w' => 'Longitud Oèst',
 
-# Pseudotags used for GPSAltitudeRef
-'exif-gpsaltitude-0' => 'Mètres en dessús del nivèl de la mar',
-'exif-gpsaltitude-1' => 'Mètres en dejós del nivèl de la mar',
-
 'exif-gpsstatus-a' => 'Mesura en cors',
 'exif-gpsstatus-v' => 'Interoperabilitat de la mesura',
 
@@ -2953,11 +2968,6 @@ Los autres ligams sus la meteissa linha son considerats coma d'excepcions, per e
 'exif-gpsspeed-k' => 'Quilomètres per ora',
 'exif-gpsspeed-m' => 'Miles per ora',
 'exif-gpsspeed-n' => 'Noses',
-
-# Pseudotags used for GPSDestDistanceRef
-'exif-gpsdestdistance-k' => 'Quilomètres',
-'exif-gpsdestdistance-m' => 'Milas anglesas',
-'exif-gpsdestdistance-n' => 'Milas nauticas',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Direccion vertadièra',

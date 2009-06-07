@@ -2902,10 +2902,6 @@ Každý ďalší odkaz na rovnakom riadku sa považuje za výnimku, t.j. článk
 'exif-gpslongitude-e' => 'Východná dĺžka',
 'exif-gpslongitude-w' => 'Západná dĺžka',
 
-# Pseudotags used for GPSAltitudeRef
-'exif-gpsaltitude-0' => 'Metrov nad hladinou mora',
-'exif-gpsaltitude-1' => 'Metrov pod hladinou mora',
-
 'exif-gpsstatus-a' => 'Prebieha meranie',
 'exif-gpsstatus-v' => 'Interoperabilita merania',
 
@@ -2916,11 +2912,6 @@ Každý ďalší odkaz na rovnakom riadku sa považuje za výnimku, t.j. článk
 'exif-gpsspeed-k' => 'Kilometrov za hodinu',
 'exif-gpsspeed-m' => 'Míľ za hodinu',
 'exif-gpsspeed-n' => 'Uzlov',
-
-# Pseudotags used for GPSDestDistanceRef
-'exif-gpsdestdistance-k' => 'Kilometrov',
-'exif-gpsdestdistance-m' => 'Míľ',
-'exif-gpsdestdistance-n' => 'Námorných míľ',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Skutočný smer',

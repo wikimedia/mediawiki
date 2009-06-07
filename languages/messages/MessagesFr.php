@@ -3066,10 +3066,6 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 'exif-gpslongitude-e' => 'Est',
 'exif-gpslongitude-w' => 'Ouest',
 
-# Pseudotags used for GPSAltitudeRef
-'exif-gpsaltitude-0' => 'Mètres au dessus du niveau de la mer',
-'exif-gpsaltitude-1' => 'Mètres en dessous du niveau de la mer',
-
 'exif-gpsstatus-a' => 'Mesure en cours',
 'exif-gpsstatus-v' => 'Interopérabilité de la mesure',
 
@@ -3080,11 +3076,6 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 'exif-gpsspeed-k' => 'Kilomètre par heure',
 'exif-gpsspeed-m' => 'Mile par heure',
 'exif-gpsspeed-n' => 'Nœud',
-
-# Pseudotags used for GPSDestDistanceRef
-'exif-gpsdestdistance-k' => 'Kilomètres',
-'exif-gpsdestdistance-m' => 'Milles',
-'exif-gpsdestdistance-n' => 'Milles marins',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Vrai Nord',

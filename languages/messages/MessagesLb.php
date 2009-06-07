@@ -173,6 +173,7 @@ $messages = array(
 'tog-watchlisthideliu'        => 'Ännerunge vun ugemellte Benotzer verstoppen',
 'tog-watchlisthideanons'      => 'Ännerunge vun anonyme Benotzer (IP-Adressen) verstoppen',
 'tog-watchlisthidepatrolled'  => 'Iwwerkuckten Ännerungen op der Iwwerwaachungslëscht verstoppen',
+'tog-nolangconversion'        => 'Ëmwandlung vu Sproochvarianten ausschalten',
 'tog-ccmeonemails'            => 'Schéck mir eng Kopie vun de Mailen, déi ech anere Benotzer schécken.',
 'tog-diffonly'                => "Weis bei Versiounevergläicher just d'Ënnerscheeder an net déi ganz Säit",
 'tog-showhiddencats'          => 'Verstoppte Kategorie weisen',
@@ -691,6 +692,9 @@ Wann de Problem dann ëmmer nach bestoe sollt, da versicht iech [[Special:UserLo
 
 '''Wann dir eng berechtigt Ännerung maache wëllt, da versicht et w.e.g. nach eng Kéier. 
 Wann de Problem dann ëmmer nach bestoe sollt, versicht iech [[Special:UserLogout|auszeloggen]] an dann erëm anzeloggen.'''",
+'token_suffix_mismatch'            => "'''Är Ännerung gouf refuséiert wëll Äre Browser Zeechen am Ännerungs-Identifiant verännert huet.'''
+D'Ännerung gouf refuséiert fir ze verhënneren datt den Text op der Säit onliesbar gëtt.
+Dëst geschitt heiandsdo wann Dir en anonyme Proxy-Service um Internet notzt.",
 'editing'                          => 'Ännere vu(n) $1',
 'editingsection'                   => 'Ännere vun $1 (Abschnitt)',
 'editingcomment'                   => 'Ännere vun $1 (neien Abschnitt)',
@@ -2786,10 +2790,6 @@ Duerno sti Linken déi Ausnamen definéieren, a deenen hirem Kontext dat Bild aw
 'exif-gpslongitude-e' => 'ëstlech Längt',
 'exif-gpslongitude-w' => 'westlech Längt',
 
-# Pseudotags used for GPSAltitudeRef
-'exif-gpsaltitude-0' => 'Meter iwwert dem Mier',
-'exif-gpsaltitude-1' => 'Meter ënnert dem Mier',
-
 'exif-gpsstatus-a' => 'Miessung am gaang',
 'exif-gpsstatus-v' => 'Interoperabilitéit vu der Miessung',
 
@@ -2800,11 +2800,6 @@ Duerno sti Linken déi Ausnamen definéieren, a deenen hirem Kontext dat Bild aw
 'exif-gpsspeed-k' => 'Kilometer pro Stonn',
 'exif-gpsspeed-m' => 'Meile pro Stonn',
 'exif-gpsspeed-n' => 'Kniet',
-
-# Pseudotags used for GPSDestDistanceRef
-'exif-gpsdestdistance-k' => 'Kilometer',
-'exif-gpsdestdistance-m' => 'Meilen',
-'exif-gpsdestdistance-n' => 'Nautesch Meilen',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Tatsächlech Richtung',

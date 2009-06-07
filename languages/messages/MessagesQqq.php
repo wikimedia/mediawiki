@@ -709,8 +709,11 @@ Please report at [[Support]] if you are unable to properly translate this messag
 # History pages
 'viewpagelogs'           => 'Link displayed in history of pages',
 'currentrev'             => '{{Identical|Current revision}}',
-'currentrev-asof'        => 'The text appears at the right side when comparing 2 different edits of the same page. For example: [http://translatewiki.net/w/i.php?title=FreeCol%3AIntegerAboveZero%2Fca&diff=788645&oldid=788644]',
-'revisionasof'           => 'Used on a difference page when comparing different versions of a page or when viewing an non-current version of a page.
+'currentrev-asof'        => 'Used on a difference page when comparing the current versions of a page with each other. See {{msg-mw|Revisionasof}} for the message for non-current version.
+* $1 is a date and time
+* $2 is a date (optional)
+* $3 is a time (optional)',
+'revisionasof'           => 'Used on a difference page when comparing different versions of a page or when viewing an non-current version of a page. See {{msg-mw|Currentrev-asof}} for the message for the current version.
 * $1 is the date/time at which the revision was created. Example: "\'\'Revision as of 14:44, 24 January 2008\'\'".
 * $2 is the date at which the revision was created.
 * $3 is the time at which the revision was created.',
@@ -1261,7 +1264,7 @@ Parameter $1 is the maximum number of changes that are displayed.
 Parameter $2 is a date and time.
 Parameter $3 is a date.
 Parameter $4 is a time.',
-'rclistfrom'           => 'Used on [[Special:RecentChanges]]. Parameter $1 is a link to the revision of a specific date and time. The date and the time are the link anchor.',
+'rclistfrom'           => 'Used on [[Special:RecentChanges]]. Parameter $1 is a link to the revision of a specific date and time. The date and the time are the link description.',
 'rcshowhideminor'      => 'Option text in [[Special:RecentChanges]]',
 'rcshowhidebots'       => "Option text in [[Special:RecentChanges]]. $1 is the 'show/hide' command, with the text taken from either [[Mediawiki:Show]] or [[Mediawiki:Hide]].
 

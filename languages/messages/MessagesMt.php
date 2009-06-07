@@ -2768,10 +2768,6 @@ Minħabba veduta predefinita ,l-oħrajn se jiġu moħbija.
 'exif-gpslongitude-e' => 'Loġitudni tal-lvant',
 'exif-gpslongitude-w' => 'Lonġitudni tal-punent',
 
-# Pseudotags used for GPSAltitudeRef
-'exif-gpsaltitude-0' => "Metri 'l fuq mil-livell tal-baħar",
-'exif-gpsaltitude-1' => 'Metri taħt il-livell tal-baħar',
-
 'exif-gpsstatus-a' => 'Qisien fil-progress',
 'exif-gpsstatus-v' => 'Qisien interoperabili',
 
@@ -2782,11 +2778,6 @@ Minħabba veduta predefinita ,l-oħrajn se jiġu moħbija.
 'exif-gpsspeed-k' => 'Kilometru fis-siegħa',
 'exif-gpsspeed-m' => 'Mili fis-siegħa',
 'exif-gpsspeed-n' => 'Nodi',
-
-# Pseudotags used for GPSDestDistanceRef
-'exif-gpsdestdistance-k' => 'Kilometri',
-'exif-gpsdestdistance-m' => 'Mili',
-'exif-gpsdestdistance-n' => 'Mili nawtiċi',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Direzzjoni vera',

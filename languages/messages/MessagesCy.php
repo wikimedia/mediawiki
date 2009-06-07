@@ -2721,10 +2721,6 @@ Ymateb yr amledd gofodol',
 'exif-gpslongitude-e' => "Hydred i'r Dwyrain",
 'exif-gpslongitude-w' => "Hydred i'r Gorllewin",
 
-# Pseudotags used for GPSAltitudeRef
-'exif-gpsaltitude-0' => 'Medrau uwchlaw lefel y môr',
-'exif-gpsaltitude-1' => 'Medrau islaw lefel y môr',
-
 'exif-gpsstatus-a' => "Wrthi'n mesur",
 'exif-gpsstatus-v' => 'Y gallu i ryngweithredu o ran mesur',
 
@@ -2735,11 +2731,6 @@ Ymateb yr amledd gofodol',
 'exif-gpsspeed-k' => 'Cilomedr yr awr',
 'exif-gpsspeed-m' => 'Milltir yr awr',
 'exif-gpsspeed-n' => 'Notiau',
-
-# Pseudotags used for GPSDestDistanceRef
-'exif-gpsdestdistance-k' => 'Cilomedrau',
-'exif-gpsdestdistance-m' => 'Milltiroedd',
-'exif-gpsdestdistance-n' => 'Milltiroedd môr',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Gwir gyfeiriad',

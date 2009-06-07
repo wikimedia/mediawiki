@@ -952,6 +952,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'revdelete-nologid-title'     => '잘못된 기록',
 'revdelete-nologid-text'      => '당신은 이 기능을 수행할 특정 기록을 제시하지 않았거나 제시한 기록이 존재하지 않습니다.',
 'revdelete-no-file'           => '명시된 파일이 존재하지 않습니다.',
+'revdelete-show-file-confirm' => '정말 "<nowiki>$1</nowiki>" 파일의 삭제된 $2 $3 버전을 보시겠습니까?',
 'revdelete-show-file-submit'  => '제출합니다',
 'revdelete-selected'          => "'''[[:$1]]의 {{PLURAL:$2|선택된 판|선택된 판}}:'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|선택된 로그 결과|선택된 로그 결과}}:'''",
@@ -1147,7 +1148,7 @@ $1",
 'searchrelated'                    => '관련',
 'searchall'                        => '모두',
 'showingresults'                   => '<strong>$2</strong>번 부터 <strong>$1</strong>개의 결과입니다.',
-'showingresultsnum'                => "'''$2'''번 부터 '''$3'''개의 결과입니다.",
+'showingresultsnum'                => "'''$2'''번 부터 '''{{PLURAL:$3|1|$3}}'''개의 결과입니다.",
 'showingresultstotal'              => "'''$3'''개의 결과 중 {{PLURAL:$4|'''$1'''|'''$1 - $2'''}}",
 'showingresultsheader'             => "'''$4''' 검색어에 대하여 {{PLURAL:$5|'''$3'''개의 결과 중 '''$1'''|'''$3'''의 결과 중 '''$1 - $2'''}}를 보여 주고 있습니다.",
 'nonefound'                        => "'''참고''': 몇개의 이름공간만 기본 검색 범위입니다. 토론이나 틀 등의 모든 자료를 검색하기 위해서는 접두어로 '''all:''' 어떤 이름공간을 위해서는 접두어로 그 이름공간을 쓸 수 있습니다.",
@@ -1243,7 +1244,7 @@ $1",
 'youremail'                     => '이메일:',
 'username'                      => '계정 이름:',
 'uid'                           => '사용자 ID:',
-'prefs-memberingroups'          => '가지고 있는 권한 목록:',
+'prefs-memberingroups'          => '가지고 있는 {{PLURAL:$1|권한}} 목록:',
 'prefs-registration'            => '등록 일시:',
 'yourrealname'                  => '실명:',
 'yourlanguage'                  => '언어:',
@@ -2036,8 +2037,8 @@ $NEWPAGE
 'protect-locked-blocked'      => "차단된 동안에는 보호 설정을 바꿀 수 없습니다. '''$1''' 문서의 보호 설정은 다음과 같습니다:",
 'protect-locked-dblock'       => "데이터베이스가 잠겨 문서 보호 설정을 바꿀 수 없습니다. '''$1''' 문서의 현재 설정은 다음과 같습니다:",
 'protect-locked-access'       => "문서 보호 수준을 변경할 권한이 없습니다. '''$1''' 문서의 권한은 다음과 같습니다.",
-'protect-cascadeon'           => '다음의 틀에서 이 문서를 사용하고 있고 그 틀에 연쇄적 보호가 걸려 있어 이 문서도 자동으로 보호됩니다.
-이 문서의 보호 설정을 바꾸어도 연쇄적 보호에 영향을 주지 않습니다.',
+'protect-cascadeon'           => '다음 {{PLURAL:$1|페이지|페이지}}에 연쇄적 보호가 작동하고 있어 그 페이지에 속한 이 페이지도 현재 보호됩니다.
+사용자께서는 이 페이지의 보호 설정을 바꾸실 수 있지만, 연쇄적 보호에는 영향을 주지 않습니다.',
 'protect-default'             => '모든 사용자에게 허용',
 'protect-fallback'            => '‘$1’ 권한 필요',
 'protect-level-autoconfirmed' => '등록된 사용자만 가능',
@@ -2086,7 +2087,7 @@ $NEWPAGE
 'undelete-fieldset-title'      => '문서 복구',
 'undeleteextrahelp'            => "문서 역사 전체를 복구하려면 모든 체크박스를 선택 해제한 뒤 '''복구'''를 누르세요.
 특정한 버전만을 복구하려면 복구하려는 버전들을 선택한 뒤 '''복구'''를 누르세요. '''초기화'''를 누르면 모든 선택이 취소됩니다.",
-'undeleterevisions'            => '$1개의 버전 보관중',
+'undeleterevisions'            => '$1 {{PLURAL:$1|개정판|개정판}} 기록되었음',
 'undeletehistory'              => '문서를 되살리면 모든 역사가 같이 복구됩니다.
 문서가 삭제된 후에 같은 이름의 문서가 만들어졌다면, 복구되는 버전들은 역사의 과거 부분에 나타날 것입니다.',
 'undeleterevdel'               => '복구하려는 문서의 최신판이 삭제되어 있는 경우 문서를 복구시킬 수 없습니다. 이러한 경우, 삭제된 최신판 문서의 체크박스를 선택 해제하거나 숨김을 해제해야 합니다.',
@@ -2420,7 +2421,7 @@ $1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습�
 'import-comment'             => '이유:',
 'importtext'                 => '원본 위키에서 [[Special:Export|내보내기]] 기능을 사용해 파일을 내려받아서 여기에 올려주세요.',
 'importstart'                => '문서를 가져오는 중...',
-'import-revision-count'      => '$1개의 판',
+'import-revision-count'      => '$1 {{PLURAL:$1|개정판|개정판}}',
 'importnopages'              => '가져올 문서가 없습니다.',
 'importfailed'               => '가져오기 실패: <nowiki>$1</nowiki>',
 'importunknownsource'        => '알 수 없는 가져오기 소스 유형',
@@ -2449,9 +2450,9 @@ $1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습�
 'importlogpage'                    => '가져오기 기록',
 'importlogpagetext'                => '다른 위키에서 가져온 문서 기록입니다.',
 'import-logentry-upload'           => '이(가) 파일 올리기를 통해 [[$1]] 문서를 가져왔습니다.',
-'import-logentry-upload-detail'    => '$1개의 판',
+'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|개정판|개정판}}',
 'import-logentry-interwiki'        => '$1을(를) 다른 위키에서 가져왔습니다.',
-'import-logentry-interwiki-detail' => '$2에서 $1개의 판을 가져옴',
+'import-logentry-interwiki-detail' => '$2에서부터 온 $1 {{PLURAL:$1|개정판|개정판}}',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => '내 사용자 문서',
@@ -2531,12 +2532,12 @@ $1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습�
 'notacceptable'     => '클라이언트에서 인식 가능한 출력 포맷이 없습니다.',
 
 # Attribution
-'anonymous'        => '{{SITENAME}} 익명 사용자',
+'anonymous'        => '{{SITENAME}}의 익명 {{PLURAL:$1|사용자|사용자}}',
 'siteuser'         => '{{SITENAME}} 사용자 $1',
 'lastmodifiedatby' => '이 문서는 $3에 의해 $2, $1에 마지막으로 바뀌었습니다.',
 'othercontribs'    => '$1의 작업을 바탕으로 함.',
 'others'           => '기타',
-'siteusers'        => '{{SITENAME}}의 $2명의 사용자 $1',
+'siteusers'        => '{{SITENAME}} {{PLURAL:$2|사용자|사용자}} $1',
 'creditspage'      => '문서 기여자들',
 'nocredits'        => '이 문서에서는 기여자 정보가 없습니다.',
 
@@ -2925,10 +2926,6 @@ Variants for Chinese language
 'exif-gpslongitude-e' => '동경',
 'exif-gpslongitude-w' => '서경',
 
-# Pseudotags used for GPSAltitudeRef
-'exif-gpsaltitude-0' => '해발',
-'exif-gpsaltitude-1' => '수심',
-
 'exif-gpsstatus-a' => '측정 중',
 'exif-gpsstatus-v' => '인터랙티브 측정',
 
@@ -2939,11 +2936,6 @@ Variants for Chinese language
 'exif-gpsspeed-k' => '킬로미터 매 시간',
 'exif-gpsspeed-m' => '마일 매 시간',
 'exif-gpsspeed-n' => '노트',
-
-# Pseudotags used for GPSDestDistanceRef
-'exif-gpsdestdistance-k' => '킬로미터',
-'exif-gpsdestdistance-m' => '마일',
-'exif-gpsdestdistance-n' => '해리',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => '실제 방위',
@@ -3066,7 +3058,7 @@ $1',
 'watchlistedit-raw-submit'     => '주시문서 목록 갱신',
 'watchlistedit-raw-done'       => '주시문서 목록을 갱신했습니다.',
 'watchlistedit-raw-added'      => '{{PLURAL:$1|1 제목이|1 제목이}} 추가되었습니다:',
-'watchlistedit-raw-removed'    => '$1개 문서를 제거했습니다:',
+'watchlistedit-raw-removed'    => '{{PLURAL:$1|1 제목이|$1 제목이}} 제거되었습니다:',
 
 # Watchlist editing tools
 'watchlisttools-view' => '주시문서 최근 바뀜',

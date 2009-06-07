@@ -368,6 +368,7 @@ $messages = array(
 'tog-watchlisthideliu'        => 'Bearbeitungen angemeldeter Benutzer ausblenden',
 'tog-watchlisthideanons'      => 'Bearbeitungen anonymer Benutzer (IP-Adressen) ausblenden',
 'tog-watchlisthidepatrolled'  => 'Kontrollierte Änderungen in der Beobachtungsliste ausblenden',
+'tog-nolangconversion'        => 'Konvertierung von Sprachvarianten deaktivieren',
 'tog-ccmeonemails'            => 'Schicke mir Kopien der E-Mails, die ich anderen Benutzern sende',
 'tog-diffonly'                => 'Zeige beim Versionsvergleich nur die Unterschiede, nicht die vollständige Seite',
 'tog-showhiddencats'          => 'Zeige versteckte Kategorien',
@@ -989,7 +990,7 @@ Grund der Sperre: ''$2''",
 'viewpagelogs'           => 'Logbücher für diese Seite anzeigen',
 'nohistory'              => 'Es gibt keine Versionsgeschichte für diese Seite.',
 'currentrev'             => 'Aktuelle Version',
-'currentrev-asof'        => 'Aktuelle Version vom $1',
+'currentrev-asof'        => 'Aktuelle Version vom $2, $3 Uhr',
 'revisionasof'           => 'Version vom $2, $3 Uhr',
 'revision-info'          => 'Dies ist eine alte Version. Zeitpunkt der Bearbeitung: $1 durch $2.',
 'previousrevision'       => '← Nächstältere Version',
@@ -3047,10 +3048,6 @@ Darauf folgende Seitenlinks in derselben Zeile definieren Ausnahmen, in deren Ko
 'exif-gpslongitude-e' => 'östl. Länge',
 'exif-gpslongitude-w' => 'westl. Länge',
 
-# Pseudotags used for GPSAltitudeRef
-'exif-gpsaltitude-0' => 'Meter über dem Meeresspiegel',
-'exif-gpsaltitude-1' => 'Meter unter dem Meeresspiegel',
-
 'exif-gpsstatus-a' => 'Messung läuft',
 'exif-gpsstatus-v' => 'Interoperabilität von Messungen',
 
@@ -3061,11 +3058,6 @@ Darauf folgende Seitenlinks in derselben Zeile definieren Ausnahmen, in deren Ko
 'exif-gpsspeed-k' => 'km/h',
 'exif-gpsspeed-m' => 'mph',
 'exif-gpsspeed-n' => 'Knoten',
-
-# Pseudotags used for GPSDestDistanceRef
-'exif-gpsdestdistance-k' => 'Kilometer',
-'exif-gpsdestdistance-m' => 'Meilen',
-'exif-gpsdestdistance-n' => 'Nautische Meilen',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'Tatsächliche Richtung',
