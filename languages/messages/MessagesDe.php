@@ -314,7 +314,6 @@ $magicWords = array(
 	'index'                 => array( '1', '__INDIZIEREN__', '__INDEX__' ),
 	'noindex'               => array( '1', '__NICHT_INDIZIEREN__', '__NOINDEX__' ),
 	'numberingroup'         => array( '1', 'BENUTZER_IN_GRUPPE', 'NUMBERINGROUP', 'NUMINGROUP' ),
-	'numberofcontribs'      => array( '1', 'ANZAHL_BENUTZERBEITRÄGE', 'NUMBEROFCONTRIBS', 'USERCONTRIBS', 'NUMOFCONTRIBS' ),
 	'staticredirect'        => array( '1', '__PERMANENTE_WEITERLEITUNG__', '__STATICREDIRECT__' ),
 	'protectionlevel'       => array( '1', 'SCHUTZSTATUS', 'PROTECTIONLEVEL' ),
 	'formatdate'            => array( '0', 'DATUMSFORMAT', 'formatdate', 'dateformat' ),

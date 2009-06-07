@@ -45,7 +45,6 @@ $magicWords = array(
 	'currentversion'        => array( '1', 'BERSIÓNAUTUAL', 'BERSIONAUTUAL', 'REVISIÓNACTUAL', 'CURRENTVERSION' ),
 	'language'              => array( '0', '#LENGUACHE:', '#LUENGA:', '#IDIOMA:', '#LANGUAGE:' ),
 	'special'               => array( '0', 'espezial', 'special' ),
-	'defaultsort'           => array( '1', 'ORDENAR:', 'ORDENAR', 'DEFAULTSORT:', 'DEFAULTSORTKEY:', 'DEFAULTCATEGORYSORT:' ),
 );
 
 $specialPageAliases = array(
