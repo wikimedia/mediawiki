@@ -3083,6 +3083,8 @@ class Article {
 
 		$current = ( $oldid == $this->mLatest );
 		$td = $wgLang->timeanddate( $this->mTimestamp, true );
+		$tddate = $wgLang->time( $this->mTimestamp, true );
+		$tdtime = $wgLang->time( $this->mTimestamp, true );
 		$sk = $wgUser->getSkin();
 		$lnk = $current
 			? wfMsgHtml( 'currentrevisionlink' )
@@ -3191,11 +3193,19 @@ class Article {
 			? 'revision-info-current'
 			: 'revision-info';
 
-		$r = "\n\t\t\t\t<div id=\"mw-{$infomsg}\">" . wfMsgExt( $infomsg, array( 'parseinline', 'replaceafter' ), 
-			$td, $userlinks, $revision->getID() ) . "</div>\n" .
-
-		     "\n\t\t\t\t<div id=\"mw-revision-nav\">" . $cdel . wfMsgExt( 'revision-nav', array( 'escapenoentities', 'parsemag', 'replaceafter' ),
-		     	$prevdiff, $prevlink, $lnk, $curdiff, $nextlink, $nextdiff ) . "</div>\n\t\t\t";
+		$r = "\n\t\t\t\t<div id=\"mw-{$infomsg}\">" .
+			wfMsgExt(
+				$infomsg,
+				array( 'parseinline', 'replaceafter' ), 
+				$td,
+				$userlinks,
+				$revision->getID(),
+				$tddate,
+				$tdtime
+			) .
+			"</div>\n" .
+			"\n\t\t\t\t<div id=\"mw-revision-nav\">" . $cdel . wfMsgExt( 'revision-nav', array( 'escapenoentities', 'parsemag', 'replaceafter' ),
+			$prevdiff, $prevlink, $lnk, $curdiff, $nextlink, $nextdiff ) . "</div>\n\t\t\t";
 		$wgOut->setSubtitle( $r );
 	}
 
