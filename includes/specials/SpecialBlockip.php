@@ -668,13 +668,21 @@ class IPBlockForm {
 	 */
 	private function getUnblockLink( $skin ) {
 		$list = SpecialPage::getTitleFor( 'Ipblocklist' );
+		$query = array( 'action' => 'unblock' );
+
 		if( $this->BlockAddress ) {
 			$addr = htmlspecialchars( strtr( $this->BlockAddress, '_', ' ' ) );
-			return $skin->makeKnownLinkObj( $list, wfMsgHtml( 'ipb-unblock-addr', $addr ),
-				'action=unblock&ip=' . urlencode( $this->BlockAddress ) );
+			$message = wfMsgHtml( 'ipb-unblock-addr', $addr );
+			$query['ip'] = $this->BlockAddress;
 		} else {
-			return $skin->makeKnownLinkObj( $list, wfMsgHtml( 'ipb-unblock' ),	'action=unblock' );
+			$message = wfMsgHtml( 'ipb-unblock' );
 		}
+		return $skin->linkKnown(
+			$list,
+			$message,
+			array(),
+			$query
+		);
 	}
 
 	/**
@@ -685,13 +693,22 @@ class IPBlockForm {
 	 */
 	private function getBlockListLink( $skin ) {
 		$list = SpecialPage::getTitleFor( 'Ipblocklist' );
+		$query = array();
+
 		if( $this->BlockAddress ) {
 			$addr = htmlspecialchars( strtr( $this->BlockAddress, '_', ' ' ) );
-			return $skin->makeKnownLinkObj( $list, wfMsgHtml( 'ipb-blocklist-addr', $addr ),
-				'ip=' . urlencode( $this->BlockAddress ) );
+			$message = wfMsgHtml( 'ipb-blocklist-addr', $addr );
+			$query['ip'] = $this->BlockAddress;
 		} else {
-			return $skin->makeKnownLinkObj( $list, wfMsgHtml( 'ipb-blocklist' ) );
+			$message = wfMsgHtml( 'ipb-blocklist' );
 		}
+
+		return $skin->linkKnown(
+			$list,
+			$message,
+			array(),
+			$query
+		);
 	}
 	
 	/**

@@ -186,16 +186,28 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		if( $this->targetObj ) {
 			$links = array();
 			$logtitle = SpecialPage::getTitleFor( 'Log' );
-			$links[] = $this->skin->makeKnownLinkObj( $logtitle, wfMsgHtml( 'viewpagelogs' ),
-				wfArrayToCGI( array( 'page' => $this->targetObj->getPrefixedUrl() ) ) );
+			$links[] = $this->skin->linkKnown(
+				$logtitle,
+				wfMsgHtml( 'viewpagelogs' ),
+				array(),
+				array( 'page' => $this->targetObj->getPrefixedUrl() )
+			);
 			# Give a link to the page history
-			$links[] = $this->skin->makeKnownLinkObj( $this->targetObj, wfMsgHtml( 'pagehist' ),
-				wfArrayToCGI( array( 'action' => 'history' ) ) );
+			$links[] = $this->skin->linkKnown(
+				$this->targetObj,
+				wfMsgHtml( 'pagehist' ),
+				array(),
+				array( 'action' => 'history' )
+			);
 			# Link to deleted edits
 			if( $wgUser->isAllowed('undelete') ) {
 				$undelete = SpecialPage::getTitleFor( 'Undelete' );
-				$links[] = $this->skin->makeKnownLinkObj( $undelete, wfMsgHtml( 'deletedhist' ),
-					wfArrayToCGI( array( 'target' => $this->targetObj->getPrefixedDBkey() ) ) );
+				$links[] = $this->skin->linkKnown(
+					$undelete,
+					wfMsgHtml( 'deletedhist' ),
+					array(),
+					array( 'target' => $this->targetObj->getPrefixedDBkey() )
+				);
 			}
 			# Logs themselves don't have histories or archived revisions
 			$wgOut->setSubtitle( '<p>'.implode($links,' / ').'</p>' );

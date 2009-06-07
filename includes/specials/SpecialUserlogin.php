@@ -1005,12 +1005,17 @@ class LoginForm {
 	function makeLanguageSelectorLink( $text, $lang ) {
 		global $wgUser;
 		$self = SpecialPage::getTitleFor( 'Userlogin' );
-		$attr[] = 'uselang=' . $lang;
+		$attr = array( 'uselang' => $lang );
 		if( $this->mType == 'signup' )
-			$attr[] = 'type=signup';
+			$attr['type'] = 'signup';
 		if( $this->mReturnTo )
-			$attr[] = 'returnto=' . $this->mReturnTo;
+			$attr['returnto'] = $this->mReturnTo;
 		$skin = $wgUser->getSkin();
-		return $skin->makeKnownLinkObj( $self, htmlspecialchars( $text ), implode( '&', $attr ) );
+		return $skin->linkKnown(
+			$self,
+			htmlspecialchars( $text ),
+			array(),
+			$attr
+		);
 	}
 }

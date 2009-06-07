@@ -62,7 +62,7 @@ class MostlinkedPage extends QueryPage {
 	 */
 	function makeWlhLink( &$title, $caption, &$skin ) {
 		$wlh = SpecialPage::getTitleFor( 'Whatlinkshere', $title->getPrefixedDBkey() );
-		return $skin->makeKnownLinkObj( $wlh, $caption );
+		return $skin->linkKnown( $wlh, $caption );
 	}
 
 	/**

@@ -157,26 +157,41 @@ class SpecialContributions extends SpecialPage {
 			if( ( $id != 0 && $wgSysopUserBans ) || ( $id == 0 && IP::isIPAddress( $nt->getText() ) ) ) {
 				# Block link
 				if( $wgUser->isAllowed( 'block' ) )
-					$tools[] = $sk->makeKnownLinkObj( SpecialPage::getTitleFor( 'Blockip', 
-						$nt->getDBkey() ), wfMsgHtml( 'blocklink' ) );
+					$tools[] = $sk->linkKnown(
+						SpecialPage::getTitleFor( 'Blockip', $nt->getDBkey() ),
+						wfMsgHtml( 'blocklink' )
+					);
 				# Block log link
-				$tools[] = $sk->makeKnownLinkObj( SpecialPage::getTitleFor( 'Log' ), 
-					wfMsgHtml( 'sp-contributions-blocklog' ), 'type=block&page=' . $nt->getPrefixedUrl() );
+				$tools[] = $sk->linkKnown(
+					SpecialPage::getTitleFor( 'Log' ),
+					wfMsgHtml( 'sp-contributions-blocklog' ),
+					array(),
+					array(
+						'type' => 'block',
+						'page' => $nt->getPrefixedUrl()
+					)
+				);
 			}
 			# Other logs link
-			$tools[] = $sk->makeKnownLinkObj( SpecialPage::getTitleFor( 'Log' ), wfMsg( 'sp-contributions-logs' ), 
-				'user=' . $nt->getPartialUrl() );
+			$tools[] = $sk->linkKnown(
+				SpecialPage::getTitleFor( 'Log' ),
+				wfMsg( 'sp-contributions-logs' ),
+				array(),
+				array( 'user' => $nt->getPartialUrl() )
+			);
 
 			# Add link to deleted user contributions for priviledged users
 			if( $wgUser->isAllowed( 'deletedhistory' ) ) {
-				$tools[] = $sk->makeKnownLinkObj( SpecialPage::getTitleFor( 'DeletedContributions', 
-					$nt->getDBkey() ), wfMsgHtml( 'sp-contributions-deleted' ) );
+				$tools[] = $sk->linkKnown(
+					SpecialPage::getTitleFor( 'DeletedContributions', $nt->getDBkey() ),
+					wfMsgHtml( 'sp-contributions-deleted' )
+				);
 			}
 
 			# Add a link to change user rights for privileged users
 			$userrightsPage = new UserrightsPage();
 			if( 0 !== $id && $userrightsPage->userCanChangeRights( User::newFromId( $id ) ) ) {
-				$tools[] = $sk->makeKnownLinkObj(
+				$tools[] = $sk->linkKnown(
 					SpecialPage::getTitleFor( 'Userrights', $nt->getDBkey() ),
 					wfMsgHtml( 'sp-contributions-userrights' )
 				);
@@ -493,7 +508,12 @@ class ContribsPager extends ReverseChronologicalPager {
 		if( $row->rev_id == $row->page_latest ) {
 			$topmarktext .= '<span class="mw-uctop">' . $this->messages['uctop'] . '</span>';
 			if( !$row->page_is_new ) {
-				$difftext .= '(' . $sk->makeKnownLinkObj( $page, $this->messages['diff'], 'diff=0' ) . ')';
+				$difftext .= '(' . $sk->linkKnown(
+					$page,
+					$this->messages['diff'],
+					array(),
+					array( 'diff' => 0 )
+				) . ')';
 				# Add rollback link
 				if( $page->quickUserCan( 'rollback') && $page->quickUserCan( 'edit' ) ) {
 					$topmarktext .= ' '.$sk->generateRollback( $rev );
@@ -504,16 +524,33 @@ class ContribsPager extends ReverseChronologicalPager {
 		}
 		# Is there a visible previous revision?
 		if( $rev->userCan(Revision::DELETED_TEXT) ) {
-			$difftext = '(' . $sk->makeKnownLinkObj( $page, $this->messages['diff'],
-				'diff=prev&oldid='.$row->rev_id ) . ')';
+			$difftext = '(' . $sk->linkKnown(
+				$page,
+				$this->messages['diff'],
+				array(),
+				array(
+					'diff' => 'prev',
+					'oldid' => $row->rev_id
+				)
+			) . ')';
 		} else {
 			$difftext = '(' . $this->messages['diff'] . ')';
 		}
-		$histlink = '('.$sk->makeKnownLinkObj( $page, $this->messages['hist'], 'action=history' ) . ')';
+		$histlink = '('.$sk->linkKnown(
+			$page,
+			$this->messages['hist'],
+			array(),
+			array( 'action' => 'history' )
+		) . ')';
 
 		$comment = $wgContLang->getDirMark() . $sk->revComment( $rev, false, true );
 		$date = $wgLang->timeanddate( wfTimestamp( TS_MW, $row->rev_timestamp ), true );
-		$d = $sk->makeKnownLinkObj( $page, htmlspecialchars($date), 'oldid='.intval($row->rev_id) );
+		$d = $sk->linkKnown(
+			$page,
+			htmlspecialchars($date),
+			array(),
+			array( 'oldid' => intval( $row->rev_id ) )
+		);
 
 		if( $this->target == 'newbies' ) {
 			$userlink = ' . . ' . $sk->userLink( $row->rev_user, $row->rev_user_text );

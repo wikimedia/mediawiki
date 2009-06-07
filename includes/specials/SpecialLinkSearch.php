@@ -151,7 +151,7 @@ class LinkSearchPage extends QueryPage {
 	function formatResult( $skin, $result ) {
 		$title = Title::makeTitle( $result->namespace, $result->title );
 		$url = $result->url;
-		$pageLink = $skin->makeKnownLinkObj( $title );
+		$pageLink = $skin->linkKnown( $title );
 		$urlLink = $skin->makeExternalLink( $url, $url );
 
 		return wfMsgHtml( 'linksearch-line', $urlLink, $pageLink );

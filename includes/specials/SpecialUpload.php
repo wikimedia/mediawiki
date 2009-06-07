@@ -632,7 +632,7 @@ class UploadForm {
 		}
 
 		if( $file->exists() ) {
-			$dlink = $sk->makeKnownLinkObj( $file->getTitle() );
+			$dlink = $sk->linkKnown( $file->getTitle() );
 			if ( $file->allowInlineDisplay() ) {
 				$dlink2 = $sk->makeImageLinkObj( $file->getTitle(), wfMsgExt( 'fileexists-thumb', 'parseinline' ),
 					$file->getName(), $align, array(), false, true );
@@ -647,12 +647,17 @@ class UploadForm {
 			$warning .= '<li>' . wfMsgExt( 'fileexists', array('parseinline','replaceafter'), $dlink ) . '</li>' . $dlink2;
 
 		} elseif( $file->getTitle()->getArticleID() ) {
-			$lnk = $sk->makeKnownLinkObj( $file->getTitle(), '', 'redirect=no' );
+			$lnk = $sk->linkKnown(
+				$file->getTitle(),
+				null,
+				array(),
+				array( 'redirect' => 'no' )
+			);
 			$warning .= '<li>' . wfMsgExt( 'filepageexists', array( 'parseinline', 'replaceafter' ), $lnk ) . '</li>';
 		} elseif ( $file_lc && $file_lc->exists() ) {
 			# Check if image with lowercase extension exists.
 			# It's not forbidden but in 99% it makes no sense to upload the same filename with uppercase extension
-			$dlink = $sk->makeKnownLinkObj( $nt_lc );
+			$dlink = $sk->linkKnown( $nt_lc );
 			if ( $file_lc->allowInlineDisplay() ) {
 				$dlink2 = $sk->makeImageLinkObj( $nt_lc, wfMsgExt( 'fileexists-thumb', 'parseinline' ),
 					$nt_lc->getText(), $align, array(), false, true );
@@ -677,7 +682,7 @@ class UploadForm {
 			$file_thb = wfLocalFile( $nt_thb );
 			if ($file_thb->exists() ) {
 				# Check if an image without leading '180px-' (or similiar) exists
-				$dlink = $sk->makeKnownLinkObj( $nt_thb);
+				$dlink = $sk->linkKnown( $nt_thb );
 				if ( $file_thb->allowInlineDisplay() ) {
 					$dlink2 = $sk->makeImageLinkObj( $nt_thb,
 						wfMsgExt( 'fileexists-thumb', 'parseinline' ),
@@ -713,8 +718,15 @@ class UploadForm {
 			# If the file existed before and was deleted, warn the user of this
 			# Don't bother doing so if the file exists now, however
 			$ltitle = SpecialPage::getTitleFor( 'Log' );
-			$llink = $sk->makeKnownLinkObj( $ltitle, wfMsgHtml( 'deletionlog' ),
-				'type=delete&page=' . $file->getTitle()->getPrefixedUrl() );
+			$llink = $sk->linkKnown(
+				$ltitle,
+				wfMsgHtml( 'deletionlog' ),
+				array(),
+				array(
+					'type' => 'delete',
+					'page' => $file->getTitle()->getPrefixedUrl()
+				)
+			);
 			$warning .= '<li>' . wfMsgWikiHtml( 'filewasdeleted', $llink ) . '</li>';
 		}
 		return $warning;
@@ -992,7 +1004,7 @@ wgUploadAutoFill = {$autofill};
 				$link = wfMsgExt(
 					$wgUser->isAllowed( 'delete' ) ? 'thisisdeleted' : 'viewdeleted',
 					array( 'parse', 'replaceafter' ),
-					$wgUser->getSkin()->makeKnownLinkObj(
+					$wgUser->getSkin()->linkKnown(
 						SpecialPage::getTitleFor( 'Undelete', $title->getPrefixedText() ),
 						wfMsgExt( 'restorelink', array( 'parsemag', 'escape' ), $count )
 					)

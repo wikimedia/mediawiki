@@ -64,15 +64,30 @@ class BrokenRedirectsPage extends PageQueryPage {
 			return '<s>' . $skin->link( $fromObj ) . '</s>';
 		}
 
-		$from = $skin->makeKnownLinkObj( $fromObj ,'', 'redirect=no' );
-		$edit = $skin->makeKnownLinkObj( $fromObj, wfMsgHtml( 'brokenredirects-edit' ), 'action=edit' );
+		$from = $skin->linkKnown(
+			$fromObj,
+			null,
+			array(),
+			array( 'redirect' => 'no' )
+		);
+		$edit = $skin->linkKnown(
+			$fromObj,
+			wfMsgHtml( 'brokenredirects-edit' ),
+			array(),
+			array( 'action' => 'edit' )
+		);
 		$to   = $skin->makeBrokenLinkObj( $toObj );
 		$arr = $wgContLang->getArrow();
 
 		$out = "{$from} {$edit}";
 
 		if( $wgUser->isAllowed( 'delete' ) ) {
-			$delete = $skin->makeKnownLinkObj( $fromObj, wfMsgHtml( 'brokenredirects-delete' ), 'action=delete' );
+			$delete = $skin->linkKnown(
+				$fromObj,
+				wfMsgHtml( 'brokenredirects-delete' ),
+				array(),
+				array( 'action' => 'delete' )
+			);
 			$out .= " {$delete}";
 		}
 

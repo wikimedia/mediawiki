@@ -258,8 +258,18 @@ class SpecialWhatLinksHere extends SpecialPage {
 			}
 		}
 
-		$suppressRedirect = $row->page_is_redirect ? 'redirect=no' : '';
-		$link = $this->skin->makeKnownLinkObj( $nt, '', $suppressRedirect );
+		if( $row->page_is_redirect ) {
+			$query = array( 'redirect' => 'no' );
+		} else {
+			$query = array();
+		}
+
+		$link = $this->skin->linkKnown(
+			$nt,
+			null,
+			array(),
+			$query
+		);
 
 		// Display properties (redirect or template)
 		$propsText = '';
@@ -294,11 +304,21 @@ class SpecialWhatLinksHere extends SpecialPage {
 			$title = SpecialPage::getTitleFor( 'Whatlinkshere' );
 
 		$targetText = $target->getPrefixedUrl();
-		return $this->skin->makeKnownLinkObj( $title, $text, 'target=' . $targetText );
+		return $this->skin->linkKnown(
+			$title,
+			$text,
+			array(),
+			array( 'target' => $targetText )
+		);
 	}
 
 	function makeSelfLink( $text, $query ) {
-		return $this->skin->makeKnownLinkObj( $this->selfTitle, $text, $query );
+		return $this->skin->linkKnown(
+			$this->selfTitle,
+			$text,
+			array(),
+			$query
+		);
 	}
 
 	function getPrevNext( $prevId, $nextId ) {
@@ -313,18 +333,18 @@ class SpecialWhatLinksHere extends SpecialPage {
 
 		if ( 0 != $prevId ) {
 			$overrides = array( 'from' => $this->opts->getValue( 'back' ) );
-			$prev = $this->makeSelfLink( $prev, wfArrayToCGI( $overrides, $changed ) );
+			$prev = $this->makeSelfLink( $prev, array_merge( $overrides, $changed ) );
 		}
 		if ( 0 != $nextId ) {
 			$overrides = array( 'from' => $nextId, 'back' => $prevId );
-			$next = $this->makeSelfLink( $next, wfArrayToCGI( $overrides, $changed ) );
+			$next = $this->makeSelfLink( $next, array_merge( $overrides, $changed ) );
 		}
 
 		$limitLinks = array();
 		foreach ( $this->limits as $limit ) {
 			$prettyLimit = $wgLang->formatNum( $limit );
 			$overrides = array( 'limit' => $limit );
-			$limitLinks[] = $this->makeSelfLink( $prettyLimit, wfArrayToCGI( $overrides, $changed ) );
+			$limitLinks[] = $this->makeSelfLink( $prettyLimit, array_merge( $overrides, $changed ) );
 		}
 
 		$nums = $wgLang->pipeList( $limitLinks );
@@ -391,7 +411,7 @@ class SpecialWhatLinksHere extends SpecialPage {
 			$chosen = $this->opts->getValue( $type );
 			$msg = wfMsgHtml( "whatlinkshere-{$type}", $chosen ? $show : $hide );
 			$overrides = array( $type => !$chosen );
-			$links[] = $this->makeSelfLink( $msg, wfArrayToCGI( $overrides, $changed ) );
+			$links[] = $this->makeSelfLink( $msg, array_merge( $overrides, $changed ) );
 		}
 		return Xml::fieldset( wfMsg( 'whatlinkshere-filters' ), $wgLang->pipeList( $links ) );
 	}

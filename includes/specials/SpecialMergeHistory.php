@@ -155,7 +155,7 @@ class MergehistoryForm {
 		$haveRevisions = $revisions && $revisions->getNumRows() > 0;
 
 		$titleObj = SpecialPage::getTitleFor( "Mergehistory" );
-		$action = $titleObj->getLocalURL( "action=submit" );
+		$action = $titleObj->getLocalURL( array( 'action' => 'submit' ) );
 		# Start the form here
 		$top = Xml::openElement( 'form', array( 'method' => 'post', 'action' => $action, 'id' => 'merge' ) );
 		$wgOut->addHTML( $top );
@@ -228,8 +228,12 @@ class MergehistoryForm {
 		$ts = wfTimestamp( TS_MW, $row->rev_timestamp );
 		$checkBox = Xml::radio( "mergepoint", $ts, false );
 
-		$pageLink = $this->sk->makeKnownLinkObj( $rev->getTitle(),
-			htmlspecialchars( $wgLang->timeanddate( $ts ) ), 'oldid=' . $rev->getId() );
+		$pageLink = $this->sk->linkKnown(
+			$rev->getTitle(),
+			htmlspecialchars( $wgLang->timeanddate( $ts ) ),
+			array(),
+			array( 'oldid' => $rev->getId() )
+		);
 		if( $rev->isDeleted( Revision::DELETED_TEXT ) ) {
 			$pageLink = '<span class="history-deleted">' . $pageLink . '</span>';
 		}
@@ -238,8 +242,15 @@ class MergehistoryForm {
 		if( !$rev->userCan( Revision::DELETED_TEXT ) )
 			$last = $this->message['last'];
 		else if( isset($this->prevId[$row->rev_id]) )
-			$last = $this->sk->makeKnownLinkObj( $rev->getTitle(), $this->message['last'],
-				"diff=" . $row->rev_id . "&oldid=" . $this->prevId[$row->rev_id] );
+			$last = $this->sk->linkKnown(
+				$rev->getTitle(),
+				$this->message['last'],
+				array(),
+				array(
+					'diff' => $row->rev_id,
+					'oldid' => $this->prevId[$row->rev_id]
+				)
+			);
 
 		$userLink = $this->sk->revUserTools( $rev );
 
@@ -261,8 +272,15 @@ class MergehistoryForm {
 		if( !$this->userCan($row, Revision::DELETED_TEXT) ) {
 			return '<span class="history-deleted">' . $wgLang->timeanddate( $ts, true ) . '</span>';
 		} else {
-			$link = $this->sk->makeKnownLinkObj( $titleObj,
-				$wgLang->timeanddate( $ts, true ), "target=$target&timestamp=$ts" );
+			$link = $this->sk->linkKnown(
+				$titleObj,
+				$wgLang->timeanddate( $ts, true ),
+				array(),
+				array(
+					'target' => $target,
+					'timestamp' => $ts
+				)
+			);
 			if( $this->isDeleted($row, Revision::DELETED_TEXT) )
 				$link = '<span class="history-deleted">' . $link . '</span>';
 			return $link;
