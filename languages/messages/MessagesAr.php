@@ -297,7 +297,6 @@ $magicWords = array(
 	'index'                 => array( '1', '__فهرسة__', '__INDEX__' ),
 	'noindex'               => array( '1', '__لافهرسة__', '__NOINDEX__' ),
 	'numberingroup'         => array( '1', 'عدد_في_المجموعة', 'عدد_في_مجموعة', 'NUMBERINGROUP', 'NUMINGROUP' ),
-	'numberofcontribs'      => array( '1', 'عدد_المساهمات', 'مساهمات_المستخدم', 'NUMBEROFCONTRIBS', 'USERCONTRIBS', 'NUMOFCONTRIBS' ),
 	'staticredirect'        => array( '1', '__تحويلة_إستاتيكية__', '__تحويلة_ساكنة__', '__STATICREDIRECT__' ),
 	'protectionlevel'       => array( '1', 'مستوى_الحماية', 'مستوى_حماية', 'PROTECTIONLEVEL' ),
 	'formatdate'            => array( '0', 'تهيئة_التاريخ', 'تهيئة_تاريخ', 'formatdate', 'dateformat' ),

@@ -213,13 +213,14 @@ $magicWords = array(
 	'revisionmonth'         => array( '1', '판월', 'REVISIONMONTH' ),
 	'revisionyear'          => array( '1', '판년', 'REVISIONYEAR' ),
 	'revisiontimestamp'     => array( '1', '판타임스탬프', 'REVISIONTIMESTAMP' ),
-	'plural'                => array( '0', '복수:', 'PLURAL:' ),
+	'plural'                => array( '0', '복수:', '복수형:', 'PLURAL:' ),
 	'fullurl'               => array( '0', '전체주소:', 'FULLURL:' ),
 	'fullurle'              => array( '0', '전체주소E:', 'FULLURLE:' ),
 	'lcfirst'               => array( '0', '첫소문자:', 'LCFIRST:' ),
 	'ucfirst'               => array( '0', '첫대문자:', 'UCFIRST:' ),
 	'lc'                    => array( '0', '소문자:', 'LC:' ),
 	'uc'                    => array( '0', '대문자:', 'UC:' ),
+	'displaytitle'          => array( '1', '제목표시', 'DISPLAYTITLE' ),
 	'newsectionlink'        => array( '1', '__새글쓰기__', '__NEWSECTIONLINK__' ),
 	'nonewsectionlink'      => array( '1', '__새글쓰기숨기기__', '__NONEWSECTIONLINK__' ),
 	'currentversion'        => array( '1', '현재버전', 'CURRENTVERSION' ),
@@ -238,8 +239,10 @@ $magicWords = array(
 	'hiddencat'             => array( '1', '__숨은분류__', '__HIDDENCAT__' ),
 	'pagesincategory'       => array( '1', '분류문서수', 'PAGESINCATEGORY', 'PAGESINCAT' ),
 	'pagesize'              => array( '1', '문서크기', 'PAGESIZE' ),
+	'numberingroup'         => array( '1', '권한별사용자수', '그룹별사용자수', 'NUMBERINGROUP', 'NUMINGROUP' ),
 	'staticredirect'        => array( '1', '__넘겨주기고정__', '__STATICREDIRECT__' ),
 	'protectionlevel'       => array( '1', '보호수준', 'PROTECTIONLEVEL' ),
+	'formatdate'            => array( '0', '날짜형식', 'formatdate', 'dateformat' ),
 );
 
 $bookstoreList = array(
