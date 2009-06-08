@@ -18,6 +18,7 @@ define( 'DBO_IGNORE', 4 );
 define( 'DBO_TRX', 8 );
 define( 'DBO_DEFAULT', 16 );
 define( 'DBO_PERSISTENT', 32 );
+define( 'DBO_SYSDBA', 64 ); //for oracle maintenance
 /**#@-*/
 
 # Valid database indexes
