@@ -29,6 +29,8 @@ class SpecialWhatLinksHere extends SpecialPage {
 	function execute( $par ) {
 		global $wgOut, $wgRequest;
 
+		$this->setHeaders();
+
 		$opts = new FormOptions();
 
 		$opts->add( 'target', '' );
