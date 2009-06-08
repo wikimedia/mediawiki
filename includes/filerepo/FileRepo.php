@@ -401,6 +401,21 @@ abstract class FileRepo {
 	 */
 	abstract function publishBatch( $triplets, $flags = 0 );
 
+	function fileExists( $file, $flags = 0 ) {
+		$result = $this->fileExistsBatch( array( $file ), $flags );
+		return $file;
+	}
+
+	/**
+	 * Checks existence of an array of files.
+	 *
+	 * @param array $files URLs (or paths) of files to check
+	 * @param integer $flags Bitwise combination of the following flags:
+	 *     self::FILES_ONLY     Mark file as existing only if it is a file (not directory)
+	 * @return Either array of files and existence flags, or false
+	 */
+	abstract function fileExistsBatch( $files, $flags = 0 );
+
 	/**
 	 * Move a group of files to the deletion archive.
 	 *
