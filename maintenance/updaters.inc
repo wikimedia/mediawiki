@@ -175,6 +175,7 @@ $wgUpdates = array(
 		array( 'add_table', 'user_properties',		   'patch-user_properties.sql' ),
 		array( 'add_table', 'log_search',		   	   'patch-log_search.sql' ),
 		array( 'do_log_search_population' ),
+		array( 'add_field', 'redirect',	'rd_interwiki', 'patch-rd_interwiki.sql' ),
 	),
 );
 
