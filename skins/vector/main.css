@@ -70,10 +70,18 @@ div#panel {
 	div#panel > div.buffer {
 		padding-top: 1em;
 	}
+	div#panel > div.buffer > div.portal {
+		padding-top: 1.5em;
+	}
+	div#panel > div.buffer:first-child {
+		padding-top: 0em;
+	}
 	div#panel > div.buffer > div.portal > h5 {
 		font-weight: normal;
 		color: #666666;
-		padding: 0.75em;
+		padding: 0.5em;
+		padding-top: 0;
+		padding-bottom: 0.33em;
 		padding-left: 1.25em;
 		cursor: default;
 	}
@@ -82,15 +90,15 @@ div#panel {
 		padding-right: 1.25em;
 	}
 	div#panel > div.buffer > div.portal > div.body {
-		padding: 0.75em;
-		padding-left: 1.25em;
+		padding-top: 0.33em;
+		margin-left: 1.25em;
 		background-image: url(images/panel-fade.png);
-		background-repeat: repeat-x;
+		background-repeat: no-repeat;
 		background-position: top left;
 	}
 	body.rtl div#panel > div.buffer > div.portal > div.body {
 		padding-left: 0;
-		padding-right: 1.25em;
+		margin-right: 1.25em;
 		background-position: top right;
 	}
 	div#panel > div.buffer > div.portal > div.body > ul {
@@ -100,7 +108,7 @@ div#panel {
 	}
 	div#panel > div.buffer > div.portal > div.body > ul > li {
 		padding: 0;
-		padding-bottom: 0.5em;
+		padding-bottom: 0.25em;
 		margin: 0;
 		overflow: hidden;
 	}
