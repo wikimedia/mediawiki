@@ -18,14 +18,6 @@ class Linker {
 	function __construct() {}
 
 	/**
-	 * @deprecated
-	 */
-	function postParseLinkColour( $s = null ) {
-		wfDeprecated( __METHOD__ );
-		return null;
-	}
-
-	/**
 	 * Get the appropriate HTML attributes to add to the "a" element of an ex-
 	 * ternal link, as created by [wikisyntax].
 	 *
@@ -330,235 +322,6 @@ class Linker {
 	}
 
 	/**
-	 * @deprecated Use link()
-	 *
-	 * This function is a shortcut to makeLinkObj(Title::newFromText($title),...). Do not call
-	 * it if you already have a title object handy. See makeLinkObj for further documentation.
-	 *
-	 * @param $title String: the text of the title
-	 * @param $text  String: link text
-	 * @param $query String: optional query part
-	 * @param $trail String: optional trail. Alphabetic characters at the start of this string will
-	 *                      be included in the link text. Other characters will be appended after
-	 *                      the end of the link.
-	 */
-	function makeLink( $title, $text = '', $query = '', $trail = '' ) {
-		wfProfileIn( __METHOD__ );
-	 	$nt = Title::newFromText( $title );
-		if ( $nt instanceof Title ) {
-			$result = $this->makeLinkObj( $nt, $text, $query, $trail );
-		} else {
-			wfDebug( 'Invalid title passed to Linker::makeLink(): "'.$title."\"\n" );
-			$result = $text == "" ? $title : $text;
-		}
-
-		wfProfileOut( __METHOD__ );
-		return $result;
-	}
-
-	/**
-	 * @deprecated Use link()
-	 *
-	 * This function is a shortcut to makeKnownLinkObj(Title::newFromText($title),...). Do not call
-	 * it if you already have a title object handy. See makeKnownLinkObj for further documentation.
-	 *
-	 * @param $title String: the text of the title
-	 * @param $text  String: link text
-	 * @param $query String: optional query part
-	 * @param $trail String: optional trail. Alphabetic characters at the start of this string will
-	 *                      be included in the link text. Other characters will be appended after
-	 *                      the end of the link.
-	 */
-	function makeKnownLink( $title, $text = '', $query = '', $trail = '', $prefix = '',$aprops = '') {
-		$nt = Title::newFromText( $title );
-		if ( $nt instanceof Title ) {
-			return $this->makeKnownLinkObj( $nt, $text, $query, $trail, $prefix , $aprops );
-		} else {
-			wfDebug( 'Invalid title passed to Linker::makeKnownLink(): "'.$title."\"\n" );
-			return $text == '' ? $title : $text;
-		}
-	}
-
-	/**
-	 * @deprecated Use link()
-	 *
-	 * This function is a shortcut to makeBrokenLinkObj(Title::newFromText($title),...). Do not call
-	 * it if you already have a title object handy. See makeBrokenLinkObj for further documentation.
-	 *
-	 * @param string $title The text of the title
-	 * @param string $text Link text
-	 * @param string $query Optional query part
-	 * @param string $trail Optional trail. Alphabetic characters at the start of this string will
-	 *                      be included in the link text. Other characters will be appended after
-	 *                      the end of the link.
-	 */
-	function makeBrokenLink( $title, $text = '', $query = '', $trail = '' ) {
-		$nt = Title::newFromText( $title );
-		if ( $nt instanceof Title ) {
-			return $this->makeBrokenLinkObj( $nt, $text, $query, $trail );
-		} else {
-			wfDebug( 'Invalid title passed to Linker::makeBrokenLink(): "'.$title."\"\n" );
-			return $text == '' ? $title : $text;
-		}
-	}
-
-	/**
-	 * @deprecated Use link()
-	 *
-	 * This function is a shortcut to makeStubLinkObj(Title::newFromText($title),...). Do not call
-	 * it if you already have a title object handy. See makeStubLinkObj for further documentation.
-	 *
-	 * @param $title String: the text of the title
-	 * @param $text  String: link text
-	 * @param $query String: optional query part
-	 * @param $trail String: optional trail. Alphabetic characters at the start of this string will
-	 *                      be included in the link text. Other characters will be appended after
-	 *                      the end of the link.
-	 */
-	function makeStubLink( $title, $text = '', $query = '', $trail = '' ) {
-		wfDeprecated( __METHOD__ );
-		$nt = Title::newFromText( $title );
-		if ( $nt instanceof Title ) {
-			return $this->makeStubLinkObj( $nt, $text, $query, $trail );
-		} else {
-			wfDebug( 'Invalid title passed to Linker::makeStubLink(): "'.$title."\"\n" );
-			return $text == '' ? $title : $text;
-		}
-	}
-
-	/**
-	 * @deprecated Use link()
-	 *
-	 * Make a link for a title which may or may not be in the database. If you need to
-	 * call this lots of times, pre-fill the link cache with a LinkBatch, otherwise each
-	 * call to this will result in a DB query.
-	 *
-	 * @param $nt     Title: the title object to make the link from, e.g. from
-	 *                      Title::newFromText.
-	 * @param $text  String: link text
-	 * @param $query String: optional query part
-	 * @param $trail String: optional trail. Alphabetic characters at the start of this string will
-	 *                      be included in the link text. Other characters will be appended after
-	 *                      the end of the link.
-	 * @param $prefix String: optional prefix. As trail, only before instead of after.
-	 */
-	function makeLinkObj( $nt, $text= '', $query = '', $trail = '', $prefix = '' ) {
-		wfProfileIn( __METHOD__ );
-
-		$query = wfCgiToArray( $query );
-		list( $inside, $trail ) = Linker::splitTrail( $trail );
-		if( $text === '' ) {
-			$text = $this->linkText( $nt );
-		}
-
-		$ret = $this->link( $nt, "$prefix$text$inside", array(), $query ) . $trail;
-
-		wfProfileOut( __METHOD__ );
-		return $ret;
-	}
-
-	/**
-	 * @deprecated Use link()
-	 *
-	 * Make a link for a title which definitely exists. This is faster than makeLinkObj because
-	 * it doesn't have to do a database query. It's also valid for interwiki titles and special
-	 * pages.
-	 *
-	 * @param $nt Title object of target page
-	 * @param $text   String: text to replace the title
-	 * @param $query  String: link target
-	 * @param $trail  String: text after link
-	 * @param $prefix String: text before link text
-	 * @param $aprops String: extra attributes to the a-element
-	 * @param $style  String: style to apply - if empty, use getInternalLinkAttributesObj instead
-	 * @return the a-element
-	 */
-	function makeKnownLinkObj( $title, $text = '', $query = '', $trail = '', $prefix = '' , $aprops = '', $style = '' ) {
-		wfProfileIn( __METHOD__ );
-
-		if ( $text == '' ) {
-			$text = $this->linkText( $title );
-		}
-		$attribs = Sanitizer::mergeAttributes(
-			Sanitizer::decodeTagAttributes( $aprops ),
-			Sanitizer::decodeTagAttributes( $style )
-		);
-		$query = wfCgiToArray( $query );
-		list( $inside, $trail ) = Linker::splitTrail( $trail );
-
-		$ret = $this->link( $title, "$prefix$text$inside", $attribs, $query,
-			array( 'known', 'noclasses' ) ) . $trail;
-
-		wfProfileOut( __METHOD__ );
-		return $ret;
-	}
-
-	/**
-	 * @deprecated Use link()
-	 *
-	 * Make a red link to the edit page of a given title.
-	 *
-	 * @param $nt Title object of the target page
-	 * @param $text  String: Link text
-	 * @param $query String: Optional query part
-	 * @param $trail String: Optional trail. Alphabetic characters at the start of this string will
-	 *                      be included in the link text. Other characters will be appended after
-	 *                      the end of the link.
-	 */
-	function makeBrokenLinkObj( $title, $text = '', $query = '', $trail = '', $prefix = '' ) {
-		wfProfileIn( __METHOD__ );
-
-		list( $inside, $trail ) = Linker::splitTrail( $trail );
-		if( $text === '' ) {
-			$text = $this->linkText( $title );
-		}
-		$nt = $this->normaliseSpecialPage( $title );
-
-		$ret = $this->link( $title, "$prefix$text$inside", array(),
-			wfCgiToArray( $query ), 'broken' ) . $trail;
-
-		wfProfileOut( __METHOD__ );
-		return $ret;
-	}
-
-	/**
-	 * @deprecated Use link()
-	 *
-	 * Make a brown link to a short article.
-	 *
-	 * @param $nt Title object of the target page
-	 * @param $text  String: link text
-	 * @param $query String: optional query part
-	 * @param $trail String: optional trail. Alphabetic characters at the start of this string will
-	 *                      be included in the link text. Other characters will be appended after
-	 *                      the end of the link.
-	 */
-	function makeStubLinkObj( $nt, $text = '', $query = '', $trail = '', $prefix = '' ) {
-		wfDeprecated( __METHOD__ );
-		return $this->makeColouredLinkObj( $nt, 'stub', $text, $query, $trail, $prefix );
-	}
-
-	/**
-	 * @deprecated Use link()
-	 *
-	 * Make a coloured link.
-	 *
-	 * @param $nt Title object of the target page
-	 * @param $colour Integer: colour of the link
-	 * @param $text   String:  link text
-	 * @param $query  String:  optional query part
-	 * @param $trail  String:  optional trail. Alphabetic characters at the start of this string will
-	 *                      be included in the link text. Other characters will be appended after
-	 *                      the end of the link.
-	 */
-	function makeColouredLinkObj( $nt, $colour, $text = '', $query = '', $trail = '', $prefix = '' ) {
-		if($colour != ''){
-			$style = $this->getInternalLinkAttributesObj( $nt, $text, $colour );
-		} else $style = '';
-		return $this->makeKnownLinkObj( $nt, $text, $query, $trail, $prefix, '', $style );
-	}
-
-	/**
 	 * Generate either a normal exists-style link or a stub link, depending
 	 * on the given page size.
 	 *
@@ -613,12 +376,6 @@ class Linker {
 		return $basename;
 	}
 
-	/** Obsolete alias */
-	function makeImage( $url, $alt = '' ) {
-		wfDeprecated( __METHOD__ );
-		return $this->makeExternalImage( $url, $alt );
-	}
-
 	/** @todo document */
 	function makeExternalImage( $url, $alt = '' ) {
 		if ( '' == $alt ) {
@@ -634,45 +391,6 @@ class Linker {
 			array(
 				'src' => $url,
 				'alt' => $alt ) );
-	}
-
-	/**
-	 * Creates the HTML source for images
-	 * @deprecated use makeImageLink2
-	 *
-	 * @param object $title
-	 * @param string $label label text
-	 * @param string $alt alt text
-	 * @param string $align horizontal alignment: none, left, center, right)
-	 * @param array $handlerParams Parameters to be passed to the media handler
-	 * @param boolean $framed shows image in original size in a frame
-	 * @param boolean $thumb shows image as thumbnail in a frame
-	 * @param string $manualthumb image name for the manual thumbnail
-	 * @param string $valign vertical alignment: baseline, sub, super, top, text-top, middle, bottom, text-bottom
-	 * @param string $time, timestamp of the file, set as false for current
-	 * @return string
-	 */
-	function makeImageLinkObj( $title, $label, $alt, $align = '', $handlerParams = array(), $framed = false,
-	  $thumb = false, $manualthumb = '', $valign = '', $time = false )
-	{
-		$frameParams = array( 'alt' => $alt, 'caption' => $label );
-		if ( $align ) {
-			$frameParams['align'] = $align;
-		}
-		if ( $framed ) {
-			$frameParams['framed'] = true;
-		}
-		if ( $thumb ) {
-			$frameParams['thumbnail'] = true;
-		}
-		if ( $manualthumb ) {
-			$frameParams['manualthumb'] = $manualthumb;
-		}
-		if ( $valign ) {
-			$frameParams['valign'] = $valign;
-		}
-		$file = wfFindFile( $title, $time );
-		return $this->makeImageLink2( $title, $file, $frameParams, $handlerParams, $time );
 	}
 
 	/**
@@ -967,12 +685,6 @@ class Linker {
 		} else {
 			return "<!-- ERROR -->{$prefix}{$text}{$trail}";
 		}
-	}
-
-	/** @deprecated use Linker::makeMediaLinkObj() */
-	function makeMediaLink( $name, $unused = '', $text = '', $time = false ) {
-		$nt = Title::makeTitleSafe( NS_FILE, $name );
-		return $this->makeMediaLinkObj( $nt, $text, $time );
 	}
 
 	/**
@@ -1461,34 +1173,6 @@ class Linker {
 	}
 
 	/**
-	 * Used to generate section edit links that point to "other" pages
-	 * (sections that are really part of included pages).
-	 *
-	 * @param $title Title string.
-	 * @param $section Integer: section number.
-	 */
-	public function editSectionLinkForOther( $title, $section ) {
-		wfDeprecated( __METHOD__ );
-		$title = Title::newFromText( $title );
-		return $this->doEditSectionLink( $title, $section );
-	}
-
-	/**
-	 * @param $nt Title object.
-	 * @param $section Integer: section number.
-	 * @param $hint Link String: title, or default if omitted or empty
-	 */
-	public function editSectionLink( Title $nt, $section, $hint = '' ) {
-		wfDeprecated( __METHOD__ );
-		if( $hint === '' ) {
-			# No way to pass an actual empty $hint here!  The new interface al-
-			# lows this, so we have to do this for compatibility.
-			$hint = null;
-		}
-		return $this->doEditSectionLink( $nt, $section, $hint );
-	}
-
-	/**
 	 * Create a section edit link.  This supersedes editSectionLink() and
 	 * editSectionLinkForOther().
 	 *
@@ -1735,40 +1419,6 @@ class Linker {
 	}
 
 	/**
-	 * @deprecated Returns raw bits of HTML, use titleAttrib() and accesskey()
-	 */
-	public function tooltipAndAccesskey( $name ) {
-		# FIXME: If Sanitizer::expandAttributes() treated "false" as "output
-		# no attribute" instead of "output '' as value for attribute", this
-		# would be three lines.
-		$attribs = array(
-			'title' => $this->titleAttrib( $name, 'withaccess' ),
-			'accesskey' => $this->accesskey( $name )
-		);
-		if ( $attribs['title'] === false ) {
-			unset( $attribs['title'] );
-		}
-		if ( $attribs['accesskey'] === false ) {
-			unset( $attribs['accesskey'] );
-		}
-		return Xml::expandAttributes( $attribs );
-	}
-
-	/** @deprecated Returns raw bits of HTML, use titleAttrib() */
-	public function tooltip( $name, $options = null ) {
-		# FIXME: If Sanitizer::expandAttributes() treated "false" as "output
-		# no attribute" instead of "output '' as value for attribute", this
-		# would be two lines.
-		$tooltip = $this->titleAttrib( $name, $options );
-		if ( $tooltip === false ) {
-			return '';
-		}
-		return Xml::expandAttributes( array(
-			'title' => $this->titleAttrib( $name, $options )
-		) );
-	}
-
-	/**
 	 * Given the id of an interface element, constructs the appropriate title
 	 * attribute from the system messages.  (Note, this is usually the id but
 	 * isn't always, because sometimes the accesskey needs to go on a different
@@ -1849,5 +1499,357 @@ class Linker {
 		$tag = $restricted ? 'strong' : 'span';
 		$link = $this->link( $sp, $text, array(), $query, array( 'known', 'noclasses' ) );
 		return Xml::tags( $tag, array( 'class' => 'mw-revdelundel-link' ), "($link)" );
+	}
+
+	/* Deprecated methods */
+
+	/**
+	 * @deprecated
+	 */
+	function postParseLinkColour( $s = null ) {
+		wfDeprecated( __METHOD__ );
+		return null;
+	}
+
+
+	/**
+	 * @deprecated Use link()
+	 *
+	 * This function is a shortcut to makeLinkObj(Title::newFromText($title),...). Do not call
+	 * it if you already have a title object handy. See makeLinkObj for further documentation.
+	 *
+	 * @param $title String: the text of the title
+	 * @param $text  String: link text
+	 * @param $query String: optional query part
+	 * @param $trail String: optional trail. Alphabetic characters at the start of this string will
+	 *                      be included in the link text. Other characters will be appended after
+	 *                      the end of the link.
+	 */
+	function makeLink( $title, $text = '', $query = '', $trail = '' ) {
+		wfProfileIn( __METHOD__ );
+	 	$nt = Title::newFromText( $title );
+		if ( $nt instanceof Title ) {
+			$result = $this->makeLinkObj( $nt, $text, $query, $trail );
+		} else {
+			wfDebug( 'Invalid title passed to Linker::makeLink(): "'.$title."\"\n" );
+			$result = $text == "" ? $title : $text;
+		}
+
+		wfProfileOut( __METHOD__ );
+		return $result;
+	}
+
+	/**
+	 * @deprecated Use link()
+	 *
+	 * This function is a shortcut to makeKnownLinkObj(Title::newFromText($title),...). Do not call
+	 * it if you already have a title object handy. See makeKnownLinkObj for further documentation.
+	 *
+	 * @param $title String: the text of the title
+	 * @param $text  String: link text
+	 * @param $query String: optional query part
+	 * @param $trail String: optional trail. Alphabetic characters at the start of this string will
+	 *                      be included in the link text. Other characters will be appended after
+	 *                      the end of the link.
+	 */
+	function makeKnownLink( $title, $text = '', $query = '', $trail = '', $prefix = '',$aprops = '') {
+		$nt = Title::newFromText( $title );
+		if ( $nt instanceof Title ) {
+			return $this->makeKnownLinkObj( $nt, $text, $query, $trail, $prefix , $aprops );
+		} else {
+			wfDebug( 'Invalid title passed to Linker::makeKnownLink(): "'.$title."\"\n" );
+			return $text == '' ? $title : $text;
+		}
+	}
+
+	/**
+	 * @deprecated Use link()
+	 *
+	 * This function is a shortcut to makeBrokenLinkObj(Title::newFromText($title),...). Do not call
+	 * it if you already have a title object handy. See makeBrokenLinkObj for further documentation.
+	 *
+	 * @param string $title The text of the title
+	 * @param string $text Link text
+	 * @param string $query Optional query part
+	 * @param string $trail Optional trail. Alphabetic characters at the start of this string will
+	 *                      be included in the link text. Other characters will be appended after
+	 *                      the end of the link.
+	 */
+	function makeBrokenLink( $title, $text = '', $query = '', $trail = '' ) {
+		$nt = Title::newFromText( $title );
+		if ( $nt instanceof Title ) {
+			return $this->makeBrokenLinkObj( $nt, $text, $query, $trail );
+		} else {
+			wfDebug( 'Invalid title passed to Linker::makeBrokenLink(): "'.$title."\"\n" );
+			return $text == '' ? $title : $text;
+		}
+	}
+
+	/**
+	 * @deprecated Use link()
+	 *
+	 * This function is a shortcut to makeStubLinkObj(Title::newFromText($title),...). Do not call
+	 * it if you already have a title object handy. See makeStubLinkObj for further documentation.
+	 *
+	 * @param $title String: the text of the title
+	 * @param $text  String: link text
+	 * @param $query String: optional query part
+	 * @param $trail String: optional trail. Alphabetic characters at the start of this string will
+	 *                      be included in the link text. Other characters will be appended after
+	 *                      the end of the link.
+	 */
+	function makeStubLink( $title, $text = '', $query = '', $trail = '' ) {
+		wfDeprecated( __METHOD__ );
+		$nt = Title::newFromText( $title );
+		if ( $nt instanceof Title ) {
+			return $this->makeStubLinkObj( $nt, $text, $query, $trail );
+		} else {
+			wfDebug( 'Invalid title passed to Linker::makeStubLink(): "'.$title."\"\n" );
+			return $text == '' ? $title : $text;
+		}
+	}
+
+	/**
+	 * @deprecated Use link()
+	 *
+	 * Make a link for a title which may or may not be in the database. If you need to
+	 * call this lots of times, pre-fill the link cache with a LinkBatch, otherwise each
+	 * call to this will result in a DB query.
+	 *
+	 * @param $nt     Title: the title object to make the link from, e.g. from
+	 *                      Title::newFromText.
+	 * @param $text  String: link text
+	 * @param $query String: optional query part
+	 * @param $trail String: optional trail. Alphabetic characters at the start of this string will
+	 *                      be included in the link text. Other characters will be appended after
+	 *                      the end of the link.
+	 * @param $prefix String: optional prefix. As trail, only before instead of after.
+	 */
+	function makeLinkObj( $nt, $text= '', $query = '', $trail = '', $prefix = '' ) {
+		wfProfileIn( __METHOD__ );
+
+		$query = wfCgiToArray( $query );
+		list( $inside, $trail ) = Linker::splitTrail( $trail );
+		if( $text === '' ) {
+			$text = $this->linkText( $nt );
+		}
+
+		$ret = $this->link( $nt, "$prefix$text$inside", array(), $query ) . $trail;
+
+		wfProfileOut( __METHOD__ );
+		return $ret;
+	}
+
+	/**
+	 * @deprecated Use link()
+	 *
+	 * Make a link for a title which definitely exists. This is faster than makeLinkObj because
+	 * it doesn't have to do a database query. It's also valid for interwiki titles and special
+	 * pages.
+	 *
+	 * @param $nt Title object of target page
+	 * @param $text   String: text to replace the title
+	 * @param $query  String: link target
+	 * @param $trail  String: text after link
+	 * @param $prefix String: text before link text
+	 * @param $aprops String: extra attributes to the a-element
+	 * @param $style  String: style to apply - if empty, use getInternalLinkAttributesObj instead
+	 * @return the a-element
+	 */
+	function makeKnownLinkObj( $title, $text = '', $query = '', $trail = '', $prefix = '' , $aprops = '', $style = '' ) {
+		wfProfileIn( __METHOD__ );
+
+		if ( $text == '' ) {
+			$text = $this->linkText( $title );
+		}
+		$attribs = Sanitizer::mergeAttributes(
+			Sanitizer::decodeTagAttributes( $aprops ),
+			Sanitizer::decodeTagAttributes( $style )
+		);
+		$query = wfCgiToArray( $query );
+		list( $inside, $trail ) = Linker::splitTrail( $trail );
+
+		$ret = $this->link( $title, "$prefix$text$inside", $attribs, $query,
+			array( 'known', 'noclasses' ) ) . $trail;
+
+		wfProfileOut( __METHOD__ );
+		return $ret;
+	}
+
+	/**
+	 * @deprecated Use link()
+	 *
+	 * Make a red link to the edit page of a given title.
+	 *
+	 * @param $nt Title object of the target page
+	 * @param $text  String: Link text
+	 * @param $query String: Optional query part
+	 * @param $trail String: Optional trail. Alphabetic characters at the start of this string will
+	 *                      be included in the link text. Other characters will be appended after
+	 *                      the end of the link.
+	 */
+	function makeBrokenLinkObj( $title, $text = '', $query = '', $trail = '', $prefix = '' ) {
+		wfProfileIn( __METHOD__ );
+
+		list( $inside, $trail ) = Linker::splitTrail( $trail );
+		if( $text === '' ) {
+			$text = $this->linkText( $title );
+		}
+		$nt = $this->normaliseSpecialPage( $title );
+
+		$ret = $this->link( $title, "$prefix$text$inside", array(),
+			wfCgiToArray( $query ), 'broken' ) . $trail;
+
+		wfProfileOut( __METHOD__ );
+		return $ret;
+	}
+
+	/**
+	 * @deprecated Use link()
+	 *
+	 * Make a brown link to a short article.
+	 *
+	 * @param $nt Title object of the target page
+	 * @param $text  String: link text
+	 * @param $query String: optional query part
+	 * @param $trail String: optional trail. Alphabetic characters at the start of this string will
+	 *                      be included in the link text. Other characters will be appended after
+	 *                      the end of the link.
+	 */
+	function makeStubLinkObj( $nt, $text = '', $query = '', $trail = '', $prefix = '' ) {
+		wfDeprecated( __METHOD__ );
+		return $this->makeColouredLinkObj( $nt, 'stub', $text, $query, $trail, $prefix );
+	}
+
+	/**
+	 * @deprecated Use link()
+	 *
+	 * Make a coloured link.
+	 *
+	 * @param $nt Title object of the target page
+	 * @param $colour Integer: colour of the link
+	 * @param $text   String:  link text
+	 * @param $query  String:  optional query part
+	 * @param $trail  String:  optional trail. Alphabetic characters at the start of this string will
+	 *                      be included in the link text. Other characters will be appended after
+	 *                      the end of the link.
+	 */
+	function makeColouredLinkObj( $nt, $colour, $text = '', $query = '', $trail = '', $prefix = '' ) {
+		if($colour != ''){
+			$style = $this->getInternalLinkAttributesObj( $nt, $text, $colour );
+		} else $style = '';
+		return $this->makeKnownLinkObj( $nt, $text, $query, $trail, $prefix, '', $style );
+	}
+	/** Obsolete alias */
+	function makeImage( $url, $alt = '' ) {
+		wfDeprecated( __METHOD__ );
+		return $this->makeExternalImage( $url, $alt );
+	}
+
+	/**
+	 * Creates the HTML source for images
+	 * @deprecated use makeImageLink2
+	 *
+	 * @param object $title
+	 * @param string $label label text
+	 * @param string $alt alt text
+	 * @param string $align horizontal alignment: none, left, center, right)
+	 * @param array $handlerParams Parameters to be passed to the media handler
+	 * @param boolean $framed shows image in original size in a frame
+	 * @param boolean $thumb shows image as thumbnail in a frame
+	 * @param string $manualthumb image name for the manual thumbnail
+	 * @param string $valign vertical alignment: baseline, sub, super, top, text-top, middle, bottom, text-bottom
+	 * @param string $time, timestamp of the file, set as false for current
+	 * @return string
+	 */
+	function makeImageLinkObj( $title, $label, $alt, $align = '', $handlerParams = array(), $framed = false,
+	  $thumb = false, $manualthumb = '', $valign = '', $time = false )
+	{
+		$frameParams = array( 'alt' => $alt, 'caption' => $label );
+		if ( $align ) {
+			$frameParams['align'] = $align;
+		}
+		if ( $framed ) {
+			$frameParams['framed'] = true;
+		}
+		if ( $thumb ) {
+			$frameParams['thumbnail'] = true;
+		}
+		if ( $manualthumb ) {
+			$frameParams['manualthumb'] = $manualthumb;
+		}
+		if ( $valign ) {
+			$frameParams['valign'] = $valign;
+		}
+		$file = wfFindFile( $title, $time );
+		return $this->makeImageLink2( $title, $file, $frameParams, $handlerParams, $time );
+	}
+
+	/** @deprecated use Linker::makeMediaLinkObj() */
+	function makeMediaLink( $name, $unused = '', $text = '', $time = false ) {
+		$nt = Title::makeTitleSafe( NS_FILE, $name );
+		return $this->makeMediaLinkObj( $nt, $text, $time );
+	}
+
+	/**
+	 * Used to generate section edit links that point to "other" pages
+	 * (sections that are really part of included pages).
+	 *
+	 * @param $title Title string.
+	 * @param $section Integer: section number.
+	 */
+	public function editSectionLinkForOther( $title, $section ) {
+		wfDeprecated( __METHOD__ );
+		$title = Title::newFromText( $title );
+		return $this->doEditSectionLink( $title, $section );
+	}
+
+	/**
+	 * @param $nt Title object.
+	 * @param $section Integer: section number.
+	 * @param $hint Link String: title, or default if omitted or empty
+	 */
+	public function editSectionLink( Title $nt, $section, $hint = '' ) {
+		wfDeprecated( __METHOD__ );
+		if( $hint === '' ) {
+			# No way to pass an actual empty $hint here!  The new interface al-
+			# lows this, so we have to do this for compatibility.
+			$hint = null;
+		}
+		return $this->doEditSectionLink( $nt, $section, $hint );
+	}
+
+	/**
+	 * @deprecated Returns raw bits of HTML, use titleAttrib() and accesskey()
+	 */
+	public function tooltipAndAccesskey( $name ) {
+		# FIXME: If Sanitizer::expandAttributes() treated "false" as "output
+		# no attribute" instead of "output '' as value for attribute", this
+		# would be three lines.
+		$attribs = array(
+			'title' => $this->titleAttrib( $name, 'withaccess' ),
+			'accesskey' => $this->accesskey( $name )
+		);
+		if ( $attribs['title'] === false ) {
+			unset( $attribs['title'] );
+		}
+		if ( $attribs['accesskey'] === false ) {
+			unset( $attribs['accesskey'] );
+		}
+		return Xml::expandAttributes( $attribs );
+	}
+
+	/** @deprecated Returns raw bits of HTML, use titleAttrib() */
+	public function tooltip( $name, $options = null ) {
+		# FIXME: If Sanitizer::expandAttributes() treated "false" as "output
+		# no attribute" instead of "output '' as value for attribute", this
+		# would be two lines.
+		$tooltip = $this->titleAttrib( $name, $options );
+		if ( $tooltip === false ) {
+			return '';
+		}
+		return Xml::expandAttributes( array(
+			'title' => $this->titleAttrib( $name, $options )
+		) );
 	}
 }
