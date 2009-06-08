@@ -108,11 +108,22 @@ class LogEventsList {
 		$links = array();
 		$hiddens = ''; // keep track for "go" button
 		foreach( $filter as $type => $val ) {
+			// Should the below assignment be outside the foreach?
+			// Then it would have to be copied. Not certain what is more expensive.
+			$query = $this->getDefaultQuery();
+			$queryKey = "hide_{$type}_log";
+			$query[$queryKey] = $hideVal;
+
 			$hideVal = 1 - intval($val);
-			// FIXME: use link() here. Needs changes in getDefaultQuery()
-			$link = $this->skin->makeKnownLinkObj( $wgTitle, $messages[$hideVal],
-				wfArrayToCGI( array( "hide_{$type}_log" => $hideVal ), $this->getDefaultQuery() )
+
+			$link = $this->skin->link(
+				$wgTitle,
+				$messages[$hideVal],
+				array(),
+				$query,
+				array( 'known', 'noclasses' )
 			);
+
 			$links[$type] = wfMsgHtml( "log-show-hide-{$type}", $link );
 			$hiddens .= Xml::hidden( "hide_{$type}_log", $val ) . "\n";
 		}

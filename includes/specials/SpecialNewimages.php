@@ -65,13 +65,13 @@ function wfSpecialNewimages( $par, $specialPage ) {
 	}
 
 	$where = array();
-	$searchpar = '';
+	$searchpar = array();
 	if ( $wpIlMatch != '' && !$wgMiserMode) {
 		$nt = Title::newFromUrl( $wpIlMatch );
 		if( $nt ) {
 			$m = $dbr->escapeLike( strtolower( $nt->getDBkey() ) );
 			$where[] = "LOWER(img_name) LIKE '%{$m}%'";
-			$searchpar = '&wpIlMatch=' . urlencode( $wpIlMatch );
+			$searchpar['wpIlMatch'] = $wpIlMatch;
 		}
 	}
 
@@ -163,29 +163,75 @@ function wfSpecialNewimages( $par, $specialPage ) {
 
 	# If we change bot visibility, this needs to be carried along.
 	if( !$hidebots ) {
-		$botpar = '&hidebots=0';
+		$botpar = array( 'hidebots' => 0 );
 	} else {
-		$botpar = '';
+		$botpar = array();
 	}
 	$now = wfTimestampNow();
 	$d = $wgLang->date( $now, true );
 	$t = $wgLang->time( $now, true );
-	$dateLink = $sk->makeKnownLinkObj( $titleObj, htmlspecialchars( wfMsg( 'sp-newimages-showfrom', $d, $t ) ), 
-		'from='.$now.$botpar.$searchpar );
+	$query = array_merge(
+		array( 'from' => $now ),
+		$botpar,
+		$searchpar
+	);
 
-	$botLink = $sk->makeKnownLinkObj($titleObj, wfMsgHtml( 'showhidebots', 
-		($hidebots ? wfMsgHtml('show') : wfMsgHtml('hide'))),'hidebots='.($hidebots ? '0' : '1').$searchpar);
+	$dateLink = $sk->linkKnown(
+		$titleObj,
+		htmlspecialchars( wfMsg( 'sp-newimages-showfrom', $d, $t ) ),
+		array(),
+		$query
+	);
 
+	$query = array_merge(
+		array( 'hidebots' => ( $hidebots ? 0 : 1 ) ),
+		$searchpar
+	);
+
+	$message = wfMsgHtml(
+		'showhidebots',
+		( $hidebots ? wfMsgHtml( 'show' ) : wfMsgHtml( 'hide' ) )
+	);
+
+	$botLink = $sk->linkKnown(
+		$titleObj,
+		$message,
+		array(),
+		$query
+	);
 
 	$opts = array( 'parsemag', 'escapenoentities' );
 	$prevLink = wfMsgExt( 'pager-newer-n', $opts, $wgLang->formatNum( $limit ) );
 	if( $firstTimestamp && $firstTimestamp != $latestTimestamp ) {
-		$prevLink = $sk->makeKnownLinkObj( $titleObj, $prevLink, 'from=' . $firstTimestamp . $botpar . $searchpar );
+		$query = array_merge(
+			array( 'from' => $firstTimestamp ),
+			$botpar,
+			$searchpar
+		);
+
+		$prevLink = $sk->linkKnown(
+			$titleObj,
+			$prevLink,
+			array(),
+			$query
+		);
 	}
 
 	$nextLink = wfMsgExt( 'pager-older-n', $opts, $wgLang->formatNum( $limit ) );
 	if( $shownImages > $limit && $lastTimestamp ) {
-		$nextLink = $sk->makeKnownLinkObj( $titleObj, $nextLink, 'until=' . $lastTimestamp.$botpar.$searchpar );
+		$query = array_merge(
+			array( 'until' => $lastTimestamp ),
+			$botpar,
+			$searchpar
+		);
+
+		$nextLink = $sk->linkKnown(
+			$titleObj,
+			$nextLink,
+			array(),
+			$query
+		);
+
 	}
 
 	$prevnext = '<p>' . $botLink . ' '. wfMsgHtml( 'viewprevnext', $prevLink, $nextLink, $dateLink ) .'</p>';
