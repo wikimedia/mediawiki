@@ -217,14 +217,15 @@ class DatabaseOracle extends Database {
 		$this->mDBname = $dbName;
 
 		if (!strlen($user)) { ## e.g. the class is being loaded
-			return;
+		return;
 		}
 
 		//error_reporting( E_ALL ); //whoever had this bright idea
+		$session_mode = $this->mFlags & DBO_SYSDBA ? OCI_SYSDBA : OCI_DEFAULT;
 		if ( $this->mFlags & DBO_DEFAULT )
-			$this->mConn = oci_new_connect($user, $password, $dbName);
+			$this->mConn = oci_new_connect($user, $password, $dbName, null, $session_mode);
 		else
-			$this->mConn = oci_connect($user, $password, $dbName);
+			$this->mConn = oci_connect($user, $password, $dbName, null, $session_mode);
 
 		if ($this->mConn == false) {
 			wfDebug("DB connection error\n");
@@ -832,6 +833,101 @@ class DatabaseOracle extends Database {
 		return $sql;
 	}
 
+	/* defines must comply with ^define\s*([^\s=]*)\s*=\s?'\{\$([^\}]*)\}'; */
+	function sourceStream( $fp, $lineCallback = false, $resultCallback = false ) {
+		$cmd = "";
+		$done = false;
+		$dollarquote = false;
+		
+		$replacements = array();
+
+		while ( ! feof( $fp ) ) {
+			if ( $lineCallback ) {
+				call_user_func( $lineCallback );
+			}
+			$line = trim( fgets( $fp, 1024 ) );
+			$sl = strlen( $line ) - 1;
+
+			if ( $sl < 0 ) { continue; }
+			if ( '-' == $line{0} && '-' == $line{1} ) { continue; }
+
+			// Allow dollar quoting for function declarations
+			if (substr($line,0,8) == '/*$mw$*/') {
+				if ($dollarquote) {
+					$dollarquote = false;
+					$done = true;
+				}
+				else {
+					$dollarquote = true;
+				}
+			}
+			else if (!$dollarquote) {
+				if ( ';' == $line{$sl} && ($sl < 2 || ';' != $line{$sl - 1})) {
+					$done = true;
+					$line = substr( $line, 0, $sl );
+				}
+			}
+
+			if ( '' != $cmd ) { $cmd .= ' '; }
+			$cmd .= "$line\n";
+
+			if ( $done ) {
+				$cmd = str_replace(';;', ";", $cmd);
+				if (strtolower(substr($cmd, 0, 6)) == 'define' ) {
+					if (preg_match('/^define\s*([^\s=]*)\s*=\s*\'\{\$([^\}]*)\}\'/', $cmd, $defines)) {
+						$replacements[$defines[2]] = $defines[1];
+					}
+				} else {
+					foreach ( $replacements as $mwVar=>$scVar ) {
+						$cmd = str_replace( '&' . $scVar . '.', '{$'.$mwVar.'}', $cmd );
+					}
+
+					$cmd = $this->replaceVars( $cmd );
+					$res = $this->query( $cmd, __METHOD__ );
+					if ( $resultCallback ) {
+						call_user_func( $resultCallback, $res, $this );
+					}
+	
+					if ( false === $res ) {
+						$err = $this->lastError();
+						return "Query \"{$cmd}\" failed with error code \"$err\".\n";
+					}
+				}
+
+				$cmd = '';
+				$done = false;
+			}
+		}
+		return true;
+	}
+
+	function setup_database() {
+		global $wgVersion, $wgDBmwschema, $wgDBts2schema, $wgDBport, $wgDBuser;
+		
+		echo "<li>Creating DB objects</li>\n";
+		$res = dbsource( "../maintenance/ora/tables.sql", $this);
+		
+		// Avoid the non-standard "REPLACE INTO" syntax
+		echo "<li>Populating table interwiki</li>\n";
+		$f = fopen( "../maintenance/interwiki.sql", 'r' );
+		if ($f == false ) {
+			dieout( "<li>Could not find the interwiki.sql file</li>");
+		}
+		
+		//do it like the postgres :D
+		$SQL = "INSERT INTO interwiki(iw_prefix,iw_url,iw_local) VALUES ";
+		while ( ! feof( $f ) ) {
+			$line = fgets($f,1024);
+			$matches = array();
+			if (!preg_match('/^\s*(\(.+?),(\d)\)/', $line, $matches)) {
+				continue;
+			}
+			$this->query("$SQL $matches[1],$matches[2])");
+		}
+
+		echo "<li>Table interwiki successfully populated</li>\n";
+	}
+
 	function strencode($s) {
 		return str_replace("'", "''", $s);
 	}
@@ -967,6 +1063,26 @@ class DatabaseOracle extends Database {
 		return $this->mServer;
 	}
 	
+	public function replaceVars( $ins ) {
+		$varnames = array('wgDBprefix');
+		if ($this->mFlags & DBO_SYSDBA) {
+			$varnames[] = 'wgDBOracleDefTS';
+			$varnames[] = 'wgDBOracleTempTS';
+		}
+
+		// Ordinary variables
+		foreach ( $varnames as $var ) {
+			if( isset( $GLOBALS[$var] ) ) {
+				$val = addslashes( $GLOBALS[$var] ); // FIXME: safety check?
+				$ins = str_replace( '{$' . $var . '}', $val, $ins );
+				$ins = str_replace( '/*$' . $var . '*/`', '`' . $val, $ins );
+				$ins = str_replace( '/*$' . $var . '*/', $val, $ins );
+			}
+		}
+
+		return parent::replaceVars($ins);
+	}
+
 	/** 
 	 * No-op lock functions
 	 */

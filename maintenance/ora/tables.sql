@@ -1,4 +1,5 @@
-DEFINE mw_prefix='';
+-- defines must comply with ^define\s*([^\s=]*)\s*=\s?'\{\$([^\}]*)\}';
+define mw_prefix='{$wgDBprefix}';
 
 
 CREATE SEQUENCE user_user_id_seq MINVALUE 0 START WITH 0;
@@ -70,12 +71,13 @@ CREATE UNIQUE INDEX &mw_prefix.page_u01 ON &mw_prefix.page (page_namespace,page_
 CREATE INDEX &mw_prefix.page_i01 ON &mw_prefix.page (page_random);
 CREATE INDEX &mw_prefix.page_i02 ON &mw_prefix.page (page_len);
 
+/*$mw$*/
 CREATE TRIGGER &mw_prefix.page_set_random BEFORE INSERT ON &mw_prefix.page
-        FOR EACH ROW WHEN (new.page_random IS NULL)
-        BEGIN
-                SELECT dbms_random.value INTO :NEW.page_random FROM dual;
-        END;
-/
+	FOR EACH ROW WHEN (new.page_random IS NULL)
+BEGIN
+	SELECT dbms_random.value INTO :NEW.page_random FROM dual;
+END;
+/*$mw$*/
 
 CREATE SEQUENCE rev_rev_id_val;
 CREATE TABLE &mw_prefix.revision (
@@ -463,7 +465,9 @@ CREATE UNIQUE INDEX &mw_prefix.querycache_info_u01 ON &mw_prefix.querycache_info
 CREATE TABLE &mw_prefix.redirect (
   rd_from       NUMBER  NOT NULL  REFERENCES &mw_prefix.page(page_id) ON DELETE CASCADE,
   rd_namespace  NUMBER NOT NULL,
-  rd_title      VARCHAR2(255)     NOT NULL
+  rd_title      VARCHAR2(255)     NOT NULL,
+  rd_interwiki  VARCHAR2(32),
+  rd_fragment   VARCHAR2(255)
 );
 CREATE INDEX &mw_prefix.redirect_i01 ON &mw_prefix.redirect (rd_namespace,rd_title,rd_from);
 
@@ -571,6 +575,7 @@ nonuniq NUMBER(1)
 );
 ALTER TABLE &mw_prefix.wiki_field_info_full ADD CONSTRAINT &mw_prefix.wiki_field_info_full_pk PRIMARY KEY (table_name, column_name);
 
+/*$mw$*/
 CREATE PROCEDURE &mw_prefix.fill_wiki_info IS
 	BEGIN
 		DELETE      &mw_prefix.wiki_field_info_full;
@@ -619,12 +624,17 @@ CREATE PROCEDURE &mw_prefix.fill_wiki_info IS
 		END LOOP;
 		COMMIT;
 END;
+/*$mw$*/
 
+/*$mw$*/
 BEGIN 
 	&mw_prefix.fill_wiki_info;
 END;
+/*$mw$*/
 
+/*$mw$*/
 CREATE OR REPLACE FUNCTION BITOR (x IN NUMBER, y IN NUMBER) RETURN NUMBER AS
 BEGIN
   RETURN (x + y - BITAND(x, y));
 END;
+/*$mw$*/
