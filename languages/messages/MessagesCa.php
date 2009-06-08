@@ -220,6 +220,7 @@ $messages = array(
 'tog-watchlisthideliu'        => "Amaga a la llista les edicions d'usuaris registrats",
 'tog-watchlisthideanons'      => "Amaga a la llista les edicions d'usuaris anònims",
 'tog-watchlisthidepatrolled'  => 'Amaga edicions patrullades de la llista de seguiment',
+'tog-nolangconversion'        => 'Desactiva la conversió de variants',
 'tog-ccmeonemails'            => "Envia'm còpies dels missatges que enviï als altres usuaris.",
 'tog-diffonly'                => 'Amaga el contingut de la pàgina davall de la taula de diferències',
 'tog-showhiddencats'          => 'Mostra les categories ocultes',
@@ -913,6 +914,8 @@ Si us plau, confirmeu que és això el que desitjeu fer, que enteneu les conseq�
 'revdelete-failure'           => "'''La visibilitat de la revisió no ha pogut establir-se.'''
 $1",
 'logdelete-success'           => "'''S'ha establert correctament la visibilitat d'aquest element.'''",
+'logdelete-failure'           => "'''No s'ha pogut establir la visibilitat del registre:'''
+$1",
 'revdel-restore'              => "Canvia'n la visibilitat",
 'pagehist'                    => 'Historial',
 'deletedhist'                 => "Historial d'esborrat",

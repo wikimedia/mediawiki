@@ -237,6 +237,17 @@ Details stehen im [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Lösch-
 Einem Administrator können Sie [$1 diesen Link zum Versionsunterschied] nennen.",
 'revdelete-nooldid-text'      => 'Sie haben entweder keine Version angegeben, auf die diese Aktion ausgeführt werden soll, die gewählte Version ist nicht vorhanden oder Sie versuchen, die aktuelle Version zu entfernen.',
 'revdelete-show-file-confirm' => 'Sind Sie sicher, dass Sie die gelöschte Version der Datei „<nowiki>$1</nowiki>“ vom $2 um $3 Uhr ansehen wollen?',
+'revdelete-text'              => "'''Gelöschte Versionen und Aktionen verbleiben in der Versionsgeschichte und den Logbüchern, jedoch sind Teile davon für die Öffentlichkeit unzugänglich.'''
+
+Andere Administratoren auf {{SITENAME}} haben Zugriff auf den versteckten Inhalt und können ihn mit der gleichen Seite wiederherstellen, sofern nicht zusätzliche Einschränkungen bestehen.
+Bitte bestätigen Sie, dass Sie beabsichtigen, dies zu tun, die Konsequenzen verstehen und es in Übereinstimmung mit den [[{{MediaWiki:Policy-url}}|Richtlinien]] tuen.",
+'revdelete-show-no-access'    => 'Fehler beim Anzeigen des Eintrags vom $1, $2 Uhr: Dieser Eintrag wurde als „eingeschränkt“ markiert.
+Sie haben darauf keinen Zugriff.',
+'revdelete-modify-no-access'  => 'Fehler beim Bearbeiten des Eintrags vom $1, $2 Uhr: Dieser Eintrag wurde als „eingeschränkt“ markiert.
+Sie haben darauf keinen Zugriff.',
+'revdelete-concurrent-change' => 'Fehler beim Bearbeiten des Eintrags vom $1, $2 Uhr: Es scheint, als ob der Status von jemandem geändert wurde, bevor Sie vorhatten, ihn zu bearbeiten.
+Bitte prüfen Sie die Logbücher.',
+'revdelete-only-restricted'   => 'Sie können keine Einträge vor Administratoren unterdrücken, ohne dass Sie auch eine der anderen Unterdrückungsoptionen ausgewählt haben.',
 
 # History merging
 'mergehistory-header' => 'Mit dieser Spezialseite können Sie die Versionsgeschichte einer Ursprungsseite mit der Versionsgeschichte einer Zielseite vereinen.
@@ -258,6 +269,8 @@ Wenn Sie sich mit dem Thema auskennen, können Sie selbst die [[:$1|die Seite ve
 # Preferences page
 'prefsnologintext'          => 'Sie müssen <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} angemeldet]</span> sein, um Ihre Einstellungen ändern zu können.',
 'savedprefs'                => 'Ihre Einstellungen wurden gespeichert.',
+'prefs-reset-intro'         => 'Sie können diese Seite verwenden, um die Einstellungen auf die Standards zurückzusetzen.
+Dies kann nicht mehr rückgängig gemacht werden.',
 'prefs-help-realname'       => 'Optional. Ihr echter Name wird Ihren Beiträgen zugeordnet.',
 'prefs-help-email'          => 'Die Angabe einer E-Mail ist optional, ermöglicht aber die Zusendung eines Ersatzpasswortes, wenn Sie Ihr Passwort vergessen haben.
 Mit anderen Benutzer können Sie auch über die Benutzerdiskussionsseiten Kontakt aufnehmen, ohne dass Sie Ihre Identität offenlegen müssen.',

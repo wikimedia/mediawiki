@@ -869,6 +869,8 @@ Par piaser conferma che te voli dal bon far sta scancelassion, che te conossi le
 'revdelete-failure'           => "'''No se riesse a inpostar la visibilità de la version:'''
 $1",
 'logdelete-success'           => "'''Visibilità de l'evento inpostà coretamente.'''",
+'logdelete-failure'           => "'''No se riesse a inpostar la visibilità 'ntel registro:'''
+$1",
 'revdel-restore'              => 'Canbia visibilità',
 'pagehist'                    => 'Cronologia de la pagina',
 'deletedhist'                 => 'Cronologia scancelà',
@@ -881,6 +883,15 @@ $1",
 'revdelete-unhid'             => 'mostrar $1',
 'revdelete-log-message'       => '$1 par $2 {{PLURAL:$2|revision|revisioni}}',
 'logdelete-log-message'       => '$1 par $2 {{PLURAL:$2|evento|eventi}}',
+'revdelete-hide-current'      => 'No se pol scondar la version datà $1 a le $2, parché la xe la version corente.',
+'revdelete-show-no-access'    => 'No se pol réndar visibile la version datà $1 a le $2: la xe stà marcà come "ad acesso ristreto".
+No ti gà acesso su de ela.',
+'revdelete-modify-no-access'  => 'No se riesse a modificar la version datà $1 a le $2: la xe stà marcà come "ad acesso ristreto".
+No ti gà acesso su de ela.',
+'revdelete-modify-missing'    => 'No se riesse a modificar la version con ID $1: no la ghe xe sul database!',
+'revdelete-no-change'         => "''Ocio:''' la version datà $1 a le $2 la gà zà le inpostassion de visibilità da ti richieste.",
+'revdelete-concurrent-change' => "No se riesse a modificar la version datà $1 a le $2: pararìa che qualchidun altro el gavesse canbià el stato de la version intanto che ti te sercavi de far la stessa roba. Daghe n'ociada sui registri.",
+'revdelete-only-restricted'   => 'No te podi inpedirghe ai aministradori de vardar na revision se no te selessioni al tenpo stesso una de le altre opzioni de restrizion.',
 
 # Suppression log
 'suppressionlog'     => 'Registro dei ocultamenti',

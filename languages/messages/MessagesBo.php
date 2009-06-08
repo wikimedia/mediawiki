@@ -177,6 +177,7 @@ $messages = array(
 # Upload
 'upload'            => 'ཡར་འཇོག',
 'uploadbtn'         => 'ཡར་འཇོག',
+'uploadnologin'     => 'ནང་འཛུལ་བྱས་མེད།',
 'filedesc'          => 'བསྡུས་དོན།',
 'fileuploadsummary' => 'བསྡུས་དོན།:',
 'watchthisupload'   => 'དྲ་ངོས་འདི་ལ་མཉམ་འཇོག་པ།',
@@ -228,6 +229,7 @@ $messages = array(
 
 # Move page
 'movearticle' => 'སྤོར་ངོས།',
+'movenologin' => 'ནང་འཛུལ་བྱས་མེད།',
 'move-watch'  => 'དྲ་ངོས་འདི་ལ་མཉམ་འཇོག་པ།',
 'movereason'  => 'རྒྱུ་མཚན།',
 

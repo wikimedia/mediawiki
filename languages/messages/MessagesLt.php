@@ -874,6 +874,9 @@ Pamėginkite [[Special:Search|ieškoti projekte]] susijusių naujų puslapių.',
 'rev-deleted-event'           => '(įrašas pašalintas)',
 'rev-deleted-text-permission' => "Ši puslapio versija buvo '''pašalinta'''.
 Daugiau detalių galima rasti [{{fullurl:{{ns:special}}:Log/delete|page={{FULLPAGENAMEE}}}} trynimų istorijoje].",
+'rev-deleted-text-unhide'     => "Ši puslapio versija buvo '''ištrinta'''.
+Trynimo detales rasite [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} ištrintų puslapių sąraše].
+Kaip administratorius, Jūs vis dar galite [$1 peržiūrėti šią versiją].",
 'rev-deleted-text-view'       => "Ši puslapio versija buvo '''pašalinta'''.
 Kaip šios svetainės administratorius, jūs galite jį pamatyti;
 daugiau detalių gali būti [{{fullurl:{{ns:special}}:Log/delete|page={{FULLPAGENAMEE}}}} trynimų istorijoje].",
@@ -1539,6 +1542,8 @@ Yra pasiekiamas ir [[Special:WhatLinksHere/$2|visas sąrašas]].',
 'redirectstofile'           => '{{PLURAL:$1|Šis failas|$1 failai}} peradresuoja į šį failą:',
 'duplicatesoffile'          => 'Šis failas turi {{PLURAL:$1|$1 dublikatą|$1 dublikatus|$1 dublikatų}} ([[Special:FileDuplicateSearch/$2|daugiau informacijos]]):',
 'sharedupload'              => 'Šis failas yra iš $1 ir gali būti naudojamas kituose projektuose.',
+'filepage-nofile'           => 'Joks failas su duotu pavadinimu neegzistuoja.',
+'filepage-nofile-link'      => 'Joks failas su duotu pavadinimu neegzistuoja, bet vis dar galite [$1 jį įkelti].',
 'uploadnewversion-linktext' => 'Įkelti naują failo versiją',
 'shared-repo-from'          => 'iš $1',
 'shared-repo'               => 'bendrosios failų saugyklos',
@@ -1891,6 +1896,7 @@ Atsiliepimai ir pagalba:
 'confirmdeletetext'      => 'Jūs pasirinkote ištrinti puslapį ar paveikslėlį kartu su visa jo istorija.
 Prašome patvirtinti, kad jūs tikrai norite tai padaryti, žinote apie galimus padarinius, ir kad jūs tai darote atsižvelgdami į [[{{MediaWiki:Policy-url}}|politiką]].',
 'actioncomplete'         => 'Veiksmas atliktas',
+'actionfailed'           => 'Veiksmas atšauktas',
 'deletedtext'            => '„<nowiki>$1</nowiki>“ ištrintas.
 Paskutinių šalinimų istorija - $2.',
 'deletedarticle'         => 'ištrynė „[[$1]]“',
@@ -2011,6 +2017,7 @@ Tokiais atvejais, jums reikia atžymėti arba atslėpti naujausią ištrintą ve
 'undelete-nodiff'              => 'Nerasta jokių ankstesnių versijų.',
 'undeletebtn'                  => 'Atkurti',
 'undeletelink'                 => 'žiūrėti/atstatyti',
+'undeleteviewlink'             => 'žiūrėti',
 'undeletereset'                => 'Iš naujo',
 'undeleteinvert'               => 'Žymėti priešingai',
 'undeletecomment'              => 'Komentaras:',
@@ -2335,6 +2342,9 @@ Aplankykite [http://www.mediawiki.org/wiki/Localisation „MediaWiki“ lokalizi
 'djvu_no_xml'              => 'Nepavyksta gauti XML DjVu failui',
 'thumbnail_invalid_params' => 'Neleistini miniatiūros parametrai',
 'thumbnail_dest_directory' => 'Nepavyksta sukurti paskirties aplanko',
+'thumbnail_image-type'     => 'Paveikslėlio tipas nėra palaikomas',
+'thumbnail_gd-library'     => 'Nepilna GD bibliotekos konfigūracija: trūksta funkcijos $1',
+'thumbnail_image-missing'  => 'Gali būti, kad failo nėra: $1',
 
 # Special:Import
 'import'                     => 'Importuoti puslapius',

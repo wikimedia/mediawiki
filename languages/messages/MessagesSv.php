@@ -315,6 +315,7 @@ $messages = array(
 'tog-watchlisthideliu'        => 'Visa inte redigeringar av inloggade användare i bevakningslistan',
 'tog-watchlisthideanons'      => 'Visa inte redigeringar av anonyma användare i bevakningslistan',
 'tog-watchlisthidepatrolled'  => 'Göm patrullerade redigeringar från bevakningslistan',
+'tog-nolangconversion'        => 'Konvertera inte mellan språkvarianter',
 'tog-ccmeonemails'            => 'Skicka mig kopior av epost jag skickar till andra användare',
 'tog-diffonly'                => 'Visa inte sidinnehåll under diffar',
 'tog-showhiddencats'          => 'Visa dolda kategorier',
@@ -1031,6 +1032,7 @@ $1",
 'revdelete-unhid'             => 'synliggjorde $1',
 'revdelete-log-message'       => '$1 för $2 {{PLURAL:$2|sidversion|sidversioner}}',
 'logdelete-log-message'       => '$1 för $2 {{PLURAL:$2|åtgärd|åtgärder}}',
+'revdelete-only-restricted'   => 'Du kan inte hindra visning av objekt av administratörer utan att också välja en av de övriga visningshindrande alternativen.',
 
 # Suppression log
 'suppressionlog'     => 'Undanhållandelogg',

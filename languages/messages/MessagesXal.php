@@ -170,30 +170,34 @@ $messages = array(
 'sig_tip'       => 'Тана тәвсн һар цагин темдгтә',
 
 # Edit pages
-'minoredit'       => 'Эн баһ чикллһн бәәнә',
-'watchthis'       => 'Эн халхиг хәләх',
-'savearticle'     => 'Халхиг хадһлх',
-'preview'         => 'Хәләвр',
-'showpreview'     => 'Хәләвриг үзүлх',
-'showdiff'        => 'Сольлһдудиг үзүлх',
-'anoneditwarning' => "'''Урдаснь зәңг:''' та орв биш.
+'minoredit'                        => 'Эн баһ чикллһн бәәнә',
+'watchthis'                        => 'Эн халхиг хәләх',
+'savearticle'                      => 'Халхиг хадһлх',
+'preview'                          => 'Хәләвр',
+'showpreview'                      => 'Хәләвриг үзүлх',
+'showdiff'                         => 'Сольлһдудиг үзүлх',
+'anoneditwarning'                  => "'''Урдаснь зәңг:''' та орв биш.
 Тадна IP хайг эн халха чикллһнә бүртклд бичҗ авх.",
-'newarticle'      => '(Шин)',
-'previewnote'     => "'''Эн хәләвр бәәҗ тускар тодлтн.'''
+'newarticle'                       => '(Шин)',
+'previewnote'                      => "'''Эн хәләвр бәәҗ тускар тодлтн.'''
 Тана сольлһдуд ода чигн хадһлсн уга!",
-'editing'         => '$1 гидг халхиг чикллһн',
-'templatesused'   => 'Зурад эн халхд олзлсн:',
+'editing'                          => '$1 гидг халхиг чикллһн',
+'templatesused'                    => 'Зурад эн халхд олзлсн:',
+'permissionserrorstext-withaction' => 'Та $2 кеҗ болшго. Юнгад гихлә, {{PLURAL:$1|reason|reasons}}',
 
 # Diffs
 'editundo' => 'уга кех',
 
 # Search results
-'searchresults'       => 'Хәәлһнә ашуд',
-'searchresults-title' => 'Хәәлһнә ашуд "$1" төлә',
-'search-suggest'      => 'Та эниг таанат: $1 ?',
-'powersearch'         => 'Күчн хәәлһн',
-'powersearch-legend'  => 'Күчн хәәлһн',
-'powersearch-field'   => 'Хәәх',
+'searchresults'         => 'Хәәлһнә ашуд',
+'searchresults-title'   => 'Хәәлһнә ашуд "$1" төлә',
+'searchsubtitleinvalid' => "Тадн '''$1''' төлә хәәләт",
+'noexactmatch'          => "'''\"\$1\" гидг халх бәәшго.'''
+Та энгиг бүтәҗ чаднат.",
+'search-suggest'        => 'Та эниг таанат: $1 ?',
+'powersearch'           => 'Күчн хәәлһн',
+'powersearch-legend'    => 'Күчн хәәлһн',
+'powersearch-field'     => 'Хәәх',
 
 # Preferences page
 'preferences'   => 'Дурллһн',
@@ -225,8 +229,9 @@ $messages = array(
 'filehist-user' => 'Орлцач',
 
 # Miscellaneous special pages
-'newpages' => 'Шин халхс',
-'move'     => 'Көндәх',
+'newpages'     => 'Шин халхс',
+'move'         => 'Көндәх',
+'movethispage' => 'Эн халхд шин нер аль шин орм өгҗ',
 
 # Book sources
 'booksources-go' => 'Ор',
@@ -251,6 +256,10 @@ $messages = array(
 
 # Delete
 'deletepage' => 'Эн халхиг һарһҗ',
+
+# Protect
+'protect-default'     => 'Цуг орлцачнрд зөв өгҗ',
+'protect-level-sysop' => 'Дарһас һанцхн',
 
 # Namespace form on various pages
 'namespace'      => 'Нернә у:',

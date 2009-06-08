@@ -264,6 +264,7 @@ $messages = array(
 'tog-watchlisthideliu'        => 'Ukryj edycje zalogowanych użytkowników na liście obserwowanych',
 'tog-watchlisthideanons'      => 'Ukryj edycje anonimowych użytkowników na liście obserwowanych',
 'tog-watchlisthidepatrolled'  => 'Ukryj sprawdzone edycje na liście obserwowanych',
+'tog-nolangconversion'        => 'Wyłącz odmianę',
 'tog-ccmeonemails'            => 'Przesyłaj mi kopie wiadomości wysłanych przeze mnie do innych użytkowników',
 'tog-diffonly'                => 'Nie pokazuj treści stron pod porównaniami zmian',
 'tog-showhiddencats'          => 'Pokaż ukryte kategorie',

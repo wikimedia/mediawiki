@@ -248,13 +248,13 @@ pe titlul secţiunii (JavaScript)',
 'thursday'      => 'joi',
 'friday'        => 'vineri',
 'saturday'      => 'sâmbătă',
-'sun'           => 'Dum',
-'mon'           => 'Lun',
-'tue'           => 'Mar',
-'wed'           => 'Mie',
-'thu'           => 'Joi',
-'fri'           => 'Vin',
-'sat'           => 'Sâm',
+'sun'           => 'dum',
+'mon'           => 'lun',
+'tue'           => 'mar',
+'wed'           => 'mie',
+'thu'           => 'joi',
+'fri'           => 'vin',
+'sat'           => 'sâm',
 'january'       => 'ianuarie',
 'february'      => 'februarie',
 'march'         => 'martie',
@@ -289,7 +289,7 @@ pe titlul secţiunii (JavaScript)',
 'aug'           => 'aug',
 'sep'           => 'sept',
 'oct'           => 'oct',
-'nov'           => 'nov',
+'nov'           => 'noi',
 'dec'           => 'dec',
 
 # Categories related messages
@@ -756,8 +756,10 @@ Va trebui să editezi manual caseta de sus pentru a reflecta modificările pe ca
 'nonunicodebrowser'                => "'''ATENŢIE: Browser-ul dumneavoastră nu este compilant unicode, vă rugăm să îl schimbaţi înainte de a începe modificarea unui articol.'''",
 'editingold'                       => "'''ATENŢIE! Modifici o variantă mai veche a acestei pagini! Orice modificări care s-au făcut de la această versiune şi până la cea curentă se vor pierde!'''",
 'yourdiff'                         => 'Diferenţe',
-'copyrightwarning'                 => "<!-- Gol deocamdată. Avertismentul se află în MediaWiki:Summary -->
-Please note that all contributions to {{SITENAME}} are considered to be released under the $2 (see $1 for details). If you don't want your writing to be edited mercilessly and redistributed at will, then don't submit it here.<br /> You are also promising us that you wrote this yourself, or copied it from a public domain or similar free resource. '''DO NOT SUBMIT COPYRIGHTED WORK WITHOUT PERMISSION!'''",
+'copyrightwarning'                 => "Reţine că toate contribuţiile la {{SITENAME}} sunt distribuite sub licența $2 (vezi $1 pentru detalii).
+Dacă nu doriţi ca ceea ce scrieţi să fie modificat fără milă şi redistribuit în voie, atunci nu trimiteţi materialele respective aici.<br />
+De asemenea, ne asiguraţi că ceea ce aţi scris a fost compoziţie proprie sau copie dintr-o resursă publică sau liberă.
+'''NU INTRODUCEŢI MATERIALE CU DREPTURI DE AUTOR FĂRĂ PERMISIUNE!'''",
 'copyrightwarning2'                => "Reţineţi că toate contribuţiile la {{SITENAME}} pot fi modificate, alterate sau şterse de alţi contribuitori.
 Dacă nu doriţi ca ceea ce scrieţi să fie modificat fără milă şi redistribuit în voie, atunci nu trimiteţi materialele respective aici.<br />
 De asemenea, ne asiguraţi că ceea ce aţi scris a fost compoziţie proprie sau copie dintr-o resursă publică sau liberă (vedeţi $1 pentru detalii).
@@ -1534,7 +1536,7 @@ O apăsare pe antetul coloanei schimbă sortarea.',
 # File description page
 'file-anchor-link'          => 'Fişier',
 'filehist'                  => 'Istoricul fişierului',
-'filehist-help'             => 'Faceţi click pe o dată/timp pentru a vizualiza fişierul de la timpul respectiv.',
+'filehist-help'             => 'Apasă pe dată/timp pentru a vedea fişierul aşa cum era la data respectivă.',
 'filehist-deleteall'        => 'şterge tot',
 'filehist-deleteone'        => 'şterge',
 'filehist-revert'           => 'revenire',
@@ -1710,7 +1712,7 @@ O pagină este considerată o pagină de dezambiguizare dacă foloseşte formate
 'shortpages'              => 'Pagini scurte',
 'longpages'               => 'Pagini lungi',
 'deadendpages'            => 'Pagini fără legături',
-'deadendpagestext'        => 'Următoarele pagini nu se leagă de alte pagini din acest wiki.',
+'deadendpagestext'        => 'Următoarele pagini nu se leagă de alte pagini din acestă wiki.',
 'protectedpages'          => 'Pagini protejate',
 'protectedpages-indef'    => 'Doar protecţiile pe termen nelimitat',
 'protectedpages-cascade'  => 'Doar protejări în cascadă',
@@ -1791,7 +1793,7 @@ Vedeţi şi [[Special:WantedCategories|categoriile dorite]].',
 'linksearch-pat'   => 'Model de căutare:',
 'linksearch-ns'    => 'Spaţiu de nume:',
 'linksearch-ok'    => 'Caută',
-'linksearch-text'  => 'Pot fi folosite metacaractele ca "*.wikipedia.org".<br />
+'linksearch-text'  => 'Pot fi folosite metacaractere precum "*.wikipedia.org".<br />
 Protocoale suportate: <tt>$1</tt>',
 'linksearch-line'  => '$1 este legat de $2',
 'linksearch-error' => 'Metacaracterele pot să apară doar la începutul hostname-ului.',
@@ -1884,7 +1886,7 @@ Dacă doreşti să elimini această pagină din lista ta de pagini urmărite în
 'watchlist-options'    => 'Opţiunile listei de pagini urmărite',
 
 # Displayed when you click the "watch" button and it is in the process of watching
-'watching'   => 'Aşteptaţi...',
+'watching'   => 'Urmăreşte...',
 'unwatching' => 'Aşteptaţi...',
 
 'enotif_mailer'                => 'Sistemul de notificare {{SITENAME}}',
@@ -1941,7 +1943,7 @@ Asistenţă şi suport:
 'deletionlog'            => 'jurnal pagini şterse',
 'reverted'               => 'Revenire la o versiune mai veche',
 'deletecomment'          => 'Motiv pentru ştergere:',
-'deleteotherreason'      => 'Motiv diferit/adiţional:',
+'deleteotherreason'      => 'Motiv diferit/suplimentar:',
 'deletereasonotherlist'  => 'Alt motiv',
 'deletereason-dropdown'  => '*Motive uzuale
 ** Cererea autorului
@@ -2408,7 +2410,7 @@ Un dosar temporar lipseşte.',
 'import-noarticle'           => 'Nicio pagină de importat!',
 'import-nonewrevisions'      => 'Toate versiunile au fost importate anterior.',
 'xml-error-string'           => '$1 la linia $2, col $3 (octet $4): $5',
-'import-upload'              => 'Încarcă date XML',
+'import-upload'              => 'Încărcare date XML',
 'import-token-mismatch'      => 'S-au pierdut datele sesiunii. Vă rugăm să încercaţi din nou.',
 'import-invalid-interwiki'   => 'Nu se poate importa din wiki-ul specificat.',
 
@@ -2496,7 +2498,7 @@ Permite adăugarea unui motiv în descrierea modificărilor',
 # Attribution
 'anonymous'        => '{{PLURAL:$1|Utilizator anonim|Utilizatori anonimi}} ai {{SITENAME}}',
 'siteuser'         => 'Utilizator {{SITENAME}} $1',
-'lastmodifiedatby' => 'Această pagină a fost modificată $2, $1 de către $3.',
+'lastmodifiedatby' => 'Pagina a fost modificată în $1, la $2 de către $3.',
 'othercontribs'    => 'Bazat pe munca lui $1.',
 'others'           => 'alţii',
 'siteusers'        => '{{PLURAL:$2|Utilizator|Utilizatori}} {{SITENAME}} $1',
@@ -2905,9 +2907,12 @@ Altele vor fi ascunse implicit.
 # E-mail address confirmation
 'confirmemail'             => 'Confirmă adresa de email',
 'confirmemail_noemail'     => 'Nu aveţi o adresă de email validă setată la [[Special:Preferences|preferinţe]].',
-'confirmemail_text'        => 'Acest wiki necesită validarea adresei de email înaintea folosirii funcţiilor email. Apăsaţi butonul de dedesupt pentru a trimite un email de confirmare către adresa dvs. Acesta va include o legătură care va conţine codul; încărcaţi legătura în browser pentru a valida adresa de email.',
-'confirmemail_pending'     => 'Un cod de confirmare a fost trimis deja prin e-mail către tine;
-dacă ai creat recent contul, aşteaptă câteva minute să ajungă la tine înainte de a cere un nou cod.',
+'confirmemail_text'        => '{{SITENAME}} necesită validarea adresei de e-mail înaintea folosirii funcţiilor e-mail. 
+Apăsaţi butonul de dedesupt pentru a trimite un e-mail de confirmare către adresa dvs. 
+Acesta va include o legătură care va conţine codul; 
+încărcaţi legătura în browser pentru a valida adresa de e-mail.',
+'confirmemail_pending'     => 'Un cod de confirmare a fost trimis deja la adresa de e-mail indicată;
+dacă ai creat recent contul, ar fi bine să aștepți câteva minute e-mailul de confirmare, înainte de a cere un nou cod.',
 'confirmemail_send'        => 'Trimite un cod de confirmare',
 'confirmemail_sent'        => 'E-mailul de confirmare a fost trimis.',
 'confirmemail_oncreate'    => 'Un cod de confirmare a fost trimis la adresa de e-mail.
@@ -2995,12 +3000,12 @@ Vă rugăm să confirmaţi faptul că într-adevăr doriţi să recreaţi acest 
 
 # Watchlist editor
 'watchlistedit-numitems'       => 'Lista ta de pagini urmărite conţine {{PLURAL:$1|1 titlu|$1 titluri}}, excluzând paginile de discuţii.',
-'watchlistedit-noitems'        => 'Lista ta de pagini urmărite nu conţine titluri.',
+'watchlistedit-noitems'        => 'Lista de pagini urmărite este goală.',
 'watchlistedit-normal-title'   => 'Editează lista de urmărire',
 'watchlistedit-normal-legend'  => 'Şterge titluri din lista de urmărire',
-'watchlistedit-normal-explain' => 'Titlurile din lista ta de pagini urmărite este afişată mai jos.
-Pentru a elimina un titlu, bifează căsuţa din apropierea lui, iar apoi apasă pe Elimină titluri.
-De asemenea poţi [[Special:Watchlist/raw|modifica lista brută]].',
+'watchlistedit-normal-explain' => 'Titlurile din lista ta de pagini urmărite sunt enumerate mai jos.
+Pentru a elimina un titlu, validează chenarul de lângă el şi apasă pe Şterge Titluri.
+Poţi şi să editezi direct o [[Special:Watchlist/raw|listă brută a paginilor urmărite]].',
 'watchlistedit-normal-submit'  => 'Şterge Titluri',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|1 titlu a fost şters|$1 titluri au fost şterse}} din lista de urmărire:',
 'watchlistedit-raw-title'      => 'Modifică lista brută a paginilor urmărite',
@@ -3018,7 +3023,7 @@ Poţi şi să [[Special:Watchlist/edit|foloseşti un editor standard]].',
 # Watchlist editing tools
 'watchlisttools-view' => 'Vizualizează schimbările relevante',
 'watchlisttools-edit' => 'Vezi şi modifică lista paginilor urmărite',
-'watchlisttools-raw'  => 'Modifică lista neprelucrată a paginilor urmărite',
+'watchlisttools-raw'  => 'Modifică lista brută a paginilor urmărite',
 
 # Core parser functions
 'unknown_extension_tag' => 'Extensie etichetă necunoscută "$1"',

@@ -85,6 +85,7 @@ $messages = array(
 'dec'           => 'ܟܢܘܢ ܐ',
 
 # Categories related messages
+'pagecategories'         => '{{PLURAL:$1|ܣܕܪܐ|ܣܕܪ̈ܐ}}',
 'listingcontinuesabbrev' => '(ܫܘܠܡܐ)',
 
 'article'       => 'ܡܓܠܬܐ',
@@ -153,6 +154,7 @@ $messages = array(
 'jumptosearch'      => 'ܒܨܐ',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+'aboutsite'            => 'ܡܢܘ {{SITENAME}}',
 'currentevents'        => 'ܓܕ̈ܫܐ ܗ̈ܫܝܐ',
 'currentevents-url'    => 'Project:ܓܕ̈ܫܐ ܗܫܝܐ',
 'disclaimers'          => 'ܠܐ ܡܫܬܐܠܢܘܬܐ',
@@ -179,6 +181,7 @@ $messages = array(
 'showtoc'                 => 'ܚܘܝ',
 'hidetoc'                 => 'ܛܫܝ',
 'viewdeleted'             => 'ܚܙܝ $1?',
+'red-link-title'          => '$1 (ܦܐܬܐ ܗܕܐ ܠܝܬ)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'ܦܐܬܐ',
@@ -310,6 +313,8 @@ Note that some pages may continue to be displayed as if you were still logged in
 'diff-del'     => "'''ܡܫܝܐ'''",
 
 # Search results
+'searchresults'                  => 'ܦܠܛ̈ܐ ܕܒܘܨܝܐ',
+'searchresults-title'            => 'ܦܠܛ̈ܐ ܕܒܘܨܝܐ ܥܠ "$1"',
 'searchresulttext'               => 'ܠܝܬܝܪ ܝܕܥܬ̈ܐ ܥܠ ܒܨܝܐ ܕ {{SITENAME}}, ܚܙܝ [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitleinvalid'          => "ܒܨܐ ܐܢܬ ܥܠ '''$1'''",
 'noexactmatch'                   => "'''ܠܝܬ ܦܐܬܐ ܒܫܡܐ ܕ  \"\$1\".'''
@@ -326,11 +331,16 @@ Note that some pages may continue to be displayed as if you were still logged in
 'searchprofile-advanced'         => 'ܡܬܩܕܡܢܐ',
 'searchprofile-articles-tooltip' => 'Search in $1',
 'searchprofile-project-tooltip'  => 'Search in $1',
+'search-result-size'             => '$1 ({{PLURAL:$2|1 ܡܠܬܐ|$2 ܡܠ̈ܐ}})',
 'search-section'                 => '(ܡܢܬܐ $1)',
+'search-interwiki-default'       => 'ܦܠܛ̈ܐ ܕ $1:',
 'search-interwiki-more'          => '(ܝܬܝܪ)',
+'search-mwsuggest-enabled'       => 'ܥܡ ܡܚܫܚܝܬ̈ܐ',
+'search-mwsuggest-disabled'      => 'ܠܐ ܡܚܫܚܝܬ̈ܐ',
 'searchall'                      => 'ܟܠ',
 'powersearch'                    => 'ܒܨܝܐ ܡܬܩܕܡܢܐ',
 'powersearch-legend'             => 'ܒܨܝܐ ܡܬܩܕܡܢܐ',
+'powersearch-field'              => 'ܒܨܝ ܥܠ',
 'powersearch-toggleall'          => 'ܟܠ',
 'powersearch-togglenone'         => 'ܠܐ ܡܕܡ',
 'search-external'                => 'ܒܘܨܝܐ ܒܪܝܐ',
@@ -403,6 +413,7 @@ Note that some pages may continue to be displayed as if you were still logged in
 'right-delete'        => 'ܫܘܦ ܦܐܬܘܬ̈ܐ',
 'right-browsearchive' => 'ܒܨܝ ܦܐܬܘܬ̈ܐ ܫܝܦ̈ܐ',
 'right-undelete'      => 'ܠܐ ܫܘܦ ܦܐܬܘܬ̈ܐ',
+'right-block'         => 'ܐܚܪܡ ܡܦܠܚܢܐ ܐܚܪ̈ܢܐ ܡܢ ܫܚܠܦܬܐ',
 'right-userrights'    => 'ܫܚܠܦ ܟܠ ܙܕܩ̈ܐ ܕܡܦܠܚܢܐ',
 
 # User rights log
@@ -455,6 +466,8 @@ Note that some pages may continue to be displayed as if you were still logged in
 'filesource'        => 'ܥܩܪܐ:',
 'savefile'          => 'ܢܛܘܪ ܠܦܦܐ',
 'watchthisupload'   => 'ܪܗܝ ܠܦܦܐ ܗܢܐ',
+
+'upload-file-error' => 'ܦܘܕܐ ܓܘܝܐ',
 
 'license-nopreview'  => '(ܠܝܬ ܚܝܪܬܐ ܩܕܡܝܬܐ)',
 'upload_source_file' => ' (ܠܦܦܐ ܥܠ ܚܫܘܒܐ ܕܝܠܟ)',
@@ -519,25 +532,29 @@ Note that some pages may continue to be displayed as if you were still logged in
 
 # Special:AllPages
 'allpages'       => 'ܟܠ ܦܐܬܘ̄ܬܐ',
+'alphaindexline' => '$1 ܠ $2',
 'allarticles'    => 'ܟܠ ܡ̈ܓܠܐ',
 'allpagesprev'   => 'ܩܕܡ',
 'allpagesnext'   => 'ܒܬܪ',
 'allpagessubmit' => 'ܙܠ',
 
 # Special:LinkSearch
+'linksearch'    => 'ܐܣܘܪܐ ܒܪܝܐ',
 'linksearch-ok' => 'ܒܨܝ',
 
 # Special:Log/newusers
 'newuserlog-create-entry' => 'ܚܘܫܒܢܐ ܕܡܦܠܚܢܐ ܚܕܬܐ',
 
 # E-mail user
-'emailuser'    => 'ܫܕܪ ܐܓܪܬܐ ܠܗܢܐ ܡܦܠܚܢܐ',
-'emailfrom'    => 'ܡܢ:',
-'emailto'      => 'ܠ:',
-'emailsubject' => 'ܡܠܘܐܐ:',
-'emailmessage' => 'ܐܓܪܬܐ:',
-'emailsend'    => 'ܫܕܪ',
-'emailccme'    => 'ܫܕܪ ܠܝ ܨܚܚܐ ܡܢ ܐܓܪ̈ܬܐ ܕܝܠܝ.',
+'emailuser'      => 'ܫܕܪ ܐܓܪܬܐ ܠܗܢܐ ܡܦܠܚܢܐ',
+'email-legend'   => 'ܫܕܪ ܐܓܪܬܐ ܠܡܦܠܚܢܐ ܕ {{SITENAME}} ܐܚܪܢܐ',
+'emailfrom'      => 'ܡܢ:',
+'emailto'        => 'ܠ:',
+'emailsubject'   => 'ܡܠܘܐܐ:',
+'emailmessage'   => 'ܐܓܪܬܐ:',
+'emailsend'      => 'ܫܕܪ',
+'emailccme'      => 'ܫܕܪ ܠܝ ܨܚܚܐ ܡܢ ܐܓܪ̈ܬܐ ܕܝܠܝ.',
+'emailccsubject' => 'ܨܚܚܐ ܕܐܓܪܬܟ ܠ $1: $2',
 
 # Watchlist
 'watchlist'     => 'ܪ̈ܗܝܬܝ',
@@ -550,7 +567,8 @@ Note that some pages may continue to be displayed as if you were still logged in
 'wlshowlast'    => 'ܚܘܝ $1 ܫܥܬ̈ܐ $2 ܝܘܡ̈ܐ ܐܚܪ̈ܝܐ $3',
 
 # Displayed when you click the "watch" button and it is in the process of watching
-'watching' => 'ܪܗܝܐ...',
+'watching'   => 'ܪܗܝܐ...',
+'unwatching' => 'ܠܐ ܪܗܝܐ...',
 
 # Delete
 'deletepage'            => 'ܫܘܦ ܦܐܬܐ',
@@ -564,9 +582,13 @@ Note that some pages may continue to be displayed as if you were still logged in
 'deletereasonotherlist' => 'ܥܠܬܐ ܐܚܪܬܐ',
 
 # Protect
-'protect-fallback'    => 'ܒܥܝ "$1" ܦܣܣܐ',
-'protect-level-sysop' => 'ܡܕܒܪ̈ܢܐ ܒܠܚܘܕ',
-'restriction-type'    => 'ܦܣܣܐ:',
+'protect-fallback'       => 'ܒܥܝ "$1" ܦܣܣܐ',
+'protect-level-sysop'    => 'ܡܕܒܪ̈ܢܐ ܒܠܚܘܕ',
+'protect-othertime'      => 'ܥܕܢܐ ܐܚܪܬܐ:',
+'protect-othertime-op'   => 'ܥܕܢܐ ܐܚܪܬܐ',
+'protect-otherreason'    => 'ܥܠܬܐ ܐܚܪܬܐ/ܢܩܝܦܬܐ:',
+'protect-otherreason-op' => 'ܥܠܬܐ ܐܚܪܬܐ/ܢܩܝܦܬܐ',
+'restriction-type'       => 'ܦܣܣܐ:',
 
 # Restrictions (nouns)
 'restriction-edit' => 'ܫܚܠܦ',
@@ -603,11 +625,16 @@ Note that some pages may continue to be displayed as if you were still logged in
 'whatlinkshere-page' => 'ܦܐܬܐ:',
 
 # Block/unblock
-'blockipsuccesssub' => 'ܚܪܡܐ ܐܬܓܡܪ',
-'blocklink'         => 'ܐܚܪܡ',
-'contribslink'      => 'ܫܘ̈ܬܦܘܝܬܐ',
-'blocklogpage'      => 'ܣܓܠܐ ܕܚܪܡܐ',
-'blocklog-fulllog'  => 'ܣܓܠܐ ܕܚܪܡܐ ܫܠܡܐ',
+'ipbreasonotherlist' => 'ܥܠܬܐ ܐܚܪܬܐ',
+'ipbother'           => 'ܥܕܢܐ ܐܚܪܬܐ',
+'ipbotheroption'     => 'ܐܚܪܢܐ',
+'ipbotherreason'     => 'ܥܠܬܐ ܐܚܪܬܐ/ܢܩܝܦܬܐ:',
+'blockipsuccesssub'  => 'ܚܪܡܐ ܐܬܓܡܪ',
+'blocklink'          => 'ܐܚܪܡ',
+'unblocklink'        => 'ܠܐ ܐܚܪܡ',
+'contribslink'       => 'ܫܘ̈ܬܦܘܝܬܐ',
+'blocklogpage'       => 'ܣܓܠܐ ܕܚܪܡܐ',
+'blocklog-fulllog'   => 'ܣܓܠܐ ܕܚܪܡܐ ܫܠܡܐ',
 
 # Move page
 'move-page'               => 'ܫܢܝ $1',
@@ -634,6 +661,9 @@ Note that some pages may continue to be displayed as if you were still logged in
 # Tooltip help for the actions
 'tooltip-search'  => 'Search {{SITENAME}}',
 'tooltip-t-print' => 'Printable version of this page',
+
+# Attribution
+'others' => 'ܐܚܪ̈ܢܐ',
 
 # Browsing diffs
 'previousdiff' => '← ܫܘܚܠܦܐ ܝܬܝܪ ܥܬܝܩܐ',
@@ -710,7 +740,8 @@ Note that some pages may continue to be displayed as if you were still logged in
 'tags-edit' => 'ܫܚܠܦ',
 
 # HTML forms
-'htmlform-submit' => 'ܫܕܪ',
-'htmlform-reset'  => 'ܠܐ ܥܒܘܕ ܫܘܚܠܦ̈ܐ',
+'htmlform-submit'              => 'ܫܕܪ',
+'htmlform-reset'               => 'ܠܐ ܥܒܘܕ ܫܘܚܠܦ̈ܐ',
+'htmlform-selectorother-other' => 'ܐܚܪܢܐ',
 
 );

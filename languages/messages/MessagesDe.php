@@ -991,7 +991,7 @@ Grund der Sperre: ''$2''",
 'currentrev'             => 'Aktuelle Version',
 'currentrev-asof'        => 'Aktuelle Version vom $2, $3 Uhr',
 'revisionasof'           => 'Version vom $2, $3 Uhr',
-'revision-info'          => 'Dies ist eine alte Version. Zeitpunkt der Bearbeitung: $1 durch $2.',
+'revision-info'          => 'Version vom $4, $5 Uhr von $2',
 'previousrevision'       => '← Nächstältere Version',
 'nextrevision'           => 'Nächstjüngere Version →',
 'currentrevisionlink'    => 'Aktuelle Version',
@@ -1083,15 +1083,15 @@ $1",
 'revdelete-unhid'             => 'machte $1 wieder öffentlich',
 'revdelete-log-message'       => '$1 für $2 {{PLURAL:$2|Version|Versionen}}',
 'logdelete-log-message'       => '$1 für $2 {{PLURAL:$2|Logbucheintrag|Logbucheinträge}}',
-'revdelete-hide-current'      => 'Fehler beim Verstecken des Eintrags mit dem Datum $2, $1: dies ist die aktuelle Version.
+'revdelete-hide-current'      => 'Fehler beim Verstecken des Eintrags vom $1, $2 Uhr: Dies ist die aktuelle Version.
 Sie kann nicht versteckt werden.',
-'revdelete-show-no-access'    => 'Fehler beim Anzeigen des Eintrags mit dem Datum $2, $1: dieser Eintrag wurde als „eingeschränkt“ markiert.
+'revdelete-show-no-access'    => 'Fehler beim Anzeigen des Eintrags vom $1, $2 Uhr: Dieser Eintrag wurde als „eingeschränkt“ markiert.
 Du hast darauf keinen Zugriff.',
-'revdelete-modify-no-access'  => 'Fehler beim Bearbeiten des Eintrags mit dem Datum $2, $1: dieser Eintrag wurde als „eingeschränkt“ markiert.
+'revdelete-modify-no-access'  => 'Fehler beim Bearbeiten des Eintrags vom $1, $2 Uhr: Dieser Eintrag wurde als „eingeschränkt“ markiert.
 Du hast darauf keinen Zugriff.',
 'revdelete-modify-missing'    => 'Fehler beim Bearbeiten von ID $1: Es fehlt in der Datenbank!',
-'revdelete-no-change'         => "'''Warnung:''' der Eintrag mit dem Datum $2, $1 besitzt bereits die gewünschten Sichtbarkeitseinstellungen.",
-'revdelete-concurrent-change' => 'Fehler beim Bearbeiten des Eintrags mit dem Datum $2, $1: es scheint, als ob der Status von jemandem geändert wurde, bevor du vorhattest, ihn zu bearbeiten.
+'revdelete-no-change'         => "'''Warnung:''' Der Eintrag vom $1, $2 Uhr besitzt bereits die gewünschten Sichtbarkeitseinstellungen.",
+'revdelete-concurrent-change' => 'Fehler beim Bearbeiten des Eintrags vom $1, $2 Uhr: Es scheint, als ob der Status von jemandem geändert wurde, bevor du vorhattest, ihn zu bearbeiten.
 Bitte prüfe die Logbücher.',
 'revdelete-only-restricted'   => 'Du kannst keine Einträge vor Administratoren unterdrücken, ohne dass du auch eine der anderen Unterdrückungsoptionen ausgewählt hast.',
 
@@ -1519,7 +1519,7 @@ Mit anderen Benutzern kannst du auch über die Benutzerdiskussionsseiten Kontakt
 'recentchanges-legend'              => 'Anzeigeoptionen',
 'recentchangestext'                 => "Auf dieser Seite kannst du die letzten Änderungen auf '''{{SITENAME}}''' nachverfolgen.",
 'recentchanges-feed-description'    => 'Verfolge mit diesem Feed die letzten Änderungen in {{SITENAME}}.',
-'rcnote'                            => "Angezeigt {{PLURAL:$1|wird '''1''' Änderung|werden die letzten '''$1''' Änderungen}} {{PLURAL:$2|des letzten Tages|der letzten '''$2''' Tage}}. Stand: $4, $5. (<b><tt>N</tt></b>&nbsp;– neuer Eintrag; <b><tt>K</tt></b>&nbsp;– kleine Änderung; <b><tt>B</tt></b>&nbsp;– Änderung durch einen Bot; ''(± Zahl)''&nbsp;– Größenänderung in Byte)",
+'rcnote'                            => "Angezeigt {{PLURAL:$1|wird '''1''' Änderung|werden die letzten '''$1''' Änderungen}} {{PLURAL:$2|des letzten Tages|der letzten '''$2''' Tage}}. Stand: $4, $5 Uhr. (<b><tt>N</tt></b>&nbsp;– neuer Eintrag; <b><tt>K</tt></b>&nbsp;– kleine Änderung; <b><tt>B</tt></b>&nbsp;– Änderung durch einen Bot; ''(± Zahl)''&nbsp;– Größenänderung in Byte)",
 'rcnotefrom'                        => "Angezeigt werden die Änderungen seit '''$2''' (max. '''$1''' Einträge).",
 'rclistfrom'                        => 'Nur Änderungen seit $1 zeigen.',
 'rcshowhideminor'                   => 'Kleine Änderungen $1',
@@ -2617,7 +2617,7 @@ Alle Transwiki-Import-Aktionen werden im [[Special:Log/import|Import-Logbuch]] p
 'tooltip-minoredit'               => 'Diese Änderung als klein markieren.',
 'tooltip-save'                    => 'Änderungen speichern',
 'tooltip-preview'                 => 'Vorschau der Änderungen an dieser Seite. Bitte vor dem Speichern benutzen!',
-'tooltip-diff'                    => 'Zeigt Änderungen am Text tabellarisch an',
+'tooltip-diff'                    => 'Änderungen am Text zeigen',
 'tooltip-compareselectedversions' => 'Unterschied zwischen zwei ausgewählten Versionen dieser Seite anzeigen.',
 'tooltip-watch'                   => 'Füge diese Seite deiner Beobachtungsliste hinzu',
 'tooltip-recreate'                => 'Seite neu erstellen, obwohl sie gelöscht wurde.',
@@ -2644,6 +2644,7 @@ Alle Transwiki-Import-Aktionen werden im [[Special:Log/import|Import-Logbuch]] p
 #preftoc a {
     text-transform: none;
 }',
+'vector.css'      => '/* CSS an dieser Stelle wirkt sich auf den Vector-Skin aus. Für allgemeingültige Skin-Anpassungen bitte [[MediaWiki:Common.css]] bearbeiten. */',
 'print.css'       => '/* CSS an dieser Stelle wirkt sich auf die Druckausgabe aus */',
 'handheld.css'    => '/* CSS an dieser Stelle wirkt sich auf Handheld-Geräte, basierend auf den in $wgHandheldStyle konfigurierten Skin, aus */',
 
@@ -2657,6 +2658,7 @@ Alle Transwiki-Import-Aktionen werden im [[Special:Log/import|Import-Logbuch]] p
 'chick.js'       => '/* Das folgende JavaScript wird für Benutzer geladen, die den KükenSkin verwenden. Allgemeingültiges JavaScript bitte in [[MediaWiki:Common.js]] eintragen. */',
 'simple.js'      => '/* Das folgende JavaScript wird für Benutzer geladen, die den Einfach-Skin verwenden. Allgemeingültiges JavaScript bitte in [[MediaWiki:Common.js]] eintragen. */',
 'modern.js'      => '/* Das folgende JavaScript wird für Benutzer geladen, die den Modern-Skin verwenden. Allgemeingültiges JavaScript bitte in [[MediaWiki:Common.js]] eintragen. */',
+'vector.js'      => '/* Das folgende JavaScript wird für Benutzer geladen, die den Vector-Skin verwenden. Allgemeingültiges JavaScript bitte in [[MediaWiki:Common.js]] eintragen. */',
 
 # Metadata
 'nodublincore'      => 'Dublin-Core-RDF-Metadaten sind für diesen Server deaktiviert.',
@@ -2698,6 +2700,7 @@ Alle Transwiki-Import-Aktionen werden im [[Special:Log/import|Import-Logbuch]] p
 'skinname-chick'       => 'Küken',
 'skinname-simple'      => 'Einfach',
 'skinname-modern'      => 'Modern',
+'skinname-vector'      => 'Vektor',
 
 # Math options
 'mw_math_png'    => 'Immer als PNG darstellen',

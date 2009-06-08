@@ -28,6 +28,7 @@
  * @author Meno25
  * @author Mido
  * @author Mimouni
+ * @author Mo7amedsalim
  * @author OsamaK
  * @author Ouda
  * @author Oxydo
@@ -1831,6 +1832,7 @@ PICT # متنوع
 'filehist-dimensions'       => 'الأبعاد',
 'filehist-filesize'         => 'حجم الملف',
 'filehist-comment'          => 'تعليق',
+'filehist-missing'          => 'ملف مفقود',
 'imagelinks'                => 'وصلات الملف',
 'linkstoimage'              => '{{PLURAL:$1|الصفحة|ال$1 صفحة}} التالية تصل إلى هذا الملف:',
 'linkstoimage-more'         => 'أكثر من $1 {{PLURAL:$1|صفحة تصل|صفحة تصل}} إلى هذا الملف.
@@ -2619,6 +2621,7 @@ $1 ممنوع بالفعل. هل تريد تغيير الإعدادات؟',
 'imageinvalidfilename'         => 'اسم الملف الهدف غير صحيح',
 'fix-double-redirects'         => 'حدث أي تحويلات تشير إلى العنوان الأصلي',
 'move-leave-redirect'          => 'اترك تحويلة خلفك',
+'protectedpagemovewarning'     => "'''تحذير:''' هذه الصفحة قد تم حمايتها، فقط المستخدمون الذين يمتلكون امتيازات الإدارة يمكنهم نقلها.",
 'semiprotectedpagemovewarning' => "'''ملاحظة:''' قُفِل هذا الملف ليتمكن المستخدمون المسجلون وحدهم من نقله.",
 
 # Export

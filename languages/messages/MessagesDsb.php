@@ -192,6 +192,7 @@ $messages = array(
 'tog-watchlisthideliu'        => 'Změny pśizjawjonych wužywarjow z wobglědowańki schowaś',
 'tog-watchlisthideanons'      => 'Změny anonymnych wužywarjow z wobglědowańki schowaś',
 'tog-watchlisthidepatrolled'  => 'Doglědowane změny we wobglědowańkach schowaś',
+'tog-nolangconversion'        => 'Konwertěrowanje rěcnych wariantow znjemóžniś',
 'tog-ccmeonemails'            => 'Kopije e-mailow dostaś, kótarež drugim wužywarjam pósćelom',
 'tog-diffonly'                => 'Pśi pśirownowanju wersijow jano rozdźěle pokazaś',
 'tog-showhiddencats'          => 'Schowane kategorije pokazaś',

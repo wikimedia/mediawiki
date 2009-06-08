@@ -146,6 +146,7 @@ Ua nimo ke hiki e haau tau manako {{SITENAME}}.',
 # Upload
 'upload'            => 'Fakafano e faila',
 'uploadbtn'         => 'Fakafano e faila',
+'uploadnologin'     => 'Ai la hu ki loto',
 'filedesc'          => 'Fakakatoakatoa',
 'fileuploadsummary' => 'Fakakatoakatoa:',
 'watchthisupload'   => 'Onoono e lau e',
@@ -207,10 +208,11 @@ Ua nimo ke hiki e haau tau manako {{SITENAME}}.',
 'ipblocklist-submit' => 'Kumi',
 
 # Move page
-'move-watch' => 'Onoono e lau e',
-'movedto'    => 'kua une ke he',
-'1movedto2'  => '[[$1]] kua une ke he [[$2]]',
-'movereason' => 'Kakano:',
+'movenologin' => 'Ai la hu ki loto',
+'move-watch'  => 'Onoono e lau e',
+'movedto'     => 'kua une ke he',
+'1movedto2'   => '[[$1]] kua une ke he [[$2]]',
+'movereason'  => 'Kakano:',
 
 # Namespace 8 related
 'allmessages' => 'Tau fakailoaga',
