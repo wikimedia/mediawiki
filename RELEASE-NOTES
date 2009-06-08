@@ -79,6 +79,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 14866) Messages 'recentchangeslinked-toolbox' and
   'recentchangeslinked-toolbox' were added to allow more fine grained
   customisation of the user interface
+* DISPLAYTITLE now accepts a limited amount of wiki markup (the single-quote items)
 
 === Bug fixes in 1.16 ===
 
