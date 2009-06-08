@@ -102,6 +102,7 @@ div#panel {
 		padding: 0;
 		padding-bottom: 0.5em;
 		margin: 0;
+		overflow: hidden;
 	}
 	div#panel > div.buffer > div.portal > div.body > ul > li > a {
 		color: #00528c;
