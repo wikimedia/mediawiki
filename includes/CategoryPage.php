@@ -146,7 +146,7 @@ class CategoryViewer {
 		// Subcategory; strip the 'Category' namespace from the link text.
 		$this->children[] = $this->getSkin()->link(
 			$title,
-			$wgContLang->convertHtml( $title->getText() ).
+			$wgContLang->convertHtml( $title->getText() ),
 			array(),
 			array(),
 			array( 'known', 'noclasses' )
