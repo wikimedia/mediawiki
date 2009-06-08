@@ -346,7 +346,7 @@ This is usually caused by following an outdated diff or history link to a page t
 'fileexistserror'      => 'ناتوانی لەسەر پەڕگەی "$1" بنووسیت: ئەو پەڕگەیە هەیە.',
 'unexpected'           => 'نرخی چاوەڕوان نەکراو: "$1"="$2" .',
 'formerror'            => 'هەڵە: فورمەکە نانێردرێت.',
-'badarticleerror'      => 'هەڵە: ناتوانی فۆرمەکە بنێری',
+'badarticleerror'      => 'ئەو ئاماژە لەم لاپەڕەدا پێک‌نایە.',
 'cannotdelete'         => 'نەتوانرا پەڕە یان پەڕگەی دیاریکراو بسڕدرێتەوە.
 لەوانەیە پێشتر لە لایەن کەسێکی ترەوە سڕدرابێتەوە.',
 'badtitle'             => 'ناونیشانی خراپ',

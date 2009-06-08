@@ -1058,8 +1058,8 @@ Los ôtros administrators de {{SITENAME}} porront tojorn arrevar u contegnu cach
 
 Volyéd confirmar qu’o est franc cen que vos voléd fâre, que vos en compregnéd les consèquences et pués que vos féte cen en acôrd avouéc les [[{{MediaWiki:Policy-url}}|règlles de dedens]].",
 'revdelete-suppress-text'     => "La suprèssion dêt étre utilisâ '''ren que''' dens cetos câs :
-* enformacions a sè que vont pas avouéc
-*: ''adrèce, numerô de tèlèfone, numerô de sècuritât sociâla, ...''",
+* Enformacions a sè que vont pas avouéc :
+*: ''adrèce et numerô de tèlèfono, numerô de sècuritât sociâla, ...''",
 'revdelete-legend'            => 'Betar en place des rèstriccions de visibilitât :',
 'revdelete-hide-text'         => 'Cachiér lo tèxto de la vèrsion',
 'revdelete-hide-name'         => 'Cachiér l’accion et la ciba',
@@ -1639,9 +1639,9 @@ Se lo fichiér controlâ est la méma émâge (dens una rèsolucion mèlyora), y
 O est possiblo que seye una vèrsion rèduita ''(figura)''.
 Se vos avéd lo fichiér en rèsolucion ples hôta, tèlèchargiéd-lo, ôtrament volyéd changiér son nom.",
 'fileexists-forbidden'        => 'Un fichiér avouéc cél nom ègziste ja et pôt pas étre ècrasâ.
-Se vos voléd adés tèlèchargiér voutron fichiér, volyéd tornar arriér et pués utilisar un ôtro nom. [[File:$1|thumb|center|$1]]',
+Se vos voléd adés tèlèchargiér voutron fichiér, volyéd tornar arriér et pués utilisar un novél nom. [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Un fichiér avouéc cél nom ègziste ja dens lo dèpôt de fichiérs partagiê.
-Se vos voléd adés tèlèchargiér voutron fichiér, volyéd tornar arriér et pués utilisar un ôtro nom. [[File:$1|thumb|center|$1]]',
+Se vos voléd adés tèlèchargiér voutron fichiér, volyéd tornar arriér et pués utilisar un novél nom. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Cél fichiér est un doblo {{PLURAL:$1|de ceti fichiér|de cetos fichiérs}} :',
 'file-deleted-duplicate'      => 'Un fichiér pariér a ceti ([[$1]]) at ja étâ suprimâ.
 Vos devriâd controlar lo jornal de les suprèssions de cél fichiér devant que lo tornar tèlèchargiér.',
@@ -1959,7 +1959,7 @@ Contint sûrement yon ou ben un mouél de caractèros que pôvont pas étre util
 
 # Special:Categories
 'categories'                    => 'Catègories',
-'categoriespagetext'            => '{{PLURAL:$1|Ceta catègorie est utilisâ|Cetes catègories sont utilisâs}} per des pâges ou des fichiérs multimèdia.
+'categoriespagetext'            => '{{PLURAL:$1|Ceta catègorie est utilisâ|Cetes catègories sont utilisâs}} per des pâges ou ben des fichiérs multimèdia.
 Les [[Special:UnusedCategories|catègories inutilisâs]] sont pas montrâs ique.
 Vêde asse-ben les [[Special:WantedCategories|catègories les ples demandâs]].',
 'categoriesfrom'                => 'Fâre vêre les catègories dês :',

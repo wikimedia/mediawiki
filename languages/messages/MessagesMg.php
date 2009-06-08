@@ -860,6 +860,7 @@ Tokony mba manana lohavy ambanimbany kokoa non'ny $1",
 'recentchangeslinked-feed'    => 'Novaina',
 'recentchangeslinked-toolbox' => 'Novaina',
 'recentchangeslinked-title'   => "Fanaraha-maso ny pejy miarak'amin'ny « $1 »",
+'recentchangeslinked-summary' => "Mampiseho ny fanovàna vao haingana ity pejy manokana ity. Voasoratra amin'ny '''sora-matavy''' ny lohaten'ny [[Special:Watchlist|pejy arahinao-maso]].",
 'recentchangeslinked-page'    => 'anaram-pejy :',
 'recentchangeslinked-to'      => "Ampisehoy ny fanovàn'ny pejy misy rohy makany amin'ny pejy fa tsy atao mivadika",
 
@@ -920,6 +921,7 @@ Hamarino tsara aloha dia avereno alefa indray.',
 # File description page
 'file-anchor-link'          => 'Rakitra',
 'filehist'                  => 'Tantara ny rakitra',
+'filehist-help'             => "Tsindrio eo amin'ny daty/ora iray mba hijery ny toetra n'ilay rakitra tamin'io fotoana io.",
 'filehist-current'          => 'ankehitriny',
 'filehist-datetime'         => 'Daty sy ora',
 'filehist-thumb'            => 'sari-tapaka',
@@ -1444,6 +1446,8 @@ Ampesao ny topi-maso aloha no mihatiry.",
 'tooltip-compareselectedversions' => "Jereo ny fahasamihafana amin'ireo votoatin'ny pejy anankiroa ireo.",
 'tooltip-watch'                   => "Ampidiro amin'ny lisitry ny pejy arahinao maso ity pejy ity",
 'tooltip-rollback'                => "Manala ny fanovan'ny mpikambana farany nanova azy ilay asa « foano » (Rollback) .",
+'tooltip-undo'                    => "Manala n'io fanovàna io ilay rohy « esory ».
+Mamerina ny version taloha io asa io ary afaka manometraka ny antony anatin'ny ambangovangony.",
 
 # Stylesheets
 'monobook.css' => "/* Ovay ity rakitra ity raha hampiasa takilan'angaly (stylesheet) anao manokana amin'ny wiki iray manontolo */",
@@ -1510,6 +1514,13 @@ Amporisihina ho an'ny navigateur moderna",
 'noimages'      => 'Tsy misy sary ato.',
 'ilsubmit'      => 'Karohy',
 'bydate'        => 'araka ny daty',
+
+# Bad image list
+'bad_image_list' => "Ity ny andrefiny :
+
+Ny lisitra ny takelaka (andalana manomboka amin'ny *) ihany no mandanja.
+Tokony sary tsy misy na sary tsy izy ny rohy voalohany anaty andalana iray .
+''Exception'' ny rohy afa anatin'ilay andalana iray, oatra ny pejy mety mampiasa n'ilay sary.",
 
 # Metadata
 'metadata'          => 'Metadata',

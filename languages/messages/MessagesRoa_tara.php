@@ -1067,6 +1067,7 @@ Tu puè pure scacchià de lassà otre condatte ausanne l'utende tue o le pàggen
 'prefs-info'                  => "'Mbormaziune nderra-nderre",
 'prefs-i18n'                  => 'Indernazzionalizzazzione',
 'prefs-signature'             => 'Firme',
+'prefs-dateformat'            => "Formate d'a data",
 'prefs-advancedediting'       => 'Opzione avanzate',
 'prefs-advancedrc'            => 'Opzione avanzate',
 'prefs-advancedrendering'     => 'Opzione avanzate',
@@ -1817,6 +1818,7 @@ Tu puè avè 'nu collegamende sbagliate o 'a revisione pò essere ca ha state re
 'undelete-nodiff'              => 'Nisciuna revisiona precedende ha state acchijate.',
 'undeletebtn'                  => 'Repristine',
 'undeletelink'                 => 'vide/repristine',
+'undeleteviewlink'             => 'vide',
 'undeletereset'                => 'Azzere',
 'undeleteinvert'               => 'Selezione a smerse',
 'undeletecomment'              => 'Commende:',
@@ -2060,6 +2062,8 @@ non ge se pò movere 'na pàgene sus a sè stesse.",
 'export-submit'     => 'Esporte',
 'export-addcattext' => "Aggiunge le pàggene da 'a categorije:",
 'export-addcat'     => 'Aggiunge',
+'export-addnstext'  => "Aggiunge vôsce da 'u namespace:",
+'export-addns'      => 'Aggiunge',
 'export-download'   => "Reggistre cumme a 'nu file",
 'export-templates'  => 'Inglude le template',
 
@@ -2238,8 +2242,12 @@ $1",
 'previousdiff' => '← Cangiaminde vecchije',
 'nextdiff'     => 'Cangiaminde cchiù nuève →',
 
+# Visual comparison
+'visual-comparison' => 'Combronde visuale',
+
 # Media information
 'thumbsize'            => "Dimenziona d'a miniature:",
+'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|pàgene|pàggene}}',
 'file-info'            => "(dimenzione d'u fail: $1, tipe de MIME: $2)",
 'file-info-size'       => "($1 × $2 pixel, dimenzione d'u fail: $3, tipe de MIME: $4)",
 'file-nohires'         => "<small>Manghe 'a risoluzione ierta.</small>",

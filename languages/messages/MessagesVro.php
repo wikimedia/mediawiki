@@ -77,6 +77,7 @@ $messages = array(
 'tog-watchlisthideminor'      => 'Näüdäku-i perräkaemisnimekirän väikeisi muutmiisi',
 'tog-watchlisthideliu'        => 'Käkiq perräkaemisnimekirän ärq nimega sisselännüisi pruukjidõ toimõndusõq',
 'tog-watchlisthideanons'      => 'Käkiq perräkaemisnimekirän ärq nimeldä pruukjidõ toimõndusõq',
+'tog-nolangconversion'        => 'Jätäq ärq variantõ võrrõlus',
 'tog-ccmeonemails'            => "Saadaq mullõ kopiq e-kir'ost, miä ma saada tõisilõ pruukjilõ",
 'tog-diffonly'                => 'Näüdäku-i lahkominekide lehe all lehe täüt sissu',
 'tog-showhiddencats'          => 'Näütäq käkitüid katõgoorijit',

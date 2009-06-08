@@ -132,6 +132,7 @@ Akaunzi yako yagadzirwa. Usakanganwe kuchinga mapreferences ako eWikipedia.',
 # Upload
 'upload'          => 'Isa fayera',
 'uploadbtn'       => 'Isa fayera',
+'uploadnologin'   => 'Hauna kugamuchirwa',
 'watchthisupload' => 'Ringa peji rino',
 
 # Random page

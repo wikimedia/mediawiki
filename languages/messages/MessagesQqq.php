@@ -719,9 +719,11 @@ Please report at [[Support]] if you are unable to properly translate this messag
 * $3 is the time at which the revision was created.',
 'revision-info'          => 'Appears just below the page title when an old version of the page is being viewed.
 
-* $1 indicates the time of that revision and 
-* $2 the author of the revision
-* (optional) $3 is the revision ID',
+* $1: date and time of revision
+* $2: author of revision
+* (optional) $3: revision ID
+* (optional) $4: date of revision
+* (optional) $5: time of revision',
 'currentrevisionlink'    => '{{Identical|Current revision}}',
 'cur'                    => 'Link in page history',
 'next'                   => 'Link in page history
@@ -1253,7 +1255,7 @@ This action allows editing of all of the "user rights", not just the rights of t
 'rcnote'               => 'Used on [[Special:RecentChanges]].
 * $1 is the number of changes shown,
 * $2 is the number of days for which the changes are shown,
-* $3 is a datetime (deprecated),
+* $3 is a date and time (deprecated),
 * $4 is a date alone,
 * $5 is a time alone.
 
