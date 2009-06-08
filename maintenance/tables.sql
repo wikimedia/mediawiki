@@ -1191,7 +1191,9 @@ CREATE TABLE /*_*/redirect (
   -- and deletions may refer to different page records as time
   -- goes by.
   rd_namespace int NOT NULL default 0,
-  rd_title varchar(255) binary NOT NULL default ''
+  rd_title varchar(255) binary NOT NULL default '',
+  rd_interwiki varchar(32) default NULL,
+  rd_fragment varchar(255) binary default NULL
 ) /*$wgDBTableOptions*/;
 
 CREATE INDEX /*i*/rd_ns_title ON /*_*/redirect (rd_namespace,rd_title,rd_from);
