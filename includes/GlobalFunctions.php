@@ -3084,6 +3084,24 @@ function wfOut( $s ) {
 	flush();
 }
 
+/**
+ * Count down from $n to zero on the terminal, with a one-second pause 
+ * between showing each number. For use in command-line scripts.
+ */
+function wfCountDown( $n ) {
+	for ( $i = $n; $i >= 0; $i-- ) {
+		if ( $i != $n ) {
+			echo str_repeat( "\x08", strlen( $i + 1 ) );
+		} 
+		echo $i;
+		flush();
+		if ( $i ) {
+			sleep( 1 );
+		}
+	}
+	echo "\n";
+}
+
 /** Generate a random 32-character hexadecimal token.
  * @param mixed $salt Some sort of salt, if necessary, to add to random characters before hashing.
  */
