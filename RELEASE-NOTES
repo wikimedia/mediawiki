@@ -181,6 +181,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 18925) history.js removes class names of list elements on initialization
 * Multiple whitespace in TOC anchors is now stripped, for consistency with the
   link from the edit comment
+* (bug 19112) Preferences now respects $wgUseExternalEditor, $wgExternalDiffEngine
 
 == API changes in 1.16 ==
 
