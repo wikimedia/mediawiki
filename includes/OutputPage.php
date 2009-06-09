@@ -93,7 +93,7 @@ class OutputPage {
 			array_push( $this->mKeywords, $text );
 		}
 	}
-	function addScript( $script ) { $this->mScripts .= "\t\t".$script; }
+	function addScript( $script ) { $this->mScripts .= "\t\t" . $script . "\n"; }
 	
 	function addExtensionStyle( $url ) {
 		$linkarr = array( 'rel' => 'stylesheet', 'href' => $url, 'type' => 'text/css' );
@@ -128,7 +128,7 @@ class OutputPage {
 	 */
 	function addInlineScript( $script ) {
 		global $wgJsMimeType;
-		$this->mScripts .= "<script type=\"$wgJsMimeType\">/*<![CDATA[*/\n$script\n/*]]>*/</script>";
+		$this->mScripts .= "\t\t<script type=\"$wgJsMimeType\">/*<![CDATA[*/\n\t\t$script\n\t\t/*]]>*/</script>\n";
 	}
 
 	function getScript() {
