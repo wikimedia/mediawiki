@@ -542,7 +542,7 @@ class VectorTemplate extends QuickTemplate {
 								<h5><?php $this->msg('personaltools') ?></h5>
 								<ul <?php $this->html('userlangattributes') ?>>
 									<?php foreach($this->data['personal_urls'] as $key => $item): ?>
-										<li <?= $item['attributes'] ?>><a href="<?php echo htmlspecialchars($item['href']) ?>"<?php echo $item['key'] ?><?php if(!empty($item['class'])): ?> class="<?php echo htmlspecialchars($item['class']) ?>"<?php endif; ?>><?php echo htmlspecialchars($item['text']) ?></a></li>
+										<li <?php echo $item['attributes'] ?>><a href="<?php echo htmlspecialchars($item['href']) ?>"<?php echo $item['key'] ?><?php if(!empty($item['class'])): ?> class="<?php echo htmlspecialchars($item['class']) ?>"<?php endif; ?>><?php echo htmlspecialchars($item['text']) ?></a></li>
 									<?php endforeach; ?>
 								</ul>
 							</div>
