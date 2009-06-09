@@ -639,18 +639,27 @@ class Preferences {
 					'section' => 'editing/advancedediting',
 					'label-message' => 'tog-minordefault',
 				);
-		$defaultPreferences['externaleditor'] =
-				array(
-					'type' => 'toggle',
-					'section' => 'editing/advancedediting',
-					'label-message' => 'tog-externaleditor',
-				);
-		$defaultPreferences['externaldiff'] =
-				array(
-					'type' => 'toggle',
-					'section' => 'editing/advancedediting',
-					'label-message' => 'tog-externaldiff',
-				);
+
+		global $wgUseExternalEditor;
+		if ($wgUseExternalEditor) {
+			$defaultPreferences['externaleditor'] =
+					array(
+						'type' => 'toggle',
+						'section' => 'editing/advancedediting',
+						'label-message' => 'tog-externaleditor',
+					);
+		}
+
+		global $wgExternalDiffEngine;
+		if ($wgExternalDiffEngine) {
+		  $defaultPreferences['externaldiff'] =
+					array(
+						'type' => 'toggle',
+						'section' => 'editing/advancedediting',
+						'label-message' => 'tog-externaldiff',
+					);
+		}
+
 		$defaultPreferences['forceeditsummary'] =
 				array(
 					'type' => 'toggle',
