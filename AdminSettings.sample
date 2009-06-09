@@ -17,6 +17,11 @@
  *
  * This is not to be confused with sysop accounts for the
  * wiki.
+ *
+ * NOTE: for PostgreSQL this should be set to the same user and 
+ * password as the web user, that is, the same as $wgDBuser and
+ * $wgDBpassword in LocalSettings.php. This is necessary to 
+ * ensure that the owner for new tables is set correctly.
  */
 $wgDBadminuser      = 'wikiadmin';
 $wgDBadminpassword  = 'adminpass';

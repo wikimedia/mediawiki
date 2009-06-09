@@ -23,7 +23,11 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 === Changes since 1.15.0rc1 ===
 
 * Removed category redirect feature, implementation was incomplete.
-* (bug 18846) Remove update_password_format(), unnecessary, destroys all passwords if a wiki with $wgPasswordSalt=false is upgraded with the web installer.
+* (bug 18846) Remove update_password_format(), unnecessary, destroys all 
+  passwords if a wiki with $wgPasswordSalt=false is upgraded with the web 
+  installer.
+* (bug 19127) Documentation warning for PostgreSQL users who run update.php: 
+  use the same user in AdminSettings.php as in LocalSettings.php. 
 
 === Configuration changes in 1.15 ===
 
