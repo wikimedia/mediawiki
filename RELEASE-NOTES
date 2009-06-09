@@ -81,6 +81,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   'recentchangeslinked-toolbox' were added to allow more fine grained
   customisation of the user interface
 * DISPLAYTITLE now accepts a limited amount of wiki markup (the single-quote items)
+* Special:Search now could search terms in all variant-forms. ONLY apply on
+  wikis with LanguageConverter
 
 === Bug fixes in 1.16 ===
 

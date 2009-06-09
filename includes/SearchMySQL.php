@@ -53,7 +53,16 @@ class SearchMySQL extends SearchEngine {
 				if( $this->strictMatching && ($terms[1] == '') ) {
 					$terms[1] = '+';
 				}
-				$searchon .= $terms[1] . $wgContLang->stripForSearch( $terms[2] );
+				// Search terms in all variant forms, only
+				// apply on wiki with LanguageConverter
+				$temp_terms = $wgContLang->autoConvertToAllVariants( $terms[2] );
+				if( is_array( $temp_terms )) {
+					$temp_terms = array_unique( array_values( $temp_terms ));
+					foreach( $temp_terms as $t )
+						$searchon .= $terms[1] . $wgContLang->stripForSearch( $t ) . ' ';
+				}
+				else
+					$searchon .= $terms[1] . $wgContLang->stripForSearch( $terms[2] );
 				if( !empty( $terms[3] ) ) {
 					// Match individual terms in result highlighting...
 					$regexp = preg_quote( $terms[3], '/' );

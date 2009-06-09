@@ -159,7 +159,17 @@ class SearchOracle extends SearchEngine {
 		if (preg_match_all('/([-+<>~]?)(([' . $lc . ']+)(\*?)|"[^"]*")/',
 			  $filteredText, $m, PREG_SET_ORDER)) {
 			foreach($m as $terms) {
-				$q[] = $terms[1] . $wgContLang->stripForSearch($terms[2]);
+				
+				// Search terms in all variant forms, only
+				// apply on wiki with LanguageConverter
+				$temp_terms = $wgContLang->autoConvertToAllVariants( $terms[2] );
+				if( is_array( $temp_terms )) {
+					$temp_terms = array_unique( array_values( $temp_terms ));
+					foreach( $temp_terms as $t )
+						$q[] = $terms[1] . $wgContLang->stripForSearch( $t );
+				}
+				else
+					$q[] = $terms[1] . $wgContLang->stripForSearch( $terms[2] );
 
 				if (!empty($terms[3])) {
 					$regexp = preg_quote( $terms[3], '/' );
