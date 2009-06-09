@@ -152,7 +152,7 @@ class Preferences {
 		global $wgAuth;
 		$defaultPreferences['realname'] =
 				array(
-					'type' => $wgAuth->allowPropChange( 'realname' ) ? 'text' : 'info',
+					'type' => $wgAuth->allowRealNameChange() ? 'text' : 'info',
 					'default' => $user->getRealName(),
 					'section' => 'personal/info',
 					'label-message' => 'yourrealname',
@@ -260,7 +260,7 @@ class Preferences {
 		global $wgMaxSigChars;
 		$defaultPreferences['nickname'] =
 				array(
-					'type' => $wgAuth->allowPropChange( 'nickname' ) ? 'text' : 'info',
+					'type' => $wgAuth->allowNickChange() ? 'text' : 'info',
 					'maxlength' => $wgMaxSigChars,
 					'label-message' => 'yournick',
 					'validation-callback' =>
@@ -281,7 +281,7 @@ class Preferences {
 		
 		$defaultPreferences['emailaddress'] =
 				array(
-					'type' => $wgAuth->allowPropChange( 'emailaddress' ) ? 'text' : 'info',
+					'type' => $wgAuth->allowEmailChange() ? 'text' : 'info',
 					'default' => $user->getEmail(),
 					'section' => 'personal/email',
 					'label-message' => 'youremail',
