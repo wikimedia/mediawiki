@@ -144,7 +144,6 @@ $wgUpdates = array(
 		array( 'check_bin', 'protected_titles', 'pt_title',      'patch-pt_title-encoding.sql', ),
 		array( 'maybe_do_profiling_memory_update' ),
 		array( 'do_filearchive_indices_update' ),
-		array( 'update_password_format' ),
 		
 		// 1.14
 		array( 'add_field', 'site_stats',     'ss_active_users',  'patch-ss_active_users.sql' ),
@@ -255,41 +254,6 @@ function add_index( $table, $index, $patch, $fullpath=false ) {
 			dbsource( archive($patch), $wgDatabase );
 		}
 		wfOut( "ok\n" );
-	}
-}
-
-function do_revision_updates() {
-	global $wgSoftwareRevision;
-	if ( $wgSoftwareRevision < 1001 ) {
-		update_passwords();
-	}
-}
-
-function update_passwords() {
-	wfDebugDieBacktrace( "This function needs to be updated or removed.\n" );
-
-	global $wgDatabase;
-	$fname = "Update script: update_passwords()";
-	wfOut( "\nIt appears that you need to update the user passwords in your\n" .
-	  "database. If you have already done this (if you've run this update\n" .
-	  "script once before, for example), doing so again will make all your\n" .
-	  "user accounts inaccessible, so be sure you only do this once.\n" .
-	  "Update user passwords? (yes/no)" );
-
-	$resp = readconsole();
-    if ( ! ( "Y" == $resp{0} || "y" == $resp{0} ) ) { return; }
-
-	$sql = "SELECT user_id,user_password FROM user";
-	$source = $wgDatabase->query( $sql, $fname );
-
-	while ( $row = $wgDatabase->fetchObject( $source ) ) {
-		$id = $row->user_id;
-		$oldpass = $row->user_password;
-		$newpass = md5( "{$id}-{$oldpass}" );
-
-		$sql = "UPDATE user SET user_password='{$newpass}' " .
-		  "WHERE user_id={$id}";
-		$wgDatabase->query( $sql, $fname );
 	}
 }
 
@@ -1253,29 +1217,6 @@ function do_populate_parent_id() {
 	
 	global $wgDatabase;
 	populate_rev_parent_id( $wgDatabase );
-}
-
-function update_password_format() {
-	if ( update_row_exists( 'password format' ) ) {
-		wfOut( "...password hash format already changed\n" );
-		return;
-	}
-
-	wfOut( "Updating password hash format..." );
-
-	global $wgDatabase, $wgPasswordSalt;
-	$user = $wgDatabase->tableName( 'user' );
-	if ( $wgPasswordSalt ) {
-		$sql = "UPDATE $user SET user_password=CONCAT(':B:', user_id, ':', user_password) " .
-			"WHERE user_password NOT LIKE ':%'";
-	} else {
-		$sql = "UPDATE $user SET user_password=CONCAT(':A:', user_password) " .
-			"WHERE user_password NOT LIKE ':%'";
-	}
-	$wgDatabase->query( $sql, __METHOD__ );
-	$wgDatabase->insert( 'updatelog', array( 'ul_key' => 'password format' ), __METHOD__ );
-
-	wfOut( "done\n" );
 }
 
 function sqlite_initial_indexes() {
