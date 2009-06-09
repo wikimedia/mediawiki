@@ -42,8 +42,9 @@ class Preferences {
 		foreach( $defaultPreferences as $name => &$info ) {
 			$prefFromUser = self::getOptionFromUser( $name, $info, $user );
 			$field = HTMLForm::loadInputFromParameters( $info ); // For validation
-			$globalDefault = isset($wgDefaultUserOptions[$name])
-								? $wgDefaultUserOptions[$name]
+			$defaultOptions = User::getDefaultOptions();
+			$globalDefault = isset($defaultOptions[$name])
+								? $defaultOptions[$name]
 								: null;
 			
 			// If it validates, set it as the default
