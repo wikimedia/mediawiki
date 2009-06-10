@@ -403,7 +403,7 @@ abstract class FileRepo {
 
 	function fileExists( $file, $flags = 0 ) {
 		$result = $this->fileExistsBatch( array( $file ), $flags );
-		return $file;
+		return $result[0];
 	}
 
 	/**
