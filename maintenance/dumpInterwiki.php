@@ -12,8 +12,8 @@
 $oldCwd = getcwd();
 
 $optionsWithArgs = array( "o" );
-include_once( "commandLine.inc" );
-include_once( "dumpInterwiki.inc" );
+require( "commandLine.inc" );
+require( "dumpInterwiki.inc" );
 chdir( $oldCwd );
 
 # Output

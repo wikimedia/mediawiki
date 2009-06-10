@@ -169,7 +169,7 @@ TODO:
 /////////////////////////// COMMAND LINE HELP ////////////////////////////////////
 
 // This is a command line script, load MediaWiki env (gives command line options);
-include('commandLine.inc');
+require('commandLine.inc');
 
 // if the user asked for an explanation of command line options.
 if ( isset( $options["help"] ) ) {

@@ -21,8 +21,7 @@
  */
 
 /** This is a command line script*/
-include('commandLine.inc');
-
+require('commandLine.inc');
 # GLOBALS
 
 $doc = $IP . '/docs/hooks.txt';

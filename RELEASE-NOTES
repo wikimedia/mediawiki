@@ -28,6 +28,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   installer.
 * (bug 19127) Documentation warning for PostgreSQL users who run update.php: 
   use the same user in AdminSettings.php as in LocalSettings.php. 
+* Fixed possible web invocation of some maintenance scripts, due to the use of
+  include() instead of require(). A full exploit would require a very strange
+  web server configuration.
 * Localisation updates.
 
 === Configuration changes in 1.15 ===
