@@ -21,6 +21,7 @@ class ForeignAPIRepo extends FileRepo {
 	var $fileFactory = array( 'ForeignAPIFile', 'newFromTitle' );
 	var $apiThumbCacheExpiry = 0;
 	protected $mQueryCache = array();
+	protected $mFileExists = array();
 	
 	function __construct( $info ) {
 		parent::__construct( $info );
@@ -57,8 +58,32 @@ class ForeignAPIRepo extends FileRepo {
 	function deleteBatch( $sourceDestPairs ) {
 		return false;
 	}
+	
+
 	function fileExistsBatch( $files, $flags = 0 ) {
-		return false;
+		$results = array();
+		foreach ( $files as $k => $f ) {
+			if ( isset( $this->mFileExists[$k] ) ) {
+				$results[$k] = true;
+				unset( $files[$k] );
+			} elseif( self::isVirtualUrl( $f ) ) {
+				# TODO! FIXME! We need to be able to handle virtual
+				# URLs better, at least when we know they refer to the
+				# same repo.
+				$results[$k] = false;
+				unset( $files[$k] );
+			}
+		}
+
+		$results = $this->fetchImageQuery( array( 'titles' => implode( $files, '|' ),
+											'prop' => 'imageinfo' ) );
+		if( isset( $data['query']['pages'] ) ) {
+			$i = 0;
+			foreach( $files as $key => $file ) {
+				$results[$key] = $this->mFileExists[$key] = !isset( $data['query']['pages'][$i]['missing'] );
+				$i++;
+			}
+		}
 	}
 	function getFileProps( $virtualUrl ) {
 		return false;
