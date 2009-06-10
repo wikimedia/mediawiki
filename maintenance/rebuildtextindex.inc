@@ -45,7 +45,7 @@ function rebuildTextIndex( &$database )
 	$n = 0;
 
 	while ( $n < $count ) {
-		print_c( $n - 1, $n);
+		echo $n . "\n";
 		$end = $n + RTI_CHUNK_SIZE - 1;
 		$sql = "SELECT page_id, page_namespace, page_title, old_flags, old_text
 		          FROM $page, $revision, $text
