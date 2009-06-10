@@ -5,7 +5,7 @@ setting since version 1.2.0. If you have it on, turn it *off* if you can.
 
 == MediaWiki 1.15.0 ==
 
-2009-06-09
+2009-06-10
 
 This is a stable release of the the 2009 Q2 branch of MediaWiki. 
 
@@ -28,6 +28,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   installer.
 * (bug 19127) Documentation warning for PostgreSQL users who run update.php: 
   use the same user in AdminSettings.php as in LocalSettings.php. 
+* Localisation updates.
 
 === Configuration changes in 1.15 ===
 
