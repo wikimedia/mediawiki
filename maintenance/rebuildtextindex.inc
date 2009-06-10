@@ -1,5 +1,4 @@
 <?php
-require_once 'counter.php';
 /**
  * Rebuild the fulltext search indexes. This may take a while
  * depending on the database size and server configuration.
