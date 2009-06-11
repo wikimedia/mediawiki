@@ -76,10 +76,10 @@ function wfGetIP() {
 
 	/* collect the originating ips */
 	# Client connecting to this webserver
-	if ( isset( $_SERVER['REMOTE_ADDR'] ) ) {
+	if ( isset( $_SERVER['REMOTE_ADDR'] ) && IP::canonicalize( $_SERVER['REMOTE_ADDR'] ) ) {
 		$ipchain = array( IP::canonicalize( $_SERVER['REMOTE_ADDR'] ) );
 	} else {
-		# Running on CLI?
+		# Running on CLI or REMOTE_ADDR is broken
 		$ipchain = array( '127.0.0.1' );
 	}
 	$ip = $ipchain[0];
