@@ -935,6 +935,8 @@ Você não tem acesso a ele.',
 Você não tem acesso a ele.',
 'revdelete-modify-missing'    => 'Erro ao modificar o item ID $1: está em falta na base de dados!',
 'revdelete-no-change'         => "'''Aviso:''' o item datado de $2, $1 já possui as configurações de visualização requeridas.",
+'revdelete-concurrent-change' => 'Erro ao modificar o item com data/hora $2, $1: o seu estado parece ter sido alterado por outra pessoa enquanto você tentava modificá-lo.
+Por favor, verifique os registos.',
 'revdelete-only-restricted'   => 'Não pode suprimir itens de serem visualizados por administradores sem também escolher uma das outras opções de supressão.',
 
 # Suppression log
@@ -1206,6 +1208,7 @@ Pode também escolher permitir que outros entrem em contacto consigo através da
 'prefs-i18n'                    => 'Internacionalização',
 'prefs-signature'               => 'Assinatura',
 'prefs-dateformat'              => 'Formato de data',
+'prefs-timeoffset'              => 'Desvio horário',
 'prefs-advancedediting'         => 'Opções avançadas',
 'prefs-advancedrc'              => 'Opções avançadas',
 'prefs-advancedrendering'       => 'Opções avançadas',
@@ -2173,7 +2176,7 @@ Consulte a [[Special:IPBlockList|lista de IPs bloqueados]] para rever os bloquei
 'ipblocklist-submit'              => 'Pesquisar',
 'blocklistline'                   => '$1, $2 bloqueou $3 ($4)',
 'infiniteblock'                   => 'infinito',
-'expiringblock'                   => 'expira em $1 $2',
+'expiringblock'                   => 'expira em $1 às $2',
 'anononlyblock'                   => 'anón. apenas',
 'noautoblockblock'                => 'bloqueio automático desabilitado',
 'createaccountblock'              => 'criação de conta de utilizador bloqueada',

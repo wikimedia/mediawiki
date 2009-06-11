@@ -1012,6 +1012,9 @@ Saia zaitez zure eskeraren aurretik ''all:'' jartzen eduki guztien artean bilatz
 'powersearch-ns'                   => 'Bilatu honako izen-tartetan:',
 'powersearch-redir'                => 'Birzuzenketen zerrenda',
 'powersearch-field'                => 'Bilatu',
+'powersearch-togglelabel'          => 'Egiaztatu:',
+'powersearch-toggleall'            => 'Guztiak',
+'powersearch-togglenone'           => 'Bat ere',
 'search-external'                  => 'Kanpo bilaketa',
 'searchdisabled'                   => '{{SITENAME}}(e)n ezgaituta dago bilaketa. Dena dela, Google erabiliz ere egin dezakezu bilaketa. Kontuan izan bertan dituzten {{SITENAME}}(e)ko emaitzak zaharkituta egon daitezkeela.',
 
@@ -1433,6 +1436,7 @@ Zutabe baten goi-buruaren egin klik sailkatzeko era aldatzeko.',
 'filehist-dimensions'       => 'Neurriak',
 'filehist-filesize'         => 'Tamaina',
 'filehist-comment'          => 'Iruzkina',
+'filehist-missing'          => 'Fitxategia falta da',
 'imagelinks'                => 'Fitxategi loturak',
 'linkstoimage'              => 'Hurrengo {{PLURAL:$1|orrialdeak du|$1 orrialdeek dute}} fitxategi honetarako lotura:',
 'linkstoimage-more'         => '$1 {{PLURAL:$1|orri lotura|orri lotura}} baino gehiago daude fitxategira.

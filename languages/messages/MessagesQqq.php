@@ -1229,7 +1229,7 @@ API is an abbreviation for [http://en.wikipedia.org/wiki/API application program
 'action-browsearchive'        => '{{Doc-action}}',
 'action-undelete'             => '{{Doc-action}}',
 'action-suppressrevision'     => '{{Doc-action}}',
-'action-suppressionlog'       => '{{Doc-action}}',
+'action-suppressionlog'       => '{{Doc-action|suppressionlog}}',
 'action-block'                => '{{Doc-action}}',
 'action-protect'              => '{{Doc-action}}',
 'action-import'               => '{{Doc-action}}',
