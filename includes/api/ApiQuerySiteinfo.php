@@ -395,7 +395,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 	public function appendLanguages( $property ) {
 		global $wgLanguageNames;
 		$data = array();
-		foreach( $wgLanguageNames as $code => $name ) {
+		foreach( Language::getLanguageNames() as $code => $name ) {
 			$lang = array( 'code' => $code );
 			ApiResult::setContent( $lang, $name );
 			$data[] = $lang;
