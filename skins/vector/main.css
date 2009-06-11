@@ -113,10 +113,10 @@ div#panel {
 		overflow: hidden;
 	}
 	div#panel > div.buffer > div.portal > div.body > ul > li > a {
-		color: #00528c;
+		color: #0645ad;
 	}
 	div#panel > div.buffer > div.portal > div.body > ul > li > a:visited {
-		color: #2623a5;
+		color: #0b0080;
 	}
 
 /* Logo */
@@ -253,11 +253,11 @@ body.rtl div#foot {
 		color: #666666;
 	}
 	div#foot a {
-		color: #00528c;
+		color: #0645ad;
 		
 	}
 	div#foot a:visited {
-		color: #2623a5;
+		color: #0b0080;
 	}
 
 /* Foot Icons */
@@ -365,7 +365,7 @@ body.rtl div#namespaces {
 	}
 	div#namespaces > ul > li > a,
 	div#namespaces > ul > li > a:visited {
-		color: #00528c;
+		color: #0645ad;
 	}
 	div#namespaces > ul > li.selected > a,
 	div#namespaces > ul > li.selected > a:visited{
@@ -438,7 +438,7 @@ body.rtl div#views {
 	}
 	div#views > ul > li > a,
 	div#views > ul > li > a:visited {
-		color: #00528c;
+		color: #0645ad;
 	}
 	div#views > ul > li.selected > a,
 	div#views > ul > li.selected > a:visited{
@@ -530,7 +530,7 @@ body.rtl div#actions {
 	}
 	div#actions > div.menu > ul > li > a,
 	div#actions > div.menu > ul > li > a:visited {
-		color: #00528c;
+		color: #0645ad;
 	}
 
 /* I DON"T THINK THIS IS AWESOME, BUT IT"S SOMETHING... */
@@ -606,7 +606,7 @@ body.rtl div#variants {
 	}
 	div#variants > div.menu > ul > li > a,
 	div#variants > div.menu > ul > li > a:visited {
-		color: #00528c;
+		color: #0645ad;
 	}
 
 /* END OF STUFF I"M NOT SURE ABOUT... */
@@ -659,7 +659,7 @@ body.rtl div#personal {
 	}
 	div#personal > div.buffer > ul > li > a,
 	div#personal > div.buffer > ul > li > a:visited {
-		color: #00528c;
+		color: #0645ad;
 	}
 	div#personal > div.buffer > ul > li > a.new,
 	div#personal > div.buffer > ul > li > a.new:visited {
@@ -718,7 +718,7 @@ body.rtl #preftoc {
 		/* Tab Label */
 		display: block;
 		position: relative;
-		color: #00528c;
+		color: #0645ad;
 		padding: 0.5em;
 		text-decoration: none;
 		background-image: none;
@@ -768,7 +768,7 @@ body.rtl #preftoc {
 #preferences td.htmlform-tip {
 	font-size: x-small;
 	padding: .2em 2em;
-	color: #666;
+	color: #666666;
 }
 
 /*
@@ -780,11 +780,11 @@ body.rtl #preftoc {
 /* Links */
 a {
 	text-decoration: none;
-	color: #002bb8;
+	color: #0645ad;
 	background: none;
 }
 a:visited {
-	color: #5a3696;
+	color: #0b0080;
 }
 a:active {
 	color: #faa700;
