@@ -574,6 +574,8 @@ class Preferences {
 	}
 	
 	static function editingPreferences( $user, &$defaultPreferences ) {
+		global $wgUseExternalEditor;
+
 		## Editing #####################################
 		$defaultPreferences['cols'] =
 				array(
@@ -640,19 +642,14 @@ class Preferences {
 					'label-message' => 'tog-minordefault',
 				);
 
-		global $wgUseExternalEditor;
-		if ($wgUseExternalEditor) {
+		if ( $wgUseExternalEditor ) {
 			$defaultPreferences['externaleditor'] =
 					array(
 						'type' => 'toggle',
 						'section' => 'editing/advancedediting',
 						'label-message' => 'tog-externaleditor',
 					);
-		}
-
-		global $wgExternalDiffEngine;
-		if ($wgExternalDiffEngine) {
-		  $defaultPreferences['externaldiff'] =
+			$defaultPreferences['externaldiff'] =
 					array(
 						'type' => 'toggle',
 						'section' => 'editing/advancedediting',
