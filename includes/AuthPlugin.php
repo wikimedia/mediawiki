@@ -130,37 +130,15 @@ class AuthPlugin {
 	 * @return bool
 	 */
 	public function allowPropChange( $prop = '' ) {
-		return true;
-	}
-
-	/**
-	 * Can users change their Real Name?
-	 * @deprecated Use allowPropChange()
-	 * @return bool
-	 */
-	public function allowRealNameChange() {
-		wfDeprecated( __METHOD__ );
-		return $this->allowPropChange( 'realname' );
-	}
-
-	/**
-	 * Can users change their email address?
-	 * @deprecated Use allowPropChange()
-	 * @return bool
-	 */
-	public function allowEmailChange() {
-		wfDeprecated( __METHOD__ );
-		return $this->allowPropChange( 'emailaddress' );
-	}
-
-	/**
-	 * Can users change their Nickname?
-	 * @deprecated Use allowPropChange()
-	 * @return bool
-	 */
-	public function allowNickChange() {
-		wfDeprecated( __METHOD__ );
-		return $this->allowPropChange( 'nickname' );
+		if( $prop == 'realname' && is_callable( array( $this, 'allowRealNameChange' ) ) ) {
+			return $this->allowRealNameChange();
+		} elseif( $prop == 'emailaddress' && is_callable( array( $this, 'allowEmailChange' ) ) ) {
+			return $this->allowEmailChange();
+		} elseif( $prop == 'nickname' && is_callable( array( $this, 'allowNickChange' ) ) ) {
+			return $this->allowNickChange();
+		} else {
+			return true;
+		}
 	}
 
 	/**
