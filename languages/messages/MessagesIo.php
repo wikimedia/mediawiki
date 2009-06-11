@@ -113,6 +113,7 @@ $messages = array(
 'tog-hideminor'               => 'Celez mikra redaktaji de recenta chanji',
 'tog-hidepatrolled'           => 'Celez patroliita redakti en recenta chanji',
 'tog-newpageshidepatrolled'   => 'Celez patroliita pagini en la listo di nova pagino',
+'tog-extendwatchlist'         => 'Expansez surveyo-listo por montrar omna chanji, vice nur la maxim recenta',
 'tog-usenewrc'                => 'Usez augmentita Recenta chanji (JavaScript bezonesas)',
 'tog-numberheadings'          => 'Autonumerez tituli',
 'tog-showtoolbar'             => 'Montrez redaktilo (JavaScript bezonesas)',
@@ -136,6 +137,7 @@ $messages = array(
 'tog-enotifrevealaddr'        => 'Montrez mea e-posto adreso en notifiko e-posti',
 'tog-shownumberswatching'     => 'Montrez nombro di surveyanta uzanti',
 'tog-fancysig'                => 'Traktez signaturo kom wikikodo (sen automata ligilo)',
+'tog-externaleditor'          => 'Uzez extera redaktanto nespecigite (nur por experti, bezonas specala moderi ye vua komputoro)',
 'tog-watchlisthideown'        => 'Celez mea redaktaji de la surveyaji',
 'tog-watchlisthidebots'       => 'Celez redaktaji da roboti de la surveyaji',
 'tog-watchlisthideminor'      => 'Celez mikra redaktaji de la surveyaji',
@@ -620,6 +622,7 @@ Surskriburo: '''({{int:cur}})''' = diferi kun l'aktuala versiono,
 'visualcomparison'        => 'Vidala komparado',
 'wikicodecomparison'      => 'Wikitextala komparado',
 'editundo'                => 'des-facez',
+'diff-src'                => 'fonto',
 'diff-with-final'         => '&#32;e $1 $2',
 
 # Search results
@@ -700,7 +703,7 @@ Probez prefixizar vua demando kun ''all:'' por serchar omna kontenajo (inkluzant
 'contextchars'              => 'Tipi di kuntexto ye singla lineo:',
 'recentchangescount'        => 'Quanto de redakti montrota kustume en la recenta chanji, pagino-versionari e registri:',
 'savedprefs'                => 'Vua preferaji registragesis.',
-'timezonelegend'            => 'Tempala zono',
+'timezonelegend'            => 'Tempala zono:',
 'localtime'                 => 'Lokala tempo:',
 'timezoneoffset'            => 'Difero¹:',
 'servertime'                => 'Kloko en la servanto:',
@@ -809,6 +812,7 @@ Ol mustas ne havar plu kam $1 {{PLURAL:$1|litero|literi}}.',
 'recentchangeslinked-summary' => "Co esas listo di recenta chanji ad pagini ligita da specigita pagino, od pagini en specigita kategorio.
 Pagini en [[Special:Watchlist|vua surveryo-listo]] esas '''dika'''.",
 'recentchangeslinked-page'    => 'Nomo dil pagino:',
+'recentchangeslinked-to'      => 'Montrez chanji a pagini ligita a la specigita pagino vice',
 
 # Upload
 'upload'            => 'Adkargar arkivo',

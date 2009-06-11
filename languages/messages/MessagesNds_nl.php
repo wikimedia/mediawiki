@@ -1742,7 +1742,7 @@ Pagina's wonnen ezien as een deurverwiespagina, as de mal gebruuk wonnen dee ver
 'double-redirect-fixed-move' => '[[$1]] is herneumd en is noen een deurverwiezing naor [[$2]]',
 'double-redirect-fixer'      => 'Deurverwiezingsverbeteraar',
 
-'brokenredirects'        => 'Doodlopende deurverwiezingen',
+'brokenredirects'        => 'Ebreuken deurverwiezingen',
 'brokenredirectstext'    => 'Disse deurverwiezingen verwiezen naor een neet-bestaonde pagina.',
 'brokenredirects-edit'   => '(bewark)',
 'brokenredirects-delete' => '(vortdoon)',

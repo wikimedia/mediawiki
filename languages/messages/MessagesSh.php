@@ -737,19 +737,447 @@ Svi drugi linkovi u istoj liniji se smatraju izuzecima, npr. kod stranica gdje s
 * isospeedratings
 * focallength",
 
+# EXIF tags
+'exif-imagewidth'                  => 'Širina',
+'exif-imagelength'                 => 'Visina',
+'exif-bitspersample'               => 'Bita po komponenti',
+'exif-compression'                 => 'Šema kompresije',
+'exif-photometricinterpretation'   => 'Sastav piksela',
+'exif-orientation'                 => 'Orijentacija',
+'exif-samplesperpixel'             => 'Broj komponenti',
+'exif-planarconfiguration'         => 'Aranžiranje podataka',
+'exif-ycbcrsubsampling'            => 'Odnos subsampling od Y do C',
+'exif-ycbcrpositioning'            => 'Pozicioniranje Y i C',
+'exif-xresolution'                 => 'Horizontalna rezolucija',
+'exif-yresolution'                 => 'Vertikalna rezolucija',
+'exif-resolutionunit'              => 'Jedinice X i Y rezolucije',
+'exif-stripoffsets'                => 'Lokacija podataka slike',
+'exif-rowsperstrip'                => 'Broj redaka po liniji',
+'exif-stripbytecounts'             => 'Bita po kompresovanoj liniji',
+'exif-jpeginterchangeformat'       => 'Presijek do JPEG SOI',
+'exif-jpeginterchangeformatlength' => 'Bita JPEG podataka',
+'exif-transferfunction'            => 'Transferna funkcija',
+'exif-whitepoint'                  => 'Hromiranost bijele tačke',
+'exif-primarychromaticities'       => 'Hromaticitet primarnih boja',
+'exif-ycbcrcoefficients'           => 'Koeficijenti transformacije matrice prostora boja',
+'exif-referenceblackwhite'         => 'Par crnih i bijelih referentnih vrijednosti',
+'exif-datetime'                    => 'Vrijeme i datum promjene datoteke',
+'exif-imagedescription'            => 'Naslov slike',
+'exif-make'                        => 'Proizvođač kamere',
+'exif-model'                       => 'Model kamere',
+'exif-software'                    => 'Korišteni softver',
+'exif-artist'                      => 'Autor',
+'exif-copyright'                   => 'Vlasnik autorskih prava',
+'exif-exifversion'                 => 'Exif verzija',
+'exif-flashpixversion'             => 'Podržana verzija Flashpix',
+'exif-colorspace'                  => 'Prostor boje',
+'exif-componentsconfiguration'     => 'Značenje svake komponente',
+'exif-compressedbitsperpixel'      => 'Način kompresije slike',
+'exif-pixelydimension'             => 'Određena širina slike',
+'exif-pixelxdimension'             => 'Određena visina slike',
+'exif-makernote'                   => 'Bilješke proizvođača',
+'exif-usercomment'                 => 'Korisnički komentari',
+'exif-relatedsoundfile'            => 'Povezana zvučna datoteka',
+'exif-datetimeoriginal'            => 'Datum i vrijeme generisanja podataka',
+'exif-datetimedigitized'           => 'Datum i vrijeme digitalizacije',
+'exif-subsectime'                  => 'Datum i vrijeme u dijelovima sekunde',
+'exif-subsectimeoriginal'          => 'Originalno vrijeme i datum u dijelovima sekunde',
+'exif-subsectimedigitized'         => 'Datum i vrijeme digitalizacije u dijelovima sekunde',
+'exif-exposuretime'                => 'Vrijeme izlaganja (ekspozicije)',
+'exif-exposuretime-format'         => '$1 sekundi ($2)',
+'exif-fnumber'                     => 'F broj',
+'exif-fnumber-format'              => 'f/$1',
+'exif-exposureprogram'             => 'Program ekspozicije',
+'exif-spectralsensitivity'         => 'Spektralna osjetljivost',
+'exif-isospeedratings'             => 'Rejting ISO brzine',
+'exif-oecf'                        => 'Optoelektronski faktor konvezije',
+'exif-shutterspeedvalue'           => 'Brzina okidača',
+'exif-aperturevalue'               => 'Otvor blende',
+'exif-brightnessvalue'             => 'Osvijetljenost',
+'exif-exposurebiasvalue'           => 'Kompozicija ekspozicije',
+'exif-maxaperturevalue'            => 'Najveći broj otvora blende',
+'exif-subjectdistance'             => 'Udaljenost objekta',
+'exif-meteringmode'                => 'Način mjerenja',
+'exif-lightsource'                 => 'Izvor svjetlosti',
+'exif-flash'                       => 'Bljesak',
+'exif-focallength'                 => 'Fokusna dužina objektiva',
+'exif-focallength-format'          => '$1 mm',
+'exif-subjectarea'                 => 'Površina objekta',
+'exif-flashenergy'                 => 'Energija bljeska',
+'exif-spatialfrequencyresponse'    => 'Prostorna frekvencija odgovora',
+'exif-focalplanexresolution'       => 'Rezolucija fokusne ravni X',
+'exif-focalplaneyresolution'       => 'Rezolucija fokusne ravni Y',
+'exif-focalplaneresolutionunit'    => 'Jedinica rezolucije fokusne ravni',
+'exif-subjectlocation'             => 'Lokacija objekta',
+'exif-exposureindex'               => 'Indeks ekspozicije',
+'exif-sensingmethod'               => 'Vrsta senzora',
+'exif-filesource'                  => 'Izvor datoteke',
+'exif-scenetype'                   => 'Vrsta scene',
+'exif-cfapattern'                  => 'CFA šema',
+'exif-customrendered'              => 'Podešeno uređivanje slike',
+'exif-exposuremode'                => 'Vrsta ekspozicije',
+'exif-whitebalance'                => 'Bijeli balans',
+'exif-digitalzoomratio'            => 'Odnos digitalnog zuma',
+'exif-focallengthin35mmfilm'       => 'Fokusna dužina kod 35 mm filma',
+'exif-scenecapturetype'            => 'Vrsta scene snimanja',
+'exif-gaincontrol'                 => 'Kontrola scene',
+'exif-contrast'                    => 'Kontrast',
+'exif-saturation'                  => 'Saturacija',
+'exif-sharpness'                   => 'Izoštrenost',
+'exif-devicesettingdescription'    => 'Opis postavki uređaja',
+'exif-subjectdistancerange'        => 'Udaljenost od objekta',
+'exif-imageuniqueid'               => 'Jedinstveni ID slike',
+'exif-gpsversionid'                => 'Verzija GPS bloka informacija',
+'exif-gpslatituderef'              => 'Sjeverna ili južna širina',
+'exif-gpslatitude'                 => 'Širina',
+'exif-gpslongituderef'             => 'Istočna ili zapadna dužina',
+'exif-gpslongitude'                => 'Dužina',
+'exif-gpsaltituderef'              => 'Referenca visine',
+'exif-gpsaltitude'                 => 'Nadmorska visina',
+'exif-gpstimestamp'                => 'GPS vrijeme (atomski sat)',
+'exif-gpssatellites'               => 'Sateliti korišteni pri mjerenju',
+'exif-gpsstatus'                   => 'Status prijemnika',
+'exif-gpsmeasuremode'              => 'Način mjerenja',
+'exif-gpsdop'                      => 'Preciznost mjerenja',
+'exif-gpsspeedref'                 => 'Jedinica brzine',
+'exif-gpsspeed'                    => 'Brzina GPS prijemnika',
+'exif-gpstrackref'                 => 'Referenca za smjer kretanja',
+'exif-gpstrack'                    => 'Smjer kretanja',
+'exif-gpsimgdirectionref'          => 'Referenca za smjer slike',
+'exif-gpsimgdirection'             => 'Smjer slike',
+'exif-gpsmapdatum'                 => 'Upotrijebljeni podaci geodetskih mjerenja',
+'exif-gpsdestlatituderef'          => 'Referenca za geografsku širinu odredišta',
+'exif-gpsdestlatitude'             => 'Širina odredišta',
+'exif-gpsdestlongituderef'         => 'Referenca za geografsku dužinu odredišta',
+'exif-gpsdestlongitude'            => 'Dužina odredišta',
+'exif-gpsdestbearingref'           => 'Indeks azimuta odredišta',
+'exif-gpsdestbearing'              => 'Azimut odredišta',
+'exif-gpsdestdistanceref'          => 'Referenca za udaljenost od odredišta',
+'exif-gpsdestdistance'             => 'Udaljenost do odredišta',
+'exif-gpsprocessingmethod'         => 'Naziv GPS metoda procesiranja',
+'exif-gpsareainformation'          => 'Naziv GPS područja',
+'exif-gpsdatestamp'                => 'GPS datum',
+'exif-gpsdifferential'             => 'GPS diferencijalna korekcija',
+
+# EXIF attributes
+'exif-compression-1' => 'Nekompresovano',
+
+'exif-unknowndate' => 'Nepoznat datum',
+
+'exif-orientation-1' => 'Normalna',
+'exif-orientation-2' => 'Horizontalno preokrenuto',
+'exif-orientation-3' => 'Rotirano 180°',
+'exif-orientation-4' => 'Vertikalno preokrenuto',
+'exif-orientation-5' => 'Rotirano 90° suprotno kazaljke i vertikalno obrnuto',
+'exif-orientation-6' => 'Rotirano 90° u smjeru kazaljke',
+'exif-orientation-7' => 'Rotirano 90° u smjeru kazaljke i preokrenuto vertikalno',
+'exif-orientation-8' => 'Rotirano 90° suprotno od kazaljke',
+
+'exif-planarconfiguration-1' => 'grubi format',
+'exif-planarconfiguration-2' => 'format u ravni',
+
+'exif-xyresolution-i' => '$1 dpi',
+'exif-xyresolution-c' => '$1 dpc',
+
+'exif-colorspace-1'      => 'sRGB',
+'exif-colorspace-ffff.h' => 'FFFF.H',
+
+'exif-componentsconfiguration-0' => 'ne postoji',
+
+'exif-exposureprogram-0' => 'Nije određen',
+'exif-exposureprogram-1' => 'Ručno',
+'exif-exposureprogram-2' => 'Normalni program',
+'exif-exposureprogram-3' => 'Prioritet otvora blende',
+'exif-exposureprogram-4' => 'Prioritet okidača',
+'exif-exposureprogram-5' => 'Kreativni program (usmjeren ka dubini polja)',
+'exif-exposureprogram-6' => 'Program akcije (usmjereno na veću brzinu okidača)',
+'exif-exposureprogram-7' => 'Način portreta (za fotografije iz blizine sa pozadinom van fokusa)',
+'exif-exposureprogram-8' => 'Način pejzaža (za pejzažne fotografije sa pozadinom u fokusu)',
+
+'exif-subjectdistance-value' => '$1 metara',
+
+'exif-meteringmode-0'   => 'Nepoznat',
+'exif-meteringmode-1'   => 'Prosječan',
+'exif-meteringmode-2'   => 'Srednji prosjek težišta',
+'exif-meteringmode-3'   => 'Tačka',
+'exif-meteringmode-4'   => 'Višestruka tačka',
+'exif-meteringmode-5'   => 'Šema',
+'exif-meteringmode-6'   => 'Djelimični',
+'exif-meteringmode-255' => 'Ostalo',
+
+'exif-lightsource-0'   => 'Nepoznat',
+'exif-lightsource-1'   => 'Dnevno svjetlo',
+'exif-lightsource-2'   => 'Fluorescentni',
+'exif-lightsource-3'   => 'Volfram (svjetlo)',
+'exif-lightsource-4'   => 'Bljesak (blic)',
+'exif-lightsource-9'   => 'Lijepo vrijeme',
+'exif-lightsource-10'  => 'Oblačno vrijeme',
+'exif-lightsource-11'  => 'Osjenčeno',
+'exif-lightsource-12'  => 'Dnevna fluorescencija (D 5700 – 7100K)',
+'exif-lightsource-13'  => 'Dnevna bijela fluorescencija (N 4600 – 5400K)',
+'exif-lightsource-14'  => 'Hladno bijela fluorescencija (W 3900 – 4500K)',
+'exif-lightsource-15'  => 'Bijela fluorescencija (WW 3200 – 3700K)',
+'exif-lightsource-17'  => 'Standardno svjetlo A',
+'exif-lightsource-18'  => 'Standardno svjetlo B',
+'exif-lightsource-19'  => 'Standardno svjetlo C',
+'exif-lightsource-20'  => 'D55',
+'exif-lightsource-24'  => 'ISO studio volfram',
+'exif-lightsource-255' => 'Ostali izvori svjetlosti',
+
+# Flash modes
+'exif-flash-fired-0'    => 'Bljesak (blic) nije radio',
+'exif-flash-fired-1'    => 'Blic radio',
+'exif-flash-return-0'   => 'bljesak (blic) nije poslao nikakav odziv',
+'exif-flash-return-2'   => 'nije otkriven bljesak (blic)',
+'exif-flash-return-3'   => 'otkriven bljesak',
+'exif-flash-mode-1'     => 'obavezan rad bljeska',
+'exif-flash-mode-2'     => 'obavezno izbjegavanje bljeska',
+'exif-flash-mode-3'     => 'automatski način',
+'exif-flash-function-1' => 'Bez funkcije bljeska',
+'exif-flash-redeye-1'   => 'način redukcije "crvenila očiju"',
+
+'exif-focalplaneresolutionunit-2' => 'inči',
+
+'exif-sensingmethod-1' => 'Nedefinisan',
+'exif-sensingmethod-2' => 'Senzor boje površine sa jednim čipom',
+'exif-sensingmethod-3' => 'Senzor boje površine sa dva čipa',
+'exif-sensingmethod-4' => 'Senzor boje površine sa tri čipa',
+'exif-sensingmethod-5' => 'Senzor boje površine sa tri čipa',
+'exif-sensingmethod-7' => 'Trilinearni senzor',
+'exif-sensingmethod-8' => 'Sekvencijalni senzor boje linija',
+
+'exif-scenetype-1' => 'Direktno fotografisana slika',
+
+'exif-customrendered-0' => 'Normalni proces',
+'exif-customrendered-1' => 'Podešeni proces',
+
+'exif-exposuremode-0' => 'Automatska ekpozicija',
+'exif-exposuremode-1' => 'Ručna ekspozicija',
+'exif-exposuremode-2' => 'Automatski određen raspon',
+
+'exif-whitebalance-0' => 'Automatski bijeli balans',
+'exif-whitebalance-1' => 'Ručno podešeni bijeli balans',
+
+'exif-scenecapturetype-0' => 'Standardna',
+'exif-scenecapturetype-1' => 'Pejzaž',
+'exif-scenecapturetype-2' => 'Portret',
+'exif-scenecapturetype-3' => 'Noćna scena',
+
+'exif-gaincontrol-0' => 'Ništa',
+'exif-gaincontrol-1' => 'Malo povećanje',
+'exif-gaincontrol-2' => 'Veće povećanje',
+'exif-gaincontrol-3' => 'Manje smanjenje',
+'exif-gaincontrol-4' => 'Veće smanjenje',
+
+'exif-contrast-0' => 'Normalni',
+'exif-contrast-1' => 'Meki',
+'exif-contrast-2' => 'Snažni',
+
+'exif-saturation-0' => 'Normalna',
+'exif-saturation-1' => 'Niska zasićenost',
+'exif-saturation-2' => 'Jako zasićenje',
+
+'exif-sharpness-0' => 'Normalna',
+'exif-sharpness-1' => 'Blago',
+'exif-sharpness-2' => 'Oštro',
+
+'exif-subjectdistancerange-0' => 'Nepoznat',
+'exif-subjectdistancerange-1' => 'Makro',
+'exif-subjectdistancerange-2' => 'Pogled izbliza',
+'exif-subjectdistancerange-3' => 'Pogled iz daljine',
+
+# Pseudotags used for GPSLatitudeRef and GPSDestLatitudeRef
+'exif-gpslatitude-n' => 'Sjeverna širina',
+'exif-gpslatitude-s' => 'Južna širina',
+
+# Pseudotags used for GPSLongitudeRef and GPSDestLongitudeRef
+'exif-gpslongitude-e' => 'Istočna dužina',
+'exif-gpslongitude-w' => 'Zapadna dužina',
+
+'exif-gpsstatus-a' => 'Mjerenje u toku',
+'exif-gpsstatus-v' => 'Mjerenje van funkcije',
+
+'exif-gpsmeasuremode-2' => 'dvodimenzionalno mjerenje',
+'exif-gpsmeasuremode-3' => 'trodimenzionalno mjerenje',
+
+# Pseudotags used for GPSSpeedRef
+'exif-gpsspeed-k' => 'Kilometara na sat',
+'exif-gpsspeed-m' => 'Milja na sat',
+'exif-gpsspeed-n' => 'Čvorova',
+
+# Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
+'exif-gpsdirection-t' => 'Stvarni pravac',
+'exif-gpsdirection-m' => 'Magnetski smjer',
+
 # External editor support
 'edit-externally'      => 'Izmijeni ovu datoteku/fajl koristeći eksternu aplikaciju',
 'edit-externally-help' => '(Pogledajte [http://www.mediawiki.org/wiki/Manual:External_editors instrukcije za podešavanje] za više informacija)',
 
 # 'all' in various places, this might be different for inflected languages
-'watchlistall2' => 'sve',
-'namespacesall' => 'sve',
-'monthsall'     => 'sve',
+'recentchangesall' => 'sve',
+'imagelistall'     => 'sve',
+'watchlistall2'    => 'sve',
+'namespacesall'    => 'sve',
+'monthsall'        => 'sve',
+
+# E-mail address confirmation
+'confirmemail'             => 'Potvrdite adresu e-pošte',
+'confirmemail_noemail'     => 'Niste unijeli tačnu e-mail adresu u Vaše [[Special:Preferences|korisničke postavke]].',
+'confirmemail_text'        => 'Ova viki zahtjeva da potvrdite adresu Vaše e-pošte prije nego što koristite mogućnosti e-pošte. ž
+Aktivirajte dugme ispod kako bi ste poslali poštu za potvrdu na Vašu adresu. 
+Pošta uključuje poveznicu koja sadrži kod; 
+učitajte poveznicu u Vaš brauzer da bi ste potvrdili da je adresa Vaše e-pošte valjana.',
+'confirmemail_pending'     => 'Kod za potvrdu Vam je već poslan putem e-maila;
+ako ste nedavno otvorili Vaš račun, trebali bi pričekati par minuta da poslana pošta stigne, prije nego što ponovno zahtijevate novi kod.',
+'confirmemail_send'        => 'Pošaljite kod za potvrdu',
+'confirmemail_sent'        => 'E-pošta za potvrđivanje poslata.',
+'confirmemail_oncreate'    => 'Kod za potvrđivanje Vam je poslat na Vašu e-mail adresu.
+Taj kod nije neophodan za prijavljivanje, ali Vam je potreban kako bi ste omogućili funkcije wikija zasnovane na e-mailu.',
+'confirmemail_sendfailed'  => '{{SITENAME}} Vam ne može poslati poštu za potvrđivanje. 
+Provjerite adresu zbog nepravilnih karaktera.
+
+Povratna pošta: $1',
+'confirmemail_invalid'     => 'Netačan kod za potvrdu. 
+Moguće je da je kod istekao.',
+'confirmemail_needlogin'   => 'Morate $1 da bi ste potvrdili Vašu e-mail adresu.',
+'confirmemail_success'     => 'Adresa vaše e-pošte je potvrđena. 
+Možete sad da se [[Special:UserLogin|prijavite]] i uživate u viki.',
+'confirmemail_loggedin'    => 'Adresa Vaše e-pošte je potvrđena.',
+'confirmemail_error'       => 'Nešto je pošlo krivo prilikom snimanja vaše potvrde.',
+'confirmemail_subject'     => '{{SITENAME}} adresa e-pošte za potvrdu',
+'confirmemail_invalidated' => 'Potvrda e-mail adrese otkazana',
+'invalidateemail'          => 'Odustani od e-mail potvrde',
+
+# Scary transclusion
+'scarytranscludedisabled' => '[Međuwiki umetanje je isključeno]',
+'scarytranscludefailed'   => '[Neuspješno preusmjerenje šablona na $1]',
+'scarytranscludetoolong'  => '[URL je predugačak]',
+
+# Trackbacks
+'trackbackbox'      => 'Trackbacks za ovu stranicu:<br />
+$1',
+'trackbackremove'   => '([$1 Brisanje])',
+'trackbacklink'     => 'Vraćanje',
+'trackbackdeleteok' => 'Trackback je uspješno obrisan.',
+
+# Delete conflict
+'deletedwhileediting' => "'''Upozorenje''': Ova stranica je obrisana prije nego što ste počeli uređivati!",
+'confirmrecreate'     => "Korisnik [[User:$1|$1]] ([[User talk:$1|razgovor]]) je obrisao ovaj članak pošto ste počeli uređivanje sa razlogom:
+: ''$2''
+
+Molimo Vas da potvrdite da stvarno želite da ponovo napravite ovaj članak.",
+'recreate'            => 'Ponovno napravi',
+
+# action=purge
+'confirm_purge_button' => 'U redu',
+'confirm-purge-top'    => "Da li želite obrisati keš (''cache'') ove stranice?",
+'confirm-purge-bottom' => 'Ispražnjava keš stranice i prikazuje najsvježiju verziju.',
+
+# Multipage image navigation
+'imgmultipageprev' => '← prethodna stranica',
+'imgmultipagenext' => 'sljedeća stranica →',
+'imgmultigo'       => 'Idi!',
+'imgmultigoto'     => 'Idi na stranicu $1',
+
+# Table pager
+'ascending_abbrev'         => 'rast',
+'descending_abbrev'        => 'opad',
+'table_pager_next'         => 'Sljedeća stranica',
+'table_pager_prev'         => 'Prethodna stranica',
+'table_pager_first'        => 'Prva stranica',
+'table_pager_last'         => 'Zadnja stranica',
+'table_pager_limit'        => 'Pokaži $1 stavki po stranici',
+'table_pager_limit_submit' => 'Idi',
+'table_pager_empty'        => 'Bez rezultata',
+
+# Auto-summaries
+'autosumm-blank'   => 'Uklanjanje sadržaja stranice',
+'autosumm-replace' => "Zamjena stranice sa '$1'",
+'autoredircomment' => 'Preusmjereno na [[$1]]',
+'autosumm-new'     => "Napravljena stranica sa '$1'",
+
+# Live preview
+'livepreview-loading' => 'Učitavanje...',
+'livepreview-ready'   => 'Učitavanje... Spreman!',
+'livepreview-failed'  => 'Pregled uživo nije uspio! Pokušajte normalni pregled.',
+'livepreview-error'   => 'Spajanje nije uspjelo: $1 "$2".
+Pokušajte normalni pregled.',
+
+# Friendlier slave lag warnings
+'lag-warn-normal' => 'Promjene načinjene prije manje od $1 {{PLURAL:$1|sekunde|sekunde|sekundi}} možda neće biti prikazane na ovom spisku.',
+'lag-warn-high'   => 'Zbog dužeg zastoja baze podataka na serveru, izmjene novije od $1 {{PLURAL:$1|sekunde|sekunde|sekundi}} možda neće biti prikazane na ovom spisku.',
+
+# Watchlist editor
+'watchlistedit-numitems'       => 'Vaš spisak praćenja sadrži {{PLURAL:$1|1 naslov|$1 naslova}}, izuzimajući stranice za razgovor.',
+'watchlistedit-noitems'        => 'Vaš spisak praćenja ne sadrži naslove.',
+'watchlistedit-normal-title'   => 'Uredi spisak praćenja',
+'watchlistedit-normal-legend'  => 'Ukloni naslove iz spiska praćenja',
+'watchlistedit-normal-explain' => 'Naslovi na Vašem spisku praćenja su prikazani ispod.
+Da bi ste uklonili naslov, označite kutiju pored naslova, i kliknite Ukloni naslove.
+Također možete [[Special:Watchlist/raw|napredno urediti spisak]].',
+'watchlistedit-normal-submit'  => 'Ukloni naslove',
+'watchlistedit-normal-done'    => '{{PLURAL:$1|1 naslov|$1 naslova}} je uklonjeno iz Vašeg spiska praćenja:',
+'watchlistedit-raw-title'      => 'Napredno uređivanje spiska praćenja',
+'watchlistedit-raw-legend'     => 'Napredno uređivanje spiska praćenja',
+'watchlistedit-raw-explain'    => 'Naslovi u Vašem spisku praćenja su prikazani ispod, i mogu biti uređeni dodavanje ili brisanjem sa spiska; jedan naslov u svakom redu.
+Kada završite, kliknite Ažuriraj spisak praćenja.
+Također možete [[Special:Watchlist/edit|koristiti standardni uređivač]].',
+'watchlistedit-raw-titles'     => 'Naslovi:',
+'watchlistedit-raw-submit'     => 'Ažuriraj spisak praćenja',
+'watchlistedit-raw-done'       => 'Vaš spisak praćenja je ažuriran.',
+'watchlistedit-raw-added'      => '{{PLURAL:$1|1 naslov je dodan|$1 naslova su dodana|$1 naslova je dodano}}:',
+'watchlistedit-raw-removed'    => '{{PLURAL:$1|1 naslov je uklonjen|$1 naslova je uklonjeno}}:',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Vidi relevantne promjene',
 'watchlisttools-edit' => 'Vidi i uredi listu praćenja',
 'watchlisttools-raw'  => 'Uredi grubu listu praćenja',
+
+# Core parser functions
+'unknown_extension_tag' => 'Nepoznata oznaka ekstenzije "$1"',
+'duplicate-defaultsort' => '\'\'\'Upozorenje\'\'\': Postavljeni ključ sortiranja "$2" zamjenjuje raniji ključ "$1".',
+
+# Special:Version
+'version'                          => 'Verzija',
+'version-extensions'               => 'Instalirana proširenja (ekstenzije)',
+'version-specialpages'             => 'Posebne stranice',
+'version-parserhooks'              => 'Kuke parsera',
+'version-variables'                => 'Promjenjive',
+'version-other'                    => 'Ostalo',
+'version-mediahandlers'            => 'Upravljači medije',
+'version-hooks'                    => 'Kuke',
+'version-extension-functions'      => 'Funkcije proširenja (ekstenzije)',
+'version-parser-extensiontags'     => "Parser proširenja (''tagovi'')",
+'version-parser-function-hooks'    => 'Kuke parserske funkcije',
+'version-skin-extension-functions' => 'Funkcije proširenja skina',
+'version-hook-name'                => 'Naziv kuke',
+'version-hook-subscribedby'        => 'Pretplaćeno od',
+'version-version'                  => '(Verzija $1)',
+'version-license'                  => 'Licenca',
+'version-software'                 => 'Instalirani softver',
+'version-software-product'         => 'Proizvod',
+'version-software-version'         => 'Verzija',
+
+# Special:FilePath
+'filepath'         => 'Putanja datoteke',
+'filepath-page'    => 'Datoteka:',
+'filepath-submit'  => 'Putanja',
+'filepath-summary' => 'Ova posebna stranica prikazuje potpunu putanju za datoteku.
+Slike su prikazane u punoj veličini, ostale vrste datoteka su prikazane direktno sa, s njima povezanim, programom.
+
+Unesite ime datoteke bez "{{ns:file}}:" prefiksa.',
+
+# Special:FileDuplicateSearch
+'fileduplicatesearch'          => 'Potraga za duplim datotekama',
+'fileduplicatesearch-summary'  => 'Pretraga duplih datoteka na bazi njihove haš vrijednosti.
+
+Unesite ime datoteke bez "{{ns:file}}:" prefiksa.',
+'fileduplicatesearch-legend'   => 'Pretraga dvojnika',
+'fileduplicatesearch-filename' => 'Ime datoteke:',
+'fileduplicatesearch-submit'   => 'Traži',
+'fileduplicatesearch-info'     => '$1 × $2 piksel<br />Veličina datoteke: $3<br />MIME vrsta: $4',
+'fileduplicatesearch-result-1' => 'Datoteka "$1" nema identičnih dvojnika.',
+'fileduplicatesearch-result-n' => 'Datoteka "$1" ima {{PLURAL:$2|1 identičnog|$2 identična|$2 identičnih}} dvojnika.',
 
 # Special:SpecialPages
 'specialpages'                   => 'Posebne stranice',
@@ -772,6 +1200,29 @@ Svi drugi linkovi u istoj liniji se smatraju izuzecima, npr. kod stranica gdje s
 # Special:BlankPage
 'blankpage'              => 'Prazna stranica',
 'intentionallyblankpage' => 'Ova je stranica namjerno ostavljena praznom.',
+
+# External image whitelist
+'external_image_whitelist' => ' #Ostavite ovu liniju onakva kakva je<pre>
+#Stavite obične fragmente opisa (samo dio koji ide između //) ispod
+#Ovi će biti spojeni sa URLovima sa vanjskih (eksternih) slika
+#One koji se spoje biće prikazane kao slike, u suprotnom će se prikazati samo link
+#Linije koje počinju sa # se tretiraju kao komentari
+#Ovo ne razlikuje velika i mala slova
+
+#Stavite sve regex fragmente iznad ove linije. Ostavite ovu liniju onakvu kakva je</pre>',
+
+# Special:Tags
+'tags'                    => 'Oznake valjane izmjene',
+'tag-filter'              => 'Filter [[Special:Tags|oznaka]]:',
+'tag-filter-submit'       => 'Filter',
+'tags-title'              => 'Oznake',
+'tags-intro'              => 'Ova stranica prikazuje spisak oznaka (tagova) koje softver može staviti na svaku izmjenu i njihovo značenje.',
+'tags-tag'                => 'Unutrašnji naziv oznake',
+'tags-display-header'     => 'Vidljivost na spisku izmjena',
+'tags-description-header' => 'Puni opis značenja',
+'tags-hitcount-header'    => 'Označene izmjene',
+'tags-edit'               => 'uređivanje',
+'tags-hitcount'           => '$1 {{PLURAL:$1|izmjena|izmjene|izmjena}}',
 
 # Database error messages
 'dberr-header'      => 'Ovaj wiki ima problem',

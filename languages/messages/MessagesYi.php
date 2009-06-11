@@ -314,6 +314,7 @@ $messages = array(
 'permalink'         => 'שטענדיגער לינק',
 'print'             => 'דרוק',
 'edit'              => 'ענדערן',
+'view'              => 'ליינען',
 'create'            => 'שאפֿן',
 'editthispage'      => 'ענדערן דעם בלאט',
 'create-this-page'  => 'שאף דעם בלאט',
@@ -857,6 +858,8 @@ $2',
 'revdelete-nooldid-title'     => 'ציל ווערסיע נישט גילטיג',
 'revdelete-nooldid-text'      => 'איר האט נישט ספעציפירט קיין ציל ווערסיע דורצוכפירן די פונקציע.',
 'revdelete-nologtype-title'   => 'קיין לאג טיפ נישט געקליבן',
+'revdelete-no-file'           => 'די טעקע ספעציפֿירט עקזיסטירט נישט.',
+'revdelete-show-file-submit'  => 'יא',
 'revdelete-selected'          => "'''{{PLURAL:$2|אויסדערוויילטע ווערסיע| אויסדערוויילטע ווערסיעס}} פון [[:$1]]:'''",
 'revdelete-legend'            => 'שטעלט ווייזונג באגרענעצונגען',
 'revdelete-hide-text'         => 'באהאלט אינהאלט פון ווערסיע',
@@ -958,7 +961,7 @@ $2',
 'titlematches'                   => 'בלאט קעפל שטימט',
 'notitlematches'                 => 'קיין שום בלאט האט נישט א צוגעפאסט קעפל',
 'notextmatches'                  => 'נישטא קיין בלעטער מיט פאסענדע אינהאלט',
-'prevn'                          => '$1 פריערדיגע',
+'prevn'                          => '{{PLURAL:$1|פֿריערדיקער|$1 פֿריערדיקע}}',
 'nextn'                          => '{{PLURAL:$1|$1}} קומענדיגע',
 'prevn-title'                    => '{{PLURAL:$1|פֿריערדיגער $1 רעזולטאַט|פֿריערדיגע $1 רעזולטאַטן}}',
 'nextn-title'                    => '{{PLURAL:$1|קומענדיקער רעזולטאַט|קומענדיקע $1 רעזולטאַטן}}',
@@ -1001,6 +1004,9 @@ $2',
 'powersearch-ns'                 => 'זוכן אין נאמענטיילן:',
 'powersearch-redir'              => 'ווײַז ווײַטערפֿירונג בלעטער',
 'powersearch-field'              => 'זוך',
+'powersearch-togglelabel'        => 'קאנטראלירן:',
+'powersearch-toggleall'          => 'אלע',
+'powersearch-togglenone'         => 'קיין',
 'search-external'                => 'דרויסנדיק זוכן',
 
 # Quickbar
@@ -1306,6 +1312,7 @@ $2',
 'filedelete-success'          => "'''$1''' איז געווען אויסגעמעקט.",
 'filedelete-success-old'      => "די ווערסיע פֿון '''[[Media:$1|$1]]''' פֿון $3, $2 איז געווארן אויסגעמעקט.",
 'filedelete-nofile'           => "'''$1''' עקזיסטירט נישט.",
+'filedelete-otherreason'      => 'אנדער/נאך א סיבה:',
 'filedelete-reason-otherlist' => 'אַנדער אורזאַך',
 'filedelete-edit-reasonlist'  => 'רעדאַקטירן אויסמעקן סיבות',
 
@@ -1609,7 +1616,7 @@ $NEWPAGE
 'deletionlog'            => 'אויסמעקונג לאג',
 'reverted'               => 'צוריקגעשטעלט צו פֿריערדיקע באַאַרבעטונג',
 'deletecomment'          => 'סיבה פארן אויסמעקן:',
-'deleteotherreason'      => 'אנדער/נאך או אורזאך:',
+'deleteotherreason'      => 'אנדער/נאך אן אורזאך:',
 'deletereasonotherlist'  => 'אנדער אורזאך',
 'deletereason-dropdown'  => '* געוויינטלעכע אויסמעקן אורזאכן
 ** פֿארלאנג פֿון שרייבער
@@ -1671,6 +1678,11 @@ $NEWPAGE
 'protect-othertime-op'        => 'אנדער צײַט',
 'protect-otherreason'         => 'אנדער/ווײַטערדיקע סיבה:',
 'protect-otherreason-op'      => 'אנדער/ווײַטערדיקע סיבה',
+'protect-dropdown'            => '* געוויינטלעכע סיבות פאר שיצן
+** אסאך וואנדאליזם
+** אסאך ספאם
+** אומנוציקער רעדאקטירונג קריג
+** שטארק געניצטער בלאט',
 'protect-edit-reasonlist'     => 'רעדאַקטירן שיצן סיבות',
 'protect-expiry-options'      => 'שעה:1 hour,טאג:1 day,וואך:1 week,וואכן:2 weeks,חודש:1 month,דריי חדשים:3 months,זעקס חדשים:6 months,יאר:1 year,אייביג:infinite',
 'restriction-type'            => 'ערלויבניש:',
@@ -1703,11 +1715,14 @@ $NEWPAGE
 'undelete-nodiff'           => 'קיין פֿריערדיגע באַאַרבעטונג נישט געטראפֿן.',
 'undeletebtn'               => 'צוריקשטעלן',
 'undeletelink'              => 'קוקן/צוריקשטעלן',
+'undeleteviewlink'          => 'באַקוקן',
 'undeletereset'             => 'צוריקשטעלן',
 'undeleteinvert'            => 'איבערקערן דעם אויסקלויב',
 'undeletecomment'           => 'הערה:',
 'undeletedarticle'          => 'צוריק געשטעלט "[[$1]]"',
 'undeletedrevisions'        => '{{PLURAL:$1|1 רעוויזיע|$1 רעוויזיעס}} צוריקגעשטעלט',
+'undeletedrevisions-files'  => '{{PLURAL:$1|1 רעוויזיע|$1 רעוויזיעס}} און  {{PLURAL:$2|1 טעקע|$2 טעקעס}} צוריקגעשטעלט',
+'undeletedfiles'            => '{{PLURAL:$1|1 טעקע|$1 טעקעס}} צוריקגעשטעלט',
 'cannotundelete'            => 'צוריקשטעלונג איז דורכגעפאלן; עס איז מעגליך אז אן אנדערע האט דאס שוין צוריקגעשטעלט.',
 'undeletedpage'             => "'''דער בלאט $1 איז געווארן צוריקגעשטעלט.'''
 
@@ -2157,6 +2172,7 @@ $NEWPAGE
 'exif-imagelength'              => 'הייך',
 'exif-bitspersample'            => 'ביטס פער באשטאנדטייל',
 'exif-compression'              => 'צאמקוועטשן סקיעם',
+'exif-orientation'              => 'אריענטאַציע',
 'exif-datetime'                 => 'פייל ענדערונג דאטום און צייט',
 'exif-imagedescription'         => 'בילד טיטל',
 'exif-make'                     => 'פֿאטא-אפאראט פֿאבריצירער',
@@ -2249,6 +2265,9 @@ $NEWPAGE
 # Pseudotags used for GPSLatitudeRef and GPSDestLatitudeRef
 'exif-gpslatitude-n' => 'צפון לעטיטוד',
 'exif-gpslatitude-s' => 'דרום לאטיטוד',
+
+# Pseudotags used for GPSSpeedRef
+'exif-gpsspeed-k' => 'ק"מ אין א שעה',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'ריכטיגע דירעקציע',

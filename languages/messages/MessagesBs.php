@@ -1233,7 +1233,7 @@ Pokušajte u Vaš upit uključiti prefiks ''all:'' da bi ste pretražili sav sad
 'prefs-datetime'                => 'Datum i vrijeme',
 'prefs-personal'                => 'Korisnički podaci',
 'prefs-rc'                      => 'Podešavanja nedavnih izmjena',
-'prefs-watchlist'               => 'Praćeni članci',
+'prefs-watchlist'               => 'Moji praćeni članci',
 'prefs-watchlist-days'          => 'Broj dana za prikaz u spisku praćenja:',
 'prefs-watchlist-days-max'      => '(najviše 7 dana)',
 'prefs-watchlist-edits'         => 'Najveći broj izmjena za prikaz u proširenom spisku praćenja:',
@@ -1972,8 +1972,8 @@ E-mail adresa koju ste unijeli u [[Special:Preferences|Vašim korisničkim posta
 'emailuserfooter'  => 'Ovaj e-mail je poslao $1 korisniku $2 putem funkcije "Pošalji e-mail korisniku" sa {{SITENAME}}.',
 
 # Watchlist
-'watchlist'            => 'Praćeni članci',
-'mywatchlist'          => 'Praćeni članci',
+'watchlist'            => 'Moji praćeni članci',
+'mywatchlist'          => 'Moji praćeni članci',
 'watchlistfor'         => "(korisnika '''$1''')",
 'nowatchlist'          => 'Nemate ništa na svom spisku praćenih članaka.',
 'watchlistanontext'    => 'Molimo da $1 da možete vidjeti ili urediti stavke na Vašem spisku praćenja.',

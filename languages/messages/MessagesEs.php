@@ -915,12 +915,12 @@ Puede haber detalles en el [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}
 Puede haber detalles en el [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registro de borrado].
 Como administrador todavía puedes [$1 ver este cambio] si deseas proceder.",
 'rev-delundel'                => 'mostrar/ocultar',
-'revisiondelete'              => 'Borrar/deshacer borrado revisiones',
+'revisiondelete'              => 'Borrar/restaurar revisiones',
 'revdelete-nooldid-title'     => 'No hay revisión destino',
 'revdelete-nooldid-text'      => 'No se ha especificado una revisión o revisiones destino sobre las que realizar esta función.',
 'revdelete-nologtype-title'   => 'ningún nombre dado',
 'revdelete-nologtype-text'    => 'usted no ha especificado ningún nombre para ejecutar esta acción.',
-'revdelete-nologid-title'     => 'ingreso inválido',
+'revdelete-nologid-title'     => 'Entrada de registro inválida',
 'revdelete-nologid-text'      => 'Usted tampoco ha especificado un objetivo de eventos para ejecutar esta función o la entrada especificada no existe.',
 'revdelete-no-file'           => 'El fichero especificado no existe.',
 'revdelete-show-file-confirm' => '¿Está seguro de querer ver la revisión borrada del archivo "<nowiki>$1</nowiki>" del $2 a las $3?',
@@ -939,8 +939,8 @@ Por favor confirme que está intentando hacer esto, que usted entiende las conse
 'revdelete-hide-name'         => 'Ocultar acción y objetivo',
 'revdelete-hide-comment'      => 'Ocultar comentario de edición',
 'revdelete-hide-user'         => 'Ocultar el nombre/IP del editor',
-'revdelete-hide-restricted'   => 'Suprimir datos de los administradores tal como al resto',
-'revdelete-suppress'          => 'Eliminar datos de los administradores tal como al resto',
+'revdelete-hide-restricted'   => 'Suprimir datos a los administradores así como al resto',
+'revdelete-suppress'          => 'Suprimir datos a los administradores así como al resto',
 'revdelete-hide-image'        => 'Ocultar el contenido del archivo',
 'revdelete-unsuppress'        => 'Eliminar restricciones de revisiones restauradas',
 'revdelete-log'               => 'Comentario de registro:',
@@ -968,7 +968,7 @@ $1",
 'revdelete-only-restricted'   => 'No puede suprimir elementos a vista de los administradores sin seleccionar asímismo una de las otras opciones de supresión.',
 
 # Suppression log
-'suppressionlog'     => 'Log de supresiones',
+'suppressionlog'     => 'Registro de supresiones',
 'suppressionlogtext' => 'Debajo está una lista de borrados y bloqueos relacionados con contenido oculto a los sysops.
 Mira [[Special:IPBlockList|el registro de bloqueos]] para una lista de bloqueos activos.',
 
@@ -1332,7 +1332,7 @@ También puede permitir a otros usuarios que contacten con usted a través de su
 'right-editprotected'         => 'Editar páginas protegidas (sin la protección «en cascada»)',
 'right-editinterface'         => 'Editar la interfaz de usuario',
 'right-editusercssjs'         => 'Editar las páginas de CSS y JS de otros usuarios',
-'right-rollback'              => 'Rápidamente deshacer las ediciones del último usuario que modificó una página particular',
+'right-rollback'              => 'Revertir rápidamente las ediciones del último usuario que modificó una página particular',
 'right-markbotedits'          => 'Marcar ediciones deshechas como ediciones de un bot',
 'right-noratelimit'           => 'No afectado por límites de frecuencia',
 'right-import'                => 'Importar páginas desde otras wikis',
