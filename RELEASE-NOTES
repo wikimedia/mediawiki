@@ -183,7 +183,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   link from the edit comment
 * (bug 19112) Preferences now respects $wgUseExternalEditor, $wgExternalDiffEngine
 * (bug 18173) Login form exception on malformed REMOTE_ADDR, wfGetIP() now falls 
-  back to 127.0.01 if the IP cannot be determined
+  back to 127.0.0.1 if the IP cannot be determined
 
 == API changes in 1.16 ==
 
