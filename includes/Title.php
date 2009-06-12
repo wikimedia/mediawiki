@@ -1447,7 +1447,7 @@ class Title {
 
 		if( $create_perm ) {
 			$params = array("[create=$create_perm] $expiry_description",'');
-			$log->addEntry( $this->mRestrictions['create'] ? 'modify' : 'protect', $this, trim( $reason ), $params );
+			$log->addEntry( ( isset( $this->mRestrictions['create'] ) && $this->mRestrictions['create'] ) ? 'modify' : 'protect', $this, trim( $reason ), $params );
 		} else {
 			$log->addEntry( 'unprotect', $this, $reason );
 		}

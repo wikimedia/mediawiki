@@ -258,7 +258,7 @@ class ProtectionForm {
 		#  to a semi-protected page.
 		global $wgGroupPermissions;
 
-		$edit_restriction = $this->mRestrictions['edit'];
+		$edit_restriction = isset( $this->mRestrictions['edit'] ) ? $this->mRestrictions['edit'] : '';
 		$this->mCascade = $wgRequest->getBool( 'mwProtect-cascade' );
 		if ($this->mCascade && ($edit_restriction != 'protect') &&
 			!(isset($wgGroupPermissions[$edit_restriction]['protect']) && $wgGroupPermissions[$edit_restriction]['protect'] ) )
