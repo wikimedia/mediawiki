@@ -398,7 +398,7 @@ class SiteConfiguration {
 	
 	public function loadFullData() {
 		if ($this->fullLoadCallback && !$this->fullLoadDone) {
-			call_user_func( $this->fullLoadCallback );
+			call_user_func( $this->fullLoadCallback, $this );
 			$this->fullLoadDone = true;
 		}
 	}
