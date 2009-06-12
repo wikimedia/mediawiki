@@ -19,7 +19,7 @@ define( 'DEADLOCK_DELAY_MAX', 1500000 );
  * Database abstraction object
  * @ingroup Database
  */
-class Database {
+abstract class DatabaseBase {
 
 #------------------------------------------------------------------------------
 # Variables
@@ -307,7 +307,7 @@ class Database {
 	}
 
 	/**
-	 * Same as new Database( ... ), kept for backward compatibility
+	 * Same as new DatabaseMysql( ... ), kept for backward compatibility
 	 * @param $server String: database server host
 	 * @param $user String: database user name
 	 * @param $password String: database user password
@@ -317,7 +317,7 @@ class Database {
 	 */
 	static function newFromParams( $server, $user, $password, $dbName, $failFunction = false, $flags = 0 )
 	{
-		return new Database( $server, $user, $password, $dbName, $failFunction, $flags );
+		return new DatabaseMysql( $server, $user, $password, $dbName, $failFunction, $flags );
 	}
 
 	/**
@@ -2426,9 +2426,14 @@ class Database {
  * @ingroup Database
  * @see Database
  */
-class DatabaseMysql extends Database {
+class DatabaseMysql extends DatabaseBase {
 	# Inherit all
 }
+
+/**
+ * Legacy support: Database == DatabaseMysql
+ */
+class Database extends DatabaseMysql {}
 
 /******************************************************************************
  * Utility classes

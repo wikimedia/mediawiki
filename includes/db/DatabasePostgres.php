@@ -68,7 +68,7 @@ END;
 /**
  * @ingroup Database
  */
-class DatabasePostgres extends Database {
+class DatabasePostgres extends DatabaseBase {
 	var $mInsertId = NULL;
 	var $mLastResult = NULL;
 	var $numeric_version = NULL;

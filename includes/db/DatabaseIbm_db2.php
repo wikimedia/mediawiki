@@ -102,7 +102,7 @@ class IBM_DB2Blob {
  * Primary database interface
  * @ingroup Database
  */
-class DatabaseIbm_db2 extends Database {
+class DatabaseIbm_db2 extends DatabaseBase {
 	/*
 	 * Inherited members
 	protected $mLastQuery = '';

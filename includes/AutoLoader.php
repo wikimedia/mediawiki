@@ -303,6 +303,7 @@ $wgAutoloadLocalClasses = array(
 	'Blob' => 'includes/db/Database.php',
 	'ChronologyProtector' => 'includes/db/LBFactory.php',
 	'Database' => 'includes/db/Database.php',
+	'DatabaseBase' => 'includes/db/Database.php',
 	'DatabaseMssql' => 'includes/db/DatabaseMssql.php',
 	'DatabaseMysql' => 'includes/db/Database.php',
 	'DatabaseOracle' => 'includes/db/DatabaseOracle.php',

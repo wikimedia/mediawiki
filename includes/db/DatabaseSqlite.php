@@ -10,7 +10,7 @@
 /**
  * @ingroup Database
  */
-class DatabaseSqlite extends Database {
+class DatabaseSqlite extends DatabaseBase {
 
 	var $mAffectedRows;
 	var $mLastResult;

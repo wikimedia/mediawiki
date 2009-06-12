@@ -12,7 +12,7 @@ require 'includes/Setup.php';
 
 plan( 9 );
 
-$db = new Database( $wgDBserver, $wgDBuser, $wgDBpassword );
+$db = new DatabaseMysql( $wgDBserver, $wgDBuser, $wgDBpassword );
 
 cmp_ok( $db->addQuotes( NULL ), '==',
 	'NULL', 'Add quotes to NULL' );
