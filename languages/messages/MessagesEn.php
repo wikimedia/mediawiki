@@ -650,6 +650,7 @@ XHTML id names.
 'sitetitle'      => '{{SITENAME}}', # do not translate or duplicate this message to other languages
 'sitesubtitle'   => '', # do not translate or duplicate this message to other languages
 
+# Vector skin
 'vector-action-addsection'   => 'Add topic',
 'vector-action-delete'       => 'Delete',
 'vector-action-move'         => 'Move',
