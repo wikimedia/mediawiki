@@ -67,7 +67,7 @@ function wfGetAgent() {
  * @return string
  */
 function wfGetIP() {
-	global $wgIP, $wgUsePrivateIPs;
+	global $wgIP, $wgUsePrivateIPs, $wgCommandLineMode;
 
 	# Return cached result
 	if ( !empty( $wgIP ) ) {
@@ -81,6 +81,8 @@ function wfGetIP() {
 	# Client connecting to this webserver
 	if ( isset( $_SERVER['REMOTE_ADDR'] ) ) {
 		$ip = IP::canonicalize( $_SERVER['REMOTE_ADDR'] );
+	} elseif( $wgCommandLineMode ) {
+		$ip = '127.0.0.1';
 	}
 	if( $ip ) {
 		$ipchain[] = $ip;
