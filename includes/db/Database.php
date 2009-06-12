@@ -2727,7 +2727,7 @@ EOT;
 class DBQueryError extends DBError {
 	public $error, $errno, $sql, $fname;
 	
-	function __construct( Database &$db, $error, $errno, $sql, $fname ) {
+	function __construct( DatabaseBase &$db, $error, $errno, $sql, $fname ) {
 		$message = "A database error has occurred\n" .
 		  "Query: $sql\n" .
 		  "Function: $fname\n" .
