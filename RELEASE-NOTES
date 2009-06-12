@@ -182,7 +182,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Multiple whitespace in TOC anchors is now stripped, for consistency with the
   link from the edit comment
 * (bug 19112) Preferences now respects $wgUseExternalEditor, $wgExternalDiffEngine
-* (bug 18173) MediaWiki now fails on malformed REMOTE_ADDR
+* (bug 18173) MediaWiki now fails when unable to determine a client IP
 
 == API changes in 1.16 ==
 
