@@ -74,6 +74,9 @@ function wfGetIP() {
 		return $wgIP;
 	}
 
+	$ipchain = array();
+	$ip = false;
+
 	/* collect the originating ips */
 	# Client connecting to this webserver
 	if ( isset( $_SERVER['REMOTE_ADDR'] ) ) {
@@ -82,8 +85,6 @@ function wfGetIP() {
 	if( $ip ) {
 		$ipchain[] = $ip;
 	}
-	
-	$ip = false;
 
 	# Append XFF on to $ipchain
 	$forwardedFor = wfGetForwardedFor();
@@ -108,7 +109,7 @@ function wfGetIP() {
 		}
 	}
 
-	if( $ip ) {
+	if( !$ip ) {
 		throw new MWException( "Unable to determine IP" );
 	}
 
