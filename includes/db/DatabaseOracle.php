@@ -153,7 +153,7 @@ class ORAField {
 /**
  * @ingroup Database
  */
-class DatabaseOracle extends Database {
+class DatabaseOracle extends DatabaseBase {
 	var $mInsertId = NULL;
 	var $mLastResult = NULL;
 	var $numeric_version = NULL;

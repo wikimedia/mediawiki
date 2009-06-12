@@ -10,7 +10,7 @@
 /**
  * @ingroup Database
  */
-class DatabaseMssql extends Database {
+class DatabaseMssql extends DatabaseBase {
 
 	var $mAffectedRows;
 	var $mLastResult;
