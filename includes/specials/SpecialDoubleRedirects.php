@@ -86,7 +86,15 @@ class DoubleRedirectsPage extends PageQueryPage {
 			array(),
 			array( 'redirect' => 'no' )
 		);
-		$edit = $skin->makeBrokenLinkObj( $titleA, "(".wfMsgHtml("qbedit").")" , 'redirect=no');
+		$edit = $skin->link(
+			$titleA,
+			"(" . wfMsgHtml( 'qbedit' ) . ")",
+			array(),
+			array(
+				'redirect' => 'no',
+				'action' => 'edit'
+			)
+		);
 		$linkB = $skin->linkKnown(
 			$titleB,
 			null,
