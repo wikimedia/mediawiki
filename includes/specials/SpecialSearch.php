@@ -225,7 +225,8 @@ class SpecialSearch {
 			$wgOut->addHTML( $this->formHeader($term, 0, 0));
 			if( $this->searchAdvanced ) {
 				$wgOut->addHTML( $this->powerSearchBox( $term ) );
-			}
+			} else
+				$wgOut->addHTML( '</form>' );
 			// Empty query -- straight view of search form
 			wfProfileOut( __METHOD__ );
 			return;
