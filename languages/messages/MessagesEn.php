@@ -650,7 +650,7 @@ XHTML id names.
 'sitetitle'      => '{{SITENAME}}', # do not translate or duplicate this message to other languages
 'sitesubtitle'   => '', # do not translate or duplicate this message to other languages
 
-'vector-action-addsection'   => 'Add Topic',
+'vector-action-addsection'   => 'Add topic',
 'vector-action-delete'       => 'Delete',
 'vector-action-move'         => 'Move',
 'vector-action-protect'      => 'Protect',
@@ -669,9 +669,9 @@ XHTML id names.
 'vector-namespace-user'      => 'User page',
 'vector-view-create'         => 'Create',
 'vector-view-edit'           => 'Edit',
-'vector-view-history'        => 'View History',
+'vector-view-history'        => 'View history',
 'vector-view-view'           => 'Read',
-'vector-view-viewsource'     => 'View Source',
+'vector-view-viewsource'     => 'View source',
 
 # Metadata in edit box
 'metadata_help' => 'Metadata:',
