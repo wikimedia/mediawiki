@@ -76,13 +76,14 @@ function wfGetIP() {
 
 	/* collect the originating ips */
 	# Client connecting to this webserver
-	if ( isset( $_SERVER['REMOTE_ADDR'] ) && IP::canonicalize( $_SERVER['REMOTE_ADDR'] ) ) {
-		$ipchain = array( IP::canonicalize( $_SERVER['REMOTE_ADDR'] ) );
-	} else {
-		# Running on CLI or REMOTE_ADDR is broken
-		$ipchain = array( '127.0.0.1' );
+	if ( isset( $_SERVER['REMOTE_ADDR'] ) ) {
+		$ip = IP::canonicalize( $_SERVER['REMOTE_ADDR'] );
 	}
-	$ip = $ipchain[0];
+	if( $ip ) {
+		$ipchain[] = $ip;
+	}
+	
+	$ip = false;
 
 	# Append XFF on to $ipchain
 	$forwardedFor = wfGetForwardedFor();
@@ -105,6 +106,10 @@ function wfGetIP() {
 		} else {
 			break;
 		}
+	}
+
+	if( $ip ) {
+		throw new MWException( "Unable to determine IP" );
 	}
 
 	wfDebug( "IP: $ip\n" );
