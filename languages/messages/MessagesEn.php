@@ -650,6 +650,29 @@ XHTML id names.
 'sitetitle'      => '{{SITENAME}}', # do not translate or duplicate this message to other languages
 'sitesubtitle'   => '', # do not translate or duplicate this message to other languages
 
+'vector-action-addsection'   => 'Add Topic',
+'vector-action-delete'       => 'Delete',
+'vector-action-move'         => 'Move',
+'vector-action-protect'      => 'Protect',
+'vector-action-undelete'     => 'Undelete',
+'vector-action-unprotect'    => 'Unprotect',
+'vector-namespace-category'  => 'Category',
+'vector-namespace-help'      => 'Help page',
+'vector-namespace-image'     => 'File',
+'vector-namespace-main'      => 'Page',
+'vector-namespace-media'     => 'Media page',
+'vector-namespace-mediawiki' => 'Message',
+'vector-namespace-project'   => 'Project page',
+'vector-namespace-special'   => 'Special page',
+'vector-namespace-talk'      => 'Discussion',
+'vector-namespace-template'  => 'Template',
+'vector-namespace-user'      => 'User page',
+'vector-view-create'         => 'Create',
+'vector-view-edit'           => 'Edit',
+'vector-view-history'        => 'View History',
+'vector-view-view'           => 'Read',
+'vector-view-viewsource'     => 'View Source',
+
 # Metadata in edit box
 'metadata_help' => 'Metadata:',
 
@@ -669,7 +692,6 @@ XHTML id names.
 'permalink'         => 'Permanent link',
 'print'             => 'Print',
 'edit'              => 'Edit',
-'view'              => 'Read',
 'create'            => 'Create',
 'editthispage'      => 'Edit this page',
 'create-this-page'  => 'Create this page',

@@ -83,20 +83,20 @@ class SkinVector extends SkinTemplate {
 
 			// Adds namespace links
 			$links['namespaces'][$subjectId] = $this->tabAction(
-				$subjectPage, 'nstab-' . $subjectId, !$isTalk, '', true
+				$subjectPage, 'vector-namespace-' . $subjectId, !$isTalk, '', true
 			);
 			$links['namespaces'][$talkId] = $this->tabAction(
-				$talkPage, 'talk', $isTalk, '', true
+				$talkPage, 'vector-namespace-talk', $isTalk, '', true
 			);
 
 			// Adds view view link
 			if ( $this->mTitle->exists() ) {
 				$links['views']['view'] = $this->tabAction(
 					$isTalk ? $talkPage : $subjectPage,
-						'view', ( $action == 'view' ), '', true
+						'vector-view-view', ( $action == 'view' ), '', true
 				);
 			}
-
+			
 			wfProfileIn( __METHOD__ . '-edit' );
 
 			// Checks if user can...
@@ -121,8 +121,8 @@ class SkinVector extends SkinTemplate {
 				$links['views']['edit'] = array(
 					'class' => ( $selected ? 'selected' : '' ) . $isTalkClass,
 					'text' => $this->mTitle->exists()
-						? wfMsg( 'edit' )
-						: wfMsg( 'create' ),
+						? wfMsg( 'vector-view-edit' )
+						: wfMsg( 'vector-view-create' ),
 					'href' =>
 						$this->mTitle->getLocalUrl( $this->editUrlOptions() )
 				);
@@ -134,7 +134,7 @@ class SkinVector extends SkinTemplate {
 						// Adds new section link
 						$links['actions']['addsection'] = array(
 							'class' => $section == 'new' ? 'selected' : false,
-							'text' => wfMsg( 'addsection' ),
+							'text' => wfMsg( 'vector-action-addsection' ),
 							'href' => $this->mTitle->getLocalUrl(
 								'action=edit&section=new'
 							)
@@ -146,7 +146,7 @@ class SkinVector extends SkinTemplate {
 				// Adds view source view link
 				$links['views']['viewsource'] = array(
 					'class' => ( $action == 'edit' ) ? 'selected' : false,
-					'text' => wfMsg( 'viewsource' ),
+					'text' => wfMsg( 'vector-view-viewsource' ),
 					'href' =>
 						$this->mTitle->getLocalUrl( $this->editUrlOptions() )
 				);
@@ -160,7 +160,7 @@ class SkinVector extends SkinTemplate {
 				// Adds history view link
 				$links['views']['history'] = array(
 					'class' => ($action == 'history') ? 'selected' : false,
-					'text' => wfMsg( 'history_short' ),
+					'text' => wfMsg( 'vector-view-history' ),
 					'href' => $this->mTitle->getLocalUrl( 'action=history' ),
 					'rel' => 'archives',
 				);
@@ -168,7 +168,7 @@ class SkinVector extends SkinTemplate {
 				if( $wgUser->isAllowed( 'delete' ) ) {
 					$links['actions']['delete'] = array(
 						'class' => ($action == 'delete') ? 'selected' : false,
-						'text' => wfMsg( 'delete' ),
+						'text' => wfMsg( 'vector-action-delete' ),
 						'href' => $this->mTitle->getLocalUrl( 'action=delete' )
 					);
 				}
@@ -179,7 +179,7 @@ class SkinVector extends SkinTemplate {
 					$links['actions']['move'] = array(
 						'class' => $this->mTitle->isSpecial( 'Movepage' ) ?
 										'selected' : false,
-						'text' => wfMsg( 'move' ),
+						'text' => wfMsg( 'vector-action-move' ),
 						'href' => $moveTitle->getLocalUrl()
 					);
 				}
@@ -192,7 +192,7 @@ class SkinVector extends SkinTemplate {
 						$links['actions']['protect'] = array(
 							'class' => ($action == 'protect') ?
 											'selected' : false,
-							'text' => wfMsg( 'protect' ),
+							'text' => wfMsg( 'vector-action-protect' ),
 							'href' =>
 								$this->mTitle->getLocalUrl( 'action=protect' )
 						);
@@ -201,7 +201,7 @@ class SkinVector extends SkinTemplate {
 						$links['actions']['unprotect'] = array(
 							'class' => ($action == 'unprotect') ?
 											'selected' : false,
-							'text' => wfMsg( 'unprotect' ),
+							'text' => wfMsg( 'vector-action-unprotect' ),
 							'href' =>
 								$this->mTitle->getLocalUrl( 'action=unprotect' )
 						);
@@ -218,7 +218,7 @@ class SkinVector extends SkinTemplate {
 						$links['actions']['undelete'] = array(
 							'class' => false,
 							'text' => wfMsgExt(
-								'undelete_short',
+								'vector-action-undelete',
 								array( 'parsemag' ),
 								$wgLang->formatNum( $n )
 							),
@@ -237,7 +237,7 @@ class SkinVector extends SkinTemplate {
 						$links['actions']['protect'] = array(
 							'class' => ($action == 'protect') ?
 											'selected' : false,
-							'text' => wfMsg( 'protect' ),
+							'text' => wfMsg( 'vector-action-protect' ),
 							'href' =>
 								$this->mTitle->getLocalUrl( 'action=protect' )
 						);
@@ -246,7 +246,7 @@ class SkinVector extends SkinTemplate {
 						$links['actions']['unprotect'] = array(
 							'class' => ($action == 'unprotect') ?
 											'selected' : false,
-							'text' => wfMsg( 'unprotect' ),
+							'text' => wfMsg( 'vector-action-unprotect' ),
 							'href' =>
 								$this->mTitle->getLocalUrl( 'action=unprotect' )
 						);
@@ -254,7 +254,16 @@ class SkinVector extends SkinTemplate {
 				}
 			}
 			wfProfileOut( __METHOD__ . '-live' );
-
+			
+			/**
+			 * The following actions use messages which, if made particular to
+			 * the Vector skin, would break the Ajax code which makes this
+			 * action happen entirely inline. Skin::makeGlobalVariablesScript
+			 * defines a set of messages in a javascript object - and these
+			 * messages are assumed to be global for all skins. Without making
+			 * a change to that procedure these messages will have to remain as
+			 * the global versions.
+			 */
 			// Checks if the user is logged in
 			if( $this->loggedin ) {
 				// Checks if the user is watching this page
@@ -283,7 +292,7 @@ class SkinVector extends SkinTemplate {
 		} else {
 			$links['namespaces']['special'] = array(
 				'class' => 'selected',
-				'text' => wfMsg( 'nstab-special' ),
+				'text' => wfMsg( 'vector-namespace-special' ),
 				'href' => $wgRequest->getRequestURL()
 			);
 		}
