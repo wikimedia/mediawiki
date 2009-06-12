@@ -135,21 +135,94 @@ div.searchresult {
 }
 
 .mw-search-formheader {
-	background-color:#ECECEC; 
-	margin:1em 0pt; 
-	padding:0.02em ;
-	border-top:1px solid #BBBBBB;
+	background-color: #f3f3f3;
+	margin-top: 1em;
+	border: 1px solid silver;
 }
-
-.mw-search-formheader div {
+.mw-search-formheader div.search-types {
 	float:left; 
-	padding:4px 0.5em 0px 4px;
+	padding-left: 0.25em;
 }
-
-.mw-search-formheader p {
-	margin:0.1em 0pt;
-	padding:0.2em 0.4em 0.2em 0.2em;
-	text-align:right;
+.mw-search-formheader div.search-types > ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.mw-search-formheader div.search-types > ul > li {
+	float: left;
+	margin: 0;
+	padding: 0;
+}
+.mw-search-formheader div.search-types > ul > li > a {
+	display: block;
+	padding: 0.5em;
+}
+.mw-search-formheader div.search-types > ul > li.current > a {
+	color: #333333;
+	cursor: default;
+}
+.mw-search-formheader div.search-types > ul > li.current > a:hover {
+	text-decoration: none;
+}
+.mw-search-formheader div.results-info {
+	float: right;
+	padding: 0.5em;
+	padding-right: 0.75em;
+}
+.mw-search-formheader div.results-info > ul {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+.mw-search-formheader div.results-info > ul > li {
+	float: right;
+	margin: 0;
+	padding: 0;
+}
+fieldset#mw-searchoptions {
+	margin: 0;
+	padding: 0;
+	padding-left: 1em;
+	padding-right: 1em;
+	padding-bottom: 0.5em;
+	padding-top: 0.5em;
+	border: none;
+	background-color: #f9f9f9;
+	border: 1px solid silver;
+	border-top: none;
+}
+fieldset#mw-searchoptions > legend {
+	display: none;
+}
+fieldset#mw-searchoptions > h4 {
+	padding: 0;
+	margin: 0;
+	float: left;
+}
+fieldset#mw-searchoptions > div#mw-search-togglebox {
+	float: right;
+}
+fieldset#mw-searchoptions > div#mw-search-togglebox > label {
+	margin-right: 0.25em;
+}
+fieldset#mw-searchoptions > div#mw-search-togglebox > input {
+	margin-left: 0.25em;
+}
+fieldset#mw-searchoptions > table {
+	float: left;
+	margin-right: 3em;
+}
+fieldset#mw-searchoptions > table td {
+	padding-right: 1em;
+}
+body.rtl fieldset#mw-searchoptions > table {
+	float: right;
+}
+fieldset#mw-searchoptions div.divider {
+	clear: both;
+	border-bottom: 1px solid #DDDDDD;
+	padding-top: 0.5em;
+	margin-bottom: 0.5em;
 }
 
 td#mw-search-menu {

@@ -114,7 +114,7 @@ class SpecialSearch {
 	 * @param string $term
 	 */
 	public function showResults( $term ) {
-		global $wgOut, $wgUser, $wgDisableTextSearch, $wgContLang;
+		global $wgOut, $wgUser, $wgDisableTextSearch, $wgContLang, $wgScript;
 		wfProfileIn( __METHOD__ );
 
 		$sk = $wgUser->getSkin();
@@ -191,13 +191,22 @@ class SpecialSearch {
 
 			$this->didYouMeanHtml = '<div class="searchdidyoumean">'.wfMsg('search-suggest',$suggestLink).'</div>';
 		}
-
 		// start rendering the page
+		$wgOut->addHtml(
+			Xml::openElement(
+				'form',
+				array(
+					'id' => ( $this->searchAdvanced ? 'powersearch' : 'search' ),
+					'method' => 'get',
+					'action' => $wgScript
+				)
+			)
+		);
 		$wgOut->addHtml(
 			Xml::openElement( 'table', array( 'border'=>0, 'cellpadding'=>0, 'cellspacing'=>0 ) ) .
 			Xml::openElement( 'tr' ) .
 			Xml::openElement( 'td' ) . "\n"	.
-			( $this->searchAdvanced ? $this->powerSearchBox( $term ) : $this->shortDialog( $term ) ) .
+			$this->shortDialog( $term ) .
 			Xml::closeElement('td') .
 			Xml::closeElement('tr') .
 			Xml::closeElement('table')
@@ -212,13 +221,15 @@ class SpecialSearch {
 
 		$filePrefix = $wgContLang->getFormattedNsText(NS_FILE).':';
 		if( '' === trim( $term ) || $filePrefix === trim( $term ) ) {
-			$wgOut->addHTML( $this->searchAdvanced ? $this->powerSearchFocus() : $this->searchFocus() );
+			$wgOut->addHTML( $this->searchFocus() );
 			$wgOut->addHTML( $this->formHeader($term, 0, 0));
+			if( $this->searchAdvanced ) {
+				$wgOut->addHTML( $this->powerSearchBox( $term ) );
+			}
 			// Empty query -- straight view of search form
 			wfProfileOut( __METHOD__ );
 			return;
 		}
-
 
 		// Get number of results
 		$titleMatchesNum = $titleMatches ? $titleMatches->numRows() : 0;
@@ -241,7 +252,11 @@ class SpecialSearch {
 			
 		// show number of results and current offset
 		$wgOut->addHTML( $this->formHeader($term, $num, $totalRes));
+		if( $this->searchAdvanced ) {
+			$wgOut->addHTML( $this->powerSearchBox( $term ) );
+		}
 		
+		$wgOut->addHtml( Xml::closeElement( 'form' ) );
 		$wgOut->addHtml( "<div class='searchresults'>" );
 		
 		// show direct page/create link
@@ -266,7 +281,6 @@ class SpecialSearch {
 			wfRunHooks( 'SpecialSearchNoResults', array( $term ) );
 		} 
 
-		
 		if( $titleMatches ) {
 			if( $numTitleMatches > 0 ) {
 				$wgOut->wrapWikiMsg( "==$1==\n", 'titlematches' );
@@ -299,7 +313,7 @@ class SpecialSearch {
 		}
 		$wgOut->addHtml( "</div>" );
 		if( $num === 0 ) {
-			$wgOut->addHTML( $this->searchAdvanced ? $this->powerSearchFocus() : $this->searchFocus() );
+			$wgOut->addHTML( $this->searchFocus() );
 		}
 
 		if( $num || $this->offset ) {
@@ -690,58 +704,96 @@ class SpecialSearch {
 	 * @return $out string: HTML form
 	 */
 	protected function powerSearchBox( $term ) {
-		global $wgScript;
-
-		$namespaces = SearchEngine::searchableNamespaces();
-
-		$tables = $this->namespaceTables( $namespaces );
+		global $wgScript, $wgContLang;
 		
-		// include redirects in the search
-		$redirect = Xml::check( 'redirs', $this->searchRedirects, array( 'value' => '1', 'id' => 'redirs' ) );
-		$redirectLabel = Xml::label( wfMsg( 'powersearch-redir' ), 'redirs' );
-
-		$redirectText = '';
-		// show redirects check only if backend supports it
-		if( $this->searchEngine->acceptListRedirects() ) {
-			$redirectText = $redirect . " " . $redirectLabel;
+		// Groups namespaces into rows according to subject
+		$rows = array();
+		foreach( SearchEngine::searchableNamespaces() as $namespace => $name ) {
+			$subject = MWNamespace::getSubject( $namespace );
+			if( !array_key_exists( $subject, $rows ) ) {
+				$rows[$subject] = "";
+			}
+			$name = str_replace( '_', ' ', $name );
+			if( $name == '' ) {
+				$name = wfMsg( 'blanknamespace' );
+			}
+			$rows[$subject] .=
+				Xml::openElement(
+					'td', array( 'style' => 'white-space: nowrap' )
+				) .
+				Xml::checkLabel(
+					$name,
+					"ns{$namespace}",
+					"mw-search-ns{$namespace}",
+					in_array( $namespace, $this->namespaces )
+				) .
+				Xml::closeElement( 'td' );
 		}
+		$rows = array_values( $rows );
+		$numRows = count( $rows );
 		
- 
-		$searchField = Xml::inputLabel( wfMsg( 'powersearch-field' ), 'search', 'powerSearchText', 50, $term,
-			array( 'type' => 'text') );
-
-		// toggle for turning on and off all checkboxes
-		$selectOptionsLabel = Xml::label( wfMsg( 'powersearch-togglelabel' ), 'mw-search-togglelabel' );
-		$selectAllButton = Xml::openElement('input', array('type'=>'button', 'id' => 'mw-search-toggleall', 'onclick' => 'mwToggleSearchCheckboxes("all");', 
-			'value' => wfMsg( 'powersearch-toggleall' ) )) . '</input>';
-			
-		$selectNoneButton = Xml::openElement('input', array('type'=>'button', 'id' => 'mw-search-togglenone', 'onclick' => 'mwToggleSearchCheckboxes("none");',
-			'value' => wfMsg( 'powersearch-togglenone' ) )) . '</input>';
-			
-		$selectOptionsText = "<td id='mw-search-togglebox' align='right'>" . $selectOptionsLabel . ' ' . $selectAllButton . $selectNoneButton . "</td>";
-
-		$searchButton = Xml::submitButton( wfMsg( 'powersearch' ) ) . "\n";
-		$searchTitle = SpecialPage::getTitleFor( 'Search' );
-
-		$topText = "<table id='mw-search-powertable'><tr><td>" . wfMsgExt( 'powersearch-ns', array( 'parseinline' ) ). '</td>' . $selectOptionsText . "</tr></table>";
-
-		$out = Xml::openElement( 'form', array(	'id' => 'powersearch', 'method' => 'get', 'action' => $wgScript ) ) .
-			Xml::hidden( 'title', $searchTitle->getPrefixedText() ) . "\n" .
-			$topText .
-			'<input type="hidden" name="advanced" value="'.$this->searchAdvanced."\"/>\n".
-			$tables .
-			"<hr style=\"clear: both;\" />\n".
-			$redirectText . "\n".
-			"<div style=\"padding-top:4px;padding-bottom:2px;\">".
-			$searchField .
-			"&nbsp;" .
-			Xml::hidden( 'fulltext', 'Advanced search' ) . "\n" .
-			$searchButton .
-			"</div>".
-			"</form>";
-		return Xml::openElement( 'fieldset', array('id' => 'mw-searchoptions','style' => 'margin:0em;') ) .
+		// Lays out namespaces in multiple floating two-column tables so they'll
+		// be arranged nicely while still accommodating different screen widths
+		$namespaceTables = '';
+		for( $i = 0; $i < $numRows; $i += 4 ) {
+			$namespaceTables .= Xml::openElement(
+				'table',
+				array( 'cellpadding' => 0, 'cellspacing' => 0, 'border' => 0 )
+			);
+			for( $j = $i; $j < $i + 4 && $j < $numRows; $j++ ) {
+				$namespaceTables .= Xml::tags( 'tr', null, $rows[$j] );
+			}
+			$namespaceTables .= Xml::closeElement( 'table' );
+		}
+		// Show redirects check only if backend supports it
+		$redirects = '';
+		if( $this->searchEngine->acceptListRedirects() ) {
+			$redirects =
+				Xml::check(
+					'redirs', $this->searchRedirects, array( 'value' => '1', 'id' => 'redirs' )
+				) .
+				' ' .
+				Xml::label( wfMsg( 'powersearch-redir' ), 'redirs' );
+		}
+		// Return final output
+		return
+			Xml::openElement(
+				'fieldset',
+				array( 'id' => 'mw-searchoptions', 'style' => 'margin:0em;' )
+			) .
 			Xml::element( 'legend', null, wfMsg('powersearch-legend') ) .
-			$out . $this->didYouMeanHtml .
+			Xml::element( 'h4', null, wfMsgExt( 'powersearch-ns', array( 'parseinline' ) ) ) .
+			Xml::tags(
+				'div',
+				array( 'id' => 'mw-search-togglebox' ),
+				Xml::label( wfMsg( 'powersearch-togglelabel' ), 'mw-search-togglelabel' ) .
+					Xml::element(
+						'input',
+						array(
+							'type'=>'button',
+							'id' => 'mw-search-toggleall',
+							'onclick' => 'mwToggleSearchCheckboxes("all");',
+							'value' => wfMsg( 'powersearch-toggleall' )
+						)
+					) .
+					Xml::element(
+						'input',
+						array(
+							'type'=>'button',
+							'id' => 'mw-search-togglenone',
+							'onclick' => 'mwToggleSearchCheckboxes("none");',
+							'value' => wfMsg( 'powersearch-togglenone'
+						)
+					)
+				)
+			) .
+			Xml::element( 'div', array( 'class' => 'divider' ), '', false ) .
+			$namespaceTables .
+			Xml::element( 'div', array( 'class' => 'divider' ), '', false ) .
+			$redirects .
+			Xml::hidden( 'title', SpecialPage::getTitleFor( 'Search' )->getPrefixedText() ) .
+			Xml::hidden( 'advanced', $this->searchAdvanced ) .
+			Xml::hidden( 'fulltext', 'Advanced search' ) .
 			Xml::closeElement( 'fieldset' );
 	}
 
@@ -754,76 +806,77 @@ class SpecialSearch {
 			"</script>";
 	}
 
-	protected function powerSearchFocus() {
-		global $wgJsMimeType;
-		return "<script type=\"$wgJsMimeType\">" .
-			"hookEvent(\"load\", function() {" .
-				"document.getElementById('powerSearchText').focus();" .
-			"});" .
-			"</script>";
-	}
-
 	protected function formHeader( $term, $resultsShown, $totalNum ) {
 		global $wgContLang, $wgCanonicalNamespaceNames, $wgLang;
 		
-		$sep = '&nbsp;&nbsp;&nbsp;';
 		$out = Xml::openElement('div', array( 'class' =>  'mw-search-formheader' ) );
-		$out .= Xml::openElement('div');
-
+		
 		$bareterm = $term;
-		if( $this->startsWithImage( $term ) )
-			$bareterm = substr( $term, strpos( $term, ':' ) + 1 ); // delete all/image prefix
-
+		if( $this->startsWithImage( $term ) ) {
+			// Deletes prefixes
+			$bareterm = substr( $term, strpos( $term, ':' ) + 1 );
+		}
 		$nsAllSet = array_keys( SearchEngine::searchableNamespaces() );
-
-		// search profiles headers
-		$m = wfMsg( 'searchprofile-articles' );
-		$tt = wfMsg( 'searchprofile-articles-tooltip',
-			$wgLang->commaList( SearchEngine::namespacesAsText( SearchEngine::defaultNamespaces() ) ) );
-		if( $this->active == 'default' ) {
-			$out .= Xml::element( 'strong', array( 'title'=>$tt ), $m );
-		} else {
-			$out .= $this->makeSearchLink( $bareterm, SearchEngine::defaultNamespaces(), $m, $tt);
+		
+		// Builds list of Search Types (profiles)
+		$profiles = array(
+			'default' => array(
+				'message' => 'searchprofile-articles',
+				'tooltip' => 'searchprofile-articles-tooltip',
+				'namespaces' => SearchEngine::defaultNamespaces(),
+				'namespace-messages' => SearchEngine::namespacesAsText(
+					SearchEngine::defaultNamespaces()
+				),
+			),
+			'images' => array(
+				'message' => 'searchprofile-images',
+				'tooltip' => 'searchprofile-images-tooltip',
+				'namespaces' => array( NS_FILE ),
+			),
+			'help' => array(
+				'message' => 'searchprofile-project',
+				'tooltip' => 'searchprofile-project-tooltip',
+				'namespaces' => SearchEngine::helpNamespaces(),
+				'namespace-messages' => SearchEngine::namespacesAsText(
+					SearchEngine::helpNamespaces()
+				),
+			),
+			'all' => array(
+				'message' => 'searchprofile-everything',
+				'tooltip' => 'searchprofile-everything-tooltip',
+				'namespaces' => $nsAllSet,
+			),
+			'advanced' => array(
+				'message' => 'searchprofile-advanced',
+				'tooltip' => 'searchprofile-advanced-tooltip',
+				'namespaces' => $this->namespaces,
+				'parameters' => array( 'advanced' => 1 ),
+			)
+		);
+		// Outputs XML for Search Types
+		$out .= Xml::openElement( 'div', array( 'class' => 'search-types' ) );
+		$out .= Xml::openElement( 'ul' );
+		foreach ( $profiles as $id => $profile ) {
+			$tooltipParam = isset( $profile['namespace-messages'] ) ?
+				$wgLang->commaList( $profile['namespace-messages'] ) : null;
+			$out .= Xml::tags(
+				'li',
+				array(
+					'class' => $this->active == $id ? 'current' : 'normal'
+				),
+				$this->makeSearchLink(
+					$bareterm,
+					$profile['namespaces'],
+					wfMsg( $profile['message'] ),
+					wfMsg( $profile['tooltip'], $tooltipParam ),
+					isset( $profile['parameters'] ) ? $profile['parameters'] : array() 
+				)
+			);
 		}
-		$out .= $sep;
-
-		$m = wfMsg( 'searchprofile-images' );
-		$tt = wfMsg( 'searchprofile-images-tooltip' );
-		if( $this->active == 'images' ) {
-			$out .= Xml::element( 'strong', array( 'title'=>$tt ), $m );
-		} else {
-			$out .= $this->makeSearchLink( $bareterm, array( NS_FILE ) , $m, $tt );
-		}
-		$out .= $sep;
-
-		$m = wfMsg( 'searchprofile-project' );
-		$tt = wfMsg( 'searchprofile-project-tooltip',
-			$wgLang->commaList( SearchEngine::namespacesAsText( SearchEngine::helpNamespaces() ) ) );
-		if( $this->active == 'help' ) {
-			$out .= Xml::element( 'strong', array( 'title'=>$tt ), $m );
-		} else {
-			$out .= $this->makeSearchLink( $bareterm, SearchEngine::helpNamespaces(), $m, $tt );
-		}
-		$out .= $sep;
-
-		$m = wfMsg( 'searchprofile-everything' );
-		$tt = wfMsg( 'searchprofile-everything-tooltip' );
-		if( $this->active == 'all' ) {
-			$out .= Xml::element( 'strong', array( 'title'=>$tt ), $m );
-		} else {
-			$out .= $this->makeSearchLink( $bareterm, $nsAllSet, $m, $tt );
-		}
-		$out .= $sep;
-
-		$m = wfMsg( 'searchprofile-advanced' );
-		$tt = wfMsg( 'searchprofile-advanced-tooltip' );
-		if( $this->active == 'advanced' ) {
-			$out .= Xml::element( 'strong', array( 'title'=>$tt ), $m );
-		} else {
-			$out .= $this->makeSearchLink( $bareterm, $this->namespaces, $m, $tt, array( 'advanced' => '1' ) );
-		}
+		$out .= Xml::closeElement( 'ul' );
 		$out .= Xml::closeElement('div') ;
 		
+		// Results-info
 		if ( $resultsShown > 0 ) {
 			if ( $totalNum > 0 ){
 				$top = wfMsgExt('showingresultsheader', array( 'parseinline' ),
@@ -833,42 +886,34 @@ class SpecialSearch {
 			} else {
 				$top = wfShowingResultsNum( $this->offset, $this->limit, $resultsShown );
 			}
-			$out .= "<p>{$top}</p>\n";
-		} else
-			$out .= "<p>&nbsp;</p>\n";
-				
-		$out .= Xml::closeElement('div') ;
-
-		return $out;
-	}
-
-	protected function shortDialog( $term ) {
-		global $wgScript;
-		$searchTitle = SpecialPage::getTitleFor( 'Search' );
-		$searchable = SearchEngine::searchableNamespaces();
-		$out = Xml::openElement( 'form', array( 'id' => 'search', 'method' => 'get', 'action' => $wgScript ) );
-		$out .= Xml::hidden( 'title', $searchTitle->getPrefixedText() ) . "\n";
-		// show namespaces only for advanced search
-		if( $this->active == 'advanced' ) {
-			$active = array();
-			foreach( $this->namespaces as $ns ) {
-				$active[$ns] = $searchable[$ns];
-			}
-			$out .= wfMsgExt( 'powersearch-ns', array( 'parseinline' ) ) . "<br/>\n";
-			$out .= $this->namespaceTables( $active, 1 )."<br/>\n";
-		// Still keep namespace settings otherwise, but don't show them
-		} else {
+			$out .= Xml::tags( 'div', array( 'class' => 'results-info' ),
+				Xml::tags( 'ul', null, Xml::tags( 'li', null, $top ) )
+			);
+		}
+		
+		$out .= Xml::element( 'div', array( 'style' => 'clear:both' ), '', false );
+		$out .= Xml::closeElement('div');
+		
+		// Adds hidden namespace fields
+		if ( !$this->searchAdvanced ) {
 			foreach( $this->namespaces as $ns ) {
 				$out .= Xml::hidden( "ns{$ns}", '1' );
 			}
 		}
+		
+		return $out;
+	}
+
+	protected function shortDialog( $term ) {
+		$searchTitle = SpecialPage::getTitleFor( 'Search' );
+		$searchable = SearchEngine::searchableNamespaces();
+		$out .= Xml::hidden( 'title', $searchTitle->getPrefixedText() ) . "\n";
 		// Keep redirect setting
 		$out .= Xml::hidden( "redirs", (int)$this->searchRedirects );
 		// Term box
 		$out .= Xml::input( 'search', 50, $term, array( 'type' => 'text', 'id' => 'searchText' ) ) . "\n";
 		$out .= Xml::hidden( 'fulltext', 'Search' );
 		$out .= Xml::submitButton( wfMsg( 'searchbutton' ) );
-		$out .= Xml::closeElement( 'form' );
 		return $out . $this->didYouMeanHtml;		
 	}
 
@@ -921,43 +966,6 @@ class SpecialSearch {
 			return $p[0]  == $allkeyword;
 		}
 		return false;
-	}
-
-	protected function namespaceTables( $namespaces, $rowsPerTable = 3 ) {
-		global $wgContLang;
-		// Group namespaces into rows according to subject.
-		// Try not to make too many assumptions about namespace numbering.
-		$rows = array();
-		$tables = "";
-		foreach( $namespaces as $ns => $name ) {
-			$subj = MWNamespace::getSubject( $ns );
-			if( !array_key_exists( $subj, $rows ) ) {
-				$rows[$subj] = "";
-			}
-			$name = str_replace( '_', ' ', $name );
-			if( '' == $name ) {
-				$name = wfMsg( 'blanknamespace' );
-			}
-			$rows[$subj] .= Xml::openElement( 'td', array( 'style' => 'white-space: nowrap' ) ) .
-				Xml::checkLabel( $name, "ns{$ns}", "mw-search-ns{$ns}", in_array( $ns, $this->namespaces ) ) .
-				Xml::closeElement( 'td' ) . "\n";
-		}
-		$rows = array_values( $rows );
-		$numRows = count( $rows );
-		// Lay out namespaces in multiple floating two-column tables so they'll
-		// be arranged nicely while still accommodating different screen widths
-		// Float to the right on RTL wikis
-		$tableStyle = $wgContLang->isRTL() ?
-			'float: right; margin: 0 0 0em 1em' : 'float: left; margin: 0 1em 0em 0';
-		// Build the final HTML table...
-		for( $i = 0; $i < $numRows; $i += $rowsPerTable ) {
-			$tables .= Xml::openElement( 'table', array( 'style' => $tableStyle ) );
-			for( $j = $i; $j < $i + $rowsPerTable && $j < $numRows; $j++ ) {
-				$tables .= "<tr>\n" . $rows[$j] . "</tr>";
-			}
-			$tables .= Xml::closeElement( 'table' ) . "\n";
-		}
-		return $tables;
 	}
 }
 
