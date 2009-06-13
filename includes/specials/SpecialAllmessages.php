@@ -187,20 +187,33 @@ function wfAllMessagesMakeHTMLText( &$messages ) {
 		$message = htmlspecialchars( $m['statmsg'] );
 		$mw = htmlspecialchars( $m['msg'] );
 
+		$linkText = "<span id=\"sp-allmessages-i-$i\">" . htmlspecialchars( $key ) . '</span>';
+
 		if( array_key_exists( $title, $pageExists[NS_MEDIAWIKI] ) ) {
 			// FIXME: the span should be taken care of in $customAttribs, shouldn't it?
 			$pageLink = $sk->linkKnown(
 				$titleObj,
-				"<span id=\"sp-allmessages-i-$i\">" . htmlspecialchars( $key ) . '</span>'
+				$linkText
 			);
 		} else {
-			$pageLink = $sk->makeBrokenLinkObj( $titleObj, "<span id=\"sp-allmessages-i-$i\">" . 
-				htmlspecialchars( $key ) . '</span>' );
+			$pageLink = $sk->link(
+				$titleObj,
+				$linkText,
+				array(),
+				array(),
+				array( 'broken' )
+			);
 		}
 		if( array_key_exists( $title, $pageExists[NS_MEDIAWIKI_TALK] ) ) {
 			$talkLink = $sk->linkKnown( $talkPage, htmlspecialchars( $talk ) );
 		} else {
-			$talkLink = $sk->makeBrokenLinkObj( $talkPage, htmlspecialchars( $talk ) );
+			$talkLink = $sk->link(
+				$talkPage,
+				htmlspecialchars( $talk ),
+				array(),
+				array(),
+				array( 'broken' )
+			);
 		}
 
 		$anchor = 'msg_' . htmlspecialchars( strtolower( $title ) );

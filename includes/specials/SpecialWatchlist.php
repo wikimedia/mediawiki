@@ -441,21 +441,36 @@ function wfSpecialWatchlist( $par ) {
 
 function wlHoursLink( $h, $page, $options = array() ) {
 	global $wgUser, $wgLang, $wgContLang;
+
 	$sk = $wgUser->getSkin();
-	$s = $sk->makeKnownLink(
-	  $wgContLang->specialPage( $page ),
-	  $wgLang->formatNum( $h ),
-	  wfArrayToCGI( array('days' => ($h / 24.0)), $options ) );
+	$title = Title::newFromText( $wgContLang->specialPage( $page ) );
+	$options['days'] = ($h / 24.0);
+
+	$s = $sk->linkKnown(
+		$title,
+		$wgLang->formatNum( $h ),
+		array(),
+		$options
+	);
+
 	return $s;
 }
 
 function wlDaysLink( $d, $page, $options = array() ) {
 	global $wgUser, $wgLang, $wgContLang;
+
 	$sk = $wgUser->getSkin();
-	$s = $sk->makeKnownLink(
-	  $wgContLang->specialPage( $page ),
-	  ($d ? $wgLang->formatNum( $d ) : wfMsgHtml( 'watchlistall2' ) ),
-	  wfArrayToCGI( array('days' => $d), $options ) );
+	$title = Title::newFromText( $wgContLang->specialPage( $page ) );
+	$options['days'] = $d;
+	$message = ($d ? $wgLang->formatNum( $d ) : wfMsgHtml( 'watchlistall2' ) );
+
+	$s = $sk->linkKnown(
+		$title,
+		$message,
+		array(),
+		$options
+	);
+
 	return $s;
 }
 

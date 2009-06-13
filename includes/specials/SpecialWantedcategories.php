@@ -41,11 +41,17 @@ class WantedCategoriesPage extends WantedQueryPage {
 		global $wgLang, $wgContLang;
 
 		$nt = Title::makeTitle( $result->namespace, $result->title );
-		$text = $wgContLang->convert( $nt->getText() );
+		$text = htmlspecialchars( $wgContLang->convert( $nt->getText() ) );
 
 		$plink = $this->isCached() ?
-			$skin->link( $nt, htmlspecialchars( $text ) ) :
-			$skin->makeBrokenLinkObj( $nt, htmlspecialchars( $text ) );
+			$skin->link( $nt, $text ) :
+			$skin->link(
+				$nt,
+				$text,
+				array(),
+				array(),
+				array( 'broken' )
+			);
 
 		$nlinks = wfMsgExt( 'nmembers', array( 'parsemag', 'escape'),
 			$wgLang->formatNum( $result->value ) );

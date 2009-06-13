@@ -229,10 +229,12 @@ class LinkHolderArray {
 					$linkCache->addBadLinkObj( $title );
 					$colours[$pdbk] = 'new';
 					$output->addLink( $title, 0 );
+					// FIXME: replace deprecated makeBrokenLinkObj() by link()
 					$replacePairs[$searchkey] = $sk->makeBrokenLinkObj( $title,
 									$entry['text'],
 									$query );
 				} else {
+					// FIXME: replace deprecated makeColouredLinkObj() by link()
 					$replacePairs[$searchkey] = $sk->makeColouredLinkObj( $title, $colours[$pdbk],
 									$entry['text'],
 									$query );

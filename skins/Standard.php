@@ -160,8 +160,12 @@ class SkinStandard extends Skin {
 
 		if( $wgUser->isLoggedIn() ) {
 			$s.= $this->specialLink( 'watchlist' ) ;
-			$s .= $sep . $this->makeKnownLink( $wgContLang->specialPage( 'Contributions' ),
-				wfMsg( 'mycontris' ), 'target=' . wfUrlencode( $wgUser->getName() ) );
+			$s .= $sep . $this->linkKnown(
+				Title::newFromText( $wgContLang->specialPage( 'Contributions' ) ),
+				wfMsg( 'mycontris' ),
+				array(),
+				array( 'target' => $wgUser->getName() )
+			);
 		}
 		// only show watchlist link if logged in
 		$s .= "\n<hr class='sep' />";
@@ -215,7 +219,10 @@ class SkinStandard extends Skin {
 						$link = $nstext . ':' . $link;
 					}
 
-					$s .= $this->makeLink( $link, $text );
+					$s .= $this->link(
+						Title::newFromText( $link ),
+						$text
+					);
 				} elseif( $this->mTitle->getNamespace() != NS_SPECIAL ) {
 					# we just throw in a "New page" text to tell the user that he's in edit mode,
 					# and to avoid messing with the separator that is prepended to the next item
@@ -237,7 +244,7 @@ class SkinStandard extends Skin {
 				);
 
 			#if( $tns%2 && $action!='edit' && !$wpPreview) {
-				#$s.= '<br />'.$this->makeKnownLink($wgTitle->getPrefixedText(),wfMsg('postcomment'),'action=edit&section=new');
+				#$s.= '<br />'.$this->linkKnown( Title::newFromText( $wgTitle->getPrefixedText() ),wfMsg('postcomment'),array(),array('action'=>'edit','section'=>'new'));
 			#}
 
 			/*
