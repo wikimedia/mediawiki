@@ -1426,7 +1426,8 @@ END;
 
 		$out = '';
 		if( $wgRightsPage ) {
-			$link = $this->makeKnownLink( $wgRightsPage, $wgRightsText );
+			$title = Title::newFromText( $wgRightsPage );
+			$link = $this->linkKnown( $title, $wgRightsText );
 		} elseif( $wgRightsUrl ) {
 			$link = $this->makeExternalLink( $wgRightsUrl, $wgRightsText );
 		} elseif( $wgRightsText ) {
@@ -1544,8 +1545,11 @@ END;
 	}
 
 	function copyrightLink() {
-		$s = $this->makeKnownLink( wfMsgForContent( 'copyrightpage' ),
-		  wfMsg( 'copyrightpagename' ) );
+		$title = Title::newFromText( wfMsgForContent( 'copyrightpage' ) );
+		$s = $this->linkKnown(
+			$title,
+			wfMsg( 'copyrightpagename' )
+		);
 		return $s;
 	}
 
@@ -1558,8 +1562,11 @@ END;
 			// Otherwise, we display the link for the user, described in their
 			// language (which may or may not be the same as the default language),
 			// but we make the link target be the one site-wide page.
-			return $this->makeKnownLink( wfMsgForContent( $page ),
-				wfMsgExt( $desc, array( 'parsemag', 'escapenoentities' ) ) );
+			$title = Title::newFromText( $page );
+			return $this->linkKnown(
+				$title,
+				wfMsgExt( $desc, array( 'parsemag', 'escapenoentities' ) )
+			);
 		}
 	}
 
@@ -1673,11 +1680,11 @@ END;
 			if ( $this->mTitle->userIsWatching() ) {
 				$text = wfMsg( 'unwatchthispage' );
 				$query = array( 'action' => 'unwatch' );
-				$id = array( 'mw-unwatch-link' => $this->mWatchLinkNum );
+				$id = 'mw-unwatch-link' . $this->mWatchLinkNum;
 			} else {
 				$text = wfMsg( 'watchthispage' );
 				$query = array( 'action' => 'watch' );
-				$id = array( 'mw-watch-link' => $this->mWatchLinkNum );
+				$id = 'mw-watch-link' . $this->mWatchLinkNum;
 			}
 
 			$s = $this->link(
