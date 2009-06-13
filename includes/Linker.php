@@ -337,6 +337,7 @@ class Linker {
 		global $wgUser;
 		$threshold = intval( $wgUser->getOption( 'stubthreshold' ) );
 		$colour = ( $size < $threshold ) ? 'stub' : '';
+		// FIXME: replace deprecated makeColouredLinkObj by link()
 		return $this->makeColouredLinkObj( $nt, $colour, $text, $query, $trail, $prefix );
 	}
 
@@ -1046,7 +1047,8 @@ class Linker {
 		if( preg_match( '/^' . $medians . '(.*)$/i', $match[1], $submatch ) ) {
 			# Media link; trail not supported.
 			$linkRegexp = '/\[\[(.*?)\]\]/';
-			$thelink = $this->makeMediaLink( $submatch[1], "", $text );
+			$title = Title::makeTitleSafe( NS_FILE, $submatch[1] );
+			$thelink = $this->makeMediaLinkObj( $title, $text );
 		} else {
 			# Other kind of link
 			if( preg_match( $wgContLang->linkTrail(), $match[4], $submatch ) ) {
@@ -1740,6 +1742,7 @@ class Linker {
 		} else $style = '';
 		return $this->makeKnownLinkObj( $nt, $text, $query, $trail, $prefix, '', $style );
 	}
+
 	/** Obsolete alias */
 	function makeImage( $url, $alt = '' ) {
 		wfDeprecated( __METHOD__ );
@@ -1795,6 +1798,7 @@ class Linker {
 	 * Used to generate section edit links that point to "other" pages
 	 * (sections that are really part of included pages).
 	 *
+	 * @deprecated use Linker::doEditSectionLink()
 	 * @param $title Title string.
 	 * @param $section Integer: section number.
 	 */
@@ -1805,6 +1809,7 @@ class Linker {
 	}
 
 	/**
+	 * @deprecated use Linker::doEditSectionLink()
 	 * @param $nt Title object.
 	 * @param $section Integer: section number.
 	 * @param $hint Link String: title, or default if omitted or empty
