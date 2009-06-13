@@ -2560,7 +2560,7 @@ class DBError extends MWException {
 	 * @param $db Database object which threw the error
 	 * @param $error A simple error message to be used for debugging
 	 */
-	function __construct( Database &$db, $error ) {
+	function __construct( DatabaseBase &$db, $error ) {
 		$this->db =& $db;
 		parent::__construct( $error );
 	}
@@ -2572,7 +2572,7 @@ class DBError extends MWException {
 class DBConnectionError extends DBError {
 	public $error;
 	
-	function __construct( Database &$db, $error = 'unknown error' ) {
+	function __construct( DatabaseBase &$db, $error = 'unknown error' ) {
 		$msg = 'DB connection error';
 		if ( trim( $error ) != '' ) {
 			$msg .= ": $error";
