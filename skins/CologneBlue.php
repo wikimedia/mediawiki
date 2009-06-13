@@ -135,16 +135,25 @@ class SkinCologneBlue extends Skin {
 
 		$rt = $this->mTitle->getPrefixedURL();
 		if ( 0 == strcasecmp( urlencode( $lo ), $rt ) ) {
-			$q = '';
+			$q = array();
 		} else {
-			$q = "returnto={$rt}";
+			$q = array( 'returnto' => $rt );
 		}
 
 		$s = array(
 			$this->mainPageLink(),
-			$this->makeKnownLink( wfMsgForContent( 'aboutpage' ), wfMsg( 'about' ) ),
-			$this->makeKnownLink( wfMsgForContent( 'helppage' ), wfMsg( 'help' ) ),
-			$this->makeKnownLink( wfMsgForContent( 'faqpage' ), wfMsg( 'faq' ) ),
+			$this->linkKnown(
+				Title::newFromText( wfMsgForContent( 'aboutpage' ) ),
+				wfMsg( 'about' )
+			),
+			$this->linkKnown(
+				Title::newFromText( wfMsgForContent( 'helppage' ) ),
+				wfMsg( 'help' )
+			),
+			$this->linkKnown(
+				Title::newFromText( wfMsgForContent( 'faqpage' ) ),
+				wfMsg( 'faq' )
+			),
 			$this->specialLink( 'specialpages' )
 		);
 
@@ -156,9 +165,19 @@ class SkinCologneBlue extends Skin {
 			$s[] = $this->extensionTabLinks();
 		}
 		if ( $wgUser->isLoggedIn() ) {
-			$s[] = $this->makeKnownLink( $lo, wfMsg( 'logout' ), $q );
+			$s[] = $this->linkKnown(
+				$lo,
+				wfMsg( 'logout' ),
+				array(),
+				$q
+			);
 		} else {
-			$s[] = $this->makeKnownLink( $li, wfMsg( 'login' ), $q );
+			$s[] = $this->LinkKnown(
+				$li,
+				wfMsg( 'login' ),
+				array(),
+				$q
+			);
 		}
 
 		return $wgLang->pipeList( $s );
@@ -199,7 +218,10 @@ class SkinCologneBlue extends Skin {
 			$s .= $this->menuHead( 'qbedit' );
 			$s .= '<strong>' . $this->editThisPage() . '</strong>';
 
-			$s .= $sep . $this->makeKnownLink( wfMsgForContent( 'edithelppage' ), wfMsg( 'edithelp' ) );
+			$s .= $sep . $this->linkKnown(
+				Title::newFromText( wfMsgForContent( 'edithelppage' ) ),
+				wfMsg( 'edithelp' )
+			);
 
 			if( $wgUser->isLoggedIn() ) {
 				$s .= $sep . $this->moveThisPage();
