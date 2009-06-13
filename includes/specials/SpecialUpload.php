@@ -634,6 +634,7 @@ class UploadForm {
 		if( $file->exists() ) {
 			$dlink = $sk->linkKnown( $file->getTitle() );
 			if ( $file->allowInlineDisplay() ) {
+				// FIXME: replace deprecated makeImageLinkObj by link()
 				$dlink2 = $sk->makeImageLinkObj( $file->getTitle(), wfMsgExt( 'fileexists-thumb', 'parseinline' ),
 					$file->getName(), $align, array(), false, true );
 			} elseif ( !$file->allowInlineDisplay() && $file->isSafeFile() ) {
@@ -659,6 +660,7 @@ class UploadForm {
 			# It's not forbidden but in 99% it makes no sense to upload the same filename with uppercase extension
 			$dlink = $sk->linkKnown( $nt_lc );
 			if ( $file_lc->allowInlineDisplay() ) {
+				// FIXME: replace deprecated makeImageLinkObj by link()
 				$dlink2 = $sk->makeImageLinkObj( $nt_lc, wfMsgExt( 'fileexists-thumb', 'parseinline' ),
 					$nt_lc->getText(), $align, array(), false, true );
 			} elseif ( !$file_lc->allowInlineDisplay() && $file_lc->isSafeFile() ) {
@@ -684,6 +686,7 @@ class UploadForm {
 				# Check if an image without leading '180px-' (or similiar) exists
 				$dlink = $sk->linkKnown( $nt_thb );
 				if ( $file_thb->allowInlineDisplay() ) {
+					// FIXME: replace deprecated makeImageLinkObj by link()
 					$dlink2 = $sk->makeImageLinkObj( $nt_thb,
 						wfMsgExt( 'fileexists-thumb', 'parseinline' ),
 						$nt_thb->getText(), $align, array(), false, true );
