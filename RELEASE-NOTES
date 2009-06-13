@@ -183,6 +183,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   link from the edit comment
 * (bug 19112) Preferences now respects $wgUseExternalEditor, $wgExternalDiffEngine
 * (bug 18173) MediaWiki now fails when unable to determine a client IP
+* (bug 19170) Special:Version should follow the content language direction
 
 == API changes in 1.16 ==
 

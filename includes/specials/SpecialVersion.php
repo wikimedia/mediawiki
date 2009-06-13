@@ -20,13 +20,17 @@ class SpecialVersion extends SpecialPage {
 	 * main()
 	 */
 	function execute( $par ) {
-		global $wgOut, $wgMessageCache, $wgSpecialVersionShowHooks;
+		global $wgOut, $wgMessageCache, $wgSpecialVersionShowHooks, $wgContLang;
 		$wgMessageCache->loadAllMessages();
 
 		$this->setHeaders();
 		$this->outputHeader();
 
-		$wgOut->addHTML( '<div dir="ltr">' );
+		if( $wgContLang->isRTL() ) {
+			$wgOut->addHTML( '<div dir="rtl">' );
+		} else {
+			$wgOut->addHTML( '<div dir="ltr">' );
+		}
 		$text = 
 			$this->MediaWikiCredits() .
 			$this->softwareInformation() .
@@ -47,8 +51,13 @@ class SpecialVersion extends SpecialPage {
 	 * @return wiki text showing the license information
 	 */
 	static function MediaWikiCredits() {
-		$ret = Xml::element( 'h2', array( 'id' => 'mw-version-license' ), wfMsg( 'version-license' ) ) .
-		"__NOTOC__
+		global $wgContLang;
+
+		$ret = Xml::element( 'h2', array( 'id' => 'mw-version-license' ), wfMsg( 'version-license' ) );
+
+		// This text is always left-to-right.
+		$ret .= '<div dir="ltr">';
+		$ret .= "__NOTOC__
 		This wiki is powered by '''[http://www.mediawiki.org/ MediaWiki]''',
 		copyright © 2001-2009 Magnus Manske, Brion Vibber, Lee Daniel Crocker,
 		Tim Starling, Erik Möller, Gabriel Wicke, Ævar Arnfjörð Bjarmason,
@@ -70,6 +79,7 @@ class SpecialVersion extends SpecialPage {
 		Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA
 		or [http://www.gnu.org/licenses/old-licenses/gpl-2.0.html read it online].
 		";
+		$ret .= '</div>';
 
 		return str_replace( "\t\t", '', $ret ) . "\n";
 	}
