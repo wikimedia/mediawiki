@@ -1041,11 +1041,11 @@ class DatabaseOracle extends DatabaseBase {
 	}
 
 	function bitAnd($fieldLeft, $fieldRight) {
-		return 'BITAND('$fieldLeft.', '.$fieldRight.')';
+		return 'BITAND('.$fieldLeft.', '.$fieldRight.')';
 	}
 
 	function bitOr($fieldLeft, $fieldRight) {
-		return 'BITOR('$fieldLeft.', '.$fieldRight.')';
+		return 'BITOR('.$fieldLeft.', '.$fieldRight.')';
 	}
 
 	public function setTimeout( $timeout ) {
