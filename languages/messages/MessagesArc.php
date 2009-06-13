@@ -106,6 +106,9 @@ $messages = array(
 'qbmyoptions'    => 'ܓܒܝܬ̈ܝ',
 'qbspecialpages' => 'ܦܐܬܘܬ̈ܐ ܪ̈ܫܝܬܐ',
 
+# Vector skin
+'vector-view-view' => 'ܩܪܝ',
+
 'errorpagetitle'    => 'ܦܘܕܐ',
 'returnto'          => 'ܕܥܘܪ ܠ$1.',
 'tagline'           => 'ܡܢ {{SITENAME}}',

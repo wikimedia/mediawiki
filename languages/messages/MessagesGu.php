@@ -284,6 +284,28 @@ $messages = array(
 વારંવાર પુછાતા પ્રશ્નો',
 'faqpage'        => 'Project:વારંવાર પુછાતા પ્રશ્નો',
 
+# Vector skin
+'vector-action-addsection'   => 'વિષય ઉમેરો',
+'vector-action-delete'       => 'રદ કરો',
+'vector-action-move'         => 'ખસેડો',
+'vector-action-protect'      => 'સુરક્ષિત કરો',
+'vector-action-unprotect'    => 'અસુરક્ષિત',
+'vector-namespace-category'  => 'શ્રેણી',
+'vector-namespace-help'      => 'મદદ માટેનું પાનું',
+'vector-namespace-main'      => 'પાનું',
+'vector-namespace-media'     => 'માધ્યમ પાનું',
+'vector-namespace-mediawiki' => 'સંદેશ',
+'vector-namespace-project'   => 'યોજના પાનું',
+'vector-namespace-special'   => 'ખાસ પાનું',
+'vector-namespace-talk'      => 'ચર્ચા',
+'vector-namespace-template'  => 'ઢાંચો',
+'vector-namespace-user'      => 'સભ્યનું પાનું',
+'vector-view-create'         => 'બનાવો',
+'vector-view-edit'           => 'સંપાદન કરો',
+'vector-view-history'        => 'ઈતિહાસ જુઓ',
+'vector-view-view'           => 'વાંચો',
+'vector-view-viewsource'     => 'સ્ત્રોત જુઓ',
+
 # Metadata in edit box
 'metadata_help' => 'મેટાડેટા:',
 
@@ -441,8 +463,7 @@ $messages = array(
 'internalerror'        => 'આંતરિક ત્રુટિ',
 'internalerror_info'   => 'આંતરિક ત્રુટિ: $1',
 'filecopyerror'        => '"$1" થી "$2"માં નકલ નાકામયાબ.',
-'filerenameerror'      => '
-"$1" નું નામ બદલીને "$2" કરવામાં નાકામયાબ.',
+'filerenameerror'      => '"$1" નું નામ બદલીને "$2" કરવામાં નાકામયાબ.',
 'filedeleteerror'      => '"$1" ફાઇલ હટાવી ન શકાઇ.',
 'directorycreateerror' => 'ડીરેક્ટરી "$1" ન બનાવી શકાઇ.',
 'filenotfound'         => 'ફાઇલ "$1" ન મળી.',
@@ -679,8 +700,9 @@ Please log in again after you receive it.
 'permissionserrorstext-withaction' => '$2 પરવાનગી તમને નીચેનાં {{PLURAL:$1|કારણ|કારણો}} સર નથી:',
 'recreate-moveddeleted-warn'       => "'''ચેતવણી: તમે જે પાનું નવું બનાવવા જઇ રહ્યાં છો તે પહેલાં દૂર કરવામાં આવ્યું છે.'''
 
-આગળ વધતાં બે વખત વિચારજો અને જો તમને લાગે કે આ પાનું ફરી વાર બનાવવું ઉચિત છે, તો જ અહીં ફેરફાર કરજો.
-પાનું હટવ્યાં પહેલાનાં બધા ફેરફારોની સૂચિ તમારી સહુલીયત માટે અહીં આપી છે:",
+આ પાનું સંપાદિત કરતા પહેલાં ગંભીરતાપૂર્વક વિચારજો અને જો તમને લાગે કે આ પાનું ફરી વાર બનાવવું ઉચિત છે, તો જ અહીં ફેરફાર કરજો.
+પાનું હટાવ્યાં પહેલાનાં બધા ફેરફારોની સૂચિ તમારી અનુકૂળતા માટે અહીં આપી છે:",
+'edit-conflict'                    => 'સંપાદન સંઘર્ષ.',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'ખાતું ખોલી શકાય તેમ નથી',

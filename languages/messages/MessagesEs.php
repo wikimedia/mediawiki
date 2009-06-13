@@ -369,7 +369,27 @@ $messages = array(
 'faqpage'        => 'Project:FAQ',
 
 # Vector skin
-'vector-view-view' => 'Leer',
+'vector-action-addsection'   => 'Agregar tópico',
+'vector-action-delete'       => 'Borrar',
+'vector-action-move'         => 'Mover',
+'vector-action-protect'      => 'Proteger',
+'vector-action-unprotect'    => 'Desproteger',
+'vector-namespace-category'  => 'Categoría',
+'vector-namespace-help'      => 'Página de ayuda',
+'vector-namespace-image'     => 'Archivo',
+'vector-namespace-main'      => 'Página',
+'vector-namespace-media'     => 'Página de medios',
+'vector-namespace-mediawiki' => 'Mensaje',
+'vector-namespace-project'   => 'Página proyecto',
+'vector-namespace-special'   => 'Página especial',
+'vector-namespace-talk'      => 'Discusión',
+'vector-namespace-template'  => 'Plantilla',
+'vector-namespace-user'      => 'Página de usuario',
+'vector-view-create'         => 'Crear',
+'vector-view-edit'           => 'Editar',
+'vector-view-history'        => 'Ver historial',
+'vector-view-view'           => 'Leer',
+'vector-view-viewsource'     => 'Ver fuente',
 
 # Metadata in edit box
 'metadata_help' => 'Metadatos:',

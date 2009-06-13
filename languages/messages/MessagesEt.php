@@ -927,7 +927,7 @@ See ei tohi olla pikem kui $1 {{PLURAL:$1|sümbol|sümbolit}}.',
 'userrights-nologin'          => 'Kasutaja õiguste muutmiseks, pead sa administreerimis õigustega kontole [[Special:UserLogin|sisse logima]].',
 'userrights-notallowed'       => 'Sulle pole antud luba jagada kasutajatele õigusi.',
 'userrights-changeable-col'   => 'Grupid, mida sa saad muuta',
-'userrights-unchangeable-col' => 'Grupid, mida sa muuta ei saa',
+'userrights-unchangeable-col' => 'Grupid, mida sa ei saa muuta',
 
 # Groups
 'group'               => 'Grupp:',

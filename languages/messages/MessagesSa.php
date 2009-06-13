@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Hemant wikikosh1
  * @author Kaustubh
  * @author Mahitgar
  * @author Omnipaedista
@@ -399,8 +400,10 @@ $messages = array(
 'editundo' => 'पूर्ववत करोसि',
 
 # Search results
-'nextn'       => 'आगामि{{PLURAL:$1|$1}}',
-'powersearch' => 'परिणत शोध',
+'searchresults'      => 'अन्वेषण-फलानि',
+'nextn'              => 'आगामि{{PLURAL:$1|$1}}',
+'search-result-size' => '$1 ({{PLURAL:$2|1 शब्दम्|$2 शब्दे}})',
+'powersearch'        => 'परिणत शोध',
 
 # Preferences page
 'yourlanguage' => 'भाषा:',
@@ -503,12 +506,14 @@ $messages = array(
 # Tooltip help for the actions
 'tooltip-pt-logout'       => 'बहिर्गच्छति',
 'tooltip-search'          => '{{SITENAME}} अन्वेषणं करोति',
+'tooltip-search-go'       => 'एतत्-शीर्षकीयम् पृष्ठं गच्छतु चेत् तद्विद्यते',
 'tooltip-p-logo'          => 'मुख्यपृष्ठम्  अभ्यागम्',
 'tooltip-n-mainpage'      => 'मुख्यपृष्ठम्  अभ्यागम्',
 'tooltip-n-portal'        => 'प्रकल्प विषये,भवदिय त्वां किम्‌ करोति, शोधिका',
 'tooltip-n-recentchanges' => 'नविनतम परिवर्तन सूची',
 'tooltip-n-randompage'    => 'अविशीष्ट लेख',
 'tooltip-n-help'          => 'शोधन्‌ स्थानम्‌।',
+'tooltip-t-whatlinkshere' => 'सर्वेषामपि एतत्संबद्धानां पृष्ठानां सूची',
 'tooltip-t-upload'        => 'भारं न्यस्यति संचिका',
 'tooltip-t-specialpages'  => 'सर्वानि विशेष पृष्ठस्य सूची',
 'tooltip-save'            => 'त्रायते',

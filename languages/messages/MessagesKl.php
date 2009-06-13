@@ -114,7 +114,8 @@ $messages = array(
 
 # Login and logout pages
 'yourname'                   => 'Pineqartoqateq:',
-'acct_creation_throttle_hit' => 'Utoqqatserpunga, $1 kontonik pilersereersimavutit. Pilersitseqqissinnaanngilatit.',
+'acct_creation_throttle_hit' => 'Konto-mik pilersitsereersimagavit pilersitseqqissinnaanngilatit, IP-adressit malillugu.
+Taamaattumik maannakkorpiaq kontomik pilersitsisinnaanngilatit.',
 
 # Edit pages
 'summary'      => 'Qanoq issusersiuineq:',

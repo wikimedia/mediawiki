@@ -466,7 +466,26 @@ $messages = array(
 'faqpage'        => 'Project:FAQ',
 
 # Vector skin
-'vector-view-view' => 'Lire',
+'vector-action-addsection'   => 'Ajouter un sujet',
+'vector-action-delete'       => 'Supprimer',
+'vector-action-move'         => 'Renommer',
+'vector-action-protect'      => 'Protéger',
+'vector-action-undelete'     => 'Rétablir',
+'vector-action-unprotect'    => 'Déprotéger',
+'vector-namespace-category'  => 'Catégorie',
+'vector-namespace-help'      => 'Aide',
+'vector-namespace-image'     => 'Fichier',
+'vector-namespace-main'      => 'Page',
+'vector-namespace-mediawiki' => 'Message',
+'vector-namespace-special'   => 'Page spéciale',
+'vector-namespace-talk'      => 'Discussion',
+'vector-namespace-template'  => 'Modèle',
+'vector-namespace-user'      => 'Page utilisateur',
+'vector-view-create'         => 'Créer',
+'vector-view-edit'           => 'Modifier',
+'vector-view-history'        => 'Afficher l’historique',
+'vector-view-view'           => 'Lire',
+'vector-view-viewsource'     => 'Voir la source',
 
 # Metadata in edit box
 'metadata_help' => 'Métadonnées :',
@@ -1364,7 +1383,7 @@ Vous pouvez également décider de laisser les autres vous contacter via votre p
 'prefs-diffs'                   => 'Différences',
 
 # User rights
-'userrights'                  => 'gestion des droits utilisateur',
+'userrights'                  => 'Gestion des droits utilisateur',
 'userrights-lookup-user'      => 'Gestion des droits utilisateur',
 'userrights-user-editname'    => 'Entrez un nom d’utilisateur :',
 'editusergroup'               => 'Modification des groupes utilisateurs',
@@ -2207,7 +2226,7 @@ Le contenu effectif de ces versions supprimées n’est accessible qu’aux admi
 'undeleterevision-missing'     => 'Version incorrecte ou manquante.
 Vous avez peut-être un mauvais lien, ou la version a pu être restaurée ou supprimée de l’archive.',
 'undelete-nodiff'              => 'Aucune version précédente trouvée.',
-'undeletebtn'                  => 'Restaurer',
+'undeletebtn'                  => 'restaurer',
 'undeletelink'                 => 'visualiser/rétablir',
 'undeleteviewlink'             => 'voir',
 'undeletereset'                => 'Réinitialiser',

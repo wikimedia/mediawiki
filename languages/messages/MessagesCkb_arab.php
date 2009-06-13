@@ -173,6 +173,9 @@ $messages = array(
 'faq'            => 'پرسیار و وەڵام (FAQ)',
 'faqpage'        => 'Project:پرسیار و وەڵام',
 
+# Vector skin
+'vector-view-view' => 'خوێندنەوە',
+
 # Metadata in edit box
 'metadata_help' => 'دراوه‌ی مێتا:',
 
@@ -904,8 +907,8 @@ for directly linking to the file without displaying the file",
 'nowatchlist'          => 'لە لیستی چاودێڕییەکانتدا ھیچ نیە.',
 'watchnologin'         => 'لە ژوورەوە نیت.',
 'addedwatch'           => 'بە لیستی چاودێڕییەکانت زێدە کرا',
-'addedwatchtext'       => 'پەڕەی "[[:$١]]" خرایە سەر [[Special:Watchlist|لیستی جاودێڕی]]ەکەت.
-گۆڕانکارییەکانی داھاتووی ئەم پەڕە و پەڕەی وتووێژەکەی، لەوێدا بە ڕیز دەکرێ و پەڕەکە لە [[Special:RecentChanges|لیستی دواییین گۆڕانکارییەکان]] دا ئەستوور (بۆڵد) کراو دەردەکەوێت بۆ ئەوەی ئاسانتر دەسکەوێت.',
+'addedwatchtext'       => 'پەڕەی "[[:$1]]" خرایە سەر [[Special:Watchlist|لیستی جاودێڕی]]ەکەت.
+گۆڕانکارییەکانی داھاتووی ئەم پەڕە و پەڕەی وتووێژەکەی، لەوێدا بە ڕیز دەکرێ و پەڕەکە لە [[Special:RecentChanges|لیستی دواییین گۆڕانکارییەکان]] دا ئەستوور  کراو دەردەکەوێت بۆ ئەوەی ئاسانتر دەسکەوێت.',
 'removedwatch'         => 'لە لیستی چاودێڕییەکانت لابرا',
 'removedwatchtext'     => 'پەڕەی "[[:$1]]" لە [[Special:Watchlist|لیستی چاودێڕیەکانت]] لابرا.',
 'watch'                => 'چاودێڕی بکە',
