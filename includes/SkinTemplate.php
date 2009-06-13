@@ -662,7 +662,7 @@ class SkinTemplate extends Skin {
 	 * @private
 	 */
 	function buildContentActionUrls() {
-		global $wgContLang, $wgLang, $wgOut, $wgUser, $wgRequest;
+		global $wgContLang, $wgLang, $wgOut, $wgUser, $wgRequest, $wgArticle;
 
 		wfProfileIn( __METHOD__ );
 
@@ -705,15 +705,16 @@ class SkinTemplate extends Skin {
 					'href' => $this->mTitle->getLocalUrl( $this->editUrlOptions() )
 				);
 
-				if ( $istalk || $wgOut->showNewSectionLink() ) {
+				// adds new section link if page is a current revision of a talk page or 
+				if ( ( $wgArticle->isCurrent() && $istalk ) || $wgOut->showNewSectionLink() ) {
 					if ( !$wgOut->forceHideNewSectionLink() ) {
 						$content_actions['addsection'] = array(
 							'class' => $section == 'new' ? 'selected' : false,
 							'text' => wfMsg( 'addsection' ),
 							'href' => $this->mTitle->getLocalUrl( 'action=edit&section=new' )
-						);
+						);					
 					}
-				}
+				}  
 			} elseif ( $this->mTitle->isKnown() ) {
 				$content_actions['viewsource'] = array(
 					'class' => ($action == 'edit') ? 'selected' : false,

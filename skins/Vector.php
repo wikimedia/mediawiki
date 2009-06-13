@@ -47,7 +47,7 @@ class SkinVector extends SkinTemplate {
 	 * @private
 	 */
 	function buildNavigationUrls() {
-		global $wgContLang, $wgLang, $wgOut, $wgUser, $wgRequest;
+		global $wgContLang, $wgLang, $wgOut, $wgUser, $wgRequest, $wgArticle;
 		global $wgDisableLangConversion;
 
 		wfProfileIn( __METHOD__ );
@@ -126,9 +126,9 @@ class SkinVector extends SkinTemplate {
 					'href' =>
 						$this->mTitle->getLocalUrl( $this->editUrlOptions() )
 				);
-				// Checks if this is a talk page and we should show a new
+				// Checks if this is a current rev of talk page and we should show a new
 				// section link
-				if ( $isTalk || $wgOut->showNewSectionLink() ) {
+				if ( ( $isTalk && $wgArticle->isCurrent() ) || ( $wgOut->showNewSectionLink() ) ) {
 					// Checks if we should ever show a new section link
 					if ( !$wgOut->forceHideNewSectionLink() ) {
 						// Adds new section link
