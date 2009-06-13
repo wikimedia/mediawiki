@@ -36,6 +36,7 @@ $messages = array(
 'tog-watchlisthideown'     => "Indi pagpakita sa ''watchlist'' ang akun nga manga gin-islan",
 'tog-watchlisthidebots'    => "Indi pagpakita sa ''watchlist'' ang manga gin-islan kang bot",
 'tog-watchlisthideminor'   => "Indi pagpakita sa ''watchlist'' ang mga gagmay nga inislan",
+'tog-nolangconversion'     => "Ontatun ang ''variants conversion''",
 'tog-ccmeonemails'         => "Padarhi man ako kang manga ''e-mail'' nga ginpadara ko sa iban nga manga ''user''",
 
 'underline-always'  => 'Pirme gid',
@@ -240,8 +241,8 @@ Lantawa sa [[Special:Version|version kang page]].',
 # File deletion
 'filedelete-submit' => 'Para',
 
-'brokenredirects-edit'   => '(Iislan)',
-'brokenredirects-delete' => '(para)',
+'brokenredirects-edit'   => 'Iislan',
+'brokenredirects-delete' => 'para',
 
 'withoutinterwiki-submit' => 'Ipakita',
 

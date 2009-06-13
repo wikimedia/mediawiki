@@ -425,6 +425,9 @@ $messages = array(
 'faq'            => 'FAQ',
 'faqpage'        => 'Project:FAQ',
 
+# Vector skin
+'vector-view-view' => 'Visa',
+
 # Metadata in edit box
 'metadata_help' => 'Metadata:',
 
@@ -444,7 +447,6 @@ $messages = array(
 'permalink'         => 'Permanent länk',
 'print'             => 'Skriv ut',
 'edit'              => 'Redigera',
-'view'              => 'Visa',
 'create'            => 'Skapa',
 'editthispage'      => 'Redigera denna sida',
 'create-this-page'  => 'Skapa denna sida',
@@ -1758,8 +1760,8 @@ En sida anses vara en förgreningssida om den inkluderar en mall som länkas til
 
 'brokenredirects'        => 'Trasiga omdirigeringar',
 'brokenredirectstext'    => 'Följande omdirigerar länkar till ej existerande sidor:',
-'brokenredirects-edit'   => '(redigera)',
-'brokenredirects-delete' => '(radera)',
+'brokenredirects-edit'   => 'redigera',
+'brokenredirects-delete' => 'radera',
 
 'withoutinterwiki'         => 'Sidor utan språklänkar',
 'withoutinterwiki-summary' => 'Följande sidor innehåller inte några länkar till andra språkversioner.',

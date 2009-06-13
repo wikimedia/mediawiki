@@ -489,7 +489,7 @@ $messages = array(
 # Statistics
 'statistics' => 'Статистике',
 
-'brokenredirects-delete' => '(шӧраш)',
+'brokenredirects-delete' => 'шӧраш',
 
 'withoutinterwiki-submit' => 'ончыкташ',
 

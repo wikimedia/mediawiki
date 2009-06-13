@@ -415,8 +415,8 @@ Bidde behycge þæt þu bricst þone tramet intō smalrum dǣlum.',
 
 'brokenredirects'        => 'Gebrocene Ymblǣderas',
 'brokenredirectstext'    => 'Þā folgendan edlǣdunga bendaþ tō unedwistlicum trametum.',
-'brokenredirects-edit'   => '(ādihtan)',
-'brokenredirects-delete' => '(āfeorsian)',
+'brokenredirects-edit'   => 'ādihtan',
+'brokenredirects-delete' => 'āfeorsian',
 
 'withoutinterwiki'         => 'Trametas būtan sprǣcbendum',
 'withoutinterwiki-summary' => 'Þā folgendan trametas ne bindaþ tō ōðrum sprǣcfadungum:',

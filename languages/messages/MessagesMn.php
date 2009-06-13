@@ -1205,8 +1205,8 @@ URL нь зөв болон сайт ажиллагаатай байгаа эсэ
 
 'brokenredirects'        => 'Эвдэрхий чиглүүлэгчүүд',
 'brokenredirectstext'    => 'Дараах автомат холбогч нь одоо байхгүй хуудас руу холбож байна:',
-'brokenredirects-edit'   => '(засварлах)',
-'brokenredirects-delete' => '(устгах)',
+'brokenredirects-edit'   => 'засварлах',
+'brokenredirects-delete' => 'устгах',
 
 'withoutinterwiki'         => 'Бусад хэлтэйх холбоосгүй хуудсууд',
 'withoutinterwiki-summary' => 'Дараах хуудсууд бусад хэлний хувилбаруудад холбогддоггүй:',

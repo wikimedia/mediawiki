@@ -678,8 +678,8 @@ E paggine in osservassion son dipinte in '''grascietto'''.",
 
 'brokenredirects'        => 'Rindirissamenti sballiæ',
 'brokenredirectstext'    => 'De sotta unn-a lista de reindirissi a pagine che non existàn:',
-'brokenredirects-edit'   => '(cangia)',
-'brokenredirects-delete' => '(scassa)',
+'brokenredirects-edit'   => 'cangia',
+'brokenredirects-delete' => 'scassa',
 
 'withoutinterwiki'         => 'Paggine sensa interwiki',
 'withoutinterwiki-summary' => "'Ste paggine chì inzû no g'han nisciûn collegamento co-e verscioîn in âtre lengoe:",

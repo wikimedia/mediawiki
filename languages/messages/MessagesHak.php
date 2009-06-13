@@ -884,8 +884,8 @@ Kó-yèn ngì yû liá-ke thù-hìn ke vàn-cháng thai-séu.",
 
 'brokenredirects'        => 'Sún-fái ke chhûng-thin hiong-hong',
 'brokenredirectstext'    => 'Yî-ha ke chhûng-thin hiong-hong chṳ́-hiong-ke he mò chhùn-chhai ke hong-mien:',
-'brokenredirects-edit'   => '(phiên-chho)',
-'brokenredirects-delete' => '(Chhù-thet)',
+'brokenredirects-edit'   => 'phiên-chho',
+'brokenredirects-delete' => 'Chhù-thet',
 
 'withoutinterwiki'         => 'Mò-yû ngî-ngièn lièn-chiap ke vùn-chông',
 'withoutinterwiki-summary' => 'Yî-ha ke vùn-chông he hàn-mò ngî-ngièn lièn-chiap to khì-thâ ngî-ngièn pán-pún:',

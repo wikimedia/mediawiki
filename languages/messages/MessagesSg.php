@@ -65,7 +65,7 @@ $messages = array(
 # Upload
 'watchthisupload' => 'bâa lo ânde sô lêmbëtï',
 
-'brokenredirects-edit' => '(fa na mbi)',
+'brokenredirects-edit' => 'fa na mbi',
 
 # Watchlist
 'watchlist'     => 'bâa lo ânde tî mbï',

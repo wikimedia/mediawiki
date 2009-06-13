@@ -1239,8 +1239,8 @@ $1 பயனரையோ அல்லது வேறு [[{{MediaWiki:Grouppage
 
 'brokenredirects'        => 'முறிந்த வழிமாற்றுகள்',
 'brokenredirectstext'    => 'பின்வரும் வழிமாற்றுகள் இல்லாத கட்டுரைகளுக்கு இணைப்புக் கொடுக்கின்றன:',
-'brokenredirects-edit'   => '(தொகு)',
-'brokenredirects-delete' => '(நீக்கு)',
+'brokenredirects-edit'   => 'தொகு',
+'brokenredirects-delete' => 'நீக்கு',
 
 'withoutinterwiki'         => 'பிற மொழி இணைப்பற்ற பக்கங்கள்',
 'withoutinterwiki-summary' => 'பின்வரும் பக்கங்கள் வேறு மொழிப் பதிப்புக்களுக்கு இணைக்கப்படவில்லை:',

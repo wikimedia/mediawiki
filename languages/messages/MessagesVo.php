@@ -1486,8 +1486,8 @@ Pad palelogon telplänovapad if gebon samafomoti, lü kel payümon pad [[MediaWi
 
 'brokenredirects'        => 'Lüodüköms dädik',
 'brokenredirectstext'    => 'Lüodüköms sököl dugons lü pads no dabinöls:',
-'brokenredirects-edit'   => '(redakön)',
-'brokenredirects-delete' => '(moükön)',
+'brokenredirects-edit'   => 'redakön',
+'brokenredirects-delete' => 'moükön',
 
 'withoutinterwiki'         => 'Pads nen yüms bevüpükik',
 'withoutinterwiki-summary' => 'Pads sököl no yumons lü fomams in püks votik.',

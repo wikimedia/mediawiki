@@ -518,8 +518,8 @@ Check your spelling, ka [[Special:UserLogin/signup|kria konta foun]].',
 # Statistics
 'statistics' => 'Estátistika',
 
-'brokenredirects-edit'   => '(edita)',
-'brokenredirects-delete' => '(halakon)',
+'brokenredirects-edit'   => 'edita',
+'brokenredirects-delete' => 'halakon',
 
 'withoutinterwiki' => "Pájina sira-ne'ebé la iha ligasaun ba lian seluk",
 

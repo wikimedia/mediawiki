@@ -950,8 +950,8 @@ Hamarino tsara aloha dia avereno alefa indray.',
 
 'brokenredirects'        => 'Tapaka ny redirection',
 'brokenredirectstext'    => "Mirohy any amin'ny pejy tsy misy ireto redirection manaraka ireto",
-'brokenredirects-edit'   => '(ovao)',
-'brokenredirects-delete' => '(fafao)',
+'brokenredirects-edit'   => 'ovao',
+'brokenredirects-delete' => 'fafao',
 
 # Miscellaneous special pages
 'nbytes'                  => '$1 {{PLURAL:$1|oktety|oktety}}',

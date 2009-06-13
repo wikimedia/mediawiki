@@ -629,8 +629,8 @@ $1 {{PLURAL:$1|اکر|اکرن}} کان ننڍي هوڻ گھرجي.',
 'doubleredirects' => 'ٻٽا چورڻا',
 
 'brokenredirects'        => 'ٽٽل چورڻا',
-'brokenredirects-edit'   => '(سنواريو)',
-'brokenredirects-delete' => '(ڊاهيو)',
+'brokenredirects-edit'   => 'سنواريو',
+'brokenredirects-delete' => 'ڊاهيو',
 
 'withoutinterwiki' => 'ڪنهن به ٻي ٻوليءَ سان نه ڳنڍيل صفحا',
 

@@ -410,6 +410,9 @@ $messages = array(
 'faq'            => 'FAQ',
 'faqpage'        => 'Project:FAQ',
 
+# Vector skin
+'vector-view-view' => 'Legir',
+
 # Metadata in edit box
 'metadata_help' => 'Metadonadas :',
 
@@ -429,7 +432,6 @@ $messages = array(
 'permalink'         => 'Ligam istoric',
 'print'             => 'Imprimir',
 'edit'              => 'Modificar',
-'view'              => 'Legir',
 'create'            => 'Crear',
 'editthispage'      => 'Modificar aquesta pagina',
 'create-this-page'  => 'Crear aquesta pagina',
@@ -1737,8 +1739,8 @@ Una pagina es tractada coma una pagina d’omonimia s'utiliza un modèl qu'es li
 
 'brokenredirects'        => 'Redireccions copadas',
 'brokenredirectstext'    => "Aquestas redireccions mènan cap a de paginas qu'existisson pas :",
-'brokenredirects-edit'   => '(modificar)',
-'brokenredirects-delete' => '(suprimir)',
+'brokenredirects-edit'   => 'modificar',
+'brokenredirects-delete' => 'suprimir',
 
 'withoutinterwiki'         => 'Paginas sens ligams interlengas',
 'withoutinterwiki-summary' => "Las paginas seguentas an pas de ligams cap a las versions dins d'autras lengas.",

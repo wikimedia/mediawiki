@@ -584,8 +584,8 @@ $3',
 'statistics'              => 'Статистикæ',
 'statistics-header-users' => 'Архайджыты статистикæ',
 
-'brokenredirects-edit'   => '(баив æй)',
-'brokenredirects-delete' => '(аппар)',
+'brokenredirects-edit'   => 'баив æй',
+'brokenredirects-delete' => 'аппар',
 
 'withoutinterwiki-submit' => 'Равдис',
 

@@ -280,8 +280,8 @@ Di [[Special:WhatLinksHere/$2|ful list]] de yah.',
 # File deletion
 'filedelete-submit' => 'Ires',
 
-'brokenredirects-edit'   => '(chenj)',
-'brokenredirects-delete' => '(ires)',
+'brokenredirects-edit'   => 'chenj',
+'brokenredirects-delete' => 'ires',
 
 # Miscellaneous special pages
 'movethispage' => 'Muf dis pej-ya',

@@ -299,6 +299,9 @@ $messages = array(
 'faq'            => 'SSS',
 'faqpage'        => 'Project:SSS',
 
+# Vector skin
+'vector-view-view' => 'Oku',
+
 # Metadata in edit box
 'metadata_help' => 'Metadata:',
 
@@ -318,7 +321,6 @@ $messages = array(
 'permalink'         => 'Bu hâline bağlantı',
 'print'             => 'Bastır',
 'edit'              => 'değiştir',
-'view'              => 'Oku',
 'create'            => 'oluştur',
 'editthispage'      => 'Sayfayı değiştir',
 'create-this-page'  => 'Bu sayfayı oluştur',
@@ -1635,8 +1637,8 @@ Sıradaki liste sadece bu dosyaya bağlantı veren {{PLURAL:$1|ilk dosyayı|ilk 
 
 'brokenredirects'        => 'Varolmayan maddeye yapılmış yönlendirmeler',
 'brokenredirectstext'    => 'Aşağıdaki yönlendirmeler varolmayan sayfalara bağlantı veriyor:',
-'brokenredirects-edit'   => '(değiştir)',
-'brokenredirects-delete' => '(sil)',
+'brokenredirects-edit'   => 'değiştir',
+'brokenredirects-delete' => 'sil',
 
 'withoutinterwiki'         => 'Diğer dillere bağlantısı olmayan sayfalar',
 'withoutinterwiki-summary' => 'Aşağıda listelenen sayfalar diğer dillere bağlantı içermemektedir:',

@@ -1634,8 +1634,8 @@ PICT # misc.
 
 'brokenredirects'        => 'پروشتگین غیر مستقیمان',
 'brokenredirectstext'    => 'جهلیگین غیر مستقیم لینک بوتگن په صفحات نیستن:',
-'brokenredirects-edit'   => '(اصلاح)',
-'brokenredirects-delete' => '(حذف)',
+'brokenredirects-edit'   => 'اصلاح',
+'brokenredirects-delete' => 'حذف',
 
 'withoutinterwiki'         => 'صفحاتی بی لینکان زبان',
 'withoutinterwiki-summary' => 'جهلیگین صفحات په دگه نسخه آن زبان لینک نه بوتت:',

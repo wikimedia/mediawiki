@@ -301,6 +301,9 @@ $messages = array(
 'faq'            => 'FAQ (pšašanja a wótegrona)',
 'faqpage'        => 'Project:FAQ (pšašanja a wótegrona)',
 
+# Vector skin
+'vector-view-view' => 'Cytaś',
+
 # Metadata in edit box
 'metadata_help' => 'Metadaty:',
 
@@ -320,7 +323,6 @@ $messages = array(
 'permalink'         => 'Wobstawny wótkaz',
 'print'             => 'Śišćaś',
 'edit'              => 'wobźěłaś',
-'view'              => 'Cytaś',
 'create'            => 'Wuźěłaś',
 'editthispage'      => 'Bok wobźěłaś',
 'create-this-page'  => 'Bok wuźěłaś',
@@ -1600,8 +1602,8 @@ Bok wobjadnawa se ako bok wujasnjenja zapśimjeśa, gaž wótkazujo na nju [[Med
 
 'brokenredirects'        => 'Skóńcowane dalejpósrědnjenja',
 'brokenredirectstext'    => 'Slědujuce dalejpósrědnjenja wótkazuju na njeeksistěrujuce boki:',
-'brokenredirects-edit'   => '(wobźěłaś)',
-'brokenredirects-delete' => '(wulašowaś)',
+'brokenredirects-edit'   => 'wobźěłaś',
+'brokenredirects-delete' => 'wulašowaś',
 
 'withoutinterwiki'         => 'Boki na kótarychž njejsu žedne wótkaze na druge rěcy',
 'withoutinterwiki-summary' => 'Slědujuce boki njewótkazuju na druge rěcne wersije:',

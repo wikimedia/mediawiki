@@ -677,8 +677,8 @@ Ta duillagyn er [[Special:Watchlist|dty rolley arrey]] ayns '''clou trome'''.",
 'doubleredirects' => 'Aa-enmysyn dooblagh',
 
 'brokenredirects'        => 'Aaenmysyn brisht',
-'brokenredirects-edit'   => '(reaghey)',
-'brokenredirects-delete' => '(scryss)',
+'brokenredirects-edit'   => 'reaghey',
+'brokenredirects-delete' => 'scryss',
 
 'withoutinterwiki'        => 'Duillagyn gyn kianglaghyn hengey',
 'withoutinterwiki-legend' => 'Roie-ockle',

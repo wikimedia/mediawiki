@@ -303,6 +303,9 @@ $messages = array(
 'faq'            => 'Soalan Lazim',
 'faqpage'        => 'Project:Soalan Lazim',
 
+# Vector skin
+'vector-view-view' => 'Baca',
+
 # Metadata in edit box
 'metadata_help' => 'Metadata:',
 
@@ -322,7 +325,6 @@ $messages = array(
 'permalink'         => 'Pautan kekal',
 'print'             => 'Cetak',
 'edit'              => 'Sunting',
-'view'              => 'Baca',
 'create'            => 'Cipta',
 'editthispage'      => 'Sunting laman ini',
 'create-this-page'  => 'Cipta laman ini',
@@ -1573,8 +1575,8 @@ Penerangan pada [$2 laman penerangan failnya] di sana ditunjukkan di bawah.',
 
 'brokenredirects'        => 'Lencongan rosak',
 'brokenredirectstext'    => 'Lencongan-lencongan berikut menuju ke laman yang tidak wujud:',
-'brokenredirects-edit'   => '(sunting)',
-'brokenredirects-delete' => '(hapus)',
+'brokenredirects-edit'   => 'sunting',
+'brokenredirects-delete' => 'hapus',
 
 'withoutinterwiki'         => 'Laman tanpa pautan bahasa',
 'withoutinterwiki-summary' => 'Laman-laman berikut tidak mempunyai pautan ke versi bahasa lain:',

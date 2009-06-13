@@ -1229,8 +1229,8 @@ $messages = array(
 
 'brokenredirects'        => 'Саҳифаҳои кандашудаи равонакунӣ',
 'brokenredirectstext'    => 'Масирҳои зерин ба саҳифаҳои номавҷуд пайванданд:',
-'brokenredirects-edit'   => '(вироиш)',
-'brokenredirects-delete' => '(ҳазф)',
+'brokenredirects-edit'   => 'вироиш',
+'brokenredirects-delete' => 'ҳазф',
 
 'withoutinterwiki'         => 'Саҳифаҳои бидуни пайвандҳои забонӣ',
 'withoutinterwiki-summary' => 'Саҳифаҳои зерин пайванде ба забони дигар надоранд:',

@@ -891,8 +891,8 @@ Timitztlātlauhtiah, xitlahcuiloa occē tōcāitl.",
 'doubleredirects' => 'Ōntetl tlacuepaliztli',
 
 'brokenredirects'        => 'Tzomoc tlacuepaliztli',
-'brokenredirects-edit'   => '(ticpatlāz)',
-'brokenredirects-delete' => '(ticpolōz)',
+'brokenredirects-edit'   => 'ticpatlāz',
+'brokenredirects-delete' => 'ticpolōz',
 
 'withoutinterwiki'        => 'Zāzaniltin ahtle tzonhuiliztli',
 'withoutinterwiki-submit' => 'Tiquittāz',

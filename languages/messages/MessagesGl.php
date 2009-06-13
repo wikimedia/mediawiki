@@ -348,6 +348,9 @@ $messages = array(
 'faq'            => 'PMF',
 'faqpage'        => 'Project:FAQ',
 
+# Vector skin
+'vector-view-view' => 'Ler',
+
 # Metadata in edit box
 'metadata_help' => 'Metadatos:',
 
@@ -367,7 +370,6 @@ $messages = array(
 'permalink'         => 'Ligazón permanente',
 'print'             => 'Imprimir',
 'edit'              => 'Editar',
-'view'              => 'Ler',
 'create'            => 'Crear',
 'editthispage'      => 'Editar esta páxina',
 'create-this-page'  => 'Crear esta páxina',
@@ -1725,8 +1727,8 @@ Cada ringleira contén ligazóns cara á primeira e segunda redireccións, e tam
 
 'brokenredirects'        => 'Redireccións rotas',
 'brokenredirectstext'    => 'As seguintes redireccións ligan cara a páxinas que non existen:',
-'brokenredirects-edit'   => '(editar)',
-'brokenredirects-delete' => '(borrar)',
+'brokenredirects-edit'   => 'editar',
+'brokenredirects-delete' => 'borrar',
 
 'withoutinterwiki'         => 'Páxinas sen ligazóns interwiki',
 'withoutinterwiki-summary' => 'As seguintes páxinas non ligan con ningunha versión noutra lingua.',

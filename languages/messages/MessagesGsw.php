@@ -260,6 +260,9 @@ $messages = array(
 'faq'            => 'Froge, wo vilmol gstellt wäre',
 'faqpage'        => 'Project:FAQ',
 
+# Vector skin
+'vector-view-view' => 'Läse',
+
 # Metadata in edit box
 'metadata_help' => 'Metadate:',
 
@@ -279,7 +282,6 @@ $messages = array(
 'permalink'         => 'Bschtändigi URL',
 'print'             => 'Drucke',
 'edit'              => 'Ändere',
-'view'              => 'Läse',
 'create'            => 'Erstelle',
 'editthispage'      => 'Syte bearbeite',
 'create-this-page'  => 'Die Syte afange',
@@ -1580,8 +1582,8 @@ In jedere Zyylete het s Gleicher zue dr erschte un dr zwote Wyterleitig un s Zii
 
 'brokenredirects'        => 'Kaputti Wyterleitige',
 'brokenredirectstext'    => 'Die Spezialsyte lischtet Wyterleitige uf, wu zue Artikel fiere, wu s gar nid git:',
-'brokenredirects-edit'   => '(bearbeite)',
-'brokenredirects-delete' => '(lesche)',
+'brokenredirects-edit'   => 'bearbeite',
+'brokenredirects-delete' => 'lesche',
 
 'withoutinterwiki'         => 'Sytenen ohni Links zu andere Sprache',
 'withoutinterwiki-summary' => 'Die Syte vergleiche nit uf anderi Sprochversione.',

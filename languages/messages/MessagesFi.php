@@ -437,6 +437,9 @@ Taivutusmuodot: {{GRAMMAR:genitive|{{SITENAME}}}} (yön) — {{GRAMMAR:partitive
 'faq'            => 'Usein kysytyt kysymykset',
 'faqpage'        => 'Project:Usein kysytyt kysymykset',
 
+# Vector skin
+'vector-view-view' => 'Lue',
+
 # Metadata in edit box
 'metadata_help' => 'Sisältökuvaukset:',
 
@@ -456,7 +459,6 @@ Taivutusmuodot: {{GRAMMAR:genitive|{{SITENAME}}}} (yön) — {{GRAMMAR:partitive
 'permalink'         => 'Ikilinkki',
 'print'             => 'Tulosta',
 'edit'              => 'Muokkaa',
-'view'              => 'Lue',
 'create'            => 'Luo sivu',
 'editthispage'      => 'Muokkaa tätä sivua',
 'create-this-page'  => 'Luo tämä sivu',
@@ -1686,8 +1688,8 @@ Tiedot [$2 tiedoston kuvaussivulta] näkyvät alla.',
 
 'brokenredirects'        => 'Virheelliset ohjaukset',
 'brokenredirectstext'    => 'Seuraavat ohjaukset osoittavat sivuihin, joita ei ole olemassa.',
-'brokenredirects-edit'   => '(muokkaa)',
-'brokenredirects-delete' => '(poista)',
+'brokenredirects-edit'   => 'muokkaa',
+'brokenredirects-delete' => 'poista',
 
 'withoutinterwiki'         => 'Sivut, joilla ei ole kielilinkkejä',
 'withoutinterwiki-summary' => 'Seuraavat sivut eivät viittaa erikielisiin versioihin:',

@@ -428,6 +428,9 @@ $messages = array(
 'faq'            => 'FAQ',
 'faqpage'        => 'Project:FAQ',
 
+# Vector skin
+'vector-view-view' => '閲覧',
+
 # Metadata in edit box
 'metadata_help' => 'メタデータ:',
 
@@ -447,7 +450,6 @@ $messages = array(
 'permalink'         => 'この版への固定リンク',
 'print'             => '印刷',
 'edit'              => '編集',
-'view'              => '閲覧',
 'create'            => '作成',
 'editthispage'      => 'このページを編集',
 'create-this-page'  => 'このページを作成',
@@ -1709,8 +1711,8 @@ PICT # misc.
 
 'brokenredirects'        => '迷子のリダイレクト',
 'brokenredirectstext'    => '以下は存在しないページにリンクしているリダイレクトです。',
-'brokenredirects-edit'   => '(編集)',
-'brokenredirects-delete' => '(削除)',
+'brokenredirects-edit'   => '編集',
+'brokenredirects-delete' => '削除',
 
 'withoutinterwiki'         => '言語間リンクを持たないページ',
 'withoutinterwiki-summary' => '以下のページには多言語版へのリンクがありません:',

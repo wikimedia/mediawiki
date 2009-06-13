@@ -368,6 +368,9 @@ $messages = array(
 'faq'            => 'Preguntas Frecuentes (FAQ)',
 'faqpage'        => 'Project:FAQ',
 
+# Vector skin
+'vector-view-view' => 'Leer',
+
 # Metadata in edit box
 'metadata_help' => 'Metadatos:',
 
@@ -387,7 +390,6 @@ $messages = array(
 'permalink'         => 'Enlace permanente',
 'print'             => 'Imprimir',
 'edit'              => 'Editar',
-'view'              => 'Leer',
 'create'            => 'Crear',
 'editthispage'      => 'Editar esta página',
 'create-this-page'  => 'Crear esta página',
@@ -1681,8 +1683,8 @@ Cada fila contiene enlaces al segundo y tercer redirect, así como la primera l�
 
 'brokenredirects'        => 'Redirecciones incorrectas',
 'brokenredirectstext'    => 'Las siguientes redirecciones enlazan a páginas que no existen:',
-'brokenredirects-edit'   => '(editar)',
-'brokenredirects-delete' => '(borrar)',
+'brokenredirects-edit'   => 'editar',
+'brokenredirects-delete' => 'borrar',
 
 'withoutinterwiki'         => 'Páginas sin interwikis',
 'withoutinterwiki-summary' => 'Las siguientes páginas no enlazan a versiones en otros idiomas:',

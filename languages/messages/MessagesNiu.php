@@ -160,8 +160,8 @@ Ua nimo ke hiki e haau tau manako {{SITENAME}}.',
 # Random page
 'randompage' => 'Lau fifili',
 
-'brokenredirects-edit'   => '(fakahakohako)',
-'brokenredirects-delete' => '(tamate)',
+'brokenredirects-edit'   => 'fakahakohako',
+'brokenredirects-delete' => 'tamate',
 
 # Miscellaneous special pages
 'newpages-username' => 'Matahigoa he tagata:',

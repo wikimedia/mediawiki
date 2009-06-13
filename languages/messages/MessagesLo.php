@@ -634,8 +634,8 @@ $messages = array(
 
 'brokenredirects'        => 'ການໂອນບໍ່ມີໜ້າປາຍທາງ',
 'brokenredirectstext'    => 'ການໂອນໜ້ານີ້ ເຊື່ອມຕໍ່ໄປຫາໜ້າ ທີ່ ຍັງບໍ່ມີເທື່ອ:',
-'brokenredirects-edit'   => '(ດັດແກ້)',
-'brokenredirects-delete' => '(ລຶບ)',
+'brokenredirects-edit'   => 'ດັດແກ້',
+'brokenredirects-delete' => 'ລຶບ',
 
 'withoutinterwiki'         => 'ບັນດາໜ້າ ທີ່ບໍ່ມີລິ້ງຄ໌ ຫາ ສະບັບພາສາອື່ນ',
 'withoutinterwiki-summary' => 'ໜ້າ ຕໍ່ໄປນີ້ ບໍ່ມີ ລິ້ງຄ໌ ຫາ ບົດຄວາມສະບັບພາສາອື່ນໆ:',

@@ -1371,8 +1371,8 @@ Elke ry bevat skakels na die eerste en die tweede aanstuur, asook die eerste reÃ
 
 'brokenredirects'        => 'Stukkende aansture',
 'brokenredirectstext'    => "Die volgende aansture skakel na 'n bladsy wat nie bestaan nie.",
-'brokenredirects-edit'   => '(wysig)',
-'brokenredirects-delete' => '(skrap)',
+'brokenredirects-edit'   => 'wysig',
+'brokenredirects-delete' => 'skrap',
 
 'withoutinterwiki'         => 'Bladsye sonder taalskakels',
 'withoutinterwiki-summary' => 'Die volgende bladsye het nie skakels na weergawes in ander tale nie:',

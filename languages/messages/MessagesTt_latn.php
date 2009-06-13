@@ -464,8 +464,8 @@ Zínhar, bu bitneñ wağraq kisäklärgä bülü turında uylap qara.",
 
 'brokenredirects'        => 'Watıq Yünältülär',
 'brokenredirectstext'    => 'Kiläse yünältülär bulmağan bitlärgä qarílar.',
-'brokenredirects-edit'   => '(özgertiw)',
-'brokenredirects-delete' => '(bitir)',
+'brokenredirects-edit'   => 'özgertiw',
+'brokenredirects-delete' => 'bitir',
 
 # Miscellaneous special pages
 'lonelypages'             => 'Yätim bitlär',

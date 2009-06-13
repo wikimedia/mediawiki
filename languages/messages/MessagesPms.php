@@ -1111,8 +1111,8 @@ Vira riga a l'ha andrinta j'anliure a la prima e a la sconda rediression, ant s�
 
 'brokenredirects'        => 'Ridiression nen giuste',
 'brokenredirectstext'    => "Coste ridiression-sì a men-o a dj'articoj ancó pa creà.",
-'brokenredirects-edit'   => '(modìfica)',
-'brokenredirects-delete' => '(scancela)',
+'brokenredirects-edit'   => 'modìfica',
+'brokenredirects-delete' => 'scancela',
 
 'withoutinterwiki'         => "Pàgine ch'a l'han gnun-a anliura interwiki",
 'withoutinterwiki-summary' => "Le pàgine ambelessì sota a l'han gnun-a anliura a dj'àotre lenghe:",

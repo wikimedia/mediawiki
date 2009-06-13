@@ -225,8 +225,8 @@ pigivuq qatannguti uikipitia kiinaujaqutiqarvik isuillingaitjapaa. iqtuu suqusiq
 'doubleredirects' => 'tapirqilik qaningani kamagijaq aasit nakit',
 
 'brokenredirects'        => 'napivaa qaningani kamagijaq aasit nakit',
-'brokenredirects-edit'   => '(suqusiqpaa)',
-'brokenredirects-delete' => '(nipaqtipaa)',
+'brokenredirects-edit'   => 'suqusiqpaa',
+'brokenredirects-delete' => 'nipaqtipaa',
 
 # Miscellaneous special pages
 'listusers'         => 'qatannguti nipi',

@@ -893,8 +893,8 @@ Papira ini [[Special:Watchlist|yu Tan Luku réy]] '''fatu'''.",
 
 'brokenredirects'        => 'Seni-doro di no bun',
 'brokenredirectstext'    => 'Dyaso ben stirpeprewoysi dy wan stir ben na wan papira dy no da ben.',
-'brokenredirects-edit'   => '(kenki)',
-'brokenredirects-delete' => '(trowe)',
+'brokenredirects-edit'   => 'kenki',
+'brokenredirects-delete' => 'trowe',
 
 'withoutinterwiki'         => 'Papira sondro miti go na tra tongo',
 'withoutinterwiki-summary' => 'Disi peprewoysi skaki no na si ini wan trawan tongo:',

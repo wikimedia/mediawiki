@@ -394,6 +394,9 @@ $messages = array(
 'faq'            => 'Частыя пытаньні',
 'faqpage'        => 'Project:Частыя пытаньні',
 
+# Vector skin
+'vector-view-view' => 'Чытаць',
+
 # Metadata in edit box
 'metadata_help' => 'Мэтазьвесткі:',
 
@@ -413,7 +416,6 @@ $messages = array(
 'permalink'         => 'Сталая спасылка',
 'print'             => 'Друкаваць',
 'edit'              => 'Рэдагаваць',
-'view'              => 'Чытаць',
 'create'            => 'Стварыць',
 'editthispage'      => 'Рэдагаваць гэтую старонку',
 'create-this-page'  => 'Стварыць гэтую старонку',
@@ -1734,8 +1736,8 @@ $1",
 
 'brokenredirects'        => 'Некарэктныя перанакіраваньні',
 'brokenredirectstext'    => 'Наступныя перанакіраваньні спасылаюцца на неіснуючыя старонкі:',
-'brokenredirects-edit'   => '(рэдагаваць)',
-'brokenredirects-delete' => '(выдаліць)',
+'brokenredirects-edit'   => 'рэдагаваць',
+'brokenredirects-delete' => 'выдаліць',
 
 'withoutinterwiki'         => 'Старонкі без спасылак на іншыя моўныя вэрсіі',
 'withoutinterwiki-summary' => 'Наступныя старонкі ня ўтрымліваюць спасылак на іншамоўныя вэрсіі:',

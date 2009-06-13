@@ -282,6 +282,9 @@ $messages = array(
 'faq'            => 'FAQ',
 'faqpage'        => 'Project:FAQ',
 
+# Vector skin
+'vector-view-view' => 'Liesen',
+
 # Metadata in edit box
 'metadata_help' => 'Metadaten:',
 
@@ -301,7 +304,6 @@ $messages = array(
 'permalink'         => 'Zitéierfäege Link',
 'print'             => 'Drécken',
 'edit'              => 'Änneren',
-'view'              => 'Liesen',
 'create'            => 'Uleeën',
 'editthispage'      => 'Dës Säit änneren',
 'create-this-page'  => 'Dës Säit uleeën',
@@ -1596,8 +1598,8 @@ An all Rei sti Linken zur éischter an zweeter Viruleedung, souwéi déi éischt
 
 'brokenredirects'        => 'Futtis Viruleedungen',
 'brokenredirectstext'    => 'Dës Viruleedungen linken op Säiten déi et net gëtt.',
-'brokenredirects-edit'   => '(änneren)',
-'brokenredirects-delete' => '(läschen)',
+'brokenredirects-edit'   => 'änneren',
+'brokenredirects-delete' => 'läschen',
 
 'withoutinterwiki'         => 'Säiten ouni Interwiki-Linken',
 'withoutinterwiki-summary' => 'Op dëser Spezialsäit stinn all déi Säiten déi keng Interwikilinken hunn.',

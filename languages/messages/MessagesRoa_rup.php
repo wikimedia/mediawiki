@@ -147,8 +147,8 @@ Isape a vostrã ira adratã. Nu agãrshits s-le alãxits alidzerle-a vostre ti {
 # Random page
 'randompage' => 'Frãndzã di nipandicã',
 
-'brokenredirects-edit'   => '(Alãxiri)',
-'brokenredirects-delete' => '(Ashcirdzire)',
+'brokenredirects-edit'   => 'Alãxiri',
+'brokenredirects-delete' => 'Ashcirdzire',
 
 # Miscellaneous special pages
 'newpages-username' => 'Numa di ufilizitor:',

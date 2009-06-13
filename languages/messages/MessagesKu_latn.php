@@ -965,8 +965,8 @@ Zanibe, ku ev barkirina kê were qebûlkirin ya na.
 'double-redirect-fixed-move' => "cihê [[$1]] hatîye gerandin, ew niha redirect'ek berve [[$2]] ye",
 
 'brokenredirects'        => 'Ragihandinên jê bûye',
-'brokenredirects-edit'   => '(biguherîne)',
-'brokenredirects-delete' => '(jêbibe)',
+'brokenredirects-edit'   => 'biguherîne',
+'brokenredirects-delete' => 'jêbibe',
 
 'withoutinterwiki'        => 'Rûpel vê lînkên berve zimanên din',
 'withoutinterwiki-submit' => 'Nîşan bide',

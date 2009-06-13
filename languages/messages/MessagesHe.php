@@ -1854,8 +1854,8 @@ PICT # שונות
 
 'brokenredirects'        => 'הפניות לא תקינות',
 'brokenredirectstext'    => 'ההפניות שלהלן מפנות לדפים שאינם קיימים:',
-'brokenredirects-edit'   => '(עריכה)',
-'brokenredirects-delete' => '(מחיקה)',
+'brokenredirects-edit'   => 'עריכה',
+'brokenredirects-delete' => 'מחיקה',
 
 'withoutinterwiki'         => 'דפים ללא קישורי שפה',
 'withoutinterwiki-summary' => 'הדפים הבאים אינם מקשרים לגרסאות שלהם בשפות אחרות:',

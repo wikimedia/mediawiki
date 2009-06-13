@@ -556,8 +556,8 @@ If you choose to provide it, this will be used for giving you attribution for yo
 # Statistics
 'statistics' => 'İstatistiki',
 
-'brokenredirects-edit'   => '(bıvurne)',
-'brokenredirects-delete' => '(bıestere)',
+'brokenredirects-edit'   => 'bıvurne',
+'brokenredirects-delete' => 'bıestere',
 
 'withoutinterwiki-submit' => 'Bımocne',
 

@@ -501,8 +501,8 @@ Siók-mìng: (dāng) = gâe̤ng dék sĭng bēng-buōng bī-piâng, (sèng) = g�
 'statistics'              => 'Só-gé̤ṳ',
 'statistics-header-users' => 'Ê̤ṳng-hô só-gé̤ṳ',
 
-'brokenredirects-edit'   => '(gāi)',
-'brokenredirects-delete' => '(chēng)',
+'brokenredirects-edit'   => 'gāi',
+'brokenredirects-delete' => 'chēng',
 
 'withoutinterwiki'         => 'Mò̤ kuá wiki gì hiĕk',
 'withoutinterwiki-summary' => 'Â-dā̤ hiĕk-miêng mò̤ lièng gáu gì-tă ngṳ̄-ngiòng bēng-buōng gì kuá wiki lièng-giék:',

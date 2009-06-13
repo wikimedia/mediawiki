@@ -1136,8 +1136,8 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'doubleredirects' => 'Кавксть ютавтозь',
 
 'brokenredirects'        => 'Сезезь ёнксось',
-'brokenredirects-edit'   => '(витнеме-петнеме)',
-'brokenredirects-delete' => '(нардамс)',
+'brokenredirects-edit'   => 'витнеме-петнеме',
+'brokenredirects-delete' => 'нардамс',
 
 'withoutinterwiki'         => 'Лопат келеньютковань невтевкснень теме',
 'withoutinterwiki-summary' => 'Вана неть лопатне апак сюлма лия келень верзия марто:',

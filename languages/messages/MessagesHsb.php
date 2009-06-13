@@ -281,6 +281,9 @@ $messages = array(
 'faq'            => 'Husto stajene prašenja (FAQ)',
 'faqpage'        => 'Project:Husto stajene prašenja (FAQ)',
 
+# Vector skin
+'vector-view-view' => 'Čitać',
+
 # Metadata in edit box
 'metadata_help' => 'Metadaty:',
 
@@ -300,7 +303,6 @@ $messages = array(
 'permalink'         => 'Trajny wotkaz',
 'print'             => 'Ćišćeć',
 'edit'              => 'wobdźěłać',
-'view'              => 'Čitać',
 'create'            => 'Wutworić',
 'editthispage'      => 'Stronu wobdźěłać',
 'create-this-page'  => 'Stronu wudźěłać',
@@ -1583,8 +1585,8 @@ Slědowaca lisćina pokazuje jenož {{PLURAL:$1|prěni wotkaz strony|prěnjej $1
 
 'brokenredirects'        => 'Skóncowane daleposrědkowanja',
 'brokenredirectstext'    => 'Slědowace daleposrědkowanja wotkazuja na njeeksistowace strony:',
-'brokenredirects-edit'   => '(wobdźěłać)',
-'brokenredirects-delete' => '(wušmórnyć)',
+'brokenredirects-edit'   => 'wobdźěłać',
+'brokenredirects-delete' => 'wušmórnyć',
 
 'withoutinterwiki'         => 'Strony bjez mjezyrěčnych wotkazow',
 'withoutinterwiki-summary' => 'Sćěhowace strony njewotkazuja na druhe rěčne wersije:',

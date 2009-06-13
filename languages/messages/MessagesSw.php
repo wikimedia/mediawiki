@@ -738,7 +738,7 @@ Pia unaweza kuchagua kuacha watumiaji wengine kuwasiliana nao kwa kutumia ukuras
 'doubleredirects' => 'Maelekezo mawilimawili',
 
 'brokenredirects'      => 'Maelekezo yenye hitilafu',
-'brokenredirects-edit' => '(hariri)',
+'brokenredirects-edit' => 'hariri',
 
 'withoutinterwiki' => 'Kurasa bila viungo kwenye lugha nyingine',
 

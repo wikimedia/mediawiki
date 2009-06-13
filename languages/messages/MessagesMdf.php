@@ -1506,8 +1506,8 @@ $3 макссь туфталсь - ''$2''",
 
 'brokenredirects'        => 'Синтьф умборондафтфксне',
 'brokenredirectstext'    => 'Ся умборондафтфксне сюлмафт лопат мархта конат ашет:',
-'brokenredirects-edit'   => '(петнемс)',
-'brokenredirects-delete' => '(нардамс)',
+'brokenredirects-edit'   => 'петнемс',
+'brokenredirects-delete' => 'нардамс',
 
 'withoutinterwiki'         => 'Кялень сюлмафксфтома лопат',
 'withoutinterwiki-summary' => 'Ся лопатне аф сюлмафт иля кялень верзиетнень мархта:',

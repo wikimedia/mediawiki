@@ -322,6 +322,9 @@ $messages = array(
 'faq'            => 'DUK',
 'faqpage'        => 'Project:DUK',
 
+# Vector skin
+'vector-view-view' => 'Skaityti',
+
 # Metadata in edit box
 'metadata_help' => 'Metaduomenys:',
 
@@ -341,7 +344,6 @@ $messages = array(
 'permalink'         => 'Nuolatinė nuoroda',
 'print'             => 'Spausdinti',
 'edit'              => 'Redaguoti',
-'view'              => 'Skaityti',
 'create'            => 'Sukurti',
 'editthispage'      => 'Redaguoti šį puslapį',
 'create-this-page'  => 'Sukurti šį puslapį',
@@ -1634,8 +1636,8 @@ Puslapis laikomas daugiaprasmiu puslapiu, jei jis naudoja šabloną, kuris yra n
 
 'brokenredirects'        => 'Peradresavimai į niekur',
 'brokenredirectstext'    => 'Šie peradresavimo puslapiai nurodo į neegzistuojančius puslapius:',
-'brokenredirects-edit'   => '(redaguoti)',
-'brokenredirects-delete' => '(trinti)',
+'brokenredirects-edit'   => 'redaguoti',
+'brokenredirects-delete' => 'trinti',
 
 'withoutinterwiki'         => 'Puslapiai be kalbų nuorodų',
 'withoutinterwiki-summary' => 'Šie puslapiai nenurodo į kitų kalbų versijas:',

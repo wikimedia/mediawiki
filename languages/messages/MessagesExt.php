@@ -1112,8 +1112,8 @@ Pursa nel entítulu la coluna pa chambal el ordin.',
 
 'brokenredirects'        => 'Redirecionis eschangás',
 'brokenredirectstext'    => 'Las siguientis redirecionis atihan a artículus que nu desistin:',
-'brokenredirects-edit'   => '(eital)',
-'brokenredirects-delete' => '(esborral)',
+'brokenredirects-edit'   => 'eital',
+'brokenredirects-delete' => 'esborral',
 
 'withoutinterwiki'         => 'Páhinas sin atihus "EntelGüiqui"',
 'withoutinterwiki-summary' => 'Las siguientis páhinas nu atihan a velsionis en otras palras:',

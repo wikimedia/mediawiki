@@ -401,8 +401,8 @@ $messages = array(
 'disambiguations'     => 'мъногосъмꙑ́слиꙗ',
 'disambiguationspage' => 'Template:мъногосъмꙑ́слиѥ',
 
-'brokenredirects-edit'   => '(испра́ви)',
-'brokenredirects-delete' => '(поничьжє́ниѥ)',
+'brokenredirects-edit'   => 'испра́ви',
+'brokenredirects-delete' => 'поничьжє́ниѥ',
 
 # Miscellaneous special pages
 'nbytes'            => '$1 {{PLURAL:$1|ба́итъ|ба́ита|ба́итъ}}',

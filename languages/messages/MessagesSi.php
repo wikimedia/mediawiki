@@ -1639,8 +1639,8 @@ PICT # විවිධ.
 
 'brokenredirects'        => 'භින්න යළි-යොමුවීම්',
 'brokenredirectstext'    => 'මෙහි පහත දැක්වෙන යළි-යොමුවීම් නොපවතින පිටු වලට සබැඳේ:',
-'brokenredirects-edit'   => '(සංස්කරණය)',
-'brokenredirects-delete' => '(මකා දැමීම)',
+'brokenredirects-edit'   => 'සංස්කරණය',
+'brokenredirects-delete' => 'මකා දැමීම',
 
 'withoutinterwiki'         => 'භාෂා සබැඳි විරහිත පිටු',
 'withoutinterwiki-summary' => 'මෙහි පහත දැක්වෙන පිටු අනෙකුත් භාෂා අනුවාදයන් වෙත නොබැඳේ.',

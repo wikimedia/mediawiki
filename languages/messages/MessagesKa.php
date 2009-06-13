@@ -1160,8 +1160,8 @@ $1 საათში.',
 
 'brokenredirects'        => 'გაწყვეტილი გადამისამართება',
 'brokenredirectstext'    => 'შემდეგი გადამისამართებები გაკეთებულია არარსებულ გვერდებზე:',
-'brokenredirects-edit'   => '(რედაქტირება)',
-'brokenredirects-delete' => '(წაშლა)',
+'brokenredirects-edit'   => 'რედაქტირება',
+'brokenredirects-delete' => 'წაშლა',
 
 'withoutinterwiki'         => 'გვერდები ენის ბმულების გარეშე',
 'withoutinterwiki-summary' => 'შემდეგ გვერდებს სხვა ენების ვერსიებზე არ აქვთ ბმულები:',

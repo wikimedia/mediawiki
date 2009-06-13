@@ -170,6 +170,9 @@ $messages = array(
 'faq'            => 'FAQ',
 'faqpage'        => 'Project:FAQ',
 
+# Vector skin
+'vector-view-view' => 'Ligge',
+
 # Metadata in edit box
 'metadata_help' => 'Metadata:',
 
@@ -189,7 +192,6 @@ $messages = array(
 'permalink'         => 'Collegamende ca remane pe sembre',
 'print'             => 'Stambe',
 'edit'              => 'Cange',
-'view'              => 'Ligge',
 'create'            => 'Ccreje',
 'editthispage'      => 'Cange sta pàgene',
 'create-this-page'  => "Ccreje 'a pàgene",
@@ -1460,8 +1462,8 @@ Ogne righe condiene 'nu collegamende a 'u prime e a 'u seconde ridirezionamendem
 
 'brokenredirects'        => 'Redirezionamninde scuasciete',
 'brokenredirectstext'    => "Le ridirezionaminde ca seguene appondene a pàggene ca non g'esistene:",
-'brokenredirects-edit'   => '(cange)',
-'brokenredirects-delete' => '(scangille)',
+'brokenredirects-edit'   => 'cange',
+'brokenredirects-delete' => 'scangille',
 
 'withoutinterwiki'        => 'Pàggene senza collegaminde a otre Uicchi',
 'withoutinterwiki-legend' => 'Prefisse',

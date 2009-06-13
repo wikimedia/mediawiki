@@ -477,6 +477,9 @@ $messages = array(
 'faq'            => 'FAQ',
 'faqpage'        => 'Project:FAQ',
 
+# Vector skin
+'vector-view-view' => 'Lesen',
+
 # Metadata in edit box
 'metadata_help' => 'Metadaten:',
 
@@ -496,7 +499,6 @@ $messages = array(
 'permalink'         => 'Permanentlink',
 'print'             => 'Drucken',
 'edit'              => 'Bearbeiten',
-'view'              => 'Lesen',
 'create'            => 'Erstellen',
 'editthispage'      => 'Seite bearbeiten',
 'create-this-page'  => 'Seite erstellen',
@@ -1818,8 +1820,8 @@ Jede Zeile enthält Links zu der ersten und zweiten Weiterleitung sowie das Ziel
 
 'brokenredirects'        => 'Kaputte Weiterleitungen',
 'brokenredirectstext'    => 'Diese Spezialseite listet Weiterleitungen auf nicht existierende Seiten auf.',
-'brokenredirects-edit'   => '(bearbeiten)',
-'brokenredirects-delete' => '(löschen)',
+'brokenredirects-edit'   => 'bearbeiten',
+'brokenredirects-delete' => 'löschen',
 
 'withoutinterwiki'         => 'Seiten ohne Links zu anderen Sprachen',
 'withoutinterwiki-summary' => 'Die folgenden Seiten verlinken nicht auf andere Sprachversionen.',

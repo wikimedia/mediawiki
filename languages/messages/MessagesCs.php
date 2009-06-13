@@ -459,6 +459,9 @@ $messages = array(
 'faq'            => 'Často kladené otázky',
 'faqpage'        => 'Project:Často kladené otázky',
 
+# Vector skin
+'vector-view-view' => 'Číst',
+
 # Metadata in edit box
 'metadata_help' => 'Metadata:',
 
@@ -478,7 +481,6 @@ $messages = array(
 'permalink'         => 'Trvalý odkaz',
 'print'             => 'Vytisknout',
 'edit'              => 'Editovat',
-'view'              => 'Číst',
 'create'            => 'Vytvořit',
 'editthispage'      => 'Editovat stránku',
 'create-this-page'  => 'Vytvořit tuto stránku',
@@ -1773,8 +1775,8 @@ Vstup: <code>typ obsahu/podtyp</code>, např. <code>image/jpeg</code>.',
 
 'brokenredirects'        => 'Přerušená přesměrování',
 'brokenredirectstext'    => 'Tato přesměrování vedou na neexistující stránky:',
-'brokenredirects-edit'   => '(editovat)',
-'brokenredirects-delete' => '(smazat)',
+'brokenredirects-edit'   => 'editovat',
+'brokenredirects-delete' => 'smazat',
 
 'withoutinterwiki'         => 'Stránky bez mezijazykových odkazů (interwiki)',
 'withoutinterwiki-summary' => 'Tyto stránky neobsahují žádný mezijazykový odkaz:',

@@ -884,8 +884,8 @@ Par includi une figure intune pagjine, dopre un leam inte form
 
 'brokenredirects'        => 'Re-indreçaments che no funzionin',
 'brokenredirectstext'    => 'I re-indreçaments ca sot a mandin a pagjinis che no esistin:',
-'brokenredirects-edit'   => '(cambie)',
-'brokenredirects-delete' => '(elimine)',
+'brokenredirects-edit'   => 'cambie',
+'brokenredirects-delete' => 'elimine',
 
 'withoutinterwiki'        => 'Pagjinis cence leams interwiki',
 'withoutinterwiki-submit' => 'Mostre',

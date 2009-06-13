@@ -547,8 +547,8 @@ Hiki iā ‘oe ke [[:\$1|hoʻokumu i kēia ‘ao‘ao]].",
 # Statistics
 'statistics' => 'Papa helu',
 
-'brokenredirects-edit'   => '(e ho‘opololei)',
-'brokenredirects-delete' => '(e kāpae)',
+'brokenredirects-edit'   => 'e ho‘opololei',
+'brokenredirects-delete' => 'e kāpae',
 
 'withoutinterwiki-submit' => 'Hō‘ike',
 

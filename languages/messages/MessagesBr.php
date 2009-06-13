@@ -241,6 +241,9 @@ $messages = array(
 'faq'            => 'FAG',
 'faqpage'        => 'Project:FAG',
 
+# Vector skin
+'vector-view-view' => 'Lenn',
+
 # Metadata in edit box
 'metadata_help' => 'Metaroadennoù :',
 
@@ -260,7 +263,6 @@ $messages = array(
 'permalink'         => "Chomlec'h ar stumm-mañ",
 'print'             => 'Moullañ',
 'edit'              => 'Kemmañ',
-'view'              => 'Lenn',
 'create'            => 'Krouiñ',
 'editthispage'      => 'Kemmañ ar bajenn-mañ',
 'create-this-page'  => 'Krouiñ ar bajenn-mañ',
@@ -1561,8 +1563,8 @@ Sellet e vez ouzh ur bajenn evel ouzh ur bajenn digejañ ma ra gant ur patrom li
 
 'brokenredirects'        => 'Adkasoù torret',
 'brokenredirectstext'    => "Kas a ra an adkasoù-mañ da bajennoù n'eus ket anezho.",
-'brokenredirects-edit'   => '(kemmañ)',
-'brokenredirects-delete' => '(diverkañ)',
+'brokenredirects-edit'   => 'kemmañ',
+'brokenredirects-delete' => 'diverkañ',
 
 'withoutinterwiki'         => 'Pajennoù hep liammoù yezh',
 'withoutinterwiki-summary' => "Ar pajennoù da-heul n'int ket liammet ouzh yezh all ebet :",

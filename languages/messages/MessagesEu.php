@@ -272,6 +272,9 @@ $messages = array(
 'faq'            => 'Maiz egindako galderak',
 'faqpage'        => 'Project:Maiz egindako galderak',
 
+# Vector skin
+'vector-view-view' => 'Irakurri',
+
 # Metadata in edit box
 'metadata_help' => 'Metadatuak:',
 
@@ -291,7 +294,6 @@ $messages = array(
 'permalink'         => 'Lotura finkoa',
 'print'             => 'Inprimatu',
 'edit'              => 'Aldatu',
-'view'              => 'Irakurri',
 'create'            => 'Sortu',
 'editthispage'      => 'Orrialde hau aldatu',
 'create-this-page'  => 'Orrialde hau sortu',
@@ -1535,8 +1537,8 @@ Ondorengo zerrendak fitxategira dauden {{PLURAL:$1|lehen lotura|lehen $1 loturak
 
 'brokenredirects'        => 'Hautsitako birzuzenketak',
 'brokenredirectstext'    => 'Jarraian zerrendatutako birzuzenketa loturak existitzen ez diren orrietara zuzenduta daude:',
-'brokenredirects-edit'   => '(aldatu)',
-'brokenredirects-delete' => '(ezabatu)',
+'brokenredirects-edit'   => 'aldatu',
+'brokenredirects-delete' => 'ezabatu',
 
 'withoutinterwiki'         => 'Hizkuntza loturarik gabeko orrialdeak',
 'withoutinterwiki-summary' => 'Orrialde hauek ez daukate beste hizkuntzetarako loturarik:',

@@ -785,8 +785,8 @@ Ogni riga contiene i link al primo ed al secondo redirect, oltre alla prima riga
 
 'brokenredirects'        => 'Redirects isballiaus',
 'brokenredirectstext'    => 'Custus redirects ligant cun pàginas chi no esistint.',
-'brokenredirects-edit'   => '(acontza)',
-'brokenredirects-delete' => '(fùlia)',
+'brokenredirects-edit'   => 'acontza',
+'brokenredirects-delete' => 'fùlia',
 
 'withoutinterwiki-submit' => 'Amosta',
 

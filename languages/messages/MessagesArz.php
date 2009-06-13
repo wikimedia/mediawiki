@@ -1745,8 +1745,8 @@ PICT # misc.
 
 'brokenredirects'        => 'تحويلات مكسوره',
 'brokenredirectstext'    => 'التحويلات دى بتودى لصفحات  مالهاش وجود:',
-'brokenredirects-edit'   => '(تحرير)',
-'brokenredirects-delete' => '(مسح)',
+'brokenredirects-edit'   => 'تحرير',
+'brokenredirects-delete' => 'مسح',
 
 'withoutinterwiki'         => 'صفحات من غير وصلات للغات تانيه',
 'withoutinterwiki-summary' => 'الصفحات دى  مالهاش لينكات لنسخ بلغات تانية:',

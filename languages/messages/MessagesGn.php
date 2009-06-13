@@ -355,8 +355,8 @@ Reomĩsérõ ta'ãnga peteĩ kuatiaroguépe, eipuru peteĩ joaju:
 'doubleredirects' => "Ñembohapejey jo'apyre",
 
 'brokenredirects'        => "Ñembohapejey hekopegua'ỹva",
-'brokenredirects-edit'   => '(jehaijey)',
-'brokenredirects-delete' => "(mboje'o)",
+'brokenredirects-edit'   => 'jehaijey',
+'brokenredirects-delete' => "mboje'o",
 
 'withoutinterwiki' => 'Kuatiarogue ndorekóiva interwiki',
 

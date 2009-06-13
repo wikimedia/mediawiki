@@ -1416,8 +1416,8 @@ Farið er með síðu sem aðgreiningarsíðu ef að hún inniheldur snið sem v
 
 'brokenredirects'        => 'Brotnar tilvísanir',
 'brokenredirectstext'    => 'Eftirfarandi tilvísanir vísa á síður sem ekki eru til:',
-'brokenredirects-edit'   => '(breyta)',
-'brokenredirects-delete' => '(eyða)',
+'brokenredirects-edit'   => 'breyta',
+'brokenredirects-delete' => 'eyða',
 
 'withoutinterwiki'         => 'Síður án tungumálatengla',
 'withoutinterwiki-summary' => 'Eftirfarandi síður tengja ekki í önnur tungumál:',

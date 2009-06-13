@@ -777,7 +777,7 @@ $messages = array(
 'doubleredirects' => 'Περισσά διπλά συνδέσμ',
 
 'brokenredirects'        => 'Τσακωμένα διπλά συνδέσμ',
-'brokenredirects-delete' => '(σβήσεμαν)',
+'brokenredirects-delete' => 'σβήσεμαν',
 
 'withoutinterwiki'        => "Σελίδας ντο κ' έχνε συνδέσμ",
 'withoutinterwiki-legend' => 'Προθέκεμαν',

@@ -1193,8 +1193,8 @@ Tuturing yang bulung pamipalino ing metung a bulung nung gagamit yang modelung (
 
 'brokenredirects'        => 'Meputut a pamanaliling direksiun',
 'brokenredirectstext'    => 'Makasuglung la kareng bulung a ala naman deng makatuking pamanalis direksiun (redirects):',
-'brokenredirects-edit'   => '(alilan)',
-'brokenredirects-delete' => '(buran)',
+'brokenredirects-edit'   => 'alilan',
+'brokenredirects-delete' => 'buran',
 
 'withoutinterwiki'         => 'Bulung a yalang suglung kareng aliwang amanu',
 'withoutinterwiki-summary' => 'E la makasuglung kareng bersion king aliwang amanu deng makatuking bulung:',

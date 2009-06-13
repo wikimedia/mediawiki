@@ -418,6 +418,9 @@ $messages = array(
 'faq'            => 'OSS',
 'faqpage'        => 'Project:OSS',
 
+# Vector skin
+'vector-view-view' => 'Les',
+
 # Metadata in edit box
 'metadata_help' => 'Utvida informasjon:',
 
@@ -437,7 +440,6 @@ $messages = array(
 'permalink'         => 'Fast lenkje',
 'print'             => 'Skriv ut',
 'edit'              => 'Endre',
-'view'              => 'Les',
 'create'            => 'Opprett',
 'editthispage'      => 'Endre sida',
 'create-this-page'  => 'Opprett denne sida',
@@ -1704,8 +1706,8 @@ Skildringa frå [$2 filskildringssida] der er vist nedanfor.',
 
 'brokenredirects'        => 'Blindvegsomdirigeringar',
 'brokenredirectstext'    => 'Dei følgjande omdirigeringane viser til ei side som ikkje finst:',
-'brokenredirects-edit'   => '(endre)',
-'brokenredirects-delete' => '(slett)',
+'brokenredirects-edit'   => 'endre',
+'brokenredirects-delete' => 'slett',
 
 'withoutinterwiki'         => 'Sider utan lenkjer til andre språk',
 'withoutinterwiki-summary' => 'Desse sidene manglar lenkjer til sider på andre språk:',

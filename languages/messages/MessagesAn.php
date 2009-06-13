@@ -1489,8 +1489,8 @@ Una pachina se considera pachina de desambigazión si fa serbir una plantilla pr
 
 'brokenredirects'        => 'Reendrezeras crebatas',
 'brokenredirectstext'    => 'As siguients endrezeras leban enta pachinas inesistents.',
-'brokenredirects-edit'   => '(editar)',
-'brokenredirects-delete' => '(borrar)',
+'brokenredirects-edit'   => 'editar',
+'brokenredirects-delete' => 'borrar',
 
 'withoutinterwiki'         => "Pachinas sin d'interwikis",
 'withoutinterwiki-summary' => 'As siguients pachinas no tienen binclos ta bersions en atras luengas:',

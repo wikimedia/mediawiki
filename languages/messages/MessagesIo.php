@@ -903,8 +903,8 @@ Videz rezumo plu vidala en la [[Special:NewFiles|galerio di nova arkivi]].',
 
 'brokenredirects'        => 'Ridirektili nekorekta',
 'brokenredirectstext'    => 'La sequanta ridirektili ligas a ne-existanta pagini:',
-'brokenredirects-edit'   => '(redaktar)',
-'brokenredirects-delete' => '(efacar)',
+'brokenredirects-edit'   => 'redaktar',
+'brokenredirects-delete' => 'efacar',
 
 'withoutinterwiki'        => 'Pagini sen linguo-ligili',
 'withoutinterwiki-legend' => 'Prefixo',

@@ -1587,8 +1587,8 @@ Eger [[MediaWiki:Disambiguationspage]] tizimindegi ülgi qoldanılsa, bet aýrı
 
 'brokenredirects'        => 'Eş betke keltirmeýtin aýdağıştar',
 'brokenredirectstext'    => 'Kelesi aýdağıştar joq betterge silteýdi:',
-'brokenredirects-edit'   => '(öñdew)',
-'brokenredirects-delete' => '(joyw)',
+'brokenredirects-edit'   => 'öñdew',
+'brokenredirects-delete' => 'joyw',
 
 'withoutinterwiki'         => 'Eş tilge siltemegen better',
 'withoutinterwiki-summary' => 'Kelesi better basqa tilderge siltemeýdi',

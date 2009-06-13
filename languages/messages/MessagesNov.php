@@ -287,7 +287,7 @@ Proba [[Special:Search|sercho sur li wiki]] por relatet pagines.',
 
 'brokenredirects'      => 'Rupteti ri-adresos',
 'brokenredirectstext'  => 'Li sekuenti ri-adresos linka a non-existanti pagines:',
-'brokenredirects-edit' => '(editja)',
+'brokenredirects-edit' => 'editja',
 
 'fewestrevisions' => 'Artikles kun minim multi revisiones',
 

@@ -1160,8 +1160,8 @@ $3-এর দেয়া কারণ হল ''$2''",
 
 'brokenredirects'        => 'অকার্যকর পুনর্নির্দেশনাসমূহ',
 'brokenredirectstext'    => 'নিচের পুনর্নির্দেশনাগুলি অস্তিত্বহীন পাতার দিকে নির্দেশ করছে:',
-'brokenredirects-edit'   => '(সম্পাদনা)',
-'brokenredirects-delete' => '(মুছে ফেলুন)',
+'brokenredirects-edit'   => 'সম্পাদনা',
+'brokenredirects-delete' => 'মুছে ফেলুন',
 
 'withoutinterwiki'         => 'ভাষার সংযোগহীন পাতাসমূহ',
 'withoutinterwiki-summary' => 'এই পাতা সমূহ অন্য ভাষার সংস্করণের সাথে সংযুক্ত নয়:',

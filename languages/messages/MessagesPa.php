@@ -648,8 +648,8 @@ to upload files.',
 'statistics-header-users' => 'ਯੂਜ਼ਰ ਅੰਕੜੇ',
 'statistics-mostpopular'  => 'ਸਭ ਤੋਂ ਵੱਧ ਵੇਖੇ ਪੇਜ',
 
-'brokenredirects-edit'   => '(ਸੋਧ)',
-'brokenredirects-delete' => '(ਹਟਾਓ)',
+'brokenredirects-edit'   => 'ਸੋਧ',
+'brokenredirects-delete' => 'ਹਟਾਓ',
 
 # Miscellaneous special pages
 'unusedcategories'  => 'ਅਣਵਰਤੀਆਂ ਕੈਟਾਗਰੀਆਂ',

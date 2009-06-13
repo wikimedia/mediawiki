@@ -305,6 +305,30 @@ $messages = array(
 'faq'            => 'OSS',
 'faqpage'        => 'Project:OSS',
 
+# Vector skin
+'vector-action-addsection'   => 'Nyt emne',
+'vector-action-delete'       => 'Slet',
+'vector-action-move'         => 'Flyt',
+'vector-action-protect'      => 'Beskyt',
+'vector-action-undelete'     => 'Gendan',
+'vector-action-unprotect'    => 'Fjern beskyttelse',
+'vector-namespace-category'  => 'Kategori',
+'vector-namespace-help'      => 'Hjælpeside',
+'vector-namespace-image'     => 'Fil',
+'vector-namespace-main'      => 'Side',
+'vector-namespace-media'     => 'Medieside',
+'vector-namespace-mediawiki' => 'Besked',
+'vector-namespace-project'   => 'Projektside',
+'vector-namespace-special'   => 'Specialside',
+'vector-namespace-talk'      => 'Diskussion',
+'vector-namespace-template'  => 'Skabelon',
+'vector-namespace-user'      => 'Brugerside',
+'vector-view-create'         => 'Opret',
+'vector-view-edit'           => 'Redigér',
+'vector-view-history'        => 'Se historik',
+'vector-view-view'           => 'Vis',
+'vector-view-viewsource'     => 'Se kilden',
+
 # Metadata in edit box
 'metadata_help' => 'Metadata:',
 
@@ -324,7 +348,6 @@ $messages = array(
 'permalink'         => 'Permanent henvisning',
 'print'             => 'Udskriv',
 'edit'              => 'Redigér',
-'view'              => 'Vis',
 'create'            => 'opret',
 'editthispage'      => 'Redigér side',
 'create-this-page'  => 'opret ny side',
@@ -1596,8 +1619,8 @@ Husk at kontrollere for andre henvisninger til skabelonerne før de slettes.',
 
 'brokenredirects'        => 'Defekte omdirigeringer',
 'brokenredirectstext'    => 'Følgende omdirigeringer peger på en side der ikke eksisterer:',
-'brokenredirects-edit'   => '(rediger)',
-'brokenredirects-delete' => '(slet)',
+'brokenredirects-edit'   => 'rediger',
+'brokenredirects-delete' => 'slet',
 
 'withoutinterwiki'         => 'Sider uden henvisninger til andre sprog',
 'withoutinterwiki-summary' => 'Følgende sider henviser ikke til andre sprog.',
@@ -1888,7 +1911,7 @@ en anden har allerede redigeret siden eller fjernet redigeringen.
 
 Den seneste redigering er foretaget af [[User:$3|$3]] ([[User talk:$3|diskussion]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment'      => "Redigeringsbeskrivelsen var: \"''\$1''\".",
-'revertpage'       => 'Gendannelse til seneste version ved $1, fjerner ændringer fra $2',
+'revertpage'       => 'Gendannelse til seneste version ved [[User:$1|$1]], fjerner ændringer fra [[Special:Contributions/$2|$2]] ([[User talk:$2|diskussion]])',
 'rollback-success' => 'Ændringerne fra $1 er fjernet,
 og den seneste version af $2 er gendannet.',
 'sessionfailure'   => 'Der lader til at være et problem med din loginsession; denne handling blev annulleret som en sikkerhedsforanstaltning mod kapring af sessionen. Tryk på "tilbage"-knappen og genindlæs den side du kom fra, og prøv dernæst igen.',

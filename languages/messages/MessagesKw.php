@@ -354,8 +354,8 @@ $messages = array(
 # Statistics
 'statistics-pages' => 'Folennow',
 
-'brokenredirects-edit'   => '(chanjya)',
-'brokenredirects-delete' => '(dilea)',
+'brokenredirects-edit'   => 'chanjya',
+'brokenredirects-delete' => 'dilea',
 
 'withoutinterwiki-submit' => 'Diskwedhes',
 

@@ -798,8 +798,8 @@ $1 хутшăнакан патне, е ытти [[{{MediaWiki:Grouppage-sysop}}|
 
 'brokenredirects'        => 'Татăк куçару страницисем',
 'brokenredirectstext'    => 'Ку куçару страницисем çук страницăна куçараççĕ:',
-'brokenredirects-edit'   => '(тӳрлет)',
-'brokenredirects-delete' => '(кăларса пăрах)',
+'brokenredirects-edit'   => 'тӳрлет',
+'brokenredirects-delete' => 'кăларса пăрах',
 
 'fewestrevisions' => 'Сахал тӳрлетнĕ статьясем',
 

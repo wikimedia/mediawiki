@@ -370,6 +370,10 @@ $messages = array(
 'faq'            => 'Часті питання',
 'faqpage'        => 'Project:Часті питання',
 
+# Vector skin
+'vector-action-addsection' => 'Додати тему',
+'vector-view-view'         => 'Читання',
+
 # Metadata in edit box
 'metadata_help' => 'Метадані:',
 
@@ -389,7 +393,6 @@ $messages = array(
 'permalink'         => 'Постійне посилання',
 'print'             => 'Друк',
 'edit'              => 'Редагувати',
-'view'              => 'Читання',
 'create'            => 'Створити',
 'editthispage'      => 'Редагувати цю сторінку',
 'create-this-page'  => 'Створити цю сторінку',
@@ -1741,8 +1744,8 @@ PICT # різні
 
 'brokenredirects'        => 'Розірвані перенаправлення',
 'brokenredirectstext'    => 'Такі перенаправлення вказують на неіснуючі сторінки:',
-'brokenredirects-edit'   => '(редагувати)',
-'brokenredirects-delete' => '(вилучити)',
+'brokenredirects-edit'   => 'редагувати',
+'brokenredirects-delete' => 'вилучити',
 
 'withoutinterwiki'         => 'Сторінки без міжмовних посилань',
 'withoutinterwiki-summary' => 'Такі сторінки не мають інтервікі-посилань:',

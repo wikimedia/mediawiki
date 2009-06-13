@@ -940,8 +940,8 @@ Dagiti panid iti [[Special:Watchlist|listaan ti bambantayam]] ket '''naipuskol''
 'doubleredirects' => 'Dagiti doble a panangbaw-ing',
 
 'brokenredirects'        => 'Dagiti naputed a panangbaw-ing',
-'brokenredirects-edit'   => '(baliwan)',
-'brokenredirects-delete' => '(ikkaten)',
+'brokenredirects-edit'   => 'baliwan',
+'brokenredirects-delete' => 'ikkaten',
 
 'withoutinterwiki'        => 'Dagiti panid nga awanan panilpo a pagsasao',
 'withoutinterwiki-legend' => 'Prefix',

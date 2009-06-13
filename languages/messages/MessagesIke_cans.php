@@ -256,8 +256,8 @@ $messages = array(
 'doubleredirects' => 'ᑕᐱᕐᖃᓕᒃ ᖃᓂᖓᓂ ᑲᒪᒋᔭᖅ ᐋᓯᑦ ᓇᑭᑦ',
 
 'brokenredirects'        => 'ᓇᐱᕚ ᖃᓂᖓᓂ ᑲᒪᒋᔭᖅ ᐋᓯᑦ ᓇᑭᑦ',
-'brokenredirects-edit'   => '(ᓱᖁᓯᖅᐹ)',
-'brokenredirects-delete' => '(ᓂᐸᖅᑎᐹ)',
+'brokenredirects-edit'   => 'ᓱᖁᓯᖅᐹ',
+'brokenredirects-delete' => 'ᓂᐸᖅᑎᐹ',
 
 # Miscellaneous special pages
 'listusers'         => 'ᖃᑕᙳᑎ ᓂᐱ',

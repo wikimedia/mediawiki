@@ -1624,8 +1624,8 @@ Paġna tiġi stimata paġna ta' diżambigwazzjoni dawk kollha li jagħmlu użu m
 
 'brokenredirects'        => 'Riindirizzi ħżiena',
 'brokenredirectstext'    => 'Ir-riindirizzi segwenti għandhom ħoloq għal paġni ineżistenti:',
-'brokenredirects-edit'   => '(modifika)',
-'brokenredirects-delete' => '(ħassar)',
+'brokenredirects-edit'   => 'modifika',
+'brokenredirects-delete' => 'ħassar',
 
 'withoutinterwiki'         => 'Paġni bla interwiki',
 'withoutinterwiki-summary' => "Il-paġni segwenti m'għandhomx links għal verżjonijiet ta' lingwi oħrajn:",

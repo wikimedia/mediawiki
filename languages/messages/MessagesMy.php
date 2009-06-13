@@ -271,8 +271,8 @@ $messages = array(
 # Statistics
 'statistics' => 'စာရင်းအင်း',
 
-'brokenredirects-edit'   => '(ပြင်​ဆင်​ရန်)',
-'brokenredirects-delete' => '(ဖျက်​ပါ)',
+'brokenredirects-edit'   => 'ပြင်​ဆင်​ရန်',
+'brokenredirects-delete' => 'ဖျက်​ပါ',
 
 'withoutinterwiki-submit' => 'ပြ',
 

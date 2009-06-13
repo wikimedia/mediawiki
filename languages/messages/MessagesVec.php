@@ -282,6 +282,9 @@ I seguenti cołegamenti i xe en lengua inglese:
 'faq'            => 'Domande frequenti',
 'faqpage'        => 'Project:Domande frequenti',
 
+# Vector skin
+'vector-view-view' => 'Lèzi',
+
 # Metadata in edit box
 'metadata_help' => 'Metadati:',
 
@@ -301,7 +304,6 @@ I seguenti cołegamenti i xe en lengua inglese:
 'permalink'         => 'Colegamento permanente',
 'print'             => 'Stanpa',
 'edit'              => 'Modìfega',
-'view'              => 'Lèzi',
 'create'            => 'Crea',
 'editthispage'      => 'Modìfega sta pagina',
 'create-this-page'  => 'Crea sta pagina',
@@ -1596,8 +1598,8 @@ Vien considerà pagine de disanbiguazion tute quele che contien i template elenc
 
 'brokenredirects'        => 'Redirect mìa giusti',
 'brokenredirectstext'    => 'I seguenti rimandi i punta a pàxene che no esiste:',
-'brokenredirects-edit'   => '(modifica)',
-'brokenredirects-delete' => '(scancela)',
+'brokenredirects-edit'   => 'modifica',
+'brokenredirects-delete' => 'scancela',
 
 'withoutinterwiki'         => 'Pagine che no gà interwiki',
 'withoutinterwiki-summary' => 'Le pagine indicà de seguito no le gà colegamenti a le version in altre lengue:',

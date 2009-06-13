@@ -1100,8 +1100,8 @@ Eger saifede, [[MediaWiki:Disambiguationspage]] saifesinde adı keçken şablon 
 
 'brokenredirects'        => 'Bar olmağan saifege yapılğan yollamalar',
 'brokenredirectstext'    => 'Aşağıdaki yollamalar bar olmağan saifelerge bağlantı bereler:',
-'brokenredirects-edit'   => '(deñiştir)',
-'brokenredirects-delete' => '(yoq et)',
+'brokenredirects-edit'   => 'deñiştir',
+'brokenredirects-delete' => 'yoq et',
 
 'withoutinterwiki'         => 'Diger tillerdeki versiyalarğa bağlantıları olmağan saifeler',
 'withoutinterwiki-summary' => 'Bu saifelerde diger tillerdeki versiyalarğa bağlantılar yoq:',

@@ -445,6 +445,9 @@ $messages = array(
 'faq'            => 'FDQ',
 'faqpage'        => 'Project:FDQ',
 
+# Vector skin
+'vector-view-view' => 'Liére',
+
 # Metadata in edit box
 'metadata_help' => 'Mètabalyês :',
 
@@ -464,7 +467,6 @@ $messages = array(
 'permalink'         => 'Lim historico',
 'print'             => 'Emprimar',
 'edit'              => 'Changiér',
-'view'              => 'Liére',
 'create'            => 'Fâre',
 'editthispage'      => 'Changiér ceta pâge',
 'create-this-page'  => 'Fâre ceta pâge',
@@ -1850,8 +1852,8 @@ Châque entrâ contint des lims de vers la premiére et la seconda redirèccion,
 
 'brokenredirects'        => 'Redirèccions câsses',
 'brokenredirectstext'    => 'Cetes redirèccions mènont vers des pâges pas ègzistentes :',
-'brokenredirects-edit'   => '(changiér)',
-'brokenredirects-delete' => '(suprimar)',
+'brokenredirects-edit'   => 'changiér',
+'brokenredirects-delete' => 'suprimar',
 
 'withoutinterwiki'         => 'Pâges sen lims entèrlengoues',
 'withoutinterwiki-summary' => 'Cetes pâges ont pas de lims de vers d’ôtres lengoues :',

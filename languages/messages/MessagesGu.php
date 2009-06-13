@@ -938,8 +938,8 @@ Please log in again after you receive it.
 # Statistics
 'statistics' => 'આંકડાકિય માહિતિ',
 
-'brokenredirects-edit'   => '(ફેરફાર કરો)',
-'brokenredirects-delete' => '(હટાવો)',
+'brokenredirects-edit'   => 'ફેરફાર કરો',
+'brokenredirects-delete' => 'હટાવો',
 
 'withoutinterwiki' => 'અન્ય ભાષાઓની કડીઓ વગરનાં પાનાં',
 

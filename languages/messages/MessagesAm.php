@@ -1180,8 +1180,8 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 
 'brokenredirects'        => 'ሰባራ መምሪያ መንገዶች',
 'brokenredirectstext'    => 'እነዚህ መምሪያ መንገዶች ወደማይኖር ጽሑፍ ይመራሉ።',
-'brokenredirects-edit'   => '(ለማስተካከል)',
-'brokenredirects-delete' => '(ለማጥፋት)',
+'brokenredirects-edit'   => 'ለማስተካከል',
+'brokenredirects-delete' => 'ለማጥፋት',
 
 'withoutinterwiki'         => 'በሌሎች ቋንቋዎች ያልተያያዙ',
 'withoutinterwiki-summary' => 'እነዚህ ጽሑፎች «በሌሎች ቋንቋዎች» ሥር ወደሆኑት ሌሎች ትርጉሞች ገና አልተያያዙም።',

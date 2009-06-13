@@ -373,6 +373,9 @@ $messages = array(
 'faq'            => 'Ofte stilte spørsmål',
 'faqpage'        => 'Project:Ofte stilte spørsmål',
 
+# Vector skin
+'vector-view-view' => 'Les',
+
 # Metadata in edit box
 'metadata_help' => 'Metadata:',
 
@@ -392,7 +395,6 @@ $messages = array(
 'permalink'         => 'Permanent lenke',
 'print'             => 'Skriv ut',
 'edit'              => 'Rediger',
-'view'              => 'Les',
 'create'            => 'Opprett',
 'editthispage'      => 'Rediger siden',
 'create-this-page'  => 'Opprett denne siden',
@@ -1679,8 +1681,8 @@ En side anses om en pekerside om den inneholder en mal som det lenkes til fra [[
 
 'brokenredirects'        => 'Brutte omdirigeringer',
 'brokenredirectstext'    => 'Følgende omdirigeringer peker til ikkeeksisterende sider:',
-'brokenredirects-edit'   => '(rediger)',
-'brokenredirects-delete' => '(slett)',
+'brokenredirects-edit'   => 'rediger',
+'brokenredirects-delete' => 'slett',
 
 'withoutinterwiki'         => 'Sider uten lenker til andre språk',
 'withoutinterwiki-summary' => 'Følgende sider lenker ikke til andre språkversjoner:',

@@ -904,8 +904,8 @@ $messages = array(
 'doubleredirects' => 'دوه ځلي ورګرځېدنې',
 
 'brokenredirects'        => 'ماتې ورګرځېدنې',
-'brokenredirects-edit'   => '(سمول)',
-'brokenredirects-delete' => '(ړنګول)',
+'brokenredirects-edit'   => 'سمول',
+'brokenredirects-delete' => 'ړنګول',
 
 'withoutinterwiki'        => 'د ژبې د تړنو بې برخې مخونه',
 'withoutinterwiki-submit' => 'ښکاره کول',

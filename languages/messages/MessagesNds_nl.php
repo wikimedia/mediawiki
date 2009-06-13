@@ -431,6 +431,9 @@ $messages = array(
 'faq'            => 'Vragen dee vake esteld wonnen',
 'faqpage'        => 'Project:Vragen dee vake esteld wonnen',
 
+# Vector skin
+'vector-view-view' => 'Lezen',
+
 # Metadata in edit box
 'metadata_help' => 'Metadata:',
 
@@ -450,7 +453,6 @@ $messages = array(
 'permalink'         => 'Vaste verwiezing',
 'print'             => 'Ofdrokken',
 'edit'              => 'Bewarken',
-'view'              => 'Lezen',
 'create'            => 'Anmaken',
 'editthispage'      => 'Pagina bewarken',
 'create-this-page'  => 'Disse pagina anmaken',
@@ -1744,8 +1746,8 @@ Pagina's wonnen ezien as een deurverwiespagina, as de mal gebruuk wonnen dee ver
 
 'brokenredirects'        => 'Ebreuken deurverwiezingen',
 'brokenredirectstext'    => 'Disse deurverwiezingen verwiezen naor een neet-bestaonde pagina.',
-'brokenredirects-edit'   => '(bewark)',
-'brokenredirects-delete' => '(vortdoon)',
+'brokenredirects-edit'   => 'bewark',
+'brokenredirects-delete' => 'vortdoon',
 
 'withoutinterwiki'         => "Pagina's zonder verwiezingen naor aandere talen",
 'withoutinterwiki-summary' => "De volgende pagina's verwiezen neet naor versies in een aandere taal.",

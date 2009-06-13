@@ -301,7 +301,7 @@ U to indirizzu IP serà registratu indu a cronolugia di ista pagina.",
 'statistics'              => 'Statistiche',
 'statistics-header-users' => "Statistiche nant'à l'utilizatori",
 
-'brokenredirects-edit' => '(mudificà)',
+'brokenredirects-edit' => 'mudificà',
 
 # Miscellaneous special pages
 'ncategories'       => '$1 {{PLURAL:$1|categuria|categurie}}',

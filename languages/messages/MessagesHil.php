@@ -208,8 +208,8 @@ Indi pagkalimti ang pag ilis sang imo mga pagpasulabi sa {{SITENAME}}.',
 # Random page
 'randompage' => 'Lagpat nga Panid',
 
-'brokenredirects-edit'   => '(ilisan)',
-'brokenredirects-delete' => '(panason)',
+'brokenredirects-edit'   => 'ilisan',
+'brokenredirects-delete' => 'panason',
 
 # Miscellaneous special pages
 'newpages-username' => 'Ngalan sang Manog-gamit:',

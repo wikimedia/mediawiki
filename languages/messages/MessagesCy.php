@@ -1521,8 +1521,8 @@ Cofiwch chwilio am gysylltiadau eraill at nodyn a'u hystyried cyn ei ddileu.",
 
 'brokenredirects'        => "Ailgyfeiriadau wedi'u torri",
 'brokenredirectstext'    => "Mae'r ailgyfeiriadau isod yn cysylltu â thudalennau nad ydynt ar gael:",
-'brokenredirects-edit'   => '(golygu)',
-'brokenredirects-delete' => '(dileu)',
+'brokenredirects-edit'   => 'golygu',
+'brokenredirects-delete' => 'dileu',
 
 'withoutinterwiki'         => 'Tudalennau heb gysylltiadau ag ieithoedd eraill',
 'withoutinterwiki-summary' => 'Nid oes gysylltiad rhwng y tudalennau canlynol a thudalennau mewn ieithoedd eraill:',

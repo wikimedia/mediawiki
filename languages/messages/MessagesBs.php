@@ -399,6 +399,9 @@ $messages = array(
 'faq'            => 'ČPP',
 'faqpage'        => 'Project:NPP',
 
+# Vector skin
+'vector-view-view' => 'Čitati',
+
 # Metadata in edit box
 'metadata_help' => 'Metapodaci:',
 
@@ -418,7 +421,6 @@ $messages = array(
 'permalink'         => 'Trajni link',
 'print'             => 'Štampa',
 'edit'              => 'Uredi',
-'view'              => 'Čitati',
 'create'            => 'Napravi',
 'editthispage'      => 'Uredite ovu stranicu',
 'create-this-page'  => 'Napravi ovu stranicu',
@@ -1781,8 +1783,8 @@ Stranica se smatra čvorom, ukoliko koristi šablon koji je povezan sa spiskom [
 
 'brokenredirects'        => 'Pokvarena preusmjerenja',
 'brokenredirectstext'    => 'Slijedeća preusmjerenja vode na nepostojeći stranice:',
-'brokenredirects-edit'   => '(uredi)',
-'brokenredirects-delete' => '(obriši)',
+'brokenredirects-edit'   => 'uredi',
+'brokenredirects-delete' => 'obriši',
 
 'withoutinterwiki'         => 'Članci bez interwiki linkova',
 'withoutinterwiki-summary' => 'Slijedeće stranice nemaju linkove prema verzijama na drugim jezicima.',

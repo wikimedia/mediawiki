@@ -408,8 +408,8 @@ Tasniwin di [[Special:Watchlist|Tabdart uḥṭṭu inec]] d '''tizurarin'''.",
 'doubleredirects' => '(redirects) ɛɛawdent',
 
 'brokenredirects'        => '(redirects) arẓent',
-'brokenredirects-edit'   => '(arri)',
-'brokenredirects-delete' => '(sfaḍ)',
+'brokenredirects-edit'   => 'arri',
+'brokenredirects-delete' => 'sfaḍ',
 
 'withoutinterwiki'        => 'Tasna bla tiẓdayin n tutlayt',
 'withoutinterwiki-submit' => 'Smmrad',

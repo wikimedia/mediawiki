@@ -281,6 +281,9 @@ $messages = array(
 'faq'            => 'FAQ',
 'faqpage'        => 'Project:FAQ',
 
+# Vector skin
+'vector-view-view' => 'Leger',
+
 # Metadata in edit box
 'metadata_help' => 'Metadatos:',
 
@@ -300,7 +303,6 @@ $messages = array(
 'permalink'         => 'Ligamine permanente',
 'print'             => 'Imprimer',
 'edit'              => 'Modificar',
-'view'              => 'Leger',
 'create'            => 'Crear',
 'editthispage'      => 'Modificar iste pagina',
 'create-this-page'  => 'Crear iste pagina',
@@ -1680,8 +1682,8 @@ Cata linea contine ligamines al prime e al secunde redirection, con le destinati
 
 'brokenredirects'        => 'Redirectiones rupte',
 'brokenredirectstext'    => 'Le sequente redirectiones mena a paginas non existente:',
-'brokenredirects-edit'   => '(modificar)',
-'brokenredirects-delete' => '(deler)',
+'brokenredirects-edit'   => 'modificar',
+'brokenredirects-delete' => 'deler',
 
 'withoutinterwiki'         => 'Paginas sin ligamines de linguas',
 'withoutinterwiki-summary' => 'Le sequente paginas non ha ligamines a versiones in altere linguas:',

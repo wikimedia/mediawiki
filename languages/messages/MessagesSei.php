@@ -817,8 +817,8 @@ Informacion: (curt) = quiíxde vercion currentua,
 
 'brokenredirects'        => 'Meniitomöx linkám nedireccion',
 'brokenredirectstext'    => 'Jan meniitomöx linkomde neday ti camiintivuatl páhinám:',
-'brokenredirects-edit'   => '(ticpatlöx)',
-'brokenredirects-delete' => '(delatom)',
+'brokenredirects-edit'   => 'ticpatlöx',
+'brokenredirects-delete' => 'delatom',
 
 # Miscellaneous special pages
 'nbytes'              => '$1 {{PLURAL:$1|byte|bytenám}}',

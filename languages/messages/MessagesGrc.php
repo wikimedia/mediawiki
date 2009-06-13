@@ -183,6 +183,9 @@ $messages = array(
 'faq'            => 'Τὰ πολλάκις αἰτηθέντα',
 'faqpage'        => 'Project:Πολλάκις αἰτηθέντα',
 
+# Vector skin
+'vector-view-view' => 'Ἀναγνῶναι',
+
 # Metadata in edit box
 'metadata_help' => 'Μεταδεδομένα:',
 
@@ -202,7 +205,6 @@ $messages = array(
 'permalink'         => 'Σύνδεσμος μόνιμος',
 'print'             => 'Τυποῦν',
 'edit'              => 'Μεταγράφειν',
-'view'              => 'Ἀναγνῶναι',
 'create'            => 'Ποιεῖν',
 'editthispage'      => 'Μεταγράφειν τήνδε τὴν δέλτον',
 'create-this-page'  => 'Ποιεῖν τήνδε τὴν δέλτον',
@@ -1286,8 +1288,8 @@ $1",
 'double-redirect-fixer'      => 'Διορθωτὴς ἀναδιευθύνσεων',
 
 'brokenredirects'        => 'Ἀναδιευθύνσεις οὐκέτι προὔργου οὖσαι',
-'brokenredirects-edit'   => '(μεταγράφειν)',
-'brokenredirects-delete' => '(διαγράφειν)',
+'brokenredirects-edit'   => 'μεταγράφειν',
+'brokenredirects-delete' => 'διαγράφειν',
 
 'withoutinterwiki'        => 'Δέλτοι ἄνευ γλωσσικῶν συνδέσμων',
 'withoutinterwiki-legend' => 'Πρόθεμα',

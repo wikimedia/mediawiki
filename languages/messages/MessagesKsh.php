@@ -349,6 +349,9 @@ Em Appachtemang <span class="plainlinks">[{{fullurl:Special:AllPages|namespace={
 'faq'            => 'FAQ',
 'faqpage'        => 'Project:FAQ',
 
+# Vector skin
+'vector-view-view' => 'Lesse',
+
 # Metadata in edit box
 'metadata_help' => 'Metta-Daate:',
 
@@ -368,7 +371,6 @@ Em Appachtemang <span class="plainlinks">[{{fullurl:Special:AllPages|namespace={
 'permalink'         => 'Als Permalink',
 'print'             => 'Drocke',
 'edit'              => 'Ändere',
-'view'              => 'Lesse',
 'create'            => 'Aanläje',
 'editthispage'      => 'De Sigg ändere',
 'create-this-page'  => 'Neu aanläje',
@@ -1859,8 +1861,8 @@ vun dä Sigg dovör.',
 
 'brokenredirects'        => 'Ömleitunge, die en et Leere jonn',
 'brokenredirectstext'    => 'Die Ömleitunge hee jonn op Sigge, die mer jaa nit han:',
-'brokenredirects-edit'   => '(ändere)',
-'brokenredirects-delete' => '(fottschmieße)',
+'brokenredirects-edit'   => 'ändere',
+'brokenredirects-delete' => 'fottschmieße',
 
 'withoutinterwiki'         => 'Atikele ohne Links op annder Shprooche',
 'withoutinterwiki-summary' => 'He sin Sigge jeliß, di nit op annder Shprooche jelingk sin.',
