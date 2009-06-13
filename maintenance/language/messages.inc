@@ -2812,6 +2812,7 @@ $wgMessageStructure = array(
 		'word-separator',
 		'ellipsis',
 		'percent',
+		'parentheses',
 	),
 	'imgmulti' => array(
 		'imgmultipageprev',

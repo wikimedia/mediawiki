@@ -332,6 +332,7 @@ $wgOptionalMessages = array(
 	'word-separator',
 	'ellipsis',
 	'percent',
+	'parentheses',
 	'autocomment-prefix',
 	'listgrouprights-right-display',
 	'timezone-utc',
