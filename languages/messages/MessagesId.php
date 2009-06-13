@@ -419,7 +419,28 @@ $messages = array(
 'faqpage'        => 'Project:FAQ',
 
 # Vector skin
-'vector-view-view' => 'Baca',
+'vector-action-addsection'   => 'Tambahkan bagian',
+'vector-action-delete'       => 'Hapus',
+'vector-action-move'         => 'Pindahkan',
+'vector-action-protect'      => 'Lindungi',
+'vector-action-undelete'     => 'Kembalikan',
+'vector-action-unprotect'    => 'Hapus perlindungan',
+'vector-namespace-category'  => 'Kategori',
+'vector-namespace-help'      => 'Halaman bantuan',
+'vector-namespace-image'     => 'Berkas',
+'vector-namespace-main'      => 'Halaman',
+'vector-namespace-media'     => 'Halaman media',
+'vector-namespace-mediawiki' => 'Pesan',
+'vector-namespace-project'   => 'Halaman proyek',
+'vector-namespace-special'   => 'Halaman istimewa',
+'vector-namespace-talk'      => 'Pembicaraan',
+'vector-namespace-template'  => 'Templat',
+'vector-namespace-user'      => 'Halaman pengguna',
+'vector-view-create'         => 'Buat',
+'vector-view-edit'           => 'Sunting',
+'vector-view-history'        => 'Versi terdahulu',
+'vector-view-view'           => 'Baca',
+'vector-view-viewsource'     => 'Lihat sumber',
 
 # Metadata in edit box
 'metadata_help' => 'Metadata:',
@@ -668,11 +689,11 @@ Jika orang lain yang melakukan permintaan ini, atau jika Anda telah mengingat ka
 'throttled-mailpassword'     => 'Suatu pengingat kata sandi telah dikirimkan dalam {{PLURAL:$1|jam|$1 jam}} terakhir. 
 Untuk menghindari penyalahgunaan, hanya satu kata sandi yang akan dikirimkan setiap {{PLURAL:$1|jam|$1 jam}}.',
 'mailerror'                  => 'Kesalahan dalam mengirimkan surat-e: $1',
-'acct_creation_throttle_hit' => 'Pengunjung wiki ini yang menggunakan alamat IP Anda telah membuat {{PLURAL:$1|1 akun|$1 akun}} dalam sehari terakhir, yang merupakan jumlah maksimum yang diijinkan dalam periode waktu ini.
-Karenanya, pengunjung yang menggunakan alamat IP ini tidak dapat lagi membuat akun lain pada saat ini.',
+'acct_creation_throttle_hit' => 'Pengunjung wiki ini dengan alamat IP yang sama dengan Anda telah membuat {{PLURAL:$1|1 akun|$1 akun}} dalam satu hari terakhir, hingga jumlah maksimum yang diijinkan.
+Karenanya, pengunjung dengan alamat IP ini tidak dapat lagi membuat akun lain untuk sementara.',
 'emailauthenticated'         => 'Alamat surat-e Anda telah dikonfirmasi pada $3, $2.',
 'emailnotauthenticated'      => 'Alamat surat-e Anda belum dikonfirmasi. Sebelum dikonfirmasi Anda tidak bisa menggunakan fitur surat elektronik.',
-'noemailprefs'               => 'Anda harus memasukkan suatu alamat surat-e untuk dapat menggunakan fitur ini.',
+'noemailprefs'               => 'Anda harus memasukkan alamat surat-e di preferensi Anda untuk dapat menggunakan fitur-fitur ini.',
 'emailconfirmlink'           => 'Konfirmasikan alamat surat-e Anda',
 'invalidemailaddress'        => 'Alamat surat-e ini tidak dapat diterima karena formatnya tidak sesuai.
 Harap masukkan alamat surat-e dalam format yang benar atau kosongkan isian tersebut.',
@@ -783,7 +804,7 @@ Harap masukkan dan validasikan alamat surat-e Anda melalui [[Special:Preferences
 'loginreqlink'                     => 'masuk log',
 'loginreqpagetext'                 => 'Anda harus $1 untuk dapat melihat halaman lainnya.',
 'accmailtitle'                     => 'Kata sandi telah terkirim.',
-'accmailtext'                      => "Suatu kata satu acak untuk [[User talk:$1|$1]] telah dibuat dan dikirimkan ke $2.
+'accmailtext'                      => "Sebuah kata sandi acak untuk [[User talk:$1|$1]] telah dibuat dan dikirimkan ke $2.
 
 Kata sandi untuk akun baru ini dapat diubah di halaman ''[[Special:ChangePassword|pengubahan kata sandi]]'' setelah masuk log.",
 'newarticle'                       => '(Baru)',
@@ -792,7 +813,8 @@ Kata sandi untuk akun baru ini dapat diubah di halaman ''[[Special:ChangePasswor
 Dengan demikian, kami terpaksa harus memakai alamat IP yang bersangkutan untuk mengidentifikasikannya.
 Alamat IP seperti ini mungkin dipakai bersama oleh beberapa pengguna yang berbeda.
 Jika Anda adalah seorang pengguna anonim dan merasa mendapatkan komentar-komentar yang tidak relevan yang ditujukan langsung kepada Anda, silakan [[Special:UserLogin/signup|membuat akun]] atau [[Special:UserLogin|masuk log]] untuk menghindari kerancuan dengan pengguna anonim lainnya di lain waktu.''",
-'noarticletext'                    => 'Saat ini tidak ada teks dalam halaman ini. Anda dapat [[Special:Search/{{PAGENAME}}|melakukan pencarian untuk judul halaman ini]] di halaman-halaman lain, <span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} mencari log terkait], atau [{{fullurl:{{FULLPAGENAME}}|action=edit}} menyunting halaman ini]</span>.',
+'noarticletext'                    => 'Saat ini tidak ada teks dalam halaman ini.
+Anda dapat [[Special:Search/{{PAGENAME}}|melakukan pencarian untuk judul halaman ini]] di halaman-halaman lain, <span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} mencari log terkait], atau [{{fullurl:{{FULLPAGENAME}}|action=edit}} menyunting halaman ini]</span>.',
 'userpage-userdoesnotexist'        => 'Akun pengguna "$1" tidak terdaftar.',
 'clearyourcache'                   => "'''Catatan:''' Setelah menyimpan preferensi, Anda perlu membersihkan <em>cache</em> penjelajah web Anda untuk melihat perubahan. '''Mozilla / Firefox / Safari:''' tekan ''Ctrl-Shift-R'' (''Cmd-Shift-R'' pada Apple Mac); '''IE:''' tekan ''Ctrl-F5''; '''Konqueror:''': tekan ''F5''; '''Opera''' bersihkan <em>cache</em> melalui menu ''Tools→Preferences''.",
 'usercssjsyoucanpreview'           => "'''Tips:''' Gunakan tombol 'Lihat pratayang' untuk menguji CSS/JS baru Anda sebelum menyimpannya.",
@@ -1257,7 +1279,8 @@ Pengembalian preferensi tidak dapat dibatalkan.',
 'yourvariant'                   => 'Varian bahasa',
 'yournick'                      => 'Nama samaran:',
 'badsig'                        => 'Tanda tangan mentah tak sah; periksa tag HTML.',
-'badsiglength'                  => 'Tanda tangan Anda terlalu panjang. Seharusnya kurang dari $1 {{PLURAL:$1|karakter|karakter}}.',
+'badsiglength'                  => 'Tanda tangan Anda terlalu panjang.
+Jangan lebih dari $1 {{PLURAL:$1|karakter|karakter}}.',
 'yourgender'                    => 'Jenis kelamin:',
 'gender-unknown'                => 'Tak dinyatakan',
 'gender-male'                   => 'Laki-laki',
@@ -1998,7 +2021,7 @@ Menghapus halaman ini dapat menyebabkan masalah dalam operasional basis data {{S
 'rollbackfailed'   => 'Pengembalian gagal dilakukan',
 'cantrollback'     => 'Tidak dapat mengembalikan suntingan; pengguna terakhir adalah satu-satunya penulis artikel ini.',
 'alreadyrolled'    => 'Tidak dapat melakukan pengembalian ke revisi terakhir [[:$1]] oleh [[User:$2|$2]] ([[User talk:$2|bicara]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]);
-pengguna lain telah menyunting atau melakukan pengembalian terhadap revisi tersebut.
+pengguna lain telah menyunting atau melakukan pengembalian terhadap halaman ini.
 
 Suntingan terakhir dilakukan oleh [[User:$3|$3]] ([[User talk:$3|bicara]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment'      => "Komentar penyuntingan adalah: \"''\$1''\".",
@@ -2307,7 +2330,7 @@ Dalam kasus tersebut, apabila diinginkan, Anda dapat memindahkan atau menggabung
 'movepagebtn'                  => 'Pindahkan halaman',
 'pagemovedsub'                 => 'Pemindahan berhasil',
 'movepage-moved'               => '<big>\'\'\'"$1" telah dipindahkan ke "$2"\'\'\'</big>',
-'movepage-moved-redirect'      => 'Suatu pengalihan telah dibuat.',
+'movepage-moved-redirect'      => 'Halaman pengalihan telah dibuat.',
 'movepage-moved-noredirect'    => 'Pembuatan pengalihan telah ditahan.',
 'articleexists'                => 'Halaman dengan nama tersebut telah ada atau nama yang dipilih tidak sah. Silakan pilih nama lain.',
 'cantmove-titleprotected'      => 'Anda tidak dapat memindahkan halaman ke lokasi ini, karena judul tujuan sedang dilindungi dari pembuatan',

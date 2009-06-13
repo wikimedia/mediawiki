@@ -36,7 +36,18 @@ $messages = array(
 'december'      => 'Nin Cwbx Yeih',
 'may-gen'       => 'Nin Haj',
 'september-gen' => 'Nin Gouj',
-'sep'           => 'Nin Gouj',
+'jan'           => 'Itnyied',
+'feb'           => 'Ngeihnyied',
+'mar'           => 'Samnyied',
+'apr'           => 'Seiqnyied',
+'may'           => 'Nguxnyied',
+'jun'           => 'Loegnyied',
+'jul'           => 'Caetnyied',
+'aug'           => 'Batnyied',
+'sep'           => 'Goujnyied',
+'oct'           => 'Cibnyied',
+'nov'           => "Cib'itnyied",
+'dec'           => 'Cibngeihnyied',
 
 'about'      => 'Gvendaengz',
 'article'    => 'Banjbienj',
@@ -49,6 +60,7 @@ $messages = array(
 'qbedit'         => 'Gaij',
 'qbspecialpages' => 'Doenghmae daegxsei',
 
+'errorpagetitle'   => 'Loengloek',
 'help'             => 'Caeuq',
 'search'           => 'Cwmh',
 'searchbutton'     => 'Cwmh',
@@ -60,17 +72,39 @@ $messages = array(
 'edit'             => 'gaij',
 'delete'           => 'Duz',
 'protect'          => 'Hahdiuz',
+'protect_change'   => 'gaij',
 'newpage'          => 'Bienj moq',
 'talkpagelinktext' => 'Daujlun',
+'personaltools'    => 'Hongdawz bonjfaenh',
 'talk'             => 'Kwng',
+'views'            => 'Cazyawj',
 'toolbox'          => 'Loengx hong',
+'jumpto'           => 'Diuq bae',
 'jumptonavigation' => 'Dazzaeuh',
 'jumptosearch'     => 'Cwmh',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+'aboutsite'            => 'Gvanhyih {{SITENAME}}',
+'aboutpage'            => 'Project:gvanhyih',
+'disclaimers'          => 'gangjmingz mienxcwz',
+'disclaimerpage'       => 'Project:Itbuen mienxcwz',
 'edithelp'             => 'Caeuq mungz san-zonz',
+'edithelppage'         => 'Help:gaij',
+'helppage'             => 'Help:moegloeg',
 'mainpage'             => 'Mbaw meh',
-'mainpage-description' => 'Mae meh',
+'mainpage-description' => 'Mbaw meh',
+'policy-url'           => 'Project:fuengcim',
+'portal'               => 'Seqgih',
+'portal-url'           => 'Project:seqgih',
+'privacy'              => 'Seiyaem cwngcwz',
+'privacypage'          => 'Project:Seiyaem cwngcwz',
+
+'badaccess'        => 'Loengloek gienzhanh',
+'badaccess-group0' => 'Cingjgouz mwngz mbouj haengj ciuqguh.',
+'badaccess-groups' => 'Cingjgouz mwngz hanh youq {{PLURAL:$2|neix|gijneix}} bouxyungh: $1',
+
+'versionrequired'     => 'Sihyau MediaWiki $1',
+'versionrequiredtext' => 'Sihyau MediaWik $1 caengj daeng sawjyungh.',
 
 'youhavenewmessages' => 'Mungz meiz $1（$2）。',
 'editsection'        => 'gaij',
@@ -105,7 +139,7 @@ $messages = array(
 
 # Search results
 'search-interwiki-more' => '（more）',
-'powersearch'           => 'Cwmh',
+'powersearch'           => 'Cwmh goeggiz',
 
 # Preferences page
 'mypreferences'     => 'Doenghgaeq gou hae',
@@ -114,10 +148,12 @@ $messages = array(
 'username'          => 'Ciu bouxdeiz:',
 
 # Recent changes
-'recentchanges' => 'Gaeqgaij suijnej',
-'diff'          => 'Faenbied',
+'recentchanges'   => 'Gaeqgaij suijnej',
+'diff'            => 'Faenbied',
+'minoreditletter' => 'n',
 
 # Upload
+'uploadnologin'     => 'Maengx laezhaej',
 'filedesc'          => 'Saegmangj',
 'fileuploadsummary' => 'Saegmangj:',
 'watchthisupload'   => 'Demq mae-nej',
@@ -176,10 +212,12 @@ $messages = array(
 
 # Block/unblock
 'ipblocklist-submit' => 'Cwmh',
+'contribslink'       => "gung'yen",
 
 # Move page
 'move-page-legend' => 'Caen doengh mae',
 'movearticle'      => 'Caen doengh mae:',
+'movenologin'      => 'Maengx laezhaej',
 'move-watch'       => 'Demq mae-nej',
 'movepagebtn'      => 'Caen doengh mae',
 'movedto'          => 'Caen bei',
@@ -193,11 +231,19 @@ $messages = array(
 # Special:NewFiles
 'ilsubmit' => 'Cwmh',
 
+# 'all' in various places, this might be different for inflected languages
+'watchlistall2' => 'cenzbu',
+'namespacesall' => 'cenzbu',
+'monthsall'     => 'cenzbu',
+
 # Multipage image navigation
 'imgmultigo' => 'Bei！',
 
 # Table pager
 'table_pager_limit_submit' => 'Bei',
+
+# Watchlist editing tools
+'watchlisttools-view' => 'Cazyawj gaij mizgven',
 
 # Special:SpecialPages
 'specialpages' => 'Doenghmae daegxsei',

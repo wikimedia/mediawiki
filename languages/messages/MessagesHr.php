@@ -310,7 +310,7 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Pritiskom na desnu tipku miša otvori uređivanje pojedinih odlomaka (JavaScript)',
 'tog-showtoc'                 => 'U člancima s više od tri odlomka prikaži tablicu sadržaja.',
 'tog-rememberpassword'        => 'Zapamti lozinku između prijava',
-'tog-editwidth'               => 'Okvir za uređivanje zauzima cijelu širinu',
+'tog-editwidth'               => 'Proširi okvir za uređivanje preko cijele širine ekrana',
 'tog-watchcreations'          => 'Dodaj članke koje kreiram na moj popis praćenja',
 'tog-watchdefault'            => 'Dodaj sve nove i izmijenjene stranice u popis praćenja',
 'tog-watchmoves'              => 'Dodaj sve stranice koje premjestim na popis praćenja',
@@ -324,7 +324,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Pošalji mi e-mail i kod manjih izmjena',
 'tog-enotifrevealaddr'        => 'Prikaži moju e-mail adresu u obavijestima o izmjeni',
 'tog-shownumberswatching'     => 'Prikaži broj suradnika koji prate stranicu (u nedavnim izmjenama, popisu praćenja i samim člancima)',
-'tog-fancysig'                => 'Običan potpis (bez automatske poveznice)',
+'tog-fancysig'                => 'Običan potpis kao wikitekst (bez automatske poveznice)',
 'tog-externaleditor'          => 'Uvijek koristi vanjski editor',
 'tog-externaldiff'            => 'Uvijek koristi vanjski program za usporedbu',
 'tog-showjumplinks'           => 'Uključi pomoćne poveznice "Skoči na"',
@@ -441,7 +441,28 @@ i [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Vodič za suradnike] 
 'faqpage'        => 'Project:FAQ',
 
 # Vector skin
-'vector-view-view' => 'Čitaj',
+'vector-action-addsection'   => 'Dodaj temu',
+'vector-action-delete'       => 'Izbriši',
+'vector-action-move'         => 'Premjesti',
+'vector-action-protect'      => 'Zaštiti',
+'vector-action-undelete'     => 'Vrati',
+'vector-action-unprotect'    => 'Ukloni zaštitu',
+'vector-namespace-category'  => 'Kategorija',
+'vector-namespace-help'      => 'Stranica pomoći',
+'vector-namespace-image'     => 'Datoteka',
+'vector-namespace-main'      => 'Stranica',
+'vector-namespace-media'     => 'Mediji',
+'vector-namespace-mediawiki' => 'Poruka',
+'vector-namespace-project'   => 'Stranica projekta',
+'vector-namespace-special'   => 'Posebna stranica',
+'vector-namespace-talk'      => 'Razgovor',
+'vector-namespace-template'  => 'Predložak',
+'vector-namespace-user'      => 'Suradnička stranica',
+'vector-view-create'         => 'Stvori',
+'vector-view-edit'           => 'Uredi',
+'vector-view-history'        => 'Vidi stare izmjene',
+'vector-view-view'           => 'Čitaj',
+'vector-view-viewsource'     => 'Vidi izvor',
 
 # Metadata in edit box
 'metadata_help' => 'Metapodaci:',
@@ -975,13 +996,13 @@ Pokušajte [[Special:Search|pretražiti]] važnije nove stranice na wikiju.',
 'rev-deleted-comment'         => '(komentar uklonjen)',
 'rev-deleted-user'            => '(suradničko ime uklonjeno)',
 'rev-deleted-event'           => '(zapis uklonjen)',
-'rev-deleted-text-permission' => 'Ova je izmjena uklonjena iz javnoga arhiva.
-Detalji se vjerojatno nalaze u [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} evidenciji brisanja].',
-'rev-deleted-text-view'       => 'Ova je izmjena uklonjena iz javnoga arhiva.
+'rev-deleted-text-permission' => "Ova izmjena je '''izbrisana'''.
+Detalji se vjerojatno nalaze u [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} evidenciji brisanja].",
+'rev-deleted-text-view'       => "Ova izmjena je '''izbrisana'''.
 Kao administrator na ovom projektu možete ju vidjeti;
-detalji se vjerojatno nalaze u [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} evidenciji brisanja].',
-'rev-deleted-no-diff'         => 'Ne možete vidjeti ovu inačicu zbog toga što je jedna od promjena uklonjen iz javnih arhiva.
-Možda postoji više informacija u [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} evidenciji brisanja].',
+detalji se vjerojatno nalaze u [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} evidenciji brisanja].",
+'rev-deleted-no-diff'         => "Ne možete vidjeti ovu inačicu zbog toga što je jedna od izmjena '''izbrisana'''.
+Možda postoji više informacija u [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} evidenciji brisanja].",
 'rev-delundel'                => 'pokaži/skrij',
 'revisiondelete'              => 'Izbriši/vrati izmjene',
 'revdelete-nooldid-title'     => 'Nema tražene izmjene',
@@ -1184,6 +1205,9 @@ Primijetite da uporaba navigacijskih poveznica resetira vaše izbore u koloni.',
 'powersearch-ns'                   => 'Traži u imenskom prostoru:',
 'powersearch-redir'                => 'Prikaži preusmjerenja',
 'powersearch-field'                => 'Traži za',
+'powersearch-togglelabel'          => 'Uključi:',
+'powersearch-toggleall'            => 'Sve',
+'powersearch-togglenone'           => 'Ništa',
 'search-external'                  => 'Vanjski pretraživač',
 'searchdisabled'                   => '<p>Oprostite! Pretraga po cjelokupnoj bazi je zbog bržeg rada projekta {{SITENAME}} trenutačno onemogućena. Možete se poslužiti tražilicom Google.</p>',
 
@@ -1216,6 +1240,8 @@ Primijetite da uporaba navigacijskih poveznica resetira vaše izbore u koloni.',
 'prefs-watchlist-edits-max'   => '(maksimalni broj: 1000)',
 'prefs-misc'                  => 'Razno',
 'prefs-resetpass'             => 'Promijeni lozinku',
+'prefs-email'                 => 'Mogućnosti e-maila',
+'prefs-rendering'             => 'Izgled',
 'saveprefs'                   => 'Spremi',
 'resetprefs'                  => 'Vrati na prvotne postavke',
 'restoreprefs'                => "Vrati sve postavke na pretpostavljeno stanje - ''default''",
@@ -1278,6 +1304,10 @@ Mora imati manje od $1 {{PLURAL:$1|znaka|znakova}}.',
 'prefs-help-email'            => 'E-mail adresa nije obvezna: ali omogućuje slanje nove lozinke e-mailom u slučaju da zaboravite svoju.
 Možete omogućiti drugima da vas kontaktiraju na suradničkoj stranici ili stranici za razgovor bez javnog otkrivanja vaše e-mail adrese.',
 'prefs-help-email-required'   => 'Potrebno je navesti adresu e-pošte (e-mail).',
+'prefs-info'                  => 'Osnovni podaci',
+'prefs-i18n'                  => 'Internacionalizacija',
+'prefs-signature'             => 'Potpis',
+'prefs-dateformat'            => 'Format datuma',
 'prefs-advancedediting'       => 'Napredne opcije',
 'prefs-advancedrc'            => 'Napredne opcije',
 'prefs-advancedrendering'     => 'Napredne opcije',
@@ -1815,8 +1845,9 @@ Možete suziti prikaz odabirući tip evidencije, suradničko ime ili stranicu u 
 
 # Special:Categories
 'categories'                    => 'Kategorije',
-'categoriespagetext'            => 'Sljedeće kategorije sadrže stranice ili datoteke.
-[[Special:UnusedCategories|Nekorištene kategorije]] i [[Special:WantedCategories|tražene kategorije]] ovdje nisu prikazane.',
+'categoriespagetext'            => 'Sljedeće {{PLURAL:$1|kategorija sadrži|kategorije sadrže}} stranice ili datoteke.
+[[Special:UnusedCategories|Nekorištene kategorije]] ovdje nisu prikazane.
+Također pogledajte [[Special:WantedCategories|tražene kategorije]].',
 'categoriesfrom'                => 'Prikaži kategorije počevši od:',
 'special-categories-sort-count' => 'razvrstavanje po broju',
 'special-categories-sort-abc'   => 'abecedno razvrstavanje',
@@ -2093,6 +2124,7 @@ ili je promjena vraćena ili uklonjena iz arhive.',
 'undelete-nodiff'              => 'Prethodne promjene nisu nađene.',
 'undeletebtn'                  => 'Vrati!',
 'undeletelink'                 => 'vidi/vrati',
+'undeleteviewlink'             => 'pregled',
 'undeletereset'                => 'Očisti',
 'undeleteinvert'               => 'Obrni odabir',
 'undeletecomment'              => 'Komentar:',
@@ -3155,5 +3187,10 @@ Unesite ime datoteke bez prefiksa "{{ns:file}}:"',
 'dberr-usegoogle'   => 'U međuvremenu pokušajte tražiti putem Googlea.',
 'dberr-outofdate'   => 'Imajte na umu da su njihova kazala našeg sadržaja možda zastarjela.',
 'dberr-cachederror' => 'Sljedeće je dohvaćena kopija tražene stranice, te možda nije ažurirana.',
+
+# HTML forms
+'htmlform-submit'              => 'Pošalji',
+'htmlform-reset'               => 'Poništi izmjene',
+'htmlform-selectorother-other' => 'Drugi',
 
 );

@@ -252,6 +252,44 @@ This can also appear in the credits page if the credits feature is enabled,for e
 
 {{doc-important|Do not translate <tt>Project:</tt> part.}}",
 
+# Vector skin
+'vector-action-addsection'   => 'Used in the Vector skin. See for example http://translatewiki.net/wiki/Talk:Main_Page?useskin=vector',
+'vector-action-delete'       => 'Used in the Vector skin. See for example http://translatewiki.net/wiki/Main_Page?useskin=vector
+
+{{Identical|Delete}}',
+'vector-action-move'         => 'Used in the Vector skin. See for example http://translatewiki.net/wiki/Talk:Main_Page?useskin=vector
+
+{{Identical|Move}}',
+'vector-action-protect'      => '{{Identical|Protect}}',
+'vector-action-unprotect'    => '{{Identical|Unprotect}}',
+'vector-namespace-category'  => 'Tab label in the Vector skin. See for example http://translatewiki.net/wiki/Category:Translatewiki.net?useskin=vector
+
+{{Identical|Category}}',
+'vector-namespace-help'      => 'Tab label in the Vector skin. See for example http://translatewiki.net/wiki/Help:Rollback?useskin=vector',
+'vector-namespace-image'     => 'Tab label in the Vector skin. See for example http://translatewiki.net/wiki/File:Tournesol.png?useskin=vector
+
+{{Identical|File}}',
+'vector-namespace-main'      => 'Tab label in the Vector skin. See for example http://translatewiki.net/wiki/Main_Page?useskin=vector
+{{Identical|Page}}',
+'vector-namespace-mediawiki' => 'Tab label in the Vector skin. See for example http://translatewiki.net/wiki/MediaWiki:Vector-namespace-mediawiki?useskin=vector
+{{Identical|Message}}',
+'vector-namespace-project'   => 'Tab label in the Vector skin. See for example http://translatewiki.net/wiki/Project:About?useskin=vector',
+'vector-namespace-special'   => 'Tab label in the Vector skin. See for example http://translatewiki.net/wiki/Special:SpecialPages?useskin=vector',
+'vector-namespace-talk'      => 'Tab label in the Vector skin. See for example http://translatewiki.net/wiki/Talk:Main_Page?useskin=vector
+{{Identical|Discussion}}',
+'vector-namespace-template'  => 'Tab label in the Vector skin. See for example http://translatewiki.net/wiki/Template:Identical?useskin=vector
+{{Identical|Template}}',
+'vector-namespace-user'      => 'Tab label in the Vector skin. See for example http://translatewiki.net/wiki/User:FuzzyBot?useskin=vector
+{{Identical|User page}}',
+'vector-view-create'         => 'Tab label in the Vector skin. See for example http://translatewiki.net/wiki/Foo?useskin=vector
+{{Identical|Create}}',
+'vector-view-edit'           => 'Tab label in the Vector skin. See for example http://translatewiki.net/wiki/Main_Page?useskin=vector
+{{Identical|Edit}}',
+'vector-view-history'        => 'Tab label in the Vector skin. See for example http://translatewiki.net/wiki/Main_Page?useskin=vector',
+'vector-view-view'           => 'Tab label in the Vector skin (verb). See for example http://translatewiki.net/w/i.php?title=Main_Page&useskin=vector',
+'vector-view-viewsource'     => 'Tab label in the Vector skin.
+{{Identical|View source}}',
+
 # Metadata in edit box
 'metadata_help' => '{{Identical|Metadata}}',
 
@@ -284,7 +322,6 @@ See also [[MediaWiki:Helppage/{{SUBPAGENAME}}|{{int:helppage}}]] and [[MediaWiki
 'edit'             => 'The text of the tab going to the edit form. When the page is protected, you will see "[[MediaWiki:Viewsource/{{SUBPAGENAME}}|{{int:viewsource}}]]". Should be in the infinitive mood.
 
 {{Identical|Edit}}',
-'vector-view-view'             => 'Tab label in the Vector skin (verb). See for example http://translatewiki.net/w/i.php?title=Main_Page&useskin=vector',
 'create'           => 'The text on the tab for to the edit form on unexisting pages.
 
 {{Identical|Create}}',
@@ -295,10 +332,14 @@ See also [[MediaWiki:Helppage/{{SUBPAGENAME}}|{{int:helppage}}]] and [[MediaWiki
 {{Identical|Delete}}',
 'deletethispage'   => '{{Identical|Delete this page}}',
 'undelete_short'   => "It is tab label. It's really can be named ''nstab-undelete''.",
-'protect'          => 'Name of protect tab displayed for admins',
+'protect'          => 'Name of protect tab displayed for admins
+
+{{Identical|Protect}}',
 'protect_change'   => 'Text on links for each entry in [[Special:ProtectedPages]] to change the protection of pages (only displayed to admins).',
 'protectthispage'  => '{{Identical|Protect this page}}',
-'unprotect'        => 'Name of unprotect tab displayed for admins',
+'unprotect'        => 'Name of unprotect tab displayed for admins
+
+{{Identical|Unprotect}}',
 'talkpagelinktext' => 'Used as name of links going to talk page in some places, like in the subheading of [[Special:Mycontributions|Special:Contributions]], in [[Special:RecentChanges]], and in [[Special:Watchlist]].
 
 {{Identical|Talk}}',

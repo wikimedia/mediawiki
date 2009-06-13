@@ -478,7 +478,28 @@ $messages = array(
 'faqpage'        => 'Project:FAQ',
 
 # Vector skin
-'vector-view-view' => 'Lesen',
+'vector-action-addsection'   => 'Abschnitt hinzufügen',
+'vector-action-delete'       => 'Löschen',
+'vector-action-move'         => 'Verschieben',
+'vector-action-protect'      => 'Schützen',
+'vector-action-undelete'     => 'Wiederherstellen',
+'vector-action-unprotect'    => 'Freigeben',
+'vector-namespace-category'  => 'Kategorie',
+'vector-namespace-help'      => 'Hilfeseite',
+'vector-namespace-image'     => 'Datei',
+'vector-namespace-main'      => 'Seite',
+'vector-namespace-media'     => 'Medienseite',
+'vector-namespace-mediawiki' => 'MediaWiki-Systemnachricht',
+'vector-namespace-project'   => 'Projektseite',
+'vector-namespace-special'   => 'Spezialseite',
+'vector-namespace-talk'      => 'Diskussion',
+'vector-namespace-template'  => 'Vorlage',
+'vector-namespace-user'      => 'Benutzerseite',
+'vector-view-create'         => 'Erstellen',
+'vector-view-edit'           => 'Bearbeiten',
+'vector-view-history'        => 'Versionsgeschichte',
+'vector-view-view'           => 'Lesen',
+'vector-view-viewsource'     => 'Quelltext betrachten',
 
 # Metadata in edit box
 'metadata_help' => 'Metadaten:',
@@ -3142,7 +3163,8 @@ Bitte bestätige, dass du diese Seite wirklich neu erstellen möchten.",
 'confirm-purge-bottom' => 'Leert den Cache einer Seite und erzwingt die Anzeige der aktuellen Version.',
 
 # Separators for various lists, etc.
-'percent' => '$1&nbsp;%',
+'ellipsis' => '…',
+'percent'  => '$1&nbsp;%',
 
 # Multipage image navigation
 'imgmultipageprev' => '← vorherige Seite',
