@@ -697,13 +697,13 @@ class Article {
 		$user = $this->getUser();
 		$pageId = $this->getId();
 
-		$hideBit = Revision::DELETED_USER; // username hidden?
+		$deletedBit = $dbr->bitAnd('rev_deleted', Revision::DELETED_USER); // username hidden?
 
 		$sql = "SELECT {$userTable}.*, MAX(rev_timestamp) as timestamp
 			FROM $revTable LEFT JOIN $userTable ON rev_user = user_id
 			WHERE rev_page = $pageId
 			AND rev_user != $user
-			AND rev_deleted & $hideBit = 0
+			AND $deletedBit = 0
 			GROUP BY rev_user, rev_user_text, user_real_name
 			ORDER BY timestamp DESC";
 
@@ -2213,7 +2213,7 @@ class Article {
 		// Find out if there was only one contributor
 		// Only scan the last 20 revisions
 		$res = $dbw->select( 'revision', 'rev_user_text',
-			array( 'rev_page' => $this->getID(), 'rev_deleted & '.Revision::DELETED_USER.'=0' ),
+			array( 'rev_page' => $this->getID(), $dbw->bitAnd('rev_deleted', Revision::DELETED_USER) . ' = 0' ),
 			__METHOD__,
 			array( 'LIMIT' => 20 )
 		);

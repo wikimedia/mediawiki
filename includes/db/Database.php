@@ -1441,6 +1441,22 @@ abstract class DatabaseBase {
 	}
 
 	/**
+	 * Bitwise operations
+	 */
+
+	function bitNot($field) {
+		return '~'.$bitField;
+	}
+
+	function bitAnd($fieldLeft, $fieldRight) {
+		return $fieldLeft.'&'.$fieldRight;
+	}
+
+	function bitOr($fieldLeft, $fieldRight) {
+		return $fieldLeft.'|'.$fieldRight;
+	}
+
+	/**
 	 * Change the current database
 	 */
 	function selectDB( $db ) {

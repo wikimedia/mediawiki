@@ -120,6 +120,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 			}
 		}
 
+		$db = $this->getDB();
 		$this->addTables('revision');
 		$this->addFields(Revision::selectFields());
 		$this->addTables('page');
@@ -219,11 +220,11 @@ class ApiQueryRevisions extends ApiQueryBase {
 				$this->addWhereFld('rev_user_text', $params['user']);
 			} elseif (!is_null($params['excludeuser'])) {
 				$this->addWhere('rev_user_text != ' .
-					$this->getDB()->addQuotes($params['excludeuser']));
+					$db->addQuotes($params['excludeuser']));
 			}
 			if(!is_null($params['user']) || !is_null($params['excludeuser'])) {
 				// Paranoia: avoid brute force searches (bug 17342)
-				$this->addWhere('rev_deleted & ' . Revision::DELETED_USER . ' = 0');
+				$this->addWhere($db->bitAnd('rev_deleted',Revision::DELETED_USER) . ' = 0');
 			}
 		}
 		elseif ($revCount > 0) {
@@ -283,7 +284,6 @@ class ApiQueryRevisions extends ApiQueryBase {
 		$count = 0;
 		$res = $this->select(__METHOD__);
 
-		$db = $this->getDB();
 		while ($row = $db->fetchObject($res)) {
 
 			if (++ $count > $limit) {

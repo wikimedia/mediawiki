@@ -1001,6 +1001,7 @@ class DatabaseOracle extends DatabaseBase {
 		return array( $startOpts, $useIndex, $preLimitTail, $postLimitTail );
 	}
 
+	/* redundand ... will remove after confirming bitwise operations functionality
 	public function makeList( $a, $mode = LIST_COMMA ) {
         	if ( !is_array( $a ) ) {
 			throw new DBUnexpectedError( $this, 'DatabaseOracle::makeList called with incorrect parameters' );
@@ -1031,6 +1032,20 @@ class DatabaseOracle extends DatabaseBase {
 		}
 
 		return parent::makeList($a2, $mode);
+	}
+	*/
+
+	function bitNot($field) {
+		//expecting bit-fields smaller than 4bytes
+		return 'BITNOT('.$bitField.')';
+	}
+
+	function bitAnd($fieldLeft, $fieldRight) {
+		return 'BITAND('$fieldLeft.', '.$fieldRight.')';
+	}
+
+	function bitOr($fieldLeft, $fieldRight) {
+		return 'BITOR('$fieldLeft.', '.$fieldRight.')';
 	}
 
 	public function setTimeout( $timeout ) {

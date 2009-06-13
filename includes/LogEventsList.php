@@ -681,7 +681,7 @@ class LogPager extends ReverseChronologicalPager {
 			$this->mConds['log_user'] = $userid;
 			// Paranoia: avoid brute force searches (bug 17342)
 			if( !$wgUser->isAllowed( 'suppressrevision' ) ) {
-				$this->mConds[] = 'log_deleted & ' . LogPage::DELETED_USER . ' = 0';
+				$this->mConds[] = $this->mDb->bitAnd('log_deleted', LogPage::DELETED_USER) . ' = 0';
 			}
 			$this->user = $usertitle->getText();
 		}
@@ -725,7 +725,7 @@ class LogPager extends ReverseChronologicalPager {
 		}
 		// Paranoia: avoid brute force searches (bug 17342)
 		if( !$wgUser->isAllowed( 'suppressrevision' ) ) {
-			$this->mConds[] = 'log_deleted & ' . LogPage::DELETED_ACTION . ' = 0';
+			$this->mConds[] = $this->mDb->bitAnd('log_deleted', LogPage::DELETED_ACTION) . ' = 0';
 		}
 	}
 
