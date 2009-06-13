@@ -401,6 +401,9 @@ $messages = array(
 'faq'            => 'ЧаВО',
 'faqpage'        => 'Project:ЧаВО',
 
+# Vector skin
+'vector-view-view' => 'Чтение',
+
 # Metadata in edit box
 'metadata_help' => 'Метаданные:',
 
@@ -420,7 +423,6 @@ $messages = array(
 'permalink'         => 'Постоянная ссылка',
 'print'             => 'Печать',
 'edit'              => 'Править',
-'view'              => 'Чтение',
 'create'            => 'Создать',
 'editthispage'      => 'Править эту страницу',
 'create-this-page'  => 'Создать эту страницу',
@@ -1742,8 +1744,8 @@ PICT # различные
 
 'brokenredirects'        => 'Разорванные перенаправления',
 'brokenredirectstext'    => 'Следующие перенаправления указывают на несуществующие страницы:',
-'brokenredirects-edit'   => '(править)',
-'brokenredirects-delete' => '(удалить)',
+'brokenredirects-edit'   => 'править',
+'brokenredirects-delete' => 'удалить',
 
 'withoutinterwiki'         => 'Страницы без межъязыковых ссылок',
 'withoutinterwiki-summary' => 'Следующие страницы не имеют интервики-ссылок:',

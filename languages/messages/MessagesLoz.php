@@ -638,8 +638,8 @@ di uplodezi media.',
 'doubleredirects' => 'Petulo abezi sa dužemi',
 
 'brokenredirects'        => 'Petulo abezi bufosi',
-'brokenredirects-edit'   => "(hloli ye ng'i)",
-'brokenredirects-delete' => '(afi kulobala)',
+'brokenredirects-edit'   => "hloli ye ng'i",
+'brokenredirects-delete' => 'afi kulobala',
 
 'withoutinterwiki' => 'Petulo dicon interwikina',
 

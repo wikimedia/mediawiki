@@ -874,8 +874,8 @@ Ma tesɛiḍ tugna-nni s resolution tameqqrant, azen-it, ma ulac beddel isem-is.
 
 'brokenredirects'        => 'Isemmimḍen imerẓa',
 'brokenredirectstext'    => 'Isemmimḍen-agi sɛan izdayen ar isebtar ulac-iten:',
-'brokenredirects-edit'   => '(beddel)',
-'brokenredirects-delete' => '(mḥu)',
+'brokenredirects-edit'   => 'beddel',
+'brokenredirects-delete' => 'mḥu',
 
 'withoutinterwiki'         => 'isebtar mebla izdayen ar isebtar n wikipedia s tutlayin tiyaḍ',
 'withoutinterwiki-summary' => 'isebtar-agi ur sɛan ara izdayen ar isebtar n wikipedia s tutlayin tiyaḍ:',

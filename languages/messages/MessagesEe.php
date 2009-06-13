@@ -90,6 +90,9 @@ $messages = array(
 'qbmyoptions'    => 'Nyeƒe axawo',
 'qbspecialpages' => 'Axa tɔxewo',
 
+# Vector skin
+'vector-view-view' => 'Xlẽ',
+
 'errorpagetitle'   => 'Vodada',
 'returnto'         => 'Gbugbɔ yi $1.',
 'tagline'          => 'Tso {{SITENAME}}',
@@ -101,7 +104,6 @@ $messages = array(
 'history'          => 'Axa sia ƒe tata xoxoawo',
 'history_short'    => 'Xoxoawo',
 'edit'             => 'Trɔ asi le eŋu',
-'view'             => 'Xlẽ',
 'create'           => 'Dze egɔme',
 'editthispage'     => 'Ðɔ axa sia ɖo',
 'create-this-page' => 'Dze axa sia gɔme',
@@ -320,8 +322,8 @@ Wòateŋu [[:\$1|adze axa sia gɔme]].",
 # Statistics
 'statistics' => 'Akɔntawo',
 
-'brokenredirects-edit'   => '(trɔ asi le eŋu)',
-'brokenredirects-delete' => '(tutui)',
+'brokenredirects-edit'   => 'trɔ asi le eŋu',
+'brokenredirects-delete' => 'tutui',
 
 'fewestrevisions' => 'Axawo siwo womeɖɔɖo zã o',
 

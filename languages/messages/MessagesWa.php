@@ -871,8 +871,8 @@ ou co po les sons
 
 'brokenredirects'        => 'Pierdous redjiblaedjes',
 'brokenredirectstext'    => "Les redjiblaedjes shuvants evoyèt so ene pådje ki n' egzistêye nén.",
-'brokenredirects-edit'   => '(candjî)',
-'brokenredirects-delete' => '(disfacer)',
+'brokenredirects-edit'   => 'candjî',
+'brokenredirects-delete' => 'disfacer',
 
 # Miscellaneous special pages
 'nbytes'                  => '$1 {{PLURAL:$1|octet|octets}}',

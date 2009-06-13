@@ -444,8 +444,8 @@ $messages = array(
 # Random page
 'randompage' => 'Даап арын',
 
-'brokenredirects-edit'   => '(өскертир)',
-'brokenredirects-delete' => '(ап каар)',
+'brokenredirects-edit'   => 'өскертир',
+'brokenredirects-delete' => 'ап каар',
 
 'withoutinterwiki' => 'Дыл холбаалар эвес арыннар',
 

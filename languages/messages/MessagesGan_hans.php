@@ -994,8 +994,8 @@ $2',
 
 'brokenredirects'        => '坏吥𠮶重定向页',
 'brokenredirectstext'    => '底下𠮶重定向页面指到𠮶系伓存在𠮶页面:',
-'brokenredirects-edit'   => '(编写)',
-'brokenredirects-delete' => '(删吥)',
+'brokenredirects-edit'   => '编写',
+'brokenredirects-delete' => '删吥',
 
 'withoutinterwiki'         => '冇语言链接𠮶页面',
 'withoutinterwiki-summary' => '底下𠮶页面系冇语言链接到别𠮶语言版本:',
@@ -2045,6 +2045,7 @@ $1',
 
 # Separators for various lists, etc.
 'comma-separator' => '、',
+'parentheses'     => '（$1）',
 
 # Multipage image navigation
 'imgmultipageprev' => '← 上页',

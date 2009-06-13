@@ -430,6 +430,9 @@ $messages = array(
 'faq'            => 'GyIK',
 'faqpage'        => 'Project:GyIK',
 
+# Vector skin
+'vector-view-view' => 'Olvasás',
+
 # Metadata in edit box
 'metadata_help' => 'Metaadatok:',
 
@@ -449,7 +452,6 @@ $messages = array(
 'permalink'         => 'Link erre a változatra',
 'print'             => 'Nyomtatás',
 'edit'              => 'Szerkesztés',
-'view'              => 'Olvasás',
 'create'            => 'Létrehozás',
 'editthispage'      => 'Lap szerkesztése',
 'create-this-page'  => 'Oldal létrehozása',
@@ -1766,8 +1768,8 @@ Egy oldal egyértelműsítő lapnak számít, ha tartalmazza a [[MediaWiki:Disam
 
 'brokenredirects'        => 'Nem létező lapra mutató átirányítások',
 'brokenredirectstext'    => 'A következő átirányítások nem létező lapokra hivatkoznak:',
-'brokenredirects-edit'   => '(szerkesztés)',
-'brokenredirects-delete' => '(törlés)',
+'brokenredirects-edit'   => 'szerkesztés',
+'brokenredirects-delete' => 'törlés',
 
 'withoutinterwiki'         => 'Nyelvi hivatkozás nélküli lapok',
 'withoutinterwiki-summary' => 'A következő lapok nem hivatkoznak más nyelvű változatokra:',

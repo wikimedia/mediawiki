@@ -544,6 +544,9 @@ $messages = array(
 'faq'            => 'سوال‌های متداول',
 'faqpage'        => 'Project:سوال‌های متداول',
 
+# Vector skin
+'vector-view-view' => 'خواندن',
+
 # Metadata in edit box
 'metadata_help' => 'متاداده:',
 
@@ -563,7 +566,6 @@ $messages = array(
 'permalink'         => 'پیوند دائمی',
 'print'             => 'چاپ',
 'edit'              => 'ويرايش',
-'view'              => 'خواندن',
 'create'            => 'ایجاد',
 'editthispage'      => 'اين صفحه را ويرايش كنيد',
 'create-this-page'  => 'این صفحه را ایجاد کنید',
@@ -1884,8 +1886,8 @@ $1",
 
 'brokenredirects'        => 'تغییرمسیرهای خراب',
 'brokenredirectstext'    => 'تغییرمسیرهای زیر به یک صفحهٔ ناموجود پیوند دارند:',
-'brokenredirects-edit'   => '(ویرایش)',
-'brokenredirects-delete' => '(حذف)',
+'brokenredirects-edit'   => 'ویرایش',
+'brokenredirects-delete' => 'حذف',
 
 'withoutinterwiki'         => 'صفحه‌های بدون پیوند میان‌ویکی',
 'withoutinterwiki-summary' => 'این صفحه‌ها پیوندی به صفحه‌ای به زبان دیگر نمی‌دارند:',

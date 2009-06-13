@@ -728,8 +728,8 @@ $1 | $2',
 
 'brokenredirects'        => 'Beđganan ođđasitstivremat',
 'brokenredirectstext'    => 'Čuovvovaš ođđasitstivremat leat artihkkaliidda, mat eai dihtto.',
-'brokenredirects-edit'   => '(rievdat)',
-'brokenredirects-delete' => '(sihko)',
+'brokenredirects-edit'   => 'rievdat',
+'brokenredirects-delete' => 'sihko',
 
 'withoutinterwiki'         => 'Siiddut, main eai leat giellaliŋkkat',
 'withoutinterwiki-summary' => 'Čuovvovaš siiddut eai čujut eará gielat veršuvnnaidda:',

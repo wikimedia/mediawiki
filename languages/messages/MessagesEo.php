@@ -317,6 +317,9 @@ $messages = array(
 'faq'            => 'Oftaj demandoj',
 'faqpage'        => 'Project:Oftaj demandoj',
 
+# Vector skin
+'vector-view-view' => 'Legi',
+
 # Metadata in edit box
 'metadata_help' => 'Metadatenoj:',
 
@@ -336,7 +339,6 @@ $messages = array(
 'permalink'         => 'Konstanta ligilo',
 'print'             => 'Printi',
 'edit'              => 'Redakti',
-'view'              => 'Legi',
 'create'            => 'Krei',
 'editthispage'      => 'Redakti la paĝon',
 'create-this-page'  => 'Krei ĉi tiun paĝon',
@@ -1652,8 +1654,8 @@ Paĝo estas traktata kiel apartigilo se ĝi uzas ŝablonon kiu estas ligita de [
 
 'brokenredirects'        => 'Rompitaj alidirektadoj',
 'brokenredirectstext'    => 'La jenaj alidirektadoj ligas al neekzistantaj paĝoj:',
-'brokenredirects-edit'   => '(redakti)',
-'brokenredirects-delete' => '(forigi)',
+'brokenredirects-edit'   => 'redakti',
+'brokenredirects-delete' => 'forigi',
 
 'withoutinterwiki'         => 'Paĝoj sen lingvaj ligiloj',
 'withoutinterwiki-summary' => 'Jenaj paĝoj ne ligas al aliaj lingvoversioj:',

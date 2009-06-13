@@ -121,7 +121,6 @@ $messages = array(
 'permalink'         => 'ܐܣܘܪܐ ܦܝܘܫܐ',
 'print'             => 'ܛܒܘܥ',
 'edit'              => 'ܫܚܠܦ',
-'view'              => 'ܩܪܝ',
 'create'            => 'ܒܪܝ',
 'editthispage'      => 'ܫܚܠܦ ܦܐܬܐ ܗܕܐ',
 'create-this-page'  => 'ܒܪܝ ܗܕܐ ܦܐܬܐ',

@@ -1442,8 +1442,8 @@ Alcuérdate de comprobar otros enllaces a les plantíes enantes d'esborrales.",
 
 'brokenredirects'        => 'Redireiciones rotes',
 'brokenredirectstext'    => 'Les siguientes redireiciones enllacien a páxines non esistentes:',
-'brokenredirects-edit'   => '(editar)',
-'brokenredirects-delete' => '(esborrar)',
+'brokenredirects-edit'   => 'editar',
+'brokenredirects-delete' => 'esborrar',
 
 'withoutinterwiki'         => 'Páxines ensin interwikis',
 'withoutinterwiki-summary' => "Les páxines siguientes nun enllacien a versiones n'otres llingües:",

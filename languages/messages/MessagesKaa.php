@@ -1320,8 +1320,8 @@ Siz ja'ne de basqa paydalanıwshılarg'a siz benen (adresin'izdi bilmegen halda)
 
 'brokenredirects'        => "Hesh betke bag'ıtlamaytug'ın burıwshılar",
 'brokenredirectstext'    => "To'mendegi qayta bag'ıtlawshı betler ele jaratılmag'an betlerge silteydi:",
-'brokenredirects-edit'   => "(o'zgertiw)",
-'brokenredirects-delete' => "(o'shiriw)",
+'brokenredirects-edit'   => "o'zgertiw",
+'brokenredirects-delete' => "o'shiriw",
 
 'withoutinterwiki'         => "Hesh tilge siltemeytug'ın betler",
 'withoutinterwiki-summary' => "To'mendegi betler basqa tillerdegi nusqalarına siltemeydi.",

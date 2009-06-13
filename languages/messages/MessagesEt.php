@@ -228,6 +228,9 @@ ning [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide kasutusjuhendit].'
 'faq'            => 'KKK',
 'faqpage'        => 'Project:KKK',
 
+# Vector skin
+'vector-view-view' => 'Loe',
+
 # Metadata in edit box
 'metadata_help' => 'Metaandmed:',
 
@@ -247,7 +250,6 @@ ning [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide kasutusjuhendit].'
 'permalink'         => 'Püsilink',
 'print'             => 'Prindi',
 'edit'              => 'redigeeri',
-'view'              => 'Loe',
 'create'            => 'Loo',
 'editthispage'      => 'Redigeeri seda artiklit',
 'create-this-page'  => 'Loo see lehekülg',
@@ -1194,8 +1196,8 @@ Palun pöörduge tagasi ja laadige fail üles mõne teise nime all. [[File:$1|th
 
 'brokenredirects'        => 'Vigased ümbersuunamised',
 'brokenredirectstext'    => 'Järgmised leheküljed on ümber suunatud olematutele lehekülgedele:',
-'brokenredirects-edit'   => '(redigeeri)',
-'brokenredirects-delete' => '(kustuta)',
+'brokenredirects-edit'   => 'redigeeri',
+'brokenredirects-delete' => 'kustuta',
 
 'withoutinterwiki' => 'Keelelinkideta leheküljed',
 

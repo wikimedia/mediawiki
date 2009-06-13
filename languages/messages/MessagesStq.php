@@ -1443,8 +1443,8 @@ Lääste schällen dan wächhoald wäide.',
 
 'brokenredirects'        => 'Ferkierde Fäärelaitengen',
 'brokenredirectstext'    => 'Disse Spezioalsiede liestet Truchferwiese ap nit existierjende Sieden:',
-'brokenredirects-edit'   => '(beoarbaidje)',
-'brokenredirects-delete' => '(läskje)',
+'brokenredirects-edit'   => 'beoarbaidje',
+'brokenredirects-delete' => 'läskje',
 
 'withoutinterwiki'         => 'Sieden sunner Ferbiendengen tou uur Sproaken',
 'withoutinterwiki-summary' => 'Do foulgjende Sieden ferlinkje nit ap uur Sproakversionen:',

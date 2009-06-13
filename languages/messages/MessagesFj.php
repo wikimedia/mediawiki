@@ -147,8 +147,8 @@ $messages = array(
 # Random page
 'randompage' => 'Vakawasoma',
 
-'brokenredirects-edit'   => '(Veisautaki)',
-'brokenredirects-delete' => '(Vakarusa)',
+'brokenredirects-edit'   => 'Veisautaki',
+'brokenredirects-delete' => 'Vakarusa',
 
 # Miscellaneous special pages
 'newpages-username' => 'Yaca vakayagataki:',

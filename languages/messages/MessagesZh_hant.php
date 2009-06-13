@@ -1,5 +1,5 @@
 <?php
-/** Traditional Chinese (‪中文(傳統字)‬)
+/** Traditional Chinese (‪中文(繁體)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -316,6 +316,9 @@ $messages = array(
 'faq'            => '常見問題解答',
 'faqpage'        => 'Project:常見問題解答',
 
+# Vector skin
+'vector-view-view' => '閱讀',
+
 # Metadata in edit box
 'metadata_help' => '元數據:',
 
@@ -335,7 +338,6 @@ $messages = array(
 'permalink'         => '永久連結',
 'print'             => '列印',
 'edit'              => '編輯',
-'view'              => '閱讀',
 'create'            => '建立',
 'editthispage'      => '編輯本頁',
 'create-this-page'  => '建立本頁',
@@ -1619,8 +1621,8 @@ Template:消除歧義',
 
 'brokenredirects'        => '損壞的重定向頁',
 'brokenredirectstext'    => '以下的重定向頁指向的是不存在的頁面:',
-'brokenredirects-edit'   => '(編輯)',
-'brokenredirects-delete' => '(刪除)',
+'brokenredirects-edit'   => '編輯',
+'brokenredirects-delete' => '刪除',
 
 'withoutinterwiki'         => '未有語言鏈接的頁面',
 'withoutinterwiki-summary' => '以下的頁面是未有語言鏈接到其它語言版本。',
@@ -2951,6 +2953,7 @@ $1',
 # Separators for various lists, etc.
 'comma-separator' => '、',
 'word-separator'  => '',
+'parentheses'     => '（$1）',
 
 # Multipage image navigation
 'imgmultipageprev' => '← 上一頁',

@@ -295,6 +295,9 @@ $messages = array(
 'faq'            => 'מערסטע געפרעגטע פראגעס',
 'faqpage'        => 'Project:מערסטע געפרעגט פראגעס',
 
+# Vector skin
+'vector-view-view' => 'ליינען',
+
 # Metadata in edit box
 'metadata_help' => 'מעטא־דאטן:',
 
@@ -314,7 +317,6 @@ $messages = array(
 'permalink'         => 'שטענדיגער לינק',
 'print'             => 'דרוק',
 'edit'              => 'ענדערן',
-'view'              => 'ליינען',
 'create'            => 'שאפֿן',
 'editthispage'      => 'ענדערן דעם בלאט',
 'create-this-page'  => 'שאף דעם בלאט',
@@ -1367,8 +1369,8 @@ $2',
 
 'brokenredirects'        => 'צעבראָכענע ווײַטערפֿירונגען',
 'brokenredirectstext'    => 'די פֿאלגנדע ווײַטערפֿירונגען פֿאַרבינדן צו בלעטער וואס עקזיסטירן נאך נישט:',
-'brokenredirects-edit'   => '(ענדערן)',
-'brokenredirects-delete' => '(אויסמעקן)',
+'brokenredirects-edit'   => 'ענדערן',
+'brokenredirects-delete' => 'אויסמעקן',
 
 'withoutinterwiki'         => 'בלעטער אן שפראך פֿארבינדונגען',
 'withoutinterwiki-summary' => 'די פֿאלגנדע בלעטער פֿאַרבינדן נישט מיט אַנדערע שפראַך ווערסיעס',

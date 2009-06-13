@@ -1357,8 +1357,8 @@ Bul fattee seet baxam amul yeneen lëkkalekaay yu lay jëmale ci royuwaay yi bal
 'doubleredirects' => 'Jubluwaat ñaari yoon',
 
 'brokenredirectstext'    => "Yoonalaat yii dañuy jëmee ci'y xët yu amul :",
-'brokenredirects-edit'   => '(Soppi)',
-'brokenredirects-delete' => '(dindi)',
+'brokenredirects-edit'   => 'Soppi',
+'brokenredirects-delete' => 'dindi',
 
 'withoutinterwiki'         => 'Xët yi amul lëkkalekaay diggantey-làkk',
 'withoutinterwiki-summary' => 'Xët yii amu ñu ay lëkkalekaay jëm yeneeni làkk:',

@@ -319,8 +319,8 @@ $messages = array(
 # Statistics
 'statistics-pages' => 'Pakina',
 
-'brokenredirects-edit'   => '(wirin)',
-'brokenredirects-delete' => '(ñamümün)',
+'brokenredirects-edit'   => 'wirin',
+'brokenredirects-delete' => 'ñamümün',
 
 'withoutinterwiki-submit' => 'Pengelün',
 

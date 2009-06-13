@@ -1464,8 +1464,8 @@ Vèninu cunzidirati pàggini di disambiguazzioni tutti chiddi ca cuntèninu li t
 
 'brokenredirects'        => "Riinnirizzamenti (''redirects'') rumputi.",
 'brokenredirectstext'    => 'Li rinnirizzamenti siquenti pùntanu a pàggini ca nun asìstinu:',
-'brokenredirects-edit'   => '(cancia)',
-'brokenredirects-delete' => '(cancella)',
+'brokenredirects-edit'   => 'cancia',
+'brokenredirects-delete' => 'cancella',
 
 'withoutinterwiki'         => 'Pàggini senza interwiki',
 'withoutinterwiki-summary' => 'Li pàggini nnicati ccà nun hànnu liami ê virsioni nta àutri lingui:',

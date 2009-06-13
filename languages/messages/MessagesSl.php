@@ -1196,8 +1196,8 @@ Vsaka vrstica vsebuje povezave k prvi in drugi preusmeritvi ter prvo vrstico bes
 
 'brokenredirects'        => 'Pretrgane preusmeritve',
 'brokenredirectstext'    => 'Naslednje preusmeritve kažejo na neobstoječe strani:',
-'brokenredirects-edit'   => '(uredi)',
-'brokenredirects-delete' => '(izbriši)',
+'brokenredirects-edit'   => 'uredi',
+'brokenredirects-delete' => 'izbriši',
 
 'withoutinterwiki' => 'Strani brez jezikovnih povezav',
 

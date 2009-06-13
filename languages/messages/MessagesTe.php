@@ -1429,8 +1429,8 @@ $3 చెప్పిన కారణం: ''$2''",
 
 'brokenredirects'        => 'తెగిపోయిన దారిమార్పులు',
 'brokenredirectstext'    => 'కింది దారిమార్పులు లేని-పేజీలకు మళ్ళించుతున్నాయి:',
-'brokenredirects-edit'   => '(మార్చు)',
-'brokenredirects-delete' => '(తొలగించు)',
+'brokenredirects-edit'   => 'మార్చు',
+'brokenredirects-delete' => 'తొలగించు',
 
 'withoutinterwiki'         => 'భాషా లింకులు లేని పేజీలు',
 'withoutinterwiki-summary' => 'క్రింది పేజీల నుండి ఇతర భాషా వికీలకు లింకులు లేవు:',

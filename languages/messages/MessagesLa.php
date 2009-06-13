@@ -289,6 +289,9 @@ $messages = array(
 'faq'            => 'Quaestiones frequentes',
 'faqpage'        => 'Project:Quaestiones frequentes',
 
+# Vector skin
+'vector-view-view' => 'Legere',
+
 # Metadata in edit box
 'metadata_help' => 'Metadata:',
 
@@ -307,7 +310,6 @@ $messages = array(
 'permalink'         => 'Nexus perpetuus',
 'print'             => 'Imprimere',
 'edit'              => 'Recensere',
-'view'              => 'Legere',
 'create'            => 'Creare',
 'editthispage'      => 'Recensere hanc paginam',
 'create-this-page'  => 'Creare hanc paginam',
@@ -1033,7 +1035,7 @@ Si vis, sinit etiam aliis tecum loqui per tuam paginam usoris vel disputationis,
 'right-move-subpages'        => 'Paginas una cum subpaginis movere',
 'right-move-rootuserpages'   => 'Paginas usorum movere',
 'right-movefile'             => 'Fasciculos movere',
-'right-suppressredirect'     => 'Non creare redirectionem ex titulo vetere paginam movendo',
+'right-suppressredirect'     => 'Non creare redirectiones ex titulis veteribus paginas movendo',
 'right-upload'               => 'Fasciculos imponere',
 'right-upload_by_url'        => 'Fasciculum imponere ex inscriptione URL',
 'right-autoconfirmed'        => 'Paginas semiprotectas recensere',
@@ -1314,8 +1316,8 @@ Pagina discretivam esse putatur si formulam adhibet ad quem [[MediaWiki:Disambig
 
 'brokenredirects'        => 'Redirectiones fractae',
 'brokenredirectstext'    => 'Hae redirectiones ad paginas inexistentes nectunt:',
-'brokenredirects-edit'   => '(recensere)',
-'brokenredirects-delete' => '(delere)',
+'brokenredirects-edit'   => 'recensere',
+'brokenredirects-delete' => 'delere',
 
 'withoutinterwiki'         => 'Paginae sine nexibus ad linguas alias',
 'withoutinterwiki-summary' => 'Paginae sequentes non ad paginas in linguis aliis nectunt.',
@@ -1443,14 +1445,14 @@ Vide etiam [[Special:WantedCategories|categorias desideratas]].',
 'listgrouprights-rights'               => 'Potestates',
 'listgrouprights-helppage'             => 'Help:Gregum potestates',
 'listgrouprights-members'              => '(index rationum)',
-'listgrouprights-addgroup'             => 'Potest usores addere ad {{PLURAL:$2|gregem|greges}}: $1',
-'listgrouprights-removegroup'          => 'Potest usores removere ex {{PLURAL:$2|grege|gregibus}}: $1',
-'listgrouprights-addgroup-all'         => 'Potest usores addere ad omnes greges',
-'listgrouprights-removegroup-all'      => 'Potest usores removere ex omnibus gregibus',
-'listgrouprights-addgroup-self'        => 'Potest {{PLURAL:$2|gregem|greges}} addere ad rationem suam: $1',
-'listgrouprights-removegroup-self'     => 'Potest {{PLURAL:$2|gregem|greges}} removere ex ratione sua: $1',
-'listgrouprights-addgroup-self-all'    => 'Potest omnes greges addere ad rationem suam',
-'listgrouprights-removegroup-self-all' => 'Potest omnes greges removere ex ratione sua',
+'listgrouprights-addgroup'             => 'Addere {{PLURAL:$2|gregem|greges}}: $1',
+'listgrouprights-removegroup'          => 'Removere {{PLURAL:$2|gregem|greges}}: $1',
+'listgrouprights-addgroup-all'         => 'Addere omnes greges',
+'listgrouprights-removegroup-all'      => 'Removere omnes greges',
+'listgrouprights-addgroup-self'        => 'Addere {{PLURAL:$2|gregem|greges}} ad rationem propriam: $1',
+'listgrouprights-removegroup-self'     => 'Removere {{PLURAL:$2|gregem|greges}} ex ratione propria: $1',
+'listgrouprights-addgroup-self-all'    => 'Addere omnes greges ad rationem propriam',
+'listgrouprights-removegroup-self-all' => 'Removere omnes greges ex ratione propria',
 
 # E-mail user
 'emailuser'        => 'Litteras electronicas usori mittere',

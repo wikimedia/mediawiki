@@ -1215,8 +1215,8 @@ Abdi sulara, setikel da va ari skedasiki va teza stujel.',
 
 'brokenredirects'        => 'Arlizafa graskaraja yo',
 'brokenredirectstext'    => 'Kal metisu bu bata graskara stad :',
-'brokenredirects-edit'   => '(betara)',
-'brokenredirects-delete' => '(sulara)',
+'brokenredirects-edit'   => 'betara',
+'brokenredirects-delete' => 'sulara',
 
 'withoutinterwiki'         => 'Avagluyasikiiskaf bueem',
 'withoutinterwiki-summary' => 'Batu bu se va aravaf siatos me skedad :',

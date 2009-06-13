@@ -1478,8 +1478,8 @@ Input:contenttype/subtype, e.g. <tt>image/jpeg</tt>.',
 
 'brokenredirects'        => 'मोडके पुनर्निर्देशन',
 'brokenredirectstext'    => 'खालील पुनर्निर्देशने अस्तित्वात नसलेली पाने जोडतात:',
-'brokenredirects-edit'   => '(संपादा)',
-'brokenredirects-delete' => '(वगळा)',
+'brokenredirects-edit'   => 'संपादा',
+'brokenredirects-delete' => 'वगळा',
 
 'withoutinterwiki'         => 'आंतरविकि दुवे नसलेली पाने',
 'withoutinterwiki-summary' => 'खालील लेखात इतर भाषांमधील आवृत्तीला दुवे नाहीत:',

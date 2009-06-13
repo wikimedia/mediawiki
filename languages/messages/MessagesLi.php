@@ -1547,8 +1547,8 @@ Op eder raegel vings te de ierste redirectpazjena, de twiede redirectpazjena en 
 
 'brokenredirects'        => 'Gebraoke redirects',
 'brokenredirectstext'    => "De óngersjtaonde redirectpazjena's bevatte 'n redirect nao 'n neet-besjtaonde pazjena:",
-'brokenredirects-edit'   => '(bewerke)',
-'brokenredirects-delete' => '(wisse)',
+'brokenredirects-edit'   => 'bewerke',
+'brokenredirects-delete' => 'wisse',
 
 'withoutinterwiki'         => "Pazjena's zónger interwiki's",
 'withoutinterwiki-summary' => "De volgende pagina's linke neet nao versies in 'n anger taal:",

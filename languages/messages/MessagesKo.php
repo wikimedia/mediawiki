@@ -422,6 +422,9 @@ $messages = array(
 'faq'            => 'FAQ',
 'faqpage'        => 'Project:FAQ',
 
+# Vector skin
+'vector-view-view' => '읽기',
+
 # Metadata in edit box
 'metadata_help' => '메타데이터:',
 
@@ -441,7 +444,6 @@ $messages = array(
 'permalink'         => '고유링크',
 'print'             => '인쇄',
 'edit'              => '편집',
-'view'              => '읽기',
 'create'            => '생성',
 'editthispage'      => '이 문서 편집하기',
 'create-this-page'  => '이 문서 만들기',
@@ -1725,8 +1727,8 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 
 'brokenredirects'        => '끊긴 넘겨주기 목록',
 'brokenredirectstext'    => '존재하지 않는 문서로 넘겨주기가 되어 있는 문서의 목록입니다:',
-'brokenredirects-edit'   => '(편집)',
-'brokenredirects-delete' => '(삭제)',
+'brokenredirects-edit'   => '편집',
+'brokenredirects-delete' => '삭제',
 
 'withoutinterwiki'         => '언어 인터위키 링크가 없는 문서 목록',
 'withoutinterwiki-summary' => '다른 언어로의 연결이 없는 문서의 목록입니다:',

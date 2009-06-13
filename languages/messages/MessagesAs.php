@@ -804,7 +804,7 @@ $messages = array(
 
 'doubleredirects' => 'দ্বি-পূণঃনির্দেশিত',
 
-'brokenredirects-edit' => '(সম্পাদনা কৰক)',
+'brokenredirects-edit' => 'সম্পাদনা কৰক',
 
 # Miscellaneous special pages
 'nbytes'         => '$1 {{PLURAL:$1|বাইট|বাইট}}',

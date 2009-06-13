@@ -374,6 +374,9 @@ $messages = array(
 'faq'            => 'ЧЗВ',
 'faqpage'        => 'Project:ЧЗВ',
 
+# Vector skin
+'vector-view-view' => 'Преглеждане',
+
 # Metadata in edit box
 'metadata_help' => 'Метаданни:',
 
@@ -393,7 +396,6 @@ $messages = array(
 'permalink'         => 'Постоянна препратка',
 'print'             => 'Печат',
 'edit'              => 'Редактиране',
-'view'              => 'Преглеждане',
 'create'            => 'Създаване',
 'editthispage'      => 'Редактиране',
 'create-this-page'  => 'Създаване на страницата',
@@ -1639,8 +1641,8 @@ $2',
 
 'brokenredirects'        => 'Невалидни пренасочвания',
 'brokenredirectstext'    => 'Следните пренасочващи страници сочат към несъществуващи страници:',
-'brokenredirects-edit'   => '(редактиране)',
-'brokenredirects-delete' => '(изтриване)',
+'brokenredirects-edit'   => 'редактиране',
+'brokenredirects-delete' => 'изтриване',
 
 'withoutinterwiki'         => 'Страници без междуезикови препратки',
 'withoutinterwiki-summary' => 'Следните страници не препращат към версии на други езици:',

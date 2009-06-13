@@ -1119,8 +1119,8 @@ Pa piazeri verifigga si vói carriggà avveru chisthu file; inogghi v'è lu rigi
 
 'brokenredirects'        => 'Rinvii ibbagliaddi',
 'brokenredirectstext'    => 'Li rinvii sighenti puntani a pàgini inesisthenti:',
-'brokenredirects-edit'   => '(mudifigga)',
-'brokenredirects-delete' => '(canzella)',
+'brokenredirects-edit'   => 'mudifigga',
+'brokenredirects-delete' => 'canzella',
 
 'withoutinterwiki'         => "Pàgini chena cullegamenti p'althri linghi",
 'withoutinterwiki-summary' => 'Li sighenti pàgini so chena cullegamenti a versioni in althri linghi (interwiki):',

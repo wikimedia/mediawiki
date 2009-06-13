@@ -411,6 +411,9 @@ $messages = array(
 'faq'            => 'Pasaq tapuykuna',
 'faqpage'        => 'Project:Pasaq tapuykuna',
 
+# Vector skin
+'vector-view-view' => 'Ñawiriy',
+
 # Metadata in edit box
 'metadata_help' => 'Metadata:',
 
@@ -430,7 +433,6 @@ $messages = array(
 'permalink'         => "Kakuq t'inki",
 'print'             => "Ch'ipachiy",
 'edit'              => 'qillqay',
-'view'              => 'Ñawiriy',
 'create'            => 'Kamariy',
 'editthispage'      => "Kay p'anqata llamk'apuy",
 'create-this-page'  => "Kay p'anqata kamariy",
@@ -1700,8 +1702,8 @@ Kay p'anqapiqa huk pusapuna p'anqaman pusapuq p'anqakunap sutinkunatam rikunki. 
 
 'brokenredirects'        => 'Panta pusapunakuna',
 'brokenredirectstext'    => "Kay pusapuna p'anqakunaqa mana kachkaq p'anqakunamanmi pusapuchkan:",
-'brokenredirects-edit'   => "(llamk'apuy)",
-'brokenredirects-delete' => '(qulluy)',
+'brokenredirects-edit'   => "llamk'apuy",
+'brokenredirects-delete' => 'qulluy',
 
 'withoutinterwiki'         => "Interwiki t'inkinnaq p'anqakuna",
 'withoutinterwiki-summary' => "Kay p'anqakunaqa manam huk rimaykunapi p'anqakunaman t'inkinchu:",

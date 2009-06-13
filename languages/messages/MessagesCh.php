@@ -833,7 +833,7 @@ Yanggen un decidi mamo'lu, ma'usa ha' sempre para muna'i hao ni kreditu ni che'c
 'doubleredirects' => "Mandoble na inachetton ma'dirihi siha",
 
 'brokenredirects'      => "Manmayulang na muna'dirihi siha",
-'brokenredirects-edit' => '(tulaika)',
+'brokenredirects-edit' => 'tulaika',
 
 'withoutinterwiki' => "Påhina siha tai'inachetton ni lengguahe",
 

@@ -216,6 +216,9 @@ $messages = array(
 'faq'            => '頻答問',
 'faqpage'        => 'Project:頻答問',
 
+# Vector skin
+'vector-view-view' => '閱',
+
 # Metadata in edit box
 'metadata_help' => '衍意：',
 
@@ -235,7 +238,6 @@ $messages = array(
 'permalink'         => '恆鏈',
 'print'             => '印',
 'edit'              => '纂',
-'view'              => '閱',
 'create'            => '立',
 'editthispage'      => '纂',
 'create-this-page'  => '立',
@@ -1388,8 +1390,8 @@ $1",
 
 'brokenredirects'        => '斷渡',
 'brokenredirectstext'    => '頁下斷渡。',
-'brokenredirects-edit'   => '(替)',
-'brokenredirects-delete' => '(刪)',
+'brokenredirects-edit'   => '替',
+'brokenredirects-delete' => '刪',
 
 'withoutinterwiki'         => '孤語',
 'withoutinterwiki-summary' => '頁下無鏈他語。',

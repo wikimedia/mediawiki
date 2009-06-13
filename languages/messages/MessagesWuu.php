@@ -528,8 +528,8 @@ $messages = array(
 
 'brokenredirects'        => '坏脱个重定向',
 'brokenredirectstext'    => '下底个重定向链到弗存在个页面:',
-'brokenredirects-edit'   => '（编辑）',
-'brokenredirects-delete' => '（删除）',
+'brokenredirects-edit'   => '编辑',
+'brokenredirects-delete' => '删除',
 
 # Miscellaneous special pages
 'unusedimages'         => '弗勒浪使用个文件',
@@ -840,6 +840,7 @@ Variants for Chinese language
 
 # Separators for various lists, etc.
 'comma-separator' => '、',
+'parentheses'     => '（$1）',
 
 # Multipage image navigation
 'imgmultipageprev' => '← 上一页',

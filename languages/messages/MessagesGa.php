@@ -234,6 +234,9 @@ agus an [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Lámhleabhar ú
 'faq'            => 'Ceisteanna Coiteanta',
 'faqpage'        => 'Project:Ceisteanna_Coiteanta',
 
+# Vector skin
+'vector-view-view' => 'Léigh',
+
 # Metadata in edit box
 'metadata_help' => 'Meiteasonraí:',
 
@@ -253,7 +256,6 @@ agus an [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Lámhleabhar ú
 'permalink'         => 'Nasc buan',
 'print'             => 'Priontáil',
 'edit'              => 'Athraigh an lch seo',
-'view'              => 'Léigh',
 'create'            => 'Cruthaigh',
 'editthispage'      => 'Athraigh an lch seo',
 'create-this-page'  => 'Cruthaigh an lch seo',
@@ -1087,8 +1089,8 @@ ghnáth tugann sé sin an sprioc-alt "fíor".',
 
 'brokenredirects'        => 'Atreoruithe briste',
 'brokenredirectstext'    => 'Is iad na athsheolaidh seo a leanas a nascaíonn go ailt nach bhfuil ann fós:',
-'brokenredirects-edit'   => '(athraigh)',
-'brokenredirects-delete' => '(scrios)',
+'brokenredirects-edit'   => 'athraigh',
+'brokenredirects-delete' => 'scrios',
 
 'withoutinterwiki'        => 'Leathanaigh gan naisc idirvicí',
 'withoutinterwiki-legend' => 'Réimír',

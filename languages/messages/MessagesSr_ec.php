@@ -1614,8 +1614,8 @@ $2',
 
 'brokenredirects'        => 'Покварена преусмерења',
 'brokenredirectstext'    => 'Следећа преусмерења повезују на непостојеће стране:',
-'brokenredirects-edit'   => '(уреди)',
-'brokenredirects-delete' => '(обриши)',
+'brokenredirects-edit'   => 'уреди',
+'brokenredirects-delete' => 'обриши',
 
 'withoutinterwiki'         => 'Странице без интервики веза',
 'withoutinterwiki-summary' => 'Следеће странице не вежу ка другим језицима (међувики):',

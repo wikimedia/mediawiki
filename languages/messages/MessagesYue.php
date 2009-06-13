@@ -1,5 +1,5 @@
 <?php
-/** Cantonese (粵語/廣東話)
+/** Yue (粵語)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -289,6 +289,9 @@ $messages = array(
 'faq'            => 'FAQ',
 'faqpage'        => 'Project:FAQ',
 
+# Vector skin
+'vector-view-view' => '閱',
+
 # Metadata in edit box
 'metadata_help' => 'Metadata',
 
@@ -308,7 +311,6 @@ $messages = array(
 'permalink'         => '永久連結',
 'print'             => '印',
 'edit'              => '編輯',
-'view'              => '閱',
 'create'            => '建立',
 'editthispage'      => '編輯呢頁',
 'create-this-page'  => '建立呢頁',
@@ -1597,8 +1599,8 @@ Template:搞清楚',
 
 'brokenredirects'        => '破碎嘅跳轉',
 'brokenredirectstext'    => '以下嘅跳轉係指向唔存在嘅頁面:',
-'brokenredirects-edit'   => '(編輯)',
-'brokenredirects-delete' => '(刪除)',
+'brokenredirects-edit'   => '編輯',
+'brokenredirects-delete' => '刪除',
 
 'withoutinterwiki'         => '無語言連結嘅頁',
 'withoutinterwiki-summary' => '以下嘅頁面係重未有連結到其它嘅語言版本。',
@@ -2926,6 +2928,7 @@ $1',
 # Separators for various lists, etc.
 'comma-separator' => '、',
 'word-separator'  => '',
+'parentheses'     => '（$1）',
 
 # Multipage image navigation
 'imgmultipageprev' => '← 上一版',

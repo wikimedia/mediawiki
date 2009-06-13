@@ -561,6 +561,9 @@ $messages = array(
 'faq'            => 'الأسئلة الأكثر تكرارا',
 'faqpage'        => 'Project:أسئلة متكررة',
 
+# Vector skin
+'vector-view-view' => 'اقرأ',
+
 # Metadata in edit box
 'metadata_help' => 'بيانات ميتا:',
 
@@ -580,7 +583,6 @@ $messages = array(
 'permalink'         => 'وصلة دائمة',
 'print'             => 'اطبع',
 'edit'              => 'عدل',
-'view'              => 'اقرأ',
 'create'            => 'أنشىء',
 'editthispage'      => 'عدل هذه الصفحة',
 'create-this-page'  => 'أنشىء هذه الصفحة',
@@ -1943,8 +1945,8 @@ PICT # متنوع
 
 'brokenredirects'        => 'تحويلات مكسورة',
 'brokenredirectstext'    => 'التحويلات التالية تصل لصفحات غير موجودة:',
-'brokenredirects-edit'   => '(عدل)',
-'brokenredirects-delete' => '(حذف)',
+'brokenredirects-edit'   => 'عدل',
+'brokenredirects-delete' => 'حذف',
 
 'withoutinterwiki'         => 'صفحات بدون وصلات لغات أخرى',
 'withoutinterwiki-summary' => 'الصفحات التالية لا تصل إلى نسخ بلغات أخرى.',

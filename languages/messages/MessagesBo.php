@@ -185,8 +185,8 @@ $messages = array(
 # Random page
 'randompage' => 'རང་མོས་ཤོག་ངོས།',
 
-'brokenredirects-edit'   => '(རྩོམ་སྒྲིག )',
-'brokenredirects-delete' => '(གསུབ་པ།)',
+'brokenredirects-edit'   => 'རྩོམ་སྒྲིག',
+'brokenredirects-delete' => 'གསུབ་པ།',
 
 # Miscellaneous special pages
 'newpages-username' => 'དྲ་མིང་།:',

@@ -1492,8 +1492,8 @@ Each row contains links to the first and second redirect, as well as the target 
 
 'brokenredirects'        => 'Tuuta redirects',
 'brokenredirectstext'    => 'Niche ke suchi me uu redirects hai jon ki non-existent panna pe redirect kare hai:',
-'brokenredirects-edit'   => '(badlo)',
-'brokenredirects-delete' => '(mitao)',
+'brokenredirects-edit'   => 'badlo',
+'brokenredirects-delete' => 'mitao',
 
 'withoutinterwiki'         => 'Bina bhasa ke link waala panna',
 'withoutinterwiki-summary' => 'Niche waala panna duusra bhasa ke versions se nai jurre hai.',

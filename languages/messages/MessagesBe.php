@@ -208,6 +208,9 @@ $messages = array(
 'faq'            => 'ЧАПЫ',
 'faqpage'        => 'Project:ЧАПЫ',
 
+# Vector skin
+'vector-view-view' => 'Чытаць',
+
 # Metadata in edit box
 'metadata_help' => 'Метазвесткі:',
 
@@ -227,7 +230,6 @@ $messages = array(
 'permalink'         => 'Нязменная спасылка',
 'print'             => 'Друкаваць',
 'edit'              => 'Правіць',
-'view'              => 'Чытаць',
 'create'            => 'Стварыць',
 'editthispage'      => 'Правіць гэту старонку',
 'create-this-page'  => 'Стварыць старонку',
@@ -1432,8 +1434,8 @@ $2',
 
 'brokenredirects'        => 'Паламаныя перасылкі',
 'brokenredirectstext'    => 'Гэтыя перасылкі паказваюць на старонкі, якіх няма:',
-'brokenredirects-edit'   => '(правіць)',
-'brokenredirects-delete' => '(выдаліць)',
+'brokenredirects-edit'   => 'правіць',
+'brokenredirects-delete' => 'выдаліць',
 
 'withoutinterwiki'         => 'Старонкі без адпаведных іншамоўных',
 'withoutinterwiki-summary' => 'Спіс артыкулаў без спасылак на іншамоўныя версіі:',

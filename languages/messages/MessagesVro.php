@@ -1070,8 +1070,8 @@ Lehte peetäs täpsüstüslehes, ku timän om pruugit näüdüst, kohe näütäs
 
 'brokenredirects'        => 'Vigadsõq ümbresaatmisõq',
 'brokenredirectstext'    => 'Naaq ümbresaatmisõq näütäseq lehti pääle, midä olõ-i olõman:',
-'brokenredirects-edit'   => '(toimõndaq)',
-'brokenredirects-delete' => '(kistudaq ärq)',
+'brokenredirects-edit'   => 'toimõndaq',
+'brokenredirects-delete' => 'kistudaq ärq',
 
 'withoutinterwiki'         => 'Keelelingeldä leheq',
 'withoutinterwiki-summary' => 'Nail lehil olõ-i linke tõisi kiili lehti pääle:',

@@ -1601,8 +1601,8 @@ Naglalaman ng link ang bawat hanay sa una at ikalawang redirect, at nang unang l
 
 'brokenredirects'        => 'Bali/putol na mga panuto o panturo',
 'brokenredirectstext'    => 'Ang sumusunod na mga panturo papunta sa ibang pahina ay kumakawing patungo sa mga pahinang hindi pa umiiral.',
-'brokenredirects-edit'   => '(baguhin)',
-'brokenredirects-delete' => '(burahin)',
+'brokenredirects-edit'   => 'baguhin',
+'brokenredirects-delete' => 'burahin',
 
 'withoutinterwiki'         => 'Mga pahinang walang mga ugnay pang-wika',
 'withoutinterwiki-summary' => 'Walang ugnay ang mga sumusunod ng pahina sa mga ibang bersyon na wika:',

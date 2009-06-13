@@ -1385,8 +1385,8 @@ Plok pachan pälkirjutesele toižetab sortiruindan järgenduz.',
 
 'brokenredirects'        => 'Rebitadud läbikosketused',
 'brokenredirectstext'    => 'Nened läbikosketused ozutadas olmatomihe lehtpolihe:',
-'brokenredirects-edit'   => '(redaktiruida)',
-'brokenredirects-delete' => '(čuta poiš)',
+'brokenredirects-edit'   => 'redaktiruida',
+'brokenredirects-delete' => 'čuta poiš',
 
 'withoutinterwiki'         => "Lehtpoled kel'kosketusita",
 'withoutinterwiki-summary' => 'Nenil lehtpolil ei ole interwiki-kosketusid.',

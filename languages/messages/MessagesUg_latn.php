@@ -134,8 +134,8 @@ $messages = array(
 # Random page
 'randompage' => 'Halighan Tor Beti',
 
-'brokenredirects-edit'   => '(uzgartish)',
-'brokenredirects-delete' => '(yukhutush)',
+'brokenredirects-edit'   => 'uzgartish',
+'brokenredirects-delete' => 'yukhutush',
 
 # Miscellaneous special pages
 'newpages'          => 'Yéngi betler',

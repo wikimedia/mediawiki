@@ -1362,8 +1362,8 @@ Sawijining kaca dianggep minangka kaca disambiguasi yèn kaca iku nganggo cithak
 
 'brokenredirects'        => 'Pangalihan rusak',
 'brokenredirectstext'    => 'Pengalihanipun kaca punika mboten kepanggih sambunganipun.',
-'brokenredirects-edit'   => '(sunting)',
-'brokenredirects-delete' => '(busak)',
+'brokenredirects-edit'   => 'sunting',
+'brokenredirects-delete' => 'busak',
 
 'withoutinterwiki'         => 'Kaca tanpa pranala antarbasa',
 'withoutinterwiki-summary' => 'Kaca-kaca iki ora nduwé pranala menyang vèrsi ing  basa liyané:',

@@ -609,8 +609,8 @@ Bu səhifə üçün silmə qeydləri aşağıda göstərilmişdir:",
 
 'brokenredirects'        => 'Xətalı istiqamətləndirmə',
 'brokenredirectstext'    => 'Bu istiqamətləndirmələr mövcud olmayan səhifəyə keçid verir.',
-'brokenredirects-edit'   => '(redaktə)',
-'brokenredirects-delete' => '(sil)',
+'brokenredirects-edit'   => 'redaktə',
+'brokenredirects-delete' => 'sil',
 
 'withoutinterwiki' => 'Dil keçidləri olmayan səhifələr',
 

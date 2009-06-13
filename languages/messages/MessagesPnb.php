@@ -729,8 +729,8 @@ $messages = array(
 'doubleredirects' => 'دوہری ریڈیرکٹس',
 
 'brokenredirects'        => 'ٹٹے ہوۓ ریڈائریکٹس',
-'brokenredirects-edit'   => '(لکھو)',
-'brokenredirects-delete' => '(مٹاؤ)',
+'brokenredirects-edit'   => 'لکھو',
+'brokenredirects-delete' => 'مٹاؤ',
 
 'withoutinterwiki'        => 'او صفحہ جناں دا دوجی بولیاں نال جوڑ نہیں',
 'withoutinterwiki-submit' => 'وکھاو',

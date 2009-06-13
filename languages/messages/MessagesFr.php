@@ -465,6 +465,9 @@ $messages = array(
 'faq'            => 'FAQ',
 'faqpage'        => 'Project:FAQ',
 
+# Vector skin
+'vector-view-view' => 'Lire',
+
 # Metadata in edit box
 'metadata_help' => 'Métadonnées :',
 
@@ -484,7 +487,6 @@ $messages = array(
 'permalink'         => 'Lien historique',
 'print'             => 'Imprimer',
 'edit'              => 'Modifier',
-'view'              => 'Lire',
 'create'            => 'Créer',
 'editthispage'      => 'Modifier cette page',
 'create-this-page'  => 'Créer cette page',
@@ -1809,8 +1811,8 @@ Chaque entrée contient des liens vers la première et la seconde redirections, 
 
 'brokenredirects'        => 'Redirections cassées',
 'brokenredirectstext'    => 'Ces redirections mènent vers des pages inexistantes :',
-'brokenredirects-edit'   => '(modifier)',
-'brokenredirects-delete' => '(supprimer)',
+'brokenredirects-edit'   => 'modifier',
+'brokenredirects-delete' => 'supprimer',
 
 'withoutinterwiki'         => 'Pages sans liens inter-langues',
 'withoutinterwiki-summary' => 'Les pages suivantes ne possèdent pas de liens vers d’autres langues :',

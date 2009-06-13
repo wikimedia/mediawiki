@@ -334,6 +334,30 @@ $messages = array(
 'faq'            => 'Často kladené otázky',
 'faqpage'        => 'Project:Často kladené otázky',
 
+# Vector skin
+'vector-action-addsection'   => 'Pridať tému',
+'vector-action-delete'       => 'Zmazať',
+'vector-action-move'         => 'Presunúť',
+'vector-action-protect'      => 'Zamknúť',
+'vector-action-undelete'     => 'Obnoviť',
+'vector-action-unprotect'    => 'Odomknúť',
+'vector-namespace-category'  => 'Kategória',
+'vector-namespace-help'      => 'Pomocník',
+'vector-namespace-image'     => 'Súbor',
+'vector-namespace-main'      => 'Stránka',
+'vector-namespace-media'     => 'Stránka súboru',
+'vector-namespace-mediawiki' => 'Správa',
+'vector-namespace-project'   => 'Stránka projektu',
+'vector-namespace-special'   => 'Špeciálna stránka',
+'vector-namespace-talk'      => 'Diskusia',
+'vector-namespace-template'  => 'Šablóna',
+'vector-namespace-user'      => 'Používateľská stránka',
+'vector-view-create'         => 'Vytvoriť',
+'vector-view-edit'           => 'Upraviť',
+'vector-view-history'        => 'Zobraziť históriu',
+'vector-view-view'           => 'Čítať',
+'vector-view-viewsource'     => 'Zobraziť zdroj',
+
 # Metadata in edit box
 'metadata_help' => 'Metadáta:',
 
@@ -353,7 +377,6 @@ $messages = array(
 'permalink'         => 'Trvalý odkaz',
 'print'             => 'Tlač',
 'edit'              => 'upraviť',
-'view'              => 'Čítať',
 'create'            => 'Vytvoriť',
 'editthispage'      => 'Upraviť túto stránku',
 'create-this-page'  => 'Vytvoriť túto stránku',
@@ -1683,8 +1706,8 @@ Stránka sa považuje za rozlišovaciu, keď používa šablónu, na ktorú odka
 
 'brokenredirects'        => 'Pokazené presmerovania',
 'brokenredirectstext'    => 'Nasledovné presmerovania odkazujú na neexistujúce stránky:',
-'brokenredirects-edit'   => '(upraviť)',
-'brokenredirects-delete' => '(zmazať)',
+'brokenredirects-edit'   => 'upraviť',
+'brokenredirects-delete' => 'zmazať',
 
 'withoutinterwiki'         => 'Stránky bez jazykových odkazov',
 'withoutinterwiki-summary' => 'Nasledujúce stránky neodkazujú na iné jazykové verzie:',

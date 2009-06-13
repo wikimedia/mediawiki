@@ -135,7 +135,7 @@ $messages = array(
 # Random page
 'randompage' => 'Ennich Ardickel',
 
-'brokenredirects-edit' => '(ennere)',
+'brokenredirects-edit' => 'ennere',
 
 # Miscellaneous special pages
 'move' => 'Ziehe',

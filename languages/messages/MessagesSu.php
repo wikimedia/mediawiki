@@ -1256,8 +1256,8 @@ Sahiji kaca dianggap minangka kaca disambiguasi lamun kaca kasebut ngagunakeun c
 
 'brokenredirects'        => 'Alihan buntu',
 'brokenredirectstext'    => 'Alihan di handap numbu ka kaca nu teu aya.',
-'brokenredirects-edit'   => '(édit)',
-'brokenredirects-delete' => '(hapus)',
+'brokenredirects-edit'   => 'édit',
+'brokenredirects-delete' => 'hapus',
 
 'withoutinterwiki'         => 'Kaca-kaca tanpa tumbu basa',
 'withoutinterwiki-summary' => 'Kaca-kaca di handap ieu teu numbu ka vérsi basa séjén:',

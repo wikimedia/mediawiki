@@ -412,6 +412,9 @@ $messages = array(
 'faq'            => 'ЧПП',
 'faqpage'        => 'Project:ЧПП',
 
+# Vector skin
+'vector-view-view' => 'Читај',
+
 # Metadata in edit box
 'metadata_help' => 'Метаподатоци:',
 
@@ -431,7 +434,6 @@ $messages = array(
 'permalink'         => 'Перманентна врска',
 'print'             => 'Печати',
 'edit'              => 'Уреди',
-'view'              => 'Читај',
 'create'            => 'Создади',
 'editthispage'      => 'Уреди ја оваа страница',
 'create-this-page'  => 'Создади ја оваа страница',
@@ -1770,8 +1772,8 @@ PICT # misc.
 
 'brokenredirects'        => 'Прекинати пренасочувања',
 'brokenredirectstext'    => 'Следните пренасочувања водат до непостоечки страници.',
-'brokenredirects-edit'   => '(уреди)',
-'brokenredirects-delete' => '(бриши)',
+'brokenredirects-edit'   => 'уреди',
+'brokenredirects-delete' => 'бриши',
 
 'withoutinterwiki'         => 'Страници без интервики (јазични) врски',
 'withoutinterwiki-summary' => 'Следните страници немаат врски до други јазични верзии.',

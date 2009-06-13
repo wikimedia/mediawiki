@@ -1286,8 +1286,8 @@ $3 մասնակիցը տվել է հետևյալ պատճառը. ''$2''",
 
 'brokenredirects'        => 'Կոտրված վերահղումներ',
 'brokenredirectstext'    => 'Հետևյալ վերահղումները տանում են գոյություն չունեցող էջերի.',
-'brokenredirects-edit'   => '(խմբագրել)',
-'brokenredirects-delete' => '(ջնջել)',
+'brokenredirects-edit'   => 'խմբագրել',
+'brokenredirects-delete' => 'ջնջել',
 
 'withoutinterwiki'         => 'Լեզվային հղումներ չպարունակող էջեր',
 'withoutinterwiki-summary' => 'Հետևյալ էջերը չունեն լեզվական հղումներ.',

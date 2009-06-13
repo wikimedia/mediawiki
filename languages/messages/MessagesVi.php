@@ -381,6 +381,9 @@ $messages = array(
 'faq'            => 'Câu hỏi thường gặp',
 'faqpage'        => 'Project:Các câu hỏi thường gặp',
 
+# Vector skin
+'vector-view-view' => 'Xem',
+
 # Metadata in edit box
 'metadata_help' => 'Đặc tính hình:',
 
@@ -400,7 +403,6 @@ $messages = array(
 'permalink'         => 'Liên kết thường trực',
 'print'             => 'In',
 'edit'              => 'Sửa đổi',
-'view'              => 'Xem',
 'create'            => 'Tạo',
 'editthispage'      => 'Sửa trang này',
 'create-this-page'  => 'Tạo trang này',
@@ -1703,8 +1705,8 @@ Hãy nhớ kiểm tra các liên kết khác đến tiêu bản trước khi xó
 
 'brokenredirects'        => 'Đổi hướng sai',
 'brokenredirectstext'    => 'Các trang đổi hướng sau đây liên kết đến trang không tồn tại:',
-'brokenredirects-edit'   => '(sửa)',
-'brokenredirects-delete' => '(xóa)',
+'brokenredirects-edit'   => 'sửa',
+'brokenredirects-delete' => 'xóa',
 
 'withoutinterwiki'         => 'Trang chưa có liên kết ngoại ngữ',
 'withoutinterwiki-summary' => 'Các trang sau đây không có liên kết đến các phiên bản ngoại ngữ khác:',

@@ -1126,8 +1126,8 @@ $2',
 
 'brokenredirects'        => 'ಮುರಿದ ರಿಡೈರೆಕ್ಟ್‌ಗಳು',
 'brokenredirectstext'    => 'ಕೆಳಗಿನ ರಿಡೈರೆಕ್ಟುಗಳು ವಿಕಿಯಲ್ಲಿ ಇಲ್ಲದ ಪುಟಗಳಿಗೆ ಸಂಪರ್ಕ ಹೊಂದಿವೆ:',
-'brokenredirects-edit'   => '(ಸಂಪಾದಿಸಿ)',
-'brokenredirects-delete' => '(ಅಳಿಸಿ)',
+'brokenredirects-edit'   => 'ಸಂಪಾದಿಸಿ',
+'brokenredirects-delete' => 'ಅಳಿಸಿ',
 
 'withoutinterwiki'         => 'ಬೇರೆ ಭಾಷೆಗಳಿಗೆ ಸಂಪರ್ಕ ಹೊಂದಿರದ ಪುಟಗಳು',
 'withoutinterwiki-summary' => 'ಈ ಕೆಳಗಿನ ಪುಟಗಳು ಅವುಗಳ ಇತರ ಭಾಷೆಯಲ್ಲಿರುವ ಪುಟಗಳಿಗೆ ಕೊಂಡಿಯನ್ನು ಹೊಂದಿಲ್ಲ:',

@@ -1063,8 +1063,8 @@ $2',
 
 'brokenredirects'        => '壞吥嗰重定向頁',
 'brokenredirectstext'    => '底下嗰重定向頁面指到嗰係伓存在嗰頁面:',
-'brokenredirects-edit'   => '(編寫)',
-'brokenredirects-delete' => '(刪吥)',
+'brokenredirects-edit'   => '編寫',
+'brokenredirects-delete' => '刪吥',
 
 'withoutinterwiki'         => '冇語言連結嗰頁面',
 'withoutinterwiki-summary' => '底下嗰頁面係冇語言連結到別嗰語言版本:',
@@ -2135,6 +2135,7 @@ $1',
 
 # Separators for various lists, etc.
 'comma-separator' => '、',
+'parentheses'     => '（$1）',
 
 # Multipage image navigation
 'imgmultipageprev' => '← 上頁',

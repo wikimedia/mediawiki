@@ -669,8 +669,8 @@ Matlakala ago ba [[Special:Watchlist|lenanong la gago la matlakala ditlhapetšo]
 'doubleredirects' => "Di''redirect'' goya go ''redirect''",
 
 'brokenredirects'        => "''redirect'' tša go robega",
-'brokenredirects-edit'   => '(fetola)',
-'brokenredirects-delete' => '(phumula)',
+'brokenredirects-edit'   => 'fetola',
+'brokenredirects-delete' => 'phumula',
 
 'withoutinterwiki'        => 'Matlakala a senago dihlomaganyo tša dipolelo',
 'withoutinterwiki-submit' => 'Bontšha',

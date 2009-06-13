@@ -373,6 +373,30 @@ $messages = array(
 'faq'            => 'FAQ',
 'faqpage'        => 'Project:FAQ',
 
+# Vector skin
+'vector-action-addsection'   => 'Dodaj temat',
+'vector-action-delete'       => 'Usuń',
+'vector-action-move'         => 'Przenieś',
+'vector-action-protect'      => 'Zabezpiecz',
+'vector-action-undelete'     => 'Odtwórz',
+'vector-action-unprotect'    => 'Odbezpiecz',
+'vector-namespace-category'  => 'Kategoria',
+'vector-namespace-help'      => 'Strona pomocy',
+'vector-namespace-image'     => 'Plik',
+'vector-namespace-main'      => 'Strona',
+'vector-namespace-media'     => 'Strona pliku',
+'vector-namespace-mediawiki' => 'Komunikat',
+'vector-namespace-project'   => 'Strona projektu',
+'vector-namespace-special'   => 'Strona specjalna',
+'vector-namespace-talk'      => 'Dyskusja',
+'vector-namespace-template'  => 'Szablon',
+'vector-namespace-user'      => 'Strona użytkownika',
+'vector-view-create'         => 'Utwórz',
+'vector-view-edit'           => 'Edytuj',
+'vector-view-history'        => 'Wyświetl historię',
+'vector-view-view'           => 'Czytaj',
+'vector-view-viewsource'     => 'Tekst źródłowy',
+
 # Metadata in edit box
 'metadata_help' => 'Metadane:',
 
@@ -392,7 +416,6 @@ $messages = array(
 'permalink'         => 'Link do tej wersji',
 'print'             => 'Drukuj',
 'edit'              => 'Edytuj',
-'view'              => 'Czytaj',
 'create'            => 'Utwórz',
 'editthispage'      => 'Edytuj tę stronę',
 'create-this-page'  => 'Utwórz tę stronę',
@@ -1741,8 +1764,8 @@ Strona uznawana jest za ujednoznaczniającą, jeśli zawiera szablon linkowany p
 
 'brokenredirects'        => 'Zerwane przekierowania',
 'brokenredirectstext'    => 'Poniższe przekierowania wskazują na nieistniejące strony.',
-'brokenredirects-edit'   => '(edytuj)',
-'brokenredirects-delete' => '(usuń)',
+'brokenredirects-edit'   => 'edytuj',
+'brokenredirects-delete' => 'usuń',
 
 'withoutinterwiki'         => 'Strony bez odnośników do projektów w innych językach',
 'withoutinterwiki-summary' => 'Poniższe strony nie odwołują się do innych wersji językowych.',

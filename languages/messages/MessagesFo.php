@@ -705,8 +705,8 @@ Hvørt rað inniheldur slóðir til fyrstu og aðru ávísing, umframt tekstin �
 
 'brokenredirects'        => 'Brotnar ávísingar',
 'brokenredirectstext'    => 'Hesar ávísingarnar slóða til síður, ið ikki eru til.',
-'brokenredirects-edit'   => '(rætta)',
-'brokenredirects-delete' => '(strika)',
+'brokenredirects-edit'   => 'rætta',
+'brokenredirects-delete' => 'strika',
 
 'withoutinterwiki'         => 'Síður uttan málslóðir',
 'withoutinterwiki-summary' => 'Fylgjandi síður slóða ikki til útgávur á øðrum málum:',

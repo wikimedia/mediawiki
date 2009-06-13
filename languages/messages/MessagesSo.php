@@ -426,8 +426,8 @@ Waa in aysan ka badanin $1 {{PLURAL:$1|eray|erayo}}.',
 # Random page
 'randompage' => 'Ku nasiibso bog',
 
-'brokenredirects-edit'   => '(wax ka bedel)',
-'brokenredirects-delete' => '(tirtir)',
+'brokenredirects-edit'   => 'wax ka bedel',
+'brokenredirects-delete' => 'tirtir',
 
 # Miscellaneous special pages
 'lonelypages'       => 'Boggaga agoonta ah',

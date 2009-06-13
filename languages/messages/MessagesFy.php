@@ -1532,8 +1532,8 @@ Se soenen mei de side sels keppele wurde moatte.<br /> In side wurdt sjoen as be
 
 'brokenredirects'        => 'Misse synonimen',
 'brokenredirectstext'    => "De siden dêr't dizze titels synonym oan wêze moatte, bestean net.",
-'brokenredirects-edit'   => '(bewurkje)',
-'brokenredirects-delete' => '(wiskje)',
+'brokenredirects-edit'   => 'bewurkje',
+'brokenredirects-delete' => 'wiskje',
 
 'withoutinterwiki'         => 'Siden sûnder ferwizings nei oare talen',
 'withoutinterwiki-summary' => 'De folgjende siden ferwize net nei ferzjes yn in oare taal.',

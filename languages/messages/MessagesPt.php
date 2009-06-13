@@ -313,6 +313,9 @@ $messages = array(
 'faq'            => 'FAQ',
 'faqpage'        => 'Project:FAQ',
 
+# Vector skin
+'vector-view-view' => 'Ler',
+
 # Metadata in edit box
 'metadata_help' => 'Metadados:',
 
@@ -332,7 +335,6 @@ $messages = array(
 'permalink'         => 'Ligação permanente',
 'print'             => 'Imprimir',
 'edit'              => 'Editar',
-'view'              => 'Ler',
 'create'            => 'Criar',
 'editthispage'      => 'Editar esta página',
 'create-this-page'  => 'Criar/iniciar esta página',
@@ -1660,8 +1662,8 @@ Uma página é considerada como de desambiguação se utilizar uma predefiniçã
 
 'brokenredirects'        => 'Redireccionamentos quebrados',
 'brokenredirectstext'    => 'Os seguintes redireccionamentos ligam para páginas inexistentes:',
-'brokenredirects-edit'   => '(editar)',
-'brokenredirects-delete' => '(eliminar)',
+'brokenredirects-edit'   => 'editar',
+'brokenredirects-delete' => 'eliminar',
 
 'withoutinterwiki'         => 'Páginas sem interwikis de idiomas',
 'withoutinterwiki-summary' => 'As seguintes páginas não possuem links para versões em outros idiomas.',

@@ -226,7 +226,7 @@ $messages = array(
 # Random page
 'randompage' => 'Ца хууш нисделла таптар',
 
-'brokenredirects-delete' => '(дІадайа)',
+'brokenredirects-delete' => 'дІадайа',
 
 # Miscellaneous special pages
 'nbytes'            => '$1 {{PLURAL:$1|байт|байтош|байтош}}',

@@ -1074,8 +1074,8 @@ Paspaude ont štolpelė ontraštės pakeisėt ėšruokavėma.',
 
 'brokenredirects'        => 'Neveikiantīs paradresavėmā',
 'brokenredirectstext'    => 'Žemiau ėšvardintė paradresavėma poslapē ruod i nasontius poslapius:',
-'brokenredirects-edit'   => '(redagoutė)',
-'brokenredirects-delete' => '(trintė)',
+'brokenredirects-edit'   => 'redagoutė',
+'brokenredirects-delete' => 'trintė',
 
 'withoutinterwiki'         => 'Poslapē ba kalbū nūruodu',
 'withoutinterwiki-summary' => 'Šėtė poslapē neruod i kėtū kalbū versėjės:',

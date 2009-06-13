@@ -481,6 +481,9 @@ $messages = array(
 'faq'            => 'Συχνές ερωτήσεις (FAQ)',
 'faqpage'        => 'Project:Συχνές ερωτήσεις (FAQ)',
 
+# Vector skin
+'vector-view-view' => 'Ανάγνωση',
+
 # Metadata in edit box
 'metadata_help' => 'Μεταδεδομένα:',
 
@@ -500,7 +503,6 @@ $messages = array(
 'permalink'         => 'Μόνιμος σύνδεσμος',
 'print'             => 'Εκτύπωση',
 'edit'              => 'Επεξεργασία',
-'view'              => 'Ανάγνωση',
 'create'            => 'Δημιουργήστε',
 'editthispage'      => 'Επεξεργασία αυτής της σελίδας',
 'create-this-page'  => 'Δημιουργήστε αυτή τη σελίδα',
@@ -1778,8 +1780,8 @@ PICT # διάφορα
 
 'brokenredirects'        => 'Λανθασμένες ανακατευθύνσεις',
 'brokenredirectstext'    => 'Οι παρακάτω ανακατευθύνσεις οδηγούν σε σελίδες που δεν υπάρχουν:',
-'brokenredirects-edit'   => '(επεξεργασία)',
-'brokenredirects-delete' => '(διαγραφή)',
+'brokenredirects-edit'   => 'επεξεργασία',
+'brokenredirects-delete' => 'διαγραφή',
 
 'withoutinterwiki'         => 'Σελίδες χωρίς διαγλωσσικούς συνδέσμους',
 'withoutinterwiki-summary' => 'Οι ακόλουθες σελίδες δεν συνδέεουν σε εκδόσεις σε άλλες γλώσσες:',

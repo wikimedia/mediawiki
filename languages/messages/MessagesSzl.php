@@ -1337,8 +1337,8 @@ Zajta uznawano je za ujydnoznačńajůnco kej zawiyro šablůn uokreślůny we [
 
 'brokenredirects'        => 'Zuomane překerowańa',
 'brokenredirectstext'    => 'Překerowańo půńižej wskazujům na artikle kerych sam ńy ma.',
-'brokenredirects-edit'   => '(sprowjéj)',
-'brokenredirects-delete' => '(wyćep)',
+'brokenredirects-edit'   => 'sprowjéj',
+'brokenredirects-delete' => 'wyćep',
 
 'withoutinterwiki'         => 'Artikle bez interwiki',
 'withoutinterwiki-summary' => 'Zajty půńižej ńy majům uodwouań do wersjůw w inkšych godkach.',

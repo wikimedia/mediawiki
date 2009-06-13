@@ -1102,8 +1102,8 @@ An páhina pigkokonsiderar na páhina nin klaripikasyon kun naggagamit ini nin t
 
 'brokenredirects'        => 'Putol na mga paglikay',
 'brokenredirectstext'    => 'An nagsusunod naglilikay kan takod sa mga pahinang mayo man:',
-'brokenredirects-edit'   => '(hirahón)',
-'brokenredirects-delete' => '(parâon)',
+'brokenredirects-edit'   => 'hirahón',
+'brokenredirects-delete' => 'parâon',
 
 'withoutinterwiki'         => 'Mga pahinang dai nin mga takod sa ibang tataramon',
 'withoutinterwiki-summary' => 'An mga nagsusunod na páhina dai nakatakód sa mga bersión na ibang tataramón:',

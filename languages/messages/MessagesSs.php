@@ -98,7 +98,7 @@ $messages = array(
 'filehist-datetime' => 'Lusuku/Síkhatsí',
 'filehist-user'     => 'Umuntfu',
 
-'brokenredirects-edit' => '(kúhlela)',
+'brokenredirects-edit' => 'kúhlela',
 
 'withoutinterwiki-submit' => 'Kúfúna',
 
