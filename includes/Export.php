@@ -155,7 +155,7 @@ class WikiExporter {
 		wfProfileIn( $fname );
 		$this->author_list = "<contributors>";
 		//rev_deleted
-		$nothidden = '(rev_deleted & '.Revision::DELETED_USER.') = 0';
+		$nothidden = '('.$this->db->bitAnd('rev_deleted', Revision::DELETED_USER) . ') = 0';
 
 		$sql = "SELECT DISTINCT rev_user_text,rev_user FROM {$page},{$revision} 
 		WHERE page_id=rev_page AND $nothidden AND " . $cond ;

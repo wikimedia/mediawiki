@@ -638,3 +638,11 @@ BEGIN
   RETURN (x + y - BITAND(x, y));
 END;
 /*$mw$*/
+
+/*$mw$*/
+CREATE OR REPLACE FUNCTION BITNOT (x IN NUMBER) RETURN NUMBER AS
+BEGIN
+  RETURN (4294967295 - x);
+END;
+/*$mw$*/
+

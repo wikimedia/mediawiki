@@ -120,10 +120,10 @@ class ApiQueryLogEvents extends ApiQueryBase {
 
 		// Paranoia: avoid brute force searches (bug 17342)
 		if (!is_null($title)) {
-			$this->addWhere('log_deleted & ' . LogPage::DELETED_ACTION . ' = 0');
+			$this->addWhere($db->bitAnd('log_deleted', LogPage::DELETED_ACTION) . ' = 0');
 		}
 		if (!is_null($user)) {
-			$this->addWhere('log_deleted & ' . LogPage::DELETED_USER . ' = 0');
+			$this->addWhere($db->bitAnd('log_deleted', LogPage::DELETED_USER) . ' = 0');
 		}
 
 		$count = 0;

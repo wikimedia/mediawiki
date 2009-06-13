@@ -50,7 +50,7 @@ class LocalRepo extends FSRepo {
 				$inuse = $dbw->selectField( 'oldimage', '1',
 					array( 'oi_sha1' => $sha1,
 						"oi_archive_name LIKE '%.{$ext}'",
-						'oi_deleted & '.File::DELETED_FILE => File::DELETED_FILE ),
+						$dbw->bitAnd('oi_deleted', File::DELETED_FILE) => File::DELETED_FILE ),
 					__METHOD__, array( 'FOR UPDATE' ) );
 			}
 			if ( !$inuse ) {
