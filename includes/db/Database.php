@@ -1445,15 +1445,15 @@ abstract class DatabaseBase {
 	 */
 
 	function bitNot($field) {
-		return '~'.$bitField;
+		return "(~$bitField)";
 	}
 
 	function bitAnd($fieldLeft, $fieldRight) {
-		return $fieldLeft.'&'.$fieldRight;
+		return "($fieldLeft & $fieldRight)";
 	}
 
 	function bitOr($fieldLeft, $fieldRight) {
-		return $fieldLeft.'|'.$fieldRight;
+		return "($fieldLeft | $fieldRight)";
 	}
 
 	/**
