@@ -96,7 +96,7 @@ $messages = array(
 'moredotdotdot' => '...ܝܬܝܪ',
 'mypage'        => 'ܦܐܬܝ',
 'mytalk'        => 'ܕܘܪܫܝ',
-'anontalk'      => 'ܡܡܠܠܐ ܠܗܢܐ IP',
+'anontalk'      => 'ܡܡܠܠܐ ܕܗܢܐ IP',
 'navigation'    => 'ܐܠܦܪܘܬܐ',
 'and'           => '&#32;ܘ',
 
@@ -505,7 +505,7 @@ Note that some pages may continue to be displayed as if you were still logged in
 # File deletion
 'filedelete'                  => 'ܫܘܦ $1',
 'filedelete-legend'           => 'ܫܘܦ ܠܦܦܐ',
-'filedelete-comment'          => 'ܥܠܬܐ ܠܫܝܦܐ:',
+'filedelete-comment'          => 'ܥܠܬܐ ܕܫܝܦܐ:',
 'filedelete-submit'           => 'ܫܘܦ',
 'filedelete-nofile'           => "'''$1''' ܠܝܬ.",
 'filedelete-otherreason'      => 'ܥܠܬܐ ܐܚܪܬܐ:',

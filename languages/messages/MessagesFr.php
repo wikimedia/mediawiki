@@ -22,6 +22,7 @@
  * @author Hercule
  * @author Hégésippe Cormier
  * @author IAlex
+ * @author Jagwar
  * @author JeanVoisin
  * @author Korg
  * @author Korrigan
@@ -476,7 +477,9 @@ $messages = array(
 'vector-namespace-help'      => 'Aide',
 'vector-namespace-image'     => 'Fichier',
 'vector-namespace-main'      => 'Page',
+'vector-namespace-media'     => 'Page de Média',
 'vector-namespace-mediawiki' => 'Message',
+'vector-namespace-project'   => 'Page de projet',
 'vector-namespace-special'   => 'Page spéciale',
 'vector-namespace-talk'      => 'Discussion',
 'vector-namespace-template'  => 'Modèle',

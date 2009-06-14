@@ -184,7 +184,21 @@ $messages = array(
 'faqpage'        => 'Project:Πολλάκις αἰτηθέντα',
 
 # Vector skin
-'vector-view-view' => 'Ἀναγνῶναι',
+'vector-action-delete'       => 'Σβεννύναι',
+'vector-action-move'         => 'κινεῖν',
+'vector-action-protect'      => 'Φυλάττειν',
+'vector-action-unprotect'    => 'μὴ φυλάττειν',
+'vector-namespace-category'  => 'Κατηγορία',
+'vector-namespace-image'     => 'Ἀρχεῖον',
+'vector-namespace-main'      => 'Δέλτος',
+'vector-namespace-mediawiki' => 'Ἀγγελία',
+'vector-namespace-talk'      => 'Διάλεξις',
+'vector-namespace-template'  => 'Πρότυπον',
+'vector-namespace-user'      => 'Δέλτος χρωμένου',
+'vector-view-create'         => 'Ποιεῖν',
+'vector-view-edit'           => 'Μεταγράφειν',
+'vector-view-view'           => 'Ἀναγνῶναι',
+'vector-view-viewsource'     => 'ὁρᾶν τὴν πηγήν',
 
 # Metadata in edit box
 'metadata_help' => 'Μεταδεδομένα:',

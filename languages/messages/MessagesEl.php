@@ -482,7 +482,21 @@ $messages = array(
 'faqpage'        => 'Project:Συχνές ερωτήσεις (FAQ)',
 
 # Vector skin
-'vector-view-view' => 'Ανάγνωση',
+'vector-action-delete'       => 'Διαγραφή',
+'vector-action-move'         => 'Μετακίνηση',
+'vector-action-protect'      => 'Προστασία',
+'vector-action-unprotect'    => 'Άρση προστασίας',
+'vector-namespace-category'  => 'Κατηγορία',
+'vector-namespace-image'     => 'Αρχείο',
+'vector-namespace-main'      => 'Σελίδα',
+'vector-namespace-mediawiki' => 'Μήνυμα',
+'vector-namespace-talk'      => 'Συζήτηση',
+'vector-namespace-template'  => 'Πρότυπο',
+'vector-namespace-user'      => 'Σελίδα χρήστη',
+'vector-view-create'         => 'Δημιουργήστε',
+'vector-view-edit'           => 'Επεξεργασία',
+'vector-view-view'           => 'Ανάγνωση',
+'vector-view-viewsource'     => 'εμφάνιση κώδικα',
 
 # Metadata in edit box
 'metadata_help' => 'Μεταδεδομένα:',
