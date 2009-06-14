@@ -1466,7 +1466,7 @@ U kan die resultate vernou deur 'n boekstaaftipe, gebruikersnaam of spesifieke b
 
 # Special:Categories
 'categories'                    => 'Kategorieë',
-'categoriespagetext'            => 'Die volgende kategorieë bestaan op die wiki.',
+'categoriespagetext'            => 'Die volgende {{PLURAL:$1|kategotie bestaat|kategorieë bestaan}} op die wiki.',
 'categoriesfrom'                => 'Wys kategorieë vanaf:',
 'special-categories-sort-count' => 'sorteer volgens getal',
 'special-categories-sort-abc'   => 'sorteer alfabeties',

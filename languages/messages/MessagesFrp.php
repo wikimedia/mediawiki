@@ -446,7 +446,7 @@ $messages = array(
 'faqpage'        => 'Project:FDQ',
 
 # Vector skin
-'vector-action-addsection'   => 'Apondre una sèccion',
+'vector-action-addsection'   => 'Apondre un sujèt',
 'vector-action-delete'       => 'Suprimar',
 'vector-action-move'         => 'Renomar',
 'vector-action-protect'      => 'Protègiér',
@@ -465,7 +465,7 @@ $messages = array(
 'vector-namespace-user'      => 'Pâge utilisator',
 'vector-view-create'         => 'Fâre',
 'vector-view-edit'           => 'Changiér',
-'vector-view-history'        => 'Vêre l’historico',
+'vector-view-history'        => 'Fâre vêre l’historico',
 'vector-view-view'           => 'Liére',
 'vector-view-viewsource'     => 'Vêre lo tèxto sôrsa',
 
@@ -861,7 +861,7 @@ Notâd que vos porréd pas utilisar la fonccionalitât « Lui mandar un mèl » 
 
 Voutra adrèce IP d’ora est $3, et lo numerô de blocâjo est $5.
 Volyéd spècefiar cetes endicacions dens totes les requétes que vos faréd.",
-'blockednoreason'                  => 'niona rêson balyê',
+'blockednoreason'                  => 'gins de rêson balyê',
 'blockedoriginalsource'            => "Lo tèxto sôrsa de '''$1''' est montrâ ce-desot :",
 'blockededitsource'                => "Lo contegnu de '''voutros changements''' aplicâs a '''$1''' est montrâ ce-desot :",
 'whitelistedittitle'               => 'Branchement nècèssèro por changiér lo contegnu',
@@ -900,7 +900,7 @@ Volyéd controlar que vos voléd fâre ou ben changiér cela pâge.',
 '''El at p’oncor étâ sôvâ !'''",
 'userjspreview'                    => "'''Rapelâd-vos que vos éte aprés èprovar ou ben prèvisualisar voutron code JavaScript.'''
 '''Il at p’oncor étâ sôvâ !'''",
-'userinvalidcssjstitle'            => "'''Atencion :''' ègziste pas d’habelyâjo « $1 ».
+'userinvalidcssjstitle'            => "'''Atencion :''' ègziste gins d’habelyâjo « $1 ».
 Rapelâd-vos que les pâges a sè avouéc èxtensions .css et .js utilisont des titros en petiôtes lètres, per ègzemplo {{ns:user}}:Foo/monobook.css et pas {{ns:user}}:Foo/Monobook.css.",
 'updated'                          => '(Betâ a jorn)',
 'note'                             => "'''Nota :'''",
@@ -980,7 +980,7 @@ Los jornals de les suprèssions et des changements de nom de cela pâge sont mon
 Los jornals de les suprèssions et des changements de nom sont montrâs ce-desot coment refèrence.',
 'log-fulllog'                      => 'Vêre lo jornal complèt',
 'edit-hook-aborted'                => 'Falyita du changement per una èxtension.
-Niona rêson balyê.',
+Gins de rêson balyê.',
 'edit-gone-missing'                => 'La pâge at pas possu étre betâ a jorn.
 Semble qu’el èye étâ suprimâ.',
 'edit-conflict'                    => 'Conflit de changement.',
@@ -1017,7 +1017,7 @@ La rêson balyê per $3 ére ''$2''.",
 
 # History pages
 'viewpagelogs'           => 'Vêde los jornals de ceta pâge',
-'nohistory'              => 'Ègziste pas d’historico por ceta pâge.',
+'nohistory'              => 'Ègziste gins d’historico por ceta pâge.',
 'currentrev'             => 'Vèrsion d’ora',
 'currentrev-asof'        => 'Vèrsion d’ora en dâta du $1',
 'revisionasof'           => 'Vèrsion du $1',
@@ -1067,7 +1067,7 @@ Coment administrator, vos pouede adés [$1 vêre cél dif] se vos lo voléd.",
 'revdelete-nooldid-title'     => 'Vèrsion ciba envalida',
 'revdelete-nooldid-text'      => 'Vos éd pas spècefiâ la vèrsion ciba ou ben les vèrsions cibes de cela fonccion,
 la vèrsion ciba ègziste pas, ou ben o est la vèrsion d’ora.',
-'revdelete-nologtype-title'   => 'Nion tipo de jornal spècefiâ',
+'revdelete-nologtype-title'   => 'Gins de tipo de jornal spècefiâ',
 'revdelete-nologtype-text'    => 'Vos éd pas spècefiâ un tipo de jornal sur loquint cela accion dêt étre rèalisâ.',
 'revdelete-nologid-title'     => 'Entrâ du jornal envalida',
 'revdelete-nologid-text'      => 'Ou ben vos éd pas spècefiâ una entrâ du jornal sur laquinta cela accion dêt étre rèalisâ, ou ben l’entrâ ègziste pas.',
@@ -1314,7 +1314,7 @@ Atencion, lor endèxacion du contegnu de {{SITENAME}} pôt pas étre a jorn.',
 'prefs-skin'                    => 'Habelyâjo',
 'skin-preview'                  => 'Prèvisualisar',
 'prefs-math'                    => 'Rendu de les formules matèmatiques',
-'datedefault'                   => 'Niona prèference',
+'datedefault'                   => 'Gins de prèference',
 'prefs-datetime'                => 'Dâta et hora',
 'prefs-personal'                => 'Enformacions a sè',
 'prefs-rc'                      => 'Dèrriérs changements',
@@ -1728,7 +1728,7 @@ Volyéd controlar que lo seto est en legne, atendre un pou et pués tornar èpro
 Vos pouede asse-ben tornar èprovar a una hora de muendra afluence.',
 
 'license'            => 'Licence :',
-'nolicense'          => 'Niona licence chouèsia',
+'nolicense'          => 'Gins de licence chouèsia',
 'license-nopreview'  => '(Prèvisualisacion pas disponibla)',
 'upload_source_url'  => '  (una URL valida et accèssibla publicament)',
 'upload_source_file' => '  (un fichiér sur voutron ordenator)',
@@ -1827,7 +1827,7 @@ Entrâ : ''tipo de contegnu''/''sot-tipo'', per ègzemplo <tt>image/jpeg</tt>.",
 
 # Unused templates
 'unusedtemplates'     => 'Modèlos inutilisâs',
-'unusedtemplatestext' => 'Ceta pâge liste totes les pâges de l’èspâço de nom « {{ns:template}} » que sont pas encllues dens niona ôtra pâge.
+'unusedtemplatestext' => 'Ceta pâge liste totes les pâges de l’èspâço de nom « {{ns:template}} » que sont pas encllues dens gins d’ôtra pâge.
 Oubliâd pas de controlar s’y at pas d’ôtros lims de vers los modèlos devant que los suprimar.',
 'unusedtemplateswlh'  => 'ôtros lims',
 
@@ -1938,7 +1938,7 @@ Châque entrâ contint des lims de vers la premiére et la seconda redirèccion,
 'unusedcategoriestext'    => 'Cetes catègories ègzistont mas gins de pâge ou ben de catègorie les utilise.',
 'notargettitle'           => 'Gins de ciba',
 'notargettext'            => 'Vos éd pas spècefiâ una pâge ou ben un utilisator ciba sur laquinta/loquint vos souhètâd fâre cela accion.',
-'nopagetitle'             => 'Niona pâge ciba',
+'nopagetitle'             => 'Gins de pâge ciba',
 'nopagetext'              => 'La pâge ciba que vos éd spècefiâ ègziste pas.',
 'pager-newer-n'           => '{{PLURAL:$1|ples novèla|$1 ples novèles}}',
 'pager-older-n'           => '{{PLURAL:$1|ples vielye|$1 ples vielyes}}',
@@ -1978,7 +1978,7 @@ Vos pouede rètrendre la vua en chouèséssent un tipo de jornal, un nom d’uti
 'allpagesprefix'    => 'Fâre vêre les pâges que començont per lo prèfixo :',
 'allpagesbadtitle'  => 'Lo titro de la pâge balyê est fôx ou ben at un prèfixo entèrlengoua ou entèrvouiqui resèrvâ.
 Contint sûrement yon ou ben un mouél de caractèros que pôvont pas étre utilisâs dens los titros.',
-'allpages-bad-ns'   => '{{SITENAME}} at pas d’èspâço de nom « $1 ».',
+'allpages-bad-ns'   => '{{SITENAME}} at gins d’èspâço de nom « $1 ».',
 
 # Special:Categories
 'categories'                    => 'Catègories',
@@ -2006,7 +2006,7 @@ Protocolos recognus : <tt>$1</tt>.',
 # Special:ListUsers
 'listusersfrom'      => 'Fâre vêre los utilisators dês :',
 'listusers-submit'   => 'Listar',
-'listusers-noresult' => 'Nion utilisator trovâ.
+'listusers-noresult' => 'Gins d’utilisator trovâ.
 Controlâd asse-ben les variantes de câssa.',
 
 # Special:Log/newusers
@@ -2035,7 +2035,7 @@ Y pôt avêr [[{{MediaWiki:Listgrouprights-helppage}}|més d’enformacions]] su
 'listgrouprights-removegroup-self-all' => 'Sè pôt enlevar totes les tropes de son prôpro compto',
 
 # E-mail user
-'mailnologin'      => 'Pas d’adrèce d’èxpèdior',
+'mailnologin'      => 'Gins d’adrèce d’èxpèdior',
 'mailnologintext'  => 'Vos dête étre [[Special:UserLogin|branchiê]] et avêr endicâ una adrèce de mèl valida dens voutres [[Special:Preferences|prèferences]] por povêr mandar des mèls a d’ôtros utilisators.',
 'emailuser'        => 'Lui mandar un mèl',
 'emailpage'        => 'Mandar un mèl a l’utilisator',
@@ -2270,8 +2270,8 @@ Lo contegnu èfèctif de celes vèrsions suprimâs est accèssiblo ren qu’ux a
 'undelete-revision'            => 'Vèrsion suprimâ de $1 (vèrsion du $4 a $5) per $3 :',
 'undeleterevision-missing'     => 'Vèrsion fôssa ou ben manquenta.
 Vos avéd pôt-étre un crouyo lim, ou ben la vèrsion at possu étre refêta ou ben suprimâ de les arch·ives.',
-'undelete-nodiff'              => 'Niona vèrsion devant trovâ.',
-'undeletebtn'                  => 'Refâre',
+'undelete-nodiff'              => 'Gins de vèrsion devant trovâ.',
+'undeletebtn'                  => 'refâre',
 'undeletelink'                 => 'vêre / refâre',
 'undeleteviewlink'             => 'vêre',
 'undeletereset'                => 'Tornar inicialisar',
@@ -2364,7 +2364,7 @@ Balyéd ce-desot una rêson justa (per ègzemplo en citent les pâges qu’ont �
 ** Entrebetâ d’enformacions fôsses
 ** Suprèssion pas èxplicâ de contegnu de les pâges
 ** Entrebetâ rèpètâ de lims de defôr publicitèros (spame)
-** Entrebetâ de contegnu sen niona significacion et d’ècovelyes dens les pâges
+** Entrebetâ de contegnu sen gins de significacion et d’ècovelyes dens les pâges
 ** Tentativa d’entimidacion ou ben de torment
 ** Abus d’usâjo de comptos multiplos
 ** Nom d’utilisator pas accèptâblo, ofensent ou ben difament',
@@ -2617,7 +2617,7 @@ Totes les accions d’importacion entèrvouiqui sont consignês dens lo [[Specia
 Sôvâd-lo sur voutron disco dur et pués tèlèchargiéd-lo ique.',
 'importstart'                => 'Importacion de les pâges...',
 'import-revision-count'      => '$1 vèrsion{{PLURAL:$1||s}}',
-'importnopages'              => 'Niona pâge a importar.',
+'importnopages'              => 'Gins de pâge a importar.',
 'importfailed'               => 'Falyita de l’importacion : <nowiki>$1</nowiki>',
 'importunknownsource'        => 'Tipo de la sôrsa a importar encognu',
 'importcantopen'             => 'Empossiblo d’uvrir lo fichiér a importar',
@@ -2634,7 +2634,7 @@ Son contegnu at étâ tèlèchargiê ren qu’a mêtiêt.',
 'importuploaderrortemp'      => 'Lo tèlèchargement du fichiér a importar at pas reussi.
 Un dossiér temporèro est manquent.',
 'import-parse-failure'       => 'Falyita pendent l’analisa du XML a importar',
-'import-noarticle'           => 'Niona pâge a importar !',
+'import-noarticle'           => 'Gins de pâge a importar !',
 'import-nonewrevisions'      => 'Totes les vèrsions ont étâ importâs dês devant.',
 'xml-error-string'           => '$1 a la legne $2, colona $3 (octèt $4) : $5',
 'import-upload'              => 'Tèlèchargement de balyês XML',
@@ -2755,7 +2755,7 @@ Pèrmèt de rètablir la vèrsion devant et pués d’apondre una rêson dens la
 'others'           => 'ôtros',
 'siteusers'        => '{{PLURAL:$2|l’utilisator|los utilisators}} $1 dessus {{SITENAME}}',
 'creditspage'      => 'Crèdits de la pâge',
-'nocredits'        => 'Y at pas d’enformacions d’atribucion disponibles por ceta pâge.',
+'nocredits'        => 'Y at gins d’enformacion d’atribucion disponibla por ceta pâge.',
 
 # Spam protection
 'spamprotectiontitle' => 'Pâge protègiê ôtomaticament a côsa de spame',
@@ -2862,7 +2862,7 @@ $1',
 'newimages-legend'      => 'Nom du fichiér',
 'newimages-label'       => 'Nom du fichiér (ou ben una partia de ceti) :',
 'showhidebots'          => '($1 bots)',
-'noimages'              => 'Niona émâge a fâre vêre.',
+'noimages'              => 'Gins d’émâge a fâre vêre.',
 'ilsubmit'              => 'Rechèrchiér',
 'bydate'                => 'per dâta',
 'sp-newimages-showfrom' => 'Fâre vêre los novéls fichiérs dês lo $1 a $2',
@@ -3258,7 +3258,7 @@ Volyéd confirmar que vos dèsirâd franc refâre cela pâge.",
 'table_pager_last'         => 'Dèrriére pâge',
 'table_pager_limit'        => 'Montrar $1 èlèment{{PLURAL:$1||s}} per pâge',
 'table_pager_limit_submit' => 'Listar',
-'table_pager_empty'        => 'Nion rèsultat',
+'table_pager_empty'        => 'Gins de rèsultat',
 
 # Auto-summaries
 'autosumm-blank'   => 'Pâge blanchia',

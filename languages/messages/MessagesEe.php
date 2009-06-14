@@ -187,7 +187,7 @@ $messages = array(
 'loginsuccesstitle'          => 'Wò ge ɖe eme azɔ̃.',
 'loginsuccess'               => "'''Wò le {{SITENAME}} me fifia abe \"\$1\" ene.'''",
 'nouserspecified'            => 'Elebe na ŋlɔ ŋkɔ si wò zãna',
-'acct_creation_throttle_hit' => "Wiki sia zãla aɖe tso wò ''IP address'' ŋlɔ {{PLURAL:$1|1 ŋkɔ|$1 ŋkɔwo}} le ŋkeke si vayi me xoxo. Mɔɖeɖe le na ŋkɔ  ɖeka ko ŋɔŋlɔ le ŋkeke ɖeka me.<br/>
+'acct_creation_throttle_hit' => "Wiki sia zãla aɖe tso wò ''IP address'' ŋlɔ {{PLURAL:$1|1 ŋkɔ|$1 ŋkɔwo}} le ŋkeke si vayi me xoxo. Mɔɖeɖe le na ŋkɔ  ɖeka ko ŋɔŋlɔ le ŋkeke ɖeka me.<br />
 Le esiata la, ''IP address'' sia zãlawo mekpɔ mɔ aŋlɔ ŋkɔ bubuwo fifia o.",
 'loginlanguagelabel'         => 'Gbe: $1',
 
@@ -210,7 +210,7 @@ Le esiata la, ''IP address'' sia zãlawo mekpɔ mɔ aŋlɔ ŋkɔ bubuwo fifia o.
 'yourtext'            => 'Wò nuŋɔŋlɔ',
 'yourdiff'            => 'Vovototowo',
 'copyrightwarning'    => "Taflatse, mítsɔe be nusiwo katã netsɔ kpe ɖe {{SITENAME}} ŋu lii fãa le $2 la nu (kpɔ $1 me nyawo). Ne madze ŋuwò be amebubuwo natrɔ asi le nusiwo newɔ ŋuti o, eye woagbugbɔ dɔsiwo newɔ ama na amebubuwo fãa o la, mega dae ɖe afisia o.<br /> Wòle ŋugbe dom na mí bena wò ŋutɔe ŋlɔ nusiawo, alo etsɔe tso afisi mɔɖeɖe li fãa be amesiame na tsɔ nuwo tso afima fãa. '''Mega da nusiwo ŋu mɔɖeɖe meli na o la ɖe afisia o!'''",
-'edit-already-exists' => 'Wòmateŋu adze axa sia gɔme o.<br/>
+'edit-already-exists' => 'Wòmateŋu adze axa sia gɔme o.<br />
 Wo ŋlɔe xoxo.',
 
 # History pages

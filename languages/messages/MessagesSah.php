@@ -183,7 +183,14 @@ $messages = array(
 'faqpage'        => 'Project:FAQ',
 
 # Vector skin
-'vector-view-view' => 'Ааҕыы',
+'vector-namespace-category' => 'Категория',
+'vector-namespace-help'     => 'Көмө сирэй',
+'vector-namespace-image'    => 'Билэ',
+'vector-namespace-main'     => 'Сирэй',
+'vector-namespace-talk'     => 'Ырытыы',
+'vector-namespace-template' => 'Халыып',
+'vector-namespace-user'     => 'Кыттааччы тус сирэйэ',
+'vector-view-view'          => 'Ааҕыы',
 
 # Metadata in edit box
 'metadata_help' => 'Мета дааннайдар:',
@@ -1984,8 +1991,8 @@ $1',
 'isredirect'               => 'көлбөрүтэр сирэй',
 'istemplate'               => 'иһинээҕи',
 'isimage'                  => 'ойуу сигэтэ',
-'whatlinkshere-prev'       => 'бу иннинээҕи $1',
-'whatlinkshere-next'       => 'аныгыскы $1',
+'whatlinkshere-prev'       => '{{PLURAL:$1|бу иннинээҕи|бу иннинээҕи $1}}',
+'whatlinkshere-next'       => '{{PLURAL:$1|аныгыскы|аныгыскы $1}}',
 'whatlinkshere-links'      => '← ыйынньыктар',
 'whatlinkshere-hideredirs' => '$1 утаарыы',
 'whatlinkshere-hidetrans'  => '$1 киллэриилэр',
