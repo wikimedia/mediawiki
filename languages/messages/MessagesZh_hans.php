@@ -1,5 +1,5 @@
 <?php
-/** Simplified Chinese (‪中文(简体)‬)
+/** Simplified Chinese (‪中文(简化字)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -340,7 +340,28 @@ $messages = array(
 'faqpage'        => 'Project:常见问题解答',
 
 # Vector skin
-'vector-view-view' => '阅读',
+'vector-action-addsection'   => '加入主题',
+'vector-action-delete'       => '删除',
+'vector-action-move'         => '移动',
+'vector-action-protect'      => '保护',
+'vector-action-undelete'     => '恢复被删页面',
+'vector-action-unprotect'    => '解除保护',
+'vector-namespace-category'  => '分类',
+'vector-namespace-help'      => '帮助页面',
+'vector-namespace-image'     => '文件',
+'vector-namespace-main'      => '页面',
+'vector-namespace-media'     => '媒体页面',
+'vector-namespace-mediawiki' => '信息',
+'vector-namespace-project'   => '计划页面',
+'vector-namespace-special'   => '特殊页面',
+'vector-namespace-talk'      => '讨论',
+'vector-namespace-template'  => '模板',
+'vector-namespace-user'      => '用户页面',
+'vector-view-create'         => '创建',
+'vector-view-edit'           => '编辑',
+'vector-view-history'        => '查看历史',
+'vector-view-view'           => '阅读',
+'vector-view-viewsource'     => '查看源代码',
 
 # Metadata in edit box
 'metadata_help' => '元数据：',

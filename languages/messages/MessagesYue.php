@@ -1,5 +1,5 @@
 <?php
-/** Yue (粵語)
+/** Cantonese (粵語/廣東話)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -290,7 +290,28 @@ $messages = array(
 'faqpage'        => 'Project:FAQ',
 
 # Vector skin
-'vector-view-view' => '閱',
+'vector-action-addsection'   => '加主題',
+'vector-action-delete'       => '刪除',
+'vector-action-move'         => '移動',
+'vector-action-protect'      => '保護',
+'vector-action-undelete'     => '去睇刪除咗嘅頁面',
+'vector-action-unprotect'    => '解除保護',
+'vector-namespace-category'  => '分類',
+'vector-namespace-help'      => '幫助頁',
+'vector-namespace-image'     => '檔案',
+'vector-namespace-main'      => '版',
+'vector-namespace-media'     => '媒體頁',
+'vector-namespace-mediawiki' => '信息',
+'vector-namespace-project'   => '計劃頁',
+'vector-namespace-special'   => '特別頁',
+'vector-namespace-talk'      => '討論',
+'vector-namespace-template'  => '模',
+'vector-namespace-user'      => '用戶頁',
+'vector-view-create'         => '建立',
+'vector-view-edit'           => '編輯',
+'vector-view-history'        => '睇吓歷史',
+'vector-view-view'           => '閱',
+'vector-view-viewsource'     => '睇吓原始碼',
 
 # Metadata in edit box
 'metadata_help' => 'Metadata',
