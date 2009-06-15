@@ -310,7 +310,7 @@ class SpecialWhatLinksHere extends SpecialPage {
 			$title,
 			$text,
 			array(),
-			array( 'target' => $targetText )
+			array( 'target' => $target->getPrefixedText() )
 		);
 	}
 

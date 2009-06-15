@@ -190,7 +190,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 				$logtitle,
 				wfMsgHtml( 'viewpagelogs' ),
 				array(),
-				array( 'page' => $this->targetObj->getPrefixedUrl() )
+				array( 'page' => $this->targetObj->getPrefixedText() )
 			);
 			# Give a link to the page history
 			$links[] = $this->skin->linkKnown(
@@ -1582,8 +1582,12 @@ class RevDel_LogItem extends RevDel_Item {
 		$title = Title::makeTitle( $this->row->log_namespace, $this->row->log_title );
 
 		$logtitle = SpecialPage::getTitleFor( 'Log' );
-		$loglink = $this->special->skin->link( $logtitle, wfMsgHtml( 'log' ), array(),
-			array( 'page' => $title->getPrefixedUrl() ) );
+		$loglink = $this->special->skin->link(
+			$logtitle,
+			wfMsgHtml( 'log' ),
+			array(),
+			array( 'page' => $title->getPrefixedText() )
+		);
 		// Action text
 		if( !$this->canView() ) {
 			$action = '<span class="history-deleted">' . wfMsgHtml('rev-deleted-event') . '</span>';

@@ -94,7 +94,7 @@ class PageHistory {
 			$logPage,
 			wfMsgHtml( 'viewpagelogs' ),
 			array(),
-			array( 'page' => $this->mTitle->getPrefixedUrl() ),
+			array( 'page' => $this->mTitle->getPrefixedText() ),
 			array( 'known', 'noclasses' )
 		);
 		$wgOut->setSubtitle( $logLink );

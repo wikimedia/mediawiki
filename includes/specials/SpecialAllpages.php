@@ -384,7 +384,7 @@ class SpecialAllpages extends IncludableSpecialPage {
 
 			# Do we put a previous link ?
 			if( isset( $prevTitle ) &&  $pt = $prevTitle->getText() ) {
-				$query = array( 'from' => $prevTitle->getPartialUrl() );
+				$query = array( 'from' => $prevTitle->getText() );
 
 				if( $namespace )
 					$query['namespace'] = $namespace;
@@ -401,7 +401,7 @@ class SpecialAllpages extends IncludableSpecialPage {
 			if( $n == $this->maxPerPage && $s = $res->fetchObject() ) {
 				# $s is the first link of the next chunk
 				$t = Title::MakeTitle($namespace, $s->page_title);
-				$query = array( 'from' => $t->getPartialUrl() );
+				$query = array( 'from' => $t->getText() );
 
 				if( $namespace )
 					$query['namespace'] = $namespace;

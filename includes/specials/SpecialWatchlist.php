@@ -25,7 +25,7 @@ function wfSpecialWatchlist( $par ) {
 			SpecialPage::getTitleFor( 'Userlogin' ), 
 			wfMsgHtml( 'loginreqlink' ),
 			array(),
-			array( 'returnto' => $specialTitle->getPrefixedUrl() )
+			array( 'returnto' => $specialTitle->getPrefixedText() )
 		);
 		$wgOut->addHTML( wfMsgWikiHtml( 'watchlistanontext', $llink ) );
 		return;

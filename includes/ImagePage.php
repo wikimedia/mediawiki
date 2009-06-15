@@ -921,7 +921,7 @@ class ImageHistoryList {
 				$wgLang->timeAndDate( $timestamp, true ),
 				array(),
 				array(
-					'target' => $wgTitle->getPrefixedUrl(),
+					'target' => $wgTitle->getPrefixedText(),
 					'file' => $img,
 					'token' => $wgUser->editToken( $img )
 				),
