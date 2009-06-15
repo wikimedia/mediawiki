@@ -923,6 +923,13 @@ li#ca-watch, li#ca-unwatch, li#ca-varlang-0, li#ca-print {
 	text-transform: none;
 }
 
+/* What matches for nds must not match for nds-nl - bug 19209 */
+.portlet h5[lang|=nds-nl],
+.portlet h6[lang|=nds-nl],
+#p-personal ul[lang|=nds-nl],
+#p-cactions ul[lang|=nds-nl] li a {
+	text-transform: lowercase;
+}
 
 /* TODO: #t-iscite is only used by the Cite extension, come up with some
  * system which allows extensions to add to this file on the fly
