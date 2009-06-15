@@ -325,7 +325,6 @@ class WikiExporter {
 			$output .= $this->writer->closePage();
 			$this->sink->writeClosePage( $output );
 		}
-		$resultset->free();
 	}
 	
 	protected function outputLogStream( $resultset ) {
@@ -333,7 +332,6 @@ class WikiExporter {
 			$output = $this->writer->writeLogItem( $row );
 			$this->sink->writeLogItem( $row, $output );
 		}
-		$resultset->free();
 	}
 }
 
