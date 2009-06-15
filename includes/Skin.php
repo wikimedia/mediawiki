@@ -1562,7 +1562,7 @@ END;
 			// Otherwise, we display the link for the user, described in their
 			// language (which may or may not be the same as the default language),
 			// but we make the link target be the one site-wide page.
-			$title = Title::newFromText( $page );
+			$title = Title::newFromText( wfMsgForContent( $page ) );
 			return $this->linkKnown(
 				$title,
 				wfMsgExt( $desc, array( 'parsemag', 'escapenoentities' ) )
