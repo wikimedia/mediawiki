@@ -1096,7 +1096,7 @@ abstract class DatabaseBase {
 	 * e.g: selectRow( "page", array( "page_id" ), array( "page_namespace" =>
 	 * NS_MAIN, "page_title" => "Astronomy" ) )   would return an object where
 	 * $obj- >page_id is the ID of the Astronomy article
-	 * @param $fname String: Calling functio name
+	 * @param $fname String: Calling function name
 	 * @param $options Array
 	 * @param $join_conds Array
 	 *
