@@ -938,8 +938,13 @@ class SkinTemplate extends Skin {
 
 			if( $id ) {
 				$logPage = SpecialPage::getTitleFor( 'Log' );
-				$nav_urls['log'] = array( 'href' => $logPage->getLocalUrl( 'user='
-					. $this->mTitle->getPartialUrl() ) );
+				$nav_urls['log'] = array(
+					'href' => $logPage->getLocalUrl(
+						array(
+							'user' => $this->mTitle->getText()
+						)
+					)
+				);
 			} else {
 				$nav_urls['log'] = false;
 			}

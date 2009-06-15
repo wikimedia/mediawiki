@@ -1875,7 +1875,7 @@ END
 			$loginTitle,
 			wfMsgHtml( 'loginreqlink' ),
 			array(),
-			array( 'returnto' => $wgTitle->getPrefixedUrl() ),
+			array( 'returnto' => $wgTitle->getPrefixedText() ),
 			array( 'known', 'noclasses' )
 		);
 

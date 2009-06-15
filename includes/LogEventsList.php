@@ -367,7 +367,7 @@ class LogEventsList {
 					$this->message['revdel-restore'],
 					array(),
 					array(
-						'target' => $title->getPrefixedUrl(),
+						'target' => $title->getPrefixedText(),
 						'type' => $key,
 						'ids' => $query
 					),
@@ -389,7 +389,7 @@ class LogEventsList {
 					$this->message['revdel-restore'], 
 					array(),
 					array(
-						'target' => $title->getPrefixedUrl(),
+						'target' => $title->getPrefixedText(),
 						'type' => 'logging',
 						'ids' => $query
 					),

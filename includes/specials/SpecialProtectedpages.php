@@ -109,7 +109,7 @@ class ProtectedPagesForm {
 				array(),
 				array(
 					'type' => 'protect',
-					'page' => $title->getPrefixedUrl()
+					'page' => $title->getPrefixedText()
 				)
 			) . ')';
 		}

@@ -1258,7 +1258,7 @@ class OutputPage {
 			$loginTitle,
 			wfMsgHtml( 'loginreqlink' ),
 			array(),
-			array( 'returnto' => $this->getTitle()->getPrefixedUrl() ),
+			array( 'returnto' => $this->getTitle()->getPrefixedText() ),
 			array( 'known', 'noclasses' )
 		);
 		$this->addHTML( wfMsgWikiHtml( 'loginreqpagetext', $loginLink ) );

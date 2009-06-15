@@ -727,7 +727,7 @@ class UploadForm {
 				array(),
 				array(
 					'type' => 'delete',
-					'page' => $file->getTitle()->getPrefixedUrl()
+					'page' => $file->getTitle()->getPrefixedText()
 				)
 			);
 			$warning .= '<li>' . wfMsgWikiHtml( 'filewasdeleted', $llink ) . '</li>';

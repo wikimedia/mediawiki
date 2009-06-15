@@ -168,7 +168,7 @@ class SpecialContributions extends SpecialPage {
 					array(),
 					array(
 						'type' => 'block',
-						'page' => $nt->getPrefixedUrl()
+						'page' => $nt->getPrefixedText()
 					)
 				);
 			}
@@ -177,7 +177,7 @@ class SpecialContributions extends SpecialPage {
 				SpecialPage::getTitleFor( 'Log' ),
 				wfMsg( 'sp-contributions-logs' ),
 				array(),
-				array( 'user' => $nt->getPartialUrl() )
+				array( 'user' => $nt->getText() )
 			);
 
 			# Add link to deleted user contributions for priviledged users
