@@ -161,7 +161,7 @@ class SkinStandard extends Skin {
 		if( $wgUser->isLoggedIn() ) {
 			$s.= $this->specialLink( 'watchlist' ) ;
 			$s .= $sep . $this->linkKnown(
-				Title::newFromText( $wgContLang->specialPage( 'Contributions' ) ),
+				SpecialPage::getTitleFor( 'Contributions' ),
 				wfMsg( 'mycontris' ),
 				array(),
 				array( 'target' => $wgUser->getName() )
