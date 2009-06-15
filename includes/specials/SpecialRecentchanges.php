@@ -318,14 +318,14 @@ class SpecialRecentChanges extends SpecialPage {
 				array( 'rc_new' => 1 ) + $conds,
 				__METHOD__,
 				array( 'ORDER BY' => 'rc_timestamp DESC', 'LIMIT' => $limit,
-					'USE INDEX' =>  array('recentchanges' => 'new_name_timestamp') ),
+					'USE INDEX' =>  array('recentchanges' => 'rc_timestamp') ),
 				$join_conds );
 			// Old pages
 			$sqlOld = $dbr->selectSQLText( $tables, '*',
 				array( 'rc_new' => 0 ) + $conds,
 				__METHOD__,
 				array( 'ORDER BY' => 'rc_timestamp DESC', 'LIMIT' => $limit,
-					'USE INDEX' =>  array('recentchanges' => 'new_name_timestamp') ),
+					'USE INDEX' =>  array('recentchanges' => 'rc_timestamp') ),
 				$join_conds );
 			# Join the two fast queries, and sort the result set
 			$sql = $dbr->unionQueries(array($sqlNew, $sqlOld), false).' ORDER BY rc_timestamp DESC';
