@@ -484,17 +484,17 @@ EOT
 			if ( $wgEnableUploads && $wgUser->isAllowed( 'upload' ) ) {
 				// Only show an upload link if the user can upload
 				$uploadTitle = SpecialPage::getTitleFor( 'Upload' );
-				$nofile = wfMsgHtml(
+				$nofile = array(
 					'filepage-nofile-link',
 					$uploadTitle->getFullUrl( array( 'wpDestFile' => $this->img->getName() ) )
 				);
 			}
 			else
 			{
-				$nofile = wfMsgHtml( 'filepage-nofile' );
+				$nofile = 'filepage-nofile';
 			}
 			$wgOut->setRobotPolicy( 'noindex,nofollow' );
-			$wgOut->addHTML( '<div id="mw-imagepage-nofile" class="plainlinks">' . $nofile . '</div>' );
+			$wgOut->wrapWikiMsg( '<div id="mw-imagepage-nofile" class="plainlinks">$1</div>', $nofile );
 		}
 	}
 
