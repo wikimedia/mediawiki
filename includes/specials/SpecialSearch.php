@@ -1080,7 +1080,7 @@ class SpecialSearchOld {
 
 			$suggestionSnippet = $textMatches->getSuggestionSnippet();
 
-			if( $suggestionSnippet )
+			if( $suggestionSnippet == '' )
 				$suggestionSnippet = null;
 
 			$suggestLink = $sk->linkKnown(
