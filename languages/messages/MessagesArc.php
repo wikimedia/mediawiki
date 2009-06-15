@@ -185,6 +185,7 @@ $messages = array(
 'showtoc'                 => 'ܚܘܝ',
 'hidetoc'                 => 'ܛܫܝ',
 'viewdeleted'             => 'ܚܙܝ $1?',
+'restorelink'             => '{{PLURAL:$1|ܚܕ ܫܘܚܠܦܐ ܫܝܦܐ|$1 ܫܘܚܠܦ̈ܐ ܫܝܦ̈ܐ}}',
 'red-link-title'          => '$1 (ܦܐܬܐ ܗܕܐ ܠܝܬ)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
@@ -291,6 +292,7 @@ Note that some pages may continue to be displayed as if you were still logged in
 'rev-delundel'               => 'ܚܘܝ/ܛܫܝ',
 'revdelete-show-file-submit' => 'ܐܝܢ',
 'pagehist'                   => 'ܬܫܥܝܬܐ ܕܦܐܬܐ',
+'deletedhist'                => 'ܬܫܥܝܬܐ ܫܝܦܬܐ',
 'revdelete-summary'          => 'ܫܚܠܦ ܦܣܝܩܬ̈ܐ',
 'revdelete-uname'            => 'ܫܡܐ ܕܡܦܠܚܢܐ',
 
@@ -426,16 +428,18 @@ Note that some pages may continue to be displayed as if you were still logged in
 'rightsnone' => '(ܠܐ ܡܕܡ)',
 
 # Associated actions - in the sentence "You do not have permission to X"
-'action-read'          => 'ܩܪܝ ܦܐܬܐ ܗܕܐ',
-'action-edit'          => 'ܫܚܠܦ ܦܐܬܐ ܗܕܐ',
-'action-createpage'    => 'ܒܪܝ ܦܐܬܘܬ̈ܐ',
-'action-createtalk'    => 'ܒܪܝ ܦܐܬܐ ܕܕܘܪܫܐ',
-'action-createaccount' => 'ܒܪܝ ܚܘܫܒܢܐ ܕܗܢܐ ܡܦܠܚܢܐ',
-'action-move'          => 'ܫܢܝ ܦܐܬܐ ܗܕܐ',
-'action-movefile'      => 'ܫܢܝ ܗܢܐ ܠܦܦܐ',
-'action-upload'        => 'ܐܣܩ ܗܢܐ ܠܦܦܐ',
-'action-delete'        => 'ܫܘܦ ܦܐܬܐ ܗܕܐ',
-'action-undelete'      => 'ܠܐ ܫܘܦ ܦܐܬܐ ܗܕܐ',
+'action-read'           => 'ܩܪܝ ܦܐܬܐ ܗܕܐ',
+'action-edit'           => 'ܫܚܠܦ ܦܐܬܐ ܗܕܐ',
+'action-createpage'     => 'ܒܪܝ ܦܐܬܘܬ̈ܐ',
+'action-createtalk'     => 'ܒܪܝ ܦܐܬܐ ܕܕܘܪܫܐ',
+'action-createaccount'  => 'ܒܪܝ ܚܘܫܒܢܐ ܕܗܢܐ ܡܦܠܚܢܐ',
+'action-move'           => 'ܫܢܝ ܦܐܬܐ ܗܕܐ',
+'action-movefile'       => 'ܫܢܝ ܗܢܐ ܠܦܦܐ',
+'action-upload'         => 'ܐܣܩ ܗܢܐ ܠܦܦܐ',
+'action-delete'         => 'ܫܘܦ ܦܐܬܐ ܗܕܐ',
+'action-deletedhistory' => 'ܚܙܝ ܬܫܥܝܬܐ ܫܝܦܬܐ ܕܦܐܬܐ ܗܕܐ',
+'action-browsearchive'  => 'ܒܨܝ ܦܐܬܘܬ̈ܐ ܫܝܦ̈ܐ',
+'action-undelete'       => 'ܠܐ ܫܘܦ ܦܐܬܐ ܗܕܐ',
 
 # Recent changes
 'nchanges'             => '$1 {{PLURAL:$1|ܫܘܚܠܦܐ|ܫܘܚܠܦ̈ܐ}}',
@@ -527,8 +531,9 @@ Note that some pages may continue to be displayed as if you were still logged in
 'uncategorizedimages'     => 'ܠܦܦ̈ܐ ܠܐ ܣܕܝܪ̈ܐ',
 'uncategorizedtemplates'  => 'ܩܠܒ̈ܐ ܠܐ ܣܕܝܪ̈ܐ',
 'wantedtemplates'         => 'ܩܠܒ̈ܐ ܒܥܝܐ',
-'shortpages'              => 'ܦܐܬܘܬ̈ܐ ܟܪ̈ܝܐ',
-'longpages'               => 'ܦܐܬܘܬ̈ܐ ܐܪ̈ܝܟܐ',
+'shortpages'              => 'ܦܐܬܘܬ̈ܐ ܟܪ̈ܝܬܐ',
+'longpages'               => 'ܦܐܬܘܬ̈ܐ ܐܪ̈ܝܟܬܐ',
+'listusers'               => 'ܒܪܒܝܢ ܕܗܕܡ̈ܐ',
 'newpages'                => 'ܦܐܬܘ̈ܬܐ ܚܕ̈ܬܬܐ',
 'move'                    => 'ܫܢܝ',
 'movethispage'            => 'ܫܢܝ ܦܐܬܐ ܗܕܐ',
@@ -549,6 +554,10 @@ Note that some pages may continue to be displayed as if you were still logged in
 'allpagesprev'   => 'ܩܕܡ',
 'allpagesnext'   => 'ܒܬܪ',
 'allpagessubmit' => 'ܙܠ',
+
+# Special:DeletedContributions
+'deletedcontributions'       => 'ܫܘܬܦܘܝܬ̈ܐ ܕܡܦܠܚܢܐ ܫܝܦܬ̈ܐ',
+'deletedcontributions-title' => 'ܫܘܬܦܘܝܬ̈ܐ ܕܡܦܠܚܢܐ ܫܝܦܬ̈ܐ',
 
 # Special:LinkSearch
 'linksearch'    => 'ܐܣܘܪܐ ܒܪܝܐ',
@@ -587,6 +596,7 @@ Note that some pages may continue to be displayed as if you were still logged in
 'exblank'               => 'ܦܐܬܐ ܣܦܝܩܬܐ ܗܘܐ',
 'delete-confirm'        => 'ܫܘܦ "$1"',
 'delete-legend'         => 'ܫܘܦ',
+'deletedarticle'        => 'ܫܦ "[[$1]]"',
 'dellogpage'            => 'ܣܓܠܐ ܕܫܝܦܐ',
 'deletionlog'           => 'ܣܓܠܐ ܕܫܝܦܐ',
 'deletecomment'         => 'ܥܠܬܐ ܕܫܝܦܐ:',
@@ -610,9 +620,12 @@ Note that some pages may continue to be displayed as if you were still logged in
 # Restrictions (nouns)
 'restriction-edit'   => 'ܫܚܠܦ',
 'restriction-move'   => 'ܫܢܝ',
+'restriction-create' => 'ܒܪܝ',
 'restriction-upload' => 'ܐܣܩ',
 
 # Undelete
+'undelete'                  => 'ܚܙܝ ܦܐܬܘܬ̈ܐ ܫܝܦܬ̈ܐ',
+'viewdeletedpage'           => 'ܚܙܝ ܦܐܬܘܬ̈ܐ ܫܝܦܬ̈ܐ',
 'undelete-search-box'       => 'ܒܨܝ ܦܐܬܘܬ̈ܐ ܫܝܦ̈ܐ',
 'undelete-show-file-submit' => 'ܐܝܢ',
 
@@ -633,6 +646,7 @@ Note that some pages may continue to be displayed as if you were still logged in
 'sp-contributions-newbies-sub'   => 'ܠܚܘܫܒܢ̈ܐ ܚܕܬ̈ܐ',
 'sp-contributions-newbies-title' => 'ܫܘܬܦܘܝܬ̈ܐ ܕܡܦܠܚܢܐ ܠܚܘܫܒܢ̈ܐ ܚܕܬ̈ܐ',
 'sp-contributions-blocklog'      => 'ܣܓܠܐ ܕܚܪܡܐ',
+'sp-contributions-deleted'       => 'ܫܘܬܦܘܝܬ̈ܐ ܕܡܦܠܚܢܐ ܫܝܦܬ̈ܐ',
 'sp-contributions-logs'          => 'ܣܓܠ̈ܐ',
 'sp-contributions-talk'          => 'ܡܡܠܠܐ',
 'sp-contributions-search'        => 'ܒܨܝ ܫܘ̈ܬܦܘܝܬܐ',
@@ -795,6 +809,7 @@ Note that some pages may continue to be displayed as if you were still logged in
 
 # Auto-summaries
 'autosumm-blank' => 'ܐܣܦܩ ܦܐܬܐ',
+'autosumm-new'   => "ܒܪܐ ܦܐܬܐ ܥܡ '$1'",
 
 # Watchlist editor
 'watchlistedit-normal-title' => 'ܫܚܠܦ ܪ̈ܗܝܬܐ',

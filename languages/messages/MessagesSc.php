@@ -859,13 +859,21 @@ Ogni riga contiene i link al primo ed al secondo redirect, oltre alla prima riga
 'mailnologintext' => 'Devi fare il [[Special:UserLogin|login]]
 ed aver registrato una valida casella e-mail nelle tue [[Special:Preferences|preferenze]] per mandare posta elettronica ad altri Utenti.',
 'emailuser'       => 'E-mail a custu usuàriu',
+'emailpage'       => "Ispedi una missada a s'usuàriu",
 'emailpagetext'   => "Imprea su mòdulu a suta pro ispedire una missada eletrònica a custu usuàriu. 
 S'indiritzu chi as insertadu ne is [[Special:Preferences|preferèntzias usuàriu tuas]] at a parriri comente su chi at ispediu sa e-mail, pro fàghere in modu chi su destinatariu t'arrespundat deretu.",
 'defemailsubject' => 'Missada dae {{SITENAME}}',
 'noemailtitle'    => 'Perunu indiritzu e-mail',
 'noemailtext'     => 'Custu usuàriu no at ispetzificadu un indiritzu e-mail vàlidu.',
+'email-legend'    => 'Imbia una missada e-mail a un àteru usuàriu de {{SITENAME}}',
+'emailfrom'       => 'Dae:',
+'emailto'         => 'A:',
+'emailsubject'    => 'Ogetu:',
+'emailmessage'    => 'Messàgiu:',
+'emailsend'       => 'Imbia',
+'emailccme'       => 'Ispedimia una còpia de su messàgiu miu.',
 'emailsent'       => 'E-mail ispedia',
-'emailsenttext'   => 'La tua e-mail è stata inviata.',
+'emailsenttext'   => 'Sa e-mail tua est istada imbiada.',
 
 # Watchlist
 'watchlist'         => 'Sa watchlist mea',
@@ -1126,7 +1134,7 @@ Pro pregheri, prima de sarvari càstia s'antiprima",
 'tooltip-ca-addsection'           => 'Incumintza una setzione noa',
 'tooltip-ca-viewsource'           => 'Sa pàgina est amparada.
 Podes castiare sa mitza sua',
-'tooltip-ca-history'              => 'Versiones passadas de custa pàgina',
+'tooltip-ca-history'              => 'Versiones coladas de custa pàgina',
 'tooltip-ca-protect'              => 'Ampara custa pàgina',
 'tooltip-ca-delete'               => 'Fùlia custa pàgina',
 'tooltip-ca-move'                 => 'Movi custa pàgina',

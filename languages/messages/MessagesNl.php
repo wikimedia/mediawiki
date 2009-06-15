@@ -2012,8 +2012,9 @@ Zie ook [[Special:WantedCategories|niet-bestaande categorieën met verwijzingen]
 'special-categories-sort-abc'   => 'alfabetisch sorteren',
 
 # Special:DeletedContributions
-'deletedcontributions'       => 'Verwijderde bijdragen',
-'deletedcontributions-title' => 'Verwijderde gebruikersbijdragen',
+'deletedcontributions'             => 'Verwijderde bijdragen',
+'deletedcontributions-title'       => 'Verwijderde gebruikersbijdragen',
+'sp-deletedcontributions-contribs' => 'bijdragen',
 
 # Special:LinkSearch
 'linksearch'       => 'Externe verwijzingen',

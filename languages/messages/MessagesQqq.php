@@ -1454,9 +1454,7 @@ Example: [[:Image:Addon-icn.png]]',
 'filehist-comment'        => 'In file description page
 
 {{Identical|Comment}}',
-'imagelinks'              => 'In top header of the image description page, see for example [[:Image:Yes.png]].
-
-{{Identical|Links}}',
+'imagelinks'              => 'In top header of the image description page, see for example [[:Image:Yes.png]].',
 'linkstoimage'            => 'Used on image description, see for example [[:Image:Yes.png#filelinks]].
 * Parameter $1 is the number of pages that link to the file/image.',
 'linkstoimage-more'       => 'Shown on an image description page when a file is used/linked more than 100 times on other pages.
@@ -2807,8 +2805,7 @@ Please leave the link http://www.mediawiki.org/wiki/Manual:External_editors exac
 'confirmemail_needlogin'   => 'Used on [[Special:ConfirmEmail]] when you are logged out.
 * $1 is a link to [[Special:UserLogin]] with {{msg-mw|loginreqlink}} as link description',
 'confirmemail_body'        => 'This message is sent as an e-mail to users when they add or change their e-mail adress in [[Special:Preferences]].
-
-*$1 is the IP adress of the user that changed the e-mail adress
+*$1 is the IP address of the user that changed the e-mail address
 *$2 is the name of the user
 *$3 is a URL to [[Special:ConfirmEmail]]
 *$4 is a time and date (duplicated by $6 and $7)

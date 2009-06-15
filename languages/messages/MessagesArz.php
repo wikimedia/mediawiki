@@ -437,6 +437,19 @@ $messages = array(
 'faq'            => 'اسئله بتتسئل كتير',
 'faqpage'        => 'Project:اسئله بتتسئل كتير',
 
+# Vector skin
+'vector-action-addsection'  => 'ضيف موضوع',
+'vector-action-delete'      => 'مسح',
+'vector-action-move'        => 'نقل',
+'vector-action-protect'     => 'حمايه',
+'vector-action-undelete'    => 'الغى المسح',
+'vector-action-unprotect'   => 'الغى الحمايه',
+'vector-namespace-category' => 'تصنيف',
+'vector-namespace-help'     => 'صفحة مساعده',
+'vector-namespace-image'    => 'ملف',
+'vector-namespace-main'     => 'صفحه',
+'vector-namespace-media'    => 'صفحة ميديا',
+
 # Metadata in edit box
 'metadata_help' => 'ميتا داتا:',
 
@@ -2234,7 +2247,7 @@ $1',
 'ipbenableautoblock'              => ' امنع آخر عنوان أيبى استخدمه اليوزر دا اوتوماتيكي، وأى عناوين أيبى تانية يحاول التحرير منها',
 'ipbsubmit'                       => 'منع اليوزر دا',
 'ipbother'                        => 'وقت تاني:',
-'ipboptions'                      => 'ربع ساعة:15 minutes,ساعة واحدة:1 hour,ساعتين:2 hours,يوم:1 day,تلات-ت-أيام:3 days,أسبوع:1 week,أسبوعين:2 weeks,شهر:1 month,تلات شهور:3 months,ست-ت- شهور:6 months,سنة واحدة:1 year,على طول:infinite',
+'ipboptions'                      => '2 hours:2 ساعه ,1 day:1 يوم , 3 days:3 ايام , 1 week:1 اسبوع , 2 weeks:2 اسبوع ,1 month:1 شهر , 3 months:3 شهور , 6 months:6 شهور , 1 year:1 سنه , infinite:على طول',
 'ipbotheroption'                  => 'كمان',
 'ipbotherreason'                  => 'سبب تاني:',
 'ipbhidename'                     => 'خبى اسم اليوزر من سجل المنع، لستة المنع النشطة ولستة اليوزرز',

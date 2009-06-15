@@ -978,6 +978,7 @@ Ylläpitäjänä voit silti [$1 katsoa tämän muutoksen].",
 'revdelete-nologid-title'     => 'Epäkelpo lokitapahtuma',
 'revdelete-nologid-text'      => 'Joko et ole määritellyt kohdetta lokitapahtumalle tämän toiminnon suorittamiseksi tai määriteltyä tapahtumaa ei ole.',
 'revdelete-no-file'           => 'Määritettyä tiedostoa ei ole olemassa.',
+'revdelete-show-file-confirm' => 'Haluatko varmasti nähdä poistetun version tiedostosta <nowiki>$1</nowiki>, joka on tallennettu $2 kello $3?',
 'revdelete-show-file-submit'  => 'Kyllä',
 'revdelete-selected'          => "'''{{PLURAL:$2|Valittu versio|Valitut versiot}} sivusta '''$1:''''''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Valittu lokimerkintä|Valitut lokimerkinnät}}:'''",
@@ -2107,7 +2108,7 @@ Viimeisimmän muokkauksen on tehnyt käyttäjä [[User:$3|$3]] ([[User talk:$3|k
 'undelete-error-long'          => 'Tiedoston palauttaminen epäonnistui:
 
 $1',
-'undelete-show-file-confirm'   => 'Haluatko varmasti nähdä poistetun version tiedostosta ”<nowiki>$1</nowiki>” ajalta $2 $3?',
+'undelete-show-file-confirm'   => 'Haluatko varmasti nähdä poistetun version tiedostosta <nowiki>$1</nowiki>, joka on tallennettu $2 kello $3?',
 'undelete-show-file-submit'    => 'Kyllä',
 
 # Namespace form on various pages
