@@ -1668,8 +1668,7 @@ $NEWPAGE
 'deletecomment'          => '刪因：',
 'deleteotherreason'      => '另／附之因：',
 'deletereasonotherlist'  => '另因',
-'deletereason-dropdown'  => '
-*常刪之因
+'deletereason-dropdown'  => '*常刪之因
 ** 作者之求
 ** 侵版權
 ** 破壞',
@@ -1847,8 +1846,7 @@ $1',
 'ipbexpiry'                       => '限期',
 'ipbreason'                       => '指證',
 'ipbreasonotherlist'              => '常犯',
-'ipbreason-dropdown'              => '
-*如下道：
+'ipbreason-dropdown'              => '*如下道：
 ** 造假報
 ** 毀文貌
 ** 廣賈告

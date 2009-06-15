@@ -1189,9 +1189,7 @@ Die voorkeurformate is JPEG vir fotografiese prente, PNG vir tekeninge en ander 
 Gebruik asseblief beskrywende lêername om verwarring te voorkom.
 Om die prent in 'n artikel te gebruik, gebruik 'n skakel met die formaat '''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:file.jpg]]</nowiki>''' of
 '''<nowiki>[[</nowiki>{{ns:file}}<nowiki>:file.png|alt text]]</nowiki>''' of
-'''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:file.ogg]]</nowiki>''' vir klanklêers.
-
-Let asseblief op dat, soos met {{SITENAME}} bladsye, mag ander u gelaaide lêers redigeer as hulle dink dit dien die ensiklopedie, en u kan verhoed word om lêers te laai as u die stelsel misbruik.",
+'''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:file.ogg]]</nowiki>''' vir klanklêers.",
 'upload-permitted'           => 'Toegelate lêertipes: $1.',
 'upload-preferred'           => 'Aanbevole lêertipes: $1.',
 'upload-prohibited'          => 'Verbode lêertipes: $1.',

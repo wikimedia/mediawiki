@@ -1957,7 +1957,6 @@ Gah een Sied trüch un versöök dat noch wedder.',
 ** toveel Vandalismus
 ** toveel Spam
 ** Rin’e-Tuffeln/Rut’e-Tuffeln-Geänner
-** veel bruukt Vörlaag
 ** Sied mit temlich veel Besökers',
 'protect-edit-reasonlist'     => 'Grünn för de Sperr ännern',
 'protect-expiry-options'      => '1 Stünn:1 hour,1 Dag:1 day,1 Week:1 week,2 Weken:2 weeks,1 Maand:1 month,3 Maand:3 months,6 Maand:6 months,1 Johr:1 year,ahn Enn:infinite',

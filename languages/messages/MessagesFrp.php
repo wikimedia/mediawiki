@@ -2156,9 +2156,7 @@ Vêde lo $2 por una lista de les novèles suprèssions.',
 'deletereason-dropdown'  => '* Rêsons de suprèssion comenes
 ** Demanda a l’ôtor
 ** Violacion du drêt d’ôtor
-** Vandalismo
-** Lengoua fôssa
-** Mèssâjo betâ a jorn de façon de defôr',
+** Vandalismo',
 'delete-edit-reasonlist' => 'Changiér les rêsons de suprèssion',
 'delete-toobig'          => 'Ceta pâge at un historico important, dèpassent $1 vèrsion{{PLURAL:$1||s}}.
 La suprèssion de tâles pâges at étâ limitâ por èvitar des pèrturbacions emprèvues de {{SITENAME}}.',

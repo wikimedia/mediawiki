@@ -2116,8 +2116,7 @@ Um die Einstellungen deiner Beobachtungsliste anzupassen, besuche: {{fullurl:Spe
 'deletecomment'          => 'Grund der Löschung:',
 'deleteotherreason'      => 'Anderer/ergänzender Grund:',
 'deletereasonotherlist'  => 'Anderer Grund',
-'deletereason-dropdown'  => '
-* Allgemeine Löschgründe
+'deletereason-dropdown'  => '* Allgemeine Löschgründe
 ** Wunsch des Autors
 ** Urheberrechtsverletzung
 ** Vandalismus',
@@ -2308,8 +2307,7 @@ Bitte gib den Grund für die Sperre an.',
 'ipbexpiry'                       => 'Sperrdauer:',
 'ipbreason'                       => 'Begründung:',
 'ipbreasonotherlist'              => 'Andere Begründung',
-'ipbreason-dropdown'              => '
-* Allgemeine Sperrgründe
+'ipbreason-dropdown'              => '* Allgemeine Sperrgründe
 ** Löschen von Seiten
 ** Einstellen unsinniger Seiten
 ** Fortgesetzte Verstöße gegen die Richtlinien für Weblinks

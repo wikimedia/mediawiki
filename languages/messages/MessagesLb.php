@@ -290,16 +290,21 @@ $messages = array(
 'vector-action-undelete'     => 'Restauréieren',
 'vector-action-unprotect'    => 'Spär ophiewen',
 'vector-namespace-category'  => 'Kategorie',
+'vector-namespace-help'      => 'Hellëfsäit',
 'vector-namespace-image'     => 'Fichier',
 'vector-namespace-main'      => 'Säit',
+'vector-namespace-media'     => 'Mediesäit',
 'vector-namespace-mediawiki' => 'Message',
+'vector-namespace-project'   => 'Projetssäit',
 'vector-namespace-special'   => 'Spezialsäit',
 'vector-namespace-talk'      => 'Diskussioun',
 'vector-namespace-template'  => 'Schabloun',
 'vector-namespace-user'      => 'Benotzersäit',
 'vector-view-create'         => 'Uleeën',
 'vector-view-edit'           => 'Änneren',
+'vector-view-history'        => 'Versioune weisen',
 'vector-view-view'           => 'Liesen',
+'vector-view-viewsource'     => 'Quellcode weisen',
 
 # Metadata in edit box
 'metadata_help' => 'Metadaten:',
@@ -790,7 +795,9 @@ Et däerfen net méi wéi $2 {{PLURAL:$2|Ufro|Ufroe}} sinn, aktuell {{PLURAL:$2|
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Benotzerkont konnt net opgemaach ginn',
-'cantcreateaccount-text' => 'Dës IP Adress (\'\'\'$1\'\'\') gouf vum [[User:$3|$3]] blokéiert fir Benotzer-Konten op der lëtzebuergescher Wikipedia opzemaachen. De Benotzer $3 huet "$2" als Ursaach uginn.',
+'cantcreateaccount-text' => 'D\'Opmaache vu Benotzerkonten vun dëser IP Adress (\'\'\'$1\'\'\') gouf vum [[User:$3|$3]] gespaart.
+
+De Benotzer $3 huet "$2" als Grond uginn.',
 
 # History pages
 'viewpagelogs'           => 'Logbicher fir dës Säit weisen',

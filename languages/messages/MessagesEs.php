@@ -2177,8 +2177,7 @@ las páginas en particular que han sido objeto de vandalismo).',
 'ipbexpiry'                       => 'Caduca dentro de',
 'ipbreason'                       => 'Motivo:',
 'ipbreasonotherlist'              => 'Otra razón',
-'ipbreason-dropdown'              => '
-*Motivos comunes de bloqueo
+'ipbreason-dropdown'              => '*Motivos comunes de bloqueo
 ** Añadir información falsa
 ** Eliminar contenido de las páginas
 ** Publicitar enlaces a otras páginas web

@@ -357,7 +357,7 @@ $messages = array(
 'pagecategories'                 => '{{PLURAL:$1|Kategorija|Kategorije}}',
 'category_header'                => 'Članci u kategoriji "$1"',
 'subcategories'                  => 'Potkategorije',
-'category-media-header'          => 'Mediji u kategoriji "$1"',
+'category-media-header'          => 'Datoteke u kategoriji "$1"',
 'category-empty'                 => "''Ova kategorija trenutno ne sadrži članke ni medije.''",
 'hidden-categories'              => '{{PLURAL:$1|Sakrivena kategorija|Sakrivene kategorije}}',
 'hidden-category-category'       => 'Sakrivene kategorije',
@@ -400,7 +400,28 @@ $messages = array(
 'faqpage'        => 'Project:NPP',
 
 # Vector skin
-'vector-view-view' => 'Čitati',
+'vector-action-addsection'   => 'Dodaj temu',
+'vector-action-delete'       => 'Brisanje',
+'vector-action-move'         => 'Preusmjeri',
+'vector-action-protect'      => 'Zaštiti',
+'vector-action-undelete'     => 'Vrati obrisano',
+'vector-action-unprotect'    => 'Oslobodi zaštitu',
+'vector-namespace-category'  => 'Kategorija',
+'vector-namespace-help'      => 'Stranica pomoći',
+'vector-namespace-image'     => 'Datoteka',
+'vector-namespace-main'      => 'Stranica',
+'vector-namespace-media'     => 'Stranica medije',
+'vector-namespace-mediawiki' => 'Poruka',
+'vector-namespace-project'   => 'Stranica projekta',
+'vector-namespace-special'   => 'Posebna stranica',
+'vector-namespace-talk'      => 'Razgovor',
+'vector-namespace-template'  => 'Šablon',
+'vector-namespace-user'      => 'Korisnička stranica',
+'vector-view-create'         => 'Napravi',
+'vector-view-edit'           => 'Uređivanje',
+'vector-view-history'        => 'Vidi historiju',
+'vector-view-view'           => 'Čitati',
+'vector-view-viewsource'     => 'Pogledaj izvor',
 
 # Metadata in edit box
 'metadata_help' => 'Metapodaci:',
@@ -637,7 +658,7 @@ Ne zaboravite da prilagodite sebi svoja podešavanja.',
 'gotaccount'                 => 'Imate nalog? $1.',
 'gotaccountlink'             => 'Prijavi se',
 'createaccountmail'          => 'e-poštom',
-'badretype'                  => 'Lozinke koje ste unijeli se ne poklapaju.',
+'badretype'                  => 'Šifre koje ste unijeli se ne poklapaju.',
 'userexists'                 => 'Korisničko ime koje ste unijeli je već u upotrebi.
 Molimo Vas da izaberete drugo ime.',
 'loginerror'                 => 'Greška pri prijavljivanju',
@@ -793,7 +814,7 @@ Pošto sekcija $1 ne postoji, nije moguće spremiti Vaše promjene.',
 'loginreqtitle'                    => 'Potrebno je prijavljivanje',
 'loginreqlink'                     => 'prijavi se',
 'loginreqpagetext'                 => 'Morate $1 da bi ste vidjeli druge strane.',
-'accmailtitle'                     => 'Lozinka poslata.',
+'accmailtitle'                     => 'Šifra poslana.',
 'accmailtext'                      => "Nasumično odabrana šifra za nalog [[User talk:$1|$1]] je poslata na adresu $2.
 
 Šifra za ovaj novi račun može biti promijenjena na stranici ''[[Special:ChangePassword|izmjene šifre]]'' nakon prijave.",
@@ -1463,7 +1484,7 @@ Također omogućuje drugim korisnicima da vas kontaktiraju preko vaše korisnič
 'action-import'               => 'uvozite ovu stranicu iz druge wiki',
 'action-importupload'         => 'uvezete ovu stranicu putem postavljanja datoteke',
 'action-patrol'               => 'označite izmjene drugih kao patrolirane',
-'action-autopatrol'           => 'Vaše izmjene budu označene kao patrolirane',
+'action-autopatrol'           => 'da Vaše izmjene budu označene kao patrolirane',
 'action-unwatchedpages'       => 'pregledate spisak nepraćenih stranica',
 'action-trackback'            => "pošaljete ''trackback''",
 'action-mergehistory'         => 'spajate historiju ove stranice',
@@ -1548,7 +1569,7 @@ Da bi ste prikazali datoteku na stranici, koristite link na jedan od slijedećih
 'minlength1'                  => 'Ime datoteke mora imati barem jedno slovo.',
 'illegalfilename'             => 'Ime datoteke "$1" sadrži simbol koji nije dozvoljen u imenu datoteke.
 Molimo Vas da promijenite ime datoteke i pokušate da je ponovo postavite.',
-'badfilename'                 => 'Ime slike je promjenjeno u "$1".',
+'badfilename'                 => 'Ime slike je promijenjeno u "$1".',
 'filetype-badmime'            => 'Datoteke MIME vrste "$1" nije dopušteno postavljati.',
 'filetype-bad-ie-mime'        => 'Ne može se postaviti ova datoteka jer je Internet Explorer prepoznaje kao "$1", što je nedozvoljena i potencijalno opasna vrsta datoteke.',
 'filetype-unwanted-type'      => "'''\".\$1\"''' je nepoželjna vrsta datoteke.
@@ -1782,7 +1803,7 @@ Stranica se smatra čvorom, ukoliko koristi šablon koji je povezan sa spiskom [
 'double-redirect-fixer'      => 'Popravljač preusmjerenja',
 
 'brokenredirects'        => 'Pokvarena preusmjerenja',
-'brokenredirectstext'    => 'Slijedeća preusmjerenja vode na nepostojeći stranice:',
+'brokenredirectstext'    => 'Slijedeća preusmjerenja vode na nepostojeće stranice:',
 'brokenredirects-edit'   => 'uredi',
 'brokenredirects-delete' => 'obriši',
 
@@ -2085,7 +2106,7 @@ nastavite s oprezom.',
 'rollback_short'   => 'Vrati',
 'rollbacklink'     => 'vrati',
 'rollbackfailed'   => 'Vraćanje nije uspjelo',
-'cantrollback'     => 'Ne može se vratiti izmjena; poslednji autor je ujedno i jedini.',
+'cantrollback'     => 'Ne može se vratiti izmjena; posljednji autor je ujedno i jedini.',
 'alreadyrolled'    => 'Ne može se vratiti posljednja izmjena [[:$1]] od korisnika [[User:$2|$2]] ([[User talk:$2|razgovor]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]); neko drugi je već izmjenio ili vratio članak.
 
 Posljednja izmjena je bila od korisnika [[User:$3|$3]] ([[User talk:$3|razgovor]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
@@ -2329,7 +2350,9 @@ ili korisničkom imenu.',
 'blocklog-fulllog'                => 'Potpuni spisak zapisa blokiranja',
 'blocklogentry'                   => 'je blokirao [[$1]] sa vremenom isticanja blokade od $2 $3',
 'reblock-logentry'                => 'promjena postavki blokiranja za [[$1]] sa vremenom isteka u $2 $3',
-'blocklogtext'                    => 'Ovo je istorija blokiranja i deblokiranja korisnika.  Automatsko blokirane IP adrese nisu uspisane ovde.  Pogledajte [[Special:IPBlockList|blokirane IP adrese]] za spisak trenutnih zabrana i blokiranja.',
+'blocklogtext'                    => 'Ovo je historija akcija blokiranja i deblokiranja korisnika.
+Automatsko blokirane IP adrese nisu uspisane ovde.
+Pogledajte [[Special:IPBlockList|blokirane IP adrese]] za spisak trenutnih zabrana i blokiranja.',
 'unblocklogentry'                 => 'deblokiran $1',
 'block-log-flags-anononly'        => 'samo anonimni korisnici',
 'block-log-flags-nocreate'        => 'pravljenje računa onemogućeno',
@@ -2490,7 +2513,7 @@ U drugom slučaju možete koristiti i vezu, npr. [[{{#Special:Export}}/{{MediaWi
 # Namespace 8 related
 'allmessages'               => 'Sve sistemske poruke',
 'allmessagesname'           => 'Naziv',
-'allmessagesdefault'        => 'Pretpostavljeni tekst',
+'allmessagesdefault'        => 'Uobičajeni tekst',
 'allmessagescurrent'        => 'Trenutni tekst',
 'allmessagestext'           => 'Ovo je spisak svih sistemskih poruka u dostupnih u MedijaViki imenskom prostoru.
 Molimo posjetite [http://www.mediawiki.org/wiki/Localisation MedijaViki lokalizaciju] i [http://translatewiki.net translatewiki.net] ako želite doprinijeti općoj lokalizaciji MedijaVikija.',

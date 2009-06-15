@@ -616,8 +616,7 @@ $NEWPAGE
 # Block/unblock
 'blockip'                     => '封鎖使用者',
 'ipadressorusername'          => 'IP地址或使用者名:',
-'ipbreason-dropdown'          => '
-*一般的封鎖理由
+'ipbreason-dropdown'          => '*一般的封鎖理由
 ** 屢次增加不實資料
 ** 刪除頁面內容
 ** 外部連結廣告

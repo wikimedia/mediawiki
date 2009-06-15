@@ -402,7 +402,28 @@ $messages = array(
 'faqpage'        => 'Project:ЧаВО',
 
 # Vector skin
-'vector-view-view' => 'Чтение',
+'vector-action-addsection'   => 'Добавить тему',
+'vector-action-delete'       => 'Удалить',
+'vector-action-move'         => 'Переименовать',
+'vector-action-protect'      => 'Защитить',
+'vector-action-undelete'     => 'Восстановить',
+'vector-action-unprotect'    => 'Снять защиту',
+'vector-namespace-category'  => 'Категория',
+'vector-namespace-help'      => 'Справочная страница',
+'vector-namespace-image'     => 'Файл',
+'vector-namespace-main'      => 'Страница',
+'vector-namespace-media'     => 'Медиа-страница',
+'vector-namespace-mediawiki' => 'Сообщение',
+'vector-namespace-project'   => 'О проекте',
+'vector-namespace-special'   => 'Служебная страница',
+'vector-namespace-talk'      => 'Обсуждение',
+'vector-namespace-template'  => 'Шаблон',
+'vector-namespace-user'      => 'Страница участника',
+'vector-view-create'         => 'Создать',
+'vector-view-edit'           => 'Править',
+'vector-view-history'        => 'Просмотр истории',
+'vector-view-view'           => 'Чтение',
+'vector-view-viewsource'     => 'Просмотр разметки',
 
 # Metadata in edit box
 'metadata_help' => 'Метаданные:',
@@ -2216,8 +2237,7 @@ $1',
 'ipbexpiry'                       => 'Закончится через:',
 'ipbreason'                       => 'Причина:',
 'ipbreasonotherlist'              => 'Другая причина',
-'ipbreason-dropdown'              => '
-* Стандартные причины блокировок
+'ipbreason-dropdown'              => '* Стандартные причины блокировок
 ** Вставка ложной информации
 ** Удаление содержимого страниц
 ** Спам-ссылки на внешние сайты
@@ -2579,7 +2599,7 @@ The wiki server can't provide data in a format your client can read.",
 'anonymous'        => '{{PLURAL:$1|Анонимный участник|Анонимные участники}} {{grammar:genitive|{{SITENAME}}}}',
 'siteuser'         => 'Участник {{grammar:genitive|{{SITENAME}}}} $1',
 'lastmodifiedatby' => 'Эта страница последний раз была изменена $2, $1 участником $3.',
-'othercontribs'    => 'Основано на работе $1.',
+'othercontribs'    => 'В создании также приняли участие: $1.',
 'others'           => 'другие',
 'siteusers'        => '{{PLURAL:$2|Участник|Участники}} {{grammar:genitive|{{SITENAME}}}} $1',
 'creditspage'      => 'Благодарности',

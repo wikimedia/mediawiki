@@ -1910,8 +1910,7 @@ Paskutinių šalinimų istorija - $2.',
 'deletecomment'          => 'Trynimo priežastis',
 'deleteotherreason'      => 'Kita/papildoma priežastis:',
 'deletereasonotherlist'  => 'Kita priežastis',
-'deletereason-dropdown'  => '
-*Dažnos trynimo priežastys
+'deletereason-dropdown'  => '*Dažnos trynimo priežastys
 ** Autoriaus prašymas
 ** Autorystės teisių pažeidimas
 ** Vandalizmas',
@@ -2103,8 +2102,7 @@ $1',
 'ipbexpiry'                       => 'Galiojimo laikas',
 'ipbreason'                       => 'Priežastis',
 'ipbreasonotherlist'              => 'Kita priežastis',
-'ipbreason-dropdown'              => '
-*Bendrosios blokavimo priežastys
+'ipbreason-dropdown'              => '*Bendrosios blokavimo priežastys
 ** Melagingos informacijos įterpimas
 ** Turinio šalinimas iš puslapių
 ** Kitų svetainių reklamavimas

@@ -156,6 +156,14 @@ $messages = array(
 'faq'            => 'FAQ',
 'faqpage'        => 'Project:FAQ',
 
+# Vector skin
+'vector-action-delete'   => 'Leescha',
+'vector-namespace-image' => 'Datei',
+'vector-namespace-user'  => 'Notzerseyte',
+'vector-view-edit'       => 'Bearbeita',
+'vector-view-view'       => 'Lessa',
+'vector-view-viewsource' => 'Quelltext siehn',
+
 # Metadata in edit box
 'metadata_help' => 'Metadata:',
 
