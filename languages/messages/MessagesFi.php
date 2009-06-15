@@ -182,6 +182,7 @@ $magicWords = array(
 	'filepath'              => array( '0', 'TIEDOSTOPOLKU:', 'FILEPATH:' ),
 	'hiddencat'             => array( '1', '__PIILOLUOKKA__', '__HIDDENCAT__' ),
 	'pagesize'              => array( '1', 'SIVUKOKO', 'PAGESIZE' ),
+	'formatdate'            => array( '0', 'abba', 'formatdate', 'dateformat' ),
 );
 
 $specialPageAliases = array(

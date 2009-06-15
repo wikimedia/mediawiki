@@ -34,7 +34,7 @@ $namespaceNames = array(
 );
 
 $magicWords = array(
-	'redirect'              => array( '0', '#saadaq', '#suuna', '#suuna', '#REDIRECT' ),
+	'redirect'              => array( '0', '#saadaq', '#suuna', '#REDIRECT' ),
 );
 
 $messages = array(
