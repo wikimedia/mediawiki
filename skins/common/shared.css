@@ -74,7 +74,7 @@ body.rtl td.mw-label { text-align: left; }
 body.rtl td.mw-input { text-align: right; }
 body.rtl td.mw-submit { text-align: right; }
 
-td.mw-label { vertical-align: top; width: 20%; }
+td.mw-label { vertical-align: top; width: 30%; }
 td.mw-submit { white-space: nowrap; }
 
 table.mw-htmlform-nolabel td.mw-label { width: 0 !important; }
