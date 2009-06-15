@@ -353,6 +353,12 @@ $messages = array(
 
 # General errors
 'error'              => 'Kosa',
+'missing-article'    => 'Database haijapata maneno ya ukurasa unaotafutwa, unaitwa "$1" $2.
+
+Jambo kama hili kikawaida husababishwa kwa kufuatia kwisha kwa diff au historia ya kiungo ambacho kilifutwa.
+
+Ikiwa hii siyo sababu, basi unaweza kukuta kuna mdudu katika bidhaa pepe.
+Tafadhali ripoti hili kwa [[Special:ListUsers/sysop|msimamizi]], na uache jina la URL.',
 'badtitle'           => 'Jina halifai',
 'badtitletext'       => 'Jina la ukurasa ulilotaka ni batilifu, tupu, au limeungwa vibaya na jina la lugha nyingine au Wiki nyingine.  Labda linazo herufi moja a zaidi ambazo hazitumiki katika majina.',
 'viewsource'         => 'Onyesha kodi za ukurasa',
@@ -531,7 +537,11 @@ Ufunguo: (sasa) = tofauti na toleo la sasa, (kabla) = tofauti na toleo lililotan
 'history-feed-item-nocomment' => '$1 kwenye $2',
 
 # Revision deletion
-'rev-delundel' => 'onyesha/ficha',
+'rev-delundel'   => 'onyesha/ficha',
+'revdel-restore' => 'badilisha mwonekano',
+
+# Merge log
+'revertmerge' => 'Usiunganishe',
 
 # Diffs
 'history-title'           => 'Historia ya masahihisho ya "$1"',
@@ -544,6 +554,7 @@ Ufunguo: (sasa) = tofauti na toleo la sasa, (kabla) = tofauti na toleo lililotan
 # Search results
 'searchresults'                => 'Matokeo ya utafutaji',
 'searchresults-title'          => 'Matokeo ya utafutaji kwa ajili ya "$1"',
+'searchresulttext'             => 'Kwa maelezo zaidi kuhusu kutafuta {{SITENAME}}, tazama [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'               => 'Ulitafuta \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|kurasa zote zinazoanza "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|kurasa zote zinazoungwa na "$1"]])',
 'searchsubtitleinvalid'        => "Ulitafuta '''$1'''",
 'noexactmatch'                 => "'''Hakuna ukurasa wenye jina \"\$1\".''' Unaweza [[:\$1|kuanza ukurasa huu]].",
@@ -560,6 +571,8 @@ Ufunguo: (sasa) = tofauti na toleo la sasa, (kabla) = tofauti na toleo lililotan
 'searchprofile-advanced'       => 'Hali ya juu',
 'searchprofile-images-tooltip' => 'Tafuta mafaili',
 'search-result-size'           => '$1 ({{PLURAL:$2|neno 1|maneno $2}})',
+'search-redirect'              => '(elekeza $1)',
+'search-section'               => '(sehemu $1)',
 'search-suggest'               => 'Je, ulitaka kutafuta: $1',
 'search-interwiki-default'     => 'Matokeo toka $1:',
 'search-interwiki-more'        => '(zaidi)',
@@ -883,6 +896,7 @@ Hivi ni vipimo kwa ukurasa '''$1''':",
 # Undelete
 'viewdeletedpage' => 'Tazama kurasa zilizofutwa',
 'undeletebtn'     => 'Rudisha',
+'undeletelink'    => 'onyesha/rejesha',
 
 # Namespace form on various pages
 'namespace'      => 'Chagua eneo la wiki:',
@@ -918,14 +932,15 @@ Hivi ni vipimo kwa ukurasa '''$1''':",
 'whatlinkshere-links' => '← viungo',
 
 # Block/unblock
-'blockip'       => 'Zuia mtumiaji',
-'ipboptions'    => 'Masaa 2:2 hours,siku 1:1 day,siku 3:3 days,wiki 1:1 week,wiki 2:2 weeks,mwezi 1:1 month,miezi 3:3 months,miezi 6:6 months,mwaka 1:1 year,milele:infinite',
-'ipblocklist'   => 'Anwani za IP na majina ya watumiaji waliozuiliwa',
-'blocklink'     => 'zuia',
-'unblocklink'   => 'acha kuzuia',
-'contribslink'  => 'michango',
-'blocklogpage'  => 'Kumbukumbu ya uzuio',
-'blocklogentry' => 'amemzuia [[$1]] mpaka $2 $3',
+'blockip'          => 'Zuia mtumiaji',
+'ipboptions'       => 'Masaa 2:2 hours,siku 1:1 day,siku 3:3 days,wiki 1:1 week,wiki 2:2 weeks,mwezi 1:1 month,miezi 3:3 months,miezi 6:6 months,mwaka 1:1 year,milele:infinite',
+'ipblocklist'      => 'Anwani za IP na majina ya watumiaji waliozuiliwa',
+'blocklink'        => 'zuia',
+'unblocklink'      => 'acha kuzuia',
+'change-blocklink' => 'badilisha zuia',
+'contribslink'     => 'michango',
+'blocklogpage'     => 'Kumbukumbu ya uzuio',
+'blocklogentry'    => 'amemzuia [[$1]] mpaka $2 $3',
 
 # Move page
 'move-page-legend' => 'Sogeza ukurasa',
@@ -994,12 +1009,14 @@ Chagua jina lengine.',
 'tooltip-ca-edit'                 => 'Unaweza kuhariri ukurasa huu.  Tafadhali tumia kitufe cha kuhakikisha kabla ya kuhifadhi.',
 'tooltip-ca-addsection'           => 'Anzisha fungu jipya.',
 'tooltip-ca-viewsource'           => 'Ukurasa huu umelindwa.  Unaweza kutazama chanzo chake.',
+'tooltip-ca-history'              => 'Mabadiliko ya awali ya ukurasa huu',
 'tooltip-ca-protect'              => 'Linda ukurasa huu',
 'tooltip-ca-delete'               => 'Futa ukurasa huu',
 'tooltip-ca-move'                 => 'Sogeza ukurasa huu',
 'tooltip-ca-watch'                => 'Fuatilia ukurasa huu kwenye maangalizi yako',
 'tooltip-ca-unwatch'              => 'Futa ukurasa huu kutoka maangalizi yako',
 'tooltip-search'                  => 'Tafuta {{SITENAME}}',
+'tooltip-search-go'               => 'Nenda katika ukurasa wenye jina hilihili kama upo',
 'tooltip-search-fulltext'         => 'Tafuta kurasa kwa maandishi haya',
 'tooltip-n-mainpage'              => 'Tembelea Mwanzo',
 'tooltip-n-portal'                => 'Kuhusu mradi, mambo unaweza kufanya, na mahali pa kugundua vitu',
@@ -1008,10 +1025,14 @@ Chagua jina lengine.',
 'tooltip-n-randompage'            => 'Onyesha ukurasa wa bahati',
 'tooltip-n-help'                  => 'Mahali pa kueleweshwa.',
 'tooltip-t-whatlinkshere'         => 'Orodha ya kurasa zote za Wiki zilizounganishwa na ukurasa huu',
+'tooltip-t-recentchangeslinked'   => 'Mabadiliko ya karibuni ya katika kurasa zilizounganishwa na ukurasa huu',
 'tooltip-t-contributions'         => 'Tazama orodha ya michango kwa mtumiaji huyu',
 'tooltip-t-emailuser'             => 'Mtumie mtumiaji huyu barua pepe',
 'tooltip-t-upload'                => 'Pakia picha, video, au sauti',
 'tooltip-t-specialpages'          => 'Orodha ya kurasa maalum zote',
+'tooltip-t-print'                 => 'Toleo linalochapika la ukurasa huu',
+'tooltip-t-permalink'             => 'Kiungo cha daima cha katika mabadliko ya ukurasa huu',
+'tooltip-ca-nstab-main'           => 'Onyesha kurasa zilizopo',
 'tooltip-ca-nstab-user'           => 'Tazama ukurasa wa mtumiaji',
 'tooltip-ca-nstab-special'        => 'Huu ni ukurasa maalum ambao hauwezi kuhaririwa',
 'tooltip-ca-nstab-project'        => 'Tazama ukurasa wa mradi',

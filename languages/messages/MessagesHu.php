@@ -1671,10 +1671,10 @@ A teljes lista [[Special:WhatLinksHere/$2|ezen a lapon]] található meg.',
 'redirectstofile'           => 'A következő {{PLURAL:$1|fájl|$1 fájl}} van átirányítva erre a névre:',
 'duplicatesoffile'          => 'A következő {{PLURAL:$1|fájl|$1 fájl}} ennek a fájlnak a duplikátuma ([[Special:FileDuplicateSearch/$2|további részletek]]):',
 'sharedupload'              => 'Ez a fájl a(z) $1 megosztott tárhelyről származik, és más projektek is használhatják.',
-'sharedupload-desc-there'   => 'Ez a fájl a(z) $1 megosztott szárhelyről származik, és más projektek is használhatják.
-A [$2 fájl leírólapján] további információkat találhatsz róla.',
-'sharedupload-desc-here'    => 'Ez a fájl a(z) $1 megosztott szárhelyről származik, és más projektek is használhatják.
-A [$2 fájl leírólapján] található leírás alább látható.',
+'sharedupload-desc-there'   => 'Ez a fájl a $1 megosztott tárhelyről származik, és más projektek is használhatják.
+Az [$2 ottani leírólapján] további információkat találhatsz róla.',
+'sharedupload-desc-here'    => 'Ez a fájl a $1 megosztott tárhelyről származik, és más projektek is használhatják.
+A [$2 fájl ottani leírólapjának] másolata alább látható.',
 'filepage-nofile'           => 'Nem létezik ilyen nevű fájl.',
 'filepage-nofile-link'      => 'Nem létezik ilyen nevű fájl. [$1 Ide kattintva] feltölthetsz egyet.',
 'uploadnewversion-linktext' => 'Új változat feltöltése',

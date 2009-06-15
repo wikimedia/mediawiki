@@ -283,7 +283,7 @@ $messages = array(
 'tog-fancysig'                => 'Smatraj potpis kao wikitekst (bez automatskog linka)',
 'tog-externaleditor'          => 'Po potrebi koristite vanjski program za uređivanje (samo za naprednije korisnike, potrebne su promjene na računaru)',
 'tog-externaldiff'            => 'Koristi vanjski (diff) program za prikaz razlika',
-'tog-showjumplinks'           => 'Omogući "skoči na" poveznice',
+'tog-showjumplinks'           => 'Omogući "skoči na" linkove',
 'tog-uselivepreview'          => 'Koristite pregled uživo (JavaScript) (Eksperimentalno)',
 'tog-forceeditsummary'        => 'Opomeni me pri unosu praznog sažetka',
 'tog-watchlisthideown'        => 'Sakrij moje izmjene sa spiska praćenih članaka',
@@ -542,7 +542,7 @@ $messages = array(
 'nstab-user'      => 'Korisnička stranica',
 'nstab-media'     => 'Mediji',
 'nstab-special'   => 'Posebna stranica',
-'nstab-project'   => 'Članak',
+'nstab-project'   => 'Stranica projekta',
 'nstab-image'     => 'Datoteka',
 'nstab-mediawiki' => 'Poruka',
 'nstab-template'  => 'Šablon',
@@ -562,11 +562,11 @@ Moguće je i da je ovo greška u {{SITENAME}} softveru.',
 'databaseerror'        => 'Greška u bazi',
 'dberrortext'          => 'Desila se sintaksna greška upita baze.
 Ovo je moguće zbog ilegalnog upita, ili moguće greške u softveru.
-Poslednji pokušani upit je bio: <blockquote><tt>$1</tt></blockquote>
+Posljednji pokušani upit je bio: <blockquote><tt>$1</tt></blockquote>
 iz funkcije "<tt>$2</tt>".
 MySQL je vratio grešku "<tt>$3: $4</tt>".',
 'dberrortextcl'        => 'Desila se sintaksna greška upita baze.
-Poslednji pokušani upit je bio:
+Posljednji pokušani upit je bio:
 "$1"
 iz funkcije "$2".
 MySQL je vratio grešku "$3: $4".',
@@ -678,7 +678,7 @@ Provjerite da li ste dobro ukucali.',
 'passwordtooshort'           => 'Vaša šifra je prekratka.
 Šifra mora imati najmanje {{PLURAL:$1|1 znak|$1 znakova}} i mora se razlikovati od Vašeg korisničkog imena.',
 'mailmypassword'             => 'Pošalji mi novu šifru',
-'passwordremindertitle'      => '{{SITENAME}} podsjetnik za lozinku',
+'passwordremindertitle'      => 'Nova privremena šifra za {{SITENAME}}',
 'passwordremindertext'       => 'Neko (vjerovatno Vi, sa IP adrese $1) je zahtjevao da vam pošaljemo novu šifru za {{SITENAME}}  ($4). Privremena šifra za korisnika "$2" je napravljena i glasi "$3". Ako ste to željeli, sad treba da se prijavite i promjenite lozinku.
 Vaša privremena šifra će isteči za {{PLURAL:$5|$5 dan|$5 dana}}.
 
@@ -736,8 +736,8 @@ Možda ste već uspješno promijenili Vašu šifru ili ste tražili novu privrem
 'bold_tip'        => 'Podebljan tekst',
 'italic_sample'   => 'Kurzivan tekst',
 'italic_tip'      => 'Kurzivan tekst',
-'link_sample'     => 'Naslov poveznice',
-'link_tip'        => 'Unutrašnja poveznica',
+'link_sample'     => 'Naslov linka',
+'link_tip'        => 'Unutrašnji link',
 'extlink_sample'  => 'http://www.example.com opis adrese',
 'extlink_tip'     => 'Vanjski link (zapamti prefiks http://)',
 'headline_sample' => 'Naslov',
@@ -1248,7 +1248,7 @@ Pokušajte u Vaš upit uključiti prefiks ''all:'' da bi ste pretražili sav sad
 'prefs-edits'                   => 'Broj izmjena:',
 'prefsnologin'                  => 'Niste prijavljeni',
 'prefsnologintext'              => 'Da biste mogli podešavati korisnička podešavanja, morate <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} biti prijavljeni]</span>.',
-'changepassword'                => 'Promjeni šifru',
+'changepassword'                => 'Promijeni šifru',
 'prefs-skin'                    => 'Koža',
 'skin-preview'                  => 'Pregled',
 'prefs-math'                    => 'Prikazivanje matematike',
@@ -1819,7 +1819,7 @@ Stranica se smatra čvorom, ukoliko koristi šablon koji je povezan sa spiskom [
 'ncategories'             => '$1 {{PLURAL:$1|kategorija|kategorije}}',
 'nlinks'                  => '$1 {{PLURAL:$1|veza|veze}}',
 'nmembers'                => '$1 {{PLURAL:$1|član|članova}}',
-'nrevisions'              => '$1 {{PLURAL:$1|revizija|revizije}}',
+'nrevisions'              => '$1 {{PLURAL:$1|revizija|revizije|revizija}}',
 'nviews'                  => '$1 {{PLURAL:$1|pregled|pregleda}}',
 'specialpage-empty'       => 'Nepostoje rezultati za ovaj izvještaj.',
 'lonelypages'             => 'Siročići',
@@ -2406,7 +2406,7 @@ Molimo Vas da potvrdite da je ovo zaista ono što namijeravate da uradite.',
 'unlockdbsuccesstext' => '{{SITENAME}} baza podataka je otključana.',
 'lockfilenotwritable' => 'Datoteka zaključavanja baze je zaštićena za pisanje.
 Ako želite otključati ili zaključati bazu, ova datoteka mora biti omogućena za pisanje od strane web servera.',
-'databasenotlocked'   => 'Baza podataka je zaključana.',
+'databasenotlocked'   => 'Baza podataka nije zaključana.',
 
 # Move page
 'move-page'                    => 'Preusmjeravanje $1',
@@ -3097,7 +3097,7 @@ Svi drugi linkovi u istoj liniji se smatraju izuzecima, npr. kod stranica gdje s
 # E-mail address confirmation
 'confirmemail'             => 'Potvrdite adresu e-pošte',
 'confirmemail_noemail'     => 'Niste unijeli tačnu e-mail adresu u Vaše [[Special:Preferences|korisničke postavke]].',
-'confirmemail_text'        => 'Ova viki zahtjeva da potvrdite adresu Vaše e-pošte prije nego što koristite mogućnosti e-pošte. Aktivirajte dugme ispod kako bi ste poslali poštu za potvrdu na Vašu adresu. Pošta uključuje poveznicu koja sadrži kod; učitajte poveznicu u Vaš brauzer da bi ste potvrdili da je adresa Vaše e-pošte validna.',
+'confirmemail_text'        => 'Ova viki zahtjeva da potvrdite adresu Vaše e-pošte prije nego što koristite mogućnosti e-pošte. Aktivirajte dugme ispod kako bi ste poslali poštu za potvrdu na Vašu adresu. Pošta uključuje link koji sadrži kod; učitajte link u Vaš preglednik da bi ste potvrdili da je adresa Vaše e-pošte validna.',
 'confirmemail_pending'     => 'Konfirmacioni kod Vam je već poslan putem e-maila;
 ako ste nedavno otvorili Vaš račun, trebali bi pričekati par minuta da poslana pošta stigne, prije nego što ponovno zahtijevate novi kod.',
 'confirmemail_send'        => 'Pošaljite kod za potvrdu',
@@ -3115,7 +3115,7 @@ Povratna pošta: $1',
 'confirmemail_subject'     => 'Vikiriječnik adresa e-pošte za potvrđivanje',
 'confirmemail_body'        => 'Neko, vjerovatno Vi, je sa IP adrese $1 registrovao nalog "$2" sa ovom adresom e-pošte na {{SITENAME}}.
 
-Da potvrdite da ovaj nalog stvarno pripada vama i da aktivirate mogućnost e-pošte na {{SITENAME}}, otvorite ovu poveznicu u vašem pretraživaču:
+Da potvrdite da ovaj nalog stvarno pripada vama i da aktivirate mogućnost e-pošte na {{SITENAME}}, otvorite ovaj link u vašem pregledniku:
 
 $3
 

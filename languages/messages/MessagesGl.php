@@ -705,7 +705,7 @@ Pode ser que xa cambiase o seu contrasinal ou que solicitase un novo contrasinal
 'image_tip'       => 'Ficheiro embelecido',
 'media_sample'    => 'Exemplo.ogg',
 'media_tip'       => 'Ligazón a un ficheiro',
-'sig_tip'         => 'A súa sinatura con selo temporal',
+'sig_tip'         => 'A súa sinatura con data e hora',
 'hr_tip'          => 'Liña horizontal (úsea con moderación)',
 
 # Edit pages
