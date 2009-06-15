@@ -1288,7 +1288,7 @@ class EditPage {
 		$subject = wfMsgExt( 'subject', 'parseinline' );
 
 		$cancel = $sk->link(
-			$wgTitle->getPrefixedText(),
+			$wgTitle,
 			wfMsgExt( 'cancel', array( 'parseinline' ) ),
 			array(),
 			array(),
