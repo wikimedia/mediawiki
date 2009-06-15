@@ -1548,6 +1548,7 @@ $wgMessageStructure = array(
 	'deletedcontribs' => array(
 		'deletedcontributions',
 		'deletedcontributions-title',
+		'sp-deletedcontributions-contribs',
 	),
 	'linksearch' => array(
 		'linksearch',
