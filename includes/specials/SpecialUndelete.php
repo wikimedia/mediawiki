@@ -681,7 +681,7 @@ class UndeleteForm {
 				$undelete,
 				htmlspecialchars( $title->getPrefixedText() ),
 				array(),
-				array( 'target' => $title->getPrefixedUrl() )
+				array( 'target' => $title->getPrefixedText() )
 			);
 			$revs = wfMsgExt( 'undeleterevisions',
 				array( 'parseinline' ),
@@ -841,7 +841,7 @@ class UndeleteForm {
 			/// @fixme $rev->getTitle() is null for deleted revs...?
 			$targetPage = SpecialPage::getTitleFor( 'Undelete' );
 			$targetQuery = array(
-				'target' => $this->mTargetObj->getPrefixedUrl(),
+				'target' => $this->mTargetObj->getPrefixedText(),
 				'timestamp' => wfTimestamp( TS_MW, $rev->getTimestamp() )
 			);
 		} else {
@@ -1120,7 +1120,7 @@ class UndeleteForm {
 					wfMsgHtml('diff'),
 					array(),
 					array(
-						'target' => $this->mTargetObj->getPrefixedUrl(),
+						'target' => $this->mTargetObj->getPrefixedText(),
 						'timestamp' => $ts,
 						'diff' => 'prev'
 					)
@@ -1218,7 +1218,7 @@ class UndeleteForm {
 				$time,
 				array(),
 				array(
-					'target' => $this->mTargetObj->getPrefixedUrl(),
+					'target' => $this->mTargetObj->getPrefixedText(),
 					'timestamp' => $ts
 				)
 			);
@@ -1243,7 +1243,7 @@ class UndeleteForm {
 				$wgLang->timeanddate( $ts, true ),
 				array(),
 				array(
-					'target' => $this->mTargetObj->getPrefixedUrl(),
+					'target' => $this->mTargetObj->getPrefixedText(),
 					'file' => $key,
 					'token' => $wgUser->editToken( $key )
 				)
