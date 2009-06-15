@@ -124,6 +124,7 @@ $magicWords = array(
 	'img_right'             => array( '1', 'ימין', 'right' ),
 	'img_left'              => array( '1', 'שמאל', 'left' ),
 	'img_none'              => array( '1', 'ללא', 'none' ),
+	'img_width'             => array( '1', '$1 פיקסלים', '$1px' ),
 	'img_center'            => array( '1', 'מרכז', 'center', 'centre' ),
 	'img_framed'            => array( '1', 'ממוסגר', 'מסגרת', 'framed', 'enframed', 'frame' ),
 	'img_frameless'         => array( '1', 'לא ממוסגר', 'ללא מסגרת', 'frameless' ),
