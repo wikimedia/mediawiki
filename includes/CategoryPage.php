@@ -464,22 +464,24 @@ class CategoryViewer {
 
 		$prevLink = wfMsgExt( 'prevn', array( 'escape', 'parsemag' ), $limitText );
 		if( $first != '' ) {
-			$query['until'] = $first;
+			$prevQuery = $query;
+			$prevQuery['until'] = $first;
 			$prevLink = $sk->link(
 				$title,
 				$prevLink,
 				array(),
-				$query
+				$prevQuery
 			);
 		}
 		$nextLink = wfMsgExt( 'nextn', array( 'escape', 'parsemag' ), $limitText );
 		if( $last != '' ) {
-			$query['from'] = $last;
+			$lastQuery = $query;
+			$lastQuery['from'] = $last;
 			$nextLink = $sk->link(
 				$title,
 				$nextLink,
 				array(),
-				$query
+				$lastQuery
 			);
 		}
 
