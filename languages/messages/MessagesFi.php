@@ -438,7 +438,28 @@ Taivutusmuodot: {{GRAMMAR:genitive|{{SITENAME}}}} (yön) — {{GRAMMAR:partitive
 'faqpage'        => 'Project:Usein kysytyt kysymykset',
 
 # Vector skin
-'vector-view-view' => 'Lue',
+'vector-action-addsection'   => 'Lisää aihe',
+'vector-action-delete'       => 'Poista',
+'vector-action-move'         => 'Siirrä',
+'vector-action-protect'      => 'Suojaa',
+'vector-action-undelete'     => 'Palauta',
+'vector-action-unprotect'    => 'Muuta suojausta',
+'vector-namespace-category'  => 'Luokka',
+'vector-namespace-help'      => 'Ohjesivu',
+'vector-namespace-image'     => 'Tiedosto',
+'vector-namespace-main'      => 'Sivu',
+'vector-namespace-media'     => 'Mediasivu',
+'vector-namespace-mediawiki' => 'Järjestelmäviesti',
+'vector-namespace-project'   => 'Projektisivu',
+'vector-namespace-special'   => 'Toimintosivu',
+'vector-namespace-talk'      => 'Keskustelu',
+'vector-namespace-template'  => 'Malline',
+'vector-namespace-user'      => 'Käyttäjäsivu',
+'vector-view-create'         => 'Luo',
+'vector-view-edit'           => 'Muokkaa',
+'vector-view-history'        => 'Näytä historia',
+'vector-view-view'           => 'Lue',
+'vector-view-viewsource'     => 'Näytä lähdekoodi',
 
 # Metadata in edit box
 'metadata_help' => 'Sisältökuvaukset:',
@@ -2143,8 +2164,7 @@ $1',
 'ipbexpiry'                       => 'Kesto',
 'ipbreason'                       => 'Syy',
 'ipbreasonotherlist'              => 'Muu syy',
-'ipbreason-dropdown'              => '
-*Yleiset estosyyt
+'ipbreason-dropdown'              => '*Yleiset estosyyt
 ** Väärän tiedon lisääminen
 ** Sisällön poistaminen
 ** Mainoslinkkien lisääminen

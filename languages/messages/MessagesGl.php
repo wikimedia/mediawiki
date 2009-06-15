@@ -2023,8 +2023,7 @@ No $2 pode ver unha lista dos borrados máis recentes.',
 'deletecomment'          => 'Razón para o borrado:',
 'deleteotherreason'      => 'Outro motivo:',
 'deletereasonotherlist'  => 'Outro motivo',
-'deletereason-dropdown'  => '
-*Motivos frecuentes para borrar
+'deletereason-dropdown'  => '*Motivos frecuentes para borrar
 ** Petición do autor
 ** Violación de copyright
 ** Vandalismo',
@@ -2223,8 +2222,7 @@ Explique a razón específica do bloqueo (por exemplo, citando as páxinas concr
 'ipbexpiry'                       => 'Remate:',
 'ipbreason'                       => 'Razón:',
 'ipbreasonotherlist'              => 'Outro motivo',
-'ipbreason-dropdown'              => '
-*Mensaxes de bloqueo comúns
+'ipbreason-dropdown'              => '*Mensaxes de bloqueo comúns
 ** Inserir información falsa
 ** Eliminar o contido de páxinas
 ** Ligazóns lixo a sitios externos

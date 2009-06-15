@@ -2084,8 +2084,7 @@ Angiv en konkret begrundelse herunder (for eksempel med angivelse af sider der h
 'ipbexpiry'                       => 'varighed',
 'ipbreason'                       => 'Begrundelse',
 'ipbreasonotherlist'              => 'Anden begrundelse',
-'ipbreason-dropdown'              => '
-* Generelle begrundelser
+'ipbreason-dropdown'              => '* Generelle begrundelser
 ** Sletning af sider
 ** Oprettelse af tåbelige sider
 ** Vedvarende overtrædelse af reglerne for eksterne henvisninger

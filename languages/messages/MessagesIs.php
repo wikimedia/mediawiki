@@ -243,7 +243,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Senda mér einnig tölvupóst vegna minniháttar breytinga á síðum',
 'tog-enotifrevealaddr'        => 'Gefa upp netfang mitt í tilkynningarpóstum',
 'tog-shownumberswatching'     => 'Sýna fjölda vaktandi notenda',
-'tog-fancysig'                => 'Hráar undirskriftir (án sjálfkrafa tengils)',
+'tog-fancysig'                => 'Taka undirskrift sem wikitexti (án sjálfkrafa tengils)',
 'tog-externaleditor'          => 'Nota utanaðkomandi ritil sjálfgefið (eingöngu fyrir reynda, þarfnast sérstakra stillinga á tölvunni þinni)',
 'tog-externaldiff'            => 'Nota utanaðkomandi mismun sjálfgefið (eingöngu fyrir reynda, þarfnast sérstakra stillinga á tölvunni þinni)',
 'tog-showjumplinks'           => 'Virkja „stökkva á“ aðgengitengla',
@@ -756,7 +756,9 @@ Ef þú hefur óvart villst hingað geturðu notað '''til baka'''-hnappinn í v
 Þar af leiðandi þurfum við að nota vistfang til að bera kennsli á hann/hana.
 Nokkrir notendur geta deilt sama vistfangi.
 Ef þú ert óþekktur notandi og finnst að óviðkomandi athugasemdum hafa verið beint að þér, gjörðu svo vel og [[Special:UserLogin/signup|búðu til aðgang]] eða [[Special:UserLogin|skráðu þig inn]] til þess að koma í veg fyrir þennan rugling við aðra óþekkta notendur í framtíðinni.''",
-'noarticletext'                    => 'Enginn texti er á þessari síðu enn sem komið er. Þú getur [[Special:Search/{{PAGENAME}}|leitað í öðrum síðum]] eða [{{fullurl:{{FULLPAGENAMEE}}|action=edit}} breytt henni sjálfur].',
+'noarticletext'                    => 'Enginn texti er á þessari síðu enn sem komið er.
+Þú getur [[Special:Search/{{PAGENAME}}|leitað í öðrum síðum]],
+<span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} leitað í tengdum skrám], eða [{{fullurl:{{FULLPAGENAME}}|action=edit}} breytt henni sjálfur]</span>.',
 'userpage-userdoesnotexist'        => 'Notandaaðgangurinn „$1“ er ekki skráður.
 Gjörðu svo vel og athugaðu hvort að þú viljir skapa/breyta þessari síðu.',
 'clearyourcache'                   => "'''Athugaðu - Eftir vistun, má vera að þú þurfir að komast hjá skyndiminni vafrans þíns til að sjá breytingarnar.'''
@@ -909,7 +911,8 @@ Prófaðu [[Special:Search|að leita á þessari wiki síðu]] að svipuðum sí
 'mergehistory-into' => 'Áætlunarsíða:',
 
 # Merge log
-'mergelog' => 'Sameina skrá',
+'mergelog'    => 'Sameina skrá',
+'revertmerge' => 'Taka aftur sameiningu',
 
 # Diffs
 'history-title'           => 'Breytingaskrá fyrir "$1"',
@@ -1523,7 +1526,7 @@ Sjá einnig [[Special:WantedCategories|eftirsótta flokka]].',
 'deletedcontributions-title' => 'Eyddar breytingar notanda',
 
 # Special:LinkSearch
-'linksearch'    => 'Leita að vefföngum',
+'linksearch'    => 'Útværir tenglar',
 'linksearch-ns' => 'Nafnrými:',
 'linksearch-ok' => 'Leita',
 
@@ -1595,6 +1598,7 @@ Frekari breytingar á henni eða spallsíðu hennar munu verða sýndar þar, og
 'iteminvalidname'      => 'Vandamál með „$1“, rangt nafn...',
 'wlnote'               => "Að neðan {{PLURAL:$1|er síðasta breyting|eru síðustu '''$1''' breytingar}} {{PLURAL:$2|síðastliðinn klukkutímann|síðastliðna '''$2''' klukkutímana}}.",
 'wlshowlast'           => 'Sýna síðustu $1 klukkutíma, $2 daga, $3',
+'watchlist-options'    => 'Vaktlistastillingar',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Vakta...',
@@ -1672,7 +1676,7 @@ Sjáðu [[Special:ProtectedPages|listann yfir verndaðar síður]] fyrir núvera
 Núverandi staða síðunnar er '''$1''':",
 'protect-cascadeon'           => 'Þessi síða er vernduð vegna þess að hún er innifalin í eftirfarandi {{PLURAL:$1|síðu, sem er keðjuvernduð|síðum, sem eru keðjuverndaðar}}.
 Þú getur breytt verndunarstigi þessarar síðu, en það mun ekki hafa áhrif á keðjuverndunina.',
-'protect-default'             => '(sjálfgefið)',
+'protect-default'             => 'Leyfa öllum notendum',
 'protect-fallback'            => '„$1“ réttindi nauðsynleg',
 'protect-level-autoconfirmed' => 'Banna nýja og óinnskráða notendur',
 'protect-level-sysop'         => 'Leyfa aðeins stjórnendur',
@@ -1712,7 +1716,7 @@ Gagnagrunnurinn kann að vera tæmdur reglulega.',
 'undeletehistorynoadmin'    => 'Þessari síðu hefur verið eytt. Ástæðan sést í ágripinu fyrir neðan, ásamt upplýsingum um hvaða notendur breyttu síðunni fyrir eyðingu.
 Innihald greinarinnar er einungis aðgengilegt möppudýrum.',
 'undeletebtn'               => 'Endurvekja',
-'undeletelink'              => 'endurvekja',
+'undeletelink'              => 'skoða/endurvekja',
 'undeletereset'             => 'Endurstilla',
 'undeletecomment'           => 'Athugasemd:',
 'undeletedarticle'          => 'endurvakti „[[$1]]“',

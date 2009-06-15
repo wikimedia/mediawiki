@@ -1,5 +1,5 @@
 <?php
-/** Cantonese (粵語/廣東話)
+/** Yue (粵語)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -1893,8 +1893,7 @@ wiki: $PAGEEDITOR_WIKI
 'deletecomment'          => '刪除原因:',
 'deleteotherreason'      => '其它／附加嘅原因:',
 'deletereasonotherlist'  => '其它原因',
-'deletereason-dropdown'  => '
-*常用刪除原因
+'deletereason-dropdown'  => '*常用刪除原因
 ** 作者請求
 ** 侵犯版權
 ** 破壞',
@@ -2081,8 +2080,7 @@ $1',
 'ipbexpiry'                       => '期限:',
 'ipbreason'                       => '原因:',
 'ipbreasonotherlist'              => '其它原因',
-'ipbreason-dropdown'              => '
-*共用封鎖原因
+'ipbreason-dropdown'              => '*共用封鎖原因
 ** 插入錯嘅資料
 ** 響頁面度拎走
 ** 亂加入外部連結

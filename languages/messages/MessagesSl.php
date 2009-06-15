@@ -1430,8 +1430,7 @@ Za zapise nedavnih brisanj glej $2.",
 'deletereason-dropdown' => '* Pogosti razlogi za brisanje
 ** zahteva avtorja
 ** kršitev avtorskih pravic
-** vandalizem
-** irelevanten komentar',
+** vandalizem',
 
 # Rollback
 'rollback'         => 'Vrni spremembe',

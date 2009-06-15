@@ -1,5 +1,5 @@
 <?php
-/** Traditional Chinese (‪中文(傳統字)‬)
+/** Traditional Chinese (‪中文(繁體)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -1923,8 +1923,7 @@ $NEWPAGE
 'deletecomment'          => '刪除理由:',
 'deleteotherreason'      => '其它／附加的理由:',
 'deletereasonotherlist'  => '其它理由',
-'deletereason-dropdown'  => '
-*常用刪除理由
+'deletereason-dropdown'  => '*常用刪除理由
 ** 作者請求
 ** 侵犯版權
 ** 破壞',
@@ -2112,8 +2111,7 @@ $1',
 'ipbexpiry'                       => '期限:',
 'ipbreason'                       => '原因:',
 'ipbreasonotherlist'              => '其它原因',
-'ipbreason-dropdown'              => '
-*一般的封禁理由
+'ipbreason-dropdown'              => '*一般的封禁理由
 ** 屢次增加不實資料
 ** 刪除頁面內容
 ** 外部連結廣告

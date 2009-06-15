@@ -2132,8 +2132,7 @@ $NEWPAGE
 'deletecomment'          => 'סיבת המחיקה:',
 'deleteotherreason'      => 'סיבה נוספת/אחרת:',
 'deletereasonotherlist'  => 'סיבה אחרת',
-'deletereason-dropdown'  => '
-* סיבות מחיקה נפוצות
+'deletereason-dropdown'  => '* סיבות מחיקה נפוצות
 ** לבקשת הכותב
 ** הפרת זכויות יוצרים
 ** השחתה',
@@ -2326,8 +2325,7 @@ $1',
 'ipbexpiry'                       => 'פקיעה:',
 'ipbreason'                       => 'סיבה:',
 'ipbreasonotherlist'              => 'סיבה אחרת',
-'ipbreason-dropdown'              => "
-* סיבות חסימה נפוצות
+'ipbreason-dropdown'              => "* סיבות חסימה נפוצות
 ** הוספת מידע שגוי
 ** הסרת תוכן מדפים
 ** הצפת קישורים לאתרים חיצוניים

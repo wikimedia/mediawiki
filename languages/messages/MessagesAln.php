@@ -163,7 +163,7 @@ $messages = array(
 
 'errorpagetitle'    => 'Gabim',
 'returnto'          => 'Kthehu te $1.',
-'tagline'           => 'Nga {{SITENAME}}, Enciklopedia e Lirë',
+'tagline'           => 'Nga {{SITENAME}}',
 'help'              => 'Ndihmë',
 'search'            => 'Kërko',
 'searchbutton'      => 'Kërko',

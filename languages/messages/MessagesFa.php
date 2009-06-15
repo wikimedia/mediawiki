@@ -2171,8 +2171,7 @@ $NEWPAGE
 'deletecomment'          => 'توضیح حذف:',
 'deleteotherreason'      => 'دلیل دیگر/اضافی:',
 'deletereasonotherlist'  => 'دیگر',
-'deletereason-dropdown'  => '
-*دلایل متداول حذف
+'deletereason-dropdown'  => '*دلایل متداول حذف
 ** درخواست کاربر
 ** نقض حق تکثیر
 ** خرابکاری',

@@ -2115,9 +2115,7 @@ Voir $2 pour une liste des suppressions récentes.',
 'deletereason-dropdown'  => '* Motifs de suppression les plus courants
 ** Demande de l’auteur
 ** Violation des droits d’auteur
-** Vandalisme
-** Langue erronée
-** Message mis à jour de façon externe',
+** Vandalisme',
 'delete-edit-reasonlist' => 'Modifier les motifs de suppression de page',
 'delete-toobig'          => 'Cette page possède un historique important de modifications, dépassant $1 version{{PLURAL:$1||s}}.
 La suppression de telles pages a été restreinte pour prévenir des perturbations accidentelles de {{SITENAME}}.',

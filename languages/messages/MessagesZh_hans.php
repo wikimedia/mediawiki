@@ -1,5 +1,5 @@
 <?php
-/** Simplified Chinese (‪中文(简化字)‬)
+/** Simplified Chinese (‪中文(简体)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -1944,8 +1944,7 @@ $NEWPAGE
 'deletecomment'          => '删除原因：',
 'deleteotherreason'      => '其它／附加的理由：',
 'deletereasonotherlist'  => '其它理由',
-'deletereason-dropdown'  => '
-*常用删除理由
+'deletereason-dropdown'  => '*常用删除理由
 ** 作者请求
 ** 侵犯版权
 ** 破坏',
@@ -2133,8 +2132,7 @@ $1',
 'ipbexpiry'                       => '期限：',
 'ipbreason'                       => '原因：',
 'ipbreasonotherlist'              => '其它原因',
-'ipbreason-dropdown'              => '
-*一般的封禁理由
+'ipbreason-dropdown'              => '*一般的封禁理由
 ** 增加不实资料
 ** 删除页面内容
 ** 添加外部垃圾链接
