@@ -20,7 +20,7 @@ function PurgeRedundantText( $delete = false ) {
 	
 	# Get "active" text records from the revisions table
 	echo( "Searching for active text records in revisions table..." );
-	$res = $dbw->query( "SELECT DISTINCTROW rev_text_id FROM $tbl_rev" );
+	$res = $dbw->query( "SELECT DISTINCT rev_text_id FROM $tbl_rev" );
 	while( $row = $dbw->fetchObject( $res ) ) {
 		$cur[] = $row->rev_text_id;
 	}
@@ -28,7 +28,7 @@ function PurgeRedundantText( $delete = false ) {
 	
 	# Get "active" text records from the archive table
 	echo( "Searching for active text records in archive table..." );
-	$res = $dbw->query( "SELECT DISTINCTROW ar_text_id FROM $tbl_arc" );
+	$res = $dbw->query( "SELECT DISTINCT ar_text_id FROM $tbl_arc" );
 	while( $row = $dbw->fetchObject( $res ) ) {
 		$cur[] = $row->ar_text_id;
 	}
