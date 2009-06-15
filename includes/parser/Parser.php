@@ -3812,7 +3812,7 @@ class Parser
 
 		$username = $user->getName();
 		$nickname = $user->getOption( 'nickname' );
-		$nickname = $nickname === '' ? $username : $nickname;
+		$nickname = $nickname === null ? $username : $nickname;
 
 		if( mb_strlen( $nickname ) > $wgMaxSigChars ) {
 			$nickname = $username;
