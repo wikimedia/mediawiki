@@ -172,7 +172,7 @@ class SkinCologneBlue extends Skin {
 				$q
 			);
 		} else {
-			$s[] = $this->LinkKnown(
+			$s[] = $this->linkKnown(
 				$li,
 				wfMsg( 'login' ),
 				array(),
