@@ -589,13 +589,6 @@ class DatabaseOracle extends DatabaseBase {
 		return $this->mInsertId;
 	}
 
-	/**
-	 * Oracle does not have a "USE INDEX" clause, so return an empty string
-	 */
-	function useIndexClause($index) {
-		return '';
-	}
-
 	# REPLACE query wrapper
 	# Oracle simulates this with a DELETE followed by INSERT
 	# $row is the row to insert, an associative array
@@ -687,10 +680,6 @@ class DatabaseOracle extends DatabaseBase {
 		return $size;
 	}
 
-	function lowPriorityOption() {
-		return '';
-	}
-
 	function limitResult($sql, $limit, $offset) {
 		if ($offset === false)
 			$offset = 0;
@@ -701,19 +690,6 @@ class DatabaseOracle extends DatabaseBase {
 	function unionQueries($sqls, $all = false) {
 		$glue = ' UNION ALL ';
 		return 'SELECT * '.($all?'':'/* UNION_UNIQUE */ ').'FROM ('.implode( $glue, $sqls ).')' ;
-	}
-
-	/**
-	 * Returns an SQL expression for a simple conditional.
-	 * Uses CASE on Oracle
-	 *
-	 * @param $cond String: SQL expression which will result in a boolean value
-	 * @param $trueVal String: SQL expression to return if true
-	 * @param $falseVal String: SQL expression to return if false
-	 * @return String: SQL fragment
-	 */
-	function conditional( $cond, $trueVal, $falseVal ) {
-		return " (CASE WHEN $cond THEN $trueVal ELSE $falseVal END) ";
 	}
 
 	function wasDeadlock() {
@@ -1041,10 +1017,6 @@ class DatabaseOracle extends DatabaseBase {
 
 	function bitOr($fieldLeft, $fieldRight) {
 		return 'BITOR('.$fieldLeft.', '.$fieldRight.')';
-	}
-
-	public function setTimeout( $timeout ) {
-		// @todo fixme no-op
 	}
 
 	/**

@@ -265,33 +265,11 @@ class DatabaseSqlite extends DatabaseBase {
 	}
 
 	/**
-	 * SQLite does not have a "USE INDEX" clause, so return an empty string
-	 */
-	function useIndexClause($index) {
-		return '';
-	}
-
-	/**
 	 * Returns the size of a text field, or -1 for "unlimited"
 	 * In SQLite this is SQLITE_MAX_LENGTH, by default 1GB. No way to query it though.
 	 */
 	function textFieldSize($table, $field) {
 		return -1;
-	}
-
-	/**
-	 * No low priority option in SQLite
-	 */
-	function lowPriorityOption() {
-		return '';
-	}
-
-	/**
-	 * Returns an SQL expression for a simple conditional.
-	 * - uses CASE on SQLite
-	 */
-	function conditional($cond, $trueVal, $falseVal) {
-		return " (CASE WHEN $cond THEN $trueVal ELSE $falseVal END) ";
 	}
 
 	function wasDeadlock() {
@@ -388,11 +366,6 @@ class DatabaseSqlite extends DatabaseBase {
 	}
 
 	function quote_ident($s) { return $s; }
-
-	/**
-	 * not done
-	 */
-	public function setTimeout($timeout) { return; }
 
 	/**
 	 * How lagged is this slave?

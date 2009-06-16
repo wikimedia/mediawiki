@@ -1238,15 +1238,6 @@ EOF;
 	}
 	
 	/**
-	 * USE INDEX clause
-	 * DB2 doesn't have them and returns ""
-	 * @param sting $index
-	 */
-	public function useIndexClause( $index ) {
-		return "";
-	}
-	
-	/**
 	 * Simulates REPLACE with a DELETE followed by INSERT
 	 * @param $table Object
 	 * @param array $uniqueIndexes array consisting of indexes and arrays of indexes
@@ -1462,19 +1453,6 @@ EOF;
 		return "[http://www.ibm.com/software/data/db2/express/?s_cmp=ECDDWW01&s_tact=MediaWiki IBM DB2]";
 	}
 	
-	/**
-	 * Returns an SQL expression for a simple conditional.
-	 * Uses CASE on DB2
-	 *
-	 * @param string $cond SQL expression which will result in a boolean value
-	 * @param string $trueVal SQL expression to return if true
-	 * @param string $falseVal SQL expression to return if false
-	 * @return string SQL fragment
-	 */
-	public function conditional( $cond, $trueVal, $falseVal ) {
-		return " (CASE WHEN $cond THEN $trueVal ELSE $falseVal END) ";
-	}
-	
 	###
 	# Fix search crash
 	###
@@ -1539,11 +1517,6 @@ EOF;
 	public function getStatus( $which ) { wfDebug('Not implemented for DB2: getStatus()'); return ''; }
 	/**
 	 * Not implemented
-	 * @deprecated
-	 */
-	public function setTimeout( $timeout ) { wfDebug('Not implemented for DB2: setTimeout()'); }
-	/**
-	 * Not implemented
 	 * TODO
 	 * @return bool true
 	 */
@@ -1570,12 +1543,6 @@ EOF;
 	 * @deprecated
 	 */ 
 	public function limitResultForUpdate($sql, $num) { return $sql; }
-	/**
-	 * No such option
-	 * @return string ''
-	 * @deprecated
-	 */
-	public function lowPriorityOption() { return ''; }
 	
 	######################################
 	# Reflection

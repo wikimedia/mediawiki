@@ -909,13 +909,6 @@ class DatabasePostgres extends DatabaseBase {
 		return $currval;
 	}
 
-	/**
-	 * Postgres does not have a "USE INDEX" clause, so return an empty string
-	 */
-	function useIndexClause( $index ) {
-		return '';
-	}
-
 	# REPLACE query wrapper
 	# Postgres simulates this with a DELETE followed by INSERT
 	# $row is the row to insert, an associative array
@@ -1009,25 +1002,8 @@ class DatabasePostgres extends DatabaseBase {
 		return $size;
 	}
 
-	function lowPriorityOption() {
-		return '';
-	}
-
 	function limitResult($sql, $limit, $offset=false) {
 		return "$sql LIMIT $limit ".(is_numeric($offset)?" OFFSET {$offset} ":"");
-	}
-
-	/**
-	 * Returns an SQL expression for a simple conditional.
-	 * Uses CASE on Postgres
-	 *
-	 * @param $cond String: SQL expression which will result in a boolean value
-	 * @param $trueVal String: SQL expression to return if true
-	 * @param $falseVal String: SQL expression to return if false
-	 * @return String: SQL fragment
-	 */
-	function conditional( $cond, $trueVal, $falseVal ) {
-		return " (CASE WHEN $cond THEN $trueVal ELSE $falseVal END) ";
 	}
 
 	function wasDeadlock() {
@@ -1385,10 +1361,6 @@ END;
 		if ( isset( $noKeyOptions['DISTINCT'] ) || isset( $noKeyOptions['DISTINCTROW'] ) ) $startOpts .= 'DISTINCT';
 
 		return array( $startOpts, $useIndex, $preLimitTail, $postLimitTail );
-	}
-
-	public function setTimeout( $timeout ) {
-		// @todo fixme no-op
 	}
 
 	/**
