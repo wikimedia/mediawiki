@@ -1521,6 +1521,10 @@ $inject_html: Any HTML to inject after the "logged in" message.
 'UserLoginForm': change to manipulate the login form
 $template: SimpleTemplate instance for the form
 
+'UserLoginMailPassword': Block users from emailing passwords
+$name: the username to email the password of.
+&$error: out-param ÐÊthe error message to return.
+
 'UserLogout': before a user logs out
 $user: the user object that is about to be logged out
        
