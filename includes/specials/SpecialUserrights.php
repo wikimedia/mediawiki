@@ -154,6 +154,7 @@ class UserrightsPage extends SpecialPage {
 				$removegroup[] = $group;
 			}
 		}
+		
 		$this->doSaveUserGroups( $user, $addgroup, $removegroup, $reason );
 	}
 	
@@ -172,7 +173,7 @@ class UserrightsPage extends SpecialPage {
 		// Validate input set...
 		$isself = ($user->getName() == $wgUser->getName());
 		$groups = $user->getGroups();
-		$changeable = $wgUser->changeableGroups();
+		$changeable = $this->changeableGroups();
 		$addable = array_merge( $changeable['add'], $isself ? $changeable['add-self'] : array() );
 		$removable = array_merge( $changeable['remove'], $isself ? $changeable['remove-self'] : array() );
 
