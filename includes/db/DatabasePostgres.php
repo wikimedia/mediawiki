@@ -1324,11 +1324,6 @@ END;
 		return '"' . preg_replace( '/"/', '""', $s) . '"';
 	}
 
-	/* For now, does nothing */
-	function selectDB( $db ) {
-		return true;
-	}
-
 	/**
 	 * Postgres specific version of replaceVars.
 	 * Calls the parent version in Database.php
@@ -1394,11 +1389,6 @@ END;
 
 	public function setTimeout( $timeout ) {
 		// @todo fixme no-op
-	}
-
-	function ping() {
-		wfDebug( "Function ping() not written for DatabasePostgres.php yet");
-		return true;
 	}
 
 	/**
