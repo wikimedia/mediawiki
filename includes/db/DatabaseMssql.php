@@ -935,11 +935,6 @@ class DatabaseMssql extends DatabaseBase {
 	 */
 	public function setTimeout($timeout) { return; }
 
-	function ping() {
-		wfDebug("Function ping() not written for MSSQL yet");
-		return true;
-	}
-
 	/**
 	 * How lagged is this slave?
 	 */

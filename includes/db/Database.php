@@ -360,7 +360,10 @@ abstract class DatabaseBase {
 	 *
 	 * @return Bool operation success. true if already closed.
 	 */
-	abstract function close();
+	function close() {
+		# Stub, should probably be overridden
+		return true;
+	}
 
 	/**
 	 * @param $error String: fallback error message, used if none is given by MySQL
@@ -637,7 +640,10 @@ abstract class DatabaseBase {
 	 * Free a result object
 	 * @param $res Mixed: A SQL result
 	 */
-	abstract function freeResult( $res );
+	function freeResult( $res ) {
+		# Stub.  Might not really need to be overridden, since results should
+		# be freed by PHP when the variable goes out of scope anyway.
+	}
 
 	/**
 	 * Fetch the next row from the given result object, in object form.
@@ -1252,8 +1258,16 @@ abstract class DatabaseBase {
 
 	/**
 	 * Change the current database
+	 *
+	 * @return bool Success or failure
 	 */
-	abstract function selectDB( $db );
+	function selectDB( $db ) {
+		# Stub.  Shouldn't cause serious problems if it's not overridden, but
+		# if your database engine supports a concept similar to MySQL's
+		# databases you may as well.  TODO: explain what exactly will fail if
+		# this is not overridden.
+		return true;
+	}
 
 	/**
 	 * Get the current DB name
@@ -1921,8 +1935,13 @@ abstract class DatabaseBase {
 
 	/**
 	 * Ping the server and try to reconnect if it there is no connection
+	 *
+	 * @return bool Success or failure
 	 */
-	abstract function ping();
+	function ping() {
+		# Stub.  Not essential to override.
+		return true;
+	}
 
 	/**
 	 * Get slave lag.

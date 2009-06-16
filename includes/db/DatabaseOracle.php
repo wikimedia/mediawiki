@@ -950,11 +950,6 @@ class DatabaseOracle extends DatabaseBase {
 		return $s;
 	}
 
-	/* For now, does nothing */
-	function selectDB( $db ) {
-		return true;
-	}
-
 	function selectRow( $table, $vars, $conds, $fname = 'DatabaseOracle::selectRow', $options = array(), $join_conds = array() ) {
 		if (is_array($table)) 
 			foreach ($table as $tab)
@@ -1050,11 +1045,6 @@ class DatabaseOracle extends DatabaseBase {
 
 	public function setTimeout( $timeout ) {
 		// @todo fixme no-op
-	}
-
-	function ping() {
-		wfDebug( "Function ping() not written for DatabaseOracle.php yet");
-		return true;
 	}
 
 	/**

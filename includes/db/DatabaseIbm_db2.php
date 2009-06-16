@@ -1463,15 +1463,6 @@ EOF;
 	}
 	
 	/**
-	 * Does nothing
-	 * @param object $db
-	 * @return bool true
-	 */
-	public function selectDB( $db ) {
-		return true;
-	}
-	
-	/**
 	 * Returns an SQL expression for a simple conditional.
 	 * Uses CASE on DB2
 	 *

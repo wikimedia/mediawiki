@@ -390,27 +390,9 @@ class DatabaseSqlite extends DatabaseBase {
 	function quote_ident($s) { return $s; }
 
 	/**
-	 * Not possible in SQLite
-	 * We have ATTACH_DATABASE but that requires database selectors before the 
-	 * table names and in any case is really a different concept to MySQL's USE
-	 */
-	function selectDB($db) {
-		if ( $db != $this->mName ) {
-			throw new MWException( 'selectDB is not implemented in SQLite' );
-		}
-	}
-
-	/**
 	 * not done
 	 */
 	public function setTimeout($timeout) { return; }
-
-	/**
-	 * No-op for a non-networked database
-	 */
-	function ping() {
-		return true;
-	}
 
 	/**
 	 * How lagged is this slave?
