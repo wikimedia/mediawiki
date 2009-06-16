@@ -489,7 +489,7 @@ class Preferences {
 		$tzSetting = $tzOffset;
 		if (count($tz) > 1 && $tz[0] == 'Offset') {
 			$minDiff = $tz[1];
-			$tzSetting = sprintf( '%+03d:%02d', floor($minDiff/60), abs($minDiff)%60 );;
+			$tzSetting = sprintf( '%+03d:%02d', floor($minDiff/60), abs($minDiff)%60 );
 		}
 		
 		$defaultPreferences['timecorrection'] =
