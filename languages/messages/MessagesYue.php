@@ -1,5 +1,5 @@
 <?php
-/** Yue (粵語)
+/** Cantonese (粵語/廣東話)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -1734,8 +1734,9 @@ Template:搞清楚',
 'special-categories-sort-abc'   => '跟字母排',
 
 # Special:DeletedContributions
-'deletedcontributions'       => '已經刪除咗嘅用戶貢獻',
-'deletedcontributions-title' => '已經刪除咗嘅用戶貢獻',
+'deletedcontributions'             => '已經刪除咗嘅用戶貢獻',
+'deletedcontributions-title'       => '已經刪除咗嘅用戶貢獻',
+'sp-deletedcontributions-contribs' => '貢獻',
 
 # Special:LinkSearch
 'linksearch'       => '外部連結',

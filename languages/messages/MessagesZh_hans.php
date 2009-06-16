@@ -1,5 +1,5 @@
 <?php
-/** Simplified Chinese (‪中文(简体)‬)
+/** Simplified Chinese (‪中文(简化字)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -1778,8 +1778,9 @@ Template:消除歧義',
 'special-categories-sort-abc'   => '按字母排列',
 
 # Special:DeletedContributions
-'deletedcontributions'       => '已删除的用户贡献',
-'deletedcontributions-title' => '已删除的用户贡献',
+'deletedcontributions'             => '已删除的用户贡献',
+'deletedcontributions-title'       => '已删除的用户贡献',
+'sp-deletedcontributions-contribs' => '贡献',
 
 # Special:LinkSearch
 'linksearch'       => '外部链接',

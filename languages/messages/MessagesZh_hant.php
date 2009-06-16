@@ -1,5 +1,5 @@
 <?php
-/** Traditional Chinese (‪中文(繁體)‬)
+/** Traditional Chinese (‪中文(傳統字)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -1756,8 +1756,9 @@ Template:消除歧義',
 'special-categories-sort-abc'   => '按字母排列',
 
 # Special:DeletedContributions
-'deletedcontributions'       => '已刪除的用戶貢獻',
-'deletedcontributions-title' => '已刪除的用戶貢獻',
+'deletedcontributions'             => '已刪除的用戶貢獻',
+'deletedcontributions-title'       => '已刪除的用戶貢獻',
+'sp-deletedcontributions-contribs' => '貢獻',
 
 # Special:LinkSearch
 'linksearch'       => '外部連結',
