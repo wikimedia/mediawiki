@@ -158,6 +158,9 @@ $wgUpdates = array(
 		array( 'add_table', 'user_properties',		   'patch-user_properties.sql' ),
 		array( 'add_table', 'log_search',		   	   'patch-log_search.sql' ),
 		array( 'do_log_search_population' ),
+		
+		// 1.16
+		array( 'add_field', 'logging',       'log_user_text',  'patch-log_user_text.sql' ),
 	),
 
 	'sqlite' => array(
