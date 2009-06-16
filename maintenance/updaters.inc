@@ -155,11 +155,11 @@ $wgUpdates = array(
 		array( 'add_table', 'change_tag',			   'patch-change_tag.sql' ),
 		array( 'add_table', 'tag_summary',			   'patch-change_tag.sql' ),
 		array( 'add_table', 'valid_tag',			   'patch-change_tag.sql' ),
+
+		// 1.16
 		array( 'add_table', 'user_properties',		   'patch-user_properties.sql' ),
 		array( 'add_table', 'log_search',		   	   'patch-log_search.sql' ),
 		array( 'do_log_search_population' ),
-		
-		// 1.16
 		array( 'add_field', 'logging',       'log_user_text',  'patch-log_user_text.sql' ),
 	),
 
@@ -174,6 +174,8 @@ $wgUpdates = array(
 		array( 'add_table', 'change_tag',			   'patch-change_tag.sql' ),
 		array( 'add_table', 'tag_summary',			   'patch-change_tag.sql' ),
 		array( 'add_table', 'valid_tag',			   'patch-change_tag.sql' ),
+
+		// 1.16
 		array( 'add_table', 'user_properties',		   'patch-user_properties.sql' ),
 		array( 'add_table', 'log_search',		   	   'patch-log_search.sql' ),
 		array( 'do_log_search_population' ),
