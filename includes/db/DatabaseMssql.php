@@ -708,13 +708,6 @@ class DatabaseMssql extends DatabaseBase {
 	}
 
 	/**
-	 * USE INDEX clause
-	 */
-	function useIndexClause( $index ) {
-		return "";
-	}
-
-	/**
 	 * REPLACE query wrapper
 	 * PostgreSQL simulates this with a DELETE followed by INSERT
 	 * $row is the row to insert, an associative array
@@ -858,18 +851,6 @@ class DatabaseMssql extends DatabaseBase {
 	}
 
 	/**
-	 * Returns an SQL expression for a simple conditional.
-	 *
-	 * @param $cond String: SQL expression which will result in a boolean value
-	 * @param $trueVal String: SQL expression to return if true
-	 * @param $falseVal String: SQL expression to return if false
-	 * @return string SQL fragment
-	 */
-	function conditional( $cond, $trueVal, $falseVal ) {
-		return " (CASE WHEN $cond THEN $trueVal ELSE $falseVal END) ";
-	}
-
-	/**
 	 * Should determine if the last failure was due to a deadlock
 	 * @return bool
 	 */
@@ -929,11 +910,6 @@ class DatabaseMssql extends DatabaseBase {
 	function limitResultForUpdate($sql, $num) {
 		return $sql;
 	}
-
-	/**
-	 * not done
-	 */
-	public function setTimeout($timeout) { return; }
 
 	/**
 	 * How lagged is this slave?

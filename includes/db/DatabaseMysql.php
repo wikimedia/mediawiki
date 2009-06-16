@@ -276,6 +276,23 @@ class DatabaseMysql extends DatabaseBase {
 	function getServerVersion() {
 		return mysql_get_server_info( $this->mConn );
 	}
+
+	function useIndexClause( $index ) {
+		return "FORCE INDEX (" . $this->indexName( $index ) . ")";
+	}
+
+	function lowPriorityOption() {
+		return 'LOW_PRIORITY';
+	}
+
+	function getSoftwareLink() {
+		return '[http://www.mysql.com/ MySQL]';
+	}
+
+	public function setTimeout( $timeout ) {
+		$this->query( "SET net_read_timeout=$timeout" );
+		$this->query( "SET net_write_timeout=$timeout" );
+	}
 }
 
 /**

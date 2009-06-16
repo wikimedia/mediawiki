@@ -1481,11 +1481,15 @@ abstract class DatabaseBase {
 	}
 
 	/**
-	 * USE INDEX clause
-	 * PostgreSQL doesn't have them and returns ""
+	 * USE INDEX clause.  Unlikely to be useful for anything but MySQL.  This
+	 * is only needed because a) MySQL must be as efficient as possible due to
+	 * its use on Wikipedia, and b) MySQL 4.0 is kind of dumb sometimes about
+	 * which index to pick.  Anyway, other databases might have different
+	 * indexes on a given table.  So don't bother overriding this unless you're
+	 * MySQL.
 	 */
 	function useIndexClause( $index ) {
-		return "FORCE INDEX (" . $this->indexName( $index ) . ")";
+		return '';
 	}
 
 	/**
@@ -1573,10 +1577,14 @@ abstract class DatabaseBase {
 	}
 
 	/**
+	 * A string to insert into queries to show that they're low-priority, like
+	 * MySQL's LOW_PRIORITY.  If no such feature exists, return an empty
+	 * string and nothing bad should happen.
+	 *
 	 * @return string Returns the text of the low priority option if it is supported, or a blank string otherwise
 	 */
 	function lowPriorityOption() {
-		return 'LOW_PRIORITY';
+		return '';
 	}
 
 	/**
@@ -1630,22 +1638,33 @@ abstract class DatabaseBase {
 	}
 
 	/**
-	 * Construct a LIMIT query with optional offset
-	 * This is used for query pages
+	 * Construct a LIMIT query with optional offset.  This is used for query
+	 * pages.  The SQL should be adjusted so that only the first $limit rows
+	 * are returned.  If $offset is provided as well, then the first $offset
+	 * rows should be discarded, and the next $limit rows should be returned.
+	 * If the result of the query is not ordered, then the rows to be returned
+	 * are theoretically arbitrary.
+	 *
+	 * $sql is expected to be a SELECT, if that makes a difference.  For
+	 * UPDATE, limitResultForUpdate should be used.
+	 *
+	 * The version provided by default works in MySQL and SQLite.  It will very
+	 * likely need to be overridden for most other DBMSes.
+	 *
 	 * @param $sql String: SQL query we will append the limit too
 	 * @param $limit Integer: the SQL limit
 	 * @param $offset Integer the SQL offset (default false)
 	 */
-	function limitResult($sql, $limit, $offset=false) {
-		if( !is_numeric($limit) ) {
+	function limitResult( $sql, $limit, $offset=false ) {
+		if( !is_numeric( $limit ) ) {
 			throw new DBUnexpectedError( $this, "Invalid non-numeric limit passed to limitResult()\n" );
 		}
 		return "$sql LIMIT "
 				. ( (is_numeric($offset) && $offset != 0) ? "{$offset}," : "" )
 				. "{$limit} ";
 	}
-	function limitResultForUpdate($sql, $num) {
-		return $this->limitResult($sql, $num, 0);
+	function limitResultForUpdate( $sql, $num ) {
+		return $this->limitResult( $sql, $num, 0 );
 	}
 
 	/**
@@ -1662,8 +1681,8 @@ abstract class DatabaseBase {
 	}
 
 	/**
-	 * Returns an SQL expression for a simple conditional.
-	 * Uses IF on MySQL.
+	 * Returns an SQL expression for a simple conditional.  This doesn't need
+	 * to be overridden unless CASE isn't supported in your DBMS.
 	 *
 	 * @param $cond String: SQL expression which will result in a boolean value
 	 * @param $trueVal String: SQL expression to return if true
@@ -1671,7 +1690,7 @@ abstract class DatabaseBase {
 	 * @return String: SQL fragment
 	 */
 	function conditional( $cond, $trueVal, $falseVal ) {
-		return " IF($cond, $trueVal, $falseVal) ";
+		return " (CASE WHEN $cond THEN $trueVal ELSE $falseVal END) ";
 	}
 
 	/**
@@ -1922,13 +1941,21 @@ abstract class DatabaseBase {
 	}
 
 	/**
+	 * Returns a wikitext link to the DB's website, e.g.,
+	 *     return "[http://www.mysql.com/ MySQL]";
+	 * Should probably be overridden to at least contain plain text, if for
+	 * some reason your database has no website.
+	 *
 	 * @return String: wikitext of a link to the server software's web site
 	 */
 	function getSoftwareLink() {
-		return "[http://www.mysql.com/ MySQL]";
+		return '(no software link given)';
 	}
 
 	/**
+	 * A string describing the current software version, like from
+	 * mysql_get_server_info().  Will be listed on Special:Version, etc.
+	 * 
 	 * @return String: Version information from the database
 	 */
 	abstract function getServerVersion();
@@ -2007,16 +2034,14 @@ abstract class DatabaseBase {
 	}
 
 	/**
-	 * Override database's default connection timeout.
-	 * May be useful for very long batch queries such as
-	 * full-wiki dumps, where a single query reads out
-	 * over hours or days.
+	 * Override database's default connection timeout.  May be useful for very
+	 * long batch queries such as full-wiki dumps, where a single query reads
+	 * out over hours or days.  May or may not be necessary for non-MySQL
+	 * databases.  For most purposes, leaving it as a no-op should be fine.
+	 *
 	 * @param $timeout Integer in seconds
 	 */
-	public function setTimeout( $timeout ) {
-		$this->query( "SET net_read_timeout=$timeout" );
-		$this->query( "SET net_write_timeout=$timeout" );
-	}
+	public function setTimeout( $timeout ) {}
 
 	/**
 	 * Read and execute SQL commands from a file.
