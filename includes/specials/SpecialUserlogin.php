@@ -614,6 +614,13 @@ class LoginForm {
 			$this->mainLoginForm( wfMsg( 'blocked-mailpassword' ) );
 			return;
 		}
+		
+		// Check for hooks
+		$error = null;
+		if ( ! wfRunHooks( 'UserLoginMailPassword', array( $this->mName, &$error ) ) ) {
+			$this->mainLoginForm( $error );
+			return;
+		}
 
 		# Check against the rate limiter
 		if( $wgUser->pingLimiter( 'mailpassword' ) ) {
