@@ -451,9 +451,7 @@ class ImagePage extends Article {
 
 			if($showLink) {
 				$filename = wfEscapeWikiText( $this->displayImg->getName() );
-				$medialink = $this->displayImg->isMissing() ?
-					"'''$filename'''" :
-					"[[Media:$filename|$filename]]";
+				$medialink = "[[Media:$filename|$filename]]";
 
 				if( !$this->displayImg->isSafeFile() ) {
 					$warning = wfMsgNoTrans( 'mediawarning' );
@@ -928,9 +926,6 @@ class ImageHistoryList {
 				array( 'known', 'noclasses' )
 			);
 			$row .= '<span class="history-deleted">'.$url.'</span>';
-		} elseif( $file->isMissing() ) {
-			# Don't link to missing files
-			$row .= $wgLang->timeAndDate( $timestamp, true );
 		} else {
 			$url = $iscur ? $this->current->getUrl() : $this->current->getArchiveUrl( $img );
 			$row .= Xml::element( 'a', array( 'href' => $url ), $wgLang->timeAndDate( $timestamp, true ) );
@@ -978,9 +973,7 @@ class ImageHistoryList {
 	protected function getThumbForLine( $file ) {
 		global $wgLang;
 
-		if( $file->isMissing() ) {
-			return '<strong class="error">' . wfMsgHtml( 'filehist-missing' ) . '</strong>';
-		} elseif( $file->allowInlineDisplay() && $file->userCan( File::DELETED_FILE ) && !$file->isDeleted( File::DELETED_FILE ) ) {
+		if( $file->allowInlineDisplay() && $file->userCan( File::DELETED_FILE ) && !$file->isDeleted( File::DELETED_FILE ) ) {
 			$params = array(
 				'width' => '120',
 				'height' => '120',
