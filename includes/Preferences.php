@@ -965,6 +965,11 @@ class Preferences {
 		$ret = array();
 		
 		if ($dateopts) {
+			if ( !in_array( 'default', $dateopts ) ) {
+				$dateopts[] = 'default'; // Make sure default is always valid
+											// Bug 19237
+			}
+			
 			$idCnt = 0;
 			$epoch = '20010115161234'; # Wikipedia day
 			foreach( $dateopts as $key ) {
