@@ -2465,7 +2465,8 @@ END
 		global $wgUser;
 		$loglist = new LogEventsList( $wgUser->getSkin(), $out );
 		$pager = new LogPager( $loglist, array('move', 'delete'), false,
-			$this->mTitle->getPrefixedText(), '', array('log_action'=>'delete') );
+			$this->mTitle->getPrefixedText(), '', array( "log_action != 'revision'" ) );
+
 		$count = $pager->getNumRows();
 		if ( $count > 0 ) {
 			$pager->mLimit = 10;

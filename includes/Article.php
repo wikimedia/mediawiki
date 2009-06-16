@@ -1078,7 +1078,8 @@ class Article {
 	protected function showLogs() {
 		global $wgUser, $wgOut;
 		$loglist = new LogEventsList( $wgUser->getSkin(), $wgOut );
-		$pager = new LogPager( $loglist, array('move', 'delete'), false, $this->mTitle->getPrefixedText() );
+		$pager = new LogPager( $loglist, array('move', 'delete'), false,
+			$this->mTitle->getPrefixedText(), '', array( "log_action != 'revision'" ) );
 		if( $pager->getNumRows() > 0 ) {
 			$pager->mLimit = 10;
 			$wgOut->addHTML( '<div class="mw-warning-with-logexcerpt">' );
