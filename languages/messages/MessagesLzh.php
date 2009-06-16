@@ -1518,8 +1518,9 @@ $1",
 'special-categories-sort-abc'   => '排字',
 
 # Special:DeletedContributions
-'deletedcontributions'       => '已刪之積',
-'deletedcontributions-title' => '所棄之事',
+'deletedcontributions'             => '已刪之積',
+'deletedcontributions-title'       => '所棄之事',
+'sp-deletedcontributions-contribs' => '積',
 
 # Special:LinkSearch
 'linksearch'       => '尋網連',
