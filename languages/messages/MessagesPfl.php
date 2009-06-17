@@ -11,6 +11,8 @@
  * @author SPS
  */
 
+$fallback = 'de';
+
 $messages = array(
 'underline-always'  => 'Immer',
 'underline-never'   => 'Garnet',

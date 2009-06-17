@@ -59,7 +59,7 @@ class Language {
 
 	static public $mLocalisationKeys = array(
 		'fallback', 'namespaceNames', 'mathNames', 'bookstoreList',
-		'magicWords', 'messages', 'rtl', 'digitTransformTable',
+		'magicWords', 'messages', 'rtl', 'capitalizeAllNouns', 'digitTransformTable',
 		'separatorTransformTable', 'fallback8bitEncoding', 'linkPrefixExtension',
 		'defaultUserOptionOverrides', 'linkTrail', 'namespaceAliases',
 		'dateFormats', 'datePreferences', 'datePreferenceMigrationMap',
@@ -1792,6 +1792,11 @@ class Language {
 		return $this->isRTL() ? "\xE2\x80\x8F" : "\xE2\x80\x8E";
 	}
 
+	function capitalizeAllNouns() {
+		$this->load();
+		return $this->capitalizeAllNouns;
+	}
+
 	/**
 	 * An arrow, depending on the language direction
 	 *
@@ -2482,7 +2487,7 @@ class Language {
 			$cache = compact( self::$mLocalisationKeys );
 			wfDebug( "Language::loadLocalisation(): got localisation for $code from source\n" );
 		}
-		
+
 		# Load magic word source file
 		global $IP;
 		$filename = "$IP/includes/MagicWord.php";
