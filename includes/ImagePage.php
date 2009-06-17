@@ -809,7 +809,7 @@ class ImageHistoryList {
 			. "<div id=\"mw-imagepage-section-filehistory\">\n"
 			. $wgOut->parse( wfMsgNoTrans( 'filehist-help' ) )
 			. $navLinks . "\n"
-			. Xml::openElement( 'table', array( 'class' => 'filehistory' ) ) . "\n"
+			. Xml::openElement( 'table', array( 'class' => 'wikitable filehistory' ) ) . "\n"
 			. '<tr><td></td>'
 			. ( $this->current->isLocal() && ($wgUser->isAllowed('delete') || $wgUser->isAllowed('deleterevision') ) ? '<td></td>' : '' )
 			. '<th>' . wfMsgHtml( 'filehist-datetime' ) . '</th>'
