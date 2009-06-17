@@ -591,7 +591,7 @@ class LocalFile extends File
 	function purgeHistory() {
 		global $wgMemc;
 		$hashedName = md5($this->getName());
-		$oldKey = $this->getSharedCacheKey( 'oldfile', $hashedName );
+		$oldKey = $this->repo->getSharedCacheKey( 'oldfile', $hashedName );
 		if ( $oldKey ) {
 			$wgMemc->delete( $oldKey );
 		}
