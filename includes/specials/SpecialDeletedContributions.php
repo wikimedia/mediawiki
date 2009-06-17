@@ -285,7 +285,7 @@ class DeletedContributionsPage extends SpecialPage {
 
 		$pager = new DeletedContribsPager( $target, $options['namespace'] );
 		if ( !$pager->getNumRows() ) {
-			$wgOut->addWikiText( wfMsg( 'nocontribs' ) );
+			$wgOut->addWikiMsg( 'nocontribs' );
 			return;
 		}
 
@@ -308,9 +308,7 @@ class DeletedContributionsPage extends SpecialPage {
 
 			$text = wfMsgNoTrans( $message, $target );
 			if( !wfEmptyMsg( $message, $text ) && $text != '-' ) {
-				$wgOut->addHTML( '<div class="mw-contributions-footer">' );
-				$wgOut->addWikiText( $text );
-				$wgOut->addHTML( '</div>' );
+				$wgOut->wrapWikiMsg( "<div class='mw-contributions-footer'>\n$1\n</div>", array( $message, $target ) );
 			}
 		}
 	}
