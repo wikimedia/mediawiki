@@ -1970,8 +1970,9 @@ PICT # שונות
 'special-categories-sort-abc'   => 'סידור לפי סדר האלף בית',
 
 # Special:DeletedContributions
-'deletedcontributions'       => 'תרומות משתמש מחוקות',
-'deletedcontributions-title' => 'תרומות משתמש מחוקות',
+'deletedcontributions'             => 'תרומות משתמש מחוקות',
+'deletedcontributions-title'       => 'תרומות משתמש מחוקות',
+'sp-deletedcontributions-contribs' => 'תרומות',
 
 # Special:LinkSearch
 'linksearch'       => 'קישורים חיצוניים',
