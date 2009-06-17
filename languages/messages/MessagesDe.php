@@ -34,6 +34,8 @@
  * @author לערי ריינהארט
  */
 
+$capitalizeAllNouns = true;
+
 $namespaceNames = array(
 	NS_MEDIA            => 'Media',
 	NS_SPECIAL          => 'Spezial',

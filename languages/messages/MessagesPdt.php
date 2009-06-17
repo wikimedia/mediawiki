@@ -11,6 +11,8 @@
  * @author Wikipeeta
  */
 
+$fallback = 'de';
+
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Links unjastritje:',
