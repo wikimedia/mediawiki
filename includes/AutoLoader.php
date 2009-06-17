@@ -32,6 +32,7 @@ $wgAutoloadLocalClasses = array(
 	'ChangeTags' => 'includes/ChangeTags.php',
 	'ChannelFeed' => 'includes/Feed.php',
 	'ConcatenatedGzipHistoryBlob' => 'includes/HistoryBlob.php',
+	'ConfEditor' => 'includes/ConfEditor.php',
 	'ConstantDependency' => 'includes/CacheDependency.php',
 	'CreativeCommonsRdf' => 'includes/Metadata.php',
 	'Credits' => 'includes/Credits.php',
