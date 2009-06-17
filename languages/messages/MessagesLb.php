@@ -1736,8 +1736,9 @@ Kuckt och [[Special:WantedCategories|Gewënschte Kategorien]].',
 'special-categories-sort-abc'   => 'alphabetesch sortéieren',
 
 # Special:DeletedContributions
-'deletedcontributions'       => 'Geläschte Kontributiounen',
-'deletedcontributions-title' => 'Geläschte Kontributiounen',
+'deletedcontributions'             => 'Geläschte Kontributiounen',
+'deletedcontributions-title'       => 'Geläschte Kontributiounen',
+'sp-deletedcontributions-contribs' => 'Kontributiounen',
 
 # Special:LinkSearch
 'linksearch'      => 'Extern Linken',

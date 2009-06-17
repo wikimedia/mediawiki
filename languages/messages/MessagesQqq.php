@@ -928,6 +928,8 @@ Used, possibly repeatedly, in a {{msg-mw|comma-separator}} separated list after 
 Used in the final position of a {{msg-mw|comma-separator}} separated list headed by {{msg-mw|diff-with}} followed by zero or more repetitions of {{msg-mw|diff-with-additional}}.',
 'diff-width'              => '{{Identical|Width}}',
 'diff-height'             => '{{Identical|Height}}',
+'diff-i'                  => '{{Identical|Italic}}',
+'diff-b'                  => '{{Identical|Bold}}',
 
 # Search results
 'searchresults-title'            => 'Appears as page title in the html header of the search result special page.',
@@ -1735,12 +1737,13 @@ $1 is a page title",
 'special-categories-sort-count' => 'This message is used on [[Special:Categories]] to sort the list by the number of members in the categories.',
 
 # Special:DeletedContributions
-'deletedcontributions'       => 'The message is shown as a link on user contributions page (like [[Special:Contributions/User]]) to the corresponding [[Special:DeletedContributions]] page.
+'deletedcontributions'             => 'The message is shown as a link on user contributions page (like [[Special:Contributions/User]]) to the corresponding [[Special:DeletedContributions]] page.
 
 {{Identical|Deleted user contributions}}',
-'deletedcontributions-title' => 'Title of [[Special:DeletedContributions]] (extension), a special page with a list of edits to pages which were deleted. Only viewable by sysops.
+'deletedcontributions-title'       => 'Title of [[Special:DeletedContributions]] (extension), a special page with a list of edits to pages which were deleted. Only viewable by sysops.
 
 {{Identical|Deleted user contributions}}',
+'sp-deletedcontributions-contribs' => 'Link to user’s contributions on [[Special:DeletedContributions]]',
 
 # Special:LinkSearch
 'linksearch-ns' => '{{Identical|Namespace}}',

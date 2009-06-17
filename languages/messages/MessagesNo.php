@@ -23,6 +23,7 @@
  * @author Laaknor
  * @author Najami
  * @author Nghtwlkr
+ * @author Nsaa
  * @author Piivaat
  * @author Samuelsen
  * @author Stigmj
@@ -374,7 +375,28 @@ $messages = array(
 'faqpage'        => 'Project:Ofte stilte spørsmål',
 
 # Vector skin
-'vector-view-view' => 'Les',
+'vector-action-addsection'   => 'Nytt emne',
+'vector-action-delete'       => 'Slett',
+'vector-action-move'         => 'Flytt',
+'vector-action-protect'      => 'Beskytt',
+'vector-action-undelete'     => 'Gjenopprett',
+'vector-action-unprotect'    => 'Opphev beskyttelse',
+'vector-namespace-category'  => 'Kategori',
+'vector-namespace-help'      => 'Hjelpeside',
+'vector-namespace-image'     => 'Fil',
+'vector-namespace-main'      => 'Side',
+'vector-namespace-media'     => 'Mediaside',
+'vector-namespace-mediawiki' => 'Melding',
+'vector-namespace-project'   => 'Prosjektside',
+'vector-namespace-special'   => 'Spesialside',
+'vector-namespace-talk'      => 'Diskusjon',
+'vector-namespace-template'  => 'Mal',
+'vector-namespace-user'      => 'Brukerside',
+'vector-view-create'         => 'Opprett',
+'vector-view-edit'           => 'Rediger',
+'vector-view-history'        => 'Vis historikk',
+'vector-view-view'           => 'Les',
+'vector-view-viewsource'     => 'Vis kilden',
 
 # Metadata in edit box
 'metadata_help' => 'Metadata:',
@@ -1576,7 +1598,7 @@ Om problemet fortsetter, kontakt en [[Special:ListUsers/sysop|administrator]].',
 'filehist-comment'          => 'Kommentar',
 'filehist-missing'          => 'Fil mangler',
 'imagelinks'                => 'Fillenker',
-'linkstoimage'              => 'Følgende {{PLURAL:$1|side|$1 sider}} har lenker til denne fila:',
+'linkstoimage'              => 'Følgende {{PLURAL:$1|side|$1 sider}} har lenker til denne filen:',
 'linkstoimage-more'         => 'Mer enn $1 {{PLURAL:$1|side|sider}} lenker til denne fila.
 Følgende liste viser {{PLURAL:$1|den første siden|de $1 første sidene}}.
 En [[Special:WhatLinksHere/$2|fullstendig liste]] er tilgjengelig.',
@@ -1591,7 +1613,7 @@ Se [$2 filbeskrivelsessida] for mer informasjon.',
 Beskrivelsen fra [$2 filbeskrivelsessida] vises nedenfor.',
 'filepage-nofile'           => 'Det finnes ingen fil med dette navnet.',
 'filepage-nofile-link'      => 'Ingen fil med dette navnet eksisterer, men du kan [$1 laste den opp].',
-'uploadnewversion-linktext' => 'Last opp en ny versjon av denne fila',
+'uploadnewversion-linktext' => 'Last opp en ny versjon av denne filen',
 'shared-repo-from'          => 'fra $1',
 'shared-repo'               => 'et delt fillager',
 
@@ -1796,8 +1818,9 @@ Se også [[Special:WantedCategories|ønskede kategorier]].',
 'special-categories-sort-abc'   => 'sorter alfabetisk',
 
 # Special:DeletedContributions
-'deletedcontributions'       => 'Slettede brukerbidrag',
-'deletedcontributions-title' => 'Slettede brukerbidrag',
+'deletedcontributions'             => 'Slettede brukerbidrag',
+'deletedcontributions-title'       => 'Slettede brukerbidrag',
+'sp-deletedcontributions-contribs' => 'bidrag',
 
 # Special:LinkSearch
 'linksearch'       => 'Eksterne lenker',
@@ -2907,7 +2930,7 @@ Rotert 90° mot klokka og vridd vertikalt',
 'exif-gpsdirection-m' => 'Magnetisk retning',
 
 # External editor support
-'edit-externally'      => 'Rediger denne fila med et eksternt program',
+'edit-externally'      => 'Rediger denne filen med et eksternt program',
 'edit-externally-help' => '(Se [http://www.mediawiki.org/wiki/Manual:External_editors oppsettsinstruksjonene] for mer informasjon)',
 
 # 'all' in various places, this might be different for inflected languages

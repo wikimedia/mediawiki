@@ -1736,8 +1736,9 @@ Bok wobjadnawa se ako bok wujasnjenja zapśimjeśa, gaž wótkazujo na nju [[Med
 'special-categories-sort-abc'   => 'pśewuběrowaś pó alfabeśe',
 
 # Special:DeletedContributions
-'deletedcontributions'       => 'Wulašowane wužywarske pśinoski',
-'deletedcontributions-title' => 'Wulašowane wužywarske pśinoski',
+'deletedcontributions'             => 'Wulašowane wužywarske pśinoski',
+'deletedcontributions-title'       => 'Wulašowane wužywarske pśinoski',
+'sp-deletedcontributions-contribs' => 'pśinoski',
 
 # Special:LinkSearch
 'linksearch'       => 'Eksterne wótkaze',

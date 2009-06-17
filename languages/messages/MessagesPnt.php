@@ -149,6 +149,19 @@ $messages = array(
 'faq'            => 'Πολλά ερωτήσεις (FAQ)',
 'faqpage'        => 'Project:Πολλά ερωτήσεις (FAQ)',
 
+# Vector skin
+'vector-action-delete'       => 'Σβήσον',
+'vector-action-move'         => 'Ετεροχλάεμαν',
+'vector-action-protect'      => 'Ασπάλιγμαν',
+'vector-namespace-category'  => 'Κατηγορίαν',
+'vector-namespace-image'     => 'Αρχείον',
+'vector-namespace-main'      => 'Σελίδαν',
+'vector-namespace-mediawiki' => 'Μένεμαν',
+'vector-namespace-talk'      => 'Καλάτσεμαν',
+'vector-namespace-template'  => 'Πρότυπον',
+'vector-namespace-user'      => 'Σελίδαν χρήστε',
+'vector-view-edit'           => 'Άλλαξον',
+
 # Metadata in edit box
 'metadata_help' => 'Μεταδογμένα:',
 
@@ -558,7 +571,7 @@ $messages = array(
 'nextn'                     => '{{PLURAL:$1|$1}} επομένων',
 'viewprevnext'              => 'Τέρεν ($1) ($2) ($3)',
 'searchhelp-url'            => 'Help:Περιεχόμενα',
-'searchprofile-images'      => 'Αρχεία',
+'searchprofile-images'      => 'Πολυμέσα',
 'search-result-size'        => '$1 ({{PLURAL:$2|1 λέξη|$2 λέξεις}})',
 'search-redirect'           => '(το διπλόν ο σύνδεσμον $1)',
 'search-section'            => "(κομμάτ' $1)",
@@ -576,7 +589,11 @@ $messages = array(
 'powersearch-ns'            => "Αράεμαν σα τόπε τ' ονοματίων:",
 'powersearch-redir'         => 'Κατάλογον με διπλά συνδέσμ',
 'powersearch-field'         => 'Αράεμαν τη',
+'powersearch-toggleall'     => 'Όλια',
 'search-external'           => 'Εύρον σα εξ μερέαν',
+
+# Quickbar
+'qbsettings-none' => 'Τιδέν',
 
 # Preferences page
 'preferences'               => 'Αγαπεμένα',
@@ -590,8 +607,9 @@ $messages = array(
 'prefs-misc'                => 'Διαφ',
 'saveprefs'                 => 'Αποθήκεμαν',
 'searchresultshead'         => 'Εύρον',
-'timezonelegend'            => 'Χρονικόν ζώνην',
+'timezonelegend'            => 'Χρονικόν ζώνην:',
 'localtime'                 => 'Τοπικόν χρόνον:',
+'timezoneoffset'            => 'Διαφοράν ωρίων¹:',
 'timezoneregion-atlantic'   => 'Ατλαντικόν Ωκεανός',
 'timezoneregion-pacific'    => 'Ειρηνικόν Ωκεανός',
 'prefs-files'               => 'Αρχεία',
@@ -653,7 +671,8 @@ $messages = array(
 'right-siteadmin'     => 'Ασπάλισον κι άνοιξον τη βάση δογμενίων',
 
 # User rights log
-'rightslog' => 'Αρχείον δικαιωματίων',
+'rightslog'  => 'Αρχείον δικαιωματίων',
+'rightsnone' => '(τιδέν)',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-edit'          => 'άλλαγμαν τη σελίδας',
@@ -682,6 +701,7 @@ $messages = array(
 'minoreditletter'                => 'μ',
 'newpageletter'                  => 'Ν',
 'boteditletter'                  => 'b',
+'rc_categories_any'              => 'Κάθαν',
 'rc-enhanced-expand'             => "Δείξον λεπτομέρειας (θελ' JavaScript)",
 'rc-enhanced-hide'               => 'Κρύψον λεπτομέρειας',
 
@@ -706,6 +726,7 @@ $messages = array(
 'uploaderror'       => 'Έντον λάθος σο φόρτωμαν',
 'uploadlog'         => 'αρχείον με τα φορτώματα',
 'uploadlogpage'     => 'Αρχείον ανεβασματίων',
+'filesource'        => 'Πηγήν:',
 'uploadedfiles'     => 'Φορτωμένα αρχεία',
 'minlength1'        => "Τ' ονέματα τ' αρχείον πρέπ' να έχνε έναν γράμμαν και κιαλλαπάν.",
 'badfilename'       => 'Τόνεμαν ταρχείου ελλάγεν κιεγέντον "$1".',
@@ -713,7 +734,7 @@ $messages = array(
 'savefile'          => "Αποθήκεψον τ' αρχείον",
 'uploadedimage'     => 'Εγέντον το φόρτωμαν τη "[[$1]]"',
 'overwroteimage'    => 'Εφορτώθεν καινούρεον μορφή τη "[[$1]]"',
-'watchthisupload'   => 'Ωρίαγμαν τη σελίδας',
+'watchthisupload'   => 'Ωρίαγμαν τη αρχείου',
 
 'upload-file-error' => 'Σφάλμαν απές μερέαν',
 'upload-misc-error' => 'Αναγνώριμον λάθος φορτωματί',
@@ -745,6 +766,9 @@ $messages = array(
 'nolinkstoimage'            => "'Κ εχ σελίδας ντο δεκνίζνε σ' αβούτεν εικόναν.",
 'sharedupload'              => "Αούτον τ' αρχείον εφορτώθεν ασό $1 για κοινόν κουλάνεμαν κι επορεί να χρησιμοποισκάται και σ' άλλα έργα.",
 'uploadnewversion-linktext' => "Σκώσ' καινούραιον έκδοσην τ' αρχείου",
+
+# File reversion
+'filerevert-comment' => 'Σχόλιον:',
 
 # File deletion
 'filedelete-comment'          => 'Αιτία για το σβήσεμαν:',
@@ -844,7 +868,7 @@ $messages = array(
 
 # Special:Categories
 'categories'         => 'Κατηγορίας',
-'categoriespagetext' => "Τ' αφκά τα κατηγορίας έχνε απές σελίδας και μέσα. [[Special:UnusedCategories|Κατηγορίας που 'κ εμεταχειρίσκουνταν]] 'κ επορείτε να ελέπετε τα αδακά.
+'categoriespagetext' => "{{PLURAL:$1|Η αφκά κατηγορίαν εχ|Τ' αφκά τα κατηγορίας έχνε}} απές σελίδας και μέσα. [[Special:UnusedCategories|Κατηγορίας που 'κ εμεταχειρίσκουνταν]] 'κ επορείτε να ελέπετε τα αδακά.
 Τερέστεν και τα [[Special:WantedCategories|κατηγορίας που χρειάσκουνταν]].",
 
 # Special:LinkSearch
@@ -855,11 +879,14 @@ $messages = array(
 'newuserlog-create-entry' => 'Νέον χρήστες',
 
 # Special:ListGroupRights
+'listgrouprights-group'   => 'Ομάδαν',
 'listgrouprights-rights'  => 'Δικαιώματα',
 'listgrouprights-members' => '(κατάλογον μελών)',
 
 # E-mail user
 'emailuser'    => 'Στείλον μένεμαν σον χρήστεν ατόν.',
+'emailfrom'    => 'Ασά:',
+'emailsubject' => 'Θέμαν:',
 'emailmessage' => 'Μένεμαν:',
 
 # Watchlist
@@ -1217,10 +1244,12 @@ $messages = array(
 'exif-whitepoint'                  => "Χρωματικόν προσδιορισμός τ' άσπρου",
 'exif-primarychromaticities'       => 'Πρωτεύοντες χρωματισμοί',
 'exif-imagedescription'            => 'Τίτλος εικόνας',
+'exif-contrast'                    => 'Αντίθεσην',
 
 'exif-subjectdistance-value' => '$1 μέτρα',
 
-'exif-meteringmode-3' => 'Μονοσημειακόν',
+'exif-meteringmode-3'   => 'Μονοσημειακόν',
+'exif-meteringmode-255' => 'Άλλον',
 
 'exif-focalplaneresolutionunit-2' => 'ίντζας',
 
@@ -1267,6 +1296,9 @@ $messages = array(
 # Auto-summaries
 'autosumm-new' => "Καινούρεον σελίδαν με '$1'",
 
+# Watchlist editor
+'watchlistedit-raw-titles' => 'Τιτλ:',
+
 # Watchlist editing tools
 'watchlisttools-view' => 'Τερέστεν σοβαρά αλλαγάς',
 'watchlisttools-edit' => 'Τέρεν κι άλλαξον κατάλογον ωρίαγματι',
@@ -1289,8 +1321,10 @@ $messages = array(
 'fileduplicatesearch-submit'   => 'Εύρον',
 
 # Special:SpecialPages
-'specialpages'             => 'Ειδικά σελίδας',
-'specialpages-group-other' => 'Αλλέτερα ειδικά σελίδας',
+'specialpages'                 => 'Ειδικά σελίδας',
+'specialpages-group-other'     => 'Αλλέτερα ειδικά σελίδας',
+'specialpages-group-pagetools' => 'Εργαλεία σελίδας',
+'specialpages-group-spam'      => 'Εργαλεία αντι-σπάμ',
 
 # Special:BlankPage
 'blankpage' => 'Κενόν σελίδα',
@@ -1302,5 +1336,8 @@ $messages = array(
 'tags-hitcount-header' => 'Αλλαγάς με ετικέτας',
 'tags-edit'            => 'άλλαγμαν',
 'tags-hitcount'        => '$1 {{PLURAL:$1|αλλαγή|αλλαγάς}}',
+
+# HTML forms
+'htmlform-selectorother-other' => 'Άλλον',
 
 );

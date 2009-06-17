@@ -1827,8 +1827,9 @@ Katso myös [[Special:WantedCategories|halutut luokat]].',
 'special-categories-sort-abc'   => 'järjestä nimen mukaan',
 
 # Special:DeletedContributions
-'deletedcontributions'       => 'Poistetut muokkaukset',
-'deletedcontributions-title' => 'Poistetut muokkaukset',
+'deletedcontributions'             => 'Poistetut muokkaukset',
+'deletedcontributions-title'       => 'Poistetut muokkaukset',
+'sp-deletedcontributions-contribs' => 'muokkaukset',
 
 # Special:LinkSearch
 'linksearch'       => 'Ulkoiset linkit',

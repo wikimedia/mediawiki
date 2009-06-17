@@ -2013,8 +2013,9 @@ eins vun all däm op eimol.',
 'special-categories-sort-abc'   => 'Zoteere nohm Alphabett',
 
 # Special:DeletedContributions
-'deletedcontributions'       => 'Fottjeschmesse Versione',
-'deletedcontributions-title' => 'Fottjeschmesse Versione',
+'deletedcontributions'             => 'Fottjeschmesse Versione',
+'deletedcontributions-title'       => 'Fottjeschmesse Versione',
+'sp-deletedcontributions-contribs' => 'Beijdrääsch',
 
 # Special:LinkSearch
 'linksearch'       => 'Lėngkß noh ußerhallef sööke',

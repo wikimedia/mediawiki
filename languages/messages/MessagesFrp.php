@@ -1990,8 +1990,9 @@ Vêde asse-ben les [[Special:WantedCategories|catègories les ples demandâs]].'
 'special-categories-sort-abc'   => 'tri alfabètico',
 
 # Special:DeletedContributions
-'deletedcontributions'       => 'Contribucions suprimâs',
-'deletedcontributions-title' => 'Contribucions suprimâs',
+'deletedcontributions'             => 'Contribucions suprimâs',
+'deletedcontributions-title'       => 'Contribucions suprimâs',
+'sp-deletedcontributions-contribs' => 'contribucions',
 
 # Special:LinkSearch
 'linksearch'       => 'Lims de defôr',

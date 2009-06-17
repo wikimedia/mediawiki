@@ -1060,8 +1060,7 @@ En tant qu’administrateur vous pouvez toujours [$1 voir cette différence] si 
 'logdelete-selected'          => "'''{{PLURAL:$1|Événement d’historique sélectionné|Événements d’historique sélectionnés}} :'''",
 'revdelete-text'              => "'''Les versions et événements supprimés seront encore présents dans l’historique de la page et dans les journaux, mais leur contenu textuel sera inaccessible au public.'''
 
-Les autres administrateurs de {{SITENAME}} pourront toujours accéder au contenu caché et le restaurer à travers cette même interface, à moins que des restrictions supplémentaires ne soit mises en place.
-Confirmez que ceci est bien ce que vous avez l’intention de faire, que vous en comprenez les conséquences, et que vous faîtes ceci en respect des [[{{MediaWiki:Policy-url}}|règles établies]].",
+Les autres administrateurs de {{SITENAME}} pourront toujours accéder au contenu caché et le restaurer à travers cette même interface, à moins que des restrictions supplémentaires ne soit mises en place. Confirmez que ceci est bien ce que vous avez l’intention de faire, que vous en comprenez les conséquences, et que vous faites ceci en accord avec les [[{{MediaWiki:Policy-url}}|règles établies]].",
 'revdelete-suppress-text'     => "La suppression ne doit être utilisée '''que''' dans les cas suivants :
 * Informations personnelles inappropriées
 *: ''adresse, numéro de téléphone, numéro de sécurité sociale, ...''",
@@ -2098,8 +2097,7 @@ Retour et assistance :
 'delete-confirm'         => 'Supprimer « $1 »',
 'delete-legend'          => 'Supprimer',
 'historywarning'         => 'Attention, la page que vous êtes sur le point de supprimer a un historique :',
-'confirmdeletetext'      => 'Vous êtes sur le point de supprimer une page ou un fichier, ainsi que toutes ses versions antérieures historisées.
-Veuillez confirmer que c’est bien là ce que vous voulez faire, que vous en comprenez les conséquences et que vous faîtes ceci en accord avec les [[{{MediaWiki:Policy-url}}|règles internes]].',
+'confirmdeletetext'      => 'Vous êtes sur le point de supprimer une page ou un fichier, ainsi que toutes ses versions antérieures historisées. Veuillez confirmer que c’est bien là ce que vous voulez faire, que vous en comprenez les conséquences et que vous faites ceci en accord avec les [[{{MediaWiki:Policy-url}}|règles internes]].',
 'actioncomplete'         => 'Action effectuée',
 'actionfailed'           => 'L’action a échoué',
 'deletedtext'            => '« <nowiki>$1</nowiki> » a été supprimé.

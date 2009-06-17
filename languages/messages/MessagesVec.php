@@ -530,7 +530,7 @@ No sta desmentegarte de personalixare le to [[Special:Preferences|preferense de 
 'userlogin'                  => 'Entra / Regìstrete',
 'logout'                     => 'Và fora',
 'userlogout'                 => 'và fora',
-'notloggedin'                => 'Acesso non efetuà',
+'notloggedin'                => 'Acesso mia efetuà',
 'nologin'                    => "No gheto gnancora n'acesso? $1.",
 'nologinlink'                => 'Crèalo desso',
 'createaccount'              => 'Crea un novo accesso',
@@ -1147,7 +1147,7 @@ Assicùrete che la continuità storica de la pagina no la vegna alterà.',
 'allowemail'                    => 'Consenti la ricezion de e-mail da altri utenti<sup>1</sup>',
 'prefs-searchoptions'           => 'Opsioni de riçerca',
 'prefs-namespaces'              => 'Namespace',
-'defaultns'                     => 'Serca in sti namespace se non diversamente specificà:',
+'defaultns'                     => 'Serca in sti namespace se no diversamente specificà:',
 'default'                       => 'predefinìo',
 'prefs-files'                   => 'Imagini',
 'prefs-custom-css'              => 'CSS personalixà',
@@ -1466,7 +1466,7 @@ Par to comodità qua ghe xe la registrazion de la scancelazion:",
 'upload-file-error'       => 'Eror interno',
 'upload-file-error-text'  => 'Se gà verificà un eror interno durante la creazion de un file tenporaneo sul server.
 Par piaser, contatar un [[Special:ListUsers/sysop|aministrador]].',
-'upload-misc-error'       => 'Eror non identificà par el caricamento',
+'upload-misc-error'       => 'Eror mia identificà par el caricamento',
 'upload-misc-error-text'  => '!Se gà verificà un eror mìa identificà durante el caricamento del file.
 Par piaser, verifica che la URL la sia giusta e acessibile e próa da novo.
 Se el problema el persiste, contatar un [[Special:ListUsers/sysop|aministrador]].',
@@ -1684,7 +1684,7 @@ Vien considerà pagine de disanbiguazion tute quele che contien i template elenc
 'unusedcategoriestext'    => 'Le pàxene de łe categorie indicàe de seguito łe xè stà creàe ma no le contien nissuna pàxena né sotocategoria.',
 'notargettitle'           => 'Dati mancanti',
 'notargettext'            => 'No te ghè indicà na pagina o un utente su cui eseguir sta operazion.',
-'nopagetitle'             => 'Pagina de destinassion non esistente',
+'nopagetitle'             => 'Pagina de destinassion mia esistente',
 'nopagetext'              => 'La pagina de destinassion che ti gà indicà no la esiste mìa.',
 'pager-newer-n'           => '{{PLURAL:$1|quel pi novo|i $1 pi novi}}',
 'pager-older-n'           => '{{PLURAL:$1|quel pi vecio|i $1 pi vèci}}',
@@ -1736,8 +1736,9 @@ Varda anca le [[Special:WantedCategories|categorie domandà]].',
 'special-categories-sort-abc'   => 'ordina alfabeticamente',
 
 # Special:DeletedContributions
-'deletedcontributions'       => 'Contributi utente scancelà',
-'deletedcontributions-title' => 'Contributi utente scancelà',
+'deletedcontributions'             => 'Contributi utente scancelà',
+'deletedcontributions-title'       => 'Contributi utente scancelà',
+'sp-deletedcontributions-contribs' => 'contributi',
 
 # Special:LinkSearch
 'linksearch'       => 'Colegamenti foresti',
@@ -1810,7 +1811,7 @@ La e-mail che te ghè indicà ne le [[Special:Preferences|to preferense]] la veg
 'watchlistfor'         => "(da l'utente '''$1''')",
 'nowatchlist'          => "No te ghè indicà pagine da tegner d'ocio.",
 'watchlistanontext'    => "Per vardar e modifegar l'ełenco de i osservati speciałi bisogna $1.",
-'watchnologin'         => 'Acesso non efetuà',
+'watchnologin'         => 'Acesso mia efetuà',
 'watchnologintext'     => 'Te ghè prima da far el [[Special:UserLogin|login]] par modificar la to lista de osservati speciali.',
 'addedwatch'           => 'Xontà ai tòi Osservati Speciali',
 'addedwatchtext'       => "La pàxena \"[[:\$1]]\" l'è stà xontà a la to [[Special:Watchlist|lista de osservati speciali]].

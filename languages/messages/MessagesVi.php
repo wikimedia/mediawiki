@@ -661,7 +661,7 @@ Nếu bạn không phải là người yêu cầu gửi mật khẩu, hoặc n�
 'mailerror'                  => 'Lỗi gửi thư : $1',
 'acct_creation_throttle_hit' => 'Những người sử dụng địa chỉ IP này đã mở {{PLURAL:$1|1 tài khoản|$1 tài khoản}} trong vòng một ngày, và đó là số lượng tài khoản tối đa có thể mở trong ngày.
 Vì vậy, người khác sử dụng địa chỉ IP này hiện không thể mở thêm tài khoản được nữa.',
-'emailauthenticated'         => 'Địa chỉ thư điện tử của bạn được xác nhận tại $2 vào lúc $3.',
+'emailauthenticated'         => 'Địa chỉ thư điện tử của bạn được xác nhận vào lúc $3 $2.',
 'emailnotauthenticated'      => 'Địa chỉ thư điện tử của bạn chưa được xác nhận. Chức năng thư điện tử chưa bật.',
 'noemailprefs'               => 'Hãy ghi một địa chỉ thư điện tử trong tùy chọn cá nhân để có thể sử dụng tính năng này.',
 'emailconfirmlink'           => 'Xác nhận địa chỉ thư điện tử',
@@ -1841,8 +1841,9 @@ Xem thêm [[Special:WantedCategories|thể loại cần thiết]].',
 'special-categories-sort-abc'   => 'xếp theo vần',
 
 # Special:DeletedContributions
-'deletedcontributions'       => 'Đóng góp đã bị xóa của thành viên',
-'deletedcontributions-title' => 'Đóng góp đã bị xóa của thành viên',
+'deletedcontributions'             => 'Đóng góp đã bị xóa của thành viên',
+'deletedcontributions-title'       => 'Đóng góp đã bị xóa của thành viên',
+'sp-deletedcontributions-contribs' => 'đóng góp',
 
 # Special:LinkSearch
 'linksearch'       => 'Liên kết ngoài',
@@ -2264,7 +2265,7 @@ $1',
 'blocklogpage'                    => 'Nhật trình cấm',
 'blocklog-fulllog'                => 'Nhật trình cấm đầy đủ',
 'blocklogentry'                   => 'đã cấm [[$1]] với thời hạn là $2 $3',
-'reblock-logentry'                => 'thay đổi thiết lập cấm [[$1]] để hết hạn $2 $3',
+'reblock-logentry'                => 'thay đổi thiết lập cấm [[$1]] thành thời hạn $2 $3',
 'blocklogtext'                    => 'Đây là nhật trình ghi lại những lần cấm và bỏ cấm. Các địa chỉ IP bị cấm tự động không được liệt kê ở đây. Xem thêm [[Special:IPBlockList|danh sách cấm]] để có danh sách cấm và cấm hẳn hiện tại.',
 'unblocklogentry'                 => 'đã bỏ cấm “$1”',
 'block-log-flags-anononly'        => 'chỉ cấm thành viên vô danh',

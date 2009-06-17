@@ -2024,8 +2024,9 @@ $1",
 'special-categories-sort-abc'   => 'مرتب کردن الفبایی',
 
 # Special:DeletedContributions
-'deletedcontributions'       => 'مشارکت‌های حذف شده',
-'deletedcontributions-title' => 'مشارکت‌های حذف شده',
+'deletedcontributions'             => 'مشارکت‌های حذف شده',
+'deletedcontributions-title'       => 'مشارکت‌های حذف شده',
+'sp-deletedcontributions-contribs' => 'مشارکت‌ها',
 
 # Special:LinkSearch
 'linksearch'       => 'پیوندهای بیرونی',

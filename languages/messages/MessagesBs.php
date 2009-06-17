@@ -1924,8 +1924,9 @@ Vidi također [[Special:WantedCategories|zatražene kategorije]].',
 'special-categories-sort-abc'   => 'sortiraj po abecedi',
 
 # Special:DeletedContributions
-'deletedcontributions'       => 'Obrisani doprinosi korisnika',
-'deletedcontributions-title' => 'Obrisani doprinosi korisnika',
+'deletedcontributions'             => 'Obrisani doprinosi korisnika',
+'deletedcontributions-title'       => 'Obrisani doprinosi korisnika',
+'sp-deletedcontributions-contribs' => 'doprinosi',
 
 # Special:LinkSearch
 'linksearch'       => 'Vanjski linkovi',

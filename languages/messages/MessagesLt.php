@@ -323,7 +323,28 @@ $messages = array(
 'faqpage'        => 'Project:DUK',
 
 # Vector skin
-'vector-view-view' => 'Skaityti',
+'vector-action-addsection'   => 'Pridėti temą',
+'vector-action-delete'       => 'Ištrinti',
+'vector-action-move'         => 'Perkelti',
+'vector-action-protect'      => 'Užrakinti',
+'vector-action-undelete'     => 'Atšaukti trynimą',
+'vector-action-unprotect'    => 'Atšaukti užrakinimą',
+'vector-namespace-category'  => 'Kategorija',
+'vector-namespace-help'      => 'Pagalbos puslapis',
+'vector-namespace-image'     => 'Failas',
+'vector-namespace-main'      => 'Puslapis',
+'vector-namespace-media'     => 'Media puslapis',
+'vector-namespace-mediawiki' => 'Pranešimas',
+'vector-namespace-project'   => 'Projekto puslapis',
+'vector-namespace-special'   => 'Specialusis puslapis',
+'vector-namespace-talk'      => 'Diskusija',
+'vector-namespace-template'  => 'Šablonas',
+'vector-namespace-user'      => 'Naudotojo puslapis',
+'vector-view-create'         => 'Kurti',
+'vector-view-edit'           => 'Redaguoti',
+'vector-view-history'        => 'Istorija',
+'vector-view-view'           => 'Skaityti',
+'vector-view-viewsource'     => 'Žiūrėti kodą',
 
 # Metadata in edit box
 'metadata_help' => 'Metaduomenys:',
@@ -900,6 +921,7 @@ Kaip administratorius, jei norite, jūs vis tiek [$1 galite pamatyti šį skirtu
 'revdelete-nologid-title'     => 'Neleistinas istorijos įrašas',
 'revdelete-nologid-text'      => 'Jūs arba nenurodėte paskirties istorijos įvykio, kuriam atlikti šį veiksmą, arba nurodytas įrašas neegzistuoja.',
 'revdelete-no-file'           => 'Nurodytas failas neegzistuoja.',
+'revdelete-show-file-confirm' => 'Ar tikrai norite peržiūrėti ištrintą failo "<nowiki>$1</nowiki>" $2 $3 versiją?',
 'revdelete-show-file-submit'  => 'Taip',
 'revdelete-selected'          => "'''{{PLURAL:$2|Pasirinkta [[:$1]] versija|Pasirinktos [[:$1]] versijos}}:'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Pasirinktas istorijos įvykis|Pasirinkti istorijos įvykiai}}:'''",
@@ -2302,6 +2324,7 @@ Paskirties puslapis „[[:$1]]“ jau yra. Ar norite jį ištrinti, kad galėtum
 'imageinvalidfilename'         => 'Failo pavadinimas yra klaidingas',
 'fix-double-redirects'         => 'Atnaujinti peradresavimus, kad šie rodytų į originalų straipsnio pavadinimą',
 'move-leave-redirect'          => 'Pervadinant palikti nukreipimą',
+'semiprotectedpagemovewarning' => "'''Pastaba''': Šis puslapis buvo užrakintas, tad tik registruoti naudotojai gali jį redaguoti.",
 
 # Export
 'export'            => 'Eksportuoti puslapius',

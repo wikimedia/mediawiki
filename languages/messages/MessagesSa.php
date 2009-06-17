@@ -286,8 +286,8 @@ $messages = array(
 'about'      => 'विषये',
 'newwindow'  => '(उद्घट् नविन पृष्ठ)',
 'cancel'     => 'अपकर्ष',
-'mypage'     => 'मम पृष्ठ',
-'mytalk'     => 'मम लोकप्रवाद',
+'mypage'     => 'मम पृष्ठम्',
+'mytalk'     => 'मम लोकप्रवादः',
 'navigation' => 'सुचालन',
 'and'        => '&#32;एवम्',
 
@@ -295,7 +295,7 @@ $messages = array(
 'qbfind'        => 'शोध',
 'qbedit'        => 'संपादयति',
 'qbpageoptions' => 'इदम्‌ पृष्ठ',
-'qbmyoptions'   => 'मदीय लिखितपृष्ठ',
+'qbmyoptions'   => 'पृष्ठाणि मया लिखितानि',
 'faq'           => 'अतिप्रश्नपृष्ट',
 
 'tagline'          => '{{SITENAME}}त्',
@@ -308,10 +308,10 @@ $messages = array(
 'history_short'    => 'इतिहास',
 'printableversion' => 'मुद्रणस्य पाठ',
 'permalink'        => 'स्थायी निबन्धन',
-'print'            => 'मुद्रण',
-'edit'             => 'सम्पादन',
-'create'           => 'सृजति',
-'editthispage'     => 'इदं पृष्ठस्य सम्पादनार्थ',
+'print'            => 'मुद्रयतु',
+'edit'             => 'सम्पादयतु',
+'create'           => 'रचयतु',
+'editthispage'     => 'इदं पृष्ठं सम्पादयतु',
 'create-this-page' => 'इदं पृष्ठ सृजामि',
 'delete'           => 'विलोप',
 'protect'          => 'सुरक्षित करोसि',
@@ -342,7 +342,7 @@ $messages = array(
 'privacypage'          => 'Project:गोपनीयता नीति',
 
 'retrievedfrom'   => 'इतः "$1" निसह्वे',
-'newmessageslink' => 'नूतन संदेश',
+'newmessageslink' => 'नूतनाः संदेशाः',
 'editsection'     => 'संपादयति',
 'editsectionhint' => 'विभाग संपादन: $1',
 'hidetoc'         => 'लुप्य',
@@ -356,7 +356,7 @@ $messages = array(
 'nstab-main'     => 'पृष्ठ',
 'nstab-image'    => 'संचिका',
 'nstab-template' => 'बिंबधर',
-'nstab-category' => 'वर्ग',
+'nstab-category' => 'श्रेणी',
 
 # General errors
 'error'         => 'विभ्रम',
@@ -364,18 +364,18 @@ $messages = array(
 'viewsourcefor' => '$1 कृते',
 
 # Login and logout pages
-'yourpassword'            => 'सङ्केतशब्द:',
+'yourpassword'            => 'कूटशब्दः:',
 'login'                   => 'प्रवेश करोसि',
 'nav-login-createaccount' => 'प्रवेश करोसि/ सृज् उपयोजकसंज्ञा',
 'userlogin'               => 'प्रवेश करोसि/ सृज् उपयोजकसंज्ञा',
-'logout'                  => 'बहिर्गच्छति',
+'logout'                  => 'बहिर्गच्छतु',
 'userlogout'              => 'बहिर्गच्छति',
-'createaccount'           => 'सृज उपयोजकसंज्ञा',
+'createaccount'           => 'लेखां रचयतु',
 'gotaccountlink'          => 'प्रवेश करोसि',
-'loginsuccesstitle'       => 'सुस्वागतम्‌ प्रवेश यशस्वी अस्ति',
+'loginsuccesstitle'       => 'सुस्वागतम्‌। प्रवेशः सिद्धः।',
 
 # Edit page toolbar
-'italic_sample' => 'इटालिकाक्षर्‌',
+'italic_sample' => 'इटालिक-पाठः',
 
 # Edit pages
 'summary'     => 'सारांश:',
@@ -386,11 +386,11 @@ $messages = array(
 'newarticle'  => '(नविन)',
 
 # History pages
-'currentrevisionlink' => 'सद्य आवृत्ती',
+'currentrevisionlink' => 'सद्यःकालीना आवृत्तिः',
 'cur'                 => 'अद्य',
 'last'                => 'पूर्वतन',
 'page_first'          => 'प्रथम्‌',
-'page_last'           => 'अन्तिम',
+'page_last'           => 'अन्तिमम्',
 
 # Revision feed
 'history-feed-item-nocomment' => '$1 उप $2',
@@ -411,7 +411,7 @@ $messages = array(
 
 # Recent changes
 'recentchanges'   => 'नवीनतम परिवर्तन',
-'rcshowhideanons' => 'अनामिक योजकस्य परिवर्त $1',
+'rcshowhideanons' => 'अनामकाः योजकाः $1',
 'hist'            => 'इति.',
 'hide'            => 'प्रछद्',
 'show'            => 'दर्शयति',
@@ -441,17 +441,17 @@ $messages = array(
 'statistics' => 'सांख्यिकी',
 
 # Miscellaneous special pages
-'longpages'    => 'दीर्घ पृष्ठ',
-'newpages'     => 'नूतन पृष्ठ',
+'longpages'    => "दीर्घाणि पृष्ठाणि",
+'newpages'     => 'नूतनानि पृष्ठाणि',
 'ancientpages' => 'प्राचीनतम् पृष्ठा',
 'move'         => 'नामभेद',
-'movethispage' => 'इदं पृष्ठस्य स्थानांतर',
+'movethispage' => 'इदं पृष्ठं चालयतु',
 
 # Book sources
 'booksources-go' => 'प्रस्थानम्',
 
 # Special:AllPages
-'allpages'       => 'सर्व पृष्ठ',
+'allpages'       => 'सकलानि पृष्ठाणि',
 'alphaindexline' => 'इतः $1 यावत् $2',
 'allarticles'    => 'सर्व लेखा',
 'allpagessubmit' => 'गच्छति',
@@ -465,7 +465,7 @@ $messages = array(
 
 # Watchlist
 'watch'         => 'निरीक्षति',
-'watchthispage' => 'प्रतिरक्षति इदं पृष्ठ',
+'watchthispage' => 'इदं पृष्ठं निरीक्षताम्',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching' => 'निरिक्षा',
@@ -474,10 +474,10 @@ $messages = array(
 'actioncomplete' => 'कार्य समापनम्',
 
 # Protect
-'protectcomment'          => 'प्रतिक्रीया:',
-'protect-level-sysop'     => 'केवल प्रबंधक',
-'protect-summary-cascade' => 'निःश्रेणि',
-'restriction-type'        => 'अनुमति:',
+'protectcomment'          => 'टिप्पणी:',
+'protect-level-sysop'     => 'प्रबंधकाः केवलाः',
+'protect-summary-cascade' => 'सोपानात्मकम्',
+'restriction-type'        => 'अनुमतिः:',
 
 # Namespace form on various pages
 'namespace'      => 'नामविश्व:',
@@ -527,15 +527,15 @@ $messages = array(
 'skinname-chick'       => 'Chick',
 
 # Special:NewFiles
-'newimages' => 'नूतन संचिका दालन',
+'newimages' => 'नूतन-संचिकानां वीथिका',
 
 # 'all' in various places, this might be different for inflected languages
-'watchlistall2' => 'सर्व',
+'watchlistall2' => 'सर्वाणि',
 'namespacesall' => 'सर्व',
 'monthsall'     => 'सर्व',
 
 # Auto-summaries
-'autosumm-new' => 'नवीन पृष्ठं: $1',
+'autosumm-new' => '$1 नवीन पृष्ठं निर्मीत अस्ती',
 
 # Special:Version
 'version' => 'आवृत्ति',

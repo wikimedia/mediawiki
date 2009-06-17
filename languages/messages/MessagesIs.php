@@ -1232,6 +1232,7 @@ Ef þú kýst að gefa það upp, verður það notað til að gefa þér heiðu
 'rc_categories'                     => 'Takmark á flokkum (aðskilja með "|")',
 'rc_categories_any'                 => 'Alla',
 'newsectionsummary'                 => 'Nýr hluti: /* $1 */',
+'rc-enhanced-expand'                => 'Sýna upplýsingar (þarfnast JavaScript)',
 'rc-enhanced-hide'                  => 'Fela ítarefni',
 
 # Recent changes linked
@@ -1334,6 +1335,7 @@ Gjörðu svo vel og endurnefndu skrána og hladdu henni inn aftur.',
 'filehist-revert'           => 'taka aftur',
 'filehist-current'          => 'núverandi',
 'filehist-datetime'         => 'Dagsetning/Tími',
+'filehist-thumb'            => 'Smámynd',
 'filehist-user'             => 'Notandi',
 'filehist-dimensions'       => 'Víddir',
 'filehist-filesize'         => 'Stærð skráar',
@@ -2228,7 +2230,7 @@ Ef skránni hefur verið breytt, kann að vera að einhverjar upplýsingar eigi 
 
 # External editor support
 'edit-externally'      => 'Breyta þessari skrá með utanaðkomandi hugbúnaði',
-'edit-externally-help' => 'Sjá [http://www.mediawiki.org/wiki/Manual:External_editors leiðbeiningar] fyrir meiri upplýsingar.',
+'edit-externally-help' => '(Sjá [http://www.mediawiki.org/wiki/Manual:External_editors leiðbeiningar] fyrir meiri upplýsingar)',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'allt',

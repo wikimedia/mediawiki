@@ -1911,8 +1911,9 @@ Podívejte se také na [[Special:WantedCategories|žádané kategorie]].',
 'special-categories-sort-abc'   => 'seřadit abecedně',
 
 # Special:DeletedContributions
-'deletedcontributions'       => 'Smazané editace uživatele',
-'deletedcontributions-title' => 'Smazané editace uživatele',
+'deletedcontributions'             => 'Smazané editace uživatele',
+'deletedcontributions-title'       => 'Smazané editace uživatele',
+'sp-deletedcontributions-contribs' => 'příspěvky',
 
 # Special:LinkSearch
 'linksearch'       => 'Externí odkazy',

@@ -1879,8 +1879,9 @@ Zobacz również [[Special:WantedCategories|brakujące kategorie]].',
 'special-categories-sort-abc'   => 'sortowanie alfabetyczne',
 
 # Special:DeletedContributions
-'deletedcontributions'       => 'Usunięty wkład użytkownika',
-'deletedcontributions-title' => 'Usunięty wkład użytkownika',
+'deletedcontributions'             => 'Usunięty wkład użytkownika',
+'deletedcontributions-title'       => 'Usunięty wkład użytkownika',
+'sp-deletedcontributions-contribs' => 'wkład',
 
 # Special:LinkSearch
 'linksearch'       => 'Linki zewnętrzne',
