@@ -482,19 +482,26 @@ $messages = array(
 'faqpage'        => 'Project:Συχνές ερωτήσεις (FAQ)',
 
 # Vector skin
+'vector-action-addsection'   => 'Προσθήκη θέματος',
 'vector-action-delete'       => 'Διαγραφή',
 'vector-action-move'         => 'Μετακίνηση',
 'vector-action-protect'      => 'Προστασία',
+'vector-action-undelete'     => 'Επαναφορά',
 'vector-action-unprotect'    => 'Άρση προστασίας',
 'vector-namespace-category'  => 'Κατηγορία',
+'vector-namespace-help'      => 'Σελίδα βοήθειας',
 'vector-namespace-image'     => 'Αρχείο',
 'vector-namespace-main'      => 'Σελίδα',
+'vector-namespace-media'     => 'Σελίδα μέσου',
 'vector-namespace-mediawiki' => 'Μήνυμα',
+'vector-namespace-project'   => 'Σελίδα εγχειρήματος',
+'vector-namespace-special'   => 'Ειδική σελίδα',
 'vector-namespace-talk'      => 'Συζήτηση',
 'vector-namespace-template'  => 'Πρότυπο',
 'vector-namespace-user'      => 'Σελίδα χρήστη',
 'vector-view-create'         => 'Δημιουργήστε',
 'vector-view-edit'           => 'Επεξεργασία',
+'vector-view-history'        => 'Προβολή ιστορικού',
 'vector-view-view'           => 'Ανάγνωση',
 'vector-view-viewsource'     => 'εμφάνιση κώδικα',
 
@@ -1907,8 +1914,9 @@ PICT # διάφορα
 'special-categories-sort-abc'   => 'αλφαβητική ταξινόμηση',
 
 # Special:DeletedContributions
-'deletedcontributions'       => 'Διαγραμμένες συνεισφορές χρήστη',
-'deletedcontributions-title' => 'Διαγραμμένες συνεισφορές χρήστη',
+'deletedcontributions'             => 'Διαγραμμένες συνεισφορές χρήστη',
+'deletedcontributions-title'       => 'Διαγραμμένες συνεισφορές χρήστη',
+'sp-deletedcontributions-contribs' => 'συνεισφορές',
 
 # Special:LinkSearch
 'linksearch'       => 'Εξωτερικοί σύνδεσμοι',

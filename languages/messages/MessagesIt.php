@@ -16,6 +16,7 @@
  * @author Cryptex
  * @author Darth Kule
  * @author Felis
+ * @author FollowTheMedia
  * @author Gianfranco
  * @author Martorell
  * @author Marzedu
@@ -1811,8 +1812,9 @@ Vedi anche le [[Special:WantedCategories|categorie richieste]].',
 'special-categories-sort-abc'   => 'ordina alfabeticamente',
 
 # Special:DeletedContributions
-'deletedcontributions'       => 'Contributi utente cancellati',
-'deletedcontributions-title' => 'Contributi utente cancellati',
+'deletedcontributions'             => 'Contributi utente cancellati',
+'deletedcontributions-title'       => 'Contributi utente cancellati',
+'sp-deletedcontributions-contribs' => 'contributi',
 
 # Special:LinkSearch
 'linksearch'       => 'Collegamenti esterni',
@@ -3043,6 +3045,10 @@ Usare l\'anteprima standard.',
 'watchlisttools-view' => 'Visualizza le modifiche pertinenti',
 'watchlisttools-edit' => 'Visualizza e modifica la lista degli osservati speciali',
 'watchlisttools-raw'  => 'Modifica la lista in formato testo',
+
+# Hebrew month names
+'hebrew-calendar-m10'     => 'Tammuz',
+'hebrew-calendar-m10-gen' => 'Tammuz',
 
 # Core parser functions
 'unknown_extension_tag' => 'Tag estensione sconosciuto: "$1"',

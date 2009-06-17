@@ -1516,7 +1516,7 @@ U kunt ook anderen in staat stellen per e-mail contact met u op te nemen via een
 'right-autopatrol'            => 'Bewerkingen automatisch als gecontroleerd gemarkeerd krijgen',
 'right-patrolmarks'           => 'Controletekens in recente wijzigingen bekijken',
 'right-unwatchedpages'        => "Een lijst met pagina's die niet op een volglijst staan bekijken",
-'right-trackback'             => 'Een trackback opgeven',
+'right-trackback'             => "Terugverwijzende pagina's opgeven",
 'right-mergehistory'          => "De geschiedenis van pagina's samenvoegen",
 'right-userrights'            => 'Alle gebruikersrechten bewerken',
 'right-userrights-interwiki'  => "Gebruikersrechten van gebruikers in andere wiki's wijzigen",
@@ -1560,7 +1560,7 @@ U kunt ook anderen in staat stellen per e-mail contact met u op te nemen via een
 'action-patrol'               => 'bewerkingen van anderen als gecontroleerd te markeren',
 'action-autopatrol'           => 'eigen bewerkingen als gecontroleerd te laten markeren',
 'action-unwatchedpages'       => "de lijst met pagina's die niet op een volglijst staan te bekijken",
-'action-trackback'            => 'een trackback op te geven',
+'action-trackback'            => 'een terugverwijzende pagina op te geven',
 'action-mergehistory'         => 'de geschiedenis van deze pagina samen te voegen',
 'action-userrights'           => 'alle gebruikersrechten te bewerken',
 'action-userrights-interwiki' => "gebruikersrechten van gebruikers van andere wiki's te bewerken",
@@ -3228,11 +3228,11 @@ De bevestigingscode vervalt op $4.',
 'scarytranscludetoolong'  => '[De URL is te lang]',
 
 # Trackbacks
-'trackbackbox'      => 'Trackbacks voor deze pagina:<br />
-$1',
+'trackbackbox'      => "Terugverwijzende pagina's voor deze pagina:<br />
+$1",
 'trackbackremove'   => '([$1 Verwijderen])',
-'trackbacklink'     => 'Trackback',
-'trackbackdeleteok' => 'De trackback is verwijderd.',
+'trackbacklink'     => 'Terugverwijzende pagina',
+'trackbackdeleteok' => 'De terugverwijzende pagina is verwijderd.',
 
 # Delete conflict
 'deletedwhileediting' => "'''Let op''': deze pagina is verwijderd terwijl u bezig was met uw bewerking!",

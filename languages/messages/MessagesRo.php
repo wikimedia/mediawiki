@@ -1809,8 +1809,9 @@ Vedeţi şi [[Special:WantedCategories|categoriile dorite]].',
 'special-categories-sort-abc'   => 'sortează alfabetic',
 
 # Special:DeletedContributions
-'deletedcontributions'       => 'Contribuţii şterse',
-'deletedcontributions-title' => 'Contribuţii şterse',
+'deletedcontributions'             => 'Contribuţii şterse',
+'deletedcontributions-title'       => 'Contribuţii şterse',
+'sp-deletedcontributions-contribs' => 'contribuţii',
 
 # Special:LinkSearch
 'linksearch'       => 'Legături externe',

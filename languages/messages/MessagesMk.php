@@ -413,7 +413,27 @@ $messages = array(
 'faqpage'        => 'Project:ЧПП',
 
 # Vector skin
-'vector-view-view' => 'Читај',
+'vector-action-delete'       => 'Бриши',
+'vector-action-move'         => 'Премести',
+'vector-action-protect'      => 'Заштити',
+'vector-action-undelete'     => 'Врати',
+'vector-action-unprotect'    => 'Отстрани заштита',
+'vector-namespace-category'  => 'Категорија',
+'vector-namespace-help'      => 'Страница за помош',
+'vector-namespace-image'     => 'Податотека',
+'vector-namespace-main'      => 'Страница',
+'vector-namespace-media'     => 'Мултимедијална страница',
+'vector-namespace-mediawiki' => 'Порака',
+'vector-namespace-project'   => 'Проектна страница',
+'vector-namespace-special'   => 'Специјална страница',
+'vector-namespace-talk'      => 'Дискусија',
+'vector-namespace-template'  => 'Шаблон',
+'vector-namespace-user'      => 'Корисничка страница',
+'vector-view-create'         => 'Креирај',
+'vector-view-edit'           => 'Уреди',
+'vector-view-history'        => 'Види историја',
+'vector-view-view'           => 'Читај',
+'vector-view-viewsource'     => 'Види код',
 
 # Metadata in edit box
 'metadata_help' => 'Метаподатоци:',
@@ -1888,8 +1908,9 @@ PICT # misc.
 'special-categories-sort-abc'   => 'алфанумеричко подредување по',
 
 # Special:DeletedContributions
-'deletedcontributions'       => 'Избришани кориснички придонеси',
-'deletedcontributions-title' => 'Избришани кориснички придонеси',
+'deletedcontributions'             => 'Избришани кориснички придонеси',
+'deletedcontributions-title'       => 'Избришани кориснички придонеси',
+'sp-deletedcontributions-contribs' => 'придонеси',
 
 # Special:LinkSearch
 'linksearch'       => 'Надворешни врски',
@@ -2047,11 +2068,10 @@ $NEWPAGE
 'deletecomment'          => 'Причина за бришење:',
 'deleteotherreason'      => 'Друга/дополнителна причина:',
 'deletereasonotherlist'  => 'Друга причина',
-'deletereason-dropdown'  => '*Вообичаени причини
+'deletereason-dropdown'  => '*Вообичаени причини за бришење
 ** На барање на авторот
 ** Прекршување на авторски права
-** Страница создадена по грешка
-** Несоодветен наслов',
+** Вандализам',
 'delete-edit-reasonlist' => 'Уредување на причини за бришење',
 'delete-toobig'          => 'Оваа страница има долга историја на уредување, преку $1 {{PLURAL:$1|ревизија|ревизии}}.
 Бришењето на ваквии страници е забрането со цел да се заштити {{SITENAME}} од оштетувања.',

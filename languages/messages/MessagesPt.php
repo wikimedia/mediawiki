@@ -3118,7 +3118,7 @@ Entre com o nome de ficheiro sem fornecer o prefixo "{{ns:file}}:".',
 'dberr-cachederror' => 'A seguinte página é uma cópia em cache da página pedida e pode não estar atualizada.',
 
 # HTML forms
-'htmlform-invalid-input'       => 'Existem problemas com alguns do dados introduzidos',
+'htmlform-invalid-input'       => 'Existem problemas com alguns dos dados introduzidos',
 'htmlform-select-badoption'    => 'O valor que você especificou não é uma opção válida.',
 'htmlform-int-invalid'         => 'O valor que você especificou não é um inteiro.',
 'htmlform-int-toolow'          => 'O valor que você especificou está abaixo do mínimo de $1',

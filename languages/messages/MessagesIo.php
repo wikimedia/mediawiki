@@ -138,11 +138,13 @@ $messages = array(
 'tog-shownumberswatching'     => 'Montrez nombro di surveyanta uzanti',
 'tog-fancysig'                => 'Traktez signaturo kom wikikodo (sen automata ligilo)',
 'tog-externaleditor'          => 'Uzez extera redaktanto nespecigite (nur por experti, bezonas specala moderi ye vua komputoro)',
+'tog-forceeditsummary'        => 'Notifikez me kande skribanta vakua redakto-rezumo',
 'tog-watchlisthideown'        => 'Celez mea redaktaji de la surveyaji',
 'tog-watchlisthidebots'       => 'Celez redaktaji da roboti de la surveyaji',
 'tog-watchlisthideminor'      => 'Celez mikra redaktaji de la surveyaji',
 'tog-watchlisthidepatrolled'  => 'Celez patroliita chanji en la surveyo-listo',
 'tog-ccmeonemails'            => 'Sendez a me exemplero di e-posti quin me sendos ad altra uzanti',
+'tog-diffonly'                => 'Ne montrez pagino kontenajo sub diferi',
 'tog-showhiddencats'          => 'Montrar celita kategorii',
 'tog-norollbackdiff'          => 'Omisar difero-komparo pos retrorulo',
 
@@ -216,7 +218,13 @@ $messages = array(
 'category-file-count-limited'    => 'La sequanta {{PLURAL:$1|arkivo|$1 arkivi}} es en la aktuala kategorio.',
 'listingcontinuesabbrev'         => 'seq.',
 
-'mainpagetext' => "<big>'''MediaWiki instalesis sucese.'''</big>",
+'mainpagetext'      => "<big>'''MediaWiki instalesis sucese.'''</big>",
+'mainpagedocfooter' => "Videz la [http://meta.wikimedia.org/wiki/Help:Contents Guidilo por Uzanti] por informo pri uzar la wiki programo.
+
+== Komencar ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Listo di ''Configuration setting'']
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki OQQ]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki nova versioni posto-listo]",
 
 'about'         => 'Pri',
 'article'       => 'artiklo',
@@ -236,6 +244,13 @@ $messages = array(
 'qbpageinfo'     => 'Kuntexto',
 'qbmyoptions'    => 'Mea pagini',
 'qbspecialpages' => 'Specala pagini',
+
+# Vector skin
+'vector-namespace-category'  => 'Kategorio',
+'vector-namespace-help'      => 'Helpo-pagino',
+'vector-namespace-image'     => 'Failo',
+'vector-namespace-main'      => 'Pagino',
+'vector-namespace-mediawiki' => 'Mesajo',
 
 # Metadata in edit box
 'metadata_help' => 'Metadonaji:',
@@ -352,7 +367,7 @@ Videz [[Special:Version|versiono-pagino]].',
 'nstab-user'      => 'Uzanto-pagino',
 'nstab-special'   => 'Specala pagino',
 'nstab-project'   => 'Projeto pagino',
-'nstab-image'     => 'Arkivo',
+'nstab-image'     => 'Failo',
 'nstab-mediawiki' => 'Mesajo',
 'nstab-template'  => 'Modelo',
 'nstab-help'      => 'Helpo',
@@ -851,7 +866,7 @@ Videz rezumo plu vidala en la [[Special:NewFiles|galerio di nova arkivi]].',
 'listfiles_count' => 'Versioni',
 
 # File description page
-'file-anchor-link'          => 'Arkivo',
+'file-anchor-link'          => 'Failo',
 'filehist'                  => 'Historio dil arkivo',
 'filehist-help'             => 'Kliktez sur la dato/horo por vidar arkivo quale ol aparis ye ta tempo.',
 'filehist-current'          => 'aktuala',

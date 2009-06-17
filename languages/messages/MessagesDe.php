@@ -1958,8 +1958,9 @@ Siehe auch die Liste der [[Special:WantedCategories|gewünschten Kategorien]].',
 'special-categories-sort-abc'   => 'Sortierung nach Alphabet',
 
 # Special:DeletedContributions
-'deletedcontributions'       => 'Gelöschte Beiträge',
-'deletedcontributions-title' => 'Gelöschte Beiträge',
+'deletedcontributions'             => 'Gelöschte Beiträge',
+'deletedcontributions-title'       => 'Gelöschte Beiträge',
+'sp-deletedcontributions-contribs' => 'Benutzerbeiträge',
 
 # Special:LinkSearch
 'linksearch'       => 'Weblink-Suche',
@@ -2310,15 +2311,13 @@ Bitte gib den Grund für die Sperre an.',
 'ipbreason'                       => 'Begründung:',
 'ipbreasonotherlist'              => 'Andere Begründung',
 'ipbreason-dropdown'              => '* Allgemeine Sperrgründe
-** Löschen von Seiten
-** Einstellen unsinniger Seiten
-** Fortgesetzte Verstöße gegen die Richtlinien für Weblinks
-** Verstoß gegen den Grundsatz „Keine persönlichen Angriffe“
-* Benutzerspezifische Sperrgründe
-** Ungeeigneter Benutzername
-** Neuanmeldung eines unbeschränkt gesperrten Benutzers
-* IP-spezifische Sperrgründe
-** Proxy, wegen Vandalismus einzelner Benutzer längerfristig gesperrt',
+** Einfügen falscher Informationen
+** Leeren von Seiten
+** Fügt massenweise externe Links ein
+** Einstellen unsinniger Sachen in Seiten
+** bedrohliches Verhalten/Belästigung
+** Missbrauch durch mehrere Benutzerkonten
+** Ungeeigneter Benutzername',
 'ipbanononly'                     => 'Nur anonyme Benutzer sperren',
 'ipbcreateaccount'                => 'Erstellung von Benutzerkonten verhindern',
 'ipbemailban'                     => 'E-Mail-Versand sperren',

@@ -438,17 +438,28 @@ $messages = array(
 'faqpage'        => 'Project:اسئله بتتسئل كتير',
 
 # Vector skin
-'vector-action-addsection'  => 'ضيف موضوع',
-'vector-action-delete'      => 'مسح',
-'vector-action-move'        => 'نقل',
-'vector-action-protect'     => 'حمايه',
-'vector-action-undelete'    => 'الغى المسح',
-'vector-action-unprotect'   => 'الغى الحمايه',
-'vector-namespace-category' => 'تصنيف',
-'vector-namespace-help'     => 'صفحة مساعده',
-'vector-namespace-image'    => 'ملف',
-'vector-namespace-main'     => 'صفحه',
-'vector-namespace-media'    => 'صفحة ميديا',
+'vector-action-addsection'   => 'ضيف موضوع',
+'vector-action-delete'       => 'مسح',
+'vector-action-move'         => 'نقل',
+'vector-action-protect'      => 'حمايه',
+'vector-action-undelete'     => 'الغى المسح',
+'vector-action-unprotect'    => 'الغى الحمايه',
+'vector-namespace-category'  => 'تصنيف',
+'vector-namespace-help'      => 'صفحة مساعده',
+'vector-namespace-image'     => 'ملف',
+'vector-namespace-main'      => 'صفحه',
+'vector-namespace-media'     => 'صفحة ميديا',
+'vector-namespace-mediawiki' => 'رساله',
+'vector-namespace-project'   => 'صفحة مشروع',
+'vector-namespace-special'   => 'صفحه مخصوصه',
+'vector-namespace-talk'      => 'نقاش',
+'vector-namespace-template'  => 'قالب',
+'vector-namespace-user'      => 'صفحة يوزر',
+'vector-view-create'         => 'اعمل',
+'vector-view-edit'           => 'تعديل',
+'vector-view-history'        => 'استعراض التاريخ',
+'vector-view-view'           => 'قرايه',
+'vector-view-viewsource'     => 'استعراض المصدر',
 
 # Metadata in edit box
 'metadata_help' => 'ميتا داتا:',
@@ -929,8 +940,9 @@ $2',
 'permissionserrorstext-withaction' => 'أنت ما عندكش الصلاحيات علشان $2، لل{{PLURAL:$1|سبب|أسباب}} ده:',
 'recreate-moveddeleted-warn'       => "'''تحذير: انت بتعيد انشاء صفحه اتمسحت قبل كده.'''
 لازم تتأكد من ان الاستمرار فى تحرير الصفحه دى ملائم.
-سجل الحذف للصفحه دى معروض هنا:",
-'moveddeleted-notice'              => 'الصفحة دى اتحذفت. سجل الحذف للصفحة معروض تحت علشان ترجعله.',
+سجلات الحذف و النقل بتوع الصفحه دى معروضه هنا:",
+'moveddeleted-notice'              => 'الصفحة دى اتمسحت. سجل المسح و سجل النقل بتوع الصفحة معروضين تحت علشان ترجعلهم.',
+'log-fulllog'                      => 'استعراض السجل بالكامل',
 'edit-hook-aborted'                => 'الخطاف ساب التعديل من غير مايدى تفسير.',
 'edit-gone-missing'                => 'لم يمكن تحديث الصفحة.
 يبدو أنه تم حذفها.',
@@ -1004,11 +1016,14 @@ $2',
 'rev-deleted-event'           => '(السجل إتشال)',
 'rev-deleted-text-permission' => 'مراجعة الصفحه دى إتشالت من الأرشيفات العامه.
 ممكن تكون فيه تفاصيل فى [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} سجل المسح].',
+'rev-deleted-text-unhide'     => "المراجعه بتاعة الصفحه دى '''اتمسحت'''.
+ممكن تلاقى تفاصيل فى [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} سجل المسح].
+لو كنت انت ادارى ممكن[$1 تشوف المراجعه دى] لو كنت عايز تكمل..",
 'rev-deleted-text-view'       => 'التعديل دا اتمسح من الأرشيف العام.
 ممكن تشوف التعديل دا علشان إنت إدارى فى {{SITENAME}} .
 ممكن يكون فيه تفاصيل بخصوص دا فى [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} سجل المسح].',
-'rev-deleted-no-diff'         => 'انت ماينفش تشوف الفرق دا عشان فى واحده م المراجعات اتشالت م الارشيفات العلنيه.
-ممكن تكون فى تفاصيل فى[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} سجل المسح].',
+'rev-deleted-no-diff'         => "انت ماينفش تشوف الفرق دا عشان فى واحده م المراجعات '''اتمسحت'''.
+ممكن تكون فى تفاصيل فى[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} سجل المسح].",
 'rev-delundel'                => 'عرض/إخفاء',
 'revisiondelete'              => 'امسح/الغى المسح بتاع المراجعات',
 'revdelete-nooldid-title'     => 'مراجعة هدف مش صح',
@@ -1017,18 +1032,19 @@ $2',
 'revdelete-nologtype-text'    => 'انت ما اديتش نوع سجل عشان تعمل العمليه دى عليه',
 'revdelete-nologid-title'     => 'مدخلة السجل مش صح',
 'revdelete-nologid-text'      => 'انتا يا إما ما حددتش حدث سجل مستهدف عشان تعمل العمليه دى يا المدخله اللى انتا حددتها مش موجوده.',
-'revdelete-selected'          => "'''{{PLURAL:$2|المراجعة المختارة|المراجعات المختارة}} ل[[:$1]]:'''",
+'revdelete-show-file-submit'  => 'ايوه',
+'revdelete-selected'          => "'''{{PLURAL:$2|المراجعه المختاره|المراجعات المختاره}} بتاعة [[:$1]]:'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|حدث السجل المختار|أحداث السجل المختارة}}:'''",
-'revdelete-text'              => "'''المراجعات والأحداث الممسوحة هاتفضل تظهر فى تاريخ الصفحة والسجلات،'''
-لكن أجزاء من محتواهم مش هايكون مسموح للعامة يشوفوها.
+'revdelete-text'              => "'''المراجعات والأحداث الممسوحه هاتفضل تظهر فى تاريخ الصفحه والسجلات،'''
+لكن أجزاء منهم مش هايكون مسموح للعامة يشوفوها.
 
-الإداريون التانين فى {{SITENAME}}هايفضل بإمكانهم رؤية المحتوى المخفى وممكن يسترجعوه من جديد من خلال الواجهة نفسها، الا اذا تم وضع قيود إضافية.",
+الإداريين التانيين فى {{SITENAME}}هايفضل ممكن يشوفو المحتوى المخفى و ممكن يسترجعوه من جديد من خلال الواجهة نفسها، الا اذا حط قيود إضافيه.",
 'revdelete-legend'            => 'وضع حدود رؤية',
 'revdelete-hide-text'         => 'إخفاء نص النسخة',
 'revdelete-hide-name'         => 'تخبية الإجراء والهدف منه',
 'revdelete-hide-comment'      => 'خبى تعليق التعديل',
 'revdelete-hide-user'         => 'خبى اسم/عنوان الاى بى بتاع اليوزر',
-'revdelete-hide-restricted'   => 'طبق الضوابط  دى على السيسوبات واقفل الواجهة دي',
+'revdelete-hide-restricted'   => 'طبق القواعد دى على السيسوبات زى الباقيين',
 'revdelete-suppress'          => 'تخبية البيانات عن السيسوبات و اليوزرز التانيين',
 'revdelete-hide-image'        => 'خبى المحتويات بتاعة الملف',
 'revdelete-unsuppress'        => 'إزالة الضوابط من المراجعات المسترجعة',
@@ -1171,8 +1187,8 @@ $2',
 'searchmenu-new'                   => "'''ابتدى الصفحه \"[[:\$1]]\" ع الويكى دا!'''",
 'searchhelp-url'                   => 'Help:محتويات',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|استعرض الصفحات اللى بتبتدى بالبريفيكس دا]]',
-'searchprofile-articles'           => 'صفحات المحتوى',
-'searchprofile-project'            => 'صفحات المشروع',
+'searchprofile-articles'           => 'صفحات محتوى',
+'searchprofile-project'            => 'صفحات  المساعده و المشروع',
 'searchprofile-images'             => 'الملفات',
 'searchprofile-everything'         => 'كل شىء',
 'searchprofile-advanced'           => 'متقدم',
@@ -1304,6 +1320,7 @@ $2',
 'prefs-help-email'          => 'عنوان البريد الإلكترونى اختيارى، لكن يسمح بأن يتم إرسال كلمة السر الخاصة بك إليك لو نسيتها.
 ممكن كمان تخلى اليوزرز التانيين يقدروا يتصلوا بيك  فى صفحتك او صفة المناقشة بتاعتك من غير ما يعرفو  انت مين.',
 'prefs-help-email-required' => 'عنوان الإيميل مطلوب.',
+'prefs-signature'           => 'الامضا',
 
 # User rights
 'userrights'                  => 'إدارة الحقوق بتاعة اليوزر',
@@ -1575,7 +1592,7 @@ $2',
 'sourcefilename'              => 'اسم الملف  بتاع المصدر:',
 'destfilename'                => 'اسم الملف المستهدف:',
 'upload-maxfilesize'          => 'حجم الملف الأقصى: $1',
-'watchthisupload'             => 'حط الصفحة دى تحت المراقبة',
+'watchthisupload'             => 'حط الملف دا تحت المراقبه',
 'filewasdeleted'              => 'فى ملف بنفس الاسم دا تحمل قبل كدا و بعدين اتمسح.
 لو سمحت تراجع $1 قبل ما تحمله كمان مرة.',
 'upload-wasdeleted'           => "'''تحذير: انت بتحمل ملف اتمسح قبل كدا.'''
@@ -1873,8 +1890,9 @@ PICT # misc.
 'special-categories-sort-abc'   => 'ترتيب ابجدي',
 
 # Special:DeletedContributions
-'deletedcontributions'       => 'تعديلات اليوزر الممسوحة',
-'deletedcontributions-title' => 'تعديلات اليوزر الممسوحة',
+'deletedcontributions'             => 'تعديلات اليوزر الممسوحة',
+'deletedcontributions-title'       => 'تعديلات اليوزر الممسوحة',
+'sp-deletedcontributions-contribs' => 'المساهمات',
 
 # Special:LinkSearch
 'linksearch'       => 'لينكات خارجيه',
@@ -2247,7 +2265,7 @@ $1',
 'ipbenableautoblock'              => ' امنع آخر عنوان أيبى استخدمه اليوزر دا اوتوماتيكي، وأى عناوين أيبى تانية يحاول التحرير منها',
 'ipbsubmit'                       => 'منع اليوزر دا',
 'ipbother'                        => 'وقت تاني:',
-'ipboptions'                      => '2 hours:2 ساعه ,1 day:1 يوم , 3 days:3 ايام , 1 week:1 اسبوع , 2 weeks:2 اسبوع ,1 month:1 شهر , 3 months:3 شهور , 6 months:6 شهور , 1 year:1 سنه , infinite:على طول',
+'ipboptions'                      => '2 ساعه:2 hours,1 يوم:1 day,3 يوم:3 days,1 اسبوع:1 week,2 اسبوع:2 weeks,1 شهر:1 month,3 شهر:3 months,6 شهر:6 months,1 سنه:1 year,على طول:infinite',
 'ipbotheroption'                  => 'كمان',
 'ipbotherreason'                  => 'سبب تاني:',
 'ipbhidename'                     => 'خبى اسم اليوزر من سجل المنع، لستة المنع النشطة ولستة اليوزرز',
@@ -3333,5 +3351,14 @@ $1',
 'dberr-usegoogle'   => 'ممكن تحاول تدور باستعمال جوجل دلوقتى.',
 'dberr-outofdate'   => 'خد بالك فهارس المحتوى بتاعنا اللى عندهم ممكن تكون مش متحدثه.',
 'dberr-cachederror' => 'دى نسخه متخزنه من الصفحه المطلوبه، و ممكن ما تكونش متحدثه.',
+
+# HTML forms
+'htmlform-select-badoption'    => 'القيمه اللى حددتها ما تنفعش كاختيار.',
+'htmlform-int-invalid'         => 'القيمه اللى حددتها ما هياش عدد صحيح',
+'htmlform-int-toolow'          => 'القيمه اللى حددتها اصغر من الحد الادنى اللى هو $1',
+'htmlform-int-toohigh'         => 'القيمه اللى حددتها اكبر من الحد الاقصى اللى هو $1',
+'htmlform-submit'              => 'تقديم',
+'htmlform-reset'               => 'الرجوع فى التغييرات',
+'htmlform-selectorother-other' => 'تانيين',
 
 );

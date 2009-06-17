@@ -1720,8 +1720,9 @@ Hlej tež [[Special:WantedCategories|požadane kategorije]].',
 'special-categories-sort-abc'   => 'Alfabetisce sortěrować',
 
 # Special:DeletedContributions
-'deletedcontributions'       => 'wušmórnjene přinoški',
-'deletedcontributions-title' => 'wušmórnjene přinoški',
+'deletedcontributions'             => 'wušmórnjene přinoški',
+'deletedcontributions-title'       => 'wušmórnjene přinoški',
+'sp-deletedcontributions-contribs' => 'přinoški',
 
 # Special:LinkSearch
 'linksearch'       => 'Eksterne wotkazy',

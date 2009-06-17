@@ -512,6 +512,7 @@ $messages = array(
 'versionrequiredtext' => 'Для работы с этой страницей требуется MediaWiki версии $1. См. [[Special:Version|информацию о версиях используемого ПО]].',
 
 'ok'                      => 'OK',
+'pagetitle'               => '$1 — {{SITENAME}}',
 'retrievedfrom'           => 'Источник — «$1»',
 'youhavenewmessages'      => 'Вы получили $1 ($2).',
 'newmessageslink'         => 'новые сообщения',
@@ -1312,11 +1313,11 @@ $1",
 'prefs-signature'               => 'Подпись',
 'prefs-dateformat'              => 'Формат даты',
 'prefs-timeoffset'              => 'Смещение времени',
-'prefs-advancedediting'         => 'Расширенные опции',
-'prefs-advancedrc'              => 'Расширенные опции',
-'prefs-advancedrendering'       => 'Расширенные опции',
-'prefs-advancedsearchoptions'   => 'Расширенные опции',
-'prefs-advancedwatchlist'       => 'Расширенные опции',
+'prefs-advancedediting'         => 'Расширенные настройки',
+'prefs-advancedrc'              => 'Расширенные настройки',
+'prefs-advancedrendering'       => 'Расширенные настройки',
+'prefs-advancedsearchoptions'   => 'Расширенные настройки',
+'prefs-advancedwatchlist'       => 'Расширенные настройки',
 'prefs-display'                 => 'Настройки отображения',
 'prefs-diffs'                   => 'Разницы версий',
 
@@ -1845,7 +1846,7 @@ PICT # различные
 'specialloguserlabel'  => 'Участник:',
 'speciallogtitlelabel' => 'Заголовок:',
 'log'                  => 'Журналы',
-'all-logs-page'        => 'Все открытые журналы',
+'all-logs-page'        => 'Все доступные журналы',
 'alllogstext'          => 'Общий список журналов сайта {{SITENAME}}.
 Вы можете отфильтровать результаты по типу журнала, имени участника (учитывается регистр) или затронутой странице (также учитывается регистр).',
 'logempty'             => 'Подходящие записи в журнале отсутствуют.',
@@ -1878,8 +1879,9 @@ PICT # различные
 'special-categories-sort-abc'   => 'упорядочить по алфавиту',
 
 # Special:DeletedContributions
-'deletedcontributions'       => 'Удалённый вклад участника',
-'deletedcontributions-title' => 'Удалённый вклад',
+'deletedcontributions'             => 'Удалённый вклад участника',
+'deletedcontributions-title'       => 'Удалённый вклад',
+'sp-deletedcontributions-contribs' => 'вклад',
 
 # Special:LinkSearch
 'linksearch'       => 'Внешние ссылки',
@@ -2689,6 +2691,7 @@ $1',
 'mediawarning'         => "'''Внимание''': этот файл может содержать вредоносный программный код, выполнение которого способно подвергнуть риску вашу систему. <hr />",
 'imagemaxsize'         => "Ограничение на размер изображения:<br />''(для страницы описания файла)''",
 'thumbsize'            => 'Размер уменьшенной версии изображения:',
+'widthheight'          => '$1 × $2',
 'widthheightpage'      => '$1 × $2, $3 {{PLURAL:$3|страница|страницы|страниц}}',
 'file-info'            => '(размер файла: $1, MIME-тип: $2)',
 'file-info-size'       => '($1 × $2 пикселов, размер файла: $3, MIME-тип: $4)',

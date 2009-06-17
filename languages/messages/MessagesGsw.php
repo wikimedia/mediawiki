@@ -261,7 +261,28 @@ $messages = array(
 'faqpage'        => 'Project:FAQ',
 
 # Vector skin
-'vector-view-view' => 'Läse',
+'vector-action-addsection'   => 'Abschnitt zuefiege',
+'vector-action-delete'       => 'Lesche',
+'vector-action-move'         => 'Verschiebe',
+'vector-action-protect'      => 'Schitze',
+'vector-action-undelete'     => 'Widerhärstelle',
+'vector-action-unprotect'    => 'Frej gee',
+'vector-namespace-category'  => 'Kategorii',
+'vector-namespace-help'      => 'Hilfssyte',
+'vector-namespace-image'     => 'Datei',
+'vector-namespace-main'      => 'Syte',
+'vector-namespace-media'     => 'Mediesyte',
+'vector-namespace-mediawiki' => 'Syschtemnochricht',
+'vector-namespace-project'   => 'Projäktsyte',
+'vector-namespace-special'   => 'Spezialsyte',
+'vector-namespace-talk'      => 'Diskussion',
+'vector-namespace-template'  => 'Vorlag',
+'vector-namespace-user'      => 'Benutzersyte',
+'vector-view-create'         => 'Aalege',
+'vector-view-edit'           => 'Bearbeite',
+'vector-view-history'        => 'Versionsgschicht',
+'vector-view-view'           => 'Läse',
+'vector-view-viewsource'     => 'Quälltext aaluege',
 
 # Metadata in edit box
 'metadata_help' => 'Metadate:',
@@ -1697,8 +1718,9 @@ Lueg au d Lischt vu dr [[Special:WantedCategories|gwinschte Kategorie]].',
 'special-categories-sort-abc'   => 'Sortierig no Alfabet',
 
 # Special:DeletedContributions
-'deletedcontributions'       => 'Gleschti Bytreg',
-'deletedcontributions-title' => 'Gleschti Bytreg',
+'deletedcontributions'             => 'Gleschti Bytreg',
+'deletedcontributions-title'       => 'Gleschti Bytreg',
+'sp-deletedcontributions-contribs' => 'Byyträg',
 
 # Special:LinkSearch
 'linksearch'       => 'Netzgleicher',

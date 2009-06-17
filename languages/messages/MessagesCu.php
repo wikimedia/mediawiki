@@ -290,6 +290,7 @@ $messages = array(
 'searchresults'            => 'иска́ниꙗ ито́гъ',
 'searchprofile-images'     => 'дѣ́ла',
 'search-result-size'       => '$1 ({{PLURAL:$2|$2 сло́во|$2 сло́ва|$2 словє́съ}})',
+'search-redirect'          => '(прѣнаправлє́ниѥ $1)',
 'search-interwiki-caption' => 'ро́дьствьна опꙑтьствова́ниꙗ',
 'searchall'                => 'вьсꙗ́',
 'powersearch'              => 'ищи́',
@@ -361,7 +362,7 @@ $messages = array(
 'fileuploadsummary' => 'опьса́ниѥ:',
 'successfulupload'  => 'дѣ́ло положєно ѥ́стъ',
 'uploadedimage'     => '⁖ [[$1]] ⁖ положє́нъ ѥ́стъ',
-'watchthisupload'   => 'си страни́цѧ блюдє́ниѥ',
+'watchthisupload'   => 'си дѣ́ла блюдє́ниѥ',
 
 # Special:ListFiles
 'imgfile'        => 'дѣ́ло',
@@ -495,10 +496,11 @@ $messages = array(
 'blanknamespace' => '(гла́вьно)',
 
 # Contributions
-'contributions' => 'по́льꙃєватєлꙗ добродѣꙗ́ниꙗ',
-'mycontris'     => 'моꙗ́ добродѣꙗ́ниꙗ',
-'contribsub2'   => 'по́льꙃєватєлꙗ и́мѧ ⁖ $1 ⁖ ѥ́стъ ($2)',
-'uctop'         => '(послѣ́дьнꙗ мѣ́на)',
+'contributions'       => 'по́льꙃєватєлꙗ добродѣꙗ́ниꙗ',
+'contributions-title' => 'по́льꙃєватєлꙗ ⁖ $1 ⁖ добродѣꙗ́ниꙗ',
+'mycontris'           => 'моꙗ́ добродѣꙗ́ниꙗ',
+'contribsub2'         => 'по́льꙃєватєлꙗ и́мѧ ⁖ $1 ⁖ ѥ́стъ ($2)',
+'uctop'               => '(послѣ́дьнꙗ мѣ́на)',
 
 'sp-contributions-blocklog' => 'ꙁаграждє́ниꙗ їсторі́ꙗ',
 'sp-contributions-deleted'  => 'пони́чьжєнꙑ добродѣꙗ́ниꙗ',

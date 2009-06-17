@@ -1872,8 +1872,9 @@ $1",
 'special-categories-sort-abc'   => 'сартаваць паводле альфабэту',
 
 # Special:DeletedContributions
-'deletedcontributions'       => 'Выдалены ўнёсак удзельніка',
-'deletedcontributions-title' => 'Выдалены ўнёсак удзельніка',
+'deletedcontributions'             => 'Выдалены ўнёсак удзельніка',
+'deletedcontributions-title'       => 'Выдалены ўнёсак удзельніка',
+'sp-deletedcontributions-contribs' => 'унёсак',
 
 # Special:LinkSearch
 'linksearch'       => 'Вонкавыя спасылкі',
