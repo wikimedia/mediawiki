@@ -30,7 +30,7 @@ $rtl = false;
 
 /**
  * Should all nouns (not just proper ones) be capitalized?
- * Enabling this property will add the capitalizeAllNouns class to the <body> tag
+ * Enabling this property will add the capitalize_all_nouns class to the <body> tag
  */
 $capitalizeAllNouns = false;
 
