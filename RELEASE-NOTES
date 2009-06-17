@@ -186,6 +186,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 19170) Special:Version should follow the content language direction
 * (bug 19160) maintenance/purgeOldText.inc is now compatible with PostgreSQL
 * Fixed performance regression in "bad image list" feature
+* Show user preference 'Use live preview' if $wgLivePreview is enabled only
 
 == API changes in 1.16 ==
 
