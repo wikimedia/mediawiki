@@ -48,7 +48,7 @@ function wfSpecialLinkSearch( $par ) {
 
 	$self = Title::makeTitle( NS_SPECIAL, 'Linksearch' );
 
-	$wgOut->addWikiText( wfMsg( 'linksearch-text', '<nowiki>' . $wgLang->commaList( $wgUrlProtocols) . '</nowiki>' ) );
+	$wgOut->addWikiMsg( 'linksearch-text', '<nowiki>' . $wgLang->commaList( $wgUrlProtocols ) . '</nowiki>' );
 	$s =	Xml::openElement( 'form', array( 'id' => 'mw-linksearch-form', 'method' => 'get', 'action' => $GLOBALS['wgScript'] ) ) .
 		Xml::hidden( 'title', $self->getPrefixedDbKey() ) .
 		'<fieldset>' .
@@ -164,7 +164,7 @@ class LinkSearchPage extends QueryPage {
 		global $wgOut;
 		list( $this->mMungedQuery, $clause ) = LinkSearchPage::mungeQuery( $this->mQuery, $this->mProt );
 		if( $this->mMungedQuery === false ) {
-			$wgOut->addWikiText( wfMsg( 'linksearch-error' ) );
+			$wgOut->addWikiMsg( 'linksearch-error' );
 		} else {
 			// For debugging
 			// Generates invalid xhtml with patterns that contain --
