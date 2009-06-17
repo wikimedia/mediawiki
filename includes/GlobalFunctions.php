@@ -2809,16 +2809,12 @@ function wfForeignMemcKey( $db, $prefix /*, ... */ ) {
  * Get an ASCII string identifying this wiki
  * This is used as a prefix in memcached keys
  */
-function wfWikiID( $db = null ) {
-	if( $db instanceof Database ) {
-		return $db->getWikiID();
-	} else {
+function wfWikiID() {
 	global $wgDBprefix, $wgDBname;
-		if ( $wgDBprefix ) {
-			return "$wgDBname-$wgDBprefix";
-		} else {
-			return $wgDBname;
-		}
+	if ( $wgDBprefix ) {
+		return "$wgDBname-$wgDBprefix";
+	} else {
+		return $wgDBname;
 	}
 }
 

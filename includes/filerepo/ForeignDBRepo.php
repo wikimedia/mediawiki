@@ -44,6 +44,21 @@ class ForeignDBRepo extends LocalRepo {
 		return $this->hasSharedCache;
 	}
 
+	/**
+	 * Get a key on the primary cache for this repository.
+	 * Returns false if the repository's cache is not accessible at this site. 
+	 * The parameters are the parts of the key, as for wfMemcKey().
+	 */
+	function getSharedCacheKey( /*...*/ ) {
+		if ( $this->hasSharedCache() ) {
+			$args = func_get_args();
+			array_unshift( $args, $this->dbName, $this->tablePrefix );
+			return call_user_func_array( 'wfForeignMemcKey', $args );
+		} else {
+			return false;
+		}
+	}
+
 	function store( $srcPath, $dstZone, $dstRel, $flags = 0 ) {
 		throw new MWException( get_class($this) . ': write operations are not supported' );
 	}

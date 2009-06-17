@@ -83,17 +83,24 @@ class LocalRepo extends FSRepo {
 			$title = Title::makeTitle( NS_FILE, $title->getText() );
 		}
 
-		$memcKey = $this->getMemcKey( "image_redirect:" . md5( $title->getPrefixedDBkey() ) );
-		$cachedValue = $wgMemc->get( $memcKey );
-		if( $cachedValue ) {
-			return Title::newFromDbKey( $cachedValue );
-		} elseif( $cachedValue == ' ' ) { # FIXME: ugly hack, but BagOStuff caching seems to be weird and return false if !cachedValue, not only if it doesn't exist
-			return false;
+		$memcKey = $this->getSharedCacheKey( 'image_redirect', md5( $title->getPrefixedDBkey() ) );
+		if ( $memcKey === false ) {
+			$memcKey = $this->getLocalCacheKey( 'image_redirect', md5( $title->getPrefixedDBkey() ) );
+			$expiry = 300; // no invalidation, 5 minutes
+		} else {
+			$expiry = 86400; // has invalidation, 1 day
 		}
+		$cachedValue = $wgMemc->get( $memcKey );
+		if ( $cachedValue === ' '  || $cachedValue === '' ) {
+			// Does not exist
+			return false;
+		} elseif ( strval( $cachedValue ) !== '' ) {
+			return Title::newFromText( $cachedValue );
+		} // else $cachedValue is false or null: cache miss
 
 		$id = $this->getArticleID( $title );
 		if( !$id ) {
-			$wgMemc->set( $memcKey, " ", 9000 );
+			$wgMemc->set( $memcKey, " ", $expiry );
 			return false;
 		}
 		$dbr = $this->getSlaveDB();
@@ -104,12 +111,14 @@ class LocalRepo extends FSRepo {
 			__METHOD__
 		);
 
-		if( $row ) $targetTitle = Title::makeTitle( $row->rd_namespace, $row->rd_title );
-		$wgMemc->set( $memcKey, ($row ? $targetTitle->getPrefixedDBkey() : " "), 9000 );
-		if( !$row ) {
+		if( $row ) {
+			$targetTitle = Title::makeTitle( $row->rd_namespace, $row->rd_title );
+			$wgMemc->set( $memcKey, $targetTitle->getPrefixedDBkey(), $expiry );
+			return $targetTitle;
+		} else {
+			$wgMemc->set( $memcKey, '', $expiry );
 			return false;
 		}
-		return $targetTitle;
 	}
 
 
@@ -134,8 +143,10 @@ class LocalRepo extends FSRepo {
 		return $id;
 	}
 
-
-	
+	/**
+	 * Get an array or iterator of file objects for files that have a given 
+	 * SHA-1 content hash.
+	 */
 	function findBySha1( $hash ) {
 		$dbr = $this->getSlaveDB();
 		$res = $dbr->select(
@@ -174,4 +185,42 @@ class LocalRepo extends FSRepo {
 		$res->free();
 		return $result;
 	}
+
+	/**
+	 * Get a connection to the slave DB
+	 */
+	function getSlaveDB() {
+		return wfGetDB( DB_SLAVE );
+	}
+
+	/**
+	 * Get a connection to the master DB
+	 */
+	function getMasterDB() {
+		return wfGetDB( DB_MASTER );
+	}
+
+	/**
+	 * Get a key on the primary cache for this repository.
+	 * Returns false if the repository's cache is not accessible at this site. 
+	 * The parameters are the parts of the key, as for wfMemcKey().
+	 */
+	function getSharedCacheKey( /*...*/ ) {
+		$args = func_get_args();
+		return call_user_func_array( 'wfMemcKey', $args );
+	}
+
+	/**
+	 * Invalidates image redirect cache related to that image
+	 *
+	 * @param Title $title Title of image
+	 */	
+	function invalidateImageRedirect( $title ) {
+		global $wgMemc;
+		$memcKey = $this->getSharedCacheKey( 'image_redirect', md5( $title->getPrefixedDBkey() ) );
+		if ( $memcKey ) {
+			$wgMemc->delete( $memcKey );
+		}
+	}
 }
+

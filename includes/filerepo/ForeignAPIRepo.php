@@ -114,7 +114,7 @@ class ForeignAPIRepo extends FileRepo {
 						'action' => 'query' ) ) );
 		
 		if( !isset( $this->mQueryCache[$url] ) ) {
-			$key = wfMemcKey( 'ForeignAPIRepo', 'Metadata', md5( $url ) );
+			$key = $this->getLocalCacheKey( 'ForeignAPIRepo', 'Metadata', md5( $url ) );
 			$data = $wgMemc->get( $key );
 			if( !$data ) {
 				$data = Http::get( $url );
@@ -176,7 +176,7 @@ class ForeignAPIRepo extends FileRepo {
 			return $this->getThumbUrl( $name, $width, $height );
 		}
 		
-		$key = wfMemcKey( 'ForeignAPIRepo', 'ThumbUrl', $name );
+		$key = $this->getLocalCacheKey( 'ForeignAPIRepo', 'ThumbUrl', $name );
 		if ( $thumbUrl = $wgMemc->get($key) ) {
 			wfDebug("Got thumb from local cache. $thumbUrl \n");
 			return $thumbUrl;

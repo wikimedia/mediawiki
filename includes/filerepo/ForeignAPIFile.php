@@ -162,13 +162,13 @@ class ForeignAPIFile extends File {
 	function purgeDescriptionPage() {
 		global $wgMemc, $wgContLang;
 		$url = $this->repo->getDescriptionRenderUrl( $this->getName(), $wgContLang->getCode() );
-		$key = wfMemcKey( 'RemoteFileDescription', 'url', md5($url) );
+		$key = $this->repo->getLocalCacheKey( 'RemoteFileDescription', 'url', md5($url) );
 		$wgMemc->delete( $key );
 	}
 	
 	function purgeThumbnails() {
 		global $wgMemc;
-		$key = wfMemcKey( 'ForeignAPIRepo', 'ThumbUrl', $this->getName() );
+		$key = $this->repo->getLocalCacheKey( 'ForeignAPIRepo', 'ThumbUrl', $this->getName() );
 		$wgMemc->delete( $key );
 		$files = $this->getThumbnails();
 		$dir = $this->getThumbPath( $this->getName() );

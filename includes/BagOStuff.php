@@ -191,7 +191,7 @@ class HashBagOStuff extends BagOStuff {
 	}
 
 	function get($key) {
-		if(!$this->bag[$key])
+		if( !isset( $this->bag[$key] ) )
 			return false;
 		if($this->_expire($key))
 			return false;
@@ -203,7 +203,7 @@ class HashBagOStuff extends BagOStuff {
 	}
 
 	function delete($key,$time=0) {
-		if(!$this->bag[$key])
+		if( !isset( $this->bag[$key] ) )
 			return false;
 		unset($this->bag[$key]);
 		return true;
