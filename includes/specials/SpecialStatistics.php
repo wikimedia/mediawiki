@@ -56,7 +56,7 @@ class SpecialStatistics extends SpecialPage {
 			$this->doRawOutput();
 		}
 
-		$text = Xml::openElement( 'table', array( 'class' => 'mw-statistics-table' ) );
+		$text = Xml::openElement( 'table', array( 'class' => 'wikitable mw-statistics-table' ) );
 
 		# Statistic - pages
 		$text .= $this->getPageStats();		

@@ -32,16 +32,9 @@ div#mw-js-message {
 /**
  * File histories
  */
-table.filehistory {
-	border:1px solid #ccc;
-	border-collapse:collapse;
-}
-
 table.filehistory th,
 table.filehistory td {
-	padding: 0 0.2em 0 0.2em;
 	vertical-align:top;
-	border:1px solid #ccc;
 }
 table.filehistory th {
 	text-align: left;
@@ -406,30 +399,12 @@ td.os-suggest-result-hl {
 	font-weight: bold;
 }
 
-/*
- * Special:ListGroupRights styling
- * Special:Statistics styling 
- * Special:Tags styling 
-*/
-
-table.mw-listgrouprights-table,
-table.mw-statistics-table,
-table.mw-tags-table {
-	border: 1px solid #ccc;
-	border-collapse: collapse;
-}
-
+/* Special:ListGroupRights styling */
 table.mw-listgrouprights-table tr  {
 	vertical-align: top;
 }
 
-table.mw-listgrouprights-table td, table.mw-listgrouprights-table th,
-table.mw-statistics-table td, table.mw-statistics-table th,
-table.mw-tags-table td, table.mw-tags-table th {
-	padding: 0.5em 0.2em 0.5em 0.2em;
-	border: 1px solid #ccc;
-}
-
+/* Special:Statistics styling */
 td.mw-statistics-numbers {
 	text-align: right;
 }

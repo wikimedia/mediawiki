@@ -33,7 +33,7 @@ class SpecialListGroupRights extends SpecialPage {
 		$this->outputHeader();
 
 		$wgOut->addHTML(
-			Xml::openElement( 'table', array( 'class' => 'mw-listgrouprights-table' ) ) .
+			Xml::openElement( 'table', array( 'class' => 'wikitable mw-listgrouprights-table' ) ) .
 				'<tr>' .
 					Xml::element( 'th', null, wfMsg( 'listgrouprights-group' ) ) .
 					Xml::element( 'th', null, wfMsg( 'listgrouprights-rights' ) ) .

@@ -102,7 +102,7 @@ class SpecialVersion extends SpecialPage {
 		wfRunHooks( 'SoftwareInfo', array( &$software ) );
 
 		$out = Xml::element( 'h2', array( 'id' => 'mw-version-software' ), wfMsg( 'version-software' ) ) .
-			   Xml::openElement( 'table', array( 'id' => 'sv-software' ) ) .
+			   Xml::openElement( 'table', array( 'class' => 'wikitable', 'id' => 'sv-software' ) ) .
 				"<tr>
 					<th>" . wfMsg( 'version-software-product' ) . "</th>
 					<th>" . wfMsg( 'version-software-version' ) . "</th>
@@ -174,7 +174,7 @@ class SpecialVersion extends SpecialPage {
 		wfRunHooks( 'SpecialVersionExtensionTypes', array( &$this, &$extensionTypes ) );
 
 		$out = Xml::element( 'h2', array( 'id' => 'mw-version-ext' ), wfMsg( 'version-extensions' ) ) .
-			Xml::openElement( 'table', array( 'id' => 'sv-ext' ) );
+			Xml::openElement( 'table', array( 'class' => 'wikitable', 'id' => 'sv-ext' ) );
 
 		foreach ( $extensionTypes as $type => $text ) {
 			if ( isset ( $wgExtensionCredits[$type] ) && count ( $wgExtensionCredits[$type] ) ) {
@@ -291,7 +291,7 @@ class SpecialVersion extends SpecialPage {
 			ksort( $myWgHooks );
 
 			$ret = Xml::element( 'h2', array( 'id' => 'mw-version-hooks' ), wfMsg( 'version-hooks' ) ) .
-				Xml::openElement( 'table', array( 'id' => 'sv-hooks' ) ) .
+				Xml::openElement( 'table', array( 'class' => 'wikitable', 'id' => 'sv-hooks' ) ) .
 				"<tr>
 					<th>" . wfMsg( 'version-hook-name' ) . "</th>
 					<th>" . wfMsg( 'version-hook-subscribedby' ) . "</th>
