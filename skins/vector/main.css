@@ -525,6 +525,7 @@ body.rtl div#actions {
 	div#actions > div.menu > ul > li > a {
 		display: block;
 		padding-top: 0.25em;
+		padding-bottom: 0.25em;
 		padding-left: 0.5em;
 		padding-right: 0.5em;
 	}
@@ -601,6 +602,7 @@ body.rtl div#variants {
 	div#variants > div.menu > ul > li > a {
 		display: block;
 		padding-top: 0.25em;
+		padding-bottom: 0.25em;
 		padding-left: 0.5em;
 		padding-right: 0.5em;
 	}
@@ -816,7 +818,12 @@ hr {
 }
 
 /* Structural Elements */
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
 	color: black;
 	background: none;
 	font-weight: normal;
@@ -830,7 +837,10 @@ h1 { font-size: 188%; }
 h1 .editsection { font-size: 53%; }
 h2 { font-size: 150%; }
 h2 .editsection { font-size: 67%; }
-h3, h4, h5, h6 {
+h3,
+h4,
+h5,
+h6 {
 	border-bottom: none;
 	font-weight: bold;
 }
@@ -881,44 +891,44 @@ pre {
 	background-color: #f9f9f9;
 	line-height: 1.1em;
 }
-ul {
+div#content ul {
 	line-height: 1.5em;
 	list-style-type: square;
 	margin: .3em 0 0 1.5em;
 	padding: 0;
 	list-style-image: url(images/bullet-icon.png);
 }
-body.rtl ul {
+body.rtl div#content ul {
 	margin-left: 0;
 	margin-right: 1.5em;
 }
-ol {
+div#content ol {
 	line-height: 1.5em;
 	margin: .3em 0 0 3.2em;
 	padding: 0;
 	list-style-image: none;
 }
-body.rtl ol {
+body.rtl div#content ol {
 	margin-left: 0;
 	margin-right: 2.4em;
 }
-li {
+div#content li {
 	margin-bottom: .1em;
 }
-dt {
+div#content dt {
 	font-weight: bold;
 	margin-bottom: .1em;
 }
-dl {
+div#content dl {
 	margin-top: .2em;
 	margin-bottom: .5em;
 }
-dd {
+div#content dd {
 	line-height: 1.5em;
 	margin-left: 2em;
 	margin-bottom: .1em;
 }
-body.rtl dd {
+body.rtl div#content dd {
 	margin-left: 0;
 	margin-right: 1.6em;
 }
@@ -939,20 +949,20 @@ body.rtl div#content ul#filetoc {
 }
 
 /* Tables */
-table {
+div#content table {
 	font-size: 100%;
 	color: black;
 	/* we don't want the bottom borders of <h2>s to be visible through
 	 * floated tables */
 	background-color: white;
 }
-fieldset table {
+div#content fieldset table {
 	/* but keep table layouts in forms clean... */
 	background: none;
 }
 
 /* Forms */
-fieldset {
+div#content fieldset {
 	border: 1px solid #2f6fab;
 	margin: 1em 0 1em 0;
 	padding: 0 1em 1em;
@@ -962,19 +972,19 @@ fieldset {
 		margin: 0 0 0.5em 0;
 		padding: 0 0.5em 0.5em;
 	}
-legend {
+div#content legend {
 	padding: .5em;
 	font-size: 95%;
 }
-form {
+div#content form {
 	border: none;
 	margin: 0;
 }
-textarea {
+div#content textarea {
 	width: 100%;
 	padding: .1em;
 }
-select {
+div#content select {
 	vertical-align: top;
 }
 
