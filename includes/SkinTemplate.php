@@ -270,7 +270,7 @@ class SkinTemplate extends Skin {
 		$tpl->setRef( 'lang', $wgContLanguageCode );
 		$tpl->set( 'dir', $wgContLang->isRTL() ? 'rtl' : 'ltr' );
 		$tpl->set( 'rtl', $wgContLang->isRTL() );
-		$tpl->set( 'capitalizeallnouns', $wgLang->capitalizeAllNouns() ? ' capitalize_all_nouns' : '' );
+		$tpl->set( 'capitalizeallnouns', $wgLang->capitalizeAllNouns() ? ' capitalize-all-nouns' : '' );
 		$tpl->set( 'langname', $wgContLang->getLanguageName( $wgContLanguageCode ) );
 		$tpl->set( 'showjumplinks', $wgUser->getOption( 'showjumplinks' ) );
 		$tpl->set( 'username', $wgUser->isAnon() ? NULL : $this->username );
