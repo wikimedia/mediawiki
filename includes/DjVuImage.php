@@ -251,7 +251,7 @@ class DjVuImage {
 			wfProfileOut( 'djvutxt' );
 			if( $retval == 0) {
 				$txt = htmlspecialchars($txt);
-				$txt = preg_replace( "/\((page\s\d*\s\d*\s\d*\s\d*\s*\&quot;([^<]*?)\&quot;\s*|)\)/s", "<PAGE value=\"$2\" />", $txt  );
+				$txt = preg_replace( "/\((page\s[\d-]*\s[\d-]*\s[\d-]*\s[\d-]*\s*\&quot;([^<]*?)\&quot;\s*|)\)/s", "<PAGE value=\"$2\" />", $txt  );
 				$txt = "<DjVuTxt>\n<HEAD></HEAD>\n<BODY>\n" . $txt . "</BODY>\n</DjVuTxt>\n";
 				$xml = preg_replace( "/<DjVuXML>/", "<mw-djvu><DjVuXML>", $xml );
 				$xml = $xml . $txt. '</mw-djvu>' ;
