@@ -679,25 +679,21 @@ body.rtl div#personal {
 /* Preferences */
 #preftoc {
 	/* Tabs */
-	width: 100%;
+	float: left;
 	clear: both;
 	margin: 0;
 	padding: 0;
-	padding-left: 1px;
 	height: 2.25em;
 	background-image: url(images/preferences-break.png);
 	background-position: bottom left;
 	background-repeat: no-repeat;
 }
 body.rtl #preftoc {
-	padding-left: 0;
-	padding-right: 1px;
 	background-position: bottom right;
 }
 	#preftoc li {
 		/* Tab */
 		float: left;
-		position: relative;
 		margin: 0;
 		padding: 0;
 		padding-right: 1px;
@@ -709,10 +705,13 @@ body.rtl #preftoc {
 		background-position: bottom right;
 		background-repeat: no-repeat;
 	}
+	#preftoc li:first-child {
+		margin-left: 1px;
+	}
 	body.rtl #preftoc li {
 		float: right;
-		padding-left: 1px;
 		padding-right: 0;
+		padding-left: 1px;
 		background-position: bottom left;
 	}
 	#preftoc a,
@@ -739,11 +738,10 @@ body.rtl #preftoc {
 		text-decoration: none;
 	}
 #preferences {
+	float: left;
+	width: 100%;
 	margin: 0;
 	clear: both;
-	padding: 1em;
-	padding-top: 0;
-	margin-top: -0.5em;
 	border: solid 1px #cccccc;
 	background-color: #f9f9f9;
 	background-image: url(images/preferences-base.png);
@@ -751,7 +749,7 @@ body.rtl #preftoc {
 #preferences > fieldset.prefsection {
 	border: none;
 	padding: 0;
-	margin: 0;
+	margin: 1em;
 }
 #preferences > fieldset.prefsection > fieldset {
 	border: none;
@@ -771,6 +769,12 @@ body.rtl #preftoc {
 	font-size: x-small;
 	padding: .2em 2em;
 	color: #666666;
+}
+#preferences div.mw-prefs-buttons {
+	padding: 1em;
+}
+#preferences div.mw-prefs-buttons input {
+	margin-right: 0.25em;
 }
 
 /*
