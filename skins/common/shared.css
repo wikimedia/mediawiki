@@ -137,9 +137,9 @@ div.searchresult {
 	padding-left: 0.25em;
 }
 .mw-search-formheader div.search-types > ul {
-	margin: 0;
-	padding: 0;
-	list-style: none;
+	margin: 0 !important;
+	padding: 0 !important;
+	list-style: none !important;
 }
 .mw-search-formheader div.search-types > ul > li {
 	float: left;
@@ -174,15 +174,14 @@ div.searchresult {
 }
 fieldset#mw-searchoptions {
 	margin: 0;
-	padding: 0;
-	padding-left: 1em;
-	padding-right: 1em;
-	padding-bottom: 0.5em;
-	padding-top: 0.5em;
+	padding-left: 0.75em !important;
+	padding-right: 0.75em !important;
+	padding-bottom: 0.5em !important;
+	padding-top: 0.5em !important;
 	border: none;
 	background-color: #f9f9f9;
-	border: 1px solid silver;
-	border-top: none;
+	border: 1px solid silver !important;
+	border-top: none !important;
 }
 fieldset#mw-searchoptions > legend {
 	display: none;

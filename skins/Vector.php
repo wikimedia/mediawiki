@@ -35,10 +35,10 @@ class SkinVector extends SkinTemplate {
 	 * @param object $out Output page to add styles to
 	 */
 	public function setupSkinUserCss( OutputPage $out ) {
-		parent::setupSkinUserCss( $out );
-
 		// Append to the default screen common & print styles...
 		$out->addStyle( 'vector/main.css', 'screen' );
+		// Add common styles
+		parent::setupSkinUserCss( $out );
 	}
 
 	/**
