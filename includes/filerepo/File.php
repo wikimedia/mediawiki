@@ -1077,7 +1077,7 @@ abstract class File {
 		if ( $renderUrl ) {
 			if ( $this->repo->descriptionCacheExpiry > 0 ) {
 				wfDebug("Attempting to get the description from cache...");
-				$key = $this->getLocalCacheKey( 'RemoteFileDescription', 'url', $wgContLang->getCode(), 
+				$key = $this->repo->getLocalCacheKey( 'RemoteFileDescription', 'url', $wgContLang->getCode(), 
 									$this->getName() );
 				$obj = $wgMemc->get($key);
 				if ($obj) {
