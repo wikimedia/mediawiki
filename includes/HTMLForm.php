@@ -601,13 +601,18 @@ class HTMLSelectField extends HTMLFormField {
 	}
 	
 	function getInputHTML( $value ) {		
-		$select = new XmlSelect( $this->mName, $this->mID, $value );
+		$select = new XmlSelect( $this->mName, $this->mID, strval($value) );
+		
+		// If one of the options' 'name' is int(0), it is automatically selected.
+		//  because PHP sucks and things int(0) == 'some string'.
+		//  Working around this by forcing all of them to strings.
+		$options = array_map( 'strval', $this->mParams['options'] );
 		
 		if (!empty($this->mParams['disabled'])) {
 			$select->setAttribute( 'disabled', 'disabled' );
 		}
 		
-		$select->addOptions( $this->mParams['options'] );
+		$select->addOptions( $options );
 		
 		return $select->getHTML();
 	}
