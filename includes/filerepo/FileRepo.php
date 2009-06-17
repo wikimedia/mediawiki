@@ -545,15 +545,19 @@ abstract class FileRepo {
 
 	/**
 	 * Invalidates image redirect cache related to that image
-	 *
+	 * Doesn't do anything for repositories that don't support image redirects.
+	 * 
+	 * STUB
 	 * @param Title $title Title of image
 	 */	
-	function invalidateImageRedirect( $title ) {
-		global $wgMemc;
-		$memcKey = $this->getMemcKey( "image_redirect:" . md5( $title->getPrefixedDBkey() ) );
-		$wgMemc->delete( $memcKey );
-	}
+	function invalidateImageRedirect( $title ) {}
 	
+	/**
+	 * Get an array or iterator of file objects for files that have a given 
+	 * SHA-1 content hash.
+	 *
+	 * STUB
+	 */
 	function findBySha1( $hash ) {
 		return array();
 	}
@@ -574,16 +578,25 @@ abstract class FileRepo {
 		return wfMsg( 'shared-repo' ); 
 	}
 	
-	function getSlaveDB() {
-		return wfGetDB( DB_SLAVE );
+	/**
+	 * Get a key on the primary cache for this repository.
+	 * Returns false if the repository's cache is not accessible at this site. 
+	 * The parameters are the parts of the key, as for wfMemcKey().
+	 *
+	 * STUB
+	 */
+	function getSharedCacheKey( /*...*/ ) {
+		return false;
 	}
 
-	function getMasterDB() {
-		return wfGetDB( DB_MASTER );
+	/**
+	 * Get a key for this repo in the local cache domain. These cache keys are 
+	 * not shared with remote instances of the repo.
+	 * The parameters are the parts of the key, as for wfMemcKey().
+	 */
+	function getLocalCacheKey( /*...*/ ) {
+		$args = func_get_args();
+		array_unshift( $args, 'filerepo', $this->getName() );
+		return call_user_func_array( 'wfMemcKey', $args );
 	}
-
-	function getMemcKey( $key ) {
-		return wfWikiID( $this->getSlaveDB() ) . ":{$key}";
-	}
-
 }

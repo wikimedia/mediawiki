@@ -185,6 +185,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 18173) MediaWiki now fails when unable to determine a client IP
 * (bug 19170) Special:Version should follow the content language direction
 * (bug 19160) maintenance/purgeOldText.inc is now compatible with PostgreSQL
+* Fixed performance regression in "bad image list" feature
 
 == API changes in 1.16 ==
 

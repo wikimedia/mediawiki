@@ -133,11 +133,12 @@ class LocalFile extends File
 	}
 
 	/**
-	 * Get the memcached key
+	 * Get the memcached key for the main data for this file, or false if 
+	 * there is no access to the shared cache.
 	 */
 	function getCacheKey() {
 		$hashedName = md5($this->getName());
-		return wfMemcKey( 'file', $hashedName );
+		return $this->repo->getSharedCacheKey( 'file', $hashedName );
 	}
 
 	/**
@@ -590,8 +591,10 @@ class LocalFile extends File
 	function purgeHistory() {
 		global $wgMemc;
 		$hashedName = md5($this->getName());
-		$oldKey = wfMemcKey( 'oldfile', $hashedName );
-		$wgMemc->delete( $oldKey );
+		$oldKey = $this->getSharedCacheKey( 'oldfile', $hashedName );
+		if ( $oldKey ) {
+			$wgMemc->delete( $oldKey );
+		}
 	}
 
 	/**
