@@ -13,11 +13,15 @@ class ChangeTags {
 		$tags = explode( ',', $tags );
 		$displayTags = array();
 		foreach( $tags as $tag ) {
-			$displayTags[] = self::tagDescription( $tag );
+			$displayTags[] = Xml::tags( 'span',
+								array( 'class' => "mw-tag-marker mw-tag-marker-$tag" ),
+								self::tagDescription( $tag ) );
 			$classes[] = Sanitizer::escapeClass( "mw-tag-$tag" );
 		}
 
-		return array( '(' . implode( ', ', $displayTags ) . ')', $classes );
+		$markers = '(' . implode( ', ', $displayTags ) . ')';
+		$markers = Xml::tags( 'span', array( 'class' => 'mw-tag-markers' ), $markers );
+		return array( $markers, $classes );
 	}
 
 	static function tagDescription( $tag ) {
