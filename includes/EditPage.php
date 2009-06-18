@@ -103,7 +103,8 @@ class EditPage {
 		$this->editFormTextBeforeContent =
 		$this->editFormTextAfterWarn =
 		$this->editFormTextAfterTools =
-		$this->editFormTextBottom = "";
+		$this->editFormTextBottom =
+		$this->mPreloadText = "";
 	}
 	
 	function getArticle() {
@@ -200,6 +201,11 @@ class EditPage {
 		wfProfileOut( __METHOD__ );
 		return $text;
 	}
+	
+	/** Use this method before edit() to preload some text into the edit box */
+	public function setPreloadedText( $text ) {
+		$this->mPreloadText = $text;
+	}
 
 	/**
 	 * Get the contents of a page from its title and remove includeonly tags
@@ -208,7 +214,9 @@ class EditPage {
 	 * @return string The contents of the page.
 	 */
 	protected function getPreloadedText( $preload ) {
-		if ( $preload === '' ) {
+		if ( !empty($this->mPreloadText) ) {
+			return $this->mPreloadText;
+		} elseif ( $preload === '' ) {
 			return '';
 		} else {
 			$preloadTitle = Title::newFromText( $preload );
