@@ -197,7 +197,7 @@ class UserrightsPage extends SpecialPage {
 		$newGroups = $oldGroups;
 
 		// Run a hook beforehand to allow extensions to modify the added/removed groups
-		wfRunHook( 'UserrightsSaveUserGroups', array( &$user, $oldGroups, &$add, &$remove, $reason ) );
+		wfRunHooks( 'UserrightsSaveUserGroups', array( &$user, $oldGroups, &$add, &$remove, $reason ) );
 
 		// remove then add groups
 		if( $remove ) {
