@@ -1007,7 +1007,7 @@ function do_filearchive_indices_update() {
 	$info = $wgDatabase->indexInfo( 'filearchive', 'fa_user_timestamp', __METHOD__ );
 	if ( !$info )
 	{	
-		dbsource( archive( 'patch-filearhive-user-index.sql' ) );
+		dbsource( archive( 'patch-filearchive-user-index.sql' ) );
 		wfOut( "...filearchive indices updated\n" );
 	}
 }
