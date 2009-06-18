@@ -1786,7 +1786,6 @@ PICT # විවිධ.
 'listgrouprights-rights'          => 'හිමිකම්',
 'listgrouprights-helppage'        => 'Help:කාණ්ඩ හිමිකම්',
 'listgrouprights-members'         => '(පරිශිලකයන් ලැයිස්තුව)',
-'listgrouprights-right-display'   => '$1 ($2)',
 'listgrouprights-addgroup'        => '{{PLURAL:$2|කණ්ඩායම|කණ්ඩායම්}} එක් කල හැක: $1',
 'listgrouprights-removegroup'     => '{{PLURAL:$2|කණ්ඩායම|කණ්ඩායම්}} ඉවත් කල හැක: $1',
 'listgrouprights-addgroup-all'    => 'සියළු කණ්ඩායම් එක් කල හැක',

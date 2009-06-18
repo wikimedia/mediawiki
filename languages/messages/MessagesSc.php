@@ -853,7 +853,6 @@ Ogni riga contiene i link al primo ed al secondo redirect, oltre alla prima riga
 
 # Special:ListGroupRights
 'listgrouprights-members'       => '(lista de is cumponentes)',
-'listgrouprights-right-display' => '$1 ($2)',
 
 # E-mail user
 'mailnologintext' => 'Devi fare il [[Special:UserLogin|login]]
