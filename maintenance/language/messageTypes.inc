@@ -335,6 +335,7 @@ $wgOptionalMessages = array(
 	'parentheses',
 	'autocomment-prefix',
 	'listgrouprights-right-display',
+	'listgrouprights-right-revoked',
 	'timezone-utc',
 	'whatlinkshere-backlink',
 	'recentchangeslinked-backlink',
