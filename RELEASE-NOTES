@@ -83,6 +83,10 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * DISPLAYTITLE now accepts a limited amount of wiki markup (the single-quote items)
 * Special:Search now could search terms in all variant-forms. ONLY apply on
   wikis with LanguageConverter
+* Add hook 'UserrightsGetCheckboxes' to give extensions the ability to modify
+  the arrangement of checkboxes on the Special:UserRights form
+* Add hook 'UserrightsSaveUserGroups' to give extensions the ability to modify
+  the groups being added and removed last-minute.
 
 === Bug fixes in 1.16 ===
 
@@ -187,6 +191,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 19160) maintenance/purgeOldText.inc is now compatible with PostgreSQL
 * Fixed performance regression in "bad image list" feature
 * Show user preference 'Use live preview' if $wgLivePreview is enabled only
+* (bug 17014) Blocked users can no longer use Special:UserRights if they do
+  not have the 'userrights' permission.
 
 == API changes in 1.16 ==
 
