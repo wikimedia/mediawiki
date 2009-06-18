@@ -1548,6 +1548,8 @@ $1",
 # Special:ListGroupRights
 'listgrouprights'                      => '權任一覽',
 'listgrouprights-summary'              => '此所列述，諸職所司也，各有異同。欲知其詳，請閱[[{{MediaWiki:Listgrouprights-helppage}}|此文]]。',
+'listgrouprights-key'                  => '* <span class="listgrouprights-granted">權授矣</span>
+* <span class="listgrouprights-revoked">權撤矣</span>',
 'listgrouprights-group'                => '組',
 'listgrouprights-rights'               => '權',
 'listgrouprights-helppage'             => 'Help:組權',
