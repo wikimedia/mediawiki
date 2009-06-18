@@ -683,8 +683,8 @@ body.rtl div#personal {
 	/* Tabs */
 	float: left;
 	clear: both;
-	margin: 0;
-	padding: 0;
+	margin: 0 !important;
+	padding: 0 !important;
 	height: 2.25em;
 	background-image: url(images/preferences-break.png);
 	background-position: bottom left;
