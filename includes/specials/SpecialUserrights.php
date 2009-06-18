@@ -55,6 +55,16 @@ class UserrightsPage extends SpecialPage {
 			$this->mTarget = $wgRequest->getVal( 'user' );
 		}
 
+		/*
+		 * If the user is blocked and they only have "partial" access
+		 * (e.g. they don't have the userrights permission), then don't
+		 * allow them to use Special:UserRights.
+		 */
+		if( $wgUser->isBlocked() && !$wgUser->isAllowed( 'userrights' ) ) {
+			$wgOut->blockedPage();
+			return;
+		}
+
 		if (!$this->mTarget) {
 			/*
 			 * If the user specified no target, and they can only
@@ -102,9 +112,9 @@ class UserrightsPage extends SpecialPage {
 						$this->mTarget,
 						$reason
 					);
-					
+
 					global $wgOut;
-					
+
 					$url = $this->getSuccessURL();
 					$wgOut->redirect( $url );
 					return;
@@ -117,7 +127,7 @@ class UserrightsPage extends SpecialPage {
 			$this->editUserGroupsForm( $this->mTarget );
 		}
 	}
-	
+
 	function getSuccessURL() {
 		return $this->getTitle( $this->mTarget )->getFullURL();
 	}
@@ -157,7 +167,7 @@ class UserrightsPage extends SpecialPage {
 		
 		$this->doSaveUserGroups( $user, $addgroup, $removegroup, $reason );
 	}
-	
+
 	/**
 	 * Save user groups changes in the database.
 	 *
@@ -185,6 +195,10 @@ class UserrightsPage extends SpecialPage {
 
 		$oldGroups = $user->getGroups();
 		$newGroups = $oldGroups;
+
+		// Run a hook beforehand to allow extensions to modify the added/removed groups
+		wfRunHook( 'UserrightsSaveUserGroups', array( &$user, $oldGroups, &$add, &$remove, $reason ) );
+
 		// remove then add groups
 		if( $remove ) {
 			$newGroups = array_diff($newGroups, $remove);
@@ -213,7 +227,7 @@ class UserrightsPage extends SpecialPage {
 		return array( $add, $remove );
 	}
 
-	
+
 	/**
 	 * Add a rights log entry for an action.
 	 */
@@ -425,7 +439,7 @@ class UserrightsPage extends SpecialPage {
 			$cache[$group] = User::makeGroupLinkHtml( $group, htmlspecialchars( User::getGroupName( $group ) ) );
 		return $cache[$group];
 	}
-	
+
 	/**
 	 * Returns an array of all groups that may be edited
 	 * @return array Array of groups that may be edited.
@@ -444,11 +458,11 @@ class UserrightsPage extends SpecialPage {
 		$allgroups = $this->getAllGroups();
 		$ret = '';
 
-		$column = 1;
-		$settable_col = '';
-		$unsettable_col = '';
+		# Put all column info into an associative array so that extensions can
+		# more easily manage it.
+		$columns = array( 'unchangeable' => array(), 'changeable' => array() );
 
-		foreach ($allgroups as $group) {
+		foreach( $allgroups as $group ) {
 			$set = in_array( $group, $usergroups );
 			# Should the checkbox be disabled?
 			$disabled = !(
@@ -459,50 +473,50 @@ class UserrightsPage extends SpecialPage {
 				($set && !$this->canAdd( $group )) ||
 				(!$set && !$this->canRemove( $group ) ) );
 
-			$attr = $disabled ? array( 'disabled' => 'disabled' ) : array();
-			$text = $irreversible
-				? wfMsgHtml( 'userrights-irreversible-marker', User::getGroupMember( $group ) )
-				: User::getGroupMember( $group );
-			$checkbox = Xml::checkLabel( $text, "wpGroup-$group",
-				"wpGroup-$group", $set, $attr );
-			$checkbox = $disabled ? Xml::tags( 'span', array( 'class' => 'mw-userrights-disabled' ), $checkbox ) : $checkbox;
+			$checkbox = array(
+				'set' => $set,
+				'disabled' => $disabled,
+				'irreversible' => $irreversible
+			);
 
-			if ($disabled) {
-				$unsettable_col .= "$checkbox<br />\n";
+			if( $disabled ) {
+				$columns['unchangeable'][$group] = $checkbox;
 			} else {
-				$settable_col .= "$checkbox<br />\n";
+				$columns['changeable'][$group] = $checkbox;
 			}
 		}
 
-		if ($column) {
-			$ret .=	Xml::openElement( 'table', array( 'border' => '0', 'class' => 'mw-userrights-groups' ) ) .
-				"<tr>
-";
-			if( $settable_col !== '' ) {
-				$ret .= xml::element( 'th', null, wfMsg( 'userrights-changeable-col' ) );
-			}
-			if( $unsettable_col !== '' ) {
-				$ret .= xml::element( 'th', null, wfMsg( 'userrights-unchangeable-col' ) );
-			}
-			$ret.= "</tr>
-				<tr>
-";
-			if( $settable_col !== '' ) {
-				$ret .=
-"					<td style='vertical-align:top;'>
-						$settable_col
-					</td>
-";
-			}
-			if( $unsettable_col !== '' ) {
-				$ret .=
-"					<td style='vertical-align:top;'>
-						$unsettable_col
-					</td>
-";
-			}
-			$ret .= Xml::closeElement( 'tr' ) . Xml::closeElement( 'table' );
+		# Run a hook to allow extensions to modify the column listing
+		wfRunHooks( 'UserrightsGroupCheckboxes', array( $usergroups, &$columns ) );
+
+		# Build the HTML table
+		$ret .=	Xml::openElement( 'table', array( 'border' => '0', 'class' => 'mw-userrights-groups' ) ) .
+			"<tr>\n";
+		foreach( $columns as $name => $column ) {
+			if( $column === array() )
+				continue;
+			$ret .= xml::element( 'th', null, wfMsg( 'userrights-' . $name . '-col' ) );
 		}
+		$ret.= "</tr>\n<tr>\n";
+		foreach( $columns as $column ) {
+			if( $column === array() )
+				continue;
+			$ret .= "\t<td style='vertical-align:top;'>\n";
+			foreach( $column as $group => $checkbox ) {
+				$attr = $checkbox['disabled'] ? array( 'disabled' => 'disabled' ) : array();
+				$text = $checkbox['irreversible']
+					? wfMsgHtml( 'userrights-irreversible-marker', User::getGroupMember( $group ) )
+					: User::getGroupMember( $group );
+				$checkboxHtml = Xml::checkLabel( $text, "wpGroup-" . $group,
+					"wpGroup-" . $group, $checkbox['set'], $attr );
+				$ret .= "\t\t" . ( $checkbox['disabled']
+					? Xml::tags( 'span', array( 'class' => 'mw-userrights-disabled' ), $checkboxHtml )
+					: $checkboxHtml
+				) . "<br />\n";
+			}
+			$ret .= "\t</td>\n";
+		}
+		$ret .= Xml::closeElement( 'tr' ) . Xml::closeElement( 'table' );
 
 		return $ret;
 	}

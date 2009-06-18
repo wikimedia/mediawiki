@@ -16,10 +16,10 @@ event
 hook
      A clump of code and data that should be run when an event happens. This can
      be either a function and a chunk of data, or an object and a method.
-     
+
 hook function
      The function part of a hook.
-     
+
 ==Rationale==
 
 Hooks allow us to decouple optionally-run code from code that is run for
@@ -54,17 +54,17 @@ email notification when an article is shown may add:
 
     function showAnArticle($article) {
         global $wgReverseTitle, $wgCapitalizeTitle, $wgNotifyArticle;
-	
+
 		if ($wgReverseTitle) {
 			wfReverseTitle($article);
 		}
-	
+
 		if ($wgCapitalizeTitle) {
 			wfCapitalizeTitle($article);
 		}
 
 		# code to actually show the article goes here
-	
+
 		if ($wgNotifyArticle) {
 			wfNotifyArticleShow($article));
 		}
@@ -87,7 +87,7 @@ We've cleaned up the code here by removing clumps of weird, infrequently used
 code and moving them off somewhere else. It's much easier for someone working
 with this code to see what's _really_ going on, and make changes or fix bugs.
 
-In addition, we can take all the code that deals with the little-used 
+In addition, we can take all the code that deals with the little-used
 title-reversing options (say) and put it in one place. Instead of having little
 title-reversing if-blocks spread all over the codebase in showAnArticle,
 deleteAnArticle, exportArticle, etc., we can concentrate it all in an extension
@@ -116,8 +116,8 @@ Having all this code related to the title-reversion option in one place means
 that it's easier to read and understand; you don't have to do a grep-find to see
 where the $wgReverseTitle variable is used, say.
 
-If the code is well enough isolated, it can even be excluded when not used -- 
-making for some slight savings in memory and load-up performance at runtime. 
+If the code is well enough isolated, it can even be excluded when not used --
+making for some slight savings in memory and load-up performance at runtime.
 Admins who want to have all the reversed titles can add:
 
 	require_once('extensions/ReverseTitle.php');
@@ -162,7 +162,7 @@ would result in the following code being executed when 'EventName' happened:
 	$object->someMethod($param1, $param2)
 	# object with method and data
 	$object->someMethod($someData, $param1, $param2)
-      
+
 Note that when an object is the hook, and there's no specified method, the
 default method called is 'onEventName'. For different events this would be
 different: 'onArticleSave', 'onUserLogin', etc.
@@ -183,13 +183,13 @@ Hooks can return three possible values:
                    should be shown to the user
   * false: the hook has successfully done the work necessary and the calling
            function should skip
-	
+
 The last result would be for cases where the hook function replaces the main
 functionality. For example, if you wanted to authenticate users to a custom
 system (LDAP, another PHP program, whatever), you could do:
 
 	$wgHooks['UserLogin'][] = array('ldapLogin', $ldapServer);
-  
+
 	function ldapLogin($username, $password) {
 		# log user into LDAP
 		return false;
@@ -199,7 +199,7 @@ Returning false makes less sense for events where the action is complete, and
 will normally be ignored.
 
 Note that none of the examples made use of create_function() as a way to
-attach a function to a hook. This is known to cause problems (notably with 
+attach a function to a hook. This is known to cause problems (notably with
 Special:Version), and should be avoided when at all possible.
 
 ==Using hooks==
@@ -207,7 +207,7 @@ Special:Version), and should be avoided when at all possible.
 A calling function or method uses the wfRunHooks() function to run the hooks
 related to a particular event, like so:
 
-	class Article { 
+	class Article {
 		# ...
 		function protect() {
 			global $wgUser;
@@ -217,7 +217,7 @@ related to a particular event, like so:
 			}
 		}
 	}
-						    
+
 wfRunHooks() returns true if the calling function should continue processing
 (the hooks ran OK, or there are no hooks to run), or false if it shouldn't (an
 error occurred, or one of the hooks handled the action already). Checking the
@@ -396,7 +396,7 @@ $revision: New Revision of the article
 
 'ArticleMergeComplete': after merging to article using Special:Mergehistory
 $targetTitle: target title (object)
-$destTitle: destination title (object) 
+$destTitle: destination title (object)
 
 'ArticlePageDataAfter': after loading data of an article from the database
 $article: article (object) whose data were loaded
@@ -420,7 +420,7 @@ $protect: boolean whether it was a protect or an unprotect
 $reason: Reason for protect
 $moveonly: boolean whether it was for move only or not
 
-'ArticlePurge': before executing "&action=purge" 
+'ArticlePurge': before executing "&action=purge"
 $article: article (object) to purge
 
 'ArticleRevisionVisiblitySet': called when changing visibility of one or more
@@ -503,7 +503,7 @@ rendered inline in wiki pages or galleries in category pages.
 
 'BeforeGalleryFindFile': before an image is fetched for a gallery
 &$gallery,: the gallery object
-&$nt: the image title 
+&$nt: the image title
 &$time: image timestamp
 
 'BeforePageDisplay': Prior to outputting a page
@@ -924,7 +924,7 @@ $paramArray: Array of parameters that corresponds to logging.log_params field.
 &$comment: string that corresponds to logging.log_comment database field, and
 	which is displayed in the UI.
 &$revert: string that is displayed in the UI, similar to $comment.
-$time: timestamp of the log entry (added in 1.12) 
+$time: timestamp of the log entry (added in 1.12)
 
 'LogPageValidTypes': action being logged.
 DEPRECATED: Use $wgLogTypes
@@ -950,8 +950,8 @@ $magicWords: array of strings
 $variableIDs: array of strings
 
 'MakeGlobalVariablesScript': called right before Skin::makeVariablesScript
-is executed   
-&$vars: variable (or multiple variables) to be added into the output   
+is executed
+&$vars: variable (or multiple variables) to be added into the output
 	of Skin::makeVariablesScript
 
 'MarkPatrolled': before an edit is marked patrolled
@@ -1032,8 +1032,8 @@ Hooks can alter or append to the array of URLs for search & suggestion formats.
 &$urls: array of associative arrays with Url element attributes
 
 'OutputPageBeforeHTML': a page has been processed by the parser and
-the resulting HTML is about to be displayed.  
-$parserOutput: the parserOutput (object) that corresponds to the page 
+the resulting HTML is about to be displayed.
+$parserOutput: the parserOutput (object) that corresponds to the page
 $text: the text that will be displayed, in HTML (string)
 
 'OutputPageCheckLastModified': when checking if the page has been modified
@@ -1074,7 +1074,7 @@ $hash: reference to a hash key string which can be modified
 'ParserAfterStrip': Same as ParserBeforeStrip
 
 'ParserAfterTidy': Called after Parser::tidy() in Parser::parse()
-$parser: Parser object being used 
+$parser: Parser object being used
 $text: text that'll be returned
 
 'ParserBeforeInternalParse': called at the beginning of Parser::internalParse()
@@ -1089,7 +1089,7 @@ $text: text being parsed
 $stripState: stripState used (object)
 
 'ParserBeforeTidy': called before tidy and custom tags replacements
-$parser: Parser object being used 
+$parser: Parser object being used
 $text: actual text
 
 'ParserClearState': called at the end of Parser::clearState()
@@ -1393,7 +1393,7 @@ $article: article object that was watched
 
 'UploadForm:initial': before the upload form is generated
 $form: UploadForm object
-You might set the member-variables $uploadFormTextTop and 
+You might set the member-variables $uploadFormTextTop and
 $uploadFormTextAfterSummary to inject text (HTML) either before
 or after the editform.
 
@@ -1517,7 +1517,7 @@ $user: User object
 'UserLoginComplete': after a user has logged in
 $user: the user object that was created on login
 $inject_html: Any HTML to inject after the "logged in" message.
-		    
+
 'UserLoginForm': change to manipulate the login form
 $template: SimpleTemplate instance for the form
 
@@ -1527,7 +1527,7 @@ $name: the username to email the password of.
 
 'UserLogout': before a user logs out
 $user: the user object that is about to be logged out
-       
+
 'UserLogoutComplete': after a user has logged out
 $user: the user object _after_ logout (won't have name, ID, etc.)
 $inject_html: Any HTML to inject after the "logged out" message.
@@ -1544,12 +1544,29 @@ $userrights  : UserrightsPage object
 $user        : User object of the current user
 $addergroups : Array of groups that the user is in
 &$groups     : Array of groups that can be added or removed. In format of
-				array( 
-					'add'         => array( addablegroups ), 
-					'remove'      => array( removablegroups ), 
+				array(
+					'add'         => array( addablegroups ),
+					'remove'      => array( removablegroups ),
 					'add-self'    => array( addablegroups to self ),
 					'remove-self' => array( removable groups from self )
 				)
+
+'UserrightsGroupCheckboxes': allows modification of the display of
+checkboxes in the Special:UserRights interface.
+$usergroups : Array of groups that the target user belongs to
+&$columns   : Array of checkboxes, in the form of
+				$columns['column name']['group name'] = array(
+					'set'          => is this checkbox checked by default?
+					'disabled'     => is this checkbox disabled?
+					'irreversible' => can this action not be reversed?
+				);
+
+'UserrightsSaveUserGroups': allow extensions to modify the added/removed groups
+&$user     : User object of the user being altered
+$oldGroups : Array of groups that the user is currently in
+&$add      : Array of groups to add
+&$remove   : Array of groups to remove
+$reason    : Summary provided by user on the form
 
 'UserRetrieveNewTalks': called when retrieving "You have new messages!"
 message(s)
