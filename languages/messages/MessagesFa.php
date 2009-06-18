@@ -2054,6 +2054,8 @@ $1",
 'listgrouprights'                      => 'اختیارات گروه‌های کاربری',
 'listgrouprights-summary'              => 'فهرست زیر شامل گروه‌های کاربری تعریف شده در این ویکی و اختیارات داده شده به آن‌ها است.
 اطلاعات بیشتر در مورد هر یک از اختیارات را در [[{{MediaWiki:Listgrouprights-helppage}}]] بیابید.',
+'listgrouprights-key'                  => '* <span class="listgrouprights-granted">اختیارات داده شده</span>
+* <span class="listgrouprights-revoked">اختیارات گرفته شده</span>',
 'listgrouprights-group'                => 'گروه',
 'listgrouprights-rights'               => 'دسترسی‌ها',
 'listgrouprights-helppage'             => 'Help:دسترسی‌های گروهی',
