@@ -1576,6 +1576,7 @@ $wgMessageStructure = array(
 	'listgrouprights' => array(
 		'listgrouprights',
 		'listgrouprights-summary',
+		'listgrouprights-key',
 		'listgrouprights-group',
 		'listgrouprights-rights',
 		'listgrouprights-helppage',
