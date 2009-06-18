@@ -3674,6 +3674,19 @@ class Article {
 	 * @param $cache Boolean
 	 */
 	public function outputWikiText( $text, $cache = true ) {
+		global $wgOut;
+		
+		$parserOutput = $this->outputFromWikitext( $text, $cache );
+
+		$wgOut->addParserOutput( $parserOutput );
+	}
+	
+	/**
+	 * This does all the heavy lifting for outputWikitext, except it returns the parser
+	 * output instead of sending it straight to $wgOut. Makes things nice and simple for,
+	 * say, embedding thread pages within a discussion system (LiquidThreads)
+	 */
+	public function outputFromWikitext( $text, $cache = true ) {
 		global $wgParser, $wgOut, $wgEnableParserCache, $wgUseFileCache;
 
 		$popts = $wgOut->parserOptions();
@@ -3736,8 +3749,8 @@ class Article {
 				$u->doUpdate();
 			}
 		}
-
-		$wgOut->addParserOutput( $parserOutput );
+		
+		return $parserOutput;
 	}
 
 	/**
@@ -3794,6 +3807,53 @@ class Article {
 				array( 'cat_title' => $deleted ),
 				__METHOD__
 			);
+		}
+	}
+	
+	function tryParserCache( $parserOptions ) {
+		$parserCache = ParserCache::singleton();
+		$parserOutput = $parserCache->get( $article, $parserOptions );
+		if ( $parserOutput !== false ) {
+			return $parserOutput;
+		} else {
+			return false;
+		}
+	}
+	
+	function getParserOutput( $oldid = null ) {
+		global $wgEnableParserCache, $wgUser, $wgOut;
+
+		// Should the parser cache be used?
+		$pcache = $wgEnableParserCache &&
+		          intval( $wgUser->getOption( 'stubthreshold' ) ) == 0 &&
+		          $this->exists() &&
+				  $oldid === null;
+				  
+		wfDebug( __METHOD__.': using parser cache: ' . ( $pcache ? 'yes' : 'no' ) . "\n" );
+		if ( $wgUser->getOption( 'stubthreshold' ) ) {
+			wfIncrStats( 'pcache_miss_stub' );
+		}
+
+		$parserOutput = false;
+		if ( $pcache ) {
+			$parserOutput = $this->tryParserCache( $wgOut->parserOptions() );
+		}
+
+		if ( $parserOutput === false ) {
+			// Cache miss; parse and output it.
+			$rev = Revision::newFromTitle( $post->getTitle(), $oldid );
+			
+			if ( $rev && $oldid ) {
+				// don't save oldids in the parser cache.
+			}
+			else if ( $rev ) {
+				$post->outputWikiText( $rev->getText(), true );
+				return true;
+			} else {
+				return false;
+			}
+		} else {
+			return true;
 		}
 	}
 }
