@@ -89,7 +89,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   the groups being added and removed last-minute.
 * Add autopromote condition APCOND_BLOCKED to autopromote blocked users to various
   user groups.
-* Add $wgRemoveGroups as a means of restricting a group's rights. The syntax is
+* Add $wgRevokePermissions as a means of restricting a group's rights. The syntax is
   identical to $wgGroupPermissions, but users in these groups will have these rights
   stripped from them.
 
