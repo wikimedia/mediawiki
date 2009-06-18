@@ -1765,6 +1765,8 @@ Template:搞清楚',
 'listgrouprights'                      => '用戶組權限',
 'listgrouprights-summary'              => '下面係一個響呢個wiki定義咗嘅用戶權限一覽，同埋佢哋嘅存取權。
 更多有關個別權限嘅[[{{MediaWiki:Listgrouprights-helppage}}|更多細節]]可以響嗰度搵到。',
+'listgrouprights-key'                  => '* <span class="listgrouprights-granted">畀咗嘅權限</span>
+* <span class="listgrouprights-revoked">拎咗嘅權限</span>',
 'listgrouprights-group'                => '組',
 'listgrouprights-rights'               => '權',
 'listgrouprights-helppage'             => 'Help:組權限',

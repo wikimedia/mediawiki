@@ -1809,6 +1809,8 @@ Template:消除歧義',
 'listgrouprights'                      => '用户群组权限',
 'listgrouprights-summary'              => '以下面是一个在这个wiki中定义出来的用户权限列表，以及它们的访问权。
 更多有关个别权限的细节可以在[[{{MediaWiki:Listgrouprights-helppage}}|这里]]找到。',
+'listgrouprights-key'                  => '* <span class="listgrouprights-granted">已授予的权限</span>
+* <span class="listgrouprights-revoked">已撤除的权限</span>',
 'listgrouprights-group'                => '群组',
 'listgrouprights-rights'               => '权限',
 'listgrouprights-helppage'             => 'Help:群组权限',
