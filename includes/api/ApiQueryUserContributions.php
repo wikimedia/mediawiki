@@ -271,7 +271,7 @@ class ApiQueryContributions extends ApiQueryBase {
 			$vals['timestamp'] = wfTimestamp(TS_ISO_8601, $row->rev_timestamp);
 
 		if ($this->fld_flags) {
-			if ($row->rev_parent_id == 0)
+			if ($row->rev_parent_id == 0 && !is_null($row->rev_parent_id))
 				$vals['new'] = '';
 			if ($row->rev_minor_edit)
 				$vals['minor'] = '';
