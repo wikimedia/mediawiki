@@ -127,7 +127,8 @@ class SpecialListGroupRights extends SpecialPage {
 	 	global $wgLang;
 		$r = array();
 		foreach( $permissions as $permission => $granted ) {
-			if( $granted ) {
+			//show as granted only if it isn't revoked to prevent duplicate display of permissions
+			if( $granted && ( !isset( $revoke[$permission] ) || !$revoke[$permission] ) ) {
 				$description = wfMsgExt( 'listgrouprights-right-display', array( 'parseinline' ),
 					User::getRightDescription( $permission ),
 					$permission
@@ -137,7 +138,7 @@ class SpecialListGroupRights extends SpecialPage {
 		}
 		foreach( $revoke as $permission => $revoked ) {
 			if( $revoked ) {
-				$description = wfMsgExt( 'lisgrouprights-right-revoked', array( 'parseinline' ),
+				$description = wfMsgExt( 'listgrouprights-right-revoked', array( 'parseinline' ),
 					User::getRightDescription( $permission ),
 					$permission
 				);

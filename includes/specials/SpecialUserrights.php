@@ -196,9 +196,6 @@ class UserrightsPage extends SpecialPage {
 		$oldGroups = $user->getGroups();
 		$newGroups = $oldGroups;
 
-		// Run a hook beforehand to allow extensions to modify the added/removed groups
-		wfRunHooks( 'UserrightsSaveUserGroups', array( &$user, $oldGroups, &$add, &$remove, $reason ) );
-
 		// remove then add groups
 		if( $remove ) {
 			$newGroups = array_diff($newGroups, $remove);
@@ -486,9 +483,6 @@ class UserrightsPage extends SpecialPage {
 			}
 		}
 
-		# Run a hook to allow extensions to modify the column listing
-		wfRunHooks( 'UserrightsGroupCheckboxes', array( $usergroups, &$columns ) );
-
 		# Build the HTML table
 		$ret .=	Xml::openElement( 'table', array( 'border' => '0', 'class' => 'mw-userrights-groups' ) ) .
 			"<tr>\n";
@@ -548,11 +542,7 @@ class UserrightsPage extends SpecialPage {
 	 */
 	function changeableGroups() {
 		global $wgUser;
-		$groups = $wgUser->changeableGroups();
-		// Run a hook because we can
-		wfRunHooks( 'UserrightsChangeableGroups', array( $this,
-			$wgUser, $wgUser->getEffectiveGroups(), &$groups ) );
-		return $groups;
+		return $wgUser->changeableGroups();
 	}
 
 	/**

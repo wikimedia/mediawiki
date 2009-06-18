@@ -1538,36 +1538,6 @@ $user  : User object that was changed
 $add   : Array of strings corresponding to groups added
 $remove: Array of strings corresponding to groups removed
 
-'UserrightsChangeableGroups': allows modification of the groups a user
-may add or remove via Special:UserRights
-$userrights  : UserrightsPage object
-$user        : User object of the current user
-$addergroups : Array of groups that the user is in
-&$groups     : Array of groups that can be added or removed. In format of
-				array(
-					'add'         => array( addablegroups ),
-					'remove'      => array( removablegroups ),
-					'add-self'    => array( addablegroups to self ),
-					'remove-self' => array( removable groups from self )
-				)
-
-'UserrightsGroupCheckboxes': allows modification of the display of
-checkboxes in the Special:UserRights interface.
-$usergroups : Array of groups that the target user belongs to
-&$columns   : Array of checkboxes, in the form of
-				$columns['column name']['group name'] = array(
-					'set'          => is this checkbox checked by default?
-					'disabled'     => is this checkbox disabled?
-					'irreversible' => can this action not be reversed?
-				);
-
-'UserrightsSaveUserGroups': allow extensions to modify the added/removed groups
-&$user     : User object of the user being altered
-$oldGroups : Array of groups that the user is currently in
-&$add      : Array of groups to add
-&$remove   : Array of groups to remove
-$reason    : Summary provided by user on the form
-
 'UserRetrieveNewTalks': called when retrieving "You have new messages!"
 message(s)
 $user: user retrieving new talks messages

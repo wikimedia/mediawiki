@@ -40,6 +40,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Oracle: maintenance/ora/user.sql script for creating DB user on oracle with
   appropriate privileges. Creating this user with web-install page requires
   oci8.privileged_connect set to On in php.ini.
+* Removed UserrightsChangeableGroups hook introduced in 1.14
 
 === New features in 1.16 ===
 
@@ -83,10 +84,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * DISPLAYTITLE now accepts a limited amount of wiki markup (the single-quote items)
 * Special:Search now could search terms in all variant-forms. ONLY apply on
   wikis with LanguageConverter
-* Add hook 'UserrightsGetCheckboxes' to give extensions the ability to modify
-  the arrangement of checkboxes on the Special:UserRights form
-* Add hook 'UserrightsSaveUserGroups' to give extensions the ability to modify
-  the groups being added and removed last-minute.
 * Add autopromote condition APCOND_BLOCKED to autopromote blocked users to various
   user groups.
 * Add $wgRevokePermissions as a means of restricting a group's rights. The syntax is
