@@ -87,6 +87,11 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   the arrangement of checkboxes on the Special:UserRights form
 * Add hook 'UserrightsSaveUserGroups' to give extensions the ability to modify
   the groups being added and removed last-minute.
+* Add autopromote condition APCOND_BLOCKED to autopromote blocked users to various
+  user groups.
+* Add $wgRemoveGroups as a means of restricting a group's rights. The syntax is
+  identical to $wgGroupPermissions, but users in these groups will have these rights
+  stripped from them.
 
 === Bug fixes in 1.16 ===
 

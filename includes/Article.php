@@ -108,7 +108,7 @@ class Article {
 			return null;
 		}
 		$dbw = wfGetDB( DB_MASTER );
-		$dbw->replace( 'redirect', array('rd_from'), 
+		$dbw->replace( 'redirect', array('rd_from'),
 			array(
 				'rd_from' => $this->getID(),
 				'rd_namespace' => $retval->getNamespace(),
@@ -228,7 +228,7 @@ class Article {
 			return $this->mContent;
 		}
 	}
-	
+
 	/**
 	 * Get the text of the current revision. No side-effects...
 	 *
@@ -260,12 +260,12 @@ class Article {
 		global $wgParser;
 		return $wgParser->getSection( $text, $section );
 	}
-	
+
 	/**
 	 * Get the text that needs to be saved in order to undo all revisions
 	 * between $undo and $undoafter. Revisions must belong to the same page,
 	 * must exist and must not be deleted
-	 * @param $undo Revision 
+	 * @param $undo Revision
 	 * @param $undoafter Revision Must be an earlier revision than $undo
 	 * @return mixed string on success, false on failure
 	 */
@@ -545,7 +545,7 @@ class Article {
 	public function exists() {
 		return $this->getId() > 0;
 	}
-	
+
 	/**
 	 * Check if this page is something we're going to be showing
 	 * some sort of sensible content for. If we return false, page
@@ -568,10 +568,10 @@ class Article {
 				$this->mCounter = 0;
 			} else {
 				$dbr = wfGetDB( DB_SLAVE );
-				$this->mCounter = $dbr->selectField( 'page', 
-					'page_counter', 
-					array( 'page_id' => $id ), 
-					__METHOD__, 
+				$this->mCounter = $dbr->selectField( 'page',
+					'page_counter',
+					array( 'page_id' => $id ),
+					__METHOD__,
 					$this->getSelectOptions()
 				);
 			}
@@ -731,7 +731,7 @@ class Article {
 		if( $wgOut->isPrintable() ) {
 			$wgOut->parserOptions()->setIsPrintable( true );
 		}
-		
+
 		wfProfileIn( __METHOD__ );
 
 		# Get variables from query string
@@ -813,7 +813,7 @@ class Article {
 			wfProfileOut( __METHOD__ );
 			return;
 		}
-		
+
 		if( $ns == NS_USER || $ns == NS_USER_TALK ) {
 			# User/User_talk subpages are not modified. (bug 11443)
 			if( !$this->mTitle->isSubpage() ) {
@@ -907,7 +907,7 @@ class Article {
 					$text = wfMsgExt( 'noarticletext', 'parsemag' );
 				}
 			}
-			
+
 			# Non-existent pages
 			if( $this->getID() === 0 ) {
 				$wgOut->setRobotPolicy( 'noindex,nofollow' );
@@ -931,7 +931,7 @@ class Article {
 				wfProfileOut( __METHOD__ );
 				return;
 			}
-			
+
 			# For ?curid=x urls, disallow indexing
 			if( $wgRequest->getInt('curid') )
 				$wgOut->setRobotPolicy( 'noindex,follow' );
@@ -1074,7 +1074,7 @@ class Article {
 		$this->viewUpdates();
 		wfProfileOut( __METHOD__ );
 	}
-	
+
 	protected function showLogs() {
 		global $wgUser, $wgOut;
 		$loglist = new LogEventsList( $wgUser->getSkin(), $wgOut );
@@ -1094,7 +1094,7 @@ class Article {
 					SpecialPage::getTitleFor( 'Log' ),
 					wfMsgHtml( 'log-fulllog' ),
 					array(),
-					array( 'page' => $this->mTitle->getPrefixedText() ) 
+					array( 'page' => $this->mTitle->getPrefixedText() )
 				) );
 			}
 			$wgOut->addHTML( '</div>' );
@@ -1131,7 +1131,7 @@ class Article {
 		$imageUrl = $wgStylePath . '/common/images/redirect' . $imageDir . '.png';
 		$imageUrl2 = $wgStylePath . '/common/images/nextredirect' . $imageDir . '.png';
 		$alt2 = $wgContLang->isRTL() ? '&larr;' : '&rarr;'; // should -> and <- be used instead of entities?
-		
+
 		if( $appendSubtitle ) {
 			$wgOut->appendSubtitle( wfMsgHtml( 'redirectpagesub' ) );
 		}
@@ -1570,9 +1570,9 @@ class Article {
 	 *          Fill in blank summaries with generated text where possible
 	 *
 	 * If neither EDIT_NEW nor EDIT_UPDATE is specified, the status of the article will be detected.
-	 * If EDIT_UPDATE is specified and the article doesn't exist, the function will an 
-	 * edit-gone-missing error. If EDIT_NEW is specified and the article does exist, an 
-	 * edit-already-exists error will be returned. These two conditions are also possible with 
+	 * If EDIT_UPDATE is specified and the article doesn't exist, the function will an
+	 * edit-gone-missing error. If EDIT_NEW is specified and the article does exist, an
+	 * edit-already-exists error will be returned. These two conditions are also possible with
 	 * auto-detection due to MediaWiki's performance-optimised locking strategy.
 	 *
 	 * @param $baseRevId the revision ID this edit was based off, if any
@@ -1607,7 +1607,7 @@ class Article {
 		$status = Status::newGood( array() );
 
 		# Load $this->mTitle->getArticleID() and $this->mLatest if it's not already
-		$this->loadPageData(); 
+		$this->loadPageData();
 
 		if( !($flags & EDIT_NEW) && !($flags & EDIT_UPDATE) ) {
 			$aid = $this->mTitle->getArticleID();
@@ -1688,9 +1688,9 @@ class Article {
 
 				# Update page
 				#
-				# Note that we use $this->mLatest instead of fetching a value from the master DB 
-				# during the course of this function. This makes sure that EditPage can detect 
-				# edit conflicts reliably, either by $ok here, or by $article->getTimestamp() 
+				# Note that we use $this->mLatest instead of fetching a value from the master DB
+				# during the course of this function. This makes sure that EditPage can detect
+				# edit conflicts reliably, either by $ok here, or by $article->getTimestamp()
 				# before this function is called. A previous function used a separate query, this
 				# creates a window where concurrent edits can cause an ignored edit conflict.
 				$ok = $this->updateRevisionOn( $dbw, $revision, $this->mLatest );
@@ -1883,12 +1883,12 @@ class Article {
 			$wgOut->showErrorPage( 'rcpatroldisabled', 'rcpatroldisabledtext' );
 			return;
 		}
-		
+
 		if( in_array(array('hookaborted'), $errors) ) {
 			// The hook itself has handled any output
 			return;
 		}
-		
+
 		if( in_array(array('markedaspatrollederror-noautopatrol'), $errors) ) {
 			$wgOut->setPageTitle( wfMsg( 'markedaspatrollederror' ) );
 			$wgOut->addWikiMsg( 'markedaspatrollederror-noautopatrol' );
@@ -2014,12 +2014,12 @@ class Article {
 			wfDebug( "updateRestrictions failed: $id <= 0\n" );
 			return false;
 		}
-		
+
 		if ( wfReadOnly() ) {
 			wfDebug( "updateRestrictions failed: read-only\n" );
 			return false;
 		}
-		
+
 		if ( !$this->mTitle->userCan( 'protect' ) ) {
 			wfDebug( "updateRestrictions failed: insufficient permissions\n" );
 			return false;
@@ -2064,7 +2064,7 @@ class Article {
 			if( wfRunHooks( 'ArticleProtect', array( &$this, &$wgUser, $limit, $reason ) ) ) {
 
 				$dbw = wfGetDB( DB_MASTER );
-				
+
 				# Prepare a null revision to be added to the history
 				$modified = $current != '' && $protect;
 				if( $protect ) {
@@ -2080,9 +2080,9 @@ class Article {
 				# The schema allows multiple restrictions
 				if(!in_array('protect', $editrestriction) && !in_array('sysop', $editrestriction))
 					$cascade = false;
-				$cascade_description = ''; 	 
+				$cascade_description = '';
 				if( $cascade ) {
-					$cascade_description = ' ['.wfMsgForContent('protect-summary-cascade').']'; 	 
+					$cascade_description = ' ['.wfMsgForContent('protect-summary-cascade').']';
 				}
 
 				if( $reason )
@@ -2094,15 +2094,15 @@ class Article {
 				foreach( $limit as $action => $restrictions  ) {
 					if ( !isset($expiry[$action]) )
 						$expiry[$action] = 'infinite';
-					
+
 					$encodedExpiry[$action] = Block::encodeExpiry($expiry[$action], $dbw );
 					if( $restrictions != '' ) {
 						$protect_description .= "[$action=$restrictions] (";
 						if( $encodedExpiry[$action] != 'infinity' ) {
-							$protect_description .= wfMsgForContent( 'protect-expiring', 
+							$protect_description .= wfMsgForContent( 'protect-expiring',
 								$wgContLang->timeanddate( $expiry[$action], false, false ) ,
 								$wgContLang->date( $expiry[$action], false, false ) ,
-								$wgContLang->time( $expiry[$action], false, false ) ); 	 
+								$wgContLang->time( $expiry[$action], false, false ) );
 						} else {
 							$protect_description .= wfMsgForContent( 'protect-expiry-indefinite' );
 						}
@@ -2110,7 +2110,7 @@ class Article {
 					}
 				}
 				$protect_description = trim($protect_description);
-					
+
 				if( $protect_description && $protect )
 					$editComment .= " ($protect_description)";
 				if( $cascade )
@@ -2119,9 +2119,9 @@ class Article {
 				foreach( $limit as $action => $restrictions ) {
 					if($restrictions != '' ) {
 						$dbw->replace( 'page_restrictions', array(array('pr_page', 'pr_type')),
-							array( 'pr_page' => $id, 
-								'pr_type' => $action, 
-								'pr_level' => $restrictions, 
+							array( 'pr_page' => $id,
+								'pr_type' => $action,
+								'pr_level' => $restrictions,
 								'pr_cascade' => ($cascade && $action == 'edit') ? 1 : 0,
 								'pr_expiry' => $encodedExpiry[$action] ), __METHOD__  );
 					} else {
@@ -2219,7 +2219,7 @@ class Article {
 		if( $res === false )
 			// This page has no revisions, which is very weird
 			return false;
-			
+
 		$hasHistory = ( $res->numRows() > 1 );
 		$row = $dbw->fetchObject( $res );
 		$onlyAuthor = $row->rev_user_text;
@@ -2243,7 +2243,7 @@ class Article {
 			else
 				$reason = wfMsgForContent( 'excontent', '$1' );
 		}
-		
+
 		if( $reason == '-' ) {
 			// Allow these UI messages to be blanked out cleanly
 			return '';
@@ -2454,7 +2454,7 @@ class Article {
 		}
 		$checkWatch = $wgUser->getBoolOption( 'watchdeletion' ) || $this->mTitle->userIsWatching();
 
-		$form = Xml::openElement( 'form', array( 'method' => 'post', 
+		$form = Xml::openElement( 'form', array( 'method' => 'post',
 			'action' => $this->mTitle->getLocalURL( 'action=delete' ), 'id' => 'deleteconfirm' ) ) .
 			Xml::openElement( 'fieldset', array( 'id' => 'mw-delete-table' ) ) .
 			Xml::tags( 'legend', null, wfMsgExt( 'delete-legend', array( 'parsemag', 'escapenoentities' ) ) ) .
@@ -2474,7 +2474,7 @@ class Article {
 					Xml::label( wfMsg( 'deleteotherreason' ), 'wpReason' ) .
 				"</td>
 				<td class='mw-input'>" .
-					Xml::input( 'wpReason', 60, $reason, array( 'type' => 'text', 'maxlength' => '255', 
+					Xml::input( 'wpReason', 60, $reason, array( 'type' => 'text', 'maxlength' => '255',
 						'tabindex' => '2', 'id' => 'wpReason' ) ) .
 				"</td>
 			</tr>
@@ -2624,7 +2624,7 @@ class Article {
 			$dbw->rollback();
 			return false;
 		}
-		
+
 		# Fix category table counts
 		$cats = array();
 		$res = $dbw->select( 'categorylinks', 'cl_to', array( 'cl_from' => $id ), __METHOD__ );
@@ -2654,7 +2654,7 @@ class Article {
 		if( !$dbw->cleanupTriggers() ) {
 			# Clean up recentchanges entries...
 			$dbw->delete( 'recentchanges',
-				array( 'rc_type != '.RC_LOG, 
+				array( 'rc_type != '.RC_LOG,
 					'rc_namespace' => $this->mTitle->getNamespace(),
 					'rc_title' => $this->mTitle->getDBkey() ),
 				__METHOD__ );
@@ -2865,7 +2865,7 @@ class Article {
 			if( isset( $details['current'] ) ){
 				$current = $details['current'];
 				if( $current->getComment() != '' ) {
-					$wgOut->addWikiMsgArray( 'editcomment', array( 
+					$wgOut->addWikiMsgArray( 'editcomment', array(
 						$wgUser->getSkin()->formatComment( $current->getComment() ) ), array( 'replaceafter' ) );
 				}
 			}
@@ -2989,7 +2989,7 @@ class Article {
 		# Update the links tables
 		$u = new LinksUpdate( $this->mTitle, $editInfo->output );
 		$u->doUpdate();
-		
+
 		wfRunHooks( 'ArticleEditUpdates', array( &$this, &$editInfo, $changed ) );
 
 		if( wfRunHooks( 'ArticleEditUpdatesDeleteFromRecentchanges', array( &$this ) ) ) {

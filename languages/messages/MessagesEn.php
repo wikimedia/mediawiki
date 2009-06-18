@@ -2340,11 +2340,14 @@ Supported protocols: <tt>$1</tt>',
 'listgrouprights'                      => 'User group rights',
 'listgrouprights-summary'              => 'The following is a list of user groups defined on this wiki, with their associated access rights.
 There may be [[{{MediaWiki:Listgrouprights-helppage}}|additional information]] about individual rights.',
+'listgrouprights-key'                  => '* <span class="listgrouprights-granted">Granted right</span>
+* <span class="listgrouprights-revoked">Revoked right</span>',
 'listgrouprights-group'                => 'Group',
 'listgrouprights-rights'               => 'Rights',
 'listgrouprights-helppage'             => 'Help:Group rights',
 'listgrouprights-members'              => '(list of members)',
-'listgrouprights-right-display'        => '$1 ($2)', # only translate this message to other languages if you have to change it
+'listgrouprights-right-display'        => '<span class="listgrouprights-granted">$1 ($2)</span>', # only translate this message to other languages if you have to change it
+'listgrouprights-right-revoked'        => '<span class="listgrouprights-revoked">$1 ($2)</span>', # only translate this message to other languages if you have to change it
 'listgrouprights-addgroup'             => 'Add {{PLURAL:$2|group|groups}}: $1',
 'listgrouprights-removegroup'          => 'Remove {{PLURAL:$2|group|groups}}: $1',
 'listgrouprights-addgroup-all'         => 'Add all groups',
@@ -3103,7 +3106,7 @@ You can view its source',
 'tooltip-recreate'                => 'Recreate the page even though it has been deleted',
 'tooltip-upload'                  => 'Start upload',
 'tooltip-rollback'                => '"Rollback" reverts edit(s) to this page of the last contributor in one click',
-'tooltip-undo'                    => '"Undo" reverts this edit and opens the edit form in preview mode. 
+'tooltip-undo'                    => '"Undo" reverts this edit and opens the edit form in preview mode.
 It allows adding a reason in the summary.',
 
 # Stylesheets
