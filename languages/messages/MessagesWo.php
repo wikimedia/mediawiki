@@ -1486,7 +1486,6 @@ Man ngaa fee gis itam [[{{MediaWiki:Listgrouprights-helppage}}|yeneen xibaar]] �
 'listgrouprights-rights'          => 'Sañ-sañ',
 'listgrouprights-helppage'        => 'Help:Sañ-sañi mbooloo yi',
 'listgrouprights-members'         => '(limu cër yi)',
-'listgrouprights-right-display'   => '$1 ($2)',
 'listgrouprights-addgroup'        => 'Man ngaa yokk {{PLURAL:$2|mbooloo mi|mbooloo yi}} : $1',
 'listgrouprights-removegroup'     => 'Man ngaa far {{PLURAL:$2|mbooloo mi|mbooloo yi}}: $1',
 'listgrouprights-addgroup-all'    => 'Man ngaa yokk ci mbooloo yépp',

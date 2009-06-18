@@ -1943,7 +1943,6 @@ PICT # misc.
 'listgrouprights-rights'               => 'Права',
 'listgrouprights-helppage'             => 'Help:Права на групи',
 'listgrouprights-members'              => '(листа на членови)',
-'listgrouprights-right-display'        => '$1 ($2)',
 'listgrouprights-addgroup'             => 'Може да додава {{PLURAL:$2|група|групи}}: $1',
 'listgrouprights-removegroup'          => 'Може да брише {{PLURAL:$2|група|групи}}: $1',
 'listgrouprights-addgroup-all'         => 'Може да ги додава сите групи',

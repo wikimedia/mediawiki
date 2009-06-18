@@ -1313,7 +1313,6 @@ Vaata ka [[Special:WantedCategories|puuduvaid kategooriaid]].',
 'listgrouprights-rights'        => 'Õigused',
 'listgrouprights-helppage'      => 'Help:Grupi õigused',
 'listgrouprights-members'       => '(liikmete loend)',
-'listgrouprights-right-display' => '$1 ($2)',
 
 # E-mail user
 'mailnologintext' => 'Te peate olema [[Special:UserLogin|sisse logitud]] ja teil peab [[Special:Preferences|eelistustes]] olema kehtiv e-posti aadress, et saata teistele kasutajatele e-kirju.',

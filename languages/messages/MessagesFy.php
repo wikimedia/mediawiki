@@ -1681,7 +1681,6 @@ Der kin [[{{MediaWiki:Listgrouprights-helppage}}|ekstra ynformaasje]] oer yndivi
 'listgrouprights-rights'          => 'Rjochten',
 'listgrouprights-helppage'        => 'Help:Brûkersrjochten',
 'listgrouprights-members'         => '(ledelist)',
-'listgrouprights-right-display'   => '$1 ($2)',
 'listgrouprights-addgroup'        => 'Kin brûkers oan dizze {{PLURAL:$2|groep|groepen}} tafoegje: $1',
 'listgrouprights-removegroup'     => 'Kin brûkers út dizze {{PLURAL:$2|groep|groepen}} fuorthelje: $1',
 'listgrouprights-addgroup-all'    => 'Kin brûkers oan alle groepen tafoegje',
