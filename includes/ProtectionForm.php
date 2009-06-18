@@ -38,9 +38,9 @@ class ProtectionForm {
 	/** Map of action to "other" expiry time. Used in preference to mExpirySelection. */
 	var $mExpiry = array();
 
-	/** 
-	 * Map of action to value selected in expiry drop-down list. 
-	 * Will be set to 'othertime' whenever mExpiry is set. 
+	/**
+	 * Map of action to value selected in expiry drop-down list.
+	 * Will be set to 'othertime' whenever mExpiry is set.
 	 */
 	var $mExpirySelection = array();
 
@@ -127,7 +127,7 @@ class ProtectionForm {
 		}
 	}
 
-	/** 
+	/**
 	 * Get the expiry time for a given action, by combining the relevant inputs.
 	 * Returns a 14-char timestamp or "infinity", or false if the input was invalid
 	 */
@@ -230,7 +230,7 @@ class ProtectionForm {
 			$this->show( wfMsg( 'sessionfailure' ) );
 			return false;
 		}
-		
+
 		# Create reason string. Use list and/or custom string.
 		$reasonstr = $this->mReasonSelection;
 		if ( $reasonstr != 'other' && $this->mReason != '' ) {
@@ -296,8 +296,8 @@ class ProtectionForm {
 		$out = '';
 		if( !$this->disabled ) {
 			$out .= $this->buildScript();
-			$out .= Xml::openElement( 'form', array( 'method' => 'post', 
-				'action' => $this->mTitle->getLocalUrl( 'action=protect' ), 
+			$out .= Xml::openElement( 'form', array( 'method' => 'post',
+				'action' => $this->mTitle->getLocalUrl( 'action=protect' ),
 				'id' => 'mw-Protect-Form', 'onsubmit' => 'ProtectionForm.enableUnchainedInputs(true)' ) );
 			$out .= Xml::hidden( 'wpEditToken',$wgUser->editToken() );
 		}
@@ -321,7 +321,7 @@ class ProtectionForm {
 
 			$reasonDropDown = Xml::listDropDown( 'wpProtectReasonSelection',
 				wfMsgForContent( 'protect-dropdown' ),
-				wfMsgForContent( 'protect-otherreason-op' ), 
+				wfMsgForContent( 'protect-otherreason-op' ),
 				$this->mReasonSelection,
 				'mwProtect-reason', 4 );
 			$scExpiryOptions = wfMsgForContent( 'protect-expiry-options' );
@@ -336,14 +336,14 @@ class ProtectionForm {
 				$timestamp = $wgLang->timeanddate( $this->mExistingExpiry[$action] );
 				$d = $wgLang->date( $this->mExistingExpiry[$action] );
 				$t = $wgLang->time( $this->mExistingExpiry[$action] );
-				$expiryFormOptions .= 
-					Xml::option( 
+				$expiryFormOptions .=
+					Xml::option(
 						wfMsg( 'protect-existing-expiry', $timestamp, $d, $t ),
 						'existing',
 						$this->mExpirySelection[$action] == 'existing'
 					) . "\n";
 			}
-			
+
 			$expiryFormOptions .= Xml::option( wfMsg( 'protect-othertime-op' ), "othertime" ) . "\n";
 			foreach( explode(',', $scExpiryOptions) as $option ) {
 				if ( strpos($option, ":") === false ) {
@@ -399,13 +399,13 @@ class ProtectionForm {
 			$out .= '<tr>
 					<td></td>
 					<td class="mw-input">' .
-						Xml::checkLabel( wfMsg( 'protect-cascade' ), 'mwProtect-cascade', 'mwProtect-cascade', 
+						Xml::checkLabel( wfMsg( 'protect-cascade' ), 'mwProtect-cascade', 'mwProtect-cascade',
 							$this->mCascade, $this->disabledAttrib ) .
 					"</td>
 				</tr>\n";
 			$out .= Xml::closeElement( 'tbody' ) . Xml::closeElement( 'table' );
 		}
-		
+
 		# Add manual and custom reason field/selects as well as submit
 		if( !$this->disabled ) {
 			$out .=  Xml::openElement( 'table', array( 'id' => 'mw-protect-table3' ) ) .
@@ -424,7 +424,7 @@ class ProtectionForm {
 						{$mProtectreason}
 					</td>
 					<td class='mw-input'>" .
-						Xml::input( 'mwProtect-reason', 60, $this->mReason, array( 'type' => 'text', 
+						Xml::input( 'mwProtect-reason', 60, $this->mReason, array( 'type' => 'text',
 							'id' => 'mwProtect-reason', 'maxlength' => 255 ) ) .
 					"</td>
 				</tr>

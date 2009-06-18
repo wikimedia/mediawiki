@@ -25,7 +25,7 @@ class SpecialListGroupRights extends SpecialPage {
 	 */
 	public function execute( $par ) {
 		global $wgOut, $wgImplicitGroups, $wgMessageCache;
-		global $wgGroupPermissions, $wgAddGroups, $wgRemoveGroups;
+		global $wgGroupPermissions, $wgRevokePermissions, $wgAddGroups, $wgRemoveGroups;
 		global $wgGroupsAddToSelf, $wgGroupsRemoveFromSelf;
 		$wgMessageCache->loadAllMessages();
 
@@ -89,9 +89,9 @@ class SpecialListGroupRights extends SpecialPage {
 				$grouplink = '';
 			}
 
+			$revoke = isset( $wgRevokePermissions[$group] ) ? $wgRevokePermissions[$group] : array();
 			$addgroups = isset( $wgAddGroups[$group] ) ? $wgAddGroups[$group] : array();
 			$removegroups = isset( $wgRemoveGroups[$group] ) ? $wgRemoveGroups[$group] : array();
-
 			$addgroupsSelf = isset( $wgGroupsAddToSelf[$group] ) ? $wgGroupsAddToSelf[$group] : array();
 			$removegroupsSelf = isset( $wgGroupsRemoveFromSelf[$group] ) ? $wgGroupsRemoveFromSelf[$group] : array();
 
@@ -101,28 +101,43 @@ class SpecialListGroupRights extends SpecialPage {
 						$grouppage . $grouplink .
 					'</td>
 					<td>' .
-						self::formatPermissions( $permissions, $addgroups, $removegroups, $addgroupsSelf, $removegroupsSelf ) .
+						self::formatPermissions( $permissions, $revoke, $addgroups, $removegroups, $addgroupsSelf, $removegroupsSelf ) .
 					'</td>
 				</tr>'
 			);
 		}
 		$wgOut->addHTML(
-			Xml::closeElement( 'table' ) . "\n"
+			Xml::closeElement( 'table' ) . "\n<br /><hr />\n"
 		);
+		$wgOut->addWikiMsg( 'listgrouprights-key' );
 	}
 
 	/**
 	 * Create a user-readable list of permissions from the given array.
 	 *
 	 * @param $permissions Array of permission => bool (from $wgGroupPermissions items)
+	 * @param $revoke Array of permission => bool (from $wgRevokePermissions items)
+	 * @param $add Array of groups this group is allowed to add or true
+	 * @param $remove Array of groups this group is allowed to remove or true
+	 * @param $addSelf Array of groups this group is allowed to add to self or true
+	 * @param $removeSelf Array of group this group is allowed to remove from self or true
 	 * @return string List of all granted permissions, separated by comma separator
 	 */
-	 private static function formatPermissions( $permissions, $add, $remove, $addSelf, $removeSelf ) {
+	 private static function formatPermissions( $permissions, $revoke, $add, $remove, $addSelf, $removeSelf ) {
 	 	global $wgLang;
 		$r = array();
 		foreach( $permissions as $permission => $granted ) {
-			if ( $granted ) {
+			if( $granted ) {
 				$description = wfMsgExt( 'listgrouprights-right-display', array( 'parseinline' ),
+					User::getRightDescription( $permission ),
+					$permission
+				);
+				$r[] = $description;
+			}
+		}
+		foreach( $revoke as $permission => $revoked ) {
+			if( $revoked ) {
+				$description = wfMsgExt( 'lisgrouprights-right-revoked', array( 'parseinline' ),
 					User::getRightDescription( $permission ),
 					$permission
 				);
