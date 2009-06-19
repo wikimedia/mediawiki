@@ -1767,6 +1767,8 @@ Protocòli suportè: <tt>$1</tt>',
 'listgrouprights'                      => 'Diriti dei grupi utenti',
 'listgrouprights-summary'              => 'Sta qua la xe na lista dei grupi de utenti definìi su sta wiki, coi diriti asocià a ognuno.
 Se pol consultar anca dele altre [[{{MediaWiki:Listgrouprights-helppage}}|informassion in pi]] sui diriti individuali.',
+'listgrouprights-key'                  => '* <span class="listgrouprights-granted">Dirito acordà</span>
+* <span class="listgrouprights-revoked">Dirito revocà</span>',
 'listgrouprights-group'                => 'Grupo',
 'listgrouprights-rights'               => 'Diriti',
 'listgrouprights-helppage'             => 'Help:Diriti dei grupi',

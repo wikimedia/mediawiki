@@ -1766,6 +1766,8 @@ Kuckt och [[Special:WantedCategories|Gewënschte Kategorien]].',
 'listgrouprights'                      => 'Rechter vun de Benotzergruppen',
 'listgrouprights-summary'              => 'Dëst ass eng Lëscht vun den op dëser Wiki definéierte Benotzergruppen an den domat verbonnene Rechter.
 Et ginn [[{{MediaWiki:Listgrouprights-helppage}}|zousätzlech Informatiounen]] iwwer individuell Benotzerrechter.',
+'listgrouprights-key'                  => '* <span class="listgrouprights-granted">Recht dat zouerkannt gouf</span>
+* <span class="listgrouprights-revoked">Recht dat ofgeholl gouf</span>',
 'listgrouprights-group'                => 'Grupp',
 'listgrouprights-rights'               => 'Rechter',
 'listgrouprights-helppage'             => 'Help:Grupperechter',

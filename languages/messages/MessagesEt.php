@@ -1308,11 +1308,11 @@ Vaata ka [[Special:WantedCategories|puuduvaid kategooriaid]].',
 'newuserlog-autocreate-entry' => 'Konto loodud automaatselt',
 
 # Special:ListGroupRights
-'listgrouprights'               => 'Kasutajagrupi õigused',
-'listgrouprights-group'         => 'Grupp',
-'listgrouprights-rights'        => 'Õigused',
-'listgrouprights-helppage'      => 'Help:Grupi õigused',
-'listgrouprights-members'       => '(liikmete loend)',
+'listgrouprights'          => 'Kasutajagrupi õigused',
+'listgrouprights-group'    => 'Grupp',
+'listgrouprights-rights'   => 'Õigused',
+'listgrouprights-helppage' => 'Help:Grupi õigused',
+'listgrouprights-members'  => '(liikmete loend)',
 
 # E-mail user
 'mailnologintext' => 'Te peate olema [[Special:UserLogin|sisse logitud]] ja teil peab [[Special:Preferences|eelistustes]] olema kehtiv e-posti aadress, et saata teistele kasutajatele e-kirju.',

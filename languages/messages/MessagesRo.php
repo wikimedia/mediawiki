@@ -1840,6 +1840,8 @@ Protocoale suportate: <tt>$1</tt>',
 'listgrouprights'                      => 'Permisiunile grupurilor de utilizatori',
 'listgrouprights-summary'              => 'Mai jos este afişată o listă a grupurilor de utilizatori definită în această wiki, împreună cu permisiunile de acces asociate.
 Pot exista [[{{MediaWiki:Listgrouprights-helppage}}|informaţii adiţionale]] despre permisiunile individuale.',
+'listgrouprights-key'                  => '* <span class="listgrouprights-granted">Drept acordat</span>
+* <span class="listgrouprights-revoked">Drept revocat</span>',
 'listgrouprights-group'                => 'Grup',
 'listgrouprights-rights'               => 'Permisiuni',
 'listgrouprights-helppage'             => 'Help:Group rights',

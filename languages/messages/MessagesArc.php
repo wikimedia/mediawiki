@@ -272,7 +272,7 @@ Note that some pages may continue to be displayed as if you were still logged in
 'updated'                          => '(ܐܬܚܕܬ)',
 'note'                             => "'''ܡܥܝܪܢܘܬܐ:'''",
 'previewnote'                      => "'''ܕܟܘܪ ܗܢܐ ܗܘ ܚܝܪܬܐ ܩܕܡܝܬܐ ܒܠܚܘܕ''' ܫܘܚܠܦ̈ܐ ܕܝܠܟ/ܕܝܠܟܝ ܠܐ ܐܬܢܛܪ ܥܕܡܐ ܠܗܫܐ",
-'yourtext'                         => 'ܟܬ̈ܒܝܟ',
+'yourtext'                         => 'ܟܬܒܬܐ ܕܝܠܟ',
 'yourdiff'                         => 'ܦܪ̈ܝܫܘܝܬܐ',
 'templatesused'                    => 'ܩܠܒ̈ܐ ܒܦܐܬܐ ܗܕܐ',
 'template-protected'               => '(ܚܡܝܐ)',
@@ -611,30 +611,35 @@ Note that some pages may continue to be displayed as if you were still logged in
 'unwatching' => 'ܠܐ ܪܗܝܐ...',
 
 # Delete
-'deletepage'            => 'ܫܘܦ ܦܐܬܐ',
-'exblank'               => 'ܦܐܬܐ ܣܦܝܩܬܐ ܗܘܐ',
-'delete-confirm'        => 'ܫܘܦ "$1"',
-'delete-legend'         => 'ܫܘܦ',
-'deletedarticle'        => 'ܫܦ "[[$1]]"',
-'dellogpage'            => 'ܣܓܠܐ ܕܫܝܦܐ',
-'deletionlog'           => 'ܣܓܠܐ ܕܫܝܦܐ',
-'deletecomment'         => 'ܥܠܬܐ ܕܫܝܦܐ:',
-'deleteotherreason'     => 'ܥܠܬܐ ܐܚܪܬܐ/ܝܬܝܪܬܐ:',
-'deletereasonotherlist' => 'ܥܠܬܐ ܐܚܪܬܐ',
+'deletepage'             => 'ܫܘܦ ܦܐܬܐ',
+'confirm'                => 'ܚܬܬ',
+'exblank'                => 'ܦܐܬܐ ܣܦܝܩܬܐ ܗܘܐ',
+'delete-confirm'         => 'ܫܘܦ "$1"',
+'delete-legend'          => 'ܫܘܦ',
+'deletedarticle'         => 'ܫܦ "[[$1]]"',
+'dellogpage'             => 'ܣܓܠܐ ܕܫܝܦܐ',
+'deletionlog'            => 'ܣܓܠܐ ܕܫܝܦܐ',
+'deletecomment'          => 'ܥܠܬܐ ܕܫܝܦܐ:',
+'deleteotherreason'      => 'ܥܠܬܐ ܐܚܪܬܐ/ܝܬܝܪܬܐ:',
+'deletereasonotherlist'  => 'ܥܠܬܐ ܐܚܪܬܐ',
+'delete-edit-reasonlist' => 'ܫܚܠܦ ܥܠܠܬ̈ܐ ܕܫܝܦܐ',
 
 # Rollback
 'editcomment' => "ܦܣܝܩܬ̈ܐ ܕܫܘܚܠܦܐ ܗܘܐ: \"''\$1''\".",
 
 # Protect
-'protectedarticle'       => 'ܚܡܝܐ "[[$1]]"',
-'unprotectedarticle'     => 'ܠܐ ܚܡܝܐ "[[$1]]"',
-'protect-fallback'       => 'ܒܥܝ "$1" ܦܣܣܐ',
-'protect-level-sysop'    => 'ܡܕܒܪ̈ܢܐ ܒܠܚܘܕ',
-'protect-othertime'      => 'ܥܕܢܐ ܐܚܪܬܐ:',
-'protect-othertime-op'   => 'ܥܕܢܐ ܐܚܪܬܐ',
-'protect-otherreason'    => 'ܥܠܬܐ ܐܚܪܬܐ/ܢܩܝܦܬܐ:',
-'protect-otherreason-op' => 'ܥܠܬܐ ܐܚܪܬܐ/ܢܩܝܦܬܐ',
-'restriction-type'       => 'ܦܣܣܐ:',
+'protectedarticle'        => 'ܚܡܝܐ "[[$1]]"',
+'unprotectedarticle'      => 'ܠܐ ܚܡܝܐ "[[$1]]"',
+'protect-legend'          => 'ܚܬܬ ܚܡܝܐ',
+'protect-fallback'        => 'ܒܥܝ "$1" ܦܣܣܐ',
+'protect-level-sysop'     => 'ܡܕܒܪ̈ܢܐ ܒܠܚܘܕ',
+'protect-othertime'       => 'ܥܕܢܐ ܐܚܪܬܐ:',
+'protect-othertime-op'    => 'ܥܕܢܐ ܐܚܪܬܐ',
+'protect-otherreason'     => 'ܥܠܬܐ ܐܚܪܬܐ/ܢܩܝܦܬܐ:',
+'protect-otherreason-op'  => 'ܥܠܬܐ ܐܚܪܬܐ/ܢܩܝܦܬܐ',
+'protect-edit-reasonlist' => 'ܫܚܠܦ ܥܠܬܐ ܕܚܡܝܐ',
+'protect-expiry-options'  => '1 ܫܥܬܐ:1 hour,1 ܝܘܡܐ:1 day,1 ܫܒܘܥܐ:1 week,2 ܫܒܘܥ̈ܐ:2 weeks,1 ܝܪܚܐ:1 month,3 ܝܪ̈ܚܐ:3 months,6 ܝܪ̈ܚܐ:6 months,1 ܫܢܬܐ:1 year,ܕܠܐ ܣܟ:infinite',
+'restriction-type'        => 'ܦܣܣܐ:',
 
 # Restrictions (nouns)
 'restriction-edit'   => 'ܫܚܠܦ',
@@ -645,7 +650,12 @@ Note that some pages may continue to be displayed as if you were still logged in
 # Undelete
 'undelete'                  => 'ܚܙܝ ܦܐܬܘܬ̈ܐ ܫܝܦܬ̈ܐ',
 'viewdeletedpage'           => 'ܚܙܝ ܦܐܬܘܬ̈ܐ ܫܝܦܬ̈ܐ',
+'undeleteviewlink'          => 'ܚܙܝ',
+'undeleteinvert'            => 'ܐܗܦܟ ܠܓܘܒܝܐ',
+'undelete-header'           => 'ܚܙܝ [[Special:Log/delete|ܣܓܠܐ ܕܫܝܦܐ]] ܠܚܙܝܐ ܕܦܐܬܘܬ̈ܐ ܫܝܦܬ̈ܐ ܚܕܬܬ̈ܐ.',
 'undelete-search-box'       => 'ܒܨܝ ܦܐܬܘܬ̈ܐ ܫܝܦܬ̈ܐ',
+'undelete-search-prefix'    => 'ܚܘܝ ܦܐܬܘܬ̈ܐ ܫܪܐ ܒ:',
+'undelete-search-submit'    => 'ܒܨܝ',
 'undelete-show-file-submit' => 'ܐܝܢ',
 
 # Namespace form on various pages
@@ -755,6 +765,7 @@ Note that some pages may continue to be displayed as if you were still logged in
 'nextdiff'     => 'ܫܘܚܠܦܐ ܝܬܝܪ ܚܕܬܐ →',
 
 # Special:NewFiles
+'newimages'       => 'ܒܝܬ ܓܠܚܐ ܕܠܦܦ̈ܐ ܚܕܬ̈ܐ',
 'newimages-label' => 'ܫܡܐ ܕܠܦܦܐ (ܐܘ ܡܢܬܐ ܡܢܗ)',
 'ilsubmit'        => 'ܒܨܝ',
 'bydate'          => 'ܒܣܝܩܘܡܐ',

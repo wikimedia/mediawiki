@@ -1910,6 +1910,8 @@ PICT # различные
 'listgrouprights'                      => 'Права групп участников',
 'listgrouprights-summary'              => 'Ниже представлен список определённых в этой вики групп участников, указаны соответствующие им права доступа.
 Возможно, существует [[{{MediaWiki:Listgrouprights-helppage}}|дополнительная информация]] об индивидуальных правах.',
+'listgrouprights-key'                  => '* <span class="listgrouprights-granted">Предоставленные права</span>
+* <span class="listgrouprights-revoked">Отозванные права</span>',
 'listgrouprights-group'                => 'Группа',
 'listgrouprights-rights'               => 'Права',
 'listgrouprights-helppage'             => 'Help:Права групп',

@@ -1903,6 +1903,8 @@ $1",
 'listgrouprights'                      => 'Правы групаў удзельнікаў',
 'listgrouprights-summary'              => 'Ніжэй пададзены сьпіс групаў удзельнікаў {{GRAMMAR:родны|{{SITENAME}}}}, разам зь іх правамі.
 Таксама можна паглядзець [[{{MediaWiki:Listgrouprights-helppage}}|дадатковую інфармацыю]] пра асабістыя правы.',
+'listgrouprights-key'                  => '* <span class="listgrouprights-granted">Прызначаныя правы</span>
+* <span class="listgrouprights-revoked">Адабраныя правы</span>',
 'listgrouprights-group'                => 'Група',
 'listgrouprights-rights'               => 'Правы',
 'listgrouprights-helppage'             => 'Help:Правы групаў удзельнікаў',

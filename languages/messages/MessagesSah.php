@@ -183,14 +183,28 @@ $messages = array(
 'faqpage'        => 'Project:FAQ',
 
 # Vector skin
-'vector-namespace-category' => 'Категория',
-'vector-namespace-help'     => 'Көмө сирэй',
-'vector-namespace-image'    => 'Билэ',
-'vector-namespace-main'     => 'Сирэй',
-'vector-namespace-talk'     => 'Ырытыы',
-'vector-namespace-template' => 'Халыып',
-'vector-namespace-user'     => 'Кыттааччы тус сирэйэ',
-'vector-view-view'          => 'Ааҕыы',
+'vector-action-addsection'   => 'Тиэмэ эбии',
+'vector-action-delete'       => 'Сот',
+'vector-action-move'         => 'Аатын уларыт',
+'vector-action-protect'      => 'Уларыйбат гын',
+'vector-action-undelete'     => 'Төннөр',
+'vector-action-unprotect'    => 'Көмүскэлин уһул',
+'vector-namespace-category'  => 'Категория',
+'vector-namespace-help'      => 'Көмө сирэй',
+'vector-namespace-image'     => 'Билэ',
+'vector-namespace-main'      => 'Сирэй',
+'vector-namespace-media'     => 'Миэдьийэ сирэй',
+'vector-namespace-mediawiki' => 'Сурук',
+'vector-namespace-project'   => 'Бырайыак туһунан',
+'vector-namespace-special'   => 'Анал сирэй',
+'vector-namespace-talk'      => 'Ырытыы',
+'vector-namespace-template'  => 'Халыып',
+'vector-namespace-user'      => 'Кыттааччы тус сирэйэ',
+'vector-view-create'         => 'Ай',
+'vector-view-edit'           => 'Уларыт',
+'vector-view-history'        => 'Устуоруйатын көрүү',
+'vector-view-view'           => 'Ааҕыы',
+'vector-view-viewsource'     => 'Бэлиэлэрин көрүү',
 
 # Metadata in edit box
 'metadata_help' => 'Мета дааннайдар:',
@@ -1050,7 +1064,7 @@ $1",
 'allowemail'                    => 'Атын кыттааччылартан сурук тутары көҥүллүүбүн',
 'prefs-searchoptions'           => 'Көрдөөһүн туруоруулара',
 'prefs-namespaces'              => 'Аат дала',
-'defaultns'                     => 'Чопчу ыйыллыбатаҕына бу ааттар быыстарыгар көрдүүргэ:',
+'defaultns'                     => 'Атын ыйыллыбатаҕына бу аат далларыгар көрдүүргэ:',
 'default'                       => 'чопчу ыйыллыбатаҕына маннык',
 'prefs-files'                   => 'Билэлэр',
 'prefs-custom-css'              => 'Бэйэ CSS',
@@ -1548,11 +1562,11 @@ PICT # misc.
 'fewestrevisions' => 'Саамай аҕыйах көннөрүүлээх ыстатыйалар',
 
 # Miscellaneous special pages
-'nbytes'                  => '$1 баайтаах',
-'ncategories'             => '$1 категориялаах',
+'nbytes'                  => '$1 {{PLURAL:$1|баайтаах|баайт баар}}',
+'ncategories'             => '$1 {{PLURAL:$1|категориялаах|категория баар}}',
 'nlinks'                  => '$1 ыйынньыктаах',
 'nmembers'                => '$1 {{PLURAL:$1|кыттааччы|кыттааччылаах}}',
-'nrevisions'              => '$1 уларытыылаах (барыллаах)',
+'nrevisions'              => '$1 {{PLURAL:$1|барыллаах|барыл баар}}',
 'nviews'                  => '$1 көрүүлээх',
 'specialpage-empty'       => 'Көрдөөн тугу да булбата.',
 'lonelypages'             => 'Атын сирэйдэри кытта сибээһэ суох сирэйдэр',
@@ -1652,8 +1666,9 @@ PICT # misc.
 'special-categories-sort-abc'   => 'алпабыытынан бэрээдэктээһин',
 
 # Special:DeletedContributions
-'deletedcontributions'       => 'Сотуллубут көннөрүү',
-'deletedcontributions-title' => 'Сотуллубут көннөрүү',
+'deletedcontributions'             => 'Сотуллубут көннөрүү',
+'deletedcontributions-title'       => 'Сотуллубут көннөрүү',
+'sp-deletedcontributions-contribs' => 'киллэриитэ (суруйуута)',
 
 # Special:LinkSearch
 'linksearch'       => 'Тас сигэлэр',
@@ -1683,6 +1698,8 @@ PICT # misc.
 'listgrouprights'                      => 'Кыттааччылар бөлөхтөрүн бырааптара',
 'listgrouprights-summary'              => 'Манна бу биикигэ баар бөлөхтөр уонна кинилэр киирэр бырааптара көстөллөр.
 Баҕар дьон туспа бырааптарын  туһунан [[{{MediaWiki:Listgrouprights-helppage}}|эбии информация]] баара буолуо.',
+'listgrouprights-key'                  => '* <span class="listgrouprights-granted">Биэриллибит бырааптар</span>
+* <span class="listgrouprights-revoked">Төттөрү ылыллыбыт бырааптар</span>',
 'listgrouprights-group'                => 'Бөлөх',
 'listgrouprights-rights'               => 'Бырааптар',
 'listgrouprights-helppage'             => 'Help:Бөлөхтөр бырааптара',
@@ -1912,7 +1929,7 @@ $NEWPAGE
 'undeleteextrahelp'            => "Сирэйи барытын оннугар төннөрөргө тугу да бэлиэтээмэ уонна '''''Төннөр''''' тимэҕи баттаа.
 Сирэй сороҕун эрэ төннөрөр буоллаххына сорох эрэ торумнарын бэлиэтээ уонна '''''Төннөр''''' тимэҕи баттаа.
 '''''Ыраастаа''''' тимэҕи баттаатаххына бэлиэлэр уонна хос быһаарыы сүтүөхтэрэ.",
-'undeleterevisions'            => 'Архыыпка $1 торум баар',
+'undeleterevisions'            => 'Архыыпка $1 {{PLURAL:$1|барыллаах|барыл баар}}',
 'undeletehistory'              => 'Сирэйи төннөрдөххүнэ уларытыытын устуоруйата барыта төннөрүллүө.
 Сотуллубутун кэннэ маннык ааттаах атын сирэй оҥоһуллубут түбэлтэтигэр төннөрүллүбүт торумнар уларытыы сурунаалыгар саҥа суруктар иннилэригэр суруллуохтара.',
 'undeleterevdel'               => 'Бу дьайыы сирэй эбэтэр билэ бүтэһик торумун сороҕун сотор кыахтаах буоллаҕына, оҥоһуллуо суоҕа.

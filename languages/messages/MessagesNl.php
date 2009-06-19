@@ -2043,6 +2043,8 @@ Ondersteunde protocollen: <tt>$1</tt>',
 'listgrouprights'                      => 'Rechten van gebruikersgroepen',
 'listgrouprights-summary'              => 'Op deze pagina staan de gebruikersgroepen in deze wiki beschreven, met hun bijbehorende rechten.
 Er kan [[{{MediaWiki:Listgrouprights-helppage}}|extra informatie]] over individuele rechten aanwezig zijn.',
+'listgrouprights-key'                  => '* <span class="listgrouprights-granted">Toewezen recht</span>
+* <span class="listgrouprights-revoked">Ingetrokken recht</span>',
 'listgrouprights-group'                => 'Groep',
 'listgrouprights-rights'               => 'Rechten',
 'listgrouprights-helppage'             => 'Help:Gebruikersrechten',

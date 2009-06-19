@@ -1848,6 +1848,8 @@ Se også [[Special:WantedCategories|ønskede kategorier]].',
 'listgrouprights'                      => 'Rettigheter for brukergrupper',
 'listgrouprights-summary'              => 'Følgende er en liste over brukergrupper som er definert på denne wikien, og hvilke rettigheter de har.
 Mer informasjon om de enkelte rettighetstypene kan finnes [[{{MediaWiki:Listgrouprights-helppage}}|her]].',
+'listgrouprights-key'                  => '* <span class="listgrouprights-granted">Innvilget rettighet</span>
+* <span class="listgrouprights-granted">Tilbaketrukket rettighet</span>',
 'listgrouprights-group'                => 'Gruppe',
 'listgrouprights-rights'               => 'Rettigheter',
 'listgrouprights-helppage'             => 'Help:Grupperettigheter',

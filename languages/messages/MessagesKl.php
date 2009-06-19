@@ -95,6 +95,7 @@ $messages = array(
 'aboutsite'            => '{{SITENAME}} pillugu',
 'aboutpage'            => 'Project:Pillugu',
 'currentevents'        => 'Maannakkut pisut',
+'edithelp'             => 'Ikiuutit',
 'mainpage'             => 'Saqqaa',
 'mainpage-description' => 'Saqqaa',
 'portal'               => 'Allaatiginnittartup saqqai',

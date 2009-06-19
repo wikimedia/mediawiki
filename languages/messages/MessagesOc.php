@@ -1906,6 +1906,8 @@ Vejatz tanben [[Special:WantedCategories|las categorias demandadas]].',
 'listgrouprights'                      => "Dreches dels gropes d'utilizaires",
 'listgrouprights-summary'              => "Aquesta pagina conten una tièra de gropes definits sus aqueste wiki e mai los dreches d'accès qu'i son associats.
 I pòt aver [[{{MediaWiki:Listgrouprights-helppage}}|d'entresenhas complementàrias]] a prepaus dels dreches.",
+'listgrouprights-key'                  => '*<span class="listgrouprights-granted">Drech autrejat</span>
+*<span class="listgrouprights-revoked">Drech revocat</span>',
 'listgrouprights-group'                => 'Grop',
 'listgrouprights-rights'               => 'Dreches associats',
 'listgrouprights-helppage'             => 'Help:Dreches dels gropes',

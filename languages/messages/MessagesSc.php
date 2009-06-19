@@ -775,9 +775,9 @@ Càstia sa [[Special:NewFiles|galleria de files nous]] pro una presentatzione pr
 
 # Statistics
 'statistics'              => 'Istatìsticas',
-'statistics-header-users' => 'Istatìsticas usuàriu',
+'statistics-header-users' => 'Istatìsticas subra is usuàrios',
 
-'disambiguationspage' => 'Template:Disambigua',
+'disambiguationspage' => 'Template:Disambìgua',
 
 'doubleredirects'     => 'Redirects dòpius',
 'doubleredirectstext' => '<b>Attenzione:</b> Questa lista può talvolta contenere dei risultati non corretti. Ciò potrebbe magari accadere perchè vi sono del testo aggiuntivo o dei link dopo il tag #REDIRECT.<br />
@@ -852,7 +852,7 @@ Ogni riga contiene i link al primo ed al secondo redirect, oltre alla prima riga
 'newuserlog-create-entry' => 'Account usuàriu nou',
 
 # Special:ListGroupRights
-'listgrouprights-members'       => '(lista de is cumponentes)',
+'listgrouprights-members' => '(lista de is cumponentes)',
 
 # E-mail user
 'mailnologintext' => 'Devi fare il [[Special:UserLogin|login]]
