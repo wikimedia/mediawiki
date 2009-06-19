@@ -193,8 +193,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 19160) maintenance/purgeOldText.inc is now compatible with PostgreSQL
 * Fixed performance regression in "bad image list" feature
 * Show user preference 'Use live preview' if $wgLivePreview is enabled only
-* (bug 17014) Blocked users can no longer use Special:UserRights if they do
-  not have the 'userrights' permission.
+* (bug 17014) Blocked users can no longer use Special:UserRights unless they
+  can add/remove *all* groups (have 'userrights' permission).
 * (bug 19294) Always show Sp-contributions-footer(-anon)
 
 == API changes in 1.16 ==
