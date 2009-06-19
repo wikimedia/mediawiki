@@ -2028,8 +2028,8 @@ $1已被禁矣。爾是否改此置？',
 # Namespace 8 related
 'allmessages'               => '官話',
 'allmessagesname'           => '話',
-'allmessagesdefault'        => '慣文',
-'allmessagescurrent'        => '今文',
+'allmessagesdefault'        => '慣話文',
+'allmessagescurrent'        => '今話文',
 'allmessagestext'           => '此列MediaWiki官話。
 如貢正宗MediaWiki本地化，[http://www.mediawiki.org/wiki/Localisation MediaWiki本地化]與[http://translatewiki.net translatewiki.net]閱之。',
 'allmessagesnotsupportedDB' => "'''\$wgUseDatabaseMessages'''閉庫，'''無纂也。",

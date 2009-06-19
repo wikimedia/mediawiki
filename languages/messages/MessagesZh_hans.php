@@ -2349,8 +2349,8 @@ $1已经被封锁。您是否想更改这个设置？',
 # Namespace 8 related
 'allmessages'               => '系统界面',
 'allmessagesname'           => '名称',
-'allmessagesdefault'        => '默认的文字',
-'allmessagescurrent'        => '当前的文字',
+'allmessagesdefault'        => '默认的信息文字',
+'allmessagescurrent'        => '现时的信息文字',
 'allmessagestext'           => '这里列出所有可定制的系统界面。
 如果想贡献正宗的MediaWiki本地化的话，请参阅[http://www.mediawiki.org/wiki/Localisation MediaWiki本地化]以及[http://translatewiki.net translatewiki.net]。',
 'allmessagesnotsupportedDB' => "这个页面无法使用，因为'''\$wgUseDatabaseMessages'''已被设置关闭。",
