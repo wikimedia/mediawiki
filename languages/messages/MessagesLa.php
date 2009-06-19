@@ -1908,8 +1908,8 @@ Paginae nomen petitum "[[:$1]]" iam existit. Vin tu eam delere ut pagina illic m
 # Namespace 8 related
 'allmessages'               => 'Nuntia systematis',
 'allmessagesname'           => 'Nomen',
-'allmessagesdefault'        => 'Textus originalis',
-'allmessagescurrent'        => 'Textus recens',
+'allmessagesdefault'        => 'Textus originalis nuntii',
+'allmessagescurrent'        => 'Textus recens nuntii',
 'allmessagestext'           => 'Hic est index omnium nuntiorum in MediaWiki.',
 'allmessagesnotsupportedDB' => "Haec pagina non adhiberi potest, quia '''\$wgUseDatabaseMessages''' non iam agitur.",
 'allmessagesfilter'         => 'Colum nominibus nuntiorum:',

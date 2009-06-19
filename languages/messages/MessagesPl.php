@@ -1910,6 +1910,8 @@ Obsługiwane protokoły: <tt>$1</tt>',
 'listgrouprights'                      => 'Uprawnienia grup użytkowników',
 'listgrouprights-summary'              => 'Poniżej znajduje się spis zdefiniowanych na tej wiki grup użytkowników, z wyszczególnieniem przydzielonych im uprawnień.
 Sprawdź stronę z [[{{MediaWiki:Listgrouprights-helppage}}|dodatkowymi informacjami]] o uprawnieniach.',
+'listgrouprights-key'                  => '* <span class="listgrouprights-granted">Przyznane uprawnienie</span>
+* <span class="listgrouprights-revoked">Odebrane uprawnienie</span>',
 'listgrouprights-group'                => 'Grupa',
 'listgrouprights-rights'               => 'Uprawnienia',
 'listgrouprights-helppage'             => 'Help:Uprawnienia grup użytkowników',

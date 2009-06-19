@@ -300,13 +300,13 @@ $messages = array(
 
 'tagline'          => '{{SITENAME}}त्',
 'help'             => 'सहायता',
-'search'           => 'शोध',
-'searchbutton'     => 'शोध',
+'search'           => 'अन्विष्यतु',
+'searchbutton'     => 'अन्विष्यतु',
 'go'               => 'गच्छति',
 'searcharticle'    => 'गच्छति',
 'history'          => 'पृष्ठस्य इतिहास',
 'history_short'    => 'इतिहास',
-'printableversion' => 'मुद्रणस्य पाठ',
+'printableversion' => 'मुद्रणीया आवृत्तिः',
 'permalink'        => 'स्थायी निबन्धन',
 'print'            => 'मुद्रयतु',
 'edit'             => 'सम्पादयतु',
@@ -317,7 +317,7 @@ $messages = array(
 'protect'          => 'सुरक्षित करोसि',
 'protect_change'   => 'सुरक्षा नियम परिवर्त',
 'newpage'          => 'नविन पृष्ठ',
-'talkpagelinktext' => 'संवाद',
+'talkpagelinktext' => 'संवादः',
 'specialpage'      => 'विशेष पृष्ठ',
 'personaltools'    => 'वैयक्तिक साधन',
 'talk'             => 'संवाद',
@@ -328,29 +328,30 @@ $messages = array(
 'jumptosearch'     => 'शोध',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
-'aboutsite'            => '{{SITENAME}}विषये',
-'aboutpage'            => 'Project:विषये',
+'aboutsite'            => '{{SITENAME}} इत्यस्य विषये',
+'aboutpage'            => 'Project:एतद्विषये',
 'copyrightpage'        => '{{ns:project}}:प्रताधिकार',
 'currentevents'        => 'सद्य घटना',
-'disclaimers'          => 'स्वाम्यत्यागं',
-'disclaimerpage'       => 'Project:स्वाम्यत्यागं',
+'disclaimers'          => 'प्रत्याख्यानम्',
+'disclaimerpage'       => 'Project:सामान्यं प्रत्याख्यानम्',
 'edithelp'             => 'संपादनार्थं सहायता',
 'helppage'             => 'Help:सहाय्य',
 'mainpage'             => 'मुख्यपृष्ठम्',
 'mainpage-description' => 'मुख्यपृष्ठम्',
-'privacy'              => 'गोपनीयविषये नीति',
-'privacypage'          => 'Project:गोपनीयता नीति',
+'privacy'              => 'नैजता-नीतिः',
+'privacypage'          => 'Project:नैजता-नीतिः',
 
 'retrievedfrom'   => 'इतः "$1" निसह्वे',
 'newmessageslink' => 'नूतनाः संदेशाः',
 'editsection'     => 'संपादयति',
-'editsectionhint' => 'विभाग संपादन: $1',
+'editsectionhint' => 'विभागं संपादयतु: $1',
 'hidetoc'         => 'लुप्य',
 'feedlinks'       => 'अनुबन्ध:',
-'site-rss-feed'   => '$1 आरएसएस पूरयति',
+'site-rss-feed'   => '$1 आरएसएस पूरणम्',
 'site-atom-feed'  => '$1 ऍटम पूरयति',
 'page-rss-feed'   => '"$1" आरएसएस अनुबन्ध',
 'page-atom-feed'  => '"$1" ऍटम अनुबन्ध',
+'red-link-title'  => '$1 (इदानीं यावत् न रचितम्)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'     => 'पृष्ठ',
@@ -441,7 +442,7 @@ $messages = array(
 'statistics' => 'सांख्यिकी',
 
 # Miscellaneous special pages
-'longpages'    => "दीर्घाणि पृष्ठाणि",
+'longpages'    => 'दीर्घाणि पृष्ठाणि',
 'newpages'     => 'नूतनानि पृष्ठाणि',
 'ancientpages' => 'प्राचीनतम् पृष्ठा',
 'move'         => 'नामभेद',
@@ -491,7 +492,7 @@ $messages = array(
 
 # Block/unblock
 'blocklink'    => 'निषेध',
-'contribslink' => 'योगदान',
+'contribslink' => 'योगदानम्',
 
 # Namespace 8 related
 'allmessages'     => 'व्यवस्था सन्देशानि',

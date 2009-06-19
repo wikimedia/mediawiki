@@ -1795,8 +1795,9 @@ Vidu ankaŭ [[Special:WantedCategories|Dezirataj kategorioj]].',
 'special-categories-sort-abc'   => 'ordigi laŭ alfabeto',
 
 # Special:DeletedContributions
-'deletedcontributions'       => 'Forigitaj kontribuoj de uzantoj',
-'deletedcontributions-title' => 'Forigitaj kontribuoj de uzantoj',
+'deletedcontributions'             => 'Forigitaj kontribuoj de uzantoj',
+'deletedcontributions-title'       => 'Forigitaj kontribuoj de uzantoj',
+'sp-deletedcontributions-contribs' => 'kontribuoj',
 
 # Special:LinkSearch
 'linksearch'       => 'Eksteraj ligiloj',
@@ -1824,6 +1825,8 @@ Vidu ankaŭ [[Special:WantedCategories|Dezirataj kategorioj]].',
 'listgrouprights'                      => 'Gruprajtoj de uzantoj',
 'listgrouprights-summary'              => 'Jen listo de uzanto-grupoj difinitaj en ĉi tiu vikio, kun ties asociaj atingrajtoj.
 Estas [[{{MediaWiki:Listgrouprights-helppage}}|aldona informo]] pri individuaj rajtoj.',
+'listgrouprights-key'                  => '* <span class="listgrouprights-granted">Donita rajto</span>
+* <span class="listgrouprights-revoked">Maldonita rajto</span>',
 'listgrouprights-group'                => 'Grupo',
 'listgrouprights-rights'               => 'Rajtoj',
 'listgrouprights-helppage'             => 'Help:Grupaj rajtoj',

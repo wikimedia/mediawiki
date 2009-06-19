@@ -8,6 +8,7 @@
  * @file
  *
  * @author Bèrto 'd Sèra
+ * @author Dragonòt
  * @author SabineCretella
  * @author Teak
  * @author Ævar Arnfjörð Bjarmason <avarab@gmail.com>, Jens Frank
@@ -329,6 +330,12 @@ MySQL a l\'ha dane n\'eror "$3: $4"',
 'readonlytext'         => "La base dat ëd {{SITENAME}} për adess a l'é blocà, e as peulo pa fesse nì dle neuve imission, nì dle modìfiche, con tute le probabilità për n'operassion ëd manutension dël server. Se a l'é parej motobin ampressa la base a sarà torna doèrta.<br />
 L'aministrator che a l'ha blocala a l'ha lassà sto messagi-sì:
 <p>:$1",
+'missing-article'      => "Ël database a l'ha nen trovà ël test ëd na pagina che a l'avrìa dovù trové, ciamà \"\$1\" \$2.
+
+Sossì ëd sòlit a l'é causà përché a l'é ciamasse na diferensa o n'anliura stòrica a na paginà scanselà.
+
+Se cost a l'é nen ël cas, it podrìe avèj trovà un bug ant ël software.
+Për piasì, fa rapòrt a n'[[Special:ListUsers/sysop|aministrador]], pijand nòta ëd la URL.",
 'readonly_lag'         => "La base dat a l'é staita blocà n'automàtich antramentr che che le màchine dël circuito secondari (slave) as buto an pari con cole dël prinsipal (master)",
 'internalerror'        => 'Eror intern',
 'internalerror_info'   => 'Eror antern: $1',
@@ -680,6 +687,7 @@ na restrission adissional da j'operator dël sit.",
 'logdelete-logentry'          => "a l'ha cangiaje visibilità a l'event [[$1]]",
 'revdelete-success'           => "'''Visibilità dla revision butà coma ch'as dev.'''",
 'logdelete-success'           => "'''Visibilità dla revision butà coma ch'as dev.'''",
+'revdel-restore'              => 'cambia visibilità',
 'pagehist'                    => 'Stòria dla pàgina',
 'deletedhist'                 => 'Stòria scancelà',
 
@@ -717,34 +725,40 @@ Ch'a varda mach che a-i ven-a nen fòra rabel ant la continuità stòrica.",
 'diff-multi'              => '({{PLURAL:$1|Na revision antërmedia|$1 revision antërmedie}} pa mostrà.)',
 
 # Search results
-'searchresults'         => "Arsultà dl'arserca",
-'searchresulttext'      => "Per avej pì d'anformassion ant sl'arserca interna ëd {{SITENAME}}, che a varda [[{{MediaWiki:Helppage}}|Arserca ant la {{SITENAME}}]].",
-'searchsubtitle'        => 'Domanda "[[:$1]]"',
-'searchsubtitleinvalid' => 'Domanda "$1"',
-'noexactmatch'          => "'''La pàgina \"\$1\" a-i é pa.''' As peul [[:\$1|creéla d'amblé]].",
-'noexactmatch-nocreate' => "'''A-i é pa gnun-a pàgina ciamà \"\$1\".'''",
-'toomanymatches'        => "Parej a-i ven fòra tròpa ròba, për piasì, ch'a prova n'arsërca diferenta.",
-'titlematches'          => "Ant ij tìtoj dj'artìcoj",
-'notitlematches'        => "La vos che a l'ha ciamà a l'é pa trovasse antrames aj tìtoj dj'articol",
-'textmatches'           => "Ant ël test ëd j'artìcoj",
-'notextmatches'         => "La vos che a l'ha ciamà a l'é pa trovasse antrames aj test dj'articol",
-'prevn'                 => 'ij {{PLURAL:$1|$1}} prima',
-'nextn'                 => 'ij {{PLURAL:$1|$1}} peuj',
-'viewprevnext'          => 'Che a varda ($1) ($2) ($3).',
-'searchhelp-url'        => 'Help:Agiut',
-'search-result-size'    => '$1 ({{PLURAL:$2|un|$2}} mòt)',
-'search-result-score'   => 'Arlevansa: $1%',
-'search-redirect'       => '(ridiression $1)',
-'search-section'        => '(session $1)',
-'search-suggest'        => 'Vorìi-lo pa dì: $1',
-'searchall'             => 'tuti',
-'showingresults'        => "Ambelessì sota a treuva fin a {{PLURAL:$1|'''1'''|'''$1'''}} arzultà, a parte dal nùmer #'''$2'''.",
-'showingresultsnum'     => "Ambelessì sota a treuva {{PLURAL:$3|'''1'''|'''$3'''}} arzultà a parte da #'''$2'''.",
-'showingresultstotal'   => "Ambelessì sota as ë-sciàiro j'arzultà '''da $1 a $2''' ëd '''$3''' ch'a-i në j'é.",
-'nonefound'             => '<strong>Nòta</strong>: l\'arserchè dle paròle soèns dovrà, coma "avej" ò "esse", che a son pa indicisà, a peul dé n\'arsultà negativ, tan-me buté pì che na paròla da arserché (che a ven-o fòra mach cole pàgine andoa le paròle arsercà a-i son tute ansema).',
-'powersearch'           => 'Arserca',
-'powersearch-legend'    => 'Arsërca avansà',
-'searchdisabled'        => "L'arserca anterna ëd {{SITENAME}} a l'é nen abilità; për adess a peul prové a dovré un motor d'arserca estern coma Google. (Però che a ten-a present che ij contnù ëd {{SITENAME}} listà ant ij motor pùblich a podrìo ëdcò esse nen d'autut agiornà)",
+'searchresults'             => "Arsultà dl'arserca",
+'searchresults-title'       => 'Arzultà dl\'arserca për "$1"',
+'searchresulttext'          => "Per avej pì d'anformassion ant sl'arserca interna ëd {{SITENAME}}, che a varda [[{{MediaWiki:Helppage}}|Arserca ant la {{SITENAME}}]].",
+'searchsubtitle'            => 'Domanda "[[:$1]]"',
+'searchsubtitleinvalid'     => 'Domanda "$1"',
+'noexactmatch'              => "'''La pàgina \"\$1\" a-i é pa.''' As peul [[:\$1|creéla d'amblé]].",
+'noexactmatch-nocreate'     => "'''A-i é pa gnun-a pàgina ciamà \"\$1\".'''",
+'toomanymatches'            => "Parej a-i ven fòra tròpa ròba, për piasì, ch'a prova n'arsërca diferenta.",
+'titlematches'              => "Ant ij tìtoj dj'artìcoj",
+'notitlematches'            => "La vos che a l'ha ciamà a l'é pa trovasse antrames aj tìtoj dj'articol",
+'textmatches'               => "Ant ël test ëd j'artìcoj",
+'notextmatches'             => "La vos che a l'ha ciamà a l'é pa trovasse antrames aj test dj'articol",
+'prevn'                     => 'ij {{PLURAL:$1|$1}} prima',
+'nextn'                     => 'ij {{PLURAL:$1|$1}} peuj',
+'viewprevnext'              => 'Che a varda ($1) ($2) ($3).',
+'searchhelp-url'            => 'Help:Agiut',
+'search-result-size'        => '$1 ({{PLURAL:$2|un|$2}} mòt)',
+'search-result-score'       => 'Arlevansa: $1%',
+'search-redirect'           => '(ridiression $1)',
+'search-section'            => '(session $1)',
+'search-suggest'            => 'Vorìi-lo pa dì: $1',
+'search-mwsuggest-enabled'  => 'con sugeriment',
+'search-mwsuggest-disabled' => 'gnun sugeriment',
+'searchall'                 => 'tuti',
+'showingresults'            => "Ambelessì sota a treuva fin a {{PLURAL:$1|'''1'''|'''$1'''}} arzultà, a parte dal nùmer #'''$2'''.",
+'showingresultsnum'         => "Ambelessì sota a treuva {{PLURAL:$3|'''1'''|'''$3'''}} arzultà a parte da #'''$2'''.",
+'showingresultstotal'       => "Ambelessì sota as ë-sciàiro j'arzultà '''da $1 a $2''' ëd '''$3''' ch'a-i në j'é.",
+'nonefound'                 => '<strong>Nòta</strong>: l\'arserchè dle paròle soèns dovrà, coma "avej" ò "esse", che a son pa indicisà, a peul dé n\'arsultà negativ, tan-me buté pì che na paròla da arserché (che a ven-o fòra mach cole pàgine andoa le paròle arsercà a-i son tute ansema).',
+'powersearch'               => 'Arserca',
+'powersearch-legend'        => 'Arsërca avansà',
+'powersearch-ns'            => 'Serca ant ij namespaces:',
+'powersearch-redir'         => 'Lista le rediression',
+'powersearch-field'         => 'Serca',
+'searchdisabled'            => "L'arserca anterna ëd {{SITENAME}} a l'é nen abilità; për adess a peul prové a dovré un motor d'arserca estern coma Google. (Però che a ten-a present che ij contnù ëd {{SITENAME}} listà ant ij motor pùblich a podrìo ëdcò esse nen d'autut agiornà)",
 
 # Quickbar
 'qbsettings'               => 'Regolassion dla bara dij menù',
@@ -1032,6 +1046,8 @@ Ch'a-i bata 'n colp col rat ansima a j'antestassion dle colòne për cangé órd
 'filehist-revert'           => "buté torna 'me ch'a lera",
 'filehist-current'          => "dël dì d'ancheuj",
 'filehist-datetime'         => 'Data e Ora',
+'filehist-thumb'            => 'Miniatura',
+'filehist-thumbtext'        => 'Miniatura dla vërsion dle $1',
 'filehist-user'             => 'Utent',
 'filehist-dimensions'       => 'Amzure',
 'filehist-filesize'         => "Amzure dl'archivi",
@@ -1230,6 +1246,12 @@ A peul sern-se n'arsultà pì strèit ën selessionand na sòrt ëd registr sola
 'newuserlogpagetext'       => "Sossì a l'é un registr andova ch'as marco le creassion dj'utent.",
 'newuserlog-create-entry'  => 'Neuv utent',
 'newuserlog-create2-entry' => 'Cont doertà për $1',
+
+# Special:ListGroupRights
+'listgrouprights-group'    => 'Grup',
+'listgrouprights-rights'   => 'Drit',
+'listgrouprights-helppage' => 'Agiut:Drit dël grup',
+'listgrouprights-members'  => '(Lista dij mèmber*',
 
 # E-mail user
 'mailnologin'     => 'A-i é pa gnun-a adrëssa për mandé ël messagi',
@@ -1558,6 +1580,7 @@ Che a varda la [[Special:IPBlockList|lista dj\'IP blocà]].',
 'ipblocklist-no-results'      => "L'adrëssa IP ò lë stranòm ch'a l'ha ciamà a l'é pa blocà.",
 'blocklink'                   => 'blòca',
 'unblocklink'                 => 'dësblòca',
+'change-blocklink'            => 'cambia blòch',
 'contribslink'                => 'contribussion',
 'autoblocker'                 => "A l'é scataje un blocagi përchè soa adrëssa IP a l'é staita dovrà ant j'ùltim temp da l'Utent \"[[User:\$1|\$1]]\". Ël motiv për bloché \$1 a l'é stait: \"'''\$2'''\"",
 'blocklogpage'                => 'Registr dij blocagi',
@@ -1637,6 +1660,7 @@ për podej tramudé na pàgina.",
 'move-watch'              => 'Ten sot euj sta pàgina-sì',
 'movepagebtn'             => 'Tramuda sta pàgina-sì',
 'pagemovedsub'            => 'San Martin bele finì!',
+'movepage-moved'          => "<big>'''\"\$1\" a l'é stàit spostà a \"\$2\"'''</big>",
 'articleexists'           => "Na pàgina che as ciama parej a-i é già, ò pura ël nòm che a l'ha sërnù a va nen bin.<br />
 Che as sërna, për piasì, un nòm diferent për st'articol.",
 'cantmove-titleprotected' => "As peul pa fesse San Martin ambelelì, për via che col tìtol-lì a l'é stàit proibì e a peul pa ess-ie na pàgina ciamà parej",
@@ -1795,6 +1819,9 @@ Tute le amportassion antra wiki diferente a resto marcà ant ël [[Special:Log/i
 'tooltip-watch'                   => 'Gionta sta pàgina-sì a la lista dle ròbe che im ten-o sot euj',
 'tooltip-recreate'                => 'Creé torna la pàgina contut che a la sia staita scancelà',
 'tooltip-upload'                  => 'Anandiesse a carié',
+'tooltip-rollback'                => '"Rollback" a scansela con un clich le modìfiche fàite a costa pagina da l\'ùltim contribudor',
+'tooltip-undo'                    => '"Undo" a scansela costa modìfica e a deurb la fnestra ëd modìfica an manera ëd vardé prima.
+At lassa gionté na spiegassion ëd la modìfica.',
 
 # Stylesheets
 'common.css'   => '/** Ël còdes CSS che as buta ambelessì a resta dovrà ant tute le "facie" */',

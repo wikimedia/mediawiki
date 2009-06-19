@@ -1748,6 +1748,8 @@ Lueg au d Lischt vu dr [[Special:WantedCategories|gwinschte Kategorie]].',
 'listgrouprights'                      => 'Benutzergruppe-Rächt',
 'listgrouprights-summary'              => 'Des isch e Liste vu dr Benutzergruppe, wu in däm Wiki definiert sin, un dr Rächt, wu dermit verbunde sin.
 Zuesätzligi Informatione iber einzelni Rächt git s [[{{MediaWiki:Listgrouprights-helppage}}|doo]].',
+'listgrouprights-key'                  => '* <span class="listgrouprights-granted">Bewilligt Rächt</span>
+* <span class="listgrouprights-revoked">Entzoge Rächt</span>',
 'listgrouprights-group'                => 'Grupp',
 'listgrouprights-rights'               => 'Rächt',
 'listgrouprights-helppage'             => 'Help:Grupperächt',

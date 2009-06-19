@@ -1843,6 +1843,8 @@ Protocolli supportati: <tt>$1</tt>',
 'listgrouprights'                      => 'Diritti del gruppo utente',
 'listgrouprights-summary'              => "Di seguito sono elencati i gruppi utente definiti per questo sito, con i diritti d'accesso loro associati.
 Potrebbero esserci [[{{MediaWiki:Listgrouprights-helppage}}|ulteriori informazioni]] sui diritti individuali.",
+'listgrouprights-key'                  => '* <span class="listgrouprights-granted">Diritto garantito</span>
+* <span class="listgrouprights-revoked">Diritto revocato</span>',
 'listgrouprights-group'                => 'Gruppo',
 'listgrouprights-rights'               => 'Diritti',
 'listgrouprights-helppage'             => 'Help:Diritti del gruppo',

@@ -1020,6 +1020,7 @@ $1",
 'revdelete-unhid'             => 'palautti näkyviin $1',
 'revdelete-log-message'       => '$1 koskien $2 {{PLURAL:$2|versiota}}',
 'logdelete-log-message'       => '$1 koskien $2 {{PLURAL:$2|tapahtumaa}}',
+'revdelete-modify-missing'    => 'Virhe muuttaessa kohdetta, jonka tunnus on $1: Se puuttuu tietokannasta.',
 
 # Suppression log
 'suppressionlog'     => 'Häivytysloki',
@@ -1859,6 +1860,8 @@ Tuetut protokollat: <tt>$1</tt>.',
 'listgrouprights'                      => 'Käyttäjäryhmien oikeudet',
 'listgrouprights-summary'              => 'Tämä lista sisältää tämän wikin käyttäjäryhmät sekä ryhmiin liitetyt käyttöoikeudet.
 Lisätietoa yksittäisistä käyttäjäoikeuksista saattaa löytyä [[{{MediaWiki:Listgrouprights-helppage}}|erilliseltä ohjesivulta]].',
+'listgrouprights-key'                  => '* <span class="listgrouprights-granted">Myönnetyt oikeudet</span>
+* <span class="listgrouprights-revoked">Kumotut oikeudet</span>',
 'listgrouprights-group'                => 'Ryhmä',
 'listgrouprights-rights'               => 'Oikeudet',
 'listgrouprights-helppage'             => 'Help:Käyttöoikeudet',

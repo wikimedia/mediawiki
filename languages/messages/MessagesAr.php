@@ -1851,7 +1851,7 @@ PICT # متنوع
 'sharedupload-desc-here'    => 'هذا الملف من $1 ويمكن استخدامه بواسطة المشاريع الأخرى.
 الوصف على [$2 صفحة وصف الملف] هناك معروض بالأسفل.',
 'filepage-nofile'           => 'لا ملف موجود بهذا الاسم.',
-'filepage-nofile-link'      => '[$1 رفعه]لا ملف موجود بهذا الاسم، لكنك تستطيع.',
+'filepage-nofile-link'      => 'لا يوجد ملف بهذا الاسم، لكن يمكنك [$1 رفعه].',
 'uploadnewversion-linktext' => 'ارفع نسخة جديدة من هذا الملف',
 'shared-repo-from'          => 'من $1',
 'shared-repo'               => 'مستودع مشترك',
@@ -3453,7 +3453,7 @@ $1',
 'hebrew-calendar-m12-gen' => 'أيلول',
 
 # Signatures
-'timezone-utc' => 'ت‌ع‌م',
+'timezone-utc' => 'ت ع م',
 
 # Core parser functions
 'unknown_extension_tag' => 'وسم امتداد غير معروف "$1"',

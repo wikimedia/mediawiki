@@ -8,6 +8,7 @@
  * @file
  *
  * @author Consta
+ * @author Crazymadlover
  * @author Omnipaedista
  * @author Sinopeus
  * @author Urhixidur
@@ -153,6 +154,7 @@ $messages = array(
 'vector-action-delete'       => 'Σβήσον',
 'vector-action-move'         => 'Ετεροχλάεμαν',
 'vector-action-protect'      => 'Ασπάλιγμαν',
+'vector-action-undelete'     => 'Επαναφοράν',
 'vector-namespace-category'  => 'Κατηγορίαν',
 'vector-namespace-image'     => 'Αρχείον',
 'vector-namespace-main'      => 'Σελίδαν',
@@ -160,6 +162,7 @@ $messages = array(
 'vector-namespace-talk'      => 'Καλάτσεμαν',
 'vector-namespace-template'  => 'Πρότυπον',
 'vector-namespace-user'      => 'Σελίδαν χρήστε',
+'vector-view-create'         => 'Ποίσον',
 'vector-view-edit'           => 'Άλλαξον',
 
 # Metadata in edit box
@@ -520,6 +523,7 @@ $messages = array(
 'history-fieldset-title' => 'Εύρον σο ιστορικόν',
 'histfirst'              => "Ασ' όλεα παλαιόν",
 'histlast'               => "Ασ' όλεα καινούρ'",
+'historysize'            => '({{PLURAL:$1|1 byte|$1 bytes}})',
 'historyempty'           => '(εύκαιρον)',
 
 # Revision feed
@@ -888,6 +892,7 @@ $messages = array(
 'emailfrom'    => 'Ασά:',
 'emailsubject' => 'Θέμαν:',
 'emailmessage' => 'Μένεμαν:',
+'emailsend'    => 'Αποστολήν',
 
 # Watchlist
 'watchlist'         => "Σελίδας ντ' ωριάζω",
@@ -954,7 +959,7 @@ $messages = array(
 'protect-expiring'            => 'λήγει στις $1 (UTC)',
 'protect-cascade'             => "Ασπάλιγμαν σελιδίων ντ' είν απές σ' αβούτεν σελίδαν (διαδοχικόν προστασίαν)",
 'protect-cantedit'            => "'Κι έχετε δικαίωμαν ν' αλλάζετε τ' επίπεδον ασπάλιγματι τ' ατεινές σελίδας.",
-'protect-expiry-options'      => '2 ώραν:2 hour,1 ημέραν:1 day,1 εβδομάδαν:1 week,2 εβδομάδας:2 weeks,1 μήναν:1 month,3 μήνας:3 months,6 μήνας:6 months,1 χρόνον:1 year,αόριστα:infinite',
+'protect-expiry-options'      => '1 ώραν:1 hour,1 ημέραν:1 day,1 εβδομάδαν:1 week,2 εβδομάδας:2 weeks,1 μήναν:1 month,3 μήνας:3 months,6 μήνας:6 months,1 χρόνον:1 year,αόριστα:infinite',
 'restriction-type'            => 'Δικαίωμαν:',
 'restriction-level'           => 'Επίπεδον περιορισμού:',
 
@@ -1244,7 +1249,15 @@ $messages = array(
 'exif-whitepoint'                  => "Χρωματικόν προσδιορισμός τ' άσπρου",
 'exif-primarychromaticities'       => 'Πρωτεύοντες χρωματισμοί',
 'exif-imagedescription'            => 'Τίτλος εικόνας',
+'exif-exposuretime-format'         => '$1 δευ ($2)',
+'exif-fnumber'                     => 'Αριθμός F',
 'exif-contrast'                    => 'Αντίθεσην',
+'exif-gpslatitude'                 => 'Γεωγραφικόν πλάτος',
+'exif-gpslongitude'                => 'Γεωγραφικόν μήκος',
+'exif-gpsaltitude'                 => 'Υψόμετρον',
+'exif-gpsspeedref'                 => 'Μονάδα ταχύτητας',
+
+'exif-orientation-1' => 'Νορμάλ',
 
 'exif-subjectdistance-value' => '$1 μέτρα',
 

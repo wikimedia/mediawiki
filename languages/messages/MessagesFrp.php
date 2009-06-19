@@ -2022,6 +2022,8 @@ Controlâd asse-ben les variantes de câssa.',
 'listgrouprights'                      => 'Drêts a les tropes d’utilisators',
 'listgrouprights-summary'              => 'Ceta pâge contint una lista a les tropes dèfenies sur ceti vouiqui et pués los drêts d’accès que lor sont associyês.
 Y pôt avêr [[{{MediaWiki:Listgrouprights-helppage}}|més d’enformacions]] sur los drêts particuliérs.',
+'listgrouprights-key'                  => '* <span class="listgrouprights-granted">Drêt balyê</span>
+* <span class="listgrouprights-revoked">Drêt rèvocâ</span>',
 'listgrouprights-group'                => 'Tropa',
 'listgrouprights-rights'               => 'Drêts associyês',
 'listgrouprights-helppage'             => 'Help:Drêts a les tropes',

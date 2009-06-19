@@ -314,7 +314,19 @@ $messages = array(
 'faqpage'        => 'Project:FAQ',
 
 # Vector skin
-'vector-view-view' => 'Ler',
+'vector-action-delete'       => 'Eliminar',
+'vector-action-move'         => 'Mover',
+'vector-action-protect'      => 'Proteger',
+'vector-namespace-category'  => 'Categoria',
+'vector-namespace-image'     => 'Ficheiro',
+'vector-namespace-main'      => 'Página',
+'vector-namespace-mediawiki' => 'Mensagem',
+'vector-namespace-talk'      => 'Discussão',
+'vector-namespace-template'  => 'Predefinição',
+'vector-namespace-user'      => 'Página de utilizador',
+'vector-view-create'         => 'Criar',
+'vector-view-edit'           => 'Editar',
+'vector-view-view'           => 'Ler',
 
 # Metadata in edit box
 'metadata_help' => 'Metadados:',
@@ -1778,8 +1790,9 @@ Veja também as [[Special:WantedCategories|categorias em falta]].',
 'special-categories-sort-abc'   => 'ordenar alfabeticamente',
 
 # Special:DeletedContributions
-'deletedcontributions'       => 'Edições eliminadas',
-'deletedcontributions-title' => 'Edições eliminadas',
+'deletedcontributions'             => 'Edições eliminadas',
+'deletedcontributions-title'       => 'Edições eliminadas',
+'sp-deletedcontributions-contribs' => 'contribuições',
 
 # Special:LinkSearch
 'linksearch'       => 'Ligações externas',

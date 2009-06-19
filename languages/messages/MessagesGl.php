@@ -1893,6 +1893,8 @@ Olle tamén as [[Special:WantedCategories|categorías requiridas]].',
 'listgrouprights'                      => 'Dereitos dun usuario segundo o seu grupo',
 'listgrouprights-summary'              => 'A seguinte lista mostra os grupos de usuario definidos neste wiki, cos seus dereitos de acceso asociados.
 Se quere máis información acerca dos dereitos individuais, pode atopala [[{{MediaWiki:Listgrouprights-helppage}}|aquí]].',
+'listgrouprights-key'                  => '* <span class="listgrouprights-granted">Dereito concedido</span>
+* <span class="listgrouprights-revoked">Dereito revogado</span>',
 'listgrouprights-group'                => 'Grupo',
 'listgrouprights-rights'               => 'Dereitos',
 'listgrouprights-helppage'             => 'Help:Dereitos do grupo',

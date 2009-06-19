@@ -24,7 +24,7 @@ $messages = array(
 'tog-numberheadings'          => 'Sab heading ke apne se number karo',
 'tog-showtoolbar'             => 'Badle waala aujaar ke toolbar ke dekhao (JavaScript ke jarurat hai)',
 'tog-editondblclick'          => 'Dugnaa click pe panna ke badlo (JavaScript ke jarurat hai)',
-'tog-editsection'             => '[[Badlao]] ke jorr se koi bhaag ke badle ke adhikar do',
+'tog-editsection'             => '[Badlao] ke jorr se section ke badlao se enable karo',
 'tog-editsectiononrightclick' => 'Bhaag ke title pe right click kare pe bhaag ke badle ke laabu karo  (JavaScript)',
 'tog-showtoc'                 => 'Dhyan suchi dekhao (uu panna khatir jon me tiin se jaada heading hai)',
 'tog-rememberpassword'        => 'Ii computer me hamaar login yaad rakho',
@@ -161,6 +161,30 @@ $messages = array(
 'qbspecialpages' => 'Khaas panna',
 'faq'            => 'Sab time puchhe waala sawal',
 'faqpage'        => 'Project:Sab time puchhe waala sawal',
+
+# Vector skin
+'vector-action-addsection'   => 'Topic jorro',
+'vector-action-delete'       => 'Mitao',
+'vector-action-move'         => 'Naam badlo',
+'vector-action-protect'      => 'Bachao',
+'vector-action-undelete'     => 'Pahile jaise karo',
+'vector-action-unprotect'    => 'Nai bachao',
+'vector-namespace-category'  => 'Vibhag',
+'vector-namespace-help'      => 'Madat waala panna',
+'vector-namespace-image'     => 'File',
+'vector-namespace-main'      => 'Panna',
+'vector-namespace-media'     => 'Chapa aur awaaj waala panna',
+'vector-namespace-mediawiki' => 'Sandes',
+'vector-namespace-project'   => 'Project panna',
+'vector-namespace-special'   => 'Khaas panna',
+'vector-namespace-talk'      => 'Salah',
+'vector-namespace-template'  => 'Template',
+'vector-namespace-user'      => 'Sadasya ke panna',
+'vector-view-create'         => 'Banao',
+'vector-view-edit'           => 'Badlo',
+'vector-view-history'        => 'Itihaas dekho',
+'vector-view-view'           => 'Parrho',
+'vector-view-viewsource'     => 'Source dekho',
 
 # Metadata in edit box
 'metadata_help' => 'Metadata:',
@@ -745,6 +769,9 @@ Ek administrator hoe ke kaaran aap fir bhi [$1 view this diff] agar aap aage bar
 'revdelete-nologtype-text'    => 'Aap ii action ke kare khatir koi log type ke specify nai karaa hai.',
 'revdelete-nologid-title'     => 'Log entry valid nai hai',
 'revdelete-nologid-text'      => 'Chaahe aap target log event ke specify nai karaa hai ii chij kare ke khatir nai to batawa gais entry nai hai.',
+'revdelete-no-file'           => 'Chuna gais file abhi nai banawa gais hai.',
+'revdelete-show-file-confirm' => 'Ka aap sure hai ki aap file ke mitawa gais revision ke dekhe mangtaa hai "<nowiki>$1</nowiki>" $2 se $3 talak?',
+'revdelete-show-file-submit'  => 'Haan',
 'revdelete-selected'          => "'''{{PLURAL:$2|Selected badlao|Selected badlao}} of [[:$1]]:'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Chuna gais log event|Chuna gais log events}}:'''",
 'revdelete-text'              => "'''Mitawa gae badlao aur ghatna panna ke itihaas me dekhai, lekin content ke kuch part janta nai access kare saki.'''
@@ -767,8 +794,11 @@ Meharbaani kar ke ii confirm karo ki aap ii chij kare mangta hai, aap iske natij
 'revdelete-logentry'          => 'badla gae revision visibility of [[$1]]',
 'logdelete-logentry'          => 'badla gais event visibility of [[$1]]',
 'revdelete-success'           => "'''Badlao dekhe khatir taiyaar hai.'''",
-'revdelete-failure'           => "'''Revision visibility set nai hoe sakis.'''",
+'revdelete-failure'           => "'''Revision visibility set nai hoe sakis.'''
+$1",
 'logdelete-success'           => "'''Log dekhe khatir taiyaar hai.'''",
+'logdelete-failure'           => "'''Log visibility could not be set:'''
+$1",
 'revdel-restore'              => 'Visibility ke badlo',
 'pagehist'                    => 'Panna ke itihaas',
 'deletedhist'                 => 'Mitawa gae itihass',
@@ -781,6 +811,8 @@ Meharbaani kar ke ii confirm karo ki aap ii chij kare mangta hai, aap iske natij
 'revdelete-unhid'             => '$1 ke fir se dekhaya',
 'revdelete-log-message'       => '$1 for $2 {{PLURAL:$2|badlao|badlao}}',
 'logdelete-log-message'       => '$1 for $2 {{PLURAL:$2|ghatna|ghatna}}',
+'revdelete-hide-current'      => 'Item dated $2, $1 ke lukae me garrbarr hoe gais hai: ii abhi ke version hai.
+Iske lukawa nai jaawe sake hai.',
 
 # Suppression log
 'suppressionlog'     => 'Dabae waala log',

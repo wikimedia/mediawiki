@@ -1943,6 +1943,8 @@ Podporované protokoly: <tt>$1</tt>',
 'listgrouprights-summary'              => 'Toto je seznam uživatelských skupin definovaných na této wiki a&nbsp;jejich přístupových práv.
 
 [[{{MediaWiki:Listgrouprights-helppage}}|Podrobné informace o&nbsp;jednotlivých právech]]',
+'listgrouprights-key'                  => '* <span class="listgrouprights-granted">Udělená práva</span>
+* <span class="listgrouprights-revoked">Odebraná práva</span>',
 'listgrouprights-group'                => 'Skupina',
 'listgrouprights-rights'               => 'Práva',
 'listgrouprights-helppage'             => 'Help:Práva skupiny',

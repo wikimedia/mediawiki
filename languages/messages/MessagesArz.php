@@ -1095,6 +1095,7 @@ $2',
 'mergehistory-autocomment'         => 'دمج [[:$1]] فى [[:$2]]',
 'mergehistory-comment'             => 'دمج [[:$1]] فى [[:$2]]: $3',
 'mergehistory-same-destination'    => 'صفحتا المصدر والهدف لا يمكن أن تكونا نفس الشىء',
+'mergehistory-reason'              => 'السبب:',
 
 # Merge log
 'mergelog'           => 'سجل الدمج',
@@ -1189,7 +1190,7 @@ $2',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|استعرض الصفحات اللى بتبتدى بالبريفيكس دا]]',
 'searchprofile-articles'           => 'صفحات محتوى',
 'searchprofile-project'            => 'صفحات  المساعده و المشروع',
-'searchprofile-images'             => 'الملفات',
+'searchprofile-images'             => 'مالتيميديا',
 'searchprofile-everything'         => 'كل شىء',
 'searchprofile-advanced'           => 'متقدم',
 'searchprofile-articles-tooltip'   => 'ابحث فى $1',
@@ -1357,7 +1358,7 @@ $2',
 'group-autoconfirmed-member' => 'يوزر متأكد أوتوماتيكي',
 'group-bot-member'           => 'بوت',
 'group-sysop-member'         => 'سيسوب',
-'group-bureaucrat-member'    => 'بيروقراطي',
+'group-bureaucrat-member'    => 'بيروقراط',
 'group-suppress-member'      => 'أوفرسايت',
 
 'grouppage-user'          => '{{ns:project}}:يوزرز',
@@ -2717,7 +2718,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''تحذير''': الملف دا فيه كود خبيث، يمكن عند تشغيله يبوظ الكمبيوتر بتاعك.<hr />",
-'imagemaxsize'         => 'حدد الصور فى صفحات وصف الملفات لـ:',
+'imagemaxsize'         => "حد حجم الصوره:<br />''(لصفحات الوصف بتاع الملفات)''",
 'thumbsize'            => 'حجم العرض المتصغر:',
 'widthheightpage'      => '$1×$2، $3 {{PLURAL:$3|صفحة|صفحة}}',
 'file-info'            => '(حجم الملف: $1، نوع MIME: $2)',
@@ -3322,13 +3323,14 @@ $1',
 'intentionallyblankpage' => 'الصفحة دى متسابة فاضية بالقصد',
 
 # External image whitelist
-'external_image_whitelist' => '  #<pre>سيب السطر ده تمام كما هو
-#ضع منثورات التعبيرات المنتظمة (بس الجزء الذى يذهب بين //) بالأسفل
-#هذه ستتم مطابقتها مع مسارات الصور الخرجية (الموصولة بشكل مباشر)
-#هذه اللى تطابق سيتم عرضها كصور، غير كده فقط وصلة إلى الصورة سيتم عرضها
-#السطور اللى تبدأ ب# تتم معاملتها كتعليقات
+'external_image_whitelist' => ' # سيب السطر دا زى ما هو كدا<pre>
+#حط حتت التعبيرات المنتظمه (بس الجزء اللى بيروح بين //) تحت
+# ح يحصل تطابق بينهم و بين ال URLs بتاع الصور الخارجيه (هوت لينك) 
+#اذا حصل تطابق ح يتعرضو ك صور ، و اذا ما حصلش ف ح تظهر بس لينك للصوره
+#السطور اللى بتبتدى بـ # بتتعامل كأنها تعليقات
+#دا ما بيتأثرش بحالة الحروف
 
-#ضع كل منثورات التعبيرات المنتظمة فوق السطر ده. سيب السطر ده تمام كما هو</pre>',
+#حط كل حتت الريجيكس فوق . سيب السطر دا زى ما هو كدا</pre>',
 
 # Special:Tags
 'tags'                    => 'وسوم التغيير الصحيحة',
@@ -3353,6 +3355,7 @@ $1',
 'dberr-cachederror' => 'دى نسخه متخزنه من الصفحه المطلوبه، و ممكن ما تكونش متحدثه.',
 
 # HTML forms
+'htmlform-invalid-input'       => 'فى مشاكل فى المدخلات بتاعتك',
 'htmlform-select-badoption'    => 'القيمه اللى حددتها ما تنفعش كاختيار.',
 'htmlform-int-invalid'         => 'القيمه اللى حددتها ما هياش عدد صحيح',
 'htmlform-int-toolow'          => 'القيمه اللى حددتها اصغر من الحد الادنى اللى هو $1',

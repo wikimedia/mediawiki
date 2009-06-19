@@ -419,7 +419,28 @@ $messages = array(
 'faqpage'        => 'Project:OSS',
 
 # Vector skin
-'vector-view-view' => 'Les',
+'vector-action-addsection'   => 'Nytt emne',
+'vector-action-delete'       => 'Slett',
+'vector-action-move'         => 'Flytt',
+'vector-action-protect'      => 'Vern',
+'vector-action-undelete'     => 'Gjenopprett',
+'vector-action-unprotect'    => 'Opphev vern',
+'vector-namespace-category'  => 'Kategori',
+'vector-namespace-help'      => 'Hjelpeside',
+'vector-namespace-image'     => 'Fil',
+'vector-namespace-main'      => 'Side',
+'vector-namespace-media'     => 'Mediaside',
+'vector-namespace-mediawiki' => 'Melding',
+'vector-namespace-project'   => 'Prosjektside',
+'vector-namespace-special'   => 'Spesialside',
+'vector-namespace-talk'      => 'Ordskifte',
+'vector-namespace-template'  => 'Mal',
+'vector-namespace-user'      => 'Brukarside',
+'vector-view-create'         => 'Opprett',
+'vector-view-edit'           => 'Endre',
+'vector-view-history'        => 'Syn historikk',
+'vector-view-view'           => 'Les',
+'vector-view-viewsource'     => 'Syn kjelda',
 
 # Metadata in edit box
 'metadata_help' => 'Utvida informasjon:',
@@ -972,6 +993,8 @@ Andre administratorar på {{SITENAME}} kan framleis sjå det gøymde innhaldet o
 'revdelete-failure'           => "'''Kunne ikkje endra korleis versjonen vert synt:'''
 $1",
 'logdelete-success'           => "'''Visinga av loggoppføringar er endra.'''",
+'logdelete-failure'           => "'''Korleis loggen skal vera synleg kunne ikkje verta stilt inn:'''
+$1",
 'revdel-restore'              => 'Endr synlegheita',
 'pagehist'                    => 'Sidehistorikk',
 'deletedhist'                 => 'Sletta historikk',
@@ -984,11 +1007,17 @@ $1",
 'revdelete-unhid'             => 'gjorde $1 synleg',
 'revdelete-log-message'       => '$1 for $2 {{PLURAL:$2|revisjon|revisjonar}}',
 'logdelete-log-message'       => '$1 for {{PLURAL:$2|eitt element|$2 element}}',
+'revdelete-hide-current'      => 'Feil under skjuling av objektet datert $2, $1: dette er den gjeldande revisjonen.
+Han kan ikkje skjulast.',
+'revdelete-show-no-access'    => 'Feil under vising av objekt datert $2, $1: dette objektet har vorte markert "avgrensa".
+Du har ikkje tilgjenge til det.',
 'revdelete-modify-no-access'  => 'Feil ved endringa av eininga datert $2, $1: denne eininga har vorte markert som "avgrensa".
 Du har ikkje tilgang til henne.',
 'revdelete-modify-missing'    => 'Feil ved endring av eininga med ID $1: ho finst ikkje i databasen!',
+'revdelete-no-change'         => "'''Åtvaring:''' objektet datert $2, $1 hadde allereie etterspurt innstillingar for korleis eininga skal vera synleg.",
 'revdelete-concurrent-change' => 'Feil ved endring av eininga datert $2, $1: statusen ser ut til å ha vorte endra av einkvan annan medan du prøvde å endre ho.
 Sjekk gjerne loggføringa.',
+'revdelete-only-restricted'   => 'Du kan ikkje hindra vising av objekt av administratorar utan å òg velja eit av dei andre alternativa for hindring av vising.',
 
 # Suppression log
 'suppressionlog'     => 'Logg over historikkfjerningar',
@@ -1820,8 +1849,9 @@ Sjå òg [[Special:WantedCategories|ønska kategoriar]].',
 'special-categories-sort-abc'   => 'sorter alfabetisk',
 
 # Special:DeletedContributions
-'deletedcontributions'       => 'Sletta brukarbidrag',
-'deletedcontributions-title' => 'Sletta brukarbidrag',
+'deletedcontributions'             => 'Sletta brukarbidrag',
+'deletedcontributions-title'       => 'Sletta brukarbidrag',
+'sp-deletedcontributions-contribs' => 'bidrag',
 
 # Special:LinkSearch
 'linksearch'       => 'Eksterne lenkjer',
@@ -1848,6 +1878,8 @@ Sjå òg [[Special:WantedCategories|ønska kategoriar]].',
 # Special:ListGroupRights
 'listgrouprights'                      => 'Rettar for brukargrupper',
 'listgrouprights-summary'              => 'Følgjande liste viser brukargruppene som er definert på denne wikien, og kvar rettar dei har. Meir informasjon om dei ulike rettane ein kan ha finn ein [[{{MediaWiki:Listgrouprights-helppage}}|her]].',
+'listgrouprights-key'                  => '* <span class="listgrouprights-granted">Innvilga rettar</span>
+* <span class="listgrouprights-granted">Tilbaketrukne rettar</span>',
 'listgrouprights-group'                => 'Gruppe',
 'listgrouprights-rights'               => 'Tilgangar',
 'listgrouprights-helppage'             => 'Help:Gruppetilgangar',

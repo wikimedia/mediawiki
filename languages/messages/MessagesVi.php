@@ -1871,6 +1871,8 @@ Xem thêm [[Special:WantedCategories|thể loại cần thiết]].',
 'listgrouprights'                      => 'Nhóm thành viên',
 'listgrouprights-summary'              => 'Dưới đây là danh sách nhóm thành viên được định nghĩa tại wiki này, với mức độ truy cập của từng nhóm.
 Có [[{{MediaWiki:Listgrouprights-helppage}}|thông tin thêm]] về từng nhóm riêng biệt.',
+'listgrouprights-key'                  => '* <span class="listgrouprights-granted">Quyền được trao</span>
+* <span class="listgrouprights-revoked">Quyền bị tước</span>',
 'listgrouprights-group'                => 'Nhóm',
 'listgrouprights-rights'               => 'Khả năng',
 'listgrouprights-helppage'             => 'Help:Khả năng của nhóm thành viên',

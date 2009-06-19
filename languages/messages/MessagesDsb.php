@@ -1766,6 +1766,8 @@ Pódpěrane protokole: <tt>$1</tt>',
 # Special:ListGroupRights
 'listgrouprights'                      => 'Pšawa wužywarskeje kupki',
 'listgrouprights-summary'              => 'To jo lisćina wužywarskich kupkow definěrowanych w toś tom wikiju z jich zwězanymi pśistupnymi pšawami. Móžo [[{{MediaWiki:Listgrouprights-helppage}}|pśidatne informacije]] wó jadnotliwych pšawach daś.',
+'listgrouprights-key'                  => '* <span class="listgrouprights-granted">Zagarantěrowane pšawo</span>
+* <span class="listgrouprights-revoked">Slědk wzete pšawo</span>',
 'listgrouprights-group'                => 'Kupka',
 'listgrouprights-rights'               => 'Pšawa',
 'listgrouprights-helppage'             => 'Help:Kupkowe pšawa',

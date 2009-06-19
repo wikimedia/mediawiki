@@ -499,11 +499,11 @@ $messages = array(
 'vector-namespace-talk'      => 'Συζήτηση',
 'vector-namespace-template'  => 'Πρότυπο',
 'vector-namespace-user'      => 'Σελίδα χρήστη',
-'vector-view-create'         => 'Δημιουργήστε',
+'vector-view-create'         => 'Δημιουργία',
 'vector-view-edit'           => 'Επεξεργασία',
 'vector-view-history'        => 'Προβολή ιστορικού',
 'vector-view-view'           => 'Ανάγνωση',
-'vector-view-viewsource'     => 'εμφάνιση κώδικα',
+'vector-view-viewsource'     => 'Εμφάνιση κώδικα',
 
 # Metadata in edit box
 'metadata_help' => 'Μεταδεδομένα:',
