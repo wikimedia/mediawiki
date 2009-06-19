@@ -3083,7 +3083,7 @@ class Article {
 
 		$current = ( $oldid == $this->mLatest );
 		$td = $wgLang->timeanddate( $this->mTimestamp, true );
-		$tddate = $wgLang->time( $this->mTimestamp, true );
+		$tddate = $wgLang->date( $this->mTimestamp, true );
 		$tdtime = $wgLang->time( $this->mTimestamp, true );
 		$sk = $wgUser->getSkin();
 		$lnk = $current
