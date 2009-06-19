@@ -96,18 +96,18 @@ class SpecialContributions extends SpecialPage {
 		$pager = new ContribsPager( $target, $this->opts['namespace'], $this->opts['year'], $this->opts['month'] );
 		if( !$pager->getNumRows() ) {
 			$wgOut->addWikiMsg( 'nocontribs', $target );
-			return;
+		} else {
+			# Show a message about slave lag, if applicable
+			if( ( $lag = $pager->getDatabase()->getLag() ) > 0 )
+				$wgOut->showLagWarning( $lag );
+
+			$wgOut->addHTML(
+				'<p>' . $pager->getNavigationBar() . '</p>' .
+				$pager->getBody() .
+				'<p>' . $pager->getNavigationBar() . '</p>'
+			);
 		}
 
-		# Show a message about slave lag, if applicable
-		if( ( $lag = $pager->getDatabase()->getLag() ) > 0 )
-			$wgOut->showLagWarning( $lag );
-
-		$wgOut->addHTML(
-			'<p>' . $pager->getNavigationBar() . '</p>' .
-			$pager->getBody() .
-			'<p>' . $pager->getNavigationBar() . '</p>'
-		);
 
 		# If there were contributions, and it was a valid user or IP, show
 		# the appropriate "footer" message - WHOIS tools, etc.
@@ -117,9 +117,8 @@ class SpecialContributions extends SpecialPage {
 
 			$text = wfMsgNoTrans( $message, $target );
 			if( !wfEmptyMsg( $message, $text ) && $text != '-' ) {
-				$wgOut->addHTML( '<div class="mw-contributions-footer">' );
-				$wgOut->addWikiText( $text );
-				$wgOut->addHTML( '</div>' );
+				$wgOut->wrapWikiMsg(
+					"<div class='mw-contributions-footer'>\n$1\n</div>", $message );
 			}
 		}
 	}
