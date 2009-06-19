@@ -1582,6 +1582,7 @@ $wgMessageStructure = array(
 		'listgrouprights-helppage',
 		'listgrouprights-members',
 		'listgrouprights-right-display',
+		'listgrouprights-right-revoked',
 		'listgrouprights-addgroup',
 		'listgrouprights-removegroup',
 		'listgrouprights-addgroup-all',
