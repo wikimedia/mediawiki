@@ -6,6 +6,7 @@
 class LanguageDe extends Language {
 
 	/*
+	 * FIXME: Comment is wrong, decimals prevent space suppression
 	 * German numeric format is "12 345,67" but "1234,56"
 	 * Copied from LanguageUk.php
 	 */
