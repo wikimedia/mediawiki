@@ -223,6 +223,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Made deleting file description pages without files possible
 * (bug 18773) Add content flag to siprop=namespaces output
 * (bug 18785) Add siprop=languages to meta=siteinfo
+* (bug 14200) Added user and excludeuser parameters to list=watchlist and
+  list=recentchanges
 
 === Languages updated in 1.16 ===
 
