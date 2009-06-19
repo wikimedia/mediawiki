@@ -174,7 +174,7 @@ class SpecialPage
 		'Booksources'               => 'SpecialBookSources',
 		
 		# Unlisted / redirects
-		'Blankpage'                 => array( 'UnlistedSpecialPage', 'Blankpage' ),
+		'Blankpage'                 => 'SpecialBlankpage',
 		'Blockme'                   => array( 'UnlistedSpecialPage', 'Blockme' ),	
 		'Emailuser'                 => array( 'UnlistedSpecialPage', 'Emailuser' ),
 		'Listadmins'                => array( 'SpecialRedirectToSpecial', 'Listadmins', 'Listusers', 'sysop' ),
