@@ -1187,7 +1187,9 @@ table.small {
 	margin-bottom: .3em;
 }
 #firstHeading {
-	margin-bottom: .1em;
+	margin-top: 0;
+	padding-top: 0;
+	margin-bottom: 0.1em;
 	line-height: 1.2em;
 	padding-bottom: 0;
 }
