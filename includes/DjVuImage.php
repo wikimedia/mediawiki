@@ -250,6 +250,7 @@ class DjVuImage {
 			$txt = wfShellExec( $cmd, $retval );
 			wfProfileOut( 'djvutxt' );
 			if( $retval == 0) {
+				$txt = utf8_encode($txt);
 				$txt = htmlspecialchars($txt);
 				$txt = preg_replace( "/\((page\s[\d-]*\s[\d-]*\s[\d-]*\s[\d-]*\s*\&quot;([^<]*?)\&quot;\s*|)\)/s", "<PAGE value=\"$2\" />", $txt  );
 				$txt = "<DjVuTxt>\n<HEAD></HEAD>\n<BODY>\n" . $txt . "</BODY>\n</DjVuTxt>\n";
