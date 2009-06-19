@@ -707,7 +707,7 @@ class SkinTemplate extends Skin {
 				);
 
 				// adds new section link if page is a current revision of a talk page or 
-				if ( ( $wgArticle->isCurrent() && $istalk ) || $wgOut->showNewSectionLink() ) {
+				if ( ( $wgArticle && $wgArticle->isCurrent() && $istalk ) || $wgOut->showNewSectionLink() ) {
 					if ( !$wgOut->forceHideNewSectionLink() ) {
 						$content_actions['addsection'] = array(
 							'class' => $section == 'new' ? 'selected' : false,
