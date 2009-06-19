@@ -242,9 +242,10 @@ changes to languages because of MediaZilla reports.
 * (bug 18806) Use correct unicode characters in spelling of native Chuvash
   (Чӑвашла)
 * (bug 18864) Updated autonym for Zhuang language
-* (bug 18957) Updated number formatting for German
-* (bug 18308) Updated date formatting in Occitan
+* (bug 18957) Updated number formatting for German (de)
+* (bug 18308) Updated date formatting in Occitan (oc)
 * (bug 19080) Added ăâîşţșțĂÂÎŞŢȘȚ to Romanion (ro) linktrail
+* (bug 19286) Correct commafying function in Polish (pl)
 
 == Compatibility ==
 

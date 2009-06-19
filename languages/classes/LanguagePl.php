@@ -21,4 +21,12 @@ class LanguagePl extends Language {
 				return $forms[2];   // plural genitive
 		}
 	}
+
+	function commafy($_) {
+		if (!preg_match('/^\d{1,4}(.\d+)?$/',$_)) {
+			return strrev((string)preg_replace('/(\d{3})(?=\d)(?!\d*\.)/','$1,',strrev($_)));
+		} else {
+			return $_;
+		}
+	}
 }
