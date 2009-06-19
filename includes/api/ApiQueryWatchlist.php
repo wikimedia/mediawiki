@@ -162,6 +162,13 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			$this->addWhereIf('rc_patrolled = 0', isset($show['!patrolled']));
 			$this->addWhereIf('rc_patrolled != 0', isset($show['patrolled']));			
 		}
+		
+		if(!is_null($params['user']) && !is_null($params['excludeuser']))
+			$this->dieUsage('user and excludeuser cannot be used together', 'user-excludeuser');
+		if(!is_null($params['user']))
+			$this->addWhereFld('rc_user_text', $params['user']);
+		if(!is_null($params['excludeuser']))
+			$this->addWhere('rc_user_text != ' . $this->getDB()->addQuotes($params['excludeuser']));
 
 
 		# This is an index optimization for mysql, as done in the Special:Watchlist page
@@ -268,6 +275,12 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 				ApiBase :: PARAM_ISMULTI => true,
 				ApiBase :: PARAM_TYPE => 'namespace'
 			),
+			'user' => array(
+				ApiBase :: PARAM_TYPE => 'user',
+			),
+			'excludeuser' => array(
+				ApiBase :: PARAM_TYPE => 'user',
+			),
 			'dir' => array (
 				ApiBase :: PARAM_DFLT => 'older',
 				ApiBase :: PARAM_TYPE => array (
@@ -318,6 +331,8 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			'start' => 'The timestamp to start enumerating from.',
 			'end' => 'The timestamp to end enumerating.',
 			'namespace' => 'Filter changes to only the given namespace(s).',
+			'user' => 'Only list changes by this user',
+			'excludeuser' => 'Don\'t list changes by this user',
 			'dir' => 'In which direction to enumerate pages.',
 			'limit' => 'How many total results to return per request.',
 			'prop' => 'Which additional items to get (non-generator mode only).',
