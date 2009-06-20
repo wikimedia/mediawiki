@@ -201,7 +201,7 @@ function makeLink( $entry, $source ) {
                 array_key_exists($entry['iw_prefix'],$prefixRewrites[$source]))
                     $entry['iw_prefix'] = $prefixRewrites[$source][$entry['iw_prefix']];
         if ($dbFile)
-            dba_insert("{$source}:{$entry['iw_prefix']}", trim("{$entry['iw_local']} {$entry['iw_url']}"),$dbFile);
+            $dbFile->set( "{$source}:{$entry['iw_prefix']}", trim("{$entry['iw_local']} {$entry['iw_url']}") );
         else
             print "{$source}:{$entry['iw_prefix']} {$entry['iw_url']} {$entry['iw_local']}\n";
 

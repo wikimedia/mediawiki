@@ -89,6 +89,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Add $wgRevokePermissions as a means of restricting a group's rights. The syntax is
   identical to $wgGroupPermissions, but users in these groups will have these rights
   stripped from them.
+* Added a PHP port of CDB (constant database), for improved local caching when
+  the DBA extension is not available.
+
 
 === Bug fixes in 1.16 ===
 
