@@ -837,16 +837,16 @@ Vläicht gouf se geläscht oder geréckelt.
 'rev-deleted-user'            => '(Benotzernumm ewechgeholl)',
 'rev-deleted-event'           => '(Aktioun aus dem Logbuch erausgeholl)',
 'rev-deleted-text-permission' => "Dës Versioun vun der Säit gouf '''geläscht'''.
-Dir fannt eventuell méi Informatiounen an der [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Läschlëscht].",
-'rev-deleted-text-unhide'     => "Diese Versioun gouf '''geläscht'''.
-Detailer kënnen am [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Lösch-Logbuch] fonnt ginn.
-als Administrateur kënnt Dir [$1 dës Versioun kucken] wann Dir weiderfuere wëllt.",
-'rev-deleted-text-view'       => "Dës Versioun vun der Säit gouf '''eläscht'''.
-Als Administrateur kënnt Dir se weiderhi gesinn; Dir fannt eventuell méi Detailer am  [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Läsch-Logbuch].",
+Dir fannt eventuell méi Informatiounen an der [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Läschlëscht].",
+'rev-deleted-text-unhide'     => "Dës Versioun gouf '''geläscht'''.
+Detailer kënnen am [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Lösch-Logbuch] fonnt ginn.
+Als Administrateur kënnt Dir nach ëmmer [$1 dës Versioun kucken] wann Dir weiderfuere wëllt.",
+'rev-deleted-text-view'       => "Dës Versioun vun der Säit gouf '''geläscht'''.
+Als Administrateur kënnt Dir se gesinn; Dir fannt eventuell méi Detailer am  [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Läsch-Logbuch].",
 'rev-deleted-no-diff'         => "Dir kënnt dësen Ënnerscheed net gesinn, well eng vun de Versiounen '''geläscht gouf'''.
-Detailer stinn eventuell am [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Läsch-Logbuch].",
+Detailer stinn eventuell am [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Läsch-Logbuch].",
 'rev-deleted-unhide-diff'     => "Eng vun de Versioune vun dësem Ënnerscheed gouf '''geläscht'''.
-Detailer stinn eventuell am [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Logbuch vun de Läschungen].
+Detailer stinn eventuell am [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Logbuch vun de Läschungen].
 Als Administrateur kënnt Dir [$1 mat dësem Link de Versiounsënnerschied kucke] wann Dir weiderfuere wëllt.",
 'rev-delundel'                => 'weisen/verstoppen',
 'revisiondelete'              => 'Versioune läschen/restauréieren',
@@ -1087,7 +1087,7 @@ Dir kënnt [[:\$1|déi Säit uleeën]].",
 'mypreferences'                 => 'Meng Astellungen',
 'prefs-edits'                   => 'Zuel vun den Ännerungen:',
 'prefsnologin'                  => 'Net ageloggt',
-'prefsnologintext'              => 'Dir musst <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}}agelogged]</span> sinn, fir är Astellungen änneren ze kënnen.',
+'prefsnologintext'              => 'Dir musst <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}}agelogged]</span> sinn, fir är Astellungen änneren ze kënnen.',
 'changepassword'                => 'Passwuert änneren',
 'prefs-skin'                    => 'Skin',
 'skin-preview'                  => 'Kucken',

@@ -893,7 +893,7 @@ Coba susud dimimitian ku ''all:'' pikeun nyusud sakabéh kandunganana (kaasup ka
 'mypreferences'             => 'Préferénsi kuring',
 'prefs-edits'               => 'Jumlah éditan:',
 'prefsnologin'              => 'Can asup log',
-'prefsnologintext'          => 'Anjeun kudu <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} asup log]</span> pikeun ngatur préferénsi pamaké.',
+'prefsnologintext'          => 'Anjeun kudu <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} asup log]</span> pikeun ngatur préferénsi pamaké.',
 'changepassword'            => 'Robah sandi',
 'prefs-skin'                => 'Kulit',
 'skin-preview'              => 'Pramidang',

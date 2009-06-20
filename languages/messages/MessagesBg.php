@@ -930,17 +930,17 @@ $2',
 'rev-deleted-user'            => '(името на автора е изтрито)',
 'rev-deleted-event'           => '(записът е изтрит)',
 'rev-deleted-text-permission' => "Тази версия на страницата е била '''изтрита'''.
-Възможно да има повече подробности в [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} дневника на изтриванията].",
+Възможно да има повече подробности в [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} дневника на изтриванията].",
 'rev-deleted-text-unhide'     => "Тази версия на страницата е била '''изтрита''' от общодостъпния архив.
-Допълнителна информация може да има в [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Дневника на изтриванията].
+Допълнителна информация може да има в [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Дневника на изтриванията].
 Като администратор на сайта вие можете да [$1 прегледате тази версия], ако желаете да продължите.",
 'rev-deleted-text-view'       => "Тази версия на страницата е била '''изтрита''' от общодостъпния архив.
 Като администратор на сайта, вие можете да я прегледате.
-Допълнителна информация може да има в [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Дневника на изтриванията].",
+Допълнителна информация може да има в [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Дневника на изтриванията].",
 'rev-deleted-no-diff'         => "Няма достъп до тази разликова връзка, тъй като някоя от версиите е била '''изтрита'''.
-Възможно е да има подробности в [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Дневника на изтриванията].",
+Възможно е да има подробности в [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Дневника на изтриванията].",
 'rev-deleted-unhide-diff'     => "Една от версиите на тази разликова връзка е била '''изтрита''' от общодостъпния архив.
-Допълнителна информация може да има в [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Дневника на изтриванията].
+Допълнителна информация може да има в [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Дневника на изтриванията].
 Като администратор на сайта, вие можете да [$1 прегледате разликовата връзка], ако желаете да продължите.",
 'rev-delundel'                => 'показване/скриване',
 'revisiondelete'              => 'Изтриване/възстановяване на версии',
@@ -1155,7 +1155,7 @@ $2',
 'mypreferences'               => 'Моите настройки',
 'prefs-edits'                 => 'Брой редакции:',
 'prefsnologin'                => 'Не сте влезли',
-'prefsnologintext'            => 'Необходимо е <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} да влезете]</span>, за да може да променяте потребителските си настройки.',
+'prefsnologintext'            => 'Необходимо е <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} да влезете]</span>, за да може да променяте потребителските си настройки.',
 'changepassword'              => 'Смяна на парола',
 'prefs-skin'                  => 'Облик',
 'skin-preview'                => 'предварителен преглед',

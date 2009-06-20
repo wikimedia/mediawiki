@@ -1030,13 +1030,13 @@ Dattum+Uhrzigg = don de Version fun dämm Daach un dä Zigg aanzeije.',
 'rev-deleted-user'            => '(Metmaacher Name usjeblendt)',
 'rev-deleted-event'           => '(Logboch-Enndraach fottjenomme)',
 'rev-deleted-text-permission' => "Die Version fun dä Sigg es '''fottjeschmeße'''. 
-Wann Ehr en [{{FULLURL:Spezial:Log/delete|page={{FULLPAGENAMEE}}}} {{lcfirst:{{int:deletionlog}}}}] loore doht, künnt Ehr velleisch mieh do drövver lesse.",
+Wann Ehr en [{{FULLURL:{{#spezial:Log}}/delete|page={{FULLPAGENAMEE}}}} {{lcfirst:{{int:deletionlog}}}}] loore doht, künnt Ehr velleisch mieh do drövver lesse.",
 'rev-deleted-text-unhide'     => '{{int:rev-deleted-text-permission}} Als ene Wiki-Köbes kanns De [$1 se ävver doch bekike], wann De wells.',
 'rev-deleted-text-view'       => '{{int:rev-deleted-text-permission}} Als ene Wiki-Köbes kanns De se ävver bekike.',
 'rev-deleted-no-diff'         => "De kanns de Ongerscheide nit beloore, denn ein vun de Versione es '''fottjeschmeße'''.
-Mieh Einzelheite hät [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} {{lcfirst:{{int:Deletionlog}}}}].",
+Mieh Einzelheite hät [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} {{lcfirst:{{int:Deletionlog}}}}].",
 'rev-deleted-unhide-diff'     => "Ein vun de Versione es '''fottjeschmeße'''.
-Mieh Einzelheite hät [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} {{lcfirst:{{int:Deletionlog}}}}].
+Mieh Einzelheite hät [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} {{lcfirst:{{int:Deletionlog}}}}].
 Als ene Wiki_Köbes kanns De [$1 de Ungerscheide ävver aankike] wann De wells.",
 'rev-delundel'                => 'zeije/usblende',
 'revisiondelete'              => 'Versione fottschmieße un widder zeröck holle',
@@ -1287,7 +1287,7 @@ dat dänne ihr Daate topaktuell sin,
 'mypreferences'                 => 'ming Enstellunge',
 'prefs-edits'                   => 'Aanzahl Änderunge am Wiki:',
 'prefsnologin'                  => 'Nit Enjelogg',
-'prefsnologintext'              => 'Do mööts ald <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} enjelogg]</span> sin, öm Ding Enstellunge ze ändere.',
+'prefsnologintext'              => 'Do mööts ald <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} enjelogg]</span> sin, öm Ding Enstellunge ze ändere.',
 'changepassword'                => 'Passwood *',
 'prefs-skin'                    => 'Et Ussinn',
 'skin-preview'                  => 'Vör-Ansich',

@@ -928,16 +928,16 @@ Chú giải: (hiện) = khác với phiên bản hiện hành,
 'rev-deleted-user'            => '(tên người dùng đã xóa)',
 'rev-deleted-event'           => '(tác vụ nhật trình đã xóa)',
 'rev-deleted-text-permission' => "Phiên bản này đã bị '''xóa'''.
-Có thể có thêm chi tiết tại [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} nhật trình xóa].",
+Có thể có thêm chi tiết tại [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} nhật trình xóa].",
 'rev-deleted-text-unhide'     => "Phiên bản này đã bị '''xóa'''.
-Có thể có thêm chi tiết tại [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} nhật trình xóa].
+Có thể có thêm chi tiết tại [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} nhật trình xóa].
 Vì là người quản lý, bạn vẫn có thể [$1 xem phiên bản này] nếu muốn.",
 'rev-deleted-text-view'       => "Phiên bản này đã bị '''xóa'''.
-Vì là người quản lý bạn vẫn có thể xem nó;có thể có thêm chi tiết tại [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} nhật trình xóa].",
+Vì là người quản lý bạn vẫn có thể xem nó;có thể có thêm chi tiết tại [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} nhật trình xóa].",
 'rev-deleted-no-diff'         => "Bạn không thể xem khác biệt giữa các phiên bản vì một phiên bản đã bị '''xóa'''.
-Bạn có thể xem thêm chi tiết trong [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} nhật trình xóa].",
+Bạn có thể xem thêm chi tiết trong [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} nhật trình xóa].",
 'rev-deleted-unhide-diff'     => "Một trong những phiên bản của khác biệt này đã bị '''xóa'''.
-Bạn có thể xem thêm chi tiết tại [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} nhật trình xóa].
+Bạn có thể xem thêm chi tiết tại [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} nhật trình xóa].
 Vì là người quản lý, bạn vẫn có thể [$1 xem khác biệt này] nếu muốn.",
 'rev-delundel'                => 'hiện/ẩn',
 'revisiondelete'              => 'Xóa hay phục hồi phiên bản',
@@ -1181,7 +1181,7 @@ Xin hãy bảo đảm giữ vững tính liên tục của lịch sử trang.',
 'mypreferences'                 => 'Tùy chọn',
 'prefs-edits'                   => 'Số lần sửa đổi:',
 'prefsnologin'                  => 'Chưa đăng nhập',
-'prefsnologintext'              => 'Bạn phải <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} đăng nhập]</span> để thiết lập tùy chọn cá nhân.',
+'prefsnologintext'              => 'Bạn phải <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} đăng nhập]</span> để thiết lập tùy chọn cá nhân.',
 'changepassword'                => 'Đổi mật khẩu',
 'prefs-skin'                    => 'Hình dạng',
 'skin-preview'                  => 'Xem thử',

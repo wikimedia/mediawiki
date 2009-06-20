@@ -842,6 +842,8 @@ The name of the user who did this task appears before this message.',
 'revdelete-success'           => '{{RevisionDelete}}',
 'logdelete-success'           => '{{RevisionDelete}}',
 'revdel-restore'              => '{{RevisionDelete}}',
+'pagehist'                    => 'Links to page history at Special:RevisionDelete header together with links to the logs and Special:Undelete.',
+'deletedhist'                 => 'Links to Special:Undelete at Special:RevisionDelete header together with links to the logs and page history.',
 'revdelete-content'           => 'This message is used as parameter $1 in {{msg|revdelete-hid}} and {{msg|revdelete-unhid}} when hiding or unhiding the content of a revision or event.',
 'revdelete-summary'           => 'This message is used as parameter $1 in {{msg|revdelete-hid}} and {{msg|revdelete-unhid}} when hiding or unhiding the edit summary of a revision or event.',
 'revdelete-uname'             => 'This message is used as parameter $1 in {{msg|revdelete-hid}} and {{msg|revdelete-unhid}} when hiding or unhiding the username for a revision or event.

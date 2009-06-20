@@ -939,16 +939,16 @@ Probe a [[Special:Search|buscar no wiki]] para atopar as páxinas relacionadas.'
 'rev-deleted-user'            => '(nome de usuario eliminado)',
 'rev-deleted-event'           => '(rexistro de evento eliminado)',
 'rev-deleted-text-permission' => "Esta revisión da páxina foi '''eliminada'''.
-Pode ampliar os detalles no [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rexistro de borrados].",
+Pode ampliar os detalles no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} rexistro de borrados].",
 'rev-deleted-text-unhide'     => "Esta revisión da páxina foi '''eliminada'''.
-Pode ampliar os detalles no [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rexistro de borrados].
+Pode ampliar os detalles no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} rexistro de borrados].
 Como administrador aínda podería [$1 ver esta revisión] se quixese.",
 'rev-deleted-text-view'       => "Esta revisión da páxina foi '''eliminada'''.
-Como administrador pode vela; pode ampliar os detalles no [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rexistro de borrados].",
+Como administrador pode vela; pode ampliar os detalles no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} rexistro de borrados].",
 'rev-deleted-no-diff'         => "Non pode ver esta diferenza porque unha das revisións foi '''eliminada'''.
-Pode ampliar os detalles no [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rexistro de borrados].",
+Pode ampliar os detalles no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} rexistro de borrados].",
 'rev-deleted-unhide-diff'     => "Unha das revisións desta diferenza foi '''eliminada'''.
-Pode ampliar os detalles no [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rexistro de borrados].
+Pode ampliar os detalles no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} rexistro de borrados].
 Como administrador aínda podería [$1 ver esta diferenza] se quixese.",
 'rev-delundel'                => 'mostrar/agochar',
 'revisiondelete'              => 'Borrar/restaurar revisións',
@@ -1195,7 +1195,7 @@ Note que os seus índices do contido de {{SITENAME}} poden estar desactualizados
 'mypreferences'                 => 'As miñas preferencias',
 'prefs-edits'                   => 'Número de edicións:',
 'prefsnologin'                  => 'Non está dentro do sistema',
-'prefsnologintext'              => 'Debe <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} acceder ao sistema]</span> para modificar as preferencias de usuario.',
+'prefsnologintext'              => 'Debe <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} acceder ao sistema]</span> para modificar as preferencias de usuario.',
 'changepassword'                => 'Cambiar o meu contrasinal',
 'prefs-skin'                    => 'Aparencia',
 'skin-preview'                  => 'Vista previa',

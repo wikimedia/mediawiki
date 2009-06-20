@@ -314,7 +314,7 @@ $messages = array(
 'tog-ccmeonemails'            => 'Kirimkan saya salinan surat-e yang saya kirimkan ke orang lain',
 'tog-diffonly'                => 'Jangan tampilkan isi halaman di bawah perbedaan suntingan',
 'tog-showhiddencats'          => 'Tampilkan kategori tersembunyi',
-'tog-norollbackdiff'          => 'Hindari tampilan perbedaan setelah melakukan pengembalian',
+'tog-norollbackdiff'          => 'Jangan tampilkan perbedaan setelah melakukan pengembalian',
 
 'underline-always'  => 'Selalu',
 'underline-never'   => 'Tidak',
@@ -954,14 +954,14 @@ Coba [[Special:Search|lakukan pencarian di wiki]] untuk halaman baru yang releva
 'rev-deleted-text-permission' => "Riwayat revisi halaman ini telah '''dihapus'''.
 Detil mungkin tersedia di [{{fullurl:{{ns:special}}:Log/delete|page={{FULLPAGENAMEE}}}} log penghapusan].",
 'rev-deleted-text-unhide'     => "Riwayat revisi halaman ini telah '''dihapus'''.
-Detil mungkin tersedia di [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} log penghapusan].
+Detil mungkin tersedia di [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} log penghapusan].
 Sebagai seorang pengurus Anda masih dapat [$1 melihat revisi ini] jika Anda ingin.",
 'rev-deleted-text-view'       => "Riwayat revisi halaman ini telah '''dihapus'''.
 Sebagai seorang pengurus, Anda dapat melihatnya; detil mungkin tersedia di [{{fullurl:{{ns:special}}:Log/delete|page={{FULLPAGENAMEE}}}} log penghapusan].",
 'rev-deleted-no-diff'         => "Anda tak dapat melihat perbedaan ini karena salah satu dari revisi tersebut telah '''dihapus'''.
-Detil mungkin tersedia di [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} log penghapusan].",
+Detil mungkin tersedia di [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} log penghapusan].",
 'rev-deleted-unhide-diff'     => "Satu atau lebih revisi dari perbedaan ini telah '''dihapus'''.
-Detil mungkin tersedia di [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} log penghapusan].
+Detil mungkin tersedia di [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} log penghapusan].
 Sebagai seorang pengurus, Anda masih dapat [$1 melihat perbedaan ini] jika Anda ingin.",
 'rev-delundel'                => 'tampilkan/sembunyikan',
 'revisiondelete'              => 'Hapus/batal hapus revisi',
@@ -1205,7 +1205,7 @@ Perlu diingat bahwa indeks Google untuk konten {{SITENAME}} mungkin belum mencak
 'mypreferences'                 => 'Preferensi saya',
 'prefs-edits'                   => 'Jumlah suntingan:',
 'prefsnologin'                  => 'Belum masuk log',
-'prefsnologintext'              => 'Anda harus <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} masuk log]</span> untuk mengeset preferensi Anda.',
+'prefsnologintext'              => 'Anda harus <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} masuk log]</span> untuk mengeset preferensi Anda.',
 'changepassword'                => 'Ganti kata sandi',
 'prefs-skin'                    => 'Kulit',
 'skin-preview'                  => 'Pratayang',

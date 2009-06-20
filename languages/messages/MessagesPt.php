@@ -879,16 +879,16 @@ Tente [[Special:Search|pesquisar na wiki]] por páginas relevantes.',
 'rev-deleted-user'            => '(nome de utilizador removido)',
 'rev-deleted-event'           => '(entrada removida)',
 'rev-deleted-text-permission' => "Esta edição desta página foi '''eliminada'''.
-Poderão existir detalhes no [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registo de eliminação].",
+Poderão existir detalhes no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registo de eliminação].",
 'rev-deleted-text-unhide'     => "Esta edição desta página foi '''eliminada'''.
-Poderão existir detalhes no [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registo de eliminação].
+Poderão existir detalhes no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registo de eliminação].
 Por ser um administrador você pode mesmo assim [$1 ver esta versão] se desejar prosseguir.",
 'rev-deleted-text-view'       => "Esta edição desta página foi '''eliminada'''.
-Por ser um administrador, você pode vê-la; poderão existir detalhes no [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registo de eliminação].",
+Por ser um administrador, você pode vê-la; poderão existir detalhes no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registo de eliminação].",
 'rev-deleted-no-diff'         => "Você não pode ver estas diferenças porque uma das revisões foi '''eliminada'''.
-Poderá haver detalhes no [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registo de eliminações].",
+Poderá haver detalhes no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registo de eliminações].",
 'rev-deleted-unhide-diff'     => "Uma das revisões destas diferenças foi '''eliminada'''.
-Poderá haver detalhes no [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registo de eliminações].
+Poderá haver detalhes no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registo de eliminações].
 Por ser um administrador, você pode mesmo assim [$1 ver estas diferenças], se desejar prosseguir.",
 'rev-delundel'                => 'mostrar/esconder',
 'revisiondelete'              => 'Eliminar/restaurar edições',
@@ -1132,7 +1132,7 @@ Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desac
 'mypreferences'                 => 'Minhas preferências',
 'prefs-edits'                   => 'Número de edições:',
 'prefsnologin'                  => 'Não autenticado',
-'prefsnologintext'              => 'Precisa de estar <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} autenticado]</span> para definir as suas preferências.',
+'prefsnologintext'              => 'Precisa de estar <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} autenticado]</span> para definir as suas preferências.',
 'changepassword'                => 'Alterar palavra-chave',
 'prefs-skin'                    => 'Tema',
 'skin-preview'                  => 'Pré-visualizar',

@@ -946,16 +946,16 @@ Grunnen som vart gjeven av $3 er ''$2''",
 'rev-deleted-comment'         => '(samandraget er fjerna)',
 'rev-deleted-user'            => '(brukarnamnet er fjerna)',
 'rev-deleted-event'           => '(fjerna loggoppføring)',
-'rev-deleted-text-permission' => "Denne sideversjonen er vorten '''sletta'''. Det finst kan henda detaljar om dette i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} sletteloggen].",
+'rev-deleted-text-permission' => "Denne sideversjonen er vorten '''sletta'''. Det finst kan henda detaljar om dette i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} sletteloggen].",
 'rev-deleted-text-unhide'     => "Denne sideversjonen er vorten '''sletta'''.
-Det finst kan henda detaljar i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} sletteloggen].
+Det finst kan henda detaljar i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} sletteloggen].
 Som ein administrator kan du enno [$1 sjå denne versjonen] om du ynskjer å halda fram.",
 'rev-deleted-text-view'       => "Denne sideversjonen er vorten '''sletta'''.
-Som administrator kan du sjå han; det finst kan henda detaljar i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} sletteloggen].",
+Som administrator kan du sjå han; det finst kan henda detaljar i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} sletteloggen].",
 'rev-deleted-no-diff'         => "Du kan ikkje sjå denne skilnaden av di ein av versjonane er vorten '''sletta'''. 
-Det finst kan henda detaljar i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} sletteloggen].",
+Det finst kan henda detaljar i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} sletteloggen].",
 'rev-deleted-unhide-diff'     => "Éin av versjonane i denne skilnaden er vorten '''sletta'''.
-Det finst kan henda detaljar i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} sletteloggen].
+Det finst kan henda detaljar i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} sletteloggen].
 Som ein administrator kan du enno [$1 sjå skilnaden] om du ynskjer å halda fram.",
 'rev-delundel'                => 'vis/gøym',
 'revisiondelete'              => 'Slett/attopprett versjonar',
@@ -1201,7 +1201,7 @@ Ver merksam på at registra deira kan vera utdaterte.',
 'mypreferences'                 => 'Innstillingane mine',
 'prefs-edits'                   => 'Tal på endringar:',
 'prefsnologin'                  => 'Ikkje innlogga',
-'prefsnologintext'              => 'Du må vere <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} logga inn]</span> for å endre brukarinnstillingane.',
+'prefsnologintext'              => 'Du må vere <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} logga inn]</span> for å endre brukarinnstillingane.',
 'changepassword'                => 'Skift passord',
 'prefs-skin'                    => 'Drakt',
 'skin-preview'                  => 'førehandsvis',

@@ -839,16 +839,16 @@ Cuba [[Special:Search|cari]] laman lain yang mungkin berkaitan.',
 'rev-deleted-user'            => '(nama pengguna dibuang)',
 'rev-deleted-event'           => '(entri dibuang)',
 'rev-deleted-text-permission' => "Semakan laman ini telah '''dihapuskan'''.
-Butiran lanjut mungkin boleh didapati dalam [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} log penghapusan].",
+Butiran lanjut mungkin boleh didapati dalam [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} log penghapusan].",
 'rev-deleted-text-unhide'     => "Semakan laman ini telah '''dihapuskan'''.
-Butiran lanjut mungkin boleh didapati dalam [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} log penghapusan].
+Butiran lanjut mungkin boleh didapati dalam [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} log penghapusan].
 Sebagai pentadbir anda masih boleh [$1 melihat semakan ini] jika anda ingin.",
 'rev-deleted-text-view'       => "Semakan laman ini telah '''dihapuskan'''.
-Sebagai seorang pentadbir anda boleh melihatnya; butiran lanjut mungkin boleh didapati dalam [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} log penghapusan].",
+Sebagai seorang pentadbir anda boleh melihatnya; butiran lanjut mungkin boleh didapati dalam [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} log penghapusan].",
 'rev-deleted-no-diff'         => "Anda tidak boleh melihat perbezaan ini kerana satu daripada semakan yang dibandingkan telah '''dihapuskan'''.
-Butiran lanjut mungkin boleh didapati dalam [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} log penghapusan].",
+Butiran lanjut mungkin boleh didapati dalam [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} log penghapusan].",
 'rev-deleted-unhide-diff'     => "Salah satu semakan laman ini telah '''dihapuskan'''.
-Butiran lanjut mungkin boleh didapati dalam [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} log penghapusan].
+Butiran lanjut mungkin boleh didapati dalam [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} log penghapusan].
 Sebagai pentadbir anda masih boleh [$1 melihat semakan ini] jika anda ingin.",
 'rev-delundel'                => 'tunjuk/sembunyi',
 'revisiondelete'              => 'Hapus/nyahhapus semakan',
@@ -1074,7 +1074,7 @@ Cuba berikan awalan ''all:'' untuk menggelintar semua kandungan (termasuk laman 
 'mypreferences'             => 'Keutamaan saya',
 'prefs-edits'               => 'Jumlah suntingan:',
 'prefsnologin'              => 'Belum log masuk',
-'prefsnologintext'          => 'Anda hendaklah <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} log masuk]</span> terlebih dahulu untuk menetapkan keutamaan.',
+'prefsnologintext'          => 'Anda hendaklah <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} log masuk]</span> terlebih dahulu untuk menetapkan keutamaan.',
 'changepassword'            => 'Tukar kata laluan',
 'prefs-skin'                => 'Rupa',
 'skin-preview'              => 'Pratonton',

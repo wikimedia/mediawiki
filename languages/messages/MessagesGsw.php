@@ -826,16 +826,16 @@ Erklärig: (aktuell) = Underschid zu jetz,
 'rev-deleted-user'            => '(Benutzername uusegnuh)',
 'rev-deleted-event'           => '(Logbuechaktion uusegnuh)',
 'rev-deleted-text-permission' => "Die Version isch '''glescht''' wore.
-Information zue dr Leschig un e Begrindig het s im [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Lesch-Logbuech].",
+Information zue dr Leschig un e Begrindig het s im [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Lesch-Logbuech].",
 'rev-deleted-text-unhide'     => "Die Version isch '''glescht''' wore.
-Detail stehn im [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Lesch-Logbuech].
+Detail stehn im [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Lesch-Logbuech].
 As Ammann chasch Du [$1 des Gelich aaluege], wänn du witt wytermache.",
 'rev-deleted-text-view'       => "Die Version isch '''glescht''' wore. As Amman chasch si aber alno aaluege.
-Informatione zue dr Leschig un e Begrindig het s im [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Lesch-Logbuech].",
+Informatione zue dr Leschig un e Begrindig het s im [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Lesch-Logbuech].",
 'rev-deleted-no-diff'         => "Du chasch die Änderig nit aaluege, wel eini vu dr Versione '''glescht''' woren isch.
-Villicht het s Detail im [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Lesch-Logbuech].",
+Villicht het s Detail im [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Lesch-Logbuech].",
 'rev-deleted-unhide-diff'     => "Eini vu dr Versione isch '''glescht''' wore.
-Villicht het s Detail im [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Lesch-Logbuech].
+Villicht het s Detail im [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Lesch-Logbuech].
 Wänn Du Ammann bisch, chasch [$1 dä Unterschid aaluege] wänn Du wytermache witt.",
 'rev-delundel'                => 'zeig/versteck',
 'revisiondelete'              => 'Versione lesche/widerherstelle',
@@ -1081,7 +1081,7 @@ Du chasch die [[:$1|Syte nöu schrybe]].",
 'mypreferences'                 => 'Ystellige',
 'prefs-edits'                   => 'Aazahl vu dr Bearbeitige:',
 'prefsnologin'                  => 'Nid aagmäldet',
-'prefsnologintext'              => 'Du muesch <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} aagmäldet]</span> sy, für Benutzerystellige chönne z ändere',
+'prefsnologintext'              => 'Du muesch <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} aagmäldet]</span> sy, für Benutzerystellige chönne z ändere',
 'changepassword'                => 'Passwort ändere',
 'prefs-skin'                    => 'Skin',
 'skin-preview'                  => 'Vorschou',

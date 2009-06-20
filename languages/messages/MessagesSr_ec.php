@@ -909,14 +909,14 @@ $2',
 'rev-deleted-user'            => '(корисничко име уклоњено)',
 'rev-deleted-event'           => '(историја уклоњена)',
 'rev-deleted-text-permission' => "Ова ревизија странице је '''обрисана'''.
-Могуће је да има даљих детаља у [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} историји брисања].",
+Могуће је да има даљих детаља у [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} историји брисања].",
 'rev-deleted-text-unhide'     => "Ова ревизија странице је '''обрисана'''.
-Детае можете погледати у [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} логу брисања].
+Детае можете погледати у [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} логу брисања].
 Као администратор и даље можете да [$1 погледате ову ревизију] уколико желите да приступите.",
 'rev-deleted-text-view'       => "Ова ревизија странице је '''обрисана'''.
-Пошто сте администратор, можете је видети; Даље детаље можете наћи у [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} историји брисања].",
+Пошто сте администратор, можете је видети; Даље детаље можете наћи у [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} историји брисања].",
 'rev-deleted-no-diff'         => "Не можете видети ову разлику измена зато што је једна од ревизија '''обрисана'''.
-Можде ћете наћи више детаља у [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} историји брисања].",
+Можде ћете наћи више детаља у [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} историји брисања].",
 'rev-delundel'                => 'покажи/сакриј',
 'revisiondelete'              => 'Обриши/врати ревизије',
 'revdelete-nooldid-title'     => 'Нема одабране ревизије',
@@ -1121,7 +1121,7 @@ $2',
 'mypreferences'             => 'Моја подешавања',
 'prefs-edits'               => 'Број измена:',
 'prefsnologin'              => 'Нисте пријављени',
-'prefsnologintext'          => 'Морате бити <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} пријављени]</span> да бисте подешавали корисничка подешавања.',
+'prefsnologintext'          => 'Морате бити <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} пријављени]</span> да бисте подешавали корисничка подешавања.',
 'changepassword'            => 'Промени лозинку',
 'prefs-skin'                => 'Кожа',
 'skin-preview'              => 'Преглед',

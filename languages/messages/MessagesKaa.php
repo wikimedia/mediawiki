@@ -948,7 +948,7 @@ Barlıq mag'lıwmat tu'rin (sonın' ishinde sa'wbet betlerdi, shablonlardı h.t.
 'mypreferences'             => "Menin' sazlawlarım",
 'prefs-edits'               => "O'zgertiwler sanı:",
 'prefsnologin'              => 'Kirilmegen',
-'prefsnologintext'          => 'Sazlawların\'ızdı ornatıw ushın <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} kiriwin\'iz]</span> sha\'rt.',
+'prefsnologintext'          => 'Sazlawların\'ızdı ornatıw ushın <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} kiriwin\'iz]</span> sha\'rt.',
 'changepassword'            => "Paroldi o'zgertiw",
 'prefs-skin'                => "Sırtqı ko'rinis",
 'skin-preview'              => 'Korip al',

@@ -568,10 +568,10 @@ Ahat yettumḥa neɣ yettbeddel isem-is.
 'rev-deleted-user'            => '(isem n wemseqdac yettwakes)',
 'rev-deleted-event'           => '(asekcem yettwakkes)',
 'rev-deleted-text-permission' => 'Tasiwelt-agi n tettwakkes seg weɣbar azayez.
-Waqila yella kter n talɣut deg [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} aɣmis n umḥay].',
+Waqila yella kter n talɣut deg [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} aɣmis n umḥay].',
 'rev-deleted-text-view'       => 'Tasiwelt-agi n tettwakkes seg weɣbar azayez.
 Kečč d anedbal, tzemreḍ a t-twaliḍ
-Waqila yella kter n talɣut [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} aɣmis n umḥay].',
+Waqila yella kter n talɣut [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} aɣmis n umḥay].',
 'rev-delundel'                => 'ssken/ffer',
 'revisiondelete'              => 'Mḥu/kkes amḥay tisiwal',
 'revdelete-nooldid-title'     => 'Ulac nnican i tasiwelt',

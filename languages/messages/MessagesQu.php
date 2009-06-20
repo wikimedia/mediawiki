@@ -926,17 +926,17 @@ Musuq chaniyuq p'anqakunata [[Special:Search|wikipi maskaykachay]].",
 'rev-deleted-user'            => '(qullusqa ruraqpa sutin)',
 'rev-deleted-event'           => "(qullusqa hallch'a)",
 'rev-deleted-text-permission' => "P'anqamanta kay llamk'apusqaqa '''qullusqam'''.
-Astawan rikunki [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} qulluy hallch'apichá].",
+Astawan rikunki [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} qulluy hallch'apichá].",
 'rev-deleted-text-unhide'     => "P'anqamanta kay llamk'apusqaqa '''qullusqam'''.
-Astawan rikunki [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} qulluy hallch'apichá].
+Astawan rikunki [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} qulluy hallch'apichá].
 Kamachiq kaspayki kunanraqpas munaspaykiqa, [$1 kay wakin kayta qhawayta] atinkiraqmi.",
 'rev-deleted-text-view'       => "P'anqamanta kay llamk'apusqaqa '''qullusqam'''.
 Kay wikipi kamachiq kaspaykim rikuyta atinkim;
-astawan rikunki [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} qulluy hallch'apichá].",
+astawan rikunki [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} qulluy hallch'apichá].",
 'rev-deleted-no-diff'         => "Kay hukchasqataqa manam rikuyta atinkichu, huk musuqchasqa '''qullusqa''' kaptinmi.
-Imaymanacha yuyaykunataqa [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} qulluy hallch'apim] rikunkiman.",
+Imaymanacha yuyaykunataqa [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} qulluy hallch'apim] rikunkiman.",
 'rev-deleted-unhide-diff'     => "Kay wakin kaypaqqa huk musuqchasqa '''qullusqam'''.
-Imaymanacha yuyaykunataqa [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} qulluy hallch'apim] rikunkiman.
+Imaymanacha yuyaykunataqa [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} qulluy hallch'apim] rikunkiman.
 Kamachiq kaspayki kunanraqpas munaspaykiqa, [$1 kay wakin kayta qhawayta] atinkiraqmi.",
 'rev-delundel'                => 'rikuchiy/pakay',
 'revisiondelete'              => "Mawk'a llamk'apusqakunata qulluy/paqarichiy",
@@ -1177,7 +1177,7 @@ Takyachikuy kay hukchayqa allin wiñay kawsay ñiqita ama waqllichunchu chaylla.
 'mypreferences'                 => 'Allinkachinaykuna',
 'prefs-edits'                   => 'Hukchasqakunap yupaynin:',
 'prefsnologin'                  => 'Manam yaykurqankichu',
-'prefsnologintext'              => '<span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} Yaykunaykim]</span> tiyan allinkachinaykikunata hukchanaykipaq.',
+'prefsnologintext'              => '<span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} Yaykunaykim]</span> tiyan allinkachinaykikunata hukchanaykipaq.',
 'changepassword'                => 'Yaykuna rimata hukchay',
 'prefs-skin'                    => 'Qara',
 'skin-preview'                  => 'Ñawpaqta qhaway',

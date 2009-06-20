@@ -703,7 +703,7 @@ Pagaidām vari meklēt, izmantojot Google vai Yahoo.
 'mypreferences'             => 'manas izvēles',
 'prefs-edits'               => 'Izmaiņu skaits:',
 'prefsnologin'              => 'Neesi iegājis',
-'prefsnologintext'          => 'Tev jābūt <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} iegājušam], lai mainītu lietotāja izvēles.',
+'prefsnologintext'          => 'Tev jābūt <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} iegājušam], lai mainītu lietotāja izvēles.',
 'changepassword'            => 'Mainīt paroli',
 'prefs-skin'                => 'Apdare',
 'skin-preview'              => 'Priekšskats',

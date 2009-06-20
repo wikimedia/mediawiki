@@ -858,17 +858,17 @@ version, (forrige) = forskel til den forrige version, M = mindre ændring',
 'rev-deleted-user'            => '(brugernavn fjernet)',
 'rev-deleted-event'           => '(loghandling fjernet)',
 'rev-deleted-text-permission' => "Denne version af siden er '''slettet'''.
-Der er måske flere detaljer i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} sletteloggen].",
+Der er måske flere detaljer i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} sletteloggen].",
 'rev-deleted-text-unhide'     => "Denne version af siden er '''slettet'''.
-Der er måske flere detaljer i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} sletteloggen].
+Der er måske flere detaljer i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} sletteloggen].
 Som administrator kan du stadig [$1 se versionen] hvis du ønsker at fortsætte.",
 'rev-deleted-text-view'       => "Denne version af siden er '''slettet'''.
 Som administrator kan du se den. 
-Der er måske flere detaljer i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} sletteloggen].",
+Der er måske flere detaljer i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} sletteloggen].",
 'rev-deleted-no-diff'         => "Du kan ikke vise denne forskel fordi en af versionerne er '''slettet'''
-Der er måske flere detaljer i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} sletteloggen].",
+Der er måske flere detaljer i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} sletteloggen].",
 'rev-deleted-unhide-diff'     => "En af versionerne for denne forskel er '''slettet'''.
-Der er måske flere detaljer i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} sletteloggen].
+Der er måske flere detaljer i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} sletteloggen].
 Som administrator kan du stadig [$1 se forskellen] hvis du ønsker at fortsætte.",
 'rev-delundel'                => 'vise/skjule',
 'revisiondelete'              => 'Slette/gendanne versioner',
@@ -1096,7 +1096,7 @@ Du kan prøve at bruge \"all:\" som præfiks for at søge i alt indhold (inkl. d
 'mypreferences'                 => 'Indstillinger',
 'prefs-edits'                   => 'Antal redigeringer:',
 'prefsnologin'                  => 'Ikke logget på',
-'prefsnologintext'              => 'Du skal være <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} logget på]</span> for at ændre brugerindstillinger.',
+'prefsnologintext'              => 'Du skal være <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} logget på]</span> for at ændre brugerindstillinger.',
 'changepassword'                => 'Skift adgangskode',
 'prefs-skin'                    => 'Udseende',
 'skin-preview'                  => 'Forhåndsvisning',

@@ -1051,16 +1051,16 @@ Tâchiéd de [[Special:Search|rechèrchiér sur lo vouiqui]] por trovar des nov�
 'rev-deleted-user'            => '(nom d’utilisator suprimâ)',
 'rev-deleted-event'           => '(entrâ suprimâ)',
 'rev-deleted-text-permission' => "Ceta vèrsion de la pâge at étâ '''suprimâ'''.
-Y pôt avêr més de dètalys dens lo [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].",
+Y pôt avêr més de dètalys dens lo [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].",
 'rev-deleted-text-unhide'     => "Ceta vèrsion de la pâge at étâ '''suprimâ'''.
-Y pôt avêr més de dètalys dens lo [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].
+Y pôt avêr més de dètalys dens lo [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].
 Coment administrator, vos pouede adés [$1 vêre cela vèrsion] se vos lo voléd.",
 'rev-deleted-text-view'       => "Ceta vèrsion de la pâge at étâ '''suprimâ'''.
-Coment administrator, vos la pouede vêre ; y pôt avêr més de dètalys dens lo [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].",
+Coment administrator, vos la pouede vêre ; y pôt avêr més de dètalys dens lo [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].",
 'rev-deleted-no-diff'         => "Vos pouede pas vêre ceti dif perce que yona de les vèrsions at étâ '''suprimâ'''.
-Y pôt avêr més de dètalys dens lo [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].",
+Y pôt avêr més de dètalys dens lo [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].",
 'rev-deleted-unhide-diff'     => "Yona de les vèrsions de ceti dif at étâ '''suprimâ'''.
-Y pôt avêr més de dètalys dens lo [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].
+Y pôt avêr més de dètalys dens lo [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].
 Coment administrator, vos pouede adés [$1 vêre cél dif] se vos lo voléd.",
 'rev-delundel'                => 'fâre vêre / cachiér',
 'revisiondelete'              => 'Suprimar / refâre des vèrsions',
@@ -1309,7 +1309,7 @@ Atencion, lor endèxacion du contegnu de {{SITENAME}} pôt pas étre a jorn.',
 'mypreferences'                 => 'Prèferences',
 'prefs-edits'                   => 'Nombro de changements :',
 'prefsnologin'                  => 'Pas branchiê',
-'prefsnologintext'              => 'Vos dête étre <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} branchiê]</span> por changiér voutres prèferences d’utilisator.',
+'prefsnologintext'              => 'Vos dête étre <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} branchiê]</span> por changiér voutres prèferences d’utilisator.',
 'changepassword'                => 'Changement du mot de pâssa',
 'prefs-skin'                    => 'Habelyâjo',
 'skin-preview'                  => 'Prèvisualisar',

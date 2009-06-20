@@ -758,10 +758,10 @@ Pokušajte [[Special:Search|da pretražite viki]] za relevantne nove strane.',
 'rev-deleted-comment'         => '(komentar uklonjen)',
 'rev-deleted-user'            => '(korisničko ime uklonjeno)',
 'rev-deleted-text-permission' => 'Revizija ove stranice je uklonjena iz javnih arhiva.
-Moguće da ima više detalja u [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} istoriji brisanja].',
+Moguće da ima više detalja u [{{fullurl:{{#Special:Log}}/suppress|page={{PAGENAMEE}}}} istoriji brisanja].',
 'rev-deleted-text-view'       => 'Revizija ove stranice je uklonjena iz javnih arhiva.
 Kao administrator, možete da je pogledate;
-Moguće da ima više detalja u [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} istoriji brisanja].',
+Moguće da ima više detalja u [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} istoriji brisanja].',
 'rev-delundel'                => 'pokaži/sakrij',
 'revisiondelete'              => 'Obriši/vrati reviziju',
 'revdelete-nooldid-title'     => 'Nema odabrane revizije',

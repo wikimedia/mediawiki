@@ -719,15 +719,15 @@ Ngirtey téye gi $3 joxe, mooy ne: ''$2''.",
 'rev-deleted-comment'         => '(sanni-kàddu bi far nañ ko)',
 'rev-deleted-user'            => '(turu jëfandikukat bi far nañ ko)',
 'rev-deleted-event'           => '(duggit li far nañ ko)',
-'rev-deleted-text-permission' => "Sumb bu xët wii dañ koo '''far'''. Xoolal [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} jaar-jaaru farte] yi ngir yeneeni xibaar.",
+'rev-deleted-text-permission' => "Sumb bu xët wii dañ koo '''far'''. Xoolal [{{fullurl:{{#Special:Log}}/suppress|page={{PAGENAMEE}}}} jaar-jaaru farte] yi ngir yeneeni xibaar.",
 'rev-deleted-text-unhide'     => "Sumb bu xët wii dañ koo '''far'''.
-Man nga am yeneeni xamle ci [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} jaar-jaaru far] yi.
+Man nga am yeneeni xamle ci [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} jaar-jaaru far] yi.
 Li nga doon yorkat tax na nga man a  [$1 saytu bii sumb] su la neexee.",
-'rev-deleted-text-view'       => 'Bii sumb bu xët wii dañ koo far. Li nga doon yorkat moo tax nga man gis mbind mi. Saytul [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} jaar-jaaru far] yi ngir yeneeni xibaar.',
+'rev-deleted-text-view'       => 'Bii sumb bu xët wii dañ koo far. Li nga doon yorkat moo tax nga man gis mbind mi. Saytul [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} jaar-jaaru far] yi ngir yeneeni xibaar.',
 'rev-deleted-no-diff'         => "Manoo wone bii diff ndax benn ci sumb yi dañ koo '''far'''.
-Man ngaa ami xibaar ci [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} jaar-jaaru far] yi.",
+Man ngaa ami xibaar ci [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} jaar-jaaru far] yi.",
 'rev-deleted-unhide-diff'     => "Benn ci sumbi diff bi dañ koo '''far''''.
-Man ngaa ami xamle ci [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} jaar-jaaru far] yi.
+Man ngaa ami xamle ci [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} jaar-jaaru far] yi.
 Li nga doon yorkat tax na nga man a [$1 xool bii diff] su la neexee.",
 'rev-delundel'                => 'wone/nëbb',
 'revisiondelete'              => 'Far/Lopppanti ay sumb',
@@ -936,7 +936,7 @@ Jéemala bindaale ''all'' ngir seet ci biir ëmbit gépp (boolewaale ci xëti wa
 'mypreferences'             => 'Samay tànneef',
 'prefs-edits'               => 'Limu coppite yi:',
 'prefsnologin'              => 'Duggoo',
-'prefsnologintext'          => 'Laaj na nga <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} dugg]</span> ngir soppi say tànneef.',
+'prefsnologintext'          => 'Laaj na nga <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} dugg]</span> ngir soppi say tànneef.',
 'changepassword'            => 'Coppiteg baatujàll bi',
 'prefs-skin'                => 'Melokaan',
 'skin-preview'              => 'Wonendil',

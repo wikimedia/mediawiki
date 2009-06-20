@@ -518,7 +518,7 @@ Bákannà ẹ tún ṣèlérí fún wa wípé ẹ̀yin lẹkọ́ fúnra arayín
 'mypreferences'             => 'Àwọn ìfẹ́ràn mi',
 'prefs-edits'               => 'Iye àwọn àtúnṣe:',
 'prefsnologin'              => 'Ẹ kò tíì wọlé',
-'prefsnologintext'          => 'Ẹ gbọ́dọ̀ <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} wọlé]</span> láti to àwọn ìfẹ́ràn oníṣe.',
+'prefsnologintext'          => 'Ẹ gbọ́dọ̀ <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} wọlé]</span> láti to àwọn ìfẹ́ràn oníṣe.',
 'changepassword'            => 'Ìyípadà ọ̀rọ̀ìpamọ́',
 'prefs-skin'                => 'Skin (Àwọ̀)',
 'datedefault'               => 'Kò sí ìfẹ́ràn',

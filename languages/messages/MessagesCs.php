@@ -1010,16 +1010,16 @@ Zkuste [[Special:Search|hledání]].',
 'rev-deleted-user'            => '(uživatelské jméno odstraněno)',
 'rev-deleted-event'           => '(záznam odstraněn)',
 'rev-deleted-text-permission' => "Tato revize byla '''smazána'''.
-Podrobnosti mohou být uvedeny v [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} knize smazaných stránek].",
+Podrobnosti mohou být uvedeny v [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} knize smazaných stránek].",
 'rev-deleted-text-unhide'     => "Tato revize byla '''smazána'''.
-Podrobnosti mohou být uvedeny v [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} knize smazaných stránek].
+Podrobnosti mohou být uvedeny v [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} knize smazaných stránek].
 Jako správce si však můžete [$1 tuto revizi prohlédnout], pokud chcete.",
 'rev-deleted-text-view'       => "Tato revize byla '''smazána'''.
-Jako správce si ji můžete prohlédnout; podrobnosti mohou být uvedeny v [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} knize smazaných stránek].",
+Jako správce si ji můžete prohlédnout; podrobnosti mohou být uvedeny v [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} knize smazaných stránek].",
 'rev-deleted-no-diff'         => "Tento rozdíl si nemůžete prohlédnout, protože jedna z&nbsp;revizí byla '''smazána'''.
-Podrobnosti mohou být uvedeny v&nbsp;[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} knize smazaných stránek].",
+Podrobnosti mohou být uvedeny v&nbsp;[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} knize smazaných stránek].",
 'rev-deleted-unhide-diff'     => "Jedna z revizí k tomuto porovnání byla '''smazána'''.
-Podrobnosti mohou být uvedeny v [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} knize smazaných stránek].
+Podrobnosti mohou být uvedeny v [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} knize smazaných stránek].
 Jako správce si však můžete [$1 tento rozdíl prohlédnout], pokud chcete.",
 'rev-delundel'                => 'skrýt/zobrazit',
 'revisiondelete'              => 'Smazat/obnovit revize',
@@ -1262,7 +1262,7 @@ Pokud na začátek dotazu přidáte ''all:'', bude se hledat všude (včetně di
 'mypreferences'                 => 'Nastavení',
 'prefs-edits'                   => 'Počet editací:',
 'prefsnologin'                  => 'Nejste přihlášen(a)!',
-'prefsnologintext'              => 'Pokud chcete měnit uživatelská nastavení, musíte se <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} přihlásit]</span>.',
+'prefsnologintext'              => 'Pokud chcete měnit uživatelská nastavení, musíte se <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} přihlásit]</span>.',
 'changepassword'                => 'Změna hesla',
 'prefs-skin'                    => 'Vzhled',
 'skin-preview'                  => 'Náhled',

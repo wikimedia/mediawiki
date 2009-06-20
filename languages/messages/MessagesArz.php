@@ -1015,15 +1015,15 @@ $2',
 'rev-deleted-user'            => '(اسم اليوزر اتشال)',
 'rev-deleted-event'           => '(السجل إتشال)',
 'rev-deleted-text-permission' => 'مراجعة الصفحه دى إتشالت من الأرشيفات العامه.
-ممكن تكون فيه تفاصيل فى [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} سجل المسح].',
+ممكن تكون فيه تفاصيل فى [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} سجل المسح].',
 'rev-deleted-text-unhide'     => "المراجعه بتاعة الصفحه دى '''اتمسحت'''.
-ممكن تلاقى تفاصيل فى [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} سجل المسح].
+ممكن تلاقى تفاصيل فى [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} سجل المسح].
 لو كنت انت ادارى ممكن[$1 تشوف المراجعه دى] لو كنت عايز تكمل..",
 'rev-deleted-text-view'       => 'التعديل دا اتمسح من الأرشيف العام.
 ممكن تشوف التعديل دا علشان إنت إدارى فى {{SITENAME}} .
-ممكن يكون فيه تفاصيل بخصوص دا فى [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} سجل المسح].',
+ممكن يكون فيه تفاصيل بخصوص دا فى [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} سجل المسح].',
 'rev-deleted-no-diff'         => "انت ماينفش تشوف الفرق دا عشان فى واحده م المراجعات '''اتمسحت'''.
-ممكن تكون فى تفاصيل فى[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} سجل المسح].",
+ممكن تكون فى تفاصيل فى[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} سجل المسح].",
 'rev-delundel'                => 'عرض/إخفاء',
 'revisiondelete'              => 'امسح/الغى المسح بتاع المراجعات',
 'revdelete-nooldid-title'     => 'مراجعة هدف مش صح',
@@ -1241,7 +1241,7 @@ $2',
 'mypreferences'             => 'تفضيلاتى',
 'prefs-edits'               => 'عدد التعديلات:',
 'prefsnologin'              => 'مش متسجل',
-'prefsnologintext'          => 'لازم تكون <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} مسجل الدخول]</span> علشان تقدر تعدل تفضيلاتك.',
+'prefsnologintext'          => 'لازم تكون <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} مسجل الدخول]</span> علشان تقدر تعدل تفضيلاتك.',
 'changepassword'            => 'غير الباسورد',
 'prefs-skin'                => 'الوش',
 'skin-preview'              => 'بروفه',

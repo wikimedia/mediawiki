@@ -845,17 +845,17 @@ Legend: (cur) = تفاوتان گون هنوکین نسخه,
 'rev-deleted-user'            => '(نام کاربری زورگ بیتت)',
 'rev-deleted-event'           => '(کار آمار زورگ بیتت)',
 'rev-deleted-text-permission' => "ای بازبینی صفحه چه آرشیو عمومی '''زورگ''' بیتت.
-شاید جزییاتی ته [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} حذف آمار]. بیت",
+شاید جزییاتی ته [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} حذف آمار]. بیت",
 'rev-deleted-text-unhide'     => "ای اصلاح چه ای صفحه '''زورگ بوتت'''.
-ممکن انت اطلاعات مرتبط گون آیی ءَ [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} سیاهگ حذف] بگندیت.
+ممکن انت اطلاعات مرتبط گون آیی ءَ [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} سیاهگ حذف] بگندیت.
 شما په عنوان یک مدیر هنوچوش توایت اگر بلوٹیت [$1 ای نسخه را بچاریت].",
 'rev-deleted-text-view'       => "ای بازبینی صفحه چه آرشیو عمومی '''زورگ''' بیتت.
 په عنوان مدیر ته {{SITENAME}}  شما تونیت آیء بگنیت;
-شاید جزییاتی ته ببیت [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} آمار حذف].",
+شاید جزییاتی ته ببیت [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} آمار حذف].",
 'rev-deleted-no-diff'         => "شما نه تونیت تفاوت ای نسخه بچارت په چی که یکی چه نسخ چه عمومی آرشیو '''زورگ''' بوتت.
-ممکن انت [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} سیاهگ حذف]  جزئیاتی ببیت.",
+ممکن انت [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} سیاهگ حذف]  جزئیاتی ببیت.",
 'rev-deleted-unhide-diff'     => "یکی چه ای دو نسخهٔ  '''حذف بوتت'''.
-ممکن انت اطلاعات این شی باره [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} سیاهگ حذف] موجود ببیت.
+ممکن انت اطلاعات این شی باره [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} سیاهگ حذف] موجود ببیت.
 شما په عنوان یک مدیر هنگت توانیت اگر بلوٹیت [$1 ای تفاوت را بچاریت].",
 'rev-delundel'                => 'پیش دار/پناه کن',
 'revisiondelete'              => 'حذف/حذف مکن بازبینیء',
@@ -1082,7 +1082,7 @@ Legend: (cur) = تفاوتان گون هنوکین نسخه,
 'mypreferences'                 => 'منی ترجیحات',
 'prefs-edits'                   => 'تعداد اصلاحات:',
 'prefsnologin'                  => 'وارد نهیت',
-'prefsnologintext'              => 'شما بایدن  <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} وارد بیت]</span> په تنظیم کتن ترجیحات.',
+'prefsnologintext'              => 'شما بایدن  <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} وارد بیت]</span> په تنظیم کتن ترجیحات.',
 'changepassword'                => 'کلمه رمز عوض کن',
 'prefs-skin'                    => 'پوست',
 'skin-preview'                  => 'بازین',

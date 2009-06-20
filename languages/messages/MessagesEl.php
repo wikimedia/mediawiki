@@ -1022,16 +1022,16 @@ $2',
 'rev-deleted-user'            => '(όνομα χρήστη αφαιρέθηκε)',
 'rev-deleted-event'           => '(η καταγραφή στο αρχείο αφαιρέθηκε)',
 'rev-deleted-text-permission' => "Αυτή η αναθεώρηση της σελίδας έχει '''διαγραφεί'''.
-Μπορεί να υπάρχουν λεπτομέρειες στο [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} αρχείο καταγραφής διαγραφών].",
+Μπορεί να υπάρχουν λεπτομέρειες στο [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} αρχείο καταγραφής διαγραφών].",
 'rev-deleted-text-unhide'     => "Αυτή η αναθεώρηση σελίδας '''διεγράφη'''.
-Ενδέχεται να υπάρχουν περισσότερες λεπτομέρειες στο [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} ιστορικό διαγραφών].
+Ενδέχεται να υπάρχουν περισσότερες λεπτομέρειες στο [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} ιστορικό διαγραφών].
 Ως διαχειριστής μπορείτε ακόμη να [$1 δειτε αυτήν την αναθεώρηση] αν επιθυμείτε να συνεχίσετε.",
 'rev-deleted-text-view'       => "Αυτή η αναθεώρηση της σελίδας έχει '''διαγραφεί'''.
-Ως διαχειριστής μπορείτε να την δείτε. Μπορεί να υπάρχουν λεπτομέρειες στο [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} αρχείο καταγραφής διαγραφών].",
+Ως διαχειριστής μπορείτε να την δείτε. Μπορεί να υπάρχουν λεπτομέρειες στο [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} αρχείο καταγραφής διαγραφών].",
 'rev-deleted-no-diff'         => "Δεν μπορείτε να δείτε αυτή τη διαφορά επειδή μια από τις αναθεωρήσεις έχει '''διαγραφεί'''.
-Μπορεί να υπάρχουν λεπτομέρειες στο [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} αρχείο διαγραφών].",
+Μπορεί να υπάρχουν λεπτομέρειες στο [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} αρχείο διαγραφών].",
 'rev-deleted-unhide-diff'     => "Μια από τις αναθεωρήσεις αυτή τη διαφοράς έχει '''διαγραφεί'''. 
-Μπορεί να υπάρχουν λεπτομέρειες στο [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} αρχείο διαγραφών].
+Μπορεί να υπάρχουν λεπτομέρειες στο [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} αρχείο διαγραφών].
 Ως διαχειριστής μπορείτε ακόμη να [$1  δείτε αυτή τη διαφορά] αν επιθυμείτε να συνεχίσετε.",
 'rev-delundel'                => 'εμφάνιση/απόκρυψη',
 'revisiondelete'              => 'Διαγραφή/επαναφορά αναθεωρήσεων',
@@ -1261,7 +1261,7 @@ $1",
 'mypreferences'                 => 'Οι προτιμήσεις μου',
 'prefs-edits'                   => 'Αριθμός επεξεργασιών:',
 'prefsnologin'                  => 'Δεν έχετε συνδεθεί.',
-'prefsnologintext'              => 'Πρέπει να έχετε <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} συνδεθεί]</span> για να καθορίσετε τις προτιμήσεις χρήστη.',
+'prefsnologintext'              => 'Πρέπει να έχετε <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} συνδεθεί]</span> για να καθορίσετε τις προτιμήσεις χρήστη.',
 'changepassword'                => 'Αλλαγή κωδικού',
 'prefs-skin'                    => 'Οπτική οργάνωση (skin)',
 'skin-preview'                  => 'Προεπισκόπηση',

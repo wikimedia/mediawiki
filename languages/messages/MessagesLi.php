@@ -809,17 +809,17 @@ Wellich is d'r gewis of vernäömp.
 'rev-deleted-user'            => '(gebroeker weggehaold)',
 'rev-deleted-event'           => '(actie weggehaold)',
 'rev-deleted-text-permission' => "Dees bewerking is '''gewusj oet de publieke archieve'''.
-Dao kónne details aanwezig zeen in 't [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} wusjlogbook].",
+Dao kónne details aanwezig zeen in 't [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} wusjlogbook].",
 'rev-deleted-text-unhide'     => "Dees versie van de pagina is '''verwijderd'''.
-Achtergrönj zeen meugelik te vinje in 't [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} verwijderlogbook].
+Achtergrönj zeen meugelik te vinje in 't [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} verwijderlogbook].
 As beheerder kins se [$1 dees versie bekieke] as se wils.",
 'rev-deleted-text-view'       => "Dees bewèrking is '''gewösj oet de publieke archieve'''.
 Es beheerder kèns te deze zeen;
-dao kónne details aanwezig zeen in 't [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} wusjlogbook].",
+dao kónne details aanwezig zeen in 't [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} wusjlogbook].",
 'rev-deleted-no-diff'         => "De kins de versjille neet bekieke omdet ein van de versies oet 't '''publieke archief is verwiederd'''.
-Achtergrönj zeen meugelik te vinje in t [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} verwiederlogbook].",
+Achtergrönj zeen meugelik te vinje in t [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} verwiederlogbook].",
 'rev-deleted-unhide-diff'     => "Eine venne angerversjiller is '''gwösj oete pebliek archiever'''.
-Details in 't [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} wislog].
+Details in 't [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} wislog].
 Es behieërder kèns se nag [$1 de angering zeen] es se doearch wils gaon.",
 'rev-delundel'                => 'tuun/verberg',
 'revisiondelete'              => 'Verwijder/herstel bewerkinge',
@@ -1042,7 +1042,7 @@ Mèrk op dat hun indexe van {{SITENAME}} content e bietje gedatierd kint zien.',
 'mypreferences'             => 'Mien veurkäöre',
 'prefs-edits'               => 'Aantal bewèrkinge:',
 'prefsnologin'              => 'Neet aangemèld',
-'prefsnologintext'          => 'De mós zeen <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} aagemeld]</span> óm dien veurkäöre te kónne insjtèlle.',
+'prefsnologintext'          => 'De mós zeen <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} aagemeld]</span> óm dien veurkäöre te kónne insjtèlle.',
 'changepassword'            => 'Wachwaord verangere',
 'prefs-skin'                => '{{SITENAME}}-uterlik',
 'skin-preview'              => 'Veurbesjouwing',

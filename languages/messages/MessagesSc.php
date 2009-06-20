@@ -589,7 +589,7 @@ Prova a scioberai ''totu:'' pro chircare in totu su cuntènnidu (includius pàgi
 'mypreferences'            => 'Preferèntzias meas',
 'prefs-edits'              => 'Nùmeru de acontzos:',
 'prefsnologin'             => 'Non ses intrau',
-'prefsnologintext'         => 'Depis èssere <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} intrau]</span> pro scioberai is preferèntzias.',
+'prefsnologintext'         => 'Depis èssere <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} intrau]</span> pro scioberai is preferèntzias.',
 'changepassword'           => 'Càmbia password',
 'prefs-skin'               => 'Bisura',
 'skin-preview'             => 'Antiprima',

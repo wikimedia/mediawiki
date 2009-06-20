@@ -305,6 +305,7 @@ $messages = array(
 'tog-ccmeonemails'            => 'Me mandar una còpia dels corrièrs electronics que mandi als autres utilizaires',
 'tog-diffonly'                => 'Mostrar pas lo contengut de las paginas jos las difs',
 'tog-showhiddencats'          => 'Afichar las categorias amagadas',
+'tog-noconvertlink'           => 'Desactivar la conversion dels títols',
 'tog-norollbackdiff'          => 'Ometre lo diff aprèp l’utilizacion d’un revert',
 
 'underline-always'  => 'Totjorn',
@@ -967,16 +968,16 @@ Ensajatz de [[Special:Search|recercar sul wiki]] per trobar de paginas en rapòr
 'rev-deleted-user'            => '(nom d’utilizaire suprimit)',
 'rev-deleted-event'           => '(entrada suprimida)',
 'rev-deleted-text-permission' => "Aquesta version de la pagina es estada '''suprimida'''.
-I pòt aver de detalhs dins l'[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} istoric de las supressions].",
+I pòt aver de detalhs dins l'[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} istoric de las supressions].",
 'rev-deleted-text-unhide'     => "Aquesta version de la pagina es estada '''suprimida'''.
-I pòt aver mai de detalhs dins [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} lo jornal de las supressions].
+I pòt aver mai de detalhs dins [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} lo jornal de las supressions].
 Coma administrator, podètz encara [$1 veire aquesta version] s'o volètz.",
 'rev-deleted-text-view'       => "Aquesta version de la pagina es estada '''suprimida'''.
-En tant qu’administrator, la podètz visualizar ; i pòt aver de detalhs dins lo [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} jornal de las supressions].",
+En tant qu’administrator, la podètz visualizar ; i pòt aver de detalhs dins lo [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} jornal de las supressions].",
 'rev-deleted-no-diff'         => "Podètz pas veire aquesta dif per que una de las versions es estada '''suprimida'''.
-I pòt aver mai de detalhs dins lo [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} jornal de las supressions].",
+I pòt aver mai de detalhs dins lo [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} jornal de las supressions].",
 'rev-deleted-unhide-diff'     => "Una de las revisions d'aquesta diferéncia es estada '''suprimida'''.
-I pòt aver mai de detalhs dins lo [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} jornal de las supressions].
+I pòt aver mai de detalhs dins lo [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} jornal de las supressions].
 En tant qu'administrator, podètz encara [$1 veire aquesta diferéncia] se o volètz.",
 'rev-delundel'                => 'afichar/amagar',
 'revisiondelete'              => 'Suprimir/Restablir de versions',
@@ -1222,7 +1223,7 @@ Atencion, lor indexacion de contengut {{SITENAME}} benlèu es pas a jorn.',
 'mypreferences'                 => 'Mas preferéncias',
 'prefs-edits'                   => 'Nombre d’edicions :',
 'prefsnologin'                  => 'Vos sètz pas identificat(ada)',
-'prefsnologintext'              => 'Vos cal èsser <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} connectat(ada)]</span> per modificar vòstras preferéncias d’utilizaire.',
+'prefsnologintext'              => 'Vos cal èsser <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} connectat(ada)]</span> per modificar vòstras preferéncias d’utilizaire.',
 'changepassword'                => 'Modificacion del senhal',
 'prefs-skin'                    => 'Aparéncia',
 'skin-preview'                  => 'Previsualizar',
@@ -2629,7 +2630,7 @@ Aquò es probablament causat per un ligam sus lista negra que punta cap a un sit
 'skinname-myskin'      => 'Mon interfàcia',
 'skinname-chick'       => 'Poleton',
 'skinname-simple'      => 'Simple',
-'skinname-modern'      => 'Modèrn',
+'skinname-modern'      => 'Modèrne',
 
 # Math options
 'mw_math_png'    => 'Totjorn produire un imatge PNG',
@@ -2716,6 +2717,12 @@ $1",
 
 Solas las listas d'enumeracion (las linhas començant per *) son presas en compte. Lo primièr ligam d'una linha deu èsser cap a un imatge marrit.
 Los autres ligams sus la meteissa linha son considerats coma d'excepcions, per exemple d'articles sulsquals l'imatge deu aparéisser.",
+
+# Variants for Kazakh language
+'variantname-kk-arab' => 'kk-arabi',
+
+# Variants for Kurdish language
+'variantname-ku-arab' => 'ku-Arabi',
 
 # Metadata
 'metadata'          => 'Metadonadas',

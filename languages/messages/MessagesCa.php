@@ -866,16 +866,16 @@ Intenteu [[Special:Search|cercar al mateix wiki]] per a noves pàgines rellevant
 'rev-deleted-user'            => "(s'ha suprimit el nom d'usuari)",
 'rev-deleted-event'           => "(s'ha suprimit el registre d'accions)",
 'rev-deleted-text-permission' => "Aquesta versió de la pàgina ha estat '''eliminada'''.
-Hi poden haver més detalls al [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registre d'esborrats].",
+Hi poden haver més detalls al [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registre d'esborrats].",
 'rev-deleted-text-unhide'     => "La revisió d'aquesta pàgina ha estat '''eliminada'''.
-Hi poden haver més detalls al [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registre d'esborrats].
+Hi poden haver més detalls al [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registre d'esborrats].
 Com a administrador encara podeu [$1 veure aquesta revisió] si així ho desitgeu.",
 'rev-deleted-text-view'       => "Aquesta versió de la pàgina ha estat '''eliminada'''.
-Com a administrador podeu veure-la; vegeu-ne més detalls al [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registre d'esborrats].",
+Com a administrador podeu veure-la; vegeu-ne més detalls al [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registre d'esborrats].",
 'rev-deleted-no-diff'         => "No podeu veure aquesta comparativa perquè una de les versions ha estat '''esborrada'''.
-Potser trobareu detalls al [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registre d'esborrats].",
+Potser trobareu detalls al [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registre d'esborrats].",
 'rev-deleted-unhide-diff'     => "Una de les revisions d'aquesta comparativa ha estat '''eliminada'''.
-Potser trobareu detalls al [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registre d'esborrats].
+Potser trobareu detalls al [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registre d'esborrats].
 Com a administrador encara podeu [$1 veure aquesta comparativa] si així ho desitgeu.",
 'rev-delundel'                => 'mostra/amaga',
 'revisiondelete'              => 'Esborrar/restaurar revisions',
@@ -1108,7 +1108,7 @@ Assegureu-vos que aquest canvi mantindrà la continuïtat històrica de la pàgi
 'mypreferences'                 => 'Preferències',
 'prefs-edits'                   => "Nombre d'edicions:",
 'prefsnologin'                  => 'No heu iniciat cap sessió',
-'prefsnologintext'              => 'Heu d\'estar <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} autenticats]</span> per a seleccionar les preferències d\'usuari.',
+'prefsnologintext'              => 'Heu d\'estar <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} autenticats]</span> per a seleccionar les preferències d\'usuari.',
 'changepassword'                => 'Canvia la contrasenya',
 'prefs-skin'                    => 'Aparença',
 'skin-preview'                  => 'prova',

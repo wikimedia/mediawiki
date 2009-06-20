@@ -991,16 +991,16 @@ Prova att [[Special:Search|söka på wikin]] för relevanta nya sidor.',
 'rev-deleted-user'            => '(användarnamn borttaget)',
 'rev-deleted-event'           => '(loggåtgärd borttagen)',
 'rev-deleted-text-permission' => "Denna version av sidan har '''raderats'''.
-Det kan finnas mer information i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} borttagningsloggen].",
+Det kan finnas mer information i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} borttagningsloggen].",
 'rev-deleted-text-unhide'     => "Den här versionen av sidan har '''raderats'''.
-Det kan finnas mer information i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} borttagningsloggen].
+Det kan finnas mer information i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} borttagningsloggen].
 Som administratör kan du fortfarande [$1 se den här versionen] om du önskar att fortsätta.",
 'rev-deleted-text-view'       => "Denna version av sidan har '''raderats'''.
-Som administratör kan du se den; det kan finnas mer information i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} borttagningsloggen].",
+Som administratör kan du se den; det kan finnas mer information i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} borttagningsloggen].",
 'rev-deleted-no-diff'         => "Du kan inte se den här diffen på grund av att en av versionerna har '''raderats'''.
-Det kan finnas mer information i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} borttagningsloggen].",
+Det kan finnas mer information i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} borttagningsloggen].",
 'rev-deleted-unhide-diff'     => "En av versionerna för den här diffen har '''raderats'''.
-Det kan finnas mer information i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} borttagningsloggen].
+Det kan finnas mer information i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} borttagningsloggen].
 Som administratör kan du fortfarande [$1 se den här diffen] om du önskar att fortsätta.",
 'rev-delundel'                => 'visa/göm',
 'revisiondelete'              => 'Ta bort/återställ versioner',
@@ -1237,7 +1237,7 @@ Notera dock att deras indexering av {{SITENAME}} kan vara något föråldrad.',
 'mypreferences'                 => 'Mina inställningar',
 'prefs-edits'                   => 'Antal redigeringar:',
 'prefsnologin'                  => 'Inte inloggad',
-'prefsnologintext'              => 'Du måste vara <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} inloggad]</span> för att kunna ändra dina inställningar.',
+'prefsnologintext'              => 'Du måste vara <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} inloggad]</span> för att kunna ändra dina inställningar.',
 'changepassword'                => 'Byt lösenord',
 'prefs-skin'                    => 'Utseende',
 'skin-preview'                  => 'förhandsvisning',

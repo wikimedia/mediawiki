@@ -1063,17 +1063,17 @@ Wellicht is die verwijderd of hernoemd.
 'rev-deleted-user'            => '(gebruiker verwijderd)',
 'rev-deleted-event'           => '(logboekregel verwijderd)',
 'rev-deleted-text-permission' => "Deze bewerking is '''verwijderd'''.
-Er kunnen details aanwezig zijn in het [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} verwijderingslogboek].",
+Er kunnen details aanwezig zijn in het [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} logboek onderdrukte versies].",
 'rev-deleted-text-unhide'     => "Deze versie van de pagina is '''verwijderd'''.
-Achtergronden zijn mogelijk te vinden in het [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} verwijderlogboek].
+Achtergronden zijn mogelijk te vinden in het [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} logboek onderdrukte versies].
 Als beheerder kunt u [$1 deze versie bekijken] als u wilt.",
 'rev-deleted-text-view'       => "Deze bewerking is '''verwijderd'''.
 Als beheerder kunt u deze zien;
-er kunnen details aanwezig zijn in het [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} verwijderingslogboek].",
+er kunnen details aanwezig zijn in het [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} logboek onderdrukte versies].",
 'rev-deleted-no-diff'         => "U kunt de verschillen niet bekijken omdat een van de versies is '''verwijderd'''.
-Achtergronden zijn mogelijk te vinden in het [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} verwijderlogboek].",
+Achtergronden zijn mogelijk te vinden in het [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} logboek onderdrukte versies].",
 'rev-deleted-unhide-diff'     => "Een van de bewerkingen voor de verschillen die u hebt opgevraagd is '''verwijderd'''.
-Achtergronden zijn mogelijk te vinden in het [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} verwijderlogboek].
+Achtergronden zijn mogelijk te vinden in het [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} logboek onderdrukte versies].
 Als beheerder kunt u [$1 de verschillen bekijken] als u wilt.",
 'rev-delundel'                => 'weergeven/verbergen',
 'revisiondelete'              => 'Versies verwijderen/terugplaatsen',
@@ -1322,7 +1322,7 @@ De gegevens over {{SITENAME}} zijn mogelijk niet bijgewerkt.',
 'mypreferences'                 => 'Mijn voorkeuren',
 'prefs-edits'                   => 'Aantal bewerkingen:',
 'prefsnologin'                  => 'Niet aangemeld',
-'prefsnologintext'              => 'U moet <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} aangemeld]</span> zijn om uw voorkeuren te kunnen instellen.',
+'prefsnologintext'              => 'U moet <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} aangemeld]</span> zijn om uw voorkeuren te kunnen instellen.',
 'changepassword'                => 'Wachtwoord wijzigen',
 'prefs-skin'                    => 'Vormgeving',
 'skin-preview'                  => 'Voorbeeld',

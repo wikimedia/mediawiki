@@ -710,10 +710,10 @@ Probaran tabì an [[Special:Search|pighahanap sa wiki]] para sa mga pahinang dap
 'rev-deleted-user'            => '(hinalì an parágamit)',
 'rev-deleted-event'           => '(hinalì an ingreso)',
 'rev-deleted-text-permission' => 'Ining pagpakaraháy nin pahina pighalì na sa mga archibong panpubliko.
-Pwedeng igwang mga detalye sa [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} historial kan pagparà].',
+Pwedeng igwang mga detalye sa [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} historial kan pagparà].',
 'rev-deleted-text-view'       => 'Ining pagpakaraháy nin pahina pighalì na sa mga archibong panpubliko.
 Pwede mo ining hilingón bilang sarong tagamató kaining site;
-Pwedeng igwang mga detalye sa [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} historial kan pagparà].',
+Pwedeng igwang mga detalye sa [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} historial kan pagparà].',
 'rev-delundel'                => 'ipahilíng/tagoon',
 'revisiondelete'              => 'Paraon/bawion an mga pagpakaraháy',
 'revdelete-nooldid-title'     => 'Mayong tunggit pagpakaraháy',
