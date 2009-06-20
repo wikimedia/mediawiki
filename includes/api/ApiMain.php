@@ -378,11 +378,10 @@ class ApiMain extends ApiBase {
 			if ( $lag > $maxLag ) {
 				header( 'Retry-After: ' . max( intval( $maxLag ), 5 ) );
 				header( 'X-Database-Lag: ' . intval( $lag ) );
-				// XXX: should we return a 503 HTTP error code like wfMaxlagError() does?
 				if( $wgShowHostnames ) {
-					$this->dieUsage( "Waiting for $host: $lag seconds lagged", 'maxlag' );
+					$this->dieUsage( "Waiting for $host: $lag seconds lagged", 'maxlag', 503 );
 				} else {
-					$this->dieUsage( "Waiting for a database server: $lag seconds lagged", 'maxlag' );
+					$this->dieUsage( "Waiting for a database server: $lag seconds lagged", 'maxlag', 503 );
 				}
 				return;
 			}

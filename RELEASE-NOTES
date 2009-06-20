@@ -225,6 +225,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 18785) Add siprop=languages to meta=siteinfo
 * (bug 14200) Added user and excludeuser parameters to list=watchlist and
   list=recentchanges
+* Return HTTP 503 status code on maxlag error, like index.php does
 
 === Languages updated in 1.16 ===
 
