@@ -2238,6 +2238,8 @@ It now redirects to [[$2]].',
 'listusers-creationsort'          => 'Sort by creation date',
 'usereditcount'                   => '$1 {{PLURAL:$1|edit|edits}}',
 'usercreated'                     => 'Created on $1 at $2',
+'activeusers'                     => 'Active user list',
+'activeusers-count'               => '$1 recent {{PLURAL:$1|edit|edits}}',
 'newpages'                        => 'New pages',
 'newpages-summary'                => '', # do not translate or duplicate this message to other languages
 'newpages-username'               => 'Username:',
@@ -2326,6 +2328,11 @@ Supported protocols: <tt>$1</tt>',
 'listusersfrom'      => 'Display users starting at:',
 'listusers-submit'   => 'Show',
 'listusers-noresult' => 'No user found.',
+'listusers-blocked'  => '(blocked)',
+
+# Special:ActiveUsers
+'activeusers-from'       => 'Display users starting at:',
+'activeusers-noresult'   => 'No user found.',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'User creation log',
