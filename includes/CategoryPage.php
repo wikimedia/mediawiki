@@ -263,17 +263,11 @@ class CategoryViewer {
 				$this->addPage( $title, $x->cl_sortkey, $x->page_len, $x->page_is_redirect );
 			}
 		}
-		$dbr->freeResult( $res );
 	}
 
 	function getCategoryTop() {
-		$r = '';
-		if( $this->until != '' ) {
-			$r .= $this->pagingLinks( $this->title, $this->nextPage, $this->until, $this->limit );
-		} elseif( $this->nextPage != '' || $this->from != '' ) {
-			$r .= $this->pagingLinks( $this->title, $this->from, $this->nextPage, $this->limit );
-		}
-		return $r == ''
+		$r = $this->getCategoryBottom();
+		return $r === ''
 			? $r
 			: "<br style=\"clear:both;\"/>\n" . $r;
 	}
