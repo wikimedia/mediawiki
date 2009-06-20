@@ -1293,16 +1293,16 @@ Try [[Special:Search|searching on the wiki]] for relevant new pages.',
 'rev-deleted-user'            => '(username removed)',
 'rev-deleted-event'           => '(log action removed)',
 'rev-deleted-text-permission' => "This page revision has been '''deleted'''.
-There may be details in the [{{fullurl:Special:Log/suppress|page={{FULLPAGENAMEE}}}} suppression log].",
+There may be details in the [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} suppression log].",
 'rev-deleted-text-unhide'     => "This page revision has been '''deleted'''.
-There may be details in the [{{fullurl:Special:Log/suppress|page={{FULLPAGENAMEE}}}} suppression log].
+There may be details in the [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} suppression log].
 As an administrator you can still [$1 view this revision] if you wish to proceed.",
 'rev-deleted-text-view'       => "This page revision has been '''deleted'''.
-As an administrator you can view it; there may be details in the [{{fullurl:Special:Log/suppress|page={{FULLPAGENAMEE}}}} suppression log].",
+As an administrator you can view it; there may be details in the [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} suppression log].",
 'rev-deleted-no-diff'         => "You cannot view this diff because one of the revisions has been '''deleted'''.
-There may be details in the [{{fullurl:Special:Log/suppress|page={{FULLPAGENAMEE}}}} suppression log].",
+There may be details in the [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} suppression log].",
 'rev-deleted-unhide-diff'     => "One of the revisions of this diff has been '''deleted'''.
-There may be details in the [{{fullurl:Special:Log/suppress|page={{FULLPAGENAMEE}}}} suppression log].
+There may be details in the [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} suppression log].
 As an administrator you can still [$1 view this diff] if you wish to proceed.",
 'rev-delundel'                => 'show/hide',
 'revisiondelete'              => 'Delete/undelete revisions',
