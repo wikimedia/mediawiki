@@ -417,6 +417,14 @@ abstract class IndexPager implements Pager {
 		return array( 'prev' => $prev, 'next' => $next, 'first' => $first, 'last' => $last );
 	}
 
+	function isNavigationBarShown() {
+		if ( !$this->mQueryDone ) {
+			$this->doQuery();
+		}
+		// Hide navigation by default if there is nothing to page
+		return !($this->mIsFirst && $this->mIsLast);
+	}
+
 	/**
 	 * Get paging links. If a link is disabled, the item from $disabledTexts
 	 * will be used. If there is no such item, the unlinked text from
@@ -517,6 +525,8 @@ abstract class AlphabeticPager extends IndexPager {
 	function getNavigationBar() {
 		global $wgLang;
 
+		if ( !$this->isNavigationBarShown() ) return '';
+
 		if( isset( $this->mNavigationBar ) ) {
 			return $this->mNavigationBar;
 		}
@@ -597,6 +607,8 @@ abstract class ReverseChronologicalPager extends IndexPager {
 
 	function getNavigationBar() {
 		global $wgLang;
+
+		if ( !$this->isNavigationBarShown() ) return '';
 
 		if ( isset( $this->mNavigationBar ) ) {
 			return $this->mNavigationBar;
@@ -811,6 +823,9 @@ abstract class TablePager extends IndexPager {
 	 */
 	function getNavigationBar() {
 		global $wgStylePath, $wgContLang;
+
+		if ( !$this->isNavigationBarShown() ) return '';
+
 		$path = "$wgStylePath/common/images";
 		$labels = array(
 			'first' => 'table_pager_first',
