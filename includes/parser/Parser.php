@@ -865,6 +865,8 @@ class Parser
 	function internalParse( $text ) {
 		$isMain = true;
 		wfProfileIn( __METHOD__ );
+		
+		$origText = $text;
 
 		# Hook to suspend the parser in this state
 		if ( !wfRunHooks( 'ParserBeforeInternalParse', array( &$this, &$text, &$this->mStripState ) ) ) {
@@ -899,7 +901,7 @@ class Parser
 		$text = str_replace($this->mUniqPrefix.'NOPARSE', '', $text);
 
 		$text = $this->doMagicLinks( $text );
-		$text = $this->formatHeadings( $text, $isMain );
+		$text = $this->formatHeadings( $text, $origText, $isMain );
 
 		wfProfileOut( __METHOD__ );
 		return $text;
@@ -3391,10 +3393,11 @@ class Parser
 	 * string and re-inserts the newly formatted headlines.
 	 *
 	 * @param string $text
+	 * @param string $origText Original, untouched wikitext
 	 * @param boolean $isMain
 	 * @private
 	 */
-	function formatHeadings( $text, $isMain=true ) {
+	function formatHeadings( $text, $origText, $isMain=true ) {
 		global $wgMaxTocLevel, $wgContLang, $wgEnforceHtmlIds;
 
 		$doNumberHeadings = $this->mOptions->getNumberHeadings();
@@ -3460,6 +3463,12 @@ class Parser
 		$prevtoclevel = 0;
 		$markerRegex = "{$this->mUniqPrefix}-h-(\d+)-" . self::MARKER_SUFFIX;
 		$baseTitleText = $this->mTitle->getPrefixedDBkey();
+		$oldType = $this->mOutputType;
+		$this->setOutputType( self::OT_WIKI );
+		$frame = $this->getPreprocessor()->newFrame();
+		$root = $this->preprocessToDom( $origText );
+		$node = $root->getFirstChild();
+		$byteOffset = 0;
 		$tocraw = array();
 
 		foreach( $matches[3] as $headline ) {
@@ -3639,7 +3648,27 @@ class Parser
 			}
 			if( $enoughToc && ( !isset($wgMaxTocLevel) || $toclevel<$wgMaxTocLevel ) ) {
 				$toc .= $sk->tocLine($anchor, $tocline, $numbering, $toclevel);
-				$tocraw[] = array( 'toclevel' => $toclevel, 'level' => $level, 'line' => $tocline, 'number' => $numbering );
+				
+				# Find the DOM node for this header
+				while ( $node && !$isTemplate ) {
+					if ( $node->getName() === 'h' ) {
+						$bits = $node->splitHeading();
+						if ( $bits['i'] == $sectionIndex )
+							break;
+					}
+					$byteOffset += mb_strlen( $this->mStripState->unstripBoth( 
+						$frame->expand( $node, PPFrame::RECOVER_ORIG ) ) );
+					$node = $node->getNextSibling();
+				}
+				$tocraw[] = array( 
+					'toclevel' => $toclevel,
+					'level' => $level,
+					'line' => $tocline,
+					'number' => $numbering,
+					'index' => $sectionIndex,
+					'fromtitle' => $titleText,
+					'byteoffset' => ( $isTemplate ? null : $byteOffset ),
+				);
 			}
 			# give headline the correct <h#> tag
 			if( $showEditLink && $sectionIndex !== false ) {
@@ -3660,6 +3689,7 @@ class Parser
 			$headlineCount++;
 		}
 
+		$this->setOutputType( $oldType );
 		$this->mOutput->setSections( $tocraw );
 
 		# Never ever show TOC if no headers
