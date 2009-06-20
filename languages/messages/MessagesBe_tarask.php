@@ -964,17 +964,17 @@ $2',
 'rev-deleted-user'            => '(імя ўдзельніка выдаленае)',
 'rev-deleted-event'           => '(запіс з журнала падзеяў выдалены)',
 'rev-deleted-text-permission' => "Гэтая вэрсія старонкі была '''выдаленая'''.
-Магчыма, падрабязнасьці могуць быць знойдзеныя ў [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} журнале выдаленьняў].",
+Магчыма, падрабязнасьці могуць быць знойдзеныя ў [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} журнале выдаленьняў].",
 'rev-deleted-text-unhide'     => "Гэтая вэрсія старонкі была '''выдаленая'''.
-Магчыма, падрабязнасьці могуць быць знойдзеныя ў [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} журнале выдаленьняў].
+Магчыма, падрабязнасьці могуць быць знойдзеныя ў [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} журнале выдаленьняў].
 Як адміністратар, Вы можаце [$1 праглядзець гэтую вэрсію].",
 'rev-deleted-text-view'       => "Гэтая вэрсія старонкі была '''выдаленая'''.
 Як адміністратар, Вы можаце праглядзець яе.
-Магчыма, падрабязнасьці могуць быць знойдзеныя ў [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} журнале выдаленьняў].",
+Магчыма, падрабязнасьці могуць быць знойдзеныя ў [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} журнале выдаленьняў].",
 'rev-deleted-no-diff'         => "Вы ня можаце праглядаць гэтую розьніцу паміж вэрсіямі, таму што адна з вэрсіяў была '''выдалена'''.
-Магчыма, падрабязнасьці могуць быць знойдзеныя ў [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} журнале выдаленьняў].",
+Магчыма, падрабязнасьці могуць быць знойдзеныя ў [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} журнале выдаленьняў].",
 'rev-deleted-unhide-diff'     => "Адна з вэрсіяў гэтай старонкі была '''выдалена'''.
-Магчыма, падрабязнасьці могуць быць знойдзеныя ў [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} журнале выдаленьняў].
+Магчыма, падрабязнасьці могуць быць знойдзеныя ў [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} журнале выдаленьняў].
 Як адміністратар, Вы можаце праглядзець [$1 адрозьненьні паміж вэрсіямі].",
 'rev-delundel'                => 'паказаць/схаваць',
 'revisiondelete'              => 'Выдаліць/аднавіць вэрсіі',
@@ -1219,7 +1219,7 @@ $1",
 'mypreferences'                 => 'Мае ўстаноўкі',
 'prefs-edits'                   => 'Колькасьць рэдагаваньняў:',
 'prefsnologin'                  => 'Вы не ўвайшлі ў сыстэму',
-'prefsnologintext'              => 'Вам трэба <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} ўвайсьці ў сыстэму]</span>, каб зьмяняць свае ўстаноўкі.',
+'prefsnologintext'              => 'Вам трэба <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} ўвайсьці ў сыстэму]</span>, каб зьмяняць свае ўстаноўкі.',
 'changepassword'                => 'Зьмяніць пароль',
 'prefs-skin'                    => 'Афармленьне',
 'skin-preview'                  => 'Папярэдні прагляд',

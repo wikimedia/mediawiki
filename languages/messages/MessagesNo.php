@@ -912,16 +912,16 @@ Grunnen som ble oppgitt av $3 er ''$2''",
 'rev-deleted-user'            => '(brukernavn fjernet)',
 'rev-deleted-event'           => '(fjernet loggoppføring)',
 'rev-deleted-text-permission' => "Denne revisjonen har blitt '''slettet'''. 
-Det kan være detaljer i [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} slettingsloggen].",
+Det kan være detaljer i [{{fullurl:{{#Special:Log}}/suppress|page={{PAGENAMEE}}}} slettingsloggen].",
 'rev-deleted-text-unhide'     => "Denne sideversjonen er blitt '''slettet'''.
-Det kan være mer informasjon i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} sletteloggen].
+Det kan være mer informasjon i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} sletteloggen].
 Som administrator kan du fremdeles [$1 se denne versjonen] hvis du ønsker å fortsette.",
 'rev-deleted-text-view'       => "Denne sideversjonen har blitt '''slettet'''.
-Som administrator kan du se den. Det kan finnes flere detaljer i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} sletteloggen].",
+Som administrator kan du se den. Det kan finnes flere detaljer i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} sletteloggen].",
 'rev-deleted-no-diff'         => "Du kan ikke vise forskjellen fordi en av versjonene har blitt '''slettet'''.
-Det kan finnes flere detaljer i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}}sletteloggen].",
+Det kan finnes flere detaljer i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}}sletteloggen].",
 'rev-deleted-unhide-diff'     => "Én av versjonene i denne forskjellen har blitt '''slettet'''.
-Det kan finnes flere detaljer i [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} sletteloggen].
+Det kan finnes flere detaljer i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} sletteloggen].
 Som administrator kan du fortsatt [$1 se forskjellen] om du ønsker å fortsette.",
 'rev-delundel'                => 'vis/skjul',
 'revisiondelete'              => 'Slett/gjenopprett revisjoner',
@@ -1163,7 +1163,7 @@ Forsikre deg om at denne endringen vil opprettholde historisk sidekontinuitet.',
 'mypreferences'                 => 'Innstillinger',
 'prefs-edits'                   => 'Antall redigeringer:',
 'prefsnologin'                  => 'Ikke logget inn',
-'prefsnologintext'              => 'Du må være <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} logget inn]</span> for å endre brukerinnstillingene.',
+'prefsnologintext'              => 'Du må være <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} logget inn]</span> for å endre brukerinnstillingene.',
 'changepassword'                => 'Endre passord',
 'prefs-skin'                    => 'Utseende',
 'skin-preview'                  => 'Forhåndsvisning',

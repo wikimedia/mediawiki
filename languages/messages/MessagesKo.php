@@ -958,17 +958,17 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'rev-deleted-user'            => '(계정 이름 삭제됨)',
 'rev-deleted-event'           => '(로그 삭제됨)',
 'rev-deleted-text-permission' => '이 문서의 편집은 문서 역사에서 제거되었습니다.
-[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} 삭제 기록]에서 자세한 내용을 볼 수 있습니다..',
+[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 삭제 기록]에서 자세한 내용을 볼 수 있습니다..',
 'rev-deleted-text-unhide'     => "이 페이지의 판은 '''삭제되었습니다.'''
-자세한 내용은 [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} 삭제기록]에 있을 것입니다.
+자세한 내용은 [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 삭제기록]에 있을 것입니다.
 관리자로서 확인을 원한다면 [$1 특정판 보기]를 할 수 있습니다.",
 'rev-deleted-text-view'       => '이 문서의 편집은 문서 역사에서 제거되었습니다.
 당신은 {{SITENAME}}의 관리자로서, 삭제된 편집을 볼 수 있습니다;
-[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} 삭제 기록]에서 자세한 내용을 볼 수 있습니다.',
+[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 삭제 기록]에서 자세한 내용을 볼 수 있습니다.',
 'rev-deleted-no-diff'         => '당신은 특정 판이 문서 역사에서 제거되었기 때문에 이 차이를 확인할 수 없습니다.
-[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} 삭제 기록]에서 자세한 내용을 볼 수 있습니다..',
+[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 삭제 기록]에서 자세한 내용을 볼 수 있습니다..',
 'rev-deleted-unhide-diff'     => '특정판의 차이가 문서 역사에서 삭제되었습니다.
-[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} 삭제 기록]에서 자세한 내용을 볼 수 있습니다.
+[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 삭제 기록]에서 자세한 내용을 볼 수 있습니다.
 {{SITENAME}}의 관리자로서 작업하기를 원하다면 [$1 차이보기]에서 차이를 볼 수 있습니다.',
 'rev-delundel'                => '보이기/숨기기',
 'revisiondelete'              => '버전 삭제/복구',
@@ -1208,7 +1208,7 @@ $1",
 'mypreferences'                 => '사용자 환경 설정',
 'prefs-edits'                   => '편집 횟수:',
 'prefsnologin'                  => '로그인하지 않음',
-'prefsnologintext'              => '사용자 환경 설정을 바꾸려면 먼저 <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} 로그인]</span>해야 합니다.',
+'prefsnologintext'              => '사용자 환경 설정을 바꾸려면 먼저 <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} 로그인]</span>해야 합니다.',
 'changepassword'                => '비밀번호 바꾸기',
 'prefs-skin'                    => '스킨',
 'skin-preview'                  => '미리 보기',
@@ -1899,6 +1899,8 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'listgrouprights'                      => '사용자 권한 목록',
 'listgrouprights-summary'              => '다음은 이 위키에서 설정된 사용자 권한 그룹의 목록입니다.
 각각의 권한에 대해서는 [[{{MediaWiki:Listgrouprights-helppage}}|이곳]]을 참조하십시오.',
+'listgrouprights-key'                  => '* <span class="listgrouprights-granted">부여된 권한</span>
+* <span class="listgrouprights-revoked">해제된 권한</span>',
 'listgrouprights-group'                => '그룹',
 'listgrouprights-rights'               => '권한',
 'listgrouprights-helppage'             => 'Help:사용자 권한 그룹',

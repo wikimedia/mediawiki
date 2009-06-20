@@ -853,16 +853,16 @@ Subukang [[Special:Search|hanapin sa wiki]] para sa mga kaugnay na mga bagong pa
 'rev-deleted-user'            => '(tinanggal ang pangalan ng tagagamit)',
 'rev-deleted-event'           => '(tinanggal ang galaw sa talaan)',
 'rev-deleted-text-permission' => "'''Binura''' ang pagbabago ng pahinang ito.
-Maaaring may mga detalye sa loob ng [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} talaan ng pagbura].",
+Maaaring may mga detalye sa loob ng [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} talaan ng pagbura].",
 'rev-deleted-text-unhide'     => "'''Binura''' ang pagbabago ng pahinang ito.
-Maaaring may mga detalye sa loob ng [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} talaan ng pagbura].
+Maaaring may mga detalye sa loob ng [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} talaan ng pagbura].
 Bilang isang tagapangasiwa, maaari mo pa ring [$1 tingnan ang pagbabagong ito] kung nais mong magpatuloy.",
 'rev-deleted-text-view'       => "'''Binura''' ang pagbabago ng pahinang ito.
 Bilang isang tagapangasiwa, maaari mo itong makita;
-maaaring may mga detalye sa loob ng [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} talaan ng pagbura].",
-'rev-deleted-no-diff'         => "Hindi mo maaaring makita ang pagkakaibang ito dahil '''binura''' ang isa sa mga pagbabago.  Maaaring may mga detalye mula sa loob ng [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} talaan ng pagbura].",
+maaaring may mga detalye sa loob ng [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} talaan ng pagbura].",
+'rev-deleted-no-diff'         => "Hindi mo maaaring makita ang pagkakaibang ito dahil '''binura''' ang isa sa mga pagbabago.  Maaaring may mga detalye mula sa loob ng [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} talaan ng pagbura].",
 'rev-deleted-unhide-diff'     => "'''Binura''' ang isa sa mga pagbababago ng pagkakaibang ito.
-Maaaring may mga detalye sa loob ng [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} talaan ng pagbura].
+Maaaring may mga detalye sa loob ng [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} talaan ng pagbura].
 Bilang isang tagapangasiwa, maaari mo pa ring [$1 tingnan ang pagkakaiba] kung nais mong magpatuloy.",
 'rev-delundel'                => 'ipakita/itago',
 'revisiondelete'              => 'Burahin/ibalik ang mga pagbabago',
@@ -1085,7 +1085,7 @@ Subuking lagyan ng unlapi/paunang ''all:'' upang hanapin ang lahat ng mga nialal
 'mypreferences'             => 'Aking mga kagustuhan',
 'prefs-edits'               => 'Bilang ng mga pagbabago:',
 'prefsnologin'              => 'Hindi nakalagda/nakatala',
-'prefsnologintext'          => 'Kailangan mong <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} lumagda/tumala]</span> para makapagtakda ng mga kagustuhang ng tagagamit.',
+'prefsnologintext'          => 'Kailangan mong <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} lumagda/tumala]</span> para makapagtakda ng mga kagustuhang ng tagagamit.',
 'changepassword'            => 'Baguhin ang hudyat',
 'prefs-skin'                => 'Pabalat',
 'skin-preview'              => 'Unang tingin',

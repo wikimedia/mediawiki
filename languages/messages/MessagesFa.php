@@ -1120,16 +1120,16 @@ $2',
 'rev-deleted-user'            => '(نام کاربری حذف شده‌است)',
 'rev-deleted-event'           => '(مورد پاک شد)',
 'rev-deleted-text-permission' => "این ویرایش از این صفحه '''حذف شده‌است'''.
-ممکن است اطلاعات مرتبط با آن در [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} سیاههٔ حذف] موجود باشد.",
+ممکن است اطلاعات مرتبط با آن در [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} سیاههٔ حذف] موجود باشد.",
 'rev-deleted-text-unhide'     => "این ویرایش از این صفحه '''حذف شده‌است'''.
-ممکن است اطلاعات مرتبط با آن در [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} سیاههٔ حذف] موجود باشد.
+ممکن است اطلاعات مرتبط با آن در [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} سیاههٔ حذف] موجود باشد.
 شما به عنوان یک مدیر کماکان می‌توانید در صورت تمایل [$1 این نسخه را ببینید].",
 'rev-deleted-text-view'       => "این ویرایش از این صفحه '''حذف شده‌است'''.
-شما به عنوان یک مدیر می‌توانید آن را ببینید؛ ممکن است اطلاعات مرتبط با آن در [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} سیاههٔ حذف] موجود باشد.",
+شما به عنوان یک مدیر می‌توانید آن را ببینید؛ ممکن است اطلاعات مرتبط با آن در [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} سیاههٔ حذف] موجود باشد.",
 'rev-deleted-no-diff'         => "شما نمی‌توانید این تفاوت را مشاهده کنید زیرا یکی از دو نسخه '''حذف شده‌است'''.
-ممکن است اطلاعات مرتبط با آن در [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} سیاههٔ حذف] موجود باشد.",
+ممکن است اطلاعات مرتبط با آن در [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} سیاههٔ حذف] موجود باشد.",
 'rev-deleted-unhide-diff'     => "یکی از دو نسخهٔ این تفاوت '''حذف شده‌است'''.
-ممکن است اطلاعات مرتبط با آن در [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} سیاههٔ حذف] موجود باشد.
+ممکن است اطلاعات مرتبط با آن در [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} سیاههٔ حذف] موجود باشد.
 شما به عنوان یک مدیر کماکان می‌توانید در صورت تمایل [$1 این تفاوت را ببینید].",
 'rev-delundel'                => 'نمایش/نهفتن',
 'revisiondelete'              => 'حذف/احیای نسخه‌ها',
@@ -1374,7 +1374,7 @@ $1",
 'mypreferences'                 => 'ترجیحات من',
 'prefs-edits'                   => 'تعداد ویرایش‌ها',
 'prefsnologin'                  => 'به سیستم وارد نشده‌اید',
-'prefsnologintext'              => 'برای تنظیم ترجیحات کاربر باید <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} به سیستم وارد شوید]</span>.',
+'prefsnologintext'              => 'برای تنظیم ترجیحات کاربر باید <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} به سیستم وارد شوید]</span>.',
 'changepassword'                => 'تغییر گذرواژه',
 'prefs-skin'                    => 'پوسته',
 'skin-preview'                  => 'پیش‌نمایش',

@@ -962,17 +962,17 @@ Spróbuj [[Special:Search|poszukać]] tej strony.',
 'rev-deleted-user'            => '(użytkownik usunięty)',
 'rev-deleted-event'           => '(wpis usunięty)',
 'rev-deleted-text-permission' => "Ta wersja strony została '''usunięta'''.
-Szczegółowe informacje mogą znajdować się w [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rejestrze usunięć].",
+Szczegółowe informacje mogą znajdować się w [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} rejestrze usunięć].",
 'rev-deleted-text-unhide'     => "Ta wersja strony została '''usunięta'''.
-Szczegółowe informacje mogą znajdować się w [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rejestrze usunięć].
-Jako administrator {{GRAMMAR:D.lp|{{SITENAME}}}} możesz [$1 obejrzeć tę wersję].",
+Szczegółowe informacje mogą znajdować się w [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} rejestrze usunięć].
+Jako administrator możesz [$1 obejrzeć tę wersję].",
 'rev-deleted-text-view'       => "Ta wersja strony została '''usunięta'''.
-Jednak jako administrator możesz ją obejrzeć. Szczegółowe informacje mogą znajdować się w [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rejestrze usunięć].",
-'rev-deleted-no-diff'         => "Nie możesz zobaczyć różnic pomiędzy wersjami, ponieważ jedna z tych wersji została '''usunięta'''.
-Szczegółowe informacje mogą znajdować się w [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rejestrze usunięć].",
+Jako administrator możesz ją obejrzeć. Szczegółowe informacje mogą znajdować się w [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} rejestrze usunięć].",
+'rev-deleted-no-diff'         => "Nie możesz zobaczyć porównania wersji, ponieważ jedna z nich została '''usunięta'''.
+Szczegółowe informacje mogą znajdować się w [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} rejestrze usunięć].",
 'rev-deleted-unhide-diff'     => "Jedna z wersji tej strony została '''usunięta'''.
-Szczegółowe informacje mogą znajdować się w [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rejestrze usunięć].
-Jako administrator {{GRAMMAR:D.lp|{{SITENAME}}}} możesz [$1 obejrzeć porównanie wersji].",
+Szczegółowe informacje mogą znajdować się w [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} rejestrze usunięć].
+Jako administrator możesz [$1 obejrzeć porównanie wersji].",
 'rev-delundel'                => 'pokaż/ukryj',
 'revisiondelete'              => 'Usuń/przywróć wersje',
 'revdelete-nooldid-title'     => 'Nieprawidłowa wersja do przeprowadzenia operacji',
@@ -1210,7 +1210,7 @@ Jednak informacje o treści {{GRAMMAR:D.lp|{{SITENAME}}}} mogą być w Google ni
 'mypreferences'                 => 'Preferencje',
 'prefs-edits'                   => 'Liczba edycji',
 'prefsnologin'                  => 'Nie jesteś zalogowany',
-'prefsnologintext'              => 'Musisz się <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} zalogować]</span> przed zmianą swoich preferencji.',
+'prefsnologintext'              => 'Musisz się <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} zalogować]</span> przed zmianą swoich preferencji.',
 'changepassword'                => 'Zmiana hasła',
 'prefs-skin'                    => 'Skórka',
 'skin-preview'                  => 'podgląd',

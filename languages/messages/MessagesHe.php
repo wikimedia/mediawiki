@@ -1052,16 +1052,16 @@ $2',
 'rev-deleted-user'            => '(שם המשתמש הוסתר)',
 'rev-deleted-event'           => '(פעולת היומן הוסתרה)',
 'rev-deleted-text-permission' => "גרסת הדף הזו '''נמחקה'''.
-ייתכן שישנם פרטים נוספים על כך ב[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} יומן המחיקות].",
+ייתכן שישנם פרטים נוספים על כך ב[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} יומן המחיקות].",
 'rev-deleted-text-unhide'     => "גרסת הדף הזו '''נמחקה'''.
-ייתכן שישנם פרטים נוספים על כך ב[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} יומן המחיקות].
+ייתכן שישנם פרטים נוספים על כך ב[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} יומן המחיקות].
 כיוון שאתם בעלי הרשאות מפעיל מערכת, באפשרותכם [$1 לצפות בגרסה] אם ברצונכם להמשיך.",
 'rev-deleted-text-view'       => "גרסת הדף הזו '''נמחקה'''.
-כיוון שאתם בעלי הרשאות מפעיל מערכת, באפשרותכם לצפות בגרסה; ייתכן שישנם פרטים נוספים על כך ב[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} יומן המחיקות].",
+כיוון שאתם בעלי הרשאות מפעיל מערכת, באפשרותכם לצפות בגרסה; ייתכן שישנם פרטים נוספים על כך ב[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} יומן המחיקות].",
 'rev-deleted-no-diff'         => "אינכם יכולים לצפות בהבדלים בין הגרסאות שציינתם משום שאחת מהן '''נמחקה'''.
-ייתכן שישנם פרטים נוספים על כך ב[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} יומן המחיקות].",
+ייתכן שישנם פרטים נוספים על כך ב[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} יומן המחיקות].",
 'rev-deleted-unhide-diff'     => "אחת מהגרסאות שציינתם '''נמחקה'''.
-ייתכן שישנם פרטים נוספים על כך ב[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} יומן המחיקות].
+ייתכן שישנם פרטים נוספים על כך ב[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} יומן המחיקות].
 כיוון שאתם בעלי הרשאות מפעיל מערכת, באפשרותכם [$1 לצפות בהבדלים בין הגרסאות] אם ברצונכם להמשיך.",
 'rev-delundel'                => 'הצגה/הסתרה',
 'revisiondelete'              => 'מחיקת ושחזור גרסאות',
@@ -1304,7 +1304,7 @@ $1",
 'mypreferences'                 => 'ההעדפות שלי',
 'prefs-edits'                   => 'מספר עריכות:',
 'prefsnologin'                  => 'לא נרשמת באתר',
-'prefsnologintext'              => 'עליכם <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} להיכנס לחשבון]</span> כדי לשנות העדפות משתמש.',
+'prefsnologintext'              => 'עליכם <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} להיכנס לחשבון]</span> כדי לשנות העדפות משתמש.',
 'changepassword'                => 'שינוי סיסמה',
 'prefs-skin'                    => 'עיצוב',
 'skin-preview'                  => 'תצוגה מקדימה',

@@ -750,16 +750,16 @@ Try karo [[Special:Search|wiki me khije ke]] aur nawaa panna ke.',
 'rev-deleted-user'            => '(username ke hatae dewa gais hai)',
 'rev-deleted-event'           => '(log action ke hatae dewa gais hai)',
 'rev-deleted-text-permission' => 'Panna ke ii badlao ke mitae dewa gais hai.
-Iske baare me aur jaankari [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} deletion log] me saait hoi.',
+Iske baare me aur jaankari [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} deletion log] me saait hoi.',
 'rev-deleted-text-unhide'     => "Ii panna ke badlao ke '''mitae''' dewa gais hai.
-Iske baare me aur jaankari saait [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} deletion log] me hoi.
+Iske baare me aur jaankari saait [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} deletion log] me hoi.
 Ek administrator rahe se aap fir bhi [$1 view this revision] agar aap aage barrhe mangtaa hai tab.",
 'rev-deleted-text-view'       => 'Panna ke ii badlao ke mitae dewa gais hai.
-Aap ek administrator hoe ke kaaran iske dekhe sakta hai; iske baare me aur jaankari [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} deletion log] me saait hoi.',
+Aap ek administrator hoe ke kaaran iske dekhe sakta hai; iske baare me aur jaankari [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} deletion log] me saait hoi.',
 'rev-deleted-no-diff'         => 'Aap ii diff ke nai dekhe saktaa hai kahe ki ek badlao mitae dewa gais hai.
-[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} deletion log] me sait kuch aur jaankari hoi.',
+[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} deletion log] me sait kuch aur jaankari hoi.',
 'rev-deleted-unhide-diff'     => "Ii diff me se ek badlao ke '''mitae''' dewa gais hai.
-Aur jaankari saait [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} deletion log] me hoi.
+Aur jaankari saait [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} deletion log] me hoi.
 Ek administrator hoe ke kaaran aap fir bhi [$1 view this diff] agar aap aage barrhe mangtaa hai tab.",
 'rev-delundel'                => 'dekhao/lukao',
 'revisiondelete'              => 'Badlao ke mitao/nai mitao',
@@ -993,7 +993,7 @@ Yaad rakhna ki uu log ke {{SITENAME}} ke index saait purana hoi.',
 'mypreferences'             => 'Hamaar preferences',
 'prefs-edits'               => 'Badlao ke number:',
 'prefsnologin'              => 'Aap abhi logged in nai hai',
-'prefsnologintext'          => 'Aaap ke <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} logged in]</span> chaahi rahe ke user preferences ke badle ke khatir.',
+'prefsnologintext'          => 'Aaap ke <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} logged in]</span> chaahi rahe ke user preferences ke badle ke khatir.',
 'changepassword'            => 'Pasword ke badlo',
 'prefs-skin'                => 'Skin',
 'skin-preview'              => 'Jhalak',
@@ -1721,7 +1721,7 @@ Jon e-mail address aap [[Special:Preferences|your user preferences]] me enter ka
 Ii panna ke aage ke badlao
 Future changes to this page and its associated talk page will be listed there, and the page will appear '''bolded''' in the [[Special:RecentChanges|list of recent changes]] to make it easier to pick out.",
 'removedwatch'         => 'Dhyan suchi me se hatao',
-'removedwatchtext'     => 'Panna "[[:$1]]" ke aap ke [[Special:Dhyan suchi|aap ke dhyan suchi]] se hatae dewa gais hai.',
+'removedwatchtext'     => 'Panna "[[:$1]]" ke aap ke [[Special:Watchlist|aap ke dhyan suchi]] se hatae dewa gais hai.',
 'watch'                => 'Dekho',
 'watchthispage'        => 'Ii panna par dhyan rakho',
 'unwatch'              => 'Nai dhyaan rakho',
@@ -2022,7 +2022,7 @@ Niche ek khaas kaaran likho (jaise ki, citing particular pages that were vandali
 'ipbenableautoblock'              => 'Apne se sadasya ke kaam me lawa gais last IP address ke roko, aur iske saathe aur koi IPs jisme se baad me badlao kare ke kosis karaa jaae ke bhi roko.',
 'ipbsubmit'                       => 'Ii sadasya ke roko',
 'ipbother'                        => 'Duusra time:',
-'ipboptions'                      => '2 ghanta:2 hours,1 din:1 day,3 din:3 daya,1 hapta:1 week,2 hapta:2 weeks,1 mahina:1 month,3 mahina:3 months,6 mahina:6 months,1 saal:1 year,pura:infinite',
+'ipboptions'                      => '2 ghanta:2 hours,1 din:1 day,3 daya:3 days,1 hapta:1 week,2 hapta:2 weeks,1 mahina:1 month,3 mahina:3 months,6 mahina:6 months,1 saal:1 year,pura:infinite',
 'ipbotheroption'                  => 'duusra',
 'ipbotherreason'                  => 'Duusra/aur kaaran:',
 'ipbhidename'                     => 'Badlao aur suchi se username ke hatao',

@@ -839,16 +839,16 @@ Snaź jo se z wiki wulašował abo hynac pómjenił.
 'rev-deleted-comment'         => '(Komentar wulašowany)',
 'rev-deleted-user'            => '(Wužywarske mě wulašowane)',
 'rev-deleted-event'           => '(protokolowa akcija wulašowana)',
-'rev-deleted-text-permission' => "Toś ta wersija boka jo se '''wulašowała'''. Ewentuelne drobnostki su w [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} protokolu wulašowanjow].",
+'rev-deleted-text-permission' => "Toś ta wersija boka jo se '''wulašowała'''. Ewentuelne drobnostki su w [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} protokolu wulašowanjow].",
 'rev-deleted-text-unhide'     => "Toś ta wersija boka jo se '''wulašowała'''.
-Glědaj drobnostki w [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} protokolu wulašowanjow].
+Glědaj drobnostki w [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} protokolu wulašowanjow].
 Ako administrator móžoš se hyšći [$1 toś tu wersiju woglědaś], jolic coš pókšacowaś.",
 'rev-deleted-text-view'       => "Toś ta wersija boka jo se '''wulašowała'''.
-Ako administrator móžoš se ju woglědaś; glědaj ewentuelne drobnostki w [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} protokolu wulašowanjow].",
+Ako administrator móžoš se ju woglědaś; glědaj ewentuelne drobnostki w [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} protokolu wulašowanjow].",
 'rev-deleted-no-diff'         => "Njamóžoš se toś ten rozdźěl woglědaś, dokulaž jadna z wersijow jo se '''wulašowała'''.
-Glědaj ewentuelne drobnostki w [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} protokolu wulašowanjow].",
+Glědaj ewentuelne drobnostki w [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} protokolu wulašowanjow].",
 'rev-deleted-unhide-diff'     => "Jadna z wersijow toś togo rozdźěla jo se '''wulašowała'''.
-Glědaj ewentuelne drobnostki w [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} protokolu wulašowanjow].
+Glědaj ewentuelne drobnostki w [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} protokolu wulašowanjow].
 Ako administrator móžoš hyšći se [$1 toś ten rozdźěl woglědaś], jolic coš pókšacowaś.",
 'rev-delundel'                => 'pokazaś/schowaś',
 'revisiondelete'              => 'Wersije wulašowaś/wótnowiś',
@@ -1090,7 +1090,7 @@ Móžoš bok ale teke [[:$1|sam załožyś]].",
 'mypreferences'                 => 'móje nastajenja',
 'prefs-edits'                   => 'Licba wobźěłanjow:',
 'prefsnologin'                  => 'Njejsy pśizjawjony',
-'prefsnologintext'              => 'Musyš se <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} pśizjawiś]</span>, aby mógał swóje nastajenja změniś.',
+'prefsnologintext'              => 'Musyš se <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} pśizjawiś]</span>, aby mógał swóje nastajenja změniś.',
 'changepassword'                => 'Šćitne gronidło změniś',
 'prefs-skin'                    => 'Šat',
 'skin-preview'                  => 'Pśeglěd',

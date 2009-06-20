@@ -997,17 +997,17 @@ $2',
 'rev-deleted-comment'         => '(избришан коментар)',
 'rev-deleted-user'            => '(избришано корисничко име)',
 'rev-deleted-event'           => '(избришан запис на акција)',
-'rev-deleted-text-permission' => "Ревизија на оваа страница е '''избришана'''.
-Можеби има детали во [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} дневникот на бришења].",
+'rev-deleted-text-permission' => "Ревизија на оваа страница била '''избришана'''.
+Можеби има детали во [{{fullurl:Special:Log/suppress|page={{FULLPAGENAMEE}}}} дневникот на бришења].",
 'rev-deleted-text-unhide'     => "Оваа ревизија на страница била '''избришана'''.
-Повеќе детали има во [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} дневникот на бришења].
+Повеќе детали има во [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} дневникот на бришења].
 Како администратор вие сеуште може [$1 да ја погледнете оваа ревизија] ако сакате да продолжите.",
 'rev-deleted-text-view'       => "Ревизија на оваа страница беше '''избришана'''.
-Како администратор вие можете да ја погледнете; можеби има повеќе детали во [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} дневникот на бришења].",
+Како администратор вие можете да ја погледнете; можеби има повеќе детали во [{{fullurl:Special:Log/suppress|page={{FULLPAGENAMEE}}}} дневникот на бришења].",
 'rev-deleted-no-diff'         => "Не може да ја погледнете оваа разлика бидејќи една од ревизиите била '''избришана'''.
-Може да најдете повеќе детали во [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} дневникот на бришења].",
+Може да најдете повеќе детали во [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} дневникот на бришења].",
 'rev-deleted-unhide-diff'     => "Една од ревизиите на оваа разлика била '''избришана'''.
-Можеби има детали во [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} дневникот на бришења].
+Можеби има детали во [{{fullurl:Special:Log/suppress|page={{FULLPAGENAMEE}}}} дневникот на бришења].
 Како администратор вие сеуште можете [$1 да ја видите оваа разлика] ако сакате да продолжите.",
 'rev-delundel'                => 'прикажи/сокриј',
 'revisiondelete'              => 'Избриши/врати ревизии',
@@ -1241,7 +1241,7 @@ $2',
 'mypreferences'               => 'Мои нагодувања',
 'prefs-edits'                 => 'Број на уредувања:',
 'prefsnologin'                => 'Не сте најавени',
-'prefsnologintext'            => 'Мора да бидете <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} најавени]</span> за промена на вашите кориснички нагодувања.',
+'prefsnologintext'            => 'Мора да бидете <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} најавени]</span> за промена на вашите кориснички нагодувања.',
 'changepassword'              => 'Промени лозинка',
 'prefs-skin'                  => 'Маска',
 'skin-preview'                => 'Прегледај',

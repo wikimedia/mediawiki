@@ -722,12 +722,12 @@ Naprigat [[Special:Search|ectä wikišpäi]] sättujid lehtpolid.",
 'rev-deleted-user'            => '(avtoran nimi om čutud poiš)',
 'rev-deleted-event'           => '(kirjutez om čutud poiš)',
 'rev-deleted-text-permission' => "Nece lehtpolen versii om '''čutud'''.
-Voib olda, süd oma anttud [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} čudandoiden aigkirjas].",
+Voib olda, süd oma anttud [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} čudandoiden aigkirjas].",
 'rev-deleted-text-view'       => "Nece lehtpolen versii om '''čutud'''.
 Tö voit lugeda sidä, sikš ku olet saitan administrator.
 Voib olda, süd oma anttud [{{fullurl:{{ns:special}}:Log/delete|page={{FULLPAGENAMEE}}}} čudandoiden aigkirjas].",
 'rev-deleted-no-diff'         => "Tö et voigoi kacta necidä versijoiden erod, sikš miše üks' toižetusišpäi om '''čutud'''.
-Detalid voidas olda [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} čudandoiden aigkirjas].",
+Detalid voidas olda [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} čudandoiden aigkirjas].",
 'rev-delundel'                => 'ozutada/peitta',
 'revisiondelete'              => 'Čuta poiš/endištada lehtpolen versijad',
 'revdelete-nooldid-title'     => 'Vär metversii',
@@ -940,7 +940,7 @@ Otkat sil'mnägubale üks-se, miše {{SITENAME}}-saitan sädäimišt voib olda v
 'mypreferences'             => 'Minun järgendused',
 'prefs-edits'               => 'Redaktiruindoiden lugu:',
 'prefsnologin'              => 'Tö et olgoi kirjutanus sistemha.',
-'prefsnologintext'          => 'Teile pidab <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} kirjutadas sistemha]</span>, miše toižetada järgendusid.',
+'prefsnologintext'          => 'Teile pidab <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} kirjutadas sistemha]</span>, miše toižetada järgendusid.',
 'changepassword'            => 'Peitsanan toižetuz',
 'prefs-skin'                => 'Irdnägu',
 'skin-preview'              => 'Ezikaclend',

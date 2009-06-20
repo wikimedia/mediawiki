@@ -682,9 +682,9 @@ $1 பயனரையோ அல்லது வேறு [[{{MediaWiki:Grouppage
 'rev-deleted-user'            => '(பயனர் பெயர் நீக்கப்பட்டது)',
 'rev-deleted-event'           => '(பதிவு செயற்பாடு நீக்கப்பட்டது)',
 'rev-deleted-text-permission' => 'இந்த பக்கத்திருத்தம் பொது பரணிலிருந்து நீக்கப்பட்டுள்ளது.
-இது தொடர்பான பதிவு [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} நீக்கல் பதிகையில்] காணப்படலாம்.',
+இது தொடர்பான பதிவு [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} நீக்கல் பதிகையில்] காணப்படலாம்.',
 'rev-deleted-text-view'       => 'இந்த பக்கத்திருத்தம் பொது பரணிலிருந்து நீக்கப்பட்டுள்ளது.
-{{SITENAME}} தளத்தின் நிர்வாகி என்ற வகையில் நீங்கள் அதைப் பார்க்கலாம் மேலும் இது தொடர்பான பதிவு [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} நீக்கல் பதிகையில்] காணப்படலாம்.',
+{{SITENAME}} தளத்தின் நிர்வாகி என்ற வகையில் நீங்கள் அதைப் பார்க்கலாம் மேலும் இது தொடர்பான பதிவு [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} நீக்கல் பதிகையில்] காணப்படலாம்.',
 'rev-delundel'                => 'காட்டு/மறை',
 'revisiondelete'              => 'திருத்தங்களை நீக்கு/மீட்டெடு',
 'revdelete-nooldid-title'     => 'செல்லுபடியற்ற இலக்குத் திருத்தம்',
@@ -847,7 +847,7 @@ $1 பயனரையோ அல்லது வேறு [[{{MediaWiki:Grouppage
 'mypreferences'             => 'என் விருப்பத்தேர்வுகள்',
 'prefs-edits'               => 'தொகுப்புகளின் எண்ணிக்கை:',
 'prefsnologin'              => 'புகுபதிகை செய்யப்படவில்லை',
-'prefsnologintext'          => 'பயனர் விருப்பத்தேர்வுகளை அமைப்பதற்கு நீங்கள் <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} புகுபதிகை ]</span> செய்திருக்க வேண்டும்.',
+'prefsnologintext'          => 'பயனர் விருப்பத்தேர்வுகளை அமைப்பதற்கு நீங்கள் <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} புகுபதிகை ]</span> செய்திருக்க வேண்டும்.',
 'changepassword'            => 'கடவுச்சொல்லை மாற்று',
 'prefs-skin'                => 'தோல்',
 'skin-preview'              => 'முன்தோற்றம்',

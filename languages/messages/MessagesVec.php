@@ -842,17 +842,17 @@ Legenda: '''({{int:cur}})''' = difarense con la versión corente,
 'rev-deleted-user'            => '(nome utente cavà)',
 'rev-deleted-event'           => '(elemento cavà)',
 'rev-deleted-text-permission' => "Sta version de la pagina la xe stà '''scancelà'''.
-Consulta el [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} registro de scancelazion] par ulteriori detagli.",
+Consulta el [{{fullurl:{{#Special:Log}}/suppress|page={{PAGENAMEE}}}} registro de scancelazion] par ulteriori detagli.",
 'rev-deleted-text-unhide'     => "Sta version de la pàxena la xe sta '''scancelà'''.
-Consulta el [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} registro de scancelassion] par ulteriori detagli.
+Consulta el [{{fullurl:{{#Special:Log}}/suppress|page={{PAGENAMEE}}}} registro de scancelassion] par ulteriori detagli.
 Ai aministradori xe ancora consentìo [$1 vardar sta version] se necessario.",
 'rev-deleted-text-view'       => "Sta version de la pagina la xe stà '''scancelà'''.
 El testo el pode èssar visualizà soltanto dai aministradori del sito.
-Consulta el [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registro de scancelazion] par ulteriori detagli.",
+Consulta el [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de scancelazion] par ulteriori detagli.",
 'rev-deleted-no-diff'         => "No te pode vardar sta difarensa parché una de le revision la xe stà '''scancelà'''.
-Consulta el [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} registro de scancelassion] par savérghene piessè.",
+Consulta el [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de scancelassion] par savérghene piessè.",
 'rev-deleted-unhide-diff'     => "Una dele revision de sta difarensa la xe stà '''scancelà'''.
-Consulta el [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} registro de scancelassion] par ulteriori detagli.
+Consulta el [{{fullurl:{{#Special:Log}}/suppress|page={{PAGENAMEE}}}} registro de scancelassion] par ulteriori detagli.
 I aministradori i pode ancora [$1 vardar sta difarensa] se i vole.",
 'rev-delundel'                => 'mostra/scondi',
 'revisiondelete'              => 'Scanceła o ripristina version',
@@ -1092,7 +1092,7 @@ Assicùrete che la continuità storica de la pagina no la vegna alterà.',
 'mypreferences'                 => 'le me preferense',
 'prefs-edits'                   => 'Nùmaro de modifiche:',
 'prefsnologin'                  => 'No te ghè eseguìo el login',
-'prefsnologintext'              => 'Te ghè da aver eseguìo el <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} login] par poder personalixare le to preferense.',
+'prefsnologintext'              => 'Te ghè da aver eseguìo el <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} login] par poder personalixare le to preferense.',
 'changepassword'                => 'Cambia ła password',
 'prefs-skin'                    => 'Aspeto grafico',
 'skin-preview'                  => 'Anteprima',

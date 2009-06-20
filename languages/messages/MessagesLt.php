@@ -898,19 +898,19 @@ Pamėginkite [[Special:Search|ieškoti projekte]] susijusių naujų puslapių.',
 'rev-deleted-text-permission' => "Ši puslapio versija buvo '''pašalinta'''.
 Daugiau detalių galima rasti [{{fullurl:{{ns:special}}:Log/delete|page={{FULLPAGENAMEE}}}} trynimų istorijoje].",
 'rev-deleted-text-unhide'     => "Ši puslapio versija buvo '''ištrinta'''.
-Trynimo detales rasite [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} ištrintų puslapių sąraše].
+Trynimo detales rasite [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} ištrintų puslapių sąraše].
 Kaip administratorius, Jūs vis dar galite [$1 peržiūrėti šią versiją].",
 'rev-deleted-text-view'       => "Ši puslapio versija buvo '''pašalinta'''.
 Kaip šios svetainės administratorius, jūs galite jį pamatyti;
 daugiau detalių gali būti [{{fullurl:{{ns:special}}:Log/delete|page={{FULLPAGENAMEE}}}} trynimų istorijoje].",
 'rev-deleted-no-diff'         => "Jūs negalite peržiūrėti šio skirtumo, nes viena iš versijų yra '''ištrinta'''.
-Daugiau detalių gali būti [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} trynimų istorijoje].",
+Daugiau detalių gali būti [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} trynimų istorijoje].",
 'rev-deleted-unhide-diff'     => "One of the revisions of this diff has been '''deleted'''.
-There may be details in the [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} deletion log].
+There may be details in the [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} deletion log].
 As an administrator you can still [$1 view this diff] if you wish to proceed.
 
 Viena šio skirtumo versijų yra '''ištrinta'''.
-Daugiau detalių gali būti [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} trynimų istorijoje].
+Daugiau detalių gali būti [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} trynimų istorijoje].
 Kaip administratorius, jei norite, jūs vis tiek [$1 galite pamatyti šį skirtumą].",
 'rev-delundel'                => 'rodyti/slėpti',
 'revisiondelete'              => 'Trinti/atkurti versijas',
@@ -1136,7 +1136,7 @@ Prašome patvirtinti, kad jūs tikrai to norite, kad suprantate pasekmes, ir kad
 'mypreferences'                 => 'Mano nustatymai',
 'prefs-edits'                   => 'Keitimų skaičius:',
 'prefsnologin'                  => 'Neprisijungęs',
-'prefsnologintext'              => 'Jums reikia būti <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} prisijungusiam]</span>, kad galėtumėte keisti savo nustatymus.',
+'prefsnologintext'              => 'Jums reikia būti <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} prisijungusiam]</span>, kad galėtumėte keisti savo nustatymus.',
 'changepassword'                => 'Pakeisti slaptažodį',
 'prefs-skin'                    => 'Išvaizda',
 'skin-preview'                  => 'Peržiūra',

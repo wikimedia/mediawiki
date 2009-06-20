@@ -803,11 +803,11 @@ Legenda: (orain) = oraingo bertsioarekiko ezberdintasuna,
 'rev-deleted-user'            => '(erabiltzailea ezabatu da)',
 'rev-deleted-event'           => '(log ekintza ezabatu da)',
 'rev-deleted-text-permission' => "Orrialdearen berrikuspen hau '''ezabatu''' egin da.
-Xehetasunak [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} ezabaketa erregistroan] ikus daitezke.",
+Xehetasunak [{{fullurl:{{#Special:Log}}/suppress|page={{PAGENAMEE}}}} ezabaketa erregistroan] ikus daitezke.",
 'rev-deleted-text-view'       => "Orrialdearen berrikuspen hau '''ezabatu''' egin da. 
-Guneko administratzaile bezala ikusteko aukera daukazu ordea; xehetasunak [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} ezabaketa erregistroan] ikus ditzakezu.",
+Guneko administratzaile bezala ikusteko aukera daukazu ordea; xehetasunak [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} ezabaketa erregistroan] ikus ditzakezu.",
 'rev-deleted-no-diff'         => "Ezin duzu ezberdintasun hau ikusi, berrikuspenetako bat '''ezabatua''' izan delako.
-Xehetasunak [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Ezabapen erregistroan] aurki ditzazkezu.",
+Xehetasunak [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Ezabapen erregistroan] aurki ditzazkezu.",
 'rev-delundel'                => 'erakutsi/ezkutatu',
 'revisiondelete'              => 'Berrikuspenak ezabatu/leheneratu',
 'revdelete-nooldid-title'     => 'Helburu berrikuspenik ez',
@@ -1033,7 +1033,7 @@ Saia zaitez zure eskeraren aurretik ''all:'' jartzen eduki guztien artean bilatz
 'mypreferences'             => 'Nire hobespenak',
 'prefs-edits'               => 'Aldaketa kopurua:',
 'prefsnologin'              => 'Saioa hasi gabe',
-'prefsnologintext'          => '<span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} Izena eman] behar duzu zure hobespenak ezartzeko.',
+'prefsnologintext'          => '<span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} Izena eman] behar duzu zure hobespenak ezartzeko.',
 'changepassword'            => 'Pasahitza aldatu',
 'prefs-skin'                => 'Itxura',
 'skin-preview'              => 'Aurrebista',

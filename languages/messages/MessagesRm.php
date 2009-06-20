@@ -501,7 +501,7 @@ En il ''log da stidar'' che suonda pos ti guardar daco che la pagina è vegnida 
 'preferences'               => 'Preferenzas',
 'mypreferences'             => 'Mias preferenzas',
 'prefsnologin'              => 'betg annunzià',
-'prefsnologintext'          => 'Ti stos esser <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} annunzià]</span> per midar tias preferenzas.',
+'prefsnologintext'          => 'Ti stos esser <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} annunzià]</span> per midar tias preferenzas.',
 'changepassword'            => 'Midar pled-clav',
 'skin-preview'              => 'Prevista',
 'datedefault'               => 'Nagina preferenza',

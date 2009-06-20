@@ -985,18 +985,17 @@ De deur $3 op-egeven rejen is ''$2''",
 'rev-deleted-comment'         => '(commentaar vort-ehaold)',
 'rev-deleted-user'            => '(gebrukersnaam vort-edaon)',
 'rev-deleted-event'           => '(antekening vort-edaon)',
-'rev-deleted-text-permission' => "Disse bewarking is uut de peblieke archieven ewis.
-As der meer infermasie is, ku-j dat vienen in 't [{{fullurl:Special:Log/delete|page={{PAGENAMEE}}}} logboek vort-edaone pagina's].",
-'rev-deleted-text-unhide'     => "Disse versie van de pagina is '''vort-edaon'''.
-Achtergronden ku-j meugelijk vienen in 't [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} logboek vort-edaone pagina's].
+'rev-deleted-text-permission' => "Disse bewarking is '''vort-edaon'''.
+As der meer infermasie is, ku-j 't vienen in 't [{{fullurl:{{#Special:Log}}/suppress|page={{PAGENAMEE}}}} logboek ondrokken versies].",
+'rev-deleted-text-unhide'     => "Disse bewarking is '''vort-edaon'''.
+As der meer infermasie is, ku-j 't vienen in 't [{{fullurl:{{#Special:Log}}/suppress|page={{PAGENAMEE}}}} logboek ondrokken versies].
 As beheerder ku-j [$1 disse versie bekieken] a-j willen.",
-'rev-deleted-text-view'       => "Disse bewarking is uut de peblieke archieven ewis.
-As beheerder van disse wiki ku-j 't wel zien;
-as der meer infermasie is, ku-j dat vienen in 't [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} logboek vort-edaone pagina's].",
-'rev-deleted-no-diff'         => "Je kunnen de verschillen neet bekieken umdat één van de versies uut 't peblieke archief vort-edaon is.
-De achtergronden ku-j meugelijk vienen in 't [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} logboek mit vort-edaone pagina's].",
-'rev-deleted-unhide-diff'     => "Eén van de bewarkingen van disse vergeliekingen is uut de peblieke archieven ewis.
-Achtergronden ku-j meugelijk vienen in 't [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} logboek vort-edaone pagina's].
+'rev-deleted-text-view'       => "Disse bewarking is '''vort-edaon'''.
+As beheerder van disse wiki ku-j 't wè zien; as der meer infermasie is, ku-j dat vienen in 't [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} logboek onderdrokken versies].",
+'rev-deleted-no-diff'         => "Je kunnen de verschillen neet bekieken umdat één van de versies uut '''vort-edaon''' is.
+As der meer infermasie is, ku-j 't vienen in 't [{{fullurl:{{#Special:Log}}/suppress|page={{PAGENAMEE}}}} logboek ondrokken versies].",
+'rev-deleted-unhide-diff'     => "Eén van de bewarkingen van disse vergeliekingen is '''vort-edaon'''.
+As der meer infermasie is, ku-j 't vienen in 't [{{fullurl:{{#Special:Log}}/suppress|page={{PAGENAMEE}}}} logboek ondrokken versies].
 As beheerder ku-j [$1 de verschillen bekieken] a-j willen.",
 'rev-delundel'                => 'teun/verbarg',
 'revisiondelete'              => 'Wiezigingen vortdoon/herstellen',
@@ -1236,7 +1235,7 @@ Kiek de logboeken nao.",
 'mypreferences'                 => 'Mien veurkeuren',
 'prefs-edits'                   => 'Antal bewarkingen:',
 'prefsnologin'                  => 'Neet an-meld',
-'prefsnologintext'              => 'Je mutten <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} an-emeld]</span> ween um joew veurkeuren in te kunnen stellen.',
+'prefsnologintext'              => 'Je mutten <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} an-emeld]</span> ween um joew veurkeuren in te kunnen stellen.',
 'changepassword'                => 'Wachwoord wiezigen',
 'prefs-skin'                    => '{{SITENAME}}-uterlijk',
 'skin-preview'                  => 'bekieken',
@@ -1882,8 +1881,9 @@ Zie oek [[Special:WantedCategories|gewunste kattegerieën]].",
 'special-categories-sort-abc'   => 'alfebetisch sorteren',
 
 # Special:DeletedContributions
-'deletedcontributions'       => 'Vort-edaone gebrukersbiedragen',
-'deletedcontributions-title' => 'Vort-edaone gebrukersbiedragen',
+'deletedcontributions'             => 'Vort-edaone gebrukersbiedragen',
+'deletedcontributions-title'       => 'Vort-edaone gebrukersbiedragen',
+'sp-deletedcontributions-contribs' => 'biedragen',
 
 # Special:LinkSearch
 'linksearch'       => 'Uutgaonde verwiezingen',
@@ -1912,6 +1912,8 @@ Ondersteunde protecollen: <tt>$1</tt>',
 'listgrouprights'                      => 'Rechen van gebrukersgroepen',
 'listgrouprights-summary'              => 'Op disse pagina staon de gebrukersgroepen van disse wiki beschreven, mit de biebeheurende rechen.
 Meer infermasie over de rechen ku-j [[{{MediaWiki:Listgrouprights-helppage}}|hier vienen]].',
+'listgrouprights-key'                  => '* <span class="listgrouprights-granted">Rech toe-ewezen</span>
+* <span class="listgrouprights-revoked">Rech in-etrökken</span>',
 'listgrouprights-group'                => 'Groep',
 'listgrouprights-rights'               => 'Rechen',
 'listgrouprights-helppage'             => 'Help:Gebrukersrechen',
@@ -2182,7 +2184,7 @@ $1",
 # Namespace form on various pages
 'namespace'      => 'Naamruumte:',
 'invert'         => 'selectie ummekeren',
-'blanknamespace' => '(encyclopedie)',
+'blanknamespace' => '(Heufnaamruumte)',
 
 # Contributions
 'contributions'       => 'Biedragen van disse gebruker',

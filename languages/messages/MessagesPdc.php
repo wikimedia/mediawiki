@@ -281,6 +281,7 @@ $messages = array(
 'listfiles_count' => 'Versione',
 
 # File description page
+'filehist-deleteall' => 'All Versione lösche',
 'filehist-deleteone' => 'Sell Version lösche',
 'filehist-datetime'  => 'Version vum',
 'filehist-user'      => 'Yuuser',
@@ -331,6 +332,7 @@ $messages = array(
 'allpagesnext'      => 'Neegscht',
 
 # Special:LinkSearch
+'linksearch'    => 'Gewebbgleecher',
 'linksearch-ns' => 'Blatznaame:',
 
 # Special:ListGroupRights
@@ -394,9 +396,11 @@ $messages = array(
 'sp-contributions-submit'   => 'Guuck uff',
 
 # What links here
-'whatlinkshere-page' => 'Blatt:',
-'whatlinkshere-prev' => '{{PLURAL:$1|letscht|letscht $1}}',
-'whatlinkshere-next' => '{{PLURAL:$1|neegscht|neegscht $1}}',
+'whatlinkshere-page'      => 'Blatt:',
+'whatlinkshere-prev'      => '{{PLURAL:$1|letscht|letscht $1}}',
+'whatlinkshere-next'      => '{{PLURAL:$1|neegscht|neegscht $1}}',
+'whatlinkshere-links'     => '← Gleecher',
+'whatlinkshere-hidelinks' => 'Gleecher $1',
 
 # Block/unblock
 'ipbreason'          => 'Grund:',

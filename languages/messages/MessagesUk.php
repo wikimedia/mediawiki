@@ -935,15 +935,15 @@ $3 зазначив таку причину: ''$2''",
 'rev-deleted-text-permission' => "Ця версія сторінки '''вилучена'''.
 Можливо є пояснення в [{{fullurl:{{ns:special}}:Log/delete|page={{PAGENAMEE}}}} журналі вилучень].",
 'rev-deleted-text-unhide'     => "Ця версія сторінки '''вилучена'''.
-Можливо є пояснення в [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} журналі вилучень].
+Можливо є пояснення в [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} журналі вилучень].
 Як адміністратор ви можете [$1 переглянути цю версію].",
 'rev-deleted-text-view'       => "Ця версія сторінки '''вилучена'''.
 Ви можете переглянути її, оскільки є адміністратором проекту.
 Можливо, є пояснення в [{{fullurl:{{ns:special}}:Log/delete|page={{FULLPAGENAMEE}}}} журналі вилучень].",
 'rev-deleted-no-diff'         => "Ви не можете переглянути цю різницю версій, оскільки одна з версій сторінки '''вилучена'''.
-Можливо, деталі можна знайти в [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} журналі вилучень].",
+Можливо, деталі можна знайти в [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} журналі вилучень].",
 'rev-deleted-unhide-diff'     => "Одна з версій сторінки '''вилучена'''.
-Можливо, деталі можна знайти в [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} журналі вилучень].
+Можливо, деталі можна знайти в [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} журналі вилучень].
 Ви можете [$1 переглянути цю версію], оскільки є адміністратором.",
 'rev-delundel'                => 'показати/сховати',
 'revisiondelete'              => 'Вилучити / відновити версії сторінки',
@@ -1190,7 +1190,7 @@ $1",
 'mypreferences'                 => 'Налаштування',
 'prefs-edits'                   => 'Кількість редагувань:',
 'prefsnologin'                  => 'Ви не ввійшли в систему',
-'prefsnologintext'              => 'Щоб змінити налаштування користувача, ви повинні <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} ввійти до системи]</span>.',
+'prefsnologintext'              => 'Щоб змінити налаштування користувача, ви повинні <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} ввійти до системи]</span>.',
 'changepassword'                => 'Змінити пароль',
 'prefs-skin'                    => 'Оформлення',
 'skin-preview'                  => 'Попередній перегляд',

@@ -807,10 +807,10 @@ Faaks is dy fuorthelle of omneamd.
 'rev-deleted-user'            => '(meidoggernamme wiske)',
 'rev-deleted-event'           => '(logboekrigel fuorthelle)',
 'rev-deleted-text-permission' => 'Dy bewurking fan de side is fuorthelle út de publike argiven.
-Der kinne details oanwêzich wêze yn it [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} fuorthel-logboek].',
+Der kinne details oanwêzich wêze yn it [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} fuorthel-logboek].',
 'rev-deleted-text-view'       => 'Dizze bewurking fan de side is fuorthelle út de publike argiven.
 As behearder fan {{SITENAME}} kinne jo him besjen;
-der kinne details wêze yn it [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} fuorthel-logboek].',
+der kinne details wêze yn it [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} fuorthel-logboek].',
 'rev-delundel'                => 'sjen litte/ferbergje',
 'revisiondelete'              => 'Wiskje/weromsette ferzjes',
 'revdelete-nooldid-title'     => 'Gjin doelferzje',
@@ -1024,7 +1024,7 @@ Jo kinne ek in nammerûmte as foarheaksel brûke.",
 'mypreferences'             => 'Myn foarkarynstellings',
 'prefs-edits'               => 'Tal bewurkings:',
 'prefsnologin'              => 'Net oanmeld',
-'prefsnologintext'          => 'Jo moatte <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} oanmeld]</span> wêze om jo foarkar-ynstellings te feroarje te kinnen.',
+'prefsnologintext'          => 'Jo moatte <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} oanmeld]</span> wêze om jo foarkar-ynstellings te feroarje te kinnen.',
 'changepassword'            => 'Wachtwurd feroarje',
 'prefs-skin'                => 'Side-oansjen',
 'skin-preview'              => 'Proefbyld',

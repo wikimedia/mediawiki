@@ -812,7 +812,7 @@ Kan ''all:'' laganeyal ta varafa exulera (gon keyaksexo is teza ikz-), oke wetce
 'mypreferences'             => 'Jinaf lodamaceem',
 'prefs-edits'               => 'Ota va betaks :',
 'prefsnologin'              => 'Dogluyariskaf',
-'prefsnologintext'          => 'Ede va favesiklodamaceem djubetal, gotil <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} dogluyarakiraf]</span>.',
+'prefsnologintext'          => 'Ede va favesiklodamaceem djubetal, gotil <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} dogluyarakiraf]</span>.',
 'changepassword'            => 'Betara va remravlem',
 'prefs-skin'                => 'Laviuca',
 'skin-preview'              => 'Abdiwira',

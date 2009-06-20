@@ -96,6 +96,8 @@ $messages = array(
 'aboutpage'            => 'Project:Pillugu',
 'currentevents'        => 'Maannakkut pisut',
 'edithelp'             => 'Ikiuutit',
+'edithelppage'         => 'Help:Aaqqissuussineq',
+'helppage'             => 'Help:Ikiuutit',
 'mainpage'             => 'Saqqaa',
 'mainpage-description' => 'Saqqaa',
 'portal'               => 'Allaatiginnittartup saqqai',
@@ -110,8 +112,9 @@ $messages = array(
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-image'    => 'Assiliaq',
-'nstab-template' => 'Skabeloni',
-'nstab-category' => 'Suussuseq',
+'nstab-template' => 'Ilisserut',
+'nstab-help'     => 'Ikiuutit',
+'nstab-category' => 'Sumut atassuseq',
 
 # Login and logout pages
 'yourname'                   => 'Pineqartoqateq:',

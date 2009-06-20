@@ -710,12 +710,12 @@ Legende: (Aktuäl) = Unnerscheed tou ju aktuälle Version,
 'rev-deleted-user'            => '(Benutsernoome wächhoald)',
 'rev-deleted-event'           => '(Logbouk-Aktion wächhoald)',
 'rev-deleted-text-permission' => "Disse Version wuude läsked un is '''nit moor eepentelk ientousjoon'''.
-Naiere Angoawen toun Läskfoargong as uk ne Begründenge fiende sik in dät [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Läsk-Logbouk].",
+Naiere Angoawen toun Läskfoargong as uk ne Begründenge fiende sik in dät [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Läsk-Logbouk].",
 'rev-deleted-text-view'       => "Disse Version wuude läsked un is '''nit moor eepentelk ientousjoon'''.
 As Administrator koast du ju wieders ienkiekje.
-Naiere Angoawen toun Läskfoargong as uk ne Begründenge fiende sik in dät [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Läsk-Logbouk].",
+Naiere Angoawen toun Läskfoargong as uk ne Begründenge fiende sik in dät [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Läsk-Logbouk].",
 'rev-deleted-no-diff'         => "Du koast dissen Unnerscheed nit betrachtje, deer een fon do Versione '''uut do eepentelke Archive wächhoald wuud'''.
-Details stounde in dät [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} Läsk-Logbouk].",
+Details stounde in dät [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Läsk-Logbouk].",
 'rev-delundel'                => 'wiese/ferbierge',
 'revisiondelete'              => 'Versione läskje/wier häärstaale',
 'revdelete-nooldid-title'     => 'Uunjäildige Siel-Beoarbaidenge',
@@ -933,7 +933,7 @@ Wan du die mäd dät Thema uutkoanst, koast du sälwen ju [[:$1|Siede ferfoatje]
 'mypreferences'             => 'Ienstaalengen',
 'prefs-edits'               => 'Antaal Beoarbaidengen:',
 'prefsnologin'              => 'Nit anmälded',
-'prefsnologintext'          => 'Du moast <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} anmälded]</span> weese, uum dien Ienstaalengen annerje tou konnen.',
+'prefsnologintext'          => 'Du moast <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} anmälded]</span> weese, uum dien Ienstaalengen annerje tou konnen.',
 'changepassword'            => 'Paaswoud annerje',
 'prefs-skin'                => 'Skin',
 'skin-preview'              => 'Foarschau',

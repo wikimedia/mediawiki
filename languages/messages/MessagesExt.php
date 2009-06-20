@@ -630,10 +630,10 @@ Preba [[Special:Search|landeandu]] entri las nuevas páhinas de la güiqui.',
 'rev-deleted-user'            => '(nombri d´usuáriu esborrau)',
 'rev-deleted-event'           => '(entrá esborrá)',
 'rev-deleted-text-permission' => "La revisión desta páhina á siu esborrá.
-Es posibri qu'aiga detallis nel [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rustrihu d'esborrau].",
+Es posibri qu'aiga detallis nel [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} rustrihu d'esborrau].",
 'rev-deleted-text-view'       => "Esta revisión de la páhina á siu esborrá enus archivus púbricus.
 Cumu alministraol d'esti güiqui, t'es posibri vela;
-puei bel detallis nel [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} rustrihu d'esborrau].",
+puei bel detallis nel [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} rustrihu d'esborrau].",
 'rev-delundel'                => 'muestral/açonchal',
 'revisiondelete'              => 'Esborral/arrecuperal revisionis',
 'revdelete-nooldid-title'     => 'Nu ai una revisión destinu',

@@ -954,10 +954,10 @@ Prova [[Special:Search|fittex fuq il-wiki]] għal paġni relevanti ġodda.",
 'rev-deleted-user'            => '(l-isem tal-utent tneħħa)',
 'rev-deleted-event'           => '(azzjoni tal-log tneħħa)',
 'rev-deleted-text-permission' => "Ir-reviżjoni ta' din il-paġna ġiet '''imħassra'''.
-Jista' jkun hemm informazzjoni fir-[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} reġistru ta' tħassir].",
+Jista' jkun hemm informazzjoni fir-[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} reġistru ta' tħassir].",
 'rev-deleted-text-view'       => "Din ir-reviżjoni ta' din il-paġna ġiet '''imħassra'''.
 Bħala amministratur inti tista' taraha;
-jista' jkun li hemm informazzjoni fir-[{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} reġistru ta' tħassir].",
+jista' jkun li hemm informazzjoni fir-[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} reġistru ta' tħassir].",
 'rev-delundel'                => 'uri/aħbi',
 'revisiondelete'              => 'Ħassar/irkupra reviżjonijiet',
 'revdelete-nooldid-title'     => 'Reviżjoni tarka invalida',
@@ -1130,7 +1130,7 @@ Innota però li l-werreja tal-kontenut ta' {{SITENAME}} f'dawn is-siti, jistgħu
 'mypreferences'               => 'Il-Preferenzi tiegħi',
 'prefs-edits'                 => "Numru ta' modifiki:",
 'prefsnologin'                => 'Għadek ma dħaltx ġewwa',
-'prefsnologintext'            => 'Sabiex tkun tista\' tippersonalizza l-preferenzi huwa neċessarju li tidħol fil-<span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} kont]</span>.',
+'prefsnologintext'            => 'Sabiex tkun tista\' tippersonalizza l-preferenzi huwa neċessarju li tidħol fil-<span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} kont]</span>.',
 'changepassword'              => 'Ibdel il-password',
 'prefs-skin'                  => 'Aspett grafiku (skin)',
 'skin-preview'                => 'Previżjoni',

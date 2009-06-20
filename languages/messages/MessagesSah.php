@@ -753,17 +753,17 @@ long, which is longer than the maximum of $2 kilobytes. It cannot be saved.'''
 'rev-deleted-user'            => '(кыттааччы аата сотулунна)',
 'rev-deleted-event'           => '(бэлиэтээһин дьайыыта сотулунна)',
 'rev-deleted-text-permission' => "Ыстатыйа бу барыла '''аһаҕас архыыптан сотуллубут'''. 
-Быһаарыыта  [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} манна] баар буолуон сөп.",
+Быһаарыыта  [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} манна] баар буолуон сөп.",
 'rev-deleted-text-unhide'     => "Сирэй ити барыла '''сотуллубут'''.
-Баҕар ол туһунан [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} сотуу сурунаалыгар] баара буолуо.
+Баҕар ол туһунан [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} сотуу сурунаалыгар] баара буолуо.
 Ол да буоллар эн дьаһабыл буоларыҥ быһыытынан [$1 барылы көрүөххүн сөп].",
 'rev-deleted-text-view'       => "Ыстатыйа бу торума '''аһаҕас архыыптан сотуллубут'''.
 Ол эрэн эн {{SITENAME}} дьаһабыла буоларыҥ быһыытынан ону көрүөххүн сөп.
 Тоҕо сотуллубутун быһаарыыта [{{fullurl:{{ns:special}}:Log/delete|page={{FULLPAGENAMEE}}}} манна] баар буолуон сөп.",
 'rev-deleted-no-diff'         => "Барыллар бу сирэйдэрин көрөр кыаҕыҥ суох, тоҕо диэтэххэ сирэй биир барыла '''аһаҕас архыыптан сотуллубут'''.
-Сиһилии [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} сотуу сурунаалыгар] суруллубут буолуон сөп.",
+Сиһилии [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} сотуу сурунаалыгар] суруллубут буолуон сөп.",
 'rev-deleted-unhide-diff'     => "Сирэй барылларыттан биирдэстэрэ '''сотуллубут'''.
-Баҕар ол туһунан [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} сотуу сурунаалыгар] баара буолуо.
+Баҕар ол туһунан [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} сотуу сурунаалыгар] баара буолуо.
 Ол да буоллар эн дьаһабыл буоларыҥ быһыытынан [$1 барылы көрүөххүн сөп].",
 'rev-delundel'                => 'көрдөр/кистээ',
 'revisiondelete'              => 'Соторго/торуму төнүннэрэргэ',
@@ -1009,7 +1009,7 @@ $1",
 'mypreferences'                 => 'Туруорууларым',
 'prefs-edits'                   => 'Көннөрүү ахсаана:',
 'prefsnologin'                  => 'Ааккын эппэтиҥ',
-'prefsnologintext'              => 'Эн <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} ааккын эттэххинэ]</span> эрэ кыттаачы туруорууларын уларытар кыахтаныаҥ.',
+'prefsnologintext'              => 'Эн <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} ааккын эттэххинэ]</span> эрэ кыттаачы туруорууларын уларытар кыахтаныаҥ.',
 'changepassword'                => 'Киирии тылы уларытарга',
 'prefs-skin'                    => 'Тас көстүү',
 'skin-preview'                  => 'Хайдах буолара',

@@ -679,10 +679,10 @@ Misschien is een verwiederd of hernoemd.
 'rev-deleted-user'            => '(gebruker verwiederd)',
 'rev-deleted-event'           => '(logboekrehel verwiederd)',
 'rev-deleted-text-permission' => "Deêze bewerkieng van de pagina is verwiederd uut de publieke archieven.
-Der kunn'n details anwezig zien in 't [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}}verwiederiengslogboek].",
+Der kunn'n details anwezig zien in 't [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}}verwiederiengslogboek].",
 'rev-deleted-text-view'       => "Deêze bewerkieng van de pagina is verwiederd uut de publieke archieven.
 As opzichter van {{SITENAME}} kan je dezen ziene;
-der kunn'n details anwezig zien in 't [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} verwiederiengslogboek].",
+der kunn'n details anwezig zien in 't [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} verwiederiengslogboek].",
 'rev-delundel'                => 'weerheven/verberhen',
 'revisiondelete'              => 'Versies verwiederen/trugplekken',
 'revdelete-nooldid-title'     => 'Hin doelversie',
@@ -805,7 +805,7 @@ De hehevens over {{SITENAME}} zien meuhlijk nie bie'ewerkt.",
 'mypreferences'             => 'Mien vòkeuren',
 'prefs-edits'               => 'Antal bewerkiengen:',
 'prefsnologin'              => 'Nie anemeld',
-'prefsnologintext'          => 'Je mò <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} anemeld]</span> zien om je vòkeuren te kunn\'n instell\'n.',
+'prefsnologintext'          => 'Je mò <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} anemeld]</span> zien om je vòkeuren te kunn\'n instell\'n.',
 'changepassword'            => 'Wachtwoôrd wiezigen',
 'prefs-skin'                => 'Vurmhevieng',
 'skin-preview'              => 'Voevertoônienge',

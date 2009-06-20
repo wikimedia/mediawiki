@@ -890,16 +890,16 @@ E posibil să fi fost ştearsă sau redenumită.
 'rev-deleted-user'            => '(nume de utilizator şters)',
 'rev-deleted-event'           => '(intrare ştearsă)',
 'rev-deleted-text-permission' => "Revizia acestei pagini a fost '''ştearsă'''.
-Mai multe detalii în [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} jurnalul de ştergeri].",
+Mai multe detalii în [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} jurnalul de ştergeri].",
 'rev-deleted-text-unhide'     => "Această revizie a fost '''ştearsă'''.
-Pot exista detalii în [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} jurnalul ştergerilor].
+Pot exista detalii în [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} jurnalul ştergerilor].
 Ca administrator poţi [$1 vedea această revizie] dacă doreşti.",
 'rev-deleted-text-view'       => "Revizia acestei pagini a fost '''ştearsă'''.
-Ca administrator la acest site poţi să o vezi; s-ar putea să găseşti mai multe detalii la [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} jurnalul de ştergeri].",
+Ca administrator la acest site poţi să o vezi; s-ar putea să găseşti mai multe detalii la [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} jurnalul de ştergeri].",
 'rev-deleted-no-diff'         => "Nu poţi vedea acestă diferenţă deoarece una dintre revizii a fost '''ştearsă'''.
-Pot exista mai multe detalii [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} jurnalul ştergerilor].",
+Pot exista mai multe detalii [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} jurnalul ştergerilor].",
 'rev-deleted-unhide-diff'     => "Una din reviziile acestui istoric a fost '''ştearsă'''.
-Pot exista detalii în [{{fullurl:Special:Log/delete|page={{FULLPAGENAMEE}}}} jurnalul ştergerilor].
+Pot exista detalii în [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} jurnalul ştergerilor].
 Ca administrator poţi  [$1 vedea acest istoric] dacă doreşti.",
 'rev-delundel'                => 'arată/ascunde',
 'revisiondelete'              => 'Şterge/recuperează revizii',
@@ -1144,7 +1144,7 @@ Folosirea linkurilor de navigare va reseta această coloană.',
 'mypreferences'                 => 'preferinţe',
 'prefs-edits'                   => 'Număr de modificări:',
 'prefsnologin'                  => 'Neautentificat',
-'prefsnologintext'              => 'Trebuie să fiţi <span class="plainlinks">[{{fullurl:Special:UserLogin|returnto=$1}} autentificat]</span> pentru a vă putea salva preferinţele.',
+'prefsnologintext'              => 'Trebuie să fiţi <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} autentificat]</span> pentru a vă putea salva preferinţele.',
 'changepassword'                => 'Schimbă parola',
 'prefs-skin'                    => 'Aspect',
 'skin-preview'                  => 'Previzualizare',
