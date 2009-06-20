@@ -460,7 +460,7 @@ class CategoryViewer {
 		if( $first != '' ) {
 			$prevQuery = $query;
 			$prevQuery['until'] = $first;
-			$prevLink = $sk->link(
+			$prevLink = $sk->linkKnown(
 				$title,
 				$prevLink,
 				array(),
@@ -471,7 +471,7 @@ class CategoryViewer {
 		if( $last != '' ) {
 			$lastQuery = $query;
 			$lastQuery['from'] = $last;
-			$nextLink = $sk->link(
+			$nextLink = $sk->linkKnown(
 				$title,
 				$nextLink,
 				array(),
