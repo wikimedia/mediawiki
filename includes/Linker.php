@@ -1142,8 +1142,11 @@ class Linker {
 	/**
 	 * parameter level defines if we are on an indentation level
 	 */
-	function tocLine( $anchor, $tocline, $tocnumber, $level ) {
-		return "\n<li class=\"toclevel-$level\"><a href=\"#" .
+	function tocLine( $anchor, $tocline, $tocnumber, $level, $sectionIndex = false ) {
+		$classes = "toclevel-$level";
+		if ( $sectionIndex !== false )
+			$classes .= " tocsection-$sectionIndex";
+		return "\n<li class=\"$classes\"><a href=\"#" .
 			$anchor . '"><span class="tocnumber">' .
 			$tocnumber . '</span> <span class="toctext">' .
 			$tocline . '</span></a>';

@@ -3647,7 +3647,8 @@ class Parser
 				$legacyAnchor .= '_' . $refers[$legacyArrayKey];
 			}
 			if( $enoughToc && ( !isset($wgMaxTocLevel) || $toclevel<$wgMaxTocLevel ) ) {
-				$toc .= $sk->tocLine($anchor, $tocline, $numbering, $toclevel);
+				$toc .= $sk->tocLine($anchor, $tocline,
+					$numbering, $toclevel, ($isTemplate ? false : $sectionIndex));
 				
 				# Find the DOM node for this header
 				while ( $node && !$isTemplate ) {
@@ -3703,6 +3704,8 @@ class Parser
 			}
 			$toc = $sk->tocList( $toc );
 		}
+		
+		$this->mOutput->setTOCHTML( $toc );
 
 		# split up and insert constructed headlines
 
