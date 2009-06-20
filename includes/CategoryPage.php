@@ -95,11 +95,22 @@ class CategoryViewer {
 		$this->doCategoryQuery();
 		$this->finaliseCategoryState();
 
-		$r = $this->getCategoryTop() .
-			$this->getSubcategorySection() .
+		$r = $this->getSubcategorySection() .
 			$this->getPagesSection() .
-			$this->getImageSection() .
-			$this->getCategoryBottom();
+			$this->getImageSection();
+
+		if( $r == '' ) {
+			// If there is no category content to display, only
+			// show the top part of the navigation links.
+			// FIXME: cannot be completely suppressed because it
+			//        is unknown if 'until' or 'from' makes this
+			//        give 0 results.
+			$r = $r . $this->getCategoryTop();
+		} else {
+			$r = $this->getCategoryTop() .
+				$r .
+				$this->getCategoryBottom();
+		}
 
 		// Give a proper message if category is empty
 		if ( $r == '' ) {
