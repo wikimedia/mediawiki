@@ -104,24 +104,24 @@ class Interwiki {
 
 		wfDebug( __METHOD__ . "( $prefix )\n" );
 		if( !$db ) {
-			$db = dba_open( $wgInterwikiCache, 'r', 'cdb' );
+			$db = CdbReader::open( $wgInterwikiCache );
 		}
 		/* Resolve site name */
 		if( $wgInterwikiScopes>=3 && !$site ) {
-			$site = dba_fetch( '__sites:' . wfWikiID(), $db );
+			$site = $db->get( '__sites:' . wfWikiID() );
 			if ( $site == '' ) {
 				$site = $wgInterwikiFallbackSite;
 			}
 		}
 
-		$value = dba_fetch( wfMemcKey( $prefix ), $db );
+		$value = $db->get( wfMemcKey( $prefix ) );
 		// Site level
 		if ( $value == '' && $wgInterwikiScopes >= 3 ) {
-			$value = dba_fetch( "_{$site}:{$prefix}", $db );
+			$value = $db->get( "_{$site}:{$prefix}" );
 		}
 		// Global Level
 		if ( $value == '' && $wgInterwikiScopes >= 2 ) {
-			$value = dba_fetch( "__global:{$prefix}", $db );
+			$value = $db->get( "__global:{$prefix}" );
 		}
 		if ( $value == 'undef' )
 			$value = '';

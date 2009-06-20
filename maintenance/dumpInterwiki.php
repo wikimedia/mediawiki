@@ -19,7 +19,7 @@ chdir( $oldCwd );
 # Output
 if ( isset( $options['o'] ) ) {
     # To database specified with -o
-    $dbFile = dba_open( $options['o'], "n", "cdb_make" );
+    $dbFile = CdbWriter::open( $options['o'] );
 } 
 
 getRebuildInterwikiDump();
