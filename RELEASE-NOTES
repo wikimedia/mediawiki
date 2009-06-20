@@ -231,6 +231,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 14200) Added user and excludeuser parameters to list=watchlist and
   list=recentchanges
 * Return HTTP 503 status code on maxlag error, like index.php does
+* Added index, fromtitle and byteoffset fields to action=parse&prop=sections
+  output
 
 === Languages updated in 1.16 ===
 
