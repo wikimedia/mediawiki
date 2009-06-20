@@ -447,6 +447,7 @@ $specialPageAliases = array(
 	'LinkSearch'                => array( 'LinkSearch' ),
 	'DeletedContributions'      => array( 'DeletedContributions' ),
 	'Tags'                      => array( 'Tags' ),
+	'Activeusers'               => array( 'ActiveUsers' ),
 );
 
 /**
@@ -2238,8 +2239,6 @@ It now redirects to [[$2]].',
 'listusers-creationsort'          => 'Sort by creation date',
 'usereditcount'                   => '$1 {{PLURAL:$1|edit|edits}}',
 'usercreated'                     => 'Created on $1 at $2',
-'activeusers'                     => 'Active user list',
-'activeusers-count'               => '$1 recent {{PLURAL:$1|edit|edits}}',
 'newpages'                        => 'New pages',
 'newpages-summary'                => '', # do not translate or duplicate this message to other languages
 'newpages-username'               => 'Username:',
@@ -2331,8 +2330,11 @@ Supported protocols: <tt>$1</tt>',
 'listusers-blocked'  => '(blocked)',
 
 # Special:ActiveUsers
-'activeusers-from'       => 'Display users starting at:',
-'activeusers-noresult'   => 'No user found.',
+'activeusers'          => 'Active users list',
+'activeusers-summary'  => '', # do not translate or duplicate this message to other languages
+'activeusers-count'    => '$1 recent {{PLURAL:$1|edit|edits}}',
+'activeusers-from'     => 'Display users starting at:',
+'activeusers-noresult' => 'No users found.',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'User creation log',
