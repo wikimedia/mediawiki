@@ -24,7 +24,8 @@ class ParserOutput
 		$mOutputHooks = array(),      # Hook tags as per $wgParserOutputHooks
 		$mWarnings = array(),         # Warning text to be returned to the user. Wikitext formatted, in the key only
 		$mSections = array(),         # Table of contents
-		$mProperties = array();       # Name/value pairs to be cached in the DB
+		$mProperties = array(),       # Name/value pairs to be cached in the DB
+		$mTOCHTML = '';	              # HTML of the TOC
 	private $mIndexPolicy = '';	      # 'index' or 'noindex'?  Any other value will result in no change.
 
 	/**
@@ -58,6 +59,7 @@ class ParserOutput
 	function getOutputHooks()            { return (array)$this->mOutputHooks; }
 	function getWarnings()               { return array_keys( $this->mWarnings ); }
 	function getIndexPolicy()            { return $this->mIndexPolicy; }
+	function getTOCHTML()                { return $this->mTOCHTML; }
 
 	function containsOldMagic()          { return $this->mContainsOldMagic; }
 	function setText( $text )            { return wfSetVar( $this->mText, $text ); }
@@ -68,6 +70,7 @@ class ParserOutput
 	function setTitleText( $t )          { return wfSetVar( $this->mTitleText, $t ); }
 	function setSections( $toc )         { return wfSetVar( $this->mSections, $toc ); }
 	function setIndexPolicy( $policy )   { return wfSetVar( $this->mIndexPolicy, $policy ); }
+	function setTOCHTML( $tochtml )      { return wfSetVar( $this->mTOCHTML, $tochtml ); }
 
 	function addCategory( $c, $sort )    { $this->mCategories[$c] = $sort; }
 	function addLanguageLink( $t )       { $this->mLanguageLinks[] = $t; }
