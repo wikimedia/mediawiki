@@ -124,7 +124,8 @@ class SpecialPage
 		'Preferences'               => 'SpecialPreferences',	
 		'Contributions'             => 'SpecialContributions',	
 		'Listgrouprights'           => 'SpecialListGroupRights',
-		'Listusers'                 => array( 'SpecialPage', 'Listusers' ),	
+		'Listusers'                 => array( 'SpecialPage', 'Listusers' ),
+		'Activeusers'               => array( 'SpecialPage', 'Activeusers' ),
 		'Userrights'                => 'UserrightsPage',
 
 		# Recent changes and logs
