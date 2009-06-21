@@ -165,6 +165,7 @@ $specialPageAliases = array(
 	'LinkSearch'                => array( 'Wyszukiwarka linków' ),
 	'DeletedContributions'      => array( 'Usunięty wkład' ),
 	'Tags'                      => array( 'Znaczniki' ),
+	'Activeusers'               => array( 'Aktywni użytkownicy' ),
 );
 
 $magicWords = array(
