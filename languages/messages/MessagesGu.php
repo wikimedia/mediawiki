@@ -794,6 +794,10 @@ Please log in again after you receive it.
 'prefs-datetime'            => 'તારીખ અને સમય',
 'prefs-watchlist'           => 'ધ્યાનસૂચિ',
 'searchresultshead'         => 'શોધો',
+'timezonelegend'            => 'સમય ક્ષેત્ર:',
+'localtime'                 => 'સ્થાનીક સમય:',
+'prefs-searchoptions'       => 'શોધ વિકલ્પો',
+'prefs-emailconfirm-label'  => 'ઇ-મેલ પુષ્ટી',
 'youremail'                 => 'ઇ-મેઇલ:',
 'username'                  => 'સભ્ય નામ:',
 'prefs-memberingroups'      => '{{PLURAL:$1|સમુહ|સમુહો}}ના સભ્ય:',
@@ -812,6 +816,10 @@ Please log in again after you receive it.
 'prefs-help-email'          => "ઇ-મેઇલ સરનામુ વૈકલ્પિક છે, પરંતુ જો તમે તમારી ગુપ્તસંજ્ઞા ભુલી ગયા હો તો એ દ્વારા તમને નવી ગુપ્તસંજ્ઞા ઇ-મેઇલ કરી શકાશે. 
 તમે એ પણ પસંદ કરી શકો કે, તમારી ઓળખ જાહેર થયા વગર, અન્ય લોકો તમારા 'મારા વિષે' કે 'મારી ચર્ચા'ના પાના પરથી તમારો સંપર્ક કરી શકે.",
 'prefs-help-email-required' => 'ઇ-મેઇલ સરનામુ જરૂરી.',
+
+# User rights
+'userrights-user-editname' => 'સભ્યનામ દાખલ કરો:',
+'editusergroup'            => 'સભ્ય સમુહો સંપાદીત કરો',
 
 # Groups
 'group'       => 'સમુહ',

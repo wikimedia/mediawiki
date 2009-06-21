@@ -266,18 +266,18 @@ $messages = array(
 'thu'       => 'गुरु',
 'fri'       => 'शुक्र',
 'sat'       => 'शनि',
-'january'   => 'पौषमाघे',
-'february'  => 'फाल्गुने',
-'march'     => 'फाल्गुनचैत्रे',
-'april'     => 'मधुमासे',
-'may_long'  => 'वैशाखज्येष्ठे',
-'june'      => 'ज्येष्ठाषाढके',
-'july'      => 'आषाढश्रावणे',
-'august'    => 'नभस्ये',
-'september' => 'भाद्रपदाश्विने',
-'october'   => 'अश्विनकार्तिके',
-'november'  => 'कार्तिकमार्गशीर्षे',
-'december'  => 'मार्गशीर्षपौषे',
+'january'   => 'जनवरीमासः',
+'february'  => 'फेब्रुवरीमासः',
+'march'     => 'मार्चमासः',
+'april'     => 'एप्रिलमासः',
+'may_long'  => 'मेमासः',
+'june'      => 'जूनमासः',
+'july'      => 'जुलाइमासः',
+'august'    => 'आगस्टमासः',
+'september' => 'सेप्टेम्बरमासः',
+'october'   => 'अक्टूबरमासः',
+'november'  => 'नवम्बरमासः',
+'december'  => 'डेसेम्बरमासः',
 
 # Categories related messages
 'pagecategories'         => '{{PLURAL:$1|श्रेणी|श्रेण्यः }}',
@@ -402,10 +402,13 @@ $messages = array(
 'editundo' => 'अकरोतु',
 
 # Search results
-'searchresults'      => 'अन्वेषण-फलानि',
-'nextn'              => 'आगामि{{PLURAL:$1|$1}}',
-'search-result-size' => '$1 ({{PLURAL:$2|1 शब्दम्|$2 शब्दे}})',
-'powersearch'        => 'प्रगतम् अन्वेषणम्',
+'searchresults'             => 'अन्वेषण-फलानि',
+'searchresults-title'       => '"$1" इत्यस्य कृते अन्वेषण-फलानि',
+'nextn'                     => 'आगामि{{PLURAL:$1|$1}}',
+'search-result-size'        => '$1 ({{PLURAL:$2|1 शब्दम्|$2 शब्दे}})',
+'search-mwsuggest-enabled'  => 'उपक्षेपेभ्यः सह',
+'search-mwsuggest-disabled' => 'नात्र उपक्षेपाः',
+'powersearch'               => 'प्रगतम् अन्वेषणम्',
 
 # Preferences page
 'yourlanguage' => 'भाषा:',
@@ -444,6 +447,7 @@ $messages = array(
 'statistics' => 'सांख्यिकी',
 
 # Miscellaneous special pages
+'nbytes'       => '$1 {{PLURAL:$1|बैटम्|बैटानि}}',
 'longpages'    => 'दीर्घाणि पृष्ठाणि',
 'newpages'     => 'नूतनानि पृष्ठाणि',
 'ancientpages' => 'प्राचीनतम् पृष्ठा',
@@ -507,7 +511,9 @@ $messages = array(
 'import-comment' => 'व्याखान:',
 
 # Tooltip help for the actions
+'tooltip-pt-login'        => 'भवान् लेखायां प्रविशतु इति श्रेयः परन्तु नावश्यकम्',
 'tooltip-pt-logout'       => 'बहिर्गच्छतु',
+'tooltip-ca-talk'         => 'घटक-पृष्ठ-विषये चर्चा',
 'tooltip-search'          => '{{SITENAME}} अन्वेषणं करोति',
 'tooltip-search-go'       => 'एतत्-शीर्षकीयम् पृष्ठं गच्छतु चेत् तद्विद्यते',
 'tooltip-search-fulltext' => 'एतत्पाठार्थम् पृष्ठेषु अन्विष्यतु',

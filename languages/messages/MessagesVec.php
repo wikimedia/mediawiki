@@ -1754,6 +1754,13 @@ Protocòli suportè: <tt>$1</tt>',
 'listusersfrom'      => 'Mostra i utenti tacando da:',
 'listusers-submit'   => 'Mostra',
 'listusers-noresult' => 'Nissun utente el risponde ai criteri inpostà.',
+'listusers-blocked'  => '(blocà)',
+
+# Special:ActiveUsers
+'activeusers'          => 'Lista dei utenti ativi',
+'activeusers-count'    => '$1 {{PLURAL:$1|canbiamento|canbiamenti}} recenti',
+'activeusers-from'     => 'Fà védar i utenti a partir da:',
+'activeusers-noresult' => 'Nissun utente catà.',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Registro utenti novi',

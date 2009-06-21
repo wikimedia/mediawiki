@@ -551,7 +551,9 @@ Note that some pages may continue to be displayed as if you were still logged in
 'filehist-nothumb'          => 'ܠܐ ܙܥܘܪܬܐ',
 'filehist-user'             => 'ܡܦܠܚܢܐ',
 'imagelinks'                => 'ܐܣܘܪ̈ܐ ܕܠܦܦܐ',
+'linkstoimage'              => '{{PLURAL:$1|ܦܐܬܐ|$1 ܦܐܬܘܬ̈ܐ}} ܕܐܬܐ ܐܣܪ ܠܗܢܐ ܠܦܦܐ:',
 'nolinkstoimage'            => 'ܠܝܬ ܦܐܬܐ ܕܐܣܪ ܠܗܢܐ ܠܦܦܐ.',
+'redirectstofile'           => '{{PLURAL:$1|ܠܦܦܐ|$1 ܠܦܦ̈ܐ}} ܕܐܬܐ ܐܣܪ ܠܗܢܐ ܠܦܦܐ:',
 'uploadnewversion-linktext' => 'ܐܣܩ ܨܚܚܐ ܚܕܬܐ ܡܢ ܗܢܐ ܠܦܦܐ',
 'shared-repo-from'          => 'ܡܢ $1',
 

@@ -1773,8 +1773,9 @@ Ayrıca [[Special:WantedCategories|İstenen kategoriler]]'e bakınız.",
 'special-categories-sort-abc'   => 'alfabetik olarak sırala',
 
 # Special:DeletedContributions
-'deletedcontributions'       => 'Silinen kullanıcı katkıları',
-'deletedcontributions-title' => 'Silinen kullanıcı katkıları',
+'deletedcontributions'             => 'Silinen kullanıcı katkıları',
+'deletedcontributions-title'       => 'Silinen kullanıcı katkıları',
+'sp-deletedcontributions-contribs' => 'katkılar',
 
 # Special:LinkSearch
 'linksearch'       => 'Dış bağlantılar',
@@ -1790,6 +1791,13 @@ Desteklenen iletişim kuralları: <tt>$1</tt>',
 'listusersfrom'      => 'Şununla başlayan kullanıcıları görüntüle:',
 'listusers-submit'   => 'Göster',
 'listusers-noresult' => 'Kullanıcı bulunamadı.',
+'listusers-blocked'  => '(engellenmiş)',
+
+# Special:ActiveUsers
+'activeusers'          => 'Aktif kullanıcı listesi',
+'activeusers-count'    => 'Son $1 {{PLURAL:$1|değişiklik|değişiklik}}',
+'activeusers-from'     => 'Şununla başlayan kullanıcıları görüntüle:',
+'activeusers-noresult' => 'Kullanıcı bulunamadı.',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Yeni kullanıcı kayıtları',
@@ -1803,6 +1811,8 @@ Desteklenen iletişim kuralları: <tt>$1</tt>',
 'listgrouprights'                      => 'Kullanıcı grubu hakları',
 'listgrouprights-summary'              => 'Aşağıdaki bu vikide tanımlanan kullanıcı gruplarının, ilgili erişim haklarıyla birlikte listesidir.
 Bireysel haklarla ilgili [[{{MediaWiki:Listgrouprights-helppage}}|daha fazla bilgi]] olabilir.',
+'listgrouprights-key'                  => '* <span class="listgrouprights-granted">Verilen hak</span>
+* <span class="listgrouprights-revoked">Geri alınan hak</span>',
 'listgrouprights-group'                => 'grup',
 'listgrouprights-rights'               => 'Haklar',
 'listgrouprights-helppage'             => 'Help:Grup hakları',

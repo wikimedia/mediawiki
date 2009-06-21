@@ -282,7 +282,28 @@ $messages = array(
 'faqpage'        => 'Project:FAQ',
 
 # Vector skin
-'vector-view-view' => 'Leger',
+'vector-action-addsection'   => 'Adder topico',
+'vector-action-delete'       => 'Deler',
+'vector-action-move'         => 'Renominar',
+'vector-action-protect'      => 'Proteger',
+'vector-action-undelete'     => 'Restaurar',
+'vector-action-unprotect'    => 'Disproteger',
+'vector-namespace-category'  => 'Categoria',
+'vector-namespace-help'      => 'Pagina de adjuta',
+'vector-namespace-image'     => 'File',
+'vector-namespace-main'      => 'Pagina',
+'vector-namespace-media'     => 'Pagina de multimedia',
+'vector-namespace-mediawiki' => 'Message',
+'vector-namespace-project'   => 'Pagina de projecto',
+'vector-namespace-special'   => 'Pagina special',
+'vector-namespace-talk'      => 'Discussion',
+'vector-namespace-template'  => 'Patrono',
+'vector-namespace-user'      => 'Pagina de usator',
+'vector-view-create'         => 'Crear',
+'vector-view-edit'           => 'Modificar',
+'vector-view-history'        => 'Vider historia',
+'vector-view-view'           => 'Leger',
+'vector-view-viewsource'     => 'Vider texto fonte',
 
 # Metadata in edit box
 'metadata_help' => 'Metadatos:',
@@ -864,17 +885,17 @@ Prova [[Special:Search|cercar nove paginas relevante]] in le wiki.',
 'rev-deleted-user'            => '(nomine de usator eliminate)',
 'rev-deleted-event'           => '(entrata eliminate)',
 'rev-deleted-text-permission' => "Iste version del pagina ha essite '''delite'''.
-Es possibile que se trova detalios in le [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de deletiones].",
+Es possibile que se trova detalios in le [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de suppressiones].",
 'rev-deleted-text-unhide'     => "Iste version del pagina ha essite '''delite'''.
-Es possibile que se trova detalios in le [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de deletiones].
-Tu, qua administrator, pote ancora [$1 vider iste version] si tu vole proceder.",
+Es possibile que se trova detalios in le [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de suppressiones].
+Tu, qua administrator, pote totevia [$1 vider iste version] si tu vole proceder.",
 'rev-deleted-text-view'       => "Iste version del pagina ha essite '''delite'''.
 Tu, qua administrator, pote vider lo;
-es possibile que se trova detalios in le [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de deletiones].",
+es possibile que se trova detalios in le [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de suppressiones].",
 'rev-deleted-no-diff'         => "Tu non pote vider iste diff proque un del versiones ha essite '''delite'''.
-Es possibile que se trova detalios in le [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de deletiones].",
+Es possibile que se trova detalios in le [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de suppressiones].",
 'rev-deleted-unhide-diff'     => "Un del versiones de iste diff ha essite '''delite'''.
-Es possibile que se trova detalios in le [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de deletiones].
+Es possibile que se trova detalios in le [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de suppressiones].
 Tu, qua administrator, pote ancora [$1 vider iste diff] si tu vole proceder.",
 'rev-delundel'                => 'revelar/celar',
 'revisiondelete'              => 'Deler/restaurar versiones',
@@ -1799,8 +1820,9 @@ Vide etiam le [[Special:WantedCategories|categorias desirate]].',
 'special-categories-sort-abc'   => 'ordinar alphabeticamente',
 
 # Special:DeletedContributions
-'deletedcontributions'       => 'Contributiones delite de usatores',
-'deletedcontributions-title' => 'Contributiones delite de usatores',
+'deletedcontributions'             => 'Contributiones delite de usatores',
+'deletedcontributions-title'       => 'Contributiones delite de usatores',
+'sp-deletedcontributions-contribs' => 'contributiones',
 
 # Special:LinkSearch
 'linksearch'       => 'Ligamines externe',
@@ -1816,6 +1838,13 @@ Protocollos supportate: <tt>$1</tt>',
 'listusersfrom'      => 'Monstrar usatores a partir de:',
 'listusers-submit'   => 'Revelar',
 'listusers-noresult' => 'Nulle usator trovate.',
+'listusers-blocked'  => '(blocate)',
+
+# Special:ActiveUsers
+'activeusers'          => 'Lista de usatores active',
+'activeusers-count'    => '$1 {{PLURAL:$1|modification|modificationes}} recente',
+'activeusers-from'     => 'Presentar usatores a partir de:',
+'activeusers-noresult' => 'Nulle usator trovate.',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Registro de creation de usatores',
@@ -1829,6 +1858,8 @@ Protocollos supportate: <tt>$1</tt>',
 'listgrouprights'                      => 'Derectos del gruppos de usatores',
 'listgrouprights-summary'              => 'Lo sequente es un lista de gruppos de usatores definite in iste wiki, con lor derectos de accesso associate.
 Il pote haber [[{{MediaWiki:Listgrouprights-helppage}}|informationes additional]] super derectos individual.',
+'listgrouprights-key'                  => '* <span class="listgrouprights-granted">Derecto concedite</span>
+* <span class="listgrouprights-revoked">Derecto revocate</span>',
 'listgrouprights-group'                => 'Gruppo',
 'listgrouprights-rights'               => 'Derectos',
 'listgrouprights-helppage'             => 'Help:Derectos de gruppos',

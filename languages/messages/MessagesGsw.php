@@ -826,16 +826,16 @@ Erklärig: (aktuell) = Underschid zu jetz,
 'rev-deleted-user'            => '(Benutzername uusegnuh)',
 'rev-deleted-event'           => '(Logbuechaktion uusegnuh)',
 'rev-deleted-text-permission' => "Die Version isch '''glescht''' wore.
-Information zue dr Leschig un e Begrindig het s im [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Lesch-Logbuech].",
+Information zue dr Leschig un e Begrindig het s im [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Oversight-Logbuech].",
 'rev-deleted-text-unhide'     => "Die Version isch '''glescht''' wore.
-Detail stehn im [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Lesch-Logbuech].
-As Ammann chasch Du [$1 des Gelich aaluege], wänn du witt wytermache.",
+Detail stehn im [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Oversight-Logbuech].
+As Ammann chasch Du [$1 des Gleich aaluege], wänn du witt wytermache.",
 'rev-deleted-text-view'       => "Die Version isch '''glescht''' wore. As Amman chasch si aber alno aaluege.
-Informatione zue dr Leschig un e Begrindig het s im [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Lesch-Logbuech].",
+Informatione zue dr Leschig un e Begrindig het s im [{{fullurl:{{#special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Oversight-Logbuech].",
 'rev-deleted-no-diff'         => "Du chasch die Änderig nit aaluege, wel eini vu dr Versione '''glescht''' woren isch.
-Villicht het s Detail im [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Lesch-Logbuech].",
+Villicht het s Detail im [{{fullurl:{{#special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Oversight-Logbuech].",
 'rev-deleted-unhide-diff'     => "Eini vu dr Versione isch '''glescht''' wore.
-Villicht het s Detail im [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Lesch-Logbuech].
+Villicht het s Detail im [{{fullurl:{{#special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Oversight-Logbuech].
 Wänn Du Ammann bisch, chasch [$1 dä Unterschid aaluege] wänn Du wytermache witt.",
 'rev-delundel'                => 'zeig/versteck',
 'revisiondelete'              => 'Versione lesche/widerherstelle',
@@ -1735,6 +1735,13 @@ Lueg au d Lischt vu dr [[Special:WantedCategories|gwinschte Kategorie]].',
 'listusersfrom'      => 'Zeig Benutzer ab:',
 'listusers-submit'   => 'Zeig',
 'listusers-noresult' => 'Kei Benutzer gfunde.',
+'listusers-blocked'  => '(gsperrt)',
+
+# Special:ActiveUsers
+'activeusers'          => 'Lischt vu dr aktive Benutzer',
+'activeusers-count'    => '$1 {{PLURAL:$1|Bearbeitig|Bearbeitige}} in dr letschte Zyt',
+'activeusers-from'     => 'Zeig Benutzer ab:',
+'activeusers-noresult' => 'Kei Benutzer gfunde.',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Nejaamäldigs-Logbuech',

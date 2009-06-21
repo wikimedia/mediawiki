@@ -970,16 +970,16 @@ $3 указал следующую причину: ''$2''",
 'rev-deleted-user'            => '(имя автора стёрто)',
 'rev-deleted-event'           => '(запись удалена)',
 'rev-deleted-text-permission' => "Эта версия страницы была '''удалена'''.
-Возможно, объяснения даны в [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} журнале удалений].",
+Возможно, объяснения даны в [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} журнале сокрытий].",
 'rev-deleted-text-unhide'     => "Эта версия страницы была '''удалена'''.
-Возможно, объяснения даны в [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} журнале удалений].
+Возможно, объяснения даны в [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} журнале сокрытий].
 Вы можете [$1 просмотреть данную версию], так как являетесь администратором.",
 'rev-deleted-text-view'       => "Эта версия страницы была '''удалена'''.
-Вы можете просмотреть её, так как являетесь администратором. Возможно, объяснения удаления даны в [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} журнале удалений].",
+Вы можете просмотреть её, так как являетесь администратором. Возможно, объяснения удаления даны в [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} журнале сокрытий].",
 'rev-deleted-no-diff'         => "Вы не можете просмотреть эту разницу версий, так как одна из версий страницы была '''удалена'''.
-Возможно, подробности можно найти в [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} журнале удалений].",
+Возможно, подробности можно найти в [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} журнале сокрытий].",
 'rev-deleted-unhide-diff'     => "Одна из версий страницы была '''удалена'''.
-Возможно, подробности можно найти в [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} журнале удалений].
+Возможно, подробности можно найти в [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} журнале сокрытий].
 Вы можете [$1 просмотреть данную версию], так как являетесь администратором.",
 'rev-delundel'                => 'показать/скрыть',
 'revisiondelete'              => 'Удалить / восстановить версии страницы',
@@ -1897,6 +1897,13 @@ PICT # различные
 'listusersfrom'      => 'Показать участников, начиная с:',
 'listusers-submit'   => 'Показать',
 'listusers-noresult' => 'Не найдено участников.',
+'listusers-blocked'  => '(заблокирован)',
+
+# Special:ActiveUsers
+'activeusers'          => 'Список активных участников',
+'activeusers-count'    => '$1 {{PLURAL:$1|свежая правка|свежие правки|свежих правок}}',
+'activeusers-from'     => 'Отображение участников, начиная с:',
+'activeusers-noresult' => 'Не найдено участников.',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Журнал регистрации участников',

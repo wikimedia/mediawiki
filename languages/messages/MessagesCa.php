@@ -330,7 +330,12 @@ $messages = array(
 'faqpage'        => 'Project:PMF',
 
 # Vector skin
-'vector-view-view' => 'Llegeix',
+'vector-action-addsection'  => 'Nova secció',
+'vector-action-delete'      => 'Esborra',
+'vector-action-move'        => 'Reanomena',
+'vector-action-protect'     => 'Protegeix',
+'vector-namespace-category' => 'Categoria',
+'vector-view-view'          => 'Llegeix',
 
 # Metadata in edit box
 'metadata_help' => 'Metadades:',

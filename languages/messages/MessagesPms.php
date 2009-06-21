@@ -43,8 +43,10 @@ $messages = array(
 dj'artìcol ancó pa scrit",
 'tog-justify'                 => 'Paràgraf: giustificà',
 'tog-hideminor'               => 'Stërma le modifiche cite<br />ant sla pàgina "Ùltime Modìfiche"',
-'tog-extendwatchlist'         => 'Slarga la funsion "ten sot euj" an manera che a la smon-a tute le modìfiche che as peulo fesse',
-'tog-usenewrc'                => 'Ùltime modìfiche an bela forma (a-i va Javascript)',
+'tog-hidepatrolled'           => "Stërma le modìfiche verifià ant j'ùltime modìfiche",
+'tog-newpageshidepatrolled'   => 'Stërma le pàgine verifià da la lista dle pàgine neuve',
+'tog-extendwatchlist'         => 'Slarga la funsion "ten sot euj" an manera che a la smon-a tute le modìfiche, nen mach l\'ùltima',
+'tog-usenewrc'                => "Dòvra j'ùltime modìfiche an bela forma (a-i va JavaScript)",
 'tog-numberheadings'          => 'Tìtoj ëd paràgraf<br />che as nùmero daspërlor',
 'tog-showtoolbar'             => "Mostra la bara dj'utiss (a-i va Javascript)",
 'tog-editondblclick'          => "Dobia sgnacà për modifiché l'artìcol<br />(a-i va JavaScript)",
@@ -52,7 +54,7 @@ dj'artìcol ancó pa scrit",
 'tog-editsectiononrightclick' => 'Abilité la modìfica dle session ën sgnacand-je ansima<br />  al tìtol col tast drit dël rat (a-i va Javascript)',
 'tog-showtoc'                 => "Buta le tàole dij contnù<br />(për j'artìcoj che l'han pì che 3 session)",
 'tog-rememberpassword'        => "Vis-te la ciav<br />(nen mach për na session<br />- a l'ha da manca dij cookies)",
-'tog-editwidth'               => 'Quàder ëd modìfica slargà<br />al màssim',
+'tog-editwidth'               => 'Slarga al màssim ël quàder ëd modìfica',
 'tog-watchcreations'          => 'Gionta le pàgine che i creo mi a la lista ëd lòn che im ten-o sot euj',
 'tog-watchdefault'            => "Notìfica dj'articoli neuv e ëd coj modificà",
 'tog-watchmoves'              => 'Gionta le pàgine che i tramudo a lòn che im ten-o sot euj',
@@ -61,14 +63,14 @@ dj'artìcol ancó pa scrit",
 'tog-previewontop'            => 'Smon-e la preuva dzora al quàder ëd modìfica dël test e nen sota',
 'tog-previewonfirst'          => 'Smon na preuva la prima vira che as fa na modìfica',
 'tog-nocache'                 => "Dòvra pa la memorisassion ''cache'' për le pàgine",
-'tog-enotifwatchlistpages'    => 'Mand-me un messagi an pòsta eletrònica quand a-i son dle modìfiche a le pàgine',
+'tog-enotifwatchlistpages'    => "Mand-me un messagi an pòsta eletrònica quand a-i son dle modìfiche a le pàgine ch'im ten sot euj",
 'tog-enotifusertalkpages'     => 'Mand-me un messagi ëd pòsta eletrònica quand a-i son dle modìfiche a mia pàgina dle ciaciarade',
 'tog-enotifminoredits'        => 'Mand-me un messagi an pòsta bele che për le modìfiche cite',
 'tog-enotifrevealaddr'        => 'Lassa che a së s-ciàira mia adrëssa ëd pòsta eletrònica ant ij messagi ëd notìfica',
 'tog-shownumberswatching'     => "Smon ël nùmer d'utent che as ten-o la pàgina sot euj",
-'tog-fancysig'                => "Modìfica mai la firma da coma a l'é ambelessì (as dòvra për fesse na firma fòra stàndard)",
-'tog-externaleditor'          => "Dòvra coma stàndard n'editor ëd test estern",
-'tog-externaldiff'            => 'Dòvra për stàndard un programa "diff" estern',
+'tog-fancysig'                => "Trata la firma com test wiki (sensa n'anliura automàtica)",
+'tog-externaleditor'          => "Dòvra n'editor estern për default (mach për espert, a-i é dabzògn d'ampostassion speciaj an dzora a tò computer)",
+'tog-externaldiff'            => 'Dòvra për stàndard un programa "diff" estern (mach për espert, a-i é dabzògn d\'ampostassion speciaj an sël tò computer)',
 'tog-showjumplinks'           => 'Dòvra j\'anliure d\'acessibilità dla sòrt "Va a"',
 'tog-uselivepreview'          => "Dòvra la funsion ''Preuva dal viv'' (a-i va JavaScript e a l'é mach sperimental)",
 'tog-forceeditsummary'        => "Ciama conferma se ël somari dla modìfica a l'é veujd",
@@ -1576,7 +1578,7 @@ Che a scriva codì che st'adrëssa IP-sì a dev second chiel (chila) esse blocà
 'ipbenableautoblock'          => "Blòca an automàtich la dariera adrëssa IP dovrà da l'utent e tute cole dont peuj cheidun as preuva a fé dle modìfiche",
 'ipbsubmit'                   => "Bloca st'adrëssa IP-sì",
 'ipbother'                    => "N'àutra durà",
-'ipboptions'                  => "2 ore:2 ore,1 dì:1 dì,3 dì:3 dì,na sman-a:na sman-a,2 sman-e:2 sman-e,1 mèis:1 mèis,3 mèis:3 mèis,6 mèis:6 mèis,n'ann:n'ann,për sempe:për sempe",
+'ipboptions'                  => "2 ore:2 hours,1 di:1 day,3 di:3 days,na sman-a:1 week,2 sman-e:2 weeks,1 mèis:1 month,3 mèis:3 months,6 mèis:6 months,n'ann:1 year,për sempe:infinite",
 'ipbotheroption'              => "d'àutr",
 'ipbotherreason'              => 'Àotri motiv/spiegon',
 'ipbhidename'                 => "Stërma lë stranòm da 'nt ël registr dij blòch, da col dij blòch ativ e da 'nt la lista dj'utent",
@@ -1660,21 +1662,18 @@ Për piasì, che an conferma che sòn a l'é da bon lòn che chiel (chila) a veu
 # Move page
 'move-page'               => 'Tramud ëd $1',
 'move-page-legend'        => 'Tramudé na pàgina',
-'movepagetext'            => "Con ël mòdulo ëd domanda ambelessì sota a peul cangeje nòm a na pàgina, tramudand-je dapress ëdcò tuta soa cronologìa anvers al nòm neuv.
+'movepagetext'            => "Dovrand ël mòdul ambelessì sota a cangerà nòm a na pàgina, tramudand-je dapress ëdcò tuta soa cronologìa anvers al nòm neuv.
 Ël vej tìtol a resterà trasformà ant na ridiression che a men-a al tìtol neuv.
-J'anliure a la veja pàgina a saran NEN agiornà (e donca a men-eran la gent a la ridiression);
-che a fasa atension dë
-controlé con cura che as creo pa dle ridiression dobie ò dle ridiression che men-o da gnun-a part.
-A resta soa responsabilità cola dë esse sigur che j'anliure a men-o la gent andoa che a devo mnela.
+As peul modifiché automaticament ij redirect che a colego al tìtol original.
+Se it desside ëd nen felo, contròla [[Special:DoubleRedirects|rediression dobie]] o [[Special:BrokenRedirects|rediression ch'a men-o da gnun-e part]].
+It ses responsàbil ëd controlé che le anliure a men-o andoa as pensa che a deubio mné.
 
 Noté bin: la pàgina a sarà '''nen''' tramudà se a-i fussa già mai n'articol che a l'ha ël nòm neuv, gavà col cas che a sia na pàgina veujda ò pura na ridiression, sempre che bele che essend mach parej a l'abia già nen na soa cronologìa.
 Sòn a veul dì che, se a l'avèissa mai da fé n'operassion nen giusta, a podrìa sempe torné a rinominé la pàgina col nòm vej, ma ant gnun cas a podrìa coerté na pàgina che a-i é già.
 
 '''ATENSION!'''
-Un cambiament dràstich parej a podrìa dé dle gran-e che un a së speta pa gnanca.
-Sòn dzortut se a fussa fait dzora a na pàgina motobin visità.
-Che a varda mach dë esse pì che sigur d'avej presente le conseguense, prima che fé che fé.
-Se a l'ha dij dùbit, che a contata pura n'aministrator për ciameje 'd consej.",
+Un cambiament dràstich parej a podrìa dé dle gran-e an dzora a na pàgina motobin visità.
+Che a varda mach dë esse pì che sigur d'avej presente le conseguense, prima che fé che fé.",
 'movepagetalktext'        => "La pàgina ëd discussion tacà a costa pàgina d'articol, se a-i é, a sarà tramudà n'automatich ansema a l'artìcol, '''gavà costi cas-sì''':
 *quand as tramuda la pàgina tra diferent spassi nominal,
 *quand na pàgina ëd discussion nen veujda a-i é già për ël nòm neuv, ò pura

@@ -1886,6 +1886,10 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'listusersfrom'      => '다음으로 시작하는 사용자 보이기:',
 'listusers-submit'   => '보이기',
 'listusers-noresult' => '해당 사용자가 없습니다.',
+'listusers-blocked'  => '(차단됨)',
+
+# Special:ActiveUsers
+'activeusers-count' => '{{PLURAL:$1|$1}}개의 최근 편집',
 
 # Special:Log/newusers
 'newuserlogpage'              => '사용자 등록 기록',
