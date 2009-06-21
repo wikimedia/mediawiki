@@ -89,7 +89,7 @@ class ActiveUsersPager extends UsersPager {
 		$groups = implode( ', ', $list );
 
 		$item = wfSpecialList( $name, $groups );
-		$count = wfMsgExt( 'activeusers-count', array('parsemag'), $row->recentedits );
+		$count = wfMsgExt( 'activeusers-count', array('parsemag'), $row->recentedits, $userName );
 		$blocked = $row->blocked ? ' ' . wfMsgExt( 'listusers-blocked', array( 'parsemag' ), $userName ) : '';
 
 		return "<li>{$item} [{$count}]{$blocked}</li>";
