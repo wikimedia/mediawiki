@@ -53,6 +53,7 @@ $specialPageAliases = array(
 	'Listfiles'                 => array( 'Paveikslėlių sąrašas' ),
 	'Newimages'                 => array( 'Nauji paveikslėliai' ),
 	'Listusers'                 => array( 'Naudotojų sąrašas' ),
+	'Listgrouprights'           => array( 'Grupių teisių sąrašas' ),
 	'Statistics'                => array( 'Statistika' ),
 	'Randompage'                => array( 'Atsitiktinis puslapis' ),
 	'Lonelypages'               => array( 'Vieniši puslapiai' ),
@@ -120,8 +121,12 @@ $specialPageAliases = array(
 	'Resetpass'                 => array( 'Slaptažodžio atstatymas' ),
 	'Withoutinterwiki'          => array( 'Be interwiki' ),
 	'MergeHistory'              => array( 'Sujungti istoriją' ),
+	'Filepath'                  => array( 'Kelias iki failo' ),
+	'Invalidateemail'           => array( 'Nutraukti elektroninio pašto galiojimą' ),
 	'Blankpage'                 => array( 'Tuščias puslapis' ),
+	'LinkSearch'                => array( 'Nuorodų paieška' ),
 	'DeletedContributions'      => array( 'Ištrintas indėlis' ),
+	'Tags'                      => array( 'Žymos' ),
 );
 
 $magicWords = array(

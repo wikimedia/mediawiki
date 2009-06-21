@@ -162,6 +162,7 @@ $specialPageAliases = array(
 	'LinkSearch'                => array( 'Weblink-Suche' ),
 	'DeletedContributions'      => array( 'Gelöschte Beiträge' ),
 	'Tags'                      => array( 'Markierungen' ),
+	'Activeusers'               => array( 'Aktive_Benutzer' ),
 );
 
 $datePreferences = array(
