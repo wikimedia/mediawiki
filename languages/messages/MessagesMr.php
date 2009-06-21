@@ -134,7 +134,7 @@ $specialPageAliases = array(
 );
 
 $magicWords = array(
-	'redirect'              => array( '0', '#पुनर्निर्देशन', '#REDIRECT' ),
+	'redirect'              => array( '0', '#पुनर्निर्देशन', '#पुर्ननिर्देशन', '#REDIRECT' ),
 	'notoc'                 => array( '0', '__अनुक्रमणिकानको__', '__NOTOC__' ),
 	'nogallery'             => array( '0', '__प्रदर्शननको__', '__NOGALLERY__' ),
 	'forcetoc'              => array( '0', '__अनुक्रमणिकाहवीच__', '__FORCETOC__' ),
