@@ -1847,6 +1847,12 @@ Tuetut protokollat: <tt>$1</tt>.',
 'listusersfrom'      => 'Katkaisuhaku',
 'listusers-submit'   => 'Hae',
 'listusers-noresult' => 'Käyttäjiä ei löytynyt.',
+'listusers-blocked'  => '(estetty)',
+
+# Special:ActiveUsers
+'activeusers'          => 'Aktiivisten käyttäjien lista',
+'activeusers-from'     => 'Näytä käyttäjät alkaen',
+'activeusers-noresult' => 'Käyttäjiä ei löytynyt.',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Uudet käyttäjät',

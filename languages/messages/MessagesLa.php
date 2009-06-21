@@ -1456,6 +1456,12 @@ Vide etiam [[Special:WantedCategories|categorias desideratas]].',
 # Special:ListUsers
 'listusers-submit'   => 'Monstrare',
 'listusers-noresult' => 'Nullus usor inventus.',
+'listusers-blocked'  => '(obstructus)',
+
+# Special:ActiveUsers
+'activeusers'          => 'Index usorum activorum',
+'activeusers-count'    => '{{PLURAL:$1|una recensio recens|$1 recensiones recentes}}',
+'activeusers-noresult' => 'Nullus usor inventus.',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Index rationum novarum creatarum',

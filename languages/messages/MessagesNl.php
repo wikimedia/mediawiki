@@ -2030,6 +2030,13 @@ Ondersteunde protocollen: <tt>$1</tt>',
 'listusersfrom'      => 'Gebruikers bekijken vanaf:',
 'listusers-submit'   => 'Weergeven',
 'listusers-noresult' => 'Geen gebruiker gevonden.',
+'listusers-blocked'  => '(geblokkeerd)',
+
+# Special:ActiveUsers
+'activeusers'          => 'Aanwezige gebruikers',
+'activeusers-count'    => '$1 recente bewerkingen',
+'activeusers-from'     => 'Gebruikers worden weergegeven vanaf:',
+'activeusers-noresult' => 'Geen actieve gebruikers gevonden.',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Logboek nieuwe gebruikers',

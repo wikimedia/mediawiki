@@ -1975,6 +1975,13 @@ Siehe auch die Liste der [[Special:WantedCategories|gewünschten Kategorien]].',
 'listusersfrom'      => 'Zeige Benutzer ab:',
 'listusers-submit'   => 'Zeige',
 'listusers-noresult' => 'Keinen Benutzer gefunden.',
+'listusers-blocked'  => '(gesperrt)',
+
+# Special:ActiveUsers
+'activeusers'          => 'Liste aktiver Benutzer',
+'activeusers-count'    => '$1 {{PLURAL:$1|Bearbeitung|Bearbeitungen}} in der letzten Zeit',
+'activeusers-from'     => 'Zeige Benutzer ab:',
+'activeusers-noresult' => 'Keine Benutzer gefunden.',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Neuanmeldungs-Logbuch',

@@ -847,7 +847,7 @@ Als Administrateur kënnt Dir se gesinn; Dir fannt eventuell méi Detailer am  [
 Detailer stinn eventuell am [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Läsch-Logbuch].",
 'rev-deleted-unhide-diff'     => "Eng vun de Versioune vun dësem Ënnerscheed gouf '''geläscht'''.
 Detailer stinn eventuell am [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Logbuch vun de Läschungen].
-Als Administrateur kënnt Dir [$1 mat dësem Link de Versiounsënnerschied kucke] wann Dir weiderfuere wëllt.",
+Als Administrateur kënnt Dir [$1 mat dësem Link de Versiounsënnerscheed kucke] wann Dir weiderfuere wëllt.",
 'rev-delundel'                => 'weisen/verstoppen',
 'revisiondelete'              => 'Versioune läschen/restauréieren',
 'revdelete-nooldid-title'     => 'Ongülteg Zilversioun',
@@ -1753,6 +1753,13 @@ Kuckt och [[Special:WantedCategories|Gewënschte Kategorien]].',
 'listusersfrom'      => "D'Benotzer uweisen, ugefaange bei:",
 'listusers-submit'   => 'Weis',
 'listusers-noresult' => 'Kee Benotzer fonnt.',
+'listusers-blocked'  => '(gespaart)',
+
+# Special:ActiveUsers
+'activeusers'          => 'Lëscht vun den aktive Benotzer',
+'activeusers-count'    => 'Déi {{PLURAL:$1|rezent Ännerung|$1 rezent Ännerungen}}',
+'activeusers-from'     => 'Benotzer weisen, ugefaang bäi:',
+'activeusers-noresult' => 'Keng Benotzer fonnt.',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Logbuch vun den neien Umeldungen',

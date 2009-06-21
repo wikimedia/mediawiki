@@ -1167,7 +1167,9 @@ Used in [[Special:Preferences]], tab "Recent changes".',
 'grouppage-bot'           => 'Link to project page of this group, displayed on [[Special:ListUsers/bot]].',
 'grouppage-sysop'         => 'Link to project page of this group, displayed on [[Special:ListUsers/sysop]].',
 'grouppage-bureaucrat'    => 'Name of project page of this group, linked to from [[Special:ListUsers/bureaucrat]], [[Special:ListGroupRights]], and some other special pages.',
-'grouppage-suppress'      => 'Link to project page of this group, displayed on [[Special:ListUsers/suppress]].',
+'grouppage-suppress'      => 'Link to project page of this group, displayed on [[Special:ListUsers/suppress]].
+
+{{Identical|Oversight}}',
 
 # Rights
 'right-read'                  => '{{doc-right}}
@@ -1686,6 +1688,7 @@ $1 is a page title",
 'unusedimagestext'        => 'Header message of [[Special:UnusedFiles]]',
 'pager-newer-n'           => "This is part of the navigation message on the top and bottom of Special pages which are lists of things in date order, e.g. the User's contributions page. It is passed as the second argument of {{msg-mw|Viewprevnext}}. $1 is the number of items shown per page.",
 'pager-older-n'           => "This is part of the navigation message on the top and bottom of Special pages which are lists of things in date order, e.g. the User's contributions page. It is passed as the first argument of {{msg-mw|Viewprevnext}}. $1 is the number of items shown per page.",
+'suppress'                => '{{Identical|Oversight}}',
 
 # Book sources
 'booksources'      => 'Name of special page displayed in [[Special:SpecialPages]]',
@@ -1759,9 +1762,20 @@ $1 is a page title",
 'linksearch-ok' => '{{Identical|Search}}',
 
 # Special:ListUsers
-'listusers-submit' => 'Text displayed in the submission button of the [[Special:ListUsers]] form.
+'listusersfrom'      => 'identical with {{msg-mw|activeusers-from}}',
+'listusers-submit'   => 'Text displayed in the submission button of the [[Special:ListUsers]] form.
 {{Identical|Go}}
 {{Identical|Show}}',
+'listusers-noresult' => 'identical with {{msg-mw|activeusers-noresult}}',
+'listusers-blocked'  => 'Used on [[Special:ActiveUsers]] when a user has been blocked.
+* $1 is a user name for use with GENDER (optional)',
+
+# Special:ActiveUsers
+'activeusers-count'    => "Used in [[Special:ActiveUsers]] to show the active user's recent edit count in brackets ([]).
+* $1 is the number of recent edits
+* $2 is the user's name for use with GENDER (optional)",
+'activeusers-from'     => 'identical with {{msg-mw|listusersfrom}}',
+'activeusers-noresult' => 'identical with {{msg-mw|listusers-noresult}}',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Part of the "Newuserlog" extension. It is both the title of [[Special:Log/newusers]] and the link you can see in the recent changes.',

@@ -1317,7 +1317,7 @@ $1",
 'group-bot'           => 'ボット',
 'group-sysop'         => '管理者',
 'group-bureaucrat'    => 'ビューロクラット',
-'group-suppress'      => '監督',
+'group-suppress'      => '秘匿者',
 'group-all'           => '(全員)',
 
 'group-user-member'          => '利用者',
@@ -1325,14 +1325,14 @@ $1",
 'group-bot-member'           => 'ボット',
 'group-sysop-member'         => '{{int:group-sysop}}',
 'group-bureaucrat-member'    => 'ビューロクラット',
-'group-suppress-member'      => '監督',
+'group-suppress-member'      => '秘匿者',
 
 'grouppage-user'          => '{{ns:project}}:利用者',
 'grouppage-autoconfirmed' => '{{ns:project}}:自動承認された利用者',
 'grouppage-bot'           => '{{ns:project}}:ボット',
 'grouppage-sysop'         => '{{ns:project}}:管理者',
 'grouppage-bureaucrat'    => '{{ns:project}}:ビューロクラット',
-'grouppage-suppress'      => '{{ns:project}}:監督',
+'grouppage-suppress'      => '{{ns:project}}:秘匿者',
 
 # Rights
 'right-read'                  => 'ページの閲覧',
@@ -1394,7 +1394,7 @@ $1",
 # User rights log
 'rightslog'      => '利用者権限変更記録',
 'rightslogtext'  => '以下は利用者権限の変更記録です。',
-'rightslogentry' => '$1 の所属グループを $2 から $3 へ変更しました。',
+'rightslogentry' => 'が$1 の所属グループを $2 から $3 へ変更しました',
 'rightsnone'     => '(権限なし)',
 
 # Associated actions - in the sentence "You do not have permission to X"
@@ -1543,7 +1543,7 @@ $1",
 'sourcefilename'              => 'ファイル名:',
 'destfilename'                => '掲載するファイル名:',
 'upload-maxfilesize'          => '最大ファイルサイズ: $1',
-'watchthisupload'             => 'このファイルをウォッチ',
+'watchthisupload'             => 'このファイルを監視',
 'filewasdeleted'              => 'この名前のファイルは一度アップロードされその後削除されています。再度アップロードする前に$1を確認してください。',
 'upload-wasdeleted'           => "'''警告: 過去に削除されたファイルをアップロードしようとしています。'''
 
@@ -1783,7 +1783,7 @@ PICT # misc.
 'nopagetext'              => '指定したページは存在しません。',
 'pager-newer-n'           => '後の$1{{PLURAL:$1|件}}',
 'pager-older-n'           => '先の$1{{PLURAL:$1|件}}',
-'suppress'                => 'Oversight',
+'suppress'                => '秘匿する',
 
 # Book sources
 'booksources'               => '文献資料',
@@ -1821,7 +1821,7 @@ PICT # misc.
 # Special:Categories
 'categories'                    => 'カテゴリ',
 'categoriespagetext'            => '以下の{{PLURAL:$1|カテゴリ}}にはページまたはメディアが存在します。[[Special:UnusedCategories|未使用のカテゴリ]]はここには表示されていません。[[Special:WantedCategories|カテゴリページが存在しないカテゴリ]]も参照してください。',
-'categoriesfrom'                => '表示開始カテゴリ:',
+'categoriesfrom'                => '最初に表示するカテゴリ:',
 'special-categories-sort-count' => '項目数順',
 'special-categories-sort-abc'   => 'アルファベット順',
 
@@ -1840,9 +1840,16 @@ PICT # misc.
 'linksearch-error' => 'ワイルドカードはホスト名の先頭でのみ使用できます。',
 
 # Special:ListUsers
-'listusersfrom'      => 'この文字から表示:',
+'listusersfrom'      => '最初に表示する利用者:',
 'listusers-submit'   => '表示',
 'listusers-noresult' => '利用者が見つかりませんでした。',
+'listusers-blocked'  => '(ブロック中)',
+
+# Special:ActiveUsers
+'activeusers'          => '活動中の利用者一覧',
+'activeusers-count'    => '$1件の最近の{{PLURAL:$1|編集}}',
+'activeusers-from'     => '最初に表示する利用者:',
+'activeusers-noresult' => '利用者が見つかりませんでした。',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'アカウント作成記録',
@@ -1867,8 +1874,8 @@ PICT # misc.
 'listgrouprights-removegroup-all'      => '全グループ削除可能',
 'listgrouprights-addgroup-self'        => '自身のアカウントに{{PLURAL:$2|グループ}}を追加: $1',
 'listgrouprights-removegroup-self'     => '自身のアカウントから{{PLURAL:$2|グループ}}を除去: $1',
-'listgrouprights-addgroup-self-all'    => '自身のアカウントにすべてのグループが追加可能',
-'listgrouprights-removegroup-self-all' => '自身のアカウントからすべてのグループが除去可能',
+'listgrouprights-addgroup-self-all'    => '自身のアカウントにすべてのグループを追加可能',
+'listgrouprights-removegroup-self-all' => '自身のアカウントからすべてのグループを除去可能',
 
 # E-mail user
 'mailnologin'      => '差出人アドレスがありません',
@@ -2229,7 +2236,7 @@ $1',
 'blocklogpage'                    => '投稿ブロック記録',
 'blocklog-fulllog'                => '投稿ブロック記録すべてを見る',
 'blocklogentry'                   => '$1 を $2 ブロックしました $3',
-'reblock-logentry'                => '[[$1]] のブロックの設定を $2 に変更しました $3',
+'reblock-logentry'                => '[[$1]] のブロックの期限を $2 に設定変更しました $3',
 'blocklogtext'                    => 'このページは投稿ブロックと解除の操作記録です。自動的に投稿ブロックされたIPアドレスは記録されていません。現時点で有効な投稿ブロックは[[Special:IPBlockList|ブロック中の利用者一覧]]をご覧ください。',
 'unblocklogentry'                 => '$1 をブロック解除しました',
 'block-log-flags-anononly'        => '匿名のみ',

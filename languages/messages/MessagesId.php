@@ -951,17 +951,17 @@ Coba [[Special:Search|lakukan pencarian di wiki]] untuk halaman baru yang releva
 'rev-deleted-comment'         => '(komentar dihapus)',
 'rev-deleted-user'            => '(nama pengguna dihapus)',
 'rev-deleted-event'           => '(isi dihapus)',
-'rev-deleted-text-permission' => "Riwayat revisi halaman ini telah '''dihapus'''.
-Detil mungkin tersedia di [{{fullurl:{{ns:special}}:Log/delete|page={{FULLPAGENAMEE}}}} log penghapusan].",
-'rev-deleted-text-unhide'     => "Riwayat revisi halaman ini telah '''dihapus'''.
-Detil mungkin tersedia di [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} log penghapusan].
-Sebagai seorang pengurus Anda masih dapat [$1 melihat revisi ini] jika Anda ingin.",
-'rev-deleted-text-view'       => "Riwayat revisi halaman ini telah '''dihapus'''.
-Sebagai seorang pengurus, Anda dapat melihatnya; detil mungkin tersedia di [{{fullurl:{{ns:special}}:Log/delete|page={{FULLPAGENAMEE}}}} log penghapusan].",
-'rev-deleted-no-diff'         => "Anda tak dapat melihat perbedaan ini karena salah satu dari revisi tersebut telah '''dihapus'''.
-Detil mungkin tersedia di [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} log penghapusan].",
-'rev-deleted-unhide-diff'     => "Satu atau lebih revisi dari perbedaan ini telah '''dihapus'''.
-Detil mungkin tersedia di [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} log penghapusan].
+'rev-deleted-text-permission' => "Revisi ini telah '''dihapus'''.
+Rinciannya mungkin tersedia di [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} log penyembunyian revisi]",
+'rev-deleted-text-unhide'     => "Revisi ini telah '''dihapus'''.
+Rinciannya mungkin tersedia di [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} log penyembunyian revisi].
+Sebagai seorang pengurus Anda masih dapat [$1 melihat revisi ini] jika Anda ingin melanjutkan.",
+'rev-deleted-text-view'       => "Revisi ini telah '''dihapus'''.
+Sebagai seorang pengurus, Anda dapat melihatnya; rinciannya mungkin tersedia di [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} log penyembunyian revisi].",
+'rev-deleted-no-diff'         => "Anda tak dapat melihat perbedaan ini karena salah satu dari revisinya telah '''dihapus'''.
+Rinciannya mungkin tersedia di [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} log penyembunyian revisi].",
+'rev-deleted-unhide-diff'     => "Salah satu revisi pada tampilan perbedaan ini telah '''dihapus'''.
+Rinciannya mungkin tersedia di [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} log penyembunyian revisi].
 Sebagai seorang pengurus, Anda masih dapat [$1 melihat perbedaan ini] jika Anda ingin.",
 'rev-delundel'                => 'tampilkan/sembunyikan',
 'revisiondelete'              => 'Hapus/batal hapus revisi',
@@ -980,9 +980,9 @@ Sebagai seorang pengurus, Anda masih dapat [$1 melihat perbedaan ini] jika Anda 
 
 Pengurus {{SITENAME}} lainnya akan tetap dapat mengakses isi yang tersembunyi ini dan dapat membatalkan penghapusannya menggunakan antarmuka yang sama, kecuali ada pembatasan lain yang dibuat oleh operator situs.
 Harap konfirmasikan bahwa Anda memang ingin melakukan tindakan ini, bahwa Anda mengerti akibat-akibatnya, dan bahwa tindakan ini telah sesuai dengan [[{{MediaWiki:Policy-url}}|kebijakan]].",
-'revdelete-suppress-text'     => "Penghilangan '''hanya''' digunakan untuk kasus-kasus berikut:
+'revdelete-suppress-text'     => "Penyembunyian revisi '''hanya''' boleh digunakan untuk kasus-kasus berikut:
 * Informasi pribadi yang tak sepantasnya
-*: ''alamat rumah dan nomor telepon, nomor perlindungan sosial, dll.''",
+*: ''alamat rumah dan nomor telepon, nomor kartu identitas, dan lain-lain.''",
 'revdelete-legend'            => 'Atur batasan:',
 'revdelete-hide-text'         => 'Sembunyikan teks revisi',
 'revdelete-hide-name'         => 'Sembunyikan tindakan dan target',
@@ -1374,7 +1374,7 @@ Anda juga dapat memilih untuk memungkinkan orang lain menghubungi Anda melalui h
 'right-writeapi'              => 'Menggunakan API penulisan',
 'right-delete'                => 'Menghapus halaman',
 'right-bigdelete'             => 'Menghapus halaman dengan banyak versi terdahulu',
-'right-deleterevision'        => 'Menghapus dan membatalkan penghapusan revisi tertentu halaman',
+'right-deleterevision'        => 'Menghapus dan membatalkan penghapusan revisi tertentu suatu halaman',
 'right-deletedhistory'        => 'Melihat entri-entri revisi yang dihapus, tanpa teks yang berhubungan',
 'right-browsearchive'         => 'Mencari halaman yang telah dihapus',
 'right-undelete'              => 'Mengembalikan halaman yang telah dihapus',
@@ -1861,9 +1861,16 @@ Lihat pula [[Special:WantedCategories|kategori yang diinginkan]].',
 'linksearch-error' => "''Wildcards'' hanya dapat digunakan di bagian awal dari nama host.",
 
 # Special:ListUsers
-'listusersfrom'      => 'Tampilkan pengguna diawali dengan:',
+'listusersfrom'      => 'Tampilkan pengguna mulai dari:',
 'listusers-submit'   => 'Tampilkan',
 'listusers-noresult' => 'Pengguna tidak ditemukan.',
+'listusers-blocked'  => '(diblokir)',
+
+# Special:ActiveUsers
+'activeusers'          => 'Daftar pengguna aktif',
+'activeusers-count'    => '$1 {{PLURAL:$1|suntingan|suntingan}} terakhir',
+'activeusers-from'     => 'Tampilkan pengguna mulai dari:',
+'activeusers-noresult' => 'Pengguna tidak ditemukan.',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Log pengguna baru',

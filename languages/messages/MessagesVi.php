@@ -928,16 +928,16 @@ Chú giải: (hiện) = khác với phiên bản hiện hành,
 'rev-deleted-user'            => '(tên người dùng đã xóa)',
 'rev-deleted-event'           => '(tác vụ nhật trình đã xóa)',
 'rev-deleted-text-permission' => "Phiên bản này đã bị '''xóa'''.
-Có thể có thêm chi tiết tại [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} nhật trình xóa].",
+Có thể có thêm chi tiết tại [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} nhật trình giấu].",
 'rev-deleted-text-unhide'     => "Phiên bản này đã bị '''xóa'''.
-Có thể có thêm chi tiết tại [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} nhật trình xóa].
+Có thể có thêm chi tiết tại [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} nhật trình giấu].
 Vì là người quản lý, bạn vẫn có thể [$1 xem phiên bản này] nếu muốn.",
 'rev-deleted-text-view'       => "Phiên bản này đã bị '''xóa'''.
-Vì là người quản lý bạn vẫn có thể xem nó;có thể có thêm chi tiết tại [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} nhật trình xóa].",
+Vì là người quản lý bạn vẫn có thể xem nó; có thể có thêm chi tiết tại [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} nhật trình giấu].",
 'rev-deleted-no-diff'         => "Bạn không thể xem khác biệt giữa các phiên bản vì một phiên bản đã bị '''xóa'''.
-Bạn có thể xem thêm chi tiết trong [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} nhật trình xóa].",
+Bạn có thể xem thêm chi tiết trong [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} nhật trình giấu].",
 'rev-deleted-unhide-diff'     => "Một trong những phiên bản của khác biệt này đã bị '''xóa'''.
-Bạn có thể xem thêm chi tiết tại [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} nhật trình xóa].
+Bạn có thể xem thêm chi tiết tại [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} nhật trình giấu].
 Vì là người quản lý, bạn vẫn có thể [$1 xem khác biệt này] nếu muốn.",
 'rev-delundel'                => 'hiện/ẩn',
 'revisiondelete'              => 'Xóa hay phục hồi phiên bản',
@@ -1858,6 +1858,13 @@ Xem thêm [[Special:WantedCategories|thể loại cần thiết]].',
 'listusersfrom'      => 'Hiển thị thành viên bắt đầu từ:',
 'listusers-submit'   => 'Liệt kê',
 'listusers-noresult' => 'Không thấy thành viên.',
+'listusers-blocked'  => '(bị cấm)',
+
+# Special:ActiveUsers
+'activeusers'          => 'Danh sách thành viên tích cực',
+'activeusers-count'    => '$1 {{PLURAL:$1|sửa đổi|sửa đổi}} gần đây',
+'activeusers-from'     => 'Hiển thị thành viên bắt đầu từ:',
+'activeusers-noresult' => 'Không thấy thành viên.',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Nhật trình mở tài khoản',

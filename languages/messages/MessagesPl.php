@@ -226,7 +226,7 @@ $messages = array(
 'tog-underline'               => 'Podkreślenie linków',
 'tog-highlightbroken'         => 'Oznacz <a href="" class="new">tak</a> linki do brakujących stron (alternatywa – dołączany znak zapytania<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Wyrównuj tekst w akapitach do obu stron',
-'tog-hideminor'               => 'Ukryj drobne poprawki w „Ostatnich zmianach”',
+'tog-hideminor'               => 'Ukryj drobne poprawki w ostatnich zmianach',
 'tog-hidepatrolled'           => 'Ukryj sprawdzone edycje w ostatnich zmianach',
 'tog-newpageshidepatrolled'   => 'Ukryj sprawdzone strony z listy nowych stron',
 'tog-extendwatchlist'         => 'Pokaż na liście obserwowanych wszystkie a nie tylko ostatnie zmiany',
@@ -1231,7 +1231,7 @@ Jednak informacje o treści {{GRAMMAR:D.lp|{{SITENAME}}}} mogą być w Google ni
 'saveprefs'                     => 'Zapisz',
 'resetprefs'                    => 'Cofnij niezapisane zmiany',
 'restoreprefs'                  => 'Przywróć wszystkie domyślne preferencje',
-'prefs-editing'                 => 'Edytowanie',
+'prefs-editing'                 => 'Edycja',
 'prefs-edit-boxsize'            => 'Rozmiar okna edycji.',
 'rows'                          => 'Wiersze',
 'columns'                       => 'Kolumny',
@@ -1897,6 +1897,13 @@ Obsługiwane protokoły: <tt>$1</tt>',
 'listusersfrom'      => 'Pokaż użytkowników zaczynając od',
 'listusers-submit'   => 'Pokaż',
 'listusers-noresult' => 'Nie znaleziono żadnego użytkownika.',
+'listusers-blocked'  => '({{GENDER:$1|zablokowany|zablokowana|zablokowany}})',
+
+# Special:ActiveUsers
+'activeusers'          => 'Lista aktywnych użytkowników',
+'activeusers-count'    => 'ostatnio {{GENDER:$2|wykonał|wykonała|wykonał}} $1 {{PLURAL:$1|edycję|edycje|edycji}}',
+'activeusers-from'     => 'Pokaż użytkowników zaczynając od',
+'activeusers-noresult' => 'Nie znaleziono żadnego użytkownika.',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Nowi użytkownicy',

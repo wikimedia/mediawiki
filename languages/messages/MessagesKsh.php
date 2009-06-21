@@ -1033,10 +1033,10 @@ Dattum+Uhrzigg = don de Version fun dämm Daach un dä Zigg aanzeije.',
 Wann Ehr en [{{FULLURL:{{#spezial:Log}}/delete|page={{FULLPAGENAMEE}}}} {{lcfirst:{{int:deletionlog}}}}] loore doht, künnt Ehr velleisch mieh do drövver lesse.",
 'rev-deleted-text-unhide'     => '{{int:rev-deleted-text-permission}} Als ene Wiki-Köbes kanns De [$1 se ävver doch bekike], wann De wells.',
 'rev-deleted-text-view'       => '{{int:rev-deleted-text-permission}} Als ene Wiki-Köbes kanns De se ävver bekike.',
-'rev-deleted-no-diff'         => "De kanns de Ongerscheide nit beloore, denn ein vun de Versione es '''fottjeschmeße'''.
-Mieh Einzelheite hät [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} {{lcfirst:{{int:Deletionlog}}}}].",
+'rev-deleted-no-diff'         => "De kanns de Ongerscheide nit beloore, ein vun de Versione es '''fottjeschmeße'''.
+Mieh Einzelheite hät [{{fullurl:{{#special:Log}}/suppress|page={{FULLPAGENAMEE}}}} {{lcfirst:{{int:deletionlog}}}}].",
 'rev-deleted-unhide-diff'     => "Ein vun de Versione es '''fottjeschmeße'''.
-Mieh Einzelheite hät [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} {{lcfirst:{{int:Deletionlog}}}}].
+Mieh Einzelheite hät [{{fullurl:{{#special:Log}}/suppress|page={{FULLPAGENAMEE}}}} {{lcfirst:{{int:Deletionlog}}}}].
 Als ene Wiki_Köbes kanns De [$1 de Ungerscheide ävver aankike] wann De wells.",
 'rev-delundel'                => 'zeije/usblende',
 'revisiondelete'              => 'Versione fottschmieße un widder zeröck holle',
@@ -1287,7 +1287,7 @@ dat dänne ihr Daate topaktuell sin,
 'mypreferences'                 => 'ming Enstellunge',
 'prefs-edits'                   => 'Aanzahl Änderunge am Wiki:',
 'prefsnologin'                  => 'Nit Enjelogg',
-'prefsnologintext'              => 'Do mööts ald <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} enjelogg]</span> sin, öm Ding Enstellunge ze ändere.',
+'prefsnologintext'              => 'Do mööts ald <span class="plainlinks">[{{fullurl:{{#special:UserLogin}}|returnto=$1}} enjelogg]</span> sin, öm Ding Enstellunge ze ändere.',
 'changepassword'                => 'Passwood *',
 'prefs-skin'                    => 'Et Ussinn',
 'skin-preview'                  => 'Vör-Ansich',
@@ -2031,6 +2031,13 @@ De Brauserprotokolle, di beim Söke aanjejovve wäde künne, sen: <tt>$1</tt>',
 'listusersfrom'      => 'Zeich de Metmaacher vun:',
 'listusers-submit'   => 'Zeije',
 'listusers-noresult' => 'Keine Metmaacher jefonge.',
+'listusers-blocked'  => '(jespert)',
+
+# Special:ActiveUsers
+'activeusers'          => 'Leß met de aktiive Metmaacher',
+'activeusers-count'    => '{{PLURAL:$1|ein Änderung|$1 Änderunge|kein Änderunge}} en de lezte Zick',
+'activeusers-from'     => 'Donn de Metmaacher zeije aff:',
+'activeusers-noresult' => 'Kein Metmaacher jefonge.',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Logboch för neu Metmaachere',

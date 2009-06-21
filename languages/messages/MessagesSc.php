@@ -771,7 +771,7 @@ Càstia sa [[Special:NewFiles|galleria de files nous]] pro una presentatzione pr
 'listredirects' => 'Lista de totu is redirects',
 
 # Random page
-'randompage' => 'Una pàgina a sorte',
+'randompage' => 'Pàgina a sa tzurpa',
 
 # Statistics
 'statistics'              => 'Istatìsticas',

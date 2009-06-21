@@ -913,17 +913,17 @@ Skúste [[Special:Search|vyhľadávať na wiki]] relevantné nové stránky.',
 'rev-deleted-user'            => '(používateľské meno odstránené)',
 'rev-deleted-event'           => '(činnosť odstránená zo záznamu)',
 'rev-deleted-text-permission' => "Táto revízia stránky bola '''zmazaná'''.
-Podrobnosti nájdete v [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} zázname mazaní].",
+Podrobnosti nájdete v [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} zázname potlačení].",
 'rev-deleted-text-unhide'     => "Táto revízia stránky bola '''zmazaná'''.
-Podrobnosti nájdete v [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} zázname mazaní].
+Podrobnosti nájdete v [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} zázname potlačení].
 Ako správca máte stále možnosť [$1 zobraziť túto revíziu] ak chcete.",
 'rev-deleted-text-view'       => "Táto revízia stránky bola '''zmazaná'''.
 Ako správca {{GRAMMAR:genitív|{{SITENAME}}}} si ju môžete prezrieť;
-podrobnosti môžu byť v [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} zázname mazaní].",
+podrobnosti môžu byť v [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} zázname potlačení].",
 'rev-deleted-no-diff'         => "Tento rozdiel nemôžete zobraziť, pretože bol '''zmazaný'''.
-Podrobnosti môžete nájsť v [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} zázname mazaní].",
+Podrobnosti môžete nájsť v [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} zázname potlačení].",
 'rev-deleted-unhide-diff'     => "Jedna z revízií tohto rozdielu bola '''zmazaná'''.
-Podrobnosti môžete nájsť v [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} zázname mazaní].
+Podrobnosti môžete nájsť v [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} zázname potlačení].
 Ako správca {{GRAMMAR:genitív|{{SITENAME}}}} si [$1 tento rozdiel môžete prezrieť];",
 'rev-delundel'                => 'zobraziť/skryť',
 'revisiondelete'              => 'Zmazať/obnoviť revízie',
@@ -1840,6 +1840,13 @@ Podporované protokoly: <tt>$1</tt>',
 'listusersfrom'      => 'Zobraziť používateľov počnúc:',
 'listusers-submit'   => 'Zobraziť',
 'listusers-noresult' => 'Neboli nájdení používatelia. Prosím, skontrolujte aj varianty s veľkými/malými písmenami.',
+'listusers-blocked'  => '(zablokovaný)',
+
+# Special:ActiveUsers
+'activeusers'          => 'Zoznam aktívnych používateľov',
+'activeusers-count'    => '$1 {{PLURAL:$1|posledná úprava|posledné úpravy|posledných úprav}}',
+'activeusers-from'     => 'Zobraziť používateľov počínajúc:',
+'activeusers-noresult' => 'Neboli nájdení žiadni používatelia.',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Záznam vytvorených používateľov',

@@ -1899,6 +1899,13 @@ Ondersteunde protecollen: <tt>$1</tt>',
 'listusersfrom'      => 'Teun vanof:',
 'listusers-submit'   => 'Teun',
 'listusers-noresult' => 'Gien gebrukers evunnen. Zeuk oek naor varianten mit kleine letters of heufletters.',
+'listusers-blocked'  => '(eblokkeerd)',
+
+# Special:ActiveUsers
+'activeusers'          => 'Actieve gebrukers',
+'activeusers-count'    => '$1 recente {{PLURAL:$1|bewarking|bewarkingen}}',
+'activeusers-from'     => 'Gebrukers weergeven vanof:',
+'activeusers-noresult' => 'Gien actieve gebrukers evunnen.',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Logboek nieje gebrukers',
