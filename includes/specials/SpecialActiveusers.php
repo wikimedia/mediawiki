@@ -79,7 +79,8 @@ class ActiveUsersPager extends UsersPager {
 	}
 
 	function formatRow( $row ) {
-		$userPage = Title::makeTitle( NS_USER, $row->rc_user_text );
+		$userName = $row->rc_user_text;
+		$userPage = Title::makeTitle( NS_USER, $userName );
 		$name = $this->getSkin()->makeLinkObj( $userPage, htmlspecialchars( $userPage->getText() ) );
 
 		$list = array();
@@ -89,7 +90,7 @@ class ActiveUsersPager extends UsersPager {
 
 		$item = wfSpecialList( $name, $groups );
 		$count = wfMsgExt( 'activeusers-count', array('parsemag'), $row->recentedits );
-		$blocked = $row->blocked ? ' '.wfMsg('listusers-blocked') : '';
+		$blocked = $row->blocked ? ' ' . wfMsgExt( 'listusers-blocked', array( 'parsemag' ), $userName ) : '';
 
 		return "<li>{$item} [{$count}]{$blocked}</li>";
 	}
