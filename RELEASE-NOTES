@@ -233,6 +233,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Return HTTP 503 status code on maxlag error, like index.php does
 * Added index, fromtitle and byteoffset fields to action=parse&prop=sections
   output
+* (bug 19313) action=rollback returns wrong revid on master/slave setups
 
 === Languages updated in 1.16 ===
 
