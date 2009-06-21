@@ -441,7 +441,7 @@ class Parser
 		wfProfileIn( __METHOD__ );
 		wfRunHooks( 'ParserBeforeStrip', array( &$this, &$text, &$this->mStripState ) );
 		wfRunHooks( 'ParserAfterStrip', array( &$this, &$text, &$this->mStripState ) );
-		$text = $this->internalParse( $text );
+		$text = $this->internalParse( $text, false );
 		wfProfileOut( __METHOD__ );
 		return $text;
 	}
@@ -862,8 +862,7 @@ class Parser
 	 *
 	 * @private
 	 */
-	function internalParse( $text ) {
-		$isMain = true;
+	function internalParse( $text, $isMain = true ) {
 		wfProfileIn( __METHOD__ );
 		
 		$origText = $text;
@@ -3691,7 +3690,6 @@ class Parser
 		}
 
 		$this->setOutputType( $oldType );
-		$this->mOutput->setSections( $tocraw );
 
 		# Never ever show TOC if no headers
 		if( $numVisible < 1 ) {
@@ -3705,7 +3703,10 @@ class Parser
 			$toc = $sk->tocList( $toc );
 		}
 		
-		$this->mOutput->setTOCHTML( $toc );
+		if ( $isMain ) {
+			$this->mOutput->setSections( $tocraw );
+			$this->mOutput->setTOCHTML( $toc );
+		}
 
 		# split up and insert constructed headlines
 

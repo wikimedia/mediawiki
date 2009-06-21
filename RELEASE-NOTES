@@ -234,6 +234,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Added index, fromtitle and byteoffset fields to action=parse&prop=sections
   output
 * (bug 19313) action=rollback returns wrong revid on master/slave setups
+* (bug 19323) action=parse doesn't return section tree on pages with Cite
+  warnings
 
 === Languages updated in 1.16 ===
 
