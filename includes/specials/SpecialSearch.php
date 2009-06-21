@@ -261,12 +261,15 @@ class SpecialSearch {
 		$wgOut->addHtml( "<div class='searchresults'>" );
 		
 		// show direct page/create link
-		if( !is_null($t) && ($this->active=='default' || $this->active=='all') ) {
+		if( !is_null($t) && ($this->active=='default' || $this->active=='all')  && !$search->isComplexQuery($term) ) {
 			if( !$t->exists() ) {
 				$wgOut->addWikiMsg( 'searchmenu-new', wfEscapeWikiText( $t->getPrefixedText() ) );
 			} else {
 				$wgOut->addWikiMsg( 'searchmenu-exists', wfEscapeWikiText( $t->getPrefixedText() ) );
 			}
+		} else {
+			// preserve the paragraph for margins etc...
+			$wgOut->addHTML('<p></p>');
 		}
 
 		// prev/next links
