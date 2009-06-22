@@ -53,26 +53,25 @@ class ActiveUsersPager extends UsersPager {
 
 	function getQueryInfo() {
 		$dbr = wfGetDB( DB_SLAVE );
-		$conds = array();
-		// don't show hidden names
-		$conds[] = 'ipb_deleted IS NULL';
+		$conds = array('rc_user > 0'); // Users - no anons
+		$conds[] = 'ipb_deleted IS NULL'; // don't show hidden names
 		$useIndex = $dbr->useIndexClause('rc_user_text');
 		if( $this->requestedUser != "" ) {
 			$conds[] = 'rc_user_text >= ' . $dbr->addQuotes( $this->requestedUser );
 		}
-		$conds[] = 'rc_user > 0'; // Users - no anons
 
-		list ($recentchanges,$ipblocks) = $dbr->tableNamesN('recentchanges','ipblocks');
+		list ($recentchanges,$ipblocks,$user) = $dbr->tableNamesN('recentchanges','ipblocks','user');
 
 		$query = array(
 			'tables' => " $recentchanges $useIndex 
-				LEFT JOIN $ipblocks ON rc_user=ipb_user AND ipb_auto=0 AND ipb_deleted=1 ",
+				LEFT JOIN $ipblocks ON rc_user=ipb_user AND ipb_auto=0 AND ipb_deleted=1
+				INNER JOIN $user ON rc_user=user_id ",
 			'fields' => array('rc_user_text AS user_name', // inheritance
 				'rc_user_text', // for Pager
 				'MAX(rc_user) AS user_id',
 				'COUNT(*) AS recentedits',
 				'MAX(ipb_user) AS blocked'),
-			'options' => array('GROUP BY' => 'user_name'),
+			'options' => array('GROUP BY' => 'rc_user_text'),
 			'conds' => $conds
 		);
 		return $query;
