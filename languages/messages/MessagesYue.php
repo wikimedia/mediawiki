@@ -1,5 +1,5 @@
 <?php
-/** Yue (粵語)
+/** Cantonese (粵語/廣東話)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -845,17 +845,17 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'rev-deleted-user'            => '(用戶名已經移除咗)',
 'rev-deleted-event'           => '(日誌動作已經移除咗)',
 'rev-deleted-text-permission' => "呢頁嘅修訂已經被'''洗咗'''。
-喺[{{fullurl:{{#Special:Log}}/suppress|page={{PAGENAMEE}}}} 刪除日誌]裏面可能會有更詳細嘅資料。",
+喺[{{fullurl:{{#Special:Log}}/suppress|page={{PAGENAMEE}}}} 廢止日誌]裏面可能會有更詳細嘅資料。",
 'rev-deleted-text-unhide'     => "呢頁嘅修訂已經被'''洗咗'''。
-喺[{{fullurl:{{#Special:Log}}/suppress|page={{PAGENAMEE}}}} 刪除日誌]裏面可能會有更詳細嘅資料。
+喺[{{fullurl:{{#Special:Log}}/suppress|page={{PAGENAMEE}}}} 廢止日誌]裏面可能會有更詳細嘅資料。
 作為管理員，如果你想繼續嘅話，可以仍然[$1 睇番呢次修訂]。",
 'rev-deleted-text-view'       => "呢頁嘅修訂已經'''洗咗'''。
 作為嘅管理員，你可以去睇吓佢；
-喺[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 刪除日誌]裏面可能會有更詳細嘅資料。",
+喺[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 廢止日誌]裏面可能會有更詳細嘅資料。",
 'rev-deleted-no-diff'         => "因為其中一次修訂'''洗咗'''，你唔可以睇呢個差異。
-響[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 刪除日誌]度可能有更多嘅資料。",
+響[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 廢止日誌]度可能有更多嘅資料。",
 'rev-deleted-unhide-diff'     => "呢頁嘅其中一次修訂已經'''洗咗'''。
-喺[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 刪除日誌]裏面可能會有更詳細嘅資料。
+喺[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 廢止日誌]裏面可能會有更詳細嘅資料。
 作為管理員，如果你想繼續嘅話，可以仍然[$1 睇番呢次修訂]。",
 'rev-delundel'                => '顯示／隱藏',
 'revisiondelete'              => '刪除／反刪除修訂',
@@ -1752,6 +1752,7 @@ Template:搞清楚',
 'listusersfrom'      => '顯示由呢個字開始嘅用戶：',
 'listusers-submit'   => '顯示',
 'listusers-noresult' => '搵唔到用戶。',
+'listusers-blocked'  => '(封鎖咗)',
 
 # Special:Log/newusers
 'newuserlogpage'              => '使用者開戶記錄',
@@ -1760,6 +1761,12 @@ Template:搞清楚',
 'newuserlog-create-entry'     => '新用戶戶口',
 'newuserlog-create2-entry'    => '已經開咗$1嘅新戶口',
 'newuserlog-autocreate-entry' => '自動建立咗戶口',
+
+# Special:ActiveUsers
+'activeusers'          => '活躍用戶名單',
+'activeusers-count'    => '$1次最近編輯',
+'activeusers-from'     => '顯示用戶開始於:',
+'activeusers-noresult' => '搵唔到用戶。',
 
 # Special:ListGroupRights
 'listgrouprights'                      => '用戶組權限',
