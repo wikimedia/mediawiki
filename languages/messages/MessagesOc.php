@@ -1894,6 +1894,13 @@ Vejatz tanben [[Special:WantedCategories|las categorias demandadas]].',
 'listusersfrom'      => 'Afichar los utilizaires a partir de :',
 'listusers-submit'   => 'Mostrar',
 'listusers-noresult' => "S'es pas trobat de noms d'utilizaires correspondents. Cercatz tanben amb de majusculas e minusculas.",
+'listusers-blocked'  => '(blocat)',
+
+# Special:ActiveUsers
+'activeusers'          => 'Lista dels utilizaires actius',
+'activeusers-count'    => '$1 {{PLURAL:$1|modificacion recenta|modificacions recentas}}',
+'activeusers-from'     => 'Afichar los utilizaires dempuèi :',
+'activeusers-noresult' => "Cap d'utilizaire pas trobat.",
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Istoric de las creacions de comptes',

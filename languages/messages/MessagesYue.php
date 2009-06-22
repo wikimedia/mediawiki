@@ -1,5 +1,5 @@
 <?php
-/** Cantonese (粵語/廣東話)
+/** Yue (粵語)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -1754,6 +1754,12 @@ Template:搞清楚',
 'listusers-noresult' => '搵唔到用戶。',
 'listusers-blocked'  => '(封鎖咗)',
 
+# Special:ActiveUsers
+'activeusers'          => '活躍用戶名單',
+'activeusers-count'    => '$1次最近編輯',
+'activeusers-from'     => '顯示用戶開始於:',
+'activeusers-noresult' => '搵唔到用戶。',
+
 # Special:Log/newusers
 'newuserlogpage'              => '使用者開戶記錄',
 'newuserlogpagetext'          => '呢個係一個使用者開戶嘅日誌',
@@ -1761,12 +1767,6 @@ Template:搞清楚',
 'newuserlog-create-entry'     => '新用戶戶口',
 'newuserlog-create2-entry'    => '已經開咗$1嘅新戶口',
 'newuserlog-autocreate-entry' => '自動建立咗戶口',
-
-# Special:ActiveUsers
-'activeusers'          => '活躍用戶名單',
-'activeusers-count'    => '$1次最近編輯',
-'activeusers-from'     => '顯示用戶開始於:',
-'activeusers-noresult' => '搵唔到用戶。',
 
 # Special:ListGroupRights
 'listgrouprights'                      => '用戶組權限',

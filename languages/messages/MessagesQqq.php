@@ -1771,6 +1771,7 @@ $1 is a page title",
 * $1 is a user name for use with GENDER (optional)',
 
 # Special:ActiveUsers
+'activeusers'          => 'Title of [[Special:ActiveUsers]]',
 'activeusers-count'    => "Used in [[Special:ActiveUsers]] to show the active user's recent edit count in brackets ([]).
 * $1 is the number of recent edits
 * $2 is the user's name for use with GENDER (optional)",

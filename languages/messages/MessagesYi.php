@@ -873,9 +873,9 @@ $2',
 'rev-deleted-event'           => '(לאגירן אקציע אראפגענומען)',
 'rev-deleted-text-permission' => "די בלאט רעוויזיע איז געווארן '''אויסגעמעקט '''. 
 עס איז מעגלעך דא נאך פרטים אין דעם
-[{{fullurl:{{ns:special}}:Log/delete|page={{FULLPAGENAMEE}}}} אויסמעקונג לאג].",
+[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} באהעלטעניש לאג].",
 'rev-deleted-text-view'       => "די בלאט רעוויזיע איז געווארן '''אויסגעמעקט'''. 
-אלס סיסאפ קענט איר באַקוקן די רעוויזיע; עס איז מעגליך דא נאך דעטאלן אינעם [{{fullurl:{{ns:special}}:Log/delete|page={{FULLPAGENAMEE}}}} אויסמעקונג לאג בוך].",
+אלס סיסאפ קענט איר באַקוקן די רעוויזיע; עס איז מעגליך דא נאך דעטאלן אינעם [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} באהעלטעניש לאג בוך].",
 'rev-delundel'                => 'ווייז/באהאלט',
 'revisiondelete'              => 'אויסמעקן\\צוריקשטעלן רעוויזיעס',
 'revdelete-nooldid-title'     => 'ציל ווערסיע נישט גילטיג',
@@ -1202,6 +1202,7 @@ $2',
 'action-deletedhistory'     => "באַקוקן דעם בלאט'ס אויסגעמעקטע היסטאריע",
 'action-browsearchive'      => 'זוכן אויסגעמעקטע בלעטער',
 'action-undelete'           => 'צוריקשטעלן דעם בלאט',
+'action-suppressionlog'     => 'באקוקן דעם פריוואטן לאג',
 'action-userrights'         => 'רעדאַקטירן אלע באַניצער רעכטן',
 
 # Recent changes

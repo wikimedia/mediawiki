@@ -1904,7 +1904,7 @@ Obsługiwane protokoły: <tt>$1</tt>',
 'activeusers'          => 'Lista aktywnych użytkowników',
 'activeusers-count'    => 'ostatnio {{GENDER:$2|wykonał|wykonała|wykonał}} $1 {{PLURAL:$1|edycję|edycje|edycji}}',
 'activeusers-from'     => 'Pokaż użytkowników zaczynając od',
-'activeusers-noresult' => 'Nie znaleziono żadnego użytkownika.',
+'activeusers-noresult' => 'Nie odnaleziono żadnego użytkownika.',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Nowi użytkownicy',

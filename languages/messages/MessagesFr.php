@@ -1936,8 +1936,7 @@ Vous pouvez restreindre la vue en sélectionnant un type de journal, un nom d’
 'allpagesnext'      => 'Suivant',
 'allpagessubmit'    => 'Lister',
 'allpagesprefix'    => 'Afficher les pages commençant par le préfixe :',
-'allpagesbadtitle'  => 'Le titre de page indiqué est incorrect ou contient un préfixe inter-langue ou inter-wiki réservé.
-Il peut aussi contenir un ou plusieurs caractères inutilisables dans les titres.',
+'allpagesbadtitle'  => 'Le titre de page indiqué est incorrect : il contient un préfixe inter-langue ou inter-wiki réservé, ou contient un ou plusieurs caractères inutilisables dans les titres.',
 'allpages-bad-ns'   => '{{SITENAME}} n’a pas d’espace de noms « $1 ».',
 
 # Special:Categories

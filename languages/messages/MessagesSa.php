@@ -278,6 +278,18 @@ $messages = array(
 'october'   => 'अक्टूबरमासः',
 'november'  => 'नवम्बरमासः',
 'december'  => 'डेसेम्बरमासः',
+'jan'       => 'जन.',
+'feb'       => 'फेब्रु.',
+'mar'       => 'मार्च.',
+'apr'       => 'एप्रि.',
+'may'       => 'मे.',
+'jun'       => 'जून.',
+'jul'       => 'जुला.',
+'aug'       => 'अग.',
+'sep'       => 'सित.',
+'oct'       => 'अक्टू.',
+'nov'       => 'नव.',
+'dec'       => 'दिस.',
 
 # Categories related messages
 'pagecategories'         => '{{PLURAL:$1|श्रेणी|श्रेण्यः }}',
@@ -323,6 +335,8 @@ $messages = array(
 'talk'             => 'चर्चा',
 'views'            => 'दृश्यरूपाणि',
 'toolbox'          => 'साधन-पिटकम्',
+'otherlanguages'   => 'अन्यासु भाषासु',
+'lastmodifiedat'   => 'इदं पृष्ठं अन्तिमं वारं परिवर्तितम् : दिनांके $1, $2 वादने।',
 'jumpto'           => 'कूर्दयतु अत्र :',
 'jumptonavigation' => 'सुचलनम्',
 'jumptosearch'     => 'अन्वेषणम्',
@@ -330,6 +344,7 @@ $messages = array(
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => '{{SITENAME}} इत्यस्य विषये',
 'aboutpage'            => 'Project:एतद्विषये',
+'copyright'            => 'अस्य घटकानि $1 इत्यस्यान्तर्गतानि उपलब्धानि।',
 'copyrightpage'        => '{{ns:project}}:प्रतिलिप्यधिकाराणि',
 'currentevents'        => 'सद्य घटना',
 'disclaimers'          => 'प्रत्याख्यानम्',
@@ -355,6 +370,7 @@ $messages = array(
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'     => 'पृष्ठम्',
+'nstab-special'  => 'विशिष्टं पृष्ठम्',
 'nstab-image'    => 'संचिका',
 'nstab-template' => 'बिंबधर',
 'nstab-category' => 'श्रेणी',
@@ -376,7 +392,15 @@ $messages = array(
 'loginsuccesstitle'       => 'सुस्वागतम्‌। प्रवेशः सिद्धः।',
 
 # Edit page toolbar
-'italic_sample' => 'इटालिक-पाठः',
+'bold_sample'     => 'स्थूलाक्षरित-पाठः',
+'italic_sample'   => 'इटालिक-पाठः',
+'link_sample'     => 'संबंधनस्य शीर्षकम्',
+'link_tip'        => 'अन्तर्गतं संबंधनम्',
+'extlink_tip'     => 'बाह्य-संबंधनम् (अवश्यमेव  http:// इति पूर्वलग्नं योक्तव्यम्)',
+'headline_sample' => 'शीर्षकम्',
+'headline_tip'    => 'द्वितीय-स्तरीयं शीर्षकम्',
+'sig_tip'         => 'भवतः हस्ताक्षराणि समयेन सह',
+'hr_tip'          => 'क्षैतिज-रेखा (न्यूनतया प्रयोक्तव्या)',
 
 # Edit pages
 'summary'     => 'सारांश:',
@@ -388,6 +412,7 @@ $messages = array(
 'newarticle'  => '(नविन)',
 
 # History pages
+'previousrevision'    => '← पुरातनाः आवृत्तयः',
 'currentrevisionlink' => 'सद्यःकालीना आवृत्तिः',
 'cur'                 => 'नवतरम्',
 'last'                => 'पूर्वतनम्',
@@ -397,6 +422,9 @@ $messages = array(
 # Revision feed
 'history-feed-item-nocomment' => '$1 उप $2',
 
+# Revision deletion
+'rev-delundel' => 'दर्शयतु/लोपयतु',
+
 # Diffs
 'lineno'   => 'पंक्तिः $1:',
 'editundo' => 'अकरोतु',
@@ -405,10 +433,13 @@ $messages = array(
 'searchresults'             => 'अन्वेषण-फलानि',
 'searchresults-title'       => '"$1" इत्यस्य कृते अन्वेषण-फलानि',
 'nextn'                     => 'आगामि{{PLURAL:$1|$1}}',
+'viewprevnext'              => 'दर्शयतु ($1) ($2) ($3)',
 'search-result-size'        => '$1 ({{PLURAL:$2|1 शब्दम्|$2 शब्दे}})',
 'search-mwsuggest-enabled'  => 'उपक्षेपेभ्यः सह',
 'search-mwsuggest-disabled' => 'नात्र उपक्षेपाः',
 'powersearch'               => 'प्रगतम् अन्वेषणम्',
+'powersearch-legend'        => 'प्रगतम् अन्वेषणम्',
+'powersearch-redir'         => 'अनुप्रेषणानां सूचिकां दर्शयतु।',
 
 # Preferences page
 'yourlanguage' => 'भाषा:',
@@ -429,6 +460,9 @@ $messages = array(
 'recentchangeslinked'         => 'पृष्ठ-सम्बन्धि-परिवर्तनानि',
 'recentchangeslinked-feed'    => 'सम्भन्दिन् परिवर्त',
 'recentchangeslinked-toolbox' => 'सम्भन्दिन् परिवर्त',
+'recentchangeslinked-summary' => "इदं पृष्ठं दर्शयति पृष्ठविशेषेण सह संबद्धीकृतेषु पृष्ठेषु परिवर्तनानि (अथवा श्रेणीविशेषे अन्तर्भूतेषु पृष्ठेषु परिवर्तनानि)।
+
+भवतः निरीक्षासूचिकायां धारितानि पृष्ठाणि '''स्थूलाक्षरैः''' दर्शितानि।",
 
 # Upload
 'upload' => 'संचिकाम् उद्भारयतु',
@@ -439,6 +473,9 @@ $messages = array(
 # File description page
 'file-anchor-link'   => 'संचिका',
 'filehist-deleteone' => 'विलोप',
+'filehist-current'   => 'नवीनतमम्',
+'filehist-datetime'  => 'दिनांकः/समयः',
+'filehist-comment'   => 'टिप्पणी',
 
 # Random page
 'randompage' => 'अविशिष्ट पृष्ठ',
@@ -511,22 +548,32 @@ $messages = array(
 'import-comment' => 'व्याखान:',
 
 # Tooltip help for the actions
-'tooltip-pt-login'        => 'भवान् लेखायां प्रविशतु इति श्रेयः परन्तु नावश्यकम्',
-'tooltip-pt-logout'       => 'बहिर्गच्छतु',
-'tooltip-ca-talk'         => 'घटक-पृष्ठ-विषये चर्चा',
-'tooltip-search'          => '{{SITENAME}} अन्वेषणं करोति',
-'tooltip-search-go'       => 'एतत्-शीर्षकीयम् पृष्ठं गच्छतु चेत् तद्विद्यते',
-'tooltip-search-fulltext' => 'एतत्पाठार्थम् पृष्ठेषु अन्विष्यतु',
-'tooltip-p-logo'          => 'मुख्यपृष्ठम्  अभ्यागम्',
-'tooltip-n-mainpage'      => 'मुखपृष्ठं प्रति गच्छतु',
-'tooltip-n-portal'        => 'प्रकल्पविषये, भवता किं कर्तुं शक्यम्, कुत्र अन्वेषणं शक्यम्',
-'tooltip-n-recentchanges' => 'सद्यःपरिवर्तितानां सूचिका',
-'tooltip-n-randompage'    => 'यादृच्छिकमेकं पृष्ठं गच्छतु',
-'tooltip-n-help'          => 'निराकरण-स्थानम्',
-'tooltip-t-whatlinkshere' => 'सर्वेषामपि एतत्संबद्धानां पृष्ठानां सूची',
-'tooltip-t-upload'        => 'संचिकाः उद्भारयतु',
-'tooltip-t-specialpages'  => 'सर्वेषां विशिष्ट-पृष्ठानां सूचिका',
-'tooltip-save'            => 'परिवर्तनानि रक्षतु',
+'tooltip-pt-login'              => 'भवान् लेखायां प्रविशतु इति श्रेयः परन्तु नावश्यकम्',
+'tooltip-pt-logout'             => 'बहिर्गच्छतु',
+'tooltip-ca-talk'               => 'घटक-पृष्ठ-विषये चर्चा',
+'tooltip-ca-edit'               => 'भवान् इदं पृष्ठं संपादयितुं शक्नोति। कृपया रक्षणात्पूर्वं प्राग्दृश्यं पश्यतु।',
+'tooltip-ca-viewsource'         => 'इदं पृष्ठं सुरक्षितं विद्यते। भवान् अस्य स्रोतसम् दृष्टुं शक्नोति।',
+'tooltip-ca-history'            => 'अस्य पृष्ठस्य पुरातनाः आवृत्तयः',
+'tooltip-search'                => '{{SITENAME}} अन्वेषणं करोति',
+'tooltip-search-go'             => 'एतत्-शीर्षकीयम् पृष्ठं गच्छतु चेत् तद्विद्यते',
+'tooltip-search-fulltext'       => 'एतत्पाठार्थम् पृष्ठेषु अन्विष्यतु',
+'tooltip-p-logo'                => 'मुख्यपृष्ठम्  अभ्यागम्',
+'tooltip-n-mainpage'            => 'मुखपृष्ठं प्रति गच्छतु',
+'tooltip-n-portal'              => 'प्रकल्पविषये, भवता किं कर्तुं शक्यम्, कुत्र अन्वेषणं शक्यम्',
+'tooltip-n-currentevents'       => 'सद्यःघटितानां घटनानां विषये पृष्ठभूमिक-सूचना',
+'tooltip-n-recentchanges'       => 'सद्यःपरिवर्तितानां सूचिका',
+'tooltip-n-randompage'          => 'यादृच्छिकमेकं पृष्ठं गच्छतु',
+'tooltip-n-help'                => 'निराकरण-स्थानम्',
+'tooltip-t-whatlinkshere'       => 'सर्वेषामपि एतत्संबद्धानां पृष्ठानां सूची',
+'tooltip-t-recentchangeslinked' => 'अस्मात् पृष्ठात् संबंद्धीकृतेषु पृष्ठेषु नवीनतमानि परिवर्तनानि',
+'tooltip-t-upload'              => 'संचिकाः उद्भारयतु',
+'tooltip-t-specialpages'        => 'सर्वेषां विशिष्ट-पृष्ठानां सूचिका',
+'tooltip-t-print'               => 'अस्य पृष्ठस्य मुद्रणीया आवृत्तिः',
+'tooltip-t-permalink'           => 'पृष्ठस्य इमाम् आवृत्तिं प्रति स्थायि संबंधनम्',
+'tooltip-ca-nstab-main'         => 'घटक-पृष्ठं पश्यतु',
+'tooltip-ca-nstab-special'      => 'इदमेकं विशिष्टं पृष्ठम्, भवान् इदं पृष्ठं संपादयितुं न शक्नोति।',
+'tooltip-save'                  => 'परिवर्तनानि रक्षतु',
+'tooltip-diff'                  => 'पाठे भवता कृतानि परिवर्तनानि पश्यतु।',
 
 # Skin names
 'skinname-standard'    => 'पूर्व',
@@ -538,6 +585,13 @@ $messages = array(
 
 # Special:NewFiles
 'newimages' => 'नूतन-संचिकानां वीथिका',
+
+# Bad image list
+'bad_image_list' => 'प्रारूपम् एवम् अस्ति :
+
+केवलानि सूचिकान्तर्गतानि वस्तूनि विचारितानि सन्ति (* इत्यस्मात् आरभमत्यः पंक्तयः)। पंक्त्यां प्रथमं संबंधनं त्रुटिपूर्णां संचिकां प्रति भवतु।
+
+पंक्तौ परवर्तिनः संबंधनानि अपवादान् इव विचार्यन्ते, अर्थात् तादृशानि पृष्ठाणि यत्र संचिकैषा भवितुं शक्नोति।',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'सर्वाणि',

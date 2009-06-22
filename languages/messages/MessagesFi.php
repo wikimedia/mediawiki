@@ -958,16 +958,16 @@ Kokeile [[Special:Search|hakua]] löytääksesi asiaan liittyviä sivuja.',
 'rev-deleted-user'            => '(käyttäjänimi poistettu)',
 'rev-deleted-event'           => '(lokitapahtuma poistettu)',
 'rev-deleted-text-permission' => "Tämä versio on '''poistettu'''.
-[{{fullurl:{{#Special:Log}}/suppress|page={{PAGENAMEE}}}} Poistolokissa] saattaa olla lisätietoja.",
+Lisätietoja saattaa olla [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} häivytyslokissa].",
 'rev-deleted-text-unhide'     => "Tämä versio sivusta on '''poistettu'''.
-Lisätietoja saattaa olla [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} poistolokissa].
+Lisätietoja saattaa olla [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} häivytyslokissa].
 Ylläpitäjänä voit silti [$1 katsoa tämän version].",
 'rev-deleted-text-view'       => "Tämä versio on '''poistettu'''.
-Ylläpitäjänä voit nähdä sen. Lisätietoja saattaa olla [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} poistolokissa].",
+Ylläpitäjänä voit nähdä sen. Lisätietoja saattaa olla [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} häivytyslokissa].",
 'rev-deleted-no-diff'         => "Et voi katsoa tätä muokkausta, koska yksi versioista on '''poistettu'''.
-Lisätietoja saattaa olla [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} poistolokissa].",
+Lisätietoja saattaa olla [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} häivytyslokissa].",
 'rev-deleted-unhide-diff'     => "Yksi tämän muutoksen versioista on '''poistettu'''.
-Lisätietoja saattaa olla [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} poistolokissa].
+Lisätietoja saattaa olla [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} häivytyslokissa].
 Ylläpitäjänä voit silti [$1 katsoa tämän muutoksen].",
 'rev-delundel'                => 'näytä tai piilota',
 'revisiondelete'              => 'Poista tai palauta versioita',
@@ -1851,6 +1851,7 @@ Tuetut protokollat: <tt>$1</tt>.',
 
 # Special:ActiveUsers
 'activeusers'          => 'Aktiivisten käyttäjien lista',
+'activeusers-count'    => '$1 {{PLURAL:$1|viimeisin muokkaus|viimeisintä muokkausta}}',
 'activeusers-from'     => 'Näytä käyttäjät alkaen',
 'activeusers-noresult' => 'Käyttäjiä ei löytynyt.',
 

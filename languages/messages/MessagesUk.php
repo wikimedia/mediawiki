@@ -371,10 +371,28 @@ $messages = array(
 'faqpage'        => 'Project:Часті питання',
 
 # Vector skin
-'vector-action-addsection' => 'Додати тему',
-'vector-action-delete'     => 'Вилучити',
-'vector-action-move'       => 'Перейменувати',
-'vector-view-view'         => 'Читання',
+'vector-action-addsection'   => 'Додати тему',
+'vector-action-delete'       => 'Вилучити',
+'vector-action-move'         => 'Перейменувати',
+'vector-action-protect'      => 'Захистити',
+'vector-action-undelete'     => 'Відновити',
+'vector-action-unprotect'    => 'Зняти захист',
+'vector-namespace-category'  => 'Категорія',
+'vector-namespace-help'      => 'Сторінка довідки',
+'vector-namespace-image'     => 'Файл',
+'vector-namespace-main'      => 'Сторінка',
+'vector-namespace-media'     => 'Медіа-сторінка',
+'vector-namespace-mediawiki' => 'Повідомлення',
+'vector-namespace-project'   => 'Сторінка проекту',
+'vector-namespace-special'   => 'Спеціальна сторінка',
+'vector-namespace-talk'      => 'Обговорення',
+'vector-namespace-template'  => 'Шаблон',
+'vector-namespace-user'      => 'Сторінка користувача',
+'vector-view-create'         => 'Створити',
+'vector-view-edit'           => 'Редагувати',
+'vector-view-history'        => 'Показати історію',
+'vector-view-view'           => 'Читання',
+'vector-view-viewsource'     => 'Показати сирець',
 
 # Metadata in edit box
 'metadata_help' => 'Метадані:',
@@ -933,17 +951,17 @@ $3 зазначив таку причину: ''$2''",
 'rev-deleted-user'            => "(ім'я автора стерто)",
 'rev-deleted-event'           => '(запис журналу вилучений)',
 'rev-deleted-text-permission' => "Ця версія сторінки '''вилучена'''.
-Можливо є пояснення в [{{fullurl:{{ns:special}}:Log/delete|page={{PAGENAMEE}}}} журналі вилучень].",
+Можливо є пояснення в [{{fullurl:{{ns:special}}:Log/suppress|page={{PAGENAMEE}}}} журналі приховань].",
 'rev-deleted-text-unhide'     => "Ця версія сторінки '''вилучена'''.
-Можливо є пояснення в [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} журналі вилучень].
+Можливо є пояснення в [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} журналі приховань].
 Як адміністратор ви можете [$1 переглянути цю версію].",
 'rev-deleted-text-view'       => "Ця версія сторінки '''вилучена'''.
 Ви можете переглянути її, оскільки є адміністратором проекту.
-Можливо, є пояснення в [{{fullurl:{{ns:special}}:Log/delete|page={{FULLPAGENAMEE}}}} журналі вилучень].",
+Можливо, є пояснення в [{{fullurl:{{ns:special}}:Log/delete|page={{FULLPAGENAMEE}}}} журналі приховань].",
 'rev-deleted-no-diff'         => "Ви не можете переглянути цю різницю версій, оскільки одна з версій сторінки '''вилучена'''.
-Можливо, деталі можна знайти в [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} журналі вилучень].",
+Можливо, деталі можна знайти в [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} журналі приховань].",
 'rev-deleted-unhide-diff'     => "Одна з версій сторінки '''вилучена'''.
-Можливо, деталі можна знайти в [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} журналі вилучень].
+Можливо, деталі можна знайти в [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} журналі приховань].
 Ви можете [$1 переглянути цю версію], оскільки є адміністратором.",
 'rev-delundel'                => 'показати/сховати',
 'revisiondelete'              => 'Вилучити / відновити версії сторінки',
@@ -1861,8 +1879,9 @@ PICT # різні
 'special-categories-sort-abc'   => 'упорядкувати за алфавітом',
 
 # Special:DeletedContributions
-'deletedcontributions'       => 'Вилучений внесок користувача',
-'deletedcontributions-title' => 'Вилучений внесок користувача',
+'deletedcontributions'             => 'Вилучений внесок користувача',
+'deletedcontributions-title'       => 'Вилучений внесок користувача',
+'sp-deletedcontributions-contribs' => 'внесок',
 
 # Special:LinkSearch
 'linksearch'       => 'Зовнішні посилання',
@@ -1877,6 +1896,13 @@ PICT # різні
 'listusersfrom'      => 'Показати користувачів, починаючи з:',
 'listusers-submit'   => 'Показати',
 'listusers-noresult' => 'Не знайдено користувачів.',
+'listusers-blocked'  => '({{GENDER:$1|заблокований|заблокована|заблокований}})',
+
+# Special:ActiveUsers
+'activeusers'          => 'Список активних користувачів',
+'activeusers-count'    => '$1 {{PLURAL:$1|нове редагування|нові редагування|нових редгувань}}',
+'activeusers-from'     => 'Показувати користувачів, починаючи з:',
+'activeusers-noresult' => 'Не знайдено користувачів.',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Журнал нових користувачів',
@@ -1890,6 +1916,8 @@ PICT # різні
 'listgrouprights'                      => 'Права груп користувачів',
 'listgrouprights-summary'              => 'Нижче наведений список груп користувачів у цій вікі і права для кожної групи.
 Додаткову інформацію про права користувачів можна знайти [[{{MediaWiki:Listgrouprights-helppage}}|тут]].',
+'listgrouprights-key'                  => '* <span class="listgrouprights-granted">Надані права</span>
+* <span class="listgrouprights-revoked">Скасовані права</span>',
 'listgrouprights-group'                => 'Група',
 'listgrouprights-rights'               => 'Права',
 'listgrouprights-helppage'             => 'Help:Права користувачів',

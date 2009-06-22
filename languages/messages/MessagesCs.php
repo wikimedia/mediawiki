@@ -1010,16 +1010,16 @@ Zkuste [[Special:Search|hledání]].',
 'rev-deleted-user'            => '(uživatelské jméno odstraněno)',
 'rev-deleted-event'           => '(záznam odstraněn)',
 'rev-deleted-text-permission' => "Tato revize byla '''smazána'''.
-Podrobnosti mohou být uvedeny v [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} knize smazaných stránek].",
+Podrobnosti mohou být uvedeny v [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} záznamu utajení].",
 'rev-deleted-text-unhide'     => "Tato revize byla '''smazána'''.
-Podrobnosti mohou být uvedeny v [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} knize smazaných stránek].
+Podrobnosti mohou být uvedeny v [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} záznamu utajení].
 Jako správce si však můžete [$1 tuto revizi prohlédnout], pokud chcete.",
 'rev-deleted-text-view'       => "Tato revize byla '''smazána'''.
-Jako správce si ji můžete prohlédnout; podrobnosti mohou být uvedeny v [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} knize smazaných stránek].",
+Jako správce si ji můžete prohlédnout; podrobnosti mohou být uvedeny v [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} záznamu utajení].",
 'rev-deleted-no-diff'         => "Tento rozdíl si nemůžete prohlédnout, protože jedna z&nbsp;revizí byla '''smazána'''.
-Podrobnosti mohou být uvedeny v&nbsp;[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} knize smazaných stránek].",
+Podrobnosti mohou být uvedeny v&nbsp;[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} záznamu utajení].",
 'rev-deleted-unhide-diff'     => "Jedna z revizí k tomuto porovnání byla '''smazána'''.
-Podrobnosti mohou být uvedeny v [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} knize smazaných stránek].
+Podrobnosti mohou být uvedeny v [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} záznamu utajení].
 Jako správce si však můžete [$1 tento rozdíl prohlédnout], pokud chcete.",
 'rev-delundel'                => 'skrýt/zobrazit',
 'revisiondelete'              => 'Smazat/obnovit revize',
@@ -1929,6 +1929,13 @@ Podporované protokoly: <tt>$1</tt>',
 'listusersfrom'      => 'Zobrazit uživatele počínaje od:',
 'listusers-submit'   => 'Ukázat',
 'listusers-noresult' => 'Nenalezen žádný uživatel.',
+'listusers-blocked'  => '({{GENDER:$1|zablokován|zablokována|zablokován}})',
+
+# Special:ActiveUsers
+'activeusers'          => 'Seznam aktivních uživatelů',
+'activeusers-count'    => '$1 {{PLURAL:$1|nedávná editace|nedávné editace|nedávných editací}}',
+'activeusers-from'     => 'Zobrazit uživatele počínaje od:',
+'activeusers-noresult' => 'Nenalezen žádný uživatel.',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Kniha nových uživatelů',

@@ -994,14 +994,14 @@ Pokušajte [[Special:Search|pretražiti wiki]] za slične stranice.',
 Detalje možete vidjeti u [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} zapisu brisanja].",
 'rev-deleted-text-unhide'     => "Revizija ove stranice je '''obrisana'''.
 Detalje o tome možer vidjeti u [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} zapisniku brisanja].
-Kao administrator još uvijek možete [$1 vidjeti ovu reviziju] ako želite.",
+Kao administrator još je uvijek možete [$1 vidjeti ovu reviziju] ako želite.",
 'rev-deleted-text-view'       => "Revizija ove stranice je '''obrisana'''.
-Kao administrator na {{SITENAME}} Vi je možete vidjeti; detalji o tome se mogu vidjeti u [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} zapisu brisanja].",
+Kao administrator, Vi je možete vidjeti; detalji o tome se mogu vidjeti u [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} zapisu brisanja].",
 'rev-deleted-no-diff'         => "Ne možete vidjeti ove razlike jer je jedna od revizija '''obrisana'''.
 Možete pregledati detalje u [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} zapisima brisanja].",
 'rev-deleted-unhide-diff'     => "Jedna od revizija u ovom pregledu razlika je '''obrisana'''.
 Možete pregledati detalje u [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} zapisniku brisanja].
-Kao administrator na {{SITENAME}} Vi još uvijek možete [$1 vidjeti ove razlike] ako želite da nastavite.",
+Kao administrator Vi još uvijek možete [$1 vidjeti ove razlike] ako želite da nastavite.",
 'rev-delundel'                => 'pokaži/sakrij',
 'revisiondelete'              => 'Obriši/vrati revizije',
 'revdelete-nooldid-title'     => 'Nije unesena tačna revizija',
@@ -1297,7 +1297,7 @@ Pokušajte u Vaš upit uključiti prefiks ''all:'' da bi ste pretražili sav sad
 'timezoneregion-asia'           => 'Azija',
 'timezoneregion-atlantic'       => 'Atlantski okean',
 'timezoneregion-australia'      => 'Australija',
-'timezoneregion-europe'         => 'Evrope',
+'timezoneregion-europe'         => 'Evropa',
 'timezoneregion-indian'         => 'Indijski okean',
 'timezoneregion-pacific'        => 'Tihi okean',
 'allowemail'                    => 'Dozvoli e-poštu od ostalih korisnika',
@@ -1942,6 +1942,13 @@ Podržani protokoli: <tt>$1</tt>',
 'listusersfrom'      => 'Prikaži korisnike koji počinju sa:',
 'listusers-submit'   => 'Pokaži',
 'listusers-noresult' => 'Nije pronađen korisnik.',
+'listusers-blocked'  => '(blokiran)',
+
+# Special:ActiveUsers
+'activeusers'          => 'Spisak aktivnih korisnika',
+'activeusers-count'    => '{{PLURAL:$1|nedavna $1 izmjena|nedavne $1 izmjene|nedavnih $1 izmjena}}',
+'activeusers-from'     => 'Prikaži korisnike koji počinju sa:',
+'activeusers-noresult' => 'Nije pronađen korisnik.',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Zapis novih korisnika',

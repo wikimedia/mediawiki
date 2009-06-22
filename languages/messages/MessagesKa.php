@@ -940,6 +940,7 @@ $1 საათში.',
 'action-minoredit'     => 'მონიშვნა, როგორც მცირე რედაქტირება',
 'action-move'          => 'ამ გვერდის გადატანა',
 'action-delete'        => 'ამ გვერდის წაშლა',
+'action-browsearchive' => 'წაშლილი გვერდების ძიება',
 'action-block'         => 'ამ მომხმარებლისთვის რედაქტირების დაბლოკვა',
 'action-autopatrol'    => 'თქვენი ცვლილების მონიშვნა პატრულირებადით',
 
@@ -1646,9 +1647,10 @@ $NEWPAGE
 'allmessagesmodified'       => 'აჩვენე მხოლოდ შეცვლილი',
 
 # Thumbnails
-'thumbnail-more'  => 'გაზარდე',
-'filemissing'     => 'ფაილი აკლია',
-'thumbnail_error' => 'ესკიზის შექმნის შეცდომა: $1',
+'thumbnail-more'           => 'გაზარდე',
+'filemissing'              => 'ფაილი აკლია',
+'thumbnail_error'          => 'ესკიზის შექმნის შეცდომა: $1',
+'thumbnail_dest_directory' => 'შეუძლებელია სამიზნე დირექტორიის შექმნა',
 
 # Special:Import
 'import'                     => 'გვერდების იმპორტი',
@@ -2075,6 +2077,7 @@ $1',
 # Special:SpecialPages
 'specialpages'               => 'სპეციალური გვერდები',
 'specialpages-group-other'   => 'სხვა სპეციალური გვერდები',
+'specialpages-group-login'   => 'შესვლა / რეგისტრაცია',
 'specialpages-group-changes' => 'ბოლო ცვლილებები და ჟურნალები',
 'specialpages-group-users'   => 'მომხმარებლები და უფლებები',
 'specialpages-group-pages'   => 'გვერდების სიები',

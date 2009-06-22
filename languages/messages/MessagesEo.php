@@ -1812,6 +1812,13 @@ Vidu ankaŭ [[Special:WantedCategories|Dezirataj kategorioj]].',
 'listusersfrom'      => 'Montri uzantojn ekde:',
 'listusers-submit'   => 'Montri',
 'listusers-noresult' => 'Neniu uzanto trovita.',
+'listusers-blocked'  => '(forbarita)',
+
+# Special:ActiveUsers
+'activeusers'          => 'Listo de aktivaj uzantoj',
+'activeusers-count'    => '$1 {{PLURAL:$1|lasta redakto|lastaj redaktoj}}',
+'activeusers-from'     => 'Montri uzantojn ekde:',
+'activeusers-noresult' => 'Neniuj uzantoj trovitaj.',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Protokolo de uzanto-kreado',
