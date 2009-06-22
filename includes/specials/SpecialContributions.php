@@ -522,7 +522,7 @@ class ContribsPager extends ReverseChronologicalPager {
 			}
 		}
 		# Is there a visible previous revision?
-		if( $rev->userCan(Revision::DELETED_TEXT) ) {
+		if( !$rev->isDeleted(Revision::DELETED_TEXT) ) {
 			$difftext = '(' . $sk->linkKnown(
 				$page,
 				$this->messages['diff'],
@@ -544,22 +544,22 @@ class ContribsPager extends ReverseChronologicalPager {
 
 		$comment = $wgContLang->getDirMark() . $sk->revComment( $rev, false, true );
 		$date = $wgLang->timeanddate( wfTimestamp( TS_MW, $row->rev_timestamp ), true );
-		$d = $sk->linkKnown(
-			$page,
-			htmlspecialchars($date),
-			array(),
-			array( 'oldid' => intval( $row->rev_id ) )
-		);
+		if( $rev->isDeleted( Revision::DELETED_TEXT ) ) {
+			$d = '<span class="history-deleted">' . $date . '</span>';
+		} else {
+			$d = $sk->linkKnown(
+				$page,
+				htmlspecialchars($date),
+				array(),
+				array( 'oldid' => intval( $row->rev_id ) )
+			);
+		}
 
 		if( $this->target == 'newbies' ) {
 			$userlink = ' . . ' . $sk->userLink( $row->rev_user, $row->rev_user_text );
 			$userlink .= ' (' . $sk->userTalkLink( $row->rev_user, $row->rev_user_text ) . ') ';
 		} else {
 			$userlink = '';
-		}
-
-		if( $rev->isDeleted( Revision::DELETED_TEXT ) ) {
-			$d = '<span class="history-deleted">' . $d . '</span>';
 		}
 
 		if( $rev->getParentId() === 0 ) {
