@@ -13,39 +13,6 @@
  */
 class CdbFunctions {
 	/**
-	 * Do a sum of 32-bit signed integers with 2's complement overflow.
-	 *
-	 * PHP has broken plus and minus operators, but the bitwise operators 
-	 * (&, |, ^, ~, <<, >>) are all implemented as a simple wrapper around the
-	 * underlying C operator. The algorithm here uses a binary view of addition
-	 * to simulate 32-bit addition using 31-bit registers.
-	 */
-	public static function sumWithOverflow( $a, $b ) {
-		$sum = $a + $b;
-		if ( is_float( $sum ) ) {
-			// Use the plus operator to do a sum of the lowest 30 bits to produce a 31-bit result
-			$lowA = $a & 0x3fffffff;
-			$lowB = $b & 0x3fffffff;
-			$sum = $lowA + $lowB;
-
-			// Strip off the carry bit
-			$carry = ($sum & 0x40000000) >> 30;
-			$sum = $sum & 0x3fffffff;
-
-			// Get the last two bits
-			$highA = self::unsignedShiftRight( $a, 30 );
-			$highB = self::unsignedShiftRight( $b, 30 );
-
-			// Add with carry
-			$highSum = $carry + $highA + $highB;
-
-			// Recombine
-			$sum = $sum | ( $highSum << 30 );
-		}
-		return $sum;
-	}
-
-	/**
 	 * Take a modulo of a signed integer as if it were an unsigned integer.
 	 * $b must be less than 0x40000000 and greater than 0
 	 */
@@ -72,10 +39,26 @@ class CdbFunctions {
 		}
 	}
 
+	/**
+	 * The CDB hash function.
+	 */
 	public static function hash( $s ) {
 		$h = 5381;
 		for ( $i = 0; $i < strlen( $s ); $i++ ) {
-			$h = self::sumWithOverflow( $h, $h << 5 ) ^ ord( $s[$i] );
+			$h5 = $h << 5;
+			// Do a 32-bit sum
+			// Inlined here for speed
+			$sum = ($h & 0x3fffffff) + ($h5 & 0x3fffffff);
+			$h = 
+				(
+					( $sum & 0x40000000 ? 1 : 0 )
+					+ ( $h < 0 ? 2 : 0 )
+					+ ( $h & 0x40000000 ? 1 : 0 )
+					+ ( $h5 < 0 ? 2 : 0 )
+					+ ( $h5 & 0x40000000 ? 1 : 0 )
+				) << 30
+				| ( $sum & 0x3fffffff );
+			$h ^= ord( $s[$i] );
 		}
 		return $h;
 	}
