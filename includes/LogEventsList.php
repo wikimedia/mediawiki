@@ -112,9 +112,9 @@ class LogEventsList {
 			// Then it would have to be copied. Not certain what is more expensive.
 			$query = $this->getDefaultQuery();
 			$queryKey = "hide_{$type}_log";
-			$query[$queryKey] = $hideVal;
 
 			$hideVal = 1 - intval($val);
+			$query[$queryKey] = $hideVal;
 
 			$link = $this->skin->link(
 				$wgTitle,
