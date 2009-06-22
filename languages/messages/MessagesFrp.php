@@ -2009,6 +2009,13 @@ Protocolos recognus : <tt>$1</tt>.',
 'listusers-submit'   => 'Listar',
 'listusers-noresult' => 'Gins d’utilisator trovâ.
 Controlâd asse-ben les variantes de câssa.',
+'listusers-blocked'  => '(blocâ)',
+
+# Special:ActiveUsers
+'activeusers'          => 'Lista des utilisators actifs',
+'activeusers-count'    => '$1 {{PLURAL:$1|novél changement|novéls changements}}',
+'activeusers-from'     => 'Fâre vêre los utilisators dês :',
+'activeusers-noresult' => 'Gins d’utilisator trovâ.',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Jornal de les crèacions de comptos utilisator',

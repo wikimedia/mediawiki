@@ -584,6 +584,9 @@ Note that some pages may continue to be displayed as if you were still logged in
 'randomredirect'         => 'ܨܘܝܒ̈ܐ ܚܘܝܚ̈ܐ',
 'randomredirect-nopages' => 'ܠܝܬ ܨܘܝܒ̈ܐ ܒܚܩܠܐ ܕ "$1".',
 
+# Statistics
+'statistics-pages' => 'ܦܐܬܘܬ̈ܐ',
+
 'doubleredirects'            => 'ܨܘܝܒ̈ܐ ܥܦܝܦ̈ܐ',
 'double-redirect-fixed-move' => '[[$1]] ܐܫܬܢܝܬ.
 ܗܫܐ ܗܝ  ܨܘܝܒܐ ܠ [[$2]].',
@@ -671,6 +674,7 @@ Note that some pages may continue to be displayed as if you were still logged in
 'watch'            => 'ܪܗܝ',
 'watchthispage'    => 'ܪܗܝ ܗܕܐ ܦܐܬܐ',
 'unwatch'          => 'ܠܐ ܪܗܝ',
+'unwatchthispage'  => 'ܟܠܝ ܪܗܝܐ',
 'wlshowlast'       => 'ܚܘܝ $1 ܫܥܬ̈ܐ $2 ܝܘܡ̈ܐ ܐܚܪ̈ܝܐ $3',
 
 # Displayed when you click the "watch" button and it is in the process of watching
@@ -680,6 +684,8 @@ Note that some pages may continue to be displayed as if you were still logged in
 # Delete
 'deletepage'             => 'ܫܘܦ ܦܐܬܐ',
 'confirm'                => 'ܚܬܬ',
+'excontent'              => "ܚܒܝܫܬ̈ܐ ܗܘܬ: '$1'",
+'excontentauthor'        => "ܚܒܝܫܬ̈ܐ ܗܘܬ: '$1' (ܘܫܘܬܦܢܐ ܝܚܝܕܝܐ ܗܘܐ '[[Special:Contributions/$2|$2]]')",
 'exblank'                => 'ܦܐܬܐ ܣܦܝܩܬܐ ܗܘܐ',
 'delete-confirm'         => 'ܫܘܦ "$1"',
 'delete-legend'          => 'ܫܘܦ',

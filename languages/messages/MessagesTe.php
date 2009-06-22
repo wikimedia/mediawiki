@@ -1542,8 +1542,8 @@ $3 చెప్పిన కారణం: ''$2''",
 
 # Special:Categories
 'categories'                    => 'వర్గాలు',
-'categoriespagetext'            => 'ఈ క్రింది వర్గాలు పేజీలను లేదా మాధ్యమాలను కలిగివున్నాయి.
-[[Special:UnusedCategories|వాడుకలో లేని వర్గాలని]] ఇక్కడ చూపించలేదు.
+'categoriespagetext'            => 'ఈ క్రింది {{PLURAL:$1|వర్గం పేజీలను లేదా మాధ్యమాలను కలిగివుంది|వర్గాలు పేజీలను లేదా మాధ్యమాలను కలిగివున్నాయి}}.
+[[Special:UnusedCategories|వాడుకలో లేని వర్గాలని]] ఇక్కడ చూపించట్లేదు.
 [[Special:WantedCategories|కోరుతున్న వర్గాలను]] కూడా చూడండి.',
 'categoriesfrom'                => 'ఇక్కడనుండి మొదలుకొని వర్గాలు చూపించు:',
 'special-categories-sort-count' => 'సంఖ్యల ప్రకారం క్రమపరచు',
@@ -1930,7 +1930,7 @@ $NEWPAGE
 'ipblocklist-submit'              => 'వెతుకు',
 'blocklistline'                   => '$1, $2లు $3 ($4)ను నిరోధించారు.',
 'infiniteblock'                   => 'అనంతం',
-'expiringblock'                   => '$1తో కాలం చెల్లుతుంది',
+'expiringblock'                   => '$1 నాడు $2కి కాలం చెల్లుతుంది',
 'anononlyblock'                   => 'అజ్ఞాతవ్యక్తులు మాత్రమే',
 'noautoblockblock'                => 'ఆటోమాటిక్ నిరోధాన్ని అశక్తం చేసాం',
 'createaccountblock'              => 'ఖాతా తెరవడాన్ని నిరోధించాము',
