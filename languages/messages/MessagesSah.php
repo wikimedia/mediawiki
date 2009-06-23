@@ -752,18 +752,18 @@ long, which is longer than the maximum of $2 kilobytes. It cannot be saved.'''
 'rev-deleted-comment'         => '(ырытыы сотулунна)',
 'rev-deleted-user'            => '(кыттааччы аата сотулунна)',
 'rev-deleted-event'           => '(бэлиэтээһин дьайыыта сотулунна)',
-'rev-deleted-text-permission' => "Ыстатыйа бу барыла '''аһаҕас архыыптан сотуллубут'''. 
+'rev-deleted-text-permission' => "Ыстатыйа бу барыла '''сотуллубут'''. 
 Быһаарыыта  [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} манна] баар буолуон сөп.",
 'rev-deleted-text-unhide'     => "Сирэй ити барыла '''сотуллубут'''.
 Баҕар ол туһунан [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} сотуу сурунаалыгар] баара буолуо.
 Ол да буоллар эн дьаһабыл буоларыҥ быһыытынан [$1 барылы көрүөххүн сөп].",
-'rev-deleted-text-view'       => "Ыстатыйа бу торума '''аһаҕас архыыптан сотуллубут'''.
-Ол эрэн эн {{SITENAME}} дьаһабыла буоларыҥ быһыытынан ону көрүөххүн сөп.
+'rev-deleted-text-view'       => "Ыстатыйа бу барыла '''сотуллубут'''.
+Ол эрэн эн дьаһабыл буоларыҥ быһыытынан ону көрүөххүн сөп.
 Тоҕо сотуллубутун быһаарыыта [{{fullurl:{{ns:special}}:Log/delete|page={{FULLPAGENAMEE}}}} манна] баар буолуон сөп.",
-'rev-deleted-no-diff'         => "Барыллар бу сирэйдэрин көрөр кыаҕыҥ суох, тоҕо диэтэххэ сирэй биир барыла '''аһаҕас архыыптан сотуллубут'''.
-Сиһилии [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} сотуу сурунаалыгар] суруллубут буолуон сөп.",
+'rev-deleted-no-diff'         => "Барыллар ыккардыларынааҕы уратылары көрөр кыаҕыҥ суох, тоҕо диэтэххэ барыллартан биирэ '''сотуллубут'''.
+Сиһилии [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} бу сурунаалга] суруллубут буолуон сөп.",
 'rev-deleted-unhide-diff'     => "Сирэй барылларыттан биирдэстэрэ '''сотуллубут'''.
-Баҕар ол туһунан [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} сотуу сурунаалыгар] баара буолуо.
+Баҕар ол туһунан [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} бу сурунаалга] баара буолуо.
 Ол да буоллар эн дьаһабыл буоларыҥ быһыытынан [$1 барылы көрүөххүн сөп].",
 'rev-delundel'                => 'көрдөр/кистээ',
 'revisiondelete'              => 'Соторго/торуму төнүннэрэргэ',
@@ -1685,6 +1685,13 @@ PICT # misc.
 'listusersfrom'      => 'Мантан саҕалаан кыттааччылары көрдөр:',
 'listusers-submit'   => 'Көрдөр',
 'listusers-noresult' => 'Кыттааччылар булуллубатылар.',
+'listusers-blocked'  => '(хааччахтаммыт)',
+
+# Special:ActiveUsers
+'activeusers'          => 'Көхтөөх кыттааччылар тиһиктэрэ',
+'activeusers-count'    => '$1 саҥа {{PLURAL:$1|көннөрүүлээх|көннөрүү}}',
+'activeusers-from'     => 'Мантан саҕалаан кыттааччылары көрүү:',
+'activeusers-noresult' => 'Кыттааччылар көстүбэтилэр.',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Кыттааччылары бэлиэтиир сурунаал',
@@ -1900,7 +1907,7 @@ $NEWPAGE
 ** уларытыы мөккүөрүгэр аһара барыы
 ** элбэхтик туттуллар сирэй',
 'protect-edit-reasonlist'     => 'Уларытыыттан көмүскээһин төрүөтүн көннөрөн биэрии',
-'protect-expiry-options'      => '1 чаас:1 hour,1 күн:1 day,1 нэдиэлэ:1 week,2 нэдиэлэ:2 weeks,1 ый:1 month,3 ый:3 months,6 ый:6 months,1 сыл:6 months,1 сыл:1 year, больдьоҕо суох:infinite',
+'protect-expiry-options'      => '1 чаас:1 hour,1 күн:1 day,1 нэдиэлэ:1 week,2 нэдиэлэ:2 weeks,1 ый:1 month,3 ый:3 months,6 ый:6 months,1 сыл:1 year, болдьоҕо суох:infinite',
 'restriction-type'            => 'Маны оҥорор кыахтааххын:',
 'restriction-level'           => 'Киирии таһыма:',
 'minimum-size'                => 'Оччугуй',
@@ -1948,8 +1955,8 @@ $NEWPAGE
 'undeleteinvert'               => 'Хараардыллыбыты инверсиялаа',
 'undeletecomment'              => 'Хос быһаарыы:',
 'undeletedarticle'             => '"[[$1]]" төннөрүлүннэ',
-'undeletedrevisions'           => '$1 уларытыы төннөрүлүннэ',
-'undeletedrevisions-files'     => '$1 уларытыы уонна $2 билэ төннөрүлүннэ',
+'undeletedrevisions'           => '{{PLURAL:$1|1 уларытыы|$1 уларытыы}} төннөрүлүннэ',
+'undeletedrevisions-files'     => '{{PLURAL:$1|1 уларытыы|$1 уларытыы}}  уонна {{PLURAL:$2|1 билэ|$2 билэ}} төннөрүлүннэ',
 'undeletedfiles'               => '{{PLURAL:$1|1 билэ|$1 билэ}} төннөрүлүннэ',
 'cannotundelete'               => 'Төннөрүллүбэтэ; баҕар ким эрэ номнуо төннөрө охсубута буолуо.',
 'undeletedpage'                => "<big>'''$1 төннөрүлүннэ (төннөрүллүбүт)'''</big>
@@ -2898,22 +2905,22 @@ $1',
 'lag-warn-high'   => 'Синхронизация лаппа хойутуур буолан кэнники $1 {{PLURAL:$1|сөкүүндэ|сөкүүндэ}} иһинэн оҥоһуллубут уларытыылар манна көстүө суохтарын сөп.',
 
 # Watchlist editor
-'watchlistedit-numitems'       => 'Эн кэтиир испииһэгиҥ $1 пууннаах, ырытыы сирэйэ ааҕыллыбата.',
-'watchlistedit-noitems'        => 'Эн кэтиир испииһэгиҥ кураанах.',
-'watchlistedit-normal-title'   => 'Кэтэбил испииһэгин уларытыы',
-'watchlistedit-normal-legend'  => 'Кэтэбил испииһэгиттэн пууннары суох гыныы',
-'watchlistedit-normal-explain' => 'Манна кэтиир сирэйдэриҥ испииһэгэ көстөр.
-Биири эмит сотоору гынар буоллаххына аттыгар баар квадратикка бэлиэтэ туруор, онтон "Пууннары сот" тимэҕи баттаа.
-Өссө манна [[Special:Watchlist/raw|«сиикэй» испииһэги уларытыаххын]] сөп.',
+'watchlistedit-numitems'       => 'Эн кэтиир тиһигиҥ {{PLURAL:$1|1 суруктаах|$1 пууннаах}}, ырытыы сирэйэ ааҕыллыбата.',
+'watchlistedit-noitems'        => 'Эн кэтиир тиһигиҥ кураанах.',
+'watchlistedit-normal-title'   => 'Кэтэбил тиһигин уларытыы',
+'watchlistedit-normal-legend'  => 'Кэтэбил тиһигиттэн пууннары сотуу',
+'watchlistedit-normal-explain' => 'Манна кэтиир сирэйдэриҥ тиһигэ көстөр.
+Биири эмит сотоору гынар буоллаххына кинини бэлиэтээ, онтон "Пууннары сот" тимэҕи баттаа.
+Өссө манна [[Special:Watchlist/raw|«сиикэй» тиһиги уларытыаххын]] сөп.',
 'watchlistedit-normal-submit'  => 'Пууннары сот',
-'watchlistedit-normal-done'    => '$1 пуун эн кэтээн көрүүҥ испииһэгиттэн сотулунна:',
+'watchlistedit-normal-done'    => '{{PLURAL:$1|1 сурук|$1 пуун}} эн кэтээн көрүүҥ тиһигиттэн сотулунна:',
 'watchlistedit-raw-title'      => '"Сиикэй" кэтээн көрүү испииһэгин уларытыы',
 'watchlistedit-raw-legend'     => '"Сиикэй" кэтээн көрүү испииһэгин уларытыы',
 'watchlistedit-raw-explain'    => 'Манна кэтээн көрөр сирэйдэриҥ көстөллөр. Испииһэги строка эбэн-көҕүрэтэн уларытыаххын сөп. Уларытан бүтэн баран "Испииһэги бигэргэт" тимэҕи баттаа. Өссө испииһэги  [[Special:Watchlist/edit|уларытыы көннөрү ньыматын]] туһаныаххын сөп.',
 'watchlistedit-raw-titles'     => 'Пууннар:',
 'watchlistedit-raw-submit'     => 'Испииһэги бигэргэт',
 'watchlistedit-raw-done'       => 'Саҥа испииһэк бигэргэтилиннэ.',
-'watchlistedit-raw-added'      => 'Испииһэккэ $1 пуун эбилиннэ:',
+'watchlistedit-raw-added'      => 'Тиһиккэ {{PLURAL:$1|1 пуун эбилиннэ|$1 пуун эбии киирдэ}}:',
 'watchlistedit-raw-removed'    => 'Испииһэктэн {{PLURAL:$1|1 пуун|$1 пуун}} көҕүрээтэ:',
 
 # Watchlist editing tools

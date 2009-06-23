@@ -1890,7 +1890,7 @@ $1",
 'listusersfrom'      => 'Паказаць удзельнікаў, пачынаючы з:',
 'listusers-submit'   => 'Паказаць',
 'listusers-noresult' => 'Удзельнікі ня знойдзеныя.',
-'listusers-blocked'  => '(заблякаваны)',
+'listusers-blocked'  => '({{GENDER:$1|заблякаваны|заблякаваная}})',
 
 # Special:ActiveUsers
 'activeusers'          => 'Сьпіс актыўных удзельнікаў',

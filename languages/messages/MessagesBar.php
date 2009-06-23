@@ -124,6 +124,7 @@ $messages = array(
 'mypage'        => 'Eigne Seitn',
 'mytalk'        => 'Eigne Diskussion',
 'anontalk'      => 'Diskussionsseitn vo dera IP',
+'navigation'    => 'Navigazion',
 'and'           => '&#32;und',
 
 # Cologne Blue skin
@@ -156,6 +157,7 @@ $messages = array(
 'unprotectthispage' => 'Schutz aufhem',
 'newpage'           => 'Neiche Seitn',
 'talkpagelinktext'  => 'bschprecha',
+'personaltools'     => 'Peasönliche Weakzeig',
 'articlepage'       => 'Artikl',
 'talk'              => 'bschprecha',
 'toolbox'           => 'Weakzeigkistn',
@@ -171,6 +173,7 @@ $messages = array(
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Üba {{SITENAME}}',
 'aboutpage'            => 'Project:Üba_{{SITENAME}}',
+'copyright'            => 'Da Inhåit is unta da $1 vafügbåa.',
 'disclaimers'          => 'Impressum',
 'disclaimerpage'       => 'Project:Impressum',
 'edithelp'             => 'Bearbeitungshuifn',
@@ -272,6 +275,8 @@ Sie kinnan {{SITENAME}} iatzat anonym weitanutzn, oda si unta am selben oda am a
 'retypenew'   => 'Neis Passwort (no amoi):',
 
 # Edit page toolbar
+'bold_sample'   => 'Fetta Text',
+'bold_tip'      => 'Fetta Text',
 'italic_sample' => 'Kuasiva Text',
 'italic_tip'    => 'Kuasiva Text',
 'link_sample'   => 'Link-Text',
@@ -399,6 +404,7 @@ Wãnn'st di mid dem Thema auskennst, kãnnst [[:$1|de Seitn söiwa schreim]].",
 'nextn'                    => 'de nextn {{PLURAL:$1|$1}}',
 'viewprevnext'             => 'Zoag ($1) ($2) ($3)',
 'search-result-size'       => '$1 ({{PLURAL:$2|1 Woat|$2 Wöata}})',
+'search-redirect'          => '(Weidaleitung vu „$1“)',
 'search-suggest'           => 'Hädst „$1“ gmoant?',
 'search-interwiki-caption' => 'Schwestaprojekte',
 'search-interwiki-default' => '$1 Eagebnisse:',
@@ -455,6 +461,7 @@ Wãnn'st di mid dem Thema auskennst, kãnnst [[:$1|de Seitn söiwa schreim]].",
 'recentchanges'        => 'Letzte Ändarungen',
 'recentchanges-legend' => 'Ãnzeigeopzionen',
 'rclistfrom'           => 'Netta Änderungen seid $1 ãzoang.',
+'rcshowhideliu'        => 'Ãngmöidte Benutza $1',
 'rcshowhidemine'       => 'Eigne Beiträge $1',
 'rclinks'              => 'De letztn $1 Ändarungen vu de letztn $2 Tåg ãnzoang<br />$3',
 'diff'                 => 'Untaschied',
@@ -705,6 +712,7 @@ Da aktuelle Text vo da glöschtn Seitn is nur fia Administratoren zum seng.',
 'whatlinkshere-title'     => 'Seitn, de nåch „$1“ valinkn',
 'whatlinkshere-page'      => 'Seitn:',
 'isredirect'              => 'Weiterleitungsseitn',
+'isimage'                 => 'Dateilink',
 'whatlinkshere-hidetrans' => 'Voalãngeibindungen $1',
 'whatlinkshere-filters'   => 'Füita',
 
@@ -824,6 +832,7 @@ Vorschau der Änderungen an dieser Seite. Bitte vor dem Speichern benutzen!",
 'previousdiff' => '← Zum vorigen Versionsunterschied',
 
 # Media information
+'file-info-size'       => '($1 × $2 Pixl, Dateigreßn: $3, MIME-Typ: $4)',
 'file-nohires'         => '<small>Es gibt ka hechane Auflösung.</small>',
 'show-big-image'       => 'Version in hechana Auflösung',
 'show-big-image-thumb' => '<small>Greßn vu da Voaãnsicht: $1 × $2 Pixl</small>',
@@ -835,7 +844,8 @@ Vorschau der Änderungen an dieser Seite. Bitte vor dem Speichern benutzen!",
 'ilsubmit'          => 'Suach',
 
 # Metadata
-'metadata' => 'Metadatn',
+'metadata'          => 'Metadatn',
+'metadata-collapse' => "D'eaweidatn Deteus ausblendn",
 
 # EXIF tags
 'exif-gpsspeed' => 'Geschwindigkeit vom GPS-Empfänger',

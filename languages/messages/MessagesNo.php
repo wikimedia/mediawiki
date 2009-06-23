@@ -912,7 +912,7 @@ Grunnen som ble oppgitt av $3 er ''$2''",
 'rev-deleted-user'            => '(brukernavn fjernet)',
 'rev-deleted-event'           => '(fjernet loggoppføring)',
 'rev-deleted-text-permission' => "Denne revisjonen har blitt '''slettet'''. 
-Det kan være detaljer i [{{fullurl:{{#Special:Log}}/suppress|page={{PAGENAMEE}}}} slettingsloggen].",
+Det kan være detaljer i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} slettingsloggen].",
 'rev-deleted-text-unhide'     => "Denne sideversjonen er blitt '''slettet'''.
 Det kan være mer informasjon i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} sletteloggen].
 Som administrator kan du fremdeles [$1 se denne versjonen] hvis du ønsker å fortsette.",
@@ -1835,6 +1835,13 @@ Se også [[Special:WantedCategories|ønskede kategorier]].',
 'listusersfrom'      => 'Vis brukere fra og med:',
 'listusers-submit'   => 'Vis',
 'listusers-noresult' => 'Ingen bruker funnet.',
+'listusers-blocked'  => '(konto blokkert)',
+
+# Special:ActiveUsers
+'activeusers'          => 'Liste over aktiver brukere',
+'activeusers-count'    => '$1 nylige redigeringer',
+'activeusers-from'     => 'Vis brukere fra og med:',
+'activeusers-noresult' => 'Ingen brukere funnet.',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Brukeropprettelseslogg',
