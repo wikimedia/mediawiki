@@ -3419,7 +3419,15 @@ $wgAllowSpecialInclusion = true;
 $wgHTTPTimeout = 3;
 
 /**
- * Proxy to use for CURL requests.
+ * Servers placed behind an internal firewall may need an HTTP proxy
+ * to reach external resources such as remote image repositories and
+ * spam blacklist updates.
+ *
+ * If set, this HTTP proxy setting will be used for CURL requests.
+ * Currently this setting has no effect if CURL is unavailable.
+ *
+ * Include the IP or hostname and port number of the proxy,
+ * something like "proxy-address.example.com:8080"
  */
 $wgHTTPProxy = false;
 
