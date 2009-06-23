@@ -293,6 +293,7 @@ $messages = array(
 
 # Categories related messages
 'pagecategories'         => '{{PLURAL:$1|श्रेणी|श्रेण्यः }}',
+'hidden-categories'      => '{{PLURAL:$1|लोपिता श्रेणी|लोपिताः श्रेण्यः}}',
 'listingcontinuesabbrev' => 'आगामि.',
 
 'about'      => 'विषये',
@@ -336,6 +337,7 @@ $messages = array(
 'views'            => 'दृश्यरूपाणि',
 'toolbox'          => 'साधन-पिटकम्',
 'otherlanguages'   => 'अन्यासु भाषासु',
+'redirectedfrom'   => '($1 इत्यस्मात् अनुप्रेषितम्)',
 'lastmodifiedat'   => 'इदं पृष्ठं अन्तिमं वारं परिवर्तितम् : दिनांके $1, $2 वादने।',
 'jumpto'           => 'कूर्दयतु अत्र :',
 'jumptonavigation' => 'सुचलनम्',
@@ -350,6 +352,7 @@ $messages = array(
 'disclaimers'          => 'प्रत्याख्यानम्',
 'disclaimerpage'       => 'Project:सामान्यं प्रत्याख्यानम्',
 'edithelp'             => 'संपादनार्थं सहाय्यम्',
+'edithelppage'         => 'Help:संपादनम्',
 'helppage'             => 'Help:सहाय्य',
 'mainpage'             => 'मुखपृष्ठम्',
 'mainpage-description' => 'मुख्यपृष्ठम्',
@@ -359,7 +362,11 @@ $messages = array(
 'retrievedfrom'   => '"$1" इत्यस्मात् गृहीतम्',
 'newmessageslink' => 'नूतनाः संदेशाः',
 'editsection'     => 'सम्पादयतु',
+'editold'         => 'संपादनम्',
+'viewsourcelink'  => 'स्रोतसम् दर्शयतु',
 'editsectionhint' => 'विभागं संपादयतु: $1',
+'toc'             => 'अनुक्रमणिका',
+'showtoc'         => 'दर्शयतु',
 'hidetoc'         => 'लोपयतु',
 'feedlinks'       => 'अनुबन्ध:',
 'site-rss-feed'   => '$1 आरएसएस पूरणम्',
@@ -370,6 +377,7 @@ $messages = array(
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'     => 'पृष्ठम्',
+'nstab-user'     => 'प्रयोक्तृ-पृष्ठम्',
 'nstab-special'  => 'विशिष्टं पृष्ठम्',
 'nstab-image'    => 'संचिका',
 'nstab-template' => 'बिंबधर',
@@ -394,67 +402,115 @@ $messages = array(
 # Edit page toolbar
 'bold_sample'     => 'स्थूलाक्षरित-पाठः',
 'italic_sample'   => 'इटालिक-पाठः',
+'italic_tip'      => 'इटालिकः पाठः',
 'link_sample'     => 'संबंधनस्य शीर्षकम्',
 'link_tip'        => 'अन्तर्गतं संबंधनम्',
+'extlink_sample'  => 'http://www.example.com संबंधनस्य शीर्षकम्',
 'extlink_tip'     => 'बाह्य-संबंधनम् (अवश्यमेव  http:// इति पूर्वलग्नं योक्तव्यम्)',
 'headline_sample' => 'शीर्षकम्',
 'headline_tip'    => 'द्वितीय-स्तरीयं शीर्षकम्',
+'math_sample'     => 'गणितीयं सूत्रम् अत्र निवेशयतु',
+'math_tip'        => 'गणितीयम् सूत्रम् (LaTeX)',
+'nowiki_sample'   => 'अप्रारूपीकृतं पाठम् अत्र निवेशयतु',
+'nowiki_tip'      => 'विकिभाषानुसारेण मा परिवर्तयतु',
+'image_tip'       => 'अन्तर्गता संचिका',
+'media_tip'       => 'संचिका-संबंधनम्',
 'sig_tip'         => 'भवतः हस्ताक्षराणि समयेन सह',
 'hr_tip'          => 'क्षैतिज-रेखा (न्यूनतया प्रयोक्तव्या)',
 
 # Edit pages
-'summary'     => 'सारांश:',
-'minoredit'   => 'इदं लघु परिवर्तनम्',
-'watchthis'   => 'इदं पृष्ठं निरीक्षताम्',
-'savearticle' => 'पृष्ठं रक्षतु',
-'preview'     => 'प्राग्दृश्यम्',
-'showpreview' => 'प्राग्दृश्यं दर्शयतु',
-'newarticle'  => '(नविन)',
+'summary'            => 'सारांश:',
+'subject'            => 'विषयः/शीर्षकम् :',
+'minoredit'          => 'इदं लघु परिवर्तनम्',
+'watchthis'          => 'इदं पृष्ठं निरीक्षताम्',
+'savearticle'        => 'पृष्ठं रक्षतु',
+'preview'            => 'प्राग्दृश्यम्',
+'showpreview'        => 'प्राग्दृश्यं दर्शयतु',
+'showdiff'           => 'परिवर्तनानि दर्शयतु',
+'anoneditwarning'    => "'''सावधानो भवतु:''' भवता प्रवेशं न कृतम्। अस्य पृष्ठस्य इतिहासे भवतः आइ-पी-संकेतः अंकितः भविष्यति।",
+'newarticle'         => '(नविन)',
+'editing'            => '$1 संपाद्यते',
+'template-protected' => '(सुरक्षितम्)',
 
 # History pages
+'currentrev-asof'     => 'वर्तमती आवृत्तिः $1 इति समये',
+'revisionasof'        => '$1 इत्यस्य आवृत्तिः',
 'previousrevision'    => '← पुरातनाः आवृत्तयः',
 'currentrevisionlink' => 'सद्यःकालीना आवृत्तिः',
 'cur'                 => 'नवतरम्',
 'last'                => 'पूर्वतनम्',
 'page_first'          => 'प्रथम्‌',
 'page_last'           => 'अन्तिमम्',
+'histfirst'           => 'पुरातनतमम्',
+'histlast'            => 'नूतनतमम्',
 
 # Revision feed
 'history-feed-item-nocomment' => '$1 उप $2',
 
 # Revision deletion
-'rev-delundel' => 'दर्शयतु/लोपयतु',
+'rev-delundel'   => 'दर्शयतु/लोपयतु',
+'revdel-restore' => 'दृश्यतां परिवर्तयतु',
+
+# Merge log
+'revertmerge' => 'पृथक् करोतु',
 
 # Diffs
-'lineno'   => 'पंक्तिः $1:',
-'editundo' => 'अकरोतु',
+'difference' => '(आवृत्तीनां मध्ये अन्तरम्)',
+'lineno'     => 'पंक्तिः $1:',
+'editundo'   => 'अकरोतु',
 
 # Search results
 'searchresults'             => 'अन्वेषण-फलानि',
 'searchresults-title'       => '"$1" इत्यस्य कृते अन्वेषण-फलानि',
+'notitlematches'            => 'न कस्यापि पृष्ठस्य शीर्षकम् अस्य समम्।',
+'notextmatches'             => 'न कस्यापि पृष्ठस्य पाठः अस्य सममस्ति',
+'prevn'                     => 'पूर्वतनानि {{PLURAL:$1|$1}}',
 'nextn'                     => 'आगामि{{PLURAL:$1|$1}}',
 'viewprevnext'              => 'दर्शयतु ($1) ($2) ($3)',
 'search-result-size'        => '$1 ({{PLURAL:$2|1 शब्दम्|$2 शब्दे}})',
+'search-redirect'           => '($1 इतीदं अनुप्रेषितम्)',
+'search-section'            => '(विभागः $1)',
+'search-suggest'            => 'किं भवतः आशयः एवमस्ति : $1',
+'search-interwiki-default'  => '$1 परिणामाः :',
+'search-interwiki-more'     => '(अधिकानि)',
 'search-mwsuggest-enabled'  => 'उपक्षेपेभ्यः सह',
 'search-mwsuggest-disabled' => 'नात्र उपक्षेपाः',
+'showingresultstotal'       => "अधस्तात् {{PLURAL:$4| '''$1''' परिणामः '''$3''' इत्येभ्यः प्रदर्शितः|'''$1 - $2''' परिणामाः '''$3''' इत्येभ्यः प्रदर्शिताः}}",
+'nonefound'                 => "'''सूचना''': स्वतः अत्र केषुचिदेव नामाकाशेषु अन्वेषणं क्रियते।
+
+सकले घटके अन्वेषणं कर्तुं स्व अन्वेषणपदेभ्यः पूर्वं ''all:'' इति योजयतु, अथवा इष्टं नामाकाशं पूर्वलग्नरूपेण योजयतु।",
 'powersearch'               => 'प्रगतम् अन्वेषणम्',
 'powersearch-legend'        => 'प्रगतम् अन्वेषणम्',
+'powersearch-ns'            => 'नामाकाशेषु अन्विष्यतु :',
 'powersearch-redir'         => 'अनुप्रेषणानां सूचिकां दर्शयतु।',
+'powersearch-field'         => 'इत्यस्मै अन्विष्यतु',
 
 # Preferences page
-'yourlanguage' => 'भाषा:',
-'email'        => 'विद्युत्पत्रव्यवस्था',
+'mypreferences' => 'मम वरीयांसि',
+'yourlanguage'  => 'भाषा:',
+'email'         => 'विद्युत्पत्रव्यवस्था',
+
+# Groups
+'group-sysop' => 'प्रबंधकाः',
+
+'grouppage-sysop' => '{{ns:project}}:प्रचालकाः',
 
 # Recent changes
-'recentchanges'    => 'नवतमानि परिवर्तनानि',
-'rcshowhideanons'  => 'अनामकाः योजकाः $1',
-'hist'             => 'इति.',
-'hide'             => 'लोपयतु',
-'show'             => 'दर्शयतु',
-'minoreditletter'  => 'लघु',
-'newpageletter'    => 'न',
-'boteditletter'    => 'य',
-'rc-enhanced-hide' => 'विवरणानि विलोपयतु',
+'recentchanges'      => 'नवतमानि परिवर्तनानि',
+'rcshowhideminor'    => '$1 लघूनि संपादनानि',
+'rcshowhidebots'     => '$1 बोट् इत्येतानि',
+'rcshowhideliu'      => '$1 प्रवेशिताः प्रयोक्तारः',
+'rcshowhideanons'    => 'अनामकाः योजकाः $1',
+'rcshowhidemine'     => '$1 मम संपादनानि',
+'diff'               => 'अन्तरम्',
+'hist'               => 'इति.',
+'hide'               => 'लोपयतु',
+'show'               => 'दर्शयतु',
+'minoreditletter'    => 'लघु',
+'newpageletter'      => 'न',
+'boteditletter'      => 'बो',
+'rc-enhanced-expand' => 'विवरणानि दर्शयतु (जावास्क्रिप्टम् आवश्यकम्)',
+'rc-enhanced-hide'   => 'विवरणानि विलोपयतु',
 
 # Recent changes linked
 'recentchangeslinked'         => 'पृष्ठ-सम्बन्धि-परिवर्तनानि',
@@ -471,11 +527,20 @@ $messages = array(
 'imgfile' => 'संचिका',
 
 # File description page
-'file-anchor-link'   => 'संचिका',
-'filehist-deleteone' => 'विलोप',
-'filehist-current'   => 'नवीनतमम्',
-'filehist-datetime'  => 'दिनांकः/समयः',
-'filehist-comment'   => 'टिप्पणी',
+'file-anchor-link'    => 'संचिका',
+'filehist'            => 'संचिकायाः इतिहासः',
+'filehist-help'       => 'संचिका तत्समये कीदृशी आसीदिति द्रष्टुं दिनांकः/समयः इत्यस्मिन् नोदयतु।',
+'filehist-deleteone'  => 'विलोप',
+'filehist-current'    => 'नवीनतमम्',
+'filehist-datetime'   => 'दिनांकः/समयः',
+'filehist-thumb'      => 'अंगुष्ठनखाकारम्',
+'filehist-thumbtext'  => '$1 समये विद्यमत्याः आवृत्तेः अंगुष्ठनखाकारम्',
+'filehist-user'       => 'प्रयोक्ता',
+'filehist-dimensions' => 'आयामाः',
+'filehist-comment'    => 'टिप्पणी',
+'imagelinks'          => 'संचिका-संबंधनानि',
+'linkstoimage'        => '{{PLURAL:$1|अधोलिखितं पृष्ठं| अधोलिखितानि $1 पृष्ठाणि}} इदं संचिकां प्रति संबंधनं {{PLURAL:$1|करोति| कुर्वन्ति}}।',
+'sharedupload'        => 'इयं संचिका $1 इत्यस्मादस्ति, एषा खलु अन्येष्वपि प्रकल्पेषु प्रयोक्तुं शक्यते।',
 
 # Random page
 'randompage' => 'अविशिष्ट पृष्ठ',
@@ -484,15 +549,21 @@ $messages = array(
 'statistics' => 'सांख्यिकी',
 
 # Miscellaneous special pages
-'nbytes'       => '$1 {{PLURAL:$1|बैटम्|बैटानि}}',
-'longpages'    => 'दीर्घाणि पृष्ठाणि',
-'newpages'     => 'नूतनानि पृष्ठाणि',
-'ancientpages' => 'प्राचीनतम् पृष्ठा',
-'move'         => 'नाम परिवर्तयतु',
-'movethispage' => 'इदं पृष्ठं चालयतु',
+'nbytes'        => '$1 {{PLURAL:$1|बैटम्|बैटानि}}',
+'nmembers'      => '$1 {{PLURAL:$1|सदस्यः|सदस्याः}}',
+'longpages'     => 'दीर्घाणि पृष्ठाणि',
+'newpages'      => 'नूतनानि पृष्ठाणि',
+'ancientpages'  => 'प्राचीनतम् पृष्ठा',
+'move'          => 'नाम परिवर्तयतु',
+'movethispage'  => 'इदं पृष्ठं चालयतु',
+'pager-newer-n' => '{{PLURAL:$1|नूतनतरम् 1|नूतनतराणि $1}}',
+'pager-older-n' => '{{PLURAL:$1|पुरातनतरम् 1|पुरातनतराणि $1}}',
 
 # Book sources
 'booksources-go' => 'प्रस्थानम्',
+
+# Special:Log
+'log' => 'लॉग् इत्येतानि',
 
 # Special:AllPages
 'allpages'       => 'सकलानि पृष्ठाणि',
@@ -508,24 +579,59 @@ $messages = array(
 'emailmessage' => 'सन्देशः',
 
 # Watchlist
-'watch'         => 'निरीक्षताम्',
-'watchthispage' => 'इदं पृष्ठं निरीक्षताम्',
+'mywatchlist'      => 'मम निरीक्षासूचिका',
+'addedwatch'       => 'निरीक्षासूचिकायां योजितम्',
+'addedwatchtext'   => 'भवतः [[Special:Watchlist|ध्यानसूचिकायां]] "[[:$1]]" इत्येतत् योजितमस्ति।
+इदानींप्रभृति अस्मिन् पृष्ठे तथा अस्य चर्चापृष्ठे सन्तः परिवर्तनानि भवतः निरीक्षासूचिकायां द्रक्ष्यन्ते तथा च [[Special:RecentChanges|सद्यःपरिवर्तितानां सूचिकायां]] इदं पृष्ठं स्थूलाक्षरैः द्रक्ष्यते, यस्मात् भवान् सरलतया इदं पश्यतु <p>निरीक्षासूचिकातः निराकर्तुमिच्छति चेत्, "मा निरीक्षताम्" इत्यसमिन् नोदयतु।',
+'removedwatch'     => 'निरीक्षासूचिकातः निराकृतम्।',
+'removedwatchtext' => '"[[:$1]]" इति पृष्ठं भवतः निरीक्षासूचिकातः निराकृतमस्ति।',
+'watch'            => 'निरीक्षताम्',
+'watchthispage'    => 'इदं पृष्ठं निरीक्षताम्',
+'unwatch'          => 'मा निरीक्षताम्',
 
 # Displayed when you click the "watch" button and it is in the process of watching
-'watching' => 'निरीक्षते...',
+'watching'   => 'निरीक्षते...',
+'unwatching' => 'निरीक्षाम् अपाकरोति...',
 
 # Delete
-'actioncomplete' => 'कार्य समापनम्',
+'deletepage'            => 'पृष्ठं निराकरोतु।',
+'actioncomplete'        => 'कार्य समापनम्',
+'deletedtext'           => '"<nowiki>$1</nowiki>" इत्येतद् अपाकृतमस्ति।
+सद्यःकृतानां अपाकरणानाम् अभिलेखः $2 इत्यस्मिन् पश्यतु।',
+'deletedarticle'        => '"[[$1]]" अपाकृतमस्ति।',
+'dellogpage'            => 'अपाकरणानां सूचिका',
+'deletecomment'         => 'निराकरणस्य कारणम् :',
+'deleteotherreason'     => 'अपरं/अतिरिक्तं कारणम् :',
+'deletereasonotherlist' => 'अपरं कारणम्',
+
+# Rollback
+'rollbacklink' => 'पूर्ण-प्रतिगमनम्',
 
 # Protect
-'protectcomment'          => 'टिप्पणी:',
-'protect-level-sysop'     => 'प्रबंधकाः केवलाः',
-'protect-summary-cascade' => 'सोपानात्मकम्',
-'restriction-type'        => 'अनुमतिः:',
+'protectcomment'              => 'टिप्पणी:',
+'protect-cascadeon'           => 'इदं पृष्ठं वर्तमत्काले सुरक्षितमस्ति, यत इदं {{PLURAL:$1|निम्नलिखिते पृष्ठे |निम्नलिखितेषु पृष्ठेषु}} समाहितमस्ति {{PLURAL:$1|यस्मिन्|येषु}} सोपानात्मिका सुरक्षा प्रभाविनी अस्ति। भवान् अस्य पृष्ठस्य सुरक्षा-स्तरं परिवर्तयितुं शक्नोति, परं तेन सोपानात्मिका-सुरक्षा न परिवर्तयिष्यति।',
+'protect-default'             => 'सर्वान् प्रयोक्तॄन् अनुज्ञापयतु।',
+'protect-fallback'            => '"$1" अनुज्ञा आवश्यकी।',
+'protect-level-autoconfirmed' => 'नूतनान् तथा अपंजीकृतान् प्रयोक्तॄन् निरुध्नातु।',
+'protect-level-sysop'         => 'प्रबंधकाः केवलाः',
+'protect-summary-cascade'     => 'सोपानात्मकम्',
+'protect-expiring'            => 'अवसानम् $1 (UTC)',
+'protect-cascade'             => 'अस्मिन् पृष्ठे समाहितानि पृष्ठाणि सुरक्षितानि करोतु (सोपानात्मिका सुरक्षा)।',
+'protect-cantedit'            => 'भवान् अस्य पृष्ठस्य सुरक्षा-स्तरं परिवर्तयितुं न शक्नोति, यतो भवान् इदं पृष्ठं संपादयितुं अनुज्ञां न धारयति।',
+'restriction-type'            => 'अनुमतिः:',
+'restriction-level'           => 'सुरक्षा-स्तरः :',
+
+# Undelete
+'undeletelink' => 'दर्शयतु/पुनःस्थापयतु',
 
 # Namespace form on various pages
 'namespace'      => 'नामाकाशः',
+'invert'         => 'चयनं विपरीतीकरोतु',
 'blanknamespace' => '(मुख्यः)',
+
+# Contributions
+'contributions' => 'प्रयोक्तॄणां योगदानानि',
+'mycontris'     => 'मम योगदानानि',
 
 'sp-contributions-talk' => 'संवाद',
 
@@ -535,7 +641,25 @@ $messages = array(
 
 # Block/unblock
 'blocklink'    => 'अवरुध्नातु',
+'unblocklink'  => 'अनिरुध्नातु',
 'contribslink' => 'योगदानम्',
+
+# Move page
+'movearticle'    => 'पृष्ठं चालयतु :',
+'newtitle'       => 'नूतनं शीर्षकं प्रति :',
+'move-watch'     => 'इदं पृष्ठं निरीक्षताम्।',
+'movepagebtn'    => 'पृष्ठं चालयतु।',
+'pagemovedsub'   => 'चालनं सिद्धम्।',
+'movepage-moved' => '<big>\'\'\'"$1" इत्येतद् "$2" इत्येतद् प्रति चालितमस्ति \'\'\'</big>',
+'articleexists'  => 'अनेन नाम्ना पृष्ठमेकं पूर्वेऽपि विद्यते, अथवा भवता चितं नाम तु अमान्यमस्ति। कृपया इतरं किमपि नाम चिनोतु।',
+'talkexists'     => "'''पृष्ठं साफल्येन चालितमस्ति, परं चर्चापृष्ठं चालयितुं न शक्यम्, यतो नवेऽपि पृष्ठे चर्चापृष्ठं विद्यते। कृपया तं स्वयमेव चालयतु।'''",
+'movedto'        => 'इदं प्रति चालितम्।',
+'movetalk'       => 'सहगामिनं चर्चापृष्ठं चालयतु।',
+'movereason'     => 'कारणम् :',
+'revertmove'     => 'पुरातनीं आवृत्तिं प्रति गमयतु',
+
+# Export
+'export' => 'पृष्ठाणां निर्यातं करोतु',
 
 # Namespace 8 related
 'allmessages'     => 'व्यवस्था सन्देशानि',
@@ -548,12 +672,21 @@ $messages = array(
 'import-comment' => 'व्याखान:',
 
 # Tooltip help for the actions
+'tooltip-pt-userpage'           => 'भवतः प्रयोक्तृ-पृष्ठम्',
+'tooltip-pt-mytalk'             => 'भवतः संभाषण-पृष्ठम्',
+'tooltip-pt-preferences'        => 'भवतः वरीयांसि',
+'tooltip-pt-watchlist'          => 'भवद्भिः निरीक्ष्यमतां पृष्ठाणां सूचिका',
+'tooltip-pt-mycontris'          => 'भवतः योगदानानां सूचिका',
 'tooltip-pt-login'              => 'भवान् लेखायां प्रविशतु इति श्रेयः परन्तु नावश्यकम्',
 'tooltip-pt-logout'             => 'बहिर्गच्छतु',
 'tooltip-ca-talk'               => 'घटक-पृष्ठ-विषये चर्चा',
 'tooltip-ca-edit'               => 'भवान् इदं पृष्ठं संपादयितुं शक्नोति। कृपया रक्षणात्पूर्वं प्राग्दृश्यं पश्यतु।',
+'tooltip-ca-addsection'         => 'नूतनं विभागम् आरभतु',
 'tooltip-ca-viewsource'         => 'इदं पृष्ठं सुरक्षितं विद्यते। भवान् अस्य स्रोतसम् दृष्टुं शक्नोति।',
 'tooltip-ca-history'            => 'अस्य पृष्ठस्य पुरातनाः आवृत्तयः',
+'tooltip-ca-move'               => 'इदं पृष्ठं चालयतु',
+'tooltip-ca-watch'              => 'इदं पृष्ठं स्व-निरीक्षासूचिकायां योजयतु।',
+'tooltip-ca-unwatch'            => 'इदं पृष्ठं स्व-निरीक्षासूचिकातः अपाकरोतु',
 'tooltip-search'                => '{{SITENAME}} अन्वेषणं करोति',
 'tooltip-search-go'             => 'एतत्-शीर्षकीयम् पृष्ठं गच्छतु चेत् तद्विद्यते',
 'tooltip-search-fulltext'       => 'एतत्पाठार्थम् पृष्ठेषु अन्विष्यतु',
@@ -566,14 +699,21 @@ $messages = array(
 'tooltip-n-help'                => 'निराकरण-स्थानम्',
 'tooltip-t-whatlinkshere'       => 'सर्वेषामपि एतत्संबद्धानां पृष्ठानां सूची',
 'tooltip-t-recentchangeslinked' => 'अस्मात् पृष्ठात् संबंद्धीकृतेषु पृष्ठेषु नवीनतमानि परिवर्तनानि',
+'tooltip-feed-rss'              => 'अस्मै पृष्ठाय आर-एस-एस-पूरणम्',
+'tooltip-feed-atom'             => 'अस्मै पृष्ठाय ऍटम-पूरणम्',
 'tooltip-t-upload'              => 'संचिकाः उद्भारयतु',
 'tooltip-t-specialpages'        => 'सर्वेषां विशिष्ट-पृष्ठानां सूचिका',
 'tooltip-t-print'               => 'अस्य पृष्ठस्य मुद्रणीया आवृत्तिः',
 'tooltip-t-permalink'           => 'पृष्ठस्य इमाम् आवृत्तिं प्रति स्थायि संबंधनम्',
 'tooltip-ca-nstab-main'         => 'घटक-पृष्ठं पश्यतु',
+'tooltip-ca-nstab-user'         => 'प्रयोक्तॄ-पृष्ठं दर्शयतु',
 'tooltip-ca-nstab-special'      => 'इदमेकं विशिष्टं पृष्ठम्, भवान् इदं पृष्ठं संपादयितुं न शक्नोति।',
+'tooltip-ca-nstab-image'        => 'संचिकायाः पृष्ठं पश्यतु',
+'tooltip-minoredit'             => 'इदं परिवर्तनं लघु-परिवर्तन-रूपेण दर्शयतु',
 'tooltip-save'                  => 'परिवर्तनानि रक्षतु',
+'tooltip-preview'               => 'भवता कृतानि परिवर्तनानि प्राग्दृश्यरूपेण पश्यतु, कृपया रक्षणात्पूर्वं इदं प्रयोजयतु।',
 'tooltip-diff'                  => 'पाठे भवता कृतानि परिवर्तनानि पश्यतु।',
+'tooltip-watch'                 => 'इदं पृष्ठं स्व-निरीक्षासूचिकायां योजयतु',
 
 # Skin names
 'skinname-standard'    => 'पूर्व',
@@ -582,6 +722,13 @@ $messages = array(
 'skinname-monobook'    => 'पुस्तक',
 'skinname-myskin'      => 'मे चर्मन्',
 'skinname-chick'       => 'Chick',
+
+# Browsing diffs
+'previousdiff' => '← पुरातनतरं संपादनम्',
+
+# Media information
+'file-info-size' => '($1 × $2 पिक्सेलानि, संचिकायाः आकारः: $3, MIME-प्रकारः: $4)',
+'show-big-image' => 'पूर्णं विभेदनम्',
 
 # Special:NewFiles
 'newimages' => 'नूतन-संचिकानां वीथिका',
@@ -592,6 +739,9 @@ $messages = array(
 केवलानि सूचिकान्तर्गतानि वस्तूनि विचारितानि सन्ति (* इत्यस्मात् आरभमत्यः पंक्तयः)। पंक्त्यां प्रथमं संबंधनं त्रुटिपूर्णां संचिकां प्रति भवतु।
 
 पंक्तौ परवर्तिनः संबंधनानि अपवादान् इव विचार्यन्ते, अर्थात् तादृशानि पृष्ठाणि यत्र संचिकैषा भवितुं शक्नोति।',
+
+# Metadata
+'metadata' => 'अधिसमंकम्',
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'सर्वाणि',

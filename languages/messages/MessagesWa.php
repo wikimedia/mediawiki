@@ -737,7 +737,7 @@ Les ôtes manaedjeus so ç' wiki ci pôront todi vey li contnou catchî eyet l' 
 'rclinks'                           => 'Mostrer les $1 dierins candjmints des dierins $2 djoûs.<br />$3',
 'diff'                              => 'dif.',
 'hist'                              => 'ist.',
-'hide'                              => 'catch.',
+'hide'                              => 'Muchyî',
 'show'                              => 'håy.',
 'number_of_watching_users_pageview' => '[shuvou pa $1 {{PLURAL:$1|uzeu|uzeus}}]',
 'rc_categories'                     => 'Limiter åzès categoreyes (separer avou des «|»)',
@@ -815,16 +815,20 @@ ou co po les sons
 
 # File description page
 'file-anchor-link'          => 'Imådje',
+'filehist'                  => 'Istwere do fitchî',
+'filehist-help'             => "Clitchîz so ene date ey ene eure po vey kimint ki l' fitchî esteut adon.",
 'filehist-deleteall'        => 'disfacer ttafwait',
 'filehist-deleteone'        => 'disfacer çouci',
 'filehist-datetime'         => 'Date/Eure',
 'filehist-user'             => 'Uzeu',
-'filehist-filesize'         => 'Grandeu do fitchî',
+'filehist-filesize'         => 'Grandeur do fitchî',
 'filehist-comment'          => 'Comintaire',
 'imagelinks'                => 'Loyéns viè ciste imådje chal',
 'linkstoimage'              => '{{PLURAL:$1|Li pådje shuvante|Les pådjes shuvantes}} eployèt ciste imådje chal:',
 'nolinkstoimage'            => "I n' a nole pådje k' eploye ciste imådje chal.",
 'sharedupload'              => "Ci fitchî ci est so on ridant pårtaedjî ey i s' pout k' i soeye eployî pa ds ôtes pordjets.",
+'sharedupload-desc-there'   => 'Ci fitchî ci provént di $1; si pout i esse reployî dins des ôtes pordjets "Wiki". Loukîz [$2 si pådje di discrijhaedje] po-z esse mî racsegnî.',
+'sharedupload-desc-here'    => 'Ci fitchî ci provént di $1; si pout i esse eployî divins des ôtes pordjets Wiki. Li discrijhaedje di [$2 si pådje di discrijhaedje] låvå est håynêye cial ådzo.',
 'uploadnewversion-linktext' => 'Eberweter ene nouve modêye di ci fitchî ci',
 
 # File reversion
@@ -861,6 +865,7 @@ ou co po les sons
 # Statistics
 'statistics'              => 'Sitatistikes',
 'statistics-header-users' => 'Sitatistikes des uzeus',
+'statistics-pages-desc'   => 'Totes les pådjes do "Wiki", minme les copinaedjes, les rdjiblaedjes, evnd.',
 'statistics-mostpopular'  => 'Pådjes les pus veyowes',
 
 'disambiguations'     => "Pådjes d' omonimeye",
@@ -1136,11 +1141,16 @@ Loukîz l' [[Special:Log/delete|djournå des disfaçaedjes]] po ene djivêye des
 'sp-contributions-submit'     => 'Cweri',
 
 # What links here
-'whatlinkshere'       => 'Pådjes ki loynut chal',
-'whatlinkshere-title' => 'Pådjes ki loynut aviè « $1 »',
-'linkshere'           => 'Les pådjes ki shuvèt ont des loyéns viè cisse ci:',
-'nolinkshere'         => 'Nole pådje avou des loyéns viè cisse ci.',
-'isredirect'          => 'pådje di redjiblaedje',
+'whatlinkshere'            => 'Pådjes ki loynut chal',
+'whatlinkshere-title'      => 'Pådjes ki loynut aviè « $1 »',
+'linkshere'                => 'Les pådjes ki shuvèt ont des loyéns viè cisse ci:',
+'nolinkshere'              => 'Nole pådje avou des loyéns viè cisse ci.',
+'isredirect'               => 'pådje di redjiblaedje',
+'whatlinkshere-links'      => '← loyaedjes',
+'whatlinkshere-hideredirs' => '$1 ridjiblaedjes',
+'whatlinkshere-hidelinks'  => '$1 loyaedjes',
+'whatlinkshere-hideimages' => "$1 fitchîs k' eploynut cist imådje ci",
+'whatlinkshere-filters'    => 'Passettes',
 
 # Block/unblock
 'blockip'                     => 'Bloker èn uzeu',
@@ -1237,6 +1247,7 @@ L' årtike såme «[[:$1]]» egzistêye dedja. El voloz vs disfacer po vs permet
 'delete_and_move_confirm' => "Oyi, disfacer l' pådje",
 'delete_and_move_reason'  => 'Disfacé po permete on displaeçaedje',
 'selfmove'                => 'Les tites sourdant et såme sont les minmes; ene pådje ni pout nén esse displaeceye so leye minme.',
+'fix-double-redirects'    => "Rapontyî les rdjiblaedjes ki loynut aviè l' mwaisse tite",
 
 # Export
 'export'          => 'Ricopyî des pådjes foû',
@@ -1392,9 +1403,11 @@ Totes les accions di rcopiaedje eterwiki sont metowes e [[Special:Log/import|djo
 'nextdiff'     => 'Diferinces des candjmints shuvants →',
 
 # Media information
-'mediawarning' => "'''Asteme''': Ci fitchî chal pôreut esse evirussé, si vos l' enondez vos pôrîz infecter l' sistinme da vosse.<hr />",
-'imagemaxsize' => "Limite pol håynaedje ezès pådjes d' imådje:",
-'thumbsize'    => 'Grandeu po les imådjetes (thumb):',
+'mediawarning'   => "'''Asteme''': Ci fitchî chal pôreut esse evirussé, si vos l' enondez vos pôrîz infecter l' sistinme da vosse.<hr />",
+'imagemaxsize'   => "Limite pol håynaedje ezès pådjes d' imådje:",
+'thumbsize'      => 'Grandeu po les imådjetes (thumb):',
+'file-info-size' => '($1 × $2 picsels, groxheur do fitchî: $3, del sôre "MIME": $4)',
+'show-big-image' => 'Pus grande imådje',
 
 # Special:NewFiles
 'newimages'             => 'Galreye des nouvès imådjes',

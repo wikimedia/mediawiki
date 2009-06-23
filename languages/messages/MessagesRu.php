@@ -1147,7 +1147,7 @@ $1",
 
 # Search results
 'searchresults'                    => 'Результаты поиска',
-'searchresults-title'              => 'Результаты поиска «$1»',
+'searchresults-title'              => 'Поиск «$1»',
 'searchresulttext'                 => 'Для получения более подробной информации о поиске на страницах проекта, см. [[{{MediaWiki:Helppage}}|справочный раздел]].',
 'searchsubtitle'                   => 'По запросу «[[:$1]]» ([[Special:Prefixindex/$1|страницы, начинающиеся с этого названия]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|ссылающиеся на это название]])',
 'searchsubtitleinvalid'            => 'По запросу «$1»',

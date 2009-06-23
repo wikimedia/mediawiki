@@ -991,16 +991,16 @@ Prova att [[Special:Search|söka på wikin]] för relevanta nya sidor.',
 'rev-deleted-user'            => '(användarnamn borttaget)',
 'rev-deleted-event'           => '(loggåtgärd borttagen)',
 'rev-deleted-text-permission' => "Denna version av sidan har '''raderats'''.
-Det kan finnas mer information i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} borttagningsloggen].",
+Det kan finnas mer information i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} undanhållandeloggen].",
 'rev-deleted-text-unhide'     => "Den här versionen av sidan har '''raderats'''.
-Det kan finnas mer information i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} borttagningsloggen].
+Det kan finnas mer information i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} undanhållandeloggen].
 Som administratör kan du fortfarande [$1 se den här versionen] om du önskar att fortsätta.",
 'rev-deleted-text-view'       => "Denna version av sidan har '''raderats'''.
-Som administratör kan du se den; det kan finnas mer information i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} borttagningsloggen].",
+Som administratör kan du se den; det kan finnas mer information i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} undanhållandeloggen].",
 'rev-deleted-no-diff'         => "Du kan inte se den här diffen på grund av att en av versionerna har '''raderats'''.
-Det kan finnas mer information i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} borttagningsloggen].",
+Det kan finnas mer information i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} undanhållandeloggen].",
 'rev-deleted-unhide-diff'     => "En av versionerna för den här diffen har '''raderats'''.
-Det kan finnas mer information i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} borttagningsloggen].
+Det kan finnas mer information i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} undanhållandeloggen].
 Som administratör kan du fortfarande [$1 se den här diffen] om du önskar att fortsätta.",
 'rev-delundel'                => 'visa/göm',
 'revisiondelete'              => 'Ta bort/återställ versioner',
@@ -1914,6 +1914,12 @@ Stödda protokoll: <tt>$1</tt>',
 'listusersfrom'      => 'Visa användare från och med:',
 'listusers-submit'   => 'Visa',
 'listusers-noresult' => 'Ingen användare hittades.',
+
+# Special:ActiveUsers
+'activeusers'          => 'Lista över aktiva användare',
+'activeusers-count'    => '$1 {{PLURAL:$1|nylig redigering|nyliga redigeringar}}',
+'activeusers-from'     => 'Visa användare från och med:',
+'activeusers-noresult' => 'Inga användare funna.',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Logg över nya användare',

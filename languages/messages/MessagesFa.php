@@ -1120,16 +1120,16 @@ $2',
 'rev-deleted-user'            => '(نام کاربری حذف شده‌است)',
 'rev-deleted-event'           => '(مورد پاک شد)',
 'rev-deleted-text-permission' => "این ویرایش از این صفحه '''حذف شده‌است'''.
-ممکن است اطلاعات مرتبط با آن در [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} سیاههٔ حذف] موجود باشد.",
+ممکن است اطلاعات مرتبط با آن در [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} سیاههٔ فرونشانی] موجود باشد.",
 'rev-deleted-text-unhide'     => "این ویرایش از این صفحه '''حذف شده‌است'''.
-ممکن است اطلاعات مرتبط با آن در [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} سیاههٔ حذف] موجود باشد.
+ممکن است اطلاعات مرتبط با آن در [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} سیاههٔ فرونشانی] موجود باشد.
 شما به عنوان یک مدیر کماکان می‌توانید در صورت تمایل [$1 این نسخه را ببینید].",
 'rev-deleted-text-view'       => "این ویرایش از این صفحه '''حذف شده‌است'''.
-شما به عنوان یک مدیر می‌توانید آن را ببینید؛ ممکن است اطلاعات مرتبط با آن در [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} سیاههٔ حذف] موجود باشد.",
+شما به عنوان یک مدیر می‌توانید آن را ببینید؛ ممکن است اطلاعات مرتبط با آن در [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} سیاههٔ فرونشانی] موجود باشد.",
 'rev-deleted-no-diff'         => "شما نمی‌توانید این تفاوت را مشاهده کنید زیرا یکی از دو نسخه '''حذف شده‌است'''.
-ممکن است اطلاعات مرتبط با آن در [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} سیاههٔ حذف] موجود باشد.",
+ممکن است اطلاعات مرتبط با آن در [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} سیاههٔ فرونشانی] موجود باشد.",
 'rev-deleted-unhide-diff'     => "یکی از دو نسخهٔ این تفاوت '''حذف شده‌است'''.
-ممکن است اطلاعات مرتبط با آن در [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} سیاههٔ حذف] موجود باشد.
+ممکن است اطلاعات مرتبط با آن در [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} سیاههٔ فرونشانی] موجود باشد.
 شما به عنوان یک مدیر کماکان می‌توانید در صورت تمایل [$1 این تفاوت را ببینید].",
 'rev-delundel'                => 'نمایش/نهفتن',
 'revisiondelete'              => 'حذف/احیای نسخه‌ها',
@@ -2041,6 +2041,13 @@ $1",
 'listusersfrom'      => 'نمایش کاربران با شروع از:',
 'listusers-submit'   => 'نمایش',
 'listusers-noresult' => 'هیچ کاربری یافت نشد.',
+'listusers-blocked'  => '(بسته شده)',
+
+# Special:ActiveUsers
+'activeusers'          => 'فهرست کاربران فعال',
+'activeusers-count'    => '$1 {{PLURAL:$1|ویرایش|ویرایش}} اخیر',
+'activeusers-from'     => 'نمایش کاربران با آغاز از:',
+'activeusers-noresult' => 'کاربری پیدا نشد.',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'سیاههٔ ایجاد کاربر',

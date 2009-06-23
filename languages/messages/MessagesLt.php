@@ -826,8 +826,8 @@ Jūs galite grįžti ir redaguoti jau esantį puslapį, arba [[Special:UserLogin
 
 Jūs turite nuspręsti, ar reikėtų toliau redaguoti šį puslapį.
 Dėl patogumo čia pateikta šio puslapio šalinimų ir perkėlimų istorija:",
-'moveddeleted-notice'              => 'Šis puslapis buvo panaikintas.
-Puslapio panaikinimo ir perkėlimų istorija pateikta žemiau peržiūrėjimui.',
+'moveddeleted-notice'              => 'Šis puslapis buvo ištrintas.
+Žemiau pateikta puslapio šalinimų ir pervadinimų istorija.',
 'log-fulllog'                      => 'Rodyti visą istoriją',
 'edit-hook-aborted'                => 'Keitimas nutrauktas užlūžimo.
 Tam nėra paaiškinimo.',
