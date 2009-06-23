@@ -714,13 +714,15 @@ class OutputPage {
 	/**
 	 * @param Article $article
 	 * @param User    $user
+	 * 
+	 * Now a wrapper around Article::tryParserCache()
 	 *
 	 * @return bool True if successful, else false.
 	 */
 	public function tryParserCache( &$article ) {
-		$parserCache = ParserCache::singleton();
-		$parserOutput = $parserCache->get( $article, $this->parserOptions() );
-		if ( $parserOutput !== false ) {
+		$parserOutput = $article->tryParserCache( $this->parserOptions() );
+		
+		if ($parserOutput !== false) {
 			$this->addParserOutput( $parserOutput );
 			return true;
 		} else {
