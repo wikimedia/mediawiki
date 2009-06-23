@@ -60,6 +60,7 @@ $namespaceAliases = array(
 	'Bild_Diskussion' => NS_FILE_TALK,
 );
 
+
 $bookstoreList = array(
 	'abebooks.de' => 'http://www.abebooks.de/servlet/BookSearchPL?ph=2&isbn=$1',
 	'amazon.de' => 'http://www.amazon.de/exec/obidos/ISBN=$1',
@@ -68,11 +69,7 @@ $bookstoreList = array(
 	'Lehmanns Fachbuchhandlung' => 'http://www.lob.de/cgi-bin/work/suche?flag=new&stich1=$1'
 );
 
-$separatorTransformTable = array(
-	',' => "\xc2\xa0", # nbsp
-	'.' => ','
-);
-
+$separatorTransformTable = array(',' => '.', '.' => ',' );
 $linkTrail = '/^([äöüßa-z]+)(.*)$/sDu';
 
 $specialPageAliases = array(
