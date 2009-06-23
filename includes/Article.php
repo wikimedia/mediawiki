@@ -3675,6 +3675,19 @@ class Article {
 	 * @param $cache Boolean
 	 */
 	public function outputWikiText( $text, $cache = true ) {
+		global $wgOut;
+		
+		$parserOutput = $this->outputFromWikitext( $text, $cache );
+
+		$wgOut->addParserOutput( $parserOutput );
+	}
+	
+	/**
+	 * This does all the heavy lifting for outputWikitext, except it returns the parser
+	 * output instead of sending it straight to $wgOut. Makes things nice and simple for,
+	 * say, embedding thread pages within a discussion system (LiquidThreads)
+	 */
+	public function outputFromWikitext( $text, $cache = true ) {
 		global $wgParser, $wgOut, $wgEnableParserCache, $wgUseFileCache;
 
 		$popts = $wgOut->parserOptions();
@@ -3737,8 +3750,8 @@ class Article {
 				$u->doUpdate();
 			}
 		}
-
-		$wgOut->addParserOutput( $parserOutput );
+		
+		return $parserOutput;
 	}
 
 	/**
@@ -3795,6 +3808,48 @@ class Article {
 				array( 'cat_title' => $deleted ),
 				__METHOD__
 			);
+		}
+	}
+	
+	function tryParserCache( $parserOptions ) {
+		$parserCache = ParserCache::singleton();
+		$parserOutput = $parserCache->get( $this, $parserOptions );
+		if ( $parserOutput !== false ) {
+			return $parserOutput;
+		} else {
+			return false;
+		}
+	}
+	
+	/** Lightweight method to get the parser output for a page, checking the parser cache
+	  * and so on. Doesn't consider most of the stuff that Article::view is forced to
+	  * consider, so it's not appropriate to use there. */
+	function getParserOutput( $oldid = null ) {
+		global $wgEnableParserCache, $wgUser, $wgOut;
+
+		// Should the parser cache be used?
+		$pcache = $wgEnableParserCache &&
+		          intval( $wgUser->getOption( 'stubthreshold' ) ) == 0 &&
+		          $this->exists() &&
+				  $oldid === null;
+				  
+		wfDebug( __METHOD__.': using parser cache: ' . ( $pcache ? 'yes' : 'no' ) . "\n" );
+		if ( $wgUser->getOption( 'stubthreshold' ) ) {
+			wfIncrStats( 'pcache_miss_stub' );
+		}
+
+		$parserOutput = false;
+		if ( $pcache ) {
+			$parserOutput = $this->tryParserCache( $wgOut->parserOptions() );
+		}
+
+		if ( $parserOutput === false ) {
+			// Cache miss; parse and output it.
+			$rev = Revision::newFromTitle( $this->getTitle(), $oldid );
+			
+			return $this->outputFromWikitext( $rev->getText(), $pcache );
+		} else {
+			return $parserOutput;
 		}
 	}
 }
