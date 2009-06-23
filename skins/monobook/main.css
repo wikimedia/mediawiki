@@ -278,7 +278,7 @@ span.subpages {
 #siteNotice {
 	text-align: center;
 	font-size: 95%;
-	padding-top: 0.9em;
+	padding: 0 0.9em;
 }
 #siteNotice p {
 	margin: 0;
