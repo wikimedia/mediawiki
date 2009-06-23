@@ -1483,12 +1483,36 @@ class Title {
 	 */
 	public function userCanRead() {
 		global $wgUser, $wgGroupPermissions;
+		
+		static $useShortcut = null;
 
+		# Initialize the $useShortcut boolean, to determine if we can skip quite a bit of code below
+		if( is_null( $useShortcut ) ) {
+			global $wgRevokePermissions;
+			$useShortcut = true;
+			if( empty( $wgGroupPermissions['*']['read'] ) ) {
+				# Not a public wiki, so no shortcut
+				$useShortcut = false;
+			} elseif( !empty( $wgRevokePermissions ) ) {
+				foreach( array_keys( $wgRevokePermissions ) as $group ) {
+					if( !empty( $wgRevokePermissions[$group]['read'] ) ) {
+						# We might be removing the read right from the user, so no shortcut
+						$useShortcut = false;
+						break;
+					}
+				}
+			}
+		}
+		
 		$result = null;
 		wfRunHooks( 'userCan', array( &$this, &$wgUser, 'read', &$result ) );
 		if ( $result !== null ) {
 			return $result;
 		}
+
+		# Shortcut for public wikis, allows skipping quite a bit of code
+		if ( $useShortcut )
+			return true;
 
 		if( $wgUser->isAllowed( 'read' ) ) {
 			return true;
