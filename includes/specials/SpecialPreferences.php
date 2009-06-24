@@ -813,7 +813,7 @@ class PreferencesForm {
 		# Password
 		if( $wgAuth->allowPasswordChange() ) {
 			$link = $wgUser->getSkin()->link( SpecialPage::getTitleFor( 'ResetPass' ), wfMsgHtml( 'prefs-resetpass' ),
-				array() , array('returnto' => SpecialPage::getTitleFor( 'Preferences') ) );
+				array() , array( 'returnto' => SpecialPage::getTitleFor( 'Preferences' )->getPrefixedText() ) );
 			$wgOut->addHTML(
 				$this->tableRow( Xml::element( 'h2', null, wfMsg( 'changepassword' ) ) ) .
 				$this->tableRow( '<ul><li>' . $link . '</li></ul>' ) );
