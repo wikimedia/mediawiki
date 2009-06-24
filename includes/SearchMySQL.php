@@ -48,44 +48,93 @@ class SearchMySQL extends SearchEngine {
 		$m = array();
 		if( preg_match_all( '/([-+<>~]?)(([' . $lc . ']+)(\*?)|"[^"]*")/',
 			  $filteredText, $m, PREG_SET_ORDER ) ) {
-			foreach( $m as $terms ) {
-				if( $searchon !== '' ) $searchon .= ' ';
-				if( $this->strictMatching && ($terms[1] == '') ) {
-					$terms[1] = '+';
-				}
-				// Search terms in all variant forms, only
-				// apply on wiki with LanguageConverter
-				$temp_terms = $wgContLang->autoConvertToAllVariants( $terms[2] );
-				if( is_array( $temp_terms )) {
-					$temp_terms = array_unique( array_values( $temp_terms ));
-					foreach( $temp_terms as $t )
-						$searchon .= $terms[1] . $wgContLang->stripForSearch( $t ) . ' ';
-				}
-				else
-					$searchon .= $terms[1] . $wgContLang->stripForSearch( $terms[2] );
-				if( !empty( $terms[3] ) ) {
-					// Match individual terms in result highlighting...
-					$regexp = preg_quote( $terms[3], '/' );
-					if( $terms[4] ) {
-						$regexp = "\b$regexp"; // foo*
-					} else {
-						$regexp = "\b$regexp\b";
-					}
+			foreach( $m as $bits ) {
+				@list( /* all */, $modifier, $term, $nonQuoted, $wildcard ) = $bits;
+				
+				if( $nonQuoted != '' ) {
+					$term = $nonQuoted;
+					$quote = '';
 				} else {
-					// Match the quoted term in result highlighting...
-					$regexp = preg_quote( str_replace( '"', '', $terms[2] ), '/' );
+					$term = str_replace( '"', '', $term );
+					$quote = '"';
 				}
+			
+				if( $searchon !== '' ) $searchon .= ' ';
+				if( $this->strictMatching && ($modifier == '') ) {
+					// If we leave this out, boolean op defaults to OR which is rarely helpful.
+					$modifier = '+';
+				}
+				
+				// Some languages such as Serbian store the input form in the search index,
+				// so we may need to search for matches in multiple writing system variants.
+				$convertedVariants = $wgContLang->autoConvertToAllVariants( $term );
+				if( is_array( $convertedVariants ) ) {
+					$variants = array_unique( array_values( $convertedVariants ) );
+				} else {
+					$variants = array( $term );
+				}
+				
+				// The low-level search index does some processing on input to work
+				// around problems with minimum lengths and encoding in MySQL's
+				// fulltext engine.
+				// For Chinese this also inserts spaces between adjacent Han characters.
+				$strippedVariants = array_map(
+					array( $wgContLang, 'stripForSearch' ),
+					$variants );
+				
+				// Some languages such as Chinese force all variants to a canonical
+				// form when stripping to the low-level search index, so to be sure
+				// let's check our variants list for unique items after stripping.
+				$strippedVariants = array_unique( $strippedVariants );
+				
+				$searchon .= $modifier;
+				if( count( $strippedVariants) > 1 )
+					$searchon .= '(';
+				foreach( $strippedVariants as $stripped ) {
+					if( $nonQuoted && strpos( $stripped, ' ' ) !== false ) {
+						// Hack for Chinese: we need to toss in quotes for
+						// multiple-character phrases since stripForSearch()
+						// added spaces between them to make word breaks.
+						$stripped = '"' . trim( $stripped ) . '"';
+					}
+					$searchon .= "$quote$stripped$quote$wildcard ";
+				}
+				if( count( $strippedVariants) > 1 )
+					$searchon .= ')';
+				
+				// Match individual terms or quoted phrase in result highlighting...
+				// Note that variants will be introduced in a later stage for highlighting!
+				$regexp = $this->regexTerm( $term, $wildcard );
 				$this->searchTerms[] = $regexp;
 			}
-			wfDebug( "Would search with '$searchon'\n" );
-			wfDebug( 'Match with /' . implode( '|', $this->searchTerms ) . "/\n" );
+			wfDebug( __METHOD__ . ": Would search with '$searchon'\n" );
+			wfDebug( __METHOD__ . ': Match with /' . implode( '|', $this->searchTerms ) . "/\n" );
 		} else {
-			wfDebug( "Can't understand search query '{$filteredText}'\n" );
+			wfDebug( __METHOD__ . ": Can't understand search query '{$filteredText}'\n" );
 		}
 
 		$searchon = $this->db->strencode( $searchon );
 		$field = $this->getIndexField( $fulltext );
 		return " MATCH($field) AGAINST('$searchon' IN BOOLEAN MODE) ";
+	}
+	
+	function regexTerm( $string, $wildcard ) {
+		global $wgContLang;
+		
+		$regex = preg_quote( $string, '/' );
+		if( $wgContLang->hasWordBreaks() ) {
+			if( $wildcard ) {
+				// Don't cut off the final bit!
+				$regex = "\b$regex";
+			} else {
+				$regex = "\b$regex\b";
+			}
+		} else {
+			// For Chinese, words may legitimately abut other words in the text literal.
+			// Don't add \b boundary checks... note this could cause false positives
+			// for latin chars.
+		}
+		return $regex;
 	}
 
 	public static function legalSearchChars() {
