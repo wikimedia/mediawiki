@@ -41,6 +41,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   appropriate privileges. Creating this user with web-install page requires
   oci8.privileged_connect set to On in php.ini.
 * Removed UserrightsChangeableGroups hook introduced in 1.14
+* AdminSettings.php has been removed completely
 
 === New features in 1.16 ===
 
@@ -91,7 +92,10 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   stripped from them.
 * Added a PHP port of CDB (constant database), for improved local caching when
   the DBA extension is not available.
-
+* (bug 14201) Create AdminSettings.php during wiki installation, in the same 
+  way as LocalSettings.php
+* (bug 16322) Allow maint scripts to accept DB user/pass over input or params 
+  if no AdminSettings.php
 
 === Bug fixes in 1.16 ===
 
@@ -200,6 +204,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 19294) Always show Sp-contributions-footer(-anon)
 * Attempts to restrict reading of pages while anonymous viewing is allowed
   via extensions not using the userCan hook and via $wgRevokePermissions now work.
+* (bug 19157) createAndPromote error on bad password
+* (bug 18768) Remove AdminSettings.php from MediaWiki core
 
 == API changes in 1.16 ==
 

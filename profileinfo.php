@@ -4,7 +4,6 @@ ini_set( 'zlib.output_compression', 'off' );
 $wgEnableProfileInfo = $wgProfileToDatabase = false;
 
 require_once( './includes/WebStart.php' );
-@include_once( './AdminSettings.php' );
 
 ?>
 <!--

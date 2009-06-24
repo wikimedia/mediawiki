@@ -7,36 +7,33 @@
  * @ingroup Maintenance
  */
 
-error_reporting(E_ALL ^ E_NOTICE);
-require_once 'commandLine.inc';
 
-class checkUsernames {
-	var $stderr, $log;
+require_once( "Maintenance.php" );
 
-	function checkUsernames() {
-		$this->stderr = fopen( 'php://stderr', 'wt' );
+class CheckUsernames extends Maintenance {
+
+	public function __construct() {
+		parent::__construct();
+		$this->mDescription = "Verify that database usernames are actually valid";
 	}
-	function main() {
-		$fname = 'checkUsernames::main';
 
+	function execute() {
 		$dbr = wfGetDB( DB_SLAVE );
 
 		$res = $dbr->select( 'user',
 			array( 'user_id', 'user_name' ),
 			null,
-			$fname
+			__METHOD__
 		);
 
 		while ( $row = $dbr->fetchObject( $res ) ) {
 			if ( ! User::isValidUserName( $row->user_name ) ) {
-				$out = sprintf( "%s: %6d: '%s'\n", wfWikiID(), $row->user_id, $row->user_name );
-				fwrite( $this->stderr, $out );
+				$this->error( sprintf( "%s: %6d: '%s'\n", wfWikiID(), $row->user_id, $row->user_name ) );
 				wfDebugLog( 'checkUsernames', $out );
 			}
 		}
 	}
 }
 
-$cun = new checkUsernames();
-$cun->main();
-
+$maintClass = "CheckUsernames";
+require_once( "doMaintenance.php" );
