@@ -206,6 +206,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   via extensions not using the userCan hook and via $wgRevokePermissions now work.
 * (bug 19157) createAndPromote error on bad password
 * (bug 18768) Remove AdminSettings.php from MediaWiki core
+* (bug 8445) Multiple-character search terms are now handled properly for Chinese
 
 == API changes in 1.16 ==
 
