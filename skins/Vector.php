@@ -444,6 +444,7 @@ class VectorTemplate extends QuickTemplate {
 		<!-- IEFixes -->
 		<!--[if lt IE 7]><script type="<?php $this->text('jsmimetype') ?>" src="<?php $this->text('stylepath') ?>/common/IEFixes.js?<?php echo $GLOBALS['wgStyleVersion'] ?>"></script>
 		<meta http-equiv="imagetoolbar" content="no" /><![endif]-->
+		<style type="text/css">body{behavior:url("<?php $this->text('stylepath') ?>/vector/csshover.htc")}</style>
 		<!-- /IEFixes -->
 		<!-- globalVariablesScript -->
 		<?php echo Skin::makeGlobalVariablesScript( $this->data ); ?>
@@ -486,219 +487,199 @@ class VectorTemplate extends QuickTemplate {
 		<?php endif; ?>
 	</head>
 	<body<?php if($this->data['body_ondblclick']): ?> ondblclick="<?php $this->text('body_ondblclick') ?>"<?php endif; ?> <?php if($this->data['body_onload']): ?> onload="<?php $this->text('body_onload') ?>"<?php endif; ?> class="mediawiki <?php $this->text('dir') ?> <?php $this->text('pageclass') ?> <?php $this->text('skinnameclass') ?>">
-		<div id="content-base"><div></div></div>
-		<div id="panel-base"></div>
-		<!-- page -->
-		<div id="page">
-			<!-- content -->
-			<div id="content">
-				<div class="buffer">
-					<a name="top" id="top"></a>
-					<!-- sitenotice -->
-					<?php if($this->data['sitenotice']) { ?><div id="siteNotice"><?php $this->html('sitenotice') ?></div><?php } ?>
-					<!-- /sitenotice -->
-					<!-- firstHeading -->
-					<h1 id="firstHeading" class="firstHeading"><?php $this->html('title') ?></h1>
-					<!-- /firstHeading -->
-					<!-- bodyContent -->
-					<div id="bodyContent">
-						<!-- tagline -->
-						<h3 id="siteSub"><?php $this->msg('tagline') ?></h3>
-						<!-- /tagline -->
-						<!-- subtitle -->
-						<div id="contentSub"><?php $this->html('subtitle') ?></div>
-						<!-- /subtitle -->
-						<?php if($this->data['undelete']): ?>
-						<!-- undelete -->
-						<div id="contentSub2"><?php $this->html('undelete') ?></div>
-						<!-- /undelete -->
-						<?php endif; ?>
-						<?php if($this->data['newtalk'] ): ?>
-						<!-- newtalk -->
-						<div class="usermessage"><?php $this->html('newtalk')  ?></div>
-						<!-- /newtalk -->
-						<?php endif; ?>
-						<?php if($this->data['showjumplinks']): ?>
-						<!-- jumpto -->
-						<div id="jump-to-nav">
-							<?php $this->msg('jumpto') ?> <a href="#head"><?php $this->msg('jumptonavigation') ?></a>,
-							<a href="#search"><?php $this->msg('jumptosearch') ?></a>
-						</div>
-						<!-- /jumpto -->
-						<?php endif; ?>
-						<!-- bodytext -->
-						<?php $this->html('bodytext') ?>
-						<!-- /bodytext -->
-						<!-- catlinks -->
-						<?php if($this->data['catlinks']) { $this->html('catlinks'); } ?>
-						<!-- /catlinks -->
-						<!-- dataAfterContent -->
-						<?php if($this->data['dataAfterContent']) { $this->html('dataAfterContent'); } ?>
-						<!-- /dataAfterContent -->
-						<div class="visualClear"></div>
-					</div>
-					<!-- /bodyContent -->
+		<div id="page-base" class="noprint"></div>
+		<div id="head-base" class="noprint"></div>
+		<!-- content -->
+		<div id="content">
+			<a name="top" id="top"></a>
+			<!-- sitenotice -->
+			<?php if($this->data['sitenotice']) { ?><div id="siteNotice"><?php $this->html('sitenotice') ?></div><?php } ?>
+			<!-- /sitenotice -->
+			<!-- firstHeading -->
+			<h1 id="firstHeading" class="firstHeading"><?php $this->html('title') ?></h1>
+			<!-- /firstHeading -->
+			<!-- bodyContent -->
+			<div id="bodyContent">
+				<!-- tagline -->
+				<h3 id="siteSub"><?php $this->msg('tagline') ?></h3>
+				<!-- /tagline -->
+				<!-- subtitle -->
+				<div id="contentSub"><?php $this->html('subtitle') ?></div>
+				<!-- /subtitle -->
+				<?php if($this->data['undelete']): ?>
+				<!-- undelete -->
+				<div id="contentSub2"><?php $this->html('undelete') ?></div>
+				<!-- /undelete -->
+				<?php endif; ?>
+				<?php if($this->data['newtalk'] ): ?>
+				<!-- newtalk -->
+				<div class="usermessage"><?php $this->html('newtalk')  ?></div>
+				<!-- /newtalk -->
+				<?php endif; ?>
+				<?php if($this->data['showjumplinks']): ?>
+				<!-- jumpto -->
+				<div id="jump-to-nav">
+					<?php $this->msg('jumpto') ?> <a href="#head"><?php $this->msg('jumptonavigation') ?></a>,
+					<a href="#search"><?php $this->msg('jumptosearch') ?></a>
 				</div>
+				<!-- /jumpto -->
+				<?php endif; ?>
+				<!-- bodytext -->
+				<?php $this->html('bodytext') ?>
+				<!-- /bodytext -->
+				<!-- catlinks -->
+				<?php if($this->data['catlinks']) { $this->html('catlinks'); } ?>
+				<!-- /catlinks -->
+				<!-- dataAfterContent -->
+				<?php if($this->data['dataAfterContent']) { $this->html('dataAfterContent'); } ?>
+				<!-- /dataAfterContent -->
+				<div class="visualClear"></div>
 			</div>
-			<!-- /content -->
-			<!-- header -->
-			<div id="head" class="noprint">
-				<div class="buffer">
-					<div class="top">
-						<!-- personal -->
-						<div id="personal">
-							<div class="buffer">
-								<h5><?php $this->msg('personaltools') ?></h5>
-								<ul <?php $this->html('userlangattributes') ?>>
-									<?php foreach($this->data['personal_urls'] as $key => $item): ?>
-										<li <?php echo $item['attributes'] ?>><a href="<?php echo htmlspecialchars($item['href']) ?>"<?php echo $item['key'] ?><?php if(!empty($item['class'])): ?> class="<?php echo htmlspecialchars($item['class']) ?>"<?php endif; ?>><?php echo htmlspecialchars($item['text']) ?></a></li>
-									<?php endforeach; ?>
-								</ul>
-							</div>
-						</div>
-						<!-- /personal -->
-					</div>
-					<div class="middle">
-						<!-- namespaces -->
-						<div id="namespaces">
-							<h5><?php $this->msg('namespaces') ?></h5>
-							<ul <?php $this->html('userlangattributes') ?>>
-								<?php foreach ($this->data['namespace_urls'] as $key => $link ): ?>
-									<li <?php echo $link['attributes'] ?>><a href="<?php echo htmlspecialchars( $link['href'] ) ?>" <?php echo $link['key'] ?>><?php echo htmlspecialchars( $link['text'] ) ?></a></li>
-								<?php endforeach; ?>
-							</ul>
-						</div>
-						<!-- /namespaces -->
-						<!-- variants -->
-						<?php if ( count( $this->data['variant_urls'] ) > 0 ): ?>
-						<div id="variants">
-							<h5><div class="icon"><span><?php $this->msg('variants') ?></span></div></h5>
-							<div class="menu">
-								<ul <?php $this->html('userlangattributes') ?>>
-									<?php foreach ($this->data['variant_urls'] as $key => $link ): ?>
-										<li<?php echo $link['attributes'] ?><?php if(!empty($link['class'])): ?> class="<?php echo htmlspecialchars($link['class']) ?>"<?php endif; ?>><a href="<?php echo htmlspecialchars( $link['href'] ) ?>" <?php echo $link['key'] ?>><?php echo htmlspecialchars( $link['text'] ) ?></a></li>
-									<?php endforeach; ?>
-								</ul>
-							</div>
-						</div>
-						<?php endif; ?>
-						<!-- /variants -->
-					</div>
-					<div class="bottom">
-						<!-- views -->
-						<?php if ( count( $this->data['view_urls'] ) > 0 ): ?>
-						<div id="views">
-							<h5><?php $this->msg('views') ?></h5>
-							<ul <?php $this->html('userlangattributes') ?>>
-								<?php foreach ($this->data['view_urls'] as $key => $link ): ?>
-									<li<?php echo $link['attributes'] ?><?php if(!empty($link['class'])): ?> class="<?php echo htmlspecialchars($link['class']) ?>"<?php endif; ?>><a href="<?php echo htmlspecialchars( $link['href'] ) ?>" <?php echo $link['key'] ?>><?php echo htmlspecialchars( $link['text'] ) ?></a></li>
-								<?php endforeach; ?>
-							</ul>
-						</div>
-						<?php endif; ?>
-						<!-- /views -->
-						<!-- actions -->
-						<?php if ( count( $this->data['action_urls'] ) > 0 ): ?>
-						<div id="actions">
-							<h5><div class="icon"><span><?php $this->msg('actions') ?></span></div></h5>
-							<div class="menu">
-								<ul <?php $this->html('userlangattributes') ?>>
-									<?php foreach ($this->data['action_urls'] as $key => $link ): ?>
-										<li<?php echo $link['attributes'] ?><?php if(!empty($link['class'])): ?> class="<?php echo htmlspecialchars($link['class']) ?>"<?php endif; ?>><a href="<?php echo htmlspecialchars( $link['href'] ) ?>" <?php echo $link['key'] ?>><?php echo htmlspecialchars( $link['text'] ) ?></a></li>
-									<?php endforeach; ?>
-								</ul>
-							</div>
-						</div>
-						<?php endif; ?>
-						<!-- /actions -->
-						<!-- search -->
-						<div id="search">
-							<div class="buffer">
-								<h5 <?php $this->html('userlangattributes') ?>><label for="searchInput"><?php $this->msg( 'search' ) ?></label></h5>
-								<form action="<?php $this->text( 'wgScript' ) ?>" id="searchform">
-									<div>
-										<input type='hidden' name="title" value="<?php $this->text( 'searchtitle' ) ?>"/>
-										<input id="searchInput" name="search" type="text" <?php echo $this->skin->tooltipAndAccesskey( 'search' ); ?> <?php if( isset( $this->data['search'] ) ): ?> value="<?php $this->text( 'search' ) ?>"<?php endif; ?> />
-										<input type='submit' name="go" class="searchButton" id="searchGoButton"	value="<?php $this->msg( 'searcharticle' ) ?>"<?php echo $this->skin->tooltipAndAccesskey( 'search-go' ); ?> />
-										<?php if ( $wgUseTwoButtonsSearchForm ): ?>
-										<input type="submit" name="fulltext" class="searchButton" id="mw-searchButton" value="<?php $this->msg( 'searchbutton' ) ?>"<?php echo $this->skin->tooltipAndAccesskey( 'search-fulltext' ); ?> />
-										<?php else: ?>
-										<div><a href="<?php $this->text( 'searchaction' ) ?>" rel="search"><?php $this->msg( 'powersearch-legend' ) ?></a></div>
-										<?php endif; ?>
-									</div>
-								</form>
-							</div>
-						</div>
-						<!-- /search -->
-					</div>
-				</div>
+			<!-- /bodyContent -->
+		</div>
+		<!-- /content -->
+		<!-- header -->
+		<div id="head" class="noprint">
+			<!-- personal -->
+			<div id="personal">
+				<h5><?php $this->msg('personaltools') ?></h5>
+				<ul <?php $this->html('userlangattributes') ?>>
+					<?php foreach($this->data['personal_urls'] as $key => $item): ?>
+						<li <?php echo $item['attributes'] ?>><a href="<?php echo htmlspecialchars($item['href']) ?>"<?php echo $item['key'] ?><?php if(!empty($item['class'])): ?> class="<?php echo htmlspecialchars($item['class']) ?>"<?php endif; ?>><?php echo htmlspecialchars($item['text']) ?></a></li>
+					<?php endforeach; ?>
+				</ul>
 			</div>
-			<!-- /header -->
-			<!-- panel -->
-			<div id="panel" class="noprint">
-				<div class="buffer">
-					<!-- fixalpha -->
-					<script type="<?php $this->text('jsmimetype') ?>"> if (window.isMSIE55) fixalpha(); </script>
-					<!-- /fixalpha -->
-					<!-- sidebar -->
-					<?php
-						$sidebar = $this->data['sidebar'];
-						$sidebar['TOOLBOX'] = ( !isset( $sidebar['TOOLBOX'] ) );
-						$sidebar['LANGUAGES'] = ( !isset( $sidebar['LANGUAGES'] ) );
-						foreach ( $sidebar as $name => $content ) {
-							switch( $name ) {
-								case 'SEARCH':
-									break;
-								case 'TOOLBOX':
-									$this->toolBox();
-									break;
-								case 'LANGUAGES':
-									$this->languageBox();
-									break;
-								default:
-									$this->customBox( $name, $content );
-									break;
-							}
-						}
-					?>
-					<!-- /sidebar -->
-				</div>
-			</div>
-			<!-- /panel -->
-			<div class="break"></div>
-			<!-- foot -->
-			<div id="foot">
-				<div class="buffer">
-					<ul id="foot-icons" class="noprint">
-						<?php if( $this->data['poweredbyico'] ): ?>
-						<li id="foot-icon-poweredby"><?php $this->html( 'poweredbyico' ) ?></li>
-						<?php endif; ?>
-						<?php if( $this->data['copyrightico'] ): ?>
-						<li id="foot-icon-copyright"><?php $this->html( 'copyrightico' ) ?></li>
-						<?php endif; ?>
+			<!-- /personal -->
+			<div id="left-navigation">
+				<!-- namespaces -->
+				<div id="namespaces">
+					<h5><?php $this->msg('namespaces') ?></h5>
+					<ul <?php $this->html('userlangattributes') ?>>
+						<?php foreach ($this->data['namespace_urls'] as $key => $link ): ?>
+							<li <?php echo $link['attributes'] ?>><a href="<?php echo htmlspecialchars( $link['href'] ) ?>" <?php echo $link['key'] ?>><?php echo htmlspecialchars( $link['text'] ) ?></a></li>
+						<?php endforeach; ?>
 					</ul>
-					<?php foreach( $validFooterLinks as $category => $links ): ?>
-						<?php if ( count( $links ) > 0 ): ?>
-						<ul id="foot-<?php echo $category ?>">
-							<?php foreach( $links as $link ): ?>
-								<?php if( isset( $this->data[$link] ) && $this->data[$link] ): ?>
-								<li id="foot-<?php echo $category ?>-<?php echo $link ?>"><?php $this->html( $link ) ?></li>
-								<?php endif; ?>
+				</div>
+				<!-- /namespaces -->
+				<!-- variants -->
+				<?php if ( count( $this->data['variant_urls'] ) > 0 ): ?>
+				<div id="variants">
+					<h5><div class="icon"><span><?php $this->msg('variants') ?></span></div></h5>
+					<div class="menu">
+						<ul <?php $this->html('userlangattributes') ?>>
+							<?php foreach ($this->data['variant_urls'] as $key => $link ): ?>
+								<li<?php echo $link['attributes'] ?><?php if(!empty($link['class'])): ?> class="<?php echo htmlspecialchars($link['class']) ?>"<?php endif; ?>><a href="<?php echo htmlspecialchars( $link['href'] ) ?>" <?php echo $link['key'] ?>><?php echo htmlspecialchars( $link['text'] ) ?></a></li>
 							<?php endforeach; ?>
 						</ul>
+					</div>
+				</div>
+				<?php endif; ?>
+				<!-- /variants -->
+			</div>
+			<div id="right-navigation">
+				<!-- views -->
+				<?php if ( count( $this->data['view_urls'] ) > 0 ): ?>
+				<div id="views">
+					<h5><?php $this->msg('views') ?></h5>
+					<ul <?php $this->html('userlangattributes') ?>>
+						<?php foreach ($this->data['view_urls'] as $key => $link ): ?>
+							<li<?php echo $link['attributes'] ?><?php if(!empty($link['class'])): ?> class="<?php echo htmlspecialchars($link['class']) ?>"<?php endif; ?>><a href="<?php echo htmlspecialchars( $link['href'] ) ?>" <?php echo $link['key'] ?>><?php echo htmlspecialchars( $link['text'] ) ?></a></li>
+						<?php endforeach; ?>
+					</ul>
+				</div>
+				<?php endif; ?>
+				<!-- /views -->
+				<!-- actions -->
+				<?php if ( count( $this->data['action_urls'] ) > 0 ): ?>
+				<div id="actions">
+					<h5><span><?php $this->msg('actions') ?></span><a href="#">&nbsp;</a></h5>
+					<div class="menu">
+						<ul <?php $this->html('userlangattributes') ?>>
+							<?php foreach ($this->data['action_urls'] as $key => $link ): ?>
+								<li<?php echo $link['attributes'] ?><?php if(!empty($link['class'])): ?> class="<?php echo htmlspecialchars($link['class']) ?>"<?php endif; ?>><a href="<?php echo htmlspecialchars( $link['href'] ) ?>" <?php echo $link['key'] ?>><?php echo htmlspecialchars( $link['text'] ) ?></a></li>
+							<?php endforeach; ?>
+						</ul>
+					</div>
+				</div>
+				<?php endif; ?>
+				<!-- /actions -->
+				<!-- search -->
+				<div id="search">
+					<h5 <?php $this->html('userlangattributes') ?>><label for="searchInput"><?php $this->msg( 'search' ) ?></label></h5>
+					<form action="<?php $this->text( 'wgScript' ) ?>" id="searchform">
+						<input type='hidden' name="title" value="<?php $this->text( 'searchtitle' ) ?>"/>
+						<input id="searchInput" name="search" type="text" <?php echo $this->skin->tooltipAndAccesskey( 'search' ); ?> <?php if( isset( $this->data['search'] ) ): ?> value="<?php $this->text( 'search' ) ?>"<?php endif; ?> />
+						<input type='submit' name="go" class="searchButton" id="searchGoButton"	value="<?php $this->msg( 'searcharticle' ) ?>"<?php echo $this->skin->tooltipAndAccesskey( 'search-go' ); ?> />
+						<?php if ( $wgUseTwoButtonsSearchForm ): ?>
+						<input type="submit" name="fulltext" class="searchButton" id="mw-searchButton" value="<?php $this->msg( 'searchbutton' ) ?>"<?php echo $this->skin->tooltipAndAccesskey( 'search-fulltext' ); ?> />
+						<?php else: ?>
+						<div><a href="<?php $this->text( 'searchaction' ) ?>" rel="search"><?php $this->msg( 'powersearch-legend' ) ?></a></div>
+						<?php endif; ?>
+					</form>
+				</div>
+				<!-- /search -->
+			</div>
+		</div>
+		<!-- /header -->
+		<!-- panel -->
+		<div id="panel" class="noprint">
+			<!-- sidebar -->
+			<?php
+				$sidebar = $this->data['sidebar'];
+				$sidebar['TOOLBOX'] = ( !isset( $sidebar['TOOLBOX'] ) );
+				$sidebar['LANGUAGES'] = ( !isset( $sidebar['LANGUAGES'] ) );
+				foreach ( $sidebar as $name => $content ) {
+					switch( $name ) {
+						case 'SEARCH':
+							break;
+						case 'TOOLBOX':
+							$this->toolBox();
+							break;
+						case 'LANGUAGES':
+							$this->languageBox();
+							break;
+						default:
+							$this->customBox( $name, $content );
+							break;
+					}
+				}
+			?>
+			<!-- /sidebar -->
+		</div>
+		<!-- /panel -->
+		<div class="break"></div>
+		<!-- foot -->
+		<div id="foot">
+			<?php foreach( $validFooterLinks as $category => $links ): ?>
+				<?php if ( count( $links ) > 0 ): ?>
+				<ul id="foot-<?php echo $category ?>">
+					<?php foreach( $links as $link ): ?>
+						<?php if( isset( $this->data[$link] ) && $this->data[$link] ): ?>
+						<li id="foot-<?php echo $category ?>-<?php echo $link ?>"><?php $this->html( $link ) ?></li>
 						<?php endif; ?>
 					<?php endforeach; ?>
-					<div style="clear:both"></div>
-				</div>
-			</div>
-			<!-- /foot -->
+				</ul>
+				<?php endif; ?>
+			<?php endforeach; ?>
+			<ul id="foot-icons" class="noprint">
+				<?php if( $this->data['poweredbyico'] ): ?>
+				<li id="foot-icon-poweredby"><?php $this->html( 'poweredbyico' ) ?></li>
+				<?php endif; ?>
+				<?php if( $this->data['copyrightico'] ): ?>
+				<li id="foot-icon-copyright"><?php $this->html( 'copyrightico' ) ?></li>
+				<?php endif; ?>
+			</ul>
+			<div style="clear:both"></div>
 		</div>
-		<!-- /page -->
+		<!-- /foot -->
 		<!-- logo -->
 		<div id="logo">
 			<a style="background-image: url(<?php $this->text('logopath') ?>);" href="<?php echo htmlspecialchars( $this->data['nav_urls']['mainpage']['href'] ) ?>" <?php echo $this->skin->tooltipAndAccesskey('p-logo') ?>></a>
 		</div>
 		<!-- /logo -->
+		<!-- fixalpha -->
+		<script type="<?php $this->text('jsmimetype') ?>"> if (window.isMSIE55) fixalpha( 'logo' ); </script>
+		<!-- /fixalpha -->
 		<?php $this->html( 'bottomscripts' ); /* JS call to runBodyOnloadHook */ ?>
 		<?php $this->html( 'reporttime' ) ?>
 		<?php if ( $this->data['debug'] ): ?>
