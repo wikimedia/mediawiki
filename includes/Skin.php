@@ -340,7 +340,7 @@ class Skin extends Linker {
 		}
 		$r[] = "/*]]>*/</script>\n";
 
-		return implode( "\n\t\t", $r );
+		return implode( "\n", $r );
 	}
 
 	/**
