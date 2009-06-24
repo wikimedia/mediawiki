@@ -550,6 +550,7 @@ $wgMessageStructure = array(
 		'yourdiff',
 		'copyrightwarning',
 		'copyrightwarning2',
+		'editpage-tos-summary',
 		'longpagewarning',
 		'longpageerror',
 		'readonlywarning',

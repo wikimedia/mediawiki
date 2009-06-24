@@ -155,6 +155,7 @@ $wgIgnoredMessages = array(
 	'newuserlogentry',
 	'wantedtemplates-summary',
 	'activeusers-summary',
+	'editpage-tos-summary',
 );
 
 /** Optional messages, which may be translated only if changed in the target language. */
