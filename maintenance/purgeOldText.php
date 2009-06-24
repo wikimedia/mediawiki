@@ -1,24 +1,29 @@
 <?php
+
 /**
  * Purge old text records from the database
  *
+ * @file
  * @ingroup Maintenance
  * @author Rob Church <robchur@gmail.com>
  */
 
-require_once( "Maintenance.php" );
+$options = array( 'purge', 'help' );
+require_once( 'commandLine.inc' );
+require_once( 'purgeOldText.inc' );
 
-class PurgeOldText extends Maintenance {
-	public function __construct() {
-		parent::__construct();
-		$this->mDescription = "Purge old text records from the database";
-		$this->addOption( 'purge', 'Performs the deletion' );
-	}
-	
-	public function execute() {
-		$this->purgeRedundantText( $this->hasOption('purge') );
-	}
+echo( "Purge Old Text\n\n" );
+
+if( @$options['help'] ) {
+	ShowUsage();
+} else {
+	PurgeRedundantText( @$options['purge'] );
 }
 
-$maintClass = "PurgeOldText";
-require_once( DO_MAINTENANCE );
+function ShowUsage() {
+	echo( "Prunes unused text records from the database.\n\n" );
+	echo( "Usage: php purgeOldText.php [--purge]\n\n" );
+	echo( "purge : Performs the deletion\n" );
+	echo( " help : Show this usage information\n" );
+}
+

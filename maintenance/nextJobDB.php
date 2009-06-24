@@ -6,71 +6,55 @@
  * @ingroup Maintenance
  */
 
-require_once( "Maintenance.php" );
+$options = array( 'type'  );
 
-class nextJobDB extends Maintenance {
-	public function __construct() {
-		parent::__construct();
-		$this->mDescription = "Pick a database that has pending jobs";
-		$this->addParam( 'type', "The type of job to search for", false, true );
+require_once( 'commandLine.inc' );
+
+$type = isset($options['type'])
+		? $options['type']
+		: false;
+
+$mckey = $type === false
+            ? "jobqueue:dbs"
+            : "jobqueue:dbs:$type";
+
+$pendingDBs = $wgMemc->get( $mckey );
+if ( !$pendingDBs ) {
+	$pendingDBs = array();
+	# Cross-reference DBs by master DB server
+	$dbsByMaster = array();
+	foreach ( $wgLocalDatabases as $db ) {
+		$lb = wfGetLB( $db );
+		$dbsByMaster[$lb->getServerName(0)][] = $db;
 	}
-	public function execute() {
-		global $wgMemc;
-		$type = $this->getParam( 'type', false );
-		$mckey = $type === false
-					? "jobqueue:dbs"
-					: "jobqueue:dbs:$type";
-		$pendingDBs = $wgMemcKey->get( $mckey );
-		
-		# If we didn't get it from the cache
-		if( !$pendingDBs ) {
-			$pendingDBs = $this->getPendingDbs( $type );
-			$wgMemc->get( $mckey, $pendingDBs, 300 )
-		}
-		# If we've got a pending job in a db, display it. 
-		if ( $pendingDBs ) {
-			$this->output( $pendingDBs[mt_rand(0, count( $pendingDBs ) - 1)] );
-		}
-	}
-	
-	/**
-	 * Get all databases that have a pending job
-	 * @param $type String Job type
-	 * @return array
-	 */
-	private function getPendingDbs( $type ) {
-		$pendingDBs = array();
-		# Cross-reference DBs by master DB server
-		$dbsByMaster = array();
-		foreach ( $wgLocalDatabases as $db ) {
-			$lb = wfGetLB( $db );
-			$dbsByMaster[$lb->getServerName(0)][] = $db;
-		}
-	
-		foreach ( $dbsByMaster as $master => $dbs ) {
-			$dbConn = wfGetDB( DB_MASTER, array(), $dbs[0] );
-			$stype = $dbConn->addQuotes($type);
-			$jobTable = $dbConn->getTable( 'job' );
-	
-			# Padding row for MySQL bug
-			$sql = "(SELECT '-------------------------------------------')";
-			foreach ( $dbs as $dbName ) {
-				if ( $sql != '' ) {
-					$sql .= ' UNION ';
-				}
-				if ($type === false)
-					$sql .= "(SELECT '$dbName' FROM `$dbName`.$jobTable LIMIT 1)";
-				else
-					$sql .= "(SELECT '$dbName' FROM `$dbName`.$jobTable WHERE job_cmd=$stype LIMIT 1)";
+
+	foreach ( $dbsByMaster as $master => $dbs ) {
+		$dbConn = wfGetDB( DB_MASTER, array(), $dbs[0] );
+		$stype = $dbConn->addQuotes($type);
+
+		# Padding row for MySQL bug
+		$sql = "(SELECT '-------------------------------------------')";
+		foreach ( $dbs as $dbName ) {
+			if ( $sql != '' ) {
+				$sql .= ' UNION ';
 			}
-			$res = $dbConn->query( $sql, __METHOD__ );
-			$row = $dbConn->fetchRow( $res ); // discard padding row
-			while ( $row = $dbConn->fetchRow( $res ) ) {
-				$pendingDBs[] = $row[0];
-			}
+			if ($type === false)
+				$sql .= "(SELECT '$dbName' FROM `$dbName`.job LIMIT 1)";
+			else
+				$sql .= "(SELECT '$dbName' FROM `$dbName`.job WHERE job_cmd=$stype LIMIT 1)";
+		}
+		$res = $dbConn->query( $sql, 'nextJobDB.php' );
+		$row = $dbConn->fetchRow( $res ); // discard padding row
+		while ( $row = $dbConn->fetchRow( $res ) ) {
+			$pendingDBs[] = $row[0];
 		}
 	}
+
+	$wgMemc->set( $mckey, $pendingDBs, 300 );
 }
 
-$maintClass = "nextJobDb";
-require_once( DO_MAINTENANCE );
+if ( $pendingDBs ) {
+	echo $pendingDBs[mt_rand(0, count( $pendingDBs ) - 1)];
+}
+
+
