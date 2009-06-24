@@ -14,7 +14,6 @@ body.rtl {
 body {
 	background-image: url(images/page-base.png);
 }
-
 /* Content */
 div#content {
 	margin-left: 12em;
@@ -24,6 +23,11 @@ div#content {
 	background-repeat: repeat-y;
 	background-color: white;
 }
+body.rtl div#content {
+	margin-left: 0;
+	margin-right: 12em;
+	background-position: top right;
+}
 /* Head */
 div#page-base {
 	height: 6em;
@@ -31,6 +35,9 @@ div#page-base {
 	background-image: url(images/page-fade.png);
 	background-position: bottom left;
 	background-repeat: repeat-x;
+}
+body.rtl div#page-base {
+	background-position: bottom left;
 }
 div#head-base {
 	margin-top: -6em;
@@ -40,12 +47,23 @@ div#head-base {
 	background-position: bottom left;
 	background-repeat: repeat-x;
 }
+body.rtl div#head-base {
+	margin-left: 0;
+	margin-right: 12em;
+	background-position: bottom right;
+}
 div#head {
 	position: absolute;
 	top: 0;
 	right: 0;
 	width: 100%;
 	margin-right: 0.75em;
+}
+body.rtl div#head {
+	right: auto;
+	left: 0;
+	margin-right: 0;
+	margin-left: 0.75em;
 }
 div#head ul,
 div#head li {
@@ -63,6 +81,10 @@ div#head h5 {
 		top: 0;
 		right: 0;
 	}
+	body.rtl div#personal {
+		left: 0;
+		right: auto;
+	}
 	div#personal h5 {
 		display: none;
 	}
@@ -70,15 +92,27 @@ div#head h5 {
 		float: left;
 		margin-left: 0.75em;
 		margin-top: 0.5em;
-		/*font-size: 0.9em;*/
+		font-size: 0.9em;
+	}
+	body.rtl div#personal li {
+		float: right;
+		margin-left: 0;
+		margin-right: 0.75em;
 	}
 	/* Navigation */
 	div#left-navigation {
 		margin-top: 3em;
 		margin-left: 12.75em;
 	}
+	body.rtl div#left-navigation {
+		margin-left: 0;
+		margin-right: 12.75em;
+	}
 	div#right-navigation {
 		float: right;
+	}
+	body.rtl div#right-navigation {
+		float: left;
 	}
 	/* Navigation Labels */
 	div#namespaces h5,
@@ -97,9 +131,20 @@ div#head h5 {
 		background-repeat: no-repeat;
 		padding-left: 1px;
 	}
+	body.rtl div#namespaces,
+	body.rtl div#views {
+		float: right;
+		background-position: bottom right;
+		padding-left: 0;
+		padding-right: 1px;
+	}
 	div#namespaces ul,
 	div#views ul {
 		float: left;
+	}
+	body.rtl div#namespaces ul,
+	body.rtl div#views ul {
+		float: right;
 	}
 	div#namespaces li,
 	div#views li {
@@ -108,6 +153,11 @@ div#head h5 {
 		background-image: url(images/tab-normal-fade.png);
 		background-position: bottom left;
 		background-repeat: repeat-x;
+	}
+	body.rtl div#namespaces li,
+	body.rtl div#views li {
+		float: right;
+		background-position: bottom right;
 	}
 	div#namespaces li.selected,
 	div#views li.selected {
@@ -123,6 +173,10 @@ div#head h5 {
 		background-position: bottom right;
 		background-repeat: no-repeat;
 		color: #0645ad;
+	}
+	body.rtl div#namespaces a,
+	body.rtl div#views a {
+		background-position: bottom left;
 	}
 	div#namespaces li.selected a,
 	div#views li.selected a:visited {
@@ -142,9 +196,17 @@ div#head h5 {
 		background-position: center center;
 		background-repeat: no-repeat;
 	}
+	body.rtl div#variants,
+	body.rtl div#actions {
+		float: right;
+	}
 	div#variants h5,
 	div#actions h5 {
 		float: left;
+	}
+	body.rtl div#variants h5,
+	body.rtl div#actions h5 {
+		float: right;
 	}
 	div#variants h5 a,
 	div#actions h5 a {
@@ -155,6 +217,11 @@ div#head h5 {
 		background-image: url(images/tab-break.png);
 		background-position: bottom right;
 		background-repeat: no-repeat;
+	}
+	body.rtl div#variants h5 a,
+	body.rtl div#actions h5 a {
+		display: inline-block;
+		background-position: bottom left;
 	}
 	div#variants div.menu,
 	div#actions div.menu {
@@ -175,6 +242,11 @@ div#head h5 {
 		margin: 0;
 		margin-left: -1px;
 	}
+	body.rtl div#variants ul,
+	body.rtl div#actions ul {
+		margin-left: 0;
+		margin-right: -1px;
+	}
 	div#variants:hover li a,
 	div#actions li a {
 		display: inline-block;
@@ -184,11 +256,20 @@ div#head h5 {
 	div#search {
 		float: left;
 	}
+	body.rtl div#search {
+		float: right;
+	}
 	div#search form,
 	div#search input {
 		float: left;
 		margin-top: 0.4em;
 		margin-left: 0.25em;
+	}
+	body.rtl div#search form,
+	body.rtl div#search input {
+		float: right;
+		margin-left: 0;
+		margin-right: 0.25em;
 	}
 /* Panel */
 div#panel {
@@ -196,6 +277,10 @@ div#panel {
 	top: 12em;
 	width: 12em;
 	left: 0;
+}
+body.rtl div#panel {
+	left: auto;
+	right: 0;
 }
 	div#panel div.portal {
 		padding-top: 1.5em;
@@ -253,6 +338,11 @@ div#foot {
 	background-position: top left;
 	background-repeat: repeat-x;
 }
+body.rtl div#foot {
+	margin-left: 0;
+	margin-right: 12em;
+	background-position: top right;
+}
 div#foot ul {
 	list-style: none;
 	margin: 0;
@@ -269,18 +359,34 @@ div#foot ul li {
 div#foot ul#foot-icons {
 	float: right;
 }
+body.rtl div#foot ul#foot-icons {
+	float: left;
+}
 div#foot ul#foot-places {
 	float: left;
+}
+body.rtl div#foot ul#foot-places {
+	float: right;
 }
 div#foot ul#foot-icons li {
 	float: left;
 	margin-left: 0.5em;
 	line-height: 2em;
 }
+body.rtl div#foot ul#foot-icons li {
+	float: right;
+	margin-left: 0;
+	margin-right: 0.5em;
+}
 div#foot ul#foot-places li {
 	float: left;
 	margin-right: 0.5em;
 	line-height: 2em;
+}
+body.rtl div#foot ul#foot-places li {
+	float: right;
+	margin-left: 0.5em;
+	margin-right: 0;
 }
 
 /* Logo */
