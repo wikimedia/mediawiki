@@ -9,10 +9,19 @@
  * @author Tim Starling
  * @author Ashar Voultoiz
  */
-require_once( 'commandLine.inc' );
+ 
+require_once( "Maintenance.php" );
 
-$dbw = wfGetDB( DB_MASTER );
-$count = $dbw->selectField( 'job', 'count(*)', '', 'runJobs.php' );
-print $count."\n";
+class ShowJobs extends Maintenance {
+	public function __construct() {
+		parent::__construct();
+		$this->mDescription = "Show number of jobs waiting in master database";
+	}
+	public function execute() {
+		$dbw = wfGetDB( DB_MASTER );
+		$this->output( $dbw->selectField( 'job', 'count(*)', '', 'runJobs.php' ) . "\n" );
+	}
+}
 
-
+$maintClass = "ShowJobs";
+require_once( DO_MAINTENANCE );

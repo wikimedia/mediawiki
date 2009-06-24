@@ -5,11 +5,16 @@
  * @ingroup Maintenance
  */
 
-require_once( "commandLine.inc" );
-if ( isset( $args[0] ) ) {
-	wfWaitForSlaves($args[0]);
-} else {
-	wfWaitForSlaves(10);
+require_once( "Maintenance.php" );
+
+class WaitForSlave extends Maintenance {
+	public function __construct() {
+		$this->addArgs( array( 'maxlag' ) );
+	}
+	public function execute() {
+		wfWaitForSlaves( $this->getArg( 0, 10 ) );
+	}
 }
 
-
+$maintClass = "WaitForSlave";
+require_once( DO_MAINTENANCE );

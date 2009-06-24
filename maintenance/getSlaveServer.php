@@ -5,24 +5,32 @@
  * @file
  * @ingroup Maintenance
  */
+ 
+require_once( "Maintenance.php" );
 
-require_once( dirname(__FILE__).'/commandLine.inc' );
-
-if ( $wgAllDBsAreLocalhost ) {
-	# Can't fool the backup script
-	print "localhost\n";
-	exit;
+class GetSlaveServer extends Maintenance {
+	public function __construct() {
+		parent::__construct();
+		$this->addParam( "group", "Query group to check specifically" );
+		$this->mDescription = "Report the hostname of a slave server";
+	}
+	public function execute() {
+		global $wgAllDBsAreLocalhost;
+		if( $wgAllDBsAreLocalhost ) {
+			$host = 'localhost';
+		} else {
+			if( $this->hasOption('group') ) {
+				$db = wfGetDB( DB_SLAVE, $this->getOption('group') );
+				$host = $db->getServer();
+			} else {
+				$lb = wfGetLB();
+				$i = $lb->getReaderIndex();
+				$host = $lb->getServerName( $i );
+			}
+		}
+		$this->output( "$host\n" );
+	}
 }
 
-if( isset( $options['group'] ) ) {
-	$db = wfGetDB( DB_SLAVE, $options['group'] );
-	$host = $db->getServer();
-} else {
-	$lb = wfGetLB();
-	$i = $lb->getReaderIndex();
-	$host = $lb->getServerName( $i );
-}
-
-print "$host\n";
-
-
+$maintClass = "GetSlaveServer";
+require_once( DO_MAINTENANCE );

@@ -9,23 +9,22 @@
  * @author Rob Church <robchur@gmail.com>
  * @licence GNU General Public Licence 2.0 or later
  */
- 
-$options = array( 'help', 'update', 'noviews' );
-require_once( 'commandLine.inc' );
-echo( "Refresh Site Statistics\n\n" );
 
-if( isset( $options['help'] ) ) {
-	showHelp();
-	exit(1);
+require_once( "Maintenance.php" );
+
+class InitStats extends Maintenance {
+	public function __construct() {
+		parent::__construct();
+		$this->mDescription = "Re-initialise the site statistics tables";
+		$this->addParam( 'update', 'Update the existing statistics (preserves the ss_total_views field)' );
+		$this->addParam( 'noviews', "Don't update the page view counter" );
+	}
+
+	public function execute() {
+		$this->output( "Refresh Site Statistics\n\n" );
+		SiteStats::init( $this->hasOption('update'), $this->hasOption('noviews') );
+	}
 }
 
-require "$IP/maintenance/initStats.inc";
-wfInitStats( $options );
-
-function showHelp() {
-	echo( "Re-initialise the site statistics tables.\n\n" );
-	echo( "Usage: php initStats.php [--update|--noviews]\n\n" );
-	echo( " --update : Update the existing statistics (preserves the ss_total_views field)\n" );
-	echo( "--noviews : Don't update the page view counter\n\n" );
-}
-
+$maintClass = "InitStats";
+require_once( DO_MAINTENANCE );
