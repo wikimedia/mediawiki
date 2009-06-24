@@ -1317,6 +1317,8 @@ class EditPage {
 			$copywarnMsg = array( 'copyrightwarning2',
 				'[[' . wfMsgForContent( 'copyrightpage' ) . ']]' );
 		}
+		// Allow for site and per-namespace customization of contribution/copyright notice.
+		wfRunHooks( 'EditPageCopyrightWarning', array( $this->mTitle, &$copywarnMsg ) );
 
 		if ( $wgUser->getOption('showtoolbar') and !$this->isCssJsSubpage ) {
 			# prepare toolbar for edit buttons
@@ -1547,6 +1549,7 @@ END
 		$token = htmlspecialchars( $wgUser->editToken() );
 		$wgOut->addHTML( "\n<input type='hidden' value=\"$token\" name=\"wpEditToken\" />\n" );
 
+		$this->showTosSummary();
 		$this->showEditTools();
 
 		$wgOut->addHTML( <<<END
@@ -1695,6 +1698,24 @@ END
 			'"' . $liveAction . '"' . ")";
 	}
 
+	protected function showTosSummary() {
+		$msg = 'editpage-tos-summary';
+		// Give a chance for site and per-namespace customizations of
+		// terms of service summary link that might exist separately
+		// from the copyright notice.
+		//
+		// This will display between the save button and the edit tools,
+		// so should remain short!
+		wfRunHooks( 'EditPageTosSummary', array( $this->mTitle, &$msg ) );
+		$text = wfMsgForContent( $msg );
+		if( $text != '-' ) {
+			global $wgOut;
+			$wgOut->addHTML( '<div class="mw-tos-summary">' );
+			$wgOut->addWikiMsgArray( $msg, array(), array( 'content' ) );
+			$wgOut->addHTML( '</div>' );
+		}
+	}
+	
 	protected function showEditTools() {
 		global $wgOut;
 		$wgOut->addHTML( '<div class="mw-editTools">' );
