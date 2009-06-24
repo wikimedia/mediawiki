@@ -10,32 +10,47 @@
  * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License 2.0 or later
  */
 
-require_once( "Maintenance.php" );
+$optionsWithArgs = array( 'user', 'password' );
+require_once 'commandLine.inc';
 
-class ChangePassword extends Maintenance {
-	public function __construct() {
-		parent::__construct();
-		$this->addParam( "user", "The username to operate on", true, true );
-		$this->addParam( "password", "The password to use", true, true );
-		$this->mDescription = "Change a user's password."
+$USAGE =
+	"Usage: php changePassword.php [--user=user --password=password | --help]\n" .
+	"\toptions:\n" .
+	"\t\t--help      show this message\n" .
+	"\t\t--user      the username to operate on\n" .
+	"\t\t--password  the password to use\n";
+
+if( in_array( '--help', $argv ) )
+	wfDie( $USAGE );
+
+$cp = new ChangePassword( @$options['user'], @$options['password'] );
+$cp->main();
+
+/**
+ * @ingroup Maintenance
+ */
+class ChangePassword {
+	var $dbw;
+	var $user, $password;
+
+	function ChangePassword( $user, $password ) {
+		global $USAGE;
+		if( !strlen( $user ) or !strlen( $password ) ) {
+			wfDie( $USAGE );
+		}
+
+		$this->user = User::newFromName( $user );
+		if ( !$this->user->getId() ) {
+			die ( "No such user: $user\n" );
+		}
+
+		$this->password = $password;
+
+		$this->dbw = wfGetDB( DB_MASTER );
 	}
-	
-	public function execute() {
-		if( !$this->hasOption('user') || !$this->hasOption('password') ) {
-			$this->error( "Username or password not provided, halting.", true );
-		}
-		$user = User::newFromName( $this->getOption('user') );
-		if( !$user->getId() ) {
-			$this->error( "No such user: " . $this->getOption('user') . "\n", true );
-		}
-		try {
-			$user->setPassword( $this->getOption('password') );
-			$user->saveSettings();
-		} catch( PasswordError $pwe ) {
-			$this->error( $pwe->getText(), true );
-		}
+
+	function main() {
+		$this->user->setPassword( $this->password );
+		$this->user->saveSettings();
 	}
 }
-
-$maintClass = "ChangePassword";
-require_once( DO_MAINTENANCE );

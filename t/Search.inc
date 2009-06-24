@@ -7,10 +7,11 @@ require 't/Test.php';
 require 'includes/Defines.php';
 require 'includes/ProfilerStub.php';
 require 'LocalSettings.php';
+require 'AdminSettings.php';
 require 'includes/Setup.php';
 
 function buildTestDatabase( $tables ) {
-	global $wgDBprefix, $wgDBserver, $wgDBname, $wgDBtype;
+	global $wgDBprefix, $wgDBserver, $wgDBadminuser, $wgDBadminpassword, $wgDBname, $wgDBtype;
 	$oldPrefix = $wgDBprefix;
 	$wgDBprefix = 'parsertest';
 

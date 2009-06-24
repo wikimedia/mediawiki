@@ -42,7 +42,8 @@ You can also obtain the new files directly from our Subversion source code
 repository, via a checkout or export operation.
 
 Replace the existing MediaWiki files with the new. You should preserve the
-LocalSettings.php file and the "extensions" and "images" directories.
+LocalSettings.php file, AdminSettings.php file (if present), and the
+"extensions" and "images" directories.
 
 Depending upon your configuration, you may also need to preserve additional
 directories, including a custom upload directory ($wgUploadDirectory),
@@ -50,8 +51,8 @@ deleted file archives, and any custom skins.
 
 === Perform the database upgrade ===
 
-You will need to have $wgDBadminuser and $wgDBadminpass set in your
-LocalSettings.php, see there for more info.
+You will need an AdminSettings.php file set up in the correct format; see
+AdminSettings.sample in the wiki root for more information and examples.
 
 From the command line, browse to the "maintenance" directory and run the 
 update.php script to check and update the schema. This will insert missing
@@ -171,10 +172,10 @@ should be replaced with:
 === Web installer ===
 
 You can use the web-based installer wizard if you first remove the
-LocalSettings.php file; be sure to give the installer the same 
-information as you did on the original install (language/encoding, 
-database name, password, etc). This will also generate a fresh 
-LocalSettings.php, which you may need to customize.
+LocalSettings.php (and AdminSettings.php, if any) files; be sure to
+give the installer the same information as you did on the original
+install (language/encoding, database name, password, etc). This will
+also generate a fresh LocalSettings.php, which you may need to customize.
 
 You may change some settings during the install, but be very careful!
 Changing the encoding in particular will generally leave you with a
@@ -184,8 +185,8 @@ lot of corrupt pages, particularly if your wiki is not in English.
 
 Additionally, as of 1.4.0 you can run an in-place upgrade script from
 the command line, keeping your existing LocalSettings.php. This requires
-that you set $wgDBadminuser and $wgDBadminpassword with  an appropriate 
-database user and password with privileges to modify the database structure.
+that you create an AdminSettings.php giving an appropriate database user
+and password with privileges to modify the database structure.
 
 Once the new files are in place, go into the maintenance subdirectory and
 run the script:

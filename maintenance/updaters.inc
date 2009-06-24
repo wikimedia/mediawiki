@@ -1038,7 +1038,10 @@ function do_stats_init() {
 		wfOut( "ok.\n" );
 		return;
 	}
-	SiteStats::init( false );
+
+	global $IP;
+	require_once "$IP/maintenance/initStats.inc";
+	wfInitStats();
 }
 
 function do_active_users_init() {

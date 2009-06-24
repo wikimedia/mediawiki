@@ -16,66 +16,57 @@
  * @ingroup Maintenance
  */
 
-require_once( "Maintenance.php" );
+$wgUseNormalUser = (bool)getenv('MW_WIKIUSER');
 
-class EvalPrompt extends Maintenance {
+$optionsWithArgs = array( 'd' );
 
-	public function __construct() {
-		parent::__construct();
-		$this->mDescription = "This script lets a command-line user start up the wiki engine and then poke\n" .
-								"about by issuing PHP commands directly.";
-		$this->addParam( 'd', "Enable MediaWiki debug output", false, true );
+/** */
+require_once( "commandLine.inc" );
+
+if ( isset( $options['d'] ) ) {
+	$d = $options['d'];
+	if ( $d > 0 ) {
+		$wgDebugLogFile = '/dev/stdout';
 	}
-	
-	public function execute() {
-		global $wgUseNormalUser;
-		$wgUseNormalUser = (bool)getenv('MW_WIKIUSER');
-		if ( $this->hasOption('d') ) {
-			$d = $this->getOption('d');
-			if ( $d > 0 ) {
-				$wgDebugLogFile = '/dev/stdout';
-			}
-			if ( $d > 1 ) {
-				$lb = wfGetLB();
-				foreach ( $lb->mServers as $i => $server ) {
-					$lb->mServers[$i]['flags'] |= DBO_DEBUG;
-				}
-			}
-			if ( $d > 2 ) {
-				$wgDebugFunctionEntry = true;
-			}
+	if ( $d > 1 ) {
+		$lb = wfGetLB();
+		foreach ( $lb->mServers as $i => $server ) {
+			$lb->mServers[$i]['flags'] |= DBO_DEBUG;
 		}
-	
-		if ( function_exists( 'readline_add_history' ) 
-			&& function_exists( 'posix_isatty' ) && posix_isatty( 0 /*STDIN*/ ) ) 
-		{
-			$useReadline = true;
-		} else {
-			$useReadline = false;
-		}
-	
-		if ( $useReadline ) {
-			$historyFile = "{$_ENV['HOME']}/.mweval_history";
-			readline_read_history( $historyFile );
-		}
-	
-		while ( ( $line = readconsole( '> ' ) ) !== false ) {
-			if ( $useReadline ) {
-				readline_add_history( $line );
-				readline_write_history( $historyFile );
-			}
-			$val = eval( $line . ";" );
-			if( is_null( $val ) ) {
-				echo "\n";
-			} elseif( is_string( $val ) || is_numeric( $val ) ) {
-				echo "$val\n";
-			} else {
-				var_dump( $val );
-			}
-		}
-		print "\n";
+	}
+	if ( $d > 2 ) {
+		$wgDebugFunctionEntry = true;
 	}
 }
 
-$maintClass = "EvalPrompt";
-require_once( DO_MAINTENANCE );
+if ( function_exists( 'readline_add_history' ) 
+	&& function_exists( 'posix_isatty' ) && posix_isatty( 0 /*STDIN*/ ) ) 
+{
+	$useReadline = true;
+} else {
+	$useReadline = false;
+}
+
+if ( $useReadline ) {
+	$historyFile = "{$_ENV['HOME']}/.mweval_history";
+	readline_read_history( $historyFile );
+}
+
+while ( ( $line = readconsole( '> ' ) ) !== false ) {
+	if ( $useReadline ) {
+		readline_add_history( $line );
+		readline_write_history( $historyFile );
+	}
+	$val = eval( $line . ";" );
+	if( is_null( $val ) ) {
+		echo "\n";
+	} elseif( is_string( $val ) || is_numeric( $val ) ) {
+		echo "$val\n";
+	} else {
+		var_dump( $val );
+	}
+}
+
+print "\n";
+
+

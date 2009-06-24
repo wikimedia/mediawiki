@@ -615,7 +615,6 @@ print "<li style='font-weight:bold;color:green;font-size:110%'>Environment check
 	$conf->RootUser = importPost( "RootUser", "root" );
 	$conf->RootPW = importPost( "RootPW", "" );
 	$useRoot = importCheck( 'useroot', false );
-	$conf->populateadmin = importCheck( 'populateadmin', false );
 	$conf->LanguageCode = importPost( "LanguageCode", "en" );
 	## MySQL specific:
 	$conf->DBprefix     = importPost( "DBprefix" );
@@ -1528,8 +1527,6 @@ if( count( $errs ) ) {
 		<label class="column">Superuser account:</label>
 		<input type="checkbox" name="useroot" id="useroot" <?php if( $useRoot ) { ?>checked="checked" <?php } ?> />
 		&nbsp;<label for="useroot">Use superuser account</label>
-		<input type="checkbox" name="populateadmin" id="populateadmin" <?php if( $conf->populateadmin ) { ?>checked="checked" <?php } ?> />
-		&nbsp;<label for="populateadmin">Set as admin user for maintenance</label>
 	</div>
 	<div class="config-input"><?php aField( $conf, "RootUser", "Superuser name:", "text" ); ?></div>
 	<div class="config-input"><?php aField( $conf, "RootPW", "Superuser password:", "password" ); ?></div>
@@ -1795,11 +1792,6 @@ function writeLocalSettings( $conf ) {
 		# Needs literal string interpolation for the current style path
 		$slconf['RightsIcon'] = $conf->RightsIcon;
 	}
-	
-	if( $conf->populateadmin ) {
-		$slconf['DBadminuser'] = $conf->RootUser;
-		$slconf['DBadminpassword'] = $conf->RootPW;
-	}
 
 	if( $conf->DBtype == 'mysql' ) {
 		$dbsettings =
@@ -1906,10 +1898,6 @@ if ( \$wgCommandLineMode ) {
 \$wgDBpassword       = \"{$slconf['DBpassword']}\";
 
 {$dbsettings}
-
-## Database admin settings, used for maintenance scripts
-\$wgDBadminuser     = \"{$slconf['DBadminuser']}\";
-\$wgDBadminpassword = \"{$slconf['DBadminpassword']}\";
 
 ## Shared memory settings
 \$wgMainCacheType = $cacheType;

@@ -3,27 +3,31 @@
  * This script delete image information from memcached.
  *
  * Usage example:
- * php deleteImageMemcached.php --until "2005-09-05 00:00:00" --sleep 0
+ * php deleteImageMemcached.php --until "2005-09-05 00:00:00" --sleep 0 --report 10
  *
  * @file
  * @ingroup Maintenance
  */
 
-require_once( "Maintenance.php" );
+$optionsWithArgs = array( 'until', 'sleep', 'report' );
 
-class DeleteImageCache extends Maintenance {
-	public function __construct() {
-		parent::__construct();
-		$this->mDescription = "Delete image information from memcached";
-		$this->addParam( 'sleep', 'How many seconds to sleep between deletions', true, true );
-		$this->addParam( 'until', 'Timestamp to delete all entries prior to', true, true );
+require_once 'commandLine.inc';
+
+/**
+ * @ingroup Maintenance
+ */
+class DeleteImageCache {
+	var $until, $sleep, $report;
+
+	function DeleteImageCache( $until, $sleep, $report ) {
+		$this->until = $until;
+		$this->sleep = $sleep;
+		$this->report = $report;
 	}
 
-	public function execute() {
+	function main() {
 		global $wgMemc;
-
-		$until = preg_replace( "/[^\d]/", '', $this->getOption('until') );
-		$sleep = (int)$this->getOption('sleep') * 1000; // milliseconds
+		$fname = 'DeleteImageCache::main';
 
 		ini_set( 'display_errors', false );
 
@@ -31,8 +35,8 @@ class DeleteImageCache extends Maintenance {
 
 		$res = $dbr->select( 'image',
 			array( 'img_name' ),
-			array( "img_timestamp < {$until}" ),
-			__METHOD__
+			array( "img_timestamp < {$this->until}" ),
+			$fname
 		);
 
 		$i = 0;
@@ -40,22 +44,29 @@ class DeleteImageCache extends Maintenance {
 
 		while ( $row = $dbr->fetchObject( $res ) ) {
 			if ($i % $this->report == 0)
-				$this->output( sprintf("%s: %13s done (%s)\n", wfWikiID(), "$i/$total", wfPercent( $i / $total * 100 ) ) );
+				printf("%s: %13s done (%s)\n", wfWikiID(), "$i/$total", wfPercent( $i / $total * 100 ));
 			$md5 = md5( $row->img_name );
 			$wgMemc->delete( wfMemcKey( 'Image', $md5 ) );
 
-			if ($sleep != 0)
-				usleep( $sleep );
+			if ($this->sleep != 0)
+				usleep( $this->sleep );
 
 			++$i;
 		}
 	}
 
-	private function getImageCount() {
+	function getImageCount() {
+		$fname = 'DeleteImageCache::getImageCount';
+
 		$dbr = wfGetDB( DB_SLAVE );
-		return $dbr->selectField( 'image', 'COUNT(*)', array(), __METHOD__ );
+		return $dbr->selectField( 'image', 'COUNT(*)', array(), $fname );
 	}
 }
 
-$maintClass = "DeleteImageCache";
-require_once( DO_MAINTENANCE );
+$until = preg_replace( "/[^\d]/", '', $options['until'] );
+$sleep = (int)$options['sleep'] * 1000; // milliseconds
+$report = (int)$options['report'];
+
+$dic = new DeleteImageCache( $until, $sleep, $report );
+$dic->main();
+
