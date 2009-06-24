@@ -10,73 +10,197 @@ body {
 body.rtl {
 	direction: rtl;
 	unicode-bidi: embed;
-	background-position: top right;
 }
-
-/* Content Base */
-div#content-base {
-	position: fixed;
-	top: 0;
-	left: 0;
-	height: 101%;
-	width: 100%;
-}
-	div#content-base > div {
-		height: 100%;
-		margin-left: 12em; /* PANEL WIDTH */
-		background-color: white;
-		background-image: url(images/content-base.png);
-		background-position: top left;
-		background-repeat: repeat-y;
-	}
-	body.rtl div#content-base > div {
-		margin-left: 0;
-		margin-right: 12em; /* PANEL WIDTH */
-		background-position: top right;
-	}
-
-/* Panel Base */
-div#panel-base {
-	position: fixed;
-	top: 0;
-	left: 0;
-	height: 101%;
-	width: 12em; /* PANEL WIDTH */
+body {
 	background-image: url(images/page-base.png);
-	background-repeat: repeat;
-}
-body.rtl div#panel-base {
-	left: auto;
-	right: 0;
 }
 
-/* Page */
-div#page {
+/* Content */
+div#content {
+	margin-left: 12em;
+	padding: 1em;
+	background-image: url(images/content-base.png);
+	background-position: top left;
+	background-repeat: repeat-y;
+	background-color: white;
+}
+/* Head */
+div#page-base {
+	height: 6em;
+	background-color: white;
+	background-image: url(images/page-fade.png);
+	background-position: bottom left;
+	background-repeat: repeat-x;
+}
+div#head-base {
+	margin-top: -6em;
+	margin-left: 12em;
+	height: 6em;
+	background-image: url(images/head-base.png);
+	background-position: bottom left;
+	background-repeat: repeat-x;
+}
+div#head {
 	position: absolute;
 	top: 0;
-	left: 0;
-	height: 100%;
+	right: 0;
 	width: 100%;
+	margin-right: 0.75em;
 }
-	div#page div.break {
+div#head ul,
+div#head li {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+div#head h5 {
+	margin: 0;
+	padding: 0;
+}
+	/* Personal */
+	div#personal {
+		position: absolute;
+		top: 0;
+		right: 0;
+	}
+	div#personal h5 {
+		display: none;
+	}
+	div#personal li {
+		float: left;
+		margin-left: 0.75em;
+		margin-top: 0.5em;
+		/*font-size: 0.9em;*/
+	}
+	/* Navigation */
+	div#left-navigation {
+		margin-top: 3em;
+		margin-left: 12.75em;
+	}
+	div#right-navigation {
+		float: right;
+	}
+	/* Navigation Labels */
+	div#namespaces h5,
+	div#variants h5,
+	div#views h5,
+	div#actions h5 span,
+	div#search h5 {
+		display: none;
+	}
+	/* Namespaces and Views */
+	div#namespaces,
+	div#views {
+		float: left;
+		background-image: url(images/tab-break.png);
+		background-position: bottom left;
+		background-repeat: no-repeat;
+		padding-left: 1px;
+	}
+	div#namespaces ul,
+	div#views ul {
+		float: left;
+	}
+	div#namespaces li,
+	div#views li {
+		float: left;
+		line-height: 3em;
+		background-image: url(images/tab-normal-fade.png);
+		background-position: bottom left;
+		background-repeat: repeat-x;
+	}
+	div#namespaces li.selected,
+	div#views li.selected {
+		background-image: url(images/tab-current-fade.png);
+	}
+	div#namespaces a,
+	div#views a {
+		display: inline-block;
+		height: 3em;
+		padding-left: 0.5em;
+		padding-right: 0.5em;
+		background-image: url(images/tab-break.png);
+		background-position: bottom right;
+		background-repeat: no-repeat;
+		color: #0645ad;
+	}
+	div#namespaces li.selected a,
+	div#views li.selected a:visited {
+		color: #333333;
+		cursor: default;
+		text-decoration: none;
+	}
+	div#namespaces li.new a,
+	div#namespaces li.new a:visited{
+		color: #a55858;
+	}
+	/* Variants and Actions */
+	div#variants,
+	div#actions {
+		float: left;
+		background-image: url(images/arrow-down-icon.png);
+		background-position: center center;
+		background-repeat: no-repeat;
+	}
+	div#variants h5,
+	div#actions h5 {
+		float: left;
+	}
+	div#variants h5 a,
+	div#actions h5 a {
+		display: inline-block;
+		width: 24px;
+		height: 3em;
+		text-decoration: none;
+		background-image: url(images/tab-break.png);
+		background-position: bottom right;
+		background-repeat: no-repeat;
+	}
+	div#variants div.menu,
+	div#actions div.menu {
+		display: none;
 		clear: both;
 	}
-
+	div#variants:hover div.menu,
+	div#actions:hover div.menu {
+		display: block;
+	}
+	div#variants ul,
+	div#actions ul {
+		position: absolute;
+		background-color: white;
+		border: solid 1px silver;
+		border-top-width: 0;
+		padding: 0;
+		margin: 0;
+		margin-left: -1px;
+	}
+	div#variants:hover li a,
+	div#actions li a {
+		display: inline-block;
+		padding: 0.5em;
+	}
+	/* Search */
+	div#search {
+		float: left;
+	}
+	div#search form,
+	div#search input {
+		float: left;
+		margin-top: 0.4em;
+		margin-left: 0.25em;
+	}
 /* Panel */
 div#panel {
-	margin-top: 155px; /* LOGO HEIGHT */
-	width: 12em; /* PANEL WIDTH */
+	position: absolute;
+	top: 12em;
+	width: 12em;
+	left: 0;
 }
-	div#panel > div.buffer {
-		padding-top: 1em;
-	}
-	div#panel > div.buffer > div.portal {
+	div#panel div.portal {
 		padding-top: 1.5em;
 	}
-	div#panel > div.buffer:first-child {
-		padding-top: 0em;
-	}
-	div#panel > div.buffer > div.portal > h5 {
+	div#panel div.portal h5 {
 		font-weight: normal;
 		color: #666666;
 		padding: 0.5em;
@@ -85,603 +209,113 @@ div#panel {
 		padding-left: 1.25em;
 		cursor: default;
 	}
-	body.rtl div#panel > div.buffer > div.portal > h5 {
+	body.rtl div#panel div.portal h5 {
 		padding: 0;
 		margin: 0;
 		padding-left: 0;
 		padding-right: 1.25em;
 	}
-	div#panel > div.buffer > div.portal > div.body {
+	div#panel div.portal div.body {
 		padding-top: 0.33em;
 		margin-left: 1.25em;
-		background-image: url(images/panel-fade.png);
+		background-image: url(images/portal-break.png);
 		background-repeat: no-repeat;
 		background-position: top left;
 	}
-	body.rtl div#panel > div.buffer > div.portal > div.body {
+	body.rtl div#panel div.portal div.body {
 		padding-left: 0;
 		margin-right: 1.25em;
 		background-position: top right;
 	}
-	div#panel > div.buffer > div.portal > div.body > ul {
+	div#panel div.portal div.body ul {
 		list-style: none;
 		padding: 0;
 		margin: 0;
 	}
-	div#panel > div.buffer > div.portal > div.body > ul > li {
+	div#panel div.portal div.body ul li {
 		padding: 0;
 		padding-bottom: 0.5em;
 		margin: 0;
 		overflow: hidden;
 	}
-	div#panel > div.buffer > div.portal > div.body > ul > li > a {
+	div#panel div.portal div.body ul li a {
 		color: #0645ad;
 	}
-	div#panel > div.buffer > div.portal > div.body > ul > li > a:visited {
+	div#panel div.portal div.body ul li a:visited {
 		color: #0b0080;
 	}
+/* Foot */
+div#foot {
+	margin-left: 12em;
+	margin-top: 0;
+	padding: 0.75em;
+	background-image: url(images/foot-base.png);
+	background-position: top left;
+	background-repeat: repeat-x;
+}
+div#foot ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+div#foot ul li {
+	margin: 0;
+	padding: 0;
+	padding-top: 0.5em;
+	padding-bottom: 0.5em;
+	color: #333333;
+	font-size: 0.9em;
+}
+div#foot ul#foot-icons {
+	float: right;
+}
+div#foot ul#foot-places {
+	float: left;
+}
+div#foot ul#foot-icons li {
+	float: left;
+	margin-left: 0.5em;
+	line-height: 2em;
+}
+div#foot ul#foot-places li {
+	float: left;
+	margin-right: 0.5em;
+	line-height: 2em;
+}
 
 /* Logo */
-#logo {
+div#logo {
 	position: absolute;
 	top: 0;
 	left: 0;
-	height: 155px; /* LOGO HEIGHT */
-	width: 12em; /* PANEL WIDTH */
-	overflow: visible;
-	background-image: url(images/page-fade.png);
-	background-position: top left;
-	background-repeat: repeat-x;
+	height: 12em;
+	width: 12em;
 }
 body.rtl #logo {
 	left: auto;
 	right: 0;
-	background-position: top right;
 }
-	#logo > a,
-	#logo > a:hover {
-		display: block;
-		height: 155px; /* LOGO HEIGHT */
-		width: 12em; /* PANEL WIDTH */
-		background-repeat: no-repeat;
-		background-position: center center;
-		text-decoration: none;
-	}
-
-/* Content */
-div#content {
-	float: right;
-	width: 100%;
-	margin-top: 6em; /* HEAD HEIGHT */
-	margin-left: -12em; /* PANEL WIDTH */
-}
-body.rtl div#content {
-	float: left;
-	margin-left: 0;
-	margin-right: -12em; /* PANEL WIDTH */
-}
-	div#content > div.buffer {
-		margin-left: 12em; /* PANEL WIDTH */
-		padding: 10px;
-		background-color: white;
-		background-image: url(images/content-base.png);
-		background-position: top left;
-		background-repeat: repeat-y;
-	}
-	body.rtl div#content > div.buffer {
-		margin-left: 0;
-		margin-right: 12em; /* PANEL WIDTH */
-		background-position: top right;
-	}
-
-/* Head */
-div#head {
-	position: absolute;
-	top: 0;
-	height: 6em; /* HEAD HEIGHT */
-	width: 100%;
-	background-image: url(images/page-fade.png);
-	background-position: top left;
-	background-repeat: repeat-x;
-}
-body.rtl div#head {
-	background-position: top right;
-}
-	div#head > div.buffer {
-		margin-left: 12em; /* PANEL WIDTH */
-		height: 100%;
-		background-image: url(images/head-base.png);
-		background-position: bottom left;
-		background-repeat: repeat-x;
-	}
-	body.rtl div#head > div.buffer {
-		margin-left: 0;
-		margin-right: 12em; /* PANEL WIDTH */
-		background-position: bottom right;
-	}
-	div#head > div.buffer > div.top {
-		height: 3em; /* HALF HEAD HEIGHT */
-		float: right;
-	}
-	body.rtl div#head > div.buffer > div.top {
-		float: left;
-	}
-	div#head > div.buffer > div.bottom {
-		margin-top: -3em; /* HALF HEAD HEIGHT */
-		height: 3em; /* HALF HEAD HEIGHT */
-		float: right;
-	}
-	body.rtl div#head > div.buffer > div.bottom {
-		float: left;
-	}
-	div#head > div.buffer > div.middle {
-		height: 3em; /* HALF HEAD HEIGHT */
-		width: 100%;
-		clear: both;
-	}
-	body.rtl div#head > div.buffer > div.middle {
-		float: right;
-	}
-
-/* Foot */
-div#foot {
-	margin-left: 12em; /* PANEL WIDTH */
-	background-image: url(images/page-base.png);
-	background-repeat: repeat;
-}
-body.rtl div#foot {
-	margin-left: 0;
-	margin-right: 12em; /* PANEL WIDTH */
-	background-position: top right;
-}
-	div#foot > div.buffer {
-		background-image: url(images/foot-base.png);
-		background-position: top left;
-		background-repeat: repeat-x;
-		padding: 0.75em;
-	}
-	body.rtl div#foot > div.buffer {
-		margin-left: 0;
-		margin-right: 1px;
-		background-position: top right;
-	}
-	div#foot ul {
-		margin: 0;
-		padding: 0;
-		list-style: none;
-	}
-	div#foot li {
-		font-size: x-small;
-		color: #666666;
-	}
-	div#foot a {
-		color: #0645ad;
-		
-	}
-	div#foot a:visited {
-		color: #0b0080;
-	}
-
-/* Foot Icons */
-ul#foot-icons {
-	float: right;
-	width: 88px;
-	margin-right: 0.75em;
-}
-	body.rtl ul#foot-icons {
-		float: left;
-		margin-left: 0.75em;
-		margin-right: 0;
-	}
-	ul#foot-icons > li {
-		margin-bottom: 0.75em;
-		margin-top: 0.2em;
-	}
-
-/* Foot Info */
-ul#foot-info {
-	float: left;
-}
-	body.rtl ul#foot-info {
-		float: right;
-	}
-	ul#foot-info > li {
-		padding: 0em;
-		padding-bottom: 0.5em;
-		margin: 0em;
-		margin-bottom: 0.5em;
-		border-bottom: dashed 1px #DEDEDE;
-	}
-
-/* Foot Places */
-ul#foot-places {
-	clear: left;
-	float: left;
-}
-	body.rtl ul#foot-places {
-		clear: right;
-		float: right;
-	}
-	ul#foot-places > li {
-		float: left;
-		padding: 0;
-		padding-bottom: 0.5em;
-		margin: 0;
-		margin-right: 1.5em;
-	}
-	body.rtl ul#foot-places > li {
-		float: right;
-		margin-left: 1.5em;
-		margin-right: 0;
-	}
-
-/* Namespaces */
-div#namespaces {
-	float: left;
-	height: 3em; /* HALF HEAD HEIGHT */
-	background-image: url(images/head-break.png);
-	background-position: bottom right;
+div#logo a {
+	display: block;
+	width: 12em;
+	height: 12em;
 	background-repeat: no-repeat;
-	padding-right: 1px;
+	background-position: 50% 50%;
+	text-decoration: none;
 }
-body.rtl div#namespaces {
-	float: right;
-	background-position: bottom left;
-	padding-right: 0;
-	padding-left: 1px;
-}
-	div#namespaces h5 {
-		display: none;
-	}
-	div#namespaces > ul {
-		height: 100%;
-		list-style: none;
-		margin: 0;
-		padding: 0;
-	}
-	div#namespaces > ul > li {
-		float: left;
-		height: 100%;
-		margin: 0;
-		padding: 0;
-		background-image: url(images/namespace-normal-fade.png);
-		background-position: bottom left;
-		background-repeat: repeat-x;
-	}
-	body.rtl div#namespaces > ul > li {
-		float: right;
-		background-position: bottom right;
-	}
-	div#namespaces > ul > li > a {
-		display: block;
-		height: 100%;
-		line-height: 4em;
-		padding-left: 0.5em;
-		padding-right: 0.5em;
-		background-image: url(images/head-break.png);
-		background-position: bottom left;
-		background-repeat: no-repeat;
-	}
-	body.rtl div#namespaces > ul > li > a {
-		background-position: bottom right;
-	}
-	div#namespaces > ul > li > a,
-	div#namespaces > ul > li > a:visited {
-		color: #0645ad;
-	}
-	div#namespaces > ul > li.selected > a,
-	div#namespaces > ul > li.selected > a:visited{
-		color: #333333;
-		cursor: default;
-		text-decoration: none;
-	}
-	div#namespaces > ul > li.new > a,
-	div#namespaces > ul > li.new > a:visited{
-		color: #a55858;
-	}
-	div#namespaces > ul > li.selected {
-		background-image: url(images/namespace-current-fade.png);
-		background-position: bottom left;
-		background-repeat: repeat-x;
-	}
-	body.rtl div#namespaces > ul > li.selected {
-		background-position: bottom right;
-	}
-
-/* Views */
-div#views {
-	float: left;
-	height: 3em; /* HALF HEAD HEIGHT */
-	background-image: url(images/head-break.png);
-	background-position: bottom right;
-	background-repeat: no-repeat;
-	padding-right: 1px;
-}
-body.rtl div#views {
-	float: right;
-	background-position: bottom left;
-	padding-right: 0;
-	padding-left: 1px;
-}
-	div#views h5 {
-		display: none;
-	}
-	div#views > ul {
-		height: 100%;
-		list-style: none;
-		margin: 0;
-		padding: 0;
-	}
-	div#views > ul > li {
-		float: left;
-		height: 100%;
-		margin: 0;
-		padding: 0;
-		background-image: url(images/view-normal-fade.png);
-		background-position: bottom left;
-		background-repeat: repeat-x;
-	}
-	body.rtl div#views > ul > li {
-		float: right;
-		background-position: bottom right;
-	}
-	div#views > ul > li > a {
-		display: block;
-		height: 100%;
-		line-height: 4em;
-		padding-left: 0.5em;
-		padding-right: 0.5em;
-		background-image: url(images/head-break.png);
-		background-position: bottom left;
-		background-repeat: no-repeat;
-	}
-	body.rtl div#views > ul > li > a {
-		background-position: bottom right;
-	}
-	div#views > ul > li > a,
-	div#views > ul > li > a:visited {
-		color: #0645ad;
-	}
-	div#views > ul > li.selected > a,
-	div#views > ul > li.selected > a:visited{
-		color: #333333;
-		cursor: default;
-		text-decoration: none;
-	}
-	div#views > ul > li.new > a,
-	div#views > ul > li.new > a:visited{
-		color: #a55858;
-	}
-	div#views > ul > li.selected {
-		background-image: url(images/view-current-fade.png);
-		background-position: bottom left;
-		background-repeat: repeat-x;
-	}
-	body.rlt div#views > ul > li.selected {
-		background-position: bottom right;
-	}
-
-/* Actions */
-div#actions {
-	float: left;
-	height: 3em; /* HALF HEAD HEIGHT */
-	background-image: url(images/head-break.png);
-	background-position: bottom right;
-	background-repeat: no-repeat;
-	padding-right: 1px;
-}
-body.rtl div#actions {
-	float: right;
-	background-position: bottom left;
-	padding-right: 0;
-	padding-left: 1px;
-}
-	div#actions > h5 {
-		height: 100%;
-		margin: 0;
-		padding: 0;
-		background-image: url(images/action-normal-fade.png);
-		background-position: bottom left;
-		background-repeat: repeat-x;
-	}
-	body.rtl div#actions > h5 {
-		background-position: bottom right;
-	}
-	div#actions > h5 > div.icon {
-		height: 80%;
-		width: 16px;
-		margin-left: 0.25em;
-		margin-right: 0.25em;
-		background-image: url(images/arrow-down-icon.png);
-		background-position: bottom center;
-		background-repeat: no-repeat;
-		cursor: default;
-	}
-	div#actions > h5 > div.icon > span {
-		display: none;
-	}
-	div#actions > div.menu {
-		display: none;
-	}
-	div#actions:hover > div.menu {
-		display: block;
-	}
-	div#actions > div.menu > ul {
-		position: absolute;
-		list-style: none;
-		background-color: white;
-		border: solid 1px silver;
-		border-top-width: 0;
-		margin: 0;
-		margin-left: -1px;
-		padding: 0;
-	}
-	body.rtl div#actions > div.menu > ul {
-		margin-left: 0;
-		margin-right: -1px;
-	}
-	div#actions > div.menu > ul > li {
-		margin: 0;
-		padding: 0;
-	}
-	div#actions > div.menu > ul > li > a {
-		display: block;
-		padding-top: 0.25em;
-		padding-bottom: 0.25em;
-		padding-left: 0.5em;
-		padding-right: 0.5em;
-	}
-	div#actions > div.menu > ul > li > a,
-	div#actions > div.menu > ul > li > a:visited {
-		color: #0645ad;
-	}
-
-/* I DON"T THINK THIS IS AWESOME, BUT IT"S SOMETHING... */
-
-/* Variants */
-div#variants {
-	float: left;
-	height: 3em; /* HALF HEAD HEIGHT */
-	background-image: url(images/head-break.png);
-	background-position: bottom right;
-	background-repeat: no-repeat;
-	padding-right: 1px;
-}
-body.rtl div#variants {
-	float: right;
-	background-position: bottom left;
-	padding-right: 0;
-	padding-left: 1px;
-}
-	div#variants > h5 {
-		height: 100%;
-		margin: 0;
-		padding: 0;
-		background-image: url(images/action-normal-fade.png);
-		background-position: bottom left;
-		background-repeat: repeat-x;
-	}
-	body.rtl div#variants > h5 {
-		background-position: bottom right;
-	}
-	div#variants > h5 > div.icon {
-		height: 80%;
-		width: 16px;
-		margin-left: 0.25em;
-		margin-right: 0.25em;
-		background-image: url(images/arrow-down-icon.png);
-		background-position: bottom center;
-		background-repeat: no-repeat;
-		cursor: default;
-	}
-	div#variants > h5 > div.icon > span {
-		display: none;
-	}
-	div#variants > div.menu {
-		display: none;
-	}
-	div#variants:hover > div.menu {
-		display: block;
-	}
-	div#variants > div.menu > ul {
-		position: absolute;
-		list-style: none;
-		background-color: white;
-		border: solid 1px silver;
-		border-top-width: 0;
-		margin: 0;
-		margin-left: -1px;
-		padding: 0;
-	}
-	body.rtl div#variants > div.menu > ul {
-		margin-left: 0;
-		margin-right: -1px;
-	}
-	div#variants > div.menu > ul > li {
-		margin: 0;
-		padding: 0;
-	}
-	div#variants > div.menu > ul > li > a {
-		display: block;
-		padding-top: 0.25em;
-		padding-bottom: 0.25em;
-		padding-left: 0.5em;
-		padding-right: 0.5em;
-	}
-	div#variants > div.menu > ul > li > a,
-	div#variants > div.menu > ul > li > a:visited {
-		color: #0645ad;
-	}
-
-/* END OF STUFF I"M NOT SURE ABOUT... */
-
-/* Search */
-div#search {
-	margin-top: 0.75em;
-	margin-right: 0.5em;
-	margin-left: 0.75em;
-	float: left;
-}
-body.rtl div#search {
-	margin-right: 0.75em;
-	margin-left: 0.5em;
-	float: right;
-}
-	div#search h5 {
-		display: none;
-	}
-
-/* Personal */
-div#personal {
-	float: right;
-	margin-top: 0.25em;
-	margin-right: 0.75em;
-	margin-left: 0.75em;
-}
-body.rtl div#personal {
-	float: left;
-}
-	div#personal > div.buffer > h5 {
-		display: none;
-	}
-	div#personal > div.buffer > ul {
-		list-style: none;
-		margin: 0;
-		padding: 0;
-	}
-	div#personal > div.buffer > ul > li {
-		float: left;
-		margin: 0;
-		padding-bottom: 0.5em;
-		padding-left: 1em;
-		font-size: 0.9em;
-	}
-	body.rtl div#personal > div.buffer > ul > li {
-		float: right;
-		padding-left: 0;
-		padding-right: 1em;
-	}
-	div#personal > div.buffer > ul > li > a,
-	div#personal > div.buffer > ul > li > a:visited {
-		color: #0645ad;
-	}
-	div#personal > div.buffer > ul > li > a.new,
-	div#personal > div.buffer > ul > li > a.new:visited {
-		color: #a55858;
-	}
 
 /*
  * 
  * The following code is highly modified from monobook. It would be nice if the
  * preftoc id was more human readable like preferences-toc for instance,
  * howerver this would require backporting the other skins.
- * 
  */
 
 /* Preferences */
 #preftoc {
 	/* Tabs */
 	float: left;
+	zoom: 1;
 	clear: both;
 	margin: 0 !important;
 	padding: 0 !important;
@@ -696,6 +330,7 @@ body.rtl #preftoc {
 	#preftoc li {
 		/* Tab */
 		float: left;
+		zoom: 1;
 		margin: 0;
 		padding: 0;
 		padding-right: 1px;
@@ -718,8 +353,7 @@ body.rtl #preftoc {
 	}
 	#preftoc a,
 	#preftoc a:active {
-		/* Tab Label */
-		display: block;
+		display: inline-block;
 		position: relative;
 		color: #0645ad;
 		padding: 0.5em;
@@ -730,7 +364,6 @@ body.rtl #preftoc {
 		text-decoration: underline;
 	}
 	#preftoc li.selected a {
-		/* Selected Tab Label */
 		cursor: default;
 		background-image: url(images/preferences-fade.png);
 		background-position: bottom;
@@ -741,6 +374,7 @@ body.rtl #preftoc {
 	}
 #preferences {
 	float: left;
+	zoom: 1;
 	width: 100%;
 	margin: 0;
 	clear: both;
