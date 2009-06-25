@@ -41,33 +41,35 @@ hr {
     margin: 0.2em 0 0.2em 0;
 }
 
-h1, h2, h3, h4, h5, h6 {
-    color: Black;
-    background: none;
-    font-weight: normal;
-    margin: 0;
-    padding-top: 0.5em;
-    padding-bottom: 0.17em;
-    border-bottom: 1px solid #aaaaaa;
+/* Headers */
+.mw-h1, .mw-h2, .mw-h3, .mw-h4, .mw-h5, .mw-h6 {
+	color: black;
+	background: none;
+	margin: 0;
+	border-bottom: 1px solid #aaa;
 }
-.editsection {
+.mw-h3, .mw-h4, .mw-h5, .mw-h6 {
+	border-bottom: none;
+}
+h1, h2 {
 	font-weight: normal;
 }
 h1 { font-size: 188%; }
-h1 .editsection { font-size: 53.2%; }
 h2 { font-size: 150%; }
-h2 .editsection { font-size: 66.7%; }
-h3, h4, h5, h6 {
-    border-bottom: none;
-    font-weight: bold;
-}
 h3 { font-size: 132%; }
-h3 .editsection { font-size: 75.8%; }
 h4 { font-size: 116%; }
-h4 .editsection { font-size: 86.2%; }
 h5 { font-size: 100%; }
 h6 { font-size: 80%;  }
-h6 .editsection { font-size: 125%; }
+
+/* To replicate the old padding, where h# were block-level elements and edit
+ * links were floated, we need to multiply .5em top padding and .17em bottom
+ * padding by the header text sizes. */
+.mw-h1 { padding: .94em 0 .32em; } /* (0.5*1.88)em 0 (0.17*1.88)em */
+.mw-h2 { padding: .75em 0 .26em; } /* (0.5*1.50)em 0 (0.17*1.50)em */
+.mw-h3 { padding: .66em 0 .22em; } /* etc. */
+.mw-h4 { padding: .58em 0 .20em; }
+.mw-h5 { padding: .50em 0 .17em; }
+.mw-h6 { padding: .40em 0 .14em; }
 
 ul {
     line-height: 1.5em;

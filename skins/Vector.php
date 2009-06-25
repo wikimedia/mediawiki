@@ -496,7 +496,7 @@ class VectorTemplate extends QuickTemplate {
 			<?php if($this->data['sitenotice']) { ?><div id="siteNotice"><?php $this->html('sitenotice') ?></div><?php } ?>
 			<!-- /sitenotice -->
 			<!-- firstHeading -->
-			<h1 id="firstHeading" class="firstHeading"><?php $this->html('title') ?></h1>
+			<div class="mw-h1 firstHeading"><h1><?php $this->html('title') ?></h1></div>
 			<!-- /firstHeading -->
 			<!-- bodyContent -->
 			<div id="bodyContent">
