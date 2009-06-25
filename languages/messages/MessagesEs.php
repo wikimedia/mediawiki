@@ -373,6 +373,7 @@ $messages = array(
 'vector-action-delete'       => 'Borrar',
 'vector-action-move'         => 'Mover',
 'vector-action-protect'      => 'Proteger',
+'vector-action-undelete'     => 'Restaurar',
 'vector-action-unprotect'    => 'Desproteger',
 'vector-namespace-category'  => 'Categoría',
 'vector-namespace-help'      => 'Página de ayuda',
@@ -423,7 +424,7 @@ $messages = array(
 'unprotectthispage' => 'Desproteger esta página',
 'newpage'           => 'Página nueva',
 'talkpage'          => 'Discutir esta página',
-'talkpagelinktext'  => 'Discutir',
+'talkpagelinktext'  => 'Discusión',
 'specialpage'       => 'Página Especial',
 'personaltools'     => 'Herramientas personales',
 'postcomment'       => 'Nueva sección',
@@ -924,17 +925,17 @@ Prueba a [[Special:Search|buscar en el wiki]] nuevas páginas relevantes.',
 'rev-deleted-user'            => '(nombre de usuario eliminado)',
 'rev-deleted-event'           => '(entrada borrada)',
 'rev-deleted-text-permission' => "Esta revisión de la página ha sido '''borrada'''.
-Puede haber detalles en el [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de borrado].",
+Puede haber detalles en el [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de supresiones].",
 'rev-deleted-text-unhide'     => "Esta revisión de página ha sido '''borrada'''.
-Puede haber detalles en el [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de borrado].
+Puede haber detalles en el [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de supresiones].
 Como administrador todavía puedes [$1 ver esta revisión] si deseas proceder.",
 'rev-deleted-text-view'       => "Esta revisión de la página ha sido '''borrada'''.
 Como administrador en {{SITENAME}} puedes verla;
-puede haber detalles en el [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de borrado].",
+puede haber detalles en el [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de supresiones].",
 'rev-deleted-no-diff'         => "No puede visualizarse este cambio debido a que las revisiones han sido '''borradas'''.
-Puede haber detalles en el [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de borrado].",
+Puede haber detalles en el [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de supresiones].",
 'rev-deleted-unhide-diff'     => "Una de las revisiones de este cambio ha sido '''borrada'''.
-Puede haber detalles en el [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de borrado].
+Puede haber detalles en el [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de supresiones].
 Como administrador todavía puedes [$1 ver este cambio] si deseas proceder.",
 'rev-delundel'                => 'mostrar/ocultar',
 'revisiondelete'              => 'Borrar/restaurar revisiones',
@@ -987,6 +988,9 @@ $1",
 'revdelete-unhid'             => 'mostrar $1',
 'revdelete-log-message'       => '$1 para $2 {{PLURAL:$2|revisión|revisiones}}',
 'logdelete-log-message'       => '$1 de $2 {{PLURAL:$2|evento|eventos}}',
+'revdelete-hide-current'      => 'Error al ocultar el objeto de fecha $1 a las $2: es la revisión actual.
+No puede ser ocultada.',
+'revdelete-no-change'         => "'''Atención:''' la revisión de fecha $1 a las $2 ya tiene las restricciones de visibilidad solicitadas.",
 'revdelete-only-restricted'   => 'No puede suprimir elementos a vista de los administradores sin seleccionar asímismo una de las otras opciones de supresión.',
 
 # Suppression log
@@ -1522,7 +1526,7 @@ Si todavía quiere subir su archivo, por favor, regrese a la página anterior y 
 'successfulupload'            => 'Subida con éxito',
 'uploadwarning'               => 'Advertencia de subida de archivo',
 'savefile'                    => 'Guardar archivo',
-'uploadedimage'               => '«[[$1]]» subido.',
+'uploadedimage'               => 'subió «[[$1]]»',
 'overwroteimage'              => 'subida una nueva versión de «[[$1]]»',
 'uploaddisabled'              => 'Subida de archivos deshabilitada',
 'uploaddisabledtext'          => 'No es posible subir archivos.',
@@ -1609,8 +1613,8 @@ También puedes consultar la [[Special:WhatLinksHere/$2|lista completa]].',
 Por favor mira la [$2 página de descripción del archivo] para información adicional.',
 'sharedupload-desc-here'    => 'Este archivo es de $1 y puede ser usado por otros proyectos.
 La descripción en su [$2 página de descripción del archivo] está mostrada debajo.',
-'filepage-nofile'           => 'No existe archivo con este nombre.',
-'filepage-nofile-link'      => 'No existe archivo con este nombre, pero puedes [$1 cargarlo].',
+'filepage-nofile'           => 'No existe ningún archivo con este nombre.',
+'filepage-nofile-link'      => 'No existe ningún archivo con este nombre, pero puedes [$1 subirlo].',
 'uploadnewversion-linktext' => 'Subir una nueva versión de este archivo',
 'shared-repo-from'          => 'de $1',
 'shared-repo'               => 'un repositorio compartido',
@@ -1836,6 +1840,10 @@ Protocolos soportados: <tt>$1</tt>',
 'listusersfrom'      => 'Mostrar usuarios que empiecen por:',
 'listusers-submit'   => 'Mostrar',
 'listusers-noresult' => 'No se encontró al usuario.',
+
+# Special:ActiveUsers
+'activeusers-from'     => 'Mostrando a los usuarios empezando por:',
+'activeusers-noresult' => 'No se encontraron usuarios.',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Registro de creación de usuarios',
@@ -2225,7 +2233,7 @@ las páginas en particular que han sido objeto de vandalismo).',
 'expiringblock'                   => 'expira el $1 a las $2',
 'anononlyblock'                   => 'sólo anón.',
 'noautoblockblock'                => 'bloqueo automático deshabilitado',
-'createaccountblock'              => 'creación de cuenta bloqueada.',
+'createaccountblock'              => 'creación de cuenta bloqueada',
 'emailblock'                      => 'correo electrónico bloqueado',
 'blocklist-nousertalk'            => 'no puede editar su propia página de discusión',
 'ipblocklist-empty'               => 'La lista de bloqueos está vacía.',

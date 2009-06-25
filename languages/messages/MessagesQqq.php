@@ -14,6 +14,7 @@
  * @author Ans
  * @author Aotake
  * @author Bangin
+ * @author Bennylin
  * @author Boivie
  * @author Brest
  * @author BrokenArrow
@@ -327,7 +328,8 @@ See also [[MediaWiki:Helppage/{{SUBPAGENAME}}|{{int:helppage}}]] and [[MediaWiki
 
 {{Identical|Create}}',
 'editthispage'     => 'This is the "edit" link as used in the skins Classic/Standard, Cologne Blue and Nostalgia. See {{msg|create-this-page}} for when the page does not exist.',
-'create-this-page' => 'In the skins Classic/Standard, Cologne Blue and Nostalgia this is the text for the link leading to the edit form on pages that have not yet been created. See {{msg|editthispage}} for when the page already exists.',
+'create-this-page' => 'In the skins Classic/Standard, Cologne Blue and Nostalgia this is the text for the link leading to the edit form on pages that have not yet been created. See {{msg|editthispage}} for when the page already exists.
+{{Identical|Createpage}}',
 'delete'           => 'Name of the Delete tab shown for admins. Should be in the imperative mood.
 
 {{Identical|Delete}}',
@@ -1254,7 +1256,9 @@ The rate limits have no effect on the groups that have this right. Rate limits i
 * Parameter $1 is the username
 * Parameters $2 and $3 are lists of user groups or {{msg-mw|Rightsnone}}
 
-The name of the bureaucrat who did this task appears before this message.',
+The name of the bureaucrat who did this task appears before this message.
+
+Similar to {{msg-mw|Gur-rightslog-entry}}',
 'rightsnone'     => 'Default rights for registered users.
 
 {{Identical|None}}',
@@ -1487,10 +1491,14 @@ Example: [[:Image:Addon-icn.png]]',
 {{doc-important|Do not customise this message. Just translate it.|Customisation should be done by local wikis.}}',
 'sharedupload-desc-there' => ':See also: {{msg-mw|Sharedupload}}',
 'sharedupload-desc-here'  => ':See also: {{msg-mw|Sharedupload}}',
-'filepage-nofile'         => 'This message only appears, if the user cannot upload files, or file uploads are disabled. (Otherwise, see {{msg-mw|Filepage-nofile-link}})',
-'filepage-nofile-link'    => 'This message only appears, if the user can upload files, and file uploads are enabled. (Otherwise, see {{msg-mw|Filepage-nofile}})
+'filepage-nofile'         => "This message appears when visiting a File page for which there's no file, if the user cannot upload files, or file uploads are disabled. (Otherwise, see {{msg-mw|Filepage-nofile-link}})
 
-$1 - URL of upload page for this file.',
+Filepage-nofile and Filepage-nofile-link message deprecate {{msg-mw|Noimage}}",
+'filepage-nofile-link'    => "This message appears when visiting a File page for which there's no file, if the user can upload files, and file uploads are enabled. (Otherwise, see {{msg-mw|Filepage-nofile}})
+
+$1 - URL of upload page for this file.
+
+Filepage-nofile and Filepage-nofile-link message deprecate {{msg-mw|Noimage}}",
 'shared-repo-from'        => 'This message is shown on an image description page when a duplicate of the image exists on a shared repository such as Wikimedia Commons.
 
 Example: http://test.wikipedia.org/wiki/File:Wiki.png#filelinks

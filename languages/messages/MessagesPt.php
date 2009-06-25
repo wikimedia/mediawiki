@@ -314,6 +314,7 @@ $messages = array(
 'faqpage'        => 'Project:FAQ',
 
 # Vector skin
+'vector-action-addsection'   => 'Adicionar tópico',
 'vector-action-delete'       => 'Eliminar',
 'vector-action-move'         => 'Mover',
 'vector-action-protect'      => 'Proteger',
@@ -327,6 +328,7 @@ $messages = array(
 'vector-view-create'         => 'Criar',
 'vector-view-edit'           => 'Editar',
 'vector-view-view'           => 'Ler',
+'vector-view-viewsource'     => 'Ver fonte',
 
 # Metadata in edit box
 'metadata_help' => 'Metadados:',
@@ -879,16 +881,16 @@ Tente [[Special:Search|pesquisar na wiki]] por páginas relevantes.',
 'rev-deleted-user'            => '(nome de utilizador removido)',
 'rev-deleted-event'           => '(entrada removida)',
 'rev-deleted-text-permission' => "Esta edição desta página foi '''eliminada'''.
-Poderão existir detalhes no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registo de eliminação].",
+Poderão existir detalhes no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registo de supressão].",
 'rev-deleted-text-unhide'     => "Esta edição desta página foi '''eliminada'''.
 Poderão existir detalhes no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registo de eliminação].
 Por ser um administrador você pode mesmo assim [$1 ver esta versão] se desejar prosseguir.",
 'rev-deleted-text-view'       => "Esta edição desta página foi '''eliminada'''.
-Por ser um administrador, você pode vê-la; poderão existir detalhes no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registo de eliminação].",
+Por ser um administrador, você pode vê-la; poderão existir detalhes no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registo de supressão].",
 'rev-deleted-no-diff'         => "Você não pode ver estas diferenças porque uma das revisões foi '''eliminada'''.
-Poderá haver detalhes no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registo de eliminações].",
+Poderá haver detalhes no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registo de supressão].",
 'rev-deleted-unhide-diff'     => "Uma das revisões destas diferenças foi '''eliminada'''.
-Poderá haver detalhes no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registo de eliminações].
+Poderá haver detalhes no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registo de supressão].
 Por ser um administrador, você pode mesmo assim [$1 ver estas diferenças], se desejar prosseguir.",
 'rev-delundel'                => 'mostrar/esconder',
 'revisiondelete'              => 'Eliminar/restaurar edições',
@@ -1807,6 +1809,13 @@ Veja também as [[Special:WantedCategories|categorias em falta]].',
 'listusersfrom'      => 'Mostrar utilizadores começando em:',
 'listusers-submit'   => 'Exibir',
 'listusers-noresult' => 'Não foram encontrados utilizadores para a forma pesquisada.',
+'listusers-blocked'  => '({{GENDER:$1|bloqueado|bloqueada}})',
+
+# Special:ActiveUsers
+'activeusers'          => 'Lista de utilizadore ativos',
+'activeusers-count'    => '$1 {{PLURAL:$1|edição recente|edições recentes}}',
+'activeusers-from'     => 'Mostrar utilizadores começando em:',
+'activeusers-noresult' => 'Nenhum utilizador encontrado.',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Registo de criação de utilizadores',
@@ -1918,7 +1927,7 @@ wiki: $PAGEEDITOR_WIKI
 
 Não haverá mais notificações no caso de futuras alterações a não ser que visite esta página. Poderá também restaurar as bandeiras de notificação para todas as suas páginas vigiadas na sua lista de vigiados.
 
-             O seu amigável sistema de notificação da {{SITENAME}}
+             O seu amigável sistema de notificação de {{SITENAME}}
 
 --
 Para alterar as suas preferências da lista de vigiados, visite

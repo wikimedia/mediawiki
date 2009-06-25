@@ -28,7 +28,7 @@ $messages = array(
 'tog-usenewrc'                => '"cambiament recent" migliuraa (JavaScript)',
 'tog-showtoolbar'             => 'Fá vidé ai butún da redataziún (JavaScript)',
 'tog-editondblclick'          => 'Redatá i pagin cun al dópi clich (JavaScript)',
-'tog-editsection'             => 'Ailitá redatazziún dii sezziún atravèerz al ligam [redatá]',
+'tog-editsection'             => 'Abilità edizion di seczion par ligam',
 'tog-editsectiononrightclick' => 'Abilitá redatazziún dai sezziún cun al clic<br />
 süi titul dai sezziún (JavaScript)',
 'tog-rememberpassword'        => "Regòrdass la mè paròla d'urdin",
@@ -88,8 +88,8 @@ süi titul dai sezziún (JavaScript)',
 
 # Categories related messages
 'pagecategories'  => '{{PLURAL:$1|Categuria|Categurij}}',
-'category_header' => 'Vus in de la categuria "$1"',
-'subcategories'   => 'Sót-categurii',
+'category_header' => 'Artícoj en la categuria "$1"',
+'subcategories'   => 'Sota-categoríe',
 
 'about'      => 'A pruposit də',
 'newwindow'  => "(sa derviss in un'óltra finèstra)",
@@ -102,6 +102,9 @@ süi titul dai sezziún (JavaScript)',
 'qbspecialpages' => 'Pagin specjaal',
 'faq'            => 'FAQ - Fera Ai Question',
 
+# Vector skin
+'vector-namespace-user' => 'Pagina da dovrée',
+
 'returnto'         => 'Turna indré a $1.',
 'help'             => 'Pàgin da jütt',
 'search'           => 'Cerca',
@@ -109,7 +112,7 @@ süi titul dai sezziún (JavaScript)',
 'go'               => 'Innanz',
 'searcharticle'    => 'Và',
 'history'          => 'Crunulugia de la pagina',
-'history_short'    => 'Crunulugia',
+'history_short'    => 'Cronología',
 'printableversion' => 'Versiun də stampà',
 'permalink'        => 'Culegament permanent',
 'edit'             => 'Mudifica',
@@ -124,6 +127,7 @@ süi titul dai sezziún (JavaScript)',
 'specialpage'      => 'Pagina speciala',
 'talk'             => 'Discüssiun',
 'toolbox'          => 'Strüment',
+'userpage'         => 'Vidé la pàgina da dovrée',
 'viewtalkpage'     => 'Varda i discüssiun',
 'otherlanguages'   => 'Oltri leench-Otre lengue',
 'redirectedfrom'   => '(Rimandaa də $1)',
@@ -158,8 +162,8 @@ süi titul dai sezziún (JavaScript)',
 'restorelink'             => '{{PLURAL:$1|1 mudifica scancelada|$1 mudifich scancelaa}}',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-main'      => 'Vus',
-'nstab-user'      => 'Pagina persunala',
+'nstab-main'      => 'Artícol',
+'nstab-user'      => 'Pagina personala',
 'nstab-special'   => 'Specjaal',
 'nstab-project'   => 'Pagina',
 'nstab-mediawiki' => 'Messácc',
@@ -188,7 +192,7 @@ Ul tò permèss d'entrava l è prunt. Dismentéga mia de mudifigá i prefereenz 
 'remembermypassword'      => "Regordass la mè parola d'urdin",
 'nav-login-createaccount' => 'Vena drenta / Crea un cünt',
 'loginprompt'             => 'Par cunett a {{SITENAME}}, a duvii abilitá i galet.',
-'userlogin'               => 'Vegna drent/Crea un cünt',
+'userlogin'               => 'Vegní drent - Creé un cunt',
 'logout'                  => 'Và fö',
 'userlogout'              => 'Và fö',
 'nologin'                 => "A gh'hiiv anmò da registrav? $1.",
@@ -197,7 +201,7 @@ Ul tò permèss d'entrava l è prunt. Dismentéga mia de mudifigá i prefereenz 
 'createaccountmail'       => 'par adressa da cureel (e-mail)',
 'noname'                  => "Vüü avii mía specificaa un nomm d'üsüari valévul.",
 'loginsuccesstitle'       => "La cunessiun l'è scumenzada cun sücess.",
-'loginsuccess'            => 'Te set cuness a {{SITENAME}} cume "$1".',
+'loginsuccess'            => 'Al é connectaa a {{SITENAME}} compagn "$1".',
 'nosuchusershort'         => "Ghe n'è mia d'ütent cun el nom de \"<nowiki>\$1</nowiki>\". Ch'el cuntrola se l'ha scrivüü giüst.",
 'nouserspecified'         => "Te gh'heet da specificà un nom del druvatt.",
 'wrongpassword'           => "La ciav che t'hee metüü dreent l'è no giüsta. Pröva turna per piasè.",
@@ -229,7 +233,7 @@ Per piasè, ve drent anmò dop che te l'ricevüü.",
 'showdiff'             => 'Famm vedè i cambiament',
 'anoneditwarning'      => 'Tì te set minga entraa. In de la crunulugia de la pagina se vedarà el tò IP.',
 'accmailtext'          => 'La parola d\'urdin per "$1" l\'è stada mandada a $2.',
-'anontalkpagetext'     => "----''Questa chì l'è la pagina de discüssiun de un ütent che l'ha minga ammò registraa un cünt, upür che el vör minga duperàll; dunca, el pò vess identificaa dumà cunt el sò IP, ch'el pò vess spartii tra tanti ütent diferent. Se ti te set un ütent anonim e t'hee vist un quai messacc ch'el te par ch'el gh'entra nagott cun tì, pröva a [[Special:UserLogin|creà el tò cünt]] per fà pü casott.''",
+'anontalkpagetext'     => "----''Chesta chí a l'é la pagina da ciciarada d'un usuari che l'ha ammò minga registraa un cunt, o ascí ch'al vœur minga dovràl; donca, el pò vess identificaa domà cont el sò IP, ch'el pœul vess compartii con fiss dovrat diferent. Se al é un dovrat anònim e a l'ha vist un quai messagg ch'al ga par ch'al gh'a nagòt à vidé con lu, ch'al prœuva a [[Special:UserLogin|creà el sò cunt]].''",
 'noarticletext'        => "Gh'è minga del test in quella pagina chì. Te pòdet [[Special:Search/{{PAGENAME}}|cercà in d'on'altra pagina]] oppur [{{fullurl:{{FULLPAGENAME}}|action=edit}} creàla tì].",
 'clearyourcache'       => "'''Nòta:''' dòpu che avii salvaa, pudaría véss neçessari de scancelá la memòria \"cache\" dal vòst prugráma də navigazziún in reet par vidé i mudifich faa. '''Mozilla / Firefox / Safari:''' tegní schiscjaa al butún ''Shift'' intaant che sə clica ''Reload'', upüür schiscjá ''Ctrl-Shift-R'' (''Cmd-Shift-R'' sül Apple Mac); '''IE:''' schiscjá ''Ctrl'' intaant che sə clica ''Refresh'', upüür schiscjá ''Ctrl-F5''; '''Konqueror:''': semplicemeent clicá al butún ''Reload'', upüür schiscjá ''F5''; '''Opera''' i üteent pudarían vech büsögn da scancelá cumpletameent la memòria \"cache\" in ''Tools&rarr;Preferences''.",
 'previewnote'          => "''''''Atenziun'''! Questa pagina la serviss dumà de vardà. I cambiament hinn minga staa salvaa.'''",
@@ -249,7 +253,7 @@ Spiegazziún di símbui: (cur) = difərenza cun la versiún curénta, (ültima) 
 'histlast'   => 'Püssee receent',
 
 # Diffs
-'compareselectedversions' => 'Cumpara i versiun selezziunaa',
+'compareselectedversions' => 'Compara i version catad fœu',
 
 # Search results
 'noexactmatch'          => "'''La pagina \"\$1\" la esista no.''' L'è pussibil [[:\$1|creala adèss]].",
@@ -262,7 +266,7 @@ Spiegazziún di símbui: (cur) = difərenza cun la versiún curénta, (ültima) 
 'powersearch'           => 'Truvá',
 
 # Preferences page
-'preferences'        => 'Prefereenz',
+'preferences'        => 'Preferenzi',
 'mypreferences'      => 'i mè prefereenz',
 'changepassword'     => "Mudifega la paròla d'urdin",
 'prefs-skin'         => "Aspett de l'interfacia",
@@ -292,7 +296,7 @@ Spiegazziún di símbui: (cur) = difərenza cun la versiún curénta, (ültima) 
 'defaultns'          => 'Tröva sempar in di caamp:',
 'prefs-files'        => 'Archivi',
 'youremail'          => 'E-mail',
-'username'           => 'Nomm registraa:',
+'username'           => 'Nom dal dovrée',
 'yourrealname'       => 'Nomm:',
 'yourlanguage'       => 'Lengua:',
 'yournick'           => 'Suranomm:',
@@ -300,17 +304,17 @@ Spiegazziún di símbui: (cur) = difərenza cun la versiún curénta, (ültima) 
 'prefs-help-email'   => 'Courriel (e-mail) al é mia obligatòri, però al permet da va mandar una nœuva ciav se cas che va la desmenteghé. A podé apó scernir da lassar i olt dovracc entrar en contat con violt senza da busogn da svelar la vosta identitaa.',
 
 # User rights
-'userrights-lookup-user'   => 'Gestione dei gruppi utente',
-'userrights-user-editname' => 'Inserire il nome utente:',
-'editusergroup'            => 'Modifica gruppi utente',
-'userrights-editusergroup' => 'Modifica gruppi utente',
-'saveusergroups'           => 'Salva gruppi utente',
-'userrights-groupsmember'  => 'Appartiene ai gruppi:',
-'userrights-reason'        => 'Motivo della modifica:',
-'userrights-no-interwiki'  => 'Non si dispone dei permessi necessari per modificare i diritti degli utenti su altri siti.',
-'userrights-nodatabase'    => 'Il database $1 non esiste o non è un database locale.',
-'userrights-nologin'       => "Per assegnare diritti agli utenti è necessario [[Special:UserLogin|effettuare l'accesso]] come amministratore.",
-'userrights-notallowed'    => "L'utente non dispone dei permessi necessari per assegnare diritti agli utenti.",
+'userrights-lookup-user'   => 'Gestion di group da dovracc',
+'userrights-user-editname' => 'Butée dent un nom da dovrat',
+'editusergroup'            => 'Edita i group da dovrée',
+'userrights-editusergroup' => 'Edita i group da dovrat',
+'saveusergroups'           => 'Salvaguarda i group da dovracc',
+'userrights-groupsmember'  => 'Mémber da:',
+'userrights-reason'        => 'Reson da la modifiazion:',
+'userrights-no-interwiki'  => "A l'ha mia la permession par canvià i dercc à di dovracc d'oltre wiki.",
+'userrights-nodatabase'    => "La base dat $1 a gh'é mia, o pura a l'é mia locala.",
+'userrights-nologin'       => "Al gh'a da [[Special:UserLogin|rintrà ent el sistema]] con un cunt d'administrator par podé dà di drecc ai dovracc.",
+'userrights-notallowed'    => "A l'ha mia li permission par podé dà di drecc ai dovracc.",
 
 # Groups
 'group-user' => 'Dovracc',
@@ -327,9 +331,9 @@ Spiegazziún di símbui: (cur) = difərenza cun la versiún curénta, (ültima) 
 'recentchanges'     => 'Cambiameent reçeent',
 'recentchangestext' => 'In chesta pagina a inn evidenziaa i cambiameent püssee receent al wiki lumbaart.',
 'rclistfrom'        => 'Fá vidé i nööf cambiameent a partí də $1',
-'rcshowhideminor'   => '$1 mudifich menu impurtaant',
+'rcshowhideminor'   => '$1 modifiazion megn important',
 'rcshowhideliu'     => '$1 üteent cunèss',
-'rcshowhideanons'   => '$1 üteent anònim',
+'rcshowhideanons'   => '$1 dovrat anònim',
 'rcshowhidemine'    => '$1 i mè mudifich',
 'rclinks'           => 'Fá vidé i ültim $1 cambiameent indi ültim $2 dí<br />$3',
 'diff'              => 'dif',
@@ -362,6 +366,7 @@ Spiegazziún di símbui: (cur) = difərenza cun la versiún curénta, (ültima) 
 
 # File description page
 'filehist-revert' => "Butar torna 'me ch'al era",
+'filehist-user'   => 'Dovrat',
 'imagelinks'      => 'Ligámm',
 
 # MIME search
@@ -420,7 +425,7 @@ Spiegazziún di símbui: (cur) = difərenza cun la versiún curénta, (ültima) 
 # Special:AllPages
 'allpages'       => 'Tücc i pagin',
 'allpagesfrom'   => 'Famm vedè i pagin a partì de:',
-'allarticles'    => 'Tütt i vus',
+'allarticles'    => 'Tucc i artícoj',
 'allpagesprev'   => 'Precedent',
 'allpagesnext'   => 'Pròssim',
 'allpagessubmit' => 'Innanz',
@@ -438,7 +443,7 @@ Spiegazziún di símbui: (cur) = difərenza cun la versiún curénta, (ültima) 
 
 # Watchlist
 'watchlist'        => 'In usservazziun',
-'addedwatch'       => "Gjüntaa a la lista dii pagin də tegn d'öcc",
+'addedwatch'       => "Giontaa à la lista di pàgin à tegní d'œucc",
 'addedwatchtext'   => "La pagina \"[[:\$1]]\" l'è staja gjüntava a la lista dii [[Special:Watchlist|paginn da tegn d'öcc]].
 I cambiameent che i vegnará fai a chesta pagina chi e a la sóa pagina dii cumünicazziún
 i vegnará segnalaa chichinscí e la pagina la sa vedará cun caráter '''spèss''' in la
@@ -499,7 +504,7 @@ L'ültima redatazziún l eva da [[User:$3|$3]] ([[User talk:$3|Discüssiún]])."
 'blanknamespace' => '(Principal)',
 
 # Contributions
-'contributions' => 'Cuntribüzziún dal duvratt',
+'contributions' => 'Contribuzion dal dovrat',
 'mycontris'     => 'I mè interveent',
 'uctop'         => '(ültima per la pagina)',
 
@@ -510,7 +515,7 @@ L'ültima redatazziún l eva da [[User:$3|$3]] ([[User talk:$3|Discüssiún]])."
 'whatlinkshere' => 'Pagin che se culeghen chì',
 
 # Block/unblock
-'blockip'       => "Bloca l'ütent",
+'blockip'       => 'Bloca el dovrat',
 'ipblocklist'   => 'Listá di adrèss IP e di üteent blucaa',
 'blocklistline' => "$1, $2 l'ha blucaa $3 ($4)",
 'blocklink'     => 'bloca',
@@ -529,12 +534,12 @@ una pàgina intúe l'évuf renuminada via par eruur, e che vüü pudii mia suras
 Cheest-chí al pöö vess un canbi dràstegh e inaspetaa par una pàgina pupülara: par piasée assürévas ch'a ii capii i cunsegueenz da cheest-chí prima da ná inaanz.",
 'movearticle'     => "Möva l'articul",
 'newtitle'        => 'Titul növ:',
-'move-watch'      => "Gionta quela pagina chì ai paginn che te tegn d'ögg.",
+'move-watch'      => "Gionta chela pagina chí ai pàgin à tegní d'œucc.",
 'pagemovedsub'    => "San Martin l'è bele fat!",
 'movepage-moved'  => "<big>'''\"\$1\" l'è staa muvüü a \"\$2\"'''</big>",
 'movedto'         => 'spustaa vers:',
 '1movedto2'       => '[[$1]] spustaa in [[$2]]',
-'1movedto2_redir' => '[[$1]] spustaa in [[$2]] atravèerz re-indirizzameent',
+'1movedto2_redir' => '[[$1]] movuu in [[$2]] par redirezion',
 'delete_and_move' => 'Scancelá e mööf',
 
 # Export

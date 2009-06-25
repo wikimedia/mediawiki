@@ -530,7 +530,7 @@ $messages = array(
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'A propôs de {{SITENAME}}',
 'aboutpage'            => 'Project:A propôs',
-'copyright'            => 'Lo contegnu est disponiblo desot los tèrmos de la licence $1.',
+'copyright'            => 'Lo contegnu est disponiblo desot $1.',
 'copyrightpagename'    => 'Drêts d’ôtor de {{SITENAME}}',
 'copyrightpage'        => '{{ns:project}}:Drêt d’ôtor',
 'currentevents'        => 'Novèles',
@@ -671,9 +671,9 @@ Por les traduccions, nos vos envitens a utilisar lo seto [http://translatewiki.n
 'sqlhidden'            => '(Requéta SQL cachiê)',
 'cascadeprotected'     => 'Ora, cela pâge est protègiê perce qu’el est encllua dens {{PLURAL:$1|ceta pâge|cetes pâges}}, {{PLURAL:$1|qu’at étâ protègiê|qu’ont étâ protègiês}} avouéc lo chouèx « protèccion en cascâda » activâ :
 $2',
-'namespaceprotected'   => "Vos avéd pas la pèrmission de changiér les pâges de l’èspâço de nom '''« $1 »'''.",
+'namespaceprotected'   => "Vos avéd pas la pèrmission de changiér les pâges de l’èspâço de noms '''« $1 »'''.",
 'customcssjsprotected' => 'Vos avéd pas la pèrmission de changiér ceta pâge perce que contint les prèferences a un ôtro utilisator.',
-'ns-specialprotected'  => 'Les pâges dens l’èspâço de nom « {{ns:special}} » pôvont pas étre changiês.',
+'ns-specialprotected'  => 'Les pâges dens l’èspâço de noms « {{ns:special}} » pôvont pas étre changiês.',
 'titleprotected'       => "Cél titro at étâ protègiê a la crèacion per [[User:$1|$1]].
 La rêson balyê est « ''$2'' ».",
 
@@ -936,7 +936,7 @@ Vos devriâd utilisar un navigator ples novél.",
 'editingold'                       => "'''ATENCION : vos éte aprés changiér una vielye vèrsion de cela pâge.'''
 Se vos la sôvâd, tôs los changements fêts dês ceta vèrsion seront pèrdues.",
 'yourdiff'                         => 'Difèrences',
-'copyrightwarning'                 => "Totes les contribucions a {{SITENAME}} sont considèrâs coment publeyês desot los tèrmos de la $2 (vêde $1 por més de dètalys).
+'copyrightwarning'                 => "Totes les contribucions a {{SITENAME}} sont considèrâs coment publeyês desot les condicions de la $2 (vêde $1 por més de dètalys).
 Se vos dèsirâd pas que voutros ècrits seyont changiês et distribuâs a volontât, los volyéd pas sometre ique.<br />
 Vos nos assurâd asse-ben que vos éd cen ècrit vos-mémo, ou ben que vos l’éd copiyê d’una sôrsa que vint du domêno publico, ou ben d’una ressôrsa abada.<br />
 '''UTILISÂD PAS D’ÔVRES DESOT DRÊT D’ÔTOR SEN ÔTORISACION ÈXPRÈSSA !'''",
@@ -1260,7 +1260,7 @@ Vos pouede [[:$1|fâre cela pâge]].",
 'searchprofile-project-tooltip'    => 'Rechèrchiér dens $1',
 'searchprofile-images-tooltip'     => 'Rechèrchiér des fichiérs multimèdia',
 'searchprofile-everything-tooltip' => 'Rechèrchiér dens tot lo seto (les pâges de discussion avouéc)',
-'searchprofile-advanced-tooltip'   => 'Chouèsir los èspâços de nom por la rechèrche',
+'searchprofile-advanced-tooltip'   => 'Chouèsir los èspâços de noms por la rechèrche',
 'search-result-size'               => '$1 ($2 mot{{PLURAL:$2||s}})',
 'search-result-score'              => 'Rapôrt : $1%',
 'search-redirect'                  => '(redirèccion dês $1)',
@@ -1273,19 +1273,19 @@ Vos pouede [[:$1|fâre cela pâge]].",
 'search-mwsuggest-disabled'        => 'sen consèlys',
 'search-relatedarticle'            => 'Raportâ',
 'mwsuggest-disable'                => 'Dèsactivar los consèlys AJAX',
-'searcheverything-enable'          => 'Rechèrchiér dens tôs los èspâços de nom',
+'searcheverything-enable'          => 'Rechèrchiér dens tôs los èspâços de noms',
 'searchrelated'                    => 'raportâ',
 'searchall'                        => 'Tôs',
 'showingresults'                   => "Visualisacion de '''$1''' rèsultat{{PLURAL:$1||s}} dês lo numerô '''$2'''.",
 'showingresultsnum'                => "Visualisacion de '''$3''' rèsultat{{PLURAL:$3||s}} dês lo numerô '''$2'''.",
 'showingresultstotal'              => "Visualisacion {{PLURAL:$4|du rèsultat '''$1'''|des rèsultats '''$1 – $2'''}} sur '''$3'''",
 'showingresultsheader'             => "{{PLURAL:$5|Rèsultat '''$1'''|Rèsultats '''$1 - $2'''}} de '''$3''' por '''$4'''",
-'nonefound'                        => "'''Nota :''' solament quârques èspâços de nom sont rechèrchiês per dèfôt.
-Èprovâd en utilisent lo prèfixo ''all:'' por rechèrchiér dens tot lo contegnu (les pâges de discussion, los modèlos, ... avouéc) ou ben utilisâd l’èspâço de nom souhètâ coment prèfixo.",
+'nonefound'                        => "'''Nota :''' solament quârques èspâços de noms sont rechèrchiês per dèfôt.
+Èprovâd en utilisent lo prèfixo ''all:'' por rechèrchiér dens tot lo contegnu (les pâges de discussion, los modèlos, ... avouéc) ou ben utilisâd l’èspâço de noms souhètâ coment prèfixo.",
 'search-nonefound'                 => 'Y at gins de rèsultat que corrèspond a la requéta.',
 'powersearch'                      => 'Rechèrche avanciê',
 'powersearch-legend'               => 'Rechèrche avanciê',
-'powersearch-ns'                   => 'Rechèrchiér dens los èspâços de nom :',
+'powersearch-ns'                   => 'Rechèrchiér dens los èspâços de noms :',
 'powersearch-redir'                => 'Fâre vêre les redirèccions',
 'powersearch-field'                => 'Rechèrchiér',
 'powersearch-togglelabel'          => 'Pouentar :',
@@ -1363,8 +1363,8 @@ Atencion, lor endèxacion du contegnu de {{SITENAME}} pôt pas étre a jorn.',
 'timezoneregion-pacific'        => 'Ocèan pacefico',
 'allowemail'                    => 'Ôtorisar l’èxpèdicion de mèl que vint d’ôtros utilisators',
 'prefs-searchoptions'           => 'Chouèx de rechèrche',
-'prefs-namespaces'              => 'Èspâços de nom',
-'defaultns'                     => 'Ôtrament rechèrchiér dens cetos èspâços de nom :',
+'prefs-namespaces'              => 'Èspâços de noms',
+'defaultns'                     => 'Ôtrament rechèrchiér dens cetos èspâços de noms :',
 'default'                       => 'dèfôt',
 'prefs-files'                   => 'Fichiérs',
 'prefs-custom-css'              => 'CSS pèrsonalisâ',
@@ -1827,17 +1827,17 @@ Entrâ : ''tipo de contegnu''/''sot-tipo'', per ègzemplo <tt>image/jpeg</tt>.",
 
 # Unused templates
 'unusedtemplates'     => 'Modèlos inutilisâs',
-'unusedtemplatestext' => 'Ceta pâge liste totes les pâges de l’èspâço de nom « {{ns:template}} » que sont pas encllues dens gins d’ôtra pâge.
+'unusedtemplatestext' => 'Ceta pâge liste totes les pâges de l’èspâço de noms « {{ns:template}} » que sont pas encllues dens gins d’ôtra pâge.
 Oubliâd pas de controlar s’y at pas d’ôtros lims de vers los modèlos devant que los suprimar.',
 'unusedtemplateswlh'  => 'ôtros lims',
 
 # Random page
 'randompage'         => 'Pâge a l’hasârd',
-'randompage-nopages' => 'Y at gins de pâge dens l’èspâço de nom « $1 ».',
+'randompage-nopages' => 'Y at gins de pâge dens l’èspâço de noms « $1 ».',
 
 # Random redirect
 'randomredirect'         => 'Pâge de redirèccion a l’hasârd',
-'randomredirect-nopages' => 'Y at gins de pâge de redirèccion dens l’èspâço de nom « $1 ».',
+'randomredirect-nopages' => 'Y at gins de pâge de redirèccion dens l’èspâço de noms « $1 ».',
 
 # Statistics
 'statistics'                   => 'Statistiques',
@@ -1970,15 +1970,15 @@ Vos pouede rètrendre la vua en chouèséssent un tipo de jornal, un nom d’uti
 'allpagesfrom'      => 'Fâre vêre les pâges dês :',
 'allpagesto'        => 'Fâre vêre les pâges tant qu’a :',
 'allarticles'       => 'Totes les pâges',
-'allinnamespace'    => 'Totes les pâges (dens l’èspâço de nom $1)',
-'allnotinnamespace' => 'Totes les pâges (en defôr de l’èspâço de nom $1)',
+'allinnamespace'    => 'Totes les pâges (dens l’èspâço de noms $1)',
+'allnotinnamespace' => 'Totes les pâges (en defôr de l’èspâço de noms $1)',
 'allpagesprev'      => 'Devant',
 'allpagesnext'      => 'Aprés',
 'allpagessubmit'    => 'Listar',
 'allpagesprefix'    => 'Fâre vêre les pâges que començont per lo prèfixo :',
 'allpagesbadtitle'  => 'Lo titro de la pâge balyê est fôx ou ben at un prèfixo entèrlengoua ou entèrvouiqui resèrvâ.
 Contint sûrement yon ou ben un mouél de caractèros que pôvont pas étre utilisâs dens los titros.',
-'allpages-bad-ns'   => '{{SITENAME}} at gins d’èspâço de nom « $1 ».',
+'allpages-bad-ns'   => '{{SITENAME}} at gins d’èspâço de noms « $1 ».',
 
 # Special:Categories
 'categories'                    => 'Catègories',
@@ -1997,7 +1997,7 @@ Vêde asse-ben les [[Special:WantedCategories|catègories les ples demandâs]].'
 # Special:LinkSearch
 'linksearch'       => 'Lims de defôr',
 'linksearch-pat'   => 'Modèlo de rechèrche :',
-'linksearch-ns'    => 'Èspâço de nom :',
+'linksearch-ns'    => 'Èspâço de noms :',
 'linksearch-ok'    => 'Rechèrchiér',
 'linksearch-text'  => 'Des caractèros « j·oquèr » pôvont étre utilisâs, per ègzemplo <code>*.wikipedia.org</code>.<br />
 Protocolos recognus : <tt>$1</tt>.',
@@ -2312,7 +2312,7 @@ $1',
 'undelete-show-file-submit'    => 'Ouè',
 
 # Namespace form on various pages
-'namespace'      => 'Èspâço de nom :',
+'namespace'      => 'Èspâço de noms :',
 'invert'         => 'Envèrsar lo chouèx',
 'blanknamespace' => '(Principâl)',
 
@@ -2344,7 +2344,7 @@ $1',
 'whatlinkshere-page'       => 'Pâge :',
 'linkshere'                => "Les pâges ce-desot contegnont un lim de vers '''[[:$1]]''' :",
 'nolinkshere'              => "Niona pâge contint de lim de vers '''[[:$1]]'''.",
-'nolinkshere-ns'           => "Niona pâge contint de lim de vers '''[[:$1]]''' dens l’èspâço de nom chouèsi.",
+'nolinkshere-ns'           => "Niona pâge contint de lim de vers '''[[:$1]]''' dens l’èspâço de noms chouèsi.",
 'isredirect'               => 'pâge de redirèccion',
 'istemplate'               => 'encllusion',
 'isimage'                  => 'fichiér liyê',
@@ -2552,12 +2552,12 @@ Voléd-vos franc la suprimar por pèrmetre lo changement de nom ?',
 'delete_and_move_reason'       => 'Pâge suprimâ ôtomaticament por pèrmetre un changement de nom',
 'selfmove'                     => 'Los titros d’origina et de dèstinacion sont los mémos ;
 empossiblo de renomar una pâge sur lyé-méma.',
-'immobile-source-namespace'    => 'Vos pouede pas renomar les pâges dens l’èspâço de nom « $1 »',
-'immobile-target-namespace'    => 'Vos pouede pas renomar des pâges vers l’èspâço de nom « $1 »',
+'immobile-source-namespace'    => 'Vos pouede pas renomar les pâges dens l’èspâço de noms « $1 »',
+'immobile-target-namespace'    => 'Vos pouede pas renomar des pâges vers l’èspâço de noms « $1 »',
 'immobile-target-namespace-iw' => 'Los lims entèrvouiquis sont pas una ciba valida por los changements de nom.',
 'immobile-source-page'         => 'Cela pâge est pas renomâbla.',
 'immobile-target-page'         => 'Empossiblo de renomar la pâge vers cél titro.',
-'imagenocrossnamespace'        => 'Empossiblo de renomar un fichiér vers un èspâço de nom ôtro que fichiér.',
+'imagenocrossnamespace'        => 'Empossiblo de renomar un fichiér vers un èspâço de noms ôtro que fichiér.',
 'imagetypemismatch'            => 'La novèla èxtension de cél fichiér corrèspond pas a son tipo.',
 'imageinvalidfilename'         => 'Lo nom du fichiér ciba est fôx',
 'fix-double-redirects'         => 'Betar a jorn les redirèccions que pouentont vers lo titro originâl',
@@ -2579,7 +2579,7 @@ Dens cél dèrriér câs, vos pouede asse-ben utilisar un lim, coment [[{{#Speci
 'export-submit'     => 'Èxportar',
 'export-addcattext' => 'Apondre les pâges de la catègorie :',
 'export-addcat'     => 'Apondre',
-'export-addnstext'  => 'Apondre les pâges dens l’èspâço de nom :',
+'export-addnstext'  => 'Apondre des pâges dens l’èspâço de noms :',
 'export-addns'      => 'Apondre',
 'export-download'   => 'Enregistrar dens un fichiér',
 'export-templates'  => 'Encllure los modèlos',
@@ -2618,7 +2618,7 @@ Totes les accions d’importacion entèrvouiqui sont consignês dens lo [[Specia
 'import-interwiki-history'   => 'Copiyér totes les vèrsions de l’historico de ceta pâge',
 'import-interwiki-templates' => 'Encllure tôs los modèlos',
 'import-interwiki-submit'    => 'Importar',
-'import-interwiki-namespace' => 'Èspâço de nom de dèstinacion :',
+'import-interwiki-namespace' => 'Èspâço de noms de dèstinacion :',
 'import-upload-filename'     => 'Nom du fichiér :',
 'import-comment'             => 'Comentèro :',
 'importtext'                 => 'Volyéd èxportar lo fichiér dês lo vouiqui d’origina en utilisent son [[Special:Export|outil d’èxportacion]].

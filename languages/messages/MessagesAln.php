@@ -623,9 +623,69 @@ Ju mundeni [[Special:Search/{{PAGENAME}}|me kërkue këtë titull]] në faqe tje
 apo [{{fullurl:{{FULLPAGENAME}}|action=edit}} me redaktue këtë faqe]</span>.',
 'userpage-userdoesnotexist' => 'Llogaria e përdoruesit "$1" nuk âsht regjistrue.
 Ju lutemi kontrolloni nëse doni me krijue/redaktue këtë faqe.',
-'editing'                   => 'Tuj redaktue $1',
-'copyrightwarning'          => "Kontributet te {{SITENAME}} janë të konsiderueme të dhana nën licensën $2 (shikoni $1 për hollësirat).<br />
-'''NDALOHET DHËNIA E PUNIMEVE PA PAS LEJE NGA AUTORI NË MOSPËRPUTHJE ME KËTË LICENSË!'''<br />",
+'clearyourcache'            => "'''Shenim - Mbas ruejtjes, ka mundësi që duheni me shmângë memorizimin në cache për me i pâ ndryshimet.'''
+'''Mozilla / Firefox / Safari:''' mbani ''Shift'' tue klikue në ''Reload'', ose trusni ''Ctrl-F5'' ose ''Ctrl-R'' (''Command-R'' në Macintosh);
+'''Konqueror: '''klikoni ''Reload'' ose trusni ''F5'';
+'''Opera:''' fshini cachein në ''Tools → Preferences'';
+'''Internet Explorer:''' mbani ''Ctrl'' tue klikue në ''Refresh,'' ose trusni ''Ctrl-F5''.",
+'usercssjsyoucanpreview'    => "'''Këshillë:''' Përdorni butonin 'Trego parapâmjen' për me testue CSS/JS para se me i regjistrue ndryshimet.",
+'usercsspreview'            => "'''Vini re, jeni tue pâ veç parapâmjen e CSSit tuej.'''
+'''Ende nuk e keni ruejtë!'''",
+'userjspreview'             => "'''Vini re, jeni tue testue/pâ veç parapâmjen e JavaScriptit tuej.'''
+'''Ende nuk e keni ruejtë!'''",
+'userinvalidcssjstitle'     => "'''Kujdes:''' Nuk ka pâmje me emën \"\$1\".
+Vini re që faqet .css dhe .js përdorin vetëm titull me germa të vogla, psh. {{ns:user}}:Foo/monobook.css për dallim prej {{ns:user}}:Foo/Monobook.css.",
+'updated'                   => '(E ndryshueme)',
+'note'                      => "'''Shenim:'''",
+'previewnote'               => "'''Kjo âsht vetëm parapâmje.'''
+Ndryshimet tueja nuk janë ruejtë ende!",
+'previewconflict'           => 'Kjo parapâmje pasqyron tekstin në kutinë e sipërme të redaktimit, njashtu si do të duket nëse e rueni.',
+'session_fail_preview'      => "'''Na vjen keq! Nuk mujtëm me ruejtë redaktimin tuej për shkak të hupjes së sesionit.'''
+Ju lutemi provoni prap.
+Nëse prap nuk funksionon, provoni me u [[Special:UserLogout|çkyçë]] dhe me u kyçë prap.",
+'session_fail_preview_html' => "'''Na vjen keq! Nuk mujtëm me i ruejtë ndryshimet tueja për shkak të hupjes së sesionit.'''
+
+''Tue qenë se {{SITENAME}} ka të aktivizuem HTML të papërpunuem, parapâmja âsht e msheftë si preventivë kundër sulmeve me JavaScript.''
+
+'''Nëse kjo ishte redaktim legjitim, ju lutemi provoni prap.'''
+Nëse prap nuk funksionon, provoni me u [[Special:UserLogout|çkyçë]] edhe me u kyçë prap.",
+'token_suffix_mismatch'     => "'''Redaktimi juej u refuzue meqenëse shfletuesi juej i ka përzî shêjat e pikësimit në tekstin e redaktuem.'''
+Redaktimi âsht refuzue për me parandalue korruptimin e tekstit.
+Kjo ndodh nganjiherë, kur jeni tue përdorë shërbime ndërmjetësash anonimizues që përmbajnë gabime.",
+'editing'                   => 'Tue redaktue $1',
+'editingsection'            => 'Tue redaktue (sekcionin) $1',
+'editingcomment'            => 'Tue redaktue (sekcionin e ri) $1',
+'editconflict'              => 'Konflikt redaktues: $1',
+'explainconflict'           => "Dikush tjetër e ka ndryshue këtë faqe derisa e redaktojshit ju.
+Kutia e sipërme tregon tekstin aktual të faqes.
+Ndryshimet tueja gjinden në kutinë e poshtme redaktuese.
+Ju duheni me i bashkue ndryshimet tueja në tekstin aktual.
+'''Vetëmse''' nëse shtypni \"Regjistro faqen\" ka me u ruejtë teksti në kutinë e sipërme redaktuese.",
+'yourtext'                  => 'Teksti juej',
+'storedversion'             => 'Rishikim i ruejtun',
+'nonunicodebrowser'         => "'''Kujdes: Shfletuesi juej nuk e përkrah unicodein.'''
+Për me ju lejue me redaktue faqen pa gabime aplikohet nji opcion shtesë: germat jashta ASCII kodit paraqiten me kod heksadecimal.",
+'editingold'                => "'''Kujdes: Jeni tue redaktue nji verzion të vjetër të faqes.'''
+Nëse e rueni, tâna rishikimet e mâvonshme të faqes kanë me hupë.",
+'yourdiff'                  => 'Dallimet',
+'copyrightwarning'          => "Ju lutemi vini re se tâna kontributet në {{SITENAME}} konsiderohen me qenë të lidhuna me licencën $2 (shih $1 për detaje).
+Nëse nuk doni që shkrimet tueja me u redaktue pamëshirshëm dhe me u shpërnda arbitrarisht, atëherë mâ mirë mos publikoni këtu.<br />
+Gjithashtu po premtoni se këtë e keni shkrue vetë, ose e keni kopjue prej domenës publike apo ndonji burimi tjetër të lirë.
+'''Mos publikoni vepra që janë e drejtë autoriale pa leje!'''",
+'copyrightwarning2'         => "Ju lutemi vini re se tâna kontributet në {{SITENAME}} mujnë me u rishkrue, ndryshue, apo fshi prej kontribuusve tjerë.
+Nëse nuk doni që shkrimet tueja me u redaktue pamëshirshëm dhe me u shpërnda arbitrarisht, atëherë mâ mirë mos publikoni këtu.<br />
+Gjithashtu po premtoni se këtë e keni shkrue vetë, ose e keni kopjue prej domenës publike apo ndonji burimi tjetër të lirë (shih $1 për detaje).
+'''Mos publikoni vepra që janë e drejtë autoriale pa leje!'''",
+'longpagewarning'           => "'''Kujdes:''' Kjo faqe i ka $1 kilobyte;
+disa shfletues mujnë me pasë problem me redaktue faqe që janë afër apo mâ shumë se 32kb.
+Konsideroni mundësinë me dâ faqen në sekcione mâ të vogla.",
+'longpageerror'             => "'''Gabim: Teksti që po redaktoni i ka $1 kilobyte, që âsht mâ shumë se maksimumi prej $2 kilobytësh.'''
+Nuk mundet me u ruejtë.",
+'readonlywarning'           => "'''Kujdes: Baza e të dhânave âsht mshelë për mirëmbajtje, kështuqë tashpërtash nuk keni me mujtë me i ruejtë redaktimet tueja.'''
+Mundeni me kopju dhe ruejtë tekstin në nji skedë për mâ vonë.
+
+Administruesi që e ka mshelë e ka dhânë këtë shpjegim: $1",
+'protectedpagewarning'      => "'''Kujdes: Kjo faqe âsht mshelë ashtu që vetëm përdoruesit me tagër administrues mujnë me redaktue.'''",
 'template-protected'        => '(e mbrojtme)',
 
 # History pages

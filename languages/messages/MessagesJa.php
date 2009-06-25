@@ -1915,8 +1915,8 @@ PICT # misc.
 'removedwatchtext'     => 'ページ「[[:$1]]」を[[Special:Watchlist|ウォッチリスト]]から削除しました。',
 'watch'                => '監視',
 'watchthispage'        => 'このページを監視する',
-'unwatch'              => '監視をやめる',
-'unwatchthispage'      => '監視をやめる',
+'unwatch'              => '監視停止',
+'unwatchthispage'      => '監視停止',
 'notanarticle'         => '記事ではありません',
 'notvisiblerev'        => 'この版は削除されました',
 'watchnochange'        => 'ウォッチリストに登録しているページに指定期間内に編集されたものはありません。',
@@ -3189,7 +3189,7 @@ $1',
 'fileduplicatesearch-result-n' => '「$1」と重複するファイルが$2{{PLURAL:$2|個}}あります。',
 
 # Special:SpecialPages
-'specialpages'                   => '特別ページ',
+'specialpages'                   => '特別ページ一覧',
 'specialpages-note'              => '----
 *通常の特別ページ。
 * <strong class="mw-specialpagerestricted">制限されている特別ページ。</strong>',
