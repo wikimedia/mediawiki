@@ -1154,8 +1154,6 @@ class EditPage {
 
 		$sk = $wgUser->getSkin();
 
-		wfRunHooks( 'EditPage::showEditForm:initial', array( &$this ) ) ;
-
 		#need to parse the preview early so that we know which templates are used,
 		#otherwise users with "show preview after edit box" will get a blank list
 		#we parse this near the beginning so that setHeaders can do the title
@@ -1164,6 +1162,8 @@ class EditPage {
 		if ( $this->formtype == 'preview' ) {
 			$previewOutput = $this->getPreviewText();
 		}
+		
+		wfRunHooks( 'EditPage::showEditForm:initial', array( &$this ) ) ;
 
 		$this->setHeaders();
 
