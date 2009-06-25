@@ -492,7 +492,7 @@ EOT
 				$nofile = 'filepage-nofile';
 			}
 			$wgOut->setRobotPolicy( 'noindex,nofollow' );
-			$wgOut->wrapWikiMsg( '<div id="mw-imagepage-nofile" class="plainlinks">$1</div>', $nofile );
+			$wgOut->wrapWikiMsg( "<div id='mw-imagepage-nofile' class='plainlinks'>\n$1\n</div>", $nofile );
 		}
 	}
 
