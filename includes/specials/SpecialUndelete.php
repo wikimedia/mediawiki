@@ -945,7 +945,7 @@ class UndeleteForm {
 			$wgOut->setPagetitle( wfMsg( 'viewdeletedpage' ) );
 		}
 
-		$wgOut->addWikiMsg( 'undeletepagetitle', $this->mTargetObj->getPrefixedText() );
+		$wgOut->wrapWikiMsg(  "<div class='mw-undelete-pagetitle'>\n$1</div>\n", array ( 'undeletepagetitle', $this->mTargetObj->getPrefixedText() ) );
 
 		$archive = new PageArchive( $this->mTargetObj );
 		/*
@@ -955,12 +955,14 @@ class UndeleteForm {
 			return;
 		}
 		*/
+		$wgOut->addHTML( '<div class="mw-undelete-history">' );
 		if ( $this->mAllowed ) {
 			$wgOut->addWikiMsg( "undeletehistory" );
 			$wgOut->addWikiMsg( "undeleterevdel" );
 		} else {
 			$wgOut->addWikiMsg( "undeletehistorynoadmin" );
 		}
+		$wgOut->addHTML( '</div>' );
 
 		# List all stored revisions
 		$revisions = $archive->listRevisions();
@@ -1025,7 +1027,7 @@ class UndeleteForm {
 				Xml::fieldset( wfMsg( 'undelete-fieldset-title' ) ) .
 				Xml::openElement( 'table', array( 'id' => 'mw-undelete-table' ) ) .
 					"<tr>
-						<td colspan='2'>" .
+						<td colspan='2' class='mw-undelete-extrahelp'>" .
 							wfMsgWikiHtml( 'undeleteextrahelp' ) .
 						"</td>
 					</tr>
