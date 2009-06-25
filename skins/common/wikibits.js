@@ -114,7 +114,9 @@ function showTocToggle() {
 		// Uses DOM calls to avoid document.write + XHTML issues
 
 		var linkHolder = document.getElementById('toctitle');
-		if (!linkHolder) {
+		var existingLink = document.getElementById('togglelink');
+		if (!linkHolder || existingLink) {
+			// Don't add the toggle link twice
 			return;
 		}
 
