@@ -81,14 +81,15 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 14866) Messages 'recentchangeslinked-toolbox' and
   'recentchangeslinked-toolbox' were added to allow more fine grained
   customisation of the user interface
-* DISPLAYTITLE now accepts a limited amount of wiki markup (the single-quote items)
+* DISPLAYTITLE now accepts a limited amount of wiki markup (the single-quote
+  items)
 * Special:Search now could search terms in all variant-forms. ONLY apply on
   wikis with LanguageConverter
-* Add autopromote condition APCOND_BLOCKED to autopromote blocked users to various
-  user groups.
-* Add $wgRevokePermissions as a means of restricting a group's rights. The syntax is
-  identical to $wgGroupPermissions, but users in these groups will have these rights
-  stripped from them.
+* Add autopromote condition APCOND_BLOCKED to autopromote blocked users to
+  various user groups.
+* Add $wgRevokePermissions as a means of restricting a group's rights. The
+  syntax is identical to $wgGroupPermissions, but users in these groups will
+  have these rights stripped from them.
 * Added a PHP port of CDB (constant database), for improved local caching when
   the DBA extension is not available.
 
@@ -189,7 +190,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 18925) history.js removes class names of list elements on initialization
 * Multiple whitespace in TOC anchors is now stripped, for consistency with the
   link from the edit comment
-* (bug 19112) Preferences now respects $wgUseExternalEditor, $wgExternalDiffEngine
+* (bug 19112) Preferences now respects $wgUseExternalEditor,
+  $wgExternalDiffEngine
 * (bug 18173) MediaWiki now fails when unable to determine a client IP
 * (bug 19170) Special:Version should follow the content language direction
 * (bug 19160) maintenance/purgeOldText.inc is now compatible with PostgreSQL
@@ -199,8 +201,12 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   can add/remove *all* groups (have 'userrights' permission).
 * (bug 19294) Always show Sp-contributions-footer(-anon)
 * Attempts to restrict reading of pages while anonymous viewing is allowed
-  via extensions not using the userCan hook and via $wgRevokePermissions now work.
-* (bug 8445) Multiple-character search terms are now handled properly for Chinese
+  via extensions not using the userCan hook and via $wgRevokePermissions now
+  work.
+* (bug 8445) Multiple-character search terms are now handled properly for
+  Chinese
+* (bug 11270) Put the section [edit] linker after the section header in the HTML
+  instead of before
 
 == API changes in 1.16 ==
 

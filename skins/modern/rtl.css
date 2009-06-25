@@ -3,12 +3,6 @@ body {
 	unicode-bidi: embed;
 }
 
-.editsection {
-	float: left;
-	margin-right: 5px;
-	margin-left: 0; /* bug 9122: undo default LTR */
-}
-
 /* Fix alignment */
 .documentByLine,
 .portletDetails,
