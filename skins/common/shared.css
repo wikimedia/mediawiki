@@ -547,6 +547,12 @@ table.wikitable {
 	clear: both;
 }
 
+#mw_trackbacks {
+	border: solid 1px #bbbbff;
+	background-color: #eeeeff;
+	padding: 0.2em;
+}
+
 /*
   Table pager (e.g. Special:Imagelist)
   - remove underlines from the navigation link
