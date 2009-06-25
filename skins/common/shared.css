@@ -136,25 +136,25 @@ div.searchresult {
 	float:left;
 	padding-left: 0.25em;
 }
-.mw-search-formheader div.search-types > ul {
+.mw-search-formheader div.search-types ul {
 	margin: 0 !important;
 	padding: 0 !important;
 	list-style: none !important;
 }
-.mw-search-formheader div.search-types > ul > li {
+.mw-search-formheader div.search-types ul li {
 	float: left;
 	margin: 0;
 	padding: 0;
 }
-.mw-search-formheader div.search-types > ul > li > a {
+.mw-search-formheader div.search-types ul li a {
 	display: block;
 	padding: 0.5em;
 }
-.mw-search-formheader div.search-types > ul > li.current > a {
+.mw-search-formheader div.search-types ul li.current a {
 	color: #333333;
 	cursor: default;
 }
-.mw-search-formheader div.search-types > ul > li.current > a:hover {
+.mw-search-formheader div.search-types ul li.current a:hover {
 	text-decoration: none;
 }
 .mw-search-formheader div.results-info {
@@ -162,12 +162,12 @@ div.searchresult {
 	padding: 0.5em;
 	padding-right: 0.75em;
 }
-.mw-search-formheader div.results-info > ul {
+.mw-search-formheader div.results-info ul {
 	margin: 0 !important;
 	padding: 0 !important;
 	list-style: none !important;
 }
-.mw-search-formheader div.results-info > ul > li {
+.mw-search-formheader div.results-info ul li {
 	float: right;
 	margin: 0;
 	padding: 0;
@@ -181,33 +181,33 @@ fieldset#mw-searchoptions {
 	border: none;
 	background-color: #f9f9f9;
 	border: 1px solid silver !important;
-	border-top: none !important;
+	border-top-width: 0 !important;
 }
-fieldset#mw-searchoptions > legend {
+fieldset#mw-searchoptions legend {
 	display: none;
 }
-fieldset#mw-searchoptions > h4 {
+fieldset#mw-searchoptions h4 {
 	padding: 0;
 	margin: 0;
 	float: left;
 }
-fieldset#mw-searchoptions > div#mw-search-togglebox {
+fieldset#mw-searchoptions div#mw-search-togglebox {
 	float: right;
 }
-fieldset#mw-searchoptions > div#mw-search-togglebox > label {
+fieldset#mw-searchoptions div#mw-search-togglebox label {
 	margin-right: 0.25em;
 }
-fieldset#mw-searchoptions > div#mw-search-togglebox > input {
+fieldset#mw-searchoptions div#mw-search-togglebox input {
 	margin-left: 0.25em;
 }
-fieldset#mw-searchoptions > table {
+fieldset#mw-searchoptions table {
 	float: left;
 	margin-right: 3em;
 }
-fieldset#mw-searchoptions > table td {
+fieldset#mw-searchoptions table td {
 	padding-right: 1em;
 }
-body.rtl fieldset#mw-searchoptions > table {
+body.rtl fieldset#mw-searchoptions table {
 	float: right;
 }
 fieldset#mw-searchoptions div.divider {
