@@ -1176,6 +1176,32 @@ class Linker {
 		 . ' } '
 		 . "</script>\n";
 	}
+	
+	/**
+	 * Generate a table of contents from a section tree
+	 * @param $tree Return value of ParserOutput::getSections()
+	 * @return string HTML
+	 */
+	public function generateTOC( $tree ) {
+		$toc = '';
+		$lastLevel = 0;
+		foreach ( $tree as $section ) {
+			if ( $section['toclevel'] > $lastLevel )
+				$toc .= $this->tocIndent();
+			else if ( $secton['toclevel'] < $lastLevel )
+				$toc .= $this->tocUnindent(
+					$lastLevel - $section['toclevel'] );
+			else
+				$toc .= $this->tocLineEnd();
+			
+			$toc .= $this->tocLine( $section['anchor'],
+				$section['line'], $section['number'],
+				$section['toclevel'], $section['index'] );
+			$lastLevel = $section['toclevel'];
+		}
+		$toc .= $this->tocLineEnd();
+		return $this->tocList( $toc );
+	}
 
 	/**
 	 * Create a section edit link.  This supersedes editSectionLink() and

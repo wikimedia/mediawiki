@@ -3489,64 +3489,61 @@ class Parser
 			}
 			$level = $matches[1][$headlineCount];
 
-			if( $doNumberHeadings || $enoughToc ) {
+			if ( $level > $prevlevel ) {
+				# Increase TOC level
+				$toclevel++;
+				$sublevelCount[$toclevel] = 0;
+				if( $toclevel<$wgMaxTocLevel ) {
+					$prevtoclevel = $toclevel;
+					$toc .= $sk->tocIndent();
+					$numVisible++;
+				}
+			}
+			elseif ( $level < $prevlevel && $toclevel > 1 ) {
+				# Decrease TOC level, find level to jump to
 
-				if ( $level > $prevlevel ) {
-					# Increase TOC level
-					$toclevel++;
-					$sublevelCount[$toclevel] = 0;
-					if( $toclevel<$wgMaxTocLevel ) {
+				for ($i = $toclevel; $i > 0; $i--) {
+					if ( $levelCount[$i] == $level ) {
+						# Found last matching level
+						$toclevel = $i;
+						break;
+					}
+					elseif ( $levelCount[$i] < $level ) {
+						# Found first matching level below current level
+						$toclevel = $i + 1;
+						break;
+					}
+				}
+				if( $i == 0 ) $toclevel = 1;
+				if( $toclevel<$wgMaxTocLevel ) {
+					if($prevtoclevel < $wgMaxTocLevel) {
+						# Unindent only if the previous toc level was shown :p
+						$toc .= $sk->tocUnindent( $prevtoclevel - $toclevel );
 						$prevtoclevel = $toclevel;
-						$toc .= $sk->tocIndent();
-						$numVisible++;
-					}
-				}
-				elseif ( $level < $prevlevel && $toclevel > 1 ) {
-					# Decrease TOC level, find level to jump to
-
-					for ($i = $toclevel; $i > 0; $i--) {
-						if ( $levelCount[$i] == $level ) {
-							# Found last matching level
-							$toclevel = $i;
-							break;
-						}
-						elseif ( $levelCount[$i] < $level ) {
-							# Found first matching level below current level
-							$toclevel = $i + 1;
-							break;
-						}
-					}
-					if( $i == 0 ) $toclevel = 1;
-					if( $toclevel<$wgMaxTocLevel ) {
-						if($prevtoclevel < $wgMaxTocLevel) {
-							# Unindent only if the previous toc level was shown :p
-							$toc .= $sk->tocUnindent( $prevtoclevel - $toclevel );
-							$prevtoclevel = $toclevel;
-						} else {
-							$toc .= $sk->tocLineEnd();
-						}
-					}
-				}
-				else {
-					# No change in level, end TOC line
-					if( $toclevel<$wgMaxTocLevel ) {
+					} else {
 						$toc .= $sk->tocLineEnd();
 					}
 				}
+			}
+			else {
+				# No change in level, end TOC line
+				if( $toclevel<$wgMaxTocLevel ) {
+					$toc .= $sk->tocLineEnd();
+				}
+			}
 
-				$levelCount[$toclevel] = $level;
+			$levelCount[$toclevel] = $level;
 
-				# count number of headlines for each level
-				@$sublevelCount[$toclevel]++;
-				$dot = 0;
-				for( $i = 1; $i <= $toclevel; $i++ ) {
-					if( !empty( $sublevelCount[$i] ) ) {
-						if( $dot ) {
-							$numbering .= '.';
-						}
-						$numbering .= $wgContLang->formatNum( $sublevelCount[$i] );
-						$dot = 1;
+			# count number of headlines for each level
+			@$sublevelCount[$toclevel]++;
+			$dot = 0;
+			for( $i = 1; $i <= $toclevel; $i++ ) {
+				if( !empty( $sublevelCount[$i] ) ) {
+					if( $dot ) {
+						$numbering .= '.';
 					}
+					$numbering .= $wgContLang->formatNum( $sublevelCount[$i] );
+					$dot = 1;
 				}
 			}
 
@@ -3648,28 +3645,31 @@ class Parser
 			if( $enoughToc && ( !isset($wgMaxTocLevel) || $toclevel<$wgMaxTocLevel ) ) {
 				$toc .= $sk->tocLine($anchor, $tocline,
 					$numbering, $toclevel, ($isTemplate ? false : $sectionIndex));
-				
-				# Find the DOM node for this header
-				while ( $node && !$isTemplate ) {
-					if ( $node->getName() === 'h' ) {
-						$bits = $node->splitHeading();
-						if ( $bits['i'] == $sectionIndex )
-							break;
-					}
-					$byteOffset += mb_strlen( $this->mStripState->unstripBoth( 
-						$frame->expand( $node, PPFrame::RECOVER_ORIG ) ) );
-					$node = $node->getNextSibling();
-				}
-				$tocraw[] = array( 
-					'toclevel' => $toclevel,
-					'level' => $level,
-					'line' => $tocline,
-					'number' => $numbering,
-					'index' => $sectionIndex,
-					'fromtitle' => $titleText,
-					'byteoffset' => ( $isTemplate ? null : $byteOffset ),
-				);
 			}
+			
+			# Add the section to the section tree
+			# Find the DOM node for this header
+			while ( $node && !$isTemplate ) {
+				if ( $node->getName() === 'h' ) {
+					$bits = $node->splitHeading();
+					if ( $bits['i'] == $sectionIndex )
+						break;
+				}
+				$byteOffset += mb_strlen( $this->mStripState->unstripBoth( 
+					$frame->expand( $node, PPFrame::RECOVER_ORIG ) ) );
+				$node = $node->getNextSibling();
+			}
+			$tocraw[] = array( 
+				'toclevel' => $toclevel,
+				'level' => $level,
+				'line' => $tocline,
+				'number' => $numbering,
+				'index' => ($isTemplate ? 'T-' : '' ) . $sectionIndex,
+				'fromtitle' => $titleText,
+				'byteoffset' => ( $isTemplate ? null : $byteOffset ),
+				'anchor' => $anchor,
+			);
+			
 			# give headline the correct <h#> tag
 			if( $showEditLink && $sectionIndex !== false ) {
 				if( $isTemplate ) {
@@ -3738,6 +3738,96 @@ class Parser
 		} else {
 			return $full;
 		}
+	}
+	
+	/**
+	 * Merge $tree2 into $tree1 by replacing the section with index
+	 * $section in $tree1 and its descendants with the sections in $tree2.
+	 * Note that in the returned section tree, only the 'index' and
+	 * 'byteoffset' fields are guaranteed to be correct.
+	 * @param $tree1 array Section tree from ParserOutput::getSectons()
+	*  @param $tree2 array Section tree
+	 * @param $section int Section index
+	 * @param $title Title Title both section trees come from
+	 * @param $len2 int Length of the original wikitext for $tree2
+	 * @return array Merged section tree
+	 */
+	public static function mergeSectionTrees( $tree1, $tree2, $section, $title, $len2 ) {
+		global $wgContLang;
+		$newTree = array();
+		$targetLevel = false;
+		$merged = false;
+		$lastLevel = 1;
+		$nextIndex = 1;
+		$numbering = array( 0 );
+		$titletext = $title->getPrefixedDBkey();
+		foreach ( $tree1 as $s ) {
+			if ( $targetLevel !== false ) { 
+				if ( $s['level'] <= $targetLevel )
+					// We've skipped enough
+					$targetLevel = false;
+				else
+					continue;
+			}
+			if ( $s['index'] != $section ||
+					$s['fromtitle'] != $titletext ) {
+				self::incrementNumbering( $numbering,
+					$s['toclevel'], $lastLevel );
+				
+				// Rewrite index, byteoffset and number
+				if ( $s['fromtitle'] == $titletext ) {
+					$s['index'] = $nextIndex++;
+					if ( $merged )
+						$s['byteoffset'] += $len2;
+				}
+				$s['number']  = implode( '.', array_map(
+					array( $wgContLang, 'formatnum' ),
+					$numbering ) );
+				$lastLevel = $s['toclevel'];
+				$newTree[] = $s;
+			} else {
+				// We're at $section
+				// Insert sections from $tree2 here
+				foreach ( $tree2 as $s2 ) {
+					// Rewrite the fields in $s2
+					// before inserting it
+					$s2['toclevel'] += $s['toclevel'] - 1;
+					$s2['level'] += $s['level'] - 1;
+					$s2['index'] = $nextIndex++;
+					$s2['byteoffset'] += $s['byteoffset'];
+					
+					self::incrementNumbering( $numbering,
+						$s2['toclevel'], $lastLevel );
+					$s2['number']  = implode( '.', array_map(
+						array( $wgContLang, 'formatnum' ),
+						$numbering ) );
+					$lastLevel = $s2['toclevel'];
+					$newTree[] = $s2;
+				}
+				// Skip all descendants of $section in $tree1
+				$targetLevel = $s['level'];
+				$merged = true;
+			}
+		}
+		return $newTree;
+	}
+	
+	/**
+	 * Increment a section number. Helper function for mergeSectionTrees()
+	 * @param $number array Array representing a section number
+	 * @param $level int Current TOC level (depth)
+	 * @param $lastLevel int Level of previous TOC entry
+	 */
+	private static function incrementNumbering( &$number, $level, $lastLevel ) {
+		if ( $level > $lastLevel )
+			$number[$level - 1] = 1;
+		else if ( $level < $lastLevel ) {
+			foreach ( $number as $key => $unused )
+				if ( $key >= $level )
+					unset( $number[$key] );
+			$number[$level - 1]++;
+		} else
+			$number[$level - 1]++;
 	}
 	
 	/**

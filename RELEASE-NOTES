@@ -237,6 +237,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 19313) action=rollback returns wrong revid on master/slave setups
 * (bug 19323) action=parse doesn't return section tree on pages with Cite
   warnings
+* (bug 18720) Add anchor field to action=parse&prop=sections output
 
 === Languages updated in 1.16 ===
 
