@@ -1330,13 +1330,6 @@ p.revision_saved {
 	font-weight:bold;
 }
 
-#mw_trackbacks {
-	border: solid 1px #bbbbff;
-	background-color: #eeeeff;
-	padding: 0.2em;
-}
-
-
 /* Allmessages table */
 
 #allmessagestable th {
