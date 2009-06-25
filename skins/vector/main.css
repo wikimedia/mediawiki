@@ -149,7 +149,7 @@ div#head h5 {
 	div#namespaces li,
 	div#views li {
 		float: left;
-		line-height: 3em;
+		height: 3em;
 		background-image: url(images/tab-normal-fade.png);
 		background-position: bottom left;
 		background-repeat: repeat-x;
@@ -172,20 +172,26 @@ div#head h5 {
 		background-image: url(images/tab-break.png);
 		background-position: bottom right;
 		background-repeat: no-repeat;
-		color: #0645ad;
 	}
 	body.rtl div#namespaces a,
 	body.rtl div#views a {
 		background-position: bottom left;
 	}
-	div#namespaces li.selected a,
-	div#views li.selected a:visited {
+	div#namespaces a span,
+	div#views a span {
+		color: #0645ad;
+		display: inline-block;
+		padding-top: 1.25em;
+		cursor: pointer;
+	}
+	div#namespaces li.selected a span,
+	div#views li.selected a:visited span {
 		color: #333333;
 		cursor: default;
 		text-decoration: none;
 	}
-	div#namespaces li.new a,
-	div#namespaces li.new a:visited{
+	div#namespaces li.new a span,
+	div#namespaces li.new a:visited span{
 		color: #a55858;
 	}
 	/* Variants and Actions */
