@@ -556,7 +556,7 @@ class VectorTemplate extends QuickTemplate {
 					<h5><?php $this->msg('namespaces') ?></h5>
 					<ul <?php $this->html('userlangattributes') ?>>
 						<?php foreach ($this->data['namespace_urls'] as $key => $link ): ?>
-							<li <?php echo $link['attributes'] ?>><a href="<?php echo htmlspecialchars( $link['href'] ) ?>" <?php echo $link['key'] ?>><?php echo htmlspecialchars( $link['text'] ) ?></a></li>
+							<li <?php echo $link['attributes'] ?>><a href="<?php echo htmlspecialchars( $link['href'] ) ?>" <?php echo $link['key'] ?>><span><?php echo htmlspecialchars( $link['text'] ) ?></span></a></li>
 						<?php endforeach; ?>
 					</ul>
 				</div>
@@ -583,7 +583,7 @@ class VectorTemplate extends QuickTemplate {
 					<h5><?php $this->msg('views') ?></h5>
 					<ul <?php $this->html('userlangattributes') ?>>
 						<?php foreach ($this->data['view_urls'] as $key => $link ): ?>
-							<li<?php echo $link['attributes'] ?><?php if(!empty($link['class'])): ?> class="<?php echo htmlspecialchars($link['class']) ?>"<?php endif; ?>><a href="<?php echo htmlspecialchars( $link['href'] ) ?>" <?php echo $link['key'] ?>><?php echo htmlspecialchars( $link['text'] ) ?></a></li>
+							<li<?php echo $link['attributes'] ?><?php if(!empty($link['class'])): ?> class="<?php echo htmlspecialchars($link['class']) ?>"<?php endif; ?>><a href="<?php echo htmlspecialchars( $link['href'] ) ?>" <?php echo $link['key'] ?>><span><?php echo htmlspecialchars( $link['text'] ) ?></span></a></li>
 						<?php endforeach; ?>
 					</ul>
 				</div>
