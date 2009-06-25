@@ -460,7 +460,7 @@ $messages = array(
 'nstab-media'     => 'Media paĝo',
 'nstab-special'   => 'Speciala paĝo',
 'nstab-project'   => 'Projektpaĝo',
-'nstab-image'     => 'Bildo / dosiero',
+'nstab-image'     => 'Dosiero',
 'nstab-mediawiki' => 'Sistema mesaĝo',
 'nstab-template'  => 'Ŝablono',
 'nstab-help'      => 'Helpo',
@@ -1551,7 +1551,7 @@ Klaku la kolumnan titolon por ŝanĝi la direkton de ordigo.',
 'listfiles_count'       => 'Versioj',
 
 # File description page
-'file-anchor-link'          => 'Bildo / dosiero',
+'file-anchor-link'          => 'Dosiero',
 'filehist'                  => 'Historio de dosiero',
 'filehist-help'             => 'Klaku daton/tempon por rigardi la dosieron kiel ĝin ŝajnitan tiame.',
 'filehist-deleteall'        => 'forigi ĉiujn',

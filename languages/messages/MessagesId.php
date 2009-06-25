@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Bennylin
  * @author Borgx
  * @author Irwangatot
  * @author IvanLanin
@@ -445,7 +446,7 @@ $messages = array(
 # Metadata in edit box
 'metadata_help' => 'Metadata:',
 
-'errorpagetitle'    => 'Kesalahan',
+'errorpagetitle'    => 'Galat',
 'returnto'          => 'Kembali ke $1.',
 'tagline'           => 'Dari {{SITENAME}}',
 'help'              => 'Bantuan',
@@ -492,7 +493,7 @@ $messages = array(
 'viewtalkpage'      => 'Lihat halaman pembicaran',
 'otherlanguages'    => 'Bahasa lain',
 'redirectedfrom'    => '(Dialihkan dari $1)',
-'redirectpagesub'   => 'Halaman peralihan',
+'redirectpagesub'   => 'Halaman pengalihan',
 'lastmodifiedat'    => 'Halaman ini terakhir diubah pada $2, $1.',
 'viewcount'         => 'Halaman ini telah diakses sebanyak {{PLURAL:$1|satu kali|$1 kali}}.<br />',
 'protectedpage'     => 'Halaman yang dilindungi',
@@ -576,7 +577,7 @@ $messages = array(
 Daftar halaman istimewa yang sah dapat dilihat di [[Special:SpecialPages|{{int:specialpages}}]].",
 
 # General errors
-'error'                => 'Kesalahan',
+'error'                => 'Galat',
 'databaseerror'        => 'Kesalahan basis data',
 'dberrortext'          => 'Ada kesalahan sintaks pada permintaan basis data. Kesalahan ini mungkin menandakan adanya \'\'bug\'\' dalam perangkat lunak. Permintaan basis data yang terakhir adalah: <blockquote><tt>$1</tt></blockquote> dari dalam fungsi "<tt>$2</tt>". Kesalahan MySQL "<tt>$3: $4</tt>".',
 'dberrortextcl'        => 'Ada kesalahan sintaks pada permintaan basis data. Permintaan basis data yang terakhir adalah: "$1" dari dalam fungsi "$2". Kesalahan MySQL "$3: $4".',
@@ -1275,7 +1276,7 @@ Pengembalian preferensi tidak dapat dibatalkan.',
 'prefs-memberingroups'          => 'Anggota {{PLURAL:$1|kelompok|kelompok}}:',
 'prefs-registration'            => 'Waktu pendaftaran:',
 'yourrealname'                  => 'Nama asli:',
-'yourlanguage'                  => 'Bahasa antarmuka:',
+'yourlanguage'                  => 'Bahasa:',
 'yourvariant'                   => 'Varian bahasa',
 'yournick'                      => 'Nama samaran:',
 'badsig'                        => 'Tanda tangan mentah tak sah; periksa tag HTML.',
@@ -1838,7 +1839,7 @@ Anda dapat melakukan pembatasan tampilan dengan memilih jenis log, nama pengguna
 'allpages-bad-ns'   => '{{SITENAME}} tidak memiliki ruang nama "$1".',
 
 # Special:Categories
-'categories'                    => 'Daftar kategori',
+'categories'                    => 'Kategori',
 'categoriespagetext'            => '{{PLURAL:$1|Kategori berikut|Kategori-kategori berikut}} memiliki isi halaman atau media.
 [[Special:UnusedCategories|Kategori yang tak digunakan]] tidak ditampilkan di sini.
 Lihat pula [[Special:WantedCategories|kategori yang diinginkan]].',
@@ -2168,7 +2169,7 @@ $1',
 'sp-contributions-deleted'       => 'kontribusi pengguna yang dihapus',
 'sp-contributions-logs'          => 'log',
 'sp-contributions-talk'          => 'bicara',
-'sp-contributions-userrights'    => 'manajemen hak pengguna',
+'sp-contributions-userrights'    => 'pengelolaan hak pengguna',
 'sp-contributions-search'        => 'Cari kontribusi',
 'sp-contributions-username'      => 'Alamat IP atau nama pengguna:',
 'sp-contributions-submit'        => 'Cari',
@@ -2180,7 +2181,7 @@ $1',
 'linkshere'                => "Halaman-halaman berikut ini memiliki pranala ke '''[[:$1]]''':",
 'nolinkshere'              => "Tidak ada halaman yang memiliki pranala ke '''[[:$1]]'''.",
 'nolinkshere-ns'           => "Tidak ada halaman yang memiliki pranala ke '''[[:$1]]''' pada ruang nama yang dipilih.",
-'isredirect'               => 'halaman peralihan',
+'isredirect'               => 'halaman pengalihan',
 'istemplate'               => 'dengan templat',
 'isimage'                  => 'pranala berkas',
 'whatlinkshere-prev'       => '$1 {{PLURAL:$1|sebelumnya|sebelumnya}}',
@@ -2828,7 +2829,7 @@ Pranala-pranala selanjutnya pada baris yang sama dianggap sebagai pengecualian, 
 
 'exif-subjectdistance-value' => '$1 meter',
 
-'exif-meteringmode-0'   => 'Tak diketahui',
+'exif-meteringmode-0'   => 'Tidak diketahui',
 'exif-meteringmode-1'   => 'Rerata',
 'exif-meteringmode-2'   => 'RerataBerbobot',
 'exif-meteringmode-3'   => 'Terpusat',
@@ -2837,7 +2838,7 @@ Pranala-pranala selanjutnya pada baris yang sama dianggap sebagai pengecualian, 
 'exif-meteringmode-6'   => 'Parsial',
 'exif-meteringmode-255' => 'Lain-lain',
 
-'exif-lightsource-0'   => 'Tak diketahui',
+'exif-lightsource-0'   => 'Tidak diketahui',
 'exif-lightsource-1'   => 'Cahaya siang',
 'exif-lightsource-2'   => 'Pendarflour',
 'exif-lightsource-3'   => 'Wolfram (cahaya pijar)',
@@ -2912,7 +2913,7 @@ Pranala-pranala selanjutnya pada baris yang sama dianggap sebagai pengecualian, 
 'exif-sharpness-1' => 'Lembut',
 'exif-sharpness-2' => 'Keras',
 
-'exif-subjectdistancerange-0' => 'Tak diketahui',
+'exif-subjectdistancerange-0' => 'Tidak diketahui',
 'exif-subjectdistancerange-1' => 'Makro',
 'exif-subjectdistancerange-2' => 'Tampak dekat',
 'exif-subjectdistancerange-3' => 'Tampak jauh',
@@ -3077,7 +3078,7 @@ Anda juga dapat [[Special:Watchlist/raw|menyunting daftar mentahnya]].',
 'version-specialpages'             => 'Halaman istimewa',
 'version-parserhooks'              => 'Kait parser',
 'version-variables'                => 'Variabel',
-'version-other'                    => 'Lainnya',
+'version-other'                    => 'Lain-lain',
 'version-mediahandlers'            => 'Penanganan media',
 'version-hooks'                    => 'Kait',
 'version-extension-functions'      => 'Fungsi ekstensi',
@@ -3175,6 +3176,6 @@ Keterangan tampilan:
 'htmlform-int-toohigh'         => 'Nilai yang Anda masukkan melebihi nilai maksimum $1',
 'htmlform-submit'              => 'Kirim',
 'htmlform-reset'               => 'Batalkan perubahan',
-'htmlform-selectorother-other' => 'Lainnya',
+'htmlform-selectorother-other' => 'Lain-lain',
 
 );

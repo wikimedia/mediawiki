@@ -1967,7 +1967,7 @@ Protocoles reconnus : <tt>$1</tt>.',
 'listusersfrom'      => 'Afficher les utilisateurs à partir de :',
 'listusers-submit'   => 'Lister',
 'listusers-noresult' => 'Aucun utilisateur trouvé. Vérifiez aussi les variantes de casse.',
-'listusers-blocked'  => '(bloqué)',
+'listusers-blocked'  => '(bloqué{{GENDER:$1||e|(e)}})',
 
 # Special:ActiveUsers
 'activeusers'          => 'Liste des utilisateurs actifs',

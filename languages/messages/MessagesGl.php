@@ -428,7 +428,7 @@ $messages = array(
 'protectedpage'     => 'Páxina protexida',
 'jumpto'            => 'Ir a:',
 'jumptonavigation'  => 'navegación',
-'jumptosearch'      => 'procurar',
+'jumptosearch'      => 'procura',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Acerca de {{SITENAME}}',
@@ -448,8 +448,8 @@ $messages = array(
 'policy-url'           => 'Project:Política e normas',
 'portal'               => 'Portal da comunidade',
 'portal-url'           => 'Project:Portal da comunidade',
-'privacy'              => 'Política de privacidade',
-'privacypage'          => 'Project:Política de privacidade',
+'privacy'              => 'Política de protección de datos',
+'privacypage'          => 'Project:Política de protección de datos',
 
 'badaccess'        => 'Erro de permisos',
 'badaccess-group0' => 'Non ten os permisos necesarios para executar a acción que solicitou.',
@@ -738,7 +738,7 @@ A razón que deu foi \'\'$2\'\'.
 * Pretendeuse bloquear: $7
 
 Pode contactar con $1 ou con calquera outro [[{{MediaWiki:Grouppage-sysop}}|administrador]] para discutir este bloqueo.
-Non pode empregar a característica "enviarlle un correo electrónico a este usuario" a non ser que dispoña dun enderezo electrónico válido rexistrado nas súas [[Special:Preferences|preferencias de usuario]] e que o seu uso non fose bloqueado.
+Non pode empregar a característica "Enviar un correo electrónico a este usuario" a non ser que dispoña dun enderezo electrónico válido rexistrado nas súas [[Special:Preferences|preferencias de usuario]] e que o seu uso non fose bloqueado.
 O seu enderezo IP actual é $3 e o ID do bloqueo é #$5.
 Por favor, inclúa eses datos nas consultas que faga.',
 'autoblockedtext'                  => 'O seu enderezo IP foi bloqueado automaticamente porque foi empregado por outro usuario que foi bloqueado por $1.
@@ -938,17 +938,17 @@ Probe a [[Special:Search|buscar no wiki]] para atopar as páxinas relacionadas.'
 'rev-deleted-comment'         => '(comentario eliminado)',
 'rev-deleted-user'            => '(nome de usuario eliminado)',
 'rev-deleted-event'           => '(rexistro de evento eliminado)',
-'rev-deleted-text-permission' => "Esta revisión da páxina foi '''eliminada'''.
-Pode ampliar os detalles no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} rexistro de borrados].",
-'rev-deleted-text-unhide'     => "Esta revisión da páxina foi '''eliminada'''.
-Pode ampliar os detalles no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} rexistro de borrados].
+'rev-deleted-text-permission' => "Esta revisión da páxina foi '''borrada'''.
+Pode ampliar os detalles no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} rexistro de supresións].",
+'rev-deleted-text-unhide'     => "Esta revisión da páxina foi '''borrada'''.
+Pode ampliar os detalles no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} rexistro de supresións].
 Como administrador aínda podería [$1 ver esta revisión] se quixese.",
-'rev-deleted-text-view'       => "Esta revisión da páxina foi '''eliminada'''.
-Como administrador pode vela; pode ampliar os detalles no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} rexistro de borrados].",
-'rev-deleted-no-diff'         => "Non pode ver esta diferenza porque unha das revisións foi '''eliminada'''.
-Pode ampliar os detalles no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} rexistro de borrados].",
-'rev-deleted-unhide-diff'     => "Unha das revisións desta diferenza foi '''eliminada'''.
-Pode ampliar os detalles no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} rexistro de borrados].
+'rev-deleted-text-view'       => "Esta revisión da páxina foi '''borrada'''.
+Como administrador pode vela; pode ampliar os detalles no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} rexistro de supresións].",
+'rev-deleted-no-diff'         => "Non pode ver esta diferenza porque unha das revisións foi '''borrada'''.
+Pode ampliar os detalles no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} rexistro de supresións].",
+'rev-deleted-unhide-diff'     => "Unha das revisións desta diferenza foi '''borrada'''.
+Pode ampliar os detalles no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} rexistro de supresións].
 Como administrador aínda podería [$1 ver esta diferenza] se quixese.",
 'rev-delundel'                => 'mostrar/agochar',
 'revisiondelete'              => 'Borrar/restaurar revisións',
@@ -1858,7 +1858,7 @@ Pode precisar máis a vista seleccionando o tipo de rexistro, o nome do usuario 
 'categoriespagetext'            => '{{PLURAL:$1|A seguinte categoría contén|As seguintes categorías conteñen}} páxinas ou contidos multimedia.
 Aquí non se amosan as [[Special:UnusedCategories|categorías sen uso]].
 Olle tamén as [[Special:WantedCategories|categorías requiridas]].',
-'categoriesfrom'                => 'Amosar as categorías comezando por:',
+'categoriesfrom'                => 'Mostrar as categorías que comecen por:',
 'special-categories-sort-count' => 'ordenar por número',
 'special-categories-sort-abc'   => 'ordenar alfabeticamente',
 
@@ -1877,9 +1877,16 @@ Olle tamén as [[Special:WantedCategories|categorías requiridas]].',
 'linksearch-error' => 'Os comodíns só poden aparecer ao principio do nome do servidor.',
 
 # Special:ListUsers
-'listusersfrom'      => 'Mostrar os usuarios comezando por:',
+'listusersfrom'      => 'Mostrar os usuarios que comecen por:',
 'listusers-submit'   => 'Amosar',
-'listusers-noresult' => 'Non se atopou ningún usuario. Comprobe tamén as variantes con maiúsculas e minúsculas.',
+'listusers-noresult' => 'Non se atopou ningún usuario.',
+'listusers-blocked'  => '(bloqueado)',
+
+# Special:ActiveUsers
+'activeusers'          => 'Lista de usuarios activos',
+'activeusers-count'    => '$1 {{PLURAL:$1|edición recente|edicións recentes}}',
+'activeusers-from'     => 'Mostrar os usuarios que comecen por:',
+'activeusers-noresult' => 'Non se atopou ningún usuario.',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Rexistro de creación de usuarios',

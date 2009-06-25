@@ -857,17 +857,17 @@ Konu ile alakalı diğer sayfaları bulmak için [[Special:Search|vikide arama y
 'rev-deleted-user'            => '(kullanıcı adı silindi)',
 'rev-deleted-event'           => '(kayıt işlemi silindi)',
 'rev-deleted-text-permission' => "Bu sayfa revizyonu '''silinmiş'''.
-[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Silme kayıtlarında] ayrıntıları bulunabilir.",
+[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Durdurma kayıtlarında] ayrıntıları bulunabilir.",
 'rev-deleted-text-unhide'     => "Bu sayfa revizyonu '''silinmiş'''.
-[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Silme kayıtlarında] ayrıntıları bulunabilir.
-Bir yönetici olarak eğer devam ederseniz [$1 bu revizyonu görebilirsiniz].",
+[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Durdurma kayıtlarında] ayrıntıları bulunabilir.
+Bir yönetici olarak eğer devam ederseniz [$1 bu revizyonu hala görebilirsiniz].",
 'rev-deleted-text-view'       => "Bu sayfa revizyonu '''silinmiş'''.
-Bir yönetici olarak sayfayı görebilirsiniz; [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} silme kayıtlarında] ayrıntılar bulunabilir.",
+Bir yönetici olarak sayfayı görebilirsiniz; [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} durdurma kayıtlarında] ayrıntılar bulunabilir.",
 'rev-deleted-no-diff'         => "Bu sayfa değişikliğini göremezsiniz çünkü revizyonlardan biri '''silinmiş'''.
-[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Silme günlüğünde] ayrıntılar bulunabilir.",
-'rev-deleted-unhide-diff'     => "Bu sayfa değişikliğinin revizyonlarından birisi '''silinmiş'''.
-[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Silme kayıtları]nda daha ayrıntılı bilgi bulunabilir.
-Bir yönetici olarak eğer devam ederseniz [$1 bu değişikliği görebilirsiniz].",
+[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Durdurma günlüğünde] ayrıntılar bulunabilir.",
+'rev-deleted-unhide-diff'     => "Bu değişikliğinin revizyonlarından birisi '''silinmiş'''.
+[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Durdurma günlüğünde] ayrıntılar bulunabilir.
+Bir yönetici olarak eğer devam ederseniz [$1 bu değişikliği hala görebilirsiniz].",
 'rev-delundel'                => 'göster/gizle',
 'revisiondelete'              => 'Sürümleri sil/geri getir',
 'revdelete-nooldid-title'     => 'Hedef sürüm geçersiz',

@@ -1895,6 +1895,13 @@ Također pogledajte [[Special:WantedCategories|tražene kategorije]].',
 'listusersfrom'      => 'Prikaži suradnike počevši od:',
 'listusers-submit'   => 'Prikaži',
 'listusers-noresult' => 'Nema takvih suradnika.',
+'listusers-blocked'  => '(blokiran)',
+
+# Special:ActiveUsers
+'activeusers'          => 'Popis aktivnih suradnika',
+'activeusers-count'    => 'Nedavno $1 {{PLURAL:$1|uređivanje|uređivanja|uređivanja}}',
+'activeusers-from'     => 'Prikaži suradnike počevši od:',
+'activeusers-noresult' => 'Niti jedan suradnik nije nađen.',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Evidencija novih suradnika',
@@ -2462,7 +2469,7 @@ U potonjem slučaju možete koristiti i poveznicu, npr. [[{{#Special:Export}}/{{
 # Thumbnails
 'thumbnail-more'           => 'Povećaj',
 'filemissing'              => 'Nedostaje datoteka',
-'thumbnail_error'          => 'Pogrješka pri izradbi sličice: $1',
+'thumbnail_error'          => 'Pogreška pri izradbi sličice: $1',
 'djvu_page_error'          => "DjVu stranica nije dohvatljiva (''out of range'')",
 'djvu_no_xml'              => 'Ne mogu dohvatiti XML za DjVu datoteku',
 'thumbnail_invalid_params' => "Nevaljani parametri za smanjenu sliku (''thumbnail'')",

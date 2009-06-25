@@ -1866,6 +1866,13 @@ Sjå òg [[Special:WantedCategories|ønska kategoriar]].',
 'listusersfrom'      => 'Vis brukarnamna frå og med:',
 'listusers-submit'   => 'Vis',
 'listusers-noresult' => 'Ingen brukarnamn vart funne.',
+'listusers-blocked'  => '(konto blokkert)',
+
+# Special:ActiveUsers
+'activeusers'          => 'Liste over aktive brukarar',
+'activeusers-count'    => '$1 {{PLURAL:$1|nyleg redigering|nylege redigeringar}}',
+'activeusers-from'     => 'Vis brukarar frå og med:',
+'activeusers-noresult' => 'Ingen brukarar funne.',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Brukaropprettingslogg',

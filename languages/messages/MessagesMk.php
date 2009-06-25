@@ -1000,12 +1000,12 @@ $2',
 'rev-deleted-text-permission' => "Ревизија на оваа страница била '''избришана'''.
 Можеби има детали во [{{fullurl:Special:Log/suppress|page={{FULLPAGENAMEE}}}} дневникот на бришења].",
 'rev-deleted-text-unhide'     => "Оваа ревизија на страница била '''избришана'''.
-Повеќе детали има во [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} дневникот на бришења].
+Повеќе детали има во [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} дневникот на супресии].
 Како администратор вие сеуште може [$1 да ја погледнете оваа ревизија] ако сакате да продолжите.",
 'rev-deleted-text-view'       => "Ревизија на оваа страница беше '''избришана'''.
 Како администратор вие можете да ја погледнете; можеби има повеќе детали во [{{fullurl:Special:Log/suppress|page={{FULLPAGENAMEE}}}} дневникот на бришења].",
 'rev-deleted-no-diff'         => "Не може да ја погледнете оваа разлика бидејќи една од ревизиите била '''избришана'''.
-Може да најдете повеќе детали во [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} дневникот на бришења].",
+Може да најдете повеќе детали во [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} дневникот на супресии].",
 'rev-deleted-unhide-diff'     => "Една од ревизиите на оваа разлика била '''избришана'''.
 Можеби има детали во [{{fullurl:Special:Log/suppress|page={{FULLPAGENAMEE}}}} дневникот на бришења].
 Како администратор вие сеуште можете [$1 да ја видите оваа разлика] ако сакате да продолжите.",
@@ -1926,6 +1926,12 @@ PICT # misc.
 'listusersfrom'      => 'Прикажни корисници почнувајќи од:',
 'listusers-submit'   => 'Прикажи',
 'listusers-noresult' => 'Не е пронајден корисник.',
+'listusers-blocked'  => '(блокиран)',
+
+# Special:ActiveUsers
+'activeusers'          => 'Листа на активни корисници',
+'activeusers-from'     => 'Прикажува корисници кои почнуваат на:',
+'activeusers-noresult' => 'Нема пронајдено корисници.',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Дневник на регистрирања на корисници',

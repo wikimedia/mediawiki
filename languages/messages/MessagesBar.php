@@ -458,10 +458,13 @@ Wãnn'st di mid dem Thema auskennst, kãnnst [[:$1|de Seitn söiwa schreim]].",
 'action-autopatrol' => 'eigne Arbat ois kontrolliert markiern',
 
 # Recent changes
+'nchanges'             => '$1 {{PLURAL:$1|Ändarung|Ändarungen}}',
 'recentchanges'        => 'Letzte Ändarungen',
 'recentchanges-legend' => 'Ãnzeigeopzionen',
+'rcnote'               => "Untn {{PLURAL:$1|is de letzte Ändarung|san de letztn '''$1''' Ändarungen}} {{PLURAL:$2|vum letztn|vu de letztn '''$2'''}} Tåg aufglist. Stãnd vum $4 um $5.",
 'rclistfrom'           => 'Netta Änderungen seid $1 ãzoang.',
 'rcshowhideliu'        => 'Ãngmöidte Benutza $1',
+'rcshowhideanons'      => 'Anonyme Benutza $1',
 'rcshowhidemine'       => 'Eigne Beiträge $1',
 'rclinks'              => 'De letztn $1 Ändarungen vu de letztn $2 Tåg ãnzoang<br />$3',
 'diff'                 => 'Untaschied',
@@ -567,8 +570,9 @@ Links aus Namensräume wern da net aufglistet.',
 'notargettitle'          => 'Koa Seitn ogem',
 
 # Book sources
-'booksources'    => 'ISBN-Suach',
-'booksources-go' => 'Suach',
+'booksources'               => 'ISBN-Suach',
+'booksources-search-legend' => 'Suach nåch Bezugsquöin fia Biacha',
+'booksources-go'            => 'Suach',
 
 # Special:Log
 'log'           => 'Logbiacha',
@@ -596,6 +600,10 @@ Links aus Namensräume wern da net aufglistet.',
 'listusers-submit'   => 'Zoag',
 'listusers-noresult' => 'Koane Benutzer gfunden.',
 
+# Special:Log/newusers
+'newuserlogpage'          => 'Neiãnmöidungs-Logbiache',
+'newuserlog-create-entry' => 'Benutza is nei registriad',
+
 # E-mail user
 'mailnologin'   => 'Sie san net oogmeidt.',
 'emailuser'     => 'E-Mail an den Benutza',
@@ -608,6 +616,7 @@ Links aus Namensräume wern da net aufglistet.',
 # Watchlist
 'watchlist'         => 'Beobachtungslistn',
 'mywatchlist'       => 'Beobachtungslistn',
+'watchlistfor'      => "(fia '''$1''')",
 'watchlistanontext' => 'Sie miaßn si $1, um Eanane Beobachtungslistn zum seng oda Einträge auf ihr zum bearbatn.',
 'watchnologin'      => 'Sie san net ogmeidt',
 'addedwatch'        => 'Zua Beobachtungslistn dazuado',
@@ -621,9 +630,11 @@ Wennst de Seitn wieder vo deina Beobachtungslistn wegdoa mechtn, klickst auf da 
 'watchthispage'     => 'Seitn beobachtn',
 'unwatch'           => 'nimma beobachten',
 'unwatchthispage'   => 'Nimma beobåchtn',
+'watchlist-details' => 'Du beobåchst $1 Seitn.',
 'wlheader-enotif'   => '* Da E-Mail-Benachrichtigungsdienst is aktiviert.',
 'watchlistcontains' => 'Dei Beobachtungslistn enthoit $1 {{PLURAL:$1|Seite|Seitn}}.',
 'wlshowlast'        => 'Zoag de Änderunga vo de letzten $1 Stunden, $2 Tag oda $3 (in de letzten 30 Tag).',
+'watchlist-options' => 'Ãnzeigeopzionen',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Beobåchtn …',
@@ -695,11 +706,13 @@ Da aktuelle Text vo da glöschtn Seitn is nur fia Administratoren zum seng.',
 'blanknamespace' => '(Seitn)',
 
 # Contributions
-'contributions' => 'Benutzerbeiträg',
-'mycontris'     => 'Eigene Beiträg',
-'contribsub2'   => 'Fia $1 ($2)',
-'month'         => 'und Monat:',
-'year'          => 'bis zum Joa:',
+'contributions'       => 'Benutzerbeiträg',
+'contributions-title' => 'Benutzabeiträg vu „$1“',
+'mycontris'           => 'Eigene Beiträg',
+'contribsub2'         => 'Fia $1 ($2)',
+'uctop'               => '(aktuell)',
+'month'               => 'und Monat:',
+'year'                => 'bis zum Joa:',
 
 'sp-contributions-newbies-sub' => 'Fia Neiling',
 'sp-contributions-talk'        => 'bschprecha',
@@ -712,13 +725,17 @@ Da aktuelle Text vo da glöschtn Seitn is nur fia Administratoren zum seng.',
 'whatlinkshere-title'     => 'Seitn, de nåch „$1“ valinkn',
 'whatlinkshere-page'      => 'Seitn:',
 'isredirect'              => 'Weiterleitungsseitn',
+'istemplate'              => 'Voalãngeibindung',
 'isimage'                 => 'Dateilink',
+'whatlinkshere-prev'      => "{{PLURAL:$1|vorige|d'voring $1}}",
+'whatlinkshere-next'      => "{{PLURAL:$1|nexde|d'nexdn $1}}",
 'whatlinkshere-hidetrans' => 'Voalãngeibindungen $1',
 'whatlinkshere-filters'   => 'Füita',
 
 # Block/unblock
 'blockip'            => 'IP-Adresse/Benutzer sperrn',
 'blockip-legend'     => 'IP-Adresse/Benutzer sperrn',
+'ipboptions'         => '2 Stund:2 hours,1 Tåg:1 day,3 Tåg:3 days,1 Woch:1 week,2 Wochn:2 weeks,1 Monat:1 month,3 Monat:3 months,6 Monat:6 months,1 Joa:1 year,Lemslãng:infinite',
 'badipaddress'       => 'De IP-Adress håt a falsch Format.',
 'blockipsuccesssub'  => 'De Sperre war erfoigreich',
 'ipb-unblock-addr'   => '„$1“ freigem',
@@ -830,6 +847,7 @@ Vorschau der Änderungen an dieser Seite. Bitte vor dem Speichern benutzen!",
 
 # Browsing diffs
 'previousdiff' => '← Zum vorigen Versionsunterschied',
+'nextdiff'     => 'zum nextn Untaschied in de Veasionen →',
 
 # Media information
 'file-info-size'       => '($1 × $2 Pixl, Dateigreßn: $3, MIME-Typ: $4)',
@@ -853,6 +871,7 @@ Vorschau der Änderungen an dieser Seite. Bitte vor dem Speichern benutzen!",
 'exif-componentsconfiguration-0' => "Gibt's net",
 
 # 'all' in various places, this might be different for inflected languages
+'watchlistall2' => 'ålle',
 'namespacesall' => 'ålle',
 'monthsall'     => 'ålle',
 
@@ -888,6 +907,11 @@ Vorschau der Änderungen an dieser Seite. Bitte vor dem Speichern benutzen!",
 'watchlistedit-normal-explain' => 'Des sand de Eiträge vo deiner Beobachtungslistn. Um Eiträge zum entferna, markier de Kastl nem de Eiträg und klick auf „Eiträg entferna“. Du kannst dei Beobachtungsliste aa im [[Special:Watchlist/raw|Listenformat bearbatn]].',
 'watchlistedit-normal-submit'  => 'Eiträge wegnehma',
 'watchlistedit-raw-titles'     => 'Eiträg:',
+
+# Watchlist editing tools
+'watchlisttools-view' => 'Ändarungen vafoing',
+'watchlisttools-edit' => 'noamal beåawatn',
+'watchlisttools-raw'  => 'im Listnfoamat beåawatn',
 
 # Special:Version
 'version-hook-subscribedby' => 'Aufruf vo',

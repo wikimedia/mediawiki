@@ -1055,7 +1055,16 @@ $1",
 'revdelete-unhid'             => 'synliggjorde $1',
 'revdelete-log-message'       => '$1 för $2 {{PLURAL:$2|sidversion|sidversioner}}',
 'logdelete-log-message'       => '$1 för $2 {{PLURAL:$2|åtgärd|åtgärder}}',
+'revdelete-hide-current'      => 'Fel vid döljande av objektet daterat $2, $1: detta är nuvarande version.
+Den kan inte döljas.',
+'revdelete-show-no-access'    => 'Fel vid visning av objektet daterat $2, $1: detta objekt har markerats "begränsat".
+Du har inte behörighet till det.',
+'revdelete-modify-no-access'  => 'Fel vid förändring av objektet daterat $2, $1: detta objekt har markerats "begränsat".
+Du har inte behörighet till det.',
+'revdelete-modify-missing'    => 'Fel vid förändring av objektet med ID $1: det saknas i databasen!',
 'revdelete-no-change'         => "'''Varning:''' objektet daterat $2, $1 hade redan de begärda synlighetsinställningarna.",
+'revdelete-concurrent-change' => 'Fel vid förändring av objektet daterat $2, $1: dess status verkar ha ändrats av någon annan medan du försökte förändra det.
+Vänligen kontrollera loggarna.',
 'revdelete-only-restricted'   => 'Du kan inte hindra visning av objekt av administratörer utan att också välja en av de övriga visningshindrande alternativen.',
 
 # Suppression log
@@ -1897,8 +1906,9 @@ Se även [[Special:WantedCategories|önskade kategorier]].',
 'special-categories-sort-abc'   => 'sortera alfabetiskt',
 
 # Special:DeletedContributions
-'deletedcontributions'       => 'Raderade användarbidrag',
-'deletedcontributions-title' => 'Raderade användarbidrag',
+'deletedcontributions'             => 'Raderade användarbidrag',
+'deletedcontributions-title'       => 'Raderade användarbidrag',
+'sp-deletedcontributions-contribs' => 'bidrag',
 
 # Special:LinkSearch
 'linksearch'       => 'Externa länkar',
@@ -1914,6 +1924,7 @@ Stödda protokoll: <tt>$1</tt>',
 'listusersfrom'      => 'Visa användare från och med:',
 'listusers-submit'   => 'Visa',
 'listusers-noresult' => 'Ingen användare hittades.',
+'listusers-blocked'  => '(blockerad)',
 
 # Special:ActiveUsers
 'activeusers'          => 'Lista över aktiva användare',
@@ -1933,6 +1944,8 @@ Stödda protokoll: <tt>$1</tt>',
 'listgrouprights'                      => 'Behörigheter för användargrupper',
 'listgrouprights-summary'              => 'Följande lista visar vilka användargrupper som är definierade på den här wikin och vilka behörigheter grupperna har.
 Det kan finnas [[{{MediaWiki:Listgrouprights-helppage}}|ytterligare information]] om de olika behörigheterna.',
+'listgrouprights-key'                  => '* <span class="listgrouprights-granted">Given rättighet</span>
+* <span class="listgrouprights-revoked">Tillbakatagen rättighet</span>',
 'listgrouprights-group'                => 'Grupp',
 'listgrouprights-rights'               => 'Behörigheter',
 'listgrouprights-helppage'             => 'Help:Gruppbehörigheter',

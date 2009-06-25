@@ -1282,7 +1282,9 @@ Is acàpius chi sighint in sa matessi lìnia sunt cunsideraus comente eccetzione
 'table_pager_limit_submit' => 'Bae',
 
 # Auto-summaries
-'autoredircomment' => 'Redirect a sa pàgina [[$1]]',
+'autosumm-blank'   => 'Pàgina isbuidada',
+'autosumm-replace' => "Pàgina cambiada cun '$1'",
+'autoredircomment' => 'Re-indiritzada a sa pàgina [[$1]]',
 'autosumm-new'     => "Pàgina creada cun '$1'",
 
 # Size units

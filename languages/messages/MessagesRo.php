@@ -1828,6 +1828,11 @@ Protocoale suportate: <tt>$1</tt>',
 'listusers-submit'   => 'Arată',
 'listusers-noresult' => 'Nici un utilizator găsit.',
 
+# Special:ActiveUsers
+'activeusers'          => 'Lista de utilizatori activi',
+'activeusers-count'    => '$1 {{PLURAL:$1|modificare recentă|modificări recente}}',
+'activeusers-noresult' => 'Nici un utilizator găsit.',
+
 # Special:Log/newusers
 'newuserlogpage'              => 'Jurnal utilizatori noi',
 'newuserlogpagetext'          => 'Acesta este jurnalul creărilor conturilor de utilizator.',
