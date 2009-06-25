@@ -2176,7 +2176,7 @@ abstract class DatabaseBase {
 	}
 	
 	/**
-	 * Acquire a lock
+	 * Acquire a named lock
 	 * 
 	 * Abstracted from Filestore::lock() so child classes can implement for
 	 * their own needs.
@@ -2185,33 +2185,36 @@ abstract class DatabaseBase {
 	 * @param $method String: Name of method calling us
 	 * @return bool
 	 */
-	public function lock( $lockName, $method ) {
-		$lockName = $this->addQuotes( $lockName );
-		$result = $this->query( "SELECT GET_LOCK($lockName, 5) AS lockstatus", $method );
-		$row = $this->fetchObject( $result );
-		$this->freeResult( $result );
+	abstract public function lock( $lockName, $method, $timeout = 5 );
 
-		if( $row->lockstatus == 1 ) {
-			return true;
-		} else {
-			wfDebug( __METHOD__." failed to acquire lock\n" );
-			return false;
-		}
-	}
 	/**
 	 * Release a lock.
 	 * 
-	 * @todo fixme - Figure out a way to return a bool
-	 * based on successful lock release.
-	 * 
 	 * @param $lockName String: Name of lock to release
 	 * @param $method String: Name of method calling us
+	 *
+	 * FROM MYSQL DOCS: http://dev.mysql.com/doc/refman/5.0/en/miscellaneous-functions.html#function_release-lock
+	 * @return Returns 1 if the lock was released, 0 if the lock was not established
+	 * by this thread (in which case the lock is not released), and NULL if the named 
+	 * lock did not exist
 	 */
-	public function unlock( $lockName, $method ) {
-		$lockName = $this->addQuotes( $lockName );
-		$result = $this->query( "SELECT RELEASE_LOCK($lockName)", $method );
-		$this->freeResult( $result );
-	}
+	abstract public function unlock( $lockName, $method );
+
+	/**
+	 * Lock specific tables
+	 *
+	 * @param $read Array of tables to lock for read access
+	 * @param $write Array of tables to lock for write access
+	 * @param $method String name of caller
+	 */
+	abstract public function lockTables( $read, $write, $method );
+	
+	/**
+	 * Unlock specific tables
+	 *
+	 * @param $method String the caller
+	 */
+	abstract public function unlockTables( $method );
 	
 	/**
 	 * Get search engine class. All subclasses of this

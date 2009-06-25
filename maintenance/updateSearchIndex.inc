@@ -75,7 +75,7 @@ function updateSearchIndex( $start, $end, $maxLockTime, $quiet ) {
 	# Unlock searchindex
 	if ( $maxLockTime ) {
 		output( "    --- Unlocking --" );
-		unlockSearchindex( $dbw );
+		$dbw->unlockTables( 'updateSearchIndex.inc ' . __METHOD__ );
 		output( "\n" );
 	}
 	output( "Done\n" );
@@ -84,27 +84,14 @@ function updateSearchIndex( $start, $end, $maxLockTime, $quiet ) {
 function lockSearchindex( &$db ) {
 	$write = array( 'searchindex' );
 	$read = array( 'page', 'revision', 'text', 'interwiki' );
-	$items = array();
-	
-	foreach( $write as $table ) {
-		$items[] = $db->tableName( $table ) . ' LOW_PRIORITY WRITE';
-	}
-	foreach( $read as $table ) {
-		$items[] = $db->tableName( $table ) . ' READ';
-	}
-	$sql = "LOCK TABLES " . implode( ',', $items );
-	$db->query( $sql, 'updateSearchIndex.inc ' . __METHOD__ );
-}
-
-function unlockSearchindex( &$db ) {
-	$db->query( "UNLOCK TABLES", 'updateSearchIndex.inc ' . __METHOD__ );
+	$db->lockTables( $read, $write, 'updateSearchIndex.inc ' . __METHOD__ );
 }
 
 # Unlock and lock again
 # Since the lock is low-priority, queued reads will be able to complete
 function relockSearchindex( &$db ) {
 	unlockSearchindex( $db );
-	lockSearchindex( $db );
+	$db->unlockTables( 'updateSearchIndex.inc ' . __METHOD__ );
 }
 
 function output( $text ) {

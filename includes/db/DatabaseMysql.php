@@ -293,6 +293,44 @@ class DatabaseMysql extends DatabaseBase {
 		$this->query( "SET net_read_timeout=$timeout" );
 		$this->query( "SET net_write_timeout=$timeout" );
 	}
+
+	public function lock( $lockName, $method, $timeout = 5 ) {
+		$lockName = $this->addQuotes( $lockName );
+		$result = $this->query( "SELECT GET_LOCK($lockName, $timeout) AS lockstatus", $method );
+		$row = $this->fetchObject( $result );
+		$this->freeResult( $result );
+
+		if( $row->lockstatus == 1 ) {
+			return true;
+		} else {
+			wfDebug( __METHOD__." failed to acquire lock\n" );
+			return false;
+		}
+	}
+
+	public function unlock( $lockName, $method ) {
+		$lockName = $this->addQuotes( $lockName );
+		$result = $this->query( "SELECT RELEASE_LOCK($lockName) as lockstatus", $method );
+		$row = $this->fetchObject( $result );
+		return $row->lockstatus;
+	}
+
+	public function lockTables( $read, $write, $method ) {
+		$items = array();
+
+		foreach( $write as $table ) {
+			$items[] = $this->tableName( $table ) . ' LOW_PRIORITY WRITE';
+		}
+		foreach( $read as $table ) {
+			$items[] = $this->tableName( $table ) . ' READ';
+		}
+		$sql = "LOCK TABLES " . implode( ',', $items );
+		$db->query( $sql, $method );
+	}
+
+	public function unlockTables( $method ) {
+		$this->query( "UNLOCK TABLES", $method );
+	}
 }
 
 /**
