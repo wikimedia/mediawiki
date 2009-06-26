@@ -958,15 +958,15 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'rev-deleted-comment'         => '(편집 요약 삭제됨)',
 'rev-deleted-user'            => '(계정 이름 삭제됨)',
 'rev-deleted-event'           => '(로그 삭제됨)',
-'rev-deleted-text-permission' => "이 문서의 편집은 문서 역사에서 '''제거'''되었습니다.
+'rev-deleted-text-permission' => "이 문서의 편집은 문서 역사에서 '''삭제'''되었습니다.
 [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 삭제 기록]에서 자세한 내용을 볼 수 있습니다..",
 'rev-deleted-text-unhide'     => "이 페이지의 판은 '''삭제되었습니다.'''
 자세한 내용은 [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 삭제기록]에 있을 것입니다.
 관리자로서 확인을 원한다면 [$1 특정판 보기]를 할 수 있습니다.",
-'rev-deleted-text-view'       => "이 문서의 편집은 문서 역사에서 '''제거'''되었습니다.
+'rev-deleted-text-view'       => "이 문서의 편집은 문서 역사에서 '''삭제'''되었습니다.
 당신은 관리자로서 삭제된 편집을 볼 수 있습니다.
 [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 삭제 기록]에서 자세한 내용을 볼 수 있습니다.",
-'rev-deleted-no-diff'         => "특정 판이 문서 역사에서 '''제거'''되었기 때문에 비교할 수 없습니다.
+'rev-deleted-no-diff'         => "특정 판이 문서 역사에서 '''삭제'''되었기 때문에 비교할 수 없습니다.
 [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 삭제 기록]에서 자세한 내용을 볼 수 있습니다.",
 'rev-deleted-unhide-diff'     => "특정판의 비교가 문서 역사에서 '''삭제'''되었습니다.
 [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 삭제 기록]에서 자세한 내용을 볼 수 있습니다.
@@ -1055,7 +1055,7 @@ $1",
 'mergehistory-no-destination'      => '대상인 $1 문서가 존재하지 않습니다.',
 'mergehistory-invalid-source'      => '원본 문서 이름에는 반드시 유효한 제목을 입력해야 합니다.',
 'mergehistory-invalid-destination' => '대상 문서 이름에는 반드시 유효한 제목을 입력해야 합니다.',
-'mergehistory-autocomment'         => '[[:$1]] 문서를 [[:$2]]로 합침',
+'mergehistory-autocomment'         => '[[:$1]] 문서를 [[:$2]] 문서로 합침',
 'mergehistory-comment'             => '[[:$1]] 문서를 [[:$2]] 문서로 합침: $3',
 'mergehistory-same-destination'    => '원본 문서 이름과 새 문서 이름은 달라야 합니다',
 'mergehistory-reason'              => '이유:',
@@ -1096,7 +1096,7 @@ $1",
 'diff-h2'                  => "'''2단계 제목'''",
 'diff-h3'                  => "'''3단계 제목'''",
 'diff-h4'                  => "'''4단계 제목'''",
-'diff-h5'                  => '5단계 제목',
+'diff-h5'                  => "'''5단계 제목'''",
 'diff-pre'                 => "'''미리 보기 블록'''",
 'diff-div'                 => "'''구역'''",
 'diff-ul'                  => "'''순서 없는 목록'''",

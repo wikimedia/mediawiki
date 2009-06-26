@@ -336,6 +336,30 @@ $messages = array(
 'faq'            => 'FAQ',
 'faqpage'        => 'Project:FAQ',
 
+# Vector skin
+'vector-action-addsection'   => 'Adicionar tópico',
+'vector-action-delete'       => 'Eliminar',
+'vector-action-move'         => 'Mover',
+'vector-action-protect'      => 'Proteger',
+'vector-action-undelete'     => 'Recuperar',
+'vector-action-unprotect'    => 'Desproteger',
+'vector-namespace-category'  => 'Categoria',
+'vector-namespace-help'      => 'Página de ajuda',
+'vector-namespace-image'     => 'Arquivo',
+'vector-namespace-main'      => 'Página',
+'vector-namespace-media'     => 'Página de mídia',
+'vector-namespace-mediawiki' => 'Mensagem',
+'vector-namespace-project'   => 'Página de projeto',
+'vector-namespace-special'   => 'Página especial',
+'vector-namespace-talk'      => 'Discussão',
+'vector-namespace-template'  => 'Predefinição',
+'vector-namespace-user'      => 'Página de usuário',
+'vector-view-create'         => 'Criar',
+'vector-view-edit'           => 'Editar',
+'vector-view-history'        => 'Ver histórico',
+'vector-view-view'           => 'Ler',
+'vector-view-viewsource'     => 'Ver fonte',
+
 # Metadata in edit box
 'metadata_help' => 'Metadados:',
 
@@ -877,16 +901,15 @@ Tente [[Special:Search|pesquisar na wiki]] por páginas relevantes.',
 'rev-deleted-comment'         => '(comentário removido)',
 'rev-deleted-user'            => '(nome de usuário removido)',
 'rev-deleted-event'           => '(entrada removida)',
-'rev-deleted-text-permission' => "Esta revisão desta página foi '''removida'''.
-Poderão existir detalhes no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de eliminação].",
+'rev-deleted-text-permission' => "Esta revisão desta página foi '''eliminada'''.
+Poderá haver detalhes no [{{fullurl:{{#Especial:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de eliminação].",
 'rev-deleted-text-unhide'     => "Esta revisão desta página foi '''removida'''.
-Poderão existir detalhes no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de eliminação].
+Poderá haver detalhes no [{{fullurl:{{#Especial:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de eliminação].
 Como administrador, você ainda pode [$1 ver esta revisão] se desejar continuar.",
-'rev-deleted-text-view'       => "A revisão desta página foi '''removida'''.
-Como administrador desta wiki você pode visualizá-la;
-mais detalhes no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de eliminação].",
-'rev-deleted-no-diff'         => "Você não pode ver esta modificação porque uma das revisões foi '''removida'''.
-Podem haver detalhes no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de eliminação].",
+'rev-deleted-text-view'       => "A revisão desta página foi '''eliminada'''.
+Como administrador, você pode visualizá-la; poderá haver detalhes no [{{fullurl:{{#Especial:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de eliminação].",
+'rev-deleted-no-diff'         => "Você não pode ver estas diferenças porque uma das revisões foi '''eliminada'''.
+Poderá haver detalhes no [{{fullurl:{{#Especial:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de eliminação].",
 'rev-deleted-unhide-diff'     => "Uma das revisões destas diferenças foi '''removida dos arquivos públicos'''.
 Poderá haver detalhes no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registo de eliminações].
 Como administrador, você pode mesmo assim [$1 ver estas diferenças], se desejar prosseguir.",
@@ -898,6 +921,9 @@ Como administrador, você pode mesmo assim [$1 ver estas diferenças], se deseja
 'revdelete-nologtype-text'    => 'Você não especificou um tipo de registro sobre o qual executar esta ação.',
 'revdelete-nologid-title'     => 'Entrada de registro inválida',
 'revdelete-nologid-text'      => 'Você não especificou um evento de registro alvo para executar esta função ou a entrada especificada não existe.',
+'revdelete-no-file'           => 'O arquivo especificado não existe.',
+'revdelete-show-file-confirm' => 'Tem a certeza de que quer visualizar uma revisão eliminada do arquivo "<nowiki>$1</nowiki>" de $2 em $3?',
+'revdelete-show-file-submit'  => 'Sim',
 'revdelete-selected'          => "'''{{PLURAL:$2|Edição selecionada|Edições selecionadas}} de [[:$1]]:'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Evento de registro selecionado|Eventos de registro selecionados}}:'''",
 'revdelete-text'              => "'''Revisões eliminadas e eventos continuarão aparecendo no histórico da página e nos registros, apesar de o seu conteúdo textual estar inacessível ao público.'''
@@ -923,6 +949,8 @@ Por favor confirme que deseja fazê-lo, que entende as consequências e que est�
 'revdelete-success'           => 'Visibilidade de edição definida com sucesso.',
 'revdelete-failure'           => "'''Visibilidade da revisão não poderia ser configurada:'''$1",
 'logdelete-success'           => "'''Visibilidade de evento definida com sucesso.'''",
+'logdelete-failure'           => "'''A visibilidade do registro não pôde ser estabelecida:'''
+$1",
 'revdel-restore'              => 'Alterar visibilidade',
 'pagehist'                    => 'Histórico da página',
 'deletedhist'                 => 'Histórico de eliminações',
@@ -2288,6 +2316,7 @@ A página de destino ("[[:$1]]") já existe. Deseja eliminá-la de modo a poder 
 'imageinvalidfilename'         => 'O nome do arquivo alvo é inválido',
 'fix-double-redirects'         => 'Atualizar todos os redirecionamentos que apontem para o título original',
 'move-leave-redirect'          => 'Criar um redirecionamento',
+'semiprotectedpagemovewarning' => "''Nota:''' Esta página foi protegida de modo que apenas usuários registrados possam movê-la.",
 
 # Export
 'export'            => 'Exportação de páginas',

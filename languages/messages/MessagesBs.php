@@ -2525,8 +2525,8 @@ U drugom slučaju možete koristiti i vezu, npr. [[{{#Special:Export}}/{{MediaWi
 'allmessagesname'           => 'Naziv',
 'allmessagesdefault'        => 'Uobičajeni tekst',
 'allmessagescurrent'        => 'Trenutni tekst',
-'allmessagestext'           => 'Ovo je spisak svih sistemskih poruka u dostupnih u MedijaViki imenskom prostoru.
-Molimo posjetite [http://www.mediawiki.org/wiki/Localisation MedijaViki lokalizaciju] i [http://translatewiki.net translatewiki.net] ako želite doprinijeti općoj lokalizaciji MedijaVikija.',
+'allmessagestext'           => 'Ovo je spisak svih sistemskih poruka u dostupnih u MediaWiki imenskom prostoru.
+Molimo posjetite [http://www.mediawiki.org/wiki/Localisation MediaWiki lokalizaciju] i [http://translatewiki.net translatewiki.net] ako želite doprinijeti općoj lokalizaciji MediaWikija.',
 'allmessagesnotsupportedDB' => 'Ova stranica ne može biti korištena jer je <i>wgUseDatabaseMessages</i> isključen.',
 'allmessagesfilter'         => 'Filter naziva poruka:',
 'allmessagesmodified'       => 'Prikaži samo izmijenjeno',

@@ -1946,7 +1946,7 @@ Adres e‐mailowy, który został przez Ciebie wprowadzony w [[Special:Preferenc
 'noemailtext'      => 'Ten użytkownik nie podał poprawnego adresu e‐mail.',
 'nowikiemailtitle' => 'Brak zezwolenia na otrzymywanie e‐maili',
 'nowikiemailtext'  => 'Ten użytkownik nie chce otrzymywać wiadomości e‐mail od innych użytkowników.',
-'email-legend'     => 'Wyślij e‐mail do innego użytkownika {{GRAMMAR:MS.lp|{{SITENAME}}}}',
+'email-legend'     => 'Wyślij e‐mail do innego użytkownika {{GRAMMAR:D.lp|{{SITENAME}}}}',
 'emailfrom'        => 'Od:',
 'emailto'          => 'Do:',
 'emailsubject'     => 'Temat:',

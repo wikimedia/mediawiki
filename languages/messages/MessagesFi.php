@@ -1020,7 +1020,11 @@ $1",
 'revdelete-unhid'             => 'palautti näkyviin $1',
 'revdelete-log-message'       => '$1 koskien $2 {{PLURAL:$2|versiota}}',
 'logdelete-log-message'       => '$1 koskien $2 {{PLURAL:$2|tapahtumaa}}',
+'revdelete-hide-current'      => 'Virhe tapahtui $2, $1 päivätyn kohteen piilottamisessa: tämä on nykyinen versio. Sitä ei voi piilottaa.',
+'revdelete-modify-no-access'  => 'Virhe tapahtui $2, $1 kohteen muokkauksessa: tämä kohde on merkitty "rajoitetuksi". Sinulla ei ole oikeuksia sen muokkaukseen.',
 'revdelete-modify-missing'    => 'Virhe muuttaessa kohdetta, jonka tunnus on $1: Se puuttuu tietokannasta.',
+'revdelete-concurrent-change' => 'Virhe $2, $1 päivätyn kohteen muokkauksessa: sen tilan on näköjään muuttanut joku sillä aikaa kun yritit muokata sitä. Ole hyvä ja tarkista lokit.',
+'revdelete-only-restricted'   => 'Et voi poistaa kohteita ylläpitäjien näkyviltä valitsematta myös jonkun muun näkyviltä poistovaihtoehdon.',
 
 # Suppression log
 'suppressionlog'     => 'Häivytysloki',

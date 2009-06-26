@@ -456,6 +456,8 @@ The format is: "{{int:youhavenewmessages| [[MediaWiki:Newmessageslink/{{SUBPAGEN
 'hidetoc'                 => 'This is the link used to hide the table of contents
 
 {{Identical|Hide}}',
+'thisisdeleted'           => 'Message shown on a deleted page when the user has the undelete right. $1 is a link to [[Special:Undelete]], with {{msg-mw|restorelink}} as the text. See also {{msg-mw|viewdeleted}}.',
+'viewdeleted'             => 'Message shown on a deleted page when the user does not have the undelete right (but has the deletedhistory right). $1 is a link to [[Special:Undelete]], with {{msg-mw|restorelink}} as the text. See also {{msg-mw|thisisdeleted}}.',
 'restorelink'             => "This text is always displayed in conjunction with the {{msg-mw|thisisdeleted}} message (View or restore $1?). The user will see
 View or restore <nowiki>{{PLURAL:$1|one deleted edit|$1 deleted edits}}</nowiki>?    i.e ''View or restore one deleted edit?''     or 
 ''View or restore n deleted edits?''",
@@ -2023,6 +2025,7 @@ Shown as subtitle of the protection form. $1 is the title of the page to be (un)
 {{Identical|Restore}}',
 'undeletelink'               => 'Display name of link to undelete a page used on [[Special:Log/delete]]
 
+{{Identical|View}}
 {{Identical|Restore}}',
 'undeleteviewlink'           => 'First part of {{msg-mw|undeletelink}}',
 'undeletereset'              => 'Shown on [[Special:Undelete]] as button caption.
@@ -2340,7 +2343,8 @@ Related messages: {{msg|right-importupload|pl=yes}} (the user right for this).',
 'tooltip-search'                  => 'The tooltip when hovering over the search menu.',
 'tooltip-search-go'               => 'This is the text of the tooltip displayed when hovering the mouse over the “[[MediaWiki:Go|Go]]” button next to the search box.',
 'tooltip-search-fulltext'         => 'This is the text of the tooltip displayed when hovering the mouse over the “[[MediaWiki:Search|Search]]” button under the search box.',
-'tooltip-p-logo'                  => 'Tool tip shown when hovering the mouse over the logo that links to [[Main Page]].',
+'tooltip-p-logo'                  => 'Tool tip shown when hovering the mouse over the logo that links to [[Main Page]].
+{{Identical|Main page}}',
 'tooltip-n-mainpage'              => 'Tool tip shown when hovering the mouse over the link to [[{{MediaWiki:Mainpage}}]].',
 'tooltip-n-portal'                => "Tooltip shown when hovering over the link to 'Community portal' shown in the side bar menu on all pages.",
 'tooltip-n-currentevents'         => 'Tooltip shown when hovering over {{msg|currentevents}} in the sidebar.',

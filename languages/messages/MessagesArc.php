@@ -398,7 +398,8 @@ Note that some pages may continue to be displayed as if you were still logged in
 # Search results
 'searchresults'                  => 'ܦܠܛ̈ܐ ܕܒܘܨܝܐ',
 'searchresults-title'            => 'ܦܠܛ̈ܐ ܕܒܘܨܝܐ ܥܠ "$1"',
-'searchresulttext'               => 'ܠܝܬܝܪ ܝܕܥܬ̈ܐ ܥܠ ܒܨܝܐ ܕ {{SITENAME}}, ܚܙܝ [[{{MediaWiki:Helppage}}|{{int:help}}]].',
+'searchresulttext'               => 'ܠܝܬܝܪ ܝܕܥܬ̈ܐ ܥܠ ܒܨܝܐ ܒ {{SITENAME}}, ܚܙܝ [[{{MediaWiki:Helppage}}|{{int:help}}]].',
+'searchsubtitle'                 => 'ܒܨܐ ܐܢܬ ܥܠ \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|ܟܠ ܦܐܬܘܬ̈ܐ ܕܫܪܝܢ ܒ"$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|ܟܠ ܦܐܬܘܬ̈ܐ ܕܐܣܪܝܢ ܥܡ "$1"]])',
 'searchsubtitleinvalid'          => "ܒܨܐ ܐܢܬ ܥܠ '''$1'''",
 'noexactmatch'                   => "'''ܠܝܬ ܦܐܬܐ ܒܫܡܐ ܕ  \"\$1\".'''
 ܡܨܐ ܐܢܬ [[:\$1|ܒܪܐ ܗܕܐ ܦܐܬܐ]].",

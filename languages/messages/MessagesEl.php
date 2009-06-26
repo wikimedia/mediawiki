@@ -1932,6 +1932,13 @@ PICT # διάφορα
 'listusersfrom'      => 'Προβολή χρηστών ξεκινώντας από:',
 'listusers-submit'   => 'Δείξε',
 'listusers-noresult' => 'Δεν βρέθηκε χρήστης.',
+'listusers-blocked'  => '(υπό φραγή)',
+
+# Special:ActiveUsers
+'activeusers'          => 'Κατάλογος ενεργών χρηστών',
+'activeusers-count'    => '$1 {{PLURAL:$1|πρόσφατη επεξεργασία|πρόσφατες επεξεργασίες}}',
+'activeusers-from'     => 'Προβολή χρηστών ξεκινώντας από:',
+'activeusers-noresult' => 'Δεν βρέθηκε χρήστης.',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Αρχείο δημιουργίας χρηστών',
@@ -1945,6 +1952,8 @@ PICT # διάφορα
 'listgrouprights'                      => 'Δικαιώματα ομάδων χρηστών',
 'listgrouprights-summary'              => 'Ακόλουθεί μία λίστα με τις ομάδες χρηστών σε αυτό το wiki καθώς και με τα δικαιώματα πρόσβασης αυτών. 
 Ενδέχεται να περιέχει [[{{MediaWiki:Listgrouprights-helppage}}|πρόσθετες πληροφορίες]] σχετικά με ατομικά δικαιώματα.',
+'listgrouprights-key'                  => '* <span class="listgrouprights-granted">Δόθηκε δικαίωμα</span>
+* <span class="listgrouprights-revoked">Ανακλήθηκε δικαίωμα</span>',
 'listgrouprights-group'                => 'Ομάδα',
 'listgrouprights-rights'               => 'Δικαιώματα',
 'listgrouprights-helppage'             => 'Help:Δικαιώματα ομάδων',
