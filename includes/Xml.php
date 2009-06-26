@@ -751,6 +751,14 @@ class XmlSelect {
 		$this->attributes[$name] = $value;
 	}
 
+	public function getAttribute( $name ) {
+		if ( isset($this->attributes[$name]) ) {
+			return $this->attributes[$name];
+		} else {
+			return null;
+		}
+	}
+
 	public function addOption( $name, $value = false ) {
 		// Stab stab stab
 		$value = ($value !== false) ? $value : $name;
