@@ -3161,7 +3161,7 @@ Ingrese el nombre del archivo sin el prefijo "{{ns:file}}:".',
 
 # Database error messages
 'dberr-header'      => 'Este wiki tiene un problema',
-'dberr-problems'    => 'Disculpe!. Este sitio está experimentando dificultades técnicas.',
+'dberr-problems'    => '¡Disculpe! Este sitio está experimentando dificultades técnicas.',
 'dberr-again'       => 'Prueba a recargar dentro de unos minutos.',
 'dberr-info'        => '(No e puede contactar con la base de datos del servidor: $1)',
 'dberr-usegoogle'   => 'Mientras tanto puede probar buscando a través de Google.',
