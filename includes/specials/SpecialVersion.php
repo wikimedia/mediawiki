@@ -43,6 +43,18 @@ class SpecialVersion extends SpecialPage {
 		$wgOut->addHTML( '</div>' );
 	}
 
+	/**
+	 * execuate command for output
+	 * @param string command
+	 * @return string output
+	 */
+	function execOutput( $cmd ) {
+		$out = array( $cmd );
+		exec( $cmd.' 2>&1', $out );
+		unset($out[0]);
+		return implode("\n", $out );
+	}
+
 	/**#@+
 	 * @private
 	 */
@@ -88,6 +100,7 @@ class SpecialVersion extends SpecialPage {
 	 * @return wiki text showing the third party software versions (apache, php, mysql).
 	 */
 	static function softwareInformation() {
+		global $wgUseImageMagick, $wgImageMagickConvertCommand;
 		$dbr = wfGetDB( DB_SLAVE );
 
 		// Put the software in an array of form 'name' => 'version'. All messages should
@@ -97,6 +110,27 @@ class SpecialVersion extends SpecialPage {
 		$software['[http://www.mediawiki.org/ MediaWiki]'] = self::getVersionLinked();
 		$software['[http://www.php.net/ PHP]'] = phpversion() . " (" . php_sapi_name() . ")";
 		$software[$dbr->getSoftwareLink()] = $dbr->getServerVersion();
+
+		// Look for ImageMagick's version, if did not found, try to find the GD library version
+		if ( $wgUseImageMagick === true ) {
+			if ( file_exists( $wgImageMagickConvertCommand ) ) {
+				$swImageMagickInfo = self::execOutput( $wgImageMagickConvertCommand . ' -version' );
+				list( $head, $tail ) = explode( 'ImageMagick', $swImageMagickInfo );
+				list( $swImageMagickVer ) = explode('http://www.imagemagick.org', $tail );
+				$software['[http://www.imagemagick.org/ ImageMagick]'] = $swImageMagickVer;
+			}
+		} else {
+			if( function_exists( 'gd_info' ) ) {
+				$gdInfo = gd_info();
+				if ( strstr( $gdInfo['GD Version'], 'bundled' ) !== '' ) {
+					$gd_URL = 'http://www.php.net/gd';
+				}
+				else {
+					$gd_URL = 'http://www.libgd.org';
+				}
+				$software['[' . $gd_URL . ' GD library]'] = $gdInfo['GD Version'];
+			}
+		}
 
 		// Allow a hook to add/remove items
 		wfRunHooks( 'SoftwareInfo', array( &$software ) );
