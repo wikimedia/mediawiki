@@ -20,8 +20,8 @@ function updateSearchIndex( $start, $end, $maxLockTime, $quiet ) {
 	output( "Updating searchindex between $start and $end\n" );
 
 	# Select entries from recentchanges which are on top and between the specified times
-	$start = $dbw->strencode( $start );
-	$end = $dbw->strencode( $end );
+	$start = $dbw->strencode( $dbw->timestamp( $start ) );
+	$end = $dbw->strencode( $dbw->timestamp( $end ) );
 
 	$page = $dbw->tableName( 'page' );
 	$sql = "SELECT rc_cur_id,rc_type,rc_moved_to_ns,rc_moved_to_title FROM $recentchanges
@@ -90,7 +90,7 @@ function lockSearchindex( &$db ) {
 # Unlock and lock again
 # Since the lock is low-priority, queued reads will be able to complete
 function relockSearchindex( &$db ) {
-	unlockSearchindex( $db );
+	lockSearchindex( $db );
 	$db->unlockTables( 'updateSearchIndex.inc ' . __METHOD__ );
 }
 
