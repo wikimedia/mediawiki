@@ -456,14 +456,29 @@ class User {
 			# Illegal name
 			return null;
 		}
+		
+		static $cache = array();
+		
+		if ( isset($cache[$name]) ) {
+			return $cache[$name];
+		}
+		
 		$dbr = wfGetDB( DB_SLAVE );
 		$s = $dbr->selectRow( 'user', array( 'user_id' ), array( 'user_name' => $nt->getText() ), __METHOD__ );
 
 		if ( $s === false ) {
-			return 0;
+			$result = 0;
 		} else {
-			return $s->user_id;
+			$result = $s->user_id;
 		}
+		
+		$cache[$name] = $result;
+		
+		if ( count($cache) > 1000 ) {
+			$cache = array();
+		}
+		
+		return $result;
 	}
 
 	/**
