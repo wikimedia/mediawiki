@@ -1389,7 +1389,7 @@ END;
 
 	/* These are not used yet, but we know we don't want the default version */
 
-	public function lock( $lockName, $method ) {
+	public function lock( $lockName, $method, $timeout = 5 ) {
 		return true;
 	}
 	public function unlock( $lockName, $method ) {
@@ -1402,5 +1402,10 @@ END;
 
 	/** No-op */
 	public function setBigSelects( $value = true ) {}
+
+	/** Todo: maybe implement this? */
+	public function lockTables( $read, $write, $method ) {}
+
+	public function unlockTables( $method ) {}
 
 } // end DatabasePostgres class
