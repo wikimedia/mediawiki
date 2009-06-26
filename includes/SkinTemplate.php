@@ -112,7 +112,7 @@ class SkinTemplate extends Skin {
 		$out->addStyle( 'common/shared.css', 'screen' );
 		$out->addStyle( 'common/commonPrint.css', 'print' );	
 	}
-
+	
 	/**
 	 * Create the template engine object; we feed it a bunch of data
 	 * and eventually it spits out some HTML. Should have interface
