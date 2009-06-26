@@ -156,22 +156,31 @@ div#head h5 {
 		padding-left: 0;
 		padding-right: 1px;
 	}
+	/* OVERRIDDEN BY COMPLIANT BROWSERS */
 	div#namespaces ul,
 	div#views ul {
 		float: left;
+		height: 100%;
 	}
 	/* IGNORED BY IE6 */
 	body.rtl div#left-navigation > div#namespaces ul,
 	body.rtl div#right-navigation > div#views ul {
 		float: right;
 	}
-	div#namespaces li,
-	div#views li {
+	/* OVERRIDDEN BY COMPLIANT BROWSERS */
+	div#namespaces ul li,
+	div#views ul li {
+		display: inline-block;
 		float: left;
-		height: 3em;
+		height: 100%;
 		background-image: url(images/tab-normal-fade.png);
 		background-position: bottom left;
 		background-repeat: repeat-x;
+	}
+	/* IGNORED BY IE6 */
+	div#namespaces ul > li,
+	div#views ul > li {
+		display: block;
 	}
 	/* IGNORED BY IE6 */
 	body.rtl div#namespaces > ul > li,
@@ -183,8 +192,9 @@ div#head h5 {
 	div#views li.selected {
 		background-image: url(images/tab-current-fade.png);
 	}
-	div#namespaces a,
-	div#views a {
+	/* OVERRIDDEN BY COMPLIANT BROWSERS */
+	div#namespaces li a,
+	div#views li a {
 		display: inline-block;
 		height: 3em;
 		padding-left: 0.5em;
@@ -194,16 +204,28 @@ div#head h5 {
 		background-repeat: no-repeat;
 	}
 	/* IGNORED BY IE6 */
+	div#namespaces li > a,
+	div#views li > a {
+		display: block;
+	}
+	/* IGNORED BY IE6 */
 	body.rtl div#namespaces li > a,
 	body.rtl div#views li > a {
 		background-position: bottom left;
 	}
+	/* OVERRIDDEN BY COMPLIANT BROWSERS */
 	div#namespaces a span,
 	div#views a span {
 		color: #0645ad;
 		display: inline-block;
 		padding-top: 1.25em;
 		cursor: pointer;
+	}
+	/* IGNORED BY IE6 */
+	div#namespaces a > span,
+	div#views a > span {
+		float: left;
+		display: block;
 	}
 	div#namespaces li.selected a span,
 	div#views li.selected a:visited span {
@@ -237,6 +259,7 @@ div#head h5 {
 	body.rtl div#actions > h5 {
 		float: right;
 	}
+	/* OVERRIDDEN BY COMPLIANT BROWSERS */
 	div#variants h5 a,
 	div#actions h5 a {
 		display: inline-block;
@@ -246,6 +269,11 @@ div#head h5 {
 		background-image: url(images/tab-break.png);
 		background-position: bottom right;
 		background-repeat: no-repeat;
+	}
+	/* IGNORED BY IE6 */
+	div#variants h5 > a,
+	div#actions h5 > a {
+		display: block;
 	}
 	/* IGNORED BY IE6 */
 	body.rtl div#variants > h5 a,
@@ -284,10 +312,16 @@ div#head h5 {
 		margin-left: 0;
 		margin-right: -1px;
 	}
+	/* OVERRIDDEN BY COMPLIANT BROWSERS */
 	div#variants:hover li a,
 	div#actions li a {
 		display: inline-block;
 		padding: 0.5em;
+	}
+	/* IGNORED BY IE6 */
+	div#variants:hover li > a,
+	div#actions li > a {
+		display: block;
 	}
 	/* Search */
 	div#search {
