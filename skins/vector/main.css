@@ -57,13 +57,11 @@ div#head {
 	top: 0;
 	right: 0;
 	width: 100%;
-	margin-right: 0.75em;
 }
 body.rtl div#head {
 	right: auto;
 	left: 0;
 	margin-right: auto;
-	margin-left: 0.75em;
 }
 div#head ul,
 div#head li {
@@ -79,10 +77,10 @@ div#head h5 {
 	div#personal {
 		position: absolute;
 		top: 0;
-		right: 0;
+		right: 0.75em;
 	}
 	body.rtl div#personal {
-		left: 0;
+		left: 0.75em;
 		right: auto;
 	}
 	div#personal h5 {
@@ -98,25 +96,37 @@ div#head h5 {
 		margin-left: auto;
 		margin-right: 0.75em;
 	}
+	body.rtl div#personal > ul > li {
+		float: right;
+		margin-left: 0;
+		margin-right: 0.75em;
+	}
 	/* Navigation */
 	div#left-navigation {
 		margin-top: 3em;
-		margin-left: 12.75em;
+		margin-left: 12em;
 	}
-	/*
+	/* OVERRIDDEN BY COMPLIANT BROWSERS */
 	body.rtl div#left-navigation {
-		margin-left: auto;
-		margin-right: 12.75em;
+		margin-left: 0;
 	}
-	*/
+	/* IGNORED BY IE6 */
+	body.rtl div#head > div#left-navigation {
+		margin-left: auto;
+		margin-right: 12em;
+	}
 	div#right-navigation {
 		float: right;
 	}
-	/*
+	/* OVERRIDDEN BY COMPLIANT BROWSERS */
 	body.rtl div#right-navigation {
+		margin-right: 6em;
+	}
+	/* IGNORED BY IE6 */
+	body.rtl div#head > div#right-navigation {
+		margin-right: auto;
 		float: left;
 	}
-	*/
 	/* Navigation Labels */
 	div#namespaces h5,
 	div#variants h5,
@@ -134,25 +144,27 @@ div#head h5 {
 		background-repeat: no-repeat;
 		padding-left: 1px;
 	}
-	/*
-	body.rtl div#namespaces,
-	body.rtl div#views {
+	/* OVERRIDDEN BY COMPLIANT BROWSERS */
+	body.rtl div#left-navigation div#namespaces {
+		padding-left: 0;
+	}
+	/* IGNORED BY IE6 */
+	body.rtl div#left-navigation > div#namespaces,
+	body.rtl div#right-navigation > div#views {
 		float: right;
 		background-position: bottom right;
 		padding-left: 0;
 		padding-right: 1px;
 	}
-	*/
 	div#namespaces ul,
 	div#views ul {
 		float: left;
 	}
-	/*
-	body.rtl div#namespaces ul,
-	body.rtl div#views ul {
+	/* IGNORED BY IE6 */
+	body.rtl div#left-navigation > div#namespaces ul,
+	body.rtl div#right-navigation > div#views ul {
 		float: right;
 	}
-	*/
 	div#namespaces li,
 	div#views li {
 		float: left;
@@ -161,13 +173,12 @@ div#head h5 {
 		background-position: bottom left;
 		background-repeat: repeat-x;
 	}
-	/*
-	body.rtl div#namespaces li,
-	body.rtl div#views li {
+	/* IGNORED BY IE6 */
+	body.rtl div#namespaces > ul > li,
+	body.rtl div#views > ul > li {
 		float: right;
 		background-position: bottom right;
 	}
-	*/
 	div#namespaces li.selected,
 	div#views li.selected {
 		background-image: url(images/tab-current-fade.png);
@@ -182,12 +193,11 @@ div#head h5 {
 		background-position: bottom right;
 		background-repeat: no-repeat;
 	}
-	/*
-	body.rtl div#namespaces a,
-	body.rtl div#views a {
+	/* IGNORED BY IE6 */
+	body.rtl div#namespaces li > a,
+	body.rtl div#views li > a {
 		background-position: bottom left;
 	}
-	*/
 	div#namespaces a span,
 	div#views a span {
 		color: #0645ad;
@@ -213,22 +223,20 @@ div#head h5 {
 		background-position: center center;
 		background-repeat: no-repeat;
 	}
-	/*
-	body.rtl div#variants,
-	body.rtl div#actions {
+	/* IGNORED BY IE6 */
+	body.rtl div#left-navigation > div#variants,
+	body.rtl div#right-navigation > div#actions {
 		float: right;
 	}
-	*/
 	div#variants h5,
 	div#actions h5 {
 		float: left;
 	}
-	/*
-	body.rtl div#variants h5,
-	body.rtl div#actions h5 {
+	/* IGNORED BY IE6 */
+	body.rtl div#variants > h5,
+	body.rtl div#actions > h5 {
 		float: right;
 	}
-	*/
 	div#variants h5 a,
 	div#actions h5 a {
 		display: inline-block;
@@ -239,13 +247,12 @@ div#head h5 {
 		background-position: bottom right;
 		background-repeat: no-repeat;
 	}
-	/*
-	body.rtl div#variants h5 a,
-	body.rtl div#actions h5 a {
+	/* IGNORED BY IE6 */
+	body.rtl div#variants > h5 a,
+	body.rtl div#actions > h5 a {
 		display: inline-block;
 		background-position: bottom left;
 	}
-	*/
 	div#variants div.menu,
 	div#actions div.menu {
 		display: none;
@@ -265,13 +272,18 @@ div#head h5 {
 		margin: 0;
 		margin-left: -1px;
 	}
-	/*
+	/* OVERRIDDEN BY COMPLIANT BROWSERS */
 	body.rtl div#variants ul,
 	body.rtl div#actions ul {
 		margin-left: 0;
+		margin-right: -24px;
+	}
+	/* IGNORED BY IE6 */
+	body.rtl div#variants div.menu > ul,
+	body.rtl div#actions div.menu > ul {
+		margin-left: 0;
 		margin-right: -1px;
 	}
-	*/
 	div#variants:hover li a,
 	div#actions li a {
 		display: inline-block;
@@ -280,26 +292,30 @@ div#head h5 {
 	/* Search */
 	div#search {
 		float: left;
+		margin-right: 0.75em;
 	}
-	/*
-	body.rtl div#search {
+	/* OVERRIDDEN BY COMPLIANT BROWSERS */
+	body.rtl div#right-navigation div#search {
+		margin-right: 0;
+	}
+	/* IGNORED BY IE6 */
+	body.rtl div#right-navigation > div#search {
 		float: right;
+		margin-left: 0.75em;
 	}
-	*/
 	div#search form,
 	div#search input {
 		float: left;
 		margin-top: 0.4em;
 		margin-left: 0.25em;
 	}
-	/*
-	body.rtl div#search form,
-	body.rtl div#search input {
+	/* IGNORED BY IE6 */
+	body.rtl div#search > form,
+	body.rtl div#search > form > input {
 		float: right;
 		margin-left: 0;
 		margin-right: 0.25em;
 	}
-	*/
 /* Panel */
 div#panel {
 	position: absolute;
@@ -450,7 +466,6 @@ div#logo a {
 #preftoc {
 	/* Tabs */
 	float: left;
-	zoom: 1;
 	clear: both;
 	margin: 0 !important;
 	padding: 0 !important;
@@ -459,13 +474,14 @@ div#logo a {
 	background-position: bottom left;
 	background-repeat: no-repeat;
 }
-body.rtl #preftoc {
+/* IGNORED BY IE6 */
+body.rtl form > #preftoc {
+	float: right;
 	background-position: bottom right;
 }
 	#preftoc li {
 		/* Tab */
 		float: left;
-		zoom: 1;
 		margin: 0;
 		padding: 0;
 		padding-right: 1px;
@@ -477,10 +493,17 @@ body.rtl #preftoc {
 		background-position: bottom right;
 		background-repeat: no-repeat;
 	}
+	/* IGNORED BY IE6 */
 	#preftoc li:first-child {
 		margin-left: 1px;
 	}
-	body.rtl #preftoc li {
+	/* IGNORED BY IE6 */
+	body.rtl #preftoc li:first-child {
+		margin-left: 0;
+		margin-right: 1px;
+	}
+	/* IGNORED BY IE6 */
+	body.rtl #preftoc > li {
 		float: right;
 		padding-right: 0;
 		padding-left: 1px;
@@ -517,19 +540,19 @@ body.rtl #preftoc {
 	background-color: #f9f9f9;
 	background-image: url(images/preferences-base.png);
 }
-#preferences > fieldset.prefsection {
+#preferences fieldset.prefsection {
 	border: none;
 	padding: 0;
 	margin: 1em;
 }
-#preferences > fieldset.prefsection > fieldset {
+#preferences fieldset.prefsection fieldset {
 	border: none;
 	border-top: solid 1px #cccccc;
 }
 #preferences legend {
 	color: #666666;
 }
-#preferences > fieldset.prefsection > legend.mainLegend {
+#preferences fieldset.prefsection legend.mainLegend {
 	display: none;
 }
 #preferences td {
