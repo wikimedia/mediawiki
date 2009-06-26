@@ -404,7 +404,7 @@ class DatabaseSqlite extends DatabaseBase {
 	/** 
 	 * No-op lock functions
 	 */
-	public function lock( $lockName, $method ) {
+	public function lock( $lockName, $method, $timeout = 5 ) {
 		return true;
 	}
 	public function unlock( $lockName, $method ) {
@@ -454,6 +454,10 @@ class DatabaseSqlite extends DatabaseBase {
 
 	/** No-op */
 	public function setBigSelects( $value = true ) {}
+
+	public function lockTables( $read, $write, $method ) {}
+
+	public function unlockTables( $method ) {}
 
 } // end DatabaseSqlite class
 
