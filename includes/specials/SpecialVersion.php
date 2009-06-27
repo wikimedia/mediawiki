@@ -113,7 +113,7 @@ class SpecialVersion extends SpecialPage {
 
 		// Look for ImageMagick's version, if did not found, try to find the GD library version
 		if ( $wgUseImageMagick === true ) {
-			if ( file_exists( $wgImageMagickConvertCommand ) ) {
+			if ( file_exists( trim( $wgImageMagickConvertCommand, '"' ) ) ) {
 				$swImageMagickInfo = self::execOutput( $wgImageMagickConvertCommand . ' -version' );
 				list( $head, $tail ) = explode( 'ImageMagick', $swImageMagickInfo );
 				list( $swImageMagickVer ) = explode('http://www.imagemagick.org', $tail );
