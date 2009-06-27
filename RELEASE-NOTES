@@ -92,7 +92,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Added a PHP port of CDB (constant database), for improved local caching when
   the DBA extension is not available.
 * (bug 14611) Added support showing the version of the image thumbnailing 
-  engine.
+  engine and diff/diff3 engine.
 
 === Bug fixes in 1.16 ===
 

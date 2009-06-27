@@ -100,7 +100,7 @@ class SpecialVersion extends SpecialPage {
 	 * @return wiki text showing the third party software versions (apache, php, mysql).
 	 */
 	static function softwareInformation() {
-		global $wgUseImageMagick, $wgImageMagickConvertCommand;
+		global $wgUseImageMagick, $wgImageMagickConvertCommand, $wgDiff3, $wgDiff;
 		$dbr = wfGetDB( DB_SLAVE );
 
 		// Put the software in an array of form 'name' => 'version'. All messages should
@@ -110,6 +110,22 @@ class SpecialVersion extends SpecialPage {
 		$software['[http://www.mediawiki.org/ MediaWiki]'] = self::getVersionLinked();
 		$software['[http://www.php.net/ PHP]'] = phpversion() . " (" . php_sapi_name() . ")";
 		$software[$dbr->getSoftwareLink()] = $dbr->getServerVersion();
+
+		// Version information for diff3
+		if ( file_exists( trim( $wgDiff3, '"' ) ) ) {
+			$swDiff3Info = self::execOutput( $wgDiff3 . ' -v' );
+			$swDiff3Line = explode("\n",$swDiff3Info ,2);
+			$swDiff3Ver = $swDiff3Line[0];
+			$software['[http://www.gnu.org/software/diffutils/diffutils.html diff3]'] = $swDiff3Ver;
+		}
+
+		// Version information for diff
+		if ( file_exists( trim( $wgDiff, '"' ) ) ) {
+			$swDiffInfo = self::execOutput( $wgDiff . ' -v' );
+			$swDiffLine = explode("\n",$swDiffInfo ,2);
+			$swDiffVer = $swDiffLine[0];
+			$software['[http://www.gnu.org/software/diffutils/diffutils.html diff]'] = $swDiffVer;
+		}
 
 		// Look for ImageMagick's version, if did not found, try to find the GD library version
 		if ( $wgUseImageMagick === true ) {
