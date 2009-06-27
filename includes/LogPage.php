@@ -66,6 +66,7 @@ class LogPage {
 			'log_action' => $this->action,
 			'log_timestamp' => $dbw->timestamp( $now ),
 			'log_user' => $this->doer->getId(),
+			'log_user_text' => $this->doer->getName(),
 			'log_namespace' => $this->target->getNamespace(),
 			'log_title' => $this->target->getDBkey(),
 			'log_comment' => $this->comment,
