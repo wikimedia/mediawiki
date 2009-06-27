@@ -138,7 +138,7 @@ class SpecialVersion extends SpecialPage {
 		} else {
 			if( function_exists( 'gd_info' ) ) {
 				$gdInfo = gd_info();
-				if ( strstr( $gdInfo['GD Version'], 'bundled' ) !== '' ) {
+				if ( strstr( $gdInfo['GD Version'], 'bundled' ) != false ) {
 					$gd_URL = 'http://www.php.net/gd';
 				}
 				else {
