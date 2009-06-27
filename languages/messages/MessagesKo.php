@@ -961,7 +961,7 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'rev-deleted-text-permission' => "이 문서의 편집은 문서 역사에서 '''삭제'''되었습니다.
 [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 삭제 기록]에서 자세한 내용을 볼 수 있습니다..",
 'rev-deleted-text-unhide'     => "이 페이지의 판은 '''삭제되었습니다.'''
-자세한 내용은 [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 삭제기록]에 있을 것입니다.
+자세한 내용은 [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 삭제 기록]에서 볼 수 있습니다.
 관리자로서 확인을 원한다면 [$1 특정판 보기]를 할 수 있습니다.",
 'rev-deleted-text-view'       => "이 문서의 편집은 문서 역사에서 '''삭제'''되었습니다.
 당신은 관리자로서 삭제된 편집을 볼 수 있습니다.
