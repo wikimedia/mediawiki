@@ -830,7 +830,7 @@ $addr: The e-mail address entered by the user
 
 'isValidPassword': Override the result of User::isValidPassword()
 $password: The password entered by the user
-&$result: Set this and return false to override the internal checks
+&$result: Set this to either true (passes) or the key for a message error
 $user: User the password is being validated for
 
 'LanguageGetMagic': Use this to define synonyms of magic words depending

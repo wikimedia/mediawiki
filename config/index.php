@@ -702,7 +702,7 @@ if( $conf->SysopName ) {
 		# Various password checks
 		if( $conf->SysopPass != '' ) {
 			if( $conf->SysopPass == $conf->SysopPass2 ) {
-				if( !$u->isValidPassword( $conf->SysopPass ) ) {
+				if( $u->isValidPassword( $conf->SysopPass ) !== true ) {
 					$errs['SysopPass'] = "Bad password";
 				}
 			} else {

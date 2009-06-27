@@ -36,9 +36,14 @@ if( !is_object( $user ) ) {
 	die( 1 );
 }
 
+try {
+	$user->setPassword( $password );
+} catch( PasswordError $pwe ) {
+	$this->error( $pwe->getText(), true );
+}
+
 # Insert the account into the database
 $user->addToDatabase();
-$user->setPassword( $password );
 $user->saveSettings();
 
 # Promote user
