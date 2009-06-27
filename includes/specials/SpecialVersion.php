@@ -48,7 +48,7 @@ class SpecialVersion extends SpecialPage {
 	 * @param string command
 	 * @return string output
 	 */
-	function execOutput( $cmd ) {
+	static function execOutput( $cmd ) {
 		$out = array( $cmd );
 		exec( $cmd.' 2>&1', $out );
 		unset($out[0]);
