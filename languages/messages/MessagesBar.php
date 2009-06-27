@@ -140,6 +140,7 @@ $messages = array(
 'searchbutton'      => 'Suach',
 'searcharticle'     => 'Artikl',
 'history'           => 'Versionen',
+'history_short'     => 'Veasionen/Autorn',
 'updatedmarker'     => '(gändat)',
 'printableversion'  => 'Version zum Ausdruckn',
 'permalink'         => 'Bschtändige URL',
@@ -161,6 +162,7 @@ $messages = array(
 'personaltools'     => 'Peasönliche Weakzeig',
 'articlepage'       => 'Artikl',
 'talk'              => 'bschprecha',
+'views'             => 'Ãnsichtn',
 'toolbox'           => 'Weakzeigkistn',
 'userpage'          => 'Benutzerseitn',
 'mediawikipage'     => 'Inhaltsseitn ozoang',
@@ -169,6 +171,7 @@ $messages = array(
 'redirectedfrom'    => '(vu $1 weida gschickt)',
 'lastmodifiedat'    => 'De Seitn is zletzt am $1 um $2 gändert worn.',
 'jumpto'            => 'Wechseln zua:',
+'jumptonavigation'  => 'Navigazion',
 'jumptosearch'      => 'Suach',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
@@ -246,6 +249,7 @@ Funkzion: $1<br />
 'logouttext'                 => 'Sie san iatzat abgmeldt.
 Sie kinnan {{SITENAME}} iatzat anonym weitanutzn, oda si unta am selben oda am andern Benutzernamen wieder omeldn.',
 'yourname'                   => 'Benutzernam:',
+'yourpassword'               => 'Passwoat:',
 'yourpasswordagain'          => 'Passwort no amoi',
 'yourdomainname'             => 'Eanane Domain:',
 'login'                      => 'Oomeidn',
@@ -324,6 +328,7 @@ Du kãnnst in Titl vu dea Seitn auf de ãndan Seitn [[Special:Search/{{PAGENAME}
 Bitte versuachs no amoi, indem du unta da foigendn Textvorschau nochmois auf „Seitn speichern“ klickst.
 Sollt des Problem bestehn bleim, meld di ab und danach wieda oo.</strong>',
 'editing'                    => 'Bearbatn vo $1',
+'editingsection'             => 'Werkln bei $1 (Åbschnitt)',
 'editconflict'               => 'Konflikt beim Bearbatn: $1',
 'explainconflict'            => "Jemand anders hat de Seitn gändert, nachdem du oogfanga hast sie zum bearbatn.
 Des obere Textfeld enthoit den aktuellen Stand.
@@ -353,6 +358,7 @@ Zu deina Information folgt des Lösch-Logbuach mit da Begründung fia de vorheri
 # History pages
 'viewpagelogs'     => 'Logbiacha fia de Seitn oozoang',
 'currentrev-asof'  => 'Aktuelle Veasion vum $1',
+'revisionasof'     => 'Veasion vum $2, $3.',
 'previousrevision' => '← Nextöidare Veasion',
 'nextrevision'     => 'Nextjingare Veasion →',
 'histlegend'       => 'Zum Ozoagn vo Änderungen einfach de zwoa Versionen auswähln und auf de Schaltfläche „{{int:compareselectedversions}}“ klicken.<br />
@@ -388,34 +394,38 @@ Details stehen im [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 
 # Diffs
 'history-title'           => 'Versionsgschicht vu „$1“',
 'difference'              => '(Untaschied zwischn Versionen)',
+'lineno'                  => 'Zeu $1:',
 'compareselectedversions' => 'Gwählte Versionen vergleicha',
 'editundo'                => 'rückgängig',
 
 # Search results
-'searchresults'            => 'Suachergebnisse',
-'searchresults-title'      => 'Eagebnisse vu da Suach nåch „$1“',
-'searchresulttext'         => "Fia weidare Infos üwa's Suacha schau auf'd [[{{MediaWiki:Helppage}}|Hüifeseitn]].",
-'searchsubtitle'           => 'Dei Suachãnfråg: „[[:$1|$1]]“ ([[Special:Prefixindex/$1|ålle Seitn, de mid „$1“ ãnfãngan]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|ålle Seitn, de wås nåch „$1“ valinkn]])',
-'searchsubtitleinvalid'    => 'Dei Suachãnfråg: „$1“.',
-'noexactmatch'             => "'''Es gibt ka Seitn mi'm Titl „$1“.'''
+'searchresults'             => 'Suachergebnisse',
+'searchresults-title'       => 'Eagebnisse vu da Suach nåch „$1“',
+'searchresulttext'          => "Fia weidare Infos üwa's Suacha schau auf'd [[{{MediaWiki:Helppage}}|Hüifeseitn]].",
+'searchsubtitle'            => 'Dei Suachãnfråg: „[[:$1|$1]]“ ([[Special:Prefixindex/$1|ålle Seitn, de mid „$1“ ãnfãngan]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|ålle Seitn, de wås nåch „$1“ valinkn]])',
+'searchsubtitleinvalid'     => 'Dei Suachãnfråg: „$1“.',
+'noexactmatch'              => "'''Es gibt ka Seitn mi'm Titl „$1“.'''
 Wãnn'st di mid dem Thema auskennst, kãnnst [[:$1|de Seitn söiwa schreim]].",
-'noexactmatch-nocreate'    => "'''A Seitn, de in Titl „$1“ håd, gibt's ned.'''",
-'notitlematches'           => 'Koane Üwareinstimmungen mid de Seitntitl',
-'prevn'                    => "d'voahearing {{PLURAL:$1|$1}}",
-'nextn'                    => 'de nextn {{PLURAL:$1|$1}}',
-'viewprevnext'             => 'Zoag ($1) ($2) ($3)',
-'search-result-size'       => '$1 ({{PLURAL:$2|1 Woat|$2 Wöata}})',
-'search-redirect'          => '(Weidaleitung vu „$1“)',
-'search-suggest'           => 'Hädst „$1“ gmoant?',
-'search-interwiki-caption' => 'Schwestaprojekte',
-'search-interwiki-default' => '$1 Eagebnisse:',
-'showingresultstotal'      => "Es {{PLURAL:$4|foigt s'Suacheagebnis '''$1''' vu '''$3:'''|foing de Suacheagebnisse '''$1–$2''' vu '''$3:'''}}",
-'powersearch'              => 'Suach',
-'powersearch-ns'           => 'Suach in Nãmensräume:',
-'powersearch-redir'        => 'Weidaleitungen ãnzoang',
-'powersearch-field'        => 'Suach nåch:',
+'noexactmatch-nocreate'     => "'''A Seitn, de in Titl „$1“ håd, gibt's ned.'''",
+'notitlematches'            => 'Koane Üwareinstimmungen mid de Seitntitl',
+'prevn'                     => "d'voahearing {{PLURAL:$1|$1}}",
+'nextn'                     => 'de nextn {{PLURAL:$1|$1}}',
+'viewprevnext'              => 'Zoag ($1) ($2) ($3)',
+'search-result-size'        => '$1 ({{PLURAL:$2|1 Woat|$2 Wöata}})',
+'search-redirect'           => '(Weidaleitung vu „$1“)',
+'search-suggest'            => 'Hädst „$1“ gmoant?',
+'search-interwiki-caption'  => 'Schwestaprojekte',
+'search-interwiki-default'  => '$1 Eagebnisse:',
+'search-mwsuggest-enabled'  => 'mid Voaschläg',
+'search-mwsuggest-disabled' => 'kane Voaschläg',
+'showingresultstotal'       => "Es {{PLURAL:$4|foigt s'Suacheagebnis '''$1''' vu '''$3:'''|foing de Suacheagebnisse '''$1–$2''' vu '''$3:'''}}",
+'powersearch'               => 'Suach',
+'powersearch-ns'            => 'Suach in Nãmensräume:',
+'powersearch-redir'         => 'Weidaleitungen ãnzoang',
+'powersearch-field'         => 'Suach nåch:',
 
 # Preferences page
+'preferences'       => 'Eistellungen',
 'mypreferences'     => 'Eistellunga',
 'changepassword'    => 'Passwort ändan',
 'prefs-editing'     => 'Bearbatn',
@@ -456,6 +466,7 @@ Wãnn'st di mid dem Thema auskennst, kãnnst [[:$1|de Seitn söiwa schreim]].",
 'right-block' => 'Benutzer sperrn (Schreibrecht)',
 
 # Associated actions - in the sentence "You do not have permission to X"
+'action-edit'       => 'an dea Seitn werkln',
 'action-autopatrol' => 'eigne Arbat ois kontrolliert markiern',
 
 # Recent changes
@@ -496,6 +507,7 @@ Wãnn'st di mid dem Thema auskennst, kãnnst [[:$1|de Seitn söiwa schreim]].",
 'emptyfile'         => "De hochgladene Datei is laar. Da Grund konn a Tippfehler im Dateinam sei. Bitte kontrollieren'S, ob Sie de Datei wirklich hochladn woin.",
 'successfulupload'  => 'Erfolgreich hoachgladn',
 'uploadwarning'     => 'Obacht',
+'uploadedimage'     => 'håd „[[$1]]“ aufeglådn',
 'uploaddisabled'    => "'tschuldigung, as Hochladn is deaktiviert.",
 'uploadscripted'    => 'De Datei enthalt HTML- oda Scriptcode, der irrtümlichaweis von am Webbrowser ausgführt wern kinnat.',
 'watchthisupload'   => 'De Seitn beobachtn',
@@ -564,10 +576,12 @@ Links aus Namensräume wern da net aufglistet.',
 # Miscellaneous special pages
 'nmembers'               => '{{PLURAL:$1|1 Eitråg|$1 Eiträge}}',
 'uncategorizedtemplates' => 'Net kategorisierte Vorlagen',
+'prefixindex'            => 'ålle Seitn mid Präfix',
 'longpages'              => 'Lange Seitn',
 'newpages'               => 'Neie Seitn',
 'ancientpages'           => 'Scho länger nimma bearbate Artikel',
 'move'                   => 'vaschiam',
+'movethispage'           => 'de Seitn vaschiam',
 'notargettitle'          => 'Koa Seitn ogem',
 
 # Book sources
@@ -584,6 +598,7 @@ Links aus Namensräume wern da net aufglistet.',
 # Special:AllPages
 'allpages'          => 'Alle Seitn',
 'allpagesfrom'      => 'Seitn zoang ab:',
+'allpagesto'        => 'Seitn ãnzoang bis:',
 'allarticles'       => 'Alle Seitn',
 'allinnamespace'    => 'Alle Seitn (Namensraum: $1)',
 'allnotinnamespace' => 'Alle Seitn (net im $1 Namensraum)',
@@ -631,7 +646,7 @@ Wennst de Seitn wieder vo deina Beobachtungslistn wegdoa mechtn, klickst auf da 
 'watchthispage'     => 'Seitn beobachtn',
 'unwatch'           => 'nimma beobachten',
 'unwatchthispage'   => 'Nimma beobåchtn',
-'watchlist-details' => 'Du beobåchst $1 Seitn.',
+'watchlist-details' => 'Du beobåchst {{PLURAL:$1|$1 Seitn}}, Diskussionsseitn ned midzöihd',
 'wlheader-enotif'   => '* Da E-Mail-Benachrichtigungsdienst is aktiviert.',
 'watchlistcontains' => 'Dei Beobachtungslistn enthoit $1 {{PLURAL:$1|Seite|Seitn}}.',
 'wlshowlast'        => 'Zoag de Änderunga vo de letzten $1 Stunden, $2 Tag oda $3 (in de letzten 30 Tag).',
@@ -676,6 +691,7 @@ und dass Sie in Übaeinstimmung mit de [[{{MediaWiki:Policy-url}}|Richtlinien]] 
 
 # Protect
 'protectlogpage'              => 'Seitenschutz-Logbuach',
+'protectedarticle'            => 'håd „[[$1]]“ gschützt',
 'prot_1movedto2'              => 'håt [[$1]] nåch [[$2]] verschom',
 'protectcomment'              => 'Grund:',
 'protectexpiry'               => 'Sperrdaua:',
@@ -715,7 +731,9 @@ Da aktuelle Text vo da glöschtn Seitn is nur fia Administratoren zum seng.',
 'month'               => 'und Monat:',
 'year'                => 'bis zum Joa:',
 
+'sp-contributions-newbies'     => 'Netta de Beiträg vu de neichn Benutza ãnzoang',
 'sp-contributions-newbies-sub' => 'Fia Neiling',
+'sp-contributions-blocklog'    => 'Sperrlogbiache',
 'sp-contributions-talk'        => 'bschprecha',
 'sp-contributions-search'      => 'Suach nach Benutzerbeiträge',
 'sp-contributions-username'    => 'IP-Adress oda Benutzanãm:',
@@ -750,6 +768,8 @@ Da aktuelle Text vo da glöschtn Seitn is nur fia Administratoren zum seng.',
 'change-blocklink'   => 'Sperr ändan',
 'contribslink'       => 'Beiträge',
 'autoblocker'        => "Automatische Sperre, weil s' a gmeinsame IP-Adressn mit „$1“ hernehma. Grund: „$2“.",
+'blocklogpage'       => 'Benutzasperrlogbiache',
+'blocklogentry'      => "håd „[[$1]]“ fia'n foigndn Zeidraum gspead: $2; $3",
 
 # Developer tools
 'unlockdb'            => 'Datenbank freigem',
@@ -780,6 +800,9 @@ Bitte nehmans an andern Nam.',
 'delete_and_move'        => 'Löschn und vaschiam',
 'delete_and_move_reason' => 'glöscht, um Plåtz fia Vaschiam zum macha',
 'selfmove'               => 'Ursprungs- und Zielname sand gleich; a Seitn kann net auf sich selber verschom wern.',
+
+# Export
+'export' => 'Seitn expoatian',
 
 # Namespace 8 related
 'allmessagesname'           => 'Nam',
@@ -818,9 +841,11 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'tooltip-n-randompage'            => 'Zufällige Seitn',
 'tooltip-t-whatlinkshere'         => 'Listn vu ålle Seitn, de då hea zoang',
 'tooltip-t-contributions'         => "d'Listn vu de Beiträg vu dem Benutza ãschau",
+'tooltip-t-emailuser'             => 'Dem Benutza E-Post schicka',
 'tooltip-t-upload'                => 'Datein aufelådn',
 'tooltip-ca-nstab-main'           => 'Seitninhalt ozoagn',
 'tooltip-ca-nstab-user'           => 'Benutzaseitn ãzoang',
+'tooltip-ca-nstab-image'          => "D'Dateiseitn ãnzoang",
 'tooltip-ca-nstab-help'           => 'Huifseitn oozoang',
 'tooltip-minoredit'               => 'De Änderung åis a klaane markian.',
 'tooltip-save'                    => 'Änderunga speichan',

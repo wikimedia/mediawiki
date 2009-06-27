@@ -553,8 +553,9 @@ Verifica che el nome inserìo el sia giusto o [[Special:UserLogin/signup|crea na
 'nouserspecified'            => 'Bisogna specificar un nome utente.',
 'wrongpassword'              => "La password che te ghe messo no l'è mia giusta.<br /><br />Riproa, par piaser.",
 'wrongpasswordempty'         => 'La password inseria la xè voda. Ripróa da novo.',
-'passwordtooshort'           => 'La to password no la xe mìa valida o la xe massa curta.
-La gà da contegner almanco {{PLURAL:$1|$1 caràtere|$1 caràteri}} e la gà da essar difarente dal to nome utente.',
+'passwordtooshort'           => 'La to password la xe massa curta.
+La gà da èssar longa almanco {{PLURAL:$1|$1 caràtere|$1 caràteri}}.',
+'password-name-match'        => 'La to password la ga da èssar difarente dal to nome utente.',
 'mailmypassword'             => 'Màndeme na password nova par posta eletronica',
 'passwordremindertitle'      => 'Servizio Password Reminder de {{SITENAME}}',
 'passwordremindertext'       => 'Qualcheduni (probabilmente ti, da l\'indirizo IP $1) el gà domandà che ghe vegna mandà na nova password par {{SITENAME}} ($4).
