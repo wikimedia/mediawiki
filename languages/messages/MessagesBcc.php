@@ -1988,7 +1988,7 @@ $NEWPAGE
 ** اخطار هرابین اصلاح
 ** مزنین ترافیکی صفحه',
 'protect-edit-reasonlist'     => 'اصلاح دلایل حفاظت',
-'protect-expiry-options'      => '1 ساعت:1 ساعت,1 روچ:1 روچ,1 هفتگ:1 هفتگ,2 هفتگs:2 هفتگs,1 ماه:1 ماه,3 ماهs:3 ماهs,6 ماهs:6 ماهs,1 سال:1 سال,بی حد:بی حد',
+'protect-expiry-options'      => '1 hour:1 hour,1 day:1 day,1 week:1 week,2 weeks:2 weeks,1 month:1 month,3 months:3 months,6 months:6 months,1 year:1 year,infinite:infinite',
 'restriction-type'            => 'اجازت',
 'restriction-level'           => 'سطح محدود',
 'minimum-size'                => 'هوردی اندازه',

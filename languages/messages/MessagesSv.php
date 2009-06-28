@@ -697,8 +697,9 @@ Kontrollera din stavning, eller [[Special:UserLogin/signup|skapa ett nytt konto]
 'nouserspecified'            => 'Du måste ange ett användarnamn.',
 'wrongpassword'              => 'Lösenordet du angav är felaktigt. Försök igen',
 'wrongpasswordempty'         => 'Lösenordet som angavs var blankt. Var god försök igen.',
-'passwordtooshort'           => 'Ditt lösenord är ogiltigt eller för kort.
-Det måste innehålla minst {{PLURAL:$1|$1 tecken}} och det får inte vara ditt användarnamn.',
+'passwordtooshort'           => 'Ditt lösenord är för kort.
+Det måste innehålla minst {{PLURAL:$1|$1 tecken}}.',
+'password-name-match'        => 'Ditt lösenord måste vara olikt ditt användarnamn.',
 'mailmypassword'             => 'Skicka nytt lösenord',
 'passwordremindertitle'      => 'Nytt temporärt lösenord från {{SITENAME}}',
 'passwordremindertext'       => 'Någon (förmodligen du, från IP-adressen $1) har begärt ett nytt lösenord till {{SITENAME}} ($4). Ett tillfälligt lösenordet för användaren "$2" har skapats och det blev "$3". Om detta var vad du önskade, så behöver du nu logga in och välja ett nytt lösenord. Ditt tillfälliga lösenord går ut om {{PLURAL:$5|en dag|$5 dagar}}.

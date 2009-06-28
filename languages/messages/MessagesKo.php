@@ -684,8 +684,9 @@ $2',
 'nouserspecified'            => '사용자 이름을 입력하지 않았습니다.',
 'wrongpassword'              => '암호가 틀립니다. 다시 시도해 주세요.',
 'wrongpasswordempty'         => '비밀번호가 비었습니다. 다시 시도해 주세요.',
-'passwordtooshort'           => '암호가 부적절하거나 너무 짧습니다.
-암호 길이는 적어도 $1 자보다 길고 사용자 이름과 달라야 합니다.',
+'passwordtooshort'           => '암호가 너무 짧습니다.
+암호 길이는 적어도 {{PLURAL:$1|$1}}자보다 길어야 합니다.',
+'password-name-match'        => '당신의 암호는 반드시 계정 이름과 달라야 합니다.',
 'mailmypassword'             => '새 암호를 이메일로 보내기',
 'passwordremindertitle'      => '{{SITENAME}}에서 보내는 새 임시 암호',
 'passwordremindertext'       => 'IP 주소 $1에게서 당신에게 {{SITENAME}} ($4)의 새 암호를 보내달라는 요청이 왔습니다.

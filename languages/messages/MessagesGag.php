@@ -712,7 +712,7 @@ Burada bitki seçimner '''$1''' yazı diiştirmää deyni:",
 'protect-expiring'            => 'bitmää datası $1 (UTC)',
 'protect-cascade'             => 'Bu sayfaya girän sayfaları koru (kaskad korunmaa)',
 'protect-cantedit'            => 'Siz bu yazının korunmak düzeyin bilmärsiniz diiştirmää, neçin ki sizin onu düzmää izniniz yok.',
-'protect-expiry-options'      => '15 minut:15 minutes,1 saat:1 hour,3 saat:3 hours,24 saat:24 hours,48 saat:48 hours,1 afta:1 week,1 ay:1 month,zamansız:infinite',
+'protect-expiry-options'      => '1 saat:1 hour,1 day:1 day,1 afta:1 week,1 ay:1 month,3 months:3 months,6 months,6 months,zamansız:infinite',
 'restriction-type'            => 'İzin:',
 'restriction-level'           => 'Yasaklama düzeyi:',
 

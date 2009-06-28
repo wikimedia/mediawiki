@@ -269,7 +269,7 @@ $messages = array(
 'tog-extendwatchlist'         => 'Espandir la lista de seguit per afichar totas las modificacions e non pas solament las mai recentas',
 'tog-usenewrc'                => 'Utilizar los darrièrs cambiaments melhorats (necessita JavaScript)',
 'tog-numberheadings'          => 'Numerotar automaticament los títols',
-'tog-showtoolbar'             => 'Mostrar la barra de menut de modificacion (JavaScript)',
+'tog-showtoolbar'             => 'Far veire la barra de menut de modificacion (JavaScript)',
 'tog-editondblclick'          => 'Modificar una pagina amb un clic doble (JavaScript)',
 'tog-editsection'             => 'Modificar una seccion via los ligams [modificar]',
 'tog-editsectiononrightclick' => 'Modificar una seccion en fasent un clic drech sus son títol (JavaScript)',
@@ -684,7 +684,8 @@ Verificatz qu'avètz plan ortografiat lo nom, o [[Special:UserLogin/signup|creat
 'wrongpassword'              => 'Lo senhal es incorrècte. Ensajatz tornarmai.',
 'wrongpasswordempty'         => 'Lo senhal picat èra void. Se vos plai, ensajatz tornarmai.',
 'passwordtooshort'           => 'Vòstre senhal es tròp cort.
-Deu conténer almens $1 caractèr{{PLURAL:$1||s}} e èsser diferent de vòstre nom d’utilizaire.',
+Deu conténer almens {{PLURAL:$1|1 caractèr|$1 caractèrs}}.',
+'password-name-match'        => 'Vòstre senhal deu èsser diferent de vòstre nom d’utilizaire.',
 'mailmypassword'             => 'Mandar un senhal novèl per corrièr electronic',
 'passwordremindertitle'      => 'Senhal temporari novèl sus {{SITENAME}}',
 'passwordremindertext'       => "Qualqu'un (probablament vos, amb l'adreça IP $1) a demandat un senhal novèl 
@@ -837,7 +838,7 @@ Per aquesta rason, devèm utilizar son adreça IP per l'identificar. Una adreça
 'updated'                          => '(Mes a jorn)',
 'note'                             => "'''Nòta :'''",
 'previewnote'                      => "'''Atencion, aqueste tèxte es sonque una previsualizacion e es pas encara estat salvat !'''",
-'previewconflict'                  => 'Aquesta previsualizacion mòstra lo tèxte de la bóstia de modificacion superiora coma apareisserà se causissètz de lo salvar.',
+'previewconflict'                  => 'Aquesta previsualizacion fa veire lo tèxte de la bóstia de modificacion superiora coma apareisserà se causissètz de lo salvar.',
 'session_fail_preview'             => "'''Podèm pas enregistrar vòstra modificacion a causa d’una pèrda d’informacions concernent vòstra sesilha. 
 Ensajatz tornarmai.
 S'aquò fracassa encara, [[Special:UserLogout|desconnectatz-vos]], puèi connectatz-vos tornamai.'''",
@@ -1501,7 +1502,7 @@ Tanben podètz causir de permetre a d’autres de vos contactar amb l'ajuda de v
 'recentchangeslinked-toolbox'  => 'Seguit dels ligams',
 'recentchangeslinked-title'    => 'Seguit dels ligams associats a "$1"',
 'recentchangeslinked-noresult' => 'Cap de cambiament sus las paginas ligadas pendent lo periòde causit.',
-'recentchangeslinked-summary'  => "Aquesta pagina especiala mòstra los darrièrs cambiaments sus las paginas que son ligadas. Las paginas de [[Special:Watchlist|vòstra tièra de seguit]] son '''en gras'''.",
+'recentchangeslinked-summary'  => "Aquesta pagina especiala fa veire los darrièrs cambiaments sus las paginas que son ligadas. Las paginas de [[Special:Watchlist|vòstra tièra de seguit]] son '''en gras'''.",
 'recentchangeslinked-page'     => 'Nom de la pagina :',
 'recentchangeslinked-to'       => 'Afichar los cambiaments cap a las paginas ligadas al luòc de la pagina donada',
 
@@ -1626,7 +1627,7 @@ Se lo problèma persistís, contactatz un [[Special:ListUsers/sysop|administrato
 'upload_source_file' => ' (un fichièr sus vòstre ordenador)',
 
 # Special:ListFiles
-'listfiles-summary'     => 'Aquesta pagina especiala mòstra totes los fichièrs importats.
+'listfiles-summary'     => 'Aquesta pagina especiala fa veire totes los fichièrs importats.
 Per defaut, las darrièrs fichièrs importats son afichats en naut de la lista.
 Un clic en tèsta de colomna càmbia l’òrdre d’afichatge.',
 'listfiles_search_for'  => 'Recèrca del mèdia nomenat :',
@@ -1813,7 +1814,7 @@ Una pagina es tractada coma una pagina d’omonimia s'utiliza un modèl qu'es li
 'protectedtitlestext'     => 'Los títols seguents son protegits a la creacion',
 'protectedtitlesempty'    => 'Cap de títol es pas actualament protegit amb aquestes paramètres.',
 'listusers'               => 'Lista dels participants',
-'listusers-editsonly'     => "Mostrar pas que los utilizaires qu'an al mens una contribucion",
+'listusers-editsonly'     => "Far veire sonque los utilizaires qu'an al mens una contribucion",
 'listusers-creationsort'  => 'Triar per data de creacion',
 'usereditcount'           => '$1 {{PLURAL:$1|cambiament|cambiaments}}',
 'usercreated'             => 'Creat lo $1 a $2',
@@ -1985,7 +1986,7 @@ Las modificacions venentas d\'aquesta pagina e de la pagina de discussion associ
 'watchlistcontains'    => 'Vòstra lista de seguit conten $1 {{PLURAL:$1|pagina|paginas}}.',
 'iteminvalidname'      => "Problèma amb l'article « $1 » : lo nom es invalid...",
 'wlnote'               => 'Çaijós se {{PLURAL:$1|tròba la darrièra modificacion|tròban las $1 darrièras modificacions}} dempuèi {{PLURAL:$2|la darrièra ora|las <b>$2</b> darrièras oras}}.',
-'wlshowlast'           => 'Mostrar las darrièras $1 oras, los darrièrs $2 jorns, o $3.',
+'wlshowlast'           => 'Far veire las darrièras $1 oras, los darrièrs $2 jorns, o $3.',
 'watchlist-options'    => 'Opcions de la lista de seguit',
 
 # Displayed when you click the "watch" button and it is in the process of watching
@@ -2173,7 +2174,7 @@ S'una pagina novèla amb lo meteis nom es estada creada dempuèi la supression, 
 Consultatz l’[[Special:Log/delete|istoric de las supressions]] per veire las paginas recentament suprimidas e restablidas.",
 'undelete-header'              => 'Consultatz l’[[Special:Log/delete|istoric de las supressions]] per veire las paginas recentament suprimidas.',
 'undelete-search-box'          => 'Cercar una pagina suprimida',
-'undelete-search-prefix'       => 'Mostrar las paginas que començan per :',
+'undelete-search-prefix'       => 'Far veire las paginas que començan per :',
 'undelete-search-submit'       => 'Cercar',
 'undelete-no-results'          => 'Cap de pagina correspondent a la recèrca es pas estada trobada dins los archius.',
 'undelete-filename-mismatch'   => 'Impossible de restablir lo fichièr datat del $1 : fichièr introbable',
@@ -2202,7 +2203,7 @@ $1",
 'month'               => 'A partir del mes (e precedents) :',
 'year'                => 'A partir de l’annada (e precedentas) :',
 
-'sp-contributions-newbies'       => 'Mostrar pas que las contribucions dels utilizaires novèls',
+'sp-contributions-newbies'       => 'Far veire sonque las contribucions dels utilizaires novèls',
 'sp-contributions-newbies-sub'   => 'Lista de las contribucions dels utilizaires novèls. Las paginas que son estadas suprimidas son pas afichadas.',
 'sp-contributions-newbies-title' => 'Las contribucions de l’utilizaire pels comptes novèls',
 'sp-contributions-blocklog'      => 'Istoric dels blocatges',
@@ -2734,7 +2735,7 @@ Los autres ligams sus la meteissa linha son considerats coma d'excepcions, per e
 # Metadata
 'metadata'          => 'Metadonadas',
 'metadata-help'     => "Aqueste fichièr conten d'entresenhas suplementàrias probablament apondudas per l’aparelh de fòto numeric o l'escanèr que las a aquesas. Se lo fichièr es estat modificat dempuèi son estat original, d'unes detalhs pòdon reflectir pas entièrament l’imatge modificat.",
-'metadata-expand'   => 'Mostrar las entresenhas detalhadas',
+'metadata-expand'   => 'Far veire las entresenhas detalhadas',
 'metadata-collapse' => 'Amagar las entresenhas detalhadas',
 'metadata-fields'   => 'Los camps de metadonadas d’EXIF listats dins aqueste message seràn encluses dins la pagina de descripcion de l’imatge quand la taula de metadonadas serà reduccha. Los autres camps seràn amagats per defaut.
 * make
@@ -3099,7 +3100,7 @@ Confirmatz que desiratz tornar crear aqueste article.",
 'table_pager_prev'         => 'Pagina precedenta',
 'table_pager_first'        => 'Primièra pagina',
 'table_pager_last'         => 'Darrièra pagina',
-'table_pager_limit'        => 'Mostrar $1 elements per pagina',
+'table_pager_limit'        => 'Far veire $1 elements per pagina',
 'table_pager_limit_submit' => 'Accedir',
 'table_pager_empty'        => 'Cap de resultat',
 

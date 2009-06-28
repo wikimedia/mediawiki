@@ -1826,7 +1826,7 @@ Contino se i amuestran as opzions autuals d'a pachina '''$1''':",
 **Guerra d'edizions
 **Pachina muit besitada",
 'protect-edit-reasonlist'     => 'Editar as razons ta protecher',
-'protect-expiry-options'      => '2 oras:2 hours,1 día:1 day,3 días:3 days,1 semana:1 week,2 semanas:2 weeks,1 mes:1 month,3 meses:3 months,6 meses:6 months,1 año:1 year,ta cutio:infinite',
+'protect-expiry-options'      => '1 ora:1 hour,1 día:1 day,1 semana:1 week,2 semanas:2 weeks,1 mes:1 month,3 meses:3 months,6 meses:6 months,1 año:1 year,ta cutio:infinite',
 'restriction-type'            => 'Premiso:',
 'restriction-level'           => 'Libel de restrizión:',
 'minimum-size'                => 'Grandaria menima',

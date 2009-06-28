@@ -197,7 +197,7 @@ $messages = array(
 'badaccess' => 'ܦܘܕܐ ܒܦܣܣܐ',
 
 'ok'                      => 'ܛܒ',
-'youhavenewmessages'      => 'ܐܝܬ ܠܟ/ܠܟܝ $1 ($2).',
+'youhavenewmessages'      => 'ܐܝܬ ܠܟ $1 ($2).',
 'newmessageslink'         => 'ܐܓܪ̈ܬܐ ܚܕܬܬ̈ܐ',
 'newmessagesdifflink'     => 'ܫܘܚܠܦܐ ܐܚܪܝܐ',
 'youhavenewmessagesmulti' => 'ܐܝܬ ܠܟ ܐܓܪ̈ܬܐ ܚܕܬܬ̈ܐ ܒ $1',
@@ -261,7 +261,7 @@ Note that some pages may continue to be displayed as if you were still logged in
 'nologin'                 => 'ܠܝܬ ܠܟ/ܠܟܝ ܚܘܫܒܢܐ؟ $1.',
 'nologinlink'             => 'ܒܪܝ ܚܘܫܒܢܐ',
 'createaccount'           => 'ܒܪܝ ܚܘܫܒܢܐ',
-'gotaccount'              => 'ܐܝܬ ܠܟ/ܠܟܝ ܚܘܫܒܢܐ؟ $1.',
+'gotaccount'              => 'ܐܝܬ ܠܟ ܚܘܫܒܢܐ؟ $1.',
 'gotaccountlink'          => 'ܥܘܠ',
 'badretype'               => 'ܡܠܬܐ ܕܥܠܠܬܐ ܟܬܒ ܐܢܬ ܠܐ ܐܘܝܢܬܐ.',
 'userexists'              => 'ܫܡܐ ܕܡܦܠܚܢܐ ܫܩܝܠܐ.
@@ -471,7 +471,7 @@ Note that some pages may continue to be displayed as if you were still logged in
 'prefs-rendering'             => 'ܐܣܟܝܡܐ',
 'saveprefs'                   => 'ܢܛܘܪ',
 'prefs-editing'               => 'ܫܚܠܦܬܐ',
-'columns'                     => 'Columns:',
+'columns'                     => 'ܥܡܘܕ̈ܐ:',
 'searchresultshead'           => 'ܒܨܝ',
 'recentchangesdays'           => 'ܝܘܡܬ̈ܐ ܠܚܙܝܐ ܒܫܘܚܠܦ̈ܐ ܚܕܬ̈ܐ:',
 'recentchangescount'          => 'ܡܢܝܢܐ ܕܫܘܚܠܦ̈ܐ ܠܚܙܝܐ ܪܫܐܝܬ:',
@@ -578,7 +578,7 @@ Note that some pages may continue to be displayed as if you were still logged in
 'recentchangestext'    => 'ܥܩܒ ܫܘܚܠܦ̈ܐ ܚܕܬ ܡܢ ܟܠ ܕܘܝܩܝ ܒܦܐܬܐ ܗܕܐ.',
 'rclistfrom'           => 'ܚܘܝ ܫܘܚܠܦ̈ܐ ܚܕܬ̈ܐ ܡܢ $1',
 'rcshowhideminor'      => '$1 ܫܘܚܠܦ̈ܐ ܙܥܘܪ̈ܐ',
-'rcshowhidebots'       => '$1 ܒܘܬ̈ܐ',
+'rcshowhidebots'       => '$1 ܒܘܬ̈ܐ (Bots)',
 'rcshowhideliu'        => '$1 ܡܦܠܚܢ̈ܐ ܥܠܝܠ̈ܐ',
 'rcshowhideanons'      => '$1 ܡܦܠܚܢܐ ܠܐ ܝܕܝܥܐ',
 'rcshowhidemine'       => '$1 ܫܘܚܠܦ̈ܝ',
@@ -679,7 +679,10 @@ Note that some pages may continue to be displayed as if you were still logged in
 'brokenredirects-edit'   => 'ܫܚܠܦ',
 'brokenredirects-delete' => 'ܫܘܦ',
 
-'withoutinterwiki' => 'ܦܐܬܘܬ̈ܐ ܕܠܐ ܐܣܘܪ̈ܐ ܕܠܫܢ̈ܐ ܐܚܪ̈ܢܐ',
+'withoutinterwiki'        => 'ܦܐܬܘܬ̈ܐ ܕܠܐ ܐܣܘܪ̈ܐ ܕܠܫܢ̈ܐ ܐܚܪ̈ܢܐ',
+'withoutinterwiki-submit' => 'ܚܘܝ',
+
+'fewestrevisions' => 'ܦܐܬܘܬ̈ܐ ܥܡ ܬܢܝܬ̈ܐ ܒܨܝܪ ܡܢ ܟܠ',
 
 # Miscellaneous special pages
 'ncategories'             => '$1 {{PLURAL:$1|ܣܕܪܐ|ܣܕܪ̈ܐ}}',

@@ -566,8 +566,9 @@ Verifica le orthographia.',
 'nouserspecified'            => 'Tu debe specificar un nomine de usator.',
 'wrongpassword'              => 'Le contrasigno que tu entrava es incorrecte. Per favor reprova.',
 'wrongpasswordempty'         => 'Tu non entrava un contrasigno. Per favor reprova.',
-'passwordtooshort'           => 'Tu contrasigno es invalide o troppo curte.
-Illo debe haber al minus {{PLURAL:$1|1 character|$1 characteres}} e debe differer de tu nomine de usator.',
+'passwordtooshort'           => 'Tu contrasigno es troppo curte.
+Illo debe haber al minus {{PLURAL:$1|1 character|$1 characteres}}.',
+'password-name-match'        => 'Tu contrasigno debe esser differente de tu nomine de usator.',
 'mailmypassword'             => 'Inviar un nove contrasigno in e-mail',
 'passwordremindertitle'      => 'Nove contrasigno temporari pro {{SITENAME}}',
 'passwordremindertext'       => 'Alcuno (probabilemente tu, ab le adresse IP $1) requestava un nove

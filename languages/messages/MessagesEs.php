@@ -641,7 +641,8 @@ Verifique su deletreo, o [[Special:UserLogin/signup|cree una nueva cuenta]].',
 'nouserspecified'            => 'Debes especificar un nombre de usuario.',
 'wrongpassword'              => 'La contraseña indicada es incorrecta. Por favor, inténtelo de nuevo.',
 'wrongpasswordempty'         => 'No ha escrito una contraseña, inténtelo de nuevo.',
-'passwordtooshort'           => 'Tu contraseña no es válida o es muy corta. Debe tener al menos {{PLURAL:$1|un carácter|$1 caracteres}} y ser diferente de tu nombre de usuario.',
+'passwordtooshort'           => 'Tu contraseña es demasiado corta. Debe tener al menos {{PLURAL:$1|1 caracter|$1 caracteres}}.',
+'password-name-match'        => 'Tu contraseña debe ser diferente de tu nombre de usuario.',
 'mailmypassword'             => 'Enviar una nueva contraseña por correo electrónico',
 'passwordremindertitle'      => 'Recordatorio de contraseña de {{SITENAME}}',
 'passwordremindertext'       => 'Alguien (probablemente tú, desde la dirección IP $1) solicitó que te enviáramos una nueva contraseña para tu cuenta en {{SITENAME}} ($4).
@@ -783,7 +784,7 @@ La contraseña para esta nueva cuenta puede ser cambiada en la página ''[[Speci
 'userpage-userdoesnotexist'        => 'La cuenta de usuario "$1" no está registrada. Por favor comprueba si quieres crear o editar esta página.',
 'clearyourcache'                   => "'''Nota:''' Tras guardar el archivo, debe refrescar la caché de su navegador para ver los cambios:
 
-*'''Mozilla / Firefox / Safari:''' pulsa ''May.'' mientras haces click en el boton ''Reload,'' o pulsa si no ''Ctrl-F5'' o ''Ctrl-R'' (''Command-R'' en un Macintosh)
+*'''Mozilla / Firefox / Safari:''' pulsa ''Mayúsculas.'' mientras haces click en el botón ''Recargar,'' o pulsa si no ''Ctrl-F5'' o ''Ctrl-R'' (''Command-R'' en un Macintosh)
 *'''Konqueror: '''Haz click en el botón ''Reload'' o pulsa ''F5;''
 *'''Opera:''' Limpia la caché en ''Herramientas → Preferencias;''
 *'''Internet Explorer:''' pulsa ''Ctrl'' mientras haces click en ''Refresh,'' o pulsa ''Ctrl-F5.''",
@@ -1840,8 +1841,11 @@ Protocolos soportados: <tt>$1</tt>',
 'listusersfrom'      => 'Mostrar usuarios que empiecen por:',
 'listusers-submit'   => 'Mostrar',
 'listusers-noresult' => 'No se encontró al usuario.',
+'listusers-blocked'  => '(bloqueado)',
 
 # Special:ActiveUsers
+'activeusers'          => 'Lista de usuarios activos',
+'activeusers-count'    => '$1 {{PLURAL:$1|edición|ediciones}} recientes',
 'activeusers-from'     => 'Mostrando a los usuarios empezando por:',
 'activeusers-noresult' => 'No se encontraron usuarios.',
 
@@ -1857,6 +1861,8 @@ Protocolos soportados: <tt>$1</tt>',
 'listgrouprights'                      => 'Permisos del grupo de usuarios',
 'listgrouprights-summary'              => 'La siguiente es una lista de los grupos de usuario definidos en esta wiki y de sus privilegios de acceso asociados.
 Puede haber información adicional sobre privilegios individuales en [[{{MediaWiki:Listgrouprights-helppage}}]]',
+'listgrouprights-key'                  => '* <span class="listgrouprights-granted">Derecho concedido</span>
+* <span class="listgrouprights-revoked">Derecho revocado</span>',
 'listgrouprights-group'                => 'Grupo',
 'listgrouprights-rights'               => 'Derechos',
 'listgrouprights-helppage'             => 'Help:Derechos de grupos',

@@ -629,8 +629,8 @@ Verifique o nome que inseriu.',
 Por favor, insira outro.',
 'wrongpasswordempty'         => 'O campo do contrasinal estaba en branco.
 Por favor, inténteo de novo.',
-'passwordtooshort'           => 'O seu contrasinal é inválido ou demasiado curto.
-Debe conter como mínimo {{PLURAL:$1|1 carácter|$1 caracteres}} e ten que ser diferente do seu nome de usuario.',
+'passwordtooshort'           => 'O seu contrasinal é demasiado curto.
+Debe conter, como mínimo, {{PLURAL:$1|1 carácter|$1 caracteres}}.',
 'mailmypassword'             => 'Enviádeme un contrasinal novo por correo',
 'passwordremindertitle'      => 'Novo contrasinal temporal para {{SITENAME}}',
 'passwordremindertext'       => 'Alguén (probablemente vostede, desde o enderezo IP $1) solicitou un novo

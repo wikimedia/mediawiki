@@ -747,7 +747,9 @@ Vergiss nicht, deine [[Special:Preferences|{{SITENAME}}-Einstellungen]] anzupass
 'nouserspecified'            => 'Bitte gib einen Benutzernamen an.',
 'wrongpassword'              => 'Das Passwort ist falsch (oder fehlt). Bitte versuche es erneut.',
 'wrongpasswordempty'         => 'Es wurde kein Passwort eingegeben. Bitte versuche es erneut.',
-'passwordtooshort'           => 'Fehler bei der Wahl des Passwortes: Es muss mindestens {{PLURAL:$1|1 Zeichen|$1 Zeichen}} lang sein und darf nicht mit dem Benutzernamen identisch sein.',
+'passwordtooshort'           => 'Dein Passwort ist zu kurz.
+Es muss mindestens {{PLURAL:$1|1 Zeichen|$1 Zeichen}} lang sein.',
+'password-name-match'        => 'Dein Passwort muss sich von deinem Benutzernamen unterscheiden.',
 'mailmypassword'             => 'Neues Passwort zusenden',
 'passwordremindertitle'      => 'Neues Passwort für ein {{SITENAME}}-Benutzerkonto',
 'passwordremindertext'       => 'Jemand mit der IP-Adresse $1, wahrscheinlich du selbst, hat ein neues Passwort für die Anmeldung bei {{SITENAME}} ($4) angefordert.

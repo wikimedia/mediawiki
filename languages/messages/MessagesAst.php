@@ -1784,7 +1784,7 @@ Esta ye la configuración actual pa la páxina '''$1''':",
 ** Guerra d'ediciones contraproducente
 ** Páxina de tráficu altu",
 'protect-edit-reasonlist'     => 'Editar los motivos de proteición',
-'protect-expiry-options'      => '2 hores:2 hours,1 día:1 day,3 díes:3 days,1 selmana:1 week,2 selmanes:2 weeks,1 mes:1 month,3 meses:3 months,6 meses:6 months,1 añu:1 year,pa siempre:infinite',
+'protect-expiry-options'      => '1 hora:1 hour,1 día:1 day,1 selmana:1 week,2 selmanes:2 weeks,1 mes:1 month,3 meses:3 months,6 meses:6 months,1 añu:1 year,pa siempre:infinite',
 'restriction-type'            => 'Permisu:',
 'restriction-level'           => 'Nivel de restricción:',
 'minimum-size'                => 'Tamañu mínimu',

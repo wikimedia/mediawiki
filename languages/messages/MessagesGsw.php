@@ -530,8 +530,9 @@ Iberprief d Schrybwys, oder mäld Di as [[Special:UserLogin/signup|neje Benutzer
 'nouserspecified'            => 'Bitte gib e Benutzername yy.',
 'wrongpassword'              => 'Des Passwort isch falsch (oder fählt). Bitte versuech s nomol.',
 'wrongpasswordempty'         => 'Du hesch vergässe dyy Passwort yyzgee. Bitte versuech s nomol.',
-'passwordtooshort'           => 'Dys Passwort isch ungültig oder z churz.
-Es mues mindischtens {{PLURAL:$1|1 Zeiche|$1 Zeiche}} ha u sech vom Benutzernamen underscheide.',
+'passwordtooshort'           => 'Dyy Passwort isch uugiltig oder z churz.
+S muess zmindescht {{PLURAL:$1|1 Zeiche|$1 Zeiche}} haa.',
+'password-name-match'        => 'Dyy Passwort muess sich vu Dyynem Benutzername unterscheide.',
 'mailmypassword'             => 'Es nöis Passwort schicke',
 'passwordremindertitle'      => 'Nei Passwort fir {{SITENAME}}',
 'passwordremindertext'       => 'Ebber mit dr IP-Adress $1 het e nej Passwort fir d Aamäldig bi {{SITENAME}} ($4) aagfordert, wahrschyyns Du sälber.
