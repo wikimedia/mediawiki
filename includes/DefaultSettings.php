@@ -2624,12 +2624,12 @@ $wgAutoloadClasses = array();
  *
  * <code>
  * $wgExtensionCredits[$type][] = array(
- * 	'name' => 'Example extension',
- *  'version' => 1.9,
- *  'svn-revision' => '$LastChangedRevision$',
- *	'author' => 'Foo Barstein',
- *	'url' => 'http://wwww.example.com/Example%20Extension/',
- *	'description' => 'An example extension',
+ * 	'name'           => 'Example extension',
+ *  'version'        => 1.9,
+ *  'path'           => __FILE__,
+ *	'author'         => 'Foo Barstein',
+ *	'url'            => 'http://wwww.example.com/Example%20Extension/',
+ *	'description'    => 'An example extension',
  *	'descriptionmsg' => 'exampleextension-desc',
  * );
  * </code>
