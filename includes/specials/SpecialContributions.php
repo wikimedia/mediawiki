@@ -498,7 +498,7 @@ class ContribsPager extends ReverseChronologicalPager {
 		$page->resetArticleId( $row->rev_page ); // use process cache
 		$link = $sk->link(
 			$page,
-			$page->getPrefixedText(),
+			htmlspecialchars( $page->getPrefixedText() ),
 			array(),
 			$page->isRedirect() ? array( 'redirect' => 'no' ) : array()
 		);
