@@ -166,7 +166,9 @@ class SpecialVersion extends SpecialPage {
 			}
 			if ( !strcmp( $wgSVGConverter, 'ImageMagick') ) {
 				// Get version info for ImageMagick
-				if ( ( file_exists( $execBinPath ) ) || file_exists( trim( $execFullPath, '"' ) ) || ( file_exists( trim( $execFullPath, '"' ) . '.exe' ) ) )
+				if ( file_exists( $execBinPath ) )
+					$swSVGConvInfo = self::execOutput( $execBinPath . ' -version' );
+				else if ( file_exists( trim( $execFullPath, '"' ) ) || ( file_exists( trim( $execFullPath, '"' ) . '.exe' ) ) )
 					$swSVGConvInfo = self::execOutput( $execFullPath . ' -version' );
 				list( $head, $tail ) = explode( 'ImageMagick', $swSVGConvInfo );
 				list( $swSVGConvVer ) = explode('http://www.imagemagick.org', $tail );
@@ -174,7 +176,9 @@ class SpecialVersion extends SpecialPage {
 				$haveSVGConvVer = true;
 			} else if ( strstr ($execFullPath, 'rsvg') != false ) {
 				// Get version info for rsvg
-				if ( ( file_exists( $execBinPath ) ) || file_exists( trim( $execFullPath, '"' ) ) || ( file_exists( trim( $execFullPath, '"' ) . '.exe' ) ) )
+				if ( file_exists( $execBinPath ) )
+					$swSVGConvInfo = self::execOutput( $execBinPath . ' -v' );
+				else if ( file_exists( trim( $execFullPath, '"' ) ) || ( file_exists( trim( $execFullPath, '"' ) . '.exe' ) ) )
 					$swSVGConvInfo = self::execOutput( $execFullPath . ' -v' );
 				$swSVGConvLine = explode("\n",$swSVGConvInfo ,2);
 				$swSVGConvVer = $swSVGConvLine[0];
@@ -182,7 +186,9 @@ class SpecialVersion extends SpecialPage {
 				$haveSVGConvVer = true;
 			} else if ( strstr ($execFullPath, 'inkscape') != false ) {
 				// Get version info for Inkscape
-				if ( ( file_exists( $execBinPath ) ) || file_exists( trim( $execFullPath, '"' ) ) || ( file_exists( trim( $execFullPath, '"' ) . '.exe' ) ) )
+				if ( file_exists( $execBinPath ) )
+					$swSVGConvInfo = self::execOutput( $execBinPath . ' -z -V' );
+				else if ( file_exists( trim( $execFullPath, '"' ) ) || ( file_exists( trim( $execFullPath, '"' ) . '.exe' ) ) )
 					$swSVGConvInfo = self::execOutput( $execFullPath . ' -z -V' );
 				$swSVGConvLine = explode("\n",$swSVGConvInfo ,2);
 				$swSVGConvVer = ltrim( $swSVGConvLine[0], 'Inkscape ' );
