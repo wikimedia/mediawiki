@@ -1,5 +1,5 @@
 <?php
-/** Yue (粵語)
+/** Cantonese (粵語/廣東話)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -558,7 +558,8 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'nouserspecified'            => '你需要指定一個用戶名。',
 'wrongpassword'              => '密碼唔啱，麻煩你再試多次。',
 'wrongpasswordempty'         => '你都未入密碼，唔該再試多次啦。',
-'passwordtooshort'           => '你嘅密碼唔啱或者太短。佢最少要有$1個半形字元，同埋要唔同你嘅用戶名。',
+'passwordtooshort'           => '你嘅密碼太短。佢最少要有$1個半形字元。',
+'password-name-match'        => '你嘅密碼一定要同你嘅用戶名唔一樣。',
 'mailmypassword'             => '寄個新密碼',
 'passwordremindertitle'      => '{{SITENAME}}嘅新臨時密碼',
 'passwordremindertext'       => '有人（可能係你，IP 位置 $1）
