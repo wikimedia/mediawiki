@@ -101,6 +101,7 @@ class SpecialVersion extends SpecialPage {
 	 */
 	static function softwareInformation() {
 		global $wgUseImageMagick, $wgImageMagickConvertCommand, $wgDiff3, $wgDiff;
+		global $wgAllowTitlesInSVG, $wgSVGConverter, $wgSVGConverters, $wgSVGConverterPath;
 		$dbr = wfGetDB( DB_SLAVE );
 
 		// Put the software in an array of form 'name' => 'version'. All messages should
@@ -116,6 +117,7 @@ class SpecialVersion extends SpecialPage {
 			$swDiff3Info = self::execOutput( $wgDiff3 . ' -v' );
 			$swDiff3Line = explode("\n",$swDiff3Info ,2);
 			$swDiff3Ver = $swDiff3Line[0];
+			$swDiff3Ver = str_replace( 'diff3 (GNU diffutils) ', '' , $swDiff3Ver);
 			$software['[http://www.gnu.org/software/diffutils/diffutils.html diff3]'] = $swDiff3Ver;
 		}
 
@@ -124,11 +126,12 @@ class SpecialVersion extends SpecialPage {
 			$swDiffInfo = self::execOutput( $wgDiff . ' -v' );
 			$swDiffLine = explode("\n",$swDiffInfo ,2);
 			$swDiffVer = $swDiffLine[0];
+			$swDiffVer = str_replace( 'diff (GNU diffutils) ', '' , $swDiffVer);
 			$software['[http://www.gnu.org/software/diffutils/diffutils.html diff]'] = $swDiffVer;
 		}
 
 		// Look for ImageMagick's version, if did not found, try to find the GD library version
-		if ( $wgUseImageMagick === true ) {
+		if ( $wgUseImageMagick ) {
 			if ( file_exists( trim( $wgImageMagickConvertCommand, '"' ) ) ) {
 				$swImageMagickInfo = self::execOutput( $wgImageMagickConvertCommand . ' -version' );
 				list( $head, $tail ) = explode( 'ImageMagick', $swImageMagickInfo );
@@ -146,6 +149,47 @@ class SpecialVersion extends SpecialPage {
 				}
 				$software['[' . $gd_URL . ' GD library]'] = $gdInfo['GD Version'];
 			}
+		}
+
+		// Look for SVG converter and print the version info
+		if ( $wgAllowTitlesInSVG ) {
+			$swSVGConvName = $wgSVGConverter;
+			$haveSVGConvVer = false;
+			$pathVar = '$path/';
+			$execPath = strtok(strstr($wgSVGConverters[$wgSVGConverter],$pathVar), ' ');
+			$execPath = substr_replace($execPath, '', 0, strlen($pathVar));
+			$execFullPath = trim($wgSVGConverterPath,'"') . $execPath;
+			if (strstr($execFullPath, ' ') != false) {
+				$execFullPath = '"'.$execFullPath.'"';
+			}
+			if ( !strcmp( $wgSVGConverter, 'ImageMagick') ) {
+				// Get version info for ImageMagick
+				if ( file_exists( trim( $execFullPath, '"' ) ) || file_exists( trim( $execFullPath, '"' ) . '.exe' ) )
+					$swSVGConvInfo = self::execOutput( $execFullPath . ' -version' );
+				list( $head, $tail ) = explode( 'ImageMagick', $swSVGConvInfo );
+				list( $swSVGConvVer ) = explode('http://www.imagemagick.org', $tail );
+				$swSVGConvURL = 'http://www.imagemagick.org/';
+				$haveSVGConvVer = true;
+			} else if (strstr ($execFullPath, 'rsvg') != false) {
+				// Get version info for rsvg
+				if ( file_exists( trim( $execFullPath, '"' ) ) || file_exists( trim( $execFullPath, '"' ) . '.exe' ) )
+					$swSVGConvInfo = self::execOutput( $execFullPath . ' -v' );
+				$swSVGConvLine = explode("\n",$swSVGConvInfo ,2);
+				$swSVGConvVer = $swSVGConvLine[0];
+				$swSVGConvURL = 'http://librsvg.sourceforge.net/';
+				$haveSVGConvVer = true;
+			} else if (strstr ($execFullPath, 'inkscape') != false) {
+				// Get version info for Inkscape
+				if ( file_exists( trim( $execFullPath, '"' ) ) || file_exists( trim( $execFullPath, '"' ) . '.exe' ) )
+					$swSVGConvInfo = self::execOutput( $execFullPath . ' -z -V' );
+				$swSVGConvLine = explode("\n",$swSVGConvInfo ,2);
+				$swSVGConvVer = ltrim( $swSVGConvLine[0], 'Inkscape ' );
+				$swSVGConvURL = 'http://www.inkscape.org/';
+				$swSVGConvName = ucfirst( $wgSVGConverter );
+				$haveSVGConvVer = true;
+			}
+			if ( $haveSVGConvVer )
+				$software["[$swSVGConvURL $swSVGConvName]"] = $swSVGConvVer;
 		}
 
 		// Allow a hook to add/remove items
