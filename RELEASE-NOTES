@@ -41,6 +41,15 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   appropriate privileges. Creating this user with web-install page requires
   oci8.privileged_connect set to On in php.ini.
 * Removed UserrightsChangeableGroups hook introduced in 1.14
+* Added $wgCacheDirectory, to replace $wgFileCacheDirectory, 
+  $wgLocalMessageCache, and any other local caches which need a place to put 
+  files. 
+* $wgFileCacheDirectory is no longer set to anything by default, and so either
+  needs to be set explicitly, or $wgCacheDirectory needs to be set instead. 
+* $wgLocalMessageCache has been removed. Instead, set $wgUseLocalMessageCache
+  to true
+* Removed $wgEnableSerializedMessages and $wgCheckSerialized. Similar 
+  functionality is now available via $wgLocalisationCacheConf.
 
 === New features in 1.16 ===
 
@@ -93,6 +102,12 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   the DBA extension is not available.
 * (bug 14611) Added support showing the version of the image thumbnailing 
   engine and diff/diff3 engine.
+* Introduced a new system for localisation caching. The system is based around 
+  fast fetches of individual messages, minimising memory overhead and startup 
+  time in the typical case. The database backend will be used by default, but 
+  set $wgCacheDirectory to get a faster CDB-based implementation.
+* Expanded the number of variables which can be set in the extension messages 
+  files.
 
 === Bug fixes in 1.16 ===
 

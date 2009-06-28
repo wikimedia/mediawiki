@@ -161,6 +161,7 @@ $wgUpdates = array(
 		array( 'add_table', 'log_search',		   	   'patch-log_search.sql' ),
 		array( 'do_log_search_population' ),
 		array( 'add_field', 'logging',       'log_user_text',  'patch-log_user_text.sql' ),
+		array( 'add_table', 'l10n_cache',              'patch-l10n_cache.sql' ),
 	),
 
 	'sqlite' => array(
@@ -180,6 +181,7 @@ $wgUpdates = array(
 		array( 'add_table', 'log_search',		   	   'patch-log_search.sql' ),
 		array( 'do_log_search_population' ),
 		array( 'add_field', 'redirect',	'rd_interwiki', 'patch-rd_interwiki.sql' ),
+		array( 'add_table', 'l10n_cache',              'patch-l10n_cache.sql' ),
 	),
 );
 

@@ -29,8 +29,7 @@ function wfSpecialAllmessages() {
 
 	$wgMessageCache->loadAllMessages();
 
-	$sortedArray = array_merge( Language::getMessagesFor( 'en' ), 
-		$wgMessageCache->getExtensionMessagesFor( 'en' ) );
+	$sortedArray = Language::getMessagesFor( 'en' );
 	ksort( $sortedArray );
 
 	$messages = array();

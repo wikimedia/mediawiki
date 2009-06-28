@@ -23,9 +23,6 @@ class MessageCache {
 
 	var $mUseCache, $mDisable, $mExpiry;
 	var $mKeys, $mParserOptions, $mParser;
-	var $mExtensionMessages = array();
-	var $mInitialised = false;
-	var $mAllMessagesLoaded = array(); // Extension messages
 
 	// Variable for tracking which variables are loaded
 	var $mLoadedLanguages = array();
@@ -37,7 +34,6 @@ class MessageCache {
 		$this->mExpiry = $expiry;
 		$this->mDisableTransform = false;
 		$this->mKeys = false; # initialised on demand
-		$this->mInitialised = true;
 		$this->mParser = null;
 	}
 
@@ -62,9 +58,9 @@ class MessageCache {
 	 * @return false on failure.
 	 */
 	function loadFromLocal( $hash, $code ) {
-		global $wgLocalMessageCache, $wgLocalMessageCacheSerialized;
+		global $wgCacheDirectory, $wgLocalMessageCacheSerialized;
 
-		$filename = "$wgLocalMessageCache/messages-" . wfWikiID() . "-$code";
+		$filename = "$wgCacheDirectory/messages-" . wfWikiID() . "-$code";
 
 		# Check file existence
 		wfSuppressWarnings();
@@ -106,10 +102,10 @@ class MessageCache {
 	 * Save the cache to a local file.
 	 */
 	function saveToLocal( $serialized, $hash, $code ) {
-		global $wgLocalMessageCache;
+		global $wgCacheDirectory;
 
-		$filename = "$wgLocalMessageCache/messages-" . wfWikiID() . "-$code";
-		wfMkdirParents( $wgLocalMessageCache ); // might fail
+		$filename = "$wgCacheDirectory/messages-" . wfWikiID() . "-$code";
+		wfMkdirParents( $wgCacheDirectory ); // might fail
 
 		wfSuppressWarnings();
 		$file = fopen( $filename, 'w' );
@@ -126,11 +122,11 @@ class MessageCache {
 	}
 
 	function saveToScript( $array, $hash, $code ) {
-		global $wgLocalMessageCache;
+		global $wgCacheDirectory;
 
-		$filename = "$wgLocalMessageCache/messages-" . wfWikiID() . "-$code";
+		$filename = "$wgCacheDirectory/messages-" . wfWikiID() . "-$code";
 		$tempFilename = $filename . '.tmp';
-  		wfMkdirParents( $wgLocalMessageCache ); // might fail
+  		wfMkdirParents( $wgCacheDirectory ); // might fail
 
 		wfSuppressWarnings();
 		$file = fopen( $tempFilename, 'w');
@@ -174,7 +170,7 @@ class MessageCache {
 
 	/**
 	 * Loads messages from caches or from database in this order:
-	 * (1) local message cache (if $wgLocalMessageCache is enabled)
+	 * (1) local message cache (if $wgUseLocalMessageCache is enabled)
 	 * (2) memcached
 	 * (3) from the database.
 	 *
@@ -191,7 +187,7 @@ class MessageCache {
 	 * @param $code String: language to which load messages
 	 */
 	function load( $code = false ) {
-		global $wgLocalMessageCache;
+		global $wgUseLocalMessageCache;
 
 		if ( !$this->mUseCache ) {
 			return true;
@@ -227,7 +223,7 @@ class MessageCache {
 		# (1) local cache
 		# Hash of the contents is stored in memcache, to detect if local cache goes
 		# out of date (due to update in other thread?)
-		if ( $wgLocalMessageCache !== false ) {
+		if ( $wgUseLocalMessageCache ) {
 			wfProfileIn( __METHOD__ . '-fromlocal' );
 
 			$hash = $this->mMemc->get( wfMemcKey( 'messages', $code, 'hash' ) );
@@ -423,7 +419,7 @@ class MessageCache {
 	 */
 	protected function saveToCaches( $cache, $memc = true, $code = false ) {
 		wfProfileIn( __METHOD__ );
-		global $wgLocalMessageCache, $wgLocalMessageCacheSerialized;
+		global $wgUseLocalMessageCache, $wgLocalMessageCacheSerialized;
 
 		$cacheKey = wfMemcKey( 'messages', $code );
 
@@ -440,7 +436,7 @@ class MessageCache {
 		}
 
 		# Save to local cache
-		if ( $wgLocalMessageCache !== false ) {
+		if ( $wgUseLocalMessageCache ) {
 			$serialized = serialize( $cache );
 			$hash = md5( $serialized );
 			$this->mMemc->set( wfMemcKey( 'messages', $code, 'hash' ), $hash, $this->mExpiry );
@@ -508,34 +504,20 @@ class MessageCache {
 		$lang = wfGetLangObj( $langcode );
 		$langcode = $lang->getCode();
 
-		# If uninitialised, someone is trying to call this halfway through Setup.php
-		if( !$this->mInitialised ) {
-			return '&lt;' . htmlspecialchars($key) . '&gt;';
-		}
-
 		$message = false;
 
 		# Normalise title-case input
-		$lckey = $wgContLang->lcfirst( $key );
-		$lckey = str_replace( ' ', '_', $lckey );
+		$lckey = str_replace( ' ', '_', $key );
+		$lckey[0] = strtolower( $lckey[0] );
+		$uckey = ucfirst( $lckey );
 
 		# Try the MediaWiki namespace
 		if( !$this->mDisable && $useDB ) {
-			$title = $wgContLang->ucfirst( $lckey );
+			$title = $uckey;
 			if(!$isFullKey && ( $langcode != $wgContLanguageCode ) ) {
 				$title .= '/' . $langcode;
 			}
 			$message = $this->getMsgFromNamespace( $title, $langcode );
-		}
-		if( $message === false )
-			wfRunHooks( 'MessageNotInMwNs', array( &$message, $lckey, $langcode, $isFullKey ) );
-
-		# Try the extension array
-		if ( $message === false && isset( $this->mExtensionMessages[$langcode][$lckey] ) ) {
-			$message = $this->mExtensionMessages[$langcode][$lckey];
-		}
-		if ( $message === false && isset( $this->mExtensionMessages['en'][$lckey] ) ) {
-			$message = $this->mExtensionMessages['en'][$lckey];
 		}
 
 		# Try the array in the language object
@@ -547,19 +529,15 @@ class MessageCache {
 		}
 
 		# Try the array of another language
-		$pos = strrpos( $lckey, '/' );
-		if( $message === false && $pos !== false) {
-			$mkey = substr( $lckey, 0, $pos );
-			$code = substr( $lckey, $pos+1 );
-			if ( $code ) {
-				# We may get calls for things that are http-urls from sidebar
-				# Let's not load nonexistent languages for those
-				$validCodes = array_keys( Language::getLanguageNames() );
-				if ( in_array( $code, $validCodes ) ) {
-					$message = Language::getMessageFor( $mkey, $code );
-					if ( is_null( $message ) ) {
-						$message = false;
-					}
+		if( $message === false ) {
+			$parts = explode( '/', $lckey );
+			# We may get calls for things that are http-urls from sidebar
+			# Let's not load nonexistent languages for those
+			# They usually have more than one slash.
+			if ( count( $parts ) == 2 && $parts[1] !== '' ) {
+				$message = Language::getMessageFor( $parts[0], $parts[1] );
+				if ( is_null( $message ) ) {
+					$message = false;
 				}
 			}
 		}
@@ -568,7 +546,7 @@ class MessageCache {
 		if( ($message === false || $message === '-' ) &&
 			!$this->mDisable && $useDB &&
 			!$isFullKey && ($langcode != $wgContLanguageCode) ) {
-			$message = $this->getMsgFromNamespace( $wgContLang->ucfirst( $lckey ), $wgContLanguageCode );
+			$message = $this->getMsgFromNamespace( $uckey, $wgContLanguageCode );
 		}
 
 		# Final fallback
@@ -662,7 +640,7 @@ class MessageCache {
 	}
 
 	function transform( $message, $interface = false, $language = null ) {
-		// Avoid creating parser if nothing to transfrom
+		// Avoid creating parser if nothing to transform
 		if( strpos( $message, '{{' ) === false ) {
 			return $message;
 		}
@@ -709,71 +687,6 @@ class MessageCache {
 	}
 
 	/**
-	 * Add a message to the cache
-	 *
-	 * @param mixed $key
-	 * @param mixed $value
-	 * @param string $lang The messages language, English by default
-	 */
-	function addMessage( $key, $value, $lang = 'en' ) {
-		global $wgContLang;
-		# Normalise title-case input
-		$lckey = str_replace( ' ', '_', $wgContLang->lcfirst( $key ) );
-		$this->mExtensionMessages[$lang][$lckey] = $value;
-	}
-
-	/**
-	 * Add an associative array of message to the cache
-	 *
-	 * @param array $messages An associative array of key => values to be added
-	 * @param string $lang The messages language, English by default
-	 */
-	function addMessages( $messages, $lang = 'en' ) {
-		wfProfileIn( __METHOD__ );
-		if ( !is_array( $messages ) ) {
-			throw new MWException( __METHOD__.': Invalid message array' );
-		}
-		if ( isset( $this->mExtensionMessages[$lang] ) ) {
-			$this->mExtensionMessages[$lang] = $messages + $this->mExtensionMessages[$lang];
-		} else {
-			$this->mExtensionMessages[$lang] = $messages;
-		}
-		wfProfileOut( __METHOD__ );
-	}
-
-	/**
-	 * Add a 2-D array of messages by lang. Useful for extensions.
-	 *
-	 * @param array $messages The array to be added
-	 */
-	function addMessagesByLang( $messages ) {
-		wfProfileIn( __METHOD__ );
-		foreach ( $messages as $key => $value ) {
-			$this->addMessages( $value, $key );
-		}
-		wfProfileOut( __METHOD__ );
-	}
-
-	/**
-	 * Get the extension messages for a specific language. Only English, interface
-	 * and content language are guaranteed to be loaded.
-	 *
-	 * @param string $lang The messages language, English by default
-	 */
-	function getExtensionMessagesFor( $lang = 'en' ) {
-		wfProfileIn( __METHOD__ );
-		$messages = array();
-		if ( isset( $this->mExtensionMessages[$lang] ) ) {
-			$messages = $this->mExtensionMessages[$lang];
-		}
-		if ( $lang != 'en' ) {
-			$messages = $messages + $this->mExtensionMessages['en'];
-		}
-		wfProfileOut( __METHOD__ );
-		return $messages;
-	}
-
-	/**
 	 * Clear all stored messages. Mainly used after a mass rebuild.
 	 */
 	function clear() {
@@ -788,81 +701,16 @@ class MessageCache {
 		}
 	}
 
+	/**
+	 * @deprecated
+	 */
 	function loadAllMessages( $lang = false ) {
-		global $wgExtensionMessagesFiles;
-		$key = $lang === false ? '*' : $lang;
-		if ( isset( $this->mAllMessagesLoaded[$key] ) ) {
-			return;
-		}
-		$this->mAllMessagesLoaded[$key] = true;
-
-		# Some extensions will load their messages when you load their class file
-		wfLoadAllExtensions();
-		# Others will respond to this hook
-		wfRunHooks( 'LoadAllMessages', array( $this ) );
-		# Some register their messages in $wgExtensionMessagesFiles
-		foreach ( $wgExtensionMessagesFiles as $name => $file ) {
-			wfLoadExtensionMessages( $name, $lang );
-		}
-		# Still others will respond to neither, they are EVIL. We sometimes need to know!
 	}
 
 	/**
-	 * Load messages from a given file
-	 * 
-	 * @param string $filename Filename of file to load.
-	 * @param string $langcode Language to load messages for, or false for 
-     *                         default behvaiour (en, content language and user
-     *                         language).
+	 * @deprecated
 	 */
 	function loadMessagesFile( $filename, $langcode = false ) {
-		global $wgLang, $wgContLang;
-		wfProfileIn( __METHOD__ );
-		$messages = $magicWords = false;
-		require( $filename );
-
-		$validCodes = Language::getLanguageNames();
-		if( is_string( $langcode ) && array_key_exists( $langcode, $validCodes ) ) {
-			# Load messages for given language code.
-			$this->processMessagesArray( $messages, $langcode );
-		} elseif( is_string( $langcode ) && !array_key_exists( $langcode, $validCodes ) ) {
-			wfDebug( "Invalid language '$langcode' code passed to MessageCache::loadMessagesFile()" );
-		} else {
-			# Load only languages that are usually used, and merge all
-			# fallbacks, except English.
-			$langs = array_unique( array( 'en', $wgContLang->getCode(), $wgLang->getCode() ) );
-			foreach( $langs as $code ) {
-				$this->processMessagesArray( $messages, $code );
-			}
-		}
-
-		if ( $magicWords !== false ) {
-			global $wgContLang;
-			$wgContLang->addMagicWordsByLang( $magicWords );
-		}
-		wfProfileOut( __METHOD__ );
-	}
-
-	/**
-	 * Process an array of messages, loading it into the message cache.
-	 *
-	 * @param array $messages Messages array.
-	 * @param string $langcode Language code to process.
-	 */
-	function processMessagesArray( $messages, $langcode ) {
-		wfProfileIn( __METHOD__ );
-		$fallbackCode = $langcode;
-		$mergedMessages = array();
-		do {
-			if ( isset($messages[$fallbackCode]) ) {
-				$mergedMessages += $messages[$fallbackCode];
-			}
-			$fallbackCode = Language::getFallbackfor( $fallbackCode );
-		} while( $fallbackCode && $fallbackCode !== 'en' );
-		
-		if ( !empty($mergedMessages) )
-			$this->addMessages( $mergedMessages, $langcode );
-		wfProfileOut( __METHOD__ );
 	}
 
 	public function figureMessage( $key ) {

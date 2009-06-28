@@ -1924,6 +1924,11 @@ if ( \$wgCommandLineMode ) {
 ## you can enable inline LaTeX equations:
 \$wgUseTeX           = false;
 
+## Set \$wgCacheDirectory to a writable directory on the web server
+## to make your wiki go slightly faster. The directory should not
+## be publically accessible from the web.
+#\$wgCacheDirectory = \"\$IP/cache\";
+
 \$wgLocalInterwiki   = strtolower( \$wgSitename );
 
 \$wgLanguageCode = \"{$slconf['LanguageCode']}\";
