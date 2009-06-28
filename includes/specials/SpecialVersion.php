@@ -210,7 +210,7 @@ class SpecialVersion extends SpecialPage {
 				'latex'       => 'LaTeX',
 				'imagemagick' => 'ImageMagick',
 			);
-			$swMathNURL = Array(
+			$swMathURL = Array(
 				'ocaml'       => 'http://caml.inria.fr/',
 				'gs'          => 'http://www.ghostscript.com/',
 				'dvips'       => 'http://www.radicaleye.com/dvips.html',
@@ -246,7 +246,7 @@ class SpecialVersion extends SpecialPage {
 						list( $swMathVerInfo ) = explode('http://www.imagemagick.org', $tail );
 					}
 					$swMathVer[$swMath] = $swMathVerInfo;
-					$software["[$swMathURL $swMathName]"] = $swMathVer[$swMath];
+					$software["[$swMathURL[$swMath] $swMathName[$swMath]]"] = $swMathVer[$swMath];
 				}	
 			}
 		}
