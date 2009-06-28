@@ -1,5 +1,5 @@
 <?php
-/** Simplified Chinese (‪中文(简化字)‬)
+/** Simplified Chinese (‪中文(简体)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -911,7 +911,7 @@ $2',
 'revdelete-no-file'           => '指定的檔案不存在。',
 'revdelete-show-file-confirm' => '你是否真的是想去查看於$2 $3刪除 "$1" 的檔案修訂？',
 'revdelete-show-file-submit'  => '是',
-'revdelete-selected'          => "'''选取'''$1'''的$2次修订：'''",
+'revdelete-selected'          => "'''选取'''[[:$1]]'''的$2次修订：'''",
 'logdelete-selected'          => "'''选取'''$1'''的日志项目：'''",
 'revdelete-text'              => "'''删除的修订仍将显示在页面历史中, 但它们的文本内容已不能被公众访问。'''
 在{{SITENAME}}的其他管理员将仍能访问隐藏的内容并通过与此相同的界面恢复删除，除非站点工作者进行了一些附加的限制。
@@ -2023,7 +2023,7 @@ $NEWPAGE
 ** 反生产性编辑战
 ** 高流量页面',
 'protect-edit-reasonlist'     => '编辑保护理由',
-'protect-expiry-options'      => '1小时:1 hour,1天:1 day,3天:3 days,1周:1 week,2周:2 weeks,1个月:1 month,3个月:3 months,6个月:6 months,1年:1 year,永久:infinite',
+'protect-expiry-options'      => '1小时:1 hour,1天:1 day,1周:1 week,2周:2 weeks,1个月:1 month,3个月:3 months,6个月:6 months,1年:1 year,永久:infinite',
 'restriction-type'            => '权限：',
 'restriction-level'           => '限制级别：',
 'minimum-size'                => '最小大小',

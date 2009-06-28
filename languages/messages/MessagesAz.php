@@ -800,7 +800,7 @@ Səhifəni izləmə sıyahınızdan çıxarmaq üçün yan lovhədəki "izləmə
 'protect-summary-cascade'     => 'kaskad mühafizə',
 'protect-expiring'            => '$1 (UTC)- tarixində vaxtı bitir',
 'protect-cascade'             => 'Kaskad mühafizəsi - bu səhifəyə daxil bütün səhifələri qoru',
-'protect-expiry-options'      => '15 dəqiqə:15 minutes,1 saat:1 hour,3 saat:3 hours,24 saat:24 hours,48 saat:48 hours,1 həftə:1 week,1 ay:1 month,qeyri-müəyyən:indefinite',
+'protect-expiry-options'      => '1 saat:1 hour,1 day:1 day,1 həftə:1 week,2 weeks:2 weeks,1 ay:1 month,3 months:3 months,6 months:6 months,1 year:1 year,qeyri-müəyyən:infinite',
 'pagesize'                    => '(baytlar)',
 
 # Restrictions (nouns)

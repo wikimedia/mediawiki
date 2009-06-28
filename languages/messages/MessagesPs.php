@@ -263,6 +263,21 @@ $messages = array(
 'qbmyoptions'    => 'زما پاڼې',
 'qbspecialpages' => 'ځانګړي مخونه',
 
+# Vector skin
+'vector-action-delete'       => 'ړنګول',
+'vector-action-move'         => 'لېږدول',
+'vector-action-protect'      => 'پروژه',
+'vector-namespace-category'  => 'وېشنيزه',
+'vector-namespace-help'      => 'لارښود مخ',
+'vector-namespace-image'     => 'دوتنه',
+'vector-namespace-mediawiki' => 'پيغام',
+'vector-namespace-talk'      => 'خبرې اترې',
+'vector-namespace-template'  => 'کينډۍ',
+'vector-view-create'         => 'جوړول',
+'vector-view-edit'           => 'سمون',
+'vector-view-history'        => 'پېښليک کتل',
+'vector-view-view'           => 'لوستل',
+
 # Metadata in edit box
 'metadata_help' => 'مېټاډاټا:',
 
@@ -428,6 +443,7 @@ $messages = array(
 'yourpassword'               => 'پټنوم:',
 'yourpasswordagain'          => 'پټنوم بيا وليکه',
 'remembermypassword'         => 'زما پټنوم پدې کمپيوټر په ياد ولره!',
+'yourdomainname'             => 'ستاسې شپول:',
 'login'                      => 'ننوتل',
 'nav-login-createaccount'    => 'ننوتل / کارن-حساب جوړول',
 'loginprompt'                => 'ددې لپاره چې {{SITENAME}} کې ننوځۍ نو بايد چې ستاسو د کمپيوټر کوکيز چارن وي.',
@@ -631,6 +647,7 @@ $messages = array(
 'editundo'                => 'ناکړ',
 'diff-multi'              => '({{PLURAL:$1|يوه منځګړې مخليدنه نه ده ښکاره شوې|$1 منځګړې مخليدنې نه دي ښکاره شوي}}.)',
 'diff-src'                => 'سرچينه',
+'diff-img'                => "يو '''انځور'''",
 
 # Search results
 'searchresults'             => 'د لټون پايلې',
@@ -643,7 +660,7 @@ $messages = array(
 'nextn'                     => 'راتلونکي {{PLURAL:$1|$1}}',
 'viewprevnext'              => '($1) ($2) ($3) ښکاره کول',
 'searchhelp-url'            => 'Help:لړليک',
-'searchprofile-images'      => 'دوتنې',
+'searchprofile-images'      => 'Multimedia',
 'search-result-size'        => '$1 ({{PLURAL:$2|1 ويی|$2 وييونه}})',
 'search-suggest'            => 'آيا همدا ستاسو موخه ده: $1',
 'search-interwiki-caption'  => 'خورلڼې پروژې',
@@ -979,8 +996,8 @@ $messages = array(
 
 # Special:Categories
 'categories'                  => 'وېشنيزې',
-'categoriespagetext'          => 'لاندينۍ وېشنيزې مخونه يا رسنيزې دوتنې لري.
-همدلته [[Special:UnusedCategories|ناکارېدلې وېشنيزې]] ښودل شوي.
+'categoriespagetext'          => 'دا لاندينۍ {{PLURAL:$1|وېشنيزه|وېشنيزې}} مخونه يا رسنيزې دوتنې لري.
+دلته [[Special:UnusedCategories|ناکارېدلې وېشنيزې]] نه دي ښکاره شوي.
 [[Special:WantedCategories|غوښتلې وېشنيزې]] هم وګورۍ.',
 'categoriesfrom'              => 'هغه وېشنيزې دې ښکاره شي چې پېلېږي په:',
 'special-categories-sort-abc' => 'د ابېڅو له مخې اوډل',
@@ -1311,6 +1328,7 @@ $messages = array(
 'tooltip-t-upload'                => 'دوتنې پورته کول',
 'tooltip-t-specialpages'          => 'د ټولو ځانګړو پاڼو لړليک',
 'tooltip-t-print'                 => 'د همدې مخ چاپي بڼه',
+'tooltip-ca-nstab-main'           => 'د مخ مېنځپانګه کتل',
 'tooltip-ca-nstab-user'           => 'د کارونکي مخ کتل',
 'tooltip-ca-nstab-special'        => 'همدا يو ځانګړی مخ دی، تاسو نه شی کولای چې دا مخ سماد کړی.',
 'tooltip-ca-nstab-project'        => 'د پروژې مخ کتل',

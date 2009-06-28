@@ -635,8 +635,9 @@ Sjekk stavemåten eller [[Special:UserLogin/signup|opprett en ny konto]].',
 'nouserspecified'            => 'Du må oppgi et brukernavn.',
 'wrongpassword'              => 'Du har oppgitt et ugyldig passord. Prøv igjen.',
 'wrongpasswordempty'         => 'Du oppga ikke noe passord. Prøv igjen.',
-'passwordtooshort'           => 'Passordet ditt er ugyldig eller for kort.
-Det må ha minst {{PLURAL:$1|ett tegn|$1 tegn}} og kan ikke være det samme som brukernavnet ditt.',
+'passwordtooshort'           => 'Passordet ditt er for kort.
+Det må ha minst {{PLURAL:$1|ett tegn|$1 tegn}}',
+'password-name-match'        => 'Passordet ditt må være anderledes enn brukernavnet.',
 'mailmypassword'             => 'Send nytt passord',
 'passwordremindertitle'      => 'Nytt midlertidig passord fra {{SITENAME}}',
 'passwordremindertext'       => 'Noen (antagelig deg, fra IP-adressen $1) ba oss sende deg et nytt

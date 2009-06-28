@@ -572,8 +572,9 @@ Yazılışı kontrol edin veya [[Special:UserLogin/signup|yeni bir hesap açın]
 'nouserspecified'            => 'Bir kullanıcı adı belirtmek zorundasınız.',
 'wrongpassword'              => 'Parolayı yanlış girdiniz. Lütfen tekrar deneyiniz.',
 'wrongpasswordempty'         => 'Boş parola girdiniz. Lütfen tekrar deneyiniz.',
-'passwordtooshort'           => 'Parolanız geçersiz veya çok kısa.
-En az {{PLURAL:$1|1 karakter|$1 karakter}} içermeli ve kullanıcı adınızdan farklı olmalı.',
+'passwordtooshort'           => 'Parolanız çok kısa.
+En az {{PLURAL:$1|1 karakter|$1 karakter}} içermeli.',
+'password-name-match'        => 'Şifreniz kullanıcı adınızdan farklı olmalıdır.',
 'mailmypassword'             => 'Bana e-posta ile yeni parola gönder',
 'passwordremindertitle'      => '{{SITENAME}} için yeni geçici şifre',
 'passwordremindertext'       => 'Birisi (muhtemelen siz, $1 IP adresinden) {{SITENAME}} ($4) için yeni bir parola gönderilmesi istedi. "$2" kullanıcısına geçici olarak "$3" parolası oluşturuldu. Eğer bu sizin isteğiniz ise, oturum açıp yeni bir parola oluşturmanız gerekmektedir. Geçici parolanızın süresi {{PLURAL:$5|1 gün|$5 gün}} içinde dolacaktır.

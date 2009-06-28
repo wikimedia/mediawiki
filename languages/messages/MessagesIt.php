@@ -643,8 +643,9 @@ Scegliere un nome utente diverso.',
 'nouserspecified'            => 'È necessario specificare un nome utente.',
 'wrongpassword'              => 'La password inserita non è corretta. Riprovare.',
 'wrongpasswordempty'         => 'Non è stata inserita alcuna password. Riprovare.',
-'passwordtooshort'           => 'La password inserita non è valida o è troppo breve. 
-Deve contenere almeno {{PLURAL:$1|1 carattere|$1 caratteri}} ed essere diversa dal nome utente.',
+'passwordtooshort'           => 'La password inserita è troppo breve. 
+Deve contenere almeno {{PLURAL:$1|1 carattere|$1 caratteri}}.',
+'password-name-match'        => 'La password deve essere diversa dal nome utente.',
 'mailmypassword'             => 'Invia una nuova password al mio indirizzo e-mail',
 'passwordremindertitle'      => 'Servizio Password Reminder di {{SITENAME}}',
 'passwordremindertext'       => 'Qualcuno (probabilmente tu, con indirizzo IP $1) ha richiesto l\'invio di una nuova password di accesso a {{SITENAME}} ($4).

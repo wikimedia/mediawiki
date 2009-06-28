@@ -658,7 +658,7 @@ Sprawdź poprawność pisowni.',
 'wrongpasswordempty'         => 'Wprowadzone hasło jest puste. Spróbuj ponownie.',
 'passwordtooshort'           => 'Twoje hasło jest za krótkie.
 Musi mieć co najmniej $1 {{PLURAL:$1|znak|znaki|znaków}}.',
-'password-name-match'        => 'Twoje hasło musi być inne niż Twoja nazwa użytkownika.',
+'password-name-match'        => 'Hasło musi być inne niż nazwa użytkownika.',
 'mailmypassword'             => 'Wyślij mi nowe hasło poprzez e‐mail',
 'passwordremindertitle'      => 'Nowe tymczasowe hasło do {{GRAMMAR:D.lp|{{SITENAME}}}}',
 'passwordremindertext'       => 'Ktoś (prawdopodobnie Ty, spod adresu IP $1)

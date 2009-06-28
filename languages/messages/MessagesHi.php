@@ -321,7 +321,7 @@ $messages = array(
 
 # Main script and global functions
 'nosuchaction'      => 'ऐसा कोई कार्य नहीं है',
-'nosuchactiontext'  => '{{SITENAME}} सौफ़्टवेयर में इस URL द्वारा निर्धारित कोई क्रिया नही है',
+'nosuchactiontext'  => '{{SITENAME}} सौफ़्टवेयर में इस URL द्वारा निर्धारित कोई क्रिया नही है',
 'nosuchspecialpage' => 'ऐसा कोई विशेष पृष्ठ नहीं है',
 'nospecialpagetext' => 'आपने ऐसा विशेष पृष्ठ मांगा है जो {{SITENAME}} सौफ़्टवेयर में नहीं है.',
 
