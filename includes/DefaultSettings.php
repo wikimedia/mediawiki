@@ -191,7 +191,7 @@ $wgFileStore['deleted']['hash'] = 3;         ///< 3-level subdirectory split
  * File repository structures
  *
  * $wgLocalFileRepo is a single repository structure, and $wgForeignFileRepo is
- * a an array of such structures. Each repository structure is an associative
+ * an array of such structures. Each repository structure is an associative
  * array of properties configuring the repository.
  *
  * Properties required for all repos:
