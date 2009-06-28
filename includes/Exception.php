@@ -8,13 +8,13 @@
  * @ingroup Exception
  */
 class MWException extends Exception {
-
 	/**
 	 * Should the exception use $wgOut to output the error ?
 	 * @return bool
 	 */
 	function useOutputPage() {
-		return !empty( $GLOBALS['wgFullyInitialised'] ) &&
+		return $this->useMessageCache() &&
+			!empty( $GLOBALS['wgFullyInitialised'] ) &&
 			( !empty( $GLOBALS['wgArticle'] ) || ( !empty( $GLOBALS['wgOut'] ) && !$GLOBALS['wgOut']->isArticle() ) ) &&
 			!empty( $GLOBALS['wgTitle'] );
 	}
@@ -25,6 +25,11 @@ class MWException extends Exception {
 	 */
 	function useMessageCache() {
 		global $wgLang;
+		foreach ( $this->getTrace() as $frame ) {
+			if ( $frame['class'] == 'LocalisationCache' ) {
+				return false;
+			}
+		}
 		return is_object( $wgLang );
 	}
 

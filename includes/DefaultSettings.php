@@ -165,6 +165,12 @@ $wgUploadBaseUrl    = "";
 /**@}*/
 
 /**
+ * Directory for caching data in the local filesystem. Should not be accessible 
+ * from the web.Set this to false to not use any local caches.
+ */
+$wgCacheDirectory = false;
+
+/**
  * Default value for chmoding of new directories.
  */
 $wgDirectoryMode = 0777;
@@ -755,15 +761,35 @@ $wgMemCachedPersistent = false;
 /**@}*/
 
 /**
- * Directory for local copy of message cache, for use in addition to memcached
+ * Set this to true to make a local copy of the message cache, for use in 
+ * addition to memcached. The files will be put in $wgCacheDirectory. 
  */
-$wgLocalMessageCache = false;
+$wgUseLocalMessageCache = false;
+
 /**
- * Defines format of local cache
- * true - Serialized object
- * false - PHP source file (Warning - security risk)
+ * Localisation cache configuration. Associative array with keys:
+ *     class:       The class to use. May be overridden by extensions.
+ *
+ *     store:       The location to store cache data. May be 'files', 'db' or 
+ *                  'detect'. If set to "files", data will be in CDB files in 
+ *                  the directory specified by $wgCacheDirectory. If set to "db",
+ *                  data will be stored to the database. If set to "detect", files
+ *                  will be used if $wgCacheDirectory is set, otherwise the 
+ *                  database will be used.
+ *
+ *     storeClass:  The class name for the underlying storage. If set to a class 
+ *                  name, it overrides the "store" setting.
+ *
+ *     manualRecache: Set this to true to disable cache updates on web requests. 
+ *                  Use maintenance/rebuildLocalisationCache.php instead.
  */
-$wgLocalMessageCacheSerialized = true;
+$wgLocalisationCacheConf = array(
+	'class' => 'LocalisationCache',
+	'store' => 'detect',
+	'storeClass' => false,
+	'manualRecache' => false,
+);
+
 
 # Language settings
 #
@@ -871,20 +897,6 @@ $wgMsgCacheExpiry	= 86400;
  * Maximum entry size in the message cache, in bytes
  */
 $wgMaxMsgCacheEntrySize = 10000;
-
-/**
- * If true, serialized versions of the messages arrays will be
- * read from the 'serialized' subdirectory if they are present.
- * Set to false to always use the Messages files, regardless of
- * whether they are up to date or not.
- */
-$wgEnableSerializedMessages = true;
-
-/**
- * Set to false if you are thorough system admin who always remembers to keep
- * serialized files up to date to save few mtime calls.
- */
-$wgCheckSerialized = true;
 
 /** Whether to enable language variant conversion. */
 $wgDisableLangConversion = false;
@@ -1509,7 +1521,7 @@ $wgStyleVersion = '228';
 $wgUseFileCache = false;
 
 /** Directory where the cached page will be saved */
-$wgFileCacheDirectory = false; ///< defaults to "{$wgUploadDirectory}/cache";
+$wgFileCacheDirectory = false; ///< defaults to "$wgCacheDirectory/html";
 
 /**
  * When using the file cache, we can store the cached HTML gzipped to save disk
@@ -2550,10 +2562,15 @@ $wgExtensionFunctions = array();
 $wgSkinExtensionFunctions = array();
 
 /**
- * Extension messages files
- * Associative array mapping extension name to the filename where messages can be found.
- * The file must create a variable called $messages.
- * When the messages are needed, the extension should call wfLoadExtensionMessages().
+ * Extension messages files.
+ *
+ * Associative array mapping extension name to the filename where messages can be 
+ * found. The file should contain variable assignments. Any of the variables 
+ * present in languages/messages/MessagesEn.php may be defined, but $messages
+ * is the most common.
+ *
+ * Variables defined in extensions will override conflicting variables defined 
+ * in the core.
  *
  * Example:
  *    $wgExtensionMessagesFiles['ConfirmEdit'] = dirname(__FILE__).'/ConfirmEdit.i18n.php';
@@ -2563,13 +2580,7 @@ $wgExtensionMessagesFiles = array();
 
 /**
  * Aliases for special pages provided by extensions.
- * Associative array mapping special page to array of aliases. First alternative
- * for each special page will be used as the normalised name for it. English
- * aliases will be added to the end of the list so that they always work. The
- * file must define a variable $aliases.
- *
- * Example:
- *    $wgExtensionAliasesFiles['Translate'] = dirname(__FILE__).'/Translate.alias.php';
+ * @deprecated Use $specialPageAliases in a file referred to by $wgExtensionMessagesFiles
  */
 $wgExtensionAliasesFiles = array();
 
