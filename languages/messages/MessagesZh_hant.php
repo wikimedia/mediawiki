@@ -1,5 +1,5 @@
 <?php
-/** Traditional Chinese (‪中文(繁體)‬)
+/** Traditional Chinese (‪中文(傳統字)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -583,7 +583,8 @@ $2',
 'nouserspecified'            => '{{GENDER:你|妳|你}}需要指定一個用戶名。',
 'wrongpassword'              => '您輸入的密碼錯誤，請再試一次。',
 'wrongpasswordempty'         => '沒有輸入密碼！請重試。',
-'passwordtooshort'           => '您的密碼不正確或太短，不能少於$1個字元，而且必須跟用戶名不同。',
+'passwordtooshort'           => '您的密碼太短，不能少於$1個字元。',
+'password-name-match'        => '您的密碼必須跟您的用戶名不相同。',
 'mailmypassword'             => '將新密碼寄給我',
 'passwordremindertitle'      => '{{SITENAME}}的新臨時密碼',
 'passwordremindertext'       => '有人(可能是您，來自IP位址$1)已請求{{SITENAME}}的新密碼 ($4)。
