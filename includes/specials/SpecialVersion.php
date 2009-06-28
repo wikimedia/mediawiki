@@ -100,7 +100,7 @@ class SpecialVersion extends SpecialPage {
 	 * @return wiki text showing the third party software versions (apache, php, mysql).
 	 */
 	static function softwareInformation() {
-		global $wgUseImageMagick, $wgImageMagickConvertCommand, $wgDiff3, $wgDiff;
+		global $wgUseImageMagick, $wgImageMagickConvertCommand, $wgDiff3, $wgDiff, $wgUseTeX;
 		global $wgAllowTitlesInSVG, $wgSVGConverter, $wgSVGConverters, $wgSVGConverterPath;
 		$dbr = wfGetDB( DB_SLAVE );
 
@@ -198,6 +198,57 @@ class SpecialVersion extends SpecialPage {
 			}
 			if ( $haveSVGConvVer )
 				$software["[$swSVGConvURL $swSVGConvName]"] = $swSVGConvVer;
+		}
+
+		// Look for TeX support and print the software version info
+		if ( $wgUseTeX ) {
+			$binPath = '/usr/bin/';
+			$swMathName = Array(
+				'ocaml'       => 'OCaml',
+				'gs'          => 'Ghostscript',
+				'dvips'       => 'Dvips',
+				'latex'       => 'LaTeX',
+				'imagemagick' => 'ImageMagick',
+			);
+			$swMathNURL = Array(
+				'ocaml'       => 'http://caml.inria.fr/',
+				'gs'          => 'http://www.ghostscript.com/',
+				'dvips'       => 'http://www.radicaleye.com/dvips.html',
+				'latex'       => 'http://www.latex-project.org/',
+				'imagemagick' => 'http://www.imagemagick.org/',
+			);
+			$swMathExec = Array(
+				'ocaml'       => 'ocamlc',
+				'gs'          => 'gs',
+				'dvips'       => 'dvips',
+				'latex'       => 'latex',
+				'imagemagick' => 'convert',
+			);
+			$swMathParam = Array(
+				'ocaml'       => '-version',
+				'gs'          => '-v',
+				'dvips'       => '-v',
+				'latex'       => '-v',
+				'imagemagick' => '-version',
+			);
+			foreach ( $swMathExec as $swMath => $swMathCmd ) {
+				if ( file_exists( $binPath . $swMathCmd ) ) {
+					$swMathInfo = self::execOutput( $binPath . $swMathCmd . ' ' . $swMathParam[$swMath] );
+					$swMathLine = explode("\n",$swMathInfo ,2);
+					$swMathVerInfo = $swMathLine[0];
+					if ( !strcmp( $swMath, 'gs' ) )
+						$swMathVerInfo = str_replace( 'GPL Ghostscript ', '', $swMathVerInfo );
+					else if ( !strcmp( $swMath, 'dvips' ) ) {
+						$swMathVerParts = explode( ' ' , $swMathVerInfo );
+						$swMathVerInfo = $swMathVerParts[3];
+					} else if ( !strcmp( $swMath, 'imagemagick' ) ) {
+						list( $head, $tail ) = explode( 'ImageMagick', $swMathVerInfo );
+						list( $swMathVerInfo ) = explode('http://www.imagemagick.org', $tail );
+					}
+					$swMathVer[$swMath] = $swMathVerInfo;
+					$software["[$swMathURL $swMathName]"] = $swMathVer[$swMath];
+				}	
+			}
 		}
 
 		// Allow a hook to add/remove items
