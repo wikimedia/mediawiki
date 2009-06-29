@@ -7,10 +7,6 @@ body {
 	font-family: sans-serif;
 	font-size: small;
 }
-body.rtl {
-	direction: rtl;
-	unicode-bidi: embed;
-}
 body {
 	background-image: url(images/page-base.png);
 }
@@ -23,11 +19,6 @@ div#content {
 	background-repeat: repeat-y;
 	background-color: white;
 }
-body.rtl div#content {
-	margin-left: auto;
-	margin-right: 12em;
-	background-position: top right;
-}
 /* Head */
 div#page-base {
 	height: 6em;
@@ -35,9 +26,6 @@ div#page-base {
 	background-image: url(images/page-fade.png);
 	background-position: bottom left;
 	background-repeat: repeat-x;
-}
-body.rtl div#page-base {
-	background-position: bottom left;
 }
 div#head-base {
 	margin-top: -6em;
@@ -47,21 +35,11 @@ div#head-base {
 	background-position: bottom left;
 	background-repeat: repeat-x;
 }
-body.rtl div#head-base {
-	margin-left: auto;
-	margin-right: 12em;
-	background-position: bottom right;
-}
 div#head {
 	position: absolute;
 	top: 0;
 	right: 0;
 	width: 100%;
-}
-body.rtl div#head {
-	right: auto;
-	left: 0;
-	margin-right: auto;
 }
 div#head ul,
 div#head li {
@@ -79,10 +57,6 @@ div#head h5 {
 		top: 0;
 		right: 0.75em;
 	}
-	body.rtl div#personal {
-		left: 0.75em;
-		right: auto;
-	}
 	div#personal h5 {
 		display: none;
 	}
@@ -92,40 +66,14 @@ div#head h5 {
 		margin-top: 0.5em;
 		font-size: 0.9em;
 	}
-	body.rtl div#personal li {
-		margin-left: auto;
-		margin-right: 0.75em;
-	}
-	body.rtl div#personal > ul > li {
-		float: right;
-		margin-left: 0;
-		margin-right: 0.75em;
-	}
-	/* Navigation */
 	div#left-navigation {
-		margin-top: 3em;
-		margin-left: 12em;
-	}
-	/* OVERRIDDEN BY COMPLIANT BROWSERS */
-	body.rtl div#left-navigation {
-		margin-left: 0;
-	}
-	/* IGNORED BY IE6 */
-	body.rtl div#head > div#left-navigation {
-		margin-left: auto;
-		margin-right: 12em;
+		position: absolute;
+		left: 12em;
+		top: 3em;
 	}
 	div#right-navigation {
 		float: right;
-	}
-	/* OVERRIDDEN BY COMPLIANT BROWSERS */
-	body.rtl div#right-navigation {
-		margin-right: 6em;
-	}
-	/* IGNORED BY IE6 */
-	body.rtl div#head > div#right-navigation {
-		margin-right: auto;
-		float: left;
+		margin-top: 3em;
 	}
 	/* Navigation Labels */
 	div#namespaces h5,
@@ -144,28 +92,10 @@ div#head h5 {
 		background-repeat: no-repeat;
 		padding-left: 1px;
 	}
-	/* OVERRIDDEN BY COMPLIANT BROWSERS */
-	body.rtl div#left-navigation div#namespaces {
-		padding-left: 0;
-	}
-	/* IGNORED BY IE6 */
-	body.rtl div#left-navigation > div#namespaces,
-	body.rtl div#right-navigation > div#views {
-		float: right;
-		background-position: bottom right;
-		padding-left: 0;
-		padding-right: 1px;
-	}
-	/* OVERRIDDEN BY COMPLIANT BROWSERS */
 	div#namespaces ul,
 	div#views ul {
 		float: left;
 		height: 100%;
-	}
-	/* IGNORED BY IE6 */
-	body.rtl div#left-navigation > div#namespaces ul,
-	body.rtl div#right-navigation > div#views ul {
-		float: right;
 	}
 	/* OVERRIDDEN BY COMPLIANT BROWSERS */
 	div#namespaces ul li,
@@ -181,12 +111,6 @@ div#head h5 {
 	div#namespaces ul > li,
 	div#views ul > li {
 		display: block;
-	}
-	/* IGNORED BY IE6 */
-	body.rtl div#namespaces > ul > li,
-	body.rtl div#views > ul > li {
-		float: right;
-		background-position: bottom right;
 	}
 	div#namespaces li.selected,
 	div#views li.selected {
@@ -207,11 +131,6 @@ div#head h5 {
 	div#namespaces li > a,
 	div#views li > a {
 		display: block;
-	}
-	/* IGNORED BY IE6 */
-	body.rtl div#namespaces li > a,
-	body.rtl div#views li > a {
-		background-position: bottom left;
 	}
 	/* OVERRIDDEN BY COMPLIANT BROWSERS */
 	div#namespaces a span,
@@ -245,19 +164,9 @@ div#head h5 {
 		background-position: center center;
 		background-repeat: no-repeat;
 	}
-	/* IGNORED BY IE6 */
-	body.rtl div#left-navigation > div#variants,
-	body.rtl div#right-navigation > div#actions {
-		float: right;
-	}
 	div#variants h5,
 	div#actions h5 {
 		float: left;
-	}
-	/* IGNORED BY IE6 */
-	body.rtl div#variants > h5,
-	body.rtl div#actions > h5 {
-		float: right;
 	}
 	/* OVERRIDDEN BY COMPLIANT BROWSERS */
 	div#variants h5 a,
@@ -274,12 +183,6 @@ div#head h5 {
 	div#variants h5 > a,
 	div#actions h5 > a {
 		display: block;
-	}
-	/* IGNORED BY IE6 */
-	body.rtl div#variants > h5 a,
-	body.rtl div#actions > h5 a {
-		display: inline-block;
-		background-position: bottom left;
 	}
 	div#variants div.menu,
 	div#actions div.menu {
@@ -301,18 +204,6 @@ div#head h5 {
 		margin-left: -1px;
 	}
 	/* OVERRIDDEN BY COMPLIANT BROWSERS */
-	body.rtl div#variants ul,
-	body.rtl div#actions ul {
-		margin-left: 0;
-		margin-right: -24px;
-	}
-	/* IGNORED BY IE6 */
-	body.rtl div#variants div.menu > ul,
-	body.rtl div#actions div.menu > ul {
-		margin-left: 0;
-		margin-right: -1px;
-	}
-	/* OVERRIDDEN BY COMPLIANT BROWSERS */
 	div#variants:hover li a,
 	div#actions li a {
 		display: inline-block;
@@ -328,27 +219,11 @@ div#head h5 {
 		float: left;
 		margin-right: 0.75em;
 	}
-	/* OVERRIDDEN BY COMPLIANT BROWSERS */
-	body.rtl div#right-navigation div#search {
-		margin-right: 0;
-	}
-	/* IGNORED BY IE6 */
-	body.rtl div#right-navigation > div#search {
-		float: right;
-		margin-left: 0.75em;
-	}
 	div#search form,
 	div#search input {
 		float: left;
 		margin-top: 0.4em;
 		margin-left: 0.25em;
-	}
-	/* IGNORED BY IE6 */
-	body.rtl div#search > form,
-	body.rtl div#search > form > input {
-		float: right;
-		margin-left: 0;
-		margin-right: 0.25em;
 	}
 /* Panel */
 div#panel {
@@ -356,10 +231,6 @@ div#panel {
 	top: 12em;
 	width: 12em;
 	left: 0;
-}
-body.rtl div#panel {
-	left: auto;
-	right: 0;
 }
 	div#panel div.portal {
 		padding-top: 1.5em;
@@ -372,24 +243,13 @@ body.rtl div#panel {
 		padding-left: 1.25em;
 		cursor: default;
 	}
-	body.rtl div#panel div.portal h5 {
-		padding: 0;
-		margin: 0;
-		padding-left: 0;
-		padding-right: 1.25em;
-	}
 	div#panel div.portal div.body {
 		margin-top: 0.25em;
 		padding-top: 0.5em;
 		margin-left: 1.25em;
-		background-image: url(images/portal-break.png);
+		background-image: url(images/portal-break-ltr.png);
 		background-repeat: no-repeat;
 		background-position: top left;
-	}
-	body.rtl div#panel div.portal div.body {
-		padding-left: 0;
-		margin-right: 1.25em;
-		background-position: top right;
 	}
 	div#panel div.portal div.body ul {
 		list-style: none;
@@ -417,11 +277,6 @@ div#foot {
 	background-position: top left;
 	background-repeat: repeat-x;
 }
-body.rtl div#foot {
-	margin-left: 0;
-	margin-right: 12em;
-	background-position: top right;
-}
 div#foot ul {
 	list-style: none;
 	margin: 0;
@@ -438,36 +293,19 @@ div#foot ul li {
 div#foot ul#foot-icons {
 	float: right;
 }
-body.rtl div#foot ul#foot-icons {
-	float: left;
-}
 div#foot ul#foot-places {
 	float: left;
-}
-body.rtl div#foot ul#foot-places {
-	float: right;
 }
 div#foot ul#foot-icons li {
 	float: left;
 	margin-left: 0.5em;
 	line-height: 2em;
 }
-body.rtl div#foot ul#foot-icons li {
-	float: right;
-	margin-left: 0;
-	margin-right: 0.5em;
-}
 div#foot ul#foot-places li {
 	float: left;
 	margin-right: 0.5em;
 	line-height: 2em;
 }
-body.rtl div#foot ul#foot-places li {
-	float: right;
-	margin-left: 0.5em;
-	margin-right: 0;
-}
-
 /* Logo */
 div#logo {
 	position: absolute;
@@ -475,10 +313,6 @@ div#logo {
 	left: 0;
 	height: 12em;
 	width: 12em;
-}
-body.rtl #logo {
-	left: auto;
-	right: 0;
 }
 div#logo a {
 	display: block;
@@ -508,11 +342,6 @@ div#logo a {
 	background-position: bottom left;
 	background-repeat: no-repeat;
 }
-/* IGNORED BY IE6 */
-body.rtl form > #preftoc {
-	float: right;
-	background-position: bottom right;
-}
 	#preftoc li {
 		/* Tab */
 		float: left;
@@ -530,18 +359,6 @@ body.rtl form > #preftoc {
 	/* IGNORED BY IE6 */
 	#preftoc li:first-child {
 		margin-left: 1px;
-	}
-	/* IGNORED BY IE6 */
-	body.rtl #preftoc li:first-child {
-		margin-left: 0;
-		margin-right: 1px;
-	}
-	/* IGNORED BY IE6 */
-	body.rtl #preftoc > li {
-		float: right;
-		padding-right: 0;
-		padding-left: 1px;
-		background-position: bottom left;
 	}
 	#preftoc a,
 	#preftoc a:active {
@@ -684,11 +501,6 @@ h5 { font-size: 100%; }
 h5 .editsection { font-weight: normal; }
 h6 { font-size: 80%;  }
 h6 .editsection { font-size: 125%; font-weight: normal; }
-body.rtl .editsection {
-	float: left;
-	margin-right: 5px;
-	margin-left: 0; /* bug 9122: undo default LTR */
-}
 p {
 	margin: .4em 0 .5em 0;
 	line-height: 1.5em;
@@ -730,19 +542,11 @@ div#content ul {
 	padding: 0;
 	list-style-image: url(images/bullet-icon.png);
 }
-body.rtl div#content ul {
-	margin-left: 0;
-	margin-right: 1.5em;
-}
 div#content ol {
 	line-height: 1.5em;
 	margin: .3em 0 0 3.2em;
 	padding: 0;
 	list-style-image: none;
-}
-body.rtl div#content ol {
-	margin-left: 0;
-	margin-right: 2.4em;
 }
 div#content li {
 	margin-bottom: .1em;
@@ -760,26 +564,6 @@ div#content dd {
 	margin-left: 2em;
 	margin-bottom: .1em;
 }
-body.rtl div#content dd {
-	margin-left: 0;
-	margin-right: 1.6em;
-}
-/**
- * The following lines don't have a visible effect on non-Gecko browsers
- * They fix a problem ith Gecko browsers rendering lists to the right of
- * left-floated objects in an RTL layout.
- */
-body.rtl div#content ul {
-	display: table;
-	text-align: right;
-	margin-left: 0;
-	margin-right: 1.5em;
-}
-body.rtl div#content ul#filetoc {
-	display: block;
-	text-align: right;
-}
-
 /* Tables */
 div#content table {
 	font-size: 100%;
@@ -792,7 +576,6 @@ div#content fieldset table {
 	/* but keep table layouts in forms clean... */
 	background: none;
 }
-
 /* Forms */
 div#content fieldset {
 	border: 1px solid #2f6fab;
@@ -819,7 +602,6 @@ div#content textarea {
 div#content select {
 	vertical-align: top;
 }
-
 /* Table of Contents */
 #toc,
 .toc,
@@ -859,7 +641,6 @@ div#content select {
 .toc .toctoggle {
 	font-size: 94%;
 }
-
 /* Images */
 div.floatright, table.floatright {
 	clear: right;
@@ -877,7 +658,6 @@ div.floatleft, table.floatleft {
 	border: 0;
 }
 div.floatleft p { font-style: italic; }
-
 /* Thumbnails */
 div.thumb {
 	margin-bottom: .5em;
@@ -930,14 +710,12 @@ img.thumbborder {
 .hiddenStructure {
 	display: none;
 }
-
 /* Warning */
 .mw-warning {
 	margin-left: 50px;
 	margin-right: 50px;
 	text-align: center;
 }
-
 /* User Message */
 .usermessage {
 	background-color: #ffce7b;
@@ -948,7 +726,6 @@ img.thumbborder {
 	padding: .5em 1em;
 	vertical-align: middle;
 }
-
 /* Site Notice */
 #siteNotice {
 	text-align: center;
@@ -959,7 +736,6 @@ img.thumbborder {
 		margin: 0;
 		padding: 0;
 	}
-
 /* Categories */
 .catlinks {
 	border: 1px solid #aaa;
@@ -968,7 +744,6 @@ img.thumbborder {
 	margin-top: 1em;
 	clear: both;
 }
-
 /* Sub-navigation */
 #siteSub {
 	display: none;
@@ -986,7 +761,6 @@ img.thumbborder {
 span.subpages {
 	display: block;
 }
-
 /* Emulate Center */
 .center {
 	width: 100%;
@@ -996,7 +770,6 @@ span.subpages {
 	margin-left: auto;
 	margin-right: auto;
 }
-
 /* Small for tables and similar */
 .small, .small * {
 	font-size: 94%;
@@ -1004,7 +777,6 @@ span.subpages {
 table.small {
 	font-size: 100%;
 }
-
 /* Edge Cases for Content */
 #content h1, #content h2 {
 	margin-bottom: .6em;
@@ -1028,10 +800,6 @@ div.firstHeading h1 {
 #content a[href ^="gopher://"] {
 	background: url(images/external-link-ltr-icon.png) center right no-repeat;
 	padding: 0 13px;
-}
-.rtl #content a.external,
-.rtl #content a[href ^="gopher://"] {
-	background-image: url(images/external-link-rtl-icon.png);
 }
 #content a[href ^="https://"],
 .link-https {
@@ -1083,19 +851,6 @@ div.firstHeading h1 {
 	background: url("images/document-icon.png") center right no-repeat;
 	padding: 0 18px;
 }
-.rtl #content a.external {
-	background-position: left;
-	padding-right: 0;
-}
-.rtl #panel a.feedlink {
-	background-position: right;
-	padding-right: 16px;
-	padding-left: 0;
-}
-.ltr #content a.external {
-	padding-left: 0;
-}
-
 /* Interwiki Styling  (Disabled) */
 #content a.extiw,
 #content a.extiw:active {
