@@ -2510,7 +2510,9 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 'chick.css'       => '/* Gli stili CSS inseriti qui si applicano agli utenti che usano la skin Chick */',
 'simple.css'      => '/* Gli stili CSS inseriti qui si applicano agli utenti che usano la skin Simple */',
 'modern.css'      => '/* Gli stili CSS inseriti qui si applicano agli utenti che usano la skin Modern */',
+'vector.css'      => '/* Gli stili CSS inseriti qui si applicano agli utenti che usano la skin Vector */',
 'print.css'       => "/* Gli stili CSS inseriti qui si applicano all'output in stampa */",
+'handheld.css'    => '/* Gli stili CSS inseriti qui si applicano ai dispositivi portatili basati sulla skin configurata in $wgHandheldStyle */',
 
 # Scripts
 'common.js'      => '/* Il codice JavaScript inserito qui viene caricato da ciascuna pagina, per tutti gli utenti. */',
@@ -2522,6 +2524,7 @@ Tutte le operazioni di importazione trans-wiki sono registrate nel [[Special:Log
 'chick.js'       => '/* Il codice JavaScript inserito qui viene caricato dagli utenti che usano la skin Chick */',
 'simple.js'      => '/* Il codice JavaScript inserito qui viene caricato dagli utenti che usano la skin Simple */',
 'modern.js'      => '/* Il codice JavaScript inserito qui viene caricato dagli utenti che usano la skin Modern */',
+'vector.js'      => '/* Il codice JavaScript inserito qui viene caricato dagli utenti che usano la skin Vector */',
 
 # Metadata
 'nodublincore'      => 'Metadati Dublin Core RDF non attivi su questo server.',

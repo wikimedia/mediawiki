@@ -579,7 +579,7 @@ Verifique a ortografia, ou [[Special:UserLogin/signup|crie uma nova conta]].',
 'wrongpassword'              => 'A palavra-chave que introduziu é inválida. Por favor, tente novamente.',
 'wrongpasswordempty'         => 'A palavra-chave introduzida está em branco. Por favor, tente novamente.',
 'passwordtooshort'           => 'A sua palavra-chave é inválida ou demasiado curta.
-Deve de ter no mínimo {{PLURAL:$1|1 caracter|$1 caracteres}} e ser diferente do seu nome de utilizador.',
+Deve de ter no mínimo {{PLURAL:$1|1 caráter|$1 carateres}}.',
 'mailmypassword'             => 'Enviar uma nova palavra-chave por e-mail',
 'passwordremindertitle'      => 'Nova palavra-chave temporária em {{SITENAME}}',
 'passwordremindertext'       => 'Alguém (provavelmente você, a partir do endereço de IP $1) solicitou que fosse lhe enviada uma nova palavra-chave para {{SITENAME}} ($4).

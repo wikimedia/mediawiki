@@ -732,7 +732,8 @@ Volyéd tornar èprovar.',
 'wrongpasswordempty'         => 'Vos éd pas buchiê de mot de pâssa.
 Volyéd tornar èprovar.',
 'passwordtooshort'           => 'Voutron mot de pâssa est trop côrt.
-Dêt contegnir u muens $1 caractèro{{PLURAL:$1||s}} et étre difèrent de voutron nom d’utilisator.',
+Dêt contegnir u muens $1 caractèro{{PLURAL:$1||s}}.',
+'password-name-match'        => 'Voutron mot de pâssa dêt étre difèrent de voutron nom d’utilisator.',
 'mailmypassword'             => 'Recêvre un novél mot de pâssa per mèl',
 'passwordremindertitle'      => 'Voutron novél mot de pâssa temporèro dessus {{SITENAME}}',
 'passwordremindertext'       => 'Quârqu’un (probâblament vos, avouéc l’adrèce IP $1) at demandâ un novél mot de

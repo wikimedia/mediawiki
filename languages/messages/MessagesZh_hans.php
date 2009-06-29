@@ -11,6 +11,7 @@
  * @author Gaoxuewei
  * @author Gzdavidwong
  * @author Jidanni
+ * @author Jimmy xu wrk
  * @author Liangent
  * @author O
  * @author Philip
@@ -741,11 +742,11 @@ $2',
 'anontalkpagetext'                 => "---- ''这是一个还未建立账户的匿名用户的讨论页, 因此我们只能用IP地址来与他或她联络。该IP地址可能由几名用户共享。如果您是一名匿名用户并认为此页上的评语与您无关，请[[Special:UserLogin/signup|创建新账户]]或[[Special:UserLogin|登录]]以避免在未来与其他匿名用户混淆。''",
 'noarticletext'                    => '此页目前没有内容，您可以在其它页[[Special:Search/{{PAGENAME}}|搜索此页标题]]或[{{fullurl:{{NAMESPACE}}:{{PAGENAME}}|action=edit}} 编辑此页]。',
 'userpage-userdoesnotexist'        => '用户账户“$1”未曾创建。请在创建／编辑这个页面前先检查一下。',
-'clearyourcache'                   => "'''注意 - 在保存以後, 您必須清除瀏覽器的緩存才能看到所作出的改變。'''
-'''Mozilla / Firefox / Safari：'''按住''Shift''再点击''刷新''，或按下''Ctrl-F5''或''Ctrl-R''，（在Macintosh上按下''Command-R''）；
-'''Konqueror：'''只需点击''刷新''或按下''F5''；
-'''Opera：'''在''工具→首选项''中完整清除它们的缓存；
-'''Internet Explorer：'''按住''Ctrl''再点击''刷新''，或按下''Ctrl-F5''。",
+'clearyourcache'                   => "'''注意 - 在保存以后，您必须清除浏览器的缓存才能看到所作出的改变。'''
+'''Mozilla / Firefox / Safari'''：按住''Shift''再点击''刷新''，或按下''Ctrl-F5''或''Ctrl-R''（在Macintosh上按下''Command-R''）；
+'''Konqueror'''：只需点击''刷新''或按下''F5''；
+'''Opera'''：在''工具→首选项''中完整清除它们的缓存，或按下''Alt-F5''；
+'''Internet Explorer'''：按住''Ctrl''再点击''刷新''，或按下''Ctrl-F5''。",
 'usercssjsyoucanpreview'           => "'''提示：''' 在保存前请用“显示预览”按钮来测试您新的 CSS/JS 。",
 'usercsspreview'                   => "'''注意您只是在预览您的个人 CSS。'''
 '''还没有保存！'''",

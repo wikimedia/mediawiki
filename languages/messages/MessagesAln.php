@@ -701,11 +701,21 @@ Administruesi që e ka mshelë e ka dhânë këtë shpjegim: $1",
 'editundo'                => 'ktheje',
 
 # Search results
+'searchresults'             => 'Rezultatet e kërkimit',
+'searchresults-title'       => 'Rezultatet e kërkimit për "$1"',
+'searchresulttext'          => 'Për mâ shumë informata rreth kërkimit në {{SITENAME}} shih [[{{MediaWiki:Helppage}}|{{int:help}}]].',
+'searchsubtitle'            => 'Keni kërkue \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|tâna faqet që nisin me "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|tâna faqet që lidhen me "$1"]])',
+'searchsubtitleinvalid'     => "Keni kërkue '''$1'''",
 'noexactmatch'              => 'Faqja me atë titull nuk asht krijue
 
 Muneni me [[$1|fillu një artikull]] me kët titull.
 
 Ju lutem kërkoni {{SITENAME}}-n para se me krijue një artikull të ri se munet me kánë nën një titull tjetër.',
+'noexactmatch-nocreate'     => "'''Nuk ka faqe me titull \"\$1\".'''",
+'toomanymatches'            => 'Ka tepër shumë përputhje, provoni nji kërkesë mâ të ngushtë',
+'titlematches'              => 'Tituj që përputhen',
+'notitlematches'            => 'Nuk ka përputhje në tituj',
+'textmatches'               => 'Përputhje në tekst',
 'viewprevnext'              => 'Shikoni ($1) ($2) ($3).',
 'searchhelp-url'            => 'Help:Ndihmë',
 'search-result-size'        => '$1 ({{PLURAL:$2|1 fjalë|$2 fjalë}})',
@@ -874,7 +884,7 @@ Kjo nuk mundet me u zhbâ.',
 'withoutinterwiki' => 'Artikuj pa lidhje interwiki',
 
 # Miscellaneous special pages
-'nbytes'   => '$1 bytes',
+'nbytes'   => '$1 {{PLURAL:$1|byte|byte}}',
 'nlinks'   => '$1 lidhje',
 'nmembers' => '$1 anëtarë',
 'move'     => 'Zhvendose',

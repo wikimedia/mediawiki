@@ -23,7 +23,7 @@ $defaultUserOptionOverrides = array(
 $messages = array(
 # User preference toggles
 'tog-hideminor'          => 'ܛܫܝ ܫܘܚܠܦ̈ܐ ܙܥܘܪ̈ܐ ܒܫܘܚܠܦ̈ܐ ܚܕܬ̈ܐ',
-'tog-rememberpassword'   => 'ܕܟܘܪ ܥܠܠܬܝ ܥܠ ܗܢܐ ܚܫܘܒܐ',
+'tog-rememberpassword'   => 'ܕܟܘܪ ܥܠܠܬܝ ܥܠ ܚܫܘܒܬܐ ܗܕܐ',
 'tog-watchcreations'     => 'ܐܘܣܦ ܦܐܬܘܬ̈ܐ ܕܒܪܐ ܐܢܐ ܠܪ̈ܗܝܬܝ',
 'tog-watchdefault'       => 'ܐܘܣܦ ܦܐܬܘܬ̈ܐ ܕܫܚܠܦ ܐܢܐ ܠܪ̈ܗܝܬܝ',
 'tog-watchmoves'         => 'ܐܘܣܦ ܦܐܬܘܬ̈ܐ ܕܫܢܐ ܐܢܐ ܠܪ̈ܗܝܬܝ',
@@ -251,14 +251,14 @@ Note that some pages may continue to be displayed as if you were still logged in
 'yourname'                => 'ܫܡܐ ܕܡܦܠܚܢܐ:',
 'yourpassword'            => 'ܡܠܬܐ ܕܥܠܠܐ:',
 'yourpasswordagain'       => 'ܟܬܘܒ ܡܠܬܐ ܕܥܠܠܐ ܙܒܢܬܐ ܐܚܪܬܐ:',
-'remembermypassword'      => 'ܕܟܘܪ ܥܠܠܬܝ ܥܠ ܗܢܐ ܚܫܘܒܐ',
+'remembermypassword'      => 'ܕܟܘܪ ܥܠܠܬܝ ܥܠ ܚܫܘܒܬܐ ܗܕܐ',
 'login'                   => 'ܥܘܠ',
 'nav-login-createaccount' => 'ܥܘܠ / ܒܪܝ ܚܘܫܒܢܐ',
 'userlogin'               => 'ܥܘܠ / ܒܪܝ ܚܘܫܒܢܐ',
 'logout'                  => 'ܦܠܛܐ',
 'userlogout'              => 'ܦܠܘܛ',
 'notloggedin'             => 'ܠܐ ܥܠܝܠܐ',
-'nologin'                 => 'ܠܝܬ ܠܟ/ܠܟܝ ܚܘܫܒܢܐ؟ $1.',
+'nologin'                 => 'ܠܝܬ ܠܟ ܚܘܫܒܢܐ؟ $1.',
 'nologinlink'             => 'ܒܪܝ ܚܘܫܒܢܐ',
 'createaccount'           => 'ܒܪܝ ܚܘܫܒܢܐ',
 'gotaccount'              => 'ܐܝܬ ܠܟ ܚܘܫܒܢܐ؟ $1.',
@@ -475,7 +475,7 @@ Note that some pages may continue to be displayed as if you were still logged in
 'searchresultshead'           => 'ܒܨܝ',
 'recentchangesdays'           => 'ܝܘܡܬ̈ܐ ܠܚܙܝܐ ܒܫܘܚܠܦ̈ܐ ܚܕܬ̈ܐ:',
 'recentchangescount'          => 'ܡܢܝܢܐ ܕܫܘܚܠܦ̈ܐ ܠܚܙܝܐ ܪܫܐܝܬ:',
-'savedprefs'                  => 'ܓܒܝܬ̈ܐ ܕܝܠܟ/ܕܝܠܟܝ ܐܬܢܛܪܬ.',
+'savedprefs'                  => 'ܓܒܝܬ̈ܐ ܕܝܠܟ ܐܬܢܛܪܬ.',
 'prefs-namespaces'            => 'ܚܩܠܬ̈ܐ',
 'defaultns'                   => 'ܐܘ ܒܨܝ ܒܚܩܠܬ̈ܐ ܗܢܝܢ',
 'prefs-files'                 => 'ܠܦܦ̈ܐ',
@@ -616,7 +616,7 @@ Note that some pages may continue to be displayed as if you were still logged in
 'upload-file-error' => 'ܦܘܕܐ ܓܘܝܐ',
 
 'license-nopreview'  => '(ܠܝܬ ܚܝܪܬܐ ܩܕܡܝܬܐ)',
-'upload_source_file' => ' (ܠܦܦܐ ܥܠ ܚܫܘܒܐ ܕܝܠܟ)',
+'upload_source_file' => ' (ܠܦܦܐ ܥܠ ܚܫܘܒܬܐ ܕܝܠܟ)',
 
 # Special:ListFiles
 'imgfile'        => 'ܠܦܦܐ',
@@ -653,6 +653,9 @@ Note that some pages may continue to be displayed as if you were still logged in
 
 # MIME search
 'download' => 'ܢܚܬ',
+
+# Unwatched pages
+'unwatchedpages' => 'ܦܐܬܘܬ̈ܐ ܠܐ ܪ̈ܗܝܬܐ',
 
 # List redirects
 'listredirects' => 'ܒܪܒܝܢ ܕܨܘܝܒ̈ܐ',
@@ -701,11 +704,16 @@ Note that some pages may continue to be displayed as if you were still logged in
 'shortpages'              => 'ܦܐܬܘܬ̈ܐ ܟܪ̈ܝܬܐ',
 'longpages'               => 'ܦܐܬܘܬ̈ܐ ܐܪ̈ܝܟܬܐ',
 'listusers'               => 'ܒܪܒܝܢ ܕܗܕܡ̈ܐ',
+'listusers-editsonly'     => 'ܚܘܝ ܡܦܠܚܢ̈ܐ ܥܡ ܫܘܚܠܦ̈ܐ ܒܠܚܘܕ',
+'listusers-creationsort'  => 'ܛܟܣ ܒܣܝܩܘܡܐ ܕܒܪܝܐ',
+'usereditcount'           => '$1 {{PLURAL:$1|ܫܘܚܠܦܐ|ܫܘܚܠܦ̈ܐ}}',
+'usercreated'             => 'ܒܪܐ ܒܣܝܩܘܡ $1 ܫܥܬܐ $2',
 'newpages'                => 'ܦܐܬܘ̈ܬܐ ܚܕ̈ܬܬܐ',
 'newpages-username'       => 'ܫܡܐ ܕܡܦܠܚܢܐ:',
 'ancientpages'            => 'ܦܐܬܘܬ̈ܐ ܥܬܝܩ ܡܢ ܟܠ',
 'move'                    => 'ܫܢܝ',
 'movethispage'            => 'ܫܢܝ ܦܐܬܐ ܗܕܐ',
+'notargettitle'           => 'ܠܐ ܢܘܦܐ',
 'pager-newer-n'           => '{{PLURAL:$1|1 ܚܕܬ̈ܐ 1|$1 ܚܕܬ̈ܐ}}',
 'pager-older-n'           => '{{PLURAL:$1|1 ܥܬܝܩ̈ܐ 1|$1 ܥܬܝܩ̈ܐ}}',
 'suppress'                => 'ܚܝܘܪܐ',
@@ -722,6 +730,8 @@ Note that some pages may continue to be displayed as if you were still logged in
 # Special:AllPages
 'allpages'          => 'ܟܠ ܦܐܬܘ̄ܬܐ',
 'alphaindexline'    => '$1 ܠ $2',
+'allpagesfrom'      => 'ܚܘܝ ܦܐܬܘܬ̈ܐ ܕܫܪܐ ܥܡ:',
+'allpagesto'        => 'ܚܘܝ ܦܐܬܘܬ̈ܐ ܕܫܠܡ ܥܡ:',
 'allarticles'       => 'ܟܠ ܡܓܠ̈ܐ',
 'allinnamespace'    => 'ܟܠ ܦܐܬܘܬ̈ܐ (ܚܩܠܐ ܕ $1)',
 'allnotinnamespace' => 'ܟܠ ܦܐܬܘܬ̈ܐ (ܠܐ ܒܚܩܠܐ ܕ $1)',
@@ -731,7 +741,9 @@ Note that some pages may continue to be displayed as if you were still logged in
 'allpages-bad-ns'   => '{{SITENAME}} ܠܝܬ ܠܗ ܚܩܠܐ "$1".',
 
 # Special:Categories
-'categories' => 'ܣܕܪ̈ܐ',
+'categories'                    => 'ܣܕܪ̈ܐ',
+'special-categories-sort-count' => 'ܛܟܣ ܒܡܢܝܢܐ',
+'special-categories-sort-abc'   => 'ܛܟܣ ܗܓܝܢܐܝܬ',
 
 # Special:DeletedContributions
 'deletedcontributions'       => 'ܫܘܬܦܘܝܬ̈ܐ ܕܡܦܠܚܢܐ ܫܝܦܬ̈ܐ',
@@ -741,6 +753,12 @@ Note that some pages may continue to be displayed as if you were still logged in
 'linksearch'    => 'ܐܣܘܪܐ ܒܪܝܐ',
 'linksearch-ns' => 'ܚܩܠܐ:',
 'linksearch-ok' => 'ܒܨܝ',
+
+# Special:ListUsers
+'listusers-submit' => 'ܚܘܝ',
+
+# Special:ActiveUsers
+'activeusers-from' => 'ܚܘܝ ܡܦܠܚܢ̈ܐ ܕܫܪܐ ܥܡ:',
 
 # Special:Log/newusers
 'newuserlog-create-entry'  => 'ܚܘܫܒܢܐ ܕܡܦܠܚܢܐ ܚܕܬܐ',

@@ -652,7 +652,7 @@ $2',
 'revisiondelete'              => '刪除/反刪除修改',
 'revdelete-nooldid-title'     => '冇目標修訂',
 'revdelete-nooldid-text'      => '倷冇话箇隻操作嗰目标修改。',
-'revdelete-selected'          => "'''揀'''$1'''嗰$2回修訂:'''",
+'revdelete-selected'          => "'''揀[[:$1]]嗰$2回修訂:'''",
 'logdelete-selected'          => "'''揀'''$1'''嗰$2隻日誌事件:'''",
 'revdelete-text'              => "'''刪吥嗰改動哈會到頁面歷史裡頭顯示, 但公眾瀏覽伓正佢嗰內容。'''
 

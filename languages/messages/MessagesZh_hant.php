@@ -720,11 +720,11 @@ $2',
 <span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} 搜索有關日誌]，
 或[{{fullurl:{{FULLPAGENAME}}|action=edit}} 編輯此頁]</span>。',
 'userpage-userdoesnotexist'        => '用戶帳號「$1」未曾創建。請在創建／編輯這個頁面前先檢查一下。',
-'clearyourcache'                   => "'''注意 - 在儲存以後, 您必須清除瀏覽器的快取才能看到所作出的改變。'''
-'''Mozilla / Firefox / Safari:''' 按著 ''Shift'' 再點擊''重新整理''，或按下''Ctrl-F5''或''Ctrl-R''，(在Macintosh上按下''Command-R'')；
-'''Konqueror:''' 只需點擊 ''重新整理''或按下''F5''；
-'''Opera:''' 在 ''工具→設定'' 中完整地清除它們的快取；
-'''Internet Explorer:''' 按著 ''Ctrl'' 再點擊 ''重新整理''，或按下 ''Ctrl-F5''。",
+'clearyourcache'                   => "'''注意 - 在儲存以後，您必須清除瀏覽器的快取才能看到所作出的改變。'''
+'''Mozilla / Firefox / Safari''': 按著 ''Shift'' 再點擊''重新整理''，或按下''Ctrl-F5''或''Ctrl-R''(在Macintosh上按下''Command-R'')；
+'''Konqueror''': 只需點擊 ''重新整理''或按下''F5''；
+'''Opera''': 在 ''工具→設定'' 中完整地清除它們的快取，或按下''Alt-F5''；
+'''Internet Explorer''': 按著 ''Ctrl'' 再點擊 ''重新整理''，或按下 ''Ctrl-F5''。",
 'usercssjsyoucanpreview'           => "'''提示:''' 在保存前請用'顯示預覽'按鈕來測試您新的 CSS/JS 。",
 'usercsspreview'                   => "'''注意您只是在預覽您的個人 CSS。'''
 '''還沒有儲存﹗'''",

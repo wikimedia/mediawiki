@@ -646,8 +646,8 @@ Hãy kiểm tra lại chính tả, hoặc [[Special:UserLogin/signup|mở tài k
 'nouserspecified'            => 'Bạn phải đưa ra tên đăng ký.',
 'wrongpassword'              => 'Mật khẩu sai. Xin vui lòng nhập lại.',
 'wrongpasswordempty'         => 'Bạn chưa gõ vào mật khẩu. Xin thử lần nữa.',
-'passwordtooshort'           => 'Mật khẩu của bạn không hợp lệ hoặc quá ngắn.
-Nó phải có ít nhất $1 ký tự.',
+'passwordtooshort'           => 'Mật khẩu của bạn quá ngắn.
+Nó phải có ít nhất {{PLURAL:$1|1 ký tự|$1 ký tự}}.',
 'password-name-match'        => 'Mật khẩu của bạn phải khác với tên người dùng của bạn.',
 'mailmypassword'             => 'Gửi mật khẩu mới qua thư điện tử',
 'passwordremindertitle'      => 'Mật khẩu tạm thời cho {{SITENAME}}',
