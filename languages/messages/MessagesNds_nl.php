@@ -703,8 +703,9 @@ Kiek de schriefwieze effen nao of [[Special:UserLogin/signup|maak een nieje gebr
 'nouserspecified'            => 'Vul asjeblief een naam in',
 'wrongpassword'              => "verkeerd wachwoord, prebeer 't opniej.",
 'wrongpasswordempty'         => "Gien wachwoord in-evoerd. Prebeer 't opniej.",
-'passwordtooshort'           => "Wachwoord is te kort.
-'t Mut uut minstens $1 {{PLURAL:$1|teken|tekens}} bestaon.",
+'passwordtooshort'           => "'t Wachwoord is te kort.
+'t Mut uut teminsens {{PLURAL:$1|1 teken|$1 tekens}} bestaon.",
+'password-name-match'        => 'Joew wachwoord en gebrukersnaam maggen neet liekeleens ween.',
 'mailmypassword'             => 'Niej wachwoord opsturen',
 'passwordremindertitle'      => 'niej tiedelik wachwoord veur {{SITENAME}}',
 'passwordremindertext'       => 'Iemand vanof \'t IP-adres $1 (werschienlijk jiezelf) hef evreugen 
@@ -2052,9 +2053,9 @@ Opmarkingen en veerdere hulpe:
 'deleteotherreason'      => 'Aandere/extra rejen:',
 'deletereasonotherlist'  => 'Aandere rejen',
 'deletereason-dropdown'  => "*Rejens veur 't vortdoon van pagina's
-** op anvrage van de auteur
-** schending van de auteursrechen
-** vandelisme",
+** Op vrage van de auteur
+** Schending van de auteursrechen
+** Vandelisme",
 'delete-edit-reasonlist' => "Rejens veur 't vortdoon bewarken",
 'delete-toobig'          => "Disse pagina hef een lange bewarkingsgeschiedenisse, meer as $1 {{PLURAL:$1|versie|versies}}.
 't Vortdoon van dit soort pagina's is mit rechen bepark um 't per ongelok versteuren van de warking van {{SITENAME}} te veurkoemen.",

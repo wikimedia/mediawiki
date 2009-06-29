@@ -631,6 +631,7 @@ Por favor, insira outro.',
 Por favor, inténteo de novo.',
 'passwordtooshort'           => 'O seu contrasinal é demasiado curto.
 Debe conter, como mínimo, {{PLURAL:$1|1 carácter|$1 caracteres}}.',
+'password-name-match'        => 'O seu contrasinal debe ser diferente do seu nome de usuario.',
 'mailmypassword'             => 'Enviádeme un contrasinal novo por correo',
 'passwordremindertitle'      => 'Novo contrasinal temporal para {{SITENAME}}',
 'passwordremindertext'       => 'Alguén (probablemente vostede, desde o enderezo IP $1) solicitou un novo
