@@ -767,6 +767,13 @@ $wgMemCachedPersistent = false;
 $wgUseLocalMessageCache = false;
 
 /**
+ * Defines format of local cache
+ * true - Serialized object
+ * false - PHP source file (Warning - security risk)
+ */
+$wgLocalMessageCacheSerialized = true;
+
+/**
  * Localisation cache configuration. Associative array with keys:
  *     class:       The class to use. May be overridden by extensions.
  *
