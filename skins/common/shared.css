@@ -275,8 +275,7 @@ span.searchalttitle {
 
 div.searchdidyoumean {
 	font-size: 127%;
-	margin-bottom: 1ex;
-	margin-top: 1ex;
+	margin-top: 0.8em;
 	/* Note that this color won't affect the link, as desired. */
 	color: #c00;
 }
