@@ -35,8 +35,13 @@ class SkinVector extends SkinTemplate {
 	 * @param object $out Output page to add styles to
 	 */
 	public function setupSkinUserCss( OutputPage $out ) {
+		global $wgContLang;
 		// Append to the default screen common & print styles...
-		$out->addStyle( 'vector/main.css', 'screen' );
+		if ( $wgContLang->isRTL() ) {
+			$out->addStyle( 'vector/main-rtl.css', 'screen' );
+		} else {
+			$out->addStyle( 'vector/main-ltr.css', 'screen' );
+		}
 		// Add common styles
 		parent::setupSkinUserCss( $out );
 	}
