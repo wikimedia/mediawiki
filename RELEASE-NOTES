@@ -217,6 +217,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Attempts to restrict reading of pages while anonymous viewing is allowed
   via extensions not using the userCan hook and via $wgRevokePermissions now work.
 * (bug 8445) Multiple-character search terms are now handled properly for Chinese
+* (bug 19450) Use formatNum for "Number of edits" in Special:Preferences
 
 == API changes in 1.16 ==
 
