@@ -1,0 +1,872 @@
+/* Framework */
+html,
+body {
+	height: 100%;
+	margin: 0;
+	padding: 0;
+	font-family: sans-serif;
+	font-size: small;
+}
+body {
+	background-image: url(images/page-base.png);
+}
+/* Content */
+div#content {
+	margin-right: 12em;
+	padding: 1em;
+	background-image: url(images/content-base.png);
+	background-position: top right;
+	background-repeat: repeat-y;
+	background-color: white;
+}
+/* Head */
+div#page-base {
+	height: 6em;
+	background-color: white;
+	background-image: url(images/page-fade.png);
+	background-position: bottom right;
+	background-repeat: repeat-x;
+}
+div#head-base {
+	margin-top: -6em;
+	margin-right: 12em;
+	height: 6em;
+	background-image: url(images/head-base.png);
+	background-position: bottom right;
+	background-repeat: repeat-x;
+}
+div#head {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+}
+div#head ul,
+div#head li {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+div#head h5 {
+	margin: 0;
+	padding: 0;
+}
+	/* Personal */
+	div#personal {
+		position: absolute;
+		top: 0;
+		left: 0.75em;
+	}
+	div#personal h5 {
+		display: none;
+	}
+	div#personal li {
+		float: right;
+		margin-right: 0.75em;
+		margin-top: 0.5em;
+		font-size: 0.9em;
+	}
+	div#left-navigation {
+		position: absolute;
+		right: 12em;
+		top: 3em;
+	}
+	div#right-navigation {
+		float: left;
+		margin-top: 3em;
+	}
+	/* Navigation Labels */
+	div#namespaces h5,
+	div#variants h5,
+	div#views h5,
+	div#actions h5 span,
+	div#search h5 {
+		display: none;
+	}
+	/* Namespaces and Views */
+	div#namespaces,
+	div#views {
+		float: right;
+		background-image: url(images/tab-break.png);
+		background-position: bottom right;
+		background-repeat: no-repeat;
+		padding-right: 1px;
+	}
+	div#namespaces ul,
+	div#views ul {
+		float: right;
+		height: 100%;
+	}
+	/* OVERRIDDEN BY COMPLIANT BROWSERS */
+	div#namespaces ul li,
+	div#views ul li {
+		display: inline-block;
+		float: right;
+		height: 100%;
+		background-image: url(images/tab-normal-fade.png);
+		background-position: bottom right;
+		background-repeat: repeat-x;
+	}
+	/* IGNORED BY IE6 */
+	div#namespaces ul > li,
+	div#views ul > li {
+		display: block;
+	}
+	div#namespaces li.selected,
+	div#views li.selected {
+		background-image: url(images/tab-current-fade.png);
+	}
+	/* OVERRIDDEN BY COMPLIANT BROWSERS */
+	div#namespaces li a,
+	div#views li a {
+		display: inline-block;
+		height: 3em;
+		padding-right: 0.5em;
+		padding-left: 0.5em;
+		background-image: url(images/tab-break.png);
+		background-position: bottom left;
+		background-repeat: no-repeat;
+	}
+	/* IGNORED BY IE6 */
+	div#namespaces li > a,
+	div#views li > a {
+		display: block;
+	}
+	/* OVERRIDDEN BY COMPLIANT BROWSERS */
+	div#namespaces a span,
+	div#views a span {
+		color: #0645ad;
+		display: inline-block;
+		padding-top: 1.25em;
+		cursor: pointer;
+	}
+	/* IGNORED BY IE6 */
+	div#namespaces a > span,
+	div#views a > span {
+		float: right;
+		display: block;
+	}
+	div#namespaces li.selected a span,
+	div#views li.selected a:visited span {
+		color: #333333;
+		cursor: default;
+		text-decoration: none;
+	}
+	div#namespaces li.new a span,
+	div#namespaces li.new a:visited span{
+		color: #a55858;
+	}
+	/* Variants and Actions */
+	div#variants,
+	div#actions {
+		float: right;
+		background-image: url(images/arrow-down-icon.png);
+		background-position: center center;
+		background-repeat: no-repeat;
+	}
+	div#variants h5,
+	div#actions h5 {
+		float: right;
+	}
+	/* OVERRIDDEN BY COMPLIANT BROWSERS */
+	div#variants h5 a,
+	div#actions h5 a {
+		display: inline-block;
+		width: 24px;
+		height: 3em;
+		text-decoration: none;
+		background-image: url(images/tab-break.png);
+		background-position: bottom left;
+		background-repeat: no-repeat;
+	}
+	/* IGNORED BY IE6 */
+	div#variants h5 > a,
+	div#actions h5 > a {
+		display: block;
+	}
+	div#variants div.menu,
+	div#actions div.menu {
+		display: none;
+		clear: both;
+	}
+	div#variants:hover div.menu,
+	div#actions:hover div.menu {
+		display: block;
+	}
+	div#variants ul,
+	div#actions ul {
+		position: absolute;
+		background-color: white;
+		border: solid 1px silver;
+		border-top-width: 0;
+		padding: 0;
+		margin: 0;
+		margin-right: -1px;
+	}
+	/* OVERRIDDEN BY COMPLIANT BROWSERS */
+	div#variants:hover li a,
+	div#actions li a {
+		display: inline-block;
+		padding: 0.5em;
+	}
+	/* IGNORED BY IE6 */
+	div#variants:hover li > a,
+	div#actions li > a {
+		display: block;
+	}
+	/* Search */
+	div#search {
+		float: right;
+		margin-left: 0.75em;
+	}
+	div#search form,
+	div#search input {
+		float: right;
+		margin-top: 0.4em;
+		margin-right: 0.25em;
+	}
+/* Panel */
+div#panel {
+	position: absolute;
+	top: 12em;
+	width: 12em;
+	right: 0;
+}
+	div#panel div.portal {
+		padding-top: 1.5em;
+	}
+	div#panel div.portal h5 {
+		font-weight: normal;
+		color: #666666;
+		padding: 0.5em;
+		padding-top: 0;
+		padding-right: 1.25em;
+		cursor: default;
+	}
+	div#panel div.portal div.body {
+		margin-top: 0.25em;
+		padding-top: 0.5em;
+		margin-right: 1.25em;
+		background-image: url(images/portal-break-rtl.png);
+		background-repeat: no-repeat;
+		background-position: top right;
+	}
+	div#panel div.portal div.body ul {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
+	div#panel div.portal div.body ul li {
+		padding: 0;
+		padding-bottom: 0.5em;
+		margin: 0;
+		overflow: hidden;
+	}
+	div#panel div.portal div.body ul li a {
+		color: #0645ad;
+	}
+	div#panel div.portal div.body ul li a:visited {
+		color: #0b0080;
+	}
+/* Foot */
+div#foot {
+	margin-right: 12em;
+	margin-top: 0;
+	padding: 0.75em;
+	background-image: url(images/foot-base.png);
+	background-position: top right;
+	background-repeat: repeat-x;
+}
+div#foot ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+div#foot ul li {
+	margin: 0;
+	padding: 0;
+	padding-top: 0.5em;
+	padding-bottom: 0.5em;
+	color: #333333;
+	font-size: 0.9em;
+}
+div#foot ul#foot-icons {
+	float: left;
+}
+div#foot ul#foot-places {
+	float: right;
+}
+div#foot ul#foot-icons li {
+	float: right;
+	margin-right: 0.5em;
+	line-height: 2em;
+}
+div#foot ul#foot-places li {
+	float: right;
+	margin-left: 0.5em;
+	line-height: 2em;
+}
+/* Logo */
+div#logo {
+	position: absolute;
+	top: 0;
+	right: 0;
+	height: 12em;
+	width: 12em;
+}
+div#logo a {
+	display: block;
+	width: 12em;
+	height: 12em;
+	background-repeat: no-repeat;
+	background-position: 50% 50%;
+	text-decoration: none;
+}
+
+/*
+ * 
+ * The following code is highly modified from monobook. It would be nice if the
+ * preftoc id was more human readable like preferences-toc for instance,
+ * howerver this would require backporting the other skins.
+ */
+
+/* Preferences */
+#preftoc {
+	/* Tabs */
+	float: right;
+	clear: both;
+	margin: 0 !important;
+	padding: 0 !important;
+	height: 2.25em;
+	background-image: url(images/preferences-break.png);
+	background-position: bottom right;
+	background-repeat: no-repeat;
+}
+	#preftoc li {
+		/* Tab */
+		float: right;
+		margin: 0;
+		padding: 0;
+		padding-left: 1px;
+		height: 2.25em;
+		white-space: nowrap;
+		list-style-type: none;
+		list-style-image: none;
+		background-image: url(images/preferences-break.png);
+		background-position: bottom left;
+		background-repeat: no-repeat;
+	}
+	/* IGNORED BY IE6 */
+	#preftoc li:first-child {
+		margin-right: 1px;
+	}
+	#preftoc a,
+	#preftoc a:active {
+		display: inline-block;
+		position: relative;
+		color: #0645ad;
+		padding: 0.5em;
+		text-decoration: none;
+		background-image: none;
+	}
+	#preftoc a:hover {
+		text-decoration: underline;
+	}
+	#preftoc li.selected a {
+		cursor: default;
+		background-image: url(images/preferences-fade.png);
+		background-position: bottom;
+		background-repeat: repeat-x;
+		color: #333333;
+		cursor: default;
+		text-decoration: none;
+	}
+#preferences {
+	float: right;
+	zoom: 1;
+	width: 100%;
+	margin: 0;
+	clear: both;
+	border: solid 1px #cccccc;
+	background-color: #f9f9f9;
+	background-image: url(images/preferences-base.png);
+}
+#preferences fieldset.prefsection {
+	border: none;
+	padding: 0;
+	margin: 1em;
+}
+#preferences fieldset.prefsection fieldset {
+	border: none;
+	border-top: solid 1px #cccccc;
+}
+#preferences legend {
+	color: #666666;
+}
+#preferences fieldset.prefsection legend.mainLegend {
+	display: none;
+}
+#preferences td {
+	padding-right: 0.5em;
+	padding-left: 0.5em;
+}
+#preferences td.htmlform-tip {
+	font-size: x-small;
+	padding: .2em 2em;
+	color: #666666;
+}
+#preferences div.mw-prefs-buttons {
+	padding: 1em;
+}
+#preferences div.mw-prefs-buttons input {
+	margin-left: 0.25em;
+}
+
+/*
+ * 
+ * The following code is slightly modified from monobook
+ * 
+ */
+
+/* Links */
+a {
+	text-decoration: none;
+	color: #0645ad;
+	background: none;
+}
+a:visited {
+	color: #0b0080;
+}
+a:active {
+	color: #faa700;
+}
+a:hover {
+	text-decoration: underline;
+}
+a.stub {
+	color: #772233;
+}
+a.new, #p-personal a.new {
+	color: #ba0000;
+}
+a.new:visited, #p-personal a.new:visited {
+	color: #a55858;
+}
+
+/* Inline Elements */
+img {
+	border: none;
+	vertical-align: middle;
+}
+hr {
+	height: 1px;
+	color: #aaa;
+	background-color: #aaa;
+	border: 0;
+	margin: .2em 0 .2em 0;
+}
+
+/* Structural Elements */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	color: black;
+	background: none;
+	font-weight: normal;
+	margin: 0;
+	padding-top: .5em;
+	padding-bottom: .17em;
+	border-bottom: 1px solid #aaa;
+	width: auto;
+}
+h1 { font-size: 188%; }
+h1 .editsection { font-size: 53%; }
+h2 { font-size: 150%; }
+h2 .editsection { font-size: 67%; }
+h3,
+h4,
+h5,
+h6 {
+	border-bottom: none;
+	font-weight: bold;
+}
+h3 { font-size: 132%; }
+h3 .editsection { font-size: 76%; font-weight: normal; }
+h4 { font-size: 116%; }
+h4 .editsection { font-size: 86%; font-weight: normal; }
+h5 { font-size: 100%; }
+h5 .editsection { font-weight: normal; }
+h6 { font-size: 80%;  }
+h6 .editsection { font-size: 125%; font-weight: normal; }
+p {
+	margin: .4em 0 .5em 0;
+	line-height: 1.5em;
+}
+	p img {
+		margin: 0;
+	}
+abbr,
+acronym,
+.explain {
+	border-bottom: 1px dotted black;
+	color: black;
+	background: none;
+	cursor: help;
+}
+q {
+	font-family: Times, "Times New Roman", serif;
+	font-style: italic;
+}
+/* Disabled for now
+blockquote {
+	font-family: Times, "Times New Roman", serif;
+	font-style: italic;
+}*/
+code {
+	background-color: #f9f9f9;
+}
+pre {
+	padding: 1em;
+	border: 1px dashed #2f6fab;
+	color: black;
+	background-color: #f9f9f9;
+	line-height: 1.1em;
+}
+div#content ul {
+	line-height: 1.5em;
+	list-style-type: square;
+	margin: .3em 1.5em 0 0;
+	padding: 0;
+	list-style-image: url(images/bullet-icon.png);
+}
+div#content ol {
+	line-height: 1.5em;
+	margin: .3em 3.2em 0 0;
+	padding: 0;
+	list-style-image: none;
+}
+div#content li {
+	margin-bottom: .1em;
+}
+div#content dt {
+	font-weight: bold;
+	margin-bottom: .1em;
+}
+div#content dl {
+	margin-top: .2em;
+	margin-bottom: .5em;
+}
+div#content dd {
+	line-height: 1.5em;
+	margin-right: 2em;
+	margin-bottom: .1em;
+}
+/* Tables */
+div#content table {
+	font-size: 100%;
+	color: black;
+	/* we don't want the bottom borders of <h2>s to be visible through
+	 * floated tables */
+	background-color: white;
+}
+div#content fieldset table {
+	/* but keep table layouts in forms clean... */
+	background: none;
+}
+/* Forms */
+div#content fieldset {
+	border: 1px solid #2f6fab;
+	margin: 1em 0 1em 0;
+	padding: 0 1em 1em;
+	line-height: 1.5em;
+}
+	fieldset.nested {
+		margin: 0 0 0.5em 0;
+		padding: 0 0.5em 0.5em;
+	}
+div#content legend {
+	padding: .5em;
+	font-size: 95%;
+}
+div#content form {
+	border: none;
+	margin: 0;
+}
+div#content textarea {
+	width: 100%;
+	padding: .1em;
+}
+div#content select {
+	vertical-align: top;
+}
+/* Table of Contents */
+#toc,
+.toc,
+.mw-warning {
+	border: 1px solid #aaa;
+	background-color: #f9f9f9;
+	padding: 5px;
+	font-size: 95%;
+}
+#toc h2,
+.toc h2 {
+	display: inline;
+	border: none;
+	padding: 0;
+	font-size: 100%;
+	font-weight: bold;
+}
+#toc #toctitle,
+.toc #toctitle,
+#toc .toctitle,
+.toc .toctitle {
+	text-align: center;
+}
+#toc ul,
+.toc ul {
+	list-style-type: none;
+	list-style-image: none;
+	margin-right: 0;
+	padding-right: 0;
+	text-align: right;
+}
+#toc ul ul,
+.toc ul ul {
+	margin: 0 2em 0 0;
+}
+#toc .toctoggle,
+.toc .toctoggle {
+	font-size: 94%;
+}
+/* Images */
+div.floatright, table.floatright {
+	clear: left;
+	float: left;
+	position: relative;
+	margin: 0 .5em .5em 0;
+	border: 0;
+}
+div.floatright p { font-style: italic; }
+div.floatleft, table.floatleft {
+	float: right;
+	clear: right;
+	position: relative;
+	margin: 0 0 .5em .5em;
+	border: 0;
+}
+div.floatleft p { font-style: italic; }
+/* Thumbnails */
+div.thumb {
+	margin-bottom: .5em;
+	border-style: solid;
+	border-color: white;
+	width: auto;
+}
+div.thumbinner {
+	border: 1px solid #ccc;
+	padding: 3px !important;
+	background-color: #f9f9f9;
+	font-size: 94%;
+	text-align: center;
+	overflow: hidden;
+}
+html .thumbimage {
+	border: 1px solid #ccc;
+}
+html .thumbcaption {
+	border: none;
+	text-align: right;
+	line-height: 1.4em;
+	padding: 3px !important;
+	font-size: 94%;
+}
+div.magnify {
+	float: left;
+	border: none !important;
+	background: none !important;
+}
+div.magnify a, div.magnify img {
+	display: block;
+	border: none !important;
+	background: none !important;
+}
+div.tright {
+	clear: left;
+	float: left;
+	border-width: .5em 1.4em .8em 0;
+}
+div.tleft {
+	float: right;
+	clear: right;
+	margin-left: .5em;
+	border-width: .5em 0 .8em 1.4em;
+}
+img.thumbborder {
+	border: 1px solid #dddddd;
+}
+.hiddenStructure {
+	display: none;
+}
+/* Warning */
+.mw-warning {
+	margin-right: 50px;
+	margin-left: 50px;
+	text-align: center;
+}
+/* User Message */
+.usermessage {
+	background-color: #ffce7b;
+	border: 1px solid #ffa500;
+	color: black;
+	font-weight: bold;
+	margin: 2em 0 1em;
+	padding: .5em 1em;
+	vertical-align: middle;
+}
+/* Site Notice */
+#siteNotice {
+	text-align: center;
+	font-size: 95%;
+	padding-top: 0.9em;
+}
+	#siteNotice p {
+		margin: 0;
+		padding: 0;
+	}
+/* Categories */
+.catlinks {
+	border: 1px solid #aaa;
+	background-color: #f9f9f9;
+	padding: 5px;
+	margin-top: 1em;
+	clear: both;
+}
+/* Sub-navigation */
+#siteSub {
+	display: none;
+}
+#jump-to-nav {
+	display: none;
+}
+#contentSub, #contentSub2 {
+	font-size: 84%;
+	line-height: 1.2em;
+	margin: 0 1em 1.4em 0;
+	color: #7d7d7d;
+	width: auto;
+}
+span.subpages {
+	display: block;
+}
+/* Emulate Center */
+.center {
+	width: 100%;
+	text-align: center;
+}
+*.center * {
+	margin-right: auto;
+	margin-left: auto;
+}
+/* Small for tables and similar */
+.small, .small * {
+	font-size: 94%;
+}
+table.small {
+	font-size: 100%;
+}
+/* Edge Cases for Content */
+#content h1, #content h2 {
+	margin-bottom: .6em;
+}
+#content h3, #content h4, #content h5 {
+	margin-bottom: .3em;
+}
+div.firstHeading {
+	padding-top: 0;
+	margin-top: 0;
+}
+div.firstHeading h1 {
+	padding-top: 0;
+	margin-top: 0;
+	padding-top: 0;
+	margin-bottom: 0.1em;
+	line-height: 1.2em;
+	padding-bottom: 0;
+}
+#content a.external,
+#content a[href ^="gopher://"] {
+	background: url(images/external-link-rtl-icon.png) center left no-repeat;
+	padding: 0 0 0 13px;
+}
+#content a[href ^="https://"],
+.link-https {
+	background: url(images/lock-icon.png) center left no-repeat;
+	padding: 0 0 0 18px;
+}
+#content a[href ^="mailto:"],
+.link-mailto {
+	background: url(images/mail-icon.png) center left no-repeat;
+	padding: 0 0 0 18px;
+}
+#content a[href ^="news://"] {
+	background: url(images/news-icon.png) center left no-repeat;
+	padding: 0 0 0 18px;
+}
+#content a[href ^="ftp://"],
+.link-ftp {
+	background: url(images/file-icon.png) center left no-repeat;
+	padding: 0 0 0 18px;
+}
+#content a[href ^="irc://"],
+#content a.extiw[href ^="irc://"],
+.link-irc {
+	background: url(images/talk-icon.png) center left no-repeat;
+	padding: 0 0 0 18px;
+}
+#content a.external[href $=".ogg"], #content a.external[href $=".OGG"],
+#content a.external[href $=".mid"], #content a.external[href $=".MID"],
+#content a.external[href $=".midi"], #content a.external[href $=".MIDI"],
+#content a.external[href $=".mp3"], #content a.external[href $=".MP3"],
+#content a.external[href $=".wav"], #content a.external[href $=".WAV"],
+#content a.external[href $=".wma"], #content a.external[href $=".WMA"],
+.link-audio {
+	background: url("images/audio-icon.png") center left no-repeat;
+	padding: 0 0 0 18px;
+}
+#content a.external[href $=".ogm"], #content a.external[href $=".OGM"],
+#content a.external[href $=".avi"], #content a.external[href $=".AVI"],
+#content a.external[href $=".mpeg"], #content a.external[href $=".MPEG"],
+#content a.external[href $=".mpg"], #content a.external[href $=".MPG"],
+.link-video {
+	background: url("images/video-icon.png") center left no-repeat;
+	padding: 0 0 0 18px;
+}
+#content a.external[href $=".pdf"], #content a.external[href $=".PDF"],
+#content a.external[href *=".pdf#"], #content a.external[href *=".PDF#"],
+#content a.external[href *=".pdf?"], #content a.external[href *=".PDF?"],
+.link-document {
+	background: url("images/document-icon.png") center left no-repeat;
+	padding: 0 0 0 18px;
+}
+/* Interwiki Styling  (Disabled) */
+#content a.extiw,
+#content a.extiw:active {
+	color: #36b;
+	background: none;
+	padding: 0;
+}
+#content a.external {
+	color: #36b;
+}
+#content .plainlinks a {
+	/* this can be used in the content area to switch off special external link
+	 * styling */
+	background: none !important;
+	padding: 0 !important;
+}
+#content .printfooter {
+	display: none;
+}
