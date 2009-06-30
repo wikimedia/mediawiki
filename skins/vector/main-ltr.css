@@ -869,3 +869,12 @@ h1#firstHeading {
 #content .printfooter {
 	display: none;
 }
+
+
+li#pt-userpage,
+li#pt-anonuserpage,
+li#pt-login {
+	background: url(images/user-icon.png) left top no-repeat;
+	padding-left: 15px !important;
+	text-transform: none;
+}
