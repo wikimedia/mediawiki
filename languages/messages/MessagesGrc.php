@@ -447,8 +447,8 @@ $messages = array(
 'wrongpassword'              => 'Εἰσηγμένον σύνθημα ἐσφαλμένον. Πείρασον πάλιν.',
 'wrongpasswordempty'         => 'Σύνθημα οὐκ ἔγραψας.
 Αὖθις πείρασον.',
-'passwordtooshort'           => 'Τὸ σύνθημά σου ἄκυρον ἢ λίαν βραχὺ ἐστίν.
-Δεῖ αὐτὸ ἔχειν τοὐλάχιστον {{PLURAL:$1|1 χαρακτὴρ|$1 χαρακτῆρες}} καὶ εἶναι διάφορον τοῦ ὀνόματος χρωμένου σου.',
+'passwordtooshort'           => 'Τὸ σύνθημά σου ἄκυρον ἢ λίαν βραχύ ἐστιν.
+Δεῖ αὐτὸ ἔχειν τοὐλάχιστον {{PLURAL:$1|1 χαρακτὴρ|$1 χαρακτῆρες}}.',
 'mailmypassword'             => 'Τὸ νέον σύνθημα μέσῳ ἠλεκτρονικῆς ἐπιστολῆς πέμψειν',
 'passwordremindertitle'      => 'Νέον ἐφήμερον σύνθημα διὰ {{SITENAME}}',
 'passwordremindertext'       => "Τίς (πιθανῶς σύ, ἔχων τὴν IP-διευθύνσιν \$1) ἐζήτησεν τὴν πρὸς σέ ἀποστολὴν νέου συνθήματος διὰ τὸν ἱστότοπον {{SITENAME}} (\$4). Τὸ τρέχον σύνθημα διὰ τὸν χρώμενον \"\$2\" ἐν τῷ παρόντι ὡς \"\$3\" ἐτέθη. Εἰ ἥδε ἐστὶ πρόθεσίς σου, δεῖ σοι ''νῦν'' συνδεῖσθαι τε καὶ ἀλλάττειν τὸ σύνθημά σου. Τὸ σύνθημά σου τὸ προσωρινὸν λεληγμένον ἔσεται μετὰ τῆς παρόδου {{PLURAL:\$5|μίας ἡμέρας|\$5 ἡμερῶν}}.
@@ -622,6 +622,9 @@ $messages = array(
 'post-expand-template-argument-category'  => 'Δέλτοι περιέχουσαι παραλελειμμένα ὁρίσματα προτύπων',
 'parser-template-loop-warning'            => 'Ἐνετοπίσθη πρότυπόν τι ἐν βρόχῳ: [[$1]]',
 'parser-template-recursion-depth-warning' => 'Ὅριον μάκρους τῆς ἀναδρομῆς τοῦ προτύπου ὑπερκεκερασμένον ἐστίν ($1)',
+
+# "Undo" feature
+'undo-summary' => 'Ἀναίρεσις μεταγραφῆς $1 ὑπὸ τὸν/τὴν [[Special:Contributions/$2|$2]] ([[User talk:$2|Διάλεξις]])',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Μὴ δυνατὴ ἡ ποίησις λογισμοῦ',
@@ -908,7 +911,7 @@ $1",
 'timezoneuseserverdefault'      => 'Χρῆσαι ἐξυπηρετικὴν μηχανὴν προκαθωρισμένως',
 'timezoneuseoffset'             => 'Ἄλλον (καθορίζειν τὸ ἐκτόπισμα)',
 'timezoneoffset'                => 'Ἐκτόπισμα¹:',
-'servertime'                    => 'Ὥρα ὑπολογιστικῆς ἐξυπηρετικῆς μηχανῆς:',
+'servertime'                    => 'Ὥρα ὑπολογιστικῆς ἐξυπηρετητικῆς μηχανῆς:',
 'guesstimezone'                 => 'Συμπλήρωσις μέσῳ τοῦ πλοηγητηρίου',
 'timezoneregion-africa'         => 'Λιβύη',
 'timezoneregion-america'        => 'Νεοικουμένη',
@@ -1423,6 +1426,7 @@ $1",
 'listusersfrom'      => 'Δεικνύναι χρωμένους (γραμμαὶ ἐκκινουμέναι ἐκ/ἐξ):',
 'listusers-submit'   => 'Ἐμφανίζειν',
 'listusers-noresult' => 'Οὐδεὶς χρώμενος εὑρεθείς.',
+'listusers-blocked'  => '(πεφραγμένος)',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Κατάλογος ποιήσεων λογισμῶν.',
@@ -2113,7 +2117,7 @@ $1',
 'exif-compression'                 => 'Σχῆμα συμπιέσεως',
 'exif-photometricinterpretation'   => 'Σύνθεσις εἰκονοστοιχείων',
 'exif-orientation'                 => 'Προσανατόλισις',
-'exif-samplesperpixel'             => 'Ἀριθμός συνιστωσῶν',
+'exif-samplesperpixel'             => 'Ἀριθμὸς συνιστωσῶν',
 'exif-planarconfiguration'         => 'Παράταξις δεδομένων',
 'exif-ycbcrsubsampling'            => 'Λόγος ὑποδειγματίσεως τοῦ Y πρὸς τὸ C',
 'exif-ycbcrpositioning'            => 'Τοποθέτησις τῶν Y καὶ C',

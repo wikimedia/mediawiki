@@ -242,7 +242,7 @@ $messages = array(
 'tog-previewontop'            => 'Mostrar la previsualización antes de la caja de edición en lugar de después',
 'tog-previewonfirst'          => 'Mostrar previsualización al comenzar a editar',
 'tog-nocache'                 => "Inhabilitar la ''caché'' de páginas",
-'tog-enotifwatchlistpages'    => 'Enviame un correo cuando haya cambios en una página vigilada',
+'tog-enotifwatchlistpages'    => 'Envíame un correo cuando haya cambios en una página vigilada',
 'tog-enotifusertalkpages'     => 'Notifícame cuando cambia mi página de discusión de usuario',
 'tog-enotifminoredits'        => 'Notifícame también los cambios menores de página',
 'tog-enotifrevealaddr'        => 'Revela mi dirección electrónica en los correos de notificación',
@@ -991,7 +991,13 @@ $1",
 'logdelete-log-message'       => '$1 de $2 {{PLURAL:$2|evento|eventos}}',
 'revdelete-hide-current'      => 'Error al ocultar el objeto de fecha $1 a las $2: es la revisión actual.
 No puede ser ocultada.',
+'revdelete-show-no-access'    => 'Error mostrando el item fechado $2, $1: este item ha sido marcado "restringido".
+No tienes acceso a él.',
+'revdelete-modify-no-access'  => 'Error modificando el item fechado $2, $1: este item ha sido marcado "restringido".
+No tienes acceso a él.',
+'revdelete-modify-missing'    => 'Error modificando item ID $1: está perdido de la base de datos!',
 'revdelete-no-change'         => "'''Atención:''' la revisión de fecha $1 a las $2 ya tiene las restricciones de visibilidad solicitadas.",
+'revdelete-concurrent-change' => 'Error modificando el item fechado $2, $1: su status parece haber sido cambiado por alguien más cuando tratabas de modificarlo. Por favor verifica los registros.',
 'revdelete-only-restricted'   => 'No puede suprimir elementos a vista de los administradores sin seleccionar asímismo una de las otras opciones de supresión.',
 
 # Suppression log
@@ -1266,6 +1272,7 @@ También puede permitir a otros usuarios que contacten con usted a través de su
 'prefs-i18n'                    => 'Internacionalización',
 'prefs-signature'               => 'Firma',
 'prefs-dateformat'              => 'Formato de fecha',
+'prefs-timeoffset'              => 'Diferencia horaria',
 'prefs-advancedediting'         => 'Opciones avanzadas',
 'prefs-advancedrc'              => 'Opciones avanzadas',
 'prefs-advancedrendering'       => 'Opciones avanzadas',

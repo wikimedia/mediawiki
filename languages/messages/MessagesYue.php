@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author William915
  */
 
 $bookstoreList = array(
@@ -140,7 +141,7 @@ $linkTrail = '/^([a-z]+)(.*)$/sD';
 $messages = array(
 # User preference toggles
 'tog-underline'               => '連結加底線：',
-'tog-highlightbroken'         => '格式化連結 <a href="" class="new">好似咁</a>（又或者: 好似咁<a href="" class="internal">?</a>）',
+'tog-highlightbroken'         => '格式化連結 <a href="" class="new">好似噉</a>（又或者: 好似噉<a href="" class="internal">?</a>）',
 'tog-justify'                 => '拍齊段落',
 'tog-hideminor'               => '最新更改唔顯示小修改',
 'tog-hidepatrolled'           => '響最近修改度隱藏巡查過嘅編輯',
@@ -771,9 +772,9 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'recreate-moveddeleted-warn'       => "'''警告: 你而家重開一版係先前曾經刪除過嘅。'''
 
 你應該要考慮吓繼續編輯呢一版係唔係適合嘅。
-為咗方便起見，呢一版嘅刪除記錄已經響下面提供:",
+為咗方便起見，呢一版嘅刪除同搬版記錄已經響下面提供:",
 'moveddeleted-notice'              => '呢一版已經刪除咗。
-呢版嘅刪除日誌響下面提供咗以便參考。',
+呢版嘅刪除同搬版日誌響下面提供咗以便參考。',
 'log-fulllog'                      => '睇成個日誌',
 'edit-hook-aborted'                => '編輯由鈎取消咗。
 佢無畀到解釋。',
@@ -1126,7 +1127,7 @@ $1",
 'stub-threshold'                => '<a href="#" class="stub">楔位連結</a>格式門檻 (bytes):',
 'recentchangesdays'             => '最近更改中嘅顯示日數：',
 'recentchangesdays-max'         => '(最多 $1 日)',
-'recentchangescount'            => '最近更改、版紀錄同日誌中嘅預設編輯數：',
+'recentchangescount'            => '預設顯示嘅編輯數：',
 'prefs-help-recentchangescount' => '呢個包埋最近修改、頁歷史同埋日誌紀錄。',
 'savedprefs'                    => '你嘅喜好設定已經儲存。',
 'timezonelegend'                => '時區:',
@@ -1921,7 +1922,7 @@ wiki: $PAGEEDITOR_WIKI
 'alreadyrolled'    => '無法反轉[[User:$2|$2]]（[[User talk:$2|留言]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]）對[[:$1]]嘅最後編輯；有人已經修改過或者反轉咗呢個頁面。
 
 上次對呢版嘅編輯係由[[User:$3|$3]]（[[User talk:$3|留言]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]）做嘅。',
-'editcomment'      => "編輯摘要係：\"''\$1''\"。",
+'editcomment'      => "編輯摘要係：「'''$1'''」。",
 'revertpage'       => '已經反轉由[[Special:Contributions/$2|$2]]（[[User talk:$2|對話]]）所寫嘅編輯到[[User:$1|$1]]嘅最後修訂。',
 'rollback-success' => '已經反轉由$1所寫嘅編輯；恢復到$2嘅最後修訂。',
 'sessionfailure'   => '你嘅登入會話 (session) 好似有啲問題；為咗防止會話劫持，呢個操作已經取消。請撳「返轉頭」然後重新載入你嚟自嘅頁面，然後再試吓啦。',

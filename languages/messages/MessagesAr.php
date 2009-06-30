@@ -850,8 +850,8 @@ $2',
 من فضلك حاول مرة أخرى.',
 'wrongpasswordempty'         => 'كلمة السر المدخلة كانت فارغة.
 من فضلك حاول مرة أخرى.',
-'passwordtooshort'           => 'كلمة السر التي اخترتها غير صحيحة أو قصيرة جدا.
-يجب ألا يقل طول الكلمة عن {{PLURAL:$1|حرف واحد|حرفين|$1 حروف|$1 حرفًا|$1 حرف}} وأن تكون مختلفة عن اسم المستخدم الخاص بك.',
+'passwordtooshort'           => 'كلمة السر الخاصة بك قصيرة جدا.
+يجب أن تتكون على الأقل من {{PLURAL:$1|حرف واحد|حرفين|$1 حروف|$1 حرفًا|$1 حرف}}.',
 'mailmypassword'             => 'أرسل لي كلمة سر جديدة',
 'passwordremindertitle'      => 'كلمة سر مؤقتة جديدة ل {{SITENAME}}',
 'passwordremindertext'       => 'لقد طلب شخص ما (غالبا أنت، من عنوان الآيبي $1) كلمة سر جديدة ل{{SITENAME}} ($4).
@@ -1503,6 +1503,7 @@ $1",
 'prefs-advancedsearchoptions'   => 'خيارات متقدّمة',
 'prefs-advancedwatchlist'       => 'خيارات متقدّمة',
 'prefs-display'                 => 'خيارات العرض',
+'prefs-diffs'                   => 'فروقات',
 
 # User rights
 'userrights'                  => 'إدارة صلاحيات المستخدم',
@@ -2083,8 +2084,9 @@ PICT # متنوع
 'special-categories-sort-abc'   => 'رتب هجائيا',
 
 # Special:DeletedContributions
-'deletedcontributions'       => 'مساهمات المستخدم المحذوفة',
-'deletedcontributions-title' => 'مساهمات المستخدم المحذوفة',
+'deletedcontributions'             => 'مساهمات المستخدم المحذوفة',
+'deletedcontributions-title'       => 'مساهمات المستخدم المحذوفة',
+'sp-deletedcontributions-contribs' => 'مساهمات',
 
 # Special:LinkSearch
 'linksearch'       => 'وصلات خارجية',
@@ -2100,6 +2102,10 @@ PICT # متنوع
 'listusersfrom'      => 'عرض المستخدمين بدءا من:',
 'listusers-submit'   => 'عرض',
 'listusers-noresult' => 'لم يتم إيجاد مستخدم.',
+
+# Special:ActiveUsers
+'activeusers'          => 'قائمة المستخدمين النشطين',
+'activeusers-noresult' => 'لا مستخدمون تم إيجادهم.',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'سجل إنشاء المستخدمين',
