@@ -784,11 +784,7 @@ table.small {
 #content h3, #content h4, #content h5 {
 	margin-bottom: .3em;
 }
-div.firstHeading {
-	padding-top: 0;
-	margin-top: 0;
-}
-div.firstHeading h1 {
+h1#firstHeading {
 	padding-top: 0;
 	margin-top: 0;
 	padding-top: 0;
