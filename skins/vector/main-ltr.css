@@ -296,6 +296,9 @@ div#foot ul#foot-icons {
 div#foot ul#foot-places {
 	float: left;
 }
+div#foot ul#foot-info li {
+	line-height: 1.4em;
+}
 div#foot ul#foot-icons li {
 	float: left;
 	margin-left: 0.5em;
@@ -303,7 +306,7 @@ div#foot ul#foot-icons li {
 }
 div#foot ul#foot-places li {
 	float: left;
-	margin-right: 0.5em;
+	margin-right: 1em;
 	line-height: 2em;
 }
 /* Logo */
