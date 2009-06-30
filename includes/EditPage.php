@@ -1711,7 +1711,7 @@ END
 		if( $text != '-' ) {
 			global $wgOut;
 			$wgOut->addHTML( '<div class="mw-tos-summary">' );
-			$wgOut->addWikiMsgArray( $msg, array() ) );
+			$wgOut->addWikiMsgArray( $msg, array() );
 			$wgOut->addHTML( '</div>' );
 		}
 	}
