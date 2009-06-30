@@ -964,10 +964,8 @@ Vous pouvez revenir en arrière et modifier une page existante, ou bien [[Specia
 'permissionserrorstext-withaction' => 'Vous n’êtes pas autorisé{{GENDER:||e|(e)}} à $2, pour {{PLURAL:$1|la raison suivante|les raisons suivantes}} :',
 'recreate-moveddeleted-warn'       => "'''Attention : vous êtes en train de recréer une page qui a été précédemment supprimée.'''
 
-Assurez-vous qu’il est pertinent de poursuivre les modifications sur cette page. 
-Le journal des suppressions et des renommages est affiché ci-dessous :",
-'moveddeleted-notice'              => 'Cette page a été supprimée.
-Le journal des suppressions et des renommages est affiché ci-dessous pour référence.',
+Assurez-vous qu’il est pertinent de poursuivre les modifications sur cette page. Le journal des suppressions et des déplacements est affiché ci-dessous :",
+'moveddeleted-notice'              => 'Cette page a été supprimée. Le journal des suppressions et des déplacements est affiché ci-dessous pour référence.',
 'log-fulllog'                      => 'Voir le journal complet',
 'edit-hook-aborted'                => 'Échec de la modification par une extension.
 Cause inconnue',
@@ -1881,7 +1879,7 @@ Chaque entrée contient des liens vers la première et la seconde redirections, 
 'protectedpages'          => 'Pages protégées',
 'protectedpages-indef'    => 'Uniquement les protections permanentes',
 'protectedpages-cascade'  => 'Uniquement les protections en cascade',
-'protectedpagestext'      => 'Les pages suivantes sont protégées contre les modifications et/ou le renommage.',
+'protectedpagestext'      => 'Les pages suivantes sont protégées contre les modifications ou le déplacement.',
 'protectedpagesempty'     => 'Aucune page n’est protégée actuellement.',
 'protectedtitles'         => 'Titres protégés',
 'protectedtitlestext'     => 'Les titres suivants sont protégés à la création',
@@ -2166,7 +2164,7 @@ Consultez la [[Special:ProtectedPages|liste des pages protégées]] pour la list
 'protectexpiry'               => 'Date d’expiration :',
 'protect_expiry_invalid'      => 'La date d’expiration est invalide.',
 'protect_expiry_old'          => 'La date d’expiration est déjà passée.',
-'protect-unchain'             => 'Débloquer les permissions de renommage',
+'protect-unchain'             => 'Débloquer les permissions de déplacement',
 'protect-text'                => "Vous pouvez consulter et modifier le niveau de protection de la page '''<nowiki>$1</nowiki>'''.",
 'protect-locked-blocked'      => "Vous ne pouvez pas modifier les niveaux de protection tant que vous êtes bloqué{{GENDER:||e|(e)}}.
 Voici les réglages actuels de la page '''$1''' :",
@@ -2446,18 +2444,12 @@ Pour bloquer ou débloquer la base de données, il doit être accessible par le 
 # Move page
 'move-page'                    => 'Renommer $1',
 'move-page-legend'             => 'Renommer une page',
-'movepagetext'                 => "Utilisez le formulaire ci-dessous pour renommer une page, en déplaçant tout son historique vers le nouveau nom.
-L’ancien titre deviendra une page de redirection vers le nouveau titre.
-Vous pouvez mettre à jour automatiquement les redirections actuelles qui pointent vers le titre original.
-Si vous choisissez de ne pas le faire, asssurez-vous de vérifier toute [[Special:DoubleRedirects|double redirection]] ou [[Special:BrokenRedirects|redirection cassée]].
-Vous avez la responsabilité de vous assurer que les liens continuent de pointer vers leur destination supposée.
+'movepagetext'                 => "Utilisez le formulaire ci-dessous pour renommer une page, en déplaçant tout son historique vers le nouveau nom. L’ancien titre deviendra une page de redirection vers le nouveau titre. Vous pouvez mettre à jour automatiquement les redirections actuelles qui pointent vers le titre original. Si vous choisissez de ne pas le faire, asssurez-vous de vérifier toute [[Special:DoubleRedirects|double redirection]] ou [[Special:BrokenRedirects|redirection cassée]]. Vous avez la responsabilité de vous assurer que les liens continuent de pointer vers leur destination supposée.
 
-Notez que la page ne sera '''pas''' déplacée s’il existe déjà une page avec le nouveau titre, sauf si cette dernière est vide ou n’est qu’une redirection et si son historique de modifications est vierge.
-Cela veut dire que vous pouvez renommer une page vers sa position d’origine si vous avez commis une erreur, mais que vous ne pouvez écraser une page déjà existante.
+Notez que la page ne sera '''pas''' déplacée s’il existe déjà une page avec le nouveau titre, sauf si cette dernière a un historique de modifications vierge et est soit vide, soit une simple redirection. Ceci permet de renommer une page vers sa position d’origine si le déplacement s’avère erroné.
 
 '''ATTENTION !'''
-Ceci peut provoquer un changement drastique et imprévu pour une page souvent consultée ;
-assurez-vous d’en avoir compris les conséquences avant de continuer.",
+Ceci peut provoquer un changement radical et imprévu pour une page souvent consultée ; assurez-vous d’en avoir compris les conséquences avant de continuer.",
 'movepagetalktext'             => "La page de discussion associée, si présente, sera automatiquement renommée '''sauf si :'''
 * vous déplacez la page vers un autre espace de noms, ou
 * une page de discussion non vide existe déjà sous le nouveau nom, ou
@@ -2474,7 +2466,7 @@ Dans ces cas-là, vous devrez renommer ou fusionner cette page de discussion man
 'newtitle'                     => 'Vers le nouveau titre :',
 'move-watch'                   => 'Suivre ces pages',
 'movepagebtn'                  => 'Renommer la page',
-'pagemovedsub'                 => 'Renommage réussi',
+'pagemovedsub'                 => 'Déplacement réussi',
 'movepage-moved'               => "<big>'''« $1 »''' a été renommé '''« $2 »'''</big>",
 'movepage-moved-redirect'      => 'Une redirection depuis l’ancien nom a été créée.',
 'movepage-moved-noredirect'    => 'La création d’une redirection depuis l’ancien nom a été annulée.',
@@ -2493,12 +2485,12 @@ Veuillez en choisir un autre.',
 '1movedto2'                    => 'a renommé [[$1]] en [[$2]]',
 '1movedto2_redir'              => 'a déplacé [[$1]] vers [[$2]] en écrasant sa redirection',
 'move-redirect-suppressed'     => 'redirection supprimée',
-'movelogpage'                  => 'Journal des renommages et déplacements',
+'movelogpage'                  => 'Journal des déplacements',
 'movelogpagetext'              => 'Voici la liste de toutes les pages renommées ou déplacées.',
 'movesubpage'                  => 'Sous-page{{PLURAL:$1||s}}',
 'movesubpagetext'              => 'Cette page a $1 {{PLURAL:$1|sous-page affichée|sous-pages affichées}} ci-dessous.',
 'movenosubpage'                => 'Cette page n’a aucune sous-page.',
-'movereason'                   => 'Motif du renommage :',
+'movereason'                   => 'Motif du déplacement :',
 'revertmove'                   => 'rétablir',
 'delete_and_move'              => 'Supprimer et déplacer',
 'delete_and_move_text'         => '== Suppression nécessaire ==
@@ -2510,7 +2502,7 @@ La page de destination « [[:$1]] » existe déjà.
 impossible de renommer une page sur elle-même.',
 'immobile-source-namespace'    => 'Vous ne pouvez pas renommer les pages dans l’espace de noms « $1 »',
 'immobile-target-namespace'    => 'Vous ne pouvez pas renommer des pages vers l’espace de noms « $1 »',
-'immobile-target-namespace-iw' => 'Les liens interwikis ne sont pas une cible valide pour les renommages.',
+'immobile-target-namespace-iw' => 'Les destinations interwikis ne sont pas une cible valide pour les déplacements.',
 'immobile-source-page'         => 'Cette page n’est pas renommable.',
 'immobile-target-page'         => 'Il n’est pas possible de renommer la page vers ce titre.',
 'imagenocrossnamespace'        => 'Impossible de renommer un fichier vers un espace de noms autre que fichier.',

@@ -446,7 +446,9 @@ Aapan spelling check karo.',
 'nouserspecified'            => 'Aap ke aapan username de ke parri.',
 'wrongpassword'              => 'Galat password likha gais hai. Fir se kosis karo.',
 'wrongpasswordempty'         => 'Koi password nai likha gais hai. Fir se kosis karo.',
-'passwordtooshort'           => 'Aap ke password kharaab nai to bahut chhota hai. Password me kamti se kamti {{PLURAL:$1|1 character|$1 characters}} hoe ke chahi aur username se different rahe ke chahi.',
+'passwordtooshort'           => 'Aap ke password bahut chhota hai. 
+Password me kamti se kamti {{PLURAL:$1|1 character|$1 characters}} hoe ke chahi.',
+'password-name-match'        => 'Aap ke password ke aap ke username se different rahe ke chaahi.',
 'mailmypassword'             => 'Nawaa password ke E-mail karo',
 'passwordremindertitle'      => '{{SITENAME}} ke khatir nawaa temporary password',
 'passwordremindertext'       => 'Koi (hoe sake hai aap, IP address $1 se)
@@ -2299,8 +2301,25 @@ Sab transwiki import actions ke [[Special:Log/import|import log]] pe log karaa j
 Aapan computer me save kar ke  hian pe upload karo.',
 'importstart'                => 'Panna ke import karta hai...',
 'import-revision-count'      => '$1 {{PLURAL:$1|badlao|badlao}}',
+'importnopages'              => 'Koi panna import kare ke nai hai.',
+'importfailed'               => 'Import fail hoe gais: <nowiki>$1</nowiki>',
+'importunknownsource'        => 'Unknown import source type',
+'importcantopen'             => 'Import file ke khole nai sakaa',
+'importbadinterwiki'         => 'Kharaab interwiki jorr',
+'importnotext'               => 'Khaali nai to kuchh nai likha hai',
 'importsuccess'              => 'Import khalaas hoe gais hai!',
+'importhistoryconflict'      => 'Badlao ke itihass me conflict hai (saait ii panna ke pahile import karaa gais rahaa)',
+'importnosources'            => 'Koi interwiki import source ke define nai karaa gais hai aur direct itihass ke upload ke rok dewa gais hai.',
+'importnofile'               => 'Koi import file ke upload nai karaa gais hai.',
+'importuploaderrorsize'      => 'Import file ke upload nai kare sakaa hai.
+Ii file ke size allowed upload size se barraa hai.',
+'importuploaderrorpartial'   => 'Import file ke upload nai kare sakaa hai. 
+Ii file ke khaali thora hissa ke upload karaa gais hai.',
+'importuploaderrortemp'      => 'Import file ke upload nai kare sakaa hai. 
+Ek temporary file nai hai.',
+'import-parse-failure'       => 'XML import parse fail hoe gais hai',
 'import-noarticle'           => 'Koi panna import kare ke nai hai!',
+'import-nonewrevisions'      => 'Sab badlao ke pahile import karaa gais hai.',
 
 # Import log
 'importlogpage' => 'Suchi ke import karo',

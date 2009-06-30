@@ -892,7 +892,7 @@ Please note that the parameters in a log entry will appear in the log only in th
 
 # Suppression log
 'suppressionlog'     => 'Title of the suppression log. Shown in the drop down menu at [[Special:log]] and as header of [[Special:log/suppress]].',
-'suppressionlogtext' => 'Description text of the suppression log. Shown at top of of [[Special:log/suppress]].',
+'suppressionlogtext' => 'Description text of the suppression log. Shown at top of [[Special:log/suppress]].',
 
 # History merging
 'mergehistory-autocomment'      => 'This message is used as an edit summary when a redirect is automatically created after an entire page history is merged into another page history, and the user who did the merge wrote no comment.

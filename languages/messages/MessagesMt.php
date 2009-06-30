@@ -1731,8 +1731,8 @@ Il-[[Special:UnusedCategories|kategoriji vojta]] u dawk [[Special:WantedCategori
 'special-categories-sort-abc'   => 'irranġa skont l-alfabett',
 
 # Special:DeletedContributions
-'deletedcontributions'       => 'Kontribuzzjonijiet tal-utent imħassra',
-'deletedcontributions-title' => 'Kontribuzzjonijiet tal-utent imħassra',
+'deletedcontributions'       => 'Kontribuzzjonijiet imħassra tal-utent',
+'deletedcontributions-title' => 'Kontribuzzjonijiet imħassra tal-utent',
 
 # Special:LinkSearch
 'linksearch'    => 'Ħoloq esterni',
@@ -2014,8 +2014,8 @@ $1',
 'sp-contributions-newbies'       => 'Uri biss il-kontribuzzjonijiet tal-utenti l-ġodda',
 'sp-contributions-newbies-sub'   => 'Għall-utenti l-ġodda',
 'sp-contributions-newbies-title' => 'Kontribuzzjonijiet tal-utent għal kontijiet ġodda',
-'sp-contributions-blocklog'      => 'Blokki',
-'sp-contributions-deleted'       => 'Kontribuzzjonijiet imħassra tal-utent',
+'sp-contributions-blocklog'      => 'blokki',
+'sp-contributions-deleted'       => 'kontribuzzjonijiet imħassra tal-utent',
 'sp-contributions-talk'          => 'diskussjoni',
 'sp-contributions-search'        => 'Fittex għal kontribuzzjonijiet',
 'sp-contributions-username'      => 'Indirizz IP jew isem l-utent:',
