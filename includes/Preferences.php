@@ -134,7 +134,7 @@ class Preferences {
 				array(
 					'type' => 'info',
 					'label-message' => 'prefs-edits',
-					'default' => $user->getEditCount(),
+					'default' => $wgLang->formatNum( $user->getEditCount() ),
 					'section' => 'personal/info',
 				);
 
