@@ -255,6 +255,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 19323) action=parse doesn't return section tree on pages with Cite
   warnings
 * (bug 18720) Add anchor field to action=parse&prop=sections output
+* (bug 19423) The initial file description page used caption in user lang
+  rather than UI lang
 
 === Languages updated in 1.16 ===
 
