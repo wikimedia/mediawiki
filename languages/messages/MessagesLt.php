@@ -158,17 +158,9 @@ $fallback8bitEncoding = 'windows-1257';
 $separatorTransformTable = array(',' => "\xc2\xa0", '.' => ',' );
 
 $dateFormats = array(
-	'mdy time' => 'H:i',
-	'mdy date' => 'F j, Y',
-	'mdy both' => 'H:i, F j, Y',
-
-	'dmy time' => 'H:i',
-	'dmy date' => 'Y F j',
-	'dmy both' => 'H:i, Y F j',
-
 	'ymd time' => 'H:i',
-	'ymd date' => 'Y F j',
-	'ymd both' => 'Y F j, H:i',
+	'ymd date' => 'Y "m." F j "d."',
+	'ymd both' => 'Y "m." F j "d.", H:i',
 
 	'ISO 8601 time' => 'xnH:xni:xns',
 	'ISO 8601 date' => 'xnY-xnm-xnd',
