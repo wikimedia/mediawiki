@@ -14,8 +14,13 @@ addOnloadHook( function() {
 
 var htmlforms = {
 	'selectOrOtherSelectChanged' : function(e) {
+		var select;
 		if (!e) e = window.event;
-		var select = e.target;
+		if (e.target) select = e.target;
+		else if (e.srcElement) select = e.srcElement;
+		if (select.nodeType == 3) // defeat Safari bug
+			select = select.parentNode;
+		
 		var id = select.id;
 		var textbox = document.getElementById( id+'-other' );
 		
