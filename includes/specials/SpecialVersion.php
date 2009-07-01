@@ -203,7 +203,6 @@ class SpecialVersion extends SpecialPage {
 		// Look for TeX support and print the software version info
 		if ( $wgUseTeX ) {
 			$binPath = '/usr/bin/';
-			$binPathLocal = '/usr/local/bin/'; 
 			$swMathName = Array(
 				'ocaml'       => 'OCaml',
 				'gs'          => 'Ghostscript',
@@ -233,7 +232,15 @@ class SpecialVersion extends SpecialPage {
 				'imagemagick' => '-version',
 			);
 			foreach ( $swMathExec as $swMath => $swMathCmd ) {
-				if ( file_exists( $binPath . $swMathCmd ) || file_exists( $binPathLocal . $swMathCmd ) ) {
+				$wBinPath = '';
+				if ( file_exists( $binPath . 'whereis' ) ) {
+					$swWhereIsInfo = self::execOutput( $binPath . 'whereis -b ' . $swMathCmd );
+					$swWhereIsLine = explode( "\n", $swWhereIsInfo, 2);
+					$swWhereIsFirstLine = $swWhereIsLine[0];
+					$swWhereIsBinPath = explode( ' ', $swWhereIsFirstLine, 3);
+					$wBinPath = dirname( $swWhereIsBinPath[1] );
+				}
+				if ( file_exists( $binPath . $swMathCmd ) || file_exists( $wBinPath . $swMathCmd ) ) {
 					$swMathInfo = self::execOutput( $swMathCmd . ' ' . $swMathParam[$swMath] );
 					$swMathLine = explode( "\n", $swMathInfo, 2);
 					$swMathVerInfo = $swMathLine[0];
@@ -246,8 +253,8 @@ class SpecialVersion extends SpecialPage {
 						list( $head, $tail ) = explode( 'ImageMagick', $swMathVerInfo );
 						list( $swMathVerInfo ) = explode('http://www.imagemagick.org', $tail );
 					}
-					$swMathVer[$swMath] = $swMathVerInfo;
-					$software["[$swMathURL[$swMath] $swMathName[$swMath]]"] = trim ( $swMathVer[$swMath] );
+					$swMathVer[$swMath] = trim( $swMathVerInfo );
+					$software["[$swMathURL[$swMath] $swMathName[$swMath]]"] = $swMathVer[$swMath];
 				}	
 			}
 		}
