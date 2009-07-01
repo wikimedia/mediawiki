@@ -1318,7 +1318,7 @@ CREATE TABLE /*_*/l10n_cache (
   lc_key varchar(255) NOT NULL,
   -- Value
   lc_value mediumblob NOT NULL
-);
+) /*$wgDBTableOptions*/;
 CREATE INDEX /*i*/lc_lang_key ON /*_*/l10n_cache (lc_lang, lc_key);
 
 -- vim: sw=2 sts=2 et
