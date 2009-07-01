@@ -238,7 +238,8 @@ class SpecialVersion extends SpecialPage {
 					$swWhereIsLine = explode( "\n", $swWhereIsInfo, 2);
 					$swWhereIsFirstLine = $swWhereIsLine[0];
 					$swWhereIsBinPath = explode( ' ', $swWhereIsFirstLine, 3);
-					$wBinPath = dirname( $swWhereIsBinPath[1] );
+					if ( count( $swWhereIsBinPath ) > 1 )
+						$wBinPath = dirname( $swWhereIsBinPath[1] );
 				}
 				if ( file_exists( $binPath . $swMathCmd ) || file_exists( $wBinPath . $swMathCmd ) ) {
 					$swMathInfo = self::execOutput( $swMathCmd . ' ' . $swMathParam[$swMath] );
