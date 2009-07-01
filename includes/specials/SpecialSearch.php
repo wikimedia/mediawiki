@@ -261,7 +261,7 @@ class SpecialSearch {
 		$wgOut->addHtml( "<div class='searchresults'>" );
 		
 		// show direct page/create link
-		if( !is_null($t) && ($this->active=='default' || $this->active=='all') ) {
+		if( !is_null($t) ) {
 			if( !$t->exists() ) {
 				$wgOut->addWikiMsg( 'searchmenu-new', wfEscapeWikiText( $t->getPrefixedText() ) );
 			} else {
