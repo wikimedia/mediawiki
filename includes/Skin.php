@@ -290,6 +290,35 @@ class Skin extends Linker {
 	public function getTitle() {
 		return $this->mTitle;
 	}
+	
+	function outputUnwrappedText( $out ) {
+		global $wgDebugComments;
+		wfProfileIn( __METHOD__ );
+
+		$this->setMembers();
+		$this->initPage( $out );
+
+		$out->out( $out->headElement( $this ) );
+
+		$out->out( "\n<body" );
+		$ops = $this->getBodyOptions();
+		foreach ( $ops as $name => $val ) {
+			$out->out( " $name='$val'" );
+		}
+		$out->out( ">\n" );
+		if ( $wgDebugComments ) {
+			$out->out( "<!-- Wiki debugging output:\n" .
+			  $out->mDebugtext . "-->\n" );
+		}
+
+		$out->out( $out->mBodytext . "\n" );
+		$out->out( $this->bottomScripts() );
+
+		$out->out( wfReportTime() );
+
+		$out->out( "\n</body></html>" );
+		wfProfileOut( __METHOD__ );
+	}
 
 	function outputPage( OutputPage $out ) {
 		global $wgDebugComments;
