@@ -1489,6 +1489,7 @@ function do_postgres_updates() {
 		array('valid_tag',         'patch-change_tag.sql'),
 		array('user_properties',   'patch-user_properties.sql'),
 		array('log_search',        'patch-log_search.sql'),
+		array('l10n_cache',        'patch-l10n_cache.sql'),
 	);
 
 	$newcols = array(
