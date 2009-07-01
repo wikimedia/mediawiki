@@ -240,6 +240,15 @@ class SpecialVersion extends SpecialPage {
 					$swWhereIsBinPath = explode( ' ', $swWhereIsFirstLine, 3);
 					if ( count( $swWhereIsBinPath ) > 1 )
 						$wBinPath = dirname( $swWhereIsBinPath[1] );
+				} else {
+					$swPathLine = explode( ';', $_SERVER[PATH] );
+					$swPathFound = false;
+					foreach( $swPathLine as $swPathDir ) {
+						if ( file_exists( $swPathDir . '/' . $swMathCmd . '.exe' ) && ($swPathFound === false) ) {
+							$wBinPath = $swPathDir . '/';
+							$swPathFound = true;
+						}
+					}
 				}
 				if ( file_exists( $binPath . $swMathCmd ) || file_exists( $wBinPath . $swMathCmd ) ) {
 					$swMathInfo = self::execOutput( $swMathCmd . ' ' . $swMathParam[$swMath] );
