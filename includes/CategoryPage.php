@@ -372,62 +372,60 @@ class CategoryViewer {
 	 * Format a list of articles chunked by letter in a three-column
 	 * list, ordered vertically.
 	 *
+	 * TODO: Take the headers into account when creating columns, so they're
+	 * more visually equal.
+	 *
+	 * More distant TODO: Scrap this and use CSS columns, whenever IE finally
+	 * supports those.
+	 *
 	 * @param $articles Array
 	 * @param $articles_start_char Array
 	 * @return String
 	 * @private
 	 */
 	function columnList( $articles, $articles_start_char ) {
-		// divide list into three equal chunks
-		$chunk = (int) ( count( $articles ) / 3 );
-		$remaining = count( $articles ) % 3;
+		$columns = array_combine( $articles, $articles_start_char );
+		# Split into three columns
+		$columns = array_chunk( $columns, ceil( count( $columns )/3 ), true /* preserve keys */ );
 
-		// get and display header
-		$r = '<table width="100%"><tr valign="top">';
+		$ret = '<table width="100%"><tr valign="top"><td>';
+		$prevchar = null;
 
-		$prev_start_char = 'none';
+		foreach ( $columns as $column ) {
+			$colContents = array();
 
-		// loop through the chunks
-		for( $startChunk = 0, $endChunk = $chunk, $chunkIndex = 0;
-			$chunkIndex < 3;
-			$chunkIndex++, $startChunk = $endChunk, $endChunk += $remaining == 0 ? $chunk : $chunk + 1 )
-		{
-			$r .= "<td>\n";
-			$atColumnTop = true;
-
-			// output all articles in category
-			for ($index = $startChunk ;
-				$index < $endChunk && $index < count($articles);
-				$index++ )
-			{
-				// check for change of starting letter or beginning of chunk
-				if ( ($index == $startChunk) ||
-					 ($articles_start_char[$index] != $articles_start_char[$index - 1]) )
-
-				{
-					if( $atColumnTop ) {
-						$atColumnTop = false;
-					} else {
-						$r .= "</ul>\n";
-					}
-					$cont_msg = "";
-					if ( $articles_start_char[$index] == $prev_start_char )
-						$cont_msg = ' ' . wfMsgHtml( 'listingcontinuesabbrev' );
-					$r .= "<h3>" . htmlspecialchars( $articles_start_char[$index] ) . "$cont_msg</h3>\n<ul>";
-					$prev_start_char = $articles_start_char[$index];
+			# Kind of like array_flip() here, but we keep duplicates in an
+			# array instead of dropping them.
+			foreach ( $column as $article => $char ) {
+				if ( !isset( $colContents[$char] ) ) {
+					$colContents[$char] = array();
 				}
-
-				$r .= "<li>{$articles[$index]}</li>";
+				$colContents[$char][] = $article;
 			}
-			if( !$atColumnTop ) {
-				$r .= "</ul>\n";
+
+			$first = true;
+			foreach ( $colContents as $char => $articles ) {
+				$ret .= '<h3>' . htmlspecialchars( $char );
+				if ( $first && $char === $prevchar ) {
+					# We're continuing a previous chunk at the top of a new
+					# column, so add " cont." after the letter.
+					$ret .= ' ' . wfMsgHtml( 'listingcontinuesabbrev' );
+				}
+				$ret .= "</h3>\n";
+
+				$ret .= '<ul><li>';
+				$ret .= implode( "</li>\n<li>", $articles );
+				$ret .= '</li></ul>';
+
+				$first = false;
+				$prevchar = $char;
 			}
-			$r .= "</td>\n";
 
-
+			$ret .= "</td>\n<td>";
 		}
-		$r .= '</tr></table>';
-		return $r;
+
+		$ret .= '</td></tr></table>';
+		return $ret;
 	}
 
 	/**
