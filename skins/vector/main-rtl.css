@@ -255,9 +255,10 @@ div#panel {
 		padding-top: 0;
 		padding-right: 1.25em;
 		cursor: default;
+		border: none;
 	}
 	div#panel div.portal div.body {
-		margin-top: 0.25em;
+		margin: 0;
 		padding-top: 0.5em;
 		margin-right: 1.25em;
 		background-image: url(images/portal-break-rtl.png);
