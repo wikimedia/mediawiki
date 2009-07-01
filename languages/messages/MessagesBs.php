@@ -678,7 +678,8 @@ Molimo Vas da pokušate ponovno.',
 'wrongpasswordempty'         => 'Šifra je bila prazna.
 Molimo Vas da pokušate ponovno.',
 'passwordtooshort'           => 'Vaša šifra je prekratka.
-Šifra mora imati najmanje {{PLURAL:$1|1 znak|$1 znakova}} i mora se razlikovati od Vašeg korisničkog imena.',
+Šifra mora imati najmanje {{PLURAL:$1|1 znak|$1 znakova}}.',
+'password-name-match'        => 'Vaša šifra mora biti različita od Vašeg korisničkog imena.',
 'mailmypassword'             => 'Pošalji mi novu šifru',
 'passwordremindertitle'      => 'Nova privremena šifra za {{SITENAME}}',
 'passwordremindertext'       => 'Neko (vjerovatno Vi, sa IP adrese $1) je zahtjevao da vam pošaljemo novu šifru za {{SITENAME}}  ($4). Privremena šifra za korisnika "$2" je napravljena i glasi "$3". Ako ste to željeli, sad treba da se prijavite i promjenite šifru.

@@ -595,7 +595,9 @@ Patikrinkite rašybą, arba [[Special:UserLogin/signup|sukurkite naują paskyrą
 'nouserspecified'            => 'Jums reikia nurodyti naudotojo vardą.',
 'wrongpassword'              => 'Įvestas neteisingas slaptažodis. Pamėginkite dar kartą.',
 'wrongpasswordempty'         => 'Įvestas slaptažodis yra tuščias. Pamėginkite vėl.',
-'passwordtooshort'           => 'Jūsų slaptažodis yra neleistinas arba per trumpas. Jis turi būti bent $1 {{PLURAL:$1|simbolio|simbolių|simbolių}} ilgio ir skirtis nuo jūsų naudotojo vardo.',
+'passwordtooshort'           => 'Jūsų slaptažodis yra per trumpas.
+Jis turi būti bent $1 {{PLURAL:$1|simbolio|simbolių|simbolių}} ilgio.',
+'password-name-match'        => 'Jūsų slaptažodis turi skirtis nuo jūsų naudotojo vardo.',
 'mailmypassword'             => 'Atsiųsti naują slaptažodį el. paštu',
 'passwordremindertitle'      => 'Laikinasis {{SITENAME}} slaptažodis',
 'passwordremindertext'       => 'Kažkas (tikriausiai jūs, IP adresu $1)
@@ -1787,6 +1789,10 @@ Palaikomi protokolai: <tt>$1</tt>',
 'listusersfrom'      => 'Rodyti naudotojus pradedant nuo:',
 'listusers-submit'   => 'Rodyti',
 'listusers-noresult' => 'Nerasta jokių naudotojų.',
+
+# Special:ActiveUsers
+'activeusers'          => 'Aktyvių naudotojų sąrašas',
+'activeusers-noresult' => 'Nerasta jokių naudotojų.',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Prisiregistravę naudotojai',

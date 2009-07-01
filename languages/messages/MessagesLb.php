@@ -1260,7 +1260,7 @@ Dir kënnt et och zouloossen datt aner Benotzer iech - iwwert e Link op ärer Be
 'right-bot'                   => 'Als automatesche Prozess behandelen (Bot)',
 'right-nominornewtalk'        => 'Kleng Ännerungen op Diskussiounssäite léisen de Banner vun de neie Messagen net aus',
 'right-apihighlimits'         => 'Benotzt méi héich Limite bei den API Ufroen',
-'right-writeapi'              => "API benotzen fir d'Wiki z'änneren",
+'right-writeapi'              => "API benotze fir d'Wiki z'änneren",
 'right-delete'                => 'Säite läschen',
 'right-bigdelete'             => 'Säite mat engem groussen Historique läschen',
 'right-deleterevision'        => 'Spezifesch Versioune vu Säite läschen a restauréieren',
@@ -2029,7 +2029,7 @@ An esou Fäll däerf déi neiste Versioun net markéiert ginn oder déi neiste g
 'undeletecomment'              => 'Grond:',
 'undeletedarticle'             => 'huet "[[$1]]" restauréiert',
 'undeletedrevisions'           => '$1 {{PLURAL:$1|Versioun gouf|$1 Versioune goufe}} restauréiert',
-'undeletedrevisions-files'     => '{{PLURAL:$1|1 Versioun|$1 Versiounen}} an {{PLURAL:$2|1 Fichier|$2 Fichieren}} goufe restauréiert',
+'undeletedrevisions-files'     => '{{PLURAL:$1|1 Versioun|$1 Versiounen}} a(n) {{PLURAL:$2|1 Fichier|$2 Fichiere}} goufe restauréiert',
 'undeletedfiles'               => '$1 {{PLURAL:$1|Fichier gouf|Fichiere goufe}} restauréiert',
 'cannotundelete'               => "D'Restauratioun huet net fonktionéiert. Een anere Benotzer huet déi Säit warscheinlech scho virun iech restauréiert.",
 'undeletedpage'                => "'''$1''' gouf restauréiert.

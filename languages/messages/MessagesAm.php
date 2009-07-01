@@ -185,6 +185,9 @@ $messages = array(
 'faq'            => 'ብጊየጥ (ብዙ ጊዜ የሚጠየቁ ጥያቀዎች)',
 'faqpage'        => 'Project:ብጊየጥ',
 
+# Vector skin
+'vector-action-addsection' => 'ርዕስ ጨምር',
+
 # Metadata in edit box
 'metadata_help' => 'ተጨማሪ መረጃ:',
 
@@ -296,7 +299,7 @@ $messages = array(
 'site-atom-feed'          => '$1 አቶም Feed',
 'page-rss-feed'           => '"$1" R.S.S. Feed',
 'page-atom-feed'          => '"$1" አቶም Feed',
-'red-link-title'          => '$1 (ገና አልተጻፈም)',
+'red-link-title'          => '$1 (ገጹ ገና አልተጻፈም)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'ገጽ',

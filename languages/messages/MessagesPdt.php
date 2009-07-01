@@ -414,7 +414,7 @@ Bitte nemm eenen aundren.',
 
 # Protect
 'protectexpiry'          => 'Ütgontiet:',
-'protect-expiry-options' => '2 Stunde:2 hours,1 Dach:1 day,3 Doag:3 days,1 Wäakj:1 week,2 Wäakje:2 weeks,1 Moonat:1 month,3 Moonate:3 months,6 Moonate:6 months,1 Joa:1 year,one Enj:infinite',
+'protect-expiry-options' => '2 Stunde:2 hours,1 Dach:1 day,1 Wäakj:1 week,2 Wäakje:2 weeks,1 Moonat:1 month,3 Moonate:3 months,6 Moonate:6 months,1 Joa:1 year,one Enj:infinite',
 'restriction-type'       => "Er'laubniss:",
 
 # Namespace form on various pages
