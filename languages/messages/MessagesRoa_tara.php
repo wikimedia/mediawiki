@@ -463,8 +463,9 @@ Condrolle accume l\'è scritte.',
 Prueve n'otra vote.",
 'wrongpasswordempty'         => "'A passuord 'nzerite jè vianghe.
 Mitta n'otra vota.",
-'passwordtooshort'           => "'A passuord ca è mise o non g'è valida o jè troppe piccenne.
-Tu a mettere almene {{PLURAL:$1|1 carattere|$1 carattere}} e adda essere diverse da 'u nome utende.",
+'passwordtooshort'           => "'A password ca è mise jè troppe piccenne.
+Tu a mettere almene {{PLURAL:$1|1 carattere|$1 carattere}}.",
+'password-name-match'        => "'A password toje adda essere diverse da 'u nome utende tue.",
 'mailmypassword'             => 'Passuord nova pe e-mail',
 'passwordremindertitle'      => 'Passuord temboranea nova pe {{SITENAME}}',
 'passwordremindertext'       => "Quacchedune (pò essere tu, da quiste indirizze IP \$1) ha cerchete 'na nova password pe {{SITENAME}} (\$4). 
@@ -784,9 +785,15 @@ Puè acchijà cchiù 'mbormaziune sus a [{{fullurl:{{#Special:Log}}/suppress|pag
 Cumme a 'n'amministratore tu puè angore [$1 vedè sta revisiona] ce tu avveramende a vuè ccù vide.",
 'rev-deleted-text-view'       => "Sta revisione d'a pàgene ha state '''scangellate'''.
 Cumme a 'n'amministratore tu a puè vedè angore; stonne cchiù 'mbormaziune jndr'à l'[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} archiviè de le scangellaminde].",
+'rev-deleted-no-diff'         => "Tu non ge piè vedè sta differenze purcè une de le revisiune ha state '''scagillate'''.
+Pò essere ca jacchie quacche dettaglie jndr'à l'[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} archiviè de le scangellaminde].",
+'rev-deleted-unhide-diff'     => "Une de le revisiune de sta differenza ha state '''scangellate'''.
+Pò essere ca iacchije quacche dettaglie jndr'à l'[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} archiviè de le scangellaminde]..
+Cumme a 'n'amministratore tu puè angore [$1 vedè sta differenze] ce tu proprie si inderessate.",
 'rev-delundel'                => 'fa vedè/scunne',
 'revisiondelete'              => 'Scangille/Repristine revisiune',
 'revdelete-nooldid-title'     => 'Revisione de destinazione invalida',
+'revdelete-nooldid-text'      => "Tu non g'è specificate 'na revisione da arrivà pe abbilità sta funzione. 'A specifica revisione non g'esiste oppure tu stè pruève a scunnè 'a revisona corrende.",
 'revdelete-nologtype-title'   => 'Nisciune tipe de archivije ha state specifichete',
 'revdelete-nologtype-text'    => "Tu non g'è specificate 'u tipe de l'archivije pe eseguì st'aziona.",
 'revdelete-nologid-title'     => "Richieste jndr'à l'archivije invalide",
@@ -1565,6 +1572,7 @@ Mò s'avène redirette a [[$2]].",
 'notargettitle'           => 'Nisciuna destinazione',
 'notargettext'            => "Tu non g'è specificate 'na pàgene o 'n'utende de destinazione sus a 'u quale vuè ccu face l'operazione.",
 'nopagetitle'             => 'Nisciuna pàgene de destinazione',
+'nopagetext'              => "'A pàgene de destinazione ca tu è specificate non g'esiste.",
 'pager-newer-n'           => '{{PLURAL:$1|cchiù nueve 1|cchiù nueve $1}}',
 'pager-older-n'           => '{{PLURAL:$1|cchiù vecchie 1|cchiù vicchie $1}}',
 
@@ -2260,6 +2268,7 @@ Permette de aggiungere 'nu mutive jndr'à 'u riepileghe",
 'mw_math_png'    => "Fà sembre 'u render de le PNG",
 'mw_math_simple' => 'HTML ce jè avveramende facile oppure PNG',
 'mw_math_html'   => 'HTML ce jè possibbile oppure PNG',
+'mw_math_source' => "Lassele cumme a 'nu TeX (pe le browser de teste)",
 'mw_math_mathml' => 'MathML ce possibbile (sperimendele)',
 
 # Math errors

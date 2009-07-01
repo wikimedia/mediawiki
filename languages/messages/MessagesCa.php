@@ -582,8 +582,9 @@ Reviseu-ne l'ortografia (recordeu que es distingeixen les majúscules i minúscu
 'nouserspecified'            => "Heu d'especificar un nom d'usuari.",
 'wrongpassword'              => 'La contrasenya que heu introduït és incorrecta. Torneu-ho a provar.',
 'wrongpasswordempty'         => "La contrasenya que s'ha introduït estava en blanc. Torneu-ho a provar.",
-'passwordtooshort'           => "La contrasenya és massa curta o invàlida.
-Ha de tenir un mínim {{PLURAL:$1|d'un caràcter|de $1 caràcters}} i ésser diferent del vostre nom d'usuari.",
+'passwordtooshort'           => "La contrasenya és massa curta.
+Ha de tenir un mínim {{PLURAL:$1|d'un caràcter|de $1 caràcters}}.",
+'password-name-match'        => "La contrasenya ha de ser diferent al vostre nom d'usuari.",
 'mailmypassword'             => "Envia'm una nova contrasenya per correu electrònic",
 'passwordremindertitle'      => 'Nova contrasenya temporal per al projecte {{SITENAME}}',
 'passwordremindertext'       => "Algú (vós mateix segurament, des de l'adreça l'IP $1) ha soŀlicitat que us enviéssim una nova contrasenya per a iniciar la sessió al projecte {{SITENAME}} ($4).
@@ -1769,6 +1770,7 @@ Vegeu també [[Special:WantedCategories|les categories soŀlicitades]].",
 'listusersfrom'      => 'Mostra usuaris començant per:',
 'listusers-submit'   => 'Mostra',
 'listusers-noresult' => "No s'han trobat coincidències de noms d'usuaris. Si us plau, busqueu també amb variacions per majúscules i minúscules.",
+'listusers-blocked'  => '({{GENDER:$1|blocat|blocada}})',
 
 # Special:Log/newusers
 'newuserlogpage'              => "Registre de creació de l'usuari",

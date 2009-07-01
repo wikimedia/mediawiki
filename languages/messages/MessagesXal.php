@@ -88,7 +88,7 @@ $messages = array(
 'article'    => 'Бичг',
 'cancel'     => 'Уга кех',
 'mytalk'     => 'Күүндлһн бәәрм',
-'anontalk'   => 'Эн IP хайгна күндллһн',
+'anontalk'   => 'IP хайгна күндллһн',
 'navigation' => 'Орм медлһн',
 
 # Cologne Blue skin
@@ -171,7 +171,7 @@ $messages = array(
 'remembermypassword'      => 'Мини нерн эн тоолвчд тодлх',
 'login'                   => 'Оруллһн',
 'nav-login-createaccount' => 'Орх аль бичгдлһиг бүтәх',
-'loginprompt'             => '{{SITENAME}} тал оруллһна төлә, та cookies олзлдг кергтә.',
+'loginprompt'             => '{{SITENAME}} тал оруллһна төлә, та «cookies» олзлдг кергтә.',
 'userlogin'               => 'Орх аль бичгдлһиг бүтәх',
 'logout'                  => 'Һарх',
 'userlogout'              => 'Һарх',
@@ -443,7 +443,7 @@ $messages = array(
 'tooltip-pt-login'       => 'Та орсн күцх бәәнәт, болв кергтә биш.',
 'tooltip-pt-logout'      => 'Һарх',
 'tooltip-ca-edit'        => 'Та эн халхиг чиклҗ чаднат.
-Хадһлһна күртл хәләвр олзлтн эрҗәнә.',
+Буйн болтха, хадһлһна күртл хәләвр олзлтн.',
 'tooltip-ca-addsection'  => 'Шин хүв эклх',
 'tooltip-ca-viewsource'  => 'Эн халх харссн бәәнә.
 Та энүнә медсн үзҗ чаднат.',
