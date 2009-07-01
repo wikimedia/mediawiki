@@ -233,6 +233,6 @@ echo <<<TEXT
 Doxygen execution finished.
 Check above for possible errors.
 
-You might want to deleted the temporary file $generatedConf
+You might want to delete the temporary file $generatedConf
 
 TEXT;
