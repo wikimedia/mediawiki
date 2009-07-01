@@ -400,7 +400,7 @@ class CategoryViewer {
 				$index < $endChunk && $index < count($articles);
 				$index++ )
 			{
-				// check for change of starting letter or begining of chunk
+				// check for change of starting letter or beginning of chunk
 				if ( ($index == $startChunk) ||
 					 ($articles_start_char[$index] != $articles_start_char[$index - 1]) )
 
