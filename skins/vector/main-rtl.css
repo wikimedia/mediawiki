@@ -443,7 +443,9 @@ div#logo a {
  * The following code is slightly modified from monobook
  * 
  */
-
+#content {
+	line-height: 1.5em;
+}
 /* Links */
 a {
 	text-decoration: none;
