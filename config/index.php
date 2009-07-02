@@ -1170,7 +1170,7 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 				$res = $wgDatabase->query( 'SHOW ENGINES' );
 				$found = false;
 				while ( $row = $wgDatabase->fetchObject( $res ) ) {
-					if ( $row->Engine == $conf->DBengine ) {
+					if ( $row->Engine == $conf->DBengine && ( $row->Support == 'YES' || $row->Support == 'DEFAULT' ) ) {
 						$found = true;
 						break;
 					}
