@@ -243,6 +243,7 @@ div#panel {
 		padding-left: 1.25em;
 		cursor: default;
 		border: none;
+		font-size: 0.9em;
 	}
 	div#panel div.portal div.body {
 		margin: 0;
@@ -262,6 +263,7 @@ div#panel {
 		padding-bottom: 0.5em;
 		margin: 0;
 		overflow: hidden;
+		font-size: 0.9em;
 	}
 	div#panel div.portal div.body ul li a {
 		color: #0645ad;
