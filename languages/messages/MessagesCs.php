@@ -354,6 +354,7 @@ $messages = array(
 'tog-ccmeonemails'            => 'Zasílat mi kopie e-mailů, které pošlu jiným uživatelům',
 'tog-diffonly'                => 'Nezobrazovat obsah stránky pod rozdílem verzí',
 'tog-showhiddencats'          => 'Zobrazit skryté kategorie',
+'tog-noconvertlink'           => 'Vypnout konverzi názvů',
 'tog-norollbackdiff'          => 'Po vrácení změny nezobrazovat porovnání rozdílů',
 
 'underline-always'  => 'Vždy',

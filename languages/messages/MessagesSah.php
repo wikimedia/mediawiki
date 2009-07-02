@@ -290,7 +290,7 @@ $messages = array(
 'badaccess-groups' => 'Дьайыыны $1 {{PLURAL:$2|бөлөххө|бөлөхтөртөн биирдэстэригэр}} киирэр кыттааччыларылар эрэ оҥорор кыахтаахтар.',
 
 'versionrequired'     => 'MediaWiki $1 -с биэрсийэтэ наада',
-'versionrequiredtext' => 'Бу сирэйи туттарга MediaWiki $1 -с биэрсийэтэ наада. [[Special:Version|version page]] көр.',
+'versionrequiredtext' => 'Бу сирэйи туттарга MediaWiki $1 -с барыла наада. [[Special:Version|Барыллар тустарынан сирэйи]] көр.',
 
 'ok'                      => 'Сөп',
 'retrievedfrom'           => '"$1" -н кэллэ',
@@ -767,7 +767,7 @@ long, which is longer than the maximum of $2 kilobytes. It cannot be saved.'''
 Ол да буоллар эн дьаһабыл буоларыҥ быһыытынан [$1 барылы көрүөххүн сөп].",
 'rev-delundel'                => 'көрдөр/кистээ',
 'revisiondelete'              => 'Соторго/торуму төнүннэрэргэ',
-'revdelete-nooldid-title'     => 'Торум чопчу ыйыллыбата',
+'revdelete-nooldid-title'     => 'Барыл чопчу ыйыллыбата',
 'revdelete-nooldid-text'      => 'Бу дьайыыны оҥорорго торуму (торумнары) чуолаан ыйбатаххын, 
 эбэтэр торум ончу суох, эбэтэр кистэммит торум.',
 'revdelete-nologtype-title'   => 'Сурунаал көрүҥэ ыйыллыбатах',
@@ -1517,7 +1517,7 @@ PICT # misc.
 'randompage-nopages' => 'Бу аат дала ($1) кураанах.',
 
 # Random redirect
-'randomredirect'         => 'Случайное перенаправление',
+'randomredirect'         => 'Түбэспиччэ утаарыы',
 'randomredirect-nopages' => 'Бу аат далыгар($1) көһөрөр ыйынньыктар суохтар.',
 
 # Statistics
@@ -2565,7 +2565,7 @@ $1',
 'exif-software'                    => 'Туһанар бырагырааммата',
 'exif-artist'                      => 'Ааптар',
 'exif-copyright'                   => 'Бас билээччи',
-'exif-exifversion'                 => 'Exif биэрсийэтэ',
+'exif-exifversion'                 => 'Exif барыла',
 'exif-flashpixversion'             => 'Flashpix туттуллар биэрсийэтэ',
 'exif-colorspace'                  => 'Өҥ куйаара (пространство, space)',
 'exif-componentsconfiguration'     => 'Хас биирдии компонент суолтата',
@@ -2623,7 +2623,7 @@ $1',
 'exif-devicesettingdescription'    => 'Камера туруоруулара',
 'exif-subjectdistancerange'        => 'Түһэриллибит объекка дылы ырааҕа',
 'exif-imageuniqueid'               => 'Ойуу нүөмэрэ (ID)',
-'exif-gpsversionid'                => 'GPS тегын биэрсийэтэ',
+'exif-gpsversionid'                => 'GPS тиэгин барыла',
 'exif-gpslatituderef'              => 'Хотугу/Соҕурууҥу кэтирээһин',
 'exif-gpslatitude'                 => 'Кэтирээһин',
 'exif-gpslongituderef'             => 'Илиҥҥи/Арҕааҥҥы усталааһын',
@@ -2933,7 +2933,7 @@ $1',
 'duplicate-defaultsort' => 'Болҕой: Наардааһын «$2» күлүүһэ урукку «$1» күлүүһү сабар (Ключ сортировки переопределяет прежний ключ).',
 
 # Special:Version
-'version'                          => 'MediaWiki биэрсийэтэ (барыла)',
+'version'                          => 'MediaWiki барыла (биэрсийэтэ)',
 'version-extensions'               => 'Туруоруллубут расширениялар',
 'version-specialpages'             => 'Аналлаах сирэйдэр',
 'version-parserhooks'              => 'синтаксическай анализатор перехватчиктара',

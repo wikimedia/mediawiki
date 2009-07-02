@@ -534,7 +534,7 @@ $messages = array(
 
 'badaccess'        => '権限がありません',
 'badaccess-group0' => '要求した操作を行うことは許可されていません。',
-'badaccess-groups' => 'この操作は、$1 {{PLURAL:$2|の|のいずれかの}}グループに属する利用者のみが実行できます。',
+'badaccess-groups' => 'この操作は、$1{{PLURAL:$2|の|のいずれかの}}グループに属する利用者のみが実行できます。',
 
 'versionrequired'     => 'MediaWiki バージョン $1 が必要',
 'versionrequiredtext' => 'このページの利用には MediaWiki バージョン $1 が必要です。[[Special:Version|バージョン情報]]を確認してください。',
