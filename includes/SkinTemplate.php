@@ -887,10 +887,12 @@ class SkinTemplate extends Skin {
 		// A print stylesheet is attached to all pages, but nobody ever
 		// figures that out. :)  Add a link...
 		if( $this->iscontent && ( $action == 'view' || $action == 'purge' ) ) {
-			$nav_urls['print'] = array(
-				'text' => wfMsg( 'printableversion' ),
-				'href' => $wgRequest->appendQuery( 'printable=yes' )
-			);
+			if ( !$wgRequest->getBool( 'printable' ) ) {
+				$nav_urls['print'] = array(
+					'text' => wfMsg( 'printableversion' ),
+					'href' => $wgRequest->appendQuery( 'printable=yes' )
+				);
+			}
 
 			// Also add a "permalink" while we're at it
 			if ( $this->mRevisionId ) {

@@ -220,6 +220,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 19450) Use formatNum for "Number of edits" in Special:Preferences
 * (bug 11242) Check for MySQL storage engines during installation now checks
   whether the engines are actually available
+* (bug 19390) Omit the "printable version" link on the printable version
 
 == API changes in 1.16 ==
 

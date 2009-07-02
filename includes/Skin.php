@@ -1073,9 +1073,13 @@ END;
 	function printableLink() {
 		global $wgOut, $wgFeedClasses, $wgRequest, $wgLang;
 
-		$printurl = $wgRequest->escapeAppendQuery( 'printable=yes' );
+		$s = array();
 
-		$s[] = "<a href=\"$printurl\" rel=\"alternate\">" . wfMsg( 'printableversion' ) . '</a>';
+		if ( !$wgRequest->getBool( 'printable' ) ) {
+			$printurl = $wgRequest->escapeAppendQuery( 'printable=yes' );
+			$s[] = "<a href=\"$printurl\" rel=\"alternate\">" . wfMsg( 'printableversion' ) . '</a>';
+		}
+
 		if( $wgOut->isSyndicated() ) {
 			foreach( $wgFeedClasses as $format => $class ) {
 				$feedurl = $wgRequest->escapeAppendQuery( "feed=$format" );
