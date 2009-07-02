@@ -2642,6 +2642,7 @@ The wiki server can't provide data in a format your client can read.",
 'skinname-chick'       => 'Цыпа',
 'skinname-simple'      => 'Простое',
 'skinname-modern'      => 'Современное',
+'skinname-vector'      => 'Вектор',
 
 # Math options
 'mw_math_png'    => 'Всегда генерировать PNG',

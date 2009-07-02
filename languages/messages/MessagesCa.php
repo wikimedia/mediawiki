@@ -1389,6 +1389,7 @@ També podeu contactar amb altres usuaris a través de la vostra pàgina d'usuar
 
 # Recent changes linked
 'recentchangeslinked'          => "Seguiment d'enllaços",
+'recentchangeslinked-toolbox'  => "Seguiment d'enllaços",
 'recentchangeslinked-title'    => 'Canvis relacionats amb «$1»',
 'recentchangeslinked-noresult' => 'No ha hagut cap canvi a les pàgines enllaçades durant el període de temps.',
 'recentchangeslinked-summary'  => "A continuació trobareu una llista dels canvis recents a les pàgines enllaçades des de la pàgina donada (o entre els membres d'una categoria especificada).
