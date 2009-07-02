@@ -203,7 +203,7 @@ class SpecialSearch {
 			)
 		);
 		$wgOut->addHtml(
-			Xml::openElement( 'table', array( 'border'=>0, 'cellpadding'=>0, 'cellspacing'=>0 ) ) .
+			Xml::openElement( 'table', array( 'id'=>'mw-search-top-table', 'border'=>0, 'cellpadding'=>0, 'cellspacing'=>0 ) ) .
 			Xml::openElement( 'tr' ) .
 			Xml::openElement( 'td' ) . "\n"	.
 			$this->shortDialog( $term ) .
