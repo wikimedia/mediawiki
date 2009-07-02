@@ -657,6 +657,7 @@ class EditPage {
 			}
 		}
 
+		// FIXME: unused variable?
 		$this->oldid = $request->getInt( 'oldid' );
 
 		$this->live = $request->getCheck( 'live' );
@@ -1708,7 +1709,7 @@ END
 		// so should remain short!
 		wfRunHooks( 'EditPageTosSummary', array( $this->mTitle, &$msg ) );
 		$text = wfMsg( $msg );
-		if( $text != '-' ) {
+		if( !wfEmptyMsg( $msg, $text ) && $text !== '-' ) {
 			global $wgOut;
 			$wgOut->addHTML( '<div class="mw-tos-summary">' );
 			$wgOut->addWikiMsgArray( $msg, array() );
