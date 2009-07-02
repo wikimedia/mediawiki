@@ -766,7 +766,7 @@ class SpecialSearch {
 				array( 'id' => 'mw-searchoptions', 'style' => 'margin:0em;' )
 			) .
 			Xml::element( 'legend', null, wfMsg('powersearch-legend') ) .
-			Xml::element( 'h4', null, wfMsgExt( 'powersearch-ns', array( 'parseinline' ) ) ) .
+			Xml::tags( 'h4', null, wfMsgExt( 'powersearch-ns', array( 'parseinline' ) ) ) .
 			Xml::tags(
 				'div',
 				array( 'id' => 'mw-search-togglebox' ),
