@@ -500,7 +500,7 @@ class LocalisationCache {
 			$data = $this->readPHPFile( $fileName, 'extension' );
 			$used = false;
 			foreach ( $data as $key => $item ) {
-				$used = $used || 
+				$used = $used |
 					$this->mergeExtensionItem( $codeSequence, $key, $allData[$key], $item );
 			}
 			if ( $used ) {
