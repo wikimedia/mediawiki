@@ -1189,6 +1189,18 @@ class PPFrame_DOM implements PPFrame {
 		}
 	}
 
+	function getArguments() {
+		return array();
+	}
+
+	function getNumberedArguments() {
+		return array();
+	}
+
+	function getNamedArguments() {
+		return array();
+	}
+
 	/**
 	 * Returns true if there are no arguments in this frame
 	 */

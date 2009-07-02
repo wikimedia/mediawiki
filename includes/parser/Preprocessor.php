@@ -66,6 +66,21 @@ interface PPFrame {
 	function isEmpty();
 
 	/**
+	 * Returns all arguments of this frame
+	 */
+	function getArguments();
+
+	/**
+	 * Returns all numbered arguments of this frame
+	 */
+	function getNumberedArguments();
+
+	/**
+	 * Returns all named arguments of this frame
+	 */
+	function getNamedArguments();
+
+	/**
 	 * Get an argument to this frame by name
 	 */
 	function getArgument( $name );
