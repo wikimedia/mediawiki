@@ -264,6 +264,7 @@ div#panel {
 		background-image: url(images/portal-break-rtl.png);
 		background-repeat: no-repeat;
 		background-position: top right;
+		font-size: 0.9em;
 	}
 	div#panel div.portal div.body ul {
 		list-style: none;
@@ -275,6 +276,7 @@ div#panel {
 		padding-bottom: 0.5em;
 		margin: 0;
 		overflow: hidden;
+		font-size: 0.9em;
 	}
 	div#panel div.portal div.body ul li a {
 		color: #0645ad;
