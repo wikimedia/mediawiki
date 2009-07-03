@@ -1,5 +1,4 @@
 <?php
-
 # Copyright (C) 2008 Aaron Schulz
 #
 # http://www.mediawiki.org/
@@ -18,34 +17,29 @@
 # with this program; if not, write to the Free Software Foundation, Inc.,
 # 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
 # http://www.gnu.org/copyleft/gpl.html
-/**
- *
- * @addtogroup SpecialPage
- */
 
 /**
- * This class is used to get a list of user. The ones with specials
+ * This class is used to get a list of active users. The ones with specials
  * rights (sysop, bureaucrat, developer) will have them displayed
  * next to their names.
  *
- * @addtogroup SpecialPage
+ * @file
+ * @ingroup SpecialPage
  */
-
 class ActiveUsersPager extends UsersPager {
 
-	function __construct($group=null) {
+	function __construct( $group = null ) {
 		global $wgRequest;
 		$un = $wgRequest->getText( 'username' );
 		$this->requestedUser = '';
 		if ( $un != '' ) {
 			$username = Title::makeTitleSafe( NS_USER, $un );
-			if( ! is_null( $username ) ) {
+			if( !is_null( $username ) ) {
 				$this->requestedUser = $username->getText();
 			}
 		}
 		parent::__construct();
 	}
-
 
 	function getIndexField() {
 		return 'rc_user_text';
@@ -55,23 +49,23 @@ class ActiveUsersPager extends UsersPager {
 		$dbr = wfGetDB( DB_SLAVE );
 		$conds = array('rc_user > 0'); // Users - no anons
 		$conds[] = 'ipb_deleted IS NULL'; // don't show hidden names
-		$useIndex = $dbr->useIndexClause('rc_user_text');
-		if( $this->requestedUser != "" ) {
+		$useIndex = $dbr->useIndexClause( 'rc_user_text' );
+		if( $this->requestedUser != '' ) {
 			$conds[] = 'rc_user_text >= ' . $dbr->addQuotes( $this->requestedUser );
 		}
 
-		list ($recentchanges,$ipblocks,$user) = $dbr->tableNamesN('recentchanges','ipblocks','user');
+		list( $recentchanges, $ipblocks, $user ) = $dbr->tableNamesN( 'recentchanges', 'ipblocks', 'user' );
 
 		$query = array(
 			'tables' => " $recentchanges $useIndex 
 				LEFT JOIN $ipblocks ON rc_user=ipb_user AND ipb_auto=0 AND ipb_deleted=1
 				INNER JOIN $user ON rc_user=user_id ",
-			'fields' => array('rc_user_text AS user_name', // inheritance
+			'fields' => array( 'rc_user_text AS user_name', // inheritance
 				'rc_user_text', // for Pager
 				'MAX(rc_user) AS user_id',
 				'COUNT(*) AS recentedits',
-				'MAX(ipb_user) AS blocked'),
-			'options' => array('GROUP BY' => 'rc_user_text'),
+				'MAX(ipb_user) AS blocked' ),
+			'options' => array( 'GROUP BY' => 'rc_user_text' ),
 			'conds' => $conds
 		);
 		return $query;
@@ -88,7 +82,7 @@ class ActiveUsersPager extends UsersPager {
 		$groups = implode( ', ', $list );
 
 		$item = wfSpecialList( $name, $groups );
-		$count = wfMsgExt( 'activeusers-count', array('parsemag'), $row->recentedits, $userName );
+		$count = wfMsgExt( 'activeusers-count', array( 'parsemag' ), $row->recentedits, $userName );
 		$blocked = $row->blocked ? ' ' . wfMsgExt( 'listusers-blocked', array( 'parsemag' ), $userName ) : '';
 
 		return "<li>{$item} [{$count}]{$blocked}</li>";
@@ -102,7 +96,7 @@ class ActiveUsersPager extends UsersPager {
 		$out  = Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript ) ) .
 			'<fieldset>' .
 			Xml::element( 'legend', array(), wfMsg( 'activeusers' ) );
-		$out .= Xml::hidden( 'title', $self->getPrefixedDbKey() );
+		$out .= Xml::hidden( 'title', $self->getPrefixedDBkey() );
 
 		# Username field
 		$out .= Xml::label( wfMsg( 'activeusers-from' ), 'offset' ) . ' ' .
@@ -120,24 +114,41 @@ class ActiveUsersPager extends UsersPager {
 }
 
 /**
- * constructor
- * $par string (optional) A group to list users from
+ * @ingroup SpecialPage
  */
-function wfSpecialActiveusers( $par = null ) {
-	global $wgRequest, $wgOut;
+class SpecialActiveUsers extends SpecialPage {
 
-	$up = new ActiveUsersPager();
+	/**
+	 * Constructor
+	 */
+	public function  __construct() {
+		parent::__construct( 'ActiveUsers' );
+	}
 
-	# getBody() first to check, if empty
-	$usersbody = $up->getBody();
-	$s = $up->getPageHeader();
-	if( $usersbody ) {
-		$s .=	$up->getNavigationBar();
-		$s .=	'<ul>' . $usersbody . '</ul>';
-		$s .=	$up->getNavigationBar() ;
-	} else {
-		$s .=	'<p>' . wfMsgHTML('activeusers-noresult') . '</p>';
-	};
+	/**
+	 * Show the special page
+	 *
+	 * @param $par Mixed: parameter passed to the page or null
+	 */
+	public function execute( $par ) {
+		global $wgOut;
 
-	$wgOut->addHTML( $s );
+		$this->setHeaders();
+
+		$up = new ActiveUsersPager();
+
+		# getBody() first to check, if empty
+		$usersbody = $up->getBody();
+		$s = $up->getPageHeader();
+		if( $usersbody ) {
+			$s .= $up->getNavigationBar();
+			$s .= '<ul>' . $usersbody . '</ul>';
+			$s .= $up->getNavigationBar();
+		} else {
+			$s .= '<p>' . wfMsgHtml( 'activeusers-noresult' ) . '</p>';
+		}
+
+		$wgOut->addHTML( $s );
+	}
+
 }

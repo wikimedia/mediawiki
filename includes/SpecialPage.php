@@ -27,8 +27,7 @@
  * page list.
  * @ingroup SpecialPage
  */
-class SpecialPage
-{
+class SpecialPage {
 	/**#@+
 	 * @access private
 	 */
@@ -125,7 +124,7 @@ class SpecialPage
 		'Contributions'             => 'SpecialContributions',	
 		'Listgrouprights'           => 'SpecialListGroupRights',
 		'Listusers'                 => array( 'SpecialPage', 'Listusers' ),
-		'Activeusers'               => array( 'SpecialPage', 'Activeusers' ),
+		'Activeusers'               => 'SpecialActiveUsers',
 		'Userrights'                => 'UserrightsPage',
 
 		# Recent changes and logs
