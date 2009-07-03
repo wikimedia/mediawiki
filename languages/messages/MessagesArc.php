@@ -476,6 +476,7 @@ Note that some pages may continue to be displayed as if you were still logged in
 'prefs-resetpass'             => 'ܫܚܠܦ ܡܠܬܐ ܕܥܠܠܐ',
 'prefs-rendering'             => 'ܐܣܟܝܡܐ',
 'saveprefs'                   => 'ܢܛܘܪ',
+'resetprefs'                  => 'ܡܫܝ ܫܘܚܠܦ̈ܐ ܠܐ ܢܛܝܪ̈ܐ',
 'prefs-editing'               => 'ܫܚܠܦܬܐ',
 'columns'                     => 'ܥܡܘܕ̈ܐ:',
 'searchresultshead'           => 'ܒܨܝ',
@@ -679,6 +680,9 @@ Note that some pages may continue to be displayed as if you were still logged in
 
 # Statistics
 'statistics-pages' => 'ܦܐܬܘܬ̈ܐ',
+
+'disambiguations'     => 'ܦܐܬܘܬ̈ܐ ܕܠܐ ܕܠܘܚܝܐ',
+'disambiguationspage' => 'Template:ܠܐ ܕܠܘܚܝܐ',
 
 'doubleredirects'            => 'ܨܘܝܒ̈ܐ ܥܦܝܦ̈ܐ',
 'double-redirect-fixed-move' => '[[$1]] ܐܫܬܢܝܬ.
@@ -969,6 +973,7 @@ Do you want to change the settings?',
 'move-leave-redirect'     => 'ܫܒܘܩ ܨܘܝܒܐ ܒܬܪܟ',
 
 # Export
+'export'            => 'ܐܦܩ ܦܐܬܘܬ̈ܐ',
 'export-submit'     => 'ܐܦܩ',
 'export-addcattext' => 'ܐܘܣܦ ܦܐܬܘܬ̈ܐ ܡܢ ܣܕܪܐ:',
 'export-addcat'     => 'ܐܘܣܦ',

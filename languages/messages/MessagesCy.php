@@ -274,6 +274,7 @@ $messages = array(
 'vector-namespace-help'      => 'Tudalen gymorth',
 'vector-namespace-image'     => 'Ffeil',
 'vector-namespace-main'      => 'Tudalen',
+'vector-namespace-media'     => 'Tudalen cyfrwng',
 'vector-namespace-mediawiki' => 'Neges',
 'vector-namespace-project'   => 'Tudalen brosiect',
 'vector-namespace-special'   => 'Tudalen arbennig',
@@ -282,6 +283,7 @@ $messages = array(
 'vector-namespace-user'      => 'Tudalen defnyddiwr',
 'vector-view-create'         => 'Dechrau',
 'vector-view-edit'           => 'Golygu',
+'vector-view-history'        => 'Gweld yr hanes',
 'vector-view-view'           => 'Darllen',
 'vector-view-viewsource'     => 'Dagos côd y dudalen',
 
@@ -857,6 +859,8 @@ Byddwch gystal â chadarnhau eich bod yn bwriadu gwneud hyn, eich bod yn deall y
 'revdelete-unhid'             => 'datguddiwyd $1',
 'revdelete-log-message'       => '$1 $2 {{PLURAL:$2|golygiad|golygiad|olygiad|golygiad|golygiad|golygiad|}}',
 'logdelete-log-message'       => '$1 $2 {{PLURAL:$2||digywddiad|ddigwyddiad|digwyddiad|digwyddiad|digwyddiad}}',
+'revdelete-hide-current'      => "Cafwyd gwall wrth geisio cuddio'r eitem a'r dyddiad $2, $1 arno: hwn yw'r diwygiad presennol.
+Ni ellir ei guddio.",
 
 # Suppression log
 'suppressionlog'     => 'Lòg cuddio',
@@ -990,6 +994,7 @@ Pan yn gwneud hyn dylid sicrhau nad yw dilyniant hanes tudalennau yn cael ei ddi
 'search-mwsuggest-disabled'        => 'dim awgrymiadau',
 'search-relatedarticle'            => 'Cysylltiedig',
 'mwsuggest-disable'                => 'Analluogi awgrymiadau AJAX',
+'searcheverything-enable'          => 'Chwilio pob parth',
 'searchrelated'                    => 'cysylltiedig',
 'searchall'                        => 'oll',
 'showingresults'                   => "Yn dangos $1 {{PLURAL:$1|canlyniad|canlyniad|ganlyniad|chanlyniad|chanlyniad|canlyniad}} isod gan ddechrau gyda rhif '''$2'''.",
@@ -1003,6 +1008,9 @@ Pan yn gwneud hyn dylid sicrhau nad yw dilyniant hanes tudalennau yn cael ei ddi
 'powersearch-ns'                   => 'Chwilio yn y parthau:',
 'powersearch-redir'                => 'Rhestru ailgyfeiriadau',
 'powersearch-field'                => 'Chwilier am',
+'powersearch-togglelabel'          => 'Dewis:',
+'powersearch-toggleall'            => 'Oll',
+'powersearch-togglenone'           => 'Dim un',
 'search-external'                  => 'Chwiliad allanol',
 'searchdisabled'                   => "Mae'r teclyn chwilio ar {{SITENAME}} wedi'i analluogi dros dro.
 Yn y cyfamser gallwch chwilio drwy Google.
@@ -1074,7 +1082,7 @@ Cofiwch y gall mynegeion Google o gynnwys {{SITENAME}} fod ar ei hôl hi.",
 'timezoneregion-indian'         => 'Cefnfor yr India',
 'timezoneregion-pacific'        => 'Y Môr Tawelt',
 'allowemail'                    => 'Galluogi e-bost oddi wrth ddefnyddwyr eraill',
-'prefs-searchoptions'           => 'Dewisiadau chwilio',
+'prefs-searchoptions'           => 'Chwilio',
 'prefs-namespaces'              => 'Parthau',
 'defaultns'                     => 'Fel arall, chwiliwch y parthau isod:',
 'default'                       => 'rhagosodyn',
@@ -1441,6 +1449,7 @@ Gallwch newid trefn y rhestr trwy bwyso ar bennawd colofn.",
 'filehist-dimensions'       => 'Hyd a lled',
 'filehist-filesize'         => 'Maint y ffeil',
 'filehist-comment'          => 'Sylw',
+'filehist-missing'          => 'Y ffeil yn eisiau',
 'imagelinks'                => "Cysylltiadau'r ffeil",
 'linkstoimage'              => "Mae'r {{PLURAL:$1|tudalen|dudalen|tudalennau|tudalennau|tudalennau|tudalennau}} isod yn cysylltu i'r ddelwedd hon:",
 'linkstoimage-more'         => "Mae rhagor na $1 {{PLURAL:$1|tudalen yn|dudalen yn|dudalen yn|o dudalennau'n|o dudalennau'n|o dudalennau'n}} cysylltu at y ffeil hon.

@@ -2235,7 +2235,7 @@ $1',
 'whatlinkshere-hideredirs' => '$1 перенаправления',
 'whatlinkshere-hidetrans'  => '$1 включения',
 'whatlinkshere-hidelinks'  => '$1 ссылки',
-'whatlinkshere-hideimages' => '$1 ссылки с изображений',
+'whatlinkshere-hideimages' => '$1 ссылки для изображений',
 'whatlinkshere-filters'    => 'Фильтры',
 
 # Block/unblock

@@ -271,6 +271,12 @@ $messages = array(
 
 # General errors
 'error'              => 'Marranys',
+'missing-article'    => 'Cha row teks duillag, lhisagh ve er gheddyn lesh yn ennym "$1" $2, feddynit ec y stoyr-fysseree.
+
+Dy cadjin, she y chooish da\'n taghyrt shen na jannoo shelg er kiangley caghlaa ass date ny kiangley shennaghys dys duillag va scrysst.
+
+Mannagh vel eh y chooish, foddee dy vel doghan \'sy chooid vog er ve feddynit magh ayd.<br />
+Cur coontey jeh da [[Special:ListUsers/sysop|reireyder]], as gow notey jeh\'n URL.',
 'internalerror'      => 'Marranys ynveanagh',
 'internalerror_info' => 'Marranys ynveanagh: $1',
 'badtitle'           => 'Drogh-ennym',
@@ -418,13 +424,13 @@ Ta lioar ny scryssaghyn magh kiarit ayns shoh rere dty chaays hene:",
 
 # History pages
 'viewpagelogs'           => 'Jeeagh er lioaryn cooishyn ny duillag shoh',
-'currentrev'             => 'Aavriwnys immeeaght',
+'currentrev'             => 'Aavriwnys roie',
 'currentrev-asof'        => 'Aavriwnys roie er $1',
 'revisionasof'           => 'Aavriwnys veih $1',
 'revision-info'          => 'Aavriwnys veih $1 ec $2',
 'previousrevision'       => '←Aavriwnys ny shinney',
 'nextrevision'           => 'Aavriwnys ny saa→',
-'currentrevisionlink'    => 'Jeeagh er yn aavriwnys immeeaght',
+'currentrevisionlink'    => 'Aavriwnys roie',
 'cur'                    => 'traa',
 'next'                   => 'nah',
 'last'                   => 'roish',
@@ -630,7 +636,7 @@ Ta duillagyn er [[Special:Watchlist|dty rolley arrey]] ayns '''clou trome'''.",
 'filesource'        => 'Bun:',
 'uploadedfiles'     => 'Coadanyn ta laadit neese',
 'badfilename'       => 'T\'ennym y choadan aa-enmyssit myr "$1".',
-'fileexists-thumb'  => "<center>'''Coadan immeeaght'''</center>",
+'fileexists-thumb'  => "<center>'''Coadan roie'''</center>",
 'savefile'          => 'Sauail y coadan',
 'uploadedimage'     => '"[[$1]]" laadit neese',
 'uploadvirus'       => "Ta veerys 'sy coadan! Mynphoyntyn: $1",
@@ -776,6 +782,8 @@ Ta duillagyn er [[Special:Watchlist|dty rolley arrey]] ayns '''clou trome'''.",
 'alphaindexline' => '$1 gys $2',
 'nextpage'       => 'Yn chied duillag elley ($1)',
 'prevpage'       => 'Yn duillag roish ($1)',
+'allpagesfrom'   => 'Taishbyney duillagyn ta toshiaghey lesh:',
+'allpagesto'     => 'Taishbyney duillagyn ta jannoo jerrey lesh:',
 'allarticles'    => 'Dagh ooilley ghuillag',
 'allpagessubmit' => 'Gow',
 'allpagesprefix' => 'Taishbyney duillagyn lesh roie-ockle:',
@@ -876,8 +884,8 @@ Aaveaghey as cooney s\'odjey:
 'delete-confirm'        => 'Scryss "$1"',
 'delete-legend'         => 'Scryss',
 'historywarning'        => 'Raaue: Ta shennaghys ec y duillag ta shiu er-chee scryssey magh:',
-'confirmdeletetext'     => 'Ta shiu er-chee scryssey magh duillag chammah as y shennaghys echey.<br />
-Feeraghey dy vel eh yn shalee ayd eh y yannoo, as dy vel ny scanshyn toiggit ayns, as dy vel shiu jannoo eh shen ayns coardailys rish [[{{MediaWiki:Policy-url}}|y polasee]].',
+'confirmdeletetext'     => 'Ta shiu er-çhee scryssey magh duillag myrane lesh y shennaghys eck.<br />
+Feeraghey dy vel eh y çhalee ayd eh y yannoo, dy vel ny scanshyn toiggit ayd, as dy vel oo jannoo eh ayns coardailys rish [[{{MediaWiki:Policy-url}}|y pholasee]].',
 'actioncomplete'        => 'Obbraghey creaghnit',
 'deletedtext'           => 'Ta "<nowiki>$1</nowiki>" scrysst.<br />
 Jeeagh er $2 son recortys ny scryssaghyn magh jeianagh.',
@@ -944,15 +952,16 @@ Shoh ny reaghaghyn roie da'n duillag '''$1''':",
 'blanknamespace' => '(Cadjin)',
 
 # Contributions
-'contributions' => 'Cohortyssyn ymmydeyr',
-'mycontris'     => 'My chohortyssyn',
-'contribsub2'   => 'Da $1 ($2)',
-'uctop'         => ' (baare)',
-'month'         => "Veih mee (as ny s'aa):",
-'year'          => "Veih blein (as ny s'aa):",
+'contributions'       => 'Cohortyssyn ymmydeyr',
+'contributions-title' => 'Cohortyssyn ymmydeyr liorish $1',
+'mycontris'           => 'My chohortyssyn',
+'contribsub2'         => 'Da $1 ($2)',
+'uctop'               => ' (baare)',
+'month'               => "Veih mee (as ny s'aa):",
+'year'                => "Veih blein (as ny s'aa):",
 
-'sp-contributions-newbies'     => 'Gyn taishbyney agh cohortyssyn choontyssyn noa',
-'sp-contributions-newbies-sub' => 'Lesh coontysyn noa',
+'sp-contributions-newbies'     => 'Taishbyney cohortyssyn liorish coontyssyn noa ynrican',
+'sp-contributions-newbies-sub' => 'Lesh coontyssyn noa',
 'sp-contributions-blocklog'    => 'Lioar chooishyn lhiettrimyssyn',
 'sp-contributions-talk'        => 'resoonaght',
 'sp-contributions-userrights'  => 'Reireydys kiartyn ymmydeyr',
@@ -1002,7 +1011,7 @@ Shoh ny reaghaghyn roie da'n duillag '''$1''':",
 'ipbotheroption'           => 'elley',
 'ipbotherreason'           => 'Fa elley/tooilley:',
 'badipaddress'             => 'Enmys IP gyn vree',
-'ipblocklist'              => 'Rolley enmysyn IP as enmyn ymmydeyr fo ghlass',
+'ipblocklist'              => 'Rolley enmyssyn IP as enmyn ymmydeyr fo ghlass',
 'ipblocklist-username'     => 'Ennym yn ymmydeyr ny enmys IP:',
 'ipblocklist-submit'       => 'Ronsaghey',
 'infiniteblock'            => 'neuyerrinagh',
@@ -1046,7 +1055,7 @@ Jean covestey eddyr oc er laueyn, my sailliu.'''",
 'allmessages'        => 'Çhaghteraghtyn corys',
 'allmessagesname'    => 'Ennym',
 'allmessagesdefault' => 'Teks cadjinit',
-'allmessagescurrent' => 'Teks immeeaght',
+'allmessagescurrent' => 'Teks roie',
 
 # Thumbnails
 'thumbnail-more'  => 'Mooadaghey',
@@ -1072,7 +1081,7 @@ Jean covestey eddyr oc er laueyn, my sailliu.'''",
 'tooltip-ca-talk'                 => 'Resoonaght mychione ny duillag cummal',
 'tooltip-ca-edit'                 => 'Foddee oo reaghey yn duillah shoh. Crig er y chramman roie-haishbynys roish eh y sauail.',
 'tooltip-ca-addsection'           => 'Jean rheynn noa',
-'tooltip-ca-viewsource'           => "Ta'n duillag shoh fo ghlass. Foddee oo jeeagh er e vun.",
+'tooltip-ca-viewsource'           => "Ta'n duillag shoh fo ghlass. Foddee oo jeeagh er e bun.",
 'tooltip-ca-history'              => "Shenn aavriwnyssyn jeh'n duillag shoh",
 'tooltip-ca-protect'              => 'Coadee yn duillag shoh',
 'tooltip-ca-delete'               => 'Scryss y duillag shoh',
@@ -1092,6 +1101,7 @@ Jean covestey eddyr oc er laueyn, my sailliu.'''",
 'tooltip-t-whatlinkshere'         => 'Rolley dagh ooilley ghuillag wiki ta kianglt lesh shoh',
 'tooltip-t-recentchangeslinked'   => 'Caghlaaghyn noa er duillagyn ta kianglt lesh y duillag shoh',
 'tooltip-feed-rss'                => "Beaghey RSS da'n duillag shoh",
+'tooltip-feed-atom'               => "Beaghey Atom da'n duillag shoh",
 'tooltip-t-contributions'         => 'Jeeagh er cohortyssyn yn ymmydeyr shoh',
 'tooltip-t-emailuser'             => "Cur post-L da'n ymmydeyr shoh",
 'tooltip-t-upload'                => 'Laadey neese coadanyn',
@@ -1113,6 +1123,8 @@ Jean covestey eddyr oc er laueyn, my sailliu.'''",
 'tooltip-diff'                    => 'Taishbyney caghlaaghyn y teks ta jeant ayd.',
 'tooltip-compareselectedversions' => 'Jeeagh er ny caghlaaghyn eddyr y daa lhieggan reiht y ghuillag shoh.',
 'tooltip-watch'                   => 'Cur y duillag shoh lesh dty rolley arrey',
+'tooltip-undo'                    => "Ta \"rassey\" cur y reaghey shoh er ash as t'eh fosley yn form reaghee ayns mod roie-haishbynys.<br />
+T'eh lhiggey da oyr y chur 'sy ghiare-choontey.",
 
 # Attribution
 'anonymous' => '{{PLURAL:$1|Ymmeyder|Ymmeyderny}} neuenmyssit dy {{SITENAME}}',
@@ -1163,6 +1175,15 @@ Kianglaghyn eiyrtyssagh erbee er yn linney shoh, t'ad goll er loaghtey myr lhimm
 My vel y coadan ceaghlit veih'n chummey bunneydagh, foddee nagh beagh mynphoyntyn ennagh cohoilshaghey yn coadan ceaghlit.",
 'metadata-expand'   => 'Taishbyney ny mynphointyn sheeynt',
 'metadata-collapse' => 'Follaghey ny mynphointyn sheeynt',
+'metadata-fields'   => "Bee magheryn metafysseree EXIF er y rolley 'sy çhaghteraght shoh currit er taishbynys duillag y jalloo nar ta taabyl ny metafysseree fillit.<br />
+Bee adsyn elley follit dy seyr-obbragh.<br />
+* make
+* model
+* datetimeoriginal
+* exposuretime
+* fnumber
+* isospeedratings
+* focallength",
 
 # EXIF tags
 'exif-imagewidth'       => 'Lheead',

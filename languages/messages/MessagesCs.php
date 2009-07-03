@@ -318,7 +318,7 @@ $messages = array(
 'tog-extendwatchlist'         => 'Na seznamu sledovaných stránek zobrazovat všechny změny, ne jen tu poslední',
 'tog-usenewrc'                => 'Používat zdokonalené poslední změny (vyžaduje JavaScript)',
 'tog-numberheadings'          => 'Automaticky číslovat nadpisy',
-'tog-showtoolbar'             => 'Ukázat lištu s nástroji při editaci',
+'tog-showtoolbar'             => 'Zobrazit panel nástrojů (vyžaduje JavaScript)',
 'tog-editondblclick'          => 'Editovat dvojklikem (JavaScript)',
 'tog-editsection'             => 'Zapnout možnost editace části stránky pomocí odkazu [editovat]',
 'tog-editsectiononrightclick' => 'Zapnout možnost editace části stránky pomocí kliknutí pravým tlačítkem na nadpisy stránky (JavaScript)',
@@ -803,7 +803,7 @@ Možná jste si již úspěšně heslo změnili, nebo jste si vyžádali nové d
 'image_tip'       => 'Vložený soubor',
 'media_sample'    => 'Příklad.ogg',
 'media_tip'       => 'Odkaz na mediální soubor',
-'sig_tip'         => 'Váš podpis s časovým údajem',
+'sig_tip'         => 'Váš podpis s datem a časem',
 'hr_tip'          => 'Vodorovná čára (používejte střídmě)',
 
 # Edit pages
