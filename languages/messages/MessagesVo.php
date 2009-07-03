@@ -259,6 +259,29 @@ $messages = array(
 'faq'            => 'Säks suvo pasäköls',
 'faqpage'        => 'Project:FAQ',
 
+# Vector skin
+'vector-action-delete'       => 'Moükön',
+'vector-action-move'         => 'Topätükön',
+'vector-action-protect'      => 'Jelön',
+'vector-action-undelete'     => 'Sämoükön',
+'vector-action-unprotect'    => 'Säjelön',
+'vector-namespace-category'  => 'Klad',
+'vector-namespace-help'      => 'Yufapad',
+'vector-namespace-image'     => 'Ragiv',
+'vector-namespace-main'      => 'Pad',
+'vector-namespace-media'     => 'Nünamakanädapad',
+'vector-namespace-mediawiki' => 'Nun',
+'vector-namespace-project'   => 'Proyegapad',
+'vector-namespace-special'   => 'Pad patik',
+'vector-namespace-talk'      => 'Bespik',
+'vector-namespace-template'  => 'Samafomot',
+'vector-namespace-user'      => 'Gebanapad',
+'vector-view-create'         => 'Jafön',
+'vector-view-edit'           => 'Redakön',
+'vector-view-history'        => 'Logön jenotemi',
+'vector-view-view'           => 'Reidön',
+'vector-view-viewsource'     => 'Logön fonäti',
+
 # Metadata in edit box
 'metadata_help' => 'Metanünods:',
 
@@ -505,8 +528,8 @@ Koräkolös tonatami nema at, u [[Special:UserLogin/signup|jafolös kali nulik]]
 'nouserspecified'            => 'Mutol välön gebananemi.',
 'wrongpassword'              => 'Letavöd neveräton. Steifülolös dönu.',
 'wrongpasswordempty'         => 'Letavöd vagon. Steifülolös dönu.',
-'passwordtooshort'           => 'Letavöd olik no lonöfon u binon tu brefik.
-Muton binädon me {{PLURAL:$1|malat|malats}} pu $1 e difön de gebananem olik.',
+'passwordtooshort'           => 'Letavöd olik binon tu brefik.
+Muton binädon me {{PLURAL:$1|malat|malats}} pu $1.',
 'mailmypassword'             => 'Sedön letavödi nulik',
 'passwordremindertitle'      => 'Letavöd nulik nelaidik in {{SITENAME}}',
 'passwordremindertext'       => 'Ek (luveratiko ol, se ladet-IP: $1) ebegon sedi letavöda nulik pro {{SITENAME}} ($4). Letavöd nelaidüpik pejafon pro geban: „$2“ me ninäd: „$3“. If atos ejenon ma vil olik, mutol anu nunädön oli e välön letavödi nulik. Letavöd nelaidüpik ola odulon dü {{PLURAL:$5|del bal|dels $5}}.
@@ -791,6 +814,7 @@ Pats tefik ba patuvons in [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENA
 'revisiondelete'              => 'Moükön/sädunön moükami fomamas',
 'revdelete-nooldid-title'     => 'Zeilafomam no lonöfon',
 'revdelete-nooldid-text'      => 'U no elevälol zeilafomami(s) pro dun at, u fomam pelevälöl no dabinon, u steifülol ad klänedön fomami anuik.',
+'revdelete-show-file-submit'  => 'Si',
 'revdelete-selected'          => "'''{{PLURAL:$2|Fomam|Fomams}} pevalöl pada: [[:$1]]:'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Lisedajenot|Lisedajenots}} pevälöl:'''",
 'revdelete-text'              => "'''Revids pemoüköl nog opubons in padajenotem, ab ninäd (vödem) onsik no gebidons publüge.'''
@@ -1027,7 +1051,7 @@ Kontrololös, va votükam at okipon fovöfi padajenotema.',
 'recentchangesdays-max'     => '(maxum: {{PLURAL:$1|del|dels}} $1)',
 'recentchangescount'        => 'Num kösömik redakamas ad pajonön as votükams nulik, padajenotems, äsi in jenotaliseds:',
 'savedprefs'                => 'Buükams olik pedakipons.',
-'timezonelegend'            => 'Timatopäd',
+'timezonelegend'            => 'Timatopäd:',
 'localtime'                 => 'Tim topik:',
 'timezoneuseserverdefault'  => 'Gebön parametemi kösömik dünanünöma',
 'timezoneuseoffset'         => 'Votik (nunolös difi)',
@@ -1066,6 +1090,7 @@ Muton labön {{PLURAL:$1|malati|malatis}} läs $1.',
 'prefs-help-email'          => 'Ladet leäktronik no peflagon, ab dälon sedi letavöda nulik ole üf glömol letavödi olik.
 Dalol i dälön votikanes kosikön ko ol yufü gebana- u bespikapad olik nes sävilupol dientifi olik.',
 'prefs-help-email-required' => 'Ladet leäktronik paflagon.',
+'prefs-signature'           => 'Dispenäd',
 
 # User rights
 'userrights'                  => 'Guvam gebanagitätas',
@@ -1325,7 +1350,7 @@ If nog vilol lopükön ragivi olik, geikolös e gebolös nemi votik. [[File:$1|t
 'sourcefilename'              => 'Ragivanem rigik:',
 'destfilename'                => 'Ragivanem nulik:',
 'upload-maxfilesize'          => 'Ragivagretot gretikün: $1',
-'watchthisupload'             => 'Galädolöd padi at',
+'watchthisupload'             => 'Galädolöd ragivi at',
 'filewasdeleted'              => 'Ragiv labü nem at büo pelöpükon e poso pemoükon. Kontrololös eli $1 büä olöpükol oni dönu.',
 'upload-wasdeleted'           => "'''Nuned: Löpükol ragivi büo pimoüköl.'''
 
@@ -1960,7 +1985,7 @@ $1',
 'ipboptions'                      => 'düps 2:2 hours,del 1:1 day,dels 3:3 days,vig 1:1 week,vigs 2:2 weeks,mul 1:1 month,muls 3:3 months,muls 6:6 months,yel 1:1 year,laidüp:infinite',
 'ipbotheroption'                  => 'dul votik',
 'ipbotherreason'                  => 'Kod(s) votik',
-'ipbhidename'                     => 'Klänedön gebani u ladeti-IP se jenotalised blokamas, blokamalised anuik e gebanalised',
+'ipbhidename'                     => 'Klänedön gebananemi se redakams e liseds',
 'ipbwatchuser'                    => 'Galädon gebana- e bespikapadis gebana at',
 'ipballowusertalk'                => 'Dälön gebane pebloköl ad redakön bespikapadi okik',
 'ipb-change-block'                => 'Dönublokön gebani me paramets at',

@@ -1417,7 +1417,10 @@ Norādi konkrētu iemeslu (piemēram, linkus uz vandalizētajām lapām).',
 ** Ievieto nepatiesu informāciju
 ** Dzēš lapu saturu
 ** Spamo ārējās saitēs
-** Ievieto nesakarīgus simbolus sakopojumus',
+** Ievieto nesakarīgus simbolus sakopojumus
+** Nepieņemama uzvedība un apvainojumi
+** Vairāku kontu ļaunprātīga izmantošana
+** Nepieņemams lietotājvārds',
 'ipbanononly'              => 'Bloķēt tikai anonīmos lietotājus',
 'ipbcreateaccount'         => 'Neļaut izveidot lietotājvārdu',
 'ipbemailban'              => 'Neļaut lietotājam sūtīt e-pastu',
