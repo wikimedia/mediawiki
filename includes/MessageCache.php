@@ -501,6 +501,12 @@ class MessageCache {
 	function get( $key, $useDB = true, $langcode = true, $isFullKey = false ) {
 		global $wgContLanguageCode, $wgContLang;
 
+		if ( !is_string( $key ) ) {
+			throw new MWException( __METHOD__.': Invalid message key of type ' . gettype( $key ) );
+		} elseif ( $key === '' ) {
+			throw new MWException( __METHOD__.': Invaild message key: empty string' );
+		}
+
 		$lang = wfGetLangObj( $langcode );
 		$langcode = $lang->getCode();
 
@@ -699,6 +705,52 @@ class MessageCache {
 				$this->mMemc->delete( wfMemcKey( 'messages', $code, 'hash' ) );
 			}
 		}
+	}
+
+ 	/**
+	 * Add a message to the cache
+	 * @deprecated Use $wgExtensionMessagesFiles
+	 *
+	 * @param mixed $key
+	 * @param mixed $value
+	 * @param string $lang The messages language, English by default
+	 */
+	function addMessage( $key, $value, $lang = 'en' ) {
+		wfDeprecated( __METHOD__ );
+		$lc = Language::getLocalisationCache();
+		$lc->addLegacyMessages( array( $lang => array( $key => $value ) ) );
+	}
+
+	/**
+	 * Add an associative array of message to the cache
+	 * @deprecated Use $wgExtensionMessagesFiles
+	 *
+	 * @param array $messages An associative array of key => values to be added
+	 * @param string $lang The messages language, English by default
+	 */
+	function addMessages( $messages, $lang = 'en' ) {
+		wfDeprecated( __METHOD__ );
+		$lc = Language::getLocalisationCache();
+		$lc->addLegacyMessages( array( $lang => $messages ) );
+	}
+
+	/**
+	 * Add a 2-D array of messages by lang. Useful for extensions.
+	 * @deprecated Use $wgExtensionMessagesFiles
+	 *
+	 * @param array $messages The array to be added
+	 */
+	function addMessagesByLang( $messages ) {
+		wfDeprecated( __METHOD__ );
+		$lc = Language::getLocalisationCache();
+		$lc->addLegacyMessages( $messages );
+	}
+
+	/**
+	 * Set a hook for addMessagesByLang()
+	 */
+	function setExtensionMessagesHook( $callback ) {
+		$this->mAddMessagesHook = $callback;
 	}
 
 	/**

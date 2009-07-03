@@ -50,6 +50,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   to true
 * Removed $wgEnableSerializedMessages and $wgCheckSerialized. Similar 
   functionality is now available via $wgLocalisationCacheConf.
+* $wgMessageCache->addMessages() is deprecated. Messages added via this 
+  interface will not appear in Special:AllMessages.
 
 === New features in 1.16 ===
 

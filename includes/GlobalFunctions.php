@@ -2975,7 +2975,11 @@ function wfMaxlagError( $host, $lag, $maxLag ) {
  * @return null
  */
 function wfDeprecated( $function ) {
-	wfWarn( "Use of $function is deprecated.", 2 );
+	static $functionsWarned = array();
+	if ( !isset( $functionsWarned[$function] ) ) {
+		$functionsWarned[$function] = true;
+		wfWarn( "Use of $function is deprecated.", 2 );
+	}
 }
 
 function wfWarn( $msg, $callerOffset = 1, $level = E_USER_NOTICE ) {

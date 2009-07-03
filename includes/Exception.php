@@ -26,7 +26,7 @@ class MWException extends Exception {
 	function useMessageCache() {
 		global $wgLang;
 		foreach ( $this->getTrace() as $frame ) {
-			if ( $frame['class'] == 'LocalisationCache' ) {
+			if ( isset( $frame['class'] ) && $frame['class'] === 'LocalisationCache' ) {
 				return false;
 			}
 		}

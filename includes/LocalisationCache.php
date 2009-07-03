@@ -78,6 +78,12 @@ class LocalisationCache {
 	var $recachedLangs = array();
 
 	/**
+	 * Data added by extensions using the deprecated $wgMessageCache->addMessages() 
+	 * interface.
+	 */
+	var $legacyData = array();
+
+	/**
 	 * All item keys
 	 */
 	static public $allKeys = array(
@@ -137,10 +143,6 @@ class LocalisationCache {
 		global $wgCacheDirectory;
 
 		$this->conf = $conf;
-		$this->data = array();
-		$this->loadedItems = array();
-		$this->loadedSubitems = array();
-		$this->initialisedLangs = array();
 		if ( !empty( $conf['storeClass'] ) ) {
 			$storeClass = $conf['storeClass'];
 		} else {
@@ -208,6 +210,9 @@ class LocalisationCache {
 	 * Get a subitem, for instance a single message for a given language.
 	 */
 	public function getSubitem( $code, $key, $subkey ) {
+		if ( isset( $this->legacyData[$code][$key][$subkey] ) ) {
+			return $this->legacyData[$code][$key][$subkey];
+		}
 		if ( !isset( $this->loadedSubitems[$code][$key][$subkey] ) ) {
 			if ( isset( $this->loadedItems[$code][$key] ) ) {
 				if ( isset( $this->data[$code][$key][$subkey] ) ) {
@@ -619,9 +624,27 @@ class LocalisationCache {
 		unset( $this->loadedItems[$code] );
 		unset( $this->loadedSubitems[$code] );
 		unset( $this->initialisedLangs[$code] );
+		// We don't unload legacyData because there's no way to get it back 
+		// again, it's not really a cache
 		foreach ( $this->shallowFallbacks as $shallowCode => $fbCode ) {
 			if ( $fbCode === $code ) {
 				$this->unload( $shallowCode );
+			}
+		}
+	}
+
+	/**
+	 * Add messages to the cache, from an extension that has not yet been 
+	 * migrated to $wgExtensionMessages or the LocalisationCacheRecache hook. 
+	 * Called by deprecated function $wgMessageCache->addMessages(). 
+	 */
+	public function addLegacyMessages( $messages ) {
+		foreach ( $messages as $lang => $langMessages ) {
+			if ( isset( $this->legacyData[$lang]['messages'] ) ) {
+				$this->legacyData[$lang]['messages'] = 
+					$langMessages + $this->legacyData[$lang]['messages'];
+			} else {
+				$this->legacyData[$lang]['messages'] = $langMessages;
 			}
 		}
 	}
