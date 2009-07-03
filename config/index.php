@@ -831,6 +831,8 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 			define( 'STDERR', fopen("php://stderr", "wb"));
 		$wgUseDatabaseMessages = false; /* FIXME: For database failure */
 		require_once( "$IP/includes/Setup.php" );
+		Language::getLocalisationCache()->disableBackend();
+		
 		chdir( "config" );
 
 		$wgTitle = Title::newFromText( "Installation script" );

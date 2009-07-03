@@ -13,6 +13,11 @@
 $wgUseMasterForMaintenance = true;
 require( "commandLine.inc" );
 require( "updaters.inc" );
+
+# Don't try to load stuff from l10n_cache yet
+$lc = Language::getLocalisationCache();
+$lc->disableBackend();
+
 $wgTitle = Title::newFromText( "MediaWiki database updater" );
 
 echo( "MediaWiki {$wgVersion} Updater\n\n" );
