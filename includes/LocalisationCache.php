@@ -143,6 +143,7 @@ class LocalisationCache {
 		global $wgCacheDirectory;
 
 		$this->conf = $conf;
+		$storeConf = array();
 		if ( !empty( $conf['storeClass'] ) ) {
 			$storeClass = $conf['storeClass'];
 		} else {
@@ -164,7 +165,11 @@ class LocalisationCache {
 		}
 
 		wfDebug( get_class( $this ) . ": using store $storeClass\n" );
-		$this->store = new $storeClass;
+		if ( !empty( $conf['storeDirectory'] ) ) {
+			$storeConf['directory'] = $conf['storeDirectory'];
+		}
+
+		$this->store = new $storeClass( $storeConf );
 		foreach ( array( 'manualRecache', 'forceRecache' ) as $var ) {
 			if ( isset( $conf[$var] ) ) {
 				$this->$var = $conf[$var];
@@ -775,8 +780,17 @@ class LCStore_DB implements LCStore {
  * See Cdb.php and http://cr.yp.to/cdb.html
  */
 class LCStore_CDB implements LCStore {
-	var $readers, $writer, $currentLang;
-	
+	var $readers, $writer, $currentLang, $directory;
+
+	function __construct( $conf = array() ) {
+		global $wgCacheDirectory;
+		if ( isset( $conf['directory'] ) ) {
+			$this->directory = $conf['directory'];
+		} else {
+			$this->directory = $wgCacheDirectory;
+		}
+	}
+
 	public function get( $code, $key ) {
 		if ( !isset( $this->readers[$code] ) ) {
 			$fileName = $this->getFileName( $code );
@@ -798,6 +812,12 @@ class LCStore_CDB implements LCStore {
 	}
 
 	public function startWrite( $code ) {
+		if ( !file_exists( $this->directory ) ) {
+			if ( !wfMkdirParents( $this->directory ) ) {
+				throw new MWException( "Unable to create the localisation store " . 
+					"directory \"{$this->directory}\"" );
+			}
+		}
 		$this->writer = CdbWriter::open( $this->getFileName( $code ) );
 		$this->currentLang = $code;
 	}
@@ -823,11 +843,10 @@ class LCStore_CDB implements LCStore {
 	}
 
 	protected function getFileName( $code ) {
-		global $wgCacheDirectory;
 		if ( !$code || strpos( $code, '/' ) !== false ) {
 			throw new MWException( __METHOD__.": Invalid language \"$code\"" );
 		}
-		return "$wgCacheDirectory/l10n_cache-$code.cdb";
+		return "{$this->directory}/l10n_cache-$code.cdb";
 	}
 }
 
