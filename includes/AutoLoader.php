@@ -512,6 +512,7 @@ $wgAutoloadLocalClasses = array(
 	'SpecialRevisionDelete' => 'includes/specials/SpecialRevisiondelete.php',
 	'RevisionDeleter' => 'includes/specials/SpecialRevisiondelete.php',
 	'ShortPagesPage' => 'includes/specials/SpecialShortpages.php',
+	'SpecialActiveUsers' => 'includes/specials/SpecialActiveusers.php',
 	'SpecialAllpages' => 'includes/specials/SpecialAllpages.php',
 	'SpecialBlankpage' => 'includes/specials/SpecialBlankpage.php',
 	'SpecialBookSources' => 'includes/specials/SpecialBooksources.php',
