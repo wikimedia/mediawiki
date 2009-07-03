@@ -276,65 +276,68 @@ class Preferences {
 				);
 
 		## Email stuff
-		global $wgEmailConfirmToEdit;
-
-		$defaultPreferences['emailaddress'] =
-				array(
-					'type' => $wgAuth->allowPropChange( 'emailaddress' ) ? 'text' : 'info',
-					'default' => $user->getEmail(),
-					'section' => 'personal/email',
-					'label-message' => 'youremail',
-					'help-message' => $wgEmailConfirmToEdit
-										? 'prefs-help-email-required'
-										: 'prefs-help-email',
-					'validation-callback' => array( 'Preferences', 'validateEmail' ),
-				);
-
-		global $wgEnableEmail, $wgEnableUserEmail, $wgEmailAuthentication;
-
-		$disableEmailPrefs = false;
-
-		if ( $wgEmailAuthentication ) {
-			if ( $user->getEmail() ) {
-				if( $user->getEmailAuthenticationTimestamp() ) {
-					// date and time are separate parameters to facilitate localisation.
-					// $time is kept for backward compat reasons.
-					// 'emailauthenticated' is also used in SpecialConfirmemail.php
-					$time = $wgLang->timeAndDate( $user->getEmailAuthenticationTimestamp(), true );
-					$d = $wgLang->date( $user->getEmailAuthenticationTimestamp(), true );
-					$t = $wgLang->time( $user->getEmailAuthenticationTimestamp(), true );
-					$emailauthenticated = htmlspecialchars( wfMsg( 'emailauthenticated', $time, $d, $t ) ) . '<br />';
-					$disableEmailPrefs = false;
+		
+		global $wgEnableEmail;
+		if ($wgEnableEmail) {
+		
+			global $wgEmailConfirmToEdit;
+	
+			$defaultPreferences['emailaddress'] =
+					array(
+						'type' => $wgAuth->allowPropChange( 'emailaddress' ) ? 'text' : 'info',
+						'default' => $user->getEmail(),
+						'section' => 'personal/email',
+						'label-message' => 'youremail',
+						'help-message' => $wgEmailConfirmToEdit
+											? 'prefs-help-email-required'
+											: 'prefs-help-email',
+						'validation-callback' => array( 'Preferences', 'validateEmail' ),
+					);
+	
+			global $wgEnableUserEmail, $wgEmailAuthentication;
+	
+			$disableEmailPrefs = false;
+	
+			if ( $wgEmailAuthentication ) {
+				if ( $user->getEmail() ) {
+					if( $user->getEmailAuthenticationTimestamp() ) {
+						// date and time are separate parameters to facilitate localisation.
+						// $time is kept for backward compat reasons.
+						// 'emailauthenticated' is also used in SpecialConfirmemail.php
+						$time = $wgLang->timeAndDate( $user->getEmailAuthenticationTimestamp(), true );
+						$d = $wgLang->date( $user->getEmailAuthenticationTimestamp(), true );
+						$t = $wgLang->time( $user->getEmailAuthenticationTimestamp(), true );
+						$emailauthenticated = htmlspecialchars( wfMsg( 'emailauthenticated', $time, $d, $t ) ) . '<br />';
+						$disableEmailPrefs = false;
+					} else {
+						$disableEmailPrefs = true;
+						global $wgUser; // wgUser is okay here, it's for display
+						$skin = $wgUser->getSkin();
+						$emailauthenticated = wfMsgHtml( 'emailnotauthenticated' ) . '<br />' .
+							$skin->link(
+								SpecialPage::getTitleFor( 'Confirmemail' ),
+								wfMsg( 'emailconfirmlink' ),
+								array(),
+								array(),
+								array( 'known', 'noclasses' )
+							) . '<br />';
+					}
 				} else {
 					$disableEmailPrefs = true;
-					global $wgUser; // wgUser is okay here, it's for display
-					$skin = $wgUser->getSkin();
-					$emailauthenticated = wfMsgHtml( 'emailnotauthenticated' ) . '<br />' .
-						$skin->link(
-							SpecialPage::getTitleFor( 'Confirmemail' ),
-							wfMsg( 'emailconfirmlink' ),
-							array(),
-							array(),
-							array( 'known', 'noclasses' )
-						) . '<br />';
+					$emailauthenticated = wfMsgHtml( 'noemailprefs' );
 				}
-			} else {
-				$disableEmailPrefs = true;
-				$emailauthenticated = wfMsgHtml( 'noemailprefs' );
+	
+				$defaultPreferences['emailauthentication'] =
+						array(
+							'type' => 'info',
+							'raw' => true,
+							'section' => 'personal/email',
+							'label-message' => 'prefs-emailconfirm-label',
+							'default' => $emailauthenticated,
+						);
+	
 			}
-
-			$defaultPreferences['emailauthentication'] =
-					array(
-						'type' => 'info',
-						'raw' => true,
-						'section' => 'personal/email',
-						'label-message' => 'prefs-emailconfirm-label',
-						'default' => $emailauthenticated,
-					);
-
-		}
-
-		if( $wgEnableEmail ) {
+	
 			if( $wgEnableUserEmail ) {
 				$defaultPreferences['disablemail'] =
 						array(
