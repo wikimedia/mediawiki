@@ -117,6 +117,7 @@ $wgAutoloadLocalClasses = array(
 	'Job' => 'includes/JobQueue.php',
 	'LCStore_DB' => 'includes/LocalisationCache.php',
 	'LCStore_CDB' => 'includes/LocalisationCache.php',
+	'LCStore_Null' => 'includes/LocalisationCache.php',
 	'License' => 'includes/Licenses.php',
 	'Licenses' => 'includes/Licenses.php',
 	'LinkBatch' => 'includes/LinkBatch.php',

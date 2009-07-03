@@ -648,6 +648,13 @@ class LocalisationCache {
 			}
 		}
 	}
+
+	/**
+	 * Disable the storage backend
+	 */
+	public function disableBackend() {
+		$this->store = new LCStore_Null;
+	}
 }
 
 /**
@@ -822,6 +829,19 @@ class LCStore_CDB implements LCStore {
 		}
 		return "$wgCacheDirectory/l10n_cache-$code.cdb";
 	}
+}
+
+/**
+ * Null store backend, used to avoid DB errors during install
+ */
+class LCStore_Null implements LCStore {
+	public function get( $code, $key ) {
+		return null;
+	}
+
+	public function startWrite( $code ) {}
+	public function finishWrite() {}
+	public function set( $key, $value ) {}
 }
 
 /**
