@@ -86,9 +86,6 @@ abstract class MediaTransformOutput {
 			$query .= $query ? '&'.$params : $params;
 		}
 		$title = $this->file->getTitle();
-		if ( strval( $alt ) === '' ) {
-			$alt = $title->getText();
-		}
 		return array(
 			'href' => $this->file->getTitle()->getLocalURL( $query ),
 			'class' => 'image',
@@ -164,7 +161,7 @@ class ThumbnailImage extends MediaTransformOutput {
 		} elseif ( !empty( $options['custom-title-link'] ) ) {
 			$title = $options['custom-title-link'];
 			$linkAttribs = array( 'href' => $title->getLinkUrl(),
-					'title' => empty( $options['alt'] ) ? $title->getFullText() : $alt );
+					'title' => $alt );
 		} elseif ( !empty( $options['desc-link'] ) ) {
 			$linkAttribs = $this->getDescLinkAttribs( $title, $query );
 		} elseif ( !empty( $options['file-link'] ) ) {

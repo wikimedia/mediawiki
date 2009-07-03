@@ -447,8 +447,7 @@ class Linker {
 		$page = isset( $hp['page'] ) ? $hp['page'] : false;
 		if ( !isset( $fp['align'] ) ) $fp['align'] = '';
 		if ( !isset( $fp['alt'] ) ) $fp['alt'] = '';
-		# Backward compatibility, title used to always be equal to alt text
-		if ( !isset( $fp['title'] ) ) $fp['title'] = $fp['alt'];
+		if ( !isset( $fp['title'] ) ) $fp['title'] = '';
 
 		$prefix = $postfix = '';
 
@@ -566,8 +565,7 @@ class Linker {
 		$page = isset( $hp['page'] ) ? $hp['page'] : false;
 		if ( !isset( $fp['align'] ) ) $fp['align'] = 'right';
 		if ( !isset( $fp['alt'] ) ) $fp['alt'] = '';
-		# Backward compatibility, title used to always be equal to alt text
-		if ( !isset( $fp['title'] ) ) $fp['title'] = $fp['alt'];
+		if ( !isset( $fp['title'] ) ) $fp['title'] = '';
 		if ( !isset( $fp['caption'] ) ) $fp['caption'] = '';
 
 		if ( empty( $hp['width'] ) ) {
