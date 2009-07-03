@@ -630,7 +630,7 @@ class HTMLSelectOrOtherField extends HTMLTextField {
 	static $jsAdded = false;
 
 	function __construct( $params ) {
-		if( !array_key_exists( 'other', $params['options'] ) ) {
+		if( !in_array( 'other', $params['options'] ) ) {
 			$params['options'][wfMsg( 'htmlform-selectorother-other' )] = 'other';
 		}
 
