@@ -168,6 +168,9 @@ class Language {
 		return $lang;
 	}
 
+	/**
+	 * Get the LocalisationCache instance
+	 */
 	public static function getLocalisationCache() {
 		if ( is_null( self::$dataCache ) ) {
 			global $wgLocalisationCacheConf;
@@ -175,7 +178,7 @@ class Language {
 			self::$dataCache = new $class( $wgLocalisationCacheConf );
 		}
 		return self::$dataCache;
-	}		
+	}
 
 	function __construct() {
 		$this->mConverter = new FakeConverter($this);
