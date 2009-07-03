@@ -134,6 +134,10 @@ Change notes from older releases. For current info see RELEASE-NOTES.
   on a different database
 * Add a class if 'missingsummary' is triggered to allow styling of the summary
   line
+* Title attributes are now always blank on framed and thumbnailed images, and default to blank
+  on inline images instead of defaulting to the image's filename. Additionally, the alt
+  attribute now defaults to the filename on framed and thumbnailed images if no caption or alt
+  attribute is specified.
 
 === Bug fixes in 1.15 ===
 * (bug 16968) Special:Upload no longer throws useless warnings.

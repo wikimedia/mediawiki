@@ -1582,29 +1582,29 @@ class Parser
 			# Don't allow internal links to pages containing
 			# PROTO: where PROTO is a valid URL protocol; these
 			# should be external links.
-			if (preg_match('/^\b(?:' . wfUrlProtocols() . ')/', $m[1])) {
+			if ( preg_match( '/^\b(?:' . wfUrlProtocols() . ')/', $m[1] ) ) {
 				$s .= $prefix . '[[' . $line ;
 				wfProfileOut( __METHOD__."-misc" );
 				continue;
 			}
 
 			# Make subpage if necessary
-			if( $useSubpages ) {
+			if ( $useSubpages ) {
 				$link = $this->maybeDoSubpageLink( $m[1], $text );
 			} else {
 				$link = $m[1];
 			}
 
-			$noforce = (substr($m[1], 0, 1) !== ':');
+			$noforce = (substr( $m[1], 0, 1 ) !== ':');
 			if (!$noforce) {
 				# Strip off leading ':'
-				$link = substr($link, 1);
+				$link = substr( $link, 1 );
 			}
 
 			wfProfileOut( __METHOD__."-misc" );
 			wfProfileIn( __METHOD__."-title" );
-			$nt = Title::newFromText( $this->mStripState->unstripNoWiki($link) );
-			if( $nt === NULL ) {
+			$nt = Title::newFromText( $this->mStripState->unstripNoWiki( $link ) );
+			if ( $nt === NULL ) {
 				$s .= $prefix . '[[' . $line;
 				wfProfileOut( __METHOD__."-title" );
 				continue;
@@ -1614,9 +1614,9 @@ class Parser
 			$iw = $nt->getInterWiki();
 			wfProfileOut( __METHOD__."-title" );
 
-			if ($might_be_img) { # if this is actually an invalid link
+			if ( $might_be_img ) { # if this is actually an invalid link
 				wfProfileIn( __METHOD__."-might_be_img" );
-				if ($ns == NS_FILE && $noforce) { #but might be an image
+				if ( $ns == NS_FILE && $noforce ) { #but might be an image
 					$found = false;
 					while ( true ) {
 						#look at the next 'line' to see if we can close it there
@@ -1660,14 +1660,14 @@ class Parser
 			}
 
 			$wasblank = ( '' == $text );
-			if( $wasblank ) $text = $link;
+			if ( $wasblank ) $text = $link;
 
 			# Link not escaped by : , create the various objects
-			if( $noforce ) {
+			if ( $noforce ) {
 
 				# Interwikis
 				wfProfileIn( __METHOD__."-interwiki" );
-				if( $iw && $this->mOptions->getInterwikiMagic() && $nottalk && $wgContLang->getLanguageName( $iw ) ) {
+				if ( $iw && $this->mOptions->getInterwikiMagic() && $nottalk && $wgContLang->getLanguageName( $iw ) ) {
 					$this->mOutput->addLanguageLink( $nt->getFullText() );
 					$s = rtrim($s . $prefix);
 					$s .= trim($trail, "\n") == '' ? '': $prefix . $trail;
@@ -1679,12 +1679,19 @@ class Parser
 				if ( $ns == NS_FILE ) {
 					wfProfileIn( __METHOD__."-image" );
 					if ( !wfIsBadImage( $nt->getDBkey(), $this->mTitle ) ) {
-						# recursively parse links inside the image caption
-						# actually, this will parse them in any other parameters, too,
-						# but it might be hard to fix that, and it doesn't matter ATM
-						$text = $this->replaceExternalLinks($text);
-						$holders->merge( $this->replaceInternalLinks2( $text ) );
-
+						if ( $wasblank ) {
+							# if no parameters were passed, $text
+							# becomes something like "File:Foo.png",
+							# which we don't want to pass on to the
+							# image generator
+							$text = '';
+						} else {
+							# recursively parse links inside the image caption
+							# actually, this will parse them in any other parameters, too,
+							# but it might be hard to fix that, and it doesn't matter ATM
+							$text = $this->replaceExternalLinks($text);
+							$holders->merge( $this->replaceInternalLinks2( $text ) );
+						}
 						# cloak any absolute URLs inside the image markup, so replaceExternalLinks() won't touch them
 						$s .= $prefix . $this->armorLinks( $this->makeImage( $nt, $text, $holders ) ) . $trail;
 					}
@@ -4375,7 +4382,8 @@ class Parser
 		#  * none       same, but not aligned
 		#  * ___px      scale to ___ pixels width, no aligning. e.g. use in taxobox
 		#  * center     center the image
-		#  * framed     Keep original image size, no magnify-button.
+		#  * frame      Keep original image size, no magnify-button.
+		#  * framed     Same as "frame"
 		#  * frameless  like 'thumb' but without a frame. Keeps user preferences for width
 		#  * upright    reduce width for upright images, rounded to full __0 px
 		#  * border     draw a 1px border around the image
@@ -4515,7 +4523,11 @@ class Parser
 
 		$params['frame']['caption'] = $caption;
 
-		$params['frame']['title'] = $this->stripAltText( $caption, $holders );
+		# Will the image be presented in a frame, with the caption below?
+		$imageIsFramed = isset( $params['frame']['frame'] ) ||
+		                 isset( $params['frame']['framed'] ) ||
+		                 isset( $params['frame']['thumbnail'] ) ||
+		                 isset( $params['frame']['manualthumb'] );
 
 		# In the old days, [[Image:Foo|text...]] would set alt text.  Later it
 		# came to also set the caption, ordinary text after the image -- which
@@ -4533,11 +4545,27 @@ class Parser
 		# named parameter entirely for images without a caption; adding an ex-
 		# plicit caption= parameter and preserving the old magic unnamed para-
 		# meter for BC; ...
-		if( $caption !== '' && !isset( $params['frame']['alt'] )
-		&& !isset( $params['frame']['framed'] )
-		&& !isset( $params['frame']['thumbnail'] )
-		&& !isset( $params['frame']['manualthumb'] ) ) {
-			$params['frame']['alt'] = $params['frame']['title'];
+		if ( $imageIsFramed ) { # Framed image
+			if ( $caption === '' && !isset( $params['frame']['alt'] ) ) {
+				# No caption or alt text, add the filename as the alt text so
+				# that screen readers at least get some description of the image
+				$params['frame']['alt'] = $title->getText();
+			}
+			# Do not set $params['frame']['title'] because tooltips don't make sense
+			# for framed images
+		} else { # Inline image
+			if ( !isset( $params['frame']['alt'] ) ) {
+				# No alt text, use the "caption" for the alt text
+				if ( $caption !== '') {
+					$params['frame']['alt'] = $this->stripAltText( $caption, $holders );
+				} else {
+					# No caption, fall back to using the filename for the
+					# alt text
+					$params['frame']['alt'] = $title->getText();
+				}
+			}
+			# Use the "caption" for the tooltip text
+			$params['frame']['title'] = $this->stripAltText( $caption, $holders );
 		}
 
 		wfRunHooks( 'ParserMakeImageParams', array( $title, $file, &$params ) );
