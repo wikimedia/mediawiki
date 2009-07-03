@@ -55,6 +55,10 @@ if( !$title instanceof Title ) {
 	wfDebugLog( 'img_auth', "Unable to construct a valid Title from `{$name}`" );
 	wfForbidden();
 }
+if( !$title->userCanRead() ) {
+	wfDebugLog( 'img_auth', "User does not have access to read `{$name}`" );
+	wfForbidden();
+}
 $title = $title->getPrefixedText();
 
 // Check the whitelist if needed
