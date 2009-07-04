@@ -405,7 +405,7 @@ class UploadForm {
 		 * filter out illegal characters, and try to make a legible name
 		 * out of it. We'll strip some silently that Title would die on.
 		 */
-		if( $this->mDesiredDestName ) {
+		if( $this->mDesiredDestName != '' ) {
 			$basename = $this->mDesiredDestName;
 		} else {
 			$basename = $this->mSrcName;
@@ -1000,7 +1000,7 @@ wgUploadAutoFill = {$autofill};
 			return false;
 		}
 
-		if( $this->mDesiredDestName ) {
+		if( $this->mDesiredDestName != '' ) {
 			$title = Title::makeTitleSafe( NS_FILE, $this->mDesiredDestName );
 			// Show a subtitle link to deleted revisions (to sysops et al only)
 			if( $title instanceof Title && ( $count = $title->isDeleted() ) > 0 && $wgUser->isAllowed( 'deletedhistory' ) ) {
@@ -1136,7 +1136,7 @@ wgUploadAutoFill = {$autofill};
 		} else {
 			$filename_form =
 				"<input tabindex='1' type='file' name='wpUploadFile' id='wpUploadFile' " .
-				($this->mDesiredDestName?"":"onchange='fillDestFilename(\"wpUploadFile\")' ") .
+				($this->mDesiredDestName!=''?"":"onchange='fillDestFilename(\"wpUploadFile\")' ") .
 				"size='60' />" .
 				"<input type='hidden' name='wpSourceType' value='file' />" ;
 		}
