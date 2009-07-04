@@ -149,9 +149,9 @@ $wgUpdates = array(
 		array( 'add_field', 'site_stats',     'ss_active_users',  'patch-ss_active_users.sql' ),
 		array( 'do_active_users_init' ),
 		array( 'add_field', 'ipblocks',     'ipb_allow_usertalk',  'patch-ipb_allow_usertalk.sql' ),
-		array( 'do_unique_pl_tl_il' ),
 
 		// 1.15
+		array( 'do_unique_pl_tl_il' ),
 		array( 'add_table', 'change_tag',			   'patch-change_tag.sql' ),
 		array( 'add_table', 'tag_summary',			   'patch-change_tag.sql' ),
 		array( 'add_table', 'valid_tag',			   'patch-change_tag.sql' ),
