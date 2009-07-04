@@ -224,6 +224,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   whether the engines are actually available
 * (bug 19390) Omit the "printable version" link on the printable version
 * (bug 18394) img_auth.php now respects userCan
+* (bug 19509) Uploading to a file named '0' previously treated it as null input
+   and attempted to upload with the source name. Now warns about not having an
+   extension (since 0.ext is perfectly valid)
 
 == API changes in 1.16 ==
 
