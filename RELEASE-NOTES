@@ -227,6 +227,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 19509) Uploading to a file named '0' previously treated it as null input
    and attempted to upload with the source name. Now warns about not having an
    extension (since 0.ext is perfectly valid)
+* (bug 19468) Enotif preferences are now only displayed when they are turned on
 
 == API changes in 1.16 ==
 
