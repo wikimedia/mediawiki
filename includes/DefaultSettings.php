@@ -2380,6 +2380,7 @@ $wgExportFromNamespaces = false;
  * May be an array of regexes or a single string for backwards compatibility.
  *
  * See http://en.wikipedia.org/wiki/Regular_expression
+ * Note that each regex needs a beginning/end delimiter, eg: # or /
  */
 $wgSpamRegex = array();
 
