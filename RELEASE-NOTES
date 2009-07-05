@@ -228,6 +228,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
    and attempted to upload with the source name. Now warns about not having an
    extension (since 0.ext is perfectly valid)
 * (bug 19468) Enotif preferences are now only displayed when they are turned on
+* (bug 19442) Show/hide options on watchlist only work once
 
 == API changes in 1.16 ==
 
