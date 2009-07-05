@@ -20,6 +20,8 @@
  * @author Sprüngli
  */
 
+$fallback = 'it';
+
 $specialPageAliases = array(
 	'DoubleRedirects'           => array( 'Dòbia redirezion' ),
 	'BrokenRedirects'           => array( 'Redirezion ròta' ),
@@ -39,8 +41,6 @@ $specialPageAliases = array(
 	'Randompage'                => array( 'Pàgina al hasard' ),
 	'Lonelypages'               => array( 'Pàgini da par lour' ),
 );
-
-$fallback = 'it';
 
 $messages = array(
 # User preference toggles
