@@ -87,7 +87,11 @@ $bookstoreList = array(
 
 $magicWords = array(
 	'redirect'              => array( '0', '#OHJAUS', '#UUDELLEENOHJAUS', '#REDIRECT' ),
+	'notoc'                 => array( '0', '__EISISLUETT__', '__NOTOC__' ),
+	'forcetoc'              => array( '0', '__SISLUETTPAKOTUS__', '__FORCETOC__' ),
 	'toc'                   => array( '0', '__SISÄLLYSLUETTELO__', '__TOC__' ),
+	'noeditsection'         => array( '0', '__EIOSIOMUOKKAUSTA__', '__NOEDITSECTION__' ),
+	'noheader'              => array( '0', '__EIOTSIKKOA__', '__NOHEADER__' ),
 	'currentmonth'          => array( '1', 'KULUVAKUU', 'CURRENTMONTH', 'CURRENTMONTH2' ),
 	'currentmonthname'      => array( '1', 'KULUVAKUUNIMI', 'CURRENTMONTHNAME' ),
 	'currentmonthnamegen'   => array( '1', 'KULUVAKUUNIMIGEN', 'CURRENTMONTHNAMEGEN' ),
@@ -113,6 +117,7 @@ $magicWords = array(
 	'numberoffiles'         => array( '1', 'TIEDOSTOMÄÄRÄ', 'NUMBEROFFILES' ),
 	'numberofusers'         => array( '1', 'KÄYTTÄJÄMÄÄRÄ', 'NUMBEROFUSERS' ),
 	'numberofedits'         => array( '1', 'MUOKKAUSMÄÄRÄ', 'NUMBEROFEDITS' ),
+	'numberofviews'         => array( '1', 'SIVUHAKUMÄÄRÄ', 'NUMBEROFVIEWS' ),
 	'pagename'              => array( '1', 'SIVUNIMI', 'PAGENAME' ),
 	'pagenamee'             => array( '1', 'SIVUNIMIE', 'PAGENAMEE' ),
 	'namespace'             => array( '1', 'NIMIAVARUUS', 'NAMESPACE' ),
@@ -182,6 +187,8 @@ $magicWords = array(
 	'filepath'              => array( '0', 'TIEDOSTOPOLKU:', 'FILEPATH:' ),
 	'hiddencat'             => array( '1', '__PIILOLUOKKA__', '__HIDDENCAT__' ),
 	'pagesize'              => array( '1', 'SIVUKOKO', 'PAGESIZE' ),
+	'noindex'               => array( '1', '__HAKUKONEKIELTO__', '__NOINDEX__' ),
+	'protectionlevel'       => array( '1', 'SUOJAUSTASO', 'PROTECTIONLEVEL' ),
 );
 
 $specialPageAliases = array(
