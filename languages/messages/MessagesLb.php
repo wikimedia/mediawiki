@@ -128,6 +128,7 @@ $specialPageAliases = array(
 	'LinkSearch'                => array( 'Weblink-Sich' ),
 	'DeletedContributions'      => array( 'Geläschte Kontributiounen' ),
 	'Tags'                      => array( 'Taggen' ),
+	'Activeusers'               => array( 'Aktiv Benotzer' ),
 );
 
 $messages = array(

@@ -20,6 +20,26 @@
  * @author Sprüngli
  */
 
+$specialPageAliases = array(
+	'DoubleRedirects'           => array( 'Dòbia redirezion' ),
+	'BrokenRedirects'           => array( 'Redirezion ròta' ),
+	'Disambiguations'           => array( 'Desambiguazion' ),
+	'Userlogin'                 => array( 'Vena drenta' ),
+	'Userlogout'                => array( 'Va fœu' ),
+	'CreateAccount'             => array( 'Crea cunt' ),
+	'Preferences'               => array( 'Preferenzi' ),
+	'Watchlist'                 => array( 'Lista da tegnu d\'œucc' ),
+	'Recentchanges'             => array( 'Dareri modifiazion' ),
+	'Upload'                    => array( 'Manda su' ),
+	'Listfiles'                 => array( 'Imasg' ),
+	'Newimages'                 => array( 'Imasg recent' ),
+	'Listusers'                 => array( 'Dovracc' ),
+	'Listgrouprights'           => array( 'Lista da drecc di group' ),
+	'Statistics'                => array( 'Statístigh' ),
+	'Randompage'                => array( 'Pàgina al hasard' ),
+	'Lonelypages'               => array( 'Pàgini da par lour' ),
+);
+
 $fallback = 'it';
 
 $messages = array(

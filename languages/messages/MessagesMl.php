@@ -106,6 +106,18 @@ $specialPageAliases = array(
 	'Protectedpages'            => array( 'സംരക്ഷിത താളുകള്‍' ),
 	'Protectedtitles'           => array( 'സംരക്ഷിത ശീര്‍ഷകങ്ങള്‍' ),
 	'Allpages'                  => array( 'എല്ലാതാളുകളും' ),
+	'Specialpages'              => array( 'പ്രത്യേകതാളുകള്‍' ),
+	'Contributions'             => array( 'സംഭാവനകള്‍' ),
+	'Confirmemail'              => array( 'ഇമെയില്‍ സ്ഥിരീകരിക്കുക' ),
+	'Movepage'                  => array( 'താള്‍ മാറ്റുക' ),
+	'Categories'                => array( 'വര്‍ഗ്ഗങ്ങള്‍' ),
+	'Export'                    => array( 'കയറ്റുമതി' ),
+	'Version'                   => array( 'പതിപ്പ്' ),
+	'Import'                    => array( 'ഇറക്കുമതി' ),
+	'Userrights'                => array( 'ഉപയോക്തൃഅവകാശങ്ങള്‍' ),
+	'FileDuplicateSearch'       => array( 'പ്രമാണത്തിന്റെ അപരനുള്ള തിരച്ചില്‍' ),
+	'Search'                    => array( 'അന്വേഷണം' ),
+	'Activeusers'               => array( 'സജീവ ഉപയോക്താക്കള്‍' ),
 );
 
 $magicWords = array(

@@ -43,6 +43,7 @@ $namespaceAliases = array(
 	'साहाय्य_चर्चा' => NS_HELP_TALK,
 );
 
+#!!# sqlविचारा is not in normalised form, which is Sqlविचारा or Sqlविचारा
 $specialPageAliases = array(
 	'DoubleRedirects'           => array( 'दुहेरी पुनर्निर्देशने' ),
 	'BrokenRedirects'           => array( 'चुकीची पुनर्निर्देशने' ),

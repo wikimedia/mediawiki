@@ -119,7 +119,7 @@ $specialPageAliases = array(
 	'Protectedtitles'           => array( 'ΠροστετευμένοιΤίτλοι' ),
 	'Allpages'                  => array( 'ΌλεςΟιΣελίδες' ),
 	'Prefixindex'               => array( 'ΕυρετήριοΠροθεμάτων' ),
-	'Ipblocklist'               => array( 'ΦραγώνΚατάλογος', 'ΚατάλογοςΦραγών', 'IPΦραγώνΚατάλογος' ),
+	'Ipblocklist'               => array( 'ΚατάλογοςΦραγών', 'ΦραγώνΚατάλογος', 'ΚατάλογοςΦραγώνIP' ),
 	'Specialpages'              => array( 'ΕιδικέςΣελίδες' ),
 	'Contributions'             => array( 'Συνεισφορές' ),
 	'Emailuser'                 => array( 'EmailΧρήστη' ),
@@ -163,6 +163,7 @@ $specialPageAliases = array(
 	'LinkSearch'                => array( 'ΣυνδέσμουΑναζήτηση' ),
 	'DeletedContributions'      => array( 'ΔιαγραμμένεςΣυνεισφορές' ),
 	'Tags'                      => array( 'Ετικέτες' ),
+	'Activeusers'               => array( 'ΕνεργοίΧρήστες' ),
 );
 
 $fallback8bitEncoding = 'iso-8859-7';
