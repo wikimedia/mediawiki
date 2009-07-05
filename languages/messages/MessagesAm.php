@@ -23,12 +23,17 @@ $namespaceNames = array(
 	NS_FILE_TALK        => 'ስዕል_ውይይት',
 	NS_MEDIAWIKI        => 'መልዕክት',
 	NS_MEDIAWIKI_TALK   => 'መልዕክት_ውይይት',
-	NS_TEMPLATE         => 'መልጠፊያ',
-	NS_TEMPLATE_TALK    => 'መልጠፊያ_ውይይት',
+	NS_TEMPLATE         => 'መለጠፊያ',
+	NS_TEMPLATE_TALK    => 'መለጠፊያ_ውይይት',
 	NS_HELP             => 'እርዳታ',
 	NS_HELP_TALK        => 'እርዳታ_ውይይት',
 	NS_CATEGORY         => 'መደብ',
 	NS_CATEGORY_TALK    => 'መደብ_ውይይት',
+);
+
+$namespaceAliases = array(
+	'መልጠፊያ' => NS_TEMPLATE,
+	'መልጠፊያ_ውይይት' => NS_TEMPLATE_TALK,
 );
 
 $specialPageAliases = array(

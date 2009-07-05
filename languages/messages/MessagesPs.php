@@ -14,8 +14,8 @@ $namespaceNames = array(
 	NS_MEDIA            => 'رسنۍ',
 	NS_SPECIAL          => 'ځانګړی',
 	NS_TALK             => 'خبرې_اترې',
-	NS_USER             => 'کارونکی',
-	NS_USER_TALK        => 'د_کارونکي_خبرې_اترې',
+	NS_USER             => 'کارن',
+	NS_USER_TALK        => 'د_کارن_خبرې_اترې',
 	NS_PROJECT_TALK     => 'د_$1_خبرې_اترې',
 	NS_FILE             => 'دوتنه',
 	NS_FILE_TALK        => 'د_دوتنې_خبرې_اترې',
@@ -30,6 +30,8 @@ $namespaceNames = array(
 );
 
 $namespaceAliases = array(
+	'کارونکی' => NS_USER,
+	'د_کارونکي_خبرې_اترې' => NS_USER_TALK,
 	'انځور' => NS_FILE,
 	'د_انځور_خبرې_اترې' => NS_FILE_TALK,
 );
