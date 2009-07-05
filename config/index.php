@@ -1345,7 +1345,7 @@ if( count( $errs ) ) {
 		<ul class="plain">
 		<li><?php aField( $conf, "License", "No license metadata", "radio", "none" ); ?></li>
 		<li><?php aField( $conf, "License", "Public Domain", "radio", "pd" ); ?></li>
-		<li><?php aField( $conf, "License", "GNU Free Documentation License 1.2 (Wikipedia-compatible)", "radio", "gfdl1_2" ); ?></li>
+		<li><?php aField( $conf, "License", "GNU Free Documentation License 1.2", "radio", "gfdl1_2" ); ?></li>
 		<li><?php aField( $conf, "License", "GNU Free Documentation License 1.3", "radio", "gfdl1_3" ); ?></li>
 		<li><?php
 			aField( $conf, "License", "A Creative Commons license - ", "radio", "cc" );
