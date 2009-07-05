@@ -139,6 +139,7 @@ $specialPageAliases = array(
 	'Blankpage'                 => array( 'Pagina blanca', 'PaginaBlanca' ),
 	'LinkSearch'                => array( 'Recèrca de ligams', 'RecèrcaDeLigams' ),
 	'DeletedContributions'      => array( 'Contribucions escafadas', 'ContribucionsEscafadas' ),
+	'Tags'                      => array( 'Balisas' ),
 );
 
 $magicWords = array(

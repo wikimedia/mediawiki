@@ -50,10 +50,14 @@ $namespaceAliases = array(
 );
 
 $specialPageAliases = array(
+	'Userlogin'                 => array( 'వాడుకరిప్రవేశం' ),
+	'Userlogout'                => array( 'వాడుకరినిష్క్రమణ' ),
 	'Preferences'               => array( 'అభిరుచులు' ),
 	'Recentchanges'             => array( 'ఇటీవలిమార్పులు' ),
+	'Upload'                    => array( 'ఎక్కింపు' ),
 	'Listusers'                 => array( 'వాడుకరులజాబితా' ),
 	'Statistics'                => array( 'గణాంకాలు' ),
+	'Randompage'                => array( 'యాదృచ్చికపేజీ' ),
 	'Shortpages'                => array( 'చిన్నపేజీలు' ),
 	'Newpages'                  => array( 'కొత్తపేజీలు' ),
 	'Allpages'                  => array( 'అన్నిపేజీలు' ),

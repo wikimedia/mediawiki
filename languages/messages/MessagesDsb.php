@@ -68,7 +68,7 @@ $specialPageAliases = array(
 	'CreateAccount'             => array( 'Wužywarske konto załožyś' ),
 	'Preferences'               => array( 'Nastajenja' ),
 	'Watchlist'                 => array( 'Wobglědowańka' ),
-	'Recentchanges'             => array( 'Slědne změny' ),
+	'Recentchanges'             => array( 'Aktualne změny' ),
 	'Upload'                    => array( 'Uploadowaś' ),
 	'Listfiles'                 => array( 'Lisćina datajow' ),
 	'Newimages'                 => array( 'Nowe dataje' ),
@@ -147,6 +147,7 @@ $specialPageAliases = array(
 	'LinkSearch'                => array( 'Pytanje wótkazow' ),
 	'DeletedContributions'      => array( 'Wulašowane pśinoski' ),
 	'Tags'                      => array( 'Toflicki' ),
+	'Activeusers'               => array( 'Aktiwne wužywarje' ),
 );
 
 $messages = array(
