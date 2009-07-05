@@ -334,7 +334,12 @@ $messages = array(
 'vector-action-delete'      => 'Esborra',
 'vector-action-move'        => 'Reanomena',
 'vector-action-protect'     => 'Protegeix',
+'vector-action-undelete'    => 'Restaura',
+'vector-action-unprotect'   => 'Desprotegeix',
 'vector-namespace-category' => 'Categoria',
+'vector-namespace-help'     => 'Ajuda',
+'vector-namespace-image'    => 'Fitxer',
+'vector-namespace-main'     => 'Pàgina',
 'vector-view-view'          => 'Llegeix',
 
 # Metadata in edit box

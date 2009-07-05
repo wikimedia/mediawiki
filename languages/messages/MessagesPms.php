@@ -731,24 +731,32 @@ A peul esseine dle marche ant ël [{{fullurl:{{#Special:Log}}/suppress|page={{FU
 Coma aministrator chiel a peul ës-ciairela; a peul esseine dle marche ant ël [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registr ëd jë scancelament].",
 'rev-deleted-no-diff'         => "It peule pa vëdde coste diferense përchè un-a dle revision a l'é stàita '''scanselà'''.
 A peul esseine dle marche ant ël [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registr ëd jë scanselament].",
+'rev-deleted-unhide-diff'     => "Un-a dle revision ëd coste diferense a l'é stàita '''scanselà'''.
+A peul esseine dle marche ant ël [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registr ëd le scanselassion].
+Com aministrador it peule ancó [$1 vëdde le diferense] se a fà dbzògn.",
 'rev-delundel'                => 'mostra/stërma',
 'revisiondelete'              => 'Scancela/disdëscancela revision',
-'revdelete-nooldid-title'     => 'Version nen specificà',
-'revdelete-nooldid-text'      => "A l'ha pa visasse dë dì ansima a che version dla pàgina che a venta fé sossì.",
+'revdelete-nooldid-title'     => 'Version nen spessificà',
+'revdelete-nooldid-text'      => "It l'has nen spessificà na vërsion ëd la pàgina da feje costa fonsion, la vërsion spessificà a esist pa, o ti it preuve a stërmé la vërsion corenta.",
+'revdelete-nologtype-title'   => 'Gnun-e rase ëd registr spessificà',
+'revdelete-nologtype-text'    => "It l'has nen spessificà gnun-e rase ëd registr da feje costa assion.",
+'revdelete-nologid-title'     => 'Intrada dël registr pa giusta',
+'revdelete-nologid-text'      => "It l'has pa spessificà n'event dël registr target da feje costa fonsion o l'intrada spessificà a esist nen.",
 'revdelete-selected'          => "'''{{PLURAL:$2|Revision|Revision}} selessionà për [[:$1]]:'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Event|Event}} dël registr selessionà:'''",
-'revdelete-text'              => "'''Le version scancelà a së s-ciaireran sempe ant la stòria dla pàgina,
-ma sò test al pùblich a-j andran pì nen.'''
+'revdelete-text'              => "Le vërsion scanselà e j'event a së s-ciaireran sempe ant la stòria dla pàgina e ant ij registr, ma sò test al pùblich a-j andrà pì nen.'''
+J'àutri aministrator an dzora a {{SITENAME}} a saran ancó sempe bon a s-ciairé ël contnù stërmà e a podran disdëscancelelo andré con la midema antërfacia, sempe che a sia nen staita butà na restrission adissional.
 
-J'àutri aministrator ëd sta wiki-sì a saran ancó sempe bon a s-ciairé ël contnù stërmà
-e a podran disdëscancelelo andré con la midema antërfacia, sempe che a sia nen staita butà
-na restrission adissional da j'operator dël sit.",
+Për piasì conferma che it veulo fé sòn-sì, che it capisse le conseguense, e che i të stai fasend sòn-sì d'acòrdi con le [[{{MediaWiki:Policy-url}}|linie guida]].",
+'revdelete-suppress-text'     => "La scanselassion a dovrìa '''mach''' esse dovrà për cost cas:
+* Anformassion përsonaj nen aproprià
+*: ''adrësse ëd ca e nùmer ëd telefono, còdes fiscaj, etc.''",
 'revdelete-legend'            => 'But-je coste limitassion-sì a le version scancelà:',
 'revdelete-hide-text'         => 'Stërma ël test dla revision',
 'revdelete-hide-name'         => 'Stërma assion e oget',
 'revdelete-hide-comment'      => 'Stërma ël coment a la modìfica',
 'revdelete-hide-user'         => "Stërma lë stranòm ò l'adrëssa IP dël contributor",
-'revdelete-hide-restricted'   => "But-je ste restrission-sì a j'aministrator tan-me a j'àutri",
+'revdelete-hide-restricted'   => "Stërma le anformassion a j'aministrator tan-me a j'àutri",
 'revdelete-suppress'          => "Smon-je pa ij dat gnanca a j'aministrator",
 'revdelete-hide-image'        => "Stërma ël contnù dl'archivi",
 'revdelete-unsuppress'        => "Gava le limitassion da 'nt le version ciapà andaré",
@@ -761,6 +769,20 @@ na restrission adissional da j'operator dël sit.",
 'revdel-restore'              => 'cambia visibilità',
 'pagehist'                    => 'Stòria dla pàgina',
 'deletedhist'                 => 'Stòria scancelà',
+'revdelete-content'           => 'contnù',
+'revdelete-summary'           => 'resumé dla modìfica',
+'revdelete-uname'             => 'stranòm',
+'revdelete-restricted'        => "restrission a j'aministrador aplicà",
+'revdelete-unrestricted'      => "restrission a j'aministrador gavà",
+'revdelete-hid'               => 'stërma $1',
+'revdelete-unhid'             => 'dëscoata $1',
+'revdelete-log-message'       => '$1 për $2 {{PLURAL:$2|revision|revision}}',
+'logdelete-log-message'       => '$1 për $2 {{PLURAL:$2|event|event}}',
+
+# Suppression log
+'suppressionlog'     => 'Registr ëd le sopression',
+'suppressionlogtext' => "Sota a-i é na lista djë scanselament e dij blòch che a arvardo contnù stërmà a j'aministrador.
+Varda la [[Special:IPBlockList|lista dj'IP blocà]] për la lista dij bloch ativ.",
 
 # History merging
 'mergehistory'                     => 'Buté ansema jë stòrie',
