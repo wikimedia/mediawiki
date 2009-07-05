@@ -109,8 +109,7 @@ class SpecialContributions extends SpecialPage {
 		}
 
 
-		# If there were contributions, and it was a valid user or IP, show
-		# the appropriate "footer" message - WHOIS tools, etc.
+		# Show the appropriate "footer" message - WHOIS tools, etc.
 		if( $target != 'newbies' ) {
 			$message = IP::isIPAddress( $target ) ?
 				'sp-contributions-footer-anon' : 'sp-contributions-footer';
@@ -174,7 +173,7 @@ class SpecialContributions extends SpecialPage {
 			# Other logs link
 			$tools[] = $sk->linkKnown(
 				SpecialPage::getTitleFor( 'Log' ),
-				wfMsg( 'sp-contributions-logs' ),
+				wfMsgHtml( 'sp-contributions-logs' ),
 				array(),
 				array( 'user' => $nt->getText() )
 			);
@@ -219,7 +218,7 @@ class SpecialContributions extends SpecialPage {
 	protected function getForm() {
 		global $wgScript;
 	
-		$this->opts['title'] = SpecialPage::getTitleFor( 'Contributions' )->getPrefixedText();
+		$this->opts['title'] = $this->getTitle()->getPrefixedText();
 		if( !isset( $this->opts['target'] ) ) {
 			$this->opts['target'] = '';
 		} else {
@@ -263,7 +262,7 @@ class SpecialContributions extends SpecialPage {
 	
 		$f .= '<fieldset>' .
 			Xml::element( 'legend', array(), wfMsg( 'sp-contributions-search' ) ) .
-			Xml::radioLabel( wfMsgExt( 'sp-contributions-newbies', array( 'parseinline' ) ), 
+			Xml::radioLabel( wfMsgExt( 'sp-contributions-newbies', array( 'parsemag' ) ), 
 				'contribs', 'newbie' , 'newbie', $this->opts['contribs'] == 'newbie' ? true : false ) . '<br />' .
 			Xml::radioLabel( wfMsgExt( 'sp-contributions-username', array( 'parsemag' ) ), 
 				'contribs' , 'user', 'user', $this->opts['contribs'] == 'user' ? true : false ) . ' ' .
