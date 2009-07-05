@@ -241,7 +241,7 @@ class SpecialVersion extends SpecialPage {
 					if ( count( $swWhereIsBinPath ) > 1 )
 						$wBinPath = dirname( $swWhereIsBinPath[1] );
 				} else {
-					$swPathLine = explode( ';', $_SERVER[PATH] );
+					$swPathLine = explode( ';', $_SERVER['PATH'] );
 					$swPathFound = false;
 					foreach( $swPathLine as $swPathDir ) {
 						if ( file_exists( $swPathDir . '/' . $swMathCmd . '.exe' ) && ($swPathFound === false) ) {
