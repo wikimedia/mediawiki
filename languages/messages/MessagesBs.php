@@ -17,7 +17,7 @@
  */
 
 $namespaceNames = array(
-	NS_MEDIA            => 'Medija',
+	NS_MEDIA            => 'Mediji',
 	NS_SPECIAL          => 'Posebno',
 	NS_TALK             => 'Razgovor',
 	NS_USER             => 'Korisnik',
@@ -25,8 +25,8 @@ $namespaceNames = array(
 	NS_PROJECT_TALK     => 'Razgovor_{{grammar:instrumental|$1}}',
 	NS_FILE             => 'Datoteka',
 	NS_FILE_TALK        => 'Razgovor_o_datoteci',
-	NS_MEDIAWIKI        => 'MedijaViki',
-	NS_MEDIAWIKI_TALK   => 'Razgovor_o_MedijaVikiju',
+	NS_MEDIAWIKI        => 'MediaWiki',
+	NS_MEDIAWIKI_TALK   => 'MediaWiki_razgovor',
 	NS_TEMPLATE         => 'Šablon',
 	NS_TEMPLATE_TALK    => 'Razgovor_o_šablonu',
 	NS_HELP             => 'Pomoć',
@@ -36,8 +36,11 @@ $namespaceNames = array(
 );
 
 $namespaceAliases = array(
+	'Medija' => NS_MEDIA,
 	'Slika' => NS_FILE,
 	'Razgovor_o_datoteci' => NS_FILE_TALK,
+	'MedijaViki' => NS_MEDIAWIKI,
+	'Razgovor_o_MedijaVikiju' => NS_MEDIAWIKI_TALK,
 );
 
 $specialPageAliases = array(

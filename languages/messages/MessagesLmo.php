@@ -22,6 +22,45 @@
 
 $fallback = 'it';
 
+$namespaceNames = array(
+	NS_SPECIAL          => 'Special',
+	NS_TALK             => 'Ciciarada',
+	NS_USER             => 'Dovrat',
+	NS_USER_TALK        => 'Ciciarada_Dovrat',
+	NS_PROJECT_TALK     => '$1_Ciciarada',
+	NS_FILE             => 'Archivi',
+	NS_FILE_TALK        => 'Ciciarada_Archivi',
+	NS_MEDIAWIKI        => 'MediaWiki',
+	NS_MEDIAWIKI_TALK   => 'Ciciarada_MediaWiki',
+	NS_TEMPLATE         => 'Model',
+	NS_TEMPLATE_TALK    => 'Ciciarada_Model',
+	NS_HELP             => 'Aida',
+	NS_HELP_TALK        => 'Ciciarada_Aida',
+	NS_CATEGORY         => 'Categoria',
+	NS_CATEGORY_TALK    => 'Ciciarada_Categoria',
+);
+
+$namespaceAliases = array(
+	'Media' => NS_MEDIA,
+	'Speciale' => NS_SPECIAL,
+	'Discussione' => NS_TALK,
+	'Utente' => NS_USER,
+	'Discussioni_utente' => NS_USER_TALK,
+	'Discussioni_$1' => NS_PROJECT_TALK,
+	'File' => NS_FILE,
+	'Discussioni_file' => NS_FILE_TALK,
+	'Immagine' => NS_FILE,
+	'Discussioni_immagine' => NS_FILE_TALK,
+	'MediaWiki' => NS_MEDIAWIKI,
+	'Discussioni_MediaWiki' => NS_MEDIAWIKI_TALK,
+	'Template' => NS_TEMPLATE,
+	'Discussioni_template' => NS_TEMPLATE_TALK,
+	'Aiuto' => NS_HELP,
+	'Discussioni_aiuto' => NS_HELP_TALK,
+	'Categoria' => NS_CATEGORY,
+	'Discussioni_categoria' => NS_CATEGORY_TALK,
+);
+
 $specialPageAliases = array(
 	'DoubleRedirects'           => array( 'Dòbia redirezion' ),
 	'BrokenRedirects'           => array( 'Redirezion ròta' ),
