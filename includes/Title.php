@@ -3521,40 +3521,29 @@ class Title {
 	 * Generate strings used for xml 'id' names in monobook tabs
 	 * @return \type{\string} XML 'id' name
 	 */
-	public function getNamespaceKey() {
-		global $wgContLang;
-		switch ($this->getNamespace()) {
-			case NS_MAIN:
-			case NS_TALK:
-				return 'nstab-main';
-			case NS_USER:
-			case NS_USER_TALK:
-				return 'nstab-user';
-			case NS_MEDIA:
-				return 'nstab-media';
-			case NS_SPECIAL:
-				return 'nstab-special';
-			case NS_PROJECT:
-			case NS_PROJECT_TALK:
-				return 'nstab-project';
-			case NS_FILE:
-			case NS_FILE_TALK:
-				return 'nstab-image';
-			case NS_MEDIAWIKI:
-			case NS_MEDIAWIKI_TALK:
-				return 'nstab-mediawiki';
-			case NS_TEMPLATE:
-			case NS_TEMPLATE_TALK:
-				return 'nstab-template';
-			case NS_HELP:
-			case NS_HELP_TALK:
-				return 'nstab-help';
-			case NS_CATEGORY:
-			case NS_CATEGORY_TALK:
-				return 'nstab-category';
-			default:
-				return 'nstab-' . $wgContLang->lc( $this->getSubjectNsText() );
+	public function getNamespaceKey( $prepend = 'nstab-' ) {
+		global $wgContLang, $wgCanonicalNamespaceNames;
+		// Gets the subject namespace if this title
+		$namespace = MWNamespace::getSubject( $this->getNamespace() );
+		// Checks if cononical namespace name exists for namespace
+		if ( isset( $wgCanonicalNamespaceNames[$namespace] ) ) {
+			// Uses canonical namespace name
+			$namespaceKey = $wgCanonicalNamespaceNames[$namespace];
+		} else {
+			// Uses text of namespace
+			$namespaceKey = $this->getSubjectNsText();
 		}
+		// Makes namespace key lowercase
+		$namespaceKey = $wgContLang->lc( $namespaceKey );
+		// Uses main
+		if ( $namespaceKey == '' ) {
+			$namespaceKey = 'main';
+		}
+		// Changes file to image for backwards compatibility
+		if ( $namespaceKey == 'file' ) {
+			$namespaceKey = 'image';
+		}
+		return $prepend . $namespaceKey;
 	}
 
 	/**
