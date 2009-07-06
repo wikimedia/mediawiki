@@ -77,7 +77,7 @@ div#head h5 {
 	}
 	/* Navigation Labels */
 	div#namespaces h5,
-	div#variants h5,
+	div#variants h5 span,
 	div#views h5,
 	div#actions h5 span,
 	div#search h5 {
