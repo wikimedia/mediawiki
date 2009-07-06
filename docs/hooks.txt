@@ -1254,6 +1254,10 @@ $nav_urls: array of tabs
 [See http://svn.wikimedia.org/viewvc/mediawiki/trunk/extensions/examples/Content_action.php
 for an example]
 
+'SkinTemplateNavigation': Alter the structured navigation links in SkinTemplates
+&$links: Structured navigation links
+This is used to alter the navigation for skins which use buildNavigationUrls such as Vector.
+
 'SkinTemplateOutputPageBeforeExec': Before SkinTemplate::outputPage()
 starts page output
 &$sktemplate: SkinTemplate object
@@ -1530,7 +1534,7 @@ $template: SimpleTemplate instance for the form
 
 'UserLoginMailPassword': Block users from emailing passwords
 $name: the username to email the password of.
-&$error: out-param ÐÊthe error message to return.
+&$error: out-param ï¿½ï¿½the error message to return.
 
 'UserLogout': before a user logs out
 $user: the user object that is about to be logged out

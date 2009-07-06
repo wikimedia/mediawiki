@@ -63,7 +63,7 @@ class SkinVector extends SkinTemplate {
 			'actions' => array(),
 			'variants' => array()
 		);
-
+		
 		// Detects parameters
 		$action = $wgRequest->getVal( 'action', 'view' );
 		$section = $wgRequest->getVal( 'section' );
@@ -79,11 +79,16 @@ class SkinVector extends SkinTemplate {
 			$isTalk = $this->mTitle->isTalkPage();
 
 			// Generates XML IDs from namespace names
-			$subjectId = $wgContLang->lc( $this->mTitle->getSubjectNsText() );
+			$subjectId = $wgContLang->lc($wgCanonicalNamespaceNames[MWNamespace::getSubject($this->mTitle->getNamespace())]);
+			
 			if ( $subjectId == '' ) {
 				$subjectId = 'main';
 			}
-			$talkId = "{$subjectId}_talk";
+			if ( $subjectId == 'main' ) {
+				$talkId = 'talk';
+			} else {
+				$talkId = "{$subjectId}_talk";
+			}
 			$currentId = $isTalk ? $talkId : $subjectId;
 			
 			// Adds namespace links
@@ -93,7 +98,7 @@ class SkinVector extends SkinTemplate {
 			$links['namespaces'][$talkId] = $this->tabAction(
 				$talkPage, 'vector-namespace-talk', $isTalk, '', true
 			);
-
+			
 			// Adds view view link
 			if ( $this->mTitle->exists() ) {
 				$links['views']['view'] = $this->tabAction(
@@ -103,7 +108,7 @@ class SkinVector extends SkinTemplate {
 			}
 			
 			wfProfileIn( __METHOD__ . '-edit' );
-
+			
 			// Checks if user can...
 			if (
 				// edit the current page
@@ -396,7 +401,7 @@ class VectorTemplate extends QuickTemplate {
 		$this->data['view_urls'] = $nav['views'];
 		$this->data['action_urls'] = $nav['actions'];
 		$this->data['variant_urls'] = $nav['variants'];
-
+		
 		// Build additional attributes for personal_urls
 		foreach ( $this->data['personal_urls'] as $key => $item) {
 			$this->data['personal_urls'][$key]['attributes'] = 
