@@ -374,8 +374,13 @@ class VectorTemplate extends QuickTemplate {
 		foreach ( $nav as $section => $links ) {
 			foreach ( $links as $key => $link ) {
 				$insert = '';
-				if ( isset( $link['context'] ) && $link['context'] == 'subject' ) {
-					$insert = 'nstab-';
+				if ( isset( $link['context'] ) ) {
+					if ( $link['context'] == 'subject' ) {
+						$insert = 'nstab-';
+					}
+					if ( $link['context'] == 'talk' ) {
+						$key = 'talk';
+					}
 				}
 				$nav[$section][$key]['attributes'] =
 					' id="' . Sanitizer::escapeId( "ca-{$insert}{$key}" ) . '"';
