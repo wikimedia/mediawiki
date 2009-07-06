@@ -41,12 +41,6 @@ div#head {
 	right: 0;
 	width: 100%;
 }
-div#head ul,
-div#head li {
-	list-style: none;
-	margin: 0;
-	padding: 0;
-}
 div#head h5 {
 	margin: 0;
 	padding: 0;
@@ -59,6 +53,11 @@ div#head h5 {
 	}
 	div#p-personal h5 {
 		display: none;
+	}
+	div#p-personal ul {
+		list-style: none;
+		margin: 0;
+		padding: 0;
 	}
 	div#p-personal li {
 		float: left;
@@ -77,49 +76,45 @@ div#head h5 {
 		margin-top: 3em;
 	}
 	/* Navigation Labels */
-	div#namespaces h5,
-	div#variants h5 span,
-	div#views h5,
-	div#actions h5 span,
-	div#search h5 {
+	div.vectorTabs h5,
+	div.vectorMenu h5 span {
 		display: none;
 	}
 	/* Namespaces and Views */
-	div#namespaces,
-	div#views {
+	div.vectorTabs {
 		float: left;
 		background-image: url(images/tab-break.png);
 		background-position: bottom left;
 		background-repeat: no-repeat;
 		padding-left: 1px;
 	}
-	div#namespaces ul,
-	div#views ul {
+	div.vectorTabs ul {
 		float: left;
 		height: 100%;
+		list-style: none;
+		margin: 0;
+		padding: 0;
 	}
 	/* OVERRIDDEN BY COMPLIANT BROWSERS */
-	div#namespaces ul li,
-	div#views ul li {
+	div.vectorTabs ul li {
 		display: inline-block;
 		float: left;
 		height: 100%;
+		margin: 0;
+		padding: 0;
 		background-image: url(images/tab-normal-fade.png);
 		background-position: bottom left;
 		background-repeat: repeat-x;
 	}
 	/* IGNORED BY IE6 */
-	div#namespaces ul > li,
-	div#views ul > li {
+	div.vectorTabs ul > li {
 		display: block;
 	}
-	div#namespaces li.selected,
-	div#views li.selected {
+	div.vectorTabs li.selected {
 		background-image: url(images/tab-current-fade.png);
 	}
 	/* OVERRIDDEN BY COMPLIANT BROWSERS */
-	div#namespaces li a,
-	div#views li a {
+	div.vectorTabs li a {
 		display: inline-block;
 		height: 3em;
 		padding-left: 0.5em;
@@ -129,49 +124,43 @@ div#head h5 {
 		background-repeat: no-repeat;
 	}
 	/* IGNORED BY IE6 */
-	div#namespaces li > a,
-	div#views li > a {
+	div.vectorTabs li > a {
 		display: block;
 	}
 	/* OVERRIDDEN BY COMPLIANT BROWSERS */
-	div#namespaces a span,
-	div#views a span {
+	div.vectorTabs a span {
 		color: #0645ad;
 		display: inline-block;
 		padding-top: 1.25em;
 		cursor: pointer;
 	}
 	/* IGNORED BY IE6 */
-	div#namespaces a > span,
-	div#views a > span {
+	div.vectorTabs a > span {
 		float: left;
 		display: block;
 	}
-	div#namespaces li.selected a span,
-	div#views li.selected a:visited span {
+	div.vectorTabs li.selected a span,
+	div.vectorTabs li.selected a:visited span {
 		color: #333333;
 		cursor: default;
 		text-decoration: none;
 	}
-	div#namespaces li.new a span,
-	div#namespaces li.new a:visited span{
+	div.vectorTabs li.new a span,
+	div.vectorTabs li.new a:visited span {
 		color: #a55858;
 	}
 	/* Variants and Actions */
-	div#variants,
-	div#actions {
+	div.vectorMenu {
 		float: left;
 		background-image: url(images/arrow-down-icon.png);
 		background-position: center center;
 		background-repeat: no-repeat;
 	}
-	div#variants h5,
-	div#actions h5 {
+	div.vectorMenu h5 {
 		float: left;
 	}
 	/* OVERRIDDEN BY COMPLIANT BROWSERS */
-	div#variants h5 a,
-	div#actions h5 a {
+	div.vectorMenu h5 a {
 		display: inline-block;
 		width: 24px;
 		height: 3em;
@@ -181,47 +170,49 @@ div#head h5 {
 		background-repeat: no-repeat;
 	}
 	/* IGNORED BY IE6 */
-	div#variants h5 > a,
-	div#actions h5 > a {
+	div.vectorMenu h5 > a {
 		display: block;
 	}
-	div#variants div.menu,
-	div#actions div.menu {
+	div.vectorMenu div.menu {
 		display: none;
 		clear: both;
 	}
-	div#variants:hover div.menu,
-	div#actions:hover div.menu {
+	div.vectorMenu:hover div.menu {
 		display: block;
 	}
-	div#variants ul,
-	div#actions ul {
+	div.vectorMenu ul {
 		position: absolute;
 		background-color: white;
 		border: solid 1px silver;
 		border-top-width: 0;
+		list-style: none;
 		padding: 0;
 		margin: 0;
 		margin-left: -1px;
 	}
+	div.vectorMenu li {
+		padding: 0;
+		margin: 0;
+	}
 	/* OVERRIDDEN BY COMPLIANT BROWSERS */
-	div#variants:hover li a,
-	div#actions li a {
+	div.vectorMenu li a {
 		display: inline-block;
 		padding: 0.5em;
 	}
 	/* IGNORED BY IE6 */
-	div#variants:hover li > a,
-	div#actions li > a {
+	div.vectorMenu li > a {
 		display: block;
 	}
 	/* Search */
-	div#search {
+	div#p-search h5 {
+		display: none;
+	}
+	div#p-search {
 		float: left;
 		margin-right: 0.75em;
 	}
-	div#search form,
-	div#search input {
+	div#p-search form,
+	div#p-search input {
 		float: left;
 		margin-top: 0.4em;
 		margin-left: 0.25em;

@@ -572,7 +572,7 @@ class VectorTemplate extends QuickTemplate {
 			<!-- /personal -->
 			<div id="left-navigation">
 				<!-- namespaces -->
-				<div id="namespaces">
+				<div id="namespaces" class="vectorTabs">
 					<h5><?php $this->msg('namespaces') ?></h5>
 					<ul <?php $this->html('userlangattributes') ?>>
 						<?php foreach ($this->data['namespace_urls'] as $key => $link ): ?>
@@ -583,7 +583,7 @@ class VectorTemplate extends QuickTemplate {
 				<!-- /namespaces -->
 				<!-- variants -->
 				<?php if ( count( $this->data['variant_urls'] ) > 0 ): ?>
-				<div id="variants">
+				<div id="variants" class="vectorMenu">
 					<h5><span><?php $this->msg('variants') ?></span><a href="#">&nbsp;</a></h5>
 					<div class="menu">
 						<ul <?php $this->html('userlangattributes') ?>>
@@ -599,7 +599,7 @@ class VectorTemplate extends QuickTemplate {
 			<div id="right-navigation">
 				<!-- views -->
 				<?php if ( count( $this->data['view_urls'] ) > 0 ): ?>
-				<div id="views">
+				<div id="views" class="vectorTabs">
 					<h5><?php $this->msg('views') ?></h5>
 					<ul <?php $this->html('userlangattributes') ?>>
 						<?php foreach ($this->data['view_urls'] as $key => $link ): ?>
@@ -611,7 +611,7 @@ class VectorTemplate extends QuickTemplate {
 				<!-- /views -->
 				<!-- actions -->
 				<?php if ( count( $this->data['action_urls'] ) > 0 ): ?>
-				<div id="actions">
+				<div id="actions" class="vectorMenu">
 					<h5><span><?php $this->msg('actions') ?></span><a href="#">&nbsp;</a></h5>
 					<div class="menu">
 						<ul <?php $this->html('userlangattributes') ?>>
@@ -624,7 +624,7 @@ class VectorTemplate extends QuickTemplate {
 				<?php endif; ?>
 				<!-- /actions -->
 				<!-- search -->
-				<div id="search">
+				<div id="p-search">
 					<h5 <?php $this->html('userlangattributes') ?>><label for="searchInput"><?php $this->msg( 'search' ) ?></label></h5>
 					<form action="<?php $this->text( 'wgScript' ) ?>" id="searchform">
 						<input type='hidden' name="title" value="<?php $this->text( 'searchtitle' ) ?>"/>
