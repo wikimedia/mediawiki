@@ -104,11 +104,47 @@ class SpecialVersion extends SpecialPage {
 		global $wgAllowTitlesInSVG, $wgSVGConverter, $wgSVGConverters, $wgSVGConverterPath;
 		$dbr = wfGetDB( DB_SLAVE );
 
+		// Get the web server name and its version, if applicable
+		// Chop off PHP text from the string if it has the text desired
+		$serverSoftware = $_SERVER['SERVER_SOFTWARE'];
+		if ( strrpos( $serverSoftware, 'PHP' ) === false ) {
+		} else {
+			$serverSoftware = trim( substr( $serverSoftware, 0, strrpos($serverSoftware,'PHP') - 1 ) );
+		}
+
+		// Get the web server name and its version.
+		$serverSoftwareLine = explode('/',$serverSoftware);
+		$serverSoftwareName = $serverSoftwareLine[0];
+
+		// Insert the website of the web server if applicable.
+		if ( stristr( $serverSoftwareName, 'Apache' ) )
+			$serverSoftwareURL = 'http://httpd.apache.org/';
+		else if ( stristr( $serverSoftwareName, 'IIS' ) )
+			$serverSoftwareURL = 'http://www.microsoft.com/iis/';
+		else if ( stristr( $serverSoftwareName, 'Cherokee' ) )
+			$serverSoftwareURL = 'http://www.cherokee-project.com/';
+		else if ( stristr( $serverSoftwareName, 'lighttpd' ) )
+			$serverSoftwareURL = 'http://www.lighttpd.net/';
+		else if ( stristr( $serverSoftwareName, 'Sun' ) )
+			$serverSoftwareURL = 'http://www.sun.com/software/products/web_srvr/';
+
+		// Get the version of the web server. If does not have one,
+		// leave it as empty.
+		if ( $serverSoftwareLine[1] != '' ) {
+			$serverSoftwareVersion = $serverSoftwareLine[1];
+		} else {
+			$serverSoftwareVersion = '';
+		}
+
 		// Put the software in an array of form 'name' => 'version'. All messages should
 		// be loaded here, so feel free to use wfMsg*() in the 'name'. Raw HTML or wikimarkup
 		// can be used
 		$software = array();
 		$software['[http://www.mediawiki.org/ MediaWiki]'] = self::getVersionLinked();
+		if ( isset( $serverSoftwareURL ) )
+			$software["[$serverSoftwareURL $serverSoftwareName]"] = $serverSoftwareVersion;
+		else
+			$software[$serverSoftwareName] = $serverSoftwareVersion;
 		$software['[http://www.php.net/ PHP]'] = phpversion() . " (" . php_sapi_name() . ")";
 		$software[$dbr->getSoftwareLink()] = $dbr->getServerVersion();
 
