@@ -561,7 +561,7 @@ class VectorTemplate extends QuickTemplate {
 		<!-- header -->
 		<div id="head" class="noprint">
 			<!-- personal -->
-			<div id="personal">
+			<div id="p-personal">
 				<h5><?php $this->msg('personaltools') ?></h5>
 				<ul <?php $this->html('userlangattributes') ?>>
 					<?php foreach($this->data['personal_urls'] as $key => $item): ?>
