@@ -515,6 +515,11 @@ table.wikitable {
     font-weight: bold;
 }
 
+/* hide initially collapsed collapsable tables */
+table.collapsed tr.collapsable {
+	display: none;
+}
+
 /* success and error messages */
 .success {
 	color: green;
