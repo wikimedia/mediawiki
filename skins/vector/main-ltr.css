@@ -884,3 +884,8 @@ li#pt-login {
 	padding-left: 15px !important;
 	text-transform: none;
 }
+
+span.newpage, span.minor, span.bot {
+	font-weight: bold;
+}
+
