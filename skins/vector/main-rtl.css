@@ -65,20 +65,21 @@ div#head h5 {
 	padding: 0;
 }
 	/* Personal */
-	div#personal {
+	div#p-personal {
 		position: absolute;
 		top: 0;
 		left: 0.75em;
 	}
-	div#personal h5 {
+	div#p-personal h5 {
 		display: none;
 	}
-	div#personal li {
+	div#p-personal li {
 		float: right;
 		margin-right: 0.75em;
 		margin-top: 0.5em;
 		font-size: 0.9em;
 	}
+	/* Navigation Containers */
 	div#left-navigation {
 		position: absolute;
 		right: 12em;
