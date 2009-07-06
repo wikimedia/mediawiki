@@ -58,6 +58,23 @@ li span.deleted, span.history-deleted {
 }
 
 /**
+ * Patrol stuff
+ */
+.not-patrolled {
+	background-color: #ffa;
+}
+
+span.unpatrolled {
+	font-weight: bold;
+	color: red;
+}
+
+div.patrollink {
+	font-size: 75%;
+	text-align: right;
+}
+
+/**
  * Forms
  */
 body.ltr td.mw-label { text-align: right; }

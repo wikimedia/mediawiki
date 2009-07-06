@@ -639,19 +639,9 @@ img.thumbborder {
 	display: none;
 }
 
-.not-patrolled {
-	background-color: #ffa;
-}
-div.patrollink {
-	font-size: 75%;
-	text-align: right;
-}
+
 span.newpage, span.minor, span.bot {
 	font-weight: bold;
-}
-span.unpatrolled {
-	font-weight: bold;
-	color: red;
 }
 
 .sharedUploadNotice {
