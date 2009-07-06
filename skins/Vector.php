@@ -572,7 +572,7 @@ class VectorTemplate extends QuickTemplate {
 				<!-- variants -->
 				<?php if ( count( $this->data['variant_urls'] ) > 0 ): ?>
 				<div id="variants">
-					<h5><div class="icon"><span><?php $this->msg('variants') ?></span></div></h5>
+					<h5><span><?php $this->msg('variants') ?></span><a href="#">&nbsp;</a></h5>
 					<div class="menu">
 						<ul <?php $this->html('userlangattributes') ?>>
 							<?php foreach ($this->data['variant_urls'] as $key => $link ): ?>
