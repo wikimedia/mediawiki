@@ -1270,10 +1270,6 @@ table.mw_metadata td {
 	background-color: #fcfcfc;
 }
 
-table.collapsed tr.collapsable {
-	display: none;
-}
-
 input#wpSummary {
 	width: 80%;
 }
