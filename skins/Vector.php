@@ -373,17 +373,18 @@ class VectorTemplate extends QuickTemplate {
 		$nav = $this->skin->buildNavigationUrls();
 		foreach ( $nav as $section => $links ) {
 			foreach ( $links as $key => $link ) {
-				$insert = '';
+				$xmlID = $key;
 				if ( isset( $link['context'] ) ) {
 					if ( $link['context'] == 'subject' ) {
-						$insert = 'nstab-';
-					}
-					if ( $link['context'] == 'talk' ) {
-						$key = 'talk';
+						$xmlID = 'ca-nstab-' . $xmlID;
+					} else if ( $link['context'] == 'talk' ) {
+						$xmlID = 'ca-talk';
+					} else {
+						$xmlID = 'ca-' . $xmlID;
 					}
 				}
 				$nav[$section][$key]['attributes'] =
-					' id="' . Sanitizer::escapeId( "ca-{$insert}{$key}" ) . '"';
+					' id="' . Sanitizer::escapeId( $xmlID ) . '"';
 			 	if ( $nav[$section][$key]['class'] ) {
 					$nav[$section][$key]['attributes'] .=
 						' class="' . htmlspecialchars( $link['class'] ) . '"';
@@ -398,10 +399,10 @@ class VectorTemplate extends QuickTemplate {
 					in_array( $key, array( 'edit', 'watch', 'unwatch' ) )
 				) {
 			 		$nav[$section][$key]['key'] =
-						$this->skin->tooltip( "ca-{$insert}{$key}" );
+						$this->skin->tooltip( $xmlID );
 			 	} else {
 			 		$nav[$section][$key]['key'] =
-						$this->skin->tooltipAndAccesskey( "ca-{$insert}{$key}" );
+						$this->skin->tooltipAndAccesskey( $xmlID );
 			 	}
 			}
 		}
