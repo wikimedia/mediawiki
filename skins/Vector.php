@@ -374,14 +374,12 @@ class VectorTemplate extends QuickTemplate {
 		foreach ( $nav as $section => $links ) {
 			foreach ( $links as $key => $link ) {
 				$xmlID = $key;
-				if ( isset( $link['context'] ) ) {
-					if ( $link['context'] == 'subject' ) {
-						$xmlID = 'ca-nstab-' . $xmlID;
-					} else if ( $link['context'] == 'talk' ) {
-						$xmlID = 'ca-talk';
-					} else {
-						$xmlID = 'ca-' . $xmlID;
-					}
+				if ( isset( $link['context'] ) && $link['context'] == 'subject' ) {
+					$xmlID = 'ca-nstab-' . $xmlID;
+				} else if ( isset( $link['context'] ) && $link['context'] == 'talk' ) {
+					$xmlID = 'ca-talk';
+				} else {
+					$xmlID = 'ca-' . $xmlID;
 				}
 				$nav[$section][$key]['attributes'] =
 					' id="' . Sanitizer::escapeId( $xmlID ) . '"';
