@@ -693,12 +693,12 @@ class VectorTemplate extends QuickTemplate {
 		</div>
 		<!-- /foot -->
 		<!-- logo -->
-		<div id="logo">
+		<div id="p-logo">
 			<a style="background-image: url(<?php $this->text('logopath') ?>);" href="<?php echo htmlspecialchars( $this->data['nav_urls']['mainpage']['href'] ) ?>" <?php echo $this->skin->tooltipAndAccesskey('p-logo') ?>></a>
 		</div>
 		<!-- /logo -->
 		<!-- fixalpha -->
-		<script type="<?php $this->text('jsmimetype') ?>"> if (window.isMSIE55) fixalpha( 'logo' ); </script>
+		<script type="<?php $this->text('jsmimetype') ?>"> if (window.isMSIE55) fixalpha( 'p-logo' ); </script>
 		<!-- /fixalpha -->
 		<?php $this->html( 'bottomscripts' ); /* JS call to runBodyOnloadHook */ ?>
 		<?php $this->html( 'reporttime' ) ?>

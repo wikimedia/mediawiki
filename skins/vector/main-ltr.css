@@ -305,14 +305,14 @@ div#foot ul#foot-places li {
 	line-height: 2em;
 }
 /* Logo */
-div#logo {
+div#p-logo {
 	position: absolute;
 	top: 0;
 	left: 0;
 	height: 12em;
 	width: 12em;
 }
-div#logo a {
+div#p-logo a {
 	display: block;
 	width: 12em;
 	height: 12em;
