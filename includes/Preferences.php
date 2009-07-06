@@ -143,7 +143,7 @@ class Preferences {
 					array(
 						'type' => 'info',
 						'label-message' => 'prefs-registration',
-						'default' => $wgLang->timeanddate( $user->getRegistration() ),
+						'default' => $wgLang->timeanddate( $user->getRegistration(), true ),
 						'section' => 'personal/info',
 					);
 		}
