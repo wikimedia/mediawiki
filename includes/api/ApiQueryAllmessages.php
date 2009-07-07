@@ -53,8 +53,7 @@ class ApiQueryAllmessages extends ApiQueryBase {
 		//Determine which messages should we print
 		$messages_target = array();
 		if( $params['messages'] == '*' ) {
-			$wgMessageCache->loadAllMessages();
-			$message_names = array_keys( array_merge( Language::getMessagesFor( 'en' ), $wgMessageCache->getExtensionMessagesFor( 'en' ) ) );
+			$message_names = array_keys( Language::getMessagesFor( 'en' ) );
 			sort( $message_names );
 			$messages_target = $message_names;
 		} else {
