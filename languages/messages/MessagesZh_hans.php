@@ -1,5 +1,5 @@
 <?php
-/** Simplified Chinese (‪中文(简体)‬)
+/** Simplified Chinese (‪中文(简化字)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -365,6 +365,9 @@ $messages = array(
 'vector-view-history'        => '查看历史',
 'vector-view-view'           => '阅读',
 'vector-view-viewsource'     => '查看源代码',
+'actions'                    => '动作',
+'namespaces'                 => '名字空间',
+'variants'                   => '变换',
 
 # Metadata in edit box
 'metadata_help' => '元数据：',
