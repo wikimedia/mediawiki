@@ -447,12 +447,31 @@ class Skin extends Linker {
 		return self::makeVariablesScript( $vars );
 	}
 
-	function getHeadScripts( $allowUserJs ) {
+	/**
+	 * Return a random selection of the scripts we want in the header, 
+	 * according to no particular rhyme or reason.  Various other scripts are 
+	 * returned from a haphazard assortment of other functions scattered over 
+	 * various files.  This entire hackish system needs to be burned to the 
+	 * ground and rebuilt.
+	 *
+	 * @var $allowUserJs bool Should probably be identical to $wgAllowUserJs, 
+	 *                        but is passed as a local variable for some 
+	 *                        obscure reason.
+	 * @var $extraHtml string A bunch of raw HTML to jam into some arbitrary 
+	 *                        place where MonoBook has historically wanted it.
+	 *                        Old-style skins formerly put it in a different 
+	 *                        place, but if either of those is broken it's 
+	 *                        likely to be the old-style skins.
+	 * @return string Raw HTML to output in some location in the <head> that's 
+	 *                entirely arbitrary but which will probably break 
+	 *                everything if you put it someplace else.
+	 */
+	function getHeadScripts( $allowUserJs, $extraHtml = '' ) {
 		global $wgStylePath, $wgUser, $wgJsMimeType, $wgStyleVersion;
 
 		$vars = self::makeGlobalVariablesScript( array( 'skinname' => $this->getSkinName() ) );
 
-		$r = array( "<script type=\"{$wgJsMimeType}\" src=\"{$wgStylePath}/common/wikibits.js?$wgStyleVersion\"></script>" );
+		$r = array( "<script type=\"{$wgJsMimeType}\" src=\"{$wgStylePath}/common/wikibits.js?$wgStyleVersion\"></script>\n$extraHtml" );
 		global $wgUseSiteJs;
 		if( $wgUseSiteJs ) {
 			$jsCache = $wgUser->isLoggedIn() ? '&smaxage=0' : '';
@@ -460,7 +479,7 @@ class Skin extends Linker {
 				htmlspecialchars( self::makeUrl( '-',
 					"action=raw$jsCache&gen=js&useskin=" .
 					urlencode( $this->getSkinName() ) ) ) .
-				"\"><!-- site js --></script>";
+				"\"></script>";
 		}
 		if( $allowUserJs && $wgUser->isLoggedIn() ) {
 			$userpage = $wgUser->getUserPage();
@@ -469,7 +488,7 @@ class Skin extends Linker {
 				'action=raw&ctype='.$wgJsMimeType ) );
 			$r[] = '<script type="'.$wgJsMimeType.'" src="'.$userjs."\"></script>";
 		}
-		return $vars . "\t\t" . implode ( "\n\t\t", $r );
+		return $vars . "\t" . implode ( "\n\t", $r );
 	}
 
 	/**
@@ -2054,5 +2073,17 @@ END;
 		if ( $wgEnableSidebarCache ) $parserMemc->set( $key, $bar, $wgSidebarCacheExpiry );
 		wfProfileOut( __METHOD__ );
 		return $bar;
+	}
+
+	/**
+	 * Should we include common/wikiprintable.css?  Skins that have their own 
+	 * print stylesheet should override this and return false.  (This is an 
+	 * ugly hack to get Monobook to play nicely with 
+	 * OutputPage::headElement().)
+	 *
+	 * @return bool
+	 */
+	public function commonPrintStylesheet() {
+		return true;
 	}
 }

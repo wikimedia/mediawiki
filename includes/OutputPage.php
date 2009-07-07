@@ -93,7 +93,7 @@ class OutputPage {
 			array_push( $this->mKeywords, $text );
 		}
 	}
-	function addScript( $script ) { $this->mScripts .= "\t\t" . $script . "\n"; }
+	function addScript( $script ) { $this->mScripts .= "\t" . $script . "\n"; }
 	
 	function addExtensionStyle( $url ) {
 		$linkarr = array( 'rel' => 'stylesheet', 'href' => $url, 'type' => 'text/css' );
@@ -1548,8 +1548,10 @@ class OutputPage {
 		global $wgXhtmlDefaultNamespace, $wgXhtmlNamespaces;
 		global $wgContLang, $wgUseTrackbacks, $wgStyleVersion;
 
-		$this->addMeta( "http:Content-type", "$wgMimeType; charset={$wgOutputEncoding}" );
-		$this->addStyle( 'common/wikiprintable.css', 'print' );
+		$this->addMeta( "http:Content-Type", "$wgMimeType; charset={$wgOutputEncoding}" );
+		if ( $sk->commonPrintStylesheet() ) {
+			$this->addStyle( 'common/wikiprintable.css', 'print' );
+		}
 		$sk->setupUserCss( $this );
 
 		$ret = '';
@@ -1558,24 +1560,23 @@ class OutputPage {
 			$ret .= "<?xml version=\"1.0\" encoding=\"$wgOutputEncoding\" ?" . ">\n";
 		}
 
-		$ret .= "<!DOCTYPE html PUBLIC \"$wgDocType\"\n        \"$wgDTD\">\n";
+		$ret .= "<!DOCTYPE html PUBLIC \"$wgDocType\" \"$wgDTD\">\n";
 
 		if ( '' == $this->getHTMLTitle() ) {
 			$this->setHTMLTitle(  wfMsg( 'pagetitle', $this->getPageTitle() ));
 		}
 
-		$rtl = $wgContLang->isRTL() ? " dir='RTL'" : '';
+		$dir = $wgContLang->isRTL() ? 'rtl' : 'ltr';
 		$ret .= "<html xmlns=\"{$wgXhtmlDefaultNamespace}\" ";
 		foreach($wgXhtmlNamespaces as $tag => $ns) {
 			$ret .= "xmlns:{$tag}=\"{$ns}\" ";
 		}
-		$ret .= "xml:lang=\"$wgContLanguageCode\" lang=\"$wgContLanguageCode\" $rtl>\n";
-		$ret .= "<head>\n<title>" . htmlspecialchars( $this->getHTMLTitle() ) . "</title>\n\t\t";
-		$ret .= implode( "\t\t", array(
+		$ret .= "xml:lang=\"$wgContLanguageCode\" lang=\"$wgContLanguageCode\" dir=\"$dir\">\n";
+		$ret .= "<head>\n\t<title>" . htmlspecialchars( $this->getHTMLTitle() ) . "</title>\n\t";
+		$ret .= implode( "\n", array(
 			$this->getHeadLinks(),
 			$this->buildCssLinks(),
-			$sk->getHeadScripts( $this->mAllowUserJs ),
-			$this->mScripts,
+			$sk->getHeadScripts( $this->mAllowUserJs, $this->mScripts ),
 			$this->getHeadItems(),
 		));
 		if( $sk->usercss ){
@@ -1591,6 +1592,14 @@ class OutputPage {
 	
 	protected function addDefaultMeta() {
 		global $wgVersion;
+
+		static $called = false;
+		if ( $called ) {
+			# Don't run this twice
+			return;
+		}
+		$called = true;
+
 		$this->addMeta( 'http:Content-Style-Type', 'text/css' ); //bug 15835
 		$this->addMeta( 'generator', "MediaWiki $wgVersion" );
 		
@@ -1679,7 +1688,7 @@ class OutputPage {
 			}
 		}
 
-		return implode( "\n\t\t", $tags ) . "\n";
+		return implode( "\n\t", $tags ) . "\n";
 	}
 
 	/**
@@ -1746,7 +1755,7 @@ class OutputPage {
 				$links[] = $link;
 		}
 
-		return implode( "\n\t\t", $links );
+		return "\t" . implode( "\n\t", $links );
 	}
 
 	protected function styleLink( $style, $options ) {
