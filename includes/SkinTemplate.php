@@ -1017,6 +1017,10 @@ class SkinTemplate extends Skin {
 		wfProfileOut( __METHOD__ );
 		return $out;
 	}
+
+	public function commonPrintStylesheet() {
+		return false;
+	}
 }
 
 /**
