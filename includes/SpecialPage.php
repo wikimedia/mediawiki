@@ -823,7 +823,7 @@ Perhaps no page aliases are defined for it?" );
 	/**
 	 * Get a self-referential title object
 	 */
-	function getTitle( $subpage = false) {
+	function getTitle( $subpage = false ) {
 		return self::getTitleFor( $this->mName, $subpage );
 	}
 

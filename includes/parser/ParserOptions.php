@@ -59,8 +59,8 @@ class ParserOptions
 	function getExternalLinkTarget()            { return $this->mExternalLinkTarget; }
 	function getIsPreview()                     { return $this->mIsPreview; }
 	function getIsSectionPreview()              { return $this->mIsSectionPreview; }
-  function getIsPrintable()            { return $this->mIsPrintable; }
-  
+	function getIsPrintable()                   { return $this->mIsPrintable; }
+
 	function getSkin() {
 		if ( !isset( $this->mSkin ) ) {
 			$this->mSkin = $this->mUser->getSkin();
@@ -107,8 +107,8 @@ class ParserOptions
 	function setExternalLinkTarget( $x )        { return wfSetVar( $this->mExternalLinkTarget, $x ); }
 	function setIsPreview( $x )                 { return wfSetVar( $this->mIsPreview, $x ); }
 	function setIsSectionPreview( $x )          { return wfSetVar( $this->mIsSectionPreview, $x ); }
-  function setIsPrintable( $x )        { return wfSetVar( $this->mIsPrintable, $x ); }
-  
+	function setIsPrintable( $x )               { return wfSetVar( $this->mIsPrintable, $x ); }
+
 	function __construct( $user = null ) {
 		$this->initialiseFromUser( $user );
 	}
