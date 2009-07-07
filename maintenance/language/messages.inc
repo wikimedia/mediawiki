@@ -187,6 +187,9 @@ $wgMessageStructure = array(
 		'vector-view-history',
 		'vector-view-view',
 		'vector-view-viewsource',
+		'actions',
+		'namespaces',
+		'variants',
 	),
 	'metadata_help' => array(
 		'metadata_help',
