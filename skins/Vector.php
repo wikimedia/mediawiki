@@ -510,6 +510,7 @@ class VectorTemplate extends QuickTemplate {
 		<!-- content -->
 		<div id="content">
 			<a name="top" id="top"></a>
+			<div id="mw-js-message" style="display:none;"></div>
 			<!-- sitenotice -->
 			<?php if($this->data['sitenotice']) { ?><div id="siteNotice"><?php $this->html('sitenotice') ?></div><?php } ?>
 			<!-- /sitenotice -->
