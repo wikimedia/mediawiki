@@ -602,13 +602,15 @@ class SpecialPage {
 			$found = false;
 			foreach ( $aliases as $n => $values ) {
 				if ( strcasecmp( $name, $n ) === 0 ) {
-					wfWarn( "Found $n for $name with casefix" );
+					wfWarn( "Found alias defined for $n when searching for special page aliases
+for $name. Case mismatch?" );
 					$name = $values[0];
 					$found = true;
 					break;
 				}
 			}
-			if ( !$found ) wfWarn( "Did not find name for special page $name" );
+			if ( !$found ) wfWarn( "Did not find alias for special page '$name'.
+Perhaps no page aliases are defined for it?" );
 		}
 		if ( $subpage !== false && !is_null( $subpage ) ) {
 			$name = "$name/$subpage";
