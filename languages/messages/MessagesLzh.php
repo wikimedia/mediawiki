@@ -239,6 +239,9 @@ $messages = array(
 'vector-view-history'        => '覽史',
 'vector-view-view'           => '閱',
 'vector-view-viewsource'     => '覽源',
+'actions'                    => '動',
+'namespaces'                 => '名集',
+'variants'                   => '變字',
 
 # Metadata in edit box
 'metadata_help' => '衍意：',

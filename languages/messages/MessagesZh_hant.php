@@ -1,5 +1,5 @@
 <?php
-/** Traditional Chinese (‪中文(繁體)‬)
+/** Traditional Chinese (‪中文(傳統字)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -341,6 +341,9 @@ $messages = array(
 'vector-view-history'        => '查看歷史',
 'vector-view-view'           => '閱讀',
 'vector-view-viewsource'     => '查看原始碼',
+'actions'                    => '動作',
+'namespaces'                 => '名字空間',
+'variants'                   => '變換',
 
 # Metadata in edit box
 'metadata_help' => '元數據:',
