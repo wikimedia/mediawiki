@@ -1222,46 +1222,6 @@ span.changedby {
 	text-indent: -2em;
 }
 
-/* Classes for EXIF data display */
-table.mw_metadata {
-	font-size: 0.8em;
-	margin-left: 0.5em;
-	margin-bottom: 0.5em;
-	width: 300px;
-}
-
-table.mw_metadata caption {
-	font-weight: bold;
-}
-
-table.mw_metadata th {
-	font-weight: normal;
-}
-
-table.mw_metadata td {
-	padding: 0.1em;
-}
-
-table.mw_metadata {
-	border: none;
-	border-collapse: collapse;
-}
-
-table.mw_metadata td, table.mw_metadata th {
-	text-align: center;
-	border: 1px solid #aaaaaa;
-	padding-left: 0.1em;
-	padding-right: 0.1em;
-}
-
-table.mw_metadata th {
-	background-color: #f9f9f9;
-}
-
-table.mw_metadata td {
-	background-color: #fcfcfc;
-}
-
 input#wpSummary {
 	width: 80%;
 }
