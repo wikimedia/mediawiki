@@ -6,7 +6,6 @@
  */
 class LanguageEo extends Language {
 	function iconv( $in, $out, $string ) {
-		# For most languages, this is a wrapper for iconv
 		# Por multaj lingvoj, ĉi tiu nur voku la sisteman funkcion iconv()
 		# Ni ankaŭ konvertu X-sistemajn surogotajn
 		if( strcasecmp( $in, 'x' ) == 0 and strcasecmp( $out, 'utf-8' ) == 0) {
@@ -42,7 +41,7 @@ class LanguageEo extends Language {
 			return preg_replace( '/((?:[cghjsu]|\xc4[\x88\x89\x9c\x9d\xa4\xa5\xb4\xb5]'.
 			  '|\xc5[\x9c\x9d\xac\xad])x*)/ei', 'strtr( "$1", $ux )', $string );
 		}
-		return iconv( $in, $out, $string );
+		return parent::iconv( $in, $out, $string );
 	}
 
 	function checkTitleEncoding( $s ) {
