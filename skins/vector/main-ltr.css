@@ -733,7 +733,7 @@ img.thumbborder {
 #siteNotice {
 	text-align: center;
 	font-size: 95%;
-	padding-top: 0.9em;
+	margin-bottom: 0.9em;
 }
 	#siteNotice p {
 		margin: 0;
@@ -888,4 +888,8 @@ span.newpage, span.minor, span.bot {
 	background-color: #f9f9f9;
 	padding: 5px;
 	font-size: 95%;
+}
+
+div#bodyContent {
+	position: relative;
 }
