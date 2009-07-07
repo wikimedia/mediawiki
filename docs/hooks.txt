@@ -654,6 +654,10 @@ textarea in the edit form
 &$checks: Array of edit checks like "watch this page"/"minor edit"
 &$tabindex: HTML tabindex of the last edit check/button
 
+'EditPageBeforeEditToolbar': allows modifying the edit toolbar above the
+textarea in the edit form
+&$toolbar: The toolbar HTMl
+
 'EditPageCopyrightWarning': Allow for site and per-namespace customization of contribution/copyright notice.
 $title: title of page being edited
 &$msg: localization message name, overridable. Default is either 'copyrightwarning' or 'copyrightwarning2'
