@@ -494,6 +494,9 @@ $messages = array(
 'vector-view-history'        => 'הצגת היסטוריה',
 'vector-view-view'           => 'קריאה',
 'vector-view-viewsource'     => 'הצגת מקור',
+'actions'                    => 'פעולות',
+'namespaces'                 => 'מרחבי שם',
+'variants'                   => 'גרסאות שפה',
 
 # Metadata in edit box
 'metadata_help' => 'מטא־דטה:',
