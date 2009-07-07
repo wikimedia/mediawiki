@@ -1467,8 +1467,17 @@ class Language {
 	}
 
 	function iconv( $in, $out, $string ) {
-		# For most languages, this is a wrapper for iconv
-		return iconv( $in, $out . '//IGNORE', $string );
+		# This is a wrapper for iconv in all languages except esperanto,
+		# which does some nasty x-conversions beforehand
+
+		# Even with //IGNORE iconv can whine about illegal characters in
+		# *input* string. We just ignore those too.
+		# REF: http://bugs.php.net/bug.php?id=37166
+		# REF: https://bugzilla.wikimedia.org/show_bug.cgi?id=16885
+		wfSuppressWarnings();
+		$text = iconv( $in, $out . '//IGNORE', $string );
+		wfRestoreWarnings();
+		return $text;
 	}
 
 	// callback functions for uc(), lc(), ucwords(), ucwordbreaks()
