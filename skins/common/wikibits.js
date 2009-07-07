@@ -874,7 +874,9 @@ function jsMsg( message, className ) {
 	var messageDiv = document.getElementById( 'mw-js-message' );
 	if ( !messageDiv ) {
 		messageDiv = document.createElement( 'div' );
-		if ( skin == 'vector' || skin == 'monobook' )
+		if ( document.getElementById( 'column-content' )
+		&& document.getElementById( 'content' ) ) {
+			// MonoBook, presumably
 			document.getElementById( 'content' ).insertBefore(
 				messageDiv,
 				document.getElementById( 'content' ).firstChild
