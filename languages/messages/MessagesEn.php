@@ -783,6 +783,9 @@ XHTML id names.
 'vector-view-history'        => 'View history',
 'vector-view-view'           => 'Read',
 'vector-view-viewsource'     => 'View source',
+'actions'                    => 'Actions',
+'namespaces'                 => 'Namespaces',
+'variants'                   => 'Variants',
 
 # Metadata in edit box
 'metadata_help' => 'Metadata:',
