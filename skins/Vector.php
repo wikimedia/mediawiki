@@ -610,7 +610,7 @@ class VectorTemplate extends QuickTemplate {
 				<!-- /views -->
 				<!-- actions -->
 				<?php if ( count( $this->data['action_urls'] ) > 0 ): ?>
-				<div id="actions" class="vectorMenu">
+				<div id="p-cactions" class="vectorMenu">
 					<h5><span><?php $this->msg('actions') ?></span><a href="#">&nbsp;</a></h5>
 					<div class="menu">
 						<ul <?php $this->html('userlangattributes') ?>>
