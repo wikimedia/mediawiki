@@ -630,9 +630,9 @@ div#content select {
 }
 #toc ul,
 .toc ul {
-	list-style-type: none;
-	list-style-image: none;
-	margin-left: 0;
+	list-style-type: none !important;
+	list-style-image: none !important;
+	margin-left: 0 !important;
 	padding-left: 0;
 	text-align: left;
 }
