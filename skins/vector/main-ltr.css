@@ -8,6 +8,7 @@ body {
 	font-size: small;
 }
 body {
+	background-color: #f3f3f3;
 	background-image: url(images/page-base.png);
 }
 /* Content */
@@ -102,6 +103,7 @@ div#head h5 {
 		height: 100%;
 		margin: 0;
 		padding: 0;
+		background-color: #f3f3f3;
 		background-image: url(images/tab-normal-fade.png);
 		background-position: bottom left;
 		background-repeat: repeat-x;
