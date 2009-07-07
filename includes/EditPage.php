@@ -664,6 +664,9 @@ class EditPage {
 		$this->editintro = $request->getText( 'editintro' );
 
 		wfProfileOut( $fname );
+
+		// Allow extensions to modify form data
+		wfRunHooks( 'EditPage::importFormData', array( &$this ) );
 	}
 
 	/**
