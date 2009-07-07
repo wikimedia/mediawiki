@@ -316,7 +316,6 @@ class SkinVector extends SkinTemplate {
 			// Gets preferred variant
 			$preferred = $wgContLang->getPreferredVariant();
 			// Loops over each variant
-			$vcount = 0;
 			foreach( $variants as $code ) {
 				// Gets variant name from language code
 				$varname = $wgContLang->getVariantname( $code );
@@ -326,12 +325,11 @@ class SkinVector extends SkinTemplate {
 					continue;
 				}
 				// Appends variant link
-				$links['variants'][$vcount] = array(
+				$links['variants'][] = array(
 					'class' => ( $code == $preferred ) ? 'selected' : false,
 					'text' => $varname,
 					'href' => $this->mTitle->getLocalURL( '', $code )
 				);
-				$vcount ++;
 			}
 		}
 
