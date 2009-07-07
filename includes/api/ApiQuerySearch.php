@@ -48,7 +48,7 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 	}
 
 	private function run($resultPageSet = null) {
-
+		global $wgContLang;
 		$params = $this->extractRequestParams();
 
 		$limit = $params['limit'];
@@ -87,6 +87,7 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 			$this->dieUsage("{$what} search is disabled",
 					"search-{$what}-disabled");
 
+		$terms = $wgContLang->convertForSearchResult($matches->termMatches());
 		$titles = array ();
 		$count = 0;
 		while( $result = $matches->next() ) {
@@ -104,6 +105,7 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 			if (is_null($resultPageSet)) {
 				$vals = array();
 				ApiQueryBase::addTitleInfo($vals, $title);
+				$vals['snippet'] = $result->getTextSnippet($terms);
 				$fit = $this->getResult()->addValue(array('query', $this->getModuleName()), null, $vals);
 				if(!$fit)
 				{
