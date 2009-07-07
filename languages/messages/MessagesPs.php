@@ -279,6 +279,7 @@ $messages = array(
 'vector-namespace-category'  => 'وېشنيزه',
 'vector-namespace-help'      => 'لارښود مخ',
 'vector-namespace-image'     => 'دوتنه',
+'vector-namespace-main'      => 'مخ',
 'vector-namespace-mediawiki' => 'پيغام',
 'vector-namespace-talk'      => 'خبرې اترې',
 'vector-namespace-template'  => 'کينډۍ',
@@ -487,8 +488,8 @@ $messages = array(
 'nouserspecified'            => 'تاسو ځان ته کوم کارن نوم نه دی ځانګړی کړی.',
 'wrongpassword'              => 'ناسم پټنوم مو ليکلی. لطفاً يو ځل بيا يې وليکۍ.',
 'wrongpasswordempty'         => 'تاسو پټنوم نه دی ليکلی. لطفاً سر له نوي يې وليکۍ.',
-'passwordtooshort'           => 'ستاسو پټنوم ناسم دی او يا هم ډېر لنډ دی.
-بايد چې پټنوم مو لږ تر لږه {{PLURAL:$1|1 توری|$1 توري}} ولري او پکار ده چې د پټنوم او کارن-نوم ترمېنځ مو هم توپير وي.',
+'passwordtooshort'           => 'ستاسې پټنوم ډېر لنډ دی.
+بايد چې پټنوم مو لږ تر لږه {{PLURAL:$1|1 توری|$1 توري}} وي.',
 'mailmypassword'             => 'نوی پټنوم برېښليک کول',
 'passwordremindertitle'      => 'د {{SITENAME}} لپاره نوی لنډمهاله پټنوم',
 'passwordremindertext'       => 'يو چا (کېدای شي چې ستاسو، د  IPپتې $1 نه)
@@ -644,9 +645,10 @@ $messages = array(
 'history-feed-item-nocomment' => '$1 په $2',
 
 # Revision deletion
-'rev-delundel'    => 'ښکاره کول/ پټول',
-'pagehist'        => 'د مخ پېښليک',
-'revdelete-uname' => 'کارن-نوم',
+'rev-delundel'      => 'ښکاره کول/ پټول',
+'pagehist'          => 'د مخ پېښليک',
+'revdelete-content' => 'مېنځپانګه',
+'revdelete-uname'   => 'کارن-نوم',
 
 # Diffs
 'history-title'           => 'د "$1" د پېښليک مخليدنه',
@@ -683,6 +685,7 @@ $messages = array(
 'powersearch-legend'        => 'پرمختللې پلټنه',
 'powersearch-ns'            => 'په نوم-تشيالونو کې پلټل:',
 'powersearch-field'         => 'پلټنه د',
+'powersearch-toggleall'     => 'ټول',
 'search-external'           => 'باندنۍ پلټنه',
 
 # Quickbar
@@ -716,6 +719,8 @@ $messages = array(
 'timezonelegend'            => 'د وخت سيمه',
 'localtime'                 => 'سيمه ايز وخت:',
 'servertime'                => 'د پالنګر وخت:',
+'timezoneregion-africa'     => 'افريقا',
+'timezoneregion-america'    => 'امريکا',
 'allowemail'                => 'د نورو کارونکو لخوا د برېښليک رالېږل چارن کړه',
 'prefs-namespaces'          => 'نوم-تشيالونه',
 'defaultns'                 => 'په دغو نوم-تشيالونو کې د ټاکل شوو سمونونو له مخې لټون وکړی:',
@@ -739,6 +744,10 @@ $messages = array(
 'prefs-help-email'          => 'د برېښليک ليکل ستاسو په خوښه دی، خو په ورکړې سره به يې د يوه نوي پټنوم درلېږلو چار آسانه کړي هغه هم کله چې ستاسو نه خپل پټنوم هېر شوی وي.
 دا هم ستاسو خپله خوښه ده چې نور کارونکو ته اجازه ورکړی چې ستاسو سره د کارن-نوم او يا هم د کارونکي خبرې اترې لخوا، پرته له دې چې ستاسو پېژندنه وشي، اړيکې ټينګې کړي.',
 'prefs-help-email-required' => 'ستاسو د برېښليک پته پکار ده.',
+'prefs-info'                => 'بنسټيزه مالومات',
+'prefs-i18n'                => 'نړېوالتوب',
+'prefs-signature'           => 'لاسليک',
+'prefs-dateformat'          => 'د نېټې بڼه',
 
 # User rights
 'userrights-user-editname' => 'يو کارن نوم وليکۍ:',
@@ -766,6 +775,7 @@ $messages = array(
 'rightsnone' => '(هېڅ)',
 
 # Associated actions - in the sentence "You do not have permission to X"
+'action-read'       => 'همدا مخ لوستل',
 'action-edit'       => 'دا مخ سمول',
 'action-createpage' => 'مخونه جوړول',
 'action-move'       => 'همدا مخ لېږدول',
@@ -954,6 +964,8 @@ $messages = array(
 'popularpages'            => 'نامتو مخونه',
 'wantedcategories'        => 'غوښتلې وېشنيزې',
 'wantedpages'             => 'غوښتل شوې پاڼې',
+'wantedfiles'             => 'غوښتلې دوتنې',
+'wantedtemplates'         => 'غوښتلې کينډۍ',
 'mostlinked'              => 'د ډېرو تړنو مخونه',
 'mostlinkedcategories'    => 'د ګڼو تړنو وېشنيزې',
 'mostlinkedtemplates'     => 'د ډېرو تړنو کينډۍ',

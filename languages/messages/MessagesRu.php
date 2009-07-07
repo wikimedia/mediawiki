@@ -426,6 +426,9 @@ $messages = array(
 'vector-view-history'        => 'Просмотр истории',
 'vector-view-view'           => 'Чтение',
 'vector-view-viewsource'     => 'Просмотр разметки',
+'actions'                    => 'Действия',
+'namespaces'                 => 'Пространства имён',
+'variants'                   => 'Варианты',
 
 # Metadata in edit box
 'metadata_help' => 'Метаданные:',

@@ -336,6 +336,9 @@ $messages = array(
 'vector-view-history'        => 'Ver histórico',
 'vector-view-view'           => 'Ler',
 'vector-view-viewsource'     => 'Ver fonte',
+'actions'                    => 'Ações',
+'namespaces'                 => 'Espaços nominais',
+'variants'                   => 'Variantes',
 
 # Metadata in edit box
 'metadata_help' => 'Metadados:',

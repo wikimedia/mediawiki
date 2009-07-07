@@ -431,7 +431,7 @@ $messages = array(
 'faqpage'        => 'Project:GyIK',
 
 # Vector skin
-'vector-action-addsection'   => 'Téma hozzáadása',
+'vector-action-addsection'   => 'Új szakasz nyitása',
 'vector-action-delete'       => 'Törlés',
 'vector-action-move'         => 'Átnevezés',
 'vector-action-protect'      => 'Lapvédelem',
@@ -2614,10 +2614,18 @@ Valamennyi transwiki importálási művelet az [[Special:Log/import|importálás
 # Stylesheets
 'common.css'   => '/* Közös CSS az összes felszínnek */',
 'monobook.css' => '/* Az ide elhelyezett CSS hatással lesz a Monobook felület használóira */',
+'vector.css'   => '/******************************************************************************************\\
+*                   Ezek a stílusok csak a Vector felületre vonatkoznak                    *
+*    A nem kifejezetten Vector-specifikus stílusokat a [[MediaWiki:Common.css]]-be írd!    *
+\\******************************************************************************************/',
 
 # Scripts
 'common.js'   => '/* Az ide elhelyezett JavaScript kód minden felhasználó számára lefut az oldalak betöltésekor. */',
 'monobook.js' => '/* A Monobook felületet használó szerkesztők számára betöltendő JavaScriptek */',
+'vector.js'   => '/******************************************************************************************\\
+*                   Ezek a szkriptek csak a Vector skin alatt futnak le.                   *
+*    A nem kifejezetten Vector-specifikus szkripteket a [[MediaWiki:Common.js]]-be írd!    *
+\\******************************************************************************************/',
 
 # Metadata
 'nodublincore'      => 'Ezen a kiszolgálón a Dublin Core RDF metaadatok használata letiltott.',

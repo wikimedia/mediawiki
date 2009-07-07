@@ -357,6 +357,9 @@ $messages = array(
 'vector-view-history'        => 'Zobraziť históriu',
 'vector-view-view'           => 'Čítať',
 'vector-view-viewsource'     => 'Zobraziť zdroj',
+'actions'                    => 'Operácie',
+'namespaces'                 => 'Menné priestory',
+'variants'                   => 'Varianty',
 
 # Metadata in edit box
 'metadata_help' => 'Metadáta:',

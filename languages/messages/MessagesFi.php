@@ -468,6 +468,9 @@ Taivutusmuodot: {{GRAMMAR:genitive|{{SITENAME}}}} (yön) — {{GRAMMAR:partitive
 'vector-view-history'        => 'Näytä historia',
 'vector-view-view'           => 'Lue',
 'vector-view-viewsource'     => 'Näytä lähdekoodi',
+'actions'                    => 'Toiminnot',
+'namespaces'                 => 'Nimiavaruudet',
+'variants'                   => 'Muuttujat',
 
 # Metadata in edit box
 'metadata_help' => 'Sisältökuvaukset:',

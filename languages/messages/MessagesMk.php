@@ -434,6 +434,9 @@ $messages = array(
 'vector-view-history'        => 'Види историја',
 'vector-view-view'           => 'Читај',
 'vector-view-viewsource'     => 'Види код',
+'actions'                    => 'Акции',
+'namespaces'                 => 'Именски простори',
+'variants'                   => 'Варијанти',
 
 # Metadata in edit box
 'metadata_help' => 'Метаподатоци:',
@@ -693,8 +696,9 @@ $2',
 'nouserspecified'            => 'Мора да назначите корисничко име.',
 'wrongpassword'              => 'Внесовте погрешна лозинка. Обидете се повторно.',
 'wrongpasswordempty'         => 'Внесената лозинка е празна. Обидете се повторно.',
-'passwordtooshort'           => 'Вашата лозинка е погрешна или прекратка. 
-Мора да има најмалку {{PLURAL:$1|1 знак|$1 знаци}} и да биде различна од вашето корисничко име.',
+'passwordtooshort'           => 'Вашата лозинка е многу кратка. 
+Мора да има најмалку {{PLURAL:$1|1 знак|$1 знаци}}.',
+'password-name-match'        => 'Вашата лозинка мора да биде различна од вашето корисничко име.',
 'mailmypassword'             => 'Испрати нова лозинка по е-пошта',
 'passwordremindertitle'      => 'Нова привремена лозинка за {{SITENAME}}',
 'passwordremindertext'       => 'Некој (најверојатно вие, од IP адреса $1) побара нова лозинка за {{SITENAME}} ($4).

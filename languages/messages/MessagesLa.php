@@ -312,6 +312,7 @@ $messages = array(
 'vector-view-history'        => 'Historiam inspicere',
 'vector-view-view'           => 'Legere',
 'vector-view-viewsource'     => 'Fontem inspicere',
+'namespaces'                 => 'Spatia nominalia',
 
 # Metadata in edit box
 'metadata_help' => 'Metadata:',

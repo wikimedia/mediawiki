@@ -476,7 +476,10 @@ $messages = array(
 'vector-view-edit'           => 'Bewerken',
 'vector-view-history'        => 'Geschiedenis bekijken',
 'vector-view-view'           => 'Lezen',
-'vector-view-viewsource'     => 'Broktekst bekijken',
+'vector-view-viewsource'     => 'Brontekst bekijken',
+'actions'                    => 'Handelingen',
+'namespaces'                 => 'Naamruimten',
+'variants'                   => 'Varianten',
 
 # Metadata in edit box
 'metadata_help' => 'Metadata:',

@@ -425,6 +425,9 @@ $messages = array(
 'vector-view-history'        => 'Vidi historiju',
 'vector-view-view'           => 'Čitati',
 'vector-view-viewsource'     => 'Pogledaj izvor',
+'actions'                    => 'Akcije',
+'namespaces'                 => 'Imenski prostori',
+'variants'                   => 'Varijante',
 
 # Metadata in edit box
 'metadata_help' => 'Metapodaci:',

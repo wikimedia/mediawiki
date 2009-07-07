@@ -291,6 +291,8 @@ This can also appear in the credits page if the credits feature is enabled,for e
 'vector-view-view'           => 'Tab label in the Vector skin (verb). See for example http://translatewiki.net/w/i.php?title=Main_Page&useskin=vector',
 'vector-view-viewsource'     => 'Tab label in the Vector skin.
 {{Identical|View source}}',
+'actions'                    => '{{Identical|Action}}',
+'namespaces'                 => '{{Identical|Namespace}}',
 
 # Metadata in edit box
 'metadata_help' => '{{Identical|Metadata}}',

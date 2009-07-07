@@ -329,6 +329,9 @@ $messages = array(
 'vector-view-history'        => 'Se historik',
 'vector-view-view'           => 'Vis',
 'vector-view-viewsource'     => 'Se kilden',
+'actions'                    => 'Handlinger',
+'namespaces'                 => 'Navnerum',
+'variants'                   => 'Varianter',
 
 # Metadata in edit box
 'metadata_help' => 'Metadata:',
