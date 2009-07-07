@@ -1534,7 +1534,11 @@ $template: SimpleTemplate instance for the form
 
 'UserLoginMailPassword': Block users from emailing passwords
 $name: the username to email the password of.
+<<<<<<< .mine
+&$error: out-param – the error message to return.
+=======
 &$error: out-param - the error message to return.
+>>>>>>> .r52831
 
 'UserLogout': before a user logs out
 $user: the user object that is about to be logged out
