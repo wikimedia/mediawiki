@@ -417,6 +417,9 @@ $messages = array(
 'vector-view-history'        => 'Паказаць гісторыю',
 'vector-view-view'           => 'Чытаць',
 'vector-view-viewsource'     => 'Паказаць крыніцу',
+'actions'                    => 'Дзеяньні',
+'namespaces'                 => 'Прасторы назваў',
+'variants'                   => 'Варыянты',
 
 # Metadata in edit box
 'metadata_help' => 'Мэтазьвесткі:',
@@ -1178,7 +1181,7 @@ $1",
 'search-result-score'              => 'Адпаведнасьць: $1%',
 'search-redirect'                  => '(перанакіраваньне $1)',
 'search-section'                   => '(сэкцыя $1)',
-'search-suggest'                   => 'Вы мелі на ўвазе: $1',
+'search-suggest'                   => 'Магчыма, вы мелі на ўвазе: $1',
 'search-interwiki-caption'         => 'Сумежныя праекты',
 'search-interwiki-default'         => 'вынікі з $1:',
 'search-interwiki-more'            => '(яшчэ)',

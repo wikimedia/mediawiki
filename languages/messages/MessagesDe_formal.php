@@ -24,7 +24,7 @@ $fallback = 'de';
 
 $messages = array(
 # User preference toggles
-'tog-enotifrevealaddr' => 'Ihre E-Mail-Adresse wird in Benachrichtigungs-E-Mails angezeigt.',
+'tog-enotifrevealaddr' => 'Ihre E-Mail-Adresse in Benachrichtigungs-E-Mails anzeigen',
 
 'mainpagedocfooter' => 'Hilfe zur Benutzung und Konfiguration der Wiki-Software finden Sie im [http://meta.wikimedia.org/wiki/Help:Contents Benutzerhandbuch].
 

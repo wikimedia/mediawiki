@@ -489,6 +489,8 @@ $messages = array(
 'vector-view-history'        => 'Afficher l’historique',
 'vector-view-view'           => 'Lire',
 'vector-view-viewsource'     => 'Voir la source',
+'actions'                    => 'Actions',
+'namespaces'                 => 'Espaces de noms',
 
 # Metadata in edit box
 'metadata_help' => 'Métadonnées :',

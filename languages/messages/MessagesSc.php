@@ -174,6 +174,11 @@ $messages = array(
 'qbmyoptions'    => 'Is preferèntzias meas',
 'qbspecialpages' => 'Pàginas ispetziales',
 
+# Vector skin
+'vector-namespace-main'  => 'Pàgina',
+'vector-view-history'    => 'Càstia istòria',
+'vector-view-viewsource' => 'Càstia mitza',
+
 # Metadata in edit box
 'metadata_help' => 'Metadatos:',
 
@@ -181,8 +186,8 @@ $messages = array(
 'returnto'          => 'Torra a $1.',
 'tagline'           => 'Dae {{SITENAME}}',
 'help'              => 'Agiudu',
-'search'            => 'Kirca',
-'searchbutton'      => 'Kirca',
+'search'            => 'Chirca',
+'searchbutton'      => 'Chirca',
 'go'                => 'Bae',
 'searcharticle'     => 'Bae',
 'history'           => 'Istòria de sa pàgina',
@@ -229,7 +234,7 @@ $messages = array(
 'protectedpage'     => 'Pàgina amparada',
 'jumpto'            => 'Bae a:',
 'jumptonavigation'  => 'navigadura',
-'jumptosearch'      => 'kirca',
+'jumptosearch'      => 'chirca',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'A propòsitu de {{SITENAME}}',
@@ -449,7 +454,7 @@ Pro pregheri ispetzìfica totu is particolares in antis in carchi siat pregunta 
 Pro creare sa pagina, iscrie in su box inoghe in basciu (abàida sa [[{{MediaWiki:Helppage}}|pàgina de agiudu]] pro àteras informatziones).
 Chi ses intrau inoghe pro isballiu, clicca in su browser tuo su butoni '''back/indietro'''.",
 'noarticletext'                    => 'In custu momentu sa pàgina est bùida.
-Podes [[Special:Search/{{PAGENAME}}|kircare custu tìtulu]] in àteras pàginas, <span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} kircare ne is registros ligados] oppuru [{{fullurl:{{FULLPAGENAME}}|action=edit}} acontzare sa pàgina]</span>.',
+Podes [[Special:Search/{{PAGENAME}}|chircare custu tìtulu]] in àteras pàginas, <span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} chircare in is registros ligados] oppuru [{{fullurl:{{FULLPAGENAME}}|action=edit}} acontzare sa pàgina]</span>.',
 'updated'                          => '(Agiornau)',
 'note'                             => "'''Nota:'''",
 'previewnote'                      => "'''Arregodadia  ca custa est isceti una ANTIPRIMA. Sa versione tua no est istada ancora allogada!'''",
@@ -535,10 +540,10 @@ Legenda: '''({{int:cur}})''' = diferèntzias cun sa versione currente,
 'diff-with-final'         => '&#32;e $1 $2',
 
 # Search results
-'searchresults'                  => 'Arresurtadus de sa kirca',
-'searchresults-title'            => 'Arresurtadus pro sa kirca de "$1"',
-'searchresulttext'               => 'Pro àteras informatziones pro sa kirca intre de {{SITENAME}}, càstia [[{{MediaWiki:Helppage}}|Kirca in {{SITENAME}}]].',
-'searchsubtitle'                 => 'Kirca de \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|totu is pàginas ca incumentzant pro "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|totu is pàginas ca ligant a "$1"]])',
+'searchresults'                  => 'Resurtados de sa chirca',
+'searchresults-title'            => 'Resurtados pro sa chirca de "$1"',
+'searchresulttext'               => 'Pro àteras informatziones a subra sa chirca intre de {{SITENAME}}, càstia [[{{MediaWiki:Helppage}}|Chirca in {{SITENAME}}]].',
+'searchsubtitle'                 => 'Chirca de \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|totu is pàginas ca incumentzant pro "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|totu is pàginas chi ligant a "$1"]])',
 'searchsubtitleinvalid'          => 'As chircadu "$1"',
 'noexactmatch'                   => "'''Sa pàgina \"\$1\" no esistit.''' 
 Podes [[:\$1|creare custa pàgina]].",
@@ -557,22 +562,22 @@ Podes [[:\$1|creare custa pàgina]].",
 'search-result-size'             => '$1 ({{PLURAL:$2|1 fueddu|$2 fueddus}})',
 'search-redirect'                => '(redirect $1)',
 'search-section'                 => '(setzione $1)',
-'search-suggest'                 => 'Fortzis fias kirchende: $1',
+'search-suggest'                 => 'Fortzis fias chirchende: $1',
 'search-interwiki-caption'       => 'Progetos frades',
 'search-interwiki-default'       => '$1 arresurtaus:',
 'search-interwiki-more'          => '(àteru)',
 'search-mwsuggest-enabled'       => 'cun impostos',
 'search-mwsuggest-disabled'      => 'chentza impostos',
 'searchall'                      => 'totu',
-'showingresults'                 => "Innoe sighende {{PLURAL:$1|benit amostau '''1''' arresurtau|benint amostaus '''$1''' arresurtaos}} incumentzende dae su numeru '''$2'''.",
+'showingresults'                 => "Innoe sighende {{PLURAL:$1|benit amostau '''1''' resurtadu|benint amostaos '''$1''' resurtados}} incumentzende dae su nùmeru '''$2'''.",
 'showingresultstotal'            => "Sighende {{PLURAL:$4|benit amostadu s'arresurtadu '''$1''' de '''$3'''|benint amostados is arresurtados '''$1 - $2''' de '''$3'''}}",
 'nonefound'                      => "'''Annota''': sa chirca est fata pro difetu isceti in unos Nòmene-logos. 
 Prova a scioberai ''totu:'' pro chircare in totu su cuntènnidu (includius pàginas de cuntierra, template, etc), oppuru sciobera comente prefissu su pretzisu Nòmene-logu chi boles.",
-'powersearch'                    => 'Kirca',
-'powersearch-legend'             => 'Kirca delantada',
-'powersearch-ns'                 => 'Kirca in su nòmene-logu:',
+'powersearch'                    => 'Chirca',
+'powersearch-legend'             => 'Chirca delantada',
+'powersearch-ns'                 => 'Chirca in su nòmene-logu:',
 'powersearch-redir'              => 'Lista re-indiritzamentos',
-'powersearch-field'              => 'Kirca',
+'powersearch-field'              => 'Chirca',
 'powersearch-toggleall'          => 'Totu',
 'powersearch-togglenone'         => 'Nudda',
 
@@ -819,7 +824,7 @@ Ogni riga contiene i link al primo ed al secondo redirect, oltre alla prima riga
 
 # Book sources
 'booksources'               => 'Fontes libràrias',
-'booksources-search-legend' => 'Kirca fontes libràrias',
+'booksources-search-legend' => 'Chirca fontes libràrias',
 'booksources-isbn'          => 'ISBN:',
 'booksources-go'            => 'Bae',
 
@@ -996,7 +1001,7 @@ Chi est istada creada una pàgina cun su matessi tìtulu, is arrevisiones recupe
 'sp-contributions-talk'     => 'cuntierra',
 'sp-contributions-search'   => 'Chirca contributziones',
 'sp-contributions-username' => 'Indiritzu IP o nòmene usuàriu:',
-'sp-contributions-submit'   => 'Kirca',
+'sp-contributions-submit'   => 'Chirca',
 
 # What links here
 'whatlinkshere'            => 'Pàginas chi ligant a custa',
@@ -1141,7 +1146,7 @@ Podes castiare sa mitza sua',
 'tooltip-ca-unwatch'              => 'Tira custa pàgina da sa watchlist tua',
 'tooltip-search'                  => 'Chirca a intru de {{SITENAME}}',
 'tooltip-search-go'               => 'Bae a una pàgina cun custu nòmene, chi esistit',
-'tooltip-search-fulltext'         => 'Kirca custu testu in sas pàginas',
+'tooltip-search-fulltext'         => 'Chirca custu testu in sas pàginas',
 'tooltip-n-mainpage'              => 'Vìsita sa pàgina printzipale',
 'tooltip-n-portal'                => 'Descritzioni de su progetu, ita podes faghere, ainnui agatas cosas',
 'tooltip-n-currentevents'         => 'Informatziones subra acuntèssias atuales',
@@ -1314,7 +1319,7 @@ Is acàpius chi sighint in sa matessi lìnia sunt cunsideraus comente eccetzione
 'filepath-page' => 'Nòmene de su file:',
 
 # Special:FileDuplicateSearch
-'fileduplicatesearch-submit' => 'Kirca',
+'fileduplicatesearch-submit' => 'Chirca',
 
 # Special:SpecialPages
 'specialpages' => 'Pàginas ispetziales',

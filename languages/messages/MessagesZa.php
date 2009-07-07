@@ -14,6 +14,8 @@
 $fallback = 'zh-hans';
 
 $messages = array(
+'underline-never' => 'coengz mbouj swjyungh',
+
 # Dates
 'sunday'        => 'Swnggeiz Yaet',
 'monday'        => 'Swnggeiz Wtx',
@@ -22,6 +24,13 @@ $messages = array(
 'thursday'      => 'Swnggeiz Seiq',
 'friday'        => 'Swnggeiz Haj',
 'saturday'      => 'Swnggeiz Lokj',
+'sun'           => 'Ngoenz',
+'mon'           => 'It',
+'tue'           => 'Ngeih',
+'wed'           => 'Sam',
+'thu'           => 'Seiq',
+'fri'           => 'Ngux',
+'sat'           => 'Loeg',
 'january'       => 'Nin Wtj',
 'february'      => 'Nin Yeih',
 'march'         => 'Nin Sam',
@@ -34,8 +43,18 @@ $messages = array(
 'october'       => 'Nin Cwbx',
 'november'      => 'Nin Cwbx Wtj',
 'december'      => 'Nin Cwbx Yeih',
+'january-gen'   => 'It nyied',
+'february-gen'  => 'Ngeih nyied',
+'march-gen'     => 'Sam nyied',
+'april-gen'     => 'Seiq nyied',
 'may-gen'       => 'Nin Haj',
+'june-gen'      => 'Loeg nyied',
+'july-gen'      => 'Caet nyied',
+'august-gen'    => 'Bet nyied',
 'september-gen' => 'Nin Gouj',
+'october-gen'   => 'Cib nyied',
+'november-gen'  => 'Cibit nyied',
+'december-gen'  => 'Cibngeih nyied',
 'jan'           => 'Itnyied',
 'feb'           => 'Ngeihnyied',
 'mar'           => 'Samnyied',
@@ -49,6 +68,10 @@ $messages = array(
 'nov'           => "Cib'itnyied",
 'dec'           => 'Cibngeihnyied',
 
+# Categories related messages
+'pagecategories' => '{{PLURAL:$1$1 aen|faendingz|faendingz}}',
+'subcategories'  => 'Faendingz lwgsai',
+
 'about'      => 'Gvendaengz',
 'article'    => 'Banjbienj',
 'cancel'     => 'Fwtqfex',
@@ -58,22 +81,43 @@ $messages = array(
 # Cologne Blue skin
 'qbfind'         => 'Ra',
 'qbedit'         => 'Gaij',
+'qbmyoptions'    => 'Yieb gou',
 'qbspecialpages' => 'Doenghmae daegxsei',
+'faq'            => 'Cam caeuq dap',
+'faqpage'        => 'Project:Cam caeuq dap',
+
+# Vector skin
+'vector-action-delete'       => 'Ca',
+'vector-action-move'         => 'Daen',
+'vector-action-protect'      => 'Bauj',
+'vector-namespace-category'  => 'Faendingz',
+'vector-namespace-help'      => 'Yieb bangcoh',
+'vector-namespace-image'     => 'Vwnzgen',
+'vector-namespace-main'      => 'Yieb',
+'vector-namespace-media'     => 'Yieb moizdij',
+'vector-namespace-mediawiki' => 'Siusik',
+'vector-namespace-template'  => 'Mozbanj',
+'vector-view-create'         => 'Laeb',
+'vector-view-edit'           => 'gaij',
+'vector-view-history'        => 'Cazyawj lizsij',
 
 'errorpagetitle'   => 'Loengloek',
-'help'             => 'Caeuq',
+'help'             => 'Bangcoh',
 'search'           => 'Cwmh',
 'searchbutton'     => 'Cwmh',
 'go'               => 'Bae',
 'searcharticle'    => 'Bae',
 'history'          => 'Lizsij',
-'history_short'    => 'Doenghmatq',
+'history_short'    => 'Lizsij',
+'printableversion' => 'Gojyaenq banj',
 'permalink'        => 'Gaeq-lamh kaemdaengz',
 'edit'             => 'gaij',
+'create'           => 'Laeb',
 'delete'           => 'Duz',
 'protect'          => 'Hahdiuz',
 'protect_change'   => 'gaij',
 'newpage'          => 'Bienj moq',
+'talkpage'         => 'Dunjlun yieb neix',
 'talkpagelinktext' => 'Daujlun',
 'personaltools'    => 'Hongdawz bonjfaenh',
 'talk'             => 'Kwng',
@@ -91,7 +135,7 @@ $messages = array(
 'edithelp'             => 'Caeuq mungz san-zonz',
 'edithelppage'         => 'Help:gaij',
 'helppage'             => 'Help:moegloeg',
-'mainpage'             => 'Mbaw meh',
+'mainpage'             => 'Yiebdaeuz',
 'mainpage-description' => 'Mbaw meh',
 'policy-url'           => 'Project:fuengcim',
 'portal'               => 'Seqgih',
@@ -111,28 +155,41 @@ $messages = array(
 'editold'            => 'gaij',
 'editlink'           => 'gaij',
 'editsectionhint'    => 'Gaij duenh:$1',
+'showtoc'            => "yienh'ok",
 'hidetoc'            => 'cangz',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-main' => 'Faenzueng',
-'nstab-user' => 'Mae bouxdeiz',
+'nstab-main'      => 'Faenzueng',
+'nstab-user'      => 'Mae bouxdeiz',
+'nstab-project'   => 'Yieb giva',
+'nstab-image'     => 'Vwnzgen',
+'nstab-mediawiki' => 'Siuhsik',
+'nstab-template'  => 'Mozbanj',
+'nstab-help'      => 'Yieb bangcoh',
+'nstab-category'  => 'Faendingz',
 
 # General errors
 'viewsource' => 'Liuq lagh mae-nej',
 
 # Login and logout pages
-'yourname'    => 'Ciu bouxdeiz:',
-'login'       => 'Dwnghluz',
-'notloggedin' => 'Maengx laezhaej',
+'yourname'     => 'Ciu bouxdeiz:',
+'yourpassword' => 'Mizmak：',
+'login'        => 'Dwnghluz',
+'userlogin'    => 'Daengh haeuj/Laeb bouxdeiz',
+'logout'       => 'Doiq ok',
+'userlogout'   => 'Doiq ok',
+'notloggedin'  => 'Maengx laezhaej',
+'nologinlink'  => 'Laeb bouxdeiz',
 
 # Edit pages
 'summary'            => 'Saegmangj:',
 'minoredit'          => 'Di-nej gaij noix',
-'watchthis'          => 'Demq mae-nej',
+'watchthis'          => 'Gamyawj yieb neix',
 'savearticle'        => 'Zonzdiuz mae-nej',
 'showpreview'        => 'Okqhaej piu-ngoengx',
 'showdiff'           => 'Okqhaej gaeqgaei',
 'whitelistedittitle' => 'Laezdiuz haeuj aiq naej san-zonz',
+'newarticle'         => '(Moq)',
 
 # Diffs
 'editundo' => 'siu',
@@ -147,27 +204,40 @@ $messages = array(
 'searchresultshead' => 'Cwmh',
 'username'          => 'Ciu bouxdeiz:',
 
+# Associated actions - in the sentence "You do not have permission to X"
+'action-edit' => 'gaij yieb neix',
+
 # Recent changes
 'recentchanges'   => 'Gaeqgaij suijnej',
 'diff'            => 'Faenbied',
+'hide'            => 'Cangz',
+'show'            => "Yienh'ok",
 'minoreditletter' => 'n',
+'newpageletter'   => 'M',
+'boteditletter'   => 'g',
 
 # Upload
+'upload'            => 'Cienz vwnzgen',
 'uploadnologin'     => 'Maengx laezhaej',
 'filedesc'          => 'Saegmangj',
 'fileuploadsummary' => 'Saegmangj:',
+'uploadedimage'     => 'senq cienz "[[$1]]"',
 'watchthisupload'   => 'Demq mae-nej',
 
 # Special:ListFiles
 'listfiles_user' => 'Bouxyungh',
 
 # File description page
-'filehist-user' => 'Bouxsawjyungh',
+'filehist-current'  => 'seizneix',
+'filehist-datetime' => 'Ngoenz/Seizgan',
+'filehist-user'     => 'Bouxsawjyungh',
+'filehist-comment'  => 'Gejgangj',
 
 # Random page
 'randompage' => 'Mae zaihzex',
 
 # Miscellaneous special pages
+'newpages'          => 'Yieb moq',
 'newpages-username' => 'Ciu bouxdeiz:',
 'move'              => 'Daen',
 'movethispage'      => 'Caen mae nej',
@@ -179,6 +249,8 @@ $messages = array(
 'log' => 'Ngoenzceiq',
 
 # Special:AllPages
+'allpages'       => 'Sojmiz yieb',
+'allarticles'    => 'Sojmiz yieb',
 'allpagessubmit' => 'Bae',
 
 # Watchlist
@@ -204,11 +276,13 @@ $messages = array(
 # Contributions
 'contributions' => 'Gaeq bouxdeiz haej',
 'mycontris'     => 'Gaeq gou haej',
+'uctop'         => '(dingz)',
 
 'sp-contributions-submit' => 'Cwmh',
 
 # What links here
-'whatlinkshere' => 'Maelaez lamh haenznej',
+'whatlinkshere'      => 'Maelaez lamh haenznej',
+'whatlinkshere-page' => 'Yieb：',
 
 # Block/unblock
 'ipblocklist-submit' => 'Cwmh',
@@ -227,6 +301,7 @@ $messages = array(
 # Tooltip help for the actions
 'tooltip-pt-preferences' => 'Doenghgaeq gou hae',
 'tooltip-p-logo'         => 'Mae meh',
+'tooltip-t-upload'       => 'Cienz vwnzgen',
 
 # Special:NewFiles
 'ilsubmit' => 'Cwmh',

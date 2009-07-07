@@ -283,6 +283,9 @@ $messages = array(
 'vector-view-history'        => 'Versionsgschicht',
 'vector-view-view'           => 'Läse',
 'vector-view-viewsource'     => 'Quälltext aaluege',
+'actions'                    => 'Aktione',
+'namespaces'                 => 'Namensryym',
+'variants'                   => 'Variante',
 
 # Metadata in edit box
 'metadata_help' => 'Metadate:',

@@ -371,6 +371,9 @@ $messages = array(
 'vector-view-history'        => 'Ver o historial',
 'vector-view-view'           => 'Ler',
 'vector-view-viewsource'     => 'Ver o código fonte',
+'actions'                    => 'Accións',
+'namespaces'                 => 'Espazos de nomes',
+'variants'                   => 'Variantes',
 
 # Metadata in edit box
 'metadata_help' => 'Metadatos:',
@@ -647,8 +650,8 @@ continuar a utilizar o seu contrasinal vello.',
 'passwordsent'               => 'Envióuselle un contrasinal novo ao enderezo de correo electrónico rexistrado de "$1".
 Por favor, acceda ao sistema de novo tras recibilo.',
 'blocked-mailpassword'       => 'O seu enderezo IP está bloqueado e ten restrinxida a edición de artigos. Tampouco se lle permite usar a función de recuperación do contrasinal para evitar abusos do sistema.',
-'eauthentsent'               => 'Envióuselle un correo electrónico de configuración ao enderezo mencionado.
-Antes de enviar outro a esta conta terá que seguir as instrucións que aparecen nese correo para confirmar que a conta é realmente súa.',
+'eauthentsent'               => 'Envióuselle un correo electrónico de confirmación ao enderezo mencionado.
+Antes de que se lle envíe calquera outro correo a esta conta terá que seguir as instrucións que aparecen nesa mensaxe para confirmar que a conta é realmente súa.',
 'throttled-mailpassword'     => 'Enviouse un aviso co contrasinal {{PLURAL:$1|na última hora|nas últimas $1 horas}}.
 Para evitar o abuso do sistema só se envía unha mensaxe cada {{PLURAL:$1|hora|$1 horas}}.',
 'mailerror'                  => 'Produciuse un erro ao enviar o correo electrónico: $1',
@@ -3040,7 +3043,7 @@ para cancelar a confirmación do enderezo de correo electrónico:
 
 $5
 
-Este código de confirmación caducará ás $4.',
+Este código de confirmación caducará o $6 ás $7.',
 'confirmemail_invalidated' => 'A confirmación do enderezo de correo electrónico foi cancelada',
 'invalidateemail'          => 'Cancelar a confirmación do correo electrónico',
 
