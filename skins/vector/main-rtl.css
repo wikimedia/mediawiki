@@ -347,11 +347,11 @@ div#p-logo a {
 /* Preferences */
 #preftoc {
 	/* Tabs */
+	width: 100%;
 	float: right;
 	clear: both;
 	margin: 0 !important;
 	padding: 0 !important;
-	height: 2.25em;
 	background-image: url(images/preferences-break.png);
 	background-position: bottom right;
 	background-repeat: no-repeat;
