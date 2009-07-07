@@ -333,11 +333,11 @@ div#p-logo a {
 /* Preferences */
 #preftoc {
 	/* Tabs */
+	width: 100%;
 	float: left;
 	clear: both;
 	margin: 0 !important;
 	padding: 0 !important;
-	height: 2.25em;
 	background-image: url(images/preferences-break.png);
 	background-position: bottom left;
 	background-repeat: no-repeat;
@@ -368,6 +368,7 @@ div#p-logo a {
 		padding: 0.5em;
 		text-decoration: none;
 		background-image: none;
+		font-size: 0.9em;
 	}
 	#preftoc a:hover {
 		text-decoration: underline;
