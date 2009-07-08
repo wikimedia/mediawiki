@@ -384,7 +384,9 @@ class VectorTemplate extends QuickTemplate {
 			 	if ( $nav[$section][$key]['class'] ) {
 					$nav[$section][$key]['attributes'] .=
 						' class="' . htmlspecialchars( $link['class'] ) . '"';
+					unset( $nav[$section][$key]['class'] );
 			 	}
+			 	
 				// We don't want to give the watch tab an accesskey if the page is
 				// being edited, because that conflicts with the accesskey on the
 				// watch checkbox.  We also don't want to give the edit tab an
@@ -587,7 +589,7 @@ class VectorTemplate extends QuickTemplate {
 					<div class="menu">
 						<ul <?php $this->html('userlangattributes') ?>>
 							<?php foreach ($this->data['variant_urls'] as $key => $link ): ?>
-								<li<?php echo $link['attributes'] ?><?php if(!empty($link['class'])): ?> class="<?php echo htmlspecialchars($link['class']) ?>"<?php endif; ?>><a href="<?php echo htmlspecialchars( $link['href'] ) ?>" <?php echo $link['key'] ?>><?php echo htmlspecialchars( $link['text'] ) ?></a></li>
+								<li<?php echo $link['attributes'] ?>><a href="<?php echo htmlspecialchars( $link['href'] ) ?>" <?php echo $link['key'] ?>><?php echo htmlspecialchars( $link['text'] ) ?></a></li>
 							<?php endforeach; ?>
 						</ul>
 					</div>
@@ -602,7 +604,7 @@ class VectorTemplate extends QuickTemplate {
 					<h5><?php $this->msg('views') ?></h5>
 					<ul <?php $this->html('userlangattributes') ?>>
 						<?php foreach ($this->data['view_urls'] as $key => $link ): ?>
-							<li<?php echo $link['attributes'] ?><?php if(!empty($link['class'])): ?> class="<?php echo htmlspecialchars($link['class']) ?>"<?php endif; ?>><a href="<?php echo htmlspecialchars( $link['href'] ) ?>" <?php echo $link['key'] ?>><span><?php echo htmlspecialchars( $link['text'] ) ?></span></a></li>
+							<li<?php echo $link['attributes'] ?>><a href="<?php echo htmlspecialchars( $link['href'] ) ?>" <?php echo $link['key'] ?>><span><?php echo htmlspecialchars( $link['text'] ) ?></span></a></li>
 						<?php endforeach; ?>
 					</ul>
 				</div>
@@ -615,7 +617,7 @@ class VectorTemplate extends QuickTemplate {
 					<div class="menu">
 						<ul <?php $this->html('userlangattributes') ?>>
 							<?php foreach ($this->data['action_urls'] as $key => $link ): ?>
-								<li<?php echo $link['attributes'] ?><?php if(!empty($link['class'])): ?> class="<?php echo htmlspecialchars($link['class']) ?>"<?php endif; ?>><a href="<?php echo htmlspecialchars( $link['href'] ) ?>" <?php echo $link['key'] ?>><?php echo htmlspecialchars( $link['text'] ) ?></a></li>
+								<li<?php echo $link['attributes'] ?>><a href="<?php echo htmlspecialchars( $link['href'] ) ?>" <?php echo $link['key'] ?>><?php echo htmlspecialchars( $link['text'] ) ?></a></li>
 							<?php endforeach; ?>
 						</ul>
 					</div>
