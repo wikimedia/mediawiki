@@ -562,6 +562,7 @@ class VectorTemplate extends QuickTemplate {
 		<!-- header -->
 		<div id="head" class="noprint">
 			<!-- personal -->
+			<?php if ( count( $this->data['personal_urls'] ) > 0 ): ?>
 			<div id="p-personal">
 				<h5><?php $this->msg('personaltools') ?></h5>
 				<ul <?php $this->html('userlangattributes') ?>>
@@ -570,9 +571,11 @@ class VectorTemplate extends QuickTemplate {
 					<?php endforeach; ?>
 				</ul>
 			</div>
+			<?php endif; ?>
 			<!-- /personal -->
 			<div id="left-navigation">
 				<!-- namespaces -->
+				<?php if ( count( $this->data['namespace_urls'] ) > 0 ): ?>
 				<div id="namespaces" class="vectorTabs">
 					<h5><?php $this->msg('namespaces') ?></h5>
 					<ul <?php $this->html('userlangattributes') ?>>
@@ -581,6 +584,7 @@ class VectorTemplate extends QuickTemplate {
 						<?php endforeach; ?>
 					</ul>
 				</div>
+				<?php endif; ?>
 				<!-- /namespaces -->
 				<!-- variants -->
 				<?php if ( count( $this->data['variant_urls'] ) > 0 ): ?>
