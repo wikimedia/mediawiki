@@ -15,7 +15,7 @@ body {
 div#content {
 	margin-left: 12em;
 	padding: 1em;
-	background-image: url(images/content-base.png);
+	background-image: url(images/border.png);
 	background-position: top left;
 	background-repeat: repeat-y;
 	background-color: white;
@@ -32,7 +32,7 @@ div#head-base {
 	margin-top: -6em;
 	margin-left: 12em;
 	height: 6em;
-	background-image: url(images/head-base.png);
+	background-image: url(images/border.png);
 	background-position: bottom left;
 	background-repeat: repeat-x;
 }
@@ -270,7 +270,7 @@ div#foot {
 	margin-left: 12em;
 	margin-top: 0;
 	padding: 0.75em;
-	background-image: url(images/foot-base.png);
+	background-image: url(images/border.png);
 	background-position: top left;
 	background-repeat: repeat-x;
 }
