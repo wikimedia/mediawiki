@@ -157,6 +157,17 @@ Pabusten ing pamanaliling dake kapamilatan [alilan] ning suglung',
 'faq'            => 'Maralas a Kukutang (MAK)',
 'faqpage'        => 'Project:MAK',
 
+# Vector skin
+'vector-action-move'        => 'Iyalis',
+'vector-action-protect'     => 'Protectan/kambilan',
+'vector-action-undelete'    => 'Isubli/iurung ya pangabura',
+'vector-action-unprotect'   => 'Idayu ya panga-protecta',
+'vector-namespace-category' => 'Categoria',
+'vector-namespace-help'     => 'Bulung ning saup',
+'vector-namespace-image'    => "Simpan (''file'')",
+'vector-namespace-main'     => 'Bulung',
+'vector-namespace-media'    => 'Bulung media',
+
 'errorpagetitle'    => 'Mali',
 'returnto'          => 'Magbalik king $1.',
 'tagline'           => 'Ibat king {{SITENAME}}',

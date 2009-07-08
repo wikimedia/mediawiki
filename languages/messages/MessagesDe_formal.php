@@ -33,6 +33,12 @@ $messages = array(
 * [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki-FAQ]
 * [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Mailingliste neuer MediaWiki-Versionen]',
 
+'view-pool-error' => 'Entschuldigung, die Server sind im Moment überlastet.
+Zu viele Benutzer versuchen diese Seite zu besuchen.
+Bitte warten Sie einige Minuten, bevor Sie es noch einmal versuchen.
+
+$1',
+
 'badaccess-group0' => 'Sie haben nicht die erforderliche Berechtigung für diese Aktion.',
 
 'youhavenewmessages'      => 'Sie haben $2 auf Ihrer $1.',

@@ -306,6 +306,9 @@ $messages = array(
 'vector-view-history'        => 'Versioune weisen',
 'vector-view-view'           => 'Liesen',
 'vector-view-viewsource'     => 'Quellcode weisen',
+'actions'                    => 'Aktiounen',
+'namespaces'                 => 'Nummraim',
+'variants'                   => 'Varianten',
 
 # Metadata in edit box
 'metadata_help' => 'Metadaten:',
@@ -910,6 +913,8 @@ Si kann net verstoppt ginn.',
 Dir hutt keen Zougang zu dësem Objet.',
 'revdelete-modify-missing'    => 'Feeler beim Ännere vun der ID $1: si feelt an der Datebank!',
 'revdelete-no-change'         => "'''Opgepasst:''' D'Element vum $2 ëm $1 Auer huet schonn déi ugefrote Sichtbarkeetsastellung.",
+'revdelete-concurrent-change' => "Feeler beim Ännere vum Element vum $1 ëm $2 Auer: säit Statut schéngt geännert ginn ze si während Dir vericht hutt et z'änneren.
+Kuckt w.e.g. an de Logbicher no.",
 'revdelete-only-restricted'   => 'Dir kënnt keng Objete virun den Administrateure verstoppen ouni och eng vun den anere Läschoptiounen erauszesichen.',
 
 # Suppression log

@@ -394,6 +394,9 @@ I seguenti collegamenti sono in lingua inglese:
 'vector-view-history'        => 'Visualizza cronologia',
 'vector-view-view'           => 'Leggi',
 'vector-view-viewsource'     => 'Visualizza sorgente',
+'actions'                    => 'Azioni',
+'namespaces'                 => 'Namespace',
+'variants'                   => 'Varianti',
 
 # Metadata in edit box
 'metadata_help' => 'Metadati:',
@@ -452,6 +455,11 @@ I seguenti collegamenti sono in lingua inglese:
 'jumpto'            => 'Vai a:',
 'jumptonavigation'  => 'navigazione',
 'jumptosearch'      => 'ricerca',
+'view-pool-error'   => 'I server sono al momento sovraccarichi.
+Troppi utenti stanno tentanto di visualizzare questa pagina.
+Riprovare più tardi a caricare la pagina.
+
+$1',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Informazioni su {{SITENAME}}',

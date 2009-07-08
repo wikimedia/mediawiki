@@ -463,6 +463,9 @@ $messages = array(
 'vector-view-history'        => "Veire l'istoric",
 'vector-view-view'           => 'Legir',
 'vector-view-viewsource'     => 'Veire la font',
+'actions'                    => 'Accions',
+'namespaces'                 => 'Espacis de noms',
+'variants'                   => 'Variantas',
 
 # Metadata in edit box
 'metadata_help' => 'Metadonadas :',
@@ -521,6 +524,11 @@ $messages = array(
 'jumpto'            => 'Anar a :',
 'jumptonavigation'  => 'navigacion',
 'jumptosearch'      => 'Recercar',
+'view-pool-error'   => "O planhèm, los servidors son subrecargats pel moment.
+Tròp d’utilizaires cercan a accedir a aquesta pagina.
+Esperatz un moment abans d'ensajar d’accedir a aquesta pagina.
+
+$1",
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'A prepaus de {{SITENAME}}',
@@ -1166,8 +1174,8 @@ Asseguratz-vos qu'aqueste cambiament pòsca conservar la continuitat de l'istori
 'diff-big'                 => "'''grand'''",
 'diff-del'                 => "'''suprimit'''",
 'diff-tt'                  => "'''largor fixada'''",
-'diff-sub'                 => "'''sosescript'''",
-'diff-sup'                 => "'''susescript'''",
+'diff-sub'                 => "'''sosescripte'''",
+'diff-sup'                 => "'''susescripte'''",
 'diff-strike'              => "'''barrat al travèrs'''",
 
 # Search results
@@ -2361,10 +2369,10 @@ $1 ja es blocat. Volètz modificar los paramètres ?',
 'blockme'                         => 'Blocatz-me',
 'proxyblocker'                    => 'Blocaire de mandatari (proxy)',
 'proxyblocker-disabled'           => 'Aquesta foncion es desactivada.',
-'proxyblockreason'                => "Vòstra ip es estada blocada perque s’agís d’un proxy dobert. Mercé de contactar vòstre fornidor d’accès internet o vòstre supòrt tecnic e de l’informar d'aqueste problèma de seguretat.",
+'proxyblockreason'                => "Vòstra ip es estada blocada perque s’agís d’un proxy dobèrt. Mercé de contactar vòstre fornidor d’accès internet o vòstre supòrt tecnic e de l’informar d'aqueste problèma de seguretat.",
 'proxyblocksuccess'               => 'Acabat.',
-'sorbsreason'                     => 'Vòstra adreça IP es listada en tant que mandatari (proxy) dobert DNSBL per {{SITENAME}}.',
-'sorbs_create_account_reason'     => 'Vòstra adreça IP es listada en tant que mandatari (proxy) dobert DNSBL per {{SITENAME}}.
+'sorbsreason'                     => 'Vòstra adreça IP es listada en tant que mandatari (proxy) dobèrt DNSBL per {{SITENAME}}.',
+'sorbs_create_account_reason'     => 'Vòstra adreça IP es listada en tant que mandatari (proxy) dobèrt DNSBL per {{SITENAME}}.
 Podètz pas crear un compte',
 'cant-block-while-blocked'        => "Podètz pas blocar d'autres utilizaires pendent que sètz blocat(ada).",
 
@@ -2622,10 +2630,21 @@ Totas las accions d’importacion interwiki son conservadas dins lo [[Special:Lo
 'chick.css'       => '/* Lo CSS plaçat aicí afectarà los utilizaires de l’abilhatge Chick */',
 'simple.css'      => '/* Lo CSS plaçat aicí afectarà los utilizaires de l’abilhatge Simple */',
 'modern.css'      => '/* Lo CSS plaçat aicí afectarà los utilizaires de l’abilhatge Modern */',
+'vector.css'      => '/* Lo CSS plaçat aicí afectarà los utilizaires de l’abilhatge Vector */',
+'print.css'       => '/* Lo CSS plaçat aicí afectarà las impressions */',
+'handheld.css'    => '/* Lo CSS plaçat aicí afectarà los aparelhs mobils en foncion de l\'abilhatge configurat $wgHandheldStyle */',
 
 # Scripts
-'common.js'   => '/* Un JavaScript quin que siá aicí serà cargat per un utilizaire quin que siá e per cada pagina accedida. */',
-'monobook.js' => '/* Tot JavaScript aicí serà cargat amb las paginas accedidas pels utilizaires de l’abilhatge MonoBook unicament. */',
+'common.js'      => '/* Tot JavaScript serà cargat amb cada pagina accedida per un utilizaire quin que siá. */',
+'standard.js'    => '/* Tot JavaScript aicí serà cargat amb las paginas accedidas pels utilizaires de l’abilhatge Standard unicament. */',
+'nostalgia.js'   => '/* Tot JavaScript aicí serà cargat amb las paginas accedidas pels utilizaires de l’abilhatge Nostalgia unicament. */',
+'cologneblue.js' => '/* Tot JavaScript aicí serà cargat amb las paginas accedidas pels utilizaires de l’abilhatge Cologne Blue unicament. */',
+'monobook.js'    => '/* Tot JavaScript aicí serà cargat amb las paginas accedidas pels utilizaires de l’abilhatge MonoBook unicament. */',
+'myskin.js'      => '/* Tot JavaScript aicí serà cargat amb las paginas accedidas pels utilizaires de l’abilhatge Myskin unicament. */',
+'chick.js'       => '/* Tot JavaScript aicí serà cargat amb las paginas accedidas pels utilizaires de l’abilhatge Chick unicament. */',
+'simple.js'      => '/* Tot JavaScript aicí serà cargat amb las paginas accedidas pels utilizaires de l’abilhatge Simple unicament. */',
+'modern.js'      => '/* Tot JavaScript aicí serà cargat amb las paginas accedidas pels utilizaires de l’abilhatge Modern unicament. */',
+'vector.js'      => '/* Tot JavaScript aicí serà cargat amb las paginas accedidas pels utilizaires de l’abilhatge Vector unicament. */',
 
 # Metadata
 'nodublincore'      => 'Las metadonadas « Dublin Core RDF » son desactivadas sus aqueste servidor.',

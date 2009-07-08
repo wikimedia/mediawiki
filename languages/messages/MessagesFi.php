@@ -529,6 +529,11 @@ Taivutusmuodot: {{GRAMMAR:genitive|{{SITENAME}}}} (yön) — {{GRAMMAR:partitive
 'jumpto'            => 'Loikkaa:',
 'jumptonavigation'  => 'valikkoon',
 'jumptosearch'      => 'hakuun',
+'view-pool-error'   => 'Valitettavasti palvelimet ovat ylikuormittuneet tällä hetkellä.
+Liian monta käyttäjää yrittää tarkastella tätä sivua.
+Odota hetki ennen kuin yrität uudelleen.
+
+$1',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Tietoja {{GRAMMAR:elative|{{SITENAME}}}}',

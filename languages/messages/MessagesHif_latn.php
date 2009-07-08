@@ -8,6 +8,7 @@
  * @file
  *
  * @author Girmitya
+ * @author Malafaya
  * @author Thakurji
  */
 
@@ -185,6 +186,9 @@ $messages = array(
 'vector-view-history'        => 'Itihaas dekho',
 'vector-view-view'           => 'Parrho',
 'vector-view-viewsource'     => 'Source dekho',
+'actions'                    => 'Karam',
+'namespaces'                 => 'Namespaces',
+'variants'                   => 'Variants',
 
 # Metadata in edit box
 'metadata_help' => 'Metadata:',
@@ -376,12 +380,13 @@ Query: $2',
 'viewsourcefor'        => '$1 khatir',
 'actionthrottled'      => 'Kaam ke band kar dewa gais hai',
 'actionthrottledtext'  => 'Spam ke virod me, aap ke ii kaam thora deri me bahut time kare ke rukawat hai, aur aap time limit ke exceed kar diya hai.
-
 Kuch deri be baad fir se kosis karna.',
 'protectedpagetext'    => 'Ii panna ke badlao ke roke ke khatir band kar dewa gais hai.',
 'viewsourcetext'       => 'Aap ii panna ke source ke dekhe aur nakal utare kare sakta hai:',
 'protectedinterface'   => 'Ii panna software ke interface text dewe hai, aur iske barbaadi se roke ke khatir band kar dewa gais hai.',
-'editinginterface'     => "'''Chetawani:''' Aap ek panna ke badaltaa hai jon ki software ke interface text dewe hai. Ii panna me badlao ke asar duusra sadasya ke interface ke bhi hoi. Translation khatir [http://translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], the MediaWiki localisation project, ke kaam me lao.",
+'editinginterface'     => "'''Chetawani:''' Aap ek panna ke badaltaa hai jon ki software ke interface text dewe hai.
+Ii panna me badlao ke asar duusra sadasya ke interface ke bhi hoi.
+Translation khatir [http://translatewiki.net/wiki/Main_Page?setlang=hif translatewiki.net], the MediaWiki localisation project, ke kaam me lao.",
 'sqlhidden'            => '(SQL query lukawal hai)',
 'cascadeprotected'     => 'Ii panna ke badlao se bachaya gais hai, kahe ki iske {{PLURAL:$1|panna, jon ki|panna, jon ki}} surakchhit with the "cascading" option turned on:
 $2',
@@ -618,7 +623,7 @@ Agar ii fir bhi nai chale tab kosis karna [[Special:UserLogout|logging out]]aur 
 
 ''Iske kaaran hai ki {{SITENAME}} me raw HTML enabled hai, preview ke lukae dewa gais hai as a precaution against JavaScript attacks.''
 
-''' Agar ii kanuni badlao hai, tab fir se kosis karna.
+'''Agar ii kanuni badlao hai, tab fir se kosis karna.
 Agar ii fir bhi kaam nai kare, tab [[Special:UserLogout|logging out]] aur logging back in ke kosis karna.'''",
 'token_suffix_mismatch'            => "''' Aap ke badlao ke reject kar dewa gais hai kahe ki aap ke client punctuation charcters ke token edit me mangle kar diis hai.
 Ii badlao ke reject kar dewa gais hai to prevent corruption of the page text.
@@ -667,7 +672,7 @@ Administrator jon ki iske lock karis hai ii kaaran diis hai: $1",
 'edittools'                        => '<!-- Hian ke text edit aur upload forms ke niche dekhai. -->',
 'nocreatetitle'                    => 'Panna ke banae pe rukawat hai',
 'nocreatetext'                     => '{{SITENAME}} me nawaa panna banae ke rukawat hai.
-Aap pichhe jae ke ek panna jon hai ke sampadan kare sakta hai, nai to  [[Special:UserLogin|log in or create an account]].',
+Aap pichhe jae ke ek panna jon hai ke sampadan kare sakta hai, nai to [[Special:UserLogin|log in or create an account]].',
 'nocreate-loggedin'                => 'Aap ke nawaa panna banaae ke ijaajat nai hai.',
 'permissionserrors'                => 'Permissions Errors',
 'permissionserrorstext'            => 'Aap ke uu chij kare ke ijajat nai hai, ii {{PLURAL:$1|kaaran|kaaran}} khatir:',
@@ -689,11 +694,12 @@ Janae hai ki iske koi mitae dii hai.',
 Ii naam ke panna abhi hai.',
 
 # Parser/template warnings
-'expensive-parserfunction-warning'        => 'Warning: Ii panna me bahut jaada expensive parser function calls hai.
-Iske $2 {{PLURAL:$2|call|calls}} se kamti hoe ke chaahi, {{PLURAL:$1|abhi hai $1 call|abhi hai $1 calls}}.',
+'expensive-parserfunction-warning'        => "'''Warning''': Ii panna me bahut jaada expensive parser function calls hai.
+
+Iske $2 {{PLURAL:$2|call|calls}} se kamti hoe ke chaahi, {{PLURAL:$1|abhi hai $1 call|abhi hai $1 calls}}.",
 'expensive-parserfunction-category'       => 'Panna jisme bahut jaada expensive parser function calls hai',
-'post-expand-template-inclusion-warning'  => 'Warning: Template include size bahut barraa hai.
-Some templates will not be included.',
+'post-expand-template-inclusion-warning'  => "'''Warning:''' Template include size bahut barraa hai.
+Some templates will not be included.",
 'post-expand-template-inclusion-category' => 'Panna jon ki template include size se barra hai',
 'post-expand-template-argument-warning'   => 'Warning: Ii panna me kamti se kamti ek template argument hai jiske expansion size bahut barraa hai.
 Ii sab arguments ke omit kar dewa gais hai.',
@@ -730,7 +736,6 @@ Iske kaaran, jon ki $3 diis hai, ''$2'' hai",
 'page_first'             => 'pahila',
 'page_last'              => 'aakhri',
 'histlegend'             => 'Farak pasand: Antar dekhe khatir radio box me chinh lagao aur enter ke nai to niche ke button dabao.<br />
-
 Legend: (abhi) = abhi ke version se farka,
 (pahile waala) = pahile waala version se farka, M = chhota sampadan.',
 'history-fieldset-title' => 'Itihaas me khojo',
@@ -2436,6 +2441,7 @@ Ii saait ii kaaran se hoi ki panna ke ek jorr koi blacklisted external site se h
 'mw_math_html'   => 'HTML agar hoe sake, nai to PNG',
 'mw_math_source' => 'TeX ke rakam chhorr do (text browsers ke khatir)',
 'mw_math_modern' => 'Modern browsers khatir thiik hai',
+'mw_math_mathml' => 'MathML hoe sake tab (experimental)',
 
 # Math errors
 'math_failure'          => 'Parse nai kare sakaa',
@@ -2456,18 +2462,41 @@ Configure kare khatir meharbani kar ke math/README ke dekho.',
 'markedaspatrolled'                   => 'Mark karo ke pahraa dewa jaawe hai',
 'markedaspatrolledtext'               => 'Pasand karaa gais badlao pe pahraa dewa jaawe hai',
 'rcpatroldisabled'                    => 'Nawaa badlao pe pahraa de ke ijajat nai hai',
+'rcpatroldisabledtext'                => 'Nawaa badla pe abhi pahraa nai dewa jaawe hai',
 'markedaspatrollederror'              => 'Ispe pahraa nai dewa jaawe sake hai',
 'markedaspatrollederrortext'          => 'Aap ke ek badlao ke mark kare ke chaahi jispe pahraa dewa jaawe sake hai',
 'markedaspatrollederror-noautopatrol' => 'Aap ke aapan badlao pe pahraa dewe ke ijajat nai hai.',
 
 # Patrol log
-'patrol-log-page' => 'Pahraa de waala suchi',
+'patrol-log-page'      => 'Pahraa de waala suchi',
+'patrol-log-header'    => 'Ii pahraa dewa gais badlao ke suchi hai.',
+'patrol-log-line'      => 'mark karaa gais $1 of $2 pahraa dewa gais $3',
+'patrol-log-auto'      => '(apne se)',
+'patrol-log-diff'      => 'badlao $1',
+'log-show-hide-patrol' => '$1 pahraa de waala suchi',
+
+# Image deletion
+'deletedrevision'                 => 'Purana badlao ke mitae dia hai $1',
+'filedeleteerror-short'           => 'File ke mitae me galti hoe gais: $1',
+'filedeleteerror-long'            => 'File ke mitae ke time garrbarr hoe gais: $1',
+'filedelete-missing'              => 'File "$1" ke nai mitawa jaawe sake hai, kahe ki ii naam ke koi file nai hai.',
+'filedelete-old-unregistered'     => 'Specified file ke badlao "$1" database me nai hai.',
+'filedelete-current-unregistered' => 'Specify karaa gais file "$1" database me nai hai.',
+'filedelete-archive-read-only'    => 'Archive directory "$1" me webserver se nai likha jaawe sake hai.',
 
 # Browsing diffs
 'previousdiff' => '← Purana badlao',
 'nextdiff'     => 'Nawaa badlao →',
 
+# Visual comparison
+'visual-comparison' => 'Aankhi se antar dekho',
+
 # Media information
+'mediawarning'         => "'''Chetauni''': Ii file me saait kharaab code hoi, iske execute kare se aap ke system me garrbarr hoe sake hai.<hr />",
+'imagemaxsize'         => "Chapa jaada se jaada ketnaa barraahoe sake hai:<br />''(file ke baare me panna)''",
+'thumbsize'            => 'Anguutha ke nakkhuun etna barraa:',
+'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|panna|panna}}',
+'file-info'            => '(file etnaa barraa: $1, MIME rakam: $2)',
 'file-info-size'       => '($1 × $2 pixel, file ke size: $3, MIME type: $4)',
 'file-nohires'         => '<small>Aur achchha resolution nai hai.</small>',
 'svg-long-desc'        => '(SVG file, nominally $1 × $2 pixels, file size: $3)',
@@ -2475,8 +2504,15 @@ Configure kare khatir meharbani kar ke math/README ke dekho.',
 'show-big-image-thumb' => '<small>Ii preview ke size: $1 × $2 pixels</small>',
 
 # Special:NewFiles
-'newimages' => 'Nawaa files ke gallery',
-'ilsubmit'  => 'Khojo',
+'newimages'         => 'Nawaa files ke gallery',
+'imagelisttext'     => "Niche ek suchi hai '''$1''' ke {{PLURAL:$1|file|files}} sorted $2.",
+'newimages-summary' => 'Ii khaas panna pahile waala upload karaa gais file ke dekhae hai.',
+'newimages-legend'  => 'Chaalo',
+'newimages-label'   => 'Filename (nai to iske ek hissa):',
+'showhidebots'      => '($1 bots)',
+'noimages'          => 'Koi chij dekhe ke nai hai.',
+'ilsubmit'          => 'Khojo',
+'bydate'            => 'tarik se',
 
 # Bad image list
 'bad_image_list' => 'Format ii rakam hai:

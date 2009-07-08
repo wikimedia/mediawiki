@@ -342,6 +342,9 @@ $messages = array(
 'vector-view-history'        => 'Istorija',
 'vector-view-view'           => 'Skaityti',
 'vector-view-viewsource'     => 'Žiūrėti kodą',
+'actions'                    => 'Veiksmai',
+'namespaces'                 => 'Vardų sritys',
+'variants'                   => 'Variantai',
 
 # Metadata in edit box
 'metadata_help' => 'Metaduomenys:',

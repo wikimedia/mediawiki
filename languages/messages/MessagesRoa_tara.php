@@ -193,6 +193,9 @@ $messages = array(
 'vector-view-history'        => "Vide 'u cunde",
 'vector-view-view'           => 'Ligge',
 'vector-view-viewsource'     => "Vide 'u sorgende",
+'actions'                    => 'Aziune',
+'namespaces'                 => 'Namespace',
+'variants'                   => 'Variande',
 
 # Metadata in edit box
 'metadata_help' => 'Metadata:',
@@ -251,6 +254,11 @@ $messages = array(
 'jumpto'            => 'Zumbe a:',
 'jumptonavigation'  => 'navighesce',
 'jumptosearch'      => 'cirche',
+'view-pool-error'   => "Ne dispiace, le server stonne sovraccarecate jndr'à stu mumende.
+Troppe utinde stonne a provene a vedè sta pàgene.
+Pe piacere aspitte 'nu picche e pò pruève 'n'otra vote a trasè jndr'à sta pàgene.
+
+$1",
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Sus a {{SITENAME}}',
@@ -1106,6 +1114,7 @@ Tu puè pure scacchià de lassà otre condatte ausanne l'utende tue o le pàggen
 'prefs-i18n'                  => 'Indernazzionalizzazzione',
 'prefs-signature'             => 'Firme',
 'prefs-dateformat'            => "Formate d'a data",
+'prefs-timeoffset'            => "Differenze d'orarie",
 'prefs-advancedediting'       => 'Opzione avanzate',
 'prefs-advancedrc'            => 'Opzione avanzate',
 'prefs-advancedrendering'     => 'Opzione avanzate',
@@ -2092,7 +2101,10 @@ Pe piacere scacchie n'otre nome.",
 Videta tu 'a màne a 'ngollà 'a pàgena vecchie cu quedda nova.'''",
 'movedto'                   => 'spustete a',
 'movetalk'                  => "Spuéste 'a pàgene de le 'ngazzaminde associete",
+'move-subpages'             => 'Spuèste le sottopàggene (fine a $1)',
+'movepage-page-exists'      => "'A vôsce $1 già esiste e non ge pò essere sovrascritte automaticamende.",
 'movepage-page-moved'       => "'A pàgene $1 ha state spustete sus a $2.",
+'movepage-page-unmoved'     => "'A pàgene $1 non ge pò essere spustate sus a $2.",
 '1movedto2'                 => "[[$1]] spustete jndr'à [[$2]]",
 '1movedto2_redir'           => "spustete [[$1]] jndr'à [[$2]] sus a 'nu ridirezionamende",
 'movelogpage'               => 'Archivije de le spustaminde',

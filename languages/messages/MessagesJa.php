@@ -517,6 +517,9 @@ $messages = array(
 'jumpto'            => '移動:',
 'jumptonavigation'  => 'メニュー',
 'jumptosearch'      => '検索',
+'view-pool-error'   => '申し訳ありません。ただいま、サーバーに過大な負荷がかかっています。このページを閲覧しようとする利用者が多すぎます。しばらく時間を置いてから、もう一度このページにアクセスしてみてください。
+
+$1',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => '{{SITENAME}}について',

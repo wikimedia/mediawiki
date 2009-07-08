@@ -230,7 +230,18 @@ ning [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide kasutusjuhendit].'
 'faqpage'        => 'Project:KKK',
 
 # Vector skin
-'vector-view-view' => 'Loe',
+'vector-action-addsection'  => 'Lisa teema',
+'vector-action-delete'      => 'Kustuta',
+'vector-action-move'        => 'teisalda',
+'vector-action-protect'     => 'Kaitse',
+'vector-action-unprotect'   => 'Tühista kaitse',
+'vector-namespace-category' => 'Kategooria',
+'vector-namespace-talk'     => 'Arutelu',
+'vector-namespace-user'     => 'Kasutaja leht',
+'vector-view-create'        => 'Loo',
+'vector-view-edit'          => 'Toimeta',
+'vector-view-view'          => 'Loe',
+'namespaces'                => 'Nimeruumid',
 
 # Metadata in edit box
 'metadata_help' => 'Metaandmed:',
@@ -798,6 +809,7 @@ Legend: (viim) = erinevused võrreldes viimase redaktsiooniga,
 'searchprofile-project'        => 'Abi- ja projektilehed',
 'searchprofile-images'         => 'Multimeedia',
 'searchprofile-everything'     => 'Kõik',
+'searchprofile-advanced'       => 'Detailne otsing',
 'searchprofile-images-tooltip' => 'Failiotsing',
 'search-result-size'           => '$1 ({{PLURAL:$2|1 sõna|$2 sõna}})',
 'search-redirect'              => '(ümbersuunamine $1)',

@@ -365,6 +365,11 @@ $messages = array(
 'jumpto'            => 'Saltar a:',
 'jumptonavigation'  => 'navigation',
 'jumptosearch'      => 'cercar',
+'view-pool-error'   => 'Pardono, le servitores es supercargate in iste momento.
+Troppo de usatores tenta vider iste pagina.
+Per favor attende un momento ante que tu essaya acceder novemente a iste pagina.
+
+$1',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'A proposito de {{SITENAME}}',

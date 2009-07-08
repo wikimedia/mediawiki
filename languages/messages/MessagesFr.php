@@ -491,6 +491,7 @@ $messages = array(
 'vector-view-viewsource'     => 'Voir la source',
 'actions'                    => 'Actions',
 'namespaces'                 => 'Espaces de noms',
+'variants'                   => 'Variantes',
 
 # Metadata in edit box
 'metadata_help' => 'Métadonnées :',
@@ -549,6 +550,11 @@ $messages = array(
 'jumpto'            => 'Aller à :',
 'jumptonavigation'  => 'Navigation',
 'jumptosearch'      => 'rechercher',
+'view-pool-error'   => 'Désolé, les serveurs sont surchargés en ce moment.
+Trop d’utilisateurs cherchent à accéder à cette page.
+Veuillez attendre un moment avant que vous essayez d’accéder à cette page.
+
+$1',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'À propos de {{SITENAME}}',

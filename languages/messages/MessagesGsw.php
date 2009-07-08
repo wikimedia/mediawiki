@@ -344,6 +344,11 @@ $messages = array(
 'jumpto'            => 'Gump zue:',
 'jumptonavigation'  => 'Navigation',
 'jumptosearch'      => 'Suech',
+'view-pool-error'   => 'Excusez, d Server sin zur Zyt iberlaschtet.
+S versueche grad zvyl Benutzer die Syte aazluege.
+Bitte wart e paar Minute, voreb Du s nomol versuechsch.
+
+$1',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Über {{GRAMMAR:akkusativ|{{SITENAME}}}}',

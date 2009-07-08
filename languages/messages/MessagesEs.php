@@ -26,6 +26,7 @@
  * @author Dmcdevit
  * @author Drini
  * @author Dvortygirl
+ * @author Fibonacci
  * @author Fluence
  * @author Icvav
  * @author Imre
@@ -393,6 +394,9 @@ $messages = array(
 'vector-view-history'        => 'Ver historial',
 'vector-view-view'           => 'Leer',
 'vector-view-viewsource'     => 'Ver fuente',
+'actions'                    => 'Acciones',
+'namespaces'                 => 'Espacios de nombres',
+'variants'                   => 'Variantes',
 
 # Metadata in edit box
 'metadata_help' => 'Metadatos:',
@@ -451,6 +455,11 @@ $messages = array(
 'jumpto'            => 'Saltar a',
 'jumptonavigation'  => 'navegación',
 'jumptosearch'      => 'buscar',
+'view-pool-error'   => 'Perdón, los servidores están sobrecargados en este momento.
+Demasiados usuarios están tratando de ver esta página.
+Por favor espera un momento antes de tratar de acceder nuevamente a esta página.
+
+$1',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Acerca de {{SITENAME}}',
@@ -608,9 +617,9 @@ Ten en cuenta que las páginas que tengas abiertas en otras ventanas o pestañas
 Tu cuenta ha sido creada. 
 
 No olvides personalizar [[Special:Preferences|tus preferencias]].',
-'yourname'                   => 'Su nombre de usuario',
+'yourname'                   => 'Su nombre de usuario:',
 'yourpassword'               => 'Contraseña:',
-'yourpasswordagain'          => 'Repita su contraseña',
+'yourpasswordagain'          => 'Repita su contraseña:',
 'remembermypassword'         => 'Quiero que me recuerden entre sesiones.',
 'yourdomainname'             => 'Su dominio',
 'externaldberror'            => 'Hubo un error de autenticación externa de la base de datos o bien no está autorizado a actualizar su cuenta externa.',
@@ -1252,12 +1261,12 @@ Las búsquedas fallidas suelen producirse al buscar palabras comunes como «la»
 Esto no puede ser deshecho.',
 'prefs-emailconfirm-label'      => 'Confirmación de correo electrónico:',
 'prefs-textboxsize'             => 'Tamaño de la página de edición',
-'youremail'                     => 'Su dirección de correo electrónico',
+'youremail'                     => 'Su dirección de correo electrónico:',
 'username'                      => 'Nombre de usuario:',
 'uid'                           => 'ID de usuario:',
 'prefs-memberingroups'          => 'Miembro {{PLURAL:$1|del grupo|de los grupos}}:',
 'prefs-registration'            => 'Tiempo de registro:',
-'yourrealname'                  => 'Tu nombre real:',
+'yourrealname'                  => 'Su nombre real:',
 'yourlanguage'                  => 'Idioma:',
 'yourvariant'                   => 'Variante lingüística',
 'yournick'                      => 'Su apodo (para firmas)',
@@ -1658,7 +1667,7 @@ La descripción en su [$2 página de descripción del archivo] está mostrada de
 'filedelete-reason-otherlist' => 'Otra razón',
 'filedelete-reason-dropdown'  => '*Razones de borrado habituales
 ** Violación de copyright
-** Fichero duplicado',
+** Archivo duplicado',
 'filedelete-edit-reasonlist'  => 'Editar razones de borrado',
 
 # MIME search

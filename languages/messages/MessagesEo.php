@@ -341,6 +341,9 @@ $messages = array(
 'vector-view-history'        => 'Vidi historion',
 'vector-view-view'           => 'Legi',
 'vector-view-viewsource'     => 'Vidi fonton',
+'actions'                    => 'Agoj',
+'namespaces'                 => 'Nomspacoj',
+'variants'                   => 'Variantoj',
 
 # Metadata in edit box
 'metadata_help' => 'Metadatenoj:',
