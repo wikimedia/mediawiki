@@ -73,8 +73,14 @@ function importStylesheet(page) {
 	return importStylesheetURI(wgScript + '?action=raw&ctype=text/css&title=' + encodeURIComponent(page.replace(/ /g,'_')));
 }
  
-function importStylesheetURI(url) {
-	return document.createStyleSheet ? document.createStyleSheet(url) : appendCSS('@import "' + url + '";');
+function importStylesheetURI(url,media) {
+	var l = document.createElement('link');
+	l.type = 'text/css';
+	l.rel = 'stylesheet';
+	l.href = url;
+	if(media) l.media = media
+	document.getElementsByTagName('head')[0].appendChild(l);
+	return l;
 }
  
 function appendCSS(text) {
