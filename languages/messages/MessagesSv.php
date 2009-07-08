@@ -459,6 +459,7 @@ $messages = array(
 'vector-view-history'        => 'Visa historik',
 'vector-view-view'           => 'Visa',
 'vector-view-viewsource'     => 'Visa källa',
+'variants'                   => 'Varianter',
 
 # Metadata in edit box
 'metadata_help' => 'Metadata:',

@@ -404,6 +404,9 @@ $messages = array(
 'vector-view-history'        => 'Xem lịch sử',
 'vector-view-view'           => 'Xem',
 'vector-view-viewsource'     => 'Xem mã nguồn',
+'actions'                    => 'Tác vụ',
+'namespaces'                 => 'Không gian tên',
+'variants'                   => 'Biến thể',
 
 # Metadata in edit box
 'metadata_help' => 'Đặc tính hình:',
@@ -462,6 +465,11 @@ $messages = array(
 'jumpto'            => 'Bước tới:',
 'jumptonavigation'  => 'chuyển hướng',
 'jumptosearch'      => 'tìm kiếm',
+'view-pool-error'   => 'Xin lỗi, máy chủ hiện đang bị quá tải.
+Có quá nhiều thành viên đang cố gắng xem trang này.
+Xin hãy đợi một lát rồi thử truy cập lại vào trang.
+
+$1',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Giới thiệu {{SITENAME}}',

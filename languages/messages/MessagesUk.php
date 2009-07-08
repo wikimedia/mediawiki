@@ -393,6 +393,9 @@ $messages = array(
 'vector-view-history'        => 'Показати історію',
 'vector-view-view'           => 'Читання',
 'vector-view-viewsource'     => 'Показати сирець',
+'actions'                    => 'Дії',
+'namespaces'                 => 'Простори назв',
+'variants'                   => 'Варіанти',
 
 # Metadata in edit box
 'metadata_help' => 'Метадані:',
@@ -451,6 +454,11 @@ $messages = array(
 'jumpto'            => 'Перейти до:',
 'jumptonavigation'  => 'навігація',
 'jumptosearch'      => 'пошук',
+'view-pool-error'   => 'Вибачте, сервери були перевантажені в цей момент.
+Дуже багато користувачів запитали перегляд цієї сторінки.
+Будь ласка, почекайте і повторіть спробу отримати доступ пізніше.
+
+$1',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Про {{grammar:accusative|{{SITENAME}}}}',

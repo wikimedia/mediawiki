@@ -487,6 +487,11 @@ $messages = array(
 'jumpto'            => 'Перейти к:',
 'jumptonavigation'  => 'навигация',
 'jumptosearch'      => 'поиск',
+'view-pool-error'   => 'Извините, серверы были перезагружены в этот момент.
+Слишком много участников запросили просмотр этой страницы.
+Пожалуйста, подождите и повторите попытку получить доступ позже.
+
+$1',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Описание {{grammar:genitive|{{SITENAME}}}}',
@@ -2543,7 +2548,7 @@ $1',
 'tooltip-pt-mycontris'            => 'Список ваших правок',
 'tooltip-pt-login'                => 'Здесь можно зарегистрироваться в системе, но это необязательно.',
 'tooltip-pt-anonlogin'            => 'Здесь можно зарегистрироваться в системе, но это необязательно.',
-'tooltip-pt-logout'               => 'Завершить зарегистрированный сеанс',
+'tooltip-pt-logout'               => 'Завершить сеанс работы',
 'tooltip-ca-talk'                 => 'Обсуждение содержания страницы',
 'tooltip-ca-edit'                 => 'Эту страницу можно изменять. Используйте, пожалуйста, предварительный просмотр перед сохранением',
 'tooltip-ca-addsection'           => 'Создать новый раздел',

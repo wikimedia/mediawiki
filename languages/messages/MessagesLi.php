@@ -1002,7 +1002,7 @@ Wees zeker det deze wieziging de gesjiedenisdoorloupendheid van de pagina zal be
 'search-result-score'              => 'Relevantie: $1%',
 'search-redirect'                  => '(doorverwiezing $1)',
 'search-section'                   => '(subkop $1)',
-'search-suggest'                   => 'Bedoeldese: $1',
+'search-suggest'                   => 'Meins te sóms: $1',
 'search-interwiki-caption'         => 'Zösterprojecte',
 'search-interwiki-default'         => '$1 resultate:',
 'search-interwiki-more'            => '(meer)',

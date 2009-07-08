@@ -305,6 +305,9 @@ I seguenti cołegamenti i xe en lengua inglese:
 'vector-view-history'        => 'Varda el stòrico',
 'vector-view-view'           => 'Lèzi',
 'vector-view-viewsource'     => 'Varda el còdese',
+'actions'                    => 'Azioni',
+'namespaces'                 => 'Namespace',
+'variants'                   => 'Varianti',
 
 # Metadata in edit box
 'metadata_help' => 'Metadati:',
@@ -363,6 +366,11 @@ I seguenti cołegamenti i xe en lengua inglese:
 'jumpto'            => 'Và a:',
 'jumptonavigation'  => 'navigassion',
 'jumptosearch'      => 'serca',
+'view-pool-error'   => 'Ne dispiase, ma i server in sto momento i xe soracaricà.
+Ghe xe massa utenti che serca de vardar sta pagina.
+Par piaser, speta un fià e dopo próa de novo.
+
+$1',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Se parla de {{SITENAME}}',
