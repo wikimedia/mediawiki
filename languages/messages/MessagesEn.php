@@ -846,6 +846,11 @@ XHTML id names.
 'jumpto'            => 'Jump to:',
 'jumptonavigation'  => 'navigation',
 'jumptosearch'      => 'search',
+'view-pool-error'   => 'Sorry, our servers are overloaded at the moment. 
+Too many people are trying to view this article. 
+Please try again in a minute or two.
+
+$1',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'About {{SITENAME}}',
