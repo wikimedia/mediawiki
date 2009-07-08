@@ -1259,6 +1259,7 @@ $nav_urls: array of tabs
 for an example]
 
 'SkinTemplateNavigation': Alter the structured navigation links in SkinTemplates
+&$sktemplate: SkinTemplate object
 &$links: Structured navigation links
 This is used to alter the navigation for skins which use buildNavigationUrls such as Vector.
 
