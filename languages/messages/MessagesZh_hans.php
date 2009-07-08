@@ -745,7 +745,7 @@ $2',
 'accmailtext'                      => "'$1'的密码已经被发送到$2。",
 'newarticle'                       => '(新)',
 'newarticletext'                   => '您进入了一个尚未创建的页面。
-要创建该页面，请在下面的编辑框中输入内容(详情参见[[Help:帮助|帮助]])。
+要创建该页面，请在下面的编辑框中输入内容(详情参见[[{{MediaWiki:Helppage}}|帮助]])。
 如果您是不小心来到此页面，直接点击您浏览器中的"返回"按钮返回。',
 'anontalkpagetext'                 => "---- ''这是一个还未建立账户的匿名用户的讨论页, 因此我们只能用IP地址来与他或她联络。该IP地址可能由几名用户共享。如果您是一名匿名用户并认为此页上的评语与您无关，请[[Special:UserLogin/signup|创建新账户]]或[[Special:UserLogin|登录]]以避免在未来与其他匿名用户混淆。''",
 'noarticletext'                    => '此页目前没有内容，您可以在其它页[[Special:Search/{{PAGENAME}}|搜索此页标题]]或[{{fullurl:{{NAMESPACE}}:{{PAGENAME}}|action=edit}} 编辑此页]。',
