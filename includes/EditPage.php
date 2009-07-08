@@ -666,7 +666,7 @@ class EditPage {
 		wfProfileOut( $fname );
 
 		// Allow extensions to modify form data
-		wfRunHooks( 'EditPage::importFormData', array( &$this ) );
+		wfRunHooks( 'EditPage::importFormData', array( &$this, $request ) );
 	}
 
 	/**
