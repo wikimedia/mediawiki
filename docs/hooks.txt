@@ -621,6 +621,12 @@ new pages
 saved, that is before insertNewArticle() is called
 &$editpage_Obj: the current EditPage object
 
+'EditPage::importFormData': allow extensions to read additional data
+posted in the form
+$editpage: EditPage instance 
+$request: Webrequest
+return value is ignored (should always return true)
+
 'EditPage::showEditForm:fields': allows injection of form field into edit form
 &$editor: the EditPage instance for reference
 &$out: an OutputPage instance to write to
