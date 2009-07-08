@@ -7,7 +7,7 @@ class ParserCache {
 	/**
 	 * Get an instance of this object
 	 */
-	public static function &singleton() {
+	public static function singleton() {
 		static $instance;
 		if ( !isset( $instance ) ) {
 			global $parserMemc;
@@ -22,11 +22,11 @@ class ParserCache {
 	 *
 	 * @param object $memCached
 	 */
-	function __construct( &$memCached ) {
-		$this->mMemc =& $memCached;
+	function __construct( $memCached ) {
+		$this->mMemc = $memCached;
 	}
 
-	function getKey( &$article, $popts ) {
+	function getKey( $article, $popts ) {
 		global $wgRequest;
 
 		if( $popts instanceof User )	// It used to be getKey( &$article, &$user )
@@ -47,52 +47,55 @@ class ParserCache {
 		return $key;
 	}
 
-	function getETag( &$article, $popts ) {
+	function getETag( $article, $popts ) {
 		return 'W/"' . $this->getKey($article, $popts) . "--" . $article->mTouched. '"';
 	}
 
-	function get( &$article, $popts ) {
-		global $wgCacheEpoch;
-		$fname = 'ParserCache::get';
-		wfProfileIn( $fname );
-
+	function getDirty( $article, $popts ) {
 		$key = $this->getKey( $article, $popts );
-
 		wfDebug( "Trying parser cache $key\n" );
 		$value = $this->mMemc->get( $key );
-		if ( is_object( $value ) ) {
-			wfDebug( "Found.\n" );
-			# Delete if article has changed since the cache was made
-			$canCache = $article->checkTouched();
-			$cacheTime = $value->getCacheTime();
-			$touched = $article->mTouched;
-			if ( !$canCache || $value->expired( $touched ) ) {
-				if ( !$canCache ) {
-					wfIncrStats( "pcache_miss_invalid" );
-					wfDebug( "Invalid cached redirect, touched $touched, epoch $wgCacheEpoch, cached $cacheTime\n" );
-				} else {
-					wfIncrStats( "pcache_miss_expired" );
-					wfDebug( "Key expired, touched $touched, epoch $wgCacheEpoch, cached $cacheTime\n" );
-				}
-				$this->mMemc->delete( $key );
-				$value = false;
-			} else {
-				if ( isset( $value->mTimestamp ) ) {
-					$article->mTimestamp = $value->mTimestamp;
-				}
-				wfIncrStats( "pcache_hit" );
-			}
-		} else {
+		return is_object( $value ) ? $value : false;
+	}
+
+	function get( $article, $popts ) {
+		global $wgCacheEpoch;
+		wfProfileIn( __METHOD__ );
+
+		$value = $this->getDirty( $article, $popts );
+		if ( !$value ) {
 			wfDebug( "Parser cache miss.\n" );
 			wfIncrStats( "pcache_miss_absent" );
-			$value = false;
+			wfProfileOut( __METHOD__ );
+			return false;
 		}
 
-		wfProfileOut( $fname );
+		wfDebug( "Found.\n" );
+		# Invalid if article has changed since the cache was made
+		$canCache = $article->checkTouched();
+		$cacheTime = $value->getCacheTime();
+		$touched = $article->mTouched;
+		if ( !$canCache || $value->expired( $touched ) ) {
+			if ( !$canCache ) {
+				wfIncrStats( "pcache_miss_invalid" );
+				wfDebug( "Invalid cached redirect, touched $touched, epoch $wgCacheEpoch, cached $cacheTime\n" );
+			} else {
+				wfIncrStats( "pcache_miss_expired" );
+				wfDebug( "Key expired, touched $touched, epoch $wgCacheEpoch, cached $cacheTime\n" );
+			}
+			$value = false;
+		} else {
+			if ( isset( $value->mTimestamp ) ) {
+				$article->mTimestamp = $value->mTimestamp;
+			}
+			wfIncrStats( "pcache_hit" );
+		}
+
+		wfProfileOut( __METHOD__ );
 		return $value;
 	}
 
-	function save( $parserOutput, &$article, $popts ){
+	function save( $parserOutput, $article, $popts ){
 		global $wgParserCacheExpireTime;
 		$key = $this->getKey( $article, $popts );
 

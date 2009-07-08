@@ -110,6 +110,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   set $wgCacheDirectory to get a faster CDB-based implementation.
 * Expanded the number of variables which can be set in the extension messages 
   files.
+* Added a feature to allow per-article process pool size control for the parsing 
+  task, to limit resource usage when the cache for a heavily-viewed article is
+  invalidated. Requires an external daemon. 
 
 === Bug fixes in 1.16 ===
 

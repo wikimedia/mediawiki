@@ -715,12 +715,13 @@ class OutputPage {
 	 * @param Article $article
 	 * @param User    $user
 	 * 
-	 * Now a wrapper around Article::tryParserCache()
+	 * @deprecated
 	 *
 	 * @return bool True if successful, else false.
 	 */
 	public function tryParserCache( &$article ) {
-		$parserOutput = $article->tryParserCache( $this->parserOptions() );
+		wfDeprecated( __METHOD__ );
+		$parserOutput = ParserCache::singleton()->get( $article, $article->getParserOptions() );
 		
 		if ($parserOutput !== false) {
 			$this->addParserOutput( $parserOutput );

@@ -3884,3 +3884,20 @@ $wgInvalidUsernameCharacters = '@';
  * modify the user rights of those users via Special:UserRights
  */
 $wgUserrightsInterwikiDelimiter = '@';
+
+/**
+ * Configuration for processing pool control, for use in high-traffic wikis. 
+ * An implementation is provided in the PoolCounter extension.
+ * 
+ * This configuration array maps pool types to an associative array. The only
+ * defined key in the associative array is "class", which gives the class name.
+ * The remaining elements are passed through to the class as constructor 
+ * parameters. Example:
+ *
+ *   $wgPoolCounterConf = array( 'Article::view' => array( 
+ *     'class' => 'PoolCounter_Client',
+ *     ... any extension-specific options...
+ *   );
+ */
+$wgPoolCounterConf = null;
+
