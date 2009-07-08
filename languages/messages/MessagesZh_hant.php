@@ -1,5 +1,5 @@
 <?php
-/** Traditional Chinese (‪中文(繁體)‬)
+/** Traditional Chinese (‪中文(傳統字)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -402,6 +402,11 @@ $messages = array(
 'jumpto'            => '跳轉到:',
 'jumptonavigation'  => '導航',
 'jumptosearch'      => '搜索',
+'view-pool-error'   => '抱歉，伺服器在這段時間中已經超出負荷。
+太多用戶嘗試查看這個頁面。
+在嘗試訪問這個頁面之前請再稍等一會。
+
+$1',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => '關於{{SITENAME}}',
