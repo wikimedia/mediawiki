@@ -352,12 +352,15 @@ class Skin extends Linker {
 
 	/**
 	 * Make a <script> tag containing global variables
-	 * @param array $data Associative array containing one element:
-	 *     skinname => the skin name
+	 * @param $skinName string Name of the skin
 	 * The odd calling convention is for backwards compatibility
 	 * @TODO @FIXME Make this not depend on $wgTitle!
 	 */
-	static function makeGlobalVariablesScript( $data ) {
+	static function makeGlobalVariablesScript( $skinName ) {
+		if ( is_array( $skinName ) ) {
+			# Weird back-compat stuff.
+			$skinName = $skinName['skinname'];
+		}
 		global $wgScript, $wgTitle, $wgStylePath, $wgUser;
 		global $wgArticlePath, $wgScriptPath, $wgServer, $wgContLang, $wgLang, $wgVariant;
 		global $wgCanonicalNamespaceNames, $wgOut, $wgArticle;
@@ -383,7 +386,7 @@ class Skin extends Linker {
 		);
 
 		$vars = array(
-			'skin' => $data['skinname'],
+			'skin' => $skinName,
 			'stylepath' => $wgStylePath,
 			'wgArticlePath' => $wgArticlePath,
 			'wgScriptPath' => $wgScriptPath,
@@ -469,7 +472,7 @@ class Skin extends Linker {
 	function getHeadScripts( $allowUserJs, $extraHtml = '' ) {
 		global $wgStylePath, $wgUser, $wgJsMimeType, $wgStyleVersion;
 
-		$vars = self::makeGlobalVariablesScript( array( 'skinname' => $this->getSkinName() ) );
+		$vars = self::makeGlobalVariablesScript( $this->getSkinName() );
 
 		$r = array( "<script type=\"{$wgJsMimeType}\" src=\"{$wgStylePath}/common/wikibits.js?$wgStyleVersion\"></script>\n$extraHtml" );
 		global $wgUseSiteJs;
