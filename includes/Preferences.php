@@ -217,6 +217,7 @@ class Preferences {
 				);
 
 		global $wgContLang, $wgDisableLangConversion;
+		global $wgDisableTitleConversion;
 		/* see if there are multiple language variants to choose from*/
 		$variantArray = array();
 		if( !$wgDisableLangConversion ) {
