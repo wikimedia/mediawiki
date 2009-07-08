@@ -40,7 +40,6 @@ class ApiQueryAllmessages extends ApiQueryBase {
 	}
 
 	public function execute() {
-		global $wgMessageCache;
 		$params = $this->extractRequestParams();
 
 		if(!is_null($params['lang']))
