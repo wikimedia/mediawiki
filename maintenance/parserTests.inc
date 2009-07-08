@@ -281,7 +281,7 @@ class ParserTest {
 	private function runFile( $filename ) {
 		$infile = fopen( $filename, 'rt' );
 		if( !$infile ) {
-			wfDie( "Couldn't open $filename\n" );
+			wfDie( "Couldn't open file '$filename'\n" );
 		} else {
 			global $IP;
 			$relative = wfRelativePath( $filename, $IP );
