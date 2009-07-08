@@ -1,7 +1,7 @@
 <?php
 
 abstract class PoolCounter {
-	public function factory( $type, $key ) {
+	public static function factory( $type, $key ) {
 		global $wgPoolCounterConf;
 		if ( !isset( $wgPoolCounterConf[$type] ) ) {
 			return new PoolCounter_Stub;
