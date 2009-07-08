@@ -300,6 +300,11 @@ $messages = array(
 'jumpto'            => '往：',
 'jumptonavigation'  => '嚮',
 'jumptosearch'      => '尋',
+'view-pool-error'   => '歉也，伺服器超負矣。
+多簿查頁。
+欲試候之。
+
+$1',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => '述{{SITENAME}}',
