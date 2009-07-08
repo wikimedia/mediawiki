@@ -846,9 +846,9 @@ XHTML id names.
 'jumpto'            => 'Jump to:',
 'jumptonavigation'  => 'navigation',
 'jumptosearch'      => 'search',
-'view-pool-error'   => 'Sorry, our servers are overloaded at the moment. 
-Too many people are trying to view this article. 
-Please try again in a minute or two.
+'view-pool-error'   => 'Sorry, the servers are overloaded at the moment.
+Too many users are trying to view this page.
+Please wait a while before you try to access this page again.
 
 $1',
 

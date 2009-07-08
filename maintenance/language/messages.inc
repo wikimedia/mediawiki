@@ -251,6 +251,7 @@ $wgMessageStructure = array(
 		'jumpto',
 		'jumptonavigation',
 		'jumptosearch',
+		'view-pool-error',
 	),
 	'links' => array(
 		'aboutsite',
