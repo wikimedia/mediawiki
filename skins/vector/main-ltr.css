@@ -628,11 +628,11 @@ div#content select {
 .toc .toctitle {
 	text-align: center;
 }
-#toc ul,
-.toc ul {
-	list-style-type: none !important;
-	list-style-image: none !important;
-	margin-left: 0 !important;
+div#content #toc ul,
+div#content .toc ul {
+	list-style-type: none;
+	list-style-image: none;
+	margin-left: 0;
 	padding-left: 0;
 	text-align: left;
 }
