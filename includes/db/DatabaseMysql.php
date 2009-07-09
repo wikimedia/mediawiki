@@ -331,6 +331,21 @@ class DatabaseMysql extends DatabaseBase {
 	public function unlockTables( $method ) {
 		$this->query( "UNLOCK TABLES", $method );
 	}
+	
+	public function setBigSelects( $value = true ) {
+		if ( $value === 'default' ) {
+			if ( $this->mDefaultBigSelects === null ) {
+				# Function hasn't been called before so it must already be set to the default
+				return;
+			} else {
+				$value = $this->mDefaultBigSelects;
+			}
+		} elseif ( $this->mDefaultBigSelects === null ) {
+			$this->mDefaultBigSelects = (bool)$this->selectField( false, '@@sql_big_selects' );
+		}
+		$encValue = $value ? '1' : '0';
+		$this->query( "SET sql_big_selects=$encValue", __METHOD__ );
+	}
 }
 
 /**

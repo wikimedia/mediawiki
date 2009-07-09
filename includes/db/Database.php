@@ -2235,18 +2235,7 @@ abstract class DatabaseBase {
 	 * @param mixed $value true for allow, false for deny, or "default" to restore the initial value
 	 */
 	public function setBigSelects( $value = true ) {
-		if ( $value === 'default' ) {
-			if ( $this->mDefaultBigSelects === null ) {
-				# Function hasn't been called before so it must already be set to the default
-				return;
-			} else {
-				$value = $this->mDefaultBigSelects;
-			}
-		} elseif ( $this->mDefaultBigSelects === null ) {
-			$this->mDefaultBigSelects = (bool)$this->selectField( false, '@@sql_big_selects' );
-		}
-		$encValue = $value ? '1' : '0';
-		$this->query( "SET sql_big_selects=$encValue", __METHOD__ );
+		// no-op
 	}
 }
 
