@@ -944,5 +944,6 @@ table.mw_metadata td {
 
 div#bodyContent {
 	position: relative;
+	width: 100%;
 }
 
