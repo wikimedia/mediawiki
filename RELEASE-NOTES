@@ -232,6 +232,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
    extension (since 0.ext is perfectly valid)
 * (bug 19468) Enotif preferences are now only displayed when they are turned on
 * (bug 19442) Show/hide options on watchlist only work once
+* (bug 19602) PubMed Magic links now use updated NIH url
 
 == API changes in 1.16 ==
 
