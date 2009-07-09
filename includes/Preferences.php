@@ -57,7 +57,7 @@ class Preferences {
 			} elseif( $field->validate( $globalDefault, $user->mOptions ) === true ) {
 				$info['default'] = $globalDefault;
 			} else {
-				throw new MWException( "Global default $globalDefault is invalid for field $name" );
+				throw new MWException( "Global default '$globalDefault' is invalid for field $name" );
 			}
 		}
 
