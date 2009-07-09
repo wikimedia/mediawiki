@@ -1400,9 +1400,6 @@ END;
 		return "SearchPostgres";
 	}
 
-	/** No-op */
-	public function setBigSelects( $value = true ) {}
-
 	/** Todo: maybe implement this? */
 	public function lockTables( $read, $write, $method ) {}
 

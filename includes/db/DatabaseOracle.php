@@ -1073,8 +1073,4 @@ class DatabaseOracle extends DatabaseBase {
 	public function getSearchEngine() {
 		return "SearchOracle";
 	}
-
-	/** No-op */
-	public function setBigSelects( $value = true ) {}
-
 } // end DatabaseOracle class
