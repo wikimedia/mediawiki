@@ -1266,13 +1266,12 @@ class Linker {
 	 * @return string HTML headline
 	 */
 	public function makeHeadline( $level, $attribs, $anchor, $text, $link, $legacyAnchor = false ) {
-		$ret = "<a name=\"$anchor\" id=\"$anchor\"></a>"
-			. "<h$level$attribs"
+		$ret = "<h$level id=\"$anchor\"$attribs"
 			. $link
 			. " <span class=\"mw-headline\">$text</span>"
 			. "</h$level>";
 		if ( $legacyAnchor !== false ) {
-			$ret = "<a name=\"$legacyAnchor\" id=\"$legacyAnchor\"></a>$ret";
+			$ret = "<a id=\"$legacyAnchor\"></a>$ret";
 		}
 		return $ret;
 	}
