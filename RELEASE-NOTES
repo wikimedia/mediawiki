@@ -113,6 +113,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Added a feature to allow per-article process pool size control for the parsing 
   task, to limit resource usage when the cache for a heavily-viewed article is
   invalidated. Requires an external daemon. 
+* Leading > is now syntax for <blockquote>.
 
 === Bug fixes in 1.16 ===
 
