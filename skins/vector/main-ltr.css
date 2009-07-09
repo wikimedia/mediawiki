@@ -892,5 +892,6 @@ span.newpage, span.minor, span.bot {
 
 div#bodyContent {
 	position: relative;
+	width: 100%;
 }
 
