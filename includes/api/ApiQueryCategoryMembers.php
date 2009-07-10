@@ -86,9 +86,11 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 		# Scanning large datasets for rare categories sucks, and I already told 
 		# how to have efficient subcategory access :-) ~~~~ (oh well, domas)
 		global $wgMiserMode;
-		if (!$wgMiserMode) { 
-			$this->addWhereFld('page_namespace', $params['namespace']);
+		if ( $wgMiserMode && isset($params['namespace']) ) { 
+			$this->dieUsage("The cmnamespace option is disabled on this site", 'namespacedisabled');
 		}
+		$this->addWhereFld('page_namespace', $params['namespace']);
+
 		if($params['sort'] == 'timestamp')
 			$this->addWhereRange('cl_timestamp', ($params['dir'] == 'asc' ? 'newer' : 'older'), $params['start'], $params['end']);
 		else
@@ -238,10 +240,9 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 	}
 
 	public function getParamDescription() {
-		return array (
+		$desc = array (
 			'title' => 'Which category to enumerate (required). Must include Category: prefix',
 			'prop' => 'What pieces of information to include',
-			'namespace' => 'Only include pages in these namespaces',
 			'sort' => 'Property to sort by',
 			'dir' => 'In which direction to sort',
 			'start' => 'Timestamp to start listing from. Can only be used with cmsort=timestamp',
@@ -251,6 +252,15 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 			'continue' => 'For large categories, give the value retured from previous query',
 			'limit' => 'The maximum number of pages to return.',
 		);
+		global $wgMiserMode;
+		// We can't remove it from the param list entirely without removing it from the
+		// allowed params, but then we could only silently ignore it, which could cause
+		// problems for people unaware of the change
+		if ( $wgMiserMode )
+			$desc['namespace'] = 'Disabled on this site for performance reasons';
+		else
+			$desc['namespace'] = 'Only include pages in these namespaces';
+		return $desc;
 	}
 
 	public function getDescription() {
