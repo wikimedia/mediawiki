@@ -114,6 +114,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   task, to limit resource usage when the cache for a heavily-viewed article is
   invalidated. Requires an external daemon. 
 * Leading > is now syntax for <blockquote>.
+* Switched from XHTML 1.0 Transitional to HTML 5.
 
 === Bug fixes in 1.16 ===
 
