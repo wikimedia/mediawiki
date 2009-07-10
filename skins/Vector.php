@@ -67,7 +67,7 @@ class VectorTemplate extends QuickTemplate {
 	 * Outputs the entire contents of the XHTML page
 	 */
 	public function execute() {
-		global $wgRequest, $wgUseTwoButtonsSearchForm;
+		global $wgRequest, $wgUseTwoButtonsSearchForm, $wgOut;
 
 		$this->skin = $this->data['skin'];
 		$action = $wgRequest->getText( 'action' );
@@ -159,63 +159,9 @@ class VectorTemplate extends QuickTemplate {
 		}
 
 		// Begin content output
-?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="<?php $this->text('xhtmldefaultnamespace') ?>" <?php foreach($this->data['xhtmlnamespaces'] as $tag => $ns): ?>xmlns:<?php echo "{$tag}=\"{$ns}\" "; ?><?php endforeach ?>xml:lang="<?php $this->text('lang') ?>" lang="<?php $this->text('lang') ?>" dir="<?php $this->text('dir') ?>">
-	<head>
-		<meta http-equiv="Content-Type" content="<?php $this->text('mimetype') ?>; charset=<?php $this->text('charset') ?>" />
-		<title><?php $this->text('pagetitle') ?></title>
-		<!-- headlinks -->
-		<?php $this->html('headlinks') ?>
-		<!-- /headlinks -->
-		<!-- csslinks -->
-		<?php $this->html('csslinks') ?>
-		<!-- /csslinks -->
-		<!-- IEFixes -->
-		<!--[if lt IE 7]><script type="<?php $this->text('jsmimetype') ?>" src="<?php $this->text('stylepath') ?>/common/IEFixes.js?<?php echo $GLOBALS['wgStyleVersion'] ?>"></script>
-		<meta http-equiv="imagetoolbar" content="no" /><![endif]-->
-		<style type="text/css">body{behavior:url("<?php $this->text('stylepath') ?>/vector/csshover.htc")}</style>
-		<!-- /IEFixes -->
-		<!-- globalVariablesScript -->
-		<?php echo Skin::makeGlobalVariablesScript( $this->data ); ?>
-		<!-- /globalVariablesScript -->
-		<!-- wikibits -->
-		<script type="<?php $this->text('jsmimetype') ?>" src="<?php $this->text('stylepath' ) ?>/common/wikibits.js?<?php echo $GLOBALS['wgStyleVersion'] ?>"><!-- wikibits js --></script>
-		<!-- /wikibits -->
-		<!-- headscripts -->
-		<?php $this->html('headscripts') ?>
-		<!-- /headscripts -->
-		<?php if($this->data['jsvarurl']): ?>
-		<!-- jsvarurl -->
-		<script type="<?php $this->text('jsmimetype') ?>" src="<?php $this->text('jsvarurl') ?>"><!-- site js --></script>
-		<!-- /jsvarurl -->
-		<?php endif; ?>
-		<?php if($this->data['pagecss']): ?>
-		<!-- pagecss -->
-		<style type="text/css"><?php $this->html('pagecss') ?></style>
-		<!-- /pagecss -->
-		<?php endif; ?>
-		<?php if($this->data['usercss']): ?>
-		<!-- usercss -->
-		<style type="text/css"><?php $this->html('usercss') ?></style>
-		<!-- /usercss -->
-		<?php endif; ?>
-		<?php if($this->data['userjs']): ?>
-		<!-- userjs -->
-		<script type="<?php $this->text('jsmimetype') ?>" src="<?php $this->text('userjs' ) ?>"></script>
-		<!-- /userjs -->
-		<?php endif; ?>
-		<?php if($this->data['userjsprev']): ?>
-		<!-- userjsprev -->
-		<script type="<?php $this->text('jsmimetype') ?>"><?php $this->html('userjsprev') ?></script>
-		<!-- /userjsprev -->
-		<?php endif; ?>
-		<?php if($this->data['trackbackhtml']): ?>
-		<!-- trackbackhtml -->
-		<?php echo $this->data['trackbackhtml']; ?>
-		<!-- /trackbackhtml -->
-		<?php endif; ?>
-	</head>
-	<body<?php if($this->data['body_ondblclick']): ?> ondblclick="<?php $this->text('body_ondblclick') ?>"<?php endif; ?> <?php if($this->data['body_onload']): ?> onload="<?php $this->text('body_onload') ?>"<?php endif; ?> class="mediawiki <?php $this->text('dir') ?> <?php $this->text('pageclass') ?> <?php $this->text('skinnameclass') ?>">
+
+		echo $wgOut->headElement( $this->skin );
+?>	<body<?php if($this->data['body_ondblclick']): ?> ondblclick="<?php $this->text('body_ondblclick') ?>"<?php endif; ?> <?php if($this->data['body_onload']): ?> onload="<?php $this->text('body_onload') ?>"<?php endif; ?> class="mediawiki <?php $this->text('dir') ?> <?php $this->text('pageclass') ?> <?php $this->text('skinnameclass') ?>">
 		<div id="page-base" class="noprint"></div>
 		<div id="head-base" class="noprint"></div>
 		<!-- content -->

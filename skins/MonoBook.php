@@ -72,6 +72,7 @@ class MonoBookTemplate extends QuickTemplate {
 		wfSuppressWarnings();
 
 		$path = htmlspecialchars( $wgStylePath );
+		# FIXME: What is this?  Should it apply to all skins?
 		$wgOut->addScript( <<<HTML
 <!--[if lt IE 7]><script type="$wgJsMimeType" src="$path/common/IEFixes.js?$wgStyleVersion"></script>
 	<meta http-equiv="imagetoolbar" content="no" /><![endif]-->
