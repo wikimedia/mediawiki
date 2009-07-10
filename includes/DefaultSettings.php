@@ -875,6 +875,14 @@ $wgDTD				= 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd';
 $wgXhtmlDefaultNamespace	= 'http://www.w3.org/1999/xhtml';
 
 /**
+ * Temporary setting to disable HTML 5 for the unlikely event that it causes 
+ * everything to blow up.  If all goes well, should be removed (and forced 
+ * true) well before it ever makes it into a release.  If set to false, go back 
+ * to serving an XHTML 1.0 Transitional doctype (per $wgDocType et al. above).
+ */
+$wgHtml5 = true;
+
+/**
  * Permit other namespaces in addition to the w3.org default.
  * Use the prefix for the key and the namespace for the value. For
  * example:

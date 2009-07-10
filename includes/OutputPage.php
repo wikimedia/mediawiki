@@ -1547,7 +1547,7 @@ class OutputPage {
 	public function headElement( Skin $sk ) {
 		global $wgDocType, $wgDTD, $wgContLanguageCode, $wgOutputEncoding, $wgMimeType;
 		global $wgXhtmlDefaultNamespace, $wgXhtmlNamespaces;
-		global $wgContLang, $wgUseTrackbacks, $wgStyleVersion;
+		global $wgContLang, $wgUseTrackbacks, $wgStyleVersion, $wgHtml5;
 
 		$this->addMeta( "http:Content-Type", "$wgMimeType; charset={$wgOutputEncoding}" );
 		if ( $sk->commonPrintStylesheet() ) {
@@ -1561,7 +1561,11 @@ class OutputPage {
 			$ret .= "<?xml version=\"1.0\" encoding=\"$wgOutputEncoding\" ?" . ">\n";
 		}
 
-		$ret .= "<!DOCTYPE html PUBLIC \"$wgDocType\" \"$wgDTD\">\n";
+		if ( $wgHtml5 ) {
+			$ret .= '<!doctype html>';
+		} else {
+			$ret .= "<!DOCTYPE html PUBLIC \"$wgDocType\" \"$wgDTD\">\n";
+		}
 
 		if ( '' == $this->getHTMLTitle() ) {
 			$this->setHTMLTitle(  wfMsg( 'pagetitle', $this->getPageTitle() ));
@@ -1592,7 +1596,7 @@ class OutputPage {
 	}
 	
 	protected function addDefaultMeta() {
-		global $wgVersion;
+		global $wgVersion, $wgHtml5;
 
 		static $called = false;
 		if ( $called ) {
@@ -1601,7 +1605,9 @@ class OutputPage {
 		}
 		$called = true;
 
-		$this->addMeta( 'http:Content-Style-Type', 'text/css' ); //bug 15835
+		if ( !$wgHtml5 ) {
+			$this->addMeta( 'http:Content-Style-Type', 'text/css' ); //bug 15835
+		}
 		$this->addMeta( 'generator', "MediaWiki $wgVersion" );
 		
 		$p = "{$this->mIndexPolicy},{$this->mFollowPolicy}";
