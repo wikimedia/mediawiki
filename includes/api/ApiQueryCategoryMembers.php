@@ -83,7 +83,12 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 		$this->addWhere('cl_from=page_id');
 		$this->setContinuation($params['continue'], $params['dir']);
 		$this->addWhereFld('cl_to', $categoryTitle->getDBkey());
-		$this->addWhereFld('page_namespace', $params['namespace']);
+		# Scanning large datasets for rare categories sucks, and I already told 
+		# how to have efficient subcategory access :-) ~~~~ (oh well, domas)
+		global $wgMiserMode;
+		if (!$wgMiserMode) { 
+			$this->addWhereFld('page_namespace', $params['namespace']);
+		}
 		if($params['sort'] == 'timestamp')
 			$this->addWhereRange('cl_timestamp', ($params['dir'] == 'asc' ? 'newer' : 'older'), $params['start'], $params['end']);
 		else
