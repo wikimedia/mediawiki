@@ -501,10 +501,9 @@ class MessageCache {
 	function get( $key, $useDB = true, $langcode = true, $isFullKey = false ) {
 		global $wgContLanguageCode, $wgContLang;
 
-		if ( !is_string( $key ) ) {
-			throw new MWException( __METHOD__.': Invalid message key of type ' . gettype( $key ) );
-		} elseif ( $key === '' ) {
-			throw new MWException( __METHOD__.': Invaild message key: empty string' );
+		if ( strval( $key ) === '' ) {
+			# Shortcut: the empty key is always missing
+			return '&lt;&gt;';
 		}
 
 		$lang = wfGetLangObj( $langcode );
