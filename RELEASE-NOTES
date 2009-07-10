@@ -296,6 +296,7 @@ changes to languages because of MediaZilla reports.
 * (bug 19080) Added ăâîşţșțĂÂÎŞŢȘȚ to Romanion (ro) linktrail
 * (bug 19286) Correct commafying function in Polish (pl)
 * (bug 19441) Updated date formatting for Lithuanian
+* (bug 19630) Added ÄäÇçĞğŇňÖöŞşÜüÝýŽž to Turkmen (tk) linktrail
 
 == Compatibility ==
 
