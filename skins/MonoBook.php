@@ -87,7 +87,7 @@ HTML
 	<div id="globalWrapper">
 		<div id="column-content">
 	<div id="content">
-		<a name="top" id="top"></a>
+		<a id="top"></a>
 		<?php if($this->data['sitenotice']) { ?><div id="siteNotice"><?php $this->html('sitenotice') ?></div><?php } ?>
 		<h1 id="firstHeading" class="firstHeading"><?php $this->html('title') ?></h1>
 		<div id="bodyContent">
