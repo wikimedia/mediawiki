@@ -313,7 +313,7 @@ class SpecialSearch {
 			$textMatches->free();
 		}
 		if( $num === 0 ) {
-			$wgOut->addWikiMsg( 'search-nonefound' );
+			$wgOut->addWikiMsg( 'search-nonefound', wfEscapeWikiText( $term ) );
 		}
 		$wgOut->addHtml( "</div>" );
 		if( $num === 0 ) {
