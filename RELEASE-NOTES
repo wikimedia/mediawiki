@@ -115,6 +115,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   invalidated. Requires an external daemon. 
 * Leading > is now syntax for <blockquote>.
 * Switched from XHTML 1.0 Transitional to HTML 5.
+* (bug 19576) Moved id attribues from anchors accompanying section headers to
+  the section headers themselves, removing the redundant anchor elements.
+* Removed name attribute from <a id="top"></a>.
 
 === Bug fixes in 1.16 ===
 
