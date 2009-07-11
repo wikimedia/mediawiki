@@ -89,7 +89,7 @@ class Linker {
 	 */
 	private function getLinkAttributesInternal( $title, $class, $classDefault = false ) {
 		$title = htmlspecialchars( $title );
-		if( $class === '' and $classDefault !== false ) {
+		if ( $class === '' and $classDefault !== false ) {
 			# FIXME: Parameter defaults the hard way!  We should just have
 			# $class = 'external' or whatever as the default in the externally-
 			# exposed functions, not $class = ''.
@@ -97,10 +97,12 @@ class Linker {
 		}
 		$class = htmlspecialchars( $class );
 		$r = '';
-		if( $class !== '' ) {
+		if ( $class != '' ) {
 			$r .= " class=\"$class\"";
 		}
-		$r .= " title=\"$title\"";
+		if ( $title != '') {
+			$r .= " title=\"$title\"";
+		}
 		return $r;
 	}
 
