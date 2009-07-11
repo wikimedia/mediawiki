@@ -48,8 +48,8 @@ class SpecialListUserRestrictionsForm {
 	public static function typeSelector( $name = 'type', $value = '', $id = false ) {
 		$s = new XmlSelect( $name, $id, $value );
 		$s->addOption( wfMsg( 'userrestrictiontype-none' ), '' );
-		$s->addOption( wfMsg( 'userrestrictiontype-page' ), UserRestriction::PAGE );
-		$s->addOption( wfMsg( 'userrestrictiontype-namespace' ), UserRestriction::NAMESPACE );
+		$s->addOption( wfMsg( 'userrestrictiontype-page' ), UserRestriction::PAGE_RESTRICTION );
+		$s->addOption( wfMsg( 'userrestrictiontype-namespace' ), UserRestriction::NAMESPACE_RESTRICTION );
 		return $s->getHTML();
 	}
 
@@ -58,7 +58,7 @@ class SpecialListUserRestrictionsForm {
 		$conds = array();
 
 		$type = $wgRequest->getVal( 'type' );
-		if( in_array( $type, array( UserRestriction::PAGE, UserRestriction::NAMESPACE ) ) )
+		if( in_array( $type, array( UserRestriction::PAGE_RESTRICTION, UserRestriction::NAMESPACE_RESTRICTION ) ) )
 			$conds['ur_type'] = $type;
 
 		$user = $wgRequest->getVal( 'user' );
@@ -105,7 +105,7 @@ class UserRestrictionsPager extends ReverseChronologicalPager {
 			$name = str_replace( ' ', '_', $row->ur_user_text );
 			$lb->add( NS_USER, $name );
 			$lb->add( NS_USER_TALK, $name );
-			if( $row->ur_type == UserRestriction::PAGE )
+			if( $row->ur_type == UserRestriction::PAGE_RESTRICTION )
 				$lb->add( $row->ur_page_namespace, $row->ur_page_title );
 		}
 		$lb->execute();
