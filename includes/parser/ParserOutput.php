@@ -74,7 +74,6 @@ class ParserOutput
 
 	function addCategory( $c, $sort )    { $this->mCategories[$c] = $sort; }
 	function addLanguageLink( $t )       { $this->mLanguageLinks[] = $t; }
-	function addExternalLink( $url )     { $this->mExternalLinks[$url] = 1; }
 	function addWarning( $s )            { $this->mWarnings[$s] = 1; }
 
 	function addOutputHook( $hook, $data = false ) {
@@ -92,6 +91,13 @@ class ParserOutput
 	}
 	function getNewSection() {
 		return (bool)$this->mNewSection;
+	}
+
+	function addExternalLink( $url ) {
+		# We don't register links pointing to our own server, unless... :-)
+		global $wgServer, $wgRegisterInternalExternals;
+		if( $wgRegisterInternalExternals or stripos($url,$wgServer)!==0)
+			$this->mExternalLinks[$url] = 1; 
 	}
 
 	function addLink( $title, $id = null ) {
