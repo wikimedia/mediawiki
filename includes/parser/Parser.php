@@ -92,7 +92,8 @@ class Parser
 	# Persistent:
 	var $mTagHooks, $mTransparentTagHooks, $mFunctionHooks, $mFunctionSynonyms, $mVariables,
 		$mImageParams, $mImageParamsMagicArray, $mStripList, $mMarkerIndex, $mPreprocessor,
-		$mExtLinkBracketedRegex, $mUrlProtocols, $mDefaultStripList, $mVarCache, $mConf;
+		$mExtLinkBracketedRegex, $mUrlProtocols, $mDefaultStripList, $mVarCache, $mConf,
+		$mFunctionTagHooks;
 
 
 	# Cleared with clearState():
@@ -127,6 +128,7 @@ class Parser
 		$this->mTagHooks = array();
 		$this->mTransparentTagHooks = array();
 		$this->mFunctionHooks = array();
+		$this->mFunctionTagHooks = array();
 		$this->mFunctionSynonyms = array( 0 => array(), 1 => array() );
 		$this->mDefaultStripList = $this->mStripList = array( 'nowiki', 'gallery' );
 		$this->mUrlProtocols = wfUrlProtocols();
@@ -3255,9 +3257,10 @@ class Parser
 
 		$marker = "{$this->mUniqPrefix}-$name-" . sprintf('%08X', $this->mMarkerIndex++) . self::MARKER_SUFFIX;
 
-		if ( $this->ot['html'] ) {
+		$isFunctionTag = isset( $this->mFunctionTagHooks[strtolower($name)] ) &&
+			( $this->ot['html'] || $this->ot['pre'] );
+		if ( $this->ot['html'] || $isFunctionTag ) {
 			$name = strtolower( $name );
-
 			$attributes = Sanitizer::decodeTagAttributes( $attrText );
 			if ( isset( $params['attributes'] ) ) {
 				$attributes = $attributes + $params['attributes'];
@@ -3289,6 +3292,13 @@ class Parser
 						}
 						$output = call_user_func_array( $this->mTagHooks[$name],
 							array( $content, $attributes, $this ) );
+					} elseif( isset( $this->mFunctionTagHooks[$name] ) ) {
+						list( $callback, $flags ) = $this->mFunctionTagHooks[$name];
+						if( !is_callable( $callback ) )
+							throw new MWException( "Tag hook for $name is not callable\n" );
+
+						$output = call_user_func_array( $callback,
+							array( &$this, $frame, $content, $attributes ) );
 					} else {
 						$output = '<span class="error">Invalid tag extension name: ' .
 							htmlspecialchars( $name ) . '</span>';
@@ -3312,7 +3322,9 @@ class Parser
 			}
 		}
 
-		if ( $name === 'html' || $name === 'nowiki' ) {
+		if( $isFunctionTag ) {
+			return $output;
+		} elseif ( $name === 'html' || $name === 'nowiki' ) {
 			$this->mStripState->nowiki->setPair( $marker, $output );
 		} else {
 			$this->mStripState->general->setPair( $marker, $output );
@@ -4231,6 +4243,24 @@ class Parser
 	 */
 	function getFunctionHooks() {
 		return array_keys( $this->mFunctionHooks );
+	}
+
+	/**
+	 * Create a tag function, e.g. <test>some stuff</test>.
+	 * Unlike tag hooks, tag functions are parsed at preprocessor level.
+	 * Unlike parser functions, their content is not preprocessed.
+	 */
+	function setFunctionTagHook( $tag, $callback, $flags ) {
+		$tag = strtolower( $tag );
+		$old = isset( $this->mFunctionTagHooks[$tag] ) ?
+			$this->mFunctionTagHooks[$tag] : null;
+		$this->mFunctionTagHooks[$tag] = array( $callback, $flags );
+
+		if( !in_array( $tag, $this->mStripList ) ) {
+			$this->mStripList[] = $tag;
+		}
+
+		return $old;
 	}
 
 	/**
