@@ -62,7 +62,7 @@ class RestrictUserForm {
 		global $wgOut, $wgRequest, $wgUser;
 		$error = '';
 		$success = false;
-		if( $wgRequest->wasPosted() && $wgRequest->getVal( 'type' ) == UserRestriction::PAGE &&
+		if( $wgRequest->wasPosted() && $wgRequest->getVal( 'type' ) == UserRestriction::PAGE_RESTRICTION &&
 			$wgUser->matchEditToken( $wgRequest->getVal( 'edittoken' ) ) ) {
 
 			$title = Title::newFromText( $wgRequest->getVal( 'page' ) );
@@ -81,14 +81,14 @@ class RestrictUserForm {
 				$success = array('restrictuser-success', $user);
 			}
 		}
-		$useRequestValues = $wgRequest->getVal( 'type' ) == UserRestriction::PAGE;
+		$useRequestValues = $wgRequest->getVal( 'type' ) == UserRestriction::PAGE_RESTRICTION;
 		$wgOut->addHTML( Xml::fieldset( wfMsg( 'restrictuser-legend-page' ) ) );
 
 		self::printSuccessError( $success, $error );
 
 		$wgOut->addHTML( Xml::openElement( 'form', array( 'action' => SpecialPage::getTitleFor( 'RestrictUser' )->getLocalUrl(),
 			'method' => 'post' ) ) );
-		$wgOut->addHTML( Xml::hidden( 'type', UserRestriction::PAGE ) );
+		$wgOut->addHTML( Xml::hidden( 'type', UserRestriction::PAGE_RESTRICTION ) );
 		$wgOut->addHTML( Xml::hidden( 'edittoken', $wgUser->editToken() ) );
 		$wgOut->addHTML( Xml::hidden( 'user', $user ) );
 		$form = array();
@@ -113,7 +113,7 @@ class RestrictUserForm {
 	public static function doPageRestriction( $uid, $user ) {
 		global $wgUser, $wgRequest;
 		$r = new UserRestriction();
-		$r->setType( UserRestriction::PAGE );
+		$r->setType( UserRestriction::PAGE_RESTRICTION );
 		$r->setPage( Title::newFromText( $wgRequest->getVal( 'page' ) ) );
 		$r->setSubjectId( $uid );
 		$r->setSubjectText( $user );
@@ -133,7 +133,7 @@ class RestrictUserForm {
 		global $wgOut, $wgRequest, $wgUser, $wgContLang;
 		$error = '';
 		$success = false;
-		if( $wgRequest->wasPosted() && $wgRequest->getVal( 'type' ) == UserRestriction::NAMESPACE &&
+		if( $wgRequest->wasPosted() && $wgRequest->getVal( 'type' ) == UserRestriction::NAMESPACE_RESTRICTION &&
 			$wgUser->matchEditToken( $wgRequest->getVal( 'edittoken' ) ) ) {
 				$ns = $wgRequest->getVal( 'namespace' );
 				if( $wgContLang->getNsText( $ns ) === false )
@@ -149,14 +149,14 @@ class RestrictUserForm {
 					$success = array('restrictuser-success', $user);
 				}
 		}
-		$useRequestValues = $wgRequest->getVal( 'type' ) == UserRestriction::NAMESPACE;
+		$useRequestValues = $wgRequest->getVal( 'type' ) == UserRestriction::NAMESPACE_RESTRICTION;
 		$wgOut->addHTML( Xml::fieldset( wfMsg( 'restrictuser-legend-namespace' ) ) );
 
 		self::printSuccessError( $success, $error );
 
 		$wgOut->addHTML( Xml::openElement( 'form', array( 'action' => SpecialPage::getTitleFor( 'RestrictUser' )->getLocalUrl(),
 			'method' => 'post' ) ) );
-		$wgOut->addHTML( Xml::hidden( 'type', UserRestriction::NAMESPACE ) );
+		$wgOut->addHTML( Xml::hidden( 'type', UserRestriction::NAMESPACE_RESTRICTION ) );
 		$wgOut->addHTML( Xml::hidden( 'edittoken', $wgUser->editToken() ) );
 		$wgOut->addHTML( Xml::hidden( 'user', $user ) );
 		$form = array();
@@ -172,7 +172,7 @@ class RestrictUserForm {
 	public static function doNamespaceRestriction( $uid, $user ) {
 		global $wgUser, $wgRequest;
 		$r = new UserRestriction();
-		$r->setType( UserRestriction::NAMESPACE );
+		$r->setType( UserRestriction::NAMESPACE_RESTRICTION );
 		$r->setNamespace( $wgRequest->getVal( 'namespace' ) );
 		$r->setSubjectId( $uid );
 		$r->setSubjectText( $user );
