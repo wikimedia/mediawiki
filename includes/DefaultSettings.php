@@ -3753,6 +3753,12 @@ $wgParserConf = array(
 $wgLinkHolderBatchSize = 1000;
 
 /**
+ * By default MediaWiki does not register links pointing to same server in externallinks dataset,
+ * use this value to override:
+ */
+$wgRegisterInternalExternals = false;
+
+/**
  * Hooks that are used for outputting exceptions.  Format is:
  *   $wgExceptionHooks[] = $funcname
  * or:

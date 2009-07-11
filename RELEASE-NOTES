@@ -52,6 +52,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   functionality is now available via $wgLocalisationCacheConf.
 * $wgMessageCache->addMessages() is deprecated. Messages added via this 
   interface will not appear in Special:AllMessages.
+* $wgRegisterInternalExternals can be used to record external links pointing 
+  to same server
 
 === New features in 1.16 ===
 
@@ -238,6 +240,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 19468) Enotif preferences are now only displayed when they are turned on
 * (bug 19442) Show/hide options on watchlist only work once
 * (bug 19602) PubMed Magic links now use updated NIH url
+* (bug 19637) externallinks have links to self
 
 == API changes in 1.16 ==
 
