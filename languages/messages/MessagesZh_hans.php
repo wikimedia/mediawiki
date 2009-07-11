@@ -825,7 +825,7 @@ $2',
 {{GENDER:你|妳|你}}应该要考虑一下继续编辑这一个页面是否合适。
 为方便起见，这一个页面的删除记录已经在下面提供:",
 'moveddeleted-notice'              => '这个页面已经删除。
-这个页面的删除日志已在下面提供以便参考。',
+这个页面的删除和移动日志已在下面提供以便参考。',
 'log-fulllog'                      => '查看完整日志',
 'edit-hook-aborted'                => '编辑被钩取消。
 它并无给出解释。',
@@ -1176,7 +1176,7 @@ $1",
 'stub-threshold'                => '<a href="#" class="stub">短页面链接</a>格式门槛值（字节）：',
 'recentchangesdays'             => '最近更改中的显示日数：',
 'recentchangesdays-max'         => '(最大 $1 日)',
-'recentchangescount'            => '最近更改、页面历史及日志页面中的默认编辑数：',
+'recentchangescount'            => '默认显示的编辑数：',
 'prefs-help-recentchangescount' => '这个包括最近更改、页面历史以及日志。',
 'savedprefs'                    => '您的个人参数设置已经保存。',
 'timezonelegend'                => '时区：',
@@ -1782,7 +1782,7 @@ Template:消除歧義',
 
 # Special:Categories
 'categories'                    => '页面分类',
-'categoriespagetext'            => '以下的分类中包含了页面或媒体。
+'categoriespagetext'            => '以下的{{PLURAL:$1|分类}}中包含了页面或媒体。
 [[Special:UnusedCategories|未用分类]]不会在这里列示。
 请同时参阅[[Special:WantedCategories|需要的分类]]。',
 'categoriesfrom'                => '显示由此项起之分类：',
