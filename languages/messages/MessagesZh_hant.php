@@ -802,7 +802,7 @@ $2',
 {{GENDER:你|妳|你}}應該要考慮一下繼續編輯這一個頁面是否合適。
 為方便起見，這一個頁面的刪除記錄已經在下面提供:",
 'moveddeleted-notice'              => '這個頁面已經刪除。
-這個頁面的刪除日誌已在下面提供以便參考。',
+這個頁面的刪除和移動日誌已在下面提供以便參考。',
 'log-fulllog'                      => '查看完整日誌',
 'edit-hook-aborted'                => '編輯被鈎取消。
 它並無給出解釋。',
@@ -1153,7 +1153,7 @@ $1",
 'stub-threshold'                => '<a href="#" class="stub">短頁面連結</a>格式門檻值 (位元組):',
 'recentchangesdays'             => '最近更改中的顯示日數:',
 'recentchangesdays-max'         => '(最大 $1 日)',
-'recentchangescount'            => '最近更改、頁面歷史及日誌頁面中的預設編輯數:',
+'recentchangescount'            => '預設顯示的編輯數：',
 'prefs-help-recentchangescount' => '這個包括最近更改、頁面歷史以及日誌。',
 'savedprefs'                    => '您的個人參數設置已經保存。',
 'timezonelegend'                => '時區:',
@@ -1759,7 +1759,7 @@ Template:消除歧義',
 
 # Special:Categories
 'categories'                    => '頁面分類',
-'categoriespagetext'            => '以下的分類中包含了頁面或媒體。
+'categoriespagetext'            => '以下的{{PLURAL:$1|分類}}中包含了頁面或媒體。
 [[Special:UnusedCategories|未用分類]]不會在這裏列示。
 請同時參閱[[Special:WantedCategories|需要的分類]]。',
 'categoriesfrom'                => '顯示由此項起之分類:',
