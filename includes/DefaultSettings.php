@@ -875,11 +875,12 @@ $wgDTD				= 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd';
 $wgXhtmlDefaultNamespace	= 'http://www.w3.org/1999/xhtml';
 
 /**
- * Should we output an HTML 5 doctype?  This needs to be left off until some
- * lingering rendering issues are resolved -- apparently it switches some
- * browsers from "almost standards" mode to standards mode.
+ * Should we output an HTML 5 doctype?  This mode is still experimental, but
+ * all indications are that it should be usable, so it's enabled by default.
+ * If all goes well, it will be removed and become always true before the 1.16
+ * release.
  */
-$wgHtml5 = false;
+$wgHtml5 = true;
 
 /**
  * Permit other namespaces in addition to the w3.org default.
