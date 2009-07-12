@@ -54,6 +54,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   interface will not appear in Special:AllMessages.
 * $wgRegisterInternalExternals can be used to record external links pointing 
   to same server
+* $wgHtml5 outputs an HTML 5 doctype instead of XHTML 1.0 Transitional.
 
 === New features in 1.16 ===
 
@@ -116,7 +117,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   task, to limit resource usage when the cache for a heavily-viewed article is
   invalidated. Requires an external daemon. 
 * Leading > is now syntax for <blockquote>.
-* Switched from XHTML 1.0 Transitional to HTML 5.
 * (bug 19576) Moved id attribues from anchors accompanying section headers to
   the section headers themselves, removing the redundant anchor elements.
 * Removed name attribute from <a id="top"></a>.
