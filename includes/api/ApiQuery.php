@@ -81,6 +81,7 @@ class ApiQuery extends ApiBase {
 		'users' => 'ApiQueryUsers',
 		'random' => 'ApiQueryRandom',
 		'protectedtitles' => 'ApiQueryProtectedTitles',
+		'querypage' => 'ApiQueryQuerypage',
 	);
 
 	private $mQueryMetaModules = array (

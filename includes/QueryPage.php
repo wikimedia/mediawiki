@@ -176,10 +176,10 @@ class QueryPage {
 	 * Formats the result as something that can be understood by the API.
 	 * Defaults to setting id, ns and title
 	 */
-	function formatApiResult( $result ) {
+	function formatApiResult( $row ) {
 		$title = Title::makeTitle( $row->namespace, $row->title );
 		return array(
-						'pageid' => intval( $row->id ),
+						//'pageid' => intval( $row->id ),
 						'ns' => intval( $title->getNamespace() ),
 						'title' => $title->getPrefixedText(),
 		);
@@ -361,7 +361,7 @@ class QueryPage {
 	 * 		'count'		=> number of results,
 	 * 		'dbr'		=> the database used for fetching the data
 	 */
-	protected function reallyDoQuery( $offset, $limit ) {
+	public function reallyDoQuery( $offset, $limit ) {
 		$result = array( 'disabled' => false );
 		
 		$this->offset = $offset;
