@@ -119,13 +119,10 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Leading > is now syntax for <blockquote>.
 * (bug 19576) Moved id attribues from anchors accompanying section headers to
   the section headers themselves, removing the redundant anchor elements.
-* Removed name attribute from <a id="top"></a>.
 * Parser::setFunctionTagHook now can be used to add a new tag which is parsed at
   preprocesor level.
 * Added $wgShowArchiveThumbnails, allowing sysadmins to disable thumbnail 
   display for old versions of images.
-* Remove five-year-old KHTMLFixes.css, which is unlikely to be relevant anymore
-  and was causing problems.
 
 === Bug fixes in 1.16 ===
 
@@ -248,6 +245,10 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 19602) PubMed Magic links now use updated NIH url
 * (bug 19637) externallinks have links to self
 * Don't load Opera 9.5 RTL fixes for Opera 9.6
+* Removed name attribute from <a id="top"></a>.
+* Remove five-year-old KHTMLFixes.css, which is unlikely to be relevant anymore
+  and was causing problems.
+* Removed repetition of URIs in the title attributes of external links.
 
 == API changes in 1.16 ==
 

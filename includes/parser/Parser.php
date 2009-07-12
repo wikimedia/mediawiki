@@ -961,7 +961,7 @@ class Parser
 			}
 			$url = wfMsg( $urlmsg, $id);
 			$sk = $this->mOptions->getSkin();
-			$la = $sk->getExternalLinkAttributes( $url, $keyword.$id );
+			$la = $sk->getExternalLinkAttributes();
 			return "<a href=\"{$url}\"{$la}>{$keyword} {$id}</a>";
 		} elseif ( isset( $m[5] ) && $m[5] !== '' ) {
 			# ISBN

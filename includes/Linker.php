@@ -21,13 +21,11 @@ class Linker {
 	 * Get the appropriate HTML attributes to add to the "a" element of an ex-
 	 * ternal link, as created by [wikisyntax].
 	 *
-	 * @param string $title  The (unescaped) title text for the link
-	 * @param string $unused Unused
 	 * @param string $class  The contents of the class attribute; if an empty
 	 *   string is passed, which is the default value, defaults to 'external'.
 	 */
-	function getExternalLinkAttributes( $title, $unused = null, $class='' ) {
-		return $this->getLinkAttributesInternal( $title, $class, 'external' );
+	function getExternalLinkAttributes( $class = 'external' ) {
+		return $this->getLinkAttributesInternal( '', $class );
 	}
 
 	/**
@@ -40,7 +38,7 @@ class Linker {
 	 * @param string $class  The contents of the class attribute; if an empty
 	 *   string is passed, which is the default value, defaults to 'external'.
 	 */
-	function getInterwikiLinkAttributes( $title, $unused = null, $class='' ) {
+	function getInterwikiLinkAttributes( $title, $unused = null, $class = 'external' ) {
 		global $wgContLang;
 
 		# FIXME: We have a whole bunch of handling here that doesn't happen in
@@ -49,7 +47,7 @@ class Linker {
 		$title = $wgContLang->checkTitleEncoding( $title );
 		$title = preg_replace( '/[\\x00-\\x1f]/', ' ', $title );
 
-		return $this->getLinkAttributesInternal( $title, $class, 'external' );
+		return $this->getLinkAttributesInternal( $title, $class );
 	}
 
 	/**
@@ -87,14 +85,8 @@ class Linker {
 	/**
 	 * Common code for getLinkAttributesX functions
 	 */
-	private function getLinkAttributesInternal( $title, $class, $classDefault = false ) {
+	private function getLinkAttributesInternal( $title, $class ) {
 		$title = htmlspecialchars( $title );
-		if ( $class === '' and $classDefault !== false ) {
-			# FIXME: Parameter defaults the hard way!  We should just have
-			# $class = 'external' or whatever as the default in the externally-
-			# exposed functions, not $class = ''.
-			$class = $classDefault;
-		}
 		$class = htmlspecialchars( $class );
 		$r = '';
 		if ( $class != '' ) {
@@ -749,7 +741,7 @@ class Linker {
 	 * hook play with them, *then* expand it all at once. 
 	 */
 	function makeExternalLink( $url, $text, $escape = true, $linktype = '', $attribs = array() ) {
-		$attribsText = $this->getExternalLinkAttributes( $url, $text, 'external ' . $linktype );
+		$attribsText = $this->getExternalLinkAttributes( 'external ' . $linktype );
 		$url = htmlspecialchars( $url );
 		if( $escape ) {
 			$text = htmlspecialchars( $text );
