@@ -286,6 +286,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   rather than UI lang
 * Added snippet field to list=search output
 * (bug 17809) Add number of users in user groups to meta=siteinfo
+* (bug 18533) Add readonly reason to readonly exception
 
 === Languages updated in 1.16 ===
 

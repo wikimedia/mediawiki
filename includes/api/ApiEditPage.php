@@ -231,7 +231,7 @@ class ApiEditPage extends ApiBase {
 			case EditPage::AS_READ_ONLY_PAGE_LOGGED:
 				$this->dieUsageMsg(array('noedit'));
 			case EditPage::AS_READ_ONLY_PAGE:
-				$this->dieUsageMsg(array('readonlytext'));
+				$this->dieReadOnly();
 			case EditPage::AS_RATE_LIMITED:
 				$this->dieUsageMsg(array('actionthrottledtext'));
 			case EditPage::AS_ARTICLE_WAS_DELETED:
