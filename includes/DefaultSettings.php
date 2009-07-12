@@ -1531,7 +1531,7 @@ $wgCacheEpoch = '20030516000000';
  * to ensure that client-side caches do not keep obsolete copies of global
  * styles.
  */
-$wgStyleVersion = '229';
+$wgStyleVersion = '230';
 
 
 # Server-side caching:
@@ -2014,6 +2014,7 @@ $wgPasswordSalt = true;
  * See Language.php for a list of namespaces.
  */
 $wgNamespacesWithSubpages = array(
+	NS_SPECIAL        => true,
 	NS_TALK           => true,
 	NS_USER           => true,
 	NS_USER_TALK      => true,
