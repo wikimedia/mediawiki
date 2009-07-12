@@ -72,7 +72,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 					$fit = $this->appendStatistics( $p );
 					break;
 				case 'usergroups':
-					$fit = $this->appendUserGroups( $p );
+					$fit = $this->appendUserGroups( $p, $params['numberingroup'] );
 					break;
 				case 'extensions':
 					$fit = $this->appendExtensions( $p );
@@ -316,11 +316,17 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 		return $this->getResult()->addValue( 'query', $property, $data );
 	}
 
-	protected function appendUserGroups( $property ) {
+	protected function appendUserGroups( $property, $numberInGroup ) {
 		global $wgGroupPermissions;
 		$data = array();
 		foreach( $wgGroupPermissions as $group => $permissions ) {
-			$arr = array( 'name' => $group, 'rights' => array_keys( $permissions, true ) );
+			$arr = array( 
+				'name' => $group, 
+				'rights' => array_keys( $permissions, true ),
+			);
+			if ( $numberInGroup )
+				$arr['number'] = SiteStats::numberInGroup( $group );
+			
 			$this->getResult()->setIndexedTagName( $arr['rights'], 'permission' );
 			$data[] = $arr;
 		}
@@ -431,6 +437,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 				)
 			),
 			'showalldb' => false,
+			'numberingroup' => false,
 		);
 	}
 
@@ -454,6 +461,7 @@ class ApiQuerySiteinfo extends ApiQueryBase {
 			),
 			'filteriw' =>  'Return only local or only nonlocal entries of the interwiki map',
 			'showalldb' => 'List all database servers, not just the one lagging the most',
+			'numberingroup' => 'Lists the number of users in user groups',
 		);
 	}
 
