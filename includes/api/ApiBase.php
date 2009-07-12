@@ -726,9 +726,9 @@ abstract class ApiBase {
 	 * @param $errorCode string Error code
 	 * @param $httpRespCode int HTTP response code
 	 */
-	public function dieUsage($description, $errorCode, $httpRespCode = 0) {
+	public function dieUsage($description, $errorCode, $httpRespCode = 0, $extradata = null) {
 		wfProfileClose();
-		throw new UsageException($description, $this->encodeParamName($errorCode), $httpRespCode);
+		throw new UsageException($description, $this->encodeParamName($errorCode), $httpRespCode, $extradata);
 	}
 
 	/**
@@ -855,6 +855,15 @@ abstract class ApiBase {
 		'revwrongpage' => array('code' => 'revwrongpage', 'info' => "r\$1 is not a revision of ``\$2''"),
 		'undo-failure' => array('code' => 'undofailure', 'info' => 'Undo failed due to conflicting intermediate edits'),
 	);
+
+	/**
+	 * Helper function for readonly errors
+	 */
+	public function dieReadOnly() {
+		$parsed = $this->parseMsg( array( 'readonlytext' ) );
+		$this->dieUsage($parsed['info'], $parsed['code'], /* http error */ 0, 
+			array( 'readonlyreason' => wfReadOnlyReason() ) );
+	}
 
 	/**
 	 * Output the error message related to a certain array
