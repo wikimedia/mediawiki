@@ -122,6 +122,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Removed name attribute from <a id="top"></a>.
 * Parser::setFunctionTagHook now can be used to add a new tag which is parsed at
   preprocesor level.
+* Added $wgShowArchiveThumbnails, allowing sysadmins to disable thumbnail 
+  display for old versions of images.
 
 === Bug fixes in 1.16 ===
 
