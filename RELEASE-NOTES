@@ -285,6 +285,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 19423) The initial file description page used caption in user lang
   rather than UI lang
 * Added snippet field to list=search output
+* (bug 17809) Add number of users in user groups to meta=siteinfo
 
 === Languages updated in 1.16 ===
 
