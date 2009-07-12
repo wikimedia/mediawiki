@@ -1562,7 +1562,7 @@ class OutputPage {
 		}
 
 		if ( $wgHtml5 ) {
-			$ret .= '<!doctype html>';
+			$ret .= "<!doctype html>\n";
 		} else {
 			$ret .= "<!DOCTYPE html PUBLIC \"$wgDocType\" \"$wgDTD\">\n";
 		}
