@@ -247,6 +247,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 19442) Show/hide options on watchlist only work once
 * (bug 19602) PubMed Magic links now use updated NIH url
 * (bug 19637) externallinks have links to self
+* Don't load Opera 9.5 RTL fixes for Opera 9.6
 
 == API changes in 1.16 ==
 
