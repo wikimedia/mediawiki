@@ -1844,7 +1844,7 @@ END;
 			$text = $wgContLang->getLanguageName( $nt->getInterwiki() );
 
 			if ( '' == $text ) { $text = $l; }
-			$style = $this->getExternalLinkAttributes( $l, $text );
+			$style = $this->getExternalLinkAttributes();
 			$s .= "<a href=\"{$url}\"{$style}>{$text}</a>";
 		}
 		if( $wgContLang->isRTL() ) $s .= '</span>';
