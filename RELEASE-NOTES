@@ -124,6 +124,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   preprocesor level.
 * Added $wgShowArchiveThumbnails, allowing sysadmins to disable thumbnail 
   display for old versions of images.
+* Remove five-year-old KHTMLFixes.css, which is unlikely to be relevant anymore
+  and was causing problems.
 
 === Bug fixes in 1.16 ===
 
