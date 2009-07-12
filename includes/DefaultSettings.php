@@ -2190,6 +2190,11 @@ $wgIgnoreImageErrors = false;
  */
 $wgGenerateThumbnailOnParse = true;
 
+/**
+ * Show thumbnails for old images on the image description page
+ */
+$wgShowArchiveThumbnails = true;
+
 /** Whether or not to use image resizing */
 $wgUseImageResize = true;
 

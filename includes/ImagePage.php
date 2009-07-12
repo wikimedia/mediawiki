@@ -780,15 +780,16 @@ EOT
  */
 class ImageHistoryList {
 
-	protected $imagePage, $img, $skin, $title, $repo;
+	protected $imagePage, $img, $skin, $title, $repo, $showThumb;
 
 	public function __construct( $imagePage ) {
-		global $wgUser;
+		global $wgUser, $wgShowArchiveThumbnails;
 		$this->skin = $wgUser->getSkin();
 		$this->current = $imagePage->getFile();
 		$this->img = $imagePage->getDisplayedFile();
 		$this->title = $imagePage->getTitle();
 		$this->imagePage = $imagePage;
+		$this->showThumb = $wgShowArchiveThumbnails;
 	}
 
 	public function getImagePage() {
@@ -813,7 +814,7 @@ class ImageHistoryList {
 			. '<tr><td></td>'
 			. ( $this->current->isLocal() && ($wgUser->isAllowed('delete') || $wgUser->isAllowed('deleterevision') ) ? '<td></td>' : '' )
 			. '<th>' . wfMsgHtml( 'filehist-datetime' ) . '</th>'
-			. '<th>' . wfMsgHtml( 'filehist-thumb' ) . '</th>'
+			. ( $this->showThumb ? '<th>' . wfMsgHtml( 'filehist-thumb' ) . '</th>' : '' )
 			. '<th>' . wfMsgHtml( 'filehist-dimensions' ) . '</th>'
 			. '<th>' . wfMsgHtml( 'filehist-user' ) . '</th>'
 			. '<th>' . wfMsgHtml( 'filehist-comment' ) . '</th>'
@@ -933,7 +934,9 @@ class ImageHistoryList {
 		$row .= "</td>";
 
 		// Thumbnail
-		$row .= '<td>' . $this->getThumbForLine( $file ) . '</td>';
+		if ( $this->showThumb ) {
+			$row .= '<td>' . $this->getThumbForLine( $file ) . '</td>';
+		}
 
 		// Image dimensions + size
 		$row .= '<td>';
