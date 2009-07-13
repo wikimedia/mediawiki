@@ -1,3 +1,16 @@
+/*
+ * main-rtl.css is automatically generated using CSSJanus, a python script for
+ * creating RTL versions of otherwise LTR stylesheets.
+ * 
+ * You may download the tool to rebuild this stylesheet
+ * http://code.google.com/p/cssjanus/
+ * 
+ * An online version of this tool can be used at:
+ * http://cssjanus.commoner.com/
+ * 
+ * The following command is used to generate the RTL version of this file
+ * ./cssjanus.py --swap_ltr_rtl_in_url < main-ltr.css > main-rtl.css 
+ */
 /* Framework */
 html,
 body {
@@ -125,29 +138,36 @@ div#head h5 {
 		background-position: bottom right;
 		background-repeat: no-repeat;
 	}
+	div.vectorTabs li a,
+	div.vectorTabs li a span {
+		color: #0645ad;
+		cursor: pointer;
+	}
 	/* IGNORED BY IE6 */
 	div.vectorTabs li > a {
 		display: block;
 	}
 	/* OVERRIDDEN BY COMPLIANT BROWSERS */
 	div.vectorTabs a span {
-		color: #0645ad;
 		display: inline-block;
 		padding-top: 1.25em;
-		cursor: pointer;
 	}
 	/* IGNORED BY IE6 */
 	div.vectorTabs a > span {
 		float: left;
 		display: block;
 	}
+	div.vectorTabs li.selected a,
 	div.vectorTabs li.selected a span,
+	div.vectorTabs li.selected a:visited
 	div.vectorTabs li.selected a:visited span {
 		color: #333333;
 		cursor: default;
 		text-decoration: none;
 	}
+	div.vectorTabs li.new a,
 	div.vectorTabs li.new a span,
+	div.vectorTabs li.new a:visited,
 	div.vectorTabs li.new a:visited span {
 		color: #a55858;
 	}
