@@ -35,7 +35,10 @@ if (!defined('MEDIAWIKI')) {
  */
 class ApiQueryQuerypage extends ApiQueryBase {
 	static $queryPages = array( 
-		'brokenredirects' => 'BrokenRedirectsPage' 
+		'ancientpages' => 'AncientPagesPage',
+		'brokenredirects' => 'BrokenRedirectsPage',
+		'deadendpages' => 'DeadendPagesPage',
+		'disambiguations' => 'DisambiguationsPage',	
 	);
 	
 	public function __construct($query, $moduleName) {
@@ -56,31 +59,35 @@ class ApiQueryQuerypage extends ApiQueryBase {
 		$limit = $params['limit'];
 		
 		// Try to find an entry in $wgQueryPages
-		$qpName = $params['querypage'];
-		if ( is_null( $qpName ) )
+		$name = $params['querypage'];
+		if ( is_null( $name ) )
 			$this->dieUsageMsg( array( 'missingparam', 'querypage' ) );
-		if ( !isset( self::$queryPages[$qpName] ) )
+		if ( !isset( self::$queryPages[$name] ) )
 			$this->dieUsage( 'Querypage unrecognized', 'unknownquerypage' );
 		
-		$qpClass = self::$queryPages[$qpName];
-		$qpInstance = new $qpClass;
-		$result = $qpInstance->reallyDoQuery( $offset, $limit + 1 );
+		// Get the result from the query page
+		$class = self::$queryPages[$name];
+		$queryPage = new $class;
+		$result = $queryPage->reallyDoQuery( $offset, $limit + 1 );
 		
+		// Output the result
 		$apiResult = $this->getResult();
+		$resultPath = array( 'query', $this->getModuleName() );
 		$count = 0;
 		while ( $row = $result['dbr']->fetchObject( $result['result'] ) ) {
 			if ( ++ $count > $limit ) {
 				// We've reached the one extra which shows that there are additional pages to be had. Stop here...
 				$this->setContinueEnumParameter( 'offset', $offset + $count - 1 );
 				break;
-			}			
+			}
+						
 			if ( is_null( $resultPageSet ) ) {
 				// Normal mode; let the query page make a sensible result out of it
-				$vals = $qpInstance->formatApiResult( $row );
-				$fit = $apiResult->addValue( array( 'query', $this->getModuleName() ), null, $vals );
+				$vals = $queryPage->formatApiResult( $row );
+				$fit = $apiResult->addValue( $resultPath, null, $vals );
 				if( !$fit )
 				{
-					$this->setContinueEnumParameter( 'offset', $params['offset'] + $count );
+					$this->setContinueEnumParameter( 'offset', $offset + $count );
 					break;
 				}
 			} else {
@@ -88,15 +95,25 @@ class ApiQueryQuerypage extends ApiQueryBase {
 				$resultPageSet->processDbRow( $row );
 			}
 		}
-
-
+		// Set XML element to 'p'
 		if ( is_null( $resultPageSet ) ) {
 			$apiResult->setIndexedTagName_internal( array( 'query', $this->getModuleName()), 'p' );
+		}		
+		
+		// Set meta information
+		if ( $result['cached'] ) {
+			// Set cached date if available, else simply true
+			$apiResult->addValue( $resultPath, 'cached',
+				$result === true ? true : wfTimestamp( TS_ISO_8601, $result['cached'] ) );
 		}
+		if ( $result['disabled'] )
+			// No further updates will be performed
+			$apiResult->addValue( $resultPath, 'disabled', true ); 
+
+
 	}
 
 	public function getAllowedParams() {
-
 		return array (
 			'offset' => 0,
 			'limit' => array (

@@ -179,9 +179,8 @@ class QueryPage {
 	function formatApiResult( $row ) {
 		$title = Title::makeTitle( $row->namespace, $row->title );
 		return array(
-						//'pageid' => intval( $row->id ),
-						'ns' => intval( $title->getNamespace() ),
-						'title' => $title->getPrefixedText(),
+			'ns' => intval( $title->getNamespace() ),
+			'title' => $title->getPrefixedText(),
 		);
 	}
 
