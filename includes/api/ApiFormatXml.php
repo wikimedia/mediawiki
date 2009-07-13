@@ -35,6 +35,7 @@ class ApiFormatXml extends ApiFormatBase {
 
 	private $mRootElemName = 'api';
 	private $mDoubleQuote = false;
+	private $mXslt = null;
 
 	public function __construct($main, $format) {
 		parent :: __construct($main, $format);
@@ -55,8 +56,11 @@ class ApiFormatXml extends ApiFormatBase {
 	public function execute() {
 		$params = $this->extractRequestParams();
 		$this->mDoubleQuote = $params['xmldoublequote'];
+		$this->mXslt = $params['xslt'];
 
 		$this->printText('<?xml version="1.0"?>');
+		if (!is_null($this->mXslt))
+			$this->addXslt();
 		$this->recXmlPrint($this->mRootElemName, $this->getResultData(), $this->getIsHtml() ? -2 : null);
 	}
 
@@ -150,19 +154,38 @@ class ApiFormatXml extends ApiFormatBase {
 				break;
 		}
 	}
+	function addXslt() {
+		$nt = Title::newFromText( $this->mXslt );
+		if ( is_null( $nt ) || !$nt->exists() ) {
+			$this->setWarning( 'Invalid or non-existent stylesheet specified' );
+			return;
+		}
+		if ( $nt->getNamespace() != NS_MEDIAWIKI ) {
+			$this->setWarning( 'Stylesheet should be in the MediaWiki namespace.' );
+			return;
+		}
+		if ( substr( $nt->getText(), -4 ) !== '.xsl' ) {
+			$this->setWarning( 'Stylesheet should have .xsl extension.' );
+			return;
+		}
+		$this->printText( '<?xml-stylesheet href="' . $nt->escapeLocalURL( 'action=raw' ) . '" type="text/xsl" ?>' );
+	}
+	
 	private function doubleQuote( $text ) {
 		return Sanitizer::encodeAttribute( $text );
 	}
 
 	public function getAllowedParams() {
 		return array (
-			'xmldoublequote' => false
+			'xmldoublequote' => false,
+			'xslt' => null,
 		);
 	}
 
 	public function getParamDescription() {
 		return array (
 			'xmldoublequote' => 'If specified, double quotes all attributes and content.',
+			'xslt' => 'If specified, adds <xslt> as stylesheet',
 		);
 	}
 
