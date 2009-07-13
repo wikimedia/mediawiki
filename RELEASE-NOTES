@@ -26,6 +26,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   ForeignAPIRepo.
 * Fixed the "change password" link on Special:Preferences to have the correct
   returnto parameter.
+* (bug 19693) Fixed cross-site scripting vulnerability in Special:Block
 
 === Changes since 1.15.0rc1 ===
 
