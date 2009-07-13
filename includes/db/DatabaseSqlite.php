@@ -455,6 +455,13 @@ class DatabaseSqlite extends DatabaseBase {
 	public function lockTables( $read, $write, $method ) {}
 
 	public function unlockTables( $method ) {}
+	
+	/*
+	 * Build a concatenation list to feed into a SQL query
+	 */
+	function buildConcat( $stringList ) {
+		return implode( ' || ', $stringList );
+	}
 
 } // end DatabaseSqlite class
 

@@ -250,6 +250,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Removed repetition of URIs in the title attributes of external links.
 * (bug 19693) User name is now escaped in "Contributions for ..." link on
   Special:BlockIP
+* (bug 19571) Override buildConcat for SQLite.
 
 == API changes in 1.16 ==
 
