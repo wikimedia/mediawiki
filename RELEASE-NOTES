@@ -245,7 +245,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 19602) PubMed Magic links now use updated NIH url
 * (bug 19637) externallinks have links to self
 * Don't load Opera 9.5 RTL fixes for Opera 9.6
-* Removed name attribute from <a id="top"></a>.
 * Remove five-year-old KHTMLFixes.css, which is unlikely to be relevant anymore
   and was causing problems.
 * Removed repetition of URIs in the title attributes of external links.
