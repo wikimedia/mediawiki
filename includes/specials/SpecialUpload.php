@@ -545,7 +545,7 @@ class UploadForm {
 				$skin = $wgUser->getSkin();
 				$wsize = $skin->formatSize( $wgUploadSizeWarning );
 				$asize = $skin->formatSize( $this->mFileSize );
-				$warning .= '<li>' . wfMsgHtml( 'large-file', $wsize, $asize ) . '</li>';
+				$warning .= '<li>' . htmlspecialchars( wfMsg( 'large-file', $wsize, $asize ) ) . '</li>';
 			}
 			if ( $this->mFileSize == 0 ) {
 				$warning .= '<li>'.wfMsgHtml( 'emptyfile' ).'</li>';

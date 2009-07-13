@@ -671,15 +671,15 @@ class IPBlockForm {
 		$query = array( 'action' => 'unblock' );
 
 		if( $this->BlockAddress ) {
-			$addr = htmlspecialchars( strtr( $this->BlockAddress, '_', ' ' ) );
-			$message = wfMsgHtml( 'ipb-unblock-addr', $addr );
+			$addr = strtr( $this->BlockAddress, '_', ' ' );
+			$message = wfMsg( 'ipb-unblock-addr', $addr );
 			$query['ip'] = $this->BlockAddress;
 		} else {
-			$message = wfMsgHtml( 'ipb-unblock' );
+			$message = wfMsg( 'ipb-unblock' );
 		}
 		return $skin->linkKnown(
 			$list,
-			$message,
+			htmlspecialchars($message),
 			array(),
 			$query
 		);
@@ -696,16 +696,16 @@ class IPBlockForm {
 		$query = array();
 
 		if( $this->BlockAddress ) {
-			$addr = htmlspecialchars( strtr( $this->BlockAddress, '_', ' ' ) );
-			$message = wfMsgHtml( 'ipb-blocklist-addr', $addr );
+			$addr = strtr( $this->BlockAddress, '_', ' ' );
+			$message = wfMsg( 'ipb-blocklist-addr', $addr );
 			$query['ip'] = $this->BlockAddress;
 		} else {
-			$message = wfMsgHtml( 'ipb-blocklist' );
+			$message = wfMsg( 'ipb-blocklist' );
 		}
 
 		return $skin->linkKnown(
 			$list,
-			$message,
+			htmlspecialchars($message),
 			array(),
 			$query
 		);
