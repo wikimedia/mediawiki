@@ -292,7 +292,6 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Added snippet field to list=search output
 * (bug 17809) Add number of users in user groups to meta=siteinfo
 * (bug 18533) Add readonly reason to readonly exception
-* (bug 14869) Allow access to QueryPage-based special pages via API
 
 === Languages updated in 1.16 ===
 

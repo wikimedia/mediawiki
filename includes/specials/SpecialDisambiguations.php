@@ -94,12 +94,6 @@ class DisambiguationsPage extends PageQueryPage {
 
 		return "$from $edit $arr $to";
 	}
-	function formatApiResult( $row ) {
-		$linkTo = Title::makeTitle( NS_MAIN, $row->value );
-		$result = parent::formatApiResult( $row );
-		$result['to'] = $linkTo->getPrefixedText();
-		return $result;
-	}
 }
 
 /**
