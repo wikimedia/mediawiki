@@ -3,11 +3,11 @@
 Security reminder: MediaWiki does not require PHP's register_globals
 setting since version 1.2.0. If you have it on, turn it *off* if you can.
 
-== MediaWiki 1.15.0 ==
+== MediaWiki 1.15.1 ==
 
-2009-06-10
+July 14, 2009
 
-This is a stable release of the the 2009 Q2 branch of MediaWiki. 
+This is a security and bugfix release of the the 2009 Q2 branch of MediaWiki. 
 
 MediaWiki is now using a "continuous integration" development model with
 quarterly snapshot releases. The latest development code is always kept
@@ -19,6 +19,13 @@ will be made on the development trunk and appear in the next quarterly release.
 
 Those wishing to use the latest code instead of a branch release can obtain
 it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
+
+=== Changes since 1.15.0 ===
+
+* Fixed fatal errors for unusual file repository configurations, such as 
+  ForeignAPIRepo.
+* Fixed the "change password" link on Special:Preferences to have the correct
+  returnto parameter.
 
 === Changes since 1.15.0rc1 ===
 
