@@ -3,11 +3,11 @@
 Security reminder: MediaWiki does not require PHP's register_globals
 setting since version 1.2.0. If you have it on, turn it *off* if you can.
 
-== MediaWiki 1.14.0 ==
+== MediaWiki 1.14.1 ==
 
-February 22, 2009
+July 14, 2009
 
-This is the first stable release of the 2009 Q1 branch of MediaWiki.
+This is a security and bugfix release of the 2009 Q1 branch of MediaWiki.
 
 MediaWiki is now using a "continuous integration" development model with
 quarterly snapshot releases. The latest development code is always kept
@@ -21,14 +21,18 @@ Those wishing to use the latest code instead of a branch release can obtain
 it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 
 NOTE: Installation of MediaWiki on SQLite has been temporarily disabled in this
-release due to the discovery of serious problems with the schema. We expect to
-fix this problem for the release of 1.15.0. 
+release due to the discovery of serious problems with the schema. This was 
+fixed in 1.15.0. 
 
 == Changes since 1.14.0 ==
+
 * (bug 17737) Fixed russian URLs for Special:BookSources
 * (bug 17713) Using links with only an anchor no longer add an dummy entry in
   the pagelinks table
 * (bug 17897) Fixed string offset error in <pre> tags
+* (bug 17832) Fixed action=delete returning 'unknownerror' instead of 
+  'permissiondenied' when the user is blocked
+* Fixed performance regression when accessing deleted (archived) files
 
 == Changes since 1.14.0rc1 ==
 
