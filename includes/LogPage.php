@@ -214,11 +214,12 @@ class LogPage {
 							self::formatBlockFlags( $params[2], is_null( $skin ) ) : '';
 					// Page protections
 					} else if ( $type == 'protect' && count($params) == 3 ) {
-						$details .= " {$params[1]}"; // restrictions and expiries
 						if( $params[2] ) {
 							if ( $skin ) {
+								$details .= htmlspecialchars( " {$params[1]}" ); // restrictions and expiries
 								$details .= ' ['.wfMsg('protect-summary-cascade').']';
 							} else {
+								$details .= " {$params[1]}";
 								$details .= ' ['.wfMsgForContent('protect-summary-cascade').']';
 							}
 						}
@@ -245,7 +246,7 @@ class LogPage {
 						$details .= ': '.RevisionDeleter::getLogMessage( $count, $nfield, $ofield, true );
 					}
 					if ( $skin ) {
-						$rv = wfMsgHtml( $wgLogActions[$key], $params ) . $details;
+						$rv = htmlspecialchars( wfMsg( $wgLogActions[$key], $params ) ) . $details;
 					} else {
 						$rv = wfMsgExt( $wgLogActions[$key], array( 'parsemag', 'escape', 'replaceafter', 'content' ), $params ) . $details;
 					}

@@ -324,7 +324,7 @@ class DeletedContributionsPage extends SpecialPage {
 		$sk = $wgUser->getSkin();
 
 		if ( 0 == $id ) {
-			$user = $nt->getText();
+			$user = htmlspecialchars( $nt->getText() );
 		} else {
 			$user = $sk->link( $nt, htmlspecialchars( $nt->getText() ) );
 		}

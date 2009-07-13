@@ -498,9 +498,13 @@ class UserrightsPage extends SpecialPage {
 			$ret .= "\t<td style='vertical-align:top;'>\n";
 			foreach( $column as $group => $checkbox ) {
 				$attr = $checkbox['disabled'] ? array( 'disabled' => 'disabled' ) : array();
-				$text = $checkbox['irreversible']
-					? wfMsgHtml( 'userrights-irreversible-marker', User::getGroupMember( $group ) )
-					: User::getGroupMember( $group );
+
+				if ( $checkbox['irreversible'] ) {
+					$text = htmlspecialchars( wfMsg( 'userrights-irreversible-marker', 
+						User::getGroupMember( $group ) ) );
+				} else {
+					$text = htmlspecialchars( User::getGroupMember( $group ) );
+				}
 				$checkboxHtml = Xml::checkLabel( $text, "wpGroup-" . $group,
 					"wpGroup-" . $group, $checkbox['set'], $attr );
 				$ret .= "\t\t" . ( $checkbox['disabled']
