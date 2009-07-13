@@ -248,6 +248,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Remove five-year-old KHTMLFixes.css, which is unlikely to be relevant anymore
   and was causing problems.
 * Removed repetition of URIs in the title attributes of external links.
+* (bug 19693) User name is now escaped in "Contributions for ..." link on
+  Special:BlockIP
 
 == API changes in 1.16 ==
 
