@@ -88,7 +88,7 @@ class RandomPage extends SpecialPage {
 		$redirect = $this->isRedirect() ? 1 : 0;
 
 		$extra = $wgExtraRandompageSQL ? "AND ($wgExtraRandompageSQL)" : "";
-		$extra .= $this->addExtraSQL() ? "AND (".$this-addExtraSQL().")" : "";
+		$extra .= $this->addExtraSQL() ? "AND (".$this->addExtraSQL().")" : "";
 		$sql = "SELECT page_title, page_namespace
 			FROM $page $use_index
 			WHERE page_namespace IN ( $ns )
