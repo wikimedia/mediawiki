@@ -33,6 +33,7 @@ fixed in 1.15.0.
 * (bug 17832) Fixed action=delete returning 'unknownerror' instead of 
   'permissiondenied' when the user is blocked
 * Fixed performance regression when accessing deleted (archived) files
+* (bug 19693) Fixed cross-site scripting vulnerability in Special:Block
 
 == Changes since 1.14.0rc1 ==
 

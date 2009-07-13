@@ -525,7 +525,7 @@ class IPBlockForm {
 	 */
 	private function getContribsLink( $skin ) {
 		$contribsPage = SpecialPage::getTitleFor( 'Contributions', $this->BlockAddress );
-		return $skin->link( $contribsPage, wfMsgHtml( 'ipb-blocklist-contribs', $this->BlockAddress ) );
+		return $skin->link( $contribsPage, wfMsgExt( 'ipb-blocklist-contribs', 'escape', $this->BlockAddress ) );
 	}
 
 	/**
