@@ -324,6 +324,7 @@ class SkinTemplate extends Skin {
 				$out->setSquidMaxage( 0 );
 			}
 		} else if( count( $newtalks ) ) {
+			// _>" " for BC <= 1.16
 			$sep = str_replace( '_', ' ', wfMsgHtml( 'newtalkseparator' ) );
 			$msgs = array();
 			foreach( $newtalks as $newtalk ) {

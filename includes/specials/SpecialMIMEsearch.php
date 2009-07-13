@@ -73,8 +73,10 @@ class MIMEsearchPage extends QueryPage {
 		$download = $skin->makeMediaLinkObj( $nt, wfMsgHtml( 'download' ) );
 		$bytes = wfMsgExt( 'nbytes', array( 'parsemag', 'escape'),
 			$wgLang->formatNum( $result->img_size ) );
-		$dimensions = wfMsgHtml( 'widthheight', $wgLang->formatNum( $result->img_width ),
-			$wgLang->formatNum( $result->img_height ) );
+		$dimensions = htmlspecialchars( wfMsg( 'widthheight',
+			$wgLang->formatNum( $result->img_width ),
+			$wgLang->formatNum( $result->img_height )
+		) );
 		$user = $skin->link( Title::makeTitle( NS_USER, $result->img_user_text ), htmlspecialchars( $result->img_user_text ) );
 		$time = htmlspecialchars( $wgLang->timeanddate( $result->img_timestamp ) );
 
