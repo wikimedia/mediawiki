@@ -302,7 +302,6 @@ $wgAutoloadLocalClasses = array(
 	'ApiQueryLangLinks' => 'includes/api/ApiQueryLangLinks.php',
 	'ApiQueryLinks' => 'includes/api/ApiQueryLinks.php',
 	'ApiQueryLogEvents' => 'includes/api/ApiQueryLogEvents.php',
-	'ApiQueryQuerypage' => 'includes/api/ApiQueryQuerypage.php',
 	'ApiQueryProtectedTitles' => 'includes/api/ApiQueryProtectedTitles.php',
 	'ApiQueryRandom' => 'includes/api/ApiQueryRandom.php',
 	'ApiQueryRecentChanges'=> 'includes/api/ApiQueryRecentChanges.php',

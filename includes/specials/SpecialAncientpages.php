@@ -62,10 +62,6 @@ class AncientPagesPage extends QueryPage {
 		);
 		return wfSpecialList($link, htmlspecialchars($d) );
 	}
-	function formatApiResult( $row ) {
-		$result = parent::formatApiResult( $row );
-		$result['timestamp'] = wfTimestamp( TS_ISO_8601, $row->value );
-	}
 }
 
 function wfSpecialAncientpages() {
