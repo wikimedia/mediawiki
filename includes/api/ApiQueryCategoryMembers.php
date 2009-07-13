@@ -87,10 +87,10 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 		# how to have efficient subcategory access :-) ~~~~ (oh well, domas)
 		global $wgMiserMode;
 		if ( $wgMiserMode && isset($params['namespace']) ) { 
-			$this->dieUsage("The cmnamespace option is disabled on this site", 'namespacedisabled');
+			$this->setWarning("The cmnamespace option is disabled on this site");
+		} else {
+			$this->addWhereFld('page_namespace', $params['namespace']);
 		}
-		$this->addWhereFld('page_namespace', $params['namespace']);
-
 		if($params['sort'] == 'timestamp')
 			$this->addWhereRange('cl_timestamp', ($params['dir'] == 'asc' ? 'newer' : 'older'), $params['start'], $params['end']);
 		else
