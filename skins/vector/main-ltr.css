@@ -10,6 +10,9 @@
  * 
  * The following command is used to generate the RTL version of this file
  * ./cssjanus.py --swap_ltr_rtl_in_url < main-ltr.css > main-rtl.css 
+ *
+ * Any rules which should not be flipped should be prepended with @noflip in
+ * a comment block.
  */
 /* Framework */
 html,
