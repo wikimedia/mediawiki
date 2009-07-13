@@ -111,7 +111,7 @@ class RawPage {
 	function view() {
 		global $wgOut, $wgScript;
 
-		if( isset( $_SERVER['SCRIPT_URL'] ) ) {
+		if( isset( $_SERVER['SCRIPT_NAME'] ) ) {
 			# Normally we use PHP_SELF to get the URL to the script
 			# as it was called, minus the query string.
 			#
@@ -122,16 +122,16 @@ class RawPage {
 			#
 			# If in this mode, use SCRIPT_URL instead, which mod_rewrite
 			# provides containing the "before" URL.
-			$url = $_SERVER['SCRIPT_URL'];
+			$url = $_SERVER['SCRIPT_NAME'];
 		} else {
-			$url = $_SERVER['PHP_SELF'];
+			$url = $_SERVER['URL'];
 		}
 
 		if( $url == '' ) {
 			# This will make the next check fail with a confusing error
 			# message, so we should mention it separately.
 			wfHttpError( 500, 'Internal Server Error',
-				"\$_SERVER['PHP_SELF'] is not set.  Perhaps you're using CGI" .
+				"\$_SERVER['URL'] is not set.  Perhaps you're using CGI" .
 				" and haven't set cgi.fix_pathinfo = 1 in php.ini?" );
 			return;
 		}
