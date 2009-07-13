@@ -24,28 +24,25 @@ class SkinVector extends SkinTemplate {
 	 * @param object $out Output page object to initialize
 	 */
 	public function initPage( OutputPage $out ) {
+		global $wgStylePath;
+		
 		parent::initPage( $out );
 		$this->skinname  = 'vector';
 		$this->stylename = 'vector';
 		$this->template  = 'VectorTemplate';
+		
+		// Append skin-specific styles
+		$out->addStyle( 'vector/main-rtl.css', 'screen', '', 'rtl' );
+		$out->addStyle( 'vector/main-ltr.css', 'screen', '', 'ltr' );
+		// Append CSS which includes IE only behavior fixes for hover support -
+		// this is better than including this in a CSS fille since it doesn't
+		// wait for the CSS file to load before fetching the HTC file.
+		$out->addScript(
+			'<!--[if lt IE 7]><style type="text/css">body{behavior:url("' .
+				$wgStylePath .
+				'/vector/csshover.htc")}</style><![endif]-->'
+		);
 	}
-
-	/**
-	 * Defines CSS files to be included
-	 * @param object $out Output page to add styles to
-	 */
-	public function setupSkinUserCss( OutputPage $out ) {
-		global $wgContLang;
-		// Append to the default screen common & print styles...
-		if ( $wgContLang->isRTL() ) {
-			$out->addStyle( 'vector/main-rtl.css', 'screen' );
-		} else {
-			$out->addStyle( 'vector/main-ltr.css', 'screen' );
-		}
-		// Add common styles
-		parent::setupSkinUserCss( $out );
-	}
-	
 	/**
 	 * Builds a structured array of links used for tabs and menus
 	 * @return array
