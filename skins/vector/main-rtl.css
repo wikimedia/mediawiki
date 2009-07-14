@@ -21,7 +21,7 @@ body {
 	margin: 0;
 	padding: 0;
 	font-family: sans-serif;
-	font-size: small;
+	font-size: 9.75pt;
 }
 body {
 	background-color: #f3f3f3;
@@ -190,13 +190,14 @@ div#head h5 {
 	/* Variants and Actions */
 	/* @noflip */
 	div.vectorMenu {
-		float: left;
 		direction: ltr;
-	}
-	div.vectorMenu {
+		float: left;
 		background-image: url(images/arrow-down-icon.png);
 		background-position: center center;
 		background-repeat: no-repeat;
+	}
+	body.rtl div.vectorMenu {
+		direction: rtl;
 	}
 	/* @noflip */
 	div.vectorMenu h5 {
@@ -220,6 +221,20 @@ div#head h5 {
 		position: relative;
 		display: none;
 		clear: both;
+		text-align: right;
+	}
+	/* OVERRIDDEN BY COMPLIANT BROWSERS */
+	body.rtl div.vectorMenu div.menu {
+		margin-left: 24px;
+	}
+	/* IGNORED BY IE6 */
+	body.rtl div.vectorMenu > div.menu {
+		margin-left: auto;
+	}
+	/* Fixes old versions of FireFox */
+	body.rtl div.vectorMenu > div.menu,
+	x:-moz-any-link {
+		margin-left: 24px;
 	}
 	div.vectorMenu:hover div.menu {
 		display: block;
@@ -233,6 +248,12 @@ div#head h5 {
 		padding: 0;
 		margin: 0;
 		margin-right: -1px;
+		text-align: right;
+	}
+	/* Fixes old versions of FireFox */
+	div.vectorMenu ul,
+	x:-moz-any-link {
+		min-width: 6em;
 	}
 	div.vectorMenu li {
 		padding: 0;
