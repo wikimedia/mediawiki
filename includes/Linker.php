@@ -1180,7 +1180,7 @@ class Linker {
 		foreach ( $tree as $section ) {
 			if ( $section['toclevel'] > $lastLevel )
 				$toc .= $this->tocIndent();
-			else if ( $secton['toclevel'] < $lastLevel )
+			else if ( $section['toclevel'] < $lastLevel )
 				$toc .= $this->tocUnindent(
 					$lastLevel - $section['toclevel'] );
 			else
