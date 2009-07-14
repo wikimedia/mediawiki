@@ -172,18 +172,6 @@ class QueryPage {
 	function formatResult( $skin, $result ) {
 		return '';
 	}
-	/**
-	 * Formats the result as something that can be understood by the API.
-	 * Defaults to setting id, ns and title
-	 */
-	function formatApiResult( $result ) {
-		$title = Title::makeTitle( $row->namespace, $row->title );
-		return array(
-						'pageid' => intval( $row->id ),
-						'ns' => intval( $title->getNamespace() ),
-						'title' => $title->getPrefixedText(),
-		);
-	}
 
 	/**
 	 * The content returned by this function will be output before any result
@@ -290,39 +278,68 @@ class QueryPage {
 	function doQuery( $offset, $limit, $shownavigation=true ) {
 		global $wgUser, $wgOut, $wgLang, $wgContLang;
 
+		$this->offset = $offset;
+		$this->limit = $limit;
+
+		$sname = $this->getName();
+		$fname = get_class($this) . '::doQuery';
+		$dbr = wfGetDB( DB_SLAVE );
+
 		$wgOut->setSyndicated( $this->isSyndicated() );
-		
-		# Really really do the query now
-		$result = $this->reallyDoQuery( $offset, $limit );
 
-		# Tell about cachiness
-		if ( $result['cached'] !== false ) {
-			if ( $result['cached'] === true ) {
-				$wgOut->addWikiMsg( 'perfcached' );
-			} else {
-				$updated = $wgLang->timeAndDate( $result['cached'], true, true );
-				$wgOut->addMeta( 'Data-Cache-Time', $result['cached'] );
-				$wgOut->addInlineScript( "var dataCacheTime = '{$result['cached']}';" );
-				$wgOut->addWikiMsg( 'perfcachedts', $updated );				
+		if ( !$this->isCached() ) {
+			$sql = $this->getSQL();
+		} else {
+			# Get the cached result
+			$querycache = $dbr->tableName( 'querycache' );
+			$type = $dbr->strencode( $sname );
+			$sql =
+				"SELECT qc_type as type, qc_namespace as namespace,qc_title as title, qc_value as value
+				 FROM $querycache WHERE qc_type='$type'";
+
+			if( !$this->listoutput ) {
+
+				# Fetch the timestamp of this update
+				$tRes = $dbr->select( 'querycache_info', array( 'qci_timestamp' ), array( 'qci_type' => $type ), $fname );
+				$tRow = $dbr->fetchObject( $tRes );
+
+				if( $tRow ) {
+					$updated = $wgLang->timeAndDate( $tRow->qci_timestamp, true, true );
+					$wgOut->addMeta( 'Data-Cache-Time', $tRow->qci_timestamp );
+					$wgOut->addInlineScript( "var dataCacheTime = '{$tRow->qci_timestamp}';" );
+					$wgOut->addWikiMsg( 'perfcachedts', $updated );
+				} else {
+					$wgOut->addWikiMsg( 'perfcached' );
+				}
+
+				# If updates on this page have been disabled, let the user know
+				# that the data set won't be refreshed for now
+				global $wgDisableQueryPageUpdate;
+				if( is_array( $wgDisableQueryPageUpdate ) && in_array( $this->getName(), $wgDisableQueryPageUpdate ) ) {
+					$wgOut->addWikiMsg( 'querypage-no-updates' );
+				}
+
 			}
-		}
-		if ( $result['disabled'] ) {
-			# If updates on this page have been disabled, let the user know
-			# that the data set won't be refreshed for now
 
-			$wgOut->addWikiMsg( 'querypage-no-updates' );
 		}
-		
+
+		$sql .= $this->getOrder();
+		$sql = $dbr->limitResult($sql, $limit, $offset);
+		$res = $dbr->query( $sql );
+		$num = $dbr->numRows($res);
+
+		$this->preprocessResults( $dbr, $res );
+
 		$wgOut->addHTML( XML::openElement( 'div', array('class' => 'mw-spcontent') ) );
 
 		# Top header and navigation
 		if( $shownavigation ) {
 			$wgOut->addHTML( $this->getPageHeader() );
-			if( $result['count'] > 0 ) {
-				$wgOut->addHTML( '<p>' . wfShowingResults( $offset, $result['count'] ) . '</p>' );
+			if( $num > 0 ) {
+				$wgOut->addHTML( '<p>' . wfShowingResults( $offset, $num ) . '</p>' );
 				# Disable the "next" link when we reach the end
-				$paging = wfViewPrevNext( $offset, $limit, $wgContLang->specialPage( $this->getName() ),
-					wfArrayToCGI( $this->linkParameters() ), ( $result['count'] < $limit ) );
+				$paging = wfViewPrevNext( $offset, $limit, $wgContLang->specialPage( $sname ),
+					wfArrayToCGI( $this->linkParameters() ), ( $num < $limit ) );
 				$wgOut->addHTML( '<p>' . $paging . '</p>' );
 			} else {
 				# No results to show, so don't bother with "showing X of Y" etc.
@@ -338,9 +355,9 @@ class QueryPage {
 		# an OutputPage, and let them get on with it
 		$this->outputResults( $wgOut,
 			$wgUser->getSkin(),
-			$result['dbr'], # Should use a ResultWrapper for this
-			$result['result'],
-			$result['count'],
+			$dbr, # Should use a ResultWrapper for this
+			$res,
+			$dbr->numRows( $res ),
 			$offset );
 
 		# Repeat the paging links at the bottom
@@ -350,71 +367,7 @@ class QueryPage {
 
 		$wgOut->addHTML( XML::closeElement( 'div' ) );
 
-		return $result['count'];
-	}
-	
-	/**
-	 * Really really do the query. Returns an array with:
-	 * 		'disabled' 	=> true if the data will not be further refreshed,
-	 * 		'cached' 	=> false if uncached, the timestamp of the last cache if known, else simply true,
-	 * 		'result' 	=> the real result object,
-	 * 		'count'		=> number of results,
-	 * 		'dbr'		=> the database used for fetching the data
-	 */
-	protected function reallyDoQuery( $offset, $limit ) {
-		$result = array( 'disabled' => false );
-		
-		$this->offset = $offset;
-		$this->limit = $limit;
-
-		$fname = get_class($this) . '::reallyDoQuery';
-		$dbr = wfGetDB( DB_SLAVE );
-
-
-		if ( !$this->isCached() ) {
-			$sql = $this->getSQL();
-			$result['cached'] = false;
-		} else {
-			# Get the cached result
-			$querycache = $dbr->tableName( 'querycache' );
-			$type = $dbr->strencode( $this->getName() );
-			$sql =
-				"SELECT qc_type as type, qc_namespace as namespace,qc_title as title, qc_value as value
-				 FROM $querycache WHERE qc_type='$type'";
-
-			if( !$this->listoutput ) {
-
-				# Fetch the timestamp of this update
-				$tRes = $dbr->select( 'querycache_info', array( 'qci_timestamp' ), array( 'qci_type' => $type ), $fname );
-				$tRow = $dbr->fetchObject( $tRes );
-
-				if( $tRow ) {
-					$result['cached'] = $tRow->qci_timestamp;
-				} else {
-					$result['cached'] = true;
-				}
-
-				# If updates on this page have been disabled, let the user know
-				# that the data set won't be refreshed for now
-				global $wgDisableQueryPageUpdate;
-				if( is_array( $wgDisableQueryPageUpdate ) && in_array( $this->getName(), $wgDisableQueryPageUpdate ) ) {
-					$result['disabled'] = true;
-				}
-			}
-
-		}
-
-		$sql .= $this->getOrder();
-		$sql = $dbr->limitResult($sql, $limit, $offset);
-		$res = $dbr->query( $sql );
-		$num = $dbr->numRows($res);
-
-		$this->preprocessResults( $dbr, $res );
-		
-		$result['result'] = $res;
-		$result['count'] = $num;
-		$result['dbr'] = $dbr;
-		return $result;
+		return $num;
 	}
 
 	/**
@@ -438,7 +391,7 @@ class QueryPage {
 
 			# $res might contain the whole 1,000 rows, so we read up to
 			# $num [should update this to use a Pager]
-			for ( $i = 0; $i < $num && $row = $dbr->fetchObject( $res ); $i++ ) {
+			for( $i = 0; $i < $num && $row = $dbr->fetchObject( $res ); $i++ ) {
 				$line = $this->formatResult( $skin, $row );
 				if( $line ) {
 					$attr = ( isset( $row->usepatrol ) && $row->usepatrol && $row->patrolled == 0 )
@@ -474,7 +427,6 @@ class QueryPage {
 			$out->addHTML( $html );
 		}
 	}
-
 
 	function openList( $offset ) {
 		return "\n<ol start='" . ( $offset + 1 ) . "' class='special'>\n";
