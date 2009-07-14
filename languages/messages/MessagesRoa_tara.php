@@ -1182,6 +1182,7 @@ Tu puè pure scacchià de lassà otre condatte ausanne l'utende tue o le pàggen
 'right-reupload-own'         => "Sovrascrive 'nu file esistende carichete da quacchedune",
 'right-upload_by_url'        => "Careche 'nu file da l'indirizze URL",
 'right-autoconfirmed'        => 'Cange le pàggene prutette a metà',
+'right-bot'                  => 'Adda essere trattate cumme a nu processe automateche',
 'right-apihighlimits'        => "Ause 'nu limite cchiù ierte jndr'à l'inderrogaziune de le API",
 'right-writeapi'             => 'Ause de le API scritte',
 'right-delete'               => 'Scangille le pàggene',
@@ -1584,6 +1585,7 @@ Mò s'avène redirette a [[$2]].",
 'nopagetext'              => "'A pàgene de destinazione ca tu è specificate non g'esiste.",
 'pager-newer-n'           => '{{PLURAL:$1|cchiù nueve 1|cchiù nueve $1}}',
 'pager-older-n'           => '{{PLURAL:$1|cchiù vecchie 1|cchiù vicchie $1}}',
+'suppress'                => 'Supervisione',
 
 # Book sources
 'booksources'               => 'Sorgende de le libbre',
@@ -1625,6 +1627,7 @@ Pò condenè une  cchiù carattere ca non ge ponne essere ausate jndr'à le tite
 'categoriespagetext'            => "{{PLURAL:$1|'A seguende categorije tène|Le seguende categorije tènene}} pàggene o media.
 [[Special:UnusedCategories|Categorije non ausate]] non ge se vèdene aqquà.
 Vide pure [[Special:WantedCategories|Categorije cercate]].",
+'categoriesfrom'                => 'Fà vedè le categorije partenne da:',
 'special-categories-sort-count' => 'ordere pe condegge',
 'special-categories-sort-abc'   => 'ordere alfabbeticamende',
 
@@ -1981,6 +1984,7 @@ Mitte pure 'nu mutive specifiche aqquà sotte (pe esembije, nnomene 'a pàgene a
 'ipbotheroption'               => 'otre',
 'ipbotherreason'               => 'Otre mutive:',
 'ipbhidename'                  => 'Scunne le nome utinde da le cangiaminde e da le liste',
+'ipbwatchuser'                 => "Vide a pàgena utende e quedde de le 'ngazzaminde de stu utende",
 'badipaddress'                 => 'Indirizze IP invalide',
 'blockipsuccesssub'            => 'Blocche effettuate',
 'blockipsuccesstext'           => "[[Special:Contributions/$1|$1]] ha state bloccate.<br />

@@ -412,7 +412,31 @@ $messages = array(
 'faqpage'        => 'Project:Pasaq tapuykuna',
 
 # Vector skin
-'vector-view-view' => 'Ñawiriy',
+'vector-action-addsection'   => 'Allwiyta yapay',
+'vector-action-delete'       => 'Qulluy',
+'vector-action-move'         => 'Astay',
+'vector-action-protect'      => 'Amachay',
+'vector-action-undelete'     => 'Qullusqata paqarichiy',
+'vector-action-unprotect'    => 'Amaña amachaychu',
+'vector-namespace-category'  => 'Katiguriya',
+'vector-namespace-help'      => "Yanapana p'anqa",
+'vector-namespace-image'     => 'Willañiqi',
+'vector-namespace-main'      => "P'anqa",
+'vector-namespace-media'     => "Midya p'anqa",
+'vector-namespace-mediawiki' => 'Willay',
+'vector-namespace-project'   => "Ruraykamay p'anqa",
+'vector-namespace-special'   => "Sapaq p'anqa",
+'vector-namespace-talk'      => 'Rimanakuy',
+'vector-namespace-template'  => 'Plantilla',
+'vector-namespace-user'      => "Ruraqpa p'anqan",
+'vector-view-create'         => 'Kamariy',
+'vector-view-edit'           => "Llamk'apuy",
+'vector-view-history'        => 'Wiñay kawsayta qhaway',
+'vector-view-view'           => 'Ñawiriy',
+'vector-view-viewsource'     => 'Pukyu qillqata qhaway',
+'actions'                    => 'Ruraykuna',
+'namespaces'                 => "Suti k'itikuna",
+'variants'                   => "Ñawra rikch'akuykuna",
 
 # Metadata in edit box
 'metadata_help' => 'Metadata:',
@@ -471,6 +495,11 @@ $messages = array(
 'jumpto'            => 'Kayman riy:',
 'jumptonavigation'  => "wamp'una",
 'jumptosearch'      => 'maskana',
+'view-pool-error'   => "Achachaw, sirwiqkunaqa nisyu sasachakuyniyuqmi kachkan.
+Nisyu ruraqkunam kay p'anqataqa qhawayta munachkan.
+Ama hina kaspa, ratullata suyay kay p'anqata manaraq musuqmanta qhawaykachaspa.
+
+$1",
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => '{{SITENAME}}manta',
@@ -659,7 +688,8 @@ Allin qillqasqaykita llanchiriy.',
 'nouserspecified'            => 'Ruraqpa sutiykitam qunayki.',
 'wrongpassword'              => 'Qillqamusqayki yaykuna rimaqa manam allinchu. Huk kutita ruraykachay.',
 'wrongpasswordempty'         => 'Yaykuna rimaykita qillqamuyta qunqarqunkim, huk kutita ruraykachay.',
-'passwordtooshort'           => 'Yaykuna rimaykiqa nisyu pisillam icha mana allinmi. {{PLURAL:$1|1 icha aswan sanampayuq|$1 icha aswan sanampayuq}}, ruraqpa sutiykiman mana kaqllapas kananmi.',
+'passwordtooshort'           => 'Yaykuna rimaykiqa nisyu pisillam. {{PLURAL:$1|1 icha aswan sanampayuq|$1 icha aswan sanampayuq}} kananmi.',
+'password-name-match'        => 'Yaykuna rimaykiqa ruraqpa sutiykiman mana kaqlla kananmi.',
 'mailmypassword'             => 'Musuq yaykuna rimata e-chaskiwan kachamuway',
 'passwordremindertitle'      => "{{SITENAME}}paq musuq mit'alla yaykuna rima",
 'passwordremindertext'       => 'Pipas (qamchiki, $1 IP huchhayuq tiyaymanta) mañakuwarqan {{SITENAME}}paq musuq yaykuna rimatam e-chaski imamaytaykiman kachayta ($4).
@@ -1817,8 +1847,9 @@ Rikuyniykitaqa k'ullkuchaytam atinki hallch'a layata, ruraqpa sutinta (uchuy ich
 'special-categories-sort-abc'   => 'qallarina sanampakama allichay',
 
 # Special:DeletedContributions
-'deletedcontributions'       => 'Qullusqa ruraqpa hukchasqankuna',
-'deletedcontributions-title' => 'Qullusqa ruraqpa hukchasqankuna',
+'deletedcontributions'             => 'Qullusqa ruraqpa hukchasqankuna',
+'deletedcontributions-title'       => 'Qullusqa ruraqpa hukchasqankuna',
+'sp-deletedcontributions-contribs' => "llamk'apusqakuna",
 
 # Special:LinkSearch
 'linksearch'       => "Hawa t'inkikuna",
@@ -1833,6 +1864,13 @@ Rikuyniykitaqa k'ullkuchaytam atinki hallch'a layata, ruraqpa sutinta (uchuy ich
 'listusersfrom'      => 'Kaywan qallariq ruraqkunata rikuchiy:',
 'listusers-submit'   => 'Rikuchiy',
 'listusers-noresult' => 'Ruraqqa manam tarisqachu.',
+'listusers-blocked'  => "(hark'asqa)",
+
+# Special:ActiveUsers
+'activeusers'          => "Llamk'achkaq ruraqkuna",
+'activeusers-count'    => "$1 ñaqha {{PLURAL:$1|llamk'apusqa|llamk'apusqakuna}}",
+'activeusers-from'     => 'Ruraqkunata rikuchiy, kaywan qallarispa:',
+'activeusers-noresult' => 'Ruraqkunataqa manam tarinichu.',
 
 # Special:Log/newusers
 'newuserlogpage'              => "Rakiquna kamariy hallch'a",
@@ -1846,6 +1884,8 @@ Rikuyniykitaqa k'ullkuchaytam atinki hallch'a layata, ruraqpa sutinta (uchuy ich
 'listgrouprights'                      => 'Ruraq huñup hayñinkuna',
 'listgrouprights-summary'              => "Kay qatiq sutisuyupiqa kay wikipi sut'ichasqa ruraq huñukunatam, kikinpa chayamuna hayñinkunatawan rikunki.
 Chay kikinkunap hayñinkunamanta astawan ñawirinaykipaqqa [[{{MediaWiki:Listgrouprights-helppage}}|kaypi qhaway]].",
+'listgrouprights-key'                  => '* <span class="listgrouprights-granted">Qusqa hayñi</span>
+* <span class="listgrouprights-revoked">Qichusqa hayñi</span>',
 'listgrouprights-group'                => 'Huñu',
 'listgrouprights-rights'               => 'Hayñikuna',
 'listgrouprights-helppage'             => 'Help:Ruraq huñup hayñinkuna',

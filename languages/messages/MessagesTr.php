@@ -322,6 +322,9 @@ $messages = array(
 'vector-view-history'        => 'Geçmişi görüntüle',
 'vector-view-view'           => 'Oku',
 'vector-view-viewsource'     => 'Kaynağı gör',
+'actions'                    => 'Eylemler',
+'namespaces'                 => 'Ad alanları',
+'variants'                   => 'Varyantlar',
 
 # Metadata in edit box
 'metadata_help' => 'Metadata:',
@@ -380,6 +383,11 @@ $messages = array(
 'jumpto'            => 'Git ve:',
 'jumptonavigation'  => 'kullan',
 'jumptosearch'      => 'ara',
+'view-pool-error'   => 'Üzgünüz, sunucular şu anda aşırı yüklendi.
+Birçok kullanıcı bu sayfayı görüntülemeye çalışıyor.
+Lütfen bu sayfaya  tekrar erişmeyi denemeden önce biraz bekleyin.
+
+$1',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => '{{SITENAME}} hakkında',

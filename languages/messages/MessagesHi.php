@@ -10,6 +10,7 @@
  * @author Aksi great
  * @author Dineshjk
  * @author Kaustubh
+ * @author Kiranmayee
  * @author Shyam
  * @author Sunil Mohan
  * @author Taxman
@@ -438,8 +439,8 @@ Don't forget to personalize your {{SITENAME}} preferences.",
 'nouserspecified'            => 'आपको सदस्यनाम देना जरूरी है ।',
 'wrongpassword'              => 'आपने जो कूटशब्द लिखा है वह गलत है। कृपया पुनः प्रयास करें।',
 'wrongpasswordempty'         => 'कूटशब्द खाली है; फिरसे यत्न किजीये ।',
-'passwordtooshort'           => 'आपका कूटशब्द गलत या फिर ज्यादा छोटा है ।
-उसमें कम से कम $1 अक्षरे होने चाहिये और वह आपके सदस्यनामसे अलग होना चाहिये ।',
+'passwordtooshort'           => 'आपका कूटशब्द ज्यादा छोटा है ।
+उसमें कम से कम {{PLURAL:$1|1 अक्षर|$1 अक्षरे}} होने चाहिये।',
 'mailmypassword'             => 'ई-मेल द्वारा नया पासवर्ड भेजें',
 'passwordremindertitle'      => '{{SITENAME}} के लिया नया अस्थायी कूटशब्द',
 'passwordremindertext'       => 'किसीने (शायद आपने, $1 आयपी एड्रेस से)
@@ -710,7 +711,7 @@ Don't forget to personalize your {{SITENAME}} preferences.",
 'rev-deleted-text-permission' => 'इस लेख का अवतरण सामान्य डाटाबेससे हटाया गया हैं।
 इसकी अधिक जानकारी [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} हटाने की सूची] में पाईं जा सकती हैं।',
 'rev-deleted-text-view'       => 'इस लेख का अवतरण सामान्य डाटाबेससे हटाया गया हैं।
-{{SITENAME}} पर प्रबंधक होनेके नाते आप इसे देख सकतें हैं।
+प्रबंधक होनेके नाते आप इसे देख सकतें हैं।
 इसकी अधिक जानकारी [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} हटाने की सूची] में पाईं जा सकती हैं।',
 'rev-delundel'                => 'दिखायें/छुपायें',
 'revisiondelete'              => 'अवतरण हटायें/पुनर्स्थापित करें',

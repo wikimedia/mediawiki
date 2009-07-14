@@ -756,7 +756,7 @@ Il doit contenir au moins $1 caractère{{PLURAL:$1||s}}.',
 'mailmypassword'             => 'Recevoir un nouveau mot de passe par courriel',
 'passwordremindertitle'      => 'Nouveau mot de passe temporaire pour {{SITENAME}}',
 'passwordremindertext'       => 'Quelqu’un (probablement vous, ayant l’adresse IP $1) a demandé un nouveau mot de
-passe pour {{SITENAME}} ($4). Un mot de passe temporaire a été créé pour
+passe pour {{SITENAME}} ($4 ). Un mot de passe temporaire a été créé pour
 l’utilisateur « $2 » et est « $3 ». Si cela était votre intention, vous devrez
 vous connecter et choisir un nouveau mot de passe.
 Votre mot de passe temporaire expirera dans $5 jour{{PLURAL:$5||s}}.

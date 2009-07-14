@@ -276,6 +276,29 @@ in [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Uporabniški priroč
 'faq'            => 'Najpogostejša vprašanja',
 'faqpage'        => 'Project:Najpogostejša vprašanja',
 
+# Vector skin
+'vector-action-delete'       => 'Izbriši',
+'vector-action-move'         => 'Premakni',
+'vector-action-protect'      => 'Zaščiti',
+'vector-action-undelete'     => 'Vrni',
+'vector-action-unprotect'    => 'Odstrani zaščito',
+'vector-namespace-category'  => 'Kategorija',
+'vector-namespace-help'      => 'Stran s pomočjo',
+'vector-namespace-image'     => 'Datoteka',
+'vector-namespace-main'      => 'Stran',
+'vector-namespace-media'     => 'Multimedijska stran',
+'vector-namespace-mediawiki' => 'Sporočilo',
+'vector-namespace-project'   => 'Projektna stran',
+'vector-namespace-special'   => 'Posebna stran',
+'vector-namespace-talk'      => 'Pogovor',
+'vector-namespace-template'  => 'Predloga',
+'vector-namespace-user'      => 'Uporabniška stran',
+'vector-view-create'         => 'Ustvari',
+'vector-view-edit'           => 'Uredi',
+'vector-view-history'        => 'Pregled zgodovine',
+'vector-view-view'           => 'Preberi',
+'vector-view-viewsource'     => 'Izvorno besedilo',
+
 # Metadata in edit box
 'metadata_help' => 'Metapodatki:',
 
@@ -453,6 +476,10 @@ $2',
 'namespaceprotected'   => "Nimate dovoljenja urejati strani v imenskem prostoru '''$1'''.",
 'customcssjsprotected' => 'Nimate pravice urejati te strani, ker vsebuje osebne nastavitve drugega uporabnika.',
 'ns-specialprotected'  => 'Strani v imenskem prostoru {{ns:special}} ni možno urejati.',
+
+# Virus scanner
+'virus-scanfailed'     => 'pregled ni uspel (koda $1)',
+'virus-unknownscanner' => 'neznan antivirusni program:',
 
 # Login and logout pages
 'logouttext'                 => 'Odjavili ste se. {{GRAMMAR:tožilnik|{{SITENAME}}}} lahko zdaj uporabljate neprijavljeni ali pa se ponovno prijavite. Morda bodo nekatere strani še naprej prikazane, kot da ste prijavljeni. To lahko popravite z izpraznitvijo predpomnilnika.',

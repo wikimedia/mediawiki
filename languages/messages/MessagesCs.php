@@ -489,6 +489,9 @@ $messages = array(
 'vector-view-history'        => 'Zobrazit historii',
 'vector-view-view'           => 'Číst',
 'vector-view-viewsource'     => 'Zobrazit zdrojový kód',
+'actions'                    => 'Akce',
+'namespaces'                 => 'Jmenné prostory',
+'variants'                   => 'Varianty',
 
 # Metadata in edit box
 'metadata_help' => 'Metadata:',
@@ -547,6 +550,11 @@ $messages = array(
 'jumpto'            => 'Přejít na:',
 'jumptonavigation'  => 'navigace',
 'jumptosearch'      => 'hledání',
+'view-pool-error'   => 'Promiňte, servery jsou momentálně přetíženy.
+Tuto stránku si právě prohlíží příliš mnoho uživatelů.
+Před tím, než ji zkusíte načíst znovu, chvíli počkejte.
+
+$1',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'O&nbsp;{{grammar:6sg|{{SITENAME}}}}',
@@ -1218,7 +1226,7 @@ Ujistěte se, že tato změna udrží souvislost a posloupnost verzí v historii
 'searchprofile-project'            => 'Nápověda a projektové stránky',
 'searchprofile-images'             => 'Multimédia',
 'searchprofile-everything'         => 'Všechno',
-'searchprofile-advanced'           => 'Pokročilé',
+'searchprofile-advanced'           => 'Rozšířené',
 'searchprofile-articles-tooltip'   => 'Prohledávat: $1',
 'searchprofile-project-tooltip'    => 'Prohledávat: $1',
 'searchprofile-images-tooltip'     => 'Hledat obrázky a další soubory',

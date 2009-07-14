@@ -480,7 +480,6 @@ $messages = array(
 
 # Special:Log
 'specialloguserlabel' => '使用者:',
-'all-logs-page'       => '所有日誌',
 'alllogstext'         => '綜合顯示上傳、刪除、保護、封鎖以及站務日誌。',
 
 # Special:Categories

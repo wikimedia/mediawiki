@@ -19,7 +19,7 @@ $messages = array(
 'tog-highlightbroken'         => 'Formatar links betg existents <a href="" class="new">uschia</a> (alternativa: uschia<a href="" class="internal">?</a>)',
 'tog-justify'                 => "Text en furma da 'bloc'",
 'tog-hideminor'               => 'Zuppentar pitschnas midadas en las ultimas midadas',
-'tog-usenewrc'                => "Activar la versiun extendida da las ''Ulimas midadas'' (JavaScript)",
+'tog-usenewrc'                => "Duvrar la versiun extendida da las ''Ulimas midadas'' (dovra JavaScript)",
 'tog-numberheadings'          => 'Numerar automaticamain ils titels',
 'tog-showtoolbar'             => "Mussa la trav d'utensils (basegna JavaScript)",
 'tog-editondblclick'          => 'Editar paginas cun in clic dubel (basegna JavaScript)',
@@ -323,8 +323,8 @@ Curregia ti\'endataziun.',
 'nouserspecified'            => "Inditgescha per plaschair in num d'utilisader.",
 'wrongpassword'              => "Quai n'era betg il pled-clav correct. Prova anc ina giada.",
 'wrongpasswordempty'         => 'Ti as emblidà da scriver tes pled-clav. Prova anc ina giada.',
-'passwordtooshort'           => "Tes pled-clav n'è betg valaivels u memia curts. 
-El sto cuntegnair almain {{PLURAL:$1|in bustab|$1 bustabs}} e na po betg correspunder tes num d'utilisader.",
+'passwordtooshort'           => 'Tes pled-clav e memia curt. 
+El sto cuntegnair almain {{PLURAL:$1|in bustab|$1 bustabs}}.',
 'mailmypassword'             => 'Trametter in nov pled-clav per email',
 'passwordremindertitle'      => 'Nov pled-clav temporar per {{SITENAME}}',
 'passwordremindertext'       => 'Insatgi (probablamain ti, cun l\'adressa d\'IP $1) ha dumandà in nov pled-clav per {{SITENAME}} ($4). Il pled-clav temporar "$3" per l\'utilisader "$2" è vegnì creà. Sche quai era tes intent, ti al dovras per t\'annunziar e tscherner lura in nov pled-clav. Quest pled-clav temporar vegn a scrudar en {{PLURAL:$5|in di|$5 dis}}.
@@ -335,16 +335,18 @@ Sch\'insatgi auter ha fatg questa dumonda, ni sch\'il pled-clav è vegnì endame
 T'annunzia per plaschair sche ti has retschavì el.",
 'eauthentsent'               => "In e-mail da confermaziun è vegnì tramess a l'adressa d'e-mail numnada. 
 Suonda las infurmaziuns en l'e-mail per confirmar ch'il conto d'utilisader è il tes.",
-'acct_creation_throttle_hit' => "Stgisa, ti has gia creà {{PLURAL:$1|in conto|$1 contos}} d'utilisader. 
-Ti na sas betg far plirs.",
+'acct_creation_throttle_hit' => "Visitaders da questa wiki cun tia adressa d'IP han gia creà {{PLURAL:$1|1 conto|$1 contos}} l'ultim di. Quai è il maximum lubì en questa perioda. 
+Perquai pon visitaders cun questa IP betg pli crear dapli contos per il mument.",
 'emailauthenticated'         => "Tia adressa d'email è vegnida verifitgada ils $2 las $3.",
 'emailnotauthenticated'      => "Vus n'avais betg anc <strong>confermà vossa adressa dad email</strong>.<br />
 Perquei è anc nagin retschaiver e trametter dad emails per las suandantas funcziuns pussaivel.",
 'emailconfirmlink'           => "Confirmar l'adressa dad email",
 'accountcreated'             => "Creà il conto d'utilisader",
 'accountcreatedtext'         => "Il conto d'utilisader per $1 è vegnì creà.",
+'loginlanguagelabel'         => 'Lingua: $1',
 
 # Password reset dialog
+'resetpass'   => 'Midar il pled-clav',
 'oldpassword' => 'pled-clav vegl:',
 'newpassword' => 'pled-clav nov:',
 'retypenew'   => 'repeter pled-clav nov:',
@@ -371,19 +373,19 @@ Perquei è anc nagin retschaiver e trametter dad emails per las suandantas funcz
 'hr_tip'          => 'Lingia orizontala (betg utilisar savens!)',
 
 # Edit pages
-'summary'                    => 'Resumaziun:',
-'subject'                    => 'Pertutga:',
-'minoredit'                  => 'Midà be bagatellas',
-'watchthis'                  => 'observar quest artitgel',
-'savearticle'                => "memorisar l'artitgel",
-'preview'                    => 'prevista',
-'showpreview'                => 'mussar prevista',
-'showlivepreview'            => 'prevista directa',
-'showdiff'                   => 'mussar midadas',
-'anoneditwarning'            => "Vus essas betg annunziads. Empè dal num d'utilisader vign l'adressa dad IP registrada en la historia da las versiuns.",
-'summary-preview'            => 'prevista da la resumaziun:',
-'blockedtitle'               => 'Utilisader è bloccà',
-'blockedtext'                => "<big>'''Tes num d'utilisader u tia adressa d'IP è vegnida bloccada.'''</big>
+'summary'                          => 'Resumaziun:',
+'subject'                          => 'Pertutga:',
+'minoredit'                        => 'Midà be bagatellas',
+'watchthis'                        => 'observar quest artitgel',
+'savearticle'                      => "memorisar l'artitgel",
+'preview'                          => 'prevista',
+'showpreview'                      => 'mussar prevista',
+'showlivepreview'                  => 'prevista directa',
+'showdiff'                         => 'mussar midadas',
+'anoneditwarning'                  => "Vus essas betg annunziads. Empè dal num d'utilisader vign l'adressa dad IP registrada en la historia da las versiuns.",
+'summary-preview'                  => 'prevista da la resumaziun:',
+'blockedtitle'                     => 'Utilisader è bloccà',
+'blockedtext'                      => "<big>'''Tes num d'utilisader u tia adressa d'IP è vegnida bloccada.'''</big>
 
 ''$1'' ha bloccà tai.
 Il motiv inditgà è: ''$2''.
@@ -397,44 +399,44 @@ Ti na pos betg utilisar la funcziun 'Trametter in email a quest utilisader' senz
 Ti'adressa d'IP actuala è $3, ed la block ID è #$5.
 
 Integrescha per plaschair tut las indicaziuns survart sche ti contacteschas insatgi.",
-'whitelistedittitle'         => "t'annunzia per editar",
-'confirmedittext'            => 'Ti stos confermar tia adressa dad email avant che editar paginas. Inditgescha e conferma per plaschair tia adressa dad email en tias [[Special:Preferences|preferenzas]].',
-'loginreqtitle'              => 'Annunzia necessari',
-'loginreqlink'               => "s'annunziar",
-'loginreqpagetext'           => 'Ti stos $1 per vesair autras paginas.',
-'accmailtitle'               => 'Il pled-clav è vegnì tramess.',
-'accmailtext'                => 'Il pled-clav da "$1" è vegnì tramess a $2.',
-'newarticle'                 => '(Nov)',
-'newarticletext'             => "Ti as clicca in link ad ina pagina che exista anc betg. Per crear ina pagina, entschaiva a tippar en la stgaffa sutvart (guarda [[{{MediaWiki:Helppage}}|la pagina d'agid]] per s'infurmar).",
-'anontalkpagetext'           => "---- ''Questa pagina serva a l'intenziun da laschar anavos ina novitad per in utilisader betg annunzià. Sche ti na pos entschaiver nagut cun ils commentaris sin questa pagina èn ellas probabalamain drizzadas ad in possesur precedent da tia adressa dad IP e ti pos ignorar ellas.''",
-'noarticletext'              => "Quest artitgel cuntegna actualmain nagin text. Ti pos [[Special:Search/{{PAGENAME}}|tschertgar il term]] sin in'autra pagina, u [{{fullurl:{{FULLPAGENAME}}|action=edit}} crear questa pagina].",
-'clearyourcache'             => "'''Remartga''' Svida il chache da tes browser suenter avair memorisà, per vesair las midadas.
+'whitelistedittitle'               => "t'annunzia per editar",
+'confirmedittext'                  => 'Ti stos confermar tia adressa dad email avant che editar paginas. Inditgescha e conferma per plaschair tia adressa dad email en tias [[Special:Preferences|preferenzas]].',
+'loginreqtitle'                    => 'Annunzia necessari',
+'loginreqlink'                     => "s'annunziar",
+'loginreqpagetext'                 => 'Ti stos $1 per vesair autras paginas.',
+'accmailtitle'                     => 'Il pled-clav è vegnì tramess.',
+'accmailtext'                      => "In pled-clav casual per l'utilisader [[User talk:$1|$1]] è vegnì tramess a $2.
+
+Il pled-clav per quest nov conto po vegnir midà sin la pagina ''[[Special:ChangePassword|midar pled-clav]]'' suenter che ti t'es annunzià.",
+'newarticle'                       => '(Nov)',
+'newarticletext'                   => "Ti as clicca in link ad ina pagina che exista anc betg. Per crear ina pagina, entschaiva a tippar en la stgaffa sutvart (guarda [[{{MediaWiki:Helppage}}|la pagina d'agid]] per s'infurmar).",
+'anontalkpagetext'                 => "---- ''Questa pagina serva a l'intenziun da laschar anavos ina novitad per in utilisader betg annunzià. Sche ti na pos entschaiver nagut cun ils commentaris sin questa pagina èn ellas probabalamain drizzadas ad in possesur precedent da tia adressa dad IP e ti pos ignorar ellas.''",
+'noarticletext'                    => "Quest artitgel cuntegna actualmain nagin text. Ti pos [[Special:Search/{{PAGENAME}}|tschertgar il term]] sin in'autra pagina, u [{{fullurl:{{FULLPAGENAME}}|action=edit}} crear questa pagina].",
+'clearyourcache'                   => "'''Remartga''' Svida il chache da tes browser suenter avair memorisà, per vesair las midadas.
 '''Mozilla / Firefox / Safari:''' tegnair ''Shift'' durant cliccar ''chargiar danovamain'', u smatgar ''Ctrl-F5'' u ''Ctrl-R'' (''Command-R'' sin in Macintosh);
 '''Konqueror: '''clicca ''Reload'' u smatga ''F5'';
 '''Opera:''' stidar il cache sut ''Tools → Preferences'';
 '''Internet Explorer:''' tegna ''Ctrl'' durant cliccar ''Refresh,'' u smatga ''Ctrl-F5''.",
-'note'                       => "'''Remartga:'''",
-'previewnote'                => "'''Quai è be ina prevista; midadas n'èn anc betg vegnidas memorisadas!'''",
-'editing'                    => 'Editar $1',
-'editingsection'             => 'Editar $1 (secziun)',
-'yourtext'                   => 'Voss text',
-'yourdiff'                   => 'Differenzas',
-'copyrightwarning'           => "Please note that all contributions to {{SITENAME}} are considered to be released under the $2 (see $1 for details). If you don't want your writing to be edited mercilessly and redistributed at will, then don't submit it here.<br />
-You are also promising us that you wrote this yourself, or copied it from a public domain or similar free resource.
-'''DO NOT SUBMIT COPYRIGHTED WORK WITHOUT PERMISSION!'''",
-'longpagewarning'            => "'''ADATG: Questa artitgel è $1 kilobytes gronda. Insaquants browsers 
+'note'                             => "'''Remartga:'''",
+'previewnote'                      => "'''Quai è be ina prevista; midadas n'èn anc betg vegnidas memorisadas!'''",
+'editing'                          => 'Editar $1',
+'editingsection'                   => 'Editar $1 (secziun)',
+'yourtext'                         => 'Voss text',
+'yourdiff'                         => 'Differenzas',
+'longpagewarning'                  => "'''ADATG: Questa artitgel è $1 kilobytes gronda. Insaquants browsers 
 han forsa problems cun editar artitgels da la grondezza 32 kb u pli grond. 
 Ponderai per plaschair da divider quest artitgel en pli pitschnas parts. '''",
-'longpageerror'              => "'''SBAGL: Il text che ti has tramess è $1 kilobytes gronds. Quei ei pli grond ch'il maximum da $2 kilobytes. Il text na sa betg vegnir memorisà. '''",
-'protectedpagewarning'       => "'''ATTENZIUN: Questa pagina è vegnida bloccada, uschè che be utilisaders cun dretgs dad administraturs pon editar ella. '''",
-'templatesused'              => 'Templates utilisads sin questa pagina:',
-'templatesusedpreview'       => 'Templates utilisads en questa prevista:',
-'template-protected'         => '(protegì)',
-'template-semiprotected'     => '(mez protegidas)',
-'edittools'                  => '<!-- Text here will be shown below edit and upload forms. -->',
-'nocreatetext'               => "{{SITENAME}} ha restrinschì las pussaivladas da crear novas paginas. 
+'longpageerror'                    => "'''SBAGL: Il text che ti has tramess è $1 kilobytes gronds. Quei ei pli grond ch'il maximum da $2 kilobytes. Il text na sa betg vegnir memorisà. '''",
+'protectedpagewarning'             => "'''ATTENZIUN: Questa pagina è vegnida bloccada, uschè che be utilisaders cun dretgs dad administraturs pon editar ella. '''",
+'templatesused'                    => 'Templates utilisads sin questa pagina:',
+'templatesusedpreview'             => 'Templates utilisads en questa prevista:',
+'template-protected'               => '(protegì)',
+'template-semiprotected'           => '(mez protegidas)',
+'hiddencategories'                 => 'Quest artitgel è commember da {{PLURAL:$1|1 categoria zuppentada|$1 categorias zuppentadas}}:',
+'nocreatetext'                     => "{{SITENAME}} ha restrinschì las pussaivladas da crear novas paginas. 
 Ti pos ir anavos ed editar ina pagina existenta, u [[Special:UserLogin|s'annunziar u crear in nov conto]].",
-'recreate-moveddeleted-warn' => "'''Attenziun: Ti recreeschas in artitgel ch'è vegni stidà pli baud.'''
+'permissionserrorstext-withaction' => 'Ti na dastgas betg $2. Quai ord {{PLURAL:$1|il suandant motiv|ils suandants motivs}}:',
+'recreate-moveddeleted-warn'       => "'''Attenziun: Ti recreeschas in artitgel ch'è vegni stidà pli baud.'''
 
 Esi propi adattà da puspè crear questa pagina? 
 En il ''log da stidar'' che suonda pos ti guardar daco che la pagina è vegnida stidada.",
@@ -485,17 +487,22 @@ En il ''log da stidar'' che suonda pos ti guardar daco che la pagina è vegnida 
 'searchresults'             => 'Resultats da tschertga',
 'searchresults-title'       => 'Resultats da tschertga per "$1"',
 'searchsubtitle'            => 'Ti has tschertgà \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|tut las paginas che entschevan cun "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|colliaziuns a "$1"]])',
+'searchsubtitleinvalid'     => "Ti has tschertgà '''$1'''",
+'noexactmatch-nocreate'     => "'''I n'exista nagina pagina cun il titel \"\$1\".'''",
 'prevn'                     => 'davos {{PLURAL:$1|$1}}',
 'nextn'                     => 'proxims {{PLURAL:$1|$1}}',
 'viewprevnext'              => 'Mussar ($1) ($2) ($3).',
 'searchhelp-url'            => 'Help:Cuntegn',
 'search-result-size'        => '$1 ({{PLURAL:$2|in pled|$2 pleds}})',
+'search-suggest'            => 'Has ti manegià: $1',
+'search-interwiki-more'     => '(dapli)',
 'search-mwsuggest-enabled'  => 'cun propostas',
 'search-mwsuggest-disabled' => 'naginas propostas',
 'showingresults'            => "Sutvart èn enfin {{PLURAL:$1|'''in''' resultat|'''$1''' resultats}} cumenzond cun il numer '''$2'''.",
-'showingresultsnum'         => "Qua èn '''$3''' resultats, cumenzond cun il number '''$2'''.",
+'showingresultsnum'         => "Qua èn {{PLURAL:$3|'''1''' resultat|'''$3''' resultats}}, cumenzond cun il number '''$2'''.",
 'powersearch'               => 'retschertgar',
 'powersearch-legend'        => 'Tschertga extendida',
+'powersearch-field'         => 'Tschertgar',
 
 # Preferences page
 'preferences'               => 'Preferenzas',
@@ -635,7 +642,7 @@ Per integrar il maletg/purtret en tes artitgel sas ti per exempel duvrar in dals
 'imagelinks'                => 'Paginas che cuntegnan la datoteca',
 'linkstoimage'              => '{{PLURAL:$1|La suandanta pagina è colliada|Las suandantas $1 paginas èn colliadas}} cun questa datoteca:',
 'nolinkstoimage'            => 'Naginas paginas mussan sin questa datoteca.',
-'sharedupload'              => 'Quai è ina datoteca partida e vegn eventualmain utilisada dad auters projects.',
+'sharedupload'              => 'Quai è ina datoteca da $1 e vegn eventualmain utilisada dad auters projects.',
 'uploadnewversion-linktext' => 'Chargiar si ina nova versiun da questa datoteca',
 
 # MIME search
@@ -719,6 +726,7 @@ Per integrar il maletg/purtret en tes artitgel sas ti per exempel duvrar in dals
 'nextpage'          => 'proxima pagina ($1)',
 'prevpage'          => 'ultima pagina ($1)',
 'allpagesfrom'      => 'Mussar paginas naven da:',
+'allpagesto'        => 'Mussar paginas enfin:',
 'allarticles'       => 'Tut ils artitgels',
 'allinnamespace'    => 'tut las paginas (tip da pagina $1)',
 'allnotinnamespace' => 'Tut ils artitgels (betg el spaci da nums $1)',
@@ -733,6 +741,10 @@ Per integrar il maletg/purtret en tes artitgel sas ti per exempel duvrar in dals
 # Special:LinkSearch
 'linksearch'    => 'Links externs',
 'linksearch-ok' => 'Tschertgar',
+
+# Special:Log/newusers
+'newuserlogpage'          => "Log d'utilisaders creads",
+'newuserlog-create-entry' => "Nov conto d'utilisader",
 
 # E-mail user
 'mailnologintext' => "Ti stos [[Special:UserLogin|t'annunziar]] ed avair ina adressa d'email valaivla en tias [[Special:Preferences|preferenzas]] per trametter emails ad auters utilisaders.",
@@ -802,6 +814,7 @@ Quest calöri è  [[User:$3|$3]] ([[User talk:$3|discussiun]]).",
 
 # Protect
 'protectlogpage'              => 'Log da las protecziuns',
+'modifiedarticleprotection'   => 'Midà il livel da protecziun per "[[$1]]"',
 'prot_1movedto2'              => 'Spustà [[$1]] tar [[$2]]',
 'protect-legend'              => 'Midar il status da protecziun da la pagina.',
 'protectcomment'              => 'Commentari:',
@@ -840,12 +853,13 @@ Ti pos midar il livel da protecziun da quest\'artitgel, quai na vegn dentant bet
 'blanknamespace' => '(principal)',
 
 # Contributions
-'contributions' => "contribuziuns da l'utilisader",
-'mycontris'     => 'mias contribuziuns',
-'contribsub2'   => 'Per $1 ($2)',
-'uctop'         => '(actual)',
-'month'         => 'dal mais (e pli baud):',
-'year'          => "da l'onn (e pli baud):",
+'contributions'       => "contribuziuns da l'utilisader",
+'contributions-title' => "Contribuziuns d'utilisader da $1",
+'mycontris'           => 'mias contribuziuns',
+'contribsub2'         => 'Per $1 ($2)',
+'uctop'               => '(actual)',
+'month'               => 'dal mais (e pli baud):',
+'year'                => "da l'onn (e pli baud):",
 
 'sp-contributions-newbies'     => 'Be mussar contribuziuns da contos novs',
 'sp-contributions-newbies-sub' => "Per novs contos d'utilisader",

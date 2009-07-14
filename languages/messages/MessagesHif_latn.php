@@ -134,7 +134,7 @@ $messages = array(
 'listingcontinuesabbrev'         => 'aur',
 
 'mainpagetext'      => "<big>'''MediaWiki ke safalta se install kar dewa gais hai.'''</big>",
-'mainpagedocfooter' => "Wiki software ke use kare khatir [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] ke dekho.
+'mainpagedocfooter' => "Wiki software ke use kare ke aur jaankari ke khatir [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] ke dekho.
 
 == Getting started ==
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
@@ -187,11 +187,11 @@ $messages = array(
 'vector-view-view'           => 'Parrho',
 'vector-view-viewsource'     => 'Source dekho',
 'actions'                    => 'Karam',
-'namespaces'                 => 'Namespaces',
-'variants'                   => 'Variants',
+'namespaces'                 => 'Naam',
+'variants'                   => 'Antar',
 
 # Metadata in edit box
-'metadata_help' => 'Metadata:',
+'metadata_help' => 'Jaankari ke baare me jaankaari:',
 
 'errorpagetitle'    => 'Galti',
 'returnto'          => '$1 pe lauto.',
@@ -247,6 +247,11 @@ $messages = array(
 'jumpto'            => 'Hian jao:',
 'jumptonavigation'  => 'navigation',
 'jumptosearch'      => 'khojo',
+'view-pool-error'   => 'Maaf karna, abhi sab server busy hae.
+Bahut dher sadasya ii panna ke dekhe maange hae.
+Meharbani kar ke, thora deri sabur kar ke ii panna ke fir se kholo.
+
+$1',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => '{{SITENAME}} ke baare me',
@@ -362,7 +367,7 @@ Iske, URL ke likh ke, koi administrator ke report karo.',
 'directorycreateerror' => 'Directory "$1" ke nai banae sakaa.',
 'filenotfound'         => 'File "$1" ke nai pae sakaa.',
 'fileexistserror'      => 'File "$1" me nai likhe sakaa: file hai',
-'unexpected'           => 'Unexpected value: "$1"="$2".',
+'unexpected'           => 'Aasa karaa gais jaankari nai hai: "$1"="$2".',
 'formerror'            => 'Galti: form ke submit nai kare sakaa',
 'badarticleerror'      => 'Ii chij ke ii panna me nai karaa jae sake hai.',
 'cannotdelete'         => 'Jon panna nai to file ke aap mitae kare mangtaa rahaa uske nai mitae sakaa.
@@ -384,11 +389,11 @@ Kuch deri be baad fir se kosis karna.',
 'protectedpagetext'    => 'Ii panna ke badlao ke roke ke khatir band kar dewa gais hai.',
 'viewsourcetext'       => 'Aap ii panna ke source ke dekhe aur nakal utare kare sakta hai:',
 'protectedinterface'   => 'Ii panna software ke interface text dewe hai, aur iske barbaadi se roke ke khatir band kar dewa gais hai.',
-'editinginterface'     => "'''Chetawani:''' Aap ek panna ke badaltaa hai jon ki software ke interface text dewe hai.
+'editinginterface'     => "'''Chetawani:''' Aap ek panna ke badaltaa hai jon ki software ke interface text dewe hae.
 Ii panna me badlao ke asar duusra sadasya ke interface ke bhi hoi.
-Translation khatir [http://translatewiki.net/wiki/Main_Page?setlang=hif translatewiki.net], the MediaWiki localisation project, ke kaam me lao.",
+Translation khatir [http://translatewiki.net/wiki/Main_Page?setlang=en translatewiki.net], the MediaWiki localisation project, ke kaam me lao.",
 'sqlhidden'            => '(SQL query lukawal hai)',
-'cascadeprotected'     => 'Ii panna ke badlao se bachaya gais hai, kahe ki iske {{PLURAL:$1|panna, jon ki|panna, jon ki}} surakchhit with the "cascading" option turned on:
+'cascadeprotected'     => 'Ii panna ke badlao se bachawa gais hai, kahe ki iske {{PLURAL:$1|panna, jon ki|panna, jon ki}} surakchhit hae "cascading" option turned on ke saathe me rakkhaa gais hai:
 $2',
 'namespaceprotected'   => "Aap ke paas '''$1''' namespace me panna ke badle ke adhikar nai hai.",
 'customcssjsprotected' => 'Aap ke paas ii panna ke badle ke adkikar nai hai, kahe ki isme duusra sadasya ke personal settings hai.',
@@ -397,7 +402,7 @@ $2',
 Iske kaaran hai ''$2''.",
 
 # Virus scanner
-'virus-badscanner'     => "Kharaab configuration: unknown virus scanner: ''$1''",
+'virus-badscanner'     => "Kharaab ruup dewa gais hae: virus khoje waala software nawaa hae: ''$1''",
 'virus-scanfailed'     => 'scan fail hoe gais (code $1)',
 'virus-unknownscanner' => 'jaana waala antivirus nai hai:',
 
@@ -421,7 +426,7 @@ Aapan [[Special:Preferences|{{SITENAME}} pasand]]  ke badle nai bhulna.',
 'loginprompt'                => 'Login kare ke khatir  {{SITENAME}} cookies ke laabu kare ke chaahi.',
 'userlogin'                  => 'Log in karo/ nawaa account banao',
 'logout'                     => 'Log out',
-'userlogout'                 => 'Log out',
+'userlogout'                 => 'Sadasya logout',
 'notloggedin'                => 'Aap logged in nai hai',
 'nologin'                    => 'Account nai hai? $1.',
 'nologinlink'                => 'Nawaa account banao',
@@ -507,28 +512,28 @@ Sait aap password ke safalta se badal sia hoga nai to nawaa temporary password k
 'resetpass-temp-password'   => 'Kachcha password:',
 
 # Edit page toolbar
-'bold_sample'     => 'Bold text',
-'bold_tip'        => 'Bold text',
-'italic_sample'   => 'Italic text',
-'italic_tip'      => 'Italic text',
+'bold_sample'     => 'Motaa text',
+'bold_tip'        => 'Motaa text',
+'italic_sample'   => 'Tirchha akchhar',
+'italic_tip'      => 'Tirchha akchhar',
 'link_sample'     => 'Jorr ke title',
 'link_tip'        => 'Bhitari jorr',
-'extlink_sample'  => 'http://www.example.com link title',
+'extlink_sample'  => 'http://www.example.com jorr ke padwi',
 'extlink_tip'     => 'Bahari jorr (yaad rakhna http:// prefix)',
-'headline_sample' => 'Headline text',
+'headline_sample' => 'Khaas samaachar ke akchhar',
 'headline_tip'    => 'Duusra level ke headline',
 'math_sample'     => 'Hian pe formula insert karo',
-'math_tip'        => 'Mathematical formula (LaTeX)',
+'math_tip'        => 'Mathematiical niyam (LaTeX)',
 'nowiki_sample'   => 'Non-formatted text ke hian par insert karo',
 'nowiki_tip'      => 'Wiki bhasa ke anusaar badlao nahi karo',
-'image_tip'       => 'Embedded file',
+'image_tip'       => 'Jamawa gais suchi',
 'media_tip'       => 'File ke jorre waala',
 'sig_tip'         => 'Aapke signature time ke saathe',
 'hr_tip'          => 'Samthar line (bahut jaada nai kaam me laana)',
 
 # Edit pages
 'summary'                          => 'Sanchhipt:',
-'subject'                          => 'Subject/headline:',
+'subject'                          => 'Visay/khaas samachar:',
 'minoredit'                        => 'Ii chhota badlao hai',
 'watchthis'                        => 'Ii panna ke dhyaan rakho',
 'savearticle'                      => 'Save panna',
@@ -613,7 +618,7 @@ Iske abhi save nai karaa gais hai!'''",
 'userinvalidcssjstitle'            => "'''Warning:''' Koi skin \"\$1\" nai hai.
 Yaad rakhna ki custom .css aur .js panna owercase title use kare hai, jaise ki {{ns:user}}:Foo/monobook.css aur{{ns:user}}:Foo/Monobook.css nai.",
 'updated'                          => '(Update kar dewa gais hai)',
-'note'                             => "'''Note:'''",
+'note'                             => "'''Dhyan rakkho:'''",
 'previewnote'                      => "'''Ii khali ek jhalak dekhae hai; badlao abhi save nai bhae hai!'''",
 'previewconflict'                  => 'Ii preview uu text dekhae hai jon ki uppar ke text editing area me dekhai agar aap iske save karaa.',
 'session_fail_preview'             => "''' Maaf karna! Ham log aap ke badlao ke process nai kare paya hai due to a loss of session data.
@@ -639,10 +644,10 @@ Aap ke aapan badlao ke existing text me merge kare ke parri.
 '''Khali''' text in the upper text area  ke save karaa jai jab aap \"Save page\" ke press karega.",
 'yourtext'                         => 'Aap ke text',
 'storedversion'                    => 'Bachawa gais version',
-'nonunicodebrowser'                => "'''WARNING: Aap ke browser unicode compliant nai hai.
-A workaround is in place to allow you to safely edit pages: non-ASCII characters will appear in the edit box as hexadecimal codes.'''",
-'editingold'                       => "'''WARNING: Aap ii panna ke purana version ke badalata hai
-Agar aap iske save kar lia tab last badlao se abi tak ke changes will be lost.'''",
+'nonunicodebrowser'                => "'''CHETAUNI: Aap ke browser unicode ke nai maane hae.
+Ek workaround uu jagah hae jahan pe aap thik se panna ke badle sakta hae: non-ASCII akchhar edit box me hexadecimal codes dekhai.'''",
+'editingold'                       => "'''WARNING: Aap ii panna ke purana version ke badalata hae.'''
+Agar aap iske save kar lia tab last badlao se abi tak ke changes will be lost.",
 'yourdiff'                         => 'Antar',
 'copyrightwarning'                 => "Dhyann me rakho ki {{SITENAME}} ke sab yog daan $2 ($1 ke dekho aur kaankari khatir) ke niche dewa gae hai. Agar aap nai mangtaa ki aap ke likha gae koi chij ke duusra logan badle tab hain par nahii likho.<br />
 Aap ii bhi waada kartaa hai ki iske aap likha hai aur koi duusra jagah se copy nahi karaa hai.
@@ -651,8 +656,8 @@ Aap ii bhi waada kartaa hai ki iske aap likha hai aur koi duusra jagah se copy n
 Agar aap nai mangta ki koi aur aap ke yogdaan ke badle, tab aap hian par nai likho.<br />
 Aap ii bhi kasam khata hai ki aap iske apne se likha hai aur kahin se copy nai karaa hai (Aur jaankari khatir $1 ke dekho). 
 ''' COPYRIGHT WORK KE BINA AUNUMATI KE SUBMIT NAI KARNA!'''",
-'longpagewarning'                  => "'''Sawadhan: Ii panna $1 kilobytes lamba hai; kuch browsers sait etna barra panna ke khole nai pai.
-Meherbani kar ke ii page ke chotachota tukrra me kar do.'''",
+'longpagewarning'                  => "'''Chetauni:''' Ii panna $1 kilobytes lamba hae; kuch browsers sait etna barra panna ke khole nai pai.
+Meherbani kar ke ii panna ke chota chota tukrra me kar do.",
 'longpageerror'                    => "'''ERROR: Jon text aap submit karaa hai uu $1 kilobytes lamba hai, ii maximum $2 kilobytes se lamba hai.
 Iske save nai karaa jae sake hai.'''",
 'readonlywarning'                  => "'''WARNING: Database ke maintenance khatir band kar dewa gais hai, tab abhi aap aapan badlao ke save nai kare paega.
@@ -672,7 +677,7 @@ Administrator jon ki iske lock karis hai ii kaaran diis hai: $1",
 'edittools'                        => '<!-- Hian ke text edit aur upload forms ke niche dekhai. -->',
 'nocreatetitle'                    => 'Panna ke banae pe rukawat hai',
 'nocreatetext'                     => '{{SITENAME}} me nawaa panna banae ke rukawat hai.
-Aap pichhe jae ke ek panna jon hai ke sampadan kare sakta hai, nai to [[Special:UserLogin|log in or create an account]].',
+Aap pichhe jaae ke, ek panna jon hai, ke sampadan kare sakta hai, nai to [[Special:UserLogin|log in or create an account]].',
 'nocreate-loggedin'                => 'Aap ke nawaa panna banaae ke ijaajat nai hai.',
 'permissionserrors'                => 'Permissions Errors',
 'permissionserrorstext'            => 'Aap ke uu chij kare ke ijajat nai hai, ii {{PLURAL:$1|kaaran|kaaran}} khatir:',
@@ -694,18 +699,18 @@ Janae hai ki iske koi mitae dii hai.',
 Ii naam ke panna abhi hai.',
 
 # Parser/template warnings
-'expensive-parserfunction-warning'        => "'''Warning''': Ii panna me bahut jaada expensive parser function calls hai.
+'expensive-parserfunction-warning'        => "'''Chetauni''': Ii panna me bahut jaada expensive parser function calls hai.
 
 Iske $2 {{PLURAL:$2|call|calls}} se kamti hoe ke chaahi, {{PLURAL:$1|abhi hai $1 call|abhi hai $1 calls}}.",
 'expensive-parserfunction-category'       => 'Panna jisme bahut jaada expensive parser function calls hai',
-'post-expand-template-inclusion-warning'  => "'''Warning:''' Template include size bahut barraa hai.
-Some templates will not be included.",
+'post-expand-template-inclusion-warning'  => "'''Chetauni:''' Template include size bahut barraa hai.
+Kutch templates ke include nai karaa jaai.",
 'post-expand-template-inclusion-category' => 'Panna jon ki template include size se barra hai',
 'post-expand-template-argument-warning'   => 'Warning: Ii panna me kamti se kamti ek template argument hai jiske expansion size bahut barraa hai.
 Ii sab arguments ke omit kar dewa gais hai.',
 'post-expand-template-argument-category'  => 'Panna jisme omitted template arguments hai',
 'parser-template-loop-warning'            => 'Template loop ke pawa gais hai: [[$1]]',
-'parser-template-recursion-depth-warning' => 'Template recursion depth limit exceeded ($1)',
+'parser-template-recursion-depth-warning' => 'Template recursion depth limit se jaada hoe gais hae ($1)',
 
 # "Undo" feature
 'undo-success' => 'Ii badlao ke pahile jaise karaa jaae sake hai.
@@ -756,18 +761,18 @@ Try karo [[Special:Search|wiki me khije ke]] aur nawaa panna ke.',
 'rev-deleted-comment'         => '(comment ke hatae dewa gais hai)',
 'rev-deleted-user'            => '(username ke hatae dewa gais hai)',
 'rev-deleted-event'           => '(log action ke hatae dewa gais hai)',
-'rev-deleted-text-permission' => "Panna ke ii badlao ke '''mitae dewa gais hai'''.
+'rev-deleted-text-permission' => "Panna ke ii badlao ke '''mitae''' dewa gais hae.
 Iske baare me aur jaankari [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} deletion log] me saait hoi.",
 'rev-deleted-text-unhide'     => "Ii panna ke badlao ke '''mitae''' dewa gais hai.
-Iske baare me aur jaankari saait [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} deletion log me hoi].
-Ek administrator rahe se aap fir bhi [$1 view this revision] agar aap aage barrhe mangtaa hai tab.",
-'rev-deleted-text-view'       => "Panna ke ii badlao ke '''mitae dewa gais hai'''.
-Aap ek administrator hoe ke kaaran iske dekhe sakta hai; iske baare me aur jaankari [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} deletion log] me saait hoi.",
-'rev-deleted-no-diff'         => "Aap ii diff ke nai dekhe saktaa hai kahe ki ek badlao '''mitae dewa gais hai'''.
-[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} deletion log] me sait kuch aur jaankari hoi.",
-'rev-deleted-unhide-diff'     => "Ii diff me se ek badlao ke '''mitae dewa gais hai'''.
-Aur jaankari saait [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} deletion log] me hoi.
-Ek administrator hoe ke kaaran aap fir bhi [$1 view this diff] agar aap aage barrhe mangtaa hai tab.",
+Iske baare me aur jaankari saait [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} supression log me hoi].
+Ek administrator rahe se aap fir bhi [$1 ii badlao ke dekhe sakta hae] agar aap aage barrhe mangtaa hae tab.",
+'rev-deleted-text-view'       => "Panna ke ii badlao ke '''mitae''' dewa gais hai.
+Aap ek administrator hoe ke kaaran iske dekhe sakta hai; iske baare me aur jaankari [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} suppression log] me saait hoi.",
+'rev-deleted-no-diff'         => "Aap ii diff ke nai dekhe saktaa hai kahe ki ek badlao '''mitae''' dewa gais hae.
+[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} suppression log] me sait kuch aur jaankari hoi.",
+'rev-deleted-unhide-diff'     => "Ii diff me se ek badlao ke '''mitae''' dewa gais hae.
+Aur jaankari saait [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} suppression log] me hoi.
+Ek administrator hoe ke kaaran aap fir bhi [$1 ii diff ke dekhe sakta hae] agar aap aage barrhe mangtaa hai tab.",
 'rev-delundel'                => 'dekhao/lukao',
 'revisiondelete'              => 'Badlao ke mitao/nai mitao',
 'revdelete-nooldid-title'     => 'Target revision jon ki valid nai hai',
@@ -795,11 +800,11 @@ Meharbaani kar ke ii confirm karo ki aap ii chij kare mangta hai, aap iske natij
 'revdelete-hide-restricted'   => 'Ii rukawat ke administrator aur duusra log se lukao.',
 'revdelete-suppress'          => 'Sysops ke saathe saathe aur sab se data ke suppress karo',
 'revdelete-hide-image'        => 'File content ke lukao',
-'revdelete-unsuppress'        => 'Restored revisions me se rukawat hatao',
+'revdelete-unsuppress'        => 'Pahile jaise karaa gais badlao me se rukawat hatao',
 'revdelete-log'               => 'Comment ke log karo:',
 'revdelete-submit'            => 'Chuna gae badlao ke apply karo',
-'revdelete-logentry'          => 'badla gae revision visibility of [[$1]]',
-'logdelete-logentry'          => 'badla gais event visibility of [[$1]]',
+'revdelete-logentry'          => '[[$1]] ke badlao ke visibility ke badal dewa gais hai',
+'logdelete-logentry'          => '[[$1]] keevent visibility ke badal dewa gais hae',
 'revdelete-success'           => "'''Badlao dekhe khatir taiyaar hai.'''",
 'revdelete-failure'           => "'''Revision visibility set nai hoe sakis.'''
 $1",
@@ -2535,7 +2540,10 @@ Wahii line pe aur koi link exception consider karaa jai i.e. jahan par panna sak
 * focallength',
 
 # EXIF tags
-'exif-aperturevalue' => 'Aperture',
+'exif-imagewidth'       => 'Chaurrai',
+'exif-imagelength'      => 'Unchai',
+'exif-imagedescription' => 'Chapa ke padwi',
+'exif-aperturevalue'    => 'Aperture',
 
 # External editor support
 'edit-externally'      => 'Edit this file using an external application',

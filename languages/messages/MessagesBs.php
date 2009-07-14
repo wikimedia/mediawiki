@@ -306,7 +306,7 @@ $messages = array(
 
 # Dates
 'sunday'        => 'nedelja',
-'monday'        => 'ponedeljak',
+'monday'        => 'ponedjeljak',
 'tuesday'       => 'utorak',
 'wednesday'     => 'srijeda',
 'thursday'      => 'četvrtak',
@@ -486,6 +486,11 @@ $messages = array(
 'jumpto'            => 'Idi na:',
 'jumptonavigation'  => 'navigacija',
 'jumptosearch'      => 'traži',
+'view-pool-error'   => 'Žao nam je, serveris u trenutno preopterećeni.
+Previše korisnika pokušava da pregleda ovu stranicu.
+Molimo pričekajte trenutak prije nego što ponovno pokušate pristupiti ovoj stranici.
+
+$1',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'O projektu {{SITENAME}}',

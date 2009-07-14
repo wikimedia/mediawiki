@@ -102,6 +102,7 @@ $messages = array(
 'vector-view-history'        => 'Cazyawj lizsij',
 
 'errorpagetitle'   => 'Loengloek',
+'tagline'          => 'okcih {{SITENAME}}',
 'help'             => 'Bangcoh',
 'search'           => 'Cwmh',
 'searchbutton'     => 'Cwmh',
@@ -172,14 +173,15 @@ $messages = array(
 'viewsource' => 'Liuq lagh mae-nej',
 
 # Login and logout pages
-'yourname'     => 'Ciu bouxdeiz:',
-'yourpassword' => 'Mizmak：',
-'login'        => 'Dwnghluz',
-'userlogin'    => 'Daengh haeuj/Laeb bouxdeiz',
-'logout'       => 'Doiq ok',
-'userlogout'   => 'Doiq ok',
-'notloggedin'  => 'Maengx laezhaej',
-'nologinlink'  => 'Laeb bouxdeiz',
+'yourname'                => 'Ciu bouxdeiz:',
+'yourpassword'            => 'Mizmak：',
+'login'                   => 'Dwnghluz',
+'nav-login-createaccount' => 'dwngh haeuj/laebbaen canghu',
+'userlogin'               => 'Daengh haeuj/Laeb bouxdeiz',
+'logout'                  => 'Doiq ok',
+'userlogout'              => 'Doiq ok',
+'notloggedin'             => 'Maengx laezhaej',
+'nologinlink'             => 'Laeb bouxdeiz',
 
 # Edit pages
 'summary'            => 'Saegmangj:',
@@ -195,8 +197,14 @@ $messages = array(
 'editundo' => 'siu',
 
 # Search results
-'search-interwiki-more' => '（more）',
-'powersearch'           => 'Cwmh goeggiz',
+'searchresults'             => 'gietgoj ra',
+'searchresults-title'       => 'doiq "$1" gij gietgoj ra',
+'search-interwiki-more'     => '（more）',
+'search-mwsuggest-enabled'  => 'miz genyi',
+'search-mwsuggest-disabled' => 'mbouj miz genyi',
+'powersearch'               => 'Cwmh goeggiz',
+'powersearch-legend'        => 'Gauhgiz saeu',
+'powersearch-redir'         => 'Cungzdinghyiengq liedbiuj',
 
 # Preferences page
 'mypreferences'     => 'Doenghgaeq gou hae',
@@ -215,6 +223,9 @@ $messages = array(
 'minoreditletter' => 'n',
 'newpageletter'   => 'M',
 'boteditletter'   => 'g',
+
+# Recent changes linked
+'recentchangeslinked' => 'Lienh ok gaengaij',
 
 # Upload
 'upload'            => 'Cienz vwnzgen',
@@ -237,6 +248,7 @@ $messages = array(
 'randompage' => 'Mae zaihzex',
 
 # Miscellaneous special pages
+'nbytes'            => '$1 {{PLURAL:$1|cihciet|cihciet}}',
 'newpages'          => 'Yieb moq',
 'newpages-username' => 'Ciu bouxdeiz:',
 'move'              => 'Daen',
@@ -271,6 +283,7 @@ $messages = array(
 'restriction-move' => 'Caen',
 
 # Namespace form on various pages
+'namespace'      => 'ndawhoengq mingzcih:',
 'blanknamespace' => '（Cujyau）',
 
 # Contributions
@@ -297,11 +310,19 @@ $messages = array(
 'movedto'          => 'Caen bei',
 '1movedto2'        => '[[$1]] caen bei [[$2]]',
 'movereason'       => 'Haujgaemj',
+'revertmove'       => 'siu',
 
 # Tooltip help for the actions
 'tooltip-pt-preferences' => 'Doenghgaeq gou hae',
+'tooltip-ca-talk'        => 'Gvanhyih cingqfaenz yieb gij daojun',
+'tooltip-ca-history'     => 'yieb neix gij banj lizsij',
+'tooltip-search'         => 'Ra {{SITENAME}}',
 'tooltip-p-logo'         => 'Mae meh',
+'tooltip-n-mainpage'     => 'Raen Yiebdaeuz',
+'tooltip-n-randompage'   => 'Cang haeuj yieb seizgih',
+'tooltip-n-help'         => 'Cimh gouz bangcoh',
 'tooltip-t-upload'       => 'Cienz vwnzgen',
+'tooltip-ca-nstab-main'  => 'Cazyawj ndawyungz yieb',
 
 # Special:NewFiles
 'ilsubmit' => 'Cwmh',

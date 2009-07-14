@@ -318,6 +318,7 @@ $messages = array(
 'vector-namespace-mediawiki' => 'Pesanan',
 'vector-namespace-project'   => 'Laman projek',
 'vector-view-view'           => 'Baca',
+'actions'                    => 'Tindakan',
 
 # Metadata in edit box
 'metadata_help' => 'Metadata:',

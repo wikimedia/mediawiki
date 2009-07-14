@@ -901,7 +901,7 @@ Estes argumentos serán omitidos.',
 # "Undo" feature
 'undo-success' => 'A edición pode ser desfeita.
 Por favor, comprobe a comparación que aparece a continuación para confirmar que isto é o que desexa facer, despois, garde os cambios para desfacer a edición.',
-'undo-failure' => 'A edición non pode ser desfeita debido a un conflito con algunha das edicións intermedias.',
+'undo-failure' => 'Non se pode desfacer a edición debido a un conflito con algunha das edicións intermedias.',
 'undo-norev'   => 'A edición non se pode desfacer porque non existe ou foi eliminada.',
 'undo-summary' => 'Desfíxose a edición $1 de [[Special:Contributions/$2|$2]] ([[User talk:$2|conversa]])',
 

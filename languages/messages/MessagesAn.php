@@ -508,7 +508,8 @@ Comprebe si ha escrito bien o nombre u [[Special:UserLogin/signup|creye una nueb
 'nouserspecified'            => "Ha d'escribir un nombre d'usuario.",
 'wrongpassword'              => 'A palabra de paso endicata no ye correuta. Prebe unatra begada.',
 'wrongpasswordempty'         => 'No ha escrito garra palabra de paso. Prebe unatra begada.',
-'passwordtooshort'           => "A suya palabra de paso no ye conforme u ye masiau curta. Ha de tener como menimo {{PLURAL:$1|1 caráuter|$1 caráuters}} y no puede estar o suyo nombre d'usuario.",
+'passwordtooshort'           => 'A contraseña ye masiau curta. 
+Ha de tener á lo menos {{PLURAL:$1|1 caráuter|$1 caráuters}}.',
 'mailmypassword'             => 'Nimbiar una nueba palabra de paso por correu eletronico',
 'passwordremindertitle'      => 'Nueba palabra de paso temporal de {{SITENAME}}',
 'passwordremindertext'       => 'Belún (probablement busté, dende l\'adreza IP $1) demandó una nueba palabra de paso ta la suya cuenta en {{SITENAME}} ($4). S\'ha creyato una nueba palabra de paso temporal ta l\'usuario "$2", que ye "$3".
@@ -786,9 +787,9 @@ Prebe de [[Special:Search|mirar en o wiki]] atras pachinas relebants.",
 'rev-deleted-user'            => "(s'ha sacato iste nombre d'usuario)",
 'rev-deleted-event'           => "(Aizión borrata d'o rechistro)",
 'rev-deleted-text-permission' => "Ista bersión d'a pachina s'ha '''borrato'''.
-Puede trobar más detalles en o [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} rechistro de borratos].",
+Talment trobe más detalles en o [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} rechistro de borratos].",
 'rev-deleted-text-view'       => "Ista bersión d'a pachina s'ha '''borrato'''.
-La puet beyer porque ye almenistrador/a; puede trobar más detalles en o [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} rechistro de borratos].",
+Como almenistrador, la puet beyer; talment trobe más detalles en o [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} rechistro de borratos].",
 'rev-delundel'                => 'amostrar/amagar',
 'revisiondelete'              => 'Borrar/esfer borrau de bersions',
 'revdelete-nooldid-title'     => 'A bersión de destino no ye conforme',
@@ -799,15 +800,16 @@ La puet beyer porque ye almenistrador/a; puede trobar más detalles en o [{{full
 'revdelete-nologid-text'      => 'No ha endicau sobre qué ebento rechistrau quiere fer serbir ista funzión u bien no esiste a dentrada de rechistro que ha endicau.',
 'revdelete-selected'          => "'''{{PLURAL:$2|Bersión trigata|Bersions trigatas}} de [[:$1]]:'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Escaizimiento d'o rechistro trigato|Escaizimientos d'o rechistro trigatos}}:'''",
-'revdelete-text'              => "'''As bersions borratas encara aparixerán en o istorial y o rechistro d'a pachina, pero os suyos contenius no serán azesibles ta o publico.'''
+'revdelete-text'              => "'''As bersions y escaizimientos borratos encara apareixerán en o istorial d'a pachina y en o rechistros, pero bellas partes d'o suyo conteniu serán inaczesibles ta o publico.'''
+Atros almenistradors de {{SITENAME}} encara podrán azeder t'o conteniu amagato y podrán esfer o borrau á trabiés d'ista mesma interfaz, fueras de si s'estableixen restrizions adizionals.
 
-Atros almenistradors de {{SITENAME}} encara podrán azeder t'o contineiu amagato y podrán esfer o borrau á trabiés d'a mesma interfaz, fueras de si os operadors establen restrizions adizionals.",
+Por fabor confirme que ye mirando de fer ísto, que entiende as consecuenzias, y que lo ye fendo d'alcuerdo con [[{{MediaWiki:Policy-url}}|as politicas]].",
 'revdelete-legend'            => 'Establir as restrizions de bisibilidat:',
 'revdelete-hide-text'         => "Amagar o testo d'a bersión",
 'revdelete-hide-name'         => 'Amagar aizión y obchetibo',
 'revdelete-hide-comment'      => "Amagar comentario d'edizión",
 'revdelete-hide-user'         => "Amagar o nombre/l'adreza IP d'o editor",
-'revdelete-hide-restricted'   => 'Aplicar istas restrizions á os almenistradors y bloqueyar ista interfaz',
+'revdelete-hide-restricted'   => "Suprimir os datos d'os almenistradors igual como os d'a resta",
 'revdelete-suppress'          => "Sacar os datos d'os almenistradors igual como os d'a resta d'usuarios",
 'revdelete-hide-image'        => "Amagar o conteniu de l'archibo",
 'revdelete-unsuppress'        => "Sacar restrizions d'as bersions restauradas",
@@ -1028,13 +1030,23 @@ Asegure-se que iste cambio no crebará a continidat de l'istorial d'a pachina.",
 'recentchangesdays-max'     => '(masimo $1 {{PLURAL:$1|día|días}})',
 'recentchangescount'        => "Numero d'edizions que s'amostrarán, por defeuto, en as pachinas de zaguers cambeos, istorials y rechistros:",
 'savedprefs'                => "S'han alzato as suyas preferenzias.",
-'timezonelegend'            => 'Fuso orario',
+'timezonelegend'            => 'Fuso orario:',
 'localtime'                 => 'Ora local:',
 'timezoneuseserverdefault'  => "Usar a zona d'o serbidor",
 'timezoneuseoffset'         => 'Atra (espezifica a esferenzia)',
 'timezoneoffset'            => 'Esferenzia¹:',
 'servertime'                => 'A ora en o serbidor ye:',
 'guesstimezone'             => "Emplir-lo con a ora d'o nabegador",
+'timezoneregion-africa'     => 'Africa',
+'timezoneregion-america'    => 'America',
+'timezoneregion-antarctica' => 'Antartica',
+'timezoneregion-arctic'     => 'Artico',
+'timezoneregion-asia'       => 'Asia',
+'timezoneregion-atlantic'   => 'Oziano Atlantico',
+'timezoneregion-australia'  => 'Australia',
+'timezoneregion-europe'     => 'Europa',
+'timezoneregion-indian'     => 'Oziano Indico',
+'timezoneregion-pacific'    => 'Oziano Pazifico',
 'allowemail'                => "Autibar a rezepzión de correu d'atros usuarios",
 'prefs-searchoptions'       => 'Opzions de busca',
 'prefs-namespaces'          => 'Espazios de nombres',
@@ -1320,7 +1332,7 @@ Si encara quiere cargar ixe archibo, torne y faiga serbir un nuebo nombre. [[Fil
 'sourcefilename'              => "Nombre de l'archibo d'orichen:",
 'destfilename'                => "Nombre de l'archibo de destín:",
 'upload-maxfilesize'          => "Masima grandaria de l'archibo: $1",
-'watchthisupload'             => 'Cosirar ista pachina',
+'watchthisupload'             => 'Cosirar iste fichero',
 'filewasdeleted'              => 'Una archibo con iste mesmo nombre ya se cargó denantes y estió borrato dimpués. Abría de comprebar $1 antes de tornar á cargar-lo una atra begada.',
 'upload-wasdeleted'           => "'''Pare cuenta: Ye cargando un archibo que ya estió borrato d'antes más.'''
 
@@ -1963,7 +1975,7 @@ as pachinas que s'han bandalizato).",
 'ipboptions'                      => '2 oras:2 hours,1 día:1 day,3 días:3 days,1 semana:1 week,2 semanas:2 weeks,1 mes:1 month,3 meses:3 months,6 meses:6 months,1 año:1 year,ta cutio:infinite',
 'ipbotheroption'                  => 'atro',
 'ipbotherreason'                  => 'Razons diferens u adizionals',
-'ipbhidename'                     => "Amagar usuario en o rechistro de bloqueyos, a lista de bloqueyos autibos y a lista d'usuarios",
+'ipbhidename'                     => "Amagar o nombre d'usuario en edizions y listas",
 'ipbwatchuser'                    => "Cosirar as pachinas d'usuario y de descusión d'iste usuario",
 'ipballowusertalk'                => 'Premitir que iste usuario edite a suya pachina de descusión en o tiempo que ye bloqueyato',
 'ipb-change-block'                => "Rebloquyear á l'usuario con istas condizions",
@@ -2360,7 +2372,7 @@ $1",
 
 # Media information
 'mediawarning'         => "'''Pare cuenta''': Iste archibo puede contener codigo endino; si l'executa, podría meter en un contornillo a seguridat d'o suyo sistema.<hr />",
-'imagemaxsize'         => "Limitar as imachens en as pachinas de descripzión d'archibos á:",
+'imagemaxsize'         => "Limite de grandaria d'as imáchens:<br />''(ta pachinas de descripzión de fichers)''",
 'thumbsize'            => "Midas d'a miniatura:",
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|pachina|pachinas}}',
 'file-info'            => "(grandaria de l'archibo: $1; tipo MIME: $2)",
@@ -2713,7 +2725,7 @@ Iste codigo de confirmazión zircunduzirá en $4.',
 'scarytranscludetoolong'  => '[O URL ye masiau largo]',
 
 # Trackbacks
-'trackbackbox'      => 'Retrobinclos (trackbacks) ta iste articlo:<br />
+'trackbackbox'      => 'Retrobinclos (trackbacks) ta ista pachina:<br />
 $1',
 'trackbackremove'   => '([$1 Borrar])',
 'trackbacklink'     => 'Retrobinclo (Trackback)',
@@ -2859,13 +2871,14 @@ Escriba o nombre de l\'archibo sin o prefixo "{{ns:file}}:".',
 'intentionallyblankpage' => "Esta pachina s'ha deixato en blanco aldredes y se fa serbir ta fer prebatinas, ezt.",
 
 # External image whitelist
-'external_image_whitelist' => " #No faiga cambeos en ista linia<pre>
+'external_image_whitelist' => "  #Deixe ista linia sin cambiar-la<pre>
 #Meta debaixo fragmentos d'esprisions regulars (nomás a parte que be entre //)
 #Se mirará si istas concuerdan con os URLs d'imáchens esternas (hotlinked)
-#As que concuerden s'amostrarán como imáchens, en as que no, nomás s'amostrará un binclo t'a imachen
+#As que concorden s'amostrarán como imáchens, en as que no, nomás s'amostrará un binclo t'a imachen
 #As ringleras que prenzipian por «#» se consideran comentarios
+#Tot isto ye insensible á las mayusclas/minusclas
 
-#Meta toz os fragmentos de regex por denzima d'ista ringlera. No faiga cambeos en ista linia</pre>",
+#Meta toz os fragmentos de regex denzima d'ista ringlera. No faiga cambeos en ista linia</pre>",
 
 # Special:Tags
 'tag-filter'              => 'Filtrar as [[Special:Tags|etiquetas]]:',

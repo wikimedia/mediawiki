@@ -110,8 +110,8 @@ $messages = array(
 'tog-highlightbroken'         => 'Fuimmadda <a href="" class="new">cussì</a> li cullegamenti a pàgini inesisthenti (si disattibaddu: cussì<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Alliniamentu di li paràgrafi giusthifiggaddu',
 'tog-hideminor'               => "Cua li mudìfigghi minori i' l'ulthimi mudìfigghi",
-'tog-extendwatchlist'         => 'Ippaglia la funzioni abbaidaddi ippiziari musthrendi tutti li mudìfigghi appricabiri',
-'tog-usenewrc'                => 'Ulthimi mudìfigghi abanzaddi (dumanda JavaScript)',
+'tog-extendwatchlist'         => "Musthra tutti li mudìfigghi a li abbaidaddi ippiziari, nò soru l'ulthimi.",
+'tog-usenewrc'                => "Utirizza l'ulthimi mudìfigghi abanzaddi (dumanda JavaScript)",
 'tog-numberheadings'          => 'Numarazioni otomàtigga di li tìturi di sezzioni',
 'tog-showtoolbar'             => "Musthra barra di l'isthrumenti di mudìfigga (dumanda JavaScript)",
 'tog-editondblclick'          => 'Mudìfigga di li pàgini attrabessu dóppiu clic (dumanda JavaScript)',
@@ -271,7 +271,7 @@ Li sighenti cullegamenti so in linga ingrese:
 'deletethispage'    => 'Canzella chistha pàgina',
 'undelete_short'    => 'Ricùpara {{PLURAL:$1|una ribisioni|$1 ribisioni}}',
 'protect'           => 'Brocca',
-'protect_change'    => 'Mudìfigga prutizioni',
+'protect_change'    => 'ciamba',
 'protectthispage'   => 'Prutiggi chistha pàgina',
 'unprotect'         => 'Ibbrucca',
 'unprotectthispage' => 'Ibbrucca chistha pàgina',
@@ -340,6 +340,8 @@ Li sighenti cullegamenti so in linga ingrese:
 'editsection'             => 'mudifigga',
 'editold'                 => 'mudifigga',
 'viewsourceold'           => "visuarizza l'orìgini",
+'editlink'                => 'mudifigga',
+'viewsourcelink'          => "visuarizza l'orìgini",
 'editsectionhint'         => 'Mudìfigga la sezzioni $1',
 'toc'                     => 'Indizi',
 'showtoc'                 => 'musthra',
@@ -358,7 +360,7 @@ Li sighenti cullegamenti so in linga ingrese:
 'nstab-main'      => 'Pàgina',
 'nstab-user'      => 'Utenti',
 'nstab-media'     => 'File mùrthimediari',
-'nstab-special'   => 'Ippiziari',
+'nstab-special'   => 'Pàgina ippiziari',
 'nstab-project'   => 'Pàgina di saivvìziu',
 'nstab-image'     => 'Immàgina',
 'nstab-mediawiki' => 'Imbasciadda',
@@ -474,7 +476,7 @@ La registhrazioni è isthadda criadda currettamenti. No dimintiggà di passunari
 'wrongpasswordempty'         => "La paràura d'órdhini insiridda è biodda. Riprubà.",
 'passwordtooshort'           => "La paràura d'órdhini insiridda è troppu brebi.
 Débi cuntinì arumancu {{PLURAL:$1|1 caràtteri|$1 caràtteri}} e assé dibessa da l'innòmmu utenti.",
-'mailmypassword'             => "Invia la paràura d'órdhini via postha erettrònica",
+'mailmypassword'             => "Invia una noba paràura d'órdhini pa postha erettrònica",
 'passwordremindertitle'      => "Saivvìziu promimória paràura d'órdhini di {{SITENAME}}",
 'passwordremindertext'       => "Calchunu (forsi tu, cu' l'indirizzu IP \$1) à dumandaddu l'inviu d'una noba paràura d'órdhini pa l'intradda a {{SITENAME}} (\$4).
 La paràura d'órdhini pa l'utenti \"\$2\" è isthadda impusthadda a \"\$3\".
@@ -505,12 +507,12 @@ Si la registhrazioni è isthadda criadda pa un\'errori, pói ignorà chisth\'imb
 'loginlanguagelabel'         => 'Linga: $1',
 
 # Password reset dialog
-'resetpass'           => "Rimpustha la paràura d'órdhini",
+'resetpass'           => "Ciamba paràura d'órdhini",
 'resetpass_announce'  => "L'intradda è isthadda effettuadda cun un còdizi timpuràniu, inviaddu via postha erettrònica.
 
 Pa cumprità la registhrazioni è nezzessàriu impusthà una noba paràura d'órdhini inogghi:",
 'resetpass_text'      => '<!-- Aggiungi lu testhu inogghi -->',
-'resetpass_header'    => "Rimpustha paràura d'órdhini",
+'resetpass_header'    => "Ciamba paràura d'órdhini di la registhrazioni",
 'oldpassword'         => "Véccia paràura d'órdhini:",
 'newpassword'         => "Noba paràura d'órdhini:",
 'retypenew'           => "Turra a ischribì la noba paràura d'órdhini:",
@@ -786,6 +788,7 @@ Cunsulthà lu [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} rigi
 'nextn'                 => 'sighenti {{PLURAL:$1|$1}}',
 'viewprevnext'          => 'Vèdi ($1) ($2) ($3).',
 'searchhelp-url'        => 'Help:Indizi',
+'search-interwiki-more' => '(althru)',
 'searchrelated'         => 'curriraddi',
 'searchall'             => 'tutti',
 'showingresults'        => "Accó {{PLURAL:$1|màssimu '''1''' risulthaddu|màssimu li '''$1''' risulthaddi}} à partì da lu nùmaru #'''$2'''.",
@@ -902,6 +905,9 @@ Cunsulthà lu [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} rigi
 'rightslogentry' => "à mudìfiggaddu l'apparthinènzia di $1 da lu gruppu $2 a lu gruppu $3",
 'rightsnone'     => '(nisciunu)',
 
+# Associated actions - in the sentence "You do not have permission to X"
+'action-edit' => 'mudìfiggà chistha pàgina',
+
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|mudìfigga|mudìfigghi}}',
 'recentchanges'                     => 'Ulthimi mudìfigghi',
@@ -928,6 +934,7 @@ Cunsulthà lu [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} rigi
 'rc_categories'                     => 'Limita a li categuri (siparaddi da "|")',
 'rc_categories_any'                 => 'Cassisia',
 'newsectionsummary'                 => '/* $1 */ noba sezzioni',
+'rc-enhanced-hide'                  => 'Cua dettàgli',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Mudìfigghi curriraddi',
@@ -1048,11 +1055,12 @@ Pa piazeri verifigga si vói carriggà avveru chisthu file; inogghi v'è lu rigi
 'filehist-revert'           => 'turra che primma',
 'filehist-current'          => 'currenti',
 'filehist-datetime'         => 'Data/Ora',
+'filehist-thumb'            => 'Miniadduri',
 'filehist-user'             => 'Utenti',
 'filehist-dimensions'       => 'Misuri',
 'filehist-filesize'         => 'Misuri di lu file',
 'filehist-comment'          => 'Oggettu',
-'imagelinks'                => "Cullegamenti a l'immàgina",
+'imagelinks'                => 'Cullegamenti a lu file',
 'linkstoimage'              => "{{PLURAL:$1|La sighenti pàgina pùnta|Li sighenti $1 pàgini pùntani}} a l'immàgina:",
 'nolinkstoimage'            => "Nisciuna pàgina cunteni cullegamenti a l'immàgina.",
 'sharedupload'              => 'Chisthu file è unu carriggamentu cundibisu; pó assé dunca utirizaddu da più prugetti wiki.',
@@ -1216,6 +1224,9 @@ Pa piazeri verifigga si vói carriggà avveru chisthu file; inogghi v'è lu rigi
 'listusers-submit'   => 'Musthra',
 'listusers-noresult' => 'Nisciun utenti curripundi a li critéri impusthaddi.',
 
+# Special:Log/newusers
+'newuserlog-create-entry' => "s'è rigisthraddu/a abà",
+
 # Special:ListGroupRights
 'listgrouprights-members' => '(erencu di li membri)',
 
@@ -1367,9 +1378,9 @@ Pa piazzeri, cunfèimma chi vói canzillà avveru, ch'ài cumpresu li cunsiguèn
 'protect-locked-access'       => "Nò si diponi di li primmissi nezzessàri pa mudìfiggà lu libellu di prutizioni di la pàgina.
 L'impusthazioni currenti pa la pàgina so '''$1''':",
 'protect-cascadeon'           => "Chistha pàgina abà è broccadda parchí è incrusa {{PLURAL:$1|i' la sighenti pàgina, pa la quari|i' li sighenti pàgini, pa li quari}} è attiba la prutizioni ricussiba. È pussìbiri mudìfiggà lu libellu di prutizioni di la pàgina, ma l'impusthazioni reratibi a la prutuzioni ricussina nò sarani mudìfiggaddi.",
-'protect-default'             => '(pridifiniddu)',
+'protect-default'             => 'Autorizza tutti li utenti',
 'protect-fallback'            => 'È nezzessàriu lu primissu "$1"',
-'protect-level-autoconfirmed' => "Brocca pa l'utenti anònimi (semiprutizioni)",
+'protect-level-autoconfirmed' => "Brocca l'utenti nobi e anònimi",
 'protect-level-sysop'         => 'Soru amministhradori',
 'protect-summary-cascade'     => 'ricussiba',
 'protect-expiring'            => 'ischadènzia: $1 (UTC)',
@@ -1447,17 +1458,19 @@ $1",
 'sp-contributions-submit'      => 'Zercha',
 
 # What links here
-'whatlinkshere'       => 'Pùntani inogghi',
-'whatlinkshere-title' => 'Pàgini chi pùntani a "$1"',
-'whatlinkshere-page'  => 'Pàgina:',
-'linkshere'           => "Le sighenti pàgini cuntenani dei cullegamenti a '''[[:$1]]''':",
-'nolinkshere'         => "Nisciuna pàgina cunteni dei cullegamenti chi pùntani a '''[[:$1]]'''.",
-'nolinkshere-ns'      => "Nò vi so pàgini chi pùntani a '''[[:$1]]''' i' lu namespace sciubaraddu.",
-'isredirect'          => 'rinviu',
-'istemplate'          => 'incrusioni',
-'whatlinkshere-prev'  => '{{PLURAL:$1|prizzidenti|prizzidenti $1}}',
-'whatlinkshere-next'  => '{{PLURAL:$1|sighenti|sighenti $1}}',
-'whatlinkshere-links' => '← cullegamenti',
+'whatlinkshere'         => 'Pùntani inogghi',
+'whatlinkshere-title'   => 'Pàgini chi pùntani a "$1"',
+'whatlinkshere-page'    => 'Pàgina:',
+'linkshere'             => "Le sighenti pàgini cuntenani dei cullegamenti a '''[[:$1]]''':",
+'nolinkshere'           => "Nisciuna pàgina cunteni dei cullegamenti chi pùntani a '''[[:$1]]'''.",
+'nolinkshere-ns'        => "Nò vi so pàgini chi pùntani a '''[[:$1]]''' i' lu namespace sciubaraddu.",
+'isredirect'            => 'rinviu',
+'istemplate'            => 'incrusioni',
+'isimage'               => "cullegamentu a l'immàgina",
+'whatlinkshere-prev'    => '{{PLURAL:$1|prizzidenti|prizzidenti $1}}',
+'whatlinkshere-next'    => '{{PLURAL:$1|sighenti|sighenti $1}}',
+'whatlinkshere-links'   => '← cullegamenti',
+'whatlinkshere-filters' => 'Filthri',
 
 # Block/unblock
 'blockip'                     => 'Brocca utenti',
@@ -1546,16 +1559,15 @@ $1",
 'move-page-legend'        => 'Ippusthamentu di pàgina',
 'movepagetext'            => "Chishu mòdulu di rinominà una pàgina, ippusthendi tutta la cronologia soia a l'innòmmu nobu.
 La pàgina attuari sarà automatiggamenti un rinviu a lu nobu tìturu.
-I culleggamenti nò sarani aggiornaddi;
-verifigga chi l'ippusthamentu nò aggia criaddu doppi rinvi o rinvi erraddi.
-'''Ài la ripunsabiriddai chi li cullegamenti a la pàgina risthini curretti.'''
+I culleggamenti pudiani assé aggiornaddi.
+Poi isciubarà di nò lu fà, ma verifigga chi l'ippusthamentu nò aggia criaddu [[Special:DoubleRedirects|doppi rinvi]] o [[Special:BrokenRedirects|rinvi erraddi]]. Ài la ripunsabiriddai chi li cullegamenti a la pàgina risthini curretti.
 
 Nota chi la pàgina '''nò''' sarà ippusthadda si n'isisthi già una cu' lu nobu tìturu, a mancu chi nò sia biodda o un rinviu a lu vécciu tìturu, chena versioni prizzidenti.
 In casu d'errori i' l'ippusthamentu pói turrà immediatamenti a lu tìturu vécciu, e nò pussìbiri sobbraischribì pa errori una pàgina già esisthenti.
 
 '''ATTINZIONI!'''
-Un ciambamentu cussì forthi pó causà umbè di prubremi a tuttiganti.
-Azzirthati d'abé cumpresu li cunsiguènzi di l'ippusthamentu!",
+Un ciambamentu cussì forthi pó causà umbè di prubremi a tuttiganti; 
+azzirthati d'abé cumpresu li cunsiguènzi di l'ippusthamentu!",
 'movepagetalktext'        => "La reratiba pàgina di dischussioni sarà ippusthadda automatiggamenti umpari a la pàgina prinzipari, '''fora chi i' li casi sighenti:'''
 * l'ippusthamentu di la pàgina è intra tipi di pàgina dibessi
 * isisthi già una pàgina di dischussioni a lu nobu tìturu (nò biodda)
@@ -1662,17 +1674,17 @@ Tutti l'operazioni d'impurthazioni trans-wiki so rigisthraddi i' lu [[Special:Lo
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'La pàgina utenti tóia',
 'tooltip-pt-anonuserpage'         => 'La pàgina utenti di chistu indirizzu IP',
-'tooltip-pt-mytalk'               => 'La tóia pàgina di dischussioni',
+'tooltip-pt-mytalk'               => 'Pàgina di li tó dischussioni',
 'tooltip-pt-anontalk'             => "Dischussioni i' li mudìfigghi arriggaddi da chisthu indirizzu IP",
 'tooltip-pt-preferences'          => 'Li tó prifirènzi',
 'tooltip-pt-watchlist'            => "La listha di li pàgini ch'isthai tinendi sottu osseivvazioni",
-'tooltip-pt-mycontris'            => 'La listha di li tó cuntributi',
+'tooltip-pt-mycontris'            => 'Listha di li tó cuntributi',
 'tooltip-pt-login'                => 'La registhrazioni è cunsigliadda, puru si nò è ubbrigatória',
 'tooltip-pt-anonlogin'            => 'La registhrazioni è cunsigliadda, puru si nò è ubbrigatória.',
 'tooltip-pt-logout'               => 'Iscidda',
 'tooltip-ca-talk'                 => 'Vèdi li dischussioni reratibi a chistha pàgina',
 'tooltip-ca-edit'                 => "Pói mudìfiggà chistha pàgina. Pa piazeri usa lu buttoni d'antiprimma primma di saivvà",
-'tooltip-ca-addsection'           => 'Aggiungi un cummentu a chistha dischussioni',
+'tooltip-ca-addsection'           => 'Ischumenza una sezzioni noba',
 'tooltip-ca-viewsource'           => 'Chistha pàgina è prutiggidda, ma pói vidé lu còdizi soiu.',
 'tooltip-ca-history'              => 'Versioni prizzidenti di chistha pàgina',
 'tooltip-ca-protect'              => 'Prutiggi chistha pàgina',
@@ -1905,7 +1917,7 @@ So cunsidaraddi soru l'erenchi puntaddi (righi ch'ischumenzani cu' lu caràtteri
 
 # External editor support
 'edit-externally'      => 'Mudìfigga chistu file usendi un prugramma esthernu',
-'edit-externally-help' => "Pa maggiori infuimmazioni cunsultha l'[http://www.mediawiki.org/wiki/Manual:External_editors isthruzioni] (in ingresu).",
+'edit-externally-help' => "Pa maggiori infuimmazioni cunsulthà l'[http://www.mediawiki.org/wiki/Manual:External_editors isthruzioni] (in ingresu).",
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'tutti',

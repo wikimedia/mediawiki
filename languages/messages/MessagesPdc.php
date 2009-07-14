@@ -14,6 +14,9 @@
 $fallback = 'de';
 
 $messages = array(
+# User preference toggles
+'tog-nocache' => 'Ken Bledder-Scheier',
+
 'underline-always' => 'allfart',
 'underline-never'  => 'nie net',
 
@@ -69,8 +72,13 @@ $messages = array(
 'nov'           => 'Nov.',
 'dec'           => 'Dis.',
 
+# Categories related messages
+'category_header'        => 'Bledder in Kategorie „$1“',
+'listingcontinuesabbrev' => '(weiter)',
+
 'about'         => 'Iwwer',
 'article'       => 'Blatt',
+'newwindow'     => '(in em nei Fenschder)',
 'cancel'        => 'Zerick',
 'moredotdotdot' => 'Mehr…',
 'mypage'        => 'Mei Blatt',
@@ -80,21 +88,27 @@ $messages = array(
 'and'           => '&#32;unn',
 
 # Cologne Blue skin
+'qbfind'         => 'Finne',
 'qbedit'         => 'Ennere',
+'qbpageoptions'  => 'Des Blatt',
 'qbmyoptions'    => 'Mei Bledder',
 'qbspecialpages' => 'Besunnere Bledder',
 'faq'            => 'FAQ',
 'faqpage'        => 'Project:FAQ',
 
 # Vector skin
-'vector-action-delete'   => 'Lösche',
-'vector-action-move'     => 'Ziehe',
-'vector-namespace-image' => 'File',
-'vector-namespace-main'  => 'Blatt',
-'vector-namespace-talk'  => 'Gschwetz',
-'vector-namespace-user'  => 'Yuuser-Blatt',
-'vector-view-edit'       => 'Ennere',
+'vector-action-delete'     => 'Lösche',
+'vector-action-move'       => 'Ziehe',
+'vector-namespace-help'    => 'Hilfblatt',
+'vector-namespace-image'   => 'File',
+'vector-namespace-main'    => 'Blatt',
+'vector-namespace-special' => 'Besunneres Blatt',
+'vector-namespace-talk'    => 'Gschwetz',
+'vector-namespace-user'    => 'Yuuser-Blatt',
+'vector-view-edit'         => 'Ennere',
+'vector-view-view'         => 'Lese',
 
+'errorpagetitle'   => 'Mischteek',
 'returnto'         => 'Zerick zum Blatt $1.',
 'tagline'          => 'Vun {{SITENAME}}',
 'help'             => 'Hilf',
@@ -104,7 +118,11 @@ $messages = array(
 'searcharticle'    => 'Blatt',
 'history'          => 'Gschicht',
 'history_short'    => 'Gschicht',
+'info_short'       => 'Information',
+'printableversion' => 'Version zum Drucke',
+'print'            => 'Drucke',
 'edit'             => 'Ennere/Tscheensche',
+'editthispage'     => 'Des Blatt ennere',
 'delete'           => 'Lösche',
 'deletethispage'   => 'Des Blatt lösche',
 'protect'          => 'Schutz',
@@ -118,7 +136,9 @@ $messages = array(
 'toolbox'          => 'Schapp',
 'otherlanguages'   => 'Annere Schprooche',
 'redirectedfrom'   => '(Weiterleitung vun $1)',
+'redirectpagesub'  => 'Weiterleitung',
 'lastmodifiedat'   => 'Des Blatt iss letscht gennert am $1 um $2 Uhr.',
+'protectedpage'    => 'Blatt mit Schutz',
 'jumptonavigation' => 'Faahre-Gnepp',
 'jumptosearch'     => 'guuck uff',
 
@@ -126,11 +146,16 @@ $messages = array(
 'aboutsite'            => 'Iwwer {{SITENAME}}',
 'aboutpage'            => 'Project:Iwwer_{{SITENAME}}',
 'edithelp'             => 'Hilf zum Ennere',
+'edithelppage'         => 'Help:Tscheensche',
 'helppage'             => 'Help:Hilf',
 'mainpage'             => 'Haaptblatt',
 'mainpage-description' => 'Haaptblatt',
 'portal'               => 'Gmeeschafts-Portal',
 'portal-url'           => 'Project:Gmeeschafts-Portal',
+
+'versionrequired'     => 'Muss Version $1 vun MediaWiki sei',
+'versionrequiredtext' => 'Muss Version $1 vun MediaWiki sei, fer es Blatt zu yuuse.
+Guuck aach [[Special:Version|Versionsblatt]]',
 
 'ok'                      => 'OK',
 'retrievedfrom'           => 'Vun „$1“',
@@ -141,7 +166,9 @@ $messages = array(
 'editsection'             => 'Ennere',
 'editold'                 => 'Ennere',
 'editlink'                => 'ennere',
+'editsectionhint'         => 'Abschnitt ennere: $1',
 'toc'                     => 'Lischt vum Inhalt',
+'feedlinks'               => 'Feed:',
 'site-rss-feed'           => 'RSS-Feed fer $1',
 'site-atom-feed'          => 'Atom-Feed fer $1',
 'page-rss-feed'           => 'RSS-Feed fer „$1“',
@@ -152,28 +179,50 @@ $messages = array(
 'nstab-main'    => 'Blatt',
 'nstab-user'    => 'Yuuser-Blatt',
 'nstab-special' => 'Besunneres Blatt',
+'nstab-project' => 'Project-Blatt',
 'nstab-image'   => 'File',
 'nstab-help'    => 'Hilf',
 
 # General errors
-'viewsourcefor' => 'fer $1',
+'error'               => 'Mischteek',
+'missingarticle-rev'  => '(Version: $1)',
+'viewsourcefor'       => 'fer $1',
+'ns-specialprotected' => 'Besunnere Bledder sinn net zum Ennere.',
 
 # Login and logout pages
-'yourname'           => 'Yuuser-Naame:',
-'login'              => 'Kumm nei',
-'logout'             => 'Geh naus',
-'userlogout'         => 'Geh naus',
-'gotaccountlink'     => 'Kumm nei',
-'loginlanguagelabel' => 'Schprooch: $1',
+'yourname'                => 'Yuuser-Naame:',
+'yourpassword'            => 'Paesswatt:',
+'yourpasswordagain'       => 'Paesswatt noch eemol:',
+'yourdomainname'          => 'Dei Domain:',
+'login'                   => 'Kumm nei',
+'nav-login-createaccount' => 'Kumm nei',
+'userlogin'               => 'Kumm nei',
+'logout'                  => 'Geh naus',
+'userlogout'              => 'Geh naus',
+'gotaccountlink'          => 'Kumm nei',
+'createaccountmail'       => 'iwwer E-Mail',
+'loginlanguagelabel'      => 'Schprooch: $1',
+
+# Password reset dialog
+'oldpassword' => 'Aldes Paesswatt:',
+'newpassword' => 'Neies Paesswatt:',
+
+# Edit page toolbar
+'link_tip'    => 'Gleecher',
+'extlink_tip' => 'Gewebbgleecher (acht uff http://)',
 
 # Edit pages
-'minoredit'       => 'Nur gleene Ennerunge gemacht',
+'minoredit'       => 'Nur gleene Enneringe gemacht',
 'watchthis'       => 'Watsch des Blatt',
+'showdiff'        => 'Enneringe zeige',
 'blockednoreason' => 'ken Grund gewwe',
 'loginreqlink'    => 'kumm nei',
 'newarticle'      => '(Nei)',
 'note'            => "'''Hieweis:'''",
 'editing'         => '$1 ennere',
+'editingsection'  => 'Ennere vun $1 (Abschnitt)',
+'editingcomment'  => 'Ennere vun $1 (Neier Abschnitt)',
+'editconflict'    => 'Druwwel beim Ennere: $1',
 
 # History pages
 'revisionasof'     => 'Version vum $2, $3 Uhr',
@@ -185,16 +234,27 @@ $messages = array(
 'historyempty'     => '(leer)',
 
 # Revision deletion
+'rev-deleted-user'           => '(Yuuser-Naame gelöscht)',
 'revdelete-show-file-submit' => 'Ya',
+'revdelete-uname'            => 'Yuuser-Naame',
 'revdelete-log-message'      => '$1 fer $2 {{PLURAL:$2|Version|Versione}}',
 
 # History merging
 'mergehistory-reason' => 'Grund:',
 
 # Diffs
-'diff-changedto'  => 'tscheenscht zu $1',
-'diff-with-final' => '&#32;unn $1 $2',
-'diff-table'      => "en '''Tabell'''",
+'editundo'          => 'zerick',
+'diff-styleadded'   => '$1-Style dezu geduh',
+'diff-added'        => '$1 dezu geduh',
+'diff-changedto'    => 'tscheenscht zu $1',
+'diff-styleremoved' => '$1-Style gelöscht',
+'diff-with'         => '&#32;mit $1 $2',
+'diff-with-final'   => '&#32;unn $1 $2',
+'diff-height'       => 'Heeh',
+'diff-table'        => "en '''Tabell'''",
+'diff-img'          => "en '''Bild'''",
+'diff-a'            => "en '''Gleecher'''",
+'diff-b'            => "'''fett'''",
 
 # Search results
 'prevn'                    => '{{PLURAL:$1|letscht|letscht $1}}',
@@ -202,21 +262,30 @@ $messages = array(
 'viewprevnext'             => 'Zeige ($1) ($2) ($3)',
 'searchhelp-url'           => 'Help:Hilf',
 'search-result-size'       => '$1 ({{PLURAL:$2|1 Wadd|$2 Wadde}})',
+'search-redirect'          => '(Weiterleitung vun „$1“)',
+'search-section'           => '(Abschnitt $1)',
+'search-suggest'           => 'Iss „$1“ gmeent?',
 'search-interwiki-caption' => 'Schweschder Projects',
 'search-interwiki-more'    => '(weidere)',
 'searchall'                => 'all',
 'powersearch'              => 'Guuck uff',
 'powersearch-redir'        => 'Lischt vun Weiterleitunge',
 'powersearch-field'        => 'Such fer',
+'powersearch-toggleall'    => 'All',
 'powersearch-togglenone'   => 'Ken',
+'search-external'          => 'Guuck im Gewebb',
 
 # Quickbar
 'qbsettings-none' => 'Ken',
 
 # Preferences page
 'preferences'              => 'paerseenlich Profil',
+'changepassword'           => 'Paesswatt ennere',
+'prefs-personal'           => 'Yuuser Profile',
 'prefs-watchlist'          => 'Watsch-Lischt',
 'prefs-watchlist-days'     => 'Daage in de Watsch-Lischt:',
+'prefs-resetpass'          => 'Paesswatt ennere',
+'prefs-editing'            => 'Ennere',
 'searchresultshead'        => 'Guuck uff',
 'timezoneregion-africa'    => 'Afrikaa',
 'timezoneregion-america'   => 'Amerikaa',
@@ -225,9 +294,15 @@ $messages = array(
 'timezoneregion-europe'    => 'Eiropaa',
 'prefs-namespaces'         => 'Blatznaame',
 'username'                 => 'Yuuser-Naame:',
+'uid'                      => 'Yuuser-ID:',
+'prefs-memberingroups'     => 'Mitglied vun de {{PLURAL:$1|Yuuser-Druppe|Yuuser-Druppe}}:',
 'yourlanguage'             => 'Schprooch:',
 'yourgender'               => 'Geschlecht:',
 'gender-female'            => 'Weiblich',
+
+# User rights
+'userrights-editusergroup' => 'Mitgliedschaft vun Yuuser ennere',
+'userrights-groupsmember'  => 'Mitglied vun:',
 
 # Groups
 'group'      => 'Druppe:',
@@ -242,6 +317,7 @@ $messages = array(
 'grouppage-bot'  => '{{ns:project}}:Bots',
 
 # Rights
+'right-read'     => 'Bledder lese',
 'right-edit'     => 'Bledder ennere',
 'right-move'     => 'Bledder ziehe',
 'right-writeapi' => 'Yuus vun write API',
@@ -251,22 +327,25 @@ $messages = array(
 'rightsnone' => '(ken)',
 
 # Associated actions - in the sentence "You do not have permission to X"
+'action-read'   => 'es Blatt zu lese',
 'action-edit'   => 'des Blatt zu ennere',
 'action-move'   => 'des Blatt zu ziehe',
 'action-delete' => 'des Blatt zu lösche',
 
 # Recent changes
-'nchanges'        => '$1 {{PLURAL:$1|Ennerung|Ennerunge}}',
-'recentchanges'   => 'Was mer letscht geduh henn',
-'rcshowhideminor' => 'Gleene Ennerunge $1',
-'rcshowhidebots'  => 'Bots $1',
-'rcshowhideanons' => 'IP-Yuuser $1',
-'rcshowhidemine'  => 'Mei Ardickele $1',
-'rclinks'         => 'Zeig die letscht $1 Ennerungen vun de letscht $2 Daag.<br />$3',
-'hist'            => 'Gschicht',
-'minoreditletter' => 'g',
-'newpageletter'   => 'N',
-'boteditletter'   => 'B',
+'nchanges'          => '$1 {{PLURAL:$1|Ennerung|Enneringe}}',
+'recentchanges'     => 'Was mer letscht geduh henn',
+'rcshowhideminor'   => 'Gleene Enneringe $1',
+'rcshowhidebots'    => 'Bots $1',
+'rcshowhideanons'   => 'IP-Yuuser $1',
+'rcshowhidemine'    => 'Mei Ardickele $1',
+'rclinks'           => 'Zeig die letscht $1 Enneringe vun de letscht $2 Daag.<br />$3',
+'hist'              => 'Gschicht',
+'minoreditletter'   => 'g',
+'newpageletter'     => 'N',
+'boteditletter'     => 'B',
+'rc_categories_any' => 'All',
+'newsectionsummary' => 'Neier Abschnitt /* $1 */',
 
 # Recent changes linked
 'recentchangeslinked-page' => 'Blatt:',
@@ -283,6 +362,7 @@ $messages = array(
 # File description page
 'filehist-deleteall' => 'All Versione lösche',
 'filehist-deleteone' => 'Sell Version lösche',
+'filehist-revert'    => 'zerick',
 'filehist-datetime'  => 'Version vum',
 'filehist-user'      => 'Yuuser',
 'filehist-comment'   => 'Comment',
@@ -290,6 +370,7 @@ $messages = array(
 
 # File reversion
 'filerevert-comment' => 'Grund:',
+'filerevert-submit'  => 'Zerick',
 
 # File deletion
 'filedelete'         => 'Lösche „$1“',
@@ -300,16 +381,23 @@ $messages = array(
 'randompage' => 'Ennich Ardickel',
 
 # Statistics
-'statistics-pages' => 'Bledder',
+'statistics'              => 'Nummere',
+'statistics-header-edits' => 'Nummere vun Enneringe',
+'statistics-header-users' => 'Nummere vun Yuuser',
+'statistics-pages'        => 'Bledder',
+
+'double-redirect-fixer' => 'Xqbot',
 
 'brokenredirects-edit'   => 'ennere',
 'brokenredirects-delete' => 'lösche',
 
 # Miscellaneous special pages
 'nbytes'            => '$1 {{PLURAL:$1|Byte|Bytes}}',
+'nlinks'            => '{{PLURAL:$1|1 Gleecher|$1 Gleecher}}',
 'shortpages'        => 'Glee Bledder',
 'longpages'         => 'Grosse Bledder',
 'listusers'         => 'Lischt vun Yuuser',
+'usereditcount'     => '$1 {{PLURAL:$1|Ennerung|Enneringe}}',
 'newpages'          => 'Neie Bledder',
 'newpages-username' => 'Yuuser-Naame:',
 'ancientpages'      => 'Eldere Bledder',
@@ -335,6 +423,9 @@ $messages = array(
 'linksearch'    => 'Gewebbgleecher',
 'linksearch-ns' => 'Blatznaame:',
 
+# Special:ListUsers
+'listusers-noresult' => 'Ken Yuuser gfunne.',
+
 # Special:ListGroupRights
 'listgrouprights-group' => 'Druppe',
 
@@ -349,11 +440,13 @@ $messages = array(
 'watch'         => 'watsche',
 'watchthispage' => 'watsch des Blatt',
 'unwatch'       => 'Nimmi watsche',
-'wlshowlast'    => 'Zeig die Ennerunge vun de letscht $1 Schtund, $2 Daag odder $3.',
+'wlshowlast'    => 'Zeig die Enneringe vun de letscht $1 Schtund, $2 Daag odder $3.',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Watsche…',
 'unwatching' => 'Nimmi watsche...',
+
+'enotif_impersonal_salutation' => '{{SITENAME}}-Yuuser',
 
 # Delete
 'deletepage'             => 'Blatt lösche',
@@ -368,7 +461,8 @@ $messages = array(
 
 # Protect
 'protectcomment'         => 'Grund:',
-'protect-expiry-options' => '1 Stund:1 hour,1 Daag:1 day,1 Woch:1 week,2 Woche:2 weeks,1 Munet:1 month,3 Munede:3 months,6 Munede:6 months,1 Yaar:1 year,Fer immer:infinite',
+'protect-default'        => 'All Yuuser',
+'protect-expiry-options' => '1 Schtund:1 hour,1 Daag:1 day,1 Woch:1 week,2 Woche:2 weeks,1 Munet:1 month,3 Munede:3 months,6 Munede:6 months,1 Yaar:1 year,Fer immer:infinite',
 'pagesize'               => '(Bytes)',
 
 # Restrictions (nouns)
@@ -376,8 +470,9 @@ $messages = array(
 'restriction-move' => 'Ziehe',
 
 # Undelete
-'undeletecomment'        => 'Grund:',
-'undelete-search-submit' => 'Guuck uff',
+'undeletecomment'           => 'Grund:',
+'undelete-search-submit'    => 'Guuck uff',
+'undelete-show-file-submit' => 'Ya',
 
 # Namespace form on various pages
 'namespace'      => 'Blatznaame:',
@@ -405,7 +500,7 @@ $messages = array(
 # Block/unblock
 'ipbreason'          => 'Grund:',
 'ipbreasonotherlist' => 'Annerer Grund',
-'ipboptions'         => '2 Stund:2 hours,1 Daag:1 day,3 Daag:3 days,1 Woch:1 week,2 Woche:2 weeks,1 Munet:1 month,3 Munede:3 months,6 Monate:6 months,1 Yaar:1 year,Fer immer:infinite',
+'ipboptions'         => '2 Schtund:2 hours,1 Daag:1 day,3 Daag:3 days,1 Woch:1 week,2 Woche:2 weeks,1 Munet:1 month,3 Munede:3 months,6 Monate:6 months,1 Yaar:1 year,Fer immer:infinite',
 'ipbotheroption'     => 'Anneres',
 'ipblocklist-submit' => 'Guuck uff',
 'infiniteblock'      => 'fer immer',
@@ -413,10 +508,15 @@ $messages = array(
 'contribslink'       => 'Ardickele',
 
 # Move page
-'move-page'  => '„$1“ ziehe',
-'move-watch' => 'watsch des Blatt',
-'1movedto2'  => 'hot „[[$1]]“ nooch „[[$2]]“ gezoge',
-'movereason' => 'Grund:',
+'move-page'               => '„$1“ ziehe',
+'move-page-legend'        => 'Blatt ziehe',
+'movearticle'             => 'Blatt ziehe:',
+'move-watch'              => 'watsch des Blatt',
+'movepagebtn'             => 'Blatt ziehe',
+'1movedto2'               => 'hot „[[$1]]“ nooch „[[$2]]“ gezoge',
+'movereason'              => 'Grund:',
+'revertmove'              => 'zerick ziehe',
+'delete_and_move_confirm' => 'Ya, es Blatt lösche',
 
 # Namespace 8 related
 'allmessagesname' => 'Naame',
@@ -431,21 +531,30 @@ $messages = array(
 'tooltip-pt-logout'       => 'Geh naus',
 'tooltip-ca-delete'       => 'Des Blatt lösche',
 'tooltip-ca-move'         => 'Des Blatt ziehe',
+'tooltip-search'          => 'Guuck uff {{SITENAME}}',
 'tooltip-p-logo'          => 'Haaptblatt',
 'tooltip-t-contributions' => 'Lischt von Ardickele vun dem Yuuser zeige',
 'tooltip-t-specialpages'  => 'Lischt vun alle besunnere Bledder',
+
+# Attribution
+'siteuser' => '{{SITENAME}}-Yuuser $1',
+'others'   => 'annere',
 
 # Media information
 'widthheightpage' => '$1×$2, {{PLURAL:$3|1 Blatt|$3 Bledder}}',
 
 # Special:NewFiles
 'showhidebots' => '(Bots $1)',
+'noimages'     => 'Ken Date gfunne.',
 'ilsubmit'     => 'Guuck uff',
 
 # EXIF tags
+'exif-imagelength' => 'Leng',
 'exif-software'    => 'Geyuust Software',
 'exif-usercomment' => 'Comments vun Yuuser',
 'exif-gpsaltitude' => 'Heech',
+
+'exif-subjectdistance-value' => '$1 Meter',
 
 'exif-meteringmode-255' => 'Net bekannt',
 
@@ -466,6 +575,10 @@ $messages = array(
 
 # action=purge
 'confirm_purge_button' => 'OK',
+
+# Separators for various lists, etc.
+'ellipsis' => '…',
+'percent'  => '$1&nbsp;%',
 
 # Multipage image navigation
 'imgmultipageprev' => '← letscht Blatt',
@@ -494,8 +607,12 @@ $messages = array(
 'version-version'          => '(Version $1)',
 'version-software-version' => 'Version',
 
+# Special:FilePath
+'filepath-submit' => 'Paad',
+
 # Special:SpecialPages
 'specialpages'                 => 'Besunnere Bledder',
+'specialpages-group-login'     => 'Kumm nei',
 'specialpages-group-pages'     => 'Lischde vun Bledder',
 'specialpages-group-pagetools' => 'Gscharr fer Bledder',
 'specialpages-group-spam'      => 'Spam-Gscharr',
@@ -505,9 +622,10 @@ $messages = array(
 
 # Special:Tags
 'tags-edit'     => 'ennere',
-'tags-hitcount' => '$1 {{PLURAL:$1|Ennerung|Ennerunge}}',
+'tags-hitcount' => '$1 {{PLURAL:$1|Ennerung|Enneringe}}',
 
 # HTML forms
+'htmlform-reset'               => 'Enneringe zerick nemme',
 'htmlform-selectorother-other' => 'Annere',
 
 );

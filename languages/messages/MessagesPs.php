@@ -158,25 +158,29 @@ $defaultUserOptionOverrides = array(
 
 $messages = array(
 # User preference toggles
-'tog-underline'            => 'کرښنې تړنې:',
-'tog-hideminor'            => 'په وروستيو بدلونو کې وړې سمادېدنې پټول',
-'tog-hidepatrolled'        => 'په وروستيو بدلونونو کې څارل شوې سمونې پټول',
-'tog-showtoolbar'          => 'د سمادولو توکپټه ښکاره کول (جاواسکرېپټ)',
-'tog-rememberpassword'     => 'زما پټنوم پدې کمپيوټر په ياد ولره!',
-'tog-watchcreations'       => 'هغه مخونه چې زه يې جوړوم، زما کتلي لړليک کې ورګډ کړه',
-'tog-watchdefault'         => 'هغه مخونه چې زه يې سمادوم، زما کتلي لړليک کې ورګډ کړه',
-'tog-watchmoves'           => 'هغه مخونه چې زه يې لېږدوم، زما کتلي لړليک کې ورګډ کړه',
-'tog-watchdeletion'        => 'هغه مخونه چې زه يې ړنګوم، زما کتلي لړليک کې ورګډ کړه',
-'tog-previewontop'         => 'د سمون بکس نه دمخه مخکتنه ښکاره کول',
-'tog-previewonfirst'       => 'په لومړي سمون کې مخکتنه ښکاره کول',
-'tog-enotifwatchlistpages' => 'هر کله چې زما په کتلي لړليک کې يو مخ بدلون مومي نو ما ته دې برېښليک راشي.',
-'tog-enotifusertalkpages'  => 'کله چې زما د خبرو اترو په مخ کې بدلون پېښېږي نو ما ته دې يو برېښليک ولېږلی شي.',
-'tog-enotifminoredits'     => 'که په مخونو کې وړې سمادېدنې هم کېږي نو ماته دې برېښليک ولېږل شي.',
-'tog-watchlisthideown'     => 'له کتنلړليک نه زما سمونې پټول',
-'tog-watchlisthideminor'   => 'په کتنلړليک کې وړې سمونې پټول',
-'tog-ccmeonemails'         => 'هغه برېښليکونه چې زه يې نورو ته لېږم، د هغو يوه کاپي دې ماته هم راشي',
-'tog-diffonly'             => 'د توپيرونو نه لاندې د مخ مېنځپانګه پټول',
-'tog-showhiddencats'       => 'پټې وېشنيزې ښکاره کول',
+'tog-underline'              => 'کرښنې تړنې:',
+'tog-hideminor'              => 'په وروستيو بدلونو کې وړې سمادېدنې پټول',
+'tog-hidepatrolled'          => 'په وروستيو بدلونونو کې څارل شوې سمونې پټول',
+'tog-showtoolbar'            => 'د سمادولو توکپټه ښکاره کول (جاواسکرېپټ)',
+'tog-rememberpassword'       => 'زما پټنوم پدې کمپيوټر په ياد ولره!',
+'tog-watchcreations'         => 'هغه مخونه چې زه يې جوړوم، زما کتنلړليک کې ورګډ کړه',
+'tog-watchdefault'           => 'هغه مخونه چې زه يې سموم، زما کتنلړليک کې ورګډ کړه',
+'tog-watchmoves'             => 'هغه مخونه چې زه يې لېږدوم، زما کتنلړليک کې ورګډ کړه',
+'tog-watchdeletion'          => 'هغه مخونه چې زه يې ړنګوم، زما کتنلړليک کې ورګډ کړه',
+'tog-previewontop'           => 'د سمون بکس نه دمخه مخکتنه ښکاره کول',
+'tog-previewonfirst'         => 'په لومړي سمون کې مخکتنه ښکاره کول',
+'tog-enotifwatchlistpages'   => 'کله چې زما کتنلړليک کې يو مخ بدلون مومي نو ما ته دې برېښليک راشي',
+'tog-enotifusertalkpages'    => 'کله چې زما د خبرو اترو په مخ کې بدلون پېښېږي نو ما ته دې يو برېښليک ولېږلی شي.',
+'tog-enotifminoredits'       => 'کله چې په مخونو کې وړې سمونې کېږي نو ماته دې برېښليک ولېږل شي',
+'tog-watchlisthideown'       => 'په کتنلړليک کې زما سمونې پټول',
+'tog-watchlisthidebots'      => 'په کتنلړليک کې د باټ سمونې پټول',
+'tog-watchlisthideminor'     => 'په کتنلړليک کې وړې سمونې پټول',
+'tog-watchlisthideliu'       => 'په کتنلړليک کې د ثبت شويو کارنانو سمونې پټول',
+'tog-watchlisthideanons'     => 'په کتنلړليک کې د ورکنومو کارنانو سمونې پټول',
+'tog-watchlisthidepatrolled' => 'په کتنلړليک کې څارل شوې سمونې پټول',
+'tog-ccmeonemails'           => 'هغه برېښليکونه چې زه يې نورو ته لېږم، د هغو يوه کاپي دې ماته هم راشي',
+'tog-diffonly'               => 'د توپيرونو نه لاندې د مخ مېنځپانګه پټول',
+'tog-showhiddencats'         => 'پټې وېشنيزې ښکاره کول',
 
 'underline-always' => 'تل',
 'underline-never'  => 'هېڅکله',
@@ -276,17 +280,22 @@ $messages = array(
 'vector-action-delete'       => 'ړنګول',
 'vector-action-move'         => 'لېږدول',
 'vector-action-protect'      => 'پروژه',
+'vector-action-undelete'     => 'ناړنګول',
 'vector-namespace-category'  => 'وېشنيزه',
 'vector-namespace-help'      => 'لارښود مخ',
 'vector-namespace-image'     => 'دوتنه',
 'vector-namespace-main'      => 'مخ',
+'vector-namespace-media'     => 'د رسنۍ مخ',
 'vector-namespace-mediawiki' => 'پيغام',
+'vector-namespace-project'   => 'د پروژې مخ',
+'vector-namespace-special'   => 'ځانګړی مخ',
 'vector-namespace-talk'      => 'خبرې اترې',
 'vector-namespace-template'  => 'کينډۍ',
 'vector-view-create'         => 'جوړول',
 'vector-view-edit'           => 'سمون',
 'vector-view-history'        => 'پېښليک کتل',
 'vector-view-view'           => 'لوستل',
+'namespaces'                 => 'نوم-تشيالونه',
 
 # Metadata in edit box
 'metadata_help' => 'مېټاډاټا:',
@@ -301,6 +310,7 @@ $messages = array(
 'searcharticle'     => 'ورځه',
 'history'           => 'د مخ پېښليک',
 'history_short'     => 'پېښليک',
+'updatedmarker'     => 'زما د وروستي راتګ نه راپدېخوا اوسمهاله شوی',
 'info_short'        => 'مالومات',
 'printableversion'  => 'د چاپ بڼه',
 'permalink'         => 'تلپاتې تړنه',
@@ -311,6 +321,7 @@ $messages = array(
 'create-this-page'  => 'همدا مخ ليکل',
 'delete'            => 'ړنګول',
 'deletethispage'    => 'دا مخ ړنګ کړه',
+'undelete_short'    => '{{PLURAL:$1|يو سمون|$1 سمونې}} ناړنګول',
 'protect'           => 'ژغورل',
 'protect_change'    => 'بدلون',
 'protectthispage'   => 'همدا مخ ژغورل',
@@ -387,6 +398,7 @@ $messages = array(
 'showtoc'                 => 'ښکاره کول',
 'hidetoc'                 => 'پټول',
 'viewdeleted'             => '$1 کتل؟',
+'feedlinks'               => 'کتنه:',
 'site-rss-feed'           => '$1 د آر اس اس کتنه',
 'site-atom-feed'          => '$1 د اټوم کتنه',
 'page-rss-feed'           => '"$1" د آر اس اس کتنه',
@@ -1157,6 +1169,11 @@ $messages = array(
 'protect-expiring'            => 'په $1 (UTC) پای ته رسېږي',
 'protect-cascade'             => 'په همدې مخ کې د ټولو ګډو مخونو نه ژغورنه کېږي (ځوړاوبيزه ژغورنه)',
 'protect-cantedit'            => 'تاسو نه شی کولای چې د همدغه مخ د ژغورنې په کچه کې بدلون راولی، دا ځکه چې تاسو د همدغه مخ د سمولو اجازه نه لری.',
+'protect-dropdown'            => '*د ژغورلو عام سببونه
+** ډېره زياته ورانکاري
+** ډېره زياته سپام خپرونه
+** بې ګټې سمونې او خپرونې
+** ډېر لوستونکی مخ',
 'protect-expiry-options'      => '1 ساعت:1 hour,1 ورځ:1 day,1 اوونۍ:1 week,2 اوونۍ:2 weeks,1 مياشت:1 month,3 مياشتې:3 months,6 مياشتې:6 months,1 کال:1 year,لامحدوده:infinite',
 'restriction-type'            => 'اجازه:',
 'restriction-level'           => 'د بنديز کچه:',
@@ -1499,9 +1516,9 @@ $messages = array(
 'confirmemail_noemail'   => 'تاسو يوه سمه برېښناليک پته نه ده ثبته کړې مهرباني وکړی [[Special:Preferences|د کارونکي غوره توبونه]] کې مو بدلون راولی.',
 'confirmemail_oncreate'  => 'ستاسو د برېښناليک پتې ته يو تاييدي کوډ درولېږل شو.
 ددې لپاره چې تاسو غونډال ته ورننوځی تاسو ته د همدغه کوډ اړتيا نشته، خو تاسو ته د همدغه کوډ اړتيا په هغه وخت کې پکارېږي کله چې په ويکي کې خپلې برېښناليکي کړنې چارن کول غواړی.',
-'confirmemail_needlogin' => 'تاسو ته پکار ده چې $1 ددې لپاره چې ستاسو د برېښليک پتې پخلی وشي.',
-'confirmemail_loggedin'  => 'اوس ستاسو د برېښناليک د پتې پخلی وشو.',
-'confirmemail_error'     => 'ستاسو د برېښليک پتې د تاييد په خوندي کولو کې يوه ستونزه رامېنڅ ته شوه.',
+'confirmemail_needlogin' => 'ددې لپاره چې ستاسې د برېښليک پتې پخلی وشي، تاسې ته پکار ده چې $1.',
+'confirmemail_loggedin'  => 'اوس ستاسې د برېښناليک پتې پخلی وشو.',
+'confirmemail_error'     => 'ستاسې د برېښليک پتې د تاييد په خوندي کولو کې يوه ستونزه رامېنڅ ته شوه.',
 
 # Scary transclusion
 'scarytranscludetoolong' => '[URL مو ډېر اوږد دی]',
@@ -1531,21 +1548,23 @@ $messages = array(
 'table_pager_empty'        => 'هېڅ پايلې نه شته',
 
 # Auto-summaries
-'autosumm-blank'   => 'د مخ ټوله مېنځپانګه ليرې کول',
+'autosumm-blank'   => 'د مخ مېنځپانګه ليرې شوه',
 'autosumm-replace' => "دا مخ د '$1' پرځای راوستل",
 'autoredircomment' => '[[$1]] ته وګرځولی شو',
-'autosumm-new'     => 'نوی مخ: $1',
+'autosumm-new'     => "Created page with '$1'",
 
 # Live preview
 'livepreview-loading' => 'د برسېرېدلو په حال کې...',
+'livepreview-ready'   => 'برسېرېدنه ... چمتو ده!',
 
 # Watchlist editor
-'watchlistedit-noitems'    => 'ستاسو په کتلي لړليک کې هېڅ کوم سرليک نشته.',
-'watchlistedit-raw-title'  => 'خام کتنلړليک سمول',
-'watchlistedit-raw-legend' => 'خام کتنلړليک سمول',
-'watchlistedit-raw-titles' => 'سرليکونه:',
-'watchlistedit-raw-submit' => 'کتلی لړليک تازه کول',
-'watchlistedit-raw-done'   => 'ستاسو کتلی لړليک تازه شو.',
+'watchlistedit-noitems'      => 'ستاسې کتنلړليک کې هېڅ کوم سرليک نشته.',
+'watchlistedit-normal-title' => 'کتنلړليک سمول',
+'watchlistedit-raw-title'    => 'خام کتنلړليک سمول',
+'watchlistedit-raw-legend'   => 'خام کتنلړليک سمول',
+'watchlistedit-raw-titles'   => 'سرليکونه:',
+'watchlistedit-raw-submit'   => 'کتنلړليک اوسمهاله کول',
+'watchlistedit-raw-done'     => 'ستاسې کتنلړليک اوسمهاله شو.',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'اړونده بدلونونه کتل',
@@ -1570,12 +1589,14 @@ $messages = array(
 'version'              => 'بڼه',
 'version-specialpages' => 'ځانګړي مخونه',
 'version-other'        => 'بل',
+'version-software'     => 'نصب شوی ساوتری',
 
 # Special:FilePath
 'filepath-page' => 'دوتنه:',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'د دوه ګونو دوتنو پلټنه',
+'fileduplicatesearch-legend'   => 'د دوه ګونو دوتنو پلټنه',
 'fileduplicatesearch-filename' => 'د دوتنې نوم:',
 'fileduplicatesearch-submit'   => 'پلټل',
 
