@@ -460,7 +460,7 @@ class DatabaseSqlite extends DatabaseBase {
 	 * Build a concatenation list to feed into a SQL query
 	 */
 	function buildConcat( $stringList ) {
-		return implode( ' || ', $stringList );
+		return '(' . implode( ') || (', $stringList ) . ')';
 	}
 
 } // end DatabaseSqlite class
