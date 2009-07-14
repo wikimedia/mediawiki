@@ -155,6 +155,9 @@ div.searchresult {
 	float:left;
 	padding-left: 0.25em;
 }
+.rtl .mw-search-formheader div.search-types {
+	float: right;
+}
 .mw-search-formheader div.search-types ul {
 	margin: 0 !important;
 	padding: 0 !important;
@@ -210,9 +213,16 @@ fieldset#mw-searchoptions h4 {
 	margin: 0;
 	float: left;
 }
+.rtl fieldset#mw-searchoptions h4 {
+	float: right;
+}
 fieldset#mw-searchoptions div#mw-search-togglebox {
 	float: right;
 }
+.rtl fieldset#mw-searchoptions div#mw-search-togglebox {
+	float: left;
+}
+
 fieldset#mw-searchoptions div#mw-search-togglebox label {
 	margin-right: 0.25em;
 }
@@ -226,7 +236,13 @@ fieldset#mw-searchoptions table {
 fieldset#mw-searchoptions table td {
 	padding-right: 1em;
 }
+.rtl fieldset#mw-searchoptions table td {
+	padding-left: 1em;
+	padding-right: 0;
+}
 body.rtl fieldset#mw-searchoptions table {
+	margin-right: 0;
+	margin-left: 3em;
 	float: right;
 }
 fieldset#mw-searchoptions div.divider {
