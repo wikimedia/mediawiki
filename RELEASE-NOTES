@@ -294,6 +294,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 17809) Add number of users in user groups to meta=siteinfo
 * (bug 18533) Add readonly reason to readonly exception
 * (bug 19528) Added XSLT parameter to API queries in format=xml
+* (bug 19040) Fix prependtext and appendtext in combination with section 
+  parameter in action=edit
 
 === Languages updated in 1.16 ===
 
