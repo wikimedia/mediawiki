@@ -468,6 +468,9 @@ $messages = array(
 'vector-view-history'        => 'Fâre vêre l’historico',
 'vector-view-view'           => 'Liére',
 'vector-view-viewsource'     => 'Vêre lo tèxto sôrsa',
+'actions'                    => 'Accions',
+'namespaces'                 => 'Èspâços de noms',
+'variants'                   => 'Variantes',
 
 # Metadata in edit box
 'metadata_help' => 'Mètabalyês :',

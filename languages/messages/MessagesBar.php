@@ -129,6 +129,7 @@ $messages = array(
 'and'           => '&#32;und',
 
 # Cologne Blue skin
+'qbfind'         => 'Findn',
 'qbmyoptions'    => 'Meine Seitn',
 'qbspecialpages' => 'Spezialseitn',
 
@@ -158,6 +159,7 @@ $messages = array(
 'unprotect'         => 'freigem',
 'unprotectthispage' => 'Schutz aufhem',
 'newpage'           => 'Neiche Seitn',
+'talkpage'          => 'De Seitn bsprecha',
 'talkpagelinktext'  => 'bschprecha',
 'personaltools'     => 'Peasönliche Weakzeig',
 'articlepage'       => 'Artikl',
@@ -169,6 +171,7 @@ $messages = array(
 'categorypage'      => 'Kategorieseitn ozoang',
 'otherlanguages'    => 'Åndane Språchn',
 'redirectedfrom'    => '(vu $1 weida gschickt)',
+'redirectpagesub'   => 'Weidaleitung',
 'lastmodifiedat'    => 'De Seitn is zletzt am $1 um $2 gändert worn.',
 'jumpto'            => 'Wechseln zua:',
 'jumptonavigation'  => 'Navigazion',
@@ -203,6 +206,8 @@ $messages = array(
 'hidetoc'                 => 'vabeang',
 'thisisdeleted'           => '$1 ooschaun oda wieda herstelln?',
 'viewdeleted'             => '$1 oozoang?',
+'site-rss-feed'           => 'RSS-Feed fia $1',
+'site-atom-feed'          => 'Atom-Feed fia $1',
 'red-link-title'          => "$1 (de Seitn gibt's ned)",
 
 # Short words for each namespace, by default used in the namespace tab in monobook
@@ -251,6 +256,7 @@ Sie kinnan {{SITENAME}} iatzat anonym weitanutzn, oda si unta am selben oda am a
 'yourname'                   => 'Benutzernam:',
 'yourpassword'               => 'Passwoat:',
 'yourpasswordagain'          => 'Passwort no amoi',
+'remembermypassword'         => 'auf dem Computer dauahåft ãnmöidn',
 'yourdomainname'             => 'Eanane Domain:',
 'login'                      => 'Oomeidn',
 'userlogin'                  => 'Oomeidn',
@@ -292,63 +298,67 @@ Sie kinnan {{SITENAME}} iatzat anonym weitanutzn, oda si unta am selben oda am a
 'hr_tip'        => 'Wåågrechte Linie (spåasãm vawendn)',
 
 # Edit pages
-'summary'                    => 'Zsammafassung',
-'subject'                    => 'Betreff:',
-'minoredit'                  => 'Nur Kloanigkeitn san verändert worn',
-'watchthis'                  => 'De Seitn beobachtn',
-'savearticle'                => 'Seitn speichern',
-'preview'                    => 'Voaschau',
-'showpreview'                => 'Vorschau zoang',
-'showdiff'                   => 'Ändarungen zoang',
-'anoneditwarning'            => "Du beåaweitst de Seitn, ohne dass'd ãgmöidt bist. Wãnn'st iatst speichast, dãun wiad dei aktuelle IP-Adressn in da Veasionsgschicht aufzeichnt und kãu damid unwidaruflich '''öffntlich''' eigseng wean.",
-'missingsummary'             => "'''Hinweis:''' Sie ham koa Zsammafassung oogem. Wenn S' wieda auf „Speichern“ klicken, werd Eana Änderung ohne Zsammafassung übanumma.",
-'missingcommenttext'         => "Bitte gebn S' a Zsammafassung ei.",
-'subject-preview'            => 'Vorschau vom Betreff',
-'blockedtitle'               => 'Benutzer is gesperrt',
-'whitelistedittitle'         => 'Zum Bearbatn miaßn Sie si oomeidn',
-'whitelistedittext'          => 'Sie miaßn si $1, um Seiten bearbatn zum kinna.',
-'loginreqtitle'              => 'Es braucht a Oomeidung',
-'loginreqlink'               => 'oomeidn',
-'loginreqpagetext'           => 'Sie miaßn si $1, um Seitn lesen zum kinna.',
-'accmailtitle'               => 'Passwort is vaschickt worn',
-'accmailtext'                => 'Des Passwort fia „$1“ is an $2 gschickt worn.',
-'newarticle'                 => '(Nei)',
-'newarticletext'             => 'Da an Text vo da neien Seitn eintragn. Bitte nur in ganze Sätze schreim und koane urheberrechtsgeschützten Texte vo andere kopiern.',
-'anontalkpagetext'           => "---- ''De Seitn werd dazu hergnumma, am net ogmeldten Benutzer Nachrichtn zum hinterlassen.
+'summary'                          => 'Zsammafassung',
+'subject'                          => 'Betreff:',
+'minoredit'                        => 'Nur Kloanigkeitn san verändert worn',
+'watchthis'                        => 'De Seitn beobachtn',
+'savearticle'                      => 'Seitn speichern',
+'preview'                          => 'Voaschau',
+'showpreview'                      => 'Vorschau zoang',
+'showdiff'                         => 'Ändarungen zoang',
+'anoneditwarning'                  => "Du beåaweitst de Seitn, ohne dass'd ãgmöidt bist. Wãnn'st iatst speichast, dãun wiad dei aktuelle IP-Adressn in da Veasionsgschicht aufzeichnt und kãu damid unwidaruflich '''öffntlich''' eigseng wean.",
+'missingsummary'                   => "'''Hinweis:''' Sie ham koa Zsammafassung oogem. Wenn S' wieda auf „Speichern“ klicken, werd Eana Änderung ohne Zsammafassung übanumma.",
+'missingcommenttext'               => "Bitte gebn S' a Zsammafassung ei.",
+'summary-preview'                  => 'Voaschau vu da Zsãmmafåssung:',
+'subject-preview'                  => 'Vorschau vom Betreff',
+'blockedtitle'                     => 'Benutzer is gesperrt',
+'whitelistedittitle'               => 'Zum Bearbatn miaßn Sie si oomeidn',
+'whitelistedittext'                => 'Sie miaßn si $1, um Seiten bearbatn zum kinna.',
+'loginreqtitle'                    => 'Es braucht a Oomeidung',
+'loginreqlink'                     => 'oomeidn',
+'loginreqpagetext'                 => 'Sie miaßn si $1, um Seitn lesen zum kinna.',
+'accmailtitle'                     => 'Passwort is vaschickt worn',
+'accmailtext'                      => 'Des Passwort fia „$1“ is an $2 gschickt worn.',
+'newarticle'                       => '(Nei)',
+'newarticletext'                   => 'Da an Text vo da neien Seitn eintragn. Bitte nur in ganze Sätze schreim und koane urheberrechtsgeschützten Texte vo andere kopiern.',
+'anontalkpagetext'                 => "---- ''De Seitn werd dazu hergnumma, am net ogmeldten Benutzer Nachrichtn zum hinterlassen.
 Wennst mit de Kommentare auf dera Seitn nix ofanga kåst, is vermutlich da friarare Inhaber vo dera IP-Adressn gmoant und du kånstas ignoriern.
 Wennst a anonymer Benutzer bist und dengst, daß irrelevante Kommentare an di grichtet worn san, [[Special:UserLogin|meld di bitte o]], um zukünftig Verwirrung zum vermeiden. ''",
-'noarticletext'              => 'De Seitn enthåit zua Zeid kan Text ned.
+'noarticletext'                    => 'De Seitn enthåit zua Zeid kan Text ned.
 Du kãnnst in Titl vu dea Seitn auf de ãndan Seitn [[Special:Search/{{PAGENAME}}|suacha]],
 <span class="plainlinks"> in de dazuaghearadn [{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} Logbiache suachn] oda de Seitn [{{fullurl:{{FULLPAGENAME}}|action=edit}} beåabeitn]</span>.',
-'updated'                    => '(Gändat)',
-'note'                       => "'''Hinweis:'''",
-'previewnote'                => "'''Des is netta a Voaschau, d'Seitn is nu ned gspeichat woan!'''",
-'previewconflict'            => "De Vorschau gibt an Inhalt vom obern Textfeld wieda; so werd de Seite ausschaun, wenn S' iatzat speichern.",
-'session_fail_preview'       => '<strong>Dei Bearbeitung is net gspeichert worn, wei deine Sitzungsdaten valorn ganga san.
+'updated'                          => '(Gändat)',
+'note'                             => "'''Hinweis:'''",
+'previewnote'                      => "'''Des is netta a Voaschau, d'Seitn is nu ned gspeichat woan!'''",
+'previewconflict'                  => "De Vorschau gibt an Inhalt vom obern Textfeld wieda; so werd de Seite ausschaun, wenn S' iatzat speichern.",
+'session_fail_preview'             => '<strong>Dei Bearbeitung is net gspeichert worn, wei deine Sitzungsdaten valorn ganga san.
 Bitte versuachs no amoi, indem du unta da foigendn Textvorschau nochmois auf „Seitn speichern“ klickst.
 Sollt des Problem bestehn bleim, meld di ab und danach wieda oo.</strong>',
-'editing'                    => 'Bearbatn vo $1',
-'editingsection'             => 'Werkln bei $1 (Åbschnitt)',
-'editconflict'               => 'Konflikt beim Bearbatn: $1',
-'explainconflict'            => "Jemand anders hat de Seitn gändert, nachdem du oogfanga hast sie zum bearbatn.
+'editing'                          => 'Bearbatn vo $1',
+'editingsection'                   => 'Werkln bei $1 (Åbschnitt)',
+'editconflict'                     => 'Konflikt beim Bearbatn: $1',
+'explainconflict'                  => "Jemand anders hat de Seitn gändert, nachdem du oogfanga hast sie zum bearbatn.
 Des obere Textfeld enthoit den aktuellen Stand.
 Des untere Textfeld enthoit deine Änderungen.
 Bitte füg deine Änderungen in des obere Textfeld ei.
 '''Nur''' da Inhalt vom obern Textfeld werd gspeichert, wenn du auf „Seitn speichern“ klickst!",
-'yourtext'                   => 'Eana Text',
-'editingold'                 => "<strong>ACHTUNG: Sie arbatn an a oidn Version vo dera Seit.
+'yourtext'                         => 'Eana Text',
+'editingold'                       => "<strong>ACHTUNG: Sie arbatn an a oidn Version vo dera Seit.
 Wenn S' speichern, wern alle neiern Versionen übaschriem.</strong>",
-'longpagewarning'            => "<strong>WARNUNG: De Seitn is $1 kB groaß; net jeda Browser konn Seitn bearbatn, di größer als 32 kB san.
+'longpagewarning'                  => "<strong>WARNUNG: De Seitn is $1 kB groaß; net jeda Browser konn Seitn bearbatn, di größer als 32 kB san.
 Überlegen S' bitte, ob a Aufteilung vo da Seitn in kloanere Abschnitte möglich is.</strong>",
-'semiprotectedpagewarning'   => "'''Hoibsperrung:''' De Seitn is so gsperrt worn, daß nur registrierte Benutzer de ändern kinnan.",
-'titleprotectedwarning'      => "'''ACHTUNG: Die Seitenerstellung wurde gesperrt. Nur bestimmte Benutzergruppen können die Seite erstellen.'''",
-'templatesused'              => 'De foigendn Vorlagn wern von dera Seitn vawendt:',
-'templatesusedpreview'       => 'De foigendn Vorlagn wern von dera Seitnvorschau vawendt:',
-'templatesusedsection'       => 'De foigendn Vorlagn wern von dem Abschnitt vawendt:',
-'template-protected'         => '(schreibgschützt)',
-'template-semiprotected'     => '(schreibgschützt fia ned ãngmöidte und neiche Benutza)',
-'nocreatetitle'              => 'De Erstellung vo neie Seitn is eingeschränkt.',
-'recreate-moveddeleted-warn' => "'''Obacht: Du ladst aa Datei hoach, de scho friara glöscht worn is.'''
+'semiprotectedpagewarning'         => "'''Hoibsperrung:''' De Seitn is so gsperrt worn, daß nur registrierte Benutzer de ändern kinnan.",
+'titleprotectedwarning'            => "'''ACHTUNG: Die Seitenerstellung wurde gesperrt. Nur bestimmte Benutzergruppen können die Seite erstellen.'''",
+'templatesused'                    => 'De foigendn Vorlagn wern von dera Seitn vawendt:',
+'templatesusedpreview'             => 'De foigendn Vorlagn wern von dera Seitnvorschau vawendt:',
+'templatesusedsection'             => 'De foigendn Vorlagn wern von dem Abschnitt vawendt:',
+'template-protected'               => '(schreibgschützt)',
+'template-semiprotected'           => '(schreibgschützt fia ned ãngmöidte und neiche Benutza)',
+'hiddencategories'                 => 'De Seitn is in {{PLURAL:$1|a vasteckte Kategorie|$1 vasteckte Kategorien}} eisoatiad:',
+'nocreatetitle'                    => 'De Erstellung vo neie Seitn is eingeschränkt.',
+'permissionserrorstext-withaction' => "Du håst de Berechtigung ned, dass'd $2.
+{{PLURAL:$1|Grund|Gründ}}:",
+'recreate-moveddeleted-warn'       => "'''Obacht: Du ladst aa Datei hoach, de scho friara glöscht worn is.'''
 Bittschee prüf gnau, ob as erneite Hoachladn de Richtlinien entspricht.
 Zu deina Information folgt des Lösch-Logbuach mit da Begründung fia de vorherige Löschung:",
 
@@ -465,8 +475,11 @@ Wãnn'st di mid dem Thema auskennst, kãnnst [[:$1|de Seitn söiwa schreim]].",
 'right-edit'  => 'Seitn beåawatn',
 'right-block' => 'Benutzer sperrn (Schreibrecht)',
 
+# User rights log
+'rightslog' => 'Rechte-Logbiachl',
+
 # Associated actions - in the sentence "You do not have permission to X"
-'action-edit'       => 'an dea Seitn werkln',
+'action-edit'       => 'an dea Seitn werklst',
 'action-autopatrol' => 'eigne Arbat ois kontrolliert markiern',
 
 # Recent changes
@@ -620,6 +633,9 @@ Links aus Namensräume wern da net aufglistet.',
 'newuserlogpage'          => 'Neiãnmöidungs-Logbiache',
 'newuserlog-create-entry' => 'Benutza is nei registriad',
 
+# Special:ListGroupRights
+'listgrouprights-members' => '(Mitgliadalistn)',
+
 # E-mail user
 'mailnologin'   => 'Sie san net oogmeidt.',
 'emailuser'     => 'E-Mail an den Benutza',
@@ -692,6 +708,7 @@ und dass Sie in Übaeinstimmung mit de [[{{MediaWiki:Policy-url}}|Richtlinien]] 
 # Protect
 'protectlogpage'              => 'Seitenschutz-Logbuach',
 'protectedarticle'            => 'håd „[[$1]]“ gschützt',
+'modifiedarticleprotection'   => 'håd in Schutz vu „[[$1]]“ gändat',
 'prot_1movedto2'              => 'håt [[$1]] nåch [[$2]] verschom',
 'protectcomment'              => 'Grund:',
 'protectexpiry'               => 'Sperrdaua:',
@@ -752,24 +769,28 @@ Da aktuelle Text vo da glöschtn Seitn is nur fia Administratoren zum seng.',
 'whatlinkshere-filters'   => 'Füita',
 
 # Block/unblock
-'blockip'            => 'IP-Adresse/Benutzer sperrn',
-'blockip-legend'     => 'IP-Adresse/Benutzer sperrn',
-'ipboptions'         => '2 Stund:2 hours,1 Tåg:1 day,3 Tåg:3 days,1 Woch:1 week,2 Wochn:2 weeks,1 Monat:1 month,3 Monat:3 months,6 Monat:6 months,1 Joa:1 year,Lemslãng:infinite',
-'badipaddress'       => 'De IP-Adress håt a falsch Format.',
-'blockipsuccesssub'  => 'De Sperre war erfoigreich',
-'ipb-unblock-addr'   => '„$1“ freigem',
-'ipb-unblock'        => 'IP-Adresse/Benutzer freigem',
-'unblockip'          => 'IP-Adresse freigem',
-'ipusubmit'          => 'Freigem',
-'unblocked'          => '[[User:$1|$1]] is freigem worn',
-'createaccountblock' => 'Erstellung vo Benutzakonten gsperrt',
-'blocklink'          => 'sperrn',
-'unblocklink'        => 'freigem',
-'change-blocklink'   => 'Sperr ändan',
-'contribslink'       => 'Beiträge',
-'autoblocker'        => "Automatische Sperre, weil s' a gmeinsame IP-Adressn mit „$1“ hernehma. Grund: „$2“.",
-'blocklogpage'       => 'Benutzasperrlogbiache',
-'blocklogentry'      => "håd „[[$1]]“ fia'n foigndn Zeidraum gspead: $2; $3",
+'blockip'                  => 'IP-Adresse/Benutzer sperrn',
+'blockip-legend'           => 'IP-Adresse/Benutzer sperrn',
+'ipboptions'               => '2 Stund:2 hours,1 Tåg:1 day,3 Tåg:3 days,1 Woch:1 week,2 Wochn:2 weeks,1 Monat:1 month,3 Monat:3 months,6 Monat:6 months,1 Joa:1 year,Lemslãng:infinite',
+'badipaddress'             => 'De IP-Adress håt a falsch Format.',
+'blockipsuccesssub'        => 'De Sperre war erfoigreich',
+'ipb-unblock-addr'         => '„$1“ freigem',
+'ipb-unblock'              => 'IP-Adresse/Benutzer freigem',
+'unblockip'                => 'IP-Adresse freigem',
+'ipusubmit'                => 'Freigem',
+'unblocked'                => '[[User:$1|$1]] is freigem worn',
+'ipblocklist'              => 'Gspeade IP-Adressn und Benutzanãmen',
+'createaccountblock'       => 'Erstellung vo Benutzakonten gsperrt',
+'blocklink'                => 'sperrn',
+'unblocklink'              => 'freigem',
+'change-blocklink'         => 'Sperr ändan',
+'contribslink'             => 'Beiträge',
+'autoblocker'              => "Automatische Sperre, weil s' a gmeinsame IP-Adressn mit „$1“ hernehma. Grund: „$2“.",
+'blocklogpage'             => 'Benutzasperrlogbiache',
+'blocklogentry'            => "håd „[[$1]]“ fia'n foigndn Zeidraum gspead: $2; $3",
+'unblocklogentry'          => "håd d'Spear vu „[[$1]]“ aufghom",
+'block-log-flags-anononly' => 'netta Anonyme',
+'block-log-flags-nocreate' => "S'Eastöin vu Benutzakontn is gspead",
 
 # Developer tools
 'unlockdb'            => 'Datenbank freigem',
@@ -846,6 +867,7 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'tooltip-ca-nstab-main'           => 'Seitninhalt ozoagn',
 'tooltip-ca-nstab-user'           => 'Benutzaseitn ãzoang',
 'tooltip-ca-nstab-image'          => "D'Dateiseitn ãnzoang",
+'tooltip-ca-nstab-template'       => "d'Vorlåg ãnzoang",
 'tooltip-ca-nstab-help'           => 'Huifseitn oozoang',
 'tooltip-minoredit'               => 'De Änderung åis a klaane markian.',
 'tooltip-save'                    => 'Änderunga speichan',
@@ -878,6 +900,7 @@ Vorschau der Änderungen an dieser Seite. Bitte vor dem Speichern benutzen!",
 # Media information
 'file-info-size'       => '($1 × $2 Pixl, Dateigreßn: $3, MIME-Typ: $4)',
 'file-nohires'         => '<small>Es gibt ka hechane Auflösung.</small>',
+'svg-long-desc'        => '(SVG-Datei, Basisgreß: $1 × $2 Pixl, Dateigreß: $3)',
 'show-big-image'       => 'Version in hechana Auflösung',
 'show-big-image-thumb' => '<small>Greßn vu da Voaãnsicht: $1 × $2 Pixl</small>',
 

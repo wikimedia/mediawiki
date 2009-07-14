@@ -453,6 +453,9 @@ $messages = array(
 'vector-view-history'        => 'Laptörténet megtekintése',
 'vector-view-view'           => 'Olvasás',
 'vector-view-viewsource'     => 'Lapforrás megtekintése',
+'actions'                    => 'Műveletek',
+'namespaces'                 => 'Névterek',
+'variants'                   => 'Változók',
 
 # Metadata in edit box
 'metadata_help' => 'Metaadatok:',
@@ -511,6 +514,11 @@ $messages = array(
 'jumpto'            => 'Ugrás:',
 'jumptonavigation'  => 'navigáció',
 'jumptosearch'      => 'keresés',
+'view-pool-error'   => 'Sajnáljuk, de a szerverek jelenleg túl vannak terhelve.
+Túl sok felhasználó próbálta megtekinteni ezt az oldalt.
+Kérlek várj egy kicsit, mielőtt újrapróbálkoznál a lap megtekintésével.
+
+$1',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'A {{SITENAME}} wikiről',
@@ -706,8 +714,9 @@ Ellenőrizd, hogy helyesen írtad-e be.',
 'nouserspecified'            => 'Meg kell adnod a felhasználói nevet.',
 'wrongpassword'              => 'A megadott jelszó érvénytelen. Próbáld meg újra.',
 'wrongpasswordempty'         => 'Nem adtál meg jelszót. Próbáld meg újra.',
-'passwordtooshort'           => 'Az általad megadott jelszó érvénytelen vagy túl rövid.
-Legalább {{PLURAL:$1|egy|$1}} karakterből kell állnia, és nem egyezhet meg a szerkesztőneveddel.',
+'passwordtooshort'           => 'Az általad megadott jelszó túl rövid.
+Legalább {{PLURAL:$1|egy|$1}} karakterből kell állnia.',
+'password-name-match'        => 'A jelszavadnak különböznie kell a szerkesztőnevedtől.',
 'mailmypassword'             => 'Új jelszó küldése e-mailben',
 'passwordremindertitle'      => 'Ideiglenes jelszó a(z) {{SITENAME}} wikire',
 'passwordremindertext'       => 'Valaki (vélhetően te, a(z) $1 IP-címről) új jelszót kért a(z)
@@ -1004,12 +1013,12 @@ Próbálkozhatsz a témával kapcsolatos lapok [[Special:Search|keresésével]].
 'rev-deleted-comment'         => '(megjegyzés eltávolítva)',
 'rev-deleted-user'            => '(szerkesztőnév eltávolítva)',
 'rev-deleted-event'           => '(bejegyzés eltávolítva)',
-'rev-deleted-text-permission' => "Ez a változat '''törölték'''.
+'rev-deleted-text-permission' => "A lap ezen változatát '''törölték'''.
 További információkat a [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} törlési naplóban] találhatsz.",
-'rev-deleted-text-unhide'     => "Ez a lapváltozat '''törölve''' lett.
+'rev-deleted-text-unhide'     => "A lap ezen változatát '''törölték'''.
 További részleteket a [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} törlési naplóban] találhatsz.
 Mivel adminisztrátor vagy, még mindig [$1 megtekintheted a tartalmát], ha szeretnéd.",
-'rev-deleted-text-view'       => "Ez a változat '''törölték'''.
+'rev-deleted-text-view'       => "A lap ezen változatát '''törölték'''.
 Mivel adminisztrátor vagy, te megtekintheted; további részleteket a [{{fullurl:Special:Napló/delete|page={{FULLPAGENAMEE}}}} törlési naplóban] találhatsz.",
 'rev-deleted-no-diff'         => "Nem nézheted meg a két változat közötti eltérést, mert a változatok egyikét '''törölték'''.
 További részleteket a [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} törlési naplóban] találhatsz.",
@@ -1907,8 +1916,9 @@ Lásd még a [[Special:WantedCategories|keresett kategóriák]] listáját.',
 'special-categories-sort-abc'   => 'rendezés ABC szerint',
 
 # Special:DeletedContributions
-'deletedcontributions'       => 'Törölt szerkesztések',
-'deletedcontributions-title' => 'Törölt szerkesztések',
+'deletedcontributions'             => 'Törölt szerkesztések',
+'deletedcontributions-title'       => 'Törölt szerkesztések',
+'sp-deletedcontributions-contribs' => 'közreműködései',
 
 # Special:LinkSearch
 'linksearch'       => 'Külső hivatkozások',
@@ -1924,6 +1934,10 @@ Támogatott protokollok: <tt>$1</tt>',
 'listusersfrom'      => 'Szerkesztők listázása a következő névtől kezdve:',
 'listusers-submit'   => 'Megjelenítés',
 'listusers-noresult' => 'Nem található szerkesztő.',
+'listusers-blocked'  => '(blokkolva)',
+
+# Special:ActiveUsers
+'activeusers-count' => '{{PLURAL:$1|egy|$1}} friss szerkesztés',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Új szerkesztők naplója',

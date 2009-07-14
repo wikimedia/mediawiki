@@ -340,6 +340,9 @@ $messages = array(
 'vector-view-history'        => 'ඉතිහාසය නරඹන්න',
 'vector-view-view'           => 'කියවන්න',
 'vector-view-viewsource'     => 'මූලාශ්‍රය නරඹන්න',
+'actions'                    => 'කාර්යයන්',
+'namespaces'                 => 'නාමඅවකාශයන්',
+'variants'                   => 'ප්‍රභේද්‍යයන්',
 
 # Metadata in edit box
 'metadata_help' => 'පාරදත්ත:',
@@ -398,6 +401,11 @@ $messages = array(
 'jumpto'            => 'වෙත පනින්න:',
 'jumptonavigation'  => 'සංචලනය',
 'jumptosearch'      => 'ගවේෂණය',
+'view-pool-error'   => 'සමාවන්න, සේවාදායකයන් මෙම අවස්ථාවෙහිදී අධිභාරණයට ලක් වී ඇත.
+පමණට වඩා පරිශීලක පිරිසක් මෙම පිටුව නැරඹීමට යත්න දරති.
+මෙම පිටුවට පිවිසීමට නැවත උත්සාහ දැරීමට පෙර මදක් පමාවන්න.
+
+$1',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => '{{SITENAME}} පිළිබඳ

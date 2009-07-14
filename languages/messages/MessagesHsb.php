@@ -304,6 +304,9 @@ $messages = array(
 'vector-view-history'        => 'Stawizny sej wobhladać',
 'vector-view-view'           => 'Čitać',
 'vector-view-viewsource'     => 'Žórło sej wobhladać',
+'actions'                    => 'Akcije',
+'namespaces'                 => 'Mjenowe rumy',
+'variants'                   => 'Warianty',
 
 # Metadata in edit box
 'metadata_help' => 'Metadaty:',
@@ -362,6 +365,11 @@ $messages = array(
 'jumpto'            => 'Dźi do:',
 'jumptonavigation'  => 'Nawigacija',
 'jumptosearch'      => 'Pytać',
+'view-pool-error'   => 'Wodaj, serwery su we wokomiku přećežene.
+Přewjele wužiwarjow pospytuje sej tutu stronu wobhladać.
+Prošu wočakń chwilku, prjedy hač pospytuješ sej tutu stronu hišće raz wobhladać.
+
+$1',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Wo {{GRAMMAR:lokatiw|{{SITENAME}}}}',

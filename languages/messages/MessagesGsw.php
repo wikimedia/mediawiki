@@ -371,8 +371,8 @@ $1',
 'privacy'              => 'Dateschutz',
 'privacypage'          => 'Project:Dateschutz',
 
-'badaccess'        => 'Dyyni Rächt länge nid.',
-'badaccess-group0' => 'Du hesch d Berächtigung nid, wo s brucht fir die Aktion.',
+'badaccess'        => 'Dyyni Rächt länge nit.',
+'badaccess-group0' => 'Du hesch d Berächtigung nit, wu s brucht fir die Aktion.',
 'badaccess-groups' => 'Die Aktion isch bschränkt uf Benutzer, wu {{PLURAL:$2|zue dr Gruppe|zue einer vu dr Gruppe}} „$1“ ghere.',
 
 'versionrequired'     => 'Version $1 vun MediaWiki wird brucht',
@@ -397,7 +397,7 @@ $1',
 'viewdeleted'             => '$1 aaluege?',
 'restorelink'             => '{{PLURAL:$1|glöschti Änderig|$1 glöschti Ändrige}}',
 'feedlinks'               => 'Feed:',
-'feed-invalid'            => 'Nid giltige Abonnement-Typ.',
+'feed-invalid'            => 'Nit giltige Abonnement-Typ.',
 'feed-unavailable'        => 'S stehn keini Feeds z Verfiegig.',
 'site-rss-feed'           => 'RSS-Feed fir $1',
 'site-atom-feed'          => 'Atom-Feed für $1',
@@ -423,9 +423,9 @@ $1',
 Villicht hesch d URL falsch yygee oder bisch eme falsche Gleich noogange.
 Des chennt au ne Fähler aazeige in {{SITENAME}}.',
 'nosuchspecialpage' => 'Die Spezialsyte git s nit',
-'nospecialpagetext' => "<big>'''Die Spezialsyte git s nid.'''</big>
+'nospecialpagetext' => "<big>'''Die Spezialsyte git s nit.'''</big>
 
-Alli verfiegbare Spezialsyte sin in dr [[Special:SpecialPages|Lisch vu Spezialsyte]] z finde.",
+Alli verfiegbare Spezialsyte sin in dr [[Special:SpecialPages|Lischt vu Spezialsyte]] z finde.",
 
 # General errors
 'error'                => 'Fähler',
@@ -444,11 +444,11 @@ MySQL het dr Fähler „<tt>$3: $4</tt>“ gmäldet.',
 'readonlytext'         => 'D {{SITENAME}}-Datebank isch e Zyd lang gsperrt fir Nejytreg un Änderige. Bitte versuech s speter no mol.
 
 Grund vu dr Sperrig: $1',
-'missing-article'      => 'Där Täxt fir „$1“ $2 isch nid in dr Datebank gfunde wore.
+'missing-article'      => 'Dr Täkscht fir „$1“ $2 isch nit in dr Datebank gfunde wore.
 
 Die Syte isch villicht glescht oder verschobe wore.
 
-Wänn s des nid isch, hesch villicht e Fähler in dr Software gfunde. Bitte mäld des eme  [[Special:ListUsers/sysop|Ammann]] un gib d URL derzue aa.',
+Wänn s des nit isch, hesch villicht e Fähler in dr Software gfunde. Bitte mäld des eme [[Special:ListUsers/sysop|Ammann]] un gib d URL derzue aa.',
 'missingarticle-rev'   => '(Versionsnummere: $1)',
 'missingarticle-diff'  => '(Unterschid zwische Versione: $1, $2)',
 'readonly_lag'         => 'D Datebank isch automatisch gperrt wore, wil di verteilte Datebankserver (Sklave) mien mit em Hauptdatebankserver (Meischter) abgliche wäre.',
@@ -457,7 +457,7 @@ Wänn s des nid isch, hesch villicht e Fähler in dr Software gfunde. Bitte mäl
 'filecopyerror'        => 'Datei "$1" het nit noch "$2" kopiert werre kinne.',
 'filerenameerror'      => 'D Datei "$1" het nit in "$2" umgnennt werre kinne.',
 'filedeleteerror'      => 'Datei "$1" het nit glöscht werre kinne.',
-'directorycreateerror' => 'S Verzeichnis „$1“ het nid chenne aaglait wäre.',
+'directorycreateerror' => 'S Verzeichnis „$1“ het nit chenne aaglait wäre.',
 'filenotfound'         => 'Datei "$1" isch nit gfunde worre.',
 'fileexistserror'      => 'In d Datei „$1“ het nit chenne gschribe wäre, wel s die Datei scho git.',
 'unexpected'           => 'Wärt, wu nit erwartet woren isch: „$1“=„$2“.',
@@ -469,7 +469,7 @@ Wänn s des nid isch, hesch villicht e Fähler in dr Software gfunde. Bitte mäl
 'perfcached'           => 'Die Informatione chömme us em Zwüschespeicher un sin derwiil villicht nid aktuell.
 ----',
 'perfcachedts'         => 'Die Date stamme us em Cache un sin am $1 s letscht Mol aktualisiert wore.',
-'querypage-no-updates' => "'''D Aktualisierigsfunktion fir die Syte isch im Momänt deaktiviert. D Date wäre vorerscht nid ernejert.'''",
+'querypage-no-updates' => "'''D Aktualisierigsfunktion fir die Syte isch im Momänt deaktiviert. D Date wäre vorerscht nit ernejert.'''",
 'wrong_wfQuery_params' => 'Falschi Parameter fir wfQuery()<br />
 Funktion: $1<br />
 Abfrog: $2',
@@ -1813,10 +1813,10 @@ As Absender wird d E-Mail-Adräss us Dyyne [[Special:Preferences|Yystellige]] yy
 'watchnologin'         => 'Du bisch nit aagmäldet',
 'watchnologintext'     => 'Du muesch [[Special:UserLogin|aagmäldet]] syy, zum Dyyni Beobachtigssyte z bearbeite.',
 'addedwatch'           => 'zue de Beobachtigslischte drzue do',
-'addedwatchtext'       => 'D Syte "[[:$1]]" stoht jetz uf Ihre [[Special:Watchlist|Beobachtigslischte]].
-Neui Änderige an de Syte odr de Diskussionssyte drvo chasch jetz dört seh. Usserdem sin selli Änderige uf de [[Special:RecentChanges|letschte Änderige]] fett gschriibe, dass Si s schneller finde.
+'addedwatchtext'       => "D Syte \"[[:\$1]]\" stoht jetz uf Dyyre [[Special:Watchlist|Beobachtigslischt]].
+Neji Änderige an dr Syte oder dr Diskussionssyte drvo chasch jetz dert säh. Usserdem sin die Änderige uf dr [[Special:RecentChanges|letschte Änderige]] '''fett''' gschribe, ass De si schnäller findsch.
 
-Wenn Si d Syte spöter wiedr vo de Lischte striiche wenn, denn drucke Si eifach uf "nümm beobachte".',
+Wänn Du d Syte speter wider vu dr Lischt witt stryyche, deno druck eifach uf „{{int:Unwatch}}“.",
 'removedwatch'         => 'Us der Beobachtigsliste glösche',
 'removedwatchtext'     => 'D Syte «[[:$1]]» isch us dyre [[Special:Watchlist|Beobachtigsliste]] glösche worde.',
 'watch'                => 'Beobachte',

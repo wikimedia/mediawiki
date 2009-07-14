@@ -418,6 +418,11 @@ $messages = array(
 'jumpto'            => 'Prejsť na:',
 'jumptonavigation'  => 'navigácia',
 'jumptosearch'      => 'hľadanie',
+'view-pool-error'   => 'Ľutujeme, servery sú momentálne preťažené.
+Príliš veľa používateľov sa pokúša zobraziť túto stránku.
+Prosím, počkajte chvíľu predtým, než sa pokúsite na túto stránku dostať znova.
+
+$1',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'O {{GRAMMAR:lokál|{{SITENAME}}}}',

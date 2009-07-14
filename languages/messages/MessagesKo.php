@@ -445,6 +445,8 @@ $messages = array(
 'vector-view-history'        => '역사',
 'vector-view-view'           => '읽기',
 'vector-view-viewsource'     => '내용 보기',
+'actions'                    => '행위',
+'namespaces'                 => '이름공간',
 
 # Metadata in edit box
 'metadata_help' => '메타데이터:',
@@ -1891,7 +1893,10 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'listusers-blocked'  => '(차단됨)',
 
 # Special:ActiveUsers
-'activeusers-count' => '{{PLURAL:$1|$1}}개의 최근 편집',
+'activeusers'          => '활동 중인 사용자 목록',
+'activeusers-count'    => '{{PLURAL:$1|$1}}개의 최근 편집',
+'activeusers-from'     => '다음으로 시작하는 사용자를 보기:',
+'activeusers-noresult' => '사용자가 없습니다.',
 
 # Special:Log/newusers
 'newuserlogpage'              => '사용자 등록 기록',
@@ -2431,7 +2436,7 @@ $1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습�
 'allmessagesname'           => '이름',
 'allmessagesdefault'        => '기본 내용',
 'allmessagescurrent'        => '현재 내용',
-'allmessagestext'           => '미디어위키 이름공간에 있는 모든 시스템 메시지의 목록입니다. 미디어위키의 번역 작업에 관심이 있으시다면 [http://www.mediawiki.org/wiki/Localisation 미디어위키 지역화]나 [http://translatewiki.net 베타위키]에 참가해주세요.',
+'allmessagestext'           => '미디어위키 이름공간에 있는 모든 시스템 메시지의 목록입니다. 미디어위키의 번역 작업에 관심이 있으면 [http://www.mediawiki.org/wiki/Localisation 미디어위키 지역화]나 [http://translatewiki.net 베타위키]에 참가해주세요.',
 'allmessagesnotsupportedDB' => "'''\$wgUseDatabaseMessages'''가 해제되어 있어서 이 문서는 쓸 수 없습니다.",
 'allmessagesfilter'         => '다음 메시지만 보이기:',
 'allmessagesmodified'       => '변경된 것만 보여주기',

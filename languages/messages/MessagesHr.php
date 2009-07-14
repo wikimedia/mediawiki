@@ -463,6 +463,9 @@ i [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Vodič za suradnike] 
 'vector-view-history'        => 'Vidi stare izmjene',
 'vector-view-view'           => 'Čitaj',
 'vector-view-viewsource'     => 'Vidi izvor',
+'actions'                    => 'Akcije',
+'namespaces'                 => 'Imenski prostori',
+'variants'                   => 'Inačice',
 
 # Metadata in edit box
 'metadata_help' => 'Metapodaci:',
@@ -521,6 +524,7 @@ i [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Vodič za suradnike] 
 'jumpto'            => 'Skoči na:',
 'jumptonavigation'  => 'orijentacija',
 'jumptosearch'      => 'traži',
+'view-pool-error'   => 'Nažalost, poslužitelji su trenutačno preopterećeni. Previše suradnika pokušava vidjeti ovu stranicu. Molimo pričekajte malo prije nego što opet pokušate pristupiti ovoj stranici. $ 1',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'O projektu {{SITENAME}}',

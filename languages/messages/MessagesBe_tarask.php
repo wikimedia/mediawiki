@@ -478,6 +478,11 @@ $messages = array(
 'jumpto'            => 'Перайсьці да:',
 'jumptonavigation'  => 'навігацыя',
 'jumptosearch'      => 'пошук',
+'view-pool-error'   => 'Прабачце, у цяперашні момант сэрвэры перагружаныя.
+Занадта шмат удзельнікаў спрабуюць праглядзець гэтую старонку.
+Калі ласка, пачакайце і паспрабуйце атрымаць доступ пазьней.
+
+$1',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Пра {{GRAMMAR:вінавальны|{{SITENAME}}}}',

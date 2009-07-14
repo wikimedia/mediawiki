@@ -1661,7 +1661,7 @@ To visticamāk izraisīja ārēja saite uz melnajā sarakstā esošu interneta v
 # Media information
 'mediawarning'         => "'''Brīdinājums''': Šis fails var saturēt kaitīgu kodu, kuru izpildot tavā datorā var salīst vīrusi (un citas nejaucības).<hr />",
 'imagemaxsize'         => 'Attēlu apraksta lapās parādāmo attēlu maksimālais izmērs:',
-'thumbsize'            => 'Sīkbildes (<i>thumbnail</i>) izmērs:',
+'thumbsize'            => 'Sīkbildes izmērs:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|lapa|lapas}}',
 'file-info'            => '(faila izmērs: $1, MIME tips: $2)',
 'file-info-size'       => '($1 × $2 pikseļi, faila izmērs: $3, MIME tips: $4)',

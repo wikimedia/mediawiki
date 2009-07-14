@@ -397,6 +397,9 @@ $messages = array(
 'vector-view-history'        => 'Wyświetl historię',
 'vector-view-view'           => 'Czytaj',
 'vector-view-viewsource'     => 'Tekst źródłowy',
+'actions'                    => 'Działania',
+'namespaces'                 => 'Przestrzenie nazw',
+'variants'                   => 'Warianty',
 
 # Metadata in edit box
 'metadata_help' => 'Metadane:',
@@ -455,6 +458,11 @@ $messages = array(
 'jumpto'            => 'Skocz do:',
 'jumptonavigation'  => 'nawigacji',
 'jumptosearch'      => 'wyszukiwania',
+'view-pool-error'   => 'Niestety w chwili obecnej serwery są przeciążone.
+Zbyt wielu użytkowników próbuje wyświetlić tę stronę.
+Poczekaj chwilę przed ponowną próbą dostępu do tej strony.
+
+$1',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'O {{GRAMMAR:MS.lp|{{SITENAME}}}}',

@@ -1251,7 +1251,7 @@ Du kan også la velge å la andre brukere kontakte deg via brukersiden din uten 
 'prefs-help-email-required'     => 'E-postadresse er påkrevd.',
 'prefs-info'                    => 'Grunnleggende informasjon',
 'prefs-i18n'                    => 'Internasjonalisering',
-'prefs-signature'               => 'Singatur',
+'prefs-signature'               => 'Signatur',
 'prefs-dateformat'              => 'Datoformat',
 'prefs-timeoffset'              => 'Tidsforskyvning',
 'prefs-advancedediting'         => 'Avanserte alternativ',

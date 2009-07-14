@@ -286,6 +286,8 @@ $messages = array(
 'vector-view-history'        => 'Gweld yr hanes',
 'vector-view-view'           => 'Darllen',
 'vector-view-viewsource'     => 'Dagos côd y dudalen',
+'actions'                    => 'Gweithrediadau',
+'namespaces'                 => 'Parthau',
 
 # Metadata in edit box
 'metadata_help' => 'Metadata:',
@@ -344,6 +346,11 @@ $messages = array(
 'jumpto'            => 'Neidio i:',
 'jumptonavigation'  => 'llywio',
 'jumptosearch'      => 'chwilio',
+'view-pool-error'   => 'Ymddiheurwn, mae gormod o waith gan y gweinyddion ar hyn o bryd.
+Mae gormod o ddefnyddwyr am weld y dudalen hon ar unwaith.
+Arhoswch ychydig cyn ceisio mynd at y dudalen hon eto.
+
+$1',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Ynglŷn â {{SITENAME}}',

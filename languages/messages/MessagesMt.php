@@ -434,7 +434,7 @@ $messages = array(
 'vector-view-edit'           => 'Editja',
 'vector-view-history'        => 'Uri l-kronoloġija',
 'vector-view-view'           => 'Aqra',
-'vector-view-viewsource'     => 'Uri s-sors',
+'vector-view-viewsource'     => 'Ara s-sors',
 'actions'                    => 'Azzjonijiet',
 'namespaces'                 => 'Spazji tal-isem',
 'variants'                   => 'Varjanti',
@@ -535,7 +535,7 @@ $messages = array(
 'editold'                 => 'modifika',
 'viewsourceold'           => 'ara s-sors',
 'editlink'                => 'editja',
-'viewsourcelink'          => 'ara l-fonti',
+'viewsourcelink'          => 'ara s-sors',
 'editsectionhint'         => 'Immodifika s-sezzjoni: $1',
 'toc'                     => 'Kontenut',
 'showtoc'                 => 'uri',
@@ -623,7 +623,7 @@ Jista' jkun li diġà tħassru minn xi ħaddieħor.",
 'wrong_wfQuery_params' => 'Parametri skoretti għal wfQuery()<br />
 Funżjoni: $1<br />
 Rikjesta: $2',
-'viewsource'           => 'Ara l-fonti',
+'viewsource'           => 'Ara s-sors',
 'viewsourcefor'        => 'għal $1',
 'actionthrottled'      => 'Azzjoni miżmuma',
 'actionthrottledtext'  => "Bħala miżura għal kontra l-ispam, inti limitat li tagħmel din l-azzjoni għal ħafna drabi f'spazju ta' ħin żgħir, u inti qbiżt dan il-limitu.

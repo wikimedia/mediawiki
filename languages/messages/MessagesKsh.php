@@ -369,6 +369,9 @@ Dat es och all op Änglesch:
 'vector-view-history'        => 'Versione zeije!',
 'vector-view-view'           => 'Lesse!',
 'vector-view-viewsource'     => 'Wikitex aanlooere!',
+'actions'                    => 'Akßjuhne',
+'namespaces'                 => 'Appachtemangs',
+'variants'                   => 'Variante',
 
 # Metadata in edit box
 'metadata_help' => 'Metta-Daate:',
@@ -427,6 +430,11 @@ Dat es och all op Änglesch:
 'jumpto'            => 'Jangk noh:',
 'jumptonavigation'  => 'Noh de Navigation',
 'jumptosearch'      => 'Jangk Söke!',
+'view-pool-error'   => 'Deiht uns leid, de ßöörvere han em Momang ze vill ze donn.
+Zoh vill Metmaacher versöhke di Sigg hee aanzelohre.
+Bes esu joot un waat e Weilsche, ih dat de versöhks, di Sigg noch ens opzeroofe.
+
+$1',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Üvver de {{SITENAME}}',
