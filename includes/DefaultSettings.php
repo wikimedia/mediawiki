@@ -3870,6 +3870,13 @@ $wgEnforceHtmlIds = true;
 $wgUseTwoButtonsSearchForm = true;
 
 /**
+ * Search form behavior for Vector skin only
+ * true = use an icon search button
+ * false = use Go & Search buttons
+ */
+$wgVectorUseSimpleSearch = false;
+
+/**
  * Preprocessor caching threshold
  */
 $wgPreprocessorCacheThreshold = 1000;
