@@ -255,6 +255,12 @@ div#head h5 {
 	x:-moz-any-link {
 		min-width: 6em;
 	}
+	/* Returns things back to normal in modern versions of FireFox */
+	div.vectorMenu ul,
+	x:-moz-any-link,
+	x:default {
+		min-width: 0;
+	}
 	div.vectorMenu li {
 		padding: 0;
 		margin: 0;
