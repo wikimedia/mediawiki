@@ -86,6 +86,16 @@ class ApiEditPage extends ApiBase {
 				$content = '';
 			else
 				$content = $articleObj->getContent();
+			
+			if (!is_null($params['section'])) 
+			{
+				// Process the content for section edits
+				global $wgParser;
+				$section = intval($params['section']);
+				$content = $wgParser->getSection($content, $section, false);
+				if ($content === false)
+					$this->dieUsage("There is no section {$section}.", 'nosuchsection');
+			}
 			$params['text'] = $params['prependtext'] . $content . $params['appendtext'];
 			$toMD5 = $params['prependtext'] . $params['appendtext'];
 		}
@@ -345,8 +355,7 @@ class ApiEditPage extends ApiBase {
 			'captchaword' => 'Answer to the CAPTCHA',
 			'md5' => array(	'The MD5 hash of the text parameter, or the prependtext and appendtext parameters concatenated.',
 				 	'If set, the edit won\'t be done unless the hash is correct'),
-			'prependtext' => array( 'Add this text to the beginning of the page. Overrides text.',
-						'Don\'t use together with section: that won\'t do what you expect.'),
+			'prependtext' => 'Add this text to the beginning of the page. Overrides text.',
 			'appendtext' => 'Add this text to the end of the page. Overrides text',
 			'undo' => 'Undo this revision. Overrides text, prependtext and appendtext',
 			'undoafter' => 'Undo all revisions from undo to this one. If not set, just undo one revision',
