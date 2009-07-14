@@ -164,6 +164,9 @@ class SkinTemplate extends Skin {
 		wfProfileIn( __METHOD__ . '-stuff' );
 		$this->thispage = $this->mTitle->getPrefixedDBkey();
 		$this->thisurl = $this->mTitle->getPrefixedURL();
+		$query = $wgRequest->data;
+		unset( $query['title'] );
+		$this->thisquery = wfArrayToCGI( $query );
 		$this->loggedin = $wgUser->isLoggedIn();
 		$this->iscontent = ( $this->mTitle->getNamespace() != NS_SPECIAL );
 		$this->iseditable = ( $this->iscontent and !( $action == 'edit' or $action == 'submit' ) );
@@ -562,7 +565,7 @@ class SkinTemplate extends Skin {
 			$personal_urls['logout'] = array(
 				'text' => wfMsg( 'userlogout' ),
 				'href' => self::makeSpecialUrl( 'Userlogout',
-					$title->isSpecial( 'Preferences' ) ? '' : "returnto={$this->thisurl}"
+					$title->isSpecial( 'Preferences' ) ? '' : "returnto={$this->thisurl}&returntoquery={$this->thisquery}"
 				),
 				'active' => false
 			);
@@ -589,13 +592,13 @@ class SkinTemplate extends Skin {
 				);
 				$personal_urls['anonlogin'] = array(
 					'text' => wfMsg( $loginlink ),
-					'href' => self::makeSpecialUrl( 'Userlogin', 'returnto=' . $this->thisurl ),
+					'href' => self::makeSpecialUrl( 'Userlogin', "returnto={$this->thisurl}&returntoquery={$this->thisquery}" ),
 					'active' => $title->isSpecial( 'Userlogin' )
 				);
 			} else {
 				$personal_urls['login'] = array(
 					'text' => wfMsg( $loginlink ),
-					'href' => self::makeSpecialUrl( 'Userlogin', 'returnto=' . $this->thisurl ),
+					'href' => self::makeSpecialUrl( 'Userlogin', "returnto={$this->thisurl}&returntoquery={$this->thisquery}" ),
 					'active' => $title->isSpecial( 'Userlogin' )
 				);
 			}

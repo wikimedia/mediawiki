@@ -862,11 +862,6 @@ class Title {
 	 */
 	public function getLinkUrl( $query = array(), $variant = false ) {
 		wfProfileIn( __METHOD__ );
-		if( !is_array( $query ) ) {
-			wfProfileOut( __METHOD__ );
-			throw new MWException( 'Title::getLinkUrl passed a non-array for '.
-			'$query' );
-		}
 		if( $this->isExternal() ) {
 			$ret = $this->getFullURL( $query );
 		} elseif( $this->getPrefixedText() === '' && $this->getFragment() !== '' ) {
