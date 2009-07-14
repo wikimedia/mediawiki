@@ -292,7 +292,14 @@ div#head h5 {
 		margin: 0;
 		margin-top: 0.4em;
 	}
-	div#p-search input#searchButton {
+	div#p-search div#simpleSearch input#searchInput {
+		margin-top: 0.33em;
+		border: solid 1px #AAAAAA;
+		height: 1.25em;
+		width: 10em;
+		padding: 0.33em;
+	}
+	div#p-search div#simpleSearch input#searchButton {
 		border: none;
 		margin-right: 0.25em;
 	}
