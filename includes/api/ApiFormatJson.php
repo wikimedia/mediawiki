@@ -66,11 +66,19 @@ class ApiFormatJson extends ApiFormatBase {
 		// Some versions of PHP have a broken json_encode, see PHP bug 
 		// 46944. Test encoding an affected character (U+20000) to 
 		// avoid this.
-		if (!function_exists('json_encode') || $this->getIsHtml() || strtolower(json_encode("\xf0\xa0\x80\x80")) != '"\ud840\udc00"') {
+		$this->printText( $prefix . $this->getJsonEncode($this->getResultData(),   $this->getIsHtml() )  . $suffix);		
+	}	
+	/*
+	 * static to support static calls to json output (instead of json_encode function) 
+	 * @param array $results  the results array to output as a json string
+	 * @parm isHTML if the output is html
+	 */	
+	public static function getJsonEncode($value, $isHtml=false){
+		if (!function_exists('json_encode') || $isHtml || strtolower(json_encode("\xf0\xa0\x80\x80")) != '\ud840\udc00') {
 			$json = new Services_JSON();
-			$this->printText($prefix . $json->encode($this->getResultData(), $this->getIsHtml()) . $suffix);
+			return $json->encode($value, $isHtml) ;
 		} else {
-			$this->printText($prefix . json_encode($this->getResultData()) . $suffix);
+			return json_encode($value);
 		}
 	}
 

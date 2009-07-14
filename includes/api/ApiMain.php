@@ -76,6 +76,7 @@ class ApiMain extends ApiBase {
 		'unblock' => 'ApiUnblock',
 		'move' => 'ApiMove',
 		'edit' => 'ApiEditPage',
+		'upload' => 'ApiUpload',
 		'emailuser' => 'ApiEmailUser',
 		'watch' => 'ApiWatch',
 		'patrol' => 'ApiPatrol',

@@ -62,7 +62,7 @@ class Skin extends Linker {
 		}
 		return $wgValidSkinNames;
 	}
-	
+
 	/**
 	 * Fetch the list of usable skins in regards to $wgSkipSkins.
 	 * Useful for Special:Preferences and other places where you
@@ -277,7 +277,7 @@ class Skin extends Linker {
 		$this->userpage = $wgUser->getUserPage()->getPrefixedText();
 		$this->usercss = false;
 	}
-	
+
 	/**
 	 * Set the title
 	 * @param Title $t The title to use
@@ -285,7 +285,7 @@ class Skin extends Linker {
 	public function setTitle( $t ) {
 		$this->mTitle = $t;
 	}
-	
+
 	/** Get the title */
 	public function getTitle() {
 		return $this->mTitle;
@@ -319,7 +319,7 @@ class Skin extends Linker {
 		$out->out( $out->mBodytext . "\n" );
 
 		$out->out( $this->afterContent() );
-		
+
 		$out->out( $afterContent );
 
 		$out->out( $this->bottomScripts() );
@@ -333,21 +333,13 @@ class Skin extends Linker {
 	static function makeVariablesScript( $data ) {
 		global $wgJsMimeType;
 
-		$doneFirstVar = false;
-		$r = array( "<script type=\"$wgJsMimeType\">/*<![CDATA[*/\n" );
+		$r = array( "<script type=\"$wgJsMimeType\">/*<![CDATA[*/" );
 		foreach ( $data as $name => $value ) {
 			$encValue = Xml::encodeJsVar( $value );
- 			if ( $doneFirstVar )
- 				$r[] = ",\n$name=$encValue";
- 			else {
- 				$r[] = "var $name=$encValue";
- 				$doneFirstVar = true;
- 			}
+			$r[] = "var $name = $encValue;";
 		}
-		# No need for ; since the script is terminating
- 		$r[] = "\n/*]]>*/</script>\n";
-
-		return implode( $r );
+		$r[] = "/*]]>*/</script>\n";
+		return implode( "\n\t\t", $r );
 	}
 
 	/**
@@ -418,7 +410,14 @@ class Skin extends Linker {
 		if ( !( $wgContLang->hasVariants() ) ) {
 			unset( $vars['wgUserVariant'] );
 		}
-		
+
+		//if on upload page output the extension list & js_upload
+		if( SpecialPage::resolveAlias( $wgTitle->getDBkey() ) ==  "Upload" ){
+			global $wgFileExtensions, $wgAjaxUploadInterface;
+			$vars['wgFileExtensions'] 	 = $wgFileExtensions;
+			$vars['wgAjaxUploadInterface'] = $wgAjaxUploadInterface;
+		}
+
 		if( $wgUseAjax && $wgEnableMWSuggest && !$wgUser->getOption( 'disablesuggest', false ) ){
 			$vars['wgMWSuggestTemplate'] = SearchEngine::getMWSuggestTemplate();
 			$vars['wgDBname'] = $wgDBname;
@@ -449,49 +448,37 @@ class Skin extends Linker {
 
 		return self::makeVariablesScript( $vars );
 	}
-
 	/**
-	 * Return a random selection of the scripts we want in the header, 
-	 * according to no particular rhyme or reason.  Various other scripts are 
-	 * returned from a haphazard assortment of other functions scattered over 
-	 * various files.  This entire hackish system needs to be burned to the 
-	 * ground and rebuilt.
+	 * Returns the Head Scripts (from local skin context)
 	 *
-	 * @var $allowUserJs bool Should probably be identical to $wgAllowUserJs, 
-	 *                        but is passed as a local variable for some 
-	 *                        obscure reason.
-	 * @var $extraHtml string A bunch of raw HTML to jam into some arbitrary 
-	 *                        place where MonoBook has historically wanted it.
-	 *                        Old-style skins formerly put it in a different 
-	 *                        place, but if either of those is broken it's 
-	 *                        likely to be the old-style skins.
-	 * @return string Raw HTML to output in some location in the <head> that's 
-	 *                entirely arbitrary but which will probably break 
-	 *                everything if you put it someplace else.
+	 * local $out variable that should be the same as $wgOut
+	 *
+	 * @return string Raw HTML to output to <head>
 	 */
-	function getHeadScripts( $allowUserJs, $extraHtml = '' ) {
-		global $wgStylePath, $wgUser, $wgJsMimeType, $wgStyleVersion;
-
-		$vars = self::makeGlobalVariablesScript( $this->getSkinName() );
-
-		$r = array( "<script type=\"{$wgJsMimeType}\" src=\"{$wgStylePath}/common/wikibits.js?$wgStyleVersion\"></script>\n$extraHtml" );
+	function getHeadScripts( OutputPage &$out ) {
+		global $wgStylePath, $wgUser, $wgJsMimeType, $wgStyleVersion, $wgOut;
 		global $wgUseSiteJs;
+
+		$vars = self::makeGlobalVariablesScript( array( 'skinname' => $this->getSkinName() ) );
+
+		//moved wikibits to be called earlier on
+		//$out->addScriptFile( "{$wgStylePath}/common/wikibits.js" );
 		if( $wgUseSiteJs ) {
 			$jsCache = $wgUser->isLoggedIn() ? '&smaxage=0' : '';
-			$r[] = "<script type=\"$wgJsMimeType\" src=\"".
-				htmlspecialchars( self::makeUrl( '-',
+			$wgOut->addScriptFile(  self::makeUrl( '-',
 					"action=raw$jsCache&gen=js&useskin=" .
-					urlencode( $this->getSkinName() ) ) ) .
-				"\"></script>";
+					urlencode( $this->getSkinName() )
+					)
+				);
 		}
-		if( $allowUserJs && $wgUser->isLoggedIn() ) {
+		if( $out->isUserJsAllowed() && $wgUser->isLoggedIn() ) {
 			$userpage = $wgUser->getUserPage();
-			$userjs = htmlspecialchars( self::makeUrl(
+			$userjs =  self::makeUrl(
 				$userpage->getPrefixedText().'/'.$this->getSkinName().'.js',
-				'action=raw&ctype='.$wgJsMimeType ) );
-			$r[] = '<script type="'.$wgJsMimeType.'" src="'.$userjs."\"></script>";
+				'action=raw&ctype='.$wgJsMimeType );
+			$wgOut->addScriptFile( $userjs );
 		}
-		return $vars . "\t" . implode ( "\n\t", $r );
+		return $vars . "\t" . implode ( "\n\t", $r ) . $out->mScripts;
 	}
 
 	/**
@@ -529,15 +516,20 @@ class Skin extends Linker {
 	 * top.  For now Monobook.js will be maintained, but it should be consi-
 	 * dered deprecated.
 	 *
+	 * @param force_skin  lets you override the skin name
+	 *
 	 * @return string
 	 */
-	public function generateUserJs() {
+	public function generateUserJs( $skinName = null) {
 		global $wgStylePath;
 
 		wfProfileIn( __METHOD__ );
+		if(!$skinName){
+			$skinName =	$this->getSkinName();
+		}
 
 		$s = "/* generated javascript */\n";
-		$s .= "var skin = '" . Xml::escapeJsString( $this->getSkinName() ) . "';\n";
+		$s .= "var skin = '" . Xml::escapeJsString($skinName ) . "';\n";
 		$s .= "var stylepath = '" . Xml::escapeJsString( $wgStylePath ) . "';";
 		$s .= "\n\n/* MediaWiki:Common.js */\n";
 		$commonJs = wfMsgForContent( 'common.js' );
@@ -545,10 +537,10 @@ class Skin extends Linker {
 			$s .= $commonJs;
 		}
 
-		$s .= "\n\n/* MediaWiki:".ucfirst( $this->getSkinName() ).".js */\n";
+		$s .= "\n\n/* MediaWiki:".ucfirst( $skinName ).".js */\n";
 		// avoid inclusion of non defined user JavaScript (with custom skins only)
 		// by checking for default message content
-		$msgKey = ucfirst( $this->getSkinName() ).'.js';
+		$msgKey = ucfirst( $skinName ).'.js';
 		$userJS = wfMsgForContent( $msgKey );
 		if ( !wfEmptyMsg( $msgKey, $userJS ) ) {
 			$s .= $userJS;
@@ -568,7 +560,7 @@ class Skin extends Linker {
 		wfProfileOut( __METHOD__ );
 		return $s;
 	}
-	
+
 	/**
 	 * Split for easier subclassing in SkinSimple, SkinStandard and SkinCologneBlue
 	 */
@@ -712,7 +704,7 @@ END;
 			' skin-'. Sanitizer::escapeClass( $this->getSkinName() );
 		return $a;
 	}
-	
+
 	function getPageClasses( $title ) {
 		$numeric = 'ns-'.$title->getNamespace();
 		if( $title->getNamespace() == NS_SPECIAL ) {
@@ -1381,7 +1373,7 @@ END;
 					$element[] = $this->emailUserLink();
 				}
 			}
-			
+
 			$s = implode( $element, $sep );
 
 			if ( $this->mTitle->getArticleId() ) {
@@ -1472,7 +1464,7 @@ END;
 		// Allow for site and per-namespace customization of copyright notice.
 		if( isset($wgArticle) )
 			wfRunHooks( 'SkinCopyrightFooter', array( $wgArticle->getTitle(), $type, &$msg, &$link ) );
-		
+
 		$out .= wfMsgForContent( $msg, $link );
 		return $out;
 	}
@@ -1654,7 +1646,7 @@ END;
 	function editUrlOptions() {
 		global $wgArticle;
 
-		$options = array( 'action' => 'edit' ); 
+		$options = array( 'action' => 'edit' );
 
 		if( $this->mRevisionId && ! $wgArticle->isCurrent() ) {
 			$options['oldid'] = intval( $this->mRevisionId );
@@ -2080,9 +2072,9 @@ END;
 	}
 
 	/**
-	 * Should we include common/wikiprintable.css?  Skins that have their own 
-	 * print stylesheet should override this and return false.  (This is an 
-	 * ugly hack to get Monobook to play nicely with 
+	 * Should we include common/wikiprintable.css?  Skins that have their own
+	 * print stylesheet should override this and return false.  (This is an
+	 * ugly hack to get Monobook to play nicely with
 	 * OutputPage::headElement().)
 	 *
 	 * @return bool

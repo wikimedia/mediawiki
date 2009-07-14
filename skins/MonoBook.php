@@ -26,8 +26,7 @@ class SkinMonoBook extends SkinTemplate {
 		$this->stylename = 'monobook';
 		$this->template  = 'MonoBookTemplate';
 
-	}
-
+	}	
 	function setupSkinUserCss( OutputPage $out ) {
 		global $wgHandheldStyle;
 
@@ -45,7 +44,30 @@ class SkinMonoBook extends SkinTemplate {
 		$out->addStyle( 'monobook/IE60Fixes.css', 'screen', 'IE 6' );
 		$out->addStyle( 'monobook/IE70Fixes.css', 'screen', 'IE 7' );
 
-		$out->addStyle( 'monobook/rtl.css', 'screen', '', 'rtl' );
+		$out->addStyle( 'monobook/rtl.css', 'screen', '', 'rtl' );		
+		
+		
+		//@@todo we can move this to the parent once we update all skins 
+		if( $this->pagecss )
+			$out->addInlineStyle( $this->pagecss );		
+		
+		if(  $this->usercss )
+			$out->addInlineStyle( $this->usercss );
+				
+	}
+	function setupSkinUserJs( OutputPage $out ) {	
+		parent::setupSkinUserJs( $out );		
+		$out->addScriptFile( 'wikibits.js' );
+		
+		//@@todo can move to parent once we update all skins (to not include things twice		
+		if( $this->jsvarurl )
+			$out->addScriptFile( $this->jsvarurl );		
+			
+		if( $this->userjs )		
+			$out->addScriptFile( $this->userjs );
+		
+		if( $this->userjsprev )
+			$out->addInlineScript( $this->userjsprev );
 	}
 }
 
@@ -72,7 +94,6 @@ class MonoBookTemplate extends QuickTemplate {
 		wfSuppressWarnings();
 
 		$path = htmlspecialchars( $wgStylePath );
-		# FIXME: What is this?  Should it apply to all skins?
 		$wgOut->addScript( <<<HTML
 <!--[if lt IE 7]><script type="$wgJsMimeType" src="$path/common/IEFixes.js?$wgStyleVersion"></script>
 	<meta http-equiv="imagetoolbar" content="no" /><![endif]-->

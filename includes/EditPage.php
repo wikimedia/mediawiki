@@ -111,6 +111,7 @@ class EditPage {
 		return $this->mArticle;
 	}
 
+
 	/**
 	 * Fetch initial editing page content.
 	 * @private
@@ -360,7 +361,7 @@ class EditPage {
 	 * the newly-edited page.
 	 */
 	function edit() {
-		global $wgOut, $wgRequest;
+		global $wgOut, $wgRequest, $wgEnableJS2system;
 		// Allow extensions to modify/prevent this form or submission
 		if ( !wfRunHooks( 'AlternateEdit', array( &$this ) ) ) {
 			return;
@@ -388,6 +389,10 @@ class EditPage {
 		}
 
 		$wgOut->addScriptFile( 'edit.js' );
+
+		if($wgEnableJS2system)
+		    $wgOut->addScriptClass( 'editPage' );
+
 		$permErrors = $this->getEditPermissionErrors();
 		if ( $permErrors ) {
 			wfDebug( __METHOD__.": User can't edit\n" );
@@ -1070,7 +1075,7 @@ class EditPage {
 		}
 		return true;
 	}
-	
+
 	/**
 	 * Check given input text against $wgSpamRegex, and return the text of the first match.
 	 * @return mixed -- matching string or false
@@ -1331,6 +1336,7 @@ class EditPage {
 			$toolbar = '';
 		}
 
+
 		// activate checkboxes if user wants them to be always active
 		if ( !$this->preview && !$this->diff ) {
 			# Sort out the "watch" checkbox
@@ -1344,7 +1350,7 @@ class EditPage {
 				# Already watched
 				$this->watchthis = true;
 			}
-			
+
 			# May be overriden by request parameters
 			if( $wgRequest->getBool( 'watchthis' ) ) {
 				$this->watchthis = true;
@@ -2180,9 +2186,9 @@ END
 
 		$toolbar.="/*]]>*/\n</script>";
 		$toolbar.="\n</div>";
-		
+
 		wfRunHooks( 'EditPageBeforeEditToolbar', array( &$toolbar ) );
-		
+
 		return $toolbar;
 	}
 

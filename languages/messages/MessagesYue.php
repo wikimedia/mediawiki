@@ -709,7 +709,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'clearyourcache'                   => "'''注意 - 喺儲存之後，你可能要先略過你嘅瀏覽器快取去睇到更改。'''
 '''Mozilla / Firefox / Safari:''' 㩒住''Shift''掣再撳''重新載入''，又或者㩒''Ctrl-F5''或者''Ctrl-R''（喺Macintosh㩒''Command-R''掣）；
 '''Konqueror:''' 就咁以撳個''重載''掣，又或者㩒''F5''；
-'''Opera:'''喺''工具→喜好設定''之中清佢哋嘅快取，又或者㩒''Alt-F5''；
+'''Opera:'''喺''工具→喜好設定''之中清佢哋嘅快取；
 '''Internet Explorer:''' 㩒住''Ctrl''掣再撳''重新整理''，又或者㩒''Ctrl-F5''掣。",
 'usercssjsyoucanpreview'           => "'''提示：'''響儲存前，用「顯示預覽」個掣嚟測試你嘅新CSS/JS。",
 'usercsspreview'                   => "'''請注意你而家只係預覽緊你嘅用戶CSS樣式表。'''
@@ -1736,7 +1736,7 @@ Template:搞清楚',
 
 # Special:Categories
 'categories'                    => '類',
-'categoriespagetext'            => '下面嘅{{PLURAL:$1|類}}有版或媒體。
+'categoriespagetext'            => '下面嘅類有版或媒體。
 [[Special:UnusedCategories|未用類]]唔會響呢度列示。
 請同時參閱[[Special:WantedCategories|需要嘅分類]]。',
 'categoriesfrom'                => '顯示由呢項起嘅類:',

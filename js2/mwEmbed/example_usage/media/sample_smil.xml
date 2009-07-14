@@ -1,0 +1,44 @@
+<smil xmlns="http://www.w3.org/2001/SMIL20/Language">
+  <head>
+    <meta name="title" content="Simple Crossfading Example"/>
+    
+    <transition id="fromGreen"
+	type="fade" 
+	subtype="fadeFromColor" 
+	fadeColor="#87CF87" 
+	dur="4s"/>
+	
+    <transition id="toGreen"
+	type="fade"
+	subtype="fadeToColor"
+	fadeColor="#87CF87" 
+	dur="4s"/>
+	
+    <transition id="xFade" 
+	type="fade" 
+	subtype="crossfade" 
+	dur="4s"/>
+	
+  </head>
+  <body>
+    <seq>
+
+ 	<video src="media/sample_fish.ogg" 
+		region="video_region" 
+		transIn="fromGreen"	
+		transOut="xFade" 	
+		type="video/ogg" 	
+		fill="transition"
+		dur="7s"
+		poster="media/sample_fish.jpg"/>	
+	
+    <video src="media/sample_jellyfish.ogg" 
+		region="video_region" 				
+		fill="transition" 
+		dur="10s"
+		type="video/ogg" 
+		poster="media/sample_jellyfish.jpg"/>     
+    </seq>
+  </body>
+</smil>
+

@@ -2281,7 +2281,39 @@ function wfShellExec( $cmd, &$retval=null ) {
 	}
 	return $output;
 }
-
+/**
+ * Executes a shell command in the background. Passes back the PID of the operation 
+ *
+ * @param string $cmd
+ */
+function wfShellBackgroundExec( $cmd ){	
+	wfDebug( "wfShellBackgroundExec: $cmd\n" );
+	
+	if ( ! wfShellExecEnabled() ) {
+		return "Unable to run external programs";
+	}
+	
+	$pid = shell_exec( "nohup $cmd > /dev/null & echo $!" );
+	return $pid;
+}
+/**
+ * Checks if the current instance can execute a shell command
+ *
+ */
+function wfShellExecEnabled(){			
+	if( wfIniGetBool( 'safe_mode' ) ) {
+		wfDebug( "wfShellExec can't run in safe_mode, PHP's exec functions are too broken.\n" );
+		return false;
+	}
+	$functions = explode( ',', ini_get( 'disable_functions' ) );
+	$functions = array_map( 'trim', $functions );
+	$functions = array_map( 'strtolower', $functions );
+	if ( in_array( 'passthru', $functions ) ) {
+		wfDebug( "passthru is in disabled_functions\n" );
+		return false;
+	}
+	return true;
+}
 /**
  * Workaround for http://bugs.php.net/bug.php?id=45132
  * escapeshellarg() destroys non-ASCII characters if LANG is not a UTF-8 locale
@@ -2679,9 +2711,12 @@ function wfCreateObject( $name, $p ){
  * Alias for modularized function
  * @deprecated Use Http::get() instead
  */
-function wfGetHTTP( $url, $timeout = 'default' ) {
+function wfGetHTTP( $url ) {
 	wfDeprecated(__FUNCTION__);
-	return Http::get( $url, $timeout );
+	$status = Http::get( $url );
+	if( $status->isOK() )
+		return $status->value;		
+	return null;
 }
 
 /**
@@ -2705,7 +2740,7 @@ function wfHttpOnlySafe() {
 			}
 		}
 	}
-
+	
 	return true;
 }
 

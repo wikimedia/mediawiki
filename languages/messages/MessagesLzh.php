@@ -640,9 +640,9 @@ $2',
 'permissionserrorstext'            => '子權未逮，有{{PLURAL:$1|因|因}}如下：',
 'permissionserrorstext-withaction' => '子權未逮，有{{PLURAL:$1|因|因}}如$2：',
 'recreate-moveddeleted-warn'       => "'''留意：刪文復造，惠慎纂。'''
-誌刪遷如下：",
+誌刪如下：",
 'moveddeleted-notice'              => '此頁刪矣。
-此頁之誌刪遷參留之。',
+此頁之誌參留之。',
 'log-fulllog'                      => '閱誌全',
 'edit-hook-aborted'                => '鈎纂消矣。
 無解也。',
@@ -897,7 +897,7 @@ $1",
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|查此首之頁]]',
 'searchprofile-articles'           => '容',
 'searchprofile-project'            => '助題',
-'searchprofile-images'             => '媒',
+'searchprofile-images'             => '檔',
 'searchprofile-everything'         => '全',
 'searchprofile-advanced'           => '進',
 'searchprofile-articles-tooltip'   => '在$1中尋',
@@ -1328,7 +1328,7 @@ $1",
 'nolinkstoimage'            => '無頁連本檔也。',
 'morelinkstoimage'          => '閱檔[[Special:WhatLinksHere/$1|接]]。',
 'redirectstofile'           => '下檔轉到此檔有$1：',
-'duplicatesoffile'          => '下檔重此檔有$1（[[Special:FileDuplicateSearch/$2|詳]]）：',
+'duplicatesoffile'          => '下檔重此檔有$1：',
 'sharedupload'              => '此檔為$1之共傳，可另項用也。',
 'sharedupload-desc-there'   => '此檔為$1之共傳，可另項用也。
 詳閱[$2 檔述]。',
@@ -1520,7 +1520,7 @@ $1",
 
 # Special:Categories
 'categories'                    => '類',
-'categoriespagetext'            => '大典{{PLURAL:$1|類中}}有頁或媒。
+'categoriespagetext'            => '大典有頁或媒。
 [[Special:UnusedCategories|未類]]無示之。
 閱[[Special:WantedCategories|需類]]也。',
 'categoriesfrom'                => '示此項起之類：',
@@ -1728,7 +1728,7 @@ $NEWPAGE
 'protect-locked-dblock'       => "庫鎖，'''$1'''緘昔如下：",
 'protect-locked-access'       => "未准，'''$1'''緘昔如下：",
 'protect-cascadeon'           => '取佐緘焉，迭牽此頁；{{PLURAL:$1|此|此}}頁啟篋，無反累焉。',
-'protect-default'             => '允全簿',
+'protect-default'             => '（慣）',
 'protect-fallback'            => "須''$1''准",
 'protect-level-autoconfirmed' => '禁無簿',
 'protect-level-sysop'         => '惟有秩',
@@ -2284,7 +2284,7 @@ $1已被禁矣。爾是否改此置？',
 
 # Media information
 'mediawarning'         => "'''警'''日：此檔疑惡，行之恐諜也。<hr />",
-'imagemaxsize'         => "述檔頁惟列：<br />''（用於檔）''",
+'imagemaxsize'         => '述檔頁惟列：',
 'thumbsize'            => '縮圖幅',
 'widthheight'          => '$1矩$2',
 'widthheightpage'      => '$1矩$2，共$3頁',

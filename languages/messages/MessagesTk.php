@@ -11,8 +11,6 @@
  * @author Hanberke
  * @author Runningfridgesrule
  */
- 
-$linkTrail = '/^([a-zÄäÇçĞğŇňÖöŞşÜüÝýŽž]+)(.*)$/sDu';
 
 $messages = array(
 # User preference toggles

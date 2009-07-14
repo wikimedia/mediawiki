@@ -1,0 +1,27 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+	<title>Sample Themed Player</title>
+ 	<script type="text/javascript" src="../mv_embed.js?debug=true"></script>	 
+</head>
+<script type="text/javascript">
+mwAddOnloadHook(function(){
+	$j('#doThemeRoller').click(function(){
+		if(window.jquitr){ 
+			jquitr.addThemeRoller(); 
+		} else{
+			loadExternalJs('http://jqueryui.com/themeroller/developertool/developertool.js.php');			
+		}
+	}).html('<span class="ui-icon ui-icon-newwin"/>Run Theme Roller</span>');
+});
+</script>
+<body bgcolor="#FFF">
+<h3> Sample Themed Player:</h3>
+<a id="doThemeRoller" class="ui-icon_link ui-state-default ui-corner-all" href="#">loading theme editor<blink>...</blink></a><p><p>
+<video src="media/sample_fish.ogg" thumbnail="media/sample_fish.jpg" durationHint="26"></video> 	
+ </table>
+
+</body>
+</html>
+

@@ -889,7 +889,7 @@ See [[Special:Version|version page]].',
 'newmessageslink'              => 'new messages',
 'newmessagesdifflink'          => 'last change',
 'youhavenewmessagesmulti'      => 'You have new messages on $1',
-'newtalkseparator'             => ',&#32;', # do not translate or duplicate this message to other languages
+'newtalkseparator'             => ',_', # do not translate or duplicate this message to other languages
 'editsection'                  => 'edit',
 'editsection-brackets'         => '[$1]', # only translate this message to other languages if you have to change it
 'editold'                      => 'edit',
@@ -970,6 +970,7 @@ Please report this to an [[Special:ListUsers/sysop|administrator]], making note 
 'readonly_lag'         => 'The database has been automatically locked while the slave database servers catch up to the master',
 'internalerror'        => 'Internal error',
 'internalerror_info'   => 'Internal error: $1',
+'fileappenderror'      => 'Could not append $1 to $2',
 'filecopyerror'        => 'Could not copy file "$1" to "$2".',
 'filerenameerror'      => 'Could not rename file "$1" to "$2".',
 'filedeleteerror'      => 'Could not delete file "$1".',
@@ -1159,6 +1160,7 @@ You may have already successfully changed your password or requested a new tempo
 'media_tip'       => 'File link',
 'sig_tip'         => 'Your signature with timestamp',
 'hr_tip'          => 'Horizontal line (use sparingly)',
+'add_media_wizard' => 'Add media wizard',
 
 # Edit pages
 'summary'                          => 'Summary:',
@@ -2005,6 +2007,7 @@ To include a file in a page, use a link in one of the following forms:
 'uploadlogpage'               => 'Upload log',
 'uploadlogpagetext'           => 'Below is a list of the most recent file uploads.
 See the [[Special:NewFiles|gallery of new files]] for a more visual overview.',
+
 'filename'                    => 'Filename',
 'filedesc'                    => 'Summary',
 'fileuploadsummary'           => 'Summary:',
@@ -2102,6 +2105,11 @@ Please contact an [[Special:ListUsers/sysop|administrator]].',
 'upload-misc-error-text'  => 'An unknown error occurred during the upload.
 Please verify that the URL is valid and accessible and try again.
 If the problem persists, contact an [[Special:ListUsers/sysop|administrator]].',
+'upload-too-many-redirects' => 'The URL contained too many redirects',
+'upload-unknown-size'       => 'Unknown size',
+
+// Idealy we map out all the http errors and translations else just call this with the http resposne:
+'upload-http-error' => "An HTTP error occured: $1",
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Could not reach URL',
@@ -2380,7 +2388,7 @@ It now redirects to [[$2]].',
 
 # Magic words
 'rfcurl'    => 'http://tools.ietf.org/html/rfc$1', # do not translate or duplicate this message to other languages
-'pubmedurl' => 'http://www.ncbi.nlm.nih.gov/pubmed/$1?dopt=Abstract', # do not translate or duplicate this message to other languages
+'pubmedurl' => 'http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&db=pubmed&dopt=Abstract&list_uids=$1', # do not translate or duplicate this message to other languages
 
 # Special:Log
 'specialloguserlabel'  => 'User:',
