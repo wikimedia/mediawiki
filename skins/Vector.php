@@ -703,7 +703,7 @@ class VectorTemplate extends QuickTemplate {
 					if ( count( $this->data[ 'variant_urls' ] ) > 0 ) {
 ?>
 <div id="variants" class="vectorMenu">
-	<h5><span><?php $this->msg('variants') ?></span><a href="#">&nbsp;</a></h5>
+	<h5><span><?php $this->msg('variants') ?></span><a href="#"></a></h5>
 	<div class="menu">
 		<ul <?php $this->html('userlangattributes') ?>>
 			<?php foreach ($this->data['variant_urls'] as $key => $link ): ?>
@@ -733,7 +733,7 @@ class VectorTemplate extends QuickTemplate {
 					if ( count( $this->data[ 'action_urls' ] ) > 0 ) {
 ?>
 <div id="p-cactions" class="vectorMenu">
-	<h5><span><?php $this->msg('actions') ?></span><a href="#">&nbsp;</a></h5>
+	<h5><span><?php $this->msg('actions') ?></span><a href="#"></a></h5>
 	<div class="menu">
 		<ul <?php $this->html('userlangattributes') ?>>
 			<?php foreach ($this->data['action_urls'] as $key => $link ): ?>
@@ -775,6 +775,7 @@ class VectorTemplate extends QuickTemplate {
 	</form>
 </div>
 <?php
+
 				break;
 			}
 			echo "\n<!-- /{$name} -->\n";

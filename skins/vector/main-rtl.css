@@ -168,8 +168,9 @@ div#head h5 {
 		padding-top: 1.25em;
 	}
 	/* IGNORED BY IE6 */
+	/* @noflip */
 	div.vectorTabs a > span {
-		float: right;
+		float: left;
 		display: block;
 	}
 	div.vectorTabs li.selected a,
@@ -190,14 +191,16 @@ div#head h5 {
 	/* @noflip */
 	div.vectorMenu {
 		float: left;
+		direction: ltr;
 	}
 	div.vectorMenu {
 		background-image: url(images/arrow-down-icon.png);
 		background-position: center center;
 		background-repeat: no-repeat;
 	}
+	/* @noflip */
 	div.vectorMenu h5 {
-		float: right;
+		float: left;
 	}
 	/* OVERRIDDEN BY COMPLIANT BROWSERS */
 	div.vectorMenu h5 a {
@@ -214,6 +217,7 @@ div#head h5 {
 		display: block;
 	}
 	div.vectorMenu div.menu {
+		position: relative;
 		display: none;
 		clear: both;
 	}
@@ -233,6 +237,7 @@ div#head h5 {
 	div.vectorMenu li {
 		padding: 0;
 		margin: 0;
+		text-align: right;
 	}
 	/* OVERRIDDEN BY COMPLIANT BROWSERS */
 	div.vectorMenu li a {
@@ -252,13 +257,13 @@ div#head h5 {
 		float: left;
 	}
 	div#p-search {
-		margin-left: 0.75em;
+		margin-left: 0.5em;
+		margin-right: 0.5em;
 	}
 	div#p-search form,
 	div#p-search input {
-		float: right;
+		margin: 0;
 		margin-top: 0.4em;
-		margin-right: 0.25em;
 	}
 /* Panel */
 div#panel {
