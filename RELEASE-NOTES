@@ -253,6 +253,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 19571) Override buildConcat for SQLite.
 * Log in and log out links no longer return to page view when clicked from
   history view, edit page, or something similar
+* (bug 19513) RTL fixes for new Search UI
 
 == API changes in 1.16 ==
 
