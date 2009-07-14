@@ -24,7 +24,7 @@ class SkinVector extends SkinTemplate {
 	 * @param object $out Output page object to initialize
 	 */
 	public function initPage( OutputPage $out ) {
-		global $wgStylePath;
+		global $wgStylePath, $wgJsMimeType, $wgStyleVersion;
 		
 		parent::initPage( $out );
 		$this->skinname  = 'vector';
