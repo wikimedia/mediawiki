@@ -3734,11 +3734,11 @@ class Parser
 				$toc .= $sk->tocUnindent( $prevtoclevel - 1 );
 			}
 			$toc = $sk->tocList( $toc );
+			$this->mOutput->setTOCHTML( $toc );
 		}
 		
 		if ( $isMain ) {
 			$this->mOutput->setSections( $tocraw );
-			$this->mOutput->setTOCHTML( $toc );
 		}
 
 		# split up and insert constructed headlines
