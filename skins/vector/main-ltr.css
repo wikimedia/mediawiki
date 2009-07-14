@@ -76,8 +76,11 @@ div#head h5 {
 		margin: 0;
 		padding: 0;
 	}
+	/* @noflip */
 	div#p-personal li {
 		float: left;
+	}
+	div#p-personal li {
 		margin-left: 0.75em;
 		margin-top: 0.5em;
 		font-size: 0.9em;
@@ -98,24 +101,33 @@ div#head h5 {
 		display: none;
 	}
 	/* Namespaces and Views */
+	/* @noflip */
 	div.vectorTabs {
 		float: left;
+	}
+	div.vectorTabs {
 		background-image: url(images/tab-break.png);
 		background-position: bottom left;
 		background-repeat: no-repeat;
 		padding-left: 1px;
 	}
+	/* @noflip */
 	div.vectorTabs ul {
 		float: left;
+	}
+	div.vectorTabs ul {
 		height: 100%;
 		list-style: none;
 		margin: 0;
 		padding: 0;
 	}
+	/* @noflip */
+	div.vectorTabs ul li {
+		float: left;
+	}
 	/* OVERRIDDEN BY COMPLIANT BROWSERS */
 	div.vectorTabs ul li {
 		display: inline-block;
-		float: left;
 		height: 100%;
 		margin: 0;
 		padding: 0;
@@ -175,8 +187,11 @@ div#head h5 {
 		color: #a55858;
 	}
 	/* Variants and Actions */
+	/* @noflip */
 	div.vectorMenu {
 		float: left;
+	}
+	div.vectorMenu {
 		background-image: url(images/arrow-down-icon.png);
 		background-position: center center;
 		background-repeat: no-repeat;
@@ -232,8 +247,11 @@ div#head h5 {
 	div#p-search h5 {
 		display: none;
 	}
+	/* @noflip */
 	div#p-search {
 		float: left;
+	}
+	div#p-search {
 		margin-right: 0.75em;
 	}
 	div#p-search form,
