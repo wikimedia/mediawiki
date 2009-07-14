@@ -21,6 +21,7 @@ wfSpecialUpload
 					empty(mFileSize)
 					getTitle()
 					checkOverwrite()
+					fetchFile()
 					verifyFile()
 						checkMacBinary()
 					wfRunHooks(UploadVerification)

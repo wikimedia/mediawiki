@@ -10,9 +10,11 @@ if (webkit_match) {
 	var is_safari_win = is_safari && clientPC.indexOf('windows') != -1;
 	var webkit_version = parseInt(webkit_match[1]);
 }
+var is_khtml = navigator.vendor == 'KDE' ||
+	( document.childNodes && !document.all && !navigator.taintEnabled );
 // For accesskeys; note that FF3+ is included here!
 var is_ff2 = /firefox\/[2-9]|minefield\/3/.test( clientPC );
-var ff2_bugs = /firefox\/2/.test( clientPC );
+var is_ff2_ = /firefox\/2/.test( clientPC );
 // These aren't used here, but some custom scripts rely on them
 var is_ff2_win = is_ff2 && clientPC.indexOf('windows') != -1;
 var is_ff2_x11 = is_ff2 && clientPC.indexOf('x11') != -1;
@@ -20,10 +22,7 @@ if (clientPC.indexOf('opera') != -1) {
 	var is_opera = true;
 	var is_opera_preseven = window.opera && !document.childNodes;
 	var is_opera_seven = window.opera && document.childNodes;
-	var is_opera_95 = /opera\/(9\.[5-9]|[1-9][0-9])/.test( clientPC );
-	var opera6_bugs = is_opera_preseven;
-	var opera7_bugs = is_opera_seven && !is_opera_95;
-	var opera95_bugs = /opera\/(9\.5)/.test( clientPC );
+	var is_opera_95 = /opera\/(9.[5-9]|[1-9][0-9])/.test( clientPC );
 }
 
 // Global external objects used by this script.
@@ -34,9 +33,10 @@ var doneOnloadHook;
 
 if (!window.onloadFuncts) {
 	var onloadFuncts = [];
-}
-
-function addOnloadHook(hookFunct) {
+}	
+	
+//should use mwAddOnloadHook once js2 is enabled
+function addOnloadHook(hookFunct) {	
 	// Allows add-on scripts to add onload functions
 	if(!doneOnloadHook) {
 		onloadFuncts[onloadFuncts.length] = hookFunct;
@@ -96,15 +96,15 @@ function appendCSS(text) {
 
 // special stylesheet links
 if (typeof stylepath != 'undefined' && typeof skin != 'undefined') {
-	// FIXME: This tries to load the stylesheets even for skins where they
-	// don't exist, i.e., everything but Monobook.
-	if (opera6_bugs) {
+	if (is_opera_preseven) {
 		importStylesheetURI(stylepath+'/'+skin+'/Opera6Fixes.css');
-	} else if (opera7_bugs) {
+	} else if (is_opera_seven && !is_opera_95) {
 		importStylesheetURI(stylepath+'/'+skin+'/Opera7Fixes.css');
-	} else if (opera95_bugs) {
+	} else if (is_opera_95) {
 		importStylesheetURI(stylepath+'/'+skin+'/Opera9Fixes.css');
-	} else if (ff2_bugs) {
+	} else if (is_khtml) {
+		importStylesheetURI(stylepath+'/'+skin+'/KHTMLFixes.css');
+	} else if (is_ff2_) {
 		importStylesheetURI(stylepath+'/'+skin+'/FF2Fixes.css');
 	}
 }
@@ -452,8 +452,23 @@ function toggle_element_activation(ida,idb) {
 	if (!document.getElementById) {
 		return;
 	}
-	document.getElementById(ida).disabled=true;
-	document.getElementById(idb).disabled=false;
+	//hide and show appropriate upload sizes
+	if(idb == 'wpUploadFileURL'){
+		var e = document.getElementById('mw-upload-maxfilesize');
+		if(e) e.style.display = "none";		
+		
+		var e = document.getElementById('mw-upload-maxfilesize-url');
+		if(e) e.style.display = "block";		
+	}
+	if(idb == 'wpUploadFile'){
+		var e = document.getElementById('mw-upload-maxfilesize-url');
+		if(e) e.style.display =  "none";
+					
+		var e = document.getElementById('mw-upload-maxfilesize');
+		if(e) e.style.display =  "block";
+	}
+	document.getElementById(ida).disabled = true;
+	document.getElementById(idb).disabled = false;
 }
 
 function toggle_element_check(ida,idb) {

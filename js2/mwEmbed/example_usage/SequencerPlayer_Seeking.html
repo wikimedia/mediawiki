@@ -1,0 +1,78 @@
+<!doctype html>
+<html>
+<head>
+    <title>mv_embed Seeking Example</title>
+ 	  <script type="text/javascript" src="../mv_embed.js?debug=true"></script> 	
+  <style>
+    #render_box {
+      position:absolute;
+      width:400px;
+      height:300px;
+    }
+    #frame_overlay {
+      position:absolute;
+      width:400px;
+      height:300px;
+      top: 28px;
+      left: 9px;
+    }
+
+  </style>
+  <script>
+var pos = 0;
+var duration = 2;
+var step = 0.04;
+var render = false;
+
+function renderNext() {
+  $j('#pos').val(pos);
+  document.getElementById('render_box').setCurrentTime(pos, function(currentTime) {
+      return function() {
+        //ogg.addFrame('frame_overlay');
+        pos += step;
+        if(render && pos <= duration)
+          renderNext();
+      };
+  }(pos));
+}
+
+function startRender() {
+  //ogg = new Firefogg();
+  //ogg.initRender('{"videoQuality": 10, "framerate": 25, "width": 400, "height": 300}', 'sample_smil.ogv');
+  $j("#buttonStart").attr("disabled", true); 
+  if(!render) {
+      //document.getElementById('render_box').play();
+      //document.getElementById('render_box').pause();
+      setTimeout(function() {
+        //duration = document.getElementById('render_box').getDuration();
+        render = true;
+        pos = 0;
+        renderNext();
+      }, 1000);
+  }
+}
+function stopRender() {
+  render = false;
+  $j("#buttonStart").attr("disabled", false); 
+  $j("#buttonSop").attr("disabled", true); 
+}
+function seek() {
+  var seekTo = $j('#pos').val();
+  document.getElementById('render_box').setCurrentTime(seekTo, function() { js_log('seeked'); });
+}
+  </script>
+</head>
+<body>
+<playlist id="render_box" src="media/sample_smil.xml" controls="false"></playlist>
+<div id="frame_overlay"></div>
+
+<div id="info" style="position: absolute; top:360px">
+    <button onclick="startRender()" id="buttonStart">Start</button>
+    <button onclick="stopRender()" id="buttonStart">Stop</button>
+    position: <input type="text" id="pos" value="6.6" />
+    <button onclick="seek()">seek</button>
+    <span id="status"></span><br>
+</div>
+</body>
+</html>
+

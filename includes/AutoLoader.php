@@ -114,6 +114,8 @@ $wgAutoloadLocalClasses = array(
 	'IndexPager' => 'includes/Pager.php',
 	'Interwiki' => 'includes/Interwiki.php',
 	'IP' => 'includes/IP.php',
+	'JSMin' => 'js2/mwEmbed/php/minify/JSMin.php',
+	'jsScriptLoader' => 'js2/mwEmbed/jsScriptLoader.php',
 	'Job' => 'includes/JobQueue.php',
 	'LCStore_DB' => 'includes/LocalisationCache.php',
 	'LCStore_CDB' => 'includes/LocalisationCache.php',
@@ -220,6 +222,11 @@ $wgAutoloadLocalClasses = array(
 	'TransformParameterError' => 'includes/MediaTransformOutput.php',
 	'TurckBagOStuff' => 'includes/BagOStuff.php',
 	'UnlistedSpecialPage' => 'includes/SpecialPage.php',
+	'UploadBase' => 'includes/upload/UploadBase.php',
+	'UploadFromStash' => 'includes/upload/UploadFromStash.php',
+	'UploadFromFile' => 'includes/upload/UploadFromFile.php',
+	'UploadFromUrl' => 'includes/upload/UploadFromUrl.php',
+	'UploadFromChunks' => 'includes/upload/UploadFromChunks.php',
 	'User' => 'includes/User.php',
 	'UserArray' => 'includes/UserArray.php',
 	'UserArrayFromResult' => 'includes/UserArray.php',
@@ -317,6 +324,7 @@ $wgAutoloadLocalClasses = array(
 	'ApiUnblock' => 'includes/api/ApiUnblock.php',
 	'ApiUndelete' => 'includes/api/ApiUndelete.php',
 	'ApiUserrights' => 'includes/api/ApiUserrights.php',
+	'ApiUpload' => 'includes/api/ApiUpload.php',
 	'ApiWatch' => 'includes/api/ApiWatch.php',
 	'Services_JSON' => 'includes/api/ApiFormatJson_json.php',
 	'Services_JSON_Error' => 'includes/api/ApiFormatJson_json.php',
@@ -352,7 +360,7 @@ $wgAutoloadLocalClasses = array(
 	'PostgresField' => 'includes/db/DatabasePostgres.php',
 	'ResultWrapper' => 'includes/db/Database.php',
 	'SQLiteField' => 'includes/db/DatabaseSqlite.php',
-	
+
 	'DatabaseIbm_db2' => 'includes/db/DatabaseIbm_db2.php',
 	'IBM_DB2Field' => 'includes/db/DatabaseIbm_db2.php',
 	'IBM_DB2SearchResultSet' => 'includes/SearchIBM_DB2.php',
@@ -550,6 +558,7 @@ $wgAutoloadLocalClasses = array(
 	'WantedFilesPage' => 'includes/specials/SpecialWantedfiles.php',
 	'WantedPagesPage' => 'includes/specials/SpecialWantedpages.php',
 	'WantedTemplatesPage' => 'includes/specials/SpecialWantedtemplates.php',
+	'WhatLinksHerePage' => 'includes/specials/SpecialWhatlinkshere.php',
 	'WikiImporter' => 'includes/Import.php',
 	'WikiRevision' => 'includes/Import.php',
 	'WithoutInterwikiPage' => 'includes/specials/SpecialWithoutinterwiki.php',
@@ -570,6 +579,39 @@ $wgAutoloadLocalClasses = array(
 	'csvStatsOutput' => 'maintenance/language/StatOutputs.php',
 
 );
+
+//autoloader for javascript files (path is from the mediawiki folder
+global $wgJSAutoloadLocalClasses;
+$wgJSAutoloadLocalClasses = array(
+	'ajax' =>  'skins/common/ajax.js',
+    'ajaxwatch' => 'skins/common/ajaxwatch.js',
+    'allmessages' => 'skins/common/allmessages.js',
+	'block' => 'skins/common/block.js',
+	'changepassword' => 'skins/common/changepassword.js',
+	'diff' => 'skins/common/diff.js',
+	'edit' => 'skins/common/edit.js',
+	'enhancedchanges.js' => 'skins/common/enhancedchanges.js',
+	'history' => 'skins/common/history.js',
+	'IEFixes' => 'skins/common/IEFixes.js',
+	'metadata' => 'skins/common/metadata.js',
+	'mwsuggest' => 'skins/common/mwsuggest.js',
+	'prefs' => 'skins/common/prefs.js',
+	'preview' => 'skins/common/preview.js',
+	'protect' => 'skins/common/protect.js',
+	'rightclickedit' => 'skins/common/rightclickedit.js',
+	'sticky'	=> 'skins/common/sticky.js',
+	'upload' => 'skins/common/upload.js',
+	'wikibits' => 'skins/common/wikibits.js',
+
+	//phase 2 javascript:
+	'uploadPage' => 'js2/uploadPage.js',
+	'editPage'	=>	'js2/editPage.js',
+);
+
+//Include the js2 autoLoadClasses
+//@@todo move jsAutoloadLocalClasses.php to post Setup so we have default values and can check the $wgEnableJS2system var
+$wgMwEmbedDirectory = "js2/mwEmbed/";
+require_once("$IP/js2/mwEmbed/php/jsAutoloadLocalClasses.php");
 
 class AutoLoader {
 	/**
@@ -598,7 +640,7 @@ class AutoLoader {
 				}
 			}
 			if ( !$filename ) {
-				if( function_exists( 'wfDebug' ) ) 	
+				if( function_exists( 'wfDebug' ) )
 					wfDebug( "Class {$className} not found; skipped loading\n" );
 				# Give up
 				return false;
