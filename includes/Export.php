@@ -438,6 +438,9 @@ class XmlDumpWriter {
 		$title = Title::makeTitle( $row->page_namespace, $row->page_title );
 		$out .= '    ' . Xml::elementClean( 'title', array(), $title->getPrefixedText() ) . "\n";
 		$out .= '    ' . Xml::element( 'id', array(), strval( $row->page_id ) ) . "\n";
+		if( $row->page_is_redirect ) {
+			$out .= '    ' . Xml::element( 'redirect', array() ). "\n";
+		}
 		if( '' != $row->page_restrictions ) {
 			$out .= '    ' . Xml::element( 'restrictions', array(),
 				strval( $row->page_restrictions ) ) . "\n";
