@@ -296,6 +296,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 19528) Added XSLT parameter to API queries in format=xml
 * (bug 19040) Fix prependtext and appendtext in combination with section 
   parameter in action=edit
+* (bug 19090) Added watchlist parameter, deprecated watch and unwatch 
+  parameter in action=edit
 
 === Languages updated in 1.16 ===
 
