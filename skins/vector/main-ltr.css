@@ -292,6 +292,17 @@ div#head h5 {
 		margin: 0;
 		margin-top: 0.4em;
 	}
+	div#p-search div#simpleSearch input#searchInput {
+		margin-top: 0.125em;
+		border: solid 1px #AAAAAA;
+		height: 1.25em;
+		width: 10em;
+		padding: 0.5em;
+	}
+	div#p-search div#simpleSearch input#searchButton {
+		border: none;
+		margin-left: 0.25em;
+	}
 /* Panel */
 div#panel {
 	position: absolute;

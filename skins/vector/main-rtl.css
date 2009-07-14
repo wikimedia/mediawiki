@@ -292,6 +292,10 @@ div#head h5 {
 		margin: 0;
 		margin-top: 0.4em;
 	}
+	div#p-search input#searchButton {
+		border: none;
+		margin-right: 0.25em;
+	}
 /* Panel */
 div#panel {
 	position: absolute;

@@ -682,7 +682,7 @@ class VectorTemplate extends QuickTemplate {
 	 * when UI is in RTL mode
 	 */
 	private function renderNavigation( $elements ) {
-		global $wgContLang, $wgUseTwoButtonsSearchForm;
+		global $wgContLang, $wgVectorUseSimpleSearch, $wgStylePath;
 		
 		// If only one element was given, wrap it in an array, allowing more
 		// flexible arguments
@@ -776,12 +776,15 @@ class VectorTemplate extends QuickTemplate {
 	<h5 <?php $this->html('userlangattributes') ?>><label for="searchInput"><?php $this->msg( 'search' ) ?></label></h5>
 	<form action="<?php $this->text( 'wgScript' ) ?>" id="searchform">
 		<input type='hidden' name="title" value="<?php $this->text( 'searchtitle' ) ?>"/>
+		<?php if ( $wgVectorUseSimpleSearch ): ?>
+		<div id="simpleSearch">
+			<input id="searchInput" name="search" type="text" <?php echo $this->skin->tooltipAndAccesskey( 'search' ); ?> <?php if( isset( $this->data['search'] ) ): ?> value="<?php $this->text( 'search' ) ?>"<?php endif; ?> />
+			<input  id="searchButton" type='image' name='fulltext' src="<?php echo $wgStylePath ?>/vector/images/search.png" <?php echo $this->skin->tooltipAndAccesskey( 'search-fulltext' ); ?> align="top" />
+		</div>
+		<?php else: ?>
 		<input id="searchInput" name="search" type="text" <?php echo $this->skin->tooltipAndAccesskey( 'search' ); ?> <?php if( isset( $this->data['search'] ) ): ?> value="<?php $this->text( 'search' ) ?>"<?php endif; ?> />
 		<input type='submit' name="go" class="searchButton" id="searchGoButton"	value="<?php $this->msg( 'searcharticle' ) ?>"<?php echo $this->skin->tooltipAndAccesskey( 'search-go' ); ?> />
-		<?php if ( $wgUseTwoButtonsSearchForm ): ?>
 		<input type="submit" name="fulltext" class="searchButton" id="mw-searchButton" value="<?php $this->msg( 'searchbutton' ) ?>"<?php echo $this->skin->tooltipAndAccesskey( 'search-fulltext' ); ?> />
-		<?php else: ?>
-		<div><a href="<?php $this->text( 'searchaction' ) ?>" rel="search"><?php $this->msg( 'powersearch-legend' ) ?></a></div>
 		<?php endif; ?>
 	</form>
 </div>
