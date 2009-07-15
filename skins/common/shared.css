@@ -3,7 +3,11 @@
  * careful what you put in here, since what looks good in one skin may not in
  * another, but don't ignore the poor non-Monobook users either.
  */
-.mw-plusminus-null { color: #aaa; }
+
+/* Colored watchlist and recent changes numbers */
+.mw-plusminus-pos { color: #006400; } /* dark green */
+.mw-plusminus-neg { color: #8b0000; } /* dark red */
+.mw-plusminus-null { color: #aaa; } /* gray */
 
 .texvc { direction: ltr; unicode-bidi: embed; }
 img.tex { vertical-align: middle; }

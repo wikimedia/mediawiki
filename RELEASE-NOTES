@@ -123,6 +123,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   preprocesor level.
 * Added $wgShowArchiveThumbnails, allowing sysadmins to disable thumbnail 
   display for old versions of images.
+* In watchlists and Special:RecentChanges, the difference in page size now
+  appears in dark green if bytes were added and dark red if bytes were removed.
 
 === Bug fixes in 1.16 ===
 
