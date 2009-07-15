@@ -659,7 +659,7 @@ abstract class ApiBase {
 				if($allowMultiple)
 				{
 					$s = count($unknown) > 1 ? "s" : "";
-					$vals = implode(", ", $unknown); 
+					$vals = implode(", ", $unknown);
 					$this->setWarning("Unrecognized value$s for parameter '$valueName': $vals");
 				}
 				else
@@ -829,7 +829,7 @@ abstract class ApiBase {
 		'toofewexpiries' => array('code' => 'toofewexpiries', 'info' => "\$1 expiry timestamps were provided where \$2 were needed"),
 		'cantimport' => array('code' => 'cantimport', 'info' => "You don't have permission to import pages"),
 		'cantimport-upload' => array('code' => 'cantimport-upload', 'info' => "You don't have permission to import uploaded pages"),
-		'nouploadmodule' => array( 'code' => 'nomodule', 'info' => 'No upload module set' ),		
+		'nouploadmodule' => array( 'code' => 'nomodule', 'info' => 'No upload module set' ),
 		'importnofile' => array('code' => 'nofile', 'info' => "You didn't upload a file"),
 		'importuploaderrorsize' => array('code' => 'filetoobig', 'info' => 'The file you uploaded is bigger than the maximum upload size'),
 		'importuploaderrorpartial' => array('code' => 'partialupload', 'info' => 'The file was only partially uploaded'),
@@ -855,6 +855,9 @@ abstract class ApiBase {
 		'emptynewsection' => array('code' => 'emptynewsection', 'info' => 'Creating empty new sections is not possible.'),
 		'revwrongpage' => array('code' => 'revwrongpage', 'info' => "r\$1 is not a revision of ``\$2''"),
 		'undo-failure' => array('code' => 'undofailure', 'info' => 'Undo failed due to conflicting intermediate edits'),
+
+		//uploadMsgs
+		'invalid-session-key' => array( 'code' => 'invalid-session-key', 'info'=>'Not a valid session key' ),
 	);
 
 	/**
