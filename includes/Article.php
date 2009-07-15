@@ -1085,12 +1085,14 @@ class Article {
 	 * desired, does nothing.
 	 */
 	public function showPatrolFooter() {
-		global $wgOut, $wgRequest;
+		global $wgOut, $wgRequest, $wgUser;
 		$rcid = $wgRequest->getVal( 'rcid' );
 
 		if( !$rcid || !$this->mTitle->exists() || !$this->mTitle->quickUserCan( 'patrol' ) ) {
 			return;
 		}
+
+		$sk = $wgUser->getSkin();
 
 		$wgOut->addHTML(
 			"<div class='patrollink'>" .
