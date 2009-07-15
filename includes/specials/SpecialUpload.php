@@ -4,16 +4,6 @@
  * @ingroup SpecialPage
  */
 
-
-/**
- * Entry point
- */
-function wfSpecialUpload() {
-	global $wgRequest;
-	$form = new UploadForm( $wgRequest );
-	$form->execute();
-}
-
 /**
  * implements Special:Upload
  * @ingroup SpecialPage
@@ -41,8 +31,18 @@ class UploadForm extends SpecialPage {
 	 * Get data POSTed through the form and assign them to the object
 	 * @param $request Data posted.
 	 */
-	function __construct( &$request ) {
-	    global $wgUser;
+	function __construct( $request = null ) {
+	    global $wgUser, $wgRequest;
+
+		parent::__construct( 'Upload' );
+
+		$this->setHeaders();
+		$this->outputHeader();
+
+		if ( is_null( $request ) ) {
+			$request = $wgRequest;
+		}
+
 		// Guess the desired name from the filename if not provided
 		$this->mDesiredDestName   = $request->getText( 'wpDestFile' );
 		if( !$this->mDesiredDestName )
@@ -85,7 +85,7 @@ class UploadForm extends SpecialPage {
 	 * Start doing stuff
 	 * @access public
 	 */
-	function execute() {
+	function execute( $par ) {
 		global $wgUser, $wgOut;
 		# Check uploading enabled
 		if( !UploadBase::isEnabled() ) {
