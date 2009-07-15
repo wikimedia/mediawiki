@@ -11,34 +11,36 @@ class Http {
 	const ASYNC_DOWNLOAD = 2; // asynchronous upload we should spawn out another process and monitor progress if possible)
 
 	var $body = '';
-	public static function request( $url, $opts = array() ) {
+	public static function request($method, $url, $opts = Array() ){
+		$opts['method'] = ( strtoupper( $method ) == 'GET' || strtoupper( $method ) == 'POST' ) ? strtoupper( $method ) : null;
 		$req = new HttpRequest( $url, $opts );
 		$status = $req->doRequest();
 		if( $status->isOK() ){
 			return $status->value;
 		} else {
+			wfDebug( 'http error: ' . $status->getWikiText() );
 			return false;
 		}
 	}
-
 	/**
 	 * Simple wrapper for Http::request( 'GET' )
 	 */
-	public static function get( $url, $opts = array() ) {
-		$opt['method'] = 'GET';
-		return Http::request( $url, $opts );
+	public static function get( $url, $timeout = false) {
+		$opts = Array();
+		if( $timeout )
+			$opts['timeout'] = $timeout;
+		return Http::request( 'GET', $url, $opts );
 	}
 
 	/**
 	 * Simple wrapper for Http::request( 'POST' )
 	 */
 	public static function post( $url, $opts = array() ) {
-		$opts['method'] = 'POST';
-		return Http::request( $url, $opts );
+		return Http::request( 'POST', $url, $opts );
 	}
 
 	public static function doDownload( $url, $target_file_path , $dl_mode = self::SYNC_DOWNLOAD , $redirectCount = 0 ){
-		global $wgPhpCliPath, $wgMaxUploadSize, $wgMaxRedirects;
+		global $wgPhpCli, $wgMaxUploadSize, $wgMaxRedirects;
 		// do a quick check to HEAD to insure the file size is not > $wgMaxUploadSize
 		$head = get_headers( $url, 1 );
 
@@ -67,7 +69,7 @@ class Http {
 		}
 
 		// check if we can find phpCliPath (for doing a background shell request to php to do the download:
-		if( $wgPhpCliPath && wfShellExecEnabled() && $dl_mode == self::ASYNC_DOWNLOAD ){
+		if( $wgPhpCli && wfShellExecEnabled() && $dl_mode == self::ASYNC_DOWNLOAD ){
 			wfDebug( __METHOD__ . "\ASYNC_DOWNLOAD\n" );
 			// setup session and shell call:
 			return self::initBackgroundDownload( $url, $target_file_path, $content_length );
@@ -87,7 +89,7 @@ class Http {
 	 *
 	 */
 	private function initBackgroundDownload( $url, $target_file_path, $content_length = null ){
-		global $wgMaxUploadSize, $IP, $wgPhpCliPath;
+		global $wgMaxUploadSize, $IP, $wgPhpCli;
 		$status = Status::newGood();
 
 		// generate a session id with all the details for the download (pid, target_file_path )
@@ -105,7 +107,7 @@ class Http {
 		$_SESSION['wsDownload'][$upload_session_key]['loaded'] = 0;
 
 		// run the background download request:
-		$cmd = $wgPhpCliPath . ' ' . $IP . "/maintenance/http_session_download.php --sid {$session_id} --usk {$upload_session_key}";
+		$cmd = $wgPhpCli . ' ' . $IP . "/maintenance/http_session_download.php --sid {$session_id} --usk {$upload_session_key}";
 		$pid = wfShellBackgroundExec( $cmd, $retval );
 		// the pid is not of much use since we won't be visiting this same apache any-time soon.
 		if( !$pid )
