@@ -1,10 +1,11 @@
-<?
-/* localization file for mwEmbed
+<?php
+/**
+ * Localization file for mwEmbed
  * updates can be merged from javascript by running maintenance/mergeJavascriptMsg.php
- * this file follows the "extension" conventions for language msgs in mediaWiki But should be "usable" stand-alone with the script-loader
+ * this file follows the "extension" conventions for language msgs in MediaWiki but should be "usable" stand-alone with the script-loader
  *
  * the following English language portion is automatically merged via the maintenance script.
-*/
+ */
 
 #<JAVASCRIPT EN REPLACE>
 $messages['en'] = array(
@@ -254,5 +255,3 @@ $messages['en'] = array(
 	'size-bytes' => '$1 B',
 );
 #</JAVASCRIPT EN REPLACE>
-
-?>
