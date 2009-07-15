@@ -1737,22 +1737,24 @@ class OutputPage {
 			$ret .= "<?xml version=\"1.0\" encoding=\"$wgOutputEncoding\" ?" . ">\n";
 		}
 
-		if ( $wgHtml5 ) {
-			$ret .= "<!doctype html>\n";
-		} else {
-			$ret .= "<!DOCTYPE html PUBLIC \"$wgDocType\" \"$wgDTD\">\n";
-		}
-
 		if ( '' == $this->getHTMLTitle() ) {
 			$this->setHTMLTitle(  wfMsg( 'pagetitle', $this->getPageTitle() ));
 		}
 
 		$dir = $wgContLang->isRTL() ? 'rtl' : 'ltr';
-		$ret .= "<html xmlns=\"{$wgXhtmlDefaultNamespace}\" ";
-		foreach($wgXhtmlNamespaces as $tag => $ns) {
-			$ret .= "xmlns:{$tag}=\"{$ns}\" ";
+
+		if ( $wgHtml5 ) {
+			$ret .= "<!doctype html>\n";
+			$ret .= "<html lang=\"$wgContLanguageCode\" dir=\"$dir\">\n";
+		} else {
+			$ret .= "<!DOCTYPE html PUBLIC \"$wgDocType\" \"$wgDTD\">\n";
+			$ret .= "<html xmlns=\"{$wgXhtmlDefaultNamespace}\" ";
+			foreach($wgXhtmlNamespaces as $tag => $ns) {
+				$ret .= "xmlns:{$tag}=\"{$ns}\" ";
+			}
+			$ret .= "xml:lang=\"$wgContLanguageCode\" lang=\"$wgContLanguageCode\" dir=\"$dir\">\n";
 		}
-		$ret .= "xml:lang=\"$wgContLanguageCode\" lang=\"$wgContLanguageCode\" dir=\"$dir\">\n";
+
 		$ret .= "<head>\n\t<title>" . htmlspecialchars( $this->getHTMLTitle() ) . "</title>\n\t";
 		$ret .= implode( "\n", array(
 			$this->getHeadLinks(),
