@@ -298,6 +298,9 @@ div#head h5 {
 		height: 1.25em;
 		width: 10em;
 		padding: 0.33em;
+		background-image: url(images/search-fade.png);
+		background-repeat: repeat-x;
+		background-position: top right;
 	}
 	div#p-search div#simpleSearch input#searchButton {
 		border: none;
@@ -468,9 +471,9 @@ div#p-logo a {
 	}
 #preferences {
 	float: right;
-	zoom: 1;
 	width: 100%;
 	margin: 0;
+	margin-top: -2px;
 	clear: both;
 	border: solid 1px #cccccc;
 	background-color: #f9f9f9;
