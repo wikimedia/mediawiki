@@ -40,6 +40,7 @@ class UploadBase {
 		}
 		return true;
 	}
+
 	/**
 	 * Returns true if the user can use this upload module or else a string
 	 * identifying the missing permission.
@@ -53,6 +54,7 @@ class UploadBase {
 
 	// Upload handlers. Should probably just be a global
 	static $uploadHandlers = array( 'Stash', 'File', 'Url' );
+
 	/**
 	 * Create a form of UploadBase depending on wpSourceType and initializes it
 	 */
@@ -62,15 +64,14 @@ class UploadBase {
 		if( !$type )
 			return null;
 
-		$type = ucfirst($type);
-		$className = 'UploadFrom'.$type;
-		wfDebug( __METHOD__.": class name: $className");
+		$type = ucfirst( $type );
+		$className = 'UploadFrom' . $type;
+		wfDebug( __METHOD__ . ": class name: $className" );
 		if( !in_array( $type, self::$uploadHandlers ) )
 			return null;
 
 		if( !call_user_func( array( $className, 'isEnabled' ) ) )
 			return null;
-
 
 		if( !call_user_func( array( $className, 'isValidRequest' ), $request ) )
 			return null;
@@ -80,6 +81,7 @@ class UploadBase {
 		$handler->initializeFromRequest( $request );
 		return $handler;
 	}
+
 	/**
 	 * Check whether a request if valid for this handler
 	 */
@@ -105,10 +107,14 @@ class UploadBase {
 	function fetchFile() {
 		return Status::newGood();
 	}
-	//return the file size
+
+	/**
+	 * Return the file size
+	 */
 	function isEmptyFile(){
-		return empty( $this->mFileSize);
+		return empty( $this->mFileSize );
 	}
+
 	/**
 	 * Verify whether the upload is sane.
 	 * Returns self::OK or else an array with error information
@@ -117,7 +123,6 @@ class UploadBase {
 		/**
 		 * If there was no filename or a zero size given, give up quick.
 		 */
-
 		if( $this->isEmptyFile() )
 			return array( 'status' => self::EMPTY_FILE );
 
@@ -173,7 +178,7 @@ class UploadBase {
 	 */
 	protected function verifyFile( $tmpfile ) {
 		$this->mFileProps = File::getPropsFromPath( $this->mTempPath, $this->mFinalExtension );
-		$this->checkMacBinary( );
+		$this->checkMacBinary();
 
 		#magically determine mime type
 		$magic = MimeMagic::singleton();
@@ -181,7 +186,7 @@ class UploadBase {
 
 		#check mime type, if desired
 		global $wgVerifyMimeType;
-		if( isset($wgMimeTypeBlacklist) && !is_null($wgMimeTypeBlacklist) ) {
+		if( isset( $wgMimeTypeBlacklist ) && !is_null( $wgMimeTypeBlacklist ) ) {
 			if ( $this->checkFileExtension( $mime, $wgMimeTypeBlacklist ) )
 				return array( 'filetype-badmime', $mime );
 
@@ -198,9 +203,8 @@ class UploadBase {
 			}
 		}
 
-
 		#check for htmlish code and javascript
-		if( $this->detectScript ( $tmpfile, $mime, $this->mFinalExtension ) ) {
+		if( $this->detectScript( $tmpfile, $mime, $this->mFinalExtension ) ) {
 			return 'uploadscripted';
 		}
 		if( $this->mFinalExtension == 'svg' || $mime == 'image/svg+xml' ) {
@@ -212,11 +216,11 @@ class UploadBase {
 		/**
 		* Scan the uploaded file for viruses
 		*/
-		$virus = $this->detectVirus($tmpfile);
+		$virus = $this->detectVirus( $tmpfile );
 		if ( $virus ) {
 			return array( 'uploadvirus', $virus );
 		}
-		wfDebug( __METHOD__.": all clear; passing.\n" );
+		wfDebug( __METHOD__ . ": all clear; passing.\n" );
 		return true;
 	}
 
@@ -255,7 +259,7 @@ class UploadBase {
 		/*
 		 * Check whether the resulting filename is different from the desired one,
 		 * but ignore things like ucfirst() and spaces/underscore things
-		 **/
+		 */
 		$comparableName = str_replace( ' ', '_', $this->mDesiredDestName );
 		global $wgCapitalLinks, $wgContLang;
 		if ( $wgCapitalLinks ) {
@@ -288,7 +292,7 @@ class UploadBase {
 				&& self::isThumbName( $this->mLocalFile->getName() ) ){
 			//make the title:
 			$nt = $this->getTitle();
-			$warning['file-thumbnail-no'] = substr( $filename , 0,
+			$warning['file-thumbnail-no'] = substr( $filename, 0,
 				strpos( $nt->getText() , '-' ) +1 );
 		}
 
@@ -329,7 +333,7 @@ class UploadBase {
 	 * Really perform the upload.
 	 */
 	function performUpload( $comment, $pageText, $watch, $user ) {
-	    wfDebug("\n\n\performUpload: sum:" . $comment . ' c: ' . $pageText . ' w:' .$watch);
+		wfDebug( "\n\n\performUpload: sum:" . $comment . ' c: ' . $pageText . ' w:' . $watch );
 		$status = $this->mLocalFile->upload( $this->mTempPath, $comment, $pageText,
 			File::DELETE_SOURCE, $this->mFileProps, false, $user );
 
@@ -354,7 +358,6 @@ class UploadBase {
 		 * filter out illegal characters, and try to make a legible name
 		 * out of it. We'll strip some silently that Title would die on.
 		 */
-
 		$basename = $this->mDesiredDestName;
 
 		$this->mFilteredName = wfStripIllegalFilenameChars( $basename );
@@ -436,10 +439,11 @@ class UploadBase {
 		$status = $repo->storeTemp( $saveName, $tempName );
 		return $status;
 	}
+
 	/* append to a stashed file */
-	function appendToUploadFile($srcPath, $toAppendPath ){
+	function appendToUploadFile( $srcPath, $toAppendPath ){
 		$repo = RepoGroup::singleton()->getLocalRepo();
-		$status = $repo->append($srcPath, $toAppendPath);
+		$status = $repo->append( $srcPath, $toAppendPath );
 		return $status;
 	}
 
@@ -459,19 +463,22 @@ class UploadBase {
 			return false;
 		}
 		$mTempPath = $status->value;
-		session_start();//start up the session (might have been previously closed to prevent php session locking)
-		$key = $this->getSessionKey ();
+		session_start(); // start up the session (might have been previously closed to prevent php session locking)
+		$key = $this->getSessionKey();
 		$_SESSION['wsUploadData'][$key] = array(
 			'mTempPath'       => $mTempPath,
 			'mFileSize'       => $this->mFileSize,
 			'mSrcName'        => $this->mSrcName,
 			'mFileProps'      => $this->mFileProps,
 			'version'         => self::SESSION_VERSION,
-	   	);
-	   	session_write_close();
+		);
+		session_write_close();
 		return $key;
 	}
-	//pull session Key gen from stash in cases where we want to start an upload without much information
+
+	/**
+	 * Pull session key gen from stash in cases where we want to start an upload without much information
+	 */
 	function getSessionKey(){
 		$key = mt_rand( 0, 0x7fffffff );
 		$_SESSION['wsUploadData'][$key] = array();
@@ -495,7 +502,7 @@ class UploadBase {
 	 */
 	function cleanupTempFile() {
 		if ( $this->mRemoveTempFile && $this->mTempPath && file_exists( $this->mTempPath ) ) {
-			wfDebug( __METHOD__.": Removing temporary file {$this->mTempPath}\n" );
+			wfDebug( __METHOD__ . ": Removing temporary file {$this->mTempPath}\n" );
 			unlink( $this->mTempPath );
 		}
 	}
@@ -504,8 +511,7 @@ class UploadBase {
 		return $this->mTempPath;
 	}
 
-
-		/**
+	/**
 	 * Split a file into a base name and all dot-delimited 'extensions'
 	 * on the end. Some web server configurations will fall back to
 	 * earlier pseudo-'extensions' to determine type and execute
@@ -548,7 +554,6 @@ class UploadBase {
 		return false;
 	}
 
-
 	/**
 	 * Checks if the mime type of the uploaded file matches the file extension.
 	 *
@@ -559,30 +564,30 @@ class UploadBase {
 	public static function verifyExtension( $mime, $extension ) {
 		$magic = MimeMagic::singleton();
 
-		if ( ! $mime || $mime == 'unknown' || $mime == 'unknown/unknown' )
-			if ( ! $magic->isRecognizableExtension( $extension ) ) {
-				wfDebug( __METHOD__.": passing file with unknown detected mime type; " .
+		if ( !$mime || $mime == 'unknown' || $mime == 'unknown/unknown' )
+			if ( !$magic->isRecognizableExtension( $extension ) ) {
+				wfDebug( __METHOD__ . ": passing file with unknown detected mime type; " .
 					"unrecognized extension '$extension', can't verify\n" );
 				return true;
 			} else {
-				wfDebug( __METHOD__.": rejecting file with unknown detected mime type; ".
+				wfDebug( __METHOD__ . ": rejecting file with unknown detected mime type; ".
 					"recognized extension '$extension', so probably invalid file\n" );
 				return false;
 			}
 
-		$match= $magic->isMatchingExtension($extension,$mime);
+		$match = $magic->isMatchingExtension( $extension, $mime );
 
-		if ($match===NULL) {
-			wfDebug( __METHOD__.": no file extension known for mime type $mime, passing file\n" );
+		if ( $match === NULL ) {
+			wfDebug( __METHOD__ . ": no file extension known for mime type $mime, passing file\n" );
 			return true;
-		} elseif ($match===true) {
-			wfDebug( __METHOD__.": mime type $mime matches extension $extension, passing file\n" );
+		} elseif( $match === true ) {
+			wfDebug( __METHOD__ . ": mime type $mime matches extension $extension, passing file\n" );
 
 			#TODO: if it's a bitmap, make sure PHP or ImageMagic resp. can handle it!
 			return true;
 
 		} else {
-			wfDebug( __METHOD__.": mime type $mime mismatches file extension $extension, rejecting file\n" );
+			wfDebug( __METHOD__ . ": mime type $mime mismatches file extension $extension, rejecting file\n" );
 			return false;
 		}
 	}
@@ -597,38 +602,44 @@ class UploadBase {
 	 * @param string $extension The extension of the file
 	 * @return bool true if the file contains something looking like embedded scripts
 	 */
-	function detectScript($file, $mime, $extension) {
+	function detectScript( $file, $mime, $extension ) {
 		global $wgAllowTitlesInSVG;
 
 		#ugly hack: for text files, always look at the entire file.
 		#For binary field, just check the first K.
 
-		if (strpos($mime,'text/')===0) $chunk = file_get_contents( $file );
+		if( strpos( $mime,'text/' ) === 0 )
+			$chunk = file_get_contents( $file );
 		else {
 			$fp = fopen( $file, 'rb' );
 			$chunk = fread( $fp, 1024 );
 			fclose( $fp );
 		}
 
-		$chunk= strtolower( $chunk );
+		$chunk = strtolower( $chunk );
 
-		if (!$chunk) return false;
+		if( !$chunk )
+			return false;
 
 		#decode from UTF-16 if needed (could be used for obfuscation).
-		if (substr($chunk,0,2)=="\xfe\xff") $enc= "UTF-16BE";
-		elseif (substr($chunk,0,2)=="\xff\xfe") $enc= "UTF-16LE";
-		else $enc= NULL;
+		if( substr( $chunk, 0, 2 ) == "\xfe\xff" )
+			$enc = "UTF-16BE";
+		elseif( substr( $chunk, 0, 2 ) == "\xff\xfe" )
+			$enc = "UTF-16LE";
+		else
+			$enc = NULL;
 
-		if ($enc) $chunk= iconv($enc,"ASCII//IGNORE",$chunk);
+		if( $enc )
+			$chunk = iconv( $enc, "ASCII//IGNORE", $chunk );
 
-		$chunk= trim($chunk);
+		$chunk = trim( $chunk );
 
 		#FIXME: convert from UTF-16 if necessarry!
-
-		wfDebug("SpecialUpload::detectScript: checking for embedded scripts and HTML stuff\n");
+		wfDebug( __METHOD__ . ": checking for embedded scripts and HTML stuff\n" );
 
 		#check for HTML doctype
-		if (eregi("<!DOCTYPE *X?HTML",$chunk)) return true;
+		if( eregi( "<!DOCTYPE *X?HTML", $chunk ) )
+			return true;
 
 		/**
 		* Internet Explorer for Windows performs some really stupid file type
@@ -645,7 +656,6 @@ class UploadBase {
 		* Also returns true if Safari would mistake the given file for HTML
 		* when served with a generic content-type.
 		*/
-
 		$tags = array(
 			'<a',
 			'<body',
@@ -655,8 +665,9 @@ class UploadBase {
 			'<pre',
 			'<script', #also in safari
 			'<table'
-			);
-		if( ! $wgAllowTitlesInSVG && $extension !== 'svg' && $mime !== 'image/svg' ) {
+		);
+
+		if( !$wgAllowTitlesInSVG && $extension !== 'svg' && $mime !== 'image/svg' ) {
 			$tags[] = '<title';
 		}
 
@@ -667,22 +678,25 @@ class UploadBase {
 		}
 
 		/*
-		* look for javascript
-		*/
+		 * look for JavaScript
+		 */
 
 		#resolve entity-refs to look at attributes. may be harsh on big files... cache result?
 		$chunk = Sanitizer::decodeCharReferences( $chunk );
 
 		#look for script-types
-		if (preg_match('!type\s*=\s*[\'"]?\s*(?:\w*/)?(?:ecma|java)!sim',$chunk)) return true;
+		if( preg_match( '!type\s*=\s*[\'"]?\s*(?:\w*/)?(?:ecma|java)!sim', $chunk ) )
+			return true;
 
 		#look for html-style script-urls
-		if (preg_match('!(?:href|src|data)\s*=\s*[\'"]?\s*(?:ecma|java)script:!sim',$chunk)) return true;
+		if( preg_match( '!(?:href|src|data)\s*=\s*[\'"]?\s*(?:ecma|java)script:!sim', $chunk ) )
+			return true;
 
 		#look for css-style script-urls
-		if (preg_match('!url\s*\(\s*[\'"]?\s*(?:ecma|java)script:!sim',$chunk)) return true;
+		if( preg_match( '!url\s*\(\s*[\'"]?\s*(?:ecma|java)script:!sim', $chunk ) )
+			return true;
 
-		wfDebug("SpecialUpload::detectScript: no scripts found\n");
+		wfDebug( __METHOD__ . ": no scripts found\n" );
 		return false;
 	}
 
@@ -721,8 +735,6 @@ class UploadBase {
 		return array_pop( $parts );
 	}
 
-
-
 	/**
 	 * Generic wrapper function for a virus scanner program.
 	 * This relies on the $wgAntivirus and $wgAntivirusSetup variables.
@@ -733,18 +745,18 @@ class UploadBase {
 	 *         or a string containing feedback from the virus scanner if a virus was found.
 	 *         If textual feedback is missing but a virus was found, this function returns true.
 	 */
-	function detectVirus($file) {
+	function detectVirus( $file ) {
 		global $wgAntivirus, $wgAntivirusSetup, $wgAntivirusRequired, $wgOut;
 
 		if ( !$wgAntivirus ) {
-			wfDebug( __METHOD__.": virus scanner disabled\n");
+			wfDebug( __METHOD__ . ": virus scanner disabled\n" );
 			return NULL;
 		}
 
 		if ( !$wgAntivirusSetup[$wgAntivirus] ) {
-			wfDebug( __METHOD__.": unknown virus scanner: $wgAntivirus\n" );
+			wfDebug( __METHOD__ . ": unknown virus scanner: $wgAntivirus\n" );
 			$wgOut->wrapWikiMsg( '<div class="error">$1</div>', array( 'virus-badscanner', $wgAntivirus ) );
-			return wfMsg('virus-unknownscanner') . " $wgAntivirus";
+			return wfMsg( 'virus-unknownscanner' ) . " $wgAntivirus";
 		}
 
 		# look up scanner configuration
@@ -761,7 +773,7 @@ class UploadBase {
 			$command = str_replace( "%f", wfEscapeShellArg( $file ), $command );
 		}
 
-		wfDebug( __METHOD__.": running virus scan: $command \n" );
+		wfDebug( __METHOD__ . ": running virus scan: $command \n" );
 
 		# execute virus scanner
 		$exitCode = false;
@@ -788,20 +800,20 @@ class UploadBase {
 
 		if ( $mappedCode === AV_SCAN_FAILED ) {
 			# scan failed (code was mapped to false by $exitCodeMap)
-			wfDebug( __METHOD__.": failed to scan $file (code $exitCode).\n" );
+			wfDebug( __METHOD__ . ": failed to scan $file (code $exitCode).\n" );
 
 			if ( $wgAntivirusRequired ) {
-				return wfMsg('virus-scanfailed', array( $exitCode ) );
+				return wfMsg( 'virus-scanfailed', array( $exitCode ) );
 			} else {
 				return NULL;
 			}
 		} else if ( $mappedCode === AV_SCAN_ABORTED ) {
 			# scan failed because filetype is unknown (probably imune)
-			wfDebug( __METHOD__.": unsupported file type $file (code $exitCode).\n" );
+			wfDebug( __METHOD__ . ": unsupported file type $file (code $exitCode).\n" );
 			return NULL;
 		} else if ( $mappedCode === AV_NO_VIRUS ) {
 			# no virus found
-			wfDebug( __METHOD__.": file passed virus scan.\n" );
+			wfDebug( __METHOD__ . ": file passed virus scan.\n" );
 			return false;
 		} else {
 			$output = join( "\n", $output );
@@ -818,7 +830,7 @@ class UploadBase {
 				}
 			}
 
-			wfDebug( __METHOD__.": FOUND VIRUS! scanner feedback: $output \n" );
+			wfDebug( __METHOD__ . ": FOUND VIRUS! scanner feedback: $output \n" );
 			return $output;
 		}
 	}
@@ -834,10 +846,10 @@ class UploadBase {
 	function checkMacBinary() {
 		$macbin = new MacBinary( $this->mTempPath );
 		if( $macbin->isValid() ) {
-			$dataFile = tempnam( wfTempDir(), "WikiMacBinary" );
+			$dataFile = tempnam( wfTempDir(), 'WikiMacBinary' );
 			$dataHandle = fopen( $dataFile, 'wb' );
 
-			wfDebug( "SpecialUpload::checkMacBinary: Extracting MacBinary data fork to $dataFile\n" );
+			wfDebug( __METHOD__ . ": Extracting MacBinary data fork to $dataFile\n" );
 			$macbin->extractData( $dataHandle );
 
 			$this->mTempPath = $dataFile;
@@ -870,8 +882,8 @@ class UploadBase {
 			return 'fileexists-shared-forbidden';
 
 		return true;
-
 	}
+
 	/**
 	 * Check if a user is the last uploader
 	 *
@@ -968,6 +980,5 @@ class UploadBase {
 		}
 		return $blacklist;
 	}
-
 
 }
