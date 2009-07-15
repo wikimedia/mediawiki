@@ -696,8 +696,7 @@ remoteSearchDriver.prototype = {
 			if(  this.disp_item == 'combined' ){
 				//combined results are harder to error handle just ignore that repo
 				cp.sObj.loading = false;
-			}else{			
-				alert("should set tab to no-good");
+			}else{							
 				$j('#tab-' + this.disp_item).html( '<div style="padding:10px">'+ gM('no_import_by_url') +'</div>');			
 			}
 			return false;
