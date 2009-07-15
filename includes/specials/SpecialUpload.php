@@ -589,12 +589,10 @@ class UploadForm extends SpecialPage {
 		}
         //add the wpEditToken
 		$token = htmlspecialchars( $wgUser->editToken() );
-		$tokenInput = "\n<input type='hidden' value=\"$token\" name=\"wpEditToken\" />\n";
-
 		$wgOut->addHTML(
 			Xml::openElement( 'form', array( 'method' => 'post', 'action' => $titleObj->getLocalURL( 'action=submit' ),
 				 'enctype' => 'multipart/form-data', 'id' => 'uploadwarning' ) ) . "\n" .
-			$tokenInput .
+			Xml::hidden('wpEditToken', $token) .
 			Xml::hidden( 'wpIgnoreWarning', '1' ) . "\n" .
 			Xml::hidden( 'wpSourceType', 'stash' ) . "\n" .
 			Xml::hidden( 'wpSessionKey', $this->mSessionKey ) . "\n" .
@@ -778,14 +776,14 @@ wgUploadAutoFill = {$autofill};
 		if( UploadFromUrl::isEnabled() && $wgUser->isAllowed( 'upload_by_url' ) ) {
 		    if($wgEnableJS2system){
 		        $filename_form =
-				"<input type='radio' id=\"wpSourceTypeFile\" name='wpSourceType' value='file' checked='checked' />" .
-				 "<input tabindex='1' type='file' name='wpUploadFile' id='wpUploadFile' size='60' />" .
-				wfMsgHTML( 'upload_source_file' ) . "<br/>" .
-				"<input type='radio' id='wpSourceTypeURL' name='wpSourceType' value='url' />" .
-				"<input tabindex='1' type='text' name='wpUploadFileURL' id='wpUploadFileURL' size='60' />" .
+		        	Xml::input( 'wpSourceType', false, 'file', array( 'id'=>'wpSourceTypeFile', 'type' => 'radio', 'checked' => 'checked' ) ) .
+		        	Xml::input( 'wpUploadFile', 60, false, array( 'id'=>'wpUploadFile', 'type'=>'file', 'tabindex' => '1' ) ) .
+						wfMsgHTML( 'upload_source_file' ) . "<br/>" .
+					Xml::input( 'wpSourceType', false, 'Url', array( 'id'=>'wpSourceTypeURL', 'type' => 'radio' )) .
+					Xml::input( 'wpUploadFileURL', 60, false, array( 'id'=>'wpUploadFileURL', 'type' => 'text', 'tabindex' => '1')) .
 				wfMsgHtml( 'upload_source_url' ) ;
 		    }else{
-		         //@@todo depreciate (only support  JS2system)
+		         //@@todo depreciate (not needed once $wgEnableJS2system is turned on)
                 $filename_form =
 				"<input type='radio' id='wpSourceTypeFile' name='wpSourceType' value='file' " .
 				   "onchange='toggle_element_activation(\"wpUploadFileURL\",\"wpUploadFile\")' checked='checked' />" .
@@ -825,12 +823,10 @@ wgUploadAutoFill = {$autofill};
 
 	    //add the wpEditToken
 		$token = htmlspecialchars( $wgUser->editToken() );
-		$tokenInput = "\n<input type='hidden' value=\"$token\" name=\"wpEditToken\" />\n";
-
 		$wgOut->addHTML(
 			 Xml::openElement( 'form', array( 'method' => 'post', 'action' => $titleObj->getLocalURL( 'action=submit' ),
 				 'enctype' => 'multipart/form-data', 'id' => 'mw-upload-form' ) ) .
-			 $tokenInput .
+			 Xml::hidden('wpEditToken', $token) .
 			 Xml::openElement( 'fieldset' ) .
 			 Xml::element( 'legend', null, wfMsg( 'upload' ) ) .
 			 Xml::openElement( 'table', array( 'border' => '0', 'id' => 'mw-upload-table' ) ) .
