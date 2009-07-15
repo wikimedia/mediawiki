@@ -354,6 +354,7 @@ $wgMessageStructure = array(
 		'readonly_lag',
 		'internalerror',
 		'internalerror_info',
+		'fileappenderror',
 		'filecopyerror',
 		'filerenameerror',
 		'filedeleteerror',
@@ -490,6 +491,7 @@ $wgMessageStructure = array(
 		'media_tip',
 		'sig_tip',
 		'hr_tip',
+		'add_media_wizard',
 	),
 	'edit' => array(
 		'summary',
@@ -1246,6 +1248,9 @@ $wgMessageStructure = array(
 		'upload-file-error-text',
 		'upload-misc-error',
 		'upload-misc-error-text',
+		'upload-too-many-redirects',
+		'upload-unknown-size',
+		'upload-http-error',
 	),
 	'upload-curl-errors' => array(
 		'upload-curl-error6',
