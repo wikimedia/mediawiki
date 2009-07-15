@@ -479,6 +479,7 @@ $wgAutoloadLocalClasses = array(
 	'MWTidy' => 'includes/parser/Tidy.php',
 
 	# includes/specials
+	'SpecialAllmessages' => 'includes/specials/SpecialAllmessages.php',
 	'AncientPagesPage' => 'includes/specials/SpecialAncientpages.php',
 	'BrokenRedirectsPage' => 'includes/specials/SpecialBrokenRedirects.php',
 	'ContribsPager' => 'includes/specials/SpecialContributions.php',

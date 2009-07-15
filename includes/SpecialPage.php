@@ -145,7 +145,7 @@ class SpecialPage {
 
 		# Wiki data and tools
 		'Statistics'				=> 'SpecialStatistics',
-		'Allmessages'               => array( 'SpecialPage', 'Allmessages' ),
+		'Allmessages'               => 'SpecialAllmessages',
 		'Version'                   => 'SpecialVersion',
 		'Lockdb'                    => array( 'SpecialPage', 'Lockdb', 'siteadmin' ),
 		'Unlockdb'                  => array( 'SpecialPage', 'Unlockdb', 'siteadmin' ),
