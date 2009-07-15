@@ -165,10 +165,10 @@ $wgUploadBaseUrl    = "";
 /**@}*/
 
 /**
- * Directory for caching data in the local filesystem. Should not be accessible 
+ * Directory for caching data in the local filesystem. Should not be accessible
  * from the web. Set this to false to not use any local caches.
  *
- * Note: if multiple wikis share the same localisation cache directory, they 
+ * Note: if multiple wikis share the same localisation cache directory, they
  * must all have the same set of extensions. You can set a directory just for
  * the localisation cache using $wgLocalisationCacheConf['storeDirectory'].
  */
@@ -504,7 +504,7 @@ $wgHashedSharedUploadDirectory = true;
  *
  * Please specify the namespace, as in the example below.
  */
-$wgRepositoryBaseUrl = "http://commons.wikimedia.org/wiki/File:";
+$wgRepositoryBaseUrl = "http://commons.wikimedia.org/wiki/Image:";
 
 #
 # Email settings
@@ -786,15 +786,18 @@ $wgMemCachedPersistent = false;
 /**@}*/
 
 /**
- * Directory for local copy of message cache, for use in addition to memcached
+ * Set this to true to make a local copy of the message cache, for use in
+ * addition to memcached. The files will be put in $wgCacheDirectory.
  */
-$wgLocalMessageCache = false;
+$wgUseLocalMessageCache = false;
+
 /**
  * Defines format of local cache
  * true - Serialized object
  * false - PHP source file (Warning - security risk)
  */
 $wgLocalMessageCacheSerialized = true;
+
 /**
  * Localisation cache configuration. Associative array with keys:
  *     class:       The class to use. May be overridden by extensions.
@@ -890,6 +893,15 @@ $wgJsMimeType			= 'text/javascript';
 $wgDocType			= '-//W3C//DTD XHTML 1.0 Transitional//EN';
 $wgDTD				= 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd';
 $wgXhtmlDefaultNamespace	= 'http://www.w3.org/1999/xhtml';
+
+ /**
+  * Should we output an HTML 5 doctype?  This mode is still experimental, but
+  * all indications are that it should be usable, so it's enabled by default.
+  * If all goes well, it will be removed and become always true before the 1.16
+  * release.
+  */
+ $wgHtml5 = true;
+
 
 /**
  * Permit other namespaces in addition to the w3.org default.
@@ -1456,6 +1468,7 @@ $wgAutoConfirmCount = 0;
  *   array( APCOND_ISIP, ip ), *OR*
  *   array( APCOND_IPINRANGE, range ), *OR*
  *   array( APCOND_AGE_FROM_EDIT, seconds since first edit ), *OR*
+ *   array( APCOND_BLOCKED ), *OR*
  *   similar constructs defined by extensions.
  *
  * If $wgEmailAuthentication is off, APCOND_EMAILCONFIRMED will be true for any
@@ -1566,7 +1579,7 @@ $wgStyleVersion = '231';
 $wgUseFileCache = false;
 
 /** Directory where the cached page will be saved */
-$wgFileCacheDirectory = false; ///< defaults to "{$wgUploadDirectory}/cache";
+$wgFileCacheDirectory = false; ///< defaults to "$wgCacheDirectory/html";
 
 /**
  * When using the file cache, we can store the cached HTML gzipped to save disk
@@ -2080,9 +2093,9 @@ $wgSearchEverythingOnlyLoggedIn = false;
 /**
  * Site notice shown at the top of each page
  *
- * This message can contain wiki text, and can also be set through the
- * MediaWiki:Sitenotice page. You can also provide a separate message for
- * logged-out users using the MediaWiki:Anonnotice page.
+ * MediaWiki:Sitenotice page, which will override this. You can also
+ * provide a separate message for logged-out users using the
+ * MediaWiki:Anonnotice page.
  */
 $wgSiteNotice = '';
 
@@ -2177,6 +2190,17 @@ $wgMaxImageArea = 1.25e7;
  */
 $wgMaxAnimatedGifArea = 1.0e6;
 /**
+ * Browsers don't support TIFF inline generally...
+ * For inline display, we need to convert to PNG or JPEG.
+ * Note scaling should work with ImageMagick, but may not with GD scaling.
+ *  // PNG is lossless, but inefficient for photos
+ *  $wgTiffThumbnailType = array( 'png', 'image/png' );
+ *  // JPEG is good for photos, but has no transparency support. Bad for diagrams.
+ *  $wgTiffThumbnailType = array( 'jpg', 'image/jpeg' );
+ */
+ $wgTiffThumbnailType = false;
+
+/**
  * If rendered thumbnail files are older than this timestamp, they
  * will be rerendered on demand as if the file didn't already exist.
  * Update if there is some need to force thumbs and SVG rasterizations
@@ -2206,6 +2230,11 @@ $wgIgnoreImageErrors = false;
  */
 $wgGenerateThumbnailOnParse = true;
 
+/**
+* Show thumbnails for old images on the image description page
+*/
+$wgShowArchiveThumbnails = true;
+
 /** Obsolete, always true, kept for compatibility with extensions */
 $wgUseImageResize = true;
 
@@ -2228,7 +2257,7 @@ $wgPutIPinRC = true;
 /**
  * Recentchanges items are periodically purged; entries older than this many
  * seconds will go.
- * Default: 13 weeks = about three monts
+ * Default: 13 weeks = about three months
  */
 $wgRCMaxAge = 13 * 7 * 24 * 3600;
 
@@ -2375,6 +2404,9 @@ $wgExportAllowHistory = true;
  */
 $wgExportMaxHistory = 0;
 
+/**
+* Return distinct author list (when not returning full history)
+*/
 $wgExportAllowListContributors = false ;
 
 /**
@@ -2383,20 +2415,32 @@ $wgExportAllowListContributors = false ;
  * pages linked to from the pages you specify. Since this number
  * can become *insanely large* and could easily break your wiki,
  * it's disabled by default for now.
+ *
+ * There's a HARD CODED limit of 5 levels of recursion to prevent a
+ * crazy-big export from being done by someone setting the depth
+ * number too high. In other words, last resort safety net.
  */
 $wgExportMaxLinkDepth = 0;
 
+/**
+* Whether to allow the "export all pages in namespace" option
+*/
+$wgExportFromNamespaces = false;
 
 /**
- * Edits matching these regular expressions in body text or edit summary
+ * Edits matching these regular expressions in body text
  * will be recognised as spam and rejected automatically.
  *
  * There's no administrator override on-wiki, so be careful what you set. :)
  * May be an array of regexes or a single string for backwards compatibility.
  *
  * See http://en.wikipedia.org/wiki/Regular_expression
+ * Note that each regex needs a beginning/end delimiter, eg: # or /
  */
 $wgSpamRegex = array();
+
+/** Same as the above except for edit summaries */
+$wgSummarySpamRegex = array();
 
 /** Similarly you can get a function to do the job. The function will be given
  * the following args:
@@ -2589,10 +2633,15 @@ $wgExtensionFunctions = array();
 $wgSkinExtensionFunctions = array();
 
 /**
- * Extension messages files
- * Associative array mapping extension name to the filename where messages can be found.
- * The file must create a variable called $messages.
- * When the messages are needed, the extension should call wfLoadExtensionMessages().
+ * Extension messages files.
+ *
+ * Associative array mapping extension name to the filename where messages can be
+ * found. The file should contain variable assignments. Any of the variables
+ * present in languages/messages/MessagesEn.php may be defined, but $messages
+ * is the most common.
+ *
+ * Variables defined in extensions will override conflicting variables defined
+ * in the core.
  *
  * Example:
  *    $wgExtensionMessagesFiles['ConfirmEdit'] = dirname(__FILE__).'/ConfirmEdit.i18n.php';
@@ -2602,13 +2651,7 @@ $wgExtensionMessagesFiles = array();
 
 /**
  * Aliases for special pages provided by extensions.
- * Associative array mapping special page to array of aliases. First alternative
- * for each special page will be used as the normalised name for it. English
- * aliases will be added to the end of the list so that they always work. The
- * file must define a variable $aliases.
- *
- * Example:
- *    $wgExtensionAliasesFiles['Translate'] = dirname(__FILE__).'/Translate.alias.php';
+ * @deprecated Use $specialPageAliases in a file referred to by $wgExtensionMessagesFiles
  */
 $wgExtensionAliasesFiles = array();
 
@@ -2704,6 +2747,7 @@ $wgDebugJavaScript = false;
  * $wgExtensionCredits[$type][] = array(
  * 	'name' => 'Example extension',
  *  'version' => 1.9,
+ *  'path'           => __FILE__,
  *  'svn-revision' => '$LastChangedRevision$',
  *	'author' => 'Foo Barstein',
  *	'url' => 'http://wwww.example.com/Example%20Extension/',
@@ -3061,7 +3105,7 @@ $wgLogNames = array(
 	'import'  => 'importlogpage',
 	'patrol'  => 'patrol-log-page',
 	'merge'   => 'mergelog',
-	'suppress' => 'suppressionlog'
+	'suppress' => 'suppressionlog',
 );
 
 /**
@@ -3178,6 +3222,7 @@ $wgSpecialPageGroups = array(
 	'Filepath'                  => 'media',
 
 	'Listusers'                 => 'users',
+	'Activeusers'               => 'users',
 	'Listgrouprights'           => 'users',
 	'Ipblocklist'               => 'users',
 	'Contributions'             => 'users',
@@ -3813,6 +3858,12 @@ $wgParserConf = array(
 $wgLinkHolderBatchSize = 1000;
 
 /**
+ * By default MediaWiki does not register links pointing to same server in externallinks dataset,
+ * use this value to override:
+ */
+$wgRegisterInternalExternals = false;
+
+/**
  * Hooks that are used for outputting exceptions.  Format is:
  *   $wgExceptionHooks[] = $funcname
  * or:
@@ -3919,6 +3970,13 @@ $wgEnforceHtmlIds = true;
 $wgUseTwoButtonsSearchForm = true;
 
 /**
+ *  Search form behavior for Vector skin only
+ * true = use an icon search button
+ * false = use Go & Search buttons
+ */
+$wgVectorUseSimpleSearch = false;
+
+/**
  * Preprocessor caching threshold
  */
 $wgPreprocessorCacheThreshold = 1000;
@@ -3952,3 +4010,19 @@ $wgInvalidUsernameCharacters = '@';
  * modify the user rights of those users via Special:UserRights
  */
 $wgUserrightsInterwikiDelimiter = '@';
+
+/**
+ * Configuration for processing pool control, for use in high-traffic wikis.
+ * An implementation is provided in the PoolCounter extension.
+ *
+ * This configuration array maps pool types to an associative array. The only
+ * defined key in the associative array is "class", which gives the class name.
+ * The remaining elements are passed through to the class as constructor
+ * parameters. Example:
+ *
+ *   $wgPoolCounterConf = array( 'Article::view' => array(
+ *     'class' => 'PoolCounter_Client',
+ *     ... any extension-specific options...
+ *   );
+ */
+$wgPoolCounterConf = null;
