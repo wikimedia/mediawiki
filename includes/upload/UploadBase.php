@@ -64,7 +64,7 @@ class UploadBase {
 
 		$type = ucfirst($type);
 		$className = 'UploadFrom'.$type;
-		print "class name: $className";
+		wfDebug( __METHOD__.": class name: $className");
 		if( !in_array( $type, self::$uploadHandlers ) )
 			return null;
 
