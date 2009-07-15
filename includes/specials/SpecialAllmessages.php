@@ -39,10 +39,10 @@ class SpecialAllmessages extends SpecialPage {
 		$this->langCode = $this->table->lang->getCode();
 
 		$wgOut->addHTML( $this->buildForm() .
-						 $this->table->getNavigationBar() .
-						 $this->table->getLimitForm() .
-						 $this->table->getBody() .
-						 $this->table->getNavigationBar() );
+			$this->table->getNavigationBar() .
+			$this->table->getLimitForm() .
+			$this->table->getBody() .
+			$this->table->getNavigationBar() );
 
 	}
 
@@ -55,35 +55,35 @@ class SpecialAllmessages extends SpecialPage {
 			Xml::hidden( 'title', $this->getTitle() ) .
 					Xml::element( 'legend', null, wfMsg( 'allmessages' ) ) . "<table><tr>\n" .
 				"<td class=\"mw-label\">" .
-	                Xml::label( wfMsg('allmessages-prefix'), 'am-form-prefix' ) .
-	            "</td>\n<td class=\"mw-input\">" .
-	                Xml::input( 'prefix', 20, str_replace('_',' ',$this->prefix), array( 'id' => 'am-form-prefix' ) ) .
-	            "</select>" .
+					Xml::label( wfMsg('allmessages-prefix'), 'am-form-prefix' ) .
+				"</td>\n<td class=\"mw-input\">" .
+					Xml::input( 'prefix', 20, str_replace('_',' ',$this->prefix), array( 'id' => 'am-form-prefix' ) ) .
+				"</select>" .
 				"</td>\n</tr><tr>\n<td class='mw-label'>" .
-	                Xml::label( wfMsg('allmessages-filter'), 'am-form-filter' ) .
-	            "</td>\n<td class='mw-input'>" .
-	                Xml::radioLabel( wfMsg('allmessages-filter-unmodified'),
-	                				 'filter',
-	                				 'unmodified',
-	                				 'am-form-filter-unmodified',
-	                				 ( $this->filter == 'unmodified' ? true : false )
-	                				) .
-	                Xml::radioLabel( wfMsg('allmessages-filter-all'),
-	                				 'filter',
-	                				 'all',
-	                				 'am-form-filter-all',
-	                				 ( $this->filter == 'all' ? true : false )
-	                				) .
-	                Xml::radioLabel( wfMsg('allmessages-filter-modified'),
-	                				 'filter',
-	                				 'modified',
-	                				 'am-form-filter-modified',
-	                				 ( $this->filter == 'modified' ? true : false )
-	                				) .
+					Xml::label( wfMsg('allmessages-filter'), 'am-form-filter' ) .
+				"</td>\n<td class='mw-input'>" .
+					Xml::radioLabel( wfMsg('allmessages-filter-unmodified'),
+						'filter',
+						'unmodified',
+						'am-form-filter-unmodified',
+						( $this->filter == 'unmodified' ? true : false )
+					) .
+					Xml::radioLabel( wfMsg('allmessages-filter-all'),
+						'filter',
+						'all',
+						'am-form-filter-all',
+						( $this->filter == 'all' ? true : false )
+					) .
+					Xml::radioLabel( wfMsg('allmessages-filter-modified'),
+						'filter',
+						'modified',
+						'am-form-filter-modified',
+					( $this->filter == 'modified' ? true : false )
+				) .
 				"</td>\n</tr><tr>\n<td class=\"mw-label\">" .
-	                Xml::label( wfMsg('yourlanguage'), 'am-form-lang' ) .
-	            "</td>\n<td class=\"mw-input\">" .
-	                Xml::openElement( 'select', array( 'id' => 'am-form-lang', 'name' => 'lang' ) );
+					Xml::label( wfMsg('yourlanguage'), 'am-form-lang' ) .
+				"</td>\n<td class=\"mw-input\">" .
+					Xml::openElement( 'select', array( 'id' => 'am-form-lang', 'name' => 'lang' ) );
 		foreach( $languages as $lang => $name ) {
 			$selected = $lang == $this->langCode ? 'selected="selected"' : '';
 			$out .= "<option value=\"$lang\" $selected>$name</option>\n";
@@ -188,11 +188,11 @@ class AllmessagesTablePager extends TablePager {
 
 		$dbr = wfGetDB( DB_SLAVE );
 		$res = $dbr->select( 'page',
-							 array( 'page_namespace', 'page_title' ),
-							 array( 'page_namespace' => array(NS_MEDIAWIKI,NS_MEDIAWIKI_TALK) ),
-							 __METHOD__,
-							 array( 'USE INDEX' => 'name_title' )
-						   );
+			array( 'page_namespace', 'page_title' ),
+			array( 'page_namespace' => array(NS_MEDIAWIKI,NS_MEDIAWIKI_TALK) ),
+			__METHOD__,
+			array( 'USE INDEX' => 'name_title' )
+		);
 
 		while( $s = $dbr->fetchObject( $res ) ) {
 			if( $s->page_namespace == NS_MEDIAWIKI ){
@@ -200,7 +200,7 @@ class AllmessagesTablePager extends TablePager {
 					$title = explode( '/', $s->page_title );
 					if( $this->langcode == $title[1] && array_key_exists( $title[0], $this->messages ) ){
 						$this->messages["{$title[0]}"]['customised'] = 1;
-				    }
+					}
 				} else if( array_key_exists( $s->page_title , $this->messages ) ){
 					$this->messages[$s->page_title]['customised'] = 1;
 				}
@@ -227,14 +227,15 @@ class AllmessagesTablePager extends TablePager {
 		$count = 0;
 		foreach( $this->messages as $key => $value ){
 			if( $value['customised'] !== $this->custom &&
-			    ( $descending && ( $key < $offset || !$offset ) || !$descending && $key > $offset ) &&
+				( $descending && ( $key < $offset || !$offset ) || !$descending && $key > $offset ) &&
 				(( $this->prefix && preg_match( $this->prefix, $key ) ) || $this->prefix === false )
-			  ){
-				$mResult->result[] = array( 'am_title'      => $key,
-										    'am_actual'     => $value['actual'],
-										    'am_default'    => $value['default'],
-											'am_customised' => $value['customised'],
-									  );
+			){
+				$mResult->result[] = array( 
+					'am_title'      => $key,
+					'am_actual'     => $value['actual'],
+					'am_default'    => $value['default'],
+					'am_customised' => $value['customised'],
+				);
 				unset( $this->messages[$key] );	// save a few bytes
 				$count++;
 			}
@@ -246,8 +247,8 @@ class AllmessagesTablePager extends TablePager {
 
 	function getStartBody() {
 		return "<table border=\"1\" class=\"TablePager\" style=\"width:100%;\" id=\"allmessagestable\"><thead>\n<tr>" .
-			   "<th rowspan=\"2\">" . wfMsg('allmessagesname') . "</th><th>" . wfMsg('allmessagesdefault') .
-			   "</tr>\n<tr><th>" . wfMsg('allmessagescurrent') . "</th></tr>\n";
+			"<th rowspan=\"2\">" . wfMsg('allmessagesname') . "</th><th>" . wfMsg('allmessagesdefault') .
+			"</tr>\n<tr><th>" . wfMsg('allmessagescurrent') . "</th></tr>\n";
 	}
 
 	function formatValue( $field , $value ){
@@ -299,7 +300,7 @@ class AllmessagesTablePager extends TablePager {
 				$formatted = '&nbsp;';
 			}
 			$s .= Xml::tags( 'td', $this->getCellAttrs( 'am_actual', $row->am_actual ), $formatted )
-			   . "</tr>\n";
+				. "</tr>\n";
 		}
 		return $s;
 	}
@@ -326,8 +327,8 @@ class AllmessagesTablePager extends TablePager {
 
 	// This is not actually used, as getStartBody is overridden above
 	function getFieldNames() {
-		return array( 'am_title'   => wfMsg('allmessagesname'),
-					  'am_default' => wfMsg('allmessagesdefault') );
+		return array( 'am_title' => wfMsg('allmessagesname'),
+			'am_default' => wfMsg('allmessagesdefault') );
 	}
 	function getTitle() {
 		return SpecialPage::getTitleFor( 'Allmessages', false );
