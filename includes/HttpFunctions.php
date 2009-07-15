@@ -371,7 +371,7 @@ class HttpRequest{
 		#$use file_get_contents...
 		# This doesn't have local fetch capabilities...
 
-		$headers = array( "User-Agent: " . self :: userAgent() );
+		$headers = array( "User-Agent: " . Http :: userAgent() );
 		if( strcasecmp( $method, 'post' ) == 0 ) {
 			// Required for HTTP 1.0 POSTs
 			$headers[] = "Content-Length: 0";
