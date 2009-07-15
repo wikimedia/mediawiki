@@ -27,7 +27,7 @@ class UploadForm extends SpecialPage {
 	var $mDestWarningAck;
 	var $mLocalFile;
 
-	var $mUpload;	// Instance of UploadBase or derivative
+	var $mUpload; // Instance of UploadBase or derivative
 
 	# Placeholders for text injection by hooks (must be HTML)
 	# extensions should take care to _append_ to the present value
@@ -77,7 +77,7 @@ class UploadForm extends SpecialPage {
 		$this->mReUpload          = $request->getCheck( 'wpReUpload' );
 
 		$this->mAction            = $request->getVal( 'action' );
-		$this->mUpload 			  = UploadBase::createFromRequest( $request );
+		$this->mUpload            = UploadBase::createFromRequest( $request );
 	}
 
 
@@ -156,14 +156,14 @@ class UploadForm extends SpecialPage {
 	 *
 	 * FIXME this should really use the standard Status class (instead of associative array)
 	 * FIXME would be nice if we refactored this into the upload api.
-	 * 			(the special upload page is not the only response point that needs clean localized error msgs)
+	 *  (the special upload page is not the only response point that needs clean localized error msgs)
 	 *
 	 * @access private
 	 */
 	function processUpload(){
 		global $wgOut, $wgFileExtensions, $wgLang;
-	 	$details = $this->internalProcessUpload();
-	 	switch( $details['status'] ) {
+		$details = $this->internalProcessUpload();
+		switch( $details['status'] ) {
 			case UploadBase::SUCCESS:
 				$wgOut->redirect( $this->mLocalFile->getTitle()->getFullURL() );
 				break;
@@ -239,7 +239,7 @@ class UploadForm extends SpecialPage {
 
 			default:
 				throw new MWException( __METHOD__ . ": Unknown value `{$details['status']}`" );
-	 	}
+		}
 	}
 
 	/**
@@ -835,7 +835,7 @@ wgUploadAutoFill = {$autofill};
 			 Xml::element( 'legend', null, wfMsg( 'upload' ) ) .
 			 Xml::openElement( 'table', array( 'border' => '0', 'id' => 'mw-upload-table' ) ) .
 			 "<tr>
-			 	{$this->uploadFormTextTop}
+				{$this->uploadFormTextTop}
 				<td class='mw-label'>
 					<label for='wpUploadFile'>{$sourcefilename}</label>
 				</td>

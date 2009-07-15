@@ -129,7 +129,7 @@ class Http {
 	 *
 	 * @param $session_id  String: the session id to grab download details from
 	 * @param $upload_session_key String: the key of the given upload session
-	 * 			(a given client could have started a few http uploads at once)
+	 *  (a given client could have started a few http uploads at once)
 	 */
 	public static function doSessionIdDownload( $session_id, $upload_session_key ){
 		global $wgUser, $wgEnableWriteAPI, $wgAsyncHTTPTimeout;
@@ -154,9 +154,9 @@ class Http {
 		session_write_close();
 
 		$req = new HttpRequest( $sd['url'], array(
-			'target_file_path' 	=> $sd['target_file_path'],
+			'target_file_path'  => $sd['target_file_path'],
 			'upload_session_key'=> $upload_session_key,
-			'timeout'			=> $wgAsyncHTTPTimeout
+			'timeout'           => $wgAsyncHTTPTimeout
 		) );
 		// run the actual request .. (this can take some time)
 		wfDebug( __METHOD__ . "do Request: " . $sd['url'] . ' tf: ' . $sd['target_file_path'] );
@@ -264,9 +264,9 @@ class HttpRequest{
 	 * Get the contents of a file by HTTP
 	 * @param $url string Full URL to act on
 	 * @param $Opt associative array Optional array of options:
-	 * 		'method'	  => 'GET', 'POST' etc.
-	 * 		'target_file_path' => if curl should output to a target file
-	 * 		'adapter'	  => 'curl', 'soket'
+	 *     'method'           => 'GET', 'POST' etc.
+	 *     'target_file_path' => if curl should output to a target file
+	 *     'adapter'          => 'curl', 'soket'
 	 */
 	public function doRequest() {
 		# Use curl if available
@@ -278,9 +278,9 @@ class HttpRequest{
 	}
 
 	private function doCurlReq(){
-	 	global $wgHTTPProxy, $wgTitle;
+		global $wgHTTPProxy, $wgTitle;
 
-	 	$status = Status::newGood();
+		$status = Status::newGood();
 		$c = curl_init( $this->url );
 
 		// proxy setup:
