@@ -471,9 +471,9 @@ div#p-logo a {
 	}
 #preferences {
 	float: left;
-	zoom: 1;
 	width: 100%;
 	margin: 0;
+	margin-top: -2px;
 	clear: both;
 	border: solid 1px #cccccc;
 	background-color: #f9f9f9;
