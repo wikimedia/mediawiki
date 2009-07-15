@@ -52,6 +52,7 @@ class SpecialAllmessages extends SpecialPage {
 		ksort( $languages );
 		
 		$out  = "<form method=\"get\" action=\"$url\"><fieldset>\n" .
+			Xml::hidden( 'title', $this->getTitle() ) .
 					Xml::element( 'legend', null, wfMsg( 'allmessages' ) ) . "<table><tr>\n" .
 				"<td class=\"mw-label\">" .
 	                Xml::label( wfMsg('allmessages-prefix'), 'am-form-prefix' ) .
