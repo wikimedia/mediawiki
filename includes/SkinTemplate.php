@@ -178,7 +178,7 @@ class SkinTemplate extends Skin {
 		$this->thisurl = $this->mTitle->getPrefixedURL();
 		$query = $wgRequest->getValues();
 		unset( $query['title'] );
-		$this->thisquery = wfArrayToCGI( $query );
+		$this->thisquery = wfUrlencode( wfArrayToCGI( $query ) );
 		$this->loggedin = $wgUser->isLoggedIn();
 		$this->iscontent = ( $this->mTitle->getNamespace() != NS_SPECIAL );
 		$this->iseditable = ( $this->iscontent and !( $action == 'edit' or $action == 'submit' ) );
