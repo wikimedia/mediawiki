@@ -121,11 +121,11 @@ class OutputPage {
 		if( $wgEnableScriptLoader ){
 			if( strpos( $path, $wgScript ) !== false ){
 				$reqPath = str_replace( $wgScript . '?', '', $path );
-				$reqArgs = split( '&', $reqPath );
+				$reqArgs = explode( '&', $reqPath );
 				$reqSet = array();
 
 				foreach( $reqArgs as $arg ){
-					list( $key, $var ) = split( '=', $arg );
+					list( $key, $var ) = explode( '=', $arg );
 					$reqSet[$key] = $var;
 				}
 
