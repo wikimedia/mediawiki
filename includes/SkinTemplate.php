@@ -176,7 +176,7 @@ class SkinTemplate extends Skin {
 		wfProfileIn( __METHOD__ . '-stuff' );
 		$this->thispage = $this->mTitle->getPrefixedDBkey();
 		$this->thisurl = $this->mTitle->getPrefixedURL();
-		$query = $wgRequest->data;
+		$query = $wgRequest->getValues();
 		unset( $query['title'] );
 		$this->thisquery = wfArrayToCGI( $query );
 		$this->loggedin = $wgUser->isLoggedIn();
