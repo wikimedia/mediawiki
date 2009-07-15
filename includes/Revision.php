@@ -226,24 +226,6 @@ class Revision {
 	 * @access public
 	 * @static
 	 */
-	public static function fetchAllRevisions( $title ) {
-		return Revision::fetchFromConds(
-			wfGetDB( DB_SLAVE ),
-			array( 'page_namespace' => $title->getNamespace(),
-			       'page_title'     => $title->getDBkey(),
-			       'page_id=rev_page' ) );
-	}
-
-	/**
-	 * Return a wrapper for a series of database rows to
-	 * fetch all of a given page's revisions in turn.
-	 * Each row can be fed to the constructor to get objects.
-	 *
-	 * @param Title $title
-	 * @return ResultWrapper
-	 * @access public
-	 * @static
-	 */
 	public static function fetchRevision( $title ) {
 		return Revision::fetchFromConds(
 			wfGetDB( DB_SLAVE ),
