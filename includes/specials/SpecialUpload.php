@@ -24,6 +24,7 @@ class UploadForm extends SpecialPage {
 	var $uploadFormTextTop;
 	var $uploadFormTextAfterSummary;
     var $mTokenOk = false;
+    var $mForReUpload = false;
 	/**#@-*/
 
 	/**
@@ -74,6 +75,7 @@ class UploadForm extends SpecialPage {
 		$this->mDestWarningAck    = $request->getText( 'wpDestFileWarningAck' );
 
 		$this->mForReUpload       = $request->getBool( 'wpForReUpload' );
+
 		$this->mReUpload          = $request->getCheck( 'wpReUpload' );
 
 		$this->mAction            = $request->getVal( 'action' );
@@ -752,7 +754,7 @@ wgUploadAutoFill = {$autofill};
 		$sourcefilename = wfMsgExt( 'sourcefilename', array( 'parseinline', 'escapenoentities' ) );
         $destfilename = wfMsgExt( 'destfilename', array( 'parseinline', 'escapenoentities' ) );
 
-		$msg = $this->mForReUpload ? 'filereuploadsummary' : 'fileuploadsummary';
+		$msg = ( $this->mForReUpload )  ? 'filereuploadsummary' : 'fileuploadsummary';
 		$summary = wfMsgExt( $msg, 'parseinline' );
 
 		$licenses = new Licenses();
