@@ -1532,6 +1532,8 @@ function do_postgres_updates() {
 		array("revision",      "rev_parent_id",        "INTEGER DEFAULT NULL"),
 		array("site_stats",    "ss_active_users",      "INTEGER DEFAULT '-1'"),
 		array("user_newtalk",  "user_last_timestamp",  "TIMESTAMPTZ"),
+		array("logging",       "log_user_text",        "TEXT NOT NULL DEFAULT ''"),
+		array("logging",       "log_page",             "INTEGER"),
 	);
 
 
@@ -1600,6 +1602,8 @@ function do_postgres_updates() {
 		array("recentchanges", "rc_timestamp_bot",   "(rc_timestamp) WHERE rc_bot = 0"),
 		array("templatelinks", "templatelinks_from", "(tl_from)"),
 		array("watchlist",     "wl_user",            "(wl_user)"),
+		array("logging",       "logging_user_type_time", "(log_user, log_type, log_timestamp)"),
+		array("logging",       "logging_page_id_time",   "(log_page,log_timestamp)"),
 	);
 
 	$newrules = array(
