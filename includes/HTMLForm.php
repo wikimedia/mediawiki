@@ -647,7 +647,7 @@ class HTMLSelectOrOtherField extends HTMLTextField {
 		$selected = $valInSelect ? $value : 'other';
 
 		$select = new XmlSelect( $this->mName, $this->mID, $selected );
-		$select->addOptions( $this->mParams['options'] );
+		$select->addOptions( array_map( 'strval', $this->mParams['options'] ) );
 
 		$select->setAttribute( 'class', 'mw-htmlform-select-or-other' );
 
