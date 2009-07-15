@@ -1639,7 +1639,7 @@ class OutputPage {
 	 * @param Title $title Title to link
 	 * @param string $query Query string
 	 */
-	public function addReturnTo( $title, $query ) {
+	public function addReturnTo( $title, $query = array() ) {
 		global $wgUser;
 		$this->addLink( array( 'rel' => 'next', 'href' => $title->getFullUrl() ) );
 		$link = wfMsgHtml( 'returnto', $wgUser->getSkin()->link(
