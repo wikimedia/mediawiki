@@ -86,8 +86,9 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 		# Scanning large datasets for rare categories sucks, and I already told 
 		# how to have efficient subcategory access :-) ~~~~ (oh well, domas)
 		global $wgMiserMode;
-		if ( $wgMiserMode && isset($params['namespace']) ) { 
-			$this->setWarning("The cmnamespace option is disabled on this site");
+		$miser_ns = array();
+		if ($wgMiserMode) { 
+			$miser_ns = $params['namespace'];
 		} else {
 			$this->addWhereFld('page_namespace', $params['namespace']);
 		}
@@ -118,6 +119,13 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 					$this->setContinueEnumParameter('continue', $this->getContinueStr($row, $lastSortKey));
 				break;
 			}
+
+			// Since domas won't tell anyone what he told long ago, apply 
+			// cmnamespace here. This means the query may return 0 actual 
+			// results, but on the other hand it could save returning 5000 
+			// useless results to the client. ~~~~
+			if (count($miser_ns) && !in_array($row->page_namespace, $miser_ns))
+				continue;
 
 			if (is_null($resultPageSet)) {
 				$vals = array();
@@ -240,9 +248,11 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 	}
 
 	public function getParamDescription() {
+		global $wgMiserMode;
 		$desc = array (
 			'title' => 'Which category to enumerate (required). Must include Category: prefix',
 			'prop' => 'What pieces of information to include',
+			'namespace' => 'Only include pages in these namespaces',
 			'sort' => 'Property to sort by',
 			'dir' => 'In which direction to sort',
 			'start' => 'Timestamp to start listing from. Can only be used with cmsort=timestamp',
@@ -252,14 +262,13 @@ class ApiQueryCategoryMembers extends ApiQueryGeneratorBase {
 			'continue' => 'For large categories, give the value retured from previous query',
 			'limit' => 'The maximum number of pages to return.',
 		);
-		global $wgMiserMode;
-		// We can't remove it from the param list entirely without removing it from the
-		// allowed params, but then we could only silently ignore it, which could cause
-		// problems for people unaware of the change
-		if ( $wgMiserMode )
-			$desc['namespace'] = 'Disabled on this site for performance reasons';
-		else
-			$desc['namespace'] = 'Only include pages in these namespaces';
+		if ($wgMiserMode) {
+			$desc['namespace'] = array(
+				$desc['namespace'],
+				'NOTE: Due to $wgMiserMode, using this may result in fewer than "limit" results',
+				'returned before continuing; in extreme cases, zero results may be returned.',
+			);
+		}
 		return $desc;
 	}
 
