@@ -48,10 +48,10 @@ class SkinMonoBook extends SkinTemplate {
 
 
 		//@@todo we can move this to the parent once we update all skins
-		if( isset( $this->pagecss ) )
+		if( isset( $this->pagecss ) &&  $this->pagecss)
 			$out->addInlineStyle( $this->pagecss );
 
-		if( isset( $this->usercss)  )
+		if( isset( $this->usercss ) &&  $this->usercss)
 			$out->addInlineStyle( $this->usercss );
 
 	}
@@ -60,13 +60,13 @@ class SkinMonoBook extends SkinTemplate {
 		$out->addScriptFile( 'wikibits.js' );
 
 		//@@todo can move to parent once we update all skins (to not include things twice
-		if( isset( $this->jsvarurl ) )
+		if( isset( $this->jsvarurl ) && $this->jsvarurl)
 			$out->addScriptFile( $this->jsvarurl );
 
-		if( isset( $this->userjs ) )
+		if( isset( $this->userjs ) && $this->userjs)
 			$out->addScriptFile( $this->userjs );
 
-		if( isset( $this->userjsprev ) )
+		if( isset( $this->userjsprev ) && $this->userjsprev)
 			$out->addInlineScript( $this->userjsprev );
 	}
 }
@@ -252,7 +252,7 @@ HTML
 			<form action="<?php $this->text('wgScript') ?>" id="searchform"><div>
 				<input type='hidden' name="title" value="<?php $this->text('searchtitle') ?>"/>
 				<input id="searchInput" name="search" type="text"<?php echo $this->skin->tooltipAndAccesskey('search');
-					if( isset( $this->data['search'] ) ) {
+					if( isset( $this->data['search'] ) &&  $this->data['search'] ) {
 						?> value="<?php $this->text('search') ?>"<?php } ?> />
 				<input type='submit' name="go" class="searchButton" id="searchGoButton"	value="<?php $this->msg('searcharticle') ?>"<?php echo $this->skin->tooltipAndAccesskey( 'search-go' ); ?> /><?php if ($wgUseTwoButtonsSearchForm) { ?>&nbsp;
 				<input type='submit' name="fulltext" class="searchButton" id="mw-searchButton" value="<?php $this->msg('searchbutton') ?>"<?php echo $this->skin->tooltipAndAccesskey( 'search-fulltext' ); ?> /><?php } else { ?>
@@ -284,7 +284,7 @@ HTML
 				?>"<?php echo $this->skin->tooltipAndAccesskey('t-recentchangeslinked') ?>><?php $this->msg('recentchangeslinked-toolbox') ?></a></li>
 <?php 		}
 		}
-		if(isset($this->data['nav_urls']['trackbacklink'])) { ?>
+		if( isset( $this->data['nav_urls']['trackbacklink'] ) && $this->data['nav_urls']['trackbacklink'] ) { ?>
 			<li id="t-trackbacklink"><a href="<?php
 				echo htmlspecialchars($this->data['nav_urls']['trackbacklink']['href'])
 				?>"<?php echo $this->skin->tooltipAndAccesskey('t-trackbacklink') ?>><?php $this->msg('trackbacklink') ?></a></li>
