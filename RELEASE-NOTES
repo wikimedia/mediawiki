@@ -18,7 +18,25 @@ will be made on the development trunk and appear in the next quarterly release.
 Those wishing to use the latest code instead of a branch release can obtain
 it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 
-=== Configuration changes in 1.16 ===
+=== Configuration changes in 1.16 ===  
+
+* $wgEnableFirefogg enable support for firefogg extension, firefogg supports 
+in-browser transcoding, chunk uploads and client side hash checking. 
+* $wgEnableTemporalOggUrls enable oggz_chop support a server side ogg seeking
+helper 
+* $wgEnableScriptLoader if the script-loader shoudl be enabled
+* $wgJSAutoloadClasses array of javascript classes to file paths used by
+script-loader to load javascript by class name. 
+* $wgEnableJS2system  if we should include js2 stuff like jquery, 
+mv_embed.js (script-loader helper) and use new interfaces for upload
+* $wgEnableScriptLoaderJsFile if we support grabbing js files with the script
+loader. By default we only grab classes in $wgJSAutoloadClasses
+* $wgEnableScriptMinify if you want the script loader to minify js
+* $wgEnableScriptLocalization if you want the script loader to do msg lookups
+* $wgMwEmbedDirectory the path to MwEmbed Directory (maybe we can depreciate
+this. Was used when mwEmbed was going to be an extension.   
+* $wgDebugJavaScript if we want to enable fresh debug javascript 
+* $wgPhpCliPath Path to php-cli for spinning up background php processes
 
 * (bug 18222) $wgMinimalPasswordLength default is now 1
 * $wgSessionHandler can be used to configure session.save_handler
