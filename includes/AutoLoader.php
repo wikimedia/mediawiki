@@ -580,12 +580,12 @@ $wgAutoloadLocalClasses = array(
 
 );
 
-//autoloader for javascript files (path is from the mediawiki folder
+// Autoloader for JavaScript files (path is from the MediaWiki folder)
 global $wgJSAutoloadLocalClasses;
 $wgJSAutoloadLocalClasses = array(
-	'ajax' =>  'skins/common/ajax.js',
-    'ajaxwatch' => 'skins/common/ajaxwatch.js',
-    'allmessages' => 'skins/common/allmessages.js',
+	'ajax' => 'skins/common/ajax.js',
+	'ajaxwatch' => 'skins/common/ajaxwatch.js',
+	'allmessages' => 'skins/common/allmessages.js',
 	'block' => 'skins/common/block.js',
 	'changepassword' => 'skins/common/changepassword.js',
 	'diff' => 'skins/common/diff.js',
@@ -599,13 +599,13 @@ $wgJSAutoloadLocalClasses = array(
 	'preview' => 'skins/common/preview.js',
 	'protect' => 'skins/common/protect.js',
 	'rightclickedit' => 'skins/common/rightclickedit.js',
-	'sticky'	=> 'skins/common/sticky.js',
+	'sticky' => 'skins/common/sticky.js',
 	'upload' => 'skins/common/upload.js',
 	'wikibits' => 'skins/common/wikibits.js',
 
-	//phase 2 javascript:
+	// phase 2 javascript:
 	'uploadPage' => 'js2/uploadPage.js',
-	'editPage'	=>	'js2/editPage.js',
+	'editPage' => 'js2/editPage.js',
 );
 
 //Include the js2 autoLoadClasses

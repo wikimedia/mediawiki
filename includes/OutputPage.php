@@ -15,7 +15,7 @@ class OutputPage {
 	var $mCategoryLinks = array(), $mLanguageLinks = array();
 
 	var $mScriptLoaderClassList = array();
-	//the most recent id of any script that is grouped in the script request
+	// the most recent id of any script that is grouped in the script request
 	var $mLatestScriptRevID = 0; 
 
 	var $mScripts = '', $mLinkColours, $mPageLinkTitle = '', $mHeadItems = array();
@@ -93,8 +93,7 @@ class OutputPage {
 	function addKeyword( $text ) {
 		if( is_array( $text )) {
 			$this->mKeywords = array_merge( $this->mKeywords, $text );
-		}
-		else {
+		} else {
 			array_push( $this->mKeywords, $text );
 		}
 	}
@@ -116,26 +115,27 @@ class OutputPage {
 		if( substr( $file, 0, 1 ) == '/' ) {
 			$path = $file;
 		} else {
-			$path =  "{$wgStylePath}/common/{$file}";
+			$path = "{$wgStylePath}/common/{$file}";
 		}
+
 		if( $wgEnableScriptLoader ){
-			if( strpos($path, $wgScript) !== false ){
-				$reqPath = str_replace($wgScript.'?', '', $path);
-				$reqArgs = split('&', $reqPath);
+			if( strpos( $path, $wgScript ) !== false ){
+				$reqPath = str_replace( $wgScript . '?', '', $path );
+				$reqArgs = split( '&', $reqPath );
 				$reqSet = array();
 
-				foreach($reqArgs as $arg){
-					list($key, $var) = split('=', $arg);
-					$reqSet[$key]= $var;
+				foreach( $reqArgs as $arg ){
+					list( $key, $var ) = split( '=', $arg );
+					$reqSet[$key] = $var;
 				}
 
-				if( isset( $reqSet['title'] ) &&  $reqSet != '' ) {
-					//extract any extra param (for now just skin)
-					$ext_param = ( isset( $reqSet['useskin'] ) && $reqSet['useskin'] != '') ? '|useskin=' . ucfirst( $reqSet['useskin'] ) : '';
+				if( isset( $reqSet['title'] ) && $reqSet != '' ) {
+					// extract any extra param (for now just skin)
+					$ext_param = ( isset( $reqSet['useskin'] ) && $reqSet['useskin'] != '' ) ? '|useskin=' . ucfirst( $reqSet['useskin'] ) : '';
 					$this->mScriptLoaderClassList[] = 'WT:' . $reqSet['title'] . $ext_param ;
-					//add the title revision to the key
+					// add the title revision to the key
 					$t = Title::newFromText( $reqSet['title'] );
-					//if there is no title (don't worry we just use the $wgStyleVersion var (which should be updated on relevant commits)
+					// if there is no title (don't worry we just use the $wgStyleVersion var (which should be updated on relevant commits)
 					if( $t->exists() ){
 						if( $t->getLatestRevID() > $this->mLatestScriptRevID  )
 							$this->mLatestScriptRevID = $t->getLatestRevID();
@@ -143,16 +143,17 @@ class OutputPage {
 					return true;
 				}
 			}
-			//check for class from path:
+
+			// check for class from path:
 			$js_class = $this->getJsClassFromPath( $path );
 			if( $js_class ){
-				//add to the class list:
+				// add to the class list:
 				$this->mScriptLoaderClassList[] = $js_class;
 				return true;
 			}
 		}
-		//die();
-		//if the script loader did not find a way to add the script than add using AddScript
+
+		// if the script loader did not find a way to add the script than add using addScript
 		$this->addScript(
 			Xml::element( 'script',
 				array(
@@ -163,49 +164,57 @@ class OutputPage {
 			)
 		);
 	}
-	/*
+
+	/**
 	 * This is the core script that is included on every page
 	 * (they are requested separately to improve caching across
 	 *  different page load types (edit, upload, view, etc)
 	 */
 	function addCoreScripts2Top(){
-		global $wgEnableScriptLoader, $wgStyleVersion,$wgJSAutoloadLocalClasses, $wgJsMimeType, $wgScriptPath, $wgEnableJS2system ;
-		//@@todo we should depricate wikibits in favor of mv_embed and native jQuery functions
+		global $wgEnableScriptLoader, $wgStyleVersion, $wgJSAutoloadLocalClasses, $wgJsMimeType, $wgScriptPath, $wgEnableJS2system;
+		//@@todo we should deprecate wikibits in favor of mv_embed and native jQuery functions
 
 		if( $wgEnableJS2system ){
-		    $core_classes = array('window.jQuery', 'mv_embed', 'wikibits');
-		}else{
-		    $core_classes = array('wikibits');
+			$core_classes = array( 'window.jQuery', 'mv_embed', 'wikibits' );
+		} else {
+			$core_classes = array( 'wikibits' );
 		}
+
 		if( $wgEnableScriptLoader ){
 			$this->mScripts = $this->getScriptLoaderJs( $core_classes ) . $this->mScripts;
-		}else{
+		} else {
 			$so = '';
-			foreach($core_classes as $s){
-				if(isset( $wgJSAutoloadLocalClasses[$s] )){
-						$so.= Xml::element( 'script', array(
-								'type' => $wgJsMimeType,
-								'src' => "{$wgScriptPath}/{$wgJSAutoloadLocalClasses[$s]}?" . $this->getURIDparam()
-							),
-							'', false
-						);
+			foreach( $core_classes as $s ){
+				if( isset( $wgJSAutoloadLocalClasses[$s] ) ){
+					$so.= Xml::element( 'script', array(
+							'type' => $wgJsMimeType,
+							'src' => "{$wgScriptPath}/{$wgJSAutoloadLocalClasses[$s]}?" . $this->getURIDparam()
+						),
+						'', false
+					);
 				}
 			}
 			$this->mScripts =  $so . $this->mScripts;
 		}
 	}
+
+	/**
+	 * @param $js_class String: name of JavaScript class
+	 * @return Boolean: false if class wasn't found, true on success
+	 */
 	function addScriptClass( $js_class ){
 		global $wgJSAutoloadClasses, $wgJSAutoloadLocalClasses, $wgJsMimeType,
 				$wgEnableScriptLoader, $wgStyleVersion, $wgScriptPath;
-		if(isset($wgJSAutoloadClasses[ $js_class ] ) || isset( $wgJSAutoloadLocalClasses[$js_class]) ){
-			if($wgEnableScriptLoader){
-				if( ! in_array( $js_class, $this->mScriptLoaderClassList ) ){
+
+		if( isset( $wgJSAutoloadClasses[$js_class] ) || isset( $wgJSAutoloadLocalClasses[$js_class] ) ){
+			if( $wgEnableScriptLoader ){
+				if( !in_array( $js_class, $this->mScriptLoaderClassList ) ){
 					$this->mScriptLoaderClassList[] = $js_class;
 				}
-			}else{
-				//do a normal load of without the script-loader:
+			} else {
+				// do a normal load of without the script-loader:
 				$path = $wgScriptPath . '/';
-				$path.= isset($wgJSAutoloadClasses[ $js_class ] )?$wgJSAutoloadClasses[ $js_class ]:
+				$path.= isset( $wgJSAutoloadClasses[$js_class] ) ? $wgJSAutoloadClasses[$js_class]:
 							$wgJSAutoloadLocalClasses[$js_class];
 				$this->addScript(
 					Xml::element( 'script',
@@ -219,25 +228,26 @@ class OutputPage {
 			}
 			return true;
 		}
-		wfDebug( __METHOD__ . " could not find js_class: " . $js_class );
-		return false; //could not find the class
+		wfDebug( __METHOD__ . ' could not find js_class: ' . $js_class );
+		return false; // could not find the class
 	}
+
 	/**
 	 * gets the scriptLoader javascript include
-	 *
+	 * @param $forcClassAry Boolean: false by default
 	 */
-	function getScriptLoaderJs( $forceClassAry=false ){
+	function getScriptLoaderJs( $forceClassAry = false ){
 		global $wgScriptPath, $wgJsMimeType, $wgStyleVersion, $wgRequest, $wgDebugJavaScript;
 
-		if(!$forceClassAry){
-			$class_list = implode(',', $this->mScriptLoaderClassList );
-		}else{
-			$class_list = implode(',', $forceClassAry );
+		if( !$forceClassAry ){
+			$class_list = implode( ',', $this->mScriptLoaderClassList );
+		} else {
+			$class_list = implode( ',', $forceClassAry );
 		}
 
 		$debug_param = ( $wgDebugJavaScript ||
-						 $wgRequest->getVal('debug')=='true' ||
-						 $wgRequest->getVal('debug')=='1' )
+						 $wgRequest->getVal( 'debug' ) == 'true' ||
+						 $wgRequest->getVal( 'debug' ) == '1' )
 			 		 ? '&debug=true' : '';
 
 		//@@todo intelligent unique id generation based on svn version of file (rather than just grabbing the $wgStyleVersion var)
@@ -254,25 +264,28 @@ class OutputPage {
 				'', false
 		);
 	}
+
 	function getURIDparam(){
-		global $wgDebugJavaScript,$wgStyleVersion;
+		global $wgDebugJavaScript, $wgStyleVersion;
 		if( $wgDebugJavaScript ){
-			return "urid=". time();
-		}else{
+			return 'urid=' . time();
+		} else {
 			return "urid={$wgStyleVersion}_{$this->mLatestScriptRevID}";
 		}
 	}
+
 	function getJsClassFromPath( $path ){
 		global $wgJSAutoloadClasses, $wgJSAutoloadLocalClasses, $wgScriptPath;
 
 		$scriptLoaderPaths = array_merge( $wgJSAutoloadClasses,  $wgJSAutoloadLocalClasses );
 		foreach( $scriptLoaderPaths as $js_class => $js_path ){
 			$js_path = "{$wgScriptPath}/{$js_path}";
-			if($path == $js_path)
+			if( $path == $js_path )
 				return $js_class;
 		}
 		return false;
 	}
+
 	/**
 	 * Add a self-contained script tag with the given contents
 	 * @param string $script JavaScript text, no <script> tags
@@ -285,9 +298,9 @@ class OutputPage {
 	function getScript() {
 		global $wgEnableScriptLoader;
 		if( $wgEnableScriptLoader ){
-			//include 	$this->mScripts (for anything that we could not package into the scriptloader
-			return $this->mScripts ."\n". $this->getScriptLoaderJs() . $this->getHeadItems();
-		}else{
+			//include $this->mScripts (for anything that we could not package into the scriptloader
+			return $this->mScripts . "\n" . $this->getScriptLoaderJs() . $this->getHeadItems();
+		} else {
 			return $this->mScripts . $this->getHeadItems();
 		}
 	}
@@ -1117,7 +1130,7 @@ class OutputPage {
 
 		$sk = $wgUser->getSkin();
 
-		//add our core scripts to output
+		// add our core scripts to output
 		$this->addCoreScripts2Top();
 
 		if ( $wgUseAjax ) {
@@ -1915,9 +1928,15 @@ class OutputPage {
 			$options['dir'] = $dir;
 		$this->styles[$style] = $options;
 	}
+
+	/**
+	 * Adds inline CSS styles
+	 * @param $style_css Mixed: inline CSS
+	 */
 	public function addInlineStyle( $style_css ){
 		$this->mScripts .= "<style type=\"text/css\">$style_css</style>";
 	}
+
 	/**
 	 * Build a set of <link>s for the stylesheets specified in the $this->styles array.
 	 * These will be applied to various media & IE conditionals.

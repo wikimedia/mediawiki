@@ -22,11 +22,10 @@
  * http://www.gnu.org/copyleft/gpl.html
  */
 
-if (!defined('MEDIAWIKI')) {
+if ( !defined( 'MEDIAWIKI' ) ) {
 	// Eclipse helper - will be ignored in production
-	require_once ("ApiBase.php");
+	require_once("ApiBase.php");
 }
-
 
 /**
  * @ingroup API
@@ -34,23 +33,22 @@ if (!defined('MEDIAWIKI')) {
 class ApiUpload extends ApiBase {
 	var $mUpload = null;
 
-	public function __construct($main, $action) {
-		parent :: __construct($main, $action);
+	public function __construct( $main, $action ) {
+		parent::__construct( $main, $action );
 	}
 
 	public function execute() {
 		global $wgUser;
 
-
 		$this->getMain()->isWriteMode();
 		$this->mParams = $this->extractRequestParams();
 		$request = $this->getMain()->getRequest();
 
-		//do token checks:
-		if(is_null($this->mParams['token']))
-			$this->dieUsageMsg(array('missingparam', 'token'));
-		if(!$wgUser->matchEditToken($this->mParams['token']))
-			$this->dieUsageMsg(array('sessionfailure'));
+		// do token checks:
+		if( is_null( $this->mParams['token'] ) )
+			$this->dieUsageMsg( array( 'missingparam', 'token' ) );
+		if( !$wgUser->matchEditToken( $this->mParams['token'] ) )
+			$this->dieUsageMsg( array( 'sessionfailure' ) );
 
 
 		// Add the uploaded file to the params array
@@ -60,24 +58,24 @@ class ApiUpload extends ApiBase {
 		if( !UploadBase::isEnabled() )
 			$this->dieUsageMsg( array( 'uploaddisabled' ) );
 
-		wfDebug("running require param\n");
+		wfDebug( __METHOD__ . "running require param\n" );
 		// One and only one of the following parameters is needed
 		$this->requireOnlyOneParameter( $this->mParams,
 			'sessionkey', 'file', 'url', 'enablechunks' );
 
 		if( $this->mParams['enablechunks'] ){
-			//chunks upload enabled
+			// chunks upload enabled
 			$this->mUpload = new UploadFromChunks();
 			$this->mUpload->initializeFromParams( $this->mParams, $request );
 
 			//if getAPIresult did not exit report the status error:
-			if( isset( $this->mUpload->status[ 'error' ] ) )
-				$this->dieUsageMsg( $this->mUpload->status[ 'error' ] );
+			if( isset( $this->mUpload->status['error'] ) )
+				$this->dieUsageMsg( $this->mUpload->status['error'] );
 
-		}else if( $this->mParams['internalhttpsession'] ){
-			$sd = & $_SESSION['wsDownload'][ $this->mParams['internalhttpsession'] ];
+		} else if( $this->mParams['internalhttpsession'] ){
+			$sd = & $_SESSION['wsDownload'][$this->mParams['internalhttpsession']];
 
-			//get the params from the init session:
+			// get the params from the init session:
 			$this->mUpload = new UploadFromFile();
 
 			$this->mUpload->initialize( $this->mParams['filename'],
@@ -88,32 +86,32 @@ class ApiUpload extends ApiBase {
 			if( !isset( $this->mUpload ) )
 				$this->dieUsage( 'No upload module set', 'nomodule' );
 
-		}else if( $this->mParams['httpstatus'] && $this->mParams['sessionkey']){
-			//return the status of the given upload session_key:
-			if(!isset($_SESSION['wsDownload'][ $this->mParams['sessionkey'] ])){
+		} else if( $this->mParams['httpstatus'] && $this->mParams['sessionkey'] ){
+			// return the status of the given upload session_key:
+			if( !isset( $_SESSION['wsDownload'][ $this->mParams['sessionkey'] ] ) ){
 					return $this->getResult()->addValue( null, $this->getModuleName(),
 									array( 'error' => 'invalid-session-key'
 							));
 			}
-			$sd = & $_SESSION['wsDownload'][ $this->mParams['sessionkey'] ];
-			//keep passing down the upload sessionkey
+			$sd = & $_SESSION['wsDownload'][$this->mParams['sessionkey']];
+			// keep passing down the upload sessionkey
 			$statusResult = array(
 				'upload_session_key' => $this->mParams['sessionkey']
 			);
 
-			//put values into the final apiResult if available
-			if( isset($sd['apiUploadResult'])) $statusResult['apiUploadResult'] = $sd['apiUploadResult'];
-			if( isset($sd['loaded']) ) $statusResult['loaded'] = $sd['loaded'];
-			if( isset($sd['content_length']) ) $statusResult['content_length'] = $sd['content_length'];
+			// put values into the final apiResult if available
+			if( isset( $sd['apiUploadResult'] ) ) $statusResult['apiUploadResult'] = $sd['apiUploadResult'];
+			if( isset( $sd['loaded'] ) ) $statusResult['loaded'] = $sd['loaded'];
+			if( isset( $sd['content_length'] ) ) $statusResult['content_length'] = $sd['content_length'];
 
 			return $this->getResult()->addValue( null, $this->getModuleName(),
 						$statusResult
 			);
-		}else if( $this->mParams['sessionkey'] ) {
+		} else if( $this->mParams['sessionkey'] ) {
 			// Stashed upload
 			$this->mUpload = new UploadFromStash();
 			$this->mUpload->initialize( $this->mParams['filename'], $_SESSION['wsUploadData'][$this->mParams['sessionkey']] );
-		}else{
+		} else {
 			// Upload from url or file
 			// Parameter filename is required
 			if( !isset( $this->mParams['filename'] ) )
@@ -130,7 +128,7 @@ class ApiUpload extends ApiBase {
 			} elseif( isset( $this->mParams['url'] ) ) {
 
 				$this->mUpload = new UploadFromUrl();
-				$this->mUpload->initialize(  $this->mParams['filename'], $this->mParams['url'], $this->mParams['asyncdownload']);
+				$this->mUpload->initialize( $this->mParams['filename'], $this->mParams['url'], $this->mParams['asyncdownload'] );
 
 				$status = $this->mUpload->fetchFile();
 				if( !$status->isOK() ){
@@ -139,13 +137,13 @@ class ApiUpload extends ApiBase {
 				//check if we doing a async request set session info and return the upload_session_key)
 				if( $this->mUpload->isAsync() ){
 					$upload_session_key = $status->value;
-					//update the session with anything with the params we will need to finish up the upload later on:
-					if(!isset($_SESSION['wsDownload'][$upload_session_key]))
+					// update the session with anything with the params we will need to finish up the upload later on:
+					if( !isset( $_SESSION['wsDownload'][$upload_session_key] ) )
 						$_SESSION['wsDownload'][$upload_session_key] = array();
 
 					$sd =& $_SESSION['wsDownload'][$upload_session_key];
 
-					//copy mParams for finishing up after:
+					// copy mParams for finishing up after:
 					$sd['mParams'] = $this->mParams;
 
 					return $this->getResult()->addValue( null, $this->getModuleName(),
@@ -162,11 +160,11 @@ class ApiUpload extends ApiBase {
 		//finish up the exec command:
 		$this->doExecUpload();
 	}
+
 	function doExecUpload(){
 		global $wgUser;
-		//Check whether the user has the appropriate permissions to upload anyway
+		// Check whether the user has the appropriate permissions to upload anyway
 		$permission = $this->mUpload->isAllowed( $wgUser );
-
 
 		if( $permission !== true ) {
 			if( !$wgUser->isLoggedIn() )
@@ -180,6 +178,7 @@ class ApiUpload extends ApiBase {
 		$this->mUpload->cleanupTempFile();
 		$this->getResult()->addValue( null, $this->getModuleName(), $result );
 	}
+
 	private function performUpload() {
 		global $wgUser;
 		$result = array();
@@ -235,6 +234,7 @@ class ApiUpload extends ApiBase {
 			}
 			return $result;
 		}
+
 		if( !$this->mParams['ignorewarnings'] ) {
 			$warnings = $this->mUpload->checkWarnings();
 			if( $warnings ) {
@@ -251,7 +251,8 @@ class ApiUpload extends ApiBase {
 				return $result;
 			}
 		}
-		//do the upload
+
+		// do the upload
 		$status = $this->mUpload->performUpload( $this->mParams['comment'],
 			$this->mParams['comment'], $this->mParams['watch'], $wgUser );
 
@@ -267,17 +268,16 @@ class ApiUpload extends ApiBase {
 		$result['result'] = 'Success';
 		$result['filename'] = $file->getName();
 
-
 		// Append imageinfo to the result
 
-		//might be a cleaner way to call this:
+		// might be a cleaner way to call this:
 		$imParam = ApiQueryImageInfo::getAllowedParams();
-		$imProp = $imParam['prop'][ApiBase :: PARAM_TYPE];
+		$imProp = $imParam['prop'][ApiBase::PARAM_TYPE];
 		$result['imageinfo'] = ApiQueryImageInfo::getInfo( $file,
 			array_flip( $imProp ),
 			$this->getResult() );
 
-		wfDebug("\n\n return result: " . print_r($result, true));
+		wfDebug( "\n\n return result: " . print_r( $result, true ) );
 
 		return $result;
 	}
@@ -287,35 +287,35 @@ class ApiUpload extends ApiBase {
 	}
 
 	public function getAllowedParams() {
-		return array (
+		return array(
 			'filename' => null,
 			'file' => null,
 			'chunk' => null,
 			'url' => null,
-		    'token' => null,
+			'token' => null,
 			'enablechunks' => null,
 			'comment' => array(
-				ApiBase :: PARAM_DFLT => ''
+				ApiBase::PARAM_DFLT => ''
 			),
-			'asyncdownload'=>false,
+			'asyncdownload' => false,
 			'watch' => false,
 			'ignorewarnings' => false,
-			'done'	=> false,
+			'done' => false,
 			'sessionkey' => null,
 			'httpstatus' => null,
-			'chunksessionkey'=> null,
-			'internalhttpsession'=> null,
+			'chunksessionkey' => null,
+			'internalhttpsession' => null,
 		);
 	}
 
 	public function getParamDescription() {
-		return array (
+		return array(
 			'filename' => 'Target filename',
 			'file' => 'File contents',
 			'chunk'=> 'Chunk File Contents',
 			'url' => 'Url to upload from',
 			'comment' => 'Upload comment or initial page text',
-		   	'token' => 'Edit token. You can get one of these through prop=info (this helps avoid remote ajax upload requests with your credentials)',
+			'token' => 'Edit token. You can get one of these through prop=info (this helps avoid remote ajax upload requests with your credentials)',
 			'enablechunks' => 'Boolean If we are in chunk mode; accepts many small file POSTs',
 			'asyncdownload' => 'If we should download the url asyncrously usefull for large http downloads (returns a upload session key to get status updates in subquent calls)',
 			'watch' => 'Watch the page',
@@ -330,12 +330,12 @@ class ApiUpload extends ApiBase {
 
 	public function getDescription() {
 		return array(
-			'Upload an File'
+			'Upload a file'
 		);
 	}
 
 	protected function getExamples() {
-		return array (
+		return array(
 			'api.php?action=upload&filename=Wiki.png&url=http%3A//upload.wikimedia.org/wikipedia/en/b/bc/Wiki.png&ignorewarnings'
 		);
 	}
