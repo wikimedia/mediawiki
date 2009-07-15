@@ -3,7 +3,7 @@
 class UploadFromUrl extends UploadBase {
 	protected $mTempDownloadPath;
 
-	// by default do a SYNC_DOWNLOAD 
+	// by default do a SYNC_DOWNLOAD
 	protected $dl_mode = null;
 
 	/**
@@ -24,12 +24,12 @@ class UploadFromUrl extends UploadBase {
 	}
 
 	/* entry point for API upload:: ASYNC_DOWNLOAD (if possible) */
-	function initialize( $name, $url, $asyncdownload = false ) {
-		global $wgTmpDirectory, $wgPhpCliPath;
+	function initialize( $name, $url, $asyncdownload, $na = false ) {
+		global $wgTmpDirectory, $wgPhpCli;
 
-		// check for $asyncdownload request: 
+		// check for $asyncdownload request:
 		if( $asyncdownload !== false){
-			if( $wgPhpCliPath && wfShellExecEnabled() ){
+			if( $wgPhpCli && wfShellExecEnabled() ){
 				$this->dl_mode = Http::ASYNC_DOWNLOAD;
 			} else {
 				$this->dl_mode = Http::SYNC_DOWNLOAD;
@@ -54,7 +54,7 @@ class UploadFromUrl extends UploadBase {
 
 		// set dl mode if not set:
 		if( !$this->dl_mode )
-			$this->dl_mode = Http::SYNC_DOWNLOAD;	
+			$this->dl_mode = Http::SYNC_DOWNLOAD;
 
 		$desiredDestName = $request->getText( 'wpDestFile' );
 		if( !$desiredDestName )
@@ -69,7 +69,7 @@ class UploadFromUrl extends UploadBase {
 	 * Do the real fetching stuff
 	 */
 	function fetchFile() {
-		// entry point for SpecialUplaod 
+		// entry point for SpecialUplaod
 		if( self::isValidURI( $this->mUrl ) === false ) {
 			return Status::newFatal( 'upload-proto-error' );
 		}
@@ -77,7 +77,7 @@ class UploadFromUrl extends UploadBase {
 		// now do the actual download to the target file:
 		$status = Http::doDownload( $this->mUrl, $this->mTempPath, $this->dl_mode );
 
-		// update the local filesize var: 
+		// update the local filesize var:
 		$this->mFileSize = filesize( $this->mTempPath );
 
 		return $status;
