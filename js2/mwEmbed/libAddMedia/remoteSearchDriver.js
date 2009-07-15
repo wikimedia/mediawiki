@@ -1548,7 +1548,7 @@ remoteSearchDriver.prototype = {
 		if( this.content_providers[this.disp_item] ){
 			var cp = this.content_providers[this.disp_item];
 			about_desc ='<span style="position:relative;top:0px;font-style:italic;">' +
-					'<i>' + gM('results_from', cp.homepage, cp.title) + '</i></span>';	
+					'<i>' + gM('results_from', [cp.homepage, cp.title]) + '</i></span>';	
 			$j('#tab-'+this.disp_item).append( '<div id="rds_results_bar">'+						
 				'<span style="float:left;top:0px;font-style:italic;">'+
 					gM('rsd_layout')+' '+				

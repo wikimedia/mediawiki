@@ -1160,7 +1160,6 @@ You may have already successfully changed your password or requested a new tempo
 'media_tip'       => 'File link',
 'sig_tip'         => 'Your signature with timestamp',
 'hr_tip'          => 'Horizontal line (use sparingly)',
-'add_media_wizard' => 'Add media wizard',
 
 # Edit pages
 'summary'                          => 'Summary:',

@@ -54,6 +54,7 @@ class jsScriptLoader {
 		foreach( $this->jsFileList as $classKey => $file_name ){
 			// special case: - title classes:
 			if( substr( $classKey, 0, 3 ) == 'WT:' ){
+				global $wgUser;
 				// get just the tile part:
 				$title_block = substr( $classKey, 3 );
 				if( $title_block[0] == '-' && strpos( $title_block, '|' ) !== false ){
@@ -66,12 +67,13 @@ class jsScriptLoader {
 							$skin = $val;
 						}
 					}
+					$sk = $wgUser->getSkin();
 					// make sure the skin name is valid
 					$skinNames = Skin::getSkinNames();
 					// get the lower case skin name (array keys)
 					$skinNames = array_keys( $skinNames );
 					if( in_array( strtolower( $skin ), $skinNames ) ){
-						$this->jsout .= Skin::generateUserJs( $skin ) . "\n";
+						$this->jsout .= $sk->generateUserJs( $skin ) . "\n";
 						// success continue:
 						continue;
 					}
@@ -147,7 +149,8 @@ class jsScriptLoader {
 	 * updates the proc Request
 	 */
 	function procRequestVars(){
-		global $wgContLanguageCode, $wgEnableScriptMinify, $wgJSAutoloadClasses, $wgJSAutoloadLocalClasses, $wgStyleVersion;
+		global $wgContLanguageCode, $wgEnableScriptMinify, $wgJSAutoloadClasses,
+		$wgJSAutoloadLocalClasses, $wgStyleVersion, $wgEnableScriptLoaderJsFile;
 
 		// set debug flag:
 		if( ( isset( $_GET['debug'] ) && $_GET['debug'] == 'true' ) || ( isset( $wgEnableScriptDebug ) && $wgEnableScriptDebug == true ) ){
