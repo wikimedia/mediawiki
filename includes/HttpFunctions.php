@@ -383,6 +383,7 @@ class HttpRequest{
 				'timeout' => $timeout ) );
 		$ctx = stream_context_create( $opts );
 
+		$status = new Status;
 		$status->value = file_get_contents( $url, false, $ctx );
 		if( !$status->value ){
 			$status->error( 'file_get_contents-failed' );
