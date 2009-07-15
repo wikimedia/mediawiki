@@ -437,11 +437,16 @@ CREATE TABLE logging (
   log_title       TEXT         NOT NULL,
   log_comment     TEXT,
   log_params      TEXT,
-  log_deleted     SMALLINT     NOT NULL DEFAULT 0
+  log_deleted     SMALLINT     NOT NULL DEFAULT 0,
+  log_user_text   TEXT         NOT NULL DEFAULT '',
+  log_page        INTEGER
 );
 CREATE INDEX logging_type_name ON logging (log_type, log_timestamp);
 CREATE INDEX logging_user_time ON logging (log_timestamp, log_user);
 CREATE INDEX logging_page_time ON logging (log_namespace, log_title, log_timestamp);
+CREATE INDEX logging_times ON logging (log_timestamp);
+CREATE INDEX logging_user_type_time ON logging (log_user, log_type, log_timestamp);
+CREATE INDEX logging_page_id_time ON logging (log_page, log_timestamp);
 
 CREATE TABLE log_search (
   ls_field   TEXT     NOT NULL,
@@ -617,8 +622,8 @@ INSERT INTO mediawiki_version (type,mw_version,sql_version,sql_date)
   VALUES ('Creation','??','$LastChangedRevision$','$LastChangedDate$');
 
 CREATE TABLE l10n_cache (
-    lc_lang     TEXT    NOT NULL,
-    lc_key      TEXT    NOT NULL,
-    lc_value    TEXT    NOT NULL
+  lc_lang     TEXT    NOT NULL,
+  lc_key      TEXT    NOT NULL,
+  lc_value    TEXT    NOT NULL
 );
 CREATE INDEX l10n_cache_lc_lang_key ON l10n_cache (lc_lang, lc_key);
