@@ -254,6 +254,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Log in and log out links no longer return to page view when clicked from
   history view, edit page, or something similar
 * (bug 19513) RTL fixes for new Search UI
+* (bug 16497) Special:Allmessages is paginated
 
 == API changes in 1.16 ==
 

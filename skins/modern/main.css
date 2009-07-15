@@ -775,25 +775,6 @@ p.revision_saved {
 	font-weight:bold;
 }
 
-/* Allmessages table */
-
-#allmessagestable th {
-	background-color: #b2b2ff;
-}
-
-#allmessagestable tr.orig {
-	background-color: #ffe2e2;
-}
-
-#allmessagestable tr.new {
-	background-color: #e2ffe2;
-}
-
-#allmessagestable tr.def {
-	background-color: #f0f0ff;
-}
-
-
 /* noarticletext */
 div.noarticletext {
 	border: 1px solid #ccc;
