@@ -48,10 +48,10 @@ class SkinMonoBook extends SkinTemplate {
 
 
 		//@@todo we can move this to the parent once we update all skins
-		if( isset($this->pagecss) )
+		if( isset( $this->pagecss ) )
 			$out->addInlineStyle( $this->pagecss );
 
-		if(  isset($this->usercss) )
+		if( isset( $this->usercss)  )
 			$out->addInlineStyle( $this->usercss );
 
 	}
@@ -60,13 +60,13 @@ class SkinMonoBook extends SkinTemplate {
 		$out->addScriptFile( 'wikibits.js' );
 
 		//@@todo can move to parent once we update all skins (to not include things twice
-		if(  isset($this->jsvarurl) )
+		if( isset( $this->jsvarurl ) )
 			$out->addScriptFile( $this->jsvarurl );
 
-		if(  isset($this->userjs) )
+		if( isset( $this->userjs ) )
 			$out->addScriptFile( $this->userjs );
 
-		if(  isset($this->userjsprev) )
+		if( isset( $this->userjsprev ) )
 			$out->addInlineScript( $this->userjsprev );
 	}
 }
@@ -273,23 +273,23 @@ HTML
 		<div class="pBody">
 			<ul>
 <?php
-		if( isset($this->data['notspecialpage']) ) { ?>
+		if($this->data['notspecialpage']) { ?>
 				<li id="t-whatlinkshere"><a href="<?php
 				echo htmlspecialchars($this->data['nav_urls']['whatlinkshere']['href'])
 				?>"<?php echo $this->skin->tooltipAndAccesskey('t-whatlinkshere') ?>><?php $this->msg('whatlinkshere') ?></a></li>
 <?php
-			if(  isset($this->data['nav_urls']['recentchangeslinked']) ) { ?>
+			if( $this->data['nav_urls']['recentchangeslinked'] ) { ?>
 				<li id="t-recentchangeslinked"><a href="<?php
 				echo htmlspecialchars($this->data['nav_urls']['recentchangeslinked']['href'])
 				?>"<?php echo $this->skin->tooltipAndAccesskey('t-recentchangeslinked') ?>><?php $this->msg('recentchangeslinked-toolbox') ?></a></li>
 <?php 		}
 		}
-		if( isset($this->data['nav_urls']['trackbacklink'])) { ?>
+		if(isset($this->data['nav_urls']['trackbacklink'])) { ?>
 			<li id="t-trackbacklink"><a href="<?php
 				echo htmlspecialchars($this->data['nav_urls']['trackbacklink']['href'])
 				?>"<?php echo $this->skin->tooltipAndAccesskey('t-trackbacklink') ?>><?php $this->msg('trackbacklink') ?></a></li>
 <?php 	}
-		if(  isset($this->data['feeds']) ) { ?>
+		if($this->data['feeds']) { ?>
 			<li id="feedlinks"><?php foreach($this->data['feeds'] as $key => $feed) {
 					?><a id="<?php echo Sanitizer::escapeId( "feed-$key" ) ?>" href="<?php
 					echo htmlspecialchars($feed['href']) ?>" rel="alternate" type="application/<?php echo $key ?>+xml" class="feedlink"<?php echo $this->skin->tooltipAndAccesskey('feed-'.$key) ?>><?php echo htmlspecialchars($feed['text'])?></a>&nbsp;
@@ -298,7 +298,7 @@ HTML
 
 		foreach( array('contributions', 'log', 'blockip', 'emailuser', 'upload', 'specialpages') as $special ) {
 
-			if(  isset( $this->data['nav_urls'][$special]) ) {
+			if($this->data['nav_urls'][$special]) {
 				?><li id="t-<?php echo $special ?>"><a href="<?php echo htmlspecialchars($this->data['nav_urls'][$special]['href'])
 				?>"<?php echo $this->skin->tooltipAndAccesskey('t-'.$special) ?>><?php $this->msg($special) ?></a></li>
 <?php		}
@@ -327,7 +327,7 @@ HTML
 
 	/*************************************************************************************************/
 	function languageBox() {
-		if(  isset( $this->data['language_urls']) ) {
+		if( $this->data['language_urls'] ) {
 ?>
 	<div id="p-lang" class="portlet">
 		<h5 <?php $this->html('userlangattributes') ?>><?php $this->msg('otherlanguages') ?></h5>
