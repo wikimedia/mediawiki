@@ -111,22 +111,7 @@ class RawPage {
 	function view() {
 		global $wgOut, $wgScript;
 
-		if( isset( $_SERVER['SCRIPT_NAME'] ) ) {
-			# Normally we use PHP_SELF to get the URL to the script
-			# as it was called, minus the query string.
-			#
-			# Some sites use Apache rewrite rules to handle subdomains,
-			# and have PHP set up in a weird way that causes PHP_SELF
-			# to contain the rewritten URL instead of the one that the
-			# outside world sees.
-			#
-			# If in this mode, use SCRIPT_URL instead, which mod_rewrite
-			# provides containing the "before" URL.
-			$url = $_SERVER['SCRIPT_NAME'];
-		} else {
-			$url = $_SERVER['URL'];
-		}
-
+		$url = wfGetScriptUrl();
 		if( $url == '' ) {
 			# This will make the next check fail with a confusing error
 			# message, so we should mention it separately.

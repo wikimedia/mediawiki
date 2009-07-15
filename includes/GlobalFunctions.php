@@ -2953,6 +2953,28 @@ function wfScript( $script = 'index' ) {
 	global $wgScriptPath, $wgScriptExtension;
 	return "{$wgScriptPath}/{$script}{$wgScriptExtension}";
 }
+/**
+ * Get the script url.
+ *
+ * @return script url
+ */
+function wfGetScriptUrl(){
+	if( isset( $_SERVER['SCRIPT_NAME'] ) ) {
+		#
+		# as it was called, minus the query string.
+		#
+		# Some sites use Apache rewrite rules to handle subdomains,
+		# and have PHP set up in a weird way that causes PHP_SELF
+		# to contain the rewritten URL instead of the one that the
+		# outside world sees.
+		#
+		# If in this mode, use SCRIPT_URL instead, which mod_rewrite
+		# provides containing the "before" URL.
+		return $_SERVER['SCRIPT_NAME'];
+	} else {
+		return $_SERVER['URL'];
+	}
+}
 
 /**
  * Convenience function converts boolean values into "true"

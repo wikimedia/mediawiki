@@ -3684,14 +3684,9 @@ $wgMaxShellFileSize = 102400;
 $wgMaxShellTime = 180;
 
 /**
-* Executable name of PHP cli client (php/php5)
+* Executable Path of PHP cli client (php/php5)  (should be setup on install)
 */
-$wgPhpCli = 'php';
-
-/**
- * the full path to shell out to php scripts:
- */
-$wgPhpCliPath = '/usr/bin/php';
+$wgPhpCli = '/usr/bin/php';
 
 /**
  * DJVU settings

@@ -59,10 +59,10 @@ if ( empty( $wgFileStore['deleted']['directory'] ) ) {
 }
 
 /**
- * Unconditional protection for NS_MEDIAWIKI since otherwise it's too easy for a 
- * sysadmin to set $wgNamespaceProtection incorrectly and leave the wiki insecure. 
+ * Unconditional protection for NS_MEDIAWIKI since otherwise it's too easy for a
+ * sysadmin to set $wgNamespaceProtection incorrectly and leave the wiki insecure.
  *
- * Note that this is the definition of editinterface and it can be granted to 
+ * Note that this is the definition of editinterface and it can be granted to
  * all users if desired.
  */
 $wgNamespaceProtection[NS_MEDIAWIKI] = 'editinterface';
@@ -310,6 +310,16 @@ $wgArticle = null;
 
 wfProfileOut( $fname.'-misc2' );
 wfProfileIn( $fname.'-extensions' );
+
+/*
+ * load the $wgExtensionMessagesFiles for the script loader
+ * this can't be done in a normal extension type way
+ * since the script-loader is an entry point
+ */
+if( $wgEnableScriptLoader && strpos( wfGetScriptUrl(), "mwScriptLoader.php" ) !== false ){
+	$wgExtensionMessagesFiles['mwEmbed'] = "{$IP}/js2/mwEmbed/php/languages/mwEmbed.i18n.php";
+}
+
 
 # Extension setup functions for extensions other than skins
 # Entries should be added to this variable during the inclusion

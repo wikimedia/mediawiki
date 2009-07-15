@@ -29,13 +29,8 @@ require_once('includes/WebStart.php');
 
 wfProfileIn( 'mvwScriptLoader.php' );
 
-if( isset( $_SERVER['SCRIPT_URL'] ) ) {
-	$url = $_SERVER['SCRIPT_URL'];
-} else {
-	$url = $_SERVER['PHP_SELF'];
-}
 
-if( strpos( $url, "mwScriptLoader$wgScriptExtension" ) === false ){
+if( strpos( wfGetScriptUrl(), "mwScriptLoader.php" ) === false ){
 	wfHttpError( 403, 'Forbidden',
 		'mvwScriptLoader must be accessed through the primary script entry point.' );
 	return;
@@ -48,10 +43,9 @@ if ( !$wgEnableScriptLoader ) {
 	die( 1 );
 }
 
+//moved to setup.php
 // load the mwEmbed language file:
-$wgExtensionMessagesFiles['mwEmbed'] = "{$IP}/js2/mwEmbed/php/languages/mwEmbed.i18n.php";
-// enable the msgs before we go on:
-wfLoadExtensionMessages( 'mwEmbed' );
+//$wgExtensionMessagesFiles['mwEmbed'] = "{$IP}/js2/mwEmbed/php/languages/mwEmbed.i18n.php";
 
 // run jsScriptLoader action:
 $myScriptLoader = new jsScriptLoader();
