@@ -947,12 +947,6 @@ h1#firstHeading {
 #content a.external {
 	color: #36b;
 }
-#content .plainlinks a {
-	/* this can be used in the content area to switch off special external link
-	 * styling */
-	background: none !important;
-	padding: 0 !important;
-}
 #content .printfooter {
 	display: none;
 }

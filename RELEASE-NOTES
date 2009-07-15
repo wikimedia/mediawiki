@@ -275,6 +275,7 @@ this. Was used when mwEmbed was going to be an extension.
   history view, edit page, or something similar
 * (bug 19513) RTL fixes for new Search UI
 * (bug 16497) Special:Allmessages is paginated
+* (bug 18708) CSS plainlinks class now available to all skins
 
 == API changes in 1.16 ==
 
