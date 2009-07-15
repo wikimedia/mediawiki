@@ -14,7 +14,7 @@ var is_khtml = navigator.vendor == 'KDE' ||
 	( document.childNodes && !document.all && !navigator.taintEnabled );
 // For accesskeys; note that FF3+ is included here!
 var is_ff2 = /firefox\/[2-9]|minefield\/3/.test( clientPC );
-var is_ff2_ = /firefox\/2/.test( clientPC );
+var ff2_bugs = /firefox\/2/.test( clientPC );
 // These aren't used here, but some custom scripts rely on them
 var is_ff2_win = is_ff2 && clientPC.indexOf('windows') != -1;
 var is_ff2_x11 = is_ff2 && clientPC.indexOf('x11') != -1;
@@ -23,6 +23,9 @@ if (clientPC.indexOf('opera') != -1) {
 	var is_opera_preseven = window.opera && !document.childNodes;
 	var is_opera_seven = window.opera && document.childNodes;
 	var is_opera_95 = /opera\/(9.[5-9]|[1-9][0-9])/.test( clientPC );
+	var opera6_bugs = is_opera_preseven; 	 
+    var opera7_bugs = is_opera_seven && !is_opera_95; 	 
+    var opera95_bugs = /opera\/(9\.5)/.test( clientPC );
 }
 
 // Global external objects used by this script.
@@ -96,18 +99,19 @@ function appendCSS(text) {
 
 // special stylesheet links
 if (typeof stylepath != 'undefined' && typeof skin != 'undefined') {
-	if (is_opera_preseven) {
+	// FIXME: This tries to load the stylesheets even for skins where they
+	// don't exist, i.e., everything but Monobook.
+	if (opera6_bugs) {
 		importStylesheetURI(stylepath+'/'+skin+'/Opera6Fixes.css');
-	} else if (is_opera_seven && !is_opera_95) {
+	} else if (opera7_bugs) {
 		importStylesheetURI(stylepath+'/'+skin+'/Opera7Fixes.css');
-	} else if (is_opera_95) {
+	} else if (opera95_bugs) {
 		importStylesheetURI(stylepath+'/'+skin+'/Opera9Fixes.css');
-	} else if (is_khtml) {
-		importStylesheetURI(stylepath+'/'+skin+'/KHTMLFixes.css');
-	} else if (is_ff2_) {
+	} else if (ff2_bugs) {
 		importStylesheetURI(stylepath+'/'+skin+'/FF2Fixes.css');
 	}
 }
+
 
 if (wgBreakFrames) {
 	// Un-trap us from framesets

@@ -52,6 +52,9 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   functionality is now available via $wgLocalisationCacheConf.
 * $wgMessageCache->addMessages() is deprecated. Messages added via this 
   interface will not appear in Special:AllMessages.
+* $wgRegisterInternalExternals can be used to record external links pointing 
+  to same server
+* $wgHtml5 outputs an HTML 5 doctype instead of XHTML 1.0 Transitional.
 
 === New features in 1.16 ===
 
@@ -113,6 +116,13 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * Added a feature to allow per-article process pool size control for the parsing 
   task, to limit resource usage when the cache for a heavily-viewed article is
   invalidated. Requires an external daemon. 
+* Leading > is now syntax for <blockquote>.
+* (bug 19576) Moved id attribues from anchors accompanying section headers to
+  the section headers themselves, removing the redundant anchor elements.
+* Parser::setFunctionTagHook now can be used to add a new tag which is parsed at
+  preprocesor level.
+* Added $wgShowArchiveThumbnails, allowing sysadmins to disable thumbnail 
+  display for old versions of images.
 
 === Bug fixes in 1.16 ===
 
@@ -232,6 +242,14 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
    extension (since 0.ext is perfectly valid)
 * (bug 19468) Enotif preferences are now only displayed when they are turned on
 * (bug 19442) Show/hide options on watchlist only work once
+* (bug 19602) PubMed Magic links now use updated NIH url
+* (bug 19637) externallinks have links to self
+* Don't load Opera 9.5 RTL fixes for Opera 9.6
+* Remove five-year-old KHTMLFixes.css, which is unlikely to be relevant anymore
+  and was causing problems.
+* Removed repetition of URIs in the title attributes of external links.
+* (bug 19693) User name is now escaped in "Contributions for ..." link on
+  Special:BlockIP
 * (bug 19571) Override buildConcat for SQLite.
 * Log in and log out links no longer return to page view when clicked from
   history view, edit page, or something similar
@@ -276,6 +294,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 19423) The initial file description page used caption in user lang
   rather than UI lang
 * Added snippet field to list=search output
+* (bug 17809) Add number of users in user groups to meta=siteinfo
+* (bug 18533) Add readonly reason to readonly exception
 * (bug 19528) Added XSLT parameter to API queries in format=xml
 * (bug 19040) Fix prependtext and appendtext in combination with section 
   parameter in action=edit
@@ -293,15 +313,16 @@ changes to languages because of MediaZilla reports.
 
 * (bug 18474) Sorani (ckb - Central Kurdish) (renamed from ku-arab)
 * Add PLURAL function for Scots Gaelic (gd)
-* Add Estonian letters äöõšüž to linktrail (et)
+* Add Estonian letters Ã¤Ã¶ÃµÅ¡Ã¼Å¾ to linktrail (et)
 * (bug 18776) Native name of Burmese language (my)
 * (bug 18806) Use correct unicode characters in spelling of native Chuvash
-  (Чӑвашла)
+  (Ð§Ó‘Ð²Ð°ÑˆÐ»Ð°)
 * (bug 18864) Updated autonym for Zhuang language
 * (bug 18308) Updated date formatting in Occitan (oc)
-* (bug 19080) Added ăâîşţșțĂÂÎŞŢȘȚ to Romanion (ro) linktrail
+* (bug 19080) Added ÄƒÃ¢Ã®ÅŸÅ£È™È›Ä‚Ã‚ÃŽÅžÅ¢È˜Èš to Romanion (ro) linktrail
 * (bug 19286) Correct commafying function in Polish (pl)
 * (bug 19441) Updated date formatting for Lithuanian
+* (bug 19630) Added Ã„Ã¤Ã‡Ã§ÄžÄŸÅ‡ÅˆÃ–Ã¶ÅžÅŸÃœÃ¼ÃÃ½Å½Å¾ to Turkmen (tk) linktrail
 
 == Compatibility ==
 
