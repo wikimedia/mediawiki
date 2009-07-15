@@ -89,9 +89,7 @@ class ApiUpload extends ApiBase {
 		} else if( $this->mParams['httpstatus'] && $this->mParams['sessionkey'] ){
 			// return the status of the given upload session_key:
 			if( !isset( $_SESSION['wsDownload'][ $this->mParams['sessionkey'] ] ) ){
-					return $this->getResult()->addValue( null, $this->getModuleName(),
-									array( 'error' => 'invalid-session-key'
-							));
+					return $this->dieUsageMsg( array( 'error' => 'invalid-session-key' ) );
 			}
 			$sd = & $_SESSION['wsDownload'][$this->mParams['sessionkey']];
 			// keep passing down the upload sessionkey
@@ -302,7 +300,7 @@ class ApiUpload extends ApiBase {
 			'ignorewarnings' => false,
 			'done' => false,
 			'sessionkey' => null,
-			'httpstatus' => null,
+			'httpstatus' => false,
 			'chunksessionkey' => null,
 			'internalhttpsession' => null,
 		);
