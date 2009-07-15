@@ -89,7 +89,7 @@ class ApiUpload extends ApiBase {
 		} else if( $this->mParams['httpstatus'] && $this->mParams['sessionkey'] ){
 			// return the status of the given upload session_key:
 			if( !isset( $_SESSION['wsDownload'][ $this->mParams['sessionkey'] ] ) ){
-					return $this->dieUsageMsg( array( 'error' => 'invalid-session-key' ) );
+					return $this->dieUsageMsg( array( 'invalid-session-key' ) );
 			}
 			$sd = & $_SESSION['wsDownload'][$this->mParams['sessionkey']];
 			// keep passing down the upload sessionkey
