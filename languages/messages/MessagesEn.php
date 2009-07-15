@@ -889,7 +889,7 @@ See [[Special:Version|version page]].',
 'newmessageslink'              => 'new messages',
 'newmessagesdifflink'          => 'last change',
 'youhavenewmessagesmulti'      => 'You have new messages on $1',
-'newtalkseparator'             => ',_', # do not translate or duplicate this message to other languages
+'newtalkseparator'             => ',&#32;', # do not translate or duplicate this message to other languages
 'editsection'                  => 'edit',
 'editsection-brackets'         => '[$1]', # only translate this message to other languages if you have to change it
 'editold'                      => 'edit',
@@ -2007,7 +2007,6 @@ To include a file in a page, use a link in one of the following forms:
 'uploadlogpage'               => 'Upload log',
 'uploadlogpagetext'           => 'Below is a list of the most recent file uploads.
 See the [[Special:NewFiles|gallery of new files]] for a more visual overview.',
-
 'filename'                    => 'Filename',
 'filedesc'                    => 'Summary',
 'fileuploadsummary'           => 'Summary:',
@@ -2388,7 +2387,7 @@ It now redirects to [[$2]].',
 
 # Magic words
 'rfcurl'    => 'http://tools.ietf.org/html/rfc$1', # do not translate or duplicate this message to other languages
-'pubmedurl' => 'http://www.ncbi.nlm.nih.gov/entrez/query.fcgi?cmd=Retrieve&db=pubmed&dopt=Abstract&list_uids=$1', # do not translate or duplicate this message to other languages
+'pubmedurl' => 'http://www.ncbi.nlm.nih.gov/pubmed/$1?dopt=Abstract', # do not translate or duplicate this message to other languages
 
 # Special:Log
 'specialloguserlabel'  => 'User:',
