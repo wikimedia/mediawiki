@@ -573,12 +573,6 @@ table.rimage {
 #bodyContent a.external {
 	color: #36b;
 }
-/* this can be used in the content area to switch off
-special external link styling */
-#bodyContent .plainlinks a {
-	background: none !important;
-	padding: 0 !important;
-}
 /*
 ** Structural Elements
 */

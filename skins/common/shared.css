@@ -533,6 +533,13 @@ a.feedlink {
 	padding-left: 16px;
 }
 
+/* Plainlinks - this can be used to switch 
+ * off special external link styling */
+.plainlinks a {
+		background: none !important;
+		padding: 0 !important;
+}
+
 /* wikitable class for skinning normal tables */
 table.wikitable {
     margin: 1em 1em 1em 0;

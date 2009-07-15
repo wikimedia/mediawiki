@@ -531,12 +531,6 @@ img.thumbborder {
 .hiddenStructure {
 	display: none;
 }
-
-#mw_content .plainlinks a {
-        background: none !important;
-        padding: 0 !important;
-}
-
 .mw-warning {
 	border: 1px solid #aaa;
 	background-color: #f9f9f9;
