@@ -779,7 +779,7 @@ class VectorTemplate extends QuickTemplate {
 		<?php if ( $wgVectorUseSimpleSearch ): ?>
 		<div id="simpleSearch">
 			<input id="searchInput" name="search" type="text" <?php echo $this->skin->tooltipAndAccesskey( 'search' ); ?> <?php if( isset( $this->data['search'] ) ): ?> value="<?php $this->text( 'search' ) ?>"<?php endif; ?> />
-			<input  id="searchButton" type='image' name='fulltext' src="<?php echo $wgStylePath ?>/vector/images/search.png" <?php echo $this->skin->tooltipAndAccesskey( 'search-fulltext' ); ?> align="top" />
+			<input id="searchButton" type='submit' name='fulltext' value="&nbsp;" src="<?php echo $wgStylePath ?>/vector/images/search.png" <?php echo $this->skin->tooltipAndAccesskey( 'search-fulltext' ); ?> />
 		</div>
 		<?php else: ?>
 		<input id="searchInput" name="search" type="text" <?php echo $this->skin->tooltipAndAccesskey( 'search' ); ?> <?php if( isset( $this->data['search'] ) ): ?> value="<?php $this->text( 'search' ) ?>"<?php endif; ?> />
