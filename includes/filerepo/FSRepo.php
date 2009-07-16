@@ -24,6 +24,16 @@ class FSRepo extends FileRepo {
 			$info['deletedHashLevels'] : $this->hashLevels;
 		$this->deletedDir = isset( $info['deletedDir'] ) ? $info['deletedDir'] : false;
 		$this->fileMode = isset( $info['fileMode'] ) ? $info['fileMode'] : 0644;
+		if ( isset( $info['thumbDir'] ) ) {
+			$this->thumbDir =  $info['thumbDir'];
+		} else {
+			$this->thumbDir = "{$this->directory}/thumb";
+		}
+		if ( isset( $info['thumbUrl'] ) ) {
+			$this->thumbUrl = $info['thumbUrl'];
+		} else {
+			$this->thumbUrl = "{$this->url}/thumb";
+		}
 	}
 
 	/**
@@ -58,6 +68,8 @@ class FSRepo extends FileRepo {
 				return "{$this->directory}/temp";
 			case 'deleted':
 				return $this->deletedDir;
+			case 'thumb':
+				return $this->thumbDir;
 			default:
 				return false;
 		}
@@ -74,6 +86,8 @@ class FSRepo extends FileRepo {
 				return "{$this->url}/temp";
 			case 'deleted':
 				return false; // no public URL
+			case 'thumb':
+				return $this->thumbUrl;
 			default:
 				return false;
 		}

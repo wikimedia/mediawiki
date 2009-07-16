@@ -204,7 +204,7 @@ $wgFileStore['deleted']['hash'] = 3;         ///< 3-level subdirectory split
  *
  *    name				A unique name for the repository.
  *
- * For all core repos:
+ * For most core repos:
  *    url               Base public URL
  *    hashLevels        The number of directory levels for hash-based division of files
  *    thumbScriptUrl    The URL for thumb.php (optional, not recommended)
@@ -220,6 +220,11 @@ $wgFileStore['deleted']['hash'] = 3;         ///< 3-level subdirectory split
  *                      placeholders. Default for LocalRepo is 'simple'.
  *    fileMode          This allows wikis to set the file mode when uploading/moving files. Default
  *                      is 0644.
+ *    directory         The local filesystem directory where public files are stored. Not used for
+ *                      some remote repos.
+ *    thumbDir          The base thumbnail directory. Defaults to <directory>/thumb.
+ *    thumbUrl          The base thumbnail URL. Defaults to <url>/thumb.
+ *
  *
  * These settings describe a foreign MediaWiki installation. They are optional, and will be ignored
  * for local repositories:

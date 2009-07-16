@@ -143,6 +143,8 @@ this. Was used when mwEmbed was going to be an extension.
   display for old versions of images.
 * In watchlists and Special:RecentChanges, the difference in page size now
   appears in dark green if bytes were added and dark red if bytes were removed.
+* Added FSRepo configuration properties thumbUrl and thumbDir, to allow the 
+  thumbnails to be stored in a separate location to the source images.
 
 === Bug fixes in 1.16 ===
 
