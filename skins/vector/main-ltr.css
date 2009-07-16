@@ -292,19 +292,38 @@ div#head h5 {
 		margin: 0;
 		margin-top: 0.4em;
 	}
-	div#p-search div#simpleSearch input#searchInput {
-		margin-top: 0.33em;
+	div#p-search div#simpleSearch {
+		margin-top: 0.75em;
+		position: relative;
 		border: solid 1px #AAAAAA;
-		height: 1.25em;
-		width: 10em;
-		padding: 0.33em;
+		background-color: white;
 		background-image: url(images/search-fade.png);
-		background-repeat: repeat-x;
 		background-position: top left;
+		background-repeat: repeat-x;
+	}
+	div#p-search div#simpleSearch input#searchInput {
+		margin: 0;
+		border-width: 0;
+		padding: 0.25em;
+		line-height: 1em;
+		font-size: 9.75pt;
+		width: 10em;
+		background-color: transparent;
 	}
 	div#p-search div#simpleSearch input#searchButton {
+		position: absolute;
+		top: 0;
+		right: 0;
+		margin: 0;
+		padding: 0;
+		width: 1.75em;
+		height: 100%;
 		border: none;
-		margin-left: 0.25em;
+		cursor: pointer;
+		background-color: transparent;
+		background-image: url(images/search.png);
+		background-position: center center;
+		background-repeat: no-repeat;
 	}
 /* Panel */
 div#panel {
