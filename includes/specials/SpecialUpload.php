@@ -405,6 +405,8 @@ class UploadForm extends SpecialPage {
 
 		$filenamePrefixBlacklist = UploadBase::getFilenamePrefixBlacklist();
 		# Do the match
+		if(!isset($partname))
+			$partname = '';
 		foreach( $filenamePrefixBlacklist as $prefix ) {
 			if ( substr( $partname, 0, strlen( $prefix ) ) == $prefix ) {
 				$warning .= '<li>' . wfMsgExt( 'filename-bad-prefix', 'parseinline', $prefix ) . '</li>';
