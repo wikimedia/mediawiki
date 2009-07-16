@@ -21,9 +21,9 @@ if (clientPC.indexOf('opera') != -1) {
 	var is_opera_preseven = window.opera && !document.childNodes;
 	var is_opera_seven = window.opera && document.childNodes;
 	var is_opera_95 = /opera\/(9.[5-9]|[1-9][0-9])/.test( clientPC );
-	var opera6_bugs = is_opera_preseven; 	 
-    var opera7_bugs = is_opera_seven && !is_opera_95; 	 
-    var opera95_bugs = /opera\/(9\.5)/.test( clientPC );
+	var opera6_bugs = is_opera_preseven; 	
+	var opera7_bugs = is_opera_seven && !is_opera_95; 	
+	var opera95_bugs = /opera\/(9\.5)/.test( clientPC );
 }
 
 // Global external objects used by this script.
@@ -57,7 +57,7 @@ function importScript(page) {
 		'&action=raw&ctype=text/javascript';
 	return importScriptURI(uri);
 }
- 
+
 var loadedScripts = {}; // included-scripts tracker
 function importScriptURI(url) {
 	if (loadedScripts[url]) {
@@ -70,11 +70,11 @@ function importScriptURI(url) {
 	document.getElementsByTagName('head')[0].appendChild(s);
 	return s;
 }
- 
+
 function importStylesheet(page) {
 	return importStylesheetURI(wgScript + '?action=raw&ctype=text/css&title=' + encodeURIComponent(page.replace(/ /g,'_')));
 }
- 
+
 function importStylesheetURI(url,media) {
 	var l = document.createElement('link');
 	l.type = 'text/css';
@@ -84,7 +84,7 @@ function importStylesheetURI(url,media) {
 	document.getElementsByTagName('head')[0].appendChild(l);
 	return l;
 }
- 
+
 function appendCSS(text) {
 	var s = document.createElement('style');
 	s.type = 'text/css';
@@ -736,13 +736,13 @@ function ts_initTransformTable() {
 		// Separators
 		ascii = wgSeparatorTransformTable[0].split("\t");
 		localised = wgSeparatorTransformTable[1].split("\t");
-		for ( var i = 0; i < ascii.length; i++ ) { 
+		for ( var i = 0; i < ascii.length; i++ ) {
 			ts_number_transform_table[localised[i]] = ascii[i];
 		}
 		// Digits
 		ascii = wgDigitTransformTable[0].split("\t");
 		localised = wgDigitTransformTable[1].split("\t");
-		for ( var i = 0; i < ascii.length; i++ ) { 
+		for ( var i = 0; i < ascii.length; i++ ) {
 			ts_number_transform_table[localised[i]] = ascii[i];
 		}
 
@@ -751,7 +751,7 @@ function ts_initTransformTable() {
 		maxDigitLength = 1;
 		for ( var digit in ts_number_transform_table ) {
 			// Escape regex metacharacters
-			digits.push( 
+			digits.push(
 				digit.replace( /[\\\\$\*\+\?\.\(\)\|\{\}\[\]\-]/,
 					function( s ) { return '\\' + s; } )
 			);
@@ -808,10 +808,10 @@ function ts_dateToSortKey(date) {
 		}
 	} else if (date.length == 8) {
 		yr = date.substr(6,2);
-		if (parseInt(yr) < 50) { 
-			yr = '20'+yr; 
-		} else { 
-			yr = '19'+yr; 
+		if (parseInt(yr) < 50) {
+			yr = '20'+yr;
+		} else {
+			yr = '19'+yr;
 		}
 		if (ts_europeandate == true) {
 			return yr+date.substr(3,2)+date.substr(0,2);
@@ -877,8 +877,8 @@ function ts_alternate(table) {
 /*
  * End of table sorting code
  */
- 
- 
+
+
 /**
  * Add a cute little box at the top of the screen to inform the user of
  * something, replacing any preexisting message.
