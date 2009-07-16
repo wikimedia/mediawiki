@@ -378,9 +378,9 @@ class ApiMain extends ApiBase {
 				header( 'Retry-After: ' . max( intval( $maxLag ), 5 ) );
 				header( 'X-Database-Lag: ' . intval( $lag ) );
 				if( $wgShowHostnames ) {
-					$this->dieUsage( "Waiting for $host: $lag seconds lagged", 'maxlag', 503 );
+					$this->dieUsage( "Waiting for $host: $lag seconds lagged", 'maxlag' );
 				} else {
-					$this->dieUsage( "Waiting for a database server: $lag seconds lagged", 'maxlag', 503 );
+					$this->dieUsage( "Waiting for a database server: $lag seconds lagged", 'maxlag' );
 				}
 				return;
 			}

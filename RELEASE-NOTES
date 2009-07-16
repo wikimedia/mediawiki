@@ -306,7 +306,6 @@ this. Was used when mwEmbed was going to be an extension.
 * (bug 18785) Add siprop=languages to meta=siteinfo
 * (bug 14200) Added user and excludeuser parameters to list=watchlist and
   list=recentchanges
-* Return HTTP 503 status code on maxlag error, like index.php does
 * Added index, fromtitle and byteoffset fields to action=parse&prop=sections
   output
 * (bug 19313) action=rollback returns wrong revid on master/slave setups
