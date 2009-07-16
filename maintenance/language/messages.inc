@@ -491,7 +491,6 @@ $wgMessageStructure = array(
 		'media_tip',
 		'sig_tip',
 		'hr_tip',
-		'add_media_wizard',
 	),
 	'edit' => array(
 		'summary',

@@ -696,6 +696,7 @@ $1',
 'readonly_lag'         => 'בסיס הנתונים ננעל אוטומטית כדי לאפשר לבסיסי הנתונים המשניים להתעדכן מהבסיס הראשי.',
 'internalerror'        => 'שגיאה פנימית',
 'internalerror_info'   => 'שגיאה פנימית: $1',
+'fileappenderror'      => 'הצמדת "$1" לסוף "$2" נכשלה.',
 'filecopyerror'        => 'העתקת "$1" ל־"$2" נכשלה.',
 'filerenameerror'      => 'שינוי השם של "$1" ל־"$2" נכשל.',
 'filedeleteerror'      => 'מחיקת "$1" נכשלה.',
@@ -1705,15 +1706,18 @@ MGP # Pentax
 PICT # שונות
  #</pre> <!-- נא להשאיר שורה זו בדיוק כפי שהיא -->',
 
-'upload-proto-error'      => 'פרוטוקול שגוי',
-'upload-proto-error-text' => 'בהעלאה מרוחקת, יש להשתמש בכתובות URL המתחילות עם <code>http://</code> או <code>ftp://</code>.',
-'upload-file-error'       => 'שגיאה פנימית',
-'upload-file-error-text'  => 'שגיאה פנימית התרחשה בעת הניסיון ליצור קובץ זמני על השרת.
-אנא צרו קשר עם מנהל מערכת.',
-'upload-misc-error'       => 'שגיאת העלאה בלתי ידועה',
-'upload-misc-error-text'  => 'שגיאת העלאה בלתי ידועה התרחשה במהלך ההעלאה.
+'upload-proto-error'        => 'פרוטוקול שגוי',
+'upload-proto-error-text'   => 'בהעלאה מרוחקת, יש להשתמש בכתובות URL המתחילות עם <code>http://</code> או <code>ftp://</code>.',
+'upload-file-error'         => 'שגיאה פנימית',
+'upload-file-error-text'    => 'שגיאה פנימית התרחשה בעת הניסיון ליצור קובץ זמני על השרת.
+אנא צרו קשר עם [[Special:ListUsers/sysop|מפעיל מערכת]].',
+'upload-misc-error'         => 'שגיאת העלאה בלתי ידועה',
+'upload-misc-error-text'    => 'שגיאת העלאה בלתי ידועה התרחשה במהלך ההעלאה.
 אנא ודאו שכתובת ה־URL תקינה וזמינה ונסו שנית.
-אם הבעיה חוזרת על עצמה, אנא צרו קשר עם מנהל המערכת.',
+אם הבעיה חוזרת על עצמה, אנא צרו קשר עם [[Special:ListUsers/sysop|מפעיל מערכת]].',
+'upload-too-many-redirects' => 'ה־URL כוללת הפניות רבות מדי',
+'upload-unknown-size'       => 'גודל בלתי ידוע',
+'upload-http-error'         => 'התרחשה שגיאת HTTP: $1',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'לא ניתן להגיע ל־URL',
@@ -1859,7 +1863,9 @@ PICT # שונות
 הדף נחשב לדף פירושונים אם הוא משתמש בתבנית המקושרת מהדף [[MediaWiki:Disambiguationspage]].",
 
 'doubleredirects'            => 'הפניות כפולות',
-'doubleredirectstext'        => 'ההפניות הבאות מפנות לדפי הפניה אחרים. כל שורה מכילה קישור להפניות הראשונה והשנייה, וכן את היעד של ההפניה השנייה, שהיא לרוב היעד האמיתי של ההפניה, אליו אמורה ההפניה הראשונה להצביע.',
+'doubleredirectstext'        => 'ההפניות הבאות מפנות לדפי הפניה אחרים.
+כל שורה מכילה קישור להפניות הראשונה והשנייה, וכן את היעד של ההפניה השנייה, שהיא לרוב היעד ה"אמיתי" של ההפניה, אליו אמורה ההפניה הראשונה להצביע.
+ערכים <s>מחוקים</s> כבר תוקנו.',
 'double-redirect-fixed-move' => '[[$1]] הועבר. כעת הוא הפניה לדף [[$2]].',
 'double-redirect-fixer'      => 'מתקן הפניות',
 
@@ -2558,16 +2564,19 @@ $1 כבר נחסם. האם ברצונכם לשנות את הגדרות החסי�
 'export-pagelinks'  => 'כלילת דפים מקושרים עד לעומק של:',
 
 # Namespace 8 related
-'allmessages'               => 'הודעות המערכת',
-'allmessagesname'           => 'שם',
-'allmessagesdefault'        => 'טקסט ברירת המחדל של ההודעה',
-'allmessagescurrent'        => 'הטקסט הנוכחי של ההודעה',
-'allmessagestext'           => 'זוהי רשימת כל הודעות המערכת שבמרחב השם {{ns:mediawiki}}, המשמשות את ממשק האתר.
+'allmessages'                   => 'הודעות המערכת',
+'allmessagesname'               => 'שם',
+'allmessagesdefault'            => 'טקסט ברירת המחדל של ההודעה',
+'allmessagescurrent'            => 'הטקסט הנוכחי של ההודעה',
+'allmessagestext'               => 'זוהי רשימת כל הודעות המערכת שבמרחב השם {{ns:mediawiki}}, המשמשות את ממשק האתר.
 
 מפעילי המערכת יכולים לערוך את ההודעות בלחיצה על שם ההודעה.',
-'allmessagesnotsupportedDB' => 'לא ניתן להשתמש בדף זה כיוון ש־wgUseDatabseMessages מבוטל.',
-'allmessagesfilter'         => 'מסנן שמות ההודעות:',
-'allmessagesmodified'       => 'רק הודעות ששונו',
+'allmessagesnotsupportedDB'     => 'לא ניתן להשתמש בדף זה כיוון ש־wgUseDatabseMessages מבוטל.',
+'allmessages-filter'            => 'סינון לפי מצב ההודעה:',
+'allmessages-filter-unmodified' => 'הודעות שלא שונו',
+'allmessages-filter-all'        => 'הכול',
+'allmessages-filter-modified'   => 'הודעות ששונו',
+'allmessages-prefix'            => 'סינון לפי קידומת:',
 
 # Thumbnails
 'thumbnail-more'           => 'הגדל',
