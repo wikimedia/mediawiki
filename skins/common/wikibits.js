@@ -10,8 +10,6 @@ if (webkit_match) {
 	var is_safari_win = is_safari && clientPC.indexOf('windows') != -1;
 	var webkit_version = parseInt(webkit_match[1]);
 }
-var is_khtml = navigator.vendor == 'KDE' ||
-	( document.childNodes && !document.all && !navigator.taintEnabled );
 // For accesskeys; note that FF3+ is included here!
 var is_ff2 = /firefox\/[2-9]|minefield\/3/.test( clientPC );
 var ff2_bugs = /firefox\/2/.test( clientPC );
