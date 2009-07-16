@@ -1953,6 +1953,17 @@ abstract class DatabaseBase {
 	}
 
 	/**
+	 * Returns the database type for user-visible purposes
+	 * e.g. DB error messages
+	 * Other uses should just use $wgDBtype
+	 *
+	 * @return String: Database name for messages
+	*/
+	function getDBtype() {
+		return 'Database';
+	}
+
+	/**
 	 * A string describing the current software version, like from
 	 * mysql_get_server_info().  Will be listed on Special:Version, etc.
 	 * 
@@ -2548,7 +2559,8 @@ class DBQueryError extends DBError {
 	function getText() {
 		if ( $this->useMessageCache() ) {
 			return wfMsg( 'dberrortextcl', htmlspecialchars( $this->getSQL() ),
-			  htmlspecialchars( $this->fname ), $this->errno, htmlspecialchars( $this->error ) ) . "\n";
+			  htmlspecialchars( $this->fname ), $this->errno, htmlspecialchars( $this->error ),
+			  htmlspecialchars( $this->db->getDBtype() ) ) . "\n";
 		} else {
 			return $this->getMessage();
 		}
@@ -2575,7 +2587,8 @@ class DBQueryError extends DBError {
 	function getHTML() {
 		if ( $this->useMessageCache() ) {
 			return wfMsgNoDB( 'dberrortext', htmlspecialchars( $this->getSQL() ),
-			  htmlspecialchars( $this->fname ), $this->errno, htmlspecialchars( $this->error ) );
+			  htmlspecialchars( $this->fname ), $this->errno, htmlspecialchars( $this->error ),
+			  htmlspecialchars( $this->db->getDBtype() ) );
 		} else {
 			return nl2br( htmlspecialchars( $this->getMessage() ) );
 		}

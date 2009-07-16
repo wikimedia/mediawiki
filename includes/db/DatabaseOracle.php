@@ -743,6 +743,13 @@ class DatabaseOracle extends DatabaseBase {
 	}
 
 	/**
+	 * @return String: Database name for messages
+	*/
+	function getDBtype() {
+		return 'Oracle';
+	}
+
+	/**
 	 * Query whether a given table exists (in the given schema, or the default mw one if not given)
 	 */
 	function tableExists($table) {

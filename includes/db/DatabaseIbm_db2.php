@@ -1453,6 +1453,13 @@ EOF;
 		return "[http://www.ibm.com/software/data/db2/express/?s_cmp=ECDDWW01&s_tact=MediaWiki IBM DB2]";
 	}
 	
+	/**
+	 * @return String: Database name for messages
+	*/
+	function getDBtype() {
+		return 'IBM DB2';
+	}
+
 	###
 	# Fix search crash
 	###
