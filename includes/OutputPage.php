@@ -158,7 +158,7 @@ class OutputPage {
 			Xml::element( 'script',
 				array(
 					'type' => $wgJsMimeType,
-					'src' => "$path?" . $this->getURIDparam(),
+					'src' => wfAppendQuery( $path, $this->getURIDparam() ),
 				),
 				'', false
 			)
