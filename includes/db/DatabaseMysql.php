@@ -289,6 +289,13 @@ class DatabaseMysql extends DatabaseBase {
 		return '[http://www.mysql.com/ MySQL]';
 	}
 
+	/**
+	 * @return String: Database name for messages
+	*/
+	function getDBtype() {
+		return 'MySQL';
+	}
+
 	public function setTimeout( $timeout ) {
 		$this->query( "SET net_read_timeout=$timeout" );
 		$this->query( "SET net_write_timeout=$timeout" );

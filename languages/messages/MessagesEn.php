@@ -947,12 +947,12 @@ This may indicate a bug in the software.
 The last attempted database query was:
 <blockquote><tt>$1</tt></blockquote>
 from within function "<tt>$2</tt>".
-MySQL returned error "<tt>$3: $4</tt>".',
+$5 returned error "<tt>$3: $4</tt>".',
 'dberrortextcl'        => 'A database query syntax error has occurred.
 The last attempted database query was:
 "$1"
 from within function "$2".
-MySQL returned error "$3: $4"',
+$5 returned error "$3: $4"',
 'laggedslavemode'      => "'''Warning:''' Page may not contain recent updates.",
 'readonly'             => 'Database locked',
 'enterlockreason'      => 'Enter a reason for the lock, including an estimate of when the lock will be released',

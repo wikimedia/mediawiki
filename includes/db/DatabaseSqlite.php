@@ -288,6 +288,13 @@ class DatabaseSqlite extends DatabaseBase {
 	}
 
 	/**
+	 * @return String: Database name for messages
+	*/
+	function getDBtype() {
+		return 'SQLite';
+	}
+
+	/**
 	 * @return string Version information from the database
 	 */
 	function getServerVersion() {

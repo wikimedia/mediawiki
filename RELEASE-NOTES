@@ -276,6 +276,8 @@ this. Was used when mwEmbed was going to be an extension.
 * (bug 19513) RTL fixes for new Search UI
 * (bug 16497) Special:Allmessages is paginated
 * (bug 18708) CSS plainlinks class now available to all skins
+* (bug 19590) Database error messages no longer have "MySQL" hardcoded as the 
+  database type
 
 == API changes in 1.16 ==
 
