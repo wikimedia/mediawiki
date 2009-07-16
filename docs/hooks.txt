@@ -463,6 +463,7 @@ $baseRevId: the rev ID (or false) this edit was based on
 $title: Title corresponding to the article restored
 $create: Whether or not the restoration caused the page to be created
 (i.e. it didn't exist before)
+$comment: The comment associated with the undeletion.
 
 'ArticleUpdateBeforeRedirect': After a page is updated (usually on save),
 before the user is redirected back to the page
