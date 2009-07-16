@@ -1943,25 +1943,21 @@ abstract class DatabaseBase {
 	/**
 	 * Returns a wikitext link to the DB's website, e.g.,
 	 *     return "[http://www.mysql.com/ MySQL]";
-	 * Should probably be overridden to at least contain plain text, if for
-	 * some reason your database has no website.
+	 * Should at least contain plain text, if for some reason
+	 * your database has no website.
 	 *
 	 * @return String: wikitext of a link to the server software's web site
 	 */
-	function getSoftwareLink() {
-		return '(no software link given)';
-	}
+	abstract function getSoftwareLink();
 
 	/**
 	 * Returns the database type for user-visible purposes
 	 * e.g. DB error messages
 	 * Other uses should just use $wgDBtype
 	 *
-	 * @return String: Database name for messages
+	 * @return String: Database type for use in messages
 	*/
-	function getDBtype() {
-		return 'Database';
-	}
+	abstract function getDBtypeForMsg();
 
 	/**
 	 * A string describing the current software version, like from
@@ -2560,7 +2556,7 @@ class DBQueryError extends DBError {
 		if ( $this->useMessageCache() ) {
 			return wfMsg( 'dberrortextcl', htmlspecialchars( $this->getSQL() ),
 			  htmlspecialchars( $this->fname ), $this->errno, htmlspecialchars( $this->error ),
-			  htmlspecialchars( $this->db->getDBtype() ) ) . "\n";
+			  htmlspecialchars( $this->db->getDBtypeForMsg() ) ) . "\n";
 		} else {
 			return $this->getMessage();
 		}
@@ -2588,7 +2584,7 @@ class DBQueryError extends DBError {
 		if ( $this->useMessageCache() ) {
 			return wfMsgNoDB( 'dberrortext', htmlspecialchars( $this->getSQL() ),
 			  htmlspecialchars( $this->fname ), $this->errno, htmlspecialchars( $this->error ),
-			  htmlspecialchars( $this->db->getDBtype() ) );
+			  htmlspecialchars( $this->db->getDBtypeForMsg() ) );
 		} else {
 			return nl2br( htmlspecialchars( $this->getMessage() ) );
 		}

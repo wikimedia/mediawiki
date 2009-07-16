@@ -900,9 +900,9 @@ class DatabaseMssql extends DatabaseBase {
 	}
 
 	/**
-	 * @return String: Database name for messages
+	 * @return String: Database type for use in messages
 	*/
-	function getDBtype() {
+	function getDBtypeForMsg() {
 		return 'Microsoft SQL Server';
 	}
 
