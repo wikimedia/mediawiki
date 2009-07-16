@@ -107,9 +107,9 @@ function os_showResults(r){
 }
 
 function os_operaWidthFix(x){
-	// TODO: better css2 incompatibility detection here
-	if(is_opera || is_khtml || navigator.userAgent.toLowerCase().indexOf('firefox/1')!=-1){
-		return 30; // opera&konqueror & old firefox don't understand overflow-x, estimate scrollbar width
+	// For browsers that don't understand overflow-x, estimate scrollbar width
+	if(typeof document.body.style.overflowX != "string"){
+		return 30;
 	}
 	return 0;
 }
