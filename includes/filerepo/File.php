@@ -746,15 +746,6 @@ abstract class File {
 		return $path;
 	}
 
-	/** Get relative path for a thumbnail file */
-	function getThumbRel( $suffix = false ) {
-		$path = 'thumb/' . $this->getRel();
-		if ( $suffix !== false ) {
-			$path .= '/' . $suffix;
-		}
-		return $path;
-	}
-
 	/** Get the path of the archive directory, or a particular file if $suffix is specified */
 	function getArchivePath( $suffix = false ) {
 		return $this->repo->getZonePath('public') . '/' . $this->getArchiveRel( $suffix );
@@ -762,7 +753,11 @@ abstract class File {
 
 	/** Get the path of the thumbnail directory, or a particular file if $suffix is specified */
 	function getThumbPath( $suffix = false ) {
-		return $this->repo->getZonePath('public') . '/' . $this->getThumbRel( $suffix );
+		$path = $this->repo->getZonePath('thumb') . '/' . $this->getRel();
+		if ( $suffix !== false ) {
+			$path .= '/' . $suffix;
+		}
+		return $path;
 	}
 
 	/** Get the URL of the archive directory, or a particular file if $suffix is specified */
@@ -778,7 +773,7 @@ abstract class File {
 
 	/** Get the URL of the thumbnail directory, or a particular file if $suffix is specified */
 	function getThumbUrl( $suffix = false ) {
-		$path = $this->repo->getZoneUrl('public') . '/thumb/' . $this->getUrlRel();
+		$path = $this->repo->getZoneUrl('thumb') . '/' . $this->getUrlRel();
 		if ( $suffix !== false ) {
 			$path .= '/' . rawurlencode( $suffix );
 		}
@@ -798,7 +793,7 @@ abstract class File {
 
 	/** Get the virtual URL for a thumbnail file or directory */
 	function getThumbVirtualUrl( $suffix = false ) {
-		$path = $this->repo->getVirtualUrl() . '/public/thumb/' . $this->getUrlRel();
+		$path = $this->repo->getVirtualUrl() . '/thumb/' . $this->getUrlRel();
 		if ( $suffix !== false ) {
 			$path .= '/' . rawurlencode( $suffix );
 		}
