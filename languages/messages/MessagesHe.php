@@ -642,43 +642,17 @@ $1',
 # General errors
 'error'                => 'שגיאה',
 'databaseerror'        => 'שגיאת בסיס נתונים',
-'dberrortext'          => '<p><b>ארעה שגיאת תחביר בשאילתה לבסיס הנתונים</b>.</p>
-<p>שגיאה זו יכולה להיות תוצאה של שאילתת חיפוש בלתי חוקית, או שהיא עלולה להעיד על באג במערכת מדיה־ויקי.</p>
-<table class="toccolours">
-<tr>
-<th colspan="2" style="background-color: #F8F8F8; text-align: center;">מידע על השגיאה</th>
-</tr>
-<tr>
-<td>השאילתה האחרונה שבוצעה לבסיס הנתונים הייתה:</td>
-<td style="direction: ltr;">$1</td>
-</tr>
-<tr>
-<td>הפונקציה הקוראת הייתה:</td>
-<td style="direction: ltr;">$2</td>
-</tr>
-<tr>
-<td>הודעת השגיאה שהוחזרה על ידי בסיס הנתונים:</td>
-<td style="direction: ltr;">$3: $4</td>
-</tr>
-</table>',
-'dberrortextcl'        => '<p><b>ארעה שגיאת תחביר בשאילתה לבסיס הנתונים</b>.</p>
-<table class="toccolours">
-<tr>
-<th colspan="2" style="background-color: #F8F8F8; text-align: center;">מידע על השגיאה</th>
-</tr>
-<tr>
-<td>השאילתה האחרונה שבוצעה לבסיס הנתונים הייתה:</td>
-<td style="direction: ltr;">$1</td>
-</tr>
-<tr>
-<td>הפונקציה הקוראת הייתה:</td>
-<td style="direction: ltr;">$2</td>
-</tr>
-<tr>
-<td>הודעת השגיאה שהוחזרה על ידי בסיס הנתונים:</td>
-<td style="direction: ltr;">$3: $4</td>
-</tr>
-</table>',
+'dberrortext'          => 'ארעה שגיאת תחביר בשאילתה לבסיס הנתונים.
+שגיאה זו עלולה להעיד על באג בתוכנה.
+השאילתה האחרונה שבוצעה לבסיס הנתונים הייתה:
+<blockquote><tt>$1</tt></blockquote>
+מתוך הפונקציה "<tt>$2</tt>".
+$5 החזיר את השגיאה "<tt>$3: $4</tt>".',
+'dberrortextcl'        => 'ארעה שגיאת תחביר בשאילתה לבסיס הנתונים.
+השאילתה האחרונה שבוצעה לבסיס הנתונים הייתה:
+"$1"
+מתוך הפונקציה "$2".
+$5 החזיר את השגיאה "$3: $4".',
 'laggedslavemode'      => "'''אזהרה:''' הדף עשוי שלא להכיל עדכונים אחרונים.",
 'readonly'             => 'בסיס הנתונים נעול',
 'enterlockreason'      => 'הזינו סיבה לנעילת בסיס הנתונים, כולל הערכה לגבי מועד שחרור הנעילה.',
