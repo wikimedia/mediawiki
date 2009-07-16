@@ -736,17 +736,17 @@ class DatabaseOracle extends DatabaseBase {
 	}
 
 	/**
+	 * @return String: Database type for use in messages
+	*/
+	function getDBtypeForMsg() {
+		return 'Oracle';
+	}
+
+	/**
 	 * @return string Version information from the database
 	 */
 	function getServerVersion() {
 		return oci_server_version($this->mConn);
-	}
-
-	/**
-	 * @return String: Database name for messages
-	*/
-	function getDBtype() {
-		return 'Oracle';
 	}
 
 	/**
