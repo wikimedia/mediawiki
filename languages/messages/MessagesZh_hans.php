@@ -515,12 +515,12 @@ $1',
 最后一次数据库查询指令是:
 <blockquote><tt>$1</tt></blockquote>
 来自于函数“<tt>$2</tt>”。
-MySQL返回错误“<tt>$3: $4</tt>”。',
+$5返回错误“<tt>$3: $4</tt>”。',
 'dberrortextcl'        => '发生了一个数据库查询语法错误。
 最后一次的数据库查询是:
 “$1”
 来自于函数“$2”。
-MySQL返回错误“$3: $4”。',
+$5返回错误“$3: $4”。',
 'laggedslavemode'      => '警告：页面可能不包含最近的更新。',
 'readonly'             => '数据库被锁定',
 'enterlockreason'      => '请输入锁定的原因，包括预计重新开放的时间',
@@ -539,7 +539,7 @@ MySQL返回错误“$3: $4”。',
 'readonly_lag'         => '附属数据库服务器正在将缓存更新到主服务器，数据库已被自动锁定',
 'internalerror'        => '内部错误',
 'internalerror_info'   => '内部错误：$1',
-'fileappenderror'      => '不能附加$1到$2',
+'fileappenderror'      => '不能附加"$1"到"$2"。',
 'filecopyerror'        => '无法复制文件"$1"到"$2"。',
 'filerenameerror'      => '无法重命名文件"$1" 到"$2"。',
 'filedeleteerror'      => '无法删除文件 "$1"。',
@@ -687,7 +687,6 @@ $2',
 'media_tip'        => '文件链接',
 'sig_tip'          => '带有时间的签名',
 'hr_tip'           => '水平线 (小心使用)',
-'add_media_wizard' => '加入媒体向导',
 
 # Edit pages
 'summary'                          => '摘要：',

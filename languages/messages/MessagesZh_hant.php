@@ -493,12 +493,12 @@ $1',
 最後一次資料庫查詢指令是:
 <blockquote><tt>$1</tt></blockquote>
 來自於函數 "<tt>$2</tt>"。
-MySQL返回錯誤 "<tt>$3: $4</tt>"。',
+$5返回錯誤 "<tt>$3: $4</tt>"。',
 'dberrortextcl'        => '發生了一個資料庫查詢語法錯誤。
 最後一次的資料庫查詢是:
 「$1」
 來自於函數「$2」。
-MySQL返回錯誤「$3: $4」。',
+$5返回錯誤「$3: $4」。',
 'laggedslavemode'      => '警告: 頁面可能不包含最近的更新。',
 'readonly'             => '資料庫禁止訪問',
 'enterlockreason'      => '請輸入禁止訪問原因, 包括估計重新開放的時間',
@@ -516,7 +516,7 @@ MySQL返回錯誤「$3: $4」。',
 'readonly_lag'         => '附屬資料庫伺服器正在將快取更新到主伺服器，資料庫已被自動鎖定',
 'internalerror'        => '內部錯誤',
 'internalerror_info'   => '內部錯誤: $1',
-'fileappenderror'      => '不能附加$1到$2',
+'fileappenderror'      => '不能附加"$1"到"$2"。',
 'filecopyerror'        => '無法複製檔案"$1"到"$2"。',
 'filerenameerror'      => '無法重新命名檔案"$1"到"$2"。',
 'filedeleteerror'      => '無法刪除檔案"$1"。',
@@ -662,7 +662,6 @@ $2',
 'media_tip'        => '檔案連結',
 'sig_tip'          => '帶有時間的簽名',
 'hr_tip'           => '水平線 (小心使用)',
-'add_media_wizard' => '加入媒體精靈',
 
 # Edit pages
 'summary'                          => '摘要:',

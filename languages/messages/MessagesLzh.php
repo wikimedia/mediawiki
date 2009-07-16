@@ -388,11 +388,11 @@ $1',
 末語道：
 <blockquote><tt>$1</tt></blockquote>
 內此函式"<tt>$2</tt>".
-MySQL報有誤"<tt>$3: $4</tt>"。',
+$5報有誤"<tt>$3: $4</tt>"。',
 'dberrortextcl'        => '庫藏問語有誤，末道：
 "$1"
 內此函式"$2".
-MySQL報有誤"$3: $4"',
+$5報有誤"$3: $4"',
 'laggedslavemode'      => '警示，此頁不新',
 'readonly'             => '鎖庫藏',
 'enterlockreason'      => '何以鎖之？何日啟之？',
@@ -404,7 +404,7 @@ MySQL報有誤"$3: $4"',
 'missingarticle-diff'  => '（異：$1，$2）',
 'internalerror'        => '家誤',
 'internalerror_info'   => '家誤：$1',
-'fileappenderror'      => '無附$1至$2也',
+'fileappenderror'      => '無附"$1"至"$2"也。',
 'filecopyerror'        => '"$1"謄"$2"，未可為也。',
 'filerenameerror'      => '"$2"替"$1"名，未可為也。',
 'filedeleteerror'      => '"$1"未可刪也。',
@@ -541,7 +541,6 @@ $2',
 'media_tip'        => '鏈檔',
 'sig_tip'          => '署名刻時',
 'hr_tip'           => '縱線，慎用之',
-'add_media_wizard' => '加媒導',
 
 # Edit pages
 'summary'                          => '概:',
