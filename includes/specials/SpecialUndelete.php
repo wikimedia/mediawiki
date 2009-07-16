@@ -332,7 +332,7 @@ class PageArchive {
 		}
 
 		if( $restoreText ) {
-			$textRestored = $this->undeleteRevisions( $timestamps, $unsuppress );
+			$textRestored = $this->undeleteRevisions( $timestamps, $unsuppress, $comment );
 			if($textRestored === false) // It must be one of UNDELETE_*
 				return false;
 		} else {
@@ -377,7 +377,7 @@ class PageArchive {
 	 *
 	 * @return mixed number of revisions restored or false on failure
 	 */
-	private function undeleteRevisions( $timestamps, $unsuppress = false ) {
+	private function undeleteRevisions( $timestamps, $unsuppress = false, $comment = '' ) {
 		if ( wfReadOnly() )
 			return false;
 		$restoreAll = empty( $timestamps );
@@ -510,10 +510,10 @@ class PageArchive {
 			}
 
 			if( $newid ) {
-				wfRunHooks( 'ArticleUndelete', array( &$this->title, true ) );
+				wfRunHooks( 'ArticleUndelete', array( &$this->title, true, $comment ) );
 				Article::onArticleCreate( $this->title );
 			} else {
-				wfRunHooks( 'ArticleUndelete', array( &$this->title, false ) );
+				wfRunHooks( 'ArticleUndelete', array( &$this->title, false, $comment ) );
 				Article::onArticleEdit( $this->title );
 			}
 
