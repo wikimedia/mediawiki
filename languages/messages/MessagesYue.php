@@ -465,12 +465,12 @@ $1',
 最後一次資料庫嘅嘗試係：
 <blockquote><tt>$1</tt></blockquote>
 於 "<tt>$2</tt>" 功能中。
-MySQL 嘅錯誤回應 "<tt>$3: $4</tt>"。',
+$5 嘅錯誤回應 "<tt>$3: $4</tt>"。',
 'dberrortextcl'        => '資料庫查詢語法錯咗。
 最後一次資料庫嘅嘗試係：
 "$1"
 於 "$2"功能中。
-MySQL 嘅錯誤回應 "$3: $4"',
+$5 嘅錯誤回應 "$3: $4"',
 'laggedslavemode'      => '警告：呢頁可能未包括最新嘅更新。',
 'readonly'             => '資料庫鎖咗',
 'enterlockreason'      => '輸入鎖資料庫嘅原因，同埋預計幾耐後會解鎖',
@@ -488,7 +488,7 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'readonly_lag'         => '當從伺服器追緊主伺服器時，資料庫會自動被鎖',
 'internalerror'        => '內部錯誤',
 'internalerror_info'   => '內部錯誤: $1',
-'fileappenderror'      => '唔可以附加 $1 去 $2',
+'fileappenderror'      => '唔可以附加 "$1" 去 "$2"。',
 'filecopyerror'        => '檔案 "$1" 抄唔到去 "$2"。',
 'filerenameerror'      => '檔案 "$1" 唔改得做 "$2"。',
 'filedeleteerror'      => '檔案 "$1" 唔刪得。',
@@ -639,7 +639,6 @@ MySQL 嘅錯誤回應 "$3: $4"',
 'media_tip'        => '檔案連結',
 'sig_tip'          => '你嘅簽名同埋時間戳',
 'hr_tip'           => '橫線（請小心用）',
-'add_media_wizard' => '加入媒體精靈',
 
 # Edit pages
 'summary'                          => '摘要:',
