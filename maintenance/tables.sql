@@ -1103,10 +1103,14 @@ CREATE TABLE /*_*/logging (
   -- The user who performed this action; key to user_id
   log_user int unsigned NOT NULL default 0,
   
+  -- Name of the user who performed this action
+  log_user_text varchar(255) binary NOT NULL default '',
+  
   -- Key to the page affected. Where a user is the target,
   -- this will point to the user page.
   log_namespace int NOT NULL default 0,
   log_title varchar(255) binary NOT NULL default '',
+  log_page int unsigned NULL,
   
   -- Freeform text. Interpreted as edit history comments.
   log_comment varchar(255) NOT NULL default '',
@@ -1122,6 +1126,8 @@ CREATE INDEX /*i*/type_time ON /*_*/logging (log_type, log_timestamp);
 CREATE INDEX /*i*/user_time ON /*_*/logging (log_user, log_timestamp);
 CREATE INDEX /*i*/page_time ON /*_*/logging (log_namespace, log_title, log_timestamp);
 CREATE INDEX /*i*/times ON /*_*/logging (log_timestamp);
+CREATE INDEX /*i*/log_user_type_time ON /*_*/logging (log_user, log_type, log_timestamp);
+CREATE INDEX /*i*/log_page_id_time ON /*_*/logging (log_page,log_timestamp);
 
 
 CREATE TABLE /*_*/log_search (
