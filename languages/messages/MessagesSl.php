@@ -1746,8 +1746,6 @@ Ciljna stran »[[:$1]]« že obstaja. Ali jo želite, da bi pripravili prostor z
 'allmessagestext'           => 'Navedena so v imenskem prostoru MediaWiki dostopna sistemska sporočila.
 Za lokalizacijo in prevajanje obiščite [http://www.mediawiki.org/wiki/Localisation MediaWiki] in [http://translatewiki.net translatewiki.net] in tako prispevajte k splošnem prevodu programja.',
 'allmessagesnotsupportedDB' => "Te strani ni mogoče uporabljati, ker je bilo '''\$wgUseDatabaseMessages''' izključeno.",
-'allmessagesfilter'         => 'Filter pogostih izrazov:',
-'allmessagesmodified'       => 'Prikaži le spremenjeno',
 
 # Thumbnails
 'thumbnail-more'           => 'Povečaj',

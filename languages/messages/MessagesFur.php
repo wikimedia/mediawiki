@@ -1225,12 +1225,11 @@ Sielç par plasê un altri non.',
 'exportcuronly' => 'Inclût dome la revision corinte, no dut il storic',
 
 # Namespace 8 related
-'allmessages'         => 'Ducj i messaçs di sistem',
-'allmessagesname'     => 'Non',
-'allmessagesdefault'  => 'Test predeterminât',
-'allmessagescurrent'  => 'Test curint',
-'allmessagestext'     => 'Cheste e je une liste dai messaçs di sisteme disponibii tal non dal spazi MediaWiki:',
-'allmessagesmodified' => 'Mostre dome modificâts',
+'allmessages'        => 'Ducj i messaçs di sistem',
+'allmessagesname'    => 'Non',
+'allmessagesdefault' => 'Test predeterminât',
+'allmessagescurrent' => 'Test curint',
+'allmessagestext'    => 'Cheste e je une liste dai messaçs di sisteme disponibii tal non dal spazi MediaWiki:',
 
 # Thumbnails
 'thumbnail-more'  => 'Slargje',

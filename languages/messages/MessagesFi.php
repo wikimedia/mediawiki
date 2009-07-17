@@ -2410,8 +2410,6 @@ Sivujen koko historian vienti on estetty suorituskykysyistä.',
 'allmessagestext'           => 'Tämä on luettelo järjestelmäviesteistä, jotka ovat saatavilla MediaWiki-nimiavaruudessa.
 Jos haluat muokata MediaWikin yleistä kotoistusta, käy [http://www.mediawiki.org/wiki/Localisation MediaWikin kotoistussivuilla] ja sivustolla [http://translatewiki.net translatewiki.net].',
 'allmessagesnotsupportedDB' => 'Tämä sivu ei ole käytössä, koska <tt>$wgUseDatabaseMessages</tt>-asetus on pois päältä.',
-'allmessagesfilter'         => 'Viestiavainsuodatin:',
-'allmessagesmodified'       => 'Näytä vain muutetut',
 
 # Thumbnails
 'thumbnail-more'           => 'Suurenna',

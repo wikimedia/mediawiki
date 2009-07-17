@@ -2479,8 +2479,6 @@ U potonjem slučaju možete koristiti i poveznicu, npr. [[{{#Special:Export}}/{{
 'allmessagescurrent'        => 'Trenutačni tekst',
 'allmessagestext'           => 'Ovo je popis svih sistemskih poruka u imenskom prostoru MediaWiki. Molimo posjetite [http://www.mediawiki.org/wiki/Localisation lokalizaciju MediaWikija] i [http://translatewiki.net translatewiki.net] ukoliko želite doprinjeti lokalizaciji MediaWiki softvera.',
 'allmessagesnotsupportedDB' => "Ova stranica ne može biti korištena jer je isključen parametar '''\$wgUseDatabaseMessages'''.",
-'allmessagesfilter'         => 'Filter imena poruka:',
-'allmessagesmodified'       => 'Prikaži samo promijenjene',
 
 # Thumbnails
 'thumbnail-more'           => 'Povećaj',

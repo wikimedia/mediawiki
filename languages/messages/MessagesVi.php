@@ -2437,8 +2437,6 @@ Trong trường hợp sau bạn cũng có thể dùng một liên kết, ví d�
 'allmessagestext'           => 'Đây là toàn bộ thông báo hệ thống có trong không gian tên MediaWiki.
 Mời vào [http://www.mediawiki.org/wiki/Localisation Địa phương hóa MediaWiki]  và [http://translatewiki.net translatewiki.net] nếu bạn muốn đóng góp dịch chung cả MediaWiki.',
 'allmessagesnotsupportedDB' => "Trang này không dùng được vì biến '''\$wgUseDatabaseMessages''' đã bị tắt.",
-'allmessagesfilter'         => 'Bộ lọc tên thông báo:',
-'allmessagesmodified'       => 'Chỉ hiển thị các thông báo đã được sửa đổi.',
 
 # Thumbnails
 'thumbnail-more'           => 'Phóng lớn',

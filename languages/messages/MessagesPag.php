@@ -341,10 +341,9 @@ Pinengneng so $2 para ed listaan na saray abural ran balo.',
 'export-addcat' => 'Iyarom',
 
 # Namespace 8 related
-'allmessages'         => 'Saray pakabat na oksoy',
-'allmessagesname'     => 'Ngaran',
-'allmessagestext'     => 'Aya so listaan na amin ya pakabat na oksoy ya naanap ed MediaWiki namespace.',
-'allmessagesmodified' => 'Ipanengneng labat so abalo',
+'allmessages'     => 'Saray pakabat na oksoy',
+'allmessagesname' => 'Ngaran',
+'allmessagestext' => 'Aya so listaan na amin ya pakabat na oksoy ya naanap ed MediaWiki namespace.',
 
 # Thumbnails
 'filemissing' => 'Nababalang so file',

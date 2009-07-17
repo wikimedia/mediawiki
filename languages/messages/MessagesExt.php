@@ -1673,8 +1673,6 @@ Ya desisti la páhina "[[:$1]]". Te petaria esborrala pa premitil el treslau?',
 'allmessagestext'           => 'Esta es una lista e mensahis del sistema disponibris nel espaciu e nombris MediaWiki:
 Pol favol, vesita [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] i [http://translatewiki.net translatewiki.net] si quieis colabutal.',
 'allmessagesnotsupportedDB' => "Nu se puei gastal esta páhina polque '''\$wgUseDatabaseMessages''' está desativau.",
-'allmessagesfilter'         => 'Filtru e mensahis:',
-'allmessagesmodified'       => 'Solu muestral chambaus',
 
 # Thumbnails
 'thumbnail-more'           => 'Agrandal',

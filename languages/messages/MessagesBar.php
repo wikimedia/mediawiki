@@ -831,7 +831,6 @@ Bitte nehmans an andern Nam.',
 'allmessagestext'           => 'Des is a Listn vo de MediaWiki-Systemtexte.
 Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net translatewiki.net] if you wish to contribute to the generic MediaWiki localisation.',
 'allmessagesnotsupportedDB' => "'''Special:Allmessages''' is im Moment net möglich, wei de Datenbank offline is.",
-'allmessagesmodified'       => 'Nur geänderte zoagn',
 
 # Thumbnails
 'thumbnail-more' => 'vagreßan',

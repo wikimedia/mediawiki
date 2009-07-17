@@ -2482,8 +2482,6 @@ V druhém případě můžete také používat přímý odkaz, např. pomocí [[
 'allmessagestext'           => 'Toto je seznam všech hlášení dostupných ve jmenném prostoru MediaWiki.
 Pokud si přejete přispívat k lokalizaci programu MediaWiki, navštivte [http://www.mediawiki.org/wiki/Localisation lokalizační stránku na mediawiki.org] a [http://translatewiki.net server translatewiki.net].',
 'allmessagesnotsupportedDB' => '{{ns:special}}:AllMessages není podporováno, neboť wgUseDatabaseMessages je vypnuto.',
-'allmessagesfilter'         => 'Filtr názvů hlášení:',
-'allmessagesmodified'       => 'Zobrazit pouze upravená hlášení',
 
 # Thumbnails
 'thumbnail-more'           => 'Zvětšit',

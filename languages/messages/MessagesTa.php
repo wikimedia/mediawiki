@@ -1797,8 +1797,6 @@ $1',
 'allmessagestext'           => 'இது மீடியாவிக்கி பெயர்வெளியிலுள்ள எல்லா முறைமை தகவல்களினதும் பட்டியலாகும்.
 மொழிபெயர்ப்பில் உதவ விரும்பின் அருள்கூர்ந்து [http://translatewiki.net பீட்டாவிக்கி], [http://www.mediawiki.org/wiki/Localisation மீடியாவிக்கி மொழியாக்க]  தளங்களுக்குச் செல்லவும்.',
 'allmessagesnotsupportedDB' => "'''\$wgUseDatabaseMessages''' முடக்கப்பட்டுள்ளப் படியால் இப்பக்கததை பயன்படுத்த முடியாது.",
-'allmessagesfilter'         => 'தகவல் பெயர் வடி:',
-'allmessagesmodified'       => 'மாற்றம் செய்யப்பட்டவற்றை மட்டும் காட்டு',
 
 # Thumbnails
 'thumbnail-more'           => 'பெரிதாக்கு',

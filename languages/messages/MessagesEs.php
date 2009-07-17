@@ -2429,8 +2429,6 @@ En el último caso también puedes usar un enlace, por ejemplo [[{{#Special:Expo
 'allmessagestext'           => 'Esta es una lista de mensajes del sistema disponibles en el espacio de nombres MediaWiki:
 Por favor visite [http://www.mediawiki.org/wiki/Localisation Localización MediaWiki] y [http://translatewiki.net translatewiki.net] Si desea contribuir a la localización genérica MediaWiki.',
 'allmessagesnotsupportedDB' => "Esta página no está disponible porque '''\$wgUseDatabaseMessages''' está deshabilitado.",
-'allmessagesfilter'         => 'Filtrar por nombre del mensaje:',
-'allmessagesmodified'       => 'Mostrar sólo los modificados',
 
 # Thumbnails
 'thumbnail-more'           => 'Aumentar',

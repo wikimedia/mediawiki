@@ -2597,8 +2597,6 @@ Dens cél dèrriér câs, vos pouede asse-ben utilisar un lim, coment [[{{#Speci
 'allmessagestext'           => 'Cen est la lista des mèssâjos sistèmo disponiblos dens l’èspâço MediaWiki.
 Volyéd visitar la [http://www.mediawiki.org/wiki/Localisation Localisacion de MediaWiki] et pués [http://translatewiki.net translatewiki.net] se vos dèsirâd contribuar a la localisacion g·ènèrica de MediaWiki.',
 'allmessagesnotsupportedDB' => "Ceta pâge '''{{ns:special}}:Allmessages''' est inutilisâbla perce que '''\$wgUseDatabaseMessages''' at étâ dèsactivâ.",
-'allmessagesfilter'         => 'Filtro de noms de mèssâjo (èxprèssion racionèla) :',
-'allmessagesmodified'       => 'Fâre vêre ren que los changements',
 
 # Thumbnails
 'thumbnail-more'           => 'Agrantir',

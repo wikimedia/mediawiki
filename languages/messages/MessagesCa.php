@@ -2349,8 +2349,6 @@ En el darrer cas, podeu fer servir un enllaç com ara [[{{#Special:Export}}/{{Me
 'allmessagescurrent'        => 'Text actual',
 'allmessagestext'           => "Tot seguit hi ha una llista dels missatges del sistema que es troben a l'espai de noms ''MediaWiki''. La traducció genèrica d'aquests missatges no s'hauria de fer localment sinó a la traducció del programari MediaWiki. Si voleu ajudar-hi visiteu [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] i [http://translatewiki.net translatewiki.net].",
 'allmessagesnotsupportedDB' => "No es pot processar '''{{ns:special}}:Allmessages''' perquè la variable '''\$wgUseDatabaseMessages''' està desactivada.",
-'allmessagesfilter'         => 'Cerca etiqueta de missatge:',
-'allmessagesmodified'       => 'Mostra només missatges modificats',
 
 # Thumbnails
 'thumbnail-more'           => 'Amplia',

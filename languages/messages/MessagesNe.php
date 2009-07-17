@@ -472,10 +472,9 @@ $messages = array(
 'delete_and_move_confirm' => 'हो, पृष्ठ मेट्नुहोस्',
 
 # Namespace 8 related
-'allmessages'         => 'सिस्टम सन्देशहरू',
-'allmessagesname'     => 'नाम',
-'allmessagestext'     => 'यो मिडियाविकि नेमस्पेसमा पाइने सिस्टम सन्देशहरूको सूची हो।',
-'allmessagesmodified' => 'परिवर्तित मात्र देखाउनुहोस्',
+'allmessages'     => 'सिस्टम सन्देशहरू',
+'allmessagesname' => 'नाम',
+'allmessagestext' => 'यो मिडियाविकि नेमस्पेसमा पाइने सिस्टम सन्देशहरूको सूची हो।',
 
 # Special:Import
 'import'                  => 'पृष्ठहरु आयात गर्नुहोस्',

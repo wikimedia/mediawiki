@@ -605,12 +605,10 @@ Cheest-chí al pöö vess un canbi dràstegh e inaspetaa par una pàgina pupüla
 'export' => 'Espurtá pagin',
 
 # Namespace 8 related
-'allmessages'         => 'Tücc i messacc dal sistéma',
-'allmessagesdefault'  => 'Test standard',
-'allmessagescurrent'  => 'Test curent',
-'allmessagestext'     => 'Chesta chí l è una lista də messácc də sistema dispunibil indal MediaWiki: namespace.',
-'allmessagesfilter'   => 'Varda dumà i messacc che tegnen dent:',
-'allmessagesmodified' => 'Varda dumá i messacc mudificaa',
+'allmessages'        => 'Tücc i messacc dal sistéma',
+'allmessagesdefault' => 'Test standard',
+'allmessagescurrent' => 'Test curent',
+'allmessagestext'    => 'Chesta chí l è una lista də messácc də sistema dispunibil indal MediaWiki: namespace.',
 
 # Thumbnails
 'thumbnail-more' => 'Ingrandí',

@@ -1491,8 +1491,6 @@ $NEWPAGE
 'allmessagestext'           => '个首列到全部制定得正𠮶系统界面。
 Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net translatewiki.net] if you wish to contribute to the generic MediaWiki localisation.',
 'allmessagesnotsupportedDB' => "'''{{ns:special}}:系统界面功能'''关卟嘞('''\$wgUseDatabaseMessages''')。",
-'allmessagesfilter'         => '按消息名筛:',
-'allmessagesmodified'       => '单显到改正𠮶',
 
 # Thumbnails
 'thumbnail-more'           => '放大',

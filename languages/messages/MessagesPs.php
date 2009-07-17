@@ -1322,8 +1322,6 @@ $messages = array(
 'allmessagestext'           => 'دا د مېډياويکي په نوم-تشيال کې د غونډال د پيغامونو لړليک دی.
 که چېرته تاسو د ميډياويکي په ځايتابه کې ونډې ترسره کول غواړۍ نو لطفاً [http://www.mediawiki.org/wiki/Localisation د ويډياويکي ځايتابه] او [http://translatewiki.net translatewiki.net] نه ليدنه وکړۍ.',
 'allmessagesnotsupportedDB' => "'''Special:Allmessages''' ترېنه کار نه اخيستل کېږي ځکه چې '''\$wgUseDatabaseMessages''' مړ دی.",
-'allmessagesfilter'         => 'د پيغامونو د نوم فلتر:',
-'allmessagesmodified'       => 'يواځې بدلون خوړلي توکي ښکاره کول',
 
 # Thumbnails
 'thumbnail-more'  => 'لويول',

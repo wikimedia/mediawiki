@@ -2279,8 +2279,6 @@ Duusra case me aap ek link ke bhi use kare saktaa hai, jaise ki [[{{#Special:Exp
 'allmessagestext'           => 'Ii ek system sandes ke suchi hai jon ki MediaWiki namespace me pawa jaae sake hai.
 Agar aap generic MediaWiki localisation ke yogdaan de mangtaa hai tab meharbani kar ke [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] aur [http://translatewiki.net translatewiki.net]  pe jao.',
 'allmessagesnotsupportedDB' => "Ii panna ke kaam me nai lawa jaae sake hai kahe ki '''\$wgUseDatabaseMessages''' ke band kar dewa gais hai.",
-'allmessagesfilter'         => 'Message naam ke filter:',
-'allmessagesmodified'       => 'Khaali badlawa gae ke dekhao',
 
 # Thumbnails
 'thumbnail-more'           => 'Barraa karo',

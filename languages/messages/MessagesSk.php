@@ -2425,8 +2425,6 @@ V druhom prípade môžete tiež použiť odkaz, napr. [[{{#Special:Export}}/{{M
 'allmessagestext'           => 'Toto je zoznam všetkých správ dostupných v mennom priestore MediaWiki.
 Prosím, navštívte [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] a [http://translatewiki.net translatewiki.net] ak chcete prispieť k všeobecnej lokalizácii MediaWiki.',
 'allmessagesnotsupportedDB' => "Túto stránku nemožno použiť, pretože '''\$wgUseDatabaseMessages''' je vypnuté.",
-'allmessagesfilter'         => 'Filter názvov správ:',
-'allmessagesmodified'       => 'Zobraziť iba zmenené',
 
 # Thumbnails
 'thumbnail-more'           => 'Zväčšiť',

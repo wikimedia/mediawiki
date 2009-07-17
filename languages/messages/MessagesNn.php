@@ -2406,8 +2406,6 @@ Dersom du berre vil ha noverande versjon, kan du også bruke ei lenkje, til døm
 'allmessagestext'           => 'Dette er ei liste over systemmeldingar i MediaWiki-namnerommet.
 Vitja [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] og [http://translatewiki.net translatewiki.net] om du ynskjer å bidra til den generelle omsetjinga av MediaWiki.',
 'allmessagesnotsupportedDB' => "Denne sida er ikkje brukande fordi \"'''\$wgUseDatabaseMessages'''\" er slått av.",
-'allmessagesfilter'         => 'Meldingsfilter:',
-'allmessagesmodified'       => 'Vis berre endra',
 
 # Thumbnails
 'thumbnail-more'           => 'Forstørr',

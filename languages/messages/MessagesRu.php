@@ -2479,8 +2479,6 @@ $1',
 'allmessagestext'           => 'Это список системных сообщений, доступных в пространстве имён «MediaWiki».
 Пожалуйста, посетите на страницу [http://www.mediawiki.org/wiki/Localisation описания локализации] и проект [http://translatewiki.net translatewiki.net], если вы хотите внести вклад в общую локализацию MediaWiki.',
 'allmessagesnotsupportedDB' => "Эта страница недоступна, так как отключена опция '''\$wgUseDatabaseMessages'''.",
-'allmessagesfilter'         => 'Фильтр в формате регулярного выражения:',
-'allmessagesmodified'       => 'Показать только изменённые',
 
 # Thumbnails
 'thumbnail-more'           => 'Увеличить',

@@ -1827,10 +1827,9 @@ Manoo tudewaat aw xët ci wenn tur wi.',
 'export-addcat'     => 'Yokk',
 
 # Namespace 8 related
-'allmessagesname'     => 'Turu tool bi',
-'allmessagescurrent'  => 'Bataaxal bi fi nekk',
-'allmessagestext'     => "Lii mo'y limu bataaxal yëpp yi am ci biir MediaWiki",
-'allmessagesmodified' => 'Wone coppite yi rek',
+'allmessagesname'    => 'Turu tool bi',
+'allmessagescurrent' => 'Bataaxal bi fi nekk',
+'allmessagestext'    => "Lii mo'y limu bataaxal yëpp yi am ci biir MediaWiki",
 
 # Thumbnails
 'thumbnail-more' => 'Ngandal',

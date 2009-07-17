@@ -1929,8 +1929,6 @@ In die laatste geval kan u ook \'n verwysing gebruik, byvoorbeeld [[{{#Special:E
 'allmessagescurrent'        => 'Huidige teks',
 'allmessagestext'           => "Hierdie is 'n lys boodskappe wat in die ''MediaWiki''-naamspasie beskikbaar is.",
 'allmessagesnotsupportedDB' => "Daar is geen ondersteuning vir '''{{ns:special}}:Allmessages''' omdat '''\$wgUseDatabaseMessages''' uitgeskakel is.",
-'allmessagesfilter'         => 'Boodskapnaamfilter:',
-'allmessagesmodified'       => 'Wys slegs gewysigdes',
 
 # Thumbnails
 'thumbnail-more'           => 'Vergroot',

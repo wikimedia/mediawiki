@@ -1959,7 +1959,6 @@ Síðan „[[:$1]]“ er þegar til. Viltu eyða henni til þess að rýma til f
 'allmessagestext'           => 'Þetta er listi yfir kerfismeldingar í Melding-nafnrýminu.
 Gjörðu svo vel og heimsæktu [http://www.mediawiki.org/wiki/Localisation MediaWiki-staðfæringuna] og [http://translatewiki.net translatewiki.net] ef þú vilt taka þátt í almennri MediaWiki-staðfæringu.',
 'allmessagesnotsupportedDB' => "Það er ekki hægt að nota '''{{ns:special}}:Allmessages''' því '''\$wgUseDatabaseMessages''' hefur verið gerð óvirk.",
-'allmessagesmodified'       => 'Sýna aðeins breyttar',
 
 # Thumbnails
 'thumbnail-more'  => 'Stækka',

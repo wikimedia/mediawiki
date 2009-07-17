@@ -2279,8 +2279,6 @@ Fl-Aħħar każ inti tista' tuża link, e.ż.
 'allmessagescurrent'        => 'It-test attwali',
 'allmessagestext'           => "Din hija lista ta' messaġġi tas-sistema disponibbli fl-ispazju tal-isem MediaWiki.",
 'allmessagesnotsupportedDB' => "Il-paġna ma tistax tintuża għax '''\$wgUseDatabaseMessages''' mhux attivat.",
-'allmessagesfilter'         => 'Filtru fuq l-ismijiet tal-messaġġi:',
-'allmessagesmodified'       => 'Uri biss dawk modifikati',
 
 # Thumbnails
 'thumbnail-more'           => 'Kabbar',

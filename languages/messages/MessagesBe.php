@@ -2096,8 +2096,6 @@ $1 ужо знаходзіцца пад блокам. Ці жадаеце змя
 'allmessagescurrent'        => 'Актуальны тэкст',
 'allmessagestext'           => 'Спіс усіх сістэмных паведамленняў, наяўных у прасторы назваў MediaWiki.',
 'allmessagesnotsupportedDB' => "Немагчыма паказаць '''{{ns:special}}:{{:{{ns:mediawiki}}:Allmessages}}''', таму што не працуе '''\$wgUseDatabaseMessages'''.",
-'allmessagesfilter'         => 'Фільтр назваў паведамленняў:',
-'allmessagesmodified'       => 'Паказваць толькі змененыя',
 
 # Thumbnails
 'thumbnail-more'           => 'Павялічыць',

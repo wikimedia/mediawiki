@@ -2283,8 +2283,6 @@ Zum Exportiere trag dr Sytetitel in dr Täxtchaschte unter yy, ei Titel pro Zyyl
 'allmessagestext'           => 'Des isch e Lischt vu allene meglige Syschtemnochrichte us em MediaWiki Namensruum.
 Lueg au uf [http://www.mediawiki.org/wiki/Localisation MediaWiki Lokalisierig] un [http://translatewiki.net translatewiki.net], wänn Du zue dr MediaWiki-Lokalisierig wit byytrage.',
 'allmessagesnotsupportedDB' => "'''{{ns:special}}:Allmessages''' cha nit bruucht wärde will '''\$wgUseDatabaseMessages''' abgschalte isch.",
-'allmessagesfilter'         => 'Nochrichte nochem Name filtere:',
-'allmessagesmodified'       => 'numme gänderti aazeige',
 
 # Thumbnails
 'thumbnail-more'           => 'vergrösere',

@@ -2253,8 +2253,6 @@ Yn achos yr ail ddewis, mae modd defnyddio cyswllt, e.e. [[{{#Special:Export}}/{
 'allmessagestext'           => "Dyma restr o'r holl negeseuon yn y parth MediaWici.
 Os ydych am gyfrannu at y gwaith o gyfieithu ar gyfer holl prosiectau MediaWiki ar y cyd, mae croeso i chi ymweld â [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] a [http://translatewiki.net translatewiki.net].",
 'allmessagesnotsupportedDB' => "Nid yw '''{{ns:special}}:PobNeges''' yn cael ei gynnal gan fod '''\$wgUseDatabaseMessages''' wedi ei ddiffodd.",
-'allmessagesfilter'         => 'Hidl enw neges:',
-'allmessagesmodified'       => 'Dangos y rhai a ddiwygiwyd yn unig',
 
 # Thumbnails
 'thumbnail-more'           => 'Chwyddo',

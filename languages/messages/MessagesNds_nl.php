@@ -2446,8 +2446,6 @@ A-j dat leste doon willen dan ku-j oek een verwiezing gebruken, bieveurbeeld [[{
 'allmessagestext'           => 'Hieronder steet een lieste mit alle systeemteksen in de MediaWiki-naamruumte.
 Kiek oek effen bie [http://www.mediawiki.org/wiki/Localisation MediaWiki-lokalisasie] en [http://translatewiki.net translatewiki.net] a-j biedragen willen an de algemene vertaling veur MediaWiki.',
 'allmessagesnotsupportedDB' => "Disse pagina kan neet gebruuk wonnen umdat '''\$wgUseDatabaseMessages''' uut-eschakeld is.",
-'allmessagesfilter'         => 'Berichnaamfilter:',
-'allmessagesmodified'       => 'Allinnig teksen dee ewiezig bin',
 
 # Thumbnails
 'thumbnail-more'           => 'vergroten',

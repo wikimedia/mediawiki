@@ -437,8 +437,6 @@ U to indirizzu IP serà registratu indu a cronolugia di ista pagina.",
 'allmessagescurrent'        => 'Testu attuale',
 'allmessagestext'           => 'Istu hè u listinu di tutti i messaghji dispunibili in u spaziu MediaWiki.',
 'allmessagesnotsupportedDB' => "'''{{ns:special}}:Allmessages''' ùn hè dispunibile perchè '''\$wgUseDatabaseMessages''' ùn hè micca attivu.",
-'allmessagesfilter'         => "Filtru nant'à i messaghji:",
-'allmessagesmodified'       => 'Mustrà solu i mudificati',
 
 # Special:Import
 'import-interwiki-submit' => 'Impurtà',

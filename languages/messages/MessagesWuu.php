@@ -718,8 +718,6 @@ $messages = array(
 'allmessagescurrent'        => '当前文本',
 'allmessagestext'           => '该个是MediaWiki名字空间里可用个系统音讯列表。',
 'allmessagesnotsupportedDB' => "'''{{ns:special}}:Allmessages''' 呒处显示，因为 '''\$wgUseDatabaseMessages''' 关勒浪。",
-'allmessagesfilter'         => '音讯名字过滤:',
-'allmessagesmodified'       => '只显示修订过个',
 
 # Thumbnails
 'thumbnail-more' => '放大',

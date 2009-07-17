@@ -2204,8 +2204,6 @@ Soñğı jağdaýda siltemeni de, mısalı «{{{{ns:mediawiki}}:Mainpage}}» bet
 'allmessagestext'           => 'Mında {{ns:mediawiki}} esim ayasında jetimdi jüýe xabar tizimi beriledi.
 Eger ämbebap MediaWiki jersindirwge üles qosqıñız kelse [http://www.mediawiki.org/wiki/Localisation MediaWiki jersindirw betine] jäne [http://translatewiki.net translatewiki.net jobasına] barıp şığıñız.',
 'allmessagesnotsupportedDB' => "'''\$wgUseDatabaseMessages''' öşirilgen sebebinen '''{{ns:special}}:AllMessages''' beti qoldanılmaýdı.",
-'allmessagesfilter'         => 'Xabardı atawımen süzgilew:',
-'allmessagesmodified'       => 'Tek özgertilgendi körset',
 
 # Thumbnails
 'thumbnail-more'           => 'Ülkeýtw',

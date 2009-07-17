@@ -640,7 +640,6 @@ yä isä saylanğan isem yaraqsız buldı. Başqa isem sayla zínhar.',
 'allmessagesdefault' => 'Töpcay yazma',
 'allmessagescurrent' => 'Eligi yazma',
 'allmessagestext'    => 'Bu säxifäneñ MediaWiki: atarasında bulğan yazmalar tezmäse.',
-'allmessagesfilter'  => 'Yazma atalışına sözgiç:',
 
 # Thumbnails
 'thumbnail-more' => 'Zuraytası',

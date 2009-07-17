@@ -1556,9 +1556,8 @@ $2',
 'export-templates'  => 'ಟೆಂಪ್ಲೇಟುಗಳನ್ನು ಸೇರಿಸು',
 
 # Namespace 8 related
-'allmessages'         => 'ಸಂಪರ್ಕ ಸಾಧನದ ಎಲ್ಲ ಸಂದೇಶಗಳು',
-'allmessagesname'     => 'ಹೆಸರು',
-'allmessagesmodified' => 'ಬದಲಾವಣೆ ಮಾಡಿದ್ದನ್ನು ಮಾತ್ರ ತೋರಿಸು',
+'allmessages'     => 'ಸಂಪರ್ಕ ಸಾಧನದ ಎಲ್ಲ ಸಂದೇಶಗಳು',
+'allmessagesname' => 'ಹೆಸರು',
 
 # Thumbnails
 'thumbnail-more'  => 'ದೊಡ್ಡದಾಗಿಸು',

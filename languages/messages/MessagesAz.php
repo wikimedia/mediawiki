@@ -922,13 +922,11 @@ Bu yerdəyişmə tanınmış səhifələr üçün əsaslı və gözlənilməz ol
 'export-submit' => 'İxrac',
 
 # Namespace 8 related
-'allmessages'         => "Sistem mə'lumatları",
-'allmessagesname'     => 'Ad',
-'allmessagesdefault'  => 'İlkin mətn',
-'allmessagescurrent'  => 'İndiki mətn',
-'allmessagestext'     => "Sistem mə'lumatların siyahısı MediaWiki: namespace.",
-'allmessagesfilter'   => "Mə'lumat adı süzgəci:",
-'allmessagesmodified' => 'Yalnız redaktə olunmuşları göstər',
+'allmessages'        => "Sistem mə'lumatları",
+'allmessagesname'    => 'Ad',
+'allmessagesdefault' => 'İlkin mətn',
+'allmessagescurrent' => 'İndiki mətn',
+'allmessagestext'    => "Sistem mə'lumatların siyahısı MediaWiki: namespace.",
 
 # Thumbnails
 'djvu_page_error' => 'DjVu səhifəsi əlçatmazdır',

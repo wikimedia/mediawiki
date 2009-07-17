@@ -2501,8 +2501,6 @@ I det senare fallet kan du även använda en länk, exempel [[{{#Special:Export}
 'allmessagestext'           => 'Detta är en lista över alla meddelanden i namnrymden MediaWiki.
 Besök [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] eller [http://translatewiki.net translatewiki.net] om du vill bidra till översättningen av MediaWiki.',
 'allmessagesnotsupportedDB' => "Den här sidan kan inte användas eftersom '''\$wgUseDatabaseMessages''' är avstängd.",
-'allmessagesfilter'         => 'Filter för meddelandenamn:',
-'allmessagesmodified'       => 'Visa bara ändrade',
 
 # Thumbnails
 'thumbnail-more'           => 'Förstora',

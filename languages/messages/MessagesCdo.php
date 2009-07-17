@@ -800,8 +800,6 @@ Nâ cūng-kuāng, nṳ̄ â̤-sāi cê-gă iè-dông hĕ̤k-ciā sê hăk-biáng
 'allmessagescurrent'        => 'Hiêng-sì gì ùng-cê',
 'allmessagestext'           => 'Cī tiŏng dăng-dăng sê MediaWiki miàng-kŭng-găng â̤ ciĕ-tì gì hiê-tūng siĕu-sék.',
 'allmessagesnotsupportedDB' => "Mò̤ bâing-huák sāi-ê̤ṳng '''{{ns:special}}:Allmessages''', ĭng-ôi '''\$wgUseDatabaseMessages''' ī-gĭng cĕk lâi gó̤.",
-'allmessagesfilter'         => 'Tăi siĕu-sék dèu-mĕ̤k:',
-'allmessagesmodified'       => 'Nâ hiēng-sê ô gāi-biéng gì',
 
 # Tooltip help for the actions
 'tooltip-search' => 'Sìng-tō̤ {{SITENAME}} [alt-f]',

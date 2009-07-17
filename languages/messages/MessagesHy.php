@@ -1848,8 +1848,6 @@ $1',
 'allmessagestext'           => 'Ստորև բերված է «MediaWiki» անվանատարածքի բոլոր համակարգային ուղերձների ցանկը։
 Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net translatewiki.net] if you wish to contribute to the generic MediaWiki localisation.',
 'allmessagesnotsupportedDB' => "Այս էջը չի գործում, քանի որ '''\$wgUseDatabaseMessages''' հատկանիշը անջատված է։",
-'allmessagesfilter'         => 'Ուղղերձների անվան ֆիլտր.',
-'allmessagesmodified'       => 'Ցույց տալ միայն փոփոխվածները',
 
 # Thumbnails
 'thumbnail-more'           => 'Ընդարձակել',

@@ -2370,8 +2370,6 @@ Sonuncu durumda, bir link de kullanabilirsiniz, ör: "[[{{MediaWiki:Mainpage}}]]
 'allmessagestext'           => 'Bu liste  MediaWiki ad alanında mevcut olan sistem mesajlarının listesidir.
 Genel MediaWiki yerelleştirmesine katkıda bulunmak isterseniz, lütfen [http://www.mediawiki.org/wiki/Localisation MediaWiki Yerelleştirmesi] ve [http://translatewiki.net translatewiki.net] sayfalarını ziyaret edin.',
 'allmessagesnotsupportedDB' => "'''\$wgUseDatabaseMessages''' kapalı olduğu için '''{{ns:special}}:Allmessages''' kullanıma açık değil.",
-'allmessagesfilter'         => 'Metin ayrıştırıcı filtresi:',
-'allmessagesmodified'       => 'Sadece değiştirilmişleri göster',
 
 # Thumbnails
 'thumbnail-more'           => 'Büyüt',

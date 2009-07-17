@@ -971,8 +971,6 @@ Inte 'sti câxi, se o se vêu fâ coscì, o se deive stramûâ ò azzonze manual
 'allmessagescurrent'        => 'Testo corrente',
 'allmessagestext'           => "Sta chie a l'è unn-a lista de messaggi do scistema in ta MediaWiki.",
 'allmessagesnotsupportedDB' => "'''{{ns:special}}:Allmessages''' o non ti te peu vedde, perchè '''\$wgUseDatabaseMessages''' o non l'è attivo.",
-'allmessagesfilter'         => 'Çernia de mesasggi:',
-'allmessagesmodified'       => 'Vanni vedde söo i cangiamenti',
 
 # Thumbnails
 'thumbnail-more'           => 'Ciû grande',

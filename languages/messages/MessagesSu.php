@@ -1820,8 +1820,6 @@ Artikel nu dituju "[[:$1]]" geus aya. Badé dihapus baé sangkan bisa mindahkeun
 'allmessagescurrent'        => 'Téks kiwari',
 'allmessagestext'           => 'Ieu mangrupa daptar talatah sistim nu aya na spasi ngaran MediaWiki:.',
 'allmessagesnotsupportedDB' => "Kaca ieu teu dirojong sabab '''\$wgUseDatabaseMessages''' pareum.",
-'allmessagesfilter'         => 'Saringan ngaran talatah:',
-'allmessagesmodified'       => 'Témbongkeun ukur nu robah',
 
 # Thumbnails
 'thumbnail-more'           => 'Gedéan',

@@ -1772,8 +1772,6 @@ bu ika int me zo rotarrundar.',
 
 Va [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] is [http://translatewiki.net translatewiki.net] vay woral ede va tulizukara va Mediawiki co-rowebel.',
 'allmessagesnotsupportedDB' => "Batu bu me zo rofaver kire '''\$wgUseDatabaseMessages''' mea tir tegis.",
-'allmessagesfilter'         => 'Staksesparayolt :',
-'allmessagesmodified'       => 'Anton nedira va betakseem',
 
 # Thumbnails
 'thumbnail-more'           => 'Tulogijara',

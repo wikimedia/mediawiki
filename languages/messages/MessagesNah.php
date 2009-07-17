@@ -1201,10 +1201,9 @@ Hueliz cah inīn huēyi tlapatlaliztli. Timitztlātlauhtia ticmatīz cuallōtl a
 'export-templates'  => 'Tiquimpiyāz nemachiyōtīlli',
 
 # Namespace 8 related
-'allmessages'         => 'Mochīntīn Huiquimedia tlahcuilōltzintli',
-'allmessagesname'     => 'Tōcāitl',
-'allmessagescurrent'  => 'Āxcān tlahcuilōlli',
-'allmessagesmodified' => 'Zan tiquinttāz inōn ōmopatlac',
+'allmessages'        => 'Mochīntīn Huiquimedia tlahcuilōltzintli',
+'allmessagesname'    => 'Tōcāitl',
+'allmessagescurrent' => 'Āxcān tlahcuilōlli',
 
 # Thumbnails
 'thumbnail-more'  => 'Tiquihuēyiyāz',

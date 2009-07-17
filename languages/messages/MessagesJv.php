@@ -2199,8 +2199,6 @@ Yèn panjenengan namun péngin ngimpor vèrsi pungkasan, panjenengan uga bisa ng
 'allmessagestext'           => 'Iki dhaptar kabèh pesen saka sistem sing ana ing bilik jeneng MediaWiki.
 Mangga pirsani [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] lan [http://translatewiki.net translatewiki.net] yèn panjenengan arep kontribusi ing lokalisasi generik MediaWiki.',
 'allmessagesnotsupportedDB' => "Kaca iki ora bisa dienggo amerga '''\$wgUseDatabaseMessages''' dipatèni.",
-'allmessagesfilter'         => 'Saringan jeneng pesen:',
-'allmessagesmodified'       => 'Namung tampilanipun ingkang owah',
 
 # Thumbnails
 'thumbnail-more'           => 'Gedhèkna',

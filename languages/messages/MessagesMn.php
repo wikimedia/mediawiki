@@ -1727,8 +1727,6 @@ $1',
 'allmessagestext'           => 'Энэ бол МедиаВики дахь системийн мэдэгдлүүдийн жагсаалт юм.
 МедиаВикиг орчуулах тухай мэдээллийг [http://www.mediawiki.org/wiki/Localisation МедиаВикигийн орчуулга], мөн [http://translatewiki.net Бетавики]-гаас авна уу.',
 'allmessagesnotsupportedDB' => "'''\$wgUseDatabaseMessages''' нь унтарсан байгаа тул '''Special:Allmessages'''-г хэрэглэж болохгүй.",
-'allmessagesfilter'         => 'Мэдэгдлийн нэрийн шүүлтүүр:',
-'allmessagesmodified'       => 'Зөвхөн өөрчлөгдсөнийг нь харуулах',
 
 # Thumbnails
 'thumbnail-more'           => 'Томруулах',

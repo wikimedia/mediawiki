@@ -2288,8 +2288,6 @@ Dalam pilihan kedua tadi, anda juga boleh menggunakan pautan, umpamanya [[{{#Spe
 'allmessagestext'           => 'Ini ialah senarai pesanan sistem yang terdapat dalam ruang nama MediaWiki.
 Sila lawat [http://www.mediawiki.org/wiki/Localisation Penyetempatan MediaWiki] dan [http://translatewiki.net translatewiki.net] sekiranya anda mahu menyumbang dalam menyetempatkan dan menterjemah perisian MediaWiki.',
 'allmessagesnotsupportedDB' => "'''{{ns:special}}:Allmessages''' tidak boleh digunakan kerana '''\$wgUseDatabaseMessages''' dipadamkan.",
-'allmessagesfilter'         => 'Tapis nama mesej:',
-'allmessagesmodified'       => 'Hanya tunjukkan yang telah diubah',
 
 # Thumbnails
 'thumbnail-more'           => 'Besarkan',

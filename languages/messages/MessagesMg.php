@@ -1560,7 +1560,6 @@ Etsy amin'ny toerana farany dia afaka mampiasa rohy ihany koa ianao, ohatra [[{{
 'allmessagescurrent'        => 'Dikan-teny miasa ankehitriny',
 'allmessagestext'           => "Ity no lisitry ny system messages misy eto amin'ity MediaWiki: namespace ity.",
 'allmessagesnotsupportedDB' => "Tsy mbola mandeha ny '''{{ns:special}}:Allmessages''' satria tsy mandeha koa ny '''\$wgUseDatabaseMessages'''.",
-'allmessagesmodified'       => 'Dikan-teny efa novaina ihany',
 
 # Thumbnails
 'thumbnail-more' => 'Angezao',

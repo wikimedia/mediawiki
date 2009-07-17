@@ -1991,8 +1991,6 @@ $NEWPAGE
 
 ביטע באזוכט [http://www.mediawiki.org/wiki/Localisation מעדיעוויקי לאקאליזאציע] און [http://translatewiki.net בעטאוויקי] אויב איר ווילט ביישטייערן צו דער גענערישער מעדיעוויקי לאקאליזאציע.',
 'allmessagesnotsupportedDB' => 'מען קען זיך נישט באניצן מיט דעם בלאט וויבאלד די $wgUseDatabseMessages איז געווארן בטל.',
-'allmessagesfilter'         => 'מעלדונג נאמען פֿילטער:',
-'allmessagesmodified'       => 'ווײַזן נאר מאדיפֿיצירטע',
 
 # Thumbnails
 'thumbnail-more'           => 'פארגרעסער',

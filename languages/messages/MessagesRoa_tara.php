@@ -2149,8 +2149,6 @@ non ge se pò movere 'na pàgene sus a sè stesse.",
 'allmessagestext'           => "Queste jè 'na liste de tutte le messagge d'u sisteme ca se ponne acchià jndr'à le namespace de MediaUicchi.
 Pe piacere vè vide [http://www.mediawiki.org/wiki/Localisation Localizzazione de MediaUicchi] e [http://translatewiki.net translatewiki.net] ce tu vuè ccu condrebbuisce a 'a localizzazione de MediaUicchi.",
 'allmessagesnotsupportedDB' => "Sta pàgene non ge pò essere ausate purcè '''\$wgUseDatabaseMessages''' ha state disabbilitate.",
-'allmessagesfilter'         => "Nome d'u filtre d'u Mèssagge:",
-'allmessagesmodified'       => 'Fà vedè sulamende le cangete',
 
 # Thumbnails
 'thumbnail-more'           => 'Allarije',

@@ -1745,8 +1745,6 @@ $1 አሁን ገና ታግዷል። ዝርዝሩን ማስተካከል ፈለጉ
 'allmessagestext'           => 'በ«MediaWiki» ክፍለ-ዊኪ ያሉት የድረገጽ መልክ መልእክቶች ሙሉ ዝርዝር ይህ ነው።
 Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net translatewiki.net] if you wish to contribute to the generic MediaWiki localisation.',
 'allmessagesnotsupportedDB' => "'''\$wgUseDatabaseMessages''' ስለ ተዘጋ '''{{ns:special}}:Allmessages''' ሊጠቀም አይችልም።",
-'allmessagesfilter'         => 'የመልዕክት ስም ማጣሪያ፦',
-'allmessagesmodified'       => 'የተቀየሩ ብቻ ይታዩ',
 
 # Thumbnails
 'thumbnail-more'           => 'አጎላ',

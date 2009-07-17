@@ -2215,8 +2215,6 @@ Horrez gain, lotura zuzena ere erabil dezakezu; adibidez, [[{{#Special:Export}}/
 'allmessagestext'           => 'MediaWikin erabiltzen diren mezu guztien zerrenda.
 Mesedez bisitatu [http://www.mediawiki.org/wiki/Localisation MediaWiki] eta [http://translatewiki.net translatewiki.net] orrialdeak MediaWikira ekarpenak egin badituzu.',
 'allmessagesnotsupportedDB' => "Ezin da '''{{ns:special}}:Allmessages''' erabili '''\$wgUseDatabaseMessages''' ezgaituta dagoelako.",
-'allmessagesfilter'         => 'Mezu izenaren iragazkia:',
-'allmessagesmodified'       => 'Aldatutakoak bakarrik erakutsi',
 
 # Thumbnails
 'thumbnail-more'           => 'Handitu',

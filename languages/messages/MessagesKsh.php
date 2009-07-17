@@ -2618,8 +2618,6 @@ zo jroße Lass för dä Sörver.',
 'allmessagestext'           => 'Hee kütt en Liss met Texte, Texstöck, un Nachrichte em Appachtemeng „MediaWiki“ — Do draan Ändere löht et Wiki anders ußsin, dat darf dröm nit jede maache.
 Wenn De jenerell aan [http://www.mediawiki.org/wiki/Localisation MediaWiki singe Översezung] jet anders han wells, do jangk noh [http://translatewiki.net translatewiki.net].',
 'allmessagesnotsupportedDB' => '<strong>Dat wor nix!</strong> Mer künne „{{ns:special}}:Allmessages“ nit zeije, <code>$wgUseDatabaseMessages</code> es usjeschalt!',
-'allmessagesfilter'         => 'Fingk dat Stöck hee em Name:',
-'allmessagesmodified'       => 'Dun nor de Veränderte aanzeije',
 
 # Thumbnails
 'thumbnail-more'           => 'Jrößer aanzeije',

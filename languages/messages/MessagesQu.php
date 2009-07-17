@@ -2412,8 +2412,6 @@ Qhipaqta munaspaykiqa, t'inkitapas llamk'achiyta atinki, ahinataq [[{{#Special:E
 'allmessagestext'           => "Kayqa MediaWiki suti k'itipi llamk'achinalla willaykunayuq sutisuyum.
 Ama hina kaspa, [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] nisqata, [http://translatewiki.net translatewiki.net] nisqatapas watukuy, MediaWiki nisqata t'ikraywan yanapayta munaspaykiqa.",
 'allmessagesnotsupportedDB' => "Kay p'anqaqa manam llamk'achinallachu, '''\$wgUseDatabaseMessages''' nisqaman ama nisqa kaptinmi.",
-'allmessagesfilter'         => "Willaypa sutinkama ch'illchiy:",
-'allmessagesmodified'       => 'Hukchasqallata rikuchiy',
 
 # Thumbnails
 'thumbnail-more'           => 'Hatunchay',

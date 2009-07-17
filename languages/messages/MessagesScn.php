@@ -2105,8 +2105,6 @@ Nta st'ùrtimu casu si pò macari utilizzari un culligamentu, p'asempiu [[{{#Spe
 'allmessagestext'           => "Chista è na lista di missaggi di sistema chi s'attròvanu sutta MediaWiki:''nomu''.
 Visita [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] e [http://translatewiki.net translatewiki.net] si voi cuntribbuiri â localizzazioni generica di MediaWiki.",
 'allmessagesnotsupportedDB' => "'''{{ns:special}}:Allmessages''' nun è suppurtatu pirchì lu flag '''\$wgUseDatabaseMessages''' nun è attivu.",
-'allmessagesfilter'         => 'Filtru supra li missaggi:',
-'allmessagesmodified'       => 'Ammustra sulu chiddi mudificati',
 
 # Thumbnails
 'thumbnail-more'           => 'Ngrannisci',
