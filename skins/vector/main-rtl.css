@@ -311,7 +311,7 @@ div#head h5 {
 		background-color: transparent;
 	}
 	/* OVERRIDDEN BY COMPLIANT BROWSERS */
-	div#p-search div#simpleSearch input#searchButton {
+	div#p-search div#simpleSearch button#searchButton {
 		position: absolute;
 		top: 0;
 		left: 0;
@@ -327,7 +327,7 @@ div#head h5 {
 		background-repeat: no-repeat;
 	}
 	/* IGNORED BY IE6 */
-	div#p-search div#simpleSearch > input#searchButton {
+	div#p-search div#simpleSearch > button#searchButton {
 		height: 100%;
 	}
 /* Panel */
