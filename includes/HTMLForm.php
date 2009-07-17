@@ -20,6 +20,7 @@ class HTMLForm {
 		'check' => 'HTMLCheckField',
 		'toggle' => 'HTMLCheckField',
 		'int' => 'HTMLIntField',
+		'float' => 'HTMLFloatField',
 		'info' => 'HTMLInfoField',
 		'selectorother' => 'HTMLSelectOrOtherField',
 	);
@@ -524,7 +525,7 @@ class HTMLTextField extends HTMLFormField {
 
 }
 
-class HTMLIntField extends HTMLTextField {
+class HTMLFloatField extends HTMLTextField {
 	function getSize() {
 		return isset( $this->mParams['size'] ) ? $this->mParams['size'] : 20;
 	}
@@ -532,14 +533,16 @@ class HTMLIntField extends HTMLTextField {
 	function validate( $value, $alldata ) {
 		$p = parent::validate( $value, $alldata );
 
-		if( $p !== true ) return $p;
+		if ( $p !== true ) return $p;
 
-		if ( intval( $value ) != $value ) {
-			return wfMsgExt( 'htmlform-int-invalid', 'parse' );
+		if ( floatval( $value ) != $value ) {
+			return wfMsgExt( 'htmlform-float-invalid', 'parse' );
 		}
 
 		$in_range = true;
 
+		# The "int" part of these message names is rather confusing.  They make
+		# equal sense for all numbers.
 		if ( isset( $this->mParams['min'] ) ) {
 			$min = $this->mParams['min'];
 			if ( $min > $value )
@@ -550,6 +553,20 @@ class HTMLIntField extends HTMLTextField {
 			$max = $this->mParams['max'];
 			if( $max < $value )
 				return wfMsgExt( 'htmlform-int-toohigh', 'parse', array( $max ) );
+		}
+
+		return true;
+	}
+}
+
+class HTMLIntField extends HTMLFloatField {
+	function validate( $value, $alldata ) {
+		$p = parent::validate( $value, $alldata );
+
+		if ( $p !== true ) return $p;
+
+		if ( intval( $value ) != $value ) {
+			return wfMsgExt( 'htmlform-int-invalid', 'parse' );
 		}
 
 		return true;
