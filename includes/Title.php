@@ -1175,8 +1175,15 @@ class Title {
 			if( !$user->isAllowed( 'move' ) ) {
 				// User can't move anything
 				global $wgGroupPermissions;
-				if( $user->isAnon() && ( $wgGroupPermissions['user']['move']
-				|| $wgGroupPermissions['autoconfirmed']['move'] ) ) {
+				$userCanMove = false;
+				if ( isset( $wgGroupPermissions['user']['move'] ) {
+					$userCanMove = $wgGroupPermissions['user']['move'];
+				}
+				$autoconfirmedCanMove = false;
+				if ( isset( $wgGroupPermissions['autoconfirmed']['move'] ) {
+					$autoconfirmedCanMove = $wgGroupPermissions['autoconfirmed']['move'];
+				}
+				if ( $user->isAnon() && ( $userCanMove || $autoconfirmedCanMove ) ) {
 					// custom message if logged-in users without any special rights can move
 					$errors[] = array ( 'movenologintext' );
 				} else {
