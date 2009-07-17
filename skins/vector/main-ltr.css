@@ -28,7 +28,7 @@ body {
 	background-image: url(images/page-base.png);
 }
 /* Content */
-div#content {
+#content {
 	margin-left: 12em;
 	padding: 1em;
 	background-image: url(images/border.png);
@@ -37,14 +37,14 @@ div#content {
 	background-color: white;
 }
 /* Head */
-div#page-base {
+#page-base {
 	height: 6em;
 	background-color: white;
 	background-image: url(images/page-fade.png);
 	background-position: bottom left;
 	background-repeat: repeat-x;
 }
-div#head-base {
+#head-base {
 	margin-top: -6em;
 	margin-left: 12em;
 	height: 6em;
@@ -52,46 +52,46 @@ div#head-base {
 	background-position: bottom left;
 	background-repeat: repeat-x;
 }
-div#head {
+#head {
 	position: absolute;
 	top: 0;
 	right: 0;
 	width: 100%;
 }
-div#head h5 {
+#head h5 {
 	margin: 0;
 	padding: 0;
 }
 	/* Personal */
-	div#p-personal {
+	#p-personal {
 		position: absolute;
 		top: 0;
 		right: 0.75em;
 	}
-	div#p-personal h5 {
+	#p-personal h5 {
 		display: none;
 	}
-	div#p-personal ul {
+	#p-personal ul {
 		list-style: none;
 		margin: 0;
 		padding: 0;
 	}
 	/* @noflip */
-	div#p-personal li {
+	#p-personal li {
 		float: left;
 	}
-	div#p-personal li {
+	#p-personal li {
 		margin-left: 0.75em;
 		margin-top: 0.5em;
 		font-size: 0.9em;
 	}
 	/* Navigation Containers */
-	div#left-navigation {
+	#left-navigation {
 		position: absolute;
 		left: 12em;
 		top: 3em;
 	}
-	div#right-navigation {
+	#right-navigation {
 		float: right;
 		margin-top: 3em;
 	}
@@ -275,23 +275,23 @@ div#head h5 {
 		display: block;
 	}
 	/* Search */
-	div#p-search h5 {
+	#p-search h5 {
 		display: none;
 	}
 	/* @noflip */
-	div#p-search {
+	#p-search {
 		float: left;
 	}
-	div#p-search {
+	#p-search {
 		margin-right: 0.5em;
 		margin-left: 0.5em;
 	}
-	div#p-search form,
-	div#p-search input {
+	#p-search form,
+	#p-search input {
 		margin: 0;
 		margin-top: 0.4em;
 	}
-	div#p-search div#simpleSearch {
+	#simpleSearch {
 		margin-top: 0.75em;
 		position: relative;
 		border: solid 1px #AAAAAA;
@@ -300,7 +300,7 @@ div#head h5 {
 		background-position: top left;
 		background-repeat: repeat-x;
 	}
-	div#p-search div#simpleSearch input#searchInput {
+	#simpleSearch input#searchInput {
 		margin: 0;
 		border-width: 0;
 		padding: 0.25em;
@@ -310,7 +310,7 @@ div#head h5 {
 		background-color: transparent;
 	}
 	/* OVERRIDDEN BY COMPLIANT BROWSERS */
-	div#p-search div#simpleSearch button#searchButton {
+	#simpleSearch button#searchButton {
 		position: absolute;
 		top: 0;
 		right: 0;
@@ -326,20 +326,20 @@ div#head h5 {
 		background-repeat: no-repeat;
 	}
 	/* IGNORED BY IE6 */
-	div#p-search div#simpleSearch > button#searchButton {
+	#simpleSearch > button#searchButton {
 		height: 100%;
 	}
 /* Panel */
-div#panel {
+#panel {
 	position: absolute;
 	top: 12em;
 	width: 12em;
 	left: 0;
 }
-	div#panel div.portal {
+	#panel div.portal {
 		padding-top: 1.5em;
 	}
-	div#panel div.portal h5 {
+	#panel div.portal h5 {
 		font-weight: normal;
 		color: #444444;
 		padding: 0.5em;
@@ -349,7 +349,7 @@ div#panel {
 		border: none;
 		font-size: 0.9em;
 	}
-	div#panel div.portal div.body {
+	#panel div.portal div.body {
 		margin: 0;
 		padding-top: 0.5em;
 		margin-left: 1.25em;
@@ -357,26 +357,26 @@ div#panel {
 		background-repeat: no-repeat;
 		background-position: top left;
 	}
-	div#panel div.portal div.body ul {
+	#panel div.portal div.body ul {
 		list-style: none;
 		padding: 0;
 		margin: 0;
 	}
-	div#panel div.portal div.body ul li {
+	#panel div.portal div.body ul li {
 		padding: 0;
 		padding-bottom: 0.5em;
 		margin: 0;
 		overflow: hidden;
 		font-size: 0.9em;
 	}
-	div#panel div.portal div.body ul li a {
+	#panel div.portal div.body ul li a {
 		color: #0645ad;
 	}
-	div#panel div.portal div.body ul li a:visited {
+	#panel div.portal div.body ul li a:visited {
 		color: #0b0080;
 	}
 /* Foot */
-div#foot {
+#foot {
 	margin-left: 12em;
 	margin-top: 0;
 	padding: 0.75em;
@@ -384,12 +384,12 @@ div#foot {
 	background-position: top left;
 	background-repeat: repeat-x;
 }
-div#foot ul {
+#foot ul {
 	list-style: none;
 	margin: 0;
 	padding: 0;
 }
-div#foot ul li {
+#foot ul li {
 	margin: 0;
 	padding: 0;
 	padding-top: 0.5em;
@@ -397,21 +397,21 @@ div#foot ul li {
 	color: #333333;
 	font-size: 0.9em;
 }
-div#foot ul#foot-icons {
+#foot #foot-icons {
 	float: right;
 }
-div#foot ul#foot-places {
+#foot #foot-places {
 	float: left;
 }
-div#foot ul#foot-info li {
+#foot #foot-info li {
 	line-height: 1.4em;
 }
-div#foot ul#foot-icons li {
+#foot #foot-icons li {
 	float: left;
 	margin-left: 0.5em;
 	line-height: 2em;
 }
-div#foot ul#foot-places li {
+#foot #foot-places li {
 	float: left;
 	margin-right: 1em;
 	line-height: 2em;
@@ -646,31 +646,31 @@ pre {
 	background-color: #f9f9f9;
 	line-height: 1.1em;
 }
-div#content ul {
+#content ul {
 	line-height: 1.5em;
 	list-style-type: square;
 	margin: .3em 0 0 1.5em;
 	padding: 0;
 	list-style-image: url(images/bullet-icon.png);
 }
-div#content ol {
+#content ol {
 	line-height: 1.5em;
 	margin: .3em 0 0 3.2em;
 	padding: 0;
 	list-style-image: none;
 }
-div#content li {
+#content li {
 	margin-bottom: .1em;
 }
-div#content dt {
+#content dt {
 	font-weight: bold;
 	margin-bottom: .1em;
 }
-div#content dl {
+#content dl {
 	margin-top: .2em;
 	margin-bottom: .5em;
 }
-div#content dd {
+#content dd {
 	line-height: 1.5em;
 	margin-left: 2em;
 	margin-bottom: .1em;
@@ -683,12 +683,12 @@ table {
 	 * floated tables */
 	background-color: white;
 }
-div#content fieldset table {
+#content fieldset table {
 	/* but keep table layouts in forms clean... */
 	background: none;
 }
 /* Forms */
-div#content fieldset {
+#content fieldset {
 	border: 1px solid #2f6fab;
 	margin: 1em 0 1em 0;
 	padding: 0 1em 1em;
@@ -698,19 +698,19 @@ div#content fieldset {
 		margin: 0 0 0.5em 0;
 		padding: 0 0.5em 0.5em;
 	}
-div#content legend {
+#content legend {
 	padding: .5em;
 	font-size: 95%;
 }
-div#content form {
+#content form {
 	border: none;
 	margin: 0;
 }
-div#content textarea {
+#content textarea {
 	width: 100%;
 	padding: .1em;
 }
-div#content select {
+#content select {
 	vertical-align: top;
 }
 /* Table of Contents */
@@ -736,8 +736,8 @@ div#content select {
 .toc .toctitle {
 	text-align: center;
 }
-div#content #toc ul,
-div#content .toc ul {
+#toc ul,
+.toc ul {
 	list-style-type: none;
 	list-style-image: none;
 	margin-left: 0;
@@ -895,7 +895,7 @@ table.small {
 #content h3, #content h4, #content h5 {
 	margin-bottom: .3em;
 }
-h1#firstHeading {
+#firstHeading {
 	padding-top: 0;
 	margin-top: 0;
 	padding-top: 0;
@@ -971,29 +971,25 @@ h1#firstHeading {
 #content .printfooter {
 	display: none;
 }
-
-
-li#pt-userpage,
-li#pt-anonuserpage,
-li#pt-login {
+/* Icon for Usernames */
+#pt-userpage,
+#pt-anonuserpage,
+#pt-login {
 	background: url(images/user-icon.png) left top no-repeat;
 	padding-left: 15px !important;
 	text-transform: none;
 }
-
+/* To be sorted */
 span.newpage, span.minor, span.bot {
 	font-weight: bold;
 }
-
 .toccolours {
 	border: 1px solid #aaa;
 	background-color: #f9f9f9;
 	padding: 5px;
 	font-size: 95%;
 }
-
-div#bodyContent {
+#bodyContent {
 	position: relative;
 	width: 100%;
 }
-
