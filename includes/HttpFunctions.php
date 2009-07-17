@@ -255,7 +255,9 @@ class HttpRequest{
 
 	function __construct( $url, $opt ){
 		global $wgSyncHTTPTimeout;
+		//double check its a valid url:
 		$this->url = $url;
+
 		// set the timeout to default sync timeout (unless the timeout option is provided)
 		$this->timeout = ( isset( $opt['timeout'] ) ) ? $opt['timeout'] : $wgSyncHTTPTimeout;
 		$this->method = ( isset( $opt['method'] ) ) ? $opt['method'] : 'GET';
@@ -272,6 +274,16 @@ class HttpRequest{
 	 *     'adapter'          => 'curl', 'soket'
 	 */
 	public function doRequest() {
+
+		#make sure we have a valid url
+		if( !UploadFromUrl::isValidURI( $this->url ) )
+			return Status::newFatal('bad-url');
+
+		#check for php.ini allow_url_fopen
+		if( ini_get('allow_url_fopen') == 0){
+			return Status::newFatal('allow_url_fopen needs to be enabled for http copy to work');
+		}
+
 		# Use curl if available
 		if ( function_exists( 'curl_init' ) ) {
 			return $this->doCurlReq();
@@ -318,6 +330,7 @@ class HttpRequest{
 			if( !$cwrite->status->isOK() ){
 				wfDebug( __METHOD__ . "ERROR in setting up simpleFileWriter\n" );
 				$status = $cwrite->status;
+				return $status;
 			}
 			curl_setopt( $c, CURLOPT_WRITEFUNCTION, array( $cwrite, 'callbackWriteBody' ) );
 		}
@@ -369,24 +382,58 @@ class HttpRequest{
 	}
 
 	public function doPhpReq(){
-		#$use file_get_contents...
-		# This doesn't have local fetch capabilities...
+		global $wgTitle, $wgHTTPProxy;
+		//start with good status:
+		$status = Status::newGood();
 
+		//setup the headers
 		$headers = array( "User-Agent: " . Http :: userAgent() );
-		if( strcasecmp( $method, 'post' ) == 0 ) {
+		if ( is_object( $wgTitle ) ) {
+			$headers[] = "Referer: ". $wgTitle->getFullURL();
+		}
+
+		if( strcasecmp( $this->method, 'post' ) == 0 ) {
 			// Required for HTTP 1.0 POSTs
 			$headers[] = "Content-Length: 0";
 		}
-		$opts = array(
+		$fcontext = stream_context_create ( array(
 			'http' => array(
-				'method' => $method,
+				'method' => $this->method,
 				'header' => implode( "\r\n", $headers ),
-				'timeout' => $timeout ) );
-		$ctx = stream_context_create( $opts );
+				'timeout' => $this->timeout )
+			)
+		);
 
-		$status = new Status;
-		$status->value = file_get_contents( $url, false, $ctx );
-		if( !$status->value ){
+		$fh = fopen( $this->url, "r", false, $fcontext);
+
+		// set the write back function (if we are writing to a file)
+		if( $this->target_file_path ){
+			$cwrite = new simpleFileWriter( $this->target_file_path, $this->upload_session_key );
+			if( !$cwrite->status->isOK() ){
+				wfDebug( __METHOD__ . "ERROR in setting up simpleFileWriter\n" );
+				$status = $cwrite->status;
+				return $status;
+			}
+			//read $fh into the simpleFileWriter (grab in 64K chunks since its likely a media file)
+			while ( !feof( $fh )) {
+				 $contents = fread($fh, 65536);
+				 $cwrite->callbackWriteBody($fh, $contents );
+			}
+
+			$cwrite->close();
+			//check for simpleFileWriter error:
+			if( !$cwrite->status->isOK() ){
+				return $cwrite->status;
+			}
+		}else{
+			//read $fh into status->value
+			$status->value = @stream_get_contents( $fh );
+		}
+		//close the url file wrapper
+		fclose( $fh );
+
+		//check for "false"
+		if( $status->value === false ){
 			$status->error( 'file_get_contents-failed' );
 		}
 		return $status;
