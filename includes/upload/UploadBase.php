@@ -463,12 +463,12 @@ class UploadBase {
 			return false;
 		}
 		$mTempPath = $status->value;
-		session_start(); // start up the session (might have been previously closed to prevent php session locking)
+		if(!isset($_SESSION))
+			session_start(); // start up the session (might have been previously closed to prevent php session locking)
 		$key = $this->getSessionKey();
 		$_SESSION['wsUploadData'][$key] = array(
 			'mTempPath'       => $mTempPath,
 			'mFileSize'       => $this->mFileSize,
-			'mSrcName'        => $this->mSrcName,
 			'mFileProps'      => $this->mFileProps,
 			'version'         => self::SESSION_VERSION,
 		);
