@@ -2254,8 +2254,6 @@ Mard eo se e c'hallit ivez implijout ul liamm a seurt gant [[{{#Special:Export}}
 'allmessagestext'           => "Setu roll ar c'hemennadennoù reizhiad a c'haller kaout en esaouennoù anv MediaWiki.
 Kit da welet [http://www.mediawiki.org/wiki/Localisation Lec'heladur MediaWiki] ha [http://translatewiki.net translatewiki.net] mar fell deoc'h kemer perzh e lec'heladur boutin MediaWiki.",
 'allmessagesnotsupportedDB' => "N'haller ket kaout {{ns:special}}:AllMessages rak diweredekaet eo bet wgUseDatabaseMessages.",
-'allmessagesfilter'         => 'Sil anv kemennadenn :',
-'allmessagesmodified'       => 'Diskouez ar re bet kemmet hepken',
 
 # Thumbnails
 'thumbnail-more'           => 'Brasaat',

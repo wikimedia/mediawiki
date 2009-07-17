@@ -346,8 +346,7 @@ $messages = array(
 'delete_and_move'  => 'ᓂᐸᖅᑎᐹ  ᐊᒻᒪ ᐅᐊᔪᖅ',
 
 # Namespace 8 related
-'allmessagesname'     => 'ᐊᑎᖅ',
-'allmessagesmodified' => 'ᐊᓚᒃᑲᑎᖅᐹ ᓯᕐᓚᒃ ᑐᑭᓕᑕᖅᑖᐹ',
+'allmessagesname' => 'ᐊᑎᖅ',
 
 # Import log
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|ᑎᑎᕋᖅᑕᐅᒋᐊᕐᖓᕈᑦ|ᑎᑎᕋᖅᑕᐅᒋᐊᕐᖓᕈᑦ}}',

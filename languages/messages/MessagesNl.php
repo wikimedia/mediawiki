@@ -2621,8 +2621,6 @@ In het laatste geval kunt u ook een verwijzing gebruiken, bijvoorbeeld [[{{#Spec
 'allmessagestext'           => 'Hieronder staan de systeemberichten uit de MediaWiki-naamruimte.
 Ga naar [http://www.mediawiki.org/wiki/Localisation MediaWiki-lokalisatie] en [http://translatewiki.net translatewiki.net] als u wilt bijdragen aan de algemene vertaling voor MediaWiki.',
 'allmessagesnotsupportedDB' => "Deze pagina kan niet gebruikt worden omdat '''\$wgUseDatabaseMessages''' is uitgeschakeld.",
-'allmessagesfilter'         => 'Bericht naamfilter:',
-'allmessagesmodified'       => 'Alleen gewijzigde systeemteksten bekijken',
 
 # Thumbnails
 'thumbnail-more'           => 'Vergroten',

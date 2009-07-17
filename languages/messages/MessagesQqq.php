@@ -2292,8 +2292,6 @@ Parameters:
 'allmessagescurrent'        => 'The header for the upper row of each column in the table of [[Special:AllMessages]].',
 'allmessagestext'           => 'Summary displayed at the top of [[Special:AllMessages]].',
 'allmessagesnotsupportedDB' => 'This message is displayed on [[Special:AllMessages]] on wikis were the configuration variable $wgUseDatabaseMessages is disabled. It means that the MediaWiki namespace is not used.',
-'allmessagesfilter'         => 'Label for the input box of message name filter in [[Special:Allmessages]].',
-'allmessagesmodified'       => 'It is used as a label on the button in [[Special:Allmessages]], and it switches the display from showing all messages to only the ones different between the default and the local, and vice versa.',
 
 # Thumbnails
 'thumbnail-more'          => '[[Image:Yes.png|thumb|This:]]

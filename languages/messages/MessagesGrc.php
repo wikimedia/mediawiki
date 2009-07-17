@@ -1937,12 +1937,10 @@ $1',
 'export-pagelinks'  => 'Συμπερίληψις συνδεδεμένων δέλτων εἰς βάθος:',
 
 # Namespace 8 related
-'allmessages'         => 'Μυνήματα συστήματος',
-'allmessagesname'     => 'Ὄνομα',
-'allmessagesdefault'  => 'Προεπειλεγμένον κείμενον',
-'allmessagescurrent'  => 'Τρέχον κείμενον',
-'allmessagesfilter'   => 'Διηθητήριον ὀνόματος ἀγγελίας:',
-'allmessagesmodified' => 'Δεικνύναι μόνον τὰ μεταβεβλημένα',
+'allmessages'        => 'Μυνήματα συστήματος',
+'allmessagesname'    => 'Ὄνομα',
+'allmessagesdefault' => 'Προεπειλεγμένον κείμενον',
+'allmessagescurrent' => 'Τρέχον κείμενον',
 
 # Thumbnails
 'thumbnail-more'           => 'Αὐξάνειν',

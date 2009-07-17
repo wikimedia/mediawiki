@@ -2310,8 +2310,6 @@ $1 је већ блокиран. Да ли желите да промените 
 'allmessagestext'           => 'Ово је списак системских порука које су у МедијаВики именском простору.
 Посетите [http://translatewiki.net translatewiki.net] уколико желите да помогнете у локализацији.',
 'allmessagesnotsupportedDB' => "Ова страница не може бити употребљена зато што је '''\$wgUseDatabaseMessages''' искључен.",
-'allmessagesfilter'         => 'Филтер за регуларне изразе:',
-'allmessagesmodified'       => 'Прикажи само измењене',
 
 # Thumbnails
 'thumbnail-more'           => 'увећај',

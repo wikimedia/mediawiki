@@ -987,8 +987,6 @@ Grein við navninum "[[:$1]]" finst longu. Ynskir tú at strika hana til tess at
 'allmessagestext'           => 'Hetta er eitt yvirlit av tøkum kervisboðum í MediaWiki-navnarúmi.
 Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net translatewiki.net] if you wish to contribute to the generic MediaWiki localisation.',
 'allmessagesnotsupportedDB' => "'''{{ns:special}}:AllMessages''' er ikki stuðlað orsakað av at '''\$wgUseDatabaseMessages''' er sløkt.",
-'allmessagesfilter'         => 'Boð navn filtur:',
-'allmessagesmodified'       => 'Vís bert broytt',
 
 # Thumbnails
 'thumbnail-more' => 'Víðka',

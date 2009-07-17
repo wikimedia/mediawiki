@@ -2158,8 +2158,6 @@ En iste zaguer caso tamién puede usar un binclo, por exemplo [[{{#Special:Expor
 'allmessagestext'           => "Ista ye una lista de toz os mensaches disponibles en o espazio de nombres MediaWiki.
 Besite por fabor [http://www.mediawiki.org/wiki/Localisation a pachina sobre localizazión de MediaWiki] y  [http://translatewiki.net translatewiki.net] si deseya contrebuyir t'a localizazión cheneral de MediaWiki.",
 'allmessagesnotsupportedDB' => 'Ista pachina no ye disponible porque wgUseDatabaseMessages ye desautibato.',
-'allmessagesfilter'         => "Filtrar por a etiqueta d'os mensaches:",
-'allmessagesmodified'       => 'Amostrar nomás os mensaches cambiatos',
 
 # Thumbnails
 'thumbnail-more'           => 'Fer más gran',

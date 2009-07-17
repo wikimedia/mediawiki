@@ -1603,7 +1603,6 @@ air, nó is féidir leat é a coinniú do do chuid shiamsa féin.',
 'allmessagescurrent'        => 'Téacs reatha',
 'allmessagestext'           => 'Liosta is ea seo de theachtaireachtaí córais atá le fáil san ainmspás MediaWiki: .',
 'allmessagesnotsupportedDB' => "Ní féidir an leathanach seo a úsáid dá bharr gur díchumasaíodh '''\$wgUseDatabaseMessages'''.",
-'allmessagesfilter'         => "Scagaire teachtaireacht d'ainm:",
 
 # Thumbnails
 'thumbnail-more'  => 'Méadaigh',

@@ -2395,8 +2395,6 @@ $1 は、すでにブロックされています。設定を変更しますか�
 'allmessagescurrent'        => '現在の文章',
 'allmessagestext'           => 'これは MediaWiki 名前空間で利用可能なシステムメッセージの一覧です。MediaWiki の一般的なローカリゼーションに貢献したい場合は、[http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] や [http://translatewiki.net?setlang=ja translatewiki.net] を訪れてみてください。',
 'allmessagesnotsupportedDB' => "'''\$wgUseDatabaseMessages''' が無効なので、このページを使うことはできません。",
-'allmessagesfilter'         => 'メッセージ名で絞り込み:',
-'allmessagesmodified'       => '変更されたもののみを表示',
 
 # Thumbnails
 'thumbnail-more'           => '拡大',

@@ -2290,8 +2290,6 @@ W poslednim padźe móžeš tež wotkaz wužiwać, na př. „[[{{#Special:Expor
 'allmessagescurrent'        => 'Aktualny tekst',
 'allmessagestext'           => 'To je lisćina systemowych zdźělenkow, kotrež w mjenowym rumje MediaWiki k dispoziciji steja. Prošu wopytaj [http://www.mediawiki.org/wiki/Localisation lokalizaciju MediaWiki] a [http://translatewiki.net translatewiki.net], jeli chceš k powšitkownej lokalizaciji MediaWiki přinošować.',
 'allmessagesnotsupportedDB' => "Tuta strona njeda so wužiwać, dokelž '''\$wgUseDatabaseMessages''' bu znjemóžnjeny.",
-'allmessagesfilter'         => 'Filter za jednotliwe zdźělenki:',
-'allmessagesmodified'       => 'Jenož změnjene pokazać',
 
 # Thumbnails
 'thumbnail-more'           => 'powjetšić',

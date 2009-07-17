@@ -1928,8 +1928,6 @@ Paginae nomen petitum "[[:$1]]" iam existit. Vin tu eam delere ut pagina illic m
 'allmessagescurrent'        => 'Textus recens nuntii',
 'allmessagestext'           => 'Hic est index omnium nuntiorum in MediaWiki.',
 'allmessagesnotsupportedDB' => "Haec pagina non adhiberi potest, quia '''\$wgUseDatabaseMessages''' non iam agitur.",
-'allmessagesfilter'         => 'Colum nominibus nuntiorum:',
-'allmessagesmodified'       => 'Ea modificata sola monstrare',
 
 # Thumbnails
 'thumbnail-more'  => 'Augere',

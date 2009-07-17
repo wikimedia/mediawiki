@@ -2540,8 +2540,6 @@ U drugom slučaju možete koristiti i vezu, npr. [[{{#Special:Export}}/{{MediaWi
 'allmessagestext'           => 'Ovo je spisak svih sistemskih poruka u dostupnih u MediaWiki imenskom prostoru.
 Molimo posjetite [http://www.mediawiki.org/wiki/Localisation MediaWiki lokalizaciju] i [http://translatewiki.net translatewiki.net] ako želite doprinijeti općoj lokalizaciji MediaWikija.',
 'allmessagesnotsupportedDB' => 'Ova stranica ne može biti korištena jer je <i>wgUseDatabaseMessages</i> isključen.',
-'allmessagesfilter'         => 'Filter naziva poruka:',
-'allmessagesmodified'       => 'Prikaži samo izmijenjeno',
 
 # Thumbnails
 'thumbnail-more'           => 'uvećajte',

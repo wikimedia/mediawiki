@@ -2387,8 +2387,6 @@ Dersom du bare vil ha nåværende versjon, kan du også bruke en lenke, for ekse
 'allmessagestext'           => 'Dette er en liste over tilgjengelige systemmeldinger i MediaWiki-navnerommet.
 Besøk [http://translatewiki.net translatewiki.net] om du ønsker å bidra med oversettelse av MediaWiki.',
 'allmessagesnotsupportedDB' => "''{{ns:special}}:Allmessages'' kan ikke brukes fordi '''\$wgUseDatabaseMessages''' er slått av.",
-'allmessagesfilter'         => 'Filter:',
-'allmessagesmodified'       => 'Vis kun endrede',
 
 # Thumbnails
 'thumbnail-more'           => 'Forstørr',

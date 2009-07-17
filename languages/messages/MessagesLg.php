@@ -480,13 +480,11 @@ Bw\'oba oyagala okulekerawo okulugoberera, nyiga ku kigambo "Suula" awo ku bbali
 'export' => 'Okusomosa empapula',
 
 # Namespace 8 related
-'allmessages'         => 'Bubaka bwa sisitemu',
-'allmessagesname'     => 'Erinnya',
-'allmessagesdefault'  => 'Ebigambo ebya bulijjo',
-'allmessagescurrent'  => 'Ebiriwo kakano',
-'allmessagestext'     => "Luno lwe lukalala olw'obubaka obwa sisitemu obw'omu kkunngaanizo erya MediaWiki.",
-'allmessagesfilter'   => "Amannya ag'obubaka gasunsuze:",
-'allmessagesmodified' => 'Lagako ebikyusidwa byokka',
+'allmessages'        => 'Bubaka bwa sisitemu',
+'allmessagesname'    => 'Erinnya',
+'allmessagesdefault' => 'Ebigambo ebya bulijjo',
+'allmessagescurrent' => 'Ebiriwo kakano',
+'allmessagestext'    => "Luno lwe lukalala olw'obubaka obwa sisitemu obw'omu kkunngaanizo erya MediaWiki.",
 
 # Thumbnails
 'thumbnail-more'  => 'Gejjesa ekifaanayi',

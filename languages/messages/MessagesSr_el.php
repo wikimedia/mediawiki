@@ -1485,8 +1485,6 @@ U drugom slučaju, možete takođe koristiti vezu, npr. [[{{ns:special}}:Export/
 'allmessagescurrent'        => 'Trenutni tekst',
 'allmessagestext'           => 'Ovo je spisak svih poruka koje su u {{ns:mediawiki}} imenskom prostoru',
 'allmessagesnotsupportedDB' => "Stranica '''{{ns:special}}:Allmessages''' ne može da se koristi zato što je '''\$wgUseDatabaseMessages''' isključen.",
-'allmessagesfilter'         => 'Filter za imena poruka:',
-'allmessagesmodified'       => 'Prikaži samo izmenjene',
 
 # Thumbnails
 'thumbnail-more'  => 'uvećaj',

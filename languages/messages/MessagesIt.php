@@ -2385,8 +2385,6 @@ In quest'ultimo caso si può anche utilizzare un collegamento, ad esempio [[{{#S
 'allmessagestext'           => 'Questa è la lista di tutti i messaggi di sistema disponibili nel namespace MediaWiki.
 Visitare [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] e [http://translatewiki.net translatewiki.net] se si desidera contribuire alla localizzazione generica di MediaWiki.',
 'allmessagesnotsupportedDB' => "Non è possibile utilizzare questa pagina perché il flag '''\$wgUseDatabaseMessages''' non è attivo.",
-'allmessagesfilter'         => 'Filtro sui messaggi:',
-'allmessagesmodified'       => 'Mostra solo quelli modificati',
 
 # Thumbnails
 'thumbnail-more'           => 'Ingrandisci',

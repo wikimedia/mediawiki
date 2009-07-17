@@ -1055,7 +1055,6 @@ In the saicont case ye can uise an airtin forbye, for exemplar [[{{#Special:Expo
 'allmessagescurrent'        => 'Text the nou',
 'allmessagestext'           => 'This is a leet o aa seestem messages available in the MediaWiki: namespace.',
 'allmessagesnotsupportedDB' => "'''{{ns:special}}:AllMessages''' nae supportit acause '''\$wgUseDatabaseMessages''' is aff.",
-'allmessagesmodified'       => 'Juist shaw chynged',
 
 # Thumbnails
 'filemissing' => 'File missin',

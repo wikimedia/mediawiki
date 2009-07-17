@@ -2338,8 +2338,6 @@ $1',
 'allmessagestext'           => 'شی یک لیستی چه کوله یان موجود ته نام فضای مدیا وی کی انت.
 لطفا بچاریت  [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] و [http://translatewiki.net translatewiki.net] اگر شما لوٹیت ته ملکی کتن مدیا وی کی کمک کنیت.',
 'allmessagesnotsupportedDB' => "ای صفحه نه تونیت استفاده بیت په چی که'''\$wgUseDatabaseMessages''' غیر فعالنت.",
-'allmessagesfilter'         => 'فیلتر نام کوله:',
-'allmessagesmodified'       => 'فقط پیش دار تغییر دهگ بیتیگن',
 
 # Thumbnails
 'thumbnail-more'           => 'مزن',

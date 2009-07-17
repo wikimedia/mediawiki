@@ -2074,8 +2074,6 @@ $1',
 'allmessagescurrent'        => 'सध्याचा मजकूर',
 'allmessagestext'           => 'MediaWiki नामविश्वातील सर्व प्रणाली संदेशांची यादी',
 'allmessagesnotsupportedDB' => "हे पान संपादित करता येत नाही कारण'''\$wgUseDatabaseMessages''' मालवला आहे.",
-'allmessagesfilter'         => 'संदेशनावांची चाळणी:',
-'allmessagesmodified'       => 'फक्त बदललेले दाखवा',
 
 # Thumbnails
 'thumbnail-more'           => 'मोठे करा',

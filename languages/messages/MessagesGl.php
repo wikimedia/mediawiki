@@ -2459,8 +2459,6 @@ No último caso, pode usar tamén unha ligazón, por exemplo [[{{#Special:Export
 'allmessagestext'           => 'Esta é unha lista de todas as mensaxes dispoñibles no espazo de nomes MediaWiki.
 Por favor, visite a [http://www.mediawiki.org/wiki/Localisation localización MediaWiki] e [http://translatewiki.net translatewiki.net] se quere contribuír á localización xenérica de MediaWiki.',
 'allmessagesnotsupportedDB' => "'''{{ns:special}}:Allmessages''' non está dispoñíbel porque '''\$wgUseDatabaseMessages''' está desactivado.",
-'allmessagesfilter'         => 'Filtrar polo nome da mensaxe:',
-'allmessagesmodified'       => 'Amosar só as modificadas',
 
 # Thumbnails
 'thumbnail-more'           => 'Agrandado',

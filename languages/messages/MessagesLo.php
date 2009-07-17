@@ -856,11 +856,10 @@ $messages = array(
 'delete_and_move_reason'  => 'ລຶບແລ້ວ ເພື່ອ ຍ້າຍໜ້າອື່ນ ມານີ້',
 
 # Namespace 8 related
-'allmessages'         => 'ຂໍ້ຄວາມ ຂອງ ລະບົບ',
-'allmessagesname'     => 'ຊື່',
-'allmessagesdefault'  => 'ຂໍ້ຄວາມເດີມ',
-'allmessagescurrent'  => 'ຂໍ້ຄວາມປະຈຸບັນ',
-'allmessagesmodified' => 'ສະແດງແຕ່ອັນທີ່ຖືກດັດແປງ',
+'allmessages'        => 'ຂໍ້ຄວາມ ຂອງ ລະບົບ',
+'allmessagesname'    => 'ຊື່',
+'allmessagesdefault' => 'ຂໍ້ຄວາມເດີມ',
+'allmessagescurrent' => 'ຂໍ້ຄວາມປະຈຸບັນ',
 
 # Thumbnails
 'thumbnail-more' => 'ໃຫ້ໃຫຍ່ຂຶ້ນ',

@@ -2288,8 +2288,6 @@ Sa huling kaso, maaari mong gumamit ng ungay, hal. [[{{#Special:Export}}/{{Media
 'allmessagestext'           => 'Isa itong talaan ng mga mensahe ng sistema na makukuha mula sa espasyo ng pangalang MediaWiki.
 Pakidalaw ang [http://www.mediawiki.org/wiki/Localisation Lokalisasyong MediaWiki] at [http://translatewiki.net translatewiki.net] kung ibig mong magambag sa heneriko o pangkalahatang lokalisasyon ng MediaWiki.',
 'allmessagesnotsupportedDB' => "Hindi magagamit ang '''{{ns:special}}:AllMessages''' dahil hindi gumagana ang '''\$wgUseDatabaseMessages'''.",
-'allmessagesfilter'         => 'Pansala ng pangalan ng mensahe:',
-'allmessagesmodified'       => 'Ipakita lamang ang mga binago',
 
 # Thumbnails
 'thumbnail-more'           => 'Palakihin',

@@ -2137,8 +2137,6 @@ $1 ត្រូវ​បាន​ទប់ស្កាត់​ហើយ​។ �
 'allmessagesdefault'        => 'អត្ថបទលំនាំដើម',
 'allmessagescurrent'        => 'អត្ថបទបច្ចុប្បន្ន',
 'allmessagesnotsupportedDB' => "ទំព័រនេះមិនអាចប្រើប្រាស់បានទេព្រោះ '''\$wgUseDatabaseMessages''' ត្រូវបានបិទមិនឱ្យប្រើ។",
-'allmessagesfilter'         => 'កម្រងឈ្មោះសារ៖',
-'allmessagesmodified'       => 'បង្ហាញតែការកែសម្រួល',
 
 # Thumbnails
 'thumbnail-more'           => 'ពង្រីក',

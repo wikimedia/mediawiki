@@ -2007,8 +2007,6 @@ Možeš tyž užyć linku, np.[[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] do 
 'allmessagestext'           => 'Uoto lista wšyjstkych kůmůńikatůw systymowych dostympnych w přestřyńi mjan MedjaWiki.
 Uodwjydź [http://www.mediawiki.org/wiki/Localisation Tuůmačyńy MediaWiki] a tyž [http://translatewiki.net translatewiki.net] kejbyś chćou učestńičyć w tuůmačyńu uoprůgramowańo MediaWiki.',
 'allmessagesnotsupportedDB' => "Ta zajta ńy može być užyta, bez tůž co zmjynna '''\$wgUseDatabaseMessages''' je wůuůnčůno.",
-'allmessagesfilter'         => 'Filter mjan kůmuńikatůw:',
-'allmessagesmodified'       => 'Pokož ino zmodyfikowane',
 
 # Thumbnails
 'thumbnail-more'           => 'Powjynkš',

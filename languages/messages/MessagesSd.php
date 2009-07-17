@@ -838,11 +838,9 @@ $1 {{PLURAL:$1|اکر|اکرن}} کان ننڍي هوڻ گھرجي.',
 'export' => 'صفحا برآمديو',
 
 # Namespace 8 related
-'allmessages'         => 'سرشتائي نياپا',
-'allmessagesname'     => 'نالو',
-'allmessagescurrent'  => 'موجوده تحرير',
-'allmessagesfilter'   => 'نياپي نانءُ ڇاڻي:',
-'allmessagesmodified' => 'صرف ترميم شدھ ڏيکاريو',
+'allmessages'        => 'سرشتائي نياپا',
+'allmessagesname'    => 'نالو',
+'allmessagescurrent' => 'موجوده تحرير',
 
 # Thumbnails
 'thumbnail-more' => 'وڏو ڪريو',

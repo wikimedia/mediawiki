@@ -1493,14 +1493,12 @@ Lütfen, başqa bir ad saylap yazıñız.',
 'export' => 'Saifelerni eksport et',
 
 # Namespace 8 related
-'allmessages'         => 'Sistema beyanatları',
-'allmessagesname'     => 'İsim',
-'allmessagesdefault'  => 'Original metin',
-'allmessagescurrent'  => 'Şimdi qullanılğan metin',
-'allmessagestext'     => 'İşbu cedvel MediaWikide mevcut olğan bütün sistema beyanatlarınıñ cedvelidir.
+'allmessages'        => 'Sistema beyanatları',
+'allmessagesname'    => 'İsim',
+'allmessagesdefault' => 'Original metin',
+'allmessagescurrent' => 'Şimdi qullanılğan metin',
+'allmessagestext'    => 'İşbu cedvel MediaWikide mevcut olğan bütün sistema beyanatlarınıñ cedvelidir.
 MediaWiki interfeysiniñ çeşit tillerge tercime etüvde iştirak etmege isteseñiz [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] ve [http://translatewiki.net translatewiki.net] saifelerine ziyaret etiñiz.',
-'allmessagesfilter'   => 'Metin ayrıştırıcı filtrı:',
-'allmessagesmodified' => 'Tek deñiştirilgenlerni köster',
 
 # Thumbnails
 'thumbnail-more'           => 'Büyüt',

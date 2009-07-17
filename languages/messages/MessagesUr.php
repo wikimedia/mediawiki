@@ -873,13 +873,11 @@ HTML tags جانچئے.',
 'export' => 'برآمد صفحات',
 
 # Namespace 8 related
-'allmessages'         => 'نظامی پیغامات',
-'allmessagesname'     => 'نام',
-'allmessagesdefault'  => 'طے شدہ متن',
-'allmessagescurrent'  => 'موجودہ متن',
-'allmessagestext'     => 'یہ میڈیاویکی: جاۓ نام میں دستیاب نظامی پیغامات کی فہرست ہے۔',
-'allmessagesfilter'   => 'مِصفاہ اسم پیغام:',
-'allmessagesmodified' => 'فقط ترامیم کا اظہار',
+'allmessages'        => 'نظامی پیغامات',
+'allmessagesname'    => 'نام',
+'allmessagesdefault' => 'طے شدہ متن',
+'allmessagescurrent' => 'موجودہ متن',
+'allmessagestext'    => 'یہ میڈیاویکی: جاۓ نام میں دستیاب نظامی پیغامات کی فہرست ہے۔',
 
 # Special:Import
 'import' => 'درآمد صفحات',

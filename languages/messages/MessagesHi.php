@@ -1887,8 +1887,6 @@ $1 को बाध्य करने का कारण है: "$2"',
 'allmessagescurrent'        => 'वर्तमान पाठ',
 'allmessagestext'           => 'यह मीडियाविकि नेमस्पेस में उपलब्ध वयवस्था संदेशों की सूची है।',
 'allmessagesnotsupportedDB' => "इस पन्ने का इस्तेमाल नहीं कर सकते क्योंकी '''\$wgUseDatabaseMessages''' बंद हैं।",
-'allmessagesfilter'         => 'संदेशनाम फिल्टर:',
-'allmessagesmodified'       => 'केवल परिवर्तित दिखायें',
 
 # Thumbnails
 'thumbnail-more'           => 'बड़ा किजीये',

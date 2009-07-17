@@ -1871,8 +1871,6 @@ $NEWPAGE
 'allmessagescurrent'        => 'მიმდინარე ტექსტი',
 'allmessagestext'           => 'ეს არის სახელთა სივრცე მედიავიკიში არსებული სისტემური შეტყობინებების ჩამონათვალი.',
 'allmessagesnotsupportedDB' => '{{ns:special}}:AllMessages-ის უზრუნველყოფა არ ხდება, ვინაიდან wgUseDatabaseMessages გამორთულია.',
-'allmessagesfilter'         => 'შეტყობინების სახელის გაფილტვრა:',
-'allmessagesmodified'       => 'აჩვენე მხოლოდ შეცვლილი',
 
 # Thumbnails
 'thumbnail-more'           => 'გაზარდე',

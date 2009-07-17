@@ -987,8 +987,6 @@ Vakai ki he [[Special:Log/delete|hokohoko tāmateʻi]] ki he lekooti ʻo e ngaah
 'allmessagescurrent'        => 'Tohi lolotonga',
 'allmessagestext'           => "Ko e hokohoko ʻeni ʻo e ngaahi tala fakafounga kātoa ʻi he vā hingoa ''MediaWiki''.",
 'allmessagesnotsupportedDB' => "ʻOku ʻikai ngāueʻaki mo e '''{{ns:special}}:Allmessages''' koeʻuhi ʻoku kamosiʻi mate ʻa e '''\$wgUseDatabaseMessages'''.",
-'allmessagesfilter'         => 'Meʻasivi ki he hingoa ʻo e tala:',
-'allmessagesmodified'       => 'ʻAsi mai meʻa kuo liliu pē',
 
 # Thumbnails
 'filemissing' => 'ʻOku pulia ʻa e faile',

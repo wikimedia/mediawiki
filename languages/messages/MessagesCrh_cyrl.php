@@ -1496,14 +1496,12 @@ e-mail: $PAGEEDITOR_EMAIL
 'export' => 'Саифелерни экспорт эт',
 
 # Namespace 8 related
-'allmessages'         => 'Система беянатлары',
-'allmessagesname'     => 'Исим',
-'allmessagesdefault'  => 'Оригиналь метин',
-'allmessagescurrent'  => 'Шимди къулланылгъан метин',
-'allmessagestext'     => 'Ишбу джедвель MediaWiki-де мевджут олгъан бутюн система беянатларынынъ джедвелидир.
+'allmessages'        => 'Система беянатлары',
+'allmessagesname'    => 'Исим',
+'allmessagesdefault' => 'Оригиналь метин',
+'allmessagescurrent' => 'Шимди къулланылгъан метин',
+'allmessagestext'    => 'Ишбу джедвель MediaWiki-де мевджут олгъан бутюн система беянатларынынъ джедвелидир.
 MediaWiki интерфейсининъ чешит тиллерге терджиме этювде иштирак этмеге истесенъиз [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] ве [http://translatewiki.net translatewiki.net] саифелерине зиярет этинъиз.',
-'allmessagesfilter'   => 'Метин айрыштырыджы фильтры:',
-'allmessagesmodified' => 'Тек денъиштирильгенлерни косьтер',
 
 # Thumbnails
 'thumbnail-more'           => 'Буют',

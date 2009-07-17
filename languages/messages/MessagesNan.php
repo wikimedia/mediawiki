@@ -753,13 +753,11 @@ Liâu--lo̍h-khì chìn-chêng, chhiáⁿ seng khak-tēng lí ū liáu-kái chia
 'exportcuronly' => 'Hān hiān-chhú-sî ê siu-téng-pún, mài pau-koat kui-ê le̍k-sú',
 
 # Namespace 8 related
-'allmessages'         => 'Hē-thóng sìn-sit',
-'allmessagesname'     => 'Miâ',
-'allmessagesdefault'  => 'Siat piān ê bûn-jī',
-'allmessagescurrent'  => 'Bo̍k-chêng ê bûn-jī',
-'allmessagestext'     => 'Chia lia̍t chhut só·-ū tī MediaWiki: miâ-khong-kan ê hē-thóng sìn-sit.',
-'allmessagesfilter'   => 'Thai sìn-sek ê tiâu-ba̍k:',
-'allmessagesmodified' => 'Kan-taⁿ hián-sī kái--kòe ê',
+'allmessages'        => 'Hē-thóng sìn-sit',
+'allmessagesname'    => 'Miâ',
+'allmessagesdefault' => 'Siat piān ê bûn-jī',
+'allmessagescurrent' => 'Bo̍k-chêng ê bûn-jī',
+'allmessagestext'    => 'Chia lia̍t chhut só·-ū tī MediaWiki: miâ-khong-kan ê hē-thóng sìn-sit.',
 
 # Thumbnails
 'thumbnail-more' => 'Hòng-tōa',

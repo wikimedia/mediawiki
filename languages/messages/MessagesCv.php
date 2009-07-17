@@ -1031,10 +1031,9 @@ $1 хутшăнакан патне, е ытти [[{{MediaWiki:Grouppage-sysop}}|
 'export-templates' => 'Шаблонсене ĕçлеттер',
 
 # Namespace 8 related
-'allmessages'         => 'Система пĕлтерĕвĕсем',
-'allmessagesname'     => 'Пĕлтерӳ',
-'allmessagescurrent'  => 'Хальхи текст',
-'allmessagesmodified' => 'Улăштарнисене кăна кăтартмалла',
+'allmessages'        => 'Система пĕлтерĕвĕсем',
+'allmessagesname'    => 'Пĕлтерӳ',
+'allmessagescurrent' => 'Хальхи текст',
 
 # Thumbnails
 'thumbnail-more'           => 'Пысăклатмалли',

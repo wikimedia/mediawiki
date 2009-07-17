@@ -2173,8 +2173,6 @@ $1 сёлкф ни. Мяльце полафтомс латцематнень?',
 'allmessagestext'           => 'Тя MediaWiki-са васьфневи системонь пачфтематнень лувомась.
 Эняльттяма, сувак [http://www.mediawiki.org/wiki/Localisation MediaWiki Локализациес] ди [http://translatewiki.net translatewiki.net-с] кда тонь мяльце тиемс эсь путксце марстонь MediaWiki локализациес.',
 'allmessagesnotsupportedDB' => "Тя лопас аш кода кунцемс сяс мес '''\$wgUseDatabaseMessages'''лоткафоль.",
-'allmessagesfilter'         => 'Пачфтемань лепнень фильтрась:',
-'allmessagesmodified'       => 'Няфтемс аньцек полафтф',
 
 # Thumbnails
 'thumbnail-more'           => 'Оцюлгофтомс',

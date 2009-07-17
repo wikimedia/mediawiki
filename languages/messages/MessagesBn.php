@@ -1717,8 +1717,6 @@ $1',
 'allmessagestext'           => 'নিচে মিডিয়াউইকি: নামস্থানে অন্তর্ভুক্ত সিস্টেম বার্তাগুলোর তালিকা দেওয়া হল।
 Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net translatewiki.net] if you wish to contribute to the generic MediaWiki localisation.',
 'allmessagesnotsupportedDB' => "'''{{ns:special}}:Allmessages''' ব্যবহার করা যাবে না কারণ '''\$wgUseDatabaseMessages''' বন্ধ করে রাখা আছে।",
-'allmessagesfilter'         => 'বার্তা নামের ফিল্টার:',
-'allmessagesmodified'       => 'শুধু পরিবর্তিত অংশগুলো দেখাও',
 
 # Thumbnails
 'thumbnail-more'           => 'বড় করো',

@@ -2055,14 +2055,12 @@ De doelside "[[:$1]]" is der al. Moat dy wiske wurde om plak te meitsjen foar it
 'export-templates'  => 'Tafoegje berjochten',
 
 # Namespace 8 related
-'allmessages'         => 'Alle wikiberjochten',
-'allmessagesname'     => 'Namme',
-'allmessagesdefault'  => 'Standerttekst',
-'allmessagescurrent'  => 'Tekst yn de nijste ferzje',
-'allmessagestext'     => 'Dit is in list fan alle systeemberjochten beskikber yn de MediaWiki-nammeromte.
+'allmessages'        => 'Alle wikiberjochten',
+'allmessagesname'    => 'Namme',
+'allmessagesdefault' => 'Standerttekst',
+'allmessagescurrent' => 'Tekst yn de nijste ferzje',
+'allmessagestext'    => 'Dit is in list fan alle systeemberjochten beskikber yn de MediaWiki-nammeromte.
 Sjoch: [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation], [http://translatewiki.net translatewiki.net].',
-'allmessagesfilter'   => 'Berjocht namme filter:',
-'allmessagesmodified' => 'Allinne wizige berjochten',
 
 # Thumbnails
 'thumbnail-more'           => 'Fergrutsje',

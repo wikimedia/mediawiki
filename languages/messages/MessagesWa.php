@@ -1274,8 +1274,6 @@ Dins ç' dierin cas, vos ploz eto eployî ene hårdêye, eg: [[{{#Special:Export
 'allmessagescurrent'        => 'Tecse pol moumint',
 'allmessagestext'           => "Çouchal est ene djivêye di tos les messaedjes k' i gn a dins l' espåce di lomaedje ''MediaWiki:''",
 'allmessagesnotsupportedDB' => "'''{{ns:special}}:AllMessages''' n' est nén sopoirté paski '''\$wgUseDatabaseMessages''' est dismetou.",
-'allmessagesfilter'         => 'Erîlêye ratourneure pol passete:',
-'allmessagesmodified'       => 'Seulmint les cis candjîs',
 
 # Thumbnails
 'thumbnail-more'  => 'Ragrandi',

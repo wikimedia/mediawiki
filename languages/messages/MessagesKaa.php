@@ -1760,14 +1760,12 @@ Basqa atama saylan'",
 'export-addcat'     => 'Qos',
 
 # Namespace 8 related
-'allmessages'         => 'Sistema xabarları',
-'allmessagesname'     => 'Atama',
-'allmessagesdefault'  => 'Defolt tekst',
-'allmessagescurrent'  => "Ha'zirgi tekst",
-'allmessagestext'     => "Bul {{ns:mediawiki}} isimler ko'pligindegi bar bolg'an sistema xabarları dizimi.
+'allmessages'        => 'Sistema xabarları',
+'allmessagesname'    => 'Atama',
+'allmessagesdefault' => 'Defolt tekst',
+'allmessagescurrent' => "Ha'zirgi tekst",
+'allmessagestext'    => "Bul {{ns:mediawiki}} isimler ko'pligindegi bar bolg'an sistema xabarları dizimi.
 Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net translatewiki.net] if you wish to contribute to the generic MediaWiki localisation.",
-'allmessagesfilter'   => 'Xabar atamasın filtrlew:',
-'allmessagesmodified' => "Tek o'zgertilgenlerdi ko'rset",
 
 # Thumbnails
 'thumbnail-more'           => "U'lkeytiw",

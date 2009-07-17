@@ -1580,8 +1580,6 @@ Paskėrties straipsnis „[[:$1]]“ jau īr. A nuorėt ana ėštrintė, kū gal
 'allmessagescurrent'        => 'Dabartėnis teksts',
 'allmessagestext'           => 'Čė pateikamė sėstemėniu pranešėmu sārašos, esontis MediaWiki srėtie.',
 'allmessagesnotsupportedDB' => "'''{{ns:special}}:Allmessages''' nepalaikuoms īr, nes nustatīms '''\$wgUseDatabaseMessages''' ėšjungts īr.",
-'allmessagesfilter'         => 'Tekstu pavadėnėmu atsėjuotuos:',
-'allmessagesmodified'       => 'Ruodītė vėn pakeistus',
 
 # Thumbnails
 'thumbnail-more'           => 'Padėdintė',

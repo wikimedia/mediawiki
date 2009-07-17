@@ -1108,8 +1108,6 @@ Kiest 'n aore naem.",
 'allmessagescurrent'        => 'Tekst van noe',
 'allmessagestext'           => "Dit is 'n liest van aolle systeemteksten die-an in de MediaWiki-naemruumte stae.",
 'allmessagesnotsupportedDB' => "'''{{ns:special}}:Allmessages''' kan nie gebruukt ore om'at '''\$wgUseDatabaseMessages''' uutgeschaekeld staet.",
-'allmessagesfilter'         => 'Zoek nae systeemteksten mee...',
-'allmessagesmodified'       => 'Laet alleêne de veranderde teksten zieë',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'     => 'Mien gebrukersbladzie',

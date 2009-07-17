@@ -2502,8 +2502,6 @@ Az utóbbi esetben közvetlen hivatkozást is használhatsz, például a [[{{#Sp
 'allmessagestext'           => 'Ez a MediaWiki-névtérben elérhető összes rendszerüzenet listája.
 Ha részt szeretnél venni a MediaWiki fordításában, látogass el a [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] és a [http://translatewiki.net translatewiki.net] oldalakra.',
 'allmessagesnotsupportedDB' => "A '''''{{ns:special}}:Allmessages''''' lap nem használható, mert a '''\$wgUseDatabaseMessages''' ki van kapcsolva.",
-'allmessagesfilter'         => 'Üzenetnevek szűrése:',
-'allmessagesmodified'       => 'Csak a módosítottak mutatása',
 
 # Thumbnails
 'thumbnail-more'           => 'Nagyít',

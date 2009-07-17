@@ -2315,8 +2315,6 @@ Nel secondo caso te poli anca doparar un colegamento, par esenpio [[{{#Special:E
 'allmessagestext'           => "Sta quà l'è na lista de tuti i messagi disponibili nel namespace MediaWiki.
 Par piaser visita [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] e [http://translatewiki.net translatewiki.net] se te voli jutarne par la traduzion del software MediaWiki ne le varie lengue.",
 'allmessagesnotsupportedDB' => "'''{{ns:special}}:Allmessages''' no'l xè supportà parché '''\$wgUseDatabaseMessages''' no'l xè ativo.",
-'allmessagesfilter'         => 'Filtro sui messagi:',
-'allmessagesmodified'       => 'Mostra soło quełi modefegà',
 
 # Thumbnails
 'thumbnail-more'           => 'Ingrandissi',

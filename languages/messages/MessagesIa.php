@@ -2446,8 +2446,6 @@ In le secunde caso tu pote etiam usar un ligamine, p.ex. [[{{#Special:Export}}/{
 'allmessagestext'           => 'Isto es un lista de messages de systema disponibile in le spatio de nomines MediaWiki.
 Per favor visita [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] e [http://translatewiki.net translatewiki.net] si tu desira contribuer al localisation general de MediaWiki.',
 'allmessagesnotsupportedDB' => "Iste pagina non pote esser usate proque '''\$wgUseDatabaseMessages''' ha essite disactivate.",
-'allmessagesfilter'         => 'Filtro de nomine de message:',
-'allmessagesmodified'       => 'Monstrar solmente messages modificate',
 
 # Thumbnails
 'thumbnail-more'           => 'Aggrandir',

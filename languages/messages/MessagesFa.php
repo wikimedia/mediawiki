@@ -2616,8 +2616,6 @@ $1',
 چنان‌چه مایل به مشارکت در محلی‌سازی مدیاویکی هستید لطفاً [http://www.mediawiki.org/wiki/Localisation محلی‌سازی مدیاویکی] و 
 [http://translatewiki.net translatewiki.net] را ببینید.',
 'allmessagesnotsupportedDB' => "نمی‌توان از '''{{ns:special}}:همهٔ پیغام‌ها''' استفاده کرد چود '''\$wgUseDatabaseMessages''' خاموش شده است.",
-'allmessagesfilter'         => 'صافی نام پیغام:',
-'allmessagesmodified'       => 'تنها نمایش تغییریافته‌ها',
 
 # Thumbnails
 'thumbnail-more'           => 'بزرگ شود',

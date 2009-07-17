@@ -2068,13 +2068,11 @@ Për të eksportuar faqe, thjesht shtypni një emër për çdo rresht, ose krijo
 'export-templates'  => 'Përfshinë stampa',
 
 # Namespace 8 related
-'allmessages'         => 'Mesazhet e sistemit',
-'allmessagesname'     => 'Emri',
-'allmessagesdefault'  => 'Teksti i parazgjedhur',
-'allmessagescurrent'  => 'Teksti i tanishëshm',
-'allmessagestext'     => 'Kjo është një listë e të gjitha faqeve në hapësirën MediaWiki:',
-'allmessagesfilter'   => 'Veço me shprehje të rregullta:',
-'allmessagesmodified' => 'Trego vetëm të ndryshuarat',
+'allmessages'        => 'Mesazhet e sistemit',
+'allmessagesname'    => 'Emri',
+'allmessagesdefault' => 'Teksti i parazgjedhur',
+'allmessagescurrent' => 'Teksti i tanishëshm',
+'allmessagestext'    => 'Kjo është një listë e të gjitha faqeve në hapësirën MediaWiki:',
 
 # Thumbnails
 'thumbnail-more'  => 'Zmadho',

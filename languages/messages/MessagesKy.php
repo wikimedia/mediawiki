@@ -298,10 +298,9 @@ $messages = array(
 'delete_and_move_confirm' => 'Ооба, бул баракты өчүр',
 
 # Namespace 8 related
-'allmessages'         => 'Система билдирүүлөрү',
-'allmessagesname'     => 'Аталышы',
-'allmessagescurrent'  => 'Учурдагы текст',
-'allmessagesmodified' => 'Өзгөрүүгө учурагандарды гана көрсөт',
+'allmessages'        => 'Система билдирүүлөрү',
+'allmessagesname'    => 'Аталышы',
+'allmessagescurrent' => 'Учурдагы текст',
 
 # Attribution
 'others' => 'башкалар',

@@ -2549,8 +2549,6 @@ Dans ce dernier cas vous pouvez aussi utiliser un lien, tel que [[{{#Special:Exp
 'allmessagestext'           => 'Ceci est la liste des messages disponibles dans l’espace MediaWiki.
 Veuillez visiter la [http://www.mediawiki.org/wiki/Localisation Localisation de MediaWiki] et [http://translatewiki.net/ translatewiki.net] si vous désirez contribuer à la localisation générique de MediaWiki.',
 'allmessagesnotsupportedDB' => "Cette page '''{{ns:special}}:Allmessages''' n’est pas utilisable car '''\$wgUseDatabaseMessages''' a été désactivé.",
-'allmessagesfilter'         => 'Filtre de noms de message (expression rationnelle) :',
-'allmessagesmodified'       => 'N’afficher que les modifications',
 
 # Thumbnails
 'thumbnail-more'           => 'Agrandir',

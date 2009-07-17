@@ -2484,8 +2484,6 @@ $1 දැනටමත් වාරණය කොට ඇත. පරිස්ථි
 'allmessagestext'           => 'මේ මාධ්‍යවිකි නාමඅවකාශයෙහිදී  හමුවන පද්ධති පණිවුඩයන් ලැයිස්තුවකි.
 වර්ගීය මාධ්‍යවිකි ප්‍රාදේශීයකරණයට දායක වීමට ඔබ රිසි නම් කරුණාකර [http://www.mediawiki.org/wiki/Localisation මාධ්‍යවිකි ප්‍රාදේශීයකරණය]  සහ [http://translatewiki.net බීටාවිකි] වෙත පිවිසෙන්න.',
 'allmessagesnotsupportedDB' => "'''\$wgUseDatabaseMessages''' අක්‍රීය කොට ඇති බැවින්, මෙම පිටුව භාවිතා කල නොහැක.",
-'allmessagesfilter'         => 'පණිවුඩ නාම පෙරහන:',
-'allmessagesmodified'       => 'විකරණය කල දෑ පමණක් පෙන්වන්න',
 
 # Thumbnails
 'thumbnail-more'           => 'විශාලනය කිරීම',

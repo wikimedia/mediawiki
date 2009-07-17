@@ -1565,8 +1565,6 @@ Viimädse johtumisõ kõrral võit ka pruukiq linki, nt leht {{MediaWiki:Mainpag
 'allmessagestext'           => 'Taan nimekirän ommaq kõik MediaWiki nimeruumi tallitusteedüseq.
 Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net translatewiki.net] if you wish to contribute to the generic MediaWiki localisation.',
 'allmessagesnotsupportedDB' => "Taad lehte saa-i pruukiq, selle et '''\$wgUseDatabaseMessages'''-säädmine om välän.",
-'allmessagesfilter'         => 'Teedüsenimmi sõgluminõ:',
-'allmessagesmodified'       => 'Näütäq õnnõ muudõtuid',
 
 # Thumbnails
 'thumbnail-more'           => 'Suurõndaq',

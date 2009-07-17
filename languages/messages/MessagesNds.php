@@ -2342,8 +2342,6 @@ Wenn du blot de aktuelle hebben wist, kannst du ok en Lenk bruken, to’n Bispee
 'allmessagescurrent'        => 'Text nu',
 'allmessagestext'           => 'Dit is de List vun de Systemnarichten, de dat in den MediaWiki-Naamruum gifft.',
 'allmessagesnotsupportedDB' => '{{ns:special}}:Allmessages is nich ünnerstütt, vun wegen dat wgUseDatabaseMessages utstellt is.',
-'allmessagesfilter'         => 'Narichtennaamfilter:',
-'allmessagesmodified'       => 'Blot ännerte wiesen',
 
 # Thumbnails
 'thumbnail-more'           => 'grötter maken',

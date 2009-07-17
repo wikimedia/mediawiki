@@ -2241,8 +2241,6 @@ MediaWiki جۇيەسىنىڭ [[{{#special:Import}}|سىرتتان الۋ بەت�
 'allmessagestext'           => 'مىندا {{ns:mediawiki}} ەسىم اياسىندا جەتىمدى جۇيە حابار ٴتىزىمى بەرىلەدى.
 ەگەر امبەباپ MediaWiki جەرسىندىرۋگە ۇلەس قوسقىڭىز كەلسە [http://www.mediawiki.org/wiki/Localisation MediaWiki جەرسىندىرۋ بەتىنە] جانە [http://translatewiki.net translatewiki.net جوباسىنا] بارىپ شىعىڭىز.',
 'allmessagesnotsupportedDB' => "'''\$wgUseDatabaseMessages''' وشىرىلگەن سەبەبىنەن '''{{ns:special}}:AllMessages''' بەتى قولدانىلمايدى.",
-'allmessagesfilter'         => 'حاباردى اتاۋىمەن سۇزگىلەۋ:',
-'allmessagesmodified'       => 'تەك وزگەرتىلگەندى كورسەت',
 
 # Thumbnails
 'thumbnail-more'           => 'ۇلكەيتۋ',

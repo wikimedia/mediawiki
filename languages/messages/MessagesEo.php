@@ -2395,8 +2395,6 @@ En la lasta kazo, vi ankaŭ povas uzi ligilo, ekz-e [[{{#Special:Export}}/{{Medi
 Bonvolu aliri [http://www.mediawiki.org/wiki/Localisation MediaWiki-Asimilado] kaj [http://translatewiki.net translatewiki.net]
 se vi volus kontribui al la komuna MediaWiki-asimilado.',
 'allmessagesnotsupportedDB' => '{{ns:special}}:Allmessages ne subtenata ĉar la variablo wgUseDatabaseMessages estas malkonektita.',
-'allmessagesfilter'         => 'Filtrilo laŭ racia esprimo :',
-'allmessagesmodified'       => 'Montru nur ŝanĝitajn',
 
 # Thumbnails
 'thumbnail-more'           => 'Pligrandigi',

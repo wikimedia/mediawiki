@@ -2172,8 +2172,6 @@ Ad seveigön padis, penolös tiädis in penamaspad dono, tiädi bal a kedet, e v
 'allmessagestext'           => 'Is binon lised sitanunas valik lonöföl in nemaspad: Sitanuns.
 Gebolös [http://www.mediawiki.org/wiki/Localisation Topükami ela MediaWiki] ed el [http://translatewiki.net translatewiki.net] if vilol keblünön topükame valemik ela MediaWiki.',
 'allmessagesnotsupportedDB' => "Pad at no kanon pagebön bi el '''\$wgUseDatabaseMessages''' penemögükon.",
-'allmessagesfilter'         => 'Te nunanems labü:',
-'allmessagesmodified'       => 'Jonolöd te pevotükölis',
 
 # Thumbnails
 'thumbnail-more'           => 'Gretükön',

@@ -1805,8 +1805,6 @@ $1',
 'allmessagescurrent'        => 'Матни кунунӣ',
 'allmessagestext'           => 'Ин рӯйхати паёмҳои системавӣ мебошад, ки дар фазои номҳои MediaWiki дастрас карда шудаанд.',
 'allmessagesnotsupportedDB' => "Аз ин саҳифа наметавон истифода бурд, чун '''\$wgUseDatabaseMessages''' ғайрифаъол гардонида шудааст.",
-'allmessagesfilter'         => 'Филтри номи пайём:',
-'allmessagesmodified'       => 'Фақат тағйирдодаро нишон деҳ',
 
 # Thumbnails
 'thumbnail-more'           => 'Бузург шавад',

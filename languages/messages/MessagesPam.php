@@ -1790,8 +1790,6 @@ Ketang tauling kasu, makagamit ka muring suglung (link), alimbawa, ing [[{{#Spec
 'allmessagescurrent'        => 'Kasalungsungan a kulitan',
 'allmessagestext'           => 'Deng makatuki ila reng system message a atyu king pirinan lagyu (namespace) ning MediaWiki.',
 'allmessagesnotsupportedDB' => "E maliaring gamitan ing bulung a ini uling ing '''\$wgUseDatabaseMessages''' makapatda ya.",
-'allmessagesfilter'         => 'Mányalak kareng lagyu:',
-'allmessagesmodified'       => 'Ipakit la retang miyalilan',
 
 # Thumbnails
 'thumbnail-more'           => 'Paragulan',

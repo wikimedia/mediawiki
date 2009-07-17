@@ -2321,8 +2321,6 @@ Hvis du kun vil have den seneste version, kan du også bruge en henvisning, for 
 'allmessagestext'           => 'Dette er en liste med alle systembeskeder i MediaWiki-navnerummet.
 Besøg venligst [http://www.mediawiki.org/wiki/Localisation MediaWiki-lokalisering] hvis du ønsker at bidrage til den generelle lokalisering (oversættelse og andre lokale tilpasninger) af MediaWiki.',
 'allmessagesnotsupportedDB' => '{{ns:special}}:AllMessages ikke understøttet fordi wgUseDatabaseMessages er slået fra.',
-'allmessagesfilter'         => 'Meddelelsesnavnefilter:',
-'allmessagesmodified'       => 'Vis kun ændrede',
 
 # Thumbnails
 'thumbnail-more'           => 'Forstør',

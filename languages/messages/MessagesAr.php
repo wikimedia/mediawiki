@@ -2680,8 +2680,6 @@ $1 ممنوع بالفعل. هل تريد تغيير الإعدادات؟',
 'allmessagestext'           => 'هذه قائمة برسائل النظام المتوفرة في نطاق ميدياويكي.
 من فضلك زر [http://www.mediawiki.org/wiki/Localisation ترجمة ميدياويكي] و [http://translatewiki.net بيتاويكي] لو كنت ترغب في المساهمة في ترجمة ميدياويكي الأساسية.',
 'allmessagesnotsupportedDB' => "هذه الصفحة لا يمكن استخدامها لأن '''\$wgUseDatabaseMessages''' تم تعطيله.",
-'allmessagesfilter'         => 'بحث باسم الرسالة:',
-'allmessagesmodified'       => 'عرض المتغير فقط',
 
 # Thumbnails
 'thumbnail-more'           => 'تكبير',

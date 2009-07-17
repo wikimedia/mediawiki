@@ -2552,8 +2552,6 @@ $1 ممنوع فعلا. عايز تغير الإعدادات؟',
 'allmessagestext'           => 'دى لستة برسايل النظام المتوفرة فى نطاق ميدياويكي.
 لو سمحت تزور[http://www.mediawiki.org/wiki/Localisation ترجمة ميدياويكي] و [http://translatewiki.net بيتاويكي] لو كنت عايز تساهم فى ترجمة ميدياويكى الاصلية.',
 'allmessagesnotsupportedDB' => "الصفحة دى مش يمكن حد يستعملها علشان'''\$wgUseDatabaseMessages''' متعطل.",
-'allmessagesfilter'         => 'فلتر اسم الرسالة:',
-'allmessagesmodified'       => 'اعرض اللى اتعدل بس',
 
 # Thumbnails
 'thumbnail-more'           => 'كبر',

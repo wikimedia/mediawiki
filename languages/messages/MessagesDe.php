@@ -2536,8 +2536,6 @@ Alternativ ist der Export auch mit der Syntax [[{{#Special:Export}}/{{MediaWiki:
 'allmessagestext'           => 'Dies ist eine Liste der MediaWiki-Systemtexte.
 Besuche die Seiten [http://www.mediawiki.org/wiki/Localisation MediaWiki-Lokalisierung] und [http://translatewiki.net translatewiki.net], wenn du dich an der Lokalisierung von MediaWiki beteiligen möchtest.',
 'allmessagesnotsupportedDB' => 'Diese Spezialseite steht nicht zur Verfügung, da sie über den Parameter <tt>$wgUseDatabaseMessages</tt> deaktiviert wurde.',
-'allmessagesfilter'         => 'Nachrichtennamensfilter:',
-'allmessagesmodified'       => 'Nur geänderte anzeigen',
 
 # Thumbnails
 'thumbnail-more'           => 'vergrößern',
