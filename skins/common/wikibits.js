@@ -227,10 +227,19 @@ var tooltipAccessKeyRegexp = /\[(ctrl-)?(alt-)?(shift-)?(esc-)?(.)\]$/;
  */
 function updateTooltipAccessKeys( nodeList ) {
 	if ( !nodeList ) {
-		// skins without a "column-one" element don't seem to have links with accesskeys either
-		var columnOne = document.getElementById("column-one");
-		if ( columnOne )
-			updateTooltipAccessKeys( columnOne.getElementsByTagName("a") );
+		// Rather than scan all links on the whole page, we can just scan these
+		// containers which contain the relevant links. This is really just an
+		// optimization technique.
+		var linkContainers = [
+			"column-one", // Monobook and Modern
+			"head", "panel", "p-logo" // Vector
+		];
+		for ( var i in linkContainers ) {
+			var linkContainer = document.getElementById( linkContainers[i] );
+			if ( linkContainer ) {
+				updateTooltipAccessKeys( linkContainer.getElementsByTagName("a") );
+			}
+		}
 		// these are rare enough that no such optimization is needed
 		updateTooltipAccessKeys( document.getElementsByTagName("input") );
 		updateTooltipAccessKeys( document.getElementsByTagName("label") );
