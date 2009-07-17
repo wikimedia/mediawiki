@@ -1321,6 +1321,7 @@ $1",
 'right-siteadmin'             => '鎖定和解除鎖定資料庫',
 'right-reset-passwords'       => '重設其他用戶的密碼',
 'right-override-export-depth' => '匯出含有五層深度連結頁面之頁面',
+'right-versiondetail'         => '顯示延伸軟件版本的資料',
 
 # User rights log
 'rightslog'      => '用戶權限日誌',

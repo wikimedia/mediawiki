@@ -102,206 +102,212 @@ class SpecialVersion extends SpecialPage {
 	static function softwareInformation() {
 		global $wgUseImageMagick, $wgImageMagickConvertCommand, $wgDiff3, $wgDiff, $wgUseTeX;
 		global $wgAllowTitlesInSVG, $wgSVGConverter, $wgSVGConverters, $wgSVGConverterPath;
+		global $wgUser, $wgSpecialVersionExtended;
 		$dbr = wfGetDB( DB_SLAVE );
-
-		// Get the web server name and its version, if applicable
-		// Chop off PHP text from the string if it has the text desired
-		$serverSoftware = $_SERVER['SERVER_SOFTWARE'];
-		if ( strrpos( $serverSoftware, 'PHP' ) === false ) {
-		} else {
-			$serverSoftware = trim( substr( $serverSoftware, 0, strrpos($serverSoftware,'PHP') - 1 ) );
-		}
-
-		// Get the web server name and its version.
-		$serverSoftwareLine = explode('/',$serverSoftware);
-		$serverSoftwareName = $serverSoftwareLine[0];
-
-		// Insert the website of the web server if applicable.
-		if ( stristr( $serverSoftwareName, 'Apache' ) )
-			$serverSoftwareURL = 'http://httpd.apache.org/';
-		else if ( stristr( $serverSoftwareName, 'IIS' ) )
-			$serverSoftwareURL = 'http://www.microsoft.com/iis/';
-		else if ( stristr( $serverSoftwareName, 'Cherokee' ) )
-			$serverSoftwareURL = 'http://www.cherokee-project.com/';
-		else if ( stristr( $serverSoftwareName, 'lighttpd' ) )
-			$serverSoftwareURL = 'http://www.lighttpd.net/';
-		else if ( stristr( $serverSoftwareName, 'Sun' ) )
-			$serverSoftwareURL = 'http://www.sun.com/software/products/web_srvr/';
-
-		// Get the version of the web server. If does not have one,
-		// leave it as empty.
-		if ( $serverSoftwareLine[1] != '' ) {
-			$serverSoftwareVersion = $serverSoftwareLine[1];
-		} else {
-			$serverSoftwareVersion = '';
-		}
 
 		// Put the software in an array of form 'name' => 'version'. All messages should
 		// be loaded here, so feel free to use wfMsg*() in the 'name'. Raw HTML or wikimarkup
 		// can be used
 		$software = array();
+
 		$software['[http://www.mediawiki.org/ MediaWiki]'] = self::getVersionLinked();
-		if ( isset( $serverSoftwareURL ) )
-			$software["[$serverSoftwareURL $serverSoftwareName]"] = $serverSoftwareVersion;
-		else
-			$software[$serverSoftwareName] = $serverSoftwareVersion;
 		$software['[http://www.php.net/ PHP]'] = phpversion() . " (" . php_sapi_name() . ")";
 		$software[$dbr->getSoftwareLink()] = $dbr->getServerVersion();
 
-		// Version information for diff3
-		if ( file_exists( trim( $wgDiff3, '"' ) ) ) {
-			$swDiff3Info = self::execOutput( $wgDiff3 . ' -v' );
-			$swDiff3Line = explode("\n",$swDiff3Info ,2);
-			$swDiff3Ver = $swDiff3Line[0];
-			$swDiff3Ver = str_replace( 'diff3 (GNU diffutils) ', '' , $swDiff3Ver);
-			$software['[http://www.gnu.org/software/diffutils/diffutils.html diff3]'] = $swDiff3Ver;
-		}
-
-		// Version information for diff
-		if ( file_exists( trim( $wgDiff, '"' ) ) ) {
-			$swDiffInfo = self::execOutput( $wgDiff . ' -v' );
-			$swDiffLine = explode("\n",$swDiffInfo ,2);
-			$swDiffVer = $swDiffLine[0];
-			$swDiffVer = str_replace( 'diff (GNU diffutils) ', '' , $swDiffVer);
-			$software['[http://www.gnu.org/software/diffutils/diffutils.html diff]'] = $swDiffVer;
-		}
-
-		// Look for ImageMagick's version, if did not found, try to find the GD library version
-		if ( $wgUseImageMagick ) {
-			if ( file_exists( trim( $wgImageMagickConvertCommand, '"' ) ) ) {
-				$swImageMagickInfo = self::execOutput( $wgImageMagickConvertCommand . ' -version' );
-				list( $head, $tail ) = explode( 'ImageMagick', $swImageMagickInfo );
-				list( $swImageMagickVer ) = explode('http://www.imagemagick.org', $tail );
-				$software['[http://www.imagemagick.org/ ImageMagick]'] = $swImageMagickVer;
+		if( $wgSpecialVersionExtended || $wgUser->isAllowed( 'versiondetail' ) ) {
+			// Get the web server name and its version, if applicable
+			// Chop off PHP text from the string if it has the text desired
+			$serverSoftware = $_SERVER['SERVER_SOFTWARE'];
+			if ( strrpos( $serverSoftware, 'PHP' ) === false ) {
+			} else {
+				$serverSoftware = trim( substr( $serverSoftware, 0, strrpos($serverSoftware,'PHP') - 1 ) );
 			}
-		} else {
-			if( function_exists( 'gd_info' ) ) {
-				$gdInfo = gd_info();
-				if ( strstr( $gdInfo['GD Version'], 'bundled' ) != false ) {
-					$gd_URL = 'http://www.php.net/gd';
+
+			// Get the web server name and its version.
+			$serverSoftwareLine = explode('/',$serverSoftware);
+			$serverSoftwareName = $serverSoftwareLine[0];
+
+			// Insert the website of the web server if applicable.
+			if ( stristr( $serverSoftwareName, 'Apache' ) )
+				$serverSoftwareURL = 'http://httpd.apache.org/';
+			else if ( stristr( $serverSoftwareName, 'IIS' ) )
+				$serverSoftwareURL = 'http://www.microsoft.com/iis/';
+			else if ( stristr( $serverSoftwareName, 'Cherokee' ) )
+				$serverSoftwareURL = 'http://www.cherokee-project.com/';
+			else if ( stristr( $serverSoftwareName, 'lighttpd' ) )
+				$serverSoftwareURL = 'http://www.lighttpd.net/';
+			else if ( stristr( $serverSoftwareName, 'Sun' ) )
+				$serverSoftwareURL = 'http://www.sun.com/software/products/web_srvr/';
+			else if ( stristr( $serverSoftwareName, 'nginx' ) )
+				$serverSoftwareURL = 'http://nginx.net/';
+
+			// Get the version of the web server. If does not have one,
+			// leave it as empty.
+			if ( $serverSoftwareLine[1] != '' ) {
+				$serverSoftwareVersion = $serverSoftwareLine[1];
+			} else {
+				$serverSoftwareVersion = '';
+			}
+
+			if ( isset( $serverSoftwareURL ) )
+				$software["[$serverSoftwareURL $serverSoftwareName]"] = $serverSoftwareVersion;
+			else
+				$software[$serverSoftwareName] = $serverSoftwareVersion;
+
+			// Version information for diff3
+			if ( file_exists( trim( $wgDiff3, '"' ) ) ) {
+				$swDiff3Info = self::execOutput( $wgDiff3 . ' -v' );
+				$swDiff3Line = explode("\n",$swDiff3Info ,2);
+				$swDiff3Ver = $swDiff3Line[0];
+				$swDiff3Ver = str_replace( 'diff3 (GNU diffutils) ', '' , $swDiff3Ver);
+				$software['[http://www.gnu.org/software/diffutils/diffutils.html diff3]'] = $swDiff3Ver;
+			}
+
+			// Version information for diff
+			if ( file_exists( trim( $wgDiff, '"' ) ) ) {
+				$swDiffInfo = self::execOutput( $wgDiff . ' -v' );
+				$swDiffLine = explode("\n",$swDiffInfo ,2);
+				$swDiffVer = $swDiffLine[0];
+				$swDiffVer = str_replace( 'diff (GNU diffutils) ', '' , $swDiffVer);
+				$software['[http://www.gnu.org/software/diffutils/diffutils.html diff]'] = $swDiffVer;
+			}
+
+			// Look for ImageMagick's version, if did not found, try to find the GD library version
+			if ( $wgUseImageMagick ) {
+				if ( file_exists( trim( $wgImageMagickConvertCommand, '"' ) ) ) {
+					$swImageMagickInfo = self::execOutput( $wgImageMagickConvertCommand . ' -version' );
+					list( $head, $tail ) = explode( 'ImageMagick', $swImageMagickInfo );
+					list( $swImageMagickVer ) = explode('http://www.imagemagick.org', $tail );
+					$software['[http://www.imagemagick.org/ ImageMagick]'] = $swImageMagickVer;
 				}
-				else {
-					$gd_URL = 'http://www.libgd.org';
+			} else {
+				if( function_exists( 'gd_info' ) ) {
+					$gdInfo = gd_info();
+					if ( strstr( $gdInfo['GD Version'], 'bundled' ) != false ) {
+						$gd_URL = 'http://www.php.net/gd';
+					} else {
+						$gd_URL = 'http://www.libgd.org';
+					}
+					$software['[' . $gd_URL . ' GD library]'] = $gdInfo['GD Version'];
 				}
-				$software['[' . $gd_URL . ' GD library]'] = $gdInfo['GD Version'];
 			}
-		}
 
-		// Look for SVG converter and print the version info
-		if ( $wgAllowTitlesInSVG ) {
-			$swSVGConvName = $wgSVGConverter;
-			$haveSVGConvVer = false;
-			$pathVar = '$path/';
-			$binPath = '/usr/bin/';
-			$execPath = strtok(strstr($wgSVGConverters[$wgSVGConverter],$pathVar), ' ');
-			$execPath = substr_replace($execPath, '', 0, strlen($pathVar));
-			$execFullPath = trim($wgSVGConverterPath,'"') . $execPath;
-			$execBinPath = $binPath . $execPath;
-			if (strstr($execFullPath, ' ') != false) {
-				$execFullPath = '"' . $execFullPath . '"';
+			// Look for SVG converter and print the version info
+			if ( $wgAllowTitlesInSVG ) {
+				$swSVGConvName = $wgSVGConverter;
+				$haveSVGConvVer = false;
+				$pathVar = '$path/';
+				$binPath = '/usr/bin/';
+				$execPath = strtok(strstr($wgSVGConverters[$wgSVGConverter],$pathVar), ' ');
+				$execPath = substr_replace($execPath, '', 0, strlen($pathVar));
+				$execFullPath = trim($wgSVGConverterPath,'"') . $execPath;
+				$execBinPath = $binPath . $execPath;
+				if (strstr($execFullPath, ' ') != false) {
+					$execFullPath = '"' . $execFullPath . '"';
+				}
+				if ( !strcmp( $wgSVGConverter, 'ImageMagick') ) {
+					// Get version info for ImageMagick
+					if ( file_exists( $execBinPath ) )
+						$swSVGConvInfo = self::execOutput( $execBinPath . ' -version' );
+					else if ( file_exists( trim( $execFullPath, '"' ) ) || ( file_exists( trim( $execFullPath, '"' ) . '.exe' ) ) )
+						$swSVGConvInfo = self::execOutput( $execFullPath . ' -version' );
+					list( $head, $tail ) = explode( 'ImageMagick', $swSVGConvInfo );
+					list( $swSVGConvVer ) = explode('http://www.imagemagick.org', $tail );
+					$swSVGConvURL = 'http://www.imagemagick.org/';
+					$haveSVGConvVer = true;
+				} else if ( strstr ($execFullPath, 'rsvg') != false ) {
+					// Get version info for rsvg
+					if ( file_exists( $execBinPath ) )
+						$swSVGConvInfo = self::execOutput( $execBinPath . ' -v' );
+					else if ( file_exists( trim( $execFullPath, '"' ) ) || ( file_exists( trim( $execFullPath, '"' ) . '.exe' ) ) )
+						$swSVGConvInfo = self::execOutput( $execFullPath . ' -v' );
+					$swSVGConvLine = explode("\n",$swSVGConvInfo ,2);
+					$swSVGConvVer = $swSVGConvLine[0];
+					$swSVGConvURL = 'http://librsvg.sourceforge.net/';
+					$haveSVGConvVer = true;
+				} else if ( strstr ($execFullPath, 'inkscape') != false ) {
+					// Get version info for Inkscape
+					if ( file_exists( $execBinPath ) )
+						$swSVGConvInfo = self::execOutput( $execBinPath . ' -z -V' );
+					else if ( file_exists( trim( $execFullPath, '"' ) ) || ( file_exists( trim( $execFullPath, '"' ) . '.exe' ) ) )
+						$swSVGConvInfo = self::execOutput( $execFullPath . ' -z -V' );
+					$swSVGConvLine = explode("\n",$swSVGConvInfo ,2);
+					$swSVGConvVer = ltrim( $swSVGConvLine[0], 'Inkscape ' );
+					$swSVGConvURL = 'http://www.inkscape.org/';
+					$swSVGConvName = ucfirst( $wgSVGConverter );
+					$haveSVGConvVer = true;
+				}
+				if ( $haveSVGConvVer )
+					$software["[$swSVGConvURL $swSVGConvName]"] = $swSVGConvVer;
 			}
-			if ( !strcmp( $wgSVGConverter, 'ImageMagick') ) {
-				// Get version info for ImageMagick
-				if ( file_exists( $execBinPath ) )
-					$swSVGConvInfo = self::execOutput( $execBinPath . ' -version' );
-				else if ( file_exists( trim( $execFullPath, '"' ) ) || ( file_exists( trim( $execFullPath, '"' ) . '.exe' ) ) )
-					$swSVGConvInfo = self::execOutput( $execFullPath . ' -version' );
-				list( $head, $tail ) = explode( 'ImageMagick', $swSVGConvInfo );
-				list( $swSVGConvVer ) = explode('http://www.imagemagick.org', $tail );
-				$swSVGConvURL = 'http://www.imagemagick.org/';
-				$haveSVGConvVer = true;
-			} else if ( strstr ($execFullPath, 'rsvg') != false ) {
-				// Get version info for rsvg
-				if ( file_exists( $execBinPath ) )
-					$swSVGConvInfo = self::execOutput( $execBinPath . ' -v' );
-				else if ( file_exists( trim( $execFullPath, '"' ) ) || ( file_exists( trim( $execFullPath, '"' ) . '.exe' ) ) )
-					$swSVGConvInfo = self::execOutput( $execFullPath . ' -v' );
-				$swSVGConvLine = explode("\n",$swSVGConvInfo ,2);
-				$swSVGConvVer = $swSVGConvLine[0];
-				$swSVGConvURL = 'http://librsvg.sourceforge.net/';
-				$haveSVGConvVer = true;
-			} else if ( strstr ($execFullPath, 'inkscape') != false ) {
-				// Get version info for Inkscape
-				if ( file_exists( $execBinPath ) )
-					$swSVGConvInfo = self::execOutput( $execBinPath . ' -z -V' );
-				else if ( file_exists( trim( $execFullPath, '"' ) ) || ( file_exists( trim( $execFullPath, '"' ) . '.exe' ) ) )
-					$swSVGConvInfo = self::execOutput( $execFullPath . ' -z -V' );
-				$swSVGConvLine = explode("\n",$swSVGConvInfo ,2);
-				$swSVGConvVer = ltrim( $swSVGConvLine[0], 'Inkscape ' );
-				$swSVGConvURL = 'http://www.inkscape.org/';
-				$swSVGConvName = ucfirst( $wgSVGConverter );
-				$haveSVGConvVer = true;
-			}
-			if ( $haveSVGConvVer )
-				$software["[$swSVGConvURL $swSVGConvName]"] = $swSVGConvVer;
-		}
 
-		// Look for TeX support and print the software version info
-		if ( $wgUseTeX ) {
-			$binPath = '/usr/bin/';
-			$swMathName = Array(
-				'ocaml'       => 'OCaml',
-				'gs'          => 'Ghostscript',
-				'dvips'       => 'Dvips',
-				'latex'       => 'LaTeX',
-				'imagemagick' => 'ImageMagick',
-			);
-			$swMathURL = Array(
-				'ocaml'       => 'http://caml.inria.fr/',
-				'gs'          => 'http://www.ghostscript.com/',
-				'dvips'       => 'http://www.radicaleye.com/dvips.html',
-				'latex'       => 'http://www.latex-project.org/',
-				'imagemagick' => 'http://www.imagemagick.org/',
-			);
-			$swMathExec = Array(
-				'ocaml'       => 'ocamlc',
-				'gs'          => 'gs',
-				'dvips'       => 'dvips',
-				'latex'       => 'latex',
-				'imagemagick' => 'convert',
-			);
-			$swMathParam = Array(
-				'ocaml'       => '-version',
-				'gs'          => '-v',
-				'dvips'       => '-v',
-				'latex'       => '-v',
-				'imagemagick' => '-version',
-			);
-			foreach ( $swMathExec as $swMath => $swMathCmd ) {
-				$wBinPath = '';
-				if ( file_exists( $binPath . 'whereis' ) ) {
-					$swWhereIsInfo = self::execOutput( $binPath . 'whereis -b ' . $swMathCmd );
-					$swWhereIsLine = explode( "\n", $swWhereIsInfo, 2);
-					$swWhereIsFirstLine = $swWhereIsLine[0];
-					$swWhereIsBinPath = explode( ' ', $swWhereIsFirstLine, 3);
-					if ( count( $swWhereIsBinPath ) > 1 )
-						$wBinPath = dirname( $swWhereIsBinPath[1] );
-				} else {
-					$swPathLine = explode( ';', $_SERVER['PATH'] );
-					$swPathFound = false;
-					foreach( $swPathLine as $swPathDir ) {
-						if ( file_exists( $swPathDir . '/' . $swMathCmd . '.exe' ) && ($swPathFound === false) ) {
-							$wBinPath = $swPathDir . '/';
-							$swPathFound = true;
+			// Look for TeX support and print the software version info
+			if ( $wgUseTeX ) {
+				$binPath = '/usr/bin/';
+				$swMathName = Array(
+					'ocaml'       => 'OCaml',
+					'gs'          => 'Ghostscript',
+					'dvips'       => 'Dvips',
+					'latex'       => 'LaTeX',
+					'imagemagick' => 'ImageMagick',
+				);
+				$swMathURL = Array(
+					'ocaml'       => 'http://caml.inria.fr/',
+					'gs'          => 'http://www.ghostscript.com/',
+					'dvips'       => 'http://www.radicaleye.com/dvips.html',
+					'latex'       => 'http://www.latex-project.org/',
+					'imagemagick' => 'http://www.imagemagick.org/',
+				);
+				$swMathExec = Array(
+					'ocaml'       => 'ocamlc',
+					'gs'          => 'gs',
+					'dvips'       => 'dvips',
+					'latex'       => 'latex',
+					'imagemagick' => 'convert',
+				);
+				$swMathParam = Array(
+					'ocaml'       => '-version',
+					'gs'          => '-v',
+					'dvips'       => '-v',
+					'latex'       => '-v',
+					'imagemagick' => '-version',
+				);
+				foreach ( $swMathExec as $swMath => $swMathCmd ) {
+					$wBinPath = '';
+					if ( file_exists( $binPath . 'whereis' ) ) {
+						$swWhereIsInfo = self::execOutput( $binPath . 'whereis -b ' . $swMathCmd );
+						$swWhereIsLine = explode( "\n", $swWhereIsInfo, 2);
+						$swWhereIsFirstLine = $swWhereIsLine[0];
+						$swWhereIsBinPath = explode( ' ', $swWhereIsFirstLine, 3);
+						if ( count( $swWhereIsBinPath ) > 1 )
+							$wBinPath = dirname( $swWhereIsBinPath[1] );
+					} else {
+						$swPathLine = explode( ';', $_SERVER['PATH'] );
+						$swPathFound = false;
+						foreach( $swPathLine as $swPathDir ) {
+							if ( file_exists( $swPathDir . '/' . $swMathCmd . '.exe' ) && ($swPathFound === false) ) {
+								$wBinPath = $swPathDir . '/';
+								$swPathFound = true;
+							}
 						}
 					}
+					if ( file_exists( $binPath . $swMathCmd ) || file_exists( $wBinPath . $swMathCmd ) ) {
+						$swMathInfo = self::execOutput( $swMathCmd . ' ' . $swMathParam[$swMath] );
+						$swMathLine = explode( "\n", $swMathInfo, 2);
+						$swMathVerInfo = $swMathLine[0];
+						if ( !strcmp( $swMath, 'gs' ) )
+							$swMathVerInfo = str_replace( 'GPL Ghostscript ', '', $swMathVerInfo );
+						else if ( !strcmp( $swMath, 'dvips' ) ) {
+							$swMathVerParts = explode( ' ' , $swMathVerInfo );
+							$swMathVerInfo = $swMathVerParts[3];
+						} else if ( !strcmp( $swMath, 'imagemagick' ) ) {
+							list( $head, $tail ) = explode( 'ImageMagick', $swMathVerInfo );
+							list( $swMathVerInfo ) = explode('http://www.imagemagick.org', $tail );
+						}
+						$swMathVer[$swMath] = trim( $swMathVerInfo );
+						$software["[$swMathURL[$swMath] $swMathName[$swMath]]"] = $swMathVer[$swMath];
+					}	
 				}
-				if ( file_exists( $binPath . $swMathCmd ) || file_exists( $wBinPath . $swMathCmd ) ) {
-					$swMathInfo = self::execOutput( $swMathCmd . ' ' . $swMathParam[$swMath] );
-					$swMathLine = explode( "\n", $swMathInfo, 2);
-					$swMathVerInfo = $swMathLine[0];
-					if ( !strcmp( $swMath, 'gs' ) )
-						$swMathVerInfo = str_replace( 'GPL Ghostscript ', '', $swMathVerInfo );
-					else if ( !strcmp( $swMath, 'dvips' ) ) {
-						$swMathVerParts = explode( ' ' , $swMathVerInfo );
-						$swMathVerInfo = $swMathVerParts[3];
-					} else if ( !strcmp( $swMath, 'imagemagick' ) ) {
-						list( $head, $tail ) = explode( 'ImageMagick', $swMathVerInfo );
-						list( $swMathVerInfo ) = explode('http://www.imagemagick.org', $tail );
-					}
-					$swMathVer[$swMath] = trim( $swMathVerInfo );
-					$software["[$swMathURL[$swMath] $swMathName[$swMath]]"] = $swMathVer[$swMath];
-				}	
 			}
 		}
 

@@ -1303,6 +1303,7 @@ $1",
 'right-siteadmin'             => '鎖同解鎖資料庫',
 'right-reset-passwords'       => '重設其他用戶嘅密碼',
 'right-override-export-depth' => '倒出包含有五層深連版嘅頁面',
+'right-versiondetail'         => '顯示伸展軟件版本嘅資料',
 
 # User rights log
 'rightslog'      => '用戶權限日誌',

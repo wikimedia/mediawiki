@@ -1891,6 +1891,7 @@ You can also choose to let others contact you through your user or talk page wit
 'right-siteadmin'             => 'Lock and unlock the database',
 'right-reset-passwords'       => "Reset other users' passwords",
 'right-override-export-depth' => 'Export pages including linked pages up to a depth of 5',
+'right-versiondetail'         => 'Show the extended software version information',
 
 # User rights log
 'rightslog'      => 'User rights log',
