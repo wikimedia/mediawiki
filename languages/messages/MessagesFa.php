@@ -131,6 +131,7 @@ $specialPageAliases = array(
 	'LinkSearch'                => array( 'جستجوی_پیوند' ),
 	'DeletedContributions'      => array( 'مشارکت‌های_حذف_شده' ),
 	'Tags'                      => array( 'برچسب‌ها' ),
+	'Activeusers'               => array( 'کاربران_فعال' ),
 );
 
 
