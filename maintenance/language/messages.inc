@@ -3059,6 +3059,7 @@ $wgMessageStructure = array(
 		'htmlform-invalid-input',
 		'htmlform-select-badoption',
 		'htmlform-int-invalid',
+		'htmlform-float-invalid',
 		'htmlform-int-toolow',
 		'htmlform-int-toohigh',
 		'htmlform-submit',
