@@ -543,7 +543,7 @@ class UploadForm extends SpecialPage {
 
 		$this->mSessionKey = $this->mUpload->stashSession();
 
-		if( $sessionData === false ) {
+		if( $this->mSessionKey === false ) {
 			# Couldn't save file; an error has been displayed so let's go.
 			return;
 		}
@@ -591,12 +591,10 @@ class UploadForm extends SpecialPage {
 		} else {
 			$copyright = '';
 		}
-        //add the wpEditToken
-		$token = htmlspecialchars( $wgUser->editToken() );
 		$wgOut->addHTML(
 			Xml::openElement( 'form', array( 'method' => 'post', 'action' => $titleObj->getLocalURL( 'action=submit' ),
 				 'enctype' => 'multipart/form-data', 'id' => 'uploadwarning' ) ) . "\n" .
-			Xml::hidden('wpEditToken', $token) .
+			Xml::hidden('wpEditToken', $wgUser->editToken()) .
 			Xml::hidden( 'wpIgnoreWarning', '1' ) . "\n" .
 			Xml::hidden( 'wpSourceType', 'stash' ) . "\n" .
 			Xml::hidden( 'wpSessionKey', $this->mSessionKey ) . "\n" .
@@ -788,16 +786,16 @@ wgUploadAutoFill = {$autofill};
 				wfMsgHtml( 'upload_source_url' ) ;
 		    }else{
 		         //@@todo depreciate (not needed once $wgEnableJS2system is turned on)
-                $filename_form =
+               $filename_form =
 				"<input type='radio' id='wpSourceTypeFile' name='wpSourceType' value='file' " .
 				   "onchange='toggle_element_activation(\"wpUploadFileURL\",\"wpUploadFile\")' checked='checked' />" .
 				 "<input tabindex='1' type='file' name='wpUploadFile' id='wpUploadFile' " .
-				   "onfocus='" .
+				   " onfocus='" .
 				     "toggle_element_activation(\"wpUploadFileURL\",\"wpUploadFile\");" .
 				     "toggle_element_check(\"wpSourceTypeFile\",\"wpSourceTypeURL\")' " .
 				     "onchange='fillDestFilename(\"wpUploadFile\")' size='60' />" .
 				wfMsgHTML( 'upload_source_file' ) . "<br/>" .
-				"<input type='radio' id='wpSourceTypeURL' name='wpSourceType' value='Url' " .
+				"<input type='radio' id='wpSourceTypeURL' name='wpSourceType' value='web' " .
 				  "onchange='toggle_element_activation(\"wpUploadFile\",\"wpUploadFileURL\")' />" .
 				"<input tabindex='1' type='text' name='wpUploadFileURL' id='wpUploadFileURL' " .
 				  "onfocus='" .
@@ -808,9 +806,16 @@ wgUploadAutoFill = {$autofill};
 
 		    }
 		} else {
-			$filename_form =
-				"<input tabindex='1' type='file' name='wpUploadFile' id='wpUploadFile' size='60' />" .
-				"<input type='hidden' name='wpSourceType' value='upload' />" ;
+			if($wgEnableJS2system){
+				$filename_form =
+					Xml::input( 'wpUploadFile', 60, false, array( 'id'=>'wpUploadFile', 'type'=>'file', 'tabindex' => '1' ) ) .
+					Xml::hidden( 'wpSourceType', 'file');
+			}else{
+				$filename_form =
+				"<input tabindex='1' type='file' name='wpUploadFile' id='wpUploadFile' size='60' ".
+				"onchange='fillDestFilename(\"wpUploadFile\")' />" .
+				"<input type='hidden' name='wpSourceType' value='file' />" ;
+			}
 		}
 
 		if ( $useAjaxDestCheck ) {
@@ -826,11 +831,10 @@ wgUploadAutoFill = {$autofill};
 		$encComment = htmlspecialchars( $this->mComment );
 
 	    //add the wpEditToken
-		$token = htmlspecialchars( $wgUser->editToken() );
 		$wgOut->addHTML(
 			 Xml::openElement( 'form', array( 'method' => 'post', 'action' => $titleObj->getLocalURL( 'action=submit' ),
 				 'enctype' => 'multipart/form-data', 'id' => 'mw-upload-form' ) ) .
-			 Xml::hidden('wpEditToken', $token) .
+			 Xml::hidden('wpEditToken', $wgUser->editToken()) .
 			 Xml::openElement( 'fieldset' ) .
 			 Xml::element( 'legend', null, wfMsg( 'upload' ) ) .
 			 Xml::openElement( 'table', array( 'border' => '0', 'id' => 'mw-upload-table' ) ) .

@@ -10,15 +10,17 @@ class UploadFromStash extends UploadBase {
 			$sessionData[$key]['version'] == self::SESSION_VERSION;
 	}
 
-	static function isValidRequest( &$request ) {
+	static function isValidRequest( $request ) {
 		$sessionData = $request->getSessionData( 'wsUploadData' );
 		return self::isValidSessionKey( 
 			$request->getInt( 'wpSessionKey' ),
 			$sessionData
 		);
 	}
-
-	function initialize( $name, $sessionData ) {
+	/*
+	 * some $na vars for uploadBase method compatibility.
+	 */
+	function initialize( $name, $sessionData, $na, $na2=false ) {
 			/**
 			 * Confirming a temporarily stashed upload.
 			 * We don't want path names to be forged, so we keep
@@ -41,7 +43,7 @@ class UploadFromStash extends UploadBase {
 		$desiredDestName = $request->getText( 'wpDestFile' );
 		if( !$desiredDestName )
 			$desiredDestName = $request->getText( 'wpUploadFile' );
-		return $this->initialize( $desiredDestName, $sessionData[$sessionKey] );
+		return $this->initialize( $desiredDestName, $sessionData[$sessionKey], false );
 	}
 
 	/**
