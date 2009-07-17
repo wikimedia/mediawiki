@@ -73,6 +73,8 @@ this. Was used when mwEmbed was going to be an extension.
 * $wgRegisterInternalExternals can be used to record external links pointing 
   to same server
 * $wgHtml5 outputs an HTML 5 doctype instead of XHTML 1.0 Transitional.
+* $wgSpecialVersionExtended shows the extended version information besides 
+  PHP and database version.
 
 === New features in 1.16 ===
 
@@ -124,7 +126,8 @@ this. Was used when mwEmbed was going to be an extension.
 * Added a PHP port of CDB (constant database), for improved local caching when
   the DBA extension is not available.
 * (bug 14611) Added support showing the version of the web server, image 
-  thumbnailing engine, diff/diff3 engine and TeX engine.
+  thumbnailing engine, diff/diff3 engine and TeX engine, enabled for sysops 
+  by default.
 * Introduced a new system for localisation caching. The system is based around 
   fast fetches of individual messages, minimising memory overhead and startup 
   time in the typical case. The database backend will be used by default, but 

@@ -1145,6 +1145,7 @@ $1",
 'right-siteadmin'             => '鎖與解鎖資料庫',
 'right-reset-passwords'       => '設他簿之符節',
 'right-override-export-depth' => '出有五層深之頁',
+'right-versiondetail'         => '示延用之版',
 
 # User rights log
 'rightslog'  => '職權志',
