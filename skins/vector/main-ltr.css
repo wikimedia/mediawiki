@@ -178,7 +178,6 @@ div#head h5 {
 	div.vectorTabs li.selected a:visited
 	div.vectorTabs li.selected a:visited span {
 		color: #333333;
-		cursor: default;
 		text-decoration: none;
 	}
 	div.vectorTabs li.new a,
@@ -485,12 +484,10 @@ div#foot ul#foot-places li {
 		text-decoration: underline;
 	}
 	#preftoc li.selected a {
-		cursor: default;
 		background-image: url(images/preferences-fade.png);
 		background-position: bottom;
 		background-repeat: repeat-x;
 		color: #333333;
-		cursor: default;
 		text-decoration: none;
 	}
 #preferences {
