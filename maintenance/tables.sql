@@ -1094,8 +1094,8 @@ CREATE TABLE /*_*/logging (
   -- Symbolic keys for the general log type and the action type
   -- within the log. The output format will be controlled by the
   -- action field, but only the type controls categorization.
-  log_type varbinary(10) NOT NULL default '',
-  log_action varbinary(10) NOT NULL default '',
+  log_type varbinary(32) NOT NULL default '',
+  log_action varbinary(32) NOT NULL default '',
   
   -- Timestamp. Duh.
   log_timestamp binary(14) NOT NULL default '19700101000000',
