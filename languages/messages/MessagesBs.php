@@ -295,9 +295,11 @@ $messages = array(
 'tog-watchlisthideliu'        => 'Sakrij promjene prijavljenih korisnika sa liste praćenja',
 'tog-watchlisthideanons'      => 'Sakrij promjene anonimnih korisnika sa liste praćenja',
 'tog-watchlisthidepatrolled'  => 'Sakrij patrolirane izmjene sa spiska praćenja',
+'tog-nolangconversion'        => 'Onemogući konverziju varijanti',
 'tog-ccmeonemails'            => 'Pošalji mi kopije emailova koje pošaljem drugim korisnicima',
 'tog-diffonly'                => 'Ne prikazuj sadržaj stranice ispod prikaza razlika',
 'tog-showhiddencats'          => 'Prikaži skrivene kategorije',
+'tog-noconvertlink'           => 'Onemogući konverziju naslova linkova',
 'tog-norollbackdiff'          => 'Nakon vraćanja zanemari prikaz razlika',
 
 'underline-always'  => 'Uvijek',

@@ -34,6 +34,7 @@ $messages = array(
 'tog-watchlisthideliu'   => 'ܛܫܝ ܫܘܚܠܦ̈ܐ ܕܡܦܠܚܢ̈ܐ ܥܠܝܠ̈ܐ ܡܢ ܪ̈ܗܝܬܐ',
 'tog-watchlisthideanons' => 'ܛܫܝ ܫܘܚܠܦ̈ܐ ܕܡܦܠܚܢ̈ܐ ܠܐ ܝܕܝܥ̈ܐ ܡܢ ܪ̈ܗܝܬܐ',
 'tog-ccmeonemails'       => 'ܫܕܪ ܠܝ ܨܚܚ̈ܐ ܕܒܝܠܕܪ̈ܐ ܐܠܟܬܪ̈ܘܢܝܐ ܕܫܕܪ ܐܢܐ ܠܡܦܠܚܢ̈ܐ ܐܚܪ̈ܢܐ',
+'tog-showhiddencats'     => 'ܚܘܝ ܣܕܪ̈ܐ ܛܘܫܝ̈ܐ',
 
 'underline-always' => 'ܐܡܝܢ',
 'underline-never'  => 'ܠܐ ܡܡܬܘܡ',
@@ -272,6 +273,7 @@ Note that some pages may continue to be displayed as if you were still logged in
 'createaccount'           => 'ܒܪܝ ܚܘܫܒܢܐ',
 'gotaccount'              => 'ܐܝܬ ܠܟ ܚܘܫܒܢܐ؟ $1.',
 'gotaccountlink'          => 'ܥܘܠ',
+'createaccountmail'       => 'ܒܒܝܠܕܪܐ ܐܠܟܬܪܘܢܝܐ',
 'badretype'               => 'ܡܠܬܐ ܕܥܠܠܬܐ ܟܬܒ ܐܢܬ ܠܐ ܐܘܝܢܬܐ.',
 'userexists'              => 'ܫܡܐ ܕܡܦܠܚܢܐ ܫܩܝܠܐ.
 ܓܒܝ ܫܡܐ ܐܚܪܢܐ.',
@@ -376,6 +378,7 @@ Note that some pages may continue to be displayed as if you were still logged in
 'revdelete-show-file-submit' => 'ܐܝܢ',
 'revdelete-selected'         => "'''{{PLURAL:$2|ܬܢܝܬܐ ܓܒܝܬܐ|ܬܢܝܬ̈ܐ ܓܒܝܬܐ}} ܕ [[:$1]]:'''",
 'revdelete-hide-text'        => 'ܛܫܝ ܟܬܒܬܐ ܕܬܢܝܬܐ',
+'revdelete-hide-user'        => 'ܛܫܝ ܫܡܐ/ܐܝ ܦܝ (IP) ܕܡܦܠܚܢܐ',
 'pagehist'                   => 'ܬܫܥܝܬܐ ܕܦܐܬܐ',
 'deletedhist'                => 'ܬܫܥܝܬܐ ܫܝܦܬܐ',
 'revdelete-summary'          => 'ܫܚܠܦ ܦܣܝܩܬ̈ܐ',
@@ -1100,6 +1103,8 @@ Do you want to change the settings?',
 'exif-sharpness-2' => 'ܩܫܝܐ',
 
 'exif-subjectdistancerange-0' => 'ܠܐ ܝܕܝܥܐ',
+'exif-subjectdistancerange-2' => 'ܚܝܪܬܐ ܩܪܝܒܬܐ',
+'exif-subjectdistancerange-3' => 'ܚܝܪܬܐ ܪܚܘܩܬܐ',
 
 # Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-m' => 'ܡܝܠܐ ܒܫܥܬܐ',

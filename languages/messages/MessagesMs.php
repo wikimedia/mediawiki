@@ -319,6 +319,8 @@ $messages = array(
 'vector-namespace-project'   => 'Laman projek',
 'vector-view-view'           => 'Baca',
 'actions'                    => 'Tindakan',
+'namespaces'                 => 'Ruang nama',
+'variants'                   => 'Kelainan',
 
 # Metadata in edit box
 'metadata_help' => 'Metadata:',
@@ -1077,6 +1079,8 @@ Cuba berikan awalan ''all:'' untuk menggelintar semua kandungan (termasuk laman 
 'powersearch-redir'                => 'Termasuk lencongan',
 'powersearch-field'                => 'Cari',
 'powersearch-togglelabel'          => 'Semak:',
+'powersearch-toggleall'            => 'Semua',
+'powersearch-togglenone'           => 'Tiada',
 'search-external'                  => 'Carian luar',
 'searchdisabled'                   => 'Ciri pencarian dalam {{SITENAME}} dimatikan. Anda boleh mencari melalui Google. Sila ambil perhatian bahawa indeks dalam Google mungkin bukan yang terkini.',
 

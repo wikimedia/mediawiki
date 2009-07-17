@@ -465,6 +465,9 @@ $messages = array(
 'vector-view-history'        => 'Versi terdahulu',
 'vector-view-view'           => 'Baca',
 'vector-view-viewsource'     => 'Lihat sumber',
+'actions'                    => 'Tindakan',
+'namespaces'                 => 'Ruang nama',
+'variants'                   => 'Varian',
 
 # Metadata in edit box
 'metadata_help' => 'Metadata:',
@@ -523,6 +526,11 @@ $messages = array(
 'jumpto'            => 'Langsung ke:',
 'jumptonavigation'  => 'navigasi',
 'jumptosearch'      => 'cari',
+'view-pool-error'   => 'Maaf, peladen sedang sibuk pada saat ini.
+Terlalu banyak pengguna berusaha melihat halaman ini.
+Tunggu sebentar sebelum Anda mencoba lagi mengakses halaman ini.
+
+$1',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Tentang {{SITENAME}}',
@@ -1294,7 +1302,7 @@ Perlu diingat bahwa indeks Google untuk konten {{SITENAME}} mungkin belum mencak
 Pengembalian preferensi tidak dapat dibatalkan.',
 'prefs-emailconfirm-label'      => 'Konfirmasi surat-e:',
 'prefs-textboxsize'             => 'Ukuran kotak suntingan',
-'youremail'                     => 'Surat elektronik:',
+'youremail'                     => 'Surel:',
 'username'                      => 'Nama pengguna:',
 'uid'                           => 'ID pengguna:',
 'prefs-memberingroups'          => 'Anggota {{PLURAL:$1|kelompok|kelompok}}:',
@@ -1311,7 +1319,7 @@ Jangan lebih dari $1 {{PLURAL:$1|karakter|karakter}}.',
 'gender-male'                   => 'Laki-laki',
 'gender-female'                 => 'Perempuan',
 'prefs-help-gender'             => 'Opsional: digunakan untuk perbaikan penyebutan gender oleh perangkat lunak. Informasi ini akan terbuka untuk umum.',
-'email'                         => 'Surat elektronik',
+'email'                         => 'Surel',
 'prefs-help-realname'           => '* Nama asli bersifat opsional dan jika Anda memberikannya, nama asli Anda akan digunakan untuk memberi pengenalan atas hasil kerja Anda.',
 'prefs-help-email'              => 'Alamat surat-e bersifat opsional, namun bila sewaktu-waktu Anda lupa akan kata sandi Anda, kami dapat mengirimkannya melalui surat-e tersebut.
 Anda juga dapat memilih untuk memungkinkan orang lain menghubungi Anda melalui halaman pengguna atau halaman pembicaraan pengguna Anda tanpa perlu membuka identitas Anda.',
@@ -2278,7 +2286,7 @@ Lihat [[Special:IPBlockList|Daftar IP]] untuk meninjau kembali pemblokiran.',
 'anononlyblock'                   => 'hanya pengguna anonim',
 'noautoblockblock'                => 'pemblokiran otomatis dimatikan',
 'createaccountblock'              => 'pembuatan akun diblokir',
-'emailblock'                      => 'surat-e diblokir',
+'emailblock'                      => 'surel diblokir',
 'blocklist-nousertalk'            => 'tidak dapat menyunting halaman pembicaraan sendiri',
 'ipblocklist-empty'               => 'Daftar pemblokiran kosong.',
 'ipblocklist-no-results'          => 'alamat IP atau pengguna yang diminta tidak diblokir.',
@@ -2298,7 +2306,7 @@ Lihat [[Special:IPBlockList|daftar alamat IP yang diblokir]] untuk daftar pemblo
 'block-log-flags-anononly'        => 'hanya pengguna anonim',
 'block-log-flags-nocreate'        => 'pembuatan akun dimatikan',
 'block-log-flags-noautoblock'     => 'pemblokiran otomatis dimatikan',
-'block-log-flags-noemail'         => 'surat-e diblokir',
+'block-log-flags-noemail'         => 'surel diblokir',
 'block-log-flags-nousertalk'      => 'tidak dapat menyunting halaman pembicaraan sendiri',
 'block-log-flags-angry-autoblock' => 'peningkatan sistem pemblokiran otomatis telah diaktifkan',
 'block-log-flags-hiddenname'      => 'nama pengguna tersembunyi',

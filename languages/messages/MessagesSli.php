@@ -383,6 +383,10 @@ Vergiss nä, denne [[Special:Preferences|{{SITENAME}}-Eistellunga]] oazupoassa.'
 'accountcreatedtext'      => 'Is Nutzerkonto fier $1 ies oangeläat wurrn.',
 'loginlanguagelabel'      => 'Sproache: $1',
 
+# Password reset dialog
+'oldpassword' => 'Aales Passwurt:',
+'newpassword' => 'Neues Passwurt:',
+
 # Edit page toolbar
 'bold_sample'     => 'Fetter Text',
 'bold_tip'        => 'Fetter Text',
@@ -572,6 +576,9 @@ Wenn du dich miet dam Thema oauskennst, koast du selbst [[:$1|die Seite verfassa
 'powersearch-toggleall'          => 'Olle',
 'search-external'                => 'Externe Suche',
 
+# Quickbar
+'qbsettings' => 'Seytaleiste',
+
 # Preferences page
 'preferences'           => 'Eenstellunga',
 'mypreferences'         => 'Meene Eistellunga',
@@ -581,6 +588,7 @@ Wenn du dich miet dam Thema oauskennst, koast du selbst [[:$1|die Seite verfassa
 'localtime'             => 'Urtszeit:',
 'timezoneoffset'        => 'Underschied¹:',
 'timezoneregion-africa' => 'Offreka',
+'prefs-namespaces'      => 'Noamasräume',
 'prefs-files'           => 'Dateien',
 'youremail'             => 'E-Mail-Adresse:',
 'username'              => 'Benutzernoame:',
@@ -600,18 +608,25 @@ Wenn du dich miet dam Thema oauskennst, koast du selbst [[:$1|die Seite verfassa
 'userrights-groupsmember' => 'Mitglied vun:',
 
 # Groups
-'group-user'  => 'Benutzer',
-'group-bot'   => 'Bots',
-'group-sysop' => 'Administratora',
-'group-all'   => '(olle)',
+'group'               => 'Gruppe:',
+'group-user'          => 'Benutzer',
+'group-autoconfirmed' => 'Automatisch bestätigte Benutzer',
+'group-bot'           => 'Bots',
+'group-sysop'         => 'Administratora',
+'group-suppress'      => 'Oversighter',
+'group-all'           => '(olle)',
 
 'group-user-member'     => 'Notzer',
 'group-bot-member'      => 'Bot',
 'group-sysop-member'    => 'Administrator',
 'group-suppress-member' => 'Oversighter',
 
+'grouppage-user'     => '{{ns:project}}:Benutzer',
 'grouppage-sysop'    => '{{ns:project}}:Administratora',
 'grouppage-suppress' => '{{ns:project}}:Oversighter',
+
+# Rights
+'right-read' => 'Seyta lasa',
 
 # User rights log
 'rightslog'  => 'Rechte-Logbuch',
@@ -667,14 +682,20 @@ Wenn du dich miet dam Thema oauskennst, koast du selbst [[:$1|die Seite verfassa
 'uploadlogpage'     => 'Datei-Logbuch',
 'filename'          => 'Dateinoame',
 'filedesc'          => 'Beschreibung',
+'fileuploadsummary' => 'Beschreibung/Quelle:',
 'filestatus'        => 'Copyright-Status:',
 'filesource'        => 'Quelle:',
 'savefile'          => 'Datei speichern',
 'uploadedimage'     => 'hoot „[[$1]]“ huchgeloada',
 'uploaddisabled'    => 'Huchlada deaktiviert',
+'sourcefilename'    => 'Quelldatei:',
+'destfilename'      => 'Zielnoame:',
 'watchthisupload'   => 'Diese Seite beobachta',
 
-'license' => 'Lizenz:',
+'upload-proto-error' => 'Foalsches Protokoll',
+
+'license'            => 'Lizenz:',
+'upload_source_file' => '  (anne Datei uff dennem Computer)',
 
 # Special:ListFiles
 'imgfile'        => 'Datei',
@@ -701,6 +722,24 @@ Wenn du dich miet dam Thema oauskennst, koast du selbst [[:$1|die Seite verfassa
 'uploadnewversion-linktext' => 'Eene neue Version dieser Datei huchloada',
 'shared-repo-from'          => 'oaus $1',
 
+# File reversion
+'filerevert'         => 'Zerrickesetza vun „$1“',
+'filerevert-legend'  => 'Datei zerrickesetza',
+'filerevert-comment' => 'Grund:',
+'filerevert-submit'  => 'Zerrickesetza',
+
+# File deletion
+'filedelete'                  => 'Läsche „$1“',
+'filedelete-legend'           => 'Läsche Datei',
+'filedelete-comment'          => 'Grund:',
+'filedelete-submit'           => 'Läscha',
+'filedelete-success'          => "'''„$1“''' wourde geläscht.",
+'filedelete-reason-otherlist' => 'Oanderer Grund',
+
+# MIME search
+'mimesearch' => 'Suche noach MIME-Typ',
+'mimetype'   => 'MIME-Typ:',
+
 # Random page
 'randompage' => 'Zufoallige Seyte',
 
@@ -708,19 +747,25 @@ Wenn du dich miet dam Thema oauskennst, koast du selbst [[:$1|die Seite verfassa
 'statistics'       => 'Statistik',
 'statistics-pages' => 'Seyta',
 
+'double-redirect-fixer' => 'RedirectBot',
+
+'brokenredirects-delete' => 'läscha',
+
 'withoutinterwiki-legend' => 'Präfix',
 'withoutinterwiki-submit' => 'Zeige',
 
 # Miscellaneous special pages
-'nbytes'        => '$1 {{PLURAL:$1|Byte|Bytes}}',
-'nlinks'        => '{{PLURAL:$1|1 Link|$1 Links}}',
-'nmembers'      => '{{PLURAL:$1|1 Eentrag|$1 Eenträge}}',
-'prefixindex'   => 'Olle Seita (mit Präfix)',
-'newpages'      => 'Neue Seyta',
-'move'          => 'Verschieba',
-'movethispage'  => 'Seyte verschieba',
-'pager-newer-n' => '{{PLURAL:$1|nächster|nächste $1}}',
-'pager-older-n' => '{{PLURAL:$1|vurheriger|vurherige $1}}',
+'nbytes'            => '$1 {{PLURAL:$1|Byte|Bytes}}',
+'nlinks'            => '{{PLURAL:$1|1 Link|$1 Links}}',
+'nmembers'          => '{{PLURAL:$1|1 Eentrag|$1 Eenträge}}',
+'prefixindex'       => 'Olle Seita (mit Präfix)',
+'newpages'          => 'Neue Seyta',
+'newpages-username' => 'Benutzernoame:',
+'move'              => 'Verschieba',
+'movethispage'      => 'Seyte verschieba',
+'pager-newer-n'     => '{{PLURAL:$1|nächster|nächste $1}}',
+'pager-older-n'     => '{{PLURAL:$1|vurheriger|vurherige $1}}',
+'suppress'          => 'Oversight',
 
 # Book sources
 'booksources'               => 'ISBN-Suche',
@@ -731,6 +776,7 @@ Wenn du dich miet dam Thema oauskennst, koast du selbst [[:$1|die Seite verfassa
 'specialloguserlabel'  => 'Benutzer:',
 'speciallogtitlelabel' => 'Tittel:',
 'log'                  => 'Logbicher',
+'all-logs-page'        => 'Olle Logbicher',
 
 # Special:AllPages
 'allpages'       => 'Olle Seyta',
@@ -759,6 +805,7 @@ Wenn du dich miet dam Thema oauskennst, koast du selbst [[:$1|die Seite verfassa
 'newuserlog-create-entry' => 'Nutzer wourde neu registriert',
 
 # Special:ListGroupRights
+'listgrouprights-group'    => 'Gruppe',
 'listgrouprights-helppage' => 'Help:Grupparechte',
 'listgrouprights-members'  => '(Mitgliederliste)',
 
@@ -768,6 +815,7 @@ Wenn du dich miet dam Thema oauskennst, koast du selbst [[:$1|die Seite verfassa
 'emailfrom'    => 'Vun:',
 'emailto'      => 'Oa:',
 'emailsubject' => 'Betreff:',
+'emailmessage' => 'Noachricht:',
 'emailsend'    => 'Senda',
 
 # Watchlist
@@ -799,6 +847,8 @@ Wenn du de Seyte wieder voo denner Beobachtungsliste entferna mechtest, klicke u
 
 # Delete
 'deletepage'            => 'Seyte läscha',
+'delete-confirm'        => 'Läscha vun „$1“',
+'delete-legend'         => 'Läscha',
 'confirmdeletetext'     => 'Du best dabei, eene Seyte miet olla zugeheeriga ältera Versiona zu läscha. Bite bestätige dazu, dass du dir dar Konsequenza bewusst best, on dass du ei Iebereinstimmung miet dan [[{{MediaWiki:Policy-url}}|Richtlinia]] handelst.',
 'actioncomplete'        => 'Aksjonn beendet',
 'deletedtext'           => '„<nowiki>$1</nowiki>“ wurde geläscht. Eim $2 findest du eene Liste dar letzta Läschunga.',
@@ -809,7 +859,9 @@ Wenn du de Seyte wieder voo denner Beobachtungsliste entferna mechtest, klicke u
 'deletereasonotherlist' => 'Anderer Grund',
 
 # Rollback
-'rollbacklink' => 'Zerrickesetza',
+'rollback_short' => 'Zerrickesetza',
+'rollbacklink'   => 'Zerrickesetza',
+'rollbackfailed' => 'Zerrickesetza gescheitert',
 
 # Protect
 'protectlogpage'              => 'Seytaschutz-Logbuch',
@@ -892,9 +944,11 @@ Wenn du de Seyte wieder voo denner Beobachtungsliste entferna mechtest, klicke u
 'ipaddress'                => 'IP-Atresse oder Benutzernoame:',
 'ipadressorusername'       => 'IP-Atresse oder Benutzernoame:',
 'ipboptions'               => '2 Stonda:2 hours,1 Taag:1 day,3 Taage:3 days,1 Wuche:1 week,2 Wucha:2 weeks,1 Moonat:1 month,3 Moonate:3 months,6 Moonate:6 months,1 Joahr:1 year,Unbeschränkt:infinite',
+'ipbotheroption'           => 'Oandere Dauer',
 'ipblocklist'              => 'Gesperrte IP-Atressa on Benutzernoama',
 'ipblocklist-submit'       => 'Sucha',
 'blocklistline'            => '$1, $2 sperrte $3 (bis $4)',
+'anononlyblock'            => 'ocke Anonyme',
 'blocklink'                => 'Sperra',
 'unblocklink'              => 'freigahn',
 'change-blocklink'         => 'Sperre ändern',
@@ -981,6 +1035,7 @@ Bite dan '''neua''' Tittel under '''Ziel''' eintraga, darunder de Umbenennung bi
 'tooltip-search'                  => '{{SITENAME}} dorchsucha',
 'tooltip-search-go'               => 'Gieh direkt zu dar Seyte, de exakt dam eingegebena Noama entspricht.',
 'tooltip-search-fulltext'         => 'Suche noach Seyta, de diesen Text enthalta',
+'tooltip-p-logo'                  => 'Heetseyte',
 'tooltip-n-mainpage'              => 'Heetseyte oanzeiga',
 'tooltip-n-portal'                => 'Iebers Portal: woas du tun koast, wo woas zu finda ies',
 'tooltip-n-currentevents'         => 'Hintergrundinformationen zu aktuellen Ereignissen',
@@ -1013,6 +1068,13 @@ Bite dan '''neua''' Tittel under '''Ziel''' eintraga, darunder de Umbenennung bi
 'tooltip-rollback'                => 'Moacht olle letzta Änderunga dar Seite, de vum gleichen Benutzer vurgenumma waan sein, dorch ocke eenen Klick rieckgängig.',
 'tooltip-undo'                    => 'Moacht lediglich diese eene Änderung rieckgängig on zeigt doas Resultat ei dar Vorschau oa, damit ei dar Zusommafassungszeile eene Begründung angegeba waan koan.',
 
+# Attribution
+'others' => 'oandera',
+
+# Patrol log
+'patrol-log-page' => 'Kontroll-Logbichl',
+'patrol-log-auto' => '(automatisch)',
+
 # Browsing diffs
 'previousdiff' => '← Zim vurheriga Versionsunderschied',
 'nextdiff'     => 'Zim nächsta Versionsunderschied →',
@@ -1027,8 +1089,9 @@ Bite dan '''neua''' Tittel under '''Ziel''' eintraga, darunder de Umbenennung bi
 'show-big-image-thumb' => 'small>Greeße dar Vuroasicht: $1 × $2 Pixel</small>',
 
 # Special:NewFiles
-'ilsubmit' => 'Sucha',
-'bydate'   => 'noach Datum',
+'showhidebots' => '(Bots $1)',
+'ilsubmit'     => 'Sucha',
+'bydate'       => 'noach Datum',
 
 # Bad image list
 'bad_image_list' => 'Furmat:
@@ -1050,20 +1113,31 @@ Darauf folgende Seitalinks ei derselba Zeile definiera Ausnahma, ei deren Kontex
 * isospeedratings
 * focallength',
 
+# EXIF tags
+'exif-exposuretime-format' => '$1 Sekunda ($2)',
+'exif-cfapattern'          => 'CFA-Muster',
+'exif-digitalzoomratio'    => 'Digitalzoom',
+
+'exif-orientation-1' => 'Normal',
+
 'exif-exposureprogram-1' => 'Manuell',
 
 'exif-scenecapturetype-0' => 'Standard',
 'exif-scenecapturetype-1' => 'Landschoft',
+'exif-scenecapturetype-2' => 'Portrait',
 
 'exif-gaincontrol-0' => 'Keene',
 
 'exif-contrast-0' => 'Normal',
+'exif-contrast-1' => 'Schwoch',
 
 'exif-saturation-0' => 'Normal',
 'exif-saturation-1' => 'Gering',
 'exif-saturation-2' => 'Huch',
 
 'exif-sharpness-0' => 'Normal',
+'exif-sharpness-1' => 'Gering',
+'exif-sharpness-2' => 'Stork',
 
 'exif-gpsmeasuremode-2' => '2-dimensionale Messung',
 'exif-gpsmeasuremode-3' => '3-dimensionale Messung',
@@ -1079,15 +1153,20 @@ Darauf folgende Seitalinks ei derselba Zeile definiera Ausnahma, ei deren Kontex
 'namespacesall'    => 'olle',
 'monthsall'        => 'olle',
 
+# Trackbacks
+'trackbacklink' => 'Trackback',
+
 # action=purge
 'confirm_purge_button' => 'OK',
 
 # Multipage image navigation
 'imgmultipagenext' => 'nächste Seyte →',
 'imgmultigo'       => 'OK',
+'imgmultigoto'     => 'Gieh zo Seyte $1',
 
 # Table pager
 'ascending_abbrev'         => 'uff',
+'descending_abbrev'        => 'oab',
 'table_pager_next'         => 'Nächste Seyte',
 'table_pager_prev'         => 'Vorherige Seyte',
 'table_pager_first'        => 'Erschte Seyte',
@@ -1105,8 +1184,10 @@ Darauf folgende Seitalinks ei derselba Zeile definiera Ausnahma, ei deren Kontex
 # Special:Version
 'version'                  => 'Version',
 'version-specialpages'     => 'Spezialseyta',
+'version-other'            => 'Oanderes',
 'version-version'          => '(Version $1)',
 'version-license'          => 'Lizenz',
+'version-software-product' => 'Produkt',
 'version-software-version' => 'Version',
 
 # Special:FilePath

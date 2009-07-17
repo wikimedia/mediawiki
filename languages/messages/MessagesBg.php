@@ -1823,6 +1823,7 @@ $2',
 'listusersfrom'      => 'Показване на потребителите, започвайки от:',
 'listusers-submit'   => 'Показване',
 'listusers-noresult' => 'Няма намерени потребители.',
+'listusers-blocked'  => '(блокиран)',
 
 # Special:ActiveUsers
 'activeusers'          => 'Списък на активните потребители',

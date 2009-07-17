@@ -1091,7 +1091,7 @@ Saia zaitez zure eskeraren aurretik ''all:'' jartzen eduki guztien artean bilatz
 'allowemail'                  => 'Beste erabiltzaileengandik e-posta mezuak jasotzea gaitu',
 'prefs-searchoptions'         => 'Bilaketa aukerak',
 'prefs-namespaces'            => 'Izen-tarteak',
-'defaultns'                   => 'Izen-tarte hauetan bilatu lehenetsitzat:',
+'defaultns'                   => 'Bestela izen-tarte hauetan bilatu:',
 'default'                     => 'lehenetsia',
 'prefs-files'                 => 'Fitxategiak',
 'prefs-custom-css'            => 'CSS pertsonalizatua',
@@ -1653,7 +1653,7 @@ Erregistro mota, erabiltzailearen izena edota orrialdearen izena iragaziz bistar
 
 # Special:Categories
 'categories'                    => 'Kategoriak',
-'categoriespagetext'            => 'Hurrengo kategoriek orrialdeak edo fitxategiak dituzte.
+'categoriespagetext'            => 'Hurrengo {{PLURAL:$1|kategoriak orrialdeak edo fitxategiak ditu|kategoriek orrialdeak edo fitxategiak dituzte}}.
 [[Special:UnusedCategories|Erabili gabeko kategoriak]] ez dira hemen erakusten.
 Ikus, gainera [[Special:WantedCategories|kategoriarik eskatuenak]].',
 'categoriesfrom'                => 'Honela hasten diren kategoriak erakutsi:',

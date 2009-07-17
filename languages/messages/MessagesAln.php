@@ -346,17 +346,17 @@ Lista e faqeve speciale valide gjindet te [[Special:SpecialPages|{{int:specialpa
 # General errors
 'error'                => 'Gabim',
 'databaseerror'        => 'Gabim në databazë',
-'dberrortext'          => 'Ka ndodh nji gabim në sintaksën e kërkesës në databazë. 
+'dberrortext'          => 'Ka ndodh nji gabim sintaksor në kërkesën në databazë. 
 Kjo mundet me tregue gabim në software.
 Kërkesa e fundit në databazë ishte:
 <blockquote><tt>$1</tt></blockquote>
 mbrenda funksionit "<tt>$2</tt>".
-MySQL ktheu gabimin "<tt>$3: $4</tt>".',
-'dberrortextcl'        => 'Ka ndodh një gabim sintaksor në kërkesën në databazë. 
+$5 ktheu gabimin "<tt>$3: $4</tt>".',
+'dberrortextcl'        => 'Ka ndodh nji gabim sintaksor në kërkesën në databazë. 
 Kërkesa e fundit në databazë ishte:
 "$1"
 mbrenda funksionit "$2".
-MySQL ktheu gabimin "$3: $4".',
+$5 ktheu gabimin "$3: $4".',
 'laggedslavemode'      => "'''Kujdes:''' Kjo faqe mundet mos me përmbajtë ndryshime të reja.",
 'readonly'             => 'Databaza âsht e bllokueme',
 'enterlockreason'      => 'Futni një arsye për bllokimin, gjithashtu futni edhe kohën se kur pritet të çbllokohet',
@@ -472,7 +472,7 @@ Provo prap.',
 'wrongpasswordempty'         => 'Fjalëkalimi ishte i shprazët.
 Provo prap.',
 'passwordtooshort'           => 'Fjalëkalimi juej âsht shumë i shkurtë.
-Duhet me pasë së paku {{PLURAL:$1|1 shêjë|$1 shêja}} edhe me qenë i ndryshëm prej nofkës tânde.',
+Duhet me i pasë së paku {{PLURAL:$1|1 shêjë|$1 shêja}}.',
 'password-name-match'        => 'Fjalëkalimi duhet me qenë i ndryshëm prej nofkës.',
 'mailmypassword'             => 'Dërgo fjalëkalimin me email',
 'passwordremindertitle'      => 'Fjalëkalim i ri i përkohshëm për {{SITENAME}}',
