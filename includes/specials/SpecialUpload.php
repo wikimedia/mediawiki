@@ -94,17 +94,16 @@ class UploadForm extends SpecialPage {
 			$wgOut->showErrorPage( 'uploaddisabled', 'uploaddisabledtext' );
 			return;
 		}
+
 		# Check permissions
-		if( $this->mUpload ) {
-			$permission = $this->mUpload->isAllowed( $wgUser );
-		} else {
-			$permission = $wgUser->isAllowed( 'upload' ) ? true : 'upload';
-		}
-		if( $permission !== true ) {
-			if( !$wgUser->isLoggedIn() ) {
+		global $wgGroupPermissions;
+		if( !$wgUser->isAllowed( 'upload' ) ) {
+			if( !$wgUser->isLoggedIn() && ( $wgGroupPermissions['user']['upload']
+				|| $wgGroupPermissions['autoconfirmed']['upload'] ) ) {
+				// Custom message if logged-in users without any special rights can upload
 				$wgOut->showErrorPage( 'uploadnologin', 'uploadnologintext' );
 			} else {
-				$wgOut->permissionRequired( $permission );
+				$wgOut->permissionRequired( 'upload' );
 			}
 			return;
 		}
@@ -121,10 +120,7 @@ class UploadForm extends SpecialPage {
 		}
 		//check token if uploading or reUploading
 		if( !$this->mTokenOk && !$this->mReUpload && ($this->mUpload && (
-						'submit' == $this->mAction ||
-						$this->mUploadClicked
-					)
-				)
+						'submit' == $this->mAction || $this->mUploadClicked ) )
 		){
 		    $this->mainUploadForm ( wfMsg( 'session_fail_preview' ) );
 		    return ;
@@ -320,6 +316,10 @@ class UploadForm extends SpecialPage {
 	 */
 	static function getExistsWarning( $exists ) {
 		global $wgUser, $wgContLang;
+		// Check for uppercase extension. We allow these filenames but check if an image
+		// with lowercase extension exists already
+		$warning = '';
+		$align = $wgContLang->isRtl() ? 'left' : 'right';
 
 		if( $exists === false )
 			return '';
@@ -333,7 +333,7 @@ class UploadForm extends SpecialPage {
 
 		if( $existsType == 'exists' ) {
 			// Exact match
-			$dlink = $sk->makeKnownLinkObj( $file->getTitle() );
+			$dlink = $sk->linkKnown( $file->getTitle() );
 			if ( $file->allowInlineDisplay() ) {
 				$dlink2 = $sk->makeImageLinkObj( $file->getTitle(), wfMsgExt( 'fileexists-thumb', 'parseinline' ),
 					$file->getName(), $align, array(), false, true );
@@ -348,7 +348,7 @@ class UploadForm extends SpecialPage {
 			$warning .= '<li>' . wfMsgExt( 'fileexists', array('parseinline','replaceafter'), $dlink ) . '</li>' . $dlink2;
 
 		} elseif( $existsType == 'page-exists' ) {
-			$lnk = $sk->makeKnownLinkObj( $file->getTitle(), '', 'redirect=no' );
+			$lnk = $sk->linkKnown( $file->getTitle(), '', 'redirect=no' );
 			$warning .= '<li>' . wfMsgExt( 'filepageexists', array( 'parseinline', 'replaceafter' ), $lnk ) . '</li>';
 		} elseif ( $existsType == 'exists-normalized' ) {
 			# Check if image with lowercase extension exists.
@@ -654,14 +654,14 @@ wgUploadAutoFill = {$autofill};
 			return false;
 		}
 
-		if( $this->mDesiredDestName ) {
+		if( $this->mDesiredDestName != '' ) {
 			$title = Title::makeTitleSafe( NS_FILE, $this->mDesiredDestName );
 			// Show a subtitle link to deleted revisions (to sysops et al only)
 			if( $title instanceof Title && ( $count = $title->isDeleted() ) > 0 && $wgUser->isAllowed( 'deletedhistory' ) ) {
 				$link = wfMsgExt(
 					$wgUser->isAllowed( 'delete' ) ? 'thisisdeleted' : 'viewdeleted',
 					array( 'parse', 'replaceafter' ),
-					$wgUser->getSkin()->makeKnownLinkObj(
+					$wgUser->getSkin()->linkKnown(
 						SpecialPage::getTitleFor( 'Undelete', $title->getPrefixedText() ),
 						wfMsgExt( 'restorelink', array( 'parsemag', 'escape' ), $count )
 					)
@@ -700,21 +700,20 @@ wgUploadAutoFill = {$autofill};
 
 		$allowedExtensions = '';
 		if( $wgCheckFileExtensions ) {
-			$delim = wfMsgExt( 'comma-separator', array( 'escapenoentities' ) );
 			if( $wgStrictFileExtensions ) {
 				# Everything not permitted is banned
 				$extensionsList =
 					'<div id="mw-upload-permitted">' .
-					wfMsgWikiHtml( 'upload-permitted', implode( $wgFileExtensions, $delim ) ) .
+					wfMsgWikiHtml( 'upload-permitted', $wgLang->commaList( $wgFileExtensions ) ) .
 					"</div>\n";
 			} else {
 				# We have to list both preferred and prohibited
 				$extensionsList =
 					'<div id="mw-upload-preferred">' .
-					wfMsgWikiHtml( 'upload-preferred', implode( $wgFileExtensions, $delim ) ) .
+					wfMsgWikiHtml( 'upload-preferred', $wgLang->commaList( $wgFileExtensions ) ) .
 					"</div>\n" .
 					'<div id="mw-upload-prohibited">' .
-					wfMsgWikiHtml( 'upload-prohibited', implode( $wgFileBlacklist, $delim ) ) .
+					wfMsgWikiHtml( 'upload-prohibited', $wgLang->commaList( $wgFileExtensions ) ) .
 					"</div>\n";
 			}
 		} else {
