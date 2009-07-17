@@ -1176,11 +1176,11 @@ class Title {
 				// User can't move anything
 				global $wgGroupPermissions;
 				$userCanMove = false;
-				if ( isset( $wgGroupPermissions['user']['move'] ) {
+				if ( isset( $wgGroupPermissions['user']['move'] ) ) {
 					$userCanMove = $wgGroupPermissions['user']['move'];
 				}
 				$autoconfirmedCanMove = false;
-				if ( isset( $wgGroupPermissions['autoconfirmed']['move'] ) {
+				if ( isset( $wgGroupPermissions['autoconfirmed']['move'] ) ) {
 					$autoconfirmedCanMove = $wgGroupPermissions['autoconfirmed']['move'];
 				}
 				if ( $user->isAnon() && ( $userCanMove || $autoconfirmedCanMove ) ) {
