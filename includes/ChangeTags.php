@@ -14,7 +14,8 @@ class ChangeTags {
 		$displayTags = array();
 		foreach( $tags as $tag ) {
 			$displayTags[] = Xml::tags( 'span',
-								array( 'class' => "mw-tag-marker mw-tag-marker-$tag" ),
+								array( 'class' => "mw-tag-marker ".
+											Sanitizer::escapeClass("mw-tag-marker-$tag") ),
 								self::tagDescription( $tag ) );
 			$classes[] = Sanitizer::escapeClass( "mw-tag-$tag" );
 		}
