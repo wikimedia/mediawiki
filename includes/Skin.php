@@ -1735,7 +1735,7 @@ END;
 				SpecialPage::getTitleFor( 'Movepage' ),
 				wfMsg( 'movethispage' ),
 				array(),
-				array( 'target' => $this->mTitle->getPrefixedURL() ),
+				array( 'target' => $this->mTitle->getPrefixedDBkey() ),
 				array( 'known', 'noclasses' )
 			);
 		} else {
