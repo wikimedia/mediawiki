@@ -454,6 +454,9 @@ $messages = array(
 'vector-view-history'        => 'Geschiedenisse bekieken',
 'vector-view-view'           => 'Lezen',
 'vector-view-viewsource'     => 'Brontekse bekieken',
+'actions'                    => 'Haandeling',
+'namespaces'                 => 'Naamruumten',
+'variants'                   => 'Variaanten',
 
 # Metadata in edit box
 'metadata_help' => 'Metadata:',
@@ -512,6 +515,11 @@ $messages = array(
 'jumpto'            => 'Gao naor:',
 'jumptonavigation'  => 'navigasie',
 'jumptosearch'      => 'zeuk',
+'view-pool-error'   => 'De servers bin op hejen overbelas.
+Te veul volk prebeert disse pagina te bekieken.
+Wach even veurda-j opniej toegang preberen te kriegen tot disse pagina.
+
+$1',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Over {{SITENAME}}',

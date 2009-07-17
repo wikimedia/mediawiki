@@ -902,20 +902,20 @@ $3-এর দেয়া কারণ হল ''$2''",
 'group-autoconfirmed' => 'স্বয়ংক্রিয়ভাবে নিশ্চিতকৃত ব্যবহারকারীরা',
 'group-bot'           => 'বট',
 'group-sysop'         => 'প্রশাসক',
-'group-bureaucrat'    => 'নীতি নির্ধারক',
+'group-bureaucrat'    => 'ব্যুরোক্রেট',
 'group-all'           => '(সমস্ত)',
 
 'group-user-member'          => 'ব্যবহারকারী',
 'group-autoconfirmed-member' => 'স্বয়ংক্রিয়ভাবে নিশ্চিতকৃত ব্যবহারকারী',
 'group-bot-member'           => 'বট',
 'group-sysop-member'         => 'প্রশাসক',
-'group-bureaucrat-member'    => 'নীতি নির্ধারক',
+'group-bureaucrat-member'    => 'ব্যুরোক্রেট',
 
 'grouppage-user'          => '{{ns:project}}:ব্যবহারকারীগণ',
 'grouppage-autoconfirmed' => '{{ns:project}}:স্বয়ংক্রিয়ভাবে নিশ্চিতকৃত ব্যবহারকারীরা',
 'grouppage-bot'           => '{{ns:project}}:বটগুলি',
 'grouppage-sysop'         => '{{ns:project}}:প্রশাসকেরা',
-'grouppage-bureaucrat'    => '{{ns:project}}:আমলারা',
+'grouppage-bureaucrat'    => '{{ns:project}}:ব্যুরোক্রেট',
 
 # Rights
 'right-read'          => 'পাতাসমূহ পড়ুন',

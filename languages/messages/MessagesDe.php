@@ -653,11 +653,13 @@ Alle verfügbaren Spezialseiten sind in der [[Special:SpecialPages|Liste der Spe
 'databaseerror'        => 'Datenbankfehler',
 'dberrortext'          => 'Es ist ein Datenbankfehler aufgetreten.
 Der Grund kann ein Programmierfehler sein.
-Die letzte Datenbankabfrage lautete: <blockquote><tt>$1</tt></blockquote> aus der Funktion „<tt>$2</tt>“.
-MySQL meldete den Fehler „<tt>$3: $4</tt>“.',
+Die letzte Datenbankabfrage lautete:
+<blockquote><tt>$1</tt></blockquote>
+aus der Funktion „<tt>$2</tt>“.
+$5 meldete den Fehler „<tt>$3: $4</tt>“.',
 'dberrortextcl'        => 'Es gab einen Syntaxfehler in der Datenbankabfrage.
 Die letzte Datenbankabfrage lautete: „$1“ aus der Funktion „<tt>$2</tt>“.
-MySQL meldete den Fehler: „<tt>$3: $4</tt>“.',
+$5 meldete den Fehler: „<tt>$3: $4</tt>“.',
 'laggedslavemode'      => "'''Achtung:''' Die angezeigte Seite könnte unter Umständen nicht die letzten Bearbeitungen enthalten.",
 'readonly'             => 'Datenbank gesperrt',
 'enterlockreason'      => 'Bitte gib einen Grund ein, warum die Datenbank gesperrt werden soll und eine Abschätzung über die Dauer der Sperrung',
@@ -978,7 +980,7 @@ Grund für die Sperre: $1",
 Bitte prüfe sorgfältig, ob die erneute Seitenerstellung den Richtlinien entspricht.
 Zu deiner Information folgt das Lösch- und Verschiebungs-Logbuch mit der Begründung für die vorhergehende Löschung:",
 'moveddeleted-notice'              => 'Diese Seite wurde gelöscht. Es folgt ein Auszug aus dem Lösch- und Verschiebungs-Logbuch für diese Seite.',
-'log-fulllog'                      => 'Volles Logbuch ansehen',
+'log-fulllog'                      => 'Alle Logbucheinträge ansehen',
 'edit-hook-aborted'                => 'Die Bearbeitung wurde ohne Erklärung durch eine Schnittstelle abgebrochen.',
 'edit-gone-missing'                => 'Die Seite konnt nicht aktualisiert werden.
 Sie wurde anscheinend gelöscht.',
@@ -1419,7 +1421,7 @@ Mit anderen Benutzern kannst du auch über die Benutzerdiskussionsseiten Kontakt
 # Groups
 'group'               => 'Gruppe:',
 'group-user'          => 'Benutzer',
-'group-autoconfirmed' => 'Bestätigte Benutzer',
+'group-autoconfirmed' => 'Automatisch bestätigte Benutzer',
 'group-bot'           => 'Bots',
 'group-sysop'         => 'Administratoren',
 'group-bureaucrat'    => 'Bürokraten',
@@ -1427,14 +1429,14 @@ Mit anderen Benutzern kannst du auch über die Benutzerdiskussionsseiten Kontakt
 'group-all'           => '(alle)',
 
 'group-user-member'          => 'Benutzer',
-'group-autoconfirmed-member' => 'Bestätigter Benutzer',
+'group-autoconfirmed-member' => 'Automatisch bestätigter Benutzer',
 'group-bot-member'           => 'Bot',
 'group-sysop-member'         => 'Administrator',
 'group-bureaucrat-member'    => 'Bürokrat',
 'group-suppress-member'      => 'Oversighter',
 
 'grouppage-user'          => '{{ns:project}}:Benutzer',
-'grouppage-autoconfirmed' => '{{ns:project}}:Bestätigte Benutzer',
+'grouppage-autoconfirmed' => '{{ns:project}}:Automatisch bestätigte Benutzer',
 'grouppage-bot'           => '{{ns:project}}:Bots',
 'grouppage-sysop'         => '{{ns:project}}:Administratoren',
 'grouppage-bureaucrat'    => '{{ns:project}}:Bürokraten',

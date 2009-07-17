@@ -3039,7 +3039,7 @@ Vă rugăm să confirmaţi faptul că într-adevăr doriţi să recreaţi acest 
 'watchlistedit-normal-explain' => 'Titlurile din lista ta de pagini urmărite sunt enumerate mai jos.
 Pentru a elimina un titlu, validează chenarul de lângă el şi apasă pe Şterge Titluri.
 Poţi şi să editezi direct o [[Special:Watchlist/raw|listă brută a paginilor urmărite]].',
-'watchlistedit-normal-submit'  => 'Şterge Titluri',
+'watchlistedit-normal-submit'  => 'Şterge titluri',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|1 titlu a fost şters|$1 titluri au fost şterse}} din lista de urmărire:',
 'watchlistedit-raw-title'      => 'Modifică lista brută a paginilor urmărite',
 'watchlistedit-raw-legend'     => 'Modifică lista brută de pagini urmărite',

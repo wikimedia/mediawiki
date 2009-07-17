@@ -568,6 +568,9 @@ $messages = array(
 'vector-view-history'        => 'نمایش تاریخچه',
 'vector-view-view'           => 'خواندن',
 'vector-view-viewsource'     => 'نمایش مبدأ',
+'actions'                    => 'عملکردها',
+'namespaces'                 => 'فضاهای نام',
+'variants'                   => 'گویش‌ها',
 
 # Metadata in edit box
 'metadata_help' => 'متاداده:',
@@ -626,6 +629,11 @@ $messages = array(
 'jumpto'            => 'پرش به:',
 'jumptonavigation'  => 'ناوبری',
 'jumptosearch'      => 'جستجو',
+'view-pool-error'   => 'شوربختانه کارسازها در حال حاضر دچار بار اضافی هستند.
+تعداد زیادی از کاربران تلاش می‌کنند که این صفحه را ببینند.
+لطفاً قبل از تلاش دوباره برای دیدن این صفحه مدتی صبر کنید.
+
+$1',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'دربارهٔ {{SITENAME}}',

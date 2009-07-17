@@ -1573,7 +1573,7 @@ DUW # 一部の携帯電話
 IMG # 一般
 JD # Jenoptik
 MGP # ペンタックス
-PICT # misc.
+PICT # その他
  #</pre> <!-- この行はそのままにしておいてください -->',
 
 'upload-proto-error'      => '不正なプロトコル',

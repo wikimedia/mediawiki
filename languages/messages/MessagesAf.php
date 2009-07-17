@@ -412,7 +412,7 @@ $messages = array(
 Die laaste navraag was:
 <blockquote><tt>$1</tt></blockquote>
 van funksie "<tt>$2</tt>".
-MySQL foutboodskap "<tt>$3: $4</tt>".',
+$5 foutboodskap "<tt>$3: $4</tt>".',
 'dberrortextcl'        => 'Sintaksisfout in databasisnavraag.
 Die laaste navraag was:
 <blockquote><tt>$1</tt></blockquote>
@@ -658,7 +658,7 @@ Om 'n nuwe bladsy te skep, tik in die invoerboks hier onder. Lees die [[{{MediaW
 vir meer inligting.
 Indien u per ongeluk hier is, gebruik u blaaier se '''terug'''- knoppie.",
 'anontalkpagetext'                 => "----''Hierdie is die besprekingsblad vir 'n anonieme gebruiker wat nog nie 'n rekening geskep het nie of wat dit nie gebruik nie. Daarom moet ons sy/haar numeriese IP-adres gebruik vir identifikasie. Só 'n adres kan deur verskeie gebruikers gedeel word. Indien u 'n anonieme gebruiker is wat voel dat ontoepaslike kommentaar teen u gerig is, [[Special:UserLogin|skep 'n rekening of teken in]] om verwarring met ander anonieme gebruikers te voorkom.''",
-'noarticletext'                    => 'Hierdie bladsy bevat geen teks.
+'noarticletext'                    => 'Hierdie bladsy bevat geen teks nie.
 U kan [[Special:Search/{{PAGENAME}}|na hierdie bladsytitel in ander bladsye soek]], <span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} die verwante logs deursoek], of [{{fullurl:{{FULLPAGENAME}}|action=edit}} hierdie bladsy wysig]</span>.',
 'userpage-userdoesnotexist'        => 'U is besig om \'n gebruikersblad wat nie bestaan nie te wysig (gebruiker "$1"). Maak asseblief seker of u die bladsy wil skep/ wysig.',
 'clearyourcache'                   => "'''Let wel''': Na die voorkeure gestoor is, moet u blaaier se kasgeheue verfris word om die veranderinge te sien: '''Mozilla:''' klik ''Reload'' (of ''Ctrl-R''), '''IE / Opera:''' ''Ctrl-F5'', '''Safari:''' ''Cmd-R'', '''Konqueror''' ''Ctrl-R''.",

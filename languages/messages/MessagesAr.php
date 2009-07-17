@@ -584,6 +584,9 @@ $messages = array(
 'vector-view-history'        => 'عرض التاريخ',
 'vector-view-view'           => 'اقرأ',
 'vector-view-viewsource'     => 'عرض المصدر',
+'actions'                    => 'أفعال',
+'namespaces'                 => 'النطاقات',
+'variants'                   => 'المتغيرات',
 
 # Metadata in edit box
 'metadata_help' => 'بيانات ميتا:',
@@ -642,6 +645,11 @@ $messages = array(
 'jumpto'            => 'اذهب إلى:',
 'jumptonavigation'  => 'إبحار',
 'jumptosearch'      => 'بحث',
+'view-pool-error'   => 'عذرا، الخوادم منهكة حاليًا.
+يحاول مستخدمون كثر الوصول إلى هذه الصفحة.
+من فضلك انتظر قليلا قبل أن تحاول الوصول إلى هذه الصفحة مجددًا.
+
+$1',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'حول {{SITENAME}}',
@@ -1163,7 +1171,7 @@ $2',
 قد تتوفر تفاصيل في [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} سجل الحذف].",
 'rev-deleted-text-unhide'     => "مراجعة الصفحة هذه تم '''حذفها'''.
 ربما تكون هناك تفاصيل في [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} سجل الحذف].
-كإداري مازال بإمكانك [$1 رؤية هذه المراجعة] لو أنك تود المتابعة.",
+كإداري مازال بإمكانك [$1 رؤية هذه المراجعة] إذا أردت المتابعة.",
 'rev-deleted-text-view'       => "مراجعة الصفحة هذه تم '''حذفها'''.
 كإداري يمكنك رؤيتها؛ ربما تكون هناك تفاصيل في [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} سجل الحذف].",
 'rev-deleted-no-diff'         => "لا يمكنك رؤية هذا الفرق لأن واحدة من المراجعات تم '''حذفها'''.
@@ -1349,8 +1357,8 @@ $1",
 'searchmenu-new'                   => "'''أنشئ الصفحة \"[[:\$1]]\" في هذا الويكي!'''",
 'searchhelp-url'                   => 'Help:محتويات',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|تصفح الصفحات بهذه البادئة]]',
-'searchprofile-articles'           => 'المقالات',
-'searchprofile-project'            => 'مساعدة',
+'searchprofile-articles'           => 'صفحات المحتوى',
+'searchprofile-project'            => 'صفحات المساعدة والمشروع',
 'searchprofile-images'             => 'الوسائط المتعددة',
 'searchprofile-everything'         => 'كل شيء',
 'searchprofile-advanced'           => 'متقدم',
@@ -2102,6 +2110,7 @@ PICT # متنوع
 'listusersfrom'      => 'عرض المستخدمين بدءا من:',
 'listusers-submit'   => 'عرض',
 'listusers-noresult' => 'لم يتم إيجاد مستخدم.',
+'listusers-blocked'  => '({{GENDER:$1|ممنوع|ممنوعة}})',
 
 # Special:ActiveUsers
 'activeusers'          => 'قائمة المستخدمين النشطين',

@@ -641,12 +641,12 @@ Ceci peut indiquer un bogue dans le logiciel.
 La dernière requête traitée par la base de données était :
 <blockquote><tt>$1</tt></blockquote>
 depuis la fonction « <tt>$2</tt> ».
-MySQL a renvoyé l’erreur « <tt>$3 : $4</tt> ».',
+$5 a renvoyé l’erreur « <tt>$3 : $4</tt> ».',
 'dberrortextcl'        => 'Une requête dans la base de données comporte une erreur de syntaxe.
 La dernière requête émise était :
 « $1 »
 dans la fonction « $2 ».
-MySQL a renvoyé l’erreur « $3 : $4 ».',
+$5 a renvoyé l’erreur « $3 : $4 ».',
 'laggedslavemode'      => 'Attention, cette page peut ne pas contenir les toutes dernières modifications effectuées',
 'readonly'             => 'Base de données verrouillée',
 'enterlockreason'      => 'Indiquez la raison du verrouillage ainsi qu’une estimation de sa durée',
@@ -1835,7 +1835,8 @@ Une page est considérée comme une page d’homonymie si elle inclut (directeme
 
 'doubleredirects'            => 'Doubles redirections',
 'doubleredirectstext'        => 'Voici une liste des pages qui redirigent vers des pages qui sont elles-mêmes des pages de redirection.
-Chaque entrée contient des liens vers la première et la seconde redirections, ainsi que la première ligne de texte de la seconde page, ce qui fournit habituellement la « vraie » page cible, vers laquelle la première redirection devrait rediriger.',
+Chaque entrée contient des liens vers la première et la seconde redirections, ainsi que la première ligne de texte de la seconde page, ce qui fournit habituellement la « vraie » page cible, vers laquelle la première redirection devrait rediriger.
+Les entrées <s>barrées</s> ont été résolues.',
 'double-redirect-fixed-move' => 'Cette redirection, dont la cible [[$1]] a été renommée, mène maintenant vers [[$2]].',
 'double-redirect-fixer'      => 'Correcteur de redirection',
 
@@ -2518,7 +2519,7 @@ impossible de renommer une page sur elle-même.',
 'imageinvalidfilename'         => 'Le nom du fichier cible est incorrect',
 'fix-double-redirects'         => 'Mettre à jour les redirections pointant vers le titre original',
 'move-leave-redirect'          => 'Laisser une redirection vers le nouveau titre',
-'protectedpagemovewarning'     => "'''ATTENTION:''' Cette page a été bloqué afin que seuls les utilisateurs ayant les droits d'administrateurs puissent la renommer.",
+'protectedpagemovewarning'     => "'''Attention :''' Cette page a été protégée afin que seuls les utilisateurs possédant les droits d'administrateur puissent la renommer.",
 'semiprotectedpagemovewarning' => "'''Note:''' Cette page a été bloqué afin que seul les utilisateurs enregistrés puissent la renommer.",
 
 # Export

@@ -217,6 +217,9 @@ $messages = array(
 'vector-view-history'        => 'Sajarah kaca',
 'vector-view-view'           => 'Waca',
 'vector-view-viewsource'     => 'Pirsani sumber',
+'actions'                    => 'Tindakan',
+'namespaces'                 => 'Ruang jeneng',
+'variants'                   => 'Varian',
 
 # Metadata in edit box
 'metadata_help' => 'Metadata:',
@@ -275,6 +278,11 @@ $messages = array(
 'jumpto'            => 'Langsung menyang:',
 'jumptonavigation'  => 'navigasi',
 'jumptosearch'      => 'golèk',
+'view-pool-error'   => 'Nyuwun ngapuro, peladèn lagi sibuk wektu iki.
+Kakèhan panganggo sing nyoba mbukak kaca iki.
+Entèni sedhéla sadurungé nyoba ngaksès kaca iki manèh .
+
+$1',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Prakara {{SITENAME}}',

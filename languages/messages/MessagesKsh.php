@@ -1875,13 +1875,11 @@ De Links sollte eijentlesch op en Sigg jon, di tirek jemeint es.
 (En Atikel jellt als en „(Watt ėßß datt?)“-Sigg un weed hee jeliss, wann en dä Sigg [[MediaWiki:Disambiguationspage]] ene Link op en drop dren is. Alles wat keij Atikele sin, weed dobei jaa nit eez metjezallt)',
 
 'doubleredirects'            => 'Ömleitunge op Ömleitunge',
-'doubleredirectstext'        => 'Dubbel Ömleitunge sin immer verkihrt, weil däm Wiki sing Soffwär de eetse Ömleitung 
-folg, de zweite Ömleitung ävver dann aanzeije deit - un dat well mer jo normal nit han.
-Hee fings De en jede Reih ene Link op de iertste un de zweite Ömleitung, donoh ene Link op de Sigg, wo de 
-zweite Ömleitung hin jeiht. För jewöhnlich es dat dann och de richtije Sigg, wo de iertste Ömleitung ald hin 
-jonn sollt.
-Met däm „(Ändere)“-link kanns De de eetste Sigg tirek aanpacke. Tipp: Merk Der dat Lemma - de Üvverschreff - 
-vun dä Sigg dovör.',
+'doubleredirectstext'        => 'Hee fings De en jede Reih ene Link op de iertste un de zweite Ömleitung, donoh ene Link op de Sigg, wo de 
+zweite Ömleitung hin jeiht. För jewöhnlich es dat dann och de richtije Sigg, wo de iertste Ömleitung ald hen jonn sullt.
+<s>Ußjeshtreshe</s> Reije sin ald äleedesh.
+Met däm „(Ändere)“-Link kanns De de eetste Sigg tirek aanpacke.
+Tipp: Merk Der dä Tittel vun dä Sigg dovör.',
 'double-redirect-fixed-move' => 'dubbel Ömleidung nohm Ömnenne automattesch opjelös: [[$1]] → [[$2]]',
 'double-redirect-fixer'      => '(Opjaveleß)',
 
