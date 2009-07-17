@@ -551,7 +551,7 @@ EOT
 		$wgOut->addHTML( "<br /><ul>\n" );
 
 		# "Upload a new version of this file" link
-		if( UploadForm::userCanReUpload($wgUser,$this->img->name) ) {
+		if( UploadBase::userCanReUpload($wgUser,$this->img->name) ) {
 			$ulink = $sk->makeExternalLink( $this->getUploadUrl(), wfMsg( 'uploadnewversion-linktext' ) );
 			$wgOut->addHTML( "<li id=\"mw-imagepage-reupload-link\"><div class=\"plainlinks\">{$ulink}</div></li>\n" );
 		}
