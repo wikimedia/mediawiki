@@ -689,7 +689,7 @@ class Preferences {
 		## RecentChanges #####################################
 		$defaultPreferences['rcdays'] =
 				array(
-					'type' => 'int',
+					'type' => 'float',
 					'label-message' => 'recentchangesdays',
 					'section' => 'rc/display',
 					'min' => 1,
@@ -747,7 +747,7 @@ class Preferences {
 		## Watchlist #####################################
 		$defaultPreferences['watchlistdays'] =
 				array(
-					'type' => 'int',
+					'type' => 'float',
 					'min' => 0,
 					'max' => 7,
 					'section' => 'watchlist/display',
