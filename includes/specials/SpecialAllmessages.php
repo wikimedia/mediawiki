@@ -33,8 +33,8 @@ class SpecialAllmessages extends SpecialPage {
 		$this->prefix = $wgRequest->getVal( 'prefix', '' );
 
 		$this->table = new AllmessagesTablePager( $this,
-											$conds=array(),
-											wfGetLangObj( $wgRequest->getVal( 'lang', false ) ) );
+											$conds = array(),
+											wfGetLangObj( $wgRequest->getVal( 'lang', $par ) ) );
 
 		$this->langCode = $this->table->lang->getCode();
 
@@ -125,7 +125,7 @@ class AllmessagesTablePager extends TablePager {
 	var $messages  = NULL;
 	var $talkPages = NULL;
 
-	function __construct( $page, $conds, $langObj = NULL ) {
+	function __construct( $page, $conds, $langObj = null ) {
 		parent::__construct();
 		$this->mIndexField = 'am_title';
 		$this->mPage = $page;
