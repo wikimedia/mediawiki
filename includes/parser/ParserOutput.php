@@ -101,6 +101,10 @@ class ParserOutput
 	}
 
 	function addLink( $title, $id = null ) {
+		if ( $title->isExternal() ) {
+			// Don't record interwikis in pagelinks
+			return;
+		}
 		$ns = $title->getNamespace();
 		$dbk = $title->getDBkey();
 		if ( $ns == NS_MEDIA ) {

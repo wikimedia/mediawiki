@@ -287,6 +287,8 @@ this. Was used when mwEmbed was going to be an extension.
   database type
 * (bug 19759) successbox on Special:Preferences now correctly aligned on
   standard, nostalgia and cologneblue skin
+* (bug 19814) interwiki links from file links ([[File:Foo.jpg|link=de:Test]])
+  are no longer recorded in the pagelinks table
 
 == API changes in 1.16 ==
 
