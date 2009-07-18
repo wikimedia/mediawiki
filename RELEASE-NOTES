@@ -148,6 +148,8 @@ this. Was used when mwEmbed was going to be an extension.
   appears in dark green if bytes were added and dark red if bytes were removed.
 * Added FSRepo configuration properties thumbUrl and thumbDir, to allow the 
   thumbnails to be stored in a separate location to the source images.
+* If config/ directory is not executable, the command to make it executable 
+  now asks the user to cd to the correct directory
 
 === Bug fixes in 1.16 ===
 
