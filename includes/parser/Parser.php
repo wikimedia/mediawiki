@@ -4432,6 +4432,7 @@ class Parser
 		#  * upright    reduce width for upright images, rounded to full __0 px
 		#  * border     draw a 1px border around the image
 		#  * alt        Text for HTML alt attribute (defaults to empty)
+		#  * link       Set the target of the image link. Can be external, interwiki, or local 
 		# vertical-align values (no % or length right now):
 		#  * baseline
 		#  * sub
