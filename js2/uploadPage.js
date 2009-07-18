@@ -103,7 +103,8 @@ var mwUploadHelper = {
 			},
 			'url': _this.api_url
 		},function(data){
-			$j('#mw-spinner-wpDestFile').remove();
+			//remove spinner:
+			$j('#mw-spinner-wpDestFile').remove();			
 			if(data && data.query && data.query.pages){
 				if( data.query.pages[-1] ){
 					//all good no file there
