@@ -449,17 +449,21 @@ class Skin extends Linker {
 		return self::makeVariablesScript( $vars );
 	}
 	/**
-	 * Returns the Head Scripts (from local skin context)
+	 * Return a random selection of the scripts we want in the header, 
+	 * according to no particular rhyme or reason.  Various other scripts are 
+	 * returned from a haphazard assortment of other functions scattered over 
+	 * various files.  This entire hackish system needs to be burned to the 
+	 * ground and rebuilt.
 	 *
-	 * local $out variable that should be the same as $wgOut
+	 * @param $out OutputPage object, should be $wgOut
 	 *
 	 * @return string Raw HTML to output to <head>
 	 */
-	function getHeadScripts( OutputPage &$out ) {
+	function getHeadScripts( OutputPage $out ) {
 		global $wgStylePath, $wgUser, $wgJsMimeType, $wgStyleVersion, $wgOut;
 		global $wgUseSiteJs;
 
-		$vars = self::makeGlobalVariablesScript( array( 'skinname' => $this->getSkinName() ) );
+		$vars = self::makeGlobalVariablesScript( $this->getSkinName() );
 
 		//moved wikibits to be called earlier on
 		//$out->addScriptFile( "{$wgStylePath}/common/wikibits.js" );
@@ -478,7 +482,7 @@ class Skin extends Linker {
 				'action=raw&ctype='.$wgJsMimeType );
 			$wgOut->addScriptFile( $userjs );
 		}
-		return $vars . "\t" . implode ( "\n\t", $r ) . $out->mScripts;
+		return "\t" . $vars . "\t" . $out->mScripts;
 	}
 
 	/**
