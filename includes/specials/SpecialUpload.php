@@ -350,7 +350,7 @@ class UploadForm extends SpecialPage {
 			$warning .= '<li>' . wfMsgExt( 'fileexists', array('parseinline','replaceafter'), $dlink ) . '</li>' . $dlink2;
 
 		} elseif( $existsType == 'page-exists' ) {
-			$lnk = $sk->linkKnown( $file->getTitle(), '', 'redirect=no' );
+			$lnk = $sk->linkKnown( $file->getTitle(), '', '',array('redirect'=>'no') );
 			$warning .= '<li>' . wfMsgExt( 'filepageexists', array( 'parseinline', 'replaceafter' ), $lnk ) . '</li>';
 		} elseif ( $existsType == 'exists-normalized' ) {
 			# Check if image with lowercase extension exists.
@@ -818,13 +818,15 @@ wgUploadAutoFill = {$autofill};
 				"<input type='hidden' name='wpSourceType' value='file' />" ;
 			}
 		}
-
-		if ( $useAjaxDestCheck ) {
+		$warningRow = '';
+		$destOnkeyup = '';
+		if($wgEnableJS2system){
 			$warningRow = "<tr><td colspan='2' id='wpDestFile-warning'>&nbsp;</td></tr>";
-			$destOnkeyup = '';
-		} else {
-			$warningRow = '';
-			$destOnkeyup = '';
+		}else{
+			if ( $useAjaxDestCheck ) {
+				$warningRow = "<tr><td colspan='2' id='wpDestFile-warning'>&nbsp;</td></tr>";
+				$destOnkeyup = 'onchange=\'wgUploadWarningObj.checkNow(this.value);\'';
+			}
 		}
 		# Uploading a new version? If so, the name is fixed.
 		$on = $this->mForReUpload ? "readonly='readonly'" : "";
