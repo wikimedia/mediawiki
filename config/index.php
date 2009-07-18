@@ -246,7 +246,7 @@ if( !is_writable( "." ) ) {
 	<p>To make the directory writable on a Unix/Linux system:</p>
 
 	<pre>
-	cd <i>/path/to/wiki</i>
+	cd <i>" . htmlspecialchars( dirname( dirname( __FILE__ ) ) ) . "</i>
 	chmod a+w config
 	</pre>
 	
