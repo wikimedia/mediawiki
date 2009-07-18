@@ -285,6 +285,8 @@ this. Was used when mwEmbed was going to be an extension.
 * (bug 18708) CSS plainlinks class now available to all skins
 * (bug 19590) Database error messages no longer have "MySQL" hardcoded as the 
   database type
+* (bug 19759) successbox on Special:Preferences now correctly aligned on
+  standard, nostalgia and cologneblue skin
 
 == API changes in 1.16 ==
 
