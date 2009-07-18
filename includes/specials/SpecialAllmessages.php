@@ -66,7 +66,7 @@ class SpecialAllmessages extends SpecialPage {
 			</tr>
 			<tr>\n
 				<td class='mw-label'>" .
-					Xml::label( wfMsg( 'allmessages-filter' ), 'mw-allmessages-form-filter' ) .
+					Xml::label( wfMsg( 'allmessages-filter' ), 'filter' ) .
 				"</td>\n
 				<td class='mw-input'>" .
 					Xml::radioLabel( wfMsg( 'allmessages-filter-unmodified' ),
@@ -267,9 +267,20 @@ class AllmessagesTablePager extends TablePager {
 	}
 
 	function getStartBody() {
-		return "<table border=\"1\" class=\"TablePager\" style=\"width:100%;\" id=\"allmessagestable\"><thead>\n<tr>" .
-			"<th rowspan=\"2\">" . wfMsg('allmessagesname') . "</th><th>" . wfMsg('allmessagesdefault') .
-			"</tr>\n<tr><th>" . wfMsg('allmessagescurrent') . "</th></tr>\n";
+		return Xml::openElement( 'table', array( 'class' => 'TablePager', 'id' => 'mw-allmessagestable' ) ) . "\n" .
+			"<tr>
+				<th rowspan=\"2\">" .
+					wfMsg( 'allmessagesname' ) . "
+				</th>
+				<th>" .
+					wfMsg( 'allmessagesdefault' ) .
+				"</th>
+			</tr>\n
+			<tr>
+				<th>" .
+					wfMsg( 'allmessagescurrent' ) .
+				"</th>
+			</tr>\n";
 	}
 
 	function formatValue( $field , $value ){
