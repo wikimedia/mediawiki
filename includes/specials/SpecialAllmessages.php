@@ -47,11 +47,13 @@ class SpecialAllmessages extends SpecialPage {
 	}
 
 	function buildForm() {
-		$url = $this->getTitle()->escapeLocalURL();
+		global $wgScript;
+
+		$action = htmlspecialchars( $wgScript );
 		$languages = Language::getLanguageNames( false );
 		ksort( $languages );
 
-		$out  = "<form method=\"get\" action=\"$url\"><fieldset>\n" .
+		$out  = "<form method=\"get\" action=\"$action\"><fieldset>\n" .
 			Xml::hidden( 'title', $this->getTitle() ) .
 					Xml::element( 'legend', null, wfMsg( 'allmessages' ) ) . "<table><tr>\n" .
 				"<td class=\"mw-label\">" .
@@ -198,7 +200,7 @@ class AllmessagesTablePager extends TablePager {
 			if( $s->page_namespace == NS_MEDIAWIKI ){
 				if( $this->foreign ){
 					$title = explode( '/', $s->page_title );
-					if( $this->langcode == $title[1] && array_key_exists( $title[0], $this->messages ) ){
+					if( count($title) === 2 && $this->langcode == $title[1] && array_key_exists( $title[0], $this->messages ) ){
 						$this->messages["{$title[0]}"]['customised'] = 1;
 					}
 				} else if( array_key_exists( $s->page_title , $this->messages ) ){
@@ -230,7 +232,7 @@ class AllmessagesTablePager extends TablePager {
 				( $descending && ( $key < $offset || !$offset ) || !$descending && $key > $offset ) &&
 				(( $this->prefix && preg_match( $this->prefix, $key ) ) || $this->prefix === false )
 			){
-				$mResult->result[] = array( 
+				$mResult->result[] = array(
 					'am_title'      => $key,
 					'am_actual'     => $value['actual'],
 					'am_default'    => $value['default'],
