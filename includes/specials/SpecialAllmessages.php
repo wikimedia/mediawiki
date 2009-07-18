@@ -49,51 +49,70 @@ class SpecialAllmessages extends SpecialPage {
 	function buildForm() {
 		global $wgScript;
 
-		$action = htmlspecialchars( $wgScript );
 		$languages = Language::getLanguageNames( false );
 		ksort( $languages );
 
-		$out  = "<form method=\"get\" action=\"$action\"><fieldset>\n" .
+		$out  = Xml::openElement( 'form', array( 'method' => 'get', 'action' => $wgScript, 'id' => 'mw-allmessages-form' ) ) .
+			Xml::fieldset( wfMsg( 'allmessages-filter-legend' ) ) .
 			Xml::hidden( 'title', $this->getTitle() ) .
-					Xml::element( 'legend', null, wfMsg( 'allmessages' ) ) . "<table><tr>\n" .
-				"<td class=\"mw-label\">" .
-					Xml::label( wfMsg('allmessages-prefix'), 'am-form-prefix' ) .
-				"</td>\n<td class=\"mw-input\">" .
-					Xml::input( 'prefix', 20, str_replace('_',' ',$this->prefix), array( 'id' => 'am-form-prefix' ) ) .
-				"</select>" .
-				"</td>\n</tr><tr>\n<td class='mw-label'>" .
-					Xml::label( wfMsg('allmessages-filter'), 'am-form-filter' ) .
-				"</td>\n<td class='mw-input'>" .
-					Xml::radioLabel( wfMsg('allmessages-filter-unmodified'),
+			Xml::openElement( 'table', array( 'class' => 'mw-allmessages-table' ) ) . "\n" .
+			'<tr>
+				<td class="mw-label">' .
+					Xml::label( wfMsg( 'allmessages-prefix' ), 'mw-allmessages-form-prefix' ) .
+				"</td>\n
+				<td class=\"mw-input\">" .
+					Xml::input( 'prefix', 20, str_replace( '_', ' ', $this->prefix ), array( 'id' => 'mw-allmessages-form-prefix' ) ) .
+				"</td>\n
+			</tr>
+			<tr>\n
+				<td class='mw-label'>" .
+					Xml::label( wfMsg( 'allmessages-filter' ), 'mw-allmessages-form-filter' ) .
+				"</td>\n
+				<td class='mw-input'>" .
+					Xml::radioLabel( wfMsg( 'allmessages-filter-unmodified' ),
 						'filter',
 						'unmodified',
-						'am-form-filter-unmodified',
+						'mw-allmessages-form-filter-unmodified',
 						( $this->filter == 'unmodified' ? true : false )
 					) .
-					Xml::radioLabel( wfMsg('allmessages-filter-all'),
+					Xml::radioLabel( wfMsg( 'allmessages-filter-all' ),
 						'filter',
 						'all',
-						'am-form-filter-all',
+						'mw-allmessages-form-filter-all',
 						( $this->filter == 'all' ? true : false )
 					) .
-					Xml::radioLabel( wfMsg('allmessages-filter-modified'),
+					Xml::radioLabel( wfMsg( 'allmessages-filter-modified' ),
 						'filter',
 						'modified',
-						'am-form-filter-modified',
+						'mw-allmessages-form-filter-modified',
 					( $this->filter == 'modified' ? true : false )
 				) .
-				"</td>\n</tr><tr>\n<td class=\"mw-label\">" .
-					Xml::label( wfMsg('yourlanguage'), 'am-form-lang' ) .
-				"</td>\n<td class=\"mw-input\">" .
-					Xml::openElement( 'select', array( 'id' => 'am-form-lang', 'name' => 'lang' ) );
+				"</td>\n
+			</tr>
+			<tr>\n
+				<td class=\"mw-label\">" .
+					Xml::label( wfMsg( 'allmessages-language' ), 'mw-allmessages-form-lang' ) .
+				"</td>\n
+				<td class=\"mw-input\">" .
+					Xml::openElement( 'select', array( 'id' => 'mw-allmessages-form-lang', 'name' => 'lang' ) );
+
 		foreach( $languages as $lang => $name ) {
-			$selected = $lang == $this->langCode ? 'selected="selected"' : '';
-			$out .= "<option value=\"$lang\" $selected>$name</option>\n";
+			$selected = $lang == $this->langCode ? true : false;
+			$out .= Xml::option( $lang . ' - ' . $name, $lang, $selected ) . "\n";
 		}
-		$out .= "</td>\n</tr><tr>\n<td></td><td>" . Xml::submitButton( wfMsg('allpagessubmit') ) .
-				"</table>" .
-					$this->table->getHiddenFields( array( 'title', 'prefix', 'filter', 'lang' ) ) .
-				"</fieldset></form>";
+		$out .= Xml::closeElement( 'select' ) .
+				"</td>\n
+			</tr>
+			<tr>\n
+				<td></td>
+				<td>" .
+					Xml::submitButton( wfMsg( 'allmessages-filter-submit' ) ) .
+				"</td>\n
+			</tr>" .
+			Xml::closeElement( 'table' ) .
+			$this->table->getHiddenFields( array( 'title', 'prefix', 'filter', 'lang' ) ) .
+			Xml::closeElement( 'fieldset' ) .
+			Xml::closeElement( 'form' );
 		return $out;
 	}
 }

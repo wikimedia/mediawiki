@@ -3045,11 +3045,14 @@ In the latter case you can also use a link, for example [[{{#Special:Export}}/{{
 'allmessagestext'               => 'This is a list of system messages available in the MediaWiki namespace.
 Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] and [http://translatewiki.net translatewiki.net] if you wish to contribute to the generic MediaWiki localisation.',
 'allmessagesnotsupportedDB'     => "This page cannot be used because '''\$wgUseDatabaseMessages''' has been disabled.",
+'allmessages-filter-legend'     => 'Filter',
 'allmessages-filter'            => 'Filter by customisation state:',
 'allmessages-filter-unmodified' => 'Unmodified',
 'allmessages-filter-all'        => 'All',
 'allmessages-filter-modified'   => 'Modified',
 'allmessages-prefix'            => 'Filter by prefix:',
+'allmessages-language'          => 'Language:',
+'allmessages-filter-submit'     => 'Go',
 
 # Thumbnails
 'thumbnail-more'           => 'Enlarge',
