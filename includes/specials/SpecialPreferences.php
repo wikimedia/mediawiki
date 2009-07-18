@@ -30,7 +30,7 @@ class SpecialPreferences extends SpecialPage {
 
 		if ( $wgRequest->getCheck( 'success' ) ) {
 			$wgOut->wrapWikiMsg(
-				'<div class="successbox"><strong>$1</strong></div>',
+				'<div class="successbox"><strong>$1</strong></div><div id="mw-pref-clear"></div>',
 				'savedprefs'
 			);
 		}

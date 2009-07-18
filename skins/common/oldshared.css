@@ -144,6 +144,9 @@ img { border: none; }
 }
 
 /* preference page with js-genrated toc */
+#mw-pref-clear {
+	clear: both;
+}
 #preftoc {
     float: left;
     margin: 1em 1em 1em 1em;
