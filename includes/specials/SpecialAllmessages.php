@@ -66,7 +66,7 @@ class SpecialAllmessages extends SpecialPage {
 			</tr>
 			<tr>\n
 				<td class='mw-label'>" .
-					Xml::label( wfMsg( 'allmessages-filter' ), 'filter' ) .
+					wfMsg( 'allmessages-filter' ) .
 				"</td>\n
 				<td class='mw-input'>" .
 					Xml::radioLabel( wfMsg( 'allmessages-filter-unmodified' ),
