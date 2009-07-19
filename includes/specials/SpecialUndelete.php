@@ -753,8 +753,25 @@ class UndeleteForm {
 		} else {
 			$openDiv = '<div id="mw-undelete-revision">';
 		}
+		
+		$revdlink = '';
+		if( $wgUser->isAllowed( 'deleterevision' ) ) {
+			if( !$rev->userCan(Revision::DELETED_RESTRICTED ) ) {
+			// If revision was hidden from sysops
+				$revdlink = Xml::tags( 'span', array( 'class'=>'mw-revdelundel-link' ),
+					'('.wfMsgHtml('rev-delundel').')' );
+			} else {
+				$query = array(
+					'type'   => 'archive',
+					'target' => $this->mTargetObj->getPrefixedDBkey(),
+					'ids'    => $rev->getTimestamp()
+				);
+				$revdlink = $skin->revDeleteLink( $query, $rev->isDeleted( File::DELETED_RESTRICTED ) );
+			}
+		}
 
-		$wgOut->addHTML( $openDiv . wfMsgWikiHtml( 'undelete-revision', $link, $time, $user, $d, $t ) . '</div>' );
+		$wgOut->addHTML( $openDiv . wfMsgWikiHtml( 'undelete-revision', $link, $time, $user, $d, $t ) . 
+			$revdlink . '</div>' );
 		wfRunHooks( 'UndeleteShowRevision', array( $this->mTargetObj, $rev ) );
 
 		if( $this->mPreview ) {
