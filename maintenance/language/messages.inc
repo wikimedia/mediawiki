@@ -2063,6 +2063,7 @@ $wgMessageStructure = array(
 		'allmessagescurrent',
 		'allmessagestext',
 		'allmessagesnotsupportedDB',
+		'allmessages-filter-legend',
 		'allmessages-filter',
 		'allmessages-filter-unmodified',
 		'allmessages-filter-all',

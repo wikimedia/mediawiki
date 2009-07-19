@@ -2547,11 +2547,14 @@ $1 כבר נחסם. האם ברצונכם לשנות את הגדרות החסי�
 
 מפעילי המערכת יכולים לערוך את ההודעות בלחיצה על שם ההודעה.',
 'allmessagesnotsupportedDB'     => 'לא ניתן להשתמש בדף זה כיוון ש־wgUseDatabseMessages מבוטל.',
+'allmessages-filter-legend'     => 'מסנן',
 'allmessages-filter'            => 'סינון לפי מצב ההודעה:',
 'allmessages-filter-unmodified' => 'הודעות שלא שונו',
 'allmessages-filter-all'        => 'הכול',
 'allmessages-filter-modified'   => 'הודעות ששונו',
 'allmessages-prefix'            => 'סינון לפי קידומת:',
+'allmessages-language'          => 'שפה:',
+'allmessages-filter-submit'     => 'הצגה',
 
 # Thumbnails
 'thumbnail-more'           => 'הגדל',
@@ -3399,6 +3402,7 @@ $1',
 'htmlform-invalid-input'       => 'יש בעיות עם חלק מהקלט שהכנסתם',
 'htmlform-select-badoption'    => 'הערך שציינתם אינו אפשרות תקינה.',
 'htmlform-int-invalid'         => 'הערך שציינתם אינו מספר שלם.',
+'htmlform-float-invalid'       => 'הערך שציינתם אינו מספר.',
 'htmlform-int-toolow'          => 'הערך שציינתם הוא מתחת למינימום, $1',
 'htmlform-int-toohigh'         => 'הערך שציינתם הוא מעל למקסימום, $1',
 'htmlform-submit'              => 'שליחה',
