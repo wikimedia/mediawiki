@@ -289,6 +289,7 @@ this. Was used when mwEmbed was going to be an extension.
   standard, nostalgia and cologneblue skin
 * (bug 19814) interwiki links from file links ([[File:Foo.jpg|link=de:Test]])
   are no longer recorded in the pagelinks table
+* (bug 19784) date option "ISO 8601" produced illegal id
 
 == API changes in 1.16 ==
 

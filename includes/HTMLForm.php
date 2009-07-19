@@ -407,8 +407,13 @@ abstract class HTMLFormField {
 		}
 
 		if ( isset( $params['name'] ) ) {
-			$this->mName = 'wp'.$params['name'];
-			$this->mID = 'mw-input-'.$params['name'];
+			$name = $params['name'];
+			$validName = Sanitizer::escapeId( $name );
+			if( $name != $validName ) {
+				throw new MWException("Invalid name '$name' passed to " . __METHOD__ );
+			}
+			$this->mName = 'wp'.$name;
+			$this->mID = 'mw-input-'.$name;
 		}
 
 		if ( isset( $params['default'] ) ) {
@@ -416,7 +421,12 @@ abstract class HTMLFormField {
 		}
 
 		if ( isset( $params['id'] ) ) {
-			$this->mID = $params['id'];
+			$id = $params['id'];
+			$validId = Sanitizer::escapeId( $id );
+			if( $id != $validId ) {
+				throw new MWException("Invalid id '$id' passed to " . __METHOD__ );
+			}
+			$this->mID = $id;
 		}
 
 		if ( isset( $params['validation-callback'] ) ) {
@@ -811,10 +821,11 @@ class HTMLRadioField extends HTMLFormField {
 				$html .= Xml::tags( 'h1', null, $label ) . "\n";
 				$html .= $this->formatOptions( $info, $value );
 			} else {
+				$id = Sanitizer::escapeId( $this->mID . "-$info" );
 				$html .= Xml::radio( $this->mName, $info, $info == $value,
-										$attribs + array( 'id' => $this->mID . "-$info" ) );
+										$attribs + array( 'id' => $id ) );
 				$html .= '&nbsp;' .
-						Xml::tags( 'label', array( 'for' => $this->mID . "-$info" ), $label );
+						Xml::tags( 'label', array( 'for' => $id ), $label );
 
 				$html .= "<br/>\n";
 			}
