@@ -297,6 +297,7 @@ this. Was used when mwEmbed was going to be an extension.
 * (bug 19287) Workaround for lag on history page in Firefox 3.5
 * (bug 19564) Updated docs/hooks.txt
 * (bug 18751) Fix for buggage in profiling setup for some extensions on PHP 5.1
+* (bug 17139) ts_resortTable inconsistent trimming makes date sorting fragile
 
 == API changes in 1.16 ==
 

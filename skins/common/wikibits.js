@@ -686,7 +686,7 @@ function ts_resortTable(lnk) {
 		if((" "+row.className+" ").indexOf(" unsortable ") < 0) {
 			var keyText = ts_getInnerText(row.cells[column]);
 			var oldIndex = (reverse ? -j : j);
-			var preprocessed = preprocessor( keyText );
+			var preprocessed = preprocessor( keyText.replace(/^[\s\xa0]+/, "").replace(/[\s\xa0]+$/, "") );
 
 			newRows[newRows.length] = new Array(row, preprocessed, oldIndex);
 		} else staticRows[staticRows.length] = new Array(row, false, j-rowStart);
