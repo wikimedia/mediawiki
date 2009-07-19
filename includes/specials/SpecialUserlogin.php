@@ -390,14 +390,14 @@ class LoginForm {
 		
 		global $wgPasswordAttemptThrottle;
 
-		$throttleCount=0;
-		if ( is_array($wgPasswordAttemptThrottle) ) {
+		$throttleCount = 0;
+		if ( is_array( $wgPasswordAttemptThrottle ) ) {
 			$throttleKey = wfMemcKey( 'password-throttle', wfGetIP(), md5( $this->mName ) );
 			$count = $wgPasswordAttemptThrottle['count'];
 			$period = $wgPasswordAttemptThrottle['seconds'];
 			
 			global $wgMemc;
-			$throttleCount = $wgMemc->get($throttleKey);
+			$throttleCount = $wgMemc->get( $throttleKey );
 			if ( !$throttleCount ) {
 				$wgMemc->add( $throttleKey, 1, $period ); // start counter
 			} else if ( $throttleCount < $count ) {
@@ -872,7 +872,7 @@ class LoginForm {
 
 		# Don't show a "create account" link if the user can't
 		if( $this->showCreateOrLoginLink( $wgUser ) )
-			$template->set( 'link', wfMsgHtml( $linkmsg, $link ) );
+			$template->set( 'link', wfMsgWikiHtml( $linkmsg, $link ) );
 		else
 			$template->set( 'link', '' );
 
