@@ -33,17 +33,18 @@ class UploadForm extends SpecialPage {
 	 * @param $request Data posted.
 	 */
 	function __construct( $request = null ) {
-	    global $wgUser, $wgRequest;
-
 		parent::__construct( 'Upload' );
+	    $this->mRequest = $request;
+	}
 
-		$this->setHeaders();
-		$this->outputHeader();
-
-		if ( is_null( $request ) ) {
+	protected function initForm() {
+		global $wgRequest, $wgUser;
+		
+		if ( is_null( $this->mRequest ) ) {
 			$request = $wgRequest;
+		} else {
+			$request = $this->mRequest;
 		}
-
 		// Guess the desired name from the filename if not provided
 		$this->mDesiredDestName   = $request->getText( 'wpDestFile' );
 		if( !$this->mDesiredDestName )
@@ -81,14 +82,19 @@ class UploadForm extends SpecialPage {
 		$this->mAction            = $request->getVal( 'action' );
 		$this->mUpload            = UploadBase::createFromRequest( $request );
 	}
-
-
+	
 	/**
 	 * Start doing stuff
 	 * @access public
 	 */
 	function execute( $par ) {
-		global $wgUser, $wgOut;
+		global $wgUser, $wgOut, $wgRequest;
+
+		$this->setHeaders();
+		$this->outputHeader();
+		
+		$this->initForm();
+
 		# Check uploading enabled
 		if( !UploadBase::isEnabled() ) {
 			$wgOut->showErrorPage( 'uploaddisabled', 'uploaddisabledtext' );
