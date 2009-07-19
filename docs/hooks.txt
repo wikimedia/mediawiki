@@ -572,6 +572,9 @@ Return true to allow the normal editor to be used, or false
 if implementing a custom editor, e.g. for a special namespace,
 etc.
 
+'DatabaseOraclePostInit': Called after initialising an Oracle database
+&$db: the DatabaseOracle object
+
 'NewDifferenceEngine': Called when a new DifferenceEngine object is made
 $title: the diff page title (nullable)
 &$oldId: the actual old Id to use in the diff
@@ -923,6 +926,11 @@ $fields: select fields
 $conds: conditions
 $opts: query options
 $join_conds: JOIN conditions
+
+'LocalisationCacheRecache': Called when loading the localisation data into cache
+$cache: The LocalisationCache object
+$code: language code
+&$alldata: The localisation data from core and extensions
 
 'LoginAuthenticateAudit': a login attempt for a valid user account either
 succeeded or failed. No return data is accepted; this hook is for auditing only.
@@ -1370,6 +1378,10 @@ $term: string of search term
 'SpecialSearchNoResults': called before search result display when there are
 no matches
 $term: string of search term
+
+'SpecialUploadComplete': Called after successfully uploading a file from 
+Special:Upload
+$form: The UploadForm object
 
 'SpecialVersionExtensionTypes': called when generating the extensions credits,
 use this to change the tables headers
