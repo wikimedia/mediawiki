@@ -327,12 +327,16 @@ if( $wgEnableScriptLoader && strpos( wfGetScriptUrl(), "mwScriptLoader.php" ) !=
 # any necessary initialisation in the fully initialised environment
 foreach ( $wgExtensionFunctions as $func ) {
 	# Allow closures in PHP 5.3+
-	if ( is_object( $func ) && $func instanceof Closure )
+	if ( is_object( $func ) && $func instanceof Closure ) {
 		$profName = $fname.'-extensions-closure';
-	elseif( is_array( $func ) )
-		$profName = $fname.'-extensions-'.implode( '::', $func );
-	else
+	} elseif( is_array( $func ) ) {
+		if ( is_object( $func[0] ) )
+			$profName = $fname.'-extensions-'.get_class( $func[0] ).'::'.$func[1];
+		else
+			$profName = $fname.'-extensions-'.implode( '::', $func );
+	} else {
 		$profName = $fname.'-extensions-'.strval( $func );
+	}
 
 	wfProfileIn( $profName );
 	call_user_func( $func );
