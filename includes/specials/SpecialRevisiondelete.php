@@ -181,7 +181,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 	 * Show some useful links in the subtitle
 	 */
 	protected function showConvenienceLinks() {
-		global $wgOut, $wgUser;
+		global $wgOut, $wgUser, $wgLang;
 		# Give a link to the logs/hist for this page
 		if( $this->targetObj ) {
 			$links = array();
@@ -210,7 +210,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 				);
 			}
 			# Logs themselves don't have histories or archived revisions
-			$wgOut->setSubtitle( '<p>'.implode($links,' / ').'</p>' );
+			$wgOut->setSubtitle( '<p>' . $wgLang->pipeList( $links ) . '</p>' );
 		}
 	}
 
