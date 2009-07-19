@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Purodha
  * @author Slomox
  * @author Urhixidur
  * @author לערי ריינהארט
@@ -521,7 +522,7 @@ De letzte Datenbankaffraag weer:
 <blockquote><tt>$1</tt></blockquote>
 
 ut de Funktschoon <tt>$2</tt>.
-MySQL mell den Fehler <tt>$3: $4</tt>.',
+$5 mell den Fehler <tt>$3: $4</tt>.',
 'dberrortextcl'        => 'Dor weer en Syntaxfehler in de Datenbankaffraag.
 De letzte Datenbankaffraag weer: $1 ut de Funktschoon <tt>$2</tt>.
 MySQL mell den Fehler: <tt>$3: $4</tt>.',

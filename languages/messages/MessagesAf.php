@@ -12,6 +12,7 @@
  * @author Arnobarnard
  * @author Manie
  * @author Naudefj
+ * @author Purodha
  * @author SPQRobin
  * @author Spacebirdy
  */
@@ -417,7 +418,7 @@ $5 foutboodskap "<tt>$3: $4</tt>".',
 Die laaste navraag was:
 <blockquote><tt>$1</tt></blockquote>
 van funksie "<tt>$2</tt>".
-MySQL foutboodskap "<tt>$3: $4</tt>".',
+$5 foutboodskap "<tt>$3: $4</tt>".',
 'laggedslavemode'      => 'Waarskuwing: Onlangse wysigings dalk nie in bladsy vervat nie.',
 'readonly'             => 'Databasis gesluit',
 'enterlockreason'      => 'Rede vir die sluiting,

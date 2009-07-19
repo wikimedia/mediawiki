@@ -610,8 +610,17 @@ Daftar halaman istimewa yang sah dapat dilihat di [[Special:SpecialPages|{{int:s
 # General errors
 'error'                => 'Galat',
 'databaseerror'        => 'Kesalahan basis data',
-'dberrortext'          => 'Ada kesalahan sintaks pada permintaan basis data. Kesalahan ini mungkin menandakan adanya \'\'bug\'\' dalam perangkat lunak. Permintaan basis data yang terakhir adalah: <blockquote><tt>$1</tt></blockquote> dari dalam fungsi "<tt>$2</tt>". Kesalahan MySQL "<tt>$3: $4</tt>".',
-'dberrortextcl'        => 'Ada kesalahan sintaks pada permintaan basis data. Permintaan basis data yang terakhir adalah: "$1" dari dalam fungsi "$2". Kesalahan MySQL "$3: $4".',
+'dberrortext'          => 'Ada kesalahan sintaks pada permintaan basis data. 
+Kesalahan ini mungkin menandakan adanya serangga dalam perangkat lunak. 
+Permintaan basis data yang terakhir adalah: 
+<blockquote><tt>$1</tt></blockquote> 
+dari dalam fungsi "<tt>$2</tt>". 
+$5 menghasilkan kesalahan "<tt>$3: $4</tt>".',
+'dberrortextcl'        => 'Ada kesalahan sintaks pada permintaan basis data. 
+Permintaan basis data yang terakhir adalah: 
+"$1" 
+dari dalam fungsi "$2". 
+$5 menghasilkan kesalahan "$3: $4".',
 'laggedslavemode'      => 'Peringatan: Halaman mungkin tidak berisi perubahan terbaru.',
 'readonly'             => 'Basis data dikunci',
 'enterlockreason'      => 'Masukkan alasan penguncian, termasuk perkiraan kapan kunci akan dibuka',
@@ -627,6 +636,7 @@ Silakan laporkan hal ini kepada salah seorang [[Special:ListUsers/sysop|Pengurus
 'readonly_lag'         => 'Basis data telah dikunci otomatis selagi basis data sekunder melakukan sinkronisasi dengan basis data utama',
 'internalerror'        => 'Kesalahan internal',
 'internalerror_info'   => 'Kesalahan internal: $1',
+'fileappenderror'      => 'Tidak dapat memasukkan "$1" ke "$2".',
 'filecopyerror'        => 'Tidak dapat menyalin berkas "$1" ke "$2".',
 'filerenameerror'      => 'Tidak dapat mengubah nama berkas "$1" menjadi "$2".',
 'filedeleteerror'      => 'Tidak dapat menghapus berkas "$1".',
@@ -1438,6 +1448,7 @@ Anda juga dapat memilih untuk memungkinkan orang lain menghubungi Anda melalui h
 'right-siteadmin'             => 'Mengunci dan membuka kunci basis data',
 'right-reset-passwords'       => 'Mereset kata sandi pengguna lain',
 'right-override-export-depth' => 'Ekspor halaman termasuk halaman-halaman terkait hingga kedalaman 5',
+'right-versiondetail'         => 'Tunjukkan informasi versi piranti lunak yang lebih lengkap',
 
 # User rights log
 'rightslog'      => 'Log perubahan hak akses',
@@ -1608,12 +1619,15 @@ Anda harus mempertimbangkan apakah perlu untuk melanjutkan pemuatan berkas ini.
 Log penghapusan berkas adalah sebagai berikut:",
 'filename-bad-prefix'         => "Nama berkas yang Anda muat diawali dengan '''\"\$1\"''', yang merupakan nama non-deskriptif yang biasanya diberikan secara otomatis oleh kamera digital. Harap pilih nama lain yang lebih deskriptif untuk berkas Anda.",
 
-'upload-proto-error'      => 'Protokol tak tepat',
-'upload-proto-error-text' => 'Pemuatan jarak jauh membutuhkan URL yang diawali dengan <code>http://</code> atau <code>ftp://</code>.',
-'upload-file-error'       => 'Kesalahan internal',
-'upload-file-error-text'  => 'Suatu kesalahan internal terjadi sewaktu mencoba membuat berkas temporer di server. Silakan kontak administrator sistem.',
-'upload-misc-error'       => 'Kesalahan pemuatan yang tak dikenal',
-'upload-misc-error-text'  => 'Suatu kesalahan yang tak dikenal terjadi sewaktu pemuatan. Harap pastikan bahwa URL tersebut valid dan dapat diakses dan silakan coba lagi. Jika masalah ini tetap terjadi, kontak administrator sistem.',
+'upload-proto-error'        => 'Protokol tak tepat',
+'upload-proto-error-text'   => 'Pemuatan jarak jauh membutuhkan URL yang diawali dengan <code>http://</code> atau <code>ftp://</code>.',
+'upload-file-error'         => 'Kesalahan internal',
+'upload-file-error-text'    => 'Suatu kesalahan internal terjadi sewaktu mencoba membuat berkas temporer di server. Silakan kontak administrator sistem.',
+'upload-misc-error'         => 'Kesalahan pemuatan yang tak dikenal',
+'upload-misc-error-text'    => 'Suatu kesalahan yang tak dikenal terjadi sewaktu pemuatan. Harap pastikan bahwa URL tersebut valid dan dapat diakses dan silakan coba lagi. Jika masalah ini tetap terjadi, kontak administrator sistem.',
+'upload-too-many-redirects' => 'URL mengandung terlalu banyak pengalihan',
+'upload-unknown-size'       => 'Ukuran tidak diketahui',
+'upload-http-error'         => 'Kesalahan HTTP terjadi: $1',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'URL tidak dapat dihubungi',
@@ -1759,7 +1773,9 @@ Halaman-halaman tersebut seharusnya berpaut ke topik-topik yang sesuai.<br />
 Suatu halaman dianggap sebagai halaman disambiguasi apabila halaman tersebut menggunakan templat yang terhubung ke [[MediaWiki:Disambiguationspage]].",
 
 'doubleredirects'            => 'Pengalihan ganda',
-'doubleredirectstext'        => 'Halaman ini memuat daftar halaman yang beralih ke halaman pengalihan yang lain. Setiap baris memuat pranala ke pengalihan pertama dan pengalihan kedua serta target dari pengalihan kedua yang umumnya adalah halaman yang sebenarnya. Halaman peralihan pertama seharusnya dialihkan ke halaman target tersebut.',
+'doubleredirectstext'        => 'Halaman ini memuat daftar halaman yang dialihkan ke halaman pengalihan yang lain. 
+Setiap baris memuat pranala ke pengalihan pertama dan pengalihan kedua serta target dari pengalihan kedua yang umumnya adalah halaman yang "sebenarnya". Halaman peralihan pertama seharusnya dialihkan ke halaman yang bukan merupakan halaman peralihan.
+Nama yang telah <s>dicoret</s> berarti telah dibetulkan.',
 'double-redirect-fixed-move' => '[[$1]] telah dipindahkan menjadi halaman peralihan ke [[$2]]',
 'double-redirect-fixer'      => 'Revisi pengalihan',
 
@@ -2437,13 +2453,18 @@ Jika Anda hanya ingin mengimpor versi terbaru, Anda melakukannya lebih cepat den
 'export-pagelinks'  => 'Sertakan halaman terkait hingga kedalaman:',
 
 # Namespace 8 related
-'allmessages'               => 'Pesan sistem',
-'allmessagesname'           => 'Nama',
-'allmessagesdefault'        => 'Teks baku',
-'allmessagescurrent'        => 'Teks sekarang',
-'allmessagestext'           => 'Ini adalah daftar semua pesan sistem yang tersedia dalam ruang nama MediaWiki.
+'allmessages'                   => 'Pesan sistem',
+'allmessagesname'               => 'Nama',
+'allmessagesdefault'            => 'Teks baku',
+'allmessagescurrent'            => 'Teks sekarang',
+'allmessagestext'               => 'Ini adalah daftar semua pesan sistem yang tersedia dalam ruang nama MediaWiki.
 Silakan kunjungi [http://www.mediawiki.org/wiki/Localisation Pelokalan MediaWiki] dan [http://translatewiki.net translatewiki.net] jika Anda ingin berkontribusi untuk pelokalan generik MediaWiki.',
-'allmessagesnotsupportedDB' => "Halaman ini tidak dapat digunakan karena '''\$wgUseDatabaseMessages''' telah dimatikan.",
+'allmessagesnotsupportedDB'     => "Halaman ini tidak dapat digunakan karena '''\$wgUseDatabaseMessages''' telah dimatikan.",
+'allmessages-filter'            => 'Saring dengan keadaan kustomisasi:',
+'allmessages-filter-unmodified' => 'Tidak diubah',
+'allmessages-filter-all'        => 'Semua',
+'allmessages-filter-modified'   => 'Diubah',
+'allmessages-prefix'            => 'Saring dengan awalan:',
 
 # Thumbnails
 'thumbnail-more'           => 'Perbesar',
@@ -3202,6 +3223,7 @@ Keterangan tampilan:
 'htmlform-invalid-input'       => 'Ada kesalahan dalam beberapa input Anda',
 'htmlform-select-badoption'    => 'Nilai yang Anda masukkan tidak sah',
 'htmlform-int-invalid'         => 'Nilai yang Anda masukkan bukan integer.',
+'htmlform-float-invalid'       => 'Yang Anda masukkan bukan merupakan angka.',
 'htmlform-int-toolow'          => 'Nilai yang Anda masukkan terlalu rendah di bawah nilai minimum $1',
 'htmlform-int-toohigh'         => 'Nilai yang Anda masukkan melebihi nilai maksimum $1',
 'htmlform-submit'              => 'Kirim',

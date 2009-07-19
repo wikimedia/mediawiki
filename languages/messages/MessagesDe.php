@@ -676,6 +676,7 @@ Falls dies nicht der Fall ist, hast du eventuell einen Fehler in der Software ge
 'readonly_lag'         => 'Die Datenbank wurde automatisch für Schreibzugriffe gesperrt, damit sich die verteilten Datenbankserver (slaves) mit dem Hauptdatenbankserver (master) abgleichen können.',
 'internalerror'        => 'Interner Fehler',
 'internalerror_info'   => 'Interner Fehler: $1',
+'fileappenderror'      => 'Konnte „$1“ nicht an „$2“ anhängen.',
 'filecopyerror'        => 'Die Datei „$1“ konnte nicht nach „$2“ kopiert werden.',
 'filerenameerror'      => 'Die Datei „$1“ konnte nicht nach „$2“ umbenannt werden.',
 'filedeleteerror'      => 'Die Datei „$1“ konnte nicht gelöscht werden.',
@@ -1498,6 +1499,7 @@ Mit anderen Benutzern kannst du auch über die Benutzerdiskussionsseiten Kontakt
 'right-siteadmin'             => 'Datenbank sperren und entsperren',
 'right-reset-passwords'       => 'Das Passwort eines anderen Benutzers zurücksetzen',
 'right-override-export-depth' => 'Exportiere Seiten einschließlich verlinkter Seiten bis zu einer Tiefe von 5',
+'right-versiondetail'         => 'Detailinformation über die Software und ihre Versionsdaten einsehen',
 
 # User rights log
 'rightslog'      => 'Rechte-Logbuch',
@@ -1690,15 +1692,18 @@ MGP # Pentax
 PICT # verschiedene
  #</pre> <!-- Diese Zeile darf nicht verändert werden!-->',
 
-'upload-proto-error'      => 'Falsches Protokoll',
-'upload-proto-error-text' => 'Die URL muss mit <code>http://</code> oder <code>ftp://</code> beginnen.',
-'upload-file-error'       => 'Interner Fehler',
-'upload-file-error-text'  => 'Bei der Erstellung einer temporären Datei auf dem Server ist ein interner Fehler aufgetreten.
+'upload-proto-error'        => 'Falsches Protokoll',
+'upload-proto-error-text'   => 'Die URL muss mit <code>http://</code> oder <code>ftp://</code> beginnen.',
+'upload-file-error'         => 'Interner Fehler',
+'upload-file-error-text'    => 'Bei der Erstellung einer temporären Datei auf dem Server ist ein interner Fehler aufgetreten.
 Bitte informiere einen [[Special:ListUsers/sysop|System-Administrator]].',
-'upload-misc-error'       => 'Unbekannter Fehler beim Hochladen',
-'upload-misc-error-text'  => 'Beim Hochladen ist ein unbekannter Fehler aufgetreten.
+'upload-misc-error'         => 'Unbekannter Fehler beim Hochladen',
+'upload-misc-error-text'    => 'Beim Hochladen ist ein unbekannter Fehler aufgetreten.
 Prüfe die URL auf Fehler, den Online-Status der Seite und versuche es erneut.
 Wenn das Problem weiter besteht, informiere einen [[Special:ListUsers/sysop|System-Administrator]].',
+'upload-too-many-redirects' => 'Die URL beinhaltete zu viele Weiterleitungen',
+'upload-unknown-size'       => 'Unbekannte Größe',
+'upload-http-error'         => 'Ein HTTP-Fehler ist aufgetreten: $1',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'URL ist nicht erreichbar',
@@ -1839,8 +1844,9 @@ Eine [[Special:WhatLinksHere/$2|vollständige Liste]] ist verfügbar.',
 'disambiguations-text' => 'Die folgenden Seiten verlinken auf eine Seite zur Begriffsklärung. Sie sollten statt dessen auf die eigentlich gemeinte Seite verlinken.<br />Eine Seite wird als Begriffsklärungsseite behandelt, wenn [[MediaWiki:Disambiguationspage]] auf sie verlinkt.<br />Links aus Namensräumen werden hier nicht aufgelistet.',
 
 'doubleredirects'            => 'Doppelte Weiterleitungen',
-'doubleredirectstext'        => 'Diese Liste enthält Weiterleitungen, die auf eine weitere Weiterleitungen verlinken.
-Jede Zeile enthält Links zu der ersten und zweiten Weiterleitung sowie das Ziel der zweiten Weiterleitung, welches für gewöhnlich die gewünschte Zielseite ist, auf die bereits die erste Weiterleitung zeigen sollte.',
+'doubleredirectstext'        => 'Diese Liste enthält Weiterleitungen, die auf weitere Weiterleitungen verlinken.
+Jede Zeile enthält Links zu der ersten und zweiten Weiterleitung sowie das Ziel der zweiten Weiterleitung, welches für gewöhnlich die gewünschte Zielseite ist, auf die bereits die erste Weiterleitung zeigen sollte.
+<s>Durchgestrichene</s> Einträge wurden bereits erledigt.',
 'double-redirect-fixed-move' => 'doppelte Weiterleitung aufgelöst: [[$1]] → [[$2]]',
 'double-redirect-fixer'      => 'RedirectBot',
 
@@ -2531,13 +2537,21 @@ Alternativ ist der Export auch mit der Syntax [[{{#Special:Export}}/{{MediaWiki:
 'export-pagelinks'  => 'Verlinkte Seiten automatisch mit exportieren, bis zur Rekursionstiefe von:',
 
 # Namespace 8 related
-'allmessages'               => 'MediaWiki-Systemtexte',
-'allmessagesname'           => 'Name',
-'allmessagesdefault'        => 'Standardtext',
-'allmessagescurrent'        => 'Aktueller Text',
-'allmessagestext'           => 'Dies ist eine Liste der MediaWiki-Systemtexte.
+'allmessages'                   => 'MediaWiki-Systemtexte',
+'allmessagesname'               => 'Name',
+'allmessagesdefault'            => 'Standardtext',
+'allmessagescurrent'            => 'Aktueller Text',
+'allmessagestext'               => 'Dies ist eine Liste der MediaWiki-Systemtexte.
 Besuche die Seiten [http://www.mediawiki.org/wiki/Localisation MediaWiki-Lokalisierung] und [http://translatewiki.net translatewiki.net], wenn du dich an der Lokalisierung von MediaWiki beteiligen möchtest.',
-'allmessagesnotsupportedDB' => 'Diese Spezialseite steht nicht zur Verfügung, da sie über den Parameter <tt>$wgUseDatabaseMessages</tt> deaktiviert wurde.',
+'allmessagesnotsupportedDB'     => 'Diese Spezialseite steht nicht zur Verfügung, da sie über den Parameter <tt>$wgUseDatabaseMessages</tt> deaktiviert wurde.',
+'allmessages-filter-legend'     => 'Filter',
+'allmessages-filter'            => 'Filter für angepassten Zustand:',
+'allmessages-filter-unmodified' => 'Unverändert',
+'allmessages-filter-all'        => 'Alle',
+'allmessages-filter-modified'   => 'Verändert',
+'allmessages-prefix'            => 'Präfixfilter:',
+'allmessages-language'          => 'Sprache:',
+'allmessages-filter-submit'     => 'Los',
 
 # Thumbnails
 'thumbnail-more'           => 'vergrößern',
@@ -3342,6 +3356,7 @@ Die Eingabe muss ohne den Zusatz „{{ns:file}}:“ erfolgen.',
 'htmlform-invalid-input'       => 'Mit einigen Eingaben gibt es Probleme',
 'htmlform-select-badoption'    => 'Der angegebene Wert ist keine gültige Option.',
 'htmlform-int-invalid'         => 'Der angegebene Wert ist keine Ganzzahl.',
+'htmlform-float-invalid'       => 'Der angegebene Wert ist keine Zahl.',
 'htmlform-int-toolow'          => 'Der angegebene Wert ist unter dem Minimum von $1',
 'htmlform-int-toohigh'         => 'Der angegebene Wert ist über dem Maximum von $1',
 'htmlform-submit'              => 'Übertragen',

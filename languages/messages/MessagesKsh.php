@@ -518,18 +518,18 @@ Et künnt sesch och öm ene Fäähler en dä Sofware fum Wiki handelle.',
 # General errors
 'error'                => 'Fähler',
 'databaseerror'        => 'Fähler en de Daatebank',
-'dberrortext'          => 'Enne Fääler es_opjefalle en dä Süntax fun_ennem Befääl fö_de_Date_Bank.
-Dat künnd_enne Fääler en de ßoffwäer fum Wikki sinn.
+'dberrortext'          => 'Enne Fääler es opjefalle en dä Süntax vun ennem Befääl för de Datebank.
+Dat künnd_enne Fääler em Wikki-Projamm sin.
 De läzde Date_Bank_Befääl eß jewääse:
 <blockquote><code>$1</code></blockquote>
-uß däm Projramm singe Funkzjohn: „<code>$2</code>“.<br />
-MySQL mälldt dä Fääler: „<code>$3: $4</code>“.',
+uß dä Funkzjohn: „<code>$2</code>“.
+$5 mälldt dä Fääler: „<code>$3: $4</code>“.',
 'dberrortextcl'        => 'En dä Syntax vun enem Befähl för de Daatebank es
 ene Fähler es opjefalle.
 Dä letzte Befähl för de Daatebank es jewäse:
 <blockquote><code>$1</code></blockquote>
-un kohm us däm Projramm singe Funktion: „<code>$2</code>“.<br />
-MySQL meld dä Fähler: „<code>$3: $4</code>“.',
+un kohm us däm Projramm singe Funktion: „<code>$2</code>“.
+$5 meld dä Fähler: „<code>$3: $4</code>“.',
 'laggedslavemode'      => '<strong>Opjepass:</strong> Künnt sin, dat hee nit dä neuste Stand vun dä Sigg aanjezeich weed.',
 'readonly'             => 'De Daatebank es jesperrt',
 'enterlockreason'      => 'Jevv aan, woröm un för wie lang dat de Daatebank jesperrt wääde soll',
@@ -544,6 +544,7 @@ un doht em och de URL vun dä Sigg hee sage.',
 'readonly_lag'         => 'De Daatebank es för en koote Zigg jesperrt, för de Daate avzejliche.',
 'internalerror'        => 'De Wiki-Soffwär hät ene Fähler jefunge',
 'internalerror_info'   => 'Enne ennere Fäähler en de ßofwäer es opjetrodde: $1',
+'fileappenderror'      => 'Mer kunnte „$1“ nit aan „$2“ aanhange.',
 'filecopyerror'        => 'Kunnt de Datei „$1“ nit noh „$2“ kopeere.',
 'filerenameerror'      => 'Kunnt de Datei „$1“ nit op „$2“ ömdäufe.',
 'filedeleteerror'      => 'Kunnt de Datei „$1“ nit fottschmieße.',
@@ -1491,6 +1492,7 @@ dat dänne ihr Daate topaktuell sin,
 'right-siteadmin'             => 'De Datebank deeschmaache un opmaache för Änderunge',
 'right-reset-passwords'       => 'Enem andere Metmaacher et Paßwoot zeröck setze',
 'right-override-export-depth' => 'Beim Sigge Expoteere de Sigge metnämme, woh Lingks drop jon — beß fönef Schredde wigk',
+'right-versiondetail'         => 'Ußföhrlesh Enfomazjuhne övver de Projramme vum Wiki aanloore',
 
 # User rights log
 'rightslog'      => 'Logboch för Änderunge aan Metmaacher-Räächde',
@@ -1709,16 +1711,19 @@ MGP # Pentax
 PICT # - diverse -
  #</pre> <!-- Lohß di Reih jenou esu wie se es! -->',
 
-'upload-proto-error'      => 'Verkihrt Protokoll',
-'upload-proto-error-text' => 'Ene URL för en Datei fun huhzelade moß met <code>http://</code> uder <code>ftp://</code> aafange.',
-'upload-file-error'       => 'Fääler em Wiki beim Huhlade',
-'upload-file-error-text'  => 'Ene ennere Fääler es opjekumme beim Aanläje vun en Datei om Server.
+'upload-proto-error'        => 'Verkihrt Protokoll',
+'upload-proto-error-text'   => 'Ene URL för en Datei fun huhzelade moß met <code>http://</code> uder <code>ftp://</code> aafange.',
+'upload-file-error'         => 'Fääler em Wiki beim Huhlade',
+'upload-file-error-text'    => 'Ene ennere Fääler es opjekumme beim Aanläje vun en Datei om Server.
 Verzäll et enem [[Special:ListUsers/sysop|Wiki-Köbes]].',
-'upload-misc-error'       => 'Dat Huhlaade jing donevve',
-'upload-misc-error-text'  => 'Dat Huhlaade jing donevve.
+'upload-misc-error'         => 'Dat Huhlaade jing donevve',
+'upload-misc-error-text'    => 'Dat Huhlaade jing donevve.
 Mer wesse nit woröm.
 Pröf de URL un versök et noch ens.
 Wann et nit flupp, verzäll et enem [[Special:ListUsers/sysop|Wiki-Köbes]].',
+'upload-too-many-redirects' => 'Zoh vill Ömleitunge en däm <i lang="en">URL</i>',
+'upload-unknown-size'       => 'Mer weße nit, wi jruuß',
+'upload-http-error'         => 'Ene <i lang="en">HTTP</i>-Fäähler es opjetrodde: $1',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Keij Antwoot vun dä URL',
@@ -2609,13 +2614,21 @@ zo jroße Lass för dä Sörver.',
 'export-pagelinks'  => 'Donn de Sigge metnämme, wo vun hee Lengks drop jon, un vun do wigger, bes esu vill Schrette:',
 
 # Namespace 8 related
-'allmessages'               => 'All Tex, Baustein un Aanzeije vum Wiki-System',
-'allmessagesname'           => 'Name',
-'allmessagesdefault'        => 'Dä standaadmäßije Tex',
-'allmessagescurrent'        => 'Esu es dä Tex jetz',
-'allmessagestext'           => 'Hee kütt en Liss met Texte, Texstöck, un Nachrichte em Appachtemeng „MediaWiki“ — Do draan Ändere löht et Wiki anders ußsin, dat darf dröm nit jede maache.
+'allmessages'                   => 'Aanzeije-Baustein, Täxte, un Nohreeschte vum Wiki-System',
+'allmessagesname'               => 'Name',
+'allmessagesdefault'            => 'Dä standaadmäßije Tex',
+'allmessagescurrent'            => 'Esu es dä Tex jetz',
+'allmessagestext'               => 'Hee kütt en Liss met Texte, Texstöck, un Nohreechte em Appachtemeng „MediaWiki“ — Do draan Ändere löht et Wiki anders ußsin, dat darf dröm nit Jede maache.
 Wenn De jenerell aan [http://www.mediawiki.org/wiki/Localisation MediaWiki singe Översezung] jet anders han wells, do jangk noh [http://translatewiki.net translatewiki.net].',
-'allmessagesnotsupportedDB' => '<strong>Dat wor nix!</strong> Mer künne „{{ns:special}}:Allmessages“ nit zeije, <code>$wgUseDatabaseMessages</code> es usjeschalt!',
+'allmessagesnotsupportedDB'     => '<strong>Dat wor nix!</strong> Mer künne „{{#special:allmessages}}“ nit zeije, <code>$wgUseDatabaseMessages</code> es usjeschalt!',
+'allmessages-filter-legend'     => 'Ußsöhke — wat för en Täxte o Nohreeshte aazeije?',
+'allmessages-filter'            => 'Zohshtand:',
+'allmessages-filter-unmodified' => 'nit jeändert',
+'allmessages-filter-all'        => 'ejaal',
+'allmessages-filter-modified'   => 'heh em Wiki jeändert',
+'allmessages-prefix'            => 'Name fängk aan met:',
+'allmessages-language'          => 'Shprooch:',
+'allmessages-filter-submit'     => 'Lohß Jonn!',
 
 # Thumbnails
 'thumbnail-more'           => 'Jrößer aanzeije',
@@ -3282,7 +3295,7 @@ Wells Do jetz met en neu Version die Sigg widder neu aanläje?',
 'ascending_abbrev'         => 'opwääts zoteet',
 'descending_abbrev'        => 'raffkaz zoteet',
 'table_pager_next'         => 'De nächste Sigg',
-'table_pager_prev'         => 'De Sigg dovör',
+'table_pager_prev'         => 'De vörijje Sigg',
 'table_pager_first'        => 'De eetste Sigg',
 'table_pager_last'         => 'De letzte Sigg',
 'table_pager_limit'        => 'Zeich $1 pro Sigg',
@@ -3468,6 +3481,7 @@ die De häs han welle. Se künnt jet ällder un nit mieh aktoäll sin.',
 'htmlform-invalid-input'       => 'Mer han e Problem met jet wat De enjejovve häß',
 'htmlform-select-badoption'    => 'Dinge aanjejovve Wäät es kein müjjelesche Ußwahl.',
 'htmlform-int-invalid'         => 'Dinge aanjejovve Wäät eß kein janze Zahl.',
+'htmlform-float-invalid'       => 'Wat De doh aanjejovve häs, dat es kein gewöhnlijje udder Komma-Zahl.',
 'htmlform-int-toolow'          => 'Dinge aanjejovve Wäät litt onger dämm winnischßde, wat müjjelesch es, un dat es $1.',
 'htmlform-int-toohigh'         => 'Dinge aanjejovve Wäät litt övver dämm hühßte, wat jeiht, un dat es $1.',
 'htmlform-submit'              => 'Loß Jonn!',

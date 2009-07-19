@@ -9,6 +9,7 @@
  *
  * @author Erwin85
  * @author Jens Frank
+ * @author Purodha
  * @author Servien
  * @author Slomox
  * @author Urhixidur
@@ -607,11 +608,12 @@ De oorzake hiervan kan dujen op een fout in de pregrammetuur.
 De leste zeukpoging in de databanke was:
 <blockquote><tt>$1</tt></blockquote>
 vanuut de functie "<tt>$2</tt>".
-MySQL gaf de foutmelding "<tt>$3: $4</tt>".',
-'dberrortextcl'        => 'Bie \'t opvragen van de databanke is een syntaxfout op-etrejen. De leste opdrach was:
+$5 gaf de foutmelding "<tt>$3: $4</tt>".',
+'dberrortextcl'        => 'Der is een syntaxisfout in \'t databankeverzeuk op-etrejen. 
+\'t Leste veurzeuk an de databanke was:
 "$1"
-Vanuut de functie "$2"
-MySQL gaf de volgende foutmelding: "$3: $4".',
+vanuut de functie "$2"
+$5 gaf de volgende foutmelding: "$3: $4"',
 'laggedslavemode'      => "<strong>Waorschuwing:</strong> 't is meugelijk dat leste wiezigingen in de tekse van dit artikel nog neet verwark bin.",
 'readonly'             => 'De databanke is beveilig',
 'enterlockreason'      => "Geef een rejen veur de blokkering op en hoelange 't geet duren. De op-egeven rejen zal an de gebrukers eteund wonnen.",
@@ -627,6 +629,7 @@ Meld \'t dan effen bie een [[Special:ListUsers/sysop|systeembeheerder]] van {{SI
 'readonly_lag'         => 'De databanke is autematisch beveilig, zodat de onder-eschikken servers zich kunnen synchroniseren mit de centrale server.',
 'internalerror'        => 'Interne fout',
 'internalerror_info'   => 'Interne fout: $1',
+'fileappenderror'      => 'Kon "$1" neet bie "$2" doon.',
 'filecopyerror'        => 'Kon bestaand "$1" neet naor "$2" kopiëren.',
 'filerenameerror'      => 'Bestaansnaamwieziging "$1" naor "$2" neet meugelijk.',
 'filedeleteerror'      => 'Kon bestaand "$1" neet vortdoon.',
@@ -793,7 +796,7 @@ Meschien he-j 't wachwoord al ewiezig of een niej veurlopig wachwoord an-evreuge
 'summary'                          => 'Samenvatting:',
 'subject'                          => 'Onderwarp:',
 'minoredit'                        => 'kleine wieziging / spelling',
-'watchthis'                        => 'volg disse pagina',
+'watchthis'                        => 'Volg disse pagina',
 'savearticle'                      => 'Pagina opslaon',
 'preview'                          => 'Naokieken',
 'showpreview'                      => 'Pagina naokieken',
@@ -1445,6 +1448,7 @@ Je kunnen oek aandere luui in staot stellen um per netpos kontak mit joe op te n
 'right-siteadmin'             => 'De databanke blokkeren en weer vriegeven',
 'right-reset-passwords'       => 'Wachwoorden van aandere gebrukers opniej instellen',
 'right-override-export-depth' => "Pagina's uutvoeren, oek de pagina's waor naor verwezen wonnen, tot een diepte van 5",
+'right-versiondetail'         => 'Uut-ebreide versieinfermasie van de pregrammetuur laoten zien',
 
 # User rights log
 'rightslog'      => 'Gebrukersrechenlogboek',
@@ -1612,7 +1616,7 @@ Kiek 't bestaand nao en voeg 't bestaand opniej toe.",
 'sourcefilename'              => 'Bestaansnaam op de hardeschieve:',
 'destfilename'                => 'Opslaon as (optioneel)',
 'upload-maxfilesize'          => 'Maximale bestaansgrootte: $1',
-'watchthisupload'             => 'Volg disse pagina',
+'watchthisupload'             => 'Volg dit bestaand',
 'filewasdeleted'              => "Een bestaand mit disse naam is al eerder vort-edaon. Kiek 't $1 nao veurda-j 't opniej toevoegen.",
 'upload-wasdeleted'           => "'''Waorschuwing: je bin een bestaand an 't toevoegen dee eerder al vort-edaon is.'''
 
@@ -1620,12 +1624,15 @@ Bedenk eers of 't inderdaod de bedoeling is dat dit bestaand toe-evoeg wonnen.
 't Logboek mit vort-edaone pagina's ku-j hier vienen:",
 'filename-bad-prefix'         => "De naam van 't bestaand da-j toevoegen, begint mit '''\"\$1\"''', dit is een neet-beschrievende naam dee meestentieds autematisch deur een digitale camera egeven wonnen. Kies een dudelijke naam veur 't bestaand.",
 
-'upload-proto-error'      => 'Verkeerde protocol',
-'upload-proto-error-text' => 'Um op disse meniere bestanen toe te voegen mutten webadressen beginnen mit <code>http://</code> of <code>ftp://</code>.',
-'upload-file-error'       => 'Interne fout',
-'upload-file-error-text'  => 'Bie ons gung der effen wat fout to een tiedelijk bestaand op de server an-emaak wönnen. Neem kontak op mit een [[Special:ListUsers/sysop|systeembeheerder]].',
-'upload-misc-error'       => "Onbekende fout bie 't toevoegen van joew bestaand",
-'upload-misc-error-text'  => "Der is bie 't toevoegen van 't bestaand een onbekende fout op-etrejen. Kiek effen nao of de verwiezing 't wel dut en prebeer 't opniej. As 't prebleem anhuilt, neem dan kontak op mit één van de systeembeheerders.",
+'upload-proto-error'        => 'Verkeerde protocol',
+'upload-proto-error-text'   => 'Um op disse meniere bestanen toe te voegen mutten webadressen beginnen mit <code>http://</code> of <code>ftp://</code>.',
+'upload-file-error'         => 'Interne fout',
+'upload-file-error-text'    => 'Bie ons gung der effen wat fout to een tiedelijk bestaand op de server an-emaak wönnen. Neem kontak op mit een [[Special:ListUsers/sysop|systeembeheerder]].',
+'upload-misc-error'         => "Onbekende fout bie 't toevoegen van joew bestaand",
+'upload-misc-error-text'    => "Der is bie 't toevoegen van 't bestaand een onbekende fout op-etrejen. Kiek effen nao of de verwiezing 't wel dut en prebeer 't opniej. As 't prebleem anhuilt, neem dan kontak op mit één van de systeembeheerders.",
+'upload-too-many-redirects' => 'Der zatten te veul deurverwiezingen in de URL.',
+'upload-unknown-size'       => 'Onbekende grootte',
+'upload-http-error'         => 'Der is een HTTP-fout op-etrejen: $1',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Kon webadres neet bereiken',
@@ -1769,7 +1776,9 @@ Vergeet neet de verwiezingen nao te kieken veurda-j de mal vortdoon.",
 Pagina's wonnen ezien as een deurverwiespagina, as de mal gebruuk wonnen dee vermeld steet op [[MediaWiki:Disambiguationspage]]",
 
 'doubleredirects'            => 'Dubbele deurverwiezingen',
-'doubleredirectstext'        => "Op elke regel steet de eerste deurstuurpagina, de tweede deurstuurpagina en de eerste regel van de tweede deurverwiezing. Meestentieds is leste pagina 't eigenlijke doel.",
+'doubleredirectstext'        => "Op disse lieste staon alle pagina's dee deurverwiezen naor aandere deurverwiezingen.
+Op elke regel steet de eerste en de tweede deurverwiezing, daorachter steet de doelpagina van de tweede deurverwiezing. 
+Meestentieds is leste pagina de gewunste doelpagina, waor oek de eerste pagina heer zol mutten liejen.",
 'double-redirect-fixed-move' => '[[$1]] is herneumd en is noen een deurverwiezing naor [[$2]]',
 'double-redirect-fixer'      => 'Deurverwiezingsverbeteraar',
 
@@ -2447,13 +2456,21 @@ A-j dat leste doon willen dan ku-j oek een verwiezing gebruken, bieveurbeeld [[{
 'export-pagelinks'  => "Pagina's waor naor verwezen wonnen opnemen tot:",
 
 # Namespace 8 related
-'allmessages'               => 'Alle systeemteksten',
-'allmessagesname'           => 'Naam',
-'allmessagesdefault'        => 'Standardtekse',
-'allmessagescurrent'        => 'De leste versie',
-'allmessagestext'           => 'Hieronder steet een lieste mit alle systeemteksen in de MediaWiki-naamruumte.
+'allmessages'                   => 'Alle systeemteksten',
+'allmessagesname'               => 'Naam',
+'allmessagesdefault'            => 'Standardtekse',
+'allmessagescurrent'            => 'De leste versie',
+'allmessagestext'               => 'Hieronder steet een lieste mit alle systeemteksen in de MediaWiki-naamruumte.
 Kiek oek effen bie [http://www.mediawiki.org/wiki/Localisation MediaWiki-lokalisasie] en [http://translatewiki.net translatewiki.net] a-j biedragen willen an de algemene vertaling veur MediaWiki.',
-'allmessagesnotsupportedDB' => "Disse pagina kan neet gebruuk wonnen umdat '''\$wgUseDatabaseMessages''' uut-eschakeld is.",
+'allmessagesnotsupportedDB'     => "Disse pagina kan neet gebruuk wonnen umdat '''\$wgUseDatabaseMessages''' uut-eschakeld is.",
+'allmessages-filter-legend'     => 'Filter',
+'allmessages-filter'            => 'Filtreer op wiezigingen:',
+'allmessages-filter-unmodified' => 'neet ewiezig',
+'allmessages-filter-all'        => 'alles',
+'allmessages-filter-modified'   => 'ewiezig',
+'allmessages-prefix'            => 'Filtreer op veurvoegsel:',
+'allmessages-language'          => 'Taal:',
+'allmessages-filter-submit'     => 'zeuk',
 
 # Thumbnails
 'thumbnail-more'           => 'vergroten',
@@ -3215,6 +3232,7 @@ Voer de bestaansnaam in zonder \'t veurvoegsel "{{ns:file}}:".',
 'htmlform-invalid-input'       => 'Der bin preblemen mit een paor in-egeven weerden',
 'htmlform-select-badoption'    => 'De in-egeven weerde is ongeldig.',
 'htmlform-int-invalid'         => 'De in-egeven weerde is gien geheel getal.',
+'htmlform-float-invalid'       => 'De weerde dee-j op-egeven hemmen is gien getal.',
 'htmlform-int-toolow'          => 'De in-egeven weerde lig onder de minimumweerde van $1',
 'htmlform-int-toohigh'         => 'De in-egeven weerde lig boven de maximumweerde van $1',
 'htmlform-submit'              => 'Opslaon',

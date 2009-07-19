@@ -467,17 +467,16 @@ Bu, {{SITENAME}} sitesindeki bir hatayı da belirtebilir.",
 # General errors
 'error'                => 'Hata',
 'databaseerror'        => 'Veritabanı hatası',
-'dberrortext'          => 'Veritabanı hatası.
-Bu bir yazılım hatası olabilir.
+'dberrortext'          => 'Veritabanı sorgu sözdizimi hatası oluştu.
+Bu yazılımdaki bir hatadan kaynaklanabilir.
 "<tt>$2</tt>" işlevinden denenen son sorgulama:
 <blockquote><tt>$1</tt></blockquote>.
-
-MySQL\'in rapor ettiği hata "<tt>$3: $4</tt>".',
-'dberrortextcl'        => 'Veritabanı komut hatası.
-Son yapılan veritabanı erişim komutu:
+$5\'in rapor ettiği hata "<tt>$3: $4</tt>".',
+'dberrortextcl'        => 'Veritabanı sorgu sözdizimi hatası oluştu.
+Son yapılan veritabanı sorgusu:
 "$1"
 Kullanılan fonksiyon "$2".
-MySQL\'in verdiği hata mesajı "$3: $4"',
+$5\'in verdiği hata mesajı "$3: $4"',
 'laggedslavemode'      => 'Uyarı: Sayfa son güncellemeleri içermeyebilir.',
 'readonly'             => 'Veritabanı kilitlendi',
 'enterlockreason'      => 'Koruma için bir neden belirtin. Korumanın ne zaman kaldırılacağına dair tahmini bir tarih eklemeyi unutmayın.',
@@ -495,6 +494,7 @@ Lütfen bunu bir [[Special:ListUsers/sysop|hizmetliye]], URL\'yi not ederek ilet
 'readonly_lag'         => 'Yedek sunucular ana sunucu ile güncellemeye çalışırken veritabanı otomatik olarak kilitlendi.',
 'internalerror'        => 'Yazılım hatası',
 'internalerror_info'   => 'İç hata: $1',
+'fileappenderror'      => '"$1" dosyası "$2" dosyasına eklenemiyor.',
 'filecopyerror'        => '"$1"  "$2" dosyasına kopyalanamıyor.',
 'filerenameerror'      => '"$1" dosyasının ismi "$2" olarak değiştirilemedi.',
 'filedeleteerror'      => '"$1" dosyası silinemedi.',
@@ -1320,6 +1320,7 @@ Aynı zamanda diğer kullanıcıların kullanıcı ve kullanıcı mesaj sayfalar
 'right-siteadmin'             => 'Veritabanını kilitle ve kilidi aç',
 'right-reset-passwords'       => 'Diğer kullanıcıların parolalarını sıfırla',
 'right-override-export-depth' => "Sayfaları, derinlik 5'e kadar bağlantılı sayfalarla beraber, dışa aktar",
+'right-versiondetail'         => 'Genişletilmiş yazılım sürüm bilgilerini göster',
 
 # User rights log
 'rightslog'      => 'Kullanıcı hakları kayıtları',
@@ -1509,15 +1510,18 @@ MGP # Pentax
 PICT # misc.
  #</pre> <!-- leave this line exactly as it is -->',
 
-'upload-proto-error'      => 'Hatalı protokol',
-'upload-proto-error-text' => "Uzaktan yükleme, <code>http://</code> veya <code>ftp://</code> ile başlayan URL'ler gerektirmektedir.",
-'upload-file-error'       => 'Dahili hata',
-'upload-file-error-text'  => 'Sunucuda geçici dosya oluşturma girişimi sırasında bir iç hata meydana geldi.
+'upload-proto-error'        => 'Hatalı protokol',
+'upload-proto-error-text'   => "Uzaktan yükleme, <code>http://</code> veya <code>ftp://</code> ile başlayan URL'ler gerektirmektedir.",
+'upload-file-error'         => 'Dahili hata',
+'upload-file-error-text'    => 'Sunucuda geçici dosya oluşturma girişimi sırasında bir iç hata meydana geldi.
 Lütfen bir [[Special:ListUsers/sysop|yonetici]]yle iletişime geçin.',
-'upload-misc-error'       => 'Bilinmeyen yükleme hatası',
-'upload-misc-error-text'  => 'Yükleme sırasında bilinmeyen bir hata meydana geldi.
+'upload-misc-error'         => 'Bilinmeyen yükleme hatası',
+'upload-misc-error-text'    => 'Yükleme sırasında bilinmeyen bir hata meydana geldi.
 Lütfen bağlantının geçerli ve ulaşılabilir olduğunu doğrulayın ve yeniden deneyin.
 Eğer problem tekrarlanırsa, bir [[Special:ListUsers/sysop|yönetici]]yle temasa geçin',
+'upload-too-many-redirects' => 'URL çok fazla yönlendirme içeriyor',
+'upload-unknown-size'       => 'Bilinmeyen boyut',
+'upload-http-error'         => 'Bir HTTP hatası oluştu: $1',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => "URL'ye ulaşılamadı",
@@ -1661,7 +1665,9 @@ Sıradaki liste sadece bu dosyaya bağlantı veren {{PLURAL:$1|ilk dosyayı|ilk 
 'disambiguations-text' => 'İlk satırda yer alan sayfalar bir anlam ayrım sayfasına iç bağlantı olduğunu gösterir. İkinci sırada yer alan sayfalar anlam ayrım sayfalarını gösterir. <br />Burada [[MediaWiki:Disambiguationspage]] tüm anlam ayrım şablonlarına bağlantılar verilmesi gerekmektedir.',
 
 'doubleredirects'            => 'Yönlendirmeye olan yönlendirmeler',
-'doubleredirectstext'        => 'Her satır, ikinci yönlendirme metninin ilk satırının (genellikle ikinci yönlendirmenin de işaret etmesi gereken "asıl" hedefin) yanısıra ilk ve ikinci yönlendirmeye bağlantılar içerir.',
+'doubleredirectstext'        => 'Bu sayfa diğer yönlendirme sayfalarına yönlendirme yapan sayfaları listeler.
+Her satırın içerdiği bağlantılar; birinci ve ikinci yönlendirme, ayrıca ikinci yönlendirmenin hedefi, ki bu genelde birinci yönlendirmenin göstermesi gereken "gerçek" hedef sayfasıdır.
+<s>Üstü çizili</s> girdiler çözülmüştür.',
 'double-redirect-fixed-move' => '[[$1]] taşındı, artık [[$2]] sayfasına yönlendiriyor',
 'double-redirect-fixer'      => 'Yönlendirme tamircisi',
 
@@ -2363,13 +2369,21 @@ Sonuncu durumda, bir link de kullanabilirsiniz, ör: "[[{{MediaWiki:Mainpage}}]]
 'export-pagelinks'  => 'Bağlı sayfaları içerecek derinlik:',
 
 # Namespace 8 related
-'allmessages'               => 'Viki arayüz metinleri',
-'allmessagesname'           => 'İsim',
-'allmessagesdefault'        => 'Orjinal metin',
-'allmessagescurrent'        => 'Kullanımdaki metin',
-'allmessagestext'           => 'Bu liste  MediaWiki ad alanında mevcut olan sistem mesajlarının listesidir.
+'allmessages'                   => 'Viki arayüz metinleri',
+'allmessagesname'               => 'İsim',
+'allmessagesdefault'            => 'Orjinal metin',
+'allmessagescurrent'            => 'Kullanımdaki metin',
+'allmessagestext'               => 'Bu liste  MediaWiki ad alanında mevcut olan sistem mesajlarının listesidir.
 Genel MediaWiki yerelleştirmesine katkıda bulunmak isterseniz, lütfen [http://www.mediawiki.org/wiki/Localisation MediaWiki Yerelleştirmesi] ve [http://translatewiki.net translatewiki.net] sayfalarını ziyaret edin.',
-'allmessagesnotsupportedDB' => "'''\$wgUseDatabaseMessages''' kapalı olduğu için '''{{ns:special}}:Allmessages''' kullanıma açık değil.",
+'allmessagesnotsupportedDB'     => "'''\$wgUseDatabaseMessages''' kapalı olduğu için '''{{ns:special}}:Allmessages''' kullanıma açık değil.",
+'allmessages-filter-legend'     => 'Filtre',
+'allmessages-filter'            => 'Özelleştirme durumuna göre filtrele:',
+'allmessages-filter-unmodified' => 'Değiştirilmemiş',
+'allmessages-filter-all'        => 'Hepsi',
+'allmessages-filter-modified'   => 'Değiştirilmiş',
+'allmessages-prefix'            => 'Önek ile filtrele:',
+'allmessages-language'          => 'Dil:',
+'allmessages-filter-submit'     => 'Git',
 
 # Thumbnails
 'thumbnail-more'           => 'Büyüt',
@@ -3180,6 +3194,7 @@ Dosya adını "{{ns:file}}:" öneki olmadan gir.',
 'htmlform-invalid-input'       => 'Girdinizin bir kısmıyla ilgili sorunlar var',
 'htmlform-select-badoption'    => 'Belirttiğiniz değer geçerli bir seçenek değil.',
 'htmlform-int-invalid'         => 'Belirttiğiniz değer bir tamsayı değil.',
+'htmlform-float-invalid'       => 'Belirttiğiniz değer bir sayı değil.',
 'htmlform-int-toolow'          => "Belirttiğiniz değer asgari $1'in altında",
 'htmlform-int-toohigh'         => "Belirttiğiniz değer azami $1'in üstünde",
 'htmlform-submit'              => 'Gönder',

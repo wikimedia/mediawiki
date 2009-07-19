@@ -505,6 +505,10 @@ HTML markup cannot be used.",
 
 # General errors
 'error'                => '{{Identical|Error}}',
+'dberrortext'          => 'Parameters:
+*$5 is the database engine, such as MySQL, PostgreSQL, etc.',
+'dberrortextcl'        => 'Parameters:
+*$5 is the database engine, such as MySQL, PostgreSQL, etc.',
 'enterlockreason'      => 'For developers when locking the database',
 'missing-article'      => "This message is shown when a revision does not exist, either as permalink or as diff. Examples:
 
@@ -1261,6 +1265,9 @@ The rate limits have no effect on the groups that have this right. Rate limits i
 'right-patrol'                => '{{doc-right}}',
 'right-reset-passwords'       => '{{doc-right}}',
 'right-override-export-depth' => '{{doc-right|override-export-depth}}',
+'right-versiondetail'         => '{{doc-right|versiondetail}}
+
+User having this right receive more detailed information on [[Special:Version]].',
 
 # User rights log
 'rightslog'      => 'In [[Special:Log]]',
@@ -2285,13 +2292,24 @@ Parameters:
 'export-pagelinks' => 'This is an input in [[Special:Export]]',
 
 # Namespace 8 related
-'allmessages'               => 'The title of the special page [[Special:AllMessages]].',
-'allmessagesname'           => 'Used on [[Special:Allmessages]] meaning "the name of the message".
+'allmessages'                   => 'The title of the special page [[Special:AllMessages]].',
+'allmessagesname'               => 'Used on [[Special:Allmessages]] meaning "the name of the message".
 {{Identical|Name}}',
-'allmessagesdefault'        => 'The header for the lower row of each column in the table of [[Special:AllMessages]].',
-'allmessagescurrent'        => 'The header for the upper row of each column in the table of [[Special:AllMessages]].',
-'allmessagestext'           => 'Summary displayed at the top of [[Special:AllMessages]].',
-'allmessagesnotsupportedDB' => 'This message is displayed on [[Special:AllMessages]] on wikis were the configuration variable $wgUseDatabaseMessages is disabled. It means that the MediaWiki namespace is not used.',
+'allmessagesdefault'            => 'The header for the lower row of each column in the table of [[Special:AllMessages]].',
+'allmessagescurrent'            => 'The header for the upper row of each column in the table of [[Special:AllMessages]].',
+'allmessagestext'               => 'Summary displayed at the top of [[Special:AllMessages]].',
+'allmessagesnotsupportedDB'     => 'This message is displayed on [[Special:AllMessages]] on wikis were the configuration variable $wgUseDatabaseMessages is disabled. It means that the MediaWiki namespace is not used.',
+'allmessages-filter-legend'     => 'Used in [[Special:AllMessages]].
+
+{{Identical|Filter}}',
+'allmessages-filter'            => 'Option used in [[Special:AllMessages]].',
+'allmessages-filter-unmodified' => 'Used in [[Special:AllMessages]].',
+'allmessages-filter-all'        => 'Used in [[Special:AllMessages]].
+{{Identical|All}}',
+'allmessages-filter-modified'   => 'Used in [[Special:AllMessages]].',
+'allmessages-prefix'            => 'Used in [[Special:AllMessages]].',
+'allmessages-language'          => '{{Identical|Language}}',
+'allmessages-filter-submit'     => '{{Identical|Go}}',
 
 # Thumbnails
 'thumbnail-more'          => '[[Image:Yes.png|thumb|This:]]

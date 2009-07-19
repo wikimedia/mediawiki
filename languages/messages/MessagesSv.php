@@ -22,6 +22,7 @@
  * @author Najami
  * @author Petter Strandmark
  * @author Poxnar
+ * @author Purodha
  * @author S.Örvarr.S
  * @author Sannab
  * @author Skalman
@@ -603,7 +604,7 @@ I [[Special:SpecialPages|listan över specialsidor]] kan du se vilka specialsido
 Den senaste utförda databasfrågan var:
 <blockquote><tt>$1</tt></blockquote>
 från funktionen "<tt>$2</tt>".
-MySQL returnerade felen "$3<tt>: $4</tt>".',
+$5 returnerade felen "$3<tt>: $4</tt>".',
 'dberrortextcl'        => 'Ett felaktigt utformat sökbegrepp har påträffats. Senaste sökbegrepp var: "$1"  från funktionen "$2". MySQL svarade med felmeddelandet "$3: $4"',
 'laggedslavemode'      => 'Varning: Sidan kan sakna de senaste uppdateringarna.',
 'readonly'             => 'Databasen är skrivskyddad',

@@ -456,7 +456,7 @@ Pro indice paginarum specialum validarum, vide [[Special:SpecialPages|{{int:spec
 Inquisitio basis datorum ultime apparata erat:
 "$1"
 ex functionis "$2".
-MySQL erratum reddidit "$3: $4"',
+$5 erratum reddidit "$3: $4"',
 'readonly'             => 'Basis datorum obstructa',
 'missingarticle-rev'   => '(numerus emendationis: $1)',
 'missingarticle-diff'  => '(Diss: $1, $2)',

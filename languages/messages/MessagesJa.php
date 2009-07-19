@@ -434,7 +434,7 @@ $messages = array(
 'faqpage'        => 'Project:FAQ',
 
 # Vector skin
-'vector-action-addsection'   => 'トピック追加',
+'vector-action-addsection'   => '話題追加',
 'vector-action-delete'       => '削除',
 'vector-action-move'         => '移動',
 'vector-action-protect'      => '保護',
@@ -599,20 +599,22 @@ $1',
 # General errors
 'error'                => 'エラー',
 'databaseerror'        => 'データベース・エラー',
-'dberrortext'          => 'データベースクエリの文法エラーが発生しました。ソフトウェアにバグがあるかもしれません。
+'dberrortext'          => 'データベースクエリの構文エラーが発生しました。ソフトウェアのバグによる可能性があります。
 
 最後に実行を試みたクエリは次の通りです:
 
-機能 "<tt>$2</tt>"におけるクエリ
+関数 "<tt>$2</tt>" 内
 <blockquote><tt>$1</tt></blockquote>
 
-MySQL の返したエラー "<tt>$3: $4</tt>"',
-'dberrortextcl'        => 'データベースクエリの文法エラーが発生しました。
+$5 の返したエラー "<tt>$3: $4</tt>"',
+'dberrortextcl'        => 'データベースクエリの構文エラーが発生しました。
+
 最後に実行を試みたクエリは次の通りです:
 
-機能 "$2"におけるクエリ "$1"
+関数 "$2" 内
+"$1"
 
-MySQL の返したエラー "$3: $4"',
+$5 の返したエラー "$3: $4"',
 'laggedslavemode'      => "'''警告:''' ページに最新の編集が反映されていない可能性があります。",
 'readonly'             => 'データベースがロックされています',
 'enterlockreason'      => 'ロックの理由とロック解除の予定を入力してください',
@@ -629,6 +631,7 @@ MySQL の返したエラー "$3: $4"',
 'readonly_lag'         => 'データベースはスレーブ・サーバーがマスター・サーバーに同期するまで自動的にロックされています',
 'internalerror'        => '内部処理エラー',
 'internalerror_info'   => '内部処理エラー: $1',
+'fileappenderror'      => '「$1」を「$2」に追加できませんでした。',
 'filecopyerror'        => 'ファイル "$1" を "$2" へコピーできませんでした。',
 'filerenameerror'      => 'ファイル名を "$1" から "$2" へ変更できませんでした。',
 'filedeleteerror'      => 'ファイル "$1" を削除できませんでした。',
@@ -1145,7 +1148,7 @@ $1",
 'shown-title'                      => 'ページあたり$1{{PLURAL:$1|件}}の結果を表示',
 'viewprevnext'                     => '($1) ($2) ($3) を表示',
 'searchmenu-legend'                => '検索オプション',
-'searchmenu-exists'                => "'''このウィキには「[[$1]]」という名前のページがあります'''",
+'searchmenu-exists'                => "'''このウィキには「[[:$1]]」という名前のページがあります'''",
 'searchmenu-new'                   => "'''このウィキでページ「[[:$1|$1]]」を新規作成する'''",
 'searchhelp-url'                   => 'Help:目次',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|この文字列から始まる名前のページを見る]]',
@@ -1402,6 +1405,7 @@ $1",
 'right-siteadmin'             => 'データベースのロックおよびロック解除',
 'right-reset-passwords'       => '他の利用者のパスワードを再設定する',
 'right-override-export-depth' => 'リンク先ページを5階層まで含めて書き出す',
+'right-versiondetail'         => 'ソフトウェアの詳細なバージョン情報を表示する',
 
 # User rights log
 'rightslog'      => '利用者権限変更記録',
@@ -1576,12 +1580,15 @@ MGP # ペンタックス
 PICT # その他
  #</pre> <!-- この行はそのままにしておいてください -->',
 
-'upload-proto-error'      => '不正なプロトコル',
-'upload-proto-error-text' => 'アップロード元のURLは <code>http://</code> か <code>ftp://</code> で始まっている必要があります。',
-'upload-file-error'       => '内部エラー',
-'upload-file-error-text'  => '内部エラーのため、サーバー上の一時ファイル作成に失敗しました。[[Special:ListUsers/sysop|管理者]]に連絡してください。',
-'upload-misc-error'       => '不明なアップロード・エラー',
-'upload-misc-error-text'  => 'アップロード時に不明なエラーが発生しました。指定したURLがアクセス可能で有効なものであるかを再度確認してください。それでもこのエラーが発生する場合は、[[Special:ListUsers/sysop|管理者]]に連絡してください。',
+'upload-proto-error'        => '不正なプロトコル',
+'upload-proto-error-text'   => 'アップロード元のURLは <code>http://</code> か <code>ftp://</code> で始まっている必要があります。',
+'upload-file-error'         => '内部エラー',
+'upload-file-error-text'    => '内部エラーのため、サーバー上の一時ファイル作成に失敗しました。[[Special:ListUsers/sysop|管理者]]に連絡してください。',
+'upload-misc-error'         => '不明なアップロード・エラー',
+'upload-misc-error-text'    => 'アップロード時に不明なエラーが発生しました。指定したURLがアクセス可能で有効なものであるかを再度確認してください。それでもこのエラーが発生する場合は、[[Special:ListUsers/sysop|管理者]]に連絡してください。',
+'upload-too-many-redirects' => 'その URL に含まれるリダイレクトが多すぎます',
+'upload-unknown-size'       => 'サイズ不明',
+'upload-http-error'         => 'HTTP エラー発生: $1',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'URLに到達できませんでした',
@@ -1720,7 +1727,7 @@ PICT # その他
 [[MediaWiki:Disambiguationspage]] からリンクされたテンプレートを使用しているページは曖昧さ回避ページと見なされます。",
 
 'doubleredirects'            => '二重リダイレクト',
-'doubleredirectstext'        => 'これは他のリダイレクトページにリダイレクトしているページの一覧です。各行は始点のリダイレクトとそのリダイレクト先ページ、および、そのまたリダイレクトしている先のページを含んでいます。3つ目のページがたいていは「真の」リダイレクト先であり、1つ目のリダイレクトはそこを直接指すべきです。',
+'doubleredirectstext'        => 'これは他のリダイレクトページにリダイレクトしているページの一覧です。各行は始点のリダイレクトとそのリダイレクト先ページ、および、そのまたリダイレクトしている先のページを含んでいます。3つ目のページがたいていは「真の」リダイレクト先であり、1つ目のリダイレクトはそこを直接指すべきです。<s>打ち消し線</s>のはいった項目は既に修正されています。',
 'double-redirect-fixed-move' => '[[$1]] が移動されているため、リダイレクト先を移動先の [[$2]] へ変更しました。',
 'double-redirect-fixer'      => 'リダイレクト修正係',
 
@@ -2389,12 +2396,20 @@ $1 は、すでにブロックされています。設定を変更しますか�
 'export-pagelinks'  => '以下の階層までのリンク先ページを含める:',
 
 # Namespace 8 related
-'allmessages'               => 'システムメッセージの一覧',
-'allmessagesname'           => 'メッセージ名',
-'allmessagesdefault'        => '既定の文章',
-'allmessagescurrent'        => '現在の文章',
-'allmessagestext'           => 'これは MediaWiki 名前空間で利用可能なシステムメッセージの一覧です。MediaWiki の一般的なローカリゼーションに貢献したい場合は、[http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] や [http://translatewiki.net?setlang=ja translatewiki.net] を訪れてみてください。',
-'allmessagesnotsupportedDB' => "'''\$wgUseDatabaseMessages''' が無効なので、このページを使うことはできません。",
+'allmessages'                   => 'システムメッセージの一覧',
+'allmessagesname'               => 'メッセージ名',
+'allmessagesdefault'            => '既定の文章',
+'allmessagescurrent'            => '現在の文章',
+'allmessagestext'               => 'これは MediaWiki 名前空間で利用可能なシステムメッセージの一覧です。MediaWiki の一般的なローカリゼーションに貢献したい場合は、[http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] や [http://translatewiki.net?setlang=ja translatewiki.net] を訪れてみてください。',
+'allmessagesnotsupportedDB'     => "'''\$wgUseDatabaseMessages''' が無効なので、このページを使うことはできません。",
+'allmessages-filter-legend'     => '絞り込み',
+'allmessages-filter'            => 'カスタマイズ状態により絞り込む:',
+'allmessages-filter-unmodified' => '変更なし',
+'allmessages-filter-all'        => 'すべて',
+'allmessages-filter-modified'   => '変更あり',
+'allmessages-prefix'            => '名前の先頭部分で絞り込む:',
+'allmessages-language'          => '言語:',
+'allmessages-filter-submit'     => '表示',
 
 # Thumbnails
 'thumbnail-more'           => '拡大',
@@ -3256,6 +3271,7 @@ $1',
 'htmlform-invalid-input'       => '入力になんらかの問題があります',
 'htmlform-select-badoption'    => '指定された値が有効なものではありません。',
 'htmlform-int-invalid'         => '指定された値が整数ではありません。',
+'htmlform-float-invalid'       => '指定された値は数値ではありません。',
 'htmlform-int-toolow'          => '指定された値が$1の最小値未満です',
 'htmlform-int-toohigh'         => '指定された値が$1の最大値を超えています',
 'htmlform-submit'              => '送信',

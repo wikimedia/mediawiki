@@ -654,6 +654,7 @@ Maak hiervan melding bij een [[Special:ListUsers/sysop|systeembeheerder]] van {{
 'readonly_lag'         => 'De database is automatisch vergrendeld terwijl de ondergeschikte databaseservers synchroniseren met de hoofdserver.',
 'internalerror'        => 'Interne fout',
 'internalerror_info'   => 'Interne fout: $1',
+'fileappenderror'      => 'Het was niet mogelijk "$1" toe te voegen aan "$2".',
 'filecopyerror'        => 'Bestand “$1” kon niet naar “$2” gekopieerd worden.',
 'filerenameerror'      => '“$1” kon niet tot “$2” hernoemd worden.',
 'filedeleteerror'      => 'Bestand “$1” kon niet verwijderd worden.',
@@ -1533,6 +1534,7 @@ U kunt ook anderen in staat stellen per e-mail contact met u op te nemen via een
 'right-siteadmin'             => 'De database blokkeren en weer vrijgeven',
 'right-reset-passwords'       => 'Wachtwoorden van andere gebruikers opnieuw instellen',
 'right-override-export-depth' => "Pagina's exporteren inclusief pagina's waarnaar verwezen wordt tot een diepte van vijf",
+'right-versiondetail'         => 'Uitgebreide versieinformatie van de software weergeven',
 
 # User rights log
 'rightslog'      => 'Gebruikersrechtenlogboek',
@@ -1736,15 +1738,18 @@ MGP # Pentax
 PICT # overig
  #</pre> <!-- leave this line exactly as it is -->',
 
-'upload-proto-error'      => 'Verkeerd protocol',
-'upload-proto-error-text' => "Uploads via deze methode vereisen URL's die beginnen met <code>http://</code> of <code>ftp://</code>.",
-'upload-file-error'       => 'Interne fout',
-'upload-file-error-text'  => 'Een interne fout vond plaats toen een tijdelijk bestand op de server werd aangemaakt.
+'upload-proto-error'        => 'Verkeerd protocol',
+'upload-proto-error-text'   => "Uploads via deze methode vereisen URL's die beginnen met <code>http://</code> of <code>ftp://</code>.",
+'upload-file-error'         => 'Interne fout',
+'upload-file-error-text'    => 'Een interne fout vond plaats toen een tijdelijk bestand op de server werd aangemaakt.
 Neem aub contact op met een [[Special:ListUsers/sysop|systeembeheerder]].',
-'upload-misc-error'       => 'Onbekende uploadfout',
-'upload-misc-error-text'  => 'Er is tijdens het uploaden een onbekende fout opgetreden.
+'upload-misc-error'         => 'Onbekende uploadfout',
+'upload-misc-error-text'    => 'Er is tijdens het uploaden een onbekende fout opgetreden.
 Controleer of de URL correct en beschikbaar is en probeer het opnieuw.
 Als het probleem aanhoudt, neem dan contact op met een [[Special:ListUsers/sysop|systeembeheerder]].',
+'upload-too-many-redirects' => 'De URL bevatte te veel doorverwijzingen',
+'upload-unknown-size'       => 'Onbekende grootte',
+'upload-http-error'         => 'Er is een HTTP-fout opgetreden: $1',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Kon de URL niet bereiken',
@@ -1896,7 +1901,8 @@ Deze horen waarschijnlijk direct naar het juiste onderwerp te verwijzen.
 'doubleredirects'            => 'Dubbele doorverwijzingen',
 'doubleredirectstext'        => "Deze lijst bevat pagina's die doorverwijzen naar andere doorverwijspagina's.
 Elke rij bevat verwijzingen naar de eerste en de tweede doorverwijspagina en een verwijzing naar de doelpagina van de tweede doorverwijspagina.
-Meestal is de laatste pagina het eigenlijke doel.",
+Meestal is de laatste pagina het eigenlijke doel, waar de eerste pagina naar zou moeten doorverwijzen.
+<s>Doorgehaalde regels</s> geven aan dat het probleem al is opgelost.",
 'double-redirect-fixed-move' => '[[$1]] is verplaatst en is nu een doorverwijzing naar [[$2]]',
 'double-redirect-fixer'      => 'Doorverwijzingen opschonen',
 
@@ -2614,13 +2620,21 @@ In het laatste geval kunt u ook een verwijzing gebruiken, bijvoorbeeld [[{{#Spec
 'export-pagelinks'  => "Pagina's waarnaar verwezen wordt toevoegen tot een diepte van:",
 
 # Namespace 8 related
-'allmessages'               => 'Systeemteksten',
-'allmessagesname'           => 'Naam',
-'allmessagesdefault'        => 'Standaardinhoud',
-'allmessagescurrent'        => 'Huidige inhoud',
-'allmessagestext'           => 'Hieronder staan de systeemberichten uit de MediaWiki-naamruimte.
+'allmessages'                   => 'Systeemteksten',
+'allmessagesname'               => 'Naam',
+'allmessagesdefault'            => 'Standaardinhoud',
+'allmessagescurrent'            => 'Huidige inhoud',
+'allmessagestext'               => 'Hieronder staan de systeemberichten uit de MediaWiki-naamruimte.
 Ga naar [http://www.mediawiki.org/wiki/Localisation MediaWiki-lokalisatie] en [http://translatewiki.net translatewiki.net] als u wilt bijdragen aan de algemene vertaling voor MediaWiki.',
-'allmessagesnotsupportedDB' => "Deze pagina kan niet gebruikt worden omdat '''\$wgUseDatabaseMessages''' is uitgeschakeld.",
+'allmessagesnotsupportedDB'     => "Deze pagina kan niet gebruikt worden omdat '''\$wgUseDatabaseMessages''' is uitgeschakeld.",
+'allmessages-filter-legend'     => 'Filter',
+'allmessages-filter'            => 'Filteren op aangepast:',
+'allmessages-filter-unmodified' => 'Ongewijzigd',
+'allmessages-filter-all'        => 'Alle',
+'allmessages-filter-modified'   => 'Gewijzigd',
+'allmessages-prefix'            => 'Filteren op voorvoegsel:',
+'allmessages-language'          => 'Taal:',
+'allmessages-filter-submit'     => 'OK',
 
 # Thumbnails
 'thumbnail-more'           => 'Vergroten',
@@ -3448,6 +3462,7 @@ Voer de bestandsnaam in zonder het voorvoegsel "{{ns:file}}:".',
 'htmlform-invalid-input'       => 'Er zijn problemen met enkele ingegeven waarden',
 'htmlform-select-badoption'    => 'De ingegeven waarde is ongeldig.',
 'htmlform-int-invalid'         => 'De ingegeven waarde is geen geheel getal.',
+'htmlform-float-invalid'       => 'De waarde die u hebt opgegeven is geen getal.',
 'htmlform-int-toolow'          => 'De ingegeven waarde ligt onder de minimumwaarde van $1',
 'htmlform-int-toohigh'         => 'De ingegeven waarde ligt boven de maximumwaarde van $1',
 'htmlform-submit'              => 'Opslaan',

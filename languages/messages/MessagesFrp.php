@@ -529,6 +529,11 @@ $messages = array(
 'jumpto'            => 'Alar a :',
 'jumptonavigation'  => 'Navigacion',
 'jumptosearch'      => 'Rechèrche',
+'view-pool-error'   => 'Dèsolâ, los sèrvors sont surchargiês por lo moment.
+Trop d’utilisators chèrchont a arrevar a ceta pâge.
+Volyéd atendre un moment devant que vos tâchiéd de tornar arrevar a ceta pâge.
+
+$1',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'A propôs de {{SITENAME}}',
@@ -616,12 +621,12 @@ Cen pôt endicar una cofierie dens la programeria.
 La dèrriére requéta trètâ per la bâsa de balyês ére :
 <blockquote><tt>$1</tt></blockquote>
 dês la fonccion « <tt>$2</tt> ».
-MySQL at retornâ l’èrror « <tt>$3 : $4</tt> ».',
+$5 at retornâ l’èrror « <tt>$3 : $4</tt> ».',
 'dberrortextcl'        => 'Una èrror de sintaxa de la requéta dens la bâsa de balyês est arrevâ.
 La dèrriére requéta trètâ per la bâsa de balyês ére :
 « $1 »
 dês la fonccion « $2 ».
-MySQL at retornâ l’èrror « $3 : $4 ».',
+$5 at retornâ l’èrror « $3 : $4 ».',
 'laggedslavemode'      => 'Atencion : cela pâge pôt pas contegnir tôs los dèrriérs changements fêts.',
 'readonly'             => 'Bâsa de balyês vèrrolyê',
 'enterlockreason'      => 'Balyéd la rêson du vèrrolyâjo et pués una èstimacion de son temps',
@@ -639,6 +644,7 @@ La volyéd signalar a un [[Special:ListUsers/sysop|administrator]] sen oubliar d
 'readonly_lag'         => 'La bâsa de balyês at étâ vèrrolyê ôtomaticament pendent que los sèrvors secondèros ratrapont lor retârd sur lo sèrvor principâl.',
 'internalerror'        => 'Èrror de dedens',
 'internalerror_info'   => 'Èrror de dedens : $1',
+'fileappenderror'      => 'Empossiblo d’apondre « $1 » a « $2 ».',
 'filecopyerror'        => 'Empossiblo de copiyér lo fichiér « $1 » vers « $2 ».',
 'filerenameerror'      => 'Empossiblo de renomar lo fichiér « $1 » en « $2 ».',
 'filedeleteerror'      => 'Empossiblo de suprimar lo fichiér « $1 ».',
@@ -1515,6 +1521,7 @@ Vos pouede asse-ben dècidar de lèssiér los ôtros sè veriér vers vos avoué
 'right-siteadmin'             => 'Vèrrolyér ou dèvèrrolyér la bâsa de balyês',
 'right-reset-passwords'       => 'Changiér lo mot de pâssa d’ôtros utilisators',
 'right-override-export-depth' => 'Èxportar les pâges en encllusent les pâges liyês tant qu’a una provondior de 5 nivéls',
+'right-versiondetail'         => 'Vêre les enformacions ètendues sur les vèrsions de les programeries',
 
 # User rights log
 'rightslog'      => 'Jornal des changements de statut d’utilisator',
@@ -1712,15 +1719,18 @@ MGP # Pentax
 PICT # de totes sôrtes
   #</pre> <!-- lèssiéd ceta legne justo d’ense -->',
 
-'upload-proto-error'      => 'Protocolo fôx',
-'upload-proto-error-text' => 'Lo tèlèchargement a distance at fôta des URLs que començont per <code>http://</code> ou ben <code>ftp://</code>.',
-'upload-file-error'       => 'Èrror de dedens',
-'upload-file-error-text'  => 'Una èrror de dedens est arrevâ en volent fâre un fichiér temporèro sur lo sèrvor.
+'upload-proto-error'        => 'Protocolo fôx',
+'upload-proto-error-text'   => 'Lo tèlèchargement a distance at fôta des URLs que començont per <code>http://</code> ou ben <code>ftp://</code>.',
+'upload-file-error'         => 'Èrror de dedens',
+'upload-file-error-text'    => 'Una èrror de dedens est arrevâ en volent fâre un fichiér temporèro sur lo sèrvor.
 Vos volyéd veriér vers un [[Special:ListUsers/sysop|administrator]].',
-'upload-misc-error'       => 'Èrror encognua pendent lo tèlèchargement',
-'upload-misc-error-text'  => 'Una èrror encognua est arrevâ pendent lo tèlèchargement.
+'upload-misc-error'         => 'Èrror encognua pendent lo tèlèchargement',
+'upload-misc-error-text'    => 'Una èrror encognua est arrevâ pendent lo tèlèchargement.
 Volyéd controlar que l’URL est valida et accèssibla, et pués tornâd èprovar.
 Se lo problèmo continue, veriéd-vos vers un [[Special:ListUsers/sysop|administrator]].',
+'upload-too-many-redirects' => 'L’URL contint trop de redirèccions',
+'upload-unknown-size'       => 'Talye encognua',
+'upload-http-error'         => 'Una èrror HTTP est arrevâ : $1',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'URL pas juegnâbla',
@@ -1871,7 +1881,8 @@ Una pâge est trètâ coment una pâge d’homonimia s’encllut (tot drêt ou b
 
 'doubleredirects'            => 'Redirèccions dobles',
 'doubleredirectstext'        => 'Vê-que la lista de les pâges que redirijont vers des pâges que sont lor-mémes des pâges de redirèccion.
-Châque entrâ contint des lims de vers la premiére et la seconda redirèccion, et pués la premiére legne de tèxto de la seconda pâge, cen que balye habituèlament la « veré » pâge ciba, de vers laquinta la premiére redirèccion devrêt redirigiér.',
+Châque entrâ contint des lims de vers la premiére et la seconda redirèccion, et pués la premiére legne de tèxto de la seconda pâge, cen que balye habituèlament la « veré » pâge ciba, de vers laquinta la premiére redirèccion devrêt redirigiér.
+Les entrâs <s>barrâs</s> ont étâ solucionâs.',
 'double-redirect-fixed-move' => 'Cela redirèccion, que la ciba [[$1]] at étâ renomâ, mène ora vers [[$2]].',
 'double-redirect-fixer'      => 'Corrèctor de redirèccion',
 
@@ -2590,13 +2601,21 @@ Dens cél dèrriér câs, vos pouede asse-ben utilisar un lim, coment [[{{#Speci
 'export-pagelinks'  => 'Encllure les pâges liyês a una provondior de :',
 
 # Namespace 8 related
-'allmessages'               => 'Mèssâjos sistèmo',
-'allmessagesname'           => 'Nom du mèssâjo',
-'allmessagesdefault'        => 'Tèxto per dèfôt',
-'allmessagescurrent'        => 'Tèxto d’ora',
-'allmessagestext'           => 'Cen est la lista des mèssâjos sistèmo disponiblos dens l’èspâço MediaWiki.
+'allmessages'                   => 'Mèssâjos sistèmo',
+'allmessagesname'               => 'Nom du mèssâjo',
+'allmessagesdefault'            => 'Tèxto per dèfôt',
+'allmessagescurrent'            => 'Tèxto d’ora',
+'allmessagestext'               => 'Cen est la lista des mèssâjos sistèmo disponiblos dens l’èspâço MediaWiki.
 Volyéd visitar la [http://www.mediawiki.org/wiki/Localisation Localisacion de MediaWiki] et pués [http://translatewiki.net translatewiki.net] se vos dèsirâd contribuar a la localisacion g·ènèrica de MediaWiki.',
-'allmessagesnotsupportedDB' => "Ceta pâge '''{{ns:special}}:Allmessages''' est inutilisâbla perce que '''\$wgUseDatabaseMessages''' at étâ dèsactivâ.",
+'allmessagesnotsupportedDB'     => "Ceta pâge '''{{ns:special}}:Allmessages''' est inutilisâbla perce que '''\$wgUseDatabaseMessages''' at étâ dèsactivâ.",
+'allmessages-filter-legend'     => 'Filtro',
+'allmessages-filter'            => 'Filtrar per ètat de changement :',
+'allmessages-filter-unmodified' => 'Pas changiê',
+'allmessages-filter-all'        => 'Tôs',
+'allmessages-filter-modified'   => 'Changiê',
+'allmessages-prefix'            => 'Filtrar per prèfixo :',
+'allmessages-language'          => 'Lengoua :',
+'allmessages-filter-submit'     => 'Aplicar',
 
 # Thumbnails
 'thumbnail-more'           => 'Agrantir',
@@ -3484,6 +3503,7 @@ Buchiéd lo nom du fichiér sen lo prèfixo « {{ns:file}}: ».',
 'htmlform-invalid-input'       => 'Des problèmos sont arrevâs avouéc quârques valors',
 'htmlform-select-badoption'    => 'La valor que vos éd spècefiâ est pas un chouèx valido.',
 'htmlform-int-invalid'         => 'La valor que vos éd spècefiâ est pas un entiér.',
+'htmlform-float-invalid'       => 'La valor que vos éd spècefiâ est pas un nombro.',
 'htmlform-int-toolow'          => 'La valor que vos éd spècefiâ est en-desot du muens de $1',
 'htmlform-int-toohigh'         => 'La valor que vos éd spècefiâ est en-dessus du més de $1',
 'htmlform-submit'              => 'Sometre',

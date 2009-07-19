@@ -8,6 +8,7 @@
  * @file
  *
  * @author Maartenvdbent
+ * @author Purodha
  * @author Pyt
  * @author Urhixidur
  */
@@ -316,7 +317,7 @@ Dät kon sik uk uum n Bug ap {{SITENAME}} honnelje.',
 'error'                => 'Failer',
 'databaseerror'        => 'Failer in ju Doatenboank',
 'dberrortext'          => 'Dät roat n Syntaxfailer in dän Doatenboankoufroage. Ju lääste Doatenboankoufroage lutte:
-<blockquote><tt>$1</tt></blockquote> uut de Funktion "<tt>$2</tt>". MySQL mäldede dän Failer "<tt>$3: $4</tt>".',
+<blockquote><tt>$1</tt></blockquote> uut de Funktion "<tt>$2</tt>". $5 mäldede dän Failer "<tt>$3: $4</tt>".',
 'dberrortextcl'        => 'Dät roate n Syntaxfailer in ju Doatenboankoufroage.
 Ju lääste Doatenboankoufroage lutte: „$1“ uut ju Funktion „<tt>$2</tt>“.
 MySQL mäldede dän Failer: „<tt>$3: $4</tt>“.',

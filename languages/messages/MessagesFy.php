@@ -8,6 +8,7 @@
  * @file
  *
  * @author Maartenvdbent
+ * @author Purodha
  * @author Pyt
  * @author Snakesteuben
  * @author Urhixidur
@@ -428,7 +429,7 @@ $messages = array(
 De lêst besochte databankfraach wie:
 <blockquote><tt>$1</tt></blockquote>
 fan funksje "<tt>$2</tt>" út.
-MySQL joech fout "<tt>$3: $4</tt>" werom.',
+$5 joech fout "<tt>$3: $4</tt>" werom.',
 'dberrortextcl'        => 'Sinboufout in databankfraach.
 De lêst besochte databankfraach wie:
 "$1"

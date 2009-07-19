@@ -600,12 +600,12 @@ Az érvényes speciális lapok listáját a [[Special:SpecialPages|Speciális la
 # General errors
 'error'                => 'Hiba',
 'databaseerror'        => 'Adatbázishiba',
-'dberrortext'          => 'Szintaktikai hiba fordult elő az adatbázis lekérdezésekor.
-Ez a szoftverben lévő hibát jelezheti.
-Az utoljára megkísérelt adatbázis lekérdezés az alábbi volt:
+'dberrortext'          => 'Szintaktikai hiba található az adatbázis-lekérdezésben.
+Ez egy, a szoftverben lévő hiba miatt történhetett.
+Az utolsó adatbázis-lekérdezés a következő volt:
 <blockquote><tt>$1</tt></blockquote>
 a(z) „<tt>$2</tt>” függvényből.
-A MySQL ezzel a hibával tért vissza: „<tt>$3: $4</tt>”.',
+A(z) $5 ezzel a hibával tért vissza: „<tt>$3: $4</tt>”.',
 'dberrortextcl'        => 'Szintaktikai hiba fordult elő az adatbázis lekérdezésekor.
 Az utoljára megkísérelt adatbázis lekérdezés
 „$1” volt

@@ -452,8 +452,17 @@ All Spezialsäiten déi et gëtt sinn op der [[Special:SpecialPages|Lescht vun d
 # General errors
 'error'                => 'Feeler',
 'databaseerror'        => 'Datebank Feeler',
-'dberrortext'          => 'En Datebank Syntax Feeler ass opgetrueden. De läschten Datebank Query war: "$1" vun der Funktioun "$2". MySQL Feeler "$3: $4".',
-'dberrortextcl'        => 'En Datebank Syntax Feeler ass opgetrueden. De läschten Datebank Query war: "$1" vun der Funktioun "$2". De MySQL Feeler war "$3: $4".',
+'dberrortext'          => 'En Datebank Syntax Feeler ass opgetrueden.
+Dëst kann op e Feeler an der Software hiweisen.
+De läschte versichten Datebank Query war:
+<blockquote><tt>$1</tt></blockquote>
+vun der Funktioun "<tt>$2</tt>". 
+$5 huet de Feeler "<tt>$3: $4</tt>" gemellt.',
+'dberrortextcl'        => 'En Datebank Syntax Feeler ass opgetrueden.
+De läschten Datebank Query war: 
+"$1" 
+vun der Funktioun "$2".
+$5 huet de Feeler "$3: $4" gemellt.',
 'laggedslavemode'      => 'Opgepasst: Dës Säit ass net onbedingt um neiste Stand.',
 'readonly'             => "D'Datebank ass gespaart",
 'enterlockreason'      => "Gitt w.e.g. e Grond u firwat d'Datebak gespaart ass, a wéi laang dës Spär ongeféier bestoe soll.",
@@ -471,6 +480,7 @@ Mellt dëst w.e.g. bäi engem [[Special:ListUsers/sysop|Administrateur]] a vergi
 'readonly_lag'         => "D'Datebank gouf automatesch gespaart fir datt d'Zweetserveren (slaves) nees mat dem Haaptserver (master) synchron geschalt kënne ginn.",
 'internalerror'        => 'Interne Feeler',
 'internalerror_info'   => 'Interne Feeler: $1',
+'fileappenderror'      => '"$1" konnt net bäi "$2" derbäigesat ginn.',
 'filecopyerror'        => 'De Fichier "$1" konnt net op "$2" kopéiert ginn.',
 'filerenameerror'      => 'De Fichier "$1" konnt net op "$2" ëmbenannt ginn.',
 'filedeleteerror'      => 'De Fichier "$1" konnt net geläscht ginn.',
@@ -916,6 +926,8 @@ $1",
 Si kann net verstoppt ginn.',
 'revdelete-show-no-access'    => 'Feeler beim Weise vum Objet vum $1 ëm $2 Auer: dësen Objet gouf als "limitéiert2 markéiert.
 Dir hutt keen Zougang zu dësem Objet.',
+'revdelete-modify-no-access'  => 'Feeler beim Ännere vum Objet vum $1 ëm $2 Auer: dësen Objet gouf als "limitéiert" markéiert.
+Dir hutt keen Zougang dozou.',
 'revdelete-modify-missing'    => 'Feeler beim Ännere vun der ID $1: si feelt an der Datebank!',
 'revdelete-no-change'         => "'''Opgepasst:''' D'Element vum $2 ëm $1 Auer huet schonn déi ugefrote Sichtbarkeetsastellung.",
 'revdelete-concurrent-change' => "Feeler beim Ännere vum Element vum $1 ëm $2 Auer: säit Statut schéngt geännert ginn ze si während Dir vericht hutt et z'änneren.
@@ -1160,7 +1172,7 @@ Dir kënnt [[:\$1|déi Säit uleeën]].",
 'allowemail'                    => 'E-Maile vun anere Benotzer kréien.',
 'prefs-searchoptions'           => 'Sichoptiounen',
 'prefs-namespaces'              => 'Nummraim',
-'defaultns'                     => 'Soss an dëse Nummraim sichen:',
+'defaultns'                     => 'Soss an dësen Nummraim sichen:',
 'default'                       => 'Standard',
 'prefs-files'                   => 'Fichieren',
 'prefs-custom-css'              => 'Benotzerdefinéierten CSS',
@@ -1305,6 +1317,7 @@ Dir kënnt et och zouloossen datt aner Benotzer iech - iwwert e Link op ärer Be
 'right-siteadmin'             => "Datebank spären an d'Spär ophiewen",
 'right-reset-passwords'       => 'Anere Benotzer hir Passwierder zrécksetzen',
 'right-override-export-depth' => 'Säiten exportéieren inklusiv de verlinkte Säite bis zu enger Déift vu 5',
+'right-versiondetail'         => 'Informatiounen iwwert déi erweidert Software-Versioun weisen',
 
 # User rights log
 'rightslog'      => 'Logbuch vun de Benotzerrechter',
@@ -1479,15 +1492,18 @@ Kuckt w.e.g. genee no, ob d'dat erneit Eroplueden de Richtlinnen entsprecht.
 Zu ärer Informatioun steet hei Läsch-Lëscht mat dem Grond vum viregte Läschen:",
 'filename-bad-prefix'         => "Den Numm vum Fichier fänkt mat '''„$1“''' un. Dësen Numm ass automatesch vun der Kamera gi ginn a seet näischt iwwert dat aus, wat drop ass. Gitt dem Fichier w.e.gl. en Numm, deen den Inhalt besser beschreift, an deen net verwiesselt ka ginn.",
 
-'upload-proto-error'      => 'Falsche Protokoll',
-'upload-proto-error-text' => "D'URL muss mat <code>http://</code> oder <code>ftp://</code> ufänken.",
-'upload-file-error'       => 'Interne Feeler',
-'upload-file-error-text'  => 'Beim Erstelle vun engem temporäre Fichier um Server ass een interne Feeler geschitt.
+'upload-proto-error'        => 'Falsche Protokoll',
+'upload-proto-error-text'   => "D'URL muss mat <code>http://</code> oder <code>ftp://</code> ufänken.",
+'upload-file-error'         => 'Interne Feeler',
+'upload-file-error-text'    => 'Beim Erstelle vun engem temporäre Fichier um Server ass een interne Feeler geschitt.
 Informéiert w.e.g. e vun den [[Special:ListUsers/sysop|Administrateuren]].',
-'upload-misc-error'       => 'Onbekannte Feeler beim Eroplueden',
-'upload-misc-error-text'  => "Beim Eroplueden ass en onbekannte Feeler geschitt.
+'upload-misc-error'         => 'Onbekannte Feeler beim Eroplueden',
+'upload-misc-error-text'    => "Beim Eroplueden ass en onbekannte Feeler geschitt.
 Kuckt d'URL w.e.g. no, a vergewëssert iech datt d'Säit online ass a probéiert et dann nach eng Kéier.
 Wann de Problem weider besteet, dann un de [[Special:ListUsers/sysop|Administrateuren]].",
+'upload-too-many-redirects' => "Et waren zevill Viruleedungen fir d'URL do",
+'upload-unknown-size'       => 'Onbekannte Gréisst',
+'upload-http-error'         => 'Et ass en HTTP-Feeler geschitt: $1',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => "URL ass net z'erreechen",
@@ -1632,8 +1648,9 @@ Sie sollten am beschten op déi eigentlech gemengte Säit verlinkt sinn.<br />
 Eng Säite gëtt als Homonymiesäit behandelt, wa si eng Schabloun benotzt déi vu [[MediaWiki:Disambiguationspage]] verlinkt ass.',
 
 'doubleredirects'            => 'Duebel Viruleedungen',
-'doubleredirectstext'        => '<b>Opgepasst:</b> An dëser Lëscht kënne falsch Positiver stoen. Dat heescht meeschtens datt et nach Text zu de Linke vun der éischter Viruleedung gëtt.<br /> 
-An all Rei sti Linken zur éischter an zweeter Viruleedung, souwéi déi éischt Zeil vum Text vun der zweeter Viruleedung, wou normalerweis déi "richteg" Zilsäit drasteet, op déi déi éischt Viruleedung hilinke soll.',
+'doubleredirectstext'        => 'Op dëser Säit stinn déi Säiten déi op aner Viruleedungssäite viruleeden.
+An all Rei sti Linken zur éischter an zweeter Viruleedung, souwéi d\'Zil vun der zweeter Viruleedung, déi normalerweis déi "richteg" Zilsäit ass, op déi déi éischt Viruleedung hilinke soll.
+<s>Duerchgestrachen</s> Linke goufe schonn esou verännert datt déi duebel Viruleedung opgeléist ass.',
 'double-redirect-fixed-move' => '[[$1]] gouf geréckelt, et ass elo eng Viruleedung op [[$2]]',
 'double-redirect-fixer'      => 'Verbesserung vu Viruleedungen',
 
@@ -2328,13 +2345,21 @@ Wann nëmmen déi aktuell Versioun exportéiert soll ginn, kënnt Dir och e Link
 'export-pagelinks'  => 'Verlinkte Säiten mat exportéieren, bis zu enger Déift vun:',
 
 # Namespace 8 related
-'allmessages'               => 'All Systemmessagen',
-'allmessagesname'           => 'Numm',
-'allmessagesdefault'        => 'Standardtext',
-'allmessagescurrent'        => 'Aktuellen Text',
-'allmessagestext'           => "Dëst ass eng Lëscht vun alle '''Messagen am MediaWiki:Nummraum, déi vun der MediaWiki-Software benotzt ginn.
+'allmessages'                   => 'All Systemmessagen',
+'allmessagesname'               => 'Numm',
+'allmessagesdefault'            => 'Standardtext',
+'allmessagescurrent'            => 'Aktuellen Text',
+'allmessagestext'               => "Dëst ass eng Lëscht vun alle '''Messagen am MediaWiki:Nummraum, déi vun der MediaWiki-Software benotzt ginn.
 Besicht w.e.g. [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisatioun] a [http://translatewiki.net translatewiki.net] wann Dir wëllt bei de MediaWiki Iwwersetzunge matschaffen.",
-'allmessagesnotsupportedDB' => "Dës Säit kann net benotzt gi well '''\$wgUseDatabaseMessages''' ausgeschalt ass.",
+'allmessagesnotsupportedDB'     => "Dës Säit kann net benotzt gi well '''\$wgUseDatabaseMessages''' ausgeschalt ass.",
+'allmessages-filter-legend'     => 'Filter',
+'allmessages-filter'            => 'Filter nom ugepassten Zoustand:',
+'allmessages-filter-unmodified' => 'Net geännert',
+'allmessages-filter-all'        => 'Alleguer',
+'allmessages-filter-modified'   => 'Geännert',
+'allmessages-prefix'            => 'Nom Prefix filteren:',
+'allmessages-language'          => 'Sprooch:',
+'allmessages-filter-submit'     => 'Lass',
 
 # Thumbnails
 'thumbnail-more'           => 'vergréisseren',
@@ -2707,6 +2732,7 @@ Duerno sti Linken déi Ausnamen definéieren, a deenen hirem Kontext dat Bild aw
 'exif-gpsaltitude'                 => 'Héicht',
 'exif-gpstimestamp'                => 'GPS-Zäit',
 'exif-gpssatellites'               => "Satelitten déi fir d'Moosse benotzt goufen",
+'exif-gpsstatus'                   => 'Status vum Empfänger',
 'exif-gpsmeasuremode'              => 'Moossmethod',
 'exif-gpsdop'                      => 'Prezisioun vun der Miessung',
 'exif-gpsspeedref'                 => 'Eenheet vun der Vitesse',
@@ -3083,6 +3109,7 @@ Gitt den Numm vum Fichier ouni de Prefix \"{{ns:file}}:\" an.",
 'htmlform-invalid-input'       => 'Et gëtt Problemer mat de Werter déi dir aginn hutt.',
 'htmlform-select-badoption'    => 'De Wert deen Dir aginn hutt ass keng valabel Optioun.',
 'htmlform-int-invalid'         => 'De Wert deen dir aginn hutt ass keng ganz Zuel.',
+'htmlform-float-invalid'       => 'De Wert deen Dir uginn hutt ass keng Zuel.',
 'htmlform-int-toolow'          => 'De Wert deen Dir uginn hut ass ënnert dem Minimum vu(n) $1',
 'htmlform-int-toohigh'         => 'De Wert deen Dir uginn hutt ass iwwert dem Maximum vu(n) $1',
 'htmlform-submit'              => 'Späicheren',

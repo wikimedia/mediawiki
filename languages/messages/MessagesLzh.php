@@ -2575,7 +2575,6 @@ $1',
 # HTML forms
 'htmlform-invalid-input'       => '爾之輸問也',
 'htmlform-select-badoption'    => '爾之值為非效之。',
-'htmlform-int-invalid'         => '爾之值為非整數也。',
 'htmlform-int-invalid'         => '爾之值為非數字也。',
 'htmlform-int-toolow'          => '爾之值比$1以低',
 'htmlform-int-toohigh'         => '爾之值比$1以高',

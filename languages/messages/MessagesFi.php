@@ -614,8 +614,8 @@ Tämä voi myös mahdollisesti olla ohjelmistovirhe.',
 # General errors
 'error'                => 'Virhe',
 'databaseerror'        => 'Tietokantavirhe',
-'dberrortext'          => 'Tietokantakyselyssä oli syntaksivirhe. Syynä saattaa olla virheellinen kysely, tai se saattaa johtua ohjelmointivirheestä. Viimeinen tietokantakysely, jota yritettiin, oli: <blockquote><tt>$1</tt></blockquote>. Se tehtiin funktiosta ”<tt>$2</tt>”. MySQL palautti virheen ”<tt>$3: $4</tt>”.',
-'dberrortextcl'        => 'Tietokantakyselyssä oli syntaksivirhe. Viimeinen tietokantakysely, jota yritettiin, oli: ”$1”. Se tehtiin funktiosta ”$2”. MySQL palautti virheen ”$3: $4”.',
+'dberrortext'          => 'Tietokantakyselyssä oli syntaksivirhe. Syynä saattaa olla virheellinen kysely, tai se saattaa johtua ohjelmointivirheestä. Viimeinen tietokantakysely, jota yritettiin, oli: <blockquote><tt>$1</tt></blockquote>. Se tehtiin funktiosta ”<tt>$2</tt>”. $5 palautti virheen ”<tt>$3: $4</tt>”.',
+'dberrortextcl'        => 'Tietokantakyselyssä oli syntaksivirhe. Viimeinen tietokantakysely, jota yritettiin, oli: ”$1”. Se tehtiin funktiosta ”$2”. $5 palautti virheen ”$3: $4”.',
 'laggedslavemode'      => 'Varoitus: Sivu ei välttämättä sisällä viimeisimpiä muutoksia.',
 'readonly'             => 'Tietokanta on lukittu',
 'enterlockreason'      => 'Anna lukituksen syy sekä sen arvioitu poistamisaika',
@@ -783,7 +783,7 @@ Olet saattanut jo onnistuneesti vaihtaa salasanasi tai pyytää uutta väliaikai
 
 # Edit pages
 'summary'                          => 'Yhteenveto',
-'subject'                          => 'Aihe',
+'subject'                          => 'Aihe tai otsikko',
 'minoredit'                        => 'Tämä on pieni muutos',
 'watchthis'                        => 'Lisää tarkkailulistaan',
 'savearticle'                      => 'Tallenna sivu',
@@ -1423,6 +1423,7 @@ Kokeile lisätä haun alkuun ''all:'', niin haku kohdistuu kaikkeen sisältöön
 'right-siteadmin'             => 'Lukita tietokanta',
 'right-reset-passwords'       => 'Alustaa muiden käyttäjien salasanoja',
 'right-override-export-depth' => 'Viedä sivuja sisältäen viitatut sivut viiden syvyydellä',
+'right-versiondetail'         => 'Nähdä laajennetut tiedot ohjelmistoversiosta',
 
 # User rights log
 'rightslog'      => 'Käyttöoikeusloki',
@@ -1584,12 +1585,15 @@ Jos sinulla on tämän kuvan alkuperäinen versio, tallenna se. Muussa tapaukses
 Harkitse, haluatko jatkaa tämän tiedoston tallentamista. Tiedoston poistoloki näkyy tässä:",
 'filename-bad-prefix'         => "Tallentamasi tiedoston nimi alkaa merkkijonolla '''$1''', joka on yleensä digitaalikameroiden automaattisesti antama nimi, joka ei kuvaa tiedoston sisältöä. Anna tiedostolle kuvaavampi nimi.",
 
-'upload-proto-error'      => 'Virheellinen protokolla',
-'upload-proto-error-text' => 'Etälähetys on mahdollista vain osoitteista, jotka alkavat merkkijonolla <code>http://</code> tai <code>ftp://</code>.',
-'upload-file-error'       => 'Vakava virhe',
-'upload-file-error-text'  => 'Väliaikaistiedoston luominen epäonnistui. Ota yhteyttä sivuston [[Special:ListUsers/sysop|ylläpitäjään]].',
-'upload-misc-error'       => 'Virhe',
-'upload-misc-error-text'  => 'Tiedoston etälähetys ei onnistunut. Varmista, että antamasi osoite on oikein ja toimiva. Jos virhe ei katoa, ota yhteyttä sivuston ylläpitäjään.',
+'upload-proto-error'        => 'Virheellinen protokolla',
+'upload-proto-error-text'   => 'Etälähetys on mahdollista vain osoitteista, jotka alkavat merkkijonolla <code>http://</code> tai <code>ftp://</code>.',
+'upload-file-error'         => 'Vakava virhe',
+'upload-file-error-text'    => 'Väliaikaistiedoston luominen epäonnistui. Ota yhteyttä sivuston [[Special:ListUsers/sysop|ylläpitäjään]].',
+'upload-misc-error'         => 'Virhe',
+'upload-misc-error-text'    => 'Tiedoston etälähetys ei onnistunut. Varmista, että antamasi osoite on oikein ja toimiva. Jos virhe ei katoa, ota yhteyttä sivuston ylläpitäjään.',
+'upload-too-many-redirects' => 'URL sisälsi liian monta ohjausta',
+'upload-unknown-size'       => 'Tuntematon koko',
+'upload-http-error'         => 'HTTP-virhe: $1',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Toimimaton osoite',
@@ -1730,7 +1734,9 @@ Tiedot [$2 tiedoston kuvaussivulta] näkyvät alla.',
 'disambiguations-text' => "Seuraavat artikkelit linkittävät ''täsmennyssivuun''. Täsmennyssivun sijaan niiden pitäisi linkittää asianomaiseen aiheeseen.<br />Sivua kohdellaan täsmennyssivuna jos se käyttää mallinetta, johon on linkki sivulta [[MediaWiki:Disambiguationspage]].",
 
 'doubleredirects'            => 'Kaksinkertaiset ohjaukset',
-'doubleredirectstext'        => '<b>Huomio:</b> Tässä listassa saattaa olla virheitä. Yleensä kyseessä on sivu, jossa ensimmäisen #REDIRECT- tai #OHJAUS-komennon jälkeen on tekstiä.<br />Jokaisella rivillä on linkit ensimmäiseen ja toiseen ohjaukseen sekä toisen ohjauksen kohteen ensimmäiseen riviin, eli yleensä ”oikeaan” kohteeseen, johon ensimmäisen ohjauksen pitäisi osoittaa.',
+'doubleredirectstext'        => 'Tässä listassa on ohjaussivut, jotka ohjaavat toiseen ohjaussivuun.
+Jokaisella rivillä on linkit ensimmäiseen ja toiseen ohjaukseen sekä toisen ohjauksen kohteen ensimmäiseen riviin, eli yleensä ”oikeaan” kohteeseen, johon ensimmäisen ohjauksen pitäisi osoittaa.
+<s>Yliviivatut</s> kohteet on korjattu.',
 'double-redirect-fixed-move' => '[[$1]] on siirretty, ja se ohjaa nyt sivulle [[$2]]',
 'double-redirect-fixer'      => 'Ohjausten korjaaja',
 
@@ -2403,13 +2409,21 @@ Sivujen koko historian vienti on estetty suorituskykysyistä.',
 'export-pagelinks'  => 'Sisällytä linkkien kohteina olevat sivut syvyydelle',
 
 # Namespace 8 related
-'allmessages'               => 'Järjestelmäviestit',
-'allmessagesname'           => 'Nimi',
-'allmessagesdefault'        => 'Oletusarvo',
-'allmessagescurrent'        => 'Nykyinen arvo',
-'allmessagestext'           => 'Tämä on luettelo järjestelmäviesteistä, jotka ovat saatavilla MediaWiki-nimiavaruudessa.
+'allmessages'                   => 'Järjestelmäviestit',
+'allmessagesname'               => 'Nimi',
+'allmessagesdefault'            => 'Oletusarvo',
+'allmessagescurrent'            => 'Nykyinen arvo',
+'allmessagestext'               => 'Tämä on luettelo järjestelmäviesteistä, jotka ovat saatavilla MediaWiki-nimiavaruudessa.
 Jos haluat muokata MediaWikin yleistä kotoistusta, käy [http://www.mediawiki.org/wiki/Localisation MediaWikin kotoistussivuilla] ja sivustolla [http://translatewiki.net translatewiki.net].',
-'allmessagesnotsupportedDB' => 'Tämä sivu ei ole käytössä, koska <tt>$wgUseDatabaseMessages</tt>-asetus on pois päältä.',
+'allmessagesnotsupportedDB'     => 'Tämä sivu ei ole käytössä, koska <tt>$wgUseDatabaseMessages</tt>-asetus on pois päältä.',
+'allmessages-filter-legend'     => 'Suodata',
+'allmessages-filter'            => 'Suodata muutosten perusteella',
+'allmessages-filter-unmodified' => 'Muuttamaton',
+'allmessages-filter-all'        => 'Kaikki',
+'allmessages-filter-modified'   => 'Muutettu',
+'allmessages-prefix'            => 'Suodata etuliitteellä',
+'allmessages-language'          => 'Kieli',
+'allmessages-filter-submit'     => 'Siirry',
 
 # Thumbnails
 'thumbnail-more'           => 'Suurenna',
@@ -3178,6 +3192,7 @@ Kirjoita tiedostonimi ilman ”{{ns:file}}:”-etuliitettä.',
 'htmlform-invalid-input'       => 'Antamassasi syötteessä on ongelmia',
 'htmlform-select-badoption'    => 'Antamasi arvo ei ole kelvollinen.',
 'htmlform-int-invalid'         => 'Antamasi arvo ei ole kokonaisluku.',
+'htmlform-float-invalid'       => 'Antamasi arvo ei ole numero.',
 'htmlform-int-toolow'          => 'Annettu arvo on pienempi kuin alaraja $1',
 'htmlform-int-toohigh'         => 'Annettu arvo on suurempi kuin yläraja $1',
 'htmlform-submit'              => 'Lähetä',

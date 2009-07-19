@@ -610,17 +610,17 @@ Una lista de las paginas especialas pòt èsser trobada sus [[Special:SpecialPag
 # General errors
 'error'                => 'Error',
 'databaseerror'        => 'Error de la banca de donadas',
-'dberrortext'          => 'Error de sintaxi dins la banca de donadas.
-Benlèu qu\'aquesta error es deguda a una requèsta de recèrca incorrècta o a una error dins lo logicial.
+'dberrortext'          => 'Une error de sintaxi de la requèsta dins la banca de donadas es susvenguda.
+Benlèu qu\'aquesta error es deguda a una error dins lo logicial.
 La darrièra requèsta tractada per la banca de donadas èra :
 <blockquote><tt>$1</tt></blockquote>
 dempuèi la foncion "<tt>$2</tt>".
-MySQL a renviat l\'error "<tt>$3: $4</tt>".',
-'dberrortextcl'        => 'Una requèsta a la banca de donadas compòrta una error de sintaxi.
-La darrièra requèsta mandada èra :
+$5 a renviat l\'error "<tt>$3: $4</tt>".',
+'dberrortextcl'        => "Una requèsta dins la banca de donadas compòrta una error de sintaxi.
+La darrièra requèsta emesa èra :
 « $1 »
-efectuada per la foncion « $2 ».
-MySQL a retornat l\'error "$3: $4"',
+dins la foncion « $2 ».
+$5 a renviat l'error « $3 : $4 ».",
 'laggedslavemode'      => 'Atencion : Aquesta pagina pòt conténer pas totes los darrièrs cambiaments efectuats.',
 'readonly'             => 'Mesas a jorn blocadas sus la banca de donadas',
 'enterlockreason'      => 'Indicatz la rason del blocatge, e mai una estimacion de sa durada',
@@ -638,6 +638,7 @@ Informatz-ne un [[Special:ListUsers/sysop|administrator]] aprèp aver notada l�
 'readonly_lag'         => 'La banca de donadas es estada automaticament clavada pendent que los servidors segondaris ratrapan lor retard sul servidor principal.',
 'internalerror'        => 'Error intèrna',
 'internalerror_info'   => 'Error intèrna: $1',
+'fileappenderror'      => "Impossible d'apondre « $1 » a « $2 ».",
 'filecopyerror'        => 'Impossible de copiar lo fichièr « $1 » cap a « $2 ».',
 'filerenameerror'      => 'Impossible de tornar nomenar lo fichièr « $1 » en « $2 ».',
 'filedeleteerror'      => 'Impossible de suprimir lo fichièr « $1 ».',
@@ -1460,6 +1461,7 @@ Tanben podètz causir de permetre a d’autres de vos contactar amb l'ajuda de v
 'right-siteadmin'             => 'Varrolhar e desvarrolhar la banca de donadas',
 'right-reset-passwords'       => "Cambiar lo senhal d'autres utilizaires",
 'right-override-export-depth' => 'Exportar las paginas en incluent las paginas ligadas fins a una prigondor de 5 nivèls',
+'right-versiondetail'         => 'Vejatz las entresenhas espandidas sus las versions dels logicials',
 
 # User rights log
 'rightslog'      => "Istoric de las modificacions d'estatut",
@@ -1642,14 +1644,17 @@ MGP # Pentax
 PICT # misc.
  #</pre> <!-- daissatz aquesta linha coma es -->',
 
-'upload-proto-error'      => 'Protocòl incorrècte',
-'upload-proto-error-text' => "L’impòrt requerís d'URLs començant per <code>http://</code> o <code>ftp://</code>.",
-'upload-file-error'       => 'Error intèrna',
-'upload-file-error-text'  => 'Una error intèrna es subrevenguda en volent crear un fichièr temporari sul servidor. Contactatz un [[Special:ListUsers/sysop|administrator de sistèma]].',
-'upload-misc-error'       => 'Error d’impòrt desconeguda',
-'upload-misc-error-text'  => 'Una error desconeguda es subrevenguda pendent l’impòrt.
+'upload-proto-error'        => 'Protocòl incorrècte',
+'upload-proto-error-text'   => "L’impòrt requerís d'URLs començant per <code>http://</code> o <code>ftp://</code>.",
+'upload-file-error'         => 'Error intèrna',
+'upload-file-error-text'    => 'Una error intèrna es subrevenguda en volent crear un fichièr temporari sul servidor. Contactatz un [[Special:ListUsers/sysop|administrator de sistèma]].',
+'upload-misc-error'         => 'Error d’impòrt desconeguda',
+'upload-misc-error-text'    => 'Una error desconeguda es subrevenguda pendent l’impòrt.
 Verificatz que l’URL es valida e accessibla, puèi ensajatz tornarmai.
 Se lo problèma persistís, contactatz un [[Special:ListUsers/sysop|administrator del sistèma]].',
+'upload-too-many-redirects' => "L'URL conten tròp de redireccions",
+'upload-unknown-size'       => 'Talha desconeguda',
+'upload-http-error'         => 'Una error HTTP es intervenguda : $1',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Pòt pas aténher l’URL',
@@ -1793,7 +1798,9 @@ Deurián puslèu puntar cap a una pagina apropriada.<br />
 Una pagina es tractada coma una pagina d’omonimia s'utiliza un modèl qu'es ligat a partir de [[MediaWiki:Disambiguationspage]]",
 
 'doubleredirects'            => 'Redireccions doblas',
-'doubleredirectstext'        => 'Cada casa conten de ligams cap a la primièra e la segonda redireccion, e mai la primièra linha de tèxte de la segonda pagina, costumièrament, aquò provesís la « vertadièra » pagina cibla, cap a la quala la primièra redireccion deuriá redirigir.',
+'doubleredirectstext'        => 'Vaquí una lista de las paginas que redirigisson cap a de paginas que son elas-meteissas de paginas de redireccion.
+Cada entrada conten de ligams cap a la primièra e la segonda redireccions, e mai la primièra linha de tèxte de la segonda pagina, çò que provesís, de costuma, la « vertadièra » pagina cibla, cap a la quala la primièra redireccion deuriá redirigir.
+Las entradas <s>barradas</s> son estadas resolgudas.',
 'double-redirect-fixed-move' => '[[$1]] es estat renomenat, aquò es ara una redireccion cap a [[$2]]',
 'double-redirect-fixer'      => 'Corrector de redireccion',
 
@@ -2490,13 +2497,21 @@ Dins aqueste darrièr cas, podètz tanben utilizar un ligam, coma [[{{#Special:E
 'export-pagelinks'  => 'Enclure las paginas ligadas a una prigondor de :',
 
 # Namespace 8 related
-'allmessages'               => 'Lista dels messatges del sistèma',
-'allmessagesname'           => 'Nom del camp',
-'allmessagesdefault'        => 'Messatge per defaut',
-'allmessagescurrent'        => 'Messatge actual',
-'allmessagestext'           => 'Aquò es la lista de totes los messatges disponibles dins l’espaci MediaWiki.
+'allmessages'                   => 'Lista dels messatges del sistèma',
+'allmessagesname'               => 'Nom del camp',
+'allmessagesdefault'            => 'Messatge per defaut',
+'allmessagescurrent'            => 'Messatge actual',
+'allmessagestext'               => 'Aquò es la lista de totes los messatges disponibles dins l’espaci MediaWiki.
 Visitatz la [http://www.mediawiki.org/wiki/Localisation Localizacion MèdiaWiki] e [http://translatewiki.net translatewiki.net] se desiratz contribuir a la localizacion MèdiaWiki generica.',
-'allmessagesnotsupportedDB' => "'''{{ns:special}}:Allmessages''' es pas disponible perque '''\$wgUseDatabaseMessages''' es desactivat.",
+'allmessagesnotsupportedDB'     => "'''{{ns:special}}:Allmessages''' es pas disponible perque '''\$wgUseDatabaseMessages''' es desactivat.",
+'allmessages-filter-legend'     => 'Filtre',
+'allmessages-filter'            => 'Filtrar per estat de modificacion :',
+'allmessages-filter-unmodified' => 'Pas modificat',
+'allmessages-filter-all'        => 'Totes',
+'allmessages-filter-modified'   => 'Modificat',
+'allmessages-prefix'            => 'Filtrar per prefix :',
+'allmessages-language'          => 'Lenga :',
+'allmessages-filter-submit'     => 'Aplicar',
 
 # Thumbnails
 'thumbnail-more'           => 'Agrandir',
@@ -3299,6 +3314,7 @@ Picatz lo nom del fichièr sens lo prefix « {{ns:file}}: ».',
 'htmlform-invalid-input'       => "De problèmas son arribats amb d'unas valors",
 'htmlform-select-badoption'    => "La valor qu'avètz especificada es pas una opcion valida.",
 'htmlform-int-invalid'         => "La valor qu'avètz especificada es pas un nombre entièr.",
+'htmlform-float-invalid'       => "La valor qu'avètz especificada es pas un nombre.",
 'htmlform-int-toolow'          => "La valor qu'avètz especificada es en dejós del minimum de $1",
 'htmlform-int-toohigh'         => "La valor qu'avètz especificada es en dessús del minimum de $1",
 'htmlform-submit'              => 'Sometre',
