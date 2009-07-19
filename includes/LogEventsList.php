@@ -373,8 +373,9 @@ class LogEventsList {
 					),
 					array( 'known', 'noclasses' )
 				);
+
 				// Pipe links
-				$revert = '(' . implode(' | ',$revert) . ')';
+				$revert = wfMsg( 'parentheses', $wgLang->pipeList( $revert ) );
 			}
 		// Hidden log items, give review link
 		} else if( self::typeAction($row,array('delete','suppress'),'event','deleterevision') ) {
