@@ -25,6 +25,7 @@
  * @author Nghtwlkr
  * @author Nsaa
  * @author Piivaat
+ * @author Purodha
  * @author Samuelsen
  * @author Stigmj
  * @author Teak
@@ -534,7 +535,7 @@ Det kan også være en bug i {{SITENAME}}.',
 # General errors
 'error'                => 'Feil',
 'databaseerror'        => 'databasefeil',
-'dberrortext'          => 'Det skjedde en syntaksfeil i databasen. Den sist forsøkte forespørselen var: <blockquote><tt>$1</tt></blockquote> fra funksjonen «<tt>$2</tt>». MySQL returnerte feilen «<tt>$3: $4</tt>».',
+'dberrortext'          => 'Det skjedde en syntaksfeil i databasen. Den sist forsøkte forespørselen var: <blockquote><tt>$1</tt></blockquote> fra funksjonen «<tt>$2</tt>». $5 returnerte feilen «<tt>$3: $4</tt>».',
 'dberrortextcl'        => 'Det skjedde en syntaksfeil i databasen. Den sist forsøkte forespørselen var: «$1» fra funksjonen «$2». MySQL returnerte feilen «$3: $4».',
 'laggedslavemode'      => 'Advarsel: Dette kan være en eldre versjon av siden.',
 'readonly'             => 'Databasen er skrivebeskyttet',

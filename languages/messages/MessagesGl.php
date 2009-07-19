@@ -523,12 +523,12 @@ Isto pódese deber a un erro no programa.
 A última consulta á base de datos foi:
 <blockquote><tt>$1</tt></blockquote>
 desde a función "<tt>$2</tt>".
-MySQL devolveu o erro "<tt>$3: $4</tt>".',
+$5 devolveu o erro "<tt>$3: $4</tt>".',
 'dberrortextcl'        => 'Ocorreu un erro de sintaxe na consulta.
 A última consulta á base de datos foi:
 "$1"
 desde a función "$2".
-MySQL devolveu o erro "$3: $4"',
+$5 devolveu o erro "$3: $4"',
 'laggedslavemode'      => 'Aviso: a páxina pode non conter actualizacións recentes.',
 'readonly'             => 'Base de datos fechada',
 'enterlockreason'      => 'Dea unha razón para o fechamento, incluíndo unha estimación de até cando se manterá.',
@@ -546,6 +546,7 @@ Por favor, comuníquello a un [[Special:ListUsers/sysop|administrador]] tomando 
 'readonly_lag'         => 'A base de datos bloqueouse automaticamente mentres os servidores escravos da base de datos se actualizan desde o máster',
 'internalerror'        => 'Erro interno',
 'internalerror_info'   => 'Erro interno: $1',
+'fileappenderror'      => 'Non se puido engadir "$1" a "$2".',
 'filecopyerror'        => 'Non se deu copiado o ficheiro "$1" a "$2".',
 'filerenameerror'      => 'Non se pode cambiar o nome do ficheiro "$1" a "$2".',
 'filedeleteerror'      => 'Non se deu borrado o ficheiro "$1".',
@@ -1404,6 +1405,7 @@ Tamén pode deixar que outras persoas se poñan en contacto con vostede desde a 
 'right-siteadmin'             => 'Fechar e abrir a base de datos',
 'right-reset-passwords'       => 'Restablecer os contrasinais doutros usuarios',
 'right-override-export-depth' => 'Exportar páxinas incluíndo as páxinas ligadas ata unha profundidade de 5',
+'right-versiondetail'         => 'Mostrar a información ampliada da versión do software',
 
 # User rights log
 'rightslog'      => 'Rexistro de dereitos de usuario',
@@ -1593,15 +1595,18 @@ MGP # Pentax
 PICT # varias
  #</pre> <!-- deixe esta liña exactamente como está -->',
 
-'upload-proto-error'      => 'Protocolo erróneo',
-'upload-proto-error-text' => 'A carga remota require URLs que comecen por <code>http://</code> ou <code>ftp://</code>.',
-'upload-file-error'       => 'Erro interno',
-'upload-file-error-text'  => 'Produciuse un erro interno ao intentar crear un ficheiro temporal no servidor.
+'upload-proto-error'        => 'Protocolo erróneo',
+'upload-proto-error-text'   => 'A carga remota require URLs que comecen por <code>http://</code> ou <code>ftp://</code>.',
+'upload-file-error'         => 'Erro interno',
+'upload-file-error-text'    => 'Produciuse un erro interno ao intentar crear un ficheiro temporal no servidor.
 Por favor, contacte cun [[Special:ListUsers/sysop|administrador]] do sistema.',
-'upload-misc-error'       => 'Erro de carga descoñecido',
-'upload-misc-error-text'  => 'Ocorreu un erro descoñecido durante a carga.
+'upload-misc-error'         => 'Erro de carga descoñecido',
+'upload-misc-error-text'    => 'Ocorreu un erro descoñecido durante a carga.
 Por favor, comprobe que o enderezo URL é válido e está dispoñíbel e, despois, inténteo de novo.
 Se o problema persiste contacte cun [[Special:ListUsers/sysop|administrador]] do sistema.',
+'upload-too-many-redirects' => 'O enderezo URL contiña moitas redireccións',
+'upload-unknown-size'       => 'Tamaño descoñecido',
+'upload-http-error'         => 'Produciuse un erro HTTP: $1',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Non se logrou acceder a ese URL',
@@ -1751,7 +1756,8 @@ Unha páxina trátase como páxina de homónimos cando nela se usa un modelo que
 
 'doubleredirects'            => 'Redireccións dobres',
 'doubleredirectstext'        => 'Esta lista contén as páxinas que redirixen cara a outras páxinas de redirección.
-Cada ringleira contén ligazóns cara á primeira e segunda redireccións, e tamén á primeira liña da segunda redirección, que é frecuentemente o artigo "real", á que a primeira redirección debera apuntar.',
+Cada ringleira contén ligazóns cara á primeira e segunda redireccións, así como a primeira liña de texto da segunda páxina, que é frecuentemente o artigo "real", á que a primeira redirección debera apuntar.
+As entradas <s>riscadas</s> xa foron resoltas.',
 'double-redirect-fixed-move' => 'A páxina "[[$1]]" foi movida, agora é unha redirección cara a "[[$2]]"',
 'double-redirect-fixer'      => 'Amañador de redireccións',
 
@@ -2452,13 +2458,21 @@ No último caso, pode usar tamén unha ligazón, por exemplo [[{{#Special:Export
 'export-pagelinks'  => 'Engadir as páxinas ligadas a unha profundidade de:',
 
 # Namespace 8 related
-'allmessages'               => 'Todas as mensaxes do sistema',
-'allmessagesname'           => 'Nome',
-'allmessagesdefault'        => 'Texto predeterminado',
-'allmessagescurrent'        => 'Texto actual',
-'allmessagestext'           => 'Esta é unha lista de todas as mensaxes dispoñibles no espazo de nomes MediaWiki.
+'allmessages'                   => 'Todas as mensaxes do sistema',
+'allmessagesname'               => 'Nome',
+'allmessagesdefault'            => 'Texto predeterminado',
+'allmessagescurrent'            => 'Texto actual',
+'allmessagestext'               => 'Esta é unha lista de todas as mensaxes dispoñibles no espazo de nomes MediaWiki.
 Por favor, visite a [http://www.mediawiki.org/wiki/Localisation localización MediaWiki] e [http://translatewiki.net translatewiki.net] se quere contribuír á localización xenérica de MediaWiki.',
-'allmessagesnotsupportedDB' => "'''{{ns:special}}:Allmessages''' non está dispoñíbel porque '''\$wgUseDatabaseMessages''' está desactivado.",
+'allmessagesnotsupportedDB'     => "'''{{ns:special}}:Allmessages''' non está dispoñíbel porque '''\$wgUseDatabaseMessages''' está desactivado.",
+'allmessages-filter-legend'     => 'Filtrar',
+'allmessages-filter'            => 'Filtrar por estado de personalización:',
+'allmessages-filter-unmodified' => 'Inalteradas',
+'allmessages-filter-all'        => 'Todas',
+'allmessages-filter-modified'   => 'Modificada',
+'allmessages-prefix'            => 'Filtrar por prefixo:',
+'allmessages-language'          => 'Lingua:',
+'allmessages-filter-submit'     => 'Mostrar',
 
 # Thumbnails
 'thumbnail-more'           => 'Agrandado',
@@ -3239,6 +3253,7 @@ Introduza o nome do ficheiro sen o prefixo "{{ns:file}}:".',
 'htmlform-invalid-input'       => 'Hai algún problema con partes do texto que inseriu',
 'htmlform-select-badoption'    => 'O valor que especificou non é unha opción válida.',
 'htmlform-int-invalid'         => 'O valor que especificou non é un número enteiro.',
+'htmlform-float-invalid'       => 'O valor que especificou non é un número.',
 'htmlform-int-toolow'          => 'O valor que especificou está por baixo do mínimo de $1',
 'htmlform-int-toohigh'         => 'O valor que especificou está por riba do máximo de $1',
 'htmlform-submit'              => 'Enviar',

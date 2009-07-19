@@ -452,16 +452,16 @@ Un lista de paginas special valide se trova a [[Special:SpecialPages|{{int:speci
 'error'                => 'Error',
 'databaseerror'        => 'Error de base de datos',
 'dberrortext'          => 'Un error de syntaxe occurreva durante un consulta del base de datos.
-Isto poterea indicar le presentia de un error in le software.
+Isto poterea indicar le presentia de un defecto in le software.
 Le ultime consulta que se tentava es:
 <blockquote><tt>$1</tt></blockquote>
 effectuate per le function "<tt>$2</tt>".
-MySQL retornava le error "<tt>$3: $4</tt>".',
+$5 retornava le error "<tt>$3: $4</tt>".',
 'dberrortextcl'        => 'Un error de syntaxe occurreva durante un consulta del base de datos.
 Le ultime consulta que se tentava es:
 "$1"
 effectuate per le function "$2".
-MySQL retornava le error "$3: $4"',
+$5 retornava le error "$3: $4"',
 'laggedslavemode'      => 'Attention: Es possibile que le pagina non contine actualisationes recente.',
 'readonly'             => 'Base de datos blocate',
 'enterlockreason'      => 'Describe le motivo del blocada, includente un estimation
@@ -480,6 +480,7 @@ Per favor reporta isto a un [[Special:ListUsers/sysop|administrator]], faciente 
 'readonly_lag'         => 'Le base de datos ha essite automaticamente blocate durante que le servitores de base de datos secundari se synchronisa con le servitor principal.',
 'internalerror'        => 'Error interne',
 'internalerror_info'   => 'Error interne: $1',
+'fileappenderror'      => 'Non poteva adjunger "$1" a "$2".',
 'filecopyerror'        => 'Impossibile copiar file "$1" a "$2".',
 'filerenameerror'      => 'Impossibile renominar file "$1" a "$2".',
 'filedeleteerror'      => 'Impossibile deler file "$1".',
@@ -1353,6 +1354,7 @@ Si tu opta pro dar lo, isto essera usate pro dar te attribution pro tu contribut
 'right-siteadmin'             => 'Blocar e disblocar le base de datos',
 'right-reset-passwords'       => 'Redefinir le contrasigno de altere usatores',
 'right-override-export-depth' => 'Exportar paginas includente paginas ligate usque a un profunditate de 5',
+'right-versiondetail'         => 'Monstrar le informationes complete super le versiones del software',
 
 # User rights log
 'rightslog'      => 'Registro de derectos de usator',
@@ -1547,15 +1549,18 @@ MGP # Pentax
 PICT # misc.
  #</pre> <!-- non modificar de alcun modo iste linea -->',
 
-'upload-proto-error'      => 'Protocollo incorrecte',
-'upload-proto-error-text' => 'Le cargamento remote require que le adresses URL comencia con <code>http://</code> o <code>ftp://</code>.',
-'upload-file-error'       => 'Error interne',
-'upload-file-error-text'  => 'Un error interne occurreva quando se tentava crear un file temporari in le servitor.
+'upload-proto-error'        => 'Protocollo incorrecte',
+'upload-proto-error-text'   => 'Le cargamento remote require que le adresses URL comencia con <code>http://</code> o <code>ftp://</code>.',
+'upload-file-error'         => 'Error interne',
+'upload-file-error-text'    => 'Un error interne occurreva quando se tentava crear un file temporari in le servitor.
 Per favor contacta un [[Special:ListUsers/sysop|administrator]].',
-'upload-misc-error'       => 'Error de cargamento non cognoscite',
-'upload-misc-error-text'  => 'Un error non cognoscite occurreva durante le cargamento.
+'upload-misc-error'         => 'Error de cargamento non cognoscite',
+'upload-misc-error-text'    => 'Un error non cognoscite occurreva durante le cargamento.
 Per favor verifica que le adresse URL sia valide e accessible, e reprova.
 Si le problema persiste, contacta un [[Special:ListUsers/sysop|administrator]].',
+'upload-too-many-redirects' => 'Le URL contineva troppo de redirectiones',
+'upload-unknown-size'       => 'Dimension incognite',
+'upload-http-error'         => 'Un error HTTP occurreva: $1',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Non poteva acceder al URL',
@@ -1706,7 +1711,8 @@ Un pagina se tracta como pagina de disambiguation si illo usa un patrono al qual
 
 'doubleredirects'            => 'Redirectiones duple',
 'doubleredirectstext'        => 'Iste pagina lista paginas de redirection verso altere paginas de redirection.
-Cata linea contine ligamines al prime e al secunde redirection, con le destination del secunde redirection, le qual es normalmente un "ver" pagina de destination, verso le qual le prime redirection deberea punctar.',
+Cata linea contine ligamines al prime e al secunde redirection, con le destination del secunde redirection. Iste es normalmente le "ver" pagina de destination, al qual le prime redirection tamben deberea punctar.
+Le entratas <s>cancellate</s> ha essite resolvite.',
 'double-redirect-fixed-move' => '[[$1]] ha essite renominate, illo es ora un redirection verso [[$2]]',
 'double-redirect-fixer'      => 'Corrector de redirectiones',
 
@@ -2439,13 +2445,21 @@ In le secunde caso tu pote etiam usar un ligamine, p.ex. [[{{#Special:Export}}/{
 'export-pagelinks'  => 'Includer paginas ligate a un profunditate de:',
 
 # Namespace 8 related
-'allmessages'               => 'Messages del systema',
-'allmessagesname'           => 'Nomine',
-'allmessagesdefault'        => 'Texto predefinite',
-'allmessagescurrent'        => 'Texto actual',
-'allmessagestext'           => 'Isto es un lista de messages de systema disponibile in le spatio de nomines MediaWiki.
+'allmessages'                   => 'Messages del systema',
+'allmessagesname'               => 'Nomine',
+'allmessagesdefault'            => 'Texto predefinite',
+'allmessagescurrent'            => 'Texto actual',
+'allmessagestext'               => 'Isto es un lista de messages de systema disponibile in le spatio de nomines MediaWiki.
 Per favor visita [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] e [http://translatewiki.net translatewiki.net] si tu desira contribuer al localisation general de MediaWiki.',
-'allmessagesnotsupportedDB' => "Iste pagina non pote esser usate proque '''\$wgUseDatabaseMessages''' ha essite disactivate.",
+'allmessagesnotsupportedDB'     => "Iste pagina non pote esser usate proque '''\$wgUseDatabaseMessages''' ha essite disactivate.",
+'allmessages-filter-legend'     => 'Filtro',
+'allmessages-filter'            => 'Filtrar per stato de personalisation:',
+'allmessages-filter-unmodified' => 'Non modificate',
+'allmessages-filter-all'        => 'Totes',
+'allmessages-filter-modified'   => 'Modificate',
+'allmessages-prefix'            => 'Filtrar per prefixo:',
+'allmessages-language'          => 'Lingua:',
+'allmessages-filter-submit'     => 'Ir',
 
 # Thumbnails
 'thumbnail-more'           => 'Aggrandir',
@@ -3244,6 +3258,7 @@ Entra le nomine del file sin le prefixo \"{{ns:file}}:\".",
 'htmlform-invalid-input'       => 'Il ha problemas con alique que tu entrava',
 'htmlform-select-badoption'    => 'Le valor que tu specificava non es un option valide.',
 'htmlform-int-invalid'         => 'Le valor que tu specificava non es un numero integre.',
+'htmlform-float-invalid'       => 'Le valor que tu specificava non es un numero.',
 'htmlform-int-toolow'          => 'Le valor que tu specificava es sub le minimo de $1',
 'htmlform-int-toohigh'         => 'Le valor que tu specificava es super le maximo de $1',
 'htmlform-submit'              => 'Submitter',

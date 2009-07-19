@@ -546,12 +546,12 @@ Ciò potrebbe indicare la presenza di un bug nel software.
 L\'ultima query inviata al database è stata:
 <blockquote><tt>$1</tt></blockquote>
 richiamata dalla funzione "<tt>$2</tt>".
-MySQL ha restituito il seguente errore "<tt>$3: $4</tt>".',
+$5 ha restituito il seguente errore "<tt>$3: $4</tt>".',
 'dberrortextcl'        => 'Errore di sintassi nella richiesta inoltrata al database.
 L\'ultima query inviata al database è stata:
 "$1"
 richiamata dalla funzione "$2".
-MySQL ha restituito il seguente errore "$3: $4".',
+$5 ha restituito il seguente errore "$3: $4".',
 'laggedslavemode'      => "'''Attenzione:''' la pagina potrebbe non riportare gli aggiornamenti più recenti.",
 'readonly'             => 'Database bloccato',
 'enterlockreason'      => 'Indicare il motivo del blocco, specificando il momento in cui è presumibile che venga rimosso',
@@ -569,6 +569,7 @@ Si prega di segnalare l\'accaduto a un [[Special:ListUsers/sysop|amministratore]
 'readonly_lag'         => 'Il database è stato bloccato automaticamente per consentire ai server con i database slave di sincronizzarsi con il master',
 'internalerror'        => 'Errore interno',
 'internalerror_info'   => 'Errore interno: $1',
+'fileappenderror'      => 'Impossibile aggiungere "$1" a "$2".',
 'filecopyerror'        => 'Impossibile copiare il file "$1" in "$2".',
 'filerenameerror'      => 'Impossibile rinominare il file "$1" in "$2".',
 'filedeleteerror'      => 'Impossibile cancellare il file "$1".',
@@ -1373,6 +1374,7 @@ L'operazione non può essere annullata.",
 'right-siteadmin'             => 'Blocca e sblocca il database',
 'right-reset-passwords'       => 'Reimposta le password di altri utenti',
 'right-override-export-depth' => 'Esporta le pagine includendo le pagine collegate fino ad una profondità di 5',
+'right-versiondetail'         => 'Mostra le informazioni complete del software',
 
 # User rights log
 'rightslog'      => 'Diritti degli utenti',
@@ -1550,12 +1552,15 @@ MGP # Pentax
 PICT # misc.
  #</pre> <!-- lascia questa riga esattamente com\'è -->',
 
-'upload-proto-error'      => 'Protocollo errato',
-'upload-proto-error-text' => "Per l'upload remoto è necessario specificare URL che iniziano con <code>http://</code> oppure <code>ftp://</code>.",
-'upload-file-error'       => 'Errore interno',
-'upload-file-error-text'  => 'Si è verificato un errore interno durante la creazione di un file temporaneo sul server. Contattare un [[Special:ListUsers/sysop|amministratore]] del sito.',
-'upload-misc-error'       => "Errore non identificato per l'upload",
-'upload-misc-error-text'  => 'Si è verificato un errore non identificato durante il caricamento del file. Verificare che la URL sia corretta e accessibile e provare di nuovo. Se il problema persiste, contattare un [[Special:ListUsers/sysop|amministratore]] del sito.',
+'upload-proto-error'        => 'Protocollo errato',
+'upload-proto-error-text'   => "Per l'upload remoto è necessario specificare URL che iniziano con <code>http://</code> oppure <code>ftp://</code>.",
+'upload-file-error'         => 'Errore interno',
+'upload-file-error-text'    => 'Si è verificato un errore interno durante la creazione di un file temporaneo sul server. Contattare un [[Special:ListUsers/sysop|amministratore]] del sito.',
+'upload-misc-error'         => "Errore non identificato per l'upload",
+'upload-misc-error-text'    => 'Si è verificato un errore non identificato durante il caricamento del file. Verificare che la URL sia corretta e accessibile e provare di nuovo. Se il problema persiste, contattare un [[Special:ListUsers/sysop|amministratore]] del sito.',
+'upload-too-many-redirects' => "L'URL conteneva troppi redirect",
+'upload-unknown-size'       => 'Dimensione sconosciuta',
+'upload-http-error'         => 'Si è verificato un errore HTTP: $1',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'URL non raggiungibile',
@@ -1698,8 +1703,9 @@ Di seguito viene mostrata la descrizione presente nella [$2 pagina di descrizion
 'disambiguations-text' => "Le pagine nella lista che segue contengono dei collegamenti a '''pagine di disambiguazione''' e non all'argomento cui dovrebbero fare riferimento.<br />Vengono considerate pagine di disambiguazione tutte quelle che contengono i template elencati in [[MediaWiki:Disambiguationspage]]",
 
 'doubleredirects'            => 'Redirect doppi',
-'doubleredirectstext'        => '<b>Attenzione:</b> Questa lista può contenere risultati errati, ad esempio nel caso in cui il comando #REDIRECT sia seguito da altro testo o collegamenti.<br />
-Ciascuna riga contiene i collegamenti al primo ed al secondo redirect, oltre alla prima riga di testo del secondo redirect che di solito contiene la pagina di destinazione "corretta" alla quale dovrebbe puntare anche il primo redirect.',
+'doubleredirectstext'        => 'In questa pagina sono elencate pagine che reindirizzano ad altre pagine di redirect.
+Ciascuna riga contiene i collegamenti al primo ed al secondo redirect, oltre alla prima riga di testo del secondo redirect che di solito contiene la pagina di destinazione "corretta" alla quale dovrebbe puntare anche il primo redirect.
+I redirect <s>cancellati</s> sono stati corretti.',
 'double-redirect-fixed-move' => '[[$1]] è stata spostata automaticamente, ora è un redirect a [[$2]]',
 'double-redirect-fixer'      => 'Correttore di redirect',
 
@@ -2378,13 +2384,21 @@ In quest'ultimo caso si può anche utilizzare un collegamento, ad esempio [[{{#S
 'export-pagelinks'  => 'Includi pagine correlate ad una profondità di:',
 
 # Namespace 8 related
-'allmessages'               => 'Messaggi di sistema',
-'allmessagesname'           => 'Nome',
-'allmessagesdefault'        => 'Testo predefinito',
-'allmessagescurrent'        => 'Testo attuale',
-'allmessagestext'           => 'Questa è la lista di tutti i messaggi di sistema disponibili nel namespace MediaWiki.
+'allmessages'                   => 'Messaggi di sistema',
+'allmessagesname'               => 'Nome',
+'allmessagesdefault'            => 'Testo predefinito',
+'allmessagescurrent'            => 'Testo attuale',
+'allmessagestext'               => 'Questa è la lista di tutti i messaggi di sistema disponibili nel namespace MediaWiki.
 Visitare [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] e [http://translatewiki.net translatewiki.net] se si desidera contribuire alla localizzazione generica di MediaWiki.',
-'allmessagesnotsupportedDB' => "Non è possibile utilizzare questa pagina perché il flag '''\$wgUseDatabaseMessages''' non è attivo.",
+'allmessagesnotsupportedDB'     => "Non è possibile utilizzare questa pagina perché il flag '''\$wgUseDatabaseMessages''' non è attivo.",
+'allmessages-filter-legend'     => 'Filtro',
+'allmessages-filter'            => 'Filtra per stato di modifica:',
+'allmessages-filter-unmodified' => 'Non modificati',
+'allmessages-filter-all'        => 'Tutti',
+'allmessages-filter-modified'   => 'Modificati',
+'allmessages-prefix'            => 'Filtra per prefisso:',
+'allmessages-language'          => 'Lingua:',
+'allmessages-filter-submit'     => 'Vai',
 
 # Thumbnails
 'thumbnail-more'           => 'Ingrandisci',
@@ -3172,6 +3186,7 @@ Inserire il nome del file senza il prefisso \"{{ns:file}}:\"",
 'htmlform-invalid-input'       => "Ci sono problemi con l'input inserito",
 'htmlform-select-badoption'    => "Il valore specificato non è un'opzione valida.",
 'htmlform-int-invalid'         => 'Il valore specificato non è un intero.',
+'htmlform-float-invalid'       => 'Il valore specificato non è un numero.',
 'htmlform-int-toolow'          => 'Il valore specificato è inferiore al minimo di $1',
 'htmlform-int-toohigh'         => 'Il valore specificato è superiore al massimo di $1',
 'htmlform-submit'              => 'Invia',

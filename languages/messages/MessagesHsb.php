@@ -8,6 +8,7 @@
  * @file
  *
  * @author Dundak
+ * @author J budissin
  * @author Michawiki
  * @author Tlustulimu
  * @author לערי ריינהארט
@@ -200,7 +201,7 @@ $messages = array(
 'january'       => 'januar',
 'february'      => 'februar',
 'march'         => 'měrc',
-'april'         => 'apryla',
+'april'         => 'apryl',
 'may_long'      => 'meja',
 'june'          => 'junij',
 'july'          => 'julij',
@@ -427,7 +428,7 @@ $1',
 'red-link-title'          => '$1 (strona njeeksistuje)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-main'      => 'Nastawk',
+'nstab-main'      => 'nastawk',
 'nstab-user'      => 'Wužiwarska strona',
 'nstab-media'     => 'Medije',
 'nstab-special'   => 'Specialna strona',
@@ -452,15 +453,15 @@ Lisćina płaćiwych specialnych stronow hodźi so pod [[Special:SpecialPages|Li
 'error'                => 'Zmylk',
 'databaseerror'        => 'Zmylk w datowej bance',
 'dberrortext'          => 'Syntaktiski zmylk při wotprašowanju datoweje banki.
-To móhło bug w programje być. Poslednje spytane wotprašenje w datowej bance běše:
+To móhło zmylk w programje być. Poslednje spytane wotprašenje w datowej bance běše:
 <blockquote><tt>$1</tt></blockquote>
-z funkcije „<tt>$2</tt>”.
-MySQL wróći zmylk „<tt>$3: $4</tt>”.',
+z funkcije "<tt>$2</tt>".
+$5 wróći zmylk "tt>$3: $4</tt>".',
 'dberrortextcl'        => 'Syntaktiski zmylk je we wotprašowanju datoweje banki wustupił.
 Poslednje wotprašenje w datowej bance běše:
-„$1”
-z funkcije „$2”.
-MySQL wróći zmylk „$3: $4”.',
+"$1"
+z funkcije "$2".
+$5 wróći zmylk "$3: $4"',
 'laggedslavemode'      => 'Kedźbu: Je móžno, zo strona žane zaktualizowanja njewobsahuje.',
 'readonly'             => 'Datowa banka je zawrjena',
 'enterlockreason'      => 'Zapodaj přičinu za zawrjenje a přibližny čas, hdy budźe zawrjenje zběhnjene',
@@ -478,6 +479,7 @@ Zdźěl to prošu [[Special:ListUsers/sysop|admininistratorej]] podawajo wotpow�
 'readonly_lag'         => 'Datowa banka bu awtomatisce zawrjena, mjeztym zo pospytuja wotwisne serwery datowych bankow  hłowny serwer docpěć',
 'internalerror'        => 'Znutřkowny zmylk',
 'internalerror_info'   => 'Znutřkowny zmylk: $1',
+'fileappenderror'      => 'Njeje móžno było "$1" k "$2" připowěsnyć.',
 'filecopyerror'        => 'Njebě móžno dataju „$1” k „$2” kopěrować.',
 'filerenameerror'      => 'Njebě móžno dataju „$1” na „$2” přemjenować.',
 'filedeleteerror'      => 'Njebě móžno dataju „$1” wušmórnyć.',
@@ -552,7 +554,7 @@ Twoje konto bu wutworjene. Njezabudź swoje nastajenja za [[Special:Preferences|
 'nocookieslogin'             => '{{SITENAME}} wužiwa placki (cookies) za přizjewjenje wužiwarjow wužiwa. Sy placki znjemóžnił. Prošu zmóžń je a spytaj hišće raz.',
 'noname'                     => 'Njejsy płaćiwe wužiwarske mjeno podał.',
 'loginsuccesstitle'          => 'Přizjewjenje wuspěšne',
-'loginsuccess'               => '<b>Sy nětko jako „$1” w {{GRAMMAR:lokatiw|{{SITENAME}}}} přizjewjeny.</b>',
+'loginsuccess'               => "'''Sy nětko jako \"\$1\" w {{GRAMMAR:lokatiw|{{SITENAME}}}} {{GENDER:|přizjewjeny|přizjewjena|přizjewjeny}}.'''",
 'nosuchuser'                 => 'Njeje wužiwar z mjenom "$1".
 Wužiwarske mjena wobkedźbuja wulkopisanje.
 Přepruwuj swój prawopis abo [[Special:UserLogin/signup|wutwor nowe konto]].',
@@ -1280,6 +1282,7 @@ Smě mjenje hač $1 {{PLURAL:$1|znamješko|znamješce|znamješka|znamješkow}} d
 'right-siteadmin'             => 'Datowu banku zawrěć a wotewrěć',
 'right-reset-passwords'       => 'Hesła druhich wužiwarjow wróćo stajić',
 'right-override-export-depth' => 'Strony inkluziwnje wotkazanych stronow hač do hłubokosće 5 eksportować',
+'right-versiondetail'         => 'Nadrobne informacije wo wersiji softwary pokazać',
 
 # User rights log
 'rightslog'      => 'Protokol zrjadowanja wužiwarskich prawow',
@@ -1466,12 +1469,15 @@ MGP # Pentax
 PICT # misc.
  #</pre> <!-- Njezměń tutu linku! -->',
 
-'upload-proto-error'      => 'Wopačny protokol',
-'upload-proto-error-text' => 'URL dyrbi so z <code>http://</code> abo <code>ftp://</code> započeć.',
-'upload-file-error'       => 'Nutřkowny zmylk',
-'upload-file-error-text'  => 'Nutřkowny zmylk wustupi při pospytu, nachwilnu dataju na serwerje wutworić. Prošu skontaktuj [[Special:ListUsers/sysop|administratora]].',
-'upload-misc-error'       => 'Njeznaty zmylk při nahraću',
-'upload-misc-error-text'  => 'Njeznaty zmylk wustupi při nahrawanju. Prošu přepruwuj, hač URL je płaćiwy a přistupny a spytaj hišće raz. Jeli problem dale eksistuje, skontaktuj [[Special:ListUsers/sysop|administratora]].',
+'upload-proto-error'        => 'Wopačny protokol',
+'upload-proto-error-text'   => 'URL dyrbi so z <code>http://</code> abo <code>ftp://</code> započeć.',
+'upload-file-error'         => 'Nutřkowny zmylk',
+'upload-file-error-text'    => 'Nutřkowny zmylk wustupi při pospytu, nachwilnu dataju na serwerje wutworić. Prošu skontaktuj [[Special:ListUsers/sysop|administratora]].',
+'upload-misc-error'         => 'Njeznaty zmylk při nahraću',
+'upload-misc-error-text'    => 'Njeznaty zmylk wustupi při nahrawanju. Prošu přepruwuj, hač URL je płaćiwy a přistupny a spytaj hišće raz. Jeli problem dale eksistuje, skontaktuj [[Special:ListUsers/sysop|administratora]].',
+'upload-too-many-redirects' => 'URL wobsahowaše přewjele daleposrědkowanjow',
+'upload-unknown-size'       => 'Njeznata wulkosć',
+'upload-http-error'         => 'HTTP-zmylk je wustupił: $1',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'URL docpějomny njeje.',
@@ -1610,7 +1616,8 @@ Slědowaca lisćina pokazuje jenož {{PLURAL:$1|prěni wotkaz strony|prěnjej $1
 'disambiguations-text' => "Slědowace strony na '''rozjasnjenje wjacezmyslnosće''' wotkazuja. Měli město toho na poprawnu stronu wotkazać.<br />Strona so jako rozjasnjenje wjacezmyslnosće zarjaduje, jeli předłohu wužiwa, na kotruž so wot [[MediaWiki:Disambiguationspage]] wotkazuje.",
 
 'doubleredirects'            => 'Dwójne daleposrědkowanja',
-'doubleredirectstext'        => 'Kóžda rjadka wobsahuje wotkazy k prěnjemu a druhemu daleposrědkowanju kaž tež k prěnjej lince druheho daleposrědkowanja, kotraž zwjetša woprawdźity cil strony podawa, na kotryž prěnje daleposrědkowanje měło pokazać.',
+'doubleredirectstext'        => 'Tuta strona nalistuje strony, kotrež k druhim daleposrědkowanskim stronam dale posrědkuja.
+Kóžda rjadka wobsahuje wotkazy k prěnjemu a druhemu daleposrědkowanju kaž tež cil druheho daleposrědkowanja, kotryž je zwjetša  "woprawdźita" cilowa strona, na kotruž prěnje daleposrědkowanje měło pokazać. <s>Přešmórnjene</s> zapiski su hižo sčinjene.',
 'double-redirect-fixed-move' => '[[$1]] bu přesunjeny, je nětko daleposrědkowanje do [[$2]]',
 'double-redirect-fixer'      => 'Porjedźer daleposrědkowanjow',
 
@@ -2284,12 +2291,20 @@ W poslednim padźe móžeš tež wotkaz wužiwać, na př. „[[{{#Special:Expor
 'export-pagelinks'  => 'Wotkazane strony zapřijeć, do hłubokosće wot:',
 
 # Namespace 8 related
-'allmessages'               => 'Systemowe zdźělenki',
-'allmessagesname'           => 'Mjeno',
-'allmessagesdefault'        => 'Standardny tekst',
-'allmessagescurrent'        => 'Aktualny tekst',
-'allmessagestext'           => 'To je lisćina systemowych zdźělenkow, kotrež w mjenowym rumje MediaWiki k dispoziciji steja. Prošu wopytaj [http://www.mediawiki.org/wiki/Localisation lokalizaciju MediaWiki] a [http://translatewiki.net translatewiki.net], jeli chceš k powšitkownej lokalizaciji MediaWiki přinošować.',
-'allmessagesnotsupportedDB' => "Tuta strona njeda so wužiwać, dokelž '''\$wgUseDatabaseMessages''' bu znjemóžnjeny.",
+'allmessages'                   => 'Systemowe zdźělenki',
+'allmessagesname'               => 'Mjeno',
+'allmessagesdefault'            => 'Standardny tekst',
+'allmessagescurrent'            => 'Aktualny tekst',
+'allmessagestext'               => 'To je lisćina systemowych zdźělenkow, kotrež w mjenowym rumje MediaWiki k dispoziciji steja. Prošu wopytaj [http://www.mediawiki.org/wiki/Localisation lokalizaciju MediaWiki] a [http://translatewiki.net translatewiki.net], jeli chceš k powšitkownej lokalizaciji MediaWiki přinošować.',
+'allmessagesnotsupportedDB'     => "Tuta strona njeda so wužiwać, dokelž '''\$wgUseDatabaseMessages''' bu znjemóžnjeny.",
+'allmessages-filter-legend'     => 'Filter',
+'allmessages-filter'            => 'Po přiměrjenskim stawje filtrować:',
+'allmessages-filter-unmodified' => 'Njezměnjeny',
+'allmessages-filter-all'        => 'Wšě',
+'allmessages-filter-modified'   => 'Změnjeny',
+'allmessages-prefix'            => 'Po prefiksu filtrować:',
+'allmessages-language'          => 'Rěč:',
+'allmessages-filter-submit'     => 'Wotesłać',
 
 # Thumbnails
 'thumbnail-more'           => 'powjetšić',
@@ -3057,6 +3072,7 @@ Zapodaj datajowe mjeno '''bjez''' prefiksa \"{{ns:file}}:\".",
 'htmlform-invalid-input'       => 'Su problemy z twojim zapodaćom',
 'htmlform-select-badoption'    => 'Hódnota, kotruž sy zapodał, płaćiwa opcija njeje.',
 'htmlform-int-invalid'         => 'Hódnota, kotruž sy zapodał, cyła ličba njeje.',
+'htmlform-float-invalid'       => 'Hódnota, kotruž sy podał, ličba njeje.',
 'htmlform-int-toolow'          => 'Hódnota, kotruž sy zapodał, je mjeńša hač minimum $1.',
 'htmlform-int-toohigh'         => 'Hódnota, kotruž sy zapodał, je wjetša hač maksimum $1.',
 'htmlform-submit'              => 'Wotpósłać',

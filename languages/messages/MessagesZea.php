@@ -9,6 +9,7 @@
  *
  * @author Adnergje
  * @author NJ
+ * @author Purodha
  * @author Rob Church <robchur@gmail.com>
  * @author Steinbach
  * @author Troefkaart
@@ -324,7 +325,7 @@ Meuhlijk zit der een fout in de software.
 't Lèste verzoek an de database was:
 <blockquote><tt>$1</tt></blockquote>
 vanuut de functie “<tt>$2</tt>”.
-MySQL haf de foutmeldieng “<tt>$3: $4</tt>”.",
+$5 haf de foutmeldieng “<tt>$3: $4</tt>”.",
 'dberrortextcl'        => "Der is een syntaxisfout in 't databaseverzoek opetreeën.
 't Lèste verzoek an de database was:
 “$1”

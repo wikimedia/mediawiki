@@ -451,15 +451,16 @@ Te podi catar na lista de le pagine speciali esistenti in [[Special:SpecialPages
 'error'                => 'Erór',
 'databaseerror'        => 'Eror del database',
 'dberrortext'          => 'Eror de sintassi ne la richiesta inoltrà al database.
+Podarìa èssar dovù a un bug in tel software.
 L\'ultima richiesta inoltrà al database l\'è stà:
 <blockquote><tt>$1</tt></blockquote>
 da la funsion "<tt>$2</tt>".
-MySQL gà restituìo un eror "<tt>$3: $4</tt>".',
+$5 gà restituìo un eror "<tt>$3: $4</tt>".',
 'dberrortextcl'        => 'Se gà verificà un eror de sintassi ne la richiesta al database.
 L\'ultima richiesta al database l\'è stà:
 "$1"
 da la funsion "$2".
-MySQL gà restituìo l\'eror "$3: $4".',
+$5 gà restituìo l\'eror "$3: $4".',
 'laggedslavemode'      => 'Ocio: la pàxena la podarìa no contegner mìa i ultimi agiornamenti.',
 'readonly'             => 'Accesso al database tenporaneamente disabilità',
 'enterlockreason'      => 'Fornissi na spiegassion sui motivi del bloco, includendo le probabili data ed ora de riativazion o de rimozion del bloco.',
@@ -477,6 +478,7 @@ Se prega de segnalar l\'acaduto a un [[Special:ListUsers/sysop|aministrador]] sp
 'readonly_lag'         => 'El database el xe stà blocà automaticamente par consentirghe ai server coi database slave de sincronizarse col master',
 'internalerror'        => 'Eròr interno',
 'internalerror_info'   => 'Eror interno: $1',
+'fileappenderror'      => 'No se pode zontar "$1" con "$2".',
 'filecopyerror'        => 'No xè stà possibiłe copiare el file "$1" come "$2".',
 'filerenameerror'      => 'No xè stà possibile rinominare el file "$1" in "$2".',
 'filedeleteerror'      => 'No xè stà possibiłe scancełare el file "$1".',
@@ -1301,6 +1303,7 @@ In più te pol anca farte contatar da altri tramite la to pagina personale o la 
 'right-siteadmin'             => 'Bloca e desbloca el database',
 'right-reset-passwords'       => 'Reinposta la password de altri utenti',
 'right-override-export-depth' => 'Esporta le pàxene, includendo le pàxene ligàe fin a na profondità de 5',
+'right-versiondetail'         => 'Fà védar le informassion conplete su la version del software',
 
 # User rights log
 'rightslog'      => 'Diriti dei utenti',
@@ -1470,15 +1473,18 @@ Verifica par piaser se xe el caso de continuare col caricamento de sto file.
 Par to comodità qua ghe xe la registrazion de la scancelazion:",
 'filename-bad-prefix'         => "El nome del file che te sì drio cargar el scuminsia con '''\"\$1\"''', che el xe un nome non-descritivo tipicamente assegnà automaticamente da le fotocàmare digitali. Par piaser siegli un nome piassè descritivo par el to file.",
 
-'upload-proto-error'      => 'Protocòl mìa giusto',
-'upload-proto-error-text' => 'Par el caricamento remoto bisogna specificar URL che scuminsia con <code>http://</code> opure <code>ftp://</code>.',
-'upload-file-error'       => 'Eror interno',
-'upload-file-error-text'  => 'Se gà verificà un eror interno durante la creazion de un file tenporaneo sul server.
+'upload-proto-error'        => 'Protocòl mìa giusto',
+'upload-proto-error-text'   => 'Par el caricamento remoto bisogna specificar URL che scuminsia con <code>http://</code> opure <code>ftp://</code>.',
+'upload-file-error'         => 'Eror interno',
+'upload-file-error-text'    => 'Se gà verificà un eror interno durante la creazion de un file tenporaneo sul server.
 Par piaser, contatar un [[Special:ListUsers/sysop|aministrador]].',
-'upload-misc-error'       => 'Eror mia identificà par el caricamento',
-'upload-misc-error-text'  => '!Se gà verificà un eror mìa identificà durante el caricamento del file.
+'upload-misc-error'         => 'Eror mia identificà par el caricamento',
+'upload-misc-error-text'    => '!Se gà verificà un eror mìa identificà durante el caricamento del file.
 Par piaser, verifica che la URL la sia giusta e acessibile e próa da novo.
 Se el problema el persiste, contatar un [[Special:ListUsers/sysop|aministrador]].',
+'upload-too-many-redirects' => "In te l'URL ghe jera massa rimandi",
+'upload-unknown-size'       => 'Dimension sconossiùa',
+'upload-http-error'         => 'Se gà verificà un eròr HTTP: $1',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'URL mìa ragiungibile',
@@ -1622,7 +1628,9 @@ Qua soto vien mostrà la descrission presente in te la [$2 pàxena de descrissio
 Vien considerà pagine de disanbiguazion tute quele che contien i template elencà in [[MediaWiki:Disambiguationspage]]",
 
 'doubleredirects'            => 'Redirect dopi',
-'doubleredirectstext'        => '<b>Ocio:</b> Stà lista la pode talvolta contegnere dei risultati mìa giusti. Podaria magari sucédar parché ghe fusse del testo agiuntivo o dei colegamenti dopo el tag #REDIRECT.<br /> Ogni riga la contegne i colegamenti al primo ed al secondo redirect, oltre a la prima riga de testo del secondo redirect che de solito contegne el "reale" articolo de destinassion, quelo al quale anca el primo redirect dovaria puntar.',
+'doubleredirectstext'        => 'Sta pagina le elenca pagine che rimanda a altre pagine de rimando.
+Ogni riga la contien dei colegamenti al primo e al secondo rimando, oltre a la destinassion del secondo rimando, che de solito la xe la "vera" pagina de destinassion, a cui dovarìa pontar el primo rimando.
+Le righe <s>sbarà</s> le xe xà stà sistemà.',
 'double-redirect-fixed-move' => '[[$1]] xe stà spostà, desso el xe solo un rimando a [[$2]]',
 'double-redirect-fixer'      => 'Coretòr de redirect',
 
@@ -2308,13 +2316,21 @@ Nel secondo caso te poli anca doparar un colegamento, par esenpio [[{{#Special:E
 'export-pagelinks'  => 'Includi le pàxene corelà fin a na profondità de:',
 
 # Namespace 8 related
-'allmessages'               => 'Tuti i messagi de sistema',
-'allmessagesname'           => 'Nome',
-'allmessagesdefault'        => 'Testo predefinìo',
-'allmessagescurrent'        => 'Testo come che el xe desso',
-'allmessagestext'           => "Sta quà l'è na lista de tuti i messagi disponibili nel namespace MediaWiki.
+'allmessages'                   => 'Tuti i messagi de sistema',
+'allmessagesname'               => 'Nome',
+'allmessagesdefault'            => 'Testo predefinìo',
+'allmessagescurrent'            => 'Testo come che el xe desso',
+'allmessagestext'               => "Sta quà l'è na lista de tuti i messagi disponibili nel namespace MediaWiki.
 Par piaser visita [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] e [http://translatewiki.net translatewiki.net] se te voli jutarne par la traduzion del software MediaWiki ne le varie lengue.",
-'allmessagesnotsupportedDB' => "'''{{ns:special}}:Allmessages''' no'l xè supportà parché '''\$wgUseDatabaseMessages''' no'l xè ativo.",
+'allmessagesnotsupportedDB'     => "'''{{ns:special}}:Allmessages''' no'l xè supportà parché '''\$wgUseDatabaseMessages''' no'l xè ativo.",
+'allmessages-filter-legend'     => 'Filtro',
+'allmessages-filter'            => 'Filtra par stato de personalixassion:',
+'allmessages-filter-unmodified' => 'Mia modificà',
+'allmessages-filter-all'        => 'Tuti quanti',
+'allmessages-filter-modified'   => 'Modificà',
+'allmessages-prefix'            => 'Filtra par prefisso:',
+'allmessages-language'          => 'Lengua:',
+'allmessages-filter-submit'     => 'Và',
 
 # Thumbnails
 'thumbnail-more'           => 'Ingrandissi',
@@ -3073,6 +3089,7 @@ Inserissi el nome del file senza el prefisso \"{{ns:file}}:\"",
 'htmlform-invalid-input'       => "Ghe xe problemi con l'input che te ghè inserìo",
 'htmlform-select-badoption'    => "El valor che te ghè indicà no'l xe mia valido.",
 'htmlform-int-invalid'         => "El valor che te ghè indicà no'l xe un nùmaro intero.",
+'htmlform-float-invalid'       => "El valor indicà no'l xe mia un nùmaro.",
 'htmlform-int-toolow'          => 'El valor che te ghè indicà el xe soto al minimo, che xe $1',
 'htmlform-int-toohigh'         => 'El valor che te ghè indicà el xe sora al màssimo, che xe $1',
 'htmlform-submit'              => 'Manda',

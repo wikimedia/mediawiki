@@ -325,6 +325,9 @@ $messages = array(
 'vector-view-history'        => 'Historiju se woglědaś',
 'vector-view-view'           => 'Cytaś',
 'vector-view-viewsource'     => 'Žrědło se woglědaś',
+'actions'                    => 'Akcije',
+'namespaces'                 => 'Mjenjowe rumy',
+'variants'                   => 'Warianty',
 
 # Metadata in edit box
 'metadata_help' => 'Metadaty:',
@@ -383,6 +386,11 @@ $messages = array(
 'jumpto'            => 'Źi na bok:',
 'jumptonavigation'  => 'Nawigacija',
 'jumptosearch'      => 'Pytaś',
+'view-pool-error'   => 'Wódaj, serwery su we wokognuśu pśeśěžone.
+Pśewjele wužywarjow wopytujo se toś ten bok woglědaś.
+Pšosym pócakaj chylu, nježli až wopytujoš znowego na toś ten bok pśistup měś.
+
+$1',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Wó {{GRAMMAR:lokatiw|{{SITENAME}}}}',
@@ -464,12 +472,17 @@ Lisćina płaśecych specialnych bokow namakajo se pód [[Special:SpecialPages|{
 # General errors
 'error'                => 'Zmólka',
 'databaseerror'        => 'Zmólka w datowej bance',
-'dberrortext'          => 'Syntaktiska zmólka pśi wótpšašowanju datoweje banki.
-Slědne wótpšašowanje jo było: <blockquote><tt>$1</tt></blockquote> z funkcije „<tt>$2</tt>“.
-MySQL jo zmólku „<tt>$3: $4</tt>“ wrośił.',
-'dberrortextcl'        => 'Syntaktiska zmólka pśi wótpšašowanju datoweje banki.
-Slědne wótpšašowanje jo było: <blockquote><tt>$1</tt></blockquote> z funkcije „<tt>$2</tt>“.
-MySQL jo zmólku „<tt>$3: $4</tt>“ wrośił.',
+'dberrortext'          => 'Syntaktiska zmólka pśi wótpšašowanju datoweje banki nastata.
+To by mógło zmólki w softwarje byś.
+Slědne wótpšašowanje jo było: 
+<blockquote><tt>$1</tt></blockquote> 
+z funkcije "<tt>$2</tt>".
+$5 jo zmólku "<tt>$3: $4</tt>" wrośił.',
+'dberrortextcl'        => 'Syntaktiska zmólka pśi wótpšašowanju datoweje banki nastata.
+Slědne wopytane wótpšašowanje jo było: 
+"$1"
+z funkcije "$2".
+$5 jo zmólku "$3: $4" wrośił',
 'laggedslavemode'      => 'Glědaj: Jo móžno, až pokazany bok nejaktualnjejše změny njewopśimjejo.',
 'readonly'             => 'Datowa banka jo zacynjona',
 'enterlockreason'      => 'Pšosym zapódaj pśicynu za zacynjenje datoweje banki a informaciju, ga buźo zasej pśistupna',
@@ -487,6 +500,7 @@ Pšosym daj to a pśisłušny URL [[Special:ListUsers/sysop|administratoroju]] k
 'readonly_lag'         => 'Datowa banka jo awtomatiski se zacyniła, aby wótwisne serwery se mógli z głownym serwerom wurownowaś.',
 'internalerror'        => 'Interna zmólka',
 'internalerror_info'   => 'Interna zmólka: $1',
+'fileappenderror'      => 'Njejo móžno było "$1" k "$2" pśipowjesyś.',
 'filecopyerror'        => 'Njejo było móžno dataju „$1” k „$2” kopěrowaś.',
 'filerenameerror'      => 'Njejo było móžno dataju „$1” do „$2” pśemjenjowaś.',
 'filedeleteerror'      => 'Njejo było móžno dataju „$1” wulašowaś.',
@@ -1290,6 +1304,7 @@ Móžoš toś ten bok wužywaś, aby slědk stajił swóje nastajenja na standar
 'right-siteadmin'             => 'Datowu banku zastajiś a zastajenje wótpóraś',
 'right-reset-passwords'       => 'Gronidła drugich wužywarjow slědk stajiś',
 'right-override-export-depth' => 'Boki inkluziwnje wótkazanych bokow až do dłyma 5 eksportěrowaś',
+'right-versiondetail'         => 'Nadrobne informacije wó wersiji softwary pokazaś',
 
 # User rights log
 'rightslog'      => 'Protokol wužywarskich pšawow',
@@ -1473,12 +1488,15 @@ MGP # Pentax
 PICT # misc.
  #</pre> <!-- Njezměń nic na toś tej rědce! -->',
 
-'upload-proto-error'      => 'Njekorektny protokol',
-'upload-proto-error-text' => 'URL musy zachopiś z <code>http://</code> abo <code>ftp://</code>.',
-'upload-file-error'       => 'Interna zmólka',
-'upload-file-error-text'  => 'Pśi napóranju temporarneje dataje na serwerje jo nastała interna zmólka. Pšosym staj se ze [[Special:ListUsers/sysop|systemowym administratorom]] do zwiska.',
-'upload-misc-error'       => 'Njeznata zmólka pśi uploadowanju.',
-'upload-misc-error-text'  => 'Pśi nagrawanju jo nastała njeznata zmólka. Kontrolěruj pšosym, lěc URL jo płaśiwy a pśistupny a wopytaj hyšći raz. Jolic problem dalej eksistěrujo, staj se z [[Special:ListUsers/sysop|administratorom]] do zwiska.',
+'upload-proto-error'        => 'Njekorektny protokol',
+'upload-proto-error-text'   => 'URL musy zachopiś z <code>http://</code> abo <code>ftp://</code>.',
+'upload-file-error'         => 'Interna zmólka',
+'upload-file-error-text'    => 'Pśi napóranju temporarneje dataje na serwerje jo nastała interna zmólka. Pšosym staj se ze [[Special:ListUsers/sysop|systemowym administratorom]] do zwiska.',
+'upload-misc-error'         => 'Njeznata zmólka pśi uploadowanju.',
+'upload-misc-error-text'    => 'Pśi nagrawanju jo nastała njeznata zmólka. Kontrolěruj pšosym, lěc URL jo płaśiwy a pśistupny a wopytaj hyšći raz. Jolic problem dalej eksistěrujo, staj se z [[Special:ListUsers/sysop|administratorom]] do zwiska.',
+'upload-too-many-redirects' => 'URL jo pśewjele dalejpósrědnjenja wopśimjeł',
+'upload-unknown-size'       => 'Njeznata wjelikosć',
+'upload-http-error'         => 'HTTP-zmólka nastata: $1',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'URL njejo pśistupna.',
@@ -1619,7 +1637,8 @@ Wótkazujśo lubjej na pótrjefjony bok.<br />
 Bok wobjadnawa se ako bok wujasnjenja zapśimjeśa, gaž wótkazujo na nju [[MediaWiki:Disambiguationspage]].',
 
 'doubleredirects'            => 'Dwójne dalejpósrědnjenja',
-'doubleredirectstext'        => 'Toś ten bok nalicujo dalejpósrědnjenja, kótarež wótkazuju na druge dalejpósrědnjenja. Kužda smužka wopśimjejo wótkaze na prědne a druge dalejpósrědnjenje a teke na cyl drugego dalejpósrědnjenja, což jo w normalnem paźe wótmyslony cylowy bok, na kótaryž dejał južo prědne dalejpósrědnjenje wótkazowaś.',
+'doubleredirectstext'        => 'Toś ten bok nalicujo boki, kótarež dalej pósrědnjaju na druge dalejpósrědnjenja. 
+Kužda smužka wopśimjejo wótkaze na prědne a druge dalejpósrědnjenje a teke na cel drugego dalejpósrědnjenja, což jo w normalnem paźe "napšawdny" celowy bok, na kótaryž by mógło prědne dalejpósrědnjenje pokazaś. <s>Pśešmarnjone</s> zapiski su južo wobstarane.',
 'double-redirect-fixed-move' => '[[$1]] jo se pśesunuł, jo něnto dalejposrědnjenje do [[$2]]',
 'double-redirect-fixer'      => 'Pórěźaŕ dalejpósrědnjenjow',
 
@@ -2298,13 +2317,21 @@ W slědnem padźe móžoš teke wótkaz wužywaś, na pś. [[{{#Special:Export}}
 'export-pagelinks'  => 'Wótkazane boki zapśěgnuś, až k dłymoju wót:',
 
 # Namespace 8 related
-'allmessages'               => 'Systemowe zdźělenja',
-'allmessagesname'           => 'Mě',
-'allmessagesdefault'        => 'Standardny tekst',
-'allmessagescurrent'        => 'Aktualny tekst',
-'allmessagestext'           => 'How jo lisćina systemowych powěsćow w mjenowem rumje MediaWiki.
+'allmessages'                   => 'Systemowe zdźělenja',
+'allmessagesname'               => 'Mě',
+'allmessagesdefault'            => 'Standardny tekst',
+'allmessagescurrent'            => 'Aktualny tekst',
+'allmessagestext'               => 'How jo lisćina systemowych powěsćow w mjenowem rumje MediaWiki.
 Pšosym wobglědaj [http://www.mediawiki.org/wiki/Localisation lokalizaciju MediaWiki] a [http://translatewiki.net translatewiki.net], jolic coš k lokalizaciji MediaWiki pśinosowaś.',
-'allmessagesnotsupportedDB' => "'''{{ns:special}}:Allmessages''' njejo tuchylu móžno, dokulaž jo datowa banka offline.",
+'allmessagesnotsupportedDB'     => "'''{{ns:special}}:Allmessages''' njejo tuchylu móžno, dokulaž jo datowa banka offline.",
+'allmessages-filter-legend'     => 'Filter',
+'allmessages-filter'            => 'Pó pśiměrjeńskem stawje filtrěrowaś:',
+'allmessages-filter-unmodified' => 'Njezměnjony',
+'allmessages-filter-all'        => 'Wše',
+'allmessages-filter-modified'   => 'Změnjony',
+'allmessages-prefix'            => 'Pó prefiksu filtrěrowaś:',
+'allmessages-language'          => 'Rěc:',
+'allmessages-filter-submit'     => 'Wótpósłaś',
 
 # Thumbnails
 'thumbnail-more'           => 'Pówětšyś',
@@ -3082,6 +3109,7 @@ Zapódaj datajowe mě bźez prefiksa "{{ns:file}}:".',
 'htmlform-invalid-input'       => 'Su někotare problemy z twójim zapodaśim',
 'htmlform-select-badoption'    => 'Gódnota, kótaruž sy pódał, njejo płaśiwa opcija.',
 'htmlform-int-invalid'         => 'Gódnota, kótaruž sy pódał, njejo ceła licba.',
+'htmlform-float-invalid'       => 'Gódnota, kótaruž sy pódał, njejo licba.',
 'htmlform-int-toolow'          => 'Gódnota, kótaruž sy pódał, jo mjeńša ako minimum $1',
 'htmlform-int-toohigh'         => 'Gódnota, kótaruž sy pódał, jo wětša ako maksimum $1',
 'htmlform-submit'              => 'Wótpósłaś',

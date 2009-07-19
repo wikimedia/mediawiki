@@ -350,7 +350,7 @@ Votre compte a été créé.  Oubliez pas de changer votre réglage sus {{SITENA
 'noname'                     => "Vous avez pas mis un bon nom d'useur.",
 'loginsuccesstitle'          => 'Vous êtes connecté',
 'loginsuccess'               => "'''Asteur vous êtes connecté à {{SITENAME}} comme \"\$1\".'''",
-'nosuchuser'                 => 'Y a aucun useur avec le nom "$1".  Regardez donc l\'espellage, ou créez un nouveau compte.',
+'nosuchuser'                 => 'Y a aucun utilisateur avec le nom "$1".  Les noms d\'utilisateur respectent les majuscules et minuscules. Vérifiez l\'orthographe, ou créez un nouveau compte.',
 'nosuchusershort'            => 'Y a aucun useur avec le nom "<nowiki>$1</nowiki>".  Regardez donc l\'espellage.',
 'nouserspecified'            => "Il faut mettre un nom d'useur.",
 'wrongpassword'              => "Mauvais mot de passe.  Assayez encore s'il vous plaît.",

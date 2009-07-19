@@ -549,12 +549,12 @@ Może to oznaczać błąd w oprogramowaniu.
 Ostatnie, nieudane zapytanie to:
 <blockquote><tt>$1</tt></blockquote>
 wysłane przez funkcję „<tt>$2</tt>”.
-MySQL zgłosił błąd „<tt>$3: $4</tt>”.',
+$5 zgłosił błąd „<tt>$3: $4</tt>”.',
 'dberrortextcl'        => 'Wystąpił błąd składni w zapytaniu do bazy danych.
 Ostatnie, nieudane zapytanie to:
 „$1”
 wywołane zostało przez funkcję „$2”.
-MySQL zgłosił błąd „$3: $4”',
+$5 zgłosił błąd „$3: $4”',
 'laggedslavemode'      => 'Uwaga! Ta strona może nie zawierać najnowszych aktualizacji.',
 'readonly'             => 'Baza danych jest zablokowana',
 'enterlockreason'      => 'Podaj powód zablokowania bazy oraz szacunkowy termin jej odblokowania',
@@ -572,6 +572,7 @@ Można zgłosić ten fakt [[Special:ListUsers/sysop|administratorowi]], podając
 'readonly_lag'         => 'Baza danych została automatycznie zablokowana na czas potrzebny do wykonania synchronizacji zmian między serwerem głównym i serwerami pośredniczącymi.',
 'internalerror'        => 'Błąd wewnętrzny',
 'internalerror_info'   => 'Błąd wewnętrzny – $1',
+'fileappenderror'      => 'Nie udało się dołączyć „$1” do „$2”.',
 'filecopyerror'        => 'Nie można skopiować pliku „$1” do „$2”.',
 'filerenameerror'      => 'Nie można zmienić nazwy pliku „$1” na „$2”.',
 'filedeleteerror'      => 'Nie można usunąć pliku „$1”.',
@@ -1420,6 +1421,7 @@ Jeśli zdecydujesz się je podać, zostaną użyte, by udokumentować Twoje auto
 'right-siteadmin'             => 'Blokowanie i odblokowywanie bazy danych',
 'right-reset-passwords'       => 'Zerowanie haseł innych użytkowników',
 'right-override-export-depth' => 'Eksport stron wraz z linkowanymi do głębokości 5 linków',
+'right-versiondetail'         => 'Podgląd szczegółowych informacji o wersji oprogramowania',
 
 # User rights log
 'rightslog'      => 'Uprawnienia',
@@ -1611,15 +1613,18 @@ MGP # Pentax
 PICT # wiele różnych
   #</pre> <!-- nie modyfikuj tej linii -->',
 
-'upload-proto-error'      => 'Nieprawidłowy protokół',
-'upload-proto-error-text' => 'Zdalne przesyłanie plików wymaga podania adresu URL zaczynającego się od <code>http://</code> lub <code>ftp://</code>.',
-'upload-file-error'       => 'Błąd wewnętrzny',
-'upload-file-error-text'  => 'Wystąpił błąd wewnętrzny podczas próby utworzenia tymczasowego pliku na serwerze.
+'upload-proto-error'        => 'Nieprawidłowy protokół',
+'upload-proto-error-text'   => 'Zdalne przesyłanie plików wymaga podania adresu URL zaczynającego się od <code>http://</code> lub <code>ftp://</code>.',
+'upload-file-error'         => 'Błąd wewnętrzny',
+'upload-file-error-text'    => 'Wystąpił błąd wewnętrzny podczas próby utworzenia tymczasowego pliku na serwerze.
 Skontaktuj się z [[Special:ListUsers/sysop|administratorem systemu]].',
-'upload-misc-error'       => 'Nieznany błąd przesyłania',
-'upload-misc-error-text'  => 'Wystąpił nieznany błąd podczas przesyłania.
+'upload-misc-error'         => 'Nieznany błąd przesyłania',
+'upload-misc-error-text'    => 'Wystąpił nieznany błąd podczas przesyłania.
 Sprawdź, czy podany adres URL jest poprawny i dostępny, a następnie spróbuj ponownie.
 Jeśli problem będzie się powtarzał, skontaktuj się z [[Special:ListUsers/sysop|administratorem systemu]].',
+'upload-too-many-redirects' => 'URL zawiera zbyt wiele przekierowań',
+'upload-unknown-size'       => 'Nieznany rozmiar',
+'upload-http-error'         => 'Wystąpił błąd protokołu HTTP – $1',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Adres URL jest nieosiągalny',
@@ -1768,7 +1773,9 @@ a powinny odwoływać się bezpośrednio do stron treści.<br />
 Strona uznawana jest za ujednoznaczniającą, jeśli zawiera szablon linkowany przez stronę [[MediaWiki:Disambiguationspage]]",
 
 'doubleredirects'            => 'Podwójne przekierowania',
-'doubleredirectstext'        => 'Lista zawiera strony z przekierowaniami do stron, które przekierowują do innej strony. Każdy wiersz zawiera linki do pierwszego i drugiego przekierowania oraz link, do którego prowadzi drugie przekierowanie. Ostatni link prowadzi zazwyczaj do strony, do której powinna w rzeczywistości przekierowywać pierwsza strona.',
+'doubleredirectstext'        => 'Lista zawiera strony z przekierowaniami do stron, które przekierowują do innej strony.
+Każdy wiersz zawiera linki do pierwszego i drugiego przekierowania oraz link, do którego prowadzi drugie przekierowanie. Ostatni link prowadzi zazwyczaj do strony, do której powinna w rzeczywistości przekierowywać pierwsza strona.
+<s>Skreślenie</s> oznacza naprawienie przekierowania.',
 'double-redirect-fixed-move' => 'strona [[$1]] została zastąpiona przekierowaniem, ponieważ została przeniesiona do [[$2]]',
 'double-redirect-fixer'      => 'Korektor przekierowań',
 
@@ -2477,13 +2484,21 @@ Możesz również użyć linku, np. [[{{#Special:Export}}/{{MediaWiki:Mainpage}}
 'export-pagelinks'  => 'Dołącz linkowane strony na głębokości:',
 
 # Namespace 8 related
-'allmessages'               => 'Komunikaty systemowe',
-'allmessagesname'           => 'Nazwa',
-'allmessagesdefault'        => 'Tekst domyślny',
-'allmessagescurrent'        => 'Tekst obecny',
-'allmessagestext'           => 'Lista wszystkich komunikatów systemowych dostępnych w przestrzeni nazw MediaWiki.
+'allmessages'                   => 'Komunikaty systemowe',
+'allmessagesname'               => 'Nazwa',
+'allmessagesdefault'            => 'Tekst domyślny',
+'allmessagescurrent'            => 'Tekst obecny',
+'allmessagestext'               => 'Lista wszystkich komunikatów systemowych dostępnych w przestrzeni nazw MediaWiki.
 Odwiedź [http://www.mediawiki.org/wiki/Localisation Tłumaczenie MediaWiki] oraz [http://translatewiki.net translatewiki.net], jeśli chcesz uczestniczyć w tłumaczeniu oprogramowania MediaWiki.',
-'allmessagesnotsupportedDB' => "Ta strona nie może być użyta, ponieważ zmienna '''\$wgUseDatabaseMessages''' jest wyłączona.",
+'allmessagesnotsupportedDB'     => "Ta strona nie może być użyta, ponieważ zmienna '''\$wgUseDatabaseMessages''' jest wyłączona.",
+'allmessages-filter-legend'     => 'Filtr',
+'allmessages-filter'            => 'Filtrowanie według stanu modyfikacji:',
+'allmessages-filter-unmodified' => 'Niezmodyfikowane',
+'allmessages-filter-all'        => 'Wszystkie',
+'allmessages-filter-modified'   => 'Zmodyfikowane',
+'allmessages-prefix'            => 'Tytuły rozpoczynające się od',
+'allmessages-language'          => 'Język',
+'allmessages-filter-submit'     => 'Pokaż',
 
 # Thumbnails
 'thumbnail-more'           => 'Powiększ',
@@ -3325,6 +3340,7 @@ Wpisz nazwę pliku z pominięciem prefiksu „{{ns:file}}:”.',
 'htmlform-invalid-input'       => 'Wystąpił problem z wprowadzonymi danymi',
 'htmlform-select-badoption'    => 'Podano nieprawidłową wartość.',
 'htmlform-int-invalid'         => 'Podano wartość, która nie jest liczbą całkowitą.',
+'htmlform-float-invalid'       => 'Podana wartość nie jest liczbą.',
 'htmlform-int-toolow'          => 'Podana wartość jest poniżej dopuszczalnego minimum $1',
 'htmlform-int-toohigh'         => 'Podana wartość jest powyżej dopuszczalnego maximum $1',
 'htmlform-submit'              => 'Zapisz',

@@ -665,6 +665,7 @@ Veuillez le signaler à un [[Special:ListUsers/sysop|administrateur]] sans oubli
 'readonly_lag'         => 'La base de données a été automatiquement verrouillée pendant que les serveurs secondaires rattrapent leur retard sur le serveur principal.',
 'internalerror'        => 'Erreur interne',
 'internalerror_info'   => 'Erreur interne : $1',
+'fileappenderror'      => "Impossible d'ajouter « $1 » à « $2 ».",
 'filecopyerror'        => 'Impossible de copier le fichier « $1 » vers « $2 ».',
 'filerenameerror'      => 'Impossible de renommer le fichier « $1 » en « $2 ».',
 'filedeleteerror'      => 'Impossible de supprimer le fichier « $1 ».',
@@ -1494,6 +1495,7 @@ Vous pouvez également décider de laisser les autres vous contacter via votre p
 'right-siteadmin'             => 'Verrouiller ou déverrouiller la base de données',
 'right-reset-passwords'       => 'Changer le mot de passe d’autres utilisateurs',
 'right-override-export-depth' => 'Exporter les pages en incluant les pages liées jusqu’à une profondeur de 5 niveaux',
+'right-versiondetail'         => 'Voir les informations étendues sur les versions des logiciels',
 
 # User rights log
 'rightslog'      => 'Journal des modifications de droits d’utilisateurs',
@@ -1682,14 +1684,17 @@ MGP # Pentax
 PICT # divers
  #</pre><!-- laisser cette ligne telle quelle -->',
 
-'upload-proto-error'      => 'Protocole incorrect',
-'upload-proto-error-text' => 'Le téléversement requiert des URL commençant par <code>http://</code> ou <code>ftp://</code>.',
-'upload-file-error'       => 'Erreur interne',
-'upload-file-error-text'  => 'Une erreur interne est survenue en voulant créer un fichier temporaire sur le serveur. Veuillez contacter un [[Special:ListUsers/sysop|administrateur]].',
-'upload-misc-error'       => 'Erreur de téléversement inconnue',
-'upload-misc-error-text'  => 'Une erreur inconnue est survenue pendant le téléversement.
+'upload-proto-error'        => 'Protocole incorrect',
+'upload-proto-error-text'   => 'Le téléversement requiert des URL commençant par <code>http://</code> ou <code>ftp://</code>.',
+'upload-file-error'         => 'Erreur interne',
+'upload-file-error-text'    => 'Une erreur interne est survenue en voulant créer un fichier temporaire sur le serveur. Veuillez contacter un [[Special:ListUsers/sysop|administrateur]].',
+'upload-misc-error'         => 'Erreur de téléversement inconnue',
+'upload-misc-error-text'    => 'Une erreur inconnue est survenue pendant le téléversement.
 Veuillez vérifier que l’URL est valide et accessible, puis essayer à nouveau.
 Si le problème persiste, contactez un [[Special:ListUsers/sysop|administrateur]].',
+'upload-too-many-redirects' => "L'URL contient trop de redirections",
+'upload-unknown-size'       => 'Taille inconnue',
+'upload-http-error'         => 'Une erreur HTTP est intervenue : $1',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'URL injoignable',
@@ -2543,13 +2548,21 @@ Dans ce dernier cas vous pouvez aussi utiliser un lien, tel que [[{{#Special:Exp
 'export-pagelinks'  => 'Inclure les pages liées à une profondeur de :',
 
 # Namespace 8 related
-'allmessages'               => 'Messages système',
-'allmessagesname'           => 'Nom du message',
-'allmessagesdefault'        => 'Message par défaut',
-'allmessagescurrent'        => 'Message actuel',
-'allmessagestext'           => 'Ceci est la liste des messages disponibles dans l’espace MediaWiki.
+'allmessages'                   => 'Messages système',
+'allmessagesname'               => 'Nom du message',
+'allmessagesdefault'            => 'Message par défaut',
+'allmessagescurrent'            => 'Message actuel',
+'allmessagestext'               => 'Ceci est la liste des messages disponibles dans l’espace MediaWiki.
 Veuillez visiter la [http://www.mediawiki.org/wiki/Localisation Localisation de MediaWiki] et [http://translatewiki.net/ translatewiki.net] si vous désirez contribuer à la localisation générique de MediaWiki.',
-'allmessagesnotsupportedDB' => "Cette page '''{{ns:special}}:Allmessages''' n’est pas utilisable car '''\$wgUseDatabaseMessages''' a été désactivé.",
+'allmessagesnotsupportedDB'     => "Cette page '''{{ns:special}}:Allmessages''' n’est pas utilisable car '''\$wgUseDatabaseMessages''' a été désactivé.",
+'allmessages-filter-legend'     => 'Filtrer',
+'allmessages-filter'            => 'Filtrer par état de modification :',
+'allmessages-filter-unmodified' => 'Non modifié',
+'allmessages-filter-all'        => 'Tous',
+'allmessages-filter-modified'   => 'Modifié',
+'allmessages-prefix'            => 'Filtrer par préfixe :',
+'allmessages-language'          => 'Langue :',
+'allmessages-filter-submit'     => 'Appliquer',
 
 # Thumbnails
 'thumbnail-more'           => 'Agrandir',
@@ -3374,6 +3387,7 @@ Entrez le nom du fichier sans le préfixe « {{ns:file}}: ».',
 'htmlform-invalid-input'       => 'Des problèmes sont survenus avec certaines valeurs',
 'htmlform-select-badoption'    => 'La valeur que vous avez spécifiée n’est pas une option valide.',
 'htmlform-int-invalid'         => 'La valeur que vous avec spécifiée n’est pas un entier.',
+'htmlform-float-invalid'       => "La valeur que vous avez spécifiée n'est pas un nombre.",
 'htmlform-int-toolow'          => 'La valeur que vous avez spécifiée est plus petite que le minimum de $1',
 'htmlform-int-toohigh'         => 'La valeur que vous avez spécifiée est plus grande que le maximum de $1',
 'htmlform-submit'              => 'Soumettre',

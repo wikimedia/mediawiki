@@ -430,14 +430,17 @@ Alli verfiegbare Spezialsyte sin in dr [[Special:SpecialPages|Lischt vu Spezials
 # General errors
 'error'                => 'Fähler',
 'databaseerror'        => 'Fähler in dr Datebank',
-'dberrortext'          => 'S het e Syntaxfähler in dr Datebankabfreg gee.
-
-D letscht Datebankabfrog het gheisse: "$1" us dr Funktion "<tt>$2</tt>".
-
-MySQL het dr Fähler "<tt>$3: $4</tt>" gmeldet.',
+'dberrortext'          => 'S isch e Datebankfähler ufträtte.
+Dr Grund cha ne e Programmierfähler syy.
+Di letscht Datebankabfrog isch
+<blockquote><tt>$1</tt></blockquote>
+us dr Funktion „<tt>$2</tt>“ gsi.
+$5 het dr Fähler „<tt>$3: $4</tt>“ gmäldet.',
 'dberrortextcl'        => 'S het e Syntaxfähler gee in dr Abfrog vu dr Datebank.
-Di letscht Datebankabfrog isch gsi: „$1“ us dr Funktion „<tt>$2</tt>“.
-MySQL het dr Fähler „<tt>$3: $4</tt>“ gmäldet.',
+Di letscht Datebankabfrog isch
+„$1“
+us dr Funktion „$2“ gsi.
+$5 het dr Fähler „$3: $4“ gmäldet.',
 'laggedslavemode'      => 'Warnig: di letschte Änderige wäre u. U. nonig aazeigt!',
 'readonly'             => 'Datebank isch gsperrt',
 'enterlockreason'      => 'Bitte gib e Grund y, worum d Datebank soll gsperrt wäre un e Yschätzig wie lang si soll gsperrt blybe',
@@ -454,6 +457,7 @@ Wänn s des nit isch, hesch villicht e Fähler in dr Software gfunde. Bitte mäl
 'readonly_lag'         => 'D Datebank isch automatisch gperrt wore, wil di verteilte Datebankserver (Sklave) mien mit em Hauptdatebankserver (Meischter) abgliche wäre.',
 'internalerror'        => 'Interner Fähler',
 'internalerror_info'   => 'Interne Fähler: $1',
+'fileappenderror'      => 'Het „$1“ nit an „$2“ chenne anhänke.',
 'filecopyerror'        => 'Datei "$1" het nit noch "$2" kopiert werre kinne.',
 'filerenameerror'      => 'D Datei "$1" het nit in "$2" umgnennt werre kinne.',
 'filedeleteerror'      => 'Datei "$1" het nit glöscht werre kinne.',
@@ -1288,6 +1292,7 @@ Des cha nimmi ruckgängig gmacht wäre.',
 'right-siteadmin'             => 'Datebank sperre un entsperre',
 'right-reset-passwords'       => 'S Passwort vun eme andere Benutzer zrucksetze',
 'right-override-export-depth' => 'Exportier Syte mitsamt dr vergleichte Syte bis zuen ere Tiefi vu 5',
+'right-versiondetail'         => 'Detailinformatione iber d Software un d Versione aazeige',
 
 # User rights log
 'rightslog'      => 'Benutzerrächt-Logbuech',
@@ -1457,15 +1462,18 @@ Zue Dyynere Information chunnt do s Lesch-Logbuech mit dr Begrindig fir di friej
 'filename-bad-prefix'         => "Dr Dateiname fangt mit '''„$1“''' aa. Des isch isch normalerwyys dr Dateiname, wu vun ere Digitalkamera vorgee wird un d Datei nit bschryybt.
 Bitte gib dr Datei e Name, wu dr Inhalt besser bschryybt.",
 
-'upload-proto-error'      => 'Falschs Protokoll',
-'upload-proto-error-text' => 'D URL muess mit <code>http://</code> oder <code>ftp://</code> aafange.',
-'upload-file-error'       => 'Interne Fähler',
-'upload-file-error-text'  => 'Bim Aalege vun ere temporäre Datei uf em Server isch e interne Fähler uftrette.
+'upload-proto-error'        => 'Falschs Protokoll',
+'upload-proto-error-text'   => 'D URL muess mit <code>http://</code> oder <code>ftp://</code> aafange.',
+'upload-file-error'         => 'Interne Fähler',
+'upload-file-error-text'    => 'Bim Aalege vun ere temporäre Datei uf em Server isch e interne Fähler uftrette.
 Bitte informier e [[Special:ListUsers/sysop|Ammann]].',
-'upload-misc-error'       => 'Nit bekannte Fähler bim Uffelade',
-'upload-misc-error-text'  => 'Bim Uffelade isch e nit bekannte Fähler uftrette.
+'upload-misc-error'         => 'Nit bekannte Fähler bim Uffelade',
+'upload-misc-error-text'    => 'Bim Uffelade isch e nit bekannte Fähler uftrette.
 Prief d URL uf Fähler un dr Online-Status vu dr Syte un versuech s no mol.
 Wänn s Problem alno uftritt, informier e [[Special:ListUsers/sysop|Ammann]].',
+'upload-too-many-redirects' => 'In dr URL het s zvyl Wyterleitige',
+'upload-unknown-size'       => 'Nit bekannti Greßi',
+'upload-http-error'         => 'E HTTP-Fähler isch ufträtte: $1',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'URL isch nit z verwitsche',
@@ -1606,7 +1614,8 @@ Iberprief anderi Gleicher zue dr Vorlage, voreb Du die leschesch.',
 
 'doubleredirects'            => 'Doppleti Wyterleitige (Redirects)',
 'doubleredirectstext'        => 'Die Lischt zeigt Wyterleitige, wu uf anderi Wyterleitige vergleiche.
-In jedere Zyylete het s Gleicher zue dr erschte un dr zwote Wyterleitig un s Ziil vu dr zwote Wyterleitig, wu normalerwys di gwinscht Ziilsyten isch. Do sott eigetli scho di erscht Wyterleitig druf zeige.',
+In jedere Zyylete het s Gleicher zue dr erschte un dr zwote Wyterleitig un s Ziil vu dr zwote Wyterleitig, wu normalerwys di gwinscht Ziilsyten isch. Do sott eigetli scho di erscht Wyterleitig druf zeige.
+<s>Durgstricheni</s> Yytreg sin scho erledigt wore.',
 'double-redirect-fixed-move' => 'doppleti Wyterleitig ufglest: [[$1]] → [[$2]]',
 'double-redirect-fixer'      => 'DoubleRedirectBot',
 
@@ -2276,13 +2285,21 @@ Zum Exportiere trag dr Sytetitel in dr Täxtchaschte unter yy, ei Titel pro Zyyl
 'export-pagelinks'  => 'Vergleichti Syten automatisch mit exportiere bis zuen ere Rekursionstiefi vu:',
 
 # Namespace 8 related
-'allmessages'               => 'Systemnochrichte',
-'allmessagesname'           => 'Name',
-'allmessagesdefault'        => 'Standard-Tekscht',
-'allmessagescurrent'        => 'jetzige Tekscht',
-'allmessagestext'           => 'Des isch e Lischt vu allene meglige Syschtemnochrichte us em MediaWiki Namensruum.
+'allmessages'                   => 'Systemnochrichte',
+'allmessagesname'               => 'Name',
+'allmessagesdefault'            => 'Standard-Tekscht',
+'allmessagescurrent'            => 'jetzige Tekscht',
+'allmessagestext'               => 'Des isch e Lischt vu allene meglige Syschtemnochrichte us em MediaWiki Namensruum.
 Lueg au uf [http://www.mediawiki.org/wiki/Localisation MediaWiki Lokalisierig] un [http://translatewiki.net translatewiki.net], wänn Du zue dr MediaWiki-Lokalisierig wit byytrage.',
-'allmessagesnotsupportedDB' => "'''{{ns:special}}:Allmessages''' cha nit bruucht wärde will '''\$wgUseDatabaseMessages''' abgschalte isch.",
+'allmessagesnotsupportedDB'     => "'''{{ns:special}}:Allmessages''' cha nit bruucht wärde will '''\$wgUseDatabaseMessages''' abgschalte isch.",
+'allmessages-filter-legend'     => 'Filter',
+'allmessages-filter'            => 'Filter fir dr aapasst Zuestand:',
+'allmessages-filter-unmodified' => 'Nit gänderet',
+'allmessages-filter-all'        => 'Alli',
+'allmessages-filter-modified'   => 'Gänderet',
+'allmessages-prefix'            => 'Präfixfilter:',
+'allmessages-language'          => 'Sproch:',
+'allmessages-filter-submit'     => 'Gang',
 
 # Thumbnails
 'thumbnail-more'           => 'vergrösere',
@@ -3034,6 +3051,7 @@ D Yygab muess ohni dr Zuesatz „{{ns:file}}:“ erfolge.',
 'htmlform-invalid-input'       => 'Mit e Teil Yygabe git s Probläm',
 'htmlform-select-badoption'    => 'Dr Wärt, wu aagee hesch, isch kei giltigi Option.',
 'htmlform-int-invalid'         => 'Dr Wärt, wu aagee hesch, isch kei Ganzzahl.',
+'htmlform-float-invalid'       => 'D Wärt, wu du aagee hesch, isch kei Zahl.',
 'htmlform-int-toolow'          => 'Dr Wärt, wu aagee hesch, isch unter em Minimum vu $1',
 'htmlform-int-toohigh'         => 'Dr Wärt, wu aagee hesch, isch iber em Maximum vu $1',
 'htmlform-submit'              => 'Ibertrage',

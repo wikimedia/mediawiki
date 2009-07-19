@@ -21,6 +21,7 @@
  * @author Morten LJ
  * @author Najami
  * @author Peter Andersen
+ * @author Purodha
  * @author Remember the dot
  * @author RobertL
  * @author Sir48
@@ -479,7 +480,7 @@ Det kan tyde på en fejl i softwaren.
 Den sidst forsøgte databaseforespørgsel var:
 <blockquote><tt>$1</tt></blockquote>
 fra funktionen "<tt>$2</tt>". 
-MySQL returnerede fejlen "<tt>$3: $4</tt>".',
+$5 returnerede fejlen "<tt>$3: $4</tt>".',
 'dberrortextcl'        => 'Der er opstået en syntaksfejl i en databaseforespørgsel. 
 Den seneste forsøgte databaseforespørgsel var: "$1" fra funktionen "$2". 
 MySQL returnerede fejlen "$3: $4".',
