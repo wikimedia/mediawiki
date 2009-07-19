@@ -749,7 +749,6 @@ class OutputPage {
 			$this->setIndexPolicy( $parserOutput->getIndexPolicy() );
 		}
 
-		$this->addKeywords( $parserOutput );
 		$this->mParseWarnings = $parserOutput->getWarnings();
 		if ( $parserOutput->getCacheTime() == -1 ) {
 			$this->enableClientCache( false );
@@ -1679,42 +1678,6 @@ class OutputPage {
 		}
 
 		$this->addReturnTo( $titleObj, $returntoquery );
-	}
-
-	/**
-	 * This function takes the title (first item of mGoodLinks), categories,
-	 * existing and broken links for the page
-	 * and uses the first 10 of them for META keywords
-	 *
-	 * @param ParserOutput &$parserOutput
-	 */
-	private function addKeywords( &$parserOutput ) {
-		global $wgContLang;
-		// Get an array of keywords if there are more than one
-		// variant of the site language
-		$text = $wgContLang->autoConvertToAllVariants( $this->getTitle()->getPrefixedText());
-		// array_values: We needn't to merge variant's code name
-		// into $this->mKeywords;
-		// array_unique: We should insert a keyword just for once
-		if( is_array( $text ))
-			$text = array_unique( array_values( $text ));
-		$this->addKeyword( $text );
-		$count = 1;
-		$links2d =& $parserOutput->getLinks();
-		if ( !is_array( $links2d ) ) {
-			return;
-		}
-		foreach ( $links2d as $dbkeys ) {
-			foreach( $dbkeys as $dbkey => $unused ) {
-				$dbkey = $wgContLang->autoConvertToAllVariants( $dbkey );
-				if( is_array( $dbkey ))
-					$dbkey = array_unique( array_values( $dbkey ));
-				$this->addKeyword( $dbkey );
-				if ( ++$count > 10 ) {
-					break 2;
-				}
-			}
-		}
 	}
 
 	/**
