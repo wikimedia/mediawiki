@@ -295,6 +295,7 @@ this. Was used when mwEmbed was going to be an extension.
 * (bug 19827) Special:SpecialPages title is "Upload file
 * (bug 19355) Added .xhtml, .xht to upload file extension blacklist
 * (bug 19287) Workaround for lag on history page in Firefox 3.5
+* (bug 19564) Updated docs/hooks.txt
 
 == API changes in 1.16 ==
 
