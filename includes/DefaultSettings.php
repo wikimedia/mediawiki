@@ -4028,3 +4028,60 @@ $wgUserrightsInterwikiDelimiter = '@';
  *   );
  */
 $wgPoolCounterConf = null;
+
+/**
+ * Use some particular type of external authentication.  The specific
+ * authentication module you use will normally require some extra settings to
+ * be specified.
+ *
+ * null indicates no external authentication is to be used.  Otherwise,
+ * "ExternalUser_$wgExternalAuthType" must be the name of a non-abstract class
+ * that extends ExternalUser.
+ *
+ * Core authentication modules can be found in includes/extauth/.
+ */
+$wgExternalAuthType = null;
+
+/**
+ * Configuration for the external authentication.  This may include arbitrary
+ * keys that depend on the authentication mechanism.  For instance,
+ * authentication against another web app might require that the database login
+ * info be provided.  Check the file where your auth mechanism is defined for
+ * info on what to put here.
+ */
+$wgExternalAuthConfig = array();
+
+/**
+ * When should we automatically create local accounts when external accounts
+ * already exist, if using ExternalAuth?  Can have three values: 'never',
+ * 'login', 'view'.  'view' requires the external database to support cookies,
+ * and implies 'login'.
+ *
+ * TODO: Implement 'view' (currently behaves like 'login').
+ */
+$wgAutocreatePolicy = 'login';
+
+/**
+ * Policies for how each preference is allowed to be changed, in the presence
+ * of external authentication.  The keys are preference keys, e.g., 'password'
+ * or 'emailaddress' (see Preferences.php et al.).  The value can be one of the
+ * following:
+ *
+ * - local: Allow changes to this pref through the wiki interface but only
+ * apply them locally (default).
+ * - semiglobal: Allow changes through the wiki interface and try to apply them
+ * to the foreign database, but continue on anyway if that fails.
+ * - global: Allow changes through the wiki interface, but only let them go
+ * through if they successfully update the foreign database.
+ * - message: Allow no local changes for linked accounts; replace the change
+ * form with a message provided by the auth plugin, telling the user how to
+ * change the setting externally (maybe providing a link, etc.).  If the auth
+ * plugin provides no message for this preference, hide it entirely.
+ *
+ * Accounts that are not linked to an external account are never affected by
+ * this setting.  You may want to look at $wgHiddenPrefs instead.
+ * $wgHiddenPrefs supersedes this option.
+ *
+ * TODO: Implement message, global.
+ */
+$wgAllowPrefChange = array();

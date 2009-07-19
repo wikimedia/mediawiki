@@ -150,6 +150,7 @@ this. Was used when mwEmbed was going to be an extension.
   thumbnails to be stored in a separate location to the source images.
 * If config/ directory is not executable, the command to make it executable 
   now asks the user to cd to the correct directory
+* Add experimental new external authentication framework, ExternalAuth.
 
 === Bug fixes in 1.16 ===
 

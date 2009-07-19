@@ -575,6 +575,20 @@ CREATE INDEX /*i*/el_to ON /*_*/externallinks (el_to(60), el_from);
 CREATE INDEX /*i*/el_index ON /*_*/externallinks (el_index(60));
 
 
+--
+-- Track external user accounts, if ExternalAuth is used
+--
+CREATE TABLE /*_*/external_user (
+  -- Foreign key to user_id
+  eu_wiki_id int unsigned NOT NULL PRIMARY KEY,
+
+  -- Some opaque identifier provided by the external database
+  eu_external_id varchar(255) binary NOT NULL
+) /*$wgDBTableOptions*/;
+
+CREATE UNIQUE INDEX /*i*/eu_external_id ON /*_*/external_user (eu_external_id);
+
+
 -- 
 -- Track interlanguage links
 --
