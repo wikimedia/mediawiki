@@ -34,7 +34,7 @@ class UploadForm extends SpecialPage {
 	 */
 	function __construct( $request = null ) {
 		parent::__construct( 'Upload' );
-	    $this->mRequest = $request;
+		$this->mRequest = $request;
 	}
 
 	protected function initForm() {
