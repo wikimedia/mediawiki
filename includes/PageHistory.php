@@ -301,9 +301,12 @@ class PageHistory {
 					'(' . $this->message['rev-delundel'] . ')' );
 			// Otherwise, show the link...
 			} else {
-				$jsCall = 'updateShowHideForm('.$rev->getId().',this.checked)';
+				$id = $rev->getId();
+				$jsCall = "updateShowHideForm($id,this.checked)";
 				$del = Xml::check( 'showhiderevisions', false,
-					$hidden + array('onchange' => $jsCall) );
+					$hidden + array(
+						'onchange' => $jsCall,
+						'id' => "mw-revdel-$id" ) );
 				$query = array(
 					'type' => 'revision',
 					'target' => $this->mTitle->getPrefixedDbkey(),
@@ -473,11 +476,15 @@ class PageHistory {
 	 */
 	function diffButtons( $rev, $firstInList, $counter ) {
 		if( $this->linesonpage > 1 ) {
-			$radio = array( 'type'  => 'radio', 'value' => $rev->getId() );
+			$id = $rev->getId();
+			$radio = array( 'type'  => 'radio', 'value' => $id );
 			/** @todo: move title texts to javascript */
 			if( $firstInList ) {
 				$first = Xml::element( 'input', 
-					array_merge( $radio, array( 'style' => 'visibility:hidden', 'name'  => 'oldid' ) )
+					array_merge( $radio, array(
+						'style' => 'visibility:hidden',
+						'name'  => 'oldid',
+						'id' => 'mw-oldid-null' ) )
 				);
 				$checkmark = array( 'checked' => 'checked' );
 			} else {
@@ -487,14 +494,20 @@ class PageHistory {
 					$checkmark = array(); // We will check the next possible one
 				} else if( $counter == 2 || !$this->mOldIdChecked ) {
 					$checkmark = array( 'checked' => 'checked' );
-					$this->mOldIdChecked = $rev->getId();
+					$this->mOldIdChecked = $id;
 				} else {
 					$checkmark = array();
 				}
-				$first = Xml::element( 'input', array_merge( $radio, $checkmark, array( 'name'  => 'oldid' ) ) );
+				$first = Xml::element( 'input',
+					array_merge( $radio, $checkmark, array(
+						'name'  => 'oldid',
+						'id' => "mw-oldid-$id" ) ) );
 				$checkmark = array();
 			}
-			$second = Xml::element( 'input', array_merge( $radio, $checkmark, array( 'name'  => 'diff' ) ) );
+			$second = Xml::element( 'input',
+				array_merge( $radio, $checkmark, array(
+					'name'  => 'diff',
+					'id' => "mw-diff-$id" ) ) );
 			return $first . $second;
 		} else {
 			return '';
