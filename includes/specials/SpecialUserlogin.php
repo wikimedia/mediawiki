@@ -40,6 +40,8 @@ class LoginForm {
 	var $mLoginattempt, $mRemember, $mEmail, $mDomain, $mLanguage;
 	var $mSkipCookieCheck, $mReturnToQuery;
 
+	private $mExtUser = null;
+
 	/**
 	 * Constructor
 	 * @param WebRequest $request A WebRequest object passed by reference
@@ -363,6 +365,14 @@ class LoginForm {
 
 		$wgAuth->initUser( $u, $autocreate );
 
+		if ( $this->mExtUser ) {
+			$this->mExtUser->link( $u->getId() );
+			$email = $this->mExtUser->getPref( 'emailaddress' );
+			if ( $email && !$this->mEmail ) {
+				$u->setEmail( $email );
+			}
+		}
+
 		$u->setOption( 'rememberpassword', $this->mRemember ? 1 : 0 );
 		$u->saveSettings();
 
@@ -417,6 +427,11 @@ class LoginForm {
 			wfDebug( __METHOD__.": already logged in as {$this->mName}\n" );
 			return self::SUCCESS;
 		}
+
+		$this->mExtUser = ExternalUser::newFromName( $this->mName );
+
+		# TODO: Allow some magic here for invalid external names, e.g., let the
+		# user choose a different wiki name.
 		$u = User::newFromName( $this->mName );
 		if( is_null( $u ) || !User::isUsableName( $u->getName() ) ) {
 			return self::ILLEGAL;
@@ -496,26 +511,40 @@ class LoginForm {
 	 * @return integer Status code
 	 */
 	function attemptAutoCreate( $user ) {
-		global $wgAuth, $wgUser;
+		global $wgAuth, $wgUser, $wgAutocreatePolicy;
+
+		if ( $wgUser->isBlockedFromCreateAccount() ) {
+			wfDebug( __METHOD__.": user is blocked from account creation\n" );
+			return self::CREATE_BLOCKED;
+		}
+
 		/**
 		 * If the external authentication plugin allows it, automatically cre-
 		 * ate a new account for users that are externally defined but have not
 		 * yet logged in.
 		 */
-		if ( !$wgAuth->autoCreate() ) {
-			return self::NOT_EXISTS;
-		}
-		if ( !$wgAuth->userExists( $user->getName() ) ) {
-			wfDebug( __METHOD__.": user does not exist\n" );
-			return self::NOT_EXISTS;
-		}
-		if ( !$wgAuth->authenticate( $user->getName(), $this->mPassword ) ) {
-			wfDebug( __METHOD__.": \$wgAuth->authenticate() returned false, aborting\n" );
-			return self::WRONG_PLUGIN_PASS;
-		}
-		if ( $wgUser->isBlockedFromCreateAccount() ) {
-			wfDebug( __METHOD__.": user is blocked from account creation\n" );
-			return self::CREATE_BLOCKED;
+		if ( $this->mExtUser ) {
+			# mExtUser is neither null nor false, so use the new ExternalAuth
+			# system.
+			if ( $wgAutocreatePolicy == 'never' ) {
+				return self::NOT_EXISTS;
+			}
+			if ( !$this->mExtUser->authenticate( $this->mPassword ) ) {
+				return self::WRONG_PLUGIN_PASS;
+			}
+		} else {
+			# Old AuthPlugin.
+			if ( !$wgAuth->autoCreate() ) {
+				return self::NOT_EXISTS;
+			}
+			if ( !$wgAuth->userExists( $user->getName() ) ) {
+				wfDebug( __METHOD__.": user does not exist\n" );
+				return self::NOT_EXISTS;
+			}
+			if ( !$wgAuth->authenticate( $user->getName(), $this->mPassword ) ) {
+				wfDebug( __METHOD__.": \$wgAuth->authenticate() returned false, aborting\n" );
+				return self::WRONG_PLUGIN_PASS;
+			}
 		}
 
 		wfDebug( __METHOD__.": creating account\n" );
@@ -526,8 +555,7 @@ class LoginForm {
 	function processLogin() {
 		global $wgUser, $wgAuth;
 
-		switch ($this->authenticateUserData())
-		{
+		switch ( $this->authenticateUserData() ) {
 			case self::SUCCESS:
 				# We've verified now, update the real record
 				if( (bool)$this->mRemember != (bool)$wgUser->getOption( 'rememberpassword' ) ) {

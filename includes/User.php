@@ -3569,6 +3569,10 @@ class User {
 	}
 	
 	protected function saveOptions() {
+		global $wgAllowPrefChange;
+
+		$extuser = ExternalUser::newFromUser( $this );
+
 		$this->loadOptions();
 		$dbw = wfGetDB( DB_MASTER );
 		
@@ -3582,7 +3586,8 @@ class User {
 			return;
 		
 		foreach( $saveOptions as $key => $value ) {
-			if ( ( is_null(self::getDefaultOption($key)) &&
+			# Don't bother storing default values
+			if ( ( is_null( self::getDefaultOption( $key ) ) &&
 					!( $value === false || is_null($value) ) ) ||
 					$value != self::getDefaultOption( $key ) ) {
 				$insert_rows[] = array(
@@ -3590,6 +3595,14 @@ class User {
 						'up_property' => $key,
 						'up_value' => $value,
 					);
+			}
+			if ( $extuser && isset( $wgAllowPrefChange[$key] ) ) {
+				switch ( $wgAllowPrefChange[$key] ) {
+					case 'local': case 'message':
+						break;
+					case 'semiglobal': case 'global':
+						$extuser->setPref( $key, $value );
+				}
 			}
 		}
 		

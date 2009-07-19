@@ -162,6 +162,7 @@ $wgUpdates = array(
 		array( 'do_log_search_population' ),
 		array( 'add_field', 'logging',       'log_user_text',  'patch-log_user_text.sql' ),
 		array( 'add_table', 'l10n_cache',              'patch-l10n_cache.sql' ),
+		array( 'add_table', 'external_user', 'patch-external_user.sql' ),
 	),
 
 	'sqlite' => array(
