@@ -70,38 +70,24 @@ class SkinTemplate extends Skin {
 	 */
 
 	/**
-	 * Name of our skin, set in initPage()
-	 * It probably need to be all lower case.
+	 * Name of our skin, it probably needs to be all lower case.  Child classes
+	 * should override the default.
 	 */
-	var $skinname;
+	var $skinname = 'monobook';
 
 	/**
-	 * Stylesheets set to use
-	 * Sub directory in ./skins/ where various stylesheets are located
+	 * Stylesheets set to use.  Subdirectory in skins/ where various stylesheets
+	 * are located.  Child classes should override the default.
 	 */
-	var $stylename;
+	var $stylename = 'monobook';
 
 	/**
-	 * For QuickTemplate, the name of the subclass which
-	 * will actually fill the template.
+	 * For QuickTemplate, the name of the subclass which will actually fill the
+	 * template.  Child classes should override the default.
 	 */
-	var $template;
+	var $template = 'QuickTemplate';
 
 	/**#@-*/
-
-	/**
-	 * Setup the base parameters...
-	 * Child classes should override this to set the name,
-	 * style subdirectory, and template filler callback.
-	 *
-	 * @param $out OutputPage
-	 */
-	function initPage( OutputPage $out ) {
-		parent::initPage( $out );
-		$this->skinname  = 'monobook';
-		$this->stylename = 'monobook';
-		$this->template  = 'QuickTemplate';
-	}
 
 	/**
 	 * Add specific styles for this skin

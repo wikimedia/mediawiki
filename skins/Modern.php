@@ -16,6 +16,9 @@ if( !defined( 'MEDIAWIKI' ) )
  * @ingroup Skins
  */
 class SkinModern extends SkinTemplate {
+	var $skinname = $stylename = 'modern',
+		$template = 'ModernTemplate';
+
 	/*
 	 * We don't like the default getPoweredBy, the icon clashes with the 
 	 * skin L&F.
@@ -25,13 +28,6 @@ class SkinModern extends SkinTemplate {
 		return "<div class='mw_poweredby'>Powered by MediaWiki $wgVersion</div>";
 	}
 
-	function initPage( OutputPage $out ) {
-		parent::initPage( $out );
-		$this->skinname  = 'modern';
-		$this->stylename = 'modern';
-		$this->template  = 'ModernTemplate';
-	}
-	
 	function setupSkinUserCss( OutputPage $out ){
 		// Do not call parent::setupSkinUserCss(), we have our own print style
 		$out->addStyle( 'common/shared.css', 'screen' );

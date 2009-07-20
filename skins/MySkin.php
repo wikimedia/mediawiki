@@ -15,10 +15,6 @@ if( !defined( 'MEDIAWIKI' ) )
  * @ingroup Skins
  */
 class SkinMySkin extends SkinTemplate {
-	function initPage( OutputPage $out ) {
-		parent::initPage( $out );
-		$this->skinname  = 'myskin';
-		$this->stylename = 'myskin';
-		$this->template  = 'MonoBookTemplate';
-	}
+	var $skinname = $stylename = 'myskin',
+		$template = 'MonoBookTemplate';
 }

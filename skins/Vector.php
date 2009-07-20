@@ -18,6 +18,8 @@ if( !defined( 'MEDIAWIKI' ) )
 class SkinVector extends SkinTemplate {
 
 	/* Functions */
+	var $skinname = $stylename = 'vector',
+		$template = 'VectorTemplate';
 
 	/**
 	 * Initializes output page and sets up skin-specific parameters
@@ -27,9 +29,6 @@ class SkinVector extends SkinTemplate {
 		global $wgStylePath, $wgJsMimeType, $wgStyleVersion;
 		
 		parent::initPage( $out );
-		$this->skinname  = 'vector';
-		$this->stylename = 'vector';
-		$this->template  = 'VectorTemplate';
 		
 		// Append skin-specific styles
 		$out->addStyle( 'vector/main-rtl.css', 'screen', '', 'rtl' );
