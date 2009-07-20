@@ -47,15 +47,36 @@ $pathinc = array(
  */
 function getHooksFromDoc() {
 	global $doc, $options;
-	$m = array();
 	if( isset( $options['online'] ) ){
-		$content = Http::get( 'http://www.mediawiki.org/w/index.php?title=Manual:Hooks&action=raw' );
-		preg_match_all( '/\[\[\/([a-zA-Z0-9-_:]+)\|/', $content, $m );
+		// All hooks
+		$allhookdata = Http::get( 'http://www.mediawiki.org/w/api.php?action=query&list=categorymembers&cmtitle=Category:MediaWiki_hooks&cmlimit=500&format=php' );
+		$allhookdata = unserialize( $allhookdata );
+		$allhooks = array();
+		foreach( $allhookdata['query']['categorymembers'] as $page ) {
+			$found = preg_match( '/Manual\:Hooks\/([a-zA-Z0-9- :]+)/', $page['title'], $matches );
+			if( $found ) {
+				$hook = str_replace( ' ', '_', $matches[1] );
+				$allhooks[] = $hook;
+			}
+		}
+		// Removed hooks
+		$oldhookdata = Http::get( 'http://www.mediawiki.org/w/api.php?action=query&list=categorymembers&cmtitle=Category:Removed_hooks&cmlimit=500&format=php' );
+		$oldhookdata = unserialize( $oldhookdata );
+		$removed = array();
+		foreach( $oldhookdata['query']['categorymembers'] as $page ) {
+			$found = preg_match( '/Manual\:Hooks\/([a-zA-Z0-9- :]+)/', $page['title'], $matches );
+			if( $found ) {
+				$hook = str_replace( ' ', '_', $matches[1] );
+				$removed[] = $hook;
+			}
+		}
+		return array_diff( $allhooks, $removed );
 	} else {
+		$m = array();
 		$content = file_get_contents( $doc );
 		preg_match_all( "/\n'(.*?)'/", $content, $m );
+		return array_unique( $m[1] );
 	}
-	return array_unique( $m[1] );
 }
 
 /**
