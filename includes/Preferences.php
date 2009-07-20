@@ -143,7 +143,10 @@ class Preferences {
 					array(
 						'type' => 'info',
 						'label-message' => 'prefs-registration',
-						'default' => $wgLang->timeanddate( $user->getRegistration(), true ),
+						'default' => wfMsgExt( 'prefs-registration-date-time', 'parsemag',
+							$wgLang->timeanddate( $user->getRegistration(), true ),
+							$wgLang->date( $user->getRegistration(), true ),
+							$wgLang->time( $user->getRegistration(), true ) ),
 						'section' => 'personal/info',
 					);
 		}
