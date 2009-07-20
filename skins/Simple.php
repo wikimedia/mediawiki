@@ -18,7 +18,7 @@ require_once( dirname(__FILE__) . '/MonoBook.php' );
  * @ingroup Skins
  */
 class SkinSimple extends SkinTemplate {
-	var $skinname = $stylename = 'simple',
+	var $skinname = 'simple', $stylename = 'simple',
 		$template = 'MonoBookTemplate';
 
 	function setupSkinUserCss( OutputPage $out ){
