@@ -193,6 +193,14 @@ abstract class DatabaseBase {
 	}
 
 	/**
+	 * Returns true if this database requires that SELECT DISTINCT queries require that all 
+       ORDER BY expressions occur in the SELECT list per the SQL92 standard
+	 */
+	function standardSelectDistinct() {
+		return true;
+	}
+
+	/**
 	 * Returns true if this database can do a native search on IP columns
 	 * e.g. this works as expected: .. WHERE rc_ip = '127.42.12.102/32';
 	 */

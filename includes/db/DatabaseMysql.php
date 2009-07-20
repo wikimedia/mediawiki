@@ -289,6 +289,10 @@ class DatabaseMysql extends DatabaseBase {
 		return '[http://www.mysql.com/ MySQL]';
 	}
 
+	function standardSelectDistinct() {
+		return false;
+	}
+
 	/**
 	 * @return String: Database type for use in messages
 	*/
