@@ -922,7 +922,7 @@ class Linker {
 
 		# Render autocomments and make links:
 		$comment = $this->formatAutoComments( $comment, $title, $local );
-		$comment = $this->formatLinksInComment( $comment, $title );
+		$comment = $this->formatLinksInComment( $comment, $title, $local );
 
 		wfProfileOut( __METHOD__ );
 		return $comment;
@@ -1009,13 +1009,15 @@ class Linker {
 	 * @param string $comment Text to format links in
 	 * @return string
 	 */
-	public function formatLinksInComment( $comment, $title = null ) {
+	public function formatLinksInComment( $comment, $title = null, $local = false ) {
 		$this->commentContextTitle = $title;
+		$this->commentLocal = $local;
 		$html = preg_replace_callback(
 			'/\[\[:?(.*?)(\|(.*?))*\]\]([^[]*)/',
 			array( $this, 'formatLinksInCommentCallback' ),
 			$comment );
 		unset( $this->commentContextTitle );
+		unset( $this->commentLocal );
 		return $html;
 	}
 
@@ -1060,10 +1062,18 @@ class Linker {
 			$linkTarget = Linker::normalizeSubpageLink( $this->commentContextTitle,
 				$match[1], $linkText );
 			
-			$thelink = $this->link(
-				Title::newFromText( $linkTarget ),
-				$linkText . $inside
-			) . $trail;
+			$target = Title::newFromText( $linkTarget );
+			if( $target ) {
+				if( $target->getText() == '' && !$this->commentLocal && $this->commentContextTitle ) {
+					$newTarget = clone( $this->commentContextTitle );
+					$newTarget->setFragment( '#' . $target->getFragment() );
+					$target = $newTarget;
+				}
+				$thelink = $this->link(
+					$target,
+					$linkText . $inside
+				) . $trail;
+			}
 		}
 		$comment = preg_replace( $linkRegexp, StringUtils::escapeRegexReplacement( $thelink ), $comment, 1 );
 
