@@ -486,16 +486,17 @@ Eble ankaŭ ĉi tiel indikus problemon de la programaro de {{SITENAME}}.",
 # General errors
 'error'                => 'Eraro',
 'databaseerror'        => 'Datumbaza eraro',
-'dberrortext'          => 'Sintakseraro okazis en informpeto al la datumaro.
+'dberrortext'          => 'Sintakseraro okazis dum informpeto al la datumaro.
+Ĝi eble indikas cimon en la programaro.
 Jen la plej laste provita informmendo:
 <blockquote><tt>$1</tt></blockquote>
 el la funkcio "<tt>$2</tt>".
-MySQL redonis eraron  "<tt>$3: $4</tt>".',
-'dberrortextcl'        => 'Okazis sintaksa eraro en la informpeto al la datumaro.
+$5 liveris eraron "<tt>$3: $4</tt>".',
+'dberrortextcl'        => 'Okazis sintaksa eraro dum la informpeto al la datumaro.
 La lasta provita peto estis:
 "$1"
 el la funkcio "$2".
-\'\'MySQL\'\' resendis la erarmesaĝon "$3: $4".',
+$5 liveris la erarmesaĝon "$3: $4".',
 'laggedslavemode'      => 'Avertu: la paĝo eble ne enhavas lastatempajn ĝisdatigojn.',
 'readonly'             => 'Datumaro ŝlosita, nurlega',
 'enterlockreason'      => 'Bonvolu klarigi, kial oni ŝlosas la datumaron, kaj
@@ -1525,14 +1526,16 @@ Vi konsideru ĉu taŭgas alŝuti ĉi tiu dosiero.
 jen la protokolo pri forigado por ĉi tiu dosiero por via oportuneco:",
 'filename-bad-prefix'         => "La nomo de la dosiero kiun vi alŝutas komencas kun '''\"\$1\"''', kiu estas nepriskriba nomo ofte aŭtomate donata de ciferecaj fotiloj. Bonvolu elekti pli priskriban nomon por via bildo.",
 
-'upload-proto-error'      => 'Nevalida protokolo',
-'upload-proto-error-text' => 'Fora alŝuto devas URL-on komence de <code>http://</code> aŭ <code>ftp://</code>.',
-'upload-file-error'       => 'Interna eraro',
-'upload-file-error-text'  => 'Interna eraro okazis provante krei labordosieron ĉe la servilo. Bonvolu kontakti [[Special:ListUsers/sysop|sistem-administranton]].',
-'upload-misc-error'       => 'Nekonata eraro pri alŝutado.',
-'upload-misc-error-text'  => 'Nekonata eraro okazis dum la alŝuto. 
+'upload-proto-error'        => 'Nevalida protokolo',
+'upload-proto-error-text'   => 'Fora alŝuto devas URL-on komence de <code>http://</code> aŭ <code>ftp://</code>.',
+'upload-file-error'         => 'Interna eraro',
+'upload-file-error-text'    => 'Interna eraro okazis provante krei labordosieron ĉe la servilo. Bonvolu kontakti [[Special:ListUsers/sysop|sistem-administranton]].',
+'upload-misc-error'         => 'Nekonata eraro pri alŝutado.',
+'upload-misc-error-text'    => 'Nekonata eraro okazis dum la alŝuto. 
 Bonvolu kontroli ke la URL-o estas valida kaj atingebla tiam reprovu. 
 Se la problemo kontinuas, kontaku [[Special:ListUsers/sysop|sisteman administranton]].',
+'upload-too-many-redirects' => 'La URL-o enhavis tro multajn alidirektilojn',
+'upload-unknown-size'       => 'Nekonata grandeco',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'URL-o ne estis atingebla',
@@ -2387,14 +2390,22 @@ En la lasta kazo, vi ankaŭ povas uzi ligilo, ekz-e [[{{#Special:Export}}/{{Medi
 'export-pagelinks'  => 'Inkluzivi ligitajn paĝoj al profundo de:',
 
 # Namespace 8 related
-'allmessages'               => 'Ĉiuj mesaĝoj',
-'allmessagesname'           => 'Nomo',
-'allmessagesdefault'        => 'Defaŭlta teksto',
-'allmessagescurrent'        => 'Nuna teksto',
-'allmessagestext'           => 'Ĉi tio estas listo de ĉiuj mesaĝoj haveblaj en la MediaWiki-nomspaco.
+'allmessages'                   => 'Ĉiuj mesaĝoj',
+'allmessagesname'               => 'Nomo',
+'allmessagesdefault'            => 'Defaŭlta teksto',
+'allmessagescurrent'            => 'Nuna teksto',
+'allmessagestext'               => 'Ĉi tio estas listo de ĉiuj mesaĝoj haveblaj en la MediaWiki-nomspaco.
 Bonvolu aliri [http://www.mediawiki.org/wiki/Localisation MediaWiki-Asimilado] kaj [http://translatewiki.net translatewiki.net]
 se vi volus kontribui al la komuna MediaWiki-asimilado.',
-'allmessagesnotsupportedDB' => '{{ns:special}}:Allmessages ne subtenata ĉar la variablo wgUseDatabaseMessages estas malkonektita.',
+'allmessagesnotsupportedDB'     => '{{ns:special}}:Allmessages ne subtenata ĉar la variablo wgUseDatabaseMessages estas malkonektita.',
+'allmessages-filter-legend'     => 'Filtri',
+'allmessages-filter'            => 'Filtri laŭ ŝanĝada stato',
+'allmessages-filter-unmodified' => 'Neŝanĝitaĵoj',
+'allmessages-filter-all'        => 'Ĉio',
+'allmessages-filter-modified'   => 'Ŝanĝitaĵoj',
+'allmessages-prefix'            => 'Filtri laŭ prefikso:',
+'allmessages-language'          => 'Lingvo:',
+'allmessages-filter-submit'     => 'Ek!',
 
 # Thumbnails
 'thumbnail-more'           => 'Pligrandigi',

@@ -637,17 +637,17 @@ Zkuste se podívat na [[Special:SpecialPages|seznam všech existujících speci�
 # General errors
 'error'                => 'Chyba',
 'databaseerror'        => 'Databázová chyba',
-'dberrortext'          => "Při dotazu do databáze došlo k syntaktické chybě.
+'dberrortext'          => 'Při dotazu do databáze došlo k syntaktické chybě.
 Příčinou může být chyba v programu.
 Poslední dotaz byl:
 <blockquote><tt>$1</tt></blockquote>
-z funkce '<tt>$2</tt>'.
-MySQL vrátil chybu '<tt>$3: $4</tt>'.",
+z funkce „<tt>$2</tt>“.
+$5 vrátil chybu „<tt>$3: $4</tt>“.',
 'dberrortextcl'        => 'Při dotazu do databáze došlo k syntaktické chybě.
 Poslední dotaz byl:
-"$1"
-z funkce "$2".
-MySQL vrátil chybu "$3: $4"',
+„$1“
+z funkce „$2“.
+$5 vrátil chybu „$3: $4“',
 'laggedslavemode'      => 'Upozornění: Stránka nemusí být zcela aktuální.',
 'readonly'             => 'Databáze je uzamčena',
 'enterlockreason'      => 'Udejte důvod zamčení, včetně odhadu, za jak dlouho dojde k odemčení.',
@@ -664,6 +664,7 @@ Pokud toto není váš případ, možná jste nalezli chybu v software. Prosíme
 'readonly_lag'         => 'Databáze byla automaticky dočasně uzamčena kvůli zpoždění ostatních databázových serverů oproti hlavnímu',
 'internalerror'        => 'Vnitřní chyba',
 'internalerror_info'   => 'Vnitřní chyba: $1',
+'fileappenderror'      => 'Nepodařilo se připojit „$1“ k „$2“.',
 'filecopyerror'        => 'Nebylo možné zkopírovat soubor  „$1“ na „$2“.',
 'filerenameerror'      => 'Nebylo možné přejmenovat soubor „$1“ na „$2“.',
 'filedeleteerror'      => 'Nebylo možné smazat soubor „$1“.',
@@ -1477,6 +1478,7 @@ Také můžete dovolit ostatním uživatelům vás prostřednictvím uživatelsk
 'right-siteadmin'             => 'Zamykání a odemykání databáze',
 'right-reset-passwords'       => 'Nastavování hesel jiným uživatelům',
 'right-override-export-depth' => 'Exportovat stránky včetně odkazovaných stránek až do hloubky 5',
+'right-versiondetail'         => 'Prohlížení podrobných informací o verzích nainstalovaného software.',
 
 # User rights log
 'rightslog'      => 'Kniha práv uživatelů',
@@ -1657,12 +1659,15 @@ MGP # Pentax
 PICT # různé
  #</pre> <!-- tuto řádku ponechte beze změny -->',
 
-'upload-proto-error'      => 'Neplatný protokol',
-'upload-proto-error-text' => 'Nahrání vzdáleného souboru vyžaduje zadání URLs začínající na <code>http://</code> nebo <code>ftp://</code>.',
-'upload-file-error'       => 'Vnitřní chyba',
-'upload-file-error-text'  => 'Vnitřní chyba se vyskytla při vytváření dočasného souboru na serveru. Kontaktuje prosím administrátora systému.',
-'upload-misc-error'       => 'Neznámá chyba',
-'upload-misc-error-text'  => 'Neznámá chyba se vyskytla během nahrávání souboru.  Zkontrolujte zda je URL platná a přístupné a zkuste to znovu.  Pokud se chyba znovu objeví, kontaktuje administrátora systému.',
+'upload-proto-error'        => 'Neplatný protokol',
+'upload-proto-error-text'   => 'Nahrání vzdáleného souboru vyžaduje zadání URLs začínající na <code>http://</code> nebo <code>ftp://</code>.',
+'upload-file-error'         => 'Vnitřní chyba',
+'upload-file-error-text'    => 'Vnitřní chyba se vyskytla při vytváření dočasného souboru na serveru. Kontaktuje prosím administrátora systému.',
+'upload-misc-error'         => 'Neznámá chyba',
+'upload-misc-error-text'    => 'Neznámá chyba se vyskytla během nahrávání souboru.  Zkontrolujte zda je URL platná a přístupné a zkuste to znovu.  Pokud se chyba znovu objeví, kontaktuje administrátora systému.',
+'upload-too-many-redirects' => 'URL obsahovalo příliš mnoho přesměrování',
+'upload-unknown-size'       => 'Neznámá velikost',
+'upload-http-error'         => 'Došlo k chybě HTTP: $1',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Z URL nelze číst',
@@ -1806,7 +1811,9 @@ Vstup: <code>typ obsahu/podtyp</code>, např. <code>image/jpeg</code>.',
 'disambiguations-text' => 'Odkazy na následujících stránkách vedou na rozcestníky (stránky obsahující některou ze šablon uvedených na [[MediaWiki:Disambiguationspage|seznamu rozcestníkových šablon]]) místo na příslušný článek.',
 
 'doubleredirects'            => 'Dvojitá přesměrování',
-'doubleredirectstext'        => 'Na této stránce je seznam přesměrování vedoucí na další přesměrování. Každý řádek obsahuje odkaz na první a druhé přesměrování, a k tomu cíl druhého přesměrování, který obvykle ukazuje jméno „skutečné“ cílové stránky, na kterou by mělo první přesměrování odkazovat.',
+'doubleredirectstext'        => 'Na této stránce je seznam přesměrování vedoucích na další přesměrování.
+Každý řádek obsahuje odkaz na první a druhé přesměrování a k tomu cíl druhého přesměrování, který obvykle ukazuje jméno „skutečné“ cílové stránky, na kterou by mělo první přesměrování odkazovat.
+<s>Přeškrtnuté</s> položky již byly vyřešeny.',
 'double-redirect-fixed-move' => 'Stránka [[$1]] byla přesunuta, nyní přesměrovává na [[$2]]',
 'double-redirect-fixer'      => 'Opravář přesměrování',
 
@@ -2475,13 +2482,21 @@ V druhém případě můžete také používat přímý odkaz, např. pomocí [[
 'export-pagelinks'  => 'Zahrnout odkazované stránky až do hloubky:',
 
 # Namespace 8 related
-'allmessages'               => 'Všechna systémová hlášení',
-'allmessagesname'           => 'Označení hlášení',
-'allmessagesdefault'        => 'Původní text',
-'allmessagescurrent'        => 'Aktuální text',
-'allmessagestext'           => 'Toto je seznam všech hlášení dostupných ve jmenném prostoru MediaWiki.
+'allmessages'                   => 'Všechna systémová hlášení',
+'allmessagesname'               => 'Označení hlášení',
+'allmessagesdefault'            => 'Původní text',
+'allmessagescurrent'            => 'Aktuální text',
+'allmessagestext'               => 'Toto je seznam všech hlášení dostupných ve jmenném prostoru MediaWiki.
 Pokud si přejete přispívat k lokalizaci programu MediaWiki, navštivte [http://www.mediawiki.org/wiki/Localisation lokalizační stránku na mediawiki.org] a [http://translatewiki.net server translatewiki.net].',
-'allmessagesnotsupportedDB' => '{{ns:special}}:AllMessages není podporováno, neboť wgUseDatabaseMessages je vypnuto.',
+'allmessagesnotsupportedDB'     => '{{ns:special}}:AllMessages není podporováno, neboť wgUseDatabaseMessages je vypnuto.',
+'allmessages-filter-legend'     => 'Filtr',
+'allmessages-filter'            => 'Filtr podle stavu:',
+'allmessages-filter-unmodified' => 'Neupraveno',
+'allmessages-filter-all'        => 'Vše',
+'allmessages-filter-modified'   => 'Upraveno',
+'allmessages-prefix'            => 'Filtr podle začátku názvu:',
+'allmessages-language'          => 'Jazyk:',
+'allmessages-filter-submit'     => 'Použít',
 
 # Thumbnails
 'thumbnail-more'           => 'Zvětšit',
@@ -3300,6 +3315,7 @@ Zadejte jméno souboru bez označení "{{ns:file}}:".',
 'htmlform-invalid-input'       => 'Některé vámi zadané údaje jsou chybné',
 'htmlform-select-badoption'    => 'Vámi uvedená hodnota není platná možnost.',
 'htmlform-int-invalid'         => 'Uvedená hodnota není celé číslo.',
+'htmlform-float-invalid'       => 'Uvedená hodnota není číslo.',
 'htmlform-int-toolow'          => 'Vámi zadaná hodnota je menší než dovolené minimum $1',
 'htmlform-int-toohigh'         => 'Vámi zadaná hodnota je větší než dovolené maximum $1',
 'htmlform-submit'              => 'Odeslat',

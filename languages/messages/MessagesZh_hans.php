@@ -1,5 +1,5 @@
 <?php
-/** Simplified Chinese (‪中文(简化字)‬)
+/** Simplified Chinese (‪中文(简体)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -2241,7 +2241,7 @@ $1',
 $1已经被封锁。您是否想更改这个设置？',
 'ipb_cant_unblock'                => '错误：找不到查封ID$1。可能已经解除封禁。',
 'ipb_blocked_as_range'            => '错误：该IP $1 无直接查封，不可以解除封禁。但是它是在 $2 的查封范围之内，该段范围是可以解除封禁的。',
-'ip_range_invalid'                => '无效的IP范围。\\n',
+'ip_range_invalid'                => '无效的IP范围。',
 'blockme'                         => '禁封我',
 'proxyblocker'                    => '代理封锁器',
 'proxyblocker-disabled'           => '这个功能已经禁用。',

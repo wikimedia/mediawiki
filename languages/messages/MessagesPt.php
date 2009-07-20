@@ -18,6 +18,7 @@
  * @author Minh Nguyen
  * @author Nuno Tavares
  * @author Paulo Juntas
+ * @author Rafael Vargas
  * @author Rei-artur
  * @author Remember the dot
  * @author Rodrigo Calanca Nishino
@@ -215,20 +216,20 @@ $messages = array(
 'underline-default' => 'Padrão do navegador',
 
 # Dates
-'sunday'        => 'Domingo',
-'monday'        => 'Segunda-feira',
-'tuesday'       => 'Terça-feira',
-'wednesday'     => 'Quarta-feira',
-'thursday'      => 'Quinta-feira',
-'friday'        => 'Sexta-feira',
-'saturday'      => 'Sábado',
-'sun'           => 'Dom',
-'mon'           => 'Seg',
-'tue'           => 'Ter',
-'wed'           => 'Qua',
-'thu'           => 'Qui',
-'fri'           => 'Sex',
-'sat'           => 'Sáb',
+'sunday'        => 'domingo',
+'monday'        => 'segunda-feira',
+'tuesday'       => 'terça-feira',
+'wednesday'     => 'quarta-feira',
+'thursday'      => 'quinta-feira',
+'friday'        => 'sexta-feira',
+'saturday'      => 'sábado',
+'sun'           => 'dom',
+'mon'           => 'seg',
+'tue'           => 'ter',
+'wed'           => 'qua',
+'thu'           => 'qui',
+'fri'           => 'sex',
+'sat'           => 'sáb',
 'january'       => 'janeiro',
 'february'      => 'fevereiro',
 'march'         => 'março',
@@ -253,18 +254,18 @@ $messages = array(
 'october-gen'   => 'outubro',
 'november-gen'  => 'novembro',
 'december-gen'  => 'dezembro',
-'jan'           => 'Jan',
-'feb'           => 'Fev',
-'mar'           => 'Mar',
-'apr'           => 'Abr',
+'jan'           => 'jan',
+'feb'           => 'fev',
+'mar'           => 'mar',
+'apr'           => 'abr',
 'may'           => 'maio',
-'jun'           => 'Jun',
-'jul'           => 'Jul',
-'aug'           => 'Ago',
-'sep'           => 'Set',
-'oct'           => 'Out',
-'nov'           => 'Nov',
-'dec'           => 'Dez',
+'jun'           => 'jun',
+'jul'           => 'jul',
+'aug'           => 'ago',
+'sep'           => 'set',
+'oct'           => 'out',
+'nov'           => 'nov',
+'dec'           => 'dez',
 
 # Categories related messages
 'pagecategories'                 => '{{PLURAL:$1|Categoria|Categorias}}',
@@ -314,7 +315,7 @@ $messages = array(
 'faqpage'        => 'Project:FAQ',
 
 # Vector skin
-'vector-action-addsection'   => 'Adicionar tópico',
+'vector-action-addsection'   => 'Adicionar&nbsp;tópico',
 'vector-action-delete'       => 'Eliminar',
 'vector-action-move'         => 'Mover',
 'vector-action-protect'      => 'Proteger',

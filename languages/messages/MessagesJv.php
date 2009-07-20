@@ -2403,7 +2403,9 @@ mangga delengen math/README kanggo cara konfigurasi.',
 # Image deletion
 'deletedrevision'                 => 'Revisi lawas sing dibusak $1.',
 'filedeleteerror-short'           => 'Kaluputan nalika mbusak berkas: $1',
-'filedeleteerror-long'            => 'Ana kaluputan nalika mbusak berkas:\\n\\n$1\\n',
+'filedeleteerror-long'            => 'Ana kaluputan nalika mbusak berkas:
+
+$1',
 'filedelete-missing'              => 'Berkas "$1" ora bisa dibusak amerga ora ditemokaké.',
 'filedelete-old-unregistered'     => 'Révisi berkas "$1" sing diwènèhaké ora ana sajroning basis data.',
 'filedelete-current-unregistered' => 'Berkas sing dispésifikasi "$1" ora ana sajroning basis data.',

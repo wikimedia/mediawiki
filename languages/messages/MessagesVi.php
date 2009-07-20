@@ -549,12 +549,17 @@ Nó cũng có thể là dấu hiệu của một lỗi trong phần mềm mà {{
 # General errors
 'error'                => 'Lỗi',
 'databaseerror'        => 'Lỗi cơ sở dữ liệu',
-'dberrortext'          => 'Đã xảy ra lỗi cú pháp trong truy vấn cơ sở dữ liệu. Có vẻ như nguyên nhân của vấn đề này xuất phát từ một lỗi trong phần mềm. Truy vấn vừa rồi là:
+'dberrortext'          => 'Đã xảy ra lỗi cú pháp trong truy vấn cơ sở dữ liệu.
+Có vẻ như nguyên nhân của vấn đề này xuất phát từ một lỗi trong phần mềm.
+Truy vấn vừa rồi là:
 <blockquote><tt>$1</tt></blockquote>
-từ hàm “<tt>$2</tt>”. MySQL báo lỗi “<tt>$3: $4</tt>”.',
-'dberrortextcl'        => 'Đã xảy ra lỗi cú pháp trong truy vấn cơ sở dữ liệu. Truy vấn vừa rồi là:
-<blockquote><tt>$1</tt></blockquote>
-từ hàm “<tt>$2</tt>”. MySQL báo lỗi “<tt>$3: $4</tt>”.',
+từ hàm “<tt>$2</tt>”.
+$5 báo lỗi “<tt>$3: $4</tt>”.',
+'dberrortextcl'        => 'Đã xảy ra lỗi cú pháp trong truy vấn cơ sở dữ liệu.
+Truy vấn vừa rồi là:
+“$1”
+từ hàm “$2”.
+$5 báo lỗi “$3: $4”',
 'laggedslavemode'      => 'Cảnh báo: Trang có thể chưa được cập nhật.',
 'readonly'             => 'Cơ sở dữ liệu bị khóa',
 'enterlockreason'      => 'Nêu lý do khóa, cùng với thời hạn khóa',
@@ -572,6 +577,7 @@ Xin hãy báo nó cho một [[Special:ListUsers/sysop|bảo quản viên]], tron
 'readonly_lag'         => 'Cơ sở dữ liệu bị khóa tự động trong khi các máy chủ cập nhật thông tin của nhau.',
 'internalerror'        => 'Lỗi nội bộ',
 'internalerror_info'   => 'Lỗi nội bộ: $1',
+'fileappenderror'      => 'Không thể nối “$1” vào “$2”.',
 'filecopyerror'        => 'Không thể chép tập tin “$1” đến “$2”.',
 'filerenameerror'      => 'Không thể đổi tên tập tin “$1” thành “$2”.',
 'filedeleteerror'      => 'Không thể xóa tập tin “$1”.',
@@ -1392,6 +1398,7 @@ Bạn cũng có thể lựa chọn cho phép người khác liên lạc với b�
 'right-siteadmin'             => 'Khóa và mở khóa cơ sở dữ liệu',
 'right-reset-passwords'       => 'Tái tạo mật khẩu của thành viên khác',
 'right-override-export-depth' => 'Xuất trang kèm theo các trang được liên kết đến với độ sâu tối đa là 5',
+'right-versiondetail'         => 'Hiện thông tin phiên bản phần mềm mở rộng',
 
 # User rights log
 'rightslog'      => 'Nhật trình cấp quyền thành viên',
@@ -1576,15 +1583,18 @@ MGP # Pentax
 PICT # khác
  #</pre> <!-- xin để nguyên hàng này -->',
 
-'upload-proto-error'      => 'Giao thức sai',
-'upload-proto-error-text' => 'Phải đưa vào URL bắt đầu với <code>http://</code> hay <code>ftp://</code> để tải lên tập tin từ trang web khác.',
-'upload-file-error'       => 'Lỗi nội bộ',
-'upload-file-error-text'  => 'Có lỗi nội bộ khi tạo tập tin tạm trên máy chủ.
+'upload-proto-error'        => 'Giao thức sai',
+'upload-proto-error-text'   => 'Phải đưa vào URL bắt đầu với <code>http://</code> hay <code>ftp://</code> để tải lên tập tin từ trang web khác.',
+'upload-file-error'         => 'Lỗi nội bộ',
+'upload-file-error-text'    => 'Có lỗi nội bộ khi tạo tập tin tạm trên máy chủ.
 Xin hãy liên hệ với một [[Special:ListUsers/sysop|bảo quản viên]].',
-'upload-misc-error'       => 'Có lỗi lạ khi tải lên',
-'upload-misc-error-text'  => 'Có lỗi lạ khi tải lên.
+'upload-misc-error'         => 'Có lỗi lạ khi tải lên',
+'upload-misc-error-text'    => 'Có lỗi lạ khi tải lên.
 Xin hãy xác nhận lại địa chỉ URL là hợp lệ và có thể truy cập được không rồi thử lại lần nữa.
 Nếu vẫn còn bị lỗi, xin hãy liên hệ với một [[Special:ListUsers/sysop|bảo quản viên]].',
+'upload-too-many-redirects' => 'URL có quá nhiều chuyển hướng',
+'upload-unknown-size'       => 'Không rõ kích thước',
+'upload-http-error'         => 'Xảy ra lỗi HTTP: $1',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Không thể truy cập URL',
@@ -1729,7 +1739,9 @@ Hãy nhớ kiểm tra các liên kết khác đến tiêu bản trước khi xó
 'disambiguations-text' => "Các trang này có liên kết đến một '''trang định hướng'''. Nên sửa các liên kết này để chỉ đến một trang đúng nghĩa hơn.<br />Các trang định hướng là trang sử dụng những tiêu bản được liệt kê ở [[MediaWiki:Disambiguationspage]].",
 
 'doubleredirects'            => 'Đổi hướng kép',
-'doubleredirectstext'        => 'Trang này liệt kê các trang chuyển hướng đến một trang chuyển hướng khác. Mỗi hàng có chứa các liên kết đến trang chuyển hướng thứ nhất và thứ hai, cũng như mục tiêu của trang chuyển hướng thứ hai, thường chỉ tới trang đích “thực sự”, là nơi mà trang chuyển hướng đầu tiên nên trỏ đến.',
+'doubleredirectstext'        => 'Trang này liệt kê các trang đổi hướng đến một trang đổi hướng khác.
+Mỗi hàng có chứa các liên kết đến trang đổi hướng thứ nhất và thứ hai, cũng như mục tiêu của trang đổi hướng thứ hai, thường là trang đích “thực sự”, là nơi mà trang đổi hướng đầu tiên nên trỏ đến.
+Các mục <s>bị gạch bỏ</s> là các trang đã được sửa.',
 'double-redirect-fixed-move' => '[[$1]] đã được đổi tên, giờ nó là trang đổi hướng đến [[$2]]',
 'double-redirect-fixer'      => 'Người sửa trang đổi hướng',
 
@@ -2430,13 +2442,21 @@ Trong trường hợp sau bạn cũng có thể dùng một liên kết, ví d�
 'export-pagelinks'  => 'Gồm cả các trang liên kết sâu đến:',
 
 # Namespace 8 related
-'allmessages'               => 'Thông báo hệ thống',
-'allmessagesname'           => 'Tên thông báo',
-'allmessagesdefault'        => 'Nội dung mặc định',
-'allmessagescurrent'        => 'Nội dung hiện thời',
-'allmessagestext'           => 'Đây là toàn bộ thông báo hệ thống có trong không gian tên MediaWiki.
+'allmessages'                   => 'Thông báo hệ thống',
+'allmessagesname'               => 'Tên thông báo',
+'allmessagesdefault'            => 'Nội dung mặc định',
+'allmessagescurrent'            => 'Nội dung hiện thời',
+'allmessagestext'               => 'Đây là toàn bộ thông báo hệ thống có trong không gian tên MediaWiki.
 Mời vào [http://www.mediawiki.org/wiki/Localisation Địa phương hóa MediaWiki]  và [http://translatewiki.net translatewiki.net] nếu bạn muốn đóng góp dịch chung cả MediaWiki.',
-'allmessagesnotsupportedDB' => "Trang này không dùng được vì biến '''\$wgUseDatabaseMessages''' đã bị tắt.",
+'allmessagesnotsupportedDB'     => "Trang này không dùng được vì biến '''\$wgUseDatabaseMessages''' đã bị tắt.",
+'allmessages-filter-legend'     => 'Bộ lọc',
+'allmessages-filter'            => 'Lọc theo tình trạng sửa đổi:',
+'allmessages-filter-unmodified' => 'Chưa sửa',
+'allmessages-filter-all'        => 'Tất cả',
+'allmessages-filter-modified'   => 'Đã sửa',
+'allmessages-prefix'            => 'Lọc theo tiền tố:',
+'allmessages-language'          => 'Ngôn ngữ:',
+'allmessages-filter-submit'     => 'Xem',
 
 # Thumbnails
 'thumbnail-more'           => 'Phóng lớn',
@@ -3279,6 +3299,7 @@ Hãy cho vào tên của tập tin, trừ tiền tố “{{ns:file}}:”.',
 'htmlform-invalid-input'       => 'Có vấn đề trong dữ liệu bạn vừa đưa vào',
 'htmlform-select-badoption'    => 'Giá trị đưa vào không hợp lệ.',
 'htmlform-int-invalid'         => 'Giá trị đưa vào không phải số nguyên.',
+'htmlform-float-invalid'       => 'Giá trị chỉ định không phải là con số.',
 'htmlform-int-toolow'          => 'Giá trị đưa vào phải ít nhất $1',
 'htmlform-int-toohigh'         => 'Giá trị không được vượt quá $1',
 'htmlform-submit'              => 'Đăng',

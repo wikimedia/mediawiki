@@ -2282,7 +2282,9 @@ $1已被禁矣。爾是否改此置？',
 # Image deletion
 'deletedrevision'                 => '刪舊審$1',
 'filedeleteerror-short'           => '刪檔有誤：$1',
-'filedeleteerror-long'            => '刪檔有誤：\\n\\n$1\\n',
+'filedeleteerror-long'            => '刪檔有誤：
+
+$1',
 'filedelete-missing'              => '"$1"不存，無可刪也。',
 'filedelete-old-unregistered'     => '庫無舊審"$1"。',
 'filedelete-current-unregistered' => '庫無"$1"也。',

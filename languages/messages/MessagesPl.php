@@ -1006,7 +1006,7 @@ Potwierdź, że jesteś pewien tego co robisz, rozumiesz konsekwencje oraz, że 
 'revdelete-suppress-text'     => "Ukrywanie powinno być używane '''wyłącznie''' w sytuacji:
 * Ujawnienie danych osobowych
 *: ''adres domowy, numer telefonu, numer PESEL itp''",
-'revdelete-legend'            => 'Ustaw ograniczenia widoczności dla wersji',
+'revdelete-legend'            => 'Ustaw ograniczenia widoczności',
 'revdelete-hide-text'         => 'Ukryj tekst wersji',
 'revdelete-hide-name'         => 'Ukryj akcję i cel',
 'revdelete-hide-comment'      => 'Ukryj komentarz edycji',
@@ -1016,7 +1016,7 @@ Potwierdź, że jesteś pewien tego co robisz, rozumiesz konsekwencje oraz, że 
 'revdelete-hide-image'        => 'Ukryj zawartość pliku',
 'revdelete-unsuppress'        => 'Wyłącz utajnianie dla odtwarzanej historii zmian',
 'revdelete-log'               => 'Komentarz',
-'revdelete-submit'            => 'Zaakceptuj dla wybranych wersji',
+'revdelete-submit'            => 'Zaakceptuj dla wybranej wersji',
 'revdelete-logentry'          => 'zmienił widoczność wersji w [[$1]]',
 'logdelete-logentry'          => 'zmienił widoczność zdarzenia dla [[$1]]',
 'revdelete-success'           => "'''Zmieniono widoczność wersji.'''",
@@ -1037,6 +1037,13 @@ $1",
 'revdelete-unhid'             => 'nie ukrywaj $1',
 'revdelete-log-message'       => '$1 – $2 {{PLURAL:$2|wersja|wersje|wersji}}',
 'logdelete-log-message'       => '$1 – $2 {{PLURAL:$2|zdarzenie|zdarzenia|zdarzeń}}',
+'revdelete-hide-current'      => 'Wystąpił błąd przy ukrywaniu wersji datowanej na $2, $1. To jest najnowsza wersja strony, która nie może zostać ukryta.',
+'revdelete-show-no-access'    => 'Wystąpił błąd przy próbie wyświetlenia elementu datowanego na $2, $1. Widoczność tego elementu została ograniczona – nie masz prawa dostępu do niego.',
+'revdelete-modify-no-access'  => 'Wystąpił błąd przy próbie modyfikacji elementu datowanego na $2, $1. Widoczność tego elementu została ograniczona – nie masz prawa dostępu do niego.',
+'revdelete-modify-missing'    => 'Wystąpił błąd przy próbie modyfikacji elementu o ID $1 – brakuje go w bazie danych!',
+'revdelete-no-change'         => "'''Uwaga:''' element datowany na $2, $1 posiada już wskazane ustawienia widoczności.",
+'revdelete-concurrent-change' => 'Wystąpił błąd przy próbie modyfikacji elementu datowanego na $2, $1. Prawdopodobnie w międzyczasie ktoś zdążył zmienić ustawienia widoczności tego elementu.
+Proszę sprawdzić rejestr operacji.',
 'revdelete-only-restricted'   => 'Nie można ukrywać elementów przed administratorami bez określenia jednej z pozostałych opcji ukrywania.',
 
 # Suppression log
