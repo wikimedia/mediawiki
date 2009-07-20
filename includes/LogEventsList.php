@@ -49,12 +49,16 @@ class LogEventsList {
 
 	/**
 	 * Set page title and show header for this log type
-	 * @param $type String
+	 * @param $type Array
 	 */
 	public function showHeader( $type ) {
-		if( LogPage::isLogType( $type ) ) {
-			$this->out->setPageTitle( LogPage::logName( $type ) );
-			$this->out->addHTML( LogPage::logHeader( $type ) );
+		// If only one log type is used, then show a special message...
+		$headerType = (count($type) == 1) ? $type[0] : '';
+		if( LogPage::isLogType( $headerType ) ) {
+			$this->out->setPageTitle( LogPage::logName( $headerType ) );
+			$this->out->addHTML( LogPage::logHeader( $headerType ) );
+		} else {
+			$this->out->addHTML( wfMsgExt('alllogstext',array('parseinline')) );
 		}
 	}
 

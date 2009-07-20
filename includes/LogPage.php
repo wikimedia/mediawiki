@@ -133,6 +133,7 @@ class LogPage {
 
 	/**
 	 * @static
+	 * @param string $type logtype
 	 */
 	public static function logName( $type ) {
 		global $wgLogNames, $wgMessageCache;
