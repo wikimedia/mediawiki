@@ -90,8 +90,8 @@ function lockSearchindex( &$db ) {
 # Unlock and lock again
 # Since the lock is low-priority, queued reads will be able to complete
 function relockSearchindex( &$db ) {
-	lockSearchindex( $db );
 	$db->unlockTables( 'updateSearchIndex.inc ' . __METHOD__ );
+	lockSearchindex( $db );
 }
 
 function output( $text ) {
