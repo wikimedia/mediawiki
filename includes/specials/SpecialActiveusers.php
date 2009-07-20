@@ -49,6 +49,7 @@ class ActiveUsersPager extends UsersPager {
 		$dbr = wfGetDB( DB_SLAVE );
 		$conds = array('rc_user > 0'); // Users - no anons
 		$conds[] = 'ipb_deleted IS NULL'; // don't show hidden names
+		$conds[] = 'rc_log_type IS NULL OR rc_log_type != "newusers"';
 		$useIndex = $dbr->useIndexClause( 'rc_user_text' );
 		if( $this->requestedUser != '' ) {
 			$conds[] = 'rc_user_text >= ' . $dbr->addQuotes( $this->requestedUser );
@@ -57,12 +58,12 @@ class ActiveUsersPager extends UsersPager {
 		list( $recentchanges, $ipblocks, $user ) = $dbr->tableNamesN( 'recentchanges', 'ipblocks', 'user' );
 
 		$query = array(
-			'tables' => " $recentchanges $useIndex 
-				LEFT JOIN $ipblocks ON rc_user=ipb_user AND ipb_auto=0 AND ipb_deleted=1
-				INNER JOIN $user ON rc_user=user_id ",
+			'tables' => "$recentchanges $useIndex 
+				INNER JOIN $user ON rc_user_text=user_name
+				LEFT JOIN $ipblocks ON user_id=ipb_user AND ipb_auto=0 AND ipb_deleted=1 ",
 			'fields' => array( 'rc_user_text AS user_name', // inheritance
 				'rc_user_text', // for Pager
-				'MAX(rc_user) AS user_id',
+				'user_id',
 				'COUNT(*) AS recentedits',
 				'MAX(ipb_user) AS blocked' ),
 			'options' => array( 'GROUP BY' => 'rc_user_text' ),
