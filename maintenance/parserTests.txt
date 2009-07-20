@@ -7359,9 +7359,29 @@ I like the <a href="/wiki/Main_Page" title="Main Page">Main Page</a> a lot
 !!end
 
 !! test
+Edit comment with link and link text
+!! options
+comment
+!! input
+I like the [[Main Page|best pages]] a lot
+!! result
+I like the <a href="/wiki/Main_Page" title="Main Page">best pages</a> a lot
+!!end
+
+!! test
+Edit comment with link and link text with suffix
+!! options
+comment
+!! input
+I like the [[Main Page|best page]]s a lot
+!! result
+I like the <a href="/wiki/Main_Page" title="Main Page">best pages</a> a lot
+!!end
+
+!! test
 Edit comment with section link (non-local, eg in history list)
 !! options
-comment,title=[[Main Page]]
+comment title=[[Main Page]]
 !! input
 /* External links */ removed bogus entries
 !! result
@@ -7371,11 +7391,46 @@ comment,title=[[Main Page]]
 !! test
 Edit comment with section link (local, eg in diff view)
 !! options
-comment,local,title=[[Main Page]]
+comment local title=[[Main Page]]
 !! input
 /* External links */ removed bogus entries
 !! result
 <span class="autocomment"><a href="#External_links">→</a>External links: </span> removed bogus entries
+!!end
+
+!! test
+Edit comment with subpage link (bug 14080)
+!! options
+comment
+subpage
+title=[[Subpage test]]
+!! input
+Poked at a [[/subpage]] here...
+!! result
+Poked at a <a href="/wiki/Subpage_test/subpage" title="Subpage test/subpage">/subpage</a> here...
+!!end
+
+!! test
+Edit comment with subpage link and link text (bug 14080)
+!! options
+comment
+subpage
+title=[[Subpage test]]
+!! input
+Poked at a [[/subpage|neat little page]] here...
+!! result
+Poked at a <a href="/wiki/Subpage_test/subpage" title="Subpage test/subpage">neat little page</a> here...
+!!end
+
+!! test
+Edit comment with bogus subpage link in non-subpage NS (bug 14080)
+!! options
+comment
+title=[[Subpage test]]
+!! input
+Poked at a [[/subpage]] here...
+!! result
+Poked at a <a href="/index.php?title=/subpage&amp;action=edit&amp;redlink=1" class="new" title="/subpage (page does not exist)">/subpage</a> here...
 !!end
 
 

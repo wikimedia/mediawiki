@@ -922,7 +922,7 @@ class Linker {
 
 		# Render autocomments and make links:
 		$comment = $this->formatAutoComments( $comment, $title, $local );
-		$comment = $this->formatLinksInComment( $comment );
+		$comment = $this->formatLinksInComment( $comment, $title );
 
 		wfProfileOut( __METHOD__ );
 		return $comment;
@@ -1009,11 +1009,14 @@ class Linker {
 	 * @param string $comment Text to format links in
 	 * @return string
 	 */
-	public function formatLinksInComment( $comment ) {
-		return preg_replace_callback(
+	public function formatLinksInComment( $comment, $title = null ) {
+		$this->commentContextTitle = $title;
+		$html = preg_replace_callback(
 			'/\[\[:?(.*?)(\|(.*?))*\]\]([^[]*)/',
 			array( $this, 'formatLinksInCommentCallback' ),
 			$comment );
+		unset( $this->commentContextTitle );
+		return $html;
 	}
 
 	protected function formatLinksInCommentCallback( $match ) {
@@ -1052,14 +1055,91 @@ class Linker {
 			if (isset($match[1][0]) && $match[1][0] == ':')
 				$match[1] = substr($match[1], 1);
 			list( $inside, $trail ) = Linker::splitTrail( $trail );
+			
+			$linkText = $text;
+			$linkTarget = Linker::normalizeSubpageLink( $this->commentContextTitle,
+				$match[1], $linkText );
+			
 			$thelink = $this->link(
-				Title::newFromText( $match[1] ),
-				$text . $inside
+				Title::newFromText( $linkTarget ),
+				$linkText . $inside
 			) . $trail;
 		}
 		$comment = preg_replace( $linkRegexp, StringUtils::escapeRegexReplacement( $thelink ), $comment, 1 );
 
 		return $comment;
+	}
+	
+	static function normalizeSubpageLink( $contextTitle, $target, &$text ) {
+		# Valid link forms:
+		# Foobar -- normal
+		# :Foobar -- override special treatment of prefix (images, language links)
+		# /Foobar -- convert to CurrentPage/Foobar
+		# /Foobar/ -- convert to CurrentPage/Foobar, strip the initial / from text
+		# ../ -- convert to CurrentPage, from CurrentPage/CurrentSubPage
+		# ../Foobar -- convert to CurrentPage/Foobar, from CurrentPage/CurrentSubPage
+
+		wfProfileIn( __METHOD__ );
+		$ret = $target; # default return value is no change
+
+		# Some namespaces don't allow subpages,
+		# so only perform processing if subpages are allowed
+		if( $contextTitle && MWNamespace::hasSubpages( $contextTitle->getNamespace() ) ) {
+			$hash = strpos( $target, '#' );
+			if( $hash !== false ) {
+				$suffix = substr( $target, $hash );
+				$target = substr( $target, 0, $hash );
+			} else {
+				$suffix = '';
+			}
+			# bug 7425
+			$target = trim( $target );
+			# Look at the first character
+			if( $target != '' && $target{0} === '/' ) {
+				# / at end means we don't want the slash to be shown
+				$m = array();
+				$trailingSlashes = preg_match_all( '%(/+)$%', $target, $m );
+				if( $trailingSlashes ) {
+					$noslash = $target = substr( $target, 1, -strlen($m[0][0]) );
+				} else {
+					$noslash = substr( $target, 1 );
+				}
+
+				$ret = $contextTitle->getPrefixedText(). '/' . trim($noslash) . $suffix;
+				if( '' === $text ) {
+					$text = $target . $suffix;
+				} # this might be changed for ugliness reasons
+			} else {
+				# check for .. subpage backlinks
+				$dotdotcount = 0;
+				$nodotdot = $target;
+				while( strncmp( $nodotdot, "../", 3 ) == 0 ) {
+					++$dotdotcount;
+					$nodotdot = substr( $nodotdot, 3 );
+				}
+				if($dotdotcount > 0) {
+					$exploded = explode( '/', $contextTitle->GetPrefixedText() );
+					if( count( $exploded ) > $dotdotcount ) { # not allowed to go below top level page
+						$ret = implode( '/', array_slice( $exploded, 0, -$dotdotcount ) );
+						# / at the end means don't show full path
+						if( substr( $nodotdot, -1, 1 ) === '/' ) {
+							$nodotdot = substr( $nodotdot, 0, -1 );
+							if( '' === $text ) {
+								$text = $nodotdot . $suffix;
+							}
+						}
+						$nodotdot = trim( $nodotdot );
+						if( $nodotdot != '' ) {
+							$ret .= '/' . $nodotdot;
+						}
+						$ret .= $suffix;
+					}
+				}
+			}
+		}
+
+		wfProfileOut( __METHOD__ );
+		return $ret;
 	}
 
 	/**
