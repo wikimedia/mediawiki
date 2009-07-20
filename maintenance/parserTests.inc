@@ -424,51 +424,52 @@ class ParserTest {
 			$this->showTesting( $desc );
 		}
 
+		$opts = $this->parseOptions( $opts );
 		$this->setupGlobals($opts, $config);
 
 		$user = new User();
 		$options = ParserOptions::newFromUser( $user );
 
-		if (preg_match('/\\bmath\\b/i', $opts)) {
+		if ( isset( $opts['math'] ) ) {
 			# XXX this should probably be done by the ParserOptions
 			$options->setUseTex(true);
 		}
 
 		$m = array();
-		if (preg_match('/title=\[\[(.*)\]\]/', $opts, $m)) {
-			$titleText = $m[1];
+		if (isset( $opts['title'] ) ) {
+			$titleText = $opts['title'];
 		}
 		else {
 			$titleText = 'Parser test';
 		}
 
-		$noxml = (bool)preg_match( '~\\b noxml \\b~x', $opts );
-		$local = (bool)preg_match( '~\\b local \\b~x', $opts );
+		$noxml = isset( $opts['noxml'] );
+		$local = isset( $opts['local'] );
 		$parser = $this->getParser();
 		$title =& Title::makeTitle( NS_MAIN, $titleText );
 
 		$matches = array();
-		if (preg_match('/\\bpst\\b/i', $opts)) {
+		if( isset( $opts['pst'] ) ) {
 			$out = $parser->preSaveTransform( $input, $title, $user, $options );
-		} elseif (preg_match('/\\bmsg\\b/i', $opts)) {
+		} elseif( isset( $opts['msg'] ) ) {
 			$out = $parser->transformMsg( $input, $options );
-		} elseif( preg_match( '/\\bsection=([\w-]+)\b/i', $opts, $matches ) ) {
-			$section = $matches[1];
+		} elseif( isset( $opts['section'] ) ) {
+			$section = $opts['section'];
 			$out = $parser->getSection( $input, $section );
-		} elseif( preg_match( '/\\breplace=([\w-]+),"(.*?)"/i', $opts, $matches ) ) {
-			$section = $matches[1];
-			$replace = $matches[2];
+		} elseif( isset( $opts['replace'] ) ) {
+			$section = $opts['replace'][0];
+			$replace = $opts['replace'][1];
 			$out = $parser->replaceSection( $input, $section, $replace );
-		} elseif( preg_match( '/\\bcomment\\b/i', $opts ) ) {
+		} elseif( isset( $opts['comment'] ) ) {
 			$linker = $user->getSkin();
 			$out = $linker->formatComment( $input, $title, $local );
 		} else {
 			$output = $parser->parse( $input, $title, $options, true, true, 1337 );
 			$out = $output->getText();
 
-			if (preg_match('/\\bill\\b/i', $opts)) {
+			if (isset( $opts['ill'] ) ) {
 				$out = $this->tidy( implode( ' ', $output->getLanguageLinks() ) );
-			} else if (preg_match('/\\bcat\\b/i', $opts)) {
+			} elseif( isset( $opts['cat'] ) ) {
 				global $wgOut;
 				$wgOut->addCategoryLinks($output->getCategories());
 				$cats = $wgOut->getCategoryLinks();
@@ -494,17 +495,82 @@ class ParserTest {
 
 	/**
 	 * Use a regex to find out the value of an option
-	 * @param $regex A regex, the first group will be the value returned
-	 * @param $opts Options line to look in
-	 * @param $defaults Default value returned if the regex does not match
+	 * @param $key name of option val to retrieve
+	 * @param $opts Options array to look in
+	 * @param $defaults Default value returned if not found
 	 */
-	private static function getOptionValue( $regex, $opts, $default ) {
-		$m = array();
-		if( preg_match( $regex, $opts, $m ) ) {
-			return $m[1];
+	private static function getOptionValue( $key, $opts, $default ) {
+		if( isset( $opts[$key] ) ) {
+			return $opts[$key];
 		} else {
 			return $default;
 		}
+	}
+	
+	private function parseOptions( $instring ) {
+		$opts = array();
+		$lines = explode( "\n", $instring );
+		// foo
+		// foo=bar
+		// foo="bar baz"
+		// foo=[[bar baz]]
+		// foo=bar,"baz quux"
+		$regex = '/\b
+			([\w-]+)						# Key
+			\b
+			(?:\s*
+				=						# First sub-value
+				\s*
+				(
+					"
+						[^"]*			# Quoted val
+					"
+				|
+					\[\[
+						[^]]*			# Link target
+					\]\]
+				|
+					[\w-]+				# Plain word
+				)
+				(?:\s*
+					,					# Sub-vals 1..N
+					\s*
+					(
+						"[^"]*"			# Quoted val
+					|
+						\[\[[^]]*\]\]	# Link target
+					|
+						[\w-]+			# Plain word
+					)
+				)*
+			)?
+			/x';
+
+		if( preg_match_all( $regex, $instring, $matches, PREG_SET_ORDER ) ) {
+			foreach( $matches as $bits ) {
+				$match = array_shift( $bits );
+				$key = strtolower( array_shift( $bits ) );
+				if( count( $bits ) == 0 ) {
+					$opts[$key] = true;
+				} elseif( count( $bits ) == 1 ) {
+					$opts[$key] = $this->cleanupOption( array_shift( $bits ) );
+				} else {
+					// Array!
+					$opts[$key] = array_map( array( $this, 'cleanupOption' ), $bits );
+				}
+			}
+		}
+		return $opts;
+	}
+	
+	private function cleanupOption( $opt ) {
+		if( substr( $opt, 0, 1 ) == '"' ) {
+			return substr( $opt, 1, -1 );
+		}
+		if( substr( $opt, 0, 2 ) == '[[' ) {
+			return substr( $opt, 2, -2 );
+		}
+		return $opt;
 	}
 
 	/**
@@ -518,13 +584,13 @@ class ParserTest {
 
 		# Find out values for some special options.
 		$lang =
-			self::getOptionValue( '/language=([a-z]+(?:_[a-z]+)?)/', $opts, 'en' );
+			self::getOptionValue( 'language', $opts, 'en' );
 		$variant =
-			self::getOptionValue( '/variant=([a-z]+(?:-[a-z]+)?)/', $opts, false );
+			self::getOptionValue( 'variant', $opts, false );
 		$maxtoclevel =
-			self::getOptionValue( '/wgMaxTocLevel=(\d+)/', $opts, 999 );
+			self::getOptionValue( 'wgMaxTocLevel', $opts, 999 );
 		$linkHolderBatchSize = 
-			self::getOptionValue( '/wgLinkHolderBatchSize=(\d+)/', $opts, 1000 );
+			self::getOptionValue( 'wgLinkHolderBatchSize', $opts, 1000 );
 
 		$settings = array(
 			'wgServer' => 'http://localhost',
@@ -547,10 +613,10 @@ class ParserTest {
 			'wgLanguageCode' => $lang,
 			'wgContLanguageCode' => $lang,
 			'wgDBprefix' => 'parsertest_',
-			'wgRawHtml' => preg_match('/\\brawhtml\\b/i', $opts),
+			'wgRawHtml' => isset( $opts['rawhtml'] ),
 			'wgLang' => null,
 			'wgContLang' => null,
-			'wgNamespacesWithSubpages' => array( 0 => preg_match('/\\bsubpage\\b/i', $opts)),
+			'wgNamespacesWithSubpages' => array( 0 => isset( $opts['subpage'] ) ),
 			'wgMaxTocLevel' => $maxtoclevel,
 			'wgCapitalLinks' => true,
 			'wgNoFollowLinks' => true,
