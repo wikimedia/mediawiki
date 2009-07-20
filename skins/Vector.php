@@ -18,7 +18,7 @@ if( !defined( 'MEDIAWIKI' ) )
 class SkinVector extends SkinTemplate {
 
 	/* Functions */
-	var $skinname = $stylename = 'vector',
+	var $skinname = 'vector', $stylename = 'vector',
 		$template = 'VectorTemplate';
 
 	/**

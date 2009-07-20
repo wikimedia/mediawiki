@@ -15,6 +15,6 @@ if( !defined( 'MEDIAWIKI' ) )
  * @ingroup Skins
  */
 class SkinMySkin extends SkinTemplate {
-	var $skinname = $stylename = 'myskin',
+	var $skinname = 'myskin', $stylename = 'myskin',
 		$template = 'MonoBookTemplate';
 }
