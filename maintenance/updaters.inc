@@ -1739,14 +1739,20 @@ function do_postgres_updates() {
 		dbsource(archive($nr[2]));
 	}
 
-	if ($wgDatabase->hasConstraint("oldimage_oi_name_fkey")) {
-		wfOut( "Making foreign key on table \"oldimage\" (to image) a cascade delete\n" );
-		$wgDatabase->query( "ALTER TABLE oldimage DROP CONSTRAINT oldimage_oi_name_fkey" );
-		$wgDatabase->query( "ALTER TABLE oldimage ADD CONSTRAINT oldimage_oi_name_fkey_cascade ".
-			"FOREIGN KEY (oi_name) REFERENCES image(img_name) ON DELETE CASCADE" );
+	if ($wgDatabase->hasConstraint("oldimage_oi_name_fkey_cascaded")) {
+		wfOut( "... table \"oldimage\" has correct cascading delete/update foreign key to image\n" );
 	}
-	else
-		wfOut( "... table \"oldimage\" has correct cascade delete foreign key to image\n" );
+	else {
+		if ($wgDatabase->hasConstraint("oldimage_oi_name_fkey")) {
+			$wgDatabase->query( "ALTER TABLE oldimage DROP CONSTRAINT oldimage_oi_name_fkey" );
+		}
+		if ($wgDatabase->hasConstraint("oldimage_oi_name_fkey_cascade")) {
+			$wgDatabase->query( "ALTER TABLE oldimage DROP CONSTRAINT oldimage_oi_name_fkey_cascade" );
+		}
+		wfOut( "Making foreign key on table \"oldimage\" (to image) a cascade delete/update\n" );
+		$wgDatabase->query( "ALTER TABLE oldimage ADD CONSTRAINT oldimage_oi_name_fkey_cascaded ".
+			"FOREIGN KEY (oi_name) REFERENCES image(img_name) ON DELETE CASCADE ON UPDATE CASCADE" );
+	}
 
 	if (!$wgDatabase->triggerExists("page", "page_deleted")) {
 		wfOut( "Adding function and trigger \"page_deleted\" to table \"page\"\n" );
