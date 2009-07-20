@@ -3360,7 +3360,8 @@ class Article {
 				$userlinks,
 				$revision->getID(),
 				$tddate,
-				$tdtime
+				$tdtime,
+				$revision->getUser()
 			) .
 			"</div>\n" .
 			"\n\t\t\t\t<div id=\"mw-revision-nav\">" . $cdel . wfMsgExt( 'revision-nav', array( 'escapenoentities', 'parsemag', 'replaceafter' ),
