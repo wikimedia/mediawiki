@@ -47,33 +47,36 @@ class ActiveUsersPager extends UsersPager {
 
 	function getQueryInfo() {
 		$dbr = wfGetDB( DB_SLAVE );
-		$conds = array('rc_user > 0'); // Users - no anons
+		$conds = array( 'rc_user > 0' ); // Users - no anons
 		$conds[] = 'ipb_deleted IS NULL'; // don't show hidden names
 		$conds[] = 'rc_log_type IS NULL OR rc_log_type != "newusers"';
-		$useIndex = $dbr->useIndexClause( 'rc_user_text' );
 		if( $this->requestedUser != '' ) {
 			$conds[] = 'rc_user_text >= ' . $dbr->addQuotes( $this->requestedUser );
 		}
 
-		list( $recentchanges, $ipblocks, $user ) = $dbr->tableNamesN( 'recentchanges', 'ipblocks', 'user' );
-
 		$query = array(
-			'tables' => "$recentchanges $useIndex 
-				INNER JOIN $user ON rc_user_text=user_name
-				LEFT JOIN $ipblocks ON user_id=ipb_user AND ipb_auto=0 AND ipb_deleted=1 ",
+			'tables' => array( 'recentchanges', 'user', 'ipblocks' ),
 			'fields' => array( 'rc_user_text AS user_name', // inheritance
 				'rc_user_text', // for Pager
 				'user_id',
 				'COUNT(*) AS recentedits',
-				'MAX(ipb_user) AS blocked' ),
-			'options' => array( 'GROUP BY' => 'rc_user_text' ),
+				'MAX(ipb_user) AS blocked'
+			),
+			'options' => array(
+				'GROUP BY' => 'rc_user_text',
+				'USE INDEX' => array( 'recentchanges' => 'rc_user_text' )
+			),
+			'join_conds' => array(
+				'user' => array( 'INNER JOIN', 'rc_user_text=user_name' ),
+				'ipblocks' => array( 'LEFT JOIN', 'user_id=ipb_user AND ipb_auto=0 AND ipb_deleted=1' ),
+			),
 			'conds' => $conds
 		);
 		return $query;
 	}
 
 	function formatRow( $row ) {
-		$userName = $row->rc_user_text;
+		$userName = $row->user_name;
 		$userPage = Title::makeTitle( NS_USER, $userName );
 		$name = $this->getSkin()->makeLinkObj( $userPage, htmlspecialchars( $userPage->getText() ) );
 
@@ -123,7 +126,7 @@ class SpecialActiveUsers extends SpecialPage {
 	 * Constructor
 	 */
 	public function  __construct() {
-		parent::__construct( 'ActiveUsers' );
+		parent::__construct( 'Activeusers' );
 	}
 
 	/**
