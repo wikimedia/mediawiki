@@ -2266,7 +2266,7 @@ function wfShellExec( $cmd, &$retval=null ) {
 	} elseif ( php_uname( 's' ) == 'Windows NT' ) {
 		# This is a hack to work around PHP's flawed invocation of cmd.exe
 		# http://news.php.net/php.internals/21796
-		$cmd = '"' . $cmd . '"';
+		$cmd = '"' . $cmd . '"'; // FIXME: breaking Vista sp2/PHP 5.2.9(2)
 	}
 	wfDebug( "wfShellExec: $cmd\n" );
 
