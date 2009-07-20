@@ -293,6 +293,7 @@ This can also appear in the credits page if the credits feature is enabled,for e
 {{Identical|View source}}',
 'actions'                    => '{{Identical|Action}}',
 'namespaces'                 => '{{Identical|Namespace}}',
+'variants'                   => 'Used by the Vector skin.',
 
 # Metadata in edit box
 'metadata_help' => '{{Identical|Metadata}}',
@@ -782,10 +783,11 @@ Please report at [[Support]] if you are unable to properly translate this messag
 'revision-info'          => 'Appears just below the page title when an old version of the page is being viewed.
 
 * $1: date and time of revision
-* $2: author of revision
+* $2: a series of links: to author of the revision, his talk page, etc.
 * (optional) $3: revision ID
 * (optional) $4: date of revision
-* (optional) $5: time of revision',
+* (optional) $5: time of revision
+* (optional) $6: author of revision, for GENDER use',
 'currentrevisionlink'    => '{{Identical|Current revision}}',
 'cur'                    => 'Link in page history',
 'next'                   => 'Link in page history
@@ -1102,6 +1104,10 @@ Shown as legend of the second fieldset of the tab 'Search' in [[Special:Preferen
 'uid'                           => '{{Identical|User ID}}',
 'prefs-memberingroups'          => 'This message is shown on [[Special:Preferences]], first tab, where it is follwed by a colon.',
 'prefs-registration'            => 'Used in [[Special:Preferences]].',
+'prefs-registration-date-time'  => 'Used in [[Special:Preferences]]. Parameters are:
+* $1 date and time of registration
+* $2 date of registration
+* $3 time of registration',
 'yourrealname'                  => 'Used in [[Special:Preferences]], first tab.
 {{Identical|Real name}}',
 'yourlanguage'                  => 'Used in [[Special:Preferences]], first tab.
@@ -2308,8 +2314,12 @@ Parameters:
 {{Identical|All}}',
 'allmessages-filter-modified'   => 'Used in [[Special:AllMessages]].',
 'allmessages-prefix'            => 'Used in [[Special:AllMessages]].',
-'allmessages-language'          => '{{Identical|Language}}',
-'allmessages-filter-submit'     => '{{Identical|Go}}',
+'allmessages-language'          => 'Used on [[Special:Allmessages]].
+
+{{Identical|Language}}',
+'allmessages-filter-submit'     => 'Used on [[Special:Allmessages]].
+
+{{Identical|Go}}',
 
 # Thumbnails
 'thumbnail-more'          => '[[Image:Yes.png|thumb|This:]]

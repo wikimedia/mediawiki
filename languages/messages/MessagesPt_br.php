@@ -1086,8 +1086,8 @@ Certifique-se de que tal alteração manterá a continuidade das ações.',
 'searchmenu-new'                   => "'''Criar a página \"[[:\$1|\$1]]\" nesta wiki!'''",
 'searchhelp-url'                   => 'Help:Conteúdos',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Navegue pelas páginas com este prefixo]]',
-'searchprofile-articles'           => 'Artigos',
-'searchprofile-project'            => 'Ajuda',
+'searchprofile-articles'           => 'Páginas de conteúdo',
+'searchprofile-project'            => 'Ajuda e páginas do Projeto',
 'searchprofile-images'             => 'Multimídia',
 'searchprofile-everything'         => 'Tudo',
 'searchprofile-advanced'           => 'Avançado',
@@ -1170,7 +1170,7 @@ Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desat
 'stub-threshold'              => 'Links para páginas de conteúdo aparecerão <a href="#" class="stub">desta forma</a> se elas possuírem menos de (bytes):',
 'recentchangesdays'           => 'Dias a serem exibidos nas Mudanças recentes:',
 'recentchangesdays-max'       => '(máximo: $1 {{PLURAL:$1|dia|dias}})',
-'recentchangescount'          => 'Número de edições a serem exibidas nas mudanças recentes, históricos de páginas e páginas de registos, por padrão:',
+'recentchangescount'          => 'Número de edições a serem exibidas por padrão:',
 'savedprefs'                  => 'As suas preferências foram salvas.',
 'timezonelegend'              => 'Fuso horário:',
 'localtime'                   => 'Horário local:',
@@ -1192,7 +1192,7 @@ Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desat
 'allowemail'                  => 'Permitir email de outros usuários',
 'prefs-searchoptions'         => 'Opções de busca',
 'prefs-namespaces'            => 'Espaços nominais',
-'defaultns'                   => 'Pesquisar por padrão nestes espaços nominais:',
+'defaultns'                   => 'Caso contrário pesquisar nestes espaços nominais:',
 'default'                     => 'padrão',
 'prefs-files'                 => 'Arquivos',
 'prefs-custom-css'            => 'CSS personalizada',
@@ -1660,7 +1660,9 @@ A descrição na sua [$2 página de descrição de arquivo] é exibida abaixo.',
 Uma página é considerada como de desambiguação se utilizar uma predefinição que esteja definida em [[MediaWiki:Disambiguationspage]]',
 
 'doubleredirects'            => 'Redirecionamentos duplos',
-'doubleredirectstext'        => 'Cada linha contém ligações para o primeiro e segundo redirecionamento, bem como a primeira linha de conteúdo do segundo redirecionamento, geralmente contendo a página destino "real", que devia ser o destino do primeiro redirecionamento.',
+'doubleredirectstext'        => 'Esta página lista as páginas que redirecionam para outros redirecionamentos.
+Cada linha contém ligações para o primeiro e o segundo redirecionamentos, juntamente com o alvo do segundo redirecionamento, que é geralmente a verdadeira página de destino, para a qual o primeiro redirecionamento deveria apontar.
+Entradas <s>riscadas</s> foram resolvidas.',
 'double-redirect-fixed-move' => '[[$1]] foi movido e agora é um redirecionamento para [[$2]]',
 'double-redirect-fixer'      => 'Corretor de redirecionamentos',
 
@@ -1773,9 +1775,9 @@ Você pode diminuir a lista escolhendo um tipo de registro, um nome de usuário 
 
 # Special:Categories
 'categories'                    => 'Categorias',
-'categoriespagetext'            => 'As seguintes categorias contém páginas ou multimédia.
-As [[Special:UnusedCategories|categorias não utilizadas]] não são exibidas nesta listagem.
-Veja também as [[Special:WantedCategories|categorias em falta]].',
+'categoriespagetext'            => '{{PLURAL:$1|A seguinte categoria contém|As seguintes contém}} páginas ou mídia.
+[[Special:UnusedCategories|Categorias não utilizadas]] não são mostradas aqui.
+Veja também [[Special:WantedCategories|categorias pedidas]].',
 'categoriesfrom'                => 'Listar categorias começando por:',
 'special-categories-sort-count' => 'ordenar por contagem',
 'special-categories-sort-abc'   => 'ordenar alfabeticamente',

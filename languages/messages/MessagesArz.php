@@ -461,6 +461,8 @@ $messages = array(
 'vector-view-view'           => 'قرايه',
 'vector-view-viewsource'     => 'استعراض المصدر',
 'actions'                    => 'أعمال',
+'namespaces'                 => 'النطاقات',
+'variants'                   => 'المتغيرات',
 
 # Metadata in edit box
 'metadata_help' => 'ميتا داتا:',
@@ -519,6 +521,11 @@ $messages = array(
 'jumpto'            => 'روح على:',
 'jumptonavigation'  => 'ناڤيجيشن',
 'jumptosearch'      => 'تدوير',
+'view-pool-error'   => 'متأسفين, السيرفرات عليها حمل كبير دلوقتى.
+فى يوزرات كتير قوى بيحاولو يشوفو الصفحه دى.
+لو سمحت تستنا شويه قبل ما تحاول تستعرض الصفحه دى من تانى.
+
+$1',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'عن {{SITENAME}}',
@@ -601,17 +608,17 @@ $messages = array(
 # General errors
 'error'                => 'غلطة',
 'databaseerror'        => 'غلط فى قاعدة البيانات',
-'dberrortext'          => 'حصل غلط فى صيغة الاستعلام.
+'dberrortext'          => 'حصل غلط فى صيغة الاستعلام فى قاعدة البيانات.
 ممكن يكون فى عيب فى البرنامج.
-آخر استعلام اتطلب من قاعدة البيانات كان:
-<blockquote><tt>$1</tt></blockquote>
-من جوا الدالة "<tt>$2</tt>".
-MySQL  رجعت الغلط "<tt>$3: $4</tt>".',
-'dberrortextcl'        => 'حصل غلط فى صيغة الاستعلام.
-آخر استعلام اتطلب من قاعدة البيانات كان:
+آخر محاولة استعلام اتطلبت من قاعدة البيانات كانت:
+blockquote><tt>$1</tt></blockquote>
+من جوه الداله"<tt>$2</tt>".
+$5 رجعت الغلط"<tt>$3: $4</tt>".',
+'dberrortextcl'        => 'حصل غلط فى صيغة استعلام قاعدة البيانات.
+اخر محاوله للاستعلام من قاعجة البيانات كانت:
 "$1"
-من جوا الدالة "$2".
-MySQL رجعت الغلط "$3: $4"',
+من جوه الداله "$2".
+$5 رجعت الغلط"$3: $4"',
 'laggedslavemode'      => 'تحذير: الصفحة يمكن ما فيهاش اخر التحديثات.',
 'readonly'             => 'قاعدة البيانات مقفولة',
 'enterlockreason'      => 'اكتب سبب القفل، وقول امتى تقريبا ح يتلغى القفل',
@@ -630,6 +637,7 @@ $1',
 'readonly_lag'         => 'قاعدة البيانات  اتقفلت اوتوماتيكى علشان تقدر السيرفرات الفرعية تلحق السيرفر الرئيسي',
 'internalerror'        => 'غلط داخلي',
 'internalerror_info'   => 'غلط داخلي: $1',
+'fileappenderror'      => 'ماقدرناش نضيف "$1" على "$2".',
 'filecopyerror'        => 'ما قدرنا ش  ننسخ الملف "$1" لـ "$2".',
 'filerenameerror'      => 'ما قدر نا ش نغير اسم الملف "$1" لـ "$2".',
 'filedeleteerror'      => 'ما قدرنا ش نمسح الملف "$1".',
@@ -1474,6 +1482,7 @@ $1",
 'right-siteadmin'             => 'قفل وفتح قاعدة البيانات',
 'right-reset-passwords'       => 'تغيير الباوسورد بتاعة اليوزرات التانيين',
 'right-override-export-depth' => 'تصدير الصفحات مع الصفحات الموصوله لحد عمق 5',
+'right-versiondetail'         => 'عرض معلومات نسخة السوفتوير المتوسعه',
 
 # User rights log
 'rightslog'      => 'سجل صلاحيات اليوزرز',
@@ -1669,15 +1678,18 @@ MGP # Pentax
 PICT # misc.
  #</pre> <!-- سيب السطر ده زى ما هوه -->',
 
-'upload-proto-error'      => 'بروتوكول مش صحيح',
-'upload-proto-error-text' => 'االتحميل عن بعد لازمله يوأرإل بيبتدى بـ <code>http://</code> أو <code>ftp://</code>.',
-'upload-file-error'       => 'غلط داخلي',
-'upload-file-error-text'  => 'حصل غلط داخلى واحنا بنحاول نعمل ملف مؤقت على السيرفر.
+'upload-proto-error'        => 'بروتوكول مش صحيح',
+'upload-proto-error-text'   => 'االتحميل عن بعد لازمله يوأرإل بيبتدى بـ <code>http://</code> أو <code>ftp://</code>.',
+'upload-file-error'         => 'غلط داخلي',
+'upload-file-error-text'    => 'حصل غلط داخلى واحنا بنحاول نعمل ملف مؤقت على السيرفر.
 لو سمحت اتصل بإدارى نظام.',
-'upload-misc-error'       => 'غلط مش معروف فى التحميل',
-'upload-misc-error-text'  => 'حصل غلط مش معروف وإنت بتحمل.
+'upload-misc-error'         => 'غلط مش معروف فى التحميل',
+'upload-misc-error-text'    => 'حصل غلط مش معروف وإنت بتحمل.
 لو سمحت تتاكد أن اليوأرإل صح و ممكن تدخل عليه و بعدين حاول تاني.
 إذا المشكلة تنتها موجودة،اتصل بإدارى نظام.',
+'upload-too-many-redirects' => 'الـ URL فيه تحويلات اكتر من اللازم',
+'upload-unknown-size'       => 'حجم مش معروف',
+'upload-http-error'         => 'حصل غلط فى الـHTTB :$1',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'ما قدرناش نوصل لليو أر إل',
@@ -2544,15 +2556,21 @@ $1 ممنوع فعلا. عايز تغير الإعدادات؟',
 'export-pagelinks'  => 'تضمين الصفحات المتوصله لحد عمق :',
 
 # Namespace 8 related
-'allmessages'               => 'رسايل النظام',
-'allmessagesname'           => 'اسم',
-'allmessagesdefault'        => 'النص الاوتوماتيكي',
-'allmessagescurrent'        => 'النص دلوقتى',
-'allmessagestext'           => 'دى لستة برسايل النظام المتوفرة فى نطاق ميدياويكي.
+'allmessages'                   => 'رسايل النظام',
+'allmessagesname'               => 'اسم',
+'allmessagesdefault'            => 'النص الاوتوماتيكي',
+'allmessagescurrent'            => 'النص دلوقتى',
+'allmessagestext'               => 'دى لستة برسايل النظام المتوفرة فى نطاق ميدياويكي.
 لو سمحت تزور[http://www.mediawiki.org/wiki/Localisation ترجمة ميدياويكي] و [http://translatewiki.net بيتاويكي] لو كنت عايز تساهم فى ترجمة ميدياويكى الاصلية.',
-'allmessagesnotsupportedDB' => "الصفحة دى مش يمكن حد يستعملها علشان'''\$wgUseDatabaseMessages''' متعطل.",
-'allmessages-language'      => 'اللغه:',
-'allmessages-filter-submit' => 'روح',
+'allmessagesnotsupportedDB'     => "الصفحة دى مش يمكن حد يستعملها علشان'''\$wgUseDatabaseMessages''' متعطل.",
+'allmessages-filter-legend'     => 'فيلتر',
+'allmessages-filter'            => 'فلتره بحالة التهيئه:',
+'allmessages-filter-unmodified' => 'مش متعدل',
+'allmessages-filter-all'        => 'الكل',
+'allmessages-filter-modified'   => 'متعدل',
+'allmessages-prefix'            => 'فلتره بالبريفيكس:',
+'allmessages-language'          => 'اللغه:',
+'allmessages-filter-submit'     => 'روح',
 
 # Thumbnails
 'thumbnail-more'           => 'كبر',

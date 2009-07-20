@@ -2460,11 +2460,14 @@ Jika Anda hanya ingin mengimpor versi terbaru, Anda melakukannya lebih cepat den
 'allmessagestext'               => 'Ini adalah daftar semua pesan sistem yang tersedia dalam ruang nama MediaWiki.
 Silakan kunjungi [http://www.mediawiki.org/wiki/Localisation Pelokalan MediaWiki] dan [http://translatewiki.net translatewiki.net] jika Anda ingin berkontribusi untuk pelokalan generik MediaWiki.',
 'allmessagesnotsupportedDB'     => "Halaman ini tidak dapat digunakan karena '''\$wgUseDatabaseMessages''' telah dimatikan.",
+'allmessages-filter-legend'     => 'Penyaring',
 'allmessages-filter'            => 'Saring dengan keadaan kustomisasi:',
 'allmessages-filter-unmodified' => 'Tidak diubah',
 'allmessages-filter-all'        => 'Semua',
 'allmessages-filter-modified'   => 'Diubah',
 'allmessages-prefix'            => 'Saring dengan awalan:',
+'allmessages-language'          => 'Bahasa:',
+'allmessages-filter-submit'     => 'Cari',
 
 # Thumbnails
 'thumbnail-more'           => 'Perbesar',
@@ -2588,12 +2591,30 @@ Simpan ke komputer Anda lalu muatkan di sini.',
 'tooltip-undo'                    => 'Mengembalikan revisi ini dan membuka kotak penyuntingan dengan mode pratayang. Alasan dapat ditambahkan di kotak ringkasan.',
 
 # Stylesheets
-'common.css'   => '/* CSS yang ada di sini akan diterapkan untuk semua kulit. */',
-'monobook.css' => '/* CSS yang ada di sini akan diterapkan untuk kulit Monobook. */',
+'common.css'      => '/* CSS yang ada di sini akan diterapkan untuk semua kulit. */',
+'standard.css'    => '/* CSS yang ada di sini akan diterapkan untuk kulit Standard. */',
+'nostalgia.css'   => '/* CSS yang ada di sini akan diterapkan untuk kulit Nostalgia. */',
+'cologneblue.css' => '/* CSS yang ada di sini akan diterapkan untuk kulit Cologne Blue. */',
+'monobook.css'    => '/* CSS yang ada di sini akan diterapkan untuk kulit Monobook. */',
+'myskin.css'      => '/* CSS yang ada di sini akan diterapkan untuk kulit Myskin. */',
+'chick.css'       => '/* CSS yang ada di sini akan diterapkan untuk kulit Chick. */',
+'simple.css'      => '/* CSS yang ada di sini akan diterapkan untuk kulit Simple. */',
+'modern.css'      => '/* CSS yang ada di sini akan diterapkan untuk kulit Modern. */',
+'vector.css'      => '/* CSS yang ada di sini akan diterapkan untuk kulit Vector. */',
+'print.css'       => '/* CSS yang ada di sini akan diterapkan untuk tampilan cetak. */',
+'handheld.css'    => '/* CSS yang ada di sini akan diterapkan untuk tampilan piranti genggam yang dikonfigurasi di $wgHandheldStyle. */',
 
 # Scripts
-'common.js'   => '/* JavaScript yang ada di sini akan diterapkan untuk semua kulit. */',
-'monobook.js' => '/* Semua JavaScript di sini akan dimuatkan untuk para pengguna yang menggunakan kulit MonoBook */',
+'common.js'      => '/* JavaScript yang ada di sini akan diterapkan untuk semua kulit. */',
+'standard.js'    => '/* Semua JavaScript di sini akan dimuatkan untuk para pengguna yang menggunakan kulit Standard */',
+'nostalgia.js'   => '/* Semua JavaScript di sini akan dimuatkan untuk para pengguna yang menggunakan kulit Nostalgia */',
+'cologneblue.js' => '/* Semua JavaScript di sini akan dimuatkan untuk para pengguna yang menggunakan kulit Cologne Blue */',
+'monobook.js'    => '/* Semua JavaScript di sini akan dimuatkan untuk para pengguna yang menggunakan kulit MonoBook */',
+'myskin.js'      => '/* Semua JavaScript di sini akan dimuatkan untuk para pengguna yang menggunakan kulit Myskin */',
+'chick.js'       => '/* Semua JavaScript di sini akan dimuatkan untuk para pengguna yang menggunakan kulit Chick */',
+'simple.js'      => '/* Semua JavaScript di sini akan dimuatkan untuk para pengguna yang menggunakan kulit Simple */',
+'modern.js'      => '/* Semua JavaScript di sini akan dimuatkan untuk para pengguna yang menggunakan kulit Modern */',
+'vector.js'      => '/* Semua JavaScript di sini akan dimuatkan untuk para pengguna yang menggunakan kulit Vector */',
 
 # Metadata
 'nodublincore'      => 'Metadata Dublin Core RDF dimatikan di server ini.',
@@ -2672,7 +2693,9 @@ Ini mungkin disebabkan oleh pranala ke situs luar yang termasuk dalam daftar hit
 # Image deletion
 'deletedrevision'                 => 'Revisi lama yang dihapus $1',
 'filedeleteerror-short'           => 'Kesalahan waktu menghapus berkas: $1',
-'filedeleteerror-long'            => 'Terjadi kesalahan sewaktu menghapus berkas:\\n\\n$1\\n',
+'filedeleteerror-long'            => 'Terjadi kesalahan sewaktu menghapus berkas:
+
+$1',
 'filedelete-missing'              => 'Berkas "$1" tak dapat dihapus karena tak ditemukan.',
 'filedelete-old-unregistered'     => 'Revisi berkas "$1" yang diberikan tidak ada dalam basis data.',
 'filedelete-current-unregistered' => 'Berkas yang diberikan "$1" tidak ada dalam basis data.',
@@ -2708,6 +2731,11 @@ Ini mungkin disebabkan oleh pranala ke situs luar yang termasuk dalam daftar hit
 'ilsubmit'              => 'Cari',
 'bydate'                => 'berdasarkan tanggal',
 'sp-newimages-showfrom' => 'Tampilkan berkas baru dimulai dari $2, $1',
+
+# Video information, used by Language::formatTimePeriod() to format lengths in the above messages
+'seconds-abbrev' => 'd',
+'minutes-abbrev' => 'm',
+'hours-abbrev'   => 'j',
 
 # Bad image list
 'bad_image_list' => 'Formatnya sebagai berikut:
@@ -3118,6 +3146,46 @@ Anda juga dapat [[Special:Watchlist/raw|menyunting daftar mentahnya]].',
 'watchlisttools-view' => 'Tampilkan perubahan terkait',
 'watchlisttools-edit' => 'Tampilkan dan sunting daftar pantauan',
 'watchlisttools-raw'  => 'Sunting daftar pantauan mentah',
+
+# Hijri month names
+'hijri-calendar-m1'  => 'Muharram',
+'hijri-calendar-m2'  => 'Safar',
+'hijri-calendar-m3'  => 'Rabiul awal',
+'hijri-calendar-m4'  => 'Rabiul akhir',
+'hijri-calendar-m5'  => 'Jumadil awal',
+'hijri-calendar-m6'  => 'Jumadil akhir',
+'hijri-calendar-m7'  => 'Rajab',
+'hijri-calendar-m8'  => "Sya'ban",
+'hijri-calendar-m9'  => 'Ramadhan',
+'hijri-calendar-m10' => 'Syawal',
+'hijri-calendar-m11' => 'Dzulkaidah',
+'hijri-calendar-m12' => 'Dzulhijjah',
+
+# Hebrew month names
+'hebrew-calendar-m1'      => 'Tisyri',
+'hebrew-calendar-m2'      => 'Markhesywan',
+'hebrew-calendar-m3'      => 'Kislew',
+'hebrew-calendar-m4'      => 'Tebet',
+'hebrew-calendar-m5'      => 'Syebat',
+'hebrew-calendar-m6'      => 'Adar',
+'hebrew-calendar-m7'      => 'Nisan',
+'hebrew-calendar-m8'      => 'Iyar',
+'hebrew-calendar-m9'      => 'Siwan',
+'hebrew-calendar-m10'     => 'Tamus',
+'hebrew-calendar-m11'     => 'Ab',
+'hebrew-calendar-m12'     => 'Elul',
+'hebrew-calendar-m1-gen'  => 'Tisyri',
+'hebrew-calendar-m2-gen'  => 'Markhesywan',
+'hebrew-calendar-m3-gen'  => 'Kislew',
+'hebrew-calendar-m4-gen'  => 'Tebet',
+'hebrew-calendar-m5-gen'  => 'Syebat',
+'hebrew-calendar-m6-gen'  => 'Adar',
+'hebrew-calendar-m7-gen'  => 'Nisan',
+'hebrew-calendar-m8-gen'  => 'Iyar',
+'hebrew-calendar-m9-gen'  => 'Siwan',
+'hebrew-calendar-m10-gen' => 'Tamus',
+'hebrew-calendar-m11-gen' => 'Ab',
+'hebrew-calendar-m12-gen' => 'Elul',
 
 # Core parser functions
 'unknown_extension_tag' => 'Tag ekstensi tidak dikenal "$1"',

@@ -574,15 +574,14 @@ Moguće je i da je ovo greška u {{SITENAME}} softveru.',
 'error'                => 'Greška',
 'databaseerror'        => 'Greška u bazi',
 'dberrortext'          => 'Desila se sintaksna greška upita baze.
-Ovo je moguće zbog ilegalnog upita, ili moguće greške u softveru.
-Posljednji pokušani upit je bio: <blockquote><tt>$1</tt></blockquote>
-iz funkcije "<tt>$2</tt>".
-MySQL je vratio grešku "<tt>$3: $4</tt>".',
+Ovo se desilo zbog moguće greške u softveru.
+Posljednji pokušani upit je bio: <blockquote><tt>$1</tt></blockquote> iz funkcije "<tt>$2</tt>".
+$5 je vratio grešku "<tt>$3: $4</tt>".',
 'dberrortextcl'        => 'Desila se sintaksna greška upita baze.
 Posljednji pokušani upit je bio:
 "$1"
 iz funkcije "$2".
-MySQL je vratio grešku "$3: $4".',
+$5 je vratio grešku "$3: $4".',
 'laggedslavemode'      => "'''Upozorenje''': Stranica, možda, nije ažurirana.",
 'readonly'             => 'Baza je zaključana',
 'enterlockreason'      => 'Unesite razlog za zaključavanje, uključujući procjenu vremena otključavanja',
@@ -601,6 +600,7 @@ Molimo Vas da ovo prijavite [[Special:ListUsers/sysop|administratoru]] sa navođ
 'readonly_lag'         => 'Baza podataka je zaključana dok se sekundarne baze podataka na serveru ne sastave sa glavnom.',
 'internalerror'        => 'Unutrašnja greška',
 'internalerror_info'   => 'Interna greška: $1',
+'fileappenderror'      => 'Ne može se primijeniti "$1" na "$2".',
 'filecopyerror'        => 'Ne može se kopirati "$1" na "$2".',
 'filerenameerror'      => 'Ne može se promjeniti ime datoteke "$1" u "$2".',
 'filedeleteerror'      => 'Ne može se izbrisati datoteka "$1".',
@@ -1202,7 +1202,7 @@ Možete [[:\$1|da napravite članak sa tim naslovom]].
 'shown-title'                      => 'Pokaži $1 {{PLURAL:$1|rezultat|rezultata}} po stranici',
 'viewprevnext'                     => 'Pogledaj ($1) ($2) ($3).',
 'searchmenu-legend'                => 'Opcije pretrage',
-'searchmenu-exists'                => "'''Postoji stranica pod nazivom \"[[\$1]]\" na ovoj wiki'''",
+'searchmenu-exists'                => "'''Postoji stranica pod nazivom \"[[:\$1]]\" na ovoj wiki'''",
 'searchmenu-new'                   => "'''Napravi stranicu \"[[:\$1|\$1]]\" na ovoj wiki!'''",
 'searchhelp-url'                   => 'Help:Sadržaj',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Pregledaj stranice sa ovim prefiksom]]',
@@ -1464,6 +1464,7 @@ Također omogućuje drugim korisnicima da vas kontaktiraju preko Vaše korisnič
 'right-siteadmin'             => 'Zaključavanje i otključavanje baze podataka',
 'right-reset-passwords'       => 'Resetuje šifre drugih korisnika',
 'right-override-export-depth' => 'Izvoz stranica uključujući povezane stranice do dubine od 5 linkova',
+'right-versiondetail'         => 'Pregledavanje proširenih informacija o verzijama softvera',
 
 # User rights log
 'rightslog'      => 'Zapisnik korisničkih prava',
@@ -1654,15 +1655,18 @@ MGP # Pentax
 PICT # razni
  #</pre> <!-- ostavite ovu liniju onakvom kakva jeste -->',
 
-'upload-proto-error'      => 'Pogrešan protokol',
-'upload-proto-error-text' => 'Postavljanje sa vanjske lokacije zahtjeva URL-ove koji počinju sa <code>http://</code> ili <code>ftp://</code>.',
-'upload-file-error'       => 'Unutrašnja greška',
-'upload-file-error-text'  => 'Desila se interna greška pri pokušaju kreiranja privremene datoteke na serveru.
+'upload-proto-error'        => 'Pogrešan protokol',
+'upload-proto-error-text'   => 'Postavljanje sa vanjske lokacije zahtjeva URL-ove koji počinju sa <code>http://</code> ili <code>ftp://</code>.',
+'upload-file-error'         => 'Unutrašnja greška',
+'upload-file-error-text'    => 'Desila se interna greška pri pokušaju kreiranja privremene datoteke na serveru.
 Molimo kontaktirajte [[Special:ListUsers/sysop|administratora]].',
-'upload-misc-error'       => 'Nepoznata greška pri postavljanju',
-'upload-misc-error-text'  => 'Desila se nepoznata greška pri postavljanju.
+'upload-misc-error'         => 'Nepoznata greška pri postavljanju',
+'upload-misc-error-text'    => 'Desila se nepoznata greška pri postavljanju.
 Molimo Vas provjerite da li je URL tačan i dostupan pa pokušajte ponovo.
 Ako se problem ne riješi, kontaktirajte [[Special:ListUsers/sysop|administratora]].',
+'upload-too-many-redirects' => 'URL sadrži previše preusmjerenja',
+'upload-unknown-size'       => 'Nepoznata veličina',
+'upload-http-error'         => 'Desila se HTTP greška: $1',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Ovaj URL nije bilo moguće otvoriti',
@@ -1812,7 +1816,9 @@ Po pravilu, one se trebaju povezati sa konkretnim člankom.<br />
 Stranica se smatra čvorom, ukoliko koristi šablon koji je povezan sa spiskom [[MediaWiki:Disambiguationspage|čvor stranica]]",
 
 'doubleredirects'            => 'Dvostruka preusmjerenja',
-'doubleredirectstext'        => 'Svaki red sadrži veze na prvo i drugo preusmjerenje, kao i na prvu liniju teksta drugog preusmjerenja, što obično daje "pravi" ciljni članak, na koji bi prvo preusmjerenje i trebalo da pokazuje.',
+'doubleredirectstext'        => 'Ova stranica prikazuje stranice koje preusmjeravaju na druga preusmjerenja. 
+Svaki red sadrži veze na prvo i drugo preusmjerenje, kao i na prvu liniju teksta drugog preusmjerenja, što obično daje "pravi" ciljni članak, na koji bi prvo preusmjerenje i trebalo da pokazuje.
+<s>Precrtane</s> stavke su riješene.',
 'double-redirect-fixed-move' => '[[$1]] je premješten, sada je preusmjerenje na [[$2]]',
 'double-redirect-fixer'      => 'Popravljač preusmjerenja',
 
@@ -2535,13 +2541,21 @@ U drugom slučaju možete koristiti i vezu, npr. [[{{#Special:Export}}/{{MediaWi
 'export-pagelinks'  => 'Uključi povezane stranice do dubine od:',
 
 # Namespace 8 related
-'allmessages'               => 'Sve sistemske poruke',
-'allmessagesname'           => 'Naziv',
-'allmessagesdefault'        => 'Uobičajeni tekst',
-'allmessagescurrent'        => 'Trenutni tekst',
-'allmessagestext'           => 'Ovo je spisak svih sistemskih poruka u dostupnih u MediaWiki imenskom prostoru.
+'allmessages'                   => 'Sve sistemske poruke',
+'allmessagesname'               => 'Naziv',
+'allmessagesdefault'            => 'Uobičajeni tekst',
+'allmessagescurrent'            => 'Trenutni tekst',
+'allmessagestext'               => 'Ovo je spisak svih sistemskih poruka u dostupnih u MediaWiki imenskom prostoru.
 Molimo posjetite [http://www.mediawiki.org/wiki/Localisation MediaWiki lokalizaciju] i [http://translatewiki.net translatewiki.net] ako želite doprinijeti općoj lokalizaciji MediaWikija.',
-'allmessagesnotsupportedDB' => 'Ova stranica ne može biti korištena jer je <i>wgUseDatabaseMessages</i> isključen.',
+'allmessagesnotsupportedDB'     => 'Ova stranica ne može biti korištena jer je <i>wgUseDatabaseMessages</i> isključen.',
+'allmessages-filter-legend'     => 'Filter',
+'allmessages-filter'            => 'Filter po stanju podešavanja:',
+'allmessages-filter-unmodified' => 'Neizmijeneno',
+'allmessages-filter-all'        => 'Sve',
+'allmessages-filter-modified'   => 'Izmijenjeno',
+'allmessages-prefix'            => 'Filter po prefiksu:',
+'allmessages-language'          => 'Jezik:',
+'allmessages-filter-submit'     => 'Idi',
 
 # Thumbnails
 'thumbnail-more'           => 'uvećajte',
@@ -3406,6 +3420,7 @@ Unesite ime datoteke bez "{{ns:file}}:" prefiksa.',
 'htmlform-invalid-input'       => 'Postoje određeni problemi s Vašim unosom',
 'htmlform-select-badoption'    => 'Vrijednost koju ste naveli nije valjana opcija.',
 'htmlform-int-invalid'         => 'Vrijednost koju ste naveli nije cijeli broj.',
+'htmlform-float-invalid'       => 'Vrijednost koju ste unijeli nije broj.',
 'htmlform-int-toolow'          => 'Vrijednost koju ste naveli je ispod minimuma od $1',
 'htmlform-int-toohigh'         => 'Vrijednost koju ste naveli je iznad maksimuma od $1',
 'htmlform-submit'              => 'Pošalji',

@@ -600,17 +600,15 @@ Az érvényes speciális lapok listáját a [[Special:SpecialPages|Speciális la
 # General errors
 'error'                => 'Hiba',
 'databaseerror'        => 'Adatbázishiba',
-'dberrortext'          => 'Szintaktikai hiba található az adatbázis-lekérdezésben.
-Ez egy, a szoftverben lévő hiba miatt történhetett.
-Az utolsó adatbázis-lekérdezés a következő volt:
+'dberrortext'          => 'Szintaktikai hiba található az adatbázis-lekérdezésben. 
+Ez szoftverhiba miatt történhetett.
+Az utolsó adatbázis-lekérdezés a(z) „<tt>$2</tt>” függvényből történt, és a következő volt:
 <blockquote><tt>$1</tt></blockquote>
-a(z) „<tt>$2</tt>” függvényből.
 A(z) $5 ezzel a hibával tért vissza: „<tt>$3: $4</tt>”.',
-'dberrortextcl'        => 'Szintaktikai hiba fordult elő az adatbázis lekérdezésekor.
-Az utoljára megkísérelt adatbázis lekérdezés
-„$1” volt
-a „<tt>$2</tt>” függvényből.
-A MySQL ezzel a hibával tért vissza: „<tt>$3: $4</tt>”.',
+'dberrortextcl'        => 'Szintaktikai hiba található az adatbázis-lekérdezésben. 
+Az utolsó adatbázis-lekérdezés a(z) „<tt>$2</tt>” függvényből történt, és a következő volt:
+<blockquote><tt>$1</tt></blockquote>
+A(z) $5 ezzel a hibával tért vissza: „<tt>$3: $4</tt>”.',
 'laggedslavemode'      => 'Figyelem: Ez a lap nem feltétlenül tartalmazza a legfrissebb változtatásokat!',
 'readonly'             => 'Az adatbázis le van zárva',
 'enterlockreason'      => 'Add meg a lezárás okát, valamint egy becslést, hogy mikor kerül a lezárás feloldásra',
@@ -628,6 +626,7 @@ Jelezd ezt egy [[Special:ListUsers/sysop|adminiszttrátornak]] az URL megadásá
 'readonly_lag'         => 'Az adatbázis automatikusan zárolásra került, amíg a mellékkiszolgálók utolérik a főkiszolgálót.',
 'internalerror'        => 'Belső hiba',
 'internalerror_info'   => 'Belső hiba: $1',
+'fileappenderror'      => 'Nem sikerült hozzáfűzni a(z) „$1” fájlt a(z) „$2” fájlhoz.',
 'filecopyerror'        => 'Nem tudtam átmásolni a(z) „$1” fájlt „$2” névre.',
 'filerenameerror'      => 'Nem tudtam átnevezni a(z) „$1” fájlt „$2” névre.',
 'filedeleteerror'      => 'Nem tudtam törölni a(z) „$1” fájlt.',
@@ -1020,7 +1019,7 @@ További részleteket a [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAME
 Mivel adminisztrátor vagy, még mindig [$1 megtekintheted a tartalmát], ha szeretnéd.",
 'rev-deleted-text-view'       => "A lap ezen változatát '''törölték'''.
 Mivel adminisztrátor vagy, te megtekintheted; további részleteket a [{{fullurl:Special:Napló/delete|page={{FULLPAGENAMEE}}}} törlési naplóban] találhatsz.",
-'rev-deleted-no-diff'         => "Nem nézheted meg a két változat közötti eltérést, mert a változatok egyikét '''törölték'''.
+'rev-deleted-no-diff'         => "Nem tekintheted meg a két változat közötti eltérést, mert a változatok egyikét '''törölték'''.
 További részleteket a [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} törlési naplóban] találhatsz.",
 'rev-deleted-unhide-diff'     => "Az változatok közötti eltéréshez kiválasztott változatok egyike '''törölve''' lett.
 További részleteket a [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} törlési naplóban] találhatsz.
@@ -1456,6 +1455,7 @@ Ezen kívül más szerkesztők is kapcsolatba lépjenek veled a szerkesztői vag
 'right-siteadmin'             => 'adatbázis lezárása, felnyitása',
 'right-reset-passwords'       => 'Más felhasználók jelszavának visszaállítása',
 'right-override-export-depth' => 'Lapok exportálása a hivatkozott lapokkal együtt, legfeljebb 5-ös mélységig',
+'right-versiondetail'         => 'kibővített szoftververzió-információk tekintése',
 
 # User rights log
 'rightslog'      => 'Szerkesztői jogosultságok naplója',
@@ -1641,12 +1641,15 @@ MGP # Pentax
 PICT # ált.
  #</pre> <!-- ezt a sort hagyd így -->',
 
-'upload-proto-error'      => 'Hibás protokoll',
-'upload-proto-error-text' => 'A távoli feltöltéshez <code>http://</code> vagy <code>ftp://</code> kezdetű URL-ekre van szükség.',
-'upload-file-error'       => 'Belső hiba',
-'upload-file-error-text'  => 'Belső hiba történt az ideiglenes fájlnak a kiszolgálón történő létrehozásának megkísérlésekor.  Kérjük, hogy lépj kapcsolatba a rendszergazdával.',
-'upload-misc-error'       => 'Ismeretlen feltöltési hiba',
-'upload-misc-error-text'  => 'A feltöltés során ismeretlen hiba történt.  Kérjük, ellenőrizd, hogy az URL érvényes-e és hozzáférhető-e, majd próbáld újra.  Ha a probléma továbbra is fennáll, akkor lépj kapcsolatba a rendszergazdával.',
+'upload-proto-error'        => 'Hibás protokoll',
+'upload-proto-error-text'   => 'A távoli feltöltéshez <code>http://</code> vagy <code>ftp://</code> kezdetű URL-ekre van szükség.',
+'upload-file-error'         => 'Belső hiba',
+'upload-file-error-text'    => 'Belső hiba történt az ideiglenes fájlnak a kiszolgálón történő létrehozásának megkísérlésekor.  Kérjük, hogy lépj kapcsolatba a rendszergazdával.',
+'upload-misc-error'         => 'Ismeretlen feltöltési hiba',
+'upload-misc-error-text'    => 'A feltöltés során ismeretlen hiba történt.  Kérjük, ellenőrizd, hogy az URL érvényes-e és hozzáférhető-e, majd próbáld újra.  Ha a probléma továbbra is fennáll, akkor lépj kapcsolatba a rendszergazdával.',
+'upload-too-many-redirects' => 'Az URL túl sokszor volt átirányítva',
+'upload-unknown-size'       => 'Ismeretlen méretű',
+'upload-http-error'         => 'HTTP-hiba történt: $1',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Nem érhető el az URL',
@@ -1792,7 +1795,9 @@ A megfelelő szócikkre kellene mutatniuk inkább.<br />
 Egy oldal egyértelműsítő lapnak számít, ha tartalmazza a [[MediaWiki:Disambiguationspage]] oldalról belinkelt sablonok valamelyikét.",
 
 'doubleredirects'            => 'Dupla átirányítások',
-'doubleredirectstext'        => '<strong>Figyelem:</strong> Ez a lista nem feltétlenül pontos. Ennek általában az oka az, hogy az #ÁTIRÁNYÍTÁS alatt további szöveg található.<br /> Minden sor tartalmazza az első és a második átirányítást, valamint a második átirányítás cikkének első sorát, ami általában a „valódi” célt tartalmazza, amire az elsőnek mutatnia kellene.',
+'doubleredirectstext'        => 'Ez a lap azokat a lapokat listázza, melyek átirányító lapokra irányítanak át.
+Minden sor tartalmaz egy hivatkozást az első, valamint a második átirányításra, valamint a második átirányítás céljára, ami általában a valódi céllap, erre kellene az első átirányításnak mutatnia.
+Az <s>áthúzott</s> sorok a lista elkészülése óta javítva lettek.',
 'double-redirect-fixed-move' => '[[$1]] átnevezve, a továbbiakban átirányításként működik a(z) [[$2]] lapra',
 'double-redirect-fixer'      => 'Átirányításjavító',
 
@@ -1937,7 +1942,10 @@ Támogatott protokollok: <tt>$1</tt>',
 'listusers-blocked'  => '(blokkolva)',
 
 # Special:ActiveUsers
-'activeusers-count' => '{{PLURAL:$1|egy|$1}} friss szerkesztés',
+'activeusers'          => 'Aktív szerkesztők listája',
+'activeusers-count'    => '{{PLURAL:$1|egy|$1}} friss szerkesztés',
+'activeusers-from'     => 'Szerkesztők listázása a következő névtől kezdve:',
+'activeusers-noresult' => 'Nem található ilyen szerkesztő.',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Új szerkesztők naplója',
@@ -1951,6 +1959,8 @@ Támogatott protokollok: <tt>$1</tt>',
 'listgrouprights'                      => 'Szerkesztői csoportok jogai',
 'listgrouprights-summary'              => 'Lenn láthatóak a wikiben létező szerkesztői csoportok, valamint az azokhoz tartozó jogok.
 Az egyes csoportokról további információt [[{{MediaWiki:Listgrouprights-helppage}}|itt]] találhatsz.',
+'listgrouprights-key'                  => '* <span class="listgrouprights-granted">Kapott jog</span>
+* <span class="listgrouprights-revoked">Elvett jog</span>',
 'listgrouprights-group'                => 'Csoport',
 'listgrouprights-rights'               => 'Jogok',
 'listgrouprights-helppage'             => 'Help:Csoportok jogai',
@@ -2269,7 +2279,7 @@ $1',
 'whatlinkshere-hidetrans'  => 'beillesztések $1',
 'whatlinkshere-hidelinks'  => 'linkek $1',
 'whatlinkshere-hideimages' => 'képhivatkozás $1',
-'whatlinkshere-filters'    => 'Szűrés',
+'whatlinkshere-filters'    => 'Elemek szűrése',
 
 # Block/unblock
 'blockip'                         => 'Blokkolás',
@@ -2495,13 +2505,21 @@ Az utóbbi esetben közvetlen hivatkozást is használhatsz, például a [[{{#Sp
 'export-pagelinks'  => 'Hivatkozott lapok hozzáadása, eddig a szintig:',
 
 # Namespace 8 related
-'allmessages'               => 'Rendszerüzenetek',
-'allmessagesname'           => 'Név',
-'allmessagesdefault'        => 'Alapértelmezett szöveg',
-'allmessagescurrent'        => 'Jelenlegi szöveg',
-'allmessagestext'           => 'Ez a MediaWiki-névtérben elérhető összes rendszerüzenet listája.
-Ha részt szeretnél venni a MediaWiki fordításában, látogass el a [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] és a [http://translatewiki.net translatewiki.net] oldalakra.',
-'allmessagesnotsupportedDB' => "A '''''{{ns:special}}:Allmessages''''' lap nem használható, mert a '''\$wgUseDatabaseMessages''' ki van kapcsolva.",
+'allmessages'                   => 'Rendszerüzenetek',
+'allmessagesname'               => 'Név',
+'allmessagesdefault'            => 'Alapértelmezett szöveg',
+'allmessagescurrent'            => 'Jelenlegi szöveg',
+'allmessagestext'               => 'Ezen a lapon a MediaWiki-névtérben elérhető összes rendszerüzenet listája található.
+Ha részt szeretnél venni a MediaWiki fordításában, látogass el a [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation], valamint a [http://translatewiki.net translatewiki.net] oldalra.',
+'allmessagesnotsupportedDB'     => "A '''''{{ns:special}}:Allmessages''''' lap nem használható, mert a '''\$wgUseDatabaseMessages''' ki van kapcsolva.",
+'allmessages-filter-legend'     => 'Elemek szűrése',
+'allmessages-filter'            => 'Módosítás állapota:',
+'allmessages-filter-unmodified' => 'nem módosított',
+'allmessages-filter-all'        => 'összes',
+'allmessages-filter-modified'   => 'módosított',
+'allmessages-prefix'            => 'Előtag szerint:',
+'allmessages-language'          => 'Nyelv:',
+'allmessages-filter-submit'     => 'Szűrés',
 
 # Thumbnails
 'thumbnail-more'           => 'Nagyít',
@@ -3280,6 +3298,7 @@ Add meg a fájl nevét „{{ns:file}}:” előtag nélkül.',
 'htmlform-invalid-input'       => 'Probléma van az általad megadott értékkel',
 'htmlform-select-badoption'    => 'A megadott érték nem érvényes.',
 'htmlform-int-invalid'         => 'A megadott érték nem szám.',
+'htmlform-float-invalid'       => 'A megadott érték nem szám.',
 'htmlform-int-toolow'          => 'A megadott érték a minimum, $1 alatt van',
 'htmlform-int-toohigh'         => 'A megadott érték a maximum, $1 felett van',
 'htmlform-submit'              => 'Elküldés',
