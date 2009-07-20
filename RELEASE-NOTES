@@ -301,6 +301,7 @@ this. Was used when mwEmbed was going to be an extension.
 * (bug 17139) ts_resortTable inconsistent trimming makes date sorting fragile
 * (bug 19445) Change oldimage table to use ON UPDATE CASCADE for FK to image table.
 * (bug 14080) Short notation links to subpages didn't work in edit summaries
+* (bug 17374) Special:Export no longer exports multiple copies of pages
 
 == API changes in 1.16 ==
 
