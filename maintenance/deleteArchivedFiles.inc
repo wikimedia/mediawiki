@@ -13,6 +13,7 @@ require_once( "$IP/includes/filerepo/File.php" );
 function DeleteArchivedFiles( $delete = false ) {
 	# Data should come off the master, wrapped in a transaction
 	$dbw = wfGetDB( DB_MASTER );
+	$dbw->begin();
 	$tbl_arch = $dbw->tableName( 'filearchive' );
 	$repo = RepoGroup::singleton()->getLocalRepo();
 	# Get "active" revisions from the filearchive table
@@ -40,5 +41,6 @@ function DeleteArchivedFiles( $delete = false ) {
 			echo( "Notice - file '$key' not found in group '$group'\n" );
 		}
 	}
+	$dbw->commit();
 	echo( "Done! [$count file(s)]\n" );
 }
