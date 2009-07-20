@@ -247,7 +247,7 @@ class LogPage {
 						$details .= ': '.RevisionDeleter::getLogMessage( $count, $nfield, $ofield, true );
 					}
 					if ( $skin ) {
-						$rv = htmlspecialchars( wfMsg( $wgLogActions[$key], $params ) ) . $details;
+						$rv = wfMsgHtml( $wgLogActions[$key], $params ) . $details;
 					} else {
 						$rv = wfMsgExt( $wgLogActions[$key], array( 'parsemag', 'escape', 'replaceafter', 'content' ), $params ) . $details;
 					}
