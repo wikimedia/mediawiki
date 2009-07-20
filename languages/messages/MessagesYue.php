@@ -1,5 +1,5 @@
 <?php
-/** Yue (粵語)
+/** Cantonese (粵語/廣東話)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -2316,11 +2316,14 @@ $1已經被封鎖。你係咪想更改呢個設定？',
 'allmessagestext'               => '以下係 MediaWiki 空間名入邊現有系統信息嘅清單。
 如果想貢獻正宗嘅MediaWiki本地化嘅話，請參閱[http://www.mediawiki.org/wiki/Localisation MediaWiki本地化]同埋[http://translatewiki.net translatewiki.net]。',
 'allmessagesnotsupportedDB'     => "呢一版唔可以用，因為'''\$wgUseDatabaseMessages'''已經閂咗。",
+'allmessages-filter-legend'     => '過濾',
 'allmessages-filter'            => '以自定狀況過濾：',
 'allmessages-filter-unmodified' => '未改過',
 'allmessages-filter-all'        => '全部',
 'allmessages-filter-modified'   => '改過',
 'allmessages-prefix'            => '以前綴過濾：',
+'allmessages-language'          => '語言:',
+'allmessages-filter-submit'     => '去',
 
 # Thumbnails
 'thumbnail-more'           => '放大',

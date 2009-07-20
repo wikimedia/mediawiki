@@ -1,5 +1,5 @@
 <?php
-/** Traditional Chinese (‪中文(繁體)‬)
+/** Traditional Chinese (‪中文(傳統字)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -2357,11 +2357,14 @@ $1已經被封鎖。您是否想更改這個設定？',
 'allmessagestext'               => '這裡列出所有可定製的系統界面。
 如果想貢獻正宗的MediaWiki本地化的話，請參閱[http://www.mediawiki.org/wiki/Localisation MediaWiki本地化]以及[http://translatewiki.net translatewiki.net]。',
 'allmessagesnotsupportedDB'     => "這個頁面無法使用，因為'''\$wgUseDatabaseMessages'''已被設定關閉。",
+'allmessages-filter-legend'     => '過濾',
 'allmessages-filter'            => '以自定狀況過濾：',
 'allmessages-filter-unmodified' => '未修改',
 'allmessages-filter-all'        => '所有',
 'allmessages-filter-modified'   => '曾修改',
 'allmessages-prefix'            => '以前綴過濾：',
+'allmessages-language'          => '語言：',
+'allmessages-filter-submit'     => '往',
 
 # Thumbnails
 'thumbnail-more'           => '放大',
