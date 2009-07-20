@@ -11,6 +11,10 @@
 require_once( "$IP/includes/filerepo/File.php" );
 
 function DeleteArchivedFiles( $delete = false ) {
+	if( !$delete ) {
+		echo( "Use --delete to actually confirm this script\n" );
+		return;
+	}
 	# Data should come off the master, wrapped in a transaction
 	$dbw = wfGetDB( DB_MASTER );
 	$dbw->begin();
