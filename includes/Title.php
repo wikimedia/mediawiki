@@ -1281,7 +1281,7 @@ class Title {
 		# Protect css/js subpages of user pages
 		# XXX: this might be better using restrictions
 		# XXX: Find a way to work around the php bug that prevents using $this->userCanEditCssJsSubpage() from working
-		if( $this->isCssJsSubpage() && !$user->isAllowed('editusercssjs')
+		if( $this->isCssJsSubpage() && !$user->isAllowed('editusercssjs' ) && $action != 'patrol'
 			&& !preg_match('/^'.preg_quote($user->getName(), '/').'\//', $this->mTextform) )
 		{
 			$errors[] = array('customcssjsprotected');
