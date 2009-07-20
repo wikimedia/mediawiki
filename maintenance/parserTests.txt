@@ -7433,6 +7433,28 @@ Poked at a [[/subpage]] here...
 Poked at a <a href="/index.php?title=/subpage&amp;action=edit&amp;redlink=1" class="new" title="/subpage (page does not exist)">/subpage</a> here...
 !!end
 
+!! test
+Edit comment with bare anchor link (local, as on diff)
+!! options
+comment
+local
+title=[[Main Page]]
+!!input
+[[#section]]
+!! result
+<a href="#section">#section</a>
+!! end
+
+!! test
+Edit comment with bare anchor link (non-local, as on history)
+!! options
+comment
+title=[[Main Page]]
+!!input
+[[#section]]
+!! result
+<a href="/wiki/Main_Page#section" title="Main Page">#section</a>
+!! end
 
 TODO:
 more images
