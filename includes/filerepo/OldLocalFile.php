@@ -182,7 +182,7 @@ class OldLocalFile extends LocalFile {
 
 	/**
 	 * Determine if the current user is allowed to view a particular
-	 * field of this FileStore image file, if it's marked as deleted.
+	 * field of this image file, if it's marked as deleted.
 	 * @param int $field
 	 * @return bool
 	 */

@@ -1074,7 +1074,7 @@ class LocalFile extends File
 	 *
 	 * @param $reason
 	 * @param $suppress
-	 * @throws MWException or FSException on database or filestore failure
+	 * @throws MWException or FSException on database or file store failure
 	 * @return FileRepoStatus object.
 	 */
 	function deleteOld( $archiveName, $reason, $suppress=false ) {
