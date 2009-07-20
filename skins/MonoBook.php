@@ -20,9 +20,13 @@ if( !defined( 'MEDIAWIKI' ) )
  */
 class SkinMonoBook extends SkinTemplate {
 	/** Using monobook. */
-	var $skinname = $stylename = 'monobook',
-		$template = 'MonoBookTemplate';
+	function initPage( OutputPage $out ) {
+		parent::initPage( $out );
+		$this->skinname  = 'monobook';
+		$this->stylename = 'monobook';
+		$this->template  = 'MonoBookTemplate';
 
+	}
 	function setupSkinUserCss( OutputPage $out ) {
 		global $wgHandheldStyle;
 
