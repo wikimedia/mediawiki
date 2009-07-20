@@ -953,6 +953,7 @@ $wgMessageStructure = array(
 		'uid',
 		'prefs-memberingroups',
 		'prefs-registration',
+		'prefs-registration-date-time',
 		'yourrealname',
 		'yourlanguage',
 		'yourvariant',
