@@ -191,10 +191,22 @@ class SpecialExport extends SpecialPage {
 	private function doExport( $page, $history, $list_authors ) {
 		global $wgExportMaxHistory;
 		
-		/* Split up the input and look up linked pages */
-		$inputPages = array_filter( explode( "\n", $page ), array( $this, 'filterPage' ) );
-		$pageSet = array_flip( $inputPages );
+		$pageSet = array(); // Inverted index of all pages to look up
 		
+		// Split up and normalize input
+		foreach( explode( "\n", $page ) as $pageName ) {
+			$pageName = trim( $pageName );
+			$title = Title::newFromText( $pageName );
+			if( $title && $title->getInterwiki() == '' && $title->getText() != '' ) {
+				// Only record each page once!
+				$pageSet[$title->getPrefixedText()] = true;
+			}
+		}
+		
+		// Set of original pages to pass on to further manipulation...
+		$inputPages = array_keys( $pageSet );
+		
+		// Look up any linked pages if asked...
 		if( $this->templates ) {
 			$pageSet = $this->getTemplates( $inputPages, $pageSet );
 		}
