@@ -3220,7 +3220,7 @@ $wgSpecialPageGroups = array(
 	'Newimages'                 => 'changes',
 	'Newpages'                  => 'changes',
 	'Log'                       => 'changes',
-	'Tags'			    => 'changes',
+	'Tags'                      => 'changes',
 
 	'Upload'                    => 'media',
 	'Listfiles'                 => 'media',
@@ -3229,7 +3229,7 @@ $wgSpecialPageGroups = array(
 	'Filepath'                  => 'media',
 
 	'Listusers'                 => 'users',
-	'ActiveUsers'               => 'users',
+	'Activeusers'               => 'users',
 	'Listgrouprights'           => 'users',
 	'Ipblocklist'               => 'users',
 	'Contributions'             => 'users',
