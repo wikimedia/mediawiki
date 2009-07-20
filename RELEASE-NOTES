@@ -306,6 +306,7 @@ this. Was used when mwEmbed was going to be an extension.
   users who can't edit them
 * (bug 15745) The edit summary link parser now handles mismatched brackets
   better
+* (bug 19839) Comments in log items are no more double escaped
 
 == API changes in 1.16 ==
 
