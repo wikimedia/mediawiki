@@ -21,6 +21,8 @@
 # 	language=XXX	set content language to XXX for this test
 # 	variant=XXX  	set the variant of language for this test (eg zh-tw)
 #	disabled	do not run test
+#   comment	run through Linker::formatComment() instead of main parser
+#   local	format section links in edit comment text as local links
 #
 # For testing purposes, temporary articles can created:
 # !!article / NAMESPACE:TITLE / !!text / ARTICLE TEXT / !!endarticle
@@ -7341,6 +7343,41 @@ Leading > blockquote syntax
 #
 #
 #
+
+#
+# Edit comments
+#
+
+!! test
+Edit comment with link
+!! options
+comment
+!! input
+I like the [[Main Page]] a lot
+!! result
+I like the <a href="/wiki/Main_Page" title="Main Page">Main Page</a> a lot
+!!end
+
+!! test
+Edit comment with section link (non-local, eg in history list)
+!! options
+comment,title=[[Main Page]]
+!! input
+/* External links */ removed bogus entries
+!! result
+<span class="autocomment"><a href="/wiki/Main_Page#External_links" title="Main Page">→</a>External links: </span> removed bogus entries
+!!end
+
+!! test
+Edit comment with section link (local, eg in diff view)
+!! options
+comment,local,title=[[Main Page]]
+!! input
+/* External links */ removed bogus entries
+!! result
+<span class="autocomment"><a href="#External_links">→</a>External links: </span> removed bogus entries
+!!end
+
 
 TODO:
 more images

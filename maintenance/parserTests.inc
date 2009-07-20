@@ -443,6 +443,7 @@ class ParserTest {
 		}
 
 		$noxml = (bool)preg_match( '~\\b noxml \\b~x', $opts );
+		$local = (bool)preg_match( '~\\b local \\b~x', $opts );
 		$parser = $this->getParser();
 		$title =& Title::makeTitle( NS_MAIN, $titleText );
 
@@ -458,6 +459,9 @@ class ParserTest {
 			$section = $matches[1];
 			$replace = $matches[2];
 			$out = $parser->replaceSection( $input, $section, $replace );
+		} elseif( preg_match( '/\\bcomment\\b/i', $opts ) ) {
+			$linker = $user->getSkin();
+			$out = $linker->formatComment( $input, $title, $local );
 		} else {
 			$output = $parser->parse( $input, $title, $options, true, true, 1337 );
 			$out = $output->getText();
