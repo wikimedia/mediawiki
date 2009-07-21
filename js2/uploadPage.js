@@ -21,7 +21,8 @@ var mwUploadHelper = {
 				'api_url' : wgServer + wgScriptPath + '/api.php',
 				'form_rewrite': true,				
 				'new_source_cb' : function( orgFilename, oggName ){						
-						$j('#wpDestFile').val( oggName );
+				        if($j('#wpDestFile').val() == "")
+						    $j('#wpDestFile').val( oggName );
 						mwUploadHelper.doDestCheck();
 				},
 				'detect_cb':function(fogg_installed){
