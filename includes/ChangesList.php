@@ -69,7 +69,7 @@ class ChangesList {
 	private function preCacheMessages() {
 		if( !isset( $this->message ) ) {
 			foreach( explode(' ', 'cur diff hist minoreditletter newpageletter last '.
-				'blocklink history boteditletter semicolon-separator' ) as $msg ) {
+				'blocklink history boteditletter semicolon-separator pipe-separator' ) as $msg ) {
 				$this->message[$msg] = wfMsgExt( $msg, array( 'escapenoentities' ) );
 			}
 		}
@@ -832,12 +832,12 @@ class EnhancedChangesList extends ChangesList {
 		if( $allLogs ) {
 			// don't show history link for logs
 		} else if( $namehidden || !$block[0]->getTitle()->exists() ) {
-			$r .= $this->message['semicolon-separator'] . $this->message['hist'] . ')';
+			$r .= $this->message['pipe-separator'] . $this->message['hist'] . ')';
 		} else {
 			$params = $queryParams;
 			$params['action'] = 'history';
 
-			$r .= $this->message['semicolon-separator'] .
+			$r .= $this->message['pipe-separator'] .
 				$this->skin->link(
 					$block[0]->getTitle(),
 					$this->message['hist'],
@@ -925,7 +925,7 @@ class EnhancedChangesList extends ChangesList {
 			if ( !$rc_type == RC_LOG || $rc_type == RC_NEW ) {
 				$r .= ' (';
 				$r .= $rcObj->curlink;
-				$r .= $this->message['semicolon-separator'];
+				$r .= $this->message['pipe-separator'];
 				$r .= $rcObj->lastlink;
 				$r .= ')';
 			}
@@ -1050,7 +1050,7 @@ class EnhancedChangesList extends ChangesList {
 		}
 		# Diff and hist links
 		if ( $rc_type != RC_LOG ) {
-			$r .= ' ('. $rcObj->difflink . $this->message['semicolon-separator'];
+			$r .= ' ('. $rcObj->difflink . $this->message['pipe-separator'];
 			$query['action'] = 'history';
 			$r .= $this->skin->link(
 				$rcObj->getTitle(),
