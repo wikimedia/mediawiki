@@ -42,8 +42,12 @@ class Http {
 	public static function doDownload( $url, $target_file_path , $dl_mode = self::SYNC_DOWNLOAD , $redirectCount = 0 ){
 		global $wgPhpCli, $wgMaxUploadSize, $wgMaxRedirects;
 		// do a quick check to HEAD to insure the file size is not > $wgMaxUploadSize
-		$head = @get_headers( $url, 1 );
-
+		$headRequest = new HttpRequest( $url, array( 'headers_only' => true ) );
+		$headResponse = $headRequest->doRequest();
+		if( !$headResponse->isOK() ){
+			return $headResponse;
+		}
+		$head = $headResponse->value;
 
 		// check for redirects:
 		if( isset( $head['Location'] ) && strrpos( $head[0], '302' ) !== false ){
@@ -249,7 +253,7 @@ class Http {
 		return "MediaWiki/$wgVersion";
 	}
 }
-class HttpRequest{
+class HttpRequest {
 	var $target_file_path;
 	var $upload_session_key;
 
@@ -263,6 +267,7 @@ class HttpRequest{
 		$this->method = ( isset( $opt['method'] ) ) ? $opt['method'] : 'GET';
 		$this->target_file_path = ( isset( $opt['target_file_path'] ) ) ? $opt['target_file_path'] : false;
 		$this->upload_session_key = ( isset( $opt['upload_session_key'] ) ) ? $opt['upload_session_key'] : false;
+		$this->headers_only = ( isset( $opt['headers_only'] ) ) ? $opt['headers_only'] : false;
 	}
 
 	/**
@@ -278,11 +283,6 @@ class HttpRequest{
 		#make sure we have a valid url
 		if( !UploadFromUrl::isValidURI( $this->url ) )
 			return Status::newFatal('bad-url');
-
-		#check for php.ini allow_url_fopen
-		if( ini_get('allow_url_fopen') == 0){
-			return Status::newFatal('allow_url_fopen needs to be enabled for http copy to work');
-		}
 
 		# Use curl if available
 		if ( function_exists( 'curl_init' ) ) {
@@ -308,7 +308,10 @@ class HttpRequest{
 		curl_setopt( $c, CURLOPT_TIMEOUT, $this->timeout );
 		curl_setopt( $c, CURLOPT_USERAGENT, Http::userAgent() );
 
-		if ( $this->method == 'POST' ) {
+		if ( $this->headers_only ) {
+			curl_setopt( $c, CURLOPT_NOBODY, true );
+			curl_setopt( $c, CURLOPT_HEADER, true );
+		} elseif ( $this->method == 'POST' ) {
 			curl_setopt( $c, CURLOPT_POST, true );
 			curl_setopt( $c, CURLOPT_POSTFIELDS, '' );
 		} else {
@@ -362,19 +365,37 @@ class HttpRequest{
 			}
 		}
 
-		# Don't return the text of error messages, return false on error
-		$retcode = curl_getinfo( $c, CURLINFO_HTTP_CODE );
-		if ( $retcode != 200 ) {
-			wfDebug( __METHOD__ . ": HTTP return code $retcode\n" );
-			$status = Status::newFatal( "HTTP return code $retcode\n" );
-		}
-		# Don't return truncated output
-		$errno = curl_errno( $c );
-		if ( $errno != CURLE_OK ) {
-			$errstr = curl_error( $c );
-			wfDebug( __METHOD__ . ": CURL error code $errno: $errstr\n" );
+		if ( $this->headers_only ) {
+			$headers = explode( "\n", $status->value );
+			$headerArray = array();
+			foreach ( $headers as $header ) {
+				if ( !strlen( trim( $header ) ) )
+					continue;
+				$headerParts = explode( ':', $header, 2 );
+				if ( count( $headerParts ) == 1 ) {
+					$headerArray[] = trim( $header );
+				} else {
+					list( $key, $val ) = $headerParts;
+					$headerArray[trim( $key )] = trim( $val );
+				}
+			}
+			$status->value = $headerArray;
+		} else {
+			# Don't return the text of error messages, return false on error
+			$retcode = curl_getinfo( $c, CURLINFO_HTTP_CODE );
+			if ( $retcode != 200 ) {
+				wfDebug( __METHOD__ . ": HTTP return code $retcode\n" );
+				$status = Status::newFatal( "HTTP return code $retcode\n" );
+			}
+			# Don't return truncated output
+			$errno = curl_errno( $c );
+			if ( $errno != CURLE_OK ) {
+				$errstr = curl_error( $c );
+				wfDebug( __METHOD__ . ": CURL error code $errno: $errstr\n" );
 				$status = Status::newFatal( " CURL error code $errno: $errstr\n" );
+			}
 		}
+
 		curl_close( $c );
 
 		// return the result obj
@@ -383,8 +404,20 @@ class HttpRequest{
 
 	public function doPhpReq(){
 		global $wgTitle, $wgHTTPProxy;
+
+		ini_set( 'allow_url_fopen',1  );
+		#check for php.ini allow_url_fopen
+		if( !ini_get( 'allow_url_fopen' ) ){
+			return Status::newFatal( 'allow_url_fopen needs to be enabled for http copy to work' );
+		}
+
 		//start with good status:
 		$status = Status::newGood();
+
+		if ( $this->headers_only ) {
+			$status->value = get_headers( $this->url, 1 );
+			return $status;
+		}
 
 		//setup the headers
 		$headers = array( "User-Agent: " . Http :: userAgent() );
@@ -425,7 +458,7 @@ class HttpRequest{
 			if( !$cwrite->status->isOK() ){
 				return $cwrite->status;
 			}
-		}else{
+		} else {
 			//read $fh into status->value
 			$status->value = @stream_get_contents( $fh );
 		}
@@ -506,7 +539,7 @@ class simpleFileWriter {
 		}
 		$sd =& $_SESSION['wsDownload'][$this->upload_session_key];
 		// check if the user canceled the request:
-		if( $sd['user_cancel'] == true ){
+		if( isset( $sd['user_cancel'] ) && $sd['user_cancel'] == true ){
 			// kill the download
 			return Status::newFatal( 'user-canceled-request' );
 		}
