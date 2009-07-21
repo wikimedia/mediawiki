@@ -308,7 +308,6 @@ this. Was used when mwEmbed was going to be an extension.
 * (bug 15745) The edit summary link parser now handles mismatched brackets
   better
 * (bug 19839) Comments in log items are no more double escaped
-* (bug 19839) Comments in log items are no more double escaped
 * (bug 18161) Fix inconsistent separators in watchlist link toolbars with
   "enhanced recent changes"
 
