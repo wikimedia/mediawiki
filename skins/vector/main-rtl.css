@@ -843,11 +843,13 @@ img.thumbborder {
 #siteNotice {
 	text-align: center;
 	font-size: 95%;
-	margin-bottom: 0.9em;
+	margin: 0;
 }
+	#siteNotice div,
 	#siteNotice p {
 		margin: 0;
 		padding: 0;
+		margin-bottom: 0.9em;
 	}
 /* Categories */
 .catlinks {
