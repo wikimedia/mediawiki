@@ -88,7 +88,7 @@ class DoubleRedirectsPage extends PageQueryPage {
 		);
 		$edit = $skin->linkKnown(
 			$titleA,
-			wfMsg( 'parentheses', wfMsgHtml( 'editlink' ) ),
+			wfMsgExt( 'parentheses', array( 'escape' ), wfMsg( 'editlink' ) ),
 			array(),
 			array(
 				'redirect' => 'no',
