@@ -68,7 +68,7 @@ email notification when an article is shown may add:
 		if ($wgNotifyArticle) {
 			wfNotifyArticleShow($article));
 		}
-    }
+	}
 
 Using a hook-running strategy, we can avoid having all this option-specific
 stuff in our mainline code. Using hooks, the function becomes:
@@ -270,7 +270,7 @@ is enabled ( $wgUseAjax = true; ).
 'AlternateEdit': before checking if an user can edit a page and
 before showing the edit form ( EditPage::edit() ). This is triggered
 on &action=edit.
-$EditPage : the EditPage object
+$EditPage: the EditPage object
 
 'APIAfterExecute': after calling the execute() method of an API module.
 Use this to extend core API modules.
@@ -1443,8 +1443,8 @@ string $tempName: filesystem path to the temporary file for checks
 string &$error: output: HTML error to show if upload canceled by returning false
 
 'UploadComplete': Upon completion of a file upload
-$uploadForm: Upload form object. File can be accessed by
-	$uploadForm->mLocalFile.
+$uploadBase: UploadBase (or subclass) object. File can be accessed by
+	$uploadBase->getLocalFile().
 
 'User::mailPasswordInternal': before creation and mailing of a user's new
 temporary password
@@ -1468,7 +1468,6 @@ $result: Pointer to result returned if hook returns false. If null is returned,
 'UserCanSendEmail': To override User::canSendEmail() permission check
 $user: User (object) whose permission is being checked
 &$canSend: bool set on input, can override on output
-
 
 'UserClearNewTalkNotification': called when clearing the
 "You have new messages!" message, return false to not delete it
@@ -1515,7 +1514,7 @@ $user: User object
 &$groups: List of implicit (automatically-assigned) groups
 
 'UserGetReservedNames': allows to modify $wgReservedUsernames at run time
-*&$reservedUsernames: $wgReservedUsernames
+&$reservedUsernames: $wgReservedUsernames
 
 'UserGetRights': Called in User::getRights()
 $user: User to get rights for
