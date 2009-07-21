@@ -138,8 +138,9 @@ this. Was used when mwEmbed was going to be an extension.
   task, to limit resource usage when the cache for a heavily-viewed article is
   invalidated. Requires an external daemon. 
 * Leading > is now syntax for <blockquote>.
-* (bug 19576) Moved id attribues from anchors accompanying section headers to
-  the section headers themselves, removing the redundant anchor elements.
+* (bug 19576) Moved the id attribues from the anchors accompanying section
+  headers to the <span class="mw-headline"> elements within the section headers,
+  removing the redundant anchor elements.
 * Parser::setFunctionTagHook now can be used to add a new tag which is parsed at
   preprocesor level.
 * Added $wgShowArchiveThumbnails, allowing sysadmins to disable thumbnail 
