@@ -717,7 +717,7 @@ class VectorTemplate extends QuickTemplate {
 	<div class="menu">
 		<ul <?php $this->html('userlangattributes') ?>>
 			<?php foreach ($this->data['variant_urls'] as $key => $link ): ?>
-				<li<?php echo $link['attributes'] ?>><a href="<?php echo htmlspecialchars( $link['href'] ) ?>" <?php echo $link['key'] ?>><?php echo str_replace( ' ', '&nbsp;', htmlspecialchars( $link['text'] ) ) ?></a></li>
+				<li<?php echo $link['attributes'] ?>><a href="<?php echo htmlspecialchars( $link['href'] ) ?>" <?php echo $link['key'] ?>><?php echo htmlspecialchars( $link['text'] ) ?></a></li>
 			<?php endforeach; ?>
 		</ul>
 	</div>
@@ -747,7 +747,7 @@ class VectorTemplate extends QuickTemplate {
 	<div class="menu">
 		<ul <?php $this->html('userlangattributes') ?>>
 			<?php foreach ($this->data['action_urls'] as $key => $link ): ?>
-				<li<?php echo $link['attributes'] ?>><a href="<?php echo htmlspecialchars( $link['href'] ) ?>" <?php echo $link['key'] ?>><?php echo str_replace( ' ', '&nbsp;', htmlspecialchars( $link['text'] ) ) ?></a></li>
+				<li<?php echo $link['attributes'] ?>><a href="<?php echo htmlspecialchars( $link['href'] ) ?>" <?php echo $link['key'] ?>><?php echo htmlspecialchars( $link['text'] ) ?></a></li>
 			<?php endforeach; ?>
 		</ul>
 	</div>

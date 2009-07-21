@@ -269,6 +269,7 @@ body {
 	div.vectorMenu li a {
 		display: inline-block;
 		padding: 0.5em;
+		white-space: nowrap;
 	}
 	/* IGNORED BY IE6 */
 	div.vectorMenu li > a {
