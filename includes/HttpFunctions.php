@@ -405,7 +405,6 @@ class HttpRequest {
 	public function doPhpReq(){
 		global $wgTitle, $wgHTTPProxy;
 
-		ini_set( 'allow_url_fopen',1  );
 		#check for php.ini allow_url_fopen
 		if( !ini_get( 'allow_url_fopen' ) ){
 			return Status::newFatal( 'allow_url_fopen needs to be enabled for http copy to work' );
