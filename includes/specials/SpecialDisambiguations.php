@@ -88,7 +88,7 @@ class DisambiguationsPage extends PageQueryPage {
 		$dp = Title::makeTitle( $result->namespace, $result->title );
 
 		$from = $skin->link( $title );
-		$edit = $skin->link( $title, "(".wfMsgHtml("qbedit").")", array(), array( 'redirect' => 'no', 'action' => 'edit' ) );
+		$edit = $skin->link( $title, wfMsgExt( 'parentheses', array( 'escape' ), wfMsg( 'editlink' ) ) , array(), array( 'redirect' => 'no', 'action' => 'edit' ) );
 		$arr  = $wgContLang->getArrow();
 		$to   = $skin->link( $dp );
 
