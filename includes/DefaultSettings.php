@@ -4085,3 +4085,11 @@ $wgAutocreatePolicy = 'login';
  * TODO: Implement message, global.
  */
 $wgAllowPrefChange = array();
+
+/**
+ * If an exact match is not found, try to find a match in a different namespace
+ * before performing a search.
+ *
+ * Integer: Id of namespace to attempt match in.
+ */
+$wgSecondaryGoNamespace = null;
