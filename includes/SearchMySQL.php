@@ -148,8 +148,22 @@ class SearchMySQL extends SearchEngine {
 	 * @return MySQLSearchResultSet
 	 */
 	function searchText( $term ) {
-		$resultSet = $this->db->resultObject( $this->db->query( $this->getQuery( $this->filter( $term ), true ) ) );
-		return new MySQLSearchResultSet( $resultSet, $this->searchTerms );
+		global $wgSearchMySQLTotalHits;
+		
+		$filteredTerm = $this->filter( $term );
+		$resultSet = $this->db->query( $this->getQuery( $filteredTerm, true ) );
+		
+		$total = null;
+		if( $wgSearchMySQLTotalHits ) {
+			$totalResult = $this->db->query( $this->getCountQuery( $filteredTerm, true ) );
+			$row = $totalResult->fetchObject();
+			if( $row ) {
+				$total = $row->c;
+			}
+			$totalResult->free();
+		}
+		
+		return new MySQLSearchResultSet( $resultSet, $this->searchTerms, $total );
 	}
 
 	/**
@@ -221,8 +235,7 @@ class SearchMySQL extends SearchEngine {
 			$this->queryRanking( $filteredTerm, $fulltext ) . ' ' .
 			$this->queryLimit();
 	}
-
-
+	
 	/**
 	 * Picks which field to index on, depending on what type of query.
 	 * @param $fulltext Boolean
@@ -249,6 +262,17 @@ class SearchMySQL extends SearchEngine {
 		return 'SELECT page_id, page_namespace, page_title ' .
 			"FROM $page,$searchindex " .
 			'WHERE page_id=si_page AND ' . $match;
+	}
+
+	function getCountQuery( $filteredTerm, $fulltext ) {
+		$match = $this->parseQuery( $filteredTerm, $fulltext );
+		$page        = $this->db->tableName( 'page' );
+		$searchindex = $this->db->tableName( 'searchindex' );
+		return "SELECT COUNT(*) AS c " .
+			"FROM $page,$searchindex " .
+			'WHERE page_id=si_page AND ' . $match .
+			$this->queryRedirect() . ' ' .
+			$this->queryNamespaces();
 	}
 
 	/**
@@ -292,9 +316,10 @@ class SearchMySQL extends SearchEngine {
  * @ingroup Search
  */
 class MySQLSearchResultSet extends SearchResultSet {
-	function MySQLSearchResultSet( $resultSet, $terms ) {
+	function MySQLSearchResultSet( $resultSet, $terms, $totalHits=null ) {
 		$this->mResultSet = $resultSet;
 		$this->mTerms = $terms;
+		$this->mTotalHits = $totalHits;
 	}
 
 	function termMatches() {
@@ -316,5 +341,10 @@ class MySQLSearchResultSet extends SearchResultSet {
 
 	function free() {
 		$this->mResultSet->free();
+	}
+
+	
+	function getTotalHits() {
+		return $this->mTotalHits;
 	}
 }

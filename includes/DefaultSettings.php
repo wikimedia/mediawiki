@@ -1909,6 +1909,17 @@ $wgSearchHighlightBoundaries = version_compare("5.1", PHP_VERSION, "<")? '[\p{Z}
 	: '[ ,.;:!?~!@#$%\^&*\(\)+=\-\\|\[\]"\'<>\n\r\/{}]'; // PHP 5.0 workaround
 
 /**
+ * Set to true to have the default MySQL search engine count total
+ * search matches to present in the Special:Search UI.
+ *
+ * This could however be slow on larger wikis, and is pretty flaky
+ * with the current title vs content split. Recommend avoiding until
+ * that's been worked out cleanly; but this may aid in testing the
+ * search UI and API to confirm that the result count works.
+ */
+$wgSearchMySQLTotalHits = false;
+
+/**
  * Template for OpenSearch suggestions, defaults to API action=opensearch
  *
  * Sites with heavy load would tipically have these point to a custom
