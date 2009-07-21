@@ -1053,6 +1053,7 @@ class Linker {
 			$text = $match[1];
 		}
 		$submatch = array();
+		$thelink = null;
 		if( preg_match( '/^' . $medians . '(.*)$/i', $match[1], $submatch ) ) {
 			# Media link; trail not supported.
 			$linkRegexp = '/^(.*?)\]\]/';
@@ -1087,7 +1088,10 @@ class Linker {
 				) . $trail;
 			}
 		}
-		$comment = preg_replace( $linkRegexp, StringUtils::escapeRegexReplacement( $thelink ), $comment, 1 );
+		if( $thelink ) {
+			// If the link is still valid, go ahead and replace it in!
+			$comment = preg_replace( $linkRegexp, StringUtils::escapeRegexReplacement( $thelink ), $comment, 1 );
+		}
 
 		return $comment;
 	}
