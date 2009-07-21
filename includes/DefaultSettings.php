@@ -4087,9 +4087,9 @@ $wgAutocreatePolicy = 'login';
 $wgAllowPrefChange = array();
 
 /**
- * If an exact match is not found, try to find a match in a different namespace
+ * If an exact match is not found, try to find a match in different namespaces
  * before performing a search.
  *
- * Integer: Id of namespace to attempt match in.
+ * Array: Ids of namespaces to attempt match in, in desired order.
  */
-$wgSecondaryGoNamespace = null;
+$wgSecondaryGoNamespaces = null;

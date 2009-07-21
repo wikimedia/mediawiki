@@ -63,7 +63,7 @@ class SearchEngine {
 	 * @return Title
 	 */
 	public static function getNearMatch( $searchterm ) {
-		global $wgContLang, $wgSecondaryGoNamespace;
+		global $wgContLang, $wgSecondaryGoNamespaces;
 
 		$allSearchTerms = array($searchterm);
 
@@ -88,10 +88,12 @@ class SearchEngine {
 				return $title;
 			}
 
-			# If a match is not found in the main namespace look in secondary go namespace.
-			if( $wgSecondaryGoNamespace && $title->getNamespace() == NS_MAIN ) {
-				$title = Title::newFromText( $term, $wgSecondaryGoNamespace );
-				if( $title && $title->exists() ) return $title;
+			# If a match is not found in the main namespace look in secondary go namespaces.
+			if( $wgSecondaryGoNamespaces && $title->getNamespace() == NS_MAIN ) {
+				foreach( $wgSecondaryGoNamespaces as $ns ) {
+					$title = Title::newFromText( $term, $ns );
+					if( $title && $title->exists() ) return $title;
+				}
 			}
 
 			# Now try all lower case (i.e. first letter capitalized)
