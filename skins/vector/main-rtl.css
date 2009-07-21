@@ -776,6 +776,7 @@ div.thumb {
 	border-style: solid;
 	border-color: white;
 	width: auto;
+	background-color: transparent;
 }
 div.thumbinner {
 	border: 1px solid #ccc;
