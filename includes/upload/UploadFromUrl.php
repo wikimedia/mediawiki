@@ -62,7 +62,7 @@ class UploadFromUrl extends UploadBase {
 		return $this->initialize(
 			$desiredDestName,
 	 		$request->getVal( 'wpUploadFileURL' ),
-			$asyncdownload = false
+			false
 		);
 	}
 
