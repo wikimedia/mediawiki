@@ -970,7 +970,7 @@ Spróbuj [[Special:Search|poszukać]] tej strony.',
 
 # Revision deletion
 'rev-deleted-comment'         => '(komentarz usunięty)',
-'rev-deleted-user'            => '(użytkownik usunięty)',
+'rev-deleted-user'            => '(nazwa użytkownika usunięta)',
 'rev-deleted-event'           => '(wpis usunięty)',
 'rev-deleted-text-permission' => "Ta wersja strony została '''usunięta'''.
 Szczegółowe informacje mogą znajdować się w [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} rejestrze usunięć].",

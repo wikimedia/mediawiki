@@ -505,15 +505,16 @@ Zoznam platných špeciálnych stránok nájdete na [[Special:SpecialPages|{{int
 'error'                => 'Chyba',
 'databaseerror'        => 'Chyba v databáze',
 'dberrortext'          => 'Nastala syntaktická chyba v príkaze na prehľadávanie databázy.
+To môže značiť chybu v softvéri.
 Posledný pokus o prehľadávanie bol:
 <blockquote><tt>$1</tt></blockquote>
 z funkcie „<tt>$2</tt>“.
-MySQL vrátil chybu „<tt>$3: $4</tt>“.',
+$5 vrátil chybu „<tt>$3: $4</tt>“.',
 'dberrortextcl'        => 'Nastala syntaktická chyba pri požiadavke do databázy.
 Posledný pokus o požiadavku do databázy znel:
 „$1“
 z funkcie „$2“.
-MySQL vrátil chybu „$3: $4“.',
+$5 vrátil chybu „$3: $4“.',
 'laggedslavemode'      => 'Upozornenie: Je možné, že stránka neobsahuje posledné aktualizácie.',
 'readonly'             => 'Databáza je zamknutá',
 'enterlockreason'      => 'Zadajte dôvod požadovaného zamknutia vrátane odhadu, kedy očakávate odomknutie',
@@ -531,6 +532,7 @@ Oznámte to prosím [[Special:ListUsers/sysop|správcovi]] a uveďte URL.',
 'readonly_lag'         => 'Databáza bola automaticky zamknutá pokým záložné databázové servery nedoženú hlavný server',
 'internalerror'        => 'Vnútorná chyba',
 'internalerror_info'   => 'Vnútorná chyba: $1',
+'fileappenderror'      => 'Nepodarilo sa pridať „$1“ k „$2“.',
 'filecopyerror'        => 'Nebolo možné skopírovať súbor „$1“ na „$2“.',
 'filerenameerror'      => 'Nebolo možné premenovať súbor „$1“ na „$2“.',
 'filedeleteerror'      => 'Nebolo možné vymazať súbor „$1“.',
@@ -1373,6 +1375,7 @@ Musí obsahovať menej ako $1 {{PLURAL:$1|znak|znaky|znakov}}.',
 'right-siteadmin'             => 'Zamykať a odomykať databázu',
 'right-reset-passwords'       => 'Zmeniť heslo iných používateľov',
 'right-override-export-depth' => 'Exportovať stránky vrátane okdazovaných stránok do hĺbky 5 odkazov',
+'right-versiondetail'         => 'Zobraziť podrobné informácie o verzii softvéru',
 
 # User rights log
 'rightslog'      => 'Záznam používateľských práv',
@@ -1558,15 +1561,18 @@ MGP # Pentax
 PICT # misc.
  #</pre> <!-- leave this line exactly as it is -->',
 
-'upload-proto-error'      => 'Nesprávny protokol',
-'upload-proto-error-text' => 'Vzdialené nahrávanie vyžaduje, aby URL začínali <code>http://</code> alebo <code>ftp://</code>.',
-'upload-file-error'       => 'Vnútorná chyba',
-'upload-file-error-text'  => 'Vyskytla sa vnútorná chyba pri pokuse vytvoriť dočasný súbor na serveri.
+'upload-proto-error'        => 'Nesprávny protokol',
+'upload-proto-error-text'   => 'Vzdialené nahrávanie vyžaduje, aby URL začínali <code>http://</code> alebo <code>ftp://</code>.',
+'upload-file-error'         => 'Vnútorná chyba',
+'upload-file-error-text'    => 'Vyskytla sa vnútorná chyba pri pokuse vytvoriť dočasný súbor na serveri.
 Prosím, kontaktujte [[Special:ListUsers/sysop|správcu systému]].',
-'upload-misc-error'       => 'Neznáma chyba pri nahrávaní',
-'upload-misc-error-text'  => 'Počas nahrávania sa vyskytla neznáma chyba.
+'upload-misc-error'         => 'Neznáma chyba pri nahrávaní',
+'upload-misc-error-text'    => 'Počas nahrávania sa vyskytla neznáma chyba.
 Prosím, overte, že URL je platný a dostupný a skúste znova.
 Ak problém pretrváva, kontaktujte [[Special:ListUsers/sysop|správcu systému]].',
+'upload-too-many-redirects' => 'URL obsahoval príliš mnoho presmerovaní',
+'upload-unknown-size'       => 'Neznáma veľkosť',
+'upload-http-error'         => 'Vyskytla sa chyba HTTP: $1',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Nedostupný URL',
@@ -1709,7 +1715,9 @@ Mali by však odkazovať priamo na príslušnú tému.<br />
 Stránka sa považuje za rozlišovaciu, keď používa šablónu, na ktorú odkazuje [[MediaWiki:Disambiguationspage]]",
 
 'doubleredirects'            => 'Dvojité presmerovania',
-'doubleredirectstext'        => 'Každý riadok obsahuje odkaz na prvé a druhé presmerovanie a tiež prvý riadok z textu na ktorý odkazuje druhé presmerovanie, ktoré zvyčajne odkazuje na „skutočný“ cieľ, na ktorý má odkazovať prvé presmerovanie.',
+'doubleredirectstext'        => 'Táto stránka obsahuje zoznam stránok, ktoré presmerovávajú na iné presmerovacie stránky.
+Každý riadok obsahuje odkaz na prvé a druhé presmerovanie a tiež prvý riadok z textu na ktorý odkazuje druhé presmerovanie, ktoré zvyčajne odkazuje na „skutočný“ cieľ, na ktorý má odkazovať prvé presmerovanie.
+<s>Prečiarknuté</s> položky boli vyriešené.',
 'double-redirect-fixed-move' => 'Stránka [[$1]] bola presunutá, teraz je presmerovaním na [[$2]]',
 'double-redirect-fixer'      => 'Korektor presmerovaní',
 
@@ -2418,13 +2426,21 @@ V druhom prípade môžete tiež použiť odkaz, napr. [[{{#Special:Export}}/{{M
 'export-pagelinks'  => 'Vrátane odkazovaných stránok do hĺbky:',
 
 # Namespace 8 related
-'allmessages'               => 'Všetky systémové správy',
-'allmessagesname'           => 'Názov',
-'allmessagesdefault'        => 'štandardný text',
-'allmessagescurrent'        => 'aktuálny text',
-'allmessagestext'           => 'Toto je zoznam všetkých správ dostupných v mennom priestore MediaWiki.
+'allmessages'                   => 'Všetky systémové správy',
+'allmessagesname'               => 'Názov',
+'allmessagesdefault'            => 'štandardný text',
+'allmessagescurrent'            => 'aktuálny text',
+'allmessagestext'               => 'Toto je zoznam všetkých správ dostupných v mennom priestore MediaWiki.
 Prosím, navštívte [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] a [http://translatewiki.net translatewiki.net] ak chcete prispieť k všeobecnej lokalizácii MediaWiki.',
-'allmessagesnotsupportedDB' => "Túto stránku nemožno použiť, pretože '''\$wgUseDatabaseMessages''' je vypnuté.",
+'allmessagesnotsupportedDB'     => "Túto stránku nemožno použiť, pretože '''\$wgUseDatabaseMessages''' je vypnuté.",
+'allmessages-filter-legend'     => 'Filter',
+'allmessages-filter'            => 'Filter podľa stavu prispôsobenia:',
+'allmessages-filter-unmodified' => 'Nezmenené',
+'allmessages-filter-all'        => 'Všetky',
+'allmessages-filter-modified'   => 'Zmenené',
+'allmessages-prefix'            => 'Filter podľa predpony:',
+'allmessages-language'          => 'Jazyk:',
+'allmessages-filter-submit'     => 'Vykonať',
 
 # Thumbnails
 'thumbnail-more'           => 'Zväčšiť',
@@ -3199,6 +3215,7 @@ Zadajte názov súboru bez predpony „{{ns:file}}:“.',
 'htmlform-invalid-input'       => 'Niekotrý z údajov, ktoré ste zadali je problematický',
 'htmlform-select-badoption'    => 'Hodnota, ktorú ste uviedli nie je platná.',
 'htmlform-int-invalid'         => 'Hodnota, ktorú ste uviedli nie je celé číslo.',
+'htmlform-float-invalid'       => 'Hodnota, ktorú ste zadali nie je číslo.',
 'htmlform-int-toolow'          => 'Hodnota, ktorú ste zadali je menšia ako minimálna hodnota $1',
 'htmlform-int-toohigh'         => 'Hodnota, ktorú ste zadali je väčšia ako maximálna hodnota $1',
 'htmlform-submit'              => 'Odoslať',

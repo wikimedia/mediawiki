@@ -460,6 +460,8 @@ $messages = array(
 'vector-view-history'        => 'Visa historik',
 'vector-view-view'           => 'Visa',
 'vector-view-viewsource'     => 'Visa källa',
+'actions'                    => 'Handlingar',
+'namespaces'                 => 'Namnrymder',
 'variants'                   => 'Varianter',
 
 # Metadata in edit box
@@ -623,6 +625,7 @@ Rapportera gärna problemet till någon [[Special:ListUsers/sysop|administratör
 'readonly_lag'         => 'Databasen har automatiskt skrivskyddats medan slavdatabasservrarna synkroniseras med huvudservern.',
 'internalerror'        => 'Internt fel',
 'internalerror_info'   => 'Internt fel: $1',
+'fileappenderror'      => 'Kunde inte bifoga "$1" till "$2".',
 'filecopyerror'        => 'Kunde inte kopiera filen "$1" till "$2".',
 'filerenameerror'      => 'Kunde inte byta namn på filen "$1" till "$2".',
 'filedeleteerror'      => 'Kunde inte radera filen "$1".',
@@ -1460,6 +1463,7 @@ Du kan också välja att låta andra användare kontakta dig genom din användar
 'right-siteadmin'             => 'Låsa och låsa upp databasen',
 'right-reset-passwords'       => 'Återställa andra användares lösenord',
 'right-override-export-depth' => 'Exportera sidor inklusive länkade sidor till ett djup på 5',
+'right-versiondetail'         => 'Visa den utökade mjukvaruversionsinformationen',
 
 # User rights log
 'rightslog'      => 'Användarrättighetslogg',
@@ -1646,14 +1650,17 @@ MGP # Pentax
 PICT # allmänt bildprefix
  #</pre> <!-- ändra inte den här raden -->',
 
-'upload-proto-error'      => 'Felaktigt protokoll',
-'upload-proto-error-text' => 'Fjärruppladdning kräver URL:ar som börjar med <code>http://</code> eller <code>ftp://</code>.',
-'upload-file-error'       => 'Internt fel',
-'upload-file-error-text'  => 'Ett internt fel inträffade när en temporär fil skulle skapas på servern. Kontakta en systemadministratör.',
-'upload-misc-error'       => 'Okänt uppladdningsfel',
-'upload-misc-error-text'  => 'Ett okänt fel inträffade under uppladdningen.
+'upload-proto-error'        => 'Felaktigt protokoll',
+'upload-proto-error-text'   => 'Fjärruppladdning kräver URL:ar som börjar med <code>http://</code> eller <code>ftp://</code>.',
+'upload-file-error'         => 'Internt fel',
+'upload-file-error-text'    => 'Ett internt fel inträffade när en temporär fil skulle skapas på servern. Kontakta en systemadministratör.',
+'upload-misc-error'         => 'Okänt uppladdningsfel',
+'upload-misc-error-text'    => 'Ett okänt fel inträffade under uppladdningen.
 Kontrollera att URL:en giltig och försök igen.
 Om problemet kvarstår, kontakta en [[Special:ListUsers/sysop|administratör]].',
+'upload-too-many-redirects' => 'URL-en innehöll för många omdirigeringar',
+'upload-unknown-size'       => 'Okänd storlek',
+'upload-http-error'         => 'Ett HTTP-fel uppstod: $1',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'URL:en kunde inte nås',
@@ -2495,13 +2502,21 @@ I det senare fallet kan du även använda en länk, exempel [[{{#Special:Export}
 'export-pagelinks'  => 'Inkludera länkade sidor till ett djup på:',
 
 # Namespace 8 related
-'allmessages'               => 'Systemmeddelanden',
-'allmessagesname'           => 'Namn',
-'allmessagesdefault'        => 'Standardtext',
-'allmessagescurrent'        => 'Nuvarande text',
-'allmessagestext'           => 'Detta är en lista över alla meddelanden i namnrymden MediaWiki.
+'allmessages'                   => 'Systemmeddelanden',
+'allmessagesname'               => 'Namn',
+'allmessagesdefault'            => 'Standardtext',
+'allmessagescurrent'            => 'Nuvarande text',
+'allmessagestext'               => 'Detta är en lista över alla meddelanden i namnrymden MediaWiki.
 Besök [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] eller [http://translatewiki.net translatewiki.net] om du vill bidra till översättningen av MediaWiki.',
-'allmessagesnotsupportedDB' => "Den här sidan kan inte användas eftersom '''\$wgUseDatabaseMessages''' är avstängd.",
+'allmessagesnotsupportedDB'     => "Den här sidan kan inte användas eftersom '''\$wgUseDatabaseMessages''' är avstängd.",
+'allmessages-filter-legend'     => 'Filtrera',
+'allmessages-filter'            => 'Filtrera efter anpassningsgrad:',
+'allmessages-filter-unmodified' => 'Ej modifierad',
+'allmessages-filter-all'        => 'Alla',
+'allmessages-filter-modified'   => 'Modifierad',
+'allmessages-prefix'            => 'Filtrera efter prefix:',
+'allmessages-language'          => 'Språk:',
+'allmessages-filter-submit'     => 'Gå',
 
 # Thumbnails
 'thumbnail-more'           => 'Förstora',
@@ -3297,6 +3312,7 @@ Skriv filnamnet utan prefixet "{{ns:file}}:" .',
 'htmlform-invalid-input'       => 'Det finns problem med din inmatning',
 'htmlform-select-badoption'    => 'Värdet du valde är inte ett giltigt alternativ.',
 'htmlform-int-invalid'         => 'Värdet du valde är inte ett heltal.',
+'htmlform-float-invalid'       => 'Värdet du valde är inte en siffra.',
 'htmlform-int-toolow'          => 'Värdet du valde är under minimumet på $1',
 'htmlform-int-toohigh'         => 'Värdet du valde är över maximumet på $1',
 'htmlform-submit'              => 'Spara',
