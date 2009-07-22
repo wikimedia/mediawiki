@@ -23,6 +23,7 @@ foreach ( $args as $revID ) {
 		array(
 			'ar_namespace'  => 'page_namespace',
 			'ar_title'      => 'page_title',
+			'ar_page_id'    => 'page_id',
 			'ar_comment'    => 'rev_comment',
 			'ar_user'       => 'rev_user',
 			'ar_user_text'  => 'rev_user_text',
@@ -30,6 +31,8 @@ foreach ( $args as $revID ) {
 			'ar_minor_edit' => 'rev_minor_edit',
 			'ar_rev_id'     => 'rev_id',
 			'ar_text_id'    => 'rev_text_id',
+			'ar_deleted'    => 'rev_deleted',
+			'ar_len'        => 'rev_len',
 		), array(
 			'rev_id' => $revID,
 			'page_id = rev_page'
@@ -40,6 +43,13 @@ foreach ( $args as $revID ) {
 	} else {
 		$affected += $dbw->affectedRows();
 		$dbw->delete( 'revision', array( 'rev_id' => $revID ) );
+
+		// Database integrity
+		$pageID = $dbw->selectField( 'page', 'page_id', array( 'page_latest' => $revID ), __METHOD__ );
+		if ( $pageID ) {
+			$newLatest = $dbw->selectField( 'revision', 'rev_id', array( 'rev_page' => $pageID ), __METHOD__, array( 'ORDER BY' => 'rev_timestamp DESC' ) );
+			$dbw->update( 'page', array( 'page_latest' => $newLatest ), array( 'page_id' => $pageID ), __METHOD__ );
+		}
 	}
 }
 

@@ -310,6 +310,8 @@ this. Was used when mwEmbed was going to be an extension.
 * (bug 19839) Comments in log items are no more double escaped
 * (bug 18161) Fix inconsistent separators in watchlist link toolbars with
   "enhanced recent changes"
+* (bug 19857) maintenance/deleteRevision.php on last revision no longer breaks
+  target page
 
 == API changes in 1.16 ==
 
