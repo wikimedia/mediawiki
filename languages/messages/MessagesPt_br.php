@@ -359,6 +359,7 @@ $messages = array(
 'vector-view-history'        => 'Ver histórico',
 'vector-view-view'           => 'Ler',
 'vector-view-viewsource'     => 'Ver fonte',
+'actions'                    => 'Ações',
 
 # Metadata in edit box
 'metadata_help' => 'Metadados:',
@@ -2293,7 +2294,7 @@ Por favor, escolha outro nome.',
 'movepage-page-unmoved'        => 'A página $1 não pôde ser movida para $2.',
 'movepage-max-pages'           => 'O limite de $1 {{PLURAL:$1|página movida|páginas movidas}} foi atingido; não será possível mover mais páginas de forma automática.',
 '1movedto2'                    => '[[$1]] foi movido para [[$2]]',
-'1movedto2_redir'              => '[[$1]] foi movido para [[$2]] sob redirecionamento',
+'1movedto2_redir'              => '[[$1]] foi movido para [[$2]] sobre um redirecionamento',
 'move-redirect-suppressed'     => 'redirecionamento suprimido',
 'movelogpage'                  => 'Registro de movimento',
 'movelogpagetext'              => 'Abaixo encontra-se uma lista de páginas movidas.',
@@ -2344,7 +2345,7 @@ Se desejar, pode utilizar uma ligação (por exemplo, [[{{#Special:Export}}/{{Me
 'allmessagesname'           => 'Nome',
 'allmessagesdefault'        => 'Texto padrão',
 'allmessagescurrent'        => 'Texto atual',
-'allmessagestext'           => 'Esta é uma lista de todas mensagens de sistema disponíveis no espaço nominal {{ns:mediawiki}}.
+'allmessagestext'           => 'Esta é uma lista de todas as mensagens de sistema disponíveis no espaço nominal {{ns:mediawiki}}.
 Acesse [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] e [http://translatewiki.net translatewiki.net] caso deseje contribuir para traduções do MediaWiki feitas para uso geral.',
 'allmessagesnotsupportedDB' => "Esta página não pode ser utilizada, uma vez que '''\$wgUseDatabaseMessages''' foi desativado.",
 

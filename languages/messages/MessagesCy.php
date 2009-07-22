@@ -437,12 +437,12 @@ Efallai fod gwall yn y meddalwedd.
 Y gofyniad olaf y trïodd y databas oedd:
 <blockquote><tt>$1</tt></blockquote>
 o\'r ffwythiant "<tt>$2</tt>".
-Rhoddwyd y côd gwall "<tt>$3: $4</tt>" gan MySQL.',
+Rhoddwyd y côd gwall "<tt>$3: $4</tt>" gan $5.',
 'dberrortextcl'        => 'Mae gwall cystrawen wedi taro\'r databas.
 Y gofyniad olaf y trïodd y databas oedd:
 "$1"
 o\'r ffwythiant "$2".
-Rhoddwyd y côd gwall "$3: $4<" gan MySQL.',
+Rhoddwyd y côd gwall "$3: $4<" gan $5.',
 'laggedslavemode'      => "Rhybudd: hwyrach nad yw'r dudalen yn cynnwys diwygiadau diweddar.",
 'readonly'             => 'Databas ar glo',
 'enterlockreason'      => "Rhowch eglurhad dros gloi'r databas, ac amcangyfrif hyd at pa bryd y bydd y databas dan glo",
@@ -920,6 +920,8 @@ Pan yn gwneud hyn dylid sicrhau nad yw dilyniant hanes tudalennau yn cael ei ddi
 'diff-removed'             => 'tynnwyd $1',
 'diff-changedfrom'         => 'wedi newid o $1',
 'diff-src'                 => 'gwreiddiol',
+'diff-with'                => '&#32;a $1 $2',
+'diff-with-final'          => '&#32;a $1 $2',
 'diff-width'               => 'lled',
 'diff-height'              => 'uchder',
 'diff-p'                   => "'''paragraff'''",
@@ -932,6 +934,7 @@ Pan yn gwneud hyn dylid sicrhau nad yw dilyniant hanes tudalennau yn cael ei ddi
 'diff-div'                 => "'''rhaniad'''",
 'diff-ul'                  => "'''rhestr heb ei drefnu'''",
 'diff-ol'                  => "'''rhestr trefnedig'''",
+'diff-li'                  => "'''eitem ar y rhestr'''",
 'diff-table'               => "'''tabl'''",
 'diff-tbody'               => "'''cynnwys tabl'''",
 'diff-tr'                  => "'''rhes'''",
@@ -954,6 +957,7 @@ Pan yn gwneud hyn dylid sicrhau nad yw dilyniant hanes tudalennau yn cael ei ddi
 'diff-tt'                  => "'''lled penodol'''",
 'diff-sub'                 => "'''isysgrif'''",
 'diff-sup'                 => "'''uwchysgrif'''",
+'diff-strike'              => "'''llinell drwyddo'''",
 
 # Search results
 'searchresults'                    => "Canlyniadau'r chwiliad",
@@ -1200,6 +1204,7 @@ Gallwch hefyd adael i eraill anfon e-bost atoch trwy'r cyswllt ar eich tudalen d
 'right-purge'                 => 'Carthu celc y safle o ryw dudalen heb gadarnhau',
 'right-autoconfirmed'         => 'Golygu tudalennau sydd wedi eu lled-ddiogelu',
 'right-bot'                   => 'Cael ei drin fel proses awtomataidd',
+'right-nominornewtalk'        => "Gallu dewis peidio â derbyn hysbysiad bod gennych neges newydd pan ddigwydd mân newidiadau i'ch tudalen sgwrs",
 'right-apihighlimits'         => 'Defnyddio terfynau uwch mewn ymholiadau API',
 'right-writeapi'              => "Defnyddio'r API i ysgrifennu a thrin y tudalennau",
 'right-delete'                => 'Dileu tudalennau',
@@ -1225,6 +1230,8 @@ Gallwch hefyd adael i eraill anfon e-bost atoch trwy'r cyswllt ar eich tudalen d
 'right-import'                => 'Mewnforio tudalennau o wicïau eraill',
 'right-importupload'          => 'Mewnforio tudalennau drwy uwchlwytho ffeil XML',
 'right-patrol'                => 'Gallu marcio golygiadau pobl eraill yn rhai sydd wedi derbyn ymweliad patrôl',
+'right-autopatrol'            => 'Gallu derbyn marc ymweliad patrôl yn awtomatig ar eich golygiadau eich hunan',
+'right-patrolmarks'           => 'Gweld marciau patrôl ar newidiadau diweddar',
 'right-unwatchedpages'        => 'Gweld rhestr y tudalennau heb neb yn eu gwylio',
 'right-mergehistory'          => 'Cyfuno hanes y tudalennau',
 'right-userrights'            => 'Golygu holl alluoedd defnyddwyr',
@@ -1267,6 +1274,7 @@ Gallwch hefyd adael i eraill anfon e-bost atoch trwy'r cyswllt ar eich tudalen d
 'action-import'               => "mewnforio'r dudalen hon o wici arall",
 'action-importupload'         => "mewnforio'r dudalen hon drwy uwchlwytho ffeil XML",
 'action-patrol'               => 'marcio bod golygiad defnyddiwr arall wedi derbyn ymweliad patrôl',
+'action-autopatrol'           => 'cael derbyn marc ymweliad patrôl ar eich golygiad',
 'action-unwatchedpages'       => 'gweld rhestr y tudalennau heb neb yn eu gwylio',
 'action-mergehistory'         => 'cyfuno hanes y dudalen hon',
 'action-userrights'           => 'golygu holl alluoedd y defnyddwyr',
@@ -1401,15 +1409,18 @@ Ail-feddyliwch a ddylech barhau i uwchlwytho'r ffel hon.
 Dyma'r lòg dileu ar gyfer y ffeil i chi gael gweld:",
 'filename-bad-prefix'         => "Mae'r enw ar y ffeil yr ydych yn ei uwchlwytho yn dechrau gyda '''\"\$1\"'''. Mae'r math hwn o enw diystyr fel arfer yn cael ei osod yn awtomatig gan gamerâu digidol. Mae'n well gosod enw sy'n disgrifio'r ffeil arno.",
 
-'upload-proto-error'      => 'Protocol gwallus',
-'upload-proto-error-text' => "Rhaid cael URLs yn dechrau gyda <code>http://</code> neu <code>ftp://</code> wrth uwchlwytho'n bell.",
-'upload-file-error'       => 'Gwall mewnol',
-'upload-file-error-text'  => 'Cafwyd gwall mewnol wrth geisio creu ffeil dros dro ar y gweinydd.
+'upload-proto-error'        => 'Protocol gwallus',
+'upload-proto-error-text'   => "Rhaid cael URLs yn dechrau gyda <code>http://</code> neu <code>ftp://</code> wrth uwchlwytho'n bell.",
+'upload-file-error'         => 'Gwall mewnol',
+'upload-file-error-text'    => 'Cafwyd gwall mewnol wrth geisio creu ffeil dros dro ar y gweinydd.
 Byddwch gystal â chysylltu â [[Special:ListUsers/sysop|gweinyddwr]].',
-'upload-misc-error'       => 'Gwall uwchlwytho anhysbys',
-'upload-misc-error-text'  => "Cafwyd gwall anghyfarwydd yn ystod yr uwchlwytho.
+'upload-misc-error'         => 'Gwall uwchlwytho anhysbys',
+'upload-misc-error-text'    => "Cafwyd gwall anghyfarwydd yn ystod yr uwchlwytho.
 Sicrhewch bod yr URL yn ddilys ac yn hygyrch a cheisiwch eto.
 Os yw'r broblem yn parhau, cysylltwch â [[Special:ListUsers/sysop|gweinyddwr]].",
+'upload-too-many-redirects' => 'Roedd gormod o ailgyfeiriadau yn yr URL',
+'upload-unknown-size'       => 'Maint anhysbys',
+'upload-http-error'         => 'Digwyddodd gwall HTTP: $1',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Wedi methu cyrraedd yr URL',
@@ -1556,7 +1567,8 @@ Cofiwch chwilio am gysylltiadau eraill at nodyn a'u hystyried cyn ei ddileu.",
 'disambiguations-text' => "Mae'r tudalennau canlynol yn cysylltu â thudalennau gwahaniaethu. Yn hytrach dylent gysylltu'n syth â'r erthygl briodol.<br />Diffinir tudalen yn dudalen gwahaniaethu pan mae'n cynnwys un o'r nodiadau '[[MediaWiki:Disambiguationspage|tudalen gwahaniaethu]]'.",
 
 'doubleredirects'            => 'Ailgyfeiriadau dwbl',
-'doubleredirectstext'        => "Mae pob rhes yn cynnwys cysylltiad i'r ddau ail-gyfeiriad cyntaf, ynghyd â chyrchfan yr ail ailgyfeiriad. Fel arfer bydd hyn yn rhoi'r gwir dudalen y dylai'r tudalennau cynt gyfeirio ati.",
+'doubleredirectstext'        => "Mae pob rhes yn cynnwys cysylltiad i'r ddau ail-gyfeiriad cyntaf, ynghyd â chyrchfan yr ail ailgyfeiriad. Fel arfer bydd hyn yn rhoi'r gwir dudalen y dylai'r tudalennau cynt gyfeirio ati.
+Gosodwyd <s>llinell</s> drwy'r eitemau sydd eisoes wedi eu datrys.",
 'double-redirect-fixed-move' => "Symudwyd [[$1]], a'i droi'n ailgyfeiriad at [[$2]]",
 'double-redirect-fixer'      => 'Redirect fixer',
 
@@ -2218,6 +2230,7 @@ nid yw'n bosib cyflawnu'r symud.",
 'immobile-source-namespace'    => 'Ni ellir symud tudalennau yn y parth "$1".',
 'immobile-target-namespace'    => 'Ni ellir symud tudalennau i\'r parth "$1".',
 'immobile-source-page'         => 'Ni ellir symud y dudalen hon.',
+'immobile-target-page'         => "Ddim yn gallu symud i'r teitl newydd hwn.",
 'imagenocrossnamespace'        => 'Ni ellir symud ffeil i barth arall',
 'imagetypemismatch'            => "Nid yw'r estyniad ffeil newydd yn cyfateb i'r math o ffeil",
 'imageinvalidfilename'         => "Mae enw'r ffeil darged yn annilys",
@@ -2253,6 +2266,11 @@ Yn achos yr ail ddewis, mae modd defnyddio cyswllt, e.e. [[{{#Special:Export}}/{
 'allmessagestext'           => "Dyma restr o'r holl negeseuon yn y parth MediaWici.
 Os ydych am gyfrannu at y gwaith o gyfieithu ar gyfer holl prosiectau MediaWiki ar y cyd, mae croeso i chi ymweld â [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] a [http://translatewiki.net translatewiki.net].",
 'allmessagesnotsupportedDB' => "Nid yw '''{{ns:special}}:PobNeges''' yn cael ei gynnal gan fod '''\$wgUseDatabaseMessages''' wedi ei ddiffodd.",
+'allmessages-filter-legend' => 'Hidl',
+'allmessages-filter-all'    => 'Oll',
+'allmessages-prefix'        => 'Hidlo yn ôl rhagddodiad:',
+'allmessages-language'      => 'Iaith:',
+'allmessages-filter-submit' => 'Eler',
 
 # Thumbnails
 'thumbnail-more'           => 'Chwyddo',

@@ -310,7 +310,7 @@ $messages = array(
 'tog-watchmoves'              => 'Apondre las paginas que tòrni nomenar a ma lista de seguit',
 'tog-watchdeletion'           => 'Apondre las paginas que suprimissi de ma lista de seguit',
 'tog-minordefault'            => 'Considerar mas modificacions coma menoras per defaut',
-'tog-previewontop'            => 'Mostrar la previsualizacion al dessús de la zòna de modificacion',
+'tog-previewontop'            => 'Far veire la previsualizacion al dessús de la zòna de modificacion',
 'tog-previewonfirst'          => 'Far veire la previsualizacion al moment de la primièra edicion',
 'tog-nocache'                 => "Desactivar l'amagatal de paginas",
 'tog-enotifwatchlistpages'    => 'M’avertir per corrièr electronic quand una pagina de ma lista de seguit es modificada',
@@ -332,7 +332,7 @@ $messages = array(
 'tog-watchlisthidepatrolled'  => 'Amagar las modificacions susvelhadas de la lista de seguit',
 'tog-nolangconversion'        => 'Desactivar la conversion de las variantas de lenga',
 'tog-ccmeonemails'            => 'Me mandar una còpia dels corrièrs electronics que mandi als autres utilizaires',
-'tog-diffonly'                => 'Mostrar pas lo contengut de las paginas jos las difs',
+'tog-diffonly'                => 'Far pas veire lo contengut de las paginas jos las difs',
 'tog-showhiddencats'          => 'Afichar las categorias amagadas',
 'tog-noconvertlink'           => 'Desactivar la conversion dels títols',
 'tog-norollbackdiff'          => 'Ometre lo diff aprèp l’utilizacion d’un revert',
@@ -811,7 +811,7 @@ Benlèu ja avètz modificat vòstre senhal o demandat un senhal temporari novèl
 'showdiff'                         => 'Cambiaments en cors',
 'anoneditwarning'                  => "'''Atencion :''' sètz pas identificat(ada).
 Vòstra adreça IP serà enregistrada dins l’istoric d'aquesta pagina.",
-'missingsummary'                   => "'''Atencion :''' avètz pas modificat lo resumit de vòstra modificacion. Se clicatz tornarmai sul boton « Salvar », lo salvament serà facha sens avertiment novèl.",
+'missingsummary'                   => "'''Atencion :''' avètz pas modificat lo resumit de vòstra modificacion. Se clicatz tornarmai sul boton « Salvar », lo salvament serà fach sens avertiment mai.",
 'missingcommenttext'               => 'Mercé de metre un comentari çaijós.',
 'missingcommentheader'             => "'''Rampèl :''' Avètz pas provesit de subjècte/títol per aqueste comentari. Se clicatz tornamai sus ''Salvar'', vòstra edicion serà enregistrada sens aquò.",
 'summary-preview'                  => 'Previsualizacion del resumit :',
@@ -1033,7 +1033,7 @@ En tant qu'administrator, podètz encara [$1 veire aquesta diferéncia] se o vol
 'logdelete-selected'          => "'''{{PLURAL:$1|Eveniment d'istoric seleccionat|Eveniments d'istoric seleccionats}} :'''",
 'revdelete-text'              => "'''Las revisions e eveniments suprimits apareisseràn encara dins l’istoric e los jornals de la pagina, mas lor contengut textual serà inaccessible al public.'''
 
-D’autres administrators sus {{SITENAME}} poiràn totjorn accedir al contengut amagat e lo restablir tornarmai a travèrs d'aquesta meteissa interfàcia, a mens qu’una restriccion suplementària siá mesa en plaça pels operators del sit.
+D’autres administrators sus {{SITENAME}} poiràn totjorn accedir al contengut amagat e lo restablir tornamai a travèrs d'aquesta meteissa interfàcia, a mens qu’una restriccion suplementària siá mesa en plaça pels operators del site.
 
 Confirmatz qu'aquò es plan çò que voliatz far, que comprenètz las consequéncias, e qu'o fasètz en acòrd amb las [[{{MediaWiki:Policy-url}}|règlas]].",
 'revdelete-suppress-text'     => "La supression deu èsser utilizada '''sonque''' dins los cases seguents :
@@ -1322,7 +1322,7 @@ Atencion, lor indexacion de contengut {{SITENAME}} benlèu es pas a jorn.',
 'prefs-files'                   => 'Fichièrs',
 'prefs-custom-css'              => 'CSS personalizat',
 'prefs-custom-js'               => 'JS personalizat',
-'prefs-reset-intro'             => 'Podètz utilizar aquesta pagina per restablir vòstras preferéncias a las valors per defaut del sit. Aquò pòt pas èsser desfach.',
+'prefs-reset-intro'             => 'Podètz utilizar aquesta pagina per restablir vòstras preferéncias a las valors per defaut del site. Aquò pòt pas èsser desfach.',
 'prefs-emailconfirm-label'      => 'Confirmacion del corrièr electronic :',
 'prefs-textboxsize'             => 'Talha de la fenèstra de modificacion',
 'youremail'                     => 'Adreça de corrièr electronic :',
@@ -1524,7 +1524,7 @@ Tanben podètz causir de permetre a d’autres de vos contactar amb l'ajuda de v
 'diff'                              => 'dif',
 'hist'                              => 'ist',
 'hide'                              => 'amagar',
-'show'                              => 'mostrar',
+'show'                              => 'far veire',
 'minoreditletter'                   => 'm',
 'newpageletter'                     => 'N',
 'boteditletter'                     => 'b',
@@ -2113,7 +2113,7 @@ D'efectuar amb prudéncia.",
 'rollbacklink'     => 'anullar',
 'rollbackfailed'   => "L'anullacion a pas capitat",
 'cantrollback'     => "Impossible d'anullar : l'autor es la sola persona a aver efectuat de modificacions sus aqueste article",
-'alreadyrolled'    => "Impossible d'anullar la darrièra modificacion de l'article « [[$1]] » efectuada per [[User:$2|$2]] ([[User talk:$2|Discutir]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) ;
+'alreadyrolled'    => "Impossible d'anullar la darrièra modificacion de l'article « [[:$1]] » efectuada per [[User:$2|$2]] ([[User talk:$2|Discutir]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) ;
 qualqu’un mai ja a modificat o revocat la pagina.
 
 La darrièra modificacion es estada efectuada per [[User:$3|$3]] ([[User talk:$3|Discutir]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
@@ -2676,8 +2676,8 @@ Totas las accions d’importacion interwiki son conservadas dins lo [[Special:Lo
 
 # Spam protection
 'spamprotectiontitle' => 'Pagina protegida automaticament per causa de spam',
-'spamprotectiontext'  => "La pagina qu'avètz ensajat de publicar es estada blocada pel filtre anti-spam.
-Aquò es probablament causat per un ligam sus lista negra que punta cap a un sit extèrne.",
+'spamprotectiontext'  => "La pagina qu'avètz ensajat de publicar es estada blocada pel filtre antispam.
+Aquò es probablament causat per un ligam sus lista negra que punta cap a un site extèrne.",
 'spamprotectionmatch' => "La cadena de caractèrs « '''$1''' » a desenclavat lo detector de spam.",
 'spambot_username'    => 'Netejatge de spam de MediaWiki',
 'spam_reverting'      => 'Restabliment de la darrièra version que conten pas de ligam cap a $1',
@@ -3303,7 +3303,7 @@ Picatz lo nom del fichièr sens lo prefix « {{ns:file}}: ».',
 
 # Database error messages
 'dberr-header'      => 'Aqueste wiki a un problèma',
-'dberr-problems'    => 'O planhèm ! Aqueste sit rencontra de dificultats tecnicas.',
+'dberr-problems'    => 'O planhèm ! Aqueste site rencontra de dificultats tecnicas.',
 'dberr-again'       => "Ensajatz d'esperar qualques minutas e tornatz cargar.",
 'dberr-info'        => '(Se pòt pas connectar al servidor de la banca de donadas : $1)',
 'dberr-usegoogle'   => 'Podètz ensajar de cercar amb Google pendent aqueste temps.',

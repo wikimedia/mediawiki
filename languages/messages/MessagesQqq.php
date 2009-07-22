@@ -736,7 +736,6 @@ Parameter $1 is the content of section parameter in the URL (for example 1234 in
 'editing'                          => "Shown as page title when editing a page. \$1 is the name of the page that is being edited. Example: \"''Editing Main Page''\".",
 'editingsection'                   => 'The variable $1 is the page name.  This message displays at the top of the page when a user is editing a page section.',
 'explainconflict'                  => 'The text "Save page" is in {{msg-mw|savearticle}}.',
-'yourdiff'                         => '{{Identical|Differences}}',
 'copyrightwarning'                 => 'Copyright warning displayed under the edit box in editor',
 'longpagewarning'                  => 'Warning displayed when trying to edit a long page',
 'longpageerror'                    => 'Warning displayed when trying to save a text larger than the maximum size allowed',
@@ -2088,7 +2087,12 @@ Shown as subtitle of the protection form. $1 is the title of the page to be (un)
 'sp-contributions-blocklog'      => 'Used as a display name for a link to the block log on for example [[Special:Contributions/Mediawiki default]]
 
 {{Identical|Block log}}',
+'sp-contributions-deleted'       => "This is a link anchor used in [[Special:Contributions]]/''name'', when user viewing the page has the right to delete pages, or to restore deleted pages.",
 'sp-contributions-logs'          => "Appears as an action link in the header of the Special:Contributions/''Username'' pages (e.g. \"For Somebody (talk | block log | logs)\").",
+'sp-contributions-talk'          => "This is a link anchor used in the [[Special:Contributions]]/''usernamename'' pages.
+The link appears in a list of similar ones separated by {{msg-mw|pipe-separator}}, e.g. like this:<br />
+( talk | block log | logs | deleted contributions | rights management )",
+'sp-contributions-userrights'    => "This is a link anchor used in [[Special:Contributions]]/''name'', if the user viewing the page has the right to set or alter user rights.",
 'sp-contributions-username'      => 'This message appears whenever someone requests [[Special:Contributions]].',
 'sp-contributions-submit'        => '{{Identical|Search}}',
 
