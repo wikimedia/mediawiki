@@ -312,6 +312,8 @@ this. Was used when mwEmbed was going to be an extension.
   "enhanced recent changes"
 * (bug 19857) maintenance/deleteRevision.php on last revision no longer breaks
   target page
+* (bug 16877) Moving a page over a redirect no longer leaves an orphan entry in
+  the recentchanges table
 
 == API changes in 1.16 ==
 
