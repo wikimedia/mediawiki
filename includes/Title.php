@@ -2812,6 +2812,9 @@ class Title {
 		$newid = $nt->getArticleID();
 		$oldid = $this->getArticleID();
 		$latest = $this->getLatestRevID();
+		$rcts = $dbw->timestamp( $nt->getEarliestRevTime() );
+		$newns = $nt->getNamespace();
+		$newdbk = $nt->getDBkey();
 
 		$dbw = wfGetDB( DB_MASTER );
 
@@ -2833,6 +2836,11 @@ class Title {
 			$dbw->delete( 'langlinks', array( 'll_from' => $newid ), __METHOD__ );
 			$dbw->delete( 'redirect', array( 'rd_from' => $newid ), __METHOD__ );
 		}
+		// If the redirect was recently created, it may have an entry in recentchanges still	
+		$dbw->delete( 'recentchanges', 
+			array( 'rc_timestamp' => $rcts, 'rc_namespace' => $newns, 'rc_title' => $newdbk, 'rc_new' => 1 ), 
+			__METHOD__
+		);
 
 		# Save a null revision in the page's history notifying of the move
 		$nullRevision = Revision::newNullRevision( $dbw, $oldid, $comment, true );
