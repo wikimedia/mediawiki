@@ -66,7 +66,7 @@ class UploadBase {
 
 		$type = ucfirst( $type );
 		$className = 'UploadFrom' . $type;
-		wfDebug( __METHOD__ . ": class name: $className" );
+		wfDebug( __METHOD__ . ": class name: $className\n" );
 		if( !in_array( $type, self::$uploadHandlers ) )
 			return null;
 
@@ -638,7 +638,7 @@ class UploadBase {
 		wfDebug( __METHOD__ . ": checking for embedded scripts and HTML stuff\n" );
 
 		#check for HTML doctype
-		if( eregi( "<!DOCTYPE *X?HTML", $chunk ) )
+		if ( preg_match( "/<!DOCTYPE *X?HTML/i", $chunk ) )
 			return true;
 
 		/**
@@ -951,7 +951,7 @@ class UploadBase {
 					substr( $partname , 3, 3 ) == 'px-' ||
 					substr( $partname , 2, 3 ) == 'px-'
 				) &&
-				ereg( "[0-9]{2}" , substr( $partname , 0, 2) );
+				preg_match( "/[0-9]{2}/" , substr( $partname , 0, 2 ) );
 	}
 
 	/**
