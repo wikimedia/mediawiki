@@ -815,6 +815,9 @@ class ParserTest {
 
 		# Update certain things in site_stats
 		$db->insert( 'site_stats', array( 'ss_row_id' => 1, 'ss_images' => 1, 'ss_good_articles' => 1 ) );
+
+		# Reinitialise the LocalisationCache to match the database state
+		Language::getLocalisationCache()->unloadAll();
 	}
 
 	/**

@@ -639,6 +639,15 @@ class LocalisationCache {
 	}
 
 	/**
+	 * Unload all data
+	 */
+	public function unloadAll() {
+		foreach ( $this->initialisedLangs as $lang => $unused ) {
+			$this->unload( $lang );
+		}
+	}
+
+	/**
 	 * Add messages to the cache, from an extension that has not yet been 
 	 * migrated to $wgExtensionMessages or the LocalisationCacheRecache hook. 
 	 * Called by deprecated function $wgMessageCache->addMessages(). 
