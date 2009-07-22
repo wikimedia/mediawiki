@@ -34,20 +34,17 @@ $specialPageAliases = array(
 $fallback = 'zh-hant';
 
 $namespaceNames = array(
-	NS_MEDIA            => '媒體',
-	NS_SPECIAL          => '特殊',
-	NS_TALK             => '討論',
 	NS_USER             => '使用者',
 	NS_USER_TALK        => '使用者討論',
-	NS_PROJECT_TALK     => '$1討論',
-	NS_FILE             => '圖片',
-	NS_FILE_TALK        => '圖片討論',
-	NS_TEMPLATE         => '模板',
-	NS_TEMPLATE_TALK    => '模板討論',
 	NS_HELP             => '使用說明',
 	NS_HELP_TALK        => '使用說明討論',
-	NS_CATEGORY         => '分類',
-	NS_CATEGORY_TALK    => '分類討論',
+);
+
+$namespaceAliases = array(
+	'Image' => NS_FILE,
+	'Image_talk' => NS_FILE_TALK,
+	"圖片" => NS_FILE,
+	"圖片討論" => NS_FILE_TALK,
 );
 
 $datePreferences = array(
