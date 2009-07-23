@@ -268,7 +268,7 @@ class AllmessagesTablePager extends TablePager {
 
 	function getStartBody() {
 		return Xml::openElement( 'table', array( 'class' => 'TablePager', 'id' => 'mw-allmessagestable' ) ) . "\n" .
-			"<tr>
+			"<thead><tr>
 				<th rowspan=\"2\">" .
 					wfMsg( 'allmessagesname' ) . "
 				</th>
@@ -280,7 +280,7 @@ class AllmessagesTablePager extends TablePager {
 				<th>" .
 					wfMsg( 'allmessagescurrent' ) .
 				"</th>
-			</tr>\n";
+			</tr></thead><tbody>\n";
 	}
 
 	function formatValue( $field , $value ){
