@@ -171,8 +171,8 @@ if ( file_exists( dirname(__FILE__).'/wikimedia-mode' ) ) {
 	#require_once( $IP.'/includes/ProfilerStub.php' );
 	require( $IP.'/includes/Defines.php' );
 	require( $IP.'/CommonSettings.php' );
-	if ( !$wgUseNormalUser ) {
-		require( $IP.'/AdminSettings.php' );
+	if ( !$wgUseNormalUser && is_readable( "$IP/AdminSettings.php" ) ) {
+		require( "$IP/AdminSettings.php" );
 	}
 } else {
 	$wgWikiFarm = false;

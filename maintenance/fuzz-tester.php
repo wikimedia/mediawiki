@@ -138,7 +138,7 @@ Wiki configuration for testing:
   }
   // --------- End ---------
 
-  Also add/change this in AdminSettings.php:
+  Also add/change this in LocalSettings.php:
   // --------- Start ---------
   $wgEnableProfileInfo = true;
   $wgDBserver = "localhost"; // replace with DB server hostname

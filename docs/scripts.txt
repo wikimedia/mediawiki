@@ -35,10 +35,9 @@ Primary scripts:
     to force the profiler to save the informations in the database and apply the
     maintenance/archives/patch-profiling.sql patch to the database.
 
-    To enable the profileinfo.php itself, you'll need to create the
-    AdminSettings.php file (see AdminSettings.sample for more information) and
-    set $wgEnableProfileInfo to true in that file. See also
-    http://www.mediawiki.org/wiki/How_to_debug#Profiling.
+    To enable the profileinfo.php itself, you'll need to set $wgDBadminuser
+    and $wgDBadminpassword in your LocalSettings.php, as well as $wgEnableProfileInfo 
+    See also http://www.mediawiki.org/wiki/How_to_debug#Profiling.
 
   redirect.php
     Script that only redirect to the article passed in the wpDropdown parameter
