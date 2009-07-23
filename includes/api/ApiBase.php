@@ -721,10 +721,15 @@ abstract class ApiBase {
 	}
 
 	/**
-	 * Call the main module's error handler
-	 * @param $description string Error text
-	 * @param $errorCode string Error code
+	 * Throw a UsageException, which will (if uncaught) call the main module's
+	 * error handler and die with an error message.
+	 *
+	 * @param $description string One-line human-readable description of the
+	 *   error condition, e.g., "The API requires a valid action parameter"
+	 * @param $errorCode string Brief, arbitrary, stable string to allow easy
+	 *   automated identification of the error, e.g., 'unknown_action'
 	 * @param $httpRespCode int HTTP response code
+	 * @param $extradata fixme: document this
 	 */
 	public function dieUsage($description, $errorCode, $httpRespCode = 0, $extradata = null) {
 		wfProfileClose();
