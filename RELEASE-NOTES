@@ -158,6 +158,8 @@ this. Was used when mwEmbed was going to be an extension.
   will still load it if it exists, but it's not required for anything
 * Added $wgSecondaryGoNamespaces, allowing an array of namespaces to be checked
   when the Go button is pressed in addition to the main namespace.
+* (bug 19900) The "listgrouprights-key" message is now wrapped in a div with
+  class "mw-listgrouprights-key"
 
 === Bug fixes in 1.16 ===
 
