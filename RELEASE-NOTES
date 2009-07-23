@@ -74,6 +74,8 @@ this. Was used when mwEmbed was going to be an extension.
 * $wgHtml5 outputs an HTML 5 doctype instead of XHTML 1.0 Transitional.
 * $wgSpecialVersionExtended shows the extended version information besides 
   PHP and database version.
+* $wgSecondaryGoNamespaces allows an arry of namespaces to be checked when the
+  GO button is pressed, in addition to the main namespace.
 
 === New features in 1.16 ===
 
@@ -154,6 +156,8 @@ this. Was used when mwEmbed was going to be an extension.
 * (bug 14201) Set $wgDBadminuser/$wgDBadminpassword during setup
 * (bug 18768) Remove AdminSettings requirements. Maintenance environment
   will still load it if it exists, but it's not required for anything
+* Added $wgSecondaryGoNamespaces, allowing an array of namespaces to be checked
+  when the Go button is pressed in addition to the main namespace.
 
 === Bug fixes in 1.16 ===
 
