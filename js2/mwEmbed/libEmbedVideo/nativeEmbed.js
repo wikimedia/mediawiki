@@ -120,21 +120,26 @@ var nativeEmbed = {
 	setCurrentTime: function(pos, callback){
 		var _this = this;
 		this.getVID();
-		if(!this.vid) {
-			js_log('native:setCurrentTime: load video');
+		if(!this.vid) {			
 			this.load();
 			var loaded = function(event) {
 				js_log('native:setCurrentTime (after load): ' + pos + ' :  dur: ' + this.getDuration());
 				_this.vid.currentTime = pos;
-				var once = function(event) { callback(); _this.vid.removeEventListener('seeked', once, false) };
+				var once = function(event) { 
+					callback();
+					_this.vid.removeEventListener('seeked', once, false) 
+				};
 				_this.vid.addEventListener('seeked', once, false);
 				_this.removeEventListener('loadedmetadata', loaded, false);
 			};
 			_this.addEventListener('loadedmetadata', loaded, false);
 		} else {
-			js_log('native:setCurrentTime: ' + pos + ' : '  + this.supportsURLTimeEncoding() + ' dur: ' + this.getDuration() + ' sts:' + this.seek_time_sec );
+			//js_log('native:setCurrentTime: ' + pos + ' : '  + this.supportsURLTimeEncoding() + ' dur: ' + this.getDuration() + ' sts:' + this.seek_time_sec );
 			_this.vid.currentTime = pos;
-			var once = function(event) { callback(); _this.vid.removeEventListener('seeked', once, false) };
+			var once = function(event) { 
+				callback(); 
+				_this.vid.removeEventListener('seeked', once, false) 
+			};
 			_this.vid.addEventListener('seeked', once, false);
 		}
 	},
@@ -169,7 +174,7 @@ var nativeEmbed = {
 	 * native callbacks for the video tag: 
 	 */
 	oncanplaythrough : function(){		
-		js_log('f:oncanplaythrough');
+		//js_log('f:oncanplaythrough');
 		this.getVID();
 		if( ! this.paused )
 			this.vid.play();
@@ -238,6 +243,10 @@ var nativeEmbed = {
 		if(this.vid)
 			return this.vid.volume;			   
 	},	
+	getNativeDuration:function(){
+		if(this.vid)
+			return this.vid.duration;
+	},
 	load:function(){
 		this.getVID();
 		if( !this.vid ){

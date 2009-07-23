@@ -225,6 +225,7 @@ lcPaths( 'libEmbedVideo/', [
 lcPaths( 'libSequencer/', [
 	'mvPlayList',
 	'mvSequencer',
+	'mvFirefoggRender',
 	'mvTimedEffectsEdit'
 ])
 //libTimedText:
@@ -894,6 +895,29 @@ function mv_jqueryBindings(){
 					}
 			});		
 		}
+		//takes a input player as the selector and exposes basic rendering controls
+		$.fn.firefoggRender = function( iObj, callback ){			
+			//check if we already have render loaded then just pass on updates/actions 
+			var sElm = $j(this.selector).get(0);
+			if(sElm['fogg_render']){
+				if(sElm['fogg_render']=='loading'){
+					js_log("Error: called firefoggRender while loading");
+					return false;
+				}
+				//call or update the property: 
+			}
+			sElm['fogg_render']='loading';
+			//add the selector: 
+			iObj['player_target'] = this.selector;			
+			mvJsLoader.doLoad([
+				'mvFirefogg',
+				'mvFirefoggRender'
+			],function(){		
+				sElm['fogg_render']= new mvFirefoggRender( iObj );
+				if( callback && typeof callback == 'function' )
+					callback( sElm['fogg_render'] );
+			});
+		}
 		
 		$.fn.baseUploadInterface = function(iObj){
 			mvJsLoader.doLoad([
@@ -969,7 +993,7 @@ function getURLParamReplace( url, opt ){
  */
 function seconds2npt(sec, show_ms){
 	if( isNaN( sec ) ){
-		js_log("warning: trying to get npt time on NaN:" + sec);
+		//js_log("warning: trying to get npt time on NaN:" + sec);
 		return '0:0:0';
 	}		
 	var hours = Math.floor(sec/ 3600);
