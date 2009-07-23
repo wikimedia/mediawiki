@@ -454,7 +454,7 @@ var ctrlBuilder = {
 			function(){			
 				$j('#vol_container_' + embedObj.id).addClass('vol_container_top');
 				//set to "below" if playing and embedType != native
-				if(embedObj.isPlaying() && !embedObj.supports['overlays']){
+				if(embedObj && embedObj.isPlaying() && !embedObj.supports['overlays']){
 					$j('#vol_container_' + embedObj.id).removeClass('vol_container_top').addClass('vol_container_below');
 				}
 				
@@ -1364,7 +1364,14 @@ embedVideo.prototype = {
 		}		
 		//do play in 100ms (give things time to clear) 
 		setTimeout('$j(\'#' + this.id + '\').get(0).play()',100);
-	},	
+	},
+	/*
+	 * seeks to the requested time and issues a callback when ready 
+	 * (should be overwitten by client that supports frame serving)
+	 */	
+	setCurrentTime:function( time, callback){
+		js_log('error: base embed setCurrentTime can not frame serve (overide via plugin)');
+	},
 	addPresTimeOffset:function(){
 	   //add in the offset:		
 	   if(this.seek_time_sec && this.seek_time_sec!=0){
@@ -1808,7 +1815,7 @@ embedVideo.prototype = {
 			'<img width="'+this.playerPixelWidth()+'" height="'+this.playerPixelHeight()+'" style="position:relative;width:'+this.playerPixelWidth()+';height:'+this.playerPixelHeight()+'"' +
 			' id="img_thumb_'+this.id+'" src="' + this.thumbnail + '">';
 		
-		if(this.play_button==true)
+		if(this.play_button == true && this.controls == true)
 			  thumb_html+=this.getPlayButton();
 			  
 		   thumb_html+='</div>';
@@ -2370,11 +2377,12 @@ embedVideo.prototype = {
 		//do head request if on the same domain
 		return this.media_element.selected_source.URLTimeEncoding;
 	},
-	setSliderValue: function(perc, hide_progress){		
-		var this_id = (this.pc)?this.pc.pp.id:this.id;
-		var val = parseInt( perc*1000 ); 
-		$j('#mv_play_head_'+this_id).slider('value', val);
-		
+	setSliderValue: function(perc, hide_progress){
+		if(this.controls){		
+			var this_id = (this.pc)?this.pc.pp.id:this.id;
+			var val = parseInt( perc*1000 ); 
+			$j('#mv_play_head_'+this_id).slider('value', val);
+		}
 		//js_log('set#mv_seeker_slider_'+this_id + ' perc in: ' + perc + ' * ' + $j('#mv_seeker_'+this_id).width() + ' = set to: '+ val + ' - '+ Math.round(this.mv_seeker_width*perc) );
 		//js_log('op:' + offset_perc + ' *('+perc+' * ' + $j('#slider_'+id).width() + ')');
 	},
@@ -2746,7 +2754,7 @@ var embedTypes = {
 					if (dummyvid.canPlayType && dummyvid.canPlayType("video/ogg;codecs=\"theora,vorbis\"") == "probably")
 					{
 						this.players.addPlayer( videoElementPlayer );
-					} else if(this.supportedMimeType('video/ogg')) {
+					} else if(this.supportedMimeType( 'video/ogg' )) {
 						/* older versions of safari do not support canPlayType,
 						   but xiph qt registers mimetype via quicktime plugin */
 						this.players.addPlayer( videoElementPlayer );

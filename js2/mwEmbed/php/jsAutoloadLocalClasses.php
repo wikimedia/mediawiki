@@ -84,6 +84,7 @@ $wgJSAutoloadLocalClasses['vlcEmbed'] 			= $wgMwEmbedDirectory . 'libEmbedVideo/
 $wgJSAutoloadLocalClasses['mvPlayList'] 		= $wgMwEmbedDirectory . 'libSequencer/mvPlayList.js';
 $wgJSAutoloadLocalClasses['mvSequencer']		= $wgMwEmbedDirectory . 'libSequencer/mvSequencer.js';
 $wgJSAutoloadLocalClasses['mvSequencer']		= $wgMwEmbedDirectory . 'libSequencer/mvSequencer.js';
+$wgJSAutoloadLocalClasses['mvFirefoggRender']	= $wgMwEmbedDirectory . 'libSequencer/mvFirefoggRender.js';
 
 // libTimedText:
 $wgJSAutoloadLocalClasses['mvTimedEffectsEdit']	= $wgMwEmbedDirectory . 'libTimedText/mvTimedEffectsEdit.js';

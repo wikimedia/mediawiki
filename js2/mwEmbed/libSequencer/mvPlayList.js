@@ -519,10 +519,12 @@ mvPlayList.prototype = {
 		$j('#mv_time_'+this.id).html( value );
 	},
 	setSliderValue:function(value){
-		if(this.cur_clip.embed){
-		//js_log('calling original embed slider with val: '+value);
-		this.cur_clip.embed.pe_setSliderValue( value );
-		//call seq playline update here
+		if( this.controls ){
+			if(this.cur_clip.embed){
+				//js_log('calling original embed slider with val: '+value);
+				this.cur_clip.embed.pe_setSliderValue( value );
+				//call seq playline update here
+			}
 		}
 	},	
 	getPlayHeadPos: function(prec_done){
@@ -718,7 +720,13 @@ mvPlayList.prototype = {
 		}		
 		//start up the playlist monitor	
 		this.monitor();		
-	},	
+	},
+	/*
+	 * the load function loads all the clips in order 
+	 */	
+	load:function(){
+		//do nothing right now)
+	},
 	toggleMute:function(){
 		this.cur_clip.embed.toggleMute();
 	},	
@@ -828,10 +836,12 @@ mvPlayList.prototype = {
 				if (_this.cur_clip.id != clip.id) {
 					_this.updateCurrentClip( clip );
 				}								
-				_this.cur_clip.embed.setCurrentTime(clipTime, callback);
+				_this.cur_clip.embed.setCurrentTime(clipTime, function(){					
+					if(callback)
+						callback();	
+				});											
 				_this.currentTime = pos;
-				_this.doSmilActions();				
-				return '';
+				_this.doSmilActions();
 			}
 			currentOffset += nextTime;
 		}

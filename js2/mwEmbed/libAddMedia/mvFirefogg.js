@@ -23,11 +23,19 @@ var firefogg_install_links =  {
 };
 
 var default_firefogg_options = {
+	//what to do when finished uploading
 	'upload_done_action':'redirect',
+	//if firefoog is enabled
 	'fogg_enabled':false,
+	//the api url to upload to
 	'api_url':null,
+	//the passthrough flag (enables un-modified uploads)
 	'passthrough': false,
+	//if we will be showing the encoder interface
 	'encoder_interface': false,
+	//if we want to limit the library functionality to "only firefoog" (no upload or progress bars) 
+	'only_fogg': false,
+	
 	
 	//callbacks:
 	'new_source_cb': false, //called on source name update passes along source name
@@ -63,7 +71,7 @@ var mvFirefogg = function(iObj){
 }
 mvFirefogg.prototype = { //extends mvBaseUploadInterface
 
-	min_firefogg_version : '0.9.8',	
+	min_firefogg_version : '0.9.9',	
 	fogg_enabled : false,		 //if firefogg is enabled or not.	 
 	encoder_settings:{			//@@todo allow server to set this 
 		'maxSize': 400, 
@@ -92,21 +100,23 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 				this[i] = default_firefogg_options[i];
 			}
 		}
-		
-		var myBUI = new mvBaseUploadInterface( iObj );
-		//standard extends code: 
-		for(var i in myBUI){			
-			if(this[i]){
-				this['pe_'+ i] = myBUI[i];
-			}else{
-				this[i] =  myBUI[i];
+		//check if we want to limit the usage:
+		if(!this.only_fogg){
+			var myBUI = new mvBaseUploadInterface( iObj );
+			
+			//standard extends code: 
+			for(var i in myBUI){			
+				if(this[i]){
+					this['pe_'+ i] = myBUI[i];
+				}else{
+					this[i] =  myBUI[i];
+				}
 			}
 		}
-		if(!this.selector){
-			js_log('Error: firefogg: missing selector ');
-		}
-		//if detect 
 		
+		if(!this.selector){
+			js_log('firefogg: missing selector ');
+		}		
 	},
 	doRewrite:function( callback ){
 		var _this = this;
@@ -222,10 +232,10 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 		});
 	},
 	firefoggCheck:function(){				   
-		if(typeof(Firefogg) != 'undefined' && Firefogg().version >= '0.9.9'){						
-		   this.fogg = new Firefogg();	
-		   this.fogg_enabled = true;
-		   return true;
+		if(typeof(Firefogg) != 'undefined' && Firefogg().version >= this.min_firefogg_version){						
+			this.fogg = new Firefogg();	
+			this.fogg_enabled = true;
+			return true;
 		}else{								
 			return false;
 		}
