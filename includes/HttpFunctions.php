@@ -94,7 +94,7 @@ class Http {
 	 *
 	 */
 	private function initBackgroundDownload( $url, $target_file_path, $content_length = null ){
-		global $wgMaxUploadSize, $IP, $wgPhpCli;
+		global $wgMaxUploadSize, $IP, $wgPhpCli, $wgServer;
 		$status = Status::newGood();
 
 		// generate a session id with all the details for the download (pid, target_file_path )
@@ -104,6 +104,8 @@ class Http {
 		// store the url and target path:
 		$_SESSION['wsDownload'][$upload_session_key]['url'] = $url;
 		$_SESSION['wsDownload'][$upload_session_key]['target_file_path'] = $target_file_path;
+		//since we request from the cmd line we lose the original host name pass in the session:		
+		$_SESSION['wsDownload'][$upload_session_key]['orgServer'] = $wgServer;
 
 		if( $content_length )
 			$_SESSION['wsDownload'][$upload_session_key]['content_length'] = $content_length;
@@ -139,8 +141,8 @@ class Http {
 	 *  (a given client could have started a few http uploads at once)
 	 */
 	public static function doSessionIdDownload( $session_id, $upload_session_key ){
-		global $wgUser, $wgEnableWriteAPI, $wgAsyncHTTPTimeout;
-		wfDebug( __METHOD__ . "\n\ndoSessionIdDownload\n\n" );
+		global $wgUser, $wgEnableWriteAPI, $wgAsyncHTTPTimeout, $wgServer;
+		wfDebug( __METHOD__ . "\n\ndoSessionIdDownload:\n\n" );
 		// set session to the provided key:
 		session_id( $session_id );
 		// start the session
@@ -156,7 +158,12 @@ class Http {
 		$wgUser = User::newFromSession();
 
 		// grab the session data to setup the request:
-		$sd =& $_SESSION['wsDownload'][$upload_session_key];
+		$sd =& $_SESSION['wsDownload'][$upload_session_key];		
+		
+		//update the wgServer var ( since cmd line thinks we are localhost when we are really orgServer)
+		if(isset($sd['orgServer']) && $sd['orgServer']){
+			$wgServer = $sd['orgServer'];
+		}
 		// close down the session so we can other http queries can get session updates:
 		session_write_close();
 
