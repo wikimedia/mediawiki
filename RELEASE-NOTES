@@ -322,6 +322,8 @@ this. Was used when mwEmbed was going to be an extension.
   target page
 * (bug 16877) Moving a page over a redirect no longer leaves an orphan entry in
   the recentchanges table
+* (bug 16009) Limit selection forms based on Pager now links to the correct page
+  when using long urls 
 
 == API changes in 1.16 ==
 
