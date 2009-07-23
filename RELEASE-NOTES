@@ -37,7 +37,6 @@ loader. By default we only grab classes in $wgJSAutoloadClasses
 this. Was used when mwEmbed was going to be an extension.   
 * $wgDebugJavaScript if we want to enable fresh debug javascript 
 * $wgPhpCliPath Path to php-cli for spinning up background php processes
-
 * (bug 18222) $wgMinimalPasswordLength default is now 1
 * $wgSessionHandler can be used to configure session.save_handler
 * $wgLocalFileRepo/$wgForeignFileRepos now have a 'fileMode' parameter to
@@ -151,7 +150,10 @@ this. Was used when mwEmbed was going to be an extension.
   thumbnails to be stored in a separate location to the source images.
 * If config/ directory is not executable, the command to make it executable 
   now asks the user to cd to the correct directory
-* Add experimental new external authentication framework, ExternalAuth.
+* Add experimental new external authentication framework, ExternalAuth
+* (bug 14201) Set $wgDBadminuser/$wgDBadminpassword during setup
+* (bug 18768) Remove AdminSettings requirements. Maintenance environment
+  will still load it if it exists, but it's not required for anything
 
 === Bug fixes in 1.16 ===
 

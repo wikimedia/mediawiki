@@ -633,6 +633,7 @@ print "<li style='font-weight:bold;color:green;font-size:110%'>Environment check
 	$conf->RootUser = importPost( "RootUser", "root" );
 	$conf->RootPW = importPost( "RootPW", "" );
 	$useRoot = importCheck( 'useroot', false );
+	$conf->populateadmin = importCheck( 'populateadmin', false );
 	$conf->LanguageCode = importPost( "LanguageCode", "en" );
 	## MySQL specific:
 	$conf->DBprefix     = importPost( "DBprefix" );
@@ -1000,7 +1001,7 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 						if ($wgDatabase->isOpen()) {
 							$wgDBOracleDefTS = $conf->DBdefTS_ora;
 							$wgDBOracleTempTS = $conf->DBtempTS_ora;
-							dbsource( "../maintenance/ora/user.sql", $wgDatabase );
+							$wgDatabase->sourceFile( "../maintenance/ora/user.sql"  );
 						} else {
 							echo "<li>Invalid database superuser, please supply a valid superuser account.</li>";
 							echo "<li>ERR: ".print_r(oci_error(), true)."</li>";
@@ -1173,7 +1174,7 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 							print " <b class='error'>If the next step fails, see <a href='http://dev.mysql.com/doc/mysql/en/old-client.html'>http://dev.mysql.com/doc/mysql/en/old-client.html</a> for help.</b>";
 						}
 						print "</li>\n";
-						dbsource( "../maintenance/users.sql", $wgDatabase );
+						$wgDatabase->sourceFile( "../maintenance/users.sql" );
 					}
 				}
 			}
@@ -1207,8 +1208,8 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 			# FIXME: Check for errors
 			print "<li>Creating tables...";
 			if ($conf->DBtype == 'mysql') {
-				dbsource( "../maintenance/tables.sql", $wgDatabase );
-				dbsource( "../maintenance/interwiki.sql", $wgDatabase );
+				$wgDatabase->sourceFile( "../maintenance/tables.sql" );
+				$wgDatabase->sourceFile( "../maintenance/interwiki.sql" );
 			} elseif (is_callable(array($wgDatabase, 'setup_database'))) {
 				$wgDatabase->setup_database();
 			}
@@ -1241,7 +1242,7 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 				} else {
 					# Yes, so run the grants
 					echo( "<li>" . htmlspecialchars( "Granting user permissions to $wgDBuser on $wgDBname..." ) );
-					dbsource( "../maintenance/users.sql", $wgDatabase );
+					$wgDatabase->sourceFile( "../maintenance/users.sql" );
 					echo( "success.</li>\n" );
 				}
 			}
@@ -1547,6 +1548,8 @@ if( count( $errs ) ) {
 		<label class="column">Superuser account:</label>
 		<input type="checkbox" name="useroot" id="useroot" <?php if( $useRoot ) { ?>checked="checked" <?php } ?> />
 		&nbsp;<label for="useroot">Use superuser account</label>
+		<input type="checkbox" name="populateadmin" id="populateadmin" <?php if( $conf->populateadmin ) { ?>checked="checked" <?php } ?> />
+		&nbsp;<label for="populateadmin">Set as admin user for maintenance</label>
 	</div>
 	<div class="config-input"><?php aField( $conf, "RootUser", "Superuser name:", "text" ); ?></div>
 	<div class="config-input"><?php aField( $conf, "RootPW", "Superuser password:", "password" ); ?></div>
@@ -1812,6 +1815,11 @@ function writeLocalSettings( $conf ) {
 		# Needs literal string interpolation for the current style path
 		$slconf['RightsIcon'] = $conf->RightsIcon;
 	}
+	
+	if( $conf->populateadmin ) {
+		$slconf['DBadminuser'] = $conf->RootUser;
+		$slconf['DBadminpassword'] = $conf->RootPW;
+	}
 
 	if( $conf->DBtype == 'mysql' ) {
 		$dbsettings =
@@ -1918,6 +1926,10 @@ if ( \$wgCommandLineMode ) {
 \$wgDBpassword       = \"{$slconf['DBpassword']}\";
 
 {$dbsettings}
+
+## Database admin settings, used for maintenance scripts
+\$wgDBadminuser     = \"{$slconf['DBadminuser']}\";
+\$wgDBadminpassword = \"{$slconf['DBadminpassword']}\";
 
 ## Shared memory settings
 \$wgMainCacheType = $cacheType;

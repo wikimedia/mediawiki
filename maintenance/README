@@ -10,8 +10,8 @@ proper installation.
 
 Certain scripts will require elevated access to the database. In order to
 provide this, first create a MySQL user with "all" permissions on the wiki
-database, and then place their username and password in an AdminSettings.php
-file in the directory above. See AdminSettings.sample for specifics on this.
+database, and then set $wgDBadminuser and $wgDBadminpassword in your
+LocalSettings.php
 
 === Brief explanation of files ===
 
@@ -94,7 +94,7 @@ installations.
 	Immediately complete all jobs in the job queue
 
 	stats.php
-	Show all statistics stored in memcached
+	Show all statistics stored in the cache
 
 	undelete.php
 	Undelete all revisions of a page
