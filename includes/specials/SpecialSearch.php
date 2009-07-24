@@ -884,7 +884,7 @@ class SpecialSearch {
 		if ( $resultsShown > 0 ) {
 			if ( $totalNum > 0 ){
 				$top = wfMsgExt('showingresultsheader', array( 'parseinline' ),
-					$this->offset+1, $this->offset+$resultsShown, $totalNum, $term, $resultsShown );
+					$this->offset+1, $this->offset+$resultsShown, $totalNum, wfEscapeWikiText($term), $resultsShown );
 			} elseif ( $resultsShown >= $this->limit ) {
 				$top = wfShowingResults( $this->offset, $this->limit );
 			} else {
