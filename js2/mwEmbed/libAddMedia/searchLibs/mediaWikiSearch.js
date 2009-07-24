@@ -101,6 +101,13 @@ mediaWikiSearch.prototype = {
 						'categories':page.categories
 					}
 				}
+				//attempt to parse out some stuff from the teplate: 
+				var desc = this.resultsObj[page_id].desc.match(/\|Description=(([^\n]*\n)*)\|Source=/)
+				if( desc && desc[1] ){					
+					this.resultsObj[page_id].desc = $j.trim( desc[1] );
+				}				
+				
+				
 				
 				//likely a audio clip if no poster and type application/ogg 
 				//@@todo we should return audio/ogg for the mime type or some other way to specify its "audio" 

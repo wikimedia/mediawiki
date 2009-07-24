@@ -577,7 +577,7 @@ var mvJsLoader = {
 		 this.onReadyEvents.push(fn);
 	},	
 	//checks the jQuery flag (this way when remote embeding we don't load jQuery 
-	// unless mwAddOnloadHook was used or there is video on the page
+	// unless js2AddOnloadHook was used or there is video on the page
 	runQuededFunctions:function(){			
 		var _this = this; 
 		this.doneReadyEvents=true;			
@@ -634,8 +634,8 @@ function mwdomReady(force){
 		mvJsLoader.runQuededFunctions();				
 	}
 }
-//mwAddOnloadHook: ensure jQuery and the DOM are ready:  
-function mwAddOnloadHook( func ) {				 
+//js2AddOnloadHook: ensure jQuery and the DOM are ready:  
+function js2AddOnloadHook( func ) {				 
 	//make sure the skin/style sheets are avaliable always: 
 	loadExternalCss( mv_jquery_skin_path + 'jquery-ui-1.7.1.custom.css' );
 	loadExternalCss( mv_embed_path  + 'skins/'+mv_skin_name+'/styles.css');
@@ -647,11 +647,13 @@ function mwAddOnloadHook( func ) {
 			func();
 		});	
 	}else{
-		//if using mwAddOnloadHook we need to get jQuery into place (if its not already included)
+		//if using js2AddOnloadHook we need to get jQuery into place (if its not already included)
 		mvJsLoader.jQueryCheckFlag = true;
 		mvJsLoader.addLoadEvent( func );
 	};		
 }
+//depreciated mwAddOnloadHook in favor of js2 naming (for clear seperation of js2 code from old mw code
+var mwAddOnloadHook = js2AddOnloadHook;
 /*
  * this function allows for targeted rewriting 
  */

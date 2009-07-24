@@ -2,7 +2,7 @@
  * uploadPage.js to be run on specialUpload page.
  * controls the invocation of the mvUploader class based on local config. 
  */  
-mwAddOnloadHook( function(){
+js2AddOnloadHook( function(){
 	mwUploadHelper.init();		
 });
 //set up the upoload form bindings once all dom manipluation is done
