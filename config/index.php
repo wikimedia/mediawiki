@@ -2094,7 +2094,7 @@ function getLanguageList() {
 		if( preg_match( '/Messages([A-Z][a-z_]+)\.php$/', $f, $m ) ) {
 			$code = str_replace( '_', '-', strtolower( $m[1] ) );
 			if( isset( $wgLanguageNames[$code] ) ) {
-				$name = $code . ' - ' . $wgLanguageNames[$code];
+				$name = wfBCP47( $code ) . ' - ' . $wgLanguageNames[$code];
 			} else {
 				$name = $code;
 			}

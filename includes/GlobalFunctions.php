@@ -3190,3 +3190,22 @@ function wfObjectToArray( $object, $recursive = true ) {
 	
 	return $array;
 }
+
+/* get the noramised IETF language tag */
+function wfBCP47( $code ) {
+	$codeSegment = explode( '-', $code );
+	foreach ( $codeSegment as $segNo => $seg ) {
+		// ISO 3166 country code
+		if ( ( strlen( $seg ) == 2 ) && ( $segNo > 0 ) )
+			$codeBCP[$segNo] = strtoupper ( $seg );
+		// ISO 15924 script code
+		else if ( ( strlen( $seg ) == 4 ) && ( $segNo > 0 ) )
+			$codeBCP[$segNo] = ucfirst( $seg );
+		// Keep casing for other cases
+		else
+			$codeBCP[$segNo] = $seg;
+	}
+	$langCode = implode ( '-' , $codeBCP );
+	return $langCode;
+}
+
