@@ -251,7 +251,7 @@ class CdbWriter_PHP extends CdbWriter {
 	public function close() {
 		$this->finish();
 		fclose( $this->handle );
-		if ( wfIsWindows() ) {
+		if ( wfIsWindows() && file_exists($this->realFileName) ) {
 			unlink( $this->realFileName );
 		}
 		if ( !rename( $this->tmpFileName, $this->realFileName ) ) {
