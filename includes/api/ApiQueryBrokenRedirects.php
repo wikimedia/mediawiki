@@ -88,7 +88,7 @@ class ApiQueryBrokenRedirects extends ApiQueryGeneratorBase {
 			}
 			if (is_null($resultPageSet)) {
 				$title = Title :: makeTitle($row->page_namespace, $row->title);
-				$rdtitle = Title :: makeTitle($row->page_namespace, $row->rd_title);
+				$rdtitle = Title :: makeTitle($row->rd_namespace, $row->rd_title);
 				$vals = array(
 					'pageid' => intval($row->pageid),
 					'ns' => intval($row->namespace),

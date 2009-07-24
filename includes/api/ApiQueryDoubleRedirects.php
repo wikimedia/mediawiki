@@ -96,16 +96,16 @@ class ApiQueryDoubleRedirects extends ApiQueryGeneratorBase {
 			}
 			if (is_null($resultPageSet)) {
 				$title = Title :: makeTitle($row->page_namespace, $row->title);
-				$titleB = Title :: makeTitle($row->page_namespace, $row->tb);
-				$titleC = Title :: makeTitle($row->page_namespace, $row->tc);
+				$titleB = Title :: makeTitle($row->page_nsb, $row->tb);
+				$titleC = Title :: makeTitle($row->page_nsc, $row->tc);
 				$vals = array(
 					'pageid' => $row->pageid,
 					'ns' => intval($row->namespace),
 					'title' => $title->getPrefixedText(),
-					'idb' => intval($row->idb),
+					'idb' => $row->idb,
 					'nsb' => intval($row->nsb),
 					'tb' => $titleB->getPrefixedText(),
-					'idc' => intval($row->idc),
+					'idc' => $row->idc,
 					'nsc' => intval($row->nsc),
 					'tc' => $titleC->getPrefixedText(),
 				);
