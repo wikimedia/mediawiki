@@ -3191,7 +3191,7 @@ function wfObjectToArray( $object, $recursive = true ) {
 	return $array;
 }
 
-/* get the noramised IETF language tag */
+/* Get the noramlised IETF language tag */
 function wfBCP47( $code ) {
 	$codeSegment = explode( '-', $code );
 	foreach ( $codeSegment as $segNo => $seg ) {
