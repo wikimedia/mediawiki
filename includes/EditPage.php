@@ -882,7 +882,7 @@ class EditPage {
 			}
 
 			// Run post-section-merge edit filter
-			if ( !wfRunHooks( 'EditFilterMerged', array( $this, $this->textbox1, &$this->hookError, $this->summary ) ) ) {
+			if ( !wfRunHooks( 'EditFilterMerged', array( &$this, $this->textbox1, &$this->hookError, $this->summary ) ) ) {
 				# Error messages etc. could be handled within the hook...
 				wfProfileOut( $fname );
 				return self::AS_HOOK_ERROR;
