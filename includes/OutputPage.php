@@ -977,7 +977,7 @@ class OutputPage {
 	}
 
 	public function sendCacheControl() {
-		global $wgUseSquid, $wgUseESI, $wgUseETag, $wgSquidMaxage, $wgRequest;
+		global $wgUseSquid, $wgUseESI, $wgUseETag, $wgSquidMaxage, $wgRequest, $wgUseXVO;
 
 		$response = $wgRequest->response();
 		if ($wgUseETag && $this->mETag)
@@ -987,8 +987,10 @@ class OutputPage {
 		# maintain different caches for logged-in users and non-logged in ones
 		$response->header( 'Vary: Accept-Encoding, Cookie' );
 
-		# Add an X-Vary-Options header for Squid with Wikimedia patches
-		$response->header( $this->getXVO() );
+		if ( $wgUseXVO ) {
+			# Add an X-Vary-Options header for Squid with Wikimedia patches
+			$response->header( $this->getXVO() );
+		}
 
 		if( !$this->uncacheableBecauseRequestVars() && $this->mEnableClientCache ) {
 			if( $wgUseSquid && session_id() == '' &&
