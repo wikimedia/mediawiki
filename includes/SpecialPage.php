@@ -703,7 +703,12 @@ Perhaps no page aliases are defined for it?" );
 	  * Accessor and mutator
 	  */
 	function name( $x = NULL ) { return wfSetVar( $this->mName, $x ); }
-	function restrictions( $x = NULL) { return wfSetVar( $this->mRestrictions, $x ); }
+	function restrictions( $x = NULL) {
+		# Use the one below this
+		wfDeprecated( __METHOD__ );
+		return wfSetVar( $this->mRestriction, $x );
+	}
+	function restriction( $x = NULL) { return wfSetVar( $this->mRestriction, $x ); }
 	function listed( $x = NULL) { return wfSetVar( $this->mListed, $x ); }
 	function func( $x = NULL) { return wfSetVar( $this->mFunction, $x ); }
 	function file( $x = NULL) { return wfSetVar( $this->mFile, $x ); }
