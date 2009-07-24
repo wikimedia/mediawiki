@@ -688,7 +688,7 @@ class Preferences {
 	}
 
 	static function rcPreferences( $user, &$defaultPreferences ) {
-		global $wgRCMaxAge, $wgUseRCPatrol;
+		global $wgRCMaxAge, $wgUseRCPatrol, $wgLang;
 		## RecentChanges #####################################
 		$defaultPreferences['rcdays'] =
 				array(
@@ -697,6 +697,7 @@ class Preferences {
 					'section' => 'rc/display',
 					'min' => 1,
 					'max' => ceil( $wgRCMaxAge / ( 3600*24 ) ),
+					'help' => wfMsgExt( 'recentchangesdays-max', array( 'parsemag' ), $wgLang->formatNum( ceil( $wgRCMaxAge / ( 3600*24 ) ) ) ),
 				);
 		$defaultPreferences['rclimit'] =
 				array(
@@ -754,6 +755,7 @@ class Preferences {
 					'min' => 0,
 					'max' => 7,
 					'section' => 'watchlist/display',
+					'help' => wfMsgHtml( 'prefs-watchlist-days-max' ),
 					'label-message' => 'prefs-watchlist-days',
 				);
 		$defaultPreferences['wllimit'] =
@@ -762,7 +764,8 @@ class Preferences {
 					'min' => 0,
 					'max' => 1000,
 					'label-message' => 'prefs-watchlist-edits',
-					'section' => 'watchlist/display'
+					'help' => wfMsgHtml( 'prefs-watchlist-edits-max' ),
+					'section' => 'watchlist/display',
 				);
 		$defaultPreferences['extendwatchlist'] =
 				array(
