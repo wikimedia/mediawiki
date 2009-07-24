@@ -462,20 +462,23 @@ abstract class HTMLFormField {
 		$html = Xml::tags( 'tr', array( 'class' => "mw-htmlform-field-$fieldType" ),
 							$html ) . "\n";
 
-		// Help text
+		$helptext = null;
 		if ( isset( $this->mParams['help-message'] ) ) {
 			$msg = $this->mParams['help-message'];
-
-			$text = wfMsgExt( $msg, 'parseinline' );
-
-			if( !wfEmptyMsg( $msg, $text ) ) {
-				$row = Xml::tags( 'td', array( 'colspan' => 2, 'class' => 'htmlform-tip' ),
-							$text );
-
-				$row = Xml::tags( 'tr', null, $row );
-
-				$html .= "$row\n";
+			$helptext = wfMsgExt( $msg, 'parseinline' );
+			if ( wfEmptyMsg( $msg, $helptext ) ) {
+				# Never mind
+				$helptext = null;
 			}
+		} elseif ( isset( $this->mParams['help'] ) ) {
+			$helptext = $this->mParams['help'];
+		}
+
+		if ( !is_null( $helptext ) ) {
+			$row = Xml::tags( 'td', array( 'colspan' => 2, 'class' => 'htmlform-tip' ),
+				$helptext );
+			$row = Xml::tags( 'tr', null, $row );
+			$html .= "$row\n";
 		}
 
 		return $html;

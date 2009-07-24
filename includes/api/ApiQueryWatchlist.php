@@ -56,10 +56,19 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 
 		$this->selectNamedDB('watchlist', DB_SLAVE, 'watchlist');
 
-		if (!$wgUser->isLoggedIn())
-			$this->dieUsage('You must be logged-in to have a watchlist', 'notloggedin');
-
 		$params = $this->extractRequestParams();
+
+		if (!is_null($params['user']) && !is_null($params['token'])) {
+			$user = User::newFromName($params['user']);
+			$token = $user->getOption('watchlisttoken');
+			if ($token == '' || $token != $params['token']) {
+				$this->dieUsage('Incorrect watchlist token provided', 'bad_wltoken');
+			}
+		} elseif (!$wgUser->isLoggedIn()) {
+			$this->dieUsage('You must be logged-in to have a watchlist', 'notloggedin');
+		} else {
+			$user = $wgUser;
+		}
 
 		if (!is_null($params['prop']) && is_null($resultPageSet)) {
 
@@ -122,7 +131,7 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			'recentchanges'
 		));
 
-		$userId = $wgUser->getId();
+		$userId = $user->getId();
 		$this->addWhere(array (
 			'wl_namespace = rc_namespace',
 			'wl_title = rc_title',
@@ -147,7 +156,8 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 				$this->dieUsage("Incorrect parameter - mutually exclusive values may not be supplied", 'show');
 			}
 			
-			// Check permissions
+			// Check permissions.  FIXME: should this check $user instead of
+			// $wgUser?
 			global $wgUser;
 			if((isset($show['patrolled']) || isset($show['!patrolled'])) && !$wgUser->useRCPatrol() && !$wgUser->useNPPatrol())
 				$this->dieUsage("You need the patrol right to request the patrolled flag", 'permissiondenied');
@@ -162,13 +172,17 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			$this->addWhereIf('rc_patrolled = 0', isset($show['!patrolled']));
 			$this->addWhereIf('rc_patrolled != 0', isset($show['patrolled']));			
 		}
-		
-		if(!is_null($params['user']) && !is_null($params['excludeuser']))
-			$this->dieUsage('user and excludeuser cannot be used together', 'user-excludeuser');
-		if(!is_null($params['user']))
-			$this->addWhereFld('rc_user_text', $params['user']);
-		if(!is_null($params['excludeuser']))
-			$this->addWhere('rc_user_text != ' . $this->getDB()->addQuotes($params['excludeuser']));
+
+		# Ignore extra user conditions if we're using token mode, since the
+		# user was already manually specified.
+		if(is_null($params['user']) || is_null($params['token'])) {
+			if(!is_null($params['user']) && !is_null($params['excludeuser']))
+				$this->dieUsage('user and excludeuser cannot be used together', 'user-excludeuser');
+			if(!is_null($params['user']))
+				$this->addWhereFld('rc_user_text', $params['user']);
+			if(!is_null($params['excludeuser']))
+				$this->addWhere('rc_user_text != ' . $this->getDB()->addQuotes($params['excludeuser']));
+		}
 
 
 		# This is an index optimization for mysql, as done in the Special:Watchlist page
@@ -321,6 +335,9 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 					'patrolled',
 					'!patrolled',
 				)
+			),
+			'token' => array (
+				ApiBase :: PARAM_TYPE => 'string'
 			)
 		);
 	}
@@ -339,7 +356,8 @@ class ApiQueryWatchlist extends ApiQueryGeneratorBase {
 			'show' => array (
 				'Show only items that meet this criteria.',
 				'For example, to see only minor edits done by logged-in users, set show=minor|!anon'
-			)
+			),
+			'token' => "Give a security token (settable in preferences) to allow access to another user's watchlist"
 		);
 	}
 

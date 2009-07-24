@@ -746,7 +746,7 @@ class Preferences {
 	}
 
 	static function watchlistPreferences( $user, &$defaultPreferences ) {
-		global $wgUseRCPatrol;
+		global $wgUseRCPatrol, $wgEnableAPI;
 		## Watchlist #####################################
 		$defaultPreferences['watchlistdays'] =
 				array(
@@ -800,6 +800,17 @@ class Preferences {
 					'section' => 'watchlist/advancedwatchlist',
 					'label-message' => 'tog-watchlisthideliu',
 				);
+		if ( $wgEnableAPI ) {
+			# Some random gibberish as a proposed default
+			$hash = sha1( mt_rand() . microtime( true ) );
+			$defaultPreferences['watchlisttoken'] =
+					array(
+						'type' => 'text',
+						'section' => 'watchlist/advancedwatchlist',
+						'label-message' => 'prefs-watchlist-token',
+						'help' => wfMsgHtml( 'prefs-help-watchlist-token', $hash )
+					);
+		}
 
 		if ( $wgUseRCPatrol ) {
 			$defaultPreferences['watchlisthidepatrolled'] =
