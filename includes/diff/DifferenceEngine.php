@@ -30,6 +30,10 @@ class DifferenceEngine {
 	var $mCacheHit = false; // Was the diff fetched from cache?
 	var $htmldiff;
 
+	// If true, line X is not displayed when X is 1, for example to increase
+	// readability and conserve space with many small diffs.
+	protected $mReducedLineNumbers = false;
+
 	protected $unhide = false;
 	/**#@-*/
 
@@ -78,6 +82,10 @@ class DifferenceEngine {
 		$this->mRefreshCache = $refreshCache;
 		$this->htmldiff = $htmldiff;
 		$this->unhide = $unhide;
+	}
+
+	function setReducedLineNumbers( $value = true ) {
+		$this->mReducedLineNumbers = $value;
 	}
 
 	function getTitle() {
@@ -637,10 +645,16 @@ CONTROL;
 	 */
 	function showDiffStyle() {
 		global $wgStylePath, $wgStyleVersion, $wgOut;
+
+		static $styleDone = false;
+		if ( $styleDone === $wgOut ) return;
+
 		$wgOut->addStyle( 'common/diff.css' );
 
 		// JS is needed to detect old versions of Mozilla to work around an annoyance bug.
 		$wgOut->addScript( "<script type=\"text/javascript\" src=\"$wgStylePath/common/diff.js?$wgStyleVersion\"></script>" );
+
+		$styleDone = $wgOut;
 	}
 
 	/**
@@ -842,6 +856,7 @@ CONTROL;
 
 	function localiseLineNumbersCb( $matches ) {
 		global $wgLang;
+		if ( $matches[1] === '1' && $this->mReducedLineNumbers ) return '';
 		return wfMsgExt( 'lineno', 'escape', $wgLang->formatNum( $matches[1] ) );
 	}
 
