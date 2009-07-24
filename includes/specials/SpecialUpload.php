@@ -1070,6 +1070,7 @@ wgUploadAutoFill = {$autofill};
 	static function getInitialPageText( $comment='', $license='', $copyStatus='', $source='' ) {
 		global $wgUseCopyrightUpload;
 		if ( $wgUseCopyrightUpload ) {
+			$licensetxt = '';
 			if ( $license != '' ) {
 				$licensetxt = '== ' . wfMsgForContent( 'license' ) . " ==\n" . '{{' . $license . '}}' . "\n";
 			}
