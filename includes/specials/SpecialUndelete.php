@@ -386,13 +386,14 @@ class PageArchive {
 
 		# Does this page already exist? We'll have to update it...
 		$article = new Article( $this->title );
-		$options = 'FOR UPDATE';
+		$options = 'FOR UPDATE'; // lock page
 		$page = $dbw->selectRow( 'page',
 			array( 'page_id', 'page_latest' ),
 			array( 'page_namespace' => $this->title->getNamespace(),
 			       'page_title'     => $this->title->getDBkey() ),
 			__METHOD__,
-			$options );
+			$options
+		);
 		if( $page ) {
 			$makepage = false;
 			# Page already exists. Import the history, and if necessary
@@ -449,13 +450,34 @@ class PageArchive {
 				$oldones ),
 			__METHOD__,
 			/* options */ array( 'ORDER BY' => 'ar_timestamp' )
-			);
+		);
 		$ret = $dbw->resultObject( $result );
 		$rev_count = $dbw->numRows( $result );
+		if( !$rev_count ) {
+			wfDebug( __METHOD__.": no revisions to restore\n" );
+			return false; // ???
+		}
+
+		$ret->seek( $rev_count - 1 ); // move to last
+		$row = $ret->fetchObject(); // get newest archived rev
+		$ret->seek( 0 ); // move back
 
 		if( $makepage ) {
+			// Check the state of the newest to-be version...
+			if( !$unsuppress && ($row->ar_deleted & Revision::DELETED_TEXT) ) {
+				return false; // we can't leave the current revision like this!
+			}
+			// Safe to insert now...
 			$newid  = $article->insertOn( $dbw );
 			$pageId = $newid;
+		} else {
+			// Check if a deleted revision will become the current revision...
+			if( $row->ar_timestamp > $previousTimestamp ) {
+				// Check the state of the newest to-be version...
+				if( !$unsuppress && ($row->ar_deleted & Revision::DELETED_TEXT) ) {
+					return false; // we can't leave the current revision like this!
+				}
+			}
 		}
 
 		$revision = null;
@@ -467,7 +489,8 @@ class PageArchive {
 				$exists = $dbw->selectField( 'revision', '1', array('rev_id' => $row->ar_rev_id), __METHOD__ );
 				if( $exists ) continue; // don't throw DB errors
 			}
-
+			// Insert one revision at a time...maintaining deletion status
+			// unless we are specifically removing all restrictions...
 			$revision = Revision::newFromArchiveRow( $row, 
 				array( 
 					'page' => $pageId, 
@@ -495,16 +518,6 @@ class PageArchive {
 			// Attach the latest revision to the page...
 			$wasnew = $article->updateIfNewerOn( $dbw, $revision, $previousRevId );
 			if( $newid || $wasnew ) {
-				// We don't handle well with top revision deleted
-				// FIXME: any sysop can unsuppress any revision by just undeleting it into a non-existent page!
-				if( $revision->getVisibility() ) {
-					$dbw->update( 'revision', 
-						array( 'rev_deleted' => 0 ),
-						array( 'rev_id' => $revision->getId() ),
-						__METHOD__
-					);
-					$revision->mDeleted = 0; // Don't pollute the parser cache
-				}
 				// Update site stats, link tables, etc
 				$article->createUpdates( $revision );
 			}
