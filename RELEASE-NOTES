@@ -327,6 +327,7 @@ this. Was used when mwEmbed was going to be an extension.
   when using long urls
 * The display of the language list on the preferences is more comply with the 
   BCP 47 standards.
+* (bug 19849) Custom X-Vary-Options header now disabled unless $wgUseXVO is set
 
 == API changes in 1.16 ==
 

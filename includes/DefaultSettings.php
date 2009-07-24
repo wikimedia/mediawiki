@@ -1690,6 +1690,9 @@ $wgUseSquid = false;
 /** If you run Squid3 with ESI support, enable this (default:false): */
 $wgUseESI = false;
 
+/** Send X-Vary-Options header for better caching (requires patched Squid) */
+$wgUseXVO = false;
+
 /** Internal server name as known to Squid, if different */
 # $wgInternalServer = 'http://yourinternal.tld:8000';
 $wgInternalServer = $wgServer;
