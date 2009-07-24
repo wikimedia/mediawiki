@@ -1855,7 +1855,7 @@ Nama yang telah <s>dicoret</s> berarti telah dibetulkan.',
 # Book sources
 'booksources'               => 'Sumber buku',
 'booksources-search-legend' => 'Cari di sumber buku',
-'booksources-go'            => 'Cari',
+'booksources-go'            => 'Tuju ke',
 'booksources-text'          => 'Di bawah ini adalah daftar pranala ke situs lain yang menjual buku baru dan bekas, dan mungkin juga mempunyai informasi lebih lanjut mengenai buku yang sedang Anda cari:',
 'booksources-invalid-isbn'  => 'ISBN yang diberikan tampaknya tidak valid; periksa kesalahan penyalinan dari sumber asli.',
 
@@ -2467,7 +2467,7 @@ Silakan kunjungi [http://www.mediawiki.org/wiki/Localisation Pelokalan MediaWiki
 'allmessages-filter-modified'   => 'Diubah',
 'allmessages-prefix'            => 'Saring dengan awalan:',
 'allmessages-language'          => 'Bahasa:',
-'allmessages-filter-submit'     => 'Cari',
+'allmessages-filter-submit'     => 'Tuju ke',
 
 # Thumbnails
 'thumbnail-more'           => 'Perbesar',
@@ -3102,7 +3102,7 @@ Silakan konfirmasi jika Anda ingin membuat ulang halaman ini.",
 'table_pager_first'        => 'Halaman pertama',
 'table_pager_last'         => 'Halaman terakhir',
 'table_pager_limit'        => 'Tampilkan $1 entri per halaman',
-'table_pager_limit_submit' => 'Cari',
+'table_pager_limit_submit' => 'Tuju ke',
 'table_pager_empty'        => 'Tidak ditemukan',
 
 # Auto-summaries

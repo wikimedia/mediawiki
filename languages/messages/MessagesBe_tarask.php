@@ -425,7 +425,7 @@ $messages = array(
 'metadata_help' => 'Мэтазьвесткі:',
 
 'errorpagetitle'    => 'Памылка',
-'returnto'          => 'Вярнуцца да $1.',
+'returnto'          => 'Вярнуцца да старонкі $1.',
 'tagline'           => 'Зьвесткі зь {{GRAMMAR:родны|{{SITENAME}}}}',
 'help'              => 'Дапамога',
 'search'            => 'Пошук',

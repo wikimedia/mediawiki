@@ -441,6 +441,9 @@ $messages = array(
 'vector-view-history'        => 'Syn historikk',
 'vector-view-view'           => 'Les',
 'vector-view-viewsource'     => 'Syn kjelda',
+'actions'                    => 'Handlingar',
+'namespaces'                 => 'Namnerom',
+'variants'                   => 'Variantar',
 
 # Metadata in edit box
 'metadata_help' => 'Utvida informasjon:',
@@ -499,6 +502,11 @@ $messages = array(
 'jumpto'            => 'Gå til:',
 'jumptonavigation'  => 'navigering',
 'jumptosearch'      => 'søk',
+'view-pool-error'   => 'Diverre er filtenarane nett no opptekne.
+For mange brukarar prøver å sjå denne sida.
+Vent ei lita stund, før du prøver å sjå på sida.  
+
+$1',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Om {{SITENAME}}',
@@ -578,9 +586,9 @@ Dette kan òg skuldast ein feil i programvara nytta av {{SITENAME}}.',
 # General errors
 'error'                => 'Feil',
 'databaseerror'        => 'Databasefeil',
-'dberrortext'          => 'Det oppstod ein syntaksfeil i databaseførespurnaden. Dette kan tyde på ein feil i programvara. Den sist prøvde førespurnaden var: <blockquote><tt>$1</tt></blockquote> frå funksjonen «<tt>$2</tt>». MySQL returnerte feilen «<tt>$3: $4</tt>».',
+'dberrortext'          => 'Det oppstod ein syntaksfeil i databaseførespurnaden. Dette kan tyde på ein feil i programvara. Den sist prøvde førespurnaden var: <blockquote><tt>$1</tt></blockquote> frå funksjonen «<tt>$2</tt>». $5 returnerte feilen «<tt>$3: $4</tt>».',
 'dberrortextcl'        => 'Det oppstod ein syntaksfeil i databaseførespurnaden. Den sist prøvde førespurnaden var: «$1» frå funksjonen "$2".
-MySQL returnerte feilen «$3: $4».',
+$5 returnerte feilen «$3: $4».',
 'laggedslavemode'      => 'Åtvaring: Det er mogleg at sida ikkje er heilt oppdatert.',
 'readonly'             => 'Databasen er skriveverna',
 'enterlockreason'      => 'Skriv ein grunn for vernet, inkludert eit overslag for kva tid det vil bli oppheva',
@@ -598,6 +606,7 @@ Meld gjerne problemet til ein [[Special:ListUsers/sysop|administrator]] og oppgj
 'readonly_lag'         => 'Databasen er mellombels skriveverna for at databasetenarane skal kunna synkronisere seg mot kvarandre',
 'internalerror'        => 'Intern feil',
 'internalerror_info'   => 'Intern feil: $1',
+'fileappenderror'      => 'Kunne ikkje leggja "$1" til "$2".',
 'filecopyerror'        => 'Kunne ikkje kopiere fila frå «$1» til «$2».',
 'filerenameerror'      => 'Kunne ikkje døype om fila frå «$1» til «$2».',
 'filedeleteerror'      => 'Kunne ikkje slette fila «$1».',
@@ -947,16 +956,16 @@ Grunnen som vart gjeven av $3 er ''$2''",
 'rev-deleted-comment'         => '(samandraget er fjerna)',
 'rev-deleted-user'            => '(brukarnamnet er fjerna)',
 'rev-deleted-event'           => '(fjerna loggoppføring)',
-'rev-deleted-text-permission' => "Denne sideversjonen er vorten '''sletta'''. Det finst kan henda detaljar om dette i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} sletteloggen].",
+'rev-deleted-text-permission' => "Denne sideversjonen er vorten '''sletta'''. Det finst kan henda detaljar om dette i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} ei skjult loggføring].",
 'rev-deleted-text-unhide'     => "Denne sideversjonen er vorten '''sletta'''.
-Det finst kan henda detaljar i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} sletteloggen].
+Det finst kan henda detaljar i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} ei skjult loggføring].
 Som ein administrator kan du enno [$1 sjå denne versjonen] om du ynskjer å halda fram.",
 'rev-deleted-text-view'       => "Denne sideversjonen er vorten '''sletta'''.
-Som administrator kan du sjå han; det finst kan henda detaljar i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} sletteloggen].",
+Som administrator kan du sjå han; det finst kan henda detaljar i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} ei skjult loggføring].",
 'rev-deleted-no-diff'         => "Du kan ikkje sjå denne skilnaden av di ein av versjonane er vorten '''sletta'''. 
-Det finst kan henda detaljar i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} sletteloggen].",
+Det finst kan henda detaljar i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} ei skjult loggføring].",
 'rev-deleted-unhide-diff'     => "Éin av versjonane i denne skilnaden er vorten '''sletta'''.
-Det finst kan henda detaljar i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} sletteloggen].
+Det finst kan henda detaljar i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} i ei skjult loggføring].
 Som ein administrator kan du enno [$1 sjå skilnaden] om du ynskjer å halda fram.",
 'rev-delundel'                => 'vis/gøym',
 'revisiondelete'              => 'Slett/attopprett versjonar',
@@ -1216,6 +1225,7 @@ Ver merksam på at registra deira kan vera utdaterte.',
 'prefs-watchlist-days-max'      => '(høgst sju dagar)',
 'prefs-watchlist-edits'         => 'Talet på endringar som vert viste i den utvida overvakingslista:',
 'prefs-watchlist-edits-max'     => '(høgst 1000)',
+'prefs-watchlist-token'         => 'Emne på overvakingslista',
 'prefs-misc'                    => 'Andre',
 'prefs-resetpass'               => 'Endra passord',
 'prefs-email'                   => 'Val for e-post',
@@ -1236,6 +1246,9 @@ Ver merksam på at registra deira kan vera utdaterte.',
 'recentchangesdays-max'         => '(høgst $1 {{PLURAL:$1|dag|dagar}})',
 'recentchangescount'            => 'Tal på endringar som skal verta viste som standard:',
 'prefs-help-recentchangescount' => 'Dette inkluderer nylege endringar, sidehistorikk og loggar.',
+'prefs-help-watchlist-token'    => 'Om du fyller ut dette feltet med eit hemmeleg tal, vil det opprettast ei RSS opplisting for overvakingslista di.  
+Alle som veit det rette talet vil vera i stand til å lesa overvakingslista di, så vél gjerne ein trygg verdi. 
+Her er det framlegg til eit tal som kan nyttast, tilfelleleg henta fram: $1',
 'savedprefs'                    => 'Brukarinnstillingane er lagra.',
 'timezonelegend'                => 'Tidssone:',
 'localtime'                     => 'Lokaltid:',
@@ -1401,6 +1414,7 @@ Du kan òg velje å la andre brukarar kontakte deg på e-post via brukarsida di 
 'right-siteadmin'             => 'Låse og låse opp databasen',
 'right-reset-passwords'       => 'Nullstilla passorda til andre brukarar',
 'right-override-export-depth' => 'Eksportér sider inkludert lenka sider til ei djupn på 5',
+'right-versiondetail'         => 'Syn utvida informasjon om versjonen av programvara',
 
 # User rights log
 'rightslog'      => 'Brukartilgangslogg',
@@ -1584,12 +1598,15 @@ MGP # Pentax
 PICT # div.
   #</pre> <!-- leave this line exactly as it is -->',
 
-'upload-proto-error'      => 'Feil protokoll',
-'upload-proto-error-text' => 'Fjernopplasting krev nettadresser som byrjar med <code>http://</code> eller <code>ftp://</code>.',
-'upload-file-error'       => 'Intern feil',
-'upload-file-error-text'  => 'Ein intern feil oppstod under forsøk på å lage ei mellombels fil på tenaren. Ver venleg og ta kontakt med ein [[Special:ListUsers/sysop|administrator]].',
-'upload-misc-error'       => 'Ukjend feil ved opplastinga',
-'upload-misc-error-text'  => 'Ein ukjend feil oppstod under opplastinga. Ver venleg og stadfest at nettadressa er gyldig og tilgjengeleg, og prøv ein gong til. Dersom problemet held fram, ta kontakt med ein [[Special:ListUsers/sysop|administrator]].',
+'upload-proto-error'        => 'Feil protokoll',
+'upload-proto-error-text'   => 'Fjernopplasting krev nettadresser som byrjar med <code>http://</code> eller <code>ftp://</code>.',
+'upload-file-error'         => 'Intern feil',
+'upload-file-error-text'    => 'Ein intern feil oppstod under forsøk på å lage ei mellombels fil på tenaren. Ver venleg og ta kontakt med ein [[Special:ListUsers/sysop|administrator]].',
+'upload-misc-error'         => 'Ukjend feil ved opplastinga',
+'upload-misc-error-text'    => 'Ein ukjend feil oppstod under opplastinga. Ver venleg og stadfest at nettadressa er gyldig og tilgjengeleg, og prøv ein gong til. Dersom problemet held fram, ta kontakt med ein [[Special:ListUsers/sysop|administrator]].',
+'upload-too-many-redirects' => 'URL-en inneheldt for mange omdirigeringar',
+'upload-unknown-size'       => 'Ukjend storleik',
+'upload-http-error'         => 'Ein HTTP-feil oppstod: $1',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Kunne ikkje nå nettadressa',
@@ -1730,7 +1747,7 @@ Skildringa frå [$2 filskildringssida] der er vist nedanfor.',
 'disambiguations-text' => "Sidene nedanfor har lenkje til ei '''fleirtydingsside'''. Dei bør ha lenkje til det rette oppslagsordet i staden for.<br />Sider vert handsama som fleirtydingssider dersom dei inneheld ein mal som har lenkje på [[MediaWiki:Disambiguationspage]].",
 
 'doubleredirects'            => 'Doble omdirigeringar',
-'doubleredirectstext'        => 'Kvar line inneheld lenkjer til den første og den andre omdirigeringa, og den første lina frå den andre omdirigeringsteksten. Det gjev som regel den «rette» målartikkelen, som den første omdirigeringa skulle ha peikt på.',
+'doubleredirectstext'        => 'Kvar line inneheld lenkjer til den første og den andre omdirigeringa, og den første lina frå den andre omdirigeringsteksten. Det gjev som regel den «rette» målartikkelen, som den første omdirigeringa skulle ha peikt på. <s>Overstrykne</s> liner har vorte retta på.',
 'double-redirect-fixed-move' => '[[$1]] har blitt flytta, og er no ei omdirigering til [[$2]]',
 'double-redirect-fixer'      => 'Omdirigeringsfiksar',
 
@@ -2399,13 +2416,21 @@ Dersom du berre vil ha noverande versjon, kan du også bruke ei lenkje, til døm
 'export-pagelinks'  => 'Inkluder lenkja sider med ei djupn på:',
 
 # Namespace 8 related
-'allmessages'               => 'Systemmeldingar',
-'allmessagesname'           => 'Namn',
-'allmessagesdefault'        => 'Standardtekst',
-'allmessagescurrent'        => 'Noverande tekst',
-'allmessagestext'           => 'Dette er ei liste over systemmeldingar i MediaWiki-namnerommet.
+'allmessages'                   => 'Systemmeldingar',
+'allmessagesname'               => 'Namn',
+'allmessagesdefault'            => 'Standardtekst',
+'allmessagescurrent'            => 'Noverande tekst',
+'allmessagestext'               => 'Dette er ei liste over systemmeldingar i MediaWiki-namnerommet.
 Vitja [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] og [http://translatewiki.net translatewiki.net] om du ynskjer å bidra til den generelle omsetjinga av MediaWiki.',
-'allmessagesnotsupportedDB' => "Denne sida er ikkje brukande fordi \"'''\$wgUseDatabaseMessages'''\" er slått av.",
+'allmessagesnotsupportedDB'     => "Denne sida er ikkje brukande fordi \"'''\$wgUseDatabaseMessages'''\" er slått av.",
+'allmessages-filter-legend'     => 'Filtrér',
+'allmessages-filter'            => 'Filtrér etter tilpassingsgrad:',
+'allmessages-filter-unmodified' => 'Ikkje endra',
+'allmessages-filter-all'        => 'Alle',
+'allmessages-filter-modified'   => 'Endra',
+'allmessages-prefix'            => 'Filtrér etter prefiks:',
+'allmessages-language'          => 'Språk:',
+'allmessages-filter-submit'     => 'Gå',
 
 # Thumbnails
 'thumbnail-more'           => 'Forstørr',
@@ -3189,6 +3214,7 @@ Skriv inn filnamn utan «{{ns:file}}:»-prefikset.',
 'htmlform-invalid-input'       => 'Det finst problem med innskrivinga di',
 'htmlform-select-badoption'    => 'Verdien du valde er ikkje eit gyldig alternativ.',
 'htmlform-int-invalid'         => 'Verdien du valde er ikkje eit heiltal.',
+'htmlform-float-invalid'       => 'Verdien du valde er ikkje eit tal.',
 'htmlform-int-toolow'          => 'Verdien du valde er under minstetalet på $1',
 'htmlform-int-toohigh'         => 'Verdien du valde er over høgste moglege tal $1',
 'htmlform-submit'              => 'Lagre',

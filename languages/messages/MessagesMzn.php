@@ -8,6 +8,7 @@
  * @file
  *
  * @author Ali1986
+ * @author Firuz
  * @author Spacebirdy
  */
 
@@ -26,6 +27,7 @@ $fallback = 'fa';
 
 $messages = array(
 # Dates
+'friday'        => 'جومه',
 'january'       => 'جـانـویـه',
 'february'      => 'فـه‌وریـه',
 'march'         => 'مـارچ',
@@ -67,6 +69,7 @@ $messages = array(
 'pagecategories' => '{{PLURAL:$1|رج|رج‌ئون}}',
 'subcategories'  => 'جیر رج‌ئون',
 
+'about'      => 'درباره',
 'newwindow'  => 'ته‌رنه‌ روجین ده‌له‌ وا بونه',
 'cancel'     => 'وه‌ل هـه‌کـارده‌ن',
 'mypage'     => 'مه ولگ',
@@ -83,6 +86,7 @@ $messages = array(
 'help'             => 'رانه‌مایی',
 'search'           => 'چـأرخـه تـو',
 'searchbutton'     => 'چـأرخـه‌تـو',
+'go'               => 'بور',
 'searcharticle'    => 'بور',
 'history'          => 'ولـگ ره چـه‌کـوت',
 'history_short'    => 'چه‌كوت / تاریخ',
@@ -100,6 +104,7 @@ $messages = array(
 'personaltools'    => 'مه‌شه ابزار',
 'talk'             => 'گپ',
 'toolbox'          => 'أبـزار جـا',
+'userpage'         => 'کارور ولگ نه‌شون هدائن',
 'viewtalkpage'     => 'گپ ئون ره نشون هدائن',
 'otherlanguages'   => 'دیـگـه زیوون‌ئون',
 'redirectedfrom'   => '(به‌مونه   $1   جه)',
@@ -151,6 +156,7 @@ $2، $1',
 'nstab-category' => 'رج',
 
 # General errors
+'badtitle'      => 'نخش عونوان',
 'viewsource'    => 'چـه‌شـمـه بـأویـنـه‌ن',
 'viewsourcefor' => '$1 ره وسه',
 
@@ -243,6 +249,7 @@ $2، $1',
 'youremail'     => 'شه مه Email *',
 'yourrealname'  => 'شیمه راستین ره نوم :',
 'yourlanguage'  => 'زیوون:',
+'email'         => 'رایانومه',
 
 # User rights
 'userrights-user-editname' => 'کارور نوم ره بنویش هاکنین',

@@ -980,9 +980,9 @@ $1",
 'recentchangesdays-max'         => '最大有$1',
 'recentchangescount'            => '修著凡幾︰',
 'prefs-help-recentchangescount' => '含近易、史與誌。',
-'prefs-help-watchlist-token'    => "添匙參爾之RSS哨。
+'prefs-help-watchlist-token'    => '添匙參爾之RSS哨。
 且人知匙，可閱矣之，擇全之值也。
-任成之值，爾可選之：$1",
+任成之值，爾可選之：$1',
 'savedprefs'                    => '簿註書矣',
 'timezonelegend'                => '時區：',
 'localtime'                     => '本地時：',

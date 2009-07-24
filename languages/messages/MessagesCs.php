@@ -1401,7 +1401,7 @@ Také můžete dovolit ostatním uživatelům vás prostřednictvím uživatelsk
 # Groups
 'group'               => 'Skupina:',
 'group-user'          => 'Uživatelé',
-'group-autoconfirmed' => 'Schválení uživatelé',
+'group-autoconfirmed' => 'Automaticky schválení uživatelé',
 'group-bot'           => 'Boti',
 'group-sysop'         => 'Správci',
 'group-bureaucrat'    => 'Byrokraté',
@@ -1409,14 +1409,14 @@ Také můžete dovolit ostatním uživatelům vás prostřednictvím uživatelsk
 'group-all'           => '(všichni)',
 
 'group-user-member'          => 'uživatel',
-'group-autoconfirmed-member' => 'schválený uživatel',
+'group-autoconfirmed-member' => 'automaticky schválený uživatel',
 'group-bot-member'           => 'bot',
 'group-sysop-member'         => 'správce',
 'group-bureaucrat-member'    => 'byrokrat',
 'group-suppress-member'      => 'dohlížitel',
 
 'grouppage-user'          => '{{ns:project}}:Uživatelé',
-'grouppage-autoconfirmed' => '{{ns:project}}:Schválení uživatelé',
+'grouppage-autoconfirmed' => '{{ns:project}}:Automaticky schválení uživatelé',
 'grouppage-bot'           => '{{ns:project}}:Boti',
 'grouppage-sysop'         => '{{ns:project}}:Správci',
 'grouppage-bureaucrat'    => '{{ns:project}}:Byrokraté',

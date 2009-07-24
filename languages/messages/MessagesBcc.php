@@ -287,6 +287,33 @@ $messages = array(
 'faq'            => 'ب.ج.س',
 'faqpage'        => 'Project:ب.ج.س',
 
+# Vector skin
+'vector-action-addsection'   => 'هور کتن عنوان',
+'vector-action-delete'       => 'زورگ',
+'vector-action-move'         => 'جاه په جاه',
+'vector-action-protect'      => 'حفاظت',
+'vector-action-undelete'     => 'ترینگ',
+'vector-action-unprotect'    => 'حفاظت درگیزگ',
+'vector-namespace-category'  => 'دسته',
+'vector-namespace-help'      => 'تاک راهنما',
+'vector-namespace-image'     => 'فایل',
+'vector-namespace-main'      => 'تاک',
+'vector-namespace-media'     => 'تاک مدیا',
+'vector-namespace-mediawiki' => 'کوله',
+'vector-namespace-project'   => 'تاک پروژه',
+'vector-namespace-special'   => 'حاصین تاک',
+'vector-namespace-talk'      => 'گپ',
+'vector-namespace-template'  => 'تمپلت',
+'vector-namespace-user'      => 'کاربر تاک',
+'vector-view-create'         => 'شرکتن',
+'vector-view-edit'           => 'اصلاح',
+'vector-view-history'        => 'چارتن تاریح',
+'vector-view-view'           => 'وانتن',
+'vector-view-viewsource'     => 'پیشدارگ بن جاه',
+'actions'                    => 'کاران',
+'namespaces'                 => 'فضانامان',
+'variants'                   => 'گوشگان',
+
 # Metadata in edit box
 'metadata_help' => 'متادیتا',
 
@@ -344,6 +371,11 @@ $messages = array(
 'jumpto'            => 'کپ به:',
 'jumptonavigation'  => 'گردگ',
 'jumptosearch'      => 'گردگ',
+'view-pool-error'   => 'متاسفانه، سرور هنون بازگین باری سر انت.
+بازگین کاربری این تاک ءَ چارگنت.
+لطفا کمی صبر کنیت پیش چه شی که دگه ای تاک بچاریت.
+
+$1',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'باره {{SITENAME}}',
@@ -866,6 +898,8 @@ Legend: (cur) = تفاوتان گون هنوکین نسخه,
 'revdelete-nologtype-text'    => 'شما هیچ دابین نوع سیاهگی مشخص نکتت په اجرای ای کار.',
 'revdelete-nologid-title'     => 'نامعتبرین ورودی سیاهگ',
 'revdelete-nologid-text'      => 'شما یک چیزی ته سیاهگ هدف برای اجرای ای کار مشخص نکتت یا ورودی مشخص این موجود نهنت.',
+'revdelete-no-file'           => 'فایل مشخص بیتگین موجود نهنت',
+'revdelete-show-file-submit'  => 'بله',
 'revdelete-selected'          => "'''{{PLURAL:$2|بازبینی انتخابی|بازبینی ان انتخابی}} چه [[:$1]]:'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|رویداد آمار انتخابی|رویداد ان آمار انتخابی}}:'''",
 'revdelete-text'              => "'''حذفین بازبینی آن و رویداد ان هنگت ته تاریح و آمار صفحه جاه کاینت، بله لهتی چه محتوا آيان په عام قابل دسترسی نه بنت.'''
@@ -891,6 +925,8 @@ Legend: (cur) = تفاوتان گون هنوکین نسخه,
 'revdelete-success'           => "'''ظاهر بازبینی گون موفقیت تنظیم بوت.'''",
 'revdelete-failure'           => "'''پیشدارگ نسخ قابل تنظیم نه بیتن.'''",
 'logdelete-success'           => "''''آمار ظاهر بیگ گون موفقیت تنظیم بوت.''''",
+'logdelete-failure'           => "'''پیدایی سیاه گان قابل تنظیم نهنت:'''
+$1",
 'revdel-restore'              => 'عوض کن ظاهر بیگء',
 'pagehist'                    => 'تاریح صفحه',
 'deletedhist'                 => 'تاریح حذف بوت',
@@ -1051,6 +1087,7 @@ Legend: (cur) = تفاوتان گون هنوکین نسخه,
 'search-mwsuggest-disabled'        => 'هچ پیشنهاد',
 'search-relatedarticle'            => 'مربوطین',
 'mwsuggest-disable'                => 'پیشنهادات آژاکسیء غیر فعال کن',
+'searcheverything-enable'          => 'گردگ ته کل فضانامان',
 'searchrelated'                    => 'مربوط',
 'searchall'                        => 'کل',
 'showingresults'                   => "جهل پیش دارگنت تا  {{PLURAL:$1|'''1'''نتیجه|'''$1''' نتایج}} شروع بنت گون #'''$2'''.",
@@ -1064,6 +1101,9 @@ Legend: (cur) = تفاوتان گون هنوکین نسخه,
 'powersearch-ns'                   => 'گردگ ته نام فضا آن',
 'powersearch-redir'                => 'لیست عیرمستقیم آن',
 'powersearch-field'                => 'گردگ په',
+'powersearch-togglelabel'          => 'کنترل:',
+'powersearch-toggleall'            => 'کل',
+'powersearch-togglenone'           => 'هچ یک',
 'search-external'                  => 'حارجی گردگ',
 'searchdisabled'                   => '{{SITENAME}} گردگ غیر فعالنت.
 شما نونیت بگردیت چه طرق گوگل هم زمان.
@@ -1281,6 +1321,7 @@ Legend: (cur) = تفاوتان گون هنوکین نسخه,
 'right-siteadmin'             => 'کبل و پچ دیتابیس',
 'right-reset-passwords'       => 'کلمه رمز چه دگه کاربران ءَ عوض کن',
 'right-override-export-depth' => 'درگیزگ صفحات گون صفحاتی لینک بوتگین ته سطح ۵',
+'right-versiondetail'         => 'اطلاعات نسخه برنامه گیشترین پیشدار',
 
 # User rights log
 'rightslog'      => 'ورودان حقوق کاربر',
@@ -1473,15 +1514,18 @@ MGP # Pentax
 PICT # misc.
  #</pre> <!-- leave this line exactly as it is -->',
 
-'upload-proto-error'      => 'اشتباه پروتوکل',
-'upload-proto-error-text' => 'آپلود دراین نیاز په URL آنی داریت که شروع بیت گون  <code>http://</code> یا <code>ftp://</code>.',
-'upload-file-error'       => 'حطا درونی',
-'upload-file-error-text'  => 'یک حطای درونی پیش اتک وهد شرکتن فایل موقت ته سرور.
+'upload-proto-error'        => 'اشتباه پروتوکل',
+'upload-proto-error-text'   => 'آپلود دراین نیاز په URL آنی داریت که شروع بیت گون  <code>http://</code> یا <code>ftp://</code>.',
+'upload-file-error'         => 'حطا درونی',
+'upload-file-error-text'    => 'یک حطای درونی پیش اتک وهد شرکتن فایل موقت ته سرور.
 لطفا گون یک [[Special:ListUsers/sysop|مدیر]].تماس گریت.',
-'upload-misc-error'       => 'ناشناس حطا آپلود',
-'upload-misc-error-text'  => 'یک ناشناسین حطا وهد آپلود کتن پیش آتک.
+'upload-misc-error'         => 'ناشناس حطا آپلود',
+'upload-misc-error-text'    => 'یک ناشناسین حطا وهد آپلود کتن پیش آتک.
 لطفا تایید کنیت که URL معتبرانت و دسترسی بیت و دگه سعی کنیت.
 اگر مشکل ادامه داشت، گون [[Special:ListUsers/sysop|مدیر]]ء تماس گریت.',
+'upload-too-many-redirects' => 'ای لینک بازگین غیرمستقیم ی هستن',
+'upload-unknown-size'       => 'ناشناین اندازه',
+'upload-http-error'         => 'یک ارور اچ‌تی‌تی‌پی پیش آتک : $1',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'نه تونیت په URL برسیت',
@@ -1528,6 +1572,7 @@ PICT # misc.
 'filehist-dimensions'       => 'جنبه یان',
 'filehist-filesize'         => 'اندازه فایل',
 'filehist-comment'          => 'نظر',
+'filehist-missing'          => 'گارین فایل',
 'imagelinks'                => 'لینک فایل',
 'linkstoimage'              => 'جهلیگین {{PLURAL:$1|صفحه |$1 صفحات لینک}} پی ای فایل',
 'linkstoimage-more'         => 'گیشتر چه  $1 {{PLURAL:$1|صفحه لینکان|صفحات لینک}} پی ای فایل.
@@ -1542,6 +1587,8 @@ PICT # misc.
 په اطلاعات گیشتذ لطفاً [$2 صفحهٔ توضیحات پرونده] را بچاریت.',
 'sharedupload-desc-here'    => 'ای پرونده ته $1 هستن و ممکن انت ته دگه پروژه‌هان هم استفاده ببیت.
 توضیحات موجود ته [$2 صفحهٔ توضیحات پرونده] ته ادان،جهل پیش دارگ بنت.',
+'filepage-nofile'           => 'هچ فایلی گون ای نام نیستن',
+'filepage-nofile-link'      => 'هی فایلی گوپن ای نام نیستن، بله شما تونیت [آی ءَ $1 بار کنیت]',
 'uploadnewversion-linktext' => 'یک نوکین نسخه ای چه ای فایل آپلود کن',
 'shared-repo-from'          => 'چه $1',
 'shared-repo'               => 'هورین مخزن',
@@ -1751,8 +1798,9 @@ PICT # misc.
 'special-categories-sort-abc'   => 'ترتیب الفبی',
 
 # Special:DeletedContributions
-'deletedcontributions'       => 'مشارکتان کابر حذف بوتء',
-'deletedcontributions-title' => 'مشارکتان کابر حذف بوتء',
+'deletedcontributions'             => 'مشارکتان کابر حذف بوتء',
+'deletedcontributions-title'       => 'مشارکتان کابر حذف بوتء',
+'sp-deletedcontributions-contribs' => 'مشارکتان',
 
 # Special:LinkSearch
 'linksearch'       => 'دراین لینک ان',
@@ -1768,6 +1816,13 @@ PICT # misc.
 'listusersfrom'      => 'پیشدار کابرانی که شروع بنت گون:',
 'listusers-submit'   => 'پیش دار',
 'listusers-noresult' => 'هچ کابری در گیزگ نه بوت.',
+'listusers-blocked'  => '(بند بیتگ)',
+
+# Special:ActiveUsers
+'activeusers'          => 'لیست کاربران فعال',
+'activeusers-count'    => '$1 {{PLURAL:$1|اصلاح|اصلاح}} نوکین',
+'activeusers-from'     => 'پیشدار کاربرانی که شروع بنت گون :‌',
+'activeusers-noresult' => 'هچ کاربری درگیزگ نه بیت',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'ورود شرکتن کاربر',
@@ -1781,6 +1836,8 @@ PICT # misc.
 'listgrouprights'                      => 'حقوق گروه کاربر',
 'listgrouprights-summary'              => 'جهلیگین یک لیستی چه گروهان کاربری تعریف بوتگین ته ای ویکی انت گون آیانی حق دسترسی آن همراهنت.
  درباره هر حقی ته صفحه [[{{MediaWiki:Listgrouprights-helppage}}|گیشترین اطلاعات]] هستن.',
+'listgrouprights-key'                  => '* <span class="listgrouprights-granted">اختیارات داتگین</span>
+* <span class="listgrouprights-revoked">اختیارات گپتگین</span>',
 'listgrouprights-group'                => 'گروه',
 'listgrouprights-rights'               => 'حقوق',
 'listgrouprights-helppage'             => 'Help: حقوق گروه',
@@ -2030,6 +2087,7 @@ $NEWPAGE
 'undelete-nodiff'              => 'هچ پیشگین بازبینی درگیزگ نه بوت.',
 'undeletebtn'                  => 'باز گردینگ',
 'undeletelink'                 => 'بچار/واتر',
+'undeleteviewlink'             => 'پیشدارگ',
 'undeletereset'                => 'برگردینگ',
 'undeleteinvert'               => 'چپکایگ کتن انتخاب',
 'undeletecomment'              => 'نظر:',
@@ -2331,13 +2389,21 @@ $1',
 'export-pagelinks'  => 'صفحاتی که لینک بیتگن تا این عمق هور بنت:',
 
 # Namespace 8 related
-'allmessages'               => 'پیامان سیستم',
-'allmessagesname'           => 'نام',
-'allmessagesdefault'        => 'پیش فرضین متن',
-'allmessagescurrent'        => 'هنوکین متن',
-'allmessagestext'           => 'شی یک لیستی چه کوله یان موجود ته نام فضای مدیا وی کی انت.
+'allmessages'                   => 'پیامان سیستم',
+'allmessagesname'               => 'نام',
+'allmessagesdefault'            => 'پیش فرضین متن',
+'allmessagescurrent'            => 'هنوکین متن',
+'allmessagestext'               => 'شی یک لیستی چه کوله یان موجود ته نام فضای مدیا وی کی انت.
 لطفا بچاریت  [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] و [http://translatewiki.net translatewiki.net] اگر شما لوٹیت ته ملکی کتن مدیا وی کی کمک کنیت.',
-'allmessagesnotsupportedDB' => "ای صفحه نه تونیت استفاده بیت په چی که'''\$wgUseDatabaseMessages''' غیر فعالنت.",
+'allmessagesnotsupportedDB'     => "ای صفحه نه تونیت استفاده بیت په چی که'''\$wgUseDatabaseMessages''' غیر فعالنت.",
+'allmessages-filter-legend'     => 'فیلتر',
+'allmessages-filter'            => 'فیلتر گون حالت دلواهی',
+'allmessages-filter-unmodified' => 'عوض نه بیتگین',
+'allmessages-filter-all'        => 'کل',
+'allmessages-filter-modified'   => 'عوض بیتگ',
+'allmessages-prefix'            => 'فیلتر گون پیشوند:',
+'allmessages-language'          => 'زبان:',
+'allmessages-filter-submit'     => 'برو',
 
 # Thumbnails
 'thumbnail-more'           => 'مزن',
@@ -3240,6 +3306,7 @@ $1',
 'htmlform-invalid-input'       => 'لهتی چه ورودی شما مشکل هست',
 'htmlform-select-badoption'    => 'مقدار وارد بیتگ یک گزینهٔ قابل قبول نهنت.',
 'htmlform-int-invalid'         => 'مقداری که وارد کرته اید یک عدد صحیح نهنت.',
+'htmlform-float-invalid'       => 'ای چیزی که شما مشخص کتت یک شماره نهنت',
 'htmlform-int-toolow'          => 'مقداری که وارد کرته اید کمتر چه $1 انت',
 'htmlform-int-toohigh'         => 'مقداری که وارد کرته اید گیشتر چه $1 انت',
 'htmlform-submit'              => 'دیم دی',

@@ -736,6 +736,7 @@ Parameter $1 is the content of section parameter in the URL (for example 1234 in
 'editing'                          => "Shown as page title when editing a page. \$1 is the name of the page that is being edited. Example: \"''Editing Main Page''\".",
 'editingsection'                   => 'The variable $1 is the page name.  This message displays at the top of the page when a user is editing a page section.',
 'explainconflict'                  => 'The text "Save page" is in {{msg-mw|savearticle}}.',
+'yourdiff'                         => '',
 'copyrightwarning'                 => 'Copyright warning displayed under the edit box in editor',
 'longpagewarning'                  => 'Warning displayed when trying to edit a long page',
 'longpageerror'                    => 'Warning displayed when trying to save a text larger than the maximum size allowed',
@@ -1103,7 +1104,8 @@ Shown as legend of the second fieldset of the tab 'Search' in [[Special:Preferen
 'uid'                           => '{{Identical|User ID}}',
 'prefs-memberingroups'          => 'This message is shown on [[Special:Preferences]], first tab, where it is follwed by a colon.',
 'prefs-registration'            => 'Used in [[Special:Preferences]].',
-'prefs-registration-date-time'  => 'Used in [[Special:Preferences]]. Parameters are:
+'prefs-registration-date-time'  => '{{optional}}
+Used in [[Special:Preferences]]. Parameters are:
 * $1 date and time of registration
 * $2 date of registration
 * $3 time of registration',
@@ -2182,14 +2184,23 @@ Parameter $1 is the message "[[MediaWiki:Hide/{{SUBPAGENAME}}|hide]]" or "[[Medi
 
 * $1 - word "{{msg|Hide}}" or "{{msg|Show}}"',
 'ipblocklist-submit'           => '{{Identical|Search}}',
-'blocklistline'                => 'This is the text of an entry in the Special:IPBlockList.
+'blocklistline'                => 'This is the text of an entry in the [[Special:BlockList]].
 * $1 is the hour and date of the block. 
 * $2 is the sysop. 
 * $3 is the blocked user or IP (with link to contributions and talk)
-* $4 contains "hour and date of expiry, details (\'\'reason\'\')"
+* $4 contains "hour and date of expiry" ({{msg-mw|Expiringblock}} or {{msg-mw|Infiniteblock}})
 
 See also {{msg-mw|Blocklogentry}}.',
-'infiniteblock'                => '{{Identical|Infinite}}',
+'infiniteblock'                => "* contents of $4 in {{msg-mw|Blocklistline}}: (''{{int:Blocklistline}}'')
+* contents of $4 in {{msg-mw|Globalblocking-blocked}}:
+<blockquote>''{{int:Globalblocking-blocked}}''</blockquote>
+*See also {{msg-mw|Expiringblock}}
+
+{{Identical|Infinite}}",
+'expiringblock'                => "* contents of $4 in {{msg-mw|Blocklistline}}: (''{{int:Blocklistline}}'')
+* contents of $4 in {{msg-mw|Globalblocking-blocked}}:
+<blockquote>''{{int:Globalblocking-blocked}}''</blockquote>
+*See also {{msg-mw|Infiniteblock}}",
 'anononlyblock'                => 'Part of the log entry of user block.
 
 {{Identical|Anon only}}',
@@ -2203,7 +2214,7 @@ See also {{msg-mw|Blocklogentry}}.',
 
 {{Identical|Block log}}",
 'blocklog-fulllog'             => 'Shown at Special:BlockIP at the end of the block log if there are more than 10 entries for this user, see [[Special:BlockIP/Raymond]] as example (visible for sysops only).',
-'blocklogentry'                => 'This is the text of an entry in the Block log (and RC), after hour (and date, only in the Block log) and sysop name: 
+'blocklogentry'                => 'This is the text of an entry in the Block log, and recent changes, after hour (and date, only in the Block log) and sysop name: 
 * $1 is the blocked user or IP (with link to contributions and talk)
 * $2 is the duration of the block (hours, days etc.) or the specified expiry date
 * $3 contains "(details) (\'\'reason\'\')"
@@ -2284,6 +2295,9 @@ Parameters:
 'revertmove'                   => '{{Identical|Revert}}',
 'delete_and_move_text'         => 'Used when moving a page, but the destination page already exists and needs deletion. This message is to confirm that you really want to delete the page. See also {{msg|delete and move confirm}}.',
 'delete_and_move_confirm'      => 'Used when moving a page, but the destination page already exists and needs deletion. This message is for a checkbox to confirm that you really want to delete the page. See also {{msg|delete and move text}}.',
+'immobile-target-namespace-iw' => "This message appears when attempting to move a page, if a person has typed an interwiki link as a namespace prefix in the input box labelled 'To new title'.  The special page 'Movepage' cannot be used to move a page to another wiki. 
+
+'Destination' can be used instead of 'target' in this message.",
 'fix-double-redirects'         => 'This is a checkbox in [[Special:MovePage]] which allows to move all redirects from the old title to the new title.',
 'protectedpagemovewarning'     => 'Related message: [[MediaWiki:protectedpagewarning/{{#titleparts:{{PAGENAME}}|1|2}}]]',
 'semiprotectedpagemovewarning' => 'Related message: [[MediaWiki:Semiprotectedpagewarning/{{#titleparts:{{PAGENAME}}|1|2}}]]',
@@ -2899,7 +2913,9 @@ Please leave the link http://www.mediawiki.org/wiki/Manual:External_editors exac
 # Trackbacks
 'trackbackbox'     => '* $1 is the content of [[MediaWiki:Trackbackexcerpt]] or [[MediaWiki:Trackback]], depending if the trackback has an excerpt
 
-{{doc-important|Do not remove the linebreak. $1 has to be the first character on a new line because it contains wiki markup}}',
+{{doc-important|Do not remove the linebreak. $1 has to be the first character on a new line because it contains wiki markup}}
+
+For information on trackback see [http://www.mediawiki.org/wiki/Manual:$wgUseTrackbacks mediawiki manual].',
 'trackback'        => '{{optional}}
 
 Do \'\'not\'\' change the leading ;  and the first : as it is wiki markup.
