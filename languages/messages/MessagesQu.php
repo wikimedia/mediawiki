@@ -583,12 +583,12 @@ Allin sapaq p'anqakunataqa tarinki [[Special:SpecialPages|Sapaq p'anqakuna]] nis
 'databaseerror'        => 'Willañiqintin pantasqa',
 'dberrortext'          => 'Willañiqimanta mañakuptiyki sintaksis pantasqam tukurqan.
 Llamp\'u kaq wakichipi pantasqachá.
-Qayna willañiqimanta mañakusqaqa karqan kaypacham: <blockquote><tt>$1</tt></blockquote> kay ruraypim: "<tt>$2</tt>". MySQL-pa kutichisqan pantasqaqa karqan "<tt>$3: $4</tt>".',
+Qayna willañiqimanta mañakusqaqa karqan kaypacham: <blockquote><tt>$1</tt></blockquote> kay ruraypim: "<tt>$2</tt>". $5-pa kutichisqan pantasqaqa karqan "<tt>$3: $4</tt>".',
 'dberrortextcl'        => 'Willañiqimanta mañakuptiyki sintaksis pantasqam tukurqan.
 Qayna willañiqimanta mañakusqaqa karqan kaymi:
 "$1"
 kay ruraymantam: "$2".
-MySQL-pa kutichisqan pantasqaqa karqan "$3: $4".',
+$5-pa kutichisqan pantasqaqa karqan "$3: $4".',
 'laggedslavemode'      => "'''Paqtataq''': Kay p'anqapiqa manaraqchá kachkanchu aswan qayna musuqchasqakuna.",
 'readonly'             => "Willañiqintinqa hark'asqam",
 'enterlockreason'      => "Qillqamuy imarayku hark'asqa karqan, hayk'appas manañachá hark'asqachu kanqa",
@@ -606,6 +606,7 @@ Ama hina kaspa, huk [[Special:ListUsers/sysop|kamachiqman]] willariy, URL nisqa 
 'readonly_lag'         => "Willañiqintinqa mit'alla hark'asqam, sirwiqkuna kikinpachachastin.",
 'internalerror'        => 'Ukhu pantasqa',
 'internalerror_info'   => 'Ukhu pantasqa: $1',
+'fileappenderror'      => 'Manam atinichu "$1"-ta "$2"-man yapayta.',
 'filecopyerror'        => 'Manam atinichu willañiqita "$1"-manta "$2"-man iskaychayta.',
 'filerenameerror'      => 'Manam atinichu willañiqip sutinta "$1"-manta "$2"-man hukchayta.',
 'filedeleteerror'      => 'Manam atinichu "$1" sutiyuq willañiqita qulluyta.',
@@ -1221,6 +1222,7 @@ Takyachikuy kay hukchayqa allin wiñay kawsay ñiqita ama waqllichunchu chaylla.
 'prefs-watchlist-days-max'      => "(ama qanchismanta aswan p'unchaw kachunchu)",
 'prefs-watchlist-edits'         => "Hayk'a hukchasqakunata hatunchasqa watiqana sutisuyupi rikuchiy:",
 'prefs-watchlist-edits-max'     => '(ama waranqamanta aswan kachunchu)',
+'prefs-watchlist-token'         => 'Watiqay sutisuyu sanancha',
 'prefs-misc'                    => 'Ñawra',
 'prefs-resetpass'               => 'Yaykuna rimata hukchay',
 'prefs-email'                   => 'E-chaskipaq akllanakuna',
@@ -1241,6 +1243,8 @@ Takyachikuy kay hukchayqa allin wiñay kawsay ñiqita ama waqllichunchu chaylla.
 'recentchangesdays-max'         => "(ama $1-manta aswan {{PLURAL:$1|p'unchaw|p'unchaw}} kachunchu)",
 'recentchangescount'            => 'Rikuchina hukchasqakunap yupaynin, kikinmanta:',
 'prefs-help-recentchangescount' => "Kaypiqa ñaqha hukchasqakunam, p'anqap wiñay kawsayninkunam, hallch'akunapas.",
+'prefs-help-watchlist-token'    => "Kay k'itichata pakasqa llawiwan hunt'aspaykiqa, watiqasqaykikunapaq RSS mikhuchinatam kamarinki.
+Pi kay k'itichapi llawiykita riqsiqpas watiqasqaykikunata ñawiriytam atinqa. Chayrayku takyaq chanita akllay. Kaypiqa kikinmanta kamarisqa akllanallayki chanitam rikunki: $1",
 'savedprefs'                    => "Allinkachinaykikunaqa hallch'asqañam.",
 'timezonelegend'                => "Pacha t'urpi:",
 'localtime'                     => 'Tiyaylla pacha:',
@@ -1407,6 +1411,7 @@ Huk ruraqkunata ruraqpa p'anqaykimanta icha rimachinaykimanta qamman qillqamusun
 'right-siteadmin'             => "Willañiqintinta hark'ay, paskaypas",
 'right-reset-passwords'       => 'Huk ruraqkunap yaykuna rimanta kutichiy',
 'right-override-export-depth' => "P'anqakunata hawaman quy, t'inkisqa p'anqakunatapas pichqa ñiqin t'inkipayasqakama",
+'right-versiondetail'         => "Mast'arisqa llamp'u kaqpaq musuqchasqamanta willaykunata rikuchiy",
 
 # User rights log
 'rightslog'      => 'Ruraqpa hayñinkunap hukyasqankuna',
@@ -1577,12 +1582,15 @@ Hamut'arinaykim tiyanman, kay willañiqita musuqmanta churkuyqa allinchu mana al
 Kay qatiqpiqa willañiqimanta qulluy hallch'atam rikunki:",
 'filename-bad-prefix'         => "Churkunayasqayki willañiqip sutinqa '''\"\$1\"''' nisqawanmi qallarin. Chay sutinqa iliktruniku rikcha hap'inap kamasqanmanmi rikch'akun. Ama hina kaspa, willañiqiykita astawan t'iktuq sutinta akllay.",
 
-'upload-proto-error'      => 'Tantari qillqaqa manam allinchu',
-'upload-proto-error-text' => "Huk p'anqamanta willañiqita churkunapaqqa URL tiyaypa <code>http://</code> icha <code>ftp://</code> nisqawan qallarinanmi.",
-'upload-file-error'       => 'Ukhu pantasqa',
-'upload-file-error-text'  => "Ukhu pantasqam tukurqan sirwiqpi mit'alla willañiqita kamariykachaptiyki. Ama hina kaspa, llika [[Special:ListUsers/sysop|kamachiqta]] tapuy.",
-'upload-misc-error'       => 'Mana riqsisqa churkuy pantasqa',
-'upload-misc-error-text'  => 'Churkuchkaptiyki mana riqsisqa pantasqam tukurqan. Ama hina kaspa, URL tiyay allinchu chayanallachu chaymanta llanchispa musuqmanta ruraykachay. Mana allinyaptinqa, llika [[Special:ListUsers/sysop|kamachiqta]] tapuy.',
+'upload-proto-error'        => 'Tantari qillqaqa manam allinchu',
+'upload-proto-error-text'   => "Huk p'anqamanta willañiqita churkunapaqqa URL tiyaypa <code>http://</code> icha <code>ftp://</code> nisqawan qallarinanmi.",
+'upload-file-error'         => 'Ukhu pantasqa',
+'upload-file-error-text'    => "Ukhu pantasqam tukurqan sirwiqpi mit'alla willañiqita kamariykachaptiyki. Ama hina kaspa, llika [[Special:ListUsers/sysop|kamachiqta]] tapuy.",
+'upload-misc-error'         => 'Mana riqsisqa churkuy pantasqa',
+'upload-misc-error-text'    => 'Churkuchkaptiyki mana riqsisqa pantasqam tukurqan. Ama hina kaspa, URL tiyay allinchu chayanallachu chaymanta llanchispa musuqmanta ruraykachay. Mana allinyaptinqa, llika [[Special:ListUsers/sysop|kamachiqta]] tapuy.',
+'upload-too-many-redirects' => 'URL tiyayqa nisyu pusapunayuqmi',
+'upload-unknown-size'       => 'Mana riqsisqa chhikan',
+'upload-http-error'         => 'HTTP pantasqam tukusqa: $1',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Manam taripanichu URL tiyayta',
@@ -1725,8 +1733,8 @@ Ama hina kaspa, [$2 willañiqi ch'uyanchana p'anqata] qhaway astawan willachikun
 'disambiguations-text' => "Kay qatiq p'anqakunam t'inkimun '''sut'ichana qillqaman'''. Chiqap, hukchanasqa p'anqaman t'inkichun.<br />Tukuy [[MediaWiki:Disambiguationspage]] plantillayuq p'anqakunaqa sut'ichana qillqam.",
 
 'doubleredirects'            => 'Iskaylla pusapunakuna',
-'doubleredirectstext'        => "<b>Paqtataq:</b> Kay p'anqapiqa pantasqalla p'anqa sutikunachá rikuchisqa kayta atinman, ñawpaq kaq #REDIRECT nisqap qhipanpi t'inkiyuq p'anqakuna.<br />
-Kay p'anqapiqa huk pusapuna p'anqaman pusapuq p'anqakunap sutinkunatam rikunki. Sapa sinrupiqa ñawpaq ñiqin, iskay ñiqinpas pusapunaman t'inkikunam, iskay ñiqin pusapunap taripananpa qallariyninpas, sapsilla chiqap allin qillqam.",
+'doubleredirectstext'        => "Kay p'anqapiqa huk pusapuna p'anqaman pusapuq p'anqakunap sutinkunatam rikunki. Sapa sinrupiqa ñawpaq ñiqin, iskay ñiqinpas pusapunaman t'inkikunam, iskay ñiqin pusapunap taripananpa qallariyninpas, sapsilla \"chiqap\" allin taripana qillqam, maymanchus ñawpaq ñiqin pusapuna p'anqa pusachun.
+<s>Chakapusqa</s> taripasqakunaqa paskasqañam.",
 'double-redirect-fixed-move' => '[[$1]] nisqaqa astasqam, kunantaq [[$2]] nisqaman pusapunam',
 'double-redirect-fixer'      => 'Pusapuna allinchaq',
 
@@ -1965,12 +1973,12 @@ Qampa [[Special:Preferences|allinkachinaykikunapi]] qillqakamachisqayki imamayta
 'changed'                      => 'hukchasqa',
 'created'                      => 'kamarirqan',
 'enotif_subject'               => '{{SITENAME}}pi $PAGETITLE sutiyuq p\'anqaqa $PAGEEDITOR-pa $CHANGEDORCREATED-nñam',
-'enotif_lastvisited'           => '$1-ta qhaway qayna watukamusqaykimantapacha tukuy hukchasqakunata rikunaykipaq.',
-'enotif_lastdiff'              => '$1-ta qhaway kay hukchasqata rikunaykipaq.',
+'enotif_lastvisited'           => "$1 sutiyuq p'anqata qhaway qayna watukamusqaykimantapacha tukuy hukchasqakunata rikunaykipaq.",
+'enotif_lastdiff'              => "$1 sutiyuq p'anqata qhaway kay hukchasqata rikunaykipaq.",
 'enotif_anon_editor'           => 'sutinnaq ruraq $1',
 'enotif_body'                  => 'Munakusqa $WATCHINGUSERNAME,
 
-{{SITENAME}}pi $PAGETITLE sutiyuq p\'anqataqa $PAGEEDITOR-m $CHANGEDORCREATED $PAGEEDITDATE pachapi, $PAGETITLE_URL-ta qhaway kunan hukchasqata rikunaykipaq.
+{{SITENAME}}pi $PAGETITLE sutiyuq p\'anqataqa $PAGEEDITOR sutiyuq ruraqmi $CHANGEDORCREATED $PAGEEDITDATE pachapi, $PAGETITLE_URL sutiyuq p\'anqata qhaway kunan hukchasqata rikunaykipaq.
 
 $NEWPAGE
 
@@ -2405,13 +2413,21 @@ Qhipaqta munaspaykiqa, t'inkitapas llamk'achiyta atinki, ahinataq [[{{#Special:E
 'export-pagelinks'  => "T'inkisqa p'anqakunata ch'aqtay kay t'inkipayay yupaykama:",
 
 # Namespace 8 related
-'allmessages'               => 'MediaWiki-p tukuy willayninkuna',
-'allmessagesname'           => 'Suti',
-'allmessagesdefault'        => 'Ñawpaq qillqa',
-'allmessagescurrent'        => 'Kunan kachkaq qillqa',
-'allmessagestext'           => "Kayqa MediaWiki suti k'itipi llamk'achinalla willaykunayuq sutisuyum.
+'allmessages'                   => 'MediaWiki-p tukuy willayninkuna',
+'allmessagesname'               => 'Suti',
+'allmessagesdefault'            => 'Ñawpaq qillqa',
+'allmessagescurrent'            => 'Kunan kachkaq qillqa',
+'allmessagestext'               => "Kayqa MediaWiki suti k'itipi llamk'achinalla willaykunayuq sutisuyum.
 Ama hina kaspa, [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] nisqata, [http://translatewiki.net translatewiki.net] nisqatapas watukuy, MediaWiki nisqata t'ikraywan yanapayta munaspaykiqa.",
-'allmessagesnotsupportedDB' => "Kay p'anqaqa manam llamk'achinallachu, '''\$wgUseDatabaseMessages''' nisqaman ama nisqa kaptinmi.",
+'allmessagesnotsupportedDB'     => "Kay p'anqaqa manam llamk'achinallachu, '''\$wgUseDatabaseMessages''' nisqaman ama nisqa kaptinmi.",
+'allmessages-filter-legend'     => "Ch'illchina",
+'allmessages-filter'            => "Ch'illchina, allinchasqa kachkaykama:",
+'allmessages-filter-unmodified' => 'Mana hukchasqa',
+'allmessages-filter-all'        => 'Tukuy',
+'allmessages-filter-modified'   => 'Hukchasqa',
+'allmessages-prefix'            => "Ch'illchina, ñawpaq k'askaqkama:",
+'allmessages-language'          => 'Rimay:',
+'allmessages-filter-submit'     => 'Riy',
 
 # Thumbnails
 'thumbnail-more'           => 'Hatunchay',
@@ -3179,6 +3195,7 @@ Mana “{{ns:file}}:” k'askaqniyuq willañiqip sutinta yaykuchiy.",
 'htmlform-invalid-input'       => 'Yaykuchisqaykiwanqa sasachakuykunam kachkan',
 'htmlform-select-badoption'    => 'Sapaqchasqayki chaniqa manam allin akllanachu.',
 'htmlform-int-invalid'         => "Sapaqchasqayki chaniqa manam hunt'a yupaychu.",
+'htmlform-float-invalid'       => 'Qusqayki chaniqa manam yupaychu.',
 'htmlform-int-toolow'          => 'Sapaqchasqayki chaniqa pisi saywa kaq $1-manta aswan pisim.',
 'htmlform-int-toohigh'         => 'Sapaqchasqayki chaniqa achka saywa kaq $1-manta aswan achkam.',
 'htmlform-submit'              => 'Kachay',

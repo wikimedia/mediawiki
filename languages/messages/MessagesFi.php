@@ -633,6 +633,7 @@ Ilmoita tämän sivun osoite wikin [[Special:ListUsers/sysop|ylläpitäjälle]].
 'readonly_lag'         => 'Tietokanta on automaattisesti lukittu, jotta kaikki tietokantapalvelimet saisivat kaikki tuoreet muutokset',
 'internalerror'        => 'Sisäinen virhe',
 'internalerror_info'   => 'Sisäinen virhe: $1',
+'fileappenderror'      => 'Tiedostoa ”$1” ei voitu lisätä tiedostoon ”$2”.',
 'filecopyerror'        => 'Tiedostoa <b>$1</b> ei voitu kopioida tiedostoksi <b>$2</b>.',
 'filerenameerror'      => 'Tiedostoa <b>$1</b> ei voitu nimetä uudelleen nimellä <b>$2</b>.',
 'filedeleteerror'      => 'Tiedostoa <b>$1</b> ei voitu poistaa.',
@@ -932,7 +933,7 @@ Nämä muuttujat on jätetty käsittelemättä.',
 'undo-success' => 'Kumoaminen onnistui. Valitse <em>tallenna</em> toteuttaaksesi muutokset.',
 'undo-failure' => 'Muokkausta ei voitu kumota välissä olevien ristiriistaisten muutosten vuoksi. Kumoa muutokset käsin.',
 'undo-norev'   => 'Muokkausta ei voitu perua, koska sitä ei ole olemassa tai se on poistettu.',
-'undo-summary' => 'Kumottu muokkaus #$1, jonka teki [[Special:Contributions/$2|$2]] ([[User talk:$2|keskustelu]])',
+'undo-summary' => 'Kumottu muokkaus $1, jonka teki [[Special:Contributions/$2|$2]] ([[User talk:$2|keskustelu]])',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Tunnuksen luominen epäonnistui',
@@ -1260,6 +1261,9 @@ Kokeile lisätä haun alkuun ''all:'', niin haku kohdistuu kaikkeen sisältöön
 'recentchangesdays-max'         => '(enintään $1 {{PLURAL:$1|päivä|päivää}})',
 'recentchangescount'            => 'Näytettävien muutoksien määrä oletuksena',
 'prefs-help-recentchangescount' => 'Tämä sisältää tuoreet muutokset, muutoshistoriat ja lokit.',
+'prefs-help-watchlist-token'    => 'Tämän kentän täyttäminen salaisella avaimella tuottaa RSS-syötteen tarkkailulistastasi.
+Kaikki, jotka tietävät tähän kenttään kirjoitetun avaimen pystyvät lukemaan tarkkailulistaa, joten valitse turvallinen arvo.
+Tässä satunnaisesti tuotettu arvo, jota voit käyttää: $1',
 'savedprefs'                    => 'Asetuksesi tallennettiin onnistuneesti.',
 'timezonelegend'                => 'Aikavyöhyke',
 'localtime'                     => 'Paikallinen aika',

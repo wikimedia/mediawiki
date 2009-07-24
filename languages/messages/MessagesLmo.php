@@ -109,8 +109,8 @@ süi titul dai sezziún (JavaScript)',
 'sunday'        => 'dumeniga',
 'monday'        => 'lündesdí',
 'wednesday'     => 'mercurdí',
-'thursday'      => 'gjöbia',
-'friday'        => 'vendredí',
+'thursday'      => 'giuedí',
+'friday'        => 'venerdí',
 'saturday'      => 'sábat',
 'january'       => 'ginee',
 'february'      => 'febraar',
@@ -223,7 +223,7 @@ süi titul dai sezziún (JavaScript)',
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Artícol',
 'nstab-user'      => 'Pagina personala',
-'nstab-special'   => 'Specjaal',
+'nstab-special'   => 'Pagina special',
 'nstab-project'   => 'Pagina',
 'nstab-mediawiki' => 'Messácc',
 'nstab-template'  => 'Bueta',
@@ -299,7 +299,7 @@ Per piasè, ve drent anmò dop che te l'ricevüü.",
 'editing'              => 'Mudifica de $1',
 'editingcomment'       => 'Redataant $1 (cumentari)',
 'yourtext'             => 'El tò test',
-'yourdiff'             => 'Diferenzi',
+'yourdiff'             => 'Diferenz',
 'protectedpagewarning' => "'''ATENZIÚN: chésta pagina l è staja blucava in manéra che dumá i üteent cunt i privilegi də sysop a pòdan mudificala.'''",
 'templatesused'        => 'Buete duvrade in chesta pàgina - Buett duvraat in chesta pàgina:',
 
@@ -318,14 +318,14 @@ Spiegazziún di símbui: (cur) = difərenza cun la versiún curénta, (ültima) 
 'noexactmatch'          => "'''La pagina \"\$1\" la esista no.''' L'è pussibil [[:\$1|creala adèss]].",
 'noexactmatch-nocreate' => "'''La pagina cun el titul \"\$1\" la esista no.'''",
 'toomanymatches'        => "Gh'è tropi curispundens. Mudifichè la richiesta.",
-'prevn'                 => 'preçedeent {{PLURAL:$1|$1}}',
+'prevn'                 => 'precedent {{PLURAL:$1|$1}}',
 'nextn'                 => 'pròssim {{PLURAL:$1|$1}}',
 'viewprevnext'          => 'Vidé ($1) ($2) ($3).',
 'searchhelp-url'        => 'Help:Contegnüü',
 'powersearch'           => 'Truvá',
 
 # Preferences page
-'preferences'        => 'Preferenzi',
+'preferences'        => 'Preferenz',
 'mypreferences'      => 'i mè prefereenz',
 'changepassword'     => "Mudifega la paròla d'urdin",
 'prefs-skin'         => "Aspett de l'interfacia",
@@ -360,7 +360,7 @@ Spiegazziún di símbui: (cur) = difərenza cun la versiún curénta, (ültima) 
 'yourlanguage'       => 'Lengua:',
 'yournick'           => 'Suranomm:',
 'email'              => 'Indirizz de pòsta elettrònica.',
-'prefs-help-email'   => 'Courriel (e-mail) al é mia obligatòri, però al permet da va mandar una nœuva ciav se cas che va la desmenteghé. A podé apó scernir da lassar i olt dovracc entrar en contat con violt senza da busogn da svelar la vosta identitaa.',
+'prefs-help-email'   => "L'e-mail a l'è mia obligatòri, però al permet da mandàv una ciav noeva in cas che ve la desmenteghé. A podé apó scernì da lassà entrà i alter dovrat in contat con violter senza da busogn da svelà la vosta identità.",
 
 # User rights
 'userrights-lookup-user'   => 'Gestion di group da dovracc',
@@ -388,7 +388,7 @@ Spiegazziún di símbui: (cur) = difərenza cun la versiún curénta, (ültima) 
 
 # Recent changes
 'recentchanges'     => 'Cambiameent reçeent',
-'recentchangestext' => 'In chesta pagina a inn evidenziaa i cambiameent püssee receent al wiki lumbaart.',
+'recentchangestext' => "In quela pagina chì a gh'è i cambiament püssee recent al cuntegnüü del sit.",
 'rclistfrom'        => 'Fá vidé i nööf cambiameent a partí də $1',
 'rcshowhideminor'   => '$1 modifiazion megn important',
 'rcshowhideliu'     => '$1 üteent cunèss',
@@ -404,6 +404,7 @@ Spiegazziún di símbui: (cur) = difərenza cun la versiún curénta, (ültima) 
 'recentchangeslinked'         => 'Cambiament culegaa',
 'recentchangeslinked-feed'    => 'Cambiament culegaa',
 'recentchangeslinked-toolbox' => 'Cambiament culegaa',
+'recentchangeslinked-title'   => 'Mudifegh ligaa a "$1"',
 
 # Upload
 'upload'            => 'Carga sü un file',
@@ -484,6 +485,7 @@ Spiegazziún di símbui: (cur) = difərenza cun la versiún curénta, (ültima) 
 # Special:AllPages
 'allpages'       => 'Tücc i pagin',
 'allpagesfrom'   => 'Famm vedè i pagin a partì de:',
+'allpagesto'     => 'Fàm ved i paginn fín a:',
 'allarticles'    => 'Tucc i artícoj',
 'allpagesprev'   => 'Precedent',
 'allpagesnext'   => 'Pròssim',
@@ -502,13 +504,13 @@ Spiegazziún di símbui: (cur) = difərenza cun la versiún curénta, (ültima) 
 
 # Watchlist
 'watchlist'        => 'In usservazziun',
+'mywatchlist'      => "Paginn che a tegni d'ögg",
 'addedwatch'       => "Giontaa à la lista di pàgin à tegní d'œucc",
-'addedwatchtext'   => "La pagina \"[[:\$1]]\" l'è staja gjüntava a la lista dii [[Special:Watchlist|paginn da tegn d'öcc]].
-I cambiameent che i vegnará fai a chesta pagina chi e a la sóa pagina dii cumünicazziún
-i vegnará segnalaa chichinscí e la pagina la sa vedará cun caráter '''spèss''' in la
-[[Special:RecentChanges|lista dii cambiameent reçeent]] gjüst par evidenziála.
-<p>Se ti vörat tirá via chesta pagina chi dala lista dai paginn da tegn d'öcc ti pòdat schiscjá
-al butún \"tegn piü d'öcc\".",
+'addedwatchtext'   => "La pagina \"[[:\$1]]\" l'è stada giuntada a la lista di [[Special:Watchlist|paginn da tegn d'ögg]].
+I cambiament che vegnarà fai a 'sta pagina chì e a la sóa pagina de discüssion
+i vegnarann segnalaa chichinscì e la pagina la se vedarà cun caràter '''grev''' ins la
+[[Special:RecentChanges|lista dij cambiament recent]], giüst per metela in evidenza.
+<p>Se te vörat tö via quela pagina chì dala lista dij paginn da tegn d'ögg te pòdat schiscià 'l butón \"tegn pü d'ögg\".",
 'removedwatch'     => 'Scancelaa dala lista di usservazziún.',
 'removedwatchtext' => 'La pagina "[[:$1]]" l\'è staja scancelava dala tóa lista da usservazziún.',
 'watch'            => "Tegn d'öcc",
@@ -629,6 +631,7 @@ Cheest-chí al pöö vess un canbi dràstegh e inaspetaa par una pàgina pupüla
 'tooltip-t-recentchangeslinked'   => 'Canviamenc recenc en li pàgini ligadi a chesta',
 'tooltip-feed-rss'                => 'Feed RSS per chesta pàgina',
 'tooltip-t-specialpages'          => 'Lista de tütt i pagin speciaal',
+'tooltip-ca-nstab-project'        => 'Varda la pagina del pruget',
 'tooltip-compareselectedversions' => 'Far vider li diferenzi entra li doi version selezionadi da chesta pàgina',
 
 # Attribution
@@ -680,6 +683,6 @@ Te riçevaree un mesacc cun deent un ligamm specjal; ti duvaree clicaa sül liga
 'filepath' => 'Percuurz daj archivi',
 
 # Special:SpecialPages
-'specialpages' => 'Pagin special',
+'specialpages' => 'Paginn special',
 
 );

@@ -273,11 +273,16 @@ $messages = array(
 'faqpage'        => 'Project:Maiz egindako galderak',
 
 # Vector skin
-'vector-action-delete'  => 'Ezabatu',
-'vector-action-move'    => 'Mugitu',
-'vector-action-protect' => 'Babestu',
-'vector-view-create'    => 'Sortu',
-'vector-view-view'      => 'Irakurri',
+'vector-action-delete'      => 'Ezabatu',
+'vector-action-move'        => 'Mugitu',
+'vector-action-protect'     => 'Babestu',
+'vector-namespace-category' => 'Kategoria',
+'vector-namespace-help'     => 'Laguntza-orria',
+'vector-namespace-talk'     => 'Eztabaida',
+'vector-namespace-user'     => 'Erabiltzaile-orria',
+'vector-view-create'        => 'Sortu',
+'vector-view-edit'          => 'Aldatu',
+'vector-view-view'          => 'Irakurri',
 
 # Metadata in edit box
 'metadata_help' => 'Metadatuak:',
@@ -1661,8 +1666,9 @@ Ikus, gainera [[Special:WantedCategories|kategoriarik eskatuenak]].',
 'special-categories-sort-abc'   => 'alfabetikoki aldatu',
 
 # Special:DeletedContributions
-'deletedcontributions'       => 'Ezabatutako ekarpenak',
-'deletedcontributions-title' => 'Ezabatutako ekarpenak',
+'deletedcontributions'             => 'Ezabatutako ekarpenak',
+'deletedcontributions-title'       => 'Ezabatutako ekarpenak',
+'sp-deletedcontributions-contribs' => 'ekarpenak',
 
 # Special:LinkSearch
 'linksearch'       => 'Kanpo loturak',

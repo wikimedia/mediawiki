@@ -360,6 +360,7 @@ $messages = array(
 'vector-view-view'           => 'Ler',
 'vector-view-viewsource'     => 'Ver fonte',
 'actions'                    => 'Ações',
+'namespaces'                 => 'Espaços nominais',
 
 # Metadata in edit box
 'metadata_help' => 'Metadados:',
@@ -702,19 +703,20 @@ Você pode já ter alterado com sucesso a sua senha, ou solicitado uma nova senh
 'summary-preview'                  => 'Previsão de sumário:',
 'subject-preview'                  => 'Previsão de assunto/título:',
 'blockedtitle'                     => 'O usuário está bloqueado',
-'blockedtext'                      => '<big>O seu nome de usuário ou endereço de IP foi bloqueado</big>
+'blockedtext'                      => "<big>'''O seu nome de usuário ou endereço de IP foi bloqueado.'''</big>
 
-O bloqueio foi realizado por $1. O motivo apresentado foi \'\'$2\'\'.
+O bloqueio foi realizado por \$1.
+O motivo apresentado foi ''\$2''.
 
-* Início do bloqueio: $8
-* Expiração do bloqueio: $6
-* Destino do bloqueio: $7
+* Início do bloqueio: \$8
+* Expiração do bloqueio: \$6
+* Destino do bloqueio: \$7
 
-Você pode contatar $1 ou outro [[{{MediaWiki:Grouppage-sysop}}|administrador]] para discutir sobre o bloqueio.
+Você pode contatar \$1 ou outro [[{{MediaWiki:Grouppage-sysop}}|administrador]] para discutir sobre o bloqueio.
 
-Note que você só poderá utilizar a funcionalidade "Contatar usuário" se um endereço de \'\'email\'\' válido estiver especificado em suas [[Special:Preferences|preferências de usuário]] e você não tiver sido bloqueado de utilizar tal recurso.
-O seu endereço de IP atual é $3 e a ID de bloqueio é $5.
-Por favor, inclua todos os detalhes acima em quaisquer tentativas de esclarecimento.',
+Você só poderá utilizar a funcionalidade \"Contatar usuário\" se um endereço de ''e-mail'' válido estiver especificado em suas [[Special:Preferences|preferências de usuário]] e você não tiver sido bloqueado de utilizar tal recurso.
+O seu endereço de IP atual é \$3 e a ID de bloqueio é #\$5.
+Por favor, inclua todos os detalhes acima em quaisquer tentativas de esclarecimento.",
 'autoblockedtext'                  => 'O seu endereço de IP foi bloqueado de forma automática, uma vez que foi utilizado recentemente por outro usuário, o qual foi bloqueado por $1.
 O motivo apresentado foi:
 

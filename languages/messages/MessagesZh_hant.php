@@ -1,5 +1,5 @@
 <?php
-/** Traditional Chinese (‪中文(傳統字)‬)
+/** Traditional Chinese (‪中文(繁體)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -1157,9 +1157,9 @@ $1",
 'recentchangesdays-max'         => '最大 $1 日',
 'recentchangescount'            => '預設顯示的編輯數：',
 'prefs-help-recentchangescount' => '這個包括最近更改、頁面歷史以及日誌。',
-'prefs-help-watchlist-token'    => "在這欄加入一個秘密鑰會生成一個對您監視列表中的RSS源。
+'prefs-help-watchlist-token'    => '在這欄加入一個秘密鑰會生成一個對您監視列表中的RSS源。
 任何一位知道在這個欄位上的匙可以閱讀到您的監視列表，請選擇一個安全的值。
-這裏有一個任意生成的值，供您選擇：$1",
+這裏有一個任意生成的值，供您選擇：$1',
 'savedprefs'                    => '您的個人參數設置已經保存。',
 'timezonelegend'                => '時區:',
 'localtime'                     => '當地時間:',

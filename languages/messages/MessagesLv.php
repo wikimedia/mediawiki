@@ -54,7 +54,7 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Atvērt sadaļas izmainīšanas lapu, uzklikšķinot ar labo pogu uz sadaļas virsraksta (JavaScript)',
 'tog-showtoc'                 => 'Parādīt satura rādītāju (lapām, kurās ir vairāk par 3 virsrakstiem)',
 'tog-rememberpassword'        => 'Atcerēties paroli pēc pārlūka aizvēršanas',
-'tog-editwidth'               => 'Parādīt izmainīšanas logu pilnā platumā',
+'tog-editwidth'               => 'Parādīt izmainīšanas logu visa ekrāna platumā',
 'tog-watchcreations'          => 'Pievienot tevis radītās lapas uzraugāmo lapu sarakstam',
 'tog-watchdefault'            => 'Pievienot tevis izmainītās lapas uzraugāmo lapu sarakstam',
 'tog-watchmoves'              => 'Pievienot manis pārvietotās lapas uzraugāmajiem rakstiem',
@@ -318,7 +318,7 @@ Tas arī var būt saistīts ar {{GRAMMAR:ģenitīvs|{{SITENAME}}}} programmatūr
 Pēdējais priekšraksts:
 "$1"
 palaists funkcijā "$2".
-Izdotā MySQL kļūda: "$3: $4"',
+Izdotā $5 kļūda: "$3: $4"',
 'laggedslavemode'      => 'Uzmanību: Iespējams, šajā lapā nav redzami nesen izdarītie papildinājumi.',
 'readonly'             => 'Datubāze bloķēta',
 'readonlytext'         => 'Datubāze šobrīd ir bloķēta pret jauniem ierakstiem un citām izmaiņām. Visdrīzāk iemesls ir parasts datubāzes uzturēšanas pasākums, pēc kura tā tiks atjaunota normālā stāvoklī. Administrators, kurš nobloķēja datubāzi, norādīja šādu iemeslu:
@@ -402,7 +402,8 @@ Tavs lietotāja konts ir izveidots. Neaizmirsti, ka ir iespējams mainīt [[Spec
 'nouserspecified'            => 'Tev jānorāda lietotājvārds.',
 'wrongpassword'              => 'Tu ievadīji nepareizu paroli. Lūdzu, mēģini vēlreiz.',
 'wrongpasswordempty'         => 'Parole bija tukša. Lūdzu mēģini vēlreiz.',
-'passwordtooshort'           => 'Tava parole ir nederīga vai pārāk īsa. Tajā jābūt vismaz {{PLURAL:$1|1 zīmei|$1 zīmēm}} un jābūt atšķirīgai no tava lietotāja vārda.',
+'passwordtooshort'           => 'Tava parole ir pārāk īsa.
+Tajā jābūt vismaz {{PLURAL:$1|1 zīmei|$1 zīmēm}}.',
 'mailmypassword'             => 'Atsūtīt man jaunu paroli',
 'passwordremindertitle'      => 'Jauna pagaidu parole no {{SITENAME}}s',
 'passwordremindertext'       => 'Kads (iespejams, Tu pats, no IP adreses $1)
@@ -587,9 +588,9 @@ Tu vari atgriezties atpakaļ un izmainīt esošu lapu, vai arī [[Special:UserLo
 'recreate-moveddeleted-warn' => "'''Brīdinājums: Tu atjauno lapu, kas ir tikusi izdzēsta'''
 
 Tev vajadzētu pārliecināties, vai ir lietderīgi turpināt izmainīt šo lapu.
-Te var apskatīties dzēšanas reģistru, kurā jābūt datiem par to kas, kad un kāpēc šo lapu izdzēsa.",
+Te var apskatīties dzēšanas un pārvietošanas reģistrus, kuros jābūt datiem par to kas, kad un kāpēc šo lapu izdzēsa.",
 'moveddeleted-notice'        => 'Šī lapa ir tikusi izdzēsta.
-Te var apskatīties dzēšanas reģistra fragmentu, lai noskaidrotu kurš, kāpēc un kad to izdzēsa.',
+Te var apskatīties dzēšanas un pārvietošanas reģistru fragmentus, lai noskaidrotu kurš, kāpēc un kad to izdzēsa.',
 'edit-conflict'              => 'Labošanas konflikts.',
 'edit-already-exists'        => 'Nevar izveidot jaunu lapu.
 Tā jau eksistē.',
@@ -726,9 +727,9 @@ Pagaidām vari meklēt, izmantojot Google vai Yahoo.
 'contextlines'              => 'Cik rindiņas parādīt katram atrastajam rezultātam',
 'contextchars'              => 'Konteksta simbolu skaits vienā rindiņā',
 'recentchangesdays'         => 'Dienu skaits, kuru rādīt pēdējajās izmaiņās:',
-'recentchangescount'        => 'Virsrakstu skaits pēdējo izmaiņu, hronoloģiju un reģistru lapās, pēc noklusējuma:',
+'recentchangescount'        => 'Izmaiņu skaits, kuru rāda pēc noklusējuma:',
 'savedprefs'                => 'Tavas izvēles ir saglabātas.',
-'timezonelegend'            => 'Laika josla',
+'timezonelegend'            => 'Laika josla:',
 'localtime'                 => 'Attēlotais vietējais laiks',
 'timezoneoffset'            => 'Starpība¹',
 'servertime'                => 'Servera laiks šobrīd',
@@ -844,7 +845,7 @@ Ja tu izvēlies to norādīt, šo lietos lai identificētu tavu darbu (ieguldīj
 'rcshowhideliu'                     => '$1 reģistrētos',
 'rcshowhideanons'                   => '$1 anonīmos',
 'rcshowhidemine'                    => '$1 manus',
-'rclinks'                           => 'Parādīt pēdējās $1 izmaiņas {{PLURAL:$2|pēdējā|pēdējās}} $2 {{PLURAL:$2|dienā|dienās}}.<br />$3',
+'rclinks'                           => 'Parādīt pēdējās $1 izmaiņas pēdējās $2 dienās.<br />$3',
 'diff'                              => 'izmaiņas',
 'hist'                              => 'hronoloģija',
 'hide'                              => 'paslēpt',
@@ -943,7 +944,7 @@ Ja tu joprojām gribi augšuplādēt šo failu, tad mēģini vēlreiz, ar citu f
 'sourcefilename'         => 'Augšuplādējamais fails:',
 'destfilename'           => 'Vajadzīgais faila nosaukums:',
 'upload-maxfilesize'     => 'Maksimālais faila izmērs: $1',
-'watchthisupload'        => 'Uzraudzīt šo lapu',
+'watchthisupload'        => 'Uzraudzīt šo failu',
 'filewasdeleted'         => 'Fails ar šādu nosaukumu jau ir bijis augšuplādēts un pēc tam izdzēsts.
 Apskaties $1 pirms turpini šo failu augšuplādēt atkārtoti.',
 'upload-wasdeleted'      => "'''Brīdinājums: Tu augšuplādē failu kas agrāk jau ir ticis izdzēsts.'''
@@ -1058,7 +1059,9 @@ Uzklikšķinot uz kādas kolonnas virsraksta, var sakārtot pēc kāda cita para
 Lapu uzskata par nozīmju atdalīšanas lapu, ja tā satur veidni, uz kuru ir saite no [[MediaWiki:Disambiguationspage]].",
 
 'doubleredirects'            => 'Divkāršas pāradresācijas lapas',
-'doubleredirectstext'        => 'Katrā rindiņā ir saites uz pirmo un otro pāradresācijas lapu, kā arī pirmā rindiņa no otrās pāradresācijas lapas teksta, kas parasti ir faktiskā "gala" lapa, uz kuru vajadzētu būt saitei pirmajā lapā.',
+'doubleredirectstext'        => 'Šajā lapā ir uzskaitītas pāradresācijas lapas, kuras pāradresē uz citām pāradresācijas lapām.
+Katrā rindiņā ir saites uz pirmo un otro pāradresācijas lapu, kā arī pirmā rindiņa no otrās pāradresācijas lapas teksta, kas parasti ir faktiskā "gala" lapa, uz kuru vajadzētu būt saitei pirmajā lapā.
+<s>Nosvītrotie</s> ieraksti jau ir tikuši salaboti.',
 'double-redirect-fixed-move' => '[[$1]] bija ticis pārvietots, tas tagad ir pāradresācija uz [[$2]]',
 
 'brokenredirects'     => 'Kļūdainas pāradresācijas',
@@ -1137,7 +1140,7 @@ Tu vari sašaurināt aplūkojamo reģistru, izvēloties reģistra veidu, lietot�
 
 # Special:Categories
 'categories'         => 'Kategorijas',
-'categoriespagetext' => "Šīs kategorijas satur lapas vai failus.
+'categoriespagetext' => "{{PLURAL:$1|Šī kategorija|Šīs kategorijas}} satur lapas vai failus.
 Šeit nav parādītas [[Special:UnusedCategories|neizmantotās kategorijas]].
 Skatīt arī [[Special:WantedCategories|''sarkanās'' kategorijas]].",
 'categoriesfrom'     => 'Parādīt kategorijas sākot ar:',

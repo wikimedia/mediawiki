@@ -1663,6 +1663,7 @@ PICT # διάφορα
 Παρακαλούμε επιβεβαιώστε ότι το URL είναι έγκυρο και προσβάσιμο, και προσπαθήστε ξανά.
 Εάν το πρόβλημα παραμένει, επικοινωνήστε με έναν [[Special:ListUsers/sysop|διαχειριστή του συστήματος]].',
 'upload-unknown-size'     => 'Άγνωστο μέγεθος',
+'upload-http-error'       => 'Εμφανίστηκε κάποιο σφάλμα HTTP: $1',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Το URL δεν ήταν προσβάσιμο',
@@ -3301,6 +3302,7 @@ $1',
 'htmlform-invalid-input'       => 'Υπάρχουν κάποια προβλήματα με μερικές από τις εισροές σας',
 'htmlform-select-badoption'    => 'Η τιμή που καθορίσατε δεν είναι μια έγκυρη επιλογή.',
 'htmlform-int-invalid'         => 'Η τιμή που καθορίσατε δεν είναι ένας ακέραιος αριθμός.',
+'htmlform-float-invalid'       => 'Η τιμή που ορίσατε δεν είναι ένας αριθμός.',
 'htmlform-int-toolow'          => 'Η αξία που θέσατε είναι πιο κάτω από το ελάχιστο όριο $1',
 'htmlform-int-toohigh'         => 'Η τιμή που θέσατε είναι πιο πάνω από το μέγιστο όριο $1',
 'htmlform-submit'              => 'Υποβολή',

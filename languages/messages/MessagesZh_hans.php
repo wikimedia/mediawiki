@@ -1,5 +1,5 @@
 <?php
-/** Simplified Chinese (‪中文(简化字)‬)
+/** Simplified Chinese (‪中文(简体)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -1180,9 +1180,9 @@ $1",
 'recentchangesdays-max'         => '最大 $1 日',
 'recentchangescount'            => '默认显示的编辑数：',
 'prefs-help-recentchangescount' => '这个包括最近更改、页面历史以及日志。',
-'prefs-help-watchlist-token'    => "在这栏加入一个秘密钥会生成一个对您监视列表中的RSS源。
+'prefs-help-watchlist-token'    => '在这栏加入一个秘密钥会生成一个对您监视列表中的RSS源。
 任何一位知道在这个栏位上的匙可以阅读到您的监视列表，请选择一个安全的值。
-这里有一个任意生成的值，供您选择：$1",
+这里有一个任意生成的值，供您选择：$1',
 'savedprefs'                    => '您的个人参数设置已经保存。',
 'timezonelegend'                => '时区：',
 'localtime'                     => '当地时间：',
