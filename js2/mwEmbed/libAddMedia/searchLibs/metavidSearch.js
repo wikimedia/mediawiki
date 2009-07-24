@@ -83,7 +83,7 @@ metavidSearch.prototype = {
 		return '{{PD-USGov}}';
 	},	
 	getExtraResourceDescWiki:function( rObj ){
-		var o = '';
+		var o = "\n";
 		//check for person	
 		if(  rObj.person && rObj.person['label'])
 			o += '* featuring [[' + rObj.person['label'] + ']]' + "\n";

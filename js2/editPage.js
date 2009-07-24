@@ -17,7 +17,7 @@ if(!mwAddMediaConfig)
 		};
 
 
-mwAddOnloadHook( function(){
+js2AddOnloadHook( function(){
 	mwEditPageHelper.init();	
 });
 var mwEditPageHelper = {	

@@ -1,5 +1,8 @@
 //base remote search obj 
 
+loadGM({
+	"imported_from" : "$1 imported from [$2 $3]. See the original [$4 resource page] for more info"	
+})
 // @key is name of rObj variable 
 // @value is where to find the value in the item xml
 // 
@@ -99,11 +102,11 @@ baseRemoteSearch.prototype = {
 					}				
 					if( node!=null && attr_name != null){
 						if(typeof attr_name == 'string'){ 
-							tag_val = $j.trim( $j(node).attr( attr_name ) );
+							tag_val = $j.trim( $j( node ).attr( attr_name ) );
 						}else{
 							var attr_vals = {};
 							for(var j in attr_name){
-								if( $j(node).attr( attr_name[j]).length != 0)
+								if( $j(node).attr( attr_name[j] ).length != 0)
 									attr_vals[ attr_name[j] ] = $j.trim( $j(node).attr( attr_name[j]) ).replace(/(<([^>]+)>)/ig,"");
 							}
 							tag_val = attr_vals ;
@@ -168,8 +171,7 @@ baseRemoteSearch.prototype = {
 		
 	},
 	getImportResourceDescWiki:function(rObj){
-		return rObj.title + ' imported from ' + '[' + this.cp.homepage + 
-			' ' + this.cp.title+']';
+		return gM('imported_from', [rObj.title,  this.cp.homepage, this.cp.title, rObj.link]);
 	},
 	//for thigns like categories and the like
 	getExtraResourceDescWiki:function( rObj ){

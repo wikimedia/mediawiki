@@ -32,7 +32,9 @@ loadGM({
 	"cc_pd_title": "Public Domain",
 	"unknown_license": "Unknown License",	
 	"no_import_by_url": "This User or Wiki <b>can not</b> import assets from remote URLs. </p><p> Do you need to Login? </p><p> If permissions are set you may have to enable $wgAllowCopyUploads, <a href=\"http://www.mediawiki.org/wiki/Manual:$wgAllowCopyUploads\">more info</a></p>",
-	"results_from": "Results from <a href=\"$1\" target=\"_new\" >$2</a>"
+	"results_from": "Results from <a href=\"$1\" target=\"_new\" >$2</a>",
+	
+	"missing_desc_see_soruce": "This Asset is missing a description. Please see the [$1 orginal source] and help describe it"
 });
 var default_remote_search_options = {
 	'profile':'mediawiki_edit',
@@ -123,8 +125,8 @@ remoteSearchDriver.prototype = {
 			//@@todo should query wgForeignFileRepos setting maybe interwikimap from the api
 		*/				 
 		'this_wiki':{
-			'enabled': 0,
-			'checked': 0,			
+			'enabled': 1,
+			'checked': 1,			
 			'title'	 : 'This Wiki',
 			'desc'	 : '(should be updated with the proper text) maybe import from some config value',
 			'api_url':  wgServer + wgScriptPath + '/api.php',
@@ -958,7 +960,7 @@ remoteSearchDriver.prototype = {
 		var overflow_style = ( mediaType =='video' )?'':'overflow:auto;';
 		//append to the top level of model window:
 		$j( _this.target_container ).append('<div id="rsd_resource_edit" '+
-			'style="position:absolute;top:0px;left:0px;bottom:85px;right:4px;background-color:#FFF;">' +			 
+			'style="position:absolute;top:0px;left:0px;bottom:75px;right:4px;background-color:#FFF;">' +			 
 				'<div id="clip_edit_disp" style="position:absolute;' + overflow_style + 'width:100%;height:100%;padding:5px;'+
 					'width:' + (maxWidth) + 'px;" >' +
 						mv_get_loading_img('position:absolute;top:30px;left:30px') +
@@ -1200,10 +1202,16 @@ remoteSearchDriver.prototype = {
 						rObj.pSobj.updateDataForImport( rObj );									
 				
 						//setup the resource description from resource description:					
-						var wt = '{{Information '+"\n"+
-							'|Description= ' + rObj.pSobj.getImportResourceDescWiki( rObj );
+						var wt = '{{Information '+"\n";
+												
+						if( rObj.desc ){									
+							wt += '|Description= ' + rObj.desc + "\n";
+						}else{
+							wt += '|Description= ' + gM('missing_desc_see_soruce', rObj.link ) + "\n";
+						}
+							
 						//output person and bill info if
-						wt+='|Source=' + '[' +  $j.trim( rObj.link ) + ' Original Source]'+ "\n";
+						wt+='|Source=' + rObj.pSobj.getImportResourceDescWiki( rObj ) + "\n";
 					
 						if( rObj.author )
 							wt+='|Author=' + rObj.author +"\n";									

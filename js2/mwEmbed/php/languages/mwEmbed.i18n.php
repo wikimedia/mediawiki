@@ -57,36 +57,14 @@ $messages['en'] = array(
 	'fogg-preset-custom' => 'Custom Settings',
 
 	/*
-	* js file: /libAddMedia/mediaWikiUploadHelper.OFF.js
-	*/
-	'upload-enable-converter' => 'Enable video converter (to upload source video not yet converted to theora format) <a href="http://commons.wikimedia.org/wiki/Commons:Firefogg">more info</a>',
-	'upload-fogg_not_installed' => 'If you want to upload video consider installing <a href="http://firefogg.org">firefogg.org</a>, <a href="http://commons.wikimedia.org/wiki/Commons:Firefogg">more info</a>',
-	'upload-transcode-in-progress' => 'Doing Transcode & Upload (do not close this window)',
-	'upload-in-progress' => 'Upload in Progress (do not close this window)',
-	'upload-transcoded-status' => 'Transcoded',
-	'uploaded-status' => 'Uploaded',
-	'upload-select-file' => 'Select File...',
-	'wgfogg_wrong_version' => 'You have firefogg installed but its outdated, <a href="http://firefogg.org">please upgrade</a> ',
-	'wgfogg_waring_ogg_upload' => 'You have selected an ogg file for conversion to ogg (this is probably unnessesary). Maybe disable the video converter?',
-	'wgfogg_waring_bad_extension' => 'You have selected a file with an unsuported extension. <a href="http://commons.wikimedia.org/wiki/Commons:Firefogg#Supported_File_Types">More help</a>',
-	'upload-stats-fileprogres' => '$1 of $2',
-	'mv_upload_done' => 'Your upload <i>should be</i> accessible <a href="$1">here</a>',
-	'upload-unknown-size' => 'Unknown size',
-	'successfulupload' => 'Successful upload',
-	'uploaderror' => 'Upload error',
-	'uploadwarning' => 'Upload warning',
-	'unknown-error' => 'Unknown Error',
-	'return-to-form' => 'Return to form',
-	'file-exists-duplicate' => 'This file is a duplicate of the following file',
-	'fileexists' => 'A file with this name exists already, please check <b><tt>$1</tt></b> if you are not sure if you want to change it.',
-	'fileexists-thumb' => '<center><b>Existing file</b></center>',
-	'ignorewarning' => 'Ignore warning and save file anyway',
-	'file-thumbnail-no' => 'The filename begins with <b><tt>$1</tt></b>',
-
-	/*
 	* js file: /libAddMedia/searchLibs/metavidSearch.js
 	*/
 	'mv_stream_title' => '$1 $2 to $3',
+
+	/*
+	* js file: /libAddMedia/searchLibs/baseRemoteSearch.js
+	*/
+	'imported_from' => '$1 imported from [$2 $3]. See the original [$4 resource page] for more info',
 
 	/*
 	* js file: /libAddMedia/mvFirefogg.js
@@ -129,6 +107,7 @@ $messages['en'] = array(
 	'unknown_license' => 'Unknown License',
 	'no_import_by_url' => 'This User or Wiki <b>can not</b> import assets from remote URLs. </p><p> Do you need to Login? </p><p> If permissions are set you may have to enable $wgAllowCopyUploads, <a href="http://www.mediawiki.org/wiki/Manual:$wgAllowCopyUploads">more info</a></p>',
 	'results_from' => 'Results from <a href="$1" target="_new" >$2</a>',
+	'missing_desc_see_soruce' => 'This Asset is missing a description. Please see the [$1 orginal source] and help describe it',
 
 	/*
 	* js file: /libSequencer/mvSequencer.js
