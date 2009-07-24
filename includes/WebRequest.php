@@ -219,6 +219,10 @@ class WebRequest {
 	 * @private
 	 */
 	function getGPCVal( $arr, $name, $default ) {
+		# PHP is so nice to not touch input data, except sometimes:
+		# http://us2.php.net/variables.external#language.variables.external.dot-in-names
+		# Work around PHP *feature* to avoid *bugs* elsewhere.
+		$name = strtr( $name, '.', '_' );
 		if( isset( $arr[$name] ) ) {
 			global $wgContLang;
 			$data = $arr[$name];
