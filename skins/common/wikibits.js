@@ -36,7 +36,7 @@ if (!window.onloadFuncts) {
 	var onloadFuncts = [];
 }	
 	
-//should use mwAddOnloadHook once js2 is enabled
+//code that is dependent on js2 functions should use js2AddOnloadHook
 function addOnloadHook(hookFunct) {	
 	// Allows add-on scripts to add onload functions
 	if(!doneOnloadHook) {
@@ -45,6 +45,7 @@ function addOnloadHook(hookFunct) {
 		hookFunct();  // bug in MSIE script loading
 	}
 }
+
 
 function hookEvent(hookName, hookFunct) {
 	addHandler(window, hookName, hookFunct);
