@@ -92,7 +92,7 @@ baseRemoteSearch.prototype = {
 						attr_name = attr_name.split('|');	
 				}
 																										
-				$j.each(item.getElementsByTagName( tag_name ), function (inx, node){							
+				$j.each( item.getElementsByTagName( tag_name ), function ( inx, node ){							
 					var tag_val = '';												 
 					if( node!=null && attr_name == null ){					
 						if( node.childNodes[0] != null){									
@@ -101,11 +101,11 @@ baseRemoteSearch.prototype = {
 						}
 					}				
 					if( node!=null && attr_name != null){
-						if(typeof attr_name == 'string'){ 
+						if( typeof attr_name == 'string' ){ 
 							tag_val = $j.trim( $j( node ).attr( attr_name ) );
 						}else{
 							var attr_vals = {};
-							for(var j in attr_name){
+							for( var j in attr_name ){
 								if( $j(node).attr( attr_name[j] ).length != 0)
 									attr_vals[ attr_name[j] ] = $j.trim( $j(node).attr( attr_name[j]) ).replace(/(<([^>]+)>)/ig,"");
 							}

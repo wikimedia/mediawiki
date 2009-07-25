@@ -45,9 +45,11 @@ var default_bui_options = {
 	'parent_uploader':null,
 	'edit_from':null,
 	'done_upload_cb': null,
+	'target_edit_from':null,
 	
 	//upload_mode can be 'post', 'chunks' or autodetect. (autodetect issues an api call)
 	'upload_mode':'autodetect'
+	
 }
 var mvBaseUploadInterface = function( iObj ){
 	return this.init( iObj );
@@ -63,7 +65,7 @@ mvBaseUploadInterface.prototype = {
 	etoken:false,
 	init: function( iObj ){
 		if(!iObj)
-			iObj = {};
+			iObj = {};		
 		//inherit iObj properties:
 		for(var i in default_bui_options){
 			if(iObj[i]){
@@ -74,22 +76,22 @@ mvBaseUploadInterface.prototype = {
 		}		
 	},
 	setupForm:function(){	
-		var _this = this;
+		var _this = this;		
 		//set up the local pointer to the edit form:
-		_this.editForm = _this.getEditForm();
-
-		if(_this.editForm){
+		_this.editForm = _this.getEditForm();		
+		
+		if( _this.editForm ){
 			//set up the org_onsubmit if not set: 
-			if( typeof( _this.org_onsubmit ) == 'undefined' )
-				_this.org_onsubmit = _this.editForm.onsubmit;
+			if( typeof( _this.org_onsubmit ) == 'undefined' &&  _this.editForm.onsubmit )
+				_this.org_onsubmit = _this.editForm.onsubmit;					
 			
 			//have to define the onsubmit function inline or its hard to pass the "_this" instance
-			_this.editForm.onsubmit = function(){									
+			$j( '#mw-upload-form' ).submit( function(){		
 				//run the original onsubmit (if not run yet set flag to avoid excessive chaining ) 
-				if( typeof( _this.org_onsubmit ) == 'function' ){										  
+				if( typeof( _this.org_onsubmit ) == 'function' ){								  
 					if( ! _this.org_onsubmit() ){
 						//error in org submit return false;
-						return false;					
+						return false;
 					}
 				}				
 				//check for post action override: 															
@@ -119,7 +121,7 @@ mvBaseUploadInterface.prototype = {
 				 
 				//don't submit the form we will do the post in ajax
 				return false;	
-			};							
+			});									
 		}
 					
 	},	
@@ -524,9 +526,9 @@ mvBaseUploadInterface.prototype = {
 	getProgressTitle:function(){
 		return gM('upload-in-progress');
 	},	
-	getEditForm:function(){
-		if(this.target_edit_from){
-			return $j(this.target_edit_from).get(0);
+	getEditForm:function(){		
+		if( this.target_edit_from && $j( this.target_edit_from ).length != 0){			
+			return $j( this.target_edit_from ).get(0);
 		}
 		//just return the first form fond on the page. 
 		return $j('form :first').get(0);

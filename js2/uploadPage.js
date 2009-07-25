@@ -5,6 +5,7 @@
 js2AddOnloadHook( function(){
 	mwUploadHelper.init();		
 });
+var mwUploadFormTarget = '#mw-upload-form';
 //set up the upoload form bindings once all dom manipluation is done
 var mwUploadHelper = {
 	firefogg_installed:false,
@@ -19,13 +20,14 @@ var mwUploadHelper = {
 			$j('#wpUploadFile').firefogg({ 
 				//an api url (we won't submit directly to action of the form)
 				'api_url' : wgServer + wgScriptPath + '/api.php',
-				'form_rewrite': true,				
+				'form_rewrite': true,	
+				'target_edit_from' : mwUploadFormTarget,			
 				'new_source_cb' : function( orgFilename, oggName ){						
 				        if($j('#wpDestFile').val() == "")
 						    $j('#wpDestFile').val( oggName );
 						mwUploadHelper.doDestCheck();
 				},
-				'detect_cb':function(fogg_installed){
+				'detect_cb':function( fogg_installed ){
 					if(fogg_installed){
 						_this.firefogg_installed=true;
 					}else{
@@ -39,7 +41,7 @@ var mwUploadHelper = {
 			if($j('#wpUploadFileURL').length != 0){
 				$j('#wpUploadFileURL').baseUploadInterface({ 
 					'api_url'   : wgServer + wgScriptPath + '/api.php',
-					'target_edit_from' : '#mw-upload-form' 
+					'target_edit_from' : mwUploadFormTarget
 				});				
 			}
 		}

@@ -71,7 +71,7 @@ class UploadFromChunks extends UploadBase {
 	 * Verify whether the upload is sane.
 	 * Returns self::OK or else an array with error information
 	 */
-	function verifyUpload( $resultDetails ) {
+	function verifyUpload() {
 		// no checks on chunk upload mode:
 		if( $this->chunk_mode ==  UploadFromChunks::INIT )
 			return self::OK;
@@ -79,7 +79,7 @@ class UploadFromChunks extends UploadBase {
 		// verify on init and last chunk request
 		if(	$this->chunk_mode == UploadFromChunks::CHUNK ||
 			$this->chunk_mode == UploadFromChunks::DONE )
-			return parent::verifyUpload( $resultDetails );
+			return parent::verifyUpload();
 	}
 
 	// only run verifyFile on completed uploaded chunks
@@ -114,6 +114,7 @@ class UploadFromChunks extends UploadBase {
 			'mComment'			=> $comment,
 		    'mSummary'			=> $summary,
 			'mWatch'			=> $watch,
+			'mIgnorewarnings' 	=> true, //ignore warning on chunk uploads (for now)
 			'mFilteredName'		=> $this->mFilteredName,
 			'mTempAppendPath'	=> null, // the repo append path (not temporary local node mTempPath)
 			'mDesiredDestName'	=> $this->mDesiredDestName,
@@ -230,7 +231,7 @@ class UploadFromChunks extends UploadBase {
 			if( is_file( $this->getRealPath( $this->mTempAppendPath ) ) ){
 				$status = $this->appendToUploadFile( $this->mTempAppendPath, $this->mTempPath );
 			} else {
-				$status->fatal( 'filenotfound', $this->mTempAppendPath );
+				$status = Status::newFatal( 'filenotfound', $this->mTempAppendPath );
 			}
 			return $status;
 		}

@@ -20,7 +20,7 @@ if( MV_EMBED_VERSION ){
 	MV_DO_INIT=false;	
 }
 //used to grab fresh copies of scripts. (should be changed on commit)  
-var MV_EMBED_VERSION = '1.0r17';
+var MV_EMBED_VERSION = '1.0r18';
 
 /*
  * Configuration variables (can be set from some precceding script) 
