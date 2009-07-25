@@ -45,7 +45,7 @@ if ( !function_exists( '__autoload' ) ) {
 class WebRequest {
 	protected $data = array();
 	var $headers;
-	private $_response;
+	private $_response, $mFixMagicQuotes;
 
 	public function __construct() {
 		/// @fixme This preemptive de-quoting can interfere with other web libraries
