@@ -114,15 +114,17 @@ function mv_video_embed(swap_done_callback, force_id){
 	mvEmbed.init( swap_done_callback, force_id );
 }
 mvEmbed = {	
+	//flist stores the set of functions to run after the video has been swaped in. 
 	flist:new Array(),
 	init:function( swap_done_callback, force_id ){
+		
 		if(swap_done_callback)
 			mvEmbed.flist.push( swap_done_callback );
+			
 		//get mv_embed location if it has not been set
 		js_log('mv_embed ' + MV_EMBED_VERSION);				
 		
-		var loadPlaylistLib=false;
-		//set up the jQuery selector:				 
+		var loadPlaylistLib=false;						
 		
 		var eAction = function(this_elm){
 			js_log( "Do SWAP: " + $j(this_elm).attr("id") + ' tag: '+ this_elm.tagName.toLowerCase() );
@@ -276,7 +278,7 @@ var ctrlBuilder = {
 	getControls:function( embedObj ){	
 		js_log('f:controlsBuilder:: opt:' + this.options);		
 		this.id = (embedObj.pc)?embedObj.pc.pp.id:embedObj.id;
-		this.avaliable_width=embedObj.playerPixelWidth();
+		this.available_width = embedObj.playerPixelWidth();
 		//make pointer to the embedObj
 		this.embedObj =embedObj;
 		var _this = this;		
@@ -297,14 +299,14 @@ var ctrlBuilder = {
 		var o='';	
 		for( var i in this.components ){
 			if( this.supports[i] ){
-				if( this.avaliable_width > this.components[i].w ){
+				if( this.available_width > this.components[i].w ){
 					//special case with playhead don't add unless we have 60px
-					if( i=='play_head' && ctrlBuilder.avaliable_width < 60 )
+					if( i == 'play_head' && ctrlBuilder.available_width < 60 )
 						continue;						
 					o+=this.components[i].o();
-					this.avaliable_width -= this.components[i].w;
+					this.available_width -= this.components[i].w;
 				}else{
-					js_log('not enough space for control component:'+i);
+					js_log('not enough space for control component:' + i);
 				}
 			}
 		}		
@@ -581,7 +583,7 @@ var ctrlBuilder = {
 		'play_head':{
 			'w':0, //special case (takes up remaining space) 
 			'o':function(){
-				return '<div class="play_head" id="mv_play_head_'+ctrlBuilder.id+'" style="width: ' + (ctrlBuilder.avaliable_width - 30) + 'px;"></div>';
+				return '<div class="play_head" id="mv_play_head_' + ctrlBuilder.id + '" style="width: ' + ( ctrlBuilder.available_width - 30 ) + 'px;"></div>';
 			}
 		}										
 	}	

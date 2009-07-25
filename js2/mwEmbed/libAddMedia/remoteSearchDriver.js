@@ -93,7 +93,7 @@ remoteSearchDriver.prototype = {
 	 * sets the default display item:
 	 * can be any content_providers key or 'all'
 	 */
-	disp_item : 'wiki_commons',
+	disp_item : 'this_wiki',
 	/** the default content providers list. 
 	 *
 	 * (should be note that special tabs like "upload" and "combined" don't go into the content proviers list:
@@ -1131,7 +1131,7 @@ remoteSearchDriver.prototype = {
 			});
 		}		
 	},
-	checkRepoLocal:function( cp ){
+	checkRepoLocal:function( cp ){				
 		if( cp.local ){
 			return true;
 		}else{
@@ -1145,8 +1145,7 @@ remoteSearchDriver.prototype = {
 				}
 			}
 			return false;
-		}
-	
+		}	
 	},
 	checkImportResource:function( rObj, cir_callback){	
 		//@@todo get the localized File/Image namespace name or do a general {NS}:Title

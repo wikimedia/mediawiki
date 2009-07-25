@@ -73,7 +73,8 @@ var mv_default_thumb_url = mv_skin_img_path + 'vid_default_thumb.jpg';
 
 //init the global Msg if not already
 if(!gMsg){var gMsg={};}
-//laguage loader:
+
+//laguage msg loader:
 function loadGM( msgSet ){
 	for(var i in msgSet){
 		gMsg[ i ] = msgSet[i];
@@ -98,7 +99,7 @@ loadGM({
  * @path the path to the file (or set of files) with ending slash
  * @gClasses the set of classes 
  * 		if an array $j.className become jquery.className.js
- * 		if an asssociative objec then key => value paris are used
+ * 		if an asssociative object then key => value paris are used
  */
 if(typeof mvClassPaths == 'undefined')
 	mvClassPaths = {};
@@ -112,7 +113,7 @@ function lcPaths( path, gClasses , opt){
 		path = '';	
 	if(gClasses.length){
 		//do array loop: 
-		for(var i=0; i<gClasses.length; i++){
+		for(var i=0; i < gClasses.length; i++){
 			if(typeof gClasses[i] != 'undefined'){
 				//setup normal replacement of j with jquery			
 				var jsName = ( gClasses[i].substr(0,3) == '$j.' ) ? opt['j_replace'] + gClasses[i].substr(3) : gClasses[i];							
@@ -125,8 +126,7 @@ function lcPaths( path, gClasses , opt){
 			//assume object with key:path:
 			mvClassPaths[i] = path + gClasses[ i ];
 		}
-	}
-	var cat = mvClassPaths;	
+	}		
 }
 function mvGetClassPath(k){		
 	if( mvClassPaths[k] ){
@@ -757,8 +757,7 @@ function mv_remove_modal(speed){
  */  
 function mv_jqueryBindings(){
 	js_log('mv_jqueryBindings');	
-	(function($) {
-		
+	(function($) {				
 		$.fn.addMediaWiz = function( iObj, callback ){			
 			//first set the cursor for the button to "loading" 
 			$j(this.selector).css('cursor','wait').attr('title', gM('loading_title'));
