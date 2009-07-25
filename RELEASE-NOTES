@@ -161,6 +161,8 @@ this. Was used when mwEmbed was going to be an extension.
 * (bug 19900) The "listgrouprights-key" message is now wrapped in a div with
   class "mw-listgrouprights-key"
 * (bug 471) Allow RSS feeds for watchlist, using an opt-in security token
+* (bug 10812) Interwiki links can have names and descriptions, fetched from 
+  message 'interwiki-desc-PREFIX', not really used anywhere yet though
 
 === Bug fixes in 1.16 ===
 
