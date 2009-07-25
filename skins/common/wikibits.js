@@ -34,10 +34,10 @@ var doneOnloadHook;
 
 if (!window.onloadFuncts) {
 	var onloadFuncts = [];
-}	
-	
-//code that is dependent on js2 functions should use js2AddOnloadHook
-function addOnloadHook(hookFunct) {	
+}
+
+// code that is dependent on js2 functions should use js2AddOnloadHook
+function addOnloadHook(hookFunct) {
 	// Allows add-on scripts to add onload functions
 	if(!doneOnloadHook) {
 		onloadFuncts[onloadFuncts.length] = hookFunct;

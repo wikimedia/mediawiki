@@ -10,7 +10,7 @@
  */
 class UploadFromChunks extends UploadBase {
 
-	var $chunk_mode; //init, chunk, done
+	var $chunk_mode; // init, chunk, done
 	var $mSessionKey = false;
 	var $status = array();
 
@@ -112,7 +112,7 @@ class UploadFromChunks extends UploadBase {
 		$this->mSessionKey = $this->getSessionKey();
 		$_SESSION['wsUploadData'][$this->mSessionKey] = array(
 			'mComment'			=> $comment,
-		    'mSummary'			=> $summary,
+			'mSummary'			=> $summary,
 			'mWatch'			=> $watch,
 			'mIgnorewarnings' 	=> true, //ignore warning on chunk uploads (for now)
 			'mFilteredName'		=> $this->mFilteredName,
@@ -164,7 +164,7 @@ class UploadFromChunks extends UploadBase {
 			echo ApiFormatJson::getJsonEncode( array(
 					'uploadUrl' => "{$wgServer}{$wgScriptPath}/api.php?action=upload&".
 									"token={$token}&format=json&enablechunks=true&chunksessionkey=".
-									$this->setupChunkSession($summary, $comment, $watch ) ) );
+									$this->setupChunkSession( $summary, $comment, $watch ) ) );
 			exit( 0 );
 		} else if( $this->chunk_mode == UploadFromChunks::CHUNK ){
 			$status = $this->doChunkAppend();
