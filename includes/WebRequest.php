@@ -43,8 +43,7 @@ if ( !function_exists( '__autoload' ) ) {
  * @ingroup HTTP
  */
 class WebRequest {
-	protected $data = array();
-	var $headers;
+	protected $data, $headers = array();
 	private $_response, $mFixMagicQuotes;
 
 	public function __construct() {
@@ -632,8 +631,7 @@ class WebRequest {
 	public function getHeader( $name ) {
 		$name = strtoupper( $name );
 		if ( function_exists( 'apache_request_headers' ) ) {
-			if ( !isset( $this->headers ) ) {
-				$this->headers = array();
+			if ( !$this->headers ) {
 				foreach ( apache_request_headers() as $tempName => $tempValue ) {
 					$this->headers[ strtoupper( $tempName ) ] = $tempValue;
 				}
@@ -681,7 +679,7 @@ class WebRequest {
  */
 class FauxRequest extends WebRequest {
 	private $wasPosted = false;
-	private $session, $headers = array();
+	private $session = array();
 
 	/**
 	 * @param $data Array of *non*-urlencoded key => value pairs, the
