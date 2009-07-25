@@ -93,7 +93,7 @@ class Http {
 	 * should write to a file location and give updates
 	 *
 	 */
-	private function initBackgroundDownload( $url, $target_file_path, $content_length = null ){
+	private static function initBackgroundDownload( $url, $target_file_path, $content_length = null ){
 		global $wgMaxUploadSize, $IP, $wgPhpCli, $wgServer;
 		$status = Status::newGood();
 
@@ -115,7 +115,7 @@ class Http {
 
 		// run the background download request:
 		$cmd = $wgPhpCli . ' ' . $IP . "/maintenance/http_session_download.php --sid {$session_id} --usk {$upload_session_key}";
-		$pid = wfShellBackgroundExec( $cmd, $retval );
+		$pid = wfShellBackgroundExec( $cmd );
 		// the pid is not of much use since we won't be visiting this same apache any-time soon.
 		if( !$pid )
 			return Status::newFatal( 'could not run background shell exec' );
@@ -127,7 +127,7 @@ class Http {
 		return $status;
 	}
 
-	function getUploadSessionKey(){
+	static function getUploadSessionKey(){
 		$key = mt_rand( 0, 0x7fffffff );
 		$_SESSION['wsUploadData'][$key] = array();
 		return $key;
