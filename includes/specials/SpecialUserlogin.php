@@ -47,8 +47,7 @@ class LoginForm {
 	 * @param WebRequest $request A WebRequest object passed by reference
 	 */
 	function LoginForm( &$request, $par = '' ) {
-		global $wgLang, $wgHiddenPrefs, $wgEnableEmail;
-		global $wgAuth, $wgRedirectOnLogin;
+		global $wgAuth, $wgHiddenPrefs, $wgEnableEmail, $wgRedirectOnLogin;
 
 		$this->mType = ( $par == 'signup' ) ? $par : $request->getText( 'type' ); # Check for [[Special:Userlogin/signup]]
 		$this->mName = $request->getText( 'wpName' );
@@ -92,7 +91,8 @@ class LoginForm {
 		$wgAuth->setDomain( $this->mDomain );
 
 		# When switching accounts, it sucks to get automatically logged out
-		if( $this->mReturnTo == $wgLang->specialPage( 'Userlogout' ) ) {
+		$returnToTitle = Title::newFromText( $this->mReturnTo );
+		if( is_object( $returnToTitle ) && $returnToTitle->isSpecial( 'Userlogout' ) ) {
 			$this->mReturnTo = '';
 			$this->mReturnToQuery = '';
 		}
