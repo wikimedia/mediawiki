@@ -284,6 +284,10 @@ class ApiUpload extends ApiBase {
 		return true;
 	}
 
+	public function isWriteMode() {
+		return true;
+	}
+
 	public function getAllowedParams() {
 		return array(
 			'filename' => null,
