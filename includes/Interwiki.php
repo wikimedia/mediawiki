@@ -17,7 +17,7 @@ class Interwiki {
 
 	protected $mPrefix, $mURL, $mLocal, $mTrans;
 
-	function __construct( $prefix = null, $url = '', $local = 0, $trans = 0 ) {
+	public function __construct( $prefix = null, $url = '', $local = 0, $trans = 0 ) {
 		$this->mPrefix = $prefix;
 		$this->mURL = $url;
 		$this->mLocal = $local;
@@ -186,7 +186,7 @@ class Interwiki {
 	 * @param $title string What text to put for the article name
 	 * @return string The URL
 	 */
-	function getURL( $title = null ) {
+	public function getURL( $title = null ) {
 		$url = $this->mURL;
 		if( $title != null ) {
 			$url = str_replace( "$1", $title, $url );
@@ -194,12 +194,41 @@ class Interwiki {
 		return $url;
 	}
 
-	function isLocal() {
+	/**
+	 * Is this a local link from a sister project, or is
+	 * it something outside, like Google
+	 * @return bool
+	 */
+	public function isLocal() {
 		return $this->mLocal;
 	}
 
-	function isTranscludable() {
+	/**
+	 * Can pages from this wiki be transcluded?
+	 * Still requires $wgEnableScaryTransclusion
+	 * @return bool
+	 */
+	public function isTranscludable() {
 		return $this->mTrans;
 	}
 
+	/**
+	 * Get the name for the interwiki site
+	 * @return String
+	 */
+	public function getName() {
+		$key = 'interwiki-name-' . $this->mPrefix;
+		$msg = wfMsgForContent( $key );
+		return wfEmptyMsg( $key, $msg ) ? '' : $msg;
+	}
+
+	/**
+	 * Get a description for this interwiki
+	 * @return String
+	 */
+	public function getDescription() {
+		$key = 'interwiki-desc-' . $this->mPrefix;
+		$msg = wfMsgForContent( $key );
+		return wfEmptyMsg( $key, $msg ) ? '' : $msg;
+	}
 }
