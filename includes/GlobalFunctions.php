@@ -3191,23 +3191,26 @@ function wfObjectToArray( $object, $recursive = true ) {
 	return $array;
 }
 
-/* Get the normalised IETF language tag */
+/* Get the normalised IETF language tag
+ * @param $code String: The language code.
+ * @return $langCode String: The language code which complying with BCP 47 standards.
+ */
 function wfBCP47( $code ) {
 	$codeSegment = explode( '-', $code );
 	foreach ( $codeSegment as $segNo => $seg ) {
 		if ( count( $codeSegment ) > 0 ) {
 			// ISO 3166 country code
 			if ( ( strlen( $seg ) == 2 ) && ( $segNo > 0 ) )
-				$codeBCP[$segNo] = strtoupper ( $seg );
+				$codeBCP[$segNo] = strtoupper( $seg );
 			// ISO 15924 script code
 			else if ( ( strlen( $seg ) == 4 ) && ( $segNo > 0 ) )
 				$codeBCP[$segNo] = ucfirst( $seg );
+			// Use lowercase for other cases
 			else
-			// Keep casing for other cases
-				$codeBCP[$segNo] = $seg;
+				$codeBCP[$segNo] = strtolower( $seg );
 		} else {
-		// Keep casing for single segment
-			$codeBCP[$segNo] = $seg;
+		// Use lowercase for single segment
+			$codeBCP[$segNo] = strtolower( $seg );
 		}
 	}
 	$langCode = implode ( '-' , $codeBCP );
