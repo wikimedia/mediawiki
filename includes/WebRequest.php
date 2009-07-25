@@ -180,7 +180,7 @@ class WebRequest {
 	 * time could damage the values.
 	 */
 	private function checkMagicQuotes() {
-		$this->mFixMagicQuotes = function_exists( 'get_magic_quotes_gpc' ) && get_magic_quotes_gpc()		
+		$this->mFixMagicQuotes = function_exists( 'get_magic_quotes_gpc' ) && get_magic_quotes_gpc();		
 		if( $this->mFixMagicQuotes ) {
 			$this->fix_magic_quotes( $_COOKIE );
 			$this->fix_magic_quotes( $_ENV );
