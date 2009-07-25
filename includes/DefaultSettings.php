@@ -2769,7 +2769,6 @@ $wgDebugJavaScript = false;
  * 	'name' => 'Example extension',
  *  'version' => 1.9,
  *  'path'           => __FILE__,
- *  'svn-revision' => '$LastChangedRevision$',
  *	'author' => 'Foo Barstein',
  *	'url' => 'http://wwww.example.com/Example%20Extension/',
  *	'description' => 'An example extension',
