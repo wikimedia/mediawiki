@@ -11,7 +11,8 @@ class Http {
 	const ASYNC_DOWNLOAD = 2; // asynchronous upload we should spawn out another process and monitor progress if possible)
 
 	var $body = '';
-	public static function request($method, $url, $opts = Array() ){
+
+	public static function request( $method, $url, $opts = array() ){
 		$opts['method'] = ( strtoupper( $method ) == 'GET' || strtoupper( $method ) == 'POST' ) ? strtoupper( $method ) : null;
 		$req = new HttpRequest( $url, $opts );
 		$status = $req->doRequest();
@@ -22,11 +23,12 @@ class Http {
 			return false;
 		}
 	}
+
 	/**
 	 * Simple wrapper for Http::request( 'GET' )
 	 */
 	public static function get( $url, $timeout = false ) {
-		$opts = Array();
+		$opts = array();
 		if( $timeout )
 			$opts['timeout'] = $timeout;
 		return Http::request( 'GET', $url, $opts );
@@ -39,7 +41,7 @@ class Http {
 		return Http::request( 'POST', $url, $opts );
 	}
 
-	public static function doDownload( $url, $target_file_path , $dl_mode = self::SYNC_DOWNLOAD , $redirectCount = 0 ){
+	public static function doDownload( $url, $target_file_path, $dl_mode = self::SYNC_DOWNLOAD, $redirectCount = 0 ){
 		global $wgPhpCli, $wgMaxUploadSize, $wgMaxRedirects;
 		// do a quick check to HEAD to insure the file size is not > $wgMaxUploadSize
 		$headRequest = new HttpRequest( $url, array( 'headers_only' => true ) );
@@ -53,7 +55,7 @@ class Http {
 		if( isset( $head['Location'] ) && strrpos( $head[0], '302' ) !== false ){
 			if( $redirectCount < $wgMaxRedirects ){
 				if( UploadFromUrl::isValidURI( $head['Location'] ) ){
-					return self::doDownload( $head['Location'], $target_file_path , $dl_mode, $redirectCount++ );
+					return self::doDownload( $head['Location'], $target_file_path, $dl_mode, $redirectCount++ );
 				} else {
 					return Status::newFatal( 'upload-proto-error' );
 				}
@@ -104,7 +106,7 @@ class Http {
 		// store the url and target path:
 		$_SESSION['wsDownload'][$upload_session_key]['url'] = $url;
 		$_SESSION['wsDownload'][$upload_session_key]['target_file_path'] = $target_file_path;
-		//since we request from the cmd line we lose the original host name pass in the session:		
+		// since we request from the cmd line we lose the original host name pass in the session:
 		$_SESSION['wsDownload'][$upload_session_key]['orgServer'] = $wgServer;
 
 		if( $content_length )
@@ -136,32 +138,33 @@ class Http {
 	/**
 	 * used to run a session based download. Is initiated via the shell.
 	 *
-	 * @param $session_id  String: the session id to grab download details from
+	 * @param $session_id String: the session id to grab download details from
 	 * @param $upload_session_key String: the key of the given upload session
 	 *  (a given client could have started a few http uploads at once)
 	 */
 	public static function doSessionIdDownload( $session_id, $upload_session_key ){
 		global $wgUser, $wgEnableWriteAPI, $wgAsyncHTTPTimeout, $wgServer;
 		wfDebug( __METHOD__ . "\n\ndoSessionIdDownload:\n\n" );
+
 		// set session to the provided key:
 		session_id( $session_id );
 		// start the session
 		if( session_start() === false ){
 			wfDebug( __METHOD__ . ' could not start session' );
 		}
-		//get all the vars we need from session_id
-		if(!isset($_SESSION[ 'wsDownload' ][$upload_session_key])){
-			wfDebug(  __METHOD__ .' Error:could not find upload session');
+		// get all the vars we need from session_id
+		if( !isset( $_SESSION[ 'wsDownload' ][$upload_session_key] ) ){
+			wfDebug(  __METHOD__ . ' Error:could not find upload session');
 			exit();
 		}
 		// setup the global user from the session key we just inherited
 		$wgUser = User::newFromSession();
 
 		// grab the session data to setup the request:
-		$sd =& $_SESSION['wsDownload'][$upload_session_key];		
-		
-		//update the wgServer var ( since cmd line thinks we are localhost when we are really orgServer)
-		if(isset($sd['orgServer']) && $sd['orgServer']){
+		$sd =& $_SESSION['wsDownload'][$upload_session_key];
+
+		// update the wgServer var ( since cmd line thinks we are localhost when we are really orgServer)
+		if( isset( $sd['orgServer'] ) && $sd['orgServer'] ){
 			$wgServer = $sd['orgServer'];
 		}
 		// close down the session so we can other http queries can get session updates:
@@ -173,7 +176,7 @@ class Http {
 			'timeout'           => $wgAsyncHTTPTimeout
 		) );
 		// run the actual request .. (this can take some time)
-		wfDebug( __METHOD__ . "do Request: " . $sd['url'] . ' tf: ' . $sd['target_file_path'] );
+		wfDebug( __METHOD__ . 'do Request: ' . $sd['url'] . ' tf: ' . $sd['target_file_path'] );
 		$status = $req->doRequest();
 		//wfDebug("done with req status is: ". $status->isOK(). ' '.$status->getWikiText(). "\n");
 
@@ -260,13 +263,14 @@ class Http {
 		return "MediaWiki/$wgVersion";
 	}
 }
+
 class HttpRequest {
 	var $target_file_path;
 	var $upload_session_key;
 
 	function __construct( $url, $opt ){
 		global $wgSyncHTTPTimeout;
-		//double check its a valid url:
+		// double check that it's a valid url:
 		$this->url = $url;
 
 		// set the timeout to default sync timeout (unless the timeout option is provided)
@@ -286,8 +290,7 @@ class HttpRequest {
 	 *     'adapter'          => 'curl', 'soket'
 	 */
 	public function doRequest() {
-
-		#make sure we have a valid url
+		# Make sure we have a valid url
 		if( !UploadFromUrl::isValidURI( $this->url ) )
 			return Status::newFatal('bad-url');
 
@@ -412,12 +415,12 @@ class HttpRequest {
 	public function doPhpReq(){
 		global $wgTitle, $wgHTTPProxy;
 
-		#check for php.ini allow_url_fopen
+		# Check for php.ini allow_url_fopen
 		if( !ini_get( 'allow_url_fopen' ) ){
 			return Status::newFatal( 'allow_url_fopen needs to be enabled for http copy to work' );
 		}
 
-		//start with good status:
+		// start with good status:
 		$status = Status::newGood();
 
 		if ( $this->headers_only ) {
@@ -425,8 +428,8 @@ class HttpRequest {
 			return $status;
 		}
 
-		//setup the headers
-		$headers = array( "User-Agent: " . Http :: userAgent() );
+		// setup the headers
+		$headers = array( "User-Agent: " . Http::userAgent() );
 		if ( is_object( $wgTitle ) ) {
 			$headers[] = "Referer: ". $wgTitle->getFullURL();
 		}
@@ -453,25 +456,26 @@ class HttpRequest {
 				$status = $cwrite->status;
 				return $status;
 			}
-			//read $fh into the simpleFileWriter (grab in 64K chunks since its likely a media file)
-			while ( !feof( $fh )) {
-				 $contents = fread($fh, 65536);
-				 $cwrite->callbackWriteBody($fh, $contents );
+
+			// read $fh into the simpleFileWriter (grab in 64K chunks since its likely a media file)
+			while ( !feof( $fh ) ) {
+				$contents = fread( $fh, 65536 );
+				$cwrite->callbackWriteBody( $fh, $contents );
 			}
 
 			$cwrite->close();
-			//check for simpleFileWriter error:
+			// check for simpleFileWriter error:
 			if( !$cwrite->status->isOK() ){
 				return $cwrite->status;
 			}
 		} else {
-			//read $fh into status->value
+			// read $fh into status->value
 			$status->value = @stream_get_contents( $fh );
 		}
 		//close the url file wrapper
 		fclose( $fh );
 
-		//check for "false"
+		// check for "false"
 		if( $status->value === false ){
 			$status->error( 'file_get_contents-failed' );
 		}
@@ -502,7 +506,7 @@ class simpleFileWriter {
 		$this->prevTime = time();
 	}
 
-	public function callbackWriteBody($ch, $data_packet){
+	public function callbackWriteBody( $ch, $data_packet ){
 		global $wgMaxUploadSize;
 
 		// write out the content
