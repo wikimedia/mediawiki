@@ -125,6 +125,13 @@ class SpecialListGroupRights extends SpecialPage {
 	 */
 	 private static function formatPermissions( $permissions, $revoke, $add, $remove, $addSelf, $removeSelf ) {
 	 	global $wgLang;
+
+		// prevent double entries if misconfigured, bug 19301
+		$add = array_unique( $add );
+		$remove = array_unique( $remove );
+		$addSelf = array_unique( $addSelf );
+		$removeSelf = array_unique( $removeSelf );
+
 		$r = array();
 		foreach( $permissions as $permission => $granted ) {
 			//show as granted only if it isn't revoked to prevent duplicate display of permissions
