@@ -333,6 +333,9 @@ this. Was used when mwEmbed was going to be an extension.
 * (bug 19301) Duplicates entries in $wgAddGroups, $wgRemoveGroups,
   $wgGroupsAddToSelf and $wgGroupsRemoveFromSelf are no more displayed on
   Special:ListGroupRights
+* (bug 18799) Special:Userlogin now handles correctly the returnto parameter
+  to not link back to Special:Userlogout when user's language isn't the same as
+  content's language
 
 == API changes in 1.16 ==
 
