@@ -1058,12 +1058,15 @@ remoteSearchDriver.prototype = {
 		var _this = this;		
 		var b_target =   _this.target_container + '~ .ui-dialog-buttonpane';
 		$j('#rsd_resource_edit').remove();
+		//restore the title: 
+		$j( _this.target_container ).dialog( 'option', 'title', gM('add_media_wizard'));
 		js_log("should update: " + b_target + ' with: cancel');
+		//restore the buttons: 
 		$j(b_target).html( $j.btnHtml( 'Cancel' , 'mv_cancel_rsd', 'close'))
 			.children('.mv_cancel_rsd')
 			.btnBind()
 			.click(function(){
-				$j( _this.target_container).dialog('close');	
+				$j( _this.target_container).dialog('close');													
 			})
 											
 	},
