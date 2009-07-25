@@ -381,13 +381,8 @@ mvClipEdit.prototype = {
 			_this.setInOutBindings();			
 		}
 		$j('#'+this.control_ct).append(	_this.getInsertDescHtml() );
-		
-		if( _this.p_rsdObj && _this.p_rsdObj.import_url_mode == 'none'){			
-			$j('#'+this.control_ct).append(	 gM('no_import_by_url') + '<br>' +			 
-				'<a href="#" class="mv_cancel_img_edit" title="' + gM('mv_cancel_image_insert')+'">' + gM('mv_cancel_image_insert') + '</a> ' );
-		}else{										
-			this.updateInsertControlActions();
-		}								
+		//update control actions										
+		this.updateInsertControlActions();										
 	},
 	setInOutBindings:function(){
 		var _this = this;
