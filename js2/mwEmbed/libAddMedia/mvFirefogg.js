@@ -10,7 +10,7 @@ loadGM({
 	"fogg-installed"			: "Firefogg is Installed",
 	"fogg-for_improved_uplods"	: "For Improved uploads: ",
 	"fogg-please_install"		: "<a href=\"$1\">Install Firefogg</a>. More <a href=\"http://commons.wikimedia.org/wiki/Commons:Firefogg\">about firefogg</a>",	
-	"fogg-use_latest_fox"		: "Please first install <a href=\"http://www.mozilla.com/en-US/firefox/upgrade.html?from=firefogg\">Firefox 3.5</a>. <i>then revisit this page to install the <b>firefogg</b> extention</i>",	
+	"fogg-use_latest_fox"		: "Please first install <a href=\"http://www.mozilla.com/en-US/firefox/upgrade.html?from=firefogg\">Firefox 3.5</a> (or later). <i>then revisit this page to install the <b>firefogg</b> extention</i>",	
 	"fogg-passthrough_mode"	    : "Your selected file is already ogg or not a video file",
 	"fogg-transcoding"			: "Encoding Video to Ogg",
 	"fogg-encoding-done"		: "Encoding Done"
@@ -196,7 +196,7 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 					_this.selectFogg();
 				});				
 		    //also setup the text file display on Click to select file:  
-		    $j( this.target_input_file_name ).unbind().attr('readonly', 'readonly').click(function(){		    	
+		    $j(this.target_input_file_name).unbind().attr('readonly', 'readonly').click(function(){		    	
 		        _this.selectFogg();
 		    })		
 			
@@ -212,7 +212,7 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 				}
 				return ;
 			}
-			//if they have the right version of mozilla provide install link: 
+			//they have the right version of mozilla provide install link: 
 			var os_link = false;
 			if(navigator.oscpu){
 				if(navigator.oscpu.search('Linux') >= 0)
@@ -224,7 +224,7 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 			}											
 			//if rewriting form use upload msg text
 			var upMsg = (_this.form_rewrite) ? gM('fogg-for_improved_uplods') : '';			
-			$j( _this.target_please_install ).html( upMsg + gM('fogg-please_install',os_link )).css('padding', '10px').show();			
+			$j(_this.target_please_install).html( upMsg + gM('fogg-please_install',os_link )).css('padding', '10px').show();			
 		}
 		//setup the target save local file bindins: 
 		$j( _this.target_btn_save_local_file ).unbind().click(function(){
@@ -243,7 +243,7 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 	//assume input target
 	setupForm: function(){		
 		js_log('firefogg::setupForm::');
-		//to parent form setup if we want http updates 		
+		//to parent form setup if we want http updates 
 		if( this.form_rewrite ){
 			//do parent form setup: 
 			this.pe_setupForm();		
@@ -279,7 +279,7 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 		inTag+= '/><span id="' + $j(this.selector).attr('name') + '_fogg-control"></span>';
 										
 		js_log('set input: ' + inTag);
-		$j( this.selector ).replaceWith( inTag );			
+		$j(this.selector).replaceWith(inTag);			
 		
 		this.target_input_file_name = 'input[name=' + $j(this.selector).attr('name') + ']';
 		//update the selector to the control target: 
@@ -292,9 +292,6 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 		this.doControlBindings();
 	},
 	getEditForm:function(){
-		if( this.target_edit_from ){
-			return this.pe_getEditForm();
-		}
 		js_log('get form: action=' + $j(this.selector).parents().find("form").attr('action'));
 		return $j(this.selector).parents().find("form").get(0);
 	},   
@@ -407,7 +404,7 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 	getProgressTitle:function(){
 		js_log("fogg:getProgressTitle f:" + this.fogg_enabled  + ' rw:' + this.form_rewrite);
 		//return the parent if we don't have fogg turned on: 
-		if(! this.fogg_enabled )
+		if(! this.fogg_enabled || !this.firefogg_form_action )
 			return this.pe_getProgressTitle();				   
 		if( !this.form_rewrite )
 		  return gM('fogg-transcoding');
@@ -416,12 +413,12 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 	},	
 	doUploadSwitch:function(){				
 		var _this = this;
-		js_log( "firefogg: doUploadSwitch:: " + this.fogg_enabled );
+		js_log("firefogg: doUploadSwitch:: " + this.fogg_enabled);
 		//make sure firefogg is enabled otherwise do parent UploadSwich:		
 		if( !this.fogg_enabled || !this.firefogg_form_action )
 			return _this.pe_doUploadSwitch();
 		
-		//check what mode to use firefogg in:
+		//check what mode to use firefogg in: 
 		if( _this.upload_mode == 'post' ){
 			_this.doEncode();
 		}else if( _this.upload_mode == 'api' && _this.chunks_supported){ //if api mode and chunks supported do chunkUpload
@@ -431,7 +428,7 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 		}		
 	},
 	//doChunkUpload does both uploading and encoding at the same time and uploads one meg chunks as they are ready
-	doChunkUpload : function(){		
+	doChunkUpload : function(){
 		var _this = this;			
 		_this.action_done = false;			
 		
@@ -458,18 +455,17 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 			'comment'	: _this.formData['wpUploadDescription'],
 			'enablechunks': true
 		};
-		
 		//check for editToken:
-		if( !this.etoken )
+		if(!this.etoken)
 			this.etoken = _this.formData['wpEditToken'];
 			
-		if( this.etoken )
+		if(this.etoken)
 			aReq['token'] = this.etoken;
 		
 		if( _this.formData['wpWatchthis'] )
 			aReq['watch'] =  _this.formData['wpWatchthis'];
 		
-		if( _this.formData['wpIgnoreWarning'] )
+		if(  _this.formData['wpIgnoreWarning'] )
 			aReq['ignorewarnings'] = _this.formData['wpIgnoreWarning'];
 		
 		js_log('do fogg upload/encode call: '+ _this.api_url + ' :: ' + JSON.stringify( aReq ) );			
@@ -481,7 +477,6 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 	},
 	//doEncode and monitor progress:
 	doEncode : function(){	
-		js_log('firefogg:doEncode');
 		var _this = this;
 		_this.action_done = false;
 		_this.dispProgressOverlay();				
@@ -602,7 +597,7 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 						   _this.updateProgressWin( gM('successfulupload'),  gM( 'mv_upload_done', _this.fogg.resultUrl),buttons);	
 					   }else{
 						   //done state with error? ..not really possible given how firefogg works
-						   js_log(" upload done, in chunks mode, but no resultUrl::" + response_text);						   
+						   js_log(" upload done, in chunks mode, but no resultUrl!");
 					   }																										   
 				   }													
 			}else{  
