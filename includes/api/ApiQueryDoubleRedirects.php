@@ -29,7 +29,7 @@ if (!defined('MEDIAWIKI')) {
 }
 
 /**
- * Query module to enumerate all available pages.
+ * Query module to enumerate double redirect pages.
  *
  * @ingroup API
  */
