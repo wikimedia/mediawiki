@@ -336,6 +336,8 @@ this. Was used when mwEmbed was going to be an extension.
 * (bug 18799) Special:Userlogin now handles correctly the returnto parameter
   to not link back to Special:Userlogout when user's language isn't the same as
   content's language
+* (bug 19479) Show proper error message when unable to connect to PostgreSQL
+  database with username/password in MediaWiki's setup
 
 == API changes in 1.16 ==
 
