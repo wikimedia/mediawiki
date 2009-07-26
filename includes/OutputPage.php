@@ -99,7 +99,14 @@ class OutputPage {
 	}
 	function addScript( $script ) { $this->mScripts .= "\t\t" . $script . "\n"; }
 
-	function addExtensionStyle( $url ) {
+	/**
+	 * Register and add a stylesheet from an extension directory.  
+	 * @param $url String path to sheet.  Provide either a full url (beginning
+	 *             with 'http', etc) or a relative path from the document root
+	 *             (beginning with '/').  Otherwise it behaves identically to
+	 *             addStyle() and draws from the /skins folder.
+	 */
+	public function addExtensionStyle( $url ) {
 		$linkarr = array( 'rel' => 'stylesheet', 'href' => $url, 'type' => 'text/css' );
 		array_push( $this->mExtStyles, $linkarr );
 	}
