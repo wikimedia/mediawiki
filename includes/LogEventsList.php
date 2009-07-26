@@ -345,7 +345,6 @@ class LogEventsList {
 		// If an edit was hidden from a page give a review link to the history
 		} else if( self::typeAction($row,array('delete','suppress'),'revision','deleterevision') ) {
 			if( count($paramArray) >= 2 ) {
-				$revdel = SpecialPage::getTitleFor( 'Revisiondelete' );
 				// Different revision types use different URL params...
 				$key = $paramArray[0];
 				// $paramArray[1] is a CSV of the IDs
@@ -353,21 +352,37 @@ class LogEventsList {
 				$query = $paramArray[1];
 				$revert = array();
 				// Diff link for single rev deletions
-				if( ( $key === 'oldid' || $key == 'revision' ) && count($Ids) == 1 ) {
-					$revert[] = $this->skin->link(
-						$title,
-						$this->message['diff'], 
-						array(),
-						array(
-							'diff' => intval( $Ids[0] ),
-							'unhide' => 1
-						),
-						array( 'known', 'noclasses' )
-					);
+				if( count($Ids) == 1 ) {
+					// Live revision diffs...
+					if( in_array($key, array('oldid','revision')) ) {
+						$revert[] = $this->skin->link(
+							$title,
+							$this->message['diff'], 
+							array(),
+							array(
+								'diff' => intval( $Ids[0] ),
+								'unhide' => 1
+							),
+							array( 'known', 'noclasses' )
+						);
+					// Deleted revision diffs...
+					} else if( in_array($key, array('artimestamp','archive')) ) {
+						$revert[] = $this->skin->link(
+							SpecialPage::getTitleFor( 'Undelete' ),
+							$this->message['diff'], 
+							array(),
+							array(
+								'target'    => $title->getPrefixedDBKey(),
+								'diff'      => 'prev',
+								'timestamp' => $Ids[0]
+							),
+							array( 'known', 'noclasses' )
+						);
+					}
 				}
 				// View/modify link...
 				$revert[] = $this->skin->link(
-					$revdel,
+					SpecialPage::getTitleFor( 'Revisiondelete' ),
 					$this->message['revdel-restore'],
 					array(),
 					array(
@@ -377,7 +392,6 @@ class LogEventsList {
 					),
 					array( 'known', 'noclasses' )
 				);
-
 				// Pipe links
 				$revert = wfMsg( 'parentheses', $wgLang->pipeList( $revert ) );
 			}
