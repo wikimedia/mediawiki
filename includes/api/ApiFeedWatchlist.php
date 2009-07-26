@@ -75,8 +75,8 @@ class ApiFeedWatchlist extends ApiBase {
 				'wllimit' => (50 > $wgFeedLimit) ? $wgFeedLimit : 50
 			);
 
-			if (!is_null($params['wluser']))
-				$fauxReqArr['wluser'] = $params['wluser'];
+			if (!is_null($params['wlowner']))
+				$fauxReqArr['wlowner'] = $params['wlowner'];
 			if (!is_null($params['wltoken']))
 				$fauxReqArr['wltoken'] = $params['wltoken'];
 
@@ -158,7 +158,7 @@ class ApiFeedWatchlist extends ApiBase {
 				ApiBase :: PARAM_MAX => 72,
 			),
 			'allrev' => null,
-			'wluser' => array (
+			'wlowner' => array (
 				ApiBase :: PARAM_TYPE => 'user'
 			),
 			'wltoken' => array (
@@ -172,7 +172,7 @@ class ApiFeedWatchlist extends ApiBase {
 			'feedformat' => 'The format of the feed',
 			'hours'      => 'List pages modified within this many hours from now',
 			'allrev'     => 'Include multiple revisions of the same page within given timeframe.',
-			'wluser'     => "The user whose watchlist you want (must be accompanied by wltoken if it's not you)",
+			'wlowner'     => "The user whose watchlist you want (must be accompanied by wltoken if it's not you)",
 			'wltoken'    => 'Security token that requested user set in their preferences'
 		);
 	}
