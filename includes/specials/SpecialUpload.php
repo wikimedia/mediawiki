@@ -133,7 +133,7 @@ class UploadForm extends SpecialPage {
 		}
 
 
-		if( $this->mReUpload ) {
+		if( $this->mReUpload &&  $this->mUpload) {
 			// User choose to cancel upload
 			if( !$this->mUpload->unsaveUploadedFile() ) {
 				return;
