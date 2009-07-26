@@ -1047,6 +1047,10 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 			$wgDatabase = $dbc->newFromParams($wgDBserver, $wgDBuser, $wgDBpassword, $wgDBname, 1);
 			if (!$wgDatabase->isOpen()) {
 				print " error: " . htmlspecialchars( $wgDatabase->lastError() ) . "</li>\n";
+				$errs["DBserver"] = "Could not connect to database as user";
+				$errs["DBuser"] = "Check username";
+				$errs["DBpassword"] = "and password";
+				continue;
 			} else {
 				$myver = $wgDatabase->getServerVersion();
 			}
