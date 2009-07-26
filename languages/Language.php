@@ -2301,8 +2301,8 @@ class Language {
 
 	/**
 	 * Perform output conversion on a string, and encode for safe HTML output.
-	 * @param $text String
-	 * @param $isTitle Bool -- wtf?
+	 * @param $text String text to be converted
+	 * @param $isTitle Bool whether this conversion is for the article title
 	 * @return string
 	 * @todo this should get integrated somewhere sane
 	 */
