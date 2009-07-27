@@ -311,13 +311,14 @@ class Preferences {
 						$time = $wgLang->timeAndDate( $user->getEmailAuthenticationTimestamp(), true );
 						$d = $wgLang->date( $user->getEmailAuthenticationTimestamp(), true );
 						$t = $wgLang->time( $user->getEmailAuthenticationTimestamp(), true );
-						$emailauthenticated = htmlspecialchars( wfMsg( 'emailauthenticated', $time, $d, $t ) ) . '<br />';
+						$emailauthenticated = wfMsgExt( 'emailauthenticated', 'parseinline',
+												array($time, $d, $t ) ) . '<br />';
 						$disableEmailPrefs = false;
 					} else {
 						$disableEmailPrefs = true;
 						global $wgUser; // wgUser is okay here, it's for display
 						$skin = $wgUser->getSkin();
-						$emailauthenticated = wfMsgHtml( 'emailnotauthenticated' ) . '<br />' .
+						$emailauthenticated = wfMsgExt( 'emailnotauthenticated', 'parseinline' ) . '<br />' .
 							$skin->link(
 								SpecialPage::getTitleFor( 'Confirmemail' ),
 								wfMsg( 'emailconfirmlink' ),
