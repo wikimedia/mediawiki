@@ -338,6 +338,8 @@ this. Was used when mwEmbed was going to be an extension.
   content's language
 * (bug 19479) Show proper error message when unable to connect to PostgreSQL
   database with username/password in MediaWiki's setup
+* (bugs 18407, 18409) Special:Upload is now listed on Special:Specialpages only
+  if uploads are enabled and the user can access it
 
 == API changes in 1.16 ==
 

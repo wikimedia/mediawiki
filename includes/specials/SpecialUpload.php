@@ -33,7 +33,7 @@ class UploadForm extends SpecialPage {
 	 * @param $request Data posted.
 	 */
 	function __construct( $request = null ) {
-		parent::__construct( 'Upload' );
+		parent::__construct( 'Upload', 'upload' );
 		$this->mRequest = $request;
 	}
 
@@ -82,7 +82,11 @@ class UploadForm extends SpecialPage {
 		$this->mAction            = $request->getVal( 'action' );
 		$this->mUpload            = UploadBase::createFromRequest( $request );
 	}
-	
+
+	public function userCanExecute( $user ) {
+		return UploadBase::isEnabled() && parent::userCanExecute( $user );
+	}
+
 	/**
 	 * Start doing stuff
 	 * @access public
