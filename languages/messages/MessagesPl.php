@@ -1242,6 +1242,7 @@ Jednak informacje o treści {{GRAMMAR:D.lp|{{SITENAME}}}} mogą być w Google ni
 'prefs-watchlist-days-max'      => '(maksimum 7 dni)',
 'prefs-watchlist-edits'         => 'Liczba edycji pokazywanych w rozszerzonej liście obserwowanych',
 'prefs-watchlist-edits-max'     => '(maksymalna liczba: 1000)',
+'prefs-watchlist-token'         => 'Identyfikator listy obserwowanych',
 'prefs-misc'                    => 'Ustawienia różne',
 'prefs-resetpass'               => 'Zmień hasło',
 'prefs-email'                   => 'E-mail',
@@ -1262,6 +1263,9 @@ Jednak informacje o treści {{GRAMMAR:D.lp|{{SITENAME}}}} mogą być w Google ni
 'recentchangesdays-max'         => '(maksymalnie $1 {{PLURAL:$1|dzień|dni}})',
 'recentchangescount'            => 'Domyślna liczba wyświetlanych edycji',
 'prefs-help-recentchangescount' => 'Uwzględnia ostatnie zmiany, historię stron i rejestry.',
+'prefs-help-watchlist-token'    => 'Wypełnianie tego pola tajnym kluczem spowoduje wygenerowanie RSS dla Twojej listy obserwowanych.
+Każdy znający ten klucz będzie mógł zobaczyć listę obserwowanych, należy więc wybrać bezpieczną wartość.
+Wygenerowany losowo klucz, którego możesz użyć to $1',
 'savedprefs'                    => 'Twoje preferencje zostały zapisane.',
 'timezonelegend'                => 'Strefa czasowa',
 'localtime'                     => 'Czas lokalny',

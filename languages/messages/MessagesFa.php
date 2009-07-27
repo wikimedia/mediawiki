@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Alnokta
  * @author Asoxor
  * @author Behdarvandyani
  * @author Huji
@@ -714,18 +715,17 @@ $1',
 'error'                => 'خطا',
 'databaseerror'        => 'خطای پایگاه داده',
 'dberrortext'          => 'اشکالی در دستور فرستاده شده به پایگاه داده رخ داد.
-علت این مساله می‌توانید ایرادی در نرم‌افزار مدیاویکی باشد.
+علت این مساله می‌تواند ایرادی در نرم‌افزار باشد.
 آخرین دستوری که برای پایگاه داده فرستاد شد این بود:
 <div dir="ltr"><blockquote><tt>$1</tt></blockquote></div>
-این دستور از درون عملگر <span dir=ltr><tt>$2</tt></span> فرستاده شد
-پایگاه داده این خطا را باز گرداند:
+این دستور از درون عملگر <span dir="ltr"><tt>$2</tt></span> فرستاده شد
+$5 این خطا را باز گرداند:
 <div dir="ltr"><tt>$3: $4</tt></div>',
 'dberrortextcl'        => 'اشکالی در دستور فرستاده شده به پایگاه داده رخ داد.
-علت این مساله می‌توانید ایرادی در نرم‌افزار مدیاویکی باشد.
 آخرین دستوری که برای پایگاه داده فرستاد شد این بود:
 <div dir="ltr">$1</div>
-این دستور از درون عملگر <span dir=ltr>$2</span> فرستاده شد
-پایگاه داده این خطا را باز گرداند:
+این دستور از درون عملگر <span dir="ltr">$2</span> فرستاده شد
+$5 این خطا را باز گرداند:
 <div dir="ltr">$3: $4</div>',
 'laggedslavemode'      => 'هشدار: صفحه ممکن است به‌روزرسانی‌های اخیر را شامل نگردد.',
 'readonly'             => 'پایگاه داده قفل شد',
@@ -743,6 +743,7 @@ $1',
 'readonly_lag'         => 'پایگاه داده به طور خودکار قفل شده‌است تا نسخه‌های پشتیبان با نسخهٔ اصلی هماهنگ شوند.',
 'internalerror'        => 'خطای داخلی',
 'internalerror_info'   => 'خطای داخلی: $1',
+'fileappenderror'      => 'نمی‌توان «$1» را به «$2» الحاق کرد.',
 'filecopyerror'        => 'نتوانستم از پروندهٔ «$1» روی «$2» نسخه‌برداری کنم.',
 'filerenameerror'      => 'نتوانستم پروندهٔ «$1» را به «$2» تغییر نام دهم.',
 'filedeleteerror'      => 'نتوانستم پروندهٔ «$1» را حذف کنم',
@@ -1398,6 +1399,7 @@ $1",
 'prefs-watchlist-days-max'      => '(حداکثر ۷ روز)',
 'prefs-watchlist-edits'         => 'تعداد ویرایشهای نشان‌داده در فهرست پی‌گیری‌های گسترش‌یافته:',
 'prefs-watchlist-edits-max'     => '(حداکثر تعداد: ۱۰۰۰)',
+'prefs-watchlist-token'         => 'نشانهٔ فهرست پی‌گیری',
 'prefs-misc'                    => 'تنظیمات متفرقه',
 'prefs-resetpass'               => 'تغییر گذرواژه',
 'prefs-email'                   => 'گزینه‌های پست الکترونیک',
@@ -1418,6 +1420,9 @@ $1",
 'recentchangesdays-max'         => '(حداکثر $1 {{PLURAL:$1|روز|روز}})',
 'recentchangescount'            => 'تعداد پیش‌فرض ویرایش‌های نمایش یافته:',
 'prefs-help-recentchangescount' => 'این گزینه شامل تغییرات اخیر، تاریخچهٔ صفحه‌ها و سیاهه‌ها می‌شود.',
+'prefs-help-watchlist-token'    => 'پر کردن این قسمت با یک کلید رمز باعث می‌شود که یک خوراک آراس‌اس برای فهرست پی‌گیری شما ایجاد شود.
+هر کس که این کلید را بداند می‌تواند فهرست پی‌گیری شما را بخواند، پس یک کلید ایمن انتخاب کنید.
+در این‌جا یک مقدار که به طور تصادفی ایجاد شده برای استفادهٔ شما ارائه می‌شود: $1',
 'savedprefs'                    => 'ترجیحات شما ذخیره شد.',
 'timezonelegend'                => 'منطقهٔ زمانی:',
 'localtime'                     => 'زمان محلی:',
@@ -1582,6 +1587,7 @@ $1",
 'right-siteadmin'             => 'قفل کردن و باز کردن پایگاه داده',
 'right-reset-passwords'       => 'از نو تنظیم کردن گذرواژهٔ دیگر کاربران',
 'right-override-export-depth' => 'برون‌ریزی صفحه‌ها شامل صفحه‌های پیوند شده تا عمق ۵',
+'right-versiondetail'         => 'نمایش اطلاعات مفصل نسخهٔ نرم‌افزار',
 
 # User rights log
 'rightslog'      => 'سیاههٔ اختیارات کاربر',
@@ -1756,12 +1762,15 @@ $1",
 'filename-bad-prefix'         => "نام پرونده‌ای که بارگذاری می‌کنید با '''$1''' آغاز می‌شود که یک پیشوند مخصوص تصاویر ثبت شده توسط دوربین‌های دیجیتال است.
 لطفاً نامی بهتر برای پرونده برگزینید.",
 
-'upload-proto-error'      => 'قرارداد نادرست',
-'upload-proto-error-text' => 'بارگذاری از دوردست به نشانی‌هایی که با <code dir=ltr>http://</code> یا <code dir=ltr>ftp://</code> آغاز شوند نیاز دارد.',
-'upload-file-error'       => 'خطای داخلی',
-'upload-file-error-text'  => 'هنگام تلاش برای ایجاد یک پروندهٔ  موقت در کارگزار یک خطای داخلی رخ داد. لطفاً با مدیر سیستم تماس بگیرید.',
-'upload-misc-error'       => 'خطایی نامعلوم در بارگذاری',
-'upload-misc-error-text'  => 'هنگام بارگذاری، خطایی نامعلوم رخ داد. لطفاً اطمینان حاصل کنید که نشانی (URL) معتبر و قابل دسترسی است و بعد دوباره تلاش کنید. اگر مشکل همچنان برقرار بود با یکی از مدیران سیستم تماس بگیرید.',
+'upload-proto-error'        => 'قرارداد نادرست',
+'upload-proto-error-text'   => 'بارگذاری از دوردست به نشانی‌هایی که با <code dir=ltr>http://</code> یا <code dir=ltr>ftp://</code> آغاز شوند نیاز دارد.',
+'upload-file-error'         => 'خطای داخلی',
+'upload-file-error-text'    => 'هنگام تلاش برای ایجاد یک پروندهٔ  موقت در کارگزار یک خطای داخلی رخ داد. لطفاً با مدیر سیستم تماس بگیرید.',
+'upload-misc-error'         => 'خطایی نامعلوم در بارگذاری',
+'upload-misc-error-text'    => 'هنگام بارگذاری، خطایی نامعلوم رخ داد. لطفاً اطمینان حاصل کنید که نشانی (URL) معتبر و قابل دسترسی است و بعد دوباره تلاش کنید. اگر مشکل همچنان برقرار بود با یکی از مدیران سیستم تماس بگیرید.',
+'upload-too-many-redirects' => 'نشانی اینترتی حاوی تعداد بیش از اندازه‌ای تغییر مسیر است',
+'upload-unknown-size'       => 'اندازهٔ نامشخص',
+'upload-http-error'         => 'یک خطای اچ‌تی‌تی‌پی رخ داد: $1',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'دسترسی به URL ممکن نشد.',
@@ -1911,7 +1920,9 @@ $1",
 یک صفحه در صورتی که از الگویی که در [[MediaWiki:Disambiguationspage]] پیوند شده باشد در آن استفاده شده باشد به عنوان یک صفحهٔ ابهام‌زدایی در نظر گرفته می‌شود.",
 
 'doubleredirects'            => 'تغییرمسیرهای دوتایی',
-'doubleredirectstext'        => 'هر سطر دربردارندهٔ پیوندهایی به تغییر مسیر اول و دوم و همچنین خط نخست متن تغییر مسیر دوم است. معمولاً صفحهٔ مقصد واقعی که نخستین تغییرمسیر باید به آن باشد به این گونه مشخص می‌شود.',
+'doubleredirectstext'        => 'این صفحه فهرستی از صفحه‌های تغییر مسیری را ارائه می‌کند که به صفحهٔ تغییر مسیر دیگری اشاره می‌کنند.
+هر سطر دربردارندهٔ پیوندهایی به تغییر مسیر اول و دوم و همچنین مقصد تغییر مسیر دوم است، که معمولاً صفحهٔ مقصد واقعی است و نخستین تغییر مسیر باید به آن اشاره کند.
+موارد <s>خط خورده</s> درست شده‌اند.',
 'double-redirect-fixed-move' => '[[$1]] انتقال داده شده‌است، و در حال حاضر تغییر مسیری به [[$2]] است',
 'double-redirect-fixer'      => 'تعمیرکار تغییر مسیرها',
 
@@ -2392,7 +2403,7 @@ $1',
 'whatlinkshere-hidetrans'  => '$1 تراگنجانش',
 'whatlinkshere-hidelinks'  => '$1 پیوند',
 'whatlinkshere-hideimages' => '$1 پیوند به تصویر',
-'whatlinkshere-filters'    => 'صافی‌ها',
+'whatlinkshere-filters'    => 'پالایه‌ها',
 
 # Block/unblock
 'blockip'                         => 'بستن کاربر',
@@ -2616,14 +2627,22 @@ $1',
 'export-pagelinks'  => 'صفحه‌های پیوند شده را تا این عمق شامل شود:',
 
 # Namespace 8 related
-'allmessages'               => 'همهٔ پیغام‌ها',
-'allmessagesname'           => 'نام',
-'allmessagesdefault'        => 'متن پیش‌فرض',
-'allmessagescurrent'        => 'متن کنونی',
-'allmessagestext'           => 'این فهرستی از پیغام‌های سیستم موجود در فضای نام مدیاویکی است.
+'allmessages'                   => 'همهٔ پیغام‌ها',
+'allmessagesname'               => 'نام',
+'allmessagesdefault'            => 'متن پیش‌فرض',
+'allmessagescurrent'            => 'متن کنونی',
+'allmessagestext'               => 'این فهرستی از پیغام‌های سیستم موجود در فضای نام مدیاویکی است.
 چنان‌چه مایل به مشارکت در محلی‌سازی مدیاویکی هستید لطفاً [http://www.mediawiki.org/wiki/Localisation محلی‌سازی مدیاویکی] و 
 [http://translatewiki.net translatewiki.net] را ببینید.',
-'allmessagesnotsupportedDB' => "نمی‌توان از '''{{ns:special}}:همهٔ پیغام‌ها''' استفاده کرد چود '''\$wgUseDatabaseMessages''' خاموش شده است.",
+'allmessagesnotsupportedDB'     => "نمی‌توان از '''{{ns:special}}:همهٔ پیغام‌ها''' استفاده کرد چود '''\$wgUseDatabaseMessages''' خاموش شده است.",
+'allmessages-filter-legend'     => 'پالایه',
+'allmessages-filter'            => 'پالودن بر اساس وضعیت شخصی‌سازی:',
+'allmessages-filter-unmodified' => 'تغییر نیافته',
+'allmessages-filter-all'        => 'همه',
+'allmessages-filter-modified'   => 'تغییر یافته',
+'allmessages-prefix'            => 'پالودن بر اساس پسوند:',
+'allmessages-language'          => 'زبان:',
+'allmessages-filter-submit'     => 'برو',
 
 # Thumbnails
 'thumbnail-more'           => 'بزرگ شود',
@@ -3377,6 +3396,7 @@ $1',
 'version-hook-name'                => 'نام قلاب',
 'version-hook-subscribedby'        => 'وارد شده توسط',
 'version-version'                  => '(نسخه $1)',
+'version-svn-revision'             => '(&رلم;r$2)',
 'version-license'                  => 'اجازه‌نامه',
 'version-software'                 => 'نسخهٔ نصب‌شده',
 'version-software-product'         => 'محصول',
@@ -3459,6 +3479,7 @@ $1',
 'htmlform-invalid-input'       => 'بخشی از ورودی شما مشکل دارد',
 'htmlform-select-badoption'    => 'مقدار وارد شده یک گزینهٔ قابل قبول نیست.',
 'htmlform-int-invalid'         => 'مقداری که وارد کردید یک عدد صحیح نیست.',
+'htmlform-float-invalid'       => 'مقداری که وارد کردید یک عدد نیست.',
 'htmlform-int-toolow'          => 'مقداری که وارد کردید کمتر از $1 است',
 'htmlform-int-toohigh'         => 'مقداری که وارد کردید بیشتر از $1 است',
 'htmlform-submit'              => 'ارسال',

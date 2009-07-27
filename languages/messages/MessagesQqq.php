@@ -1064,6 +1064,7 @@ $1 is the relevance of this result in per cent.
 'prefs-watchlist-days-max'      => 'Shown as hint in [[Special:Preferences]], tab "Watchlist"',
 'prefs-watchlist-edits'         => 'Used in [[Special:Preferences]], tab "Watchlist".',
 'prefs-watchlist-edits-max'     => 'Shown as hint in [[Special:Preferences]], tab "Watchlist"',
+'prefs-watchlist-token'         => 'Used in [[Special:Preferences]], tab Watchlist.',
 'prefs-misc'                    => 'Used in user preferences.',
 'prefs-resetpass'               => 'Button on user data tab in user preferences. When you click the button you go to the special page [[Special:ResetPass]].',
 'prefs-rendering'               => 'Title of tab in [[Special:Preferences]].',
@@ -1084,6 +1085,7 @@ $1 is the relevance of this result in per cent.
 'recentchangesdays-max'         => 'Shown as hint in [[Special:Preferences]], tab "Recent changes"',
 'recentchangescount'            => 'Used in [[Special:Preferences]], tab "Recent changes".',
 'prefs-help-recentchangescount' => 'Used in [[Special:Preferences]], tab "Recent changes".',
+'prefs-help-watchlist-token'    => 'Used in [[Special:Preferences]], tab Watchlist.',
 'savedprefs'                    => 'This message appears after saving changes to your user preferences.',
 'timezonelegend'                => '{{Identical|Time zone}}',
 'timezoneoffset'                => "Text next to input box in [[Special:Preferences]], tab 'date and time', section 'timezone'.",
@@ -1270,6 +1272,9 @@ The rate limits have no effect on the groups that have this right. Rate limits i
 'right-import'                => '{{doc-right}}',
 'right-importupload'          => '{{doc-right}}',
 'right-patrol'                => '{{doc-right}}',
+'right-trackback'             => 'A user right.
+
+"Submit" in this instance means that something called [[:wikipedia:trackback|trackback]] is being sent to the wiki, and the wiki accepts it. When the right is not given to the user, the wiki rejects, or ignores it. There is a nice description at [http://cruftbox.com/cruft/docs/trackback.html How TrackBack Works].',
 'right-reset-passwords'       => '{{doc-right}}',
 'right-override-export-depth' => '{{doc-right|override-export-depth}}',
 'right-versiondetail'         => '{{doc-right|versiondetail}}

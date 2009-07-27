@@ -15,6 +15,7 @@
  * @author EugeneZelenko
  * @author Gutsul (Gutsul.ua at Google Mail)
  * @author Ickis
+ * @author Ilyaroz
  * @author Innv
  * @author Kalan
  * @author NickK
@@ -1234,6 +1235,7 @@ $1",
 'prefs-watchlist-days-max'      => '(максимум 7 днів)',
 'prefs-watchlist-edits'         => 'Кількість редагувань для відображення у розширеному списку спостереження:',
 'prefs-watchlist-edits-max'     => '(максимальне число: 1000)',
+'prefs-watchlist-token'         => 'Позначка списку спостерження',
 'prefs-misc'                    => 'Інші налаштування',
 'prefs-resetpass'               => 'Змінити пароль',
 'prefs-email'                   => 'Параметри електронної пошти',
@@ -1254,6 +1256,9 @@ $1",
 'recentchangesdays-max'         => '(максимум $1 {{PLURAL:$1|день|дні|днів}})',
 'recentchangescount'            => 'Кількість редагувань у списках за замовчуванням:',
 'prefs-help-recentchangescount' => 'Це торкається нових редагувань, історій сторінок і журналів.',
+'prefs-help-watchlist-token'    => 'Заповнення цього поля секретним ключем буде створювати RSS-трансляцію для вашого списку спостережень.
+Кожен, хто знає ключ в цьому полі, зможе читати ваш список спостереження, тому оберіть секретне значення.
+Ви можете використовувати це випадково згенероване значення: $1',
 'savedprefs'                    => 'Ваші налаштування збережено.',
 'timezonelegend'                => 'Часовий пояс:',
 'localtime'                     => 'Місцевий час:',

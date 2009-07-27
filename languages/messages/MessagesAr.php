@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author ;Hiba;1
  * @author Abanima
  * @author AhmadSherif
  * @author Alnokta
@@ -860,6 +861,7 @@ $2',
 من فضلك حاول مرة أخرى.',
 'passwordtooshort'           => 'كلمة السر الخاصة بك قصيرة جدا.
 يجب أن تتكون على الأقل من {{PLURAL:$1|حرف واحد|حرفين|$1 حروف|$1 حرفًا|$1 حرف}}.',
+'password-name-match'        => 'يجب أن تكون كلمة المرور مختلفة عن اسم المستخدم.',
 'mailmypassword'             => 'أرسل لي كلمة سر جديدة',
 'passwordremindertitle'      => 'كلمة سر مؤقتة جديدة ل {{SITENAME}}',
 'passwordremindertext'       => 'لقد طلب شخص ما (غالبا أنت، من عنوان الآيبي $1) كلمة سر جديدة ل{{SITENAME}} ($4).
@@ -2689,6 +2691,7 @@ $1 ممنوع بالفعل. هل تريد تغيير الإعدادات؟',
 'allmessagestext'           => 'هذه قائمة برسائل النظام المتوفرة في نطاق ميدياويكي.
 من فضلك زر [http://www.mediawiki.org/wiki/Localisation ترجمة ميدياويكي] و [http://translatewiki.net بيتاويكي] لو كنت ترغب في المساهمة في ترجمة ميدياويكي الأساسية.',
 'allmessagesnotsupportedDB' => "هذه الصفحة لا يمكن استخدامها لأن '''\$wgUseDatabaseMessages''' تم تعطيله.",
+'allmessages-language'      => 'اللغة:',
 
 # Thumbnails
 'thumbnail-more'           => 'تكبير',

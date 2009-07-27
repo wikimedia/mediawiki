@@ -789,7 +789,7 @@ Den Administrateur den D'Datebank gespaart huet, huet dës Erklärung ginn: $1",
 
 Frot Iech ob et wierklech sënnvoll ass dës Säit nees nei ze schafen.
 Fir Iech z'informéieren fannt Dir hei d'Logbuch vum Läsche mam Grond:",
-'moveddeleted-notice'              => 'Dës Seite gouf geläscht.
+'moveddeleted-notice'              => 'Dës Säit gouf geläscht.
 Hei ass den Extrait aus dem Logbuch vum Réckelen a Läsche fir déi Säit.',
 'log-fulllog'                      => 'Dat ganzt Logbuch weisen',
 'edit-hook-aborted'                => "D'Ännerung gouf ouni Erklärung vun enger Schnëttstell (hook) ofgebrach.",
@@ -1131,6 +1131,7 @@ Dir kënnt [[:\$1|déi Säit uleeën]].",
 'prefs-watchlist-days-max'      => '(Maximal 7 Deeg)',
 'prefs-watchlist-edits'         => 'Maximal Zuel vun den Ännerungen déi an der erweiderter Iwwerwaachungslëscht ugewise solle ginn:',
 'prefs-watchlist-edits-max'     => '(Maximal Zuel: 1000)',
+'prefs-watchlist-token'         => 'Iwwerwaachungslëscht-Token',
 'prefs-misc'                    => 'Verschiddenes',
 'prefs-resetpass'               => 'Passwuert änneren',
 'prefs-email'                   => 'E-Mail-Optiounen',
@@ -1151,6 +1152,9 @@ Dir kënnt [[:\$1|déi Säit uleeën]].",
 'recentchangesdays-max'         => '(Maximal $1 {{PLURAL:$1|Dag|Deeg}})',
 'recentchangescount'            => 'Zuel vun den Ännerungen déi als Standard gewise ginn:',
 'prefs-help-recentchangescount' => 'Inklusiv Rezent Ännerungen, Versiounshistoriquen a Logbicher.',
+'prefs-help-watchlist-token'    => 'Wann dir dëst Feld mat engem Geheimcode ausfëllt gëtt en RSS-Feed fir Är Iwwerwaachungslëscht generéiert.
+Jidfereen deen de Geheimcode aus de¨sem Feld kennt kann Är Iwwerwaachungslëscht liesen, wielt dofir e séchere Wert.
+Hei ass een zoufälleg generéierte Wert deen Dir benotze kënnt: $1',
 'savedprefs'                    => 'Är Astellunge goufe gespäichert.',
 'timezonelegend'                => 'Zäitzon:',
 'localtime'                     => 'Lokalzäit:',
@@ -1975,7 +1979,7 @@ Kuckt d'[[Special:ProtectedPages|Lëscht vun de gespaarte Säite]] fir eng Lësc
 'protectedarticle'            => 'huet "[[$1]]" gespaart',
 'modifiedarticleprotection'   => 'huet d\'Protectioun vun "[[$1]]" geännert',
 'unprotectedarticle'          => "huet d'Spär vu(n) [[$1]] opgehuewen",
-'movedarticleprotection'      => 'huet de Säitechutz vun "[[$2]]" op "[[$1]]" geännert',
+'movedarticleprotection'      => 'huet de Säiteschutz vun "[[$2]]" op "[[$1]]" geännert',
 'protect-title'               => 'Ännerung vun der Protectioun vu(n) „$1“',
 'prot_1movedto2'              => '[[$1]] gouf op [[$2]] geréckelt',
 'protect-legend'              => "Confirméiert d'Protectioun",

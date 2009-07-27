@@ -8,6 +8,7 @@
  * @file
  *
  * @author Boivie
+ * @author Fluff
  * @author Grillo
  * @author Habj
  * @author Habjchen
@@ -460,7 +461,7 @@ $messages = array(
 'vector-view-history'        => 'Visa historik',
 'vector-view-view'           => 'Visa',
 'vector-view-viewsource'     => 'Visa källa',
-'actions'                    => 'Handlingar',
+'actions'                    => 'Åtgärder',
 'namespaces'                 => 'Namnrymder',
 'variants'                   => 'Varianter',
 
@@ -607,7 +608,7 @@ Den senaste utförda databasfrågan var:
 <blockquote><tt>$1</tt></blockquote>
 från funktionen "<tt>$2</tt>".
 $5 returnerade felen "$3<tt>: $4</tt>".',
-'dberrortextcl'        => 'Ett felaktigt utformat sökbegrepp har påträffats. Senaste sökbegrepp var: "$1"  från funktionen "$2". MySQL svarade med felmeddelandet "$3: $4"',
+'dberrortextcl'        => 'Ett felaktigt utformat sökbegrepp har påträffats. Senaste sökbegrepp var: "$1"  från funktionen "$2". $5 svarade med felmeddelandet "$3: $4"',
 'laggedslavemode'      => 'Varning: Sidan kan sakna de senaste uppdateringarna.',
 'readonly'             => 'Databasen är skrivskyddad',
 'enterlockreason'      => 'Ange varför sidan skrivskyddats, och ge en uppskattning av hur länge skrivskyddet bör behållas.',
@@ -1806,7 +1807,8 @@ Länkarna bör troligtvis ändras så att de länkar till en artikel istället.<
 En sida anses vara en förgreningssida om den inkluderar en mall som länkas till från [[MediaWiki:Disambiguationspage]].",
 
 'doubleredirects'            => 'Dubbla omdirigeringar',
-'doubleredirectstext'        => 'Det här är en lista över sidor som omdirigerar till andra omdirigeringssidor. Varje rad innehåller länkar till den första och den andra omdirigeringsidan, samt till målet för den andra omdirigeringen. Målet för den andra omdirigeringen är ofta den "riktiga" sidan, som den första omdirigeringen egentligen ska leda till.',
+'doubleredirectstext'        => 'Det här är en lista över sidor som dirigerar om till andra omdirigeringssidor. Varje rad innehåller länkar till den första och andra omdirigeringsidan, samt till målet för den andra omdirigeringen. Målet för den andra omdirigeringen är ofta den "riktiga" sidan, som den första omdirigeringen egentligen ska leda till.
+<s>Stryk över</s> poster som har åtgärdats.',
 'double-redirect-fixed-move' => '[[$1]] har flyttats, och är nu en omdirigering till [[$2]]',
 'double-redirect-fixer'      => 'Omdirigeringsrättaren',
 

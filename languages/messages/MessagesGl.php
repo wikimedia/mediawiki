@@ -1219,6 +1219,7 @@ Note que os seus índices do contido de {{SITENAME}} poden estar desactualizados
 'prefs-watchlist-days-max'      => '(máximo 7 días)',
 'prefs-watchlist-edits'         => 'Número de edicións para mostrar na lista de vixilancia completa:',
 'prefs-watchlist-edits-max'     => '(número máximo: 1000)',
+'prefs-watchlist-token'         => 'Token para a lista de vixilancia',
 'prefs-misc'                    => 'Preferencias varias',
 'prefs-resetpass'               => 'Cambiar o contrasinal',
 'prefs-email'                   => 'Opcións de correo electrónico',
@@ -1239,6 +1240,9 @@ Note que os seus índices do contido de {{SITENAME}} poden estar desactualizados
 'recentchangesdays-max'         => '(máximo {{PLURAL:$1|un día|$1 días}})',
 'recentchangescount'            => 'Número de edicións a mostrar por defecto:',
 'prefs-help-recentchangescount' => 'Isto inclúe os cambios recentes, os historiais e mais os rexistros.',
+'prefs-help-watchlist-token'    => 'Ao encher este campo cunha clave secreta xerarase unha fonte de novas RSS para a súa lista de vixilancia.
+Calquera que saiba esta clave poderá ler a súa lista de vixilancia, así que escolla un valor seguro.
+Velaquí un valor xerado ao chou que pode usar: $1',
 'savedprefs'                    => 'As súas preferencias foron gardadas.',
 'timezonelegend'                => 'Zona horaria:',
 'localtime'                     => 'Hora local:',
