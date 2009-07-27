@@ -336,7 +336,7 @@ class DatabaseMysql extends DatabaseBase {
 			$items[] = $this->tableName( $table ) . ' READ';
 		}
 		$sql = "LOCK TABLES " . implode( ',', $items );
-		$db->query( $sql, $method );
+		$this->query( $sql, $method );
 	}
 
 	public function unlockTables( $method ) {
