@@ -4,7 +4,7 @@ class UploadFromUrl extends UploadBase {
 	protected $mTempDownloadPath;
 
 	// by default do a SYNC_DOWNLOAD
-	protected $dl_mode = null;
+	protected $dl_mode =  Http::SYNC_DOWNLOAD;
 
 	/**
 	 * Checks if the user is allowed to use the upload-by-URL feature

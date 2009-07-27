@@ -80,7 +80,7 @@ class Http {
 			wfDebug( __METHOD__ . "\ASYNC_DOWNLOAD\n" );
 			// setup session and shell call:
 			return self::initBackgroundDownload( $url, $target_file_path, $content_length );
-		} else if( $dl_mode == self::SYNC_DOWNLOAD ){
+		} else {
 			wfDebug( __METHOD__ . "\nSYNC_DOWNLOAD\n" );
 			// SYNC_DOWNLOAD download as much as we can in the time we have to execute
 			$opts['method'] = 'GET';
@@ -196,17 +196,17 @@ class Http {
 		// if status okay process upload using fauxReq to api:
 		if( $status->isOK() ){
 			// setup the FauxRequest
-			$fauxReqData = $sd['mParams'];		
-				
+			$fauxReqData = $sd['mParams'];
+
 			// Fix boolean parameters
 			foreach( $fauxReqData as $k => $v ) {
 				if( $v === false )
 					unset( $fauxReqData[$k] );
 			}
-			
+
 			$fauxReqData['action'] = 'upload';
 			$fauxReqData['format'] = 'json';
-			$fauxReqData['internalhttpsession'] = $upload_session_key;			
+			$fauxReqData['internalhttpsession'] = $upload_session_key;
 			// evil but no other clean way about it:
 			$faxReq = new FauxRequest( $fauxReqData, true );
 			$processor = new ApiMain( $faxReq, $wgEnableWriteAPI );
@@ -347,9 +347,9 @@ class HttpRequest {
 
 		// set the write back function (if we are writing to a file)
 		if( $this->target_file_path ){
-			$cwrite = new simpleFileWriter( $this->target_file_path, 
-				$this->upload_session_key, 
-				$this->do_close_session_update 
+			$cwrite = new simpleFileWriter( $this->target_file_path,
+				$this->upload_session_key,
+				$this->do_close_session_update
 			);
 			if( !$cwrite->status->isOK() ){
 				wfDebug( __METHOD__ . "ERROR in setting up simpleFileWriter\n" );
@@ -508,7 +508,7 @@ class simpleFileWriter {
 		$this->target_file_path = $target_file_path;
 		$this->upload_session_key = $upload_session_key;
 		$this->status = Status::newGood();
-		$this->do_close_session_update = $do_close_session_update;		
+		$this->do_close_session_update = $do_close_session_update;
 		// open the file:
 		$this->fp = fopen( $this->target_file_path, 'w' );
 		if( $this->fp === false ){
