@@ -292,8 +292,10 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 		this.doControlBindings();
 	},
 	getEditForm:function(){
-		js_log('get form: action=' + $j(this.selector).parents().find("form").attr('action'));
-		return $j(this.selector).parents().find("form").get(0);
+		if( this.target_edit_from )
+			return this.pe_getEditForm();
+		//else try to get the parent "from" of the file selector:  
+		return $j(this.selector).parents('form:first').get(0);
 	},   
 	selectFogg:function(){			
 		var _this = this;
@@ -413,7 +415,7 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 	},	
 	doUploadSwitch:function(){				
 		var _this = this;
-		js_log("firefogg: doUploadSwitch:: " + this.fogg_enabled);
+		js_log("firefogg: doUploadSwitch:: " + this.fogg_enabled + ' up mode:' +  _this.upload_mode);
 		//make sure firefogg is enabled otherwise do parent UploadSwich:		
 		if( !this.fogg_enabled || !this.firefogg_form_action )
 			return _this.pe_doUploadSwitch();
@@ -429,9 +431,9 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 	},
 	//doChunkUpload does both uploading and encoding at the same time and uploads one meg chunks as they are ready
 	doChunkUpload : function(){
+		js_log('doChunkUpload::');
 		var _this = this;			
-		_this.action_done = false;			
-		
+		_this.action_done = false;					
 		//extension should already be ogg but since its user editable,
 		//check again
 		//we are transcoding so we know it will be an ogg
@@ -449,17 +451,17 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 		
 		//build the api url: 
 		var aReq ={
-			'action'	: 'upload',
-			'format'	: 'json',
-			'filename'	: _this.formData['wpDestFile'],
-			'comment'	: _this.formData['wpUploadDescription'],
-			'enablechunks': true
+			'action'		: 'upload',
+			'format'		: 'json',
+			'filename'		: _this.formData['wpDestFile'],
+			'comment'		: _this.formData['wpUploadDescription'],
+			'enablechunks'	: 'true'
 		};
 		//check for editToken:
 		if(!this.etoken)
 			this.etoken = _this.formData['wpEditToken'];
 			
-		if(this.etoken)
+		if( this.etoken )
 			aReq['token'] = this.etoken;
 		
 		if( _this.formData['wpWatchthis'] )
@@ -634,7 +636,7 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 		var sstring = 'var wgTitle = "' + this.formData['wpDestFile'].replace('_',' ');		
 		
 		if(wgArticlePath){
-			var result_txt = gM('mv_upload_done', wgArticlePath.replace(/\$1/, 'File:' + this.formData['wpDestFile'] ) );
+			var result_txt = gM('mv_upload_done', wgArticlePath.replace(/\$1/, 'File:' + _this.formData['wpDestFile'] ) );
 		}else{
 			result_txt = 'File has uploaded but api "done" url was provided. Check the log for result page output';
 		}		
@@ -646,7 +648,7 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 			js_log( 'upload done got redirect found: ' + sstring + ' r:' + _this.upload_done_action );										
 			if( _this.upload_done_action == 'redirect' ){
 				$j( '#dlbox-centered' ).html( '<h3>Upload Completed:</h3>' + result_txt + '<br>' + form_txt);
-				window.location = wgArticlePath.replace( /\$1/, 'File:' + formData['wpDestFile'] );
+				window.location = wgArticlePath.replace( /\$1/, 'File:' + _this.formData['wpDestFile'] );
 			}else{
 				//check if the add_done_action is a callback:
 				if( typeof _this.upload_done_action == 'function' )

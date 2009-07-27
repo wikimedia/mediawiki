@@ -160,7 +160,7 @@ mvEmbed = {
 		//ie8 does not play well with the jQuery video,audio,playlist selector use native: 
 		if($j.browser.msie && $j.browser.version >= 8){
 			jtags = j_selector.split(',');				
-			for(var i=0;i<jtags.length;i++){				
+			for( var i=0; i < jtags.length; i++){				
 				$j( document.getElementsByTagName( jtags[i] )).each(function(){
 					eAction(this);
 				});
@@ -2094,12 +2094,11 @@ embedVideo.prototype = {
 				return false;
 			});
 		});
-	},
-	/*download list is too complicated ... rewrite for clarity: */
+	},	
 	showVideoDownload:function(){		
 		//load the roe if available (to populate out download options:
 		//js_log('f:showVideoDownload '+ this.roe + ' ' + this.media_element.addedROEData);
-		if(this.roe && this.media_element.addedROEData==false){
+		if(this.roe && this.media_element.addedROEData == false){
 			var _this = this;
 			this.displayHTML(gM('loading_txt'));
 			do_request(this.roe, function(data)
