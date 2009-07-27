@@ -471,8 +471,7 @@ class UploadBase {
 			'mFileSize'       => $this->mFileSize,
 			'mFileProps'      => $this->mFileProps,
 			'version'         => self::SESSION_VERSION,
-		);
-		session_write_close();
+		);		
 		return $key;
 	}
 
