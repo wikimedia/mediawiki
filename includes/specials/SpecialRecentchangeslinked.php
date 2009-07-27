@@ -168,7 +168,7 @@ class SpecialRecentchangeslinked extends SpecialRecentchanges {
 	}
 	
 	function getExtraOptions( $opts ){
-		$opts->consumeValues( array( 'showlinkedto', 'target' ) );
+		$opts->consumeValues( array( 'showlinkedto', 'target', 'tagfilter' ) );
 		$extraOpts = array();
 		$extraOpts['namespace'] = $this->namespaceFilterForm( $opts );
 		$extraOpts['target'] = array( wfMsgHtml( 'recentchangeslinked-page' ),

@@ -165,6 +165,7 @@ class SpecialNewpages extends SpecialPage {
 		$this->opts->consumeValue( 'offset' ); // don't carry offset, DWIW
 		$namespace = $this->opts->consumeValue( 'namespace' );
 		$username = $this->opts->consumeValue( 'username' );
+		$tagFilterVal = $this->opts->consumeValue( 'tagfilter' );
 
 		// Check username input validity
 		$ut = Title::makeTitleSafe( NS_USER, $username );
@@ -177,7 +178,7 @@ class SpecialNewpages extends SpecialPage {
 		}
 		$hidden = implode( "\n", $hidden );
 
-		$tagFilter = ChangeTags::buildTagFilterSelector( $this->opts['tagfilter'] );
+		$tagFilter = ChangeTags::buildTagFilterSelector( $tagFilterVal );
 		if ($tagFilter)
 			list( $tagFilterLabel, $tagFilterSelector ) = $tagFilter;
 
