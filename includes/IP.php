@@ -133,11 +133,20 @@ class IP {
 		// Remove any whitespaces, convert to upper case
 		$ip = strtoupper( $ip );
 		// Expand zero abbreviations
-		if ( strpos( $ip, '::' ) !== false ) {
-    		$ip = str_replace('::', str_repeat(':0', 8 - substr_count($ip, ':')) . ':', $ip);
+		$abbrevPos = strpos( $ip, '::' );
+		if ( $abbrevPos !== false ) {
+			// If the '::' is at the beginning...
+			if( $abbrevPos == 0 ) {
+				$repeat = '0:'; $extra = ''; $pad = 9; // 7+2 (due to '::')
+			// If the '::' is at the end...
+			} else if( $abbrevPos == (strlen($ip)-2) ) {
+				$repeat = ':0'; $extra = ''; $pad = 9; // 7+2 (due to '::')
+			// If the '::' is at the end...
+			} else {
+				$repeat = ':0'; $extra = ':'; $pad = 8; // 6+2 (due to '::')
+			}
+    		$ip = str_replace('::', str_repeat($repeat, $pad-substr_count($ip,':')).$extra, $ip);
     	}
-    	// For IPs that start with "::", correct the final IP so that it starts with '0' and not ':'
-    	if ( $ip[0] == ':' ) $ip = "0$ip";
     	// Remove leading zereos from each bloc as needed
     	$ip = preg_replace( '/(^|:)0+' . RE_IPV6_WORD . '/', '$1$2', $ip );
     	return $ip;
