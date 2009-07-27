@@ -1,5 +1,4 @@
 <?php
-
 /*
  * Created on Aug 21, 2008
  * API for MediaWiki 1.8+
