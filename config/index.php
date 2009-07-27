@@ -1932,8 +1932,8 @@ if ( \$wgCommandLineMode ) {
 {$dbsettings}
 
 ## Database admin settings, used for maintenance scripts
-\$wgDBadminuser     = \"{$slconf['DBadminuser']}\";
-\$wgDBadminpassword = \"{$slconf['DBadminpassword']}\";
+\$wgDBadminuser     = \"". ($conf->populateadmin ? $slconf['DBadminuser'] : '' )."\";
+\$wgDBadminpassword     = \"". ($conf->populateadmin ? $slconf['DBadminpassword'] : '' )."\";
 
 ## Shared memory settings
 \$wgMainCacheType = $cacheType;
