@@ -89,7 +89,6 @@ var mwUploadHelper = {
 	},   
 	/**
 	 * doDestCheck checks the destination
-	 * @@todo we should be able to configure its "targets" via parent config
 	 */
 	doDestCheck:function(){		
 		var _this = this;
@@ -135,7 +134,7 @@ var mwUploadHelper = {
 											'<div class="magnify">' +
 												'<a title="' + gM('thumbnail-more') + '" class="internal" ' +
 													'href="' + img.descriptionurl +'"><img width="15" height="11" alt="" ' +
-													'src="' + stylepath +"/>" +
+													'src="' + stylepath + "/common/images/magnify-clip.png\" />" +
 												'</a>'+
 											'</div>'+
 											gM('fileexists-thumb') +
@@ -151,7 +150,6 @@ var mwUploadHelper = {
 	},
 	/**
 	 * doDestinationFill fills in a destination file-name based on a source asset name. 
-	 * @@todo we should be able to configure its "targets" via parent config
 	 */
 	doDestinationFill:function( targetElm ){
 		js_log("doDestinationFill")
