@@ -18,16 +18,24 @@ define( 'RE_IPV6_GAP', ':(?:0+:)*(?::(?:0+:)*)?' );
 define( 'RE_IPV6_V4_PREFIX', '0*' . RE_IPV6_GAP . '(?:ffff:)?' );
 // An IPv6 block is an IP address and a prefix (d1 to d128)
 define( 'RE_IPV6_PREFIX', '(12[0-8]|1[01][0-9]|[1-9]?\d)');
-// An IPv6 IP is made up of 8 octets. However abbreviations like "::" can be used. This is lax!
-define( 'RE_IPV6_ADD', '(:(:' . RE_IPV6_WORD . '){1,7}|' . RE_IPV6_WORD . '(:{1,2}' . RE_IPV6_WORD . '|::$){1,7})' );
+// An IPv6 IP is made up of 8 octets. However abbreviations like "::" can be used.
+// This is lax! Number of octets/double colons validation not done.
+define( 'RE_IPV6_ADD',
+	'(' .
+		':(:' . RE_IPV6_WORD . '){1,7}' . // IPs that start with ":"
+	'|' .
+		RE_IPV6_WORD . '(:{1,2}' . RE_IPV6_WORD . '|::$){1,7}' . // IPs that don't start with ":"
+	')'
+);
 define( 'RE_IPV6_BLOCK', RE_IPV6_ADD . '\/' . RE_IPV6_PREFIX );
 // This might be useful for regexps used elsewhere, matches any IPv6 or IPv6 address or network
 define( 'IP_ADDRESS_STRING',
 	'(?:' .
-		RE_IP_ADD . '(\/' . RE_IP_PREFIX . '|)' .
+		RE_IP_ADD . '(\/' . RE_IP_PREFIX . '|)' . // IPv4
 	'|' .
-		RE_IPV6_ADD . '(\/' . RE_IPV6_PREFIX . '|)' .
-	')' );
+		RE_IPV6_ADD . '(\/' . RE_IPV6_PREFIX . '|)' . // IPv6
+	')'
+);
 
 /**
  * A collection of public static functions to play with IP address
@@ -52,10 +60,12 @@ class IP {
 	public static function isIPv6( $ip ) {
 		if ( !$ip ) return false;
 		if( is_array( $ip ) ) {
-		  throw new MWException( "invalid value passed to " . __METHOD__ );
+			throw new MWException( "invalid value passed to " . __METHOD__ );
 		}
+		$doubleColons = substr_count($ip, '::');
 		// IPv6 IPs with two "::" strings are ambiguous and thus invalid
-		return preg_match( '/^' . RE_IPV6_ADD . '(\/' . RE_IPV6_PREFIX . '|)$/', $ip) && ( substr_count($ip, '::') < 2);
+		return preg_match( '/^' . RE_IPV6_ADD . '(\/' . RE_IPV6_PREFIX . '|)$/', $ip)
+			&& ( $doubleColons == 1 || substr_count($ip,':') == 7 );
 	}
 
 	public static function isIPv4( $ip ) {
