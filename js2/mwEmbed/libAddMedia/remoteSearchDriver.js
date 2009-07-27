@@ -1380,12 +1380,12 @@ remoteSearchDriver.prototype = {
 						//not sure if we can do remote url uploads (so just do a local post)
 						js_log('got token for new page:' +editToken);										
 						var postVars = {
-							'wpSourceType'		:'web',
-							'wpUploadFileURL'	 : rObj.src,
-							'wpDestFile'		  : rObj.target_resource_title,
-							'wpUploadDescription' : $j('#rsd_import_ta').val(),
-							'wpWatchthis'		 : $j('#wpWatchthis').val(),	
-							'wpUpload'			: 'Upload file'																																								
+							'wpSourceType'			:'web',
+							'wpUploadFileURL'	 	: rObj.src,
+							'wpDestFile'		  	: rObj.target_resource_title,
+							'wpUploadDescription' 	: $j('#rsd_import_ta').val(),
+							'wpWatchthis'		 	: $j('#wpWatchthis').val(),	
+							'wpUpload'				: 'Upload file'																																								
 						}
 						//set to uploading:																							
 						$j('#rsd_resource_import').append('<div id="rsd_import_progress"'+									
