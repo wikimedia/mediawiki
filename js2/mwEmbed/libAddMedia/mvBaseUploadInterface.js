@@ -194,9 +194,11 @@ mvBaseUploadInterface.prototype = {
 			var httpUpConf ={
 			    'url'		: $j('#wpUploadFileURL').val(),
 			    'filename'	: $j('#wpDestFile').val(),
-			    'comment' 	: $j('#wpUploadDescription').val(),
-				'ignorewarnings' : 	($j('#wpIgnoreWarning').is(':checked')) ?'true':'false' ,
+			    'comment' 	: $j('#wpUploadDescription').val(),				
 				'watch'		:  ($j('#wpWatchthis').is(':checked'))?'true':'false'    				    
+			}
+			if( $j('#wpIgnoreWarning').is(':checked') ){
+				httpUpConf[ 'ignorewarnings'] =  'true';
 			}
 			//check for editToken
 			_this.etoken = $j("input[name='wpEditToken']").val();						
@@ -459,8 +461,13 @@ mvBaseUploadInterface.prototype = {
 			 	_this.warnings_sessionkey = apiRes.upload.warnings.sessionkey;
 			var bObj = {};
 			bObj[ gM('ignorewarning') ] =  	function() { 
-											 js_error('todo: ignore warnings action '); 
-											};
+				//re-inciate the upload proccess
+				$j('#wpIgnoreWarning').attr('checked', true);
+				$j( '#mw-upload-form' ).submit();											  
+			};
+			bObj[ gM('return-to-form') ] = function(){
+				$j(this).dialog('close');
+			}
 			_this.updateProgressWin(  gM('uploadwarning'),  '<h3>' + gM('uploadwarning') + '</h3>' +wmsg + '<p>',bObj);
 			return false;
 		}							

@@ -72,8 +72,9 @@ class ApiUpload extends ApiBase {
 				$this->dieUsageMsg( $this->mUpload->status['error'] );
 
 		} else if( $this->mParams['internalhttpsession'] ){
-			$sd = & $_SESSION['wsDownload'][$this->mParams['internalhttpsession']];
+			$sd = & $_SESSION['wsDownload'][ $this->mParams['internalhttpsession'] ];
 
+			wfDebug("InternalHTTP:: " . print_r($this->mParams, true));
 			// get the params from the init session:
 			$this->mUpload = new UploadFromFile();
 
@@ -273,8 +274,6 @@ class ApiUpload extends ApiBase {
 		$result['imageinfo'] = ApiQueryImageInfo::getInfo( $file,
 			array_flip( $imProp ),
 			$this->getResult() );
-
-		wfDebug( "\n\n return result: " . print_r( $result, true ) );
 
 		return $result;
 	}

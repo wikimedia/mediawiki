@@ -286,7 +286,7 @@ class HttpRequest {
 		$this->target_file_path = ( isset( $opt['target_file_path'] ) ) ? $opt['target_file_path'] : false;
 		$this->upload_session_key = ( isset( $opt['upload_session_key'] ) ) ? $opt['upload_session_key'] : false;
 		$this->headers_only = ( isset( $opt['headers_only'] ) ) ? $opt['headers_only'] : false;
-		$this->do_close_session_update = ( isset( $opt['do_close_session_update'] ) ) ? $opt['do_close_session_update'] : false;
+		$this->do_close_session_update = ( isset( $opt['do_close_session_update'] ) ) ? true : false;
 	}
 
 	/**
@@ -461,7 +461,7 @@ class HttpRequest {
 
 		// set the write back function (if we are writing to a file)
 		if( $this->target_file_path ){
-			$cwrite = new simpleFileWriter( $this->target_file_path, $this->upload_session_key );
+			$cwrite = new simpleFileWriter( $this->target_file_path, $this->upload_session_key, $this->do_close_session_update );
 			if( !$cwrite->status->isOK() ){
 				wfDebug( __METHOD__ . "ERROR in setting up simpleFileWriter\n" );
 				$status = $cwrite->status;
@@ -540,15 +540,15 @@ class simpleFileWriter {
 		}
 
 		// if more than session_update_interval second have passed update_session_progress
-		if( $this->do_close_session_update &&
-			$this->upload_session_key && ( ( time() - $this->prevTime ) > $this->session_update_interval ) ) {
-			$this->prevTime = time();
-			$session_status = $this->update_session_progress();
-			if( !$session_status->isOK() ){
-				$this->status = $session_status;
-				wfDebug( __METHOD__ . ' update session failed or was canceled');
-				return 0;
-			}
+		if( $this->do_close_session_update && $this->upload_session_key &&
+			( ( time() - $this->prevTime ) > $this->session_update_interval ) ) {
+				$this->prevTime = time();
+				$session_status = $this->update_session_progress();
+				if( !$session_status->isOK() ){
+					$this->status = $session_status;
+					wfDebug( __METHOD__ . ' update session failed or was canceled');
+					return 0;
+				}
 		}
 		return strlen( $data_packet );
 	}
