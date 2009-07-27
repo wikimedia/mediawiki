@@ -63,8 +63,9 @@ class AuthPlugin {
 	 * Modify options in the login template.
 	 *
 	 * @param $template UserLoginTemplate object.
+	 * @param $type String 'signup' or 'login'.
 	 */
-	public function modifyUITemplate( &$template ) {
+	public function modifyUITemplate( &$template, &$type ) {
 		# Override this!
 		$template->set( 'usedomain', false );
 	}

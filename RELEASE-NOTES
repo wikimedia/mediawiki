@@ -163,6 +163,7 @@ this. Was used when mwEmbed was going to be an extension.
 * (bug 471) Allow RSS feeds for watchlist, using an opt-in security token
 * (bug 10812) Interwiki links can have names and descriptions, fetched from 
   message 'interwiki-desc-PREFIX', not really used anywhere yet though
+* (bug 9691) Add type (signup or login) parameter to AuthPlugin::ModifyUITemplate()
 
 === Bug fixes in 1.16 ===
 
