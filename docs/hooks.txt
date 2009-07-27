@@ -1017,6 +1017,13 @@ Useful for updating caches.
 $title: name of the page changed.
 $text: new contents of the page.
 
+'ModifyExportQuery': Modify the query used by the exporter.
+$db: The database object to be queried.
+&$tables: Tables in the query.
+&$conds: Conditions in the query.
+&$opts: Options for the query.
+&$join_conds: Join conditions for the query.
+
 'MonoBookTemplateToolboxEnd': Called by Monobook skin after toolbox links have
 been rendered (useful for adding more)
 Note: this is only run for the Monobook skin.  To add items to the toolbox
@@ -1633,6 +1640,20 @@ One, and only one hook should set this, and return false.
 'wgQueryPages': called when initialising $wgQueryPages, use this to add new
 query pages to be updated with maintenance/updateSpecialPages.php
 $query: $wgQueryPages itself
+
+'XmlDumpWriterOpenPage': Called at the end of XmlDumpWriter::openPage, to allow extra
+ metadata to be added.
+$obj: The XmlDumpWriter object.
+&$out: The output string.
+$row: The database row for the page.
+$title: The title of the page.
+
+'XmlDumpWriterWriteRevision': Called at the end of a revision in an XML dump, to add extra
+ metadata.
+$obj: The XmlDumpWriter object.
+&$out: The text being output.
+$row: The database row for the revision.
+$text: The revision text.
 
 More hooks might be available but undocumented, you can execute
 ./maintenance/findhooks.php to find hidden one.
