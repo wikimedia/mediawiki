@@ -194,7 +194,9 @@ mvBaseUploadInterface.prototype = {
 			var httpUpConf ={
 			    'url'		: $j('#wpUploadFileURL').val(),
 			    'filename'	: $j('#wpDestFile').val(),
-			    'comment' 	: $j('#wpUploadDescription').val()			    
+			    'comment' 	: $j('#wpUploadDescription').val(),
+				'ignorewarnings' : 	($j('#wpIgnoreWarning').is(':checked')) ?'true':'false' ,
+				'watch'		:  ($j('#wpWatchthis').is(':checked'))?'true':'false'    				    
 			}
 			//check for editToken
 			_this.etoken = $j("input[name='wpEditToken']").val();						
@@ -222,11 +224,12 @@ mvBaseUploadInterface.prototype = {
 			
 		//else try and get a token:
 		if(!_this.etoken  && _this.api_url){
-			js_log('Error:doHttpUpload: missing token');
-			
+			js_log('Error:doHttpUpload: missing token');			
 		}else{					
 			req['token'] =_this.etoken;
 		}				
+		//reset the done with action flag:
+		_this.action_done = false;
 		//do the api req		
 		do_api_req({
 			'data': req,
@@ -458,7 +461,7 @@ mvBaseUploadInterface.prototype = {
 			bObj[ gM('ignorewarning') ] =  	function() { 
 											 js_error('todo: ignore warnings action '); 
 											};
-			_this.updateProgressWin(  gM('uploadwarning'),  '<h3>' + gM('uploadwarning') + '</h3>' +msg + '<p>',bObj);
+			_this.updateProgressWin(  gM('uploadwarning'),  '<h3>' + gM('uploadwarning') + '</h3>' +wmsg + '<p>',bObj);
 			return false;
 		}							
 		//should be "OK"		
@@ -487,16 +490,20 @@ mvBaseUploadInterface.prototype = {
 			if( apiRes.upload.imageinfo &&  apiRes.upload.imageinfo.descriptionurl ){	
 				var url = apiRes.upload.imageinfo.descriptionurl;
 				//check done action: 
-				if(_this.done_upload_cb){
+				if( _this.done_upload_cb && typeof _this.done_upload_cb == 'function'){
 					//close up shop: 
 					$j('#upProgressDialog').dialog('close');	
 					//call the callback: 			
 					_this.done_upload_cb( url );
 				}else{		   
 					var bObj = {};
+					bObj[ gM('return-to-form')] = function(){
+						$j(this).dialog('close');
+					}
 					bObj[ gM('go-to-resource') ] = function(){
 							window.location = url;
-					};
+					};					
+					_this.action_done = true;
 					_this.updateProgressWin( gM('successfulupload'),  gM( 'mv_upload_done', url), bObj);
 					js_log('apiRes.upload.imageinfo::'+url);
 				}
@@ -592,10 +599,9 @@ mvBaseUploadInterface.prototype = {
 	},	
 	cancel_action:function(dlElm){
 		//confirm:	
-		if( confirm( gM('mv-cancel-confim') )){
-			alert("do dialog close:: cancel_action mvbase");
+		if( confirm( gM('mv-cancel-confim') )){			
 			//@@todo (cancel the encode / upload)
-			$j(dlElm).dialog('close');
+			$j(this).dialog('close');
 			return false;			
 		}else{
 			return true;
