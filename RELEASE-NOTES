@@ -340,6 +340,7 @@ this. Was used when mwEmbed was going to be an extension.
   database with username/password in MediaWiki's setup
 * (bugs 18407, 18409) Special:Upload is now listed on Special:Specialpages only
   if uploads are enabled and the user can access it
+* (bug 17988) Spaces before [[Category:]] links are no longer ignored
 
 == API changes in 1.16 ==
 
