@@ -173,7 +173,8 @@ class Http {
 		$req = new HttpRequest( $sd['url'], array(
 			'target_file_path'  => $sd['target_file_path'],
 			'upload_session_key'=> $upload_session_key,
-			'timeout'           => $wgAsyncHTTPTimeout
+			'timeout'           => $wgAsyncHTTPTimeout,
+			'do_close_session_update' => true
 		) );
 		// run the actual request .. (this can take some time)
 		wfDebug( __METHOD__ . 'do Request: ' . $sd['url'] . ' tf: ' . $sd['target_file_path'] );
@@ -285,6 +286,7 @@ class HttpRequest {
 		$this->target_file_path = ( isset( $opt['target_file_path'] ) ) ? $opt['target_file_path'] : false;
 		$this->upload_session_key = ( isset( $opt['upload_session_key'] ) ) ? $opt['upload_session_key'] : false;
 		$this->headers_only = ( isset( $opt['headers_only'] ) ) ? $opt['headers_only'] : false;
+		$this->do_close_session_update = ( isset( $opt['do_close_session_update'] ) ) ? $opt['do_close_session_update'] : false;
 	}
 
 	/**
@@ -345,7 +347,10 @@ class HttpRequest {
 
 		// set the write back function (if we are writing to a file)
 		if( $this->target_file_path ){
-			$cwrite = new simpleFileWriter( $this->target_file_path, $this->upload_session_key );
+			$cwrite = new simpleFileWriter( $this->target_file_path, 
+				$this->upload_session_key, 
+				$this->do_close_session_update 
+			);
 			if( !$cwrite->status->isOK() ){
 				wfDebug( __METHOD__ . "ERROR in setting up simpleFileWriter\n" );
 				$status = $cwrite->status;
@@ -499,10 +504,11 @@ class simpleFileWriter {
 	var $session_id = null;
 	var $session_update_interval = 0; // how often to update the session while downloading
 
-	function simpleFileWriter( $target_file_path, $upload_session_key ){
+	function simpleFileWriter( $target_file_path, $upload_session_key, $do_close_session_update = false ){
 		$this->target_file_path = $target_file_path;
 		$this->upload_session_key = $upload_session_key;
 		$this->status = Status::newGood();
+		$this->do_close_session_update = $do_close_session_update;		
 		// open the file:
 		$this->fp = fopen( $this->target_file_path, 'w' );
 		if( $this->fp === false ){
@@ -534,7 +540,8 @@ class simpleFileWriter {
 		}
 
 		// if more than session_update_interval second have passed update_session_progress
-		if( $this->upload_session_key && ( ( time() - $this->prevTime ) > $this->session_update_interval ) ) {
+		if( $this->do_close_session_update &&
+			$this->upload_session_key && ( ( time() - $this->prevTime ) > $this->session_update_interval ) ) {
 			$this->prevTime = time();
 			$session_status = $this->update_session_progress();
 			if( !$session_status->isOK() ){
