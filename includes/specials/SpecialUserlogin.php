@@ -931,7 +931,7 @@ class LoginForm {
 		}
 
 		// Give authentication and captcha plugins a chance to modify the form
-		$wgAuth->modifyUITemplate( $template );
+		$wgAuth->modifyUITemplate( $template, $this->mType );
 		if ( $this->mType == 'signup' ) {
 			wfRunHooks( 'UserCreateForm', array( &$template ) );
 		} else {
