@@ -195,11 +195,17 @@ class Http {
 		// if status okay process upload using fauxReq to api:
 		if( $status->isOK() ){
 			// setup the FauxRequest
-			$fauxReqData = $sd['mParams'];
+			$fauxReqData = $sd['mParams'];		
+				
+			// Fix boolean parameters
+			foreach( $fauxReqData as $k => $v ) {
+				if( $v === false )
+					unset( $fauxReqData[$k] );
+			}
+			
 			$fauxReqData['action'] = 'upload';
 			$fauxReqData['format'] = 'json';
-			$fauxReqData['internalhttpsession'] = $upload_session_key;
-
+			$fauxReqData['internalhttpsession'] = $upload_session_key;			
 			// evil but no other clean way about it:
 			$faxReq = new FauxRequest( $fauxReqData, true );
 			$processor = new ApiMain( $faxReq, $wgEnableWriteAPI );
