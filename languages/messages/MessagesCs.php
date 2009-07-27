@@ -1293,6 +1293,7 @@ Pokud na začátek dotazu přidáte ''all:'', bude se hledat všude (včetně di
 'prefs-watchlist-days-max'      => '(maximálně 7 dní)',
 'prefs-watchlist-edits'         => 'Počet editací zobrazených na zdokonalených sledovaných stránkách:',
 'prefs-watchlist-edits-max'     => '(maximum: 1000)',
+'prefs-watchlist-token'         => 'Klíč k seznamu sledovaných stránek',
 'prefs-misc'                    => 'Různé',
 'prefs-resetpass'               => 'Změnit heslo',
 'prefs-email'                   => 'Nastavení e-mailu',
@@ -1313,6 +1314,9 @@ Pokud na začátek dotazu přidáte ''all:'', bude se hledat všude (včetně di
 'recentchangesdays-max'         => '(maximálně $1 {{PLURAL:$1|den|dny|dní}})',
 'recentchangescount'            => 'Počet implicitně zobrazovaných záznamů:',
 'prefs-help-recentchangescount' => 'Týká se posledních změn, historie stránek a protokolovacích záznamů.',
+'prefs-help-watchlist-token'    => 'Pokud do tohoto pole vyplníte tajný klíč, bude vytvořen RSS kanál vašich sledovaných stránek.
+Kdokoli, kdo bude tento klíč znát, pak bude moci váš seznam sledovaných stránek číst, takže dbejte na bezpečnost.
+Můžete použít tuto náhodně vygenerovanou hodnotu: $1',
 'savedprefs'                    => 'Vaše nastavení bylo uloženo.',
 'timezonelegend'                => 'Časové pásmo:',
 'localtime'                     => 'Místní čas:',

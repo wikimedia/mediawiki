@@ -8,6 +8,7 @@
  * @file
  *
  * @author Arastein
+ * @author Asoxor
  */
 
 $fallback = 'ckb-arab';
@@ -34,7 +35,7 @@ $messages = array(
 # Categories related messages
 'hidden-category-category' => 'هاوپۆلە شاردراوەکان',
 
-'talkpagelinktext' => 'وتە',
+'talkpagelinktext' => 'قسە',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite' => 'دەربارەی {{SITENAME}}',

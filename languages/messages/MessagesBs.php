@@ -1276,6 +1276,7 @@ Pokušajte u Vaš upit uključiti prefiks ''all:'' da bi ste pretražili sav sad
 'prefs-watchlist-days-max'      => '(najviše 7 dana)',
 'prefs-watchlist-edits'         => 'Najveći broj izmjena za prikaz u proširenom spisku praćenja:',
 'prefs-watchlist-edits-max'     => '(najveći broj: 1000)',
+'prefs-watchlist-token'         => 'Token spiska za praćenje',
 'prefs-misc'                    => 'Ostala podešavanja',
 'prefs-resetpass'               => 'Promijeni šifru',
 'prefs-email'                   => 'E-mail opcije',
@@ -1296,6 +1297,9 @@ Pokušajte u Vaš upit uključiti prefiks ''all:'' da bi ste pretražili sav sad
 'recentchangesdays-max'         => '(najviše $1 {{PLURAL:$1|dan|dana}})',
 'recentchangescount'            => 'Broj uređivanja za prikaz po pretpostavkama:',
 'prefs-help-recentchangescount' => 'Ovo uključuje nedavne izmjene, historije stranice i zapise.',
+'prefs-help-watchlist-token'    => 'Popunjavanjem ovog polja tajnim ključem će generisati RSS fid za Vaš spisak praćenja.
+Svako ko zna ključ u ovom polju će biti u mogućnosti da pročita Vaš spisak praćenja, tako da trebate izabrati sigurnu vrijednost.
+Ovdje su navedene neke nasumično odabrane vrijednosti koje možete koristiti: $1',
 'savedprefs'                    => 'Vaša podešavanja su sačuvana.',
 'timezonelegend'                => 'Vremenska zona:',
 'localtime'                     => 'Lokalno vrijeme:',

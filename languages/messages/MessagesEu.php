@@ -278,11 +278,16 @@ $messages = array(
 'vector-action-protect'     => 'Babestu',
 'vector-namespace-category' => 'Kategoria',
 'vector-namespace-help'     => 'Laguntza-orria',
+'vector-namespace-main'     => 'Orrialde',
+'vector-namespace-project'  => 'Proiektu-orrialde',
+'vector-namespace-special'  => 'Orrialde berezia',
 'vector-namespace-talk'     => 'Eztabaida',
+'vector-namespace-template' => 'Txantiloi',
 'vector-namespace-user'     => 'Erabiltzaile-orria',
 'vector-view-create'        => 'Sortu',
 'vector-view-edit'          => 'Aldatu',
 'vector-view-view'          => 'Irakurri',
+'actions'                   => 'Ekintzak',
 
 # Metadata in edit box
 'metadata_help' => 'Metadatuak:',
@@ -1133,6 +1138,7 @@ Gainera beste lankideek zurekin kontakta dezakete zure lankide edo lankide_eztab
 'prefs-advancedrendering'     => 'Aukera aurreratuak',
 'prefs-advancedsearchoptions' => 'Aukera aurreratuak',
 'prefs-advancedwatchlist'     => 'Aukera aurreratuak',
+'prefs-diffs'                 => 'Ezberdintasunak',
 
 # User rights
 'userrights'                  => 'Erabiltzaile baimenen kudeaketa',
@@ -2214,13 +2220,14 @@ Horrez gain, lotura zuzena ere erabil dezakezu; adibidez, [[{{#Special:Export}}/
 'export-pagelinks'  => 'Sartu lotutako orriak honako sakoneran:',
 
 # Namespace 8 related
-'allmessages'               => 'Sistemako mezu guztiak',
-'allmessagesname'           => 'Izena',
-'allmessagesdefault'        => 'Testu lehenetsia',
-'allmessagescurrent'        => 'Oraingo testua',
-'allmessagestext'           => 'MediaWikin erabiltzen diren mezu guztien zerrenda.
+'allmessages'                 => 'Sistemako mezu guztiak',
+'allmessagesname'             => 'Izena',
+'allmessagesdefault'          => 'Testu lehenetsia',
+'allmessagescurrent'          => 'Oraingo testua',
+'allmessagestext'             => 'MediaWikin erabiltzen diren mezu guztien zerrenda.
 Mesedez bisitatu [http://www.mediawiki.org/wiki/Localisation MediaWiki] eta [http://translatewiki.net translatewiki.net] orrialdeak MediaWikira ekarpenak egin badituzu.',
-'allmessagesnotsupportedDB' => "Ezin da '''{{ns:special}}:Allmessages''' erabili '''\$wgUseDatabaseMessages''' ezgaituta dagoelako.",
+'allmessagesnotsupportedDB'   => "Ezin da '''{{ns:special}}:Allmessages''' erabili '''\$wgUseDatabaseMessages''' ezgaituta dagoelako.",
+'allmessages-filter-modified' => 'Aldatua',
 
 # Thumbnails
 'thumbnail-more'           => 'Handitu',

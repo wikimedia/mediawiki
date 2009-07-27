@@ -349,12 +349,12 @@ Quiste pò indicà 'nu bochere jndr'à 'u software.
 L'urteme tendative de inderrogazione sus a 'u database ha state:
 <blockquote><tt>\$1</tt></blockquote>
 cu 'a funzione \"<tt>\$2</tt>\".
-MySQL ha returnete l'errore \"<tt>\$3: \$4</tt>\".",
+\$5 ha returnate l'errore \"<tt>\$3: \$4</tt>\".",
 'dberrortextcl'        => 'A assute \'n\'errore de sindasse sus a \'n\'inderrogazione d\'u database.
 L\'urteme tendative de inderrogazione sus a \'u database ha state:
 "$1"
 ausanne \'a funzione "$2".
-MySQL ha returnete l\'errore "$3: $4"',
+$5 ha returnate l\'errore "$3: $4"',
 'laggedslavemode'      => "Attenzione: 'A pàgene no ge tène cangiaminde recente.",
 'readonly'             => 'Archivie blocchete',
 'enterlockreason'      => "Mitte 'na raggione p'u blocche, 'ncludenne 'na stime de quanne 'u blocche avène luate.",
@@ -1512,7 +1512,8 @@ Arrecuèrdete de condrollà pe otre collegaminde a le template apprime de scange
 
 'doubleredirects'            => 'Ridirezionaminde a doppie',
 'doubleredirectstext'        => "Sta pàgene elenghe le pàggene ca se ridirezionane sus a otre pàggene de ridirezionaminde.
-Ogne righe condiene 'nu collegamende a 'u prime e a 'u seconde ridirezionamendem pe fà vedè addò arrive 'u seconde ridirezionamende, 'u quale jè normalmende 'na pàgena de destinaziona \"rèale\", addò 'u prime ridirezionamende avesse appondà.",
+Ogne righe condene 'nu collegamende a 'u prime e a 'u seconde ridirezionamende pe fà vedè addò arrive 'u seconde ridirezionamende, 'u quale jè normalmende 'a pàgena de destinaziona \"rèale\", addò 'u prime ridirezionamende avesse appondà.
+Le situaziune de <s>ingrocie</s> onne state resolte.",
 'double-redirect-fixed-move' => "[[$1]] ha state spustate.
 Mò s'avène redirette a [[$2]].",
 'double-redirect-fixer'      => 'Correttore de redirezionaminde',
@@ -1974,6 +1975,14 @@ Mitte pure 'nu mutive specifiche aqquà sotte (pe esembije, nnomene 'a pàgene a
 'ipbexpiry'                    => 'More:',
 'ipbreason'                    => 'Mutive:',
 'ipbreasonotherlist'           => 'Otre mutive',
+'ipbreason-dropdown'           => "*Mutive comune de blocche
+** Inzerimende de 'mbormaziune fause
+** Scangellamende de condenute da le vôsce
+** Collegaminde pubblecetarie a site fore de Uicchipèdie
+** Inzerimende de studecarie jndr'à le vôsce
+** Menacce e intimidaziune
+** Abbuse de cunde utende multiple
+** Nome de l'utende inaccettabbele",
 'ipbanononly'                  => "Blocche sulamende l'utinde anonime",
 'ipbcreateaccount'             => 'No fà ccrejà le cunde utinde',
 'ipbemailban'                  => "No fà mannà email a l'utinde",
@@ -1996,6 +2005,7 @@ Vide [[Special:IPBlockList|'a liste de le IP bloccate]] pe revedè le blocche.",
 'ipb-blocklist'                => 'Vide le blocche ca esistene',
 'ipb-blocklist-contribs'       => 'Condrebbute pe $1',
 'unblockip'                    => "Sblocche l'utende",
+'unblockiptext'                => "Ause 'a maschera aqquà sotte pe repristinà l'accesse in scritture a le indirizze IP o a le cunde utinde ca apprime avèrene state bloccate.",
 'ipusubmit'                    => 'Live stu blocche',
 'unblocked'                    => '[[User:$1|$1]] ha state sblocchete',
 'unblocked-id'                 => 'Blocche $1 ha state luvete',

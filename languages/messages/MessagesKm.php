@@ -416,8 +416,15 @@ $messages = array(
 'vector-namespace-project'   => 'ទំព័រគម្រោង',
 'vector-namespace-special'   => 'ទំព័រពិសេស',
 'vector-namespace-talk'      => 'ការពិភាក្សា',
+'vector-namespace-template'  => 'គំរូ​',
+'vector-namespace-user'      => 'ទំព័រ​អ្នកប្រើប្រាស់​',
+'vector-view-create'         => 'បង្កើត​',
+'vector-view-edit'           => 'កែប្រែ​',
+'vector-view-history'        => 'មើល​ប្រវត្តិ​',
 'vector-view-view'           => 'អាន',
 'vector-view-viewsource'     => 'មើល​កូដ',
+'actions'                    => 'សកម្មភាព​',
+'namespaces'                 => 'លំហឈ្មោះ',
 
 # Metadata in edit box
 'metadata_help' => 'ទិន្នន័យមេតា៖',

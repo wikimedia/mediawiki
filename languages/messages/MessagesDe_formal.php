@@ -266,14 +266,17 @@ Wenn Sie sich mit dem Thema auskennen, können Sie selbst die [[:$1|die Seite ve
 'searchdisabled'        => 'Die {{SITENAME}} Suche wurde deaktiviert. Sie können unterdessen mit Google suchen. Bitte bedenken Sie, dass der Suchindex für {{SITENAME}} veraltet sein kann.',
 
 # Preferences page
-'prefsnologintext'          => 'Sie müssen <span class="plainlinks">[{{fullurl:{{#special:UserLogin}}|returnto=$1}} angemeldet]</span> sein, um Ihre Einstellungen ändern zu können.',
-'savedprefs'                => 'Ihre Einstellungen wurden gespeichert.',
-'prefs-reset-intro'         => 'Sie können diese Seite verwenden, um die Einstellungen auf die Standards zurückzusetzen.
+'prefsnologintext'           => 'Sie müssen <span class="plainlinks">[{{fullurl:{{#special:UserLogin}}|returnto=$1}} angemeldet]</span> sein, um Ihre Einstellungen ändern zu können.',
+'prefs-help-watchlist-token' => 'Das Ausfüllen dieses Feldes mit einem geheimen Schlüssel generiert einen RSS-Feed für Ihre Beobachtungsliste.
+Jeder, der diesen Schlüssel kennt, kann Ihre Beobachtungsliste einsehen. Wählen Sie also einen sicheren Wert.
+Hier ein zufällig generierter Wert, den Sie verwenden können: $1',
+'savedprefs'                 => 'Ihre Einstellungen wurden gespeichert.',
+'prefs-reset-intro'          => 'Sie können diese Seite verwenden, um die Einstellungen auf die Standards zurückzusetzen.
 Dies kann nicht mehr rückgängig gemacht werden.',
-'prefs-help-realname'       => 'Optional. Ihr echter Name wird Ihren Beiträgen zugeordnet.',
-'prefs-help-email'          => 'Die Angabe einer E-Mail ist optional, ermöglicht aber die Zusendung eines Ersatzpasswortes, wenn Sie Ihr Passwort vergessen haben.
+'prefs-help-realname'        => 'Optional. Ihr echter Name wird Ihren Beiträgen zugeordnet.',
+'prefs-help-email'           => 'Die Angabe einer E-Mail ist optional, ermöglicht aber die Zusendung eines Ersatzpasswortes, wenn Sie Ihr Passwort vergessen haben.
 Mit anderen Benutzer können Sie auch über die Benutzerdiskussionsseiten Kontakt aufnehmen, ohne dass Sie Ihre Identität offenlegen müssen.',
-'prefs-help-email-required' => 'Es wird eine gültige E-Mail-Adresse benötigt.',
+'prefs-help-email-required'  => 'Es wird eine gültige E-Mail-Adresse benötigt.',
 
 # User rights
 'userrights-groups-help'      => 'Sie können die Gruppenzugehörigkeit für diesen Benutzer ändern.

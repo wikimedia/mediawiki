@@ -228,15 +228,15 @@ $messages = array(
 'protectedpagetext' => 'Beyjkan wuu xiranyahay si aan war loogabadalin.',
 
 # Login and logout pages
-'logouttext'                 => "'''Hada waa aad ka baxday.'''
+'logouttext'                 => "'''Hada waad ka baxday.'''
 
-Waad sii isticmaali kartaa {{SITENAME}}han adoonlagu aqoon, ama gudaha ayaad gali kartaa markale adiga oo isticmaalaya gudagalkaagii hore ama mid kaduwan. OGEYSIIS waxaa lagayabaa beyjajka qaarkood in ay yiraahdaa wali gudaha ayaad kujirtaa, ilaa aad internet barowsarkaaaga aad nadiifiso.",
+Waad sii isticmaali kartaa {{SITENAME}}-han adoon lagu aqoon, ama gudaha ayaad [[Special:UserLogin|gali kartaa markale]] adiga oo isticmaalaya gudagalkaagii hore ama mid ka duwan. OGEYSIIS waxaa lagayabaa bogagga qaarkood in ay yiraahdaa wali gudaha ayaad ku jirtaa, ilaa aad Internet barowsarkaaaga ka nadiifiso.",
 'welcomecreation'            => "== Soo dhawoow, $1! ==
-
-Gudagalahaaga waa la sameeyey. Ha' hilmaamin in aad wax ka bedesho {{SITENAME}} dooqaaga.",
-'yourname'                   => 'Ereyga Gudagalka',
-'yourpassword'               => 'Ereysir ah',
-'yourpasswordagain'          => 'Markale ereysirkaaga',
+Gudagalahaaga waa la sameeyey.
+Ha' hilmaamin in aad wax ka bedesho [[Special:Preferences|{{SITENAME}} dooqaaga]].",
+'yourname'                   => 'Erayga Gudagalka:',
+'yourpassword'               => 'Eraysir:',
+'yourpasswordagain'          => 'Markale qor eraysirkaaga:',
 'remembermypassword'         => 'Kumbuyuutarkaan ku xasuusnaaw gudagalkeyga',
 'yourdomainname'             => 'Magacaga shabakada',
 'login'                      => 'Gudaha gal',
@@ -359,7 +359,7 @@ Iskuday in aad [[Special:Search|karaadiso wikigan]] beyjaj laxiira oo cusub.',
 'skin-preview'         => 'Horfiirin',
 'prefs-math'           => 'Xisaab',
 'datedefault'          => "Ma'jiro dooq",
-'prefs-datetime'       => 'Taariikhda iyo saacada',
+'prefs-datetime'       => 'Taariikhda iyo saacadda',
 'prefs-rc'             => 'Isbedelada dhow',
 'prefs-watchlist'      => 'liiska-waardiyaha',
 'prefs-watchlist-days' => 'Tirada maalamaha ay ku jirayaan liiska-waardiyaha:',
@@ -374,7 +374,7 @@ Iskuday in aad [[Special:Search|karaadiso wikigan]] beyjaj laxiira oo cusub.',
 'uid'                  => 'Lambarka isticmaalaha:',
 'yourrealname'         => 'Magacaaga runta ah:',
 'yourlanguage'         => 'luqad:',
-'yournick'             => 'Naaneys:',
+'yournick'             => 'Saxiix (Naaneys):',
 'badsiglength'         => 'Naaneysta aad bey u dheertahay.
 Waa in aysan ka badanin $1 {{PLURAL:$1|eray|erayo}}.',
 'yourgender'           => 'Jinsi:',
