@@ -1,0 +1,192 @@
+This document is intended to provide useful advice for parties seeking to
+redistribute MediaWiki to end users.  It's targeted particularly at maintainers
+for Linux distributions, since it's been observed that distribution packages of
+MediaWiki often break.  We've consistently had to recommend that users seeking
+support use official tarballs instead of their distribution's packages, and
+this often solves whatever problem the user is having.  It would be nice if
+this could change.
+
+== Background: why web applications are different ==
+
+MediaWiki is intended to be usable on any web host that provides support for
+PHP and a database.  Many users of low-end shared hosting have very limited
+access to their machine: often only FTP access to some subdirectory of the web
+root.  Support for these users entails several restrictions, such as:
+
+  1) We cannot require installation of any files outside the web root.  Few of
+  our users have access to directories like /usr or /etc.
+  2) We cannot require the ability to run any utility on the command line.
+  Many shared hosts have exec() and similar PHP functions disabled.
+  3) We cannot assume that the software has write access anywhere useful.  The
+  user account that MediaWiki (including its installer) runs under is often
+  different from the account the user used to upload the files, and we might be
+  restricted by PHP settings such as safe mode or open_basedir.
+  4) We cannot assume that the software even has read access anywhere useful.
+  Many shared hosts run all users' web applications under the same user, so
+  they can't rely on Unix permissions, and must forbid reads to even standard
+  directories like /tmp lest users read each others' files.
+  5) We cannot assume that the user has the ability to install or run any
+  programs not written as web-accessible PHP scripts.
+
+Since anything that works on cheap shared hosting will work if you have shell
+or root access too, MediaWiki's design is based around catering to the lowest
+common denominator.  Although we support higher-end setups as well (like
+Wikipedia!), the way many things work by default is tailored toward shared
+hosting.  These defaults are unconventional from the point of view of normal
+(non-web) applications -- they might conflict with distributors' policies, and
+they certainly aren't ideal for someone who's installing MediaWiki as root.
+
+== Directory structure ==
+
+Because of constraint (1) above, MediaWiki does not conform to normal
+Unix filesystem layout.  Hopefully we'll offer direct support for standard
+layouts in the future, but for now *any change to the location of files is
+unsupported*.  Moving things and leaving symlinks will *probably* not break
+anything, but it is *strongly* advised not to try any more intrusive changes to
+get MediaWiki to conform more closely to your filesystem hierarchy.  Any such
+attempt will almost certainly result in unnecessary bugs.
+
+The standard recommended location to install MediaWiki, relative to the web
+root, is /w (so, e.g., /var/www/w).  Rewrite rules can then be used to enable
+"pretty URLs" like /wiki/Article instead of /w/index.php?title=Article.  (This
+is the convention Wikipedia uses.)  In theory, it should be possible to enable
+the appropriate rewrite rules by default, if you can reconfigure the web
+server, but you'd need to alter LocalSettings.php too.  See
+<http://www.mediawiki.org/wiki/Manual:Short_URL> for details on short URLs.
+
+If you really must mess around with the directory structure, note that the
+following files *must* all be web-accessible for MediaWiki to function
+correctly:
+
+  * api.php, img_auth.php, index.php, mwScriptLoader.php, opensearch_desc.php,
+  profileinfo.php, redirect.php, thumb.php, trackback.php.  These are the entry
+  points for normal usage.  This list may be incomplete and is subject to
+  change.
+  * config/index.php: Used for web-based installation (sets up the database,
+  prompts for the name of the wiki, etc.).  No command-line installation is
+  currently available.
+  * images/: Used for uploaded files.  This could be somewhere else if
+  $wgUploadDirectory and $wgUploadPath are changed appropriately.
+  * skins/*/: Subdirectories of skins/ contain CSS and JavaScript files that
+  must be accessible to web browsers.  The PHP files and Skin.sample in skins/
+  don't need to be accessible.  This could be somewhere else if
+  $wgStyleDirectory and $wgStylePath are changed appropriately.
+  * extensions/: Many extensions include CSS and JavaScript files in their
+  extensions directory, and will break if they aren't web-accessible.  Some
+  extensions might theoretically provide additional entry points as well, at
+  least in principle.
+
+But all files should keep their position relative to the web-visible
+installation directory no matter what.  If you must move includes/ somewhere in
+/usr/share, provide a symlink from /var/www/w.  If you don't, you *will* break
+something.  You have been warned.
+
+== Configuration ==
+
+MediaWiki is configured using LocalSettings.php.  This is a PHP file that's
+generated when the user visits config/index.php to install the software, and
+which the user can edit by hand thereafter.  It's just a plain old PHP file,
+and can contain any PHP statements.  It usually sets global variables that are
+used for configuration, and includes files used by any extensions.
+
+Distributors cannot easily add extra statements to the autogenerated
+LocalSettings.php at the present time -- although hacking config/index.php
+would work.  It would be nice if this situation could be improved.
+
+Some configuration options that distributors might be in a position to set
+intelligently:
+
+  * $wgEmergencyContact: An e-mail address that can be used to contact the wiki
+  administrator.  By default, "wikiadmin@$wgServerName".
+  * $wgPasswordSender: The e-mail address to use when sending password e-mails.
+  By default, "MediaWiki Mail <apache@$wgServerName>".
+  * $wgSMTP: Can be configured to use SMTP for mail sending instead of PHP
+  mail().
+
+== Documentation ==
+
+MediaWiki's official documentation is split between two places: the source
+code, and <http://www.mediawiki.org/>.  The source code documentation is written
+exclusively by developers, and so is likely to be reliable (at worst,
+outdated).  However, it can be pretty sparse.  mediawiki.org documentation is
+often much more thorough, but it's maintained by a wiki that's open to
+anonymous edits, so its quality is sometimes sketchy -- don't assume that
+anything there is officially endorsed!
+
+== Upstream ==
+
+MediaWiki is a project hosted and led by the Wikimedia Foundation, the
+not-for-profit charity that operates Wikipedia.  Wikimedia employs the lead
+developer and several other paid developers, but commit access is given out
+liberally and there are multiple very active volunteer developers as well.  A
+list of developers can be found at <http://www.mediawiki.org/wiki/Developers>.
+
+MediaWiki's bug tracker is at <https://bugzilla.wikimedia.org>.  However, most
+developers follow the bug tracker little or not at all.  The best place to
+post if you want to get developers' attention is the wikitech-l mailing list
+<https://lists.wikimedia.org/mailman/listinfo/wikitech-l>.  Posts to wikitech-l
+will inevitably be read by multiple experienced MediaWiki developers.  There's
+also an active IRC chat at <irc://irc.freenode.net/mediawiki>, where there are
+usually several developers at reasonably busy times of day.
+
+Unfortunately, we don't have a very good system for patch review.  Patches
+should be submitted on Bugzilla (as unified diffs produced with "svn diff"
+against the latest trunk revision), but many patches languish without review
+until they bitrot into uselessness.  You might want to get a developer to
+commit to reviewing your patch before you put too much effort into it.
+Reasonably straightforward patches shouldn't be too hard to get accepted if
+there's an interested developer, however -- posting to Bugzilla and then
+dropping a note on wikitech-l if nobody responds is a good tactic.
+
+All redistributors of MediaWiki should be subscribed to mediawiki-announce
+<https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce>.  It's
+extremely low-traffic, with an average of less than one post per month.  All
+new releases are announced here, including critical security updates.
+
+== Useful software to install ==
+
+There are several other pieces of software that MediaWiki can make good use of.
+Distributors might choose to install these automatically with MediaWiki and
+perhaps configure it to use them (see Configuration section of this document):
+
+  * APC (Alternative PHP Cache), XCache, or similar: Will greatly speed up the
+  execution of MediaWiki, and all other PHP applications, at some cost in
+  memory usage.  Will be used automatically for the most part.
+  * clamav: Can be used for virus scanning of uploaded files.  Enable with
+  "$wgAntivirus = 'clamav';".
+  * DjVuLibre: Allows processing of DjVu files.  To enable this, set
+  "$wgDjvuDump = 'djvudump'; $wgDjvuRenderer = 'ddjvu'; $wgDjvuTxt = 'djvutxt';".
+  * HTML Tidy: Fixes errors in HTML at runtime.  Can be enabled with "$wgUseTidy
+  = true;".
+  * ImageMagick: For resizing images.  "$wgUseImageMagick = true;" will enable
+  it.  PHP's GD can also be used, but ImageMagick is preferable.
+  * Squid: Can provide a drastic speedup and a major cut in resource
+  consumption, but enabling it may interfere with other applications.  It might
+  be suitable for a separate mediawiki-squid package.  For setup details, see:
+  <http://www.mediawiki.org/wiki/Manual:Squid_caching>
+  * rsvg or other SVG rasterizer: ImageMagick can be used for SVG support, but
+  is not ideal.  Wikipedia (as of the time of this writing) uses rsvg.  To
+  enable, set "$wgSVGConverter = 'rsvg';" (or other as appropriate).
+  * texvc: Included with MediaWiki.  Instructions for compiling and
+  installing it are in the math/ directory.
+
+MediaWiki uses some standard GNU utilities as well, such as diff and diff3.  If
+these are present in /usr/bin or some other reasonable location, they will be
+used automatically.
+
+MediaWiki also has a "job queue" that handles background processing.  Because
+shared hosts often don't provide access to cron, the job queue is run on every
+page view by default.  This means the background tasks aren't really done in
+the background.  Busy wikis can set $wgJobRunRate to 0 and run
+maintenance/runJobs.php periodically out of cron.  Distributors probably
+shouldn't set this up as a default, however, since the extra cron job is
+unnecessary overhead for a little-used wiki.
+
+== Web server configuration ==
+
+MediaWiki includes several .htaccess files to restrict access to some
+directories.  If the web server is not configured to support these files, and
+the relevant directories haven't been moved someplace inaccessible anyway (e.g.
+symlinked in /usr/share with the web server configured to not follow symlinks),
+then it might be useful to deny web access to those directories in the web
+server's configuration.
