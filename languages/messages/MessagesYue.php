@@ -1,5 +1,5 @@
 <?php
-/** Yue (粵語)
+/** Cantonese (粵語/廣東話)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -191,6 +191,12 @@ $messages = array(
 'underline-always'  => '全部',
 'underline-never'   => '永不',
 'underline-default' => '瀏覽器預設',
+
+'editfont-style'     => '編輯區字型樣式',
+'editfont-default'   => '瀏覽器預設',
+'editfont-monospace' => '固定間距字型',
+'editfont-sansserif' => '無腳字型',
+'editfont-serif'     => '有腳字型',
 
 # Dates
 'sunday'        => '星期日',

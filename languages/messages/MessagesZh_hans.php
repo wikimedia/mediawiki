@@ -1,5 +1,5 @@
 <?php
-/** Simplified Chinese (‪中文(简体)‬)
+/** Simplified Chinese (‪中文(简化字)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -242,6 +242,12 @@ $messages = array(
 'underline-always'  => '总是使用',
 'underline-never'   => '从不使用',
 'underline-default' => '浏览器默认',
+
+'editfont-style'     => '编辑区字型样式',
+'editfont-default'   => '浏览器预设',
+'editfont-monospace' => '固定间距字型',
+'editfont-sansserif' => '无衬线字型',
+'editfont-serif'     => '衬线字型',
 
 # Dates
 'sunday'        => '星期日',

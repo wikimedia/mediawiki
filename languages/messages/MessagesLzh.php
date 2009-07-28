@@ -118,6 +118,12 @@ $messages = array(
 'underline-never'   => '絕',
 'underline-default' => '慣',
 
+'editfont-style'     => '纂字樣',
+'editfont-default'   => '慣',
+'editfont-monospace' => '固字',
+'editfont-sansserif' => '哥特字',
+'editfont-serif'     => '宋明字',
+
 # Dates
 'sunday'        => '週日',
 'monday'        => '週一',
