@@ -4131,7 +4131,7 @@ Enter the filename without the "{{ns:file}}:" prefix.',
 'htmlform-int-toolow'          => 'The value you specified is below the minimum of $1',
 'htmlform-int-toohigh'         => 'The value you specified is above the maximum of $1',
 'htmlform-submit'              => 'Submit',
-'htmlform-reseta'               => 'Undo changes',
-'htmlform-selectorother-other' => 'Othera',
+'htmlform-reset'               => 'Undo changes',
+'htmlform-selectorother-other' => 'Other',
 
 );
