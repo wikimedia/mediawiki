@@ -172,7 +172,7 @@ class SearchMySQL extends SearchEngine {
 			$totalResult = $this->db->query( $this->getCountQuery( $filteredTerm, $fulltext ) );
 			$row = $totalResult->fetchObject();
 			if( $row ) {
-				$total = $row->c;
+				$total = intval( $row->c );
 			}
 			$totalResult->free();
 		}
