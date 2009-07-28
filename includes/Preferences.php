@@ -616,6 +616,19 @@ class Preferences {
 					'min' => 4,
 					'max' => 1000,
 				);
+
+		$defaultPreferences['editfont'] =
+				array(
+					'type' => 'select',
+					'section' => 'editing/advancedediting',
+					'label-message' => 'editfont-style',
+					'options' => array(
+						wfMsg( 'editfont-default' ) => 'default',
+						wfMsg( 'editfont-monospace' ) => 'monospace',
+						wfMsg( 'editfont-sansserif' ) => 'sans-serif',
+						wfMsg( 'editfont-serif' ) => 'serif',
+					)
+				);
 		$defaultPreferences['previewontop'] =
 				array(
 					'type' => 'toggle',

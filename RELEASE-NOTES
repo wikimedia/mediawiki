@@ -165,6 +165,7 @@ this. Was used when mwEmbed was going to be an extension.
   message 'interwiki-desc-PREFIX', not really used anywhere yet though
 * (bug 9691) Add type (signup or login) parameter to AuthPlugin::ModifyUITemplate()
 * (bug 14454) "Member of group(s)" in Special:Preferences causes language difficulties
+* (bug 16697) Unicode combining characters are difficult to edit in some browsers
 
 === Bug fixes in 1.16 ===
 

@@ -604,6 +604,10 @@ END;
 		if( !$wgUser->getOption( 'editsection' ) ) {
 			$s .= ".editsection { display: none; }\n";
 		}
+		$fontstyle = $wgUser->getOption( 'editfont' );
+		if ( $fontstyle !== 'default' ) {
+			$s .= "textarea { font-family: $fontstyle; }\n";
+		}
 		return $s;
 	}
 

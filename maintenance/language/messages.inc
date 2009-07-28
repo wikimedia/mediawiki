@@ -65,6 +65,13 @@ $wgMessageStructure = array(
 		'underline-never',
 		'underline-default',
 	),
+	'editfont' => array(
+		'editfont-style',
+		'editfont-default',
+		'editfont-monospace',
+		'editfont-sansserif',
+		'editfont-serif',
+	),
 	'dates' => array(
 		'sunday',
 		'monday',
