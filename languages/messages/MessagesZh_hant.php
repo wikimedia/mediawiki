@@ -1,5 +1,5 @@
 <?php
-/** Traditional Chinese (‪中文(繁體)‬)
+/** Traditional Chinese (‪中文(傳統字)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -218,6 +218,12 @@ $messages = array(
 'underline-always'  => '總是使用',
 'underline-never'   => '從不使用',
 'underline-default' => '瀏覽器預設',
+
+'editfont-style'     => '編輯區字型樣式',
+'editfont-default'   => '瀏覽器預設',
+'editfont-monospace' => '固定間距字型',
+'editfont-sansserif' => '無襯線字型',
+'editfont-serif'     => '襯線字型',
 
 # Dates
 'sunday'        => '星期日',
