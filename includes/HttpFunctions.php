@@ -556,7 +556,7 @@ class simpleFileWriter {
 	public function update_session_progress(){
 		$status = Status::newGood();
 		// start the session (if nessesary)
-		if( session_id() == '' && session_start() === false){
+		if(  @session_start() === false){
 			wfDebug( __METHOD__ . ' could not start session' );
 			exit( 0 );
 		}
