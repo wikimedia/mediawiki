@@ -86,6 +86,15 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 		if (is_null($matches))
 			$this->dieUsage("{$what} search is disabled",
 					"search-{$what}-disabled");
+		
+		$totalhits = $matches->getTotalHits();
+		if( $totalhits !== null ) {
+			$this->getResult()->addValue( array( 'query', 'searchinfo' ), 'totalhits', $totalhits );
+		}
+		if( $matches->hasSuggestion() ) {
+			$this->getResult()->addValue( array( 'query', 'searchinfo' ), 'suggestion',
+				$matches->getSuggestionQuery() );
+		}
 
 		$terms = $wgContLang->convertForSearchResult($matches->termMatches());
 		$titles = array ();
@@ -106,6 +115,9 @@ class ApiQuerySearch extends ApiQueryGeneratorBase {
 				$vals = array();
 				ApiQueryBase::addTitleInfo($vals, $title);
 				$vals['snippet'] = $result->getTextSnippet($terms);
+				$vals['size'] = $result->getByteSize();
+				$vals['wordcount'] = $result->getWordCount();
+				$vals['timestamp'] = wfTimestamp( TS_ISO_8601, $result->getTimestamp() );
 				$fit = $this->getResult()->addValue(array('query', $this->getModuleName()), null, $vals);
 				if(!$fit)
 				{

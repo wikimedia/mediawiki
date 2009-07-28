@@ -384,7 +384,6 @@ this. Was used when mwEmbed was going to be an extension.
 * (bug 18720) Add anchor field to action=parse&prop=sections output
 * (bug 19423) The initial file description page used caption in user lang
   rather than UI lang
-* Added snippet field to list=search output
 * (bug 17809) Add number of users in user groups to meta=siteinfo
 * (bug 18533) Add readonly reason to readonly exception
 * (bug 19528) Added XSLT parameter to API queries in format=xml
@@ -392,6 +391,9 @@ this. Was used when mwEmbed was going to be an extension.
   parameter in action=edit
 * (bug 19090) Added watchlist parameter, deprecated watch and unwatch 
   parameter in action=edit
+* Added fields to list=search output: size, wordcount, timestamp, snippet
+* Where supported by backend, list=search adds a 'searchinfo' element with
+  optional info: 'totalhits' count and 'suggestion' alternate query term
 
 === Languages updated in 1.16 ===
 
