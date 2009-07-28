@@ -76,7 +76,6 @@ this. Was used when mwEmbed was going to be an extension.
   PHP and database version.
 * $wgSecondaryGoNamespaces allows an arry of namespaces to be checked when the
   GO button is pressed, in addition to the main namespace.
-* fix linkTrail for el (bug 19949)
 
 === New features in 1.16 ===
 
@@ -413,6 +412,7 @@ changes to languages because of MediaZilla reports.
 * (bug 19286) Correct commafying function in Polish (pl)
 * (bug 19441) Updated date formatting for Lithuanian
 * (bug 19630) Added ÄäÇçĞğŇňÖöŞşÜüÝýŽž to Turkmen (tk) linktrail
+* (bug 19949) New linktrail for Greek (el)
 
 == Compatibility ==
 
