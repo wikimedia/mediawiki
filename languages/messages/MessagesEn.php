@@ -1764,7 +1764,7 @@ This cannot be undone.',
 'username'                      => 'Username:',
 'uid'                           => 'User ID:',
 'prefs-memberingroups'          => 'Member of {{PLURAL:$1|group|groups}}:',
-'prefs-memberingroups-type'     => '$1',
+'prefs-memberingroups-type'     => '$1', # only translate this message to other languages if you have to change it
 'prefs-registration'            => 'Registration time:',
 'prefs-registration-date-time'  => '$1', # only translate this message to other languages if you have to change it
 'yourrealname'                  => 'Real name:',
