@@ -1303,8 +1303,12 @@ function wfAppendQuery( $url, $query ) {
 }
 
 /**
- * Expand a potentially local URL to a fully-qualified URL.
- * Assumes $wgServer is correct. :)
+ * Expand a potentially local URL to a fully-qualified URL.  Assumes $wgServer
+ * is correct.  Also doesn't handle any type of relative URL except one
+ * starting with a single "/": this won't work with current-path-relative URLs
+ * like "subdir/foo.html", protocol-relative URLs like
+ * "//en.wikipedia.org/wiki/", etc.  TODO: improve this!
+ *
  * @param $url String: either fully-qualified or a local path + query
  * @return string Fully-qualified URL
  */
