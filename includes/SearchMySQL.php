@@ -148,22 +148,7 @@ class SearchMySQL extends SearchEngine {
 	 * @return MySQLSearchResultSet
 	 */
 	function searchText( $term ) {
-		global $wgSearchMySQLTotalHits;
-		
-		$filteredTerm = $this->filter( $term );
-		$resultSet = $this->db->query( $this->getQuery( $filteredTerm, true ) );
-		
-		$total = null;
-		if( $wgSearchMySQLTotalHits ) {
-			$totalResult = $this->db->query( $this->getCountQuery( $filteredTerm, true ) );
-			$row = $totalResult->fetchObject();
-			if( $row ) {
-				$total = $row->c;
-			}
-			$totalResult->free();
-		}
-		
-		return new MySQLSearchResultSet( $resultSet, $this->searchTerms, $total );
+		return $this->searchInternal( $term, true );
 	}
 
 	/**
@@ -173,8 +158,26 @@ class SearchMySQL extends SearchEngine {
 	 * @return MySQLSearchResultSet
 	 */
 	function searchTitle( $term ) {
-		$resultSet = $this->db->resultObject( $this->db->query( $this->getQuery( $this->filter( $term ), false ) ) );
-		return new MySQLSearchResultSet( $resultSet, $this->searchTerms );
+		return $this->searchInternal( $term, false );
+	}
+	
+	protected function searchInternal( $term, $fulltext ) {
+		global $wgSearchMySQLTotalHits;
+		
+		$filteredTerm = $this->filter( $term );
+		$resultSet = $this->db->query( $this->getQuery( $filteredTerm, $fulltext ) );
+		
+		$total = null;
+		if( $wgSearchMySQLTotalHits ) {
+			$totalResult = $this->db->query( $this->getCountQuery( $filteredTerm, $fulltext ) );
+			$row = $totalResult->fetchObject();
+			if( $row ) {
+				$total = $row->c;
+			}
+			$totalResult->free();
+		}
+		
+		return new MySQLSearchResultSet( $resultSet, $this->searchTerms, $total );
 	}
 
 
