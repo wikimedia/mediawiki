@@ -373,6 +373,13 @@ $messages = array(
 'underline-never'   => 'אף פעם',
 'underline-default' => 'ברירת מחדל של הדפדפן',
 
+# Font style option in Special:Preferences
+'editfont-style'     => 'הגופן בתיבת העריכה:',
+'editfont-default'   => 'ברירת מחדל של הדפדפן',
+'editfont-monospace' => 'גופן ברוחב קבוע (monospace)',
+'editfont-sansserif' => 'גופן ללא תגים (sans-serif)',
+'editfont-serif'     => 'גופן עם תגים (serif)',
+
 # Dates
 'sunday'        => 'ראשון',
 'monday'        => 'שני',
