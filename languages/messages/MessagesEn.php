@@ -658,6 +658,12 @@ XHTML id names.
 'underline-never'   => 'Never',
 'underline-default' => 'Browser default',
 
+'editfont-style'     => 'Edit area font style',
+'editfont-default'   => 'Browser default',
+'editfont-monospace' => 'Monospaced font',
+'editfont-sansserif' => 'Sans-serif font',
+'editfont-serif'     => 'Serif font',
+
 # Dates
 'sunday'        => 'Sunday',
 'monday'        => 'Monday',

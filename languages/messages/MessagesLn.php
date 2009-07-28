@@ -13,6 +13,10 @@
 
 $fallback = 'fr';
 
+$defaultUserOptionOverrides = array(
+	'editfont' => 'sans-serif', # poor font support
+);
+
 $linkPrefixExtension = true;
 
 # Same as the French (bug 8485)
