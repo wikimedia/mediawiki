@@ -289,21 +289,21 @@ class ApiUpload extends ApiBase {
 	public function getAllowedParams() {
 		return array(
 			'filename' => null,
-			'file' => null,
-			'chunk' => null,
-			'url' => null,
-			'token' => null,
-			'enablechunks' => null,
 			'comment' => array(
 				ApiBase::PARAM_DFLT => ''
 			),
-			'asyncdownload' => false,
+			'token' => null,
 			'watch' => false,
 			'ignorewarnings' => false,
-			'done' => false,
-			'sessionkey' => null,
-			'httpstatus' => false,
+			'file' => null,
+			'enablechunks' => null,
 			'chunksessionkey' => null,
+			'chunk' => null,
+			'done' => false,
+			'url' => null,
+			'asyncdownload' => false,
+			'httpstatus' => false,
+			'sessionkey' => null,
 			'internalhttpsession' => null,
 		);
 	}
@@ -311,32 +311,51 @@ class ApiUpload extends ApiBase {
 	public function getParamDescription() {
 		return array(
 			'filename' => 'Target filename',
-			'file' => 'File contents',
-			'chunk'=> 'Chunk File Contents',
-			'url' => 'Url to upload from',
-			'comment' => 'Upload comment or initial page text',
-			'token' => 'Edit token. You can get one of these through prop=info (this helps avoid remote ajax upload requests with your credentials)',
-			'enablechunks' => 'Boolean If we are in chunk mode; accepts many small file POSTs',
-			'asyncdownload' => 'If we should download the url asyncrously usefull for large http downloads (returns a upload session key to get status updates in subquent calls)',
+			'token' => 'Edit token. You can get one of these through prop=info',
+			'comment' => 'Upload comment. Also used as the initial page text for new files',
 			'watch' => 'Watch the page',
 			'ignorewarnings' => 'Ignore any warnings',
-			'done'	=> 'When used with "chunks", Is sent to notify the api The last chunk is being uploaded.',
-			'sessionkey' => 'Session key in case there were any warnings.',
-			'httpstatus' => 'When set to true, will return the status of a given sessionKey (used for progress meters)',
+			'file' => 'File contents',
+			'enablechunks' => 'Set to use chunk mode; see http://firefogg.org/dev/chunk_post.html for protocol',
 			'chunksessionkey' => 'Used to sync uploading of chunks',
-			'internalhttpsession' => 'Used internally for http session downloads',
+			'chunk' => 'Chunk contents',
+			'done' => 'Set when the last chunk is being uploaded',
+			'url' => 'Url to fetch the file from',
+			'asyncdownload' => 'Set to download the url asynchronously. Useful for large files that will take more than php max_execution_time to download',
+			'httpstatus' => 'Set to return the status of an asynchronous upload (specify the key in sessionkey)',
+			'sessionkey' => array(
+				'Session key returned by a previous upload that failed due to warnings, or',
+				'(with httpstatus) The upload_session_key of an asynchronous upload',
+			),
+			'internalhttpsession' => 'Used internally',
 		);
 	}
 
 	public function getDescription() {
 		return array(
-			'Upload a file'
+			'Upload a file, or get the status of pending uploads. Several methods are available:',
+			' * Upload file contents directly, using the "file" parameter',
+			' * Upload a file in chunks, using the "enablechunks", "chunk", and "chunksessionkey", and "done" parameters',
+			' * Have the MediaWiki server fetch a file from a URL, using the "url" and "asyncdownload" parameters',
+			' * Retrieve the status of an asynchronous upload, using the "httpstatus" and "sessionkey" parameters',
+			' * Complete an earlier upload that failed due to warnings, using the "sessionkey" parameter',
+			'Note that the HTTP POST must be done as a file upload (i.e. using multipart/form-data) when',
+			'sending the "file" or "chunk" parameters. Note also that queries using session keys must be',
+			'done in the same login session as the query that originally returned the key (i.e. do not',
+			'log out and then log back in). Also you must get and send an edit token before doing any upload stuff.'
 		);
 	}
 
 	protected function getExamples() {
 		return array(
-			'api.php?action=upload&filename=Wiki.png&url=http%3A//upload.wikimedia.org/wikipedia/en/b/bc/Wiki.png&ignorewarnings'
+			'Upload from a URL:',
+			'    api.php?action=upload&filename=Wiki.png&url=http%3A//upload.wikimedia.org/wikipedia/en/b/bc/Wiki.png',
+			'Get the status of an asynchronous upload:',
+			'    api.php?action=upload&filename=Wiki.png&httpstatus=1&sessionkey=upload_session_key',
+			'Complete an upload that failed due to warnings:',
+			'    api.php?action=upload&filename=Wiki.png&sessionkey=sessionkey&ignorewarnings=1',
+			'Begin a chunked upload:',
+			'    api.php?action=upload&filename=Wiki.png&enablechunks=1'
 		);
 	}
 
