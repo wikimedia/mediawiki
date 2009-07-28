@@ -954,6 +954,7 @@ $wgMessageStructure = array(
 		'username',
 		'uid',
 		'prefs-memberingroups',
+		'prefs-memberingroups-type',
 		'prefs-registration',
 		'prefs-registration-date-time',
 		'yourrealname',

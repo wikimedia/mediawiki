@@ -164,6 +164,7 @@ this. Was used when mwEmbed was going to be an extension.
 * (bug 10812) Interwiki links can have names and descriptions, fetched from 
   message 'interwiki-desc-PREFIX', not really used anywhere yet though
 * (bug 9691) Add type (signup or login) parameter to AuthPlugin::ModifyUITemplate()
+* (bug 14454) "Member of group(s)" in Special:Preferences causes language difficulties
 
 === Bug fixes in 1.16 ===
 

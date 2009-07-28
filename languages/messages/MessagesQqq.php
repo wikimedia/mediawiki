@@ -1104,7 +1104,8 @@ Shown as legend of the second fieldset of the tab 'Search' in [[Special:Preferen
 {{Identical|E-mail}}',
 'username'                      => '{{Identical|Username}}',
 'uid'                           => '{{Identical|User ID}}',
-'prefs-memberingroups'          => 'This message is shown on [[Special:Preferences]], first tab, where it is follwed by a colon.',
+'prefs-memberingroups'          => 'This message is shown on [[Special:Preferences]], first tab, where it is follwed by a colon. See also prefs-memberingroups-type.',
+'prefs-memberingroups-type'     => '$1 is list of group names, $2 is list of group member names. Label for these is prefs-memberingroups.',
 'prefs-registration'            => 'Used in [[Special:Preferences]].',
 'prefs-registration-date-time'  => '{{optional}}
 Used in [[Special:Preferences]]. Parameters are:

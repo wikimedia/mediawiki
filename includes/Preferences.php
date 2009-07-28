@@ -110,22 +110,30 @@ class Preferences {
 
 		# Get groups to which the user belongs
 		$userEffectiveGroups = $user->getEffectiveGroups();
-		$userEffectiveGroupsArray = array();
+		$userGroups = $userMembers = array();
 		foreach( $userEffectiveGroups as $ueg ) {
 			if( $ueg == '*' ) {
 				// Skip the default * group, seems useless here
 				continue;
 			}
-			$userEffectiveGroupsArray[] = User::makeGroupLinkHTML( $ueg );
+			$groupName  = User::getGroupName( $ueg );
+			$userGroups[] = User::makeGroupLinkHTML( $ueg, $groupName );
+
+			$memberName = User::getGroupMember( $ueg );
+			$userMembers[] = User::makeGroupLinkHTML( $ueg, $memberName );
 		}
-		asort( $userEffectiveGroupsArray );
+		asort( $userGroups );
+		asort( $userMembers );
 
 		$defaultPreferences['usergroups'] =
 				array(
 					'type' => 'info',
 					'label' => wfMsgExt( 'prefs-memberingroups', 'parseinline',
-								count( $userEffectiveGroupsArray ) ),
-					'default' => $wgLang->commaList( $userEffectiveGroupsArray ),
+						$wgLang->formatNum( count($userGroups) ) ),
+					'default' => wfMsgExt( 'prefs-memberingroups-type', array(),
+						$wgLang->commaList( $userGroups ),
+						$wgLang->commaList( $userMembers )
+					),
 					'raw' => true,
 					'section' => 'personal/info',
 				);

@@ -1758,6 +1758,7 @@ This cannot be undone.',
 'username'                      => 'Username:',
 'uid'                           => 'User ID:',
 'prefs-memberingroups'          => 'Member of {{PLURAL:$1|group|groups}}:',
+'prefs-memberingroups-type'     => '$1',
 'prefs-registration'            => 'Registration time:',
 'prefs-registration-date-time'  => '$1', # only translate this message to other languages if you have to change it
 'yourrealname'                  => 'Real name:',
@@ -4124,7 +4125,7 @@ Enter the filename without the "{{ns:file}}:" prefix.',
 'htmlform-int-toolow'          => 'The value you specified is below the minimum of $1',
 'htmlform-int-toohigh'         => 'The value you specified is above the maximum of $1',
 'htmlform-submit'              => 'Submit',
-'htmlform-reset'               => 'Undo changes',
-'htmlform-selectorother-other' => 'Other',
+'htmlform-reseta'               => 'Undo changes',
+'htmlform-selectorother-other' => 'Othera',
 
 );
