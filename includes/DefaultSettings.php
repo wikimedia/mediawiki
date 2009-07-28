@@ -2625,7 +2625,8 @@ $wgDefaultUserOptions = array(
 	'noconvertlink'           => 0,
 	'gender'                  => 'unknown',
 	'ccmeonemails'            => 0,
-	'disablemail'			  => 0,
+	'disablemail'             => 0,
+	'editfont'                => 'default',
 );
 
 /**
