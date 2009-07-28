@@ -307,14 +307,11 @@ body {
 		padding: 0.25em;
 		line-height: 1em;
 		font-size: 9.75pt;
-		width: 10em;
+		width: 9em;
 		background-color: transparent;
 	}
 	/* OVERRIDDEN BY COMPLIANT BROWSERS */
 	#simpleSearch button#searchButton {
-		position: absolute;
-		top: 0;
-		left: 0;
 		margin: 0;
 		padding: 0;
 		width: 1.75em;
@@ -322,7 +319,7 @@ body {
 		border: none;
 		cursor: pointer;
 		background-color: transparent;
-		background-image: url(images/search.png);
+		background-image: url(images/search-rtl.png);
 		background-position: center center;
 		background-repeat: no-repeat;
 	}
