@@ -346,6 +346,7 @@ $wgOptionalMessages = array(
 	'trackback',
 	'trackbackexcerpt',
 	'prefs-registration-date-time',
+	'prefs-memberingroups-type',
 );
 
 /** EXIF messages, which may be set as optional in several checks, but are generally mandatory */
