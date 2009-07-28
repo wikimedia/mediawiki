@@ -659,7 +659,7 @@ XHTML id names.
 'underline-default' => 'Browser default',
 
 # Font style option in Special:Preferences
-'editfont-style'     => 'Edit area font style',
+'editfont-style'     => 'Edit area font style:',
 'editfont-default'   => 'Browser default',
 'editfont-monospace' => 'Monospaced font',
 'editfont-sansserif' => 'Sans-serif font',
