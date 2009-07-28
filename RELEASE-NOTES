@@ -76,6 +76,7 @@ this. Was used when mwEmbed was going to be an extension.
   PHP and database version.
 * $wgSecondaryGoNamespaces allows an arry of namespaces to be checked when the
   GO button is pressed, in addition to the main namespace.
+* fix linkTrail for el (bug 19949)
 
 === New features in 1.16 ===
 
