@@ -3092,6 +3092,7 @@ XHTML id it should only appear once and include characters that are legal
 XHTML id names.",
 	'toggles'             => 'User preference toggles',
 	'underline'           => '',
+	'editfont'            => 'Font style option in Special:Preferences',
 	'dates'               => 'Dates',
 	'categorypages'       => 'Categories related messages',
 	'mainpage'            => '',
