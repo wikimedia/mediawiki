@@ -168,7 +168,7 @@ $specialPageAliases = array(
 
 $fallback8bitEncoding = 'iso-8859-7';
 $separatorTransformTable = array(',' => '.', '.' => ',' );
-$linkTrail = '/^([a-zαβγδεζηθικλμνξοπρστυφχψωςΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩάέήίόύώϊϋΐΰΆΈΉΊΌΎΏΪΫ]+)(.*)$/sD';
+$linkTrail = '/^([a-zαβγδεζηθικλμνξοπρστυφχψωςΑΒΓΔΕΖΗΘΙΚΛΜΝΞΟΠΡΣΤΥΦΧΨΩάέήίόύώϊϋΐΰΆΈΉΊΌΎΏΪΫ]+)(.*)$/sDu';
 
 
 $datePreferences = array(
