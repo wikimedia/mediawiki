@@ -286,7 +286,7 @@ class HttpRequest {
 		$this->target_file_path = ( isset( $opt['target_file_path'] ) ) ? $opt['target_file_path'] : false;
 		$this->upload_session_key = ( isset( $opt['upload_session_key'] ) ) ? $opt['upload_session_key'] : false;
 		$this->headers_only = ( isset( $opt['headers_only'] ) ) ? $opt['headers_only'] : false;
-		$this->do_close_session_update = ( isset( $opt['do_close_session_update'] ) ) ? true : false;
+		$this->do_close_session_update = isset( $opt['do_close_session_update'] );
 	}
 
 	/**
@@ -519,7 +519,7 @@ class simpleFileWriter {
 	}
 
 	public function callbackWriteBody( $ch, $data_packet ){
-		global $wgMaxUploadSize;
+		global $wgMaxUploadSize, $wgLang;
 
 		// write out the content
 		if( fwrite( $this->fp, $data_packet ) === false ){
@@ -535,7 +535,7 @@ class simpleFileWriter {
 		if( $this->current_fsize > $wgMaxUploadSize ){
 			wfDebug( __METHOD__ . " ::http download too large\n" );
 			$this->status = Status::newFatal( 'HTTP::file-has-grown-beyond-upload-limit-killing: downloaded more than ' .
-				Language::formatSize( $wgMaxUploadSize ) . ' ' );
+				$wgLang->formatSize( $wgMaxUploadSize ) . ' ' );
 			return 0;
 		}
 
