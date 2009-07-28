@@ -587,7 +587,8 @@ class PageHistory {
 			$this->mTitle->getFullUrl(),
 			wfTimestamp( TS_MW ),
 				'',
-			$this->mTitle->getTalkPage()->getFullUrl() );
+			$this->mTitle->getTalkPage()->getFullUrl()
+		);
 	}
 
 	/**
@@ -601,12 +602,13 @@ class PageHistory {
 	function feedItem( $row ) {
 		$rev = new Revision( $row );
 		$rev->setTitle( $this->mTitle );
-		$text = FeedUtils::formatDiffRow( $this->mTitle,
-		$this->mTitle->getPreviousRevisionID( $rev->getId() ),
-		$rev->getId(),
-		$rev->getTimestamp(),
-		$rev->getComment() );
-
+		$text = FeedUtils::formatDiffRow(
+			$this->mTitle,
+			$this->mTitle->getPreviousRevisionID( $rev->getId() ),
+			$rev->getId(),
+			$rev->getTimestamp(),
+			$rev->getComment()
+		);
 		if( $rev->getComment() == '' ) {
 			global $wgContLang;
 			$ts = $rev->getTimestamp();
@@ -616,9 +618,9 @@ class PageHistory {
 				$wgContLang->date( $ts ),
 				$wgContLang->time( $ts ) );
 		} else {
-			$title = $rev->getUserText() . wfMsgForContent( 'colon-separator' ) . FeedItem::stripComment( $rev->getComment() );
+			$title = $rev->getUserText() . wfMsgForContent( 'colon-separator' ) .
+				FeedItem::stripComment( $rev->getComment() );
 		}
-
 		return new FeedItem(
 			$title,
 			$text,
@@ -628,7 +630,8 @@ class PageHistory {
 			) ),
 			$rev->getTimestamp(),
 			$rev->getUserText(),
-			$this->mTitle->getTalkPage()->getFullUrl() );
+			$this->mTitle->getTalkPage()->getFullUrl()
+		);
 	}
 }
 
