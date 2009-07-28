@@ -555,28 +555,31 @@ class simpleFileWriter {
 
 	public function update_session_progress(){
 		$status = Status::newGood();
-		// start the session
-		if( session_start() === false){
+		// start the session (if nessesary)
+		if( session_id() == '' && session_start() === false){
 			wfDebug( __METHOD__ . ' could not start session' );
 			exit( 0 );
 		}
 		$sd =& $_SESSION['wsDownload'][$this->upload_session_key];
 		// check if the user canceled the request:
 		if( isset( $sd['user_cancel'] ) && $sd['user_cancel'] == true ){
-			// kill the download
+			//@@todo kill the download
 			return Status::newFatal( 'user-canceled-request' );
 		}
 		// update the progress bytes download so far:
 		$sd['loaded'] = $this->current_fsize;
-		wfDebug( __METHOD__ . ': set session loaded amount to: ' . $sd['loaded'] . "\n");
 		// close down the session so we can other http queries can get session updates:
+
 		session_write_close();
+
 		return $status;
 	}
 
 	public function close(){
 		// do a final session update:
-		$this->update_session_progress();
+		if( $this->do_close_session_update ){
+			$this->update_session_progress();
+		}
 		// close up the file handle:
 		if( false === fclose( $this->fp ) ){
 			$this->status = Status::newFatal( 'HTTP::could-not-close-file' );
