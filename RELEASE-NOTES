@@ -420,6 +420,7 @@ changes to languages because of MediaZilla reports.
 * (bug 19630) Added ÄäÇçĞğŇňÖöŞşÜüÝýŽž to Turkmen (tk) linktrail
 * (bug 19949) New linktrail for Greek (el)
 * (bug 19809) Korean (North Korea) (ko-kp) (new)
+* (bug 19968) Fixed "Project talk" namespace name for Maltese (mt)
 
 == Compatibility ==
 
