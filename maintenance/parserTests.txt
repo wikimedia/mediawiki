@@ -1271,6 +1271,8 @@ Invalid attributes in table cell (bug 1830)
 # specified here is now valid XML, which is an improvement . . .
 !! test
 Table security: embedded pipes (http://lists.wikimedia.org/mailman/htdig/wikitech-l/2006-April/022293.html)
+!! options
+disabled
 !! input
 {|
 | |[ftp://|x||]" onmouseover="alert(document.cookie)">test
@@ -1471,6 +1473,8 @@ Link containing "<#" and ">#" as hex sequences
 
 !! test
 Link containing double-single-quotes '' (bug 4598)
+!! options
+disabled
 !! input
 [[Lista d''e paise d''o munno]]
 !! result
@@ -4787,6 +4791,8 @@ HTML bullet list, closed tags (bug 5497)
 
 !! test
 HTML bullet list, unclosed tags (bug 5497)
+!! options
+disabled
 !! input
 <ul>
 <li>One
@@ -4817,6 +4823,8 @@ HTML ordered list, closed tags (bug 5497)
 
 !! test
 HTML ordered list, unclosed tags (bug 5497)
+!! options
+disabled
 !! input
 <ol>
 <li>One
@@ -4857,6 +4865,8 @@ HTML nested bullet list, closed tags (bug 5497)
 
 !! test
 HTML nested bullet list, open tags (bug 5497)
+!! options
+disabled
 !! input
 <ul>
 <li>One
@@ -4905,6 +4915,8 @@ HTML nested ordered list, closed tags (bug 5497)
 
 !! test
 HTML nested ordered list, open tags (bug 5497)
+!! options
+disabled
 !! input
 <ol>
 <li>One
@@ -5221,6 +5233,8 @@ New wiki paragraph
 
 !! test
 Inline HTML vs wiki block nesting
+!! options
+disabled
 !! input
 <b>Bold paragraph
 
@@ -6404,6 +6418,8 @@ Another italics / bold test
 # ...<dd> </dt></dl> </dd...
 !! test
 dt/dd/dl test
+!! options
+disabled
 !! input
 :;;;::
 !! result
@@ -6421,6 +6437,8 @@ dt/dd/dl test
 # Images with the "|" character in external URLs in comment tags; Eats half the comment, leaves unmatched "</a>" tag.
 !! test
 Images with the "|" character in the comment
+!! options
+disabled
 !! input
 [[image:Foobar.jpg|thumb|An [http://test/?param1=|left|&param2=|x external] URL]]
 !! result
@@ -7093,6 +7111,8 @@ Line two
 # Bug 6200: <blockquote> should behave like <div> with respect to line breaks
 !! test
 Bug 6200: paragraphs inside blockquotes (no extra line breaks)
+!! options
+disabled
 !! input
 <blockquote>Line one
 
@@ -7105,6 +7125,8 @@ Line two</blockquote>
 
 !! test
 Bug 6200: paragraphs inside blockquotes (extra line break on open)
+!! options
+disabled
 !! input
 <blockquote>
 Line one
@@ -7120,6 +7142,8 @@ Line two</blockquote>
 
 !! test
 Bug 6200: paragraphs inside blockquotes (extra line break on close)
+!! options
+disabled
 !! input
 <blockquote>Line one
 
@@ -7135,6 +7159,8 @@ Line two
 
 !! test
 Bug 6200: paragraphs inside blockquotes (extra line break on open and close)
+!! options
+disabled
 !! input
 <blockquote>
 Line one

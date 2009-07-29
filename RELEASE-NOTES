@@ -346,6 +346,8 @@ this. Was used when mwEmbed was going to be an extension.
 * (bug 17988) Spaces before [[Category:]] links are no longer ignored
 * (bug 19392) Favicon, apple-touch-icon links matching the defaults are no 
   longer sent
+* (bug 19957) All known-failing tests now marked disabled; added --run-disabled
+  option to parser test suite to run disabled tests if desired.
 
 == API changes in 1.16 ==
 

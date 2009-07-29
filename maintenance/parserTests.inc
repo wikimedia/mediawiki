@@ -25,7 +25,7 @@
  */
 
 /** */
-$options = array( 'quick', 'color', 'quiet', 'help', 'show-output', 'record' );
+$options = array( 'quick', 'color', 'quiet', 'help', 'show-output', 'record'. 'run-disabled' );
 $optionsWithArgs = array( 'regex', 'seed', 'setversion' );
 
 require_once( 'commandLine.inc' );
@@ -124,6 +124,8 @@ class ParserTest {
 		if ( isset( $options['seed'] ) ) {
 			$this->fuzzSeed = intval( $options['seed'] ) - 1;
 		}
+
+		$this->runDisabled = isset( $options['run-disabled'] );
 
 		$this->hooks = array();
 		$this->functionHooks = array();
@@ -356,8 +358,8 @@ class ParserTest {
 					if (!isset( $data['config'] ) )
 						$data['config'] = '';
 					
-					if (preg_match('/\\bdisabled\\b/i', $data['options'])
-						|| !preg_match("/{$this->regex}/i", $data['test'])) {
+					if ( (preg_match('/\\bdisabled\\b/i', $data['options'])
+						|| !preg_match("/{$this->regex}/i", $data['test'])) && !$this->runDisabled ) {
 						# disabled test
 						$data = array();
 						$section = null;
