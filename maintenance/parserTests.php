@@ -46,6 +46,7 @@ Options:
   --fuzz           Do a fuzz test instead of a normal test
   --seed <n>       Start the fuzz test from the specified seed
   --help           Show this help message
+  --run-disabled   run disabled tests
 
 
 ENDS;
