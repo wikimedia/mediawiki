@@ -1952,7 +1952,6 @@ title=[[User:Ævar Arnfjörð Bjarmason]]
 Magic Word: {{NAMESPACE}}
 !! options
 title=[[User:Ævar Arnfjörð Bjarmason]]
-disabled # FIXME
 !! input
 {{NAMESPACE}}
 !! result
@@ -1964,7 +1963,6 @@ disabled # FIXME
 Magic Word: {{NAMESPACEE}}
 !! options
 title=[[User:Ævar Arnfjörð Bjarmason]]
-disabled # FIXME
 !! input
 {{NAMESPACEE}}
 !! result
@@ -1994,7 +1992,6 @@ Magic Word: {{NUMBEROFFILES}}
 Magic Word: {{PAGENAME}}
 !! options
 title=[[User:Ævar Arnfjörð Bjarmason]]
-disabled # FIXME
 !! input
 {{PAGENAME}}
 !! result
@@ -2009,7 +2006,7 @@ title=[[User:Ævar Arnfjörð Bjarmason]]
 !! input
 {{PAGENAMEE}}
 !! result
-<p>User:%C3%86var_Arnfj%C3%B6r%C3%B0_Bjarmason
+<p>%C3%86var_Arnfj%C3%B6r%C3%B0_Bjarmason
 </p>
 !! end
 
