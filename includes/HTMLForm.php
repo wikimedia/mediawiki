@@ -666,6 +666,14 @@ class HTMLSelectOrOtherField extends HTMLTextField {
 
 		parent::__construct( $params );
 	}
+	
+	static function forceToStringRecursive( $array ) {
+		if ( is_array($array) ) {
+			return array_map( array( __CLASS__, 'forceToStringRecursive' ), $array);
+		} else {
+			return strval($array);
+		}
+	}
 
 	function getInputHTML( $value ) {
 		$valInSelect = false;
@@ -675,9 +683,11 @@ class HTMLSelectOrOtherField extends HTMLTextField {
 							HTMLFormField::flattenOptions( $this->mParams['options'] ) );
 
 		$selected = $valInSelect ? $value : 'other';
+		
+		$opts = self::forceToStringRecursive( $this->mParams['options'] );
 
 		$select = new XmlSelect( $this->mName, $this->mID, $selected );
-		$select->addOptions( array_map( 'strval', $this->mParams['options'] ) );
+		$select->addOptions( $opts );
 
 		$select->setAttribute( 'class', 'mw-htmlform-select-or-other' );
 
