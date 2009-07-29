@@ -500,6 +500,7 @@ class ParserTest {
 	 * @param $defaults Default value returned if not found
 	 */
 	private static function getOptionValue( $key, $opts, $default ) {
+		$key = strtolower( $key );
 		if( isset( $opts[$key] ) ) {
 			return $opts[$key];
 		} else {
