@@ -62,7 +62,7 @@ class ApiQueryBrokenRedirects extends ApiQueryGeneratorBase {
 			"rd_namespace",
 			"rd_title",
 		));
-		$this->addTables("redirect AS rd JOIN page p1 ON (rd.rd_from=p1.page_id) LEFT JOIN page AS p2 ON (rd_namespace=p2.page_namespace AND rd_title=p2.page_title )");
+		$this->addTables("$redirect AS rd JOIN $page p1 ON (rd.rd_from=p1.page_id) LEFT JOIN $page AS p2 ON (rd_namespace=p2.page_namespace AND rd_title=p2.page_title )");
 		# I don't know why these two not work ~~Alexsh
 		#$this->addJoinConds(array("$page AS p1" => array('JOIN', 'rd.rd_from=p1.page_id')));
 		#$this->addJoinConds(array("$page AS p2" => array('LEFT JOIN', 'rd_namespace=p2.page_namespace AND rd_title=p2.page_title')));
