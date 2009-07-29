@@ -2200,7 +2200,9 @@ abstract class DatabaseBase {
 	 * @param $method String: Name of method calling us
 	 * @return bool
 	 */
-	abstract public function lock( $lockName, $method, $timeout = 5 );
+	public function lock( $lockName, $method, $timeout = 5 ) {
+		return true;
+	}
 
 	/**
 	 * Release a lock.
@@ -2213,7 +2215,9 @@ abstract class DatabaseBase {
 	 * by this thread (in which case the lock is not released), and NULL if the named 
 	 * lock did not exist
 	 */
-	abstract public function unlock( $lockName, $method );
+	public function unlock( $lockName, $method ) {
+		return true;
+	}
 
 	/**
 	 * Lock specific tables
@@ -2221,15 +2225,20 @@ abstract class DatabaseBase {
 	 * @param $read Array of tables to lock for read access
 	 * @param $write Array of tables to lock for write access
 	 * @param $method String name of caller
+	 * @param $lowPriority bool Whether to indicate writes to be LOW PRIORITY
 	 */
-	abstract public function lockTables( $read, $write, $method );
+	public function lockTables( $read, $write, $method, $lowPriority = true ) {
+		return true;
+	}
 	
 	/**
 	 * Unlock specific tables
 	 *
 	 * @param $method String the caller
 	 */
-	abstract public function unlockTables( $method );
+	public function unlockTables( $method ) {
+		return true;
+	}
 	
 	/**
 	 * Get search engine class. All subclasses of this
