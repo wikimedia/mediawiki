@@ -102,9 +102,9 @@
 	'fy' => 'Frysk',		# Frisian
 	'ga' => 'Gaeilge',		# Irish
 	'gag' => 'Gagauz',		# Gagauz
-	'gan' => '贛語',		# Gan-hant
-	'gan-hans' => '赣语(简体)',	# Gan-hans
-	'gan-hant' => '贛語(繁體)',	# Gan-hant
+	'gan' => '贛語',		# Gan
+	'gan-hans' => '赣语(简体)',	# Gan (Simplified Han)
+	'gan-hant' => '贛語(繁體)',	# Gan (Traditional Han)
 	'gd' => 'Gàidhlig',	# Scots Gaelic
 	'gl' => 'Galego',		# Galician
 	'glk' => 'گیلکی',	# Gilaki
@@ -165,6 +165,7 @@
 	'km' => 'ភាសាខ្មែរ',	# Khmer, Central
 	'kn' => 'ಕನ್ನಡ',	# Kannada
 	'ko' => '한국어',	# Korean
+	'ko-kp' => '한국어 (조선)',	# Korean (DPRK)
 	'kr' => 'Kanuri',		# Kanuri, Central
 	'kri' => 'Krio', # Krio
 	'krj' => 'Kinaray-a', # Kinaray-a
