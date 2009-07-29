@@ -183,7 +183,7 @@ class DeletedContribsPager extends IndexPager {
 		$pagelink = $sk->link( $page );
 
 		if( $rev->isMinor() ) {
-			$mflag = '<span class="minor">' . $this->messages['minoreditletter'] . '</span> ';
+			$mflag = '<abbr class="minor">' . $this->messages['minoreditletter'] . '</abbr> ';
 		} else {
 			$mflag = '';
 		}

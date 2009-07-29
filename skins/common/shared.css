@@ -435,6 +435,11 @@ td.os-suggest-result-hl {
     border: 1px dashed #aaa;
 }
 
+/** Generic minor/bot/newpage styling */
+abbr.newpage, abbr.minor, abbr.bot {
+	font-weight: bold;
+}
+
 /* Special:Contributions styling */
 .mw-uctop {
 	font-weight: bold;

@@ -321,7 +321,7 @@ class PageHistory {
 		$s .= " <span class='history-user'>" . $this->mSkin->revUserTools( $rev, true ) . "</span>";
 
 		if( $rev->isMinor() ) {
-			$s .= ' ' . Xml::element( 'span', array( 'class' => 'minor' ), wfMsg( 'minoreditletter') );
+			$s .= ' ' . Xml::element( 'abbr', array( 'class' => 'minor' ), wfMsg( 'minoreditletter') );
 		}
 
 		if( !is_null( $size = $rev->getSize() ) && !$rev->isDeleted( Revision::DELETED_TEXT ) ) {

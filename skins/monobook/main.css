@@ -1125,9 +1125,6 @@ div#userloginForm .captcha {
 div.patrollink {
 	clear: both;
 }
-span.newpage, span.minor, span.bot {
-	font-weight: bold;
-}
 
 .sharedUploadNotice {
 	font-style: italic;

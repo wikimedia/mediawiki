@@ -87,10 +87,10 @@ class ChangesList {
 	 */
 	protected function recentChangesFlags( $new, $minor, $patrolled, $nothing = '&nbsp;', $bot = false ) {
 		$f = $new ?
-			'<span class="newpage">' . $this->message['newpageletter'] . '</span>' : $nothing;
+			'<abbr class="newpage">' . $this->message['newpageletter'] . '</abbr>' : $nothing;
 		$f .= $minor ?
-			'<span class="minor">' . $this->message['minoreditletter'] . '</span>' : $nothing;
-		$f .= $bot ? '<span class="bot">' . $this->message['boteditletter'] . '</span>' : $nothing;
+			'<abbr class="minor">' . $this->message['minoreditletter'] . '</abbr>' : $nothing;
+		$f .= $bot ? '<abbr class="bot">' . $this->message['boteditletter'] . '</abbr>' : $nothing;
 		$f .= $patrolled ? '<span class="unpatrolled">!</span>' : $nothing;
 		return $f;
 	}

@@ -348,6 +348,7 @@ this. Was used when mwEmbed was going to be an extension.
   longer sent
 * (bug 19957) All known-failing tests now marked disabled; added --run-disabled
   option to parser test suite to run disabled tests if desired.
+* (bug 16311) Make recent change flags (n/m/b) <abbr>s instead of <span>s
 
 == API changes in 1.16 ==
 

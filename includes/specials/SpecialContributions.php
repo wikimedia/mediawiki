@@ -562,13 +562,13 @@ class ContribsPager extends ReverseChronologicalPager {
 		}
 
 		if( $rev->getParentId() === 0 ) {
-			$nflag = '<span class="newpage">' . $this->messages['newpageletter'] . '</span>';
+			$nflag = '<abbr class="newpage">' . $this->messages['newpageletter'] . '</abbr>';
 		} else {
 			$nflag = '';
 		}
 
 		if( $rev->isMinor() ) {
-			$mflag = '<span class="minor">' . $this->messages['minoreditletter'] . '</span> ';
+			$mflag = '<abbr class="minor">' . $this->messages['minoreditletter'] . '</abbr> ';
 		} else {
 			$mflag = '';
 		}
