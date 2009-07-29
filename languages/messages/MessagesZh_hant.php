@@ -219,7 +219,8 @@ $messages = array(
 'underline-never'   => '從不使用',
 'underline-default' => '瀏覽器預設',
 
-'editfont-style'     => '編輯區字型樣式',
+# Font style option in Special:Preferences
+'editfont-style'     => '編輯區字型樣式：',
 'editfont-default'   => '瀏覽器預設',
 'editfont-monospace' => '固定間距字型',
 'editfont-sansserif' => '無襯線字型',

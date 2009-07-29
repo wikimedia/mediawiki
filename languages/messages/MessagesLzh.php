@@ -118,7 +118,8 @@ $messages = array(
 'underline-never'   => '絕',
 'underline-default' => '慣',
 
-'editfont-style'     => '纂字樣',
+# Font style option in Special:Preferences
+'editfont-style'     => '纂字樣：',
 'editfont-default'   => '慣',
 'editfont-monospace' => '固字',
 'editfont-sansserif' => '哥特字',
