@@ -633,11 +633,6 @@ img.thumbborder {
 	display: none;
 }
 
-
-span.newpage, span.minor, span.bot {
-	font-weight: bold;
-}
-
 .sharedUploadNotice {
 	font-style: italic;
 }
