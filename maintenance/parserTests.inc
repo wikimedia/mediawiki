@@ -448,7 +448,7 @@ class ParserTest {
 		$noxml = isset( $opts['noxml'] );
 		$local = isset( $opts['local'] );
 		$parser = $this->getParser();
-		$title =& Title::makeTitle( NS_MAIN, $titleText );
+		$title = Title::newFromText( $titleText );
 
 		$matches = array();
 		if( isset( $opts['pst'] ) ) {
