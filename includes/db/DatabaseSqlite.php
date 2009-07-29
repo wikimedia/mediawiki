@@ -408,16 +408,6 @@ class DatabaseSqlite extends DatabaseBase {
 		}
 	}
 	
-	/** 
-	 * No-op lock functions
-	 */
-	public function lock( $lockName, $method, $timeout = 5 ) {
-		return true;
-	}
-	public function unlock( $lockName, $method ) {
-		return true;
-	}
-	
 	public function getSearchEngine() {
 		return "SearchEngineDummy";
 	}
@@ -459,10 +449,6 @@ class DatabaseSqlite extends DatabaseBase {
 		return $s;
 	}
 
-	public function lockTables( $read, $write, $method ) {}
-
-	public function unlockTables( $method ) {}
-	
 	/*
 	 * Build a concatenation list to feed into a SQL query
 	 */

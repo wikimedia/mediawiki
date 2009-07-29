@@ -326,11 +326,14 @@ class DatabaseMysql extends DatabaseBase {
 		return $row->lockstatus;
 	}
 
-	public function lockTables( $read, $write, $method ) {
+	public function lockTables( $read, $write, $method, $lowPriority = true ) {
 		$items = array();
 
 		foreach( $write as $table ) {
-			$items[] = $this->tableName( $table ) . ' LOW_PRIORITY WRITE';
+			$tbl = $this->tableName( $table ) . 
+					$lowPriority ? ' LOW_PRIORITY' : '' . 
+					' WRITE';
+			$items[] = $tbl;
 		}
 		foreach( $read as $table ) {
 			$items[] = $this->tableName( $table ) . ' READ';

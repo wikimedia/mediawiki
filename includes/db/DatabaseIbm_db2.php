@@ -707,7 +707,7 @@ EOF;
 			$this->applySchema();
 			$this->begin();
 			
-			$res = dbsource( "../maintenance/ibm_db2/tables.sql", $this);
+			$res = $this->sourceFile( "../maintenance/ibm_db2/tables.sql" );
 			$res = null;
 	
 			// TODO: update mediawiki_version table
@@ -1527,13 +1527,6 @@ EOF;
 	 * TODO
 	 * @return bool true
 	 */
-	public function lock( $lockName, $method ) { wfDebug('Not implemented for DB2: lock()'); return true; }
-	/**
-	 * Not implemented
-	 * TODO
-	 * @return bool true
-	 */
-	public function unlock( $lockName, $method ) { wfDebug('Not implemented for DB2: unlock()'); return true; }
 	/**
 	 * Not implemented
 	 * @deprecated
