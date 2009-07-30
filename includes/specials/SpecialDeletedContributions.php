@@ -11,7 +11,7 @@ class DeletedContribsPager extends IndexPager {
 
 	function __construct( $target, $namespace = false ) {
 		parent::__construct();
-		foreach( explode( ' ', 'deletionlog undeletebtn minoreditletter diff' ) as $msg ) {
+		foreach( explode( ' ', 'deletionlog undeleteviewlink minoreditletter diff' ) as $msg ) {
 			$this->messages[$msg] = wfMsgExt( $msg, array( 'escape') );
 		}
 		$this->target = $target;
@@ -139,7 +139,7 @@ class DeletedContribsPager extends IndexPager {
 
 		$reviewlink = $sk->linkKnown(
 			SpecialPage::getTitleFor( 'Undelete', $page->getPrefixedDBkey() ),
-			$this->messages['undeletebtn']
+			$this->messages['undeleteviewlink']
 		);
 
 		$link = $sk->linkKnown(
