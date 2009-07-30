@@ -1150,12 +1150,10 @@ class Article {
 	 */
 	public function showDeletedRevisionHeader() {
 		global $wgOut, $wgRequest;
-
 		if( !$this->mRevision->isDeleted( Revision::DELETED_TEXT ) ) {
 			// Not deleted
 			return true;
 		}
-
 		// If the user is not allowed to see it...
 		if( !$this->mRevision->userCan(Revision::DELETED_TEXT) ) {
 			$wgOut->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1</div>\n",
@@ -1166,13 +1164,16 @@ class Article {
 			# Give explanation and add a link to view the revision...
 			$oldid = intval( $this->getOldID() );
 			$link = $this->mTitle->getFullUrl( "oldid={$oldid}&unhide=1" );
+			$msg = $this->mRevision->isDeleted( Revision::DELETED_RESTRICTED ) ?
+				'rev-suppressed-text-unhide' : 'rev-deleted-text-unhide';
 			$wgOut->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1</div>\n",
-				array('rev-deleted-text-unhide',$link) );
+				array($msg,$link) );
 			return false;
 		// We are allowed to see...
 		} else {
-			$wgOut->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1</div>\n",
-				'rev-deleted-text-view' );
+			$msg = $this->mRevision->isDeleted( Revision::DELETED_RESTRICTED ) ?
+				'rev-suppressed-text-view' : 'rev-deleted-text-view';
+			$wgOut->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1</div>\n", $msg );
 			return true;
 		}
 	}
