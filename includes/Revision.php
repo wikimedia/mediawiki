@@ -12,7 +12,8 @@ class Revision {
 	const DELETED_COMMENT = 2;
 	const DELETED_USER = 4;
 	const DELETED_RESTRICTED = 8;
-
+	// Convenience field
+	const SUPPRESSED_USER = 12;
 	// Audience options for Revision::getText()
 	const FOR_PUBLIC = 1;
 	const FOR_THIS_USER = 2;

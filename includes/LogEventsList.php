@@ -699,8 +699,11 @@ class LogPager extends ReverseChronologicalPager {
 			global $wgUser;
 			$this->mConds['log_user'] = $userid;
 			// Paranoia: avoid brute force searches (bug 17342)
-			if( !$wgUser->isAllowed( 'suppressrevision' ) ) {
+			if( !$wgUser->isAllowed( 'deleterevision' ) ) {
 				$this->mConds[] = $this->mDb->bitAnd('log_deleted', LogPage::DELETED_USER) . ' = 0';
+			} else if( !$wgUser->isAllowed( 'suppressrevision' ) ) {
+				$this->mConds[] = $this->mDb->bitAnd('log_deleted', LogPage::SUPPRESSED_USER) .
+					' != ' . LogPage::SUPPRESSED_USER;
 			}
 			$this->user = $usertitle->getText();
 		}
@@ -743,8 +746,11 @@ class LogPager extends ReverseChronologicalPager {
 			$this->mConds['log_title'] = $title->getDBkey();
 		}
 		// Paranoia: avoid brute force searches (bug 17342)
-		if( !$wgUser->isAllowed( 'suppressrevision' ) ) {
+		if( !$wgUser->isAllowed( 'deleterevision' ) ) {
 			$this->mConds[] = $this->mDb->bitAnd('log_deleted', LogPage::DELETED_ACTION) . ' = 0';
+		} else if( !$wgUser->isAllowed( 'suppressrevision' ) ) {
+			$this->mConds[] = $this->mDb->bitAnd('log_deleted', LogPage::SUPPRESSED_ACTION) .
+				' != ' . LogPage::SUPPRESSED_ACTION;
 		}
 	}
 
