@@ -647,7 +647,8 @@ mediaSource.prototype =
 		}				
 		//update duration from hit if present: 
 		if(this.durationHint)
-			this.duration = this.durationHint;
+			this.duration = this.durationHint;		
+					
 			
 		if ( $j(element).attr('type'))
 			this.mime_type = $j(element).attr('type');

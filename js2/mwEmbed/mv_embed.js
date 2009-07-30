@@ -1034,7 +1034,38 @@ function npt2seconds( npt_str ){
 	//return seconds float (ie take seconds float value if present):
 	return parseInt(times[0]*3600)+parseInt(times[1]*60)+parseFloat(times[2]);
 }
-
+/*
+ * simple helper to grab a edit token
+ * 
+ * @param title the wiki page title you want to edit )
+ * @param api_url 'optional' the target api url
+ * @param callback the callback function to pass the token or "false" to  
+ */
+function get_mw_token( title, api_url, callback){
+	if(!title && wgUserName){
+		title = 'User:' + wgUserName; 
+	}
+	var reqObj = {
+			'action':'query',
+			'prop':'info',
+			'intoken':'edit',
+			'titles':title
+		};			
+		do_api_req( {
+			'data': reqObj,
+			'url' : api_url
+			},function(data){											
+				for(var i in data.query.pages){ 
+					if(data.query.pages[i]['edittoken']){
+						if(typeof callback == 'function')
+							callback ( data.query.pages[i]['edittoken'] );
+					}								
+				}
+				//no token found:
+				return false;
+			}
+		);
+}
 //does a remote or local api request based on request url 
 //@param options: url, data, cbParam, callback
 function do_api_req( options, callback ){		
@@ -1042,7 +1073,7 @@ function do_api_req( options, callback ){
 		return js_error('Error: request paramaters must be an object');;
 	}
 	//gennerate the url if its missing:
-	if( typeof options.url == 'undefined' ){
+	if( typeof options.url == 'undefined' ||  options.url === false){
 		if(!wgServer || ! wgScriptPath){			
 			return js_error('Error: no api url for api request');;
 		}		
