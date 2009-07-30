@@ -211,25 +211,31 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 					$j( _this.target_use_latest_fox ).show();
 				}
 				return ;
-			}
-			//they have the right version of mozilla provide install link: 
-			var os_link = false;
-			if(navigator.oscpu){
-				if(navigator.oscpu.search('Linux') >= 0)
-					os_link = firefogg_install_links['linux'];
-				else if(navigator.oscpu.search('Mac') >= 0)
-					  os_link = firefogg_install_links['macosx'];
-				else if(navigator.oscpu.search('Win') >= 0)
-					  os_link = firefogg_install_links['win32'];
-			}											
+			}		
+													
 			//if rewriting form use upload msg text
 			var upMsg = (_this.form_rewrite) ? gM('fogg-for_improved_uplods') : '';			
-			$j(_this.target_please_install).html( upMsg + gM('fogg-please_install',os_link )).css('padding', '10px').show();			
+			$j( _this.target_please_install ).html( upMsg + gM('fogg-please_install', _this.getOSlink() )).css('padding', '10px').show();			
 		}
 		//setup the target save local file bindins: 
 		$j( _this.target_btn_save_local_file ).unbind().click(function(){
 			_this.saveLocalFogg();
 		});
+	},
+	/*
+	 * returns the firefogg link for your os: 
+	 */
+	getOSlink:function(){
+		var os_link = false;
+		if(navigator.oscpu){
+			if(navigator.oscpu.search('Linux') >= 0)
+				os_link = firefogg_install_links['linux'];
+			else if(navigator.oscpu.search('Mac') >= 0)
+				  os_link = firefogg_install_links['macosx'];
+			else if(navigator.oscpu.search('Win') >= 0)
+				  os_link = firefogg_install_links['win32'];
+		}	
+		return os_link
 	},
 	firefoggCheck:function(){				   
 		if(typeof(Firefogg) != 'undefined' && Firefogg().version >= this.min_firefogg_version){						
