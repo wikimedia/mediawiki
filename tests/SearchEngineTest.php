@@ -65,7 +65,7 @@ END
 			, $this->db->tableName( 'searchindex' ) );
 	}
 
-	function fetchIds( &$results ) {
+	function fetchIds( $results ) {
 		$matches = array();
 		while( $row = $results->next() ) {
 			$matches[] = $row->getTitle()->getPrefixedText();

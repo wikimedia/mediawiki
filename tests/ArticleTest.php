@@ -80,6 +80,7 @@ class ArticleTest extends PHPUnit_Framework_TestCase {
 	}
 
 	function testCompressRevisionTextUtf8() {
+		$row = new stdClass;
 		$row->old_text = "Wiki est l'\xc3\xa9cole superieur !";
 		$row->old_flags = Revision::compressRevisionText( $row->old_text );
 		$this->assertTrue( false !== strpos( $row->old_flags, 'utf-8' ),
@@ -94,6 +95,7 @@ class ArticleTest extends PHPUnit_Framework_TestCase {
 
 	function testCompressRevisionTextUtf8Gzip() {
 		$GLOBALS['wgCompressRevisions'] = true;
+		$row = new stdClass;
 		$row->old_text = "Wiki est l'\xc3\xa9cole superieur !";
 		$row->old_flags = Revision::compressRevisionText( $row->old_text );
 		$this->assertTrue( false !== strpos( $row->old_flags, 'utf-8' ),
