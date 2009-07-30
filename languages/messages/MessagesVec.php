@@ -1720,7 +1720,7 @@ El nùmaro ISBN inserìo no'l xe mia valido: controla de novo se te l'è scrito 
 'specialloguserlabel'  => 'Utente:',
 'speciallogtitlelabel' => 'Titolo:',
 'log'                  => 'Registro',
-'all-logs-page'        => 'Tuti i registri',
+'all-logs-page'        => 'Tuti i registri pùblici',
 'alllogstext'          => 'Vixualixazion unificà de tuti i registri disponibili de {{SITENAME}}. 
 Te podi restrénzar i criteri de riçerca selezionando el tipo de registro, el nome utente, o la pàxena interessà (ocio che sti ultimi du i distingue tra majuscolo e minuscolo).',
 'logempty'             => "El registro no'l contien mìa elementi corispondenti a la riçerca.",

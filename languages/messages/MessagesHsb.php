@@ -183,6 +183,13 @@ $messages = array(
 'underline-never'   => 'ženje',
 'underline-default' => 'po standardźe wobhladowaka',
 
+# Font style option in Special:Preferences
+'editfont-style'     => 'Pismowy stil wobdźěłowanskeho pola:',
+'editfont-default'   => 'Standard wobhladowaka',
+'editfont-monospace' => 'Pismo z krutej šěrokosću',
+'editfont-sansserif' => 'Bjezserifowe pismo',
+'editfont-serif'     => 'Serifowe pismo',
+
 # Dates
 'sunday'        => 'Njedźela',
 'monday'        => 'Póndźela',
@@ -834,8 +841,13 @@ Hlej podrobnosće w [{{fullurl:{{#special:Log}}/suppress|page={{FULLPAGENAMEE}}}
 'rev-deleted-text-unhide'     => "Tuta wersija strony bu '''wušmórnjena'''.
 Hlej podrobnosće w [{{fullurl:{{#special:Log}}/suppress|page={{FULLPAGENAMEE}}}} protokolu wušmórnjenjow].
 Jako administrator móžeš [$1 sej tutu wersiju wobhladać], jeli chceš pokročować.",
+'rev-suppressed-text-unhide'  => "Tuta wersija strony bu '''potłóčena'''.
+Snano su podrobnosće w [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} protokolu potłóčenjow].
+Jako administrator móžeš [$1 sej tutu wersiju wobhladać], jeli chceš pokročować.",
 'rev-deleted-text-view'       => "Tuta wersija strony bu '''wušmórnjena'''.
 Jako administrator móžeš sej ju wobhladać; hlej podrobnosće w [{{fullurl:{{#special:Log}}/suppress|page={{FULLPAGENAMEE}}}} protokolu wušmórnjenjow].",
+'rev-suppressed-text-view'    => "Tuta wersija strony bu '''potłóčena'''.
+Jako administrator móžeš sej ju wobhladać; snano su podrobnosće w [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} protokolu potłóčenjow].",
 'rev-deleted-no-diff'         => "Njemóžeš sej tutón rozdźěl wobhladać, dokelž jedna z wersijow bu '''wušmórnjena'''.
 Hlej ewentuelne podrobnosće w [{{fullurl:{{#special:Log}}/suppress|page={{FULLPAGENAMEE}}}} protokolu wušmórnjenjow].",
 'rev-deleted-unhide-diff'     => "Jedna z wersijow tutoho rozdźěla bu '''wušmórnjena'''.
@@ -1709,7 +1721,7 @@ Kóžda rjadka wobsahuje wotkazy k prěnjemu a druhemu daleposrědkowanju kaž t
 'specialloguserlabel'  => 'Wužiwar:',
 'speciallogtitlelabel' => 'Strona:',
 'log'                  => 'Protokole',
-'all-logs-page'        => 'Wšě protokole',
+'all-logs-page'        => 'Wšě zjawne protokole',
 'alllogstext'          => 'Kombinowane zwobraznjenje wšěch k dispozicij stejacych protokolow w {{GRAMMAR:lokatiw|{{SITENAME}}}}. Móžeš napohlad wobmjezować, wuběrajo typ protokola, wužiwarske mjeno (dźiwajo na wulkopisanje) abo potrjechu stronu (tež dźiwajo na wulkopisanje).',
 'logempty'             => 'Žane wotpowědowace zapiski w protokolu.',
 'log-title-wildcard'   => 'Titul započina so z …',

@@ -365,7 +365,14 @@ $messages = array(
 
 'underline-always'  => 'Vždy',
 'underline-never'   => 'Nikdy',
-'underline-default' => 'Podle prohlížeče',
+'underline-default' => 'Podle nastavení prohlížeče',
+
+# Font style option in Special:Preferences
+'editfont-style'     => 'Druh písma v editačním poli:',
+'editfont-default'   => 'Podle nastavení prohlížeče',
+'editfont-monospace' => 'Neproporcionální písmo',
+'editfont-sansserif' => 'Bezpatkové písmo',
+'editfont-serif'     => 'Patkové písmo',
 
 # Dates
 'sunday'        => 'neděle',
@@ -1905,7 +1912,7 @@ Každý řádek obsahuje odkaz na první a druhé přesměrování a k tomu cíl
 'specialloguserlabel'  => 'Uživatel:',
 'speciallogtitlelabel' => 'Název:',
 'log'                  => 'Protokolovací záznamy',
-'all-logs-page'        => 'Všechny záznamy',
+'all-logs-page'        => 'Všechny veřejné záznamy',
 'alllogstext'          => 'Společné zobrazení všech dostupných protokolovacích záznamů pro {{grammar:4sg|{{SITENAME}}}}.
 Zobrazení můžete zúžit výběrem typu záznamu, uživatelského jména (záleží na velikosti písmen) nebo dotčené stránky (také záleží na velikosti písmen).',
 'logempty'             => 'Protokol neobsahuje žádný odpovídající záznam.',

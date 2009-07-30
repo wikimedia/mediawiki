@@ -336,6 +336,12 @@ $messages = array(
 'underline-never'   => 'Ei koskaan',
 'underline-default' => 'Selaimen oletustapa',
 
+# Font style option in Special:Preferences
+'editfont-style'     => 'Muokkauskentän kirjasintyyppi',
+'editfont-default'   => 'Selaimen oletus',
+'editfont-sansserif' => 'Sans-serif-kirjasin',
+'editfont-serif'     => 'Serif-kirjasin',
+
 # Dates
 'sunday'        => 'sunnuntai',
 'monday'        => 'maanantai',
@@ -1241,6 +1247,7 @@ Kokeile lisätä haun alkuun ''all:'', niin haku kohdistuu kaikkeen sisältöön
 'prefs-watchlist-days-max'      => '(enintään 7 päivää)',
 'prefs-watchlist-edits'         => 'Tarkkailulistalla näytettävien muokkausten määrä',
 'prefs-watchlist-edits-max'     => '(maksimilukumäärä: 1000)',
+'prefs-watchlist-token'         => 'Tarkkailulistan avain',
 'prefs-misc'                    => 'Muut',
 'prefs-resetpass'               => 'Muuta salasana',
 'prefs-email'                   => 'Sähköpostiasetukset',
@@ -1829,7 +1836,7 @@ Jokaisella rivillä on linkit ensimmäiseen ja toiseen ohjaukseen sekä toisen o
 'specialloguserlabel'  => 'Käyttäjä',
 'speciallogtitlelabel' => 'Kohde',
 'log'                  => 'Lokit',
-'all-logs-page'        => 'Kaikki lokit',
+'all-logs-page'        => 'Kaikki julkiset lokit',
 'alllogstext'          => 'Tämä on yhdistetty lokien näyttö.
 Voit rajoittaa listaa valitsemalla lokityypin, käyttäjän tai sivun johon muutos on kohdistunut. Jälkimmäiset ovat kirjainkokoherkkiä.',
 'logempty'             => 'Ei tapahtumia lokissa.',

@@ -334,6 +334,13 @@ $messages = array(
 'underline-never'   => '常に付けない',
 'underline-default' => 'ブラウザの設定を使用',
 
+# Font style option in Special:Preferences
+'editfont-style'     => '編集エリアのフォントスタイル:',
+'editfont-default'   => 'ブラウザに任せる',
+'editfont-monospace' => '等幅フォント',
+'editfont-sansserif' => 'サンセリフフォント',
+'editfont-serif'     => 'セリフフォント',
+
 # Dates
 'sunday'        => '日曜日',
 'monday'        => '月曜日',

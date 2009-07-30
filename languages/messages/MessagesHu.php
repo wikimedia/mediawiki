@@ -332,6 +332,13 @@ $messages = array(
 'underline-never'   => 'Soha',
 'underline-default' => 'A böngésző alapértelmezése szerint',
 
+# Font style option in Special:Preferences
+'editfont-style'     => 'A szerkesztőterület betűtípusa:',
+'editfont-default'   => 'a böngésző alapértelmezett betűtípusa',
+'editfont-monospace' => 'fix szélességű betűtípus',
+'editfont-sansserif' => 'talpatlan (sans-serif) betűtípus',
+'editfont-serif'     => 'talpas (serif) betűtípus',
+
 # Dates
 'sunday'        => 'vasárnap',
 'monday'        => 'hétfő',
@@ -1888,7 +1895,7 @@ további információkat lelhetsz ott az általad keresett könyvekről:',
 'specialloguserlabel'  => 'Felhasználó:',
 'speciallogtitlelabel' => 'Cím:',
 'log'                  => 'Rendszernaplók',
-'all-logs-page'        => 'Rendszernaplók',
+'all-logs-page'        => 'Minden nyilvános napló',
 'alllogstext'          => 'A(z) {{SITENAME}} naplóinak összesített listája.
 A napló típusának, a szerkesztő nevének (kis- és nagybetűérzékeny), vagy az érintett lap kiválasztásával (ez is kis- és nagybetűérzékeny) szűkítheted a találatok listáját.',
 'logempty'             => 'Nincs illeszkedő naplóbejegyzés.',

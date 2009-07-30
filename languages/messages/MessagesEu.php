@@ -278,6 +278,7 @@ $messages = array(
 'vector-action-protect'     => 'Babestu',
 'vector-namespace-category' => 'Kategoria',
 'vector-namespace-help'     => 'Laguntza-orria',
+'vector-namespace-image'    => 'Fitxategi',
 'vector-namespace-main'     => 'Orrialde',
 'vector-namespace-project'  => 'Proiektu-orrialde',
 'vector-namespace-special'  => 'Orrialde berezia',
@@ -1690,6 +1691,7 @@ Baimendutako protokoloak: <tt>$1</tt>',
 'listusersfrom'      => 'Hemendik aurrerako erabiltzaileak bistaratu:',
 'listusers-submit'   => 'Erakutsi',
 'listusers-noresult' => 'Ez da erabiltzailerik aurkitu.',
+'listusers-blocked'  => '(blokeatua)',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Erabiltzaile erregistroa',
@@ -2220,14 +2222,21 @@ Horrez gain, lotura zuzena ere erabil dezakezu; adibidez, [[{{#Special:Export}}/
 'export-pagelinks'  => 'Sartu lotutako orriak honako sakoneran:',
 
 # Namespace 8 related
-'allmessages'                 => 'Sistemako mezu guztiak',
-'allmessagesname'             => 'Izena',
-'allmessagesdefault'          => 'Testu lehenetsia',
-'allmessagescurrent'          => 'Oraingo testua',
-'allmessagestext'             => 'MediaWikin erabiltzen diren mezu guztien zerrenda.
+'allmessages'                   => 'Sistemako mezu guztiak',
+'allmessagesname'               => 'Izena',
+'allmessagesdefault'            => 'Testu lehenetsia',
+'allmessagescurrent'            => 'Oraingo testua',
+'allmessagestext'               => 'MediaWikin erabiltzen diren mezu guztien zerrenda.
 Mesedez bisitatu [http://www.mediawiki.org/wiki/Localisation MediaWiki] eta [http://translatewiki.net translatewiki.net] orrialdeak MediaWikira ekarpenak egin badituzu.',
-'allmessagesnotsupportedDB'   => "Ezin da '''{{ns:special}}:Allmessages''' erabili '''\$wgUseDatabaseMessages''' ezgaituta dagoelako.",
-'allmessages-filter-modified' => 'Aldatua',
+'allmessagesnotsupportedDB'     => "Ezin da '''{{ns:special}}:Allmessages''' erabili '''\$wgUseDatabaseMessages''' ezgaituta dagoelako.",
+'allmessages-filter-legend'     => 'Iragazi',
+'allmessages-filter'            => 'Aldaketa-egoeraren arabera iragazi:',
+'allmessages-filter-unmodified' => 'Aldatugabeak',
+'allmessages-filter-all'        => 'Denak',
+'allmessages-filter-modified'   => 'Aldatua',
+'allmessages-prefix'            => 'Aurrizkiaren arabera iragazi:',
+'allmessages-language'          => 'Hizkuntza:',
+'allmessages-filter-submit'     => 'Joan',
 
 # Thumbnails
 'thumbnail-more'           => 'Handitu',

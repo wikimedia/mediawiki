@@ -775,6 +775,8 @@ Dylai fod llai na $2 {{PLURAL:$2|galwad|alwad|alwad|galwad|galwad|galwad}} yn y 
 'post-expand-template-inclusion-warning'  => "Rhybudd: Mae'r maint cynnwys nodyn yn rhy fawr.
 Ni chaiff rhai nodiadau eu cynnwys.",
 'post-expand-template-inclusion-category' => "Tudalennau a phatrymlun ynddynt sy'n fwy na chyfyngiad y meddalwedd",
+'post-expand-template-argument-warning'   => "'''Rhybudd:''' Mae gan y dudalen hon o leiaf un arg nodyn sydd a maint ehangu rhy fawr.
+Cafodd yr argiau hyn eu hepgor.",
 'post-expand-template-argument-category'  => 'Tudalennau lle ceir argiau nodiadau coll',
 'parser-template-loop-warning'            => 'Daethpwyd o hyd i ddolen yn y nodyn: [[$1]]',
 
@@ -835,6 +837,7 @@ Gan eich bod yn weinyddwr gallwch ei weld; gall fod manylion yn y [{{fullurl:{{#
 'revdelete-nooldid-title'     => 'Anelwyd at olygiad annilys',
 'revdelete-nologtype-title'   => 'Ni nodwyd y math o lòg',
 'revdelete-nologid-title'     => 'Cofnod lòg annilys',
+'revdelete-no-file'           => "Nid yw'r ffeil a nodwyd yn bod.",
 'revdelete-show-file-submit'  => 'Ydw',
 'revdelete-selected'          => "'''Y {{PLURAL:$2|golygiad|golygiad|golygiadau|golygiadau|golygiadau|golygiadau}} dewisedig o [[:$1]]:'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Digwyddiad|Digwyddiad|Digwyddiadau|Digwyddiadau|Digwyddiadau|Digwyddiadau}} a ddewiswyd o'r lòg:'''",
@@ -1242,6 +1245,7 @@ Gallwch hefyd adael i eraill anfon e-bost atoch trwy'r cyswllt ar eich tudalen d
 'right-siteadmin'             => "Cloi a datgloi'r databas",
 'right-reset-passwords'       => 'Ailosod cyfrinair defnyddwyr eraill',
 'right-override-export-depth' => 'Allforio tudalennau gan gynnwys tudalennau cysylltiedig hyd at ddyfnder o 5',
+'right-versiondetail'         => "Gweld y manylion estynedig am y fersiwn hwn o'r meddalwedd",
 
 # User rights log
 'rightslog'      => 'Lòg galluoedd defnyddiwr',
@@ -1713,6 +1717,9 @@ Protocoliau sy\'n cael eu cynnal: <tt>$1</tt>',
 'listusers-noresult' => "Dim defnyddiwr i'w gael.",
 
 # Special:ActiveUsers
+'activeusers'          => 'Rhestr defnyddwyr gweithgar',
+'activeusers-count'    => '$1 {{PLURAL:$1|golygiad|golygiad|olygiad|golygiad|golygiad|golygiad}} diweddar',
+'activeusers-from'     => "Rhestru'r defnyddwyr gan ddechrau gyda:",
 'activeusers-noresult' => "Dim defnyddwyr i'w cael.",
 
 # Special:Log/newusers
@@ -2262,18 +2269,21 @@ Yn achos yr ail ddewis, mae modd defnyddio cyswllt, e.e. [[{{#Special:Export}}/{
 'export-pagelinks'  => 'Cynhwyser tudalennau cysylltiedig hyd at ddyfnder o:',
 
 # Namespace 8 related
-'allmessages'               => 'Pob neges',
-'allmessagesname'           => 'Enw',
-'allmessagesdefault'        => 'Testun rhagosodedig',
-'allmessagescurrent'        => 'Testun cyfredol',
-'allmessagestext'           => "Dyma restr o'r holl negeseuon yn y parth MediaWici.
+'allmessages'                   => 'Pob neges',
+'allmessagesname'               => 'Enw',
+'allmessagesdefault'            => 'Testun rhagosodedig',
+'allmessagescurrent'            => 'Testun cyfredol',
+'allmessagestext'               => "Dyma restr o'r holl negeseuon yn y parth MediaWici.
 Os ydych am gyfrannu at y gwaith o gyfieithu ar gyfer holl prosiectau MediaWiki ar y cyd, mae croeso i chi ymweld â [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] a [http://translatewiki.net translatewiki.net].",
-'allmessagesnotsupportedDB' => "Nid yw '''{{ns:special}}:PobNeges''' yn cael ei gynnal gan fod '''\$wgUseDatabaseMessages''' wedi ei ddiffodd.",
-'allmessages-filter-legend' => 'Hidl',
-'allmessages-filter-all'    => 'Oll',
-'allmessages-prefix'        => 'Hidlo yn ôl rhagddodiad:',
-'allmessages-language'      => 'Iaith:',
-'allmessages-filter-submit' => 'Eler',
+'allmessagesnotsupportedDB'     => "Nid yw '''{{ns:special}}:PobNeges''' yn cael ei gynnal gan fod '''\$wgUseDatabaseMessages''' wedi ei ddiffodd.",
+'allmessages-filter-legend'     => 'Hidl',
+'allmessages-filter'            => 'Hidlo yn ôl eu cyflwr addasu:',
+'allmessages-filter-unmodified' => 'Heb eu haddasu',
+'allmessages-filter-all'        => 'Oll',
+'allmessages-filter-modified'   => 'Wedi eu haddasu',
+'allmessages-prefix'            => 'Hidlo yn ôl rhagddodiad:',
+'allmessages-language'          => 'Iaith:',
+'allmessages-filter-submit'     => 'Eler',
 
 # Thumbnails
 'thumbnail-more'           => 'Chwyddo',

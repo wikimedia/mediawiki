@@ -250,6 +250,13 @@ $messages = array(
 'underline-never'   => 'Nunca',
 'underline-default' => 'Opción do propio navegador',
 
+# Font style option in Special:Preferences
+'editfont-style'     => 'Estilo de fonte da caixa de edición:',
+'editfont-default'   => 'Fonte por defecto do navegador',
+'editfont-monospace' => 'Fonte monoespazada',
+'editfont-sansserif' => 'Fonte sans-serif',
+'editfont-serif'     => 'Fonte serif',
+
 # Dates
 'sunday'        => 'Domingo',
 'monday'        => 'Luns',
@@ -927,9 +934,9 @@ A razón dada por $3 foi ''$2''",
 'last'                   => 'última',
 'page_first'             => 'primeira',
 'page_last'              => 'derradeira',
-'histlegend'             => 'Selección de diferenzas: marque as versións que queira comparar e prema no botón ao final.<br />
-Lenda: (actual) = diferenza coa versión actual,
-(última) = diferenza coa versión precedente, m = edición pequena.',
+'histlegend'             => "Selección de diferenzas: marque as versións que queira comparar e prema no botón ao final.<br />
+Lenda: '''({{int:cur}})''' = diferenza coa versión actual,
+'''({{int:last}})''' = diferenza coa versión precedente, '''{{int:minoreditletter}}''' = edición pequena.",
 'history-fieldset-title' => 'Navegar polo historial',
 'histfirst'              => 'Primeiras',
 'histlast'               => 'Últimas',
@@ -1849,7 +1856,7 @@ As entradas <s>riscadas</s> xa foron resoltas.',
 'specialloguserlabel'  => 'Usuario:',
 'speciallogtitlelabel' => 'Título:',
 'log'                  => 'Rexistros',
-'all-logs-page'        => 'Todos os rexistros',
+'all-logs-page'        => 'Todos os rexistros públicos',
 'alllogstext'          => 'Vista combinada de todos os rexistros dipoñibles en {{SITENAME}}.
 Pode precisar máis a vista seleccionando o tipo de rexistro, o nome do usuario ou o título da páxina afectada.',
 'logempty'             => 'Non se atopou ningún elemento relacionado no rexistro.',

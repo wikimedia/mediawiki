@@ -568,6 +568,11 @@ $messages = array(
 'jumpto'            => 'Μετάβαση σε:',
 'jumptonavigation'  => 'πλοήγηση',
 'jumptosearch'      => 'αναζήτηση',
+'view-pool-error'   => "Λυπούμαστε, οι εξυπηρετητές είναι υπερφορτωμένοι προς το παρόν.
+Πάρα πολλοί χρήστες προσπάθησαν να εμφανίσουν αυτή τη σελίδα.
+Παρακαλούμε περιμένετε λίγο πριν ξαναπροσπαθήσετε να μπείτε σ' αυτή τη σελίδα.
+
+$ 1",
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Σχετικά με τον ιστότοπο {{SITENAME}}',

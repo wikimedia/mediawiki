@@ -306,6 +306,13 @@ $messages = array(
 'underline-never'   => 'Никогда',
 'underline-default' => 'Использовать настройки браузера',
 
+# Font style option in Special:Preferences
+'editfont-style'     => 'Тип шрифта области редактирования:',
+'editfont-default'   => 'Шрифт из настроек браузера',
+'editfont-monospace' => 'Моноширинный шрифт',
+'editfont-sansserif' => 'Шрифт без засечек',
+'editfont-serif'     => 'Шрифт с засечками',
+
 # Dates
 'sunday'        => 'воскресенье',
 'monday'        => 'понедельник',

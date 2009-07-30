@@ -2416,7 +2416,7 @@ $1',
 
 # Contributions
 'contributions'       => 'مساهمات المستخدم',
-'contributions-title' => 'مساهمات المستخدم ل$1',
+'contributions-title' => 'مساهمات المستخدم $1',
 'mycontris'           => 'مساهماتي',
 'contribsub2'         => 'ل$1 ($2)',
 'nocontribs'          => 'لم يتم العثور على تغييرات تطابق هذه المحددات.',

@@ -367,6 +367,13 @@ $messages = array(
 'underline-never'   => 'Jamais',
 'underline-default' => 'Selon le navigateur',
 
+# Font style option in Special:Preferences
+'editfont-style'     => "Style de police de la zone d'édition :",
+'editfont-default'   => 'Celui du navigateur par défaut',
+'editfont-monospace' => 'Police mono espacée',
+'editfont-sansserif' => 'Police sans empattement',
+'editfont-serif'     => 'Police avec empattements',
+
 # Dates
 'sunday'        => 'dimanche',
 'monday'        => 'lundi',
@@ -719,7 +726,7 @@ N’oubliez pas de personnaliser vos [[Special:Preferences|préférences sur {{S
 'yourname'                   => 'Nom d’utilisateur :',
 'yourpassword'               => 'Mot de passe :',
 'yourpasswordagain'          => 'Entrez de nouveau votre mot de passe :',
-'remembermypassword'         => 'Me reconnecter automatiquement à la prochaine visite (cookie)',
+'remembermypassword'         => 'Me reconnecter automatiquement à la prochaine visite (témoin)',
 'yourdomainname'             => 'Votre domaine',
 'externaldberror'            => 'Une erreur s’est produite avec la base de données d’authentification externe, ou bien vous n’êtes pas autorisé{{GENDER:||e|(e)}} à mettre à jour votre compte externe.',
 'login'                      => 'Connexion',
@@ -1211,8 +1218,8 @@ Assurez-vous que cette opération conservera la continuité de l’historique de
 'diff-big'                 => "'''grand'''",
 'diff-del'                 => "'''supprimé'''",
 'diff-tt'                  => "'''largeur fixée'''",
-'diff-sub'                 => "'''sous-script'''",
-'diff-sup'                 => "'''sur-script'''",
+'diff-sub'                 => "'''indice'''",
+'diff-sup'                 => "'''exposant'''",
 'diff-strike'              => "'''barré'''",
 
 # Search results
@@ -1934,7 +1941,7 @@ Les entrées <s>barrées</s> ont été résolues.',
 'specialloguserlabel'  => 'Utilisateur :',
 'speciallogtitlelabel' => 'Titre :',
 'log'                  => 'Journaux d’opérations',
-'all-logs-page'        => 'Toutes les opérations',
+'all-logs-page'        => 'Toutes les opérations publiques',
 'alllogstext'          => 'Affichage combiné de tous les journaux disponibles des opérations sur {{SITENAME}}.
 Vous pouvez restreindre la vue en sélectionnant un type de journal, un nom d’utilisateur ou une page affectée (tous les deux étant sensibles à la casse).',
 'logempty'             => 'Aucune opération correspondante dans les journaux.',
@@ -2649,7 +2656,7 @@ Vous pouvez toutefois en visualiser la source.',
 'tooltip-ca-history'              => 'Les versions passées de cette page (avec leurs contributeurs)',
 'tooltip-ca-protect'              => 'Protéger cette page',
 'tooltip-ca-delete'               => 'Supprimer cette page',
-'tooltip-ca-undelete'             => 'Rétablir les modifications faites sur cette page avant son effacement',
+'tooltip-ca-undelete'             => 'Rétablir les modifications faites sur cette page avant sa suppression',
 'tooltip-ca-move'                 => 'Renommer cette page',
 'tooltip-ca-watch'                => 'Ajouter cette page à votre liste de suivi',
 'tooltip-ca-unwatch'              => 'Retirer cette page de votre liste de suivi',
@@ -2736,7 +2743,7 @@ Permet de rétablir la version précédente et d’ajouter un motif dans la boî
 
 # Spam protection
 'spamprotectiontitle' => 'Filtre de protection anti-pollution',
-'spamprotectiontext'  => 'La page que vous avez voulu sauvegarder a été bloquée par le filtre anti-pollution. Ceci est probablement dû à l’introduction d’un lien vers un site externe apparaissant sur la liste noire. Cette dernière utilise les expressions régulières suivantes :',
+'spamprotectiontext'  => 'La page que vous avez voulu sauvegarder a été bloquée par le filtre anti-pollution. Ceci est probablement dû à l’introduction d’un lien vers un site externe apparaissant sur la liste noire. Cette dernière utilise les expressions rationnelles suivantes :',
 'spamprotectionmatch' => "La chaîne de caractères « '''$1''' » a déclenché le détecteur de pourriel.",
 'spambot_username'    => 'Nettoyage de pourriels par MediaWiki',
 'spam_reverting'      => 'Rétablissement de la dernière version ne contenant pas de lien vers $1',
@@ -2844,7 +2851,7 @@ $1',
 'bad_image_list' => 'Le format est le suivant :
 
 Seules les listes d’énumération (commençant par *) sont prises en compte. Le premier lien d’une ligne doit être celui d’une mauvaise image.
-Les autres liens sur la même ligne sont considérés comme des exceptions, par exemple des pages sur lesquels l’image peut apparaître.',
+Les autres liens sur la même ligne sont considérés comme des exceptions, par exemple des pages sur lesquelles l’image peut apparaître.',
 
 # Metadata
 'metadata'          => 'Métadonnées',
@@ -2907,10 +2914,10 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 'exif-subsectimeoriginal'          => 'Date de la prise originelle',
 'exif-subsectimedigitized'         => 'Date de la numérisation',
 'exif-exposuretime'                => 'Temps d’exposition',
-'exif-exposuretime-format'         => '$1 sec ($2)',
+'exif-exposuretime-format'         => '$1 s ($2 s)',
 'exif-fnumber'                     => 'Ouverture',
 'exif-exposureprogram'             => 'Programme d’exposition',
-'exif-spectralsensitivity'         => 'Sensitivité spectrale',
+'exif-spectralsensitivity'         => 'Sensibilité spectrale',
 'exif-isospeedratings'             => 'Sensibilité ISO',
 'exif-oecf'                        => 'Fonction de conversion opto-électronique',
 'exif-shutterspeedvalue'           => 'Vitesse d’obturation',
@@ -3045,8 +3052,8 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 'exif-flash-fired-0'    => 'Flash non déclenché',
 'exif-flash-fired-1'    => 'Flash déclenché',
 'exif-flash-return-0'   => 'aucun stroboscope ne retourne une fonction de détection',
-'exif-flash-return-2'   => 'le stroboscope retourne une lumière non détectée',
-'exif-flash-return-3'   => 'le stroboscope retourne une lumière détectée',
+'exif-flash-return-2'   => 'le stroboscope ne détecte pas de lumière retournée',
+'exif-flash-return-3'   => 'le stroboscope détecte un retour de lumière',
 'exif-flash-mode-1'     => 'lumière du flash obligatoire',
 'exif-flash-mode-2'     => 'suppression du flash obligatoire',
 'exif-flash-mode-3'     => 'Mode automatique',
@@ -3065,7 +3072,7 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 
 'exif-filesource-3' => 'Appareil photo numérique',
 
-'exif-scenetype-1' => 'Image directement photographiée',
+'exif-scenetype-1' => 'Image photographiée directement',
 
 'exif-customrendered-0' => 'Procédé normal',
 'exif-customrendered-1' => 'Procédé personnalisé',
@@ -3114,18 +3121,18 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 'exif-gpslongitude-w' => 'Ouest',
 
 'exif-gpsstatus-a' => 'Mesure en cours',
-'exif-gpsstatus-v' => 'Interopérabilité de la mesure',
+'exif-gpsstatus-v' => 'Interfonctionnement de la mesure',
 
 'exif-gpsmeasuremode-2' => 'Mesure à 2 dimensions',
 'exif-gpsmeasuremode-3' => 'Mesure à 3 dimensions',
 
 # Pseudotags used for GPSSpeedRef
-'exif-gpsspeed-k' => 'Kilomètre par heure',
-'exif-gpsspeed-m' => 'Mile par heure',
+'exif-gpsspeed-k' => 'Kilomètres à l’heure',
+'exif-gpsspeed-m' => 'Milles à l’heure',
 'exif-gpsspeed-n' => 'Nœud',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
-'exif-gpsdirection-t' => 'Vrai Nord',
+'exif-gpsdirection-t' => 'Nord vrai',
 'exif-gpsdirection-m' => 'Nord magnétique',
 
 # External editor support
@@ -3153,7 +3160,7 @@ si vous venez de créer votre compte, veuillez attendre quelques minutes que le 
 'confirmemail_oncreate'    => 'Un code de confirmation a été envoyé à votre adresse de courriel.
 Ce code n’est pas requis pour vous identifier sur ce wiki, mais vous devrez le fournir pour activer toute fonctionnalité basée sur les courriels.',
 'confirmemail_sendfailed'  => '{{SITENAME}} n’a pas pu vous envoyer le courriel de confirmation.
-Veuillez vérifiez que votre adresse courriel ne comprend aucun caractère incorrect.
+Veuillez vérifiez que votre adresse de courriel ne comprend aucun caractère incorrect.
 
 Le programme d’envoi de courriel a retourné l’indication suivante : $1',
 'confirmemail_invalid'     => 'Code de confirmation incorrect.
@@ -3370,7 +3377,7 @@ Entrez le nom du fichier sans le préfixe « {{ns:file}}: ».',
 'tag-filter'              => 'Filtrer les [[Special:Tags|balises]] :',
 'tag-filter-submit'       => 'Filtrer',
 'tags-title'              => 'Balises',
-'tags-intro'              => 'Cette page liste les balises que le logiciel peut utiliser pour marquer une modification avec, et leur signification.',
+'tags-intro'              => 'Cette page liste les balises que le logiciel peut utiliser pour marquer une modification et la signification de chacune.',
 'tags-tag'                => 'Nom interne de la balise',
 'tags-display-header'     => 'Apparence dans les listes de modifications',
 'tags-description-header' => 'Description complète de la balise',

@@ -296,6 +296,13 @@ $messages = array(
 'underline-never'   => 'Ніколі',
 'underline-default' => 'Як у браўзэры',
 
+# Font style option in Special:Preferences
+'editfont-style'     => 'Стыль шрыфту ў полі рэдагаваньня:',
+'editfont-default'   => 'Шрыфт браўзэра па змоўчваньні',
+'editfont-monospace' => 'Шрыфт з аднолькавай шырынёй літар',
+'editfont-sansserif' => 'Шрыфт без засечак',
+'editfont-serif'     => 'Штыфт з засечкамі',
+
 # Dates
 'sunday'        => 'нядзеля',
 'monday'        => 'панядзелак',
@@ -1858,7 +1865,7 @@ $1",
 'specialloguserlabel'  => 'Удзельнік/удзельніца:',
 'speciallogtitlelabel' => 'Назва:',
 'log'                  => 'Журналы падзеяў',
-'all-logs-page'        => 'Усе журналы падзеяў',
+'all-logs-page'        => 'Усе публічныя журналы падзеяў',
 'alllogstext'          => 'Сумесны паказ усіх журналаў падзеяў {{GRAMMAR:родны|{{SITENAME}}}}.
 Вы можаце адфільтраваць вынікі па тыпе журналу, удзельніку ці старонцы.',
 'logempty'             => 'Падобных запісаў у журнале няма.',

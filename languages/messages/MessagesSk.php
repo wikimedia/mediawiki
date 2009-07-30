@@ -235,6 +235,13 @@ $messages = array(
 'underline-never'   => 'Nikdy',
 'underline-default' => 'Štandardné nastavenie prehliadača',
 
+# Font style option in Special:Preferences
+'editfont-style'     => 'Štýl písma oblasti na úpravy:',
+'editfont-default'   => 'Predvoľba prehliadača',
+'editfont-monospace' => 'S pevnou šírkou znaku',
+'editfont-sansserif' => 'Bezpätkové písmo',
+'editfont-serif'     => 'Pätkové písmo',
+
 # Dates
 'sunday'        => 'nedeľa',
 'monday'        => 'pondelok',
@@ -1809,7 +1816,7 @@ na ktorý/-ého chcete aplikovať túto funkciu.',
 'specialloguserlabel'  => 'Používateľ:',
 'speciallogtitlelabel' => 'Názov:',
 'log'                  => 'Záznamy',
-'all-logs-page'        => 'Všetky záznamy',
+'all-logs-page'        => 'Všetky verejné záznamy',
 'alllogstext'          => 'Kombinované zobrazenie všetkých dostupných záznamov {{GRAMMAR:genitív|{{SITENAME}}}}.
 Môžete zúžiť rozsah, ak zvolíte typ záznamu, používateľské meno alebo dotyčnú stránku (záleží na veľkosti písmen).',
 'logempty'             => 'V zázname neboli nájdené zodpovedajúce položky.',

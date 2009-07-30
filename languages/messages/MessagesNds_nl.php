@@ -334,6 +334,13 @@ $messages = array(
 'underline-never'   => 'Nooit',
 'underline-default' => 'Standardinstelling',
 
+# Font style option in Special:Preferences
+'editfont-style'     => "Lettertype veur de tekse 't bewarkingsveld:",
+'editfont-default'   => 'Standardwebkieker',
+'editfont-monospace' => 'Lettertype mit een vas tekenbreedte',
+'editfont-sansserif' => 'Sans-seriflettertype',
+'editfont-serif'     => 'Seriflettertype',
+
 # Dates
 'sunday'        => 'zundag',
 'monday'        => 'maondag',
@@ -1261,6 +1268,7 @@ Kiek de logboeken nao.",
 'prefs-watchlist-days-max'      => '(maximaal 7 dagen)',
 'prefs-watchlist-edits'         => 'Antal wiezigingen in de uut-ebreien volglieste:',
 'prefs-watchlist-edits-max'     => '(maximale antal: 1.000)',
+'prefs-watchlist-token'         => 'Volglieste beveiligen',
 'prefs-misc'                    => 'Overig',
 'prefs-resetpass'               => 'Wachwoord wiezigen',
 'prefs-email'                   => 'Instellingen veur netpos',
@@ -1281,6 +1289,9 @@ Kiek de logboeken nao.",
 'recentchangesdays-max'         => '(maximaal $1 {{PLURAL:$1|dag|dagen}})',
 'recentchangescount'            => 'Antal bewarkingen um standard weer te geven:',
 'prefs-help-recentchangescount' => "Dit geldt veur leste wiezigingen, paginageschiedenisse en logboekpagina's",
+'prefs-help-watchlist-token'    => "A-j in dit veld een geheime code invullen, dan maak 't een RSS-feed an veur joew volglieste.
+Iederene dee disse code weet kan joew volglieste bekieken, kies dus een veilige code.
+Je kunnen oek disse egenereren standardcode gebruken: $1",
 'savedprefs'                    => 'Veurkeuren bin op-esleugen.',
 'timezonelegend'                => 'Tiedzone:',
 'localtime'                     => 'Plaoselijke tied:',
@@ -1866,7 +1877,7 @@ Meestentieds is leste pagina de gewunste doelpagina, waor oek de eerste pagina h
 'specialloguserlabel'  => 'Gebruker:',
 'speciallogtitlelabel' => 'Naam:',
 'log'                  => 'Logboeken',
-'all-logs-page'        => 'Alle logboeken',
+'all-logs-page'        => 'Alle peblieke logboeken',
 'alllogstext'          => "Dit is 't combinasielogboek van {{SITENAME}}. 
 Je kunnen oek kiezen veur bepaolde logboeken en filteren op gebruker (heuflettergeveulig) en titel (heuflettergeveulig).",
 'logempty'             => "Der steet gien infermasie in 't logboek dee voldut an disse criteria.",

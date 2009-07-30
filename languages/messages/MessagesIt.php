@@ -272,6 +272,13 @@ $messages = array(
 'underline-never'   => 'Mai',
 'underline-default' => 'Mantieni le impostazioni del browser',
 
+# Font style option in Special:Preferences
+'editfont-style'     => "Stile font dell'area di modifica:",
+'editfont-default'   => 'Predefinito del browser',
+'editfont-monospace' => 'Font monospazio',
+'editfont-sansserif' => 'Font sans-serif',
+'editfont-serif'     => 'Font serif',
+
 # Dates
 'sunday'        => 'domenica',
 'monday'        => 'lunedì',
@@ -1797,7 +1804,7 @@ I redirect <s>cancellati</s> sono stati corretti.',
 'specialloguserlabel'  => 'Utente:',
 'speciallogtitlelabel' => 'Titolo:',
 'log'                  => 'Log',
-'all-logs-page'        => 'Tutti i registri',
+'all-logs-page'        => 'Tutti i registri pubblici',
 'alllogstext'          => "Presentazione unificata di tutti i registri di {{SITENAME}}. 
 È possibile restringere i criteri di ricerca selezionando il tipo di registro, l'utente che ha eseguito l'azione, e/o la pagina interessata (entrambi i campi sono sensibili al maiuscolo/minuscolo).",
 'logempty'             => 'Il registro non contiene elementi corrispondenti alla ricerca.',

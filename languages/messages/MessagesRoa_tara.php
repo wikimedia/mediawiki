@@ -72,6 +72,12 @@ $messages = array(
 'underline-never'   => 'Maje',
 'underline-default' => "Valore de default d'u browser",
 
+# Font style option in Special:Preferences
+'editfont-style'     => "Stile d'u carattere jndr'à l'area de le cangiaminde:",
+'editfont-monospace' => 'Carattere Monospaced',
+'editfont-sansserif' => 'Carattere Sans-serif',
+'editfont-serif'     => 'Carattere Serif',
+
 # Dates
 'sunday'        => 'Dumèneche',
 'monday'        => 'Lunedìe',
@@ -372,6 +378,7 @@ Pe piacere manne 'na comunicazzione a 'n'[[Special:ListUsers/sysop|amministrator
 'readonly_lag'         => "'U database ha state automaticamende blocchete purcè le server de le database ca depennene da 'u master onne sciute in eccezzione",
 'internalerror'        => 'Errore inderne',
 'internalerror_info'   => 'Errore inderne: $1',
+'fileappenderror'      => 'Non ge se pò \'nzeccà "$1" a "$2".',
 'filecopyerror'        => 'Non ge pozze cupià \'u fail "$1" jndr\'à "$2".',
 'filerenameerror'      => 'Non ge pozze cangià \'u nome d\'u fail "$1" jndr\'à "$2".',
 'filedeleteerror'      => 'Non ge pozze scangillà \'u fail "$1".',
@@ -1193,11 +1200,13 @@ Tu puè pure scacchià de lassà otre condatte ausanne l'utende tue o le pàggen
 'right-block'                => 'Blocche otre utinde a fà le cangiaminde',
 'right-blockemail'           => "Blocche l'utente a fà mannà le email",
 'right-hideuser'             => "Bluecche 'nu cunde utende, scunnènnele da 'u pubbliche",
+'right-proxyunbannable'      => "Zumbe automaticamende le condrolle d'u proxy",
 'right-protect'              => 'Cange le levèelle de protezione e cange le pàggene prutette',
 'right-editinterface'        => "Cange l'inderfacce utende",
 'right-editusercssjs'        => "Cange 'u CSS e 'u JS de l'otre utinde",
 'right-import'               => "Pàggene 'mbortete da otre Uicchipèdie",
 'right-importupload'         => "'Mborte le pàggene da 'nu file carechete",
+'right-patrol'               => "Signe l'otre cangiaminde cumme condrollate",
 'right-unwatchedpages'       => "Vide 'na liste de pàggene non condrollete",
 'right-trackback'            => "Conferme 'nu trackback",
 'right-mergehistory'         => "Scuagghie 'a storie de le pàggene",
@@ -1374,6 +1383,8 @@ Pe piacere condatte 'n'[[Special:ListUsers/sysop|amministratore]].",
 'upload-misc-error-text'  => "'N'errore scanusciute s'a verificate quanne ste facime 'u carecamende.
 Pe piacere verifiche ca l'URL jè valide e accessibbele e pruève 'n'otra vote.
 Ce 'u probbleme angore jè presende, condatte 'n'[[Special:ListUsers/sysop|amministratore]].",
+'upload-unknown-size'     => 'Dimenziona scanusciute',
+'upload-http-error'       => "S'a verificate 'n'errore HTTP: $1",
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => "Non ge riesche a raggiungere l'URL",
@@ -1422,6 +1433,7 @@ Sinde a me, vue ccu pruève quanne ste mene casine?",
 'linkstoimage'              => '{{PLURAL:$1|sta pàgene apponde |$1 ste pàggene appondene}} a stu fail:',
 'nolinkstoimage'            => 'Non ge stonne pàggene ca appodene a stu fail.',
 'morelinkstoimage'          => 'Vide [[Special:WhatLinksHere/$1|cchiù collegaminde]] a stu file.',
+'redirectstofile'           => "{{PLURAL:$1|'U seguende file se ridirezione|Le seguende $1 file se ridirezionane}} a stu file:",
 'sharedupload'              => 'Stu file avène da $1 e pò essere ausate da otre pruggette.',
 'uploadnewversion-linktext' => "Careche 'na versiona nove de stu fail",
 'shared-repo-from'          => 'da $1',
@@ -1523,9 +1535,10 @@ Mò s'avène redirette a [[$2]].",
 'brokenredirects-edit'   => 'cange',
 'brokenredirects-delete' => 'scangille',
 
-'withoutinterwiki'        => 'Pàggene senza collegaminde a otre Uicchi',
-'withoutinterwiki-legend' => 'Prefisse',
-'withoutinterwiki-submit' => 'Fà vedè',
+'withoutinterwiki'         => 'Pàggene senza collegaminde a otre Uicchi',
+'withoutinterwiki-summary' => 'Le pàggene seguende non ge sonde collegate a nisciuna otra versione de lènghe diverse.',
+'withoutinterwiki-legend'  => 'Prefisse',
+'withoutinterwiki-submit'  => 'Fà vedè',
 
 'fewestrevisions' => 'Pàggene cu mene cangiaminde',
 
@@ -1599,7 +1612,7 @@ Mò s'avène redirette a [[$2]].",
 'specialloguserlabel'  => 'Utende:',
 'speciallogtitlelabel' => 'Titele:',
 'log'                  => 'Archivije',
-'all-logs-page'        => "Tutte l'archivije",
+'all-logs-page'        => "Tutte l'archivije pubbleche",
 'alllogstext'          => "Visualizzazione combinate de tutte le archivije disponibbele sus a {{SITENAME}}.
 Tu puè restringere 'a viste selezionanne 'u tipe de archivije, 'u nome utende (senzibbile a le maiuscole), o le pàggene coinvolte (pure chiste senzibbile a le maiuscole).",
 'logempty'             => "Non ge stè 'n'anema de priatorie jndr'à l'archivije.",
@@ -1647,6 +1660,7 @@ Vide pure [[Special:WantedCategories|Categorije cercate]].",
 'listusersfrom'      => "Fà vedè l'utinde partenne da:",
 'listusers-submit'   => 'Fa vedè',
 'listusers-noresult' => 'Nisciune utende acchiete.',
+'listusers-blocked'  => '(bloccate)',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Archivije de ccreazione de le utinde',
@@ -2136,6 +2150,7 @@ non ge se pò movere 'na pàgene sus a sè stesse.",
 'immobile-target-namespace' => 'Non ge pozze spustà le pàggene jndr\'à \'u namespace "$1"',
 'immobile-source-page'      => 'Sta pàgene non ge se pò spustà.',
 'immobile-target-page'      => 'Non ge puè spustà sus a stu titele de destinazione.',
+'imagenocrossnamespace'     => "Non ge pozze spustà 'nu file jndr'à 'nu namespace senza file",
 'imagetypemismatch'         => "L'estenziona nove d'u file non ge se accocchie cu 'u tipe sue",
 'imageinvalidfilename'      => "'U nome d'u file de destinazzione jè invalide",
 'move-leave-redirect'       => "Lasse 'nu ridirezionamende rréte",
@@ -2309,6 +2324,7 @@ condrolle ce l'installazione de latex, dvips, gs e convertitore jè corrette",
 pe piacere vide math/README pe configurà.',
 
 # Patrol log
+'patrol-log-page' => 'Archivije de le condrolle',
 'patrol-log-auto' => '(automatiche)',
 'patrol-log-diff' => 'revisione $1',
 

@@ -249,6 +249,8 @@ Li sighenti cullegamenti so in linga ingrese:
 'faqpage'        => 'Project:FAQ (infuimmazioni e aggiuddu)',
 
 # Vector skin
+'vector-action-delete'      => 'Canzella',
+'vector-action-move'        => 'Ippustha',
 'vector-namespace-category' => 'Categuria',
 'vector-namespace-image'    => 'File',
 'vector-namespace-main'     => 'Pàgina',
@@ -299,7 +301,7 @@ Li sighenti cullegamenti so in linga ingrese:
 'toolbox'           => 'Isthrumenti',
 'userpage'          => 'Visuarizza la pàgina utenti',
 'projectpage'       => 'Visuarizza la pàgina di saivvìziu',
-'imagepage'         => "Visuarizza la pàgina di deschrizioni di l'immàgina",
+'imagepage'         => 'Visuarizza la pagina di lu file',
 'mediawikipage'     => 'Visuarizza la imbasciadda',
 'templatepage'      => 'Visuarizza lu mudellu',
 'viewhelppage'      => 'Visuarizza la pàgina di aggiuddu',
