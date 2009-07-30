@@ -287,6 +287,7 @@ class HttpRequest {
 		$this->upload_session_key = ( isset( $opt['upload_session_key'] ) ) ? $opt['upload_session_key'] : false;
 		$this->headers_only = ( isset( $opt['headers_only'] ) ) ? $opt['headers_only'] : false;
 		$this->do_close_session_update = isset( $opt['do_close_session_update'] );
+		$this->postData = isset( $opt['postdata'] ) ? $opt['postdata'] : '';
 	}
 
 	/**
@@ -331,7 +332,7 @@ class HttpRequest {
 			curl_setopt( $c, CURLOPT_HEADER, true );
 		} elseif ( $this->method == 'POST' ) {
 			curl_setopt( $c, CURLOPT_POST, true );
-			curl_setopt( $c, CURLOPT_POSTFIELDS, '' );
+			curl_setopt( $c, CURLOPT_POSTFIELDS, $this->postData );
 		} else {
 			curl_setopt( $c, CURLOPT_CUSTOMREQUEST, $this->method );
 		}
