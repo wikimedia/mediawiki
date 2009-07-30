@@ -502,34 +502,18 @@ mvSequencer.prototype = {
 		//if on an edit page just grab from the form:		
 		this.sequenceEditToken = $j('input[wpEditToken]').val();
 		
-		if(typeof this.sequenceEditToken == 'undefined' && this.getLocalApiUrl()!=null){					
-			var reqObj = {
-				'action':'query',
-				'prop':'info',
-				'intoken':'edit',
-				'titles': _this.plObj.mTitle
-			};			
-			do_api_req( {
-				'data': reqObj,
-				'url' : _this.getLocalApiUrl()
-				},function(data){
-					var cat = data;							
-					for(var i in data.query.pages){ 
-						if(data.query.pages[i]['edittoken'])
-							_this.sequenceEditToken = data.query.pages[i]['edittoken'];								
-					}
-					_this.updateSeqSaveButtons();
+		if(typeof this.sequenceEditToken == 'undefined' && this.getLocalApiUrl()!=null){
+			get_mw_token(_this.plObj.mTitle, _this.getLocalApiUrl(), 
+				function(token){
+					if(token){
+						_this.sequenceEditToken = token;
+						_this.updateSeqSaveButtons();
+					}	
 				}
-			);
-			reqObj['titles']=_this.plObj.mTalk;
-			do_api_req( {
-				'data': reqObj,
-				'url' : _this.getLocalApiUrl()
-				}, function( data ){
-					for(var j in data.query.pages){
-						if(data.query.pages[j]['edittoken'])
-							_this.clipboardEditToken = data.query.pages[j]['edittoken'];
-					}
+			);			
+			get_mw_token(_this.plObj.mTalk, _this.getLocalApiUrl(), 
+				function(token){
+					_this.clipboardEditToken = token;
 				}
 			);
 			//also grab permissions for sending clipboard commands to the server
