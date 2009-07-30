@@ -3814,6 +3814,21 @@ $wgParserTestFiles = array(
 );
 
 /**
+ * If configured, specifies target CodeReview installation to send test
+ * result data from 'parserTests.php --upload'
+ *
+ * Something like this:
+ * $wgParserTestRemote = array(
+ *     'api-url' => 'http://www.mediawiki.org/w/api.php',
+ *     'repo'    => 'MediaWiki',
+ *     'suite'   => 'ParserTests',
+ *     'path'    => '/trunk/phase3', // not used client-side; for reference
+ *     'secret'  => 'qmoicj3mc4mcklmqw', // Shared secret used in HMAC validation
+ * );
+ */
+$wgParserTestRemote = false;
+
+/**
  * Break out of framesets. This can be used to prevent external sites from
  * framing your site with ads.
  */

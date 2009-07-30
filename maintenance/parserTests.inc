@@ -116,6 +116,8 @@ class ParserTest {
 			$this->recorder = new DbTestRecorder( $this );
 		} elseif( isset( $options['compare'] ) ) {
 			$this->recorder = new DbTestPreviewer( $this );
+		} elseif( isset( $options['upload'] ) ) {
+			$this->recorder = new RemoteTestRecorder( $this );
 		} else {
 			$this->recorder = new TestRecorder( $this );
 		}
@@ -1519,5 +1521,93 @@ class DbTestRecorder extends DbTestPreviewer  {
 				'ti_success' => $result ? 1 : 0,
 			),
 			__METHOD__ );
+	}
+}
+
+class RemoteTestRecorder extends TestRecorder {
+	function start() {
+		parent::start();
+		$this->results = array();
+		$this->ping( 'running' );
+	}
+	
+	function record( $test, $result ) {
+		parent::record( $test, $result );
+		$this->results[$test] = (bool)$result;
+	}
+	
+	function end() {
+		$this->ping( 'complete', $this->results );
+		parent::end();
+	}
+	
+	/**
+	 * Inform a CodeReview instance that we've started or completed a test run...
+	 * @param $remote array: info on remote target
+	 * @param $status string: "running" - tell it we've started
+	 *                        "complete" - provide test results array
+	 *                        "abort" - something went horribly awry
+	 * @param $data array of test name => true/false
+	 */
+	function ping( $status, $results=false ) {
+		global $wgParserTestRemote, $IP;
+		
+		$remote = $wgParserTestRemote;
+		$revId = SpecialVersion::getSvnRevision( $IP );
+		$jsonResults = json_encode( $results );
+		
+		if( !$remote ) {
+			print "Can't do remote upload without configuring \$wgParserTestRemote!\n";
+			exit( 1 );
+		}
+		
+		// Generate a hash MAC to validate our credentials
+		$message = array(
+			$remote['repo'],
+			$remote['suite'],
+			$revId,
+			$status,
+		);
+		if( $status == "complete" ) {
+			$message[] = $jsonResults;
+		}
+		$hmac = hash_hmac( "sha1", implode( "|", $message ), $remote['secret'] );
+		
+		$postData = array(
+			'action' => 'codetestupload',
+			'format' => 'json',
+			'repo'   => $remote['repo'],
+			'suite'  => $remote['suite'],
+			'rev'    => $revId,
+			'status' => $status,
+			'hmac'   => $hmac,
+		);
+		if( $status == "complete" ) {
+			$postData['results'] = $jsonResults;
+		}
+		$response = $this->post( $remote['api-url'], $postData );
+		
+		if( $response === false ) {
+			print "CodeReview info upload failed to reach server.\n";
+			exit( 1 );
+		}
+		$responseData = json_decode( $response, true );
+		if( !is_array( $responseData ) ) {
+			print "CodeReview API response not recognized...\n";
+			wfDebug( "Unrecognized CodeReview API response: $response\n" );
+			exit( 1 );
+		}
+		if( isset( $responseData['error'] ) ) {
+			$code = $responseData['error']['code'];
+			$info = $responseData['error']['info'];
+			print "CodeReview info upload failed: $code $info\n";
+			exit( 1 );
+		}
+	}
+	
+	function post( $url, $data ) {
+		// @fixme: for whatever reason, I get a 417 fail when using CURL's multipart form submit.
+		// If we do form URL encoding ourselves, though, it should work.
+		return Http::post( $url, array( 'postdata' => wfArrayToCGI( $data ) ) );
 	}
 }

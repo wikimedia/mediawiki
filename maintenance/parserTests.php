@@ -47,7 +47,7 @@ Options:
   --seed <n>       Start the fuzz test from the specified seed
   --help           Show this help message
   --run-disabled   run disabled tests
-
+  --upload         Upload test results to remote wiki (per \$wgParserTestRemote)
 
 ENDS;
     exit( 0 );
