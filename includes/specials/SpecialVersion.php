@@ -102,7 +102,7 @@ class SpecialVersion extends SpecialPage {
 	 */
 	static function softwareInformation() {
 		global $wgUseImageMagick, $wgImageMagickConvertCommand, $wgDiff3, $wgDiff, $wgUseTeX;
-		global $wgAllowTitlesInSVG, $wgSVGConverter, $wgSVGConverters, $wgSVGConverterPath;
+		global $wgFileExtensions, $wgSVGConverter, $wgSVGConverters, $wgSVGConverterPath;
 		global $wgUser, $wgSpecialVersionExtended;
 		$dbr = wfGetDB( DB_SLAVE );
 
@@ -194,7 +194,7 @@ class SpecialVersion extends SpecialPage {
 			}
 
 			// Look for SVG converter and print the version info
-			if ( $wgAllowTitlesInSVG ) {
+			if ( in_array( 'svg', $wgFileExtensions ) ) {
 				$swSVGConvName = $wgSVGConverter;
 				$haveSVGConvVer = false;
 				$pathVar = '$path/';
