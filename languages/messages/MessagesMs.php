@@ -317,7 +317,14 @@ $messages = array(
 'vector-namespace-media'     => 'Laman media',
 'vector-namespace-mediawiki' => 'Pesanan',
 'vector-namespace-project'   => 'Laman projek',
+'vector-namespace-special'   => 'Laman khas',
+'vector-namespace-talk'      => 'Bincang',
+'vector-namespace-user'      => 'Laman pengguna',
+'vector-view-create'         => 'Cipta',
+'vector-view-edit'           => 'Sunting',
+'vector-view-history'        => 'Lihat sejarah',
 'vector-view-view'           => 'Baca',
+'vector-view-viewsource'     => 'Lihat sumber',
 'actions'                    => 'Tindakan',
 'namespaces'                 => 'Ruang nama',
 'variants'                   => 'Kelainan',
@@ -379,6 +386,11 @@ $messages = array(
 'jumpto'            => 'Lompat ke:',
 'jumptonavigation'  => 'pandu arah',
 'jumptosearch'      => 'gelintar',
+'view-pool-error'   => 'Maaf, pelayan terlebih bebanan pada masa ini.
+Terlalu ramai pengguna cuba melihat laman ini.
+Sila tunggu sebentar sebelum cuba mencapai laman ini lagi.
+
+$1',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Perihal {{SITENAME}}',
@@ -458,13 +470,15 @@ Senarai laman khas yang sah boleh dilihat di [[Special:SpecialPages]].",
 # General errors
 'error'                => 'Ralat',
 'databaseerror'        => 'Ralat pangkalan data',
-'dberrortext'          => 'Terdapat kesalahan pada sintaks pertanyaan pangkalan data.
+'dberrortext'          => 'Terdapat ralat pada sintaks pertanyaan pangkalan data.
 Ini mungkin menandakan pepijat dalam perisian wiki ini.
 Pertanyaan pangkalan data yang terakhir ialah:
 <blockquote><tt>$1</tt></blockquote>
 dari dalam fungsi "<tt>$2</tt>".
-MySQL memulangkan ralat "<tt>$3: $4</tt>".',
-'dberrortextcl'        => 'Terdapat kesalahan sintaks pada pertanyaan pangkalan data. Pertanyaan terakhir ialah: "$1" dari dalam fungsi "$2". MySQL memulangkan ralat "$3: $4".',
+$5 memulangkan ralat "<tt>$3: $4</tt>".',
+'dberrortextcl'        => 'Terdapat ralat sintaks pada pertanyaan pangkalan data.
+Pertanyaan terakhir ialah: "$1" dari dalam fungsi "$2".
+$5 memulangkan ralat "$3: $4".',
 'laggedslavemode'      => 'Amaran: Laman ini mungkin bukan yang terkini.',
 'readonly'             => 'Pangkalan data dikunci',
 'enterlockreason'      => 'Sila nyatakan sebab penguncian dan jangkaan
@@ -1594,7 +1608,8 @@ Penerangan pada [$2 laman penerangan failnya] di sana ditunjukkan di bawah.',
 'disambiguations-text' => "Laman-laman berikut mengandungi pautan ke '''laman penyahtaksaan'''. Pautan ini sepatutnya ditujukan kepada topik yang sepatutnya.<br />Sesebuah laman dianggap sebagai laman penyahtaksaan jika ia menggunakan templat yang dipaut dari [[MediaWiki:Disambiguationspage]]",
 
 'doubleredirects'            => 'Lencongan berganda',
-'doubleredirectstext'        => 'Yang berikut ialah sebarai laman yang melencong ke laman lencongan yang lain. Setiap baris mengandungi pautan ke laman lencongan pertama dan kedua, serta baris pertama bagi teks lencongan kedua, lazimnya merupakan laman sasaran "sebenar", yang sepatutnya ditujui oleh lencongan pertama.',
+'doubleredirectstext'        => 'Yang berikut ialah senarai laman yang melencong ke laman lencongan lain. Setiap baris mengandungi pautan ke laman lencongan pertama dan kedua, serta baris pertama bagi teks lencongan kedua, lazimnya merupakan laman sasaran "sebenar", yang sepatutnya ditujui oleh lencongan pertama.
+Masukan yang <s>dipotong</s> telah diselesaikan.',
 'double-redirect-fixed-move' => '[[$1]] dilencongkan ke [[$2]]',
 'double-redirect-fixer'      => 'Pembaiki lencongan',
 
@@ -1685,7 +1700,7 @@ serta mungkin mempunyai maklumat lanjut mengenai buku yang anda cari:',
 'specialloguserlabel'  => 'Pengguna:',
 'speciallogtitlelabel' => 'Tajuk:',
 'log'                  => 'Log',
-'all-logs-page'        => 'Semua log',
+'all-logs-page'        => 'Semua log awam',
 'alllogstext'          => 'Yang berikut ialah gabungan bagi semua log yang ada bagi {{SITENAME}}. Anda boleh menapis senarai ini dengan memilih jenis log, nama pengguna (peka huruf besar), atau nama laman yang terjejas (juga peka huruf besar).',
 'logempty'             => 'Tiada item yang sepadan dalam log.',
 'log-title-wildcard'   => 'Cari semua tajuk yang bermula dengan teks ini',

@@ -1122,7 +1122,7 @@ Katrā rindiņā ir saites uz pirmo un otro pāradresācijas lapu, kā arī pirm
 'specialloguserlabel'  => 'Lietotājs:',
 'speciallogtitlelabel' => 'Virsraksts:',
 'log'                  => 'Reģistri',
-'all-logs-page'        => 'Visi reģistri',
+'all-logs-page'        => 'Visi publiski pieejamie reģistri',
 'alllogstext'          => 'Visi pieejamie {{grammar:akuzatīvs{{SITENAME}}}} reģistri.
 Tu vari sašaurināt aplūkojamo reģistru, izvēloties reģistra veidu, lietotāja vārdu vai reģistrēto lapu. Visi teksta lauki izšķir lielos un mazos burtus.',
 'logempty'             => 'Reģistrā nav atbilstošu ierakstu.',

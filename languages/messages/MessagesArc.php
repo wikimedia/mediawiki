@@ -320,7 +320,7 @@ Note that some pages may continue to be displayed as if you were still logged in
 'anoneditwarning'                  => "'''ܙܘܗܪܐ:''' ܠܐ ܥܠܝܠܐ ܐܢܬ.
 ܐܝ ܦܝ (IP) ܕܝܠܟ ܢܬܟܬܒ ܒܬܫܥܝܬܐ ܕܦܐܬܐ.",
 'summary-preview'                  => 'ܚܝܪܐ ܩܕܡܝܐ ܕܦܣܝܩܬ̈ܐ :',
-'blockedtitle'                     => 'ܡܦܠܚܢܐ ܗܘ ܚܪܝܡܐ',
+'blockedtitle'                     => 'ܡܦܠܚܢܐ ܗܘ ܡܚܪܡܐ',
 'nosuchsectiontitle'               => 'ܠܝܬ ܗܟܘܬ ܡܢܬܐ',
 'loginreqlink'                     => 'ܥܘܠ',
 'newarticle'                       => '(ܚܕܬܐ)',
@@ -756,7 +756,7 @@ Note that some pages may continue to be displayed as if you were still logged in
 # Special:Log
 'specialloguserlabel' => 'ܡܦܠܚܢܐ:',
 'log'                 => 'ܣܓܠ̈ܐ',
-'all-logs-page'       => 'ܟܠ ܣܓܠ̈ܐ',
+'all-logs-page'       => 'ܟܠ ܣܓܠ̈ܐ ܓܘܢܝ̈ܐ',
 
 # Special:AllPages
 'allpages'          => 'ܟܠ ܦܐܬܬ̈ܐ',
@@ -953,6 +953,7 @@ Note that some pages may continue to be displayed as if you were still logged in
 'ipusubmit'                  => 'ܫܩܘܠ ܚܪܡܐ ܗܢܐ',
 'unblocked'                  => 'ܐܫܬܩܠ ܚܪܡܐ ܡܢ [[User:$1|$1]]',
 'ipblocklist'                => 'ܐܝ ܦܝ (IP) ܘܫܡܗ̈ܐ ܕܡܦܠܚܢ̈ܐ ܚܪ̈ܝܡܐ',
+'ipblocklist-legend'         => 'ܐܫܟܚ ܡܦܠܚܢܐ ܡܚܪܡܐ',
 'ipblocklist-username'       => 'ܐܝ ܦܝ (IP) ܐܘ ܫܡܐ ܕܡܦܠܚܢܐ:',
 'ipblocklist-sh-userblocks'  => '$1 ܚܪ̈ܡܐ ܕܚܘܫܒܢܐ',
 'ipblocklist-sh-tempblocks'  => '$1 ܚܪ̈ܡܐ ܙܒܢܢܝ̈ܐ',
@@ -971,9 +972,9 @@ Note that some pages may continue to be displayed as if you were still logged in
 'unblocklogentry'            => 'ܫܩܠ ܚܪܡܐ ܡܢ $1',
 'block-log-flags-anononly'   => 'ܡܦܠܚܢ̈ܐ ܠܐ ܝܕܝܥ̈ܐ ܒܠܚܘܕ',
 'block-log-flags-hiddenname' => 'ܫܡܐ ܕܡܦܠܚܢܐ ܛܘܫܝܐ',
-'ipb_already_blocked'        => '"$1" ܚܪܝܡܐ ܗܘ ܡܢ ܟܕܘ',
-'ipb-needreblock'            => '==ܚܪܝܡܐ ܡܢ ܟܕܘ==
-"$1" ܚܪܝܡܐ ܗܘ ܡܢ ܟܕܘ
+'ipb_already_blocked'        => '"$1" ܡܚܪܡܐ ܗܘ ܡܢ ܟܕܘ',
+'ipb-needreblock'            => '==ܡܚܪܡܐ ܡܢ ܟܕܘ==
+"$1" ܡܚܪܡܐ ܗܘ ܡܢ ܟܕܘ
 Do you want to change the settings?',
 
 # Move page
@@ -1006,8 +1007,11 @@ Do you want to change the settings?',
 'export-download'   => 'ܢܛܘܪ ܐܝܟ ܠܦܦܐ',
 
 # Namespace 8 related
-'allmessages'     => 'ܐܓܪ̈ܬܐ ܕܛܟܣܐ',
-'allmessagesname' => 'ܫܡܐ',
+'allmessages'               => 'ܐܓܪ̈ܬܐ ܕܛܟܣܐ',
+'allmessagesname'           => 'ܫܡܐ',
+'allmessages-filter-all'    => 'ܟܠ',
+'allmessages-language'      => 'ܠܫܢܐ:',
+'allmessages-filter-submit' => 'ܙܠ',
 
 # Thumbnails
 'thumbnail-more'  => 'ܐܘܪܒ',
@@ -1051,6 +1055,7 @@ Do you want to change the settings?',
 'math_unknown_error' => 'ܦܘܕܐ ܠܐ ܝܕܝܥܐ',
 
 # Patrol log
+'patrol-log-auto' => '(ܝܬܐܝܬ)',
 'patrol-log-diff' => 'ܬܢܝܬܐ $1',
 
 # Image deletion
@@ -1114,6 +1119,7 @@ Do you want to change the settings?',
 'exif-subjectdistancerange-3' => 'ܚܝܪܬܐ ܪܚܘܩܬܐ',
 
 # Pseudotags used for GPSSpeedRef
+'exif-gpsspeed-k' => 'ܟܝܠܘܡܬܪ ܒܫܥܬܐ',
 'exif-gpsspeed-m' => 'ܡܝܠܐ ܒܫܥܬܐ',
 'exif-gpsspeed-n' => 'ܩܛܪ̈ܐ',
 
@@ -1133,6 +1139,9 @@ Do you want to change the settings?',
 'confirmemail_subject'     => 'ܚܘܬܬܐ ܕܒܝܠܕܪܐ ܐܠܟܬܪܘܢܝܐ ܡܢ {{SITENAME}}',
 'confirmemail_invalidated' => 'ܚܘܬܬܐ ܕܒܝܠܕܪܐ ܐܠܟܬܪܘܢܝܐ ܒܛܠ',
 'invalidateemail'          => 'ܒܛܘܠ ܚܘܬܬܐ ܕܒܝܠܕܪܐ ܐܠܟܬܪܘܢܝܐ',
+
+# Trackbacks
+'trackbackremove' => '([$1 ܫܘܦ])',
 
 # Delete conflict
 'recreate' => 'ܒܪܝ ܙܒܢܬܐ ܐܚܪܬܐ',

@@ -1086,7 +1086,7 @@ Certifique-se de que tal alteração manterá a continuidade das ações.',
 'viewprevnext'                     => 'Ver ($1) ($2) ($3).',
 'searchmenu-legend'                => 'Opções de pesquisa',
 'searchmenu-exists'                => "*Página '''[[$1]]'''",
-'searchmenu-new'                   => "'''Criar a página \"[[:\$1]]\" nesta wiki!'''",
+'searchmenu-new'                   => "'''Crie a página \"[[:\$1]]\" neste wiki!'''",
 'searchhelp-url'                   => 'Help:Conteúdos',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Navegue por páginas com este prefixo]]',
 'searchprofile-articles'           => 'Páginas de conteúdo',
@@ -1539,6 +1539,8 @@ Por gentileza, contate um [[Special:ListUsers/sysop|administrador]].',
 'upload-misc-error-text'  => 'Ocorreu um erro desconhecido durante o envio.
 Verifique se o endereço (URL) é válido e acessível e tente novamente.
 Caso o problema persista, contacte um [[Special:ListUsers/sysop|administrador]].',
+'upload-unknown-size'     => 'Tamanho desconhecido',
+'upload-http-error'       => 'Ocorreu um erro HTTP: $1',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Não foi possível acessar a URL',
@@ -1770,7 +1772,7 @@ Uma página é considerada como de desambiguação se utilizar uma predefiniçã
 'specialloguserlabel'  => 'Utilizador:',
 'speciallogtitlelabel' => 'Título:',
 'log'                  => 'Registos',
-'all-logs-page'        => 'Todos os registos',
+'all-logs-page'        => 'Todos os registos públicos',
 'alllogstext'          => 'Exposição combinada de todos registos disponíveis no wiki {{SITENAME}}.
 Você pode diminuir a lista escolhendo um tipo de registo, um nome de utilizador (sensível a minúsculas), ou uma página afectada (também sensível a minúsculas).',
 'logempty'             => 'Nenhum item idêntico no registo.',
@@ -2382,6 +2384,9 @@ Se desejar, pode utilizar uma ligação (por exemplo, [[{{#Special:Export}}/{{Me
 'allmessagestext'           => 'Esta é uma lista de todas as mensagens de sistema disponíveis no espaço nominal {{ns:mediawiki}}.
 Acesse [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] e [http://translatewiki.net translatewiki.net] caso deseje contribuir para traduções do MediaWiki feitas para uso geral.',
 'allmessagesnotsupportedDB' => "Esta página não pode ser utilizada, uma vez que '''\$wgUseDatabaseMessages''' foi desativado.",
+'allmessages-prefix'        => 'Filtrar por prefixo:',
+'allmessages-language'      => 'Língua:',
+'allmessages-filter-submit' => 'Ir',
 
 # Thumbnails
 'thumbnail-more'           => 'Ampliar',
@@ -3155,6 +3160,7 @@ Entre com o nome de ficheiro sem fornecer o prefixo "{{ns:file}}:".',
 'htmlform-invalid-input'       => 'Existem problemas com alguns dos dados introduzidos',
 'htmlform-select-badoption'    => 'O valor que você especificou não é uma opção válida.',
 'htmlform-int-invalid'         => 'O valor que você especificou não é um inteiro.',
+'htmlform-float-invalid'       => 'O valor que especificou não é um número.',
 'htmlform-int-toolow'          => 'O valor que você especificou está abaixo do mínimo de $1',
 'htmlform-int-toohigh'         => 'O valor que você especificou está acima do máximo de $1',
 'htmlform-submit'              => 'Enviar',

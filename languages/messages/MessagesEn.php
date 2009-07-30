@@ -1419,12 +1419,12 @@ There may be details in the [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENA
 'rev-deleted-text-unhide'     => "This page revision has been '''deleted'''.
 There may be details in the [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log].
 As an administrator you can still [$1 view this revision] if you wish to proceed.",
-'rev-suppressed-text-unhide'     => "This page revision has been '''suppressed'''.
+'rev-suppressed-text-unhide'  => "This page revision has been '''suppressed'''.
 There may be details in the [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} suppression log].
 As an administrator you can still [$1 view this revision] if you wish to proceed.",
 'rev-deleted-text-view'       => "This page revision has been '''deleted'''.
 As an administrator you can view it; there may be details in the [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log].",
-'rev-suppressed-text-view'       => "This page revision has been '''suppressed'''.
+'rev-suppressed-text-view'    => "This page revision has been '''suppressed'''.
 As an administrator you can view it; there may be details in the [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} suppression log].",
 'rev-deleted-no-diff'         => "You cannot view this diff because one of the revisions has been '''deleted'''.
 There may be details in the [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log].",

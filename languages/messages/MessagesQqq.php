@@ -141,7 +141,18 @@ This is the toolbar: [[Image:Toolbar.png]]",
 'underline-never'   => 'Used in [[Special:Preferences]] (under "Misc"). This option means "never underline links", there are also options "always" and "browser default".
 
 {{Identical|Never}}',
-'underline-default' => 'Used in [[Special:Preferences]] (under "Misc"). This option means "underline links as in your browser", there are also options "never" and "always".',
+'underline-default' => 'Used in [[Special:Preferences]] (under "Misc"). This option means "underline links as in your browser", there are also options "never" and "always".
+
+{{Identical|Browser default}}',
+
+# Font style option in Special:Preferences
+'editfont-style'     => 'Used in [[Special:Preferences]], tab Editing.',
+'editfont-default'   => 'Option used in [[Special:Preferences]], tab Editing.
+
+{{identical|Browser default}}',
+'editfont-monospace' => 'Option used in [[Special:Preferences]], tab Editing.',
+'editfont-sansserif' => 'Option used in [[Special:Preferences]], tab Editing.',
+'editfont-serif'     => 'Option used in [[Special:Preferences]], tab Editing.',
 
 # Dates
 'sunday'        => 'Name of the day of the week.',
@@ -1104,8 +1115,9 @@ Shown as legend of the second fieldset of the tab 'Search' in [[Special:Preferen
 {{Identical|E-mail}}',
 'username'                      => '{{Identical|Username}}',
 'uid'                           => '{{Identical|User ID}}',
-'prefs-memberingroups'          => 'This message is shown on [[Special:Preferences]], first tab, where it is follwed by a colon. See also prefs-memberingroups-type.',
-'prefs-memberingroups-type'     => '$1 is list of group names, $2 is list of group member names. Label for these is prefs-memberingroups.',
+'prefs-memberingroups'          => 'This message is shown on [[Special:Preferences]], first tab. See also {{msg-mw|prefs-memberingroups-type}}.',
+'prefs-memberingroups-type'     => '{{optional}}
+$1 is list of group names, $2 is list of group member names. Label for these is {{msg-mw|prefs-memberingroups}}.',
 'prefs-registration'            => 'Used in [[Special:Preferences]].',
 'prefs-registration-date-time'  => '{{optional}}
 Used in [[Special:Preferences]]. Parameters are:
@@ -1150,7 +1162,7 @@ Used in [[Special:Preferences]], tab "Recent changes".',
 
 # User rights
 'userrights'                     => 'Page title of [[Special:UserRights]].',
-'userrights-lookup-user'         => 'Button text when managing user rights',
+'userrights-lookup-user'         => 'Label text when managing user rights ([[Special:UserRights]])',
 'userrights-user-editname'       => 'Displayed on [[Special:UserRights]].',
 'editusergroup'                  => '{{Identical|Edit user groups}}',
 'editinguser'                    => "Appears on [[Special:UserRights]]. The '''last part''' of the message '''should remain completely untranslated''', but if your language has S-O-V word order, the verb can follow it.",
@@ -1273,7 +1285,7 @@ The rate limits have no effect on the groups that have this right. Rate limits i
 'right-import'                => '{{doc-right}}',
 'right-importupload'          => '{{doc-right}}',
 'right-patrol'                => '{{doc-right}}',
-'right-trackback'             => 'A user right.
+'right-trackback'             => '{{doc-right}}
 
 "Submit" in this instance means that something called [[:wikipedia:trackback|trackback]] is being sent to the wiki, and the wiki accepts it. When the right is not given to the user, the wiki rejects, or ignores it. There is a nice description at [http://cruftbox.com/cruft/docs/trackback.html How TrackBack Works].',
 'right-reset-passwords'       => '{{doc-right}}',
@@ -2533,7 +2545,7 @@ The message appears after the name of the patroller.',
 'file-info'            => 'File info displayed on file description page.',
 'file-info-size'       => 'File info displayed on file description page.',
 'file-nohires'         => 'File info displayed on file description page.',
-'svg-long-desc'        => 'Displayed under an SVG image at the image description page. See for example [[:Image:Wiki.svg]].',
+'svg-long-desc'        => 'Displayed under an SVG image at the image description page. Note that argument 3 is a string that includes the file size unit symbol. See for example [[:Image:Wiki.svg]].',
 'show-big-image'       => 'Displayed under an image at the image description page, when it is displayed smaller there than it was uploaded.',
 'show-big-image-thumb' => 'File info displayed on file description page.',
 

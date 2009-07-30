@@ -243,8 +243,8 @@ $messages = array(
 'editundo'      => 'niuskapjan',
 
 # Search results
-'prevn'          => 'aftuma $1',
-'nextn'          => 'iftuma $1',
+'prevn'          => 'aftuma {{PLURAL:$1|$1}}',
+'nextn'          => 'iftuma {{PLURAL:$1|$1}}',
 'viewprevnext'   => 'Siuneis ($1) ($2) ($3)',
 'searchhelp-url' => 'Hilpa:Háubidaseido',
 'powersearch'    => 'Sokeiþ',
@@ -321,8 +321,8 @@ $messages = array(
 # Statistics
 'statistics' => 'Seidostatistik',
 
-'brokenredirects-edit'   => '(máidjan)',
-'brokenredirects-delete' => '(taíran)',
+'brokenredirects-edit'   => 'máidjan',
+'brokenredirects-delete' => 'taíran',
 
 # Miscellaneous special pages
 'nbytes'       => '$1 {{PLURAL:$1|báit|báita}}',
