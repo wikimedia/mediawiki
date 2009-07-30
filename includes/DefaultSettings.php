@@ -2101,9 +2101,6 @@ $wgNamespacesToBeSearchedHelp = array(
 	NS_HELP           => true,
 );
 
-
-$wgUseOldSearchUI = true; // temp testing variable
-
 /**
  * If set to true the 'searcheverything' preference will be effective only for logged-in users.
  * Useful for big wikis to maintain different search profiles for anonymous and logged-in users.
