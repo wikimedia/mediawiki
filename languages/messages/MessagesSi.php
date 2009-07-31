@@ -128,6 +128,8 @@ $specialPageAliases = array(
 	'Blankpage'                 => array( 'හිස් පිටුව' ),
 	'LinkSearch'                => array( 'සබැඳි ගවේෂණය' ),
 	'DeletedContributions'      => array( 'මකාදැමුණු දායකත්වයන්' ),
+	'Tags'                      => array( 'ටැග' ),
+	'Activeusers'               => array( 'ක්‍රියාකාරීපරිශීලකයන්' ),
 );
 
 $magicWords = array(

@@ -278,7 +278,8 @@ $specialPageAliases = array(
 	'Blankpage'                 => array( 'Tyhjä_sivu' ),
 	'LinkSearch'                => array( 'Linkkihaku' ),
 	'DeletedContributions'      => array( 'Poistetut_muokkaukset' ),
-	'Activeusers'               => array( 'AktiivisetKäyttäjät' ),
+	'Tags'                      => array( 'Merkinnät' ),
+	'Activeusers'               => array( 'Aktiiviset_käyttäjät' ),
 );
 
 $linkTrail = '/^([a-zäö]+)(.*)$/sDu';
