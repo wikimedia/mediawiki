@@ -480,7 +480,7 @@ $wgAutoloadLocalClasses = array(
 	'SearchResult' => 'includes/search/SearchEngine.php',
 	'SearchResultSet' => 'includes/search/SearchEngine.php',
 	'SearchResultTooMany' => 'includes/search/SearchEngine.php',
-	'SearchUpdate' => 'include/search/SearchUpdate.php',
+	'SearchUpdate' => 'includes/search/SearchUpdate.php',
 	'SearchUpdateMyISAM' => 'includes/search/SearchUpdate.php',
 
 	# includes/specials
