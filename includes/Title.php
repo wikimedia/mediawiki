@@ -1426,7 +1426,8 @@ class Title {
 
 		$expiry_description = '';
 		if ( $encodedExpiry != 'infinity' ) {
-			$expiry_description = ' (' . wfMsgForContent( 'protect-expiring', $wgContLang->timeanddate( $expiry ) , $wgContLang->date( $expiry ) , $wgContLang->time( $expiry ) ).')';
+			$expiry_description = ' (' . wfMsgForContent( 'protect-expiring',$wgContLang->timeanddate( $expiry ),
+				$wgContLang->date( $expiry ) , $wgContLang->time( $expiry ) ).')';
 		}
 		else {
 			$expiry_description .= ' (' . wfMsgForContent( 'protect-expiry-indefinite' ).')';
@@ -1435,23 +1436,30 @@ class Title {
 		# Update protection table
 		if ($create_perm != '' ) {
 			$dbw->replace( 'protected_titles', array(array('pt_namespace', 'pt_title')),
-				array( 'pt_namespace' => $namespace, 'pt_title' => $title
-					, 'pt_create_perm' => $create_perm
-					, 'pt_timestamp' => Block::encodeExpiry(wfTimestampNow(), $dbw)
-					, 'pt_expiry' => $encodedExpiry
-					, 'pt_user' => $wgUser->getId(), 'pt_reason' => $reason ), __METHOD__  );
+				array(
+					'pt_namespace' => $namespace,
+					'pt_title' => $title,
+					'pt_create_perm' => $create_perm,
+					'pt_timestamp' => Block::encodeExpiry(wfTimestampNow(), $dbw),
+					'pt_expiry' => $encodedExpiry,
+					'pt_user' => $wgUser->getId(),
+					'pt_reason' => $reason,
+				), __METHOD__
+			);
 		} else {
 			$dbw->delete( 'protected_titles', array( 'pt_namespace' => $namespace,
 				'pt_title' => $title ), __METHOD__ );
 		}
 		# Update the protection log
-		$log = new LogPage( 'protect' );
+		if( $dbw->affectedRows() ) {
+			$log = new LogPage( 'protect' );
 
-		if( $create_perm ) {
-			$params = array("[create=$create_perm] $expiry_description",'');
-			$log->addEntry( ( isset( $this->mRestrictions['create'] ) && $this->mRestrictions['create'] ) ? 'modify' : 'protect', $this, trim( $reason ), $params );
-		} else {
-			$log->addEntry( 'unprotect', $this, $reason );
+			if( $create_perm ) {
+				$params = array("[create=$create_perm] $expiry_description",'');
+				$log->addEntry( ( isset( $this->mRestrictions['create'] ) && $this->mRestrictions['create'] ) ? 'modify' : 'protect', $this, trim( $reason ), $params );
+			} else {
+				$log->addEntry( 'unprotect', $this, $reason );
+			}
 		}
 
 		return true;
