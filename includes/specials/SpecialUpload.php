@@ -806,7 +806,7 @@ wgUploadAutoFill = {$autofill};
 				     "toggle_element_check(\"wpSourceTypeFile\",\"wpSourceTypeURL\")' " .
 				     "onchange='fillDestFilename(\"wpUploadFile\")' size='60' />" .
 				wfMsgHTML( 'upload_source_file' ) . "<br/>" .
-				"<input type='radio' id='wpSourceTypeURL' name='wpSourceType' value='web' " .
+				"<input type='radio' id='wpSourceTypeURL' name='wpSourceType' value='Url' " .
 				  "onchange='toggle_element_activation(\"wpUploadFile\",\"wpUploadFileURL\")' />" .
 				"<input tabindex='1' type='text' name='wpUploadFileURL' id='wpUploadFileURL' " .
 				  "onfocus='" .
