@@ -132,7 +132,7 @@ class SpecialListGroupRights extends SpecialPage {
 			if( $granted && ( !isset( $revoke[$permission] ) || !$revoke[$permission] ) ) {
 				$description = wfMsgExt( 'listgrouprights-right-display', array( 'parseinline' ),
 					User::getRightDescription( $permission ),
-					$permission
+					'<span class="mw-listgrouprights-right-name">' . $permission . '</span>'
 				);
 				$r[] = $description;
 			}
@@ -141,7 +141,7 @@ class SpecialListGroupRights extends SpecialPage {
 			if( $revoked ) {
 				$description = wfMsgExt( 'listgrouprights-right-revoked', array( 'parseinline' ),
 					User::getRightDescription( $permission ),
-					$permission
+					'<span class="mw-listgrouprights-right-name">' . $permission . '</span>'
 				);
 				$r[] = $description;
 			}
