@@ -76,6 +76,8 @@ this. Was used when mwEmbed was going to be an extension.
   PHP and database version.
 * $wgSecondaryGoNamespaces allows an arry of namespaces to be checked when the
   GO button is pressed, in addition to the main namespace.
+* (bug 19907) $wgCrossSiteAJAXdomains and $wgCrossSiteAJAXdomainsRegex added 
+  to control which external domains may access the API via cross-site AJAX.
 
 === New features in 1.16 ===
 
@@ -403,6 +405,9 @@ this. Was used when mwEmbed was going to be an extension.
 * Added fields to list=search output: size, wordcount, timestamp, snippet
 * Where supported by backend, list=search adds a 'searchinfo' element with
   optional info: 'totalhits' count and 'suggestion' alternate query term
+* (bug 19907) $wgCrossSiteAJAXdomains added to allow specified (or all)
+  external domains to access api.php via AJAX, if the browser supports the 
+  Access-Control-Allow-Origin HTTP header
 
 === Languages updated in 1.16 ===
 
