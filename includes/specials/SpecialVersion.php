@@ -13,7 +13,7 @@ class SpecialVersion extends SpecialPage {
 	private $firstExtOpened = true;
 
 	function __construct(){
-		parent::__construct( 'Version' );	
+		parent::__construct( 'Version' );
 	}
 
 	/**
@@ -31,7 +31,7 @@ class SpecialVersion extends SpecialPage {
 		} else {
 			$wgOut->addHTML( '<div dir="ltr">' );
 		}
-		$text = 
+		$text =
 			$this->MediaWikiCredits() .
 			$this->softwareInformation() .
 			$this->extensionCredits();
@@ -307,7 +307,7 @@ class SpecialVersion extends SpecialPage {
 						}
 						$swMathVer[$swMath] = trim( $swMathVerInfo );
 						$software["[$swMathURL[$swMath] $swMathName[$swMath]]"] = $swMathVer[$swMath];
-					}	
+					}
 				}
 			}
 		}
@@ -326,7 +326,7 @@ class SpecialVersion extends SpecialPage {
 					<td>" . $name . "</td>
 					<td>" . $version . "</td>
 				</tr>\n";
-		}		
+		}
 		return $out . Xml::closeElement( 'table' );
 	}
 
@@ -350,7 +350,7 @@ class SpecialVersion extends SpecialPage {
 		wfProfileOut( __METHOD__ );
 		return $version;
 	}
-	
+
 	/**
 	 * Return a string of the MediaWiki version with a link to SVN revision if
 	 * available
@@ -590,7 +590,7 @@ class SpecialVersion extends SpecialPage {
 		} else {
 			if( is_object( $list[0] ) )
 				$class = get_class( $list[0] );
-			else 
+			else
 				$class = $list[0];
 			return "($class, {$list[1]})";
 		}
@@ -605,7 +605,7 @@ class SpecialVersion extends SpecialPage {
 	 * @param Boolean $extension optional to check the path whether is from
 	 *                Wikimedia SVN server or not
 	 * @param Boolean $relPath optional to get the end part of the checkout path
-	 * @return mixed revision number as int, end part of the checkout path, 
+	 * @return mixed revision number as int, end part of the checkout path,
 	 *               or false if not a SVN checkout
 	 */
 	public static function getSvnRevision( $dir, $coRev = false, $extension = false, $relPath = false) {
