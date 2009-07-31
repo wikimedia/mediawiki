@@ -14,8 +14,25 @@
  */
 
 $specialPageAliases = array(
+	'Watchlist'                 => array( 'Rol golyas' ),
+	'Recentchanges'             => array( 'Chanjyow a-dhiwedhes' ),
 	'Upload'                    => array( 'Ughkarga' ),
+	'Randompage'                => array( 'FolenDreJons' ),
 	'Allpages'                  => array( 'OllFolennow' ),
+	'Specialpages'              => array( 'FolennowArbennek' ),
+	'Contributions'             => array( 'Kevrohow' ),
+	'Emailuser'                 => array( 'EbostyaDevnydhyer' ),
+	'Movepage'                  => array( 'MovyaFolen' ),
+	'Categories'                => array( 'Klasyansow' ),
+	'Export'                    => array( 'Esperthi' ),
+	'Version'                   => array( 'Versyon' ),
+	'Allmessages'               => array( 'OllMessajow' ),
+	'Blockip'                   => array( 'Let' ),
+	'Import'                    => array( 'Ymperthi' ),
+	'Mypage'                    => array( 'OwFolen' ),
+	'Mytalk'                    => array( 'OwHows' ),
+	'Mycontributions'           => array( 'OwHevrohow' ),
+	'Search'                    => array( 'Hwilas' ),
 );
 
 $messages = array(
