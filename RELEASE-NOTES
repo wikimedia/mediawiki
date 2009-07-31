@@ -171,6 +171,7 @@ this. Was used when mwEmbed was going to be an extension.
   extension version in Special:Version
 * (bug 20014) Added CSS class "mw-listgrouprights-right-name" is wrapped on the
   right name in Special:ListGroupRights
+* The description message in $wgExtensionCredits can be an array with parameters
 
 === Bug fixes in 1.16 ===
 

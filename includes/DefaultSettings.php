@@ -2765,8 +2765,8 @@ $wgDebugJavaScript = false;
  * <code>
  * $wgExtensionCredits[$type][] = array(
  * 	'name' => 'Example extension',
- *  'version' => 1.9,
- *  'path'           => __FILE__,
+ * 	'version' => 1.9,
+ *	'path' => __FILE__,
  *	'author' => 'Foo Barstein',
  *	'url' => 'http://wwww.example.com/Example%20Extension/',
  *	'description' => 'An example extension',
@@ -2775,6 +2775,8 @@ $wgDebugJavaScript = false;
  * </code>
  *
  * Where $type is 'specialpage', 'parserhook', 'variable', 'media' or 'other'.
+ * Where 'descriptionmsg' can be an array with message key and parameters:
+ * 'descriptionmsg' => array( 'exampleextension-desc', param1, param2, ... ),
  */
 $wgExtensionCredits = array();
 /*

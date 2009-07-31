@@ -473,7 +473,14 @@ class SpecialVersion extends SpecialPage {
 
 		# Look for a localized description
 		if( isset( $descriptionMsg ) ) {
-			$msg = wfMsg( $descriptionMsg );
+			if( is_array( $descriptionMsg ) ) {
+				$descriptionMsgKey = $descriptionMsg[0]; // Get the message key
+				array_shift( $descriptionMsg ); // Shift out the message key to get the parameters only
+				array_map( "htmlspecialchars", $descriptionMsg ); // For sanity
+				$msg = wfMsg( $descriptionMsgKey, $descriptionMsg );
+			} else {
+				$msg = wfMsg( $descriptionMsg );
+			}
 			if ( !wfEmptyMsg( $descriptionMsg, $msg ) && $msg != '' ) {
 				$description = $msg;
 			}
