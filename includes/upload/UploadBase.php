@@ -187,6 +187,7 @@ class UploadBase {
 		#check mime type, if desired
 		global $wgVerifyMimeType;
 		if ($wgVerifyMimeType) {		
+			global $wgMimeTypeBlacklist;
 			if ( $this->checkFileExtension( $mime, $wgMimeTypeBlacklist ) )
 				return array( 'filetype-badmime', $mime );
 
