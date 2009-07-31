@@ -346,7 +346,7 @@ class MessageCache {
 
 		$res = $dbr->select( array( 'page', 'revision', 'text' ),
 			array( 'page_title', 'old_text', 'old_flags' ),
-			$smallConds, __METHOD__ );
+			$smallConds, __METHOD__. "($code)" );
 
 		for ( $row = $dbr->fetchObject( $res ); $row; $row = $dbr->fetchObject( $res ) ) {
 			$cache[$row->page_title] = ' ' . Revision::getRevisionText( $row );
@@ -400,8 +400,17 @@ class MessageCache {
 
 		// Also delete cached sidebar... just in case it is affected
 		global $parserMemc;
-		$sidebarKey = wfMemcKey( 'sidebar', $code );
-		$parserMemc->delete( $sidebarKey );
+		$codes = array( $code );
+		if ( $code === 'en'  ) {
+			// Delete all sidebars, like for example on action=purge on the
+			// sidebar messages
+			$codes = array_keys( Language::getLanguageNames() );
+		}
+
+		foreach ( $codes as $code ) {
+			$sidebarKey = wfMemcKey( 'sidebar', $code );
+			$parserMemc->delete( $sidebarKey );
+		}
 
 		wfRunHooks( "MessageCacheReplace", array( $title, $text ) );
 
