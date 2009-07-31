@@ -1080,11 +1080,9 @@ function do_api_req( options, callback ){
 	if( typeof options.url == 'undefined' ||  options.url === false){
 		if(!wgServer || ! wgScriptPath){			
 			return js_error('Error: no api url for api request');;
-		}		
-		if (wgServer && wgScript)
-			options.url = wgServer + wgScript;
+		}				
 		//update to api.php (if index.php was in the wgScript path): 
-		 options.url =  options.url.replace(/index.php/, 'api.php');		
+		 options.url =  mwGetLocalApiUrl();		
 	}			
 	if( typeof options.data == 'undefined' )
 		options.data = {};	
@@ -1130,6 +1128,13 @@ function do_api_req( options, callback ){
 		req_url += '&' + options.jsonCB + '=' + fname;								
 		loadExternalJs( req_url );				
 	}	
+}
+function mwGetLocalApiUrl(url){
+	if (wgServer && wgScript){
+			url = wgServer + wgScript;
+		return url.replace(/index.php/, 'api.php');
+	}
+	return false;
 }
 //grab wiki form error for wiki html page proccessing (should be depricated)
 function grabWikiFormError ( result_page ){
