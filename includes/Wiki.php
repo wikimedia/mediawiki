@@ -42,7 +42,6 @@ class MediaWiki {
 	/**
 	 * Initialization of ... everything
 	 * Performs the request too
-	 * FIXME: why is this crap called "initialize" when it performs everything?
 	 *
 	 * @param $title Title ($wgTitle)
 	 * @param $article Article
@@ -50,7 +49,7 @@ class MediaWiki {
 	 * @param $user User
 	 * @param $request WebRequest
 	 */
-	function initialize( &$title, &$article, &$output, &$user, $request ) {
+	function performRequestForTitle( &$title, &$article, &$output, &$user, $request ) {
 		wfProfileIn( __METHOD__ );
 		
 		$output->setTitle( $title );
