@@ -882,16 +882,21 @@ $2',
 'rev-deleted-user'            => '(用戶名已移除)',
 'rev-deleted-event'           => '(日誌動作已移除)',
 'rev-deleted-text-permission' => "該頁面修訂已經被'''刪除'''。
-在[{{fullurl:{{#Special:Log}}/suppress|page={{PAGENAMEE}}}} 廢止日誌]中您可能會檢視到詳細的訊息。",
+在[{{fullurl:{{#Special:Log}}/delete|page={{PAGENAMEE}}}} 刪除日誌]中您可能會檢視到詳細的訊息。",
 'rev-deleted-text-unhide'     => "該頁面修訂已經被'''刪除'''。
+在[{{fullurl:{{#Special:Log}}/delete|page={{PAGENAMEE}}}} 刪除日誌]中您可能會檢視到詳細的訊息。
+作為管理員，如果您想繼續的話，您可以仍然[$1 去查看這次修訂]。",
+'rev-suppressed-text-unhide'  => "該頁面修訂已經被'''廢止'''。
 在[{{fullurl:{{#Special:Log}}/suppress|page={{PAGENAMEE}}}} 廢止日誌]中您可能會檢視到詳細的訊息。
 作為管理員，如果您想繼續的話，您可以仍然[$1 去查看這次修訂]。",
 'rev-deleted-text-view'       => "該頁面修訂已經被'''刪除'''。作為管理員，您可以檢視它；
+在[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 刪除日誌]中您可能會檢視到詳細的訊息。",
+'rev-suppressed-text-view'    => "該頁面修訂已經被'''廢止'''。作為管理員，您可以檢視它；
 在[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 廢止日誌]中您可能會檢視到詳細的訊息。",
 'rev-deleted-no-diff'         => "因為其中一次修訂'''刪除'''，您不可以查看這個差異。
-在[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 廢止日誌]中可能有更多的資料。",
+在[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 刪除日誌]中可能有更多的資料。",
 'rev-deleted-unhide-diff'     => "該頁面的其中一次修訂已經被'''刪除'''。
-在[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 廢止日誌]中可能有更多的資料。
+在[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 刪除日誌]中可能有更多的資料。
 作為管理員，如果您想繼續的話，您可以仍然[$1 去查看這次修訂]。",
 'rev-delundel'                => '顯示/隱藏',
 'revisiondelete'              => '刪除/恢復刪除修訂',

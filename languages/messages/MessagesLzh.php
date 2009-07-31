@@ -718,14 +718,17 @@ $2',
 'rev-deleted-comment'         => '（此註刪矣）',
 'rev-deleted-user'            => '（此簿刪矣）',
 'rev-deleted-event'           => '（此誌刪矣）',
-'rev-deleted-text-permission' => "此審'''刪'''矣，詳見[{{fullurl:{{#Special:Log}}/suppress|page={{PAGENAMEE}}}}誌廢]。",
-'rev-deleted-text-unhide'     => "此審'''刪'''矣，詳見[{{fullurl:{{#Special:Log}}/suppress|page={{PAGENAMEE}}}}誌廢]。
+'rev-deleted-text-permission' => "此審'''刪'''矣，詳見[{{fullurl:{{#Special:Log}}/delete|page={{PAGENAMEE}}}}誌刪]。",
+'rev-deleted-text-unhide'     => "此審'''刪'''矣，詳見[{{fullurl:{{#Special:Log}}/delete|page={{PAGENAMEE}}}}誌刪]。
 有秩仍看者，[$1 看此審]也。",
-'rev-deleted-text-view'       => "此審'''刪'''矣，惟有秩可見之，詳見[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 誌廢]。",
+'rev-suppressed-text-unhide'  => "此審'''廢'''矣，詳見[{{fullurl:{{#Special:Log}}/suppress|page={{PAGENAMEE}}}}誌廢]。
+有秩仍看者，[$1 看此審]也。",
+'rev-deleted-text-view'       => "此審'''刪'''矣，惟有秩可見之，詳見[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 誌刪]。",
+'rev-suppressed-text-view'    => "此審'''廢'''矣，惟有秩可見之，詳見[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 誌廢]。",
 'rev-deleted-no-diff'         => "此審'''刪'''矣，無視之審也。
-詳見[{{fullurl:{{#Special:Log}}/suppress|page={{PAGENAMEE}}}}誌廢]。",
+詳見[{{fullurl:{{#Special:Log}}/delete|page={{PAGENAMEE}}}}誌刪]。",
 'rev-deleted-unhide-diff'     => "此審'''刪'''矣，
-詳見[{{fullurl:{{#Special:Log}}/suppress|page={{PAGENAMEE}}}}誌廢]。
+詳見[{{fullurl:{{#Special:Log}}/delete|page={{PAGENAMEE}}}}誌刪]。
 有秩仍看者，[$1 看此審]也。",
 'rev-delundel'                => '見/藏',
 'revisiondelete'              => '刪、還審',
