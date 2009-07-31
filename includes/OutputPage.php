@@ -143,7 +143,7 @@ class OutputPage {
 					// add the title revision to the key
 					$t = Title::newFromText( $reqSet['title'] );
 					// if there is no title (don't worry we just use the $wgStyleVersion var (which should be updated on relevant commits)
-					if( $t->exists() ){
+					if( $t && $t->exists() ){
 						if( $t->getLatestRevID() > $this->mLatestScriptRevID  )
 							$this->mLatestScriptRevID = $t->getLatestRevID();
 					}
