@@ -78,6 +78,7 @@ body {
 	}
 	/* @noflip */
 	#p-personal li {
+		line-height: 1.125em;
 		float: left;
 	}
 	#p-personal li {
@@ -127,6 +128,7 @@ body {
 	}
 	/* OVERRIDDEN BY COMPLIANT BROWSERS */
 	div.vectorTabs ul li {
+		line-height: 1.125em;
 		display: inline-block;
 		height: 100%;
 		margin: 0;
@@ -264,6 +266,7 @@ body {
 		padding: 0;
 		margin: 0;
 		text-align: right;
+		line-height: 1em;
 	}
 	/* OVERRIDDEN BY COMPLIANT BROWSERS */
 	div.vectorMenu li a {
@@ -361,6 +364,7 @@ body {
 		margin: 0;
 	}
 	#panel div.portal div.body ul li {
+		line-height: 1.125em;
 		padding: 0;
 		padding-bottom: 0.5em;
 		margin: 0;
@@ -644,31 +648,31 @@ pre {
 	background-color: #f9f9f9;
 	line-height: 1.1em;
 }
-#content ul {
+ul {
 	line-height: 1.5em;
 	list-style-type: square;
 	margin: .3em 1.5em 0 0;
 	padding: 0;
 	list-style-image: url(images/bullet-icon.png);
 }
-#content ol {
+ol {
 	line-height: 1.5em;
 	margin: .3em 3.2em 0 0;
 	padding: 0;
 	list-style-image: none;
 }
-#content li {
+li {
 	margin-bottom: .1em;
 }
-#content dt {
+dt {
 	font-weight: bold;
 	margin-bottom: .1em;
 }
-#content dl {
+dl {
 	margin-top: .2em;
 	margin-bottom: .5em;
 }
-#content dd {
+dd {
 	line-height: 1.5em;
 	margin-right: 2em;
 	margin-bottom: .1em;
@@ -681,12 +685,12 @@ table {
 	 * floated tables */
 	background-color: white;
 }
-#content fieldset table {
+fieldset table {
 	/* but keep table layouts in forms clean... */
 	background: none;
 }
 /* Forms */
-#content fieldset {
+fieldset {
 	border: 1px solid #2f6fab;
 	margin: 1em 0 1em 0;
 	padding: 0 1em 1em;
@@ -696,19 +700,19 @@ table {
 		margin: 0 0 0.5em 0;
 		padding: 0 0.5em 0.5em;
 	}
-#content legend {
+legend {
 	padding: .5em;
 	font-size: 95%;
 }
-#content form {
+form {
 	border: none;
 	margin: 0;
 }
-#content textarea {
+textarea {
 	width: 100%;
 	padding: .1em;
 }
-#content select {
+select {
 	vertical-align: top;
 }
 /* Table of Contents */
