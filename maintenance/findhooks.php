@@ -33,6 +33,7 @@ $pathinc = array(
 	$IP.'/includes/diff/',
 	$IP.'/includes/filerepo/',
 	$IP.'/includes/parser/',
+	$IP.'/includes/search/',
 	$IP.'/includes/specials/',
 	$IP.'/includes/upload/',
 	$IP.'/languages/',
