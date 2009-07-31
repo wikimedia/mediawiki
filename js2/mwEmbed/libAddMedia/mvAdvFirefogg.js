@@ -5,14 +5,14 @@
 //@@todo put all msg text into loadGM json
 
 loadGM({
-	"help-sticky": "Help (Click to Keep Help on Screen)",
+	"help-sticky": "Help (Click to Stick)",
 	"fogg-cg-preset": "Preset: <strong>$1</strong>",
 	"fogg-cg-quality": "Basic Quality and Resolution Control",
 	"fogg-cg-meta":	"Meta Data for the Clip",
+	"fogg-cg-range" : "Encoding Range",
 	"fogg-cg-advVideo": "Advanced Video Encoding Controls",
 	"fogg-cg-advAudio": "Advanced Audio Encoding Controls",
-	"fogg-preset-custom": "Custom Settings"
-	
+	"fogg-preset-custom": "Custom Settings"	
 });
 
 var mvAdvFirefogg = function( iObj ){
@@ -20,7 +20,7 @@ var mvAdvFirefogg = function( iObj ){
 }
 var default_mvAdvFirefogg_config = {
 	//which config groups to include
-	'config_groups'	 : ['preset', 'quality', 'meta', 'advVideo', 'advAudio'],
+	'config_groups'	 : ['preset', 'range', 'quality', 'meta', 'advVideo', 'advAudio'],
 	
 	//if you want to load any custom presets must follow the mvAdvFirefogg.presetConf json outline below
 	'custom_presets'	: {}, 
@@ -34,7 +34,7 @@ var default_mvAdvFirefogg_config = {
 
 mvAdvFirefogg.prototype = {	
 	//the global groupings and titles for for configuration options : 
-	config_groups : [ 'preset','quality', 'meta'	 ,'advVideo', 'advAudio'],		
+	config_groups : [ 'preset', 'range', 'quality', 'meta', 'advVideo', 'advAudio'],		
 	//list of pre-sets:	 
 	//local instance encoder config:
 	default_local_settings:{
@@ -70,6 +70,24 @@ mvAdvFirefogg.prototype = {
 			'type'		 : 'slider',
 			'group'		: 'quality',
 			'help'		 : "Used to set the <i>Visual Quality</i> of the encoded video. (not used if you set bitrate in advanced controls below)"
+		},
+		'twopass':{
+			't'		: "Two Pass Encoding",
+			'type'	: "boolean",
+			'group'	: "quality",
+			'help'	: "Two Pass Encoding enables more consitant quality by making two passes over the video file"
+		},
+		'starttime':{			
+			't'		: "Start Second",
+			'type'	: "float",
+			'group' : "range",
+			'help'	: "Only encode from time in seconds"
+		},
+		'endtime':{			
+			't'		: "End Second",
+			'type'	: "float",
+			'group' : "range",
+			'help'	: "only encode to time in seconds"
 		},
 		'audioQuality': {
 			'd'			: 1,
@@ -350,7 +368,7 @@ mvAdvFirefogg.prototype = {
 			'<label for="_' + cK + '">' +					
 			 cConf.t + ':' + 
 			 '<span title="' + gM('help-sticky') + '" class="help_'+ cK + ' ui-icon ui-icon-info" style="float:left"></span>'+
-			 '</label></td><td>';
+			 '</label></td><td valign="top">';
 		//if we don't value for this: 
 		var dv = ( this.default_encoder_config[cK].d ) ? this.default_encoder_config[cK].d : '';		
 		//switch on the config type
@@ -358,7 +376,9 @@ mvAdvFirefogg.prototype = {
 			case 'string':
 			case 'date':
 			case 'int':
-				out+= '<input type="text" class="_' + cK + ' text ui-widget-content ui-corner-all" value="' + dv + '" >' ;
+			case 'float':
+				var size = ( cConf.type =='string' ||cConf.type == 'date' )?'14':'4';
+				out+= '<input size="' + size + '" type="text" class="_' + cK + ' text ui-widget-content ui-corner-all" value="' + dv + '" >' ;
 			break;
 			case 'boolean':
 				var checked_attr = (dv===true)?' checked="true"':'';
@@ -472,10 +492,13 @@ mvAdvFirefogg.prototype = {
 				case 'boolean':
 					$j(_this.selector + ' ._'+cK).click(function(){
 						_this.updateLocalValue(  _this.getClassId(this), $j(this).is(":checked") );
+						_this.updatePresetSelection('custom');
 					})
 				break;
 				case 'select':
 				case 'string':
+				case 'int':
+				case 'float':
 					//@@check if we have a validate function on the string
 					$j(_this.selector + ' ._'+cK).change(function(){								
 						$j(this).val( _this.updateLocalValue(

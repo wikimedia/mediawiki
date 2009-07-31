@@ -921,11 +921,15 @@ function mv_jqueryBindings(){
 		}
 		
 		$.fn.baseUploadInterface = function(iObj){
-			mvJsLoader.doLoad([
-				  'mvBaseUploadInterface',
-				  '$j.ui',
+			mvJsLoader.doLoadDepMode([
+				[
+					'mvBaseUploadInterface',
+					'$j.ui',
+				],
+				[
 				  '$j.ui.progressbar',
-				  '$j.ui.dialog'	
+				  '$j.ui.dialog'
+				]
 			],function(){				
 				myUp = new mvBaseUploadInterface( iObj );
 				myUp.setupForm();

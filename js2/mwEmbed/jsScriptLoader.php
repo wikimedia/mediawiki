@@ -273,7 +273,7 @@ class jsScriptLoader {
 				$jmsg[$msgKey] = wfMsgNoTrans( $msgKey );
 			}
 			//return the updated loadGM json with fixed new lines:
-			return 'loadGM( ' . ApiFormatJson::getJsonEncode( $jmsg ) . ')';
+			return 'loadGM( ' . json_encode( $jmsg ) . ')';
 		} else {
 			$this->error_msg.= "Could not parse JSON language msg in File:\n" .
 								$this->cur_file . "\n";
