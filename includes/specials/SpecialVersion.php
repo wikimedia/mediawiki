@@ -467,7 +467,7 @@ class SpecialVersion extends SpecialPage {
 	function formatCredits( $name, $version = null, $subVersion = null, $subVersionCo = null, $subVersionURL = null, $author = null, $url = null, $description = null, $descriptionMsg = null ) {
 		$haveSubversion = $subVersion;
 		$extension = isset( $url ) ? "[$url $name]" : $name;
-		$version = isset( $version ) ? wfMsg( 'version-version', $version ) : '';
+		$version = isset( $version ) ? '<span class="mw-version-ext-version">' . wfMsg( 'version-version', $version ) . '</span>' : '';
 		$subVersion = isset( $subVersion ) ? wfMsg( 'version-svn-revision', $subVersion, $subVersionCo ) : '';
 		$subVersion = isset( $subVersionURL ) ? "[$subVersionURL $subVersion]" : $subVersion;
 

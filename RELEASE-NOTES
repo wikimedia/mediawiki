@@ -167,6 +167,10 @@ this. Was used when mwEmbed was going to be an extension.
 * (bug 14454) "Member of group(s)" in Special:Preferences causes language difficulties
 * (bug 16697) Unicode combining characters are difficult to edit in some browsers
 * Parser test supports uploading results to remote CodeReview instance
+* (bug 20013) Added CSS class "mw-version-ext-version" is wrapped on the 
+  extension version in Special:Version
+* (bug 20014) Added CSS class "mw-listgrouprights-right-name" is wrapped on the
+  right name in Special:ListGroupRights
 
 === Bug fixes in 1.16 ===
 
