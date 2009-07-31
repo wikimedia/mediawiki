@@ -37,10 +37,6 @@ if(!mwjQueryUiSkin)
 if(!mv_java_iframe)
 	var mv_java_iframe = true;
 
-//media_server mv_embed_path (the path on media servers to mv_embed for java iframe with leading and trailing slashes)
-if(!mv_media_iframe_path)
-	var mv_media_iframe_path = '/mv_embed/';
-
 //the default height/width of the video (if no style or width attribute provided)
 if(!mv_default_video_size)	
 	var mv_default_video_size = '400x300'; 
@@ -1130,9 +1126,8 @@ function do_api_req( options, callback ){
 	}	
 }
 function mwGetLocalApiUrl(url){
-	if (wgServer && wgScript){
-			url = wgServer + wgScript;
-		return url.replace(/index.php/, 'api.php');
+	if (wgServer && wgScriptPath){
+		return wgServer + wgScriptPath + '/api.php';		
 	}
 	return false;
 }
@@ -1328,6 +1323,8 @@ function getMvUniqueReqId(){
  * sets the global mv_embed path based on the scripts location
  */
 function getMvEmbedPath(){		
+	if( _global['mv_embed_path'])
+		return _global['mv_embed_path'];
 	var mv_embed_url = getMvEmbedURL();				
 	if( mv_embed_url.indexOf('mv_embed.js') !== -1 ){
 		mv_embed_path = mv_embed_url.substr(0, mv_embed_url.indexOf('mv_embed.js'));
@@ -1349,6 +1346,7 @@ function getMvEmbedPath(){
 			}
 		}		
 	}	
+	_global['mv_embed_path'] = mv_embed_path;
 	return mv_embed_path;
 }
 
