@@ -69,6 +69,25 @@ if (!$wgEnableAPI) {
 	die(1);
 }
 
+// Selectively allow cross-site AJAX
+if ( $wgCrossSiteAJAXdomains && isset($_SERVER['HTTP_ORIGIN']) ) {
+	if ( $wgCrossSiteAJAXdomains == '*' ) {
+		header( "Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}" );
+		header( 'Access-Control-Allow-Credentials: true' );
+	} elseif ( $wgCrossSiteAJAXdomainsRegex ) {
+		foreach ( $wgCrossSiteAJAXdomains as $regex ) {
+			if ( preg_match( $regex, $_SERVER['HTTP_ORIGIN'] ) ) {
+				header( "Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}" );
+				header( 'Access-Control-Allow-Credentials: true' );
+				break;
+			}
+		}
+	} elseif ( in_array( $_SERVER['HTTP_ORIGIN'], $wgCrossSiteAJAXdomains ) ) {
+		header( "Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}" );
+		header( 'Access-Control-Allow-Credentials: true' );
+	}
+}
+
 // So extensions can check whether they're running in API mode
 define('MW_API', true);
 
