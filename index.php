@@ -113,7 +113,7 @@ $mediaWiki->setVal( 'SquidMaxage', $wgSquidMaxage );
 $mediaWiki->setVal( 'UseExternalEditor', $wgUseExternalEditor );
 $mediaWiki->setVal( 'UsePathInfo', $wgUsePathInfo );
 
-$mediaWiki->initialize( $wgTitle, $wgArticle, $wgOut, $wgUser, $wgRequest );
+$mediaWiki->performRequestForTitle( $wgTitle, $wgArticle, $wgOut, $wgUser, $wgRequest );
 $mediaWiki->finalCleanup( $wgDeferredUpdateList, $wgOut );
 
 # Not sure when $wgPostCommitUpdateList gets set, so I keep this separate from finalCleanup
