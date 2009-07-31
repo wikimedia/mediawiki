@@ -398,7 +398,7 @@ class ChangesList {
 	}
 	
 	/** Inserts a rollback link */
-	protected function insertRollback( &$s, &$rc ) {
+	public function insertRollback( &$s, &$rc ) {
 		global $wgUser;
 		if( !$rc->mAttribs['rc_new'] && $rc->mAttribs['rc_this_oldid'] && $rc->mAttribs['rc_cur_id'] ) {
 			$page = $rc->getTitle();
@@ -418,7 +418,7 @@ class ChangesList {
 		}
 	}
 
-	protected function insertTags( &$s, &$rc, &$classes ) {
+	public function insertTags( &$s, &$rc, &$classes ) {
 		if ( empty($rc->mAttribs['ts_tags']) )
 			return;
 			
@@ -427,7 +427,7 @@ class ChangesList {
 		$s .= ' ' . $tagSummary;
 	}
 
-	protected function insertExtra( &$s, &$rc, &$classes ) {
+	public function insertExtra( &$s, &$rc, &$classes ) {
 		## Empty, used for subclassers to add anything special.
 	}
 }
