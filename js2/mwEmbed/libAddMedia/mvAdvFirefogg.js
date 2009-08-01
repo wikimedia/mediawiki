@@ -530,13 +530,13 @@ mvAdvFirefogg.prototype = {
 							
 							//maintain source video aspect ratio:  
 							if(_this.getClassId(this, 'slider_') == 'width'){																																
-								var hv = parseInt((_this.sourceFileInfo['height']/_this.sourceFileInfo['width'])* ui.value );
+								var hv = parseInt((_this.sourceFileInfo.video[0]['height']/_this.sourceFileInfo.video[0]['width'])* ui.value );
 								//update the height value:	  the new hight value is > that orginal the slider: 
 								if(hv > _this.updateInterfaceValue('height', hv))
 									return false;																							
 							}
 							if(_this.getClassId(this, 'slider_') == 'height'){
-								var wv = parseInt((_this.sourceFileInfo['width']/_this.sourceFileInfo['height'])* ui.value );
+								var wv = parseInt((_this.sourceFileInfo.video[0]['width']/_this.sourceFileInfo.video[0]['height'])* ui.value );
 								//update the height value:	  the new hight value is > that orginal the slider: 
 								if(wv > _this.updateInterfaceValue('width', wv))
 									return false;	
@@ -680,10 +680,23 @@ mvAdvFirefogg.prototype = {
 		//restore display: 
 		$j(this.target_control_container).show('slow');
 		$j(this.target_passthrough_mode).hide('slow');
-		
+
 		//do setup settings based on local_settings /default_encoder_config with sourceFileInfo
-		//see: http://firefogg.org/dev/sourceInfo_example.html		
-		for(var i in this.sourceFileInfo){			
+		//see: http://firefogg.org/dev/sourceInfo_example.html
+		var setValues = function(k, val, maxVal) {
+			if( k !== false){
+				//update the value if unset: 
+				_this.updateLocalValue(k, val);									   
+			}
+			if( maxVal ){
+				 //update the local range:
+				if(_this.default_encoder_config[k].range){
+					_this.default_encoder_config[k].range.local_max = maxVal;
+				}	
+			}
+		}
+		//container level settings
+		for(var i in this.sourceFileInfo){
 			var val = this.sourceFileInfo[i];
 			var k = false;
 			var maxVal= false;
@@ -693,30 +706,37 @@ mvAdvFirefogg.prototype = {
 					k = 'videoBitrate'; 
 					maxVal = (val*2 > this.default_encoder_config[k])?this.default_encoder_config[k]:val*2;
 				break;	
-				case 'audio_bitrate': 
-					k = 'audioBitrate'; 
-					maxVal = (val*2 > this.default_encoder_config[k])?this.default_encoder_config[k]:val*2;
-				break;								
+			}
+			setValues(k, val, maxVal);
+		}
+		//video stream settings
+		for(var i in this.sourceFileInfo.video[0]){
+			var val = this.sourceFileInfo.video[0][i];
+			var k = false;
+			var maxVal= false;
+			switch(i){
 				case 'width': 
-					k = 'width';
-					maxVal = val;									
-				break;			
 				case 'height': 
-					k = 'height';
-					maxVal = val; 
+					k = i;
+					maxVal = val;									
 				break;						
-			}			
-			if( k !== false){
-				//update the value if unset: 
-				_this.updateLocalValue(k, val);														   
 			}
-			if( maxVal ){
-				 //update the local range:
-				if(this.default_encoder_config[k].range){
-					this.default_encoder_config[k].range.local_max = maxVal;
-				}	
+			setValues(k, val, maxVal);
+		}
+		//audio stream settings, assumes for now thare is only one stream
+		for(var i in this.sourceFileInfo.audio[0]){
+			var val = this.sourceFileInfo.audio[0][i];
+			var k = false;
+			var maxVal= false;
+			switch(i){
+				case 'bitrate':
+					k = 'audioBitrate';
+					maxVal = (val*2 > this.default_encoder_config[k])?this.default_encoder_config[k]:val*2;
+				break;
 			}
-		}					
+			setValues(k, val, maxVal);
+		}
+
 		//set all values to new default ranges & update slider: 
 		$j.each(this.default_encoder_config, function(inx, val){
 			if($j(_this.selector + ' ._'+inx).length!=0){
