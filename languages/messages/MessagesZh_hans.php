@@ -763,7 +763,8 @@ $2',
 '''Konqueror'''：只需点击''刷新''或按下''F5''；
 '''Opera'''：在''工具→首选项''中完整清除它们的缓存，或按下''Alt-F5''；
 '''Internet Explorer'''：按住''Ctrl''再点击''刷新''，或按下''Ctrl-F5''。",
-'usercssjsyoucanpreview'           => "'''提示：''' 在保存前请用“显示预览”按钮来测试您新的 CSS/JS 。",
+'usercssyoucanpreview'             => "'''提示：''' 在保存前请用“显示预览”按钮来测试您新的 CSS 。",
+'userjsyoucanpreview'              => "'''提示：''' 在保存前请用“显示预览”按钮来测试您新的 JS 。",
 'usercsspreview'                   => "'''注意您只是在预览您的个人 CSS。'''
 '''还没有保存！'''",
 'userjspreview'                    => "'''注意您只是在测试／预览您的个人 JavaScript。'''

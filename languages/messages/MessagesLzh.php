@@ -600,7 +600,8 @@ $2',
 '''Konqueror:'''點''Reload''，或押''F5''。
 ：''Opera:'''須至''Tools→Preferences''清謄本。
 '''Internet Explorer:'''押''Ctrl''並點''重新整理''，或合鍵''Ctrl-F5''。",
-'usercssjsyoucanpreview'           => "'''訣：'''CSS/JS應先預覽而後存。",
+'usercssyoucanpreview'             => "'''訣：'''CSS應先預覽而後存。",
+'userjsyoucanpreview'              => "'''訣：'''JS應先預覽而後存。",
 'usercsspreview'                   => "'''預覽CSS。'''
 '''尚未儲焉。'''",
 'userjspreview'                    => "'''預覽JavaScript。'''
