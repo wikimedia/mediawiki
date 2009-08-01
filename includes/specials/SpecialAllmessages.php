@@ -14,9 +14,11 @@ class SpecialAllmessages extends SpecialPage {
 	}
 
 	/**
-	 * Execute
+	 * Show the special page
+	 *
+	 * @param $par Mixed: parameter passed to the page or null
 	 */
-	function execute( $par ) {
+	public function execute( $par ) {
 		global $wgOut, $wgRequest;
 
 		$this->setHeaders();
@@ -32,9 +34,11 @@ class SpecialAllmessages extends SpecialPage {
 		$this->filter = $wgRequest->getVal( 'filter', 'all' );
 		$this->prefix = $wgRequest->getVal( 'prefix', '' );
 
-		$this->table = new AllmessagesTablePager( $this,
-											$conds = array(),
-											wfGetLangObj( $wgRequest->getVal( 'lang', $par ) ) );
+		$this->table = new AllmessagesTablePager(
+			$this,
+			$conds = array(),
+			wfGetLangObj( $wgRequest->getVal( 'lang', $par ) )
+		);
 
 		$this->langCode = $this->table->lang->getCode();
 
@@ -122,15 +126,15 @@ class SpecialAllmessages extends SpecialPage {
  */
 class AllmessagesTablePager extends TablePager {
 
-	var $messages  = NULL;
-	var $talkPages = NULL;
+	var $messages  = null;
+	var $talkPages = null;
 
 	function __construct( $page, $conds, $langObj = null ) {
 		parent::__construct();
 		$this->mIndexField = 'am_title';
 		$this->mPage = $page;
 		$this->mConds = $conds;
-		$this->mDefaultDirection = true;	//always sort ascending
+		$this->mDefaultDirection = true; // always sort ascending
 
 		global $wgLang, $wgContLang, $wgRequest;
 
@@ -141,22 +145,22 @@ class AllmessagesTablePager extends TablePager {
 		$this->foreign  = $this->langcode != $wgContLang->getCode();
 
 		if( $wgRequest->getVal( 'filter', 'all' ) === 'all' ){
-			$this->custom = NULL;	//So won't match in either case
+			$this->custom = null; // So won't match in either case
 		} else {
 			$this->custom = $wgRequest->getVal( 'filter' ) == 'unmodified' ? 1 : 0;
 		}
 
 		$prefix = $wgLang->ucfirst( $wgRequest->getVal( 'prefix', '' ) );
-		$prefix = $prefix != '' ? Title::makeTitleSafe( NS_MEDIAWIKI, $wgRequest->getVal( 'prefix', NULL ) ) : NULL;
-		if( $prefix !== NULL ){
+		$prefix = $prefix != '' ? Title::makeTitleSafe( NS_MEDIAWIKI, $wgRequest->getVal( 'prefix', null ) ) : null;
+		if( $prefix !== null ){
 			$this->prefix = '/^' . preg_quote( $prefix->getDBkey() ) . '/i';
 		} else {
 			$this->prefix = false;
 		}
 		$this->getSkin();
 
-		//The suffix that may be needed for message names if we're in a
-		//different language (eg [[MediaWiki:Foo/fr]]: $suffix = '/fr'
+		// The suffix that may be needed for message names if we're in a
+		// different language (eg [[MediaWiki:Foo/fr]]: $suffix = '/fr'
 		if( $this->foreign ) {
 			$this->suffix = '/' . $this->langcode;
 		} else {
@@ -165,7 +169,6 @@ class AllmessagesTablePager extends TablePager {
 	}
 
 	function getAllMessages( $desc ){
-
 		wfProfileIn( __METHOD__ . '-cache' );
 
 		# Make sure all extension messages are available
@@ -192,7 +195,7 @@ class AllmessagesTablePager extends TablePager {
 
 			$this->messages[$ukey]['customised'] = 0; //for now
 
-			$sortedArray[$key] = NULL; // trade bytes from $sortedArray to this
+			$sortedArray[$key] = null; // trade bytes from $sortedArray to this
 		}
 
 		wfProfileOut( __METHOD__ . '-cache' );
@@ -205,12 +208,12 @@ class AllmessagesTablePager extends TablePager {
 	function markCustomisedMessages(){
 		$this->talkPages = array();
 
-		wfProfileIn( __METHOD__ . "-db" );
+		wfProfileIn( __METHOD__ . '-db' );
 
 		$dbr = wfGetDB( DB_SLAVE );
 		$res = $dbr->select( 'page',
 			array( 'page_namespace', 'page_title' ),
-			array( 'page_namespace' => array(NS_MEDIAWIKI,NS_MEDIAWIKI_TALK) ),
+			array( 'page_namespace' => array( NS_MEDIAWIKI, NS_MEDIAWIKI_TALK ) ),
 			__METHOD__,
 			array( 'USE INDEX' => 'name_title' )
 		);
@@ -219,10 +222,10 @@ class AllmessagesTablePager extends TablePager {
 			if( $s->page_namespace == NS_MEDIAWIKI ){
 				if( $this->foreign ){
 					$title = explode( '/', $s->page_title );
-					if( count($title) === 2 && $this->langcode == $title[1] && array_key_exists( $title[0], $this->messages ) ){
+					if( count( $title ) === 2 && $this->langcode == $title[1] && array_key_exists( $title[0], $this->messages ) ){
 						$this->messages["{$title[0]}"]['customised'] = 1;
 					}
-				} else if( array_key_exists( $s->page_title , $this->messages ) ){
+				} else if( array_key_exists( $s->page_title, $this->messages ) ){
 					$this->messages[$s->page_title]['customised'] = 1;
 				}
 			} else if( $s->page_namespace == NS_MEDIAWIKI_TALK ){
@@ -231,7 +234,7 @@ class AllmessagesTablePager extends TablePager {
 		}
 		$dbr->freeResult( $res );
 
-		wfProfileOut( __METHOD__ . "-db" );
+		wfProfileOut( __METHOD__ . '-db' );
 
 		return true;
 	}
@@ -239,17 +242,17 @@ class AllmessagesTablePager extends TablePager {
 	/* This function normally does a database query to get the results; we need
 	 * to make a pretend result using a FakeResultWrapper.
 	 */
-	function reallyDoQuery( $offset , $limit , $descending ){
+	function reallyDoQuery( $offset, $limit, $descending ){
 		$mResult = new FakeResultWrapper( array() );
 
 		if( !$this->messages ) $this->getAllMessages( $descending );
-		if( $this->talkPages === NULL ) $this->markCustomisedMessages();
+		if( $this->talkPages === null ) $this->markCustomisedMessages();
 
 		$count = 0;
 		foreach( $this->messages as $key => $value ){
 			if( $value['customised'] !== $this->custom &&
 				( $descending && ( $key < $offset || !$offset ) || !$descending && $key > $offset ) &&
-				(( $this->prefix && preg_match( $this->prefix, $key ) ) || $this->prefix === false )
+				( ( $this->prefix && preg_match( $this->prefix, $key ) ) || $this->prefix === false )
 			){
 				$mResult->result[] = array(
 					'am_title'      => $key,
@@ -262,7 +265,7 @@ class AllmessagesTablePager extends TablePager {
 			}
 			if( $count == $limit ) break;
 		}
-		unset( $this->messages ); //no longer needed, free up some memory
+		unset( $this->messages ); // no longer needed, free up some memory
 		return $mResult;
 	}
 
@@ -283,7 +286,7 @@ class AllmessagesTablePager extends TablePager {
 			</tr></thead><tbody>\n";
 	}
 
-	function formatValue( $field , $value ){
+	function formatValue( $field, $value ){
 		global $wgLang;
 		switch( $field ){
 
@@ -295,20 +298,24 @@ class AllmessagesTablePager extends TablePager {
 				if( $this->mCurrentRow->am_customised ){
 					$title = $this->mSkin->linkKnown( $title, $wgLang->lcfirst( $value ) );
 				} else {
-					$title = $this->mSkin->link( $title,
-												$wgLang->lcfirst( $value ),
-												array(),
-												array(),
-												array( 'broken' ) );
+					$title = $this->mSkin->link(
+						$title,
+						$wgLang->lcfirst( $value ),
+						array(),
+						array(),
+						array( 'broken' )
+					);
 				}
 				if( array_key_exists( $talk->getDBkey() , $this->talkPages ) ) {
 					$talk = $this->mSkin->linkKnown( $talk , $this->talk );
 				} else {
-					$talk = $this->mSkin->link( $talk,
-												$this->talk,
-												array(),
-												array(),
-												array( 'broken' ) );
+					$talk = $this->mSkin->link(
+						$talk,
+						$this->talk,
+						array(),
+						array(),
+						array( 'broken' )
+					);
 				}
 				return $title . ' (' . $talk . ')';
 
@@ -321,10 +328,10 @@ class AllmessagesTablePager extends TablePager {
 	}
 
 	function formatRow( $row ){
-		//Do all the normal stuff
+		// Do all the normal stuff
 		$s = parent::formatRow( $row );
 
-		//But if there's a customised message, add that too.
+		// But if there's a customised message, add that too.
 		if( $row->am_customised ){
 			$s .= Xml::openElement( 'tr', $this->getRowAttrs( $row, true ) );
 			$formatted = strval( $this->formatValue( 'am_actual', $row->am_actual ) );
@@ -337,11 +344,11 @@ class AllmessagesTablePager extends TablePager {
 		return $s;
 	}
 
-	function getRowAttrs( $row, $isSecond=false ){
+	function getRowAttrs( $row, $isSecond = false ){
 		$arr = array();
 		global $wgLang;
 		if( $row->am_customised ){
-			$arr['class'] =  'allmessages-customised';
+			$arr['class'] = 'allmessages-customised';
 		}
 		if( !$isSecond ){
 			$arr['id'] = Sanitizer::escapeId( 'msg_' . $wgLang->lcfirst( $row->am_title ) );
@@ -359,8 +366,10 @@ class AllmessagesTablePager extends TablePager {
 
 	// This is not actually used, as getStartBody is overridden above
 	function getFieldNames() {
-		return array( 'am_title' => wfMsg('allmessagesname'),
-			'am_default' => wfMsg('allmessagesdefault') );
+		return array(
+			'am_title' => wfMsg( 'allmessagesname' ),
+			'am_default' => wfMsg( 'allmessagesdefault' )
+		);
 	}
 	function getTitle() {
 		return SpecialPage::getTitleFor( 'Allmessages', false );
@@ -381,9 +390,9 @@ class AllmessagesTablePager extends TablePager {
 class FakeResultWrapper extends ResultWrapper {
 
 	var $result     = array();
-	var $db         = NULL;		//And it's going to stay that way :D
+	var $db         = null;	// And it's going to stay that way :D
 	var $pos        = 0;
-	var $currentRow = NULL;
+	var $currentRow = null;
 
 	function __construct( $array ){
 		$this->result = $array;
@@ -412,6 +421,6 @@ class FakeResultWrapper extends ResultWrapper {
 
 	function rewind() {
 		$this->pos = 0;
-		$this->currentRow = NULL;
+		$this->currentRow = null;
 	}
 }
