@@ -505,7 +505,9 @@ class Skin extends Linker {
 			return false;
 		if( !$wgRequest->wasPosted() )
 			return false;
-		if( !$this->mTitle->userCanEditCssJsSubpage() )
+		if( !$this->mTitle->userCanEditCssSubpage() )
+			return false;
+		if( !$this->mTitle->userCanEditJsSubpage() )
 			return false;
 		return $wgUser->matchEditToken(
 			$wgRequest->getVal( 'wpEditToken' ) );

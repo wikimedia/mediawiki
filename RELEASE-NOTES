@@ -359,6 +359,8 @@ this. Was used when mwEmbed was going to be an extension.
 * (bug 16311) Make recent change flags (n/m/b) <abbr>s instead of <span>s
 * (bug 15680) Split the edit tip message of user CSS/JS subpage into 
   "usercssyoucanpreview" and "userjsyoucanpreview" respectively.
+* (bug 12110) Split the rights for editing users' CSS/JS subpage from 
+  "editusercssjs" into "editusercss" and edituserjs" respectively.
 
 == API changes in 1.16 ==
 
