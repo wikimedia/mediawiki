@@ -821,7 +821,8 @@ Ja tu izvēlies to norādīt, šo lietos lai identificētu tavu darbu (ieguldīj
 'right-proxyunbannable'  => "Apiet ''proxy'' automātiskos blokus",
 'right-protect'          => 'Izmainīt aizsargātās lapas un to aizsardzības līmeni',
 'right-editinterface'    => 'Izmainīt lietotāja interfeisu',
-'right-editusercssjs'    => 'Izmainīt citu lietotāju CSS un JS failus',
+'right-editusercss'      => 'Izmainīt citu lietotāju CSS un JS failus',
+'right-edituserjs'       => 'Izmainīt citu lietotāju CSS un JS failus',
 'right-import'           => 'Importēt lapas no citiem wiki',
 'right-importupload'     => 'Importēt lapas no failu augšuplādes',
 

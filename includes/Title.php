@@ -1280,8 +1280,13 @@ class Title {
 
 		# Protect css/js subpages of user pages
 		# XXX: this might be better using restrictions
-		# XXX: Find a way to work around the php bug that prevents using $this->userCanEditCssJsSubpage() from working
-		if( $this->isCssJsSubpage() && !$user->isAllowed('editusercssjs' ) && $action != 'patrol'
+		# XXX: Find a way to work around the php bug that prevents using $this->userCanEditCssSubpage() 
+		#      and $this->userCanEditJsSubpage() from working
+		if( $this->isCssSubpage() && !$user->isAllowed('editusercss' ) && $action != 'patrol'
+			&& !preg_match('/^'.preg_quote($user->getName(), '/').'\//', $this->mTextform) )
+		{
+			$errors[] = array('customcssjsprotected');
+		} else if( $this->isJsSubpage() && !$user->isAllowed('edituserjs' ) && $action != 'patrol'
 			&& !preg_match('/^'.preg_quote($user->getName(), '/').'\//', $this->mTextform) )
 		{
 			$errors[] = array('customcssjsprotected');
@@ -1712,15 +1717,26 @@ class Title {
 		return ( NS_USER == $this->mNamespace && preg_match("/\\/.*\\.js$/", $this->mTextform ) );
 	}
 	/**
-	 * Protect css/js subpages of user pages: can $wgUser edit
+	 * Protect css subpages of user pages: can $wgUser edit
 	 * this page?
 	 *
 	 * @return \type{\bool} TRUE or FALSE
 	 * @todo XXX: this might be better using restrictions
 	 */
-	public function userCanEditCssJsSubpage() {
+	public function userCanEditCssSubpage() {
 		global $wgUser;
-		return ( $wgUser->isAllowed('editusercssjs') || preg_match('/^'.preg_quote($wgUser->getName(), '/').'\//', $this->mTextform) );
+		return ( $wgUser->isAllowed('editusercss') || preg_match('/^'.preg_quote($wgUser->getName(), '/').'\//', $this->mTextform) );
+	}
+	/**
+	 * Protect js subpages of user pages: can $wgUser edit
+	 * this page?
+	 *
+	 * @return \type{\bool} TRUE or FALSE
+	 * @todo XXX: this might be better using restrictions
+	 */
+	public function userCanEditJsSubpage() {
+		global $wgUser;
+		return ( $wgUser->isAllowed('edituserjs') || preg_match('/^'.preg_quote($wgUser->getName(), '/').'\//', $this->mTextform) );
 	}
 
 	/**
