@@ -384,7 +384,7 @@ $messages = array(
 'editfont-style'     => 'Schriftfamilie für den Text im Bearbeitungsfenster:',
 'editfont-default'   => 'Browserstandard',
 'editfont-monospace' => 'Schrift mit fester Zeichenbreite',
-'editfont-sansserif' => 'Serifenlose Schrift',
+'editfont-sansserif' => 'Serifenlose Groteskschrift',
 'editfont-serif'     => 'Schrift mit Serifen',
 
 # Dates
@@ -1060,9 +1060,14 @@ Nähere Angaben zum Löschvorgang sowie eine Begründung finden sich im [{{fullu
 'rev-deleted-text-unhide'     => "Diese Version wurde '''gelöscht'''.
 Details stehen im [{{fullurl:{{#special:Log}}/delete|page={{FULLPAGENAMEE}}}} Lösch-Logbuch].
 Einem Administrator kannst du [$1 diesen Link zur Version] nennen.",
+'rev-suppressed-text-unhide'  => "Diese Version wurde '''unterdrückt'''.
+Details stehen im [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Unterdrückungs-Logbuch].
+Du als Administrator kannst [$1 diese Version einsehen], wenn du es wünscht.",
 'rev-deleted-text-view'       => "Diese Version wurde '''gelöscht'''.
 Als Administrator kannst du sie weiterhin einsehen.
 Nähere Angaben zum Löschvorgang sowie eine Begründung finden sich im [{{fullurl:{{#special:Log}}/delete|page={{FULLPAGENAMEE}}}} Lösch-Logbuch].",
+'rev-suppressed-text-view'    => "Diese Version wurde '''unterdrückt'''.
+Administratoren können sie einsehen; Details stehen im [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Unterdrückungs-Logbuch].",
 'rev-deleted-no-diff'         => "Du kannst diesen Unterschied nicht betrachten, da eine der Versionen '''gelöscht''' wurde.
 Details stehen im [{{fullurl:{{#special:Log}}/delete|page={{FULLPAGENAMEE}}}} Lösch-Logbuch].",
 'rev-deleted-unhide-diff'     => "Eine der Versionen dieses Unterschieds wurde '''gelöscht'''.

@@ -27,6 +27,9 @@ $messages = array(
 'tog-editondblclick'        => 'Islan ang pahina kung i-doble klik mo (nagakilanlan JavaScript)',
 'tog-rememberpassword'      => 'Dumdumon ang akon pagsulod sa sini nga kompyuter',
 
+'underline-always' => 'Pirmi',
+'underline-never'  => 'Indi',
+
 # Dates
 'sunday'        => 'Domingo',
 'monday'        => 'Lunes',
@@ -112,7 +115,7 @@ $messages = array(
 'history'          => 'Pahina historya',
 'history_short'    => 'Saysay',
 'printableversion' => 'Pang-imprinta nga bersyon',
-'permalink'        => 'Unay nga tabid',
+'permalink'        => 'Permanente nga tabid',
 'edit'             => 'Ilisan',
 'create'           => 'Himuon',
 'editthispage'     => 'Islan ini nga pahina',
@@ -391,7 +394,7 @@ Mga Pahina sa [[Special:Watchlist|imo lista-lantaw]] ay '''dukot'''.",
 'recentchangeslinked-to'      => 'Ipakita ang mga naglain na pahina nga gin tabid sa nahatagan nga pahina',
 
 # Upload
-'upload'            => 'Karga file',
+'upload'            => 'Uplod file',
 'uploadbtn'         => 'Karga file',
 'uploadnologin'     => 'Wala naka-sulod',
 'uploadlogpage'     => 'Uplod log',
@@ -531,7 +534,7 @@ Pwede mo mabag-o ang lebel sang proteksiyon sang pahina, pero indi ini ma apektu
 'protect-cascade'             => 'Mga pahina nga naprotektahan ay ginsakup sa sini nga pahina (padasun nga proteksiyon)',
 'protect-cantedit'            => 'Indi mo mabag-o ang lebel proteksiyon sang sini nga pahina, Kay man wala ka permiso para islan ini.',
 'restriction-type'            => 'Permisyon:',
-'restriction-level'           => 'Bawalan nga lebel:',
+'restriction-level'           => 'Ginabawalan nga lebel:',
 
 # Restrictions (nouns)
 'restriction-edit' => 'Ilisan',
@@ -762,6 +765,6 @@ Ang iban ay pagataguon sang default.
 'fileduplicatesearch-submit' => 'Pangita-a',
 
 # Special:SpecialPages
-'specialpages' => 'Pinasahi nga mga panid',
+'specialpages' => 'Espesyal nga mga panid',
 
 );

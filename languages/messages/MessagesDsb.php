@@ -203,6 +203,13 @@ $messages = array(
 'underline-never'   => 'žednje',
 'underline-default' => 'pó standarźe browsera',
 
+# Font style option in Special:Preferences
+'editfont-style'     => 'Pismowy stil wobźěłowańskego póla:',
+'editfont-default'   => 'Standard wobglědowaka',
+'editfont-monospace' => 'Pismo z kšuteju znamuškoweju šyrokosću',
+'editfont-sansserif' => 'Bźezserifowe pismo',
+'editfont-serif'     => 'Serifowe pismo',
+
 # Dates
 'sunday'        => 'Njeźela',
 'monday'        => 'Pónjeźele',
@@ -856,16 +863,21 @@ Snaź jo se z wiki wulašował abo hynac pómjenił.
 'rev-deleted-comment'         => '(Komentar wulašowany)',
 'rev-deleted-user'            => '(Wužywarske mě wulašowane)',
 'rev-deleted-event'           => '(protokolowa akcija wulašowana)',
-'rev-deleted-text-permission' => "Toś ta wersija boka jo se '''wulašowała'''. Ewentuelne drobnostki su w [{{fullurl:{{#special:Log}}/suppress|page={{FULLPAGENAMEE}}}} protokolu wulašowanjow].",
+'rev-deleted-text-permission' => "Toś ta wersija boka jo se '''wulašowała'''. Ewentuelne su drobnostki w [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} protokolu wulašowanjow].",
 'rev-deleted-text-unhide'     => "Toś ta wersija boka jo se '''wulašowała'''.
-Glědaj drobnostki w [{{fullurl:{{#special:Log}}/suppress|page={{FULLPAGENAMEE}}}} protokolu wulašowanjow].
+Glědaj drobnostki w [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} protokolu wulašowanjow].
+Ako administrator móžoš se hyšći [$1 toś tu wersiju woglědaś], jolic coš pókšacowaś.",
+'rev-suppressed-text-unhide'  => "Toś ta wersija boka jo se '''pódtłocyła'''.
+Glědaj drobnostki w [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} protokolu pódłocenjow].
 Ako administrator móžoš se hyšći [$1 toś tu wersiju woglědaś], jolic coš pókšacowaś.",
 'rev-deleted-text-view'       => "Toś ta wersija boka jo se '''wulašowała'''.
-Ako administrator móžoš se ju woglědaś; glědaj ewentuelne drobnostki w [{{fullurl:{{#special:Log}}/suppress|page={{FULLPAGENAMEE}}}} protokolu wulašowanjow].",
+Ako administrator móžoš se ju woglědaś; glědaj drobnostki w [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} protokolu wulašowanjow].",
+'rev-suppressed-text-view'    => "Toś ta wersija boka jo se '''pódtłocyła'''.
+Ako administrator móžoš se ju woglědaś; glědaj drobnostki w [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} protokolu pódtłocenjow].",
 'rev-deleted-no-diff'         => "Njamóžoš se toś ten rozdźěl woglědaś, dokulaž jadna z wersijow jo se '''wulašowała'''.
-Glědaj ewentuelne drobnostki w [{{fullurl:{{#special:Log}}/suppress|page={{FULLPAGENAMEE}}}} protokolu wulašowanjow].",
+Glědaj drobnostki w [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} protokolu wulašowanjow].",
 'rev-deleted-unhide-diff'     => "Jadna z wersijow toś togo rozdźěla jo se '''wulašowała'''.
-Glědaj ewentuelne drobnostki w [{{fullurl:{{#special:Log}}/suppress|page={{FULLPAGENAMEE}}}} protokolu wulašowanjow].
+Glědaj drobnostki w [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} protokolu wulašowanjow].
 Ako administrator móžoš hyšći se [$1 toś ten rozdźěl woglědaś], jolic coš pókšacowaś.",
 'rev-delundel'                => 'pokazaś/schowaś',
 'revisiondelete'              => 'Wersije wulašowaś/wótnowiś',
@@ -1733,7 +1745,7 @@ Kužda smužka wopśimjejo wótkaze na prědne a druge dalejpósrědnjenje a tek
 'specialloguserlabel'  => 'Wužywaŕ:',
 'speciallogtitlelabel' => 'Nadpismo:',
 'log'                  => 'Protokole',
-'all-logs-page'        => 'Wšykne protokole',
+'all-logs-page'        => 'Wšykne zjawne protokole',
 'alllogstext'          => 'To jo kombiněrowane zwobraznjenje wšyknych we {{GRAMMAR:lokatiw|{{SITENAME}}}} k dispoziciji stojecych protokolow. Móžoš naglěd pśez wubraśe protokolowego typa, wužywarskego mjenja (pód źiwanim wjelikopisanja) abo pótrjefjonego boka (teke pód źiwanim wjelikopisanja) wobgranicowaś.',
 'logempty'             => 'Žedne se góźece zapise njeeksistěruju.',
 'log-title-wildcard'   => 'Pytaś nadpismo, kótarež zachopijo z ...',

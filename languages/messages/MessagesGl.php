@@ -957,16 +957,21 @@ Probe a [[Special:Search|buscar no wiki]] para atopar as páxinas relacionadas.'
 'rev-deleted-user'            => '(nome de usuario eliminado)',
 'rev-deleted-event'           => '(rexistro de evento eliminado)',
 'rev-deleted-text-permission' => "Esta revisión da páxina foi '''borrada'''.
-Pode ampliar os detalles no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} rexistro de supresións].",
+Pode ampliar os detalles no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rexistro de borrados].",
 'rev-deleted-text-unhide'     => "Esta revisión da páxina foi '''borrada'''.
+Pode ampliar os detalles no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rexistro de borrados].
+Como administrador aínda podería [$1 ver esta revisión] se quixese.",
+'rev-suppressed-text-unhide'  => "Esta revisión da páxina foi '''suprimida'''.
 Pode ampliar os detalles no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} rexistro de supresións].
 Como administrador aínda podería [$1 ver esta revisión] se quixese.",
 'rev-deleted-text-view'       => "Esta revisión da páxina foi '''borrada'''.
+Como administrador pode vela; pode ampliar os detalles no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rexistro de borrados].",
+'rev-suppressed-text-view'    => "Esta revisión da páxina foi '''suprimida'''.
 Como administrador pode vela; pode ampliar os detalles no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} rexistro de supresións].",
 'rev-deleted-no-diff'         => "Non pode ver esta diferenza porque unha das revisións foi '''borrada'''.
-Pode ampliar os detalles no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} rexistro de supresións].",
+Pode ampliar os detalles no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rexistro de borrados].",
 'rev-deleted-unhide-diff'     => "Unha das revisións desta diferenza foi '''borrada'''.
-Pode ampliar os detalles no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} rexistro de supresións].
+Pode ampliar os detalles no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rexistro de borrados].
 Como administrador aínda podería [$1 ver esta diferenza] se quixese.",
 'rev-delundel'                => 'mostrar/agochar',
 'revisiondelete'              => 'Borrar/restaurar revisións',

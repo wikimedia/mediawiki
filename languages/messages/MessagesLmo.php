@@ -12,6 +12,7 @@
  * @author Dakrismeno
  * @author DracoRoboter
  * @author Flavio05
+ * @author Insübrich
  * @author Kemmótar
  * @author Malafaya
  * @author Remulazz
@@ -89,6 +90,7 @@ $specialPageAliases = array(
 
 $messages = array(
 # User preference toggles
+'tog-justify'                 => 'Paràgraf: giüstifigaa',
 'tog-hideminor'               => 'Scund i mudifegh men impurtant in di "cambiament recent"',
 'tog-usenewrc'                => '"cambiament recent" migliuraa (JavaScript)',
 'tog-showtoolbar'             => 'Fá vidé ai butún da redataziún (JavaScript)',
@@ -110,6 +112,10 @@ süi titul dai sezziún (JavaScript)',
 
 'underline-always' => 'Semper',
 'underline-never'  => 'Mai',
+
+# Font style option in Special:Preferences
+'editfont-style'     => "Stil del font de l'area de mudifega:",
+'editfont-sansserif' => 'Font sans-serif',
 
 # Dates
 'sunday'        => 'dumeniga',
@@ -142,19 +148,27 @@ süi titul dai sezziún (JavaScript)',
 'october-gen'   => 'Otober',
 'november-gen'  => 'November',
 'december-gen'  => 'Dizember',
+'jan'           => 'Gen',
+'feb'           => 'Feb',
 'mar'           => 'mrz',
 'apr'           => 'avr',
-'may'           => 'mac',
-'jun'           => 'gjü',
-'jul'           => 'lüi',
-'aug'           => 'avo',
+'may'           => 'Mag',
+'jun'           => 'Giü',
+'jul'           => 'Lüi',
+'aug'           => 'Agu',
+'sep'           => 'Set',
 'oct'           => 'utu',
 'nov'           => 'nuv',
+'dec'           => 'Dic',
 
 # Categories related messages
-'pagecategories'  => '{{PLURAL:$1|Categuria|Categurij}}',
-'category_header' => 'Artícoj en la categuria "$1"',
-'subcategories'   => 'Sota-categoríe',
+'pagecategories'           => '{{PLURAL:$1|Categuria|Categurij}}',
+'category_header'          => 'Artìcuj int la categuria "$1"',
+'subcategories'            => 'Suta-categurij',
+'category-media-header'    => 'File int la categuria "$1"',
+'category-empty'           => "''Per 'l mument quela categuria chì la gh'ha denter né de paginn ne d'archivi mültimedia''",
+'hidden-categories'        => '{{PLURAL:$1|Categuria scundüda|Categurij scundüü}}',
+'hidden-category-category' => 'Categurij scundüü',
 
 'about'      => 'A pruposit də',
 'newwindow'  => "(sa derviss in un'óltra finèstra)",
@@ -169,37 +183,52 @@ süi titul dai sezziún (JavaScript)',
 
 # Vector skin
 'vector-namespace-user' => 'Pagina da dovrée',
+'vector-view-create'    => 'Crea',
 
-'returnto'         => 'Turna indré a $1.',
-'help'             => 'Pàgin da jütt',
-'search'           => 'Cerca',
-'searchbutton'     => 'Cerca',
-'go'               => 'Innanz',
-'searcharticle'    => 'Và',
-'history'          => 'Crunulugia de la pagina',
-'history_short'    => 'Crunulugìa',
-'printableversion' => 'Versiun də stampà',
-'permalink'        => 'Culegament permanent',
-'edit'             => 'Mudifega',
-'editthispage'     => 'Mudifica cula pagina chi',
-'create-this-page' => 'Crea cula pagina chi',
-'delete'           => 'Scancela',
-'undelete_short'   => 'Rimett a post {{PLURAL:$1|1 mudifica|$1 mudifich}}',
-'protect'          => 'Bloca',
-'unprotect'        => 'sbloca',
-'newpage'          => 'Pagina növa',
-'talkpagelinktext' => 'ciciarada',
-'specialpage'      => 'Pagina speciala',
-'postcomment'      => 'Sezión növa',
-'talk'             => 'Discüssiun',
-'toolbox'          => 'Strüment',
-'userpage'         => 'Vidé la pàgina da dovrée',
-'viewtalkpage'     => 'Varda i discüssiun',
-'otherlanguages'   => 'Alter lenguv',
-'redirectedfrom'   => '(Rimandaa də $1)',
-'lastmodifiedat'   => "Quela pagina chì l'è stada mudifegada l'ültima völta del $1, a $2.",
-'jumptonavigation' => 'navegá',
-'jumptosearch'     => 'truvá',
+'returnto'          => 'Turna indré a $1.',
+'help'              => 'Pàgin da jütt',
+'search'            => 'Cerca',
+'searchbutton'      => 'Cerca',
+'go'                => 'Innanz',
+'searcharticle'     => 'Và',
+'history'           => 'Crunulugia de la pagina',
+'history_short'     => 'Crunulugìa',
+'printableversion'  => 'Versiun də stampà',
+'permalink'         => 'Culegament permanent',
+'print'             => 'Stampa',
+'edit'              => 'Mudifega',
+'create'            => 'Crea',
+'editthispage'      => 'Mudifega quela pagina chi',
+'create-this-page'  => 'Crea quela pagina chi',
+'delete'            => 'Scancela',
+'deletethispage'    => 'Scancela quela pagina chì',
+'undelete_short'    => 'Rimet a post {{PLURAL:$1|1 mudifica|$1 mudifigh}}',
+'protect'           => 'Bloca',
+'protect_change'    => 'cambia',
+'protectthispage'   => 'Prutegg quela pagina chì',
+'unprotect'         => 'Desbloca',
+'unprotectthispage' => 'Tö via la pruteziun',
+'newpage'           => 'Pagina növa',
+'talkpage'          => 'Discüssión',
+'talkpagelinktext'  => 'Ciciarada',
+'specialpage'       => 'Pagina speciala',
+'personaltools'     => 'Istrüment persunaj',
+'postcomment'       => 'Sezión növa',
+'articlepage'       => "Varda l'articul",
+'talk'              => 'Discüssión',
+'views'             => 'Visid',
+'toolbox'           => 'Arnes',
+'userpage'          => 'Vidè la pàgina del dovrat',
+'projectpage'       => 'Varda la pagina de servizi',
+'imagepage'         => 'Varda la pagina del file',
+'mediawikipage'     => 'Mustra el messagg',
+'templatepage'      => 'Mustra la bueta',
+'viewtalkpage'      => 'Varda i discüssiun',
+'otherlanguages'    => 'Alter lenguv',
+'redirectedfrom'    => '(Rimandaa də $1)',
+'lastmodifiedat'    => "Quela pagina chì l'è stada mudifegada l'ültima völta del $1, a $2.",
+'jumptonavigation'  => 'navegá',
+'jumptosearch'      => 'truvá',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'A prupòsit de {{SITENAME}}',
@@ -227,6 +256,7 @@ süi titul dai sezziún (JavaScript)',
 'hidetoc'                 => 'scunt',
 'thisisdeleted'           => 'Varda o rimett a pòst $1?',
 'restorelink'             => '{{PLURAL:$1|1 mudifica scancelada|$1 mudifich scancelaa}}',
+'red-link-title'          => "$1 (la pagina la gh'è minga)",
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Artícol',
@@ -273,7 +303,7 @@ a scancelé mia la memòria cava dal vost bigat.",
 'nouserspecified'         => "Te gh'heet da specificà un nom del druvatt.",
 'wrongpassword'           => "La ciav che t'hee metüü dreent l'è no giüsta. Pröva turna per piasè.",
 'wrongpasswordempty'      => "T'hee no metüü drent la parola ciav. Pröva turna per piasè.",
-'mailmypassword'          => "Desmentegaa la parola d'urdin?",
+'mailmypassword'          => 'Spedissem una password növa per e-mail',
 'passwordremindertext'    => "Un Quajdün (prubabilment ti, cun l'indiriz IP \$1) l'ha ciamaa da mandagh 'na ciav növa per andà dreent int el sistema de {{SITENAME}} (\$4).
 La ciav per l'ütent \"\$2\" adess l'è \"\$3\".
 Sariss mej andà drent int el sit almanch una völta prima de cambià la ciav.
@@ -310,6 +340,7 @@ Per piasè, ve drent anmò dop che te l'ricevüü.",
 'yourdiff'             => 'Diferenz',
 'protectedpagewarning' => "'''ATENZIÚN: chésta pagina l è staja blucava in manéra che dumá i üteent cunt i privilegi də sysop a pòdan mudificala.'''",
 'templatesused'        => 'Buete duvrade in chesta pàgina - Buett duvraat in chesta pàgina:',
+'template-protected'   => '(prutegiüü)',
 
 # History pages
 'next'       => 'pròssim',
@@ -332,7 +363,9 @@ Spiegazziún di símbui: (cur) = difərenza cun la versiún curénta, (ültima) 
 'viewprevnext'          => 'Vidé ($1) ($2) ($3).',
 'searchmenu-new'        => "'''Crea la pagina \"[[:\$1]]\" ins quel sit chì!'''",
 'searchhelp-url'        => 'Help:Contegnüü',
+'search-suggest'        => 'Vurivet dì: $1',
 'powersearch'           => 'Truvá',
+'powersearch-legend'    => 'Recerca avanzada',
 
 # Preferences page
 'preferences'        => 'Preferenz',
@@ -438,7 +471,7 @@ Spiegazziún di símbui: (cur) = difərenza cun la versiún curénta, (ültima) 
 # File description page
 'filehist-revert' => "Butar torna 'me ch'al era",
 'filehist-user'   => 'Dovrat',
-'imagelinks'      => 'Ligámm',
+'imagelinks'      => 'Ligamm al file',
 
 # MIME search
 'mimesearch' => 'cérca MIME',
@@ -478,7 +511,7 @@ Spiegazziún di símbui: (cur) = difərenza cun la versiún curénta, (ültima) 
 'mostcategories'          => 'Articui cun püssè categurii',
 'mostimages'              => 'Püssè ligaa a imagin',
 'mostrevisions'           => 'Articui cun püssè revisiún',
-'prefixindex'             => 'Pagin cul nóm che cumencja par...',
+'prefixindex'             => 'Tüt i paginn cun prefiss',
 'shortpages'              => 'Pagin püssee curt',
 'longpages'               => 'Pagin püssè luunch',
 'deadendpages'            => 'Pagin senza surtida',
@@ -633,9 +666,13 @@ Cheest-chí al pöö vess un canbi dràstegh e inaspetaa par una pàgina pupüla
 'import' => 'Impurtá di pagin',
 
 # Tooltip help for the actions
+'tooltip-pt-mytalk'               => 'La tua pagina de discüssión',
+'tooltip-pt-preferences'          => 'I to preferenz',
+'tooltip-pt-logout'               => 'Va fö (logout)',
 'tooltip-ca-edit'                 => "Te pör mudifegà quela pagina chì. Per piasè dröva 'l butón per ved i cambiament prima de salvà.",
-'tooltip-ca-addsection'           => 'Taca un cument a questa discüssiun',
+'tooltip-ca-addsection'           => 'Scumencia una sezión növa',
 'tooltip-ca-delete'               => 'Scancela questa pagina',
+'tooltip-ca-move'                 => "Sposta 'sta pagina chì (cambiagh 'l titul)",
 'tooltip-n-mainpage'              => 'Visité la pàgina principala',
 'tooltip-n-portal'                => "Descripzion del proget, cossa ch'a podé far, dond trovar vergòt",
 'tooltip-n-currentevents'         => "Informazion ansima a vergòt ch'al riva.",
@@ -647,6 +684,7 @@ Cheest-chí al pöö vess un canbi dràstegh e inaspetaa par una pàgina pupüla
 'tooltip-feed-rss'                => 'Feed RSS per chesta pàgina',
 'tooltip-t-specialpages'          => 'Lista de tütt i pagin speciaal',
 'tooltip-ca-nstab-project'        => 'Varda la pagina del pruget',
+'tooltip-preview'                 => 'Varda i mudifegh (semper mej fàl prima de salvà)',
 'tooltip-compareselectedversions' => 'Far vider li diferenzi entra li doi version selezionadi da chesta pàgina',
 
 # Attribution
@@ -670,7 +708,7 @@ Cheest-chí al pöö vess un canbi dràstegh e inaspetaa par una pàgina pupüla
 
 # External editor support
 'edit-externally'      => 'Redatá chest archivi cunt un prugramari da fö',
-'edit-externally-help' => 'Vidé i [http://www.mediawiki.org/wiki/Manual:External_editors istrüzziún] pər vech püssè infurmazziún (in Inglees).',
+'edit-externally-help' => 'Varda [http://www.mediawiki.org/wiki/Manual:External_editors i istrüzión] per avègh püssee infurmazión (in ingles).',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'tücc',

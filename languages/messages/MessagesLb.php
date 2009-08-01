@@ -160,7 +160,7 @@ $messages = array(
 'tog-nocache'                 => 'Säitecache deaktivéieren',
 'tog-enotifwatchlistpages'    => 'Schéckt mir eng E-Mail wann eng vun de Säiten op menger Iwwerwaachungslëscht geännert gëtt',
 'tog-enotifusertalkpages'     => 'Schéckt mir E-Maile wa meng Diskussiounssäit geännert gëtt.',
-'tog-enotifminoredits'        => 'Schéckt mir och bäi kléngen Ännerungen op vu mir iwwerwaachte Säiten eng E-Mail.',
+'tog-enotifminoredits'        => 'Schéckt mir och bei kléngen Ännerungen op vu mir iwwerwaachte Säiten eng E-Mail.',
 'tog-enotifrevealaddr'        => 'Meng E-Mailadress an de Benoriichtigungsmaile weisen.',
 'tog-shownumberswatching'     => "D'Zuel vun de Benotzer déi dës Säit iwwerwaache weisen",
 'tog-fancysig'                => 'Ënnerschrëft als Wiki-Text behandelen (Ouni automatesche Link)',
@@ -538,7 +538,7 @@ Denkt drun, Är [[Special:Preferences|{{SITENAME}}-Astellungen]] unzepassen.',
 'yourpasswordagain'          => 'Passwuert nach eemol antippen:',
 'remembermypassword'         => 'Meng Umeldung op dësem Computer verhalen',
 'yourdomainname'             => 'Ären Domain',
-'externaldberror'            => 'Entweder ass e Feeler bäi der externer Authentifizéierung geschitt, oder Dir däerft ären externe Benotzerkont net aktualiséieren.',
+'externaldberror'            => 'Entweder ass e Feeler bei der externer Authentifizéierung geschitt, oder Dir däerft ären externe Benotzerkont net aktualiséieren.',
 'login'                      => 'Umellen',
 'nav-login-createaccount'    => 'Aloggen',
 'loginprompt'                => "Fir sech op {{SITENAME}} umellen ze kënnen, mussen d'Cookien aktivéiert sinn.",
@@ -555,7 +555,7 @@ Denkt drun, Är [[Special:Preferences|{{SITENAME}}-Astellungen]] unzepassen.',
 'badretype'                  => 'Är Passwierder stëmmen net iwwerdeneen.',
 'userexists'                 => 'Dëse Benotzernumm gëtt scho benotzt.
 Sicht iech een anere Benotzernumm.',
-'loginerror'                 => 'Feeler bäi der Umeldung',
+'loginerror'                 => 'Feeler beim umellen',
 'nocookiesnew'               => "De Benotzerkont gouf ugeluecht, Awer Dir sidd net ageloggt. 
 {{SITENAME}} brauch fir dës Funktioun Cookien.
 Dir hutt d'Cookien desaktivéiert.
@@ -593,7 +593,7 @@ Dofir kënne Visiteure déi dës IP-Adress benotzen den Ament keng Benotzerkonte
 'emailauthenticated'         => 'Är E-Mailadress gouf den $2 ëm $3 Auer bestätegt.',
 'emailnotauthenticated'      => 'Är E-Mail Adress gouf <strong>nach net confirméiert</strong>.<br/ >
 Dowéinst ass et bis ewell net méiglech, fir déi folgend Funktiounen E-Mailen ze schécken oder ze kréien.',
-'noemailprefs'               => 'Gitt eng E-Mailadress bäi ären Astellungen un, fir datt dës Funktioune funktionéieren.',
+'noemailprefs'               => 'Gitt eng E-Mailadress bei Ären Astellungen un, fir datt déi Funktioune funktionéieren.',
 'emailconfirmlink'           => 'Confirméiert är E-Mailadress w.e.g..',
 'invalidemailaddress'        => 'Dës E-Mailadress gëtt net akzeptéiert well se en ongëltegt Format (z.B. ongëlteg Zeechen) ze hu schéngt.
 Gitt eng valabel E-Mailadress an oder loosst dëst Feld eidel.',
@@ -862,16 +862,18 @@ Vläicht gouf se geläscht oder geréckelt.
 'rev-deleted-user'            => '(Benotzernumm ewechgeholl)',
 'rev-deleted-event'           => '(Aktioun aus dem Logbuch erausgeholl)',
 'rev-deleted-text-permission' => "Dës Versioun vun der Säit gouf '''geläscht'''.
-Dir fannt eventuell méi Informatiounen an der [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Läschlëscht].",
-'rev-deleted-text-unhide'     => "Dës Versioun gouf '''geläscht'''.
+Dir fannt eventuell méi Informatiounen an der [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Läsch-Logbuch].",
+'rev-deleted-text-unhide'     => "Dës Versioun vun der Säit gouf '''geläscht'''.
 Detailer kënnen am [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Lösch-Logbuch] fonnt ginn.
 Als Administrateur kënnt Dir nach ëmmer [$1 dës Versioun kucken] wann Dir weiderfuere wëllt.",
 'rev-deleted-text-view'       => "Dës Versioun vun der Säit gouf '''geläscht'''.
 Als Administrateur kënnt Dir se gesinn; Dir fannt eventuell méi Detailer am  [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Läsch-Logbuch].",
+'rev-suppressed-text-view'    => "Dës Versioun vun der Säit gouf '''geläscht'''.
+Als Administrateur kënnt dir se gesinn; méi Detailler fannt Dir eventuell am [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Läsch-Logbuch].",
 'rev-deleted-no-diff'         => "Dir kënnt dësen Ënnerscheed net gesinn, well eng vun de Versiounen '''geläscht gouf'''.
 Detailer stinn eventuell am [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Läsch-Logbuch].",
 'rev-deleted-unhide-diff'     => "Eng vun de Versioune vun dësem Ënnerscheed gouf '''geläscht'''.
-Detailer stinn eventuell am [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Logbuch vun de Läschungen].
+Detailer stinn eventuell am [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Läsch-Logbuch].
 Als Administrateur kënnt Dir [$1 mat dësem Link de Versiounsënnerscheed kucke] wann Dir weiderfuere wëllt.",
 'rev-delundel'                => 'weisen/verstoppen',
 'revisiondelete'              => 'Versioune läschen/restauréieren',
@@ -1773,7 +1775,7 @@ Dir kënnt d'Sich limitéieren wann dir e Log-Typ, e Benotzernumm (case-senisiti
 'categoriespagetext'            => 'Dës {{PLURAL:$1|Kategorie huet|Kategorien hu}} Säiten oder Medien.
 [[Special:UnusedCategories|Netbenotze Kategorien]] ginn hei net gewisen.
 Kuckt och [[Special:WantedCategories|Gewënschte Kategorien]].',
-'categoriesfrom'                => 'Weis Kategorien ugefaang bäi:',
+'categoriesfrom'                => 'Weis Kategorien ugefaang bei:',
 'special-categories-sort-count' => 'No der Zuel sortéieren',
 'special-categories-sort-abc'   => 'alphabetesch sortéieren',
 
@@ -1788,7 +1790,7 @@ Kuckt och [[Special:WantedCategories|Gewënschte Kategorien]].',
 'linksearch-ns'   => 'Nummraum:',
 'linksearch-ok'   => 'Sichen',
 'linksearch-text' => 'Sougennante "Wildcards" wéi zum Beispill <tt>*.example.com</tt> kënne benotzt ginn.<br />
-Ënnerstetzte Protokollen: <tt>$1</tt>',
+Ënnerstëtzte Protekoller: <tt>$1</tt>',
 'linksearch-line' => '$1 verlinkt vun $2',
 
 # Special:ListUsers
@@ -2158,7 +2160,7 @@ $1',
 'ipboptions'                      => '2 Stonnen:2 hours,1 Dag:1 day,3 Deeg:3 days,1 Woch:1 week,2 Wochen:2 weeks,1 Mount:1 month,3 Méint:3 months,6 Méint:6 months,1 Joer:1 year,onbegrenzt:infinite',
 'ipbotheroption'                  => 'Aner Dauer',
 'ipbotherreason'                  => 'Aneren oder zousätzleche Grond:',
-'ipbhidename'                     => 'Benotzernumm op Lëschten a bäi Ännerunge verstoppen',
+'ipbhidename'                     => 'Benotzernumm op Lëschten a bei Ännerunge verstoppen',
 'ipbwatchuser'                    => 'Dësem Benotzer seng Benotzer- an Diskussiouns-Säit iwwerwaachen',
 'ipballowusertalk'                => 'Benotzer däerf seng Diskussiounssäiten änneren esouguer wann e gespaart ass',
 'ipb-change-block'                => 'De Benotzer mat dese Parameteren nees spären',
@@ -2376,7 +2378,7 @@ Besicht w.e.g. [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisatio
 'djvu_no_xml'              => 'Den XML ka fir den DjVu-Fichier net ofgeruff ginn',
 'thumbnail_invalid_params' => 'Ongëlteg Miniatur-Parameter',
 'thumbnail_dest_directory' => 'Den Zilepertoire konnt net ugeluecht ginn.',
-'thumbnail_image-type'     => 'Bildtyp gëtt net ënnerstetzt',
+'thumbnail_image-type'     => 'Bildtyp gëtt net ënnerstëtzt',
 'thumbnail_gd-library'     => "D'Konfiguratioun vun der GD-Bibliothéik (GD library) ass net komplett: D'Fonctioun $1 feelt",
 'thumbnail_image-missing'  => 'De Fichier schengt ze feelen: $1',
 
@@ -2908,8 +2910,8 @@ Duerno sti Linken déi Ausnamen definéieren, an deenen hirem Kontext dat Bild a
 'confirmemail_pending'     => 'Dir krut schonn e Confirmatiouns-Code per E-Mail geschéckt. Wenn Dir Äre Benotzerkont eréischt elo kuerz opgemaach hutt, da gedëllegt Iech nach e puer Minutten bis Är E-Mail ukomm ass, ier Dir een neie Code ufrot.',
 'confirmemail_send'        => 'Confirmatiouns-E-Mail schécken',
 'confirmemail_sent'        => 'Confirmatiouns-E-Mail gouf geschéckt.',
-'confirmemail_oncreate'    => "E Confirmatiouns-Code gouf op är E-Mail-Adress geschéckt.
-Dëse Code gëtt fir d'Umeldung net gebraucht. Dir braucht en awer bäi der Aktivéierung vun den E-Mail-Funktiounen bannert der Wiki.",
+'confirmemail_oncreate'    => "E Confirmatiouns-Code gouf op Är E-Mail-Adress geschéckt.
+Dëse Code gëtt fir d'Umeldung net gebraucht. Dir braucht en awer bei der Aktivéierung vun den E-Mail-Funktiounen bannert der Wiki.",
 'confirmemail_sendfailed'  => '{{SITENAME}} konnt är Confirmatiouns-E-Mail net schécken.
 Iwwerpréift w.e.g. är E-Mailadress op ongëlteg Zeechen.
 
@@ -3092,11 +3094,11 @@ Gitt den Numm vum Fichier ouni de Prefix \"{{ns:file}}:\" an.",
 
 # Special:Tags
 'tags'                    => 'Valabel Ännerungsmarkéierungen',
-'tag-filter'              => '[[Special:Tags|Tag]]-Filter:',
+'tag-filter'              => '[[Special:Tags|Markéierungs]]-Filter:',
 'tag-filter-submit'       => 'Filter',
 'tags-title'              => 'Markéierungen',
 'tags-intro'              => 'Op dëser Säit stinn all déi Taggen, déi vun dëser Software fir Ännerungen unzeweise benotzt ginn, an hir Bedeitung.',
-'tags-tag'                => 'Internen Numm vum Tag',
+'tags-tag'                => 'Internen Numm vun der Markéierung',
 'tags-display-header'     => 'Opzielungen op den Ännerungslëschten',
 'tags-description-header' => 'Ganz Beschreiwung vun der Bedeitung',
 'tags-hitcount-header'    => 'Markéiert Ännerungen',
@@ -3107,8 +3109,8 @@ Gitt den Numm vum Fichier ouni de Prefix \"{{ns:file}}:\" an.",
 'dberr-header'      => 'Dës Wiki huet e Problem',
 'dberr-problems'    => 'Pardon! Dëse Site huet technesch Schwieregkeeten.',
 'dberr-again'       => 'Versicht e puer Minutten ze waarden an dann nei ze lueden.',
-'dberr-info'        => '(Den Databank-Server kann net erreecht ginn: $1)',
-'dberr-usegoogle'   => 'An der Tëschezäit kënnt Dir probéiere mam Google ze sichen.',
+'dberr-info'        => '(Den Datebank-Server kann net erreecht ginn: $1)',
+'dberr-usegoogle'   => 'An der Tëschenzäit kënnt Dir probéiere mam Google ze sichen.',
 'dberr-outofdate'   => 'Denkt drunn, datt de Sichindex vun eisen Inhalte méiglecherweis net aktuell ass.',
 'dberr-cachederror' => 'Dëst ass eng tëschegespäichert Kopie vun der gefroter Säit, a si kann eventuell net aktuell sinn.',
 

@@ -355,6 +355,13 @@ $messages = array(
 'underline-never'   => 'Nooit',
 'underline-default' => 'Webbrowser-standaard',
 
+# Font style option in Special:Preferences
+'editfont-style'     => 'Lettertypestijl bewerkingsvenster:',
+'editfont-default'   => 'Webbrowser-standaard',
+'editfont-monospace' => 'Monospaced lettertype',
+'editfont-sansserif' => 'Sans-serif lettertype',
+'editfont-serif'     => 'Serif lettertype',
+
 # Dates
 'sunday'        => 'zondag',
 'monday'        => 'maandag',
@@ -1075,17 +1082,23 @@ Wellicht is die verwijderd of hernoemd.
 'rev-deleted-user'            => '(gebruiker verwijderd)',
 'rev-deleted-event'           => '(logboekregel verwijderd)',
 'rev-deleted-text-permission' => "Deze bewerking is '''verwijderd'''.
-Er kunnen details aanwezig zijn in het [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} logboek onderdrukte versies].",
+Er kunnen details aanwezig zijn in het [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} verwijderingslogboek].",
 'rev-deleted-text-unhide'     => "Deze versie van de pagina is '''verwijderd'''.
-Achtergronden zijn mogelijk te vinden in het [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} logboek onderdrukte versies].
+Achtergronden zijn mogelijk te vinden in het [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} verwijderingslogboek].
 Als beheerder kunt u [$1 deze versie bekijken] als u wilt.",
+'rev-suppressed-text-unhide'  => "Deze paginaversie is '''onderdrukt'''.
+Achtergronden zijn mogelijk te vinden in het [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} logboek onderdrukte versies].
+Als beheerder kunt u [$1 de verschillen bekijken] als u wilt.",
 'rev-deleted-text-view'       => "Deze bewerking is '''verwijderd'''.
 Als beheerder kunt u deze zien;
-er kunnen details aanwezig zijn in het [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} logboek onderdrukte versies].",
+er kunnen details aanwezig zijn in het [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} verwijderingslogboek].",
+'rev-suppressed-text-view'    => "Deze paginaversie is '''onderdrukt'''.
+Als beheerder kunt u deze bekijken;
+achtergronden zijn mogelijk te vinden in het [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} logboek onderdrukte versies].",
 'rev-deleted-no-diff'         => "U kunt de verschillen niet bekijken omdat een van de versies is '''verwijderd'''.
-Achtergronden zijn mogelijk te vinden in het [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} logboek onderdrukte versies].",
+Achtergronden zijn mogelijk te vinden in het [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} verwijderingslogboek].",
 'rev-deleted-unhide-diff'     => "Een van de bewerkingen voor de verschillen die u hebt opgevraagd is '''verwijderd'''.
-Achtergronden zijn mogelijk te vinden in het [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} logboek onderdrukte versies].
+Achtergronden zijn mogelijk te vinden in het [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} verwijderingslogboek].
 Als beheerder kunt u [$1 de verschillen bekijken] als u wilt.",
 'rev-delundel'                => 'weergeven/verbergen',
 'revisiondelete'              => 'Versies verwijderen/terugplaatsen',
@@ -1348,6 +1361,7 @@ De gegevens over {{SITENAME}} zijn mogelijk niet bijgewerkt.',
 'prefs-watchlist-days-max'      => '(maximaal 7 dagen)',
 'prefs-watchlist-edits'         => 'Maximaal aantal bewerkingen in de uitgebreide volglijst:',
 'prefs-watchlist-edits-max'     => '(maximale aantal: 1000)',
+'prefs-watchlist-token'         => 'Volglijstsleutel',
 'prefs-misc'                    => 'Diversen',
 'prefs-resetpass'               => 'Wachtwoord wijzigen',
 'prefs-email'                   => 'E-mail',
@@ -1368,6 +1382,9 @@ De gegevens over {{SITENAME}} zijn mogelijk niet bijgewerkt.',
 'recentchangesdays-max'         => '(maximaal $1 {{PLURAL:$1|dag|dagen}})',
 'recentchangescount'            => 'Standaard aantal weer te geven bewerkingen:',
 'prefs-help-recentchangescount' => "Dit geldt voor recente wijzigingen, paginageschiedenis en logboekpagina's.",
+'prefs-help-watchlist-token'    => 'Door hier een geheime sleutel in te vullen wordt een RSS-feed voor uw volglijst aangemaakt.
+Iedereen die deze sleutel kent kan uw volglijst lezen, dus kies een veilige sleutel.
+Hier volgt is een willekeurig gegenereerde waarde die u kunt gebruiken: $1',
 'savedprefs'                    => 'Uw voorkeuren zijn opgeslagen.',
 'timezonelegend'                => 'Tijdzone:',
 'localtime'                     => 'Plaatselijke tijd:',
@@ -1996,7 +2013,7 @@ Controleer of u wellicht een fout hebt gemaakt bij de invoer.',
 'specialloguserlabel'  => 'Gebruiker:',
 'speciallogtitlelabel' => 'Paginanaam:',
 'log'                  => 'Logboeken',
-'all-logs-page'        => 'Alle logboeken',
+'all-logs-page'        => 'Alle openbare logboeken',
 'alllogstext'          => 'Dit is het gecombineerde logboek van {{SITENAME}}.
 U kunt ook kiezen voor specifieke logboeken en filteren op gebruiker (hoofdlettergevoelig) en paginanaam (hoofdlettergevoelig).',
 'logempty'             => 'Er zijn geen regels in het logboek die voldoen aan deze criteria.',

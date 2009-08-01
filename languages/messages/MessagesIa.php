@@ -183,6 +183,12 @@ $messages = array(
 'underline-never'   => 'Nunquam',
 'underline-default' => 'Secundo le configuration del navigator',
 
+# Font style option in Special:Preferences
+'editfont-style'     => 'Stilo de litteras del area de modification:',
+'editfont-default'   => 'Predefinite del navigator',
+'editfont-monospace' => 'Typo de litteras monospatial',
+'editfont-sansserif' => 'Typo de litteras sans-serif',
+
 # Dates
 'sunday'        => 'dominica',
 'monday'        => 'lunedi',
@@ -896,17 +902,17 @@ Prova [[Special:Search|cercar nove paginas relevante]] in le wiki.',
 'rev-deleted-user'            => '(nomine de usator eliminate)',
 'rev-deleted-event'           => '(entrata eliminate)',
 'rev-deleted-text-permission' => "Iste version del pagina ha essite '''delite'''.
-Es possibile que se trova detalios in le [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de suppressiones].",
+Es possibile que se trova detalios in le [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de deletiones].",
 'rev-deleted-text-unhide'     => "Iste version del pagina ha essite '''delite'''.
-Es possibile que se trova detalios in le [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de suppressiones].
+Es possibile que se trova detalios in le [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de deletiones].
 Tu, qua administrator, pote totevia [$1 vider iste version] si tu vole proceder.",
 'rev-deleted-text-view'       => "Iste version del pagina ha essite '''delite'''.
 Tu, qua administrator, pote vider lo;
-es possibile que se trova detalios in le [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de suppressiones].",
+es possibile que se trova detalios in le [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de deletiones].",
 'rev-deleted-no-diff'         => "Tu non pote vider iste diff proque un del versiones ha essite '''delite'''.
-Es possibile que se trova detalios in le [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de suppressiones].",
+Es possibile que se trova detalios in le [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de deletiones].",
 'rev-deleted-unhide-diff'     => "Un del versiones de iste diff ha essite '''delite'''.
-Es possibile que se trova detalios in le [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de suppressiones].
+Es possibile que se trova detalios in le [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de deletiones].
 Tu, qua administrator, pote ancora [$1 vider iste diff] si tu vole proceder.",
 'rev-delundel'                => 'revelar/celar',
 'revisiondelete'              => 'Deler/restaurar versiones',
@@ -1807,7 +1813,7 @@ executar iste function.',
 'specialloguserlabel'  => 'Usator:',
 'speciallogtitlelabel' => 'Titulo:',
 'log'                  => 'Registros',
-'all-logs-page'        => 'Tote le registros',
+'all-logs-page'        => 'Tote le registros public',
 'alllogstext'          => 'Presentation combinate de tote le registros disponibile de {{SITENAME}}.
 Pro restringer le presentation, selige un typo de registro, le nomine de usator (sensibile al majusculas e minusculas), o le pagina in question (etiam sensibile al majusculas e minusculas).',
 'logempty'             => 'Le registro contine nihil pro iste pagina.',

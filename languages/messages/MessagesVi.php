@@ -282,6 +282,13 @@ $messages = array(
 'underline-never'   => 'Không bao giờ',
 'underline-default' => 'Mặc định của trình duyệt',
 
+# Font style option in Special:Preferences
+'editfont-style'     => 'Kiểu phông chữ trong khung sửa đổi:',
+'editfont-default'   => 'Mặc định của trình duyệt',
+'editfont-monospace' => 'Phông đẳng cách',
+'editfont-sansserif' => 'Phông không chân',
+'editfont-serif'     => 'Phông có chân',
+
 # Dates
 'sunday'        => 'Chủ nhật',
 'monday'        => 'thứ Hai',
@@ -944,16 +951,21 @@ Chú giải: (hiện) = khác với phiên bản hiện hành,
 'rev-deleted-user'            => '(tên người dùng đã bị xóa)',
 'rev-deleted-event'           => '(tác vụ nhật trình đã bị xóa)',
 'rev-deleted-text-permission' => "Phiên bản này đã bị '''xóa'''.
-Có thể có thêm chi tiết tại [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} nhật trình giấu].",
+Có thể có thêm chi tiết tại [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} nhật trình xóa].",
 'rev-deleted-text-unhide'     => "Phiên bản này đã bị '''xóa'''.
+Có thể có thêm chi tiết tại [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} nhật trình xóa].
+Vì là người quản lý, bạn vẫn có thể [$1 xem phiên bản này] nếu muốn.",
+'rev-suppressed-text-unhide'  => "Phiên bản này đã bị '''giấu'''.
 Có thể có thêm chi tiết tại [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} nhật trình giấu].
 Vì là người quản lý, bạn vẫn có thể [$1 xem phiên bản này] nếu muốn.",
 'rev-deleted-text-view'       => "Phiên bản này đã bị '''xóa'''.
+Vì là người quản lý bạn vẫn có thể xem nó; có thể có thêm chi tiết tại [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} nhật trình xóa].",
+'rev-suppressed-text-view'    => "Phiên bản này đã bị '''giấu'''.
 Vì là người quản lý bạn vẫn có thể xem nó; có thể có thêm chi tiết tại [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} nhật trình giấu].",
 'rev-deleted-no-diff'         => "Bạn không thể xem khác biệt giữa các phiên bản vì một phiên bản đã bị '''xóa'''.
-Bạn có thể xem thêm chi tiết trong [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} nhật trình giấu].",
+Bạn có thể xem thêm chi tiết tại [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} nhật trình xóa].",
 'rev-deleted-unhide-diff'     => "Một trong những phiên bản của khác biệt này đã bị '''xóa'''.
-Bạn có thể xem thêm chi tiết tại [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} nhật trình giấu].
+Bạn có thể xem thêm chi tiết tại [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} nhật trình xóa].
 Vì là người quản lý, bạn vẫn có thể [$1 xem khác biệt này] nếu muốn.",
 'rev-delundel'                => 'hiện/ẩn',
 'revisiondelete'              => 'Xóa hay phục hồi phiên bản',
@@ -1211,6 +1223,7 @@ Xin hãy bảo đảm giữ vững tính liên tục của lịch sử trang.',
 'prefs-watchlist-days-max'      => '(tối đa 7 ngày)',
 'prefs-watchlist-edits'         => 'Số lần sửa đổi tối đa trong danh sách theo dõi mở rộng:',
 'prefs-watchlist-edits-max'     => '(con số tối đa: 1000)',
+'prefs-watchlist-token'         => 'Số thẻ của Danh sách theo dõi',
 'prefs-misc'                    => 'Linh tinh',
 'prefs-resetpass'               => 'Thay đổi mật khẩu',
 'prefs-email'                   => 'Tùy chọn thư điện tử',
@@ -1231,6 +1244,9 @@ Xin hãy bảo đảm giữ vững tính liên tục của lịch sử trang.',
 'recentchangesdays-max'         => '(tối đa $1 {{PLURAL:$1|ngày|ngày}})',
 'recentchangescount'            => 'Số sửa đổi hiển thị mặc định:',
 'prefs-help-recentchangescount' => 'Số này bao gồm các thay đổi gần đây, lịch sử trang, và nhật trình.',
+'prefs-help-watchlist-token'    => 'Điền vào ô này một khóa bí mật để tạo ra bản tin RSS cho danh sách theo dõi của bạn.
+Bất cứ ai biết được khóa trong ô này cũng có thể đọc được danh sách theo dõi của bạn, vì vậy hãy chọn một giá trị an toàn.
+Đây là giá trị được tạo ngẫu nhiên mà bạn có thể sử dụng: $1',
 'savedprefs'                    => 'Đã lưu các tùy chọn cá nhân.',
 'timezonelegend'                => 'Múi giờ:',
 'localtime'                     => 'Giờ hiện tại:',
@@ -1831,7 +1847,7 @@ Các mục <s>bị gạch bỏ</s> là các trang đã được sửa.',
 'specialloguserlabel'  => 'Thành viên:',
 'speciallogtitlelabel' => 'Tên trang:',
 'log'                  => 'Nhật trình',
-'all-logs-page'        => 'Tất cả các nhật trình',
+'all-logs-page'        => 'Tất cả các nhật trình công khai',
 'alllogstext'          => 'Hiển thị tất cả các nhật trình đang có của {{SITENAME}} chung với nhau.
 Bạn có thể thu hẹp kết quả bằng cách chọn loại nhật trình, tên thành viên (phân biệt chữ hoa-chữ thường), hoặc các trang bị ảnh hưởng (cũng phân biệt chữ hoa-chữ thường).',
 'logempty'             => 'Không có mục nào khớp với từ khóa.',

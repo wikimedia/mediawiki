@@ -277,6 +277,10 @@ $messages = array(
 'underline-never'   => 'Aldri',
 'underline-default' => 'Bruk nettleserstandard',
 
+# Font style option in Special:Preferences
+'editfont-style'   => 'Endre stilen for skrifttypen i området:',
+'editfont-default' => 'Nettleserstandard',
+
 # Dates
 'sunday'        => 'søndag',
 'monday'        => 'mandag',
@@ -398,6 +402,9 @@ $messages = array(
 'vector-view-history'        => 'Vis historikk',
 'vector-view-view'           => 'Les',
 'vector-view-viewsource'     => 'Vis kilden',
+'actions'                    => 'Handlinger',
+'namespaces'                 => 'Navnerom',
+'variants'                   => 'Varianter',
 
 # Metadata in edit box
 'metadata_help' => 'Metadata:',
@@ -456,6 +463,11 @@ $messages = array(
 'jumpto'            => 'Gå til:',
 'jumptonavigation'  => 'navigasjon',
 'jumptosearch'      => 'søk',
+'view-pool-error'   => 'Beklager, serverne er overbelastet for øyeblikket.
+For mange brukere forsøker å se denne siden.
+Vennligst vent en stund før du prøver å besøke denne siden på nytt.
+
+$1',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Om {{SITENAME}}',
@@ -536,7 +548,7 @@ Det kan også være en bug i {{SITENAME}}.',
 'error'                => 'Feil',
 'databaseerror'        => 'databasefeil',
 'dberrortext'          => 'Det skjedde en syntaksfeil i databasen. Den sist forsøkte forespørselen var: <blockquote><tt>$1</tt></blockquote> fra funksjonen «<tt>$2</tt>». $5 returnerte feilen «<tt>$3: $4</tt>».',
-'dberrortextcl'        => 'Det skjedde en syntaksfeil i databasen. Den sist forsøkte forespørselen var: «$1» fra funksjonen «$2». MySQL returnerte feilen «$3: $4».',
+'dberrortextcl'        => 'Det skjedde en syntaksfeil i databasen. Den sist forsøkte forespørselen var: «$1» fra funksjonen «$2». $5 returnerte feilen «$3: $4».',
 'laggedslavemode'      => 'Advarsel: Dette kan være en eldre versjon av siden.',
 'readonly'             => 'Databasen er skrivebeskyttet',
 'enterlockreason'      => 'Skriv en begrunnelse for skrivebeskyttelsen, inkludert et estimat for når den blir opphevet',
@@ -915,7 +927,7 @@ Grunnen som ble oppgitt av $3 er ''$2''",
 'rev-deleted-user'            => '(brukernavn fjernet)',
 'rev-deleted-event'           => '(fjernet loggoppføring)',
 'rev-deleted-text-permission' => "Denne revisjonen har blitt '''slettet'''. 
-Det kan være detaljer i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} slettingsloggen].",
+Det kan være detaljer i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} slettingsloggen].",
 'rev-deleted-text-unhide'     => "Denne sideversjonen er blitt '''slettet'''.
 Det kan være mer informasjon i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} tilbakeholdsloggen].
 Som administrator kan du fremdeles [$1 se denne versjonen] hvis du ønsker å fortsette.",
@@ -1180,6 +1192,7 @@ Forsikre deg om at denne endringen vil opprettholde historisk sidekontinuitet.',
 'prefs-watchlist-days-max'      => '(maskimum 7 dager)',
 'prefs-watchlist-edits'         => 'Antall redigeringer som skal vises i utvidet overvåkningsliste:',
 'prefs-watchlist-edits-max'     => '(maksimum antall: 1000)',
+'prefs-watchlist-token'         => 'Overvåkingsliste-token',
 'prefs-misc'                    => 'Diverse',
 'prefs-resetpass'               => 'Endre passord',
 'prefs-email'                   => 'Alternativer for e-post',
@@ -1200,6 +1213,9 @@ Forsikre deg om at denne endringen vil opprettholde historisk sidekontinuitet.',
 'recentchangesdays-max'         => '(maksimum $1 {{PLURAL:$1|dag|dager}})',
 'recentchangescount'            => 'Antall redigeringer som skal vises som standard:',
 'prefs-help-recentchangescount' => 'Dette inkluderer nylige endringer, sidehistorikk og logger.',
+'prefs-help-watchlist-token'    => 'Om du fyller ut dette feltet med et hemmelig tall vil lage en RSS-liste for overvåkingslista di.
+Alle som vet det rette tallet vil være i stand til å lese overvåkingslista di, så velg en sikker verdi.
+Her er et tilfeldig tall du kan bruke: $1',
 'savedprefs'                    => 'Innstillingene ble lagret.',
 'timezonelegend'                => 'Tidssone:',
 'localtime'                     => 'Lokaltid:',
@@ -1367,6 +1383,7 @@ Du kan også la velge å la andre brukere kontakte deg via brukersiden din uten 
 'right-siteadmin'             => 'Låse og låse opp databasen',
 'right-reset-passwords'       => 'Nullstille andre brukeres passord',
 'right-override-export-depth' => 'Eksporter sider inkludert lenkede sider til en dypde på 5',
+'right-versiondetail'         => 'Vis utvidet informasjon om programvareversjon',
 
 # User rights log
 'rightslog'      => 'Rettighetslogg',
@@ -1551,14 +1568,17 @@ MGP # Pentax
 PICT # div.
  #</pre> <!-- leave this line exactly as it is -->',
 
-'upload-proto-error'      => 'Gal protokoll',
-'upload-proto-error-text' => 'Fjernopplasting behøver adresser som begynner med <code>http://</code> eller <code>ftp://</code>.',
-'upload-file-error'       => 'Intern feil',
-'upload-file-error-text'  => 'En intern feil oppsto under forsøk på å lage en midlertidig fil på tjeneren. Vennligst kontakt en [[Special:ListUsers/sysop|administrator]].',
-'upload-misc-error'       => 'Ukjent opplastingsfeil',
-'upload-misc-error-text'  => 'En ukjent feil forekom under opplastingen.
+'upload-proto-error'        => 'Gal protokoll',
+'upload-proto-error-text'   => 'Fjernopplasting behøver adresser som begynner med <code>http://</code> eller <code>ftp://</code>.',
+'upload-file-error'         => 'Intern feil',
+'upload-file-error-text'    => 'En intern feil oppsto under forsøk på å lage en midlertidig fil på tjeneren. Vennligst kontakt en [[Special:ListUsers/sysop|administrator]].',
+'upload-misc-error'         => 'Ukjent opplastingsfeil',
+'upload-misc-error-text'    => 'En ukjent feil forekom under opplastingen.
 Bekreft at adressen er gyldig og tilgjengelig, og prøv igjen.
 Om problemet fortsetter, kontakt en [[Special:ListUsers/sysop|administrator]].',
+'upload-too-many-redirects' => 'URLen inneholdt for mange omdirigeringer',
+'upload-unknown-size'       => 'Ukjent størrelse',
+'upload-http-error'         => 'En HTTP-feil oppstod: $1',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Kunne ikke nå adressen',
@@ -1789,7 +1809,7 @@ En side anses om en pekerside om den inneholder en mal som det lenkes til fra [[
 'specialloguserlabel'  => 'Bruker:',
 'speciallogtitlelabel' => 'Tittel:',
 'log'                  => 'Logger',
-'all-logs-page'        => 'Alle logger',
+'all-logs-page'        => 'Alle offentlige logger',
 'alllogstext'          => 'Kombinert visning av alle loggene på {{SITENAME}}.
 Du kan minske antallet resultater ved å velge loggtype, brukernavn eller den siden som er påvirket (husk å skille mellom store og små bokstaver).',
 'logempty'             => 'Ingen elementer i loggen.',
@@ -2383,13 +2403,21 @@ Dersom du bare vil ha nåværende versjon, kan du også bruke en lenke, for ekse
 'export-pagelinks'  => 'Inkluder lenkede sider med en dybde på:',
 
 # Namespace 8 related
-'allmessages'               => 'Systemmeldinger',
-'allmessagesname'           => 'Navn',
-'allmessagesdefault'        => 'Standardtekst',
-'allmessagescurrent'        => 'Nåværende tekst',
-'allmessagestext'           => 'Dette er en liste over tilgjengelige systemmeldinger i MediaWiki-navnerommet.
+'allmessages'                   => 'Systemmeldinger',
+'allmessagesname'               => 'Navn',
+'allmessagesdefault'            => 'Standardtekst',
+'allmessagescurrent'            => 'Nåværende tekst',
+'allmessagestext'               => 'Dette er en liste over tilgjengelige systemmeldinger i MediaWiki-navnerommet.
 Besøk [http://translatewiki.net translatewiki.net] om du ønsker å bidra med oversettelse av MediaWiki.',
-'allmessagesnotsupportedDB' => "''{{ns:special}}:Allmessages'' kan ikke brukes fordi '''\$wgUseDatabaseMessages''' er slått av.",
+'allmessagesnotsupportedDB'     => "''{{ns:special}}:Allmessages'' kan ikke brukes fordi '''\$wgUseDatabaseMessages''' er slått av.",
+'allmessages-filter-legend'     => 'Filtrér',
+'allmessages-filter'            => 'Filtrér etter tilpassningsgrad',
+'allmessages-filter-unmodified' => 'Ikke endret',
+'allmessages-filter-all'        => 'Alle',
+'allmessages-filter-modified'   => 'Endret',
+'allmessages-prefix'            => 'Filtrér etter prefiks:',
+'allmessages-language'          => 'Språk:',
+'allmessages-filter-submit'     => 'Gå',
 
 # Thumbnails
 'thumbnail-more'           => 'Forstørr',
@@ -3193,6 +3221,7 @@ Skriv inn filnavn uten «{{ns:file}}:»-prefikset.',
 'htmlform-invalid-input'       => 'Det er problemer med noen av inndatene dine',
 'htmlform-select-badoption'    => 'Verdien du valgte er ikke et gyldig alternativ.',
 'htmlform-int-invalid'         => 'Verdien du valgte er ikke et heltall.',
+'htmlform-float-invalid'       => 'Verdien du valgte er ikke et tall.',
 'htmlform-int-toolow'          => 'Verdien du valgte er mindre enn minimum på $1',
 'htmlform-int-toohigh'         => 'Verdien du valgte er over det mulige $1',
 'htmlform-submit'              => 'Lagre',

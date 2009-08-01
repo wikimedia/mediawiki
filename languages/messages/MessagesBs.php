@@ -306,6 +306,13 @@ $messages = array(
 'underline-never'   => 'Nikad',
 'underline-default' => 'Po podešavanjima preglednika',
 
+# Font style option in Special:Preferences
+'editfont-style'     => 'Stil slova područja uređivanja:',
+'editfont-default'   => 'Po podešavanjima preglednika',
+'editfont-monospace' => 'Slova sa jednostrukim razmakom',
+'editfont-sansserif' => 'Slova bez serifa',
+'editfont-serif'     => 'Slova serif',
+
 # Dates
 'sunday'        => 'nedelja',
 'monday'        => 'ponedjeljak',
@@ -1006,16 +1013,21 @@ Pokušajte [[Special:Search|pretražiti wiki]] za slične stranice.',
 'rev-deleted-user'            => '(korisničko ime uklonjeno)',
 'rev-deleted-event'           => '(stavka zapisa obrisana)',
 'rev-deleted-text-permission' => "Revizija ove stranice je '''obrisana'''.
-Detalje možete vidjeti u [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} zapisu brisanja].",
+Detalje možete vidjeti u [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} zapisu brisanja].",
 'rev-deleted-text-unhide'     => "Revizija ove stranice je '''obrisana'''.
-Detalje o tome možer vidjeti u [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} zapisniku brisanja].
+Detalje o tome možer vidjeti u [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} zapisniku brisanja].
 Kao administrator još je uvijek možete [$1 vidjeti ovu reviziju] ako želite.",
+'rev-suppressed-text-unhide'  => "Ova revizija stranice je '''uklonjena'''.
+Možete pogledati detalje u [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} zapisu uklanjanja].
+Kao administrator Vi je i dalje možete [$1 vidjeti ovu reviziju] ako želite.",
 'rev-deleted-text-view'       => "Revizija ove stranice je '''obrisana'''.
-Kao administrator, Vi je možete vidjeti; detalji o tome se mogu vidjeti u [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} zapisu brisanja].",
+Kao administrator, Vi je možete vidjeti; detalji o tome se mogu vidjeti u [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} zapisu brisanja].",
+'rev-suppressed-text-view'    => "Ova revizija stranice je '''uklonjena'''.
+Kao administrator Vi je možete vidjeti; možete pogledati detalje u [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} zapisu uklanjanja].",
 'rev-deleted-no-diff'         => "Ne možete vidjeti ove razlike jer je jedna od revizija '''obrisana'''.
-Možete pregledati detalje u [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} zapisima brisanja].",
+Možete pregledati detalje u [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} zapisima brisanja].",
 'rev-deleted-unhide-diff'     => "Jedna od revizija u ovom pregledu razlika je '''obrisana'''.
-Možete pregledati detalje u [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} zapisniku brisanja].
+Možete pregledati detalje u [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} zapisniku brisanja].
 Kao administrator Vi još uvijek možete [$1 vidjeti ove razlike] ako želite da nastavite.",
 'rev-delundel'                => 'pokaži/sakrij',
 'revisiondelete'              => 'Obriši/vrati revizije',
@@ -1916,7 +1928,7 @@ na kome bi se izvela ova funkcija.',
 'specialloguserlabel'  => 'Korisnik:',
 'speciallogtitlelabel' => 'Naslov:',
 'log'                  => 'Protokoli',
-'all-logs-page'        => 'Svi registri',
+'all-logs-page'        => 'Svi javni registri',
 'alllogstext'          => 'Zajednički prikaz svih dostupnih zapisa sa {{SITENAME}}. 
 Možete specificirati prikaz izabiranjem specifičnog spiska, korisničkog imena ili promjenjenog članka (razlikovati velika slova).',
 'logempty'             => 'Ne postoji takav zapis.',
