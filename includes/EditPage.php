@@ -1245,15 +1245,14 @@ class EditPage {
 		} else {
 			if ( $this->isCssJsSubpage ) {
 				# Check the skin exists
-				if ( $this->isValidCssJsSubpage ) {
-					if ( $this->formtype !== 'preview' ) {
-						if ( $this->isCssSubpage )
-							$wgOut->addWikiMsg( 'usercssyoucanpreview' );
-						if ( $this->isJsSubpage )
-							$wgOut->addWikiMsg( 'userjsyoucanpreview' );
-					}
-				} else {
+				if ( !$this->isValidCssJsSubpage ) {
 					$wgOut->addWikiMsg( 'userinvalidcssjstitle', $wgTitle->getSkinFromCssJsSubpage() );
+				}
+				if ( $this->formtype !== 'preview' ) {
+					if ( $this->isCssSubpage )
+						$wgOut->addWikiMsg( 'usercssyoucanpreview' );
+					if ( $this->isJsSubpage )
+						$wgOut->addWikiMsg( 'userjsyoucanpreview' );
 				}
 			}
 		}
