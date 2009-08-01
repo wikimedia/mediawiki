@@ -34,8 +34,8 @@ class UserrightsPage extends SpecialPage {
 		return !empty( $available['add'] )
 			or !empty( $available['remove'] )
 			or ( ( $this->isself || !$checkIfSelf ) and
-				(!empty( $available['add-self'] )
-				 or !empty( $available['remove-self'] )));
+				( !empty( $available['add-self'] )
+				 or !empty( $available['remove-self'] ) ) );
 	}
 
 	/**
@@ -44,7 +44,7 @@ class UserrightsPage extends SpecialPage {
 	 *
 	 * @param $par Mixed: string if any subpage provided, else null
 	 */
-	function execute( $par ) {
+	public function execute( $par ) {
 		// If the visitor doesn't have permissions to assign or remove
 		// any groups, it's a bit silly to give them the user search prompt.
 		global $wgUser, $wgRequest;
@@ -65,18 +65,18 @@ class UserrightsPage extends SpecialPage {
 			return;
 		}
 
-		if (!$this->mTarget) {
+		if ( !$this->mTarget ) {
 			/*
 			 * If the user specified no target, and they can only
 			 * edit their own groups, automatically set them as the
 			 * target.
 			 */
 			$available = $this->changeableGroups();
-			if (empty($available['add']) && empty($available['remove']))
+			if ( empty( $available['add'] ) && empty( $available['remove'] ) )
 				$this->mTarget = $wgUser->getName();
 		}
 
-		if ($this->mTarget == $wgUser->getName())
+		if ( $this->mTarget == $wgUser->getName() )
 			$this->isself = true;
 
 		if( !$this->userCanChangeRights( $wgUser, true ) ) {
@@ -140,12 +140,12 @@ class UserrightsPage extends SpecialPage {
 	 * @param $reason String: reason for group change
 	 * @return null
 	 */
-	function saveUserGroups( $username, $reason = '') {
+	function saveUserGroups( $username, $reason = '' ) {
 		global $wgRequest, $wgUser, $wgGroupsAddToSelf, $wgGroupsRemoveFromSelf;
 
 		$user = $this->fetchUser( $username );
 		if( $user instanceof WikiErrorMsg ) {
-			$wgOut->addWikiMsgArray($user->getMessageKey(), $user->getMessageArgs());
+			$wgOut->addWikiMsgArray( $user->getMessageKey(), $user->getMessageArgs() );
 			return;
 		}
 
@@ -155,10 +155,10 @@ class UserrightsPage extends SpecialPage {
 
 		// This could possibly create a highly unlikely race condition if permissions are changed between
 		//  when the form is loaded and when the form is saved. Ignoring it for the moment.
-		foreach ($allgroups as $group) {
+		foreach ( $allgroups as $group ) {
 			// We'll tell it to remove all unchecked groups, and add all checked groups.
 			// Later on, this gets filtered for what can actually be removed
-			if ($wgRequest->getCheck( "wpGroup-$group" )) {
+			if ( $wgRequest->getCheck( "wpGroup-$group" ) ) {
 				$addgroup[] = $group;
 			} else {
 				$removegroup[] = $group;
@@ -181,7 +181,7 @@ class UserrightsPage extends SpecialPage {
 		global $wgUser;
 
 		// Validate input set...
-		$isself = ($user->getName() == $wgUser->getName());
+		$isself = ( $user->getName() == $wgUser->getName() );
 		$groups = $user->getGroups();
 		$changeable = $this->changeableGroups();
 		$addable = array_merge( $changeable['add'], $isself ? $changeable['add-self'] : array() );
@@ -191,20 +191,21 @@ class UserrightsPage extends SpecialPage {
 			array_intersect( (array)$remove, $removable, $groups ) );
 		$add = array_unique( array_diff(
 			array_intersect( (array)$add, $addable ),
-			$groups ) );
+			$groups )
+		);
 
 		$oldGroups = $user->getGroups();
 		$newGroups = $oldGroups;
 
 		// remove then add groups
 		if( $remove ) {
-			$newGroups = array_diff($newGroups, $remove);
+			$newGroups = array_diff( $newGroups, $remove );
 			foreach( $remove as $group ) {
 				$user->removeGroup( $group );
 			}
 		}
  		if( $add ) {
-			$newGroups = array_merge($newGroups, $add);
+			$newGroups = array_merge( $newGroups, $add );
 			foreach( $add as $group ) {
 				$user->addGroup( $group );
 			}
@@ -250,7 +251,7 @@ class UserrightsPage extends SpecialPage {
 
 		$user = $this->fetchUser( $username );
 		if( $user instanceof WikiErrorMsg ) {
-			$wgOut->addWikiMsgArray($user->getMessageKey(), $user->getMessageArgs());
+			$wgOut->addWikiMsgArray( $user->getMessageKey(), $user->getMessageArgs() );
 			return;
 		}
 
@@ -363,14 +364,16 @@ class UserrightsPage extends SpecialPage {
 	 * @return Array:  Tuple of addable, then removable groups
 	 */
 	protected function splitGroups( $groups ) {
-		list($addable, $removable, $addself, $removeself) = array_values( $this->changeableGroups() );
+		list( $addable, $removable, $addself, $removeself ) = array_values( $this->changeableGroups() );
 
 		$removable = array_intersect(
-				array_merge( $this->isself ? $removeself : array(), $removable ),
-				$groups ); // Can't remove groups the user doesn't have
-		$addable   = array_diff(
-				array_merge( $this->isself ? $addself : array(), $addable ),
-				$groups ); // Can't add groups the user does have
+			array_merge( $this->isself ? $removeself : array(), $removable ),
+			$groups
+		); // Can't remove groups the user doesn't have
+		$addable = array_diff(
+			array_merge( $this->isself ? $addself : array(), $addable ),
+			$groups
+		); // Can't add groups the user does have
 
 		return array( $addable, $removable );
 	}
@@ -441,9 +444,9 @@ class UserrightsPage extends SpecialPage {
 	 * Returns an array of all groups that may be edited
 	 * @return array Array of groups that may be edited.
 	 */
-	 protected static function getAllGroups() {
-	 	return User::getAllGroups();
-	 }
+	protected static function getAllGroups() {
+		return User::getAllGroups();
+	}
 
 	/**
 	 * Adds a table with checkboxes where you can select what groups to add/remove
@@ -467,8 +470,8 @@ class UserrightsPage extends SpecialPage {
 				( !$set && $this->canAdd( $group ) ) );
 			# Do we need to point out that this action is irreversible?
 			$irreversible = !$disabled && (
-				($set && !$this->canAdd( $group )) ||
-				(!$set && !$this->canRemove( $group ) ) );
+				( $set && !$this->canAdd( $group ) ) ||
+				( !$set && !$this->canRemove( $group ) ) );
 
 			$checkbox = array(
 				'set' => $set,
@@ -527,7 +530,7 @@ class UserrightsPage extends SpecialPage {
 		// $this->changeableGroups()['remove'] doesn't work, of course. Thanks,
 		// PHP.
 		$groups = $this->changeableGroups();
-		return in_array( $group, $groups['remove'] ) || ($this->isself && in_array( $group, $groups['remove-self'] ));
+		return in_array( $group, $groups['remove'] ) || ( $this->isself && in_array( $group, $groups['remove-self'] ) );
 	}
 
 	/**
@@ -536,7 +539,7 @@ class UserrightsPage extends SpecialPage {
 	 */
 	private function canAdd( $group ) {
 		$groups = $this->changeableGroups();
-		return in_array( $group, $groups['add'] ) || ($this->isself && in_array( $group, $groups['add-self'] ));
+		return in_array( $group, $groups['add'] ) || ( $this->isself && in_array( $group, $groups['add-self'] ) );
 	}
 
 	/**
