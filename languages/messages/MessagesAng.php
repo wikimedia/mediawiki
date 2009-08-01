@@ -273,7 +273,8 @@ Edscēawa þīne wrītunge, oþþe brūc þone form under tō [[Special:UserLogi
 'newarticletext'             => "Þu hæfst bende tō tramete gefolgod þe nū gīet ne stendeþ.
 Tō scieppene þone tramet, onginn þyddan in þǣre boxe under (sēo þone [[{{MediaWiki:Helppage}}|helptramet]] for mā gefrǣge).
 Gif þu hider misfōn cōme, cnoca þā þīnne webbscēaweres '''on bæc''' cnæpp.",
-'usercssjsyoucanpreview'     => "'''Rǣd:''' Brūc þone 'Forescēawian' cnæpp tō āfandienne þīne nīwe css/js beforan sparunge.",
+'usercssyoucanpreview'       => "'''Rǣd:''' Brūc þone 'Forescēawian' cnæpp tō āfandienne þīne nīwe css/js beforan sparunge.",
+'userjsyoucanpreview'        => "'''Rǣd:''' Brūc þone 'Forescēawian' cnæpp tō āfandienne þīne nīwe css/js beforan sparunge.",
 'updated'                    => '(Ednīwod)',
 'editingcomment'             => 'Ādihtung $1 (ymbsprǣc)',
 'yourtext'                   => 'Þīn traht',

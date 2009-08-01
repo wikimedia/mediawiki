@@ -48,6 +48,8 @@ class EditPage {
 	var $mMetaData = '';
 	var $isConflict = false;
 	var $isCssJsSubpage = false;
+	var $isCssSubpage = false;
+	var $isJsSubpage = false;
 	var $deletedSinceEdit = false;
 	var $formtype;
 	var $firsttime;
@@ -427,6 +429,8 @@ class EditPage {
 		$this->isConflict = false;
 		// css / js subpages of user pages get a special treatment
 		$this->isCssJsSubpage      = $this->mTitle->isCssJsSubpage();
+		$this->isCssSubpage        = $this->mTitle->isCssSubpage();
+		$this->isJsSubpage         = $this->mTitle->isJsSubpage();
 		$this->isValidCssJsSubpage = $this->mTitle->isValidCssJsSubpage();
 
 		# Show applicable editing introductions
@@ -1243,7 +1247,10 @@ class EditPage {
 				# Check the skin exists
 				if ( $this->isValidCssJsSubpage ) {
 					if ( $this->formtype !== 'preview' ) {
-						$wgOut->addWikiMsg( 'usercssjsyoucanpreview' );
+						if ( $this->isCssSubpage )
+							$wgOut->addWikiMsg( 'usercssyoucanpreview' );
+						if ( $this->isJsSubpage )
+							$wgOut->addWikiMsg( 'userjsyoucanpreview' );
 					}
 				} else {
 					$wgOut->addWikiMsg( 'userinvalidcssjstitle', $wgTitle->getSkinFromCssJsSubpage() );

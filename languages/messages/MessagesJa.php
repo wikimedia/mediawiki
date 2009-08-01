@@ -852,7 +852,8 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 * '''IE:''' [Ctrl] を押しながら [更新] をクリック、または [Ctrl]-[F5]
 * '''Konqueror:''' [再読み込み] をクリック、または [F5]
 * '''Opera:''' 「ツール」→「設定」からキャッシュをクリア。",
-'usercssjsyoucanpreview'           => "'''助言:''' 「{{int:showpreview}}」ボタンを使うと保存前に新しいスタイルシートやスクリプトをテストできます。",
+'usercssyoucanpreview'             => "'''助言:''' 「{{int:showpreview}}」ボタンを使うと保存前に新しいスタイルシートやスクリプトをテストできます。",
+'userjsyoucanpreview'              => "'''助言:''' 「{{int:showpreview}}」ボタンを使うと保存前に新しいスタイルシートやスクリプトをテストできます。",
 'usercsspreview'                   => "'''ユーザーCSSをプレビューしています。まだ保存されていないので注意してください。'''",
 'userjspreview'                    => "'''ユーザー JavaScript を試験・プレビューしています。まだ保存されていないので注意してください。'''",
 'userinvalidcssjstitle'            => "'''警告:''' 「$1」というスキンはありません。.css と .js ページを編集する際にはサブページ名を小文字にすることを忘れないでください。例えば {{ns:user}}:Hoge/Monobook.css ではなく {{ns:user}}:Hoge/monobook.css となります。",

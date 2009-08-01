@@ -803,7 +803,8 @@ ou [{{fullurl:{{FULLPAGENAME}}|action=edit}} editar a páxina].',
 '''Konqueror:''' faga clic en ''Recargar'' ou prema en ''F5'';
 '''Opera:''' limpe a súa memoria caché en ''Ferramentas → Preferencias'';
 '''Internet Explorer:''' prema ''Ctrl'' ao tempo que fai clic en ''Refrescar'', ou prema ''Ctrl-F5''.",
-'usercssjsyoucanpreview'           => "'''Nota:''' use o botón \"Mostrar a vista previa\" para verificar o novo CSS/JS antes de gardalo.",
+'usercssyoucanpreview'             => "'''Nota:''' use o botón \"Mostrar a vista previa\" para verificar o novo CSS antes de gardalo.",
+'userjsyoucanpreview'              => "'''Nota:''' use o botón \"Mostrar a vista previa\" para verificar o novo JS antes de gardalo.",
 'usercsspreview'                   => "'''Lembre que só está vendo a vista previa do seu CSS de usuario.'''
 '''Este aínda non foi gardado!'''",
 'userjspreview'                    => "'''Lembre que só está probando/previsualizando o seu JavaScript de usuario.'''

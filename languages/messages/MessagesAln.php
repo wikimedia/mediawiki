@@ -638,7 +638,8 @@ Ju lutemi kontrolloni nëse doni me krijue/redaktue këtë faqe.',
 '''Konqueror: '''klikoni ''Reload'' ose trusni ''F5'';
 '''Opera:''' fshini cachein në ''Tools → Preferences'';
 '''Internet Explorer:''' mbani ''Ctrl'' tue klikue në ''Refresh,'' ose trusni ''Ctrl-F5''.",
-'usercssjsyoucanpreview'           => "'''Këshillë:''' Përdorni butonin 'Trego parapâmjen' për me testue CSS/JS para se me i regjistrue ndryshimet.",
+'usercssyoucanpreview'             => "'''Këshillë:''' Përdorni butonin 'Trego parapâmjen' për me testue CSS para se me i regjistrue ndryshimet.",
+'userjsyoucanpreview'              => "'''Këshillë:''' Përdorni butonin 'Trego parapâmjen' për me testue JS para se me i regjistrue ndryshimet.",
 'usercsspreview'                   => "'''Vini re, jeni tue pâ veç parapâmjen e CSSit tuej.'''
 '''Ende nuk e keni ruejtë!'''",
 'userjspreview'                    => "'''Vini re, jeni tue testue/pâ veç parapâmjen e JavaScriptit tuej.'''
