@@ -2722,10 +2722,7 @@ function wfCreateObject( $name, $p ){
  */
 function wfGetHTTP( $url ) {
 	wfDeprecated(__FUNCTION__);
-	$status = Http::get( $url );
-	if( $status->isOK() )
-		return $status->value;		
-	return null;
+	return Http::get( $url );
 }
 
 /**
