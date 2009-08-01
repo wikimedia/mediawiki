@@ -166,6 +166,9 @@ $messages = array(
 'underline-never'   => 'ఎప్పటికీ వద్దు',
 'underline-default' => 'బ్రవుజరు నుండి తీసుకో',
 
+# Font style option in Special:Preferences
+'editfont-monospace' => 'మోనోస్పేసుడ్ ఫాంట్',
+
 # Dates
 'sunday'        => 'ఆదివారము',
 'monday'        => 'సోమవారము',
@@ -286,6 +289,7 @@ $messages = array(
 'vector-view-view'           => 'చదువు',
 'vector-view-viewsource'     => 'మూలాన్ని చూడండి',
 'actions'                    => 'చర్యలు',
+'namespaces'                 => 'నేంస్పేసులు',
 'variants'                   => 'వైవిధ్యాలు',
 
 # Metadata in edit box
@@ -823,9 +827,9 @@ $3 చెప్పిన కారణం: ''$2''",
 'rev-deleted-user'            => '(సభ్యనామాన్ని తొలగించాం)',
 'rev-deleted-event'           => '(దినచర్యని తొలగించాం)',
 'rev-deleted-text-permission' => "ఈ పేజీ కూర్పుని '''తొలగించారు'''.
-[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} తొలగింపు చిట్టా]లో పూర్తి వివరాలు ఉండవచ్చు.",
+[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} తొలగింపు చిట్టా]లో పూర్తి వివరాలు ఉండవచ్చు.",
 'rev-deleted-text-view'       => "ఈ పేజీ కూర్పుని '''తొలగించారు'''.
-ఒక నిర్వాహకుడిగా మీరు దాన్ని చూడవచ్చు; [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} తొలగింపు చిట్టా]లో వివరాలు ఉండవచ్చు.",
+ఒక నిర్వాహకుడిగా మీరు దాన్ని చూడవచ్చు; [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} తొలగింపు చిట్టా]లో వివరాలు ఉండవచ్చు.",
 'rev-delundel'                => 'చూపించు/దాచు',
 'revisiondelete'              => 'కూర్పులను తొలగించు/తొలగింపును రద్దుచెయ్యి',
 'revdelete-nooldid-title'     => 'తప్పుడు లక్ష్యపు కూర్పు',
@@ -962,6 +966,7 @@ $3 చెప్పిన కారణం: ''$2''",
 'searchprofile-project-tooltip'    => '$1 లలో వెతకండి',
 'searchprofile-images-tooltip'     => 'పైళ్ళ కోసం వెతకండి',
 'searchprofile-everything-tooltip' => 'అన్ని చోట్లా (చర్చా పేజీలతో సహా) వెతకండి',
+'searchprofile-advanced-tooltip'   => 'కస్టం నేంస్పేసులలో వెదుకు',
 'search-result-size'               => '$1 ({{PLURAL:$2|1 పదం|$2 పదాలు}})',
 'search-result-score'              => 'సంబంధం: $1%',
 'search-redirect'                  => '(దారిమార్పు $1)',
@@ -1023,6 +1028,7 @@ $3 చెప్పిన కారణం: ''$2''",
 'prefs-rendering'             => 'రూపురేఖలు',
 'saveprefs'                   => 'భధ్రపరచు',
 'resetprefs'                  => 'మునుపటి వలె',
+'restoreprefs'                => 'సృష్టించబడినప్పటి అభిరుచులు తిరిగి తీసుకురా',
 'prefs-editing'               => 'మార్పులు',
 'prefs-edit-boxsize'          => 'మార్పుల కిటికీ యొక్క పరిమాణం.',
 'rows'                        => 'వరుసలు',
@@ -1192,6 +1198,7 @@ $3 చెప్పిన కారణం: ''$2''",
 'right-userrights'           => 'వాడుకరులందరి హక్కులను మార్చు',
 'right-userrights-interwiki' => 'ఇతర వికీల్లోని వాడుకరుల హక్కులను మార్చు',
 'right-siteadmin'            => 'డేటాబేసును లాక్, అన్‌లాక్ చెయ్యి',
+'right-reset-passwords'      => 'మిగతా వాడుకరుల సందేశమును మార్చుము',
 
 # User rights log
 'rightslog'      => 'వాడుకరుల హక్కుల మార్పుల చిట్టా',
@@ -1363,6 +1370,7 @@ $3 చెప్పిన కారణం: ''$2''",
 'upload-file-error-text'  => 'సర్వరులో తాత్కాలిక ఫైలును సృష్టించబోగా ఏదో అంతర్గత లోపం తలెత్తింది. ఎవరైనా సిస్టము నిర్వాహకుని సంప్రదించండి.',
 'upload-misc-error'       => 'తెలియని అప్‌లోడు లోపం',
 'upload-misc-error-text'  => 'అప్‌లోడు చేస్తూండగా ఏదో తెలియని లోపం తలెత్తింది. URL సరైనదేనని, అది అందుబాటులోనే ఉందని నిర్ధారించుకుని మళ్ళీ ప్రయత్నిందండి. సమస్య అలాగే ఉంటే, సిస్టము నిర్వాహకుని సంప్రదించండి.',
+'upload-unknown-size'     => 'సైజు తెలియదు',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'URL కు వెళ్ళలేకపోయాం',
@@ -1406,6 +1414,7 @@ $3 చెప్పిన కారణం: ''$2''",
 'filehist-dimensions'       => 'కొలతలు',
 'filehist-filesize'         => 'ఫైలు సైజు',
 'filehist-comment'          => 'వ్యాఖ్య',
+'filehist-missing'          => 'ఫైలు కనిపించుటలేదు',
 'imagelinks'                => 'ఫైలు లింకులు',
 'linkstoimage'              => 'కింది {{PLURAL:$1|పేజీ|$1 పేజీల}} నుండి ఈ ఫైలుకి లింకులు ఉన్నాయి:',
 'linkstoimage-more'         => '$1 కంటే ఎక్కువ {{PLURAL:$1|పేజీలు|పేజీలు}} ఈ ఫైలుకి లింకుని కలిగివున్నాయి.
@@ -1416,6 +1425,7 @@ $3 చెప్పిన కారణం: ''$2''",
 'redirectstofile'           => 'క్రింద పేర్కొన్న {{PLURAL:$1|ఫైలు ఈ ఫైలుకి దారిమార్పు చెందుతుంది|$1 ఫైళ్ళు ఈ ఫైలుకి దారిమార్పు చెందుతాయి}}:',
 'duplicatesoffile'          => 'క్రింద పేర్కొన్న {{PLURAL:$1|ఫైలు ఈ ఫైలుకి నకలు|$1 ఫైళ్ళు ఈ ఫైలుకి నకళ్ళు}} ([[Special:FileDuplicateSearch/$2|మరిన్ని వివరాలు]]):',
 'sharedupload'              => 'ఈ ఫైలు $1 నుండి మరియు దీనిని ఇతర ప్రాజెక్టులలో కూడా ఉపయోగిస్తూవుండవచ్చు.',
+'filepage-nofile'           => 'ఈ పేరుతో ఏ ఫైలు లేదు.',
 'uploadnewversion-linktext' => 'ఈ ఫైలు కొత్త కూర్పును అప్‌లోడు చెయ్యండి',
 'shared-repo-from'          => '$1 నుండి',
 
@@ -1558,6 +1568,7 @@ $3 చెప్పిన కారణం: ''$2''",
 'listusers'               => 'వాడుకరుల జాబితా',
 'listusers-editsonly'     => 'మార్పులు చేసిన వాడుకరులను మాత్రమే చూపించు',
 'usereditcount'           => '$1 {{PLURAL:$1|మార్పు|మార్పులు}}',
+'usercreated'             => '$1ను $2 అప్పుడు సృష్టించాను',
 'newpages'                => 'కొత్త పేజీలు',
 'newpages-username'       => 'సభ్యనామం:',
 'ancientpages'            => 'పాత పేజీలు',
@@ -1584,7 +1595,7 @@ $3 చెప్పిన కారణం: ''$2''",
 'specialloguserlabel'  => 'వాడుకరి:',
 'speciallogtitlelabel' => 'పేరు:',
 'log'                  => 'చిట్టాలు',
-'all-logs-page'        => 'అన్ని చిట్టాలు',
+'all-logs-page'        => 'అన్ని బహిరంగ చిట్టాలు',
 'alllogstext'          => '{{SITENAME}}  యొక్క అందుబాటులో ఉన్న అన్ని చిట్టాల సంయుక్త ప్రదర్శన.
 ప్రత్యేకించి ఒక చిట్టా రకాన్ని గానీ, ఓ సభ్యుని పేరు గానీ (case-sensitive), లేదా ప్రభావిత  పేజీని (ఇది కూడా case-sensitive) గాని ఎంచుకుని సంబంధిత చిట్టాను మాత్రమే చూడవచ్చు.',
 'logempty'             => 'దినచర్యలో సరిపోలిన అంశాలు లేవు.',
@@ -1617,8 +1628,9 @@ $3 చెప్పిన కారణం: ''$2''",
 'special-categories-sort-abc'   => 'అకారాది క్రమంలో అమర్చు',
 
 # Special:DeletedContributions
-'deletedcontributions'       => 'తొలగించబడిన సభ్యుని రచనలు',
-'deletedcontributions-title' => 'తొలగించబడిన సభ్యుని రచనలు',
+'deletedcontributions'             => 'తొలగించబడిన సభ్యుని రచనలు',
+'deletedcontributions-title'       => 'తొలగించబడిన సభ్యుని రచనలు',
+'sp-deletedcontributions-contribs' => 'మార్పులు చేర్పులు',
 
 # Special:LinkSearch
 'linksearch'       => 'బయటి లింకులు',

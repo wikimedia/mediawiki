@@ -2464,4 +2464,8 @@ $5
 'blankpage'              => 'ליידיגער בלאַט',
 'intentionallyblankpage' => 'דער בלאַט איז ליידיג בכוונה',
 
+# Database error messages
+'dberr-header'   => 'די וויקי האט א פראבלעם',
+'dberr-problems' => 'אנטשולדיגט! דער דאזיקער סייט האט טעכנישע פראבלעמען.',
+
 );

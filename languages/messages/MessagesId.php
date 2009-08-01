@@ -342,7 +342,14 @@ $messages = array(
 
 'underline-always'  => 'Selalu',
 'underline-never'   => 'Tidak pernah',
-'underline-default' => 'Sesuai konfigurasi penjelajah web',
+'underline-default' => 'Default penjelajah web',
+
+# Font style option in Special:Preferences
+'editfont-style'     => 'Gaya tulisan komputer pada kotak penyuntingan:',
+'editfont-default'   => 'Default penjelajah web',
+'editfont-monospace' => 'Tulisan Monospace',
+'editfont-sansserif' => 'Tulisan Sans-serif',
+'editfont-serif'     => 'Tulisan Serif',
 
 # Dates
 'sunday'        => 'Minggu',
@@ -995,17 +1002,22 @@ Coba [[Special:Search|lakukan pencarian di wiki]] untuk halaman baru yang releva
 'rev-deleted-comment'         => '(komentar dihapus)',
 'rev-deleted-user'            => '(nama pengguna dihapus)',
 'rev-deleted-event'           => '(isi dihapus)',
-'rev-deleted-text-permission' => "Revisi ini telah '''dihapus'''.
-Rinciannya mungkin tersedia di [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} log penyembunyian revisi]",
+'rev-deleted-text-permission' => "Revisi halaman ini telah '''dihapus'''.
+Rinciannya mungkin tersedia di [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log penghapusan]",
 'rev-deleted-text-unhide'     => "Revisi ini telah '''dihapus'''.
-Rinciannya mungkin tersedia di [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} log penyembunyian revisi].
-Sebagai seorang pengurus Anda masih dapat [$1 melihat revisi ini] jika Anda ingin melanjutkan.",
+Rinciannya mungkin tersedia di [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log penghapusan].
+Sebagai seorang pengurus Anda masih dapat [$1 melihat revisi ini] jika Anda mau.",
+'rev-suppressed-text-unhide'  => "Revisi halaman ini telah '''disupresi'''.
+Rinciannya mungkin tersedia di [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} log supresi].
+Sebagai seorang pengurus, Anda masih dapat [$1 melihat revisi ini] jika Anda mau.",
 'rev-deleted-text-view'       => "Revisi ini telah '''dihapus'''.
-Sebagai seorang pengurus, Anda dapat melihatnya; rinciannya mungkin tersedia di [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} log penyembunyian revisi].",
-'rev-deleted-no-diff'         => "Anda tak dapat melihat perbedaan ini karena salah satu dari revisinya telah '''dihapus'''.
-Rinciannya mungkin tersedia di [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} log penyembunyian revisi].",
+Sebagai seorang pengurus, Anda dapat melihatnya; rinciannya mungkin tersedia di [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log penghapusan].",
+'rev-suppressed-text-view'    => "Revisi halaman ini telah '''disupresi'''.
+Sebagai seorang pengurus, Anda masih dapat melihatnya; rinciannya mungkin tersedia di [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} log supresi].",
+'rev-deleted-no-diff'         => "Anda tidak dapat melihat perbedaan ini karena salah satu dari revisinya telah '''dihapus'''.
+Rinciannya mungkin tersedia di [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log penghapusan].",
 'rev-deleted-unhide-diff'     => "Salah satu revisi pada tampilan perbedaan ini telah '''dihapus'''.
-Rinciannya mungkin tersedia di [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} log penyembunyian revisi].
+Rinciannya mungkin tersedia di [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log penghapusan].
 Sebagai seorang pengurus, Anda masih dapat [$1 melihat perbedaan ini] jika Anda ingin.",
 'rev-delundel'                => 'tampilkan/sembunyikan',
 'revisiondelete'              => 'Hapus/batal hapus revisi',
@@ -1868,7 +1880,7 @@ Nama yang telah <s>dicoret</s> berarti telah dibetulkan.',
 'specialloguserlabel'  => 'Pengguna:',
 'speciallogtitlelabel' => 'Judul:',
 'log'                  => 'Log',
-'all-logs-page'        => 'Semua log',
+'all-logs-page'        => 'Semua log publik',
 'alllogstext'          => 'Gabungan tampilan semua log yang tersedia di {{SITENAME}}.
 Anda dapat melakukan pembatasan tampilan dengan memilih jenis log, nama pengguna (sensitif kapital), atau judul halaman (juga sensitif kapital).',
 'logempty'             => 'Tidak ditemukan entri log yang sesuai.',

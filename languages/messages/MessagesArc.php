@@ -121,6 +121,7 @@ $messages = array(
 'faqpage'        => 'Project:ܫܘܐܠ̈ܐ ܬܢܝ̈ܐ',
 
 # Vector skin
+'vector-action-addsection'   => 'ܐܘܣܦ ܡܠܘܐܐ',
 'vector-action-delete'       => 'ܫܘܦ',
 'vector-action-move'         => 'ܫܢܝ',
 'vector-action-undelete'     => 'ܠܐ ܫܘܦ',
@@ -140,6 +141,7 @@ $messages = array(
 'vector-view-history'        => 'ܚܙܝ ܬܫܥܝܬܐ',
 'vector-view-view'           => 'ܩܪܝ',
 'vector-view-viewsource'     => 'ܚܙܝ ܥܩܪܐ',
+'namespaces'                 => 'ܚܩܠܬ̈ܐ',
 
 'errorpagetitle'    => 'ܦܘܕܐ',
 'returnto'          => 'ܕܥܘܪ ܠ$1.',
@@ -563,7 +565,9 @@ Note that some pages may continue to be displayed as if you were still logged in
 # Rights
 'right-read'           => 'ܩܪܝ ܦܐܬܬ̈ܐ',
 'right-edit'           => 'ܫܚܠܦ ܦܐܬܬ̈ܐ',
+'right-createtalk'     => 'ܒܪܝ ܦܐܬܬ̈ܐ ܕܕܘܪܫܐ',
 'right-createaccount'  => 'ܒܪܝ ܚܘܫܒܢ̈ܐ ܕܡܦܠܚܢܐ ܚܕܬܐ',
+'right-minoredit'      => 'ܫܘܕܥ ܥܠ ܫܘܚܠܦ̈ܐ ܐܝܟ ܙܥܘܪܐ',
 'right-move'           => 'ܫܢܝ ܦܐܬܬ̈ܐ',
 'right-movefile'       => 'ܫܢܝ ܠܦܦ̈ܐ',
 'right-upload'         => 'ܐܣܩ ܠܦܦ̈ܐ',
@@ -586,6 +590,7 @@ Note that some pages may continue to be displayed as if you were still logged in
 'action-createpage'     => 'ܒܪܝ ܦܐܬܬ̈ܐ',
 'action-createtalk'     => 'ܒܪܝ ܦܐܬܐ ܕܕܘܪܫܐ',
 'action-createaccount'  => 'ܒܪܝ ܚܘܫܒܢܐ ܕܗܢܐ ܡܦܠܚܢܐ',
+'action-minoredit'      => 'ܫܘܕܥ ܥܠ ܫܘܚܠܦܐ ܗܢܐ ܐܝܟ ܙܥܘܪܐ',
 'action-move'           => 'ܫܢܝ ܦܐܬܐ ܗܕܐ',
 'action-movefile'       => 'ܫܢܝ ܗܢܐ ܠܦܦܐ',
 'action-upload'         => 'ܐܣܩ ܗܢܐ ܠܦܦܐ',
@@ -734,6 +739,7 @@ Note that some pages may continue to be displayed as if you were still logged in
 'wantedtemplates'         => 'ܩܠܒ̈ܐ ܒܥܝܐ',
 'shortpages'              => 'ܦܐܬܬ̈ܐ ܟܪ̈ܝܬܐ',
 'longpages'               => 'ܦܐܬܬ̈ܐ ܐܪ̈ܝܟܬܐ',
+'deadendpages'            => 'ܦܐܬܬ̈ܐ ܥܡ ܚܪܬܐ ܡܝܬܬܐ',
 'listusers'               => 'ܒܪܒܝܢ ܕܗܕܡ̈ܐ',
 'listusers-editsonly'     => 'ܚܘܝ ܡܦܠܚܢ̈ܐ ܥܡ ܫܘܚܠܦ̈ܐ ܒܠܚܘܕ',
 'listusers-creationsort'  => 'ܛܟܣ ܒܣܝܩܘܡܐ ܕܒܪܝܐ',
@@ -821,25 +827,28 @@ Note that some pages may continue to be displayed as if you were still logged in
 'emailccsubject'  => 'ܨܚܚܐ ܕܐܓܪܬܟ ܠ $1: $2',
 
 # Watchlist
-'watchlist'        => 'ܪ̈ܗܝܬܝ',
-'mywatchlist'      => 'ܪ̈ܗܝܬܝ',
-'watchlistfor'     => "(ܠ'''$1''')",
-'watchnologin'     => 'ܠܐ ܥܠܝܠܐ',
-'addedwatch'       => 'ܐܘܣܦ ܠܪ̈ܗܝܬܐ',
-'removedwatchtext' => 'ܦܐܬܐ "[[:$1]]" ܐܫܬܩܠܬ ܡܢ [[Special:Watchlist|ܪ̈ܗܝܬܟ]].',
-'watch'            => 'ܪܗܝ',
-'watchthispage'    => 'ܪܗܝ ܗܕܐ ܦܐܬܐ',
-'unwatch'          => 'ܠܐ ܪܗܝ',
-'unwatchthispage'  => 'ܟܠܝ ܪܗܝܐ',
-'wlshowlast'       => 'ܚܘܝ $1 ܫܥܬ̈ܐ $2 ܝܘܡ̈ܐ ܐܚܪ̈ܝܐ $3',
+'watchlist'         => 'ܪ̈ܗܝܬܝ',
+'mywatchlist'       => 'ܪ̈ܗܝܬܝ',
+'watchlistfor'      => "(ܠ'''$1''')",
+'watchnologin'      => 'ܠܐ ܥܠܝܠܐ',
+'addedwatch'        => 'ܐܘܣܦ ܠܪ̈ܗܝܬܐ',
+'removedwatchtext'  => 'ܦܐܬܐ "[[:$1]]" ܐܫܬܩܠܬ ܡܢ [[Special:Watchlist|ܪ̈ܗܝܬܟ]].',
+'watch'             => 'ܪܗܝ',
+'watchthispage'     => 'ܪܗܝ ܗܕܐ ܦܐܬܐ',
+'unwatch'           => 'ܠܐ ܪܗܝ',
+'unwatchthispage'   => 'ܟܠܝ ܪܗܝܐ',
+'wlshowlast'        => 'ܚܘܝ $1 ܫܥܬ̈ܐ $2 ܝܘܡ̈ܐ ܐܚܪ̈ܝܐ $3',
+'watchlist-options' => 'ܓܒܝܬ̈ܐ ܕܪ̈ܗܝܬܐ',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'ܪܗܝܐ...',
 'unwatching' => 'ܠܐ ܪܗܝܐ...',
 
-'created'            => 'ܒܪܐ',
-'enotif_lastdiff'    => 'ܚܙܝ $1 ܠܚܙܝܐ ܕܫܘܚܠܦܐ ܗܢܐ.',
-'enotif_anon_editor' => 'ܡܦܠܚܢܐ ܠܐ ܝܕܝܥܐ $1',
+'enotif_newpagetext'           => 'ܗܕܐ ܗܝ ܦܐܬܐ ܚܕܬܐ',
+'enotif_impersonal_salutation' => 'ܡܦܠܚܢܐ {{SITENAME}}',
+'created'                      => 'ܒܪܐ',
+'enotif_lastdiff'              => 'ܚܙܝ $1 ܠܚܙܝܐ ܕܫܘܚܠܦܐ ܗܢܐ.',
+'enotif_anon_editor'           => 'ܡܦܠܚܢܐ ܠܐ ܝܕܝܥܐ $1',
 
 # Delete
 'deletepage'             => 'ܫܘܦ ܦܐܬܐ',

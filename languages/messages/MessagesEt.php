@@ -242,6 +242,7 @@ ning [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide kasutusjuhendit].'
 'vector-namespace-main'      => 'Artikkel',
 'vector-namespace-media'     => 'Meedialeht',
 'vector-namespace-mediawiki' => 'Sõnum',
+'vector-namespace-project'   => 'Projektileht',
 'vector-namespace-special'   => 'Erileht',
 'vector-namespace-talk'      => 'Arutelu',
 'vector-namespace-template'  => 'Mall',
@@ -310,6 +311,11 @@ ning [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide kasutusjuhendit].'
 'jumpto'            => 'Mine:',
 'jumptonavigation'  => 'navigeerimiskast',
 'jumptosearch'      => 'otsi',
+'view-pool-error'   => 'Serverid on hetkel üle koormatud.
+Liiga palju kasutajaid üritab korraga seda lehte vaadata.
+Palun oota hetk enne kui uuesti proovid.
+
+$1',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => '{{SITENAME}} tiitelandmed',
@@ -511,7 +517,11 @@ Seega, hetkel ei saa antud IP kasutajad uusi kontosid avada.',
 'noemailprefs'               => 'Järgnevate võimaluste toimimiseks on vaja sisestada e-posti aadress.',
 'emailconfirmlink'           => 'Kinnita oma e-posti aadress',
 'accountcreated'             => 'Konto loodud',
+'accountcreatedtext'         => 'Kasutajakonto kasutajatunnusele $1 loodud.',
 'createaccount-title'        => 'Konto loomine portaali {{SITENAME}}',
+'createaccount-text'         => 'Keegi on loonud {{GRAMMAR:illative|{{SITENAME}}}} ($4) sinu meiliaadressile vastava kasutajatunnuse "$2". Parooliks seati "$3". Logi sisse ja muuda oma parool.
+
+Kui kasutajakonto loomine on eksitus, võid käesolevat sõnumit lihtsalt ignoreerida.',
 'login-throttled'            => 'Sa oled lühikese aja jooksul teinud liiga palju äpardunud katseid selle konto parooli sisestada.
 Palun pea nüüd pisut vahet.',
 'loginlanguagelabel'         => 'Keel: $1',
@@ -724,26 +734,28 @@ Legend: (viim) = erinevused võrreldes viimase redaktsiooniga,
 'history-feed-item-nocomment' => '$1 - $2',
 
 # Revision deletion
-'rev-deleted-comment'     => '(kommentaar eemaldatud)',
-'rev-deleted-user'        => '(kasutajanimi eemaldatud)',
-'rev-delundel'            => 'näita/peida',
-'revisiondelete'          => 'Kustuta/taasta redaktsioone',
-'revdelete-nologid-title' => 'Vigane logikirje',
-'revdelete-legend'        => 'Sea nähtavusele piirangud',
-'revdelete-hide-text'     => 'Peida redigeerimise tekst',
-'revdelete-hide-comment'  => 'Peida muudatuse kommentaar',
-'revdelete-hide-user'     => 'Peida toimetaja kasutajanimi/IP',
-'revdelete-hide-image'    => 'Peida faili sisu',
-'revdelete-log'           => 'Logi kommentaar:',
-'revdelete-submit'        => 'Pöördu valitud redigeerimise juurde',
-'revdel-restore'          => 'Muuda nähtavust',
-'pagehist'                => 'Lehekülje ajalugu',
-'deletedhist'             => 'Kustutatud ajalugu',
-'revdelete-content'       => 'sisu',
-'revdelete-summary'       => 'toimeta kokkuvõtet',
-'revdelete-uname'         => 'kasutajanimi',
-'revdelete-hid'           => 'peitsin: $1',
-'revdelete-unhid'         => 'tegin nähtavaks: $1',
+'rev-deleted-comment'        => '(kommentaar eemaldatud)',
+'rev-deleted-user'           => '(kasutajanimi eemaldatud)',
+'rev-delundel'               => 'näita/peida',
+'revisiondelete'             => 'Kustuta/taasta redaktsioone',
+'revdelete-nologid-title'    => 'Vigane logikirje',
+'revdelete-show-file-submit' => 'Jah',
+'revdelete-selected'         => "'''{{PLURAL:$2|Valitud versioon|Valitud versioonid}} artiklist [[:$1]]:'''",
+'revdelete-legend'           => 'Sea nähtavusele piirangud',
+'revdelete-hide-text'        => 'Peida redigeerimise tekst',
+'revdelete-hide-comment'     => 'Peida muudatuse kommentaar',
+'revdelete-hide-user'        => 'Peida toimetaja kasutajanimi/IP',
+'revdelete-hide-image'       => 'Peida faili sisu',
+'revdelete-log'              => 'Logi kommentaar:',
+'revdelete-submit'           => 'Pöördu valitud redigeerimise juurde',
+'revdel-restore'             => 'Muuda nähtavust',
+'pagehist'                   => 'Lehekülje ajalugu',
+'deletedhist'                => 'Kustutatud ajalugu',
+'revdelete-content'          => 'sisu',
+'revdelete-summary'          => 'toimeta kokkuvõtet',
+'revdelete-uname'            => 'kasutajanimi',
+'revdelete-hid'              => 'peitsin: $1',
+'revdelete-unhid'            => 'tegin nähtavaks: $1',
 
 # History merging
 'mergehistory'                     => 'Ühenda lehtede ajalood',
@@ -756,6 +768,7 @@ Legend: (viim) = erinevused võrreldes viimase redaktsiooniga,
 'mergehistory-no-destination'      => 'Lehekülje sihtpunkti $1 ei ole.',
 'mergehistory-invalid-source'      => 'Allikaleheküljel peab olema lubatav pealkiri.',
 'mergehistory-invalid-destination' => 'Sihtkoha leheküljel peab olema lubatav pealkiri.',
+'mergehistory-autocomment'         => 'Liitsin lehe [[:$1]] lehele [[:$2]]',
 'mergehistory-reason'              => 'Põhjus:',
 
 # Merge log
@@ -1617,6 +1630,8 @@ Kehtivaid blokeeringuid vaata [[Special:IPBlockList|blokeeringute loendist]].',
 'block-log-flags-nocreate'   => 'kontode loomine on blokeeritud',
 'block-log-flags-noemail'    => 'e-mail blokeeritud',
 'block-log-flags-nousertalk' => 'ei saa muuta enda arutelulehte',
+'block-log-flags-hiddenname' => 'kasutajanimi peidetud',
+'ipb_already_blocked'        => '"$1" on juba blokeeritud.',
 'proxyblockreason'           => 'Teie IP aadress on blokeeritud, sest see on anonüümne proxy server. Palun kontakteeruga oma internetiteenuse pakkujaga või tehnilise toega ning informeerige neid sellest probleemist.',
 'proxyblocksuccess'          => 'Tehtud.',
 'cant-block-while-blocked'   => 'Teisi kasutajaid ei saa blokeerida, kui oled ise blokeeritud.',
@@ -1969,6 +1984,9 @@ Kinnituskood aegub $4.',
 'autosumm-replace' => "Lehekülg asendatud tekstiga '$1'",
 'autoredircomment' => 'Ümbersuunamine lehele [[$1]]',
 'autosumm-new'     => "Uus lehekülg: '$1'",
+
+# Live preview
+'livepreview-loading' => 'Laen...',
 
 # Watchlist editor
 'watchlistedit-numitems'       => 'Teie jälgimisloendis on ilma arutelulehtedeta {{PLURAL:$1|1 leht|$1 lehte}}.',

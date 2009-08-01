@@ -984,16 +984,19 @@ Kokeile [[Special:Search|hakua]] löytääksesi asiaan liittyviä sivuja.',
 'rev-deleted-user'            => '(käyttäjänimi poistettu)',
 'rev-deleted-event'           => '(lokitapahtuma poistettu)',
 'rev-deleted-text-permission' => "Tämä versio on '''poistettu'''.
-Lisätietoja saattaa olla [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} häivytyslokissa].",
+Lisätietoja saattaa olla [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} poistolokissa].",
 'rev-deleted-text-unhide'     => "Tämä versio sivusta on '''poistettu'''.
+Lisätietoja saattaa olla [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} poistolokissa].
+Ylläpitäjänä voit silti [$1 katsoa tämän version].",
+'rev-suppressed-text-unhide'  => "Tämä versio sivusta on '''häivytetty'''.
 Lisätietoja saattaa olla [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} häivytyslokissa].
 Ylläpitäjänä voit silti [$1 katsoa tämän version].",
 'rev-deleted-text-view'       => "Tämä versio on '''poistettu'''.
-Ylläpitäjänä voit nähdä sen. Lisätietoja saattaa olla [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} häivytyslokissa].",
+Ylläpitäjänä voit nähdä sen. Lisätietoja saattaa olla [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} poistolokissa].",
 'rev-deleted-no-diff'         => "Et voi katsoa tätä muokkausta, koska yksi versioista on '''poistettu'''.
-Lisätietoja saattaa olla [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} häivytyslokissa].",
+Lisätietoja saattaa olla [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} poistolokissa].",
 'rev-deleted-unhide-diff'     => "Yksi tämän muutoksen versioista on '''poistettu'''.
-Lisätietoja saattaa olla [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} häivytyslokissa].
+Lisätietoja saattaa olla [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} poistolokissa].
 Ylläpitäjänä voit silti [$1 katsoa tämän muutoksen].",
 'rev-delundel'                => 'näytä tai piilota',
 'revisiondelete'              => 'Poista tai palauta versioita',

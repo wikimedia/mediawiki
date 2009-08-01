@@ -906,12 +906,12 @@ Tente [[Special:Search|pesquisar na wiki]] por páginas relevantes.',
 'rev-deleted-user'            => '(nome de usuário removido)',
 'rev-deleted-event'           => '(entrada removida)',
 'rev-deleted-text-permission' => "Esta revisão desta página foi '''eliminada'''.
-Poderá haver detalhes no [{{fullurl:{{#Especial:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de eliminação].",
+Poderá haver detalhes no [{{fullurl:{{#Especial:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de eliminação].",
 'rev-deleted-text-unhide'     => "Esta revisão desta página foi '''removida'''.
 Poderá haver detalhes no [{{fullurl:{{#Especial:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de eliminação].
 Como administrador, você ainda pode [$1 ver esta revisão] se desejar continuar.",
 'rev-deleted-text-view'       => "A revisão desta página foi '''eliminada'''.
-Como administrador, você pode visualizá-la; poderá haver detalhes no [{{fullurl:{{#Especial:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de eliminação].",
+Como administrador, você pode visualizá-la; poderá haver detalhes no [{{fullurl:{{#Especial:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de eliminação].",
 'rev-deleted-no-diff'         => "Você não pode ver estas diferenças porque uma das revisões foi '''eliminada'''.
 Poderá haver detalhes no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de eliminação].",
 'rev-deleted-unhide-diff'     => "Uma das revisões destas diferenças foi '''removida dos arquivos públicos'''.

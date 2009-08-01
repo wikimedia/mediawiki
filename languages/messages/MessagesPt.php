@@ -506,6 +506,7 @@ Por favor, reporte este facto a um [[Special:ListUsers/sysop|administrador]], to
 'readonly_lag'         => 'A base de dados foi automaticamente bloqueada enquanto os servidores secundários se sincronizam com o principal',
 'internalerror'        => 'Erro interno',
 'internalerror_info'   => 'Erro interno: $1',
+'fileappenderror'      => 'Não foi possível adicionar "$1" a "$2".',
 'filecopyerror'        => 'Não foi possível copiar o ficheiro "$1" para "$2".',
 'filerenameerror'      => 'Não foi possível renomear o ficheiro "$1" para "$2".',
 'filedeleteerror'      => 'Não foi possível eliminar o ficheiro "$1".',
@@ -793,10 +794,10 @@ Você está, ao mesmo tempo, a garantir-nos que isto é algo escrito por si, ou 
 navegadores possuem problemas em editar páginas maiores que 32 kb.
 Por favor, considere seccionar a página em secções de menor dimensão.'''",
 'longpageerror'                    => "'''ERRO: O texto de página que você submeteu tem mais de $1 kilobytes em tamanho, que é maior que o máximo de $2 kilobytes. A página não pode ser salva.'''",
-'readonlywarning'                  => "'''AVISO: A base de dados foi bloqueada para manutenção, pelo que não poderá salvar a sua edição neste momento.
-Pode, no entanto, copiar o seu texto num editor externo e guardá-lo para posterior submissão.'''
+'readonlywarning'                  => "'''Aviso: A base de dados foi bloqueada para manutenção, pelo que não poderá gravar a sua edição neste momento.'''
+Pode, no entanto, copiar o seu texto para um editor externo e guardá-lo para posterior submissão.
 
-Quem bloqueou a base de dados forneceu a seguinte justificativa: $1",
+O administrador que bloqueou a base de dados forneceu a seguinte explicação: $1",
 'protectedpagewarning'             => "'''AVISO: Esta página foi protegida e poderá ser editada apenas por utilizadores com privilégios sysop (administradores).'''",
 'semiprotectedpagewarning'         => "'''Nota:''' Esta página foi protegida de modo a que apenas utilizadores registados a possam editar.",
 'cascadeprotectedwarning'          => "'''Atenção:''' Esta página se encontra protegida de forma que apenas {{int:group-sysop}} possam editá-la, uma vez que se encontra incluída {{PLURAL:\$1|na seguinte página protegida|nas seguintes páginas protegidas}} com a \"proteção progressiva\":",
@@ -3151,7 +3152,7 @@ Entre com o nome de ficheiro sem fornecer o prefixo "{{ns:file}}:".',
 
 # Database error messages
 'dberr-header'      => 'Este wiki tem um problema',
-'dberr-problems'    => 'Desculpe! Este sítio está a experimentar dificuldades técnicas.',
+'dberr-problems'    => 'Desculpe! Este sítio está a experienciar dificuldades técnicas.',
 'dberr-again'       => 'Experimente esperar uns minutos e atualizar.',
 'dberr-info'        => '(Não foi possível contactar o servidor de base de dados: $1)',
 'dberr-usegoogle'   => 'Pode tentar pesquisar no Google entretanto.',

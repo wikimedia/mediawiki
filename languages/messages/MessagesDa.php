@@ -1863,8 +1863,8 @@ Den e-mail-adresse du har angivet i [[Special:Preferences|dine indstillinger]] v
 'notvisiblerev'        => 'Versionen er blevet slettet',
 'watchnochange'        => 'Ingen af siderne i din overvågningsliste er ændret i den valgte periode.',
 'watchlist-details'    => 'Du har $1 {{PLURAL:$1|side|sider}} på din overvågningsliste (ekskl. diskussionssider).',
-'wlheader-enotif'      => '* E-mail underretning er slået til.',
-'wlheader-showupdated' => "* Sider der er ændret siden dit sidste besøg er '''fremhævet'''",
+'wlheader-enotif'      => '* E-mail-underretning er slået til.',
+'wlheader-showupdated' => "* Sider der er ændret siden dit sidste besøg, er '''fremhævet'''",
 'watchmethod-recent'   => 'Tjekker seneste ændringer for sider i din overvågningsliste',
 'watchmethod-list'     => 'Tjekker seneste ændringer for sider i din overvågningsliste',
 'watchlistcontains'    => 'Din overvågningsliste indeholder $1 {{PLURAL:$1|side|sider}}.',
@@ -2317,13 +2317,21 @@ Hvis du kun vil have den seneste version, kan du også bruge en henvisning, for 
 'export-pagelinks'  => 'Inkluder henviste sider til en dybde på:',
 
 # Namespace 8 related
-'allmessages'               => 'Alle beskeder',
-'allmessagesname'           => 'Navn',
-'allmessagesdefault'        => 'Standardtekst',
-'allmessagescurrent'        => 'Nuværende tekst',
-'allmessagestext'           => 'Dette er en liste med alle systembeskeder i MediaWiki-navnerummet.
+'allmessages'                   => 'Alle beskeder',
+'allmessagesname'               => 'Navn',
+'allmessagesdefault'            => 'Standardtekst',
+'allmessagescurrent'            => 'Nuværende tekst',
+'allmessagestext'               => 'Dette er en liste med alle systembeskeder i MediaWiki-navnerummet.
 Besøg venligst [http://www.mediawiki.org/wiki/Localisation MediaWiki-lokalisering] hvis du ønsker at bidrage til den generelle lokalisering (oversættelse og andre lokale tilpasninger) af MediaWiki.',
-'allmessagesnotsupportedDB' => '{{ns:special}}:AllMessages ikke understøttet fordi wgUseDatabaseMessages er slået fra.',
+'allmessagesnotsupportedDB'     => '{{ns:special}}:AllMessages ikke understøttet fordi wgUseDatabaseMessages er slået fra.',
+'allmessages-filter-legend'     => 'Filtrér',
+'allmessages-filter'            => 'Filtrér efter tilpasningsstatus:',
+'allmessages-filter-unmodified' => 'Uændret',
+'allmessages-filter-all'        => 'Alt',
+'allmessages-filter-modified'   => 'Ændret',
+'allmessages-prefix'            => 'Filtrér efter forstavelse:',
+'allmessages-language'          => 'Sprog:',
+'allmessages-filter-submit'     => 'Udfør',
 
 # Thumbnails
 'thumbnail-more'           => 'Forstør',

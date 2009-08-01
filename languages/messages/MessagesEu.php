@@ -539,6 +539,7 @@ Egiaztatu ondo idatzi duzun, edo [[Special:UserLogin/signup|kontu berria sor eza
 'wrongpasswordempty'         => 'Pasahitza hutsik dago. Saiatu berriz.',
 'passwordtooshort'           => 'Zure pasahitza laburregia da.
 {{PLURAL:$1|karaktere 1|$1 karaktere}} izan behar ditu.',
+'password-name-match'        => 'Zure pasahitza ezin da zure erabiltzaile-izen bera izan.',
 'mailmypassword'             => 'Pasahitza berria e-postaz bidali',
 'passwordremindertitle'      => 'Pasahitzaren gogorarazpena {{SITENAME}}(e)tik',
 'passwordremindertext'       => 'Norbaitek (ziurrenik zuk, $1 IP helbidetik) pasahitz berri bat

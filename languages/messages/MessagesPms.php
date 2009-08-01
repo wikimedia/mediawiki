@@ -90,6 +90,13 @@ dj'artìcol ancó pa scrit",
 'underline-never'   => 'Mai',
 'underline-default' => 'Dòvra lë stàndard dël programma ëd navigassion (browser)',
 
+# Font style option in Special:Preferences
+'editfont-style'     => "Stil dël font ëd l'area ëd modìfica:",
+'editfont-default'   => 'Default dël browser',
+'editfont-monospace' => 'Font mono-spassià',
+'editfont-sansserif' => 'Font sans-serif',
+'editfont-serif'     => 'Font serif',
+
 # Dates
 'sunday'        => 'Dumìnica',
 'monday'        => 'Lun-es',
@@ -764,17 +771,21 @@ Che a verìfica con la [[Special:Search|pàgina d'arserca]] se a-i fusso mai dj'
 'rev-deleted-comment'         => '(coment gavà)',
 'rev-deleted-user'            => '(stranòm gavà)',
 'rev-deleted-event'           => '(assion dël registr gavà)',
-'rev-deleted-text-permission' => "Costa revision  dla pàgina-sì a l'é staita '''scanselà''.
-A peul esseine dle marche ant ël [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registr ëd jë scancelament].",
+'rev-deleted-text-permission' => "Sta revision-sì dla pàgina a l'é staita '''scanselà''.
+A peul esseine dle marche ant ël [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registr ëd jë scancelament].",
 'rev-deleted-text-unhide'     => "Sta vërsion-sì dla pàgina a l'é stàita '''scanselà'''.
-A peulo esseine dle marche ant ël [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registr ëd la scanselassion].
+A peulo esseine dle marche ant ël [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registr ëd la scanselassion].
 Com aministrador it peule ancó [$1 vardé sta vërsion-sì] se it veule.",
+'rev-suppressed-text-unhide'  => "Sta vërsion-sì dla pàgina a l'é stàita '''gavà via'''.
+A peul esseine dle marche ant ël [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registr ëd le scanselassion]. Com aministrador it peule ancó [$1 vëdde le diferense] se a fà dbzògn.",
 'rev-deleted-text-view'       => "Costa revision dla pàgina-sì a l'é staita '''scanselà'''.
+Coma aministrator chiel a peul ës-ciairela; a peul esseine dle marche ant ël [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registr ëd jë scancelament].",
+'rev-suppressed-text-view'    => "Costa revision dla pàgina-sì a l'é staita '''gavà via'''. 
 Coma aministrator chiel a peul ës-ciairela; a peul esseine dle marche ant ël [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registr ëd jë scancelament].",
 'rev-deleted-no-diff'         => "It peule pa vëdde coste diferense përchè un-a dle revision a l'é stàita '''scanselà'''.
-A peul esseine dle marche ant ël [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registr ëd jë scanselament].",
+A peul esseine dle marche ant ël [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registr ëd jë scanselament].",
 'rev-deleted-unhide-diff'     => "Un-a dle revision ëd coste diferense a l'é stàita '''scanselà'''.
-A peul esseine dle marche ant ël [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registr ëd le scanselassion].
+A peul esseine dle marche ant ël [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registr ëd le scanselassion].
 Com aministrador it peule ancó [$1 vëdde le diferense] se a fà dbzògn.",
 'rev-delundel'                => 'mostra/stërma',
 'revisiondelete'              => 'Scancela/disdëscancela revision',
@@ -1030,6 +1041,7 @@ Prova a gionté dnans a toa arserca ''all:'' për sërché an tùit ij namespace
 'prefs-watchlist-days-max'      => '(al pì 7 di)',
 'prefs-watchlist-edits'         => 'Vàire modìfiche che a veul ës-ciairé con le funsion avansà:',
 'prefs-watchlist-edits-max'     => '(nùmer massim: 1000)',
+'prefs-watchlist-token'         => 'Token dla ròba che as ten sot euj',
 'prefs-misc'                    => 'Sòn e lòn',
 'prefs-resetpass'               => 'Cambia ciav',
 'prefs-email'                   => 'Opsion e-mail',
@@ -1050,6 +1062,9 @@ Prova a gionté dnans a toa arserca ''all:'' për sërché an tùit ij namespace
 'recentchangesdays-max'         => '(al pì $1 {{PLURAL:$1|di|di}})',
 'recentchangescount'            => 'Nùmer ëd modìfiche da mosté për default:',
 'prefs-help-recentchangescount' => 'Sòn-sì a ciapa ùltime modìfiche, stòrie dle pàgine e registr.',
+'prefs-help-watchlist-token'    => "An ampinend sto camp-sì con na ciav segreta as genererà un feed RSS për la ròba che as ten sot euj.
+Mincadun che a conossa la ciav an sto camp-sì a podrò lese toa ròba ch'it ten-e sot euj, parèj sern un valor sicur.
+Ambelessì a-i é un valor generà a cas che it peule dovré: $1",
 'savedprefs'                    => 'Ij sò gust a son stait salvà.',
 'timezonelegend'                => 'Fus orari:',
 'localtime'                     => 'Ora local:',
@@ -1654,7 +1669,7 @@ Adess a l'é na rediression a [[$2]].",
 'specialloguserlabel'  => 'Utent:',
 'speciallogtitlelabel' => 'Tìtol:',
 'log'                  => 'Registr',
-'all-logs-page'        => 'Tuti ij registr',
+'all-logs-page'        => 'Tùit ij registr pùblich',
 'alllogstext'          => 'Visualisassion combinà ëd tùit ij registr ëd {{SITENAME}}.
 It peule strenze la visualisassion an selessionand la sòrt ëd registr, ël nòm utent (sensìbil a majuscol/minuscol), e la pàgina antëressà (sensìbil a majuscol/minuscol).',
 'logempty'             => 'Pa gnun element parej che a sia trovasse ant ij registr.',

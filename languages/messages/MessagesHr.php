@@ -3135,7 +3135,7 @@ Potvrdite namjeru vraćanja ovog članka.",
 
 # Friendlier slave lag warnings
 'lag-warn-normal' => 'Moguće je da izmjene nastale zadnjih $1 {{PLURAL:$1|sekundu|sekundi}} neće biti vidljive na ovom popisu.',
-'lag-warn-high'   => 'Zbog kašnjenja baze podataka, promjene napravljene zadnjih $1 {{PLURAL:$1|sekundu|sekundi}} moguće nisu prikazane u popisu.',
+'lag-warn-high'   => 'Zbog kašnjenja baze podataka, moguće je da promjene napravljene u zadnjih $1 {{PLURAL:$1|sekundu|sekunde|sekundi}} nisu prikazane u popisu.',
 
 # Watchlist editor
 'watchlistedit-numitems'       => 'Vaš popis praćenja sadrži {{PLURAL:$1|1 stranicu|$1 stranica}}, bez stranica za razgovor.',

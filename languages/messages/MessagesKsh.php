@@ -247,6 +247,13 @@ $messages = array(
 'underline-never'   => 'nä',
 'underline-default' => 'nemm dem Brauser sing Enstellung',
 
+# Font style option in Special:Preferences
+'editfont-style'     => 'De Zoot Schreff en däm Feld för der Sigge iere Täx erin ze schriive:',
+'editfont-default'   => 'Em Brauser sing Ennschtällung',
+'editfont-monospace' => 'En SchievMaschineSchreff',
+'editfont-sansserif' => 'En Jrotesk-Schreff',
+'editfont-serif'     => 'En Schreff met Serife',
+
 # Dates
 'sunday'        => 'Sonndaach',
 'monday'        => 'Mondaach',
@@ -1044,7 +1051,14 @@ Dattum+Uhrzigg = don de Version fun dämm Daach un dä Zigg aanzeije.',
 'rev-deleted-text-permission' => "Die Version fun dä Sigg es '''fottjeschmeße'''. 
 Wann Ehr en [{{FULLURL:{{#spezial:Log}}/delete|page={{FULLPAGENAMEE}}}} {{lcfirst:{{int:deletionlog}}}}] loore doht, künnt Ehr velleisch mieh do drövver lesse.",
 'rev-deleted-text-unhide'     => '{{int:rev-deleted-text-permission}} Als ene Wiki-Köbes kanns De [$1 se ävver doch bekike], wann De wells.',
+'rev-suppressed-text-unhide'  => "Die Version fun dä Sigg es '''verschtoche'''.
+Wann Ehr en [{{FULLURL:{{#spezial:Log}}/suppress|page={{FULLPAGENAMEE}}}} {{lcfirst:{{int:suppressionlog}}}}] loore doht, künnt Ehr velleisch mieh do drövver lesse.
+
+Als ene Wiki-Köbes kanns De [$1 se ävver doch bekike], wann De wells.",
 'rev-deleted-text-view'       => '{{int:rev-deleted-text-permission}} Als ene Wiki-Köbes kanns De se ävver bekike.',
+'rev-suppressed-text-view'    => "Die Version fun dä Sigg es '''verschtoche'''.
+Als ene Wiki-Köbes kanns De se ävver doch bekike, wann De wells.
+Wann Ehr en [{{FULLURL:{{#spezial:Log}}/suppress|page={{FULLPAGENAMEE}}}} {{lcfirst:{{int:suppressionlog}}}}] loore doht, künnt Ehr velleisch mieh do drövver lesse.",
 'rev-deleted-no-diff'         => "De kanns de Ongerscheide nit beloore, ein vun de Versione es '''fottjeschmeße'''.
 Mieh Einzelheite hät [{{fullurl:{{#special:Log}}/suppress|page={{FULLPAGENAMEE}}}} {{lcfirst:{{int:deletionlog}}}}].",
 'rev-deleted-unhide-diff'     => "Ein vun de Versione es '''fottjeschmeße'''.
@@ -1994,7 +2008,7 @@ wadd_Er am Sööke sidt.',
 'specialloguserlabel'  => 'Metmaacher:',
 'speciallogtitlelabel' => 'Siggename:',
 'log'                  => 'Logböcher ehr Opzeichnunge (all)',
-'all-logs-page'        => 'All Logböcher',
+'all-logs-page'        => 'All de öffentlich Logböcher',
 'alllogstext'          => "Dat hee es en jesamte Liss us all dä Logböcher en de {{SITENAME}}.
 Dä Logböcher ehre Enhald ka'mer all noh de Aat, de Metmaacher,
 oder de Sigge ehr Name, un esu, einzel zoteet aanluure.

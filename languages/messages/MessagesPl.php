@@ -981,16 +981,21 @@ Spróbuj [[Special:Search|poszukać]] tej strony.',
 'rev-deleted-user'            => '(nazwa użytkownika usunięta)',
 'rev-deleted-event'           => '(wpis usunięty)',
 'rev-deleted-text-permission' => "Ta wersja strony została '''usunięta'''.
-Szczegółowe informacje mogą znajdować się w [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} rejestrze usunięć].",
+Szczegółowe informacje mogą znajdować się w [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rejestrze usunięć].",
 'rev-deleted-text-unhide'     => "Ta wersja strony została '''usunięta'''.
-Szczegółowe informacje mogą znajdować się w [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} rejestrze usunięć].
+Szczegółowe informacje mogą znajdować się w [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rejestrze usunięć].
+Jako administrator możesz [$1 obejrzeć tę wersję].",
+'rev-suppressed-text-unhide'  => "Ta wersja strony została '''utajniona'''.
+Szczegółowe informacje mogą znajdować się w [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} rejestrze utajniania].
 Jako administrator możesz [$1 obejrzeć tę wersję].",
 'rev-deleted-text-view'       => "Ta wersja strony została '''usunięta'''.
-Jako administrator możesz ją obejrzeć. Szczegółowe informacje mogą znajdować się w [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} rejestrze usunięć].",
+Jako administrator możesz ją obejrzeć. Szczegółowe informacje mogą znajdować się w [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rejestrze usunięć].",
+'rev-suppressed-text-view'    => "Ta wersja strony została '''utajniona'''.
+Jako administrator możesz ją obejrzeć. Szczegółowe informacje mogą znajdować się w [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} rejestrze utajniania].",
 'rev-deleted-no-diff'         => "Nie możesz zobaczyć porównania wersji, ponieważ jedna z nich została '''usunięta'''.
-Szczegółowe informacje mogą znajdować się w [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} rejestrze usunięć].",
+Szczegółowe informacje mogą znajdować się w [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rejestrze usunięć].",
 'rev-deleted-unhide-diff'     => "Jedna z wersji tej strony została '''usunięta'''.
-Szczegółowe informacje mogą znajdować się w [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} rejestrze usunięć].
+Szczegółowe informacje mogą znajdować się w [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} rejestrze usunięć].
 Jako administrator możesz [$1 obejrzeć porównanie wersji].",
 'rev-delundel'                => 'pokaż/ukryj',
 'revisiondelete'              => 'Usuń/przywróć wersje',
