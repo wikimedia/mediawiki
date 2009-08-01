@@ -1705,7 +1705,7 @@ class Parser
 
 				if ( $ns == NS_CATEGORY ) {
 					wfProfileIn( __METHOD__."-category" );
-					$s = preg_replace( "/(\s*\n)+\s*$/m", '', $s ); # bug 87
+					$s = preg_replace( "/(\s*\n)+\s*$/D", '', $s ); # bug 87
 
 					if ( $wasblank ) {
 						$sortkey = $this->getDefaultSort();
