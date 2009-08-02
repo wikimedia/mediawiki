@@ -16,6 +16,7 @@ class CoreParserFunctions {
 
 		$parser->setFunctionHook( 'int',              array( __CLASS__, 'intFunction'      ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'ns',               array( __CLASS__, 'ns'               ), SFH_NO_HASH );
+		$parser->setFunctionHook( 'nse',              array( __CLASS__, 'nse'              ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'urlencode',        array( __CLASS__, 'urlencode'        ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'lcfirst',          array( __CLASS__, 'lcfirst'          ), SFH_NO_HASH );
 		$parser->setFunctionHook( 'ucfirst',          array( __CLASS__, 'ucfirst'          ), SFH_NO_HASH );
@@ -117,6 +118,10 @@ class CoreParserFunctions {
 		} else {
 			return array( 'found' => false );
 		}
+	}
+	
+	static function nse( $parser, $part1 = '' ) {
+		return wfUrlencode( str_replace( ' ', '_', self::ns( $parser, $part1 ) ) );
 	}
 
 	static function urlencode( $parser, $s = '' ) {
