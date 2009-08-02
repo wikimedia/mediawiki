@@ -3,42 +3,74 @@
  * Send SQL queries from the specified file to the database, performing
  * variable replacement along the way.
  *
- * @file
- * @ingroup Database Maintenance
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ *
+ * @ingroup Maintenance
  */
 
-require_once( dirname(__FILE__) . '/' . 'commandLine.inc' );
+require_once( "Maintenance.php" );
 
-if ( isset( $options['help'] ) ) {
-	echo "Send SQL queries to a MediaWiki database.\nUsage: php sql.php [<file>]\n";
-	exit( 1 );
+class MwSql extends Maintenance {
+	public function __construct() {
+		parent::__construct();
+		$this->mDescription = "Send SQL queries to a MediaWiki database";
+	}
+
+	public function execute() {
+		if ( $this->hasArg() ) {
+			$fileName = $this->getArg();
+			$file = fopen( $fileName, 'r' );
+			$promptCallback = false;
+		} else {
+			$file = $this->getStdin();
+			$promptObject = new SqlPromptPrinter( "> " );
+			$promptCallback = $promptObject->cb();
+		}
+	
+		if ( !$file )
+			$this->error( "Unable to open input file\n", true );
+
+		$dbw = wfGetDB( DB_MASTER );
+		$error = $dbw->sourceStream( $file, $promptCallback, array( $this, 'sqlPrintResult' ) );
+		if ( $error !== true ) {
+			$this->error( $error, true );
+		} else {
+			exit( 0 );
+		}
+	}
+
+	/**
+	 * Print the results, callback for $db->sourceStream()
+	 * @param $res The results object
+	 * @param $db Database object
+	 */
+	public function sqlPrintResult( $res, $db ) {
+		if ( !$res ) {
+			// Do nothing
+		} elseif ( is_object( $res ) && $res->numRows() ) {
+			while ( $row = $res->fetchObject() ) {
+				$this->output( print_r( $row, true ) );
+			}
+		} else {
+			$affected = $db->affectedRows();
+			$this->output( "Query OK, $affected row(s) affected\n" );
+		}
+	}
 }
 
-if ( isset( $args[0] ) ) {
-	$fileName = $args[0];
-	$file = fopen( $fileName, 'r' );
-	$promptCallback = false;
-} else {
-	$file = STDIN;
-	$promptObject = new SqlPromptPrinter( "> " );
-	$promptCallback = $promptObject->cb();
-}
-
-if ( !$file  ) {
-	echo "Unable to open input file\n";
-	exit( 1 );
-}
-
-$dbw =& wfGetDB( DB_MASTER );
-$error = $dbw->sourceStream( $file, $promptCallback, 'sqlPrintResult' );
-if ( $error !== true ) {
-	echo $error;
-	exit( 1 );
-} else {
-	exit( 0 );
-}
-
-//-----------------------------------------------------------------------------
 class SqlPromptPrinter {
 	function __construct( $prompt ) {
 		$this->prompt = $prompt;
@@ -53,17 +85,5 @@ class SqlPromptPrinter {
 	}
 }
 
-function sqlPrintResult( $res, $db ) {
-	if ( !$res ) {
-		// Do nothing
-	} elseif ( is_object( $res ) && $res->numRows() ) {
-		while ( $row = $res->fetchObject() ) {
-			print_r( $row );
-		}
-	} else {
-		$affected = $db->affectedRows();
-		echo "Query OK, $affected row(s) affected\n";
-	}
-}
-
-
+$maintClass = "MwSql";
+require_once( DO_MAINTENANCE );

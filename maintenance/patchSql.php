@@ -20,7 +20,7 @@ if( $args ) {
 		foreach( $files as $file ) {
 			if( file_exists( $file ) ) {
 				echo "$file ...\n";
-				dbsource( $file );
+				wfGetDB( DB_MASTER )->fileSource( $file );
 				continue 2;
 			}
 		}

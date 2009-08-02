@@ -1,114 +1,132 @@
 <?php
 /**
- * @file
+ * Cleanup all spam from a given hostname
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ *
  * @ingroup Maintenance
  */
 
-require_once( 'commandLine.inc' );
-require_once( "$IP/includes/LinkFilter.php" );
+require_once( "Maintenance.php" );
 
-function cleanupArticle( $id, $domain ) {
-	$title = Title::newFromID( $id );
-	if ( !$title ) {
-		print "Internal error: no page for ID $id\n";
-		return;
+class CleanupSpam extends Maintenance {
+	public function __construct() {
+		parent::__construct();
+		$this->mDescription = "Cleanup all spam from a given hostname";
+		$this->addOption( 'all', 'Check all wikis in $wgLocalDatabases' );
+		$this->addArgs( array( 'hostname' ) );
 	}
 
-	print $title->getPrefixedDBkey() . " ...";
-	$rev = Revision::newFromTitle( $title );
-	$revId = $rev->getId();
-	$currentRevId = $revId;
+	public function execute() {
+		global $wgLocalDatabases;
+
+		$username = wfMsg( 'spambot_username' );
+		$wgUser = User::newFromName( $username );
+		// Create the user if necessary
+		if ( !$wgUser->getId() ) {
+			$wgUser->addToDatabase();
+		}
+		$spec = $this->getArg();
+		$like = LinkFilter::makeLike( $spec );
+		if ( !$like ) {
+			$this->error( "Not a valid hostname specification: $spec\n", true );
+		}
+
+		$dbr = wfGetDB( DB_SLAVE );
 	
-	while ( $rev && LinkFilter::matchEntry( $rev->getText() , $domain ) ) {
-		# Revision::getPrevious can't be used in this way before MW 1.6 (Revision.php 1.26)
-		#$rev = $rev->getPrevious();
-		$revId = $title->getPreviousRevisionID( $revId );
-		if ( $revId ) {
-			$rev = Revision::newFromTitle( $title, $revId );
+		if ( $this->hasOption('all') ) {
+			// Clean up spam on all wikis
+			$dbr = wfGetDB( DB_SLAVE );
+			$this->output( "Finding spam on " . count($wgLocalDatabases) . " wikis\n" );
+			$found = false;
+			foreach ( $wgLocalDatabases as $db ) {
+				$count = $dbr->selectField( "`$db`.externallinks", 'COUNT(*)', 
+					array( 'el_index LIKE ' . $dbr->addQuotes( $like ) ), __METHOD__ );
+				if ( $count ) {
+					$found = true;
+					passthru( "php cleanupSpam.php $db $spec | sed s/^/$db:  /" );
+				}
+			}
+			if ( $found ) {
+				$this->output( "All done\n" );
+			} else {
+				$this->output( "None found\n" );
+			}
 		} else {
-			$rev = false;
+			// Clean up spam on this wiki
+			$res = $dbr->select( 'externallinks', array( 'DISTINCT el_from' ), 
+				array( 'el_index LIKE ' . $dbr->addQuotes( $like ) ), __METHOD__ );
+			$count = $dbr->numRows( $res );
+			$this->output( "Found $count articles containing $spec\n" );
+			while ( $row = $dbr->fetchObject( $res ) ) {
+				$this->cleanupArticle( $row->el_from, $spec );
+			}
+			if ( $count ) {
+				$this->output( "Done\n" );
+			}
 		}
 	}
-	if ( $revId == $currentRevId ) {
-		// The regex didn't match the current article text
-		// This happens e.g. when a link comes from a template rather than the page itself
-		print "False match\n";
-	} else {
-		$dbw = wfGetDB( DB_MASTER );
-		$dbw->immediateBegin();
-		if ( !$rev ) {
-			// Didn't find a non-spammy revision, blank the page
-			print "blanking\n";
-			$article = new Article( $title );
-			$article->updateArticle( '', wfMsg( 'spam_blanking', $domain ),
-				false, false );
 
+	private function cleanupArticle( $id, $domain ) {
+		$title = Title::newFromID( $id );
+		if ( !$title ) {
+			$this->error( "Internal error: no page for ID $id\n" );
+			return;
+		}
+	
+		$this->output( $title->getPrefixedDBkey() . " ..." );
+		$rev = Revision::newFromTitle( $title );
+		$revId = $rev->getId();
+		$currentRevId = $revId;
+	
+		while ( $rev && LinkFilter::matchEntry( $rev->getText() , $domain ) ) {
+			# Revision::getPrevious can't be used in this way before MW 1.6 (Revision.php 1.26)
+			#$rev = $rev->getPrevious();
+			$revId = $title->getPreviousRevisionID( $revId );
+			if ( $revId ) {
+				$rev = Revision::newFromTitle( $title, $revId );
+			} else {
+				$rev = false;
+			}
+		}
+		if ( $revId == $currentRevId ) {
+			// The regex didn't match the current article text
+			// This happens e.g. when a link comes from a template rather than the page itself
+			$this->output( "False match\n" );
 		} else {
-			// Revert to this revision
-			print "reverting\n";
-			$article = new Article( $title );
-			$article->updateArticle( $rev->getText(), wfMsg( 'spam_reverting', $domain ), false, false );
-		}
-		$dbw->immediateCommit();
-		wfDoUpdates();
-	}
-}
-//------------------------------------------------------------------------------
-
-
-
-
-$username = wfMsg( 'spambot_username' );
-$fname = $username;
-$wgUser = User::newFromName( $username );
-// Create the user if necessary
-if ( !$wgUser->getId() ) {
-	$wgUser->addToDatabase();
-}
-
-if ( !isset( $args[0] ) ) {
-	print "Usage: php cleanupSpam.php <hostname>\n";
-	exit(1);
-}
-$spec = $args[0];
-$like = LinkFilter::makeLike( $spec );
-if ( !$like ) {
-	print "Not a valid hostname specification: $spec\n";
-	exit(1);
-}
-
-$dbr = wfGetDB( DB_SLAVE );
-
-if ( isset($options['all']) ) {
-	// Clean up spam on all wikis
-	$dbr = wfGetDB( DB_SLAVE );
-	print "Finding spam on " . count($wgLocalDatabases) . " wikis\n";
-	$found = false;
-	foreach ( $wgLocalDatabases as $db ) {
-		$count = $dbr->selectField( "`$db`.externallinks", 'COUNT(*)', 
-			array( 'el_index LIKE ' . $dbr->addQuotes( $like ) ), $fname );
-		if ( $count ) {
-			$found = true;
-			passthru( "php cleanupSpam.php $db $spec | sed s/^/$db:  /" );
+			$dbw = wfGetDB( DB_MASTER );
+			$dbw->immediateBegin();
+			if ( !$rev ) {
+				// Didn't find a non-spammy revision, blank the page
+				$this->output( "blanking\n" );
+				$article = new Article( $title );
+				$article->updateArticle( '', wfMsg( 'spam_blanking', $domain ),
+					false, false );
+	
+			} else {
+				// Revert to this revision
+				$this->output( "reverting\n" );
+				$article = new Article( $title );
+				$article->updateArticle( $rev->getText(), wfMsg( 'spam_reverting', $domain ), false, false );
+			}
+			$dbw->immediateCommit();
+			wfDoUpdates();
 		}
 	}
-	if ( $found ) {
-		print "All done\n";
-	} else {
-		print "None found\n";
-	}
-} else {
-	// Clean up spam on this wiki
-	$res = $dbr->select( 'externallinks', array( 'DISTINCT el_from' ), 
-		array( 'el_index LIKE ' . $dbr->addQuotes( $like ) ), $fname );
-	$count = $dbr->numRows( $res );
-	print "Found $count articles containing $spec\n";
-	while ( $row = $dbr->fetchObject( $res ) ) {
-		cleanupArticle( $row->el_from, $spec );
-	}
-	if ( $count ) {
-		print "Done\n";
-	}
 }
 
-
+$maintClass = "CleanupSpam";
+require_once( DO_MAINTENANCE );

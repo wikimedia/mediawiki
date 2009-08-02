@@ -6,75 +6,95 @@
  *  --maxjobs <num> (default 10000)
  *  --type <job_cmd>
  *
- * @file
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ *
  * @ingroup Maintenance
  */
 
-$optionsWithArgs = array( 'maxjobs', 'type', 'procs' );
-$wgUseNormalUser = true;
-require_once( 'commandLine.inc' );
+require_once( "Maintenance.php" );
 
-if ( isset( $options['procs'] ) ) {
-	$procs = intval( $options['procs'] );
-	if ( $procs < 1 || $procs > 1000 ) {
-		echo "Invalid argument to --procs\n";
-		exit( 1 );
+class RunJobs extends Maintenance {
+	public function __construct() {
+		global $wgUseNormalUser;
+		parent::__construct();
+		$this->mDescription = "Run pending jobs";
+		$this->addOption( 'maxjobs', 'Maximum number of jobs to run', false, true );
+		$this->addOption( 'type', 'Type of job to run', false, true );
+		$this->addOption( 'procs', 'Number of processes to use', false, true );
+		$wgUseNormalUser = true;
 	}
-	$fc = new ForkController( $procs );
-	if ( $fc->start( $procs ) != 'child' ) {
-		exit( 0 );
-	}
-}
 
-if ( isset( $options['maxjobs'] ) ) {
-	$maxJobs = $options['maxjobs'];
-} else {
-	$maxJobs = 10000;
-}
-
-$type = false;
-if ( isset( $options['type'] ) )
-	$type = $options['type'];
-
-$wgTitle = Title::newFromText( 'RunJobs.php' );
-
-$dbw = wfGetDB( DB_MASTER );
-$n = 0;
-$conds = '';
-if ($type !== false)
-	$conds = "job_cmd = " . $dbw->addQuotes($type);
-
-while ( $dbw->selectField( 'job', 'job_id', $conds, 'runJobs.php' ) ) {
-	$offset=0;
-	for (;;) {
-		$job = ($type == false) ?
-				Job::pop($offset)
-				: Job::pop_type($type);
-
-		if ($job == false)
-			break;
-
-		wfWaitForSlaves( 5 );
-		$t = microtime( true );
-		$offset=$job->id;
-		$status = $job->run();
-		$t = microtime( true ) - $t;
-		$timeMs = intval( $t * 1000 );
-		if ( !$status ) {
-			runJobsLog( $job->toString() . " t=$timeMs error={$job->error}" );
-		} else {
-			runJobsLog( $job->toString() . " t=$timeMs good" );
+	public function execute() {
+		global $wgTitle;
+		if ( $this->hasOption( 'procs' ) ) {
+			$procs = intval( $this->getOption('procs') );
+			if ( $procs < 1 || $procs > 1000 ) {
+				$this->error( "Invalid argument to --procs\n", true );
+			}
+			$fc = new ForkController( $procs );
+			if ( $fc->start( $procs ) != 'child' ) {
+				exit( 0 );
+			}
 		}
-		if ( $maxJobs && ++$n > $maxJobs ) {
-			break 2;
+		$maxJobs = $this->getOption( 'maxjobs', 10000 );
+		$type = $this->getOption( 'type', false );
+		$wgTitle = Title::newFromText( 'RunJobs.php' );
+		$dbw = wfGetDB( DB_MASTER );
+		$n = 0;
+		$conds = '';
+		if ($type !== false)
+			$conds = "job_cmd = " . $dbw->addQuotes($type);
+
+		while ( $dbw->selectField( 'job', 'job_id', $conds, 'runJobs.php' ) ) {
+			$offset=0;
+			for (;;) {
+				$job = ($type == false) ?
+						Job::pop($offset)
+						: Job::pop_type($type);
+	
+				if ($job == false)
+					break;
+	
+				wfWaitForSlaves( 5 );
+				$t = microtime( true );
+				$offset=$job->id;
+				$status = $job->run();
+				$t = microtime( true ) - $t;
+				$timeMs = intval( $t * 1000 );
+				if ( !$status ) {
+					$this->runJobsLog( $job->toString() . " t=$timeMs error={$job->error}" );
+				} else {
+					$this->runJobsLog( $job->toString() . " t=$timeMs good" );
+				}
+				if ( $maxJobs && ++$n > $maxJobs ) {
+					break 2;
+				}
+			}
 		}
+	}
+
+	/**
+	 * Log the job message
+	 * @param $msg String The message to log
+	 */
+	private function runJobsLog( $msg ) {
+		$this->output( wfTimestamp( TS_DB ) . " $msg\n" );
+		wfDebugLog( 'runJobs', $msg );
 	}
 }
 
-
-function runJobsLog( $msg ) {
-	print wfTimestamp( TS_DB ) . " $msg\n";
-	wfDebugLog( 'runJobs', $msg );
-}
-
-
+$maintClass = "RunJobs";
+require_once( DO_MAINTENANCE );

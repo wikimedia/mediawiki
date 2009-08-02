@@ -78,6 +78,7 @@ this. Was used when mwEmbed was going to be an extension.
   GO button is pressed, in addition to the main namespace.
 * (bug 19907) $wgCrossSiteAJAXdomains and $wgCrossSiteAJAXdomainsRegex added 
   to control which external domains may access the API via cross-site AJAX.
+* $wgMaintenanceScripts for extensions to add their scripts to the default list
 
 === New features in 1.16 ===
 
@@ -176,6 +177,8 @@ this. Was used when mwEmbed was going to be an extension.
 * The description message in $wgExtensionCredits can be an array with parameters
 * (bug 12920) New CoreParserFunction {{nse:...}} as an url-friendly equivalent
   to {{ns:...}}
+* (bug 16322) Allow maintenance scripts to accept DB user/pass over input or params
+* (bug 18566) Maintenance script to un/protect pages
 
 === Bug fixes in 1.16 ===
 
@@ -367,6 +370,8 @@ this. Was used when mwEmbed was going to be an extension.
   (eg Newuser, Userrights) are no longer broken
 * (bug 17395) Remote file descriptions use user language ($wgLang), not wiki
   language ($wgContLang)
+* (bug 11867) Lock error on redirect table when running orphans.php
+* (bug 18930) initStats.php now refreshes active users count
 
 == API changes in 1.16 ==
 
