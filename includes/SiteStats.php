@@ -325,7 +325,7 @@ class SiteStatsInit {
 	 */
 	public static function doAllAndCommit( $update, $noViews = false, $activeUsers = false ) {
 		// Grab the object and count everything
-		$counter = new InitStats( false );
+		$counter = new SiteStatsInit( false );
 		$counter->edits();
 		$counter->articles();
 		$counter->pages();
