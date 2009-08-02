@@ -396,6 +396,10 @@ h1, h2 {
 	color: white;
 }
 
+#mw-pref-clear {
+	clear: both;
+}
+
 #mw_content a.external,
 #mw_content a[href ^="gopher://"] {
         background: url(external.png) center right no-repeat;
