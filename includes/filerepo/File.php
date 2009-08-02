@@ -1064,15 +1064,15 @@ abstract class File {
 	 * Get the HTML text of the description page, if available
 	 */
 	function getDescriptionText() {
-		global $wgMemc, $wgContLang;
+		global $wgMemc, $wgLang;
 		if ( !$this->repo->fetchDescription ) {
 			return false;
 		}
-		$renderUrl = $this->repo->getDescriptionRenderUrl( $this->getName(), $wgContLang->getCode() );
+		$renderUrl = $this->repo->getDescriptionRenderUrl( $this->getName(), $wgLang->getCode() );
 		if ( $renderUrl ) {
 			if ( $this->repo->descriptionCacheExpiry > 0 ) {
 				wfDebug("Attempting to get the description from cache...");
-				$key = $this->repo->getLocalCacheKey( 'RemoteFileDescription', 'url', $wgContLang->getCode(), 
+				$key = $this->repo->getLocalCacheKey( 'RemoteFileDescription', 'url', $wgLang->getCode(), 
 									$this->getName() );
 				$obj = $wgMemc->get($key);
 				if ($obj) {
