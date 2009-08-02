@@ -4,7 +4,7 @@
  * @ingroup Maintenance
  */
 
-require_once( dirname( __FILE__ ). '/../maintenance/commandLine.inc' );
+require_once( 'commandLine.inc' );
 
 $wgHooks['BeforeParserFetchTemplateAndtitle'][] = 'PPFuzzTester::templateHook';
 
