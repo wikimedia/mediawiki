@@ -61,7 +61,7 @@ class DumpLinks extends Maintenance {
 				$lastPage = $row->page_id;
 			}
 			$link = Title::makeTitle( $row->pl_namespace, $row->pl_title );
-			$this-output( " " . $link->getPrefixedUrl() );
+			$this->output( " " . $link->getPrefixedUrl() );
 		}
 		if( isset( $lastPage ) )
 			$this->output( "\n" );
