@@ -179,6 +179,7 @@ this. Was used when mwEmbed was going to be an extension.
   to {{ns:...}}
 * (bug 16322) Allow maintenance scripts to accept DB user/pass over input or params
 * (bug 18566) Maintenance script to un/protect pages
+* (bug 671) The HTML <abbr> tag is now permitted.
 
 === Bug fixes in 1.16 ===
 

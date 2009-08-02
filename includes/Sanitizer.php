@@ -357,7 +357,7 @@ class Sanitizer {
 				'h2', 'h3', 'h4', 'h5', 'h6', 'cite', 'code', 'em', 's',
 				'strike', 'strong', 'tt', 'var', 'div', 'center',
 				'blockquote', 'ol', 'ul', 'dl', 'table', 'caption', 'pre',
-				'ruby', 'rt' , 'rb' , 'rp', 'p', 'span', 'u'
+				'ruby', 'rt' , 'rb' , 'rp', 'p', 'span', 'u', 'abbr'
 			);
 			$htmlsingle = array(
 				'br', 'hr', 'li', 'dt', 'dd'
@@ -1200,7 +1200,7 @@ class Sanitizer {
 			# samp
 			# kbd
 			'var'        => $common,
-			# abbr
+			'abbr'       => $common,
 			# acronym
 
 			# 9.2.2
