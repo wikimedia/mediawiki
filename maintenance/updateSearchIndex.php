@@ -75,8 +75,8 @@ class UpdateSearchIndex extends Maintenance {
 		$this->output( "Updating searchindex between $start and $end\n" );
 
 		# Select entries from recentchanges which are on top and between the specified times
-		$start = $dbw->strencode( $start );
-		$end = $dbw->strencode( $end );
+		$start = $dbw->timestamp( $start );
+		$end = $dbw->timestamp( $end );
 
 		$page = $dbw->tableName( 'page' );
 		$sql = "SELECT rc_cur_id,rc_type,rc_moved_to_ns,rc_moved_to_title FROM $recentchanges
