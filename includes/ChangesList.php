@@ -68,8 +68,8 @@ class ChangesList {
 	 */
 	private function preCacheMessages() {
 		if( !isset( $this->message ) ) {
-			foreach( explode(' ', 'cur diff hist minoreditletter newpageletter last '.
-				'blocklink history boteditletter semicolon-separator pipe-separator' ) as $msg ) {
+			foreach ( explode( ' ', 'cur diff hist last blocklink history ' .
+			'semicolon-separator pipe-separator' ) as $msg ) {
 				$this->message[$msg] = wfMsgExt( $msg, array( 'escapenoentities' ) );
 			}
 		}
@@ -86,13 +86,41 @@ class ChangesList {
 	 * @return string
 	 */
 	protected function recentChangesFlags( $new, $minor, $patrolled, $nothing = '&nbsp;', $bot = false ) {
-		$f = $new ?
-			'<abbr class="newpage">' . $this->message['newpageletter'] . '</abbr>' : $nothing;
-		$f .= $minor ?
-			'<abbr class="minor">' . $this->message['minoreditletter'] . '</abbr>' : $nothing;
-		$f .= $bot ? '<abbr class="bot">' . $this->message['boteditletter'] . '</abbr>' : $nothing;
-		$f .= $patrolled ? '<span class="unpatrolled">!</span>' : $nothing;
+		$f = $new ? self::flag( 'newpage' ) : $nothing;
+		$f .= $minor ? self::flag( 'minor' ) : $nothing;
+		$f .= $bot ? self::flag( 'bot' ) : $nothing;
+		$f .= $patrolled ? self::flag( 'unpatrolled' ) : $nothing;
 		return $f;
+	}
+
+	/**
+	 * Provide the <abbr> element appropriate to a given abbreviated flag,
+	 * namely the flag indicating a new page, a minor edit, a bot edit, or an
+	 * unpatrolled edit.  By default in English it will contain "N", "m", "b",
+	 * "!" respectively, plus it will have an appropriate title and class.
+	 *
+	 * @param $key string 'newpage', 'unpatrolled', 'minor', or 'bot'
+	 * @return string Raw HTML
+	 */
+	public static function flag( $key ) {
+		static $messages = null;
+		if ( is_null( $messages ) ) {
+			foreach ( explode( ' ', 'minoreditletter boteditletter newpageletter ' .
+			'unpatrolledletter recentchanges-label-minor recentchanges-label-bot ' .
+			'recentchanges-label-newpage recentchanges-label-unpatrolled' ) as $msg ) {
+				$messages[$msg] = wfMsgExt( $msg, 'escapenoentities' );
+			}
+		}
+		# Inconsistent naming, bleh
+		if ( $key == 'newpage' || $key == 'unpatrolled' ) {
+			$key2 = $key;
+		} else {
+			$key2 = $key . 'edit';
+		}
+		return "<abbr class=\"$key\" title=\""
+			. $messages["recentchanges-label-$key"] . "\">"
+			. $messages["${key2}letter"]
+			. '</abbr>';
 	}
 
 	/**

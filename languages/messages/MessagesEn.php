@@ -1963,6 +1963,11 @@ You can also choose to let others contact you through your user or talk page wit
 'recentchanges-legend'              => 'Recent changes options',
 'recentchangestext'                 => 'Track the most recent changes to the wiki on this page.',
 'recentchanges-feed-description'    => 'Track the most recent changes to the wiki in this feed.',
+'recentchanges-label-legend'        => "Legend: $1 - new page, $2 - minor edit, $3 - bot edit, $4 - unpatrolled edit.",
+'recentchanges-label-newpage'       => 'This edit created a new page',
+'recentchanges-label-minor'         => 'This is a minor edit',
+'recentchanges-label-bot'           => 'This edit was performed by a bot',
+'recentchanges-label-unpatrolled'   => 'This edit has not yet been patrolled',
 'rcnote'                            => "Below {{PLURAL:$1|is '''1''' change|are the last '''$1''' changes}} in the last {{PLURAL:$2|day|'''$2''' days}}, as of $5, $4.",
 'rcnotefrom'                        => "Below are the changes since '''$2''' (up to '''$1''' shown).",
 'rclistfrom'                        => 'Show new changes starting from $1',
@@ -1980,6 +1985,7 @@ You can also choose to let others contact you through your user or talk page wit
 'minoreditletter'                   => 'm',
 'newpageletter'                     => 'N',
 'boteditletter'                     => 'b',
+'unpatrolledletter'                 => '!', # only translate this message to other languages if you have to change it
 'sectionlink'                       => '→', # only translate this message to other languages if you have to change it
 'number_of_watching_users_RCview'   => '[$1]', # do not translate or duplicate this message to other languages
 'number_of_watching_users_pageview' => '[$1 watching {{PLURAL:$1|user|users}}]',

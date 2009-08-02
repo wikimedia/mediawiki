@@ -68,7 +68,7 @@ li span.deleted, span.history-deleted {
 	background-color: #ffa;
 }
 
-span.unpatrolled {
+.unpatrolled {
 	font-weight: bold;
 	color: red;
 }
@@ -436,7 +436,7 @@ td.os-suggest-result-hl {
 }
 
 /** Generic minor/bot/newpage styling */
-abbr.newpage, abbr.minor, abbr.bot {
+.newpage, .minor, .bot {
 	font-weight: bold;
 }
 

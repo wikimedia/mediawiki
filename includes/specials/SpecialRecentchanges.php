@@ -457,6 +457,13 @@ class SpecialRecentChanges extends SpecialPage {
 			Xml::fieldset( wfMsg( 'recentchanges-legend' ), $panelString, array( 'class' => 'rcoptions' ) )
 		);
 
+		# TODO: This is probably a bad format for the message.  If anyone
+		# customizes it and we add a new flag, it won't show up in the
+		# customized message unless it's changed.
+		$wgOut->addWikiMsg( 'recentchanges-label-legend',
+			ChangesList::flag( 'newpage' ), ChangesList::flag( 'minor' ),
+			ChangesList::flag( 'bot' ), ChangesList::flag( 'unpatrolled' ) );
+
 		$this->setBottomText( $wgOut, $opts );
 	}
 

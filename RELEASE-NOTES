@@ -180,6 +180,8 @@ this. Was used when mwEmbed was going to be an extension.
 * (bug 16322) Allow maintenance scripts to accept DB user/pass over input or params
 * (bug 18566) Maintenance script to un/protect pages
 * (bug 671) The HTML <abbr> tag is now permitted.
+* RecentChanges now has a legend to explain what the Nmb! flags mean, and the
+  flags have tooltips.
 
 === Bug fixes in 1.16 ===
 
