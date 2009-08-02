@@ -363,6 +363,9 @@ this. Was used when mwEmbed was going to be an extension.
   "editusercssjs" into "editusercss" and edituserjs" respectively.
 * (bug 19394) RecentChanges feed URLs for log items with no revisions 
   (eg Newuser, Userrights) are no longer broken
+* (bug 17395) Remote file descriptions use user language ($wgLang), not wiki
+  language ($wgContLang)
+
 
 == API changes in 1.16 ==
 
