@@ -32,7 +32,7 @@ class UpdateSpecialPages extends Maintenance {
 	}
 
 	public function execute() {
-		global $wgOut, $wgSpecialPageCacheUpdates, $wgQueryPages;;
+		global $wgOut, $wgSpecialPageCacheUpdates, $wgQueryPages;
 		$wgOut->disable();
 		$dbw = wfGetDB( DB_MASTER );
 
