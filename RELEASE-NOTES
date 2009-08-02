@@ -361,6 +361,8 @@ this. Was used when mwEmbed was going to be an extension.
   "usercssyoucanpreview" and "userjsyoucanpreview" respectively.
 * (bug 12110) Split the rights for editing users' CSS/JS subpage from 
   "editusercssjs" into "editusercss" and edituserjs" respectively.
+* (bug 19394) RecentChanges feed URLs for log items with no revisions 
+  (eg Newuser, Userrights) are no longer broken
 
 == API changes in 1.16 ==
 
