@@ -31,6 +31,10 @@ class DeleteDefaultMessages extends Maintenance {
 	}
 
 	public function execute() {
+		self::reallyExecute();
+	}
+	
+	public static function reallyExecute() {
 		$user = 'MediaWiki default';
 		$reason = 'No longer required';
 
@@ -49,7 +53,7 @@ class DeleteDefaultMessages extends Maintenance {
 		);
 
 		$dbw = wfGetDB( DB_MASTER );
-	
+
 		while ( $row = $dbr->fetchObject( $res ) ) {
 			if ( function_exists( 'wfWaitForSlaves' ) ) {
 				wfWaitForSlaves( 5 );
