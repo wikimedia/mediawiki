@@ -40,7 +40,7 @@ class DeleteOrphanedRevisions extends Maintenance {
 
 		$dbw = wfGetDB( DB_MASTER );
 		$dbw->immediateBegin();
-		list( $page, $revision ) = $dbw->tableNames( 'page', 'revision' );
+		list( $page, $revision ) = $dbw->tableNamesN( 'page', 'revision' );
 
 		# Find all the orphaned revisions
 		$this->output( "Checking for orphaned revisions..." );
@@ -48,6 +48,7 @@ class DeleteOrphanedRevisions extends Maintenance {
 		$res = $dbw->query( $sql, 'deleteOrphanedRevisions' );
 	
 		# Stash 'em all up for deletion (if needed)
+		$revisions = array();
 		while( $row = $dbw->fetchObject( $res ) )
 			$revisions[] = $row->rev_id;
 		$dbw->freeResult( $res );
