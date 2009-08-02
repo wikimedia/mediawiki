@@ -41,7 +41,7 @@ class MwSql extends Maintenance {
 		}
 	
 		if ( !$file )
-			$this->error( "Unable to open input file\n", true );
+			$this->error( "Unable to open input file", true );
 
 		$dbw = wfGetDB( DB_MASTER );
 		$error = $dbw->sourceStream( $file, $promptCallback, array( $this, 'sqlPrintResult' ) );

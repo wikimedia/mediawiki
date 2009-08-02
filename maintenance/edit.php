@@ -47,7 +47,7 @@ class EditCLI extends Maintenance {
 		
 		$wgUser = User::newFromName( $userName );
 		if ( !$wgUser ) {
-			$this->error( "Invalid username\n", true );
+			$this->error( "Invalid username", true );
 		}
 		if ( $wgUser->isAnon() ) {
 			$wgUser->addToDatabase();
@@ -55,7 +55,7 @@ class EditCLI extends Maintenance {
 	
 		$wgTitle = Title::newFromText( $this->getArg() );
 		if ( !$wgTitle ) {
-			$this->error( "Invalid title\n", true );
+			$this->error( "Invalid title", true );
 		}
 	
 		$wgArticle = new Article( $wgTitle );

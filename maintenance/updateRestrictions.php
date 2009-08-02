@@ -35,12 +35,12 @@ class UpdateRestrictions extends Maintenance {
 	public function execute() {
 		$db = wfGetDB( DB_MASTER );
 		if( !$db->tableExists( 'page_restrictions' ) ) {
-			$this->error( "page_restrictions table does not exist\n", true );
+			$this->error( "page_restrictions table does not exist", true );
 		}
 
 		$start = $db->selectField( 'page', 'MIN(page_id)', false, __METHOD__ );
 		if( !$start ) {
-			$this->error( "Nothing to do.\n", true );
+			$this->error( "Nothing to do.", true );
 		}
 		$end = $db->selectField( 'page', 'MAX(page_id)', false, __METHOD__ );
 	

@@ -59,7 +59,7 @@ class DeleteBatch extends Maintenance {
 
 		# Setup
 		if( !$file ) {
-			$this->error( "Unable to read file, exiting\n", true );
+			$this->error( "Unable to read file, exiting", true );
 		}
 		$wgUser = User::newFromName( $user );
 		$dbw = wfGetDB( DB_MASTER );

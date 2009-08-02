@@ -33,13 +33,13 @@ class CacheStats extends Maintenance {
 		
 		// Can't do stats if 
 		if( get_class( $wgMemc ) == 'FakeMemCachedClient' ) {
-			$this->error( "You are running FakeMemCachedClient, I can not provide any statistics.\n", true );
+			$this->error( "You are running FakeMemCachedClient, I can not provide any statistics.", true );
 		}
 		$session = intval($wgMemc->get(wfMemcKey('stats','request_with_session')));
 		$noSession = intval($wgMemc->get(wfMemcKey('stats','request_without_session')));
 		$total = $session + $noSession;
 		if ( $total == 0 ) {
-			$this->error( "You either have no stats or the cache isn't running. Aborting.\n", true );
+			$this->error( "You either have no stats or the cache isn't running. Aborting.", true );
 		}
 		$this->output( "Requests\n" );
 		$this->output( sprintf( "with session:      %-10d %6.2f%%\n", $session, $session/$total*100 ) );

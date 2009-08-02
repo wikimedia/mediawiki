@@ -34,7 +34,7 @@ class DeleteOldRevisions extends Maintenance {
 	public function execute() {
 		$this->output( "Delete old revisions\n\n" );
 		if( count( $this->mArgs ) < 1 ) {
-			$this->error( "Must pass at least 1 page_id\n", true );
+			$this->error( "Must pass at least 1 page_id", true );
 		}
 		$this->doDelete( $this->hasOption( 'delete' ), $this->mArgs );
 	}

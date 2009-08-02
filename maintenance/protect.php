@@ -46,9 +46,9 @@ class Protect extends Maintenance {
 		$wgUser = User::newFromName( $userName );
 		$restrictions = array( 'edit' => $protection, 'move' => $protection );
 
-		$wgTitle = Title::newFromText( $args[0] );
+		$wgTitle = Title::newFromText( $this->getArg() );
 		if ( !$wgTitle ) {
-			$this->error( "Invalid title\n", true );
+			$this->error( "Invalid title", true );
 		}
 
 		$wgArticle = new Article( $wgTitle );

@@ -64,7 +64,7 @@ class MoveBatch extends Maintenance {
 
 		# Setup
 		if( !$file ) {
-			$this->error( "Unable to read file, exiting\n", true );
+			$this->error( "Unable to read file, exiting", true );
 		}
 		$wgUser = User::newFromName( $user );
 		
@@ -77,13 +77,13 @@ class MoveBatch extends Maintenance {
 			}
 			$parts = array_map( 'trim', explode( '|', $line ) );
 			if ( count( $parts ) != 2 ) {
-				$this->error( "Error on line $linenum, no pipe character\n" );
+				$this->error( "Error on line $linenum, no pipe character" );
 				continue;
 			}
 			$source = Title::newFromText( $parts[0] );
 			$dest = Title::newFromText( $parts[1] );
 			if ( is_null( $source ) || is_null( $dest ) ) {
-				$this->error( "Invalid title on line $linenum\n" );
+				$this->error( "Invalid title on line $linenum" );
 				continue;
 			}
 	

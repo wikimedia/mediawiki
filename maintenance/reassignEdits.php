@@ -50,7 +50,7 @@ class ReassignEdits extends Maintenance {
 					$this->output( "Run the script again without --report to update.\n" );
 			} else {
 				$ton = $to->getName();
-				$this->error( "User '{$ton}' not found.\n" );
+				$this->error( "User '{$ton}' not found." );
 			}
 		}
 	}

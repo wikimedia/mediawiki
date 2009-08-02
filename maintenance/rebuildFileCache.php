@@ -33,7 +33,7 @@ class RebuildFileCache extends Maintenance {
 	public function execute() {
 		global $wgUseFileCache, $wgDisableCounters, $wgTitle, $wgArticle, $wgOut;
 		if( !$wgUseFileCache ) {
-			$this->error( "Nothing to do -- \$wgUseFileCache is disabled.\n", true );
+			$this->error( "Nothing to do -- \$wgUseFileCache is disabled.", true );
 		}
 		$wgDisableCounters = false;
 		$start = intval( $this->getArg( 0, 0 ) );
@@ -44,7 +44,7 @@ class RebuildFileCache extends Maintenance {
 		$start = $start > 0 ? $start : $dbr->selectField( 'page', 'MIN(page_id)', false, __FUNCTION__ );
 		$end = $dbr->selectField( 'page', 'MAX(page_id)', false, __FUNCTION__ );
 		if( !$start ) {
-			$this->error( "Nothing to do.\n", true );
+			$this->error( "Nothing to do.", true );
 		}
 
 		$_SERVER['HTTP_ACCEPT_ENCODING'] = 'bgzip'; // hack, no real client
