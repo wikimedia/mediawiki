@@ -144,6 +144,7 @@ $magicWords = array(
 	'int'                   => array( '0', 'הודעה:', 'INT:' ),
 	'sitename'              => array( '1', 'שם האתר', 'SITENAME' ),
 	'ns'                    => array( '0', 'מרחב שם:', 'NS:' ),
+	'nse'                   => array( '0', 'מרחב שם מקודד:', 'NSE:' ),
 	'localurl'              => array( '0', 'כתובת יחסית:', 'LOCALURL:' ),
 	'localurle'             => array( '0', 'כתובת יחסית מקודד:', 'LOCALURLE:' ),
 	'server'                => array( '0', 'כתובת השרת', 'שרת', 'SERVER' ),
