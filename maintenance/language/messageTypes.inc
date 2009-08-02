@@ -341,6 +341,7 @@ $wgOptionalMessages = array(
 	'timezone-utc',
 	'whatlinkshere-backlink',
 	'recentchangeslinked-backlink',
+	'unpatrolledletter',
 	'diff-with-additional',
 	'pagetitle-view-mainpage',
 	'trackback',
