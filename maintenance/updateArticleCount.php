@@ -93,7 +93,7 @@ class UpdateArticleCount extends Maintenance {
 		$res = $dbr->query( $this->makeSql( $dbr ), __METHOD__ );
 		$row = $dbr->fetchObject( $res );
 		$dbr->freeResult( $res );
-		return $row->pagecount;
+		return $row ? $row->pagecount : false;
 	}
 }
 
