@@ -32,7 +32,7 @@ class UpdateSpecialPages extends Maintenance {
 	}
 
 	public function execute() {
-		global $wgOut;
+		global $wgOut, $wgSpecialPageCacheUpdates, $wgQueryPages;;
 		$wgOut->disable();
 		$dbw = wfGetDB( DB_MASTER );
 
@@ -59,7 +59,7 @@ class UpdateSpecialPages extends Maintenance {
 			# Wait for the slave to catch up
 			wfWaitForSlaves( 5 );
 		}
-	
+
 		foreach( $wgQueryPages as $page ) {
 			@list( $class, $special, $limit ) = $page;
 	
