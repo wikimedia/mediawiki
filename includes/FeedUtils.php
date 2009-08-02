@@ -71,7 +71,7 @@ class FeedUtils {
 		$anon = new User();
 		$accErrors = $title->getUserPermissionsErrors( 'read', $anon, true );
 
-		if( $title->getNamespace() >= 0 && !$accErrors ) {
+		if( $title->getNamespace() >= 0 && !$accErrors && $newid ) {
 			if( $oldid ) {
 				wfProfileIn( __FUNCTION__."-dodiff" );
 
