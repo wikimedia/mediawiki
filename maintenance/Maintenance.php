@@ -45,6 +45,9 @@ abstract class Maintenance {
 	const DB_NONE  = 0;
 	const DB_STD   = 1;
 	const DB_ADMIN = 2;
+	
+	// Const for getStdin()
+	const STDIN_ALL = 'all';
 
 	// This is the desired params
 	private $mParams = array();
@@ -178,14 +181,16 @@ abstract class Maintenance {
 	/**
 	 * Return input from stdin.
 	 * @param $length int The number of bytes to read. If null,
-	 *        just return the handle
+	 *        just return the handle. Maintenance::STDIN_ALL returns
+	 *        the full length
 	 * @return mixed
 	 */
 	protected function getStdin( $len = null ) {
+		if ( $len == Maintenance::STDIN_ALL )
+			return file_get_contents( 'php://stdin' );
 		$f = fopen( 'php://stdin', 'rt' );
-		if( !$len ) {
+		if( !$len )
 			return $f;
-		}
 		$input = fgets( $f, $len );
 		fclose ( $f );
 		return rtrim( $input );

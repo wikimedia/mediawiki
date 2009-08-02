@@ -35,6 +35,7 @@ in $wgDBservers, usually indicating a replication environment.' );
 	}
 
 	public function execute() {
+		global $wgDBservers;
 		$dbw = wfGetDB( DB_MASTER );
 		$user = $dbw->tableName( 'user' );
 		$revision = $dbw->tableName( 'revision' );
