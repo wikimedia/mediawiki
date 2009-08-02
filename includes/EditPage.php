@@ -1409,6 +1409,8 @@ class EditPage {
 										'maxlength' => '200',
 										'tabindex' => '1'
 									) );
+			} else {
+				$summaryhiddens .= Xml::hidden( 'wpIgnoreBlankSummary', true ); # bug 18699
 			}
 			$editsummary = "<div class='editOptions'>\n";
 			global $wgParser;
