@@ -11,7 +11,6 @@ if ( !defined( 'MEDIAWIKI' ) ) {
 
 require_once 'convertLinks.inc';
 require_once 'userDupes.inc';
-require_once 'deleteDefaultMessages.php';
 # Extension updates
 require_once( "$IP/includes/Hooks.php" );
 
@@ -1113,7 +1112,11 @@ function do_all_updates( $shared = false, $purge = true ) {
 
 
 	wfOut( "Deleting old default messages (this may take a long time!)..." ); 
-	deleteDefaultMessages();
+	if( !defined( 'MW_NO_SETUP' ) ) {
+		define( 'MW_NO_SETUP', true );
+	}
+	require_once 'deleteDefaultMessages.php';
+	DeleteDefaultMessages::reallyExecute();
 	wfOut( "Done\n" );
 	
 	do_stats_init();
