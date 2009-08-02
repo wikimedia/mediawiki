@@ -203,7 +203,7 @@ class NamespaceConflictChecker extends Maintenance {
 		$titleSql = "TRIM(LEADING '$prefix:' FROM {$page}_title)";
 		if( $ns == 0 ) {
 			// An interwiki; try an alternate encoding with '-' for ':'
-			$titleSql = "CONCAT('$prefix-',$titleSql)";
+			$titleSql = $this->db->buildConcat( array( "'$prefix-'", $titleSql ) );
 		}
                                      
 		$sql = "SELECT {$page}_id    AS id,
@@ -214,7 +214,7 @@ class NamespaceConflictChecker extends Maintenance {
 		         WHERE {$page}_namespace=0
 		           AND {$page}_title LIKE '$likeprefix:%'";
 
-		$result = $this->db->query( $sql, 'NamespaceConflictChecker::getConflicts' );
+		$result = $this->db->query( $sql, __METHOD__ );
 
 		$set = array();
 		while( $row = $this->db->fetchObject( $result ) ) {
