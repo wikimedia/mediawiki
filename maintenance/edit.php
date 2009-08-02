@@ -61,7 +61,7 @@ class EditCLI extends Maintenance {
 		$wgArticle = new Article( $wgTitle );
 	
 		# Read the text
-		$text = $this->getStdin();
+		$text = $this->getStdin( Maintenance::STDIN_ALL );
 		
 		# Do the edit
 		$this->output( "Saving... " );
