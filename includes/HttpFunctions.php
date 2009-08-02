@@ -333,6 +333,10 @@ class HttpRequest {
 		} elseif ( $this->method == 'POST' ) {
 			curl_setopt( $c, CURLOPT_POST, true );
 			curl_setopt( $c, CURLOPT_POSTFIELDS, $this->postData );
+			// Suppress 'Expect: 100-continue' header, as some servers
+			// will reject it with a 417 and Curl won't auto retry
+			// with HTTP 1.0 fallback
+			curl_setopt( $c, CURLOPT_HTTPHEADER, array( 'Expect:' ) );
 		} else {
 			curl_setopt( $c, CURLOPT_CUSTOMREQUEST, $this->method );
 		}
