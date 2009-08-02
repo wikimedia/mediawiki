@@ -8,7 +8,7 @@ $ts = '20010115123456';
 
 	
 $IP = dirname( __FILE__ ) . '/../..';
-require_once( "$IP/maintenance/commandLine.inc" );
+require_once( dirname(__FILE__).'/../commandLine.inc' );
 
 foreach ( glob( "$IP/languages/messages/Messages*.php" ) as $filename ) {
 	$base = basename( $filename );

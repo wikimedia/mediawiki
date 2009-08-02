@@ -4,7 +4,7 @@
  * @ingroup MaintenanceLanguage
  */
 
-require( '../commandLine.inc' );
+require_once( dirname(__FILE__).'/../commandLine.inc' );
 
 # A list of unicode numerals is available at:
 # http://www.fileformat.info/info/unicode/category/Nd/list.htm
