@@ -67,11 +67,11 @@ class RebuildLocalisationCache extends Maintenance {
 
 			if ( $pid === 0 ) {
 				// Child
-				doRebuild( $codes, $numRebuilt, $lc, $force );
+				$this->doRebuild( $codes, $numRebuilt, $lc, $force );
 				exit();
 			} elseif ($pid === -1) {
 				// Fork failed or one thread, do it serialized
-				doRebuild( $codes, $numRebuilt, $lc, $force );
+				$this->doRebuild( $codes, $numRebuilt, $lc, $force );
 			} else {
 				// Main thread
 				$pids[] = $pid;
@@ -83,6 +83,20 @@ class RebuildLocalisationCache extends Maintenance {
 		$this->output( "$numRebuilt languages rebuilt out of $total\n" );
 		if ( $numRebuilt == 0 ) {
 			$this->output( "Use --force to rebuild the caches which are still fresh.\n" );
+		}
+	}
+
+	/**
+	 * Rebuild language cache
+	 * @todo Document
+	 */
+	private function doRebuild( $codes, &$numRebuilt, $lc, $force ) {
+		foreach ( $codes as $code ) {
+			if ( $force || $lc->isExpired( $code ) ) {
+				$this->output( "Rebuilding $code...\n" );
+				$lc->recache( $code );
+				$numRebuilt++;
+			}
 		}
 	}
 }
