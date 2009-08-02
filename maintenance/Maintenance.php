@@ -295,7 +295,7 @@ abstract class Maintenance {
 
 		# Make sure we can handle script parameters
 		if( !ini_get( 'register_argc_argv' ) ) {
-			$this->error( "Cannot get command line arguments, register_argc_argv is set to false", true );
+			$this->error( "Cannot get command line arguments, register_argc_argv is set to false\n", true );
 		}
 
 		if( version_compare( phpversion(), '5.2.4' ) >= 0 ) {
@@ -453,7 +453,7 @@ abstract class Maintenance {
 
 		# Also make sure we've got enough arguments
 		if ( count( $this->mArgs ) < count( $this->mArgList ) ) {
-			$this->error( "Not enough arguments passed", true );
+			$this->error( "Not enough arguments passed\n", true );
 		}
 	}
 	
