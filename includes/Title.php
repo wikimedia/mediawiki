@@ -1282,11 +1282,14 @@ class Title {
 		# XXX: this might be better using restrictions
 		# XXX: Find a way to work around the php bug that prevents using $this->userCanEditCssSubpage() 
 		#      and $this->userCanEditJsSubpage() from working
-		if( $this->isCssSubpage() && !$user->isAllowed('editusercss' ) && $action != 'patrol'
+		# XXX: right 'editusercssjs' is deprecated, for backward compatibility only
+		if( $this->isCssSubpage() && ( !$user->isAllowed('editusercssjs') || !$user->isAllowed('editusercss') )
+			&& $action != 'patrol'
 			&& !preg_match('/^'.preg_quote($user->getName(), '/').'\//', $this->mTextform) )
 		{
 			$errors[] = array('customcssjsprotected');
-		} else if( $this->isJsSubpage() && !$user->isAllowed('edituserjs' ) && $action != 'patrol'
+		} else if( $this->isJsSubpage() && ( !$user->isAllowed('editusercssjs') || !$user->isAllowed('edituserjs') )
+			&& $action != 'patrol'
 			&& !preg_match('/^'.preg_quote($user->getName(), '/').'\//', $this->mTextform) )
 		{
 			$errors[] = array('customcssjsprotected');
@@ -1725,7 +1728,8 @@ class Title {
 	 */
 	public function userCanEditCssSubpage() {
 		global $wgUser;
-		return ( $wgUser->isAllowed('editusercss') || preg_match('/^'.preg_quote($wgUser->getName(), '/').'\//', $this->mTextform) );
+		return ( ( $wgUser->isAllowed('editusercssjs') && $wgUser->isAllowed('editusercss') ) 
+			|| preg_match('/^'.preg_quote($wgUser->getName(), '/').'\//', $this->mTextform) );
 	}
 	/**
 	 * Protect js subpages of user pages: can $wgUser edit
@@ -1736,7 +1740,8 @@ class Title {
 	 */
 	public function userCanEditJsSubpage() {
 		global $wgUser;
-		return ( $wgUser->isAllowed('edituserjs') || preg_match('/^'.preg_quote($wgUser->getName(), '/').'\//', $this->mTextform) );
+		return ( ( $wgUser->isAllowed('editusercssjs') && $wgUser->isAllowed('edituserjs') )
+		       	|| preg_match('/^'.preg_quote($wgUser->getName(), '/').'\//', $this->mTextform) );
 	}
 
 	/**
