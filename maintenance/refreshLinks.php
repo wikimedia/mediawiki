@@ -1,56 +1,262 @@
 <?php
 /**
- * @file
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License along
+ * with this program; if not, write to the Free Software Foundation, Inc.,
+ * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
+ * http://www.gnu.org/copyleft/gpl.html
+ *
  * @ingroup Maintenance
  */
 
-/** */
-$optionsWithArgs = array('batch-size', 'm', 'e' );
+require_once( "Maintenance.php" );
 
-require_once( "commandLine.inc" );
-require_once( "refreshLinks.inc" );
-
-if( isset( $options['help'] ) ) {
-	echo <<<TEXT
-Usage:
-    php refreshLinks.php --help
-    php refreshLinks.php [<start>] [-e <end>] [-m <maxlag>] [--dfn-only]
-                         [--batch-size <size>] [--new-only] [--redirects-only]
-    php refreshLinks.php [<start>] [-e <end>] [-m <maxlag>] --old-redirects-only
-
-    --help                : This help message
-    --dfn-only            : Delete links from nonexistent articles only
-    --batch-size <number> : The delete batch size when removing links from
-                            nonexistent articles (defaults to 100)
-    --new-only            : Only affect articles with just a single edit
-    --redirects-only      : Only fix redirects, not all links
-    --old-redirects-only  : Only fix redirects with no redirect table entry
-    -m <number>           : Maximum replication lag
-    <start>               : First page id to refresh
-    -e <number>           : Last page id to refresh
-
-TEXT;
-	exit(0);
-}
-
-error_reporting( E_ALL & (~E_NOTICE) );
-
-if ( !$options['dfn-only'] ) {
-	if ( isset( $args[0] ) ) {
-		$start = (int)$args[0];
-	} else {
-		$start = 1;
+class RefreshLinks extends Maintenance {
+	public function __construct() {
+		parent::__construct();
+		$this->mDescription = "Refresh link tables";
+		$this->addOption( 'dfn-only', 'Delete links from nonexistent articles only' );
+		$this->addOption( 'new-only', 'Only affect articles with just a single edit' );
+		$this->addOption( 'redirects-only', 'Only fix redirects, not all links' );
+		$this->addOption( 'old-redirects-only', 'Only fix redirects with no redirect table entry' );
+		$this->addOption( 'm', 'Maximum replication lag', false, true );
+		$this->addOption( 'e', 'Last page id to refresh', false, true );
+		$this->addArgs( array( 'start' => true ) );
+		$this->setBatchSize( 100 );
 	}
 
-	refreshLinks( $start, $options['new-only'], $options['m'], $options['e'], $options['redirects-only'], $options['old-redirects-only'] );
+	public function execute() {
+		if( !$this->hasOption( 'dfn-only' ) ) {
+			$start = $this->getArg( 0, 1 );
+			$new = $this->getOption( 'new-only', false );
+			$max = $this->getOption( 'm', false );
+			$end = $this->getOption( 'e', 0 );
+			$redir = $this->getOption( 'redirects-only', false );
+			$oldRedir = $this->getOption( 'old-redirects-only', false );
+			$this->doRefreshLinks( $start, $new, $max, $end, $redir, $oldRedir );
+		}
+		$this->deleteLinksFromNonexistent( $max, $this->mBatchSize );
+	}
+
+	/**
+	 * Do the actual link refreshing.
+	 * @param $start int Page_id to start from
+	 * @param $newOnly bool Only do pages with 1 edit
+	 * @param $maxLag int Max DB replication lag
+	 * @param $end int Page_id to stop at
+	 * @param $redirectsOnly bool Only fix redirects
+	 * @param $oldRedirectsOnly bool Only fix redirects without redirect entries
+	 */
+	private function doRefreshLinks( $start, $newOnly = false, $maxLag = false, 
+						$end = 0, $redirectsOnly = false, $oldRedirectsOnly = false ) {
+		global $wgUser, $wgParser, $wgUseTidy;
+
+		$reportingInterval = 100;
+		$dbr = wfGetDB( DB_SLAVE );
+		$start = intval( $start );
+
+		# Don't generate TeX PNGs (lack of a sensible current directory causes errors anyway)
+		$wgUser->setOption('math', MW_MATH_SOURCE);
+
+		# Don't generate extension images (e.g. Timeline)
+		if( method_exists( $wgParser, "clearTagHooks" ) ) {
+			$wgParser->clearTagHooks();
+		}
+
+		# Don't use HTML tidy
+		$wgUseTidy = false;
+
+		$what = $redirectsOnly ? "redirects" : "links";
+
+		if( $oldRedirectsOnly ) {
+			# This entire code path is cut-and-pasted from below.  Hurrah.
+			$res = $dbr->query(
+				"SELECT page_id ".
+				"FROM page ".
+				"LEFT JOIN redirect ON page_id=rd_from ".
+				"WHERE page_is_redirect=1 AND rd_from IS NULL AND ".
+				($end == 0 ? "page_id >= $start"
+						   : "page_id BETWEEN $start AND $end"),
+				__METHOD__
+			);
+			$num = $dbr->numRows( $res );
+			$this->output( "Refreshing $num old redirects from $start...\n" );
+
+			while( $row = $dbr->fetchObject( $res ) ) {
+				if ( !( ++$i % $reportingInterval ) ) {
+					$this->output( "$i\n" );
+					wfWaitForSlaves( $maxLag );
+				}
+				$this->fixRedirect( $row->page_id );
+			}
+		} elseif( $newOnly ) {
+			$this->output( "Refreshing $what from " );
+			$res = $dbr->select( 'page',
+				array( 'page_id' ),
+				array(
+					'page_is_new' => 1,
+					"page_id >= $start" ),
+				__METHOD__
+			);
+			$num = $dbr->numRows( $res );
+			$this->output( "$num new articles...\n" );
+	
+			$i = 0;
+			while ( $row = $dbr->fetchObject( $res ) ) {
+				if ( !( ++$i % $reportingInterval ) ) {
+					$this->output( "$i\n" );
+					wfWaitForSlaves( $maxLag );
+				}
+				if($redirectsOnly)
+					$this->fixRedirect( $row->page_id );
+				else
+					$this->fixLinksFromArticle( $row->page_id );
+			}
+		} else {
+			$this->output( "Refreshing $what table.\n" );
+			if ( !$end ) {
+				$end = $dbr->selectField( 'page', 'max(page_id)', false );
+			}
+			$this->output( "Starting from page_id $start of $end.\n" );
+	
+			for ($id = $start; $id <= $end; $id++) {
+	
+				if ( !($id % $reportingInterval) ) {
+					$this->output( "$id\n" );
+					wfWaitForSlaves( $maxLag );
+				}
+				if($redirectsOnly)
+					$this->fixRedirect( $id );
+				else
+					$this->fixLinksFromArticle( $id );
+			}
+		}
+	}
+
+	/**
+	 * Update the redirect entry for a given page
+	 * @param $id int The page_id of the redirect
+	 */
+	private function fixRedirect( $id ){
+		global $wgTitle, $wgArticle;
+	
+		$wgTitle = Title::newFromID( $id );
+		$dbw = wfGetDB( DB_MASTER );
+	
+		if ( is_null( $wgTitle ) ) {
+			return;
+		}
+		$wgArticle = new Article($wgTitle);
+	
+		$rt = $wgArticle->followRedirect();
+	
+		if($rt == false || !is_object($rt))
+			return;
+	
+		$wgArticle->updateRedirectOn($dbw,$rt);
+	}
+
+	/**
+	 * Run LinksUpdate for all links on a given page_id
+	 * @param $id int The page_id
+	 */
+	private function fixLinksFromArticle( $id ) {
+		global $wgTitle, $wgParser;
+
+		$wgTitle = Title::newFromID( $id );
+		$dbw = wfGetDB( DB_MASTER );
+
+		$linkCache =& LinkCache::singleton();
+		$linkCache->clear();
+
+		if ( is_null( $wgTitle ) ) {
+			return;
+		}
+		$dbw->begin();
+
+		$revision = Revision::newFromTitle( $wgTitle );
+		if ( !$revision ) {
+			return;
+		}
+
+		$options = new ParserOptions;
+		$parserOutput = $wgParser->parse( $revision->getText(), $wgTitle, $options, true, true, $revision->getId() );
+		$update = new LinksUpdate( $wgTitle, $parserOutput, false );
+		$update->doUpdate();
+		$dbw->immediateCommit();
+	}
+
+	/*
+	 * Removes non-existing links from pages from pagelinks, imagelinks,
+	 * categorylinks, templatelinks and externallinks tables.
+	 *
+	 * @param $maxLag
+	 * @param $batchSize The size of deletion batches
+	 *
+	 * @author Merlijn van Deen <valhallasw@arctus.nl>
+	 */
+	private function deleteLinksFromNonexistent( $maxLag = 0, $batchSize = 100 ) {
+		wfWaitForSlaves( $maxLag );
+
+		$dbw = wfGetDB( DB_MASTER );
+
+		$lb = wfGetLBFactory()->newMainLB();
+		$dbr = $lb->getConnection( DB_SLAVE );
+		$dbr->bufferResults( false );
+
+		$linksTables = array( // table name => page_id field
+			'pagelinks' => 'pl_from',
+			'imagelinks' => 'il_from',
+			'categorylinks' => 'cl_from',
+			'templatelinks' => 'tl_from',
+			'externallinks' => 'el_from',
+		);
+
+		foreach ( $linksTables as $table => $field ) {
+			$this->output( "Retrieving illegal entries from $table... " );
+
+			// SELECT DISTINCT( $field ) FROM $table LEFT JOIN page ON $field=page_id WHERE page_id IS NULL;
+			$results = $dbr->select( array( $table, 'page' ),
+						  $field,
+						  array('page_id' => null ),
+						  __METHOD__,
+						  'DISTINCT',
+						  array( 'page' => array( 'LEFT JOIN', "$field=page_id"))
+			);
+
+			$counter = 0;
+			$list = array();
+			$this->output( "0.." );
+
+			foreach( $results as $row ) {
+				$counter++;
+				$list[] = $row->$field;
+				if ( ( $counter % $batchSize ) == 0 ) {
+					wfWaitForSlaves(5);
+					$dbw->delete( $table, array( $field => $list ), __METHOD__ );
+
+					$this->output( $counter . ".." );
+					$list = array();
+				}
+			}
+			$this->output( $counter );
+			if (count($list) > 0) {
+				$dbw->delete( $table, array( $field => $list ), __METHOD__ );
+			}
+			$this->output( "\n" );
+		}
+		$lb->closeAll();
+	}
 }
 
-if ( !isset( $options['batch-size'] ) ) {
-  $options['batch-size'] = 100;
-}
-
-deleteLinksFromNonexistent($options['m'], $options['batch-size']);
-
-if ( $options['globals'] ) {
-	print_r( $GLOBALS );
-}
+$maintClass = 'RefreshLinks';
+require_once( DO_MAINTENANCE );

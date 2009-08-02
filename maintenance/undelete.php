@@ -6,34 +6,35 @@
  * @ingroup Maintenance
  */
 
-$usage = <<<EOT
-Undelete a page
-Usage: php undelete.php [-u <user>] [-r <reason>] <pagename>
+require_once( "Maintenance.php" );
 
-EOT;
+class Undelete extends Maintenance {
+	public function __construct() {
+		parent::__construct();
+		$this->mDescription = "Undelete a page";
+		$this->addOption( 'u', 'The user to perform the undeletion', false, true );
+		$this->addOption( 'r', 'The reason to undelete', false, true );
+		$this->addArgs( array( 'pagename' ) );
+	}
 
-$optionsWithArgs = array( 'u', 'r' );
-require_once( 'commandLine.inc' );
+	public function execute() {
+		global $wgUser;
 
-$user = 'Command line script';
-$reason = '';
+		$user = $this->getOption( 'u', 'Command line script' );
+		$reason = $this->getOption( 'r', '' );
+		$pageName = $this->getArg();
 
-if ( isset( $options['u'] ) ) {
-	$user = $options['u'];
+		$title = Title::newFromText( $pageName );
+		if ( !$title ) {
+			$this->error( "Invalid title", true );
+		}
+		$wgUser = User::newFromName( $user );
+		$archive = new PageArchive( $title );
+		$this->output( "Undeleting " . $title->getPrefixedDBkey() . '...' );
+		$archive->undelete( array(), $reason );
+		$this->output( "done\n" );
+	}
 }
-if ( isset( $options['r'] ) ) {
-	$reason = $options['r'];
-}
-$pageName = @$args[0];
-$title = Title::newFromText( $pageName );
-if ( !$title ) {
-	echo $usage;
-	exit( 1 );
-}
-$wgUser = User::newFromName( $user );
-$archive = new PageArchive( $title );
-echo "Undeleting " . $title->getPrefixedDBkey() . '...';
-$archive->undelete( array(), $reason );
-echo "done\n";
 
-
+$maintClass = "Undelete";
+require_once( DO_MAINTENANCE );

@@ -26,38 +26,48 @@
  * 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  * http://www.gnu.org/copyleft/gpl.html
  *
- * @file
  * @ingroup Mainatenance
  */
 
-require_once 'commandLine.inc';
+require_once( "Maintenance.php" );
 
-$dbr = wfGetDB( DB_SLAVE );
-$result = $dbr->select( array( 'pagelinks', 'page' ),
-	array(
-		'page_id',
-		'page_namespace',
-		'page_title',
-		'pl_namespace',
-		'pl_title' ),
-	array( 'page_id=pl_from' ),
-	'dumpLinks',
-	array( 'ORDER BY' => 'page_id' ) );
-
-$lastPage = null;
-while( $row = $dbr->fetchObject( $result ) ) {
-	if( $lastPage != $row->page_id ) {
-		if( isset( $lastPage ) ) {
-			print "\n";
-		}
-		$page = Title::makeTitle( $row->page_namespace, $row->page_title );
-		print $page->getPrefixedUrl();
-		$lastPage = $row->page_id;
+class DumpLinks extends Maintenance {
+	public function __construct() {
+		parent::__construct();
+		$this->mDescription = "Quick demo hack to generate a plaintext link dump";
 	}
-	$link = Title::makeTitle( $row->pl_namespace, $row->pl_title );
-	print " " . $link->getPrefixedUrl();
-}
-if( isset( $lastPage ) )
-	print "\n";
 
+	public function execute() {
+		$dbr = wfGetDB( DB_SLAVE );
+		$result = $dbr->select( array( 'pagelinks', 'page' ),
+			array(
+				'page_id',
+				'page_namespace',
+				'page_title',
+				'pl_namespace',
+				'pl_title' ),
+			array( 'page_id=pl_from' ),
+			__METHOD__,
+			array( 'ORDER BY' => 'page_id' ) );
+	
+		$lastPage = null;
+		while( $row = $dbr->fetchObject( $result ) ) {
+			if( $lastPage != $row->page_id ) {
+				if( isset( $lastPage ) ) {
+					$this->output( "\n" );
+				}
+				$page = Title::makeTitle( $row->page_namespace, $row->page_title );
+				$this->output( $page->getPrefixedUrl() );
+				$lastPage = $row->page_id;
+			}
+			$link = Title::makeTitle( $row->pl_namespace, $row->pl_title );
+			$this-output( " " . $link->getPrefixedUrl() );
+		}
+		if( isset( $lastPage ) )
+			$this->output( "\n" );
+	}
+}
+
+$maintClass = "DumpLinks";
+require_once( DO_MAINTENANCE );
 

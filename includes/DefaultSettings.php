@@ -2266,6 +2266,13 @@ if( !isset( $wgCommandLineMode ) ) {
 /** For colorized maintenance script output, is your terminal background dark ? */
 $wgCommandLineDarkBg = false;
 
+/**
+ * Array for extensions to register their maintenance scripts with the
+ * system. The key is the name of the class and the value is the full
+ * path to the file
+ */
+$wgMaintenanceScripts = array();
+
 #
 # Recent changes settings
 #
