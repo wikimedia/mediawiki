@@ -49,7 +49,7 @@ class RenameDbPrefix extends Maintenance {
 		}
 	
 		if( $old === false || $new === false ) {
-			$this->error( "Invalid prefix!\n", true );
+			$this->error( "Invalid prefix!", true );
 		}
 		if( $old === $new ) {
 			$this->output( "Same prefix. Nothing to rename!\n", true );

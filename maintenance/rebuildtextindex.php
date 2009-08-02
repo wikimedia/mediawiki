@@ -42,7 +42,7 @@ class RebuildTextIndex extends Maintenance {
 		// Only do this for MySQL
 		$database = wfGetDB( DB_MASTER );
 		if( !$database instanceof DatabaseMysql ) {
-			$this->error( "This script is only for MySQL.\n", true );
+			$this->error( "This script is only for MySQL.", true );
 		}
 
 		$wgTitle = Title::newFromText( "Rebuild text index script" );

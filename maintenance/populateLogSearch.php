@@ -35,7 +35,7 @@ class PopulateLogSearch extends Maintenance {
 	public function execute() {
 		$db = wfGetDB( DB_MASTER );
 		if ( !$db->tableExists( 'log_search' ) ) {
-			$this->error( "log_search does not exist\n", true );
+			$this->error( "log_search does not exist", true );
 		}
 		$start = $db->selectField( 'logging', 'MIN(log_id)', false, __FUNCTION__ );
 		if( !$start ) {

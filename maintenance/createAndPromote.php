@@ -41,9 +41,9 @@ class CreateAndPromote extends Maintenance {
 		
 		$user = User::newFromName( $username );
 		if( !is_object( $user ) ) {
-			$this->error( "invalid username.\n", true );
+			$this->error( "invalid username.", true );
 		} elseif( 0 != $user->idForName() ) {
-			$this->error( "account exists.\n", true );
+			$this->error( "account exists.", true );
 		}
 
 		# Try to set the password

@@ -218,7 +218,7 @@ abstract class Maintenance {
 	 */
 	protected function error( $err, $die = false ) {
 		$f = fopen( 'php://stderr', 'w' ); 
-		fwrite( $f, $err );
+		fwrite( $f, $err . "\n" );
 		fclose( $f );
 		if( $die ) die();
 	}
@@ -278,7 +278,7 @@ abstract class Maintenance {
 				require_once( $classFile );
 			}
 			if( !class_exists( $maintClass ) ) {
-				$this->error( "Cannot spawn child: $maintClass\n" );
+				$this->error( "Cannot spawn child: $maintClass" );
 			}
 		}
 		
@@ -295,12 +295,12 @@ abstract class Maintenance {
 
 		# Abort if called from a web server
 		if ( isset( $_SERVER ) && array_key_exists( 'REQUEST_METHOD', $_SERVER ) ) {
-			$this->error( "This script must be run from the command line\n", true );
+			$this->error( "This script must be run from the command line", true );
 		}
 
 		# Make sure we can handle script parameters
 		if( !ini_get( 'register_argc_argv' ) ) {
-			$this->error( "Cannot get command line arguments, register_argc_argv is set to false\n", true );
+			$this->error( "Cannot get command line arguments, register_argc_argv is set to false", true );
 		}
 
 		if( version_compare( phpversion(), '5.2.4' ) >= 0 ) {
@@ -407,7 +407,7 @@ abstract class Maintenance {
 				if ( isset( $this->mParams[$option] ) && $this->mParams[$option]['withArg'] ) {
 					$param = next( $argv );
 					if ( $param === false ) {
-						$this->error( "$arg needs a value after it\n", true );
+						$this->error( "$arg needs a value after it", true );
 					}
 					$options[$option] = $param;
 				} else {
@@ -427,7 +427,7 @@ abstract class Maintenance {
 					if ( $this->mParams[$option]['withArg'] ) {
 						$param = next( $argv );
 						if ( $param === false ) {
-							$this->error( "$arg needs a value after it\n", true );
+							$this->error( "$arg needs a value after it", true );
 						}
 						$options[$option] = $param;
 					} else {
@@ -452,13 +452,13 @@ abstract class Maintenance {
 		# Check to make sure we've got all the required ones
 		foreach( $this->mParams as $opt => $info ) {
 			if( $info['require'] && !$this->hasOption($opt) ) {
-				$this->error( "Param $opt required.\n", true );
+				$this->error( "Param $opt required.", true );
 			}
 		}
 
 		# Also make sure we've got enough arguments
 		if ( count( $this->mArgs ) < count( $this->mArgList ) ) {
-			$this->error( "Not enough arguments passed\n", true );
+			$this->error( "Not enough arguments passed", true );
 		}
 	}
 	
@@ -633,7 +633,7 @@ abstract class Maintenance {
 	
 		if ( ! is_readable( $settingsFile ) ) {
 			$this->error( "A copy of your installation's LocalSettings.php\n" .
-			  			"must exist and be readable in the source directory.\n", true );
+			  			"must exist and be readable in the source directory.", true );
 		}
 		$wgCommandLineMode = true;
 		$DP = $IP;

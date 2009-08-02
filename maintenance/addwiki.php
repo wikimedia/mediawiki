@@ -39,7 +39,7 @@ class AddWiki extends Maintenance {
 		$dbName = $this->getArg(2);
 
 		if ( !isset( $wgLanguageNames[$lang] ) ) {
-			$this->error( "Language $lang not found in \$wgLanguageNames\n", true );
+			$this->error( "Language $lang not found in \$wgLanguageNames", true );
 		}
 		$name = $wgLanguageNames[$lang];
 

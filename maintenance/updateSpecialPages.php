@@ -38,7 +38,7 @@ class UpdateSpecialPages extends Maintenance {
 
 		foreach( $wgSpecialPageCacheUpdates as $special => $call ) {
 			if( !is_callable($call) ) {
-				$this->error( "Uncallable function $call!\n" );
+				$this->error( "Uncallable function $call!" );
 				continue;
 			}
 			$t1 = explode( ' ', microtime() );
@@ -113,7 +113,7 @@ class UpdateSpecialPages extends Maintenance {
 				if ( !wfGetLB()->pingAll())  {
 					$this->output( "\n" );
 					do {
-						$this->error( "Connection failed, reconnecting in 10 seconds...\n" );
+						$this->error( "Connection failed, reconnecting in 10 seconds..." );
 						sleep(10);
 					} while ( !wfGetLB()->pingAll() );
 					$this->output( "Reconnected\n\n" );

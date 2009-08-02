@@ -42,7 +42,7 @@ class CleanupSpam extends Maintenance {
 		$spec = $this->getArg();
 		$like = LinkFilter::makeLike( $spec );
 		if ( !$like ) {
-			$this->error( "Not a valid hostname specification: $spec\n", true );
+			$this->error( "Not a valid hostname specification: $spec", true );
 		}
 
 		$dbr = wfGetDB( DB_SLAVE );
@@ -83,7 +83,7 @@ class CleanupSpam extends Maintenance {
 	private function cleanupArticle( $id, $domain ) {
 		$title = Title::newFromID( $id );
 		if ( !$title ) {
-			$this->error( "Internal error: no page for ID $id\n" );
+			$this->error( "Internal error: no page for ID $id" );
 			return;
 		}
 	

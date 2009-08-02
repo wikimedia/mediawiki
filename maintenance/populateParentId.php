@@ -34,7 +34,7 @@ class PopulateParentId extends Maintenance {
 	public function execute() {
 		$db = wfGetDB( DB_MASTER );
 		if ( !$db->tableExists( 'revision' ) ) {
-			$this->error( "revision table does not exist\n", true );
+			$this->error( "revision table does not exist", true );
 		}
 		$this->output( "Populating rev_parent_id column\n" );
 		$start = $db->selectField( 'revision', 'MIN(rev_id)', false, __FUNCTION__ );
