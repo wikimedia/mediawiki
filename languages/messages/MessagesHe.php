@@ -2838,6 +2838,8 @@ $1',
 'svg-long-desc'        => '(קובץ SVG, הגודל המקורי: $1 × $2 פיקסלים, גודל הקובץ: $3)',
 'show-big-image'       => 'תמונה ברזולוציה גבוהה יותר',
 'show-big-image-thumb' => '<small>גודל התצוגה הזו: $1 × $2 פיקסלים</small>',
+'file-info-gif-looped' => 'בלולאה',
+'file-info-gif-frames' => '{{PLURAL:$1|מסגרת|מסגרות}}',
 
 # Special:NewFiles
 'newimages'             => 'גלריית קבצים חדשים',
