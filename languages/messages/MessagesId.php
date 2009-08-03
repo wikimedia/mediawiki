@@ -1447,6 +1447,7 @@ Anda juga dapat memilih untuk memungkinkan orang lain menghubungi Anda melalui h
 'right-protect'               => 'Mengubah tingkat perlindungan dan menyunting halaman yang dilindungi',
 'right-editprotected'         => 'Menyunting halaman yang dilindungi (tanpa perlindungan runtun)',
 'right-editinterface'         => 'Menyunting antarmuka pengguna',
+'right-editusercssjs'         => 'Menyunting arsip CSS dan JS pengguna lain',
 'right-editusercss'           => 'Menyunting arsip CSS pengguna lain',
 'right-edituserjs'            => 'Menyunting arsip JS pengguna lain',
 'right-rollback'              => 'Mengembalikan dengan cepat suntingan-suntingan pengguna terakhir yang menyunting halaman tertentu',
