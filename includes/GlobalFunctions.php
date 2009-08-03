@@ -2835,6 +2835,7 @@ function wfFormatStackFrame($frame) {
 function wfMemcKey( /*... */ ) {
 	$args = func_get_args();
 	$key = wfWikiID() . ':' . implode( ':', $args );
+	$key = str_replace( ' ', '_', $key );
 	return $key;
 }
 
