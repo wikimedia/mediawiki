@@ -7,7 +7,7 @@
 
 $optionsWithArgs = array( 'begin', 'max-slave-lag', 'throttle' );
 
-require_once( "Maintenance.php" );
+require_once( dirname(__FILE__) . '/Maintenance.php' );
 
 
 class PopulateCategory extends Maintenance {

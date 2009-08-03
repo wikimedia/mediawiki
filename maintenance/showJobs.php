@@ -24,7 +24,7 @@
  * @author Ashar Voultoiz
  */
  
-require_once( "Maintenance.php" );
+require_once( dirname(__FILE__) . '/Maintenance.php' );
 
 class ShowJobs extends Maintenance {
 	public function __construct() {

@@ -23,7 +23,7 @@
 
 $optionsWithArgs = array( 'target', 'repository', 'repos' );
 
-require_once( 'commandLine.inc' );
+require_once( dirname(__FILE__) . '/commandLine.inc' );
 
 define('EXTINST_NOPATCH', 0);
 define('EXTINST_WRITEPATCH', 6);

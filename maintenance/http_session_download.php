@@ -13,7 +13,7 @@ $optionsWithArgs = Array('sid', 'usk');
 //act like a "normal user"
 $wgUseNormalUser = true;
 
-require_once( 'commandLine.inc' );
+require_once( dirname(__FILE__) . '/commandLine.inc' );
 
 if(!isset($options['sid']) || !isset($options['usk'])){
 	print<<<EOT

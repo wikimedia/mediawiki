@@ -33,7 +33,7 @@
  * e.g. immobile_namespace for namespaces which can't be moved
  */
 
-require_once( "Maintenance.php" );
+require_once( dirname(__FILE__) . '/Maintenance.php' );
 
 class MoveBatch extends Maintenance {
 	public function __construct() {

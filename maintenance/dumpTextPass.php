@@ -24,7 +24,7 @@
 
 $originalDir = getcwd();
 
-require_once( 'commandLine.inc' );
+require_once( dirname(__FILE__) . '/commandLine.inc' );
 require_once( 'backup.inc' );
 
 /**

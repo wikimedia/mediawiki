@@ -29,7 +29,7 @@
  * @ingroup Mainatenance
  */
 
-require_once( "Maintenance.php" );
+require_once( dirname(__FILE__) . '/Maintenance.php' );
 
 class DumpLinks extends Maintenance {
 	public function __construct() {

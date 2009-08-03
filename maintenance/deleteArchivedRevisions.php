@@ -23,7 +23,7 @@
  * Shamelessly stolen from deleteOldRevisions.php by Rob Church :)
  */
 
-require_once( "Maintenance.php" );
+require_once( dirname(__FILE__) . '/Maintenance.php' );
 
 class DeleteArchivedRevisions extends Maintenance {
 	public function __construct() {

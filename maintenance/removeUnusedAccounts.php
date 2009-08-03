@@ -22,7 +22,7 @@
  * @author Rob Church <robchur@gmail.com>
  */
 
-require_once( "Maintenance.php" );
+require_once( dirname(__FILE__) . '/Maintenance.php' );
 
 class RemoveUnusedAccounts extends Maintenance {
 	public function __construct() {

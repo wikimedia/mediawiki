@@ -24,7 +24,7 @@
 
 $optionsWithArgs = array( 'report' );
 
-require_once( 'commandLine.inc' );
+require_once( dirname(__FILE__) . '/commandLine.inc' );
 
 /**
  * @ingroup Maintenance

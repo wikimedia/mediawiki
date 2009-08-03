@@ -28,7 +28,7 @@
 $options = array( 'quick', 'color', 'quiet', 'help', 'show-output', 'record'. 'run-disabled' );
 $optionsWithArgs = array( 'regex', 'seed', 'setversion' );
 
-require_once( 'commandLine.inc' );
+require_once( dirname(__FILE__) . '/commandLine.inc' );
 require_once( "$IP/maintenance/parserTestsParserHook.php" );
 require_once( "$IP/maintenance/parserTestsStaticParserHook.php" );
 require_once( "$IP/maintenance/parserTestsParserTime.php" );

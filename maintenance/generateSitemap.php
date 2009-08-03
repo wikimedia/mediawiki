@@ -31,7 +31,7 @@ define( 'GS_TALK', -1 );
  * @license http://www.gnu.org/copyleft/gpl.html GNU General Public License 2.0 or later
  */
 
-require_once( "Maintenance.php" );
+require_once( dirname(__FILE__) . '/Maintenance.php' );
 
 class GenerateSitemap extends Maintenance {
 	/**

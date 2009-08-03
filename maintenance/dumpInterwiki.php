@@ -12,7 +12,7 @@
 $oldCwd = getcwd();
 
 $optionsWithArgs = array( "o" );
-require( "commandLine.inc" );
+require_once( dirname(__FILE__) . '/commandLine.inc' );
 require( "dumpInterwiki.inc" );
 chdir( $oldCwd );
 
