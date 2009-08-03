@@ -11,7 +11,7 @@
 
 /** */
 $wgUseMasterForMaintenance = true;
-require( "commandLine.inc" );
+require_once( dirname(__FILE__) . '/commandLine.inc' );
 require( "updaters.inc" );
 
 # Don't try to load stuff from l10n_cache yet

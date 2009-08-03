@@ -378,6 +378,8 @@ this. Was used when mwEmbed was going to be an extension.
 * (bug 18699) Using the nosummary URL option no longer triggers the "You have
   not provided a summary" warning for those who activated it in their
   preferences
+* (bug 18855) commandLine.inc and Maintenance.php are now properly included
+  using the full path
 
 == API changes in 1.16 ==
 

@@ -8,7 +8,7 @@
 $options = array( 'list', 'nowarn', 'quiet', 'usage', 'dry' );
 $optionsWithArgs = array( 'old', 'new' );
 
-require_once( 'commandLine.inc' );
+require_once( dirname(__FILE__) . '/commandLine.inc' );
 
 /**
  * @ingroup Maintenance

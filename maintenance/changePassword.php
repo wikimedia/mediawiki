@@ -23,7 +23,7 @@
  * @ingroup Maintenance
  */
 
-require_once( "Maintenance.php" );
+require_once( dirname(__FILE__) . '/Maintenance.php' );
 
 class ChangePassword extends Maintenance {
 	public function __construct() {

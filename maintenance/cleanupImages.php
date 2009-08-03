@@ -29,7 +29,7 @@
  * @ingroup Maintenance
  */
 
-require_once( 'commandLine.inc' );
+require_once( dirname(__FILE__) . '/commandLine.inc' );
 require_once( 'cleanupTable.inc' );
 
 /**

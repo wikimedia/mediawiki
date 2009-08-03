@@ -33,7 +33,7 @@
  * based on nukePage by Rob Church
  */
 
-require_once( "Maintenance.php" );
+require_once( dirname(__FILE__) . '/Maintenance.php' );
 
 class NukeNS extends Maintenance {
 	public function __construct() {

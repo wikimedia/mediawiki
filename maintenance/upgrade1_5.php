@@ -15,7 +15,7 @@
 
 $options = array( 'step', 'noimages' );
 
-require_once( 'commandLine.inc' );
+require_once( dirname(__FILE__) . '/commandLine.inc' );
 require_once( 'FiveUpgrade.inc' );
 
 $upgrade = new FiveUpgrade();

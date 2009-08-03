@@ -34,7 +34,7 @@
  * @license http://www.gnu.org/copyleft/gpl.html GNU General Public Licence 2.0 or later
  */
 
-require_once( "Maintenance.php" );
+require_once( dirname(__FILE__) . '/Maintenance.php' );
 
 class FindHooks extends Maintenance {
 	public function __construct() {

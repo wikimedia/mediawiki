@@ -32,7 +32,7 @@
 
 $options = array( 'missing', 'dry-run' );
 
-require_once( 'commandLine.inc' );
+require_once( dirname(__FILE__) . '/commandLine.inc' );
 require_once( 'FiveUpgrade.inc' );
 
 class ImageBuilder extends FiveUpgrade {
