@@ -99,6 +99,7 @@ function readconsole( $prompt = '' ) {
 # Read and execute SQL commands from a file
 #
 function dbsource( $fname, $db = false ) {
+	wfDeprecated( __METHOD__ );
 	if ( !$db ) {
 		// Try $wgDatabase, which is used in the install and update scripts
 		global $wgDatabase;
