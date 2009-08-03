@@ -3412,7 +3412,7 @@ $1',
 'show-big-image'       => 'Full resolution',
 'show-big-image-thumb' => '<small>Size of this preview: $1 × $2 pixels</small>',
 'file-info-gif-looped' => 'looped',
-'file-info-gif-frames' => '$1 frames',
+'file-info-gif-frames' => '$1 {{PLURAL:$1|frame|frames}}',
 
 # Special:NewFiles
 'newimages'             => 'Gallery of new files',
