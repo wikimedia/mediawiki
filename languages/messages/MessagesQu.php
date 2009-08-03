@@ -312,6 +312,13 @@ $messages = array(
 'underline-never'   => "Mana hayk'appas",
 'underline-default' => "Wamp'unap kikinmanta chanin",
 
+# Font style option in Special:Preferences
+'editfont-style'     => "Llamk'apuy k'itichapi sanampa rik'chakuynin:",
+'editfont-default'   => "Wamp'unapaq kikinmanta:",
+'editfont-monospace' => "Ch'ulla chhika sanampa",
+'editfont-sansserif' => "Siq'ichannaq sanampa",
+'editfont-serif'     => "Siq'ichayuq sanampa",
+
 # Dates
 'sunday'        => 'Intichaw',
 'monday'        => 'Killachaw',
@@ -837,9 +844,9 @@ Yaykurqaspaqa ''[[Special:ChangePassword|yaykuna rima hukchana]]'' p'anqapi kay 
 '''Allin sunquwan kamarirqaspaykiqa, musuqmanta ruraykachay. Mana atispaykiqa, [[Special:UserLogout|lluqsispa]] musuqmanta yaykuspa ruraykachay.'''",
 'token_suffix_mismatch'            => "'''Llamk'apusqaykimanqa ama nisqam, mink'akuqniyki llamk'apuy willaypi sapaq sananchakunata arwiptinmi. Ama nisqa karqanqa qillqata waqlliymantam amachanapaq.
 Kayqa maykunapi tukukun, mana allin wakichisqa proxy sirwiytam llamk'achiptiyki.'''",
-'editing'                          => "$1-ta llamk'apuspa",
-'editingsection'                   => "$1-ta llamk'apuspa (raki)",
-'editingcomment'                   => "$1-ta llamk'apuspa (musuq raki)",
+'editing'                          => "Llamk'apuspa: $1",
+'editingsection'                   => "Llamk'apuspa: $1 (raki)",
+'editingcomment'                   => "Llamk'apuspa: $1 (musuq raki)",
 'editconflict'                     => 'Ruray taripanakuy: $1',
 'explainconflict'                  => "Ruray taripanakuy: Huk runam kay p'anqata llamk'apurqun, qamtaq manaraq waqaychaptiyki.
 Umapi kaq qillqana k'itipi kunan kachkaq qillqam.
@@ -958,17 +965,23 @@ Musuq chaniyuq p'anqakunata [[Special:Search|wikipi maskaykachay]].",
 'rev-deleted-user'            => '(qullusqa ruraqpa sutin)',
 'rev-deleted-event'           => "(qullusqa hallch'a)",
 'rev-deleted-text-permission' => "P'anqamanta kay llamk'apusqaqa '''qullusqam'''.
-Astawan rikunki [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} qulluy hallch'apichá].",
+Astawanchá rikunkiman [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} qulluy hallch'apichá].",
 'rev-deleted-text-unhide'     => "P'anqamanta kay llamk'apusqaqa '''qullusqam'''.
-Astawan rikunki [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} qulluy hallch'apichá].
+Astawanchá rikunkiman [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} qulluy hallch'apichá].
+Kamachiq kaspayki kunanraqpas munaspaykiqa, [$1 kay wakin kayta qhawayta] atinkiraqmi.",
+'rev-suppressed-text-unhide'  => "P'anqamanta kay llamk'apusqaqa '''ñit'ipasqam'''.
+Astawanchá rikunkiman [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} ñit'ipay hallch'apichá].
 Kamachiq kaspayki kunanraqpas munaspaykiqa, [$1 kay wakin kayta qhawayta] atinkiraqmi.",
 'rev-deleted-text-view'       => "P'anqamanta kay llamk'apusqaqa '''qullusqam'''.
-Kay wikipi kamachiq kaspaykim rikuyta atinkim;
-astawan rikunki [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} qulluy hallch'apichá].",
+Kamachiq kaspaykiqa rikuyta atinkim;
+astawanchá rikunkiman [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} qulluy hallch'apichá].",
+'rev-suppressed-text-view'    => "P'anqamanta kay llamk'apusqaqa '''ñit'ipasqam'''.
+Kamachiq kaspayki kunanraqpas munaspaykiqa, qhawayta atinkiraqmi.
+Astawanchá rikunkiman [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} ñit'ipay hallch'apichá].",
 'rev-deleted-no-diff'         => "Kay hukchasqataqa manam rikuyta atinkichu, huk musuqchasqa '''qullusqa''' kaptinmi.
-Imaymanacha yuyaykunataqa [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} qulluy hallch'apim] rikunkiman.",
+Astawanchá rikunkiman [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} qulluy hallch'apichá].",
 'rev-deleted-unhide-diff'     => "Kay wakin kaypaqqa huk musuqchasqa '''qullusqam'''.
-Imaymanacha yuyaykunataqa [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} qulluy hallch'apim] rikunkiman.
+Astawanchá rikunkiman [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} qulluy hallch'apichá].
 Kamachiq kaspayki kunanraqpas munaspaykiqa, [$1 kay wakin kayta qhawayta] atinkiraqmi.",
 'rev-delundel'                => 'rikuchiy/pakay',
 'revisiondelete'              => "Mawk'a llamk'apusqakunata qulluy/paqarichiy",
@@ -1825,7 +1838,7 @@ Ama hina kaspa, [$2 willañiqi ch'uyanchana p'anqata] qhaway astawan willachikun
 'specialloguserlabel'  => 'Ruraq:',
 'speciallogtitlelabel' => 'Sutichay:',
 'log'                  => "Hallch'asqakuna",
-'all-logs-page'        => "Tukuy hallch'akuna",
+'all-logs-page'        => "Tukuy sapsipaq hallch'akuna",
 'alllogstext'          => "{{SITENAME}}pa tukuy hallch'ankunamanta ch'allisqa rikuy.
 Rikuyniykitaqa k'ullkuchaytam atinki hallch'a layata, ruraqpa sutinta (uchuy icha hatun sanampakunata musyaq) icha chayachisqa p'anqata (uchuy icha hatun sanampakunata musyaq) akllaspa.",
 'logempty'             => "Manam hallch'asqakuna kachkanchu.",

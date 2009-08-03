@@ -523,7 +523,8 @@ $messages = array(
 'nouserspecified'            => 'Теицянь лем эряви.',
 'wrongpassword'              => 'Аволь истя сёрмадык совамо валот. Варчыка одов.',
 'wrongpasswordempty'         => 'Салавань валот кадовсь апак сёрмадо. Сёрмадыка одов.',
-'passwordtooshort'           => 'Совамо валот а маштови эли кувалмозо а саты. Эйсэнзэ эряволь улемс {{PLURAL:$1|1 тешкс|$1 тешкст}}, аволь седе аламо. Совамо валонтень эряви явовомс теицянь валонть эйстэ.',
+'passwordtooshort'           => 'Совамо валот кувалмозо а саты. 
+Эйсэнзэ  {{PLURAL:$1|эряви 1 тешкс| эрявить $1 тешкст}}, аволь седе аламо.',
 'mailmypassword'             => 'Кучт е-сёрмасо од совамо вал',
 'passwordremindertitle'      => '{{SITENAME}} туртов акуватень од совамо вал',
 'passwordremindertext'       => 'Кие-бути (кода неяви тон IP-тешксстэнть $1) вешсь,<br />
@@ -949,6 +950,7 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'right-createaccount' => 'Теемс-шкамс совицянь од таркат',
 'right-minoredit'     => 'Тешкстамс витнематнень-петнематнень а покшкынекс',
 'right-move'          => 'Ютавтомс лопат лияв',
+'right-move-subpages' => 'Печтевтемс лопатнень алкс лопанек',
 'right-movefile'      => 'Печтевтемс файлат',
 'right-upload'        => 'Ёвкстамс файлат',
 'right-reupload'      => 'Одонь сёрмадомга уликс файланть нардамс',
@@ -1073,13 +1075,15 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'upload_source_file' => ' (арси машинасот файла)',
 
 # Special:ListFiles
-'listfiles_search_for' => 'Вешнемс медиа лементь:',
-'imgfile'              => 'файл',
-'listfiles'            => 'Файлат-мезть',
-'listfiles_date'       => 'Чи',
-'listfiles_name'       => 'Лемезэ',
-'listfiles_user'       => 'Теиця',
-'listfiles_size'       => 'Покшолма',
+'listfiles_search_for'  => 'Вешнемс медиа лементь:',
+'imgfile'               => 'файл',
+'listfiles'             => 'Файлат-мезть',
+'listfiles_date'        => 'Чи',
+'listfiles_name'        => 'Лемезэ',
+'listfiles_user'        => 'Теиця',
+'listfiles_size'        => 'Покшолма',
+'listfiles_description' => 'Чарькодевтемгакс',
+'listfiles_count'       => 'Верзият',
 
 # File description page
 'file-anchor-link'          => 'Файла',
@@ -1234,7 +1238,7 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'specialloguserlabel'  => 'Теицясь:',
 'speciallogtitlelabel' => 'Коняксозо:',
 'log'                  => 'Совамо-лисема тевть (регистрациясь)',
-'all-logs-page'        => 'Веси совамотне-кемекстамотьне',
+'all-logs-page'        => 'Весемень туртов весе совамодо-кемекстамодо журналт',
 
 # Special:AllPages
 'allpages'          => 'Весе лопат',
@@ -1285,6 +1289,7 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'listgrouprights-group'           => 'Куро',
 'listgrouprights-rights'          => 'Видечытне',
 'listgrouprights-members'         => '(куронь ломанть)',
+'listgrouprights-addgroup-all'    => 'Поладомс весе куротнень',
 'listgrouprights-removegroup-all' => 'Весе куротнень нардамс',
 
 # E-mail user
@@ -1387,6 +1392,8 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'protect-cantedit'            => 'Тынь алиякставсынк ванстомань уровнянть те лопанть, тынк арасть видечинк сонзэ лиякстоманьте.',
 'protect-othertime'           => 'Лия шкась:',
 'protect-othertime-op'        => 'лия шка',
+'protect-otherreason'         => 'Лия/поладкс тувталось:',
+'protect-otherreason-op'      => 'лия/поладкс тувтал',
 'protect-expiry-options'      => '1 час:1 hour,1 чи:1 day,1 тарго:1 week,2 таргот:2 weeks,1 ков:1 month,3 ковт:3 months,6 ковт:6 months,1 ие:1 year,певтеме:infinite',
 'restriction-type'            => 'Нолдамо:',
 'restriction-level'           => 'Нолдавксонь покшизэ:',
@@ -1495,6 +1502,7 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'blocklogpage'               => 'Пекстамонь журналось',
 'blocklogentry'              => 'пектстамонзо [[$1]]  ютазь шканть марто $2 $3',
 'unblocklogentry'            => 'сайместэ нолдазь $1',
+'block-log-flags-anononly'   => 'ансяк лемтеме теицятненень',
 'block-log-flags-nocreate'   => 'од теицянь тарканть шкамось-теемась лоткавтозь',
 'block-log-flags-noemail'    => 'е-сёрма озавтозь саймес',
 'block-log-flags-hiddenname' => 'лисиенть-совиенть лемезэ кекшезь',
@@ -1583,6 +1591,7 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'import-interwiki-templates' => 'Совавтомс весе лопа парцунтнэнь',
 'import-interwiki-submit'    => 'Таргамс',
 'import-interwiki-namespace' => 'Норовазь лемпотмось:',
+'import-upload-filename'     => 'Файла лемесь:',
 'import-comment'             => 'Арсемат-мельть:',
 'importstart'                => 'Лопатне совавтовить...',
 'import-revision-count'      => '$1 {{PLURAL:$1|лиякстомтома|лиякстомтомат}}',
@@ -1658,12 +1667,13 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 Сонзэ вельде маштови поладомс полавтомадо тувтал.',
 
 # Attribution
-'anonymous'     => '{{SITENAME}} сайтэнть лемтеме {{PLURAL:$1|теицязо|теицянзо}}',
-'siteuser'      => '{{SITENAME}}-нь теиця $1',
-'othercontribs' => '$1-нь важодеманзо лангс нежедезь.',
-'others'        => 'лият',
-'siteusers'     => '{{SITENAME}} сайтэнть {{PLURAL:$2|теицязо|теицянзо}} $1',
-'creditspage'   => 'Лопасонть кинь путовксонзо',
+'anonymous'        => '{{SITENAME}} сайтэнть лемтеме {{PLURAL:$1|теицязо|теицянзо}}',
+'siteuser'         => '{{SITENAME}}-нь теиця $1',
+'lastmodifiedatby' => 'Меельседе те лопанть полавтызе $3 $2, $1.',
+'othercontribs'    => '$1-нь важодеманзо лангс нежедезь.',
+'others'           => 'лият',
+'siteusers'        => '{{SITENAME}} сайтэнть {{PLURAL:$2|теицязо|теицянзо}} $1',
+'creditspage'      => 'Лопасонть кинь путовксонзо',
 
 # Spam protection
 'spamprotectiontitle' => 'Шукшто ванстома филтра',
@@ -1750,6 +1760,7 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'exif-xresolution'         => 'Горизонтальсэ сеедезэ',
 'exif-yresolution'         => 'Вертикальсэ сеедезэ',
 'exif-transferfunction'    => 'Печтевтемань функция',
+'exif-imagedescription'    => 'Артовксонть коняксозо',
 'exif-software'            => 'Тевс нолдазь программатне',
 'exif-artist'              => 'Теицязо',
 'exif-copyright'           => 'Копия теемань видечинь кирдицясь',
@@ -1764,6 +1775,8 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'exif-filesource'          => 'Файланть саемазо',
 'exif-cfapattern'          => 'CFA парцун',
 'exif-contrast'            => 'Контрастось',
+'exif-saturation'          => 'Тустолмазо',
+'exif-sharpness'           => 'Пштиксчизэ',
 'exif-gpslatituderef'      => 'Йакшамо йононь эли лембе мастор йононь келезэ',
 'exif-gpslatitude'         => 'Келезэ',
 'exif-gpslongituderef'     => 'Чилисемань эли чивалгомань кувалмо',
@@ -1784,6 +1797,7 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 
 'exif-componentsconfiguration-0' => 'арась',
 
+'exif-exposureprogram-0' => 'Апак чарькодевте',
 'exif-exposureprogram-1' => 'Кедьсёрмадовкс',
 'exif-exposureprogram-2' => 'Эрьва чинь программа',
 
@@ -1798,6 +1812,7 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 'exif-lightsource-0'   => 'А содави',
 'exif-lightsource-1'   => 'Чи валдо',
 'exif-lightsource-2'   => 'Флуоресцент',
+'exif-lightsource-4'   => 'Кивчкадема',
 'exif-lightsource-9'   => 'Маней',
 'exif-lightsource-10'  => 'Пелензазь',
 'exif-lightsource-11'  => 'Сулей',

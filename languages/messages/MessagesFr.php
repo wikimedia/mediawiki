@@ -1051,17 +1051,22 @@ Essayez de [[Special:Search|rechercher sur le wiki]] pour trouver des pages en r
 'rev-deleted-comment'         => '(commentaire supprimé)',
 'rev-deleted-user'            => '(nom d’utilisateur supprimé)',
 'rev-deleted-event'           => '(entrée supprimée)',
-'rev-deleted-text-permission' => "Cette version de la page a été '''supprimée'''.
-Il peut y avoir des détails dans l’[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} historique des suppressions].",
-'rev-deleted-text-unhide'     => "Cette version de la page a été '''supprimée'''.
+'rev-deleted-text-permission' => "Cette version de la page a été '''effacée'''.
+Il peut y avoir des détails dans le [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} journal des effacements].",
+'rev-deleted-text-unhide'     => "Cette version de la page a été '''effacée'''.
+Il peut y avoir plus de détails dans [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} le journal des effacements].
+Comme administrateur, vous pouvez toujours [$1 voir cette version] si vous le voulez.",
+'rev-suppressed-text-unhide'  => "Cette version de la page a été '''supprimée'''.
 Il peut y avoir plus de détails dans [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} le journal des suppression].
 Comme administrateur, vous pouvez toujours [$1 voir cette version] si vous le voulez.",
-'rev-deleted-text-view'       => "Cette version de la page a été '''supprimée'''.
+'rev-deleted-text-view'       => "Cette version de la page a été '''effacée'''.
+En tant qu’administrateur, vous pouvez la visualiser ; il peut y avoir des détails dans le [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} journal des effacements].",
+'rev-suppressed-text-view'    => "Cette version de la page a été '''supprimée'''.
 En tant qu’administrateur, vous pouvez la visualiser ; il peut y avoir des détails dans le [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} journal des suppressions].",
-'rev-deleted-no-diff'         => "Vous ne pouvez par voir ce diff parce qu’une des versions a été '''supprimée'''.
-Il peut y avoir plus de détails dans le [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} jounral des suppressions].",
-'rev-deleted-unhide-diff'     => "Une des révisions de cette différence a été '''supprimée'''.
-Il peut y avoir plus de détails dans le [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} journal des suppressions].
+'rev-deleted-no-diff'         => "Vous ne pouvez par voir ce diff parce qu’une des versions a été '''effacée'''.
+Il peut y avoir plus de détails dans le [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jounral des effacements].",
+'rev-deleted-unhide-diff'     => "Une des révisions de cette différence a été '''effacée'''.
+Il peut y avoir plus de détails dans le [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} journal des effacements].
 En tant qu’administrateur vous pouvez toujours [$1 voir cette différence] si vous le voulez.",
 'rev-delundel'                => 'afficher/masquer',
 'revisiondelete'              => 'Supprimer ou restaurer des événements',

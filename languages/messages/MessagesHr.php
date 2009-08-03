@@ -1633,7 +1633,7 @@ Slijedi evidencija brisanja ove datoteke s obrazloženjem prethodnog brisanja:",
 Provjerite valjanost i dostupnost URL-a i pokušajte opet. 
 Ukoliko se problem ponovi, javite to [[Special:ListUsers/sysop|administratoru]].',
 'upload-unknown-size'     => 'Nepoznata veličina',
-'upload-http-error'       => 'HTTP pogreška: $ 1',
+'upload-http-error'       => 'HTTP pogreška: $1',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'URL nije dostupan',
@@ -1868,7 +1868,7 @@ wikija povezane na sliku neposrednim URLom, a nisu ovdje navedene unatoč aktivn
 'specialloguserlabel'  => 'Suradnik:',
 'speciallogtitlelabel' => 'Naslov:',
 'log'                  => 'Evidencije',
-'all-logs-page'        => 'Sve evidencije',
+'all-logs-page'        => 'Sve javne evidencije',
 'alllogstext'          => 'Skupni prikaz svih dostupnih evidencija za {{SITENAME}}.
 Možete suziti prikaz odabirući tip evidencije, suradničko ime ili stranicu u upitu.',
 'logempty'             => 'Nema pronađenih stavki.',

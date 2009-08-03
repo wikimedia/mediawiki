@@ -29,6 +29,7 @@
  * @author Suisui
  * @author Whym
  * @author לערי ריינהארט
+ * @author 青子守歌
  */
 
 $datePreferences = array(
@@ -1469,6 +1470,10 @@ $1",
 'recentchanges-legend'              => '最近の更新のオプション',
 'recentchangestext'                 => '最近の更新はこのページから確認できます。',
 'recentchanges-feed-description'    => '最近の更新はこのフィードで確認できます。',
+'recentchanges-label-legend'        => '凡例: $1 - 新しいページ, $2 - 細部の編集, $3 - ボットによる編集, $4 - パトロールされていない編集',
+'recentchanges-label-minor'         => 'これは細部の編集です',
+'recentchanges-label-bot'           => 'この編集はボットによって行われました',
+'recentchanges-label-unpatrolled'   => 'この編集はまだパトロールされていません',
 'rcnote'                            => "以下は $4 $5 までの{{PLURAL:$2|1日|'''$2'''日間}}になされた'''$1'''件の変更です。",
 'rcnotefrom'                        => "以下は '''$2''' 以降になされた変更です (最大 '''$1'''件)。",
 'rclistfrom'                        => '$1からの更新を表示する',
@@ -1814,8 +1819,8 @@ PICT # その他
 'notargettext'            => '対象となるページまたは利用者が指定されていません。',
 'nopagetitle'             => 'そのようなページはありません',
 'nopagetext'              => '指定したページは存在しません。',
-'pager-newer-n'           => '後の$1{{PLURAL:$1|件}}',
-'pager-older-n'           => '先の$1{{PLURAL:$1|件}}',
+'pager-newer-n'           => '以後の$1件',
+'pager-older-n'           => '以前の$1件',
 'suppress'                => '秘匿する',
 
 # Book sources

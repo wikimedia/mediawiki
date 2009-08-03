@@ -1021,16 +1021,16 @@ Próbálkozhatsz a témával kapcsolatos lapok [[Special:Search|keresésével]].
 'rev-deleted-user'            => '(szerkesztőnév eltávolítva)',
 'rev-deleted-event'           => '(bejegyzés eltávolítva)',
 'rev-deleted-text-permission' => "A lap ezen változatát '''törölték'''.
-További információkat a [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} törlési naplóban] találhatsz.",
+További információkat a [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} törlési naplóban] találhatsz.",
 'rev-deleted-text-unhide'     => "A lap ezen változatát '''törölték'''.
 További részleteket a [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} törlési naplóban] találhatsz.
 Mivel adminisztrátor vagy, még mindig [$1 megtekintheted a tartalmát], ha szeretnéd.",
 'rev-deleted-text-view'       => "A lap ezen változatát '''törölték'''.
-Mivel adminisztrátor vagy, te megtekintheted; további részleteket a [{{fullurl:Special:Napló/delete|page={{FULLPAGENAMEE}}}} törlési naplóban] találhatsz.",
-'rev-deleted-no-diff'         => "Nem tekintheted meg a két változat közötti eltérést, mert a változatok egyikét '''törölték'''.
-További részleteket a [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} törlési naplóban] találhatsz.",
-'rev-deleted-unhide-diff'     => "Az változatok közötti eltéréshez kiválasztott változatok egyike '''törölve''' lett.
-További részleteket a [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} törlési naplóban] találhatsz.
+Adminisztrátorként megnézheted; további részleteket a [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} törlési naplóban] találhatsz.",
+'rev-deleted-no-diff'         => "Nem nézheted meg a két változat közötti eltérést, mert a változatok egyikét '''törölték'''.
+További részleteket a [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} törlési naplóban] találhatsz.",
+'rev-deleted-unhide-diff'     => "A változatok közötti eltéréshez kiválasztott változatok egyike '''törölve''' lett.
+További részleteket a [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} törlési naplóban] találhatsz.
 Mivel adminisztrátor vagy, még mindig [$1 megtekintheted a változatok közötti eltérést], ha szeretnéd.",
 'rev-delundel'                => 'megjelenítés/elrejtés',
 'revisiondelete'              => 'Változatok törlése vagy helyreállítása',

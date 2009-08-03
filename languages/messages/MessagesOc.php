@@ -341,6 +341,13 @@ $messages = array(
 'underline-never'   => 'Pas jamai',
 'underline-default' => 'Segon lo navigador',
 
+# Font style option in Special:Preferences
+'editfont-style'     => "Estil de poliça de la zòna d'edicion :",
+'editfont-default'   => 'Lo del navigador per defaut',
+'editfont-monospace' => 'Poliça monoespaçada',
+'editfont-sansserif' => 'Poliça sens empatament',
+'editfont-serif'     => 'Poliça amb empataments',
+
 # Dates
 'sunday'        => 'dimenge',
 'monday'        => 'diluns',
@@ -1007,18 +1014,23 @@ Ensajatz de [[Special:Search|recercar sul wiki]] per trobar de paginas en rapòr
 'rev-deleted-comment'         => '(comentari suprimit)',
 'rev-deleted-user'            => '(nom d’utilizaire suprimit)',
 'rev-deleted-event'           => '(entrada suprimida)',
-'rev-deleted-text-permission' => "Aquesta version de la pagina es estada '''suprimida'''.
-I pòt aver de detalhs dins l'[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} istoric de las supressions].",
-'rev-deleted-text-unhide'     => "Aquesta version de la pagina es estada '''suprimida'''.
+'rev-deleted-text-permission' => "Aquesta version de la pagina es estada '''escafada'''.
+I pòt aver de detalhs dins lo [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jornal dels escafaments].",
+'rev-deleted-text-unhide'     => "Aquesta version de la pagina es estada '''escafada'''.
+I pòt aver mai de detalhs dins [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} lo jornal dels escafaments].
+Coma administrator, podètz encara [$1 veire aquesta version] s'o volètz.",
+'rev-suppressed-text-unhide'  => "Aquesta version de la pagina es estada '''suprimida'''.
 I pòt aver mai de detalhs dins [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} lo jornal de las supressions].
 Coma administrator, podètz encara [$1 veire aquesta version] s'o volètz.",
-'rev-deleted-text-view'       => "Aquesta version de la pagina es estada '''suprimida'''.
+'rev-deleted-text-view'       => "Aquesta version de la pagina es estada '''escafada'''.
+En tant qu’administrator, la podètz visualizar ; i pòt aver de detalhs dins lo [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jornal dels escafaments].",
+'rev-suppressed-text-view'    => "Aquesta version de la pagina es estada '''suprimida'''.
 En tant qu’administrator, la podètz visualizar ; i pòt aver de detalhs dins lo [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} jornal de las supressions].",
-'rev-deleted-no-diff'         => "Podètz pas veire aquesta dif per que una de las versions es estada '''suprimida'''.
-I pòt aver mai de detalhs dins lo [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} jornal de las supressions].",
-'rev-deleted-unhide-diff'     => "Una de las revisions d'aquesta diferéncia es estada '''suprimida'''.
-I pòt aver mai de detalhs dins lo [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} jornal de las supressions].
-En tant qu'administrator, podètz encara [$1 veire aquesta diferéncia] se o volètz.",
+'rev-deleted-no-diff'         => "Podètz pas veire aquesta dif per que una de las versions es estada '''escafada'''.
+I pòt aver mai de detalhs dins lo [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jornal dels escafaments].",
+'rev-deleted-unhide-diff'     => "Una de las revisions d'aquesta diferéncia es estada '''escafada'''.
+I pòt aver mai de detalhs dins lo [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jornal dels escafaments].
+En tant qu'administrator, podètz encara [$1 veire aquesta diferéncia] se volètz.",
 'rev-delundel'                => 'afichar/amagar',
 'revisiondelete'              => 'Suprimir/Restablir de versions',
 'revdelete-nooldid-title'     => 'Cibla per la revision invalida',
@@ -1896,7 +1908,7 @@ Las entradas <s>barradas</s> son estadas resolgudas.',
 'specialloguserlabel'  => 'Utilizaire :',
 'speciallogtitlelabel' => 'Títol :',
 'log'                  => 'Jornals',
-'all-logs-page'        => 'Totes los jornals',
+'all-logs-page'        => 'Totas las operacions publicas',
 'alllogstext'          => 'Afichatge combinat de totes los jornals de {{SITENAME}}.
 Podètz restrénher la vista en seleccionant un tipe de jornal, un nom d’utilizaire (cassa sensibla) o una pagina ciblada (idem).',
 'logempty'             => 'I a pas res dins l’istoric per aquesta pagina.',

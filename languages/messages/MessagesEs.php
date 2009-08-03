@@ -1179,7 +1179,7 @@ Las búsquedas fallidas suelen producirse al buscar palabras comunes como «la»
 'powersearch-ns'                   => 'Buscar en los espacios de nombres:',
 'powersearch-redir'                => 'Listar redirecciones',
 'powersearch-field'                => 'Buscar',
-'powersearch-togglelabel'          => 'Verificar:',
+'powersearch-togglelabel'          => 'Seleccionar:',
 'powersearch-toggleall'            => 'Todos',
 'powersearch-togglenone'           => 'Ninguno',
 'search-external'                  => 'Búsqueda externa',

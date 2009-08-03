@@ -174,7 +174,7 @@ süi titul dai sezziún (JavaScript)',
 'newwindow'  => "(sa derviss in un'óltra finèstra)",
 'cancel'     => 'Lassa perd',
 'mytalk'     => 'i mè discüssiun',
-'navigation' => 'Navegá',
+'navigation' => 'Navegazión',
 
 # Cologne Blue skin
 'qbedit'         => 'Redatá',
@@ -219,7 +219,7 @@ süi titul dai sezziún (JavaScript)',
 'views'             => 'Visid',
 'toolbox'           => 'Arnes',
 'userpage'          => 'Vidè la pàgina del dovrat',
-'projectpage'       => 'Varda la pagina de servizi',
+'projectpage'       => 'Varda la pagina de servizzi',
 'imagepage'         => 'Varda la pagina del file',
 'mediawikipage'     => 'Mustra el messagg',
 'templatepage'      => 'Mustra la bueta',
@@ -361,7 +361,7 @@ Spiegazziún di símbui: (cur) = difərenza cun la versiún curénta, (ültima) 
 'prevn'                 => 'precedent {{PLURAL:$1|$1}}',
 'nextn'                 => 'pròssim {{PLURAL:$1|$1}}',
 'viewprevnext'          => 'Vidé ($1) ($2) ($3).',
-'searchmenu-new'        => "'''Crea la pagina \"[[:\$1]]\" ins quel sit chì!'''",
+'searchmenu-new'        => "'''Trà in pee la pagina \"[[:\$1]]\" ins quel sit chì!'''",
 'searchhelp-url'        => 'Help:Contegnüü',
 'search-suggest'        => 'Vurivet dì: $1',
 'powersearch'           => 'Truvá',
@@ -587,11 +587,12 @@ i vegnarann segnalaa chichinscì e la pagina la se vedarà cun caràter '''grev'
 ** Vandalism",
 
 # Rollback
-'rollback'       => 'Rollback',
-'rollbacklink'   => 'Rollback',
-'rollbackfailed' => 'L è mia staa pussibil purtá indré',
-'alreadyrolled'  => "L è mia pussibil turná indré al'ültima versiún da [[:$1]] dal [[User:$2|$2]] ([[User talk:$2|Discüssiún]]); un quaivün l á gjamò redataa o giraa indré la pagina.
+'rollback'         => 'Rollback',
+'rollbacklink'     => 'Rollback',
+'rollbackfailed'   => 'L è mia staa pussibil purtá indré',
+'alreadyrolled'    => "L è mia pussibil turná indré al'ültima versiún da [[:$1]] dal [[User:$2|$2]] ([[User talk:$2|Discüssiún]]); un quaivün l á gjamò redataa o giraa indré la pagina.
 L'ültima redatazziún l eva da [[User:$3|$3]] ([[User talk:$3|Discüssiún]]).",
+'rollback-success' => "Nülaa i mudifegh de $1; pagina purtada indree a l'ültima versión de $2.",
 
 # Protect
 'unprotectedarticle' => 'l\'ha sblucaa "[[$1]]"',

@@ -699,16 +699,17 @@ Trid tkun mill-inqas {{PLURAL:$1|karattru|$1 karattri}} twila u differenti mill-
 'password-name-match'        => 'Il-password trid tkun differenti mill-isem tal-utent tiegħek.',
 'mailmypassword'             => 'Ibgħatli password ġdida',
 'passwordremindertitle'      => 'Password temporanju ġdid għal {{SITENAME}}',
-'passwordremindertext'       => 'Xi ħadd (probabilment int, mill-indirizz tal-IP $1) għamel rikjesta sabiex aħna nibgħatulek il-password il-ġdida għall-{{SITENAME}} ($4).
-Il-password għall-utent "$2" hija issa "$3".<br />
-Huwa opportun li tidħol issa tbiddel il-password tiegħek mal-ewwel. Din il-password il-ġdida se tiskadi fi żmien {{PLURAL:$5|ġurnata|$5 ġranet}}.
+'passwordremindertext'       => 'Xi ħadd (probabbilment int, mill-indirizz tal-IP $1) għamel rikjesta għal password ġdida għal {{SITENAME}} ($4).<br />
+Inħolqot password temporanja għall-utent "$2" u din hi "$3".
+Huwa opportun li inti tidħol issa u tbiddel immedjatament il-password tiegħek.<br />
+Din il-password il-ġdida se tiskadi fi żmien {{PLURAL:$5|ġurnata|$5 ijiem}}.
 
 Jekk xi ħadd ieħor għamel din ir-rikjesta jew jekk int ftakart il-password tiegħek u issa ma tridx tbiddilha, int tista\' ma tagħtix każ dan il-messaġġ u tkompli bl-użu tal-password l-antika.',
 'noemail'                    => 'M\'hemm l-ebda indirizz ta\' posta elettronika għall-utent "$1".',
 'passwordsent'               => 'Il-password il-ġdida ntbagħtet fl-indirizz tal-posta elettronika ta\' "$1".
 Jekk jogħġbok, għamel aċċess wara li tasallek.',
 'blocked-mailpassword'       => 'L-indirizz tal-IP tiegħek huwa bblokkjat u miżmum milli jwettaq modifiki. Għaldaqstant, mhuwiex possibli għalik li tuża l-funzjoni sabiex iġġib lura l-password, u dan sabiex ma jkunx hemm abbużi.',
-'eauthentsent'               => "Posta elettronika ta' konferma ġiet postjata fl-indirizz tal-posta elettronika nominata. Qabel xi posta elettronika oħra tiġi postjata lejn il-kont, inti trid isegwi dawn l-istruzzjonijiet li jinsabu fil-posta elettronika, sabiex tinkonferma li l-kont huwa tassew tiegħek.",
+'eauthentsent'               => "Posta elettronika ta' konferma ġiet mibgħuta fl-indirizz tal-posta elettronika indikata. Qabel xi posta elettronika oħra tiġi mibgħuta fuq il-kont, inti trid issegwi dawn l-istruzzjonijiet li jinsabu fil-posta elettronika, sabiex tikkonferma li l-kont huwa tassew tiegħek.",
 'throttled-mailpassword'     => "Posta elettronika sabiex tfakrek il-password ġiet postjata, fl-aħħar {{PLURAL:$1|siegħa|$1 siegħat}}.
 Sabiex jitnaqqas l-abbuż, waħda biss tista' tiġi postjata f'kull {{PLURAL:$1|siegħa|$1 siegħat}}.",
 'mailerror'                  => 'Problema bil-postar tal-messaġġ: $1',
@@ -829,7 +830,7 @@ Jekk jogħġbok, issettja u kkonferma l-indirizz tal-e-mail tiegħek mill-[[Spec
 'nosuchsectiontext'                => 'Provajt timodifika sezzjoni li ma teżistix.
 Minħabba li $1 ma teżistix, il-modifiki tiegħek ma ġewx salvati.',
 'loginreqtitle'                    => "Sabiex tagħmel modifiki f'din il-paġna huwa neċessarju li tidħol bħalha utent reġistrat fuq dan is-sit.",
-'loginreqlink'                     => 'Aċċessa',
+'loginreqlink'                     => 'li tidħol fil-kont tiegħek',
 'loginreqpagetext'                 => "Int trid ikollhok $1 sabiex tkun tista' tara paġni oħrajn.",
 'accmailtitle'                     => 'Il-password intbagħtet.',
 'accmailtext'                      => "Password ġenerata każwalment għal [[User talk:$1|$1]] intbagħtet lil $2.<br />
@@ -2836,10 +2837,10 @@ Minħabba veduta predefinita ,l-oħrajn se jiġu moħbija.
 # E-mail address confirmation
 'confirmemail'             => 'Ikkonferma l-indirizz tal-posta elettronika',
 'confirmemail_noemail'     => "M'għandekx indirizz tal-posta elettronika validu fil-[[Special:Preferences|preferenzi tal-utent]].",
-'confirmemail_text'        => "{{SITENAME}} għandu bżonn li int tiverifika l-indirizz tal-posta elettronika tiegħek qabel ma tkun tista' tagħmel użu mill-faċċilitajiet tal-posta elettronika.
-Attiva l-buttuna t'hawn taħt sabiex tibgħat posta ta' konfermazzjoni fl-indirizz tiegħek.
-Il-posta se tinkludi link li tkun fija kodiċi;
-niżżel il-link fil-browser tiegħek sabiex tinkonferma l-indirizz tal-posta elettronika tiegħek huwa validu.",
+'confirmemail_text'        => "{{SITENAME}} għandha bżonn li inti tivverifika l-indirizz tal-posta elettronika tiegħek qabel ma tkun tista' tagħmel użu mill-faċilitajiet tal-posta elettronika.
+Attiva l-buttuna t'hawn taħt sabiex tibgħat posta ta' konferma fl-indirizz tiegħek.
+Il-posta se tinkludi ħolqa li jkun fiha kodiċi;
+iftaħ il-ħolqa fil-browżer tiegħek sabiex tikkonferma l-indirizz tal-posta elettronika tiegħek huwa validu.",
 'confirmemail_pending'     => "Kodiċi ta' konfermazzjoni ġie postjat diġa;
 jekk int riċentament ħloqt kont, l-aħjar li tistenna ftit minuti biex tasalek qabel ma tagħmel rikjesta għal kodiċi ġdida.",
 'confirmemail_send'        => "Postja kodiċi ta' konfermazzjoni.",
@@ -2850,23 +2851,23 @@ jekk int riċentament ħloqt kont, l-aħjar li tistenna ftit minuti biex tasalek
 Messaġġ tal-problema tal-ippostjar: $1",
 'confirmemail_invalid'     => "Kodiċi ta' konfermazzjoni invalida.
 Il-kodiċi setgħat tkun skadiet.",
-'confirmemail_needlogin'   => 'Huwa neċessarju $1 biex tinkonferma l-indirizz propju tal-posta elettronika.',
+'confirmemail_needlogin'   => 'Huwa neċessarju $1 biex tikkonferma l-indirizz propju tal-posta elettronika.',
 'confirmemail_success'     => "L-indirizz tal-posta elettronika tiegħek ġie konfermat. Issa tista' [[Special:UserLogin|tidħol fil-kont tiegħek]] u tgawdi bis-sħiħ din il-wiki.",
 'confirmemail_loggedin'    => 'L-indirizz tal-posta elettronika tiegħek ġie ikkonfermat.',
 'confirmemail_error'       => 'Problema fis-salvataġġ tal-konferma.',
 'confirmemail_subject'     => '{{SITENAME}}: rikjesta tal-konferma tal-indirizz',
-'confirmemail_body'        => 'Xi ħadd, probabilment int, mill-indirizz tal-IP $1,
+'confirmemail_body'        => 'Xi ħadd, probabbilment int, mill-indirizz tal-IP $1,
 irreġistra l-kont "$2" b\'dan l-indirizz tal-posta elettronika fuq {{SITENAME}}.
 
-Biex tinkonferma li dan il-kont vera huwa tiegħek u jkollhok aċċess għal faċċilitajiet tal-posta elettronika ta\' {{SITENAME}}, iftaħ dan il-link fil-browser tiegħek:
+Biex tikkonferma li dan il-kont huwa vera tiegħek u biex ikollok aċċess għall-faċilitajiet tal-posta elettronika ta\' {{SITENAME}}, iftaħ din il-ħolqa fil-browżer tiegħek:
 
 $3
 
-Jekk int *ma irreġistrajtx* il-kont, segwi dan il-link sabiex tħassar il-konfermazzjoni tal-indirizz tal-posta elettronika:
+Jekk int *ma irreġistrajtx* il-kont, segwi l-ħolqa segwenti sabiex tħassar il-konferma tal-indirizz tal-posta elettronika:
 
 $5
 
-Din il-kodiċi tal-konfermazzjoni se tiskadi f\'$4.',
+Din il-kodiċi tal-konferma se tiskadi fil-$4.',
 'confirmemail_invalidated' => "Rikjesta ta' konfermazzjoni tal-indirizz tal-posta elettronika mħassra",
 'invalidateemail'          => 'Ħassar il-konfermazzjoni tal-posta elettronika',
 

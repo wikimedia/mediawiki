@@ -15,6 +15,7 @@
  * @author MCruz
  * @author Malafaya
  * @author Manuel Menezes de Sequeira
+ * @author McDutchie
  * @author Minh Nguyen
  * @author Nuno Tavares
  * @author Paulo Juntas
