@@ -22,7 +22,7 @@ class BitmapHandler extends ImageHandler {
 		# JPEG has the handy property of allowing thumbnailing without full decompression, so we make
 		# an exception for it.
 		if ( $mimeType !== 'image/jpeg' &&
-			$srcWidth * $srcHeight > $wgMaxImageArea )
+			$this->getImageArea( $image, $srcWidth, $srcHeight ) > $wgMaxImageArea )
 		{
 			return false;
 		}
@@ -38,6 +38,13 @@ class BitmapHandler extends ImageHandler {
 		}
 
 		return true;
+	}
+	
+	
+	// Function that returns the number of pixels to be thumbnailed.
+	// Intended for animated GIFs to multiply by the number of frames.
+	function getImageArea( $image, $width, $height ) {
+		return $width * $height;
 	}
 
 	function doTransform( $image, $dstPath, $dstUrl, $params, $flags = 0 ) {

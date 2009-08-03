@@ -3411,6 +3411,8 @@ $1',
 'svg-long-desc'        => '(SVG file, nominally $1 × $2 pixels, file size: $3)',
 'show-big-image'       => 'Full resolution',
 'show-big-image-thumb' => '<small>Size of this preview: $1 × $2 pixels</small>',
+'file-info-gif-looped' => 'looped',
+'file-info-gif-frames' => '$1 frames',
 
 # Special:NewFiles
 'newimages'             => 'Gallery of new files',
