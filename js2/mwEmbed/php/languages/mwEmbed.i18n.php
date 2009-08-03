@@ -223,7 +223,7 @@ $messages['en'] = array(
 	'mv_ogg-player-selected' => ' (selected)',
 	'mv_ogg-player-omtkplayer' => 'OMTK Flash Vorbis',
 	'mv_generic_missing_plugin' => 'You browser does not appear to support playback type: <b>$1</b><br> visit the <a href="http://commons.wikimedia.org/wiki/Commons:Media_help">Playback Methods</a> page to download a player<br>',
-	'mv_for_best_experience' => 'For a better video playback experience we recommend <b><a href="http://www.mozilla.com/en-US/firefox/upgrade.html?from=mv_embed">Firefox 3.5</a></b>',
-	'mv_do_not_warn_again' => 'Do not warn me again.',
+	'mv_for_best_experience' => 'For a better video playback experience we recommend:<br> <b><a href="http://www.mozilla.com/en-US/firefox/upgrade.html?from=mwEmbed">Firefox 3.5</a></b>',
+	'mv_do_not_warn_again' => 'Dissmiss for now.',
 );
 #</JAVASCRIPT EN REPLACE>
