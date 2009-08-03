@@ -375,6 +375,9 @@ this. Was used when mwEmbed was going to be an extension.
   language ($wgContLang)
 * (bug 11867) Lock error on redirect table when running orphans.php
 * (bug 18930) initStats.php now refreshes active users count
+* (bug 18699) Using the nosummary URL option no longer triggers the "You have
+  not provided a summary" warning for those who activated it in their
+  preferences
 
 == API changes in 1.16 ==
 
