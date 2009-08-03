@@ -507,6 +507,14 @@ rendered inline in wiki pages or galleries in category pages.
 &$nt: the image title
 &$time: image timestamp
 
+'BeforeInitialize': before anything is initialized in performRequestForTitle()
+&$title: Title being used for request
+&$article: The associated Article object
+&$output: OutputPage object
+&$user: User
+$request: WebRequest object
+$this: Mediawiki object
+
 'BeforePageDisplay': Prior to outputting a page
 &$out: OutputPage object
 &$skin: Skin object

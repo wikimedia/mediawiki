@@ -54,6 +54,8 @@ class MediaWiki {
 		
 		$output->setTitle( $title );
 		
+		wfRunHooks( 'BeforeInitialize', array( &$title, &$article, &$output, &$user, $request, $this ) );
+		
 		if( !$this->preliminaryChecks( $title, $output, $request ) ) {
 			wfProfileOut( __METHOD__ );
 			return;
