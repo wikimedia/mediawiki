@@ -2,7 +2,7 @@
 /**
  * Vector - Branch of MonoBook which has many usability improvements and
  * somewhat cleaner code.
- * 
+ *
  * @todo document
  * @file
  * @ingroup Skins
@@ -27,9 +27,9 @@ class SkinVector extends SkinTemplate {
 	 */
 	public function initPage( OutputPage $out ) {
 		global $wgStylePath, $wgJsMimeType, $wgStyleVersion;
-		
+
 		parent::initPage( $out );
-		
+
 		// Append skin-specific styles
 		$out->addStyle( 'vector/main-rtl.css', 'screen', '', 'rtl' );
 		$out->addStyle( 'vector/main-ltr.css', 'screen', '', 'ltr' );
@@ -70,7 +70,7 @@ class SkinVector extends SkinTemplate {
 			'actions' => array(),
 			'variants' => array()
 		);
-		
+
 		// Detects parameters
 		$action = $wgRequest->getVal( 'action', 'view' );
 		$section = $wgRequest->getVal( 'section' );
@@ -87,14 +87,14 @@ class SkinVector extends SkinTemplate {
 
 			// Generates XML IDs from namespace names
 			$subjectId = $this->mTitle->getNamespaceKey( '' );
-			
+
 			if ( $subjectId == 'main' ) {
 				$talkId = 'talk';
 			} else {
 				$talkId = "{$subjectId}_talk";
 			}
 			$currentId = $isTalk ? $talkId : $subjectId;
-			
+
 			// Adds namespace links
 			$links['namespaces'][$subjectId] = $this->tabAction(
 				$subjectPage, 'vector-namespace-' . $subjectId, !$isTalk, '', true
@@ -104,7 +104,7 @@ class SkinVector extends SkinTemplate {
 				$talkPage, 'vector-namespace-talk', $isTalk, '', true
 			);
 			$links['namespaces'][$talkId]['context'] = 'talk';
-			
+
 			// Adds view view link
 			if ( $this->mTitle->exists() ) {
 				$links['views']['view'] = $this->tabAction(
@@ -112,9 +112,9 @@ class SkinVector extends SkinTemplate {
 						'vector-view-view', ( $action == 'view' ), '', true
 				);
 			}
-			
+
 			wfProfileIn( __METHOD__ . '-edit' );
-			
+
 			// Checks if user can...
 			if (
 				// edit the current page
@@ -270,7 +270,7 @@ class SkinVector extends SkinTemplate {
 				}
 			}
 			wfProfileOut( __METHOD__ . '-live' );
-			
+
 			/**
 			 * The following actions use messages which, if made particular to
 			 * the Vector skin, would break the Ajax code which makes this
@@ -303,10 +303,10 @@ class SkinVector extends SkinTemplate {
 					);
 				}
 			}
-			
+
 			// This is instead of SkinTemplateTabs - which uses a flat array
 			wfRunHooks( 'SkinTemplateNavigation', array( &$this, &$links ) );
-		
+
 		// If it's not content, it's got to be a special page
 		} else {
 			$links['namespaces']['special'] = array(
@@ -351,29 +351,29 @@ class SkinVector extends SkinTemplate {
  * @ingroup Skins
  */
 class VectorTemplate extends QuickTemplate {
-	
+
 	/* Members */
-	
+
 	/**
 	 * @var Cached skin object
 	 */
 	var $skin;
-	
+
 	/* Functions */
-	
+
 	/**
 	 * Outputs the entire contents of the XHTML page
 	 */
 	public function execute() {
-		global $wgRequest, $wgOut, $wgContLang;
-		
+		global $wgRequest, $wgOut, $wgContLang, $wgDevelopmentWarnings;
+
 		$this->skin = $this->data['skin'];
 		$action = $wgRequest->getText( 'action' );
-		
+
 		// Suppress warnings to prevent notices about missing indexes in
 		// $this->data (is this really the best way to handle this?)
-		wfSuppressWarnings();
-		
+		$wgDevelopmentWarnings && wfSuppressWarnings();
+
 		// Build additional attributes for navigation urls
 		$nav = $this->skin->buildNavigationUrls();
 		foreach ( $nav as $section => $links ) {
@@ -416,7 +416,7 @@ class VectorTemplate extends QuickTemplate {
 		$this->data['variant_urls'] = $nav['variants'];
 		// Build additional attributes for personal_urls
 		foreach ( $this->data['personal_urls'] as $key => $item) {
-			$this->data['personal_urls'][$key]['attributes'] = 
+			$this->data['personal_urls'][$key]['attributes'] =
 				' id="' . Sanitizer::escapeId( "pt-$key" ) . '"';
 			if ( $item['active'] ) {
 				$this->data['personal_urls'][$key]['attributes'] .=
@@ -425,7 +425,7 @@ class VectorTemplate extends QuickTemplate {
 			$this->data['personal_urls'][$key]['key'] =
 				$this->skin->tooltipAndAccesskey('pt-'.$key);
 		}
-		
+
 		// Generate additional footer links
 		$footerlinks = array(
 			'info' => array(
@@ -578,9 +578,9 @@ class VectorTemplate extends QuickTemplate {
 </html>
 <?php
 		// We're done with abusing arrays now...
-		wfRestoreWarnings();
+		$wgDevelopmentWarnings && wfRestoreWarnings();
 	}
-	
+
 	/**
 	 * Render a series of portals
 	 */
@@ -675,14 +675,14 @@ class VectorTemplate extends QuickTemplate {
 			echo "\n<!-- /{$name} -->\n";
 		}
 	}
-	
+
 	/**
 	 * Render one or more navigations elements by name, automatically reveresed
 	 * when UI is in RTL mode
 	 */
 	private function renderNavigation( $elements ) {
 		global $wgContLang, $wgVectorUseSimpleSearch, $wgStylePath;
-		
+
 		// If only one element was given, wrap it in an array, allowing more
 		// flexible arguments
 		if ( !is_array( $elements ) ) {
@@ -792,6 +792,6 @@ class VectorTemplate extends QuickTemplate {
 				break;
 			}
 			echo "\n<!-- /{$name} -->\n";
-		}	
+		}
 	}
 }
