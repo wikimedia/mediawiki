@@ -145,22 +145,26 @@ class DeletedContribsPager extends IndexPager {
 			$this->messages['undeleteviewlink']
 		);
 
-		$last = $sk->linkKnown(
-			$undelete,
-			$this->messages['diff'],
-			array(),
-			array(
-				'target' => $page->getPrefixedText(),
-				'timestamp' => $rev->getTimestamp(),
-				'diff' => 'prev'
-			)
-		);
+		if( $wgUser->isAllowed('delete') ) {
+			$last = $sk->linkKnown(
+				$undelete,
+				$this->messages['diff'],
+				array(),
+				array(
+					'target' => $page->getPrefixedText(),
+					'timestamp' => $rev->getTimestamp(),
+					'diff' => 'prev'
+				)
+			);
+		} else {
+			$last = $this->messages['diff'];
+		}
 
 		$comment = $sk->revComment( $rev );
 		$date = htmlspecialchars( $wgLang->timeanddate( $rev->getTimestamp(), true ) );
 
-		if( $rev->isDeleted( Revision::DELETED_TEXT ) ) {
-			$link = '<span class="history-deleted">' . $date . '</span>';
+		if( !$wgUser->isAllowed('delete') || !$rev->userCan(Revision::DELETED_TEXT) ) {
+			$link = $date; // unusable link
 		} else {
 			$link = $sk->linkKnown(
 				$undelete,
@@ -171,6 +175,10 @@ class DeletedContribsPager extends IndexPager {
 					'timestamp' => $rev->getTimestamp()
 				)
 			);
+		}
+		// Style deleted items
+		if( $rev->isDeleted( Revision::DELETED_TEXT ) ) {
+			$link = '<span class="history-deleted">' . $link . '</span>';
 		}
 
 		$pagelink = $sk->link( $page );
