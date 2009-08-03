@@ -2332,6 +2332,8 @@ $1',
 'svg-long-desc'        => '（SVG檔，貌有像素$1矩$2，幅$3）',
 'show-big-image'       => '全幅',
 'show-big-image-thumb' => '<small>縮圖幅有像素$1矩$2</small>',
+'file-info-gif-looped' => '循',
+'file-info-gif-frames' => '$1幀',
 
 # Special:NewFiles
 'newimages'             => '新圖之廊',
