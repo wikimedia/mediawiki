@@ -145,16 +145,6 @@ class DeletedContribsPager extends IndexPager {
 			$this->messages['undeleteviewlink']
 		);
 
-		$link = $sk->linkKnown(
-			$undelete,
-			htmlspecialchars( $page->getPrefixedText() ),
-			array(),
-			array(
-				'target' => $page->getPrefixedText(),
-				'timestamp' => $rev->getTimestamp()
-			)
-		);
-
 		$last = $sk->linkKnown(
 			$undelete,
 			$this->messages['diff'],
@@ -167,14 +157,14 @@ class DeletedContribsPager extends IndexPager {
 		);
 
 		$comment = $sk->revComment( $rev );
-		$d = htmlspecialchars( $wgLang->timeanddate( $rev->getTimestamp(), true ) );
+		$date = htmlspecialchars( $wgLang->timeanddate( $rev->getTimestamp(), true ) );
 
 		if( $rev->isDeleted( Revision::DELETED_TEXT ) ) {
-			$d = '<span class="history-deleted">' . $d . '</span>';
+			$link = '<span class="history-deleted">' . $date . '</span>';
 		} else {
 			$link = $sk->linkKnown(
 				$undelete,
-				$d,
+				$date,
 				array(),
 				array(
 					'target' => $page->getPrefixedText(),
