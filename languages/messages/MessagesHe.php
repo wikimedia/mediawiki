@@ -2839,7 +2839,7 @@ $1',
 'show-big-image'       => 'תמונה ברזולוציה גבוהה יותר',
 'show-big-image-thumb' => '<small>גודל התצוגה הזו: $1 × $2 פיקסלים</small>',
 'file-info-gif-looped' => 'בלולאה',
-'file-info-gif-frames' => '{{PLURAL:$1|מסגרת|מסגרות}}',
+'file-info-gif-frames' => '{{PLURAL:$1|מסגרת אחת|$1 מסגרות}}',
 
 # Special:NewFiles
 'newimages'             => 'גלריית קבצים חדשים',
