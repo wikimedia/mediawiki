@@ -1501,6 +1501,7 @@ Mit anderen Benutzern kannst du auch über die Benutzerdiskussionsseiten Kontakt
 'right-protect'               => 'Seitenschutzstatus ändern',
 'right-editprotected'         => 'Geschützte Seiten bearbeiten (ohne Kaskadenschutz)',
 'right-editinterface'         => 'Benutzeroberfläche bearbeiten',
+'right-editusercssjs'         => 'Bearbeiten fremder CSS- und JS-Dateien',
 'right-editusercss'           => 'Bearbeiten fremder CSS-Dateien',
 'right-edituserjs'            => 'Bearbeiten fremder JS-Dateien',
 'right-rollback'              => 'Schnelles zurücksetzen',

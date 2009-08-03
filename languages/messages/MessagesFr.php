@@ -1490,6 +1490,7 @@ Vous pouvez également décider de laisser les autres vous contacter via votre p
 'right-protect'               => 'Modifier le niveau de protection des pages et modifier les pages protégées',
 'right-editprotected'         => 'Modifier les pages protégées (sans protection en cascade)',
 'right-editinterface'         => 'Modifier l’interface utilisateur',
+'right-editusercssjs'         => 'Modifier les fichiers CSS et JS d’autres utilisateurs',
 'right-editusercss'           => 'Modifier les fichiers CSS d’autres utilisateurs',
 'right-edituserjs'            => 'Modifier les fichiers JS d’autres utilisateurs',
 'right-rollback'              => 'Révoquer rapidement les modifications du dernier contributeur d’une page particulière',

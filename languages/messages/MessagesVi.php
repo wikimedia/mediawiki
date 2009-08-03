@@ -1398,6 +1398,7 @@ Bạn cũng có thể lựa chọn cho phép người khác liên lạc với b�
 'right-protect'               => 'Thay đổi mức khóa và sửa trang khóa',
 'right-editprotected'         => 'Sửa trang khóa (không bị khóa theo tầng)',
 'right-editinterface'         => 'Sửa giao diện người dùng',
+'right-editusercssjs'         => 'Sửa tập tin CSS và JS của người dùng khác',
 'right-editusercss'           => 'Sửa tập tin CSS của người dùng khác',
 'right-edituserjs'            => 'Sửa tập tin JS của người dùng khác',
 'right-rollback'              => 'Nhanh chóng lùi tất cả sửa đổi của thành viên cuối cùng sửa đổi tại trang nào đó',
