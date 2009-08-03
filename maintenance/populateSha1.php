@@ -7,7 +7,7 @@
  */
 
 $optionsWithArgs = array( 'method' );
-require_once( dirname(__FILE__).'/../commandLine.inc' );
+require_once( dirname(__FILE__).'/commandLine.inc' );
 $method = isset( $options['method'] ) ? $options['method'] : 'normal';
 
 $t = -microtime( true );
@@ -55,5 +55,3 @@ if ( $method == 'pipe' ) {
 }
 $t += microtime( true );
 printf( "\nDone %d files in %.1f seconds\n", $numRows, $t );
-
-?>
