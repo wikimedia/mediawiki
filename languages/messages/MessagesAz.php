@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Gulmammad
  * @author PrinceValiant
  * @author Sysops of az.wikipedia.org (imported 2008-08-31)
  * @author לערי ריינהארט
@@ -133,6 +134,8 @@ $messages = array(
 'hidden-category-category' => 'Gizli kateqoriyalar',
 'listingcontinuesabbrev'   => '(davam)',
 
+'mainpagetext' => "<big>'''MediaWiki müvəffəqiyyətlə quraşdırıldı.'''</big>",
+
 'about'         => 'İzah',
 'article'       => 'Mündəricat Səhifəsi',
 'newwindow'     => '(Yeni pəncərədə açılır)',
@@ -152,6 +155,13 @@ $messages = array(
 'qbpageinfo'     => 'Məzmun',
 'qbmyoptions'    => 'Mənim səhifələrim',
 'qbspecialpages' => 'Xüsusi səhifələr',
+
+# Vector skin
+'vector-action-addsection' => 'Mövzu əlavə et',
+'vector-action-delete'     => 'Poz',
+'vector-action-move'       => 'Adını dəyişdir',
+'vector-action-protect'    => 'Qoru',
+'vector-action-undelete'   => 'Pozma',
 
 'errorpagetitle'    => 'Xəta',
 'returnto'          => '$1 səhifəsinə qayıt.',
@@ -228,12 +238,14 @@ $messages = array(
 'youhavenewmessagesmulti' => '$1-də yeni mesajınız var.',
 'editsection'             => 'redaktə',
 'editold'                 => 'redaktə',
+'editlink'                => 'redaktə',
 'editsectionhint'         => 'Bölməsini redaktə: $1',
 'toc'                     => 'Mündəricat',
 'showtoc'                 => 'göstər',
 'hidetoc'                 => 'gizlə',
 'thisisdeleted'           => '$1-yə bax və ya bərpa et?',
 'viewdeleted'             => 'Göstər $1?',
+'red-link-title'          => '$1 (səhifə mövcüd deyil)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Məqalə',
@@ -561,6 +573,7 @@ Bu səhifə üçün silmə qeydləri aşağıda göstərilmişdir:",
 
 # File description page
 'file-anchor-link'          => 'Fayl',
+'filehist-user'             => 'Istifadəçi',
 'imagelinks'                => 'İstifadə edilən səhifələr',
 'uploadnewversion-linktext' => 'Bu faylın yeni versiyasını yüklə',
 

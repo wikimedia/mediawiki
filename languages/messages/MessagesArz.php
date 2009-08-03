@@ -338,6 +338,9 @@ $messages = array(
 'underline-never'   => 'ابدا',
 'underline-default' => 'على حسب إعدادات المتصفح',
 
+# Font style option in Special:Preferences
+'editfont-style' => ':الفونت بتاع مساحة التعديل',
+
 # Dates
 'sunday'        => 'الحد',
 'monday'        => 'الاتنين',
@@ -1934,7 +1937,7 @@ PICT # misc.
 'specialloguserlabel'  => 'اليوزر:',
 'speciallogtitlelabel' => 'العنوان:',
 'log'                  => 'سجلات',
-'all-logs-page'        => 'كل السجلات',
+'all-logs-page'        => 'كل السجلات العامه',
 'alllogstext'          => 'عرض شامل لكل السجلات الموجودة فى {{SITENAME}}. 
 ممكن تخلى اللستة متحددة اكتر لو تختار نوع العملية، أو اسم اليوزر (حساس لحالة الحروف)، أو الصفحة المتأثرة (برضه حساس لحالة الحروف).',
 'logempty'             => 'مافيش  سجلات مطابقة فى السجل.',

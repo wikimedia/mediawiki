@@ -84,6 +84,13 @@ $messages = array(
 'underline-never'   => 'Аннынан тардыма',
 'underline-default' => 'Браузер настройкатынан',
 
+# Font style option in Special:Preferences
+'editfont-style'     => 'Эрэдээксийэлиир түннүк бичигэ:',
+'editfont-default'   => 'Браузерга туруоруллубут бичик',
+'editfont-monospace' => 'Тэҥ кэтиттээх бичик',
+'editfont-sansserif' => 'Самалыга суох бичик',
+'editfont-serif'     => 'Самалыктаах бичик',
+
 # Dates
 'sunday'        => 'Өрөбүл',
 'monday'        => 'Бэнидиэнньик',
@@ -763,18 +770,23 @@ long, which is longer than the maximum of $2 kilobytes. It cannot be saved.'''
 'rev-deleted-comment'         => '(ырытыы сотулунна)',
 'rev-deleted-user'            => '(кыттааччы аата сотулунна)',
 'rev-deleted-event'           => '(бэлиэтээһин дьайыыта сотулунна)',
-'rev-deleted-text-permission' => "Ыстатыйа бу барыла '''сотуллубут'''. 
-Быһаарыыта  [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} манна] баар буолуон сөп.",
+'rev-deleted-text-permission' => "Сирэй бу барыла '''сотуллубут'''. 
+Быһаарыыта  [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} манна] баар буолуон сөп.",
 'rev-deleted-text-unhide'     => "Сирэй ити барыла '''сотуллубут'''.
-Баҕар ол туһунан [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} сотуу сурунаалыгар] баара буолуо.
+Баҕар ол туһунан [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} сотуу сурунаалыгар] баара буолуо.
 Ол да буоллар эн дьаһабыл буоларыҥ быһыытынан [$1 барылы көрүөххүн сөп].",
+'rev-suppressed-text-unhide'  => "Сирэй бу барыла '''кистэммит'''.
+Быһаарыы баҕара [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} кистээһин сурунаалыгар] баара буолуо.
+Эн дьаһабыл буоларыҥ быһыытынан [ол барылы көрүөххүн $1] сөп.",
 'rev-deleted-text-view'       => "Ыстатыйа бу барыла '''сотуллубут'''.
 Ол эрэн эн дьаһабыл буоларыҥ быһыытынан ону көрүөххүн сөп.
-Тоҕо сотуллубутун быһаарыыта [{{fullurl:{{ns:special}}:Log/delete|page={{FULLPAGENAMEE}}}} манна] баар буолуон сөп.",
+Тоҕо сотуллубутун быһаарыыта [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} манна] баар буолуон сөп.",
+'rev-suppressed-text-view'    => "Сирэй бу барыла '''кистэммит'''.
+Эн дьаһабыл буоларыҥ быһыытынан ол барылы көрүөххүн сөп. Быһаарыы баҕар [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} кистээһин сурунаалыгар] баара буолуо.",
 'rev-deleted-no-diff'         => "Барыллар ыккардыларынааҕы уратылары көрөр кыаҕыҥ суох, тоҕо диэтэххэ барыллартан биирэ '''сотуллубут'''.
-Сиһилии [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} бу сурунаалга] суруллубут буолуон сөп.",
+Сиһилии [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} бу сурунаалга] суруллубут буолуон сөп.",
 'rev-deleted-unhide-diff'     => "Сирэй барылларыттан биирдэстэрэ '''сотуллубут'''.
-Баҕар ол туһунан [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} бу сурунаалга] баара буолуо.
+Баҕар ол туһунан [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} бу сурунаалга] баара буолуо.
 Ол да буоллар эн дьаһабыл буоларыҥ быһыытынан [$1 барылы көрүөххүн сөп].",
 'rev-delundel'                => 'көрдөр/кистээ',
 'revisiondelete'              => 'Соторго/торуму төнүннэрэргэ',
@@ -1034,6 +1046,7 @@ $1",
 'prefs-watchlist-days-max'      => '(улааппыта 7 күн)',
 'prefs-watchlist-edits'         => 'Хас уларытыыны тупсарыллыбыт кэтээһиҥҥэ көрдөрөрө:',
 'prefs-watchlist-edits-max'     => '(улааппыта: 1000)',
+'prefs-watchlist-token'         => 'Кэтэбил тиһигин бэлиэтэ',
 'prefs-misc'                    => 'Атын туруоруулар',
 'prefs-resetpass'               => 'Кирии тылы уларытыы',
 'prefs-email'                   => 'Email туруоруулара',
@@ -1656,7 +1669,7 @@ PICT # misc.
 'specialloguserlabel'  => 'Кыттааччы:',
 'speciallogtitlelabel' => 'Баһа:',
 'log'                  => 'Сурунааллар',
-'all-logs-page'        => 'Сурунааллар барыта',
+'all-logs-page'        => 'Көстөр сурунааллар барыта',
 'alllogstext'          => '{{SITENAME}} сурунаалларын уопсай испииһэгэ. 
 Сурунаал көрүҥүнэн, кыттааччы аатынан (улахан-кыра буукубата учуоттанар) эбэтэр сирэй аатынан (эмиэ улахана-кырата учуоттанар) наардыаххытын сөп.',
 'logempty'             => 'Сурунаалга сөп түбэһэр элэмиэннэр суохтар.',

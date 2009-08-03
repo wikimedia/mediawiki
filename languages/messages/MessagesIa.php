@@ -188,6 +188,7 @@ $messages = array(
 'editfont-default'   => 'Predefinite del navigator',
 'editfont-monospace' => 'Typo de litteras monospatial',
 'editfont-sansserif' => 'Typo de litteras sans-serif',
+'editfont-serif'     => 'Typo de litteras serif',
 
 # Dates
 'sunday'        => 'dominica',
@@ -748,7 +749,7 @@ o [{{fullurl:{{FULLPAGENAME}}|action=edit}} modificar iste pagina].',
 'userjsyoucanpreview'              => "'''Consilio:''' Usa le button 'Monstrar previsualisation' pro testar tu nove JS ante de publicar lo.",
 'usercsspreview'                   => "'''Non oblida que isto es solmente un previsualisation de tu CSS personalisate.
 Le modificationes non ha ancora essite immagazinate!'''",
-'userjspreview'                    => "'''Memora que isto es solmente un test/previsualisation de tu JavaScript personalisate, illo non ha ancora essite immagazinate!'''",
+'userjspreview'                    => "'''Non oblida que isto es solmente un test/previsualisation de tu JavaScript personalisate, illo non ha ancora essite immagazinate!'''",
 'userinvalidcssjstitle'            => "'''Attention:''' Le stilo \"\$1\" non existe.
 Memora que le paginas .css and .js personalisate usa un titulo in minusculas, p.ex. {{ns:user}}:Foo/monobook.css e non {{ns:user}}:Foo/Monobook.css.",
 'updated'                          => '(Actualisate)',
@@ -906,9 +907,14 @@ Es possibile que se trova detalios in le [{{fullurl:{{#Special:Log}}/delete|page
 'rev-deleted-text-unhide'     => "Iste version del pagina ha essite '''delite'''.
 Es possibile que se trova detalios in le [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de deletiones].
 Tu, qua administrator, pote totevia [$1 vider iste version] si tu vole proceder.",
+'rev-suppressed-text-unhide'  => "Iste version del pagina ha essite '''supprimite'''.
+Es possibile que se trova detalios in le [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de suppressiones].
+Tu, qua administrator, pote totevia [$1 vider iste version] si tu vole proceder.",
 'rev-deleted-text-view'       => "Iste version del pagina ha essite '''delite'''.
 Tu, qua administrator, pote vider lo;
 es possibile que se trova detalios in le [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de deletiones].",
+'rev-suppressed-text-view'    => "Iste version del pagina ha essite '''supprimite'''.
+Tu, qua administrator, pote vider lo; es possibile que se trova detalios in le [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de suppressiones].",
 'rev-deleted-no-diff'         => "Tu non pote vider iste diff proque un del versiones ha essite '''delite'''.
 Es possibile que se trova detalios in le [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de deletiones].",
 'rev-deleted-unhide-diff'     => "Un del versiones de iste diff ha essite '''delite'''.
@@ -1140,7 +1146,7 @@ Tenta prefixar tu consulta con ''all:'' pro cercar in tote le contento (includen
 'powersearch-ns'                   => 'Cercar in spatios de nomines:',
 'powersearch-redir'                => 'Listar redirectiones',
 'powersearch-field'                => 'Cercar',
-'powersearch-togglelabel'          => 'Verificar:',
+'powersearch-togglelabel'          => 'Seliger:',
 'powersearch-toggleall'            => 'Toto',
 'powersearch-togglenone'           => 'Nihil',
 'search-external'                  => 'Recerca externe',

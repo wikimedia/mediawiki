@@ -173,6 +173,10 @@ $messages = array(
 'underline-never'   => 'Inoiz ez',
 'underline-default' => 'Nabigatzailearen lehenetsitako balioa',
 
+# Font style option in Special:Preferences
+'editfont-sansserif' => 'Sans-serif iturria',
+'editfont-serif'     => 'Serif iturria',
+
 # Dates
 'sunday'        => 'Igandea',
 'monday'        => 'Astelehena',
@@ -273,22 +277,27 @@ $messages = array(
 'faqpage'        => 'Project:Maiz egindako galderak',
 
 # Vector skin
-'vector-action-delete'      => 'Ezabatu',
-'vector-action-move'        => 'Mugitu',
-'vector-action-protect'     => 'Babestu',
-'vector-namespace-category' => 'Kategoria',
-'vector-namespace-help'     => 'Laguntza-orria',
-'vector-namespace-image'    => 'Fitxategi',
-'vector-namespace-main'     => 'Orrialde',
-'vector-namespace-project'  => 'Proiektu-orrialde',
-'vector-namespace-special'  => 'Orrialde berezia',
-'vector-namespace-talk'     => 'Eztabaida',
-'vector-namespace-template' => 'Txantiloi',
-'vector-namespace-user'     => 'Erabiltzaile-orria',
-'vector-view-create'        => 'Sortu',
-'vector-view-edit'          => 'Aldatu',
-'vector-view-view'          => 'Irakurri',
-'actions'                   => 'Ekintzak',
+'vector-action-delete'       => 'Ezabatu',
+'vector-action-move'         => 'Mugitu',
+'vector-action-protect'      => 'Babestu',
+'vector-action-undelete'     => 'Berreskuratu',
+'vector-action-unprotect'    => 'Babesgabetu',
+'vector-namespace-category'  => 'Kategoria',
+'vector-namespace-help'      => 'Laguntza-orria',
+'vector-namespace-image'     => 'Fitxategi',
+'vector-namespace-main'      => 'Orrialde',
+'vector-namespace-mediawiki' => 'Mezua',
+'vector-namespace-project'   => 'Proiektu-orrialde',
+'vector-namespace-special'   => 'Orrialde berezia',
+'vector-namespace-talk'      => 'Eztabaida',
+'vector-namespace-template'  => 'Txantiloi',
+'vector-namespace-user'      => 'Erabiltzaile-orria',
+'vector-view-create'         => 'Sortu',
+'vector-view-edit'           => 'Aldatu',
+'vector-view-history'        => 'Historia ikusi',
+'vector-view-view'           => 'Irakurri',
+'vector-view-viewsource'     => 'Kodea ikusia',
+'actions'                    => 'Ekintzak',
 
 # Metadata in edit box
 'metadata_help' => 'Metadatuak:',
@@ -1141,6 +1150,7 @@ Gainera beste lankideek zurekin kontakta dezakete zure lankide edo lankide_eztab
 'prefs-advancedrendering'     => 'Aukera aurreratuak',
 'prefs-advancedsearchoptions' => 'Aukera aurreratuak',
 'prefs-advancedwatchlist'     => 'Aukera aurreratuak',
+'prefs-display'               => 'Aukerak erakutsi',
 'prefs-diffs'                 => 'Ezberdintasunak',
 
 # User rights
@@ -1294,6 +1304,9 @@ Gainera beste lankideek zurekin kontakta dezakete zure lankide edo lankide_eztab
 'recentchanges-legend'              => 'Azken aldaketen aukerak',
 'recentchangestext'                 => 'Orrialde honetan wiki honetan egindako azken aldaketak erakusten dira.',
 'recentchanges-feed-description'    => 'Sindikazio honetan wikian eginiko azkeneko aldaketak jarrai daitezke.',
+'recentchanges-label-newpage'       => 'Aldaketa honek orrialde berri bat sortu du',
+'recentchanges-label-minor'         => 'Hau aldaketa txikia da',
+'recentchanges-label-bot'           => 'Aldaketa hau bot batek egin du',
 'rcnote'                            => "Beheko azken {{PLURAL:$2|eguneko|'''$2''' egunetako}} azken {{PLURAL:$1|aldaketa|'''$1''' aldaketak}} hurrengo datan egin ziren: $5, $4.",
 'rcnotefrom'                        => 'Jarraian azaltzen diren aldaketak data honetatik aurrerakoak dira: <b>$2</b> (gehienez <b>$1</b> erakusten dira).',
 'rclistfrom'                        => 'Erakutsi $1 ondorengo aldaketa berriak',
@@ -1420,6 +1433,7 @@ Aukera ezazu, mesedez, fitxategi izen deskriptiboago bat.",
 'upload-file-error-text'  => 'Barne errore bat gertatu da zerbitzarian fitxategi tenporal bat sortzen saiatzean. Mesedez, jar zaitez [[Special:ListUsers/sysop|administratzaile]] batekin harremanetan.',
 'upload-misc-error'       => 'Errore ezezaguna igotzerakoan',
 'upload-misc-error-text'  => 'Errore ezezagun bat gertatu da fitxategia igotzen ari zenean. Mesedez, egiaztatu URLa baliozkoa eta eskuragarria dela eta berriz saiatu. Arazoak jarraitzen badu, jar zaitez [[Special:ListUsers/sysop|administratzailearekin]] harremanetan.',
+'upload-unknown-size'     => 'Tamaina ezezaguna',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Ezin izan da URLa eskuratu',
@@ -1644,7 +1658,7 @@ Ondorengo zerrendak fitxategira dauden {{PLURAL:$1|lehen lotura|lehen $1 loturak
 'specialloguserlabel'  => 'Lankidea:',
 'speciallogtitlelabel' => 'Izenburua:',
 'log'                  => 'Erregistroak',
-'all-logs-page'        => 'Erregistro guztiak',
+'all-logs-page'        => 'Erregistro publiko guztiak',
 'alllogstext'          => '{{SITENAME}} orrialdearen erregistro guztien erakusketa konbinatua.
 Erregistro mota, erabiltzailearen izena edota orrialdearen izena iragaziz bistaratu daiteke. Letra larriak eta xeheak bereizten dira.',
 'logempty'             => 'Ez dago emaitzarik erregistroan.',
@@ -1696,6 +1710,10 @@ Baimendutako protokoloak: <tt>$1</tt>',
 'listusers-submit'   => 'Erakutsi',
 'listusers-noresult' => 'Ez da erabiltzailerik aurkitu.',
 'listusers-blocked'  => '(blokeatua)',
+
+# Special:ActiveUsers
+'activeusers'          => 'Lankide aktiboen zerrenda',
+'activeusers-noresult' => 'Ez da lankiderik aurkitu.',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Erabiltzaile erregistroa',
@@ -2106,6 +2124,7 @@ Ikus [[Special:IPBlockList|IP blokeoen zerrenda]] blokeoak aztertzeko.',
 'range_block_disabled'            => 'Administratzaileak IP eremuak blokeatzeko gaitasuna ezgaituta dago.',
 'ipb_expiry_invalid'              => 'Baliogabeko iraungipen denbora',
 'ipb_expiry_temp'                 => 'Izkutuan dauden lankide izenen blokeoa betierekikoa izan behar du.',
+'ipb_hide_invalid'                => 'Ezin izan da kontu hau ezabatu; aldaketa asko izan baitezake.',
 'ipb_already_blocked'             => '"$1" badago blokeatuta',
 'ipb-needreblock'                 => '== Dagoeneko blokeaturik ==
 $1 dagoeneko blokeaturik dago. Ezarpenak aldatu nahi al dituzu?',
@@ -2142,13 +2161,18 @@ Hala ere, $2-(r)en parte denez, blokeoa kendu daiteke.',
 # Move page
 'move-page'                    => '$1 mugitu',
 'move-page-legend'             => 'Orrialdea mugitu',
-'movepagetext'                 => 'Hurrengo pausoak jarraituz, artikulu edo orrialde baten izena aldatu daiteke.
-Izenburu zaharra, automatikoki izenburu berriari birzuzenduko zaio.
-Gogora ezazu, orrialdearen izena ez dela aldatuko, nahi duzun izena dagoeneko sortuta badago Wikipedian; 
-birzuzenketa bat edo historiarik gabeko orrialde bat ez bada.
+'movepagetext'                 => "Beheko formularioa erabiliz orrialde baten izena aldatuko da, historia osoa izen berrira mugituz.
+Izenburu zaharra izenburu berrira doan berbiderapena bilakatuko da.
+Jatorrizko izenburura doazen berbiderapenak automatikoki egunera ditzakezu.
+Ezetz aukeratzen baduzu, berbiderapen [[Special:DoubleRedirects|bikoitz]] edo [[Special:BrokenRedirects|apurtuak]] egiazta itzazu.
+Loturak modu zuzenean mantentzea zure erantzukizuna da.
 
-<b>KONTUZ!</b>
-Artikulu oso erabilia edo asko aldatzen denaren izenburua aldatzera bazoaz, mesedez, lehenbizi artikuluaren eztabaidan adierazi ezazu beste lankideen iritziak jasotzeko.',
+Konturatu zaitez orrialdea '''ez''' dela mugituko izenburu berria duen orrialde bat badago jadanik, ez bada aldaketa-historiarik gabeko orrialde huts edo berbiderapen bat. 
+Horrek esan nahi du hanka sartzekotan orrialde baten jatorrizko izenburua berreskuratu daitekeela, baina ezin dela jada existitzen den orrialde baten gainean idatzi.
+
+'''Oharra!'''
+Honakoa aldaketa drastiko eta ustekabekoa izan daiteke orrialde oso ezagunetan;
+mesedez honen ondorioak ulertzen dituzula ziurta ezazu jarraitu baino lehen.",
 'movepagetalktext'             => "Dagokion eztabaida orrialdea berarekin batera mugitu da, honako kasu hauetan '''ezik:'''
 * Hutsik ez dagoen eztabaida orrialde bat existitzen bada izen berrian.
 * Beheko koadroa hautatzen ez baduzu.
@@ -3024,6 +3048,11 @@ Fitxategiaren izena sartu "{{ns:file}}:" aurrizkia gabe.',
 'dberr-cachederror' => 'Ondorengoa eskatutako orriaren katxedun kopia da, eta eguneratu gabe egon daiteke.',
 
 # HTML forms
+'htmlform-select-badoption'    => 'Zuk zehaztutako balioa ez da baliozko aukera.',
+'htmlform-int-invalid'         => 'Zuk zehaztutako balioa ez da zenbaki osoa.',
+'htmlform-float-invalid'       => 'Zuk zehaztutako balioa ez da zenbakia.',
+'htmlform-int-toolow'          => 'Zuk zehaztutako balioa $1 minimoaren azpitik dago',
+'htmlform-int-toohigh'         => 'Zuk zehaztutako balioa $1 maximoaren gainetik dago',
 'htmlform-submit'              => 'Bidali',
 'htmlform-reset'               => 'Aldaketak desegin',
 'htmlform-selectorother-other' => 'Beste bat',

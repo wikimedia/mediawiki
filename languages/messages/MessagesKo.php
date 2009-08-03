@@ -964,13 +964,13 @@ $1, 또는 [[{{MediaWiki:Grouppage-sysop}}|다른 관리자]]에게 차단에 �
 'rev-deleted-text-unhide'     => "해당 편집이 문서 역사에서 '''삭제'''되었습니다.
 자세한 사항은 [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 삭제 기록]에서 볼 수 있습니다.
 또한, 관리자 권한을 이용하여 [$1 해당 편집]을 볼 수 있습니다.",
-'rev-deleted-text-view'       => "이 문서의 편집은 문서 역사에서 '''삭제'''되었습니다.
+'rev-deleted-text-view'       => "이 문서의 편집은 역사에서 '''삭제'''되었습니다.
 당신은 관리자로서 삭제된 편집을 볼 수 있습니다.
-[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 삭제 기록]에서 자세한 내용을 볼 수 있습니다.",
+[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 삭제 기록]에서 자세한 내용을 볼 수 있습니다.",
 'rev-deleted-no-diff'         => "특정 판이 문서 역사에서 '''삭제'''되었기 때문에 비교할 수 없습니다.
-[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 삭제 기록]에서 자세한 내용을 볼 수 있습니다.",
+[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 삭제 기록]에서 자세한 내용을 볼 수 있습니다.",
 'rev-deleted-unhide-diff'     => "특정판의 비교가 문서 역사에서 '''삭제'''되었습니다.
-[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} 삭제 기록]에서 자세한 내용을 볼 수 있습니다.
+[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 삭제 기록]에서 자세한 내용을 볼 수 있습니다.
 관리자로서 작업하기를 원하다면 [$1 비교하기]에서 비교할 수 있습니다.",
 'rev-delundel'                => '보이기/숨기기',
 'revisiondelete'              => '버전 삭제/복구',
@@ -1462,6 +1462,8 @@ $1",
 'recentchanges-legend'              => '최근 바뀜 설정',
 'recentchangestext'                 => '위키의 최근 바뀜 내역이 나와 있습니다.',
 'recentchanges-feed-description'    => '위키의 최근 바뀜',
+'recentchanges-label-legend'        => '기호: $1 - 새로 만들어진 문서. $2 - 사소한 편집. $3 - 봇의 편집. $4 - 검토하지 않은 편집.',
+'recentchanges-label-newpage'       => '새 문서가 작성되었습니다',
 'rcnote'                            => "다음은 $4 $5 까지의 '''$2'''일동안 바뀐 '''$1'''개의 문서입니다.",
 'rcnotefrom'                        => "다음은 '''$2'''에서부터 바뀐 '''$1'''개의 문서입니다.",
 'rclistfrom'                        => '$1 이래로 바뀐 문서',
@@ -1755,8 +1757,10 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 [[MediaWiki:Disambiguationspage]]에서 링크된 틀을 사용하는 문서를 동음이의 문서로 간주합니다.",
 
 'doubleredirects'            => '이중 넘겨주기 목록',
-'doubleredirectstext'        => '각 열의 첫번째 문서는 두번째 문서로, 두번째 문서는 세번째 문서로 연결됩니다. 첫번째 문서를 마지막 문서로 연결해 주어야 합니다.',
-'double-redirect-fixed-move' => '넘겨주기 수정: [[$1]] 문서가 [[$2]] (으)로 이동되었습니다.',
+'doubleredirectstext'        => '이 문서는 다른 넘겨주기 문서로 넘겨주고 있는 문서의 목록입니다.
+매 줄에는 첫번째 문서와 두번째 문서의 링크가 있습니다. 그리고 보통 첫번째 문서가 넘겨주어야 할 "실제" 문서인 두번째 넘겨주기의 대상이 있습니다.
+<s>취소선이 그인</s> 부분은 이미 해결되었습니다.',
+'double-redirect-fixed-move' => '[[$1]] 문서를 옮겼습니다. 이 문서는 이제 [[$2]] 문서로 넘겨줍니다.',
 'double-redirect-fixer'      => '넘겨주기 수리꾼',
 
 'brokenredirects'        => '끊긴 넘겨주기 목록',
@@ -1843,7 +1847,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'specialloguserlabel'  => '이름:',
 'speciallogtitlelabel' => '제목:',
 'log'                  => '로그 목록',
-'all-logs-page'        => '모든 기록',
+'all-logs-page'        => '모든 공개 기록',
 'alllogstext'          => '{{SITENAME}}에서의 기록이 모두 나와 있습니다.
 로그 종류, 계정 이름, 문서 이름을 선택해서 볼 수 있습니다. 검색시에는 대소문자를 구별합니다.',
 'logempty'             => '일치하는 항목이 없습니다.',

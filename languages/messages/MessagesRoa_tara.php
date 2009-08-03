@@ -8,6 +8,7 @@
  * @file
  *
  * @author Joetaras
+ * @author McDutchie
  */
 
 $specialPageAliases = array(

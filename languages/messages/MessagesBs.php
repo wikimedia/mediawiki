@@ -314,7 +314,7 @@ $messages = array(
 'editfont-serif'     => 'Slova serif',
 
 # Dates
-'sunday'        => 'nedelja',
+'sunday'        => 'nedjelja',
 'monday'        => 'ponedjeljak',
 'tuesday'       => 'utorak',
 'wednesday'     => 'srijeda',
@@ -1533,6 +1533,11 @@ Također omogućuje drugim korisnicima da vas kontaktiraju preko Vaše korisnič
 'recentchanges-legend'              => 'Postavke nedavnih izmjena',
 'recentchangestext'                 => 'Na ovoj stranici možete pratiti nedavne izmjene.',
 'recentchanges-feed-description'    => 'Na ovoj stranici možete pratiti nedavne izmjene.',
+'recentchanges-label-legend'        => 'Legenda: $1 - nova stranica, $2 - mala izmjena, $3 - izmjena bota, $4 - nepatrolirana izmjena.',
+'recentchanges-label-newpage'       => 'Ovom izmjenom se pravi nova stranica',
+'recentchanges-label-minor'         => 'Ovo je mala izmjena',
+'recentchanges-label-bot'           => 'Ova izmjenu je načinio bot',
+'recentchanges-label-unpatrolled'   => 'Ova izmjena još nije patrolirana',
 'rcnote'                            => "Ispod {{PLURAL:$1|je '''$1''' promjena|su '''$1''' zadnje promjene|su '''$1''' zadnjih promjena}} u {{PLURAL:$2|posljednjem '''$2''' danu|posljednja '''$2''' dana|posljednjih '''$2''' dana}}, od $4, $5.",
 'rcnotefrom'                        => 'Ispod su izmjene od <b>$2</b> (do <b>$1</b> prikazano).',
 'rclistfrom'                        => 'Prikaži nove izmjene počev od $1',

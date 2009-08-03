@@ -65,6 +65,13 @@ $messages = array(
 'underline-never'   => 'Kabhi nai',
 'underline-default' => 'Browser ke default',
 
+# Font style option in Special:Preferences
+'editfont-style'     => 'Badlao waala jagah ke font:',
+'editfont-default'   => 'Browser ke sadharan setting',
+'editfont-monospace' => 'Font jiske sab akcchar ke ekke chaurrai hae',
+'editfont-sansserif' => 'Sans-serif font',
+'editfont-serif'     => 'Serif font',
+
 # Dates
 'sunday'        => 'Etwaar',
 'monday'        => 'Sombaar',
@@ -333,17 +340,17 @@ Sahi khaas panna ke suchi [[Special:SpecialPages|{{int:specialpages}}]]pe mili."
 # General errors
 'error'                => 'Galti',
 'databaseerror'        => 'Database me galti hai',
-'dberrortext'          => 'Database ke khoj me syntax error hoe gais hai.
+'dberrortext'          => 'Database ke khoj me syntax error hoe gais hae.
 Saait software me bug hoi.
 Pahile waala database ke khoj ke kosis rahaa:
 <blockquote><tt>$1</tt></blockquote>
-"<tt>$2</tt>" functionke bhitar se.
-MySQL ke galti sandes rahaa "<tt>$3: $4</tt>".',
-'dberrortextcl'        => 'Database ke khoj me syntax error hoe gais hai.
+"<tt>$2</tt>" function ke bhitar se.
+$5 ke galti sandes rahaa "<tt>$3: $4</tt>".',
+'dberrortextcl'        => 'Database ke khoj me syntax error hoe gais hae.
 Pahile waala database ke khoj ke kosis rahaa:
 "$1"
 "$2" function ke bhitar se.
-MySQL ke galti sandes rahaa "$3: $4"',
+$5 ke galti sandes rahaa "$3: $4"',
 'laggedslavemode'      => 'Chetawni: Panna me nawaa badlao sait nai hoi.',
 'readonly'             => 'Database band hai',
 'enterlockreason'      => 'Band kare ke kaaran likho, aur ii bhi likho ki kab khola jaai.',
@@ -361,6 +368,7 @@ Iske, URL ke likh ke, koi administrator ke report karo.',
 'readonly_lag'         => 'Database apne se band hoi gais hai jab tak ki duusra database, khaas database ke sanghe kaam nai kare lage.',
 'internalerror'        => 'Bhitri galti',
 'internalerror_info'   => 'Bhitri galti: $1',
+'fileappenderror'      => '"$1" ke "$2" se nai jorre sakaa hae.',
 'filecopyerror'        => 'File "$1" ke "$2" pe copy nai kare sakaa.',
 'filerenameerror'      => 'File "$1" ke naam badal ke "$2" nai kare sakaa.',
 'filedeleteerror'      => 'File "$1" ke nai mitae sakaa.',
@@ -763,16 +771,21 @@ Try karo [[Special:Search|wiki me khije ke]] aur nawaa panna ke.',
 'rev-deleted-user'            => '(username ke hatae dewa gais hai)',
 'rev-deleted-event'           => '(log action ke hatae dewa gais hai)',
 'rev-deleted-text-permission' => "Panna ke ii badlao ke '''mitae''' dewa gais hae.
-Iske baare me aur jaankari [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} deletion log] me saait hoi.",
+Iske baare me aur jaankari [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log] me saait hoi.",
 'rev-deleted-text-unhide'     => "Ii panna ke badlao ke '''mitae''' dewa gais hai.
-Iske baare me aur jaankari saait [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} supression log me hoi].
+Iske baare me aur jaankari saait [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log] me hoi.
 Ek administrator rahe se aap fir bhi [$1 ii badlao ke dekhe sakta hae] agar aap aage barrhe mangtaa hae tab.",
-'rev-deleted-text-view'       => "Panna ke ii badlao ke '''mitae''' dewa gais hai.
-Aap ek administrator hoe ke kaaran iske dekhe sakta hai; iske baare me aur jaankari [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} suppression log] me saait hoi.",
+'rev-suppressed-text-unhide'  => "Ii panna ke badlao ke '''dabae''' dewa gais hai.
+Iske baare me aur jaankari saait [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} suppression log] me hoi.
+Ek administrator rahe se aap fir bhi [$1 ii badlao ke dekhe sakta hae] agar aap aage barrhe mangtaa hae tab.",
+'rev-deleted-text-view'       => "Panna ke ii badlao ke '''mitae''' dewa gais hae.
+Aap ek administrator hoe ke kaaran iske dekhe sakta hai; iske baare me aur jaankari [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log] me saait hoi.",
+'rev-suppressed-text-view'    => "Ii panna ke badlao ke '''dabae''' dewa gais hai.
+Ek administrator rahe ke kaaran aap iske dekhe saktaa hae; Iske baare me aur jaankari saait [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} suppression log] me hoi.",
 'rev-deleted-no-diff'         => "Aap ii diff ke nai dekhe saktaa hai kahe ki ek badlao '''mitae''' dewa gais hae.
-[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} suppression log] me sait kuch aur jaankari hoi.",
+[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log] me sait kuch aur jaankari hoi.",
 'rev-deleted-unhide-diff'     => "Ii diff me se ek badlao ke '''mitae''' dewa gais hae.
-Aur jaankari saait [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} suppression log] me hoi.
+Aur jaankari saait [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} deletion log] me hoi.
 Ek administrator hoe ke kaaran aap fir bhi [$1 ii diff ke dekhe sakta hae] agar aap aage barrhe mangtaa hai tab.",
 'rev-delundel'                => 'dekhao/lukao',
 'revisiondelete'              => 'Badlao ke mitao/nai mitao',
@@ -807,17 +820,17 @@ Meharbaani kar ke ii confirm karo ki aap ii chij kare mangta hai, aap iske natij
 'revdelete-logentry'          => '[[$1]] ke badlao ke visibility ke badal dewa gais hai',
 'logdelete-logentry'          => '[[$1]] keevent visibility ke badal dewa gais hae',
 'revdelete-success'           => "'''Badlao dekhe khatir taiyaar hai.'''",
-'revdelete-failure'           => "'''Revision visibility set nai hoe sakis.'''
+'revdelete-failure'           => "'''Badlao ke nai dekhawa jaae sake hae:'''
 $1",
 'logdelete-success'           => "'''Log dekhe khatir taiyaar hai.'''",
-'logdelete-failure'           => "'''Log visibility could not be set:'''
+'logdelete-failure'           => "'''Log ke nai dekhawa jaae sake hae:'''
 $1",
 'revdel-restore'              => 'Visibility ke badlo',
 'pagehist'                    => 'Panna ke itihaas',
 'deletedhist'                 => 'Mitawa gae itihass',
 'revdelete-content'           => 'suchi',
 'revdelete-summary'           => 'summary ke badlo',
-'revdelete-uname'             => 'username',
+'revdelete-uname'             => 'Sadasya ke naam',
 'revdelete-restricted'        => 'sysops pe llabu restrictions',
 'revdelete-unrestricted'      => 'sysops se hatawa gae rukawat',
 'revdelete-hid'               => '$1 lukaya',
@@ -837,29 +850,29 @@ Meharbani ka ke logs ke check karo.',
 
 # Suppression log
 'suppressionlog'     => 'Dabae waala log',
-'suppressionlogtext' => 'Niche ke suchi me sysops se lukawa gais deletions au rukawat hai.
-Dekho [[Special:IPBlockList|IP block list]] for the list of currently operational bans and blocks.',
+'suppressionlogtext' => 'Niche ke suchi me administrators se lukawa gais deletions au rukawat hae.
+Abhi ke laabu rukawat ke suchi ke khatir [[Special:IPBlockList|IP block list]] ke dekho.',
 
 # History merging
 'mergehistory'                     => 'Panna ke itihass ke jorro',
-'mergehistory-header'              => 'Ii panna aap ke ek panna ke balao ke itihaas ke duusra panna ke badlao ke itihaas se jorre sake hai.
-Make sure that this change will maintain historical page continuity.',
+'mergehistory-header'              => 'Ii panna aap ke ek panna ke balao ke itihaas ke duusra panna ke badlao ke itihaas se jorre sake hae.
+Ii baat ke dhyan me rakhna ki panna ke itihaas ek ke baad ek rahe.',
 'mergehistory-box'                 => 'Dui panna ke badlao ke itihaas ke jorro:',
 'mergehistory-from'                => 'Source panna:',
 'mergehistory-into'                => 'Destination panna:',
 'mergehistory-list'                => 'Mergeable badalao ke itihaas',
-'mergehistory-merge'               => 'Niche likha [[:$1]] ke badlao ke [[:$2]] me jorra jaae sake hai.
-Use the radio button column to merge in only the revisions created at and before the specified time.
-Note that using the navigation links will reset this column.',
+'mergehistory-merge'               => 'Niche likha [[:$1]] ke badlao ke [[:$2]] me jorra jaae sake hae.
+Radio button column ke kaam me laae ke khaali wahi badlao ke jorro jon ki batawa gais time pe, nai to usse pahile, banawa gais hae. 
+Ii baat ke dhyan me rakhna ki navigation jorr ke kaam me laae se ii column reset hoe jaai.',
 'mergehistory-go'                  => 'Jorre jaae sake badlao ke dekhao',
 'mergehistory-submit'              => 'Badlao ke jorro',
 'mergehistory-empty'               => 'Koi badlao ke jorraa nai jaae sake hai.',
 'mergehistory-success'             => '[[:$1]]ke $3 {{PLURAL:$3|badlao|badlao}} ke safalta se [[:$2]] me jorr dewa gais hai.',
-'mergehistory-fail'                => 'Itihas ke nai jorre paya hai, please recheck the page and time parameters.',
+'mergehistory-fail'                => 'Itihaas ke nai jorre paaya hae, meharbaani kar ke panna aur time parameters ke check karo.',
 'mergehistory-no-source'           => 'Source panna $1 nai hai.',
 'mergehistory-no-destination'      => 'Destination panna $1 nai hai.',
-'mergehistory-invalid-source'      => 'Source panna must be a valid title.',
-'mergehistory-invalid-destination' => 'Destination panna must be a valid title.',
+'mergehistory-invalid-source'      => 'Suruu waala panna ke must sahi naam hoe ke chaahi.',
+'mergehistory-invalid-destination' => 'Manzil waala panna ke sahi naam rahe ke chaahi.',
 'mergehistory-autocomment'         => '[[:$1]] [[:$2]] me jorr dewa gais hai',
 'mergehistory-comment'             => '[[:$1]] [[:$2]] me jorr dewa gais hai: $3',
 'mergehistory-same-destination'    => 'Suruu aur khatam kare waala panna ek nai hoe sake hai.',
@@ -1032,6 +1045,7 @@ Yaad rakhna ki uu log ke {{SITENAME}} ke index saait purana hoi.',
 'prefs-watchlist-days-max'      => '(jaada se jaada 7 din)',
 'prefs-watchlist-edits'         => 'Barraa dhyan suchi me jaada se jaada ketna badlao dekhawa jaae:',
 'prefs-watchlist-edits-max'     => '(jaada se jaada: 1000)',
+'prefs-watchlist-token'         => 'Dhyan suchi ke nisani',
 'prefs-misc'                    => 'Futkar',
 'prefs-resetpass'               => 'Password badlo',
 'prefs-email'                   => 'E-mail ke option',
@@ -1052,6 +1066,9 @@ Yaad rakhna ki uu log ke {{SITENAME}} ke index saait purana hoi.',
 'recentchangesdays-max'         => '(sab se jaada $1 {{PLURAL:$1|din|din}})',
 'recentchangescount'            => 'Default se ketnaa badlao ke dekhae ke chaahi:',
 'prefs-help-recentchangescount' => 'Isme hai haali ke badlao, panna ke itihaas aur loga.',
+'prefs-help-watchlist-token'    => 'Ii jaankari me gupt sabd bhare se aap ke dhyan suchi ke khatir ek RSS feed ban jaai.
+Koi bhi jan, jon ki ii gupt sabd ke jaanat hoi, aap ke dhyan suchi ke parre saki, tab aap achchha se gupt sabd ke sochna.
+Hian pe ek, apne se banaa sabd hae, jiske aap kaam me laae saktaa hae: $1',
 'savedprefs'                    => 'Aap ke pasand ke save kar lewa gais hai.',
 'timezonelegend'                => 'Time ke zone:',
 'localtime'                     => 'Sthaniye samay:',
@@ -1220,6 +1237,7 @@ Aap duusra log ke aap se aapan user_talk panna se aap ke contact kar le de sakta
 'right-siteadmin'             => 'Database ke band karo aur kholo',
 'right-reset-passwords'       => 'Duusra sadasya ke password ke badlo',
 'right-override-export-depth' => 'Panna aur jurra panna, 5 ke gahirrai talak, ke export karo',
+'right-versiondetail'         => 'Program ke baare me aur jaankari dekhao',
 
 # User rights log
 'rightslog'      => 'Sadasya adhikar suchi',
@@ -1399,15 +1417,18 @@ Aap ke subidha khatir deletion log hian pe hai:",
 'filename-bad-prefix'         => "Jon file aap upload kartaa hai uske naam '''\"\$1\"''' se suruu hoe hai, jon ki non-descriptive naam hai jiske jaada kar ke digital camera automatically assign kare hai.
 Meharbaani kar ke aur jaada descriptive filename chose karo.",
 
-'upload-proto-error'      => 'Protocol right nai hai',
-'upload-proto-error-text' => 'Duur ke upload maange hai URLs jon ki suruu hoe hai <code>http://</code> nai to <code>ftp://</code>.',
-'upload-file-error'       => 'Bhitri error',
-'upload-file-error-text'  => 'Server pe temporary file banae ke time ek bhitri error hoe gais.
+'upload-proto-error'        => 'Protocol right nai hai',
+'upload-proto-error-text'   => 'Duur ke upload maange hai URLs jon ki suruu hoe hai <code>http://</code> nai to <code>ftp://</code>.',
+'upload-file-error'         => 'Bhitri error',
+'upload-file-error-text'    => 'Server pe temporary file banae ke time ek bhitri error hoe gais.
 [[Special:ListUsers/sysop|administrator]] ke contact karo.',
-'upload-misc-error'       => 'Unknown upload error',
-'upload-misc-error-text'  => 'Upload kare ke time ek unknown error hoe gais hai.
+'upload-misc-error'         => 'Unknown upload error',
+'upload-misc-error-text'    => 'Upload kare ke time ek unknown error hoe gais hai.
 Meharbani kar ke verify karo ki URL valid aur accessible hai aur fir se kosis karo.
 Agar jo problem fir nai khatam hoe tab [[Special:ListUsers/sysop|administrator]] ke contact karo.',
+'upload-too-many-redirects' => 'Ii URL me bahut jaada redirects hae.',
+'upload-unknown-size'       => 'Nai pataa ki ketnaa barraa hae',
+'upload-http-error'         => 'Ek HTTP galti hoe gais hae: $1',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'URL pe pahunche nai paya hai',
@@ -1558,7 +1579,8 @@ A page is treated as disambiguation page if it uses a template which is linked f
 
 'doubleredirects'            => 'Dugna redirects',
 'doubleredirectstext'        => 'Ii panna uu panna ke suchi de hai jon ki duusra redirect panna pe redirect kare hai. 
-Each row contains links to the first and second redirect, as well as the target of the second redirect, which is usually "real" target page, which the first redirect should point to.',
+Sab row me pahila aur duusra redirect ke jorr hae, aur isme duusra redirect ke nisana bhi hae, jon ki jaada kar ke "aslii" nisana waala panna, jon ki pahila redirect ke dekhae hae.
+<s>Mitawa gais</s> entires ke solve kar dewa gais hae.',
 'double-redirect-fixed-move' => '[[$1]] ke naam badal dewa gais hai, ab ii [[$2]] pe redirect kare hai',
 'double-redirect-fixer'      => 'Redirect ke banae waala',
 
@@ -1646,7 +1668,7 @@ Each row contains links to the first and second redirect, as well as the target 
 'specialloguserlabel'  => 'Sadasya:',
 'speciallogtitlelabel' => 'Title:',
 'log'                  => 'Suchi',
-'all-logs-page'        => 'Sab suchi',
+'all-logs-page'        => 'Sab janta waala suchi',
 'alllogstext'          => '{{SITENAME}} ke sab logs ke combined display.
 You can narrow down the view by selecting a log type, the user name (case-sensitive), or the affected page (also case-sensitive).',
 'logempty'             => 'Log me koi matching item nai hai.',
@@ -2250,7 +2272,7 @@ panna ke wahi ke uppar nai save karaa jaae sake hai.',
 'imagetypemismatch'            => 'Nawaa file extension uske type se nai match kare hai.',
 'imageinvalidfilename'         => 'Jon naam pe aap badle mangtaa hai valid nai hai',
 'fix-double-redirects'         => 'Update any redirects that point to the original title',
-'move-leave-redirect'          => 'Leave a redirect behind',
+'move-leave-redirect'          => 'Ek redirect ke pichhe chhorro',
 'protectedpagemovewarning'     => 'Chetauni: Ii panna ke band kar dewa gais hai jisse ki khaali administrator logan iske naam badle sake hai.',
 'semiprotectedpagemovewarning' => 'Note karna: Ii panna ke band kar dewa gais hai jisse ki khaali registered sadasya iske naam badle sake hai.',
 
@@ -2282,6 +2304,10 @@ Duusra case me aap ek link ke bhi use kare saktaa hai, jaise ki [[{{#Special:Exp
 'allmessagestext'           => 'Ii ek system sandes ke suchi hai jon ki MediaWiki namespace me pawa jaae sake hai.
 Agar aap generic MediaWiki localisation ke yogdaan de mangtaa hai tab meharbani kar ke [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] aur [http://translatewiki.net translatewiki.net]  pe jao.',
 'allmessagesnotsupportedDB' => "Ii panna ke kaam me nai lawa jaae sake hai kahe ki '''\$wgUseDatabaseMessages''' ke band kar dewa gais hai.",
+'allmessages-filter-legend' => 'Chaalo',
+'allmessages-filter-all'    => 'Sab',
+'allmessages-language'      => 'Bhasa:',
+'allmessages-filter-submit' => 'Jaao',
 
 # Thumbnails
 'thumbnail-more'           => 'Barraa karo',
