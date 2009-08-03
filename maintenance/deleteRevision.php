@@ -18,7 +18,6 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @ingroup Maintenance
- * @ingroup Maintenance
  */
 
 require_once( "Maintenance.php" );
