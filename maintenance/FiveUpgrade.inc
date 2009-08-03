@@ -526,7 +526,7 @@ class FiveUpgrade {
 		} else {
 			global $IP;
 			$this->log( 'adding iw_trans...' );
-			dbsource( $IP . '/maintenance/archives/patch-interwiki-trans.sql', $this->dbw );
+			$this->dbw->sourceFile( $IP . '/maintenance/archives/patch-interwiki-trans.sql' );
 			$this->log( 'added iw_trans.' );
 		}
 
