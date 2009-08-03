@@ -2664,6 +2664,8 @@ $1',
 'svg-long-desc'        => '（SVG文件，名义大小：$1 × $2像素，文件大小：$3）',
 'show-big-image'       => '完整分辨率',
 'show-big-image-thumb' => '<small>这幅缩略图的分辨率：$1 × $2像素</small>',
+'file-info-gif-looped' => '循环',
+'file-info-gif-frames' => '$1帧',
 
 # Special:NewFiles
 'newimages'             => '新建图像画廊',

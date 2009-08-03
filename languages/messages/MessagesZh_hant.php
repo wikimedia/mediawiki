@@ -2642,6 +2642,8 @@ $1',
 'svg-long-desc'        => '(SVG檔案，表面大小： $1 × $2 像素，檔案大小：$3)',
 'show-big-image'       => '完整解像度',
 'show-big-image-thumb' => '<small>這幅縮圖的解像度: $1 × $2 像素</small>',
+'file-info-gif-looped' => '循環',
+'file-info-gif-frames' => '$1幀',
 
 # Special:NewFiles
 'newimages'             => '新建圖像畫廊',
