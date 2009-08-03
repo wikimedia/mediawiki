@@ -215,7 +215,16 @@ mediaWikiSearch.prototype = {
 		var cat = rObj;		
 		//return the html type: 
 		if(rObj.mime.indexOf('image')!=-1){
-			return '<img ' + id_attr + ' src="' + rObj.edit_url  + '"' + style_attr + ' >';
+			//if crop is null do base output: 
+			var imgHtml = '<img ' + id_attr + ' src="' + rObj.edit_url  + '"' + style_attr + ' >';
+			if( rObj.crop == null)
+				return imgHtml
+			//else do crop output:	
+			return '<div style="width:' + rObj.crop.wpx +'">' +				
+				'<div style="width:'+rObj.crop.w +'px;height: ' + rObj.crop.h +'px;overflow:hidden;position:relative">' +
+				'<div style="position:relative;top:-' + rObj.crop.y +'px;left:-' + rObj.crop.x +'px">'+
+					imgHtml + 
+				'</div>';			
 		}
 		var ahtml='';
 		if(rObj.mime == 'application/ogg' || rObj.mime == 'audio/ogg'){
@@ -230,7 +239,7 @@ mediaWikiSearch.prototype = {
 			if(rObj.mime.indexOf('audio/ogg')!=-1){
 				return '<audio ' + ahtml + '></audio>';
 			}
-		}		
+		}						
 		js_log('ERROR:unsupored mime type: ' + rObj.mime);
 	},
 	getInlineDescWiki:function( rObj ){						

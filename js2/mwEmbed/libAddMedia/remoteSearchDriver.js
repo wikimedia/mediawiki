@@ -129,7 +129,7 @@ remoteSearchDriver.prototype = {
 			'checked': 1,			
 			'title'	 : 'This Wiki',
 			'desc'	 : '(should be updated with the proper text) maybe import from some config value',
-			'api_url':  wgServer + wgScriptPath + '/api.php',
+			'api_url':  ( wgServer && wgScriptPath )? wgServer + wgScriptPath+ '/api.php': null,
 			'lib'	 : 'mediaWiki',	
 			'local'	 : true,
 			'tab_img': false
@@ -321,14 +321,26 @@ remoteSearchDriver.prototype = {
 		   _this.getTexboxSelection();
 				
 		//set up the content provider config:
-		if(this.cpconfig){
+		if( this.cpconfig ){
 			for(var cpc in cpconfig){
 				for(var cinx in this.cpconfig[cpc]){
 					if( this.content_providers[cpc] )					
 						this.content_providers[ cpc ][ cinx ] = this.cpconfig[cpc][ cinx];				
 				}
 			}
+		}	
+		
+		//make sure the selected cp has an api to query against: 
+		if(! this.content_providers[ this.disp_item ].api_url  ){
+			for(var inx in this.content_providers){
+				if( this.content_providers[ inx ].api_url ){
+					this.disp_item = inx;
+					break;
+				}
+			}
 		}
+			
+		
 		//set up the default model config: 
 		this.dmodalCss = {
 			'width':'auto',
@@ -362,10 +374,10 @@ remoteSearchDriver.prototype = {
 		$j(this.target_invocation).unbind().click(function(){
 		 	  js_log("re-open");
 			  //update the base text:
-			  if(_this.target_textbox)
+			  if( _this.target_textbox )
 					_this.getTexboxSelection();
-		
-			  $j(_this.target_container).dialog('open').parent('.ui-dialog').css( _this.dmodalCss );
+			  //$j(_this.target_container).dialog("open");
+			  $j(_this.target_container).parents('.ui-dialog').fadeIn('slow');
 		 });	
 	},
 	//gets the in and out points for insert position or grabs the selected text for search
@@ -414,10 +426,10 @@ remoteSearchDriver.prototype = {
 		var _this = this;
 		//add the parent target_container if not provided or missing
 		if(!_this.target_container || $j(_this.target_container).length==0){
-			$j('body').append('<div id="rsd_modal_target" style="position:absolute;top:30px;left:0px;bottom:45px;right:0px" title="' + gM('add_media_wizard') + '" ></div>');
+			$j('body').append('<div id="rsd_modal_target" style="position:absolute;top:30px;left:0px;bottom:45px;right:0px;" title="' + gM('add_media_wizard') + '" ></div>');
 			_this.target_container = '#rsd_modal_target';
-			js_log('appended: #rsd_modal_target' + $j(_this.target_container).attr('id'));
-				js_log('added target id:' + $j(_this.target_container).attr('id'));
+			//js_log('appended: #rsd_modal_target' + $j(_this.target_container).attr('id'));
+			//js_log('added target id:' + $j(_this.target_container).attr('id'));
 			//get layout			
 			//layout = _this.getMaxModalLayout();			
 			$j(_this.target_container).dialog({
@@ -431,6 +443,7 @@ remoteSearchDriver.prototype = {
 				},
 				close: function() {
 					js_log('closed modal');
+					$j(this).parents('.ui-dialog').fadeOut('slow');
 				}		
 			}).css({'height':'100%'}).parent('.ui-dialog').css( _this.dmodalCss )
 			//@@bind on resize to disable css dialog to update dmodelCss 
@@ -452,7 +465,8 @@ remoteSearchDriver.prototype = {
 			});
 			//re add cancel button 
 			_this.cancelClipEditCB();
-			js_log('done setup of target_container: ' + $j(_this.target_container +'~ .ui-dialog-buttonpane').length);
+			js_log('done setup of target_container: ' + 
+				$j(_this.target_container +'~ .ui-dialog-buttonpane').length);
 			
 			
 			/*var resizeTimer = false;
@@ -564,7 +578,7 @@ remoteSearchDriver.prototype = {
 		js_log("f:runSearch::" + this.disp_item);
 		//draw_direct_flag
 		var draw_direct_flag = true;					
-		if(!this.content_providers[this.disp_item])	{
+		if( !this.content_providers[this.disp_item] ){
 			js_log("can't run search for:" + this.disp_item);
 			return false;
 		}			
@@ -755,7 +769,7 @@ remoteSearchDriver.prototype = {
 			var tabc = '';		
 			for(var cp_id in  this.content_providers){
 					var cp = this.content_providers[cp_id];
-					if( cp.enabled && cp.checked){					
+					if( cp.enabled && cp.checked && cp.api_url){					
 						//add selected default if set
 						if( this.disp_item == cp_id)
 							selected_tab=inx;
@@ -1545,7 +1559,8 @@ remoteSearchDriver.prototype = {
 		 js_log("close all");
 		 $j('#rsd_resource_preview').remove();
 		 $j('#rsd_resource_edit').remove();
-		 $j(_this.target_container).dialog('close');		 
+		 //$j(_this.target_container).dialog('close');
+		 $j(_this.target_container).hide();		 
 	},
 	setResultBarControl:function( ){
 		var _this = this;

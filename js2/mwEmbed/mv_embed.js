@@ -58,7 +58,7 @@ var parseUri=function(d){var o=parseUri.options,value=o.parser[o.strictMode?"str
 if( !mv_embed_path ){
 	var mv_embed_path = getMvEmbedPath();
 }
-jQueryUiVN = 'jquery.ui-1.7.1'; 
+var jQueryUiVN = 'jquery.ui-1.7.1'; 
 
 
 //setup the skin path: 
