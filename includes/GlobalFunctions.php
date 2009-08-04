@@ -3204,6 +3204,7 @@ function wfParseMemoryLimit( $memlimit ) {
 			$val *= 1024;
 		case 'k':
 			$val *= 1024;
+	}
 	return $val;
 }
 
