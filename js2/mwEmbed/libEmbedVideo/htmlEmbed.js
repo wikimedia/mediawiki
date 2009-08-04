@@ -130,20 +130,24 @@ var htmlEmbed ={
 	getEmbedHTML:function(){
 		js_log('f:html:getEmbedHTML: ' + this.id);
 		//set up the css for our parent div:		 
-		$j(this).css({'width':this.pc.pp.width, 'height':this.pc.pp.height, 'overflow':"hidden"});
+		$j(this).css({
+			'width':this.pc.pp.width, 
+			'height':this.pc.pp.height, 
+			'overflow':"hidden"
+		});
 		//@@todo support more smil animation layout stuff: 
 		
 		//wrap output in videoPlayer_ div:
 		$j(this).html('<div id="videoPlayer_'+ this.id+'">'+this.getThumbnailHTML()+'</div>');
-	},
-	getThumbnailHTML:function( opt ){
+	},	
+	getThumbnailHTML:function( opt ){				
 		var out='';
 		if(!opt)
 			opt = {};			
 		var height = (opt.height)?opt.height:this.pc.pp.height;
 		var width = (opt.width)?opt.width: this.pc.pp.width;	
 		js_log('1req '+ opt.height + ' but got: ' + height);	
-		if( this.pc.type =='image/jpeg'){
+		if( this.pc.type =='image/jpeg' ||  this.pc.type == 'image/png' ){
 			js_log('should put src: '+this.pc.src);
 			out = '<img style="width:'+width+'px;height:'+height+'px" src="'+this.pc.src+'">';
 		}else{
@@ -153,12 +157,12 @@ var htmlEmbed ={
 		return out;
 	},
 	doThumbnailHTML:function(){
-		js_log('f:htmlEmbed:doThumbnailHTML');
+		js_log('htmlEmbed:doThumbnailHTML()');
 		this.getEmbedHTML();
 	},
 	/* since its just html display get the "embed" right away */
 	getHTML:function(){
-		js_log('getHTML: htmlEmbed');
+		js_log('htmlEmbed::getHTML() ' + this.id);
 		this.getEmbedHTML();
 	},
 	getDuration:function(){

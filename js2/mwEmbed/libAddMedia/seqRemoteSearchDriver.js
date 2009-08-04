@@ -89,7 +89,7 @@ seqRemoteSearchDriver.prototype = {
 	},
 	insertResource:function(rObj){
 		var _this = this;
-		js_log("SEQ insert resource after:" + _this.sequence_add_target );
+		js_log("SEQ insert resource after:" + _this.sequence_add_target  + ' of type: ' + rObj.mime);
 		if(_this.sequence_add_target ){
 			var tClip = _this.pSeq.getClipFromSeqID( _this.sequence_add_target );		
 			var target_order = false;
@@ -102,26 +102,25 @@ seqRemoteSearchDriver.prototype = {
 		var cat = rObj;			
 		//check for target insert path
 		this.checkImportResource( rObj, function(){	
-														
+										
 			var clipConfig = {					
 				'type' 	 : rObj.mime,
 				'uri' 	 : _this.cFileNS + ':' + rObj.target_resource_title,				
 				'title'	 : rObj.title								
 			};																
-			//set via local properites if avaliable
+			//set via local properites if avaliable			
 			clipConfig['src'] = (rObj.local_src) ? rObj.local_src : rObj.src;
-			clipConfig['poster'] = (rObj.local_poster) ? rObj.local_poster : rObj.poster;
+			clipConfig['poster'] = ( rObj.local_poster ) ? rObj.local_poster : rObj.poster;
 			
 			if(rObj.start_time && rObj.end_time){
 				clipConfig['dur'] = npt2seconds( rObj.end_time ) - npt2seconds( rObj.start_time );
 			}else{
-				//provide a default duration 
+				//provide a default duration if none set 
 				clipConfig['dur'] = 4;
-			}
-			
+			}			
 			
 			//create the media element (target order+1 (since we insert (after) 		
-			_this.pSeq.plObj.tryAddMediaObj(clipConfig, target_order+1 );		
+			_this.pSeq.plObj.tryAddMediaObj( clipConfig, (parseInt(target_order) + 1) );		
 			//refresh the timeline: 
 			_this.pSeq.do_refresh_timeline();
 			js_log("run close all: ");						

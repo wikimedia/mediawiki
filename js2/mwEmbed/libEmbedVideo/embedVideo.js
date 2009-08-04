@@ -284,13 +284,15 @@ var ctrlBuilder = {
 		//make pointer to the embedObj
 		this.embedObj =embedObj;
 		var _this = this;		
-		$j.each( embedObj.supports, function( i, sup ){
+		for(var i in embedObj.supports){			
 			_this.supports[i] = embedObj.supports[i];
-		});
+		};
 					
 		//special case vars: 
-		if( ( embedObj.roe || embedObj.media_element.timedTextSources() )  
-				&& embedObj.show_meta_link  )
+		if( ( embedObj.roe || 
+				(embedObj.media_element.timedTextSources && 
+				embedObj.media_element.timedTextSources() ) 
+			)  && embedObj.show_meta_link  )
 			this.supports['closed_captions']=true;   
 		
 			
@@ -464,7 +466,7 @@ var ctrlBuilder = {
 			function(){			
 				$j('#vol_container_' + embedObj.id).addClass('vol_container_top');
 				//set to "below" if playing and embedType != native
-				if(embedObj && embedObj.isPlaying() && !embedObj.supports['overlays']){
+				if(embedObj && embedObj.isPlaying && embedObj.isPlaying() && !embedObj.supports['overlays']){
 					$j('#vol_container_' + embedObj.id).removeClass('vol_container_top').addClass('vol_container_below');
 				}
 				
@@ -1314,8 +1316,7 @@ embedVideo.prototype = {
 		return true;	
 	},
 	getTimeReq:function(){
-		//js_log('f:getTimeReq:'+ this.getDurationNTP());
-		var default_time_req = '0:00:00/' + this.getDurationNTP() ;
+		var default_time_req = '0:00:00/' + seconds2npt(this.getDuration());
 		if(!this.media_element)
 			return default_time_req;
 		if(!this.media_element.selected_source)
@@ -1339,10 +1340,6 @@ embedVideo.prototype = {
 			this.end_ntp = seconds2npt( this.duration );		
 		//return the duration
 		return this.duration;
-	},
-	  /* get the duration in ntp format */
-	getDurationNTP:function(){
-		return seconds2npt(this.getDuration());
 	},
 	/*
 	 * wrapEmebedContainer
@@ -1654,7 +1651,7 @@ embedVideo.prototype = {
 	},	
 	getHTML : function (){		
 		//@@todo check if we have sources avaliable	
-		js_log('f:getHTML : ' + this.id );			
+		js_log('embedVideo:getHTML : ' + this.id );			
 		var _this = this;				 
 		var html_code = '';		
 		html_code = '<div id="videoPlayer_'+this.id+'" style="width:'+this.width+'px;" class="videoPlayer">';		
@@ -1811,7 +1808,8 @@ embedVideo.prototype = {
 		download, and embed code.
 	*/
 	getThumbnailHTML : function ()
-	{
+	{		
+		js_log('embedVideo:getThumbnailHTML::' + this.id);
 		var thumb_html = '';
 		var class_atr='';
 		var style_atr='';
@@ -2387,11 +2385,13 @@ embedVideo.prototype = {
 		//do head request if on the same domain
 		return this.media_element.selected_source.URLTimeEncoding;
 	},
-	setSliderValue: function(perc, hide_progress){
+	setSliderValue: function(perc, hide_progress){		
 		if(this.controls){		
 			var this_id = (this.pc)?this.pc.pp.id:this.id;
 			var val = parseInt( perc*1000 ); 
 			$j('#mv_play_head_'+this_id).slider('value', val);
+			
+			js_log("embed video set: " + '#mv_play_head_'+this_id + ' to ' + val);
 		}
 		//js_log('set#mv_seeker_slider_'+this_id + ' perc in: ' + perc + ' * ' + $j('#mv_seeker_'+this_id).width() + ' = set to: '+ val + ' - '+ Math.round(this.mv_seeker_width*perc) );
 		//js_log('op:' + offset_perc + ' *('+perc+' * ' + $j('#slider_'+id).width() + ')');
@@ -2558,6 +2558,8 @@ mediaPlayers.prototype =
 		
 		this.default_players['text/html'] = ['html'];
 		this.default_players['image/jpeg'] = ['html'];
+		this.default_players['image/png'] = ['html'];
+		this.default_players['image/svg'] = ['html'];
 		
 	},
 	addPlayer : function(player, mime_type)
@@ -2606,8 +2608,8 @@ mediaPlayers.prototype =
 	},
 	defaultPlayer : function(mime_type)
 	{				
-		js_log("f:defaultPlayer: " + mime_type);
-		var mime_players = this.getMIMETypePlayers(mime_type);		
+		js_log("get defaultPlayer for " + mime_type);		
+		var mime_players = this.getMIMETypePlayers(mime_type);				
 		if( mime_players.length > 0)
 		{
 			// check for prior preference for this mime type
