@@ -3193,6 +3193,15 @@ function wfObjectToArray( $object, $recursive = true ) {
 	return $array;
 }
 
+/* Parse PHP's silly format for memory limits */
+function wfParseMemoryLimit( $memlimit ) {
+	$n = intval( $memlimit );
+	if( preg_match( '/^([0-9]+)[Mm]$/', trim( $memlimit ), $m ) ) {
+		$n = intval( $m[1] * (1024*1024) );
+	}
+	return $n;
+}
+
 /* Get the normalised IETF language tag
  * @param $code String: The language code.
  * @return $langCode String: The language code which complying with BCP 47 standards.

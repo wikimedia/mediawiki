@@ -466,21 +466,16 @@ if( !function_exists( 'preg_match' ) )
 	Perl-compatible regular expression functions." );
 
 $memlimit = ini_get( "memory_limit" );
-$conf->raiseMemory = false;
 if( empty( $memlimit ) || $memlimit == -1 ) {
 	print "<li>PHP is configured with no <tt>memory_limit</tt>.</li>\n";
 } else {
 	print "<li>PHP's <tt>memory_limit</tt> is " . htmlspecialchars( $memlimit ) . ". ";
-	$n = intval( $memlimit );
-	if( preg_match( '/^([0-9]+)[Mm]$/', trim( $memlimit ), $m ) ) {
-		$n = intval( $m[1] * (1024*1024) );
-	}
-	if( $n < 20*1024*1024 ) {
-		print "Attempting to raise limit to 20M... ";
-		if( false === ini_set( "memory_limit", "20M" ) ) {
+	global $wgMemoryLimit;
+	if( wfParseMemoryLimit( $memlimit ) < wfParseMemoryLimit( $wgMemoryLimit ) ) {
+		print "Attempting to raise limit to " . htmlspecialchars( $wgMemoryLimit ) . "... ";
+		if( false === ini_set( "memory_limit", $wgMemoryLimit ) ) {
 			print "failed.<br /><b>" . htmlspecialchars( $memlimit ) . " seems too low, installation may fail!</b>";
 		} else {
-			$conf->raiseMemory = true;
 			print "ok.";
 		}
 	}
@@ -1889,9 +1884,6 @@ if( defined( 'MW_INSTALL_PATH' ) ) {
 set_include_path( implode( PATH_SEPARATOR, \$path ) . PATH_SEPARATOR . get_include_path() );
 
 require_once( \"\$IP/includes/DefaultSettings.php\" );
-
-# If PHP's memory limit is very low, some operations may fail.
-" . ($conf->raiseMemory ? '' : '# ' ) . "ini_set( 'memory_limit', '20M' );" . "
 
 if ( \$wgCommandLineMode ) {
 	if ( isset( \$_SERVER ) && array_key_exists( 'REQUEST_METHOD', \$_SERVER ) ) {

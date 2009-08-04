@@ -79,6 +79,7 @@ this. Was used when mwEmbed was going to be an extension.
 * (bug 19907) $wgCrossSiteAJAXdomains and $wgCrossSiteAJAXdomainsRegex added 
   to control which external domains may access the API via cross-site AJAX.
 * $wgMaintenanceScripts for extensions to add their scripts to the default list
+* $wgMemoryLimit has been added, default value '50M'
 
 === New features in 1.16 ===
 
@@ -386,6 +387,7 @@ this. Was used when mwEmbed was going to be an extension.
   style that specifies the media attribute as screen. This is done to resolve
   and issue with Opera (bug 18497) where fullscreen mode is assumed to be
   projection mode and the style sheet for screen media is no longer used.
+* (bug 16084) Default memory limit has be increased to 50M, see $wgMemoryLimit
 
 == API changes in 1.16 ==
 
