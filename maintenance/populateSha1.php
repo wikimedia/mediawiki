@@ -56,6 +56,7 @@ class PopulateSha1 extends Maintenance {
 		$batch = array();
 	
 		if ( $method == 'pipe' ) {
+			// @fixme kill this and replace with a second unbuffered DB connection.
 			global $wgDBuser, $wgDBserver, $wgDBpassword, $wgDBname;
 			$cmd = 'mysql -u' . wfEscapeShellArg( $wgDBuser ) . 
 				' -h' . wfEscapeShellArg( $wgDBserver ) .
