@@ -33,7 +33,10 @@ if(typeof wgServer=='undefined'){
 }else{
 	var defaultMetaDataProvider = wgServer + wgScript + '?title=Special:MvExportStream&feed_format=roe&stream_name=';
 }
-
+/*
+ * The playlist Object implements ~most~ of embedVideo but we don't inherit (other than to use the control builder)  
+ * because pretty much every function has to be changed for the playlist context
+ */
 var mvPlayList = function(element) {		
 	return this.init(element);
 };
@@ -69,6 +72,17 @@ mvPlayList.prototype = {
 		title_bar_height:17,
 		control_height:29
 	},
+	//embed object type support system; 
+	supports: {
+		'play_head':true, 
+		'pause':true,		 
+		'fullscreen':false, 
+		'time_display':true, 
+		'volume_control':true,
+		
+		'overlays':true,
+		'playlist_swap_loader':true //if the object supports playlist functions		
+  	},
 	init : function(element){
 		js_log('mvPlayList:init:');		
 		this.tracks={};		
@@ -80,7 +94,7 @@ mvPlayList.prototype = {
 		this.default_track = this.tracks[0];				
 		
 		//get all the attributes:
-		  for(var attr in mv_default_playlist_attributes){	   
+		 for(var attr in mv_default_playlist_attributes){	   
 			if( element.getAttribute(attr) ){
 				this[attr]=element.getAttribute(attr);
 				//js_log('attr:' + attr + ' val: ' + video_attributes[attr] +" "+'elm_val:' + element.getAttribute(attr) + "\n (set by elm)");  
@@ -230,8 +244,11 @@ mvPlayList.prototype = {
 			this.doWhenClipLoadDone();
 		}else{
 			js_log("only "+ _this.clip_ready_count +" clips done, scheduling callback:");
+			var doParseDoneCheck = function(){				
+				_this.doWhenParseDone();
+			}
 			if( !mvJsLoader.load_error )	//re-issue request if no load error:
-				setTimeout('document.getElementById(\''+this.id+'\').doWhenParseDone()', 250);
+				setTimeout(doParseDoneCheck, 100);
 		}								
 	},
 	doWhenClipLoadDone:function(){		
@@ -263,6 +280,10 @@ mvPlayList.prototype = {
 		this.pl_duration=durSum;		
 		//js_log("return dur: " + this.pl_duration);
 		return this.pl_duration;
+	},
+	getTimeReq:function(){
+		//playlist does not really support time request atm ( in theory in the future we could embed playlists with temporal urls)
+		return '0:0:0/' +  seconds2npt( this.getDuration() ); 
 	},
 	getDataSource:function(){	
 		js_log("f:getDataSource "+ this.src);
@@ -518,13 +539,11 @@ mvPlayList.prototype = {
 	setStatus:function(value){
 		$j('#mv_time_'+this.id).html( value );
 	},
-	setSliderValue:function(value){
+	setSliderValue:function(value){		
 		if( this.controls ){
-			if(this.cur_clip.embed){
-				//js_log('calling original embed slider with val: '+value);
-				this.cur_clip.embed.pe_setSliderValue( value );
-				//call seq playline update here
-			}
+			//slider is on 1000 scale: 
+			var val = parseInt( value *1000 ); 			
+			$j('#mv_play_head_' + this.id).slider('value', val);
 		}
 	},	
 	getPlayHeadPos: function(prec_done){
@@ -718,7 +737,7 @@ mvPlayList.prototype = {
 			//play cur_clip			
 			this.cur_clip.embed.play();		
 		}		
-		//start up the playlist monitor	
+		//start up the playlist monitor			
 		this.monitor();		
 	},
 	/*
@@ -741,6 +760,25 @@ mvPlayList.prototype = {
 		$j.each(this.activeClipList.getClipList(), function(inx, clip){ 
 			clip.embed.pause();		
 		});
+	},
+	//@@todo mute across all child clips: 
+	toggleMute:function(){
+		var this_id = (this.pc!=null)?this.pc.pp.id:this.id;	
+		if(this.muted){
+			this.muted=false;
+			$j('#volume_control_'+this_id + ' span').removeClass('ui-icon-volume-off').addClass('ui-icon-volume-on');
+			$j('#volume_bar_'+this_id).slider('value', 100); 
+			this.updateVolumen(1);
+		}else{
+			this.muted=true;
+			$j('#volume_control_'+this_id + ' span').removeClass('ui-icon-volume-on').addClass('ui-icon-volume-off');
+			$j('#volume_bar_'+this_id).slider('value', 0);
+			this.updateVolumen(0); 
+		}
+		js_log('f:toggleMute::' + this.muted);		
+	},
+	updateVolumen:function(perc){
+		js_log('update volume not supported with current playback type');
 	},
 	fullscreen:function(){
 		this.cur_clip.embed.fullscreen();
@@ -785,11 +823,15 @@ mvPlayList.prototype = {
 			this.cur_clip = this.start_clip;		
 			//display the first clip thumb: 
 			this.cur_clip.embed.stop();
-			//make sure the current clip is vissable:
+			//hide other clips:
+			$j('#'+this.id+' .clip_container').hide();
+			//show the first/current clip:
 			$j('#clipDesc_'+this.cur_clip.id).show();
 		}
 		//reset the currentTime: 
 		this.currentTime = 0;
+		//rest the sldier
+		this.setSliderValue( 0 );
 		//FIXME still some issues with "stoping" and reseting the playlist	
 	},	
 	doSeek:function(v){
@@ -849,9 +891,8 @@ mvPlayList.prototype = {
 	//gets playlist controls large control height for sporting 
 	//next prev button and more status display
 	getControlsHTML:function(){
-		//get controls from current clip  (add some playlist specific controls:		  
-		this.cur_clip.embed.supports['prev_next']=true;		
-		return ctrlBuilder.getControls(this.cur_clip.embed);
+		//get controls from current clip  (add some playlist specific controls:		  			
+		return ctrlBuilder.getControls( this );
 	},	
 	//ads colors/dividers between tracks
 	colorPlayHead: function(){
@@ -874,7 +915,7 @@ mvPlayList.prototype = {
 			//(use getSoloDuration to not include transitions and such)	 
 			var perc = ( clip.getSoloDuration() / pl_duration );
 			var pwidth = Math.round( perc * _this.track_len);
-			js_log('pstatus:c:'+ clip.getDuration() + ' of '+ pl_duration+' %:' + perc + ' width: '+ pwidth + ' of total: ' + _this.track_len);
+			//js_log('pstatus:c:'+ clip.getDuration() + ' of '+ pl_duration+' %:' + perc + ' width: '+ pwidth + ' of total: ' + _this.track_len);
 			//var pwidth = Math.round( perc  * _this.track_len - (_this.mv_seeker_width*perc) );
 			
 			//add the buffer child indicator:						 
@@ -1002,6 +1043,22 @@ mvPlayList.prototype = {
 			clearInterval( this.default_track.clips[ clip_inx ].timerId );
 		else
 			this.default_track.clips[ clip_inx ][ trans_type ].run_transition();		
+	},
+	playerPixelWidth : function()
+	{
+		var player = $j('#mv_embedded_player_'+this.id).get(0);
+		if(typeof player!='undefined' && player['offsetWidth'])
+			return player.offsetWidth;
+		else
+			return parseInt(this.width);
+	},
+	playerPixelHeight : function()
+	{
+		var player = $j('#mv_embedded_player_'+this.id).get(0);
+		if(typeof player!='undefined' && player['offsetHeight'])
+			return player.offsetHeight;
+		else
+			return parseInt(this.height);
 	}
 }
 
@@ -1140,7 +1197,7 @@ mvClip.prototype = {
 			'<div id="pl_desc_txt_'+this.id+'" class="pl_desc" style="position:absolute;left:'+(tw+2)+'px;width:'+twDesc+'px;height:'+th+'px;overflow:auto;">'+
 					'<b>'+this.title+'</b><br>'+			
 					this.desc + '<br>' + 
-					'<b>clip length:</b> '+ this.embed.getDurationNTP()+ 
+					'<b>clip length:</b> '+ seconds2npt( this.embed.getDuration() ); 
 			'</div>');		
 		}
 	},*/
@@ -1279,7 +1336,7 @@ PlMvEmbed.prototype = {
 		//status updates handled by playlist obj
 	},
 	setSliderValue:function(value){
-		//setSlider value handled by playlist obj		
+		//setSlider value handled by playlist obj	
 	}	
 }
 
@@ -1437,21 +1494,12 @@ mvPlayList.prototype.monitor = function(){
 	
 	//update the playlist current time: 
 	//check for a trsnOut from the previus clip to subtract
-	/*var prev_clip =  this.getPrevClip();
-	var transOffset = 0;
-	if( prev_clip.id != this.cur_clip.id ){
-		if( prev_clip.transOut ){
-			transOffset = prev_clip.transOut.getDuration();
-			js_log("should add: " + transOffset + " off:" + this.cur_clip.dur_offset+  " to " +this.cur_clip.embed.currentTime +
-				 ' = ' + ( this.cur_clip.dur_offset + this.cur_clip.embed.currentTime + transOffset) );
-		}
-	}*/
 	this.currentTime = this.cur_clip.dur_offset + this.cur_clip.embed.relativeCurrentTime();	
 		
 	//update slider: 
 	if(!this.userSlide){
-		this.setStatus(seconds2npt(this.currentTime) + '/' + seconds2npt(this.getDuration()) );				
-		this.setSliderValue(this.currentTime / this.getDuration());
+		this.setStatus(seconds2npt(this.currentTime) + '/' + seconds2npt(this.getDuration()) );					
+		this.setSliderValue( this.currentTime / this.getDuration() );
 	}
 	//pre-load any future clips:
 	this.loadFutureClips();
@@ -2032,7 +2080,7 @@ mvSMILClip.prototype = {
 		if(this.transOut)
 			fulldur -= this.transOut.getDuration();
 
-		js_log("getSoloDuration:: td: " + this.getDuration() + ' sd:' + fulldur);
+		//js_log("getSoloDuration:: td: " + this.getDuration() + ' sd:' + fulldur);
 		return fulldur;
 	}
 }
