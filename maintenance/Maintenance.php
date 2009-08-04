@@ -481,6 +481,7 @@ abstract class Maintenance {
 	 * @param $force boolean Whether to force the help to show, default false
 	 */
 	private function maybeHelp( $force = false ) {
+		ksort( $this->mParams );
 		if( $this->hasOption('help') || in_array( 'help', $this->mArgs ) || $force ) {
 			$this->mQuiet = false;
 			if( $this->mDescription ) {
@@ -772,6 +773,7 @@ abstract class Maintenance {
 				'PopulateCategory'         => $d . 'populateCategory.php',
 				'PopulateLogSearch'        => $d . 'populateLogSearch.php',
 				'PopulateParentId'         => $d . 'populateParentId.php',
+				'PopulateSha1'             => $d . 'populateSha1.php',
 				'Protect'                  => $d . 'protect.php',
 				'PurgeList'                => $d . 'purgeList.php',
 				'PurgeOldText'             => $d . 'purgeOldText.php',
