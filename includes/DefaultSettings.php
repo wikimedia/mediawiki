@@ -3576,7 +3576,7 @@ $wgAllowSpecialInclusion = true;
 
 /**
  * Timeout for HTTP requests done at script execution time
- * default is (default php.ini script time 30s - 5s for everythign else)
+ * default is (default php.ini script time 30s - 5s for everything else)
  */
 $wgSyncHTTPTimeout = 25;
 /**
