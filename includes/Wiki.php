@@ -188,7 +188,9 @@ class MediaWiki {
 			if( $rdfrom = $request->getVal( 'rdfrom' ) ) {
 				$url = $title->getFullURL( 'rdfrom=' . urlencode( $rdfrom ) );
 			} else {
-				$url = $title->getFullURL();
+				$query = $request->getValues();
+				unset( $query['title'] );
+				$url = $title->getFullURL( $query );
 			}
 			/* Check for a redirect loop */
 			if( !preg_match( '/^' . preg_quote( $this->getVal('Server'), '/' ) . '/', $url ) && $title->isLocal() ) {
