@@ -304,10 +304,10 @@ CONTROL;
 		$newminor = '';
 
 		if( $this->mOldRev->isMinor() ) {
-			$oldminor = Xml::element( 'abbr', array( 'class' => 'minor' ), wfMsg( 'minoreditletter') ) . ' ';
+			$oldminor = ChangesList::flag( 'minor' );
 		}
 		if( $this->mNewRev->isMinor() ) {
-			$newminor = Xml::element( 'abbr', array( 'class' => 'minor' ), wfMsg( 'minoreditletter') ) . ' ';
+			$newminor = ChangesList::flag( 'minor' );
 		}
 
 		$rdel = ''; $ldel = '';
