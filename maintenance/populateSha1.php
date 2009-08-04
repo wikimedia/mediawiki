@@ -55,10 +55,11 @@ class PopulateSha1 extends Maintenance {
 		$oldimageTable = $dbw->tableName( 'oldimage' );
 		$batch = array();
 	
-		$cmd = 'mysql -u' . wfEscapeShellArg( $wgDBuser ) . 
-			' -h' . wfEscapeShellArg( $wgDBserver ) .
-			' -p' . wfEscapeShellArg( $wgDBpassword, $wgDBname );
 		if ( $method == 'pipe' ) {
+			global $wgDBuser, $wgDBserver, $wgDBpassword, $wgDBname;
+			$cmd = 'mysql -u' . wfEscapeShellArg( $wgDBuser ) . 
+				' -h' . wfEscapeShellArg( $wgDBserver ) .
+				' -p' . wfEscapeShellArg( $wgDBpassword, $wgDBname );
 			$this->output( "Using pipe method\n" );
 			$pipe = popen( $cmd, 'w' );
 		}
