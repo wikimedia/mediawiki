@@ -131,9 +131,37 @@ class ChangesList {
 	 * @param $key string 'newpage', 'unpatrolled', 'minor', or 'bot'
 	 * @return string Raw HTML
 	 */
-	public static function flagLegend( $key ) {
+	private static function flagLine( $key ) {
 		return wfMsgExt( "recentchanges-legend-$key", array( 'escapenoentities',
 			'replaceafter' ), self::flag( $key ) );
+	}
+
+	/**
+	 * A handy legend to tell users what the little "m", "b", and so on mean.
+	 *
+	 * @return string Raw HTML
+	 */
+	public static function flagLegend() {
+		global $wgGroupPermissions, $wgLang;
+
+		$flags = array( self::flagLine( 'newpage' ),
+			self::flagLine( 'minor' ) );
+
+		# Don't show info on bot edits unless there's a bot group of some kind
+		foreach ( $wgGroupPermissions as $rights ) {
+			if ( isset( $rights['bot'] ) && $rights['bot'] ) {
+				$flags[] = self::flagLine( 'bot' );
+				break;
+			}
+		}
+
+		if ( self::usePatrol() ) {
+			$flags[] = self::flagLine( 'unpatrolled' );
+		}
+
+		return '<div class="mw-rc-label-legend">' .
+			wfMsgWikiHtml( 'recentchanges-label-legend', $wgLang->commaList( $flags ) )
+			. '</div>';
 	}
 
 	/**

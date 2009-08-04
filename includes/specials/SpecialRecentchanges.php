@@ -408,7 +408,7 @@ class SpecialRecentChanges extends SpecialPage {
 	 * @return String: XHTML
 	 */
 	public function doHeader( $opts ) {
-		global $wgScript, $wgOut, $wgLang, $wgUser, $wgGroupPermissions;
+		global $wgScript, $wgOut;
 
 		$this->setTopText( $wgOut, $opts );
 
@@ -457,25 +457,7 @@ class SpecialRecentChanges extends SpecialPage {
 			Xml::fieldset( wfMsg( 'recentchanges-legend' ), $panelString, array( 'class' => 'rcoptions' ) )
 		);
 
-		$flags = array( ChangesList::flagLegend( 'newpage' ),
-			ChangesList::flagLegend( 'minor' ) );
-
-		# Don't show info on bot edits unless there's a bot group of some kind
-		foreach ( $wgGroupPermissions as $rights ) {
-			if ( isset( $rights['bot'] ) && $rights['bot'] ) {
-				$flags[] = ChangesList::flagLegend( 'bot' );
-				break;
-			}
-		}
-
-		if ( $wgUser->useRCPatrol() ) {
-			$flags[] = ChangesList::flagLegend( 'unpatrolled' );
-		}
-
-		$wgOut->addHTML( '<div class="mw-rc-label-legend">' );
-		$wgOut->addWikiMsg( 'recentchanges-label-legend',
-			$wgLang->commaList( $flags ) );
-		$wgOut->addHTML( '</div>' );
+		$wgOut->addHTML( ChangesList::flagLegend() );
 
 		$this->setBottomText( $wgOut, $opts );
 	}
