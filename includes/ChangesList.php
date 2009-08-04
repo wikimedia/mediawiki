@@ -124,6 +124,19 @@ class ChangesList {
 	}
 
 	/**
+	 * Some explanatory wrapper text for the given flag, to be used in a legend
+	 * explaining what the flags mean.  For instance, "N - new page".  See
+	 * also flag().
+	 *
+	 * @param $key string 'newpage', 'unpatrolled', 'minor', or 'bot'
+	 * @return string Raw HTML
+	 */
+	public static function flagLegend( $key ) {
+		return wfMsgExt( "recentchanges-legend-$key", array( 'escapenoentities',
+			'replaceafter' ), self::flag( $key ) );
+	}
+
+	/**
 	 * Returns text for the start of the tabular part of RC
 	 * @return string
 	 */

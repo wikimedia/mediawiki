@@ -408,7 +408,7 @@ class SpecialRecentChanges extends SpecialPage {
 	 * @return String: XHTML
 	 */
 	public function doHeader( $opts ) {
-		global $wgScript, $wgOut;
+		global $wgScript, $wgOut, $wgLang, $wgUser, $wgGroupPermissions;
 
 		$this->setTopText( $wgOut, $opts );
 
@@ -457,12 +457,23 @@ class SpecialRecentChanges extends SpecialPage {
 			Xml::fieldset( wfMsg( 'recentchanges-legend' ), $panelString, array( 'class' => 'rcoptions' ) )
 		);
 
-		# TODO: This is probably a bad format for the message.  If anyone
-		# customizes it and we add a new flag, it won't show up in the
-		# customized message unless it's changed.
+		$flags = array( ChangesList::flagLegend( 'newpage' ),
+			ChangesList::flagLegend( 'minor' ) );
+
+		# Don't show info on bot edits unless there's a bot group of some kind
+		foreach ( $wgGroupPermissions as $rights ) {
+			if ( isset( $rights['bot'] ) && $rights['bot'] ) {
+				$flags[] = ChangesList::flagLegend( 'bot' );
+				break;
+			}
+		}
+
+		if ( $wgUser->useRCPatrol() ) {
+			$flags[] = ChangesList::flagLegend( 'unpatrolled' );
+		}
+
 		$wgOut->addWikiMsg( 'recentchanges-label-legend',
-			ChangesList::flag( 'newpage' ), ChangesList::flag( 'minor' ),
-			ChangesList::flag( 'bot' ), ChangesList::flag( 'unpatrolled' ) );
+			$wgLang->commaList( $flags ) );
 
 		$this->setBottomText( $wgOut, $opts );
 	}
