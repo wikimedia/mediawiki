@@ -155,7 +155,9 @@ $memlimit = ini_get( "memory_limit" );
 if( !( empty( $memlimit ) || $memlimit == -1 ) ) {
 	if( wfParseMemoryLimit( $memlimit ) < wfParseMemoryLimit( $wgMemoryLimit ) ) {
 		wfDebug( "\n\nRaise PHP's memory limit from $memlimit to $wgMemoryLimit\n" );
+		wfEnableWarnings()
 		ini_set( "memory_limit", $wgMemoryLimit );
+		wfDisableWarnings()
 	}
 }
 
