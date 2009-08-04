@@ -290,9 +290,7 @@ function wfSpecialWatchlist( $par ) {
 	$form .= Xml::closeElement( 'fieldset' );
 	$wgOut->addHTML( $form );
 
-	$wgOut->addWikiMsg( 'recentchanges-label-legend',
-		ChangesList::flag( 'newpage' ), ChangesList::flag( 'minor' ),
-		ChangesList::flag( 'bot' ), ChangesList::flag( 'unpatrolled' ) );
+	$wgOut->addHTML( ChangesList::flagLegend() );
 
 	# If there's nothing to show, stop here
 	if( $numRows == 0 ) {
