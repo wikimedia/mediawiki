@@ -145,7 +145,7 @@ class DeletedContribsPager extends IndexPager {
 			$this->messages['undeleteviewlink']
 		);
 
-		if( $wgUser->isAllowed('delete') ) {
+		if( $wgUser->isAllowed('undelete') ) {
 			$last = $sk->linkKnown(
 				$undelete,
 				$this->messages['diff'],
@@ -163,7 +163,7 @@ class DeletedContribsPager extends IndexPager {
 		$comment = $sk->revComment( $rev );
 		$date = htmlspecialchars( $wgLang->timeanddate( $rev->getTimestamp(), true ) );
 
-		if( !$wgUser->isAllowed('delete') || !$rev->userCan(Revision::DELETED_TEXT) ) {
+		if( !$wgUser->isAllowed('undelete') || !$rev->userCan(Revision::DELETED_TEXT) ) {
 			$link = $date; // unusable link
 		} else {
 			$link = $sk->linkKnown(
