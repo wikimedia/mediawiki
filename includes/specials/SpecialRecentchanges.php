@@ -472,8 +472,10 @@ class SpecialRecentChanges extends SpecialPage {
 			$flags[] = ChangesList::flagLegend( 'unpatrolled' );
 		}
 
+		$wgOut->addHTML( '<div class="mw-rc-label-legend">' );
 		$wgOut->addWikiMsg( 'recentchanges-label-legend',
 			$wgLang->commaList( $flags ) );
+		$wgOut->addHTML( '</div>' );
 
 		$this->setBottomText( $wgOut, $opts );
 	}
