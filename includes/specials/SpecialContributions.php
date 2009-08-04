@@ -384,7 +384,7 @@ class ContribsPager extends ReverseChronologicalPager {
 
 	function __construct( $target, $namespace = false, $year = false, $month = false, $tagFilter = false ) {
 		parent::__construct();
-		foreach( explode( ' ', 'uctop diff newarticle rollbacklink diff hist newpageletter minoreditletter' ) as $msg ) {
+		foreach( explode( ' ', 'uctop diff newarticle rollbacklink diff hist' ) as $msg ) {
 			$this->messages[$msg] = wfMsgExt( $msg, array( 'escape') );
 		}
 		$this->target = $target;
@@ -565,13 +565,13 @@ class ContribsPager extends ReverseChronologicalPager {
 		}
 
 		if( $rev->getParentId() === 0 ) {
-			$nflag = '<abbr class="newpage">' . $this->messages['newpageletter'] . '</abbr>';
+			$nflag = ChangesList::flag( 'newpage' );
 		} else {
 			$nflag = '';
 		}
 
 		if( $rev->isMinor() ) {
-			$mflag = '<abbr class="minor">' . $this->messages['minoreditletter'] . '</abbr> ';
+			$mflag = ChangesList::flag( 'minor' );
 		} else {
 			$mflag = '';
 		}

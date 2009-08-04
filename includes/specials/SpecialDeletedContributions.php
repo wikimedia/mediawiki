@@ -11,7 +11,7 @@ class DeletedContribsPager extends IndexPager {
 
 	function __construct( $target, $namespace = false ) {
 		parent::__construct();
-		foreach( explode( ' ', 'deletionlog undeleteviewlink minoreditletter diff' ) as $msg ) {
+		foreach( explode( ' ', 'deletionlog undeleteviewlink diff' ) as $msg ) {
 			$this->messages[$msg] = wfMsgExt( $msg, array( 'escape') );
 		}
 		$this->target = $target;
@@ -184,7 +184,7 @@ class DeletedContribsPager extends IndexPager {
 		$pagelink = $sk->link( $page );
 
 		if( $rev->isMinor() ) {
-			$mflag = '<abbr class="minor">' . $this->messages['minoreditletter'] . '</abbr> ';
+			$mflag = ChangesList::flag( 'minor' );
 		} else {
 			$mflag = '';
 		}
