@@ -248,7 +248,7 @@ mvAdvFirefogg.prototype = {
 			'group'	: 'meta',
 			'help'	: "Contact link"
 		}
-	},
+	},	
 	init:function( iObj ){				
 		//setup a "supported" iObj:
 		for(var i in iObj){
@@ -321,15 +321,19 @@ mvAdvFirefogg.prototype = {
 				
 	},
 	//custom advanced target rewrites: 
-	getTargetHtml:function(target){		
+	getTargetHtml:function(target){				
 		if(	target=='target_btn_select_file' || 
-			target=='target_btn_select_new_file'||
+			target=='target_btn_select_new_file'||			
 			target=='target_btn_save_local_file'){
-			var icon = (target=='target_btn_save_local_file')?'ui-icon-video':'ui-icon-folder-open';
+			var icon = (target=='target_btn_save_local_file')?'ui-icon-video':'ui-icon-folder-open';	
 			return	 '<a class="ui-state-default ui-corner-all ui-icon_link '+
 						target +'" href="#"><span class="ui-icon ' + icon + '"/>' + 
 						gM( 'fogg-' + target.substring(11) ) +
 					'</a>';
+		}else if(  target=='target_btn_select_url'){			
+			//return the btnHtml:
+			return $j.btnHtml( gM( 'fogg-' + target.substring(11) ), target,  'link');
+			
 		}else if(	target=='target_use_latest_fox' || 
 					target=='target_please_install' || 
 					target == 'target_passthrough_mode'){
@@ -339,8 +343,8 @@ mvAdvFirefogg.prototype = {
 					gM( 'fogg-' + target.substring(7)) +'</p>'+
 				'</div>';	
 		}else if( target == 'target_input_file_name'){
-			return '<input style="" class="text ui-widget-content ui-corner-all ' + target + '" '+
-					'type="text" value="' + gM( 'fogg-' + target.substring(11)) + '"/> ';
+			return '<br><br><input style="" class="text ui-widget-content ui-corner-all ' + target + '" '+
+					'type="text" value="' + gM( 'fogg-' + target.substring(11)) + '" size="60" /> ';
 		}else{
 			js_log('call : basefogg_getTargetHtml');
 			return this.basefogg_getTargetHtml(target);
@@ -423,10 +427,32 @@ mvAdvFirefogg.prototype = {
 		}
 		out+='</td></tr><tr><td colspan="2" height="10"></td></tr>';
 		return out;
+	},
+	selectByUrl:function(){
+		var urlValue = prompt("Please enter the source media url you would like to transcode from.","http://");
+		if( urlValue ){			
+			//update the mode:
+			this.sourceMode = 'url';
+			this.sourceUrl = urlValue;											
+			this.selectFoggActions();
+			this.autoEncoderSettings();
+			//update the input target
+			$j(this.target_input_file_name).unbind().val( urlValue ).removeAttr('readonly');				
+		}
 	},	 
 	doControlBindings:function(){
 		var _this = this;
 		_this.basefogg_doControlBindings();
+		//show the select by url if present:
+		/*$j( this.target_btn_select_url ).unbind(
+			).attr('disabled', false
+			).css({'display':'inline'}
+			).click(function(){					
+				_this.selectByUrl();
+		});
+		*/			
+		
+		
 		//hide the base advanced controls untill a file is selected:
 		$j(this.target_control_container).hide();
 		

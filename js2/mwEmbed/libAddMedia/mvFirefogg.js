@@ -5,6 +5,7 @@
 loadGM({ 
 	"fogg-select_file"			: "Select File", 
 	"fogg-select_new_file"		: "Select New File",
+	"fogg-select_url"			: "Select Url",
 	"fogg-save_local_file"		: "Save Ogg",
 	"fogg-check_for_fogg"		: "Checking for Firefogg <blink>...</blink>",
 	"fogg-installed"			: "Firefogg is Installed",
@@ -49,8 +50,11 @@ var default_firefogg_options = {
 	//taget buttons: 
 	'target_btn_select_file'	: false,
 	'target_btn_select_new_file': false,	
-	'target_input_file_name'	: false,
-	'target_btn_save_local_file': false,	
+	
+	//'target_btn_select_url'		: false,
+	
+	'target_btn_save_local_file': false,
+	'target_input_file_name'	: false,	
 	
 	
 	//target install descriptions 
@@ -78,12 +82,13 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 		'videoBitrate': 400,
 		'noUpscaling':true
 	},	
-	sourceFileInfo:{},
-	ogg_extensions: ['ogg', 'ogv', 'oga'],
+	sourceFileInfo	: {},
+	ogg_extensions	: ['ogg', 'ogv', 'oga'],
 	video_extensions: ['avi', 'mov', 'mp4', 'mp2', 'mpeg', 'mpeg2', 'mpeg4', 'dv', 'wmv'],
 	
-	passthrough: false,
-
+	passthrough	: false,
+	sourceMode	: 'file',
+	
 	init: function( iObj ){
 		if(!iObj)
 			iObj = {};
@@ -144,9 +149,10 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 		var out = '';		
 		$j.each(default_firefogg_options, function(target, na){			
 			if(target.substring(0, 6)=='target'){
+				js_log('check for target html: ' + target);
 				//check for the target if missing add to the output: 
 				if( _this[target] === false){					
-					out+= _this.getTargetHtml(target) + ' ';
+					out += _this.getTargetHtml(target) + ' ';
 					//update the target selector 
 				    _this[target] = _this.selector + ' .' + target;
 				}											
@@ -194,7 +200,8 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 				).css({'display':'inline'}
 				).click(function(){					
 					_this.selectFogg();
-				});				
+				});										
+				
 		    //also setup the text file display on Click to select file:  
 		    $j(this.target_input_file_name).unbind().attr('readonly', 'readonly').click(function(){		    	
 		        _this.selectFogg();
@@ -305,60 +312,64 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 	},   
 	selectFogg:function(){			
 		var _this = this;
-		if( _this.fogg.selectVideo() ) {					
-			js_log('videoSelectReady');
-			//if not already hidden hide select file and show "select new": 
-			$j(_this.target_btn_select_file).hide();
-			//show and setup binding for select new file: 
-			$j(_this.target_btn_select_new_file).show().unbind().click(function(){
-				//create new fogg instance:				 
-				_this.fogg = new Firefogg();
-				_this.selectFogg();
-			});
-			//update if we are in passthrough mode or going to encode					
-			if( _this.fogg.sourceInfo && _this.fogg.sourceFilename ){									
-				//update the source status
-				try{
-					_this.sourceFileInfo = JSON.parse( _this.fogg.sourceInfo ) ;
-				}catch (e){
-					js_error('error could not parse fogg sourceInfo');
-				}					
-						
-				//now setup encoder settings based source type:
-				_this.autoEncoderSettings();					
-				
-				//if set to passthough update the interface:
-				if(_this.encoder_settings['passthrough']==true){
-					$j(_this.target_passthrough_mode).show();
-				}else{					
-					$j(_this.target_passthrough_mode).hide();	
-					//if set to encoder expose the encode button: 
-					if( !_this.form_rewrite ){
-						$j(_this.target_btn_save_local_file).show();
-					}
+		if(_this.fogg.selectVideo() ){			
+			this.selectFoggActions();			
+		}
+	},
+	selectFoggActions:function(){
+		var _this = this;
+		js_log('videoSelectReady');
+		//if not already hidden hide select file and show "select new": 
+		$j(_this.target_btn_select_file).hide();
+		
+		//show and setup binding for select new file: 
+		$j(_this.target_btn_select_new_file).show().unbind().click(function(){
+			//create new fogg instance:				 
+			_this.fogg = new Firefogg();
+			_this.selectFogg();
+		});
+		
+		//update if we are in passthrough mode or going to encode					
+		if( _this.fogg.sourceInfo && _this.fogg.sourceFilename  ){									
+			//update the source status
+			try{
+				_this.sourceFileInfo = JSON.parse( _this.fogg.sourceInfo ) ;
+			}catch (e){
+				js_error('error could not parse fogg sourceInfo');
+			}					
+					
+			//now setup encoder settings based source type:
+			_this.autoEncoderSettings();					
+			
+			//if set to passthough update the interface:
+			if(_this.encoder_settings['passthrough']==true){
+				$j(_this.target_passthrough_mode).show();
+			}else{					
+				$j(_this.target_passthrough_mode).hide();	
+				//if set to encoder expose the encode button: 
+				if( !_this.form_rewrite ){
+					$j(_this.target_btn_save_local_file).show();
 				}
-				//~otherwise the encoding will be triggered by the form~
-				
-				//do source name update callback:	
-				js_log(" should update: " + _this.target_input_file_name + ' to: ' + _this.fogg.sourceFilename );				 
-				$j(_this.target_input_file_name).val(_this.fogg.sourceFilename).show();
-				
-				if(_this.new_source_cb){											 	
-					if(_this.encoder_settings['passthrough']){
-						var fName = _this.fogg.sourceFilename
-					}else{	
-					    var oggExt = (_this.isSourceAudio())?'oga':'ogg';
-	                    oggExt = (_this.isSourceVideo())?'ogv':oggExt;
-	                    oggExt = (_this.isUnknown())?'ogg':oggExt;
-					    oggName = _this.fogg.sourceFilename.substr(0,
-					                  _this.fogg.sourceFilename.lastIndexOf('.'));
-					    var fName = oggName +'.'+ oggExt              
-					}
-					_this.new_source_cb( _this.fogg.sourceFilename , fName);
+			}
+			//~otherwise the encoding will be triggered by the form~
+			
+			//do source name update callback:	
+			js_log(" should update: " + _this.target_input_file_name + ' to: ' + _this.fogg.sourceFilename );				 
+			$j(_this.target_input_file_name).val(_this.fogg.sourceFilename).show();
+			
+			if(_this.new_source_cb){											 	
+				if(_this.encoder_settings['passthrough']){
+					var fName = _this.fogg.sourceFilename
+				}else{	
+				    var oggExt = (_this.isSourceAudio())?'oga':'ogg';
+                    oggExt = (_this.isSourceVideo())?'ogv':oggExt;
+                    oggExt = (_this.isUnknown())?'ogg':oggExt;
+				    oggName = _this.fogg.sourceFilename.substr(0,
+				                  _this.fogg.sourceFilename.lastIndexOf('.'));
+				    var fName = oggName +'.'+ oggExt              
 				}
-			}													
-		}else{
-			//js_error("Firefogg error selecting file");
+				_this.new_source_cb( _this.fogg.sourceFilename , fName);
+			}
 		}
 	},
 	saveLocalFogg:function(){
