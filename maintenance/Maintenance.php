@@ -268,9 +268,7 @@ abstract class Maintenance {
 	protected function spawnChild( $maintClass, $classFile = null ) {
 		// If we haven't already specified, kill setup procedures
 		// for child scripts, we've already got a sane environment
-		if( !defined( 'MW_NO_SETUP' ) ) {
-			define( 'MW_NO_SETUP', true );
-		}
+		self::disableSetup();
 		
 		// Make sure the class is loaded first
 		if( !class_exists( $maintClass ) ) {
@@ -285,6 +283,14 @@ abstract class Maintenance {
 		$child = new $maintClass();
 		$child->loadParamsAndArgs( $this->mSelf, $this->mOptions, $this->mArgs );
 		return $child;
+	}
+
+	/**
+	 * Disable Setup.php mostly
+	 */
+	protected static function disableSetup() {
+		if( !defined( 'MW_NO_SETUP' ) )
+			define( 'MW_NO_SETUP', true );
 	}
 
 	/**
@@ -718,94 +724,38 @@ abstract class Maintenance {
 	
 	/**
 	 * Return all of the core maintenance scripts
-	 * @todo Don't make this list, maybe just scan all the files in /maintenance?
+	 * @todo Finish porting all scripts so this doesn't blow up
 	 * @return array
 	 */
 	private static function getCoreScripts() {
+		return array();
+	/**
 		if( !self::$mCoreScripts ) {
-			$d = dirname( __FILE__ ) . DIRECTORY_SEPARATOR;
-			self::$mCoreScripts = array(
-				# Main script list
-				'AddWiki'                  => $d . 'addwiki.php',
-				'AttachLatest'             => $d . 'attachLatest.php',
-				'BenchmarkPurge'           => $d . 'benchmarkPurge.php',
-				'ChangePassword'           => $d . 'changePassword.php',
-				'CheckAutoLoader'          => $d . 'checkAutoLoader.php',
-				'CheckBadRedirects'        => $d . 'checkBadRedirects.php',
-				'CheckImages'              => $d . 'checkImages.php',
-				'CheckSyntax'              => $d . 'checkSyntax.php',
-				'CheckUsernames'           => $d . 'checkUsernames.php',
-				'CleanupSpam'              => $d . 'cleanupSpam.php',
-				'ClearInterwikiCache'      => $d . 'clear_interwiki_cache.php',
-				'clear_stats'              => $d . 'clear_stats.php',
-				'ConvertLinks'             => $d . 'convertLinks.php',
-				'ConvertUserOptions'       => $d . 'convertUserOptions.php',
-				'CreateAndPromote'         => $d . 'createAndPromote.php',
-				'DeleteArchivedFiles'      => $d . 'deleteArchivedFiles.php',
-				'DeleteArchivedRevisions'  => $d . 'deleteArchivedRevisions.php',
-				'DeleteBatch'              => $d . 'deleteBatch.php',
-				'DeleteDefaultMessages'    => $d . 'deleteDefaultMessages.php',
-				'DeleteImageCache'         => $d . 'deleteImageMemcached.php',
-				'DeleteOldRevisions'       => $d . 'deleteOldRevisions.php',
-				'DeleteOrphanedRevisions'  => $d . 'deleteOrphanedRevisions.php',
-				'DeleteRevision'           => $d . 'deleteRevision.php',
-				'DumpLinks'                => $d . 'dumpLinks.php',
-				'DumpSisterSites'          => $d . 'dumpSisterSites.php',
-				'UploadDumper'             => $d . 'dumpUploads.php',
-				'EditCLI'                  => $d . 'edit.php',
-				'EvalPrompt'               => $d . 'eval.php',
-				'FetchText'                => $d . 'fetchText.php',
-				'FindHooks'                => $d . 'findhooks.php',
-				'FixSlaveDesync'           => $d . 'fixSlaveDesync.php',
-				'FixTimestamps'            => $d . 'fixTimestamps.php',
-				'FixUserRegistration'      => $d . 'fixUserRegistration.php',
-				'GenerateSitemap'          => $d . 'generateSitemap.php',
-				'GetLagTimes'              => $d . 'getLagTimes.php',
-				'GetSlaveServer'           => $d . 'getSlaveServer.php',
-				'InitEditCount'            => $d . 'initEditCount.php',
-				'InitStats'                => $d . 'initStats.php',
-				'mcTest'                   => $d . 'mctest.php',
-				'MoveBatch'                => $d . 'moveBatch.php',
-				'nextJobDb'                => $d . 'nextJobDB.php',
-				'NukeNS'                   => $d . 'nukeNS.php',
-				'NukePage'                 => $d . 'nukePage.php',
-				'Orphans'                  => $d . 'orphans.php',
-				'PopulateCategory'         => $d . 'populateCategory.php',
-				'PopulateLogSearch'        => $d . 'populateLogSearch.php',
-				'PopulateParentId'         => $d . 'populateParentId.php',
-				'PopulateSha1'             => $d . 'populateSha1.php',
-				'Protect'                  => $d . 'protect.php',
-				'PurgeList'                => $d . 'purgeList.php',
-				'PurgeOldText'             => $d . 'purgeOldText.php',
-				'ReassignEdits'            => $d . 'reassignEdits.php',
-				'RebuildAll'               => $d . 'rebuildall.php',
-				'RebuildFileCache'         => $d . 'rebuildFileCache.php',
-				'RebuildLocalisationCache' => $d . 'rebuildLocalisationCache.php',
-				'RebuildMessages'          => $d . 'rebuildmessages.php',
-				'RebuildRecentchanges'     => $d . 'rebuildrecentchanges.php',
-				'RebuildTextIndex'         => $d . 'rebuildtextindex.php',
-				'RefreshImageCount'        => $d . 'refreshImageCount.php',
-				'RefreshLinks'             => $d . 'refreshLinks.php',
-				'RemoveUnusedAccounts'     => $d . 'removeUnusedAccounts.php',
-				'RenameDbPrefix'           => $d . 'renameDbPrefix.php',
-				'RenameWiki'               => $d . 'renamewiki.php',
-				'DumpRenderer'             => $d . 'renderDump.php',
-				'RunJobs'                  => $d . 'runJobs.php',
-				'ShowJobs'                 => $d . 'showJobs.php',
-				'ShowStats'                => $d . 'showStats.php',
-				'MwSql'                    => $d . 'sql.php',
-				'CacheStats'               => $d . 'stats.php',
-				'Undelete'                 => $d . 'undelete.php',
-				'UpdateArticleCount'       => $d . 'updateArticleCount.php',
-				'UpdateRestrictions'       => $d . 'updateRestrictions.php',
-				'UpdateSearchIndex'        => $d . 'updateSearchIndex.php',
-				'UpdateSpecialPages'       => $d . 'updateSpecialPages.php',
-				'WaitForSlave'             => $d . 'waitForSlave.php',
-
-				# Language scripts
-				'AllTrans' => $d . 'language/alltrans.php',
+			self::disableSetup();
+			$paths = array(
+				dirname( __FILE__ ),
+				dirname( __FILE__ ) . '/gearman',
+				dirname( __FILE__ ) . '/language',
+				dirname( __FILE__ ) . '/storage',
 			);
+			self::$mCoreScripts = array();
+			foreach( $paths as $p ) {
+				$handle = opendir( $p );
+				while( ( $file = readdir( $handle ) ) !== false ) {
+					$file = $p . '/' . $file;
+					if( is_dir( $file ) || !strpos( $file, '.php' ) ) {
+						continue;
+					}
+					require( $file );
+					$vars = get_defined_vars();
+					if( array_key_exists( 'maintClass', $vars ) ) {
+						self::$mCoreScripts[$vars['maintClass']] = $file;
+					}
+				}
+				closedir( $handle );
+			}
 		}
 		return self::$mCoreScripts;
+	*/
 	}
 }
