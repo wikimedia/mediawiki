@@ -379,6 +379,7 @@ class Skin extends Linker {
 			implode( "\t", $digitTransTable ),
 		);
 
+		$mainPage = Title::newFromText( wfMsgForContent( 'mainpage' ) );
 		$vars = array(
 			'skin' => $skinName,
 			'stylepath' => $wgStylePath,
@@ -408,6 +409,7 @@ class Skin extends Linker {
 			'wgEnableWriteAPI' => $wgEnableWriteAPI,
 			'wgSeparatorTransformTable' => $compactSeparatorTransTable,
 			'wgDigitTransformTable' => $compactDigitTransTable,
+			'wgMainPageTitle' => $mainPage ? $mainPage->getPrefixedText() : null,
 		);
 		if ( !( $wgContLang->hasVariants() ) ) {
 			unset( $vars['wgUserVariant'] );

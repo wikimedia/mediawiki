@@ -185,6 +185,8 @@ this. Was used when mwEmbed was going to be an extension.
   flags have tooltips.
 * (bug 15209) New hook BeforeInitialize called after everything has been setup
   but before Mediawiki::performRequestForTitle()
+* wgMainPageTitle variable now available to JavaScript code to identify the main
+  page link, so it doesn't have to be extracted from the link URLs.
 
 === Bug fixes in 1.16 ===
 
