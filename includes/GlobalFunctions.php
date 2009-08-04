@@ -3195,11 +3195,16 @@ function wfObjectToArray( $object, $recursive = true ) {
 
 /* Parse PHP's silly format for memory limits */
 function wfParseMemoryLimit( $memlimit ) {
-	$n = intval( $memlimit );
-	if( preg_match( '/^([0-9]+)[Mm]$/', trim( $memlimit ), $m ) ) {
-		$n = intval( $m[1] * (1024*1024) );
-	}
-	return $n;
+	$last = strtolower($memlimit[strlen($memlimit)-1]);
+	$val = intval( $memlimit );
+	switch($last) {
+		case 'g':
+			$val *= 1024;
+		case 'm':
+			$val *= 1024;
+		case 'k':
+			$val *= 1024;
+	return $val;
 }
 
 /* Get the normalised IETF language tag
