@@ -1,6 +1,6 @@
 <?php
 /**
- * mvwScriptLoader.php
+ * mwScriptLoader.php
  * Script Loading Library for MediaWiki
  *
  * @file
@@ -32,7 +32,7 @@ wfProfileIn( 'mvwScriptLoader.php' );
 
 if( strpos( wfGetScriptUrl(), "mwScriptLoader.php" ) === false ){
 	wfHttpError( 403, 'Forbidden',
-		'mvwScriptLoader must be accessed through the primary script entry point.' );
+		'mwScriptLoader must be accessed through the primary script entry point.' );
 	return;
 }
 // Verify the script loader is on:
