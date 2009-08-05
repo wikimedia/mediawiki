@@ -418,7 +418,7 @@ class VectorTemplate extends QuickTemplate {
 		foreach ( $this->data['personal_urls'] as $key => $item) {
 			$this->data['personal_urls'][$key]['attributes'] =
 				' id="' . Sanitizer::escapeId( "pt-$key" ) . '"';
-			if ( $item['active'] ) {
+			if ( isset( $item['active'] ) && $item['active'] ) {
 				$this->data['personal_urls'][$key]['attributes'] .=
 					' class="active"';
 			}
