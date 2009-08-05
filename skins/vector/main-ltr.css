@@ -896,10 +896,10 @@ table.small {
 	font-size: 100%;
 }
 /* Edge Cases for Content */
-#content h1, #content h2 {
+h1, h2 {
 	margin-bottom: .6em;
 }
-#content h3, #content h4, #content h5 {
+h3, h4, h5 {
 	margin-bottom: .3em;
 }
 #firstHeading {
