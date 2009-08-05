@@ -139,43 +139,6 @@ function readlineEmulation( $prompt ) {
 	return fgets(STDIN, 1024);
 }
 
-function readlineEmulationX() {
-	// Yes this is GODAWFUL. But it's better than nothing.
-	$chars = array();
-	while( true ) {
-		if( feof( STDIN ) ) {
-			// ctrl+D?
-			echo "[eof]";
-			break;
-		}
-		$inchar = fread( STDIN, 1 );
-		
-		// Horrible hack... assume input is UTF-8
-		$inbyte = ord( $inchar );
-		if( $inbyte >= 0xf0 ) {
-			$remaining = 3;
-		} elseif( $inbyte >= 0xe0 ) {
-			$remaining = 2;
-		} elseif( $inbyte >= 0xc0 ) {
-			$remaining = 1;
-		} else {
-			$remaining = 0;
-		}
-		if( $remaining ) {
-			$inchar .= fread( STDIN, $remaining );
-		}
-		
-		if( $inchar == "\n" ) {
-			// newline
-			echo "[newline]";
-			break;
-		}
-		
-		$chars[] = $inchar;
-		echo "[char: $inchar]";
-	}
-	return implode( '', $chars );
-}
 
 #
 # Read and execute SQL commands from a file
