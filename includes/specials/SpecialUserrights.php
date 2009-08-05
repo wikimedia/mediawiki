@@ -82,10 +82,10 @@ class UserrightsPage extends SpecialPage {
 		if( !$this->userCanChangeRights( $wgUser, true ) ) {
 			// fixme... there may be intermediate groups we can mention.
 			global $wgOut;
-			$wgOut->showPermissionsErrorPage( array(
+			$wgOut->showPermissionsErrorPage( array( array(
 				$wgUser->isAnon()
 					? 'userrights-nologin'
-					: 'userrights-notallowed' ) );
+					: 'userrights-notallowed' ) ) );
 			return;
 		}
 
