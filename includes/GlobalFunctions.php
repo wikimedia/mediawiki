@@ -3209,13 +3209,12 @@ function wfMemoryLimit () {
 			ini_set( "memory_limit", $conflimit );
 			wfRestoreWarnings();
 			return $conflimit;
-		} else {
-			$max = max( $memlimit, $conflimit );
-			wfDebug( "Raising PHP's memory limit to $max bytes\n" );
+		} elseif ( $conflimit > $memlimit ) {
+			wfDebug( "Raising PHP's memory limit to $conflimit bytes\n" );
 			wfSuppressWarnings();
-			ini_set( "memory_limit", $max );
+			ini_set( "memory_limit", $conflimit );
 			wfRestoreWarnings();
-			return $max;
+			return $conflimit;
 		}
 	}
 	return $memlimit;
