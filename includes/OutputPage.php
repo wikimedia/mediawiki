@@ -244,7 +244,7 @@ class OutputPage {
 	 * @param $forcClassAry Boolean: false by default
 	 */
 	function getScriptLoaderJs( $forceClassAry = false ){
-		global $wgScriptPath, $wgJsMimeType, $wgStyleVersion, $wgRequest, $wgDebugJavaScript;
+		global $wgJsMimeType, $wgStyleVersion, $wgRequest, $wgDebugJavaScript;
 
 		if( !$forceClassAry ){
 			$class_list = implode( ',', $this->mScriptLoaderClassList );
@@ -266,7 +266,7 @@ class OutputPage {
 		return Xml::element( 'script',
 				array(
 					'type' => $wgJsMimeType,
-					'src' => "$wgScriptPath/mwScriptLoader.php?class={$class_list}{$debug_param}&".$this->getURIDparam(),
+					'src' => wfScript( 'mwScriptLoader' ) . "?class={$class_list}{$debug_param}&".$this->getURIDparam(),
 				),
 				'', false
 		);

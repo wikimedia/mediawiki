@@ -27,10 +27,10 @@
 // include WebStart.php
 require_once('includes/WebStart.php');
 
-wfProfileIn( 'mvwScriptLoader.php' );
+wfProfileIn( 'mwScriptLoader.php' );
 
 
-if( strpos( wfGetScriptUrl(), "mwScriptLoader.php" ) === false ){
+if( strpos( wfGetScriptUrl(), "mwScriptLoader{$wgScriptExtension}" ) === false ){
 	wfHttpError( 403, 'Forbidden',
 		'mwScriptLoader must be accessed through the primary script entry point.' );
 	return;
@@ -51,4 +51,4 @@ if ( !$wgEnableScriptLoader ) {
 $myScriptLoader = new jsScriptLoader();
 $myScriptLoader->doScriptLoader();
 
-wfProfileOut( 'mvwScriptLoader.php' );
+wfProfileOut( 'mwScriptLoader.php' );
