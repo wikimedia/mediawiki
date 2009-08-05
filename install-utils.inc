@@ -40,35 +40,6 @@ function install_version_checks() {
 	@set_time_limit( 0 );
 }
 
-function copyfile( $sdir, $name, $ddir, $perms = 0664 ) {
-	copyfileto( $sdir, $name, $ddir, $name, $perms );
-}
-
-function copyfileto( $sdir, $sname, $ddir, $dname, $perms = 0664 ) {
-	global $wgInstallOwner, $wgInstallGroup;
-
-	$d = "{$ddir}/{$dname}";
-	if ( copy( "{$sdir}/{$sname}", $d ) ) {
-		if ( isset( $wgInstallOwner ) ) { chown( $d, $wgInstallOwner ); }
-		if ( isset( $wgInstallGroup ) ) { chgrp( $d, $wgInstallGroup ); }
-		chmod( $d, $perms );
-		# print "Copied \"{$sname}\" to \"{$d}\".\n";
-	} else {
-		print "Failed to copy file \"{$sname}\" to \"{$ddir}/{$dname}\".\n";
-		exit();
-	}
-}
-
-function copydirectory( $source, $dest ) {
-	$handle = opendir( $source );
-	while ( false !== ( $f = readdir( $handle ) ) ) {
-		$fullname = "$source/$f";
-		if ( $f{0} != '.' && is_file( $fullname ) ) {
-			copyfile( $source, $f, $dest );
-		}
-	}
-}
-
 function readconsole( $prompt = '' ) {
 	static $isatty = null;
 	if ( is_null( $isatty ) ) {
