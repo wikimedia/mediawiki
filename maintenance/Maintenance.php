@@ -728,8 +728,6 @@ abstract class Maintenance {
 	 * @return array
 	 */
 	private static function getCoreScripts() {
-		return array();
-	/**
 		if( !self::$mCoreScripts ) {
 			self::disableSetup();
 			$paths = array(
@@ -742,8 +740,11 @@ abstract class Maintenance {
 			foreach( $paths as $p ) {
 				$handle = opendir( $p );
 				while( ( $file = readdir( $handle ) ) !== false ) {
+					if( $file == 'Maintenance.php' )
+						continue;
 					$file = $p . '/' . $file;
-					if( is_dir( $file ) || !strpos( $file, '.php' ) ) {
+					if( is_dir( $file ) || !strpos( $file, '.php' ) || 
+						( strpos( file_get_contents( $file ), '$maintClass' ) === false ) ) {
 						continue;
 					}
 					require( $file );
@@ -756,6 +757,5 @@ abstract class Maintenance {
 			}
 		}
 		return self::$mCoreScripts;
-	*/
 	}
 }
