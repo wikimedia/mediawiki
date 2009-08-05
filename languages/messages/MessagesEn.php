@@ -1780,7 +1780,7 @@ This cannot be undone.',
 'yourlanguage'                  => 'Language:',
 'yourvariant'                   => 'Variant:', # only translate this message to other languages if you have to change it
 'yournick'                      => 'New signature:',
-'prefs-help-signature'          => 'Comments on talk pages should be signed with "~~~~" which will be converted into your signature and a timestamp.',
+'prefs-help-signature'          => 'Comments on talk pages should be signed with "<nowiki>~~~~</nowiki>" which will be converted into your signature and a timestamp.',
 'badsig'                        => 'Invalid raw signature.
 Check HTML tags.',
 'badsiglength'                  => 'Your signature is too long.
