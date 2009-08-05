@@ -54,6 +54,7 @@ class UserrightsPage extends SpecialPage {
 		} else {
 			$this->mTarget = $wgRequest->getVal( 'user' );
 		}
+		$this->mTarget = User::getCanonicalName( $this->mTarget );
 
 		/*
 		 * If the user is blocked and they only have "partial" access
