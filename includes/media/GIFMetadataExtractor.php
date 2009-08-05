@@ -13,8 +13,6 @@ class GIFMetadataExtractor {
 	static $gif_term;
 
 	static function getMetadata( $filename ) {
-		wfProfileIn( __METHOD__ );
-	
 		self::$gif_frame_sep = pack( "C", ord("," ) );
 		self::$gif_extension_sep = pack( "C", ord("!" ) );
 		self::$gif_term = pack( "C", ord(";" ) );
@@ -127,8 +125,6 @@ class GIFMetadataExtractor {
 				throw new Exception( "At position: ".ftell($fh). ", Unknown byte ".$byte );
 			}
 		}
-		
-		wfProfileOut( __METHOD__ );
 		
 		return array(
 			'frameCount' => $frameCount,
