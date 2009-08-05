@@ -73,7 +73,6 @@ for(my $i=0; $i<=$#iso;++$i) {
 
 $cont .= '
 );
-?>
 ';
 
 open IW, ">Interwiki.php";
