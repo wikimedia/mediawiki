@@ -83,16 +83,98 @@ function readconsole( $prompt = '' ) {
 		return readline( $prompt );
 	} else {
 		if ( $isatty ) {
-			print $prompt;
+			$st = readlineEmulation( $prompt );
+		} else {
+			if ( feof( STDIN ) ) {
+				$st = false;
+			} else {
+				$st = fgets(STDIN, 1024);
+			}
 		}
-		if ( feof( STDIN ) ) {
-			return false;
-		}
-		$st = fgets(STDIN, 1024);
 		if ($st === false) return false;
 		$resp = trim( $st );
 		return $resp;
 	}
+}
+
+function findExecutable( $name ) {
+	$paths = explode( PATH_SEPARATOR, getenv( "PATH" ) );
+	foreach( $paths as $path ) {
+		$full = $path . DIRECTORY_SEPARATOR . $name;
+		if( file_exists( $full ) ) {
+			if( wfIsWindows() || is_executable( $full ) ) {
+				return $full;
+			}
+		}
+	}
+	return false;
+}
+
+function readlineEmulation( $prompt ) {
+	$bash = "xbash";
+	if( !wfIsWindows() && findExecutable( $bash ) ) {
+		$retval = false;
+		$encPrompt = wfEscapeShellArg( $prompt );
+		$command = "read -er -p $encPrompt && echo \"\$REPLY\"";
+		$encCommand = wfEscapeShellArg( $command );
+		$line = wfShellExec( "$bash -c $encCommand", $retval );
+		
+		if( $retval == 0 ) {
+			return $line;
+		} elseif( $retval == 127 ) {
+			// Couldn't execute bash even though we thought we saw it.
+			// Shell probably spit out an error message, sorry :(
+			// Fall through to fgets()...
+		} else {
+			// EOF/ctrl+D
+			return false;
+		}
+	}
+	
+	// Fallback... we'll have no editing controls, EWWW
+	if ( feof( STDIN ) ) {
+		return false;
+	}
+	print $prompt;
+	return fgets(STDIN, 1024);
+}
+
+function readlineEmulationX() {
+	// Yes this is GODAWFUL. But it's better than nothing.
+	$chars = array();
+	while( true ) {
+		if( feof( STDIN ) ) {
+			// ctrl+D?
+			echo "[eof]";
+			break;
+		}
+		$inchar = fread( STDIN, 1 );
+		
+		// Horrible hack... assume input is UTF-8
+		$inbyte = ord( $inchar );
+		if( $inbyte >= 0xf0 ) {
+			$remaining = 3;
+		} elseif( $inbyte >= 0xe0 ) {
+			$remaining = 2;
+		} elseif( $inbyte >= 0xc0 ) {
+			$remaining = 1;
+		} else {
+			$remaining = 0;
+		}
+		if( $remaining ) {
+			$inchar .= fread( STDIN, $remaining );
+		}
+		
+		if( $inchar == "\n" ) {
+			// newline
+			echo "[newline]";
+			break;
+		}
+		
+		$chars[] = $inchar;
+		echo "[char: $inchar]";
+	}
+	return implode( '', $chars );
 }
 
 #
