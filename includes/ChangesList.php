@@ -160,8 +160,8 @@ class ChangesList {
 		}
 
 		return '<div class="mw-rc-label-legend">' .
-			wfMsgWikiHtml( 'recentchanges-label-legend', $wgLang->commaList( $flags ) )
-			. '</div>';
+			wfMsgExt( 'recentchanges-label-legend', 'parseinline',
+			$wgLang->commaList( $flags ) ) . '</div>';
 	}
 
 	/**
