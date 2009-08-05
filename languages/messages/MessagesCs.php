@@ -1035,16 +1035,21 @@ Zkuste [[Special:Search|hledání]].',
 'rev-deleted-user'            => '(uživatelské jméno odstraněno)',
 'rev-deleted-event'           => '(záznam odstraněn)',
 'rev-deleted-text-permission' => "Tato revize byla '''smazána'''.
-Podrobnosti mohou být uvedeny v [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} záznamu utajení].",
+Podrobnosti mohou být uvedeny v [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} knize smazaných stránek].",
 'rev-deleted-text-unhide'     => "Tato revize byla '''smazána'''.
+Podrobnosti mohou být uvedeny v [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} knize smazaných stránek].
+Jako správce si však můžete [$1 tuto revizi prohlédnout], pokud chcete.",
+'rev-suppressed-text-unhide'  => "Tato revize byla '''utajena'''.
 Podrobnosti mohou být uvedeny v [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} záznamu utajení].
 Jako správce si však můžete [$1 tuto revizi prohlédnout], pokud chcete.",
 'rev-deleted-text-view'       => "Tato revize byla '''smazána'''.
+Jako správce si ji můžete prohlédnout; podrobnosti mohou být uvedeny v [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} knize smazaných stránek].",
+'rev-suppressed-text-view'    => "Tato revize byla '''utajena'''.
 Jako správce si ji můžete prohlédnout; podrobnosti mohou být uvedeny v [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} záznamu utajení].",
 'rev-deleted-no-diff'         => "Tento rozdíl si nemůžete prohlédnout, protože jedna z&nbsp;revizí byla '''smazána'''.
-Podrobnosti mohou být uvedeny v&nbsp;[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} záznamu utajení].",
+Podrobnosti mohou být uvedeny v&nbsp;[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} knize smazaných stránek].",
 'rev-deleted-unhide-diff'     => "Jedna z revizí k tomuto porovnání byla '''smazána'''.
-Podrobnosti mohou být uvedeny v [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} záznamu utajení].
+Podrobnosti mohou být uvedeny v [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} knize smazaných stránek].
 Jako správce si však můžete [$1 tento rozdíl prohlédnout], pokud chcete.",
 'rev-delundel'                => 'skrýt/zobrazit',
 'revisiondelete'              => 'Smazat/obnovit revize',
@@ -1542,6 +1547,15 @@ Také můžete dovolit ostatním uživatelům vás prostřednictvím uživatelsk
 'recentchanges-legend'              => 'Možnosti posledních změn',
 'recentchangestext'                 => 'Sledujte poslední změny na {{grammar:6sg|{{SITENAME}}}} na této stránce.',
 'recentchanges-feed-description'    => 'Na tomto kanále sledujte poslední změny na {{grammar:6sg|{{SITENAME}}}}.',
+'recentchanges-label-legend'        => 'Legenda: $1',
+'recentchanges-legend-newpage'      => '$1 – nová stránka',
+'recentchanges-label-newpage'       => 'Touto editací byla založena nová stránka',
+'recentchanges-legend-minor'        => '$1 – malá editace',
+'recentchanges-label-minor'         => 'Toto je malá editace',
+'recentchanges-legend-bot'          => '$1 – editace bota',
+'recentchanges-label-bot'           => 'Tuto editaci provedl bot',
+'recentchanges-legend-unpatrolled'  => '$1 – neprověřená editace',
+'recentchanges-label-unpatrolled'   => 'Tato změna dosud nebyla prověřena',
 'rcnote'                            => 'Níže {{plural:$1|je poslední|jsou poslední|je posledních}} <strong>$1</strong> {{plural:$1|změna|změny|změn}} za {{PLURAL:$2|poslední|poslední|posledních}} <strong>$2</strong> {{plural:$2|den|dny|dnů}} před $4, $5.',
 'rcnotefrom'                        => 'Níže {{PLURAL:$1|je|jsou|je}} nejvýše <b>$1</b> {{PLURAL:$1|změna|změny|změn}} od <b>$2</b>.',
 'rclistfrom'                        => 'Ukázat nové změny, počínaje od $1',
@@ -2762,6 +2776,8 @@ $1',
 'svg-long-desc'        => '(soubor SVG, nominální rozměr: $1 × $2 pixelů, velikost souboru: $3)',
 'show-big-image'       => 'Obrázek ve vyšším rozlišení',
 'show-big-image-thumb' => '<small>Velikost tohoto náhledu je: $1 × $2 pixelů</small>',
+'file-info-gif-looped' => 've smyčce',
+'file-info-gif-frames' => '$1 {{PLURAL:$1|snímek|snímky|snímků}}',
 
 # Special:NewFiles
 'newimages'             => 'Galerie nových souborů',

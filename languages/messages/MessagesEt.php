@@ -438,6 +438,7 @@ Sellisel juhul tuleks teavitada [[Special:ListUsers/sysop|ülemat]], edastades t
 valesti viidatud keelte- või wikidevaheline pealkiri.',
 'perfcached'           => 'Järgnevad andmed on puhverdatud ja ei pruugi olla kõige värskemad:',
 'perfcachedts'         => 'Järgmised andmed on vahemälus. Viimase uuendamise daatum on $1.',
+'querypage-no-updates' => 'Lehekülje uuendamine ei ole hetkel lubatud ning andmeid ei värskendata.',
 'wrong_wfQuery_params' => 'Valed parameeterid funktsioonile wfQuery()<br />
 Funktsioon: $1<br />
 Päring: $2',
@@ -510,6 +511,8 @@ Kui parooli vahetamise palve lähetas Teie nimel keegi teine või kui Teile meen
 'passwordsent'               => 'Uus parool on saadetud kasutaja "$1" registreeritud meiliaadressil.
 Pärast parooli saamist logige palun sisse.',
 'blocked-mailpassword'       => 'Sinu IP-aadressi jaoks on toimetamine blokeeritud, seetõttu ei saa sa kasutada ka parooli meeldetuletamise funktsiooni.',
+'eauthentsent'               => 'Sisestatud e-posti aadressile on saadetud kinnituse e-kiri.
+Enne kui su kontole ükskõik milline muu e-kiri saadetakse, pead sa e-kirjas olevat juhist järgides kinnitama, et konto on tõepoolest sinu.',
 'mailerror'                  => 'Viga kirja saatmisel: $1',
 'acct_creation_throttle_hit' => 'Wiki külastajad, kes lähtuvad sinu IP-lt on viimase ööpäeva jooksul loonud {{PLURAL:$1|ühe konto|$1 kontot}} ja suuremat arvu kasutajakontosid ei ole sellise perioodi jooksul luua lubatud.
 Seega, hetkel ei saa antud IP kasutajad uusi kontosid avada.',
@@ -1194,6 +1197,7 @@ Palun pöörduge tagasi ja laadige fail üles mõne teise nime all. [[File:$1|th
 'nolinkstoimage'            => 'Sellele pildile ei viita ükski lehekülg.',
 'sharedupload'              => 'See fail pärineb allikast $1 ning võib olla kasutusel ka teistes projektides.',
 'sharedupload-desc-there'   => 'See fail pärineb kesksest failivaramust $1. Palun vaata [$2 faili kirjelduse lehekülge], et saada rohkem teavet.',
+'sharedupload-desc-here'    => 'See on jagutud fail allikast $1 ja seda saab kasutada ka teistes projektides. Faili sealne [$2 kirjeldus] on kuvatud allpool.',
 'uploadnewversion-linktext' => 'Lae üles selle faili uus versioon',
 
 # File deletion
@@ -1231,13 +1235,13 @@ Palun pöörduge tagasi ja laadige fail üles mõne teise nime all. [[File:$1|th
 'randomredirect' => 'Juhuslik ümbersuunamine',
 
 # Statistics
-'statistics'                   => 'Statistika',
-'statistics-header-pages'      => 'Lehekülgede statistika',
-'statistics-header-edits'      => 'Redigeerimise statistika',
-'statistics-header-users'      => 'Kasutajate statistika',
+'statistics'                   => 'Arvandmestik',
+'statistics-header-pages'      => 'Lehekülgede arvandmed',
+'statistics-header-edits'      => 'Redigeerimise arvandmed',
+'statistics-header-users'      => 'Kasutajate arvandmed',
 'statistics-articles'          => 'Sisulehekülgi',
 'statistics-pages'             => 'Lehekülgi',
-'statistics-pages-desc'        => 'Kõik lehed wikis, kaasa arvatud arutelulehed, ümbersuunamised jne.',
+'statistics-pages-desc'        => 'Kõik lehed vikis, kaasa arvatud arutelulehed, ümbersuunamised jne',
 'statistics-files'             => 'Üleslaaditud faile',
 'statistics-edits'             => 'Redigeerimisi alates {{SITENAME}} loomisest',
 'statistics-edits-average'     => 'Keskmiselt redigeerimisi lehekülje kohta',
@@ -1246,7 +1250,10 @@ Palun pöörduge tagasi ja laadige fail üles mõne teise nime all. [[File:$1|th
 'statistics-users-active'      => 'Aktiivseid kasutajaid',
 'statistics-users-active-desc' => 'Kasutajad, kes on viimase {{PLURAL:$1|päeva|$1 päeva}} jooksul tegutsenud',
 
-'disambiguations' => 'Täpsustusleheküljed',
+'disambiguations'      => 'Täpsustusleheküljed',
+'disambiguations-text' => "Loetletud leheküljed viitavad '''täpsustusleheküljele'''.
+Selle asemel peaks nad olema lingitud sobivasse artiklisse.
+Lehekülg loetakse täpsustusleheküljeks, kui see kasutab malli, millele viitab sõnum [[MediaWiki:Disambiguationspage]].",
 
 'doubleredirects'     => 'Kahekordsed ümbersuunamised',
 'doubleredirectstext' => 'Käesolev leht esitab loendi lehtedest, mis sisaldavad ümbersuunamisi teistele ümbersuunamislehtedele.
@@ -1258,7 +1265,8 @@ Igal real on ära toodud esimene ja teine ümbersuunamisleht ning samuti teise �
 'brokenredirects-edit'   => 'redigeeri',
 'brokenredirects-delete' => 'kustuta',
 
-'withoutinterwiki' => 'Keelelinkideta leheküljed',
+'withoutinterwiki'         => 'Keelelinkideta leheküljed',
+'withoutinterwiki-summary' => 'Loetletud leheküljed ei viita erikeelsetele versioonidele.',
 
 'fewestrevisions' => 'Leheküljed, kus on kõige vähem muudatusi tehtud',
 
@@ -1294,7 +1302,10 @@ Igal real on ära toodud esimene ja teine ümbersuunamisleht ning samuti teise �
 'deadendpages'            => 'Edasipääsuta artiklid',
 'deadendpagestext'        => 'Järgmised leheküljed ei viita ühelegi teisele Viki leheküljele.',
 'protectedpages'          => 'Kaitstud leheküljed',
+'protectedpages-indef'    => 'Ainult määramata ajani kaitstud',
+'protectedpages-cascade'  => 'Ainult kaskaadkaitsega',
 'protectedtitles'         => 'Kaitstud pealkirjad',
+'protectedtitlesempty'    => 'Hetkel pole ükski pealkiri kaitstud.',
 'listusers'               => 'Kasutajad',
 'listusers-editsonly'     => 'Näita vaid kasutajaid, kes on teinud muudatusi',
 'listusers-creationsort'  => 'Sorteeri konto loomise aja järgi',
@@ -1327,7 +1338,7 @@ Valiku kitsendamiseks vali logitüüp, sisesta kasutajanimi (tõstutundlik) või
 'logempty'             => 'Logides vastavad kirjed puuduvad.',
 
 # Special:AllPages
-'allpages'          => 'Kõik artiklid',
+'allpages'          => 'Kõik leheküljed',
 'alphaindexline'    => '$1 kuni $2',
 'nextpage'          => 'Järgmine lehekülg ($1)',
 'prevpage'          => 'Eelmine lehekülg ($1)',
@@ -1987,6 +1998,7 @@ $3
 Kui see *ei* ole sinu loodud konto, siis ava järgnev link $5 kinnituse tühistamiseks. 
 
 Kinnituskood aegub $4.',
+'invalidateemail'         => 'Tühista e-posti kinnitus',
 
 # Scary transclusion
 'scarytranscludetoolong' => '[URL on liiga pikk]',
@@ -2075,7 +2087,8 @@ Aga samuti võid sa [[Special:Watchlist/edit|kasutada harilikku redaktorit]].',
 'specialpages-group-spam'        => 'Töö spämmiga',
 
 # Special:BlankPage
-'blankpage' => 'Tühi leht',
+'blankpage'              => 'Tühi leht',
+'intentionallyblankpage' => 'See lehekülg on sihilikult tühjaks jäetud.',
 
 # Special:Tags
 'tags-edit'     => 'muuda',

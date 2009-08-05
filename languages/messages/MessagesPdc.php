@@ -15,7 +15,12 @@ $fallback = 'de';
 
 $messages = array(
 # User preference toggles
-'tog-nocache' => 'Ken Bledder-Scheier',
+'tog-hideminor'          => 'Gleene Enneringe verschwinne losse',
+'tog-watchdefault'       => 'Vun mir gennerte Ardickele watsche',
+'tog-nocache'            => 'Ken Bledder-Scheier',
+'tog-watchlisthideown'   => 'Mei Ardickele vun mei Watsch-Lischt verschwinne losse',
+'tog-watchlisthidebots'  => 'Enneringe vun Bots vun mei Watsch-Lischt verschwinne losse',
+'tog-watchlisthideminor' => 'Gleene Enneringe vun mei Watsch-Lischt verschwinne losse',
 
 'underline-always' => 'allfart',
 'underline-never'  => 'nie net',
@@ -168,6 +173,7 @@ Guuck aach [[Special:Version|Versionsblatt]]',
 'editlink'                => 'ennere',
 'editsectionhint'         => 'Abschnitt ennere: $1',
 'toc'                     => 'Lischt vum Inhalt',
+'hidetoc'                 => 'Verschwinne losse',
 'feedlinks'               => 'Feed:',
 'site-rss-feed'           => 'RSS-Feed fer $1',
 'site-atom-feed'          => 'Atom-Feed fer $1',
@@ -235,7 +241,9 @@ Guuck aach [[Special:Version|Versionsblatt]]',
 
 # Revision deletion
 'rev-deleted-user'           => '(Yuuser-Naame gelöscht)',
+'rev-delundel'               => 'zeig/verschwinne losse',
 'revdelete-show-file-submit' => 'Ya',
+'revdelete-hide-text'        => 'Text vun de Version verschwinne losse',
 'revdelete-uname'            => 'Yuuser-Naame',
 'revdelete-log-message'      => '$1 fer $2 {{PLURAL:$2|Version|Versione}}',
 
@@ -341,6 +349,8 @@ Guuck aach [[Special:Version|Versionsblatt]]',
 'rcshowhidemine'    => 'Mei Ardickele $1',
 'rclinks'           => 'Zeig die letscht $1 Enneringe vun de letscht $2 Daag.<br />$3',
 'hist'              => 'Gschicht',
+'hide'              => 'verschwinne losse',
+'show'              => 'zeige',
 'minoreditletter'   => 'g',
 'newpageletter'     => 'N',
 'boteditletter'     => 'B',
