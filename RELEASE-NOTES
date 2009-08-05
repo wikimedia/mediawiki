@@ -187,6 +187,7 @@ this. Was used when mwEmbed was going to be an extension.
   but before Mediawiki::performRequestForTitle()
 * wgMainPageTitle variable now available to JavaScript code to identify the main
   page link, so it doesn't have to be extracted from the link URLs.
+* (bug 16836) Display preview of signature in user preferences and describe its use
 
 === Bug fixes in 1.16 ===
 
