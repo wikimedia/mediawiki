@@ -390,6 +390,7 @@ this. Was used when mwEmbed was going to be an extension.
   and issue with Opera (bug 18497) where fullscreen mode is assumed to be
   projection mode and the style sheet for screen media is no longer used.
 * (bug 16084) Default memory limit has be increased to 50M, see $wgMemoryLimit
+* (bug 17864/19519) Added proper input normalization in Special:UserRights
 
 == API changes in 1.16 ==
 
