@@ -111,7 +111,7 @@ function findExecutable( $name ) {
 }
 
 function readlineEmulation( $prompt ) {
-	$bash = "xbash";
+	$bash = "bash";
 	if( !wfIsWindows() && findExecutable( $bash ) ) {
 		$retval = false;
 		$encPrompt = wfEscapeShellArg( $prompt );
