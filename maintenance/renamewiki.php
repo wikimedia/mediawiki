@@ -19,6 +19,7 @@
  * http://www.gnu.org/copyleft/gpl.html
  *
  * @ingroup Maintenance
+ * @ingroup Wikimedia
  */
 
 require_once( dirname(__FILE__) . '/Maintenance.php' );

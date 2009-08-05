@@ -724,7 +724,6 @@ abstract class Maintenance {
 	
 	/**
 	 * Return all of the core maintenance scripts
-	 * @todo Finish porting all scripts so this doesn't blow up
 	 * @return array
 	 */
 	private static function getCoreScripts() {
