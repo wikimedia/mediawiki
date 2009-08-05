@@ -241,6 +241,11 @@ pe titlul secţiunii (JavaScript)',
 'underline-never'   => 'Niciodată',
 'underline-default' => 'Standardul browser-ului',
 
+# Font style option in Special:Preferences
+'editfont-monospace' => 'Font monospaţiat',
+'editfont-sansserif' => 'Font fără serife',
+'editfont-serif'     => 'Font cu serife',
+
 # Dates
 'sunday'        => 'duminică',
 'monday'        => 'luni',
@@ -362,6 +367,9 @@ pe titlul secţiunii (JavaScript)',
 'vector-view-history'        => 'Vezi istoric',
 'vector-view-view'           => 'Citeşte',
 'vector-view-viewsource'     => 'Vezi sursă',
+'actions'                    => 'Acţiuni',
+'namespaces'                 => 'Spaţii de nume',
+'variants'                   => 'Variante',
 
 # Metadata in edit box
 'metadata_help' => 'Metadata:',
@@ -500,12 +508,16 @@ Aceasta s-ar putea să indice şi un bug în programul folosit de {{SITENAME}}.'
 'error'                => 'Eroare',
 'databaseerror'        => 'Eroare la baza de date',
 'dberrortext'          => 'A apărut o eroare în sintaxa interogării.
-Aceasta se poate datora unui query ilegal, sau poate indica o problemă în program.
+Aceasta se poate datora probleme în program.
 Ultima interogare încercată a fost:
 <blockquote><tt>$1</tt></blockquote>
 din cadrul funcţiei "<tt>$2</tt>".
-MySQL a returnat eroarea "<tt>$3: $4</tt>".',
-'dberrortextcl'        => 'A apărut o eroare de sintaxă în interogare. Ultima interogare încercată a fost: „$1” din funcţia „$2”. MySQL a returnat eroarea „$3: $4”.',
+$5 a returnat eroarea "<tt>$3: $4</tt>".',
+'dberrortextcl'        => 'A apărut o eroare de sintaxă în interogare.
+Ultima interogare încercată a fost:
+„$1”
+din funcţia „$2”.
+$5 a returnat eroarea „$3: $4”',
 'laggedslavemode'      => 'Atenţie: S-ar putea ca pagina să nu conţină ultimele actualizări.',
 'readonly'             => 'Baza de date este blocată la scriere',
 'enterlockreason'      => 'Precizează motivul pentru blocare, incluzând o estimare a termenului de deblocare a bazei de date',
@@ -891,17 +903,22 @@ E posibil să fi fost ştearsă sau redenumită.
 'rev-deleted-comment'         => '(comentariu şters)',
 'rev-deleted-user'            => '(nume de utilizator şters)',
 'rev-deleted-event'           => '(intrare ştearsă)',
-'rev-deleted-text-permission' => "Revizia acestei pagini a fost '''ştearsă'''.
-Mai multe detalii în [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} jurnalul suprimărilor].",
-'rev-deleted-text-unhide'     => "Această revizie a fost '''ştearsă'''.
+'rev-deleted-text-permission' => "Această revizie a paginii a fost '''ştearsă'''.
+Mai multe detalii în [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} jurnalul ştergerilor].",
+'rev-deleted-text-unhide'     => "Această revizie a paginii a fost '''ştearsă'''.
+Pot exista detalii în [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jurnalul ştergerilor].
+Ca administrator puteţi [$1 vedea această revizie] în continuare, dacă doriţi acest lucru.",
+'rev-suppressed-text-unhide'  => "Această revizie a paginii a fost '''suprimată'''.
 Pot exista detalii în [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} jurnalul suprimărilor].
 Ca administrator puteţi [$1 vedea această revizie] în continuare, dacă doriţi acest lucru.",
-'rev-deleted-text-view'       => "Revizia acestei pagini a fost '''ştearsă'''.
+'rev-deleted-text-view'       => "Această revizie a paginii a fost '''ştearsă'''.
+Ca administrator puteţi să o vedeţi; s-ar putea să găsiţi mai multe detalii în [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jurnalul ştergerilor].",
+'rev-suppressed-text-view'    => "Această revizie a paginii a fost '''suprimată'''.
 Ca administrator puteţi să o vedeţi; s-ar putea să găsiţi mai multe detalii în [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} jurnalul suprimărilor].",
 'rev-deleted-no-diff'         => "Nu poţi vedea acestă diferenţă deoarece una dintre revizii a fost '''ştearsă'''.
-Pot exista mai multe detalii în [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} jurnalul suprimărilor].",
+Pot exista mai multe detalii în [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jurnalul ştergerilor].",
 'rev-deleted-unhide-diff'     => "Una din reviziile acestui istoric a fost '''ştearsă'''.
-Pot exista detalii în [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} jurnalul suprimărilor].
+Pot exista detalii în [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jurnalul ştergerilor].
 Ca administrator puteţi [$1 vedea diferenţa] în continuare, dacă doriţi acest lucru.",
 'rev-delundel'                => 'arată/ascunde',
 'revisiondelete'              => 'Şterge/recuperează revizii',
@@ -1396,6 +1413,9 @@ Dimensiunea trebuie să fie mai mică de $1 {{PLURAL:$1|caracter|caractere}}.',
 'recentchanges-legend'              => 'Opţiuni schimbări recente',
 'recentchangestext'                 => 'Schimbări recente ... (Log)',
 'recentchanges-feed-description'    => 'Urmăreşte cele mai recente schimbări folosind acest flux.',
+'recentchanges-label-newpage'       => 'Această modificare a creat o pagină nouă',
+'recentchanges-label-minor'         => 'Aceasta este o modificare minoră',
+'recentchanges-label-bot'           => 'Această modificare a fost efectuată de un robot',
 'rcnote'                            => "Mai jos se află {{PLURAL:$|ultima modificare|ultimele '''$1''' modificări}} din {{PLURAL:$2|ultima zi|ultimele '''$2''' zile}}, începând cu $5, $4.",
 'rcnotefrom'                        => 'Dedesubt sunt modificările de la <b>$2</b> (maxim <b>$1</b> de modificări sunt afişate - schimbă numărul maxim de linii alegând altă valoare mai jos).',
 'rclistfrom'                        => 'Arată modificările începând de la $1',
@@ -1531,6 +1551,8 @@ Vă rugăm să contactaţi un [[Special:ListUsers/sysop|administrator]].',
 'upload-misc-error-text'  => 'A apărut o eroare necunoscută în timpul încărcării.
 Vă rugăm să verificaţi dacă adresa URL este validă şi accesibilă şi încercaţi din nou.
 Dacă problema persistă, contactaţi un [[Special:ListUsers/sysop|administrator]].',
+'upload-unknown-size'     => 'Mărime necunoscută',
+'upload-http-error'       => 'A avut loc o eroare HTTP: $1',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Nu pot găsi adresa URL',
@@ -1692,7 +1714,9 @@ Lista tipurilor MIME recunoscute de MediaWiki poate fi găsită la [http://svn.w
 O pagină este considerată o pagină de dezambiguizare dacă foloseşte formate care apar la [[MediaWiki:Disambiguationspage]]",
 
 'doubleredirects'            => 'Redirecţionări duble',
-'doubleredirectstext'        => '<b>Atenţie:</b> Această listă poate conţine articole care nu sunt în fapt duble rediriecţionări. Acest lucru înseamnă de obicei că există text adiţional sub primul #REDIRECT.<br />',
+'doubleredirectstext'        => 'Această listă conţine pagini care redirecţionează la alte pagini de redirecţionare.
+Fiecare rând conţine legături la primele două redirecţionări, precum şi ţinta celei de-a doua redirecţionări, care este de obicei pagina ţintă "reală", către care ar trebui să redirecţioneze prima pagină.
+Intrările <s>tăiate</s> au fost rezolvate.',
 'double-redirect-fixed-move' => '[[$1]] a fost mutat, acum este un redirect către [[$2]]',
 'double-redirect-fixer'      => 'Corector de redirecţionări',
 
@@ -1780,7 +1804,7 @@ O pagină este considerată o pagină de dezambiguizare dacă foloseşte formate
 'specialloguserlabel'  => 'Utilizator:',
 'speciallogtitlelabel' => 'Titlu:',
 'log'                  => 'Jurnale',
-'all-logs-page'        => 'Toate jurnalele',
+'all-logs-page'        => 'Toate jurnalele publice',
 'alllogstext'          => 'Afişare combinată a tuturor jurnalelor {{SITENAME}}.
 Puteţi limita vizualizarea selectând tipul jurnalului, numele de utilizator sau pagina afectată.',
 'logempty'             => 'Nici o înregistrare în jurnal.',
@@ -2398,6 +2422,7 @@ Pentru a exporta, introduceţi titlurile în căsuţa de mai jos, unul pe linie,
 'allmessagestext'           => 'Aceasta este lista completă a mesajelor disponibile în domeniul MediaWiki.
 Vă rugăm să vizitaţi [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] şi [http://translatewiki.net translatewiki.net] dacă vreţi să contribuiţi la localizarea programului MediaWiki generic.',
 'allmessagesnotsupportedDB' => "'''{{ns:special}}:Allmessages''' nu poate fi folosit deoarece '''\$wgUseDatabaseMessages''' este închisă.",
+'allmessages-language'      => 'Limbă:',
 
 # Thumbnails
 'thumbnail-more'           => 'Extinde',
@@ -3165,6 +3190,7 @@ Introdu numele fişierului fără prefixul "{{ns:file}}:".',
 'htmlform-invalid-input'       => 'Există probleme la valorile introduse',
 'htmlform-select-badoption'    => 'Valoarea specificată nu este o opţiune validă.',
 'htmlform-int-invalid'         => 'Valoarea specificată nu este un întreg.',
+'htmlform-float-invalid'       => 'Valoarea specificată nu este un număr.',
 'htmlform-int-toolow'          => 'Valoarea specificată este sub maximul $1',
 'htmlform-int-toohigh'         => 'Valoarea specificată este peste maximul $1',
 'htmlform-submit'              => 'Trimite',

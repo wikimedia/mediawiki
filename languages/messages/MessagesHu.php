@@ -1023,10 +1023,16 @@ Próbálkozhatsz a témával kapcsolatos lapok [[Special:Search|keresésével]].
 'rev-deleted-text-permission' => "A lap ezen változatát '''törölték'''.
 További információkat a [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} törlési naplóban] találhatsz.",
 'rev-deleted-text-unhide'     => "A lap ezen változatát '''törölték'''.
-További részleteket a [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} törlési naplóban] találhatsz.
+További részleteket a [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} törlési naplóban] találhatsz.
+Mivel adminisztrátor vagy, még mindig [$1 megtekintheted a tartalmát], ha szeretnéd.",
+'rev-suppressed-text-unhide'  => "A lap ezen változatát '''elrejtették'''.
+További részleteket az [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} elrejtési naplóban] találhatsz.
 Mivel adminisztrátor vagy, még mindig [$1 megtekintheted a tartalmát], ha szeretnéd.",
 'rev-deleted-text-view'       => "A lap ezen változatát '''törölték'''.
 Adminisztrátorként megnézheted; további részleteket a [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} törlési naplóban] találhatsz.",
+'rev-suppressed-text-view'    => "A lap ezen változatát '''elrejtették'''.
+Mivel adminisztrátor vagy, még mindig megtekintheted.
+További részleteket az [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} elrejtési naplóban] találhatsz.",
 'rev-deleted-no-diff'         => "Nem nézheted meg a két változat közötti eltérést, mert a változatok egyikét '''törölték'''.
 További részleteket a [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} törlési naplóban] találhatsz.",
 'rev-deleted-unhide-diff'     => "A változatok közötti eltéréshez kiválasztott változatok egyike '''törölve''' lett.
@@ -1086,6 +1092,14 @@ $1",
 'revdelete-unhid'             => 'felfedte $1',
 'revdelete-log-message'       => '$1 {{PLURAL:$1|egy|$2}} változatot',
 'logdelete-log-message'       => '$1 {{PLURAL:$2|egy|$2}} eseményt',
+'revdelete-hide-current'      => 'Nem sikerült elrejteni a $1 $2-kori elemet: ez a jelenlegi változat, amit nem lehet elrejteni.',
+'revdelete-show-no-access'    => 'Nem lehet megjeleníteni a $2 $1-kori elemet, mert „korlátozottnak” van jelölve.',
+'revdelete-modify-no-access'  => 'Nem lehet módosítani a $2 $1-kori elemet, mert „korlátozottnak” van jelölve.',
+'revdelete-modify-missing'    => 'Nem sikerült módosítani a(z) $1 azonosítójú elemet, mert hiányzik az adatbázisból.',
+'revdelete-no-change'         => "'''Figyelem:''' a(z) $1 $2-kori elem már rendelkezik a kért láthatósági beállításokkal.",
+'revdelete-concurrent-change' => 'Hiba történt a(z) $1 $2-kori elem módosítása közben: úgy tűnik, valaki megváltoztatta az állapotát, miközben módosítani próbáltad.
+Ellenőrizd a naplókat.',
+'revdelete-only-restricted'   => 'Nem rejthetsz el az adminisztrátorok elől elemeket anélkül, hogy ne választanál ki egy másik elrejtési beállítást.',
 
 # Suppression log
 'suppressionlog'     => 'Adatvédelmibiztos-napló',
@@ -1278,6 +1292,7 @@ Győződj meg róla, hogy a laptörténet folytonossága megmarad.',
 'prefs-watchlist-days-max'      => '(legfeljebb 7 nap)',
 'prefs-watchlist-edits'         => 'A kiterjesztett figyelőlistán mutatott szerkesztések száma:',
 'prefs-watchlist-edits-max'     => '(legfeljebb 1000)',
+'prefs-watchlist-token'         => 'A figyelőlista kulcsa',
 'prefs-misc'                    => 'Egyéb',
 'prefs-resetpass'               => 'Jelszó megváltoztatása',
 'prefs-email'                   => 'Levelezés',
@@ -1298,6 +1313,9 @@ Győződj meg róla, hogy a laptörténet folytonossága megmarad.',
 'recentchangesdays-max'         => '(maximum {{PLURAL:$1|egy|$1}} nap)',
 'recentchangescount'            => 'Az alapértelmezettként mutatott szerkesztések száma:',
 'prefs-help-recentchangescount' => 'Ez vonatkozik a friss változtatásokra, laptörténetekre és naplókra is.',
+'prefs-help-watchlist-token'    => 'Ha ebbe a mezőbe beírsz egy titkos kulcsot, RSS feed fog készülni a figyelőlistádról.
+Bárki, aki tudja a fenti mezőbe beírt kulcsot, látni fogja a figyelőlistádat, így válassz egy titkos értéket.
+Itt van egy véletlenszerűen generált érték, amit használhatsz: $1',
 'savedprefs'                    => 'Az új beállításaid érvénybe léptek.',
 'timezonelegend'                => 'Időzóna:',
 'localtime'                     => 'Helyi idő:',
@@ -1515,6 +1533,15 @@ Ezen kívül más szerkesztők is kapcsolatba lépjenek veled a szerkesztői vag
 'recentchanges-legend'              => 'A friss változások beállításai',
 'recentchangestext'                 => 'Ezen a lapon a wikiben történt legutóbbi változásokat lehet nyomonkövetni.',
 'recentchanges-feed-description'    => 'Kövesd a wiki friss változtatásait ezzel a hírcsatornával.',
+'recentchanges-label-legend'        => 'Jelmagyarázat: $1.',
+'recentchanges-legend-newpage'      => '$1 - új lap',
+'recentchanges-label-newpage'       => 'Ezzel a szerkesztéssel egy új lap jött létre',
+'recentchanges-legend-minor'        => '$1 - apró szerkesztés',
+'recentchanges-label-minor'         => 'Ez egy apró szerkesztés',
+'recentchanges-legend-bot'          => '$1 - botszerkesztés',
+'recentchanges-label-bot'           => 'Ezt a szerkesztést egy bot hajtotta végre',
+'recentchanges-legend-unpatrolled'  => '$1 - nem ellenőrzött szerkesztés',
+'recentchanges-label-unpatrolled'   => 'Ezt a szerkesztést még nem ellenőrizték',
 'rcnote'                            => "Alább az utolsó '''{{PLURAL:$2|egy|$2}}''' nap utolsó '''{{PLURAL:$1|egy|$1}}''' változtatása látható. A lap generálásának időpontja $4, $5.",
 'rcnotefrom'                        => 'Alább a <b>$2</b> óta történt változások láthatóak (<b>$1</b> db).',
 'rclistfrom'                        => '$1 után történt változások megtekintése',
@@ -2734,7 +2761,7 @@ Ez valószínűleg egy olyan link miatt van, ami egy feketelistán lévő oldalr
 'markedaspatrolled'                   => 'Ellenőrzöttnek jelölve',
 'markedaspatrolledtext'               => 'A kiválasztott változatot ellenőrzöttnek jelölted.',
 'rcpatroldisabled'                    => 'A friss változtatások járőrözése kikapcsolva',
-'rcpatroldisabledtext'                => 'A Friss Változtatások Ellenőrzése jelenleg nincs engedélyezve.',
+'rcpatroldisabledtext'                => 'A friss változtatások ellenőrzése jelenleg nincs engedélyezve.',
 'markedaspatrollederror'              => 'Nem lehet ellenőrzöttnek jelölni',
 'markedaspatrollederrortext'          => 'Meg kell adnod egy ellenőrzöttként megjelölt változatot.',
 'markedaspatrollederror-noautopatrol' => 'A saját változtatásaid megjelölése ellenőrzöttként nem engedélyezett.',
@@ -2776,6 +2803,8 @@ $1',
 'svg-long-desc'        => '(SVG fájl, névlegesen $1 × $2 képpont, fájlméret: $3)',
 'show-big-image'       => 'A kép nagyfelbontású változata',
 'show-big-image-thumb' => '<small>Az előnézet mérete: $1 × $2 képpont</small>',
+'file-info-gif-looped' => 'ismétlődik',
+'file-info-gif-frames' => '{{PLURAL:$1|egy|$1}} képkocka',
 
 # Special:NewFiles
 'newimages'             => 'Új fájlok galériája',

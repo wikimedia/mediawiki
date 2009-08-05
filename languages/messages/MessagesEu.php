@@ -151,6 +151,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Aldaketa txikiak direnean ere e-posta jaso',
 'tog-enotifrevealaddr'        => 'Jakinarazpen mezuetan nire e-posta helbidea erakutsi',
 'tog-shownumberswatching'     => 'Jarraitzen duen erabiltzaile kopurua erakutsi',
+'tog-oldsig'                  => 'Dagoen sinaduraren aurreikuspena:',
 'tog-fancysig'                => 'Sinadura wikitestu gisa tratatu (lotura automatikorik gabe)',
 'tog-externaleditor'          => 'Lehenetsi bezala kanpoko editore bat erabili',
 'tog-externaldiff'            => 'Lehenetsi bezala kanpoko diff erreminta erabili (adituentzako bakarrik, zure ordenagailuak konfigurazio berezia izan behar du)',
@@ -174,6 +175,7 @@ $messages = array(
 'underline-default' => 'Nabigatzailearen lehenetsitako balioa',
 
 # Font style option in Special:Preferences
+'editfont-monospace' => 'Monospace iturria',
 'editfont-sansserif' => 'Sans-serif iturria',
 'editfont-serif'     => 'Serif iturria',
 
@@ -277,6 +279,7 @@ $messages = array(
 'faqpage'        => 'Project:Maiz egindako galderak',
 
 # Vector skin
+'vector-action-addsection'   => 'Mintzagaia gehitu',
 'vector-action-delete'       => 'Ezabatu',
 'vector-action-move'         => 'Mugitu',
 'vector-action-protect'      => 'Babestu',
@@ -286,6 +289,7 @@ $messages = array(
 'vector-namespace-help'      => 'Laguntza-orria',
 'vector-namespace-image'     => 'Fitxategi',
 'vector-namespace-main'      => 'Orrialde',
+'vector-namespace-media'     => 'Ikus-entzunezkoen orrialdea',
 'vector-namespace-mediawiki' => 'Mezua',
 'vector-namespace-project'   => 'Proiektu-orrialde',
 'vector-namespace-special'   => 'Orrialde berezia',
@@ -298,6 +302,7 @@ $messages = array(
 'vector-view-view'           => 'Irakurri',
 'vector-view-viewsource'     => 'Kodea ikusia',
 'actions'                    => 'Ekintzak',
+'variants'                   => 'Aldaerak',
 
 # Metadata in edit box
 'metadata_help' => 'Metadatuak:',
@@ -1427,13 +1432,15 @@ Fitxategi honen ezabaketa erregistroa jarraian ikus dezakezu:",
 'filename-bad-prefix'         => "Igotzen ari zaren fitxategiaren izena '''\"\$1\"'''ekin hasten da, normalki kamera digitalek automatikoki ezartzen duten izen ez deskriptibo bat.
 Aukera ezazu, mesedez, fitxategi izen deskriptiboago bat.",
 
-'upload-proto-error'      => 'Protokolo ezegokia',
-'upload-proto-error-text' => 'Kanpo igoerak <code>http://</code> edo <code>ftp://</code> hasiera duen URLa izan behar du.',
-'upload-file-error'       => 'Barne errorea',
-'upload-file-error-text'  => 'Barne errore bat gertatu da zerbitzarian fitxategi tenporal bat sortzen saiatzean. Mesedez, jar zaitez [[Special:ListUsers/sysop|administratzaile]] batekin harremanetan.',
-'upload-misc-error'       => 'Errore ezezaguna igotzerakoan',
-'upload-misc-error-text'  => 'Errore ezezagun bat gertatu da fitxategia igotzen ari zenean. Mesedez, egiaztatu URLa baliozkoa eta eskuragarria dela eta berriz saiatu. Arazoak jarraitzen badu, jar zaitez [[Special:ListUsers/sysop|administratzailearekin]] harremanetan.',
-'upload-unknown-size'     => 'Tamaina ezezaguna',
+'upload-proto-error'        => 'Protokolo ezegokia',
+'upload-proto-error-text'   => 'Kanpo igoerak <code>http://</code> edo <code>ftp://</code> hasiera duen URLa izan behar du.',
+'upload-file-error'         => 'Barne errorea',
+'upload-file-error-text'    => 'Barne errore bat gertatu da zerbitzarian fitxategi tenporal bat sortzen saiatzean. Mesedez, jar zaitez [[Special:ListUsers/sysop|administratzaile]] batekin harremanetan.',
+'upload-misc-error'         => 'Errore ezezaguna igotzerakoan',
+'upload-misc-error-text'    => 'Errore ezezagun bat gertatu da fitxategia igotzen ari zenean. Mesedez, egiaztatu URLa baliozkoa eta eskuragarria dela eta berriz saiatu. Arazoak jarraitzen badu, jar zaitez [[Special:ListUsers/sysop|administratzailearekin]] harremanetan.',
+'upload-too-many-redirects' => 'URLak birzuzenketa gehiegi zituen',
+'upload-unknown-size'       => 'Tamaina ezezaguna',
+'upload-http-error'         => 'HTTP errorea gertatu da: $1',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Ezin izan da URLa eskuratu',
@@ -1488,6 +1495,7 @@ Ondorengo zerrendak fitxategira dauden {{PLURAL:$1|lehen lotura|lehen $1 loturak
 'redirectstofile'           => 'Honako {{PLURAL:$1|artxiboak fitxategi honetara birzuzentzen du:|$1 artxiboek fitxategi honetara birzuzentzen dute:}}',
 'duplicatesoffile'          => 'Ondorengo fitxategi {{PLURAL:$1|hau beste honen berdina da|$1 hauek beste honen berdinak dira}} ([[Special:FileDuplicateSearch/$2|zehaztasun gehiago]]):',
 'sharedupload'              => 'Elkarbanatutako fitxategi hau $1-(e)ko igoera bat da eta beste proiektuek ere erabil dezakete.',
+'filepage-nofile'           => 'Izen horrekin ez dago fitxategirik.',
 'uploadnewversion-linktext' => 'Fitxategi honen bertsio berri bat igo',
 'shared-repo-from'          => '$1-tik',
 'shared-repo'               => 'elkarbanatutako biltegia',
