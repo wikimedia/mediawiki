@@ -636,6 +636,7 @@ XHTML id names.
 'tog-enotifminoredits'        => 'E-mail me also for minor edits of pages',
 'tog-enotifrevealaddr'        => 'Reveal my e-mail address in notification e-mails',
 'tog-shownumberswatching'     => 'Show the number of watching users',
+'tog-oldsig'                 => 'Preview of existing signature: ',
 'tog-fancysig'                => 'Treat signature as wikitext (without an automatic link)',
 'tog-externaleditor'          => 'Use external editor by default (for experts only, needs special settings on your computer)',
 'tog-externaldiff'            => 'Use external diff by default (for experts only, needs special settings on your computer)',
@@ -1778,7 +1779,8 @@ This cannot be undone.',
 'yourrealname'                  => 'Real name:',
 'yourlanguage'                  => 'Language:',
 'yourvariant'                   => 'Variant:', # only translate this message to other languages if you have to change it
-'yournick'                      => 'Signature:',
+'yournick'                      => 'New signature:',
+'prefs-help-signature'          => 'Comments on talk pages should be signed with "~~~~" which will be converted into your signature and a timestamp.',
 'badsig'                        => 'Invalid raw signature.
 Check HTML tags.',
 'badsiglength'                  => 'Your signature is too long.

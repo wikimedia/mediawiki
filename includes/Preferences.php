@@ -291,7 +291,22 @@ class Preferences {
 					);
 		}
 
-		global $wgMaxSigChars;
+		global $wgMaxSigChars, $wgParser;
+
+		// show a preview of the old signature first
+		$oldsigtext = $wgParser->preSaveTransform( "~~~", new Title , $user, new ParserOptions );
+		$oldsig = $wgParser->parse( $oldsigtext, new Title , new ParserOptions );
+		$m = array(); // remove <p> created by the parser (looks better without <p>)
+		if( preg_match( '/^<p>(.*)\n?<\/p>\n?$/sU', $oldsig->mText, $m ) ) $oldsig->mText = $m[1];
+		
+		$defaultPreferences['oldsig'] =
+			array(
+					'type' => 'info',
+					'raw' => true,
+					'label-message' => 'tog-oldsig',
+					'default' => $oldsig->mText,
+					'section' => 'personal/signature',
+			);
 		$defaultPreferences['nickname'] =
 				array(
 					'type' => $wgAuth->allowPropChange( 'nickname' ) ? 'text' : 'info',
@@ -306,9 +321,10 @@ class Preferences {
 				array(
 					'type' => 'toggle',
 					'label-message' => 'tog-fancysig',
+					'help-message' => 'prefs-help-signature', // show general help about signature at the bottom of the section
 					'section' => 'personal/signature'
 				);
-
+				
 		## Email stuff
 		
 		global $wgEnableEmail;
