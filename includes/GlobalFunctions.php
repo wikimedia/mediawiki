@@ -3193,10 +3193,44 @@ function wfObjectToArray( $object, $recursive = true ) {
 	return $array;
 }
 
-/* Parse PHP's silly format for memory limits */
-function wfParseMemoryLimit( $memlimit ) {
-	$last = strtolower($memlimit[strlen($memlimit)-1]);
-	$val = intval( $memlimit );
+/**
+ * Set PHP's memory limit to the larger of php.ini or $wgMemoryLimit;
+ * @return Integer value memory was set to.
+ */
+ 
+function wfMemoryLimit () {
+	global $wgMemoryLimit;
+	$memlimit = wfShorthandToInteger( ini_get( "memory_limit" ) );
+	$conflimit = wfShorthandToInteger( $wgMemoryLimit );
+	if( $memlimit != -1 ) {
+		if( $conflimit == -1 ) {
+			wfDebug( "Removing PHP's memory limit\n" );
+			wfSuppressWarnings();
+			ini_set( "memory_limit", $conflimit );
+			wfRestoreWarnings();
+			return $conflimit;
+		} else {
+			$max = max( $memlimit, $conflimit );
+			wfDebug( "Raising PHP's memory limit to $max bytes\n" );
+			wfSuppressWarnings();
+			ini_set( "memory_limit", $max );
+			wfRestoreWarnings();
+			return $max;
+		}
+	}
+	return $memlimit;
+}
+
+/**
+ * Converts shorthand byte notation to integer form
+ * @param $string String
+ * @return Integer
+ */
+function wfShorthandToInteger ( $string = '' ) {
+	$string = trim($string);
+	if( empty($string) ) { return -1; }
+	$last = strtolower($string[strlen($string)-1]);
+	$val = intval($string);
 	switch($last) {
 		case 'g':
 			$val *= 1024;
@@ -3205,6 +3239,7 @@ function wfParseMemoryLimit( $memlimit ) {
 		case 'k':
 			$val *= 1024;
 	}
+
 	return $val;
 }
 
@@ -3233,4 +3268,3 @@ function wfBCP47( $code ) {
 	$langCode = implode ( '-' , $codeBCP );
 	return $langCode;
 }
-

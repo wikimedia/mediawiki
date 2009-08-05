@@ -466,18 +466,16 @@ if( !function_exists( 'preg_match' ) )
 	Perl-compatible regular expression functions." );
 
 $memlimit = ini_get( "memory_limit" );
-if( empty( $memlimit ) || $memlimit == -1 ) {
+$newlimit = wfMemoryLimit();
+global $wgMemoryLimit;
+if( $memlimit == -1 ) {
 	print "<li>PHP is configured with no <tt>memory_limit</tt>.</li>\n";
 } else {
-	print "<li>PHP's <tt>memory_limit</tt> is " . htmlspecialchars( $memlimit ) . ". ";
-	global $wgMemoryLimit;
-	if( wfParseMemoryLimit( $memlimit ) < wfParseMemoryLimit( $wgMemoryLimit ) ) {
-		print "Attempting to raise limit to " . htmlspecialchars( $wgMemoryLimit ) . "... ";
-		if( false === ini_set( "memory_limit", $wgMemoryLimit ) ) {
-			print "failed.<br /><b>" . htmlspecialchars( $memlimit ) . " seems too low, installation may fail!</b>";
-		} else {
-			print "ok.";
-		}
+	print "<li>PHP's <tt>memory_limit</tt> is " . htmlspecialchars( $memlimit ). " bytes. ";
+	if( $newlimit >= $wgMemoryLimit ) {
+		print "Successfully set limit to " . htmlspecialchars( $newlimit ) . "... ";
+	} else {
+		print "<b>Failed raising limit, installation may fail.</b>";
 	}
 	print "</li>\n";
 }

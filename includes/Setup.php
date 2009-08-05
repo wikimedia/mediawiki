@@ -150,16 +150,7 @@ require_once( "$IP/includes/StubObject.php" );
 wfProfileOut( $fname.'-includes' );
 wfProfileIn( $fname.'-misc1' );
 # Raise the memory limit if it's too low
-global $wgMemoryLimit;
-$memlimit = ini_get( "memory_limit" );
-if( !( empty( $memlimit ) || $memlimit == -1 ) ) {
-	if( wfParseMemoryLimit( $memlimit ) < wfParseMemoryLimit( $wgMemoryLimit ) ) {
-		wfDebug( "\n\nRaise PHP's memory limit from $memlimit to $wgMemoryLimit\n" );
-		wfDisableWarnings();
-		ini_set( "memory_limit", $wgMemoryLimit );
-		wfEnableWarnings();
-	}
-}
+wfMemoryLimit();
 
 $wgIP = false; # Load on demand
 # Can't stub this one, it sets up $_GET and $_REQUEST in its constructor
