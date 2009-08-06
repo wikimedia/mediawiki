@@ -36,7 +36,9 @@ class GIFHandler extends BitmapHandler {
 		global $wgUser, $wgLang;
 		$sk = $wgUser->getSkin();
 		
-		$metadata = unserialize($image->getMetadata());
+		$metadata = @unserialize($image->getMetadata());
+		
+		if (!$metadata) return parent::getLongDesc( $image );
 		
 		$info = array();
 		$info[] = $image->getMimeType();
