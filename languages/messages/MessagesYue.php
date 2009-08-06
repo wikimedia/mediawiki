@@ -1,5 +1,5 @@
 <?php
-/** Yue (粵語)
+/** Cantonese (粵語/廣東話)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -169,6 +169,7 @@ $messages = array(
 'tog-enotifminoredits'        => '小修改都要電郵通知我',
 'tog-enotifrevealaddr'        => '喺電郵通知信上面話畀人聽我嘅電郵地址',
 'tog-shownumberswatching'     => '顯示有幾多人監視',
+'tog-oldsig'                  => '原有簽名嘅預覽：',
 'tog-fancysig'                => '將簽名以維基字對待（冇自動連結）',
 'tog-externaleditor'          => '預設用外掛編輯器（高階者專用，需要響你部電腦度做一啲特別設定）',
 'tog-externaldiff'            => '預設用外掛比較器（高階者專用，需要響你部電腦度做一啲特別設定）',
@@ -1193,7 +1194,8 @@ $1",
 'yourrealname'                  => '真名:',
 'yourlanguage'                  => '話:',
 'yourvariant'                   => '變換:',
-'yournick'                      => '花名:',
+'yournick'                      => '新花名:',
+'prefs-help-signature'          => '響討論版嘅評論應該要用 "<nowiki>~~~~</nowiki>" 簽名，噉就會轉做你嘅簽名同埋一個時間截記。',
 'badsig'                        => '無效嘅程式碼簽名。檢查吓 HTML 有無錯。',
 'badsiglength'                  => '你嘅花名太長喇。
 唔長得過$1個字元。',

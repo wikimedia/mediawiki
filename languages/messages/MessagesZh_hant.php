@@ -1,5 +1,5 @@
 <?php
-/** Traditional Chinese (‪中文(繁體)‬)
+/** Traditional Chinese (‪中文(傳統字)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -196,6 +196,7 @@ $messages = array(
 'tog-enotifminoredits'        => '即使是頁面的小修改也向我發電子郵件',
 'tog-enotifrevealaddr'        => '在通知電子郵件中顯示我的電子郵件位址',
 'tog-shownumberswatching'     => '顯示監視用戶的數目',
+'tog-oldsig'                  => '原有簽名的預覽：',
 'tog-fancysig'                => '將簽名以維基文字對待 (不產生自動連結)',
 'tog-externaleditor'          => '預設使用外部編輯器 (進階者專用，需要在您的電腦上作出一些特別設定)',
 'tog-externaldiff'            => '預設使用外部差異分析 (進階者專用，需要在您的電腦上作出一些特別設定)',
@@ -1212,7 +1213,8 @@ $1",
 'yourrealname'                  => '真實姓名:',
 'yourlanguage'                  => '介面語言:',
 'yourvariant'                   => '字體變換:',
-'yournick'                      => '簽名:',
+'yournick'                      => '新簽名:',
+'prefs-help-signature'          => '在討論頁面上的評論應該要用 "<nowiki>~~~~</nowiki>" 簽名，這樣便會轉換成你的簽名以及一個時間截記。',
 'badsig'                        => '錯誤的原始簽名。檢查一下HTML標籤。',
 'badsiglength'                  => '您的簽名過長。
 它的長度不可超過$1個字元。',
