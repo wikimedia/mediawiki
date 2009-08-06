@@ -1404,6 +1404,7 @@ $wgMessageStructure = array(
 		'statistics-header-edits',
 		'statistics-header-views',
 		'statistics-header-users',
+		'statistics-header-hooks',
 		'statistics-articles',
 		'statistics-pages',
 		'statistics-pages-desc',

@@ -4156,3 +4156,15 @@ $wgCrossSiteAJAXdomainsRegex = false;
  */
 $wgMemoryLimit = "50M";
 
+/**
+ * Allow extensions to add Statistics at the end of Special:Statistics.
+ */
+$wgAllowStatsOther = true;
+
+/**
+ * Statistics which add at the end of Special:Statistics. 
+ * Use: $wgStatsOther['<name of statistic>'] = <value>; 
+ * Example: $wgStatsOther['Time since 01.01.1970'] = time();
+ */
+$wgStatsOther = array();
+
