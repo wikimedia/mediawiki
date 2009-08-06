@@ -229,16 +229,14 @@ class UploadFromChunks extends UploadBase {
 			}
 			return $status;
 		} else {
-			//check to make sure we have not expanded beyond $wgMaxUploadSize
-			if( ( filesize( $this->mTempAppendPath ) + filesize( $this->mTempPath ) ) >  $wgMaxUploadSize )
-				$status = Status::newFatal( 'largefileserver' );
-
 			if( is_file( $this->getRealPath( $this->mTempAppendPath ) ) ){
 				$status = $this->appendToUploadFile( $this->mTempAppendPath, $this->mTempPath );
 			} else {
 				$status = Status::newFatal( 'filenotfound', $this->mTempAppendPath );
 			}
-
+			//check to make sure we have not expanded beyond $wgMaxUploadSize
+			if( filesize(  $this->getRealPath( $this->mTempAppendPath ) ) >  $wgMaxUploadSize )
+				$status = Status::newFatal( 'largefileserver' );
 
 			return $status;
 		}

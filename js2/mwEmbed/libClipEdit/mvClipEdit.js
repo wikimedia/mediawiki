@@ -380,7 +380,10 @@ mvClipEdit.prototype = {
 			);
 			_this.setInOutBindings();			
 		}
-		$j('#'+this.control_ct).append(	_this.getInsertDescHtml() );
+		//if in a sequence we have no need for insertDesc
+		if( !_this.p_seqObj){
+			$j('#'+this.control_ct).append(	_this.getInsertDescHtml() );
+		}
 		//update control actions										
 		this.updateInsertControlActions();										
 	},
