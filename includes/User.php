@@ -214,6 +214,8 @@ class User {
 		$mBlockreason, $mBlock, $mEffectiveGroups, $mBlockedGlobally,
 		$mLocked, $mHideName, $mOptions;
 	//@}
+	
+	static $idCacheByName = array();
 
 	/**
 	 * Lightweight constructor for an anonymous user.
@@ -457,10 +459,8 @@ class User {
 			return null;
 		}
 		
-		static $cache = array();
-		
-		if ( isset($cache[$name]) ) {
-			return $cache[$name];
+		if ( isset(self::$idCacheByName[$name]) ) {
+			return self::$idCacheByName[$name];
 		}
 		
 		$dbr = wfGetDB( DB_SLAVE );
@@ -472,10 +472,10 @@ class User {
 			$result = $s->user_id;
 		}
 		
-		$cache[$name] = $result;
+		self::$idCacheByName[$name] = $result;
 		
-		if ( count($cache) > 1000 ) {
-			$cache = array();
+		if ( count(self::$idCacheByName) > 1000 ) {
+			self::$idCacheByName = array();
 		}
 		
 		return $result;
