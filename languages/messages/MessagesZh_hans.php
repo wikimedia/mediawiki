@@ -1,5 +1,5 @@
 <?php
-/** Simplified Chinese (‪中文(简体)‬)
+/** Simplified Chinese (‪中文(简化字)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -221,6 +221,7 @@ $messages = array(
 'tog-enotifminoredits'        => '在页面有小修改时也发邮件通知我',
 'tog-enotifrevealaddr'        => '在通知电子邮件列表中显示我的电子邮件地址',
 'tog-shownumberswatching'     => '显示监视此页的用户数',
+'tog-oldsig'                  => '原有签名的预览：',
 'tog-fancysig'                => '将签名以wiki文本对待（不产生自动链接）',
 'tog-externaleditor'          => '默认使用外部编辑器（供高级用户使用，需要在您的计算机上作出一些特别设置）',
 'tog-externaldiff'            => '默认使用外部差异分析（供高级用户使用，需要在您的计算机上作出一些特别设置）',
@@ -1226,7 +1227,8 @@ $1",
 'yourrealname'                  => '真实姓名：',
 'yourlanguage'                  => '界面语言：',
 'yourvariant'                   => '字体变换：',
-'yournick'                      => '签名：',
+'yournick'                      => '新签名：',
+'prefs-help-signature'          => '在讨论页面上的评论应该要用 "<nowiki>~~~~</nowiki>" 签名，这样便会转换成你的签名以及一个时间截记。',
 'badsig'                        => '错误的原始签名。检查一下HTML标签。',
 'badsiglength'                  => '签名过长。
 它的长度不可超过$1个字符。',
