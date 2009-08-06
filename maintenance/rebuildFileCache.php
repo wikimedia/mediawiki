@@ -31,7 +31,7 @@ class RebuildFileCache extends Maintenance {
 	}
 
 	public function execute() {
-		global $wgUseFileCache, $wgDisableCounters, $wgTitle, $wgArticle, $wgOut;
+		global $wgUseFileCache, $wgContentNamespaces, $wgDisableCounters, $wgTitle, $wgArticle, $wgOut;
 		if( !$wgUseFileCache ) {
 			$this->error( "Nothing to do -- \$wgUseFileCache is disabled.", true );
 		}
