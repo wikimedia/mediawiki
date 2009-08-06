@@ -1848,6 +1848,7 @@ PICT # שונות
 'statistics-header-edits'      => 'סטטיסטיקות עריכה',
 'statistics-header-views'      => 'סטטיסטיקות צפייה',
 'statistics-header-users'      => 'סטטיסטיקות משתמשים',
+'statistics-header-hooks'      => 'סטטיסטיקות אחרות',
 'statistics-articles'          => 'דפי תוכן',
 'statistics-pages'             => 'דפים',
 'statistics-pages-desc'        => 'כל הדפים באתר הוויקי, כולל דפי שיחה, הפניות, וכדומה',
