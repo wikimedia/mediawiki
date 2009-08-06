@@ -78,9 +78,10 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 	min_firefogg_version : '0.9.9.4',	
 	fogg_enabled : false,		 //if firefogg is enabled or not.	 
 	encoder_settings:{			//@@todo allow server to set this 
-		'maxSize': 400, 
-		'videoBitrate': 400,
-		'noUpscaling':true
+		'maxSize'        : '400',
+        'videoBitrate'   : '544',
+        'audioBitrate'   : '96',
+        'noUpscaling'    : true
 	},	
 	sourceFileInfo	: {},
 	ogg_extensions	: ['ogg', 'ogv', 'oga'],
