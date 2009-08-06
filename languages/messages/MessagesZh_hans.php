@@ -508,7 +508,7 @@ $1',
 
 # Main script and global functions
 'nosuchaction'      => '这个命令不存在',
-'nosuchactiontext'  => 'URL指定的命令无效。你可能错误输入了URL地址，或者点击了错误的链接。这一错误亦有可能是由{{SITENAME}}所使用软件自身的错误导致的。',
+'nosuchactiontext'  => 'URL指定的命令无效。{{GENDER:|你|妳|你}}可能错误输入了URL地址，或者点击了错误的链接。这一错误亦有可能是由{{SITENAME}}所使用软件自身的错误导致的。',
 'nosuchspecialpage' => '此特殊页面不存在',
 'nospecialpagetext' => "<big>'''您请求的特殊页面无效。'''</big>
 
@@ -611,12 +611,12 @@ $2',
 'loginerror'                 => '登录错误',
 'nocookiesnew'               => '已成功创建新账户！侦测到您已关闭Cookies，请开启它并登录。',
 'nocookieslogin'             => '本站利用Cookies进行用户登录，侦测到您已关闭Cookies，请开启它并重新登录。',
-'noname'                     => '你没有输入有效的用户名。',
+'noname'                     => '{{GENDER:|你|妳|你}}没有输入有效的用户名。',
 'loginsuccesstitle'          => '登录成功',
-'loginsuccess'               => "'''你现在以“$1”的身份登录到{{SITENAME}}。'''",
+'loginsuccess'               => "'''{{GENDER:|你|妳|你}}现在以“$1”的身份登录到{{SITENAME}}。'''",
 'nosuchuser'                 => '找不到用户“$1”。用户名是大小写敏感且区分繁简体的。请检查您的拼写，或者[[Special:UserLogin/signup|建立一个新账户]]。',
 'nosuchusershort'            => '没有一个名为“<nowiki>$1</nowiki>”的用户。请检查您输入的文字是否有错误。',
-'nouserspecified'            => '你需要指定一个用户名。',
+'nouserspecified'            => '{{GENDER:|你|妳|你}}需要指定一个用户名。',
 'wrongpassword'              => '您输入的密码错误，请再试一次。',
 'wrongpasswordempty'         => '您没有输入密码，请重试！',
 'passwordtooshort'           => '您的密码过短，至少需要$1个字符。',
@@ -637,7 +637,7 @@ $2',
 'eauthentsent'               => '一封确认信已经发送到推荐的地址。在发送其它邮件到此账户前，您必须首先依照这封信中的指导确认这个电子邮箱真实有效。',
 'throttled-mailpassword'     => '密码提醒已在最近$1小时内发送。为了安全起见，在每$1小时内只能发送一个密码提醒。',
 'mailerror'                  => '发送邮件错误：$1',
-'acct_creation_throttle_hit' => '抱歉！您已经创建了$1个账号。你不能再创建了。',
+'acct_creation_throttle_hit' => '抱歉！您已经创建了$1个账号。{{GENDER:|你|妳|你}}不能再创建了。',
 'emailauthenticated'         => '您的电子邮箱地址已经于$2 $3确认有效。',
 'emailnotauthenticated'      => '您的邮箱地址<strong>还没被认证</strong>。以下功能将不会发送任何邮件。',
 'noemailprefs'               => '指定一个电子邮箱地址以使用此功能',
@@ -706,7 +706,7 @@ $2',
 'summary-preview'                  => '摘要预览：',
 'subject-preview'                  => '标题预览：',
 'blockedtitle'                     => '用户被查封',
-'blockedtext'                      => "<big>你的用户名或IP地址已经被$1查封。</big>
+'blockedtext'                      => "<big>{{GENDER:|你|妳|你}}的用户名或IP地址已经被$1查封。</big>
 
 这次查封是由$1所封的。当中的原因是''$2''。
 
@@ -714,11 +714,11 @@ $2',
 * 这次查封到期的时间是：$6
 * 对于被查封者：$7
 
-你可以联络$1或者其他的[[{{MediaWiki:Grouppage-sysop}}|管理员]]，讨论这次查封。
-除非你已经在你的[[Special:Preferences|帐号参数设置]]中设置了一个有效的电子邮件地址，否则你是不能使用「电邮这位用户」的功能。当设置定了一个有效的电子邮件地址后，这个功能是不会封锁的。
+{{GENDER:|你|妳|你}}可以联络$1或者其他的[[{{MediaWiki:Grouppage-sysop}}|管理员]]，讨论这次查封。
+除非{{GENDER:|你|妳|你}}已经在{{GENDER:|你|妳|你}}的[[Special:Preferences|帐号参数设置]]中设置了一个有效的电子邮件地址，否则{{GENDER:|你|妳|你}}是不能使用「电邮这位用户」的功能。当设置定了一个有效的电子邮件地址后，这个功能是不会封锁的。
 
-你的IP地址是$3，而该查封ID是 #$5。 请在你的查询中注明以上所有的资料。",
-'autoblockedtext'                  => "你的IP地址已经被自动查封，由于先前的另一位用户被$1所查封。
+{{GENDER:|你|妳|你}}的IP地址是$3，而该查封ID是 #$5。 请在{{GENDER:|你|妳|你}}的查询中注明以上所有的资料。",
+'autoblockedtext'                  => "{{GENDER:|你|妳|你}}的IP地址已经被自动查封，由于先前的另一位用户被$1所查封。
 而查封的原因是：
 
 :''$2''
@@ -727,19 +727,19 @@ $2',
 * 这次查封的到期时间是：$6
 * 对于被查封者：$7
 
-你可以联络$1或者其他的[[{{MediaWiki:Grouppage-sysop}}|管理员]]，讨论这次查封。
+{{GENDER:|你|妳|你}}可以联络$1或者其他的[[{{MediaWiki:Grouppage-sysop}}|管理员]]，讨论这次查封。
 
-除非你已经在你的[[Special:Preferences|帐号参数设置]]中设置了一个有效的电子邮件地址，否则你是不能使用「电邮这位用户」的功能。当设置定了一个有效的电子邮件地址后，这个功能是不会封锁的。
+除非{{GENDER:|你|妳|你}}已经在{{GENDER:|你|妳|你}}的[[Special:Preferences|帐号参数设置]]中设置了一个有效的电子邮件地址，否则{{GENDER:|你|妳|你}}是不能使用「电邮这位用户」的功能。当设置定了一个有效的电子邮件地址后，这个功能是不会封锁的。
 
-您现时正在使用的 IP 地址是 $3，查封ID是 #$5。 請在你的查詢中註明以上所有的資料。",
+您现时正在使用的 IP 地址是 $3，查封ID是 #$5。 請在{{GENDER:|你|妳|你}}的查詢中註明以上所有的資料。",
 'blockednoreason'                  => '无给出原因',
 'blockedoriginalsource'            => "以下是'''$1'''的源码:",
-'blockededitsource'                => "你对'''$1'''进行'''编辑'''的文字如下:",
+'blockededitsource'                => "{{GENDER:|你|妳|你}}对'''$1'''进行'''编辑'''的文字如下:",
 'whitelistedittitle'               => '登录后才可编辑',
 'whitelistedittext'                => '您必须先$1才可编辑页面。',
 'confirmedittext'                  => '在编辑此页之前您必须确认您的邮箱地址。请通过[[Special:Preferences|参数设置]]设置并验证您的邮箱地址。',
 'nosuchsectiontitle'               => '没有这个段落',
-'nosuchsectiontext'                => '您尝试编辑的段落并不存在。在这里是无第$1个段落，所以是没有一个地方去存贮你的编辑。',
+'nosuchsectiontext'                => '您尝试编辑的段落并不存在。在这里是无第$1个段落，所以是没有一个地方去存贮{{GENDER:|你|妳|你}}的编辑。',
 'loginreqtitle'                    => '需要登录',
 'loginreqlink'                     => '登录',
 'loginreqpagetext'                 => '您必须$1才能查看其它页面。',
@@ -767,9 +767,9 @@ $2',
 'updated'                          => '(已更新)',
 'note'                             => "'''注意：'''",
 'previewnote'                      => "'''请记住这只是预览。'''内容还未保存！",
-'previewconflict'                  => '这个预览显示了上面文字编辑区中的内容。它将在你选择保存后出现。',
-'session_fail_preview'             => "'''抱歉！我们不能处理你在进程数据丢失时的编辑。'''请重试！如果再次失败，请[[Special:UserLogout|登出]]后重新登陆。",
-'session_fail_preview_html'        => "'''抱歉！我们不能处理你在进程数据丢失时的编辑。'''
+'previewconflict'                  => '这个预览显示了上面文字编辑区中的内容。它将在{{GENDER:|你|妳|你}}选择保存后出现。',
+'session_fail_preview'             => "'''抱歉！我们不能处理{{GENDER:|你|妳|你}}在进程数据丢失时的编辑。'''请重试！如果再次失败，请[[Special:UserLogout|登出]]后重新登陆。",
+'session_fail_preview_html'        => "'''抱歉！我们不能处理{{GENDER:|你|妳|你}}在进程数据丢失时的编辑。'''
 
 ''由于{{SITENAME}}允许使用原始的 HTML，为了防范 JavaScript 攻击，预览已被隐藏。''
 
@@ -780,16 +780,16 @@ $2',
 'editingsection'                   => '正在编辑$1 (段落)',
 'editingcomment'                   => '正在编辑$1 (评论)',
 'editconflict'                     => '编辑冲突：$1',
-'explainconflict'                  => '有人在你开始编辑后更改了页面。
+'explainconflict'                  => '有人在{{GENDER:|你|妳|你}}开始编辑后更改了页面。
 上面的文字框内显示的是目前本页的内容。
-你所做的修改显示在下面的文字框中。
-你应当将你所做的修改加入现有的内容中。
-<b>只有</b>在上面文字框中的内容会在你点击"保存页面"后被保存。<br />',
+{{GENDER:|你|妳|你}}所做的修改显示在下面的文字框中。
+{{GENDER:|你|妳|你}}应当将{{GENDER:|你|妳|你}}所做的修改加入现有的内容中。
+<b>只有</b>在上面文字框中的内容会在{{GENDER:|你|妳|你}}点击"保存页面"后被保存。<br />',
 'yourtext'                         => '您的文字',
 'storedversion'                    => '已保存修订版本',
 'nonunicodebrowser'                => "'''警告：您的浏览器不兼容Unicode编码。'''这里有一个工作区将使您能安全地编辑页面：非ASCII字符将以十六进制编码方式出现在编辑框中。",
-'editingold'                       => "'''警告：你正在编辑的是本页的旧版本。'''
-如果你保存它的话，在本版本之后的任何修改都会丢失。",
+'editingold'                       => "'''警告：{{GENDER:|你|妳|你}}正在编辑的是本页的旧版本。'''
+如果{{GENDER:|你|妳|你}}保存它的话，在本版本之后的任何修改都会丢失。",
 'yourdiff'                         => '差异',
 'copyrightwarning'                 => "请注意您对{{SITENAME}}的所有贡献都被认为是在$2下发布，请查看在$1的细节。
 如果您不希望您的文字被任意修改和再散布，请不要提交。<br />
@@ -818,14 +818,14 @@ $2',
 'hiddencategories'                 => '这个页面是属于$1个隐藏分类的成员：',
 'edittools'                        => '<!-- 此处的文本将被显示在以下编辑和上传表单中。 -->',
 'nocreatetitle'                    => '创建页面受限',
-'nocreatetext'                     => '{{SITENAME}}限制了创建新页面的功能。你可以返回并编辑已有的页面，或者[[Special:UserLogin|登录或创建新账户]]。',
+'nocreatetext'                     => '{{SITENAME}}限制了创建新页面的功能。{{GENDER:|你|妳|你}}可以返回并编辑已有的页面，或者[[Special:UserLogin|登录或创建新账户]]。',
 'nocreate-loggedin'                => '您并无权限去创建新页面。',
 'permissionserrors'                => '权限错误',
 'permissionserrorstext'            => '根据以下的{{PLURAL:$1|原因|原因}}，您并无权限去做以下的动作：',
 'permissionserrorstext-withaction' => '根据以下的{{PLURAL:$1|原因|原因}}，您无权限进行$2操作：',
-'recreate-moveddeleted-warn'       => "'''警告: 你现在重新创建一个先前曾经删除过的页面。'''
+'recreate-moveddeleted-warn'       => "'''警告: {{GENDER:|你|妳|你}}现在重新创建一个先前曾经删除过的页面。'''
 
-你应该要考虑一下继续编辑这一个页面是否合适。
+{{GENDER:|你|妳|你}}应该要考虑一下继续编辑这一个页面是否合适。
 为方便起见，这一个页面的删除记录已经在下面提供:",
 'moveddeleted-notice'              => '这个页面已经删除。
 这个页面的删除和移动日志已在下面提供以便参考。',
@@ -926,7 +926,7 @@ $2',
 'revdelete-nologid-title'     => '无效的日志项目',
 'revdelete-nologid-text'      => '您尚未指定一个目标日志项目去进行这个动作或指定的项目不存在。',
 'revdelete-no-file'           => '指定的檔案不存在。',
-'revdelete-show-file-confirm' => '你是否真的是想去查看於$2 $3刪除 "$1" 的檔案修訂？',
+'revdelete-show-file-confirm' => '{{GENDER:|你|妳|你}}是否真的是想去查看於$2 $3刪除 "$1" 的檔案修訂？',
 'revdelete-show-file-submit'  => '是',
 'revdelete-selected'          => "'''选取'''[[:$1]]'''的$2次修订：'''",
 'logdelete-selected'          => "'''选取'''$1'''的日志项目：'''",
@@ -1228,7 +1228,7 @@ $1",
 'yourlanguage'                  => '界面语言：',
 'yourvariant'                   => '字体变换：',
 'yournick'                      => '新签名：',
-'prefs-help-signature'          => '在讨论页面上的评论应该要用 "<nowiki>~~~~</nowiki>" 签名，这样便会转换成你的签名以及一个时间截记。',
+'prefs-help-signature'          => '在讨论页面上的评论应该要用 "<nowiki>~~~~</nowiki>" 签名，这样便会转换成{{GENDER:|你|妳|你}}的签名以及一个时间截记。',
 'badsig'                        => '错误的原始签名。检查一下HTML标签。',
 'badsiglength'                  => '签名过长。
 它的长度不可超过$1个字符。',
@@ -1511,10 +1511,10 @@ $1",
 'fileexists-thumbnail-yes'    => "此文件可能是另一幅图像的缩小版本''（缩略图）''。请仔细检查该文件'''<tt>$1</tt>'''。<br />
 如果被检查文件与原始大小的图像是同一幅图像，您无需上传多余的缩略图。",
 'file-thumbnail-no'           => "文件名以'''<tt>$1</tt>'''开头。它可能是另一幅图像的缩小版本''（缩略图）''。
-如果你有该图像完整分辨率的版本，请上传该完整版本。否则请修改文件名。",
+如果{{GENDER:|你|妳|你}}有该图像完整分辨率的版本，请上传该完整版本。否则请修改文件名。",
 'fileexists-forbidden'        => '已存在相同名称的文件，且不能覆盖；请返回并用一个新的名称来上传此文件。[[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => '在共享文件库中已存在此名称的文件。
-如果你仍然想去上传它的话，请返回并用一个新的名称来上传此文件。[[File:$1|thumb|center|$1]]',
+如果{{GENDER:|你|妳|你}}仍然想去上传它的话，请返回并用一个新的名称来上传此文件。[[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => '这个文件与以下{{PLURAL:$1|一|多}}个文件重复：',
 'file-deleted-duplicate'      => '一个相同名称的文件 ([[$1]]) 在先前删除过。您应该在重新上传之前检查一下该文件之删除纪录。',
 'successfulupload'            => '上传成功',
@@ -1626,7 +1626,7 @@ $1",
 'filedelete'                  => '删除$1',
 'filedelete-legend'           => '删除文件',
 'filedelete-intro'            => "您现正删除文件'''[[Media:$1|$1]]'''。",
-'filedelete-intro-old'        => "你现正删除'''[[Media:$1|$1]]'''于[$4 $2 $3]的版本。",
+'filedelete-intro-old'        => "{{GENDER:|你|妳|你}}现正删除'''[[Media:$1|$1]]'''于[$4 $2 $3]的版本。",
 'filedelete-comment'          => '删除理由：',
 'filedelete-submit'           => '删除',
 'filedelete-success'          => "'''$1'''已经删除。",
@@ -1922,7 +1922,7 @@ Template:消除歧義',
 'watchnochange'        => '在显示的时间段内您所监视的页面没有更改。',
 'watchlist-details'    => '不包含讨论页，有 $1 页在您的监视列表上。',
 'wlheader-enotif'      => '* 已经启动电子邮件通知功能。',
-'wlheader-showupdated' => "* 在你上次查看后有被修改过的页面会显示为'''粗体'''",
+'wlheader-showupdated' => "* 在{{GENDER:|你|妳|你}}上次查看后有被修改过的页面会显示为'''粗体'''",
 'watchmethod-recent'   => '检查被监视页面的最近编辑',
 'watchmethod-list'     => '查看监视页中的最新修改',
 'watchlistcontains'    => '您的监视列表包含$1个页面。',
@@ -2031,7 +2031,7 @@ $NEWPAGE
 'protect_expiry_invalid'      => '输入的终止时间无效。',
 'protect_expiry_old'          => '终止时间已过去。',
 'protect-unchain'             => '移动权限解锁',
-'protect-text'                => '你可以在这里浏览和修改对页面<strong><nowiki>$1</nowiki></strong>的保护级别。',
+'protect-text'                => '{{GENDER:|你|妳|你}}可以在这里浏览和修改对页面<strong><nowiki>$1</nowiki></strong>的保护级别。',
 'protect-locked-blocked'      => '您不能在被查封时更改保护级别。
 以下是<strong>$1</strong>现时的保护级别：',
 'protect-locked-dblock'       => '在数据库被锁定时无法更改保护级别。
@@ -2377,10 +2377,10 @@ $1已经被封锁。您是否想更改这个设置？',
 'exporttext'        => '您可以将特定页面或一组页面的文本以及编辑历史以 XML 格式导出；这样可以将有关页面通过“[[Special:Import|导入页面]]”页面导入到另一个运行 MediaWiki 的网站。
 
 要导出页面，请在下面的文本框中输入页面标题，每行一个标题，
-并选择你是否需要导出带有页面历史的以前的修订本，
+并选择{{GENDER:|你|妳|你}}是否需要导出带有页面历史的以前的修订本，
 或是只选择导出带有最后一次编辑信息的当前修订版本。
 
-此外你还可以利用链接导出文件，例如你可以使用[[{{#Special:Export}}/{{MediaWiki:Mainpage}}]]导出“[[{{MediaWiki:Mainpage}}]]”页面。',
+此外{{GENDER:|你|妳|你}}还可以利用链接导出文件，例如{{GENDER:|你|妳|你}}可以使用[[{{#Special:Export}}/{{MediaWiki:Mainpage}}]]导出“[[{{MediaWiki:Mainpage}}]]”页面。',
 'exportcuronly'     => '仅包含当前的修订，而不是全部的历史。',
 'exportnohistory'   => "----
 '''注意：''' 由于性能原因，从此表单导出页面的全部历史已被禁用。",
@@ -2480,9 +2480,9 @@ $1已经被封锁。您是否想更改这个设置？',
 'tooltip-pt-anonlogin'            => '我们鼓励您登录，但这并不是强制性的',
 'tooltip-pt-logout'               => '退出',
 'tooltip-ca-talk'                 => '关于页面正文的讨论',
-'tooltip-ca-edit'                 => '你可编辑此页，请在保存前先预览一下。',
+'tooltip-ca-edit'                 => '{{GENDER:|你|妳|你}}可编辑此页，请在保存前先预览一下。',
 'tooltip-ca-addsection'           => '开始一个新小节',
-'tooltip-ca-viewsource'           => '该页面已被保护。你可以查看该页源码。',
+'tooltip-ca-viewsource'           => '该页面已被保护。{{GENDER:|你|妳|你}}可以查看该页源码。',
 'tooltip-ca-history'              => '此页面的早前修订版本',
 'tooltip-ca-protect'              => '保护此页',
 'tooltip-ca-delete'               => '删除此页',
@@ -2622,8 +2622,8 @@ $1已经被封锁。您是否想更改这个设置？',
 'rcpatroldisabled'                    => '最新更改检查被关闭',
 'rcpatroldisabledtext'                => '最新更改检查的功能目前已关闭。',
 'markedaspatrollederror'              => '不能标志为已检查',
-'markedaspatrollederrortext'          => '你需要指定某个版本才能标志为已检查。',
-'markedaspatrollederror-noautopatrol' => '您无法将你自己所作的更改标记为已检查。',
+'markedaspatrollederrortext'          => '{{GENDER:|你|妳|你}}需要指定某个版本才能标志为已检查。',
+'markedaspatrollederror-noautopatrol' => '您无法将{{GENDER:|你|妳|你}}自己所作的更改标记为已检查。',
 
 # Patrol log
 'patrol-log-page'      => '巡查日志',
@@ -3006,7 +3006,7 @@ Variants for Chinese language
 'confirmemail_needlogin'   => '您需要$1以确认您的邮箱地址。',
 'confirmemail_success'     => '您的邮箱已经被确认。您现在可以[[Special:UserLogin|登录]]并使用此网站了。',
 'confirmemail_loggedin'    => '您的邮箱地址现在已被确认。',
-'confirmemail_error'       => '你的确认过程发生错误。',
+'confirmemail_error'       => '{{GENDER:|你|妳|你}}的确认过程发生错误。',
 'confirmemail_subject'     => '{{SITENAME}}邮箱地址确认',
 'confirmemail_body'        => '来自IP地址$1的用户（可能是您）在{{SITENAME}}上创建了账户“$2”，并提交了您的电子邮箱地址。
 
@@ -3099,7 +3099,7 @@ $1',
 'watchlistedit-normal-done'    => '$1个标题已经从您的监视列表中移除：',
 'watchlistedit-raw-title'      => '编辑原始监视列表',
 'watchlistedit-raw-legend'     => '编辑原始监视列表',
-'watchlistedit-raw-explain'    => '您的监视列表中的标题在下面显示，同时亦都可以通过编辑这个表去加入以及移除标题；一行一个标题。当完成以后，点击更新监视列表。你亦都可以去用[[Special:Watchlist/edit|标准编辑器]]。',
+'watchlistedit-raw-explain'    => '您的监视列表中的标题在下面显示，同时亦都可以通过编辑这个表去加入以及移除标题；一行一个标题。当完成以后，点击更新监视列表。{{GENDER:|你|妳|你}}亦都可以去用[[Special:Watchlist/edit|标准编辑器]]。',
 'watchlistedit-raw-titles'     => '标题：',
 'watchlistedit-raw-submit'     => '更新监视列表',
 'watchlistedit-raw-done'       => '您的监视列表已经更新。',
@@ -3222,3 +3222,4 @@ $1',
 'htmlform-selectorother-other' => '其他',
 
 );
+
