@@ -50,7 +50,7 @@ loadGM({
 		
 	"mv_welcome_to_sequencer" : "<h3>Welcome to the sequencer demo</h3> very <b>limited</b> functionality right now. Not much documentation yet either",
 	
-	"no_selected_resource" : "<h3>No Resource selected</h3> Select a Clip to enable editing",
+	"no_selected_resource" : "<h3>No Resource Selected</h3> Select a Clip to enable editing",
 	"error_edit_multiple" : "<h3>Multiple Resources Selected</h3> Select a single clip to edit it", 
 	
 	"mv_editor_options" : "Editor options",
@@ -566,7 +566,7 @@ mvSequencer.prototype = {
 				'<a id="mv_menu_item_'+tab_id+'" href="#' + tab_id + '_ic">'+gM('menu_' + tab_id ) + '</a>' +
 			'</li>';						
 			
-			tabc += '<div id="' + tab_id + '_ic" style="overflow:auto;height:272px;" >';													
+			tabc += '<div id="' + tab_id + '_ic" style="overflow:auto;height:268px;" >';													
 				tabc += (menu_item.html) ? menu_item.html : '<h3>' + gM('menu_'+tab_id) + '</h3>';
 			tabc +='</div>';				
 			inx++;

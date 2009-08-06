@@ -15,16 +15,16 @@
 (function($) {
 
 var setDataSwitch = {
-		dragStart: "start.draggable",
-		drag: "drag.draggable",
-		dragStop: "stop.draggable",
-		maxHeight: "maxHeight.resizable",
-		minHeight: "minHeight.resizable",
-		maxWidth: "maxWidth.resizable",
-		minWidth: "minWidth.resizable",
-		resizeStart: "start.resizable",
-		resize: "drag.resizable",
-		resizeStop: "stop.resizable"
+		dragStart	: "start.draggable",
+		drag		: "drag.draggable",
+		dragStop	: "stop.draggable",
+		maxHeight	: "maxHeight.resizable",
+		minHeight	: "minHeight.resizable",
+		maxWidth	: "maxWidth.resizable",
+		minWidth	: "minWidth.resizable",
+		resizeStart	: "start.resizable",
+		resize		: "drag.resizable",
+		resizeStop	: "stop.resizable"
 	},
 	
 	uiDialogClasses =

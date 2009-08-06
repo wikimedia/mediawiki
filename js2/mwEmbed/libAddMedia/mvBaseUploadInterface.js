@@ -380,6 +380,7 @@ mvBaseUploadInterface.prototype = {
 				'4' : 'minlength1',
 				'5' : 'illegalfilename'				
 			};
+			
 			//@@todo: need to write conditionals that mirror SpecialUpload for handling these error types: 	
 			var error_onlykey = {
 				'1': 'BEFORE_PROCESSING',
@@ -393,12 +394,21 @@ mvBaseUploadInterface.prototype = {
 				'13': 'INTERNAL_ERROR',
 				'14': 'MIN_LENGHT_PARTNAME'
 			}			
+			
 			//do a remote call to get the error msg: 		
 			if(!error_code || error_code == 'unknown-error'){
 				if(typeof JSON != 'undefined'){
 					js_log('Error: apiRes: ' + JSON.stringify( apiRes) );
 				}
-				js_log('should update win::');
+				if( apiRes.upload.error == 'internal-error'){					
+					errorKey = apiRes.upload.details[0];
+					gMsgLoadRemote(errorKey, function(){	
+						_this.updateProgressWin( gM( 'uploaderror' ), gM( errorKey ), bObj );
+						
+					});
+					return false;						
+				}
+				
 				_this.updateProgressWin( gM('uploaderror'), gM('unknown-error') + '<br>' + error_msg, bObj );
 				return false;
 			}else{
