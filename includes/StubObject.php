@@ -88,6 +88,10 @@ class StubObject {
 	 */
 	function _unstub( $name = '_unstub', $level = 2 ) {
 		static $recursionLevel = 0;
+
+		if ( !($GLOBALS[$this->mGlobal] instanceof StubObject) )
+			return $GLOBALS[$this->mGlobal]; // already unstubbed.
+		
 		if ( get_class( $GLOBALS[$this->mGlobal] ) != $this->mClass ) {
 			$fname = __METHOD__.'-'.$this->mGlobal;
 			wfProfileIn( $fname );
@@ -96,7 +100,7 @@ class StubObject {
 				throw new MWException( "Unstub loop detected on call of \${$this->mGlobal}->$name from $caller\n" );
 			}
 			wfDebug( "Unstubbing \${$this->mGlobal} on call of \${$this->mGlobal}::$name from $caller\n" );
-			$GLOBALS[$this->mGlobal] = $this->_newObject();
+			$obj = $GLOBALS[$this->mGlobal] = $this->_newObject();
 			--$recursionLevel;
 			wfProfileOut( $fname );
 		}
