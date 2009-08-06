@@ -413,7 +413,8 @@ abstract class Maintenance {
 				if ( isset( $this->mParams[$option] ) && $this->mParams[$option]['withArg'] ) {
 					$param = next( $argv );
 					if ( $param === false ) {
-						$this->error( "$arg needs a value after it", true );
+						$this->error( "\nERROR: $option needs a value after it\n" );
+						$this->maybeHelp( true );
 					}
 					$options[$option] = $param;
 				} else {
@@ -433,7 +434,8 @@ abstract class Maintenance {
 					if ( $this->mParams[$option]['withArg'] ) {
 						$param = next( $argv );
 						if ( $param === false ) {
-							$this->error( "$arg needs a value after it", true );
+							$this->error( "\nERROR: $option needs a value after it\n" );
+							$this->maybeHelp( true );
 						}
 						$options[$option] = $param;
 					} else {
