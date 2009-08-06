@@ -1394,6 +1394,10 @@ $term: string of search term
 no matches
 $term: string of search term
 
+'SpecialStatsAddExtra': add extra statistic at the end of Special:Statistics
+&$extraStats: Array to save the new stats 
+              ( $extraStats['<name of statistic>'] => <value>; )
+
 'SpecialUploadComplete': Called after successfully uploading a file from 
 Special:Upload
 $form: The UploadForm object

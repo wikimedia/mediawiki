@@ -78,7 +78,10 @@ class SpecialStatistics extends SpecialPage {
 		}
 		
 		# Statistic - other
-		$text .= $this->getOtherStats();
+		$extraStats = array();
+		if( wfRunHooks( 'SpecialStatsAddExtra', array( &$extraStats ) ) ) {
+			$text .= $this->getOtherStats( $extraStats );
+		}
 
 		$text .= Xml::closeElement( 'table' );
 
@@ -262,18 +265,14 @@ class SpecialStatistics extends SpecialPage {
 		return $text;
 	}
 	
-	private function getOtherStats() {
+	private function getOtherStats( $stats ) {
 		global $wgLang, $wgAllowStatsOther, $wgStatsOther;
-		
-		if( !$wgAllowStatsOther ) return;
-		
-		if ( count( $wgStatsOther ) < 1 ) return;
 		
 		$return = Xml::openElement( 'tr' ) .
 			Xml::tags( 'th', array( 'colspan' => '2' ), wfMsgExt( 'statistics-header-hooks', array( 'parseinline' ) ) ) .
 			Xml::closeElement( 'tr' );
 			
-		foreach( $wgStatsOther as $name => $number ) {
+		foreach( $stats as $name => $number ) {
 			$name = htmlspecialchars( $name );
 			$number = htmlspecialchars( $number );
 			
