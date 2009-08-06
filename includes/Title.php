@@ -1398,6 +1398,11 @@ class Title {
 		if ( $this->getNamespace() < 0 ) {
 			return false;
 		}
+		
+		// Can't protect pages that exist.
+		if ($this->exists()) {
+			return false;
+		}
 
 		$dbr = wfGetDB( DB_SLAVE );
 		$res = $dbr->select( 'protected_titles', '*',
@@ -1857,7 +1862,18 @@ class Title {
 	 * Loads a string into mRestrictions array
 	 * @param $res \type{Resource} restrictions as an SQL result.
 	 */
-	private function loadRestrictionsFromRow( $res, $oldFashionedRestrictions = NULL ) {
+	private function loadRestrictionsFromResultWrapper( $res, $oldFashionedRestrictions = NULL ) {
+		$rows = array();
+		$dbr = wfGetDB( DB_SLAVE );
+		
+		while( $row = $dbr->fetchObject( $res ) ) {
+			$rows[] = $row;
+		}
+		
+		$this->loadRestrictionsFromRows( $rows, $oldFashionedRestrictions );
+	}
+	
+	public function loadRestrictionsFromRows( $rows, $oldFashionedRestrictions = NULL ) {
 		global $wgRestrictionTypes;
 		$dbr = wfGetDB( DB_SLAVE );
 
@@ -1892,12 +1908,12 @@ class Title {
 
 		}
 
-		if( $dbr->numRows( $res ) ) {
+		if( count($rows) ) {
 			# Current system - load second to make them override.
 			$now = wfTimestampNow();
 			$purgeExpired = false;
 
-			foreach( $res as $row ) {
+			foreach( $rows as $row ) {
 				# Cycle through all the restrictions.
 
 				// Don't take care of restrictions types that aren't in $wgRestrictionTypes
@@ -1939,7 +1955,7 @@ class Title {
 				$res = $dbr->select( 'page_restrictions', '*',
 					array ( 'pr_page' => $this->getArticleId() ), __METHOD__ );
 
-				$this->loadRestrictionsFromRow( $res, $oldFashionedRestrictions );
+				$this->loadRestrictionsFromResultWrapper( $res, $oldFashionedRestrictions );
 			} else {
 				$title_protection = $this->getTitleProtection();
 
