@@ -738,7 +738,7 @@ wgUploadAutoFill = {$autofill};
 		$val = wfShorthandToInteger( ini_get( 'upload_max_filesize' ) );
 		$maxUploadSize = '<div id="mw-upload-maxfilesize">' .
 			wfMsgExt( 'upload-maxfilesize', array( 'parseinline', 'escapenoentities' ),
-				$wgLang->formatSize( $val2 ) ) .
+				$wgLang->formatSize( $val ) ) .
 				"</div>\n";
 		//add a hidden filed for upload by url (uses the $wgMaxUploadSize var)
 		if( UploadFromUrl::isEnabled() ){
