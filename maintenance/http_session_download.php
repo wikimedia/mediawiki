@@ -41,7 +41,7 @@ class HttpSessionDownload extends Maintenance {
 		$wgUseNormalUser = true;
 
 		//run the download: 
-		Http::doSessionIdDownload( $options['sid'], $options['usk'] );
+		Http::doSessionIdDownload( $this->getOption('sid'), $this->getOption('usk') );
 	
 		// close up shop:
 		// Execute any deferred updates
