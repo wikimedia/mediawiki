@@ -184,7 +184,7 @@ class jsScriptLoader {
 						continue;
 					}
 
-					$reqClass = ereg_replace("[^A-Za-z0-9_\-\.]", '', $reqClass );
+					$reqClass = preg_replace("/[^A-Za-z0-9_\-\.]/", '', $reqClass );
 
 					if( isset( $wgJSAutoloadLocalClasses[$reqClass] ) ){
 						$this->jsFileList[$reqClass] = $wgJSAutoloadLocalClasses[$reqClass];
@@ -305,7 +305,7 @@ class simpleFileCache {
 
 			$hash1 = substr( $hash, 0, 1 );
 			$hash2 = substr( $hash, 0, 2 );
-			$this->mFileCache = "{$wgFileCacheDirectory}/{$subdir}{$hash1}/{$hash2}/{$this->rKey}.js";
+			$this->mFileCache = "{$wgFileCacheDirectory}/{$hash1}/{$hash2}/{$this->rKey}.js";
 
 			if( $wgUseGzip )
 				$this->mFileCache .= '.gz';
