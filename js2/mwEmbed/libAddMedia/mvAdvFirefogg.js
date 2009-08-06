@@ -50,11 +50,33 @@ mvAdvFirefogg.prototype = {
 			'webvideo': {
 				'desc': "Web Video Theora, Vorbis 400kbs & 400px max width",
 				'conf': {
-						'maxSize': 400, 
-						'videoBitrate': 400,
-						'noUpscaling':true
+						'maxSize'		: 400, 
+						'videoBitrate'	: 544,
+						'audioBitrate'	: 96,
+           				'noUpscaling' 	: true,						
 					}
-			}
+			},
+			'savebandwith': {
+				'desc': "Low Bandwith Theora, Vorbis 164kbs & 200px max size",
+				'conf': {
+						'maxSize'		: 200, 
+						'videoBitrate'	: 164,
+						'audioBitrate' 	: 32,
+            			'samplerate'    : 22050,
+            			'framerate'     : 15,
+            			'channels'      : 1,         
+            			'noUpscaling'   : true
+					}
+			},
+			'hqstream':{
+				'desc': "High Quality Theora, Vorbis 1080px max width",
+				'conf': {
+						'maxSize'		: 1080, 
+						'videoQuality'	: 6,
+						'audioQuality'	: 3,
+           				'noUpscaling' 	: true,						
+					}
+			},
 		}	
 	}, 
 	local_settings: {},
