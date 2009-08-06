@@ -216,6 +216,7 @@ class UploadFromChunks extends UploadBase {
 
 	// append the given chunk to the temporary uploaded file. (if no temporary uploaded file exists created it.
 	function doChunkAppend(){
+		global $wgMaxUploadSize;
 		// if we don't have a mTempAppendPath to generate a file from the chunk packaged var:
 		if( !$this->mTempAppendPath ){
 			// get temp name:
@@ -228,11 +229,17 @@ class UploadFromChunks extends UploadBase {
 			}
 			return $status;
 		} else {
+			//check to make sure we have not expanded beyond $wgMaxUploadSize
+			if( ( filesize( $this->mTempAppendPath ) + filesize( $this->mTempPath ) ) >  $wgMaxUploadSize )
+				$status = Status::newFatal( 'largefileserver' );
+
 			if( is_file( $this->getRealPath( $this->mTempAppendPath ) ) ){
 				$status = $this->appendToUploadFile( $this->mTempAppendPath, $this->mTempPath );
 			} else {
 				$status = Status::newFatal( 'filenotfound', $this->mTempAppendPath );
 			}
+
+
 			return $status;
 		}
 	}
