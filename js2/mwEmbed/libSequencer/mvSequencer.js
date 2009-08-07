@@ -1418,13 +1418,13 @@ mvSequencer.prototype = {
 		}		
 	},
 	//renders cnt_time
-	render_playheadhead_seeker:function(){		 
+	render_playheadhead_seeker:function(){		
+		js_log('render_playheadhead_seeker'); 
 		//render out time stamps and time "jump" links 
 		//first get total width
 		
 		//remove the old one if its still there		
-		$j('#'+this.timeline_id +'_pl_control').remove();
-		js_log('output controls to: ' + this.target_sequence_container);
+		$j('#'+this.timeline_id +'_pl_control').remove();		
 		//render out a playlist clip wide and all the way to the right (only playhead and play button) (outside of timeline)
 		$j(this.target_sequence_container).append('<div id="'+ this.timeline_id +'_pl_control"'+
 			' style="position:absolute;top:' + (this.plObj.height) +'px;'+
@@ -1479,7 +1479,8 @@ mvSequencer.prototype = {
 		this.do_refresh_timeline();
 		js_log('zoom out: '+this.timeline_scale);
 	},
-	do_refresh_timeline:function( preserve_selection ){
+	do_refresh_timeline:function( preserve_selection ){		
+		js_log('Sequencer:do_refresh_timeline()');
 		//@@todo should "lock" interface while refreshing timeline
 		var pSelClips = [];
 		if(preserve_selection){

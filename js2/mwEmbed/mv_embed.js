@@ -777,7 +777,7 @@ function mv_jqueryBindings(){
 						'$j.ui.tabs',
 						'$j.ui.sortable'
 					]
-				], function(){
+				], function(){					
 					iObj['instance_name']= 'rsdMVRS';
 					_global['rsdMVRS'] = new remoteSearchDriver( iObj );	   
 					if( callback ){
