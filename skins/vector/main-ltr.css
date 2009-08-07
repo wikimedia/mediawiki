@@ -246,6 +246,8 @@ body {
 		border: solid 1px silver;
 		border-top-width: 0;
 		list-style: none;
+		list-style-image: none;
+		list-style-type: none;
 		padding: 0;
 		margin: 0;
 		margin-left: -1px;
