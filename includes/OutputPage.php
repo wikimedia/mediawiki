@@ -16,7 +16,7 @@ class OutputPage {
 
 	var $mScriptLoaderClassList = array();
 	// the most recent id of any script that is grouped in the script request
-	var $mLatestScriptRevID = 0; 
+	var $mLatestScriptRevID = 0;
 
 	var $mScripts = '', $mLinkColours, $mPageLinkTitle = '', $mHeadItems = array();
 	var $mTemplateIds = array();
@@ -97,10 +97,12 @@ class OutputPage {
 			array_push( $this->mKeywords, $text );
 		}
 	}
-	function addScript( $script ) { $this->mScripts .= "\t\t" . $script . "\n"; }
+	function addScript( $script ) {
+		$this->mScripts .= "\t\t" . $script . "\n";
+	}
 
 	/**
-	 * Register and add a stylesheet from an extension directory.  
+	 * Register and add a stylesheet from an extension directory.
 	 * @param $url String path to sheet.  Provide either a full url (beginning
 	 *             with 'http', etc) or a relative path from the document root
 	 *             (beginning with '/').  Otherwise it behaves identically to
@@ -210,8 +212,8 @@ class OutputPage {
 	 * @return Boolean: false if class wasn't found, true on success
 	 */
 	function addScriptClass( $js_class ){
-		global $wgJSAutoloadClasses, $wgJSAutoloadLocalClasses, $wgJsMimeType,
-				$wgEnableScriptLoader, $wgStyleVersion, $wgScriptPath;
+		global $wgDebugJavaScript, $wgJSAutoloadLocalClasses, $wgJSAutoloadClasses,
+				$wgJsMimeType, $wgEnableScriptLoader, $wgStyleVersion, $wgScriptPath;
 
 		if( isset( $wgJSAutoloadClasses[$js_class] ) || isset( $wgJSAutoloadLocalClasses[$js_class] ) ){
 			if( $wgEnableScriptLoader ){
@@ -221,13 +223,17 @@ class OutputPage {
 			} else {
 				// do a normal load of without the script-loader:
 				$path = $wgScriptPath . '/';
-				$path.= isset( $wgJSAutoloadClasses[$js_class] ) ? $wgJSAutoloadClasses[$js_class]:
-							$wgJSAutoloadLocalClasses[$js_class];
+				if( isset( $wgJSAutoloadClasses[$js_class] ) ){
+					$path.= $wgJSAutoloadClasses[$js_class];
+				}else if( isset( $wgJSAutoloadLocalClasses[$js_class] ) ){
+					$path.= $wgJSAutoloadLocalClasses[$js_class];
+				}
+				$urlApend = ( $wgDebugJavaScript) ? time() : $wgStyleVersion;
 				$this->addScript(
 					Xml::element( 'script',
 						array(
 							'type' => $wgJsMimeType,
-							'src' => "$path?$wgStyleVersion",
+							'src' => "$path?" . $urlApend,
 						),
 						'', false
 					)
@@ -1668,7 +1674,7 @@ class OutputPage {
 		if ( $returnto == null ) {
 			$returnto = $wgRequest->getText( 'returnto' );
 		}
-		
+
 		if ( $returntoquery == null ) {
 			$returntoquery = $wgRequest->getText( 'returntoquery' );
 		}
