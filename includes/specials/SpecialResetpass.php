@@ -128,14 +128,24 @@ class SpecialResetpass extends SpecialPage {
 	}
 
 	function pretty( $fields ) {
+		global $wgHtml5;
 		$out = '';
 		foreach( $fields as $list ) {
 			list( $name, $label, $type, $value ) = $list;
 			if( $type == 'text' ) {
 				$field = htmlspecialchars( $value );
 			} else {
+				$attribs = array( 'id' => $name, 'type' => $type );
+				if ( $wgHtml5 ) {
+					# All three fields are required, and we should focus the
+					# first (wpPassword)
+					$attribs['required'] = '';
+					if ( $name == 'wpPassword' ) {
+						$attribs['autofocus'] = '';
+					}
+				}
 				$field = Xml::input( $name, 20, $value,
-					array( 'id' => $name, 'type' => $type ) );
+					$attribs );
 			}
 			$out .= '<tr>';
 			$out .= "<td class='mw-label'>";

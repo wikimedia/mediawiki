@@ -334,7 +334,7 @@ class Preferences {
 	
 			$defaultPreferences['emailaddress'] =
 					array(
-						'type' => $wgAuth->allowPropChange( 'emailaddress' ) ? 'text' : 'info',
+						'type' => $wgAuth->allowPropChange( 'emailaddress' ) ? 'email' : 'info',
 						'default' => $user->getEmail(),
 						'section' => 'personal/email',
 						'label-message' => 'youremail',

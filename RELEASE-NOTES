@@ -71,7 +71,6 @@ this. Was used when mwEmbed was going to be an extension.
   interface will not appear in Special:AllMessages.
 * $wgRegisterInternalExternals can be used to record external links pointing 
   to same server
-* $wgHtml5 outputs an HTML 5 doctype instead of XHTML 1.0 Transitional.
 * $wgSpecialVersionExtended shows the extended version information besides 
   PHP and database version.
 * $wgSecondaryGoNamespaces allows an arry of namespaces to be checked when the
@@ -188,6 +187,13 @@ this. Was used when mwEmbed was going to be an extension.
 * wgMainPageTitle variable now available to JavaScript code to identify the main
   page link, so it doesn't have to be extracted from the link URLs.
 * (bug 16836) Display preview of signature in user preferences and describe its use
+* The default output format is now HTML 5 instead of XHTML 1.0 Transitional.
+  This can be disabled by setting $wgHtml5 = false;.  Specific features enabled
+  if HTML 5 is used:
+** New HTML 5 input attributes allow JavaScript-free input validation in some
+   cutting-edge browsers.  E.g., some inputs will be autofocused, users will
+   not be allowed to submit forms with certain types of invalid values (like
+   numbers outside the permitted ranges), etc.
 
 === Bug fixes in 1.16 ===
 
