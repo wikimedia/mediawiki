@@ -32,7 +32,7 @@ class UpdateSpecialPages extends Maintenance {
 	}
 
 	public function execute() {
-		global $wgOut, $wgSpecialPageCacheUpdates, $wgQueryPages;
+		global $IP, $wgOut, $wgSpecialPageCacheUpdates, $wgQueryPages, $wgQueryCacheLimit;
 		$wgOut->disable();
 		$dbw = wfGetDB( DB_MASTER );
 
@@ -59,6 +59,9 @@ class UpdateSpecialPages extends Maintenance {
 			# Wait for the slave to catch up
 			wfWaitForSlaves( 5 );
 		}
+
+		// This is needed to initialise $wgQueryPages
+		require_once( "$IP/includes/QueryPage.php" );
 
 		foreach( $wgQueryPages as $page ) {
 			@list( $class, $special, $limit ) = $page;
@@ -108,21 +111,21 @@ class UpdateSpecialPages extends Maintenance {
 							$this->output( $minutes . 'm ' );
 						}
 						$this->output( sprintf( "%.2fs\n", $seconds ) );
-				}
-				# Reopen any connections that have closed
-				if ( !wfGetLB()->pingAll())  {
-					$this->output( "\n" );
-					do {
-						$this->error( "Connection failed, reconnecting in 10 seconds..." );
-						sleep(10);
-					} while ( !wfGetLB()->pingAll() );
-					$this->output( "Reconnected\n\n" );
-				} else {
-					# Commit the results
-					$dbw->immediateCommit();
-				}
-				# Wait for the slave to catch up
-				wfWaitForSlaves( 5 );
+					}
+					# Reopen any connections that have closed
+					if ( !wfGetLB()->pingAll())  {
+						$this->output( "\n" );
+						do {
+							$this->error( "Connection failed, reconnecting in 10 seconds..." );
+							sleep( 10 );
+						} while ( !wfGetLB()->pingAll() );
+						$this->output( "Reconnected\n\n" );
+					} else {
+						# Commit the results
+						$dbw->immediateCommit();
+					}
+					# Wait for the slave to catch up
+					wfWaitForSlaves( 5 );
 				} else {
 					$this->output( "cheap, skipped\n" );
 				}
