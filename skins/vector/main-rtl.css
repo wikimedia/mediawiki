@@ -311,7 +311,7 @@ body {
 		border-width: 0;
 		padding: 0.25em;
 		line-height: 1em;
-		font-size: 9.75pt;
+		font-size: 0.9em;
 		width: 9em;
 		background-color: transparent;
 	}
@@ -320,7 +320,7 @@ body {
 		margin: 0;
 		padding: 0;
 		width: 1.75em;
-		height: 2em;
+		height: 1.5em;
 		border: none;
 		cursor: pointer;
 		background-color: transparent;
