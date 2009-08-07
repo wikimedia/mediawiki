@@ -203,9 +203,11 @@ mvPlayList.prototype = {
 				 }
 		}			   
 	},
-	doNativeWarningCheck:function(){
+	doNativeWarningCheck:function(){		
 		var clip =	 this.default_track.clips[0];
-		return clip.embed.doNativeWarningCheck();
+		if(clip){
+			return clip.embed.doNativeWarningCheck();
+		}
 	},
 	doWhenParseDone:function(){				
 		js_log('f:doWhenParseDone');
@@ -511,7 +513,7 @@ mvPlayList.prototype = {
 	},
 	updateBaseStatus:function(){
 		var _this = this;
-		js_log('f:updateBaseStatus');
+		js_log('Playlist:updateBaseStatus');
 		$j('#ptitle_'+this.id).html(''+
 			'<b>' + this.title + '</b> '+				
 			this.getClipCount()+' clips, <i>'+

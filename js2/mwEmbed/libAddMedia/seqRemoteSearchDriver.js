@@ -31,13 +31,14 @@ seqRemoteSearchDriver.prototype = {
 		if(!this.pSeq.parent_do_refresh_timeline){
 			this.pSeq.parent_do_refresh_timeline = this.pSeq.do_refresh_timeline;
 			this.pSeq.do_refresh_timeline = function(){
-				js_log("seqRs refresh chain::" + _this.pSeq.disp_menu_item);
+				js_log("seqRemoteSearchDriver::" + _this.pSeq.disp_menu_item);
 				//call the parent
 				_this.pSeq.parent_do_refresh_timeline();
 				//add our local bindings if our window is 'active'
 				if(_this.pSeq.disp_menu_item == 'cliplib'){
 					_this.addResultBindings();
 				}
+				return true;
 			}
 		}
 	},	
@@ -70,7 +71,7 @@ seqRemoteSearchDriver.prototype = {
 		$j(".mv_clip_drag").droppable( 'destroy' ).droppable({
 			accept: '.rsd_res_item',
 			over:function(event, ui){
-				js_log("over : mv_clip_drag: " + $j(this).attr('id') );
+				//js_log("over : mv_clip_drag: " + $j(this).attr('id') );
 				$j(this).css('border-right', 'solid thick red');				
 			},
 			out:function(event, ui){

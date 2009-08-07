@@ -356,9 +356,11 @@ remoteSearchDriver.prototype = {
 		if( $j(this.target_invocation).length==0 ){
 			js_log("RemoteSearchDriver:: no target invocation provided (will have to run your own doInitDisplay() )");
 		}else{
-			$j(this.target_invocation).css('cursor','pointer').attr('title', gM('add_media_wizard')).click(function(){
-				_this.doInitDisplay();
-			});		
+			if(this.target_invocation){
+				$j(this.target_invocation).css('cursor','pointer').attr('title', gM('add_media_wizard')).click(function(){
+					_this.doInitDisplay();
+				});		
+			}
 		}								
 	},
 	doInitDisplay:function(){	
@@ -445,7 +447,7 @@ remoteSearchDriver.prototype = {
 					js_log('closed modal');
 					$j(this).parents('.ui-dialog').fadeOut('slow');
 				}		
-			}).css({'height':'100%'}).parent('.ui-dialog').css( _this.dmodalCss )
+			}).parent('.ui-dialog').css( _this.dmodalCss )
 			//@@bind on resize to disable css dialog to update dmodelCss 
 			.bind('resizestart', function(event, ui) {
 				 _this.dmodalCss = {};
@@ -974,7 +976,7 @@ remoteSearchDriver.prototype = {
 		var overflow_style = ( mediaType =='video' )?'':'overflow:auto;';
 		//append to the top level of model window:
 		$j( _this.target_container ).append('<div id="rsd_resource_edit" '+
-			'style="position:absolute;top:0px;left:0px;bottom:75px;right:4px;background-color:#FFF;">' +			 
+			'style="position:absolute;top:0px;left:0px;bottom:5px;right:4px;background-color:#FFF;">' +			 
 				'<div id="clip_edit_disp" style="position:absolute;' + overflow_style + 'width:100%;height:100%;padding:5px;'+
 					'width:' + (maxWidth) + 'px;" >' +
 						mv_get_loading_img('position:absolute;top:30px;left:30px') +
