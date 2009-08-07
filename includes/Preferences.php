@@ -291,20 +291,17 @@ class Preferences {
 					);
 		}
 
-		global $wgMaxSigChars, $wgParser;
+		global $wgMaxSigChars, $wgOut, $wgParser;
 
 		// show a preview of the old signature first
-		$oldsigtext = $wgParser->preSaveTransform( "~~~", new Title , $user, new ParserOptions );
-		$oldsig = $wgParser->parse( $oldsigtext, new Title , new ParserOptions );
-		$m = array(); // remove <p> created by the parser (looks better without <p>)
-		if( preg_match( '/^<p>(.*)\n?<\/p>\n?$/sU', $oldsig->mText, $m ) ) $oldsig->mText = $m[1];
-		
+		$oldsigWikiText = $wgParser->preSaveTransform( "~~~", new Title , $user, new ParserOptions );
+		$oldsigHTML = $wgOut->parseInline( $oldsigWikiText );
 		$defaultPreferences['oldsig'] =
 			array(
 					'type' => 'info',
 					'raw' => true,
 					'label-message' => 'tog-oldsig',
-					'default' => $oldsig->mText,
+					'default' => $oldsigHTML,
 					'section' => 'personal/signature',
 			);
 		$defaultPreferences['nickname'] =
