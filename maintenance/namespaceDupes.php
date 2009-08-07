@@ -34,7 +34,6 @@ class NamespaceConflictChecker extends Maintenance {
 									"\t\t<text> Appended after the article name", false, true );
 		$this->addOption( 'prefix', "Do an explicit check for the given title prefix\n" .
 									"\t\tappended after the article name", false, true );
-		$this->addOption( 'wiki', 'Enter the wiki database to edit', false, true );
 	}
 
 	public function execute() {
