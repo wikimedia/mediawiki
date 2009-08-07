@@ -23,6 +23,10 @@ class HTMLForm {
 		'float' => 'HTMLFloatField',
 		'info' => 'HTMLInfoField',
 		'selectorother' => 'HTMLSelectOrOtherField',
+		# HTMLTextField will output the correct type="" attribute automagically.
+		# There are about four zillion other HTML 5 input types, like url, but
+		# we don't use those at the moment, so no point in adding all of them.
+		'email' => 'HTMLTextField',
 	);
 
 	function __construct( $descriptor, $messagePrefix ) {
@@ -512,20 +516,51 @@ abstract class HTMLFormField {
 }
 
 class HTMLTextField extends HTMLFormField {
-
 	function getSize() {
 		return isset( $this->mParams['size'] ) ? $this->mParams['size'] : 45;
 	}
 
 	function getInputHTML( $value ) {
+		global $wgHtml5;
 		$attribs = array( 'id' => $this->mID );
 
 		if ( isset( $this->mParams['maxlength'] ) ) {
 			$attribs['maxlength'] = $this->mParams['maxlength'];
 		}
 		
-		if( !empty( $this->mParams['disabled'] ) ) {
+		if ( !empty( $this->mParams['disabled'] ) ) {
 			$attribs['disabled'] = 'disabled';
+		}
+
+		if ( $wgHtml5 ) {
+			# TODO: Enforce pattern, step, required, readonly on the server
+			# side as well
+			foreach ( array( 'min', 'max', 'pattern', 'title', 'step',
+			'placeholder' ) as $param ) {
+				if ( isset( $this->mParams[$param] ) ) {
+					$attribs[$param] = $this->mParams[$param];
+				}
+			}
+			foreach ( array( 'required', 'autofocus', 'multiple', 'readonly' )
+			as $param ) {
+				if ( isset( $this->mParams[$param] ) ) {
+					$attribs[$param] = '';
+				}
+			}
+			if ( isset( $this->mParams['type'] ) ) {
+				switch ( $this->mParams['type'] ) {
+				case 'email':
+					$attribs['type'] = 'email';
+					break;
+				case 'int':
+					$attribs['type'] = 'number';
+					break;
+				case 'float':
+					$attribs['type'] = 'number';
+					$attribs['step'] = 'any';
+					break;
+				}
+			}
 		}
 
 		return Xml::input(
@@ -535,7 +570,6 @@ class HTMLTextField extends HTMLFormField {
 			$attribs
 		);
 	}
-
 }
 
 class HTMLFloatField extends HTMLTextField {

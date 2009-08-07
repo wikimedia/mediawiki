@@ -12,6 +12,8 @@ if( !defined( 'MEDIAWIKI' ) ) die( -1 );
  */
 class UserloginTemplate extends QuickTemplate {
 	function execute() {
+		global $wgHtml5;
+
 		if( $this->data['message'] ) {
 ?>
 	<div class="<?php $this->text('messagetype') ?>box">
@@ -37,7 +39,11 @@ class UserloginTemplate extends QuickTemplate {
 			<td class="mw-input">
 				<input type='text' class='loginText' name="wpName" id="wpName1"
 					tabindex="1"
-					value="<?php $this->text('name') ?>" size='20' />
+					value="<?php $this->text('name'); ?>" size='20'<?php
+if ( $wgHtml5 ) {
+	echo ' required="" autofocus=""';
+}
+?>" />
 			</td>
 		</tr>
 		<tr>
@@ -109,6 +115,8 @@ class UsercreateTemplate extends QuickTemplate {
 	}
 	
 	function execute() {
+		global $wgHtml5, $wgMinimalPasswordLength;
+
 		if( $this->data['message'] ) {
 ?>
 	<div class="<?php $this->text('messagetype') ?>box">
@@ -132,7 +140,11 @@ class UsercreateTemplate extends QuickTemplate {
 			<td class="mw-input">
 				<input type='text' class='loginText' name="wpName" id="wpName2"
 					tabindex="1"
-					value="<?php $this->text('name') ?>" size='20' />
+					value="<?php $this->text('name') ?>" size='20'<?php
+if ( $wgHtml5 ) {
+	echo ' required=""';
+}
+?> />
 			</td>
 		</tr>
 		<tr>
@@ -140,7 +152,11 @@ class UsercreateTemplate extends QuickTemplate {
 			<td class="mw-input">
 				<input type='password' class='loginPassword' name="wpPassword" id="wpPassword2"
 					tabindex="2"
-					value="" size='20' />
+					value="" size='20'<?php
+if ( $wgHtml5 && $wgMinimalPasswordLength > 0 ) {
+	echo ' required=""';
+}
+?> />
 			</td>
 		</tr>
 	<?php if( $this->data['usedomain'] ) {
@@ -165,14 +181,18 @@ class UsercreateTemplate extends QuickTemplate {
 				<input type='password' class='loginPassword' name="wpRetype" id="wpRetype"
 					tabindex="4"
 					value=""
-					size='20' />
+					size='20'<?php
+if ( $wgHtml5 && $wgMinimalPasswordLength > 0 ) {
+	echo ' required=""';
+}
+?> />
 			</td>
 		</tr>
 		<tr>
 			<?php if( $this->data['useemail'] ) { ?>
 				<td class="mw-label"><label for='wpEmail'><?php $this->msg('youremail') ?></label></td>
 				<td class="mw-input">
-					<input type='text' class='loginText' name="wpEmail" id="wpEmail"
+					<input type='<?php echo $wgHtml5 ? 'email' : 'text' ?>' class='loginText' name="wpEmail" id="wpEmail"
 						tabindex="5"
 						value="<?php $this->text('email') ?>" size='20' />
 					<div class="prefsectiontip">
