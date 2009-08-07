@@ -620,8 +620,13 @@ mvSequencer.prototype = {
 			if( e.which == 16 )
 				_this.key_shift_down = false;
 				
-			if( e.which == 17)
+			if( e.which == 17 )
 				_this.key_ctrl_down = false;							
+			
+			//escape key (for now deselect)  
+			if( e.which == 27 )
+				_this.deselectClip();
+			
 			
 			//backspace or delete key while not focused on a text area: 
 			if( (e.which == 8 || e.which == 46) && !_this.inputFocus)								
@@ -1331,10 +1336,14 @@ mvSequencer.prototype = {
 		return insert_key;
 	},
 	deselectClip:function( clipElm ){
-		$j(clipElm).removeClass("mv_selected_clip");
-		//make sure the transition sibling is removed:
-		$j(clipElm).siblings('.clip_trans_box').removeClass( 'mv_selected_transition' );
-		$j('#' + $j(clipElm).parent().attr("id") + '_adj').fadeOut("fast");
+		if(!clipElm){
+			$j('.mv_selected_clip').removeClass("mv_selected_clip");	
+		}else{
+			$j(clipElm).removeClass("mv_selected_clip");
+			//make sure the transition sibling is removed:
+			$j(clipElm).siblings('.clip_trans_box').removeClass( 'mv_selected_transition' );
+			$j('#' + $j(clipElm).parent().attr("id") + '_adj').fadeOut("fast");
+		}
 	},
 	getClipFromSeqID:function( clip_seq_id ){
 		js_log('get id from: ' + clip_seq_id);
@@ -1512,20 +1521,23 @@ var mvSeqPlayList = function( element ){
 mvSeqPlayList.prototype = {
 	init:function(element){
 		var myPlObj = new mvPlayList(element);
+		
 		//inherit mvClip		
 		for(var method in myPlObj){			
 			if(typeof this[method] != 'undefined' ){				
-				this['parent_'+method]=myPlObj[method];				
+				this[ 'parent_' + method ]=myPlObj[method];				
 			}else{		
 				this[method] = myPlObj[method];
 			}		
 		}		
+		
 		this.org_control_height = this.pl_layout.control_height;		
 		//do specific mods:(controls and title are managed by the sequencer)  
 		this.pl_layout.title_bar_height=0;
 		this.pl_layout.control_height=0;				
 	},	
 	setSliderValue:function( perc ){
+		js_log('setSliderValue::'+ perc);
 		//get the track_clipThumb_height from parent mvSequencer	
 		var frame_width = Math.round( this.pSeq.track_clipThumb_height * 1.3333333 );
 		var container_width = frame_width+60;

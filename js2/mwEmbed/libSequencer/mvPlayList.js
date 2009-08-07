@@ -541,12 +541,10 @@ mvPlayList.prototype = {
 	setStatus:function(value){
 		$j('#mv_time_'+this.id).html( value );
 	},
-	setSliderValue:function(value){		
-		if( this.controls ){
-			//slider is on 1000 scale: 
-			var val = parseInt( value *1000 ); 			
-			$j('#mv_play_head_' + this.id).slider('value', val);
-		}
+	setSliderValue:function(value){				
+		//slider is on 1000 scale: 
+		var val = parseInt( value *1000 ); 			
+		$j('#mv_play_head_' + this.id).slider('value', val);		
 	},	
 	getPlayHeadPos: function(prec_done){
 		var	_this = this;
@@ -648,10 +646,12 @@ mvPlayList.prototype = {
 		this.cur_clip.embed.stop();
 	},
 	updateCurrentClip:function( new_clip ){				
-		js_log('f:updateCurrentClip:'+new_clip.id);
+		js_log('f:updateCurrentClip:'+new_clip.id);		
 		//make sure we are not switching to the current
-		if( this.cur_clip.id == new_clip.id )
-			return js_log('trying to updateCurrentClip to same clip');
+		if( this.cur_clip.id == new_clip.id ){
+			js_log('trying to updateCurrentClip to same clip');
+			return false;
+		}
 			
 		//keep the active play clip in sync (stop the other clip) 
 		if( this.cur_clip ){
@@ -1099,8 +1099,7 @@ mvClip.prototype = {
 	//setup the embed object:
 	setUpEmbedObj:function(){	
 		js_log('mvClip:setUpEmbedObj()');	
-		//init:
-		//debugger;
+		//init:		
 		
 		
 		this.embed=null;		
@@ -1111,8 +1110,8 @@ mvClip.prototype = {
 			src:this.src
 		};
 
-		this.setBaseEmbedDim(init_pl_embed);
-		//always display controls for playlists: 
+		this.setBaseEmbedDim( init_pl_embed );
+
 		
 		//if in sequence mode hide controls / embed links		 
 		//			init_pl_embed.play_button=false;
@@ -1124,9 +1123,9 @@ mvClip.prototype = {
 		if(this.poster)init_pl_embed['thumbnail']=this.poster;
 		
 		if( this.type )init_pl_embed['type'] = this.type;
-		
-		this.embed = new PlMvEmbed( init_pl_embed );
 				
+		this.embed = new PlMvEmbed( init_pl_embed );	
+					
 		//js_log('media Duration:' + this.embed.getDuration() );
 		//js_log('media element:'+ this.embed.media_element.length);
 		//js_log('type of embed:' + typeof(this.embed) + ' seq:' + this.pp.sequencer+' pb:'+ this.embed.play_button);		
@@ -1299,12 +1298,12 @@ PlMvEmbed.prototype = {
 					
 		var th=Math.round( _this.pl_layout.clip_desc * _this.height );	
 		var tw=Math.round( th * _this.pl_layout.clip_aspect );
+		
 		//run the parent stop:
 		this.pe_stop();
 		var pl_height = (_this.sequencer=='true')?_this.height+27:_this.height;
 		
 		this.getHTML();
-				
 	},
 	play:function(){
 		//js_log('pl eb play');		
@@ -1328,8 +1327,8 @@ PlMvEmbed.prototype = {
 		//setup hover images (for playhead and next/prev buttons)
 		this.pc.pp.setUpHover();
 		//call the parent postEmbedJS
-		 this.pe_postEmbedJS();
-		 mv_lock_vid_updates=false;
+		this.pe_postEmbedJS();
+		mv_lock_vid_updates=false;
 	},
 	getPlayButton:function(){
 		return this.pe_getPlayButton(this.pc.pp.id);
@@ -1338,6 +1337,7 @@ PlMvEmbed.prototype = {
 		//status updates handled by playlist obj
 	},
 	setSliderValue:function(value){
+		js_log('PlMvEmbed:setSliderValue:' + value);
 		//setSlider value handled by playlist obj	
 	}	
 }
@@ -1353,8 +1353,8 @@ var m3uPlaylist = {
 		//js_log('data:'+ this.data.toString());
 		$j.each(this.data.split("\n"), function(i,n){			
 			//js_log('on line '+i+' val:'+n+' len:'+n.length);
-			if(n.charAt(0)!='#'){
-				if(n.length>3){ 
+			if( n.charAt(0) != '#' ){
+				if( n.length > 3 ){ 
 					//@@todo make sure its a valid url
 					//js_log('add url: '+i + ' '+ n);
 					var cur_clip = new mvClip({type:'srcClip',id:'p_'+this_pl.id+'_c_'+inx,pp:this_pl,src:n,order:inx});
@@ -1883,9 +1883,9 @@ var smilPlaylist ={
 			'title':'',
 			'interface_url':"", 
 			'linkback':"",
-			 'mTitle':"", 
-			 'mTalk':"", 
-			 'mTouchedTime':""
+			'mTitle':"", 
+			'mTalk':"", 
+			'mTouchedTime':""
 		}; 
 		$j.each(meta_tags, function(i,meta_elm){
 			//js_log( "on META tag: "+ $j(meta_elm).attr('name') );
@@ -1926,13 +1926,14 @@ var smilPlaylist ={
 		js_log("done proc seq tags");		
 		return true;
 	},
-	tryAddMediaObj:function(mConfig, order, track_id){
-		var mediaElement = document.createElement('ref');	
+	tryAddMediaObj:function(mConfig, order, track_id){		
+		js_log('tryAddMediaObj::');		
+		var mediaElement = document.createElement('div');	
 		for(var i =0; i < mv_smil_ref_supported_attributes.length;i++){		
 			var attr = 	mv_smil_ref_supported_attributes[i];
 			if(mConfig[attr])
-				$j(mediaElement).attr(attr, mConfig[attr]);
-		}			
+				$j(mediaElement).attr( attr, mConfig[attr] );
+		}		
 		this.tryAddMedia(mediaElement, order, track_id);
 	},
 	tryAddMedia:function(mediaElement, order, track_id){	
@@ -1944,21 +1945,24 @@ var smilPlaylist ={
 						"id":'p_' + _this.id + '_c_' + order,
 						"pp":this, //set the parent playlist object pointer
 						"order": order									
-					};		
+					};				
 		var clipObj = new mvSMILClip(mediaElement, cConfig );
 			
 		//set optional params track										 
 		if( typeof track_id != 'undefined')
 			clipObj["track_id"]	= track_id;
 			 
-		//debugger;
+		
 		if ( clipObj ){
 			//set up embed:						
-			clipObj.setUpEmbedObj();								
+			clipObj.setUpEmbedObj();	
+			//inhreit embedObject (only called on "new media" 
+			clipObj.embed.init_with_sources_loaded();					
 			//add clip to track: 
 			this.addCliptoTrack( clipObj , order);		
+			
 			return true;
-		}	
+		}			
 		//@@todo we could throw error details here once we integrate try catches everywhere :P
 		return false;
 	} 
@@ -1992,8 +1996,7 @@ mvSMILClip.prototype = {
 		_this = this;			
 		this.params	= {};		
 		//make new mvCLip with ClipInit vals  
-		var myMvClip = new mvClip( mvClipInit );
-		
+		var myMvClip = new mvClip( mvClipInit );		
 		//inherit mvClip		
 		for(var method in myMvClip){			
 			if(typeof this[method] != 'undefined' ){				
@@ -2095,7 +2098,8 @@ mvSMILClip.prototype = {
  * http://www.w3.org/TR/SMIL3/smil-timing.html#Timing-ClockValueSyntax
  * (probably have to use a Time object to fully support the smil spec
  */
-function smilParseTime(time_str){
+function smilParseTime( time_str ){
+	time_str = time_str + '';
 	//first check for hh:mm:ss time: 
 	if(time_str.split(':').length == 3){
 		return npt2seconds(time_str);
