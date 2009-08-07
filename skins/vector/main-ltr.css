@@ -379,8 +379,8 @@ body {
 	#panel div.portal div.body ul li a:visited {
 		color: #0b0080;
 	}
-/* Foot */
-#foot {
+/* Footer */
+#footer {
 	margin-left: 12em;
 	margin-top: 0;
 	padding: 0.75em;
@@ -388,12 +388,14 @@ body {
 	background-position: top left;
 	background-repeat: repeat-x;
 }
-#foot ul {
+#footer ul {
 	list-style: none;
+	list-style-image: none;
+	list-style-type: none;
 	margin: 0;
 	padding: 0;
 }
-#foot ul li {
+#footer ul li {
 	margin: 0;
 	padding: 0;
 	padding-top: 0.5em;
@@ -401,21 +403,21 @@ body {
 	color: #333333;
 	font-size: 0.9em;
 }
-#foot #foot-icons {
+#footer #footer-icons {
 	float: right;
 }
-#foot #foot-places {
+#footer #footer-places {
 	float: left;
 }
-#foot #foot-info li {
+#footer #footer-info li {
 	line-height: 1.4em;
 }
-#foot #foot-icons li {
+#footer #footer-icons li {
 	float: left;
 	margin-left: 0.5em;
 	line-height: 2em;
 }
-#foot #foot-places li {
+#footer #footer-places li {
 	float: left;
 	margin-right: 1em;
 	line-height: 2em;

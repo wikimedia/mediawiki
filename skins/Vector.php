@@ -539,33 +539,33 @@ class VectorTemplate extends QuickTemplate {
 				<?php $this->renderPortals( $this->data['sidebar'] ); ?>
 			</div>
 		<!-- /panel -->
-		<!-- foot -->
-		<div id="foot">
+		<!-- logo -->
+			<div id="p-logo"><a style="background-image: url(<?php $this->text( 'logopath' ) ?>);" href="<?php echo htmlspecialchars( $this->data['nav_urls']['mainpage']['href'] ) ?>" <?php echo $this->skin->tooltipAndAccesskey( 'p-logo' ) ?>></a></div>
+		<!-- /logo -->
+		<!-- footer -->
+		<div id="footer">
 			<?php foreach( $validFooterLinks as $category => $links ): ?>
 				<?php if ( count( $links ) > 0 ): ?>
-				<ul id="foot-<?php echo $category ?>">
+				<ul id="footer-<?php echo $category ?>">
 					<?php foreach( $links as $link ): ?>
 						<?php if( isset( $this->data[$link] ) && $this->data[$link] ): ?>
-						<li id="foot-<?php echo $category ?>-<?php echo $link ?>"><?php $this->html( $link ) ?></li>
+						<li id="footer-<?php echo $category ?>-<?php echo $link ?>"><?php $this->html( $link ) ?></li>
 						<?php endif; ?>
 					<?php endforeach; ?>
 				</ul>
 				<?php endif; ?>
 			<?php endforeach; ?>
-			<ul id="foot-icons" class="noprint">
+			<ul id="footer-icons" class="noprint">
 				<?php if ( $this->data['poweredbyico'] ): ?>
-				<li id="foot-icon-poweredby"><?php $this->html( 'poweredbyico' ) ?></li>
+				<li id="footer-icon-poweredby"><?php $this->html( 'poweredbyico' ) ?></li>
 				<?php endif; ?>
 				<?php if ( $this->data['copyrightico'] ): ?>
-				<li id="foot-icon-copyright"><?php $this->html( 'copyrightico' ) ?></li>
+				<li id="footer-icon-copyright"><?php $this->html( 'copyrightico' ) ?></li>
 				<?php endif; ?>
 			</ul>
 			<div style="clear:both"></div>
 		</div>
-		<!-- /foot -->
-		<!-- logo -->
-			<div id="p-logo"><a style="background-image: url(<?php $this->text( 'logopath' ) ?>);" href="<?php echo htmlspecialchars( $this->data['nav_urls']['mainpage']['href'] ) ?>" <?php echo $this->skin->tooltipAndAccesskey( 'p-logo' ) ?>></a></div>
-		<!-- /logo -->
+		<!-- /footer -->
 		<!-- fixalpha -->
 		<script type="<?php $this->text('jsmimetype') ?>"> if ( window.isMSIE55 ) fixalpha(); </script>
 		<!-- /fixalpha -->
