@@ -510,7 +510,7 @@ class SkinTemplate extends Skin {
 	 * @private
 	 */
 	function buildPersonalUrls() {
-		global $wgOut, $wgRequest;
+		global $wgOut, $wgRequest, $wgUser, $wgLang;
 
 		$title = $wgOut->getTitle();
 		$pageurl = $title->getLocalURL();
@@ -531,8 +531,32 @@ class SkinTemplate extends Skin {
 				'active' => ( $this->userpageUrlDetails['href'] == $pageurl )
 			);
 			$usertalkUrlDetails = $this->makeTalkUrlDetails( $this->userpage );
+			if ( $wgUser->getNewtalk() ) {
+				# do not show "(!)" text when we are viewing our
+				# own talk page
+				if( !$title->equals( $wgUser->getTalkPage() ) ) {
+					$field = ( $wgUser->getID() == 0 )? 'user_ip' : 'user_id';
+					$id = ( $wgUser->getID() == 0 )? $wgUser->getName() : $wgUser->getID();
+					
+					$db = wfGetDB( DB_SLAVE );
+					$query = $db->select( 'user_newtalk', $field, array( $field => $id ) );
+					$num = $db->numRows( $query );
+					
+					$text = '('.$wgLang->formatNum( $num ).')';
+					
+					# disable caching
+					$wgOut->setSquidMaxage( 0 );
+					$wgOut->enableClientCache( false );
+				}
+				else {
+					$text = '';
+				}
+			}
+			else {
+				$text = '';
+			}
 			$personal_urls['mytalk'] = array(
-				'text' => wfMsg( 'mytalk' ),
+				'text' => wfMsg( 'mytalk' ).$text,
 				'href' => &$usertalkUrlDetails['href'],
 				'class' => $usertalkUrlDetails['exists'] ? false : 'new',
 				'active' => ( $usertalkUrlDetails['href'] == $pageurl )
