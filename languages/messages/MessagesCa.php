@@ -208,6 +208,7 @@ $messages = array(
 'tog-enotifminoredits'        => "Notifica'm per correu també en casos d'edicions menors",
 'tog-enotifrevealaddr'        => "Mostra la meua adreça electrònica en els missatges d'avís per correu",
 'tog-shownumberswatching'     => "Mostra el nombre d'usuaris que hi vigilen",
+'tog-oldsig'                  => 'Previsualització de la signatura:',
 'tog-fancysig'                => 'Tractar la signatura com a text wiki (sense enllaç automàtic)',
 'tog-externaleditor'          => "Utilitza per defecte un editor extern (opció per a experts, requereix la configuració adient de l'ordinador)",
 'tog-externaldiff'            => "Utilitza per defecte un altre visualitzador de diferències (opció per a experts, requereix la configuració adient de l'ordinador)",
@@ -229,6 +230,13 @@ $messages = array(
 'underline-always'  => 'Sempre',
 'underline-never'   => 'Mai',
 'underline-default' => 'Configuració per defecte del navegador',
+
+# Font style option in Special:Preferences
+'editfont-style'     => "Editeu l'estil de la lletra:",
+'editfont-default'   => 'Per defecte del navegador',
+'editfont-monospace' => 'Font monoespaiada',
+'editfont-sansserif' => 'Font de pal sec',
+'editfont-serif'     => 'Lletra amb gràcia',
 
 # Dates
 'sunday'        => 'diumenge',
@@ -330,17 +338,31 @@ $messages = array(
 'faqpage'        => 'Project:PMF',
 
 # Vector skin
-'vector-action-addsection'  => 'Nova secció',
-'vector-action-delete'      => 'Esborra',
-'vector-action-move'        => 'Reanomena',
-'vector-action-protect'     => 'Protegeix',
-'vector-action-undelete'    => 'Restaura',
-'vector-action-unprotect'   => 'Desprotegeix',
-'vector-namespace-category' => 'Categoria',
-'vector-namespace-help'     => 'Ajuda',
-'vector-namespace-image'    => 'Fitxer',
-'vector-namespace-main'     => 'Pàgina',
-'vector-view-view'          => 'Llegeix',
+'vector-action-addsection'   => 'Nova secció',
+'vector-action-delete'       => 'Esborra',
+'vector-action-move'         => 'Reanomena',
+'vector-action-protect'      => 'Protegeix',
+'vector-action-undelete'     => 'Restaura',
+'vector-action-unprotect'    => 'Desprotegeix',
+'vector-namespace-category'  => 'Categoria',
+'vector-namespace-help'      => 'Ajuda',
+'vector-namespace-image'     => 'Fitxer',
+'vector-namespace-main'      => 'Pàgina',
+'vector-namespace-media'     => 'Pàgina de fitxer',
+'vector-namespace-mediawiki' => 'Missatge',
+'vector-namespace-project'   => 'Pàgina del projecte',
+'vector-namespace-special'   => 'Pàgina especial',
+'vector-namespace-talk'      => 'Discussió',
+'vector-namespace-template'  => 'Plantilla',
+'vector-namespace-user'      => "Pàgina d'usuari",
+'vector-view-create'         => 'Inicia',
+'vector-view-edit'           => 'Edita',
+'vector-view-history'        => "Mostra l'historial",
+'vector-view-view'           => 'Llegeix',
+'vector-view-viewsource'     => 'Mostra la font',
+'actions'                    => 'Accions',
+'namespaces'                 => 'Espais de noms',
+'variants'                   => 'Variants',
 
 # Metadata in edit box
 'metadata_help' => 'Metadades:',
@@ -399,6 +421,11 @@ $messages = array(
 'jumpto'            => 'Dreceres ràpides:',
 'jumptonavigation'  => 'navegació',
 'jumptosearch'      => 'cerca',
+'view-pool-error'   => "Disculpeu, els servidors es troben sobrecarregats.
+Massa usuaris estan tractant d'accedir a aquesta pàgina.
+Per favor, esperau una mica abans de tornar a accedir a aquesta pàgina.
+
+$1",
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Quant al projecte {{SITENAME}}',
@@ -483,12 +510,12 @@ Açò podria indicar un error en el programari.
 La darrera consulta que s'ha intentat fer ha estat:
 <blockquote><tt>$1</tt></blockquote>
 des de la funció «<tt>$2</tt>».
-L'error de retorn de MySQL ha estat «<tt>$3: $4</tt>».",
+L'error de retorn de $5 ha estat «<tt>$3: $4</tt>».",
 'dberrortextcl'        => "S'ha produït un error de sintaxi en una consulta a la base de dades.
 La darrera consulta que s'ha intentat fer ha estat:
 <blockquote><tt>$1</tt></blockquote>
 des de la funció «<tt>$2</tt>».
-L'error de retorn de MySQL ha estat «<tt>$3: $4</tt>».",
+L'error de retorn de $5 ha estat «<tt>$3: $4</tt>».",
 'laggedslavemode'      => 'Avís: La pàgina podria mancar de modificacions recents.',
 'readonly'             => 'La base de dades es troba bloquejada',
 'enterlockreason'      => 'Escriviu una raó pel bloqueig, així com una estimació de quan tindrà lloc el desbloqueig',
@@ -506,6 +533,7 @@ Aviseu-ho llavors a un [[Special:ListUsers/sysop|administrador]], deixant-li cla
 'readonly_lag'         => "La base de dades s'ha bloquejat automàticament mentre els servidors esclaus se sincronitzen amb el mestre",
 'internalerror'        => 'Error intern',
 'internalerror_info'   => 'Error intern: $1',
+'fileappenderror'      => 'No he pogut afegir "$1" a "$2".',
 'filecopyerror'        => "No s'ha pogut copiar el fitxer «$1» com «$2».",
 'filerenameerror'      => "No s'ha pogut reanomenar el fitxer «$1» com «$2».",
 'filedeleteerror'      => "No s'ha pogut eliminar el fitxer «$1».",
@@ -878,16 +906,21 @@ Intenteu [[Special:Search|cercar al mateix wiki]] per a noves pàgines rellevant
 'rev-deleted-user'            => "(s'ha suprimit el nom d'usuari)",
 'rev-deleted-event'           => "(s'ha suprimit el registre d'accions)",
 'rev-deleted-text-permission' => "Aquesta versió de la pàgina ha estat '''eliminada'''.
-Hi poden haver més detalls al [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registre d'esborrats].",
+Hi poden haver més detalls al [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registre d'esborrats].",
 'rev-deleted-text-unhide'     => "La revisió d'aquesta pàgina ha estat '''eliminada'''.
-Hi poden haver més detalls al [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registre d'esborrats].
+Hi poden haver més detalls al [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registre d'esborrats].
 Com a administrador encara podeu [$1 veure aquesta revisió] si així ho desitgeu.",
+'rev-suppressed-text-unhide'  => "Aquesta versió de la pàgina ha estat '''eliminada'''.
+Hi poden haver més detalls al [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registre d'esborrats].
+Com a administrador, encara podeu [$1 veure aquesta revisió].",
 'rev-deleted-text-view'       => "Aquesta versió de la pàgina ha estat '''eliminada'''.
+Com a administrador podeu veure-la; vegeu-ne més detalls al [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registre d'esborrats].",
+'rev-suppressed-text-view'    => "Aquesta versió de la pàgina ha estat '''eliminada'''.
 Com a administrador podeu veure-la; vegeu-ne més detalls al [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registre d'esborrats].",
 'rev-deleted-no-diff'         => "No podeu veure aquesta comparativa perquè una de les versions ha estat '''esborrada'''.
-Potser trobareu detalls al [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registre d'esborrats].",
+Potser trobareu detalls al [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registre d'esborrats].",
 'rev-deleted-unhide-diff'     => "Una de les revisions d'aquesta comparativa ha estat '''eliminada'''.
-Potser trobareu detalls al [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registre d'esborrats].
+Potser trobareu detalls al [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registre d'esborrats].
 Com a administrador encara podeu [$1 veure aquesta comparativa] si així ho desitgeu.",
 'rev-delundel'                => 'mostra/amaga',
 'revisiondelete'              => 'Esborrar/restaurar revisions',
@@ -1193,6 +1226,7 @@ No es podrà desfer el canvi.',
 'yourlanguage'                  => 'Llengua:',
 'yourvariant'                   => 'Variant lingüística:',
 'yournick'                      => 'Signatura:',
+'prefs-help-signature'          => "Els comentaris a les pàgines d'usuari s'han de signar amb \"<nowiki>~~~~</nowiki>\", que serà convertit en la vostra signatura i la data i l'hora.",
 'badsig'                        => 'La signatura que heu inserit no és vàlida; verifiqueu les etiquetes HTML que heu emprat.',
 'badsiglength'                  => 'La signatura és massa llarga.
 Ha de tenir com a molt {{PLURAL:$1|un caràcter|$1 caràcters}}.',
@@ -1322,6 +1356,7 @@ També podeu contactar amb altres usuaris a través de la vostra pàgina d'usuar
 'right-siteadmin'             => 'Blocar i desblocar la base de dades',
 'right-reset-passwords'       => "Reiniciar la contrasenya d'altres usuaris",
 'right-override-export-depth' => 'Exporta pàgines incloent aquelles enllaçades fins a una fondària de 5',
+'right-versiondetail'         => 'Mostra la informació addicional de la versió del programari',
 
 # User rights log
 'rightslog'      => "Registre dels permisos d'usuari",
@@ -1371,6 +1406,15 @@ També podeu contactar amb altres usuaris a través de la vostra pàgina d'usuar
 'recentchanges-legend'              => 'Opcions de canvis recents',
 'recentchangestext'                 => 'Seguiu els canvis recents del projecte {{SITENAME}} en aquesta pàgina.',
 'recentchanges-feed-description'    => 'Segueix en aquest canal els canvis més recents del wiki.',
+'recentchanges-label-legend'        => 'Llegenda: $1.',
+'recentchanges-legend-newpage'      => '$1 - nova pàgina',
+'recentchanges-label-newpage'       => 'Aquesta edició inicià una pàgina',
+'recentchanges-legend-minor'        => '$1 - edició menor',
+'recentchanges-label-minor'         => 'Aquesta és una edició menor',
+'recentchanges-legend-bot'          => "$1 - edició d'un bot",
+'recentchanges-label-bot'           => 'Aquesta edició fou feta per un bot',
+'recentchanges-legend-unpatrolled'  => '$1 - edició sense patrullar',
+'recentchanges-label-unpatrolled'   => 'Aquesta edició encara no ha estat patrullada',
 'rcnote'                            => 'A continuació hi ha {{PLURAL:$1|el darrer canvi|els darrers <strong>$1</strong> canvis}} en {{PLURAL:$2|el darrer dia|els darrers <strong>$2</strong> dies}}, actualitzats a les $5 del $4.',
 'rcnotefrom'                        => 'A sota hi ha els canvis des de <b>$2</b> (es mostren fins <b>$1</b>).',
 'rclistfrom'                        => 'Mostra els canvis nous des de $1',
@@ -1397,6 +1441,7 @@ També podeu contactar amb altres usuaris a través de la vostra pàgina d'usuar
 
 # Recent changes linked
 'recentchangeslinked'          => "Seguiment d'enllaços",
+'recentchangeslinked-feed'     => 'Canvis relacionats',
 'recentchangeslinked-toolbox'  => "Seguiment d'enllaços",
 'recentchangeslinked-title'    => 'Canvis relacionats amb «$1»',
 'recentchangeslinked-noresult' => 'No ha hagut cap canvi a les pàgines enllaçades durant el període de temps.',
@@ -1490,12 +1535,15 @@ Hauríeu de considerar si és realment adequat continuar carregant aquest fitxer
 A continuació teniu el registre d'eliminació per a que pugueu comprovar els motius que van portar a la seua eliminació:",
 'filename-bad-prefix'         => "El nom del fitxer que esteu penjant comença amb '''«$1»''', que és un nom no descriptiu que les càmeres digitals normalment assignen de forma automàtica. Trieu un de més descriptiu per al vostre fitxer.",
 
-'upload-proto-error'      => 'El protocol és incorrecte',
-'upload-proto-error-text' => 'Per a les càrregues remotes cal que els URL comencin amb <code>http://</code> o <code>ftp://</code>.',
-'upload-file-error'       => "S'ha produït un error intern",
-'upload-file-error-text'  => "S'ha produït un error de càrrega desconegut quan s'intentava crear un fitxer temporal al servidor. Poseu-vos en contacte amb un [[Special:ListUsers/sysop|administrador]].",
-'upload-misc-error'       => "S'ha produït un error de càrrega desconegut",
-'upload-misc-error-text'  => "S'ha produït un error desconegut durant la càrrega. Verifiqueu que l'URL és vàlid i accessible, i torneu-ho a provar. Si el problema persisteix, adreceu-vos a un [[Special:ListUsers/sysop|administrador]].",
+'upload-proto-error'        => 'El protocol és incorrecte',
+'upload-proto-error-text'   => 'Per a les càrregues remotes cal que els URL comencin amb <code>http://</code> o <code>ftp://</code>.',
+'upload-file-error'         => "S'ha produït un error intern",
+'upload-file-error-text'    => "S'ha produït un error de càrrega desconegut quan s'intentava crear un fitxer temporal al servidor. Poseu-vos en contacte amb un [[Special:ListUsers/sysop|administrador]].",
+'upload-misc-error'         => "S'ha produït un error de càrrega desconegut",
+'upload-misc-error-text'    => "S'ha produït un error desconegut durant la càrrega. Verifiqueu que l'URL és vàlid i accessible, i torneu-ho a provar. Si el problema persisteix, adreceu-vos a un [[Special:ListUsers/sysop|administrador]].",
+'upload-too-many-redirects' => 'La URL conté massa redireccions',
+'upload-unknown-size'       => 'Mida desconeguda',
+'upload-http-error'         => 'Ha ocorregut un error HTTP: $1',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => "No s'ha pogut accedir a l'URL",
@@ -1619,6 +1667,7 @@ La descripció de la seva [$2 pàgina de descripció] es mostra a continuació.'
 'statistics-header-edits'      => "Estadístiques d'edicions",
 'statistics-header-views'      => 'Visualitza estadístiques',
 'statistics-header-users'      => "Estadístiques d'usuari",
+'statistics-header-hooks'      => 'Altres estadístiques',
 'statistics-articles'          => 'Pàgines de contingut',
 'statistics-pages'             => 'Pàgines',
 'statistics-pages-desc'        => 'Totes les pàgines del wiki, incloent les pàgines de discussió, redireccions, etc.',
@@ -1640,8 +1689,9 @@ Per això, caldria que enllacessin al tema apropiat.<br />
 Una pàgina es tracta com de desambiguació si utilitza una plantilla que està enllaçada a [[MediaWiki:Disambiguationspage]]",
 
 'doubleredirects'            => 'Redireccions dobles',
-'doubleredirectstext'        => '<b>Atenció:</b> aquesta llista pot contenir falsos positius. Això normalment significa que hi ha text addicional amb enllaços sota el primer #REDIRECT.<br />
-Cada fila conté enllaços a la segona i tercera redirecció, així com la primera línia de la segona redirecció, la qual cosa dóna normalment l\'article "real", al que el primer redirecció hauria d\'apuntar.',
+'doubleredirectstext'        => 'Aquesta pàgina llista les pàgines que redirigeixen a altres pàgines de redirecció.
+Cada fila conté enllaços a la primera i segona redireccions, així com el destí de la segona redirecció, què generalment és la pàgina destí "real", a la què hauria d\'apuntar la primera redirecció.
+Les entrades <s>ratllades</s> s\'han resolt.',
 'double-redirect-fixed-move' => "S'ha reanomenat [[$1]], ara és una redirecció a [[$2]]",
 'double-redirect-fixer'      => 'Supressor de dobles redireccions',
 
@@ -1729,7 +1779,7 @@ Cada fila conté enllaços a la segona i tercera redirecció, així com la prime
 'specialloguserlabel'  => 'Usuari:',
 'speciallogtitlelabel' => 'Títol:',
 'log'                  => 'Registres',
-'all-logs-page'        => 'Tots els registres',
+'all-logs-page'        => 'Tots els registres públics',
 'alllogstext'          => "Presentació combinada de tots els registres disponibles de {{SITENAME}}.
 Podeu reduir l'extensió seleccionant el tipus de registre, el nom del usuari (distingeix entre majúscules i minúscules), o la pàgina afectada (també en distingeix).",
 'logempty'             => 'No hi ha cap coincidència en el registre.',
@@ -1780,6 +1830,12 @@ Vegeu també [[Special:WantedCategories|les categories soŀlicitades]].",
 'listusers-submit'   => 'Mostra',
 'listusers-noresult' => "No s'han trobat coincidències de noms d'usuaris. Si us plau, busqueu també amb variacions per majúscules i minúscules.",
 'listusers-blocked'  => '({{GENDER:$1|blocat|blocada}})',
+
+# Special:ActiveUsers
+'activeusers'          => "Llista d'usuaris actius",
+'activeusers-count'    => '$1 {{PLURAL:$1|edició recent|edicions recents}}',
+'activeusers-from'     => 'Mostra els usuaris començant per:',
+'activeusers-noresult' => "No s'han trobat usuaris.",
 
 # Special:Log/newusers
 'newuserlogpage'              => "Registre de creació de l'usuari",
@@ -2346,12 +2402,19 @@ En el darrer cas, podeu fer servir un enllaç com ara [[{{#Special:Export}}/{{Me
 'export-pagelinks'  => 'Inclou pàgines enllaçades fins una profunditat de:',
 
 # Namespace 8 related
-'allmessages'               => 'Tots els missatges del sistema',
-'allmessagesname'           => 'Nom',
-'allmessagesdefault'        => 'Text per defecte',
-'allmessagescurrent'        => 'Text actual',
-'allmessagestext'           => "Tot seguit hi ha una llista dels missatges del sistema que es troben a l'espai de noms ''MediaWiki''. La traducció genèrica d'aquests missatges no s'hauria de fer localment sinó a la traducció del programari MediaWiki. Si voleu ajudar-hi visiteu [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] i [http://translatewiki.net translatewiki.net].",
-'allmessagesnotsupportedDB' => "No es pot processar '''{{ns:special}}:Allmessages''' perquè la variable '''\$wgUseDatabaseMessages''' està desactivada.",
+'allmessages'                   => 'Tots els missatges del sistema',
+'allmessagesname'               => 'Nom',
+'allmessagesdefault'            => 'Text per defecte',
+'allmessagescurrent'            => 'Text actual',
+'allmessagestext'               => "Tot seguit hi ha una llista dels missatges del sistema que es troben a l'espai de noms ''MediaWiki''. La traducció genèrica d'aquests missatges no s'hauria de fer localment sinó a la traducció del programari MediaWiki. Si voleu ajudar-hi visiteu [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] i [http://translatewiki.net translatewiki.net].",
+'allmessagesnotsupportedDB'     => "No es pot processar '''{{ns:special}}:Allmessages''' perquè la variable '''\$wgUseDatabaseMessages''' està desactivada.",
+'allmessages-filter-legend'     => 'Filtre',
+'allmessages-filter-unmodified' => 'Sense modificar',
+'allmessages-filter-all'        => 'Tots',
+'allmessages-filter-modified'   => 'Modificat',
+'allmessages-prefix'            => 'Filtra per prefix:',
+'allmessages-language'          => 'Llengua:',
+'allmessages-filter-submit'     => 'Vés-hi',
 
 # Thumbnails
 'thumbnail-more'           => 'Amplia',
@@ -3128,6 +3191,7 @@ Introduïu el nom del fitxer sense el prefix «{{ns:file}}:».",
 'htmlform-invalid-input'       => 'Hi ha problemes amb alguna de les seves entrades',
 'htmlform-select-badoption'    => 'El valor que heu especificat no és una opció vàlida.',
 'htmlform-int-invalid'         => 'El valor que heu especificat no és un nombre enter.',
+'htmlform-float-invalid'       => 'El valor especificat no és un nombre.',
 'htmlform-int-toolow'          => 'El valor que heu especifcat està per sota del mínim de $1',
 'htmlform-int-toohigh'         => 'El valor que heu especificat està per sobre del màxim de $1',
 'htmlform-submit'              => 'Tramet',

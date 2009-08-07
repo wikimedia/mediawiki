@@ -118,6 +118,7 @@ This is the toolbar: [[Image:Toolbar.png]]",
 'tog-enotifminoredits'        => 'In user preferences',
 'tog-enotifrevealaddr'        => 'Toggle option used in [[Special:Preferences]].',
 'tog-shownumberswatching'     => 'Toggle option used in [[Special:Preferences]], in the section for recent changes. When this option is activated, the entries in recent changes includes the number of users who watch pages.',
+'tog-oldsig'                  => 'Used in [[Special:Preferences]], tab User profile.',
 'tog-fancysig'                => 'In user preferences under the signature box',
 'tog-externaleditor'          => "[[Special:Preferences]], tab 'Edit'. Offers user to use an external editor by default.",
 'tog-externaldiff'            => "[[Special:Preferences]], tab 'Edit'. Offers user to use an external diff program by default.",
@@ -1135,6 +1136,7 @@ Used in [[Special:Preferences]]. Parameters are:
 'yournick'                      => 'Used in [[Special:Preferences]], first tab.
 
 {{Identical|Signature}}',
+'prefs-help-signature'          => 'Used in [[Special:Preferences]], tab User profile.',
 'badsig'                        => 'Error message displayed when entering invalid signature in user preferences',
 'badsiglength'                  => 'Warning message that is displayed on [[Special:Preferences]] when trying to save a signature that is too long. Parameter $1 is the maximum number of characters that is allowed in a signature (multi-byte characters are counted as one character).',
 'yourgender'                    => 'Used in [[Special:Preferences]], first tab.',
@@ -1651,6 +1653,7 @@ $1 is the name of the shared repository. On wikimedia sites, $1 is {{msg-mw|shar
 'statistics-header-edits'      => 'Used in [[Special:Statistics]]',
 'statistics-header-views'      => 'Used in [[Special:Statistics]]',
 'statistics-header-users'      => 'Used in [[Special:Statistics]]',
+'statistics-header-hooks'      => 'Header of a section on [[Special:Statistics]] containing data provided by MediaWiki extensions',
 'statistics-articles'          => 'Used in [[Special:Statistics]]
 
 {{Identical|Content page}}',

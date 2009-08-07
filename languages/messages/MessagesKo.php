@@ -292,6 +292,7 @@ $messages = array(
 'tog-enotifminoredits'        => '사소한 편집도 이메일로 알림',
 'tog-enotifrevealaddr'        => '알림 메일에 내 이메일 주소를 밝히기',
 'tog-shownumberswatching'     => '주시 사용자 수 보기',
+'tog-oldsig'                  => '지금 서명 미리보기:',
 'tog-fancysig'                => '서명을 위키텍스트로 취급 (자동으로 링크를 걸지 않음)',
 'tog-externaleditor'          => '외부 편집기를 기본 편집기로 사용 (숙련자용. 컴퓨터에 특별한 설정이 필요)',
 'tog-externaldiff'            => '외부 비교 도구를 기본 도구로 사용 (숙련자용. 컴퓨터에 특별한 설정이 필요)',
@@ -444,6 +445,7 @@ $messages = array(
 'vector-view-viewsource'     => '내용 보기',
 'actions'                    => '행위',
 'namespaces'                 => '이름공간',
+'variants'                   => '변수',
 
 # Metadata in edit box
 'metadata_help' => '메타데이터:',
@@ -502,6 +504,11 @@ $messages = array(
 'jumpto'            => '이동:',
 'jumptonavigation'  => '둘러보기',
 'jumptosearch'      => '찾기',
+'view-pool-error'   => '서버가 과부하에 걸렸습니다.
+너무 많은 사용자가 이 문서를 보려고 하고 있습니다.
+이 문서를 다시 열기 전에 잠시만 기다려주세요.
+
+$1',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => '{{SITENAME}} 소개',
@@ -1283,6 +1290,7 @@ $1",
 'yourrealname'                  => '실명:',
 'yourlanguage'                  => '언어:',
 'yournick'                      => '서명:',
+'prefs-help-signature'          => '토론 문서의 글은 "<nowiki>~~~~</nowiki>"를 표시해야 합니다. 이것은 서명과 시간으로 바뀔 것입니다.',
 'badsig'                        => '서명이 잘못되었습니다. HTML 태그를 확인해주세요.',
 'badsiglength'                  => '서명이 너무 깁니다.
 서명은 $1자보다 짧아야 합니다.',
@@ -1462,8 +1470,15 @@ $1",
 'recentchanges-legend'              => '최근 바뀜 설정',
 'recentchangestext'                 => '위키의 최근 바뀜 내역이 나와 있습니다.',
 'recentchanges-feed-description'    => '위키의 최근 바뀜',
-'recentchanges-label-legend'        => '기호: $1 - 새로 만들어진 문서. $2 - 사소한 편집. $3 - 봇의 편집. $4 - 검토하지 않은 편집.',
+'recentchanges-label-legend'        => '범례: $1.',
+'recentchanges-legend-newpage'      => '$1 - 새 문서',
 'recentchanges-label-newpage'       => '새 문서가 작성되었습니다',
+'recentchanges-legend-minor'        => '$1 - 사소한 편집',
+'recentchanges-label-minor'         => '사소한 편집',
+'recentchanges-legend-bot'          => '$1 - 봇 편집',
+'recentchanges-label-bot'           => '봇의 편집',
+'recentchanges-legend-unpatrolled'  => '$1 - 검토되지 않은 편집',
+'recentchanges-label-unpatrolled'   => '아직 검토되지 않은 편집',
 'rcnote'                            => "다음은 $4 $5 까지의 '''$2'''일동안 바뀐 '''$1'''개의 문서입니다.",
 'rcnotefrom'                        => "다음은 '''$2'''에서부터 바뀐 '''$1'''개의 문서입니다.",
 'rclistfrom'                        => '$1 이래로 바뀐 문서',
@@ -2396,7 +2411,7 @@ $1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습�
 'movelogpage'                  => '이동 기록',
 'movelogpagetext'              => '아래는 옮겨진 문서의 목록입니다.',
 'movesubpage'                  => '{{PLURAL:$1|하위 문서|하위 문서}}',
-'movesubpagetext'              => '이 문서에는 다음 $1개의 하위 {{PLURAL:$1|문서가|문서들이}} 있습니다.',
+'movesubpagetext'              => '이 문서에는 다음 $1개의 하위 문서가 있습니다.',
 'movenosubpage'                => '이 문서에는 하위 문서가 존재하지 않습니다.',
 'movereason'                   => '이유',
 'revertmove'                   => '되돌리기',
@@ -2440,15 +2455,20 @@ $1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습�
 'export-pagelinks'  => '다음 단계로 링크된 문서를 포함:',
 
 # Namespace 8 related
-'allmessages'               => '시스템 메시지 목록',
-'allmessagesname'           => '이름',
-'allmessagesdefault'        => '기본 내용',
-'allmessagescurrent'        => '현재 내용',
-'allmessagestext'           => '미디어위키 이름공간에 있는 모든 시스템 메시지의 목록입니다. 미디어위키의 번역 작업에 관심이 있으면 [http://www.mediawiki.org/wiki/Localisation 미디어위키 지역화]나 [http://translatewiki.net translatewiki.net]에 참가해주세요.',
-'allmessagesnotsupportedDB' => "'''\$wgUseDatabaseMessages'''가 해제되어 있어서 이 문서는 쓸 수 없습니다.",
-'allmessages-filter-legend' => '필터',
-'allmessages-filter-all'    => '모두',
-'allmessages-language'      => '언어:',
+'allmessages'                   => '시스템 메시지 목록',
+'allmessagesname'               => '이름',
+'allmessagesdefault'            => '기본 내용',
+'allmessagescurrent'            => '현재 내용',
+'allmessagestext'               => '미디어위키 이름공간에 있는 모든 시스템 메시지의 목록입니다. 미디어위키의 번역 작업에 관심이 있으면 [http://www.mediawiki.org/wiki/Localisation 미디어위키 지역화]나 [http://translatewiki.net translatewiki.net]에 참가해주세요.',
+'allmessagesnotsupportedDB'     => "'''\$wgUseDatabaseMessages'''가 해제되어 있어서 이 문서는 쓸 수 없습니다.",
+'allmessages-filter-legend'     => '필터',
+'allmessages-filter'            => '수정 상태로 거르기:',
+'allmessages-filter-unmodified' => '수정되지않음',
+'allmessages-filter-all'        => '모두',
+'allmessages-filter-modified'   => '수정됨',
+'allmessages-prefix'            => '접두어로 거르기:',
+'allmessages-language'          => '언어:',
+'allmessages-filter-submit'     => '실행',
 
 # Thumbnails
 'thumbnail-more'           => '실제 크기로',
@@ -2477,7 +2497,7 @@ $1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습�
 'import-comment'             => '이유:',
 'importtext'                 => '원본 위키에서 [[Special:Export|내보내기]] 기능을 사용해 파일을 내려받아서 여기에 올려주세요.',
 'importstart'                => '문서를 가져오는 중...',
-'import-revision-count'      => '$1 {{PLURAL:$1|개|개}}의 판',
+'import-revision-count'      => '판 $1개',
 'importnopages'              => '가져올 문서가 없습니다.',
 'importfailed'               => '가져오기 실패: <nowiki>$1</nowiki>',
 'importunknownsource'        => '알 수 없는 가져오기 소스 유형',
@@ -2496,7 +2516,7 @@ $1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습�
 임시 폴더가 존재하지 않습니다.',
 'import-parse-failure'       => 'XML 문서 분석 실패',
 'import-noarticle'           => '가져올 문서가 없습니다!',
-'import-nonewrevisions'      => '모든 판이 이전에 가져오기되었습니다.',
+'import-nonewrevisions'      => '이전에 이미 모든 판을 가져왔습니다.',
 'xml-error-string'           => '$3단 $2줄 (바이트 $4)에서 $1: $5',
 'import-upload'              => 'XML 데이터 올리기',
 'import-token-mismatch'      => '세션 데이터가 손실되었습니다. 다시 시도해주세요.',
@@ -2506,9 +2526,9 @@ $1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습�
 'importlogpage'                    => '가져오기 기록',
 'importlogpagetext'                => '다른 위키에서 가져온 문서 기록입니다.',
 'import-logentry-upload'           => '이(가) 파일 올리기를 통해 [[$1]] 문서를 가져왔습니다.',
-'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|개|개}}의 판',
+'import-logentry-upload-detail'    => '판 $1개',
 'import-logentry-interwiki'        => '$1을(를) 다른 위키에서 가져왔습니다.',
-'import-logentry-interwiki-detail' => '$2에서 $1 {{PLURAL:$1|개|개}}의 판을 가져옴',
+'import-logentry-interwiki-detail' => '$2에서 판 $1개를 가져옴',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => '내 사용자 문서',
@@ -2588,12 +2608,12 @@ $1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습�
 'notacceptable'     => '클라이언트에서 인식 가능한 출력 포맷이 없습니다.',
 
 # Attribution
-'anonymous'        => '{{SITENAME}} 익명 {{PLURAL:$1|사용자|사용자}}',
+'anonymous'        => '{{PLURAL:$1}}{{SITENAME}} 익명 사용자',
 'siteuser'         => '{{SITENAME}} 사용자 $1',
-'lastmodifiedatby' => '이 문서는 $3에 의해 $2, $1에 마지막으로 바뀌었습니다.',
+'lastmodifiedatby' => '이 문서는 $3 사용자가 $1 $2에 마지막으로 바꾸었습니다.',
 'othercontribs'    => '$1의 작업을 바탕으로 함.',
 'others'           => '기타',
-'siteusers'        => '{{SITENAME}} {{PLURAL:$2|사용자|사용자}} $1',
+'siteusers'        => '{{PLURAL:$2}}{{SITENAME}} 사용자 $1',
 'creditspage'      => '문서 기여자들',
 'nocredits'        => '이 문서에서는 기여자 정보가 없습니다.',
 
@@ -2653,7 +2673,7 @@ $1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습�
 'rcpatroldisabledtext'                => '최근 바뀜 검토 기능은 현재 비활성화되어 있습니다.',
 'markedaspatrollederror'              => '검토된 것으로 표시할 수 없습니다.',
 'markedaspatrollederrortext'          => '검토된 것으로 표시할 버전을 지정해야 합니다.',
-'markedaspatrollederror-noautopatrol' => '자신의 편집을 스스로 검토된 것으로 표시하는 것은 허용되지 않습니다.',
+'markedaspatrollederror-noautopatrol' => '자신의 편집은 스스로 검토할 수 없습니다.',
 
 # Patrol log
 'patrol-log-page'      => '검토 기록',
@@ -2685,17 +2705,19 @@ $1',
 'mediawarning'         => "'''경고''': 이 파일에는 시스템을 위험하게 만드는 악성 코드가 들어있을 수 있습니다.<hr />",
 'imagemaxsize'         => "그림 크기를 제한하기:<br />''(파일 설명 페이지)''",
 'thumbsize'            => '섬네일 크기:',
-'widthheightpage'      => '$1×$2, {{PLURAL:$3|$3}} 문서',
+'widthheightpage'      => '$1×$2, $3 문서',
 'file-info'            => '(파일 크기: $1, MIME 종류: $2)',
 'file-info-size'       => '($1 × $2 픽셀, 파일 크기: $3, MIME 종류: $4)',
 'file-nohires'         => '<small>최대 해상도입니다.</small>',
 'svg-long-desc'        => '(SVG 파일, 실제 크기 $1 × $2 픽셀, 파일 크기 $3)',
 'show-big-image'       => '최대 해상도',
 'show-big-image-thumb' => '<small>미리보기 크기: $1 × $2 픽셀</small>',
+'file-info-gif-looped' => '반복됨',
+'file-info-gif-frames' => '$1 프레임',
 
 # Special:NewFiles
 'newimages'             => '새 파일 목록',
-'imagelisttext'         => "파일 '''{{PLURAL:$1|$1}}'''개를 $2 순으로 정렬한 목록입니다.",
+'imagelisttext'         => "파일 '''$1'''개를 $2 순으로 정렬한 목록입니다.",
 'newimages-summary'     => '이 특수 문서는 최근에 올라온 파일을 나열하고 있습니다.',
 'newimages-legend'      => '필터',
 'newimages-label'       => '파일 이름 (또는 그 일부분):',
@@ -3051,7 +3073,7 @@ $5
 $1',
 'trackbackremove'   => '([$1 삭제])',
 'trackbacklink'     => '트랙백',
-'trackbackdeleteok' => '트랙백이 삭제되었습니다.',
+'trackbackdeleteok' => '트랙백을 삭제했습니다.',
 
 # Delete conflict
 'deletedwhileediting' => "'''주의''': 당신이 이 문서를 편집하던 중에 이 문서가 삭제되었습니다.",
@@ -3096,17 +3118,17 @@ $1',
 일반 미리보기를 이용하십시오.',
 
 # Friendlier slave lag warnings
-'lag-warn-normal' => '최근 {{PLURAL:$1|$1}}초 안에 바뀐 문서는 이 목록에서 빠졌을 수 있습니다.',
-'lag-warn-high'   => '데이터베이스 서버의 과도한 부하 때문에 최근 {{PLURAL:$1|$1초}} 안에 변경된 문서 목록은 표시되지 않을 수 있습니다.',
+'lag-warn-normal' => '최근 $1초 안에 바뀐 문서는 이 목록에서 빠졌을 수 있습니다.',
+'lag-warn-high'   => '데이터베이스 서버의 과도한 부하 때문에 최근 $1초 안에 변경된 문서 목록은 표시되지 않을 수 있습니다.',
 
 # Watchlist editor
-'watchlistedit-numitems'       => '토론 문서를 제외하고 문서 {{PLURAL:$1|$1}}개를 주시하고 있습니다.',
+'watchlistedit-numitems'       => '토론 문서를 제외하고 문서 $1개를 주시하고 있습니다.',
 'watchlistedit-noitems'        => '주시문서 목록이 비어 있습니다.',
 'watchlistedit-normal-title'   => '주시문서 목록 편집하기',
 'watchlistedit-normal-legend'  => '목록에서 문서 제거하기',
 'watchlistedit-normal-explain' => "주시문서 목록에서 제거하려는 문서가 있으면, 각 항목의 체크박스를 선책한 다음 '항목 삭제'를 클릭해주세요. 또는 [[Special:Watchlist/raw|목록을 직접 편집할 수도 있습니다]].",
 'watchlistedit-normal-submit'  => '항목 삭제',
-'watchlistedit-normal-done'    => '다음 {{PLURAL:$1|$1}} 항목을 주시하지 않습니다:',
+'watchlistedit-normal-done'    => '다음 $1 항목을 주시하지 않습니다:',
 'watchlistedit-raw-title'      => '주시문서 목록 직접 편집하기',
 'watchlistedit-raw-legend'     => '주시문서 목록 직접 편집하기',
 'watchlistedit-raw-explain'    => "주시문서 목록의 각 항목이 나와 있습니다. 필요한 항목을 직접 추가하거나 제거할 수 있습니다. 각 줄마다 하나의 제목을 쓰고, '주시문서 목록 갱신'을 누르면 됩니다.
@@ -3114,8 +3136,8 @@ $1',
 'watchlistedit-raw-titles'     => '목록:',
 'watchlistedit-raw-submit'     => '주시문서 목록 갱신',
 'watchlistedit-raw-done'       => '주시문서 목록을 갱신했습니다.',
-'watchlistedit-raw-added'      => '{{PLURAL:$1|1 개 문서|$1 개 문서}}를 추가했습니다:',
-'watchlistedit-raw-removed'    => '{{PLURAL:$1|1 개|$1 개}}의 문서를 제거했습니다:',
+'watchlistedit-raw-added'      => '문서 $1개를 추가했습니다:',
+'watchlistedit-raw-removed'    => '문서 $1개를 제거했습니다:',
 
 # Watchlist editing tools
 'watchlisttools-view' => '주시문서 최근 바뀜',
@@ -3166,7 +3188,7 @@ $1',
 'fileduplicatesearch-submit'   => '찾기',
 'fileduplicatesearch-info'     => '$1 × $2 픽셀<br />파일 크기: $3<br />MIME 유형: $4',
 'fileduplicatesearch-result-1' => '‘$1’ 파일과 중복된 파일이 없습니다.',
-'fileduplicatesearch-result-n' => '"$1"파일은 중복 파일이 {{PLURAL:$2|$2}}개 있습니다.',
+'fileduplicatesearch-result-n' => '"$1"파일은 중복 파일이 $2개 있습니다.',
 
 # Special:SpecialPages
 'specialpages'                   => '특수 문서 목록',
@@ -3188,7 +3210,7 @@ $1',
 
 # Special:BlankPage
 'blankpage'              => '빈 문서',
-'intentionallyblankpage' => '이 문서는 고의적으로 빈 채 방치되어 있습니다.',
+'intentionallyblankpage' => '일부러 비워 둔 문서입니다.',
 
 # External image whitelist
 'external_image_whitelist' => ' #이 줄은 그대로 두십시오<pre>
@@ -3211,7 +3233,7 @@ $1',
 'tags-description-header' => '태그에 대한 설명',
 'tags-hitcount-header'    => '태그된 바뀜',
 'tags-edit'               => '편집',
-'tags-hitcount'           => '$1개의 {{PLURAL:$1|바뀜|바뀜}}',
+'tags-hitcount'           => '$1개 바뀜',
 
 # Database error messages
 'dberr-header'      => '이 위키에 문제가 있습니다.',
@@ -3226,6 +3248,7 @@ $1',
 'htmlform-invalid-input'       => '당신이 입력한 값에 문제가 있습니다.',
 'htmlform-select-badoption'    => '당신이 입력한 값은 올바른 설정이 아닙니다.',
 'htmlform-int-invalid'         => '당신이 입력한 값은 정수가 아닙니다.',
+'htmlform-float-invalid'       => '입력한 값이 수가 아닙니다.',
 'htmlform-int-toolow'          => '당신이 입력한 값은 최소값 $1 미만입니다.',
 'htmlform-int-toohigh'         => '당신이 입력한 값은 최대값 $1 이상입니다.',
 'htmlform-submit'              => '저장',

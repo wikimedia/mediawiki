@@ -340,15 +340,15 @@ $messages = array(
 # Rights
 'right-read'     => 'Redya folednow',
 'right-edit'     => 'Chanjya folednow',
-'right-move'     => 'Movya folednow',
-'right-movefile' => 'Movya restrednow',
+'right-move'     => 'Removya folednow',
+'right-movefile' => 'Removya restrednow',
 'right-upload'   => 'Ughcarga restrednow',
 'right-delete'   => 'Dilea folednow',
 
 # Associated actions - in the sentence "You do not have permission to X"
 'action-edit'     => 'chanjya an folen ma',
-'action-move'     => 'movya an folen ma',
-'action-movefile' => 'movya an restren ma',
+'action-move'     => 'removya an folen ma',
+'action-movefile' => 'removya an restren ma',
 'action-upload'   => 'ughcarga an restren ma',
 'action-delete'   => 'dilea an folen ma',
 
@@ -357,7 +357,7 @@ $messages = array(
 'recentchanges'        => 'Chanjyow a-dhiwedhes',
 'recentchanges-legend' => 'Dewisyansow an chanjyow a-dhiwedhes',
 'rclistfrom'           => 'Disqwedhes chanjyow nowyth ow talleth dhyworth $1.',
-'rcshowhideminor'      => '$1 chanj bian',
+'rcshowhideminor'      => '$1 chanjyow bian',
 'rcshowhidemine'       => '$1 ow chanjyow',
 'diff'                 => 'dyffrans',
 'hist'                 => 'ist',
@@ -424,8 +424,8 @@ $messages = array(
 'nmembers'          => '$1 {{PLURAL:$1|esel|eseli}}',
 'newpages'          => 'Folednow nowyth',
 'newpages-username' => 'Hanow-usyer:',
-'move'              => 'Movya',
-'movethispage'      => 'Movya an folen ma',
+'move'              => 'Removya',
+'movethispage'      => 'Removya an folen ma',
 'pager-newer-n'     => '{{PLURAL:$1|1 nowyttha|$1 nowyttha}}',
 'pager-older-n'     => '{{PLURAL:$1|1 cottha|$1 cottha}}',
 
@@ -490,7 +490,7 @@ $messages = array(
 
 # Restrictions (nouns)
 'restriction-edit'   => 'Chanjya',
-'restriction-move'   => 'Movya',
+'restriction-move'   => 'Removya',
 'restriction-create' => 'Gwruthyl',
 'restriction-upload' => 'Ughcarga',
 
@@ -534,12 +534,12 @@ $messages = array(
 'contribslink'           => 'kevrahow',
 
 # Move page
-'move-page'        => 'Movya $1',
-'move-page-legend' => 'Movya an folen',
-'movearticle'      => 'Movya an folen:',
+'move-page'        => 'Removya $1',
+'move-page-legend' => 'Removya an folen',
+'movearticle'      => 'Removya an folen:',
 'newtitle'         => 'Dhe titel nowyth:',
 'move-watch'       => 'Golyas an folen ma',
-'movepagebtn'      => 'Movya an folen',
+'movepagebtn'      => 'Removya an folen',
 '1movedto2'        => '[[$1]] movys dhe [[$2]]',
 'movereason'       => 'Acheson:',
 
@@ -562,7 +562,7 @@ $messages = array(
 'tooltip-ca-addsection'     => 'Dalleth tregh nowyth',
 'tooltip-ca-protect'        => 'Difres an folen ma',
 'tooltip-ca-delete'         => 'Dilea an folen ma',
-'tooltip-ca-move'           => 'Movya an folen ma',
+'tooltip-ca-move'           => 'Removya an folen ma',
 'tooltip-ca-watch'          => "Keworra an folen ma dhe'th rol golyas",
 'tooltip-search'            => 'Whila {{SITENAME}}',
 'tooltip-n-mainpage'        => 'Disqwedhes an pednfolen',

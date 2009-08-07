@@ -138,12 +138,12 @@ $messages = array(
 'dec'           => 'Dekabr',
 
 # Categories related messages
-'pagecategories'           => '$1 Kateqoriya',
+'pagecategories'           => '$1 {{PLURAL:$1|Kateqoriya|Kateqoriyalar}}',
 'category_header'          => '"$1" kategoriyasındaki məqalələr',
 'subcategories'            => 'Alt kategoriyalar',
 'category-media-header'    => '"$1" kateqoriyasında mediya',
 'category-empty'           => "''Bu kateqoriyanın tərkibi hal-hazırda boşdur.''",
-'hidden-categories'        => '$1 Gizli kateqoriya',
+'hidden-categories'        => '{{PLURAL:$1|Gizli kateqoriya|Gizli kateqoriyalar}}',
 'hidden-category-category' => 'Gizli kateqoriyalar',
 'listingcontinuesabbrev'   => '(davam)',
 
@@ -306,7 +306,7 @@ $messages = array(
 'protectedpagetext'   => 'Bu səhifə redaktə üçün bağlıdır.',
 'viewsourcetext'      => 'Siz bu səhifənin məzmununu görə və köçürə bilərsiniz:',
 'ns-specialprotected' => 'Xüsusi səhifələr redaktə oluna bilməz.',
-'titleprotected'      => 'İstifadəçi [[İstifadəçi:$1|$1]] bu başlıqla səhifə yarada bilməz.
+'titleprotected'      => 'İstifadəçi [[User:$1|$1]] bu başlıqla səhifə yarada bilməz.
 Göstərilən səbəb odur ki, "\'\'$2\'\'".',
 
 # Virus scanner
@@ -318,7 +318,7 @@ Göstərilən səbəb odur ki, "\'\'$2\'\'".',
 {{Vikipediya}}nı anonim olaraq istifadə etməyə davam edəbilər, və ya eyni yaxud başqa istifadəçi adı ilə [[Special:UserLogin|yenidən daxil ol]]a bilərsiniz. Diqqətinizə çatdırırıq ki, ön yaddaşı (browser cache) təmizləyənə qədər bə'zi səhifələr sistemdən çıxdığınız halda da göstərilə bilər.",
 'welcomecreation'            => '== $1, xoş gəlmişsiniz! == 
 Hesabınız yaradıldı. 
-[[Xüsusi:Nizamlamalar|{{Vikipediya}} nizamlamalar]]ını dəyişdirməyi unutmayın.',
+[[Special:Preferences|{{SITENAME}} nizamlamalarınızı]] dəyişdirməyi unutmayın.',
 'yourname'                   => 'İstifadəçi adı',
 'yourpassword'               => 'Parol',
 'yourpasswordagain'          => 'Parolu təkrar yazın',
@@ -345,21 +345,23 @@ Lütfən ayrı ad seçin.',
 'loginsuccesstitle'          => 'Daxil olundu',
 'loginsuccess'               => "'''\"\$1\" olaraq {{SITENAME}}-ya daxil oldunuz.'''",
 'nosuchuser'                 => '"$1" adında istifadəçi mövcud deyil.
-Istifadəçi adları hərflərin böyük və ya kiçik olmasına həssasdırlar.
-Düzgün yazdığına əmin ol, yaxud [[Xüsusi:UserLogin/signup|yeni hesab aç]].',
+İstifadəçi adları hərflərin böyük və ya kiçik olmasına həssasdırlar.
+Düzgün yazdığına əmin ol, yaxud [[Special:UserLogin/signup|yeni hesab aç]].',
 'nosuchusershort'            => '"<nowiki>$1</nowiki>" adında istifadəçi mövcud deyil.
 Düzgün yazdığına əmin ol.',
-'nouserspecified'            => 'Istifadəçi adı daxil etməlisiniz.',
-'wrongpassword'              => 'Səhv şifrə. Təkrar yaz.',
+'nouserspecified'            => 'İstifadəçi adı daxil etməlisiniz.',
+'wrongpassword'              => 'Səhv parol. Təkrar yaz.',
 'wrongpasswordempty'         => 'Parol boş. Təkrar yaz.',
-'password-name-match'        => 'Şifrə adınızdan fərqli olmalıdır.',
-'mailmypassword'             => 'E-mail ilə yeni şifrə göndər',
+'passwordtooshort'           => 'Parol çox qısa.
+Parolda ən azı {{PLURAL:$1|1 hərf yaxud simvol|$1 hərf yaxud simvol}} olmalıdır.',
+'password-name-match'        => 'Parol adınızdan fərqli olmalıdır.',
+'mailmypassword'             => 'E-mail ilə yeni parol göndər',
 'passwordremindertitle'      => '{{SITENAME}} parol xatırladıcı',
 'noemail'                    => '"$1" adlı istifadəçi e-məktub ünvanı qeyd edmemişdir.',
 'passwordsent'               => 'Yeni parol "$1" üçün qeydiyyata alınan e-məktub ünvanına göndərilmişdir.
 Xahiş edirik, e-məktubu aldıqdan sonra yenidən daxil olasınız.',
 'mailerror'                  => 'Məktub göndərmə xətası: $1',
-'acct_creation_throttle_hit' => 'Siz artıq $1 hesab açmısınız. Daha çox hesab açabilmərsiniz.',
+'acct_creation_throttle_hit' => 'Sizin IP adresinizdən bu viki-də son bir gün ərzində {{PLURAL:$1|1 hesab|$1 hesab}} açılmışdır. Bu bir gün ərzində icazə verilən maximal say olduğu üçün, indiki anda daha çox hesab aça bilməzsiniz.',
 'emailauthenticated'         => 'E-məktub ünvanınız $2 saat $3 tarixində təsdiq edilib.',
 'emailnotauthenticated'      => 'E-məktub ünvanınız təsdiq edilməyib.
 Aşağıdakğı xidmətlərin heç biri üçün sizə e-məktub göndərilməyəcək.',
@@ -375,7 +377,7 @@ Xahiş edirik düzgün formatlı ünvan daxil edin və ya bu sahəni boş qoyun.
 'oldpassword'               => 'Köhne parol:',
 'newpassword'               => 'Yeni parol:',
 'retypenew'                 => 'Yeni parolu təkrar yazın:',
-'resetpass-submit-loggedin' => 'Şifrəni dəyiş',
+'resetpass-submit-loggedin' => 'Parolu dəyiş',
 
 # Edit page toolbar
 'bold_sample'     => 'Qalın mətn',
@@ -412,11 +414,14 @@ Xahiş edirik düzgün formatlı ünvan daxil edin və ya bu sahəni boş qoyun.
 'loginreqtitle'              => 'Daxil olmalısınız',
 'loginreqlink'               => 'Daxil ol',
 'accmailtitle'               => 'Parol göndərildi.',
-'accmailtext'                => '"$1" üçün parol göndərildi bu ünvana : $2.',
+'accmailtext'                => "[[User talk:$1|$1]] üçün təsadüfi yolla yaradılmış parol $2 ünvanına göndərildi.
+Hesabınıza daxil olduqdan sonra, parolunuzu ''[[Special:ChangePassword|parolu dəyiş]]'' səhifəsində dəyişdirə bilərsiniz.",
 'newarticle'                 => '(Yeni)',
 'newarticletext'             => "Mövcud olmayan səhifəyə olan keçidi izlədiniz. Aşağıdakı sahəyə məzmununu yazaraq bu səhifəni '''siz''' yarada bilərsiniz. (əlavə məlumat üçün [[{{MediaWiki:Helppage}}|kömək səhifəsinə]] baxın). Əgər bu səhifəyə səhvən gəlmisinizsə sadəcə olaraq brauzerin '''geri''' düyməsinə vurun.",
 'anontalkpagetext'           => "----<big>'''''Bu səhifə anonim istifadəçiyə aid müzakirə səhifəsidir. Bu mesaj IP ünvana göndərilmişdir və əgər bu mesajın sizə aid olmadığını düşünürsünüzsə [[Special:UserLogin|qeydiyyatdan keçin]]. Bu zaman sizə yalnız öz fəaliyyətlərinizə görə mesaj gələcəkdir.'''''</big>",
-'noarticletext'              => "Hal-hazırda bu səhifə boşdur. Başqa səhifələrdə [[Special:Search/{{PAGENAME}}|bu səhifənin adını axtara]] bilər və ya '''[{{fullurl:{{NAMESPACE}}:{{PAGENAME}}|action=edit}} səhifəni siz redaktə edəbilərsiniz]'''.",
+'noarticletext'              => 'Hal-hazırda bu səhifə boşdur. Başqa səhifələrdə eyni adda səhifəni [[Special:Search/{{PAGENAME}}| axtara]], əlaqəli qeydlərə 
+<span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} baxa],
+və ya səhifəni [{{fullurl:{{FULLPAGENAME}}|action=edit}} redaktə]</span> edə bilərsiniz.',
 'previewnote'                => "'''Bu yalnız sınaq göstərişidir; dəyişikliklər hal-hazırda qeyd edilmemişdir!'''",
 'session_fail_preview'       => "'''Üzr istəyirik! Sizin redaktəniz saxlanılmadı. Serverdə identifikasiyanızla bağlı problemlər yaranmışdır. Lütfən bir daha təkrar edin. Problem həll olunmazsa hesabınızdan çıxın və yenidən daxil olun.'''",
 'editing'                    => 'Redaktə $1',
@@ -429,14 +434,14 @@ Xahiş edirik düzgün formatlı ünvan daxil edin və ya bu sahəni boş qoyun.
 'yourdiff'                   => 'Fərqlər',
 'longpagewarning'            => "'''DIQQƏT:Bu səhifənin həcmi $1 kb-dır; Həcmi 32 kb yaxın və ya daha artıq olan səhifələr bəzi brouzerlərdə redaktə ilə bağlı problemlər yarada bilər. Mümkünsə səhifəni daha kiçik bölmələrə bölün.'''",
 'semiprotectedpagewarning'   => "'''Qeyd:''' Bu səhifə mühafizəli olduğu üçün yalnız qeydiyyatdan keçmiş istifadəçilər redaktə edə bilərlər.",
-'titleprotectedwarning'      => "'''DİQQƏT:  Bu səhifə mühafizəlidir, yalnız icazəsi olan istifadəçilər onu redaktə edə bilərlər.'''",
+'titleprotectedwarning'      => "'''DİQQƏT:  Bu səhifə mühafizəlidir, yalnız [[Special:ListGroupRights|icazəsi olan]] istifadəçilər onu redaktə edə bilərlər.'''",
 'templatesused'              => 'Bu səhifədə istifadə edilmiş şablonlar:',
 'template-protected'         => '(mühafizə)',
 'template-semiprotected'     => '(yarım-mühafizə)',
 'permissionserrorstext'      => 'Siz, bunu aşağıdakı {{PLURAL:$1|səbəbə|səbəblərə}} görə edə bilməzsiniz:',
-'recreate-moveddeleted-warn' => "'''Diqqət:Siz əvvəllər silinmiş səhifəni bərpa edirsiniz'''
+'recreate-moveddeleted-warn' => "'''Diqqət: Yaratmaq istədiyiniz səhifə əvvəllər silinmiş.'''
 
-İlk öncə bu səhifəni redaktə etməyin nə qədər lazımlı olduğunu müəyyənləşdirin
+Bu səhifəni redaktə etməyin nə qədər lazımlı olduğunu müəyyənləşdirin.
 Bu səhifə üçün silmə qeydləri aşağıda göstərilmişdir:",
 
 # History pages
@@ -478,7 +483,7 @@ Açıqlama: (hh) = hal-hazırkı versiya ilə olan fərqlər,
 'nextn'              => 'sonrakı {{PLURAL:$1|$1}}',
 'viewprevnext'       => 'Göstər ($1) ($2) ($3).',
 'searchhelp-url'     => 'Help:Mündəricət',
-'nonefound'          => "'''Qeyd''': Əksərən uğursuz axtarışlara indeksləşdirilməyən, geniş işlənən \"var\", \"və\" tipli sözlər və ya axtarışa bir sözdən artıq söz verildikdə (yalnız məzmununda bütün verilmiş sözlər olan səhifələr göstərilir) səbəb olur.",
+'nonefound'          => "'''Qeyd''': Əksər uğursuz axtarışlara səbəb indeksləşdirilməyən, geniş işlənən \"var\", \"və\" tipli sözlər və ya axtarışa bir sözdən artıq ifadələrin verilməsidir. Çalışıb axtardığınız ifadənin qarşısında ''all:'' (bütün) yazın. Bu halda axtarışınız istifadəçi səhifələrini, şablonları və s. da əhatə edəcək.",
 'powersearch'        => 'Axtar',
 'powersearch-legend' => 'Təkmil axtarış',
 
@@ -510,10 +515,10 @@ Açıqlama: (hh) = hal-hazırkı versiya ilə olan fərqlər,
 'recentchangesdays'     => 'Son dəyişiklərdə göstərilən günlərin miqdarı:',
 'recentchangescount'    => 'Son dəyişikliklərdə başlıq sayı:',
 'savedprefs'            => 'Tərcihlər qeyd edildi.',
-'timezonelegend'        => 'Saat qurşağı',
-'localtime'             => 'Məhəlli vaxt',
-'timezoneoffset'        => 'Vaxt fərqı¹',
-'servertime'            => 'Server vaxtı',
+'timezonelegend'        => 'Vaxt zonası:',
+'localtime'             => 'Yerli vaxt:',
+'timezoneoffset'        => 'Vaxt fərqı¹:',
+'servertime'            => 'Server vaxtı:',
 'guesstimezone'         => 'Brouzerdən götür',
 'timezoneregion-africa' => 'Afrika',
 'allowemail'            => 'Digər istifadəçilər mənə e-məktub göndərəbilir',
@@ -526,8 +531,11 @@ Açıqlama: (hh) = hal-hazırkı versiya ilə olan fərqlər,
 'yourlanguage'          => 'Dil:',
 'yournick'              => 'Ləqəb:',
 'email'                 => 'E-məktub',
-'prefs-help-realname'   => '* Həqiqi adınız (qeyri-məcburi): if you choose to provide it this will be used for giving you attribution for your work.',
-'prefs-help-email'      => '* E-məktub (qeyri-məcburi): Enables others to contact you through your user or user_talk page without the need of revealing your identity.',
+'prefs-help-realname'   => 'Həqiqi adınızı daxil etmək qeyri-məcburidir. 
+Bu seçimi etdiyiniz halda, adınız işinizə görə müəlliflik hüququnuzu tanımaq üçün istifadə ediləcək.',
+'prefs-help-email'      => 'E-məktub ünvanınızı daxil etmək qeyri-məcburidir. 
+Bu parolunuzu unutduğunuz halda sizə yeni parol göndərməyə imkan verir.
+Həmçinin kimliyinizi gostərmədən belə, başqalarının sizinlə istifadəçi və ya istifadəçi müzakirəsi səhifələriniz vasitəsi ilə əlaqə yaratmalarını seçə bilərsiniz.',
 
 # User rights
 'userrights'               => 'İstifadəçi hüququ idarəsi',
@@ -570,7 +578,7 @@ Açıqlama: (hh) = hal-hazırkı versiya ilə olan fərqlər,
 # Recent changes
 'recentchanges'     => 'Son dəyişikliklər',
 'recentchangestext' => "'''Ən son dəyişiklikləri bu səhifədən izləyin.'''",
-'rcnote'            => 'Aşağıdakı <strong>$1</strong> dəyişiklik son <strong>$2</strong> gün ərzində edilmişdir.',
+'rcnote'            => "Aşağıdakı {{PLURAL:$1|'''1''' dəyişiklik|'''$1''' dəyişiklik}} saat $5, $4 tarixinə qədər son {{PLURAL:$2|gün|'''$2''' gün}} ərzində edilmişdir.",
 'rclistfrom'        => '$1 vaxtından başlayaraq yeni dəyişiklikləri göstər',
 'rcshowhideminor'   => 'Kiçik redaktələri $1',
 'rcshowhidebots'    => 'Botları $1',
@@ -618,7 +626,7 @@ Açıqlama: (hh) = hal-hazırkı versiya ilə olan fərqlər,
 'uploadedimage'     => 'yükləndi "[[$1]]"',
 'sourcefilename'    => 'Fayl adı mənbələri',
 'destfilename'      => 'Fayl adı',
-'watchthisupload'   => 'Bu səhifəni izlə',
+'watchthisupload'   => 'Bu faylı izlə',
 'upload-wasdeleted' => "'''Diqqət:Siz əvvəl bu ad altında mövcud olmuş və silinmiş faylı yenidən yükləməkdəsiniz'''
 
 Əvvəlcədən bu faylı yenidən yükləməyin nə dərəcədə lazımlı olduğunu müəyyənləşdirməniz məsləhətdir.
@@ -636,13 +644,13 @@ Bu səhifə üçün silmə qeydləri aşağıda göstərilmişdir:",
 # File description page
 'file-anchor-link'          => 'Fayl',
 'filehist-user'             => 'Istifadəçi',
-'imagelinks'                => 'İstifadə edilən səhifələr',
+'imagelinks'                => 'Fayl keçidləri',
 'uploadnewversion-linktext' => 'Bu faylın yeni versiyasını yüklə',
 
 # File deletion
 'filedelete'                  => '$1 adlı faylı sil',
 'filedelete-legend'           => 'Faylı sil',
-'filedelete-intro'            => "'''[[Media:$1|$1]]''' faylını silirsiniz.",
+'filedelete-intro'            => "'''[[Media:$1|$1]]''' faylını və onunla bağlı bütün tarixçəni silmək ərəfəsindəsiniz.",
 'filedelete-comment'          => 'Qeyd:',
 'filedelete-success'          => "'''$1''' silinmişdir.",
 'filedelete-success-old'      => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\'-nin  $3 və $2 versiyaları silinmişdir.</span>',
@@ -683,7 +691,7 @@ Bu səhifə üçün silmə qeydləri aşağıda göstərilmişdir:",
 'doubleredirects' => 'İkiqat istiqamətləndirmələr',
 
 'brokenredirects'        => 'Xətalı istiqamətləndirmə',
-'brokenredirectstext'    => 'Bu istiqamətləndirmələr mövcud olmayan səhifəyə keçid verir.',
+'brokenredirectstext'    => 'Aşağıdakı istiqamətləndirmələr mövcud olmayan səhifələrə keçid verir:',
 'brokenredirects-edit'   => 'redaktə',
 'brokenredirects-delete' => 'sil',
 
@@ -692,8 +700,8 @@ Bu səhifə üçün silmə qeydləri aşağıda göstərilmişdir:",
 'fewestrevisions' => 'Az dəyişiklik edilmiş məqalələr',
 
 # Miscellaneous special pages
-'nbytes'                  => '$1 bayt',
-'nlinks'                  => '$1 keçid',
+'nbytes'                  => '$1 {{PLURAL:$1|bayt|bayt}}',
+'nlinks'                  => '$1 {{PLURAL:$1|keçid|keçidlər}}',
 'specialpage-empty'       => 'Bu səhifə boşdur.',
 'lonelypages'             => 'Yetim səhifələr',
 'uncategorizedpages'      => 'Kateqoriyasız səhifələr',
@@ -710,7 +718,7 @@ Bu səhifə üçün silmə qeydləri aşağıda göstərilmişdir:",
 'mostcategories'          => 'Kateqoriyası ən çox olan məqalələr',
 'mostimages'              => 'Ən çox istifadə edilmiş şəkillər',
 'mostrevisions'           => 'Ən çox nəzərdən keçirilmiş (versiyalı) məqalələr',
-'prefixindex'             => 'Prefiks indeks',
+'prefixindex'             => 'Prefiks indeksli bütün səhifələr',
 'shortpages'              => 'Qısa səhifələr',
 'longpages'               => 'Uzun səhifələr',
 'deadendpages'            => 'Keçid verməyən səhifələr',
@@ -735,8 +743,9 @@ Bu səhifə üçün silmə qeydləri aşağıda göstərilmişdir:",
 'specialloguserlabel'  => 'İstifadəçi:',
 'speciallogtitlelabel' => 'Başlıq:',
 'log'                  => 'Loglar',
-'all-logs-page'        => 'Bütün jurnallar',
-'alllogstext'          => "Qarşıya yükləmə, silmə, qoruma, bloklama ve sistem operatoru loqlarının birləşdirilmiş göstərməsi. Log növü, istifadəçi adı veya tə'sir edilən səhifəni seçib görüntünü kiçildə bilərsiniz.",
+'all-logs-page'        => 'Bütün ictimai qeydlər',
+'alllogstext'          => '{{SITENAME}} üçün bütün mövcud qeydlərin birgə göstərişi. 
+Qeyd növü, istifadəçi adı və ya təsir edilmiş səhifəni seçməklə daha spesifik ola bilərsiniz.',
 'logempty'             => 'Jurnalda uyğun qeyd tapılmadı.',
 
 # Special:AllPages
@@ -774,7 +783,7 @@ Fərdi hüquqlar haqqında əlavə məlumatı [[{{MediaWiki:Listgrouprights-help
 'emailpage'       => 'İstifadəçiyə e-məktub yolla',
 'defemailsubject' => '{{SITENAME}} e-məktub',
 'noemailtitle'    => 'E-məktub ünvanı yox',
-'noemailtext'     => 'Bu istifadəçi e-məktub ünvanını qeyd etməmişdir və ya digər istifadəçilərdən e-məktub almamaq opsiyasını seçmişdir',
+'noemailtext'     => 'Bu istifadəçi işlək e-məktub ünvanı qeyd etməmişdir.',
 'emailfrom'       => 'Kimdən:',
 'emailto'         => 'Kimə',
 'emailsubject'    => 'Mövzu:',
@@ -800,13 +809,13 @@ Səhifəni izləmə sıyahınızdan çıxarmaq üçün yan lovhədəki "izləmə
 'unwatch'              => 'İzləmə',
 'unwatchthispage'      => 'İzləmə',
 'watchnochange'        => 'Verilən vaxt ərzində heç bir izlədiyiniz səhifə redaktə edilməmişdir.',
-'watchlist-details'    => 'müzakirə səhifələrini çıxmaq şərtilə $1 səhifəni izləyirsiniz.',
+'watchlist-details'    => 'Müzakirə səhifələrini çıxmaq şərtilə {{PLURAL:$1|$1 səhifəni|$1 səhifəni}} izləyirsiniz.',
 'wlheader-enotif'      => '*  E-məktubla bildiriş aktivdir.',
 'wlheader-showupdated' => "* Son ziyarətinizdən sonra edilən dəyişikliklər '''qalın şriftlərlə''' göstərilmişdir.",
 'watchmethod-recent'   => 'yeni dəyişikliklər izlənilən səhifələr üçün yoxlanılır',
 'watchmethod-list'     => 'izlənilən səhifələr yeni dəyişikliklər üçün yoxlanılır',
-'watchlistcontains'    => 'İzləmə siyahınızda $1 səhifə var.',
-'wlnote'               => "Aşağıdakılar son '''$2''' saatdakı son $1 dəyişiklikdir.",
+'watchlistcontains'    => 'İzləmə siyahınızda $1 {{PLURAL:$1|səhifə|səhifə}} var.',
+'wlnote'               => "Aşağıdakı {{PLURAL:$1|'''$1''' dəyişiklik|'''$1''' dəyişiklik}} son {{PLURAL:$2|saatda|'''$2''' saatda}} edilmişdir.",
 'wlshowlast'           => 'Bunları göstər: son $1 saatı $2 günü $3',
 
 # Displayed when you click the "watch" button and it is in the process of watching
@@ -822,7 +831,7 @@ Səhifəni izləmə sıyahınızdan çıxarmaq üçün yan lovhədəki "izləmə
 'deletepage'             => 'Səhifəni sil',
 'confirm'                => 'Təsdiq et',
 'excontent'              => "Köhnə məzmun: '$1'",
-'excontentauthor'        => "Tərkib: '$1' (və tarixçədə fəaliyyəti qeyd edilən yeganə istifadəçi '[[Xüsusi:Contributions/$2|$2]]')",
+'excontentauthor'        => "tərkib: '$1' (və '[[Special:Contributions/$2|$2]]' tarixçədə fəaliyyəti qeyd edilən yeganə istifadəçidir)",
 'exbeforeblank'          => "Silinmədən əvvəlki məzmun: '$1'",
 'exblank'                => 'səhifə boş',
 'delete-confirm'         => 'Silinən səhifə: "$1"',
@@ -847,7 +856,7 @@ Səhifəni izləmə sıyahınızdan çıxarmaq üçün yan lovhədəki "izləmə
 'rollback'         => 'Əvvəlki versiya',
 'rollbacklink'     => 'əvvəlki halına qaytar',
 'cantrollback'     => 'Redaktə geri qaytarıla bilməz; axırıncı redaktə səhifədə olan yeganə fəaliyyətdir.',
-'revertpage'       => '[[User:$2|$2]] tərəfindən edilmiş redaktələr geri qaytarılaraq [[User:$1|$1]] tərəfindən yaradılan sonuncu versiya bərpa olundu.',
+'revertpage'       => '[[Special:Contributions/$2|$2]] ([[User talk:$2|Müzakirə]]) tərəfindən edilmiş dəyişikliklər [[User:$1|$1]] tərəfindən edilmiş dəyişikliklərə qaytarıldı.',
 'rollback-success' => '$1 tərəfindən edilmiş redaktələr geri qaytarıldı; $2 tərəfindən yaradılmış son versiya bərpa olundu.',
 
 # Protect
@@ -870,12 +879,12 @@ Səhifəni izləmə sıyahınızdan çıxarmaq üçün yan lovhədəki "izləmə
 'protect-locked-access'       => "Sizin hesabınızın mühafizə səviyyəsini dəyişməyə ixtiyarı yoxdur.
 '''$1''' səhifəsində hal-hazırda edə biləcəyiniz əməliyyatlar bunlardır:",
 'protect-cascadeon'           => 'Bu səhifə mühafizəlidir, çünki bu səhifə {{PLURAL:$1|başqa bir|başqa bir}} səhifədən kaskad mühafizə edilmişdir. Siz bu səhifənin mühafizə səviyyəsini dəyişdirə bilərsiniz, bu kaskad mühafizəyə təsir etməyəcək.',
-'protect-level-autoconfirmed' => 'Anonim istifadəçiləri blokla',
+'protect-level-autoconfirmed' => 'Yeni və anonim istifadəçiləri blok et',
 'protect-level-sysop'         => 'Yalnız idarəçilər',
 'protect-summary-cascade'     => 'kaskad mühafizə',
 'protect-expiring'            => '$1 (UTC)- tarixində vaxtı bitir',
 'protect-cascade'             => 'Kaskad mühafizəsi - bu səhifəyə daxil bütün səhifələri qoru',
-'protect-expiry-options'      => '1 saat:1 hour,1 day:1 day,1 həftə:1 week,2 weeks:2 weeks,1 ay:1 month,3 months:3 months,6 months:6 months,1 year:1 year,qeyri-müəyyən:infinite',
+'protect-expiry-options'      => '1 saat:1 hour,1 gün:1 day,1 həftə:1 week,2 həftə:2 weeks,1 ay:1 month,3 ay:3 months,6 ay:6 months,1 il:1 year,sonsuz:infinite',
 'pagesize'                    => '(baytlar)',
 
 # Restrictions (nouns)
@@ -940,7 +949,7 @@ Məqalələrin bərpa edilməsi və silinməsi haqqında son dəyişiklikləri n
 'ipbcreateaccount'            => 'Hesab açmanı məhdudlaşdır',
 'ipbsubmit'                   => 'Bu istifadəçini blokla',
 'ipbother'                    => 'Başqa vaxt',
-'ipboptions'                  => '15 dəqiqə:15 minutes,1 saat:1 hour,3 saat:3 hours,24 saat:24 hours,48 saat:48 hours,1 həftə:1 week,1 ay:1 month,qeyri-müəyyən:indefinite',
+'ipboptions'                  => '2 saat:2 hours,1 gün:1 day,3 gün:3 days,1 həftə:1 week,2 həftə:2 weeks,1 ay:1 month,3 ay:3 months,6 ay:6 months,1 il:1 year,sonsuz:infinite',
 'ipbotheroption'              => 'başqa',
 'ipbotherreason'              => 'Başqa/əlavə səbəb:',
 'ipbwatchuser'                => 'Bu istifadəçinin müzakirə və istifadəçi səhifəsini izlə',
@@ -1001,7 +1010,7 @@ Bu yerdəyişmə tanınmış səhifələr üçün əsaslı və gözlənilməz ol
 'allmessagesname'    => 'Ad',
 'allmessagesdefault' => 'İlkin mətn',
 'allmessagescurrent' => 'İndiki mətn',
-'allmessagestext'    => "Sistem mə'lumatların siyahısı MediaWiki: namespace.",
+'allmessagestext'    => 'Bu MediaWiki-də olan sistem mesajlarının siyahısıdır. Əgər MediaWiki-ni lokallaşdırmaq işində kömək etmək isəyirsənsə, lütfən [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] və [http://translatewiki.net translatewiki.net]-ə baş çək.',
 
 # Thumbnails
 'djvu_page_error' => 'DjVu səhifəsi əlçatmazdır',
@@ -1011,19 +1020,19 @@ Bu yerdəyişmə tanınmış səhifələr üçün əsaslı və gözlənilməz ol
 'importnotext' => 'Boş və ya mətn yoxdur',
 
 # Tooltip help for the actions
-'tooltip-pt-userpage'           => 'Öz Səhifəm',
+'tooltip-pt-userpage'           => 'İstifadəçi səhifəniz',
 'tooltip-pt-anonuserpage'       => 'The user page for the ip you',
 'tooltip-pt-mytalk'             => 'Danışıq səhifəm',
 'tooltip-pt-anontalk'           => 'Bu IP ünvanindan redaktə olunmuş danışıqlar',
 'tooltip-pt-preferences'        => 'Mənim Tərcihlərim',
 'tooltip-pt-watchlist'          => 'İzləməyə aldığım məqalələr.',
-'tooltip-pt-mycontris'          => 'Mən redakə etdiğim məqalələr siyahəsi',
+'tooltip-pt-mycontris'          => 'Etdiyim dəyişikliklərin siyahısı',
 'tooltip-pt-login'              => 'Hesab açmaniz tövsiə olur, ama icbar yoxdu .',
 'tooltip-pt-anonlogin'          => 'Hesab açib girişiniz tövsiyə olur, ama məndatlı dəyil.',
 'tooltip-pt-logout'             => 'Çixiş',
 'tooltip-ca-talk'               => 'Məqalə həqqində müzakirə edib, nəzərivi bildir',
 'tooltip-ca-edit'               => 'Bu səhifəni redaktə edə bilərsiniz. Lütfən əvvəlcə sınaq gostərişi edin.',
-'tooltip-ca-addsection'         => 'Bu müzakirə səhifəsində iştirak edin.',
+'tooltip-ca-addsection'         => 'Yeni bölmə yarat',
 'tooltip-ca-viewsource'         => 'Bu səhifə qorunma altındadır. Mənbəsinə baxa bilərsiniz.',
 'tooltip-ca-history'            => 'Bu səhifənin geçmiş nüsxələri.',
 'tooltip-ca-protect'            => 'Bu səhifəni qoru',
@@ -1082,11 +1091,11 @@ Bu yerdəyişmə tanınmış səhifələr üçün əsaslı və gözlənilməz ol
 $1',
 
 # Browsing diffs
-'previousdiff' => '← Əvvəlki fərq',
-'nextdiff'     => 'Sonrakı fərq →',
+'previousdiff' => '← Əvvəlki redaktə',
+'nextdiff'     => 'Sonrakı redaktə →',
 
 # Media information
-'imagemaxsize'   => 'Limit images on image description pages to:',
+'imagemaxsize'   => "Şəkilin maximal tutumu:<br />''(faylın təsviri səhifələri üçün)''",
 'thumbsize'      => 'Kiçik ölçü:',
 'file-info-size' => '($1 × $2 piksel, fayl həcmi: $3, MIME növü: $4)',
 'file-nohires'   => '<small>Daha dəqiq versiyası yoxdur.</small>',
@@ -1130,7 +1139,7 @@ $1',
 'trackbackremove' => '([$1 Sil])',
 
 # Delete conflict
-'deletedwhileediting' => 'Bu səhifə siz redaktə etməyə başladıqdan sonra silinmişdir!',
+'deletedwhileediting' => "'''Diqqət''': Bu səhifə siz redaktə etməyə başladıqdan sonra silinmişdir!",
 
 # action=purge
 'confirm-purge-top' => 'Bu səhifə keşdən (cache) silinsin?',
@@ -1148,10 +1157,10 @@ $1',
 'table_pager_empty'        => 'Nəticə yoxdur',
 
 # Auto-summaries
-'autosumm-blank'   => 'Səhifənin bütün məzmununun silinməsi',
+'autosumm-blank'   => 'Səhifənin məzmunu silindi',
 'autosumm-replace' => "Səhifənin məzmunu '$1' yazısı ilə dəyişdirildi",
 'autoredircomment' => '[[$1]] səhifəsinə istiqamətləndirilir',
-'autosumm-new'     => 'Yeni səhifə: $1',
+'autosumm-new'     => "Səhifəni '$1' ilə yarat",
 
 # Live preview
 'livepreview-loading' => 'Yüklənir…',
