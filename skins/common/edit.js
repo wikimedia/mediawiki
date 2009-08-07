@@ -146,10 +146,11 @@ function scrollEditBox() {
 	var editBox = document.getElementById( 'wpTextbox1' );
 	var scrollTop = document.getElementById( 'wpScrolltop' );
 	var editForm = document.getElementById( 'editform' );
-	if( editBox && scrollTop ) {
+	if( editForm && editBox && scrollTop ) {
 		if( scrollTop.value )
 			editBox.scrollTop = scrollTop.value;
 		addHandler( editForm, 'submit', function() {
+			alert(1);
 			document.getElementById( 'wpScrolltop' ).value = document.getElementById( 'wpTextbox1' ).scrollTop;
 		} );
 	}
