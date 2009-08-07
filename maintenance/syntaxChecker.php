@@ -25,7 +25,7 @@ require_once( dirname( __FILE__ ) . '/Maintenance.php' );
 class SyntaxChecker extends Maintenance {
 
 	// List of files we're going to check
-	private $mFiles = array();
+	private $mFiles, $mFailures = array();
 
 	public function __construct() {
 		parent::__construct();
@@ -79,16 +79,15 @@ class SyntaxChecker extends Maintenance {
 	 * Check the files for syntax errors
 	 */
 	private function checkSyntax() {
-		$count = $bad = 0;
 		foreach( $this->mFiles as $f ) {
-			$count++;
 			$res = exec( 'php -l ' . $f ); 
 			if( strpos( $res, 'No syntax errors detected' ) === false ) {
-				$bad++;
+				$this->mFailures[] = $f;
 				$this->error( $res . "\n" );
 			}
 		}
-		$this->output( "$count files checked, $bad failures\n" );
+		$this->output( count($this->mFiles) . " files checked, " 
+			. count($this->mFailures) . " failures\n" );
 	}
 }
 
