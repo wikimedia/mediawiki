@@ -899,13 +899,13 @@ $wgDocType			= '-//W3C//DTD XHTML 1.0 Transitional//EN';
 $wgDTD				= 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd';
 $wgXhtmlDefaultNamespace	= 'http://www.w3.org/1999/xhtml';
 
- /**
-  * Should we output an HTML 5 doctype?  This mode is still experimental, but
-  * all indications are that it should be usable, so it's enabled by default.
-  * If all goes well, it will be removed and become always true before the 1.16
-  * release.
-  */
- $wgHtml5 = true;
+/**
+ * Should we output an HTML 5 doctype?  This mode is still experimental, but
+ * all indications are that it should be usable, so it's enabled by default.
+ * If all goes well, it will be removed and become always true before the 1.16
+ * release.
+ */
+$wgHtml5 = true;
 
 
 /**
