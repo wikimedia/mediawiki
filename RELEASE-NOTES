@@ -393,6 +393,7 @@ this. Was used when mwEmbed was going to be an extension.
 * (bug 16084) Default memory limit has be increased to 50M, see $wgMemoryLimit
 * (bug 17864/19519) Added proper input normalization in Special:UserRights
 * (bug 20086) Add Hook to add extra statistics at the end of Special:Statistics
+* (bug 19289) importDump.php can now handle bzip2 and 7zip
 
 == API changes in 1.16 ==
 
