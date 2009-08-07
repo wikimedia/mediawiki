@@ -150,7 +150,6 @@ function scrollEditBox() {
 		if( scrollTop.value )
 			editBox.scrollTop = scrollTop.value;
 		addHandler( editForm, 'submit', function() {
-			alert(1);
 			document.getElementById( 'wpScrolltop' ).value = document.getElementById( 'wpTextbox1' ).scrollTop;
 		} );
 	}
