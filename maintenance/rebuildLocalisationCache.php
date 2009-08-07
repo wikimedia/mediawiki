@@ -66,7 +66,9 @@ class RebuildLocalisationCache extends Maintenance {
 			$pid = ( $threads > 1 ) ? pcntl_fork() : -1;
 
 			if ( $pid === 0 ) {
-				// Child
+				// Child, reseed because there is no bug in PHP:
+				// http://bugs.php.net/bug.php?id=42465
+				mt_srand(getmypid());
 				$this->doRebuild( $codes, $numRebuilt, $lc, $force );
 				exit();
 			} elseif ($pid === -1) {
