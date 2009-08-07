@@ -180,6 +180,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Mittere mihi litteras electronicas etiam pro recensionibus minoribus',
 'tog-enotifrevealaddr'        => 'Monstrare inscriptio mea electronica in nuntiis notificantibus',
 'tog-shownumberswatching'     => 'Numerum usorum custodientium monstrare',
+'tog-oldsig'                  => 'Praevisum subscriptionis ad tempus adhibitae:',
 'tog-fancysig'                => 'Subscriptio vicitext (sine nexu automatico)',
 'tog-externaleditor'          => 'Utere editore externo semper',
 'tog-externaldiff'            => 'Utere dissimilitudine externa semper',
@@ -1003,7 +1004,7 @@ Try prefixing your query with ''all:'' to search all content (including talk pag
 'yourrealname'              => 'Nomen tuum verum:',
 'yourlanguage'              => 'Lingua tua:',
 'yourvariant'               => 'Differentia:',
-'yournick'                  => 'Subscriptio:',
+'yournick'                  => 'Subscriptio nova:',
 'badsig'                    => 'Subscriptio cruda non est valida; scrutina affixa HTML.',
 'badsiglength'              => 'Subscriptio tua nimis longa est.
 {{PLURAL:$1|Una littera est|$1 litterae sunt}} longitudo maxima.',

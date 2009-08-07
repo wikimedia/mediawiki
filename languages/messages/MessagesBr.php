@@ -120,6 +120,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Kas ur postel din, ha pa vije evit kemenn kemmoù dister',
 'tog-enotifrevealaddr'        => "Lakaat ma chomlec'h postel war wel er posteloù kemenn-diwall",
 'tog-shownumberswatching'     => 'Diskouez an niver a lennerien',
+'tog-oldsig'                  => "Rakwelet ar sinadurioù zo anezho c'hoazh :",
 'tog-fancysig'                => 'Ober gant ar sinadur evel pa vefe wikitestenn (hep liamm emgefre)',
 'tog-externaleditor'          => "Ober gant ur skridaozer diavaez dre ziouer (evit arbennigourien hepken rak ezhomm zo arventenniñ hoc'h urzhiataer evit se)",
 'tog-externaldiff'            => "Ober gant ur c'heñverier diavaez dre ziouer (evit arbennigourien hepken rak ezhomm zo arventenniñ hoc'h urzhiataer evit se)",
@@ -141,6 +142,13 @@ $messages = array(
 'underline-always'  => 'Atav',
 'underline-never'   => 'Morse',
 'underline-default' => 'Diouzh ar merdeer',
+
+# Font style option in Special:Preferences
+'editfont-style'     => 'Stil font an takad skridaozañ :',
+'editfont-default'   => 'Diouzh ar merdeer',
+'editfont-monospace' => 'Font unesaouennet',
+'editfont-sansserif' => 'Font hep-serif',
+'editfont-serif'     => 'Font serif',
 
 # Dates
 'sunday'        => 'Sul',
@@ -242,7 +250,31 @@ $messages = array(
 'faqpage'        => 'Project:FAG',
 
 # Vector skin
-'vector-view-view' => 'Lenn',
+'vector-action-addsection'   => 'Rannbennad nevez',
+'vector-action-delete'       => 'Diverkañ',
+'vector-action-move'         => 'Adenvel',
+'vector-action-protect'      => 'Gwareziñ',
+'vector-action-undelete'     => 'Diziverkañ',
+'vector-action-unprotect'    => 'Diwareziñ',
+'vector-namespace-category'  => 'Rummad',
+'vector-namespace-help'      => 'Skoazell',
+'vector-namespace-image'     => 'Restr',
+'vector-namespace-main'      => 'Pennad',
+'vector-namespace-media'     => 'Pajenn vedia',
+'vector-namespace-mediawiki' => 'Kemennadenn',
+'vector-namespace-project'   => 'Pajenn ar raktres',
+'vector-namespace-special'   => 'Pajenn dibar',
+'vector-namespace-talk'      => 'Kaozeal',
+'vector-namespace-template'  => 'Patrom',
+'vector-namespace-user'      => 'Pajenn implijer',
+'vector-view-create'         => 'Krouiñ',
+'vector-view-edit'           => 'Kemmañ',
+'vector-view-history'        => 'Sellet ouzh an istor',
+'vector-view-view'           => 'Lenn',
+'vector-view-viewsource'     => 'Sellet ouzh tarzh an destenn',
+'actions'                    => 'Oberoù',
+'namespaces'                 => 'Esaouennoù anv',
+'variants'                   => 'Adstummoù',
 
 # Metadata in edit box
 'metadata_help' => 'Metaroadennoù :',
@@ -301,6 +333,11 @@ $messages = array(
 'jumpto'            => 'Mont da :',
 'jumptonavigation'  => 'merdeiñ',
 'jumptosearch'      => 'klask',
+'view-pool-error'   => 'Ho tigarez, soulgarget eo ar servijerioù evit poent. 
+Re a implijerien a glask mont war ar bajenn-mañ war un dro.
+Gortozit ur pennadig a-raok klask mont war ar bjann-mañ en-dro.
+
+$1',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Diwar-benn {{SITENAME}}',
@@ -1271,6 +1308,12 @@ Gallout a rit lezel tud all da vont e darempred ganeoc'h dre ho pajennoù implij
 'recentchanges-legend'              => "Dibarzhioù ar c'hemmoù diwezhañ",
 'recentchangestext'                 => "Dre ar bajenn-mañ e c'hallit heuliañ ar c'hemmoù diwezhañ bet degaset d'ar wiki.",
 'recentchanges-feed-description'    => "Heuilhit ar c'hemmoù diwezhañ er wiki el lusk-mañ.",
+'recentchanges-label-legend'        => "Alc'hwez : $1.",
+'recentchanges-legend-newpage'      => '$1 - pajenn nevez',
+'recentchanges-legend-minor'        => '$1 - kemm dister',
+'recentchanges-label-minor'         => "Ur c'hemm dister eo hemañ",
+'recentchanges-legend-bot'          => '$1 - kemm degaset gant ur robot',
+'recentchanges-legend-unpatrolled'  => "$1 - kemm n'eo ket bet gwiriet",
 'rcnote'                            => "Setu aze an {{PLURAL:$1|'''1''' change|'''$1''' kemm diwezhañ}} bet c'hoarvezet e-pad an {{PLURAL:$2|deiz|'''$2''' deiz}} diwezhañ, savet d'an $4 da $5.",
 'rcnotefrom'                        => "Setu aze roll ar c'hemmoù c'hoarvezet abaoe an '''$2''' ('''$1''' d'ar muiañ).",
 'rclistfrom'                        => "Diskouez ar c'hemmoù diwezhañ abaoe an $1.",
@@ -1416,6 +1459,7 @@ Kit e darempred gant [[Special:ListUsers/sysop|unan eus merourien ar reizhiad]].
 'upload-misc-error-text'  => "Ur fazi dianav zo bet e-ser kargañ. 
 Gwiriit eo reizh an URL hag e c'hall bezañ tizhet ha klaskit en-dro. 
 Ma talc'h ar gudenn, kit e darempred gant [[Special:ListUsers/sysop|merourien ar reizhiad]].",
+'upload-unknown-size'     => 'Ment dianav',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => "N'eus ket bet gallet tizhout an URL",
@@ -1539,6 +1583,7 @@ Diskouezet eo deskrivadur he [$2 fajenn zeskrivañ] amañ dindan.',
 'statistics-header-edits'      => "Stadegoù ar c'hemmoù",
 'statistics-header-views'      => 'Stadegoù ar selladennoù',
 'statistics-header-users'      => 'Stadegoù implijer',
+'statistics-header-hooks'      => 'Stadegoù all',
 'statistics-articles'          => "Pajennoù endalc'had",
 'statistics-pages'             => 'Pajennoù',
 'statistics-pages-desc'        => 'Holl bajennoù ar wiki, en o zouez ar pajennoù kaozeal, an adkasoù, h.a.',
@@ -1560,7 +1605,9 @@ Padal e tlefent kas war-eeun d'an danvez anezho.<br />
 Sellet e vez ouzh ur bajenn evel ouzh ur bajenn digejañ ma ra gant ur patrom liammet ouzh [[MediaWiki:Disambiguationspage]]",
 
 'doubleredirects'            => 'Adkasoù doubl',
-'doubleredirectstext'        => '<b>Diwallit:</b> Gallout a ra bezañ "pozitivoù faos er roll-mañ. D\'ar mare-se eo moarvat peogwir ez eus testenn war bajenn an #REDIRECT kentañ ivez.<br />War bep linenn emañ al liammoù war-du pajenn an adkas kentañ hag en eil hag ivez linenn gentañ pajenn an eil adkas zo sañset reiñ ar pal "gwirion". War-du ar pal-se e tlefe liammañ an #REDIRECT kentañ.',
+'doubleredirectstext'        => 'Rollañ a ra ar bajenn-mañ ar pajennoù a adkas da bajennoù adkas all.
+War bep linenn ez eus liammoù war-du pajennoù an adkas kentañ hag en eil adkas, hag ivez war-du pajenn-dal an eil adkas zo sañset bezañ ar pal "gwirion" a zlefe an adkas kentañ kas di.
+Diskoulmet eo bet an enmontoù <s>barrennet</s>.',
 'double-redirect-fixed-move' => 'Adanvet eo bet [[$1]], adkaset eo war-du [[$2]] bremañ',
 'double-redirect-fixer'      => 'Reizher adkasoù',
 
@@ -1650,7 +1697,7 @@ $1 {{PLURAL:$1|rummad|rummad}}',
 'specialloguserlabel'  => 'Implijer :',
 'speciallogtitlelabel' => 'Titl :',
 'log'                  => 'Marilhoù',
-'all-logs-page'        => 'An holl varilhoù',
+'all-logs-page'        => 'An holl varilhoù foran',
 'alllogstext'          => "Diskwel a-gevret an holl varilhoù hegerz war {{SITENAME}}. 
 Gallout a rit strishaat ar mod diskwel en ur zibab ar marilh, an anv implijer (diwallit ouzh ar pennlizherennoù) pe ar bajenn a fell deoc'h (memes tra).",
 'logempty'             => 'Goullo eo istor ar bajenn-mañ.',
@@ -1683,8 +1730,9 @@ Gwelet ivez ar [[Special:WantedCategories|rummadoù a vank]].',
 'special-categories-sort-abc'   => 'urzh al lizherenneg',
 
 # Special:DeletedContributions
-'deletedcontributions'       => 'Degasadennoù diverket un implijer',
-'deletedcontributions-title' => 'Degasadennoù diverket un implijer',
+'deletedcontributions'             => 'Degasadennoù diverket un implijer',
+'deletedcontributions-title'       => 'Degasadennoù diverket un implijer',
+'sp-deletedcontributions-contribs' => 'Degasadennoù',
 
 # Special:LinkSearch
 'linksearch'       => 'Liammoù diavaez',
@@ -1700,6 +1748,13 @@ Protokoloù skoret : <tt>$1</tt>',
 'listusersfrom'      => 'Diskouez anv an implijerien adal :',
 'listusers-submit'   => 'Diskouez',
 'listusers-noresult' => "N'eus bet kavet implijer ebet.",
+'listusers-blocked'  => '(stanket)',
+
+# Special:ActiveUsers
+'activeusers'          => 'Roll an implijerien oberiant',
+'activeusers-count'    => '$1 {{PLURAL:$1|degasadenn|degasadenn}} nevez',
+'activeusers-from'     => 'Diskouez an implijerien adal :',
+'activeusers-noresult' => "N'eus bet kavet implijer ebet.",
 
 # Special:Log/newusers
 'newuserlogpage'              => "Marilh ar c'hontoù krouet",
@@ -1713,6 +1768,8 @@ Protokoloù skoret : <tt>$1</tt>',
 'listgrouprights'                      => 'Gwirioù ar strolladoù implijer',
 'listgrouprights-summary'              => 'Da-heul ez eus ur roll eus ar strolladoù implijerien termenet war ar wiki-mañ, gant ar gwirioù moned stag outo.
 Gallout a ra bezañ [[{{MediaWiki:Listgrouprights-helppage}}|titouroù ouzhpenn]] diwar-benn ar gwirioù hiniennel.',
+'listgrouprights-key'                  => '* <span class="listgrouprights-granted">Gwirioù grataet</span>
+* <span class="listgrouprights-revoked">Gwirioù lamet</span>',
 'listgrouprights-group'                => 'Strollad',
 'listgrouprights-rights'               => 'Gwirioù',
 'listgrouprights-helppage'             => 'Help:Gwirioù ar strolladoù',
@@ -2250,13 +2307,21 @@ Mard eo se e c'hallit ivez implijout ul liamm a seurt gant [[{{#Special:Export}}
 'export-pagelinks'  => 'Lakaat ar pajennoù liammet e-barzh betek un donder a :',
 
 # Namespace 8 related
-'allmessages'               => 'Roll kemennoù ar reizhiad',
-'allmessagesname'           => 'Anv',
-'allmessagesdefault'        => 'Testenn dre ziouer',
-'allmessagescurrent'        => 'Testenn zo bremañ',
-'allmessagestext'           => "Setu roll ar c'hemennadennoù reizhiad a c'haller kaout en esaouennoù anv MediaWiki.
+'allmessages'                   => 'Roll kemennoù ar reizhiad',
+'allmessagesname'               => 'Anv',
+'allmessagesdefault'            => 'Testenn dre ziouer',
+'allmessagescurrent'            => 'Testenn zo bremañ',
+'allmessagestext'               => "Setu roll ar c'hemennadennoù reizhiad a c'haller kaout en esaouennoù anv MediaWiki.
 Kit da welet [http://www.mediawiki.org/wiki/Localisation Lec'heladur MediaWiki] ha [http://translatewiki.net translatewiki.net] mar fell deoc'h kemer perzh e lec'heladur boutin MediaWiki.",
-'allmessagesnotsupportedDB' => "N'haller ket kaout {{ns:special}}:AllMessages rak diweredekaet eo bet wgUseDatabaseMessages.",
+'allmessagesnotsupportedDB'     => "N'haller ket kaout {{ns:special}}:AllMessages rak diweredekaet eo bet wgUseDatabaseMessages.",
+'allmessages-filter-legend'     => 'Sil',
+'allmessages-filter'            => "Silañ dre stad ar c'hemmoù",
+'allmessages-filter-unmodified' => 'Digemm',
+'allmessages-filter-all'        => 'An holl',
+'allmessages-filter-modified'   => 'Kemmet',
+'allmessages-prefix'            => 'Silañ dre rakger',
+'allmessages-language'          => 'Yezh :',
+'allmessages-filter-submit'     => 'Mont',
 
 # Thumbnails
 'thumbnail-more'           => 'Brasaat',
@@ -2497,9 +2562,11 @@ $1',
 'svg-long-desc'        => '(restr SVG file, pizhder $1 × $2 piksel, ment ar restr : $3)',
 'show-big-image'       => 'Pizhder leun',
 'show-big-image-thumb' => '<small>Ment ar rakweled-mañ : $1 × $2 piksel</small>',
+'file-info-gif-looped' => "e kelc'h",
+'file-info-gif-frames' => '$1 {{PLURAL:$1|skeudenn|skeudenn}}',
 
 # Special:NewFiles
-'newimages'             => 'Roll ar skeudennoù nevez',
+'newimages'             => 'Roll ar restroù nevez',
 'imagelisttext'         => "Setu aze ur roll '''$1''' {{PLURAL:$1|file|files}} rummet $2.",
 'newimages-summary'     => 'Diskouez a ra ar bajenn zibar-mañ roll ar restroù diwezhañ bet enporzhiet.',
 'newimages-legend'      => 'Sil',
@@ -3047,6 +3114,7 @@ Merkañ anv ar restr hep ar rakger "{{ns:file}}:"',
 'htmlform-invalid-input'       => "Kudennoù zo gant talvoudennoù zo merket ganeoc'h.",
 'htmlform-select-badoption'    => "Direizh eo an dalvoudenn skrivet ganeoc'h.",
 'htmlform-int-invalid'         => "N'eus ket un niver anterin eus an dalvoudenn skrivet ganeoc'h.",
+'htmlform-float-invalid'       => "An dalvoudenn bet lakaet ganeoc'h n'eo ket un niver.",
 'htmlform-int-toolow'          => "Skrivet hoc'h eus un dalvoudenn zo dindan an niver bihanañ aotreet a $1",
 'htmlform-int-toohigh'         => "Skrivet hoc'h eus un dalvoudenn a ya dreist d'an niver uhelañ aotreet a $1",
 'htmlform-submit'              => 'Kas',

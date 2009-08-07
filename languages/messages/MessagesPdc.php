@@ -125,6 +125,7 @@ $messages = array(
 'history_short'    => 'Gschicht',
 'info_short'       => 'Information',
 'printableversion' => 'Version zum Drucke',
+'permalink'        => 'Permanent Gleecher',
 'print'            => 'Drucke',
 'edit'             => 'Ennere/Tscheensche',
 'editthispage'     => 'Des Blatt ennere',
@@ -214,8 +215,9 @@ Guuck aach [[Special:Version|Versionsblatt]]',
 'newpassword' => 'Neies Paesswatt:',
 
 # Edit page toolbar
-'link_tip'    => 'Gleecher',
-'extlink_tip' => 'Gewebbgleecher (acht uff http://)',
+'link_tip'       => 'Gleecher',
+'extlink_sample' => 'http://www.example.com Gleecher-Text',
+'extlink_tip'    => 'Gewebbgleecher (acht uff http://)',
 
 # Edit pages
 'minoredit'       => 'Nur gleene Enneringe gemacht',
@@ -361,6 +363,7 @@ Guuck aach [[Special:Version|Versionsblatt]]',
 'recentchangeslinked-page' => 'Blatt:',
 
 # Upload
+'upload'          => 'Ufflade',
 'watchthisupload' => 'Watsch des Blatt',
 
 # Special:ListFiles
@@ -501,6 +504,7 @@ Guuck aach [[Special:Version|Versionsblatt]]',
 'sp-contributions-submit'   => 'Guuck uff',
 
 # What links here
+'whatlinkshere'           => 'Was doher zeigt',
 'whatlinkshere-page'      => 'Blatt:',
 'whatlinkshere-prev'      => '{{PLURAL:$1|letscht|letscht $1}}',
 'whatlinkshere-next'      => '{{PLURAL:$1|neegscht|neegscht $1}}',
@@ -535,16 +539,18 @@ Guuck aach [[Special:Version|Versionsblatt]]',
 'thumbnail-more' => 'greeser mache',
 
 # Tooltip help for the actions
-'tooltip-pt-userpage'     => 'Dei Yuuser-Blatt',
-'tooltip-pt-mytalk'       => 'Dei Gschwetz-Blatt',
-'tooltip-pt-mycontris'    => 'Lischt vun dei Ardickele',
-'tooltip-pt-logout'       => 'Geh naus',
-'tooltip-ca-delete'       => 'Des Blatt lösche',
-'tooltip-ca-move'         => 'Des Blatt ziehe',
-'tooltip-search'          => 'Guuck uff {{SITENAME}}',
-'tooltip-p-logo'          => 'Haaptblatt',
-'tooltip-t-contributions' => 'Lischt von Ardickele vun dem Yuuser zeige',
-'tooltip-t-specialpages'  => 'Lischt vun alle besunnere Bledder',
+'tooltip-pt-userpage'      => 'Dei Yuuser-Blatt',
+'tooltip-pt-mytalk'        => 'Dei Gschwetz-Blatt',
+'tooltip-pt-mycontris'     => 'Lischt vun dei Ardickele',
+'tooltip-pt-logout'        => 'Geh naus',
+'tooltip-ca-delete'        => 'Des Blatt lösche',
+'tooltip-ca-move'          => 'Des Blatt ziehe',
+'tooltip-search'           => 'Guuck uff {{SITENAME}}',
+'tooltip-p-logo'           => 'Haaptblatt',
+'tooltip-n-mainpage'       => 'Zum Haaptblatt geh',
+'tooltip-t-contributions'  => 'Lischt von Ardickele vun dem Yuuser zeige',
+'tooltip-t-specialpages'   => 'Lischt vun alle besunnere Bledder',
+'tooltip-ca-nstab-special' => 'Sell iss en besunneres Blatt. Du kannscht es Blatt net ennere.',
 
 # Attribution
 'siteuser' => '{{SITENAME}}-Yuuser $1',
@@ -552,6 +558,7 @@ Guuck aach [[Special:Version|Versionsblatt]]',
 
 # Media information
 'widthheightpage' => '$1×$2, {{PLURAL:$3|1 Blatt|$3 Bledder}}',
+'file-info-size'  => '($1 × $2 Pixel, Daadegrees: $3, MIME-Typ: $4)',
 
 # Special:NewFiles
 'showhidebots' => '(Bots $1)',

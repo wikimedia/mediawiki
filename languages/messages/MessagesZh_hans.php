@@ -1,5 +1,5 @@
 <?php
-/** Simplified Chinese (‪中文(简化字)‬)
+/** Simplified Chinese (‪中文(简体)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -427,7 +427,7 @@ $messages = array(
 'viewhelppage'      => '查看帮助页面',
 'categorypage'      => '查看分类页面',
 'viewtalkpage'      => '查看讨论页面',
-'otherlanguages'    => '其它语言',
+'otherlanguages'    => '其他语言',
 'redirectedfrom'    => '（重定向自$1）',
 'redirectpagesub'   => '重定向页面',
 'lastmodifiedat'    => '此页面最后修订于$1 $2。',
@@ -671,10 +671,10 @@ $2',
 'resetpass-temp-password'   => '临时密码：',
 
 # Edit page toolbar
-'bold_sample'     => '粗体文字',
-'bold_tip'        => '粗体文字',
-'italic_sample'   => '斜体文字',
-'italic_tip'      => '斜体文字',
+'bold_sample'     => '粗体文本',
+'bold_tip'        => '粗体文本',
+'italic_sample'   => '斜体文本',
+'italic_tip'      => '斜体文本',
 'link_sample'     => '链接标题',
 'link_tip'        => '内部链接',
 'extlink_sample'  => 'http://www.example.com 链接标题',
@@ -685,9 +685,9 @@ $2',
 'math_tip'        => '插入数学公式 (LaTeX)',
 'nowiki_sample'   => '在此插入非格式文本',
 'nowiki_tip'      => '插入非格式文本',
-'image_tip'       => '嵌入文件',
+'image_tip'       => '插入文件',
 'media_tip'       => '文件链接',
-'sig_tip'         => '带有时间的签名',
+'sig_tip'         => '带时间戳的签名',
 'hr_tip'          => '水平线 (小心使用)',
 
 # Edit pages
@@ -1635,7 +1635,7 @@ $1",
 'filedelete-nofile'           => "'''$1'''不存在。",
 'filedelete-nofile-old'       => "在已指定属性的情况下，这里没有'''$1'''的保存版本。",
 'filedelete-otherreason'      => '其它／附加的理由：',
-'filedelete-reason-otherlist' => '其它理由',
+'filedelete-reason-otherlist' => '其他原因',
 'filedelete-reason-dropdown'  => '
 *常用删除理由
 ** 侵犯版权
@@ -1995,7 +1995,7 @@ $NEWPAGE
 'reverted'               => '恢复到早期版本',
 'deletecomment'          => '删除原因：',
 'deleteotherreason'      => '其它／附加的理由：',
-'deletereasonotherlist'  => '其它理由',
+'deletereasonotherlist'  => '其他原因',
 'deletereason-dropdown'  => '*常用删除理由
 ** 作者请求
 ** 侵犯版权
@@ -2182,7 +2182,7 @@ $1',
 'ipadressorusername'              => 'IP地址或用户名：',
 'ipbexpiry'                       => '期限：',
 'ipbreason'                       => '原因：',
-'ipbreasonotherlist'              => '其它原因',
+'ipbreasonotherlist'              => '其他原因',
 'ipbreason-dropdown'              => '*一般的封禁理由
 ** 增加不实资料
 ** 删除页面内容
@@ -2198,7 +2198,7 @@ $1',
 'ipbsubmit'                       => '查封该地址',
 'ipbother'                        => '其它时间：',
 'ipboptions'                      => '2小时:2 hours,1天:1 day,3天:3 days,1周:1 week,2周:2 weeks,1个月:1 month,3个月:3 months,6个月:6 months,1年:1 year,永久:infinite',
-'ipbotheroption'                  => '其它',
+'ipbotheroption'                  => '其他',
 'ipbotherreason'                  => '其它／附带原因：',
 'ipbhidename'                     => '在编辑及列表中隐藏用户名',
 'ipbwatchuser'                    => '监视这位用户的用户页面以及其对话页面',
@@ -2874,7 +2874,7 @@ Variants for Chinese language
 'exif-meteringmode-4'   => '多点测',
 'exif-meteringmode-5'   => '模式测量',
 'exif-meteringmode-6'   => '局部测量',
-'exif-meteringmode-255' => '其它',
+'exif-meteringmode-255' => '其他',
 
 'exif-lightsource-0'   => '未知',
 'exif-lightsource-1'   => '日光灯',
@@ -3082,7 +3082,7 @@ $1',
 'size-bytes' => '$1 字节',
 
 # Live preview
-'livepreview-loading' => '正在加载……',
+'livepreview-loading' => '正在载入……',
 'livepreview-ready'   => '正在加载……完成！',
 'livepreview-failed'  => '实时预览失败！尝试标准预览。',
 'livepreview-error'   => '连接失败：$1“$2”尝试标准预览。',
@@ -3224,4 +3224,3 @@ $1',
 'htmlform-selectorother-other' => '其他',
 
 );
-

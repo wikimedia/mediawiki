@@ -856,7 +856,7 @@ Jekk jogħġbok, ara jekk verament tridx toħloq/timodifika din il-paġna.',
 Ftakar li l-paġni .css u .js personalizzati għandhom l-ewwel ittra tat-titlu żgħira, eż. {{ns:user}}:Foo/monobook.css u mhux {{ns:user}}:Foo/Monobook.css.",
 'updated'                          => '(Aġġornata)',
 'note'                             => "'''Nota:'''",
-'previewnote'                      => "'''Din hija previżjoni biss; il-modifiki li saru fil-paġna għadhom ma ġewx salvati!'''",
+'previewnote'                      => "'''Ftakar li din hija biss dehra proviżorja, u li għadha ma ġietx salvata!'''",
 'previewconflict'                  => "Din il-previżjoni turi l-kliem li jinsab fiż-żona ta' modifika superjuri u turi kif tidher kieku l-paġna kella tiġi modifikata.",
 'session_fail_preview'             => "'''Jiddispjaċina imma l-modifika tiegħek ma setgħetx tiġi pproċessata minħabba li ntilfet l-informazzjoni tas-sessjoni.
 Jekk jogħġbok, erġa' pprova. Jekk xorta tibqa' ma taħdimx, ipprova oħroġ u erġa' idħol.'''",

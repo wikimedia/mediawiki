@@ -441,6 +441,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'أرسل لي رسالة إلكترونية للتعديلات الطفيفة للصفحات أيضا',
 'tog-enotifrevealaddr'        => 'أظهر عنوان بريدي الإلكتروني في رسائل الإخطار',
 'tog-shownumberswatching'     => 'اعرض عدد المستخدمين المراقبين',
+'tog-oldsig'                  => 'عرض اولي للتوقيع الحالي:',
 'tog-fancysig'                => 'عامل التوقيع كنص ويكي (بدون وصلة أوتوماتيكية)',
 'tog-externaleditor'          => 'استخدم محررا خارجيا افتراضيا (للخبراء فقط، يحتاج إعدادات خاصة على حاسوبك)',
 'tog-externaldiff'            => 'استخدم فرقا خارجيا افتراضيا (للخبراء فقط، يحتاج إعدادات خاصة على حاسوبك)',
@@ -564,7 +565,7 @@ $messages = array(
 'faqpage'        => 'Project:أسئلة متكررة',
 
 # Vector skin
-'vector-action-addsection'   => 'أضف موضوع',
+'vector-action-addsection'   => 'أضف موضوعًا',
 'vector-action-delete'       => 'حذف',
 'vector-action-move'         => 'نقل',
 'vector-action-protect'      => 'حماية',
@@ -583,7 +584,7 @@ $messages = array(
 'vector-namespace-user'      => 'صفحة مستخدم',
 'vector-view-create'         => 'أنشىء',
 'vector-view-edit'           => 'عدل',
-'vector-view-history'        => 'عرض التاريخ',
+'vector-view-history'        => 'اعرض التاريخ',
 'vector-view-view'           => 'اقرأ',
 'vector-view-viewsource'     => 'عرض المصدر',
 'actions'                    => 'أفعال',
@@ -2696,6 +2697,7 @@ $1 ممنوع بالفعل. هل تريد تغيير الإعدادات؟',
 من فضلك زر [http://www.mediawiki.org/wiki/Localisation ترجمة ميدياويكي] و [http://translatewiki.net بيتاويكي] لو كنت ترغب في المساهمة في ترجمة ميدياويكي الأساسية.',
 'allmessagesnotsupportedDB' => "هذه الصفحة لا يمكن استخدامها لأن '''\$wgUseDatabaseMessages''' تم تعطيله.",
 'allmessages-language'      => 'اللغة:',
+'allmessages-filter-submit' => 'اذهب',
 
 # Thumbnails
 'thumbnail-more'           => 'تكبير',

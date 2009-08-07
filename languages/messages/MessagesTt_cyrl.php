@@ -8,6 +8,7 @@
  * @file
  *
  * @author Himiq Dzyu
+ * @author Yildiz
  * @author Ерней
  */
 
@@ -157,6 +158,33 @@ $messages = array(
 'qbspecialpages' => 'Махсус битләр',
 'faq'            => 'ЕБС (FAQ)',
 'faqpage'        => 'Project:ЕБС',
+
+# Vector skin
+'vector-action-addsection'   => 'Яңа теманы өстәү',
+'vector-action-delete'       => 'Бетерү',
+'vector-action-move'         => 'Күчерү',
+'vector-action-protect'      => 'Яклау',
+'vector-action-undelete'     => 'Кайтару',
+'vector-action-unprotect'    => 'Яклауны бетерү',
+'vector-namespace-category'  => 'Төркем',
+'vector-namespace-help'      => 'Ярдәм бите',
+'vector-namespace-image'     => 'Файл',
+'vector-namespace-main'      => 'Бит',
+'vector-namespace-media'     => 'Медиа-бит',
+'vector-namespace-mediawiki' => 'Хәбәр',
+'vector-namespace-project'   => 'Проект бите',
+'vector-namespace-special'   => 'Махсус бит',
+'vector-namespace-talk'      => 'Фикер алышу',
+'vector-namespace-template'  => 'Үрнәк',
+'vector-namespace-user'      => 'Кулланучы бите',
+'vector-view-create'         => 'Төзү',
+'vector-view-edit'           => 'Үзгәртү',
+'vector-view-history'        => 'Тарихын карау',
+'vector-view-view'           => 'Уку',
+'vector-view-viewsource'     => 'Чыганакны карарга',
+'actions'                    => 'Хәрәкәт',
+'namespaces'                 => 'Исемнәр мәйданы',
+'variants'                   => 'Төрләр',
 
 # Metadata in edit box
 'metadata_help' => 'Мета-мәгълүматлар:',
@@ -338,7 +366,7 @@ $1',
 'wrong_wfQuery_params' => 'Ярамаган параметрлар wfQuery() функция өчен<br />
 Функция: $1<br />
 Сорау: $2',
-'viewsource'           => 'Чыганак карарга',
+'viewsource'           => 'Чыганакны карарга',
 'viewsourcefor'        => 'Бит «$1»',
 'actionthrottled'      => 'Гамәл кысылган',
 'actionthrottledtext'  => 'Спам белән көрәш өчен аз вакыт эчендә еш бу гамәл куллану кысылган. Зинһар, соңгырак кабатлыйгыз.',
@@ -384,6 +412,14 @@ $2',
 'userexists'                 => 'Кертелгән исем файдалый инде.
 Зинһар, башка исем сайлагыз.',
 'loginerror'                 => 'Керү хатасы',
+'nocookiesnew'               => 'Катнашучы теркәлгән, ләкин үз хисабы белән кермәгән. 
+{{SITENAME}} катнашучыны кертү өчен «cookies»-ны куллана.
+Сездә «cookies» тыелган.
+Зинһар, башта аларны рөхсәт итегез, аннары яңа исем һәм серсүз белән теркәлегез.',
+'nocookieslogin'             => '{{SITENAME}} катнашучыны кертү өчен «cookies»-ны куллана.
+Сез аларны сүндердегез.
+Зинһар, аларны яндырып, яңадан керегез.',
+'noname'                     => 'Сез теркәү исмегезне күрсәтергә тиешсез.',
 'loginsuccesstitle'          => 'Керү уңышлы үтте',
 'loginsuccess'               => "'''Сез {{SITENAME}} проектына $1 исеме белән кергәнсез.'''",
 'nosuchuser'                 => '$1 исемле кулланучы барлыкта юк.<br />

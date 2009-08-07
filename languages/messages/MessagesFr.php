@@ -345,6 +345,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'M’avertir par courriel même en cas de modification mineure',
 'tog-enotifrevealaddr'        => 'Afficher mon adresse électronique dans les courriels d’avertissement',
 'tog-shownumberswatching'     => 'Afficher le nombre d’utilisateurs qui suivent cette page',
+'tog-oldsig'                  => 'Aperçu de la signature existante :',
 'tog-fancysig'                => 'Traiter la signature comme du wikitexte (sans lien automatique)',
 'tog-externaleditor'          => 'Utiliser un éditeur de texte externe par défaut (pour les utilisateurs avancés, nécessite des réglages sur votre ordinateur)',
 'tog-externaldiff'            => 'Utiliser un comparateur externe par défaut (pour les utilisateurs avancés, nécessite des réglages sur votre ordinateur)',
@@ -1385,6 +1386,7 @@ Voici une valeur générée aléatoirement que vous pouvez utiliser : $1',
 'yourlanguage'                  => 'Langue de l’interface :',
 'yourvariant'                   => 'Variante :',
 'yournick'                      => 'Signature pour les discussions :',
+'prefs-help-signature'          => 'Les commentaires sur les pages de discussion doivent être signés avec « <nowiki>~~~~</nowiki> », qui sera converti par votre signature et un horodatage.',
 'badsig'                        => 'Signature brute incorrecte.
 Vérifiez vos balises HTML.',
 'badsiglength'                  => 'Votre signature est trop longue.
@@ -1847,6 +1849,7 @@ N’oubliez pas de vérifier s’il n’y a pas d’autres liens vers les modèl
 'statistics-header-edits'      => 'Statistiques des modifications',
 'statistics-header-views'      => 'Statistiques des visites',
 'statistics-header-users'      => 'Statistiques des utilisateurs',
+'statistics-header-hooks'      => 'Autres statistiques',
 'statistics-articles'          => 'Pages de contenu',
 'statistics-pages'             => 'Pages',
 'statistics-pages-desc'        => 'Toutes les pages du wiki, y compris les pages de discussion, les redirections, etc.',
@@ -2852,6 +2855,8 @@ $1',
 'svg-long-desc'        => '(Fichier SVG, résolution de $1 × $2 pixels, taille : $3)',
 'show-big-image'       => 'Image en plus haute résolution',
 'show-big-image-thumb' => '<small>Taille de cet aperçu : $1 × $2 pixels</small>',
+'file-info-gif-looped' => 'en boucle',
+'file-info-gif-frames' => '$1 {{PLURAL:$1|image|images}}',
 
 # Special:NewFiles
 'newimages'             => 'Galerie des nouveaux fichiers',

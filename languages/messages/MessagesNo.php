@@ -255,6 +255,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Send meg en e-post også ved mindre sideendringer',
 'tog-enotifrevealaddr'        => 'Vis min e-postadresse i utgående meldinger',
 'tog-shownumberswatching'     => 'Vis antall overvåkende brukere',
+'tog-oldsig'                  => 'Forhåndsvisning av nåværende signatur:',
 'tog-fancysig'                => 'Signatur som wikitekst uten automatisk lenke',
 'tog-externaleditor'          => 'Bruk ekstern behandler som standard (kun for viderekomne, krever spesielle innstillinger på din datamaskin)',
 'tog-externaldiff'            => 'Bruk ekstern differanse som standard (kun for viderekomne, krever spesielle innstillinger på din datamaskin)',
@@ -278,8 +279,11 @@ $messages = array(
 'underline-default' => 'Bruk nettleserstandard',
 
 # Font style option in Special:Preferences
-'editfont-style'   => 'Endre stilen for skrifttypen i området:',
-'editfont-default' => 'Nettleserstandard',
+'editfont-style'     => 'Endre stilen for skrifttypen i området:',
+'editfont-default'   => 'Nettleserstandard',
+'editfont-monospace' => 'Skrift med fast bredde',
+'editfont-sansserif' => 'Sans-serif',
+'editfont-serif'     => 'Serif',
 
 # Dates
 'sunday'        => 'søndag',
@@ -933,11 +937,11 @@ Det kan være detaljer i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE
 Det kan være mer informasjon i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} tilbakeholdsloggen].
 Som administrator kan du fremdeles [$1 se denne versjonen] hvis du ønsker å fortsette.",
 'rev-deleted-text-view'       => "Denne sideversjonen har blitt '''slettet'''.
-Som administrator kan du se den. Det kan finnes flere detaljer i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} tilbakeholdsloggen].",
+Som administrator kan du se den. Det kan finnes flere detaljer i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} slettingsloggen].",
 'rev-deleted-no-diff'         => "Du kan ikke vise forskjellen fordi en av versjonene har blitt '''slettet'''.
-Det kan finnes flere detaljer i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} tilbakeholdsloggen].",
+Det kan finnes flere detaljer i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} slettingsloggen].",
 'rev-deleted-unhide-diff'     => "Én av versjonene i denne forskjellen har blitt '''slettet'''.
-Det kan finnes flere detaljer i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} tilbakeholdsloggen].
+Det kan finnes flere detaljer i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} slettingsloggen].
 Som administrator kan du fortsatt [$1 se forskjellen] om du ønsker å fortsette.",
 'rev-delundel'                => 'vis/skjul',
 'revisiondelete'              => 'Slett/gjenopprett revisjoner',
@@ -1255,6 +1259,7 @@ Dette kan ikke tilbakestilles.',
 'yourrealname'                  => 'Virkelig navn:',
 'yourlanguage'                  => 'Språk:',
 'yournick'                      => 'Signatur:',
+'prefs-help-signature'          => 'Kommentarer på diskusjonssider bør alltid signeres med «<nowiki>~~~~</nowiki>», som vil bli konvertert til din signatur med tidspunkt.',
 'badsig'                        => 'Ugyldig råsignatur; sjekk HTML-elementer.',
 'badsiglength'                  => 'Signaturen er for lang.
 Den kan maks inneholde $1 {{PLURAL:$1|tegn|tegn}}.',
@@ -1435,6 +1440,14 @@ Du kan også la velge å la andre brukere kontakte deg via brukersiden din uten 
 'recentchanges-legend'              => 'Alternativer for siste endringer',
 'recentchangestext'                 => 'Vis de siste endringene til denne siden',
 'recentchanges-feed-description'    => 'Følg med på siste endringer i denne wikien med denne feed-en.',
+'recentchanges-label-legend'        => 'Forklaring: $1.',
+'recentchanges-legend-newpage'      => '$1 – ny side',
+'recentchanges-label-newpage'       => 'Denne redigeringen opprettet en ny side',
+'recentchanges-label-minor'         => 'Dette er en mindre endring',
+'recentchanges-legend-bot'          => '$1 – botendring',
+'recentchanges-label-bot'           => 'Denne redigeringen ble gjort av en bot',
+'recentchanges-legend-unpatrolled'  => '$1 – upatruljert endring',
+'recentchanges-label-unpatrolled'   => 'Denne redigeringen har ikke blitt patruljert ennå',
 'rcnote'                            => "Nedenfor vises {{PLURAL:$1|én endring|de siste '''$1''' endringene}} fra {{PLURAL:$2|det siste døgnet|de siste '''$2''' døgnene}} per $5 $4.",
 'rcnotefrom'                        => "Nedenfor er endringene fra '''$2''' (opp til '''$1''' vises).",
 'rclistfrom'                        => 'Vis nye endringer med start fra $1',
@@ -1723,7 +1736,9 @@ De burde i stedet lenke til en passende innholdsside.<br />
 En side anses om en pekerside om den inneholder en mal som det lenkes til fra [[MediaWiki:Disambiguationspage]]",
 
 'doubleredirects'            => 'Doble omdirigeringer',
-'doubleredirectstext'        => "'''NB:''' Denne listen kan inneholde gale resultater. Det er som regel fordi siden inneholder ekstra tekst under den første <tt>#redirect</tt>.<br />Hver linje inneholder lenker til den første og den andre omdirigeringen, og den første linjen fra den andre omdirigeringsteksten. Det gir som regel den «riktige» målartikkelen, som den første omdirigeringen skulle ha pekt på.",
+'doubleredirectstext'        => 'Denne siden lister opp de sidene som er omdirigeringer til andre omdirigeringssider.
+Hver rad inneholder lenker til første og andre omdirigering, samt målet for den andre omdirigeringen, som vanligvis er den «virkelige» målsiden som den første omdirigeringen burde peke til.
+<s>Gjennomstrøkne</s> sider har blitt fikset.',
 'double-redirect-fixed-move' => '[[$1]] har blitt flyttet, og er nå en omdirigering til [[$2]]',
 'double-redirect-fixer'      => 'Omdirigeringsfikser',
 
@@ -2414,10 +2429,10 @@ Besøk [http://translatewiki.net translatewiki.net] om du ønsker å bidra med o
 'allmessagesnotsupportedDB'     => "''{{ns:special}}:Allmessages'' kan ikke brukes fordi '''\$wgUseDatabaseMessages''' er slått av.",
 'allmessages-filter-legend'     => 'Filtrér',
 'allmessages-filter'            => 'Filtrér etter tilpassningsgrad',
-'allmessages-filter-unmodified' => 'Ikke endret',
+'allmessages-filter-unmodified' => 'Uendret',
 'allmessages-filter-all'        => 'Alle',
 'allmessages-filter-modified'   => 'Endret',
-'allmessages-prefix'            => 'Filtrér etter prefiks:',
+'allmessages-prefix'            => 'Filtrer etter prefiks:',
 'allmessages-language'          => 'Språk:',
 'allmessages-filter-submit'     => 'Gå',
 
@@ -2670,6 +2685,8 @@ $1',
 'svg-long-desc'        => '(SVG-fil, standardoppløsning $1 × $2 piksler, filstørrelse $3)',
 'show-big-image'       => 'Full oppløsning',
 'show-big-image-thumb' => '<small>Størrelse på denne forhåndsvisningen: $1 × $2 piksler</small>',
+'file-info-gif-looped' => 'gjentas',
+'file-info-gif-frames' => '$1 {{PLURAL:$1|ramme|rammer}}',
 
 # Special:NewFiles
 'newimages'             => 'Galleri over nye filer',

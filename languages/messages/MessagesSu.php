@@ -1034,6 +1034,9 @@ Coba susud dimimitian ku ''all:'' pikeun nyusud sakabéh kandunganana (kaasup ka
 'rightslogentry' => 'ngarobah kaanggotaan grup pikeun $1 tina $2 jadi $3',
 'rightsnone'     => '(euweuh)',
 
+# Associated actions - in the sentence "You do not have permission to X"
+'action-edit' => 'édit kaca ieu',
+
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|parobahan|parobahan}}',
 'recentchanges'                     => 'Nu anyar robah',
@@ -1617,13 +1620,14 @@ $1',
 'blanknamespace' => '(Utama)',
 
 # Contributions
-'contributions' => 'Tulisan pamaké',
-'mycontris'     => 'Tulisan kuring',
-'contribsub2'   => 'Pikeun $1 ($2)',
-'nocontribs'    => 'Taya robahan nu kapanggih cocog jeung patokan ieu.',
-'uctop'         => ' (tempo)',
-'month'         => 'Ti bulan (jeung saméméhna):',
-'year'          => 'Ti taun (jeung saméméhna):',
+'contributions'       => 'Tulisan pamaké',
+'contributions-title' => 'Sumbangan tulisan ti $1',
+'mycontris'           => 'Tulisan kuring',
+'contribsub2'         => 'Pikeun $1 ($2)',
+'nocontribs'          => 'Taya robahan nu kapanggih cocog jeung patokan ieu.',
+'uctop'               => ' (tempo)',
+'month'               => 'Ti bulan (jeung saméméhna):',
+'year'                => 'Ti taun (jeung saméméhna):',
 
 'sp-contributions-newbies'     => 'Témbongkeun kontribusi ti rekening anyar',
 'sp-contributions-newbies-sub' => 'Pikeun rekening anyar',
@@ -1652,6 +1656,7 @@ $1',
 'whatlinkshere-hidetrans'  => '$1 transklusi',
 'whatlinkshere-hidelinks'  => '$1 tumbu',
 'whatlinkshere-hideimages' => '$1 tumbu gambar',
+'whatlinkshere-filters'    => 'Saringan',
 
 # Block/unblock
 'blockip'                     => 'Peungpeuk pamaké',
@@ -1884,7 +1889,7 @@ Sadaya aktivitas impor transwiki baris kacatet dina [[Special:Log/import|log imp
 'tooltip-pt-logout'               => 'Kaluar log',
 'tooltip-ca-talk'                 => 'Sawala ngeunaan eusi kaca',
 'tooltip-ca-edit'                 => 'Anjeun bisa ngédit kaca ieu. Mangga pigunakeun tombol sawangan saméméh nyimpen.',
-'tooltip-ca-addsection'           => 'Tambihan koméntar kana sawala ieu.',
+'tooltip-ca-addsection'           => 'Jieun bahasan anyar',
 'tooltip-ca-viewsource'           => 'Kaca ieu dikonci, tapi anjeun masih bisa muka sumberna.',
 'tooltip-ca-history'              => 'Vérsi heubeul kaca ieu.',
 'tooltip-ca-protect'              => 'Konci kaca ieu',
