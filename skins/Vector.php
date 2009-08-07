@@ -536,12 +536,12 @@ class VectorTemplate extends QuickTemplate {
 		<!-- /header -->
 		<!-- panel -->
 			<div id="panel" class="noprint">
+				<!-- logo -->
+					<div id="p-logo"><a style="background-image: url(<?php $this->text( 'logopath' ) ?>);" href="<?php echo htmlspecialchars( $this->data['nav_urls']['mainpage']['href'] ) ?>" <?php echo $this->skin->tooltipAndAccesskey( 'p-logo' ) ?>></a></div>
+				<!-- /logo -->
 				<?php $this->renderPortals( $this->data['sidebar'] ); ?>
 			</div>
 		<!-- /panel -->
-		<!-- logo -->
-			<div id="p-logo"><a style="background-image: url(<?php $this->text( 'logopath' ) ?>);" href="<?php echo htmlspecialchars( $this->data['nav_urls']['mainpage']['href'] ) ?>" <?php echo $this->skin->tooltipAndAccesskey( 'p-logo' ) ?>></a></div>
-		<!-- /logo -->
 		<!-- footer -->
 		<div id="footer">
 			<?php foreach( $validFooterLinks as $category => $links ): ?>
