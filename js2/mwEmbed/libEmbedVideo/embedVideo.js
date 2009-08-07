@@ -225,15 +225,17 @@ mvEmbed = {
 		}	
 		///js_log('did vI style');  
 		//now swap out the video element for the embed_video obj:	  
-		  $j(video_element).after(embed_video).remove();	
-		  //js_log('did swap');		  
-		  $j('#'+embed_video.id).get(0).on_dom_swap();		  
+		$j(video_element).after(embed_video).remove();	
+		//js_log('did swap');		  
+		$j('#'+embed_video.id).get(0).on_dom_swap();	
+			  
 		// now that "embed_video" is stable, do more initialization (if we are ready)
 		if($j('#'+embed_video.id).get(0).loading_external_data==false && 
 			   $j('#'+embed_video.id).get(0).init_with_sources_loadedDone==false){
 			//load and set ready state since source are available: 
 			$j('#'+embed_video.id).get(0).init_with_sources_loaded();
-		}   
+		}
+		
 		js_log('done with child: ' + embed_video.id + ' len:' + global_player_list.length);
 		return true;
 	},
@@ -1185,7 +1187,7 @@ embedVideo.prototype = {
 				js_log('set loading_external_data=false');	 
 				_this.loading_external_data=false;							   
 				
-				_this.init_with_sources_loaded();				
+				_this.init_with_sources_loaded();		
 			});
 		}
 	},
@@ -1222,7 +1224,7 @@ embedVideo.prototype = {
 			var missing_type ='';
 			var or ='';  
 			for( var i=0; i < this.media_element.sources.length; i++){
-				missing_type+=or + this.media_element.sources[i].mime_type;
+				missing_type+= or + this.media_element.sources[i].mime_type;
 				or=' or ';
 			}			
 			if( this.pc )
@@ -1231,7 +1233,7 @@ embedVideo.prototype = {
 			   this.load_error= this.getPluginMissingHTML(missing_type);										   
 		}		
 	},
-	inheritEmbedObj:function(){	  
+	inheritEmbedObj:function(){		
 		js_log("inheritEmbedObj:duration is: " +  this.duration);  
 		//@@note: tricky cuz direct overwrite is not so ideal.. since the extended object is already tied to the dom
 		//clear out any non-base embedObj stuff:
@@ -1651,24 +1653,24 @@ embedVideo.prototype = {
 	},	
 	getHTML : function (){		
 		//@@todo check if we have sources avaliable	
-		js_log('embedVideo:getHTML : ' + this.id );			
+		js_log('embedVideo:getHTML : ' + this.id  + ' resource type: ' + this.type);			
 		var _this = this;				 
 		var html_code = '';		
 		html_code = '<div id="videoPlayer_'+this.id+'" style="width:'+this.width+'px;" class="videoPlayer">';		
-			html_code += '<div style="width:'+parseInt(this.width)+'px;height:'+parseInt(this.height)+'px;"  id="mv_embedded_player_'+this.id+'">' +
-							this.getThumbnailHTML() + 
-						'</div>';											
-			//js_log("mvEmbed:controls "+ typeof this.controls);									
-			if(this.controls)
-			{
-				js_log("f:getHTML:AddControls");
-				html_code +='<div id="mv_embedded_controls_' + this.id + '" class="ui-widget ui-corner-bottom ui-state-default controls" >';
-				html_code += this.getControlsHTML();	   
-				html_code +='</div>';	  
-				//block out some space by encapulating the top level div 
-				$j(this).wrap('<div style="width:'+parseInt(this.width)+'px;height:'
-						+(parseInt(this.height)+ctrlBuilder.height)+'px"></div>');					
-			}
+		html_code += '<div style="width:'+parseInt(this.width)+'px;height:'+parseInt(this.height)+'px;"  id="mv_embedded_player_'+this.id+'">' +
+						this.getThumbnailHTML() + 
+					'</div>';											
+		//js_log("mvEmbed:controls "+ typeof this.controls);									
+		if(this.controls)
+		{
+			js_log("f:getHTML:AddControls");
+			html_code +='<div id="mv_embedded_controls_' + this.id + '" class="ui-widget ui-corner-bottom ui-state-default controls" >';
+			html_code += this.getControlsHTML();	   
+			html_code +='</div>';	  
+			//block out some space by encapulating the top level div 
+			$j(this).wrap('<div style="width:'+parseInt(this.width)+'px;height:'
+					+(parseInt(this.height)+ctrlBuilder.height)+'px"></div>');					
+		}
 		html_code += '</div>'; //videoPlayer div close		
 		//js_log('should set: '+this.id);
 		$j(this).html( html_code );					
@@ -2129,7 +2131,7 @@ embedVideo.prototype = {
 				+ source.getTitle()+'</a> '+ '</li>'+"\n";			
 			if(	 source.getURI().indexOf('?t=')!==-1){
 				out+=dl_line;
-			}else if(this.getMIMEType()=="text/cmml" || this.getMIMEType()=="text/x-srt"){
+			}else if( this.getMIMEType()=="text/cmml" || this.getMIMEType()=="text/x-srt" ){
 				dl_txt_list+=dl_line;
 			}else{
 				dl_list+=dl_line;
@@ -2186,7 +2188,7 @@ embedVideo.prototype = {
 	}, 
 	/*
 	 * base embed pause
-	 *	 there is no general way to pause the video
+	 *	there is no general way to pause the video
 	 *  must be overwritten by embed object to support this functionality.
 	 */
 	pause: function(){

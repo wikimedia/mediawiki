@@ -34,10 +34,8 @@ seqRemoteSearchDriver.prototype = {
 				js_log("seqRemoteSearchDriver::" + _this.pSeq.disp_menu_item);
 				//call the parent
 				_this.pSeq.parent_do_refresh_timeline();
-				//add our local bindings if our window is 'active'
-				if(_this.pSeq.disp_menu_item == 'cliplib'){
-					_this.addResultBindings();
-				}
+				//add our local bindings				
+				_this.addResultBindings();				
 				return true;
 			}
 		}
@@ -121,7 +119,7 @@ seqRemoteSearchDriver.prototype = {
 			}			
 			
 			//create the media element (target order+1 (since we insert (after) 		
-			_this.pSeq.plObj.tryAddMediaObj( clipConfig, (parseInt(target_order) + 1) );		
+			_this.pSeq.plObj.tryAddMediaObj( clipConfig, (parseInt(target_order) + 1) );										
 			//refresh the timeline: 
 			_this.pSeq.do_refresh_timeline();
 			js_log("run close all: ");						
