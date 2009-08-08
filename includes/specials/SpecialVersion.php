@@ -44,6 +44,24 @@ class SpecialVersion extends SpecialPage {
 	}
 
 	/**
+	 * check executive path existence
+	 * @param string command
+	 * @return mixed existsIn
+	 */
+	static function checkExecPath( $cmd ) {
+		$existsIn = false;
+		$pathDirArray = explode( ';' , $_SERVER['PATH'] );
+		foreach ( $pathDirArray as $pathDir ) {
+			$pathDir = str_replace('\\', '/', $pathDir);
+			$pathDir .= '/';
+			if ( ( file_exists ( $pathDir . '/' . $cmd ) ) || ( file_exists( trim( $pathDir . '/' . $cmd, '"' ) . '.exe' ) ) ) {
+				$existsIn = $pathDir;
+			}
+		}
+		return $existsIn;
+	}
+
+	/**
 	 * execuate command for output
 	 * @param string command
 	 * @return string output
@@ -196,6 +214,7 @@ class SpecialVersion extends SpecialPage {
 			// Look for SVG converter and print the version info
 			if ( in_array( 'svg', $wgFileExtensions ) ) {
 				$swSVGConvName = $wgSVGConverter;
+				$swSVGConvInfo = '';
 				$haveSVGConvVer = false;
 				$pathVar = '$path/';
 				$binPath = '/usr/bin/';
@@ -203,6 +222,7 @@ class SpecialVersion extends SpecialPage {
 				$execPath = substr_replace($execPath, '', 0, strlen($pathVar));
 				$execFullPath = trim($wgSVGConverterPath,'"') . $execPath;
 				$execBinPath = $binPath . $execPath;
+				$execPathVal = checkExecPath( $execPath );
 				if (strstr($execFullPath, ' ') != false) {
 					$execFullPath = '"' . $execFullPath . '"';
 				}
@@ -212,6 +232,8 @@ class SpecialVersion extends SpecialPage {
 						$swSVGConvInfo = self::execOutput( $execBinPath . ' -version' );
 					else if ( file_exists( trim( $execFullPath, '"' ) ) || ( file_exists( trim( $execFullPath, '"' ) . '.exe' ) ) )
 						$swSVGConvInfo = self::execOutput( $execFullPath . ' -version' );
+					else if ( $execPathVal != false )
+						$swSVGConvInfo = self::execOutput( $execPathVal . $execPath . ' -version' );
 					list( $head, $tail ) = explode( 'ImageMagick', $swSVGConvInfo );
 					list( $swSVGConvVer ) = explode('http://www.imagemagick.org', $tail );
 					$swSVGConvURL = 'http://www.imagemagick.org/';
@@ -222,6 +244,8 @@ class SpecialVersion extends SpecialPage {
 						$swSVGConvInfo = self::execOutput( $execBinPath . ' -v' );
 					else if ( file_exists( trim( $execFullPath, '"' ) ) || ( file_exists( trim( $execFullPath, '"' ) . '.exe' ) ) )
 						$swSVGConvInfo = self::execOutput( $execFullPath . ' -v' );
+					else if ( $execPathVal != false )
+						$swSVGConvInfo = self::execOutput( $execPathVal . $execPath . ' -v' );
 					$swSVGConvLine = explode("\n",$swSVGConvInfo ,2);
 					$swSVGConvVer = $swSVGConvLine[0];
 					$swSVGConvURL = 'http://librsvg.sourceforge.net/';
@@ -232,6 +256,8 @@ class SpecialVersion extends SpecialPage {
 						$swSVGConvInfo = self::execOutput( $execBinPath . ' -z -V' );
 					else if ( file_exists( trim( $execFullPath, '"' ) ) || ( file_exists( trim( $execFullPath, '"' ) . '.exe' ) ) )
 						$swSVGConvInfo = self::execOutput( $execFullPath . ' -z -V' );
+					else if ( $execPathVal != false )
+						$swSVGConvInfo = self::execOutput( $execPathVal . $execPath . ' -z -V' );
 					$swSVGConvLine = explode("\n",$swSVGConvInfo ,2);
 					$swSVGConvVer = ltrim( $swSVGConvLine[0], 'Inkscape ' );
 					$swSVGConvURL = 'http://www.inkscape.org/';
