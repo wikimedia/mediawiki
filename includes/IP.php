@@ -541,11 +541,10 @@ class IP {
 		if ( self::isValid( $addr ) )
 			return $addr;
 
-		// Annoying IPv6 representations like ::ffff:1.2.3.4
+		// Turn mapped addresses from ::ce:ffff:1.2.3.4 to 1.2.3.4
 		if ( strpos($addr,':') !==false && strpos($addr,'.') !==false ) {
-			$addr = str_replace( '.', ':', $addr );
-			if( IP::isIPv6( $addr ) )
-				return $addr;
+			$addr = substr( $addr, strrpos($addr,':')+1 );
+			if( self::isIPv4($addr) ) return $addr;
 		}
 
 		// IPv6 loopback address
