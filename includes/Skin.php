@@ -1044,7 +1044,7 @@ END;
 				
 				$tl = $this->link(
 					$wgUser->getTalkPage(),
-					wfMsgHtml( 'newmessageslink'),
+					wfMsgExt( 'newmessageslink', array( 'parsemag', 'escape' ) ),
 					array(),
 					array( 'redirect' => 'no' ),
 					array( 'known', 'noclasses' )
@@ -1052,7 +1052,7 @@ END;
 
 				$dl = $this->link(
 					$wgUser->getTalkPage(),
-					wfMsgHtml( 'newmessagesdifflink', $nu ),
+					wfMsgExt( 'newmessagesdifflink', array( 'parsemag', 'escape' ), $nu ),
 					array(),
 					array( 'diff' => 'cur' ),
 					array( 'known', 'noclasses' )
