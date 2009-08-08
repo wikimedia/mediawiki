@@ -65,25 +65,31 @@ class nextJobDB extends Maintenance {
 		foreach ( $dbsByMaster as $master => $dbs ) {
 			$dbConn = wfGetDB( DB_MASTER, array(), $dbs[0] );
 			$stype = $dbConn->addQuotes($type);
-			$jobTable = $dbConn->getTable( 'job' );
+			$jobTable = $dbConn->tableName( 'job' );
 	
 			# Padding row for MySQL bug
-			$sql = "(SELECT '-------------------------------------------')";
+			$sql = "(SELECT '-------------------------------------------' as db)";
 			foreach ( $dbs as $dbName ) {
 				if ( $sql != '' ) {
 					$sql .= ' UNION ';
 				}
 				if ($type === false)
-					$sql .= "(SELECT '$dbName' FROM `$dbName`.$jobTable LIMIT 1)";
+					$sql .= "(SELECT '$dbName' as db FROM `$dbName`.$jobTable LIMIT 1)";
 				else
-					$sql .= "(SELECT '$dbName' FROM `$dbName`.$jobTable WHERE job_cmd=$stype LIMIT 1)";
+					$sql .= "(SELECT '$dbName' as db FROM `$dbName`.$jobTable WHERE job_cmd=$stype LIMIT 1)";
 			}
 			$res = $dbConn->query( $sql, __METHOD__ );
-			$row = $dbConn->fetchRow( $res ); // discard padding row
-			while ( $row = $dbConn->fetchRow( $res ) ) {
-				$pendingDBs[] = $row[0];
+			$first = true;
+			foreach ( $res as $row ) {
+				if ( $first ) {
+					// discard padding row
+					$first = false;
+					continue;
+				}
+				$pendingDBs[] = $row->db;
 			}
 		}
+		return $pendingDBs;
 	}
 }
 
