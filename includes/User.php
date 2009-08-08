@@ -216,6 +216,8 @@ class User {
 	//@}
 	
 	static $idCacheByName = array();
+	
+	var $mNewtalknumber;
 
 	/**
 	 * Lightweight constructor for an anonymous user.
@@ -1546,9 +1548,10 @@ class User {
 		} else {
 			$db = wfGetDB( DB_SLAVE );
 		}
-		$ok = $db->selectField( 'user_newtalk', $field,
+		$query = $db->select( 'user_newtalk', $field,
 			array( $field => $id ), __METHOD__ );
-		return $ok !== false;
+		$this->mNewtalknumber = $ok = $db->numRows( $query );
+		return $ok !== 0;
 	}
 
 	/**
@@ -1631,6 +1634,15 @@ class User {
 			$this->invalidateCache();
 		}
 	}
+	
+	/**
+	 * Return the number of new messages
+	 * @return \int The number of new messages
+	 */
+	 public function getNewtalkNumber() {
+		global $wgLang;
+		return $wgLang->formatNum( $this->mNewtalknumber );
+	 }
 
 	/**
 	 * Generate a current or new-future timestamp to be stored in the

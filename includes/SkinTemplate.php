@@ -319,11 +319,14 @@ class SkinTemplate extends Skin {
 					array( 'diff' => 'cur' ),
 					array( 'known', 'noclasses' )
 				);
+				
+				$newmessagesnumber = $wgUser->getNewtalkNumber();
 
 				$ntl = wfMsg(
 					'youhavenewmessages',
 					$newmessageslink,
-					$newmessagesdifflink
+					$newmessagesdifflink,
+					$newmessagesnumber
 				);
 				# Disable Cache
 				$out->setSquidMaxage( 0 );
@@ -532,31 +535,24 @@ class SkinTemplate extends Skin {
 			);
 			$usertalkUrlDetails = $this->makeTalkUrlDetails( $this->userpage );
 			if ( $wgUser->getNewtalk() ) {
-				# do not show "(!)" text when we are viewing our
+				# do not show text when we are viewing our
 				# own talk page
-				if( !$title->equals( $wgUser->getTalkPage() ) ) {
-					$field = ( $wgUser->getID() == 0 )? 'user_ip' : 'user_id';
-					$id = ( $wgUser->getID() == 0 )? $wgUser->getName() : $wgUser->getID();
-					
-					$db = wfGetDB( DB_SLAVE );
-					$query = $db->select( 'user_newtalk', $field, array( $field => $id ) );
-					$num = $db->numRows( $query );
-					
-					$text = '('.$wgLang->formatNum( $num ).')';
+				if( !$title->equals( $wgUser->getTalkPage() ) ) {					
+					$newtalk = $wgUser->getNewtalkNumber();
 					
 					# disable caching
 					$wgOut->setSquidMaxage( 0 );
 					$wgOut->enableClientCache( false );
 				}
 				else {
-					$text = '';
+					$newtalk = 0;
 				}
 			}
 			else {
-				$text = '';
+				$newtalk = 0;
 			}
 			$personal_urls['mytalk'] = array(
-				'text' => wfMsg( 'mytalk' ).$text,
+				'text' => wfMsg( 'mytalk', $newtalk ),
 				'href' => &$usertalkUrlDetails['href'],
 				'class' => $usertalkUrlDetails['exists'] ? false : 'new',
 				'active' => ( $usertalkUrlDetails['href'] == $pageurl )
