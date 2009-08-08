@@ -465,6 +465,13 @@ $messages = array(
 'underline-never'   => 'أبدا',
 'underline-default' => 'تبعا لإعدادات المتصفح',
 
+# Font style option in Special:Preferences
+'editfont-style'     => 'نمط خط منطقة التحرير:',
+'editfont-default'   => 'تبعًا لإعدادات المتصفح',
+'editfont-monospace' => 'خط Monospaced',
+'editfont-sansserif' => 'خط Sans-serif',
+'editfont-serif'     => 'خط Serif',
+
 # Dates
 'sunday'        => 'الأحد',
 'monday'        => 'الإثنين',
@@ -1670,6 +1677,14 @@ $1",
 'recentchanges-legend'              => 'خيارات أحدث التغييرات',
 'recentchangestext'                 => 'تابع آخر التغييرات في الويكي من هذه الصفحة.',
 'recentchanges-feed-description'    => 'تابع أحدث التغييرات للويكي عبر هذه التلقيمة.',
+'recentchanges-legend-newpage'      => '$1 - صفحة جديدة',
+'recentchanges-label-newpage'       => 'أنشأ هذه التعديل صفحة جديدة',
+'recentchanges-legend-minor'        => '$1 - تعديل طفيف',
+'recentchanges-label-minor'         => 'هذا تعديل طفيف',
+'recentchanges-legend-bot'          => '$1 - تعديل بوت',
+'recentchanges-label-bot'           => 'أجرى هذا التعديل بوت',
+'recentchanges-legend-unpatrolled'  => '$1 - تعديل غير مُراجع',
+'recentchanges-label-unpatrolled'   => 'لم يُراجع هذا التعديل إلى الآت',
 'rcnote'                            => "بالأسفل {{PLURAL:$1|'''1''' تغيير|آخر '''$1''' تغيير}} في آخر {{PLURAL:$2|يوم|'''$2''' يوم}}، بدءا من $5، $4.",
 'rcnotefrom'                        => "بالأسفل التغييرات منذ '''$2''' (إلى '''$1''' معروضة).",
 'rclistfrom'                        => 'أظهر التغييرات بدءا من $1',
@@ -1816,15 +1831,17 @@ MGP # بينتاكس
 PICT # متنوع
  #</pre> <!-- اترك هذا السطر تماما كما هو -->',
 
-'upload-proto-error'      => 'بروتوكول غير صحيح',
-'upload-proto-error-text' => 'الرفع عن بعد يتطلب مسارا يبدأ بـ <code>http://</code> أو <code>ftp://</code>.',
-'upload-file-error'       => 'خطأ داخلي',
-'upload-file-error-text'  => 'حدث خطأ داخلي عند محاولة عمل ملف مؤقت على الخادم.
+'upload-proto-error'        => 'بروتوكول غير صحيح',
+'upload-proto-error-text'   => 'الرفع عن بعد يتطلب مسارا يبدأ بـ <code>http://</code> أو <code>ftp://</code>.',
+'upload-file-error'         => 'خطأ داخلي',
+'upload-file-error-text'    => 'حدث خطأ داخلي عند محاولة عمل ملف مؤقت على الخادم.
 من فضلك اتصل [[Special:ListUsers/sysop|بإداري]].',
-'upload-misc-error'       => 'خطأ غير معروف في الرفع',
-'upload-misc-error-text'  => 'حدث خطأ غير معروف أثناء عملية الرفع.
+'upload-misc-error'         => 'خطأ غير معروف في الرفع',
+'upload-misc-error-text'    => 'حدث خطأ غير معروف أثناء عملية الرفع.
 من فضلك تاكد أن المسار صحيح ومن الممكن الدخول عليه ثم حاول مرة أخرى.
 إذا استمرت المشكلة في الحدوث، اتصل [[Special:ListUsers/sysop|بإداري]].',
+'upload-too-many-redirects' => 'احتوى المسار تحويلات كثيرة جدًا',
+'upload-unknown-size'       => 'حجم غير معروف',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'لم يتمكن من الوصول للمسار',
@@ -1954,6 +1971,7 @@ PICT # متنوع
 'statistics-header-edits'      => 'إحصاءات التعديلات',
 'statistics-header-views'      => 'إحصاءات المشاهدة',
 'statistics-header-users'      => 'إحصاءات المستخدمين',
+'statistics-header-hooks'      => 'إحصاءات أخرى',
 'statistics-articles'          => 'صفحات المحتوى',
 'statistics-pages'             => 'الصفحات',
 'statistics-pages-desc'        => 'كل الصفحات في الويكي، بما في ذلك صفحات النقاش، التحويلات، إلى آخره.',
@@ -2121,6 +2139,8 @@ PICT # متنوع
 
 # Special:ActiveUsers
 'activeusers'          => 'قائمة المستخدمين النشطين',
+'activeusers-count'    => '{{PLURAL:$1|لا تعديلات حديثة|تعديل حديث واحد|تعديلان حديثان|$1 تعديلات حديثة|$1 تعديلًا حديثًا|$1 تعديل حديث}}',
+'activeusers-from'     => 'اعرض المستخدمين بدءًا من:',
 'activeusers-noresult' => 'لا مستخدمون تم إيجادهم.',
 
 # Special:Log/newusers
@@ -2689,15 +2709,19 @@ $1 ممنوع بالفعل. هل تريد تغيير الإعدادات؟',
 'export-pagelinks'  => 'ضمن الصفحات الموصولة إلى عمق:',
 
 # Namespace 8 related
-'allmessages'               => 'رسائل النظام',
-'allmessagesname'           => 'الاسم',
-'allmessagesdefault'        => 'النص الافتراضي',
-'allmessagescurrent'        => 'النص الحالي',
-'allmessagestext'           => 'هذه قائمة برسائل النظام المتوفرة في نطاق ميدياويكي.
+'allmessages'                   => 'رسائل النظام',
+'allmessagesname'               => 'الاسم',
+'allmessagesdefault'            => 'النص الافتراضي',
+'allmessagescurrent'            => 'النص الحالي',
+'allmessagestext'               => 'هذه قائمة برسائل النظام المتوفرة في نطاق ميدياويكي.
 من فضلك زر [http://www.mediawiki.org/wiki/Localisation ترجمة ميدياويكي] و [http://translatewiki.net بيتاويكي] لو كنت ترغب في المساهمة في ترجمة ميدياويكي الأساسية.',
-'allmessagesnotsupportedDB' => "هذه الصفحة لا يمكن استخدامها لأن '''\$wgUseDatabaseMessages''' تم تعطيله.",
-'allmessages-language'      => 'اللغة:',
-'allmessages-filter-submit' => 'اذهب',
+'allmessagesnotsupportedDB'     => "هذه الصفحة لا يمكن استخدامها لأن '''\$wgUseDatabaseMessages''' تم تعطيله.",
+'allmessages-filter'            => 'رشّح حسب حالة التخصيص:',
+'allmessages-filter-unmodified' => 'غير المعدّل',
+'allmessages-filter-all'        => 'الكل',
+'allmessages-filter-modified'   => 'المعدل',
+'allmessages-language'          => 'اللغة:',
+'allmessages-filter-submit'     => 'اذهب',
 
 # Thumbnails
 'thumbnail-more'           => 'تكبير',
@@ -3603,6 +3627,7 @@ $1',
 'htmlform-invalid-input'       => 'توجد مشكلات ضمن بعض من مدخلاتك',
 'htmlform-select-badoption'    => 'القيمة التي تم تحديدها غير صالحة كخيار.',
 'htmlform-int-invalid'         => 'القيمة التي حددتها ليست عددا صحيحا.',
+'htmlform-float-invalid'       => 'القيمة التي حددتها ليست عددًا.',
 'htmlform-int-toolow'          => 'القيمة التي حددتها أقل من الحد الأدنى وهو $1',
 'htmlform-int-toohigh'         => 'القيمة التي حددتها أكبر من الحد الأقصى وهو $1',
 'htmlform-submit'              => 'تنفيذ',

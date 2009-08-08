@@ -332,6 +332,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Mij e-mailen bij kleine bewerkingen van pagina’s op mijn volglijst',
 'tog-enotifrevealaddr'        => 'Mijn e-mailadres weergeven in e-mailberichten',
 'tog-shownumberswatching'     => 'Het aantal gebruikers weergeven dat deze pagina volgt',
+'tog-oldsig'                  => 'Voorvertoning van de bestaande ondertekening:',
 'tog-fancysig'                => 'Als wikitekst behandelen (zonder automatische verwijzing)',
 'tog-externaleditor'          => 'Standaard een externe tekstbewerker gebruiken (alleen voor experts - voor deze functie zijn speciale instellingen nodig)',
 'tog-externaldiff'            => 'Standaard een extern vergelijkingsprogramma gebruiken (alleen voor experts - voor deze functie zijn speciale instellingen nodig)',
@@ -526,7 +527,7 @@ $messages = array(
 'postcomment'       => 'Nieuw kopje',
 'articlepage'       => 'Pagina bekijken',
 'talk'              => 'Overleg',
-'views'             => 'Aspecten/acties',
+'views'             => 'Weergaven',
 'toolbox'           => 'Hulpmiddelen',
 'userpage'          => 'Gebruikerspagina bekijken',
 'projectpage'       => 'Projectpagina bekijken',
@@ -1112,7 +1113,7 @@ Als beheerder kunt u [$1 de verschillen bekijken] als u wilt.",
 'revdelete-show-file-confirm' => 'Weet u zeker dat u de verwijderde versie van het bestand "<nowiki>$1</nowiki>" van $2 om $3 wilt bekijken?',
 'revdelete-show-file-submit'  => 'Ja',
 'revdelete-selected'          => "'''Geselecteerde {{PLURAL:$2|bewerking|bewerkingen}} van [[:$1]]:'''",
-'logdelete-selected'          => "'''{{PLURAL:$1|Geselecteerde logboekactie|Geselecteerde logboekacties}}:'''",
+'logdelete-selected'          => "'''{{PLURAL:$1|Geselecteerde logboekhandeling|Geselecteerde logboekhandelingen}}:'''",
 'revdelete-text'              => "'''Verwijderde bewerkingen zijn zichtbaar in de geschiedenis en logboeken, maar delen van de inhoud zijn niet langer publiek toegankelijk.'''
 
 Andere beheerders van {{SITENAME}} kunnen de verborgen inhoud benaderen en de verwijdering ongedaan maken met behulp van dit scherm, tenzij er aanvullende beperkingen gelden die zijn ingesteld door de systeembeheerder.
@@ -1411,8 +1412,8 @@ Hier volgt is een willekeurig gegenereerde waarde die u kunt gebruiken: $1',
 'prefs-files'                   => 'Bestanden',
 'prefs-custom-css'              => 'Persoonlijke CSS',
 'prefs-custom-js'               => 'Persoonlijke JS',
-'prefs-reset-intro'             => 'Gebruik deze functie om uw voorkeuren te herstellen naar de standaardinstellingen.<br /><br />
-Deze actie kan niet ongedaan worden gemaakt.',
+'prefs-reset-intro'             => 'Gebruik deze functie om uw voorkeuren te herstellen naar de standaardinstellingen.
+Deze handeling kan niet ongedaan gemaakt worden.',
 'prefs-emailconfirm-label'      => 'E-mailbevestiging:',
 'prefs-textboxsize'             => 'Afmetingen bewerkingsscherm',
 'youremail'                     => 'Uw e-mailadres:',
@@ -1424,6 +1425,8 @@ Deze actie kan niet ongedaan worden gemaakt.',
 'yourlanguage'                  => 'Taal:',
 'yourvariant'                   => 'Taalvariant:',
 'yournick'                      => 'Tekst voor ondertekening:',
+'prefs-help-signature'          => 'Reacties op de overlegpagina\'s worden meestal ondertekend met "<nowiki>~~~~</nowiki>".
+De tildes worden omgezet in uw ondertekening en een datum en tijd van de bewerking.',
 'badsig'                        => 'Ongeldige ondertekening; controleer de HTML-tags.',
 'badsiglength'                  => 'Uw ondertekening is te lang.
 Deze moet minder dan $1 {{PLURAL:$1|karakters|karakters}} bevatten.',
@@ -1907,6 +1910,7 @@ Vergeet niet de "Verwijzingen naar deze pagina" te controleren alvorens dit sjab
 'statistics-header-edits'      => 'Bewerkingsstatistieken',
 'statistics-header-views'      => 'Paginaweergavestatistieken',
 'statistics-header-users'      => 'Gebruikerstatistieken',
+'statistics-header-hooks'      => 'Overige statistieken',
 'statistics-articles'          => "Inhoudelijke pagina's",
 'statistics-pages'             => "Pagina's",
 'statistics-pages-desc'        => "Alle pagina's in de wiki, inclusief overlegpagina's, doorverwijzingen, enzovoort.",
@@ -2079,7 +2083,7 @@ Ondersteunde protocollen: <tt>$1</tt>',
 
 # Special:ActiveUsers
 'activeusers'          => 'Aanwezige gebruikers',
-'activeusers-count'    => '$1 recente bewerkingen',
+'activeusers-count'    => '$1 recente {{PLURAL:$1|bewerking|bewerkingen}}',
 'activeusers-from'     => 'Gebruikers worden weergegeven vanaf:',
 'activeusers-noresult' => 'Geen actieve gebruikers gevonden.',
 

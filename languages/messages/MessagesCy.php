@@ -1302,7 +1302,7 @@ Gallwch hefyd adael i eraill anfon e-bost atoch trwy'r cyswllt ar eich tudalen d
 'recentchanges-feed-description'    => "Dilynwch y newidiadau diweddaraf i'r wici gyda'r porthiant hwn.",
 'recentchanges-legend-newpage'      => '$1 - tudalen newydd',
 'recentchanges-label-newpage'       => 'Dechreuwyd tudalen newydd wrth olygu',
-'recentchanges-legend-minor'        => '%1 - mân olygiad',
+'recentchanges-legend-minor'        => '$1 - mân olygiad',
 'recentchanges-label-minor'         => 'Mân olygiad',
 'recentchanges-legend-bot'          => '$1 - golygiad gan fot',
 'recentchanges-label-bot'           => 'Golygwyd gan fot',

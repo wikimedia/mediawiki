@@ -8,6 +8,7 @@
  * @file
  *
  * @author Himiq Dzyu
+ * @author Rinatus
  * @author Yildiz
  * @author Ерней
  */
@@ -160,7 +161,7 @@ $messages = array(
 'faqpage'        => 'Project:ЕБС',
 
 # Vector skin
-'vector-action-addsection'   => 'Яңа теманы өстәү',
+'vector-action-addsection'   => 'Яңа тема өстәү',
 'vector-action-delete'       => 'Бетерү',
 'vector-action-move'         => 'Күчерү',
 'vector-action-protect'      => 'Яклау',
@@ -419,7 +420,7 @@ $2',
 'nocookieslogin'             => '{{SITENAME}} катнашучыны кертү өчен «cookies»-ны куллана.
 Сез аларны сүндердегез.
 Зинһар, аларны яндырып, яңадан керегез.',
-'noname'                     => 'Сез теркәү исмегезне күрсәтергә тиешсез.',
+'noname'                     => 'Сез теркәү исемегезне күрсәтергә тиешсез.',
 'loginsuccesstitle'          => 'Керү уңышлы үтте',
 'loginsuccess'               => "'''Сез {{SITENAME}} проектына $1 исеме белән кергәнсез.'''",
 'nosuchuser'                 => '$1 исемле кулланучы барлыкта юк.<br />
@@ -570,8 +571,8 @@ $2',
 'page_first'             => 'беренче',
 'page_last'              => 'соңгы',
 'history-fieldset-title' => 'Тарихын күзәтү',
-'histfirst'              => 'Баштагы',
-'histlast'               => 'Баягы',
+'histfirst'              => 'Элеккеге',
+'histlast'               => 'Соңгы',
 
 # Revision deletion
 'rev-deleted-comment' => '(искәрмә бетергән)',
@@ -682,7 +683,7 @@ $2',
 
 # Recent changes
 'nchanges'                          => '$1 {{PLURAL:$1|төзәтмә|төзәтмә}}',
-'recentchanges'                     => 'Баягы төзәтмәләр',
+'recentchanges'                     => 'Соңгы төзәтмәләр',
 'rcnote'                            => "Соңгы '''$1''' үзгәртмә '''$2''' көндә, сәгатьтә $5 $4.",
 'rcnotefrom'                        => "Астарак '''$2''' башлап ('''$1''' кадәр) төзәтмәләр күрсәтелгән.",
 'rclistfrom'                        => '$1 башлап яңа төзәтмәләрне күрсәтергә',
@@ -1009,7 +1010,7 @@ $2',
 'tooltip-ca-talk'               => 'Битнең эчтәлеге турында фикер алышу',
 'tooltip-ca-edit'               => 'Сез бу бит үзгәртә аласыз. Зинһар, саклаганчы карап алуны кулланыгыз.',
 'tooltip-ca-addsection'         => 'Яңа бүлекне башларга',
-'tooltip-ca-history'            => 'Бу битнең баягы төзәтмәләр',
+'tooltip-ca-history'            => 'Битнең төзәтмәләр исемлеге',
 'tooltip-ca-protect'            => 'Бу битне якларга',
 'tooltip-ca-delete'             => 'Бу битне бетерергә',
 'tooltip-ca-move'               => 'Бу битне күчерергә',
@@ -1021,7 +1022,7 @@ $2',
 'tooltip-n-mainpage'            => 'Баш битне кереп чыгарга',
 'tooltip-n-portal'              => 'Проект турында, сез нәрсә итә аласыз һәм нәрсә кайда була дип турында.',
 'tooltip-n-currentevents'       => 'Агымдагы вакыйгалар турында мәгълүматны табарга',
-'tooltip-n-recentchanges'       => 'Баягы төзәтмәләр исемлеге.',
+'tooltip-n-recentchanges'       => 'Соңгы төзәтмәләр исемлеге',
 'tooltip-n-randompage'          => 'Очраклы битне карарга',
 'tooltip-n-help'                => '«{{SITENAME}}» проектының белешмәлек',
 'tooltip-t-whatlinkshere'       => 'Бирегә сылтаган барлык битләрнең исемлеге',
@@ -1082,6 +1083,9 @@ $2',
 'watchlistall2' => 'барлык',
 'namespacesall' => 'барлык',
 'monthsall'     => 'барлык',
+
+# Table pager
+'table_pager_next' => 'Киләсе бит',
 
 # Watchlist editing tools
 'watchlisttools-edit' => 'Күзәтү исемлегене карау һәм үзгәртү',

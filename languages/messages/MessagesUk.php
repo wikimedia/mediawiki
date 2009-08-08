@@ -251,6 +251,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Надсилати мені електронного листа навіть при незначних редагуваннях',
 'tog-enotifrevealaddr'        => 'Показувати мою поштову адресу в повідомленнях',
 'tog-shownumberswatching'     => 'Показувати кількість користувачів, які додали сторінку до свого списку спостереження',
+'tog-oldsig'                  => 'Попередній перегляд вашого підпису:',
 'tog-fancysig'                => 'Власна вікі-розмітка підпису (без автоматичного посилання)',
 'tog-externaleditor'          => "За замовчуванням використовувати зовнішній редактор (тільки для досвідчених користувачів, вимагає спеціальних налаштувань вашого комп'ютера)",
 'tog-externaldiff'            => "За замовчуванням використовувати зовнішню програму порівняння версій (тільки для досвідчених користувачів, вимагає спеціальних налаштувань вашого комп'ютера)",
@@ -272,6 +273,13 @@ $messages = array(
 'underline-always'  => 'Завжди',
 'underline-never'   => 'Ніколи',
 'underline-default' => 'Використати налаштування браузера',
+
+# Font style option in Special:Preferences
+'editfont-style'     => 'Тип шрифту в полі редагування:',
+'editfont-default'   => 'Шрифт від веб-оглядача',
+'editfont-monospace' => 'Шрифт зі сталою шириною',
+'editfont-sansserif' => 'Шрифт без засічок',
+'editfont-serif'     => 'Шрифт із засічками',
 
 # Dates
 'sunday'        => 'неділя',
@@ -965,13 +973,16 @@ $3 зазначив таку причину: ''$2''",
 'rev-deleted-user'            => "(ім'я автора стерто)",
 'rev-deleted-event'           => '(запис журналу вилучений)',
 'rev-deleted-text-permission' => "Ця версія сторінки '''вилучена'''.
-Можливо є пояснення в [{{fullurl:{{ns:special}}:Log/suppress|page={{PAGENAMEE}}}} журналі приховань].",
+Можливо є пояснення в [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} журналі вилучень].",
 'rev-deleted-text-unhide'     => "Ця версія сторінки '''вилучена'''.
-Можливо є пояснення в [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} журналі приховань].
+Можливо є пояснення в [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} журналі вилучень].
+Як адміністратор ви можете [$1 переглянути цю версію].",
+'rev-suppressed-text-unhide'  => "Ця версія сторінки була '''прихована'''.
+Можливо, є пояснення в [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} журналі приховань].
 Як адміністратор ви можете [$1 переглянути цю версію].",
 'rev-deleted-text-view'       => "Ця версія сторінки '''вилучена'''.
 Ви можете переглянути її, оскільки є адміністратором проекту.
-Можливо, є пояснення в [{{fullurl:{{ns:special}}:Log/delete|page={{FULLPAGENAMEE}}}} журналі приховань].",
+Можливо, є пояснення в [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} журналі вилучень].",
 'rev-deleted-no-diff'         => "Ви не можете переглянути цю різницю версій, оскільки одна з версій сторінки '''вилучена'''.
 Можливо, деталі можна знайти в [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} журналі приховань].",
 'rev-deleted-unhide-diff'     => "Одна з версій сторінки '''вилучена'''.
@@ -1480,6 +1491,14 @@ $1",
 'recentchanges-legend'              => 'Налаштування нових редагувань',
 'recentchangestext'                 => 'На цій сторінці показані останні зміни на сторінках {{grammar:genitive|{{SITENAME}}}}.',
 'recentchanges-feed-description'    => 'Відстежувати останні зміни у вікі в цьому потоці.',
+'recentchanges-label-legend'        => 'Легенда: $1.',
+'recentchanges-legend-newpage'      => '$1 - нова сторінка',
+'recentchanges-legend-minor'        => '$1 - незначне редагування',
+'recentchanges-label-minor'         => 'Це незначна зміна',
+'recentchanges-legend-bot'          => '$1 — редагування бота',
+'recentchanges-label-bot'           => 'Це редагування зроблене ботом',
+'recentchanges-legend-unpatrolled'  => '$1 — невідпатрульоване редагування',
+'recentchanges-label-unpatrolled'   => 'Це редагування ще не було відпатрульоване',
 'rcnote'                            => "{{PLURAL:$1|Остання '''$1''' зміна|Останні '''$1''' зміни|Останні '''$1''' змін}} за '''$2''' {{PLURAL:$2|день|дні|днів}}, на час $5, $4.",
 'rcnotefrom'                        => 'Нижче відображені редагування з <strong>$2</strong> (до <strong>$1</strong>).',
 'rclistfrom'                        => 'Показати редагування починаючи з $1.',
@@ -1871,7 +1890,7 @@ PICT # різні
 'specialloguserlabel'  => 'Користувач:',
 'speciallogtitlelabel' => 'Назва:',
 'log'                  => 'Журнали',
-'all-logs-page'        => 'Усі журнали',
+'all-logs-page'        => 'Усі публічні журнали',
 'alllogstext'          => 'Комбінований показ журналів {{grammar:genitive|{{SITENAME}}}}.
 Ви можете відфільтрувати результати за типом журналу, іменем користувача (враховується регістр) або зазначеною сторінкою (також враховується регістр).',
 'logempty'             => 'В журналі немає подібних записів.',
