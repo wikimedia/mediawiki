@@ -404,6 +404,8 @@ this. Was used when mwEmbed was going to be an extension.
 * (bug 19289) importDump.php can now handle bzip2 and 7zip
 * (bug 20103) Add after the link for "My Talk" a info with the number of the
   new messages for the user
+* (bug 20131) Fixed a PHP notice for users having the "rollback" right on
+  Special:RecentChangesLinked
 
 == API changes in 1.16 ==
 
