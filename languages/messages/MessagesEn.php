@@ -895,7 +895,7 @@ See [[Special:Version|version page]].',
 'pagetitle-view-mainpage'      => '{{SITENAME}}', # only translate this message to other languages if you have to change it
 'retrievedfrom'                => 'Retrieved from "$1"',
 'youhavenewmessages'           => 'You have $3 $1 ($2).',
-'newmessageslink'              => 'new messages',
+'newmessageslink'              => '{{PLURAL:$1|new message|new messages}}',
 'newmessagesdifflink'          => 'last change',
 'youhavenewmessagesmulti'      => 'You have new messages on $1',
 'newtalkseparator'             => ',&#32;', # do not translate or duplicate this message to other languages
