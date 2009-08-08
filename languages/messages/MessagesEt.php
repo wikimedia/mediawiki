@@ -1134,21 +1134,21 @@ Leheküljed, mis lähevad [[Special:Watchlist|Jälgimisloendi]] koosseisu, on es
 
 # Upload
 'upload'               => 'Faili üleslaadimine',
-'uploadbtn'            => 'Lae fail',
+'uploadbtn'            => 'Laadi fail üles',
 'reupload'             => 'Uuesti üleslaadimine',
 'reuploaddesc'         => 'Tagasi üleslaadimise vormi juurde.',
-'uploadnologin'        => 'sisse logimata',
+'uploadnologin'        => 'Sisse logimata',
 'uploadnologintext'    => 'Kui Te soovite faile üles laadida, peate [[Special:UserLogin|sisse logima]].',
 'uploaderror'          => 'Faili laadimine ebaõnnestus',
-'uploadtext'           => "Järgnevat vormi võid kasutada failide üles laadimiseks.
+'uploadtext'           => "Järgnevat vormi võid kasutada failide üleslaadimiseks.
 
-Et näha või leida eelnevalt üles laetud pilte mine vaata [[Special:FileList|piltide nimekirja]].
-Üleslaadimiste ajalugu saab uurida [[Special:Log/upload|üleslaadimise logist]], kustutamiste oma [[Special:Log/delete|kustutamiste logist]].
+Et näha või leida eelnevalt üles laaditud faile vaata [[Special:FileList|failide nimekirja]].
+Üleslaadimiste ajalugu saab uurida [[Special:Log/upload|üleslaadimislogist]], kustutamiste ajalugu [[Special:Log/delete|kustutamislogist]].
 
 Faili lisamiseks artiklile kasuta linki ühel kujul järgnevatest:
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:fail.jpg]]</nowiki></tt>''' pildi täisversiooni lisamiseks;
-* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:fail.png|200px|thumb|left|kirjeldus]]</nowiki></tt>''' 200-pikselilise esituse loomiseks lehekülje vasakule äärele lisatavas kastis, kus 'kirjeldus' lisatakse pildiallkirjana;
-* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:fail.ogg]]</nowiki></tt>''' helifaili-lingi loomiseks.",
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:fail.jpg]]</nowiki></tt>''' algupäraste mõõtmetega pildi lisamiseks
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:fail.png|200px|thumb|left|kirjeldus]]</nowiki></tt>''' raamiga pisipildi lisamiseks lehekülje vasakusse serva; ''kirjeldus'' kuvatakse pildiallkirjana
+* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:fail.ogg]]</nowiki></tt>''' helifaililingi lisamiseks",
 'upload-permitted'     => 'Lubatud failitüübid: $1.',
 'upload-preferred'     => 'Eelistatud failitüübid: $1.',
 'upload-prohibited'    => 'Keelatud failitüübid: $1.',
@@ -1166,7 +1166,7 @@ Faili lisamiseks artiklile kasuta linki ühel kujul järgnevatest:
 'badfilename'          => 'Pildi nimi on muudetud. Uus nimi on "$1".',
 'filetype-banned-type' => "'''\".\$1\"''' ei ole lubatud failitüüp.  Lubatud {{PLURAL:\$3|failitüüp|failitüübid}} on  \$2.",
 'filetype-missing'     => 'Failil puudub laiend (nagu näiteks ".jpg").',
-'large-file'           => 'On soovitatav, et üleslaetavad failid ei oleks suuremad kui $1; selle faili suurus on $2.',
+'large-file'           => 'On soovitatav, et üleslaaditavad failid ei oleks suuremad kui $1. Selle faili suurus on $2.',
 'largefileserver'      => 'Antud fail on suurem lubatud failisuurusest.',
 'emptyfile'            => 'Fail, mille Te üles laadisite, paistab olevat tühi.
 See võib olla tingitud vigasest failinimest.
@@ -1195,6 +1195,9 @@ Palun pöörduge tagasi ja laadige fail üles mõne teise nime all. [[File:$1|th
 'nolicense' => 'pole valitud',
 
 # Special:ListFiles
+'listfiles-summary'     => 'See erileht kuvab kõik üleslaaditud failid.
+Vaikimisi on kõige ees viimati üleslaaditud failid.
+Tulba päisel klõpsamine muudab sortimist.',
 'imgfile'               => 'fail',
 'listfiles'             => 'Piltide loend',
 'listfiles_date'        => 'Kuupäev',
@@ -1224,7 +1227,7 @@ Palun pöörduge tagasi ja laadige fail üles mõne teise nime all. [[File:$1|th
 'sharedupload'              => 'See fail pärineb allikast $1 ning võib olla kasutusel ka teistes projektides.',
 'sharedupload-desc-there'   => 'See fail pärineb kesksest failivaramust $1. Palun vaata [$2 faili kirjelduse lehekülge], et saada rohkem teavet.',
 'sharedupload-desc-here'    => 'See on jagutud fail allikast $1 ja seda saab kasutada ka teistes projektides. Faili sealne [$2 kirjeldus] on kuvatud allpool.',
-'uploadnewversion-linktext' => 'Lae üles selle faili uus versioon',
+'uploadnewversion-linktext' => 'Laadi üles selle faili uus versioon',
 
 # File deletion
 'filedelete'                  => 'Kustuta $1',
@@ -1240,8 +1243,10 @@ Palun pöörduge tagasi ja laadige fail üles mõne teise nime all. [[File:$1|th
 'filedelete-edit-reasonlist'  => 'Redigeeri kustutamise põhjuseid',
 
 # MIME search
-'mimesearch' => 'MIME otsing',
-'mimetype'   => 'MIME tüüp:',
+'mimesearch'         => 'MIME otsing',
+'mimesearch-summary' => 'Selle leheküljega saab faile otsida MIME tüübi järgi.
+Sisesta kujul tüüp/alamtüüp, näiteks <tt>image/jpeg</tt>.',
+'mimetype'           => 'MIME tüüp:',
 
 # Unwatched pages
 'unwatchedpages' => 'Jälgimata lehed',
@@ -1556,7 +1561,7 @@ Nõuab "$1" õiguseid',
 'restriction-edit'   => 'Redigeerimine',
 'restriction-move'   => 'Teisaldamine',
 'restriction-create' => 'Loomine',
-'restriction-upload' => 'Lae üles',
+'restriction-upload' => 'Laadi üles',
 
 # Restriction levels
 'restriction-level-sysop'         => 'täielikult kaitstud',
@@ -1791,8 +1796,7 @@ Kui soovid MediaWiki tarkvara tõlkimises osaleda siis vaata lehti [http://www.m
 'importinterwiki'          => 'Vikidevaheline import',
 'import-upload-filename'   => 'Failinimi:',
 'import-comment'           => 'Kommentaar:',
-'importtext'               => 'Palun ekspordi fail allikaks olevast vikist kasutades [[Special:Export|lehekülgede ekspordi vahendit]].
-Salvesta see oma arvutisse ning lae see siia ülesse.',
+'importtext'               => 'Palun kasuta faili eksportimiseks allikaks olevast vikist [[Special:Export|ekspordi vahendit]]. Salvesta see oma arvutisse laadi siia üles.',
 'importstart'              => 'Impordin lehekülgi...',
 'import-revision-count'    => '$1 {{PLURAL:$1|versioon|versiooni}}',
 'importnopages'            => 'Ei olnud imporditavaid lehekülgi.',
@@ -1805,11 +1809,11 @@ Tundmatu tüüpi algallikas',
 'importsuccess'            => 'Importimine edukalt lõpetatud!',
 'importhistoryconflict'    => 'Konfliktne muudatuste ajalugu (võimalik, et seda lehekülge juba varem imporditud)',
 'importnosources'          => 'Ühtegi transwiki impordiallikat ei ole defineeritud ning ajaloo otseimpordi funktsioon on välja lülitatud.',
-'importnofile'             => 'Faili importimiseks, ei laetud ühtki faili ülesse.',
+'importnofile'             => 'Ühtegi imporditavat faili ei laaditud üles.',
 'importuploaderrorsize'    => 'Üleslaaditava faili import ebaõnnestus.
 Fail on lubatust suurem.',
-'importuploaderrorpartial' => 'Üleslaaditava faili import ebaõnnestus.
-Fail oli vaid osaliselt üleslaetud.',
+'importuploaderrorpartial' => 'Imporditava faili üleslaadimine ebaõnnestus.
+Fail oli vaid osaliselt üleslaaditud.',
 'importuploaderrortemp'    => 'Üleslaaditava faili import ebaõnnestus.
 Puudub ajutine kataloog.',
 'import-noarticle'         => 'Ühtki lehekülge polnud importida!',
@@ -1856,7 +1860,7 @@ Puudub ajutine kataloog.',
 'tooltip-feed-atom'               => 'Selle lehekülje Atom sööt',
 'tooltip-t-contributions'         => 'Kuva selle kasutaja kaastööd',
 'tooltip-t-emailuser'             => 'Saada sellele kasutajale e-kiri',
-'tooltip-t-upload'                => 'Lae üles faile',
+'tooltip-t-upload'                => 'Laadi faile üles',
 'tooltip-t-specialpages'          => 'Erilehekülgede loend',
 'tooltip-t-print'                 => 'Selle lehe trükiversioon',
 'tooltip-t-permalink'             => 'Püsilink lehe sellele versioonile',
@@ -1941,6 +1945,7 @@ Samuti võimaldab see resümee reale põhjenduse lisamist.',
 'newimages'             => 'Uute meediafailide galerii',
 'imagelisttext'         => "
 Järgnevas loendis, mis on sorteeritud $2, on '''$1''' {{PLURAL:$1|fail|faili}}.",
+'newimages-summary'     => 'Sellel erilehel on viimati üles laaditud failid.',
 'showhidebots'          => '($1 robotite kaastööd)',
 'ilsubmit'              => 'Otsi',
 'bydate'                => 'kuupäeva järgi',
@@ -2056,9 +2061,12 @@ Kinnituskood aegub $4.',
 'imgmultipagenext' => 'järgmine lehekülg →',
 
 # Table pager
-'table_pager_prev'  => 'Eelmine lehekülg',
-'table_pager_first' => 'Esimene lehekülg',
-'table_pager_last'  => 'Viimane lehekülg',
+'table_pager_next'         => 'Järgmine lehekülg',
+'table_pager_prev'         => 'Eelmine lehekülg',
+'table_pager_first'        => 'Esimene lehekülg',
+'table_pager_last'         => 'Viimane lehekülg',
+'table_pager_limit'        => 'Näita $1 faili lehekülje kohta',
+'table_pager_limit_submit' => 'Mine',
 
 # Auto-summaries
 'autosumm-blank'   => 'Kustutatud kogu lehekülje sisu',
@@ -2102,11 +2110,19 @@ Aga samuti võid sa [[Special:Watchlist/edit|kasutada harilikku redaktorit]].',
 'version-software-version' => 'Versioon',
 
 # Special:FilePath
-'filepath'      => 'Failitee',
-'filepath-page' => 'Fail:',
+'filepath'         => 'Failitee',
+'filepath-page'    => 'Fail:',
+'filepath-submit'  => 'Tee',
+'filepath-summary' => 'See erileht määrab otsitava failini viiva tee.
+Pilt kuvatakse algupärases suuruses, muu fail avatakse koheselt seostuva programmiga.
+
+Sisesta faili nimi eesliiteta "{{ns:file}}:".',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Otsi faili duplikaate',
+'fileduplicatesearch-summary'  => 'Otsi duplikaatfaile nende räsiväärtuse järgi.
+
+Sisesta faili nimi eesliiteta "{{ns:file}}:".',
 'fileduplicatesearch-legend'   => 'Otsi faili duplikaati',
 'fileduplicatesearch-filename' => 'Faili nimi:',
 'fileduplicatesearch-submit'   => 'Otsi',
@@ -2131,8 +2147,15 @@ Aga samuti võid sa [[Special:Watchlist/edit|kasutada harilikku redaktorit]].',
 'intentionallyblankpage' => 'See lehekülg on sihilikult tühjaks jäetud.',
 
 # Special:Tags
-'tags-edit'     => 'muuda',
-'tags-hitcount' => '$1 {{PLURAL:$1|muudatus|muudatust}}',
+'tags'                    => 'Käibivad muudatusmärgised',
+'tags-title'              => 'Märgised',
+'tags-intro'              => 'See lehekülg loetleb märgised, millega tarkvara võib muudatused märgistada, ja nende kirjeldused.',
+'tags-tag'                => 'Sisene märgisenimi',
+'tags-display-header'     => 'Tähistus muudatusloendis',
+'tags-description-header' => 'Täiskirjeldus',
+'tags-hitcount-header'    => 'Märgistatud muudatused',
+'tags-edit'               => 'muuda',
+'tags-hitcount'           => '$1 {{PLURAL:$1|muudatus|muudatust}}',
 
 # HTML forms
 'htmlform-int-invalid' => 'Antud väärtus ei ole täisarv.',

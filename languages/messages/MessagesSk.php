@@ -301,6 +301,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Upozorniť ma emailom aj na drobné úpravy stránok',
 'tog-enotifrevealaddr'        => 'Zobraziť moju emailovú adresu v emailoch s upozorneniami',
 'tog-shownumberswatching'     => 'Zobraziť počet používateľov sledujúcich stránku',
+'tog-oldsig'                  => 'Náhľad súčasného podpisu:',
 'tog-fancysig'                => 'Považovať podpisy za wikitext (bez automatických odkazov)',
 'tog-externaleditor'          => 'Používať štandardne externý editor (iba pre expertov, vyžaduje špeciálne nastavenie vášho počítača)',
 'tog-externaldiff'            => 'Používať štandardne externý diff (iba pre expertov, vyžaduje špeciálne nastavenie vášho počítača)',
@@ -1020,17 +1021,22 @@ Skúste [[Special:Search|vyhľadávať na wiki]] relevantné nové stránky.',
 'rev-deleted-user'            => '(používateľské meno odstránené)',
 'rev-deleted-event'           => '(činnosť odstránená zo záznamu)',
 'rev-deleted-text-permission' => "Táto revízia stránky bola '''zmazaná'''.
-Podrobnosti nájdete v [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} zázname potlačení].",
+Podrobnosti nájdete v [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} zázname mazaní].",
 'rev-deleted-text-unhide'     => "Táto revízia stránky bola '''zmazaná'''.
+Podrobnosti nájdete v [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} zázname mazaní].
+Ako správca máte stále možnosť [$1 zobraziť túto revíziu] ak chcete.",
+'rev-suppressed-text-unhide'  => "Táto revízia stránky bola '''potlačená'''.
 Podrobnosti nájdete v [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} zázname potlačení].
 Ako správca máte stále možnosť [$1 zobraziť túto revíziu] ak chcete.",
 'rev-deleted-text-view'       => "Táto revízia stránky bola '''zmazaná'''.
 Ako správca {{GRAMMAR:genitív|{{SITENAME}}}} si ju môžete prezrieť;
-podrobnosti môžu byť v [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} zázname potlačení].",
+podrobnosti môžu byť v [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} zázname mazaní].",
+'rev-suppressed-text-view'    => "Táto revízia stránky bola '''potlačená'''.
+Podrobnosti nájdete v [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} zázname potlačení].",
 'rev-deleted-no-diff'         => "Tento rozdiel nemôžete zobraziť, pretože bol '''zmazaný'''.
-Podrobnosti môžete nájsť v [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} zázname potlačení].",
+Podrobnosti môžete nájsť v [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} zázname mazaní].",
 'rev-deleted-unhide-diff'     => "Jedna z revízií tohto rozdielu bola '''zmazaná'''.
-Podrobnosti môžete nájsť v [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} zázname potlačení].
+Podrobnosti môžete nájsť v [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} zázname mazaní].
 Ako správca {{GRAMMAR:genitív|{{SITENAME}}}} si [$1 tento rozdiel môžete prezrieť];",
 'rev-delundel'                => 'zobraziť/skryť',
 'revisiondelete'              => 'Zmazať/obnoviť revízie',
@@ -1348,6 +1354,7 @@ Túto operáciu nemožno vrátiť.',
 'yourlanguage'                  => 'Jazyk:',
 'yourvariant'                   => 'Variant jazyka:',
 'yournick'                      => 'Podpis:',
+'prefs-help-signature'          => 'Komentáre na diskusných stránkach by ste mali podpisovať pomocou „<nowiki>~~~~</nowiki>“, čo sa prevedie na váš podpis a časovú známku.',
 'badsig'                        => 'Neplatný podpis v pôvodnom tvare; skontrolujte HTML značky.',
 'badsiglength'                  => 'Váš podpis je príliš dlhý.
 Musí obsahovať menej ako $1 {{PLURAL:$1|znak|znaky|znakov}}.',
@@ -1526,6 +1533,15 @@ Musí obsahovať menej ako $1 {{PLURAL:$1|znak|znaky|znakov}}.',
 'recentchanges-legend'              => 'Možnosti posledných zmien',
 'recentchangestext'                 => 'Pomocou tejto stránky sledujete posledné úpravy wiki.',
 'recentchanges-feed-description'    => 'Sledovať posledné úpravy tejto wiki týmto kanálom.',
+'recentchanges-label-legend'        => 'Legenda: $1.',
+'recentchanges-legend-newpage'      => '$1 - nová stránka',
+'recentchanges-label-newpage'       => 'Táto úprava vytvorila novú stránku.',
+'recentchanges-legend-minor'        => '$1 - drobná úprava',
+'recentchanges-label-minor'         => 'Toto je drobná úprava',
+'recentchanges-legend-bot'          => '$1 - úprava bota',
+'recentchanges-label-bot'           => 'Túto úpravy vykonal robot',
+'recentchanges-legend-unpatrolled'  => '$1 - nestrážená úprava',
+'recentchanges-label-unpatrolled'   => 'Táto úprava zatiaľ nebola strážená',
 'rcnote'                            => "Tu {{PLURAL:$1|je posledná úprava|sú posledné '''$1''' úpravy|je posledných '''$1''' úprav}} počas {{PLURAL:$2|posledného dňa|posledných '''$2''' dní}} z $4, $5.",
 'rcnotefrom'                        => "Nižšie sú zobrazené úpravy od '''$2''' (do '''$1''').",
 'rclistfrom'                        => 'Zobraziť nové úpravy počnúc od $1',
@@ -1795,6 +1811,7 @@ Môžete si pozrieť [[Special:WhatLinksHere/$2|úplný zoznam]].',
 'statistics-header-edits'      => 'Štatistika úprav',
 'statistics-header-views'      => 'Štatistika zobrazení',
 'statistics-header-users'      => 'Štatistika používateľov',
+'statistics-header-hooks'      => 'Iná štatistika',
 'statistics-articles'          => 'Stránok s obsahom',
 'statistics-pages'             => 'Stránok',
 'statistics-pages-desc'        => 'Všetky stránky na wiki vrátane diskusných stránok, presmerovaní atď.',
@@ -2779,6 +2796,8 @@ $1',
 'svg-long-desc'        => '(SVG súbor, $1 × $2 pixelov, veľkosť súboru: $3)',
 'show-big-image'       => 'Obrázok vo vyššom rozlíšení',
 'show-big-image-thumb' => '<small>Veľkosť tohto náhľadu: $1 × $2 pixelov</small>',
+'file-info-gif-looped' => 'v cykle',
+'file-info-gif-frames' => '$1 {{PLURAL:$1|rámec|rámce|rámcov}}',
 
 # Special:NewFiles
 'newimages'             => 'Galéria nových obrázkov',

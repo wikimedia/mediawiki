@@ -896,7 +896,7 @@ $messages = array(
 'specialloguserlabel'  => 'Χρήστες:',
 'speciallogtitlelabel' => 'Τίτλος:',
 'log'                  => 'Αρχεία',
-'all-logs-page'        => "Όλεα τ' αρχεία",
+'all-logs-page'        => 'Όλεα τα δημόσεα αρχεία',
 
 # Special:AllPages
 'allpages'       => 'Όλεα τα σελίδας',

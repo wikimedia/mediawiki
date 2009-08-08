@@ -66,7 +66,7 @@
 	'crh-cyrl' => "\xE2\x80\xAAКъырымтатарджа (Кирилл)\xE2\x80\xAC",       # Crimean Tatar (Cyrillic)
 	'cs' => 'Česky',	# Czech
 	'csb' => 'Kaszëbsczi',	# Cassubian
-	'cu' => 'Словѣ́ньскъ / ⰔⰎⰑⰂⰡⰐⰠⰔⰍⰟ', 	# Old Church Slavonic (ancient language)
+	'cu' => 'Словѣ́ньскъ / ⰔⰎⰑⰂⰡⰐⰠⰔⰍⰟ',	# Old Church Slavonic (ancient language)
 	'cv' => 'Чӑвашла',	# Chuvash
 	'cy' => 'Cymraeg',		# Welsh
 	'da' => 'Dansk',		# Danish
@@ -75,7 +75,7 @@
 	'de-ch' => 'Schweizer Hochdeutsch',		# Swiss Standard German
 	'de-formal' => 'Deutsch (Sie-Form)',		# German - formal address ("Sie")
 	'diq' => 'Zazaki',		# Zazaki
-	'dk' => 'Dansk (deprecated:da)', 		# Unused code currently falls back to Danish, 'da' is correct for the language
+	'dk' => 'Dansk (deprecated:da)',		# Unused code currently falls back to Danish, 'da' is correct for the language
 	'dsb' => 'Dolnoserbski', # Lower Sorbian
 	'dv' => 'ދިވެހިބަސް',		# Dhivehi
 	'dz' => 'ཇོང་ཁ',		# Bhutani
@@ -170,11 +170,11 @@
 	'kri' => 'Krio', # Krio
 	'krj' => 'Kinaray-a', # Kinaray-a
 	'ks' => 'कश्मीरी - (كشميري)',	# Kashmiri
-	'ksh' => 'Ripoarisch', 	# Ripuarian 
+	'ksh' => 'Ripoarisch',	# Ripuarian 
 	'ku'  => 'Kurdî / كوردی',	# Kurdish
 	'ku-latn' => "\xE2\x80\xAAKurdî (latînî)\xE2\x80\xAC",	# Northern Kurdish Latin script
 	'ku-arab' => "\xE2\x80\xABكوردي (عەرەبی)\xE2\x80\xAC",	# Northern Kurdish Arabic script
-	'kv' => 'Коми', 	# Komi-Zyrian, cyrillic is common script but also written in latin script
+	'kv' => 'Коми',	# Komi-Zyrian, cyrillic is common script but also written in latin script
 	'kw' => 'Kernewek',		# Cornish
 	'ky' => 'Кыргызча',	# Kirghiz
 	'la' => 'Latina',		# Latin
@@ -234,23 +234,24 @@
 	'nv' => 'Diné bizaad',	# Navajo
 	'ny' => 'Chi-Chewa',	# Chichewa
 	'oc' => 'Occitan',		# Occitan
-	'om' => 'Oromoo', 		# Oromo
+	'om' => 'Oromoo',		# Oromo
 	'or' => 'ଓଡ଼ିଆ',		# Oriya
 	'os' => 'Иронау', # Ossetic
 	'pa' => 'ਪੰਜਾਬੀ', # Eastern Punjabi (pan)
 	'pag' => 'Pangasinan',	# Pangasinan
 	'pam' => 'Kapampangan',   # Pampanga
 	'pap' => 'Papiamentu',	# Papiamentu
-	'pdc' => 'Deitsch', 	# Pennsylvania German
-	'pdt' => 'Plautdietsch', 	# Plautdietsch/Mennonite Low German
-	'pfl' => 'Pfälzisch', 	# Palatinate German
+	'pcd' => 'Picard',	# Picard
+	'pdc' => 'Deitsch',	# Pennsylvania German
+	'pdt' => 'Plautdietsch',	# Plautdietsch/Mennonite Low German
+	'pfl' => 'Pfälzisch',	# Palatinate German
 	'pi' => 'पािऴ',	# Pali
 	'pih' => 'Norfuk / Pitkern', # Norfuk/Pitcairn/Norfolk
 	'pl' => 'Polski',		# Polish
 	'plm' => 'Palembang',		# Palembang
-	'pms' => 'Piemontèis', 	# Piedmontese
+	'pms' => 'Piemontèis',	# Piedmontese
 	'pnb' => 'پنجابی',	# Western Punjabi
-	'pnt' => 'Ποντιακά', 	# Pontic/Pontic Greek
+	'pnt' => 'Ποντιακά',	# Pontic/Pontic Greek
 	'ps' => 'پښتو',	# Pashto, Northern/Paktu/Pakhtu/Pakhtoo/Afghan/Pakhto/Pashtu/Pushto/Yusufzai Pashto
 	'pt' => 'Português',	# Portuguese
 	'pt-br' => 'Português do Brasil',	# Brazilian Portuguese
@@ -352,7 +353,7 @@
 	'ydd' => 'מיזרח־ייִדיש', # Eastern Yiddish
 	'yi' => 'ייִדיש',	# Yiddish
 	'yo' => 'Yorùbá',	# Yoruba
-	'yue' => '粵語', 	# Cantonese -- (bug 8217) yue instead of zh-yue, http://www.sil.org/iso639-3/codes.asp?order=639_3&letter=y
+	'yue' => '粵語',	# Cantonese -- (bug 8217) yue instead of zh-yue, http://www.sil.org/iso639-3/codes.asp?order=639_3&letter=y
 	'za' => 'Vahcuengh',	# Zhuang
 	'zea' => 'Zeêuws',	# Zeeuws/Zeaws
 	'zh' => '中文',						# (Zhōng Wén) - Chinese
@@ -361,10 +362,10 @@
 	'zh-hans' => "\xE2\x80\xAA中文(简体)\xE2\x80\xAC",	# Chinese written using the Simplified Chinese script
 	'zh-hant' => "\xE2\x80\xAA中文(繁體)\xE2\x80\xAC",	# Chinese written using the Traditional Chinese script
 	'zh-hk' => "\xE2\x80\xAA中文(香港)\xE2\x80\xAC",	# Chinese (Hong Kong)
-	'zh-min-nan' => 'Bân-lâm-gú', 				# Min-nan -- (see bug 8217)
+	'zh-min-nan' => 'Bân-lâm-gú',				# Min-nan -- (see bug 8217)
 	'zh-mo' => "\xE2\x80\xAA中文(澳門)\xE2\x80\xAC",	# Chinese (Macau)
 	'zh-my' => "\xE2\x80\xAA中文(马来西亚)\xE2\x80\xAC",	# Chinese (Malaysia)
-	'zh-sg' => "\xE2\x80\xAA中文(新加坡)\xE2\x80\xAC", 	# Chinese (Singapore)
+	'zh-sg' => "\xE2\x80\xAA中文(新加坡)\xE2\x80\xAC",	# Chinese (Singapore)
 	'zh-tw' => "\xE2\x80\xAA中文(台灣)\xE2\x80\xAC",	# Chinese (Taiwan)
 	'zh-yue' => '粵語',					# Cantonese -- (see bug 8217)
 	'zu' => 'isiZulu'		# Zulu

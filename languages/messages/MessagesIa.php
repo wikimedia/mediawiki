@@ -2749,6 +2749,8 @@ $1',
 'svg-long-desc'        => '(File SVG, dimensiones nominal: $1 × $2 pixels, grandor del file: $3)',
 'show-big-image'       => 'Plen resolution',
 'show-big-image-thumb' => '<small>Dimensiones de iste previsualisation: $1 × $2 pixels</small>',
+'file-info-gif-looped' => 'repetente',
+'file-info-gif-frames' => '$1 {{PLURAL:$1|imagine|imagines}}',
 
 # Special:NewFiles
 'newimages'             => 'Galeria de nove files',

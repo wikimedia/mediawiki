@@ -11,6 +11,7 @@
  * @author ChrisiPK
  * @author Church of emacs
  * @author Duesentrieb
+ * @author Jan Luca
  * @author Jimmy Collins <jimmy.collins@web.de>
  * @author Khaledelmansoury
  * @author Li-sung
@@ -609,7 +610,7 @@ Siehe die [[Special:Version|Versionsseite]]',
 'ok'                      => 'OK',
 'pagetitle'               => '$1 – {{SITENAME}}',
 'retrievedfrom'           => 'Von „$1“',
-'youhavenewmessages'      => 'Du hast $2 auf deiner $1.',
+'youhavenewmessages'      => 'Du hast $1 auf deiner Diskussionsseite ($2).',
 'newmessageslink'         => 'Neue Nachrichten',
 'newmessagesdifflink'     => 'Letzte Änderung',
 'youhavenewmessagesmulti' => 'Du hast neue Nachrichten: $1',

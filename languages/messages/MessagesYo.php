@@ -36,7 +36,7 @@ $messages = array(
 'tog-underline'            => 'Fàlàsí àwọn ijápọ̀:',
 'tog-justify'              => "S'àlàyé gbólóhùn ọ̀rọ̀",
 'tog-hideminor'            => "Bo àtúnse kékékèé mọ́'lẹ̀ nínú àtúnse tuntun",
-'tog-extendwatchlist'      => "Fífẹ̀ ìmójútó láti ṣ'àfihàn gbogbo àtúnṣe tó ṣẹ́lẹ̀",
+'tog-extendwatchlist'      => "Fífẹ̀ ìmójútó láti ṣ'àfihàn gbogbo àtúnṣe tó ṣẹ́lẹ̀, kìí ṣe tuntun nìkan",
 'tog-editondblclick'       => "Ṣ'àtúnṣe àwọn ojúewé ní kíkàn lẹ́mẹjì (JavaScript)",
 'tog-editsection'          => 'Jọ̀wọ́ àtúnṣe abala láti inú àwọn ìjápọ̀',
 'tog-rememberpassword'     => "Sè'rántí ọ̀rọ̀ìpamí mi lórí kọmputa yi",
@@ -122,6 +122,7 @@ $messages = array(
 'category-empty'           => "''Lọ́wọ́lọ́wọ́ ẹ̀ka yìí kò ní ojúewé tàbí amóhùnmáwòrán kankan.''",
 'hidden-categories'        => '{{PLURAL:$1|Ẹ̀ka àbòmọ́lẹ̀|Áwọn ẹ̀ka àbòmọ́lẹ̀}}',
 'hidden-category-category' => 'Àwọn ẹ̀ka àbòmọ́lẹ̀',
+'category-subcat-count'    => '{{PLURAL:$2|Ẹ̀ka yìí ní ẹ̀kalábẹ́ yìí|Ẹ̀ka yìí ní {{PLURAL:$1|ẹ̀kalábẹ́|$1 àwọn ẹ̀kalábẹ́}} yìí, nínú àpapọ̀ $2.}}',
 'category-article-count'   => '{{PLURAL:$2|Ẹ̀ka yìí ní ojúewé kan péré.|{{PLURAL:$1|Ojúewé kan yìí nìkan|Àwọn ojúewé $1 yìí}} lówà nínú èka yìí, nínú àpapọ̀ $2.}}',
 'listingcontinuesabbrev'   => 'tẹ̀síwájú',
 
@@ -177,13 +178,13 @@ $messages = array(
 'talkpagelinktext'  => 'Kábárawasọ̀rọ̀',
 'specialpage'       => 'Ojúewé Pàtàkì',
 'personaltools'     => 'Àwọn irinṣẹ́ àdáni',
-'postcomment'       => 'Ṣe àwísọ',
+'postcomment'       => 'Abala tuntun',
 'talk'              => 'Ìfọ̀rọ̀wérọ̀',
 'views'             => 'Àwọn ìwò',
 'toolbox'           => 'Àpótí irinṣẹ',
 'userpage'          => 'Wo ojúewé oníṣe',
 'projectpage'       => 'Wo ojúewé iṣẹ́ọwọ́',
-'imagepage'         => 'Wo ojúewé amóhùnmáwòrán',
+'imagepage'         => 'Wo ojúewé faili',
 'mediawikipage'     => 'Wo ojúewé ìránṣẹ́',
 'templatepage'      => 'Wo ojúewé àdàkọ',
 'viewhelppage'      => 'Wo ojúewé ìrànlọ́wọ́',
@@ -261,7 +262,9 @@ $messages = array(
 
 # Main script and global functions
 'nosuchaction'      => 'Kò sí irú ìgbéṣe báun',
-'nosuchactiontext'  => 'Ìgbéṣe tí URL yìí tọ́kasí kò ní ìdámọ̀ lórí wiki yìí',
+'nosuchactiontext'  => 'Ìgbéṣe tí URL yìí tọ́kasí kò tọ́.
+Ó ṣe é ṣe kó jẹ́ pé ẹ ṣe àṣìṣe URL ọ̀hún, tàbí kó jẹ́ pé ẹ tẹ̀lé ìjápọ̀ tí kò tọ́.
+Ó sì le jẹ́ pé kòkòrò wà nínú software tí {{SITENAME}} nlò.',
 'nosuchspecialpage' => 'Kò sí irú ojúewé pàtàkì báun',
 'nospecialpagetext' => "<big>'''Ẹ tọrọ ojúewé pàtàkì tólòdì.'''</big>
 
@@ -490,17 +493,21 @@ Bákannà ẹ tún ṣèlérí fún wa wípé ẹ̀yin lẹkọ́ fúnra arayín
 # Search results
 'searchresults'             => 'Àwọn èsì àwáàrí',
 'searchresults-title'       => 'Àwọn èsì àwáàrí fún "$1"',
+'searchresulttext'          => 'Fún ẹ̀kúnrẹ́rẹ́ nípa ṣíṣe àwáàrí {{SITENAME}}, ẹ̀ wo [[{{MediaWiki:Helppage}}|{{int:help}}]].',
 'searchsubtitle'            => 'Ẹ ṣ\'àwáàrí fun \'\'\'[[:$1]]\'\'\' ([[Special:Prefixindex/$1|gbogbo ojúewé tó bẹ̀rẹ̀ pẹ̀lu "$1"]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|gbogbo ojúewé tó jápọ̀ mọ́ "$1"]])',
 'searchsubtitleinvalid'     => "Ẹ ṣ'àwáàrí fun '''$1'''",
 'noexactmatch'              => "'''Kò sí ojúewé pẹ̀lú àkọlé \"\$1\".'''
 Ẹ le [[:\$1|ṣ'èdá ojúewé yìí]].",
 'noexactmatch-nocreate'     => "'''Kò sí ojúewé pẹ̀lú àkọlé \"\$1\".'''",
-'prevn'                     => 'titẹ́lẹ̀ $1',
+'notitlematches'            => 'Kò sí àkọlé ojúewé tóbáramu',
+'notextmatches'             => 'Kò sí ọ̀rọ̀ ojúewé tóbáramu',
+'prevn'                     => 'titẹ́lẹ̀ {{PLURAL:$1|$1}}',
 'nextn'                     => 'tókàn {{PLURAL:$1|$1}}',
 'viewprevnext'              => 'Ẹ wo ($1) ($2) ($3)',
 'searchhelp-url'            => 'Help:Àwon ohunnú',
 'search-result-size'        => '$1 ({{PLURAL:$2|ọ̀rọ̀ 1|àwọn ọ̀rọ̀ $2}})',
 'search-section'            => '(abala $1)',
+'search-interwiki-default'  => 'èsì $1',
 'search-interwiki-more'     => '(rẹ́rẹ́)',
 'search-mwsuggest-enabled'  => 'pẹ̀lú ìyànjú',
 'search-mwsuggest-disabled' => 'kò sí ìyànjú',
@@ -699,6 +706,8 @@ Tí ẹ bá fisílẹ̀ a ó lòó láti tóka iṣẹ́ yín fún yín.',
 'ancientpages'            => 'Àwọn ojúewé tópẹ́jùlọ',
 'move'                    => 'Yípò',
 'movethispage'            => 'Yípò ojúewé yìí',
+'pager-newer-n'           => '{{PLURAL:$1|tuntunjùlọ 1|tuntunjùlọ $1}}',
+'pager-older-n'           => '{{PLURAL:$1|pípẹ́jùlọ 1|pípẹ́jùlọ $1}}',
 
 # Book sources
 'booksources' => 'Àwọn ibi ìwẹ́',
@@ -817,16 +826,17 @@ Bí a ṣe to ojúewé '''$1''' nì yí:",
 'sp-contributions-username'    => 'Ojúọ̀nà IP tàbí orúkọ oníṣe:',
 
 # What links here
-'whatlinkshere'       => 'Ìjápọ̀ mọ́ ojúewé yí',
-'whatlinkshere-title' => 'Àwọn ojúewé tó jápọ̀ mọ́ "$1"',
-'whatlinkshere-page'  => 'Ojúewé:',
-'linkshere'           => "Àwọn ojúewé wọ̀nyí jápọ̀ mọ́ '''[[:$1]]''':",
-'nolinkshere'         => "Kò sí ojúewé tó jápọ̀ mọ́ '''[[:$1]]'''.",
-'isredirect'          => 'àtúnjúwe ojúewé',
-'istemplate'          => 'ìkómọ́ra',
-'whatlinkshere-prev'  => '{{PLURAL:$1|tẹ́lẹ̀|tẹ́lẹ̀ $1}}',
-'whatlinkshere-next'  => '{{PLURAL:$1|tókàn|tókàn $1}}',
-'whatlinkshere-links' => '← àwọn ìjápọ̀',
+'whatlinkshere'           => 'Ìjápọ̀ mọ́ ojúewé yí',
+'whatlinkshere-title'     => 'Àwọn ojúewé tó jápọ̀ mọ́ "$1"',
+'whatlinkshere-page'      => 'Ojúewé:',
+'linkshere'               => "Àwọn ojúewé wọ̀nyí jápọ̀ mọ́ '''[[:$1]]''':",
+'nolinkshere'             => "Kò sí ojúewé tó jápọ̀ mọ́ '''[[:$1]]'''.",
+'isredirect'              => 'àtúnjúwe ojúewé',
+'istemplate'              => 'ìkómọ́ra',
+'whatlinkshere-prev'      => '{{PLURAL:$1|tẹ́lẹ̀|tẹ́lẹ̀ $1}}',
+'whatlinkshere-next'      => '{{PLURAL:$1|tókàn|tókàn $1}}',
+'whatlinkshere-links'     => '← àwọn ìjápọ̀',
+'whatlinkshere-hidelinks' => '$1 ìjápọ̀',
 
 # Block/unblock
 'blockip'       => 'Dínà oníṣe',

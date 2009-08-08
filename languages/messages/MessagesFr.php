@@ -461,7 +461,7 @@ $messages = array(
 'mypage'        => 'Ma page',
 'mytalk'        => 'Page de discussion',
 'anontalk'      => 'Discussion avec cette adresse IP',
-'navigation'    => 'Navigation',
+'navigation'    => 'navigation',
 'and'           => '&#32;et',
 
 # Cologne Blue skin
@@ -541,7 +541,7 @@ $messages = array(
 'articlepage'       => 'Voir la page de contenu',
 'talk'              => 'Discussion',
 'views'             => 'Affichages',
-'toolbox'           => 'Boîte à outils',
+'toolbox'           => 'boîte à outils',
 'userpage'          => 'Page utilisateur',
 'projectpage'       => 'Page méta',
 'imagepage'         => 'Voir la page du fichier',

@@ -533,7 +533,7 @@ $messages = array(
 'newmessagesdifflink'     => 'l-aħħar bidla',
 'youhavenewmessagesmulti' => 'Għandek messaġġi ġodda fuq $1',
 'editsection'             => 'editja',
-'editold'                 => 'modifika',
+'editold'                 => 'editja',
 'viewsourceold'           => 'ara s-sors',
 'editlink'                => 'editja',
 'viewsourcelink'          => 'ara s-sors',
@@ -868,7 +868,7 @@ Jekk jogħġbok, erġa' pprova. Jekk xorta tibqa' ma taħdimx, ipprova oħroġ u
 'token_suffix_mismatch'            => "'''Il-modifika tiegħek ma ġietx aċċettata minħabba li klijent tiegħek tertaq l-karratri tal-ortografija fit-token tal-modifika.
 Din il-modifika ma ġietx aċċettata sabiex ma jkunx hemm żballji fit-test tal-paġna. Dan xi kultant jiġri minħabba li qiegħed tuża servizz difettuż anonimu li huwa bbażat fuq il-web ta' prokura.'''",
 'editing'                          => 'Qiegħed jiġi modifikat l-artiklu $1',
-'editingsection'                   => "Modifikar ta' $1 (sezzjoni)",
+'editingsection'                   => "Modifika ta' $1 (sezzjoni)",
 'editingcomment'                   => 'Qed jiġi editjat $1 (sezzjoni ġdida)',
 'editconflict'                     => "Kunflitt t'editjar: $1",
 'explainconflict'                  => "Xi ħadd modifika din il-paġna sakemm int kont qiegħed tagħmel il-modifiki. <br />
@@ -1368,7 +1368,7 @@ Innota però li l-werreja tal-kontenut ta' {{SITENAME}} f'dawn is-siti, jistgħu
 'action-createpage'     => 'oħloq paġni',
 'action-createtalk'     => "oħloq paġni ta' diskussjoni",
 'action-createaccount'  => 'oħloq dan il-kont tal-utent',
-'action-minoredit'      => 'immarka din il-modifika bħala waħda minuri',
+'action-minoredit'      => 'timmarka din il-modifika bħala waħda minuri',
 'action-move'           => 'mexxi din il-paġna',
 'action-move-subpages'  => 'mexxi din il-paġna, u s-sottopaġni',
 'action-movefile'       => 'mexxi dan il-fajl',
@@ -1381,6 +1381,7 @@ Innota però li l-werreja tal-kontenut ta' {{SITENAME}} f'dawn is-siti, jistgħu
 'action-suppressionlog' => 'ara dan il-log privat',
 'action-block'          => 'imblokka lil dan l-utent milli jimmodifika',
 'action-protect'        => "biddel il-livelli ta' protezzjoni għal din il-paġna",
+'action-mergehistory'   => "waħħad il-kronoloġija ta' din il-paġna",
 
 # Recent changes
 'nchanges'                          => '{{PLURAL:$1|modifika $1 |$1 modifiki}}',
@@ -1388,6 +1389,7 @@ Innota però li l-werreja tal-kontenut ta' {{SITENAME}} f'dawn is-siti, jistgħu
 'recentchanges-legend'              => 'Opzjonijiet tat-tibdil riċenti',
 'recentchangestext'                 => 'Din il-paġna turi l-modifiki l-aktar riċenti għal kontenut tas-sit.',
 'recentchanges-feed-description'    => "Dan il-feed jirraporta l-modifiki l-aktar riċenti fil-kontenut ta' dan is-sit.",
+'recentchanges-label-newpage'       => 'Din il-modifika ħolqot paġna ġdida',
 'rcnote'                            => "Hawn taħt {{PLURAL:$1|tinsab l-aktar modifika riċenti|jinsabu l-'''$1''' modifiki riċenti}} għas-sit fl-aħħar {{PLURAL:$2|24 siegħa|'''$2''' ġranet}}, id-dati ġew aġġornati fil-$5 ta' $4.",
 'rcnotefrom'                        => "Ħawn taħt jinsabu l-modifiki minn '''$2''' (sa '''$1''').",
 'rclistfrom'                        => 'Uri l-modifiki ġodda jibdew minn $1',

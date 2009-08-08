@@ -2456,7 +2456,7 @@ V těchto případech musíte přesunout nebo sloučit stránky manuálně, jest
 'cantmove-titleprotected'      => 'Stránku nelze přesunout na zadané místo, protože název je uzamčen proti vytváření',
 'talkexists'                   => 'Stránka byla přesunuta úspěšně, ale diskusní stránka přesunuta být nemohla, neboť pod novým názvem již nějaká stránka existuje. Proveďte prosím ruční sloučení.',
 'movedto'                      => 'přesunuto na',
-'movetalk'                     => 'Přesunout také diskusní stránku, existuje-li.',
+'movetalk'                     => 'Přesunout příslušnou diskusní stránku',
 'move-subpages'                => 'Přesunout i podstránky (maximálně $1)',
 'move-talk-subpages'           => 'Přesunout i podstránky diskusní stránky (maximálně $1)',
 'movepage-page-exists'         => 'Stránka $1 již existuje a nemůže být automaticky přepsána.',

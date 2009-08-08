@@ -417,14 +417,16 @@ Marteze zo un draen er meziant implijet gant {{SITENAME}} ivez.",
 # General errors
 'error'                => 'Fazi',
 'databaseerror'        => 'Fazi bank roadennoù',
-'dberrortext'          => 'Fazi ereadur er bank roadennoù. Setu ar goulenn bet pledet gantañ da ziwezhañ :
+'dberrortext'          => 'C\'hoarvezet ez eus ur fazi ereadurezh ar reked er bank roadennoù, ar pezh a c\'hall talvezout ez eus un draen er meziant. 
+Setu ar goulenn bet pledet gantañ da ziwezhañ :
 <blockquote><tt>$1</tt></blockquote>
 adal an arc\'hwel "<tt>$2</tt>".
-Adkaset eo bet ar fazi "<tt>$3: $4</tt>" gant MySQL.',
-'dberrortextcl'        => 'Ur fazi ereadur zo en ur goulenn graet ouzh ar bank roadennoù. Setu ar goulenn bet pledet gantañ da ziwezhañ :
+$5 en deus adkaset ar fazi "<tt>$3: $4</tt>".',
+'dberrortextcl'        => 'Ur fazi ereadur zo en ur goulenn graet ouzh ar bank roadennoù. 
+Setu ar goulenn bet pledet gantañ da ziwezhañ :
 "$1"
-graet gant an arc\'hwel "$2"
-adkaset eo bet ar fazi "$3 : $4" gant MySQL.',
+adal an arc\'hwel "$2"
+$5 en deus adkaset ar fazi "$3 : $4".',
 'laggedslavemode'      => "Diwallit : marteze a-walc'h n'emañ ket ar c'hemmoù diwezhañ war ar bajenn-mañ",
 'readonly'             => 'Hizivadurioù stanket war ar bank roadennoù',
 'enterlockreason'      => 'Merkit perak eo stanket hag istimit pegeit e chomo evel-henn',
@@ -442,6 +444,7 @@ Kasit keloù d'ur [[Special:ListUsers/sysop|merer]], en ur verkañ dezhañ choml
 'readonly_lag'         => "Stanket eo bet ar bank roadennoù ent emgefre p'emañ an eilservijerioù oc'h adpakañ o dale e-keñver ar pennservijer",
 'internalerror'        => 'Fazi diabarzh',
 'internalerror_info'   => 'Fazi diabarzh : $1',
+'fileappenderror'      => 'Dibosupl ouzhpennañ « $1 » da « $2 ».',
 'filecopyerror'        => 'Dibosupl eilañ « $1 » war-du « $2 ».',
 'filerenameerror'      => 'Dibosupl da adenvel « $1 » e « $2 ».',
 'filedeleteerror'      => 'Dibosupl da ziverkañ « $1 ».',
@@ -524,8 +527,9 @@ Gwiriit eo bet skrivet mat an anv ganeoc\'h pe [[Special:UserLogin/signup|krouit
 'nouserspecified'            => "Ret eo deoc'h spisaat un anv implijer.",
 'wrongpassword'              => 'Ger-tremen kamm. Klaskit en-dro.',
 'wrongpasswordempty'         => 'Ger-tremen ebet. Lakait unan mar plij.',
-'passwordtooshort'           => 'Fall eo her-tremen pe re verr eo. 
-{{PLURAL:$1|1 arouezenn|$1 arouezenn}} a rank bezañ ennañ da nebeutañ ha disheñvel eus an anv implijer e rank bezañ ivez.',
+'passwordtooshort'           => 'Re verr eo ho ker-tremen. 
+{{PLURAL:$1|1 arouezenn|$1 arouezenn}} a rank bezañ ennañ da nebeutañ.',
+'password-name-match'        => "Rankout a ra ho ker-tremen bezañ disheñvel diouzh hoc'h anv implier.",
 'mailmypassword'             => 'Kasit din ur ger-tremen nevez',
 'passwordremindertitle'      => 'Ho ker-tremen berrbad nevez evit {{SITENAME}}',
 'passwordremindertext'       => "Unan bennak (c'hwi moarvat gant ar chomlec'h IP \$1)
@@ -808,17 +812,22 @@ Implijit [[Special:Search|klaskit er wiki]] evit kavout pajennoù all a c'hallfe
 'rev-deleted-user'            => '(anv implijer diverket)',
 'rev-deleted-event'           => '(elfenn dilamet)',
 'rev-deleted-text-permission' => "'''Diverket''' eo bet ar stumm-mañ eus ar bajenn.
-Marteze e kavot munudoù war [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} roll ar pajennoù diverket].",
+Marteze e kavot munudoù war [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} roll ar pajennoù diverket].",
 'rev-deleted-text-unhide'     => "'''Diverket''' eo bet ar stumm-mañ eus ar bajenn.
-Marteze e kavot munudo war [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} marilh ar pajennoù diverket].
+Marteze e kavot munudoù war [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} marilh ar pajennoù diverket].
 Evel merour e c'hallit [$1 gwelet ar stumm-se] c'hoazh mar fell deoc'h kenderc'hel.",
+'rev-suppressed-text-unhide'  => "'''Diverket''' eo bet ar stumm-mañ eus ar bajenn.
+Marteze e kavor muioc'h a vunudoù war [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} marilh an diverkadennoù].
+Pa'z oc'h merour e c'hallit [$1 gwelet ar stummm-se] mar fell deoc'h kenderc'hel ganti.",
 'rev-deleted-text-view'       => "'''Diverket''' eo bet ar stumm-mañ eus ar bajenn.
-Dre ma'z oc'h merour e c'hallit sellet outañ;
-Marteze e kavot munudoù all war [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} marilh ar pajennoù diverket].",
-'rev-deleted-no-diff'         => "N'hallit ket gwelet an diff-mañ rak '''diverket''' eo bet unan eus ar stummoù.
-Marteze ez eus muioc'h a vunudoù war [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} marilh an diverkadennoù].",
-'rev-deleted-unhide-diff'     => "'''Diverket''' eo bet unan eus stummoù an diforc'h-mañ. 
-Marteze e kavot muoic'h a ditouroù war [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} marilh an diverkadennoù].
+Pa'z oc'h merour e c'hallit sellet outañ;
+Marteze e kavot munudoù all war [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} marilh ar pajennoù diverket].",
+'rev-suppressed-text-view'    => "'''Diverket''' eo bet ar stumm-mañ eus ar bajenn-mañ.
+Pa'z oc'h merour e c'hallit sellet outañ; marteze e kavot munudoù war [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} marilh an diverkadennoù].",
+'rev-deleted-no-diff'         => "N'hallit ket gwelet an diforc'h-mañ rak '''diverket''' eo bet unan eus ar stummoù.
+Marteze ez eus muioc'h a vunudoù war [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} marilh an diverkadennoù].",
+'rev-deleted-unhide-diff'     => "'''Diverket''' eo bet unan eus kemmoù an diforc'h-mañ. 
+Marteze e kavot muoic'h a ditouroù war [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} marilh an diverkadennoù].
 Evel merour ez oc'h aotreet da [$1 sellet ouzh an diforc'h-mañ] ma karit.",
 'rev-delundel'                => 'diskouez/kuzhat',
 'revisiondelete'              => 'Diverkañ/diziverkañ stummoù',
@@ -1072,6 +1081,7 @@ Gwiriit ne vo ket torret red istor ar bajenn gant ar c'hemm-mañ.",
 'prefs-watchlist-days-max'      => "(7 devezh d'ar muiañ)",
 'prefs-watchlist-edits'         => 'Niver a gemmoù da ziskouez er roll evezhiañ astennet :',
 'prefs-watchlist-edits-max'     => '(niver brasañ : 1000)',
+'prefs-watchlist-token'         => 'Jedouer evit ar roll evezhiañ',
 'prefs-misc'                    => 'Penndibaboù liesseurt',
 'prefs-resetpass'               => 'Kemmañ ger-tremen',
 'prefs-email'                   => 'Dibarzhioù postel',
@@ -1092,6 +1102,9 @@ Gwiriit ne vo ket torret red istor ar bajenn gant ar c'hemm-mañ.",
 'recentchangesdays-max'         => "(d'ar muiañ $1 {{PLURAL:$1|deiz|deiz}})",
 'recentchangescount'            => 'Niver a gemmoù da ziskouez dre ziouer',
 'prefs-help-recentchangescount' => "Kemer a ra an dra-mañ e kont ar c'hemmoù diwezhañ, istor ar pajennoù hag ar marilhoù.",
+'prefs-help-watchlist-token'    => "Leuniañ ar c'hombod-mañ gant un dalvoudenn guzh a lakaio ul lanvad RSS war-sav evit ho rollad evezhiañ.
+Kement den hag a ouio eus ho jedouer a c'hallo lenn ho rollad evezhiañ, dibabit un dalvoudegezh suraet.
+Setu aze un dalvoudenn ganet dre zegouezh hag a c'hallfec'h implijout : $1",
 'savedprefs'                    => 'Enrollet eo bet ar penndibaboù.',
 'timezonelegend'                => 'Takad eur :',
 'localtime'                     => "Eur lec'hel :",
@@ -1130,6 +1143,7 @@ Gwiriit ne vo ket torret red istor ar bajenn gant ar c'hemm-mañ.",
 'yourlanguage'                  => 'Yezh an etrefas&nbsp;',
 'yourvariant'                   => 'Adstumm:',
 'yournick'                      => 'Sinadur :',
+'prefs-help-signature'          => 'Dleout a rafe an evezhiadennoù war ar pajennoù kaozeal bezañ sinet gant "<nowiki>~~~~</nowiki>" a vo treuzfurmet en ho sinadur hag euriet.',
 'badsig'                        => 'Direizh eo ho sinadur kriz; gwiriit ho palizennoù HTML.',
 'badsiglength'                  => "Sinadur re hir.
 Dre ret e rank bezañ nebeutoc'h eget {{PLURAL:$1|arouezenn|arouezenn}} ennañ.",
@@ -1259,6 +1273,7 @@ Gallout a rit lezel tud all da vont e darempred ganeoc'h dre ho pajennoù implij
 'right-siteadmin'             => 'Prennañ ha dibrennañ ar bank-titouroù',
 'right-reset-passwords'       => 'Kemmañ ger-tremen implijerien all',
 'right-override-export-depth' => 'Ezporzhiañ ar pajennoù en ur lakaat e-barzh ar pajennoù liammet betek un donder a 5 live',
+'right-versiondetail'         => 'Sellet ouzh an titouroù ouzhpenn diwar-benn stummoù ar meziantoù',
 
 # User rights log
 'rightslog'      => 'Marilh statud an implijerien',
@@ -1310,10 +1325,13 @@ Gallout a rit lezel tud all da vont e darempred ganeoc'h dre ho pajennoù implij
 'recentchanges-feed-description'    => "Heuilhit ar c'hemmoù diwezhañ er wiki el lusk-mañ.",
 'recentchanges-label-legend'        => "Alc'hwez : $1.",
 'recentchanges-legend-newpage'      => '$1 - pajenn nevez',
+'recentchanges-label-newpage'       => "Gant ar c'hemm-mañ e vo krouet ur bajenn nevez.",
 'recentchanges-legend-minor'        => '$1 - kemm dister',
 'recentchanges-label-minor'         => "Ur c'hemm dister eo hemañ",
 'recentchanges-legend-bot'          => '$1 - kemm degaset gant ur robot',
+'recentchanges-label-bot'           => "Gant ur bot eo bet degaset ar c'hemm-mañ.",
 'recentchanges-legend-unpatrolled'  => "$1 - kemm n'eo ket bet gwiriet",
+'recentchanges-label-unpatrolled'   => "N'eo ket bet gwiriet ar c'hemm-mañ evit c'hoazh.",
 'rcnote'                            => "Setu aze an {{PLURAL:$1|'''1''' change|'''$1''' kemm diwezhañ}} bet c'hoarvezet e-pad an {{PLURAL:$2|deiz|'''$2''' deiz}} diwezhañ, savet d'an $4 da $5.",
 'rcnotefrom'                        => "Setu aze roll ar c'hemmoù c'hoarvezet abaoe an '''$2''' ('''$1''' d'ar muiañ).",
 'rclistfrom'                        => "Diskouez ar c'hemmoù diwezhañ abaoe an $1.",
@@ -1450,16 +1468,18 @@ MGP # Pentax
 PICT # misc.
  #</pre> <!-- leave this line exactly as it is -->",
 
-'upload-proto-error'      => 'Protokol direizh',
-'upload-proto-error-text' => 'Rekis eo an URLoù a grog gant <code>http://</code> pe <code>ftp://</code> evit enporzhiañ.',
-'upload-file-error'       => 'Fazi diabarzh',
-'upload-file-error-text'  => "Ur fazi diabarzh zo c'hoarvezet en ur grouiñ ur restr da c'hortoz war ar servijer. 
+'upload-proto-error'        => 'Protokol direizh',
+'upload-proto-error-text'   => 'Rekis eo an URLoù a grog gant <code>http://</code> pe <code>ftp://</code> evit enporzhiañ.',
+'upload-file-error'         => 'Fazi diabarzh',
+'upload-file-error-text'    => "Ur fazi diabarzh zo c'hoarvezet en ur grouiñ ur restr da c'hortoz war ar servijer. 
 Kit e darempred gant [[Special:ListUsers/sysop|unan eus merourien ar reizhiad]].",
-'upload-misc-error'       => 'Fazi kargañ dianav',
-'upload-misc-error-text'  => "Ur fazi dianav zo bet e-ser kargañ. 
+'upload-misc-error'         => 'Fazi kargañ dianav',
+'upload-misc-error-text'    => "Ur fazi dianav zo bet e-ser kargañ. 
 Gwiriit eo reizh an URL hag e c'hall bezañ tizhet ha klaskit en-dro. 
 Ma talc'h ar gudenn, kit e darempred gant [[Special:ListUsers/sysop|merourien ar reizhiad]].",
-'upload-unknown-size'     => 'Ment dianav',
+'upload-too-many-redirects' => 'Re a adkasoù zo en URL-mañ.',
+'upload-unknown-size'       => 'Ment dianav',
+'upload-http-error'         => 'Ur fazi HTTP zo bet : $1',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => "N'eus ket bet gallet tizhout an URL",
