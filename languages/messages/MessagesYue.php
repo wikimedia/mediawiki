@@ -1,5 +1,5 @@
 <?php
-/** Yue (粵語)
+/** Cantonese (粵語/廣東話)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -282,7 +282,7 @@ $messages = array(
 'cancel'        => '取消',
 'moredotdotdot' => '更多...',
 'mypage'        => '我嘅頁',
-'mytalk'        => '我嘅討論',
+'mytalk'        => '我嘅討論 ($1)',
 'anontalk'      => '同呢個 IP 傾偈',
 'navigation'    => '導航',
 'and'           => '同埋',
@@ -418,7 +418,7 @@ $1',
 
 'ok'                      => 'OK',
 'retrievedfrom'           => '由 "$1" 收',
-'youhavenewmessages'      => '你有$1（$2）。',
+'youhavenewmessages'      => '你有$3個$1（$2）。',
 'newmessageslink'         => '新信息',
 'newmessagesdifflink'     => '上次更改',
 'youhavenewmessagesmulti' => '你響 $1 有新信',

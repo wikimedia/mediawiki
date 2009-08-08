@@ -1,5 +1,5 @@
 <?php
-/** Traditional Chinese (‪中文(繁體)‬)
+/** Traditional Chinese (‪中文(傳統字)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -310,7 +310,7 @@ $messages = array(
 'cancel'        => '取消',
 'moredotdotdot' => '更多...',
 'mypage'        => '我的頁面',
-'mytalk'        => '我的對話頁',
+'mytalk'        => '我的對話頁 ($1)',
 'anontalk'      => '該IP的對話頁',
 'navigation'    => '導航',
 'and'           => '和',
@@ -446,7 +446,7 @@ $1',
 
 'ok'                      => '確定',
 'retrievedfrom'           => '取自"$1"',
-'youhavenewmessages'      => '您有$1（$2）。',
+'youhavenewmessages'      => '您有$3條$1（$2）。',
 'newmessageslink'         => '新訊息',
 'newmessagesdifflink'     => '上次更改',
 'youhavenewmessagesmulti' => '您在 $1 有一條新訊息',
