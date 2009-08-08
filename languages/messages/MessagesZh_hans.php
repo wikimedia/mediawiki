@@ -1,5 +1,5 @@
 <?php
-/** Simplified Chinese (‪中文(简体)‬)
+/** Simplified Chinese (‪中文(简化字)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -336,7 +336,7 @@ $messages = array(
 'cancel'        => '取消',
 'moredotdotdot' => '更多……',
 'mypage'        => '我的页面',
-'mytalk'        => '我的对话页',
+'mytalk'        => '我的对话页 ($1)',
 'anontalk'      => '该IP的对话页',
 'navigation'    => '导航',
 'and'           => '和',
@@ -470,7 +470,7 @@ $1',
 
 'ok'                      => '确定',
 'retrievedfrom'           => '取自“$1”',
-'youhavenewmessages'      => '您有$1（$2）。',
+'youhavenewmessages'      => '您有$3条$1（$2）。',
 'newmessageslink'         => '新信息',
 'newmessagesdifflink'     => '上次更改',
 'youhavenewmessagesmulti' => '您在$1有一条新信息',
