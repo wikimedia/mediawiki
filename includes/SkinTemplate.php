@@ -308,7 +308,7 @@ class SkinTemplate extends Skin {
 			if( !$usertalktitle->equals( $this->mTitle ) ) {
 				$newmessageslink = $this->link(
 					$usertalktitle,
-					wfMsgHtml( 'newmessageslink' ),
+					wfMsgExt( 'newmessageslink', array( 'parsemag', 'escape' ) ),
 					array(),
 					array( 'redirect' => 'no' ),
 					array( 'known', 'noclasses' )
@@ -316,7 +316,7 @@ class SkinTemplate extends Skin {
 
 				$newmessagesdifflink = $this->link(
 					$usertalktitle,
-					wfMsgHtml( 'newmessagesdifflink', $newmessagescount ),
+					wfMsgExt( 'newmessagesdifflink', array( 'parsemag', 'escape' ), $newmessagescount ),
 					array(),
 					array( 'diff' => 'cur' ),
 					array( 'known', 'noclasses' )
@@ -325,7 +325,7 @@ class SkinTemplate extends Skin {
 				$ntl = wfMsg(
 					'youhavenewmessages',
 					$newmessageslink,
-					$newmessagesdifflink,
+					$newmessagesdifflink
 				);
 				# Disable Cache
 				$out->setSquidMaxage( 0 );
