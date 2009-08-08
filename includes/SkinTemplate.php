@@ -302,6 +302,8 @@ class SkinTemplate extends Skin {
 		if( count( $newtalks ) == 1 && $newtalks[0]['wiki'] === wfWikiID() ) {
 			$usertitle = $this->mUser->getUserPage();
 			$usertalktitle = $usertitle->getTalkPage();
+			
+			$newmessagescount = $wgUser->getnewMessagesCount();
 
 			if( !$usertalktitle->equals( $this->mTitle ) ) {
 				$newmessageslink = $this->link(
@@ -314,19 +316,16 @@ class SkinTemplate extends Skin {
 
 				$newmessagesdifflink = $this->link(
 					$usertalktitle,
-					wfMsgHtml( 'newmessagesdifflink' ),
+					wfMsgHtml( 'newmessagesdifflink', $newmessagescount ),
 					array(),
 					array( 'diff' => 'cur' ),
 					array( 'known', 'noclasses' )
 				);
-				
-				$newmessagesnumber = $wgUser->getNewtalkNumber();
 
 				$ntl = wfMsg(
 					'youhavenewmessages',
 					$newmessageslink,
 					$newmessagesdifflink,
-					$newmessagesnumber
 				);
 				# Disable Cache
 				$out->setSquidMaxage( 0 );
@@ -538,7 +537,7 @@ class SkinTemplate extends Skin {
 				# do not show text when we are viewing our
 				# own talk page
 				if( !$title->equals( $wgUser->getTalkPage() ) ) {					
-					$newtalk = $wgUser->getNewtalkNumber();
+					$newtalk = $wgUser->getnewMessagesCount();
 					
 					# disable caching
 					$wgOut->setSquidMaxage( 0 );

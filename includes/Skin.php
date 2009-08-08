@@ -1040,9 +1040,11 @@ END;
 			# do not show "You have new messages" text when we are viewing our
 			# own talk page
 			if( !$this->mTitle->equals( $wgUser->getTalkPage() ) ) {
+				$nu = $wgUser->getnewMessagesCount();
+				
 				$tl = $this->link(
 					$wgUser->getTalkPage(),
-					wfMsgHtml( 'newmessageslink' ),
+					wfMsgHtml( 'newmessageslink'),
 					array(),
 					array( 'redirect' => 'no' ),
 					array( 'known', 'noclasses' )
@@ -1050,7 +1052,7 @@ END;
 
 				$dl = $this->link(
 					$wgUser->getTalkPage(),
-					wfMsgHtml( 'newmessagesdifflink' ),
+					wfMsgHtml( 'newmessagesdifflink', $nu ),
 					array(),
 					array( 'diff' => 'cur' ),
 					array( 'known', 'noclasses' )

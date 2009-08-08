@@ -217,7 +217,7 @@ class User {
 	
 	static $idCacheByName = array();
 	
-	var $mNewtalknumber;
+	public $mNewtalknumber;
 
 	/**
 	 * Lightweight constructor for an anonymous user.
@@ -1639,7 +1639,7 @@ class User {
 	 * Return the number of new messages
 	 * @return \int The number of new messages
 	 */
-	 public function getNewtalkNumber() {
+	 public function getnewMessagesCount() {
 		global $wgLang;
 		return $wgLang->formatNum( $this->mNewtalknumber );
 	 }
