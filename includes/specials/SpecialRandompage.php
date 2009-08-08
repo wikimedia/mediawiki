@@ -89,20 +89,23 @@ class RandomPage extends SpecialPage {
 
 		$extra = $wgExtraRandompageSQL ? "AND ($wgExtraRandompageSQL)" : "";
 		$extra .= $this->addExtraSQL() ? "AND (".$this->addExtraSQL().")" : "";
-		$sql = "SELECT page_title, page_namespace
-			FROM $page $use_index
-			WHERE page_namespace IN ( $ns )
-			AND page_is_redirect = $redirect
-			AND page_random >= $randstr
-			$extra
-			ORDER BY page_random";
+		$sql = '';
+		if ( wfRunHooks( 'SpecialRandomBeforeSQL', array( $this, &$ns, &$redirect, &$extra, &$sql ) ) ) {
+			$sql = "SELECT page_title, page_namespace
+				FROM $page $use_index
+				WHERE page_namespace IN ( $ns )
+				AND page_is_redirect = $redirect
+				AND page_random >= $randstr
+				$extra
+				ORDER BY page_random";
 
-		$sql = $dbr->limitResult( $sql, 1, 0 );
+			$sql = $dbr->limitResult( $sql, 1, 0 );
+		}
 		$res = $dbr->query( $sql, __METHOD__ );
 		return $dbr->fetchObject( $res );
 	}
 
-	// an alternative to $wgExtraRandompageSQL so extensions
+	// an alternative to $wgExtraRandompageSQL so subclasses
 	// can add their own SQL by overriding this function
 	public function addExtraSQL() {
 		return '';

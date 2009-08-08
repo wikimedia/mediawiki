@@ -2811,7 +2811,10 @@ $wgUseSiteJs = true;
 /** Use the site's Cascading Style Sheets (CSS)? */
 $wgUseSiteCss = true;
 
-/** Filter for Special:Randompage. Part of a WHERE clause */
+/** 
+ * Filter for Special:Randompage. Part of a WHERE clause 
+ * @deprecated as of 1.16, use the SpecialRandomBeforeSQL hook
+*/
 $wgExtraRandompageSQL = false;
 
 /** Allow the "info" action, very inefficient at the moment */
