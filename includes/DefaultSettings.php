@@ -33,7 +33,7 @@ if ( !defined( 'MW_PHP4' ) ) {
 }
 
 /** MediaWiki version number */
-$wgVersion			= '1.16alpha';
+$wgVersion = '1.16alpha';
 
 /** Name of the site. It must be changed in LocalSettings.php */
 $wgSitename         = 'MediaWiki';
@@ -893,11 +893,11 @@ $wgLegacyEncoding   = false;
  */
 $wgLegacySchemaConversion = false;
 
-$wgMimeType			= 'text/html';
-$wgJsMimeType			= 'text/javascript';
-$wgDocType			= '-//W3C//DTD XHTML 1.0 Transitional//EN';
-$wgDTD				= 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd';
-$wgXhtmlDefaultNamespace	= 'http://www.w3.org/1999/xhtml';
+$wgMimeType = 'text/html';
+$wgJsMimeType = 'text/javascript';
+$wgDocType = '-//W3C//DTD XHTML 1.0 Transitional//EN';
+$wgDTD = 'http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd';
+$wgXhtmlDefaultNamespace = 'http://www.w3.org/1999/xhtml';
 
 /**
  * Should we output an HTML 5 doctype?  This mode is still experimental, but
@@ -916,7 +916,7 @@ $wgHtml5 = true;
  * Normally we wouldn't have to define this in the root <html>
  * element, but IE needs it there in some circumstances.
  */
-$wgXhtmlNamespaces		= array();
+$wgXhtmlNamespaces = array();
 
 /** Enable to allow rewriting dates in page text.
  * DOES NOT FORMAT CORRECTLY FOR MOST LANGUAGES */
