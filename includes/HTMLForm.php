@@ -73,9 +73,9 @@ class HTMLForm {
 	static function addJS() {
 		if( self::$jsAdded ) return;
 
-		global $wgOut, $wgStylePath;
+		global $wgOut;
 
-		$wgOut->addScriptFile( "$wgStylePath/common/htmlform.js" );
+		$wgOut->addScriptClass( 'htmlform' );
 	}
 
 	static function loadInputFromParameters( $descriptor ) {

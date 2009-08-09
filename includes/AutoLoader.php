@@ -599,6 +599,7 @@ $wgJSAutoloadLocalClasses = array(
 	'edit' => 'skins/common/edit.js',
 	'enhancedchanges.js' => 'skins/common/enhancedchanges.js',
 	'history' => 'skins/common/history.js',
+	'htmlform' => 'skins/common/htmlform.js',
 	'IEFixes' => 'skins/common/IEFixes.js',
 	'metadata' => 'skins/common/metadata.js',
 	'mwsuggest' => 'skins/common/mwsuggest.js',
