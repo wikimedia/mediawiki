@@ -22,14 +22,17 @@ require_once( dirname(__FILE__) . '/Maintenance.php' );
 
 class FixSlaveDesync extends Maintenance {
 	public function __construct() {
+		global $wgUseRootUser;
+		$wgUseRootUser = true;
+
 		parent::__construct();
 		$this->mDescription = "";
 		
 	}
 	
 	public function execute() {
-		global $wgUseRootUser, $wgDBservers;
-		$wgUseRootUser = true;
+		global $slaveIndexes, $wgDBservers;
+		
 
 		$slaveIndexes = array();
 		for ( $i = 1; $i < count( $wgDBservers ); $i++ ) {
