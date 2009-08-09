@@ -35,15 +35,16 @@ require_once( dirname(__FILE__) . '/Maintenance.php' );
 class EvalPrompt extends Maintenance {
 
 	public function __construct() {
+		global $wgUseNormalUser;
 		parent::__construct();
 		$this->mDescription = "This script lets a command-line user start up the wiki engine and then poke\n" .
 								"about by issuing PHP commands directly.";
 		$this->addOption( 'd', "Enable MediaWiki debug output", false, true );
+		$wgUseNormalUser = (bool)getenv('MW_WIKIUSER');
 	}
 	
 	public function execute() {
-		global $wgUseNormalUser, $wgDebugFunctionEntry, $wgDebugLogFile;
-		$wgUseNormalUser = (bool)getenv('MW_WIKIUSER');
+		global $wgDebugFunctionEntry, $wgDebugLogFile;
 		if ( $this->hasOption('d') ) {
 			$d = $this->getOption('d');
 			if ( $d > 0 ) {
