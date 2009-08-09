@@ -224,17 +224,17 @@ abstract class Maintenance {
 	}
 
 	/**
-	 * Does the script need normal DB access? By default, we give Maintenance
-	 * scripts admin rights to the DB (when available). Sometimes, a script needs
-	 * normal access for a reason and sometimes they want no access. Subclasses 
-	 * should override and return one of the following values, as needed:
+	 * Does the script need different DB access? By default, we give Maintenance
+	 * scripts normal rights to the DB. Sometimes, a script needs admin rights
+	 * access for a reason and sometimes they want no access. Subclasses should 
+	 * override and return one of the following values, as needed:
 	 *    Maintenance::DB_NONE  -  For no DB access at all
-	 *    Maintenance::DB_STD   -  For normal DB access
-	 *    Maintenance::DB_ADMIN -  For admin DB access, default
+	 *    Maintenance::DB_STD   -  For normal DB access, default
+	 *    Maintenance::DB_ADMIN -  For admin DB access
 	 * @return int
 	 */
 	protected function getDbType() {
-		return Maintenance :: DB_ADMIN;
+		return Maintenance::DB_STD;
 	}
 
 	/**

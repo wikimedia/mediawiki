@@ -31,7 +31,11 @@ class AddWiki extends Maintenance {
 		$this->mDescription = "Add a new wiki to the family. Wikimedia specific!";
 		$this->addArgs( 'language', 'site', 'dbname' );
 	}
-	
+
+	protected function getDbType() {
+		return Maintenance::DB_ADMIN;
+	}
+
 	public function execute() {
 		global $IP, $wgLanguageNames, $wgDefaultExternalStore, $wgNoDBParam;
 
