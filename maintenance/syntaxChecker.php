@@ -33,6 +33,10 @@ class SyntaxChecker extends Maintenance {
 		$this->addOption( 'with-extensions', 'Also recurse the extensions folder' );
 	}
 
+	protected function getDbType() {
+		return Maintenance::DB_NONE;
+	}
+
 	public function execute() {
 		if( !function_exists( 'parsekit_compile_file' ) ) {
 			$this->error( 'Requires PHP with parsekit', true );

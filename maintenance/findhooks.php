@@ -43,6 +43,10 @@ class FindHooks extends Maintenance {
 		$this->addOption( 'online', 'Check against mediawiki.org hook documentation' );
 	}
 
+	protected function getDbType() {
+		return Maintenance::DB_NONE;
+	}
+
 	public function execute() {
 		global $IP;
 
