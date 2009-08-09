@@ -862,10 +862,14 @@ $1",
 'logdelete-log-message'       => '$1 pe $2 {{PLURAL:$2|fatte|fatte}}',
 
 # Suppression log
-'suppressionlog' => 'Archivie de le soppressiune',
+'suppressionlog'     => 'Archivie de le soppressiune',
+'suppressionlogtext' => "Sotte stè 'na liste de scangellaminde e blocche sus a le condenute scunnute da l'amministrature.
+Vide 'a [[Special:IPBlockList|liste de le IP bloccate]] pa liste de le operazziune corrende de espulsione e blocche.",
 
 # History merging
 'mergehistory'                     => "Scuagghie 'a storie de le pàggene",
+'mergehistory-header'              => "Sta pàgene te face squagghia le revisiune d'a storie de 'na pàgena sorgende jndr'à 'na pàgena nove.
+Vide bbuene ce stu cangiamende pò mandenè 'a condinuità storeche d'a pàgene.",
 'mergehistory-box'                 => 'Scuagghie le revisiune de doje pàggene:',
 'mergehistory-from'                => 'Pàgene sorgende:',
 'mergehistory-into'                => 'Pàgene de destinazione:',
@@ -1147,6 +1151,10 @@ Tu puè pure scacchià de lassà otre condatte ausanne l'utende tue o le pàggen
 'userrights-editusergroup'       => "Cange le gruppe d'utinde",
 'saveusergroups'                 => "Reggistre le gruppe d'utinde",
 'userrights-groupsmember'        => 'Membre de:',
+'userrights-groups-help'         => "Tu puè alterà le gruppe addò de st'utende jè iscritte:
+* 'Na spunde de verifiche significhe ca l'utende stè jndr'à stu gruppe.
+* 'A spunda de verifica luate significhe ca l'utende non ge stè jndr'à stu gruppe.
+* 'Nu * significhe ca tu non ge puè luà 'u gruppe 'na vote ca tu l'è aggiunde, o a smerse.",
 'userrights-reason'              => "Mutive d'u cangiamende:",
 'userrights-no-interwiki'        => "Tu non ge tìne le permesse pe cangià le deritte utende sus a l'otre uicchi.",
 'userrights-nodatabase'          => "'U Database $1 non g'esiste o non g'è lochele.",
@@ -2406,6 +2414,7 @@ Otre avènene scunnute pe defolt.
 'exif-photometricinterpretation'   => 'Combosizione de le pixel',
 'exif-orientation'                 => 'Oriendamende',
 'exif-samplesperpixel'             => 'Numere de combonende',
+'exif-ycbcrpositioning'            => 'posizzionamende de Y e C',
 'exif-jpeginterchangeformatlength' => "Byte d'u date d'u JPEG",
 'exif-imagedescription'            => "Titele de l'immaggine",
 'exif-make'                        => "Costruttore d'a machene",

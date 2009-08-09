@@ -196,6 +196,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Sendi al mi ankaŭ retmesaĝojn por malgrandaj redaktoj de paĝoj',
 'tog-enotifrevealaddr'        => 'Malkaŝi mian retadreson en informaj retpoŝtaĵoj',
 'tog-shownumberswatching'     => 'Montri la nombron da priatentaj uzantoj',
+'tog-oldsig'                  => 'Antaŭvido de nuna subskribo:',
 'tog-fancysig'                => 'Trakti subskribon kiel vikitekston (sen aŭtomata ligo)',
 'tog-externaleditor'          => 'Uzi defaŭlte eksteran tekstprilaborilon',
 'tog-externaldiff'            => 'Uzi defaŭlte eksteran ŝanĝmontrilon',
@@ -309,7 +310,7 @@ $messages = array(
 'cancel'        => 'Nuligi',
 'moredotdotdot' => 'Pli...',
 'mypage'        => 'Mia paĝo',
-'mytalk'        => 'Mia diskuto',
+'mytalk'        => 'Mia diskuto ($1)',
 'anontalk'      => 'Diskutpaĝo por tiu ĉi IP',
 'navigation'    => 'Navigado',
 'and'           => '&#32;kaj',
@@ -447,7 +448,7 @@ $1',
 'retrievedfrom'           => 'Elŝutita el  "$1"',
 'youhavenewmessages'      => 'Por vi estas $1 ($2).',
 'newmessageslink'         => 'nova mesaĝo',
-'newmessagesdifflink'     => 'ŝanĝoj kompare kun antaŭlasta versio',
+'newmessagesdifflink'     => '{{PLURAL:$1|unu ŝanĝo|$1 ŝanĝoj}}',
 'youhavenewmessagesmulti' => 'Vi havas novajn mesaĝojn ĉe $1',
 'editsection'             => 'redakti',
 'editold'                 => 'redakti',
@@ -525,6 +526,7 @@ Bonvolu raporti ĉi tiun al [[Special:ListUsers/sysop|administranto]], notante l
 'readonly_lag'         => 'La datumbazo estis aŭtomate ŝlosita dum la subdatumbazo atingas la ĉefan datumbazon.',
 'internalerror'        => 'Interna eraro',
 'internalerror_info'   => 'Interna eraro: $1',
+'fileappenderror'      => 'Ne eblis postaldoni "$1" al "$2".',
 'filecopyerror'        => 'Neeblis kopii dosieron  "$1" al "$2".',
 'filerenameerror'      => 'Neeblis alinomi dosieron "$1" al "$2".',
 'filedeleteerror'      => 'Neeblis forigi dosieron "$1".',
@@ -913,8 +915,13 @@ Eble estas detaloj en la [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAM
 'rev-deleted-text-unhide'     => "Ĉi tiu revizio de la paĝo estis '''forigita'''.
 Eble estas detaloj en la [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} protokolo pri forigado].
 Kiel administranto, vi ankoraŭ povas [$1 vidi ĉi tiun revizio] se vi volas kontinui.",
+'rev-suppressed-text-unhide'  => "Ĉi tiu paĝa revizio estis '''subpremita'''.
+Eble estas detaloj en la [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} protokolo pri subpremado].
+Kiel administranto, vi povas ankoraŭ [$1 vidi ĉi tiun revizion] se vi volas kontinui.",
 'rev-deleted-text-view'       => "Ĉi tiu revizio de la paĝo estis '''forigita'''.
 Kiel administranto vi povas rigardi ĝin; eble estas detaloj en la [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} protokolo pri forigado].",
+'rev-suppressed-text-view'    => "Ĉi tiu paĝa revizio estis '''subpremita'''.
+Kiel administranto, vi povas vidi ĝin; eble estas detaloj en la [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} protokolo pri subpremado].",
 'rev-deleted-no-diff'         => "Vi ne povas vidi ĉi tiun diferencon ĉar unu el la revizioj estis '''forigitaj'''.
 Eble estas detaloj en la [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} protokolo pri forigado].",
 'rev-deleted-unhide-diff'     => "Unu el la revizioj de ĉi tiu diferenco estis '''forigita'''.
@@ -1177,6 +1184,7 @@ indekso pro troŝarĝita servilo. Intertempe, vi povas serĉi per <i>guglo</i> a
 'prefs-watchlist-days-max'      => '(maksimume 7 tagoj)',
 'prefs-watchlist-edits'         => 'Maksimuma nombro de ŝanĝoj montrendaj en ekspandita atentaro:',
 'prefs-watchlist-edits-max'     => '(maksimuma nombro: 1000)',
+'prefs-watchlist-token'         => 'Atentara ĵetono',
 'prefs-misc'                    => 'Miksitaĵoj',
 'prefs-resetpass'               => 'Ŝanĝi pasvorton',
 'prefs-email'                   => 'Retpoŝtaj opcioj',
@@ -1197,6 +1205,9 @@ indekso pro troŝarĝita servilo. Intertempe, vi povas serĉi per <i>guglo</i> a
 'recentchangesdays-max'         => '(maksimume $1 {{PLURAL:$1|tago|tagoj}})',
 'recentchangescount'            => 'Nombro de redaktoj por montri defaŭlte:',
 'prefs-help-recentchangescount' => 'Ĉi tiu inkluzivas lastajn ŝanĝojn, paĝajn historiojn, kaj protokolojn.',
+'prefs-help-watchlist-token'    => 'Plenumado de ĉi tiu kampo kun sekreta ŝlosilo generos RSS-fonto por via atentaro.
+Iu kiu scias la ŝlosilo en ĉi tiu kampo eblos legi vian atentaron, do elekti sekuran valoron.
+Jen hazarde generita valoron por via uzo: $1',
 'savedprefs'                    => 'Viaj preferoj estas konservitaj.',
 'timezonelegend'                => 'Horzono:',
 'localtime'                     => 'Loka tempo:',
@@ -1236,6 +1247,7 @@ indekso pro troŝarĝita servilo. Intertempe, vi povas serĉi per <i>guglo</i> a
 'yourlanguage'                  => 'Lingvo',
 'yourvariant'                   => 'Varianto',
 'yournick'                      => 'Subskribo:',
+'prefs-help-signature'          => 'Komentoj en diskuto-paĝoj estu subskribita kun "<nowiki>~~~~</nowiki>" kiu estos konvertita al via subskribo kaj tempindiko.',
 'badsig'                        => 'Via kaŝnomo (por subskriboj) malvalidas. Bv. kontroli la HTML-etikedojn!',
 'badsiglength'                  => 'La subskribo estas tro longa.
 Ĝi devas esti sub $1 {{PLURAL:$1|signo|signoj}}.',
@@ -1365,6 +1377,7 @@ Vi povas ankaŭ elekti permesigi aliaj uzantoj kontakti vin per via uzanto-paĝo
 'right-siteadmin'             => 'Ŝlosi kaj malŝlosi la datumbazon',
 'right-reset-passwords'       => 'Reŝanĝi pasvortojn de aliaj uzantoj',
 'right-override-export-depth' => 'Eksporti paĝojn inkluzivante ligitajn paĝojn ĝis profundeco de 5',
+'right-versiondetail'         => 'Montri la informon pri la etendita programara versio',
 
 # User rights log
 'rightslog'      => 'Protokolo de uzanto-rajtoj',
@@ -1414,8 +1427,14 @@ Vi povas ankaŭ elekti permesigi aliaj uzantoj kontakti vin per via uzanto-paĝo
 'recentchanges-legend'              => 'Opcioj pri lastaj ŝanĝoj',
 'recentchangestext'                 => 'Sekvi la plej lastajn ŝanĝojn en la {{SITENAME}} per ĉi tiu paĝo.',
 'recentchanges-feed-description'    => 'Sekvi la plej lastatempajn ŝanĝojn al la vikio en ĉi tiu fonto.',
+'recentchanges-label-legend'        => 'Klarigeto: $1.',
+'recentchanges-legend-newpage'      => '$1 - nova paĝo',
+'recentchanges-label-newpage'       => 'Ĉi tiu redakto kreis novan paĝon',
+'recentchanges-legend-minor'        => '$1 - eta redakto',
 'recentchanges-label-minor'         => 'Ĉi tiu estas eta redakto',
+'recentchanges-legend-bot'          => '$1 - robota redakto',
 'recentchanges-label-bot'           => 'Ĉi tiu redakto estis farita per roboto.',
+'recentchanges-legend-unpatrolled'  => '$1 - nepatrolita redakto',
 'recentchanges-label-unpatrolled'   => 'Ĉi tiu redakto ne jam estis patrolata.',
 'rcnote'                            => "Jen la {{PLURAL:$1|lasta '''1''' ŝanĝo|lastaj '''$1''' ŝanĝoj}} dum la {{PLURAL:$2|lasta tago|lastaj '''$2''' tagoj}}, ekde $5, $4.",
 'rcnotefrom'                        => "Jen la ŝanĝoj ekde '''$2''' (lastaj ĝis '''$1''').",
@@ -1674,6 +1693,7 @@ Bonvolu kontroli aliajn ligilojn al la ŝablonoj antaŭ ol forigi ilin.',
 'statistics-header-edits'      => 'Redaktaj statistikoj',
 'statistics-header-views'      => 'Vidi statistikojn',
 'statistics-header-users'      => 'Pri la uzantaro',
+'statistics-header-hooks'      => 'Aliaj statistikoj',
 'statistics-articles'          => 'Enhavaj paĝoj',
 'statistics-pages'             => 'Paĝoj',
 'statistics-pages-desc'        => 'Ĉiuj paĝoj en la vikio, inkluzivante diskuto-paĝojn, alidirektilojn, ktp.',
@@ -2649,6 +2669,8 @@ $1',
 'svg-long-desc'        => '(SVG-dosiero, $1 × $2 rastrumeroj, grandeco de dosiero: $3)',
 'show-big-image'       => 'Plena distingivo',
 'show-big-image-thumb' => '<small>Grandeco de ĉi antaŭvido: $1 × $2 rastrumeroj</small>',
+'file-info-gif-looped' => 'ripeta GIF',
+'file-info-gif-frames' => '$1 {{PLURAL:$1|ĉelo|ĉeloj}}',
 
 # Special:NewFiles
 'newimages'             => 'Aro da novaj bildoj',

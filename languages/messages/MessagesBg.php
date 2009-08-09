@@ -385,19 +385,20 @@ $messages = array(
 'vector-action-undelete'     => 'Възстановяване',
 'vector-action-unprotect'    => 'Сваляне на защитата',
 'vector-namespace-category'  => 'Категория',
-'vector-namespace-help'      => 'Помощна страница',
+'vector-namespace-help'      => 'Помощ',
 'vector-namespace-image'     => 'Файл',
 'vector-namespace-main'      => 'Страница',
+'vector-namespace-media'     => 'Медия',
 'vector-namespace-mediawiki' => 'Съобщение',
-'vector-namespace-project'   => 'Проектна страница',
+'vector-namespace-project'   => 'Проект',
 'vector-namespace-special'   => 'Специална страница',
 'vector-namespace-talk'      => 'Беседа',
 'vector-namespace-template'  => 'Шаблон',
-'vector-namespace-user'      => 'Потребителска страница',
+'vector-namespace-user'      => 'Потребител',
 'vector-view-create'         => 'Създаване',
 'vector-view-edit'           => 'Редактиране',
-'vector-view-history'        => 'Преглед на историята',
-'vector-view-view'           => 'Преглеждане',
+'vector-view-history'        => 'История',
+'vector-view-view'           => 'Преглед',
 'vector-view-viewsource'     => 'Преглед на кода',
 'actions'                    => 'Действия',
 'namespaces'                 => 'Именни пространства',
@@ -953,11 +954,14 @@ $2',
 Като администратор на сайта вие можете да [$1 прегледате тази редакция], ако желаете.",
 'rev-deleted-text-view'       => "Тази редация на страницата е била '''изтрита'''.
 Като администратор на сайта, вие можете да я прегледате.
+Допълнителна информация може да се съдържа в [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} Дневника на изтриванията].",
+'rev-suppressed-text-view'    => "Тази редация на страницата е била '''прикрита'''.
+Като администратор на сайта, вие можете да я прегледате.
 Допълнителна информация може да се съдържа в [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Дневника на прикриванията].",
 'rev-deleted-no-diff'         => "Нямате достъп до тази разликова препратка, тъй като една от съставящите я редакции е била '''изтрита'''.
-Допълнителна информация може да се съдържа в [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Дневника на прикриванията].",
+Допълнителна информация може да се съдържа в [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} Дневника на изтриванията].",
 'rev-deleted-unhide-diff'     => "Една от редакциите в тази разликова препратка е била '''изтрита'''.
-Допълнителна информация може да се съдържа в [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Дневника на прикриванията].
+Допълнителна информация може да се съдържа в [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} Дневника на изтриванията].
 Като администратор на сайта, вие можете да [$1 прегледате разликовата препратка], ако желаете.",
 'rev-delundel'                => 'показване/скриване',
 'revisiondelete'              => 'Изтриване/възстановяване на версии',
@@ -1214,6 +1218,9 @@ $2',
 'recentchangesdays-max'         => '(най-много $1 {{PLURAL:$1|ден|дни}})',
 'recentchangescount'            => 'Брой показвани редакции по подразбиране:',
 'prefs-help-recentchangescount' => 'Това включва последните промени, историите на страниците и дневниците.',
+'prefs-help-watchlist-token'    => 'Вписването на таен ключ в това поле ще генерира RSS емисия за вашия списък за наблюдение. 
+Всеки, който знае тази парола, ще може да чете списъка ви за наблюдение, затова изберете някаква сигурна комбинация.
+Можете да използвате следната случайно генерирана комбинация: $1',
 'savedprefs'                    => 'Настройките ви бяха съхранени.',
 'timezonelegend'                => 'Часова зона:',
 'localtime'                     => 'Местно време:',
@@ -1253,6 +1260,7 @@ $2',
 'yourlanguage'                  => 'Език:',
 'yourvariant'                   => 'Вариант',
 'yournick'                      => 'Подпис:',
+'prefs-help-signature'          => 'Коментарите в дискусионните страници трябва да се подписват с поредица от четири тилди "<nowiki>~~~~</nowiki>", която при съхранение на редакцията сървърът превръща в подпис с потребителско име, дата и час.',
 'badsig'                        => 'Избраният подпис не е валиден. Проверете HTML-етикетите!',
 'badsiglength'                  => 'Вашият подпис е твърде дълъг.
 Подписите не могат да надвишават $1 {{PLURAL:$1|знак|знака}}.',
@@ -1275,6 +1283,7 @@ $2',
 'prefs-advancedrendering'       => 'Разширени настройки',
 'prefs-advancedsearchoptions'   => 'Разширени настройки',
 'prefs-advancedwatchlist'       => 'Разширени настройки',
+'prefs-display'                 => 'Настройки за показване на списъка',
 'prefs-diffs'                   => 'Разлики',
 
 # User rights

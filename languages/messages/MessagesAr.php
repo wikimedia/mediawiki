@@ -555,7 +555,7 @@ $messages = array(
 'cancel'        => 'إلغاء',
 'moredotdotdot' => 'المزيد...',
 'mypage'        => 'صفحتي',
-'mytalk'        => 'نقاشي',
+'mytalk'        => 'نقاشي ($1)',
 'anontalk'      => 'النقاش لعنوان الأيبي هذا',
 'navigation'    => 'إبحار',
 'and'           => '&#32;و',
@@ -606,7 +606,7 @@ $messages = array(
 'tagline'           => 'من {{SITENAME}}',
 'help'              => 'مساعدة',
 'search'            => 'بحث',
-'searchbutton'      => 'بحث',
+'searchbutton'      => 'ابحث',
 'go'                => 'اذهب',
 'searcharticle'     => 'اذهب',
 'history'           => 'تاريخ الصفحة',
@@ -693,7 +693,7 @@ $1',
 'retrievedfrom'           => 'تم الاسترجاع من "$1"',
 'youhavenewmessages'      => 'توجد لديك $1 ($2).',
 'newmessageslink'         => 'رسائل جديدة',
-'newmessagesdifflink'     => 'آخر تغيير',
+'newmessagesdifflink'     => '{{PLURAL:$1|لا تغييرات|تغيير واحد|تغييران|$1 تغييرات|$1 تغييرًا|$1 تغيير}}',
 'youhavenewmessagesmulti' => 'لديك رسائل جديدة على $1',
 'editsection'             => 'عدل',
 'editold'                 => 'عدل',
@@ -748,12 +748,12 @@ $1',
 آخر استعلام طُلب من قاعدة البيانات كان:
 <blockquote><tt>$1</tt></blockquote>
 من داخل الدالة "<tt>$2</tt>".
-MySQL أرجعت الخطأ "<tt>$3: $4</tt>".',
+أرجع $5 الخطأ "<tt>$3: $4</tt>".',
 'dberrortextcl'        => 'حدث خطأ في صيغة استعلام قاعدة البيانات.
 آخر استعلام طُلب من قاعدة البيانات كان:
 "$1"
 من داخل الدالة "$2".
-MySQL أرجعت الخطأ "$3: $4"',
+أرجع $5 الخطأ "$3: $4"',
 'laggedslavemode'      => 'تحذير: الصفحة قد لا تحتوي على أحدث التحديثات.',
 'readonly'             => 'قاعدة البيانات مغلقة',
 'enterlockreason'      => 'أدخل سببا للغلق، متضمنا تقديرا لوقت رفع الغلق',
@@ -771,6 +771,7 @@ MySQL أرجعت الخطأ "$3: $4"',
 'readonly_lag'         => 'تم إغلاق قاعدة البيانات تلقائيا حتى تستطيع الخوادم التابعة ملاحقة الخادم الرئيسي',
 'internalerror'        => 'خطأ داخلي',
 'internalerror_info'   => 'خطأ داخلي: $1',
+'fileappenderror'      => 'تعذّرت إضافة "$1" إلى "$2".',
 'filecopyerror'        => 'لم يمكن نسخ الملف "$1" إلى "$2".',
 'filerenameerror'      => 'لم يمكن إعادة تسمية الملف "$1" إلى "$2".',
 'filedeleteerror'      => 'لم يمكن حذف الملف "$1".',
@@ -1179,18 +1180,23 @@ $2',
 'rev-deleted-comment'         => '(التعليق تمت إزالته)',
 'rev-deleted-user'            => '(اسم المستخدم تمت إزالته)',
 'rev-deleted-event'           => '(فعل السجل تمت إزالته)',
-'rev-deleted-text-permission' => "تم '''حذف''' مراجعة الصفحة هذه.
-قد تتوفر تفاصيل في [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} سجل الحذف].",
+'rev-deleted-text-permission' => "تم '''حذف''' مراجعة هذه الصفحة.
+قد تتوفر تفاصيل في [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} سجل الحذف].",
 'rev-deleted-text-unhide'     => "مراجعة الصفحة هذه تم '''حذفها'''.
 ربما تكون هناك تفاصيل في [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} سجل الحذف].
 كإداري مازال بإمكانك [$1 رؤية هذه المراجعة] إذا أردت المتابعة.",
-'rev-deleted-text-view'       => "مراجعة الصفحة هذه تم '''حذفها'''.
-كإداري يمكنك رؤيتها؛ ربما تكون هناك تفاصيل في [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} سجل الحذف].",
+'rev-suppressed-text-unhide'  => "تم '''حذف''' مراجعة الصفحة هذه.
+قد تتوفر تفاصيل في [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} سجل الحذف].
+لا يزال بإمكانك كإداري [$1 رؤية هذه المراجعة] إذا أردت المتابعة.",
+'rev-deleted-text-view'       => "تم '''حذف''' مراجعة هذه الصفحة.
+كإداري يمكنك رؤيتها؛ ربما تكون هناك تفاصيل في [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} سجل الحذف].",
+'rev-suppressed-text-view'    => "تم '''حذف''' مراجعة هذه الصفحة.
+تستطيع كإداري مشاهدتها؛ وقد تتوفر تفاصيل في  [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} سجل الحذف].",
 'rev-deleted-no-diff'         => "لا يمكنك رؤية هذا الفرق لأن واحدة من المراجعات تم '''حذفها'''.
-ربما تكون هناك تفاصيل في [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} سجل الحذف].",
+ربما تكون هناك تفاصيل في [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} سجل الحذف].",
 'rev-deleted-unhide-diff'     => "واحدة من مراجعتي هذا الفرق تم '''حذفها'''.
-ربما تكون هناك هناك تفاصيل [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} سجل الحذف].
-كإداري مازال بإمكانك [$1 رؤية هذا الفرق] لو أنك تود المتابعة.",
+ربما تكون هناك تفاصيل في [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} سجل الحذف].
+كإداري مازال بإمكانك [$1 رؤية هذا الفرق] إذا أردت المتابعة.",
 'rev-delundel'                => 'عرض/إخفاء',
 'revisiondelete'              => 'حذف/استرجاع المراجعات',
 'revdelete-nooldid-title'     => 'مراجعة هدف غير صحيحة',
@@ -1243,6 +1249,17 @@ $1",
 'revdelete-unhid'             => 'أظهر $1',
 'revdelete-log-message'       => '$1 ل$2 {{PLURAL:$2|مراجعة|مراجعة}}',
 'logdelete-log-message'       => '$1 ل$2 {{PLURAL:$2|حدث|حدث}}',
+'revdelete-hide-current'      => 'خطأ عند إحفاء العنصر المُؤرّخ في $2 $1: هذه هي المراجعة الحالية.
+لا يمكن إخفاؤها.',
+'revdelete-show-no-access'    => 'خطأ في إظهار العنصر ذا التاريخ $2 $1: هذا العنصر مُعلّم ك"مُقيّد".
+ليس لك صلاحية الوصول إليه.',
+'revdelete-modify-no-access'  => 'خطأ في تعديل العنصر ذا التاريخ $2 $1: هذا العنصر مُعلّم ك"مُقيّد".
+ليس لك صلاحية الوصول إليه.',
+'revdelete-modify-missing'    => 'خطأ في تعديل العنصر ذا الهوية $1: العنصر مفقود من قاعدة البيانات!',
+'revdelete-no-change'         => "'''تحذير:''' العنصر ذو التاريخ $2 $1 لديه أصلًا إعدادات الظهور المطلوبة.",
+'revdelete-concurrent-change' => 'خطأ في تعديل العنصر ذي التاريخ $2 $1: تظهر حالته أن شخصًا آخر عدّله أثناء محاولتك تعديله.
+من فضلك راجع السجلات.',
+'revdelete-only-restricted'   => 'لا تستطيع تنحية العناصر من عرض الإداريين بدون أن تحدد أيضًا إحدى خيارات التنحية الأخرى.',
 
 # Suppression log
 'suppressionlog'     => 'سجل الإخفاء',
@@ -1406,6 +1423,7 @@ $1",
 'powersearch-ns'                   => 'بحث في النطاقات:',
 'powersearch-redir'                => 'عرض التحويلات',
 'powersearch-field'                => 'بحث عن',
+'powersearch-togglelabel'          => 'اختر:',
 'powersearch-toggleall'            => 'الكل',
 'powersearch-togglenone'           => 'لا شيء',
 'search-external'                  => 'بحث خارجي',
@@ -1460,6 +1478,9 @@ $1",
 'recentchangesdays-max'         => '(حد أقصى $1 {{PLURAL:$1|يوم|يوم}})',
 'recentchangescount'            => 'عدد التعديلات الظاهرة مبدئيًا:',
 'prefs-help-recentchangescount' => 'بما في ذلك أحدث التغييرات وتاريخ الصفحات والسجلات.',
+'prefs-help-watchlist-token'    => 'سوف يولّد ملء هذا الحقل بمفتاح سري تغذية RSS لقائمة مراقبتك.
+سوف يتمكن أي شخص يعرف مفتاح هذا الحقل من قراءة قائمة مراقبتك، لذا فاختر قيمة منيعة.
+هنا قيمة مُولّدة تلقائيًا تستطيع استخدامها: $1',
 'savedprefs'                    => 'تم حفظ تفضيلاتك.',
 'timezonelegend'                => 'المنطقة الزمنية:',
 'localtime'                     => 'الوقت المحلي:',
@@ -1499,6 +1520,7 @@ $1",
 'yourlanguage'                  => 'اللغة:',
 'yourvariant'                   => 'اللهجة:',
 'yournick'                      => 'التوقيع:',
+'prefs-help-signature'          => 'يجب أن تُوقّع تعليقات صفحات النقاش باستخدام "<nowiki>~~~~</nowiki>" الذي سيُحوّل إلى توقيعك مع طابع زمني.',
 'badsig'                        => 'توقيع خام غير صحيح؛ تحقق من وسوم HTML.',
 'badsiglength'                  => 'توقيعك طويل جدا.
 يجب أن يكون أقل من $1 {{PLURAL:$1|حرف|حروف}}.',
@@ -1506,7 +1528,7 @@ $1",
 'gender-unknown'                => 'غير محدد',
 'gender-male'                   => 'ذكر',
 'gender-female'                 => 'أنثى',
-'prefs-help-gender'             => 'خياري: يستخدم للمخاطبة المعتمدة على الجنس بواسطة البرنامج. هذه المعلومة ستكون علنية.',
+'prefs-help-gender'             => 'اختياري: يستخدم للمخاطبة المعتمدة على الجنس بواسطة البرنامج. ستكون هذه المعلومة علنية.',
 'email'                         => 'البريد الإلكتروني',
 'prefs-help-realname'           => 'الاسم الحقيقي اختياري.
 لو اخترت أن توفره، فسيستخدم في الإشارة إلى عملك.',
@@ -1628,6 +1650,7 @@ $1",
 'right-siteadmin'             => 'غلق ورفع غلق قاعدة البيانات',
 'right-reset-passwords'       => 'إعادة ضبط كلمة السر للمستخدمين الآخرين',
 'right-override-export-depth' => 'تصدير الصفحات متضمنة الصفحات الموصولة حتى عمق 5',
+'right-versiondetail'         => 'رؤية معلومات نسخة البرنامج الممتدة',
 
 # User rights log
 'rightslog'      => 'سجل صلاحيات المستخدمين',
@@ -1677,8 +1700,9 @@ $1",
 'recentchanges-legend'              => 'خيارات أحدث التغييرات',
 'recentchangestext'                 => 'تابع آخر التغييرات في الويكي من هذه الصفحة.',
 'recentchanges-feed-description'    => 'تابع أحدث التغييرات للويكي عبر هذه التلقيمة.',
+'recentchanges-label-legend'        => 'المفتاح: $1.',
 'recentchanges-legend-newpage'      => '$1 - صفحة جديدة',
-'recentchanges-label-newpage'       => 'أنشأ هذه التعديل صفحة جديدة',
+'recentchanges-label-newpage'       => 'أنشأ هذا التعديل صفحة جديدة',
 'recentchanges-legend-minor'        => '$1 - تعديل طفيف',
 'recentchanges-label-minor'         => 'هذا تعديل طفيف',
 'recentchanges-legend-bot'          => '$1 - تعديل بوت',
@@ -1842,6 +1866,7 @@ PICT # متنوع
 إذا استمرت المشكلة في الحدوث، اتصل [[Special:ListUsers/sysop|بإداري]].',
 'upload-too-many-redirects' => 'احتوى المسار تحويلات كثيرة جدًا',
 'upload-unknown-size'       => 'حجم غير معروف',
+'upload-http-error'         => 'صودف خطأ HTTP: $1',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'لم يتمكن من الوصول للمسار',
@@ -1994,7 +2019,8 @@ PICT # متنوع
 
 'doubleredirects'            => 'تحويلات مزدوجة',
 'doubleredirectstext'        => 'هذه الصفحة تعرض الصفحات التي تحول إلى صفحات تحويل أخرى.
-كل سطر يحتوي على وصلات للتحويلة الأولى والثانية، بالإضافة إلى هدف التحويلة الثانية، والذي عادة ما يشير إلى صفحة الهدف "الحقيقية"، التي من المفترض أن تحول إليها التحويلة الأولى.',
+كل سطر يحتوي على وصلات للتحويلة الأولى والثانية وهدف التحويلة الثانية، والذي عادة ما يشير إلى صفحة الهدف "الحقيقية"، التي من المفترض أن تحول إليها التحويلة الأولى.
+المدخلات <s>المشطوبة</s> صُحّحت.',
 'double-redirect-fixed-move' => '[[$1]] تم نقلها، هي الآن تحويلة إلى [[$2]]',
 'double-redirect-fixer'      => 'مصلح التحويل',
 
@@ -2083,7 +2109,7 @@ PICT # متنوع
 'specialloguserlabel'  => 'المستخدم:',
 'speciallogtitlelabel' => 'العنوان:',
 'log'                  => 'سجلات',
-'all-logs-page'        => 'كل السجلات',
+'all-logs-page'        => 'كل السجلات العامة',
 'alllogstext'          => 'عرض شامل لكل السجلات المتوفرة في {{SITENAME}}. 
 باستطاعتك جعل القائمة أكثر تحديدا وذلك باختيار نوع السجل، اسم المستخدم (حساس لحالة الحروف)، أو الصفحة المتأثرة (أيضا حساس لحالة الحروف).',
 'logempty'             => 'لا توجد مدخلات مطابقة في السجل.',
@@ -2420,7 +2446,7 @@ $NEWPAGE
 'undelete-header'              => 'انظر الصفحات المحذوفة حديثا في [[Special:Log/delete|سجل الحذف]].',
 'undelete-search-box'          => 'ابحث في الصفحات المحذوفة',
 'undelete-search-prefix'       => 'عرض الصفحات التي تبدأ بـ:',
-'undelete-search-submit'       => 'بحث',
+'undelete-search-submit'       => 'ابحث',
 'undelete-no-results'          => 'لم يتم العثور على صفحات مطابقة في أرشيف المحذوفات.',
 'undelete-filename-mismatch'   => 'لم يمكن استرجاع مراجعة الملف بتاريخ $1: اسم الملف لا يطابق',
 'undelete-bad-store-key'       => 'لم يمكن استرجاع مراجعة الملف بتاريخ $1: الملف كان مفقودا قبل الحذف',
@@ -2459,7 +2485,7 @@ $1',
 'sp-contributions-userrights'    => 'إدارة صلاحيات المستخدم',
 'sp-contributions-search'        => 'بحث عن مساهمات',
 'sp-contributions-username'      => 'عنوان أيبي أو اسم مستخدم:',
-'sp-contributions-submit'        => 'بحث',
+'sp-contributions-submit'        => 'ابحث',
 
 # What links here
 'whatlinkshere'            => 'ماذا يصل هنا',
@@ -2716,10 +2742,12 @@ $1 ممنوع بالفعل. هل تريد تغيير الإعدادات؟',
 'allmessagestext'               => 'هذه قائمة برسائل النظام المتوفرة في نطاق ميدياويكي.
 من فضلك زر [http://www.mediawiki.org/wiki/Localisation ترجمة ميدياويكي] و [http://translatewiki.net بيتاويكي] لو كنت ترغب في المساهمة في ترجمة ميدياويكي الأساسية.',
 'allmessagesnotsupportedDB'     => "هذه الصفحة لا يمكن استخدامها لأن '''\$wgUseDatabaseMessages''' تم تعطيله.",
+'allmessages-filter-legend'     => 'المرشّح',
 'allmessages-filter'            => 'رشّح حسب حالة التخصيص:',
 'allmessages-filter-unmodified' => 'غير المعدّل',
 'allmessages-filter-all'        => 'الكل',
 'allmessages-filter-modified'   => 'المعدل',
+'allmessages-prefix'            => 'رشّح حسب البادئة:',
 'allmessages-language'          => 'اللغة:',
 'allmessages-filter-submit'     => 'اذهب',
 
@@ -2983,6 +3011,7 @@ $1',
 'svg-long-desc'        => '(ملف SVG، أبعاده $1 × $2 بكسل، حجم الملف: $3)',
 'show-big-image'       => 'دقة كاملة',
 'show-big-image-thumb' => '<small>حجم هذا العرض: $1 × $2 بكسل</small>',
+'file-info-gif-frames' => '{{PLURAL:$1||إطار واحد|إطاران|$1 إطارات|$1 إطارًا|$1 إطار}}',
 
 # Special:NewFiles
 'newimages'             => 'معرض الملفات الجديدة',

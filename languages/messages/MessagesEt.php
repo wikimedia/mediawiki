@@ -214,7 +214,7 @@ ning [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide kasutusjuhendit].'
 'cancel'        => 'Tühista',
 'moredotdotdot' => 'Veel...',
 'mypage'        => 'Minu lehekülg',
-'mytalk'        => 'Arutelu',
+'mytalk'        => 'Arutelu ($1)',
 'anontalk'      => 'Arutelu selle IP jaoks',
 'navigation'    => 'Navigeerimine',
 'and'           => '&#32;ja',
@@ -791,6 +791,7 @@ Legend: (viim) = erinevused võrreldes viimase redaktsiooniga,
 'wikicodecomparison'      => 'Lähtetekstide võrdlus',
 'editundo'                => 'eemalda',
 'diff-multi'              => '({{PLURAL:$1|Ühte vahepealset muudatust|$1 vahepealset muudatust}} ei näidata.)',
+'diff-added'              => '$1 lisatud',
 'diff-removed'            => '$1 eemaldatud',
 'diff-src'                => 'allikas',
 'diff-width'              => 'laius',
@@ -1099,6 +1100,12 @@ See ei tohi olla pikem kui $1 {{PLURAL:$1|sümbol|sümbolit}}.',
 'recentchanges-legend'              => 'Viimaste muudatuste seaded',
 'recentchangestext'                 => 'Jälgige sellel leheküljel viimaseid muudatusi.',
 'recentchanges-feed-description'    => 'Jälgi vikisse tehtud viimaseid muudatusi.',
+'recentchanges-legend-newpage'      => '$1 - uus lehekülg',
+'recentchanges-label-newpage'       => 'See muudatus lõi uue lehekülje',
+'recentchanges-legend-minor'        => '$1 – pisimuudatus',
+'recentchanges-label-minor'         => 'See on pisiparandus',
+'recentchanges-legend-bot'          => '$1 - roboti muudatus',
+'recentchanges-label-bot'           => 'Selle muudatuse sooritas robot',
 'rcnote'                            => "Allpool on esitatud {{PLURAL:$1|'''1''' muudatus|viimased '''$1''' muudatust}} viimase {{PLURAL:$2|päeva|'''$2''' päeva}} jooksul, seisuga $4, kell $5.",
 'rcnotefrom'                        => 'Allpool on esitatud muudatused alates <b>$2</b> (näidatakse kuni <b>$1</b> muudatust).',
 'rclistfrom'                        => 'Näita muudatusi alates $1',
@@ -1189,7 +1196,9 @@ Palun pöörduge tagasi ja laadige fail üles mõne teise nime all. [[File:$1|th
 'upload-maxfilesize'   => 'Maksimaalne failisuurus: $1',
 'watchthisupload'      => 'Jälgi seda lehekülge',
 
-'upload-misc-error' => 'Tundmatu viga üleslaadimisel',
+'upload-misc-error'   => 'Tundmatu viga üleslaadimisel',
+'upload-unknown-size' => 'Tundmatu suurus',
+'upload-http-error'   => 'HTTP-viga: $1',
 
 'license'   => 'Litsents:',
 'nolicense' => 'pole valitud',
@@ -1308,6 +1317,7 @@ Igal real on ära toodud esimene ja teine ümbersuunamisleht ning samuti teise �
 'nmembers'                => '$1 {{PLURAL:$1|liige|liiget}}',
 'nrevisions'              => '$1 {{PLURAL:$1|redaktsioon|redaktsiooni}}',
 'nviews'                  => '$1 {{PLURAL:$1|külastus|külastust}}',
+'specialpage-empty'       => 'Vasteid ei leidu.',
 'lonelypages'             => 'Viitamata artiklid',
 'lonelypagestext'         => 'Järgmistele lehekülgedele ei ole linki ühelgi Viki leheküljel, samuti ei ole nad kasutusel teiste lehekülgede osana.',
 'uncategorizedpages'      => 'Kategoriseerimata leheküljed',
@@ -1394,9 +1404,14 @@ Vaata ka [[Special:WantedCategories|puuduvaid kategooriaid]].',
 'deletedcontributions' => 'Kasutaja kustutatud kaastööd',
 
 # Special:LinkSearch
-'linksearch'    => 'Välislingid',
-'linksearch-ns' => 'Nimeruum:',
-'linksearch-ok' => 'Otsi',
+'linksearch'      => 'Välislingid',
+'linksearch-pat'  => 'Otsimisvorm:',
+'linksearch-ns'   => 'Nimeruum:',
+'linksearch-ok'   => 'Otsi',
+'linksearch-text' => 'Metamärgina võib kasutada tärni, näiteks "*.wikipedia.org".
+
+Toetatud protokollid: <tt>$1</tt>',
+'linksearch-line' => '$1 on lingitud leheküljelt $2',
 
 # Special:ListUsers
 'listusersfrom'      => 'Näita kasutajaid alustades:',
@@ -1706,6 +1721,7 @@ Kehtivaid blokeeringuid vaata [[Special:IPBlockList|blokeeringute loendist]].',
 'block-log-flags-nousertalk'   => 'ei saa muuta enda arutelulehte',
 'block-log-flags-hiddenname'   => 'kasutajanimi peidetud',
 'ipb_already_blocked'          => '"$1" on juba blokeeritud.',
+'blockme'                      => 'Blokeeri mind',
 'proxyblockreason'             => 'Teie IP aadress on blokeeritud, sest see on anonüümne proxy server. Palun kontakteeruga oma internetiteenuse pakkujaga või tehnilise toega ning informeerige neid sellest probleemist.',
 'proxyblocksuccess'            => 'Tehtud.',
 'cant-block-while-blocked'     => 'Teisi kasutajaid ei saa blokeerida, kui oled ise blokeeritud.',
@@ -1769,22 +1785,31 @@ kasutajaks ja [[Special:UserLogin|sisse logima]]',
 'delete_and_move_reason'  => 'Kustutatud, et asemele tõsta teine lehekülg',
 
 # Export
-'export'        => 'Lehekülgede eksport',
-'exporttext'    => 'Sa saad siin eksportida kindla lehekülje või nende kogumi, tekstid, koos kogu nende muudatuste ajalooga, XML kujule viiduna. Seda saad sa vajadusel kasutada teksti ülekandmiseks teise vikisse, kasutades selleks MediaWiki [[Special:Import|impordi lehekülge]].
+'export'            => 'Lehekülgede eksport',
+'exporttext'        => 'Sa saad siin eksportida kindla lehekülje või nende kogumi, tekstid, koos kogu nende muudatuste ajalooga, XML kujule viiduna. Seda saad sa vajadusel kasutada teksti ülekandmiseks teise vikisse, kasutades selleks MediaWiki [[Special:Import|impordi lehekülge]].
 
 Et eksportida lehekülgi, sisesta nende pealkirjad all olevasse teksti kasti, iga pealkiri ise reale, ning vali kas sa soovid saada leheküljest kõiki selle vanemaid versioone (muudatusi) või soovid sa saada leheküljest vaid hetke versiooni.
 
 Viimasel juhul võid sa näiteks "[[{{MediaWiki:Mainpage}}]]" lehekülje, jaoks kasutada samuti linki kujul:  [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]].',
-'exportcuronly' => 'Lisa vaid viimane versioon lehest, ning mitte kogu ajalugu',
+'exportcuronly'     => 'Lisa vaid viimane versioon lehest, ning mitte kogu ajalugu',
+'export-submit'     => 'Ekspordi',
+'export-addcattext' => 'Kõik leheküljed kategooriast:',
+'export-addcat'     => 'Lisa',
+'export-download'   => 'Salvesta failina',
+'export-templates'  => 'Kaasa mallid',
 
 # Namespace 8 related
-'allmessages'            => 'Kõik süsteemi sõnumid',
-'allmessagesname'        => 'Nimi',
-'allmessagesdefault'     => 'Vaikimisi tekst',
-'allmessagescurrent'     => 'Praegune tekst',
-'allmessagestext'        => 'See on loend kõikidest kättesaadavatest süsteemi sõnumitest MediaWiki: nimeruumis.
+'allmessages'                   => 'Kõik süsteemi sõnumid',
+'allmessagesname'               => 'Nimi',
+'allmessagesdefault'            => 'Vaikimisi tekst',
+'allmessagescurrent'            => 'Praegune tekst',
+'allmessagestext'               => 'See on loend kõikidest kättesaadavatest süsteemi sõnumitest MediaWiki: nimeruumis.
 Kui soovid MediaWiki tarkvara tõlkimises osaleda siis vaata lehti [http://www.mediawiki.org/wiki/Localisation MediaWiki Lokaliseerimine] ja [http://translatewiki.net translatewiki.net].',
-'allmessages-filter-all' => 'Kõik',
+'allmessages-filter-unmodified' => 'Muutmata',
+'allmessages-filter-all'        => 'Kõik',
+'allmessages-filter-modified'   => 'Muudetud',
+'allmessages-language'          => 'Keel:',
+'allmessages-filter-submit'     => 'Mine',
 
 # Thumbnails
 'thumbnail-more'  => 'Suurenda',
@@ -1947,6 +1972,7 @@ Samuti võimaldab see resümee reale põhjenduse lisamist.',
 Järgnevas loendis, mis on sorteeritud $2, on '''$1''' {{PLURAL:$1|fail|faili}}.",
 'newimages-summary'     => 'Sellel erilehel on viimati üles laaditud failid.',
 'showhidebots'          => '($1 robotite kaastööd)',
+'noimages'              => 'Uusi pilte ei ole.',
 'ilsubmit'              => 'Otsi',
 'bydate'                => 'kuupäeva järgi',
 'sp-newimages-showfrom' => 'Näita uusi faile alates $2 $1',
@@ -1983,6 +2009,7 @@ Kui faili on rakendustarkvaraga töödeldud, võib osa andmeid olla muudetud võ
 'exif-exifversion'              => 'Exif versioon',
 'exif-makernote'                => 'Tootja märkmed',
 'exif-usercomment'              => 'Kasutaja kommentaarid',
+'exif-datetimedigitized'        => 'Digitaliseerimise kuupäev ja kellaaeg',
 'exif-exposuretime'             => 'Säriaeg',
 'exif-aperturevalue'            => 'Avaarv',
 'exif-brightnessvalue'          => 'Heledus',
@@ -1993,15 +2020,37 @@ Kui faili on rakendustarkvaraga töödeldud, võib osa andmeid olla muudetud võ
 'exif-saturation'               => 'Küllastus',
 'exif-sharpness'                => 'Teravus',
 'exif-devicesettingdescription' => 'Seadme seadistuste kirjeldus',
+'exif-gpslatituderef'           => 'Põhja- või lõunapikkus',
 'exif-gpslatitude'              => 'Laius',
+'exif-gpslongituderef'          => 'Ida- või läänepikkus',
 'exif-gpslongitude'             => 'Laiuskraad',
 'exif-gpsaltituderef'           => 'Viide kõrgusele merepinnast',
 'exif-gpsaltitude'              => 'Kõrgus merepinnast',
 'exif-gpstimestamp'             => 'GPS aeg (aatomikell)',
 
+'exif-unknowndate' => 'Kuupäev teadmata',
+
+'exif-componentsconfiguration-0' => 'ei ole',
+
+'exif-exposureprogram-0' => 'Määratlemata',
+'exif-exposureprogram-1' => 'Manuaalne',
+
 'exif-subjectdistance-value' => '$1 meetrit',
 
+'exif-meteringmode-0'   => 'Teadmata',
+'exif-meteringmode-1'   => 'Keskmine',
+'exif-meteringmode-6'   => 'Osaline',
+'exif-meteringmode-255' => 'Muu',
+
+'exif-lightsource-0'  => 'Teadmata',
+'exif-lightsource-1'  => 'Päevavalgus',
 'exif-lightsource-10' => 'Pilvine ilm',
+
+'exif-scenecapturetype-1' => 'Maastik',
+'exif-scenecapturetype-2' => 'Portree',
+'exif-scenecapturetype-3' => 'Ööpilt',
+
+'exif-gaincontrol-0' => 'Ei ole',
 
 # Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'Kilomeetrit tunnis',
@@ -2102,12 +2151,19 @@ Aga samuti võid sa [[Special:Watchlist/edit|kasutada harilikku redaktorit]].',
 'watchlisttools-raw'  => 'Muuda lähteteksti',
 
 # Special:Version
-'version'                  => 'Versioon',
-'version-specialpages'     => 'Erileheküljed',
-'version-parserhooks'      => 'Süntaksianalüsaatori lisad (Parser hooks)',
-'version-software'         => 'Installeeritud tarkvara',
-'version-software-product' => 'Toode',
-'version-software-version' => 'Versioon',
+'version'                       => 'Versioon',
+'version-extensions'            => 'Paigaldatud lisad',
+'version-specialpages'          => 'Erileheküljed',
+'version-parserhooks'           => 'Süntaksianalüsaatori lisad (Parser hooks)',
+'version-other'                 => 'Muu',
+'version-mediahandlers'         => 'Meediatöötlejad',
+'version-extension-functions'   => 'Lisafunktsioonid',
+'version-parser-extensiontags'  => 'Parseri lisamärgendid',
+'version-parser-function-hooks' => 'Parserifunktsioonid',
+'version-license'               => 'Litsents',
+'version-software'              => 'Paigaldatud tarkvara',
+'version-software-product'      => 'Toode',
+'version-software-version'      => 'Versioon',
 
 # Special:FilePath
 'filepath'         => 'Failitee',
@@ -2156,6 +2212,13 @@ Sisesta faili nimi eesliiteta "{{ns:file}}:".',
 'tags-hitcount-header'    => 'Märgistatud muudatused',
 'tags-edit'               => 'muuda',
 'tags-hitcount'           => '$1 {{PLURAL:$1|muudatus|muudatust}}',
+
+# Database error messages
+'dberr-header'    => 'Selles wikis on probleem',
+'dberr-problems'  => 'Kahjuks on sellel saidil tehnilisi probleeme',
+'dberr-again'     => 'Oota mõni hetk ja lae lehekülg uuesti.',
+'dberr-info'      => '(Ei saa ühendust andmebaasi serveriga: $1)',
+'dberr-usegoogle' => "Proovi vahepeal otsida Google'ist.",
 
 # HTML forms
 'htmlform-int-invalid' => 'Antud väärtus ei ole täisarv.',

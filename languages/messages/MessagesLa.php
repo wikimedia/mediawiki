@@ -275,7 +275,7 @@ $messages = array(
 'cancel'        => 'Abrogare',
 'moredotdotdot' => 'Plus...',
 'mypage'        => 'Pagina mea',
-'mytalk'        => 'Disputatio mea',
+'mytalk'        => 'Disputatio mea ($1)',
 'anontalk'      => 'Disputatio huius IP',
 'navigation'    => 'Navigatio',
 'and'           => '&#32;et',
@@ -408,7 +408,7 @@ Vide [[Special:Version|paginam versionis]].',
 'retrievedfrom'           => 'Receptum de "$1"',
 'youhavenewmessages'      => 'Habes $1 ($2).',
 'newmessageslink'         => 'nuntia nova',
-'newmessagesdifflink'     => 'dissimilia post mutationem ultimam',
+'newmessagesdifflink'     => '{{PLURAL:$1|una mutatio|$1 mutationes}}',
 'youhavenewmessagesmulti' => 'Habes nuntia nova in $1',
 'editsection'             => 'recensere',
 'editold'                 => 'recensere',
@@ -921,7 +921,7 @@ Try prefixing your query with ''all:'' to search all content (including talk pag
 'powersearch-ns'                 => 'Quaerere in spatiis nominalibus:',
 'powersearch-redir'              => 'Monstrare redirectiones',
 'powersearch-field'              => 'Quaerere',
-'powersearch-togglelabel'        => 'Verificare:',
+'powersearch-togglelabel'        => 'Selegere:',
 'powersearch-toggleall'          => 'Omnia',
 'powersearch-togglenone'         => 'Nullum',
 'search-external'                => 'Inquisitio externalis',
@@ -1232,9 +1232,10 @@ Vide etiam [[Special:NewFiles|pinacothecam fasciculorum recentissimorum imposito
 Tibi oportet meditari utrum hunc fasciculum iterum imponere tamen convenit.
 Commodule notatio fasciculorum deletorum hic datur:",
 
-'upload-proto-error' => 'Protocollum incorrectum',
-'upload-file-error'  => 'Erratum internum',
-'upload-misc-error'  => 'Erratum impositionis ignotum',
+'upload-proto-error'  => 'Protocollum incorrectum',
+'upload-file-error'   => 'Erratum internum',
+'upload-misc-error'   => 'Erratum impositionis ignotum',
+'upload-unknown-size' => 'Magnitudo ignota',
 
 'license'           => 'Typus permissionis:',
 'nolicense'         => 'Nulla selecta',
@@ -1335,6 +1336,7 @@ Contenta [$2 paginae descriptionis fasciculi] subter monstrantur.',
 'statistics-header-edits'      => 'Census recensionum',
 'statistics-header-views'      => 'Census visuum',
 'statistics-header-users'      => 'Census usorum',
+'statistics-header-hooks'      => 'Alia statistica',
 'statistics-articles'          => 'Paginae in spatio nominali principali',
 'statistics-pages'             => 'Paginae',
 'statistics-pages-desc'        => 'Omnes paginae. Hic numerus includit paginas disputationum, redirectiones, etc.',
@@ -1938,6 +1940,10 @@ Paginae nomen petitum "[[:$1]]" iam existit. Vin tu eam delere ut pagina illic m
 'allmessagescurrent'        => 'Textus recens nuntii',
 'allmessagestext'           => 'Hic est index omnium nuntiorum in MediaWiki.',
 'allmessagesnotsupportedDB' => "Haec pagina non adhiberi potest, quia '''\$wgUseDatabaseMessages''' non iam agitur.",
+'allmessages-filter-legend' => 'Filtrum',
+'allmessages-filter-all'    => 'Omnia',
+'allmessages-language'      => 'Lingua:',
+'allmessages-filter-submit' => 'Ire',
 
 # Thumbnails
 'thumbnail-more'  => 'Augere',
@@ -2058,6 +2064,11 @@ Paginae nomen petitum "[[:$1]]" iam existit. Vin tu eam delere ut pagina illic m
 'math_unknown_function' => 'functio ignota',
 'math_lexing_error'     => 'erratum lexicale',
 'math_syntax_error'     => 'erratum syntaxis',
+
+# Patrolling
+'markaspatrolleddiff' => 'Indicare hanc paginam qua circumita',
+'markaspatrolledtext' => 'Indicare hanc paginam qua circumita',
+'markedaspatrolled'   => 'Indicare hanc paginam qua circumita',
 
 # Patrol log
 'patrol-log-page'      => 'Acta emendationum circumitarum',

@@ -311,6 +311,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Stuur mien oek een berichjen bie kleine bewarkingen',
 'tog-enotifrevealaddr'        => 'Mien netposadres weergeven in netpostiejigen',
 'tog-shownumberswatching'     => 'Antal volgende gebrukers weergeven',
+'tog-oldsig'                  => 'Bestaonde haandtekening naokieken:',
 'tog-fancysig'                => 'Ondertekening zien as wikitekse (zonder autematische verwiezing)',
 'tog-externaleditor'          => 'Gebruuk standard een externe teksbewarker',
 'tog-externaldiff'            => 'Gebruuk standard een extern vergeliekingspregramma',
@@ -423,7 +424,7 @@ $messages = array(
 'cancel'        => 'Annuleren',
 'moredotdotdot' => 'Meer...',
 'mypage'        => 'Mien gebrukerspagina',
-'mytalk'        => 'Mien overleg',
+'mytalk'        => 'Mien overleg ($1)',
 'anontalk'      => 'Overlegpagina veur dit IP-adres',
 'navigation'    => 'Navigasie',
 'and'           => '&#32;en',
@@ -561,7 +562,7 @@ $1',
 'retrievedfrom'           => 'Van "$1"',
 'youhavenewmessages'      => 'Je hemmen $1 ($2).',
 'newmessageslink'         => 'een niej berich',
-'newmessagesdifflink'     => 'wieziging weergeven',
+'newmessagesdifflink'     => '{{PLURAL:$1|een wieziging|$1 wiezigingen}} weergeven',
 'youhavenewmessagesmulti' => 'Je hemmen een niej berich op $1',
 'editsection'             => 'bewark',
 'editold'                 => 'bewark',
@@ -1006,16 +1007,21 @@ De deur $3 op-egeven rejen is ''$2''",
 'rev-deleted-user'            => '(gebrukersnaam vort-edaon)',
 'rev-deleted-event'           => '(antekening vort-edaon)',
 'rev-deleted-text-permission' => "Disse bewarking is '''vort-edaon'''.
-As der meer infermasie is, ku-j 't vienen in 't [{{fullurl:{{#Special:Log}}/suppress|page={{PAGENAMEE}}}} logboek ondrokken versies].",
+As der meer infermasie is, ku-j 't vienen in 't [{{fullurl:{{#Special:Log}}/delete|page={{PAGENAMEE}}}} logboek mit vort-edaone infermasie].",
 'rev-deleted-text-unhide'     => "Disse bewarking is '''vort-edaon'''.
-As der meer infermasie is, ku-j 't vienen in 't [{{fullurl:{{#Special:Log}}/suppress|page={{PAGENAMEE}}}} logboek ondrokken versies].
+As der meer infermasie is, ku-j 't vienen in 't [{{fullurl:{{#Special:Log}}/delete|page={{PAGENAMEE}}}} logboek mit vort-edaone infermasie].
+As beheerder ku-j [$1 disse versie bekieken] a-j willen.",
+'rev-suppressed-text-unhide'  => "Disse bewarking is '''onderdrok'''.
+As der meer infermasie is, ku-j 't vienen in 't [{{fullurl:{{#Special:Log}}/suppress|page={{PAGENAMEE}}}} logboek mit onderdrokken infermasie].
 As beheerder ku-j [$1 disse versie bekieken] a-j willen.",
 'rev-deleted-text-view'       => "Disse bewarking is '''vort-edaon'''.
+As beheerder van disse wiki ku-j 't wè zien; as der meer infermasie is, ku-j dat vienen in 't [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} logboek mit vort-edaone infermasie].",
+'rev-suppressed-text-view'    => "Disse bewarking is '''onderdrok'''.
 As beheerder van disse wiki ku-j 't wè zien; as der meer infermasie is, ku-j dat vienen in 't [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} logboek onderdrokken versies].",
-'rev-deleted-no-diff'         => "Je kunnen de verschillen neet bekieken umdat één van de versies uut '''vort-edaon''' is.
-As der meer infermasie is, ku-j 't vienen in 't [{{fullurl:{{#Special:Log}}/suppress|page={{PAGENAMEE}}}} logboek ondrokken versies].",
+'rev-deleted-no-diff'         => "Je kunnen de verschillen neet bekieken umdat één van de versies '''vort-edaon''' is.
+As der meer infermasie is, ku-j 't vienen in 't [{{fullurl:{{#Special:Log}}/delete|page={{PAGENAMEE}}}} logboek mit vort-edaone infermasie].",
 'rev-deleted-unhide-diff'     => "Eén van de bewarkingen van disse vergeliekingen is '''vort-edaon'''.
-As der meer infermasie is, ku-j 't vienen in 't [{{fullurl:{{#Special:Log}}/suppress|page={{PAGENAMEE}}}} logboek ondrokken versies].
+As der meer infermasie is, ku-j 't vienen in 't [{{fullurl:{{#Special:Log}}/delete|page={{PAGENAMEE}}}} logboek mit vort-edaone infermasie].
 As beheerder ku-j [$1 de verschillen bekieken] a-j willen.",
 'rev-delundel'                => 'teun/verbarg',
 'revisiondelete'              => 'Wiezigingen vortdoon/herstellen',
@@ -1332,6 +1338,7 @@ Disse haandeling kan neet ongedaon-emaak wonnen.',
 'yourlanguage'                  => 'Taal veur systeemteksen',
 'yourvariant'                   => 'Gewunste taal:',
 'yournick'                      => 'Alias veur ondertekeningen',
+'prefs-help-signature'          => 'Reacties op de overlegpagina\'s mutten ondertekend wonnen mit "<nowiki>~~~~</nowiki>", dit wonnen dan ummezet in joew ondertekening mit daorbie de daotum en tied van de bewarking.',
 'badsig'                        => 'Ongeldige haandtekening; HTML naokieken.',
 'badsiglength'                  => "Joew haandtekening is te lang.
 't Mut minder as {{PLURAL:$1|letter|letters}} hemmen.",
@@ -1512,6 +1519,15 @@ Je kunnen oek aandere luui in staot stellen um per netpos kontak mit joe op te n
 'recentchanges-legend'              => 'Opties veur leste wiezigingen',
 'recentchangestext'                 => 'Op disse pagina ku-j de leste wiezigingen van disse wiki bekieken.',
 'recentchanges-feed-description'    => 'Zeuk naor de alderleste wiezingen op disse wiki in disse feed.',
+'recentchanges-label-legend'        => 'Legenda: $1.',
+'recentchanges-legend-newpage'      => '$1 - nieje pagina',
+'recentchanges-label-newpage'       => 'Mit disse bewarking is een nieje pagina an-emaak',
+'recentchanges-legend-minor'        => '$1 - kleine wieziging',
+'recentchanges-label-minor'         => 'Dit is een kleine wieziging',
+'recentchanges-legend-bot'          => '$1 - botbewarking',
+'recentchanges-label-bot'           => 'Disse bewarking is uut-evoerd deur een bot',
+'recentchanges-legend-unpatrolled'  => '$1 - bewarking is neet nao-ekeken',
+'recentchanges-label-unpatrolled'   => 'Disse bewarking is nog neet nao-ekeken',
 'rcnote'                            => "Hieronder {{PLURAL:$1|steet de leste bewarking|staon de leste '''$1''' bewarkingen}} van de of-eleupen {{PLURAL:$2|dag|'''$2''' dagen}} (stand: $5, $4).",
 'rcnotefrom'                        => 'Dit bin de wiezigingen sins <b>$2</b> (maximum van <b>$1</b> wiezigingen).',
 'rclistfrom'                        => 'Teun wiezigingen vanof $1',
@@ -1529,6 +1545,7 @@ Je kunnen oek aandere luui in staot stellen um per netpos kontak mit joe op te n
 'minoreditletter'                   => 'K',
 'newpageletter'                     => 'N',
 'boteditletter'                     => ' (bot)',
+'unpatrolledletter'                 => '!',
 'number_of_watching_users_pageview' => '[$1 {{PLURAL:$1|keer|keer}} op een volglieste]',
 'rc_categories'                     => 'Kattegeriebeparking (scheiden mit "|")',
 'rc_categories_any'                 => 'alles',
@@ -1769,6 +1786,7 @@ Vergeet neet de verwiezingen nao te kieken veurda-j de mal vortdoon.",
 'statistics-header-edits'      => 'Bewarkingsstaotestieken',
 'statistics-header-views'      => 'Staotestieken bekieken',
 'statistics-header-users'      => 'Gebrukerstaotestieken',
+'statistics-header-hooks'      => 'Overige staotestieken',
 'statistics-articles'          => "Inhouwelijke pagina's",
 'statistics-pages'             => "Pagina's",
 'statistics-pages-desc'        => "Alle pagina's in de wiki, oek overlegpagina's, deurverwiezingen, en gao zo mar deur.",
@@ -2719,6 +2737,8 @@ $1",
 'svg-long-desc'        => '(SVG-bestaand, uutgangsgrootte $1 × $2 beeldpunten, bestaansgrootte: $3)',
 'show-big-image'       => 'Ofbeelding in hogere resolusie',
 'show-big-image-thumb' => '<small>Grootte van disse weergave: $1 × $2 beeldpunten</small>',
+'file-info-gif-looped' => 'herhaolend',
+'file-info-gif-frames' => '$1 {{PLURAL:$1|umraming|umramingen}}',
 
 # Special:NewFiles
 'newimages'             => 'Nieje ofbeeldingen',

@@ -1807,6 +1807,7 @@ Doblidetz pas de verificar se i a pas d’autre ligam cap als modèls abans de l
 'statistics-header-edits'      => 'Estatisticas sus las edicions',
 'statistics-header-views'      => 'Estatisticas sus las visitas',
 'statistics-header-users'      => "Estatisticas d'utilizaire",
+'statistics-header-hooks'      => 'Autras estatisticas',
 'statistics-articles'          => 'Paginas de contengut',
 'statistics-pages'             => 'Paginas',
 'statistics-pages-desc'        => 'Totas las paginas del wiki, enclusas las paginas de discussion, las redireccions, ...',
@@ -2798,6 +2799,8 @@ $1",
 'svg-long-desc'        => '(Fichièr SVG, resolucion de $1 × $2 pixèls, talha : $3)',
 'show-big-image'       => 'Imatge en resolucion mai nauta',
 'show-big-image-thumb' => "<small>Talha d'aqueste apercebut : $1 × $2 pixèls</small>",
+'file-info-gif-looped' => 'en bocla',
+'file-info-gif-frames' => '$1 {{PLURAL:$1|imatge|imatges}}',
 
 # Special:NewFiles
 'newimages'             => 'Galariá dels fichièrs novèls',

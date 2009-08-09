@@ -1059,7 +1059,8 @@ $2',
 'show-big-image-thumb' => '<small>Алдан карау зурлыгы: $1 × $2 нокта</small>',
 
 # Special:NewFiles
-'newimages' => 'Яңа сүрәтләр җыелмасы',
+'newimages'        => 'Яңа сүрәтләр җыелмасы',
+'newimages-legend' => 'Фильтр',
 
 # Bad image list
 'bad_image_list' => 'Киләчәк рәвеш кирәк:

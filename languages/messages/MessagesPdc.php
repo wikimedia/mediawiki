@@ -47,7 +47,7 @@ $messages = array(
 'may_long'      => 'Moi',
 'june'          => 'Yuni',
 'july'          => 'Yuli',
-'august'        => 'Augscht',
+'august'        => 'Aagscht',
 'september'     => 'September',
 'october'       => 'Oktower',
 'november'      => 'Nowember',
@@ -87,7 +87,7 @@ $messages = array(
 'cancel'        => 'Zerick',
 'moredotdotdot' => 'Mehr…',
 'mypage'        => 'Mei Blatt',
-'mytalk'        => 'Mei Gschwetz-Blatt',
+'mytalk'        => 'Mei Gschwetz ($1)',
 'anontalk'      => 'Gschwetz-Blatt fer die IP',
 'navigation'    => 'Faahre-Gnepp',
 'and'           => '&#32;unn',
@@ -158,6 +158,8 @@ $messages = array(
 'mainpage-description' => 'Haaptblatt',
 'portal'               => 'Gmeeschafts-Portal',
 'portal-url'           => 'Project:Gmeeschafts-Portal',
+'privacy'              => 'Daadeschutz',
+'privacypage'          => 'Project:Daadeschutz',
 
 'versionrequired'     => 'Muss Version $1 vun MediaWiki sei',
 'versionrequiredtext' => 'Muss Version $1 vun MediaWiki sei, fer es Blatt zu yuuse.
@@ -167,7 +169,7 @@ Guuck aach [[Special:Version|Versionsblatt]]',
 'retrievedfrom'           => 'Vun „$1“',
 'youhavenewmessages'      => 'Du hast $1 uff deinem $2.',
 'newmessageslink'         => 'neie Comments',
-'newmessagesdifflink'     => 'Gschwetz-Blatt',
+'newmessagesdifflink'     => '{{PLURAL:$1|eene Ennerung|$1 Enneringe}}',
 'youhavenewmessagesmulti' => 'Du hascht neie Comments: $1',
 'editsection'             => 'Ennere',
 'editold'                 => 'Ennere',
@@ -193,6 +195,7 @@ Guuck aach [[Special:Version|Versionsblatt]]',
 # General errors
 'error'               => 'Mischteek',
 'missingarticle-rev'  => '(Version: $1)',
+'missingarticle-diff' => '(Unnerschidd zwische Versione: $1, $2)',
 'viewsourcefor'       => 'fer $1',
 'ns-specialprotected' => 'Besunnere Bledder sinn net zum Ennere.',
 
@@ -231,6 +234,7 @@ Guuck aach [[Special:Version|Versionsblatt]]',
 'editingsection'  => 'Ennere vun $1 (Abschnitt)',
 'editingcomment'  => 'Ennere vun $1 (Neier Abschnitt)',
 'editconflict'    => 'Druwwel beim Ennere: $1',
+'yourdiff'        => 'Unnerschidde',
 
 # History pages
 'revisionasof'     => 'Version vum $2, $3 Uhr',
@@ -253,6 +257,7 @@ Guuck aach [[Special:Version|Versionsblatt]]',
 'mergehistory-reason' => 'Grund:',
 
 # Diffs
+'difference'        => '(Unnerschidd zwische Versione)',
 'editundo'          => 'zerick',
 'diff-styleadded'   => '$1-Style dezu geduh',
 'diff-added'        => '$1 dezu geduh',
@@ -309,6 +314,7 @@ Guuck aach [[Special:Version|Versionsblatt]]',
 'yourlanguage'             => 'Schprooch:',
 'yourgender'               => 'Geschlecht:',
 'gender-female'            => 'Weiblich',
+'prefs-diffs'              => 'Unnerschidd vun Versione',
 
 # User rights
 'userrights-editusergroup' => 'Mitgliedschaft vun Yuuser ennere',
@@ -350,6 +356,7 @@ Guuck aach [[Special:Version|Versionsblatt]]',
 'rcshowhideanons'   => 'IP-Yuuser $1',
 'rcshowhidemine'    => 'Mei Ardickele $1',
 'rclinks'           => 'Zeig die letscht $1 Enneringe vun de letscht $2 Daag.<br />$3',
+'diff'              => 'Unnerschidd',
 'hist'              => 'Gschicht',
 'hide'              => 'verschwinne losse',
 'show'              => 'zeige',
@@ -459,6 +466,7 @@ Guuck aach [[Special:Version|Versionsblatt]]',
 'watching'   => 'Watsche…',
 'unwatching' => 'Nimmi watsche...',
 
+'enotif_newpagetext'           => 'Des iss en neies Blatt.',
 'enotif_impersonal_salutation' => '{{SITENAME}}-Yuuser',
 
 # Delete
@@ -533,7 +541,11 @@ Guuck aach [[Special:Version|Versionsblatt]]',
 'delete_and_move_confirm' => 'Ya, es Blatt lösche',
 
 # Namespace 8 related
-'allmessagesname' => 'Naame',
+'allmessagesname'               => 'Naame',
+'allmessages-filter-unmodified' => 'Net gennert',
+'allmessages-filter-all'        => 'All',
+'allmessages-filter-modified'   => 'Gennert',
+'allmessages-language'          => 'Schprooch:',
 
 # Thumbnails
 'thumbnail-more' => 'greeser mache',
@@ -564,6 +576,9 @@ Guuck aach [[Special:Version|Versionsblatt]]',
 'showhidebots' => '(Bots $1)',
 'noimages'     => 'Ken Date gfunne.',
 'ilsubmit'     => 'Guuck uff',
+
+# Metadata
+'metadata' => 'Metadaade',
 
 # EXIF tags
 'exif-imagelength' => 'Leng',

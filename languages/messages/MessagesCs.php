@@ -14,6 +14,7 @@
  * @author Matěj Grabovský
  * @author Michawiki
  * @author Mormegil
+ * @author Ragimiri
  * @author Reaperman
  * @author Urhixidur
  * @author לערי ריינהארט
@@ -458,7 +459,7 @@ $messages = array(
 'cancel'        => 'Storno',
 'moredotdotdot' => 'Další…',
 'mypage'        => 'Moje stránka',
-'mytalk'        => 'Moje diskuse',
+'mytalk'        => 'moje diskuse ($1)',
 'anontalk'      => 'Diskuse k této IP adrese',
 'navigation'    => 'Navigace',
 'and'           => '&#32;a',
@@ -597,7 +598,7 @@ $1',
 'retrievedfrom'           => 'Citováno z „$1“',
 'youhavenewmessages'      => 'Máte $1 ($2).',
 'newmessageslink'         => 'nové zprávy',
-'newmessagesdifflink'     => 'rozdíl oproti předchozí verzi',
+'newmessagesdifflink'     => '{{PLURAL:$1|jedna změna|$1 změny}}',
 'youhavenewmessagesmulti' => 'Na $1 máte nové zprávy',
 'editsection'             => 'editovat',
 'editold'                 => 'editovat',
