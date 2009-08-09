@@ -2076,6 +2076,23 @@ abstract class DatabaseBase {
 	}
 
 	/**
+	 * Get the full path of a patch file. Originally based on archive()
+	 * from updaters.inc. Keep in mind this always returns a patch, as 
+	 * it fails back to MySQL if no DB-specific patch can be found
+	 *
+	 * @param $patch String The name of the patch, like patch-something.sql
+	 * @return String Full path to patch file
+	 */
+	public static function patchPatch( $patch ) {
+		global $wgDBtype, $IP;
+		if ( file_exists( "$IP/maintenance/$wgDBtype/archives/$name" ) ) {
+			return "$IP/maintenance/$wgDBtype/archives/$name";
+		} else {
+			return "$IP/maintenance/archives/$name";
+		}
+	}
+
+	/**
 	 * Read and execute commands from an open file handle
 	 * Returns true on success, error string or exception on failure (depending on object's error ignore settings)
 	 * @param $fp String: File handle

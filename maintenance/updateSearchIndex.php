@@ -40,6 +40,10 @@ class UpdateSearchIndex extends Maintenance {
 		$this->addOption( 'l', 'How long the searchindex and revision tables will be locked for', false, true );
 	}
 
+	protected function getDbType() {
+		return Maintenance::DB_ADMIN;
+	}
+
 	public function execute() {
 		$posFile = $this->getOption( 'p', 'searchUpdate.' . wfWikiId() . '.pos' );
 		$end = $this->getOption( 'e', wfTimestampNow() );
