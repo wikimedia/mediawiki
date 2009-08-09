@@ -29,7 +29,11 @@ class RenameDbPrefix extends Maintenance {
 		$this->addOption( "old", "Old db prefix [0 for none]", true, true );
 		$this->addOption( "new", "New db prefix [0 for none]", true, true );
 	}
-	
+
+	protected function getDbType() {
+		return Maintenance::DB_ADMIN;
+	}
+
 	public function execute() {
 		// Allow for no old prefix
 		if( $this->getOption( 'old', 0 ) === '0' ) {

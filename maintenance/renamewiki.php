@@ -30,6 +30,10 @@ class RenameWiki extends Maintenance {
 		$this->mDescription = "Rename external storage dbs and leave a new one";
 		$this->addArgs( array( 'olddb', 'newdb' ) );
 	}
+	
+	protected function getDbType() {
+		return Maintenance::DB_ADMIN;
+	}
 
 	public function execute() {
 		global $wgDefaultExternalStore;
