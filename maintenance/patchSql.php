@@ -39,8 +39,8 @@ class PatchSql extends Maintenance {
 		foreach( $this->mArgs as $arg ) {
 			$files = array(
 				$arg,
-				DatabaseBase::patchPatch( $arg ),
-				DatabaseBase::patchPatch( "patch-$arg.sql" ),
+				DatabaseBase::patchPath( $arg ),
+				DatabaseBase::patchPath( "patch-$arg.sql" ),
 			);
 			foreach( $files as $file ) {
 				if( file_exists( $file ) ) {

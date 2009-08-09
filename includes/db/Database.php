@@ -2083,7 +2083,7 @@ abstract class DatabaseBase {
 	 * @param $patch String The name of the patch, like patch-something.sql
 	 * @return String Full path to patch file
 	 */
-	public static function patchPatch( $patch ) {
+	public static function patchPath( $patch ) {
 		global $wgDBtype, $IP;
 		if ( file_exists( "$IP/maintenance/$wgDBtype/archives/$name" ) ) {
 			return "$IP/maintenance/$wgDBtype/archives/$name";
