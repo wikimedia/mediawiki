@@ -572,7 +572,7 @@ abstract class Maintenance {
 	 * Do setup specific to WMF
 	 */
 	public function loadWikimediaSettings() {
-		global $IP, $wgNoDBParam, $wgUseNormalUser, $wgConf;
+		global $IP, $wgNoDBParam, $wgUseNormalUser, $wgConf, $site, $lang;
 
 		if ( empty( $wgNoDBParam ) ) {
 			# Check if we were passed a db name
@@ -616,6 +616,8 @@ abstract class Maintenance {
 		if ( $lang == 'test' && $site == 'wikipedia' ) {
 			define( 'TESTWIKI', 1 );
 		}
+
+		$this->finalSetup();
 	}
 
 	/**
