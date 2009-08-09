@@ -222,7 +222,7 @@ class SpecialVersion extends SpecialPage {
 				$execPath = substr_replace($execPath, '', 0, strlen($pathVar));
 				$execFullPath = trim($wgSVGConverterPath,'"') . $execPath;
 				$execBinPath = $binPath . $execPath;
-				$execPathVal = checkExecPath( $execPath );
+				$execPathVal = self::checkExecPath( $execPath );
 				if (strstr($execFullPath, ' ') != false) {
 					$execFullPath = '"' . $execFullPath . '"';
 				}
