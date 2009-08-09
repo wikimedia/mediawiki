@@ -13,6 +13,7 @@
  * @author Michawiki
  * @author Mormegil
  * @author Palica
+ * @author Ragimiri
  * @author Rudko
  * @author Sp5uhe
  * @author Urhixidur
@@ -318,6 +319,7 @@ $messages = array(
 'tog-ccmeonemails'            => 'Posielať mi kópie mojich emailov, ktoré pošlem ostatným používateľom',
 'tog-diffonly'                => 'Nezobrazovať obsah stránky pod rozdielmi',
 'tog-showhiddencats'          => 'Zobraziť skryté kategórie',
+'tog-noconvertlink'           => 'Vypnúť konverziu názvov',
 'tog-norollbackdiff'          => 'Vynechať rozdiel po vykonaní rollbacku',
 
 'underline-always'  => 'Vždy',
@@ -414,7 +416,7 @@ $messages = array(
 'cancel'        => 'Zrušiť',
 'moredotdotdot' => 'Viac...',
 'mypage'        => 'Moja stránka',
-'mytalk'        => 'Moja diskusia',
+'mytalk'        => 'MojaDiskusia ($1)',
 'anontalk'      => 'Diskusia k tejto IP adrese',
 'navigation'    => 'Navigácia',
 'and'           => '&#32;a',
@@ -552,7 +554,7 @@ $1',
 'retrievedfrom'           => 'Zdroj: „$1“',
 'youhavenewmessages'      => 'Máte $1 ($2).',
 'newmessageslink'         => 'nové správy',
-'newmessagesdifflink'     => 'posledná zmena',
+'newmessagesdifflink'     => '{{PLURAL:$1|posledná zmena|$1 zmeny}}',
 'youhavenewmessagesmulti' => 'Máte nové správy na $1',
 'editsection'             => 'upraviť',
 'editold'                 => 'upraviť',
@@ -758,7 +760,7 @@ Ak bol účet vytvorený omylom, túto správu môžete ignorovať.',
 # Password reset dialog
 'resetpass'                 => 'Zmeniť heslo',
 'resetpass_announce'        => 'Prishlásili ste sa pomocou dočasného emailom zaslaného kódu. Pre dokončenie prihlásenia je potrebné tu nastaviť nové heslo:',
-'resetpass_text'            => '<!-- Pridajte text sem -->',
+'resetpass_text'            => '<!-- Sem pridajte text -->',
 'resetpass_header'          => 'Zmeniť heslo k účtu',
 'oldpassword'               => 'Staré heslo:',
 'newpassword'               => 'Nové heslo:',
@@ -1663,10 +1665,10 @@ Ak ho chcete aj napriek tomu nahrať, choďte prosím späť a použite iný ná
 Mali by ste zvážiť, či je vhodné pokračovať v nahrávaní tohto súboru.
 Tu je na záznam zmazaní tohto súboru:",
 'filename-bad-prefix'         => "Názov súboru, ktorý nahrávate, začína '''„$1“''', čo nie je popisné meno. Takýto názov typicky priraďujú digitálne fotoaparáty automaticky. Prosím, dajte vášmu súboru popisnejší názov.",
-'filename-prefix-blacklist'   => ' #<!-- leave this line exactly as it is --> <pre>
-# Syntax je nasledovná:
-#   * Všetko od znaku „#“ po koniec riadka je komentár
-#   * Každý neprázdny riadok je prefix typických názvov súborov, ktoré automaticky priraďuje digitálny fotoapraát
+'filename-prefix-blacklist'   => '  #<!-- tento riadok ponechajte bez zmeny --> <pre>
+# Syntax sa používa nasledovne:
+#   * Všetko od znaku "#" až po koniec riadku je komentár
+#   * Každý neprázdny riadok je prefix pre typické názvy súborov, ktorý sa automaticky priraďuje k digitálnym fotoaparátom
 CIMG # Casio
 DSC_ # Nikon
 DSCF # Fuji
@@ -1675,8 +1677,8 @@ DUW # niektoré mobilné telefóny
 IMG # všeobecné
 JD # Jenoptik
 MGP # Pentax
-PICT # misc.
- #</pre> <!-- leave this line exactly as it is -->',
+PICT # rôzne
+  #</pre> <!-- tento riadok ponechajte bez zmeny -->',
 
 'upload-proto-error'        => 'Nesprávny protokol',
 'upload-proto-error-text'   => 'Vzdialené nahrávanie vyžaduje, aby URL začínali <code>http://</code> alebo <code>ftp://</code>.',
@@ -2678,19 +2680,38 @@ Všetky transwiki importy sa zaznamenávajú v [[Special:Log/import|Zázname imp
 'tooltip-recreate'                => 'Znovu vytvoriť stránku napriek tomu, že bola zmazaná',
 'tooltip-upload'                  => 'Začať nahrávanie',
 'tooltip-rollback'                => '„Rollback” vracia úpravy posledného prispievateľa tejto stránky jedným kliknutím.',
-'tooltip-undo'                    => '„Vrátiť” vráti túto úpravu a otvorí formulár úprav v režime náhľadu. Umožnuje do zhrnutia pridať dôvod.',
+'tooltip-undo'                    => '„Vrátiť” vráti túto úpravu a otvorí formulár úprav v režime náhľadu.
+Umožnuje do zhrnutia pridanie dôvodu.',
 
 # Stylesheets
-'common.css'   => '/** Tu sa nachádzajúce CSS sa použije pri všetkých skinoch */',
-'monobook.css' => '/* úpravou tohto súboru si prispôsobíte skin monobook pre celú wiki */',
+'common.css'      => '/* Tu umiestnené CSS bude ovplyvňovať všetky štýly */',
+'standard.css'    => '/* Tu umiestnené CSS bude ovplyvňovať používateľov štýlu Klasický */',
+'nostalgia.css'   => '/* Tu umiestnené CSS bude ovplyvňovať používateľov štýlu Nostalgia */',
+'cologneblue.css' => '/* Tu umiestnené CSS bude ovplyvňovať používateľov štýlu Kolínska modrá */',
+'monobook.css'    => '/* Tu umiestnené CSS bude ovplyvňovať používateľov štýlu Monobook */',
+'myskin.css'      => '/* Tu umiestnené CSS bude ovplyvňovať používateľov štýlu Môjvzhľad */',
+'chick.css'       => '/* Tu umiestnené CSS bude ovplyvňovať používateľov štýlu Kuriatko */',
+'simple.css'      => '/* Tu umiestnené CSS bude ovplyvňovať používateľov štýlu Jednoduchý */',
+'modern.css'      => '/* Tu umiestnené CSS bude ovplyvňovať používateľov štýlu Moderný */',
+'vector.css'      => '/* Tu umiestnené CSS bude ovplyvňovať používateľov štýlu Vector */',
+'print.css'       => '/* Tu umiestnené CSS bude ovplyvňovať tlačový výstup */',
+'handheld.css'    => '/* Tu umiestnené CSS bude ovplyvňovať prenosné zariadenia vychádzajúceho zo štýlu nastaveného v $wgHandheldStyle */',
 
 # Scripts
-'common.js'   => '/* Tu sa nachádzajúci JavaScript sa načíta všetkým používateľom pri každom načítaní stránky. */',
-'monobook.js' => '/* Zastaralé; použite [[MediaWiki:common.js]] */',
+'common.js'      => '/* Tu uvedený JavaScript sa nahrá všetkým užívateľom pri každom nahraní stránky. */',
+'standard.js'    => '/* Tu sa nachádzajúci JavaScript sa načíta používateľom vzhľadu Klasický */',
+'nostalgia.js'   => '/* Tu sa nachádzajúci JavaScript sa načíta používateľom vzhľadu Nostalgia */',
+'cologneblue.js' => '/* Tu sa nachádzajúci JavaScript sa načíta používateľom vzhľadu Kolínska modrá */',
+'monobook.js'    => '/* Tu sa nachádzajúci JavaScript sa načíta používateľom vzhľadu Monobook */',
+'myskin.js'      => '/* Tu sa nachádzajúci JavaScript sa načíta používateľom vzhľadu Môjvzhľad */',
+'chick.js'       => '/* Tu sa nachádzajúci JavaScript sa načíta používateľom vzhľadu Kuriatko */',
+'simple.js'      => '/* Tu sa nachádzajúci JavaScript sa načíta používateľom vzhľadu Jednoduchý */',
+'modern.js'      => '/* Tu sa nachádzajúci JavaScript sa načíta používateľom vzhľadu Moderný */',
+'vector.js'      => '/* Tu sa nachádzajúci JavaScript sa načíta používateľom vzhľadu Vector */',
 
 # Metadata
-'nodublincore'      => 'Dublin Core RDF metadáta sú pre tento server vypnuté.',
-'nocreativecommons' => 'Creative Commons RDF metadata sú pre tento server vypnuté.',
+'nodublincore'      => 'Dublin Core RDF metadáta pre tento server vypnuté.',
+'nocreativecommons' => 'Creative Commons RDF metadata pre tento server vypnuté.',
 'notacceptable'     => 'Wiki server nedokáže poskytovať dáta vo formáte, v akom ich váš klient vie čítať.',
 
 # Attribution
@@ -2725,6 +2746,8 @@ Pravdepodobne to spôsobil odkaz na externú internetovú lokalitu, ktorá sa na
 'skinname-nostalgia'   => 'Nostalgia',
 'skinname-cologneblue' => 'Kolínska modrá',
 'skinname-monobook'    => 'MonoBook',
+'skinname-myskin'      => 'Môj vzhľad',
+'skinname-chick'       => 'Kuriatko',
 'skinname-simple'      => 'Jednoduchý',
 'skinname-modern'      => 'Moderný',
 
@@ -3230,6 +3253,9 @@ Skúste obyčajný náhľad.',
 'watchlisttools-view' => 'Zobraziť súvisiace zmeny',
 'watchlisttools-edit' => 'Zobraziť a upraviť zoznam sledovaných stránok',
 'watchlisttools-raw'  => 'Upraviť nespracovaný zoznam sledovaných stránok',
+
+# Iranian month names
+'iranian-calendar-m1' => 'Farvardín',
 
 # Core parser functions
 'unknown_extension_tag' => 'Neznáma značka rozšírenia „$1“',

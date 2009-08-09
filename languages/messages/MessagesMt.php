@@ -567,9 +567,9 @@ $messages = array(
 
 # Main script and global functions
 'nosuchaction'      => 'Ma teżistix din l-azzjoni',
-'nosuchactiontext'  => "L-azzjoni speċifikata mill-URL mhijiex valida.<br />
-Jista' jkun li tkun ktibt ħażin il-URL, jew ġejt imwassal għal ħolqa ħażina.<br />
-Dan jista' jindika wkoll bug fis-software użat fil-{{SITENAME}}.",
+'nosuchactiontext'  => "L-azzjoni speċifikata mill-URL mhijiex valida.
+Jista' jkun li tkun ktibt ħażin il-URL, jew ġejt imwassal għal ħolqa ħażina.
+Dan jista' jindika wkoll bug fis-softwer użat fil-{{SITENAME}}.",
 'nosuchspecialpage' => 'L-Ebda paġna speċjali',
 'nospecialpagetext' => "<big>'''Inti għamilt rikjesta għal paġna speċjali invalida.'''</big>
 
@@ -1381,6 +1381,7 @@ Innota però li l-werreja tal-kontenut ta' {{SITENAME}} f'dawn is-siti, jistgħu
 'action-suppressionlog' => 'ara dan il-log privat',
 'action-block'          => 'imblokka lil dan l-utent milli jimmodifika',
 'action-protect'        => "biddel il-livelli ta' protezzjoni għal din il-paġna",
+'action-unwatchedpages' => "uri l-lista ta' paġni li mhumiex osservati",
 'action-mergehistory'   => "waħħad il-kronoloġija ta' din il-paġna",
 
 # Recent changes
@@ -1726,8 +1727,8 @@ Paġna tiġi stimata paġna ta' diżambigwazzjoni dawk kollha li jagħmlu użu m
 'unusedcategoriestext'    => 'Il-paġni tal-kategoriji segwenti jeżistu, għalkemm ma teżisti l-ebda paġna jew kategorija li tagħmel użu minnhom.',
 'notargettitle'           => 'L-Ebda tarka',
 'notargettext'            => "L-Ebda paġna tarka jew utent ma ġie speċifikat f'relazzjoni mal-funżjoni rikjesta.",
-'nopagetitle'             => 'L-Ebda paġna tarka',
-'nopagetext'              => 'Il-Paġna tarka li speċifikajt ma teżistiex.',
+'nopagetitle'             => "Il-paġna ta' destinazzjoni ma teżistix",
+'nopagetext'              => "Il-paġna ta' destinazzjoni li speċifikajt ma teżistix.",
 'pager-newer-n'           => '{{PLURAL:$1|l-aktar riċenti|$1 l-aktar riċenti}}',
 'pager-older-n'           => '{{PLURAL:$1|l-inqas riċenti|$1 l-inqas riċenti}}',
 'suppress'                => 'Oversight',
@@ -1923,7 +1924,7 @@ Ara $2 biex tara paġni mħassra riċentament.',
 ** Rikjesta tal-awtur
 ** Vjolazzjoni tal-copyright
 ** Vandaliżmu",
-'delete-edit-reasonlist' => "Modifika raġunijiet ta' tħassir",
+'delete-edit-reasonlist' => "Immodifika r-raġunijiet ta' tħassir",
 'delete-toobig'          => "Din il-paġna għandha kronoloġija ta' modifikar kbira, l-fuq minn $1 {{PLURAL:$1|reviżjoni|reviżjonijiet}}.
 Tħassir ta' dawn il-paġni huwa limitat sabiex tnaqqas il-ħolqien aċċidentalment ta' problemi fil-funżjoni tad-database ta' {{SITENAME}}.",
 'delete-warning-toobig'  => "Din il-paġna għandha kronoloġija ta' modifikar kbira, l-fuq minn $1 {{PLURAL:$1|reviżjoni|reviżjonijiet}}.
@@ -2070,7 +2071,7 @@ $1',
 'whatlinkshere-title'      => 'Paġni li jippuntaw lejn $1',
 'whatlinkshere-page'       => 'Paġna:',
 'linkshere'                => "Il-Paġni segwenti għandhom links għal '''[[:$1]]''':",
-'nolinkshere'              => "L-Ebda paġna għanda link għal '''[[:$1]]'''.",
+'nolinkshere'              => "L-ebda paġna ma twassal għal '''[[:$1]]'''.",
 'nolinkshere-ns'           => "L-Ebda paġni li jippontaw għal '''[[:$1]]''' fin-namespace magħżula.",
 'isredirect'               => 'Paġna ta Rindirizz',
 'istemplate'               => 'inklużjoni',

@@ -26,6 +26,10 @@ $defaultUserOptionOverrides = array(
 $fallback = 'fa';
 
 $messages = array(
+# User preference toggles
+'tog-underline' => 'پیوندون جیر خط دأکشی بأوو',
+'tog-justify'   => 'بندون ته‌موم چین هاکردن',
+
 # Dates
 'friday'        => 'جومه',
 'january'       => 'جـانـویـه',

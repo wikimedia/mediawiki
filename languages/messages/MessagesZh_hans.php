@@ -1,5 +1,5 @@
 <?php
-/** Simplified Chinese (‪中文(简化字)‬)
+/** Simplified Chinese (‪中文(简体)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -336,7 +336,7 @@ $messages = array(
 'cancel'        => '取消',
 'moredotdotdot' => '更多……',
 'mypage'        => '我的页面',
-'mytalk'        => '我的对话页 ($1)',
+'mytalk'        => '我的对话页（$1）',
 'anontalk'      => '该IP的对话页',
 'navigation'    => '导航',
 'and'           => '和',
@@ -472,7 +472,7 @@ $1',
 'retrievedfrom'           => '取自“$1”',
 'youhavenewmessages'      => '您有$1（$2）。',
 'newmessageslink'         => '新信息',
-'newmessagesdifflink'     => '{{PLURAL:$1|一|$1}}次更改',
+'newmessagesdifflink'     => '$1次更改',
 'youhavenewmessagesmulti' => '您在$1有一条新信息',
 'editsection'             => '编辑',
 'editold'                 => '编辑',
@@ -1077,16 +1077,17 @@ $1",
 # Search results
 'searchresults'                    => '搜索结果',
 'searchresults-title'              => '对“$1”的搜索结果',
-'searchresulttext'                 => '有关搜索{{SITENAME}}的更多详情，参见[[{{MediaWiki:Helppage}}|{{int:help}}]]。',
+'searchresulttext'                 => '有关搜索{{SITENAME}}的更多信息，参见[[{{MediaWiki:Helppage}}|{{int:help}}]]。',
 'searchsubtitle'                   => '搜索\'\'\'[[:$1]]\'\'\'（[[Special:Prefixindex/$1|所有以 "$1" 开头的页面]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|所有链接到“$1”的页面]]）',
 'searchsubtitleinvalid'            => "搜索'''$1'''",
-'noexactmatch'                     => "'''未找到标题为“$1”的页面。'''您可以[[:$1|创建此页面]]。",
+'noexactmatch'                     => "'''未找到标题为“$1”的页面。'''
+您可以考虑[[:$1|创建此页面]]。",
 'noexactmatch-nocreate'            => "'''未找到标题为“$1”的页面。'''",
 'toomanymatches'                   => '返回的匹配结果过多，请尝试不同的查询词',
 'titlematches'                     => '页面标题匹配',
-'notitlematches'                   => '未找到匹配的页面标题',
+'notitlematches'                   => '没有找到匹配页面题目',
 'textmatches'                      => '页面内容匹配',
-'notextmatches'                    => '未找到匹配的页面内容',
+'notextmatches'                    => '没有页面内容匹配',
 'prevn'                            => '前$1个',
 'nextn'                            => '后$1个',
 'prevn-title'                      => '前$1项结果',

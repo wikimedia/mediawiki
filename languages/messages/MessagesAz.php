@@ -9,6 +9,7 @@
  *
  * @author Gulmammad
  * @author PrinceValiant
+ * @author Sortilegus
  * @author Sysops of az.wikipedia.org (imported 2008-08-31)
  * @author לערי ריינהארט
  */
@@ -87,12 +88,12 @@ $messages = array(
 
 # Dates
 'sunday'        => 'Bazar',
-'monday'        => 'Bazar ertǝsi',
-'tuesday'       => 'Çǝrşenbǝ axşamı',
-'wednesday'     => 'Çǝrşenbǝ',
-'thursday'      => 'Cümǝ axşamı',
-'friday'        => 'Cümǝ',
-'saturday'      => 'Şǝnbǝ',
+'monday'        => 'Bazar ertəsi',
+'tuesday'       => 'Çərşənbə axşamı',
+'wednesday'     => 'Çərşənbə',
+'thursday'      => 'Cümə axşamı',
+'friday'        => 'Cümə',
+'saturday'      => 'Şənbə',
 'sun'           => 'Bazar',
 'mon'           => 'Bazar ertəsi',
 'tue'           => 'Çərşənbə axşamı',
@@ -129,8 +130,8 @@ $messages = array(
 'mar'           => 'Mart',
 'apr'           => 'Aprel',
 'may'           => 'May',
-'jun'           => 'Iyun',
-'jul'           => 'Iyul',
+'jun'           => 'İyun',
+'jul'           => 'İyul',
 'aug'           => 'Avqust',
 'sep'           => 'Sentyabr',
 'oct'           => 'Oktyabr',
@@ -374,7 +375,7 @@ Xahiş edirik düzgün formatlı ünvan daxil edin və ya bu sahəni boş qoyun.
 
 # Password reset dialog
 'resetpass_text'            => '<!-- Şərhinizi bura daxil edin -->',
-'oldpassword'               => 'Köhne parol:',
+'oldpassword'               => 'Köhnə parol:',
 'newpassword'               => 'Yeni parol:',
 'retypenew'                 => 'Yeni parolu təkrar yazın:',
 'resetpass-submit-loggedin' => 'Parolu dəyiş',
@@ -439,7 +440,7 @@ və ya səhifəni [{{fullurl:{{FULLPAGENAME}}|action=edit}} redaktə]</span> ed�
 'template-protected'         => '(mühafizə)',
 'template-semiprotected'     => '(yarım-mühafizə)',
 'permissionserrorstext'      => 'Siz, bunu aşağıdakı {{PLURAL:$1|səbəbə|səbəblərə}} görə edə bilməzsiniz:',
-'recreate-moveddeleted-warn' => "'''Diqqət: Yaratmaq istədiyiniz səhifə əvvəllər silinmiş.'''
+'recreate-moveddeleted-warn' => "'''Diqqət: Yaratmaq istədiyiniz səhifə əvvəllər silinmişdir.'''
 
 Bu səhifəni redaktə etməyin nə qədər lazımlı olduğunu müəyyənləşdirin.
 Bu səhifə üçün silmə qeydləri aşağıda göstərilmişdir:",

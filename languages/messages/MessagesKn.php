@@ -179,7 +179,7 @@ $messages = array(
 'cancel'        => 'ವಜಾ ಮಾಡಿ',
 'moredotdotdot' => 'ಇನ್ನಷ್ಟು...',
 'mypage'        => 'ನನ್ನ ಪುಟ',
-'mytalk'        => 'ನನ್ನ ಚರ್ಚೆ',
+'mytalk'        => 'ನನ್ನ ಚರ್ಚೆ ($1)',
 'anontalk'      => 'ಈ ಐ.ಪಿ ಗೆ ಮಾತನಾಡಿ',
 'navigation'    => 'ಸಂಚರಣೆ',
 'and'           => '&#32;ಮತ್ತು',
@@ -194,6 +194,22 @@ $messages = array(
 'qbspecialpages' => 'ವಿಶೇಷ ಪುಟಗಳು',
 'faq'            => 'ಸಾಮಾನ್ಯವಾಗಿ ಕೇಳಲಾಗುವ ಪ್ರಶ್ನೆಗಳು',
 'faqpage'        => 'Project:ಸಾಮಾನ್ಯವಾಗಿ ಕೇಳಲಾಗುವ ಪ್ರಶ್ನೆಗಳು',
+
+# Vector skin
+'vector-action-delete'       => 'ಅಳಿಸು',
+'vector-action-move'         => 'ಸ್ಥಳಾಂತರಿಸಿ',
+'vector-action-protect'      => 'ಸಂರಕ್ಷಿಸು',
+'vector-namespace-category'  => 'ವರ್ಗ',
+'vector-namespace-help'      => 'ಸಹಾಯ ಪುಟ',
+'vector-namespace-image'     => 'ಫೈಲು',
+'vector-namespace-main'      => 'ಪುಟ',
+'vector-namespace-mediawiki' => 'ಸಂದೇಶ',
+'vector-namespace-special'   => 'ವಿಶೇಷ ಪುಟ',
+'vector-namespace-talk'      => 'ಚರ್ಚೆ',
+'vector-namespace-template'  => 'ಟೆಂಪ್ಲೇಟು',
+'vector-namespace-user'      => 'ಸದಸ್ಯರ ಪುಟ',
+'vector-view-create'         => 'ಸೃಷ್ಟಿಸು',
+'vector-view-edit'           => 'ಸಂಪಾದಿಸಿ',
 
 # Metadata in edit box
 'metadata_help' => 'ಮೂಲಮಾಹಿತಿ:',
@@ -348,6 +364,7 @@ MySQL ಹಿಂದಿರುಗಿಸಿದ ದೋಷ "$3: $4"',
 'readonlytext'         => 'ಹೊಸ ಸೇರ್ಪಡೆಗಳನ್ನು ಮತ್ತು ಇತರ ಬದಲಾವಣೆಗಳನ್ನು ಮಾಡಲಾಗದಂತೆ ಡೇಟಾಬೇಸ್ ಅನ್ನು ಸದ್ಯಕ್ಕೆ ಮುಚ್ಚಲಾಗಿದೆ. ಇದು ಪ್ರಾಯಶಃ ನಿಯತಕಾಲಿಕೆ ದುರಸ್ತಿಗೆ ಇರಬಹುದು ಮತ್ತು ಅದರ ನಂತರ ಸಾಮಾನ್ಯ ಸ್ಥಿತಿಗೆ ಹಿಂದಿರುಗುತ್ತದೆ.
 
 ಡೇಟಾಬೇಸ್ ಅನ್ನು ಮುಚ್ಚಿದ ನಿರ್ವಾಹಕ ನೀಡಿರುವ ಕಾರಣ: $1',
+'missingarticle-rev'   => '(ಆವೃತ್ತಿ#: $1)',
 'missingarticle-diff'  => '(ವ್ಯತ್ಯಾಸ: $1, $2)',
 'readonly_lag'         => 'ಅಡಿಯಲ್ಲಿರುವ ಡೇಟಾಬೇಸ್ ಸರ್ವರ್‍ಗಳು ಮೂಲ ಸರ್ವರ್ ಒಂದಿಗೆ ಸಮಾನತೆಗೆ ಬರುವವರೆಗೂ ಡೇಟಾಬೇಸ್ ಅನ್ನು ಯಾಂತ್ರಿಕವಾಗಿ ಮುಚ್ಚಲಾಗಿದೆ',
 'internalerror'        => 'ಆಂತರಿಕ ದೋಷ',
@@ -717,6 +734,7 @@ $2',
 'mergehistory-invalid-destination' => 'ಸೇರ್ಪಡೆಯನ್ನು ಸ್ವೀಕರಿಸಬೇಕಾದ ಪುಟದ ಶೀರ್ಷಿಕೆ ಸರಿಯಾಗಿರಬೇಕು.',
 'mergehistory-autocomment'         => '[[:$1]] ಅನ್ನು [[:$2]] ಪುಟದೊಳಗೆ ವಿಲೀನಗೊಳಿಸಲಾಯಿತು',
 'mergehistory-comment'             => '[[:$1]] ಅನ್ನು [[:$2]] ಒಳಗೆ ಸೇರಿಸಲಾಗಿದೆ: $3',
+'mergehistory-reason'              => 'ಕಾರಣ:',
 
 # Merge log
 'mergelog'           => 'ಸೇರ್ಪಡೆಯ ದಾಖಲೆ',
@@ -766,6 +784,7 @@ $2',
 'nextn'                     => 'ಮುಂದಿನ {{PLURAL:$1|$1}}',
 'viewprevnext'              => 'ವೀಕ್ಷಿಸು ($1) ($2) ($3)',
 'searchhelp-url'            => 'Help:ಪರಿವಿಡಿ',
+'searchprofile-project'     => 'ಸಹಾಯ ಮತ್ತು ಯೋಜನೆ ಪುಟಗಳು',
 'search-result-size'        => '$1 ({{PLURAL:$2|೧ ಪದ|$2 ಪದಗಳು}})',
 'search-result-score'       => 'ಸಂಬದ್ಧತೆ: $1%',
 'search-redirect'           => '(ಪುನರ್ನಿರ್ದೇಶನ $1)',
@@ -826,10 +845,20 @@ $2',
 'recentchangescount'        => 'ಇತ್ತೀಚೆಗಿನ ಬದಲಾವಣೆಗಳಲ್ಲಿರುವ ವಿಷಯಗಳ ಸಂಖ್ಯೆ',
 'savedprefs'                => 'ನಿಮ್ಮ ಇಚ್ಛೆಗಳನ್ನು ಉಳಿಸಲಾಯಿತು.',
 'timezonelegend'            => 'ಟೈಮ್ ಝೋನ್',
-'localtime'                 => 'ಸ್ಥಳೀಯ ಸಮಯ',
+'localtime'                 => 'ಸ್ಥಳೀಯ ಸಮಯ:',
 'timezoneoffset'            => 'ವ್ಯತ್ಯಾಸ¹',
 'servertime'                => 'ಸರ್ವರ್ ಕಾಲ',
 'guesstimezone'             => 'ಬ್ರೌಸರ್ ಇಂದ ತುಂಬು',
+'timezoneregion-africa'     => 'ಆಫ್ರಿಕ',
+'timezoneregion-america'    => 'ಅಮೇರಿಕ',
+'timezoneregion-antarctica' => 'ಅಂಟಾರ್ಟಿಕ',
+'timezoneregion-arctic'     => 'ಆರ್ಕ್ಟಿಕ್',
+'timezoneregion-asia'       => 'ಏಷ್ಯಾ',
+'timezoneregion-atlantic'   => 'ಅಟ್ಲಾಂಟಿಕ್ ಮಹಾಸಾಗರ',
+'timezoneregion-australia'  => 'ಆಸ್ಟ್ರೇಲಿಯಾ',
+'timezoneregion-europe'     => 'ಯುರೋಪ್',
+'timezoneregion-indian'     => 'ಹಿಂದೂ ಮಹಾಸಾಗರ',
+'timezoneregion-pacific'    => 'ಪೆಸಿಫಿಕ್ ಮಹಾಸಾಗರ',
 'allowemail'                => 'ಬೇರೆ ಸದಸ್ಯರಿಂದ ಈ-ಮೈಲ್‍ಗಳನ್ನು ಸ್ವೀಕರಿಸು',
 'defaultns'                 => 'ಮೂಲಸ್ಥಿತಿಯಲ್ಲಿ ಈ ಪುಟಪ್ರಬೇಧಗಳಲ್ಲಿ ಹುಡುಕಿ:',
 'default'                   => 'ಮೂಲಸ್ಥಿತಿ',
@@ -910,6 +939,7 @@ $2',
 'rightsnone'     => '(ಯಾವೂ ಇಲ್ಲ)',
 
 # Associated actions - in the sentence "You do not have permission to X"
+'action-read'    => 'ಈ ಪುಟವನ್ನು ಓದಿ',
 'action-edit'    => 'ಪುಟದ ಸಂಪಾದನೆ',
 'action-block'   => 'ಈ ಸದಸ್ಯರನ್ನು ಸಂಪಾದಿಸಲು ಆಗದಂತೆ ನಿರ್ಭಂಧಿಸಿ',
 'action-protect' => 'ಈ ಪುಟದ ಸಂರಕ್ಷಣೆ ಮಟ್ಟಗಳನ್ನು ಬದಲಾಯಿಸಲು',
@@ -1055,6 +1085,7 @@ $2',
 'listfiles_user'        => 'ಸದಸ್ಯ',
 'listfiles_size'        => 'ಗಾತ್ರ',
 'listfiles_description' => 'ವಿವರ',
+'listfiles_count'       => 'ಆವೃತ್ತಿಗಳು',
 
 # File description page
 'file-anchor-link'          => 'ಚಿತ್ರ',
@@ -1218,6 +1249,9 @@ $2',
 ಇದನ್ನೂ ನೋಡಿ: [[Special:WantedCategories|ಬೇಕಾಗಿರುವ ವರ್ಗಗಳು]].',
 'special-categories-sort-count' => 'ಎಣಿಕೆಯ ಪ್ರಕಾರ ಜೋಡಿಸು',
 'special-categories-sort-abc'   => 'ಅಕ್ಷರಮಾಲೆಯ ಪ್ರಕಾರ ಜೋಡಿಸು',
+
+# Special:DeletedContributions
+'sp-deletedcontributions-contribs' => 'ಕಾಣಿಕೆಗಳು',
 
 # Special:LinkSearch
 'linksearch' => 'ಹೊರಗಿನ ಸಂಪರ್ಕಗಳು',
@@ -1421,6 +1455,7 @@ $2',
 'whatlinkshere-links'      => '← ಕೊಂಡಿಗಳು',
 'whatlinkshere-hideredirs' => '$1 ಪುನರ್ನಿರ್ದೇಶನಗಳು',
 'whatlinkshere-hidelinks'  => '$1 ಕೊಂಡಿಗಳು',
+'whatlinkshere-filters'    => 'ಶೋಧಕಗಳು',
 
 # Block/unblock
 'blockip'                  => 'ಈ ಸದಸ್ಯನನ್ನು ತಡೆ ಹಿಡಿಯಿರಿ',
@@ -1557,8 +1592,9 @@ $2',
 'export-templates'  => 'ಟೆಂಪ್ಲೇಟುಗಳನ್ನು ಸೇರಿಸು',
 
 # Namespace 8 related
-'allmessages'     => 'ಸಂಪರ್ಕ ಸಾಧನದ ಎಲ್ಲ ಸಂದೇಶಗಳು',
-'allmessagesname' => 'ಹೆಸರು',
+'allmessages'          => 'ಸಂಪರ್ಕ ಸಾಧನದ ಎಲ್ಲ ಸಂದೇಶಗಳು',
+'allmessagesname'      => 'ಹೆಸರು',
+'allmessages-language' => 'ಭಾಷೆ:',
 
 # Thumbnails
 'thumbnail-more'  => 'ದೊಡ್ಡದಾಗಿಸು',
@@ -1665,6 +1701,9 @@ $2',
 'math_unknown_error' => 'ತಿಳಿದಿಲ್ಲದ ದೋಷ',
 'math_image_error'   => 'PNGಗೆ ಬದಲಾವಣೆ ವಿಫಲವಾಯಿತು;
 latex, dvips, gs, ಸರಿಯಾಗಿ ಸ್ಥಾಪಿತವಾಗಿದೆಯೆ ಎಂದು ಖಾತ್ರಿ ಮಾಡಿ ಬದಲಾಯಿಸಿ',
+
+# Patrol log
+'patrol-log-diff' => 'ಆವೃತ್ತಿ $1',
 
 # Image deletion
 'deletedrevision'       => 'ಹಳೆ ಆವೃತ್ತಿ $1 ಅನ್ನು ಅಳಿಸಲಾಗಿದೆ',
@@ -1855,6 +1894,9 @@ $5
 ದಯವಿಟ್ಟು ಈ ಪುಟವನ್ನು ನೀವು ಪುನಃ ಸೃಷ್ಟಿಸಬೇಕೆಂದಿರುವಿರಿ ಎಂದು ಧೃಡೀಕರಿಸಿ.",
 'recreate'            => 'ಪುನಃ ಸೃಷ್ಟಿಸು',
 
+# action=purge
+'confirm_purge_button' => 'ಸರಿ',
+
 # Multipage image navigation
 'imgmultipageprev' => '← ಹಿಂದಿನ ಪುಟ',
 'imgmultipagenext' => 'ಮುಂದಿನ ಪುಟ →',
@@ -1931,5 +1973,15 @@ $5
 'specialpages-group-media'       => 'ಮೀಡಿಯ ವರದಿಗಳು ಮತ್ತು ಅಪ್ಲೋಡ್‍ಗಳು',
 'specialpages-group-users'       => 'ಬಳಕೆದಾರರು ಮತ್ತು ಹಕ್ಕುಗಳು',
 'specialpages-group-highuse'     => 'ಹೆಚ್ಚು ಬಳಕೆಯಲ್ಲಿರುವ ಪುಟಗಳು',
+'specialpages-group-pages'       => 'ಪುಟಗಳ ಪಟ್ಟಿ',
+
+# Special:BlankPage
+'blankpage' => 'ಖಾಲಿ ಪುಟ',
+
+# Special:Tags
+'tags-edit' => 'ಸಂಪಾದಿಸಿ',
+
+# HTML forms
+'htmlform-selectorother-other' => 'ಇತರ',
 
 );

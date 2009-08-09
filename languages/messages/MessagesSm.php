@@ -149,6 +149,7 @@ $messages = array(
 # Upload
 'upload'            => "Si'i mai le faila",
 'uploadbtn'         => "Si'i mai le faila",
+'uploadnologin'     => "Le'i fa'aolaina",
 'filedesc'          => "'Oto'otoga",
 'fileuploadsummary' => "'Oto'otoga:",
 'watchthisupload'   => 'Matau lenei itulau',
@@ -195,6 +196,7 @@ $messages = array(
 # Move page
 'move-page-legend' => "Si'i le itulau",
 'movearticle'      => "Si'i le itulau",
+'movenologin'      => "Le'i fa'aolaina",
 'newtitle'         => "'I le ulutala fou",
 'move-watch'       => 'Matau lenei itulau',
 'movepagebtn'      => "Si'i le itulau",

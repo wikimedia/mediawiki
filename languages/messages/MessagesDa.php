@@ -11,6 +11,7 @@
  * @author Anders Wegge Jakobsen <awegge@gmail.com>
  * @author Boivie
  * @author Byrial
+ * @author Christian List
  * @author EPO
  * @author H92
  * @author Jan Friberg
@@ -291,7 +292,7 @@ $messages = array(
 'cancel'        => 'Afbryd',
 'moredotdotdot' => 'Mere...',
 'mypage'        => 'Min side',
-'mytalk'        => 'Min diskussion',
+'mytalk'        => 'Min diskussionsside ($1)',
 'anontalk'      => 'Diskussionsside for denne IP-adresse',
 'navigation'    => 'Navigation',
 'and'           => '&#32;og',
@@ -429,7 +430,7 @@ $1',
 'retrievedfrom'           => 'Hentet fra "$1"',
 'youhavenewmessages'      => 'Du har $1 ($2).',
 'newmessageslink'         => 'nye beskeder',
-'newmessagesdifflink'     => 'ændringer siden sidste visning',
+'newmessagesdifflink'     => '{{PLURAL:$1|en ændring|$1 ændringer}}',
 'youhavenewmessagesmulti' => 'Du har nye beskeder på $1',
 'editsection'             => 'redigér',
 'editold'                 => 'redigér',
@@ -1846,7 +1847,7 @@ Den e-mail-adresse du har angivet i [[Special:Preferences|dine indstillinger]] v
 
 # Watchlist
 'watchlist'            => 'Overvågningsliste',
-'mywatchlist'          => 'Overvågningsliste',
+'mywatchlist'          => 'Min overvågningsliste',
 'watchlistfor'         => "(for '''$1''')",
 'nowatchlist'          => 'Du har ingenting i din overvågningsliste.',
 'watchlistanontext'    => 'Du skal $1, for at se din overvågningsliste eller ændre indholdet af den.',
@@ -1979,14 +1980,14 @@ og den seneste version af $2 er gendannet.',
 'protect-locked-access'       => "Den brugerkonto har ikke de nødvendige rettigheder til at ændre sidebeskyttelsen. Her er de aktuelle beskyttelsesindstillinger for siden '''„$1“:'''",
 'protect-cascadeon'           => 'Denne side er del af en nedarvet skrivebeskyttelse. Wen er indeholdt i nedenstående {{PLURAL:$1|side|sider}}, som er skrivebeskyttet med tilvalg af "nedarvende sidebeskyttelse" Sidebeskyttelsen kan ændres for denne side, det påvirker dog ikke kaskadespærringen:',
 'protect-default'             => 'Tillad alle brugere',
-'protect-fallback'            => 'Kræv "$1"-tilladelse',
+'protect-fallback'            => 'Kræver "$1"-tilladelse',
 'protect-level-autoconfirmed' => 'Spær for nye og uregistrerede brugere',
 'protect-level-sysop'         => 'Kun administratorer',
 'protect-summary-cascade'     => 'nedarvende',
 'protect-expiring'            => 'til $1 (UTC)',
 'protect-expiry-indefinite'   => 'på ubestemt tid',
 'protect-cascade'             => 'Beskyt sider som er inkluderet på denne side (nedarvende beskyttelse)',
-'protect-cantedit'            => 'Du kan ikke ændre beskyttelsesniveau for denne side, da du ikke kan redigere fden.',
+'protect-cantedit'            => 'Du kan ikke ændre beskyttelsesniveau for denne side, da du ikke har tilladelse til at redigere den.',
 'protect-othertime'           => 'Anden tid:',
 'protect-othertime-op'        => 'anden tid',
 'protect-existing-expiry'     => 'Nugældende udløbstid: $2 $3',
@@ -2414,7 +2415,7 @@ Alle Transwiki import-aktioner protokolleres i [[Special:Log/import|import-logge
 'tooltip-ca-watch'                => 'Sæt denne side på din overvågningsliste',
 'tooltip-ca-unwatch'              => 'Fjern denne side fra din overvågningsliste',
 'tooltip-search'                  => 'Søg på denne wiki',
-'tooltip-search-go'               => 'Vid en side med præcis dette navn, hvis den findes',
+'tooltip-search-go'               => 'Vis en side med præcis dette navn, hvis den findes',
 'tooltip-search-fulltext'         => 'Søg efter sider der indeholder denne tekst',
 'tooltip-p-logo'                  => 'Forsiden',
 'tooltip-n-mainpage'              => 'Besøg forsiden',

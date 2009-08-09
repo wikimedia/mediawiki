@@ -249,7 +249,8 @@ This might be a good place to put information about <nowiki>{{GRAMMAR:}}</nowiki
 
 {{Identical|Cancel}}',
 'moredotdotdot' => '{{Identical|More...}}',
-'mytalk'        => 'In the personal urls page section - right upper corner.',
+'mytalk'        => "In the personal urls page section - right upper corner.
+* $1 is the number of changes on the current user's talk page since their last talk page visit",
 'anontalk'      => 'Link to the talk page appearing in [[mw:Help:Navigation#User_Links|user links]] for each anonymous users when [[mw:Manual:$wgShowIPinHeader|$wgShowIPinHeader]] is true.',
 'navigation'    => '{{Identical|Navigation}}',
 'and'           => 'The translation for "and" appears in the [[Special:Version]] page, between the last two items of a list. If a comma is needed, add it at the beginning without a gap between it and the "&". <nowiki>&#32;</nowiki> is a blank space, one character long. Please leave it as it is.
@@ -1294,12 +1295,14 @@ The rate limits have no effect on the groups that have this right. Rate limits i
 'right-patrol'                => '{{doc-right}}',
 'right-trackback'             => '{{doc-right}}
 
-"Submit" in this instance means that something called [[:wikipedia:trackback|trackback]] is being sent to the wiki, and the wiki accepts it. When the right is not given to the user, the wiki rejects, or ignores it. There is a nice description at [http://cruftbox.com/cruft/docs/trackback.html How TrackBack Works].',
+"Submit" in this instance means that something called [[:wikipedia:trackback|trackback]] is being sent to the wiki, and the wiki accepts it. When the right is not given to the user, the wiki rejects, or ignores it. There is a nice description at [http://cruftbox.com/cruft/docs/trackback.html How TrackBack Works]. In MediaWiki it is one of those obscure features that probably nobody uses (it is a huge spam trap).
+
+An alternative wording for translators could be \'Get the wiki to accept a trackback\'.',
 'right-reset-passwords'       => '{{doc-right}}',
 'right-override-export-depth' => '{{doc-right|override-export-depth}}',
 'right-versiondetail'         => '{{doc-right|versiondetail}}
 
-User having this right receive more detailed information on [[Special:Version]].',
+Users having this right receive more detailed information on [[Special:Version]].',
 
 # User rights log
 'rightslog'      => 'In [[Special:Log]]',

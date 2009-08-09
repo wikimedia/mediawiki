@@ -8,6 +8,7 @@
  * @file
  *
  * @author Crazymadlover
+ * @author Heldergeovane
  * @author Jorge Morais
  * @author Leonardo.stabile
  * @author Lijealso
@@ -1128,7 +1129,7 @@ Certifique-se de que tal alteração manterá a continuidade das ações.',
 'powersearch-ns'                   => 'Pesquisar nos espaços nominais:',
 'powersearch-redir'                => 'Listar redireccionamentos',
 'powersearch-field'                => 'Pesquisar',
-'powersearch-togglelabel'          => 'Verificar:',
+'powersearch-togglelabel'          => 'Selecionar:',
 'powersearch-toggleall'            => 'Todos',
 'powersearch-togglenone'           => 'Nenhum',
 'search-external'                  => 'Pesquisa externa',
@@ -1831,7 +1832,7 @@ Veja também as [[Special:WantedCategories|categorias em falta]].',
 'listusers-blocked'  => '({{GENDER:$1|bloqueado|bloqueada}})',
 
 # Special:ActiveUsers
-'activeusers'          => 'Lista de utilizadore ativos',
+'activeusers'          => 'Lista de utilizadores ativos',
 'activeusers-count'    => '$1 {{PLURAL:$1|edição recente|edições recentes}}',
 'activeusers-from'     => 'Mostrar utilizadores começando em:',
 'activeusers-noresult' => 'Nenhum utilizador encontrado.',

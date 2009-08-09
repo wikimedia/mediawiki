@@ -1170,7 +1170,7 @@ $3 келтірілген себебі: ''$2''",
 
 # Preferences page
 'preferences'               => 'Бапталымдар',
-'mypreferences'             => 'Бапталымдарым',
+'mypreferences'             => 'Баптауларым',
 'prefs-edits'               => 'Өңдеме саны:',
 'prefsnologin'              => 'Кірмегенсіз',
 'prefsnologintext'          => 'Пайдаланушылық бапталымдарыңызды қою үшін [[{{#special:Userlogin}}|кіруіңіз]] жөн.',

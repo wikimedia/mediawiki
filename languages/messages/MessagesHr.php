@@ -324,6 +324,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Pošalji mi e-mail i kod manjih izmjena',
 'tog-enotifrevealaddr'        => 'Prikaži moju e-mail adresu u obavijestima o izmjeni',
 'tog-shownumberswatching'     => 'Prikaži broj suradnika koji prate stranicu (u nedavnim izmjenama, popisu praćenja i samim člancima)',
+'tog-oldsig'                  => 'Pregled postojećeg potpisa:',
 'tog-fancysig'                => 'Običan potpis kao wikitekst (bez automatske poveznice)',
 'tog-externaleditor'          => 'Uvijek koristi vanjski editor',
 'tog-externaldiff'            => 'Uvijek koristi vanjski program za usporedbu',
@@ -345,6 +346,13 @@ $messages = array(
 'underline-always'  => 'Uvijek',
 'underline-never'   => 'Nikad',
 'underline-default' => 'Prema postavkama preglednika',
+
+# Font style option in Special:Preferences
+'editfont-style'     => 'Uredi područje font stila:',
+'editfont-default'   => 'Prema postavkama preglednika',
+'editfont-monospace' => 'Font s jednakim razmakom',
+'editfont-sansserif' => 'Font Sans-serif',
+'editfont-serif'     => 'Font Serif',
 
 # Dates
 'sunday'        => 'nedjelja',
@@ -424,7 +432,7 @@ i [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Vodič za suradnike] 
 'cancel'        => 'Odustani',
 'moredotdotdot' => 'Više...',
 'mypage'        => 'Moja stranica',
-'mytalk'        => 'Moj razgovor',
+'mytalk'        => 'Moj razgovor ($1)',
 'anontalk'      => 'Razgovor za ovu IP adresu',
 'navigation'    => 'Orijentacija',
 'and'           => '&#32;i',
@@ -1010,6 +1018,8 @@ Detalji se vjerojatno nalaze u [{{fullurl:{{#Special:Log}}/suppress|page={{FULLP
 Detalji se vjerojatno nalaze u [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} evidenciji skrivanja]. Kao administrator, možete i dalje [$1 vidjeti ovu izmjenu] ukoliko želite nastaviti.",
 'rev-deleted-text-view'       => "Ova izmjena je '''izbrisana'''.
 Kao administrator na ovom projektu možete ju vidjeti; detalji se vjerojatno nalaze u [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} evidenciji skrivanja].",
+'rev-suppressed-text-view'    => "Ova izmjena stranice je '''sakrivena'''.
+Kao administrator možete ju pregledati; vjerojatno postoji više podataka u [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} evidenciji sakrivanja].",
 'rev-deleted-no-diff'         => "Ne možete vidjeti ovu inačicu zbog toga što je jedna od izmjena '''izbrisana'''.
 Možda postoji više informacija u [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} evidenciji skrivanja].",
 'rev-deleted-unhide-diff'     => "Jedna od inačica ove izmjene je '''izbrisana'''. 
@@ -1290,6 +1300,7 @@ Primijetite da uporaba navigacijskih poveznica resetira vaše izbore u koloni.',
 'recentchangesdays-max'         => '(maksimalno $1 {{PLURAL:$1|dan|dana}})',
 'recentchangescount'            => 'Broj izmjena za prikaz kao zadano:',
 'prefs-help-recentchangescount' => 'Ovo uključuje nedavne promjene, stare izmjene i evidencije.',
+'prefs-help-watchlist-token'    => 'Popunjavanjem ovog polja tajnim ključem generirat će se RSS redak za Vaš popis praćenja. Svatko tko zna ključ moći će čitati Vaš popis praćenih stranica, slijedom toga odaberite sigurnu vrijednost. Ovdje su nasumično generirane vrijednosti koje možete rabiti: $1',
 'savedprefs'                    => 'Vaše postavke su sačuvane.',
 'timezonelegend'                => 'Vremenska zona:',
 'localtime'                     => 'Lokalno vrijeme:',
@@ -1328,6 +1339,7 @@ Primijetite da uporaba navigacijskih poveznica resetira vaše izbore u koloni.',
 'yourlanguage'                  => 'Jezik:',
 'yourvariant'                   => 'Inačica:',
 'yournick'                      => 'Vaš nadimak (za potpisivanje)',
+'prefs-help-signature'          => 'Komentari na stranicama za razgovor trebali bi biti potpisani s "<nowiki>~~~~</nowiki>" što će biti pretvoreno u Vaš potpis i datum.',
 'badsig'                        => 'Kôd vašeg potpisa nije valjan; provjerite HTML tagove.',
 'badsiglength'                  => 'Vaš potpis je predugačak. 
 Mora imati manje od $1 {{PLURAL:$1|znaka|znakova}}.',
@@ -1457,6 +1469,7 @@ Možete omogućiti drugima da vas kontaktiraju na suradničkoj stranici ili stra
 'right-siteadmin'             => 'Zaključavanje i otključavanje baze podataka',
 'right-reset-passwords'       => "Poništi (''resetiraj'') lozinku drugog suradnika",
 'right-override-export-depth' => 'Izvezi stranice uključujući i povezane stranice do dubine od 5',
+'right-versiondetail'         => 'Prikaži informaciju o proširenoj inačici softvera',
 
 # User rights log
 'rightslog'      => 'Evidencija suradničkih prava',
@@ -1506,6 +1519,15 @@ Možete omogućiti drugima da vas kontaktiraju na suradničkoj stranici ili stra
 'recentchanges-legend'              => 'Izbornik nedavnih promjena',
 'recentchangestext'                 => 'Na ovoj stranici možete pratiti nedavne promjene u wikiju.',
 'recentchanges-feed-description'    => 'Na ovoj stranici možete pratiti nedavne promjene u wikiju.',
+'recentchanges-label-legend'        => 'Kazalo: $1.',
+'recentchanges-legend-newpage'      => '$1 - nova stranica',
+'recentchanges-label-newpage'       => 'Ova izmjena stvorila je novu stranicu',
+'recentchanges-legend-minor'        => '$1 - manja izmjena',
+'recentchanges-label-minor'         => 'Ovo je manja izmjena',
+'recentchanges-legend-bot'          => '$1 - izmjena bota',
+'recentchanges-label-bot'           => 'Ovu izmjenu napravio je bot',
+'recentchanges-legend-unpatrolled'  => '$1 - nepregledana izmjena',
+'recentchanges-label-unpatrolled'   => 'Ova izmjena još nije pregledana',
 'rcnote'                            => "{{PLURAL:$1|Slijedi zadnja '''$1''' promjena|Slijede zadnje '''$1''' promjene|Slijedi zadnjih '''$1''' promjena}} u {{PLURAL:$2|zadnjem '''$2''' danu|zadnja '''$2''' dana|zadnjih '''$2''' dana}}, od $5, $4.",
 'rcnotefrom'                        => 'Slijede promjene od <b>$2</b> (prikazano ih je do <b>$1</b>).',
 'rclistfrom'                        => 'Prikaži nove promjene počevši od $1',
@@ -1624,16 +1646,17 @@ Razmislite je li prigodno nastaviti s postavljanjem ove datoteke.
 Slijedi evidencija brisanja ove datoteke s obrazloženjem prethodnog brisanja:",
 'filename-bad-prefix'         => "Ime datoteke koju snimate počinje s '''\"\$1\"''', što je ime koje slikama tipično dodjeljuju digitalni fotoaparati. Molimo izaberite bolje ime (neko koje bolje opisuje sliku nego \$1).",
 
-'upload-proto-error'      => 'Protokol nije valjan',
-'upload-proto-error-text' => 'Udaljeno snimanje zahtijeva URL-ove koji počinju sa <code>http://</code> ili <code>ftp://</code>.',
-'upload-file-error'       => 'Interna pogreška',
-'upload-file-error-text'  => 'Interna pogreška se dogodila pri pokušaju stvaranja privremene datoteke na poslužitelju. Molimo javite se [[Special:ListUsers/sysop|administratoru]].',
-'upload-misc-error'       => 'Nepoznata pogreška pri snimanju',
-'upload-misc-error-text'  => 'Dogodila se nepoznata pogreška pri snimanju.
+'upload-proto-error'        => 'Protokol nije valjan',
+'upload-proto-error-text'   => 'Udaljeno snimanje zahtijeva URL-ove koji počinju sa <code>http://</code> ili <code>ftp://</code>.',
+'upload-file-error'         => 'Interna pogreška',
+'upload-file-error-text'    => 'Interna pogreška se dogodila pri pokušaju stvaranja privremene datoteke na poslužitelju. Molimo javite se [[Special:ListUsers/sysop|administratoru]].',
+'upload-misc-error'         => 'Nepoznata pogreška pri snimanju',
+'upload-misc-error-text'    => 'Dogodila se nepoznata pogreška pri snimanju.
 Provjerite valjanost i dostupnost URL-a i pokušajte opet. 
 Ukoliko se problem ponovi, javite to [[Special:ListUsers/sysop|administratoru]].',
-'upload-unknown-size'     => 'Nepoznata veličina',
-'upload-http-error'       => 'HTTP pogreška: $1',
+'upload-too-many-redirects' => 'URL je sadržavao previše preusmjeravanja',
+'upload-unknown-size'       => 'Nepoznata veličina',
+'upload-http-error'         => 'HTTP pogreška: $1',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'URL nije dostupan',
@@ -1756,6 +1779,7 @@ Slijedeći popis prikazuje {{PLURAL:$1|stranice koje|prvih $1 stranica koje}} vo
 'statistics-header-edits'      => 'Statistika uređivanja',
 'statistics-header-views'      => 'Statistika posjećivanja',
 'statistics-header-users'      => 'Statistika suradnika',
+'statistics-header-hooks'      => 'Ostale statistike',
 'statistics-articles'          => 'Stranice sa sadržajem',
 'statistics-pages'             => 'Stranice',
 'statistics-pages-desc'        => 'Sve stranice na wikiju, uključujući stranice za razgovor, preusmjeravanja i dr.',
@@ -2731,6 +2755,8 @@ $1',
 'svg-long-desc'        => '(SVG datoteka, nominalno $1 × $2 piksela, veličina datoteke: $3)',
 'show-big-image'       => 'Vidi sliku u punoj veličini (rezoluciji)',
 'show-big-image-thumb' => '<small>Veličina pretpregleda: $1 × $2 piksela</small>',
+'file-info-gif-looped' => 'uokvireno',
+'file-info-gif-frames' => '$1 {{PLURAL:$1|okvir|okvira}}',
 
 # Special:NewFiles
 'newimages'             => 'Galerija novih datoteka',

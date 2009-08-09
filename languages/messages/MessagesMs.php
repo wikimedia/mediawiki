@@ -287,7 +287,7 @@ $messages = array(
 'cancel'        => 'Batal',
 'moredotdotdot' => 'Lagi...',
 'mypage'        => 'Laman saya',
-'mytalk'        => 'Perbualan saya',
+'mytalk'        => 'Perbualan saya ($1)',
 'anontalk'      => 'Perbualan bagi IP ini',
 'navigation'    => 'Pandu arah',
 'and'           => '&#32;dan',
@@ -872,7 +872,7 @@ Cuba [[Special:Search|cari]] laman lain yang mungkin berkaitan.',
 'rev-deleted-user'            => '(nama pengguna dibuang)',
 'rev-deleted-event'           => '(entri dibuang)',
 'rev-deleted-text-permission' => "Semakan laman ini telah '''dihapuskan'''.
-Butiran lanjut mungkin boleh didapati dalam [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} log penyelindungan].",
+Perinciannya mungkin ada di dalam [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log penghapusan].",
 'rev-deleted-text-unhide'     => "Semakan laman ini telah '''dihapuskan'''.
 Butiran lanjut mungkin boleh didapati dalam [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} log penyelindungan].
 Sebagai pentadbir anda masih boleh [$1 melihat semakan ini] jika anda ingin.",

@@ -367,7 +367,7 @@ $messages = array(
 'cancel'        => 'Avbryt',
 'moredotdotdot' => 'Mer …',
 'mypage'        => 'Min side',
-'mytalk'        => 'Min diskusjonsside',
+'mytalk'        => 'Min diskusjonsside ($1)',
 'anontalk'      => 'Brukerdiskusjon for denne IP-adressen',
 'navigation'    => 'Navigasjon',
 'and'           => '&#32;og',
@@ -505,7 +505,7 @@ $1',
 'retrievedfrom'           => 'Hentet fra «$1»',
 'youhavenewmessages'      => 'Du har $1 ($2).',
 'newmessageslink'         => 'nye meldinger',
-'newmessagesdifflink'     => 'forskjell fra forrige beskjed',
+'newmessagesdifflink'     => '{{PLURAL:$1|én endring|$1 endringer}}',
 'youhavenewmessagesmulti' => 'Du har nye beskjeder på $1',
 'editsection'             => 'rediger',
 'editold'                 => 'rediger',
@@ -933,11 +933,16 @@ Grunnen som ble oppgitt av $3 er ''$2''",
 'rev-deleted-event'           => '(fjernet loggoppføring)',
 'rev-deleted-text-permission' => "Denne revisjonen har blitt '''slettet'''. 
 Det kan være detaljer i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} slettingsloggen].",
-'rev-deleted-text-unhide'     => "Denne sideversjonen er blitt '''slettet'''.
-Det kan være mer informasjon i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} tilbakeholdsloggen].
-Som administrator kan du fremdeles [$1 se denne versjonen] hvis du ønsker å fortsette.",
+'rev-deleted-text-unhide'     => "Denne sideversjonen har blitt '''slettet'''.
+Det kan være detaljer i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} slettingsloggen].
+Som administrator kan du fortsatt [$1 se revisjonen] om du ønsker å fortsette.",
+'rev-suppressed-text-unhide'  => "Denne revisjonen har blitt '''unndratt'''.
+Det kan være mer informasjon i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} unndragelseslogg].
+Som administrator kan du fortsatt [$1 se revisjonen] om du ønsker å fortsette.",
 'rev-deleted-text-view'       => "Denne sideversjonen har blitt '''slettet'''.
 Som administrator kan du se den. Det kan finnes flere detaljer i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} slettingsloggen].",
+'rev-suppressed-text-view'    => "Denne revisjonen har blitt '''unndratt'''.
+Som administrator kan du se den; det kan være mer informasjon i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} unndragelsesloggen].",
 'rev-deleted-no-diff'         => "Du kan ikke vise forskjellen fordi en av versjonene har blitt '''slettet'''.
 Det kan finnes flere detaljer i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} slettingsloggen].",
 'rev-deleted-unhide-diff'     => "Én av versjonene i denne forskjellen har blitt '''slettet'''.
@@ -1443,6 +1448,7 @@ Du kan også la velge å la andre brukere kontakte deg via brukersiden din uten 
 'recentchanges-label-legend'        => 'Forklaring: $1.',
 'recentchanges-legend-newpage'      => '$1 – ny side',
 'recentchanges-label-newpage'       => 'Denne redigeringen opprettet en ny side',
+'recentchanges-legend-minor'        => '$1 – mindre endring',
 'recentchanges-label-minor'         => 'Dette er en mindre endring',
 'recentchanges-legend-bot'          => '$1 – botendring',
 'recentchanges-label-bot'           => 'Denne redigeringen ble gjort av en bot',
@@ -1715,6 +1721,7 @@ Beskrivelsen fra [$2 filbeskrivelsessida] vises nedenfor.',
 'statistics-header-edits'      => 'Redigeringsstatistikk',
 'statistics-header-views'      => 'Visningsstatistikk',
 'statistics-header-users'      => 'Brukerstatistikk',
+'statistics-header-hooks'      => 'Øvrig statistikk',
 'statistics-articles'          => 'Innholdssider',
 'statistics-pages'             => 'Sider',
 'statistics-pages-desc'        => 'Alle sider på wikien, inkludert diskusjonssider, omdirigeringer o.l.',

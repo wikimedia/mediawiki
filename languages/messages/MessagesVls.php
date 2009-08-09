@@ -56,6 +56,7 @@ $messages = array(
 # Upload
 'upload'            => 'Bestand toevoegn',
 'uploadbtn'         => 'Bestand toevoegn',
+'uploadnologin'     => 'Ge zyt nie angemeld',
 'uploadlog'         => 'logboek upgeloade bestandn',
 'uploadlogpage'     => 'Logboek upgeloade bestandn',
 'uploadlogpagetext' => 'Hier stoa e lyste met de mêest recente upgeloade bestandn.',

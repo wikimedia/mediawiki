@@ -161,6 +161,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Segnàleme via e-mail anca le modifiche picenine',
 'tog-enotifrevealaddr'        => 'Rivela el me indirizo e-mail nei messagi de aviso',
 'tog-shownumberswatching'     => "Mostra el nùmaro de utenti che tien d'ocio la pagina",
+'tog-oldsig'                  => 'Anteprima de la firma esistente:',
 'tog-fancysig'                => 'Tràta la firma come la fusse un testo wiki (sensa el colegamento automatico)',
 'tog-externaleditor'          => 'Dòpara par default un editor de testi esterno (solo par i esperti, ghe vole dele inpostassion speciali sul to computer)',
 'tog-externaldiff'            => 'Dòpara par default un programa de diff esterno (solo par i esperti, ghe vole dele inpostassion speciali sul to computer)',
@@ -181,6 +182,13 @@ $messages = array(
 'underline-always'  => 'Senpre',
 'underline-never'   => 'Mai',
 'underline-default' => 'Mantien łe inpostasion de el browser',
+
+# Font style option in Special:Preferences
+'editfont-style'     => "Stile font de l'area de modifica:",
+'editfont-default'   => 'Predefinìo del browser',
+'editfont-monospace' => 'Font monospàssio',
+'editfont-sansserif' => 'Font sans-serif',
+'editfont-serif'     => 'Font serif',
 
 # Dates
 'sunday'        => 'Domenega',
@@ -266,7 +274,7 @@ I seguenti cołegamenti i xe en lengua inglese:
 'cancel'        => 'Anuła',
 'moredotdotdot' => 'Altro...',
 'mypage'        => 'La me pàxena',
-'mytalk'        => 'le me discussión',
+'mytalk'        => 'le me discussión ($1)',
 'anontalk'      => 'Discussion par sto IP',
 'navigation'    => 'Navigassión',
 'and'           => '&#32;e',
@@ -404,7 +412,7 @@ $1',
 'retrievedfrom'           => 'Cavà fora da "$1"',
 'youhavenewmessages'      => 'Te ghè dei $1 ($2).',
 'newmessageslink'         => 'messagi novi',
-'newmessagesdifflink'     => 'difarensa con la revision precedente',
+'newmessagesdifflink'     => '{{PLURAL:$1|una modìfega|$1 modìfeghe}}',
 'youhavenewmessagesmulti' => 'Te ghè novi messagi su $1',
 'editsection'             => 'modìfega',
 'editold'                 => 'modìfega',
@@ -854,17 +862,23 @@ Legenda: '''({{int:cur}})''' = difarense con la versión corente,
 'rev-deleted-user'            => '(nome utente cavà)',
 'rev-deleted-event'           => '(elemento cavà)',
 'rev-deleted-text-permission' => "Sta version de la pagina la xe stà '''scancelà'''.
-Consulta el [{{fullurl:{{#Special:Log}}/suppress|page={{PAGENAMEE}}}} registro de scancelazion] par ulteriori detagli.",
+Varda el [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de scancelazion] par ulteriori detagli.",
 'rev-deleted-text-unhide'     => "Sta version de la pàxena la xe sta '''scancelà'''.
-Consulta el [{{fullurl:{{#Special:Log}}/suppress|page={{PAGENAMEE}}}} registro de scancelassion] par ulteriori detagli.
-Ai aministradori xe ancora consentìo [$1 vardar sta version] se necessario.",
+Varda el [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de scancelassion] par ulteriori detagli.
+Ai aministradori xe ancora consentìo [$1 vardar sta version] se i vole.",
+'rev-suppressed-text-unhide'  => "Sta version de la pagina la xe stà '''cavà'''.
+Varda el [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de rimozion] par ulteriori detagli.
+I aministratori i pode ancora [$1 vardar sta versione] se i vole.",
 'rev-deleted-text-view'       => "Sta version de la pagina la xe stà '''scancelà'''.
 El testo el pode èssar visualizà soltanto dai aministradori del sito.
-Consulta el [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de scancelazion] par ulteriori detagli.",
+Varda el [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de scancelazion] par ulteriori detagli.",
+'rev-suppressed-text-view'    => "Sta version de la pagina la xe stà '''cavà'''.
+Solo i aministratori i pole ancora védarla.
+Varda el [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de rimozion] par ulteriori detagli.",
 'rev-deleted-no-diff'         => "No te pode vardar sta difarensa parché una de le revision la xe stà '''scancelà'''.
-Consulta el [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registro de scancelassion] par savérghene piessè.",
+Varda el [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de scancelassion] par savérghene piessè.",
 'rev-deleted-unhide-diff'     => "Una dele revision de sta difarensa la xe stà '''scancelà'''.
-Consulta el [{{fullurl:{{#Special:Log}}/suppress|page={{PAGENAMEE}}}} registro de scancelassion] par ulteriori detagli.
+Consulta el [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registro de scancelassion] par ulteriori detagli.
 I aministradori i pode ancora [$1 vardar sta difarensa] se i vole.",
 'rev-delundel'                => 'mostra/scondi',
 'revisiondelete'              => 'Scanceła o ripristina version',
@@ -1118,6 +1132,7 @@ Assicùrete che la continuità storica de la pagina no la vegna alterà.',
 'prefs-watchlist-days-max'      => '(massimo 7 zorni)',
 'prefs-watchlist-edits'         => 'Nùmaro de modifiche da far védar con le funzion avanzade:',
 'prefs-watchlist-edits-max'     => '(nùmaro massimo: 1000)',
+'prefs-watchlist-token'         => 'Token dei osservati speciali',
 'prefs-misc'                    => 'Preferense varie',
 'prefs-resetpass'               => 'Cànbia password',
 'prefs-email'                   => 'Preferense e-mail',
@@ -1138,6 +1153,7 @@ Assicùrete che la continuità storica de la pagina no la vegna alterà.',
 'recentchangesdays-max'         => '($1 {{PLURAL:$1|zorno|zorni}} massimo)',
 'recentchangescount'            => 'Nùmaro de modìfeghe da far védar (valor predefinìo):',
 'prefs-help-recentchangescount' => 'Questo include i ùltimi canbiamenti, el stòrico de le pàxene e i registri.',
+'prefs-help-watchlist-token'    => 'Conpilando sto canpo co na ciave segreta vegnarà generà un feed RSS par i propri osservati speciali. Chiunque conossa la ciave in sto canpo el podarà lèzar i osservati speciali, quindi se racomanda de inserir un valore sicuro. Qua ghe xe un valore generà casualmente che se pol doparar: $1',
 'savedprefs'                    => 'Le to preferense łe xè stà salvae.',
 'timezonelegend'                => 'Fuso orario:',
 'localtime'                     => 'Ora locale:',
@@ -1177,6 +1193,7 @@ Sta operassion no la pol èssar anulà.',
 'yourlanguage'                  => 'Lengua:',
 'yourvariant'                   => 'Variante de linguaggio:',
 'yournick'                      => 'Firma:',
+'prefs-help-signature'          => 'Co se scrive in te le pagine de discussion, a se gà senpre da firmar scrivendo "<nowiki>~~~~</nowiki>", che vegnarà convertìo in te la propria firma seguìa da data e ora.',
 'badsig'                        => 'Erór ne ła firma non standard, verifica i tag HTML.',
 'badsiglength'                  => 'La to firma la xe massa longa.
 La gà da verghe al massimo $1 {{PLURAL:$1|caràtere|caràteri}}.',
@@ -1356,6 +1373,15 @@ In più te pol anca farte contatar da altri tramite la to pagina personale o la 
 'recentchanges-legend'              => 'Opzioni ultime modìfeghe',
 'recentchangestext'                 => 'Sta pàxena la presenta łe ultime modifeghe aportàe ai contenuti de el sito.',
 'recentchanges-feed-description'    => 'Sto feed qua el riporta le modifiche piassè recenti ai contenuti del sito.',
+'recentchanges-label-legend'        => 'Legenda: $1.',
+'recentchanges-legend-newpage'      => '$1 - pagina nova',
+'recentchanges-label-newpage'       => 'Sta modifica la ga creà na pagina nova',
+'recentchanges-legend-minor'        => '$1 - modifica picenina',
+'recentchanges-label-minor'         => 'Sta qua la xe na modifica picenina',
+'recentchanges-legend-bot'          => '$1 - modifica bot',
+'recentchanges-label-bot'           => 'Sta modifica el la ga fata un bot',
+'recentchanges-legend-unpatrolled'  => '$1 - modifica mia verificà',
+'recentchanges-label-unpatrolled'   => 'Sta modifica no la xe stà gnancora verificà',
 'rcnote'                            => "Qua soto ghe xe {{PLURAL:$1|l'ultimo cambiamento|i ultimi '''$1''' canbiamenti}} ne {{PLURAL:$2|l'ultimo giòrno|i ultimi '''$2''' giòrni}}; i dati i xe agiornà a le ore $5 del $4.",
 'rcnotefrom'                        => " Qui di seguito sono elencate le modifiche da '''$2''' (fino a '''$1''').",
 'rclistfrom'                        => 'Mostra łe modìfeghe fate a partir da le $1',
@@ -1611,6 +1637,7 @@ Qua soto vien mostrà la descrission presente in te la [$2 pàxena de descrissio
 'statistics-header-edits'      => 'Statìsteghe relative a i canbiamenti',
 'statistics-header-views'      => 'Statìsteghe relative a le visualizassion',
 'statistics-header-users'      => 'Statistiche dei utenti',
+'statistics-header-hooks'      => 'Altre statìsteghe',
 'statistics-articles'          => 'Pàxene de contenuti',
 'statistics-pages'             => 'Pàxene',
 'statistics-pages-desc'        => 'Tute quante le pàxene de la wiki, conprese le pàxene de discussion, i rimandi, ecc.',
@@ -2555,6 +2582,8 @@ $1',
 'svg-long-desc'        => '(file in formato SVG, dimension nominali $1 × $2 pixel, dimension del file: $3)',
 'show-big-image'       => 'Version ad alta risoluzion',
 'show-big-image-thumb' => '<small>Dimension de sta anteprima: $1 × $2 pixel</small>',
+'file-info-gif-looped' => 'ripetù',
+'file-info-gif-frames' => '$1 {{PLURAL:$1|frame|frame}}',
 
 # Special:NewFiles
 'newimages'             => 'Imagini nove',

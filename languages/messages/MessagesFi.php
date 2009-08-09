@@ -341,6 +341,7 @@ $messages = array(
 # Font style option in Special:Preferences
 'editfont-style'     => 'Muokkauskentän kirjasintyyppi',
 'editfont-default'   => 'Selaimen oletus',
+'editfont-monospace' => 'Tasalevyinen kirjasin',
 'editfont-sansserif' => 'Sans-serif-kirjasin',
 'editfont-serif'     => 'Serif-kirjasin',
 
@@ -437,7 +438,7 @@ Taivutusmuodot: {{GRAMMAR:genitive|{{SITENAME}}}} (yön) — {{GRAMMAR:partitive
 'cancel'        => 'Peruuta',
 'moredotdotdot' => 'Lisää...',
 'mypage'        => 'Käyttäjäsivu',
-'mytalk'        => 'Keskustelusivu',
+'mytalk'        => 'Keskustelusivu ($1)',
 'anontalk'      => 'Keskustele tämän IP:n kanssa',
 'navigation'    => 'Valikko',
 'and'           => '&#32;ja',
@@ -576,7 +577,7 @@ $1',
 'retrievedfrom'           => 'Haettu osoitteesta $1',
 'youhavenewmessages'      => 'Sinulle on $1 ($2).',
 'newmessageslink'         => 'uusia viestejä',
-'newmessagesdifflink'     => 'viimeisin muutos',
+'newmessagesdifflink'     => '{{PLURAL:$1|yksi muutos|$1 muutosta}}',
 'youhavenewmessagesmulti' => 'Sinulla on uusia viestejä sivuilla $1',
 'editsection'             => 'muokkaa',
 'editold'                 => 'muokkaa',
@@ -802,7 +803,7 @@ Olet saattanut jo onnistuneesti vaihtaa salasanasi tai pyytää uutta väliaikai
 'showdiff'                         => 'Näytä muutokset',
 'anoneditwarning'                  => 'Et ole kirjautunut sisään. IP-osoitteesi kirjataan tämän sivun muokkaushistoriaan.',
 'missingsummary'                   => 'Et ole antanut yhteenvetoa. Jos valitset Tallenna uudelleen, niin muokkauksesi tallennetaan ilman yhteenvetoa.',
-'missingcommenttext'               => 'Anna yhteenveto alle.',
+'missingcommenttext'               => 'Kirjoita viesti alle.',
 'missingcommentheader'             => 'Et ole antanut otsikkoa kommentillesi. Valitse <em>Tallenna</em>, jos et halua antaa otsikkoa.',
 'summary-preview'                  => 'Yhteenvedon esikatselu:',
 'subject-preview'                  => 'Otsikon esikatselu:',
@@ -994,6 +995,8 @@ Lisätietoja saattaa olla [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENA
 Ylläpitäjänä voit silti [$1 katsoa tämän version].",
 'rev-deleted-text-view'       => "Tämä versio on '''poistettu'''.
 Ylläpitäjänä voit nähdä sen. Lisätietoja saattaa olla [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} poistolokissa].",
+'rev-suppressed-text-view'    => "Tämä sivun versio on '''piilotettu'''.
+Ylläpitäjänä voit nähdä sen. Lisätietoja saattaa olla [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} piilotuslokissa].",
 'rev-deleted-no-diff'         => "Et voi katsoa tätä muokkausta, koska yksi versioista on '''poistettu'''.
 Lisätietoja saattaa olla [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} poistolokissa].",
 'rev-deleted-unhide-diff'     => "Yksi tämän muutoksen versioista on '''poistettu'''.
@@ -2693,6 +2696,7 @@ $1',
 'svg-long-desc'        => '(SVG-tiedosto; oletustarkkuus $1×$2 kuvapistettä; tiedostokoko $3)',
 'show-big-image'       => 'Korkeatarkkuuksinen versio',
 'show-big-image-thumb' => '<small>Esikatselun koko: $1×$2 px</small>',
+'file-info-gif-looped' => 'toistuva',
 'file-info-gif-frames' => '$1 {{PLURAL:$1|kehys|kehystä}}',
 
 # Special:NewFiles
