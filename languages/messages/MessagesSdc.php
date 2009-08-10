@@ -232,7 +232,7 @@ Li sighenti cullegamenti so in linga ingrese:
 'cancel'        => 'Annulla',
 'moredotdotdot' => 'Althru...',
 'mypage'        => 'La mea pàgina',
-'mytalk'        => "Me' dischussioni ($1)",
+'mytalk'        => "Me' dischussioni$1",
 'anontalk'      => 'Dischussioni pa chisthu IP',
 'navigation'    => 'Nabiggazioni',
 'and'           => '&#32;e',

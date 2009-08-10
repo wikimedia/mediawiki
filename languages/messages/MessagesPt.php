@@ -14,6 +14,7 @@
  * @author Lijealso
  * @author Lugusto
  * @author MCruz
+ * @author MF-Warburg
  * @author Malafaya
  * @author Manuel Menezes de Sequeira
  * @author McDutchie
@@ -300,7 +301,7 @@ $messages = array(
 'cancel'        => 'Cancelar',
 'moredotdotdot' => 'Mais...',
 'mypage'        => 'Minha página',
-'mytalk'        => 'Minha discussão',
+'mytalk'        => 'Minha discussão$1',
 'anontalk'      => 'Discussão para este IP',
 'navigation'    => 'Navegação',
 'and'           => '&#32;e',

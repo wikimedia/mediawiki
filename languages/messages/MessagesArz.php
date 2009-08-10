@@ -9,6 +9,7 @@
  *
  * @author Alnokta
  * @author Ghaly
+ * @author IAlex
  * @author Meno25
  * @author Ouda
  * @author Ramsis II
@@ -425,7 +426,7 @@ $messages = array(
 'cancel'        => 'كانسل',
 'moredotdotdot' => 'اكتر...',
 'mypage'        => 'صفحتى',
-'mytalk'        => 'مناقشاتى ($1)',
+'mytalk'        => 'مناقشاتى$1',
 'anontalk'      => 'المناقشة مع عنوان الأيبى دا',
 'navigation'    => 'إستكشاف',
 'and'           => '&#32;و',

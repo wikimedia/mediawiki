@@ -144,6 +144,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Benachrichtigungsmail ou bi chlyne Sytenänderige',
 'tog-enotifrevealaddr'        => 'Dyni E-Mail-Adrässe wird i Benachrichtigungsmails zeigt',
 'tog-shownumberswatching'     => 'Aazahl Benutzer aazeige, wo ne Syten am Aaluege sy (i den Artikelsyte, i de «letschten Änderigen» und i der Beobachtigslischte)',
+'tog-oldsig'                  => 'Vorschau vu dr aktuälle Unterschrift:',
 'tog-fancysig'                => 'Signatur as Wikitext behandle (ohni automatischi Vergleichig)',
 'tog-externaleditor'          => 'Externe Editor als Standard bruche (nume fir Experte, doderzue brucht s speziälli Yystellige uf em Computer)',
 'tog-externaldiff'            => 'Externi diff als default',
@@ -166,6 +167,13 @@ $messages = array(
 'underline-always'  => 'immer',
 'underline-never'   => 'nie',
 'underline-default' => 'Browser-Vorystellig',
+
+# Font style option in Special:Preferences
+'editfont-style'     => 'Schriftfamilie fir dr Text im Bearbeitigsfänschter:',
+'editfont-default'   => 'Browserstandard',
+'editfont-monospace' => 'Schrift mit ere feschte Zeichebreiti',
+'editfont-sansserif' => 'Serifelosi Groteskschrift',
+'editfont-serif'     => 'Schrift mit Serife',
 
 # Dates
 'sunday'        => 'Sunntig',
@@ -244,7 +252,7 @@ $messages = array(
 'cancel'        => 'Abbräche',
 'moredotdotdot' => 'Meh …',
 'mypage'        => 'Myyni Syte',
-'mytalk'        => 'Myyni Diskussionsyte',
+'mytalk'        => 'Myyni Diskussionsyte$1',
 'anontalk'      => 'Diskussionssyste vo sellere IP',
 'navigation'    => 'Navigation',
 'and'           => '&#32;un',
@@ -382,7 +390,7 @@ $1',
 'retrievedfrom'           => 'Vun "$1"',
 'youhavenewmessages'      => 'Du hesch $1 ($2).',
 'newmessageslink'         => 'nöji Nachrichte',
-'newmessagesdifflink'     => 'Unterschid',
+'newmessagesdifflink'     => '{{PLURAL:$1|ei Änderig|$1 Änderige}}',
 'youhavenewmessagesmulti' => 'Si hen neui Nochrichte: $1',
 'editsection'             => 'ändere',
 'editold'                 => 'Ändre',
@@ -840,16 +848,21 @@ Erklärig: (aktuell) = Underschid zu jetz,
 'rev-deleted-user'            => '(Benutzername uusegnuh)',
 'rev-deleted-event'           => '(Logbuechaktion uusegnuh)',
 'rev-deleted-text-permission' => "Die Version isch '''glescht''' wore.
-Information zue dr Leschig un e Begrindig het s im [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Oversight-Logbuech].",
+Information zue dr Leschig un e Begrindig het s im [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} Lesch-Logbuech].",
 'rev-deleted-text-unhide'     => "Die Version isch '''glescht''' wore.
-Detail stehn im [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Oversight-Logbuech].
+Detail stehn im [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} Lesch-Logbuech].
 As Ammann chasch Du [$1 des Gleich aaluege], wänn du witt wytermache.",
+'rev-suppressed-text-unhide'  => "Die Version isch '''unterdruckt''' wore.
+Detail stehn im [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Unterdruckigs-Logbuech].
+As Ammann chasch [$1 die Version alno aaluege], wänn Du witt.",
 'rev-deleted-text-view'       => "Die Version isch '''glescht''' wore. As Amman chasch si aber alno aaluege.
-Informatione zue dr Leschig un e Begrindig het s im [{{fullurl:{{#special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Oversight-Logbuech].",
+Informatione zue dr Leschig un e Begrindig het s im [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} Lesch-Logbuech].",
+'rev-suppressed-text-view'    => "Die Version isch '''unterdruckt''' wore.
+As Ammann chasch si aaluege; s cha syy, ass es Detail het im [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Unterdruckigs-Logbuech].",
 'rev-deleted-no-diff'         => "Du chasch die Änderig nit aaluege, wel eini vu dr Versione '''glescht''' woren isch.
-Villicht het s Detail im [{{fullurl:{{#special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Oversight-Logbuech].",
+Villicht het s Detail im [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} Lesch-Logbuech].",
 'rev-deleted-unhide-diff'     => "Eini vu dr Versione isch '''glescht''' wore.
-Villicht het s Detail im [{{fullurl:{{#special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Oversight-Logbuech].
+Villicht het s Detail im [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} Lesch-Logbuech].
 Wänn Du Ammann bisch, chasch [$1 dä Unterschid aaluege] wänn Du wytermache witt.",
 'rev-delundel'                => 'zeig/versteck',
 'revisiondelete'              => 'Versione lesche/widerherstelle',
@@ -1172,6 +1185,7 @@ Des cha nimmi ruckgängig gmacht wäre.',
 'yourlanguage'                  => 'Sproch:',
 'yourvariant'                   => 'Variante:',
 'yournick'                      => 'Unterschrift:',
+'prefs-help-signature'          => 'Byyträg uf Diskussionssyte sotte mit „<nowiki>~~~~</nowiki>“ unterschribe wäre, was derno in d Unterschrift mit eme Zytstämpfel umgwandlet wird.',
 'badsig'                        => 'Dr Syntax vu dr Signatur isch nid giltig; bitte d HTML iberpriefe.',
 'badsiglength'                  => 'Dyyni Unterschrift isch z lang. Si derf hegschtens $1 {{PLURAL:$1|Zeiche|Zeiche}} lang syy.',
 'yourgender'                    => 'Gschlächt:',
@@ -1349,6 +1363,15 @@ Des cha nimmi ruckgängig gmacht wäre.',
 'recentchanges-legend'              => 'Optione vu dr Aazeig',
 'recentchangestext'                 => 'Uff däre Syte chönne Si die letschte Änderige in däm Wiki aaluege.',
 'recentchanges-feed-description'    => 'Di letschten Änderige vo {{SITENAME}} i däm Feed abonniere.',
+'recentchanges-label-legend'        => 'Legänd: $1.',
+'recentchanges-legend-newpage'      => '$1 - neji Syte',
+'recentchanges-label-newpage'       => 'Die Bearbeitig het e neji Syte aagleit',
+'recentchanges-legend-minor'        => '$1 - chleini Änderig',
+'recentchanges-label-minor'         => 'Des isch e chleini Änderig',
+'recentchanges-legend-bot'          => '$1 - Bott-Bearbeitig',
+'recentchanges-label-bot'           => 'Die Bearbeitig isch dur e Bott uusgfiert wore',
+'recentchanges-legend-unpatrolled'  => '$1 - nit-gsichteti Bearbeitig',
+'recentchanges-label-unpatrolled'   => 'Die Bearbeitig isch nonig vun eme Fäldhieter aagluegt wore',
 'rcnote'                            => "Azeigt {{PLURAL:$1|wird '''1''' Änderig|wärde di letschte '''$1''' Änderige}} {{PLURAL:$2|vom letschte Tag|i de letschte '''$2''' Täg}} (Stand: $4, $5)",
 'rcnotefrom'                        => 'Des sin d Ändrige syter <b>$2</b> (bis zem <b>$1</b> zeigt).',
 'rclistfrom'                        => '<small>Nöji Änderige ab $1 aazeige (UTC)</small>',
@@ -1601,6 +1624,7 @@ Iberprief anderi Gleicher zue dr Vorlage, voreb Du die leschesch.',
 'statistics-header-edits'      => 'Bearbeitigsstatischtik',
 'statistics-header-views'      => 'Sytenufruefstatischtik',
 'statistics-header-users'      => 'Benutzer-Statischtik',
+'statistics-header-hooks'      => 'Anderi Statischtike',
 'statistics-articles'          => 'Inhaltssyte',
 'statistics-pages'             => 'Syte',
 'statistics-pages-desc'        => 'Alli Syten in däm Wiki, mit Diskussionssyte, Wyterleitige usw.',
@@ -1710,7 +1734,7 @@ In jedere Zyylete het s Gleicher zue dr erschte un dr zwote Wyterleitig un s Zii
 'specialloguserlabel'  => 'Benutzer:',
 'speciallogtitlelabel' => 'Titel:',
 'log'                  => 'Logbüecher',
-'all-logs-page'        => 'Alli Logbüecher',
+'all-logs-page'        => 'Alli effetligi Logbüecher',
 'alllogstext'          => 'Kombinierti Aasicht vu alle in {{SITENAME}} gfierte Protokoll.
 D Aazeig cha dur d Uuswahl vun eme Protokoll, eme Benutzername oder eme Sytename yygschränkt wäre (Acht gee uf d Gross- un Chleischrybig).',
 'logempty'             => 'Kei Yyträg gfunde, wu passe.',
@@ -2527,6 +2551,8 @@ $1',
 'svg-long-desc'        => '(SVG-Datei, Basisgrößi: $1 × $2 Pixel, Dateigrößi: $3)',
 'show-big-image'       => 'Originalgrößi',
 'show-big-image-thumb' => '<small>Größi vo dere Vorschou: $1 × $2 Pixel</small>',
+'file-info-gif-looped' => 'Ändlosschlupf',
+'file-info-gif-frames' => '$1 {{PLURAL:$1|Ramme|Ramme}}',
 
 # Special:NewFiles
 'newimages'             => 'Gallery vo noie Bilder',

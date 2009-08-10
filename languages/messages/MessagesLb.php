@@ -188,7 +188,11 @@ $messages = array(
 'underline-default' => 'vun der Browserastellung ofhängeg',
 
 # Font style option in Special:Preferences
-'editfont-default' => 'Standard vum Browser',
+'editfont-style'     => "Schrëftfamill fir d'Ännerungsfënster:",
+'editfont-default'   => 'Standard vum Browser',
+'editfont-monospace' => 'Schrëft mat enger fixer Breet (fir all Zeechen)',
+'editfont-sansserif' => 'Schrëft ouni Serifen',
+'editfont-serif'     => 'Schrëft mat Serifen',
 
 # Dates
 'sunday'        => 'Sonndeg',
@@ -272,7 +276,7 @@ $messages = array(
 'cancel'        => 'Zréck',
 'moredotdotdot' => 'Méi …',
 'mypage'        => 'meng Säit',
-'mytalk'        => 'Meng Diskussioun ($1)',
+'mytalk'        => 'Meng Diskussioun$1',
 'anontalk'      => 'Diskussioun fir dës IP Adress',
 'navigation'    => 'Navigatioun',
 'and'           => '&#32;an',
@@ -2628,6 +2632,7 @@ $1',
 'svg-long-desc'        => '(SVG-Fichier, Basisgréisst: $1 × $2 Pixel, Gréisst vum Fichier: $3)',
 'show-big-image'       => 'Versioun an enger méi héijer Opléisung',
 'show-big-image-thumb' => '<small>Gréisst vun der Miniatur: $1 × $2 Pixel</small>',
+'file-info-gif-looped' => 'Endloosschleef',
 'file-info-gif-frames' => '$1 {{PLURAL:$1|Bild|Biller}}',
 
 # Special:NewFiles

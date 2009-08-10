@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author IAlex
  * @author JJohnson
  * @author Omnipaedista
  * @author Spacebirdy

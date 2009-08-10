@@ -7,7 +7,9 @@
  * @ingroup Language
  * @file
  *
+ * @author Chaim Shel
  * @author Jiddisch
+ * @author Joystick
  * @author Teak
  * @author Yidel
  * @author ווארצגאנג
@@ -220,7 +222,7 @@ $messages = array(
 'sat'           => 'שבת',
 'january'       => 'יאַנואַר',
 'february'      => 'פֿעברואַר',
-'march'         => 'מערץ',
+'march'         => 'מאַרץ',
 'april'         => 'אַפּריל',
 'may_long'      => 'מײַ',
 'june'          => 'יוני',
@@ -228,7 +230,7 @@ $messages = array(
 'august'        => 'אויגוסט',
 'september'     => 'סעפּטעמבער',
 'october'       => 'אָקטאָבער',
-'november'      => 'נאָװעמבער',
+'november'      => 'נאָוועמבער',
 'december'      => 'דעצעמבער',
 'january-gen'   => 'יאנואר',
 'february-gen'  => 'פעברואר',
@@ -244,7 +246,7 @@ $messages = array(
 'december-gen'  => 'דעצעמבער',
 'jan'           => 'יאַנ׳',
 'feb'           => 'פֿעב׳',
-'mar'           => 'מער׳',
+'mar'           => 'מאַר׳',
 'apr'           => 'אַפּר׳',
 'may'           => 'מײַ',
 'jun'           => 'יונ׳',
@@ -252,8 +254,8 @@ $messages = array(
 'aug'           => 'אויג׳',
 'sep'           => 'סעפּ׳',
 'oct'           => 'אָקט׳',
-'nov'           => 'נאָװ׳',
-'dec'           => 'דעץ׳',
+'nov'           => 'נאָוו׳',
+'dec'           => 'דעצ׳',
 
 # Categories related messages
 'pagecategories'                 => '{{PLURAL:$1|קאַטעגאָריע|קאַטעגאָריעס}}',
@@ -285,9 +287,9 @@ $messages = array(
 'cancel'        => 'זיי מבטל',
 'moredotdotdot' => 'נאך…',
 'mypage'        => 'מײַן בלאט',
-'mytalk'        => '($1) מיין שמועס בלאט',
+'mytalk'        => '$1מיין שמועס בלאט',
 'anontalk'      => 'דאס רעדן פון דעם IP',
-'navigation'    => 'נאַװיגאַציע',
+'navigation'    => 'נאַוויגאַציע',
 'and'           => '&#32;און',
 
 # Cologne Blue skin
@@ -308,30 +310,30 @@ $messages = array(
 'vector-action-protect'      => 'שיצן',
 'vector-action-undelete'     => 'מבטל זיין אויסמעקן',
 'vector-action-unprotect'    => 'אראפנעמען שיץ',
-'vector-namespace-category'  => 'קאטעגאריע',
-'vector-namespace-help'      => 'הילף בלאט',
+'vector-namespace-category'  => 'קאַטעגאָריע',
+'vector-namespace-help'      => 'הילף בלאַט',
 'vector-namespace-image'     => 'טעקע',
-'vector-namespace-main'      => 'בלאט',
-'vector-namespace-media'     => 'מעדיע בלאט',
+'vector-namespace-main'      => 'בלאַט',
+'vector-namespace-media'     => 'מעדיע בלאַט',
 'vector-namespace-mediawiki' => 'מודעה',
-'vector-namespace-project'   => 'פראיעקט בלאט',
+'vector-namespace-project'   => 'פּראָיעקט בלאַט',
 'vector-namespace-special'   => 'באַזונדערער בלאַט',
 'vector-namespace-talk'      => 'שמועס',
 'vector-namespace-template'  => 'מוסטער',
-'vector-namespace-user'      => 'באניצער בלאט',
-'vector-view-create'         => 'שאפן',
-'vector-view-edit'           => 'רעדאקטירן',
-'vector-view-history'        => 'ווייזן היסטאריע',
-'vector-view-view'           => 'ליינען',
-'vector-view-viewsource'     => 'ווייזן מקור',
-'actions'                    => 'אקציעס',
-'namespaces'                 => 'נאמענטיילן',
+'vector-namespace-user'      => 'באַניצער בלאַט',
+'vector-view-create'         => 'שאַפֿן',
+'vector-view-edit'           => 'רעדאַקטירן',
+'vector-view-history'        => 'ווײַזן היסטאָריע',
+'vector-view-view'           => 'לייענען',
+'vector-view-viewsource'     => 'ווײַזן מקור',
+'actions'                    => 'אַקציעס',
+'namespaces'                 => 'נאָמענטיילן',
 'variants'                   => 'װאַריאַנטן',
 
 # Metadata in edit box
-'metadata_help' => 'מעטא־דאטן:',
+'metadata_help' => 'מעטאַ־דאַטן:',
 
-'errorpagetitle'    => 'פעלער',
+'errorpagetitle'    => 'פֿעלער',
 'returnto'          => 'צוריקקערן צו $1.',
 'tagline'           => 'פֿון {{SITENAME}}',
 'help'              => 'הילף',
@@ -343,7 +345,7 @@ $messages = array(
 'history_short'     => 'היסטאריע',
 'updatedmarker'     => 'דערהיינטיגט זינט מיין לעצטע וויזיט',
 'info_short'        => 'אינפארמאציע',
-'printableversion'  => 'ווערסיע פאר פרינטן',
+'printableversion'  => 'ווערסיע פֿאַר פּרינטן',
 'permalink'         => 'שטענדיגער לינק',
 'print'             => 'דרוק',
 'edit'              => 'ענדערן',
@@ -382,8 +384,8 @@ $messages = array(
 'lastmodifiedat'    => 'דער בלאט איז לעצט געווארן מאדיפיצירט $2, $1.',
 'viewcount'         => 'דער בלאט איז געווארן געליינט {{PLURAL:$1|איין מאל|$1 מאל}}.',
 'protectedpage'     => 'באשיצטער בלאט',
-'jumpto'            => 'שפרינג צו:',
-'jumptonavigation'  => 'נאוויגאציע',
+'jumpto'            => 'שפּרינג צו:',
+'jumptonavigation'  => 'נאַוויגאַציע',
 'jumptosearch'      => 'זוכן',
 'view-pool-error'   => 'אנטשולדיגט, די סערווערס זענען איבערגעפילט איצט.
 צופיל באנוצער פרובירן צו ליינען דעם בלאט.
@@ -397,8 +399,8 @@ $messages = array(
 'copyrightpage'        => '{{ns:project}}:קאפירעכטן',
 'currentevents'        => 'אקטועלע געשעענישן',
 'currentevents-url'    => 'Project:אקטועלע געשענישען',
-'disclaimers'          => 'געזעצליכע אויפקלערונג',
-'disclaimerpage'       => 'Project:געזעצליכע אויפקלערונג',
+'disclaimers'          => 'געזעצליכע אויפֿקלערונג',
+'disclaimerpage'       => 'Project:געזעצליכע אויפֿקלערונג',
 'edithelp'             => 'הילף וויאזוי צו ענדערן',
 'edithelppage'         => 'Help:ענדערן',
 'helppage'             => 'Help:אינהאַלט',
@@ -407,8 +409,8 @@ $messages = array(
 'policy-url'           => 'Project:פאליסי',
 'portal'               => 'קאַווע שטיבל',
 'portal-url'           => 'Project:קאַווע שטיבל',
-'privacy'              => 'פריוואטקייט פאליסי',
-'privacypage'          => 'Project:פריוואטקייט פאליסי',
+'privacy'              => 'פּריוואַטקייט פּאליסי',
+'privacypage'          => 'Project:פּריוואַטקייט פאליסי',
 
 'badaccess'        => 'רשות טעות',
 'badaccess-group0' => 'איר זענט נישט בארעכטיגט צו טאן די אקציע וואס איר ווילט.',
@@ -418,7 +420,7 @@ $messages = array(
 'versionrequiredtext' => 'ווערסיע $1 פון מעדיעוויקי פארלאנגט זיך צו נוצן דעם בלאט. פאר מער אינפארמאציע זעהט [[Special:Version|ווערסיע בלאט]].',
 
 'ok'                      => 'יאָ',
-'retrievedfrom'           => 'גענומען פון "$1"',
+'retrievedfrom'           => 'גענומען פֿון "$1"',
 'youhavenewmessages'      => 'דו האָסט $1 ($2).',
 'newmessageslink'         => 'נייע מעלדונגען',
 'newmessagesdifflink'     => '{{PLURAL:$1|איין ענדערונג|$1 ענדערונגען}}',
@@ -438,13 +440,13 @@ $messages = array(
 'feedlinks'               => 'פיטערן:',
 'feed-invalid'            => 'אומגילטיק אַבאנאַמענט פֿיטער טיפ.',
 'feed-unavailable'        => 'סינדיקאציע פֿיטערן זענען נישט פֿאַראַן',
-'site-rss-feed'           => 'RSS פאר $1',
-'site-atom-feed'          => 'Atom פאר $1',
+'site-rss-feed'           => 'RSS פֿאַר $1',
+'site-atom-feed'          => 'Atom פֿאַר $1',
 'page-rss-feed'           => 'RSS פֿון$1',
 'page-atom-feed'          => 'Atom פֿון $1',
 'feed-atom'               => 'אטאם',
 'feed-rss'                => 'אר.עס.עס.',
-'red-link-title'          => '$1 (נאך נישט געשריבן)',
+'red-link-title'          => '$1 (בלאט טוט נאָך נישט עקזיסטירן)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'אַרטיקל',
@@ -906,12 +908,17 @@ $2',
 'revdelete-no-file'           => 'די טעקע ספעציפֿירט עקזיסטירט נישט.',
 'revdelete-show-file-submit'  => 'יא',
 'revdelete-selected'          => "'''{{PLURAL:$2|אויסדערוויילטע ווערסיע| אויסדערוויילטע ווערסיעס}} פון [[:$1]]:'''",
+'revdelete-suppress-text'     => "באהאלטן זאל בלויז גענוצט ווערן '''נאר''' אין די פאלגענדע פעלער:
+* אויפדעקונג פון פריוואטקייט אינפארמאציע
+* ''היים אדרעסן, טעלעפאן נומערן, אדער סאשעל סעקיורעטי, א.א.וו.:'''",
 'revdelete-legend'            => 'שטעלט ווייזונג באגרענעצונגען',
 'revdelete-hide-text'         => 'באהאלט אינהאלט פון ווערסיע',
 'revdelete-hide-name'         => 'באהאלט אקציע און ציל',
 'revdelete-hide-comment'      => 'באהאלט ענדערן הערה',
 'revdelete-hide-user'         => "באהאלט רעדאקטער'ס באנוצער-נאמען/איי.פי.",
+'revdelete-hide-restricted'   => 'באהאלט אינפארמאציע אויך פון אדמיניסטראטורן פונקט ווי פשוטע באנוצער',
 'revdelete-hide-image'        => 'באהאלט טעקע אינהאלט',
+'revdelete-unsuppress'        => 'טוה אפ באגרענעצונגן אין גענדערטע רעוויזיעס',
 'revdelete-log'               => 'לאג-בוך הערה:',
 'revdel-restore'              => 'טויש די זעבארקייט',
 'pagehist'                    => 'בלאט היסטאריע',
@@ -1062,7 +1069,7 @@ $2',
 
 # Preferences page
 'preferences'                 => 'פרעפערענצן',
-'mypreferences'               => 'מיינע פרעפערענצן',
+'mypreferences'               => 'פּרעפֿערענצן',
 'prefs-edits'                 => 'צאָל ענדערונגען:',
 'prefsnologin'                => 'נישט אריינלאגירט',
 'prefsnologintext'            => 'איר דארפט זיין  <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} אריינלאגירט]</span> כדי צו ענדערן באניצער פרעפֿערענצן.',
@@ -1108,7 +1115,7 @@ $2',
 'timezoneregion-pacific'      => 'פאציפישער אקעאן',
 'allowemail'                  => 'ערלויבן אנדערע צו שיקן אײַך ע־פאסט',
 'prefs-searchoptions'         => 'ברירות פאר זוכן',
-'prefs-namespaces'            => 'נאמענטיילן',
+'prefs-namespaces'            => 'נאָמענטיילן',
 'defaultns'                   => 'אנדערשט זוך אין די נאמענטיילן:',
 'default'                     => 'גרונטלעך',
 'prefs-files'                 => 'טעקעס',
@@ -1272,7 +1279,7 @@ $2',
 'recentchangeslinked-noresult' => 'נישט געווען קיין ענדערונגען אין פֿארבונדענע בלעטער אין דער תקופה.',
 'recentchangeslinked-summary'  => "אט א רשימה פון נייע ענדערונגען צו בלעטער פארבונדן פון א ספעציפישן בלאט (אדער מיטגליד בלעטער פון א ספעציפישער קאטעגאריע).
 בלעטער אויף [[Special:Watchlist|אייער אויפפאסונג ליסטע]] זענען געוויזן '''דיק'''.",
-'recentchangeslinked-page'     => 'בלאט נאמען:',
+'recentchangeslinked-page'     => 'בלאַט נאָמען:',
 'recentchangeslinked-to'       => 'צייג ענדערונגען צו בלעטער פארבינדן צו דעם בלאט אנשטאט',
 
 # Upload
@@ -1509,13 +1516,13 @@ $2',
 מען קען פֿאַרשמעלרן די אויסוואל דורך אויסוועלן דעם סארט לאג, באַניצער נאמען אדער אנרירנדע בלעטער.',
 
 # Special:AllPages
-'allpages'          => 'אלע בלעטער',
+'allpages'          => 'אַלע בלעטער',
 'alphaindexline'    => '$1 ביז $2',
-'nextpage'          => 'קומענדיגער בלאט ($1)',
-'prevpage'          => 'פֿריערדיגער בלאט ($1)',
+'nextpage'          => 'קומענדיקער בלאַט ($1)',
+'prevpage'          => 'פֿריִערדיקער בלאַט ($1)',
 'allpagesfrom'      => 'ווייזן בלעטער אנגעהויבן פון:',
 'allpagesto'        => 'ווייזן בלעטער ביז:',
-'allarticles'       => 'אלע ארטיקלען',
+'allarticles'       => 'אַלע אַרטיקלען',
 'allinnamespace'    => 'אלע בלעטער ($1 נאָמענטייל )',
 'allnotinnamespace' => 'אלע בלעטער (נישט אין נאמענטייל  $1)',
 'allpagesprev'      => 'פריערדיגע',
@@ -2090,7 +2097,7 @@ $NEWPAGE
 'tooltip-search-go'               => 'גייט צו א בלאט מיט אט דעם נאמען, אויב ער עקסיסטירט',
 'tooltip-search-fulltext'         => 'זוכט דעם טעקסט אין די בלעטער',
 'tooltip-p-logo'                  => 'הויפט זייט',
-'tooltip-n-mainpage'              => 'באזוכט דעם הויפט זייט',
+'tooltip-n-mainpage'              => 'באַזוכט דעם הויפּט־זײַט',
 'tooltip-n-portal'                => 'גייט אריין אין די געמיינדע צו שמועסן',
 'tooltip-n-currentevents'         => 'מער אינפארמאציע איבער אקטועלע געשענישען',
 'tooltip-n-recentchanges'         => 'ליסטע פון לעצטע ענדערונגען',
@@ -2137,7 +2144,7 @@ $NEWPAGE
 # Attribution
 'anonymous'        => '{{PLURAL:$1|אַנאנימער באַניצער| אַנאנימע באַניצערס}} פֿון {{SITENAME}}',
 'siteuser'         => 'באַניצער {{SITENAME}} $1',
-'lastmodifiedatby' => 'די לעצטע ענדערונג פון דעם בלאט איז געווען $2, $1 דורך $3.',
+'lastmodifiedatby' => 'די לעצטע ענדערונג פֿון דעם בלאַט איז געווען $2, $1 דורך $3.',
 'othercontribs'    => 'באזירט אויף ארבעט פון $1.',
 'others'           => 'אנדערע',
 'siteusers'        => '{{PLURAL:$2|באַניצער| באַניצערס}} {{SITENAME}} $1',
@@ -2178,7 +2185,7 @@ $NEWPAGE
 'filedelete-current-unregistered' => 'די טעקע "$1" איז נישט אין דער דאטנבאזע.',
 
 # Browsing diffs
-'previousdiff' => 'פריערדיגע ווערסיע →',
+'previousdiff' => 'פריִערדיקע ווערסיע →',
 'nextdiff'     => 'קומענדיקע ווערסיע ←',
 
 # Media information
@@ -2467,7 +2474,7 @@ $5
 'fileduplicatesearch-submit'   => 'זוכן',
 
 # Special:SpecialPages
-'specialpages'                   => 'ספּעציעלע זײטן',
+'specialpages'                   => 'ספּעציעלע זײַטן',
 'specialpages-note'              => '----
 * נארמאַלע ספעציעלע בלעטער.
 * <strong class="mw-specialpagerestricted">באַגרענעצטע ספעציעלע בלעטער.</strong>',

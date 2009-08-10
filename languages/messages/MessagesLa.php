@@ -275,7 +275,7 @@ $messages = array(
 'cancel'        => 'Abrogare',
 'moredotdotdot' => 'Plus...',
 'mypage'        => 'Pagina mea',
-'mytalk'        => 'Disputatio mea ($1)',
+'mytalk'        => 'Disputatio mea$1',
 'anontalk'      => 'Disputatio huius IP',
 'navigation'    => 'Navigatio',
 'and'           => '&#32;et',
@@ -1434,7 +1434,7 @@ Pagina discretivam esse putatur si formulam adhibet ad quem [[MediaWiki:Disambig
 'specialloguserlabel'  => 'Usor:',
 'speciallogtitlelabel' => 'Titulus:',
 'log'                  => 'Acta',
-'all-logs-page'        => 'Acta omnia',
+'all-logs-page'        => 'Acta publica omnia',
 'alllogstext'          => 'Ostentantur omnia acta {{grammar:genitive|{{SITENAME}}}}.
 Adspectum graciliorem potes facere modum indicum, nomen usoris (cave litteras maiusculas minusculasque), vel titulum paginae (cave etiam litteras maiusculas minusculasque) seligendo.',
 'log-title-wildcard'   => 'Quaerere titulos qui incipiunt litteris',

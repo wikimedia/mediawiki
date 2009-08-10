@@ -123,7 +123,7 @@ $messages = array(
 'cancel'        => 'Canchler',
 'moredotdotdot' => 'Plu...',
 'mypage'        => 'Em pache',
-'mytalk'        => 'Mi bavouér',
+'mytalk'        => 'Min bavouér$1',
 'anontalk'      => "Bavouér pou chl'IP-lo",
 'navigation'    => 'Navigachion',
 'and'           => '&#32;pi',
@@ -214,7 +214,7 @@ $messages = array(
 'retrievedfrom'           => 'Érprind din  "$1"',
 'youhavenewmessages'      => 'Os avez $1 ($2).',
 'newmessageslink'         => 'nouvieus messaches',
-'newmessagesdifflink'     => 'darin cangemint',
+'newmessagesdifflink'     => '{{PLURAL:$1|un cangemint|$1 cangemints}}',
 'youhavenewmessagesmulti' => 'Os avez des nouvieus messaches su $1',
 'editsection'             => 'éditer',
 'editold'                 => 'éditer',
@@ -331,11 +331,15 @@ j'm'escuse mais i feut prinde un aute nom.",
 
 Vote adrèche IP, ale sro inrégistrée din l'historique éd chol pache.",
 'newarticle'           => '(nouvieu)',
+'previewnote'          => "'''Afute! ch'teske-lo ch'est seulemint eune prévue.'''
+
+Vos cangemints, is sont poin coèr inrégistrés!",
 'editing'              => 'Éditer $1',
 'editingsection'       => '$1 éditée (sekchon)',
 'templatesused'        => 'Modèles imploïés pou chol pache:',
 'templatesusedpreview' => "Modèles imploïés din ch'prévue-lo:",
 'template-protected'   => '(garanti)',
+'hiddencategories'     => '{{PLURAL:$1|Catégorie muchée|Catégories muchées}} pou chol pache:',
 
 # History pages
 'viewpagelogs'        => 'Vir chés gasètes del pache-lo',
@@ -554,12 +558,18 @@ L' passèie édition del pache étoait par  [[User:$3|$3]] ([[User talk:$3|Talk]
 'protectlogpage'              => 'Gasète éd chés protéccions',
 'protectedarticle'            => '"[[$1]]" est garanti',
 'modifiedarticleprotection'   => 'canger ch\'nivieu d\'protékchon pou "[[$1]]"',
+'protectexpiry'               => "Date d'éspirachon:",
+'protect_expiry_invalid'      => "L'date d'éspirachon ale n'est mie possibe.",
+'protect_expiry_old'          => "L'date d'éspirachon ale est déjo érpassée.",
+'protect-text'                => "Os pouvez vir pi canger ech nivieu d'protécchon ichi pou l'pache-lo '''<nowiki>$1</nowiki>'''.",
 'protect-default'             => 'Por tertous chés uzeus',
 'protect-fallback'            => 'I feut avoèr l\'pérmission "$1"',
 'protect-level-autoconfirmed' => 'Blotcher nouvieus pi mie-inrégistrés uzeus',
 'protect-level-sysop'         => 'Aménistrateus seulemint',
 'protect-summary-cascade'     => 'cascates',
+'protect-expiring'            => "éspire l'$1 (UTC)",
 'restriction-type'            => 'Pérmission',
+'restriction-level'           => 'Nivieu éd réstricchon:',
 
 # Undelete
 'undeletelink'     => 'vir/érfoaire',
@@ -688,6 +698,7 @@ Os pouvez vir l'source",
 'nextdiff'     => 'Nouvèle édichon →',
 
 # Media information
+'file-nohires'   => '<small>Poin éd pu grande résoluchon possibe.</small>',
 'show-big-image' => 'Plinne résoluchon',
 
 # Metadata

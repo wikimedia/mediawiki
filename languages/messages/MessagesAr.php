@@ -21,6 +21,7 @@
  * @author Gharbeia
  * @author Hakeem
  * @author Histolo2
+ * @author IAlex
  * @author Jak
  * @author Khaledhosny
  * @author Lord Anubis
@@ -555,13 +556,13 @@ $messages = array(
 'cancel'        => 'إلغاء',
 'moredotdotdot' => 'المزيد...',
 'mypage'        => 'صفحتي',
-'mytalk'        => 'نقاشي ($1)',
+'mytalk'        => 'نقاشي$1',
 'anontalk'      => 'النقاش لعنوان الأيبي هذا',
 'navigation'    => 'إبحار',
 'and'           => '&#32;و',
 
 # Cologne Blue skin
-'qbfind'         => 'إيجاد',
+'qbfind'         => 'جِد',
 'qbbrowse'       => 'تصفح',
 'qbedit'         => 'عدل',
 'qbpageoptions'  => 'هذه الصفحة',
@@ -1539,6 +1540,7 @@ $1",
 'prefs-i18n'                    => 'الترجمة',
 'prefs-signature'               => 'التوقيع',
 'prefs-dateformat'              => 'صيغة الوقت',
+'prefs-timeoffset'              => 'المنطقة الزمنية',
 'prefs-advancedediting'         => 'خيارات متقدّمة',
 'prefs-advancedrc'              => 'خيارات متقدّمة',
 'prefs-advancedrendering'       => 'خيارات متقدّمة',
@@ -2181,6 +2183,8 @@ PICT # متنوع
 'listgrouprights'                      => 'صلاحيات مجموعات المستخدمين',
 'listgrouprights-summary'              => 'التالي قائمة بمجموعات المستخدمين المعرفة في هذا الويكي، بصلاحياتهم المصاحبة.
 ربما تكون هناك [[{{MediaWiki:Listgrouprights-helppage}}|معلومات إضافية]] حول الصلاحيات المنفردة.',
+'listgrouprights-key'                  => '* <span class="listgrouprights-granted">صلاحية ممنوحة</span>
+* <span class="listgrouprights-revoked">صلاحية مسحوبة</span>',
 'listgrouprights-group'                => 'المجموعة',
 'listgrouprights-rights'               => 'الصلاحيات',
 'listgrouprights-helppage'             => 'Help:صلاحيات المجموعات',

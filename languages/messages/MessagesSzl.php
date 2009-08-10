@@ -62,6 +62,7 @@ $messages = array(
 'tog-watchlisthideminor'      => 'Schow ńywjelge pomjyńańa w artiklach, na kere dowom pozůr',
 'tog-watchlisthideliu'        => 'Schow sprowjyńo zalůgowanych sprowjaczy na pozorliśće',
 'tog-watchlisthideanons'      => 'Schow sprowjyńa anůńimowych sprowjoczy na liśće artikli, na kere dowom pozůr',
+'tog-watchlisthidepatrolled'  => 'Schowej sprowdzůne sprowjyńa na pozorliśće',
 'tog-ccmeonemails'            => 'Przesyłej mi kopje e-brifůw co żech je posłoł inkszym sprowjaczom',
 'tog-diffonly'                => 'Ńy pokozuj treśći zajtůw půnižyj porůwnańo pomjyńań',
 'tog-showhiddencats'          => 'Pokoż schowane kategoryje',
@@ -70,6 +71,10 @@ $messages = array(
 'underline-always'  => 'Dycki',
 'underline-never'   => 'Ńigdy',
 'underline-default' => 'Podug sztalowańo uoglůndarki',
+
+# Font style option in Special:Preferences
+'editfont-style'   => 'Styl czćůnki we placu sprowjyń:',
+'editfont-default' => 'Domyślno przeglůndarki',
 
 # Dates
 'sunday'        => 'Ńedźela',
@@ -930,6 +935,8 @@ Možeš [[:\$1|tako utwořyć]], abo sprůbować pounygo šnupańo.",
 'yournick'                  => 'Twoja šrajba:',
 'badsig'                    => 'Felerno šrajba, sprowdź značńiki HTML.',
 'badsiglength'              => 'Twůj šrajbůng je za dugi. Maksymalno jego dugość to $1 {{PLURAL:$1|buchštaby|buchštabůw}}',
+'gender-male'               => 'chop',
+'gender-female'             => 'baba',
 'email'                     => 'E-brif',
 'prefs-help-realname'       => '* Mjano a nazwisko (uopcjůnalńy): jak žeś zdecydowou aže je podoš, bydům užyte, coby Twoja robota mjoua atrybucyjo.',
 'prefs-help-email'          => 'Podowańy e-brifa je upcjůnalne, nale pozwoli na wysuańy Ći bez e-brif nowygo hasua w raźe jakbyś je zopomńou. Možeš tyž dozwolić inkšym užytkowńikům na kůntakt s Tobům bez e-brif, a ńy bydźe ůun udostympńůny.',
