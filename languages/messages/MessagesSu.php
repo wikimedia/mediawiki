@@ -261,7 +261,7 @@ $messages = array(
 'cancel'        => 'Bolay',
 'moredotdotdot' => 'Deui...',
 'mypage'        => 'Kaca kuring',
-'mytalk'        => 'Obrolan kuring$1',
+'mytalk'        => 'Obrolan kuring',
 'anontalk'      => 'Obrolan pikeun IP ieu',
 'navigation'    => 'Pituduh',
 'and'           => '&#32;jeung',
@@ -399,7 +399,7 @@ $1',
 'retrievedfrom'           => 'Disalin ti "$1"',
 'youhavenewmessages'      => 'Anjeun boga $1 ($2).',
 'newmessageslink'         => 'talatah anyar',
-'newmessagesdifflink'     => '{{PLURAL:$1|hiji parobahan|$1 parobahan}}',
+'newmessagesdifflink'     => 'bédana ti nu saméméhna',
 'youhavenewmessagesmulti' => 'Anjeun boga talatah anyar di $1',
 'editsection'             => 'édit',
 'editold'                 => 'édit',
@@ -2379,8 +2379,8 @@ Sandi konfirmasi ieu bakal kadaluwarsa dina $4.',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[Transklusi interwiki ditumpurkeun]',
-'scarytranscludefailed'   => '[Nyokot citakan $1 gagal; punten]',
-'scarytranscludetoolong'  => '[URL panjang teuing; punten]',
+'scarytranscludefailed'   => '[Gagal nyokot citakan $1]',
+'scarytranscludetoolong'  => '[URLna panjang teuing]',
 
 # Trackbacks
 'trackbackbox'      => 'Lacak balik keur artikel ieu:<br />
@@ -2390,7 +2390,7 @@ $1',
 'trackbackdeleteok' => 'Ngalacak balik, hasil dihapus!.',
 
 # Delete conflict
-'deletedwhileediting' => 'Awas: kaca ieu geus dihapus nalika anjeun ngédit!',
+'deletedwhileediting' => "'''Awas''': ieu kaca geus dihapus nalika anjeun mitembeyan ngédit!",
 'confirmrecreate'     => "Pamaké [[User:$1|$1]] ([[User talk:$1|ngobrol]]) geus ngahapus artikel ieu nalika anjeun ngédit kalawan alesan:
 : ''$2''
 mangga pastikeun yén anjeun rék nyieun deui artikel ieu.",
@@ -2418,10 +2418,10 @@ mangga pastikeun yén anjeun rék nyieun deui artikel ieu.",
 'table_pager_empty'        => 'Nyamos',
 
 # Auto-summaries
-'autosumm-blank'   => 'Ngahapus eusi ti kaca',
+'autosumm-blank'   => 'Ngosongkeun eusi kaca',
 'autosumm-replace' => "Ngaganti kaca ku '$1'",
 'autoredircomment' => 'Mindahkeun ka [[$1]]',
-'autosumm-new'     => 'Kaca anyar: $1',
+'autosumm-new'     => 'Nyieun kaca anyar  $1',
 
 # Live preview
 'livepreview-loading' => 'Ngamuat…',

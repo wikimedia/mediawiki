@@ -380,6 +380,7 @@ Xahiş edirik düzgün formatlı ünvan daxil edin və ya bu sahəni boş qoyun.
 'newpassword'               => 'Yeni parol:',
 'retypenew'                 => 'Yeni parolu təkrar yazın:',
 'resetpass-submit-loggedin' => 'Parolu dəyiş',
+'resetpass-temp-password'   => 'Müvəqqəti parol:',
 
 # Edit page toolbar
 'bold_sample'     => 'Qalın mətn',
@@ -394,6 +395,7 @@ Xahiş edirik düzgün formatlı ünvan daxil edin və ya bu sahəni boş qoyun.
 'headline_tip'    => '2. səviyyə başlıq',
 'math_sample'     => 'Riyazi formulu bura yazın',
 'math_tip'        => 'Riyazi formul (LaTeX formatı)',
+'nowiki_sample'   => 'Formatlaşdırılmamış mətni bura daxil edin',
 'nowiki_tip'      => 'Viki formatını sayma',
 'image_sample'    => 'Misal.jpg',
 'image_tip'       => 'Şəkil əlavə etmə',
@@ -410,9 +412,16 @@ Xahiş edirik düzgün formatlı ünvan daxil edin və ya bu sahəni boş qoyun.
 'preview'                    => 'Sınaq göstərişi',
 'showpreview'                => 'Sınaq göstərişi',
 'showdiff'                   => 'Dəyişiklikləri göstər',
+'anoneditwarning'            => "'''Diqqət''': Siz özünüzü sistemə təqdim etməmisiniz. Sizin IP ünvanınız bu səhifənin tarixçəsinə qeyd olunacaq.",
+'missingsummary'             => "'''Xatırlatma.''' Siz dəyişikliklərin qısa şərhini verməmisiniz. \"Səhifəni qeyd et\" düyməsinə təkrar basandan sonra sizin dəyişiklikləriniz şərhsiz qeyd olunacaq.",
+'missingcommenttext'         => 'Zəhmət olmasa, aşağıda şərhinizi yazın.',
+'subject-preview'            => 'Sərlövhə belə olacaq:',
 'blockedtitle'               => 'İstifadəçi bloklanıb',
+'blockednoreason'            => 'səbəb göstərilməyib',
 'blockedoriginalsource'      => "'''$1''' mənbəyi aşağıda göstərilib:",
+'blockededitsource'          => "Aşağıda '''$1''' səhifəsində etdiyiniz '''dəyişikliklərin''' mətni göstərilib:",
 'whitelistedittitle'         => 'Redaktə üçün daxil olmalısınız',
+'nosuchsectiontitle'         => 'Belə bölmə yoxdur',
 'loginreqtitle'              => 'Daxil olmalısınız',
 'loginreqlink'               => 'Daxil ol',
 'accmailtitle'               => 'Parol göndərildi.',
@@ -424,6 +433,7 @@ Hesabınıza daxil olduqdan sonra, parolunuzu ''[[Special:ChangePassword|parolu 
 'noarticletext'              => 'Hal-hazırda bu səhifə boşdur. Başqa səhifələrdə eyni adda səhifəni [[Special:Search/{{PAGENAME}}| axtara]], əlaqəli qeydlərə 
 <span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} baxa],
 və ya səhifəni [{{fullurl:{{FULLPAGENAME}}|action=edit}} redaktə]</span> edə bilərsiniz.',
+'note'                       => "'''Qeyd:'''",
 'previewnote'                => "'''Bu yalnız sınaq göstərişidir; dəyişikliklər hal-hazırda qeyd edilmemişdir!'''",
 'session_fail_preview'       => "'''Üzr istəyirik! Sizin redaktəniz saxlanılmadı. Serverdə identifikasiyanızla bağlı problemlər yaranmışdır. Lütfən bir daha təkrar edin. Problem həll olunmazsa hesabınızdan çıxın və yenidən daxil olun.'''",
 'editing'                    => 'Redaktə $1',
@@ -438,8 +448,11 @@ və ya səhifəni [{{fullurl:{{FULLPAGENAME}}|action=edit}} redaktə]</span> ed�
 'semiprotectedpagewarning'   => "'''Qeyd:''' Bu səhifə mühafizəli olduğu üçün yalnız qeydiyyatdan keçmiş istifadəçilər redaktə edə bilərlər.",
 'titleprotectedwarning'      => "'''DİQQƏT:  Bu səhifə mühafizəlidir, yalnız [[Special:ListGroupRights|icazəsi olan]] istifadəçilər onu redaktə edə bilərlər.'''",
 'templatesused'              => 'Bu səhifədə istifadə edilmiş şablonlar:',
+'templatesusedsection'       => 'Bu bölmədə istifadə olunan şablonlar.',
 'template-protected'         => '(mühafizə)',
 'template-semiprotected'     => '(yarım-mühafizə)',
+'nocreatetitle'              => 'Səhifə yaratma məhdudlaşdırılıb.',
+'nocreate-loggedin'          => 'Sizin yeni səhifələr yaratmaq üçün icazəniz yoxdur.',
 'permissionserrorstext'      => 'Siz, bunu aşağıdakı {{PLURAL:$1|səbəbə|səbəblərə}} görə edə bilməzsiniz:',
 'recreate-moveddeleted-warn' => "'''Diqqət: Yaratmaq istədiyiniz səhifə əvvəllər silinmişdir.'''
 

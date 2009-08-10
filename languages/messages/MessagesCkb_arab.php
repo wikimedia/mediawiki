@@ -2397,6 +2397,8 @@ You could also reset the notification flags for all your watched pages on your w
 'blankpage' => 'پەڕەی واڵا',
 
 # Special:Tags
+'tags'              => 'گۆڕانکاری گونجاوی تاگەکان',
+'tag-filter'        => 'پاڵێوی [[Special:Tags|تاگ]]:',
 'tag-filter-submit' => 'پاڵاوتن',
 'tags-title'        => 'تاگەکان',
 'tags-edit'         => 'دەستکاری',

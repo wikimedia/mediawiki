@@ -134,7 +134,7 @@ $messages = array(
 'cancel'        => 'Arrêter',
 'moredotdotdot' => 'Plus...',
 'mypage'        => 'Ma page',
-'mytalk'        => 'Ma page de discussion$1',
+'mytalk'        => 'Ma page de discussion',
 'anontalk'      => 'Discussion avec cette adresse IP',
 
 # Cologne Blue skin
