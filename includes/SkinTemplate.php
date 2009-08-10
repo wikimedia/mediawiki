@@ -536,19 +536,20 @@ class SkinTemplate extends Skin {
 			if ( $wgUser->getNewtalk() ) {
 				# do not show text when we are viewing our
 				# own talk page
-				if( !$title->equals( $wgUser->getTalkPage() ) ) {					
-					$newtalk = $wgUser->getnewMessagesCount();
+				if( !$title->equals( $wgUser->getTalkPage() ) ) {
+					$newmessagescount = $wgUser->getnewMessagesCount();
+					$newtalk = wfMsg( 'word-separator' ) . wfMsg( 'parentheses', $newmessagescount );
 					
 					# disable caching
 					$wgOut->setSquidMaxage( 0 );
 					$wgOut->enableClientCache( false );
 				}
 				else {
-					$newtalk = 0;
+					$newtalk = '';
 				}
 			}
 			else {
-				$newtalk = 0;
+				$newtalk = '';
 			}
 			$personal_urls['mytalk'] = array(
 				'text' => wfMsg( 'mytalk', $newtalk ),

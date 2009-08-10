@@ -751,7 +751,7 @@ XHTML id names.
 'cancel'        => 'Cancel',
 'moredotdotdot' => 'More...',
 'mypage'        => 'My page',
-'mytalk'        => 'My talk ($1)',
+'mytalk'        => 'My talk$1',
 'anontalk'      => 'Talk for this IP',
 'navigation'    => 'Navigation',
 'and'           => '&#32;and',
