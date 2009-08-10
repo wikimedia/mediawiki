@@ -196,6 +196,8 @@ this. Was used when mwEmbed was going to be an extension.
    cutting-edge browsers.  E.g., some inputs will be autofocused, users will
    not be allowed to submit forms with certain types of invalid values (like
    numbers outside the permitted ranges), etc.
+** The summary attribute has been removed from tables of contents.  summary is
+   obsolete in HTML 5 and wasn't useful here anyway.
 * New hook SpecialRandomBeforeSQL allows extensions to modify or replace the SQL
   query used in Special:Random and subclasses, deprecating the $wgExtraRandompageSQL
   config variable
