@@ -1368,16 +1368,6 @@ $newTitle: new title (object)
 hook to remove a core special page
 $list: list (array) of core special pages
 
-'SpecialRandomBeforeSQL': called before building the SQL statement for
-Special:Random and all subclasses
-$page: The RandomPage object
-&$ns: Comma separated list of namespaces used in the query
-&$redirect: 1 or 0, whether to retrieve a redirect or a non-redirect
-&$extra: Extra SQL statements in the WHERE clause, after checking 
-$wgExtraRandompageSQL and after subclasses add extra clauses
-&$sql: The query used if the hook returns false, must select 
-page_namespace and page_title
-
 'SpecialRecentChangesPanel': called when building form options in
 SpecialRecentChanges
 &$extraOpts: array of added items, to which can be added
