@@ -88,6 +88,13 @@ $specialPageAliases = array(
 	'Listadmins'                => array( 'ListaAministradur' ),
 );
 
+$magicWords = array(
+	'img_right'             => array( '1', 'drita', 'destra', 'right' ),
+	'img_left'              => array( '1', 'manzína', 'sinistra', 'left' ),
+	'img_none'              => array( '1', 'nissön', 'nessuno', 'none' ),
+	'sitename'              => array( '1', 'NUMSIT', 'NOMESITO', 'SITENAME' ),
+);
+
 $messages = array(
 # User preference toggles
 'tog-justify'                 => 'Paràgraf: giüstifigaa',

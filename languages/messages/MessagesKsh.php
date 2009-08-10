@@ -184,7 +184,11 @@ $specialPageAliases = array(
 );
 
 $magicWords = array(
-	'redirect'              => array( '0', '#ÖMLEIDUNG', '#WEITERLEITUNG', '#REDIRECT' ),
+	'redirect'              => array( '0', '#ÖMLEIDE OP', '#ÖMLEIDE', '#LEIDT ÖM OP', '#ÖMLEIDUNG', '#WEITERLEITUNG', '#REDIRECT' ),
+	'nogallery'             => array( '0', '__KEIN_JALLERIE__', '__KEINE_GALERIE__', '__NOGALLERY__' ),
+	'toc'                   => array( '0', '__ENHALLT__', '__INHALTSVERZEICHNIS__', '__TOC__' ),
+	'img_right'             => array( '1', 'rähß', 'räts', 'rechts', 'right' ),
+	'img_left'              => array( '1', 'lengks', 'lenks', 'links', 'left' ),
 	'language'              => array( '0', '#SHPROOCH:', '#SPROCH:', '#SPRACHE:', '#LANGUAGE:' ),
 	'hiddencat'             => array( '1', '__VERSHTOCHE_SAACHJRUPP__', '__VERSTECKTE_KATEGORIE__', '__WARTUNGSKATEGORIE__', '__HIDDENCAT__' ),
 );

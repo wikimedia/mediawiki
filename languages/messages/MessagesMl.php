@@ -208,7 +208,7 @@ $magicWords = array(
 	'img_framed'            => array( '1', 'ചട്ടം', 'ചട്ടത്തില്‍', 'framed', 'enframed', 'frame' ),
 	'img_page'              => array( '1', 'താള്‍=$1', 'താള്‍ $1', 'page=$1', 'page $1' ),
 	'sitename'              => array( '1', 'സൈറ്റിന്റെപേര്', 'SITENAME' ),
-	'ns'                    => array( '0', 'നാമേ:', 'നാമമേഖല', 'NS:' ),
+	'ns'                    => array( '0', 'നാമേ:', 'NS:' ),
 	'localurl'              => array( '0', 'ലോക്കല്‍യുആര്‍എല്‍:', 'LOCALURL:' ),
 	'localurle'             => array( '0', 'ലോക്കല്‍യുആര്‍എല്‍ഇ:', 'LOCALURLE:' ),
 	'server'                => array( '0', 'സെര്‍വര്‍', 'SERVER' ),

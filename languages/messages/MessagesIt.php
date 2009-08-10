@@ -167,7 +167,7 @@ $specialPageAliases = array(
 );
 
 $magicWords = array(
-	'redirect'              => array( '0', '#RINVIA', '#RINVIO', '#REDIRECT' ),
+	'redirect'              => array( '0', '#RINVIA', '#RINVIO', '#RIMANDO', '#REDIRECT' ),
 	'currentmonth'          => array( '1', 'MESECORRENTE', 'CURRENTMONTH', 'CURRENTMONTH2' ),
 	'currentmonthname'      => array( '1', 'NOMEMESECORRENTE', 'CURRENTMONTHNAME' ),
 	'currentmonthnamegen'   => array( '1', 'NOMEMESECORRENTEGEN', 'CURRENTMONTHNAMEGEN' ),
@@ -199,6 +199,7 @@ $magicWords = array(
 	'pagenamee'             => array( '1', 'TITOLOPAGINAE', 'PAGENAMEE' ),
 	'subpagename'           => array( '1', 'NOMESOTTOPAGINA', 'SUBPAGENAME' ),
 	'subpagenamee'          => array( '1', 'NOMESOTTOPAGINAE', 'SUBPAGENAMEE' ),
+	'subst'                 => array( '0', 'SOST:', 'SUBST:' ),
 	'img_right'             => array( '1', 'destra', 'right' ),
 	'img_left'              => array( '1', 'sinistra', 'left' ),
 	'img_none'              => array( '1', 'nessuno', 'none' ),
@@ -211,7 +212,9 @@ $magicWords = array(
 	'currentweek'           => array( '1', 'SETTIMANACORRENTE', 'CURRENTWEEK' ),
 	'localweek'             => array( '1', 'SETTIMANALOCALE', 'LOCALWEEK' ),
 	'plural'                => array( '0', 'PLURALE:', 'PLURAL:' ),
+	'language'              => array( '0', '#LINGUA', '#LANGUAGE:' ),
 	'numberofadmins'        => array( '1', 'NUMEROADMIN', 'NUMBEROFADMINS' ),
+	'special'               => array( '0', 'speciale', 'special' ),
 	'pagesize'              => array( '1', 'DIMENSIONEPAGINA', 'PESOPAGINA', 'PAGESIZE' ),
 	'protectionlevel'       => array( '1', 'LIVELLOPROTEZIONE', 'PROTECTIONLEVEL' ),
 );

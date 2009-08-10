@@ -139,7 +139,6 @@ $magicWords = array(
 	'currentweek'           => array( '1', 'هلندڙهفتو', 'CURRENTWEEK' ),
 	'currentdow'            => array( '1', 'اڄوڪوڏينهن', 'CURRENTDOW' ),
 	'localweek'             => array( '1', 'مقاميهفتو', 'LOCALWEEK' ),
-	'localdow'              => array( '1', 'مقاميڏينهن', 'LOCALDOW' ),
 	'plural'                => array( '0', 'جمع', 'PLURAL:' ),
 	'fullurl'               => array( '0', 'مڪمليوآريل', 'FULLURL:' ),
 	'currenttimestamp'      => array( '1', 'هلندڙوقتمهر', 'CURRENTTIMESTAMP' ),

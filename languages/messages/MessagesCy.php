@@ -80,7 +80,6 @@ $magicWords = array(
 	'img_sub'               => array( '1', 'is', 'sub' ),
 	'img_super'             => array( '1', 'uwch', 'super', 'sup' ),
 	'img_top'               => array( '1', 'brig', 'top' ),
-	'img_middle'            => array( '1', 'canol', 'middle' ),
 	'img_bottom'            => array( '1', 'gwaelod', 'godre', 'bottom' ),
 	'server'                => array( '0', 'GWEINYDD', 'SERVER' ),
 	'servername'            => array( '0', 'ENW\'RGWEINYDD', 'SERVERNAME' ),

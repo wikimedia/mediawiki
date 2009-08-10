@@ -110,7 +110,6 @@ $magicWords = array(
 	'img_sub'               => array( '1', 'undir', 'sub' ),
 	'img_super'             => array( '1', 'yfir', 'super', 'sup' ),
 	'img_top'               => array( '1', 'efst', 'top' ),
-	'img_middle'            => array( '1', 'miðja', 'middle' ),
 	'img_bottom'            => array( '1', 'neðst', 'bottom' ),
 	'img_text_bottom'       => array( '1', 'texti-neðst', 'text-bottom' ),
 	'ns'                    => array( '0', 'NR:', 'NS:' ),

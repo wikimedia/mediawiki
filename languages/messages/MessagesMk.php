@@ -238,7 +238,6 @@ $magicWords = array(
 	'server'                => array( '0', 'СЕРВЕР', 'SERVER' ),
 	'servername'            => array( '0', 'ИМЕНАСЕРВЕР', 'SERVERNAME' ),
 	'grammar'               => array( '0', 'ГРАМАТИКА:', 'GRAMMAR:' ),
-	'notitleconvert'        => array( '0', '__БЕЗСОДРЖИНА__', '__NOTITLECONVERT__', '__NOTC__' ),
 	'currentweek'           => array( '1', 'СЕГАШНАСЕДМИЦА', 'CURRENTWEEK' ),
 	'localweek'             => array( '1', 'СЕДМИЦА_ЛОКАЛНО', 'LOCALWEEK' ),
 	'plural'                => array( '0', 'МНОЖИНА:', 'PLURAL:' ),

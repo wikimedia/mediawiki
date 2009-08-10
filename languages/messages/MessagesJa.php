@@ -205,7 +205,7 @@ $magicWords = array(
 	'namespace'             => array( '1', '名前空間', 'NAMESPACE' ),
 	'namespacee'            => array( '1', '名前空間E', '名前空間エンコード', 'NAMESPACEE' ),
 	'talkspace'             => array( '1', 'ノート空間', '会話空間', 'トークスペース', 'TALKSPACE' ),
-	'talkspacee'            => array( '1', 'ノート空間', '会話空間E', 'トークスペースE', 'トークスペースＥ', 'TALKSPACEE' ),
+	'talkspacee'            => array( '1', 'ノート空間E', '会話空間E', 'トークスペースE', 'トークスペースＥ', 'TALKSPACEE' ),
 	'subjectspace'          => array( '1', '標準空間', 'SUBJECTSPACE', 'ARTICLESPACE' ),
 	'subjectspacee'         => array( '1', '標準空間E', '名前空間Ｅ', 'SUBJECTSPACEE', 'ARTICLESPACEE' ),
 	'fullpagename'          => array( '1', 'フルページ名', '完全なページ名', 'FULLPAGENAME' ),
@@ -279,6 +279,7 @@ $magicWords = array(
 	'numberingroup'         => array( '1', 'グループ人数', 'グループ所属人数', 'NUMBERINGROUP', 'NUMINGROUP' ),
 	'staticredirect'        => array( '1', '__二重転送解消無効__', '＿＿二重転送解消無効＿＿', '__二重転送修正無効__', '＿＿二重転送修正無効＿＿', '__STATICREDIRECT__' ),
 	'protectionlevel'       => array( '1', '保護レベル', 'PROTECTIONLEVEL' ),
+	'formatdate'            => array( '0', '日付整形', 'formatdate', 'dateformat' ),
 );
 
 $messages = array(
