@@ -61,7 +61,6 @@ $magicWords = array(
 	'img_none'              => array( '1', 'netra', 'none' ),
 	'img_center'            => array( '1', 'kreiz', 'center', 'centre' ),
 	'img_top'               => array( '1', 'krec\'h', 'top' ),
-	'img_middle'            => array( '1', 'kreiz', 'middle' ),
 	'img_bottom'            => array( '1', 'traoñ', 'bottom' ),
 	'server'                => array( '0', 'SERVIJER', 'SERVER' ),
 	'grammar'               => array( '0', 'YEZHADUR:', 'GRAMMAR:' ),

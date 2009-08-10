@@ -76,7 +76,6 @@ $magicWords = array(
 	'gender'                => array( '0', 'SUGU:', 'GENDER:' ),
 	'plural'                => array( '0', 'ÄILUGU:', 'PLURAL:' ),
 	'fullurl'               => array( '0', 'TÄUZ\'URL:', 'FULLURL:' ),
-	'fullurle'              => array( '0', 'TÄUZ\'URL:', 'FULLURLE:' ),
 	'index'                 => array( '1', '__INDEKS__', '__INDEX__' ),
 );
 

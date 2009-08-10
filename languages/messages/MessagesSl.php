@@ -89,7 +89,6 @@ $magicWords = array(
 	'img_super'             => array( '1', 'nad', 'nadpisano', 'super', 'sup' ),
 	'img_top'               => array( '1', 'vrh', 'top' ),
 	'img_text_top'          => array( '1', 'vrh-besedila', 'text-top' ),
-	'img_middle'            => array( '1', 'sredina', 'middle' ),
 	'img_bottom'            => array( '1', 'dno', 'bottom' ),
 	'img_text_bottom'       => array( '1', 'dno-besedila', 'text-bottom' ),
 	'sitename'              => array( '1', 'IMESTRANI', 'SITENAME' ),

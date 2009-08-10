@@ -213,7 +213,6 @@ $magicWords = array(
 	'img_bottom'            => array( '1', 'bunn', 'bottom' ),
 	'img_text_bottom'       => array( '1', 'tekst-bunn', 'text-bottom' ),
 	'img_link'              => array( '1', 'lenke=$1', 'link=$1' ),
-	'sitename'              => array( '1', 'SIDENAVN', 'SITENAME' ),
 	'ns'                    => array( '0', 'NR:', 'NS:' ),
 	'localurl'              => array( '0', 'LOKALURL:', 'LOCALURL:' ),
 	'localurle'             => array( '0', 'LOKALURLE:', 'LOCALURLE:' ),
