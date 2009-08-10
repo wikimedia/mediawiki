@@ -302,13 +302,11 @@ class SkinTemplate extends Skin {
 		if( count( $newtalks ) == 1 && $newtalks[0]['wiki'] === wfWikiID() ) {
 			$usertitle = $this->mUser->getUserPage();
 			$usertalktitle = $usertitle->getTalkPage();
-			
-			$newmessagescount = $wgUser->getnewMessagesCount();
 
 			if( !$usertalktitle->equals( $this->mTitle ) ) {
 				$newmessageslink = $this->link(
 					$usertalktitle,
-					wfMsgExt( 'newmessageslink', array( 'parsemag', 'escape' ) ),
+					wfMsgHtml( 'newmessageslink' ),
 					array(),
 					array( 'redirect' => 'no' ),
 					array( 'known', 'noclasses' )
@@ -316,7 +314,7 @@ class SkinTemplate extends Skin {
 
 				$newmessagesdifflink = $this->link(
 					$usertalktitle,
-					wfMsgExt( 'newmessagesdifflink', array( 'parsemag', 'escape' ), $newmessagescount ),
+					wfMsgHtml( 'newmessagesdifflink' ),
 					array(),
 					array( 'diff' => 'cur' ),
 					array( 'known', 'noclasses' )
@@ -512,7 +510,7 @@ class SkinTemplate extends Skin {
 	 * @private
 	 */
 	function buildPersonalUrls() {
-		global $wgOut, $wgRequest, $wgUser, $wgLang;
+		global $wgOut, $wgRequest;
 
 		$title = $wgOut->getTitle();
 		$pageurl = $title->getLocalURL();
@@ -533,26 +531,8 @@ class SkinTemplate extends Skin {
 				'active' => ( $this->userpageUrlDetails['href'] == $pageurl )
 			);
 			$usertalkUrlDetails = $this->makeTalkUrlDetails( $this->userpage );
-			if ( $wgUser->getNewtalk() ) {
-				# do not show text when we are viewing our
-				# own talk page
-				if( !$title->equals( $wgUser->getTalkPage() ) ) {
-					$newmessagescount = $wgUser->getnewMessagesCount();
-					$newtalk = wfMsg( 'word-separator' ) . wfMsg( 'parentheses', $newmessagescount );
-					
-					# disable caching
-					$wgOut->setSquidMaxage( 0 );
-					$wgOut->enableClientCache( false );
-				}
-				else {
-					$newtalk = '';
-				}
-			}
-			else {
-				$newtalk = '';
-			}
 			$personal_urls['mytalk'] = array(
-				'text' => wfMsg( 'mytalk', $newtalk ),
+				'text' => wfMsg( 'mytalk' ),
 				'href' => &$usertalkUrlDetails['href'],
 				'class' => $usertalkUrlDetails['exists'] ? false : 'new',
 				'active' => ( $usertalkUrlDetails['href'] == $pageurl )
