@@ -637,19 +637,19 @@ table.collapsed tr.collapsable {
 .imagelist th.TablePager_sort { background-color: #ccccff }
 
  /* Allmessages table */
-#allmessagestable .allmessages-customised td.am_default {
+#mw-allmessagestable .allmessages-customised td.am_default {
 	background-color: #fcffc4;
 }
 
-#allmessagestable tr.allmessages-customised:hover td.am_default {
+#mw-allmessagestable tr.allmessages-customised:hover td.am_default {
 	background-color: #faff90;
 }
 
-#allmessagestable td.am_actual {
+#mw-allmessagestable td.am_actual {
 	background-color: #e2ffe2;
 }
 
-#allmessagestable tr.allmessages-customised:hover + tr.allmessages-customised td.am_actual {
+#mw-allmessagestable tr.allmessages-customised:hover + tr.allmessages-customised td.am_actual {
 	background-color: #b1ffb1;
 }
 
