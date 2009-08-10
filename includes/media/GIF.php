@@ -24,7 +24,7 @@ class GIFHandler extends BitmapHandler {
 	}
 	
 	function getImageArea( $image, $width, $height ) {
-		$ser = $image->getMetadata()
+		$ser = $image->getMetadata();
 		if ($ser) {
 			$metadata = unserialize($ser);
 			return $width * $height * $metadata['frameCount'];
