@@ -109,12 +109,7 @@ class OutputPage {
 	 *             addStyle() and draws from the /skins folder.
 	 */
 	public function addExtensionStyle( $url ) {
-		global $wgHtml5;
-		$linkarr = array( 'rel' => 'stylesheet', 'href' => $url );
-		if ( !$wgHtml5 ) {
-			# type attribute is mandatory in XHTML 1.0 Transitional
-			$linkarr['type'] = 'text/css';
-		}
+		$linkarr = array( 'rel' => 'stylesheet', 'href' => $url, 'type' => 'text/css' );
 		array_push( $this->mExtStyles, $linkarr );
 	}
 
@@ -123,7 +118,7 @@ class OutputPage {
 	 * @param string $file filename in skins/common or complete on-server path (/foo/bar.js)
 	 */
 	function addScriptFile( $file ) {
-		global $wgStylePath, $wgStyleVersion, $wgJsMimeType, $wgScript, $wgUser, $wgHtml5;
+		global $wgStylePath, $wgStyleVersion, $wgJsMimeType, $wgScript, $wgUser;
 		global $wgJSAutoloadClasses, $wgJSAutoloadLocalClasses, $wgEnableScriptLoader, $wgScriptPath;
 
 		if( substr( $file, 0, 1 ) == '/' ) {
@@ -168,11 +163,15 @@ class OutputPage {
 		}
 
 		// if the script loader did not find a way to add the script than add using addScript
-		$attrs = array( 'src' => wfAppendQuery( $path, $this->getURIDparam() ) );
-		if ( !$wgHtml5 ) {
-			$attrs['type'] = $wgJsMimeType;
-		}
-		$this->addScript( Xml::element( 'script', $attrs, '', false ) );
+		$this->addScript(
+			Xml::element( 'script',
+				array(
+					'type' => $wgJsMimeType,
+					'src' => wfAppendQuery( $path, $this->getURIDparam() ),
+				),
+				'', false
+			)
+		);
 	}
 
 	/**
@@ -181,8 +180,7 @@ class OutputPage {
 	 *  different page load types (edit, upload, view, etc)
 	 */
 	function addCoreScripts2Top(){
-		global $wgEnableScriptLoader, $wgStyleVersion, $wgJSAutoloadLocalClasses,
-			$wgJsMimeType, $wgScriptPath, $wgEnableJS2system, $wgHtml5;
+		global $wgEnableScriptLoader, $wgStyleVersion, $wgJSAutoloadLocalClasses, $wgJsMimeType, $wgScriptPath, $wgEnableJS2system;
 		//@@todo we should deprecate wikibits in favor of mv_embed and native jQuery functions
 
 		if( $wgEnableJS2system ){
@@ -197,11 +195,12 @@ class OutputPage {
 			$so = '';
 			foreach( $core_classes as $s ){
 				if( isset( $wgJSAutoloadLocalClasses[$s] ) ){
-					$attrs = array( 'src' => "{$wgScriptPath}/{$wgJSAutoloadLocalClasses[$s]}?" . $this->getURIDparam() );
-					if ( !$wgHtml5 ) {
-						$attrs['type'] = $wgJsMimeType;
-					}
-					$so.= Xml::element( 'script', $attrs, '', false );
+					$so.= Xml::element( 'script', array(
+							'type' => $wgJsMimeType,
+							'src' => "{$wgScriptPath}/{$wgJSAutoloadLocalClasses[$s]}?" . $this->getURIDparam()
+						),
+						'', false
+					);
 				}
 			}
 			$this->mScripts =  $so . $this->mScripts;
@@ -214,7 +213,7 @@ class OutputPage {
 	 */
 	function addScriptClass( $js_class ){
 		global $wgDebugJavaScript, $wgJSAutoloadLocalClasses, $wgJSAutoloadClasses,
-			$wgJsMimeType, $wgEnableScriptLoader, $wgStyleVersion, $wgScriptPath, $wgHtml5;
+				$wgJsMimeType, $wgEnableScriptLoader, $wgStyleVersion, $wgScriptPath;
 
 		if( isset( $wgJSAutoloadClasses[$js_class] ) || isset( $wgJSAutoloadLocalClasses[$js_class] ) ){
 			if( $wgEnableScriptLoader ){
@@ -229,12 +228,16 @@ class OutputPage {
 				}else if( isset( $wgJSAutoloadLocalClasses[$js_class] ) ){
 					$path.= $wgJSAutoloadLocalClasses[$js_class];
 				}
-				$urlAppend = ( $wgDebugJavaScript) ? time() : $wgStyleVersion;
-				$attrs = array( 'src' => "$path?$urlAppend" );
-				if ( !$wgHtml5 ) {
-					$attrs['type'] = $wgJsMimeType;
-				}
-				$this->addScript( Xml::element( 'script', $attrs, '', false ) );
+				$urlApend = ( $wgDebugJavaScript) ? time() : $wgStyleVersion;
+				$this->addScript(
+					Xml::element( 'script',
+						array(
+							'type' => $wgJsMimeType,
+							'src' => "$path?" . $urlApend,
+						),
+						'', false
+					)
+				);
 			}
 			return true;
 		}
@@ -247,7 +250,7 @@ class OutputPage {
 	 * @param $forcClassAry Boolean: false by default
 	 */
 	function getScriptLoaderJs( $forceClassAry = false ){
-		global $wgJsMimeType, $wgStyleVersion, $wgRequest, $wgDebugJavaScript, $wgHtml5;
+		global $wgJsMimeType, $wgStyleVersion, $wgRequest, $wgDebugJavaScript;
 
 		if( !$forceClassAry ){
 			$class_list = implode( ',', $this->mScriptLoaderClassList );
@@ -265,11 +268,14 @@ class OutputPage {
 
 		//generate the unique request param (combine with the most recent revision id of any wiki page with the $wgStyleVersion var)
 
-		$attrs = array( 'src' => wfScript( 'mwScriptLoader' ) . "?class={$class_list}{$debug_param}&".$this->getURIDparam() );
-		if ( !$wgHtml5 ) {
-			$attrs['type'] = $wgJsMimeType;
-		}
-		return Xml::element( 'script', $attrs, '', false );
+
+		return Xml::element( 'script',
+				array(
+					'type' => $wgJsMimeType,
+					'src' => wfScript( 'mwScriptLoader' ) . "?class={$class_list}{$debug_param}&".$this->getURIDparam(),
+				),
+				'', false
+		);
 	}
 
 	function getURIDparam(){
@@ -298,9 +304,8 @@ class OutputPage {
 	 * @param string $script JavaScript text, no <script> tags
 	 */
 	function addInlineScript( $script ) {
-		global $wgJsMimeType, $wgHtml5;
-		$this->mScripts .= "\t\t<script" . ($wgHtml5 ? '' : " type=\"$wgJsMimeType\"")
-			. ">/*<![CDATA[*/\n\t\t$script\n\t\t/*]]>*/</script>\n";
+		global $wgJsMimeType;
+		$this->mScripts .= "\t\t<script type=\"$wgJsMimeType\">/*<![CDATA[*/\n\t\t$script\n\t\t/*]]>*/</script>\n";
 	}
 
 	function getScript() {
@@ -1935,24 +1940,8 @@ class OutputPage {
 		return "\t" . implode( "\n\t", $links );
 	}
 
-	/**
-	 * Return a <link rel="stylesheet"> with the given parameters.
-	 *
-	 * @param $style string Relative or absolute URL.  If $style begins with
-	 *   '/', 'http:', or 'https:' it's used for the href as-is.  Otherwise,
-	 *   it's assumed to refer to some file within $wgStylePath, so the URL
-	 *   used is "$wgStylePath/$style?$wgStyleVersion".
-	 * @param $options array Associative array with the following possible
-	 *   keys:
-	 *     'dir': 'rtl' or 'ltr'.  If the site language direction doesn't match
-	 *       this, the empty string is returned.
-	 *     'media': Contents of the media attribute (will be mangled a bit,
-	 *       e.g. 'screen' -> 'screen,projection' so Opera fullscreen works)
-	 *     'condition': Wrap in an IE conditional comment, e.g., 'lt IE 7'.
-	 * @return string Raw HTML
-	 */
 	protected function styleLink( $style, $options ) {
-		global $wgRequest, $wgHtml5;
+		global $wgRequest;
 
 		if( isset( $options['dir'] ) ) {
 			global $wgContLang;
@@ -1981,11 +1970,9 @@ class OutputPage {
 
 		$attribs = array(
 			'rel' => 'stylesheet',
-			'href' => $url );
-		if ( !$wgHtml5 ) {
-			$attribs['type'] = 'text/css';
-		}
-		if ( $media ) {
+			'href' => $url,
+			'type' => 'text/css' );
+		if( $media ) {
 			$attribs['media'] = $media;
 		}
 
