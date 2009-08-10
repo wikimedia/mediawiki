@@ -94,7 +94,7 @@ $specialPageAliases = array(
 	'Disambiguations'           => array( 'Појаснувања' ),
 	'Userlogin'                 => array( 'Најавување' ),
 	'Userlogout'                => array( 'Одјавување' ),
-	'CreateAccount'             => array( 'КреирајКирисничкаСметка' ),
+	'CreateAccount'             => array( 'СоздајКирисничкаСметка' ),
 	'Preferences'               => array( 'Нагодувања' ),
 	'Watchlist'                 => array( 'ЛистаНаНабљудувања' ),
 	'Recentchanges'             => array( 'СкорешниПромени' ),
@@ -135,6 +135,8 @@ $specialPageAliases = array(
 	'Ipblocklist'               => array( 'ЛистаНаБлокираниIP' ),
 	'Specialpages'              => array( 'СпецијалниСтраници' ),
 	'Contributions'             => array( 'Придонеси' ),
+	'Emailuser'                 => array( 'Пиши е-пошта на корисникот' ),
+	'Confirmemail'              => array( 'Потврди е-пошта' ),
 	'Whatlinkshere'             => array( 'ШтоВодиОвде' ),
 	'Recentchangeslinked'       => array( 'ПоврзаниПромени' ),
 	'Movepage'                  => array( 'ПреместиСтраница' ),
@@ -174,6 +176,7 @@ $specialPageAliases = array(
 	'LinkSearch'                => array( 'ПребарајВрска' ),
 	'DeletedContributions'      => array( 'ИзбришаниПридонеси' ),
 	'Tags'                      => array( 'Приврзоци' ),
+	'Activeusers'               => array( 'АктивниКорисници' ),
 );
 
 $magicWords = array(

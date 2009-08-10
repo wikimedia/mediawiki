@@ -175,6 +175,8 @@ $specialPageAliases = array(
 	'Blankpage'                 => array( 'ទំព័រទទេ' ),
 	'LinkSearch'                => array( 'ស្វែងរកតំណភ្ជាប់' ),
 	'DeletedContributions'      => array( 'ការរួមចំណែកដែលត្រូវបានលុបចោល' ),
+	'Tags'                      => array( 'ប្លាក' ),
+	'Activeusers'               => array( 'អ្នកប្រើប្រាស់សកម្ម' ),
 );
 
 $magicWords = array(

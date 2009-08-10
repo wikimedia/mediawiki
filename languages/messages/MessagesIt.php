@@ -88,7 +88,7 @@ $specialPageAliases = array(
 	'Watchlist'                 => array( 'OsservatiSpeciali' ),
 	'Recentchanges'             => array( 'UltimeModifiche' ),
 	'Upload'                    => array( 'Carica' ),
-	'Listfiles'                 => array( 'Immagini' ),
+	'Listfiles'                 => array( 'File', 'Immagini' ),
 	'Newimages'                 => array( 'ImmaginiRecenti' ),
 	'Listusers'                 => array( 'Utenti', 'ElencoUtenti' ),
 	'Listgrouprights'           => array( 'ElencoPermessiGruppi' ),
@@ -156,7 +156,7 @@ $specialPageAliases = array(
 	'Listbots'                  => array( 'Bot' ),
 	'Popularpages'              => array( 'PaginePiùVisitate' ),
 	'Search'                    => array( 'Ricerca', 'Cerca' ),
-	'Resetpass'                 => array( 'ReimpostaPassword' ),
+	'Resetpass'                 => array( 'CambiaPassword' ),
 	'Withoutinterwiki'          => array( 'PagineSenzaInterwiki' ),
 	'MergeHistory'              => array( 'UnificaCronologia' ),
 	'Filepath'                  => array( 'Percorso' ),
@@ -164,6 +164,8 @@ $specialPageAliases = array(
 	'Blankpage'                 => array( 'PaginaVuota' ),
 	'LinkSearch'                => array( 'CercaCollegamenti' ),
 	'DeletedContributions'      => array( 'ContributiCancellati' ),
+	'Tags'                      => array( 'Etichette' ),
+	'Activeusers'               => array( 'UtentiAttivi' ),
 );
 
 $magicWords = array(

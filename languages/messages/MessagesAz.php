@@ -35,6 +35,26 @@ $namespaceNames = array(
 	NS_CATEGORY_TALK    => 'Kateqoriya_müzakirəsi',
 );
 
+$specialPageAliases = array(
+	'CreateAccount'             => array( 'HesabAç' ),
+	'Preferences'               => array( 'Nizamlamalar' ),
+	'Recentchanges'             => array( 'SonDəyişikliklər' ),
+	'Statistics'                => array( 'Statistika' ),
+	'Shortpages'                => array( 'QısaSəhifələr' ),
+	'Longpages'                 => array( 'UzunSəhifələr' ),
+	'Newpages'                  => array( 'YeniSəhifələr' ),
+	'Allpages'                  => array( 'BütünSəhifələr' ),
+	'Specialpages'              => array( 'XüsusiSəhifələr' ),
+	'Contributions'             => array( 'Fəaliyyətlər' ),
+	'Version'                   => array( 'Versiya' ),
+	'Undelete'                  => array( 'Pozma' ),
+	'Mypage'                    => array( 'MənimSəhifəm' ),
+	'Mytalk'                    => array( 'MənimDanışıqlarım' ),
+	'Mycontributions'           => array( 'MənimFəaliyyətlərim' ),
+	'Search'                    => array( 'Axtar' ),
+	'Activeusers'               => array( 'Aktivİstifadəçilər' ),
+);
+
 $separatorTransformTable = array(',' => '.', '.' => ',' );
 
 $messages = array(

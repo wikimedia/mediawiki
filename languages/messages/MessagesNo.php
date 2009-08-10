@@ -170,6 +170,7 @@ $specialPageAliases = array(
 	'LinkSearch'                => array( 'Lenkesøk' ),
 	'DeletedContributions'      => array( 'Slettede bidrag' ),
 	'Tags'                      => array( 'Tagger' ),
+	'Activeusers'               => array( 'Aktive brukere' ),
 );
 
 $magicWords = array(
