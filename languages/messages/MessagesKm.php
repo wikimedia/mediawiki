@@ -390,7 +390,7 @@ $messages = array(
 'cancel'        => 'បោះបង់',
 'moredotdotdot' => 'បន្ថែមទៀត...',
 'mypage'        => 'ទំព័រ​របស់ខ្ញុំ',
-'mytalk'        => 'ការពិភាក្សា​($1)',
+'mytalk'        => 'ការពិភាក្សា​$1',
 'anontalk'      => 'ពិភាក្សាចំពោះ IP នេះ',
 'navigation'    => 'ទិសដៅ',
 'and'           => '&#32;និង',
@@ -1339,6 +1339,7 @@ $2',
 'action-upload'               => 'ផ្ទុកឡើងឯកសារនេះ',
 'action-reupload'             => 'ផ្ទុកជាន់ពីលើឯកសារដែលមានស្រាប់ហើយនេះ',
 'action-upload_by_url'        => 'ផ្ទុក​ឯកសារ​នេះ​ឡើង​ពី​អាសយដ្ឋាន URL',
+'action-writeapi'             => 'ប្រើប្រាស់​ write API',
 'action-delete'               => 'លុបទំព័រនេះ',
 'action-deleterevision'       => 'លុបកំណែប្រែនេះ',
 'action-deletedhistory'       => 'មើលប្រវត្តិលុបរបស់ទំព័រនេះ',
@@ -1436,6 +1437,7 @@ $2',
 'filename'                    => 'ឈ្មោះឯកសារ',
 'filedesc'                    => 'សេចក្តីសង្ខេប',
 'fileuploadsummary'           => 'សេចក្តីសង្ខេប៖',
+'filereuploadsummary'         => 'បំលាស់ប្ដូរ​ឯកសារ​៖',
 'filestatus'                  => 'ស្ថានភាពរក្សាសិទ្ធិ៖',
 'filesource'                  => 'ប្រភព',
 'uploadedfiles'               => 'ឯកសារដែលត្រូវបានផ្ទុកឡើង',
@@ -1550,6 +1552,7 @@ $2',
 'duplicatesoffile'          => '{{PLURAL:$1|file is a duplicate|$1 ឯកសារ​ជាច្បាប់ចម្លង}}ដូចតទៅ​នៃ​ឯកសារ​នេះ​ ([[Special:FileDuplicateSearch/$2|ព័ត៌មាន​លំអិត]])​៖',
 'sharedupload'              => 'ឯកសារ​នេះ​​បាន​មក​ពី $1 និង​អាច​ត្រូវ​បាន​ប្រើប្រាស់​នៅ​គម្រោង​ដទៃ​។',
 'uploadnewversion-linktext' => 'ផ្ទុកឡើងមួយកំណែថ្មីនៃឯកសារនេះ',
+'shared-repo-from'          => 'ពី $1',
 
 # File reversion
 'filerevert'                => 'ត្រឡប់ $1',
@@ -1602,6 +1605,7 @@ $2',
 'statistics-header-edits'  => 'ស្ថិតិកំណែប្រែ',
 'statistics-header-views'  => 'មើលស្ថិតិ',
 'statistics-header-users'  => 'ស្ថិតិអ្នកប្រើប្រាស់',
+'statistics-header-hooks'  => 'ស្ថិតិ​ដទៃទៀត​',
 'statistics-articles'      => 'ទំព័រខ្លឹមសារ',
 'statistics-pages'         => 'ចំនួនទំព័រសរុប',
 'statistics-pages-desc'    => 'ទំព័រទាំងអស់នៅក្នុងវិគី រាប់បញ្ចូលទាំងទំព័រពិភាក្សា ទំព័របញ្ជូនបន្ត -ល-',
@@ -1638,6 +1642,7 @@ $2',
 'ncategories'             => '$1 {{PLURAL:$1|ចំណាត់ថ្នាក់ក្រុម|ចំណាត់ថ្នាក់ក្រុម}}',
 'nlinks'                  => '$1 {{PLURAL:$1|តំណភ្ជាប់|តំណភ្ជាប់}}',
 'nmembers'                => '$1{{PLURAL:$1|សមាជិក|សមាជិក}}',
+'nrevisions'              => '$1 {{PLURAL:$1|កំណែប្រែ}}',
 'nviews'                  => '$1 {{PLURAL:$1|ការចូលមើល}}',
 'specialpage-empty'       => 'គ្មានលទ្ធផលសម្រាប់របាយណ៍នេះទេ។',
 'lonelypages'             => 'ទំព័រកំព្រា',
@@ -1730,8 +1735,9 @@ $2',
 'special-categories-sort-abc'   => 'តម្រៀបតាមអក្ខរក្រម',
 
 # Special:DeletedContributions
-'deletedcontributions'       => 'ការរួមចំណែកដែលត្រូវបានលុប',
-'deletedcontributions-title' => 'ការរួមចំណែកដែលត្រូវបានលុប',
+'deletedcontributions'             => 'ការរួមចំណែកដែលត្រូវបានលុប',
+'deletedcontributions-title'       => 'ការរួមចំណែកដែលត្រូវបានលុប',
+'sp-deletedcontributions-contribs' => 'ការរួមចំណែក​',
 
 # Special:LinkSearch
 'linksearch'      => 'តំណភ្ជាប់ខាង​ក្រៅ​',
@@ -1747,9 +1753,10 @@ $2',
 'listusers-blocked'  => '(បានរាំងខ្ទប់)',
 
 # Special:ActiveUsers
-'activeusers'       => 'បញ្ជីរាយនាមអ្នកប្រើប្រាស់សកម្ម',
-'activeusers-count' => '$1 {{PLURAL:$1|កំនែប្រែ|កំនែប្រែ}}ថ្មីៗ',
-'activeusers-from'  => 'បង្ហាញឈ្មោះអ្នកប្រើប្រាស់ផ្ដើមដោយ៖',
+'activeusers'          => 'បញ្ជីរាយនាមអ្នកប្រើប្រាស់សកម្ម',
+'activeusers-count'    => '$1 {{PLURAL:$1|កំនែប្រែ|កំនែប្រែ}}ថ្មីៗ',
+'activeusers-from'     => 'បង្ហាញឈ្មោះអ្នកប្រើប្រាស់ផ្ដើមដោយ៖',
+'activeusers-noresult' => 'អ្នកប្រើប្រាស់​រកមិនឃើញ​។​',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'កំណត់ហេតុនៃការបង្កើតគណនី',
@@ -1966,6 +1973,7 @@ $NEWPAGE
 'undeletehistorynoadmin'    => 'ទំព័រនេះត្រូវបានលុបចេញហើយ។
 មូលហេតុចំពោះការលុបចេញ​គឺត្រូវបានបង្ហាញនៅក្នុង​សេចក្តីសង្ខេបខាងក្រោម ជាមួយគ្នានឹងសេចក្តីលំអិតនៃ​អ្នកប្រើប្រាស់​ដែលបានធ្វើការកែប្រែ​ទំព័រនេះ​មុនពេលវាត្រូវបាន​លុបចេញ។ 
 ឃ្លាជាការពិតនៃ​ការត្រួតពិនិត្យកំណែប្រែឡើងវិញ​​ដែលត្រូវបានលុបចេញគឺមានសុពលភាពចំពោះតែ​អ្នកអភិបាលប៉ុណ្ណោះ។',
+'undelete-revision'         => 'កំណែប្រែដែលបាន​លុបចោល​នៃ $1 (នៅថ្ងៃ​ $4, នៅម៉ោង​ $5) ដោយ​ $3៖',
 'undelete-nodiff'           => 'គ្មានការកែតម្រូវពីមុនត្រូវបានឃើញទេ។',
 'undeletebtn'               => 'ស្ដារឡើងវិញ',
 'undeletelink'              => 'មើល​/​ស្តារឡើងវិញ',
@@ -2013,6 +2021,7 @@ $1',
 'sp-contributions-newbies-title' => 'ការរួមចំណែករបស់អ្នកប្រើប្រាស់ចំពោះគណនីថ្មី',
 'sp-contributions-blocklog'      => 'កំណត់ហេតុនៃការហាមឃាត់',
 'sp-contributions-deleted'       => 'ការរួមចំណែកដែលត្រូវបានលុប',
+'sp-contributions-logs'          => 'កំណត់​ហេតុ​',
 'sp-contributions-talk'          => 'ការពិភាក្សា',
 'sp-contributions-userrights'    => 'ការគ្រប់គ្រងសិទ្ធិអ្នកប្រើប្រាស់',
 'sp-contributions-search'        => 'ស្វែងរកការរួមចំណែក',
@@ -2263,9 +2272,11 @@ $1 ត្រូវ​បាន​ទប់ស្កាត់​ហើយ​។ �
 # Special:Import
 'import'                     => 'ការនាំចូលទំព័រ',
 'importinterwiki'            => 'ការនាំចូលអន្តរវិគី',
+'import-interwiki-source'    => 'ប្រភព​ វិគី​/ទំព័រ​៖',
 'import-interwiki-history'   => 'ចម្លង គ្រប់កំណែចាស់ នៃទំព័រនេះ',
 'import-interwiki-submit'    => 'នាំចូល',
 'import-interwiki-namespace' => 'បញ្ជូនទំព័រទៅក្នុងលំហឈ្មោះ​៖',
+'import-upload-filename'     => 'ឈ្មោះ​ឯកសារ​​៖',
 'import-comment'             => 'យោបល់៖',
 'importtext'                 => 'សូមនាំចេញឯកសារនេះពីវិគីប្រភពដោយប្រើប្រាស់[[Special:Export|ឧបករណ៍នាំចេញ]]។
 
@@ -2419,6 +2430,7 @@ $1 ត្រូវ​បាន​ទប់ស្កាត់​ហើយ​។ �
 'patrol-log-page' => 'កំណត់ហេតុនៃការតាមដាន',
 'patrol-log-line' => 'បានចំណាំការល្បាត $1 នៃ $2 ថា បានត្រួតពិនិត្យ $3',
 'patrol-log-auto' => '(ស្វ័យប្រវត្តិ)',
+'patrol-log-diff' => 'កំណែប្រែ​ $1',
 
 # Image deletion
 'deletedrevision'                 => 'កំណែចាស់ដែលត្រូវបានលុបចេញ $1',
@@ -2559,6 +2571,7 @@ $1',
 'exif-scenecapturetype-0' => 'ស្តង់ដារ',
 'exif-scenecapturetype-1' => 'រូបផ្តេក',
 'exif-scenecapturetype-2' => 'រូបបញ្ឈរ',
+'exif-scenecapturetype-3' => 'ទិដ្ឋភាព​ពេលរាត្រី​',
 
 'exif-gaincontrol-0' => 'ទទេ',
 
@@ -2575,6 +2588,7 @@ $1',
 'exif-subjectdistancerange-0' => 'មិនដឹង',
 'exif-subjectdistancerange-1' => 'ម៉ាក្រូ',
 'exif-subjectdistancerange-2' => 'បិទការមើល',
+'exif-subjectdistancerange-3' => 'ទិដ្ឋភាព​ពីចម្ងាយ​',
 
 # Pseudotags used for GPSLatitudeRef and GPSDestLatitudeRef
 'exif-gpslatitude-n' => 'ខាងជើង',
@@ -2775,8 +2789,12 @@ $5
 'intentionallyblankpage' => 'ទំព័រនេះត្រូវបានទុកចោលឱ្យនៅទំនេរដោយចេតនា',
 
 # Special:Tags
-'tags-edit'     => 'កែប្រែ',
-'tags-hitcount' => '$1 {{PLURAL:$1|បំលាស់ប្ដូរ|បំលាស់ប្ដូរ}}',
+'tags-title'              => 'ស្លាក​',
+'tags-tag'                => 'ឈ្មោះ​ស្លាក​ខាង​ក្នុង​',
+'tags-description-header' => 'បរិយាយពេញលេញ​នៃអត្ថន័យ​',
+'tags-hitcount-header'    => 'បំលាស់​ប្ដូរ​ដែលមានស្លាក​',
+'tags-edit'               => 'កែប្រែ',
+'tags-hitcount'           => '$1 {{PLURAL:$1|បំលាស់ប្ដូរ|បំលាស់ប្ដូរ}}',
 
 # Database error messages
 'dberr-header'    => 'វិគីនេះមានបញ្ហា',

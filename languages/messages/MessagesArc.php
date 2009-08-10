@@ -10,6 +10,7 @@
  * @author 334a
  * @author A2raya07
  * @author Basharh
+ * @author IAlex
  * @author The Thadman
  */
 
@@ -105,7 +106,7 @@ $messages = array(
 'cancel'        => 'ܒܛܘܠ',
 'moredotdotdot' => '...ܝܬܝܪ',
 'mypage'        => 'ܦܐܬܝ',
-'mytalk'        => 'ܡܡܠܠܝ ($1)',
+'mytalk'        => 'ܡܡܠܠܝ$1',
 'anontalk'      => 'ܡܡܠܠܐ ܕܗܢܐ IP',
 'navigation'    => 'ܐܠܦܪܘܬܐ',
 'and'           => '&#32;ܘ',

@@ -438,7 +438,7 @@ Taivutusmuodot: {{GRAMMAR:genitive|{{SITENAME}}}} (yön) — {{GRAMMAR:partitive
 'cancel'        => 'Peruuta',
 'moredotdotdot' => 'Lisää...',
 'mypage'        => 'Käyttäjäsivu',
-'mytalk'        => 'Keskustelusivu ($1)',
+'mytalk'        => 'Keskustelusivu$1',
 'anontalk'      => 'Keskustele tämän IP:n kanssa',
 'navigation'    => 'Valikko',
 'and'           => '&#32;ja',
@@ -995,8 +995,8 @@ Lisätietoja saattaa olla [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENA
 Ylläpitäjänä voit silti [$1 katsoa tämän version].",
 'rev-deleted-text-view'       => "Tämä versio on '''poistettu'''.
 Ylläpitäjänä voit nähdä sen. Lisätietoja saattaa olla [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} poistolokissa].",
-'rev-suppressed-text-view'    => "Tämä sivun versio on '''piilotettu'''.
-Ylläpitäjänä voit nähdä sen. Lisätietoja saattaa olla [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} piilotuslokissa].",
+'rev-suppressed-text-view'    => "Tämä sivun versio on '''häivytetty'''.
+Ylläpitäjänä voit nähdä sen. Lisätietoja saattaa olla [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} häivytyslokissa].",
 'rev-deleted-no-diff'         => "Et voi katsoa tätä muokkausta, koska yksi versioista on '''poistettu'''.
 Lisätietoja saattaa olla [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} poistolokissa].",
 'rev-deleted-unhide-diff'     => "Yksi tämän muutoksen versioista on '''poistettu'''.
@@ -1244,7 +1244,7 @@ Kokeile lisätä haun alkuun ''all:'', niin haku kohdistuu kaikkeen sisältöön
 'prefsnologin'                  => 'Et ole kirjautunut sisään.',
 'prefsnologintext'              => 'Sinun täytyy <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} kirjautua sisään]</span>, jotta voisit muuttaa asetuksiasi.',
 'changepassword'                => 'Salasanan vaihto',
-'prefs-skin'                    => 'Ulkonäkö',
+'prefs-skin'                    => 'Ulkoasu',
 'skin-preview'                  => 'esikatselu',
 'prefs-math'                    => 'Matematiikka',
 'datedefault'                   => 'Ei valintaa',
@@ -1260,7 +1260,7 @@ Kokeile lisätä haun alkuun ''all:'', niin haku kohdistuu kaikkeen sisältöön
 'prefs-misc'                    => 'Muut',
 'prefs-resetpass'               => 'Muuta salasana',
 'prefs-email'                   => 'Sähköpostiasetukset',
-'prefs-rendering'               => 'Ulkonäkö',
+'prefs-rendering'               => 'Ulkoasu',
 'saveprefs'                     => 'Tallenna asetukset',
 'resetprefs'                    => 'Palauta tallennetut asetukset',
 'restoreprefs'                  => 'Palauta kaikki oletusasetuksiin',

@@ -274,7 +274,7 @@ I seguenti cołegamenti i xe en lengua inglese:
 'cancel'        => 'Anuła',
 'moredotdotdot' => 'Altro...',
 'mypage'        => 'La me pàxena',
-'mytalk'        => 'le me discussión ($1)',
+'mytalk'        => 'le me discussión$1',
 'anontalk'      => 'Discussion par sto IP',
 'navigation'    => 'Navigassión',
 'and'           => '&#32;e',

@@ -292,7 +292,7 @@ $messages = array(
 'cancel'        => 'Afbryd',
 'moredotdotdot' => 'Mere...',
 'mypage'        => 'Min side',
-'mytalk'        => 'Min diskussionsside ($1)',
+'mytalk'        => 'Min diskussionsside$1',
 'anontalk'      => 'Diskussionsside for denne IP-adresse',
 'navigation'    => 'Navigation',
 'and'           => '&#32;og',
@@ -436,7 +436,7 @@ $1',
 'editold'                 => 'redigér',
 'viewsourceold'           => 'vis kildekode',
 'editlink'                => 'redigér',
-'viewsourcelink'          => 'vis kildekode',
+'viewsourcelink'          => 'vis kildetekst',
 'editsectionhint'         => 'Rediger afsnit: $1',
 'toc'                     => 'Indholdsfortegnelse',
 'showtoc'                 => 'vis',
@@ -491,13 +491,12 @@ MySQL returnerede fejlen "$3: $4".',
 'readonlytext'         => 'Databasen er midlertidigt skrivebeskyttet. Forsøg venligst senere.
 
 Årsag til spærringen: $1',
-'missing-article'      => 'Databasen indeholder ikke teksten til en side der burde eksistere med navnet "$1" $2.
+'missing-article'      => 'Databasen burde indeholde siden "$1" $2, men det gør den ikke.
 
-Den sandsynlige årsag er at du har fulgt et forældet link til en
-forskel eller en gammel version af en side der er blevet slettet. Hvis
-det ikke er tilfældet, har du muligvis fundet en software-fejl. Gør
-venligst en [[Special:ListUsers/sysop|administrator]] opmærksom på
-det, og husk at fortælle hvilken URL du har fulgt.',
+Den sandsynlige årsag er at du har fulgt et forældet link til en forskel eller en gammel version af en side der er blevet slettet.
+
+Hvis det ikke er tilfældet, har du muligvis fundet en software-fejl.
+Gør venligst en [[Special:ListUsers/sysop|administrator]] opmærksom på det, og husk at fortælle hvilken URL du har fulgt.',
 'missingarticle-rev'   => '(versionsnummer: $1)',
 'missingarticle-diff'  => '(Forskel: $1, $2)',
 'readonly_lag'         => 'Databasen er automatisk blevet låst mens slave database serverne synkronisere med master databasen',
@@ -521,7 +520,7 @@ det, og husk at fortælle hvilken URL du har fulgt.',
 'wrong_wfQuery_params' => 'Ugyldig parameter til wfQuery()<br />
 Funktion: $1<br />
 Forespørgsel: $2',
-'viewsource'           => 'Vis kilden',
+'viewsource'           => 'Vis kildetekst',
 'viewsourcefor'        => 'for $1',
 'actionthrottled'      => 'Begrænsning af handling',
 'actionthrottledtext'  => 'For at modvirke spam, er det ikke muligt at udføre denne handling mange gange på kort tid. Du har overskredet grænsen, hvorfor handlingen er blevet afbrudt. Vær venlig at forsøge igen om et par minutter.',
@@ -1098,7 +1097,7 @@ Vær opmæksom på at bevare kontinuiteten i sidehistorikken.
 'searchall'                        => 'alle',
 'showingresults'                   => 'Nedenfor vises <b>$1</b> {{PLURAL:$1|resultat|resultater}} startende med nummer <b>$2</b>.',
 'showingresultsnum'                => 'Herunder vises <b>$3</b> {{PLURAL:$3|resultat|resultater}} startende med nummer <b>$2</b>.',
-'showingresultstotal'              => "Viser resultat {{PLURAL:$4|'''$1''' af '''$3'''|'''$1 - $2''' af '''$3'''}} nedenfor",
+'showingresultstotal'              => "Viser {{PLURAL:$4|resultat '''$1''' af '''$3'''|resultater '''$1 - $2''' af '''$3'''}} nedenfor",
 'showingresultsheader'             => "{{PLURAL:$5|Resultat '''$1''' af '''$3'''|Resultat '''$1 - $2''' af '''$3'''}} for '''$4'''",
 'nonefound'                        => "'''Bemærk''': Som standard søges der kun i bestemte navnerum.
 Du kan prøve at bruge \"all:\" som præfiks for at søge i alt indhold (inkl. diskussionssider, skabeloner osv.), eller brug det ønskede navnerum som præfiks.",
@@ -2406,7 +2405,8 @@ Alle Transwiki import-aktioner protokolleres i [[Special:Log/import|import-logge
 'tooltip-ca-talk'                 => 'Diskussion om indholdet på siden',
 'tooltip-ca-edit'                 => 'Du kan redigere denne side. Brug venligst forhåndsvisning før du gemmer.',
 'tooltip-ca-addsection'           => 'Start et nyt afsnit',
-'tooltip-ca-viewsource'           => 'Denne side er beskyttet. Du kan kigge på kildekoden.',
+'tooltip-ca-viewsource'           => 'Denne side er beskyttet.
+Du kan se på kildeteksten.',
 'tooltip-ca-history'              => 'Tidligere versioner af denne side.',
 'tooltip-ca-protect'              => 'Beskyt denne side',
 'tooltip-ca-delete'               => 'Slet denne side',

@@ -250,7 +250,7 @@ This might be a good place to put information about <nowiki>{{GRAMMAR:}}</nowiki
 {{Identical|Cancel}}',
 'moredotdotdot' => '{{Identical|More...}}',
 'mytalk'        => "In the personal urls page section - right upper corner.
-* $1 is the number of changes on the current user's talk page since their last talk page visit",
+* $1 is a {{msg-mw|word-separator}} and the number of changes on the current user's talk page since their last talk page visit inside {{msg-mw|parentheses}}. $1 has no text if there are no new messages.",
 'anontalk'      => 'Link to the talk page appearing in [[mw:Help:Navigation#User_Links|user links]] for each anonymous users when [[mw:Manual:$wgShowIPinHeader|$wgShowIPinHeader]] is true.',
 'navigation'    => '{{Identical|Navigation}}',
 'and'           => 'The translation for "and" appears in the [[Special:Version]] page, between the last two items of a list. If a comma is needed, add it at the beginning without a gap between it and the "&". <nowiki>&#32;</nowiki> is a blank space, one character long. Please leave it as it is.

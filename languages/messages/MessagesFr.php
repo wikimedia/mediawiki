@@ -448,7 +448,6 @@ $messages = array(
 'mainpagedocfooter' => 'Consultez le [http://meta.wikimedia.org/wiki/Aide:Contenu Guide de l’utilisateur] pour plus d’informations sur l’utilisation de ce logiciel.
 
 == Démarrer avec MediaWiki ==
-
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Liste des paramètres de configuration]
 * [http://www.mediawiki.org/wiki/Manual:FAQ/fr FAQ sur MediaWiki]
 * [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Liste de discussion sur les distributions de MediaWiki]',
@@ -457,9 +456,9 @@ $messages = array(
 'article'       => 'Page de contenu',
 'newwindow'     => '(ouvre une nouvelle fenêtre)',
 'cancel'        => 'Annuler',
-'moredotdotdot' => 'Et plus …',
+'moredotdotdot' => 'Et plus...',
 'mypage'        => 'Ma page',
-'mytalk'        => 'Page de discussion ($1)',
+'mytalk'        => 'Ma page de discussion$1',
 'anontalk'      => 'Discussion avec cette adresse IP',
 'navigation'    => 'navigation',
 'and'           => '&#32;et',
@@ -728,7 +727,7 @@ N’oubliez pas de personnaliser vos [[Special:Preferences|préférences sur {{S
 'yourname'                   => 'Nom d’utilisateur :',
 'yourpassword'               => 'Mot de passe :',
 'yourpasswordagain'          => 'Entrez de nouveau votre mot de passe :',
-'remembermypassword'         => 'Me reconnecter automatiquement à la prochaine visite (témoin)',
+'remembermypassword'         => 'M’identifier automatiquement à la prochaine visite sur cet ordinateur',
 'yourdomainname'             => 'Votre domaine',
 'externaldberror'            => 'Une erreur s’est produite avec la base de données d’authentification externe, ou bien vous n’êtes pas autorisé{{GENDER:||e|(e)}} à mettre à jour votre compte externe.',
 'login'                      => 'Connexion',
@@ -1108,7 +1107,7 @@ $1",
 'logdelete-success'           => "'''Visibilité du journal paramétrée avec succès.'''",
 'logdelete-failure'           => "'''La visibilité du journal n’a pas pu être définie :'''
 $1",
-'revdel-restore'              => 'Modifier la visibilité',
+'revdel-restore'              => 'modifier la visibilité',
 'pagehist'                    => 'Historique de la page',
 'deletedhist'                 => 'Historique supprimé',
 'revdelete-content'           => 'contenu',

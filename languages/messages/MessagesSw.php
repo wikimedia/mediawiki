@@ -237,7 +237,7 @@ $messages = array(
 'cancel'        => 'Batilisha',
 'moredotdotdot' => 'Zaidi...',
 'mypage'        => 'Ukurasa wangu',
-'mytalk'        => 'Majadiliano yangu ($1)',
+'mytalk'        => 'Majadiliano yangu$1',
 'anontalk'      => 'Majadiliano ya IP hii',
 'navigation'    => 'Safari',
 'and'           => '&#32;na',
@@ -491,7 +491,9 @@ Huwezi kutumia kipengele 'kumtuma mtumiaji barua pepe' isipopatikana anwani hali
 Anwani yako ya IP ni $3, na namba ya uzuio ni #$5. Tafadhali taja namba hizi ukitaka kuwasiliana kuhusu uzuio huu.",
 'loginreqtitle'              => 'Unatakiwa kuingia au kujisajili',
 'accmailtitle'               => 'Neno la siri limeshakutumia.',
-'accmailtext'                => "Neno la siri la '$1' limeshatumwa kwa $2.",
+'accmailtext'                => "Nywila limetolewa na programu kwa ajili ya [[User talk:$1|$1]] na limetumwa kwa $2.
+
+Unaweza kubadilisha nywila hili kwenye ukurasa wa ''[[Special:ChangePassword|kubadilisha nywila]]'' baada ya kuingia kwenye wiki.",
 'newarticle'                 => '(Mpya)',
 'newarticletext'             => "Ukurasa unaotaka haujaandikwa bado. Ukipenda unaweza kuuandika wewe mwenyewe kwa kutumia sanduku la hapa chini (tazama [[{{MediaWiki:Helppage}}|Mwongozo]] kwa maelezo zaidi). Ukifika hapa kwa makosa, bofya kibonyezi '''back''' (nyuma) cha programu yako.",
 'noarticletext'              => 'Ukurasa huu haujaandikwa bado. [[Special:Search/{{PAGENAME}}|tafutia jina hili]] katika kurasa nyingine, <span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} tafuta kumbukumbu zinazohusika], au [{{fullurl:{{FULLPAGENAME}}|action=edit}} hariri ukurasa huu]</span>.',
@@ -516,7 +518,7 @@ Tafadhali fikiria kuhusu kuvunja ukurasa kwa vipande vifupi.'''",
 'recreate-moveddeleted-warn' => "'''Ilani: Unatengeneza tena ukurasa uliofutwa tayari.'''
 
 Fikiria kama inafaa kuendelea kuhariri ukurasa huu.
-Kumbukumbu ya kufuta ukurasa huu linapatikana hapa kukusaidia:",
+Kumbukumbu za kufuta na kuhamisha ukurasa huu zinapatikana hapa kukusaidia:",
 
 # History pages
 'viewpagelogs'           => 'Tazama kumbukumbu kwa ukurasa huu',
@@ -568,7 +570,7 @@ Ufunguo: (sasa) = tofauti na toleo la sasa, (kabla) = tofauti na toleo lililotan
 'searchmenu-legend'            => 'Hitiari za kutafuta',
 'searchhelp-url'               => 'Help:Yaliyomo',
 'searchmenu-prefix'            => '[[Special:PrefixIndex/$1|Tafuta kurasa kwenye eneo hili la wiki]]',
-'searchprofile-project'        => 'Kurasa za mradi',
+'searchprofile-project'        => 'Kurasa za msaada na za mradi',
 'searchprofile-images'         => 'Mafaili',
 'searchprofile-everything'     => 'Zote',
 'searchprofile-advanced'       => 'Hali ya juu',
@@ -577,6 +579,7 @@ Ufunguo: (sasa) = tofauti na toleo la sasa, (kabla) = tofauti na toleo lililotan
 'search-redirect'              => '(elekeza $1)',
 'search-section'               => '(sehemu $1)',
 'search-suggest'               => 'Je, ulitaka kutafuta: $1',
+'search-interwiki-caption'     => 'Miradi ya jumuia',
 'search-interwiki-default'     => 'Matokeo toka $1:',
 'search-interwiki-more'        => '(zaidi)',
 'search-mwsuggest-enabled'     => 'na mapendekezo',
@@ -599,7 +602,7 @@ Ufunguo: (sasa) = tofauti na toleo la sasa, (kabla) = tofauti na toleo lililotan
 'rows'                      => 'Mistari:',
 'columns'                   => 'Safu:',
 'searchresultshead'         => 'Kutafuta',
-'timezonelegend'            => 'Ukanda saa',
+'timezonelegend'            => 'Ukanda saa:',
 'timezoneregion-africa'     => 'Afrika',
 'timezoneregion-america'    => 'Marekani',
 'timezoneregion-antarctica' => 'Antaktika',
@@ -669,6 +672,7 @@ Pia unaweza kuchagua kuacha watumiaji wengine kuwasiliana nao kwa kutumia ukuras
 'newpageletter'                  => 'P',
 'boteditletter'                  => 'r',
 'newsectionsummary'              => '/* $1 */ mjadala mpya',
+'rc-enhanced-hide'               => 'Ficha maelezo mengine',
 
 # Recent changes linked
 'recentchangeslinked'          => 'Mabadiliko husika',
@@ -808,7 +812,7 @@ Kwa kutumia faili katika makala, tumia moja kati ya viungo vifuatavyo:
 'specialloguserlabel'  => 'Mtumiaji:',
 'speciallogtitlelabel' => 'Kichwa:',
 'log'                  => 'Kumbukumbu',
-'all-logs-page'        => 'Kumbukumbu zote',
+'all-logs-page'        => 'Kumbukumbu zote zilizo wazi',
 
 # Special:AllPages
 'allpages'       => 'Kurasa zote',
@@ -930,16 +934,17 @@ Hivi ni vipimo kwa ukurasa '''$1''':",
 'sp-contributions-submit'      => 'Tafuta',
 
 # What links here
-'whatlinkshere'       => 'Viungo viungavyo ukurasa huu',
-'whatlinkshere-title' => 'Kurasa zilizounganishwa na "$1"',
-'whatlinkshere-page'  => 'Ukurasa:',
-'linkshere'           => "Kurasa zifuatazo zimeunganishwa na '''[[:$1]]''':",
-'nolinkshere'         => "Hakuna kurasa zilizounganishwa na '''[[:$1]]'''.",
-'isredirect'          => 'elekeza ukurasa',
-'istemplate'          => 'jumuisho',
-'whatlinkshere-prev'  => '{{PLURAL:$1|uliotangulia|$1 zilizotangulia}}',
-'whatlinkshere-next'  => '{{PLURAL:$1|ujao|$1 zijazo}}',
-'whatlinkshere-links' => '← viungo',
+'whatlinkshere'           => 'Viungo viungavyo ukurasa huu',
+'whatlinkshere-title'     => 'Kurasa zilizounganishwa na "$1"',
+'whatlinkshere-page'      => 'Ukurasa:',
+'linkshere'               => "Kurasa zifuatazo zimeunganishwa na '''[[:$1]]''':",
+'nolinkshere'             => "Hakuna kurasa zilizounganishwa na '''[[:$1]]'''.",
+'isredirect'              => 'elekeza ukurasa',
+'istemplate'              => 'jumuisho',
+'whatlinkshere-prev'      => '{{PLURAL:$1|uliotangulia|$1 zilizotangulia}}',
+'whatlinkshere-next'      => '{{PLURAL:$1|ujao|$1 zijazo}}',
+'whatlinkshere-links'     => '← viungo',
+'whatlinkshere-hidelinks' => '$1 viungo',
 
 # Block/unblock
 'blockip'          => 'Zuia mtumiaji',

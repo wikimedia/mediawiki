@@ -179,7 +179,7 @@ $messages = array(
 'cancel'        => 'ವಜಾ ಮಾಡಿ',
 'moredotdotdot' => 'ಇನ್ನಷ್ಟು...',
 'mypage'        => 'ನನ್ನ ಪುಟ',
-'mytalk'        => 'ನನ್ನ ಚರ್ಚೆ ($1)',
+'mytalk'        => 'ನನ್ನ ಚರ್ಚೆ$1',
 'anontalk'      => 'ಈ ಐ.ಪಿ ಗೆ ಮಾತನಾಡಿ',
 'navigation'    => 'ಸಂಚರಣೆ',
 'and'           => '&#32;ಮತ್ತು',
@@ -199,6 +199,7 @@ $messages = array(
 'vector-action-delete'       => 'ಅಳಿಸು',
 'vector-action-move'         => 'ಸ್ಥಳಾಂತರಿಸಿ',
 'vector-action-protect'      => 'ಸಂರಕ್ಷಿಸು',
+'vector-action-unprotect'    => 'ಸಂರಕ್ಷಣೆಯನ್ನು ತೆಗೆ',
 'vector-namespace-category'  => 'ವರ್ಗ',
 'vector-namespace-help'      => 'ಸಹಾಯ ಪುಟ',
 'vector-namespace-image'     => 'ಫೈಲು',
@@ -483,17 +484,18 @@ $2',
 'loginlanguagelabel'         => 'ಭಾಷೆ: $1',
 
 # Password reset dialog
-'resetpass'               => 'ಖಾತೆಯ ಪ್ರವೇಶಪದವನ್ನು ಬದಲಾಯಿಸಿ',
-'resetpass_announce'      => 'ನೀವು ತಾತ್ಕಾಲಿಕ ಇ-ಅಂಚೆ ಕೋಡ್ ಅನ್ನು ಉಪಯೋಗಿಸಿ ಲಾಗ್ ಇನ್ ಆಗಿರುವಿರಿ.
+'resetpass'                 => 'ಪ್ರವೇಶಪದವನ್ನು ಬದಲಾಯಿಸಿ',
+'resetpass_announce'        => 'ನೀವು ತಾತ್ಕಾಲಿಕ ಇ-ಅಂಚೆ ಕೋಡ್ ಅನ್ನು ಉಪಯೋಗಿಸಿ ಲಾಗ್ ಇನ್ ಆಗಿರುವಿರಿ.
 ಲಾಗ್ ಇನ್ ಪೂರ್ಣಗೊಳಿಸಲು ನೀವಿಲ್ಲ ಹೊಸ ಪ್ರವೇಶಪದ ನೀಡಬೇಕು:',
-'resetpass_header'        => 'ನಿಮ್ಮ ಗುಪ್ತಪದ ರಿಸೆಟ್ ಮಾಡಿ',
-'oldpassword'             => 'ಹಳೆಯ ಪ್ರವೇಶ ಪದ',
-'newpassword'             => 'ಹೊಸ ಪ್ರವೇಶ ಪದ',
-'retypenew'               => 'ಹೊಸ ಪ್ರವೇಶಪದವನ್ನು ಮತ್ತೆ ಟೈಪಿಸು:',
-'resetpass_submit'        => 'ಪ್ರವೇಶ ಪದವನ್ನು ನಿಶ್ಚಯಿಸಿ ಲಾಗ್ ಇನ್ ಆಗಿ',
-'resetpass_success'       => 'ನಿಮ್ಮ ಪ್ರವೇಶ ಪದವನ್ನು ಯಶಸ್ವಿಯಾಗಿ ಬದಲಾಯಿಸಲಾಗಿದೆ. ಈಗ ನಿಮ್ಮನ್ನು ಲಾಗ್ ಇನ್ ಮಾಡಲಾಗುತ್ತಿದೆ...',
-'resetpass_forbidden'     => 'ಪ್ರವೇಶಪದಗಳನ್ನು ಬದಲಾಯಿಸುವಂತಿಲ್ಲ.',
-'resetpass-temp-password' => 'ತಾತ್ಕಾಲಿಕ ಪ್ರವೇಶಪದ:',
+'resetpass_header'          => 'ನಿಮ್ಮ ಗುಪ್ತಪದ ರಿಸೆಟ್ ಮಾಡಿ',
+'oldpassword'               => 'ಹಳೆಯ ಪ್ರವೇಶ ಪದ',
+'newpassword'               => 'ಹೊಸ ಪ್ರವೇಶ ಪದ',
+'retypenew'                 => 'ಹೊಸ ಪ್ರವೇಶಪದವನ್ನು ಮತ್ತೆ ಟೈಪಿಸು:',
+'resetpass_submit'          => 'ಪ್ರವೇಶ ಪದವನ್ನು ನಿಶ್ಚಯಿಸಿ ಲಾಗ್ ಇನ್ ಆಗಿ',
+'resetpass_success'         => 'ನಿಮ್ಮ ಪ್ರವೇಶ ಪದವನ್ನು ಯಶಸ್ವಿಯಾಗಿ ಬದಲಾಯಿಸಲಾಗಿದೆ. ಈಗ ನಿಮ್ಮನ್ನು ಲಾಗ್ ಇನ್ ಮಾಡಲಾಗುತ್ತಿದೆ...',
+'resetpass_forbidden'       => 'ಪ್ರವೇಶಪದಗಳನ್ನು ಬದಲಾಯಿಸುವಂತಿಲ್ಲ.',
+'resetpass-submit-loggedin' => 'ಪ್ರವೇಶಪದ ಬದಲಾಯಿಸು',
+'resetpass-temp-password'   => 'ತಾತ್ಕಾಲಿಕ ಪ್ರವೇಶಪದ:',
 
 # Edit page toolbar
 'bold_sample'     => 'ದಪ್ಪಗಿನ ಅಚ್ಚು',
@@ -1818,6 +1820,9 @@ $1',
 'exif-scenetype-1' => 'ನೇರವಾಗಿ ಛಾಯಾಚಿತ್ರಣಗೊಂಡ ಒಂದು ಚಿತ್ರ',
 
 'exif-gaincontrol-0' => 'ಯಾವುದೂ ಇಲ್ಲ',
+
+# Pseudotags used for GPSLatitudeRef and GPSDestLatitudeRef
+'exif-gpslatitude-n' => 'ಉತ್ತರ ಆಕಾಂಕ್ಷ',
 
 'exif-gpsstatus-a' => 'ಅಳತೆ ಪ್ರಗತಿಯಲ್ಲಿದೆ',
 

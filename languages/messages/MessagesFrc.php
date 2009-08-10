@@ -134,7 +134,7 @@ $messages = array(
 'cancel'        => 'Arrêter',
 'moredotdotdot' => 'Plus...',
 'mypage'        => 'Ma page',
-'mytalk'        => 'Ma page de discussion',
+'mytalk'        => 'Ma page de discussion$1',
 'anontalk'      => 'Discussion avec cette adresse IP',
 
 # Cologne Blue skin
@@ -249,7 +249,7 @@ $messages = array(
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-user'     => 'Useur',
 'nstab-media'    => 'Média',
-'nstab-special'  => 'Espécial',
+'nstab-special'  => 'Page espécial',
 'nstab-project'  => 'Info',
 'nstab-image'    => 'Dossier',
 'nstab-template' => 'Patron',
@@ -463,7 +463,8 @@ Votre numéro de blocage est #$5.  Mettez donc cette information dans toutes vos
 Pour créer la page, mettez des mots dans la boëte en bas (voyez la [[{{MediaWiki:Helppage}}|page d'aide]] pour plus d'information). 
 Si vous êtes ici par erreur, cliquez le bouton \"back\" sus votre navigateur.",
 'anontalkpagetext'           => "----''Ça ici, c'est la page de discussion pour un useur sans nom qu'a pas encore créé un compte ou qui l'use pas.  Ça fait, il faut user l'adresse IP numérique pour l'identifier.  Une adresse comme ça pourrait être usée par plusieurs useurs.  Si vous êtes un useur sans nom et vous croyez que des messages sans rapport ont été envoyés à vous, [[Special:UserLogin|créer un compte ou connecter]] pour empêcher la confusion avec des autres useurs sans nom dans l'avenir.''",
-'noarticletext'              => 'À présent, y a pas de texte sus cette page. Vous pouvez [[Special:Search/{{PAGENAME}}|charcher pour le titre de cette page]] dans des autres pages ou [{{fullurl:{{FULLPAGENAME}}|action=edit}} changer cette page].',
+'noarticletext'              => 'À présent, y a pas de texte sus cette page.
+Vous pouvez [[Special:Search/{{PAGENAME}}|charcher pour le titre de cette page]] dans des autres pages, <span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} charcher dans les notes parents], ou [{{fullurl:{{FULLPAGENAME}}|action=edit}} changer cette page]</span>.',
 'clearyourcache'             => "'''Notez:''' Après que vous avez sauvé votres changements, il foudra peut-être dépasser le cache de votre navigateur pour voir les changements.  '''Mozilla / Firefox / Safari:''' Tenez le bouton ''Shift'' en pèsant ''Reload'', ou pèsez ''Ctrl-Shift-R'' (''Cmd-Shift-R'' sus Apple Mac); '''IE:''' Tenez ''Ctrl'' en pèsant ''Refresh'', ou pèsez ''Ctrl-F5''; '''Konqueror:''' Simplement pèsez le bouton ''Reload'', ou pèsez ''F5''; Pour les useurs de '''Opera''', il foudra peut-être vider complètement le cache dans ''Tools→Preferences''.",
 'usercssyoucanpreview'       => "'''Conseil:''' Usez le bouton \"Vue d'avance\" pour tester votre nouvelle feuille CSS avant de la sauver.",
 'userjsyoucanpreview'        => "'''Conseil:''' Usez le bouton \"Vue d'avance\" pour tester votre nouvelle feuille JS avant de la sauver.",

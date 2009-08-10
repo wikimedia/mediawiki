@@ -1473,6 +1473,7 @@ Du kan òg velje å la andre brukarar kontakte deg på e-post via brukarsida di 
 'recentchanges-legend'              => 'Alternativ for siste endringar',
 'recentchangestext'                 => 'På denne sida ser du dei sist endra sidene i {{SITENAME}}.',
 'recentchanges-feed-description'    => 'Fylg med på dei siste endringane på denne wikien med dette abonnementet.',
+'recentchanges-legend-newpage'      => '$1 – ny side',
 'rcnote'                            => "Nedanfor er {{PLURAL:$1|den siste endringa|dei siste '''$1''' endringane}} gjort {{PLURAL:$2|den siste dagen|dei siste '''$2''' dagane}}, sidan $4, kl. $5.",
 'rcnotefrom'                        => "Nedanfor vert opp til '''$1''' endringar sidan  ''' $2''' viste.",
 'rclistfrom'                        => 'Vis nye endringar sidan $1',

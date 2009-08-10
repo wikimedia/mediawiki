@@ -432,7 +432,7 @@ i [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Vodič za suradnike] 
 'cancel'        => 'Odustani',
 'moredotdotdot' => 'Više...',
 'mypage'        => 'Moja stranica',
-'mytalk'        => 'Moj razgovor ($1)',
+'mytalk'        => 'Moj razgovor$1',
 'anontalk'      => 'Razgovor za ovu IP adresu',
 'navigation'    => 'Orijentacija',
 'and'           => '&#32;i',
@@ -532,7 +532,11 @@ i [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Vodič za suradnike] 
 'jumpto'            => 'Skoči na:',
 'jumptonavigation'  => 'orijentacija',
 'jumptosearch'      => 'traži',
-'view-pool-error'   => 'Nažalost, poslužitelji su trenutačno preopterećeni. Previše suradnika pokušava vidjeti ovu stranicu. Molimo pričekajte malo prije nego što opet pokušate pristupiti ovoj stranici. $ 1',
+'view-pool-error'   => 'Ispričavamo se, poslužitelji su trenutačno preopterećeni. 
+Previše suradnika pokušava vidjeti ovu stranicu. 
+Molimo malo pričekajte  prije nego što opet pokušate pristupiti ovoj stranici. 
+
+$1',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'O projektu {{SITENAME}}',
@@ -566,7 +570,7 @@ i [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Vodič za suradnike] 
 'retrievedfrom'           => 'Dobavljeno iz "$1"',
 'youhavenewmessages'      => 'Imate $1 ($2).',
 'newmessageslink'         => 'nove poruke',
-'newmessagesdifflink'     => 'zadnja promjena na stranici za razgovor',
+'newmessagesdifflink'     => '{{PLURAL:$1|jedna promjena|$1 promjene}}',
 'youhavenewmessagesmulti' => 'Imate nove poruke na $1',
 'editsection'             => 'uredi',
 'editold'                 => 'uredi',
@@ -615,17 +619,16 @@ Za popis svih posebnih stranica posjetite [[Special:SpecialPages|ovdje]].",
 'error'                => 'Pogreška',
 'databaseerror'        => 'Pogreška baze podataka',
 'dberrortext'          => 'Došlo je do sintaksne pogreške u upitu bazi.
-Možda se radi o bugu u softveru.
+Možda se radi o grešci u softveru.
 Posljednji pokušaj upita je glasio:
 <blockquote><tt>$1</tt></blockquote>
 iz funkcije "<tt>$2</tt>".
-MySQL je vratio pogrešku "<tt>$3: $4</tt>".',
+$5 je vratio pogrešku "<tt>$3: $4</tt>".',
 'dberrortextcl'        => 'Došlo je do sintaksne pogreške s upitom bazi.
-Možda se radi o bugu u softveru.
 Posljednji pokušaj upita je glasio:
 "$1"
-iz funkcije "<tt>$2</tt>".
-MySQL je vratio pogrešku "<tt>$3: $4</tt>".',
+iz funkcije "$2".
+$5 je vratio pogrešku "$3: $4"',
 'laggedslavemode'      => 'Upozorenje: na stranici se možda ne nalaze najnovije promjene.',
 'readonly'             => 'Baza podataka je zaključana',
 'enterlockreason'      => 'Upiši razlog zaključavanja i procjenu vremena otključavanja',
@@ -1013,17 +1016,19 @@ Pokušajte [[Special:Search|pretražiti]] važnije nove stranice na wikiju.',
 'rev-deleted-user'            => '(suradničko ime uklonjeno)',
 'rev-deleted-event'           => '(zapis uklonjen)',
 'rev-deleted-text-permission' => "Ova izmjena je '''izbrisana'''.
-Detalji se vjerojatno nalaze u [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} evidenciji skrivanja].",
+Detalji se vjerojatno nalaze u [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} evidenciji brisanja].",
 'rev-deleted-text-unhide'     => "Ova izmjena je '''izbrisana.'''
-Detalji se vjerojatno nalaze u [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} evidenciji skrivanja]. Kao administrator, možete i dalje [$1 vidjeti ovu izmjenu] ukoliko želite nastaviti.",
+Detalji se vjerojatno nalaze u [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} evidenciji brisanja]. Kao administrator, možete i dalje [$1 vidjeti ovu izmjenu] ukoliko želite nastaviti.",
+'rev-suppressed-text-unhide'  => "Ova izmjena stranice je '''skrivena'''. Vjerojatno postoji više podataka u [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} evidenciji skrivanja].
+Kao administrator možete [$1 vidjeti ovu izmjenu] ukoliko želite nastaviti.",
 'rev-deleted-text-view'       => "Ova izmjena je '''izbrisana'''.
-Kao administrator na ovom projektu možete ju vidjeti; detalji se vjerojatno nalaze u [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} evidenciji skrivanja].",
-'rev-suppressed-text-view'    => "Ova izmjena stranice je '''sakrivena'''.
-Kao administrator možete ju pregledati; vjerojatno postoji više podataka u [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} evidenciji sakrivanja].",
+Kao administrator na ovom projektu možete ju vidjeti; detalji se vjerojatno nalaze u [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} evidenciji brisanja].",
+'rev-suppressed-text-view'    => "Ova izmjena stranice je '''skrivena'''.
+Kao administrator možete ju pregledati; vjerojatno postoji više podataka u [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} evidenciji skrivanja].",
 'rev-deleted-no-diff'         => "Ne možete vidjeti ovu inačicu zbog toga što je jedna od izmjena '''izbrisana'''.
-Možda postoji više informacija u [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} evidenciji skrivanja].",
+Možda postoji više informacija u [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} evidenciji brisanja].",
 'rev-deleted-unhide-diff'     => "Jedna od inačica ove izmjene je '''izbrisana'''. 
-Detalji se vjerojatno nalaze u [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} evidenciji skrivanja]. Kao administrator, možete i dalje [$1 vidjeti ovu izmjenu] ukoliko želite nastaviti.",
+Detalji se vjerojatno nalaze u [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} evidenciji brisanja]. Kao administrator, možete i dalje [$1 vidjeti ovu izmjenu] ukoliko želite nastaviti.",
 'rev-delundel'                => 'pokaži/skrij',
 'revisiondelete'              => 'Izbriši/vrati izmjene',
 'revdelete-nooldid-title'     => 'Nema tražene izmjene',
@@ -1801,9 +1806,10 @@ Umjesto toga bi trebale povezivati na prikladnu temu.<br />
 Stranica se tretira kao razdvojbena stranica ako koristi predložak na kojega vodi [[MediaWiki:Disambiguationspage]]",
 
 'doubleredirects'            => 'Dvostruka preusmjeravanja',
-'doubleredirectstext'        => 'Ovo je popis preusmjeravanja na stranice za preusmjeravanje.
-Svaki redak sadrži poveznice na prvo i drugo preusmjeravanje, te na prvi redak teksta drugog preusmjeravanja
-koja obično ukazuje na "pravu" odredišnu stranicu, na koju bi trebalo pokazivati prvo preusmjeravanje.',
+'doubleredirectstext'        => 'Ova stranica sadrži popis stranica koje preusmjeravju na druge stranice za preusmjeravanje.
+Svaki redak sadrži poveznice na prvo i drugo preusmjeravanje, kao i odredište drugog preusmjeravanja
+koja obično ukazuje na "pravu" odredišnu stranicu, na koju bi trebalo pokazivati prvo preusmjeravanje.
+<s>Precrtane</s> stavke su riješene.',
 'double-redirect-fixed-move' => '[[$1]] je premješten, sada je preusmjeravanje na [[$2]]',
 'double-redirect-fixer'      => 'Popravljač preusmjeravanja',
 
