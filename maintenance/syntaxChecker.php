@@ -92,6 +92,7 @@ class SyntaxChecker extends Maintenance {
 	 * from tools/lint.php by TimStarling
 	 *
 	 * @param $file String Path to a file to check for syntax errors
+	 * @return boolean
 	 */
 	private function checkFile( $file ) {
 		static $okErrors = array(
