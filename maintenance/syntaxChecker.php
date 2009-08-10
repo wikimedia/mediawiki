@@ -38,20 +38,12 @@ class SyntaxChecker extends Maintenance {
 	}
 
 	public function execute() {
-		if( !function_exists( 'parsekit_compile_file' ) ) {
-			$this->error( 'Requires PHP with parsekit', true );
-		}
-
 		$this->output( "Building file list..." );
 		$this->buildFileList();
 		$this->output( "done.\n" );
 
 		$this->output( "Checking syntax (this can take a really long time)...\n\n" );
-		foreach( $this->mFiles as $f ) {
-			$this->checkFile( $f );
-		}
-		$this->output( "\nDone! " . count( $this->mFiles ) . " files checked, " .
-			count( $this->mFailures ) . " failures found" );
+		$res = $this->checkSyntax();
 	}
 
 	/**
@@ -88,33 +80,19 @@ class SyntaxChecker extends Maintenance {
 	}
 
 	/**
-	 * Check a file for syntax errors. Shamelessly stolen
-	 * from tools/lint.php by TimStarling
-	 *
-	 * @param $file String Path to a file to check for syntax errors
+	 * Check the files for syntax errors
 	 * @return boolean
 	 */
-	private function checkFile( $file ) {
-		static $okErrors = array(
-			'Redefining already defined constructor',
-			'Assigning the return value of new by reference is deprecated',
-		);
-		$errors = array();
-		parsekit_compile_file( $file, $errors, PARSEKIT_SIMPLE );
-		$ret = true;
-		if ( $errors ) {
-			foreach ( $errors as $error ) {
-				foreach ( $okErrors as $okError ) {
-					if ( substr( $error['errstr'], 0, strlen( $okError ) ) == $okError ) {
-						continue 2;
-					}
-				}
-				$ret = false;
-				$this->output( "Error in $file line {$error['lineno']}: {$error['errstr']}\n" );
+	private function checkSyntax() {
+		foreach( $this->mFiles as $f ) {
+			$res = exec( 'php -l ' . $f ); 
+			if( strpos( $res, 'No syntax errors detected' ) === false ) {
+				$this->mFailures[] = $f;
+				$this->error( $res . "\n" );
 			}
-			$this->mFailures[ $file ] = $errors;
 		}
-		return $ret;
+		$this->output( count($this->mFiles) . " files checked, " 
+			. count($this->mFailures) . " failures\n" );
 	}
 }
 
