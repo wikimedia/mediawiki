@@ -12,6 +12,8 @@
  * @author Spacebirdy
  */
 
+$fallback = 'fa';
+
 $linkPrefixExtension = true;
 $fallback8bitEncoding = 'windows-1256';
 
@@ -23,7 +25,45 @@ $defaultUserOptionOverrides = array(
 	'underline' => 0,
 );
 
-$fallback = 'fa';
+$namespaceNames = array(
+	NS_MEDIA            => 'مه‌دیا',
+	NS_SPECIAL          => 'شا',
+	NS_TALK             => 'گپ',
+	NS_USER             => 'کارور',
+	NS_USER_TALK        => 'کارور گپ',
+	NS_PROJECT_TALK     => '$1 گپ',
+	NS_FILE             => 'پرونده',
+	NS_FILE_TALK        => 'پرونده گپ',
+	NS_MEDIAWIKI        => 'مه‌دیا ویکی',
+	NS_MEDIAWIKI_TALK   => 'مه‌دیا ویکی گپ',
+	NS_TEMPLATE         => 'شابلون',
+	NS_TEMPLATE_TALK    => 'شابلون گپ',
+	NS_HELP             => 'رانه‌ما',
+	NS_HELP_TALK        => 'رانه‌مای گپ',
+	NS_CATEGORY         => 'رج',
+	NS_CATEGORY_TALK    => 'رج گپ',
+);
+
+$namespaceAliases = array(
+	'مدیا' => NS_MEDIA,
+	'ویژه' => NS_SPECIAL,
+	'بحث' => NS_TALK,
+	'کاربر' => NS_USER,
+	'بحث_کاربر' => NS_USER_TALK,
+	'بحث_$1' => NS_PROJECT_TALK,
+	'تصویر' => NS_FILE,
+	'بحث_تصویر' => NS_FILE_TALK,
+	'پرونده' => NS_FILE,
+	'بحث_پرونده' => NS_FILE_TALK,
+	'مدیاویکی' => NS_MEDIAWIKI,
+	'بحث_مدیاویکی' => NS_MEDIAWIKI_TALK,
+	'الگو' => NS_TEMPLATE,
+	'بحث_الگو' => NS_TEMPLATE_TALK,
+	'راهنما' => NS_HELP,
+	'بحث_راهنما' => NS_HELP_TALK,
+	'رده' => NS_CATEGORY,
+	'بحث_رده' => NS_CATEGORY_TALK
+);
 
 $messages = array(
 # User preference toggles
