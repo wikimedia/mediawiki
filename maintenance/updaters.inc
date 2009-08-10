@@ -193,6 +193,7 @@ $wgExtNewFields = array(); // table, column, dir
 $wgExtPGNewFields = array(); // table, column, column attributes; for PostgreSQL
 $wgExtPGAlteredFields = array(); // table, column, new type, conversion method; for PostgreSQL
 $wgExtNewIndexes = array(); // table, index, dir
+$wgExtModifiedFields = array(); //table, index, dir
 
 # Helper function: check if the given key is present in the updatelog table.
 # Obviously, only use this for updates that occur after the updatelog table was
@@ -239,6 +240,25 @@ function add_table( $name, $patch, $fullpath=false ) {
 		wfOut( "ok\n" );
 	}
 }
+
+function modify_field($table, $field, $patch, $fullpath=false){
+	global $wgDatabase;
+	if ( !$wgDatabase->tableExists( $table ) ) {
+		wfOut( "...$table table does not exist, skipping modify field patch\n" );
+	} elseif (! $wgDatabase->fieldExists( $table, $field ) ) {
+		wfOut( "...$field field does not exist in $table table, skipping modify field patch\n" );
+	} else {
+		wfOut( "Modifying $field field of table $table..." );
+		if( $fullpath ) {
+			$wgDatabase->sourceFile( $patch );
+		} else {
+			$wgDatabase->sourceFile( archive($patch) );
+		}
+		wfOut( "ok\n" );
+	}
+}
+
+
 
 function add_field( $table, $field, $patch, $fullpath=false ) {
 	global $wgDatabase;
@@ -1069,7 +1089,7 @@ function purge_cache() {
 }
 
 function do_all_updates( $shared = false, $purge = true ) {
-	global $wgNewTables, $wgNewFields, $wgRenamedTables, $wgSharedDB, $wgSharedTables, $wgDatabase, $wgDBtype, $IP;
+	global $wgNewTables, $wgExtModifiedFields, $wgNewFields, $wgRenamedTables, $wgSharedDB, $wgSharedTables, $wgDatabase, $wgDBtype, $IP;
 
 	wfRunHooks('LoadExtensionSchemaUpdates');
 
@@ -1107,6 +1127,11 @@ function do_all_updates( $shared = false, $purge = true ) {
 	# Add missing extension indexes
 	foreach ( $wgExtNewIndexes as $fieldRecord ) {
 		add_index( $fieldRecord[0], $fieldRecord[1], $fieldRecord[2], true );
+		flush();
+	}
+	# Add modified extension fields
+	foreach ( $wgExtModifiedFields as $fieldRecord ) {
+		modify_field($fieldRecord[0], $fieldRecord[1], $fieldRecord[2], true);
 		flush();
 	}
 
