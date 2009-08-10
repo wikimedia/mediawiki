@@ -85,29 +85,7 @@ class GenerateSitemap extends Maintenance {
 	 *
 	 * @var array
 	 */
-	var $priorities = array(
-		// Custom main namespaces
-		GS_MAIN			=> '0.5',
-		// Custom talk namesspaces
-		GS_TALK			=> '0.1',
-		// MediaWiki standard namespaces
-		NS_MAIN			=> '1.0',
-		NS_TALK			=> '0.1',
-		NS_USER			=> '0.5',
-		NS_USER_TALK		=> '0.1',
-		NS_PROJECT		=> '0.5',
-		NS_PROJECT_TALK		=> '0.1',
-		NS_FILE			=> '0.5',
-		NS_FILE_TALK		=> '0.1',
-		NS_MEDIAWIKI		=> '0.0',
-		NS_MEDIAWIKI_TALK	=> '0.1',
-		NS_TEMPLATE		=> '0.0',
-		NS_TEMPLATE_TALK	=> '0.1',
-		NS_HELP			=> '0.5',
-		NS_HELP_TALK		=> '0.1',
-		NS_CATEGORY		=> '0.5',
-		NS_CATEGORY_TALK	=> '0.1',
-	);
+	var $priorities = array();
 
 	/**
 	 * A one-dimensional array of namespaces in the wiki
@@ -164,7 +142,7 @@ class GenerateSitemap extends Maintenance {
 	 */
 	public function execute() {
 		global $wgScriptPath;
-
+		$this->setNamespacePriorities();
 		$this->url_limit = 50000;
 		$this->size_limit = pow( 2, 20 ) * 10;
 		$this->fspath = self::init_path( $this->getOption( 'fspath', getcwd() ) );
@@ -174,6 +152,30 @@ class GenerateSitemap extends Maintenance {
 		$this->timestamp = wfTimestamp( TS_ISO_8601, wfTimestampNow() );
 		$this->findex = fopen( "{$this->fspath}sitemap-index-" . wfWikiID() . ".xml", 'wb' );
 		$this->main();
+	}
+
+	private function setNamespacePriorities() {
+		// Custom main namespaces
+		$this->priorities[GS_MAIN] = '0.5';
+		// Custom talk namesspaces
+		$this->priorities[GS_TALK] = '0.1';
+		// MediaWiki standard namespaces
+		$this->priorities[NS_MAIN] = '1.0';
+		$this->priorities[NS_TALK] = '0.1';
+		$this->priorities[NS_USER] = '0.5';
+		$this->priorities[NS_USER_TALK] = '0.1';
+		$this->priorities[NS_PROJECT] = '0.5';
+		$this->priorities[NS_PROJECT_TALK] = '0.1';
+		$this->priorities[NS_FILE] = '0.5';
+		$this->priorities[NS_FILE_TALK] = '0.1';
+		$this->priorities[NS_MEDIAWIKI] = '0.0';
+		$this->priorities[NS_MEDIAWIKI_TALK] = '0.1';
+		$this->priorities[NS_TEMPLATE] = '0.0';
+		$this->priorities[NS_TEMPLATE_TALK] = '0.1';
+		$this->priorities[NS_HELP] = '0.5';
+		$this->priorities[NS_HELP_TALK] = '0.1';
+		$this->priorities[NS_CATEGORY] = '0.5';
+		$this->priorities[NS_CATEGORY_TALK] = '0.1';
 	}
 
 	/**
