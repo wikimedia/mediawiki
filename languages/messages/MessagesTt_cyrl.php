@@ -15,6 +15,46 @@
 
 $fallback = 'ru';
 
+$namespaceNames = array(
+	NS_MEDIA            => 'Медиа',
+	NS_SPECIAL          => 'Махсус',
+	NS_TALK             => 'Фикер алышу',
+	NS_USER             => 'Кулланучы',
+	NS_USER_TALK        => 'Кулланучы бәхәсе',
+	NS_PROJECT_TALK     => '$1 бәхәсе',
+	NS_FILE             => 'Рәсем',
+	NS_FILE_TALK        => 'Рәсем бәхәсе',
+	NS_MEDIAWIKI        => 'Медиа_Вики',
+	NS_MEDIAWIKI_TALK   => 'Медиа_Вики бәхәсе',
+	NS_TEMPLATE         => 'Үрнәк',
+	NS_TEMPLATE_TALK    => 'Шаблон бәхәсе',
+	NS_HELP             => 'Ярдәм',
+	NS_HELP_TALK        => 'Ярдәм бәхәсе',
+	NS_CATEGORY         => 'Төркем',
+	NS_CATEGORY_TALK    => 'Төркем бәхәсе',
+);
+
+$namespaceAliases = array(
+	'Служебная' => NS_SPECIAL,
+	'Обсуждение' => NS_TALK,
+	'Участница' => NS_USER,
+	'Обсуждение участницы' => NS_USER_TALK,
+	'Участник' => NS_USER,
+	'Обсуждение_участника' => NS_USER_TALK,
+	'Обсуждение_{{GRAMMAR:genitive|$1}}' => NS_PROJECT_TALK,
+	'Изображение' => NS_FILE,
+	'Обсуждение_изображения' => NS_FILE_TALK,
+	'Файл' => NS_FILE,
+	'Обсуждение_файла' => NS_FILE_TALK,
+	'Обсуждение_MediaWiki' => NS_MEDIAWIKI_TALK,
+	'Шаблон' => NS_TEMPLATE,
+	'Обсуждение_шаблона' => NS_TEMPLATE_TALK,
+	'Справка' => NS_HELP,
+	'Обсуждение_справки' => NS_HELP_TALK,
+	'Категория' => NS_CATEGORY,
+	'Обсуждение_категории' => NS_CATEGORY_TALK,
+);
+
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Сылтамаларны астына сызу:',

@@ -27,8 +27,8 @@ $namespaceNames = array(
 	NS_USER             => 'Къулланыджы',
 	NS_USER_TALK        => 'Къулланыджы_музакереси',
 	NS_PROJECT_TALK     => '$1_музакереси',
-	NS_FILE             => 'Ресим',
-	NS_FILE_TALK        => 'Ресим_музакереси',
+	NS_FILE             => 'Файл',
+	NS_FILE_TALK        => 'Файл_музакереси',
 	NS_MEDIAWIKI        => 'МедиаВики',
 	NS_MEDIAWIKI_TALK   => 'МедиаВики_музакереси',
 	NS_TEMPLATE         => 'Шаблон',
@@ -36,7 +36,7 @@ $namespaceNames = array(
 	NS_HELP             => 'Ярдым',
 	NS_HELP_TALK        => 'Ярдым_музакереси',
 	NS_CATEGORY         => 'Категория',
-	NS_CATEGORY_TALK    => 'Категория_музакереси',
+	NS_CATEGORY_TALK    => 'Категория_музакереси'
 );
 
 # Aliases to latin namespaces
@@ -49,6 +49,8 @@ $namespaceAliases = array(
 	"$1_muzakeresi"         => NS_PROJECT_TALK,
 	"Resim"                 => NS_FILE,
 	"Resim_muzakeresi"      => NS_FILE_TALK,
+	"Ресим"                 => NS_FILE,
+	"Ресим_музакереси"      => NS_FILE_TALK,
 	"MediaViki"             => NS_MEDIAWIKI,
 	"MediaViki_muzakeresi"  => NS_MEDIAWIKI_TALK,
 	'Şablon'                => NS_TEMPLATE,
@@ -56,7 +58,7 @@ $namespaceAliases = array(
 	'Yardım'                => NS_HELP,
 	'Yardım_muzakeresi'     => NS_HELP_TALK,
 	'Kategoriya'            => NS_CATEGORY,
-	'Kategoriya_muzakeresi' => NS_CATEGORY_TALK,
+	'Kategoriya_muzakeresi' => NS_CATEGORY_TALK
 );
 
 

@@ -73,7 +73,6 @@ $namespaceAliases = array(
 	'Обсуждение_изображения' => NS_FILE_TALK,
 );
 
-
 $dateFormats = array(
 	'mdy time' => 'H:i',
 	'mdy date' => 'xg j, Y',
