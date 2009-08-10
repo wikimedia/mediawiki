@@ -77,27 +77,52 @@ class LogEventsList {
 		$month = '', $filter = null, $tagFilter='' )
 	{
 		global $wgScript, $wgMiserMode;
-		$action = htmlspecialchars( $wgScript );
+		
+		$action = $wgScript;
 		$title = SpecialPage::getTitleFor( 'Log' );
-		$special = htmlspecialchars( $title->getPrefixedDBkey() );
+		$special = $title->getPrefixedDBkey();
+		
 		// For B/C, we take strings, but make sure they are converted...
 		$types = ($types === '') ? array() : (array)$types;
 
 		$tagSelector = ChangeTags::buildTagFilterSelector( $tagFilter );
+		
+		$html = '';
+		$html .= Xml::hidden( 'title', $special );
+		
+		// Basic selectors
+		$html .= $this->getTypeMenu( $types ) . "\n";
+		$html .= $this->getUserInput( $user ) . "\n";
+		$html .= $this->getTitleInput( $page ) . "\n";
 
-		$this->out->addHTML( "<form action=\"$action\" method=\"get\"><fieldset>" .
-			Xml::element( 'legend', array(), wfMsg( 'log' ) ) .
-			Xml::hidden( 'title', $special ) . "\n" .
-			$this->getTypeMenu( $types ) . "\n" .
-			$this->getUserInput( $user ) . "\n" .
-			$this->getTitleInput( $page ) . "\n" .
-			( !$wgMiserMode ? ($this->getTitlePattern( $pattern )."\n") : "" ) .
-			"<p>" . Xml::dateMenu( $year, $month ) . "\n" .
-			( $tagSelector ? Xml::tags( 'p', null, implode( '&nbsp;', $tagSelector ) ) :'' ). "\n" .
-			( $filter ? "</p><p>".$this->getFilterLinks( $filter )."\n" : "" ) . "\n" .
-			Xml::submitButton( wfMsg( 'allpagessubmit' ) ) . "</p>\n" .
-			"</fieldset></form>"
-		);
+		// Title pattern, if allowed
+		if (!$wgMiserMode) {
+			$html .= $this->getTitlePattern( $pattern ) . "\n";
+		}
+		
+		// date menu
+		$html .= Xml::tags( 'p', null, Xml::dateMenu( $year, $month ) );
+		
+		// Tag filter
+		if ($tagSelector) {
+			$html .= Xml::tags( 'p', null, implode( '&nbsp;', $tagSelector ) );
+		}
+		
+		// Filter links
+		if ($filter) {
+			$html .= Xml::tags( 'p', null, $this->getFilterLinks( $filter ) );
+		}
+		
+		// Submit button
+		$html .= Xml::submitButton( wfMsg( 'allpagessubmit' ) );
+		
+		// Fieldset
+		$html = Xml::fieldset( wfMsg( 'log' ), $html );
+		
+		// Form wrapping
+		$html = Xml::tags( 'form', array( 'action' => $action, 'method' => 'get' ), $html );
+
+		$this->out->addHTML( $html );
 	}
 	
 	/**
