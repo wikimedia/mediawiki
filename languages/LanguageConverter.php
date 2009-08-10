@@ -547,6 +547,11 @@ class LanguageConverter {
 	 * @public
 	 */
 	function findVariantLink( &$link, &$nt, $ignoreOtherCond = false ) {
+		# If the article has already existed, there is no need to
+		# check it again, otherwise it may cause a fault.
+		if ( $nt->exists() )
+			return;
+
 		global $wgDisableLangConversion, $wgDisableTitleConversion, $wgRequest, $wgUser;
 		$isredir = $wgRequest->getText( 'redirect', 'yes' );
 		$action = $wgRequest->getText( 'action' );
@@ -560,7 +565,7 @@ class LanguageConverter {
 			|| $action == 'submit' || $linkconvert == 'no' || $wgUser->getOption('noconvertlink') == 1 ) ) )
 			return;
 
-		if(is_object($nt))
+		if ( is_object( $nt ) )
 			$ns = $nt->getNamespace();
 
 		$variants = $this->autoConvertToAllVariants($link);
