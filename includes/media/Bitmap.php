@@ -8,6 +8,54 @@
  * @ingroup Media
  */
 class BitmapHandler extends ImageHandler {
+	function getParamMap() {
+		return array(
+			'img_width'	=> 'width',
+			'img_crop' => 'crop',
+		);
+	}
+	function validateParam( $name, $value ) {
+		if ( $name == 'crop' ) {
+			return $this->splitCropParam( $value ) !== false;
+		} else {
+			return parent::validateParam( $name, $value );
+		}		
+	}
+	function splitCropParam( $value ) {
+		$parts = explode( 'x', $value );
+		if ( count( $parts ) > 4 )
+			return false;
+		foreach ( $parts as &$part ) {
+			$intVal = intval( $part );
+			if ( $intVal === 0 && !( $part === '0' || $part === '' ) )
+				return false;
+			if ( $intVal < 0 )
+				return false;
+			
+			$part = $intVal;
+		}
+		
+		return $parts;
+	}
+	
+	function parseParamString( $str ) {
+		$res = parent::parseParamString( $str );
+		if ( $res === false ) {
+			$m = false;
+			if ( preg_match( '/^(\d+)px-([x0-9])crop$/', $str, $m ) ) {
+				return array( 'width' => $m[1], 'crop' => $m[2] );
+			} else {
+				return false;
+			}
+		}
+	}
+	function makeParamString( $params ) { 
+		$res = parent::makeParamString( $params );
+		if ( !empty( $params['crop'] ) )
+			$res .= '-'.implode( 'x', $params['crop'] ).'crop';
+		return $res;
+	}
+	
 	function normaliseParams( $image, &$params ) {
 		global $wgMaxImageArea;
 		if ( !parent::normaliseParams( $image, $params ) ) {
@@ -35,6 +83,45 @@ class BitmapHandler extends ImageHandler {
 			$params['physicalWidth'] = $srcWidth;
 			$params['physicalHeight'] = $srcHeight;
 			return true;
+		}
+		
+		# Validate crop params
+		if ( isset( $params['crop'] ) ) {
+			# $cropParams = array( x, y, width, height );
+			$cropParams = $this->splitCropParam( $params['crop'] );
+			# Fill up params
+			switch ( count( $cropParams ) ) {
+				# All fall through
+				case 1:
+					$cropParams[1] = 0;
+				case 2:
+					$cropParams[2] = $srcWidth - $cropParams[0];
+				case 3:
+					$cropParams[3] = $srcHeight - $cropParams[1];
+			}
+			$cx = $cropParams[0] + $cropParams[2];
+			$cy = $cropParams[1] + $cropParams[3];
+			$targetWidth = $cropParams[2];
+			$targetHeight = $cropParams[3];
+			# Can't go outside image
+			if ( $cx > $srcWidth || $cy > $srcHeight ) {
+				# TODO: Maybe should fail gracefully?
+				return false; 
+			}
+			if ( $targetWidth == $srcWidth && $targetHeight == $srcHeight )
+			{
+				# No need to crop
+				$params['crop'] = false;
+			}
+			else
+			{
+				header("X-Size: {$targetWidth}x{$targetHeight}");
+				$params['crop'] = $cropParams;
+				$params['height'] = $params['physicalHeight'] = File::scaleHeight( 
+						$targetWidth, $targetHeight, $params['width'] );
+			}
+		} else {
+			$params['crop'] = false;
 		}
 
 		return true;
@@ -136,6 +223,13 @@ class BitmapHandler extends ImageHandler {
 			} else {
 				$tempEnv = '';
 			}
+			
+			if ( $params['crop'] ) {
+				$crop = $params['crop'];
+				$cropCmd = "-crop {$crop[2]}x{$crop[3]}+{$crop[0]}+{$crop[1]}";
+			}
+			else
+				$cropCmd = '';
 
 			# Specify white background color, will be used for transparent images
 			# in Internet Explorer/Windows instead of default black.
@@ -147,7 +241,7 @@ class BitmapHandler extends ImageHandler {
 			$cmd  = 
 				$tempEnv .
 				wfEscapeShellArg($wgImageMagickConvertCommand) .
-				" {$quality} -background white -size {$physicalWidth} ".
+				" {$cropCmd} {$quality} -background white -size {$physicalWidth} ".
 				wfEscapeShellArg($srcPath . $frame) .
 				$animation .
 				// For the -resize option a "!" is needed to force exact size,
