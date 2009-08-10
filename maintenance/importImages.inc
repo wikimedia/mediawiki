@@ -18,6 +18,7 @@
 function findFiles( $dir, $exts ) {
 	if( is_dir( $dir ) ) {
 		if( $dhl = opendir( $dir ) ) {
+			$files = array();
 			while( ( $file = readdir( $dhl ) ) !== false ) {
 				if( is_file( $dir . '/' . $file ) ) {
 					list( /* $name */, $ext ) = splitFilename( $dir . '/' . $file );
@@ -27,10 +28,10 @@ function findFiles( $dir, $exts ) {
 			}
 			return $files;
 		} else {
-			return false;
+			return array();
 		}
 	} else {
-		return false;
+		return array();
 	}
 }
 
