@@ -192,6 +192,7 @@ this. Was used when mwEmbed was going to be an extension.
    numbers outside the permitted ranges), etc.
 ** The summary attribute has been removed from tables of contents.  summary is
    obsolete in HTML 5 and wasn't useful here anyway.
+* Added crop for inline images.
 
 === Bug fixes in 1.16 ===
 
