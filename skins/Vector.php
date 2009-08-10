@@ -148,7 +148,8 @@ class SkinVector extends SkinTemplate {
 					// Checks if we should ever show a new section link
 					if ( !$wgOut->forceHideNewSectionLink() ) {
 						// Adds new section link
-						$links['actions']['addsection'] = array(
+						//$links['actions']['addsection']
+						$links['views']['addsection'] = array(
 							'class' => $section == 'new' ? 'selected' : false,
 							'text' => wfMsg( 'vector-action-addsection' ),
 							'href' => $this->mTitle->getLocalUrl(
