@@ -319,6 +319,7 @@ wfProfileIn( $fname.'-extensions' );
  */
 if( $wgEnableScriptLoader && strpos( wfGetScriptUrl(), "mwScriptLoader.php" ) !== false ){
 	$wgExtensionMessagesFiles['mwEmbed'] = "{$IP}/js2/mwEmbed/php/languages/mwEmbed.i18n.php";
+	wfLoadExtensionMessages( 'mwEmbed' );
 }
 
 
