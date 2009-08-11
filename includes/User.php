@@ -2689,32 +2689,6 @@ class User {
 	}
 
 	/**
-	 * Is the user active? We check to see if they've made at least
-	 * X number of edits in the last Y days.
-	 *
-	 * @return \bool True if the user is active, false if not.
-	 */
-	public function isActiveEditor() {
-		global $wgActiveUserEditCount, $wgActiveUserDays;
-		$dbr = wfGetDB( DB_SLAVE );
-
-		// Stolen without shame from RC
-		$cutoff_unixtime = time() - ( $wgActiveUserDays * 86400 );
-		$cutoff_unixtime = $cutoff_unixtime - ( $cutoff_unixtime % 86400 );
-		$oldTime = $dbr->addQuotes( $dbr->timestamp( $cutoff_unixtime ) );
-
-		$res = $dbr->select( 'revision', '1',
-				array( 'rev_user_text' => $this->getName(), "rev_timestamp > $oldTime"),
-				__METHOD__,
-				array('LIMIT' => $wgActiveUserEditCount ) );
-
-		$count = $dbr->numRows($res);
-		$dbr->freeResult($res);
-
-		return $count == $wgActiveUserEditCount;
-	}
-
-	/**
 	 * Check to see if the given clear-text password is one of the accepted passwords
 	 * @param $password \string user password.
 	 * @return \bool True if the given password is correct, otherwise False.
