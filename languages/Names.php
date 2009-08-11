@@ -292,8 +292,8 @@
 	'so' => 'Soomaaliga',	# Somali
 	'sq' => 'Shqip',		# Albanian
 	'sr' => 'Српски / Srpski',	# Serbian
-	'sr-ec' => 'ћирилица',	# Serbian cyrillic ekavian
-	'sr-el' => 'latinica',	# Serbian latin ekavian
+	'sr-ec' => 'Српски (ћирилица)',	# Serbian Cyrillic ekavian
+	'sr-el' => 'Srpski (latinica)',	# Serbian Latin ekavian
 	'srn' => 'Sranantongo',		# Sranan Tongo
 	'ss' => 'SiSwati',		# Swati
 	'st' => 'Sesotho',		# Southern Sotho
