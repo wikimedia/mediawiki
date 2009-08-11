@@ -1041,7 +1041,7 @@ class SkinTemplate extends Skin {
  * compatible with what we use of PHPTAL 0.7.
  * @ingroup Skins
  */
-class QuickTemplate {
+abstract class QuickTemplate {
 	/**
 	 * Constructor
 	 */
@@ -1078,9 +1078,7 @@ class QuickTemplate {
 	 * Main function, used by classes that subclass QuickTemplate
 	 * to show the actual HTML output
 	 */
-	public function execute() {
-		echo 'Override this function.';
-	}
+	abstract public function execute();
 
 	/**
 	 * @private
