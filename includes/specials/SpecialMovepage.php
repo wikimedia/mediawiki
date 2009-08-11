@@ -277,8 +277,11 @@ class MovePageForm {
 			);
 		}
 
+		# Check the watch checkbox in case the watch parameter was given in the 
+		# request, the preferences say so, or either the old or new title is 
+		# being watched.
 		$watchChecked = $this->watch || $wgUser->getBoolOption( 'watchmoves' ) 
-			|| $this->oldTitle->userIsWatching();
+			|| $this->oldTitle->userIsWatching() || $this->newTitle->userIsWatching();
 		$wgOut->addHTML( "
 			<tr>
 				<td></td>
