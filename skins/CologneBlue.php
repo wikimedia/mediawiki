@@ -130,8 +130,8 @@ class SkinCologneBlue extends Skin {
 
 	function sysLinks() {
 		global $wgUser, $wgLang, $wgContLang;
-		$li = $wgContLang->specialPage( 'Userlogin' );
-		$lo = $wgContLang->specialPage( 'Userlogout' );
+		$li = SpecialPage::getTitleFor( 'Userlogin' );
+		$lo = SpecialPage::getTitleFor( 'Userlogout' );
 
 		$rt = $this->mTitle->getPrefixedURL();
 		if ( 0 == strcasecmp( urlencode( $lo ), $rt ) ) {
