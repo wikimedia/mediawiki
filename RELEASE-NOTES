@@ -196,6 +196,7 @@ this. Was used when mwEmbed was going to be an extension.
 ** If $wgWellFormedXml is set to false, some bytes will be shaved off of HTML
    output by omitting some things like quotation marks where HTML 5 allows.
 * Added crop for inline images.
+* The description message in $wgExtensionCredits can be an array with parameters
 
 === Bug fixes in 1.16 ===
 
