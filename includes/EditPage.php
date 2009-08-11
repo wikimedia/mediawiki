@@ -2056,7 +2056,7 @@ END
 	 * @return string
 	 */
 	static function getEditToolbar() {
-		global $wgStylePath, $wgContLang, $wgLang, $wgJsMimeType;
+		global $wgStylePath, $wgContLang, $wgLang;
 
 		/**
 		 * toolarray an array of arrays which each include the filename of
@@ -2171,9 +2171,9 @@ END
 			)
 		);
 		$toolbar = "<div id='toolbar'>\n";
-		$toolbar.="<script type='$wgJsMimeType'>\n/*<![CDATA[*/\n";
 
-		foreach($toolarray as $tool) {
+		$script = '';
+		foreach ( $toolarray as $tool ) {
 			$params = array(
 				$image = $wgStylePath.'/common/images/'.$tool['image'],
 				// Note that we use the tip both for the ALT tag and the TITLE tag of the image.
@@ -2189,11 +2189,11 @@ END
 
 			$paramList = implode( ',',
 				array_map( array( 'Xml', 'encodeJsVar' ), $params ) );
-			$toolbar.="addButton($paramList);\n";
+			$script .= "addButton($paramList);\n";
 		}
+		$toolbar .= Html::inlineScript( "\n$script\n" );
 
-		$toolbar.="/*]]>*/\n</script>";
-		$toolbar.="\n</div>";
+		$toolbar .= "\n</div>";
 
 		wfRunHooks( 'EditPageBeforeEditToolbar', array( &$toolbar ) );
 

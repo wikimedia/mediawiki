@@ -907,6 +907,23 @@ $wgXhtmlDefaultNamespace = 'http://www.w3.org/1999/xhtml';
  */
 $wgHtml5 = true;
 
+/**
+ * Should we try to make our HTML output well-formed XML?  If set to false,
+ * output will be a few bytes shorter, and the HTML will arguably be more
+ * readable.  If set to true, life will be much easier for the authors of
+ * screen-scraping bots, and the HTML will arguably be more readable.
+ *
+ * Setting this to false may omit quotation marks on some attributes, omit
+ * slashes from some self-closing tags, omit some ending tags, etc., where
+ * permitted by HTML 5.  Setting it to true will not guarantee that all pages
+ * will be well-formed, although non-well-formed pages should be rare and it's
+ * a bug if you find one.  Conversely, setting it to false doesn't mean that
+ * all XML-y constructs will be omitted, just that they might be.
+ *
+ * Because of compatibility with screen-scraping bots, and because it's
+ * controversial, this is currently left to true by default.
+ */
+$wgWellFormedXml = true;
 
 /**
  * Permit other namespaces in addition to the w3.org default.

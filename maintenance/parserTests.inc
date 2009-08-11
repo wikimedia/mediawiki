@@ -647,6 +647,8 @@ class ParserTest {
 			'wgEnforceHtmlIds' => true,
 			'wgExternalLinkTarget' => false,
 			'wgAlwaysUseTidy' => false,
+			'wgHtml5' => true,
+			'wgWellFormedXml' => true,
 			);
 
 		if ($config) {

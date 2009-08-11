@@ -192,6 +192,9 @@ this. Was used when mwEmbed was going to be an extension.
    numbers outside the permitted ranges), etc.
 ** The summary attribute has been removed from tables of contents.  summary is
    obsolete in HTML 5 and wasn't useful here anyway.
+** Unnecessary type="" attribute removed for CSS and JS.
+** If $wgWellFormedXml is set to false, some bytes will be shaved off of HTML
+   output by omitting some things like quotation marks where HTML 5 allows.
 * Added crop for inline images.
 
 === Bug fixes in 1.16 ===

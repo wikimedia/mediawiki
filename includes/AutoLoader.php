@@ -95,6 +95,7 @@ $wgAutoloadLocalClasses = array(
 	'HistoryBlobCurStub' => 'includes/HistoryBlob.php',
 	'HistoryBlob' => 'includes/HistoryBlob.php',
 	'HistoryBlobStub' => 'includes/HistoryBlob.php',
+	'Html' => 'includes/Html.php',
 	'HTMLCacheUpdate' => 'includes/HTMLCacheUpdate.php',
 	'HTMLCacheUpdateJob' => 'includes/HTMLCacheUpdate.php',
 	'HTMLFileCache' => 'includes/HTMLFileCache.php',

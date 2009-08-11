@@ -333,15 +333,13 @@ class Skin extends Linker {
 	}
 
 	static function makeVariablesScript( $data ) {
-		global $wgJsMimeType;
-
-		$r = array( "<script type=\"$wgJsMimeType\">/*<![CDATA[*/" );
+		$r = array();
 		foreach ( $data as $name => $value ) {
 			$encValue = Xml::encodeJsVar( $value );
 			$r[] = "var $name = $encValue;";
 		}
-		$r[] = "/*]]>*/</script>\n";
-		return implode( "\n\t\t", $r );
+		return Html::inlineScript( "\n\t\t" . implode( "\n\t\t", $r ) .
+			"\n\t\t" );
 	}
 
 	/**
@@ -632,8 +630,8 @@ END;
 		);
 
 		// Add any extension CSS
-		foreach( $out->getExtStyle() as $tag ) {
-			$out->addStyle( $tag['href'] );
+		foreach ( $out->getExtStyle() as $url ) {
+			$out->addStyle( $url );
 		}
 
 		// If we use the site's dynamic CSS, throw that in, too
@@ -978,8 +976,7 @@ END;
 	 * @return String HTML-wrapped JS code to be put before </body>
 	 */
 	function bottomScripts() {
-		global $wgJsMimeType;
-		$bottomScriptText = "\n\t\t<script type=\"$wgJsMimeType\">if (window.runOnloadHook) runOnloadHook();</script>\n";
+		$bottomScriptText = "\n\t\t" . Html::inlineScript( 'if (window.runOnloadHook) runOnloadHook();' ) . "\n";
 		wfRunHooks( 'SkinAfterBottomScripts', array( $this, &$bottomScriptText ) );
 		return $bottomScriptText;
 	}

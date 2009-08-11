@@ -600,15 +600,13 @@ class EnhancedChangesList extends ChangesList {
 	*  @ return string
 	*/
 	public function beginRecentChangesList() {
-		global $wgStylePath, $wgJsMimeType, $wgStyleVersion;
+		global $wgStylePath, $wgStyleVersion;
 		$this->rc_cache = array();
 		$this->rcMoveIndex = 0;
 		$this->rcCacheIndex = 0;
 		$this->lastdate = '';
 		$this->rclistOpen = false;
-		$script = Xml::tags( 'script', array(
-			'type' => $wgJsMimeType,
-			'src' => $wgStylePath . "/common/enhancedchanges.js?$wgStyleVersion" ), '' );
+		$script = Html::linkedScript( $wgStylePath . "/common/enhancedchanges.js?$wgStyleVersion" );
 		return $script;
 	}
 	/**
