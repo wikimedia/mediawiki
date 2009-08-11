@@ -652,7 +652,8 @@ pre {
 	border: 1px dashed #2f6fab;
 	color: black;
 	background-color: #f9f9f9;
-	line-height: 1.1em;
+	line-height: 1.2em;
+	font-size: 1.2em;
 }
 ul {
 	line-height: 1.5em;
