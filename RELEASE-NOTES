@@ -197,8 +197,6 @@ this. Was used when mwEmbed was going to be an extension.
    output by omitting some things like quotation marks where HTML 5 allows.
 * Added crop for inline images.
 * The description message in $wgExtensionCredits can be an array with parameters
-* (bug 20052) Watch checkbox on Special:Movepage is checked by default when the
-  old or new page is being watched.
 
 === Bug fixes in 1.16 ===
 
