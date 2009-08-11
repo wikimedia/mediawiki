@@ -120,7 +120,10 @@ CREATE TABLE &mw_prefix.archive (
   ar_flags       VARCHAR2(255),
   ar_rev_id      NUMBER,
   ar_text_id     NUMBER,
-  ar_deleted     NUMBER      DEFAULT '0' NOT NULL
+  ar_deleted     NUMBER      DEFAULT '0' NOT NULL,
+  ar_len         NUMBER,
+  ar_page_id     NUMBER,
+  ar_parent_id   NUMBER
 );
 CREATE INDEX &mw_prefix.archive_i01 ON &mw_prefix.archive (ar_namespace,ar_title,ar_timestamp);
 CREATE INDEX &mw_prefix.archive_i02 ON &mw_prefix.archive (ar_user_text,ar_timestamp);
@@ -234,7 +237,7 @@ CREATE INDEX &mw_prefix.ipblocks_i02 ON &mw_prefix.ipblocks (ipb_range_start, ip
 CREATE INDEX &mw_prefix.ipblocks_i03 ON &mw_prefix.ipblocks (ipb_timestamp);
 CREATE INDEX &mw_prefix.ipblocks_i04 ON &mw_prefix.ipblocks (ipb_expiry);
 
-CREATE TABLE image (
+CREATE TABLE &mw_prefix.image (
   img_name         VARCHAR2(255)      NOT NULL,
   img_size         NUMBER   NOT NULL,
   img_width        NUMBER   NOT NULL,
@@ -360,8 +363,8 @@ CREATE INDEX &mw_prefix.watchlist_i01 ON &mw_prefix.watchlist (wl_namespace, wl_
 
 
 CREATE TABLE &mw_prefix.math (
-  math_inputhash              VARCHAR2(16)      NOT NULL,
-  math_outputhash             VARCHAR2(16)      NOT NULL,
+  math_inputhash              VARCHAR2(32)      NOT NULL,
+  math_outputhash             VARCHAR2(32)      NOT NULL,
   math_html_conservativeness  NUMBER  NOT NULL,
   math_html                   CLOB,
   math_mathml                 CLOB
