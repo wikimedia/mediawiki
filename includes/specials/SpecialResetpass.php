@@ -102,62 +102,58 @@ class SpecialResetpass extends SpecialPage {
 				array(
 					'method' => 'post',
 					'action' => $self->getLocalUrl(),
-					'id' => 'mw-resetpass-form' ) ) .	
-			Xml::hidden( 'token', $wgUser->editToken() ) .
-			Xml::hidden( 'wpName', $this->mUserName ) .
-			Xml::hidden( 'returnto', $wgRequest->getVal( 'returnto' ) ) .
-			wfMsgExt( 'resetpass_text', array( 'parse' ) ) .
-			Xml::openElement( 'table', array( 'id' => 'mw-resetpass-table' ) ) .
+					'id' => 'mw-resetpass-form' ) ) . "\n" .
+			Xml::hidden( 'token', $wgUser->editToken() ) . "\n" .
+			Xml::hidden( 'wpName', $this->mUserName ) . "\n" .
+			Xml::hidden( 'returnto', $wgRequest->getVal( 'returnto' ) ) . "\n" .
+			wfMsgExt( 'resetpass_text', array( 'parse' ) ) . "\n" .
+			Xml::openElement( 'table', array( 'id' => 'mw-resetpass-table' ) ) . "\n" .
 			$this->pretty( array(
 				array( 'wpName', 'username', 'text', $this->mUserName ),
 				array( 'wpPassword', $oldpassMsg, 'password', $this->mOldpass ),
 				array( 'wpNewPassword', 'newpassword', 'password', '' ),
 				array( 'wpRetype', 'retypenew', 'password', '' ),
-			) ) .
+			) ) . "\n" .
 			$rememberMe .
-			'<tr>' .
-				'<td></td>' .
+			"<tr>\n" .
+				"<td></td>\n" .
 				'<td class="mw-input">' .
 					Xml::submitButton( wfMsg( $submitMsg ) ) .
-				'</td>' .
-			'</tr>' .
+				"</td>\n" .
+			"</tr>\n" .
 			Xml::closeElement( 'table' ) .
 			Xml::closeElement( 'form' ) .
-			Xml::closeElement( 'fieldset' )
+			Xml::closeElement( 'fieldset' ) . "\n"
 		);
 	}
 
 	function pretty( $fields ) {
-		global $wgHtml5;
 		$out = '';
-		foreach( $fields as $list ) {
+		foreach ( $fields as $list ) {
 			list( $name, $label, $type, $value ) = $list;
 			if( $type == 'text' ) {
 				$field = htmlspecialchars( $value );
 			} else {
-				$attribs = array( 'id' => $name, 'type' => $type );
-				if ( $wgHtml5 ) {
-					# All three fields are required, and we should focus the
-					# first (wpPassword)
-					$attribs['required'] = '';
-					if ( $name == 'wpPassword' ) {
-						$attribs['autofocus'] = '';
-					}
+				$attribs = array( 'id' => $name );
+				# All three fields are required, and we should focus the first
+				# (wpPassword)
+				$attribs['required'] = '';
+				if ( $name == 'wpPassword' ) {
+					$attribs['autofocus'] = '';
 				}
-				$field = Xml::input( $name, 20, $value,
-					$attribs );
+				$field = Html::input( $name, $value, $type, $attribs );
 			}
-			$out .= '<tr>';
-			$out .= "<td class='mw-label'>";
+			$out .= "<tr>\n";
+			$out .= "\t<td class='mw-label'>";
 			if ( $type != 'text' )
 				$out .= Xml::label( wfMsg( $label ), $name );
 			else 
 				$out .=  wfMsgHtml( $label );
-			$out .= '</td>';
-			$out .= "<td class='mw-input'>";
+			$out .= "</td>\n";
+			$out .= "\t<td class='mw-input'>";
 			$out .= $field;
-			$out .= '</td>';
-			$out .= '</tr>';
+			$out .= "</td>\n";
+			$out .= "</tr>";
 		}
 		return $out;
 	}
