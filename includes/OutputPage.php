@@ -117,7 +117,7 @@ class OutputPage {
 	 * @param string $file filename in skins/common or complete on-server path (/foo/bar.js)
 	 */
 	function addScriptFile( $file ) {
-		global $wgStylePath, $wgStyleVersion, $wgScript, $wgUser;
+		global $wgStylePath, $wgScript, $wgUser;
 		global $wgJSAutoloadClasses, $wgJSAutoloadLocalClasses, $wgEnableScriptLoader, $wgScriptPath;
 
 		if( substr( $file, 0, 1 ) == '/' ) {
@@ -171,7 +171,7 @@ class OutputPage {
 	 *  different page load types (edit, upload, view, etc)
 	 */
 	function addCoreScripts2Top(){
-		global $wgEnableScriptLoader, $wgStyleVersion, $wgJSAutoloadLocalClasses, $wgScriptPath, $wgEnableJS2system;
+		global $wgEnableScriptLoader, $wgJSAutoloadLocalClasses, $wgScriptPath, $wgEnableJS2system;
 		//@@todo we should deprecate wikibits in favor of mv_embed and native jQuery functions
 
 		if( $wgEnableJS2system ){
@@ -228,7 +228,7 @@ class OutputPage {
 	 * @param $forcClassAry Boolean: false by default
 	 */
 	function getScriptLoaderJs( $forceClassAry = false ){
-		global $wgStyleVersion, $wgRequest, $wgDebugJavaScript;
+		global $wgRequest, $wgDebugJavaScript;
 
 		if( !$forceClassAry ){
 			$class_list = implode( ',', $this->mScriptLoaderClassList );
