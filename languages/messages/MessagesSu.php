@@ -450,12 +450,12 @@ Ieu bisa nunjukkeun ayana kutu na parabot leuleusna.
 Pamundut databasis nu panungtungan nyaéta:
 <blockquote><tt>$1</tt></blockquote>
 ti antara fungsi "<tt>$2</tt>".
-Kasalahan MySQL nu mulang "<tt>$3: $4</tt>".',
+$5 ngahasilkeun kasalahan "<tt>$3: $4</tt>".',
 'dberrortextcl'        => 'Kasalahan rumpaka mundut databasis.
 Pamuncut databasis nu panungtungan nyaéta:
 "$1"
 ti antara fungsi "$2".
-Kasalahan MySQL nu mulang "$3: $4".',
+$5 ngahasilkeun kasalahan "$3: $4".',
 'laggedslavemode'      => 'Awas: kandungan kaca bisa baé teu mutahir.',
 'readonly'             => 'pangkalan data dikonci',
 'enterlockreason'      => 'Asupkeun alesan pikeun ngonci, kaasup kira-kira iraha konci ieu rék dibuka',
@@ -678,7 +678,9 @@ Mangga setél, lajeng sahkeun alamat surélék anjeun dina [[Special:Preferences
 'loginreqlink'                     => 'asup log',
 'loginreqpagetext'                 => 'Mun hayang muka kaca séjénna, Anjeun kudu $1.',
 'accmailtitle'                     => 'Sandi geus dikirim.',
-'accmailtext'                      => "Sandi keur '$1' geus dikirim ka $2.",
+'accmailtext'                      => "Hiji kecap sandi acak pikeun [[User talk:$1|$1]] geus dijieun sarta dikirimkeun ka $2.
+
+Kecap sandi pikeun rekening anyar ieu bisa dirobah di kaca ''[[Special:Changepassword|pangubah kecap sandi]]'' sanggeus asup log.",
 'newarticle'                       => '(Anyar)',
 'newarticletext'                   => "Anjeun geus nuturkeun tumbu ka kaca nu can aya.
 Pikeun nyieun kaca, mimitian ku ngetik jeroeun kotak di handap
@@ -710,7 +712,7 @@ atawa [{{fullurl:{{FULLPAGENAME}}|action=edit}} ngédit ieu kaca]</span>.',
 'token_suffix_mismatch'            => "'''Éditan anjeun ditolak sabab aplikasi klien Anjeun ngarobah karakter tanda baca dina éditan. Éditan kasebut ditolak keur nyegah kasalahan dina artikel téks. Hal ieu kadang-kadang kajadian lamun Anjeun maké proksi anonim basis web nu masalah.'''",
 'editing'                          => 'Ngédit $1',
 'editingsection'                   => 'Ngédit $1 (bagian)',
-'editingcomment'                   => 'Ngédit $1 (pamanggih)',
+'editingcomment'                   => 'Ngédit $1 (bagian anyar)',
 'editconflict'                     => 'Konflik éditan: $1',
 'explainconflict'                  => "Aya nu geus ngarobah kaca ieu saprak anjeun mimiti ngédit.
 Téks béh luhur ngandung téks kaca nu aya kiwari, parobahan anjeun ditémbongkeun di béh handap.
@@ -734,7 +736,7 @@ kuncén nu ngonci pangkalan data mikeun kajelasan : $1",
 'protectedpagewarning'             => "'''PERHATOSAN: Kaca ieu dikonci sahingga ngan bisa dirobah ku pamaké nu statusna kuncén.'''",
 'semiprotectedpagewarning'         => "'''Perhatoskeun''': ieu kaca dikonci sahingga ukur bisa dirobah ku pamaké nu geus asup log.",
 'cascadeprotectedwarning'          => "'''Awas''': ieu kaca dikonci sahingga ukur bisa dirobah ku kuncén, sabab kaasup {{PLURAL:$1|kaca|kaca}} dina panyalindungan-ngaruntuy di handap ieu:",
-'titleprotectedwarning'            => "'''AWAS: Ieu kaca dikonci sahingga ukur bisa dijieun ku sababaraha pamaké anu diwenangkeun.'''",
+'titleprotectedwarning'            => "'''AWAS:  Kaca ieu geus dikonci, diperlukeun [[Special:Listgrouprights|hak husus]] pikeun nyieunna.'''",
 'templatesused'                    => 'Citakan nu dipaké na kaca ieu:',
 'templatesusedpreview'             => 'Citakan nu dipaké dina ieu pramidang:',
 'templatesusedsection'             => 'Citakan nu dipaké dina ieu bab:',
@@ -820,8 +822,10 @@ Cobaan [[Special:Search|sungsi di wiki]] pikeun kaca-kaca nu sarimbag.',
 'rev-deleted-comment'         => '(koméntar dihapus)',
 'rev-deleted-user'            => '(ngaran pamaké geus dihapus)',
 'rev-deleted-event'           => '(lampah log dihapus)',
-'rev-deleted-text-permission' => 'Révisi kaca ieu geus dihapus tina arsip publik. Dadaranana meureun aya dina [{{fullurl:Husus:Log/delete|page={{PAGENAMEE}}}} log hapusan].',
-'rev-deleted-text-view'       => 'Révisi kaca ieu geus dihapus tina arsip publik. Tapi, salaku administrator dina loka ieu, anjeun bisa nempo; dadaranana meureun aya dina [{{fullurl:Husus:Log/delete|page={{FULLPAGENAMEE}}}} log hapusan].',
+'rev-deleted-text-permission' => "Révisi ieu kaca geus '''dihapus'''.
+Pedaran lengkepna bisa dipilari di [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log hapusan]",
+'rev-deleted-text-view'       => "Révisi ieu kaca geus '''dihapus'''.
+Salaku administrator, anjeun angger bisa nempo; pedaran lengkepna bisa dipilari di [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log hapusan].",
 'rev-delundel'                => 'témbongkeun/sumputkeun',
 'revisiondelete'              => 'Hapus/bolay ngahapus révisi',
 'revdelete-nooldid-title'     => 'Udagan révisi salah',
@@ -2275,6 +2279,10 @@ Ngan daptar butiran (jajar anu dimimitian ku tanda *) anu diitung. Tumbu kahiji 
 'exif-lightsource-9'   => 'Béngras',
 'exif-lightsource-10'  => 'Ceuceum',
 'exif-lightsource-11'  => 'Kalangkang',
+'exif-lightsource-12'  => "Fluoreséns ca'ang siang (''daylight'', D 5700 – 7100K)",
+'exif-lightsource-13'  => "Fluoreséns bodas siang (''day white'', N 4600 – 5400K)",
+'exif-lightsource-14'  => "Fluoreséns bodas tiis (''cool white'', W 3900 – 4500K)",
+'exif-lightsource-15'  => 'Fluoreséns bodas (WW 3200 – 3700K)',
 'exif-lightsource-17'  => 'Cahya baku A',
 'exif-lightsource-18'  => 'Cahya baku B',
 'exif-lightsource-19'  => 'Cahya baku C',
@@ -2508,5 +2516,16 @@ Coba ku sawangan normal.',
 'specialpages-group-wiki'        => 'Data wiki jeung parabot',
 'specialpages-group-redirects'   => 'Alihan kaca husus',
 'specialpages-group-spam'        => 'Parabot Spam',
+
+# Special:Tags
+'tags-edit'     => 'édit',
+'tags-hitcount' => '$1 {{PLURAL:$1|parobahan|parobahan}}',
+
+# Database error messages
+'dberr-header'    => 'Aya masalah dina ieu wiki',
+'dberr-problems'  => 'Punten! Nuju aya gangguan téhnis.',
+'dberr-again'     => 'Cobi antos sababaraha menit, lajeng dimuat ulang.',
+'dberr-info'      => '(Teu bisa nyambung jeung server pangkalan data: $1)',
+'dberr-usegoogle' => 'Kanggo samentawis, tiasa dicobi milari di Google.',
 
 );

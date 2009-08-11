@@ -415,7 +415,7 @@ ning [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide kasutusjuhendit].'
 # Vector skin
 'vector-action-addsection'   => 'Lisa teema',
 'vector-action-delete'       => 'Kustuta',
-'vector-action-move'         => 'teisalda',
+'vector-action-move'         => 'Teisalda',
 'vector-action-protect'      => 'Kaitse',
 'vector-action-undelete'     => 'Taasta',
 'vector-action-unprotect'    => 'Tühista kaitse',
@@ -1081,7 +1081,7 @@ päringu ees prefiksit ''all:''. Konkreetsest nimeruumist otsimiseks kasuta pref
 
 # Preferences page
 'preferences'                   => 'Eelistused',
-'mypreferences'                 => 'eelistused',
+'mypreferences'                 => 'Eelistused',
 'prefs-edits'                   => 'Redigeerimiste arv:',
 'prefsnologin'                  => 'Te ei ole sisse loginud',
 'prefsnologintext'              => 'Et oma eelistusi seada, peate olema <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} sisse logitud]</span>.',
@@ -2217,9 +2217,10 @@ Samuti võimaldab see resümee reale põhjenduse lisamist.',
 'math_syntax_error'     => 'Süntaksiviga',
 
 # Patrolling
-'markaspatrolleddiff' => 'Märgi kui kontrollitud',
-'markaspatrolledtext' => 'Märgi see leht kontrollituks',
-'markedaspatrolled'   => 'Kontrollituks märgitud',
+'markaspatrolleddiff'    => 'Märgi kui kontrollitud',
+'markaspatrolledtext'    => 'Märgi see leht kontrollituks',
+'markedaspatrolled'      => 'Kontrollituks märgitud',
+'markedaspatrollederror' => 'Ei saa patrullituks märkida',
 
 # Patrol log
 'patrol-log-page'   => 'Kontrollimise logi',
@@ -2467,9 +2468,11 @@ Et lehti jälgimisloendist eemaldada, tehke vastava lehe ees olevasse kastikesse
 Iga pealkiri asub ise real.
 Kui sa oled lõpetanud, vajuta all nuppu Uuenda jälgimisloendit.
 Aga samuti võid sa [[Special:Watchlist/edit|kasutada harilikku redaktorit]].',
+'watchlistedit-raw-titles'     => 'Pealkirjad:',
 'watchlistedit-raw-submit'     => 'Uuenda jälgimisloendit',
 'watchlistedit-raw-done'       => 'Teie jälgimisloend on uuendatud.',
 'watchlistedit-raw-added'      => '{{PLURAL:$1|1 lehekülg|$1 lehekülge}} lisatud:',
+'watchlistedit-raw-removed'    => '{{PLURAL:$1|1 pealkiri|$1 pealkirja}} eemaldati:',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Näita vastavaid muudatusi',

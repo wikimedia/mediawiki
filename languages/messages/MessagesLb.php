@@ -871,6 +871,9 @@ Dir fannt eventuell méi Informatiounen an der [{{fullurl:{{#Special:Log}}/suppr
 'rev-deleted-text-unhide'     => "Dës Versioun vun der Säit gouf '''geläscht'''.
 Detailer kënnen am [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Lösch-Logbuch] fonnt ginn.
 Als Administrateur kënnt Dir nach ëmmer [$1 dës Versioun kucken] wann Dir weiderfuere wëllt.",
+'rev-suppressed-text-unhide'  => "Dës Versioun vun der Säit gouf '''geläscht'''.
+Detailler kënnen am  [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Läschlogbuch] sinn.
+Als Adminstrateur kënnt Dir [$1 dës Versioun gesi] wann Dir weiderfuere wëllt.",
 'rev-deleted-text-view'       => "Dës Versioun vun der Säit gouf '''geläscht'''.
 Als Administrateur kënnt Dir se gesinn; Dir fannt eventuell méi Detailer am  [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} Läsch-Logbuch].",
 'rev-suppressed-text-view'    => "Dës Versioun vun der Säit gouf '''geläscht'''.

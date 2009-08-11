@@ -164,7 +164,7 @@ $dateFormats = array(
 
 $messages = array(
 # User preference toggles
-'tog-underline'               => 'Understreg henvisninger',
+'tog-underline'               => 'Understreg henvisninger:',
 'tog-highlightbroken'         => 'Brug røde henvisninger til tomme sider',
 'tog-justify'                 => 'Vis afsnit med lige marginer',
 'tog-hideminor'               => 'Skjul mindre ændringer i listen over seneste ændringer',
@@ -193,6 +193,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Send mig også en e-mail ved mindre ændringer af overvågede sider',
 'tog-enotifrevealaddr'        => 'Vis min e-mail-adresse i mails med besked om ændringer',
 'tog-shownumberswatching'     => 'Vis antal brugere, der overvåger',
+'tog-oldsig'                  => 'Forhåndsvisning af nuværende signatur',
 'tog-fancysig'                => 'Behandl signatur som wikitekst uden automatisk henvisning',
 'tog-externaleditor'          => 'Brug ekstern editor automatisk',
 'tog-externaldiff'            => 'Brug ekstern forskelsvisning automatisk',
@@ -213,7 +214,14 @@ $messages = array(
 
 'underline-always'  => 'Altid',
 'underline-never'   => 'Aldrig',
-'underline-default' => 'efter browserindstilling',
+'underline-default' => 'Brug browserens indstilling',
+
+# Font style option in Special:Preferences
+'editfont-style'     => 'Skriftstil ved redigering:',
+'editfont-default'   => 'Brug browserens indstilling',
+'editfont-monospace' => 'Fastbreddeskrift',
+'editfont-sansserif' => 'Skrift uden fødder',
+'editfont-serif'     => 'Skrift med fødder',
 
 # Dates
 'sunday'        => 'søndag',
@@ -483,8 +491,10 @@ Den sidst forsøgte databaseforespørgsel var:
 fra funktionen "<tt>$2</tt>". 
 $5 returnerede fejlen "<tt>$3: $4</tt>".',
 'dberrortextcl'        => 'Der er opstået en syntaksfejl i en databaseforespørgsel. 
-Den seneste forsøgte databaseforespørgsel var: "$1" fra funktionen "$2". 
-MySQL returnerede fejlen "$3: $4".',
+Den seneste forsøgte databaseforespørgsel var:
+"$1"
+fra funktionen "$2". 
+$5 returnerede fejlen "$3: $4"',
 'laggedslavemode'      => 'Bemærk: Den viste side indeholder muligvis ikke de nyeste ændringer.',
 'readonly'             => 'Databasen er skrivebeskyttet',
 'enterlockreason'      => 'Skriv en begrundelse for skrivebeskyttelsen, med samt en vurdering af, hvornår skrivebeskyttelsen ophæves igen',
@@ -502,6 +512,7 @@ Gør venligst en [[Special:ListUsers/sysop|administrator]] opmærksom på det, o
 'readonly_lag'         => 'Databasen er automatisk blevet låst mens slave database serverne synkronisere med master databasen',
 'internalerror'        => 'Intern fejl',
 'internalerror_info'   => 'Internal fejl: $1',
+'fileappenderror'      => 'Kunne ikke tilføje "$1" til "$2".',
 'filecopyerror'        => 'Kunne ikke kopiere filen "$1" til "$2".',
 'filerenameerror'      => 'Kunne ikke omdøbe filen "$1" til "$2".',
 'filedeleteerror'      => 'Kunne ikke slette filen "$1".',
@@ -871,17 +882,23 @@ version, (forrige) = forskel til den forrige version, M = mindre ændring',
 'rev-deleted-user'            => '(brugernavn fjernet)',
 'rev-deleted-event'           => '(loghandling fjernet)',
 'rev-deleted-text-permission' => "Denne version af siden er blevet '''slettet'''.
-Der er måske flere detaljer i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} sletteloggen].",
+Der er måske flere detaljer i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} sletteloggen].",
 'rev-deleted-text-unhide'     => "Denne version af siden er '''slettet'''.
+Der er måske flere detaljer i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} sletningsloggen].
+Som administrator kan du stadig [$1 se versionen] hvis du ønsker at fortsætte.",
+'rev-suppressed-text-unhide'  => "Denne version af siden er '''skjult'''.
 Der er måske flere detaljer i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} skjulningsloggen].
 Som administrator kan du stadig [$1 se versionen] hvis du ønsker at fortsætte.",
 'rev-deleted-text-view'       => "Denne version af siden er '''slettet'''.
 Som administrator kan du se den. 
+Der er måske flere detaljer i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} sletningsloggen].",
+'rev-suppressed-text-view'    => "Denne version af siden er '''skjult'''.
+Som administrator kan du se den.  
 Der er måske flere detaljer i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} skjulningsloggen].",
 'rev-deleted-no-diff'         => "Du kan ikke vise denne forskel fordi en af versionerne er '''slettet'''
-Der er måske flere detaljer i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} skjulningsloggen].",
+Der er måske flere detaljer i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} sletningsloggen].",
 'rev-deleted-unhide-diff'     => "En af versionerne for denne forskel er '''slettet'''.
-Der er måske flere detaljer i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} skjulningsloggen].
+Der er måske flere detaljer i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} sletningsloggen].
 Som administrator kan du stadig [$1 se forskellen] hvis du ønsker at fortsætte.",
 'rev-delundel'                => 'vise/skjule',
 'revisiondelete'              => 'Slette/gendanne versioner',
@@ -911,7 +928,7 @@ Vær venlig at bekræfte at du vil gøre dette, at du forstår konsekvenserne, o
 'revdelete-hide-restricted'   => 'Skjul også informationen for administratorer',
 'revdelete-suppress'          => 'Skjul også informationen for administratorer',
 'revdelete-hide-image'        => 'Skjul filindhold',
-'revdelete-unsuppress'        => 'Ophæve begrænsninger for gendannede versioner',
+'revdelete-unsuppress'        => 'Ophæv begrænsninger for gendannede versioner',
 'revdelete-log'               => 'Kommentar til loggen:',
 'revdelete-submit'            => 'Bruge på udvalgte versioner',
 'revdelete-logentry'          => 'Versionsvisning ændret for [[$1]]',
@@ -1140,6 +1157,7 @@ Du kan prøve at bruge \"all:\" som præfiks for at søge i alt indhold (inkl. d
 'prefs-watchlist-days-max'      => '(maks. 7 dage)',
 'prefs-watchlist-edits'         => 'Antal redigeringer der vises i udvidet overvågningsliste:',
 'prefs-watchlist-edits-max'     => '(maks. 1000)',
+'prefs-watchlist-token'         => 'Overvågningslistenøgle',
 'prefs-misc'                    => 'Forskelligt',
 'prefs-resetpass'               => 'Skift adgangskode',
 'prefs-email'                   => 'Indstillinger for e-mail',
@@ -1160,6 +1178,9 @@ Du kan prøve at bruge \"all:\" som præfiks for at søge i alt indhold (inkl. d
 'recentchangesdays-max'         => '(maks. $1 {{PLURAL:$1|dag|dage}})',
 'recentchangescount'            => 'Antal redigeringer som skal vises som standard:',
 'prefs-help-recentchangescount' => 'Det gælder for seneste ændringer, historikker og logger.',
+'prefs-help-watchlist-token'    => 'Hvis du udfylder dette felt med en hemmelig værdi, vil der laves et RSS-feed for din overvågingsliste.
+Alle som kender nøglen i feltet vil være i stand til at læse din overvågingsliste, så vælg en sikker værdi.
+Her er en tilfældig genereret værdi som du kan bruge: $1',
 'savedprefs'                    => 'Dine indstillinger er blevet gemt.',
 'timezonelegend'                => 'Tidszone:',
 'localtime'                     => 'Lokaltid:',
@@ -1199,6 +1220,7 @@ Det kan ikke gøres om.',
 'yourlanguage'                  => 'Sprog:',
 'yourvariant'                   => 'Sprogvariant:',
 'yournick'                      => 'Signatur:',
+'prefs-help-signature'          => 'Kommentarer på diskussionssider bør signeres med "<nowiki>~~~~</nowiki>" som vil blive konverteret til din signatur og et tidsstempel.',
 'badsig'                        => 'Syntaksen i underskriften er ugyldig; kontroller venligst den brugte HTML.',
 'badsiglength'                  => 'Din sigantur er for lang. Den må højst indeholde {{PLURAL:$1|}}$1 tegn.',
 'yourgender'                    => 'Køn:',
@@ -1328,6 +1350,7 @@ Du kan også vælge at lade andre brugere kontakte dig gennem din bruger- eller 
 'right-siteadmin'             => 'Låse og frigive databasen',
 'right-reset-passwords'       => 'Ændre andre brugeres adgangskode',
 'right-override-export-depth' => 'Eksportere sider inkl. henviste sider op til en dybde på 5',
+'right-versiondetail'         => 'Se den udvidede information om programversion',
 
 # User rights log
 'rightslog'      => 'Rettighedslog',
@@ -1377,6 +1400,15 @@ Du kan også vælge at lade andre brugere kontakte dig gennem din bruger- eller 
 'recentchanges-legend'              => 'Indstillinger for seneste ændringer',
 'recentchangestext'                 => "På denne side kan du følge de seneste ændringer på '''{{SITENAME}}'''.",
 'recentchanges-feed-description'    => 'Med dette feed kan du følge de seneste ændringer på {{SITENAME}}.',
+'recentchanges-label-legend'        => 'Tegnforklaring: $1.',
+'recentchanges-legend-newpage'      => '$1 – ny side',
+'recentchanges-label-newpage'       => 'Denne redigering oprettede en ny side',
+'recentchanges-legend-minor'        => '$1 – mindre ændring',
+'recentchanges-label-minor'         => 'Dette er en mindre ændring',
+'recentchanges-legend-bot'          => '$1 – botændring',
+'recentchanges-label-bot'           => 'Denne redigering blev udført af en bot',
+'recentchanges-legend-unpatrolled'  => '$1 – upatruljeret ændring',
+'recentchanges-label-unpatrolled'   => 'Denne redigering er endnu ikke blevet patruljeret',
 'rcnote'                            => "Herunder ses {{PLURAL:$1|'''1''' ændring|de sidste '''$1''' ændringer}} fra {{PLURAL:$2|i dag|de sidste '''$2''' dage}} fra den $4, kl. $5.",
 'rcnotefrom'                        => "Nedenfor er op til '''$1''' ændringer siden '''$2''' vist.",
 'rclistfrom'                        => 'Vis nye ændringer startende fra $1',
@@ -1497,12 +1529,15 @@ Overvej om det er passende at fortsætte med uploadet.
 Sletningsloggen for denne fil er gengivet herunder.",
 'filename-bad-prefix'         => "Navnet på filen du er ved at lægge op begynder med '''\"\$1\"'''. Dette er et ikkebeskrivende navn, der typisk er skabt automatisk af et digitalkamera. Vær venlig at vælge et mere beskrivende navn på dit billede.",
 
-'upload-proto-error'      => 'Forkert protokol',
-'upload-proto-error-text' => 'Adressen skal begynde med <code>http://</code> eller <code>ftp://</code>.',
-'upload-file-error'       => 'Intern fejl',
-'upload-file-error-text'  => 'Ved oprettelse af en midlertidig fil på serveren, er der sket en fejl. Informer venligst en system-administrator.',
-'upload-misc-error'       => 'Ukendt fejl ved upload',
-'upload-misc-error-text'  => 'Ved upload er der sket en ukendt fejl. Kontroller adressen for fejl, sidens onlinestatus og forsøg igen. Hvis problemet fortsætter, informeres en system-administrator.',
+'upload-proto-error'        => 'Forkert protokol',
+'upload-proto-error-text'   => 'Adressen skal begynde med <code>http://</code> eller <code>ftp://</code>.',
+'upload-file-error'         => 'Intern fejl',
+'upload-file-error-text'    => 'Ved oprettelse af en midlertidig fil på serveren, er der sket en fejl. Informer venligst en system-administrator.',
+'upload-misc-error'         => 'Ukendt fejl ved upload',
+'upload-misc-error-text'    => 'Ved upload er der sket en ukendt fejl. Kontroller adressen for fejl, sidens onlinestatus og forsøg igen. Hvis problemet fortsætter, informeres en system-administrator.',
+'upload-too-many-redirects' => "URL'en indeholdt for mange omdirigeringer",
+'upload-unknown-size'       => 'Ukendt størrelse',
+'upload-http-error'         => 'Der opstod en HTTP-fejl: $1',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'URL er utilgængelig',
@@ -1626,6 +1661,7 @@ Husk at kontrollere for andre henvisninger til skabelonerne før de slettes.',
 'statistics-header-edits'      => 'Redigeringsstatistik',
 'statistics-header-views'      => 'Visningsstatistik',
 'statistics-header-users'      => 'Statistik om brugere på {{SITENAME}}',
+'statistics-header-hooks'      => 'Anden statistik',
 'statistics-articles'          => 'Indholdssider',
 'statistics-pages'             => 'Sider',
 'statistics-pages-desc'        => 'Alle sider i wikien inklusive diskussionssider, omdirigeringer og andet',
@@ -1645,7 +1681,9 @@ Husk at kontrollere for andre henvisninger til skabelonerne før de slettes.',
 'disambiguations-text' => 'De følgende sider henviser til en flertydig titel. De bør henvise direkte til det passende emne i stedet. En side behandles som en side med en flertydig titel hvis den bruger en skabelon som er henvist til fra [[MediaWiki:Disambiguationspage]].',
 
 'doubleredirects'            => 'Dobbelte omdirigeringer',
-'doubleredirectstext'        => '<b>Bemærk:</b> Denne liste kan indeholde forkerte resultater. Det er som regel, fordi siden indeholder ekstra tekst under den første #REDIRECT.<br /> Hver linje indeholder henvisninger til den første og den anden omdirigering, og den første linje fra den anden omdirigeringstekst, det giver som regel den "rigtige" målartikel, som den første omdirigering skulle have peget på.',
+'doubleredirectstext'        => 'Dette er en liste over sider som omdirigerer til andre omdirigeringssider.
+Hver linje indeholder henvisninger til den første og den anden omdirigering, såvel som til målet for den anden omdirigering som sædvanligvis er den "rigtige" målside som den første omdirigering burde henvise til.
+<s>Overstregede</s> poster er rettede.',
 'double-redirect-fixed-move' => '[[$1]] blev flyttet og er nu en omdirigering til [[$2]]',
 'double-redirect-fixer'      => 'Omdirigerings-retter',
 
@@ -1733,7 +1771,7 @@ Husk at kontrollere for andre henvisninger til skabelonerne før de slettes.',
 'specialloguserlabel'  => 'Bruger:',
 'speciallogtitlelabel' => 'Titel:',
 'log'                  => 'Loglister',
-'all-logs-page'        => 'Alle loglister',
+'all-logs-page'        => 'Alle offentlige logger',
 'alllogstext'          => 'Samlet visning af alle loggene på {{SITENAME}}.
 Du kan afgrænse visningen ved at vælge en logtype, brugernavn eller påvirket side. Der skelnes mellem små og store bogstaver for både bruger- og sidenavne.',
 'logempty'             => 'Intet passende fundet.',
@@ -2573,6 +2611,7 @@ $1',
 'svg-long-desc'        => '(SVG fil, basisstørrelse $1 × $2 punkters, størrelse: $3)',
 'show-big-image'       => 'Version i større opløsning',
 'show-big-image-thumb' => '<small>Størrelse af forhåndsvisning: $1 × $2 pixel</small>',
+'file-info-gif-looped' => 'gentaget',
 
 # Special:NewFiles
 'newimages'             => 'Galleri med de nyeste billeder',

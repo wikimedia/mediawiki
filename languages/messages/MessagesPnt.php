@@ -558,6 +558,8 @@ $messages = array(
 'revdelete-content' => 'περιεχόμενον',
 'revdelete-summary' => 'σύνοψην',
 'revdelete-uname'   => "όνεμαν χρήστ'",
+'revdelete-hid'     => 'κρύψον $1',
+'revdelete-unhid'   => 'ουκ κρύψον',
 
 # History merging
 'mergehistory-from' => 'Σελίδα πηγή:',
