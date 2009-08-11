@@ -46,6 +46,14 @@ class Html {
 		'keygen', 'link', 'meta', 'param', 'source'
 	);
 
+	# Boolean attributes, which may have the value omitted entirely.  Manually
+	# collected from the HTML 5 spec as of 2009-08-10.
+	private static $boolAttribs = array( 'async', 'autobuffer', 'autofocus',
+		'autoplay', 'checked', 'controls', 'defer', 'disabled',
+		'formnovalidate', 'hidden', 'ismap', 'loop', 'multiple', 'novalidate',
+		'open', 'readonly', 'required', 'reversed', 'scoped', 'seamless'
+	);
+
 	/**
 	 * Returns an HTML element in a string.  The major advantage here over
 	 * manually typing out the HTML is that it will escape all attribute
@@ -62,7 +70,7 @@ class Html {
 	 *
 	 * One notable difference to Xml::element() is that $contents is *not*
 	 * escaped.  This means that Html::element() can be usefully nested, rather
-	 * than using the rather clumsy Xml::openElement() and Xml::closeElement().  
+	 * than using the rather clumsy Xml::openElement() and Xml::closeElement().
 	 *
 	 * @param $element  string The element's name, e.g., 'a'
 	 * @param $attribs  array  Associative array of attributes, e.g., array(
@@ -91,7 +99,8 @@ class Html {
 	 * 'http://www.mediawiki.org/' ) becomes something like
 	 * ' href="http://www.mediawiki.org"'.  Again, this is like
 	 * Xml::expandAttributes(), but it implements some HTML-specific logic.
-	 * For instance, it will omit quotation marks if $wgWellFormedXml is false.
+	 * For instance, it will omit quotation marks if $wgWellFormedXml is false,
+	 * and will treat boolean attributes specially.
 	 *
 	 * @param $attribs array Associative array of attributes, e.g., array(
 	 *   'href' => 'http://www.mediawiki.org/' ).  Values will be HTML-escaped.
@@ -99,7 +108,7 @@ class Html {
 	 *   (starting with a space if at least one attribute is output)
 	 */
 	public static function expandAttributes( $attribs ) {
-		global $wgWellFormedXml;
+		global $wgHtml5, $wgWellFormedXml;
 
 		$ret = '';
 		foreach ( $attribs as $key => $value ) {
@@ -115,18 +124,31 @@ class Html {
 				$quote = '';
 			}
 
-			# Apparently we need to entity-encode \n, \r, \t, although the spec
-			# doesn't mention that.  Since we're doing strtr() anyway, and we
-			# don't need <> escaped here, we may as well not call
-			# htmlspecialchars().  FIXME: verify that we actually need to 
-			# escape \n\r\t here, and explain why, exactly.
-			$ret .= " $key=$quote" . strtr( $value, array(
-				'&' => '&amp;',
-				'"' => '&quot;',
-				"\n" => '&#10;',
-				"\r" => '&#13;',
-				"\t" => '&#9;'
-			) ) . $quote;
+			if ( in_array( $key, self::$boolAttribs ) ) {
+				# In XHTML 1.0 Transitional, the value needs to be equal to the
+				# key.  In HTML 5, we can leave the value empty instead.  If we
+				# don't need well-formed XML, we can omit the = entirely.
+				if ( !$wgWellFormedXml ) {
+					$ret .= " $key";
+				} elseif ( $wgHtml5 ) {
+					$ret .= " $key=\"\"";
+				} else {
+					$ret .= " $key=\"$key\"";
+				}
+			} else {
+				# Apparently we need to entity-encode \n, \r, \t, although the
+				# spec doesn't mention that.  Since we're doing strtr() anyway,
+				# and we don't need <> escaped here, we may as well not call
+				# htmlspecialchars().  FIXME: verify that we actually need to
+				# escape \n\r\t here, and explain why, exactly.
+				$ret .= " $key=$quote" . strtr( $value, array(
+					'&' => '&amp;',
+					'"' => '&quot;',
+					"\n" => '&#10;',
+					"\r" => '&#13;',
+					"\t" => '&#9;'
+				) ) . $quote;
+			}
 		}
 		return $ret;
 	}
@@ -182,8 +204,8 @@ class Html {
 
 		$attrs = array();
 		if ( !$wgHtml5 ) {
-			# Technically we should probably add CDATA stuff here like with 
-			# scripts, but in practice, stylesheets tend not to have 
+			# Technically we should probably add CDATA stuff here like with
+			# scripts, but in practice, stylesheets tend not to have
 			# problematic characters anyway.
 			$attrs['type'] = 'text/css';
 		}
@@ -213,5 +235,42 @@ class Html {
 			$attrs['media'] = $media;
 		}
 		return self::element( 'link', $attrs );
+	}
+
+	/**
+	 * Convenience function to produce an <input> element.  This supports the
+	 * new HTML 5 input types and attributes, and will silently strip them if
+	 * $wgHtml5 is false.
+	 *
+	 * @param $name    string name attribute
+	 * @param $value   mixed  value attribute (null = omit)
+	 * @param $type    string type attribute
+	 * @param $attribs array  Assocative array of miscellaneous extra attributes,
+	 *   passed to Html::element()
+	 * @return string Raw HTML
+	 */
+	public static function input( $name, $value = null, $type = 'text', $attribs = array() ) {
+		global $wgHtml5;
+
+		if ( !$wgHtml5 ) {
+			if ( !in_array( $type, array( 'hidden', 'text', 'password',
+			'checkbox', 'radio', 'file', 'submit', 'image', 'reset', 'button'
+			) ) ) {
+				$type = 'text';
+			}
+			foreach ( array( 'autocomplete', 'autofocus', 'max', 'min', 'multiple',
+			'pattern', 'placeholder', 'required', 'step' ) as $badAttr ) {
+				unset( $attribs[$badAttr] );
+			}
+		}
+		if ( $type != 'text' ) {
+			$attribs['type'] = $type;
+		}
+		if ( $value !== null ) {
+			$attribs['value'] = $value;
+		}
+		$attribs['name'] = $name;
+
+		return self::element( 'input', $attribs );
 	}
 }
