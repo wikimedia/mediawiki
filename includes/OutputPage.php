@@ -109,8 +109,7 @@ class OutputPage {
 	 *             addStyle() and draws from the /skins folder.
 	 */
 	public function addExtensionStyle( $url ) {
-		$linkarr = array( 'rel' => 'stylesheet', 'href' => $url, 'type' => 'text/css' );
-		array_push( $this->mExtStyles, $linkarr );
+		array_push( $this->mExtStyles, $url );
 	}
 
 	/**
@@ -118,7 +117,7 @@ class OutputPage {
 	 * @param string $file filename in skins/common or complete on-server path (/foo/bar.js)
 	 */
 	function addScriptFile( $file ) {
-		global $wgStylePath, $wgStyleVersion, $wgJsMimeType, $wgScript, $wgUser;
+		global $wgStylePath, $wgStyleVersion, $wgScript, $wgUser;
 		global $wgJSAutoloadClasses, $wgJSAutoloadLocalClasses, $wgEnableScriptLoader, $wgScriptPath;
 
 		if( substr( $file, 0, 1 ) == '/' ) {
@@ -163,15 +162,7 @@ class OutputPage {
 		}
 
 		// if the script loader did not find a way to add the script than add using addScript
-		$this->addScript(
-			Xml::element( 'script',
-				array(
-					'type' => $wgJsMimeType,
-					'src' => wfAppendQuery( $path, $this->getURIDparam() ),
-				),
-				'', false
-			)
-		);
+		$this->addScript( Html::linkedScript( wfAppendQuery( $path, $this->getURIDparam() ) ) );
 	}
 
 	/**
@@ -180,7 +171,7 @@ class OutputPage {
 	 *  different page load types (edit, upload, view, etc)
 	 */
 	function addCoreScripts2Top(){
-		global $wgEnableScriptLoader, $wgStyleVersion, $wgJSAutoloadLocalClasses, $wgJsMimeType, $wgScriptPath, $wgEnableJS2system;
+		global $wgEnableScriptLoader, $wgStyleVersion, $wgJSAutoloadLocalClasses, $wgScriptPath, $wgEnableJS2system;
 		//@@todo we should deprecate wikibits in favor of mv_embed and native jQuery functions
 
 		if( $wgEnableJS2system ){
@@ -195,12 +186,7 @@ class OutputPage {
 			$so = '';
 			foreach( $core_classes as $s ){
 				if( isset( $wgJSAutoloadLocalClasses[$s] ) ){
-					$so.= Xml::element( 'script', array(
-							'type' => $wgJsMimeType,
-							'src' => "{$wgScriptPath}/{$wgJSAutoloadLocalClasses[$s]}?" . $this->getURIDparam()
-						),
-						'', false
-					);
+					$so .= Html::linkedScript( "{$wgScriptPath}/{$wgJSAutoloadLocalClasses[$s]}?" . $this->getURIDparam() );
 				}
 			}
 			$this->mScripts =  $so . $this->mScripts;
@@ -213,7 +199,7 @@ class OutputPage {
 	 */
 	function addScriptClass( $js_class ){
 		global $wgDebugJavaScript, $wgJSAutoloadLocalClasses, $wgJSAutoloadClasses,
-				$wgJsMimeType, $wgEnableScriptLoader, $wgStyleVersion, $wgScriptPath;
+				$wgEnableScriptLoader, $wgStyleVersion, $wgScriptPath;
 
 		if( isset( $wgJSAutoloadClasses[$js_class] ) || isset( $wgJSAutoloadLocalClasses[$js_class] ) ){
 			if( $wgEnableScriptLoader ){
@@ -228,16 +214,8 @@ class OutputPage {
 				}else if( isset( $wgJSAutoloadLocalClasses[$js_class] ) ){
 					$path.= $wgJSAutoloadLocalClasses[$js_class];
 				}
-				$urlApend = ( $wgDebugJavaScript) ? time() : $wgStyleVersion;
-				$this->addScript(
-					Xml::element( 'script',
-						array(
-							'type' => $wgJsMimeType,
-							'src' => "$path?" . $urlApend,
-						),
-						'', false
-					)
-				);
+				$urlAppend = ( $wgDebugJavaScript ) ? time() : $wgStyleVersion;
+				$this->addScript( Html::linkedScript( "$path?$urlAppend" ) );
 			}
 			return true;
 		}
@@ -250,7 +228,7 @@ class OutputPage {
 	 * @param $forcClassAry Boolean: false by default
 	 */
 	function getScriptLoaderJs( $forceClassAry = false ){
-		global $wgJsMimeType, $wgStyleVersion, $wgRequest, $wgDebugJavaScript;
+		global $wgStyleVersion, $wgRequest, $wgDebugJavaScript;
 
 		if( !$forceClassAry ){
 			$class_list = implode( ',', $this->mScriptLoaderClassList );
@@ -268,14 +246,7 @@ class OutputPage {
 
 		//generate the unique request param (combine with the most recent revision id of any wiki page with the $wgStyleVersion var)
 
-
-		return Xml::element( 'script',
-				array(
-					'type' => $wgJsMimeType,
-					'src' => wfScript( 'mwScriptLoader' ) . "?class={$class_list}{$debug_param}&".$this->getURIDparam(),
-				),
-				'', false
-		);
+		return Html::linkedScript( wfScript( 'mwScriptLoader' ) . "?class={$class_list}{$debug_param}&" . $this->getURIDparam() );
 	}
 
 	function getURIDparam(){
@@ -304,8 +275,7 @@ class OutputPage {
 	 * @param string $script JavaScript text, no <script> tags
 	 */
 	function addInlineScript( $script ) {
-		global $wgJsMimeType;
-		$this->mScripts .= "\t\t<script type=\"$wgJsMimeType\">/*<![CDATA[*/\n\t\t$script\n\t\t/*]]>*/</script>\n";
+		$this->mScripts .= "\t\t" . Html::inlineScript( "\n\t\t$script\n\t\t" ) . "\n";
 	}
 
 	function getScript() {
@@ -1056,7 +1026,7 @@ class OutputPage {
 	public function output() {
 		global $wgUser, $wgOutputEncoding, $wgRequest;
 		global $wgContLanguageCode, $wgDebugRedirects, $wgMimeType;
-		global $wgJsMimeType, $wgUseAjax, $wgAjaxWatch;
+		global $wgUseAjax, $wgAjaxWatch;
 		global $wgEnableMWSuggest, $wgUniversalEditButton;
 		global $wgArticle;
 
@@ -1741,7 +1711,7 @@ class OutputPage {
 			$this->getHeadItems(),
 		));
 		if( $sk->usercss ){
-			$ret .= "<style type='text/css'>{$sk->usercss}</style>";
+			$ret .= Html::inlineStyle( $sk->usercss );
 		}
 
 		if( $wgEnableScriptLoader )
@@ -1922,7 +1892,7 @@ class OutputPage {
 	 * @param $style_css Mixed: inline CSS
 	 */
 	public function addInlineStyle( $style_css ){
-		$this->mScripts .= "<style type=\"text/css\">$style_css</style>";
+		$this->mScripts .= Html::inlineStyle( $style_css );
 	}
 
 	/**
@@ -1956,7 +1926,7 @@ class OutputPage {
 				return '';
 			}
 		} else {
-			$media = '';
+			$media = null;
 		}
 
 		if( substr( $style, 0, 1 ) == '/' ||
@@ -1968,15 +1938,7 @@ class OutputPage {
 			$url = $wgStylePath . '/' . $style . '?' . $wgStyleVersion;
 		}
 
-		$attribs = array(
-			'rel' => 'stylesheet',
-			'href' => $url,
-			'type' => 'text/css' );
-		if( $media ) {
-			$attribs['media'] = $media;
-		}
-
-		$link = Xml::element( 'link', $attribs );
+		$link = Html::linkedStyle( $url, $media );
 
 		if( isset( $options['condition'] ) ) {
 			$condition = htmlspecialchars( $options['condition'] );

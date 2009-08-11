@@ -801,12 +801,10 @@ class SpecialSearch {
 	}
 
 	protected function searchFocus() {
-		global $wgJsMimeType;
-		return "<script type=\"$wgJsMimeType\">" .
+		return Html::inlineScript(
 			"hookEvent(\"load\", function() {" .
 				"document.getElementById('searchText').focus();" .
-			"});" .
-			"</script>";
+			"});" );
 	}
 
 	protected function formHeader( $term, $resultsShown, $totalNum ) {

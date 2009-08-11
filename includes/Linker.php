@@ -1257,7 +1257,6 @@ class Linker {
 
 	/** @todo document */
 	function tocList($toc) {
-		global $wgJsMimeType;
 		$title = wfMsgHtml('toc') ;
 		return
 		   '<table id="toc" class="toc"><tr><td>'
@@ -1266,13 +1265,13 @@ class Linker {
 		 # no trailing newline, script should not be wrapped in a
 		 # paragraph
 		 . "</ul>\n</td></tr></table>"
-		 . '<script type="' . $wgJsMimeType . '">'
-		 . ' if (window.showTocToggle) {'
-		 . ' var tocShowText = "' . Xml::escapeJsString( wfMsg('showtoc') ) . '";'
-		 . ' var tocHideText = "' . Xml::escapeJsString( wfMsg('hidetoc') ) . '";'
-		 . ' showTocToggle();'
-		 . ' } '
-		 . "</script>\n";
+		 . Html::inlineScript(
+			'if (window.showTocToggle) {'
+			. ' var tocShowText = "' . Xml::escapeJsString( wfMsg('showtoc') ) . '";'
+			. ' var tocHideText = "' . Xml::escapeJsString( wfMsg('hidetoc') ) . '";'
+			. ' showTocToggle();'
+			. ' } ' )
+		. "\n";
 	}
 	
 	/**
