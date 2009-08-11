@@ -2097,16 +2097,18 @@ Paginae nomen petitum "[[:$1]]" iam existit. Vin tu eam delere ut pagina illic m
 'svg-long-desc'        => '(fasciculus SVG, nominale $1 × $2 elementa imaginalia, magnitudo fasciculi: $3)',
 'show-big-image'       => 'Resolutio completa',
 'show-big-image-thumb' => '<small>Mensura huius praevisi: pixellae $1 × $2</small>',
+'file-info-gif-frames' => '$1 {{PLURAL:$1|replum|repla}}',
 
 # Special:NewFiles
-'newimages'        => 'Fasciculi novi',
-'imagelisttext'    => "Subter est index {{PLURAL:$1|'''unius''' fasciculi|'''$1''' fasciculorum}} digestus $2.",
-'newimages-legend' => 'Filtrum',
-'newimages-label'  => 'Nomen fasciculi (vel pars eius):',
-'showhidebots'     => '($1 automata)',
-'noimages'         => 'Nullum videndum.',
-'ilsubmit'         => 'Quaerere',
-'bydate'           => 'ex die',
+'newimages'         => 'Fasciculi novi',
+'imagelisttext'     => "Subter est index {{PLURAL:$1|'''unius''' fasciculi|'''$1''' fasciculorum}} digestus $2.",
+'newimages-summary' => 'Haec pagina specialis monstrat fasciculos impositos ultimos.',
+'newimages-legend'  => 'Filtrum',
+'newimages-label'   => 'Nomen fasciculi (vel pars eius):',
+'showhidebots'      => '($1 automata)',
+'noimages'          => 'Nullum videndum.',
+'ilsubmit'          => 'Quaerere',
+'bydate'            => 'ex die',
 
 # Metadata
 'metadata'          => 'Metadata',

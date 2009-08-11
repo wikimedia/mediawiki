@@ -2160,6 +2160,9 @@ Videta tu 'a màne a 'ngollà 'a pàgena vecchie cu quedda nova.'''",
 'movereason'                => 'Raggione:',
 'revertmove'                => 'a smerse',
 'delete_and_move'           => 'Scangille e spuèste',
+'delete_and_move_text'      => '== Scangellazzione richieste ==
+\'A pàgene de destinazione "[[:$1]]" esiste già.
+Tu à vuè ccu scangille o vuè ccù iacchie \'nu mode pe spustarle?',
 'delete_and_move_confirm'   => "Sine, scangille 'a pàggene",
 'delete_and_move_reason'    => "'U scangellamende avène fatte pe spustà",
 'selfmove'                  => "Le titele sorgende e destinazione sonde le stesse;

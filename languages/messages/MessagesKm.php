@@ -305,6 +305,7 @@ $messages = array(
 'underline-default' => 'តាមលំនាំដើម',
 
 # Font style option in Special:Preferences
+'editfont-style'     => 'កែសម្រួល​រចនាបទ​ពុម្ព​អក្សរ​សម្រាប់​តំបន់​',
 'editfont-default'   => 'លំនាំដើមនៃ​កម្មវិធី​រុករក​',
 'editfont-monospace' => 'ពុម្ព​អក្សរ​ដែល​ដក​ឃ្លា​តែមួយ​',
 'editfont-sansserif' => 'ពុម្ពអក្សរ​​គ្មាន serif (Sans-serif font)',
@@ -1299,6 +1300,7 @@ $2',
 'right-minoredit'            => 'កំណត់ចំណាំកំណែប្រែថាជាកំណែប្រែតិចតួច',
 'right-move'                 => 'ប្ដូរទីតាំងទំព័រ',
 'right-move-subpages'        => 'ប្ដូរទីតាំងទំព័ររួមជាមួយទំព័ររងរបស់វា',
+'right-move-rootuserpages'   => 'ប្ដូរទីតាំងឫសទំព័រអ្នកប្រើប្រាស់',
 'right-movefile'             => 'ប្ដូរទីតាំងឯកសារ',
 'right-upload'               => 'ផ្ទុកឡើងឯកសារ',
 'right-reupload'             => 'សរសេរលុបពីលើឯកសារមួយច្បាប់ដែលមានស្រាប់',
@@ -2068,6 +2070,7 @@ $1',
 'whatlinkshere-next'       => '{{PLURAL:$1|បន្ទាប់|បន្ទាប់ $1}}',
 'whatlinkshere-links'      => '← តំណភ្ជាប់',
 'whatlinkshere-hideredirs' => '$1ការបញ្ជូនបន្ត',
+'whatlinkshere-hidetrans'  => '$1 ការរាប់បញ្ចូល',
 'whatlinkshere-hidelinks'  => '$1តំណភ្ជាប់',
 'whatlinkshere-hideimages' => '$1តំណភ្ជាប់រូបភាព',
 'whatlinkshere-filters'    => 'តម្រងការពារនានា',
@@ -2390,6 +2393,7 @@ $1 ត្រូវ​បាន​ទប់ស្កាត់​ហើយ​។ �
 'tooltip-watch'                   => 'បន្ថែម​ទំព័រនេះ​ទៅ​បញ្ជីតាមដាន​របស់អ្នក',
 'tooltip-recreate'                => 'បង្កើតទំព័រនេះឡើងវិញ ទោះបីជាវាបានត្រូវលុបចេញក៏ដោយ',
 'tooltip-upload'                  => 'ចាប់ផ្តើមផ្ទុកឡើងឯកសារ',
+'tooltip-rollback'                => '"ត្រឡប់​ឬ Rollback" ត្រឡប់​ឡើង​វិញនូវ​កំណែ​ប្រែ​លើ​ទំព័រ​នេះ​នៃ​អ្នក​រួម​ចំណែក​ចុង​ក្រោយ​គេ​ ដោយគ្រាន់​តែ​ចុច​មួយ​ប៉ុណ្ណោះ​',
 
 # Stylesheets
 'common.css'   => '/* CSS បានដាក់ទីនេះនឹងមានអនុភាពលើគ្រប់សំបកទាំងអស់ */',

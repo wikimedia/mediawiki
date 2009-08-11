@@ -2489,7 +2489,7 @@ jol nom novèl. Se vos plai, fusionatz-las manualament.",
 'movereason'                   => 'Motiu :',
 'revertmove'                   => 'anullar',
 'delete_and_move'              => 'Suprimir e tornar nomenar',
-'delete_and_move_text'         => '==Supression requesida==
+'delete_and_move_text'         => '==Supression requerida==
 L’article de destinacion « [[:$1]] » existís ja.
 Lo volètz suprimir per permetre lo cambiament de nom ?',
 'delete_and_move_confirm'      => 'Òc, accèpti de suprimir la pagina de destinacion per permetre lo cambiament de nom.',
@@ -3127,7 +3127,7 @@ Los autres ligams sus la meteissa linha son considerats coma d'excepcions, per e
 'confirmemail_send'        => 'Mandar un còde de confirmacion',
 'confirmemail_sent'        => 'Corrièr electronic de confirmacion mandat.',
 'confirmemail_oncreate'    => "Un còde de confirmacion es estat mandat a vòstra adreça de corrièr electronic.
-Aqueste còde es pas requesit per se connectar, mas n'aurètz besonh per activar las foncionalitats ligadas als corrièrs electronics sus aqueste wiki.",
+Aqueste còde es pas requerit per se connectar, mas n'aurètz besonh per activar las foncionalitats ligadas als corrièrs electronics sus aqueste wiki.",
 'confirmemail_sendfailed'  => '{{SITENAME}} pòt pas mandar lo corrièr de confirmacion.
 Verificatz se vòstra adreça conten pas de caractèrs interdiches.
 

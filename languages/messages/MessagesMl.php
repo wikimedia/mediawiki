@@ -2625,6 +2625,10 @@ $5
 'tags-hitcount'           => '$1 {{PLURAL:$1|മാറ്റം|മാറ്റങ്ങള്‍}}',
 
 # HTML forms
+'htmlform-select-badoption'    => 'താങ്കള്‍ നല്‍കിയ വില ഒരു സ്വീകാര്യമായ ഉപാധിയല്ല.',
+'htmlform-float-invalid'       => 'താങ്കള്‍ നല്‍കിയ വില ഒരു അക്കമല്ല.',
+'htmlform-int-toolow'          => 'താങ്കള്‍ നല്‍കിയത് ഏറ്റവും കുറഞ്ഞ വിലയായ $1-നു താഴെയാണ്',
+'htmlform-int-toohigh'         => 'താങ്കള്‍ നല്‍കിയത് ഏറ്റവും കൂടിയ വിലയായ $1-നു മുകളിലാണ്',
 'htmlform-submit'              => 'സമര്‍പ്പിക്കുക',
 'htmlform-reset'               => 'മാറ്റങ്ങള്‍ വേണ്ട',
 'htmlform-selectorother-other' => 'മറ്റുള്ളവ',

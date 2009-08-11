@@ -8,6 +8,7 @@
  * @file
  *
  * @author ne.wikipedia.org sysops
+ * @author सरोज कुमार ढकाल
  */
 
 $digitTransformTable = array(
@@ -32,7 +33,13 @@ $messages = array(
 'thursday'      => 'बिहीबार',
 'friday'        => 'शुक्रबार',
 'saturday'      => 'शनिबार',
+'sun'           => 'आईत',
+'mon'           => 'सोम',
+'tue'           => 'मंगल',
 'wed'           => 'वुध',
+'thu'           => 'बिही',
+'fri'           => 'शुक्र',
+'sat'           => 'शनि',
 'january'       => 'जेनवरी',
 'february'      => 'फेब्रुअरी',
 'march'         => 'मार्च',
@@ -57,8 +64,18 @@ $messages = array(
 'october-gen'   => 'अक्टोबर',
 'november-gen'  => 'नोभेम्बर',
 'december-gen'  => 'डिसेम्बर',
+'jan'           => 'जनवरी',
+'feb'           => 'फेब्रुअरीद',
+'mar'           => 'मार्च',
+'apr'           => 'एप्रील',
 'may'           => 'मे',
+'jun'           => 'जुन',
+'jul'           => 'जुलाई',
+'aug'           => 'अगस्ट',
+'sep'           => 'सेप्टेम्बर',
+'oct'           => 'अक्टुबर',
 'nov'           => 'नोभ',
+'dec'           => 'डिसेम्बर',
 
 # Categories related messages
 'category_header' => '"$1" श्रेणीमा भएका लेखहरू',
