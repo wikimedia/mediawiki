@@ -212,54 +212,236 @@ $messages = array(
 'mainpage-description' => 'Glavna strana',
 'privacy'              => 'Politika privatnosti',
 
-'badaccess' => 'Greška pri odobrenju',
+'badaccess'        => 'Greška pri odobrenju',
+'badaccess-group0' => 'Nije vam dozvoljeno izvršiti akciju koju ste zahtjevali.',
+'badaccess-groups' => 'Akcija koju ste zahtjevali je ograničena na korisnike iz {{PLURAL:$2|ove grupe|jedne od grupa}}: $1.',
 
-'retrievedfrom'       => 'Dobavljeno iz "$1"',
-'youhavenewmessages'  => 'Imate $1 ($2).',
-'newmessageslink'     => 'novih promjena',
-'newmessagesdifflink' => 'posljednja promjena',
-'editsection'         => 'uredi',
-'editold'             => 'uredi',
-'editlink'            => 'uredi',
-'viewsourcelink'      => 'pogledaj kod',
-'editsectionhint'     => 'Uredi sekciju: $1',
-'toc'                 => 'Sadržaj',
-'showtoc'             => 'prikaži',
-'hidetoc'             => 'sakrij',
-'red-link-title'      => '$1 (stranica ne postoji)',
+'versionrequired'     => 'Potrebna je verzija $1 MediaWikija',
+'versionrequiredtext' => 'Potrebna je verzija $1 MediaWikija da bi se koristila ova stranica. Pogledaj [[Special:Version|verziju]].',
+
+'ok'                      => 'da',
+'retrievedfrom'           => 'Dobavljeno iz "$1"',
+'youhavenewmessages'      => 'Imate $1 ($2).',
+'newmessageslink'         => 'novih promjena',
+'newmessagesdifflink'     => 'posljednja promjena',
+'youhavenewmessagesmulti' => 'Imate nove poruke na $1',
+'editsection'             => 'uredi',
+'editold'                 => 'uredi',
+'viewsourceold'           => 'pogledaj izvor',
+'editlink'                => 'uredi',
+'viewsourcelink'          => 'pogledaj kod',
+'editsectionhint'         => 'Uredi sekciju: $1',
+'toc'                     => 'Sadržaj',
+'showtoc'                 => 'prikaži',
+'hidetoc'                 => 'sakrij',
+'thisisdeleted'           => 'Pogledaj ili vrati $1?',
+'viewdeleted'             => 'Pogledaj $1?',
+'restorelink'             => '{{PLURAL:$1|$1 izbrisana izmjena|$1 izbrisanih izmjena}}',
+'feedlinks'               => 'Fid:',
+'feed-invalid'            => 'Loš tip prijave na fid.',
+'feed-unavailable'        => 'Fidovi (izvori) nisu dostupni',
+'site-rss-feed'           => '$1 RSS fid',
+'site-atom-feed'          => '$1 Atom fid',
+'page-rss-feed'           => '"$1" RSS fid',
+'page-atom-feed'          => '"$1" Atom fid',
+'red-link-title'          => '$1 (stranica ne postoji)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-main'     => 'Stranica',
-'nstab-special'  => 'Posebna stranica',
-'nstab-image'    => 'Datoteka',
-'nstab-template' => 'Šablon',
-'nstab-category' => 'Kategorija',
+'nstab-main'      => 'Stranica',
+'nstab-user'      => 'Korisnička stranica',
+'nstab-media'     => 'Mediji',
+'nstab-special'   => 'Posebna stranica',
+'nstab-project'   => 'Stranica projekta',
+'nstab-image'     => 'Datoteka',
+'nstab-mediawiki' => 'Poruka',
+'nstab-template'  => 'Šablon',
+'nstab-help'      => 'Stranica pomoći',
+'nstab-category'  => 'Kategorija',
+
+# Main script and global functions
+'nosuchaction'      => 'Nema takve akcije',
+'nosuchactiontext'  => 'Akcija navedena u URL-u nije valjana.
+Možda ste pogriješili pri unosu URL-a ili ste slijedili pokvaren link.
+Moguće je i da je ovo greška u softveru koji koristi {{SITENAME}}.',
+'nosuchspecialpage' => 'Nema takve posebne stranice',
+'nospecialpagetext' => "<big>'''Zatražili ste nevaljanu posebnu stranicu.'''</big>
+
+Lista valjanih posebnih stranica se može naći na [[Special:SpecialPages|{{int:specialpages}}]].",
 
 # General errors
-'missing-article'     => 'U bazi podataka nije pronađen tekst stranice tražen pod nazivom "$1" $2.
+'error'                => 'Greška',
+'databaseerror'        => 'Greška u bazi podataka',
+'dberrortext'          => 'Desila se sintaksna greška upita baze.
+Ovo se desilo zbog moguće greške u softveru.
+Posljednji pokušani upit je bio: <blockquote><tt>$1</tt></blockquote> iz funkcije "<tt>$2</tt>".
+$5 je vratio grešku "<tt>$3: $4</tt>".',
+'dberrortextcl'        => 'Desila se sintaksna greška upita baze.
+Posljednji pokušani upit je bio:
+"$1"
+iz funkcije "$2".
+$5 je vratio grešku "$3: $4".',
+'laggedslavemode'      => "'''Upozorenje''': Stranica ne mora sadržavati posljednja ažuriranja.",
+'readonly'             => 'Baza podataka je zaključana',
+'enterlockreason'      => 'Unesite razlog za zaključavanje, uključujući procjenu vremena otključavanja',
+'readonlytext'         => 'Baza je trenutno zaključana za nove unose i ostale izmjene, vjerovatno zbog rutinskog održavanja, posle čega će biti vraćena u uobičajeno stanje.
+
+Administrator koji ju je zaključao je ponudio ovo objašnjenje: $1',
+'missing-article'      => 'U bazi podataka nije pronađen tekst stranice tražen pod nazivom "$1" $2.
 
 Do ovoga dolazi kada se prati premještaj ili historija linka za stranicu koja je pobrisana.
 
 U slučaju da se ne radi o gore navedenom, moguće je da ste pronašli grešku u programu.
 Molimo Vas da ovo prijavite [[Special:ListUsers/sysop|administratoru]] sa navođenjem tačne adrese stranice',
-'missingarticle-rev'  => '(izmjena#: $1)',
-'missingarticle-diff' => '(Razl: $1, $2)',
-'badtitletext'        => 'Zatražena stranica je bila nevaljana, prazna ili neispravno povezana s među-jezičkim ili inter-wiki naslovom.
+'missingarticle-rev'   => '(izmjena#: $1)',
+'missingarticle-diff'  => '(Razl: $1, $2)',
+'readonly_lag'         => 'Baza podataka je zaključana dok se sekundarne baze podataka na serveru ne sastave sa glavnom.',
+'internalerror'        => 'Interna pogreška',
+'internalerror_info'   => 'Interna greška: $1',
+'filecopyerror'        => 'Ne može se kopirati "$1" na "$2".',
+'filerenameerror'      => 'Ne može se promjeniti ime datoteke "$1" u "$2".',
+'filedeleteerror'      => 'Ne može se izbrisati datoteka "$1".',
+'directorycreateerror' => 'Nije moguće napraviti direktorijum "$1".',
+'filenotfound'         => 'Ne može se naći datoteka "$1".',
+'fileexistserror'      => 'Nemoguće je stvoriti datoteku "$1": datoteka već postoji',
+'unexpected'           => 'Neočekivana vrijednost: "$1"="$2".',
+'formerror'            => 'Greška: ne može se poslati formular',
+'badarticleerror'      => 'Ova akcija ne može biti izvršena na ovoj stranici.',
+'cannotdelete'         => 'Ne može se obrisati navedena stranica ili datoteka.
+Moguće je da ju je neko drugi već obrisao.',
+'badtitle'             => 'Loš naslov',
+'badtitletext'         => 'Zatražena stranica je bila nevaljana, prazna ili neispravno povezana s među-jezičkim ili inter-wiki naslovom.
 Može sadržavati jedno ili više slova koja se ne mogu koristiti u naslovima.',
-'viewsource'          => 'Pogledaj kod',
-'viewsourcefor'       => 'za $1',
+'perfcached'           => 'Slijedeći podaci su keširani i možda neće biti u potpunosti ažurirani.',
+'perfcachedts'         => 'Slijedeći podaci se nalaze u memoriji i zadnji put su ažurirani $1.',
+'querypage-no-updates' => 'Ažuriranje ove stranice je isključeno.
+Podaci koji se ovdje nalaze neće biti biti ažurirani.',
+'wrong_wfQuery_params' => 'Netačni parametri za wfQuery()<br />
+Funkcija: $1<br />
+Pretraga: $2',
+'viewsource'           => 'Pogledaj kod',
+'viewsourcefor'        => 'za $1',
+'actionthrottled'      => 'Akcija je usporena',
+'actionthrottledtext'  => 'Kao anti-spam mjera, ograničene su vam izmjene u određenom vremenu, i trenutačno ste dostigli to ograničenje. Pokušajte ponovo poslije nekoliko minuta.',
+'protectedpagetext'    => 'Ova stranica je zaključana da bi se spriječilo uređivanje.',
+'viewsourcetext'       => 'Možete vidjeti i kopirati izvorni tekst ove stranice:',
+'protectedinterface'   => 'Ova stranica sadrži tekst interfejsa za softver, pa je zaključana kako bi se spriječile zloupotrebe.',
+'editinginterface'     => "'''Upozorenje:''' Mijenjate stranicu koja se koristi za tekst interfejsa za softver.
+Promjene na ovoj stranici dovode i do promjena interfejsa za druge korisnike.
+Za prijevode, molimo Vas koristite [http://translatewiki.net/wiki/Main_Page?setlang=bs translatewiki.net], projekt prijevoda za MediaWiki.",
+'sqlhidden'            => '(SQL pretraga sakrivena)',
+'cascadeprotected'     => 'Ova stranica je zaštićena od uređivanja, jer je uključena u {{PLURAL:$1|stranicu zaštićenu|stranice zaštićene}} od uređivanja sa uključenom kaskadnom opcijom:
+$2',
+'namespaceprotected'   => "Nemate dozvolu uređivati stranice imenskog prostora '''$1'''.",
+'customcssjsprotected' => 'Nemate dozvolu za mijenjanje ove stranice jer sadrži osobne postavke nekog drugog korisnika.',
+'ns-specialprotected'  => 'Posebne stranice se ne mogu uređivati.',
+'titleprotected'       => 'Naslov stranice je zaštićen od postavljanja od strane korisnika [[User:$1|$1]].
+Kao razlog je naveden "\'\'$2\'\'".',
+
+# Virus scanner
+'virus-badscanner'     => "Loša konfiguracija: nepoznati anti-virus program: ''$1''",
+'virus-scanfailed'     => 'skeniranje nije uspjelo (code $1)',
+'virus-unknownscanner' => 'nepoznati anti-virus program:',
 
 # Login and logout pages
-'yourname'                => 'Korisničko ime:',
-'yourpassword'            => 'Lozinka/zaporka:',
-'remembermypassword'      => 'Upamti moju lozinku na ovom kompjuteru za buduće posjete',
-'login'                   => 'Prijavi se',
-'nav-login-createaccount' => 'Prijavi se / Registruj se',
-'userlogin'               => 'Prijavi se / stvori korisnički račun',
-'logout'                  => 'Odjavi me',
-'userlogout'              => 'Odjava',
-'nologinlink'             => 'Otvorite račun',
-'mailmypassword'          => 'Pošalji mi novu lozinku putem E-maila',
+'logouttext'                 => "'''Sad ste odjavljeni.'''
+
+Možete nastaviti da koristite {{SITENAME}} anonimno, ili se ponovo [[Special:UserLogin|prijaviti]] kao isti ili kao drugi korisnik.
+Obratite pažnju da neke stranice mogu nastaviti da se prikazuju kao da ste još uvijek prijavljeni, dok ne očistite keš svog preglednika.",
+'welcomecreation'            => '== Dobro došli, $1! ==
+Vaš korisnički račun je napravljen.
+Ne zaboravite izmijeniti vlastite [[Special:Preferences|{{SITENAME}} postavke]].',
+'yourname'                   => 'Korisničko ime:',
+'yourpassword'               => 'Lozinka/zaporka:',
+'yourpasswordagain'          => 'Ponovno utipkajte lozinku/zaporku:',
+'remembermypassword'         => 'Upamti moju lozinku na ovom kompjuteru za buduće posjete',
+'yourdomainname'             => 'Vaš domen:',
+'externaldberror'            => 'Došlo je do greške pri vanjskoj autorizaciji baze podataka ili vam nije dopušteno osvježavanje Vašeg vanjskog korisničkog računa.',
+'login'                      => 'Prijavi se',
+'nav-login-createaccount'    => 'Prijavi se / Registruj se',
+'loginprompt'                => "Morate imati kolačiće ('''cookies''') omogućene da biste se prijavili na {{SITENAME}}.",
+'userlogin'                  => 'Prijavi se / stvori korisnički račun',
+'logout'                     => 'Odjavi me',
+'userlogout'                 => 'Odjava',
+'notloggedin'                => 'Niste prijavljeni',
+'nologin'                    => 'Nemate korisničko ime? $1.',
+'nologinlink'                => 'Otvorite račun',
+'createaccount'              => 'Napravi korisnički račun',
+'gotaccount'                 => 'Imate račun? $1.',
+'gotaccountlink'             => 'Prijavi se',
+'createaccountmail'          => 'e-mailom',
+'badretype'                  => 'Lozinke koje ste unijeli se ne poklapaju.',
+'userexists'                 => 'Korisničko ime koje ste unijeli je već u upotrebi.
+Molimo Vas da izaberete drugo ime.',
+'loginerror'                 => 'Greška pri prijavljivanju',
+'nocookiesnew'               => "Korisnički nalog je napravljen, ali niste prijavljeni.  
+{{SITENAME}} koristi kolačiće (''cookies'') da bi se korisnici prijavili.  
+Vi ste onemogućili kolačiće na Vašem računaru.  
+Molimo Vas da ih omogućite, a onda se prijavite sa svojim novim korisničkim imenom i šifrom.",
+'nocookieslogin'             => "{{SITENAME}} koristi kolačiće (''cookies'') da bi se korisnici prijavili.  
+Vi ste onemogućili kolačiće na Vašem kompjuteru.  
+Molimo Vas da ih omogućite i da pokušate ponovo sa prijavom.",
+'noname'                     => 'Niste izabrali ispravno korisničko ime.',
+'loginsuccesstitle'          => 'Prijavljivanje uspješno',
+'loginsuccess'               => "'''Sad ste prijavljeni na {{SITENAME}} kao \"\$1\".'''",
+'nosuchuser'                 => 'Ne postoji korisnik sa imenom "$1".
+Korisnička imena razlikuju velika i mala slova.
+Provjerite vaše kucanje ili [[Special:UserLogin/signup|napravite novi korisnički račun]].',
+'nosuchusershort'            => 'Ne postoji korisnik sa imenom "<nowiki>$1</nowiki>".
+Provjerite da li ste dobro ukucali.',
+'nouserspecified'            => 'Morate izabrati korisničko ime.',
+'wrongpassword'              => 'Unijeli ste neispravnu šifru.
+Molimo Vas da pokušate ponovno.',
+'wrongpasswordempty'         => 'Unesena šifra je bila prazna.
+Molimo Vas da pokušate ponovno.',
+'passwordtooshort'           => 'Vaša lozinka je prekratka.
+Lozinka mora imati najmanje {{PLURAL:$1|1 znak|$1 znakova}}.',
+'mailmypassword'             => 'Pošalji mi novu lozinku putem E-maila',
+'passwordremindertitle'      => 'Nova privremena lozinka za {{SITENAME}}',
+'passwordremindertext'       => 'Neko (vjerovatno Vi, sa IP adrese $1) je zahtjevao da vam pošaljemo novu šifru za {{SITENAME}}  ($4). Privremena šifra za korisnika "$2" je napravljena i glasi "$3". Ako ste to željeli, sad treba da se prijavite i promjenite šifru.
+Vaša privremena šifra će isteči za {{PLURAL:$5|$5 dan|$5 dana}}.
+
+Ako je neko drugi napravio ovaj zahtjev ili ako ste se sjetili vaše šifre i ne želite više da je promjenite, možete da ignorišete ovu poruku i da nastavite koristeći vašu staru šifru.',
+'noemail'                    => 'Ne postoji adresa e-maila za korisnika "$1".',
+'passwordsent'               => 'Nova šifra je poslata na e-mail adresu korisnika "$1".
+Molimo Vas da se prijavite pošto je primite.',
+'blocked-mailpassword'       => 'Da bi se spriječila nedozvoljena akcija, Vašoj IP adresi je onemogućeno uređivanje stranica kao i mogućnost zahtijevanje nove šifre.',
+'eauthentsent'               => 'Na navedenu adresu poslan je e-mail s potvrdom.  
+Prije nego što pošaljemo daljnje poruke, molimo vas da otvorite e-mail i slijedite u njemu sadržana uputstva da potvrdite da ste upravo vi kreirali korisnički račun.',
+'throttled-mailpassword'     => 'Već Vam je poslan e-mail za promjenu šifre u {{PLURAL:$1|zadnjih sat vremena|zadnja $1 sata|zadnjih $1 sati}}.
+Da bi se spriječila zloupotreba, može se poslati samo jedan e-mail za promjenu šifre {{PLURAL:$1|svakih sat vremena|svaka $1 sata|svakih $1 sati}}.',
+'mailerror'                  => 'Greška pri slanju e-pošte: $1',
+'acct_creation_throttle_hit' => 'Posjetioci na ovoj wiki koji koriste Vašu IP adresu su već napravili {{PLURAL:$1|$1 račun|$1 računa}} u zadnjih nekoliko dana, što je najveći broj dopuštenih napravljenih računa za ovaj period.
+Kao rezultat, posjetioci koji koriste ovu IP adresu ne mogu trenutno praviti više računa.',
+'emailauthenticated'         => 'Vaša e-mail adresa je autentificirana na $2 u $3.',
+'emailnotauthenticated'      => 'Vaša e-mail adresa još nije autentificirana.
+Nijedan e-mail neće biti poslan za bilo koju uslugu od slijedećih.',
+'noemailprefs'               => 'Unesite e-mail adresu za osposobljavanje slijedećih usluga.',
+'emailconfirmlink'           => 'Potvrdite Vašu e-mail adresu',
+'invalidemailaddress'        => 'Ova e-mail adresa ne može biti prihvaćena jer je u neodgovarajućem obliku.
+Molimo vas da unesete ispravnu adresu ili ostavite prazno polje.',
+'accountcreated'             => 'Korisnički račun je napravljen',
+'accountcreatedtext'         => 'Korisnički račun za $1 je napravljen.',
+'createaccount-title'        => 'Pravljenje korisničkog računa za {{SITENAME}}',
+'createaccount-text'         => 'Neko je napravio korisnički račun za vašu e-mail adresu na {{SITENAME}} ($4) sa imenom "$2", i sa šifrom "$3".
+Trebali biste se prijaviti i promjeniti šifru.
+
+Možete ignorisati ovu poruku, ako je korisnički račun napravljen greškom.',
+'login-throttled'            => 'Previše puta ste pokušali unijeti šifru za korisnički račun.
+Molimo vas da sačekate prije nego što pokušate ponovo.',
+'loginlanguagelabel'         => 'Jezik: $1',
+
+# Password reset dialog
+'resetpass'           => 'Promijeni korisničku šifru',
+'resetpass_announce'  => 'Prijavili ste se sa privremenim kodom koji ste dobili na e-mail.
+Da biste završili prijavu, morate unijeti novu šifru ovdje:',
+'resetpass_header'    => 'Obnovi lozinku za račun',
+'oldpassword'         => 'Stara šifra:',
+'newpassword'         => 'Nova šifra:',
+'retypenew'           => 'Ukucajte ponovo novu šifru:',
+'resetpass_submit'    => 'Odredi lozinku i prijavi se',
+'resetpass_success'   => 'Vaša šifra je uspiješno promjenjena! Prijava u toku...',
+'resetpass_forbidden' => 'Šifre ne mogu biti promjenjene',
+'resetpass-no-info'   => 'Morate biti prijavljeni da bi ste pristupili ovoj stranici direktno.',
 
 # Edit page toolbar
 'bold_sample'     => 'Podebljan tekst',
@@ -402,8 +584,31 @@ U međuvremenu možete pretraživati preko Googlea.
 Uzmite u obzir da njegovi indeksi za ovu Wiki ne moraju biti ažurirani.',
 
 # Preferences page
-'preferences'   => 'Postavke',
-'mypreferences' => 'Moje postavke',
+'preferences'               => 'Postavke',
+'mypreferences'             => 'Moje postavke',
+'youremail'                 => 'E-mail:',
+'username'                  => 'Korisničko ime:',
+'uid'                       => 'Korisnički ID:',
+'prefs-memberingroups'      => 'Član {{PLURAL:$1|grupe|grupa}}:',
+'yourrealname'              => 'Vaše pravo ime:',
+'yourlanguage'              => 'Jezik:',
+'yournick'                  => 'Nadimak (za potpise):',
+'badsig'                    => 'Loš sirovi potpis.
+Provjerite HTML tagove.',
+'badsiglength'              => 'Vaš potpis je predug.
+Mora biti manji od $1 {{PLURAL:$1|znaka|znaka|znakova}}.',
+'yourgender'                => 'Spol:',
+'gender-unknown'            => 'neodređen',
+'gender-male'               => 'Muški',
+'gender-female'             => 'Ženski',
+'prefs-help-gender'         => 'Opcionalno: koristi se za ispravke gramatičkog roda u porukama softvera. 
+Ova informacija će biti javna.',
+'email'                     => 'E-mail',
+'prefs-help-realname'       => 'Pravo ime nije obavezno.
+Ako izaberete da date ime, biće korišteno za pripisivanje Vašeg rada.',
+'prefs-help-email'          => 'E-mail adresa je opcionalna, unesena adresa Vam omogućava da Vam se pošalje nova šifra u slučaju da je izgubite ili zaboravite.
+Također omogućuje drugim korisnicima da vas kontaktiraju preko Vaše korisničke stranice ili stranice za razgovor bez otkrivanja Vašeg identiteta.',
+'prefs-help-email-required' => 'Neophodno je navesti e-mail adresu.',
 
 # Groups
 'group-sysop' => 'Administratori',

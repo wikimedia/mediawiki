@@ -142,7 +142,7 @@ $messages = array(
 'tog-hidepatrolled'           => "Ammuccia li mudìfichi fatti ntâ l'ùrtimi canciamenti",
 'tog-newpageshidepatrolled'   => "Ammuccia li pàggini virificati di l'alencu dî pàgging cchiù novi",
 'tog-extendwatchlist'         => "Attiva tutti li funzioni avanzati pi l'ossirvati spiciali, nun sulu l'ultima",
-'tog-usenewrc'                => "''Ùrtimi canciamenti'' avanzati (arcuni browser ponnu aviri prubbremi ntô visualizzàrili)",
+'tog-usenewrc'                => 'Utilizza Ùrtimi canciamenti avanzati (richiedi JavaScript)',
 'tog-numberheadings'          => 'Nummirazzioni automàtica dî tìtuli di paràgrafu',
 'tog-showtoolbar'             => 'Ammustra la barra dî strumenta pi lu canciamentu',
 'tog-editondblclick'          => "Duppiu click pi canciari l'artìculu (richiedi Javascript)",
@@ -165,7 +165,7 @@ $messages = array(
 'tog-enotifrevealaddr'        => 'Rivela lu mè ndirizzu e-mail ntê mail di nutificazzioni',
 'tog-shownumberswatching'     => 'Ammustra lu nùmmiru di utenti ca sèquinu la pàggina',
 'tog-oldsig'                  => 'Antiprima dâ firma attuali:',
-'tog-fancysig'                => 'Nun canciari lu markup dâ firma (usari pi firmi nun standard)',
+'tog-fancysig'                => 'Interpitra li cumanna wiki nâ firma (senza liami automaticu)',
 'tog-externaleditor'          => 'Usa di default un editor sternu',
 'tog-externaldiff'            => 'Usa di default un prugramma di diff sternu',
 'tog-showjumplinks'           => "Attiva li culligamenti accissìbbili 'và a'",
@@ -460,8 +460,17 @@ L'alencu dî pàggini spiciali vàlidi s'attrova 'n [[Special:SpecialPages|Alenc
 # General errors
 'error'                => 'Erruri',
 'databaseerror'        => 'Erruri dû database',
-'dberrortext'          => 'Erruri di sintassi ntâ richiesta nultrata a lu database. Chistu putissi innicari la prisenza d\'un bug ntô software. L\'ùrtima query mannata a lu database hà stata: <blockquote><tt>$1</tt></blockquote> richiamata dâ funzioni "<tt>$2</tt>". MySQL hà ristituitu lu siquenti erruri "<tt>$3: $4</tt>".',
-'dberrortextcl'        => 'Erruri di sintassi ntâ richiesta nultrata a lu database. L\'ùrtima query mannata a lu database hà stata: "$1" richiamata dâ funzioni "$2". MySQL hà ristituitu lu siquenti erruri "$3: $4".',
+'dberrortext'          => 'Erruri di sintassi ntâ richiesta nultrata a lu database. 
+Chistu putissi innicari la prisenza d\'un bug ntô software. 
+L\'ùrtima query mannata a lu database hà stata: 
+<blockquote><tt>$1</tt></blockquote> 
+richiamata dâ funzioni "<tt>$2</tt>". 
+$5 hà ristituitu lu siquenti erruri "<tt>$3: $4</tt>".',
+'dberrortextcl'        => 'Erruri di sintassi ntâ richiesta nultrata a lu database. 
+L\'ùrtima query mannata a lu database hà stata: 
+"$1" 
+richiamata dâ funzioni "$2". 
+$5 hà ristituitu lu siquenti erruri "$3: $4".',
 'laggedslavemode'      => "Accura: La pàggina putissi nun ripurtari l'aggiurnamenti cchiù ricenti.",
 'readonly'             => 'Database bluccatu',
 'enterlockreason'      => "Ìnnica lu mutivu dû bloccu, spicificannu lu mumentu 'n cui è prisumìbbili ca veni rimossu.",
@@ -562,7 +571,9 @@ Virificari lu nomu nziritu o [[Special:UserLogin/signup|criari un novu accessu]]
 'password-name-match'        => 'La tou password havi a essiri diversa dô tou nnomu utenti.',
 'mailmypassword'             => "Mànnimi n'àutra password",
 'passwordremindertitle'      => 'Sirvizziu Password Reminder di {{SITENAME}}',
-'passwordremindertext'       => 'Quarchidunu (prubbabbirmenti tu, cu nnirizzu IP $1) addumannau d\'aviri mannata na password d\'accessu nova a {{SITENAME}} ($4). La password pi l\'utenti "$2" vinni mpustata a "$3". Ti cummeni fari n\'accessu quantu prima e canciari la password pi sùbbitu. Siddu nun fusti tu a fari la dumanna, oppuru arrittruvasti la password e nun addisìi cchiù canciàrila, poi non tèniri cuntu di stu missaggiu e cuntinuari a usari la password vecchia.',
+'passwordremindertext'       => 'Quarchidunu (prubbabbirmenti tu, cu nnirizzu IP $1) addumannau d\'aviri mannata na password d\'accessu nova a {{SITENAME}} ($4). La password pi l\'utenti "$2" vinni mpustata a "$3". 
+Ti cummeni fari n\'accessu quantu prima e canciari la password pi sùbbitu. La tò password timpuranea scadrà dopu {{PLURAL:$5|nu jornu|$5 jorna}}. 
+Siddu nun fusti tu a fari la dumanna, oppuru arrittruvasti la password e nun addisìi cchiù canciàrila, poi non tèniri cuntu di stu missaggiu e cuntinuari a usari la password vecchia.',
 'noemail'                    => 'Nuddu ndirizzu e-mail riggistratu pi l\'utenti "$1".',
 'passwordsent'               => 'Na password nova hà statu mannata a lu ndirizzu e-mail riggistratu pi l\'utenti "$1". Pi favuri, effèttua un accessu nun appena l\'arricevi.',
 'blocked-mailpassword'       => 'Pi privèniri abbusi, nun è cunzititu usari la funzioni "Nvia nova password" d\'un ndirizzu IP bluccatu.',
@@ -684,7 +695,9 @@ Pi favuri nclùdilu nta tutti li dumanni chi fai.",
 'loginreqlink'                     => "esèquiri l'accessu",
 'loginreqpagetext'                 => 'Pi vìdiri àutri pàggini è nicissariu $1.',
 'accmailtitle'                     => 'Password nviata.',
-'accmailtext'                      => 'La password pi l\'utenti "$1" fu nviata a lu ndirizzu $2.',
+'accmailtext'                      => 'La password pi [[User talk:$1|$1]] fu nviata a lu ndirizzu $2.
+
+La password pi stu novu account pò essiri canciata â accessu nâ pàggina pi [[Special:ChangePassword|canciari password]].',
 'newarticle'                       => '(Novu)',
 'newarticletext'                   => "Sta pàggina ancora nun esisti. 
 Pi criari na pàggina cu stu tìtulu, accumenza a scrìviri ccassutta (talìa la [[{{MediaWiki:Helppage}}|pàggina d'aiutu]] pi aviri maiuri nfurmazzioni).
@@ -872,6 +885,8 @@ $1",
 'revdelete-log-message'       => '$1 pi $2 {{PLURAL:$2|rivisione|rivisioni}}',
 'logdelete-log-message'       => '$1 pi $2 {{PLURAL:$2|eventu|eventi}}',
 'revdelete-hide-current'      => "Impussibili ammucciari l'oggettu cu la data $1 $2 in quantu è la rivisoni currenti.",
+'revdelete-modify-missing'    => "Impossibili canciari l'oggettu cu ID $1 in quantu nun è presenti nô database.",
+'revdelete-no-change'         => "'''Attenzioni:''' l'oggettu cu data $1 $2 aveva già l'impostazioni di visibilità richiesti.",
 'revdelete-only-restricted'   => "Nun poi ammucciari â vista di l'amministraturi senza silizziunari l'autri opzioni di supprissioni.",
 
 # Suppression log
@@ -1124,6 +1139,7 @@ S'havi accirtari ca la cuntinuità storica di la pàggina nun veni altirata.",
 'yourlanguage'                  => 'Lingua dâ nterfaccia:',
 'yourvariant'                   => 'Varianti:',
 'yournick'                      => 'Suprannomu (nickname):',
+'prefs-help-signature'          => 'Li cummenta nê pàggini di discussioni hanu essiri firmata cu "<nowiki>~~~~</nowiki>" ca virrannu cunvirtuta nâ propria firma cu appressu la data.',
 'badsig'                        => 'Erruri ntâ firma nun standard, virificari li tag HTML.',
 'badsiglength'                  => 'Lu Nickname è troppu longu. Nun pò aviri cchiù di $1 {{PLURAL:$1|caràttiri|caràttiri}}.',
 'yourgender'                    => 'Geniri:',
@@ -1622,6 +1638,7 @@ Vèninu cunzidirati pàggini di disambiguazzioni tutti chiddi ca cuntèninu li t
 'popularpages'            => 'Pàggini cchiù visitati',
 'wantedcategories'        => 'Catigurìi addumannati',
 'wantedpages'             => 'Artìculi cchiù addumannati',
+'wantedpages-badtitle'    => 'Tìtulu nun validu nô gruppu di risultati: $1',
 'wantedfiles'             => 'File addumannati',
 'wantedtemplates'         => 'Template addumannati',
 'mostlinked'              => 'Pàggini supra cui agghìcanu cchiù liami',
@@ -1645,7 +1662,9 @@ Vèninu cunzidirati pàggini di disambiguazzioni tutti chiddi ca cuntèninu li t
 'protectedtitlesempty'    => 'Nta stu mumentu nun ci sunnu tìtuli prutetti ccu li paràmitri nnicati.',
 'listusers'               => 'Lista di utilizzatura',
 'listusers-editsonly'     => 'Ammustra sulu utenti cu cuntribbuti',
+'listusers-creationsort'  => 'Ordina pi data di criazioni',
 'usereditcount'           => '$1 {{PLURAL:$1|cuntribbutu|cuntribbuti}}',
+'usercreated'             => 'Creatu lu $1 ê $2',
 'newpages'                => 'pàggini cchiù ricenti',
 'newpages-username'       => 'Utenti:',
 'ancientpages'            => 'pàggini cchiù vecchi',
@@ -1674,7 +1693,7 @@ chisti putìssiru quinni èssiri utilizzati puru siddu cumpàrinu nta l'alencu."
 'specialloguserlabel'  => 'Utenti:',
 'speciallogtitlelabel' => 'Tìtulu:',
 'log'                  => 'Log',
-'all-logs-page'        => 'Tutti li log',
+'all-logs-page'        => 'Tutti li log pubblici',
 'alllogstext'          => "Prisintazzioni unificata di tutti li riggistri di {{SITENAME}}. Poi limitari li criteri di circata silizziunannu lu tipu di riggistru, l'utenti ca fici l'azzioni (case-sensitive), e/o la pàggina ntirissata (pur'idda case-sensitive).",
 'logempty'             => 'Lu log nun cunteni elementi currispunnenti â ricerca.',
 'log-title-wildcard'   => 'Attrova tituli chi ncignanu cu',
@@ -1706,8 +1725,9 @@ Talìa macari li [[Special:WantedCategories|catigurìi addumannati]].',
 'special-categories-sort-abc'   => 'ordina alfabbeticamenti',
 
 # Special:DeletedContributions
-'deletedcontributions'       => 'Cuntribbuti utenti scancillati',
-'deletedcontributions-title' => 'Cuntribbuti utenti scancillati',
+'deletedcontributions'             => 'Cuntribbuti utenti scancillati',
+'deletedcontributions-title'       => 'Cuntribbuti utenti scancillati',
+'sp-deletedcontributions-contribs' => 'cuntribbuti',
 
 # Special:LinkSearch
 'linksearch'       => 'Lijami di fora',
@@ -1723,6 +1743,13 @@ Protucolli suppurtati: <tt>$1</tt>',
 'listusersfrom'      => "Ammustra l'utenti a pàrtiri di:",
 'listusers-submit'   => 'Ammustra',
 'listusers-noresult' => "Nuddu utenti attruvatu. Virificari l'usu di caràttiri maiùsculi/minùsculi.",
+'listusers-blocked'  => '(bloccatu)',
+
+# Special:ActiveUsers
+'activeusers'          => 'Lista dî utenti attivi',
+'activeusers-count'    => '$1 recent {{PLURAL:$1|canciamento|canciamenti ricenti}}',
+'activeusers-from'     => 'Ammustra li utenti a pàrtiri da:',
+'activeusers-noresult' => 'Nussun utenti truvatu.',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Novi utenti',
@@ -1735,6 +1762,8 @@ Protucolli suppurtati: <tt>$1</tt>',
 # Special:ListGroupRights
 'listgrouprights'                      => 'Diritti dô gruppu utenti',
 'listgrouprights-summary'              => "Ccà sutta sunnu elincati li gruppi utenti difiniti pi sta wiki, cu li dritti d'accessu assuciati a iddi. Pi sapìrinni chiossai supra li dritti, lèggiti [[{{MediaWiki:Listgrouprights-helppage}}|sta pàggina]].",
+'listgrouprights-key'                  => '* <span class="listgrouprights-granted">Dirittu assegnatu</span>
+* <span class="listgrouprights-revoked">Dirittu revocatu</span>',
 'listgrouprights-group'                => 'Gruppu',
 'listgrouprights-rights'               => 'Diritti',
 'listgrouprights-helppage'             => 'Help:Diritti dô gruppu',
@@ -1743,6 +1772,8 @@ Protucolli suppurtati: <tt>$1</tt>',
 'listgrouprights-removegroup'          => 'Pò livari {{PLURAL:$2|lu gruppu|li gruppi}}: $1',
 'listgrouprights-addgroup-all'         => 'Pò jùnciri a tutti li gruppi',
 'listgrouprights-removegroup-all'      => 'Pò livari tutti li gruppi',
+'listgrouprights-addgroup-self'        => 'Pò jùnciri {{PLURAL:$2|lu gruppu|li gruppi}} a lu propriu account: $1',
+'listgrouprights-removegroup-self'     => 'Pò livari {{PLURAL:$2|nu gruppu|li gruppi}} da lu propriu account: $1',
 'listgrouprights-addgroup-self-all'    => 'Junci tutti li gruppa ô propriu account',
 'listgrouprights-removegroup-self-all' => 'Può livari tutti li gruppi dô propriu account',
 
@@ -2009,7 +2040,7 @@ $1',
 'sp-contributions-blocklog'      => 'log dî blocchi',
 'sp-contributions-deleted'       => 'Cuntribbuti utenti scancillati',
 'sp-contributions-logs'          => 'riggistri',
-'sp-contributions-talk'          => 'Discussioni',
+'sp-contributions-talk'          => 'discussioni',
 'sp-contributions-userrights'    => 'Gistioni dî dritti utenti',
 'sp-contributions-search'        => 'Ricerca cuntribbuti',
 'sp-contributions-username'      => 'Nnirizzu IP o nomu utenti:',
@@ -2088,7 +2119,7 @@ Pi maggiuri nfurmazzioni, talìa la [[Special:IPBlockList|lista di l'IP bluccati
 'ipblocklist-submit'              => 'Ricerca',
 'blocklistline'                   => '$1, $2 hà bluccatu $3 ($4)',
 'infiniteblock'                   => 'nfinitu',
-'expiringblock'                   => 'scadenza: $1 $2',
+'expiringblock'                   => 'scadi lu $1 ê $2',
 'anononlyblock'                   => 'sulu anònimi',
 'noautoblockblock'                => 'bloccu automàticu disabbilitatu',
 'createaccountblock'              => 'criazzioni account bluccata',
@@ -2187,8 +2218,8 @@ Nta sti casi, tu hai a spustari o agghiùnciri manuarmenti la pàggina di discus
 'talkexists'                   => "'''La pàggina hà statu spustata currettamenti, ma nun hà statu pussìbbili spustari la pàggina di discussioni pirchì nn'esisti già n'àutra cu lu tìtulu novu. Ntigrari manuarmenti li cuntinuti dî dui pàggini.'''",
 'movedto'                      => 'spustata a',
 'movetalk'                     => 'Sposta puru la pàggina di discussioni, eventuarmenti.',
-'move-subpages'                => 'Sposta tutti li suttapàggini',
-'move-talk-subpages'           => 'Sposta tutti li suttapàggini di discussioni',
+'move-subpages'                => 'Sposta li suttapàggini (finu a $1)',
+'move-talk-subpages'           => 'Sposta li suttapàggini di discussioni (finu a $1)',
 'movepage-page-exists'         => 'La pàggina $1 esisti ggià e nun pò èssiri autumaticamenti suprascrivuta.',
 'movepage-page-moved'          => 'La pàggina $1 fu spustata a $2.',
 'movepage-page-unmoved'        => 'La pàggina $1 nun pò èssiri spustata a $2.',
