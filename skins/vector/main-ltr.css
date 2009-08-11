@@ -21,7 +21,7 @@ body {
 	margin: 0;
 	padding: 0;
 	font-family: sans-serif;
-	font-size: 0.9em;
+	font-size: 13px;
 }
 body {
 	background-color: #f3f3f3;
@@ -652,8 +652,7 @@ pre {
 	border: 1px dashed #2f6fab;
 	color: black;
 	background-color: #f9f9f9;
-	line-height: 1.2em;
-	font-size: 1.2em;
+	line-height: 1.1em;
 }
 ul {
 	line-height: 1.5em;
