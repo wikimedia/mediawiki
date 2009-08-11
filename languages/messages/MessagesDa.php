@@ -2612,6 +2612,7 @@ $1',
 'show-big-image'       => 'Version i større opløsning',
 'show-big-image-thumb' => '<small>Størrelse af forhåndsvisning: $1 × $2 pixel</small>',
 'file-info-gif-looped' => 'gentaget',
+'file-info-gif-frames' => '$1 {{PLURAL:$1|ramme|rammer}}',
 
 # Special:NewFiles
 'newimages'             => 'Galleri med de nyeste billeder',
@@ -3141,6 +3142,7 @@ Denne side oplister de tags som programmet kan mærke en redigering med, og dere
 'htmlform-invalid-input'       => 'Det er problemer med dine angivelser',
 'htmlform-select-badoption'    => 'Den angivne værdi er ikke gyldigt valg.',
 'htmlform-int-invalid'         => 'Den angivne værdi er ikke et heltal.',
+'htmlform-float-invalid'       => 'Den angivne værdi er ikke et tal.',
 'htmlform-int-toolow'          => 'Den angivne værdi er under minimumsværdien på $1',
 'htmlform-int-toohigh'         => 'Den angivne værdi er over maksimumsværdien på $1',
 'htmlform-submit'              => 'Gem',

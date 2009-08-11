@@ -527,11 +527,11 @@ $messages = array(
 'dec'           => 'ديسمبر',
 
 # Categories related messages
-'pagecategories'                 => '{{PLURAL:$1|لا تصانيف|التصنيف|التصنيفان|التصنيفات|التصنيفات|التصنيفات}}',
+'pagecategories'                 => '{{PLURAL:$1|لا تصانيف|التصنيف|التصنيفان|التصنيفات}}',
 'category_header'                => 'الصفحات في التصنيف "$1"',
 'subcategories'                  => 'التصنيفات الفرعية',
-'category-media-header'          => 'الميديا في التصنيف "$1"',
-'category-empty'                 => "''هذا التصنيف لا يحتوي حاليا على صفحات أو ميديا.''",
+'category-media-header'          => 'الوسائط في التصنيف "$1"',
+'category-empty'                 => "''هذا التصنيف لا يحتوي حاليا على صفحات أو وسائط.''",
 'hidden-categories'              => '{{PLURAL:$1|لا تصانيف مخفية|التصنيف المخفي|التصنيفان المخفيان|التصانيف المخفية|التصانيف المخفية|التصانيف المخفية}}',
 'hidden-category-category'       => 'تصنيفات مخفية',
 'category-subcat-count'          => '{{PLURAL:$2|لا تصانيف فرعية في هذا التصنيف|هذا التصنيف فيه التصنيف الفرعي التالي فقط.|هذا التصنيف فيه {{PLURAL:$1||هذا التصنيف الفرعي|هذين التصنيفين الفرعيين|هذه ال$1 تصانيف الفرعية|هذه ال$1 تصنيفًا فرعيًا|هذه ال$1 تصنيف فرعي}}، من إجمالي $2.}}',
@@ -575,16 +575,16 @@ $messages = array(
 
 # Vector skin
 'vector-action-addsection'   => 'أضف موضوعًا',
-'vector-action-delete'       => 'حذف',
-'vector-action-move'         => 'نقل',
-'vector-action-protect'      => 'حماية',
-'vector-action-undelete'     => 'استرجاع حذف',
-'vector-action-unprotect'    => 'إزالة حماية',
+'vector-action-delete'       => 'احذف',
+'vector-action-move'         => 'انقل',
+'vector-action-protect'      => 'احمِ',
+'vector-action-undelete'     => 'استرجع الحذف',
+'vector-action-unprotect'    => 'أزل الحماية',
 'vector-namespace-category'  => 'تصنيف',
 'vector-namespace-help'      => 'صفحة مساعدة',
 'vector-namespace-image'     => 'ملف',
 'vector-namespace-main'      => 'صفحة',
-'vector-namespace-media'     => 'صفحة ميديا',
+'vector-namespace-media'     => 'صفحة وسيط',
 'vector-namespace-mediawiki' => 'رسالة',
 'vector-namespace-project'   => 'صفحة مشروع',
 'vector-namespace-special'   => 'صفحة خاصة',
@@ -619,16 +619,16 @@ $messages = array(
 'permalink'         => 'وصلة دائمة',
 'print'             => 'اطبع',
 'edit'              => 'عدل',
-'create'            => 'أنشىء',
+'create'            => 'أنشئ',
 'editthispage'      => 'عدل هذه الصفحة',
-'create-this-page'  => 'أنشىء هذه الصفحة',
-'delete'            => 'حذف',
+'create-this-page'  => 'أنشئ هذه الصفحة',
+'delete'            => 'احذف',
 'deletethispage'    => 'احذف هذه الصفحة',
 'undelete_short'    => 'استرجاع {{PLURAL:$1|تعديل واحد|تعديلين|$1 تعديلات|$1 تعديل|$1 تعديلا}}',
 'protect'           => 'حماية',
 'protect_change'    => 'تغيير',
-'protectthispage'   => 'احم هذه الصفحة',
-'unprotect'         => 'إزالة الحماية',
+'protectthispage'   => 'احمِ هذه الصفحة',
+'unprotect'         => 'أزل الحماية',
 'unprotectthispage' => 'أزل حماية هذه الصفحة',
 'newpage'           => 'صفحة جديدة',
 'talkpage'          => 'ناقش هذه الصفحة',
@@ -655,8 +655,8 @@ $messages = array(
 'viewcount'         => '{{PLURAL:$1|لم تعرض هذه الصفحة أبدًا|تم عرض هذه الصفحة مرة واحدة|تم عرض هذه الصفحة مرتين|تم عرض هذه الصفحة $1 مرات|تم عرض هذه الصفحة $1 مرة}}.',
 'protectedpage'     => 'صفحة محمية',
 'jumpto'            => 'اذهب إلى:',
-'jumptonavigation'  => 'إبحار',
-'jumptosearch'      => 'بحث',
+'jumptonavigation'  => 'الإبحار',
+'jumptosearch'      => 'البحث',
 'view-pool-error'   => 'عذرا، الخوادم منهكة حاليًا.
 يحاول مستخدمون كثر الوصول إلى هذه الصفحة.
 من فضلك انتظر قليلا قبل أن تحاول الوصول إلى هذه الصفحة مجددًا.
@@ -699,9 +699,9 @@ $1',
 'youhavenewmessagesmulti' => 'لديك رسائل جديدة على $1',
 'editsection'             => 'عدل',
 'editold'                 => 'عدل',
-'viewsourceold'           => 'عرض المصدر',
+'viewsourceold'           => 'اعرض المصدر',
 'editlink'                => 'عدل',
-'viewsourcelink'          => 'عرض المصدر',
+'viewsourcelink'          => 'اعرض المصدر',
 'editsectionhint'         => 'حرر القسم: $1',
 'toc'                     => 'محتويات',
 'showtoc'                 => 'عرض',
@@ -756,7 +756,7 @@ $1',
 "$1"
 من داخل الدالة "$2".
 أرجع $5 الخطأ "$3: $4"',
-'laggedslavemode'      => 'تحذير: الصفحة قد لا تحتوي على أحدث التحديثات.',
+'laggedslavemode'      => "'''تحذير:''' الصفحة قد لا تحتوي على أحدث التحديثات.",
 'readonly'             => 'قاعدة البيانات مغلقة',
 'enterlockreason'      => 'أدخل سببا للغلق، متضمنا تقديرا لوقت رفع الغلق',
 'readonlytext'         => 'قاعدة البيانات مغلقة حاليا أمام المدخلات الجديدة والتعديلات الأخرى، السبب غالبا ما يكون الصيانة، وستعود قاعدة البيانات للوضع الطبيعي قريبا.
@@ -795,8 +795,8 @@ $1',
 'wrong_wfQuery_params' => 'محددات خاطئة في wfQuery()<br />
 الدالة: $1<br />
 الاستعلام: $2',
-'viewsource'           => 'عرض المصدر',
-'viewsourcefor'        => 'ل $1',
+'viewsource'           => 'اعرض المصدر',
+'viewsourcefor'        => 'ل$1',
 'actionthrottled'      => 'لا يمكن عمل المزيد من هذا الفعل',
 'actionthrottledtext'  => 'كإجراء ضد السبام، أنت ممنوع من إجراء هذا الفعل عدد كبير من المرات في فترة زمنية قصيرة، ولقد تجاوزت هذا الحد.
 من فضلك حاول مرة ثانية خلال عدة دقائق.',
@@ -1185,7 +1185,7 @@ $2',
 'rev-deleted-text-permission' => "تم '''حذف''' مراجعة هذه الصفحة.
 قد تتوفر تفاصيل في [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} سجل الحذف].",
 'rev-deleted-text-unhide'     => "مراجعة الصفحة هذه تم '''حذفها'''.
-ربما تكون هناك تفاصيل في [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} سجل الحذف].
+ربما تكون هناك تفاصيل في [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} سجل الحذف].
 كإداري مازال بإمكانك [$1 رؤية هذه المراجعة] إذا أردت المتابعة.",
 'rev-suppressed-text-unhide'  => "تم '''حذف''' مراجعة الصفحة هذه.
 قد تتوفر تفاصيل في [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} سجل الحذف].
@@ -2138,7 +2138,7 @@ PICT # متنوع
 
 # Special:Categories
 'categories'                    => 'تصنيفات',
-'categoriespagetext'            => 'التصنيفات التالية تحتوي على صفحات أو ميديا.
+'categoriespagetext'            => '{{PLURAL:$1||التصنيف التالي يحتوي|التصنيفان التاليان يحتويان|التصنيفات التالية تحتوي}} على صفحات أو وسائط.
 [[Special:UnusedCategories|التصنيفات غير المستخدمة]] غير معروضة هنا.
 انظر أيضا [[Special:WantedCategories|التصنيفات المطلوبة]].',
 'categoriesfrom'                => 'أظهر التصنيفات بدءا من:',
@@ -3370,10 +3370,10 @@ $1',
 'confirmemail_sent'        => 'تم إرسال رسالة التأكيد، شكرا لك.',
 'confirmemail_oncreate'    => 'تم إرسال كود تأكيد لعنوان بريدك الإلكتروني.
 لا يشترط أن تستخدم الكود للدخول للموسوعة باسمك، ولكن يجب أن تقوم بإدخاله قبل استخدامك أيا من خواص البريد الإلكتروني المستخدمة هنا في الويكي.',
-'confirmemail_sendfailed'  => '{{SITENAME}} لم يمكنه إرسال رسالة التأكيد إليك.
-من فضلك راجع عنوان بريدك الإلكتروني لحروف غير صحيحة.
+'confirmemail_sendfailed'  => 'لم يتمكن {{SITENAME}} من إرسال رسالة التأكيد إليك.
+من فضلك التمس عنوان بريدك الإلكتروني باحثًا حروف غير صحيحة.
 
-خادم البريد أرجع: $1',
+أرجع خادوم البريد: $1',
 'confirmemail_invalid'     => 'كود تأكيد غير صحيح.
 ربما انتهت فترة صلاحيته.',
 'confirmemail_needlogin'   => 'يجب عليك $1 لتأكيد بريدك الإلكتروني.',
@@ -3664,7 +3664,7 @@ $1',
 'htmlform-float-invalid'       => 'القيمة التي حددتها ليست عددًا.',
 'htmlform-int-toolow'          => 'القيمة التي حددتها أقل من الحد الأدنى وهو $1',
 'htmlform-int-toohigh'         => 'القيمة التي حددتها أكبر من الحد الأقصى وهو $1',
-'htmlform-submit'              => 'تنفيذ',
+'htmlform-submit'              => 'أرسل',
 'htmlform-reset'               => 'الرجوع عن التغييرات',
 'htmlform-selectorother-other' => 'أخرى',
 

@@ -1293,7 +1293,7 @@ Appachtemangs-Name.',
 'powersearch-field'                => 'Söök noh:',
 'powersearch-togglelabel'          => '&nbsp;',
 'powersearch-toggleall'            => 'Övverall Höhksche draan maache',
-'powersearch-togglenone'           => 'All Höhksche fött nämme',
+'powersearch-togglenone'           => 'All Höhksche fott nämme',
 'search-external'                  => 'Söke fun Ußerhallef',
 'searchdisabled'                   => 'Dat Söke hee op de {{SITENAME}} es em Momang avjeschalt.
 Dat weed op dänne Sörver ad ens jemaat, domet de Lass op inne nit ze jroß weed,

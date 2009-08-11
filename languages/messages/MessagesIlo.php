@@ -18,6 +18,7 @@ $messages = array(
 'tog-highlightbroken'         => 'Formaten dagiti nadadael a panilpo <a href="" class="new">a kas itoy</a> (alternative: like this<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Limpiaen dagiti parapo',
 'tog-hideminor'               => 'Ilemmeng dagiti babasit a panagedit iti napalpalabas a panagbaliw',
+'tog-hidepatrolled'           => 'Ilemmeng dagiti mapatpatruliaan a panangbalbaliw kadagiti nabiit pay a balbaliw',
 'tog-extendwatchlist'         => 'Ikalawa ti listaan ti bambantayan tapno maipakita amin a maiyannatup a panagbaliw',
 'tog-usenewrc'                => 'Enhanced a naudi a panamalbaliw (JavaScript)',
 'tog-numberheadings'          => 'I-auto-number dagiti headings',
@@ -150,6 +151,10 @@ $messages = array(
 'faq'            => 'FAQ',
 'faqpage'        => 'Project:FAQ',
 
+# Vector skin
+'vector-action-protect' => 'Saluadan',
+'vector-view-create'    => 'Parnuayen',
+
 # Metadata in edit box
 'metadata_help' => 'Metadata:',
 
@@ -245,6 +250,7 @@ $messages = array(
 'editsection'             => 'baliwan',
 'editold'                 => 'baliwan',
 'viewsourceold'           => 'kitaen ti taudan',
+'editlink'                => 'baliwan',
 'editsectionhint'         => 'Baliwan ti benneg: $1',
 'toc'                     => 'Linaon',
 'showtoc'                 => 'ipakita',
@@ -259,7 +265,7 @@ $messages = array(
 'site-atom-feed'          => '$1 Atom Feed',
 'page-rss-feed'           => '"$1" RSS Feed',
 'page-atom-feed'          => 'Atom Feed ti "$1"',
-'red-link-title'          => '$1 (di pay naisurat)',
+'red-link-title'          => '$1 (awan ti panid)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Articulo',
@@ -326,6 +332,9 @@ Para kadagiti patarus, pangngaasim ta padasem nga aramaten ti [http://translatew
 'ns-specialprotected'  => 'Saan a mabalin  a baliwan dagiti espesial a panid.',
 'titleprotected'       => "Sinaluadan daytoy a titulo manipud iti pannakaparnuay ni [[User:$1|$1]].
 Ti naited a rason ket ''$2''.",
+
+# Virus scanner
+'virus-unknownscanner' => 'di am-ammo a pagpaksiat iti virus:',
 
 # Login and logout pages
 'logouttext'                 => "'''Nakaruarkan.'''

@@ -177,6 +177,7 @@ $messages = array(
 'faqpage'        => 'Project:FAQ',
 
 # Vector skin
+'vector-action-move'        => 'Movi',
 'vector-action-protect'     => 'Ampara',
 'vector-namespace-category' => 'Categoria',
 'vector-namespace-help'     => 'Pàgina de agiudu',

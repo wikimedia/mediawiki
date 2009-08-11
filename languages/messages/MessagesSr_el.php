@@ -1,5 +1,5 @@
 <?php
-/** latinica (latinica)
+/** Serbian Latin ekavian (Srpski (latinica))
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -559,7 +559,7 @@ U tom slučaju, prijavite grešku [[Special:ListUsers/sysop|administratoru]] uz 
 'filecopyerror'        => 'Ne mogu da iskopiram fajl "$1" na "$2".',
 'filerenameerror'      => 'Ne mogu da preimenujem fajl "$1" u "$2".',
 'filedeleteerror'      => 'Ne mogu da obrišem fajl "$1".',
-'directorycreateerror' => 'Ne mogu da napravim direktorijum &quot;$1&quot;.',
+'directorycreateerror' => 'Ne mogu da napravim direktorijum "$1".',
 'filenotfound'         => 'Ne mogu da nađem fajl "$1".',
 'fileexistserror'      => 'Ne mogu da pišem po fajlu &quot;$1&quot;: fajl postoji',
 'unexpected'           => 'Neočekivana vrednost: "$1"="$2".',
@@ -584,7 +584,7 @@ Pretraga: $2',
 'protectedinterface'   => "'''Upozorenje:''' Menjate stranu koja se koristi da pruži tekst interfejsa za softver. Izmene na ovoj strani će uticati na izgled korisničkog interfejsa za ostale korisnike.",
 'editinginterface'     => "'''Upozorenje:''' Uređujete stranicu čija je namena upisivanje teksta za interfejs softvera. Izmene u ovoj stranici će promeniti izgled korisničkog intefejsa svih korisnika.",
 'sqlhidden'            => '(SQL pretraga sakrivena)',
-'cascadeprotected'     => 'Ova stranica je zaključana i njeno uređivanje je onemogućeno jer je uključena u sadržaj {{PLURAL:$1|sledeće strane|sledećih strana}}, koji je zaštićen sa opcijom &quot;prenosive&quot; zaštite:
+'cascadeprotected'     => 'Ova stranica je zaključana i njeno uređivanje je onemogućeno jer je uključena u sadržaj {{PLURAL:$1|sledeće strane|sledećih strana}}, koji je zaštićen sa opcijom "prenosive" zaštite:
 $2',
 'namespaceprotected'   => "Nemate ovlašćenja da uređujete stranice u '''$1''' imenskom prostoru.",
 'customcssjsprotected' => 'Nemate ovlašćenja da uređujete ovu stranicu jer sadrži lična podešavanja drugog korisnika.',
@@ -742,10 +742,10 @@ Razlog za blokiranje je \'\'$2\'\'.
 
 Možete kontaktirati korisnika $1 ili nekog drugog [[{{MediaWiki:Grouppage-sysop}}|administratora]] kako biste razgovarali o blokadi. Ne možete da koristite opciju "Pošalji e-poštu ovom korisniku" ukoliko nemate valjanu adresu e-pošte navedenu u vašim [[Special:Preferences|podešavanjima]]. Vaša trenutna IP adresa je $3 i ID bloka je #$5. 
 Molimo uključite gornje detalje u svaki vaš zahtev.',
-'autoblockedtext'                  => "Vaša IP adresa je automatski blokirana jer ju je upotrebljavao drugi korisnik, koga je blokirao $1.
+'autoblockedtext'                  => 'Vaša IP adresa je automatski blokirana jer ju je upotrebljavao drugi korisnik, koga je blokirao $1.
 Dat razlog je:
 
-:''$2''
+:\'\'$2\'\'
 
 * Početak blokade: $8
 * Blokada ističe: $6
@@ -754,11 +754,11 @@ Dat razlog je:
 Možete kontaktirati $1 ili nekog drugog
 [[{{MediaWiki:Grouppage-sysop}}|administratora]] da biste razjasnili ovu blokadu.
 
-Imajte u vidu da ne možete da koristite opciju &quot;pošalji e-poštu ovom korisniku&quot; ukoliko niste priložili ispravnu adresu elektronske pošte
+Imajte u vidu da ne možete da koristite opciju "pošalji e-poštu ovom korisniku" ukoliko niste priložili ispravnu adresu elektronske pošte
 u vašim [[Special:Preferences|korisničkim podešavanjima]] i ukoliko vam blokadom nije onemogućena upotreba ove opcije.
 
 IP adresa koja je blokirana je $3, a ID vaše blokade je $5. 
-Molimo vas navedite ovaj ID broj prilikom pravljenja bilo kakvih upita.",
+Molimo vas navedite ovaj ID broj prilikom pravljenja bilo kakvih upita.',
 'blockednoreason'                  => 'nije dat razlog',
 'blockedoriginalsource'            => "Izvor '''$1''' je prikazan ispod:",
 'blockededitsource'                => "Tekst '''vaših izmena''' za '''$1''' je prikazan ispod:",
@@ -1450,12 +1450,12 @@ Da biste ubacili sliku na stranu, koristite vezu u obliku
 'illegalfilename'             => 'Fajl "$1" sadrži karaktere koji nisu dozvoljeni u nazivima stranica. Molimo Vas promenite ime fajla i ponovo ga pošaljite.',
 'badfilename'                 => 'Ime slike je promenjeno u "$1".',
 'filetype-badmime'            => 'Nije dozvoljeno slati fajlove MIME tipa &quot;$1&quot;.',
-'filetype-bad-ie-mime'        => 'Ovaj fajl ne može biti poslat zato što bi Internet Eksplorer mogao da ga detektuje &quot;$1&quot;, što je onemogućen i potencijalno opasan tip fajla.',
-'filetype-unwanted-type'      => "'''&quot;.$1&quot;''' nije poželjan tip fajla. 
-Poželjni {{PLURAL:$3|tip fajla je|tipovi fajlova su}} $2.",
-'filetype-banned-type'        => "'''&quot;.$1&quot;''' je zabranjen tip fajla. 
-Poželjni {{PLURAL:$3|tip fajla je|tipovi fajlova su}} $2.",
-'filetype-missing'            => 'Ovaj fajl nema ekstenziju (npr &quot;.jpg&quot;).',
+'filetype-bad-ie-mime'        => 'Ovaj fajl ne može biti poslat zato što bi Internet Eksplorer mogao da ga detektuje "$1", što je onemogućen i potencijalno opasan tip fajla.',
+'filetype-unwanted-type'      => "'''\".\$1\"''' nije poželjan tip fajla. 
+Poželjni {{PLURAL:\$3|tip fajla je|tipovi fajlova su}} \$2.",
+'filetype-banned-type'        => "'''\".\$1\"''' je zabranjen tip fajla. 
+Poželjni {{PLURAL:\$3|tip fajla je|tipovi fajlova su}} \$2.",
+'filetype-missing'            => 'Ovaj fajl nema ekstenziju (npr ".jpg").',
 'large-file'                  => 'Preporučljivo je da fajlovi ne budu veći od $1; ovaj fajl je $2.',
 'largefileserver'             => 'Ovaj fajl je veći nego što je podešeno da server dozvoli.',
 'emptyfile'                   => 'Fajl koji ste poslali deluje da je prazan. Ovo je moguće zbog greške u imenu fajla. Molimo proverite da li stvarno želite da pošaljete ovaj fajl.',
@@ -1497,7 +1497,7 @@ Molimo, proverite podešavanja file_uploads.',
 
 Proverite da li ste sigurno da želite poslati ovaj fajl.
 Razlog brisanja ovog fajla ranije je:",
-'filename-bad-prefix'         => "Ime ovog fajla počinje sa '''&quot;$1&quot;''', što nije opisno ime, najčešće je nazvan automatski sa digitalnim fotoaparatom. Molimo izaberite opisnije ime za vaš fajl.",
+'filename-bad-prefix'         => "Ime ovog fajla počinje sa '''\"\$1\"''', što nije opisno ime, najčešće je nazvan automatski sa digitalnim fotoaparatom. Molimo izaberite opisnije ime za vaš fajl.",
 
 'upload-proto-error'      => 'Nekorektni protokol',
 'upload-proto-error-text' => 'Slanje eksternih fajlova zahteva URLove koji počinju sa <code>http://</code> ili <code>ftp://</code>.',
@@ -1750,7 +1750,7 @@ Možete suziti pregled odabirom tipa istorije, korisničkog imena ili tražene s
 'allpagessubmit'    => 'Idi',
 'allpagesprefix'    => 'Prikaži strane sa prefiksom:',
 'allpagesbadtitle'  => 'Dati naziv stranice nije dobar ili sadrži međujezički ili interviki prefiks. Moguće je da sadrži karaktere koji ne mogu da se koriste u nazivima.',
-'allpages-bad-ns'   => '{{SITENAME}} nema imenski prostor &quot;$1&quot;.',
+'allpages-bad-ns'   => '{{SITENAME}} nema imenski prostor "$1".',
 
 # Special:Categories
 'categories'                    => 'Kategorije stranica',
@@ -1824,7 +1824,7 @@ ili je izabrao da ne prima e-poštu od drugih korisnika.',
 'emailccsubject'   => 'Kopija vaše poruke na $1: $2',
 'emailsent'        => 'Poruka poslata',
 'emailsenttext'    => 'Vaša poruka je poslata elektronskom poštom.',
-'emailuserfooter'  => 'Ovaj imejl posla $1 saradniku $2 pomoću &quot;Pošalji imejl&quot; funkcije na sajtu &quot;{{SITENAME}}&quot;.',
+'emailuserfooter'  => 'Ovaj imejl posla $1 saradniku $2 pomoću "Pošalji imejl" funkcije na sajtu "{{SITENAME}}".',
 
 # Watchlist
 'watchlist'            => 'Moj spisak nadgledanja',
@@ -2551,8 +2551,8 @@ Molimo Vas da opet pokušate.',
 
 $1',
 'filedelete-missing'              => 'Fajl „$1” se ne može obrisati, zato što ne postoji.',
-'filedelete-old-unregistered'     => 'Data verzija fajla &quot;$1&quot; ne postoji u bazi.',
-'filedelete-current-unregistered' => 'Dati fajl &quot;$1&quot; ne postoji u bazi.',
+'filedelete-old-unregistered'     => 'Data verzija fajla "$1" ne postoji u bazi.',
+'filedelete-current-unregistered' => 'Dati fajl "$1" ne postoji u bazi.',
 'filedelete-archive-read-only'    => 'Veb server ne može pisati po kladišnom direktorijumu &quot;$1&quot;.',
 
 # Browsing diffs
@@ -3031,13 +3031,13 @@ Unesite naziv fajla bez prefiksa &quot;{{ns:file}}:&quot;.',
 'fileduplicatesearch'          => 'Pretražite duplikate fajlova',
 'fileduplicatesearch-summary'  => 'Pretraga za duplikatima fajlova na bazi njihovih heš vrednosti.
 
-Unesite ime fajla bez prefiksa &quot;{{ns:file}}:&quot;.',
+Unesite ime fajla bez prefiksa "{{ns:file}}:".',
 'fileduplicatesearch-legend'   => 'Pretražite duplikate',
 'fileduplicatesearch-filename' => 'Ime fajla:',
 'fileduplicatesearch-submit'   => 'Pretraga',
 'fileduplicatesearch-info'     => '$1 × $2 poksel<br />Veličina fajla: $3<br />MIME tip: $4',
 'fileduplicatesearch-result-1' => 'Datoteka „$1“ nema identičnih duplikata.',
-'fileduplicatesearch-result-n' => 'Datoteka &quot;$1&quot; ima {{PLURAL:$2|1 identičan duplikat|$2 identična duplikata|$2 identičnih duplikata}}.',
+'fileduplicatesearch-result-n' => 'Datoteka "$1" ima {{PLURAL:$2|1 identičan duplikat|$2 identična duplikata|$2 identičnih duplikata}}.',
 
 # Special:SpecialPages
 'specialpages'                   => 'Posebne stranice',

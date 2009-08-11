@@ -1563,8 +1563,8 @@ Paginile pe care le [[Special:Watchlist|urmăriţi]] apar în '''aldine'''.",
 'recentchangeslinked-to'       => 'Afişează schimbările în paginile care se leagă de pagina dată',
 
 # Upload
-'upload'                      => 'Trimite fişier',
-'uploadbtn'                   => 'Trimite fişier',
+'upload'                      => 'Încarcă fişier',
+'uploadbtn'                   => 'Încarcă fişier',
 'reupload'                    => 'Re-trimite',
 'reuploaddesc'                => 'Revocare încărcare şi întoarcere la formularul de trimitere.',
 'uploadnologin'               => 'Nu sunteţi autentificat',
