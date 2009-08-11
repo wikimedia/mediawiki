@@ -33,11 +33,43 @@ function install_version_checks() {
 			"or higher. ABORTING. (http://bugs.php.net/bug.php?id=34879 for details)\n";
 		die( -1 );
 	}
+	
+	$test = new PhpXmlBugTester();
+	if( !$test->ok ) {
+		echo "Your system has a combination of PHP and libxml2 versions which is buggy\n" .
+			"and can cause hidden data corruption in MediaWiki and other web apps.\n" .
+			"Upgrade to PHP 5.2.9 or later and libxml2 2.7.2 or later!\n" .
+			"ABORTING (http://bugs.php.net/bug.php?id=45996 for details).\n";
+		die( -1 );
+	}
+	
 
 	global $wgCommandLineMode;
 	$wgCommandLineMode = true;
 	umask( 000 );
 	@set_time_limit( 0 );
+}
+
+/**
+ * Test for PHP+libxml2 bug which breaks XML input subtly with certain versions.
+ * http://bugs.php.net/bug.php?id=45996
+ * Known fixed with PHP 5.2.9 + libxml2-2.7.3
+ */
+class PhpXmlBugTester {
+	var $parsedData = '';
+	var $ok = false;
+	function __construct() {
+		$charData = '<b>c</b>';
+		$xml = '<a>' . htmlspecialchars( $charData ) . '</a>';
+		
+		$parser = xml_parser_create();
+		xml_set_character_data_handler( $parser, array( $this, 'chardata' ) );
+		$parsedOk = xml_parse($parser, $xml, true);
+		$this->ok = $parsedOk && ($this->parsedData == $charData);
+	}
+	function chardata($parser, $data) {
+		$this->parsedData .= $data;
+	}
 }
 
 function readconsole( $prompt = '' ) {
