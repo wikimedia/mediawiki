@@ -99,8 +99,6 @@ this. Was used when mwEmbed was going to be an extension.
   Special:Version
 * (bug 18420) Missing file revisions are handled gracefully now
 * (bug 9219) Auth plugins can control editing RealName/Email/Nick preferences
-* New hook: MessageNotInMwNs to handle localised messages that aren't in the
-  Mediawiki Namespace, before checking the message files
 * (bug 18466) Add note or warning when overruling a move (semi-)protection
 * (bug 18342) insertTags works in edit summary box
 * (bug 18411) The upload form also checks post_max_size
@@ -219,7 +217,6 @@ this. Was used when mwEmbed was going to be an extension.
 * (bug 18289) Database connection error page now returns correct HTML
 * "successbox", "errorbox" and related CSS classes are now available in all
   skins
-* Fixed a PHP notice when $wgEnableSerializedMessages was set to false
 * (bug 18316) Removed superfluous name="fulltext" from Special:Search
 * (bug 18331) MediaWiki:Undelete-revision can now have wikitext
 * The "noautoblock" flag is no longer displayed in the block log when blocking
@@ -294,7 +291,7 @@ this. Was used when mwEmbed was going to be an extension.
 * (bug 18925) history.js removes class names of list elements on initialization
 * Multiple whitespace in TOC anchors is now stripped, for consistency with the
   link from the edit comment
-* (bug 19112) Preferences now respects $wgUseExternalEditor, $wgExternalDiffEngine
+* (bug 19112) Preferences now respects $wgUseExternalEditor
 * (bug 18173) MediaWiki now fails when unable to determine a client IP
 * (bug 19170) Special:Version should follow the content language direction
 * (bug 19160) maintenance/purgeOldText.inc is now compatible with PostgreSQL
