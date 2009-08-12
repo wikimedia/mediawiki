@@ -183,7 +183,7 @@ class Revision {
 	 * @access private
 	 * @static
 	 */
-	private static function newFromConds( $conditions ) {
+	public static function newFromConds( $conditions ) {
 		$db = wfGetDB( DB_SLAVE );
 		$row = Revision::loadFromConds( $db, $conditions );
 		if( is_null( $row ) && wfGetLB()->getServerCount() > 1 ) {
