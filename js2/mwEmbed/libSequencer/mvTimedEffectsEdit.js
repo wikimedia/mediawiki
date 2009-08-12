@@ -25,7 +25,8 @@ var default_timed_effect_values = {
 	'pSeq': null,	 //parent sequence Object
 	
 	'edit_action': null, //the requested edit action						
-}
+};
+
 var mvTimedEffectsEdit =function(iObj) {		
 	return this.init(iObj);
 };
@@ -249,7 +250,7 @@ mvTimedEffectsEdit.prototype = {
 		//and finally add effect timeline scrubber (for timed effects this also stores keyframes)
 				
 	},
-	getTransitionListControl:function(target_out){
+	getTransitionListControl : function(target_out){
 		js_log("getTransitionListControl");
 		var o= '<h3>Add a Transition:</h3>';
 		for(var type in mvTransLib['type']){
@@ -263,4 +264,4 @@ mvTimedEffectsEdit.prototype = {
 		}	
 		$j(target_out).html(o);
 	}		
-}
+};

@@ -836,10 +836,10 @@ mediaElement.prototype =
 			this.tryAddSource(video_element);			  
 		
 		if($j(video_element).attr('thumbnail'))
-			this.thumbnail=$j(video_element).attr('thumbnail');
+			this.thumbnail = $j(video_element).attr('thumbnail');
 			
 		if($j(video_element).attr('poster'))
-			this.thumbnail=$j(video_element).attr('poster');
+			this.thumbnail = $j(video_element).attr('poster');
 			
 		// Process all inner <source> elements	
 		//js_log("inner source count: " + video_element.getElementsByTagName('source').length );
@@ -1851,7 +1851,7 @@ embedVideo.prototype = {
 			embed_code_html+='roe=&quot;'+this.roe+'&quot; &gt;';
 		}else{
 			embed_code_html+='src=&quot;'+this.src+'&quot; ' +
-				'thumbnail=&quot;'+embed_thumb_html+'&quot;&gt;';
+				'poster=&quot;'+embed_thumb_html+'&quot;&gt;';
 		}
 		//close the video tag
 		embed_code_html+='&lt;/video&gt;';
