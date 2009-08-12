@@ -2714,7 +2714,7 @@ Dat ahle Versione Huhlade es avjeschalt, un es nit müjjelich.',
 'importuploaderrortemp'      => 'De Import-Datei huhzelade jingk scheif, weil e Zwescheverzeichnis fäählt.',
 'import-parse-failure'       => 'Fäähler bem Import per XML:',
 'import-noarticle'           => 'Kein Sigge do, för ze Emporteere!',
-'import-nonewrevisions'      => 'Et sin kein neue Versione do, för ze Importeere, weil all de Version hee ald fröjer emporteet wodte.',
+'import-nonewrevisions'      => 'Et sin kein neue Versione do, för ze Importeere, weil all de Versione vun heh ald fröjer empotteet wodte.',
 'xml-error-string'           => '$1 — en {{PLURAL:$2|eetz|$2-}}te Reih en de {{PLURAL:$3|eetz|$3-}}te Spalde, dat ess_et {{PLURAL:$4|eetz|$4-}}te Byte: $5',
 'import-upload'              => 'En XML-Datei impochteere',
 'import-token-mismatch'      => 'Schadt. Et senn nit alle Date hee aanjekumme.

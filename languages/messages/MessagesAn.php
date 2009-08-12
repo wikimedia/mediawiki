@@ -7,7 +7,6 @@
  * @ingroup Language
  * @file
  *
- * @author IAlex
  * @author Juanpabl
  * @author Remember the dot
  * @author Urhixidur

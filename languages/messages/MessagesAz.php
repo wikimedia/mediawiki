@@ -8,7 +8,6 @@
  * @file
  *
  * @author Gulmammad
- * @author IAlex
  * @author PrinceValiant
  * @author Sortilegus
  * @author Sysops of az.wikipedia.org (imported 2008-08-31)
@@ -85,9 +84,9 @@ $messages = array(
 'tog-nocache'                 => 'Səhifəni keşdə (cache) saxlama',
 'tog-enotifwatchlistpages'    => 'Izləmə siyahısında olan məqalə redaktə olunsa, mənə e-məktub göndər',
 'tog-enotifusertalkpages'     => 'Müzakirə səhifəm redaktə olunsa, mənə e-məktub göndər',
-'tog-enotifminoredits'        => 'Həttda səhifələrə kiçik dəyişikliklər olsa belə, mənə e-məktub göndər',
+'tog-enotifminoredits'        => 'Hətta səhifələrdə kiçik dəyişikliklər olsa belə, mənə e-məktub göndər',
 'tog-enotifrevealaddr'        => 'Elektron adresimi xəbərdarliq e-məktublarda göstər',
-'tog-shownumberswatching'     => 'Izləyən istifadəçilərin sayını göstər',
+'tog-shownumberswatching'     => 'İzləyən istifadəçilərin sayını göstər',
 'tog-fancysig'                => 'Xam imza (daxili bağlantı yaratmaz)',
 'tog-externaleditor'          => 'Default olaraq xarici redaktə proqramlarından istifadə et (Ekspertlər üçün, kompyuterinizin parametrlərində xüsusi dəyişikliklər tələb olunur)',
 'tog-externaldiff'            => 'Susmaya görə xarici müqayisə proqramlarından istifadə et',

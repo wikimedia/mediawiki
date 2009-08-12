@@ -111,11 +111,11 @@ $messages = array(
 'dec'           => 'Kev',
 
 # Categories related messages
-'pagecategories'           => '{{PLURAL:$1|Klasyans|Klasyansow}}',
-'category_header'          => 'Folennow y\'n klasyans "$1"',
+'pagecategories'           => '{{PLURAL:$1|Klass|Klass}}',
+'category_header'          => 'Folennow y\'n klass "$1"',
 'subcategories'            => 'Is-klasyansow',
-'category-media-header'    => 'Media y\'n klasyans "$1"',
-'hidden-categories'        => '{{PLURAL:$1|Klasyans kovys|Klasyans kovys}}',
+'category-media-header'    => 'Media y\'n klass "$1"',
+'hidden-categories'        => '{{PLURAL:$1|Klass kovys|Klass kovys}}',
 'hidden-category-category' => 'Klasyansow kudh',
 'listingcontinuesabbrev'   => 'pes.',
 
@@ -143,7 +143,7 @@ $messages = array(
 'vector-action-protect'      => 'Difres',
 'vector-action-undelete'     => 'Disdhilea',
 'vector-action-unprotect'    => 'Disdhifres',
-'vector-namespace-category'  => 'Klasyans',
+'vector-namespace-category'  => 'Klass',
 'vector-namespace-help'      => 'Gweres',
 'vector-namespace-image'     => 'Restren',
 'vector-namespace-main'      => 'Folen',
@@ -202,7 +202,7 @@ $messages = array(
 'mediawikipage'     => 'Gweles folen an messajow',
 'templatepage'      => 'Gweles folen an skantlyn',
 'viewhelppage'      => 'Gweles an folen gweres',
-'categorypage'      => 'Gweles folen an klasyans',
+'categorypage'      => 'Gweles folen an klass',
 'viewtalkpage'      => 'Gweles an kows',
 'otherlanguages'    => 'Tavosow erel',
 'jumpto'            => 'Lamma dhe:',
@@ -253,7 +253,7 @@ $messages = array(
 'nstab-mediawiki' => 'Messaj',
 'nstab-template'  => 'Skantlyn',
 'nstab-help'      => 'Gweres',
-'nstab-category'  => 'Klasyans',
+'nstab-category'  => 'Klass',
 
 # General errors
 'error'               => 'Gwall',
@@ -702,7 +702,7 @@ Ty a yll [[:\$1|gwruthyl an folen ma]].",
 'tooltip-ca-nstab-project'  => 'Gweles folen an wiki',
 'tooltip-ca-nstab-image'    => 'Gweles folen an restren',
 'tooltip-ca-nstab-template' => 'Gweles an skantlyn',
-'tooltip-ca-nstab-category' => 'Gweles folen an klasyans',
+'tooltip-ca-nstab-category' => 'Gweles folen an klass',
 'tooltip-save'              => 'Gwitha dha janjyow',
 
 # Attribution

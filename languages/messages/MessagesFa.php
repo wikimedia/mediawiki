@@ -11,6 +11,7 @@
  * @author Asoxor
  * @author Behdarvandyani
  * @author Huji
+ * @author Ibrahim
  * @author Ladsgroup
  * @author Mardetanha
  * @author Meisam
@@ -2403,7 +2404,7 @@ $1',
 'whatlinkshere-next'       => '{{PLURAL:$1|بعدی|$1 مورد بعدی}}',
 'whatlinkshere-links'      => '← پیوندها',
 'whatlinkshere-hideredirs' => '$1 تغییرمسیر',
-'whatlinkshere-hidetrans'  => '$1 تراگنجانش',
+'whatlinkshere-hidetrans'  => '$1 трансгунҷоишҳо',
 'whatlinkshere-hidelinks'  => '$1 پیوند',
 'whatlinkshere-hideimages' => '$1 پیوند به تصویر',
 'whatlinkshere-filters'    => 'پالایه‌ها',

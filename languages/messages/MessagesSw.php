@@ -710,6 +710,7 @@ Kwa kutumia faili katika makala, tumia moja kati ya viungo vifuatavyo:
 'filehist-help'             => 'Bonyeza tarehe/saa kuona faili kama ilivyoonekana wakati huo.',
 'filehist-current'          => 'sasa hivi',
 'filehist-datetime'         => 'Tarehe/Saa',
+'filehist-thumb'            => 'Picha ndogo',
 'filehist-user'             => 'Mtumiaji',
 'filehist-dimensions'       => 'Vipimo',
 'filehist-filesize'         => 'Ukubwa wa faili',
@@ -820,12 +821,19 @@ Kwa kutumia faili katika makala, tumia moja kati ya viungo vifuatavyo:
 'nextpage'       => 'Ukurasa ujao ($1)',
 'prevpage'       => 'Ukurasa uliotangulia ($1)',
 'allpagesfrom'   => 'Onyesha kurasa zinazoanza kutoka:',
+'allpagesto'     => 'Onyesha kurasa zinazoanza kabla ya:',
 'allarticles'    => 'Kurasa zote',
 'allpagessubmit' => 'Nenda',
 'allpagesprefix' => 'Onyesha kurasa zenye kiambishi awali:',
 
 # Special:Categories
 'categories' => 'Jamii',
+
+# Special:LinkSearch
+'linksearch' => 'Viungo vya nje',
+
+# Special:Log/newusers
+'newuserlog-create-entry' => 'Akaunti ya mtumiaji mgeni',
 
 # Special:ListGroupRights
 'listgrouprights-group'   => 'Kundi',
@@ -855,6 +863,7 @@ Ukitaka kufuta ukurasa huo kutoka maangalizi yako baadaye, bonyeza \"Acha kufuat
 'unwatch'           => 'Acha kufuatilia',
 'watchlist-details' => 'Unafuatilia {{PLURAL:$1|ukurasa $1|kurasa $1}} bila kuzingatia kurasa za majadiliano.',
 'wlshowlast'        => 'Onyesha kutoka masaa $1 siku $2 $3',
+'watchlist-options' => 'Chaguo za maangalizi',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Unafuatilia...',
@@ -918,12 +927,13 @@ Hivi ni vipimo kwa ukurasa '''$1''':",
 'blanknamespace' => '(Kuu)',
 
 # Contributions
-'contributions' => 'Michango ya watumiaji',
-'mycontris'     => 'Michango yangu',
-'contribsub2'   => 'Kwa $1 ($2)',
-'uctop'         => '(juu)',
-'month'         => 'Kutoka mwezi (na zamani zaidi):',
-'year'          => 'Kutoka mwakani (na zamani zaidi):',
+'contributions'       => 'Michango ya watumiaji',
+'contributions-title' => 'Michango ya mtumiaji $1',
+'mycontris'           => 'Michango yangu',
+'contribsub2'         => 'Kwa $1 ($2)',
+'uctop'               => '(juu)',
+'month'               => 'Kutoka mwezi (na zamani zaidi):',
+'year'                => 'Kutoka mwakani (na zamani zaidi):',
 
 'sp-contributions-newbies'     => 'Onyesha michango ya akaunti mpya tu',
 'sp-contributions-newbies-sub' => 'Kwa akaunti mpya',
@@ -941,10 +951,12 @@ Hivi ni vipimo kwa ukurasa '''$1''':",
 'nolinkshere'             => "Hakuna kurasa zilizounganishwa na '''[[:$1]]'''.",
 'isredirect'              => 'elekeza ukurasa',
 'istemplate'              => 'jumuisho',
+'isimage'                 => 'kiungo cha picha',
 'whatlinkshere-prev'      => '{{PLURAL:$1|uliotangulia|$1 zilizotangulia}}',
 'whatlinkshere-next'      => '{{PLURAL:$1|ujao|$1 zijazo}}',
 'whatlinkshere-links'     => '← viungo',
 'whatlinkshere-hidelinks' => '$1 viungo',
+'whatlinkshere-filters'   => 'Machujio',
 
 # Block/unblock
 'blockip'          => 'Zuia mtumiaji',

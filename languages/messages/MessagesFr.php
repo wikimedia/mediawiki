@@ -327,17 +327,17 @@ $messages = array(
 'tog-highlightbroken'         => 'Afficher <a href="" class="new">en rouge</a> les liens vers les pages inexistantes (sinon :  comme ceci<a href="" class="internal">?</a>)',
 'tog-justify'                 => 'Justifier les paragraphes',
 'tog-hideminor'               => 'Cacher les modifications récentes mineures',
-'tog-hidepatrolled'           => 'Masquer les modifications surveillées des modifications récentes',
-'tog-newpageshidepatrolled'   => 'Masquer les pages surveillées de la liste des nouvelles pages',
+'tog-hidepatrolled'           => 'Masquer les modifications surveillées parmi les modifications récentes',
+'tog-newpageshidepatrolled'   => 'Masquer les pages surveillées parmi les nouvelles pages',
 'tog-extendwatchlist'         => 'Étendre la liste de suivi pour afficher toutes les modifications et non seulement les plus récentes',
 'tog-usenewrc'                => 'Utiliser les modifications récentes améliorées (nécessite JavaScript)',
 'tog-numberheadings'          => 'Numéroter automatiquement les titres de section',
-'tog-showtoolbar'             => 'Montrer la barre de menu de modification (JavaScript doit être activé)',
-'tog-editondblclick'          => 'Double-cliquer permet de modifier une page (JavaScript doit être activé)',
-'tog-editsection'             => 'Activer les liens « [modifier] » pour modifier une section',
-'tog-editsectiononrightclick' => 'Un clic droit sur un titre de section permet de modifier celle-ci (JavaScript doit être activé)',
+'tog-showtoolbar'             => 'Montrer la barre de menu de modification (nécessite JavaScript)',
+'tog-editondblclick'          => 'Double-cliquer permet de modifier une page (nécessite JavaScript)',
+'tog-editsection'             => 'Activer les modifications de sections grâce aux liens « [modifier] »',
+'tog-editsectiononrightclick' => 'Un clic droit sur un titre de section permet de modifier celle-ci (nécessite JavaScript)',
 'tog-showtoc'                 => 'Afficher la table des matières (pour les pages ayant plus de 3 sections)',
-'tog-rememberpassword'        => 'Se souvenir de mon mot de passe sur cet ordinateur',
+'tog-rememberpassword'        => 'Se souvenir de mon identification sur cet ordinateur',
 'tog-editwidth'               => 'Afficher la fenêtre de modification en pleine largeur',
 'tog-watchcreations'          => 'Ajouter les pages que je crée à ma liste de suivi',
 'tog-watchdefault'            => 'Ajouter les pages que je modifie à ma liste de suivi',
@@ -349,7 +349,7 @@ $messages = array(
 'tog-nocache'                 => 'Désactiver le cache des pages',
 'tog-enotifwatchlistpages'    => 'M’avertir par courriel lorsqu’une page de ma liste de suivi est modifiée',
 'tog-enotifusertalkpages'     => 'M’avertir par courriel si ma page de discussion est modifiée',
-'tog-enotifminoredits'        => 'M’avertir par courriel même en cas de modification mineure',
+'tog-enotifminoredits'        => 'M’avertir par courriel même en cas de modifications mineures des pages',
 'tog-enotifrevealaddr'        => 'Afficher mon adresse électronique dans les courriels d’avertissement',
 'tog-shownumberswatching'     => 'Afficher le nombre d’utilisateurs qui suivent cette page',
 'tog-oldsig'                  => 'Aperçu de la signature existante :',
@@ -357,20 +357,20 @@ $messages = array(
 'tog-externaleditor'          => 'Utiliser un éditeur de texte externe par défaut (pour les utilisateurs avancés, nécessite des réglages sur votre ordinateur)',
 'tog-externaldiff'            => 'Utiliser un comparateur externe par défaut (pour les utilisateurs avancés, nécessite des réglages sur votre ordinateur)',
 'tog-showjumplinks'           => 'Activer les liens « navigation » et « recherche » en haut de page',
-'tog-uselivepreview'          => 'Utiliser l’aperçu rapide (JavaScript doit être activé) (expérimental)',
+'tog-uselivepreview'          => 'Utiliser l’aperçu rapide (nécessite JavaScript) (expérimental)',
 'tog-forceeditsummary'        => 'M’avertir lorsque je n’ai pas spécifié de résumé de modification',
 'tog-watchlisthideown'        => 'Masquer mes propres modifications dans la liste de suivi',
 'tog-watchlisthidebots'       => 'Masquer les modifications faites par des bots dans la liste de suivi',
 'tog-watchlisthideminor'      => 'Masquer les modifications mineures dans la liste de suivi',
 'tog-watchlisthideliu'        => 'Masquer les modifications faites par des utilisateurs inscrits dans la liste de suivi',
 'tog-watchlisthideanons'      => 'Masquer les modifications anonymes dans la liste de suivi',
-'tog-watchlisthidepatrolled'  => 'Masquer les modifications surveillées de la liste de suivi',
-'tog-nolangconversion'        => 'Désactiver la conversion des variantes de langue',
+'tog-watchlisthidepatrolled'  => 'Masquer les modifications surveillées dans la liste de suivi',
+'tog-nolangconversion'        => 'Désactiver la conversion des variantes linguistiques',
 'tog-ccmeonemails'            => 'M’envoyer une copie des courriels que j’envoie aux autres utilisateurs',
 'tog-diffonly'                => 'Ne pas montrer le contenu des pages sous les diffs',
 'tog-showhiddencats'          => 'Afficher les catégories cachées',
 'tog-noconvertlink'           => 'Désactiver la conversion des titres',
-'tog-norollbackdiff'          => 'Ne pas afficher le diff après avoir effectué une révocation',
+'tog-norollbackdiff'          => 'Ne pas afficher le diff lors d’une révocation',
 
 'underline-always'  => 'Toujours',
 'underline-never'   => 'Jamais',
@@ -378,8 +378,8 @@ $messages = array(
 
 # Font style option in Special:Preferences
 'editfont-style'     => "Style de police de la zone d'édition :",
-'editfont-default'   => 'Celui du navigateur par défaut',
-'editfont-monospace' => 'Police mono espacée',
+'editfont-default'   => 'Celui par défaut du navigateur',
+'editfont-monospace' => 'Police de chasse fixe',
 'editfont-sansserif' => 'Police sans empattement',
 'editfont-serif'     => 'Police avec empattements',
 
@@ -467,16 +467,16 @@ $messages = array(
 'mypage'        => 'Ma page',
 'mytalk'        => 'Page de discussion',
 'anontalk'      => 'Discussion avec cette adresse IP',
-'navigation'    => 'navigation',
+'navigation'    => 'Navigation',
 'and'           => '&#32;et',
 
 # Cologne Blue skin
 'qbfind'         => 'Rechercher',
-'qbbrowse'       => 'Défiler',
+'qbbrowse'       => 'Parcourir',
 'qbedit'         => 'Modifier',
-'qbpageoptions'  => 'Page d’option',
-'qbpageinfo'     => 'Page d’information',
-'qbmyoptions'    => 'Mes options',
+'qbpageoptions'  => 'Cette page',
+'qbpageinfo'     => 'Contexte',
+'qbmyoptions'    => 'Mes pages',
 'qbspecialpages' => 'Pages spéciales',
 'faq'            => 'FAQ',
 'faqpage'        => 'Project:FAQ',
@@ -492,7 +492,7 @@ $messages = array(
 'vector-namespace-help'      => 'Aide',
 'vector-namespace-image'     => 'Fichier',
 'vector-namespace-main'      => 'Page',
-'vector-namespace-media'     => 'Page de Média',
+'vector-namespace-media'     => 'Page de média',
 'vector-namespace-mediawiki' => 'Message',
 'vector-namespace-project'   => 'Page de projet',
 'vector-namespace-special'   => 'Page spéciale',
@@ -518,7 +518,7 @@ $messages = array(
 'search'            => 'Rechercher',
 'searchbutton'      => 'Rechercher',
 'go'                => 'Consulter',
-'searcharticle'     => 'Lire',
+'searcharticle'     => 'Consulter',
 'history'           => 'Historique de la page',
 'history_short'     => 'Historique',
 'updatedmarker'     => 'modifié depuis ma dernière visite',
@@ -547,7 +547,7 @@ $messages = array(
 'articlepage'       => 'Voir la page de contenu',
 'talk'              => 'Discussion',
 'views'             => 'Affichages',
-'toolbox'           => 'boîte à outils',
+'toolbox'           => 'Boîte à outils',
 'userpage'          => 'Page utilisateur',
 'projectpage'       => 'Page méta',
 'imagepage'         => 'Voir la page du fichier',
@@ -566,8 +566,8 @@ $messages = array(
 'jumptonavigation'  => 'Navigation',
 'jumptosearch'      => 'rechercher',
 'view-pool-error'   => 'Désolé, les serveurs sont surchargés en ce moment.
-Trop d’utilisateurs cherchent à accéder à cette page.
-Veuillez attendre un moment avant que vous essayez d’accéder à cette page.
+Trop d’utilisateurs cherchent à consulter cette page.
+Veuillez attendre un moment avant de retenter l’accès à cette page.
 
 $1',
 
@@ -667,8 +667,7 @@ $5 a renvoyé l’erreur « $3 : $4 ».',
 'enterlockreason'      => 'Indiquez la raison du verrouillage ainsi qu’une estimation de sa durée',
 'readonlytext'         => 'Les ajouts et mises à jour de la base de données sont actuellement bloqués, probablement pour permettre la maintenance de la base, après quoi, tout rentrera dans l’ordre.
 
-L’administrateur ayant verrouillé la base de données a donné l’explication suivante :<br 
-/>$1',
+L’administrateur ayant verrouillé la base de données a fourni l’explication suivante :<br />$1',
 'missing-article'      => 'La base de données n’a pas trouvé le texte d’une page qu’elle aurait dû trouver, intitulée « $1 » $2.
 
 Généralement, cela survient en suivant un lien vers un diff périmé ou vers l’historique d’une page supprimée.
@@ -1739,7 +1738,7 @@ Si le problème persiste, contactez un [[Special:ListUsers/sysop|administrateur]
 'upload-curl-error28'      => 'Dépassement du délai lors du téléversement',
 'upload-curl-error28-text' => 'Le site a mis trop longtemps à répondre. Vérifiez que le site est en ligne, attendez un peu et réessayez. Vous pouvez aussi réessayer à une heure de moindre affluence.',
 
-'license'            => 'Licence&nbsp;:',
+'license'            => 'Publié sous licence :',
 'nolicense'          => 'Aucune licence sélectionnée',
 'license-nopreview'  => '(Prévisualisation non disponible)',
 'upload_source_url'  => ' (une URL valide et accessible publiquement)',

@@ -1341,6 +1341,7 @@ $messages = array(
 'allmessagesnotsupportedDB' => "'''Special:Allmessages''' ترېنه کار نه اخيستل کېږي ځکه چې '''\$wgUseDatabaseMessages''' مړ دی.",
 'allmessages-filter-all'    => 'ټول',
 'allmessages-language'      => 'ژبه:',
+'allmessages-filter-submit' => 'ورځه',
 
 # Thumbnails
 'thumbnail-more'  => 'لويول',

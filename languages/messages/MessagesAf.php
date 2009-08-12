@@ -11,7 +11,6 @@
  * @author Anrie
  * @author Arnobarnard
  * @author Byeboer
- * @author IAlex
  * @author Manie
  * @author Naudefj
  * @author Purodha
@@ -2231,6 +2230,7 @@ U kan daar \'n wysigingsopsomming byvoeg.',
 'patrol-log-page' => 'Kontroleringslogboek',
 'patrol-log-line' => 'merk $1 van $2 as gekontroleer $3',
 'patrol-log-auto' => '(outomaties)',
+'patrol-log-diff' => 'weergawe $1',
 
 # Image deletion
 'deletedrevision'                 => 'Ou weergawe $1 geskrap',
@@ -2245,6 +2245,9 @@ $1',
 'previousdiff' => '← Ouer wysiging',
 'nextdiff'     => 'Nuwer wysiging →',
 
+# Visual comparison
+'visual-comparison' => 'Visuele vergelyking',
+
 # Media information
 'imagemaxsize'         => 'Beperk beelde op beeldbeskrywingsbladsye tot:',
 'thumbsize'            => 'Grootte van duimnaelskets:',
@@ -2255,6 +2258,7 @@ $1',
 'svg-long-desc'        => '(SVG-lêer, nominaal $1 × $2 pixels, lêergrootte: $3)',
 'show-big-image'       => 'Volle resolusie',
 'show-big-image-thumb' => '<small>Grootte van hierdie voorskou: $1 × $2 pixels</small>',
+'file-info-gif-looped' => 'herhalend',
 
 # Special:NewFiles
 'newimages'             => 'Gallery van nuwe beelde',

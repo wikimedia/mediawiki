@@ -451,8 +451,8 @@ $2',
 'nouserspecified'            => 'ನೀವು ಒಂದು ಸದಸ್ಯತ್ವದ ಹೆಸರನ್ನು ಸೂಚಿಸಬೇಕು.',
 'wrongpassword'              => 'ತಪ್ಪು ಪ್ರವೇಶ ಪದ ನೀಡಿರುವಿರಿ. ಮತ್ತೊಮ್ಮೆ ಪ್ರಯತ್ನಿಸಿ.',
 'wrongpasswordempty'         => 'ಖಾಲಿ ಪ್ರವೇಶ ಪದವನ್ನು ನೀಡಿರುವಿರಿ. ಮತ್ತೊಮ್ಮೆ ಪ್ರಯತ್ನಿಸಿ.',
-'passwordtooshort'           => 'ನಿಮ್ಮ ಪ್ರವೇಶಪದ ಸಿಂಧುವಲ್ಲ ಅಥವ ತುಂಬ ಚಿಕ್ಕದಾಗಿದೆ.
-ಅದು ಕನಿಷ್ಟ {{PLURAL:$1|೧ ಅಕ್ಷರವನ್ನು|$1 ಅಕ್ಷರಗಳನ್ನು}} ಹೊಂದಿರಬೇಕು ಮತ್ತು ನಿಮ್ಮ ಬಳಕೆಯ ಹೆಸರಿಂದ ಭಿನ್ನವಾಗಿರಬೇಕು.',
+'passwordtooshort'           => 'ನಿಮ್ಮ ಪ್ರವೇಶಪದ ತುಂಬ ಚಿಕ್ಕದಾಗಿದೆ.
+ಅದು ಕನಿಷ್ಟ {{PLURAL:$1|೧ ಅಕ್ಷರವನ್ನು|$1 ಅಕ್ಷರಗಳನ್ನು}} ಹೊಂದಿರಬೇಕು.',
 'mailmypassword'             => 'ಹೊಸ ಪ್ರವೇಶ ಪದವನ್ನು ಇ-ಅಂಚೆ ಮೂಲಕ ಕಳುಹಿಸಿ',
 'passwordremindertitle'      => '{{SITENAME}}ಗೆ ಹೊಸ ತಾತ್ಕಾಲಿಕ ಪ್ರವೇಶ ಪದ',
 'passwordremindertext'       => '{{SITENAME}} ($4) ಸೈಟಿಗೆ ಹೊಸ ಪ್ರವೇಶಪದವನ್ನು $1 ಐ.ಪಿ. ವಿಳಾಸದಿಂದ ಕೋರಲಾಗಿದೆ.
@@ -1617,9 +1617,10 @@ $2',
 'export-templates'  => 'ಟೆಂಪ್ಲೇಟುಗಳನ್ನು ಸೇರಿಸು',
 
 # Namespace 8 related
-'allmessages'          => 'ಸಂಪರ್ಕ ಸಾಧನದ ಎಲ್ಲ ಸಂದೇಶಗಳು',
-'allmessagesname'      => 'ಹೆಸರು',
-'allmessages-language' => 'ಭಾಷೆ:',
+'allmessages'               => 'ಸಂಪರ್ಕ ಸಾಧನದ ಎಲ್ಲ ಸಂದೇಶಗಳು',
+'allmessagesname'           => 'ಹೆಸರು',
+'allmessages-language'      => 'ಭಾಷೆ:',
+'allmessages-filter-submit' => 'ಹೋಗು',
 
 # Thumbnails
 'thumbnail-more'  => 'ದೊಡ್ಡದಾಗಿಸು',
