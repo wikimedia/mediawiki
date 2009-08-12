@@ -220,7 +220,7 @@ HTML
 	<div id="p-search" class="portlet">
 		<h5><label for="searchInput"><?php $this->msg('search') ?></label></h5>
 		<div id="searchBody" class="pBody">
-			<form action="<?php $this->text('wgScript') ?>" id="searchform"><div>
+			<form action="<?php $this->text('wgScript') ?>" id="searchform">
 				<input type='hidden' name="title" value="<?php $this->text('searchtitle') ?>"/>
 				<input id="searchInput" name="search" type="text"<?php echo $this->skin->tooltipAndAccesskey('search');
 					if( isset( $this->data['search'] ) ) {
@@ -230,7 +230,7 @@ HTML
 
 				<div><a href="<?php $this->text('searchaction') ?>" rel="search"><?php $this->msg('powersearch-legend') ?></a></div><?php } ?>
 
-			</div></form>
+			</form>
 		</div><!-- pBody -->
 	</div><!-- portlet -->
 <?php
