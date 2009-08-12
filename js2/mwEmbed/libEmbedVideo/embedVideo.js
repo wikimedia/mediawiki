@@ -1656,12 +1656,12 @@ embedVideo.prototype = {
 		js_log('embedVideo:getHTML : ' + this.id  + ' resource type: ' + this.type);			
 		var _this = this;				 
 		var html_code = '';		
-		html_code = '<div id="videoPlayer_'+this.id+'" style="width:'+this.width+'px;" class="videoPlayer">';		
+		html_code = '<div id="videoPlayer_'+this.id+'" style="width:'+this.width+'px;position:relative;" class="videoPlayer">';		
 		html_code += '<div style="width:'+parseInt(this.width)+'px;height:'+parseInt(this.height)+'px;"  id="mv_embedded_player_'+this.id+'">' +
 						this.getThumbnailHTML() + 
 					'</div>';											
 		//js_log("mvEmbed:controls "+ typeof this.controls);									
-		if(this.controls)
+		if( this.controls )
 		{
 			js_log("f:getHTML:AddControls");
 			html_code +='<div id="mv_embedded_controls_' + this.id + '" class="ui-widget ui-corner-bottom ui-state-default controls" >';
@@ -1821,7 +1821,7 @@ embedVideo.prototype = {
 		this.thumbnail = this.media_element.getThumbnailURL();
 
 		//put it all in the div container dc_id
-		thumb_html+= '<div id="dc_'+this.id+'" style="position:relative;'+
+		thumb_html+= '<div id="dc_'+this.id+'" style="position:absolute;'+
 			' overflow:hidden; top:0px; left:0px; width:'+this.playerPixelWidth()+'px; height:'+this.playerPixelHeight()+'px; z-index:0;">'+
 			'<img width="'+this.playerPixelWidth()+'" height="'+this.playerPixelHeight()+'" style="position:relative;width:'+this.playerPixelWidth()+';height:'+this.playerPixelHeight()+'"' +
 			' id="img_thumb_'+this.id+'" src="' + this.thumbnail + '">';
