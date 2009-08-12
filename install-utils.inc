@@ -56,9 +56,9 @@ function install_version_checks() {
  * Known fixed with PHP 5.2.9 + libxml2-2.7.3
  */
 class PhpXmlBugTester {
-	var $parsedData = '';
-	var $ok = false;
-	function __construct() {
+	private $parsedData = '';
+	public $ok = false;
+	public function __construct() {
 		$charData = '<b>c</b>';
 		$xml = '<a>' . htmlspecialchars( $charData ) . '</a>';
 		
@@ -67,7 +67,7 @@ class PhpXmlBugTester {
 		$parsedOk = xml_parse($parser, $xml, true);
 		$this->ok = $parsedOk && ($this->parsedData == $charData);
 	}
-	function chardata($parser, $data) {
+	public function chardata($parser, $data) {
 		$this->parsedData .= $data;
 	}
 }
