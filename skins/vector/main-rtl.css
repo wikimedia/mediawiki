@@ -280,6 +280,18 @@ body {
 	div.vectorMenu li > a {
 		display: block;
 	}
+	div.vectorMenu li a,
+	div.vectorMenu li a span {
+		color: #0645ad;
+		cursor: pointer;
+	}
+	div.vectorMenu li.selected a,
+	div.vectorMenu li.selected a span,
+	div.vectorMenu li.selected a:visited
+	div.vectorMenu li.selected a:visited span {
+		color: #333333;
+		text-decoration: none;
+	}
 	/* Search */
 	#p-search h5 {
 		display: none;
