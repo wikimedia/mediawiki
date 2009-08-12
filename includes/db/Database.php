@@ -2008,7 +2008,10 @@ abstract class DatabaseBase {
 				$row->State != 'Connecting to master' && 
 				$row->State != 'Queueing master event to the relay log' &&
 				$row->State != 'Waiting for master update' &&
-				$row->State != 'Requesting binlog dump'
+				$row->State != 'Requesting binlog dump' && 
+				$row->State != 'Waiting to reconnect after a failed master event read' &&
+				$row->State != 'Reconnecting after a failed master event read' &&
+				$row->State != 'Registering slave on master'
 				) {
 				# This is it, return the time (except -ve)
 				if ( $row->Time > 0x7fffffff ) {
