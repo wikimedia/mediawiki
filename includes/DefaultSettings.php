@@ -3635,7 +3635,7 @@ $wgUpdateRowsPerJob = 500;
 /**
  * Number of rows to update per query
  */
-$wgUpdateRowsPerQuery = 10;
+$wgUpdateRowsPerQuery = 100;
 
 /**
  * Enable AJAX framework
