@@ -6,6 +6,7 @@
  * Dual licensed under the MIT and GPL licenses
  * 
  */
+ 
 (function ($) {
 	var ColorPicker = function () {
 		var
@@ -481,4 +482,4 @@
 		ColorPickerShow: ColorPicker.showPicker,
 		ColorPickerSetColor: ColorPicker.setColor
 	});
-})(jQuery)
+})(jQuery);

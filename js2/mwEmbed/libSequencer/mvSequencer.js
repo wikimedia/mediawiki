@@ -745,9 +745,9 @@ mvSequencer.prototype = {
 		js_log("sequence:doEditTransition");
 		var _this = this;		
 		mv_get_loading_img( '#transitions_ic' );
-		mvJsLoader.doLoad([			
-			'mvTimedEffectsEdit',
-			'$j.fn.ColorPicker'
+		mvJsLoader.doLoad([		
+			'$j.fn.ColorPicker',
+			'mvTimedEffectsEdit'			
 		],function(){
 			//no idea why this works / is needed. 
 			var localSeqRef = _this;
@@ -1106,6 +1106,7 @@ mvSequencer.prototype = {
 						this_seq.deselectClip( $j(this).siblings('.mv_clip_thumb').get(0) );
 					}else{
 						//deselect others 
+						this_seq.deselectClip();
 						$j('.clip_trans_box').removeClass('mv_selected_transition');
 						$j(this).addClass("mv_selected_transition");
 						$j(this).siblings('.mv_clip_thumb').addClass("mv_selected_clip");	
@@ -1549,7 +1550,7 @@ mvSeqPlayList.prototype = {
 					
 				
 		//update the timeline playhead and			 
-		$j('#'+ this.seqObj.timeline_id + '_playline').css('left', left_px);
+		$j('#' + this.seqObj.timeline_id + '_playline').css('left', left_px);
 			
 		//pass update request to parent:
 		this.parent_setSliderValue( perc );
