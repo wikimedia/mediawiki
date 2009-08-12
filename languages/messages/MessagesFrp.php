@@ -324,6 +324,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'M’avèrtir per mèl mémo en câs de petiôts changements',
 'tog-enotifrevealaddr'        => 'Fâre vêre mon adrèce de mèl dens los mèls d’avèrtissement',
 'tog-shownumberswatching'     => 'Fâre vêre lo nombro d’utilisators que siuvont les pâges',
+'tog-oldsig'                  => 'Prèvisualisacion de la signatura ègzistenta :',
 'tog-fancysig'                => 'Trètar la signatura coment de vouiquitèxto (sen lim ôtomatico)',
 'tog-externaleditor'          => 'Utilisar un èditor de tèxto de defôr per dèfôt (por los utilisators avanciês, at fôta d’una configuracion spèciâla sur voutron ordenator)',
 'tog-externaldiff'            => 'Utilisar un comparator de defôr per dèfôt (por los utilisators avanciês, at fôta d’una configuracion spèciâla sur voutron ordenator)',
@@ -346,6 +347,13 @@ $messages = array(
 'underline-always'  => 'tojorn',
 'underline-never'   => 'jamés',
 'underline-default' => 'd’aprés lo navigator',
+
+# Font style option in Special:Preferences
+'editfont-style'     => 'Stilo de la police de la bouèta d’èdicion :',
+'editfont-default'   => 'Celi du navigator per dèfôt',
+'editfont-monospace' => 'Police monoèspâciê',
+'editfont-sansserif' => 'Police sen empiotement',
+'editfont-serif'     => 'Police avouéc empiotements',
 
 # Dates
 'sunday'        => 'demenge',
@@ -935,10 +943,10 @@ Ceti problèmo arreve quand vos utilisâd un sèrvor mandatèro (''proxy'') anon
 'editingcomment'                   => 'Changement de $1 (novèla sèccion)',
 'editconflict'                     => 'Conflit de changement : $1',
 'explainconflict'                  => "Ceta pâge at étâ sôvâ aprés que vos vos éte betâ a la changiér.
-La zona d’èdicion de d’amont contint lo tèxto coment il est enregistrâ ora dens la bâsa de balyês.
-Voutros changements aparèssont dens la zona d’èdicion de desot.
+La bouèta d’èdicion de d’amont contint lo tèxto coment il est enregistrâ ora dens la bâsa de balyês.
+Voutros changements aparèssont dens la bouèta d’èdicion de desot.
 Vos voléd devêr fusionar voutros changements dens lo tèxto ègzistent.
-'''Solament''' lo tèxto de la zona de d’amont serat sôvâ quand vos cliqueréd dessus « Sôvar ceta pâge ».",
+'''Solament''' lo tèxto de la bouèta de d’amont serat sôvâ quand vos cliqueréd dessus « Sôvar ceta pâge ».",
 'yourtext'                         => 'Voutron tèxto',
 'storedversion'                    => 'Vèrsion enregistrâ',
 'nonunicodebrowser'                => "'''ATENCION : voutron navigator recognêt pas l’Unicode.'''
@@ -1062,16 +1070,21 @@ Tâchiéd de [[Special:Search|rechèrchiér sur lo vouiqui]] por trovar des nov�
 'rev-deleted-user'            => '(nom d’utilisator suprimâ)',
 'rev-deleted-event'           => '(entrâ suprimâ)',
 'rev-deleted-text-permission' => "Ceta vèrsion de la pâge at étâ '''suprimâ'''.
-Y pôt avêr més de dètalys dens lo [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].",
+Y pôt avêr més de dètalys dens lo [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].",
 'rev-deleted-text-unhide'     => "Ceta vèrsion de la pâge at étâ '''suprimâ'''.
+Y pôt avêr més de dètalys dens lo [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].
+Coment administrator, vos pouede adés [$1 vêre cela vèrsion] se vos lo voléd.",
+'rev-suppressed-text-unhide'  => "Ceta vèrsion de la pâge at étâ '''suprimâ'''.
 Y pôt avêr més de dètalys dens lo [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].
 Coment administrator, vos pouede adés [$1 vêre cela vèrsion] se vos lo voléd.",
 'rev-deleted-text-view'       => "Ceta vèrsion de la pâge at étâ '''suprimâ'''.
+Coment administrator, vos la pouede vêre ; y pôt avêr més de dètalys dens lo [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].",
+'rev-suppressed-text-view'    => "Ceta vèrsion de la pâge at étâ '''suprimâ'''.
 Coment administrator, vos la pouede vêre ; y pôt avêr més de dètalys dens lo [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].",
 'rev-deleted-no-diff'         => "Vos pouede pas vêre ceti dif perce que yona de les vèrsions at étâ '''suprimâ'''.
-Y pôt avêr més de dètalys dens lo [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].",
+Y pôt avêr més de dètalys dens lo [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].",
 'rev-deleted-unhide-diff'     => "Yona de les vèrsions de ceti dif at étâ '''suprimâ'''.
-Y pôt avêr més de dètalys dens lo [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].
+Y pôt avêr més de dètalys dens lo [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jornal de les suprèssions].
 Coment administrator, vos pouede adés [$1 vêre cél dif] se vos lo voléd.",
 'rev-delundel'                => 'fâre vêre / cachiér',
 'revisiondelete'              => 'Suprimar / refâre des vèrsions',
@@ -1334,6 +1347,7 @@ Atencion, lor endèxacion du contegnu de {{SITENAME}} pôt pas étre a jorn.',
 'prefs-watchlist-days-max'      => '(tot u ples 7 jorns)',
 'prefs-watchlist-edits'         => 'Nombro de changements a fâre vêre dens la lista de survelyence ètendua :',
 'prefs-watchlist-edits-max'     => '(nombro lo ples grant : 1000)',
+'prefs-watchlist-token'         => 'Jeton por la lista de survelyence',
 'prefs-misc'                    => 'Prèferences de totes sôrtes',
 'prefs-resetpass'               => 'Changiér lo mot de pâssa',
 'prefs-email'                   => 'Chouèx des mèls',
@@ -1354,6 +1368,9 @@ Atencion, lor endèxacion du contegnu de {{SITENAME}} pôt pas étre a jorn.',
 'recentchangesdays-max'         => '(tot u ples $1 jorn{{PLURAL:$1||s}})',
 'recentchangescount'            => 'Nombro de changements a fâre vêre per dèfôt :',
 'prefs-help-recentchangescount' => 'Cen encllut los dèrriérs changements, los historicos de les pâges et los jornals.',
+'prefs-help-watchlist-token'    => 'En remplent cen avouéc una valor secrèta farat un flux RSS por voutra lista de survelyence.
+Tota pèrsona que cognêt cél jeton porrat liére voutra lista de survelyence, chouèsésséd vêr una valor sècurisâ.
+Vê-que una valor fêta per hasârd que vos pouede utilisar : $1',
 'savedprefs'                    => 'Les prèferences ont étâ enregistrâs.',
 'timezonelegend'                => 'Fus horèro :',
 'localtime'                     => 'Hora locala :',
@@ -1393,6 +1410,7 @@ Cen pôt pas étre dèfêt.',
 'yourlanguage'                  => 'Lengoua de l’entèrface :',
 'yourvariant'                   => 'Varianta de lengoua :',
 'yournick'                      => 'Signatura por les discussions :',
+'prefs-help-signature'          => 'Los comentèros sur les pâges de discussion dêvont étre signês avouéc « <nowiki>~~~~</nowiki> », que serat convèrti per voutra signatura avouéc la dâta.',
 'badsig'                        => 'Signatura bruta fôssa.
 Controlâd voutres balises HTML.',
 'badsiglength'                  => 'Voutra signatura est trop longe.
@@ -1574,6 +1592,15 @@ Vos pouede asse-ben dècidar de lèssiér los ôtros sè veriér vers vos avoué
 'recentchanges-legend'              => 'Chouèx des dèrriérs changements',
 'recentchangestext'                 => 'Siude los dèrriérs changements du vouiqui sur ceta pâge.',
 'recentchanges-feed-description'    => 'Siude los dèrriérs changements du vouiqui dens ceti flux.',
+'recentchanges-label-legend'        => 'Lègenda : $1.',
+'recentchanges-legend-newpage'      => '$1 - novèla pâge',
+'recentchanges-label-newpage'       => 'Ceti changement at fêt una novèla pâge.',
+'recentchanges-legend-minor'        => '$1 - petiôt changement',
+'recentchanges-label-minor'         => 'Ceti changement est petiôt.',
+'recentchanges-legend-bot'          => '$1 - changement fêt per un bot',
+'recentchanges-label-bot'           => 'Ceti changement at étâ fêt per un bot.',
+'recentchanges-legend-unpatrolled'  => '$1 - changement pas survelyê',
+'recentchanges-label-unpatrolled'   => 'Ceti changement at p’oncor étâ survelyê.',
 'rcnote'                            => "Vê-que {{PLURAL:$1|lo dèrriér changement fêt|los '''$1''' dèrriérs changements fêts}} pendent {{PLURAL:$2|lo jorn passâ|los '''$2''' jorns passâs}} tant qu’a $5 lo $4.",
 'rcnotefrom'                        => "Vê-que los changements fêts dês lo '''$2''' ('''$1''' tot u ples).",
 'rclistfrom'                        => 'Fâre vêre los novéls changements dês lo $1.',
@@ -1862,6 +1889,7 @@ Oubliâd pas de controlar s’y at pas d’ôtros lims de vers los modèlos deva
 'statistics-header-edits'      => 'Statistiques des changements',
 'statistics-header-views'      => 'Statistiques de les visualisacions',
 'statistics-header-users'      => 'Statistiques ux utilisators',
+'statistics-header-hooks'      => 'Ôtres statistiques',
 'statistics-articles'          => 'Pâges de contegnu',
 'statistics-pages'             => 'Pâges',
 'statistics-pages-desc'        => 'Totes les pâges du vouiqui, les pâges de discussion, les redirèccions, ... avouéc',
@@ -1974,7 +2002,7 @@ Les entrâs <s>barrâs</s> ont étâ solucionâs.',
 'specialloguserlabel'  => 'Utilisator :',
 'speciallogtitlelabel' => 'Titro :',
 'log'                  => 'Jornals',
-'all-logs-page'        => 'Tôs los jornals',
+'all-logs-page'        => 'Tôs los jornals publicos',
 'alllogstext'          => 'Visualisacion combinâ de tôs los jornals disponiblos dessus {{SITENAME}}.
 Vos pouede rètrendre la vua en chouèséssent un tipo de jornal, un nom d’utilisator (sensiblo a la câssa) ou ben una pâge afèctâ (sensibla a la câssa avouéc).',
 'logempty'             => 'Nion èlèment d’ense at étâ trovâ dens lo jornal.',
@@ -2886,6 +2914,8 @@ $1',
 'svg-long-desc'        => '(Fichiér SVG, rèsolucion de $1 × $2 pixèls, talye : $3)',
 'show-big-image'       => 'Émâge en rèsolucion ples hôta',
 'show-big-image-thumb' => '<small>Talye de ceta vua : $1 × $2 pixèls</small>',
+'file-info-gif-looped' => 'en boclla',
+'file-info-gif-frames' => '$1 émâge{{PLURAL:$1||s}}',
 
 # Special:NewFiles
 'newimages'             => 'Galerie des novéls fichiérs',

@@ -8,7 +8,6 @@
  * @file
  *
  * @author Chaipau
- * @author IAlex
  * @author Priyankoo
  * @author Psneog
  * @author Rajuonline

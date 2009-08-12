@@ -7,7 +7,6 @@
  * @ingroup Language
  * @file
  *
- * @author IAlex
  * @author Nkosi ya Cabinda
  * @author Sab
  * @author Wikimistusik

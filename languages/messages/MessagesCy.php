@@ -964,6 +964,7 @@ Pan yn gwneud hyn dylid sicrhau nad yw dilyniant hanes tudalennau yn cael ei ddi
 'diff-td'                  => "'''cell'''",
 'diff-th'                  => "'''pennawd'''",
 'diff-br'                  => "'''toriad'''",
+'diff-hr'                  => "'''llinell fesur lorweddol'''",
 'diff-dl'                  => "'''rhestr diffiniadau'''",
 'diff-dd'                  => "'''diffiniad'''",
 'diff-input'               => "'''mewnbwn'''",

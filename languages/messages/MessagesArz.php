@@ -9,7 +9,6 @@
  *
  * @author Alnokta
  * @author Ghaly
- * @author IAlex
  * @author Meno25
  * @author Ouda
  * @author Ramsis II

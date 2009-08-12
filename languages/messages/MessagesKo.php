@@ -2173,16 +2173,19 @@ $NEWPAGE
 'undeletepage'                 => '삭제된 문서를 보거나 되살리기',
 'undeletepagetitle'            => "'''아래는 [[:$1|$1]]의 삭제된 판입니다.'''.",
 'viewdeletedpage'              => '삭제된 문서 보기',
-'undeletepagetext'             => '다음 {{PLURAL:$1|문서는|$1개의 문서는}} 삭제되었지만 보관되어 있고, 되살릴 수 있습니다.
-보관된 문서들은 주기적으로 삭제될 것입니다.',
+'undeletepagetext'             => '다음 {{PLURAL:$1|문서는|문서 $1개는}} 삭제되었지만 아직 보관되어 있고 되살릴 수 있습니다.
+보관된 문서는 주기적으로 삭제될 것입니다.',
 'undelete-fieldset-title'      => '문서 복구',
-'undeleteextrahelp'            => "문서 역사 전체를 복구하려면 모든 체크박스를 선택 해제한 뒤 '''복구'''를 누르세요.
-특정한 버전만을 복구하려면 복구하려는 버전들을 선택한 뒤 '''복구'''를 누르세요. '''초기화'''를 누르면 모든 선택이 취소됩니다.",
-'undeleterevisions'            => '{{PLURAL:$1|$1}}개의 버전 보관중',
+'undeleteextrahelp'            => "문서 역사 전체를 복구하려면 모든 체크박스의 선택을 풀고 '''복구'''를 누르세요.
+특정한 버전만 복구하려면 복구하려는 버전을 선택하고 '''복구'''를 누르세요.
+'''초기화'''를 누르면 모든 선택이 취소됩니다.",
+'undeleterevisions'            => '판 $1개 보관중',
 'undeletehistory'              => '문서를 되살리면 모든 역사가 같이 복구됩니다.
-문서가 삭제된 후에 같은 이름의 문서가 만들어졌다면, 복구되는 버전들은 역사의 과거 부분에 나타날 것입니다.',
+문서가 삭제된 뒤 같은 이름의 문서가 만들어졌다면, 복구되는 역사는 지금 역사의 과거 부분에 나타날 것입니다.',
 'undeleterevdel'               => '복구하려는 문서의 최신판이 삭제되어 있는 경우 문서를 복구시킬 수 없습니다. 이러한 경우, 삭제된 최신판 문서의 체크박스를 선택 해제하거나 숨김을 해제해야 합니다.',
-'undeletehistorynoadmin'       => '이 문서는 삭제되어 있습니다. 삭제된 이유와 삭제되기 전에 이 문서를 편집한 사용자들이 아래에 나와 있습니다. 삭제된 문서를 보려면 관리자 권한이 필요합니다.',
+'undeletehistorynoadmin'       => '이 문서는 삭제되었습니다.
+삭제된 이유와 삭제되기 전에 이 문서를 편집한 사용자들이 아래에 나와 있습니다.
+삭제된 문서의 내용을 보려면 관리자 권한이 필요합니다.',
 'undelete-revision'            => '삭제된 $1 문서의 $4 $5 버전 (기여자 $3):',
 'undeleterevision-missing'     => '해당 판이 잘못되었거나 존재하지 않습니다.
 잘못된 링크를 따라왔거나, 특정 판이 이미 복구되거나 데이터베이스에서 제거되었을 수도 있습니다.',
@@ -2194,16 +2197,17 @@ $NEWPAGE
 'undeleteinvert'               => '선택 반전',
 'undeletecomment'              => '설명:',
 'undeletedarticle'             => '"[[$1]]" 복구됨',
-'undeletedrevisions'           => '버전 {{PLURAL:$1|$1}}개를 복구했습니다.',
-'undeletedrevisions-files'     => '버전 {{PLURAL:$1|$1}}개와 파일 {{PLURAL:$2|$2}}개를 복구했습니다.',
-'undeletedfiles'               => '파일 {{PLURAL:$1|$1}}개를 복구했습니다.',
-'cannotundelete'               => '복구에 실패했습니다. 다른 누군가가 이미 복구했을 수도 있습니다.',
-'undeletedpage'                => "<big>'''$1이(가) 복구되었습니다.'''</big>
+'undeletedrevisions'           => '판 $1개를 복구했습니다',
+'undeletedrevisions-files'     => '판 $1개와 파일 $2개를 복구했습니다.',
+'undeletedfiles'               => '파일 $1개를 복구했습니다',
+'cannotundelete'               => '복구에 실패했습니다.
+다른 사용자가 이미 복구했을 수도 있습니다.',
+'undeletedpage'                => "<big>'''$1 문서가 복구되었습니다.'''</big>
 
 [[Special:Log/delete|삭제 기록]]에서 최근의 삭제/복구 기록을 볼 수 있습니다.",
-'undelete-header'              => '최근에 삭제된 문서 기록은 [[Special:Log/delete|여기]]에서 볼 수 있습니다.',
+'undelete-header'              => '최근에 삭제한 문서에 대한 기록은 [[Special:Log/delete|여기]]에서 볼 수 있습니다.',
 'undelete-search-box'          => '삭제된 문서 찾기',
-'undelete-search-prefix'       => '다음으로 시작하는 문서 보이기:',
+'undelete-search-prefix'       => '다음으로 시작하는 문서 보기:',
 'undelete-search-submit'       => '찾기',
 'undelete-no-results'          => '삭제된 문서 보존 자료에서 입력한 값에 맞는 문서가 없습니다.',
 'undelete-filename-mismatch'   => '타임스탬프가 $1인 파일의 버전을 복구할 수 없습니다: 파일 이름이 일치하지 않습니다.',
@@ -2228,7 +2232,7 @@ $1',
 'contributions-title' => '$1 사용자의 기여 목록',
 'mycontris'           => '내 기여 목록',
 'contribsub2'         => '$1($2)의 기여',
-'nocontribs'          => '이 사용자는 어디에도 기여하지 않았습니다.',
+'nocontribs'          => '이 사용자는 아무 것도 기여하지 않았습니다.',
 'uctop'               => '(최신)',
 'month'               => '월:',
 'year'                => '연도:',
@@ -2246,12 +2250,12 @@ $1',
 'sp-contributions-submit'        => '찾기',
 
 # What links here
-'whatlinkshere'            => '여기를 가리키는 글',
+'whatlinkshere'            => '여기를 가리키는 문서',
 'whatlinkshere-title'      => '"$1" 문서를 가리키는 문서 목록',
 'whatlinkshere-page'       => '문서:',
-'linkshere'                => "다음의 문서들이 '''[[:$1]]''' 문서를 가리키고 있습니다:",
+'linkshere'                => "다음의 문서가 '''[[:$1]]''' 문서를 가리키고 있습니다:",
 'nolinkshere'              => "'''[[:$1]]''' 문서를 가리키는 문서가 없습니다.",
-'nolinkshere-ns'           => "해당 네임스페이스에서 '''[[:$1]]''' 문서를 가리키는 문서가 없습니다.",
+'nolinkshere-ns'           => "선택한 이름공간에는 '''[[:$1]]''' 문서를 가리키는 문서가 없습니다.",
 'isredirect'               => '넘겨주기 문서',
 'istemplate'               => '포함',
 'isimage'                  => '그림 포함',
@@ -2276,13 +2280,13 @@ $1',
 'ipbreason'                       => '이유:',
 'ipbreasonotherlist'              => '다른 이유',
 'ipbreason-dropdown'              => '*일반적인 차단 이유
-** 잘못된 내용 편집
+** 거짓 정보 추가
 ** 문서 내용을 지움
-** 문서에 스팸을 넣음
+** 문서에 광고성 링크를 만듦
 ** 장난 편집
 ** 협박성 행동
 ** 다중 계정 악용
-** 잘못된 계정 이름',
+** 부적절한 계정 이름',
 'ipbanononly'                     => '익명 사용자만 차단하기',
 'ipbcreateaccount'                => '계정 생성을 막기',
 'ipbemailban'                     => '이메일을 보내지 못하도록 막기',
@@ -2294,7 +2298,7 @@ $1',
 'ipbotherreason'                  => '다른 이유/추가적인 이유:',
 'ipbhidename'                     => '사용자 이름을 편집 역사에서 숨기기',
 'ipbwatchuser'                    => '이 사용자 문서와 사용자토론 문서를 주시하기',
-'ipballowusertalk'                => '차단되어 있는 중에도 자신의 토론 문서를 편집할 수 있게 허용',
+'ipballowusertalk'                => '차단된 중에도 자신의 토론 문서는 편집할 수 있게 허용',
 'ipb-change-block'                => '이 설정으로 이 사용자를 다시 차단합니다',
 'badipaddress'                    => '잘못된 IP 주소',
 'blockipsuccesssub'               => '차단 완료',
@@ -2317,7 +2321,7 @@ $1',
 'ipblocklist-sh-tempblocks'       => '임시 차단을 $1',
 'ipblocklist-sh-addressblocks'    => '단일 IP 차단을 $1',
 'ipblocklist-submit'              => '찾기',
-'blocklistline'                   => '$1, $2 사용자는 $3을 차단함 ($4)',
+'blocklistline'                   => '$1에 $2 사용자는 $3을 차단함 ($4)',
 'infiniteblock'                   => '무기한',
 'expiringblock'                   => '$1 $2에 해제',
 'anononlyblock'                   => '익명 사용자만',
@@ -2331,10 +2335,11 @@ $1',
 'unblocklink'                     => '차단 해제',
 'change-blocklink'                => '차단 설정 변경',
 'contribslink'                    => '기여',
-'autoblocker'                     => "당신의 IP 주소는 최근 ‘[[User:$1|$1]]’이(가) 사용하였기 때문에 자동으로 차단되었습니다. $1의 차단 이유는 다음과 같습니다: '''$2'''",
+'autoblocker'                     => '당신의 IP 주소는 최근에 "[[User:$1|$1]]" 사용자가 사용하였기 때문에 자동으로 차단되었습니다.
+$1 사용자가 차단된 이유는 다음과 같습니다: "$2"',
 'blocklogpage'                    => '차단 기록',
 'blocklog-fulllog'                => '전체 차단 기록',
-'blocklogentry'                   => '[[$1]] 사용자를 $2 $3 차단함',
+'blocklogentry'                   => '[[$1]] 사용자를 $2 차단함 $3',
 'reblock-logentry'                => '[[$1]] 사용자의 차단 기간을 $2(으)로 변경 $3',
 'blocklogtext'                    => '이 목록은 사용자 차단/차단 해제 기록입니다. 자동으로 차단된 IP 주소는 여기에 나오지 않습니다. [[Special:IPBlockList|여기]]에서 현재 차단된 사용자 목록을 볼 수 있습니다.',
 'unblocklogentry'                 => '$1을 차단 해제했습니다.',
@@ -2348,11 +2353,12 @@ $1',
 'range_block_disabled'            => 'IP 범위 차단 기능이 비활성화되어 있습니다.',
 'ipb_expiry_invalid'              => '차단 기간이 잘못되었습니다.',
 'ipb_expiry_temp'                 => '사용자 이름을 숨기는 차단은 반드시 무기한이어야 합니다.',
-'ipb_hide_invalid'                => '해당 계정을 막을 수 없습니다. 기여량이 너무 많습니다.',
+'ipb_hide_invalid'                => '해당 계정은 막을 수 없습니다. 기여량이 너무 많습니다.',
 'ipb_already_blocked'             => '"$1" 사용자는 이미 차단됨',
 'ipb-needreblock'                 => '== 이미 차단되어 있습니다 ==
 $1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습니까?',
-'ipb_cant_unblock'                => '오류: 차단 ID $1이(가) 존재하지 않습니다. 이미 차단 해제되었을 수 있습니다.',
+'ipb_cant_unblock'                => '오류: 차단 ID $1이(가) 존재하지 않습니다.
+이미 차단 해제되었을 수 있습니다.',
 'ipb_blocked_as_range'            => '오류: IP 주소 $1은 직접 차단되지 않았기 때문에 차단 해제할 수 없습니다.
 하지만 $2로 광역 차단되었기 때문에, 광역 차단 해제로 차단을 해제할 수 있습니다.',
 'ip_range_invalid'                => 'IP 범위가 잘못되었습니다.',
@@ -2368,8 +2374,10 @@ $1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습�
 # Developer tools
 'lockdb'              => '데이터베이스 잠그기',
 'unlockdb'            => '데이터베이스 잠금 해제',
-'lockdbtext'          => '데이터베이스를 잠그면 모든 사용자의 편집 권한, 환경 설정 변경 권한, 주시문서 편집 권한 등의 모든 기능이 정지됩니다. 정말로 잠가야 하는지를 다시 한번 확인해주세요.',
-'unlockdbtext'        => '데이터베이스를 잠금 해제하면 모든 사용자의 편집 권한, 환경 설정 변경 권한, 주시문서 편집 권한 등의 모든 기능이 복구됩니다. 정말로 잠금을 해제하려는지를 다시 한번 확인해주세요.',
+'lockdbtext'          => '데이터베이스를 잠그면 모든 사용자의 편집, 환경 설정 변경, 주시문서 편집 등 데이터베이스를 요구하는 모든 기능이 정지됩니다.
+정말로 잠가야 하는지를 다시 한번 확인해주세요. 관리 작업이 끝난 뒤에는 데이터베이스 잠금을 풀어야 합니다.',
+'unlockdbtext'        => '데이터베이스를 잠금 해제하면 모든 사용자의 편집, 환경 설정 변경, 주시문서 편집 등 데이터베이스를 요구하는 모든 기능이 복구됩니다.
+정말로 잠금을 해제하려는지를 다시 한번 확인해주세요.',
 'lockconfirm'         => '네, 데이터베이스를 잠급니다.',
 'unlockconfirm'       => '네, 데이터베이스를 잠금 해제합니다.',
 'lockbtn'             => '데이터베이스 잠그기',
@@ -2387,9 +2395,10 @@ $1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습�
 'move-page'                    => '이동 $1',
 'move-page-legend'             => '문서 이동하기',
 'movepagetext'                 => "아래 양식을 채워 문서의 이름을 바꾸고 모든 역사를 새 이름으로 옮길 수 있습니다.
-기존의 이름은 새 이름으로 넘겨주는 문서가 됩니다.
+기존의 문서는 새 문서로 넘겨주는 문서가 됩니다.
 원래 이름을 가리키는 넘겨주기를 자동으로 갱신할 수 있습니다.
 만약 이 설정을 선택하지 않았다면 [[Special:DoubleRedirects|이중 넘겨주기]]와 [[Special:BrokenRedirects|끊긴 넘겨주기]]를 확인해주세요.
+당신은 링크가 의도한 문서를 가리키게 할 책임이 있습니다.
 
 만약 문서의 새 이름으로 된 문서가 존재할 때, 그 문서가 비었거나 넘겨주기 문서이고 문서 역사가 없을 때에만 이동합니다. 그렇지 않을 경우에는 이동하지 '''않습니다'''.
 이것은 실수로 이동한 문서를 되돌릴 수는 있지만, 이미 존재하는 문서 위에 덮어씌울 수는 없다는 것을 의미합니다.
@@ -2397,41 +2406,43 @@ $1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습�
 '''주의!'''
 자주 사용하는 문서를 이동하면 위험한 결과를 가져올 수 있습니다.
 이동하기 전에, 이 문서를 이동해도 문제가 없다는 것을 확인해주세요.",
-'movepagetalktext'             => "딸린 토론 문서도 자동으로 이동합니다. 다음의 경우는 '''이동하지 않습니다''':
+'movepagetalktext'             => "딸린 토론 문서도 자동으로 이동합니다. 하지만 다음의 경우는 '''이동하지 않습니다''':
 * 이동할 이름으로 된 문서가 이미 있는 경우
 * 아래의 선택을 해제하는 경우
+
 이 경우에는 문서를 직접 이동하거나 두 문서를 합쳐야 합니다.",
 'movearticle'                  => '문서 이동하기',
 'movenologin'                  => '로그인하지 않음',
 'movenologintext'              => '[[Special:UserLogin|로그인]]해야만 문서를 이동할 수 있습니다.',
 'movenotallowed'               => '문서를 이동할 권한이 없습니다.',
-'movenotallowedfile'           => '당신은 파일을 옮길 권한이 없습니다.',
-'cant-move-user-page'          => '당신은 사용자 문서(하위 문서를 제외)를 옮길 권한이 없습니다.',
-'cant-move-to-user-page'       => '당신은 문서를 사용자 문서로 옮길 권한이 없습니다. (하위 문서는 제외)',
+'movenotallowedfile'           => '파일을 옮길 권한이 없습니다.',
+'cant-move-user-page'          => '사용자 문서를 옮길 권한이 없습니다 (하위 문서는 제외).',
+'cant-move-to-user-page'       => '문서를 사용자 문서로 옮길 권한이 없습니다 (하위 문서는 제외).',
 'newtitle'                     => '새 문서 이름',
 'move-watch'                   => '이 문서 주시하기',
 'movepagebtn'                  => '이동',
 'pagemovedsub'                 => '문서 이동함',
 'movepage-moved'               => "<big>'''‘$1’ 문서를 ‘$2’ 문서로 이동했습니다.'''</big>",
-'movepage-moved-redirect'      => '넘겨주기 문서가 생성되었습니다.',
-'movepage-moved-noredirect'    => '넘겨주기 문서가 생성되지 않았습니다.',
-'articleexists'                => '문서가 이미 존재하거나, 문서 이름이 올바르지 않습니다. 다른 제목으로 시도해주세요.',
-'cantmove-titleprotected'      => '새로운 제목으로 문서를 만드는 것이 금지되어 있어, 문서를 이동할 수 없습니다.',
-'talkexists'                   => "'''문서는 이동되었습니다. 하지만 딸린 토론 문서의 새 이름으로 된 문서가 이미 존재해서, 토론 문서는 이동하지 않았습니다. 직접 문서를 합쳐 주세요.'''",
+'movepage-moved-redirect'      => '넘겨주기 문서를 만들었습니다.',
+'movepage-moved-noredirect'    => '넘겨주기 문서를 만들지 못했습니다.',
+'articleexists'                => '문서가 이미 존재하거나 이름이 올바르지 않습니다.
+다른 제목으로 시도해주세요.',
+'cantmove-titleprotected'      => '새로운 제목으로 문서를 만드는 것이 금지되어 있어 문서를 이동할 수 없습니다.',
+'talkexists'                   => "'''문서는 이동되었습니다. 하지만 딸린 토론 문서의 새 이름으로 된 문서가 이미 있기 때문에 토론 문서는 옮기지 못했습니다. 직접 문서를 합쳐 주세요.'''",
 'movedto'                      => '새 이름',
 'movetalk'                     => '딸린 토론도 함께 이동합니다.',
 'move-subpages'                => '하위 문서도 함께 ($1개 이하) 이동합니다.',
 'move-talk-subpages'           => '토론 문서의 하위 문서도 ($1개까지) 함께 이동합니다.',
 'movepage-page-exists'         => '이동할 수 없습니다. ‘$1’ 문서가 이미 존재합니다.',
-'movepage-page-moved'          => '$1 문서가 $2 (으)로 이동되었습니다.',
-'movepage-page-unmoved'        => '$1 문서를 $2로 이동할 수 없습니다.',
-'movepage-max-pages'           => '문서를 최대 {{PLURAL:$1|$1}}개 이동하였고 나머지는 자동으로 옮기지 않습니다.',
-'1movedto2'                    => '[[$1]]을(를) [[$2]](으)로 옮김',
-'1movedto2_redir'              => '[[$1]]을(를) [[$2]](으)로 옮기면서 넘겨주기를 덮어 씀',
+'movepage-page-moved'          => '$1 문서를 $2 (으)로 옮겼습니다',
+'movepage-page-unmoved'        => '$1 문서를 $2 (으)로 옮길 수 없습니다.',
+'movepage-max-pages'           => '문서를 최대 $1개 옮겼고 나머지는 자동으로 옮기지 않습니다.',
+'1movedto2'                    => '[[$1]] 문서를 [[$2]](으)로 옮김',
+'1movedto2_redir'              => '[[$1]] 문서를 [[$2]](으)로 옮기면서 넘겨주기를 덮어 씀',
 'move-redirect-suppressed'     => '넘겨주기가 생성되지 않음',
 'movelogpage'                  => '이동 기록',
 'movelogpagetext'              => '아래는 옮겨진 문서의 목록입니다.',
-'movesubpage'                  => '{{PLURAL:$1|하위 문서|하위 문서}}',
+'movesubpage'                  => '{{PLURAL:$1}}하위 문서',
 'movesubpagetext'              => '이 문서에는 다음 $1개의 하위 문서가 있습니다.',
 'movenosubpage'                => '이 문서에는 하위 문서가 존재하지 않습니다.',
 'movereason'                   => '이유',
@@ -2439,7 +2450,8 @@ $1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습�
 'delete_and_move'              => '삭제하고 이동',
 'delete_and_move_text'         => '== 삭제 필요 ==
 
-이동하려는 제목으로 된 문서 [[:$1]]이(가) 이미 존재합니다. 삭제하고 이동할까요?',
+이동하려는 제목으로 된 [[:$1]] 문서가 이미 존재합니다.
+삭제하고 이동할까요?',
 'delete_and_move_confirm'      => '네. 문서를 삭제합니다',
 'delete_and_move_reason'       => '문서를 이동하기 위해 삭제함',
 'selfmove'                     => '이동하려는 제목이 원래 제목과 같습니다. 이동할 수 없습니다.',
@@ -2453,8 +2465,8 @@ $1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습�
 'imageinvalidfilename'         => '새 파일 이름이 잘못되었습니다.',
 'fix-double-redirects'         => '기존 이름을 가리키는 넘겨주기를 갱신',
 'move-leave-redirect'          => '이동 후 넘겨주기를 남기기',
-'protectedpagemovewarning'     => "'''경고:''' 이 문서는 관리자만이 문서를 이동할 수 있도록 잠겨 있습니다.",
-'semiprotectedpagemovewarning' => "'''경고:''' 이 문서는 등록된 사용자만이 문서를 이동할 수 있도록 잠겨 있습니다.",
+'protectedpagemovewarning'     => "'''경고:''' 이 문서는 관리자만이 이동할 수 있도록 잠겨 있습니다.",
+'semiprotectedpagemovewarning' => "'''알림:''' 이 문서는 등록된 사용자만이 이동할 수 있도록 잠겨 있습니다.",
 
 # Export
 'export'            => '문서 내보내기',
@@ -2521,12 +2533,12 @@ $1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습�
 'import-revision-count'      => '판 $1개',
 'importnopages'              => '가져올 문서가 없습니다.',
 'importfailed'               => '가져오기 실패: <nowiki>$1</nowiki>',
-'importunknownsource'        => '알 수 없는 가져오기 소스 유형',
+'importunknownsource'        => '알 수 없는 가져오기 자료 유형',
 'importcantopen'             => '파일을 열 수 없습니다.',
 'importbadinterwiki'         => '인터위키 링크가 잘못되었습니다.',
 'importnotext'               => '내용이 없습니다.',
 'importsuccess'              => '가져오기 완료!',
-'importhistoryconflict'      => '문서 역사가 충돌하는 버전이 있습니다. (이전에 이 문서가 가져오기된 적이 있을 수 있습니다)',
+'importhistoryconflict'      => '문서 역사가 충돌하는 판이 있습니다. (이전에 이 문서를 가져온 적이 있을 수도 있습니다)',
 'importnosources'            => '문서를 가져올 출처가 정의되지 않았고, 문서 역사 올리기가 비활성화되었습니다.',
 'importnofile'               => '가져오기용 파일이 업로드되지 않았습니다.',
 'importuploaderrorsize'      => '파일 올리기를 통한 가져오기에 실패했습니다.
@@ -2546,9 +2558,9 @@ $1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습�
 # Import log
 'importlogpage'                    => '가져오기 기록',
 'importlogpagetext'                => '다른 위키에서 가져온 문서 기록입니다.',
-'import-logentry-upload'           => '이(가) 파일 올리기를 통해 [[$1]] 문서를 가져왔습니다.',
+'import-logentry-upload'           => ' 사용자가 파일 올리기를 통해 [[$1]] 문서를 가져왔습니다.',
 'import-logentry-upload-detail'    => '판 $1개',
-'import-logentry-interwiki'        => '$1을(를) 다른 위키에서 가져왔습니다.',
+'import-logentry-interwiki'        => '$1 문서를 다른 위키에서 가져왔습니다.',
 'import-logentry-interwiki-detail' => '$2에서 판 $1개를 가져옴',
 
 # Tooltip help for the actions
@@ -2686,14 +2698,14 @@ $1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습�
 'math_notexvc'          => '실행할 수 있는 texvc이 없습니다. 설정을 위해 math/README를 읽어 주세요.',
 
 # Patrolling
-'markaspatrolleddiff'                 => '검토된 것으로 표시',
-'markaspatrolledtext'                 => '이 문서를 검토된 것으로 표시',
-'markedaspatrolled'                   => '검토된 것으로 표시',
-'markedaspatrolledtext'               => '선택한 버전이 검토된 것으로 표시되었습니다.',
+'markaspatrolleddiff'                 => '검토한 문서로 표시',
+'markaspatrolledtext'                 => '이 문서를 검토한 것으로 표시',
+'markedaspatrolled'                   => '검토한 문서로 표시',
+'markedaspatrolledtext'               => '선택한 판을 검토한 것으로 표시하였습니다.',
 'rcpatroldisabled'                    => '최근 바뀜 검토 기능 비활성화됨',
 'rcpatroldisabledtext'                => '최근 바뀜 검토 기능은 현재 비활성화되어 있습니다.',
-'markedaspatrollederror'              => '검토된 것으로 표시할 수 없습니다.',
-'markedaspatrollederrortext'          => '검토된 것으로 표시할 버전을 지정해야 합니다.',
+'markedaspatrollederror'              => '검토한 것으로 표시할 수 없습니다.',
+'markedaspatrollederrortext'          => '검토한 것으로 표시할 판을 지정해야 합니다.',
 'markedaspatrollederror-noautopatrol' => '자신의 편집은 스스로 검토할 수 없습니다.',
 
 # Patrol log
@@ -2710,7 +2722,7 @@ $1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습�
 'filedeleteerror-long'            => '파일을 삭제하는 도중 오류가 발생했습니다:
 
 $1',
-'filedelete-missing'              => '이 파일이 존재하지 않기 때문에 "$1"을(를) 삭제할 수 없습니다.',
+'filedelete-missing'              => '"$1" 파일을 삭제할 수 없습니다. 없는 파일입니다.',
 'filedelete-old-unregistered'     => '입력한 파일의 "$1" 버전이 데이터베이스에 존재하지 않습니다.',
 'filedelete-current-unregistered' => '"$1" 이라는 이름을 가진 파일이 데이터베이스에 존재하지 않습니다.',
 'filedelete-archive-read-only'    => '웹 서버의 파일 저장 위치 ‘$1’에 쓰기 권한이 없습니다.',
@@ -2752,8 +2764,8 @@ $1',
 'bad_image_list' => '형식은 아래와 같습니다.
 
 "*"로 시작하는 목록의 내용만 적용됩니다.
-매 줄의 첫번째 고리는 부적절한 파일을 가리켜야 합니다.
-같은 줄에 따라오는 모든 고리는 예외로 봅니다. (예: 파일이 사용되어야 하는 문서)',
+매 줄의 첫번째 링크는 부적절한 파일을 가리켜야 합니다.
+같은 줄에 따라오는 모든 링크는 예외로 봅니다. (예: 파일이 사용되어야 하는 문서)',
 
 /*
 Short names for language variants used for language conversion links.
@@ -3055,7 +3067,10 @@ Variants for Chinese language
 # E-mail address confirmation
 'confirmemail'             => '이메일 주소 확인',
 'confirmemail_noemail'     => '[[Special:Preferences|환경 설정]]에 이메일을 설정하지 않았습니다.',
-'confirmemail_text'        => '{{SITENAME}}에서는 이메일 기능을 사용하기 전에, 이메일 인증을 받아야 합니다. 아래의 버튼을 누르면 인증 메일을 보냅니다. 메일에는 인증 코드가 들어있는 링크가 있습니다. 그 링크를 웹 브라우저로 열면 인증이 완료됩니다.',
+'confirmemail_text'        => '{{SITENAME}}에서는 이메일 기능을 사용하기 전에 이메일 인증을 받아야 합니다.
+아래의 버튼을 누르면 인증 메일을 보냅니다.
+메일에는 인증 코드가 들어있는 링크가 있습니다.
+그 링크를 웹 브라우저로 열면 인증이 완료됩니다.',
 'confirmemail_pending'     => '이미 확인 이메일을 보냈습니다. 계정을 최근에 만들었다면 이메일을 보내는 데에 몇 분이 걸릴 수 있으므로 잠시 후에 다시 확인해 주세요.',
 'confirmemail_send'        => '인증 코드를 메일로 보내기',
 'confirmemail_sent'        => '인증 이메일을 보냈습니다.',
@@ -3064,7 +3079,7 @@ Variants for Chinese language
 이메일 주소를 잘못 입력했는지 확인해주세요.
 
 메일 서버로부터의 응답: $1',
-'confirmemail_invalid'     => '인증 코드가 올바르지 않습니다. 코드가 소멸되었을 수도 있습니다.',
+'confirmemail_invalid'     => '인증 코드가 올바르지 않습니다. 인증 코드가 만료되었을 수도 있습니다.',
 'confirmemail_needlogin'   => '이메일 주소를 인증하려면 $1이 필요합니다.',
 'confirmemail_success'     => '이메일 주소가 인증되었습니다. 이제 로그인해서 위키를 사용하세요.',
 'confirmemail_loggedin'    => '이메일 주소가 인증되었습니다.',
@@ -3128,13 +3143,13 @@ $1',
 # Auto-summaries
 'autosumm-blank'   => '문서를 비움',
 'autosumm-replace' => '문서 내용을 ‘$1’으로 교체',
-'autoredircomment' => '[[$1]](으)로 넘겨주기',
+'autoredircomment' => '[[$1]] 문서로 넘겨주기',
 'autosumm-new'     => '새 문서: $1',
 
 # Live preview
 'livepreview-loading' => '불러오는 중...',
 'livepreview-ready'   => '불러 오는 중… 준비!',
-'livepreview-failed'  => 'Live 미리 보기 실패! 일반 미리 보기를 이용해주세요.',
+'livepreview-failed'  => '실시간 미리 보기 실패! 일반 미리 보기를 이용해주세요.',
 'livepreview-error'   => '연결에 실패하였습니다: $1 "$2"
 일반 미리보기를 이용하십시오.',
 

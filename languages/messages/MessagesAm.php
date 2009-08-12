@@ -9,7 +9,6 @@
  *
  * @author Codex Sinaiticus
  * @author Elfalem
- * @author IAlex
  * @author Teferra
  */
 

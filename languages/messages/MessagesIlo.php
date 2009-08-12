@@ -152,6 +152,8 @@ $messages = array(
 'faqpage'        => 'Project:FAQ',
 
 # Vector skin
+'vector-action-delete'  => 'Ikkaten',
+'vector-action-move'    => 'Iyakar',
 'vector-action-protect' => 'Saluadan',
 'vector-view-create'    => 'Parnuayen',
 
@@ -405,7 +407,7 @@ Saankan a makaaramid pay.',
 
 # Password reset dialog
 'resetpass'           => 'Sukatan ti pasesbalikas ti account',
-'resetpass_header'    => 'Sukatan ti pasesbalikas',
+'resetpass_header'    => 'Sukatan ti pasesbalikas ti account',
 'oldpassword'         => 'Daan a pasesbalikas:',
 'newpassword'         => 'Baro a pasesbalikas:',
 'retypenew'           => 'Isurat manen ti baro a pasesbalikas:',

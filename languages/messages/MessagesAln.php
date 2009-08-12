@@ -10,7 +10,6 @@
  * @author Bresta
  * @author Cradel
  * @author Dardan
- * @author IAlex
  */
 
 $fallback = 'sq';
