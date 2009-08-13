@@ -704,6 +704,8 @@ Pärast parooli saamist logige palun sisse.',
 'blocked-mailpassword'       => 'Sinu IP-aadressi jaoks on toimetamine blokeeritud, seetõttu ei saa sa kasutada ka parooli meeldetuletamise funktsiooni.',
 'eauthentsent'               => 'Sisestatud e-posti aadressile on saadetud kinnituse e-kiri.
 Enne kui su kontole ükskõik milline muu e-kiri saadetakse, pead sa e-kirjas olevat juhist järgides kinnitama, et konto on tõepoolest sinu.',
+'throttled-mailpassword'     => 'Parooli meeldetuletus lähetatud viimase {{PLURAL:$1|tunni|$1 tunni}} jooksul.
+Väärtarvitamise vältimiseks saadetakse {{PLURAL:$1|tunni|$1 tunni}} jooksul ainult üks meeldetuletus.',
 'mailerror'                  => 'Viga kirja saatmisel: $1',
 'acct_creation_throttle_hit' => 'Selle viki külastajad, kes kasutavad sinu IP-aadressi, on viimase ööpäeva jooksul loonud {{PLURAL:$1|ühe konto|$1 kontot}}, mis on selles ajavahemikus ülemmääraks.
 Seetõttu ei saa seda IP-aadressi kasutades hetkel rohkem kontosid luua.',
@@ -777,6 +779,8 @@ Võib-olla oled juba edukalt muudnud oma salasõna või taotlenud uut ajutist sa
 'missingsummary'                   => "'''Meeldetuletus:''' Sa ei ole lisanud muudatuse resümeed.
 Kui vajutad uuesti salvestamise nupule, salvestatakse muudatus ilma resümeeta.",
 'missingcommenttext'               => 'Palun sisesta siit allapoole kommentaar.',
+'missingcommentheader'             => "'''Meeldetuletus:''' Sa ei ole kirjutanud kommentaarile teemat/pealkirja.
+Kui vajutad uuesti <em>Salvesta</em>, siis salvestatakse kommentaar ilma teema/pealkirjata.",
 'summary-preview'                  => 'Resümee eelvaade:',
 'subject-preview'                  => 'Alaosa pealkirja eelvaade:',
 'blockedtitle'                     => 'Kasutaja on blokeeritud',
@@ -879,11 +883,13 @@ Te kinnitate ka, et kirjutasite selle ise või võtsite selle kopeerimiskitsendu
 Te kinnitate ka, et kirjutasite selle ise või võtsite selle kopeerimiskitsenduseta allikast (vaata ka $1).<br />
 '''ÄRGE SAATKE AUTORIÕIGUSEGA KAITSTUD MATERJALI ILMA LOATA!'''",
 'longpagewarning'                  => "'''HOIATUS: Selle lehekülje pikkus ületab $1 kilobaiti. Mõne brauseri puhul valmistab raskusi juba 32-le kilobaidile läheneva pikkusega lehekülgede redigeerimine. Palun kaaluge selle lehekülje sisu jaotamist lühemate lehekülgede vahel.'''",
+'longpageerror'                    => "'''Viga: Lehekülje suurus on $1 kilobaiti. Lehekülge ei saa salvestada, kuna see on pikem kui maksimaalsed $2 kilobaiti.'''",
 'readonlywarning'                  => "'''HOIATUS: Andmebaas on lukustatud hooldustöödeks, nii et praegu ei saa parandusi salvestada. Võite teksti hilisemaks kasutamiseks alles hoida tekstifailina.'''
 
 Ülem, kes andmebaasi lukustas, andis järgmise selgituse: $1",
 'protectedpagewarning'             => "'''HOIATUS: See lehekülg on lukustatud, nii et seda saavad redigeerida ainult ülema õigustega kasutajad.'''",
 'semiprotectedpagewarning'         => "'''Märkus:''' See lehekülg on lukustatud nii, et üksnes registreeritud kasutajad saavad seda muuta.",
+'titleprotectedwarning'            => "'''Hoiatus: See lehekülg on nii lukustatud, et selle loomiseks on tarvis [[Special:ListGroupRights|eriõigusi]].'''",
 'templatesused'                    => 'Sellel lehel on kasutusel järgnevad mallid:',
 'templatesusedpreview'             => 'Selles eelvaates kasutatakse järgmisi malle:',
 'templatesusedsection'             => 'Siin rubriigis kasutatud mallid:',
@@ -959,6 +965,18 @@ See võib olla vikist kustutatud või ümber nimetatud.
 'rev-deleted-comment'         => '(kommentaar eemaldatud)',
 'rev-deleted-user'            => '(kasutajanimi eemaldatud)',
 'rev-deleted-event'           => '(logitoiming eemaldatud)',
+'rev-deleted-text-permission' => "See lehekülje redaktsioon on '''kustutatud'''.
+Üksikasju võib olla [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} kustutamise logis].",
+'rev-deleted-text-unhide'     => "See lehekülje redaktsioon on '''kustutatud'''.
+Üksikasju võib olla [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} kustutamise logis].
+Administraatorina võid [$1 seda redaktsiooni] näha, kui soovid jätkata.",
+'rev-deleted-text-view'       => "See lehekülje redaktsioon on '''kustutatud'''.
+Administraatorina võid seda näha. Üksikasju võib olla [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} kustutamise logis].",
+'rev-deleted-no-diff'         => "Seda erinevust ei saa vaadata, kuna üks redaktsioonidest on '''kustutatud'''.
+Üksikasju võib olla [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} kustutamise logis].",
+'rev-deleted-unhide-diff'     => "Üks selle lehekülje muudatustest on '''kustutatud'''.
+Üksikasju võib olla [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} kustutamise logis].
+Administraatorina võid [$1 seda muudatust] näha, kui soovid jätkata.",
 'rev-delundel'                => 'näita/peida',
 'revisiondelete'              => 'Kustuta/taasta redaktsioone',
 'revdelete-nologtype-title'   => 'Logi tüüpi ei antud',
@@ -1017,11 +1035,13 @@ Jõus olevad keelud ja blokeeringud leiad [[Special:IPBlockList|blokeeritud IP-a
 'mergehistory-go'                  => 'Näita ühendatavaid muudatusi',
 'mergehistory-submit'              => 'Ühenda redaktsioonid',
 'mergehistory-empty'               => 'Ühendatavaid redaktsioone ei ole.',
+'mergehistory-fail'                => 'Muudatuste ajaloo liitmine ebaõnnestus. Palun kontrolli lehekülje ja aja parameetreid.',
 'mergehistory-no-source'           => 'Lehekülje allikat $1 ei ole.',
 'mergehistory-no-destination'      => 'Lehekülje sihtpunkti $1 ei ole.',
 'mergehistory-invalid-source'      => 'Allikaleheküljel peab olema lubatav pealkiri.',
 'mergehistory-invalid-destination' => 'Sihtkoha leheküljel peab olema lubatav pealkiri.',
 'mergehistory-autocomment'         => 'Liitsin lehe [[:$1]] lehele [[:$2]]',
+'mergehistory-comment'             => 'Lehekülg [[:$1]] liidetud leheküljele [[:$2]]: $3',
 'mergehistory-same-destination'    => 'Lähte- ja sihtpunkti lehekülg ei või olla sama',
 'mergehistory-reason'              => 'Põhjus:',
 
@@ -1037,7 +1057,7 @@ Jõus olevad keelud ja blokeeringud leiad [[Special:IPBlockList|blokeeritud IP-a
 'lineno'                   => 'Rida $1:',
 'compareselectedversions'  => 'Võrdle valitud redaktsioone',
 'showhideselectedversions' => 'Näita/peida valitud versioonid',
-'visualcomparison'         => 'Visuaalne võrdlus',
+'visualcomparison'         => 'Vaateline võrdlus',
 'wikicodecomparison'       => 'Lähtetekstide võrdlus',
 'editundo'                 => 'eemalda',
 'diff-multi'               => '({{PLURAL:$1|Ühte vahepealset muudatust|$1 vahepealset muudatust}} ei näidata.)',
@@ -1132,6 +1152,7 @@ Jõus olevad keelud ja blokeeringud leiad [[Special:IPBlockList|blokeeritud IP-a
 'searchrelated'                    => 'seotud',
 'searchall'                        => 'kõik',
 'showingresults'                   => "Allpool näitame {{PLURAL:$1|'''ühte''' tulemit|'''$1''' tulemit}} alates tulemist #'''$2'''.",
+'showingresultsnum'                => "Allpool näitame {{PLURAL:$3|'''ühte''' tulemit|'''$3''' tulemit}} alates tulemist #'''$2'''.",
 'showingresultstotal'              => "Allpool näidatakse {{PLURAL:$4|'''$1'''. tulemust (otsingutulemuste koguarv '''$3''')|'''$1. - $2.''' tulemust (otsingutulemuste koguarv '''$3''')}}",
 'showingresultsheader'             => "{{PLURAL:$5|'''$1''' '''$3'''-st vastest|Vasted '''$1–$2''' '''$3'''-st}} päringule '''$4'''",
 'nonefound'                        => "'''Märkus''': Otsing hõlmab vaikimisi vaid osasid nimeruume.
@@ -1293,6 +1314,7 @@ See ei tohi olla pikem kui $1 {{PLURAL:$1|sümbol|sümbolit}}.',
 'group-bot'           => 'Robotid',
 'group-sysop'         => 'Ülemad',
 'group-bureaucrat'    => 'Bürokraadid',
+'group-suppress'      => 'Varjajad',
 'group-all'           => '(kõik)',
 
 'group-user-member'          => 'Kasutaja',
@@ -1300,12 +1322,14 @@ See ei tohi olla pikem kui $1 {{PLURAL:$1|sümbol|sümbolit}}.',
 'group-bot-member'           => 'Robot',
 'group-sysop-member'         => 'Ülem',
 'group-bureaucrat-member'    => 'Bürokraat',
+'group-suppress-member'      => 'Varjaja',
 
 'grouppage-user'          => '{{ns:project}}:Kasutajad',
 'grouppage-autoconfirmed' => '{{ns:project}}:Automaatselt kinnitatud kasutajad',
 'grouppage-bot'           => '{{ns:project}}:Robotid',
 'grouppage-sysop'         => '{{ns:project}}:Administraatorid',
 'grouppage-bureaucrat'    => '{{ns:project}}:Bürokraadid',
+'grouppage-suppress'      => '{{ns:project}}:Varjaja',
 
 # Rights
 'right-read'                 => 'Lugeda lehekülgi',
@@ -1331,7 +1355,7 @@ See ei tohi olla pikem kui $1 {{PLURAL:$1|sümbol|sümbolit}}.',
 'right-apihighlimits'        => 'Kasutada API-päringutes kõrgemaid limiite',
 'right-writeapi'             => 'Kasutada {{SITENAME}} kirjutamise liidest',
 'right-delete'               => 'Lehekülgi kustutada',
-'right-bigdelete'            => 'Kustutada pikka ajalooga lehekülgi',
+'right-bigdelete'            => 'Pikkade ajalugudega lehekülgi kustutada',
 'right-deleterevision'       => 'Kustutada ja taastada lehekülgede teatud redaktsioone',
 'right-deletedhistory'       => 'Vaadata kustutatud ajalookirjeid ilma seotud tekstita',
 'right-browsearchive'        => 'Otsida kustutatud lehekülgi',
@@ -1344,6 +1368,7 @@ See ei tohi olla pikem kui $1 {{PLURAL:$1|sümbol|sümbolit}}.',
 'right-ipblock-exempt'       => 'Mööduda automaatsetest blokeeringutest ning aadressivahemiku- ja IP-blokeeringutest',
 'right-proxyunbannable'      => 'Mööduda automaatsetest puhverserveri blokeeringutest',
 'right-protect'              => 'Muuta kaitsetasemeid ja redigeerida kaitstud lehekülgi',
+'right-editprotected'        => 'Muuta kaitstud lehekülgi, millel ei ole kaskaadkaitset',
 'right-editinterface'        => 'Muuta kasutajaliidest',
 'right-editusercssjs'        => 'Redigeerida teiste kasutajate CSS ja JS faile',
 'right-editusercss'          => 'Redigeerida teiste kasutajate CSS faile',
@@ -1358,12 +1383,12 @@ See ei tohi olla pikem kui $1 {{PLURAL:$1|sümbol|sümbolit}}.',
 'right-patrolmarks'          => 'Vaadata viimaste muudatuste kontrollimise märkeid',
 'right-unwatchedpages'       => 'Vaadata jälgimata lehekülgede nimekirja',
 'right-trackback'            => "Lähetada ''trackback''",
-'right-mergehistory'         => 'Ühenda lehekülgede ajalugu',
+'right-mergehistory'         => 'Ühendada lehekülgede ajalood',
 'right-userrights'           => 'Muuta kõiki kasutajaõigusi',
-'right-userrights-interwiki' => 'Muuda kasutajate õigusi teistes wikides',
+'right-userrights-interwiki' => 'Muuta teiste vikide kasutajate õigusi',
 'right-siteadmin'            => 'Panna lukku ja lukust lahti teha andmebaasi',
 'right-reset-passwords'      => 'Määrata teistele kasutajatele paroole',
-'right-versiondetail'        => 'Näita infot laiendatud tarkvara versiooni kohta',
+'right-versiondetail'        => 'Näha laiendatud tarkvaraversiooni teavet.',
 
 # User rights log
 'rightslog'      => 'Kasutaja õiguste logi',
@@ -1465,6 +1490,7 @@ Leheküljed, mis lähevad [[Special:Watchlist|Jälgimisloendi]] koosseisu, on es
 'reuploaddesc'                => 'Tagasi üleslaadimise vormi juurde.',
 'uploadnologin'               => 'Sisse logimata',
 'uploadnologintext'           => 'Kui Te soovite faile üles laadida, peate [[Special:UserLogin|sisse logima]].',
+'upload_directory_missing'    => 'Üleslaadimiskaust $1 puudub ja veebiserver ei saa seda luua.',
 'uploaderror'                 => 'Faili laadimine ebaõnnestus',
 'uploadtext'                  => "Järgnevat vormi võid kasutada failide üleslaadimiseks.
 
@@ -1530,6 +1556,10 @@ Vaata selle faili kustutamise ajalugu enne jätkamist.',
 'watchthisupload'             => 'Jälgi seda lehekülge',
 'filewasdeleted'              => 'Selle nimega fail on lisatud ja kustutatud hiljuti.
 Kontrolli $1 enne jätkamist.',
+'upload-wasdeleted'           => "'''Hoiatus: Sa laadid üles faili, mis on eelnevalt kustutatud.'''
+
+Peaksid kaaluma, kas selle faili üleslaadimise jätkamine on sobilik.
+Selle faili kustutamislogi on toodud siinsamas:",
 
 'upload-proto-error'        => 'Vigane protokoll',
 'upload-file-error'         => 'Sisemine viga',
@@ -1539,6 +1569,15 @@ Palun kontakteeru [[Special:ListUsers/sysop|administraatoriga]].',
 'upload-too-many-redirects' => 'URL sisaldas liiga palju ümbersuunamisi',
 'upload-unknown-size'       => 'Tundmatu suurus',
 'upload-http-error'         => 'HTTP-viga: $1',
+
+# Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
+'upload-curl-error6'       => 'Internetiaadress pole kättesaadav',
+'upload-curl-error6-text'  => 'Etteantud internetiaadress ei ole kättesaadav.
+Palun kontrolli, kas aadress on õige ja kas võrgukoht on üleval.',
+'upload-curl-error28'      => 'Üleslaadimise ajalimiit',
+'upload-curl-error28-text' => 'Võrgukohal läks vastamiseks liiga kaua.
+Palun kontrolli kas võrgukoht on ikka üleval, oota natuke ja proovi uuesti.
+Samuti võid proovida siis, kui võrgukoht on vähem hõivatud.',
 
 'license'            => 'Litsents:',
 'nolicense'          => 'pole valitud',
@@ -1703,6 +1742,7 @@ Igal real on ära toodud esimene ja teine ümbersuunamisleht ning samuti teise �
 'popularpages'            => 'Loetumad artiklid',
 'wantedcategories'        => 'Kõige oodatumad kategooriad',
 'wantedpages'             => 'Kõige oodatumad artiklid',
+'wantedpages-badtitle'    => 'Tulemuste seas on vigane pealkiri: $1',
 'wantedfiles'             => 'Kõige oodatumad failid',
 'wantedtemplates'         => 'Kõige oodatumad mallid',
 'mostlinked'              => 'Kõige viidatumad leheküljed',
@@ -1830,12 +1870,14 @@ Toetatud protokollid: <tt>$1</tt>',
 'listgrouprights-rights'               => 'Õigused',
 'listgrouprights-helppage'             => 'Help:Rühma õigused',
 'listgrouprights-members'              => '(liikmete loend)',
-'listgrouprights-addgroup'             => 'Lisada {{PLURAL:$2|rühm|rühmad}}: $1',
-'listgrouprights-removegroup'          => 'Eemaldada {{PLURAL:$2|rühm|rühmad}}: $1',
-'listgrouprights-addgroup-all'         => 'Lisa kõigisse rühmadesse',
-'listgrouprights-removegroup-all'      => 'Eemalda kõigist rühmadest',
-'listgrouprights-addgroup-self-all'    => 'Lisa oma konto kõigisse rühmadesse',
-'listgrouprights-removegroup-self-all' => 'Kustuta ennast kõigist rühmadest',
+'listgrouprights-addgroup'             => 'Lisada liikmeid {{PLURAL:$2|rühma|rühmadesse}}: $1',
+'listgrouprights-removegroup'          => 'Eemaldada liikmeid {{PLURAL:$2|rühmast|rühmadest}}: $1',
+'listgrouprights-addgroup-all'         => 'Kõigisse rühmadesse liikmeid lisada',
+'listgrouprights-removegroup-all'      => 'Kõigist rühmadest liikmeid eemaldada',
+'listgrouprights-addgroup-self'        => 'Lisada enda konto {{PLURAL:$2|rühma|rühmadesse}}: $1',
+'listgrouprights-removegroup-self'     => 'Eemaldada enda konto {{PLURAL:$2|rühmast|rühmadest}}: $1',
+'listgrouprights-addgroup-self-all'    => 'Oma konto kõigisse rühmadesse lisada',
+'listgrouprights-removegroup-self-all' => 'Eemaldada ennast kõigist rühmadest',
 
 # E-mail user
 'mailnologin'      => 'Saatja aadress puudub',
@@ -1885,6 +1927,7 @@ Kui tahad seda lehte hiljem jälgimisloendist eemaldada, klõpsa päisenupule "L
 'watchlist-details'    => 'Jälgimisloendis on {{PLURAL:$1|$1 lehekülg|$1 lehekülge}} (ei arvestata arutelulehekülgi).',
 'wlheader-enotif'      => '* E-posti teel teavitamine on aktiveeritud.',
 'wlheader-showupdated' => "* Leheküljed, mida on muudetud peale sinu viimast külastust, on '''rasvases kirjas'''",
+'watchmethod-recent'   => 'jälgitud lehekülgedel tehtud viimaste muudatuste läbivaatamine',
 'watchmethod-list'     => 'jälgitavate lehekülgede viimased muudatused',
 'watchlistcontains'    => 'Sinu jälgimisloendis on $1 {{PLURAL:$1|artikkel|artiklit}}.',
 'wlnote'               => "Allpool on {{PLURAL:$1|viimane muudatus|viimased '''$1''' muudatust}} viimase {{PLURAL:$2|tunni|'''$2''' tunni}} jooksul.",
@@ -1895,13 +1938,14 @@ Kui tahad seda lehte hiljem jälgimisloendist eemaldada, klõpsa päisenupule "L
 'watching'   => 'jälgin...',
 'unwatching' => 'Jälgimise lõpetamine...',
 
-'enotif_reset'       => 'Märgi kõik lehed loetuks',
-'enotif_newpagetext' => 'See on uus lehekülg.',
-'changed'            => 'muudetud',
-'created'            => 'lehekülg loodud',
-'enotif_lastvisited' => 'Aadressil $1 on kõik muudatused su viimase külastuse järel.',
-'enotif_lastdiff'    => 'Muudatus on leheküljel $1.',
-'enotif_anon_editor' => 'anonüümne kasutaja $1',
+'enotif_reset'                 => 'Märgi kõik lehed loetuks',
+'enotif_newpagetext'           => 'See on uus lehekülg.',
+'enotif_impersonal_salutation' => '{{SITENAME}} kasutaja',
+'changed'                      => 'muudetud',
+'created'                      => 'lehekülg loodud',
+'enotif_lastvisited'           => 'Aadressil $1 on kõik muudatused su viimase külastuse järel.',
+'enotif_lastdiff'              => 'Muudatus on leheküljel $1.',
+'enotif_anon_editor'           => 'anonüümne kasutaja $1',
 
 # Delete
 'deletepage'             => 'Kustuta lehekülg',
@@ -2010,44 +2054,55 @@ Sa saad muuta selle lehekülje kaitse staatust, kuid see ei mõjuta kaskaadkaits
 'restriction-level-all'           => 'kõik tasemed',
 
 # Undelete
-'undelete'                   => 'Taasta kustutatud lehekülg',
-'undeletepage'               => 'Kuva ja taasta kustutatud lehekülgi',
-'viewdeletedpage'            => 'Vaata kustutatud lehekülgi',
-'undeletepagetext'           => '{{PLURAL:$1|Järgnev lehekülg on kustutatud|Järgnevad leheküljed on kustutatud}}, kuid arhiivis veel olemas ja taastatavad. Arhiivi sisu kustutatakse perioodiliselt.',
-'undelete-fieldset-title'    => 'Taasta redigeerimised',
-'undeleteextrahelp'          => "Kogu lehe ja selle ajaloo taastamiseks jätke kõik linnukesed tühjaks ja vajutage '''''Taasta'''''.
+'undelete'                     => 'Taasta kustutatud lehekülg',
+'undeletepage'                 => 'Kuva ja taasta kustutatud lehekülgi',
+'undeletepagetitle'            => "'''Kustutatud redaktsioonid leheküljest [[:$1|$1]]'''.",
+'viewdeletedpage'              => 'Vaata kustutatud lehekülgi',
+'undeletepagetext'             => '{{PLURAL:$1|Järgnev lehekülg on kustutatud|Järgnevad leheküljed on kustutatud}}, kuid arhiivis veel olemas ja taastatavad. Arhiivi sisu kustutatakse perioodiliselt.',
+'undelete-fieldset-title'      => 'Taasta redigeerimised',
+'undeleteextrahelp'            => "Kogu lehe ja selle ajaloo taastamiseks jätke kõik linnukesed tühjaks ja vajutage '''''Taasta'''''.
 Et taastada valikuliselt, tehke linnukesed kastidesse, mida soovite taastada ja vajutage '''''Taasta'''''.
 Nupu '''''Tühjenda''''' vajutamine tühjendab põhjusevälja ja eemaldab kõik linnukesed.",
-'undeleterevisions'          => '$1 arhiveeritud {{PLURAL:$1|redaktsioon|redaktsiooni}}.',
-'undeletehistory'            => 'Kui taastate lehekülje, taastuvad kõik versioonid artikli ajaloona. 
+'undeleterevisions'            => '$1 arhiveeritud {{PLURAL:$1|redaktsioon|redaktsiooni}}.',
+'undeletehistory'              => 'Kui taastate lehekülje, taastuvad kõik versioonid artikli ajaloona. 
 Kui vahepeal on loodud uus samanimeline lehekülg, ilmuvad taastatud versioonid varasema ajaloona.',
-'undeletehistorynoadmin'     => 'See lehekülg on kustutatud.
+'undeletehistorynoadmin'       => 'See lehekülg on kustutatud.
 Kustutamise põhjus ning selle lehekülje kustutamiseelne redigeerimislugu on näha allolevas kokkuvõttes.
 Lehekülje kustutamiseelsed redaktsioonid on kättesaadavad ainult ülematele.',
-'undelete-nodiff'            => 'Varasemat redaktsiooni ei leidunud.',
-'undeletebtn'                => 'Taasta',
-'undeletelink'               => 'vaata/taasta',
-'undeleteviewlink'           => 'vaata',
-'undeletereset'              => 'Tühjenda',
-'undeleteinvert'             => 'Pööra valim teistpidi',
-'undeletecomment'            => 'Põhjus:',
-'undeletedarticle'           => '"$1" taastatud',
-'undeletedrevisions'         => '$1 {{PLURAL:$1|redaktsioon|redaktsiooni}} taastatud',
-'cannotundelete'             => 'Taastamine ebaõnnestus; keegi teine võis lehe juba taastada.',
-'undeletedpage'              => "<big>'''$1 on taastatud'''</big>
+'undelete-revision'            => 'Lehekülje $1 kustutatud redaktsioonid, mille autor on $3, seisuga $4 kell $5.',
+'undeleterevision-missing'     => 'Vigane või puuduv redaktsioon.
+Link võib olla kõlbmatu või redaktsioon võib olla taastatud või arhiivist eemaldatud.',
+'undelete-nodiff'              => 'Varasemat redaktsiooni ei leidunud.',
+'undeletebtn'                  => 'Taasta',
+'undeletelink'                 => 'vaata/taasta',
+'undeleteviewlink'             => 'vaata',
+'undeletereset'                => 'Tühjenda',
+'undeleteinvert'               => 'Pööra valim teistpidi',
+'undeletecomment'              => 'Põhjus:',
+'undeletedarticle'             => '"$1" taastatud',
+'undeletedrevisions'           => '$1 {{PLURAL:$1|redaktsioon|redaktsiooni}} taastatud',
+'undeletedrevisions-files'     => '{{PLURAL:$1|1 redaktsioon|$1 redaktsiooni}} ja {{PLURAL:$2|1 fail|$2 faili}} taastatud',
+'undeletedfiles'               => '{{PLURAL:$1|1 fail|$1 faili}} taastatud',
+'cannotundelete'               => 'Taastamine ebaõnnestus; keegi teine võis lehe juba taastada.',
+'undeletedpage'                => "<big>'''$1 on taastatud'''</big>
 
 [[Special:Log/delete|Kustutamise logist]] võib leida loendi viimastest kustutamistest ja taastamistest.",
-'undelete-header'            => 'Hiljuti kustutatud leheküljed leiad [[Special:Log/delete|kustutamislogist]].',
-'undelete-search-box'        => 'Otsi kustutatud lehekülgi',
-'undelete-search-prefix'     => 'Näita lehekülgi, mille pealkiri algab nii:',
-'undelete-search-submit'     => 'Otsi',
-'undelete-no-results'        => 'Kustutatud lehekülgede arhiivist sellist lehekülge ei leidunud.',
-'undelete-error-short'       => 'Faili $1 taastamine ebaõnnestus',
-'undelete-error-long'        => 'Faili taastamine ebaõnnestus:
+'undelete-header'              => 'Hiljuti kustutatud leheküljed leiad [[Special:Log/delete|kustutamislogist]].',
+'undelete-search-box'          => 'Otsi kustutatud lehekülgi',
+'undelete-search-prefix'       => 'Näita lehekülgi, mille pealkiri algab nii:',
+'undelete-search-submit'       => 'Otsi',
+'undelete-no-results'          => 'Kustutatud lehekülgede arhiivist sellist lehekülge ei leidunud.',
+'undelete-filename-mismatch'   => 'Failiversiooni ajatempliga $1 ei saa taastada, sest failinimed ei klapi.',
+'undelete-bad-store-key'       => 'Failiversiooni ajatempliga $1 ei saa taastada, sest faili ei olnud enne kustutamist.',
+'undelete-cleanup-error'       => 'Kasutamata arhiivifaili "$1" kustutamine ebaõnnestus.',
+'undelete-missing-filearchive' => 'Failiarhiivi tunnusega $1 ei saa taastada, sest seda pole andmebaasis.
+Võimalik, et see on juba taastatud.',
+'undelete-error-short'         => 'Faili $1 taastamine ebaõnnestus',
+'undelete-error-long'          => 'Faili taastamine ebaõnnestus:
 
 $1',
-'undelete-show-file-confirm' => 'Kas oled kindel, et soovid näha kustutatud versiooni failist <nowiki>$1</nowiki>, mis salvestati $2 kell $3?',
-'undelete-show-file-submit'  => 'Jah',
+'undelete-show-file-confirm'   => 'Kas oled kindel, et soovid näha kustutatud versiooni failist <nowiki>$1</nowiki>, mis salvestati $2 kell $3?',
+'undelete-show-file-submit'    => 'Jah',
 
 # Namespace form on various pages
 'namespace'      => 'Nimeruum:',
@@ -2136,7 +2191,7 @@ Kehtivaid blokeeringuid vaata [[Special:IPBlockList|blokeeringute loendist]].',
 'ipb-blocklist-addr'           => 'Kasutaja $1 blokeeringud',
 'ipb-blocklist'                => 'Vaata kehtivaid keelde',
 'ipb-blocklist-contribs'       => '$1 kaastööd',
-'unblockip'                    => 'Lõpeta IP aadressi blokeerimine',
+'unblockip'                    => 'Lõpeta IP-aadressi blokeerimine',
 'unblockiptext'                => 'Kasutage allpool olevat vormi redigeerimisõiguste taastamiseks varem blokeeritud IP aadressile.',
 'ipusubmit'                    => 'Eemalda see blokeering',
 'unblocked'                    => '[[User:$1|$1]] blokeering võeti maha.',
@@ -2365,7 +2420,7 @@ Palun ürita uuesti.',
 'tooltip-pt-logout'               => 'Logi välja',
 'tooltip-ca-talk'                 => 'Selle artikli arutelu',
 'tooltip-ca-edit'                 => 'Te võite seda lehekülge redigeerida. Palun kasutage enne salvestamist eelvaadet.',
-'tooltip-ca-addsection'           => 'Algata uus alajaotis',
+'tooltip-ca-addsection'           => 'Lisa uus alaosa',
 'tooltip-ca-viewsource'           => 'See lehekülg on kaitstud. Te võite kuvada selle koodi.',
 'tooltip-ca-history'              => 'Selle lehekülje varasemad versioonid.',
 'tooltip-ca-protect'              => 'Kaitse seda lehekülge',
@@ -2384,10 +2439,10 @@ Palun ürita uuesti.',
 'tooltip-n-recentchanges'         => 'Vikis tehtud viimaste muudatuste loend.',
 'tooltip-n-randompage'            => 'Mine juhuslikule leheküljele',
 'tooltip-n-help'                  => 'Kuidas redigeerida.',
-'tooltip-t-whatlinkshere'         => 'Kõik Viki leheküljed, mis siia viitavad',
+'tooltip-t-whatlinkshere'         => 'Kõik viki leheküljed, mis siia viitavad',
 'tooltip-t-recentchangeslinked'   => 'Viimased muudatused lehekülgedel, milledele on siit viidatud',
-'tooltip-feed-rss'                => 'Selle lehekülje RSS sööt',
-'tooltip-feed-atom'               => 'Selle lehekülje Atom sööt',
+'tooltip-feed-rss'                => 'Selle lehekülje RSS-toide',
+'tooltip-feed-atom'               => 'Selle lehekülje Atom-toide',
 'tooltip-t-contributions'         => 'Kuva selle kasutaja kaastööd',
 'tooltip-t-emailuser'             => 'Saada sellele kasutajale e-kiri',
 'tooltip-t-upload'                => 'Laadi faile üles',
@@ -2423,7 +2478,7 @@ Samuti võimaldab see resümee reale põhjenduse lisamist.',
 
 # Attribution
 'anonymous'        => '{{SITENAME}} {{PLURAL:$1|anonüümne kasutaja|anonüümsed kasutajad}}',
-'siteuser'         => 'Viki kasutaja $1',
+'siteuser'         => 'viki kasutaja $1',
 'lastmodifiedatby' => 'Viimati muutis lehekülge $3 $2 kell $1.',
 'othercontribs'    => 'Põhineb $1 tööl.',
 'others'           => 'teised',
@@ -2505,7 +2560,7 @@ $1',
 'nextdiff'     => 'Järgmised erinevused →',
 
 # Visual comparison
-'visual-comparison' => 'Visuaalne võrdlus',
+'visual-comparison' => 'Vaateline võrdlus',
 
 # Media information
 'mediawarning'         => "'''Hoiatus''': See fail võib sisaldada pahatahtlikku koodi, mille käivitamime võib kahjustada teie arvutisüsteemi.<hr />",
@@ -2579,9 +2634,13 @@ Kui faili on rakendustarkvaraga töödeldud, võib osa andmeid olla muudetud võ
 'exif-usercomment'               => 'Kasutaja kommentaarid',
 'exif-relatedsoundfile'          => 'Seotud helifail',
 'exif-datetimedigitized'         => 'Digitaliseerimise kuupäev ja kellaaeg',
+'exif-subsectime'                => 'Kuupäev/Kellaaeg sekundi murdosad',
+'exif-subsectimeoriginal'        => 'Loomisaja sekundi murdosad',
+'exif-subsectimedigitized'       => 'Digiteerimise sekundi murdosad',
 'exif-exposuretime'              => 'Säriaeg',
 'exif-exposuretime-format'       => '$1 sek ($2)',
 'exif-exposureprogram'           => 'Säriprogramm',
+'exif-spectralsensitivity'       => 'Spektraalne tundlikkus',
 'exif-aperturevalue'             => 'Avaarv',
 'exif-brightnessvalue'           => 'Heledus',
 'exif-subjectdistance'           => 'Subjekti kaugus',
@@ -2631,6 +2690,7 @@ Kui faili on rakendustarkvaraga töödeldud, võib osa andmeid olla muudetud võ
 
 'exif-meteringmode-0'   => 'Teadmata',
 'exif-meteringmode-1'   => 'Keskmine',
+'exif-meteringmode-2'   => 'Kaalutud keskmine',
 'exif-meteringmode-5'   => 'Muster',
 'exif-meteringmode-6'   => 'Osaline',
 'exif-meteringmode-255' => 'Muu',
@@ -2650,6 +2710,7 @@ Kui faili on rakendustarkvaraga töödeldud, võib osa andmeid olla muudetud võ
 # Flash modes
 'exif-flash-fired-0'    => 'Välk ei töötanud',
 'exif-flash-fired-1'    => 'Välk töötas',
+'exif-flash-mode-3'     => 'automaatne töörežiim',
 'exif-flash-function-1' => 'Välgu funktsiooni ei ole',
 
 'exif-focalplaneresolutionunit-2' => 'tolli',
@@ -2891,17 +2952,20 @@ Sisesta faili nimi eesliiteta "{{ns:file}}:".',
 'tags-hitcount'           => '$1 {{PLURAL:$1|muudatus|muudatust}}',
 
 # Database error messages
-'dberr-header'    => 'Selles wikis on probleem',
-'dberr-problems'  => 'Kahjuks on sellel saidil tehnilisi probleeme',
-'dberr-again'     => 'Oota mõni hetk ja lae lehekülg uuesti.',
-'dberr-info'      => '(Ei saa ühendust andmebaasi serveriga: $1)',
-'dberr-usegoogle' => "Proovi vahepeal otsida Google'ist.",
-'dberr-outofdate' => "Google'i indeksid võivad olla ajas maha jäänud.",
+'dberr-header'      => 'Selles wikis on probleem',
+'dberr-problems'    => 'Kahjuks on sellel saidil tehnilisi probleeme',
+'dberr-again'       => 'Oota mõni hetk ja lae lehekülg uuesti.',
+'dberr-info'        => '(Ei saa ühendust andmebaasi serveriga: $1)',
+'dberr-usegoogle'   => "Proovi vahepeal otsida Google'ist.",
+'dberr-outofdate'   => "Google'i indeksid võivad olla ajas maha jäänud.",
+'dberr-cachederror' => 'See koopia taotletud leheküljest on vahemälus ja ei pruugi olla ajakohane.',
 
 # HTML forms
 'htmlform-select-badoption'    => 'Antud number ei ole kõlbulik.',
 'htmlform-int-invalid'         => 'Antud väärtus ei ole täisarv.',
 'htmlform-float-invalid'       => 'Määratud väärtus ei ole number.',
+'htmlform-int-toolow'          => 'Antud suurus on väiksem kui minimaalne $1',
+'htmlform-int-toohigh'         => 'Antud suurus on suurem kui maksimaalne $1',
 'htmlform-submit'              => 'Saada',
 'htmlform-reset'               => 'Tühista muudatused',
 'htmlform-selectorother-other' => 'Muu',

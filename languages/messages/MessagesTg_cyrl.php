@@ -8,6 +8,7 @@
  * @file
  *
  * @author Cbrown1023
+ * @author Chinneeb
  * @author Farrukh
  * @author FrancisTyers
  * @author Ibrahim
@@ -2241,7 +2242,7 @@ $1',
 'exif-lightsource-1'   => 'Рӯшноии рӯз',
 'exif-lightsource-2'   => 'Флуоресент',
 'exif-lightsource-3'   => 'Тунгстен (нур бидуни гармо)',
-'exif-lightsource-4'   => 'Флаш',
+'exif-lightsource-4'   => 'Гэрэл цацагч',
 'exif-lightsource-9'   => 'Ҳавои хуб',
 'exif-lightsource-10'  => 'Осмони абрӣ',
 'exif-lightsource-11'  => 'Соя',

@@ -296,6 +296,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Send e-post også for småplukk',
 'tog-enotifrevealaddr'        => 'Vis e-postadressa mi i endrings-e-post',
 'tog-shownumberswatching'     => 'Vis kor mange som overvakar sida',
+'tog-oldsig'                  => 'Førehandsvisning av noverande signatur:',
 'tog-fancysig'                => 'Handsam signaturar som wikitekst (utan automatisk lenkjing)',
 'tog-externaleditor'          => 'Eksternt handsamingsprogram som standard',
 'tog-externaldiff'            => 'Eksternt skilnadprogram som standard',
@@ -322,6 +323,7 @@ $messages = array(
 # Font style option in Special:Preferences
 'editfont-style'     => 'Endre stilen for skrifttypen i området:',
 'editfont-default'   => 'Nettlesar i utgangspunktet',
+'editfont-monospace' => 'Skrift med fast breidde',
 'editfont-sansserif' => 'Skrifttype utan seriffar',
 'editfont-serif'     => 'Skrifttype med seriffar',
 
@@ -963,17 +965,23 @@ Grunnen som vart gjeven av $3 er ''$2''",
 'rev-deleted-comment'         => '(samandraget er fjerna)',
 'rev-deleted-user'            => '(brukarnamnet er fjerna)',
 'rev-deleted-event'           => '(fjerna loggoppføring)',
-'rev-deleted-text-permission' => "Denne sideversjonen er vorten '''sletta'''. Det finst kan henda detaljar om dette i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} ei skjult loggføring].",
+'rev-deleted-text-permission' => "Denne sideversjonen er vorten '''sletta'''.  
+Det kan vere detaljar i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} sletteloggen].",
 'rev-deleted-text-unhide'     => "Denne sideversjonen er vorten '''sletta'''.
-Det finst kan henda detaljar i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} ei skjult loggføring].
-Som ein administrator kan du enno [$1 sjå denne versjonen] om du ynskjer å halda fram.",
+Det finst kanskje detaljar i [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} sletteloggen].
+Som administrator kan du framleis [$1 sjå denne versjonen] om du ynskjer å halde fram.",
+'rev-suppressed-text-unhide'  => "Denne versjonen har vorten '''utelatt'''.
+Det finst kanskje meir informasjon i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} utelatingsloggen].
+Som administrator kan du framleis [$1 sjå versjonen] om du ynskjer å halde fram.",
 'rev-deleted-text-view'       => "Denne sideversjonen er vorten '''sletta'''.
-Som administrator kan du sjå han; det finst kan henda detaljar i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} ei skjult loggføring].",
-'rev-deleted-no-diff'         => "Du kan ikkje sjå denne skilnaden av di ein av versjonane er vorten '''sletta'''. 
-Det finst kan henda detaljar i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} ei skjult loggføring].",
+Som administrator kan du sjå han. Det finst kanskje detaljar i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} sletteloggen].",
+'rev-suppressed-text-view'    => "Denne sideversjonen har vorten '''utelatt'''.
+Som administrator kan du sjå han. Det finst kanskje meir informasjon i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} utelatingsloggen].",
+'rev-deleted-no-diff'         => "Du kan ikkje vise denne skilnaden fordi ein av versjonane er vorten '''sletta'''. 
+Det finst kanskje detaljar i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} sletteloggen].",
 'rev-deleted-unhide-diff'     => "Éin av versjonane i denne skilnaden er vorten '''sletta'''.
-Det finst kan henda detaljar i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} i ei skjult loggføring].
-Som ein administrator kan du enno [$1 sjå skilnaden] om du ynskjer å halda fram.",
+Det finst kanskje detaljar i [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} sletteloggen].
+Som administrator kan du framleis [$1 sjå skilnaden] om du ynskjer å halda fram.",
 'rev-delundel'                => 'vis/gøym',
 'revisiondelete'              => 'Slett/attopprett versjonar',
 'revdelete-nooldid-title'     => 'Ugyldig målversjon',
@@ -1295,6 +1303,7 @@ Dette kan ikke tilbakestillast.',
 'yourlanguage'                  => 'Språk:',
 'yourvariant'                   => 'Språkvariant',
 'yournick'                      => 'Signatur:',
+'prefs-help-signature'          => 'Kommentarar på diskusjonssider bør alltid signerast med «<nowiki>~~~~</nowiki>», som vil konverterast til signaturen din med tidspunkt.',
 'badsig'                        => 'Ugyldig råsignatur, sjekk HTML-kodinga.',
 'badsiglength'                  => 'Signaturen din er for lang. Han må vere under {{PLURAL:$1|eitt teikn|$1 teikn}}.',
 'yourgender'                    => 'Kjønn:',
@@ -1473,7 +1482,15 @@ Du kan òg velje å la andre brukarar kontakte deg på e-post via brukarsida di 
 'recentchanges-legend'              => 'Alternativ for siste endringar',
 'recentchangestext'                 => 'På denne sida ser du dei sist endra sidene i {{SITENAME}}.',
 'recentchanges-feed-description'    => 'Fylg med på dei siste endringane på denne wikien med dette abonnementet.',
+'recentchanges-label-legend'        => 'Forklaring: $1.',
 'recentchanges-legend-newpage'      => '$1 – ny side',
+'recentchanges-label-newpage'       => 'Denne redigeringa oppretta ei ny side',
+'recentchanges-legend-minor'        => '$1 – mindre endring',
+'recentchanges-label-minor'         => 'Dette er ei mindre endring',
+'recentchanges-legend-bot'          => '$1 – botendring',
+'recentchanges-label-bot'           => 'Denne endringa vart gjort av ein bot',
+'recentchanges-legend-unpatrolled'  => '$1 – upatruljert endring',
+'recentchanges-label-unpatrolled'   => 'Denne endringa er ikkje patruljert enno',
 'rcnote'                            => "Nedanfor er {{PLURAL:$1|den siste endringa|dei siste '''$1''' endringane}} gjort {{PLURAL:$2|den siste dagen|dei siste '''$2''' dagane}}, sidan $4, kl. $5.",
 'rcnotefrom'                        => "Nedanfor vert opp til '''$1''' endringar sidan  ''' $2''' viste.",
 'rclistfrom'                        => 'Vis nye endringar sidan $1',
@@ -1738,6 +1755,7 @@ Skildringa frå [$2 filskildringssida] der er vist nedanfor.',
 'statistics-header-edits'      => 'Endringsstatistikk',
 'statistics-header-views'      => 'Visingsstatistikk',
 'statistics-header-users'      => 'Brukarstatistikk',
+'statistics-header-hooks'      => 'Anna statistikk',
 'statistics-articles'          => 'Innhaldssider',
 'statistics-pages'             => 'Sider',
 'statistics-pages-desc'        => 'Alle sider på wikien, inkludert diskusjonssider, omdirigeringar o.l.',
@@ -2692,6 +2710,8 @@ $1',
 'svg-long-desc'        => '(SVG-fil, standardoppløysing: $1 × $2 pikslar, filstorleik: $3)',
 'show-big-image'       => 'Full oppløysing',
 'show-big-image-thumb' => '<small>Storleiken på denne førehandsvisinga: $1 × $2 pikslar</small>',
+'file-info-gif-looped' => 'gjentatt',
+'file-info-gif-frames' => '$1 {{PLURAL:$1|rame|ramer}}',
 
 # Special:NewFiles
 'newimages'             => 'Filgalleri',
