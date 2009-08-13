@@ -839,11 +839,6 @@ class LCStore_CDB implements LCStore {
 		// Close the writer
 		$this->writer->close();
 		$this->writer = null;
-
-		// Close and remove the reader
-		if ( !empty( $this->readers[$this->currentLang] ) ) {
-			$this->readers[$this->currentLang]->close();
-		}
 		unset( $this->readers[$this->currentLang] );
 		$this->currentLang = null;
 	}
