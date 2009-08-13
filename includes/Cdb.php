@@ -98,7 +98,8 @@ class CdbReader_DBA {
 	}
 
 	function close() {
-		dba_close( $this->handle );
+		if( isset($this->handle) )
+			dba_close( $this->handle );
 		unset( $this->handle );
 	}
 
@@ -128,7 +129,8 @@ class CdbWriter_DBA {
 	}
 
 	function close() {
-		dba_close( $this->handle );
+		if( isset($this->handle) )
+			dba_close( $this->handle );
 		if ( wfIsWindows() ) {
 			unlink( $this->realFileName );
 		}
