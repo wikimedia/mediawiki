@@ -878,6 +878,7 @@ Taa tohe-i ollaq rohkõmb ku $1 {{PLURAL:$1|märk|märki}}.",
 'number_of_watching_users_pageview' => '[{{PLURAL:$1|$1 perräkaejat|üts perräkaeja}}]',
 'rc_categories'                     => 'Õnnõ katõgoorijist (eräldedäs märgiga "|")',
 'rc_categories_any'                 => 'Miä taht',
+'rc-enhanced-hide'                  => "Käkiq ütsikas'aq ärq",
 
 # Recent changes linked
 'recentchangeslinked'          => 'Siiäq putvaq muutmisõq',
@@ -886,6 +887,7 @@ Taa tohe-i ollaq rohkõmb ku $1 {{PLURAL:$1|märk|märki}}.",
 'recentchangeslinked-title'    => 'Muutusõq noidõ lehti pääl, kohe näüdätäs lähe päält "$1"',
 'recentchangeslinked-noresult' => 'Taaha putvit lehti olõ-i taa ao seen muudõt.',
 'recentchangeslinked-summary'  => "Taan nimekirän ommaq noidõ lehti muutmisõq, mink pääle näütäs seo lehe päält linke. Naad leheq ommaq [[Special:Watchlist|perräkaemisnimekirän]] märgidüq '''paksu kiräga'''.",
+'recentchangeslinked-page'     => 'Lehe nimi:',
 
 # Upload
 'upload'                      => 'Teedüstü üleslaatminõ',
@@ -1160,6 +1162,9 @@ Lehte peetäs täpsüstüslehes, ku timän om pruugit näüdüst, kohe näütäs
 # Special:Categories
 'categories'         => 'Katõgooriaq',
 'categoriespagetext' => 'Seon vikin ommaq sääntseq katõgooriaq:',
+
+# Special:LinkSearch
+'linksearch' => 'Välislingiq',
 
 # Special:ListUsers
 'listusersfrom'      => 'Näütäq pruukjit alostõn:',

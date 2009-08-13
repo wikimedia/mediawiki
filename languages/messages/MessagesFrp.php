@@ -3283,6 +3283,7 @@ Cél code de confirmacion èxpirerat lo $4.',
 # Trackbacks
 'trackbackbox'      => 'Rètrolims de vers ceta pâge :<br />
 $1',
+'trackbackexcerpt'  => '; $4 $5: [$2 $1] : <nowiki>$3</nowiki>',
 'trackbackremove'   => '([$1 Suprimar])',
 'trackbacklink'     => 'Rètrolim',
 'trackbackdeleteok' => 'Lo rètrolim at étâ suprimâ avouéc reusséta.',

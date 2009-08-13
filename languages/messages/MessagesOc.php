@@ -966,7 +966,7 @@ D'unas inclusions seràn pas efectuadas.",
 'post-expand-template-argument-warning'   => "Atencion : Aquesta pagina conten al mens un paramètre de modèl que l'inclusion es renduda impossibla. Aprèp extension, aqueste auriá produch un resultat tròp long, doncas, es pas estat inclut.",
 'post-expand-template-argument-category'  => 'Paginas que contenon al mens un paramètre de modèl pas evaluat',
 'parser-template-loop-warning'            => 'Modèl en bocla detectat : [[$1]]',
-'parser-template-recursion-depth-warning' => 'Limit de longor de la recursion del modèl despassat ($1)',
+'parser-template-recursion-depth-warning' => 'Limit de longor de la recursion del modèl depassat ($1)',
 
 # "Undo" feature
 'undo-success' => "Aquesta modificacion va èsser desfacha. Confirmatz los cambiaments (visibles en bas d'aquesta pagina), puèi salvatz se sètz d’acòrdi. Mercés de motivar l’anullacion dins la bóstia de resumit.",
@@ -3340,8 +3340,8 @@ Picatz lo nom del fichièr sens lo prefix « {{ns:file}}: ».',
 'dberr-again'       => "Ensajatz d'esperar qualques minutas e tornatz cargar.",
 'dberr-info'        => '(Se pòt pas connectar al servidor de la banca de donadas : $1)',
 'dberr-usegoogle'   => 'Podètz ensajar de cercar amb Google pendent aqueste temps.',
-'dberr-outofdate'   => 'Notatz que lors indèxes de nòstre contengut pòdon èsser despassats.',
-'dberr-cachederror' => 'Aquò es una còpia amagada de la pagina demandada e pòt èsser despassada.',
+'dberr-outofdate'   => 'Notatz que lors indèxes de nòstre contengut pòdon èsser depassats.',
+'dberr-cachederror' => 'Aquò es una còpia amagada de la pagina demandada e pòt èsser depassada.',
 
 # HTML forms
 'htmlform-invalid-input'       => "De problèmas son arribats amb d'unas valors",

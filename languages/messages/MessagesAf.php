@@ -177,6 +177,7 @@ $messages = array(
 'tog-ccmeonemails'            => "Stuur my 'n kopie van die e-pos wat ek aan ander stuur",
 'tog-diffonly'                => "Moenie 'n bladsy se inhoud onder die wysigingsverskil wys nie",
 'tog-showhiddencats'          => 'Wys versteekte kategorië',
+'tog-norollbackdiff'          => 'Laat verskille weg na terugrol',
 
 'underline-always'  => 'Altyd',
 'underline-never'   => 'Nooit',
@@ -287,6 +288,7 @@ $messages = array(
 'faqpage'        => 'Project:GewildeVrae',
 
 # Vector skin
+'vector-action-addsection'   => 'Nuwe onderwerp',
 'vector-action-delete'       => 'Skrap',
 'vector-action-move'         => 'Skuif',
 'vector-action-protect'      => 'Beskerm',
@@ -1190,6 +1192,8 @@ U kan ook besluit om e-pos te ontvang as ander gebruikers u gebruikers- of bespr
 'right-browsearchive'        => 'Soek uigeveede bladsye',
 'right-undelete'             => "Ontskrap 'n bladsy",
 'right-suppressionlog'       => 'Besigtig privaat logboeke',
+'right-block'                => 'Ontneem ander gebruikers die reg om te wysig',
+'right-blockemail'           => "Ontneem 'n gebruiker die reg om E-pos te stuur",
 'right-editinterface'        => 'Wysig die gebruikerskoppelvlak',
 'right-editusercssjs'        => 'Wysig ander gebruikers se CSS- en JS-lêers',
 'right-editusercss'          => 'Wysig ander gebruikers se CSS-lêers',
@@ -1523,6 +1527,7 @@ Elke ry bevat skakels na die eerste en die tweede aanstuur, asook die eerste re�
 'popularpages'            => 'Gewilde bladsye',
 'wantedcategories'        => 'Gesoekte kategorieë',
 'wantedpages'             => 'Gesogte bladsye',
+'wantedpages-badtitle'    => 'Ongeldige bladsynaam in resultaat: $1',
 'wantedfiles'             => 'Gesoekte lêers',
 'wantedtemplates'         => 'Gesoekte sjablone',
 'mostlinked'              => 'Bladsye met meeste skakels daarheen',
@@ -1634,12 +1639,20 @@ Ondersteunde protokolle: <tt>$1</tt>',
 'newuserlog-autocreate-entry' => 'Gebruiker outomaties geskep',
 
 # Special:ListGroupRights
-'listgrouprights'          => 'Gebruikersgroepregte',
-'listgrouprights-summary'  => "Hier volg 'n lys van gebruikersgroepe wat op die wiki gedefinieer is met hulle geassosieerde regte. Vir meer inligting oor individuele regte, sien [[{{MediaWiki:Listgrouprights-helppage}}]].",
-'listgrouprights-group'    => 'Groep',
-'listgrouprights-rights'   => 'Regte',
-'listgrouprights-helppage' => 'Help:Groep regte',
-'listgrouprights-members'  => '(lys van lede)',
+'listgrouprights'                      => 'Gebruikersgroepregte',
+'listgrouprights-summary'              => "Hier volg 'n lys van gebruikersgroepe wat op die wiki gedefinieer is met hulle geassosieerde regte. Vir meer inligting oor individuele regte, sien [[{{MediaWiki:Listgrouprights-helppage}}]].",
+'listgrouprights-group'                => 'Groep',
+'listgrouprights-rights'               => 'Regte',
+'listgrouprights-helppage'             => 'Help:Groep regte',
+'listgrouprights-members'              => '(lys van lede)',
+'listgrouprights-addgroup'             => 'Gebruikers by die volgende {{PLURAL:$2|groep|groepe}} byvoeg: $1',
+'listgrouprights-removegroup'          => 'Gebruikers uit die volgende {{PLURAL:$2|groep|groepe}} verwyder: $1',
+'listgrouprights-addgroup-all'         => 'Gebruikers van alle groepe byvoeg',
+'listgrouprights-removegroup-all'      => 'Gebruikers uit alle groepe verwyder',
+'listgrouprights-addgroup-self'        => 'Die volgende {{PLURAL:$2|groep|groepe}} byvoeg tot eie gebruiker: $1',
+'listgrouprights-removegroup-self'     => 'Die volgende {{PLURAL:$2|groep|groepe}} verwyder van eie gebruiker: $1',
+'listgrouprights-addgroup-self-all'    => 'Alle groepe byvoeg tot eie gebruiker',
+'listgrouprights-removegroup-self-all' => 'Alle groepe verwyder van eie gebruiker',
 
 # E-mail user
 'mailnologin'      => 'Geen versendadres beskikbaar',
@@ -1676,7 +1689,7 @@ wees om u dophoulys te verander.',
 
 As u die bladsy later van u dophoulys wil verwyder, kliek \"verwyder van dophoulys\" in die kieslys bo-aan die bladsy.",
 'removedwatch'         => 'Afgehaal van dophoulys',
-'removedwatchtext'     => 'Die bladsy "[[:$1]]" is van u dophoulys afgehaal.',
+'removedwatchtext'     => 'Die bladsy "[[:$1]]" is van [[Special:Watchlist|u dophoulys]] afgehaal.',
 'watch'                => 'Hou dop',
 'watchthispage'        => 'Hou hierdie bladsy dop',
 'unwatch'              => 'Verwyder van dophoulys',
@@ -2020,6 +2033,7 @@ wees om 'n bladsy te skuif.",
 'movepagebtn'             => 'Skuif bladsy',
 'pagemovedsub'            => 'Verskuiwing het geslaag',
 'movepage-moved'          => '<big>\'\'\'"$1" is geskuif na "$2"\'\'\'</big>',
+'movepage-moved-redirect' => "'n Aanstuur is geskep.",
 'articleexists'           => "'n Bladsy met daardie naam bestaan reeds, of die naam wat u gekies het, is nie geldig nie.
 Kies asseblief 'n ander naam.",
 'cantmove-titleprotected' => "U kan nie 'n bladsy na die titel skuif nie, omdat die nuwe titel beskerm is teen die skep daarvan.",
@@ -2109,6 +2123,7 @@ In die laatste geval kan u ook \'n verwysing gebruik, byvoorbeeld [[{{#Special:E
 # Import log
 'importlogpage'                    => 'Invoer logboek',
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|weergawe|weergawes}}',
+'import-logentry-interwiki'        => 'importeer $1 via transwiki',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|weergawe|weergawes}} vanaf $2',
 
 # Tooltip help for the actions

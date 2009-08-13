@@ -39,6 +39,7 @@
  * @author Muro de Aguas
  * @author Omnipaedista
  * @author Orgullomoore
+ * @author Paucabot
  * @author Piolinfax
  * @author Platonides
  * @author Remember the dot
@@ -2112,7 +2113,7 @@ A continuación se muestran las opciones actuales de la página '''$1''':",
 'protect-level-autoconfirmed' => 'Bloquear usuarios nuevos y no registrados',
 'protect-level-sysop'         => 'Sólo administradores',
 'protect-summary-cascade'     => 'en cascada',
-'protect-expiring'            => 'caduca el $1 (UTC)',
+'protect-expiring'            => 'venç el $1 (UTC)',
 'protect-expiry-indefinite'   => 'indefinido',
 'protect-cascade'             => 'Protección en cascada - proteger todas las páginas incluidas en ésta.',
 'protect-cantedit'            => 'No puedes cambiar el nivel de protección porque no tienes permiso para hacer ediciones.',

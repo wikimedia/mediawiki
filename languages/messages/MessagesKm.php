@@ -975,10 +975,14 @@ $2',
 'rev-deleted-text-view'       => "កំណែ​ប្រែ​នៃ​ទំព័រ​នេះ​ត្រូវ​បាន'''​លុប'''​។
 ក្នុង​នាម​ជា​អ្នក​អភិបាល​ អ្នក​អាច​មើល​កំណែប្រែ​​នេះ​បាន​។
 ប្រហែល​ជា​មាន​ព័ត៌មាន​លម្អិត​នៅ​ក្នុង​[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} កំណត់​ហេតុ​នៃ​ការ​លុប​]។",
+'rev-deleted-no-diff'         => "អ្នក​មិន​អាច​មើល​ភាព​ខុស​គ្នា​នេះ​បាន​ទេ​ពី​ព្រោះ​កំណែ​មួយ​នៃ​កំណែ​ប្រែ​ទាំង​អស់​ត្រូវ​បាន'''​លុប​'''។
+ប្រហែល​ជា​មាន​ព័ត៌មាន​លម្អិត​នៅ​ក្នុង​[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} កំណត់​ហេតុ​នៃ​ការ​លុប​]។",
 'rev-delundel'                => 'បង្ហាញ/លាក់',
 'revisiondelete'              => 'លុបចេញ / លែងលុបចេញ កំណែនានា',
 'revdelete-nooldid-title'     => 'គ្មានកំណែប្រែដែលមានគោលដៅទេ',
 'revdelete-nologtype-text'    => 'អ្នក​មិន​បាន​បញ្ជាក់​អំពី​ប្រភេទរបស់​​កំណត់​ហេតុ​ដើម្បី​អនុវត្ត​សកម្មភាព​នេះ​។',
+'revdelete-no-file'           => 'មិនមានឯកសារ​ដូចដែលបានបញ្ជាក់ទេ។',
+'revdelete-show-file-confirm' => 'តើ​អ្នក​ប្រាកដ​ហើយ​ថា​អ្នក​ចង់​មើល​កំណែ​ប្រែ​ដែល​បាន​លុប​នៃ​ឯកសារ​ "<nowiki>$1</nowiki>" ពី $2 នៅ $3 ?',
 'revdelete-show-file-submit'  => 'បាទ/ចាស',
 'revdelete-selected'          => "'''{{PLURAL:$2|កំណែប្រែ​ដែលបាន​ជ្រើសយក}}របស់​[[:$1]]:'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|ព្រឹត្តិការណ៍​កំណត់​ហេតុ​ដែលបាន​ជ្រើសយក}}:'''",
@@ -1007,6 +1011,7 @@ $2',
 'revdelete-unrestricted'      => 'បានដកការដាក់កំហិតចេញសម្រាប់អ្នកថែទាំប្រព័ន្ធ',
 'revdelete-hid'               => 'បានលាក់$1',
 'revdelete-unhid'             => 'ឈប់លាក់$1',
+'revdelete-log-message'       => '$1 ចំពោះ $2 {{PLURAL:$2|កំណែ​ប្រែ​}}',
 'logdelete-log-message'       => '$1 ចំពោះ $2 {{PLURAL:$2|ព្រឹត្តិការណ៍|ព្រឹត្តិការណ៍}}',
 
 # Suppression log
@@ -1141,6 +1146,7 @@ $2',
 'showingresults'                   => "ខាងក្រោមកំពុងបង្ហាញរហូតដល់ {{PLURAL:$1|'''១''' លទ្ឋផល|'''$1''' លទ្ឋផល}} ចាប់ផ្ដើមពីលេខ #'''$2'''។",
 'showingresultsnum'                => "កំពុងបង្ហាញ {{PLURAL:$3|'''1''' result|'''$3''' លទ្ឋផល}}ខាងក្រោម ចាប់ផ្ដើមដោយ #'''$2''' ។",
 'showingresultstotal'              => "{{PLURAL:$4|លទ្ឋផលស្វែងរក '''$1''' ក្នុងចំណោមលទ្ឋផលសរុប '''$3'''|លទ្ឋផលស្វែងរក '''$1 - $2''' ក្នុងចំណោមលទ្ឋផលសរុប '''$3'''}}",
+'showingresultsheader'             => "{{PLURAL:$4|លទ្ឋផលស្វែងរក '''$1''' ក្នុងចំណោមលទ្ឋផលសរុប '''$3'''|លទ្ឋផលស្វែងរក '''$1 - $2''' ក្នុងចំណោមលទ្ឋផលសរុប '''$3'''}} សម្រាប់ '''$4'''",
 'search-nonefound'                 => 'មិនមានលទ្ធផលណាមួយ​ត្រូវគ្នានឹងសំណើសុំនេះទេ',
 'powersearch'                      => 'ស្វែងរកថ្នាក់ខ្ពស់',
 'powersearch-legend'               => 'ស្វែងរកថ្នាក់ខ្ពស់',
@@ -1584,7 +1590,7 @@ $2',
 'redirectstofile'           => '{{PLURAL:$1|file redirects|$1 ឯកសារ​បញ្ជូនបន្ត}}ដូចតទៅនេះ ត្រូវ​បញ្ជូនបន្ដទៅ​ឯកសារ​នេះ​៖',
 'duplicatesoffile'          => '{{PLURAL:$1|file is a duplicate|$1 ឯកសារ​ជាច្បាប់ចម្លង}}ដូចតទៅ​នៃ​ឯកសារ​នេះ​ ([[Special:FileDuplicateSearch/$2|ព័ត៌មាន​លំអិត]])​៖',
 'sharedupload'              => 'ឯកសារ​នេះ​​បាន​មក​ពី $1 និង​អាច​ត្រូវ​បាន​ប្រើប្រាស់​នៅ​គម្រោង​ដទៃ​។',
-'sharedupload-desc-there'   => 'ឯកសារ​នេះ​មក​ពី​ និង​អាច​ត្រូវ​បាន​ប្រើប្រាស់​ដោយ​គម្រោង​ផ្សេង​ៗ​ដទៃ​ទៀត​។
+'sharedupload-desc-there'   => 'ឯកសារ​នេះ​មក​ពី ​$1 និង​អាច​ត្រូវ​បាន​ប្រើប្រាស់​ដោយ​គម្រោង​ផ្សេង​ៗ​ដទៃ​ទៀត​។
 សូម​មើល​[ទំព័របរិយាយ​ឯកសារ​ $2] សម្រាប់​ព័ត៌មាន​បន្ថែម​។',
 'filepage-nofile'           => 'គ្មានឯកសារ​ដែលមានឈ្មោះនេះទេ។',
 'filepage-nofile-link'      => 'គ្មានរូបភាពដែលមានឈ្មោះនេះទេ។ ប៉ុន្តែអ្នកអាច [$1 ផ្ទុក​វា​ឡើង​] ។',
@@ -1607,6 +1613,7 @@ $2',
 'filedelete-comment'          => 'ហេតុផលចំពោះការលុបចេញ៖',
 'filedelete-submit'           => 'លុបចេញ',
 'filedelete-success'          => "'''$1''' ត្រូវបានលុបចោលហើយ",
+'filedelete-success-old'      => "កំណែ​នៃ​'''[[Media:$1|$1]]''' កាលពី​ $3, $2 ត្រូវ​បាន​លុប​។",
 'filedelete-nofile'           => "មិនមាន '''$1''' ទេ។",
 'filedelete-otherreason'      => 'មូលហេតុបន្ថែមផ្សេងទៀត៖',
 'filedelete-reason-otherlist' => 'មូលហេតុផ្សេងទៀត',
@@ -1627,8 +1634,10 @@ $2',
 'listredirects' => 'បញ្ជីនៃការបញ្ជូនបន្ត',
 
 # Unused templates
-'unusedtemplates'    => 'ទំព័រគំរូ​ដែលលែងត្រូវបានប្រើ',
-'unusedtemplateswlh' => 'តំណភ្ជាប់ផ្សេងៗទៀត',
+'unusedtemplates'     => 'ទំព័រគំរូ​ដែលលែងត្រូវបានប្រើ',
+'unusedtemplatestext' => 'ទំព័រ​នេះ​មាន​រាយ​នាម​ទំព័រ​ទាំង​អស់​នៅ​ក្នុង​លំហ​ឈ្មោះ​{{ns:template}} ដែល​មិន​បាន​រាប់​បញ្ជូល​ក្នុង​ទំព័រ​ដទៃ​ទៀត​។
+សូម​ចងចាំ​ក្នុង​ការ​ត្រួត​ពិនិត្យ​​តំណ​ភ្ជាប់​ផ្សេង​ៗ​ទៀត​ដែល​ភ្ជាប់​មក​ទំព័រ​គំរូ​មុន​នឹង​លុប​វា​ចោល​។',
+'unusedtemplateswlh'  => 'តំណភ្ជាប់ផ្សេងៗទៀត',
 
 # Random page
 'randompage'         => 'ទំព័រចៃដន្យ',
@@ -2277,6 +2286,7 @@ $1 ត្រូវ​បាន​ទប់ស្កាត់​ហើយ​។ �
 'immobile-target-namespace'    => 'មិនអាចប្តូរទីតាំងទំព័រទៅលំហឈ្មោះ "$1" បានទេ',
 'immobile-source-page'         => 'ទំព័រនេះមិនអាចប្ដូរទីតាំងបានទេ។',
 'immobile-target-page'         => 'មិនអាចប្ដូរទីតាំងទៅកាន់ចំណងជើងគោលដៅនោះបានទេ។',
+'imagenocrossnamespace'        => 'មិន​អាច​ផ្លាស់​ទី​តាំង​ឯកសារ​ទៅ​កាន់​លំហ​ឈ្មោះ​ដែល​មិន​មែន​ជា​ឯកសារ​',
 'imageinvalidfilename'         => 'ឈ្មោះឯកសារគោលដៅមិនត្រឹមត្រូវ',
 'fix-double-redirects'         => 'បន្ទាន់សម័យនូវរាល់ការបញ្ជូនបន្តដែលសំដៅទៅរកចំណងជើងដើម',
 'move-leave-redirect'          => 'បន្សល់ទុកតំនបញ្ជូនបន្តនៅទំព័រចាស់',
@@ -2327,6 +2337,7 @@ $1 ត្រូវ​បាន​ទប់ស្កាត់​ហើយ​។ �
 'importinterwiki'            => 'ការនាំចូលអន្តរវិគី',
 'import-interwiki-source'    => 'ប្រភព​ វិគី​/ទំព័រ​៖',
 'import-interwiki-history'   => 'ចម្លង គ្រប់កំណែចាស់ នៃទំព័រនេះ',
+'import-interwiki-templates' => 'រាប់​បញ្ចូល​ទំព័រគំរូ​ទាំងអស់​',
 'import-interwiki-submit'    => 'នាំចូល',
 'import-interwiki-namespace' => 'បញ្ជូនទំព័រទៅក្នុងលំហឈ្មោះ​៖',
 'import-upload-filename'     => 'ឈ្មោះ​ឯកសារ​​៖',
@@ -2483,10 +2494,12 @@ $1 ត្រូវ​បាន​ទប់ស្កាត់​ហើយ​។ �
 'markedaspatrollederror' => 'មិនអាចគូសចំណាំថាបានល្បាត',
 
 # Patrol log
-'patrol-log-page' => 'កំណត់ហេតុនៃការតាមដាន',
-'patrol-log-line' => 'បានចំណាំការល្បាត $1 នៃ $2 ថា បានត្រួតពិនិត្យ $3',
-'patrol-log-auto' => '(ស្វ័យប្រវត្តិ)',
-'patrol-log-diff' => 'កំណែប្រែ​ $1',
+'patrol-log-page'      => 'កំណត់ហេតុនៃការតាមដាន',
+'patrol-log-header'    => 'នេះជាកំណត់ហេតុនៃកំណែ​ប្រែ​ដែល​បាន​តាមដាន',
+'patrol-log-line'      => 'បានចំណាំការល្បាត $1 នៃ $2 ថា បានត្រួតពិនិត្យ $3',
+'patrol-log-auto'      => '(ស្វ័យប្រវត្តិ)',
+'patrol-log-diff'      => 'កំណែប្រែ​ $1',
+'log-show-hide-patrol' => 'កំណត់ហេតុនៃការតាមដាន $1',
 
 # Image deletion
 'deletedrevision'                 => 'កំណែចាស់ដែលត្រូវបានលុបចេញ $1',
@@ -2552,6 +2565,8 @@ $1',
 'exif-bitspersample'               => 'Bits per component',
 'exif-orientation'                 => 'ទិស',
 'exif-planarconfiguration'         => 'ការរៀបចំទិន្នន័យ',
+'exif-xresolution'                 => 'Resolution ផ្ដេក (Horizontal resolution)',
+'exif-yresolution'                 => 'Resolution បញ្ឈរ​ (Vertical resolution)',
 'exif-stripoffsets'                => 'ទីតាំងទិន្នន័យរូបភាព',
 'exif-jpeginterchangeformatlength' => 'ទំហំជាបៃនៃទិន្នន័យJPEG',
 'exif-datetime'                    => 'កាលបរិច្ឆេទ​និង​ពេលវេលា​នៃ​ការផ្លាស់ប្តូរ​​ឯកសារ',
@@ -2626,11 +2641,15 @@ $1',
 'exif-lightsource-3'   => 'អំពូលតឹងស្តែន (ចង្កៀងរង្គុំ)',
 'exif-lightsource-4'   => 'បញ្ចេញពន្លឺ',
 'exif-lightsource-9'   => 'ធាតុអាកាសស្រឡះល្អ',
+'exif-lightsource-10'  => 'អាកាស​ធាតុ​​មាន​ពពក​ច្រើន​ (Cloudy weather)',
 'exif-lightsource-255' => 'ប្រភពពន្លឺដទៃ',
 
 'exif-focalplaneresolutionunit-2' => 'អ៊ិន្ឈ៍',
 
 'exif-sensingmethod-1' => 'មិនត្រូវបានកំណត់',
+
+'exif-whitebalance-0' => 'តុល្យភាព​ពណ៌ស​ដោយ​ស្វ័យ​ប្រវត្តិ (Auto white balance)',
+'exif-whitebalance-1' => 'តុល្យភាព​ពណ៌ស​ដោយ​ខ្លួន​ឯង​ (Manual white balance)',
 
 'exif-scenecapturetype-0' => 'ស្តង់ដារ',
 'exif-scenecapturetype-1' => 'រូបផ្តេក',
