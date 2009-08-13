@@ -402,6 +402,7 @@ this. Was used when mwEmbed was going to be an extension.
 * Do not transform EXIF fields with pure text to avoid results like
   foo,bar@example,com
 * (bug 20176) Fix login/logout links in skin CologneBlue
+* (bug 20203) "Powered by Mediawiki" now has height/width on image tag
 
 == API changes in 1.16 ==
 
