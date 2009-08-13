@@ -102,7 +102,8 @@ class CdbReader_PHP extends CdbReader {
 	}
 
 	function close() {
-		fclose( $this->handle );
+		if( isset($this->handle) )
+			fclose( $this->handle );
 		unset( $this->handle );
 	}
 
@@ -251,7 +252,8 @@ class CdbWriter_PHP extends CdbWriter {
 
 	public function close() {
 		$this->finish();
-		fclose( $this->handle );
+		if( isset($this->handle) )
+			fclose( $this->handle );
 		if ( wfIsWindows() && file_exists($this->realFileName) ) {
 			unlink( $this->realFileName );
 		}
