@@ -928,6 +928,8 @@ See on juba olemas.',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Ei saa kontot luua',
+'cantcreateaccount-text' => "Kasutaja [[User:$3|$3]] on blokeerinud kasutajanime loomise sellelt IP-aadressilt ('''$1'''). 
+Kasutaja $3 märkis põhjuseks ''$2''",
 
 # History pages
 'viewpagelogs'           => 'Vaata selle lehe logisid',
@@ -1029,12 +1031,14 @@ Jõus olevad keelud ja blokeeringud leiad [[Special:IPBlockList|blokeeritud IP-a
 
 # History merging
 'mergehistory'                     => 'Ühenda lehtede ajalood',
+'mergehistory-box'                 => 'Ühenda kahe lehekülje muudatuste ajalugu:',
 'mergehistory-from'                => 'Lehekülje allikas:',
 'mergehistory-into'                => 'Lehekülje sihtpunkt:',
 'mergehistory-list'                => 'Ühendatav redigeerimise ajalugu',
 'mergehistory-go'                  => 'Näita ühendatavaid muudatusi',
 'mergehistory-submit'              => 'Ühenda redaktsioonid',
 'mergehistory-empty'               => 'Ühendatavaid redaktsioone ei ole.',
+'mergehistory-success'             => 'Lehekülje [[:$1]] {{PLURAL:$3|üks redaktsioon|$3 redaktsiooni}} liideti lehega [[:$2]].',
 'mergehistory-fail'                => 'Muudatuste ajaloo liitmine ebaõnnestus. Palun kontrolli lehekülje ja aja parameetreid.',
 'mergehistory-no-source'           => 'Lehekülje allikat $1 ei ole.',
 'mergehistory-no-destination'      => 'Lehekülje sihtpunkti $1 ei ole.',
@@ -1121,6 +1125,7 @@ Jõus olevad keelud ja blokeeringud leiad [[Special:IPBlockList|blokeeritud IP-a
 'prevn'                            => 'eelmised {{PLURAL:$1|$1}}',
 'nextn'                            => 'järgmised {{PLURAL:$1|$1}}',
 'prevn-title'                      => '{{PLURAL:$1|Eelmine tulemus|Eelmised $1 tulemust}}',
+'nextn-title'                      => '{{PLURAL:$1|Järgmine tulemus|Järgmised $1 tulemust}}',
 'viewprevnext'                     => 'Näita ($1) ($2) ($3).',
 'searchmenu-legend'                => 'Otsingu sätted',
 'searchmenu-exists'                => "'''Lehekülg pealkirjaga \"[[:\$1]]\" on selles vikis olemas.'''",
@@ -2325,8 +2330,10 @@ kasutajaks ja [[Special:UserLogin|sisse logima]]',
 'imagenocrossnamespace'        => 'Faili ei saa teisaldada mõnda muusse nimeruumi',
 'imagetypemismatch'            => 'Uus faililaiend ei sobi selle tüübiga',
 'imageinvalidfilename'         => 'Sihtmärgi nimi on vigane',
+'fix-double-redirects'         => 'Värskenda kõik siia viitavad ümbersuunamislehed uuele pealkirjale',
 'move-leave-redirect'          => 'Jäta maha ümbersuunamisleht',
 'protectedpagemovewarning'     => "'''Hoiatus:''' See lehekülg on nii lukustatud, et ainult ülemaeelistega kasutajad saavad seda teisaldada.",
+'semiprotectedpagemovewarning' => "'''Pane tähele:''' See lehekülg on lukustatud sel viisil, et ainult registreeritud kasutajad saavad seda teisaldada.",
 
 # Export
 'export'            => 'Lehekülgede eksport',
@@ -2566,6 +2573,7 @@ $1',
 'mediawarning'         => "'''Hoiatus''': See fail võib sisaldada pahatahtlikku koodi, mille käivitamime võib kahjustada teie arvutisüsteemi.<hr />",
 'imagemaxsize'         => "Maksimaalne pildi suurus:<br />''(faili kirjeldusleheküljel)''",
 'thumbsize'            => 'Pisipildi suurus:',
+'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|lehekülg|lehekülge}}',
 'file-info-size'       => '($1 × $2 pikslit, faili suurus: $3, MIME tüüp: $4)',
 'file-nohires'         => '<small>Sellest suuremat pilti pole.</small>',
 'svg-long-desc'        => '(SVG fail, algsuurus $1 × $2 pikslit, faili suurus: $3)',
@@ -2853,6 +2861,9 @@ Kinnituskood aegub $4.',
 'livepreview-failed'  => 'Elav eelvaade ebaõnnestus! Proovi normaalset eelvaadet.',
 'livepreview-error'   => 'Ühendus ebaõnnestus: $1 "$2".
 Proovi normaalset eelvaadet.',
+
+# Friendlier slave lag warnings
+'lag-warn-normal' => 'Hilisemad muudatused kui $1 {{PLURAL:$1|sekund|sekundit}} ei pruugi selles loendis näha olla.',
 
 # Watchlist editor
 'watchlistedit-numitems'       => 'Teie jälgimisloendis on ilma arutelulehtedeta {{PLURAL:$1|1 leht|$1 lehte}}.',

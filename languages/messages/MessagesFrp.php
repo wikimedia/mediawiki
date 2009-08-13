@@ -647,7 +647,7 @@ En g·ènèral, cen arreve en siuvent un lim de vers un dif dèpassâ ou ben de 
 
 S’o est pas lo câs, pôt étre quèstion d’una cofierie dens la programeria.
 La volyéd signalar a un [[Special:ListUsers/sysop|administrator]] sen oubliar de lui endicar l’URL du lim.',
-'missingarticle-rev'   => '(numerô de vèrsion : $1)',
+'missingarticle-rev'   => '(numerô de la vèrsion : $1)',
 'missingarticle-diff'  => '(Dif : $1, $2)',
 'readonly_lag'         => 'La bâsa de balyês at étâ vèrrolyê ôtomaticament pendent que los sèrvors secondèros ratrapont lor retârd sur lo sèrvor principâl.',
 'internalerror'        => 'Èrror de dedens',

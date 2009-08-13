@@ -1008,9 +1008,9 @@ Die rede verskaf deur $3 is ''$2''",
 'showingresultsnum'                => "Hier onder {{PLURAL:$3|is '''1''' resultaat|is '''$3''' resultate}} vanaf #'''$2'''.",
 'showingresultstotal'              => "Hier onder is {{PLURAL:$4|resultaat '''$1''' van '''$3'''|resultate '''$1 - $2''' van '''$3'''}}",
 'showingresultsheader'             => "{{PLURAL:$5|Resultaat '''$1''' van '''$3'''|Resultate '''$1 - $2''' van '''$3'''}} vir '''$4'''",
-'nonefound'                        => "<strong>Nota</strong>: onsuksesvolle navrae word gewoonlik veroorsaak deur 'n soektog met algemene
-woorde wat nie geindekseer word nie, of spesifisering van meer as een woord (slegs blaaie wat alle navraagwoorde
-bevat, word gewys).",
+'nonefound'                        => "<strong>Opmerking</strong>: nie alle naamruimtes word by verstek deursoek nie. 
+As die voorvoegsel \"''all:''\" in 'n soekopdrag gebruik word, word alle bladsye deursoek (inklusief besprekengsbladsye, sjablone, ensovoorts). 
+U kan ook 'n naamruimte as voorvoegsel gebruik.",
 'search-nonefound'                 => 'Daar is geen resultate vir u soekopdrag nie.',
 'powersearch'                      => 'Soek',
 'powersearch-legend'               => 'Gevorderde soektog',

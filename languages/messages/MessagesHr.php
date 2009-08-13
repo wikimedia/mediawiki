@@ -3201,7 +3201,7 @@ Također možete koristiti [[Special:Watchlist/edit|uređivanje popisa putem ''k
 'duplicate-defaultsort' => 'Upozorenje: Glavni raspored "$2" poništava raniji glavni raspored "$1".',
 
 # Special:Version
-'version'                          => 'Verzija softvera',
+'version'                          => 'Inačica softvera',
 'version-extensions'               => 'Instalirana proširenja',
 'version-specialpages'             => 'Posebne stranice',
 'version-parserhooks'              => 'Kuke parsera',

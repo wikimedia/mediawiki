@@ -914,8 +914,8 @@ Titulus: '''({{int:cur}})''' = dissimilis ab emendatione novissima,
 'showingresults'                 => "Subter monstrans {{PLURAL:$1|'''1''' eventu|'''$1''' eventibus}} tenus incipiens ab #'''$2'''.",
 'showingresultsnum'              => "Subter monstrans {{PLURAL:$3|'''1''' eventum|'''$3''' eventus}} incipiens ab #'''$2'''.",
 'showingresultstotal'            => "Subter monstrans {{PLURAL:$4|eventum '''$1''' ex '''$3'''|eventus '''$1 - $2''' ex '''$3'''}}",
-'nonefound'                      => "'''Note''': Only some namespaces are searched by default.
-Try prefixing your query with ''all:'' to search all content (including talk pages, templates, etc), or use the desired namespace as prefix.",
+'nonefound'                      => "'''Adnotatio''': Solum aliquae spatia nominalia quaesita sunt semper.
+Conare praefixare tua inquisitionem cum ''all:'' ut quaeras contenta omnia (paginas, formulas et cetera) vel utere spatio nominali desiderato quasi praefixo.",
 'powersearch'                    => 'Quaerere callidissime',
 'powersearch-legend'             => 'Quaerere callidissime',
 'powersearch-ns'                 => 'Quaerere in spatiis nominalibus:',
