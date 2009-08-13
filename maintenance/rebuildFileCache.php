@@ -26,7 +26,8 @@ class RebuildFileCache extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->mDescription = "Build file cache for content pages";
-		$this->addArgs( array( 'start', 'overwrite' ) );
+		$this->addArgs( array( 'start' ) );
+		$this->addOption( 'overwrite', 'Refresh page cache', false );
 		$this->setBatchSize( 100 );
 	}
 
@@ -36,7 +37,11 @@ class RebuildFileCache extends Maintenance {
 			$this->error( "Nothing to do -- \$wgUseFileCache is disabled.", true );
 		}
 		$wgDisableCounters = false;
-		$start = intval( $this->getArg( 0, 0 ) );
+		$start = $this->getArg( 0, 0 );
+		if( !ctype_digit($start) ) {
+			$this->error( "Invalid value for start parameter.", true );
+		}
+		$start = intval($start);
 		$overwrite = $this->hasArg(1) && $this->getArg(1) === 'overwrite';
 		$this->output( "Building content page file cache from page {$start}!\n" );
 
