@@ -13,6 +13,7 @@
  * @author Crazymadlover
  * @author Eduardo.mps
  * @author GKnedo
+ * @author Giro720
  * @author Heldergeovane
  * @author Jorge Morais
  * @author Leonardo.stabile
@@ -246,13 +247,13 @@ $messages = array(
 'editfont-serif'     => 'Serifada',
 
 # Dates
-'sunday'        => 'Domingo',
-'monday'        => 'Segunda-feira',
-'tuesday'       => 'Terça-feira',
-'wednesday'     => 'Quarta-feira',
-'thursday'      => 'Quinta-feira',
-'friday'        => 'Sexta-feira',
-'saturday'      => 'Sábado',
+'sunday'        => 'domingo',
+'monday'        => 'segunda-feira',
+'tuesday'       => 'terça-feira',
+'wednesday'     => 'quarta-feira',
+'thursday'      => 'quinta-feira',
+'friday'        => 'sexta-feira',
+'saturday'      => 'sábado',
 'sun'           => 'Dom',
 'mon'           => 'Seg',
 'tue'           => 'Ter',
@@ -284,7 +285,7 @@ $messages = array(
 'october-gen'   => 'Outubro',
 'november-gen'  => 'Novembro',
 'december-gen'  => 'Dezembro',
-'jan'           => 'Jan',
+'jan'           => 'jan',
 'feb'           => 'Fev',
 'mar'           => 'Mar',
 'apr'           => 'Abr',
@@ -2380,7 +2381,7 @@ Por favor, escolha outro nome.',
 'movelogpagetext'              => 'Abaixo encontra-se uma lista de páginas movidas.',
 'movesubpage'                  => '{{PLURAL:$1|Sub-página|Sub-páginas}}',
 'movesubpagetext'              => 'Esta página tem $1 {{PLURAL:$1|sub-página mostrada|sub-páginas mostradas}} abaixo.',
-'movenosubpage'                => 'Esta página não tem sub-páginas.',
+'movenosubpage'                => 'Esta página não tem subpáginas.',
 'movereason'                   => 'Motivo:',
 'revertmove'                   => 'reverter',
 'delete_and_move'              => 'Eliminar e mover',

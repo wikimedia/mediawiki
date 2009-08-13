@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author A1
  * @author AS
  * @author Ahonc
  * @author Aleksandrit
@@ -984,9 +985,9 @@ $3 зазначив таку причину: ''$2''",
 Ви можете переглянути її, оскільки є адміністратором проекту.
 Можливо, є пояснення в [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} журналі вилучень].",
 'rev-deleted-no-diff'         => "Ви не можете переглянути цю різницю версій, оскільки одна з версій сторінки '''вилучена'''.
-Можливо, деталі можна знайти в [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} журналі приховань].",
+Можливо, деталі можна знайти в [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} журналі вилучень].",
 'rev-deleted-unhide-diff'     => "Одна з версій сторінки '''вилучена'''.
-Можливо, деталі можна знайти в [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} журналі приховань].
+Можливо, деталі можна знайти в [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} журналі вилучень].
 Ви можете [$1 переглянути цю версію], оскільки є адміністратором.",
 'rev-delundel'                => 'показати/сховати',
 'revisiondelete'              => 'Вилучити / відновити версії сторінки',
@@ -1493,6 +1494,7 @@ $1",
 'recentchanges-feed-description'    => 'Відстежувати останні зміни у вікі в цьому потоці.',
 'recentchanges-label-legend'        => 'Легенда: $1.',
 'recentchanges-legend-newpage'      => '$1 - нова сторінка',
+'recentchanges-label-newpage'       => 'Цим редагуванням створена нова сторінка',
 'recentchanges-legend-minor'        => '$1 - незначне редагування',
 'recentchanges-label-minor'         => 'Це незначна зміна',
 'recentchanges-legend-bot'          => '$1 — редагування бота',

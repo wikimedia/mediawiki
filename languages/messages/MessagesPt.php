@@ -8,6 +8,7 @@
  * @file
  *
  * @author Crazymadlover
+ * @author Giro720
  * @author Heldergeovane
  * @author Jorge Morais
  * @author Leonardo.stabile
@@ -2342,7 +2343,7 @@ Por favor, escolha outro nome.',
 'movelogpagetext'              => 'Abaixo encontra-se uma lista de páginas movidas.',
 'movesubpage'                  => '{{PLURAL:$1|Sub-página|Sub-páginas}}',
 'movesubpagetext'              => 'Esta página tem $1 {{PLURAL:$1|sub-página mostrada|sub-páginas mostradas}} abaixo.',
-'movenosubpage'                => 'Esta página não tem sub-páginas.',
+'movenosubpage'                => 'Esta página não tem subpáginas.',
 'movereason'                   => 'Motivo:',
 'revertmove'                   => 'reverter',
 'delete_and_move'              => 'Eliminar e mover',
