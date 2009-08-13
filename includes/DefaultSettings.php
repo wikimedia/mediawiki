@@ -3589,7 +3589,7 @@ $wgAllowSpecialInclusion = true;
  */
 $wgSyncHTTPTimeout = 25;
 /**
-* Timeout for asynchronous http request that run in a backgournd php proccess
+* Timeout for asynchronous http request that run in a background php proccess
 * default set to 20 min
 */
 $wgAsyncHTTPTimeout = 60*20;
