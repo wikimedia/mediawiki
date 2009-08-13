@@ -78,7 +78,7 @@ class Http {
 		// check if we can find phpCliPath (for doing a background shell request to php to do the download:
 		if( $wgPhpCli && wfShellExecEnabled() && $dl_mode == self::ASYNC_DOWNLOAD ){
 			wfDebug( __METHOD__ . "\ASYNC_DOWNLOAD\n" );
-			// setup session and shell call:
+			//setup session and shell call:
 			return self::initBackgroundDownload( $url, $target_file_path, $content_length );
 		} else {
 			wfDebug( __METHOD__ . "\nSYNC_DOWNLOAD\n" );
@@ -143,11 +143,14 @@ class Http {
 	 *  (a given client could have started a few http uploads at once)
 	 */
 	public static function doSessionIdDownload( $session_id, $upload_session_key ){
-		global $wgUser, $wgEnableWriteAPI, $wgAsyncHTTPTimeout, $wgServer;
-		wfDebug( __METHOD__ . "\n\ndoSessionIdDownload:\n\n" );
-
+		global $wgUser, $wgEnableWriteAPI, $wgAsyncHTTPTimeout, $wgServer,
+				$wgSessionsInMemcached, $wgSessionHandler, $wgSessionStarted;
+		wfDebug( __METHOD__ . "\n\n doSessionIdDownload :\n\n" );
 		// set session to the provided key:
 		session_id( $session_id );
+		//fire up mediaWiki session system:
+		wfSetupSession();
+
 		// start the session
 		if( session_start() === false ){
 			wfDebug( __METHOD__ . ' could not start session' );
@@ -167,8 +170,9 @@ class Http {
 		if( isset( $sd['orgServer'] ) && $sd['orgServer'] ){
 			$wgServer = $sd['orgServer'];
 		}
-		// close down the session so we can other http queries can get session updates:
-		session_write_close();
+		// close down the session so we can other http queries can get session updates: (if not $wgSessionsInMemcached)
+		if( !$wgSessionsInMemcached )
+			session_write_close();
 
 		$req = new HttpRequest( $sd['url'], array(
 			'target_file_path'  => $sd['target_file_path'],
@@ -177,7 +181,7 @@ class Http {
 			'do_close_session_update' => true
 		) );
 		// run the actual request .. (this can take some time)
-		wfDebug( __METHOD__ . 'do Request: ' . $sd['url'] . ' tf: ' . $sd['target_file_path'] );
+		wfDebug( __METHOD__ . 'do Session Download :: ' . $sd['url'] . ' tf: ' . $sd['target_file_path'] . "\n\n");
 		$status = $req->doRequest();
 		//wfDebug("done with req status is: ". $status->isOK(). ' '.$status->getWikiText(). "\n");
 
@@ -220,7 +224,7 @@ class Http {
 			$printer->execute();
 			$apiUploadResult = ob_get_clean();
 
-			wfDebug( __METHOD__ . "\n\n got api result:: $apiUploadResult \n" );
+			//wfDebug( __METHOD__ . "\n\n got api result:: $apiUploadResult \n" );
 			// the status updates runner will grab the result form the session:
 			$sd['apiUploadResult'] = $apiUploadResult;
 		}
@@ -430,7 +434,6 @@ class HttpRequest {
 
 	public function doPhpReq(){
 		global $wgTitle, $wgHTTPProxy;
-
 		# Check for php.ini allow_url_fopen
 		if( !ini_get( 'allow_url_fopen' ) ){
 			return Status::newFatal( 'allow_url_fopen needs to be enabled for http copy to work' );
@@ -461,7 +464,6 @@ class HttpRequest {
 				'timeout' => $this->timeout )
 			)
 		);
-
 		$fh = fopen( $this->url, "r", false, $fcontext);
 
 		// set the write back function (if we are writing to a file)
@@ -473,12 +475,11 @@ class HttpRequest {
 				return $status;
 			}
 
-			// read $fh into the simpleFileWriter (grab in 64K chunks since its likely a media file)
+			// read $fh into the simpleFileWriter (grab in 64K chunks since its likely a ~large~ media file)
 			while ( !feof( $fh ) ) {
 				$contents = fread( $fh, 65536 );
 				$cwrite->callbackWriteBody( $fh, $contents );
 			}
-
 			$cwrite->close();
 			// check for simpleFileWriter error:
 			if( !$cwrite->status->isOK() ){
@@ -543,7 +544,6 @@ class simpleFileWriter {
 				$wgLang->formatSize( $wgMaxUploadSize ) . ' ' );
 			return 0;
 		}
-
 		// if more than session_update_interval second have passed update_session_progress
 		if( $this->do_close_session_update && $this->upload_session_key &&
 			( ( time() - $this->prevTime ) > $this->session_update_interval ) ) {
@@ -559,13 +559,16 @@ class simpleFileWriter {
 	}
 
 	public function update_session_progress(){
+		global $wgSessionsInMemcached;
 		$status = Status::newGood();
-		// start the session (if nessesary)
-		if(  @session_start() === false){
-			wfDebug( __METHOD__ . ' could not start session' );
-			exit( 0 );
+		// start the session (if necessary)
+		if( !$wgSessionsInMemcached ){
+			if(  @session_start() === false){
+				wfDebug( __METHOD__ . ' could not start session' );
+				exit( 0 );
+			}
 		}
-		$sd =& $_SESSION['wsDownload'][$this->upload_session_key];
+		$sd =& $_SESSION['wsDownload'][ $this->upload_session_key ];
 		// check if the user canceled the request:
 		if( isset( $sd['user_cancel'] ) && $sd['user_cancel'] == true ){
 			//@@todo kill the download
@@ -573,9 +576,10 @@ class simpleFileWriter {
 		}
 		// update the progress bytes download so far:
 		$sd['loaded'] = $this->current_fsize;
-		// close down the session so we can other http queries can get session updates:
 
-		session_write_close();
+		// close down the session so we can other http queries can get session updates:
+		if( !$wgSessionsInMemcached )
+			session_write_close();
 
 		return $status;
 	}
