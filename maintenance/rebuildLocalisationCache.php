@@ -5,7 +5,7 @@
  * using $wgLocalisationCacheConf['manualRecache'] = true;
  *
  * Usage:
- *    php rebuildLocalisationCache.php [--force]
+ *    php rebuildLocalisationCache.php [--force] [--threads=N]
  *
  * Use --force to rebuild all files, even the ones that are not out of date.
  * Use --threads=N to fork more threads.
@@ -69,30 +69,41 @@ class RebuildLocalisationCache extends Maintenance {
 				// Child, reseed because there is no bug in PHP:
 				// http://bugs.php.net/bug.php?id=42465
 				mt_srand(getmypid());
-				$this->doRebuild( $codes, $numRebuilt, $lc, $force );
-				exit();
+				$numRebuilt = $this->doRebuild( $codes, $lc, $force );
+				// Abuse the exit value for the count of rebuild languages
+				exit($numRebuilt);
 			} elseif ($pid === -1) {
 				// Fork failed or one thread, do it serialized
-				$this->doRebuild( $codes, $numRebuilt, $lc, $force );
+				$numRebuilt += $this->doRebuild( $codes, $lc, $force );
 			} else {
 				// Main thread
 				$pids[] = $pid;
 			}
 		}
 		// Wait for all children
-		foreach ( $pids as $pid ) pcntl_waitpid($pid, $status);
+		foreach ( $pids as $pid ) {
+			$status = 0;
+			pcntl_waitpid($pid, $status);
+			// Fetch the count from the return value
+			$numRebuilt += pcntl_wexitstatus($status);
+		}
 
 		$this->output( "$numRebuilt languages rebuilt out of $total\n" );
-		if ( $numRebuilt == 0 ) {
+		if ( $numRebuilt === 0 ) {
 			$this->output( "Use --force to rebuild the caches which are still fresh.\n" );
 		}
 	}
 
 	/**
-	 * Rebuild language cache
-	 * @todo Document
+	 * Helper function to rebuild list of languages codes. Prints the code
+	 * for each language which is rebuilt.
+	 * @param $codes  list  List of language codes to rebuild.
+	 * @param $lc  object  Instance of LocalisationCache_BulkLoad (?)
+	 * @param $force  bool  Rebuild up-to-date languages
+	 * @return  int  Number of rebuilt languages
 	 */
-	private function doRebuild( $codes, &$numRebuilt, $lc, $force ) {
+	private function doRebuild( $codes, $lc, $force ) {
+		$numRebuilt = 0;
 		foreach ( $codes as $code ) {
 			if ( $force || $lc->isExpired( $code ) ) {
 				$this->output( "Rebuilding $code...\n" );
@@ -100,6 +111,7 @@ class RebuildLocalisationCache extends Maintenance {
 				$numRebuilt++;
 			}
 		}
+		return $numRebuilt;
 	}
 }
 
