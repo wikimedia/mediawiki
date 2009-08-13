@@ -827,6 +827,10 @@ class LCStore_CDB implements LCStore {
 					"directory \"{$this->directory}\"" );
 			}
 		}
+		// Close reader to stop permission errors on write
+		if( !empty($this->readers[$code]) ) {
+			$this->readers[$code]->close();
+		}
 		$this->writer = CdbWriter::open( $this->getFileName( $code ) );
 		$this->currentLang = $code;
 	}
@@ -836,7 +840,7 @@ class LCStore_CDB implements LCStore {
 		$this->writer->close();
 		$this->writer = null;
 
-		// Reopen the reader
+		// Close and remove the reader
 		if ( !empty( $this->readers[$this->currentLang] ) ) {
 			$this->readers[$this->currentLang]->close();
 		}
