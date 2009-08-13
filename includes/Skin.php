@@ -1492,7 +1492,7 @@ END;
 				$out .= '<a href="'.$url.'">';
 			}
 			$text = htmlspecialchars( $wgRightsText );
-			$out .= "<img src=\"$icon\" alt='$text' />";
+			$out .= "<img src=\"$icon\" alt=\"$text\" width=\"88\" height=\"31\" />";
 			if ( $wgRightsUrl ) {
 				$out .= '</a>';
 			}
