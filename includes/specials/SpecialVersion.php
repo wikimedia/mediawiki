@@ -207,7 +207,7 @@ class SpecialVersion extends SpecialPage {
 						isset ( $extension['author'] )         ? $extension['author']      : '',
 						isset ( $extension['url'] )            ? $extension['url']         : null,
 						isset ( $extension['description'] )    ? $extension['description'] : '',
-						isset ( $extension['descriptionmsg'] ) ? $extension['descriptionmsg'] : ''
+						isset ( $extension['descriptionmsg'] ) ? $extension['descriptionmsg'] : null
 					);
 				}
 			}
