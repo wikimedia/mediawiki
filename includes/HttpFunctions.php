@@ -27,7 +27,8 @@ class Http {
 	/**
 	 * Simple wrapper for Http::request( 'GET' )
 	 */
-	public static function get( $url, $timeout = false ) {
+	public static function get( $url, $timeout = false, $opts = array() ) {
+		global $wgSyncHTTPTimeout;
 		$opts = array();
 		if( $timeout )
 			$opts['timeout'] = $timeout;
@@ -224,7 +225,6 @@ class Http {
 			$printer->execute();
 			$apiUploadResult = ob_get_clean();
 
-			//wfDebug( __METHOD__ . "\n\n got api result:: $apiUploadResult \n" );
 			// the status updates runner will grab the result form the session:
 			$sd['apiUploadResult'] = $apiUploadResult;
 		}
@@ -278,7 +278,13 @@ class Http {
 class HttpRequest {
 	var $target_file_path;
 	var $upload_session_key;
-
+	var $supportedCurlOpts = array(
+		'CURLOPT_SSL_VERIFYHOST',
+		'CURLOPT_CAINFO',
+		'CURLOPT_COOKIE',
+		'CURLOPT_FOLLOWLOCATION',
+		'CURLOPT_FAILONERROR'
+	);
 	function __construct( $url, $opt ){
 		global $wgSyncHTTPTimeout;
 		// double check that it's a valid url:
@@ -286,12 +292,25 @@ class HttpRequest {
 
 		// set the timeout to default sync timeout (unless the timeout option is provided)
 		$this->timeout = ( isset( $opt['timeout'] ) ) ? $opt['timeout'] : $wgSyncHTTPTimeout;
+		//check special key default
+		if($timeout == 'default'){
+			$opts['timeout'] = $wgSyncHTTPTimeout;
+		}
+
 		$this->method = ( isset( $opt['method'] ) ) ? $opt['method'] : 'GET';
 		$this->target_file_path = ( isset( $opt['target_file_path'] ) ) ? $opt['target_file_path'] : false;
 		$this->upload_session_key = ( isset( $opt['upload_session_key'] ) ) ? $opt['upload_session_key'] : false;
 		$this->headers_only = ( isset( $opt['headers_only'] ) ) ? $opt['headers_only'] : false;
 		$this->do_close_session_update = isset( $opt['do_close_session_update'] );
 		$this->postData = isset( $opt['postdata'] ) ? $opt['postdata'] : '';
+
+		$this->curlOpt = array();
+		//check for some curl options:
+		foreach($this->supportedCurlOpts as $curlOpt){
+			if(isset($opt[ $curlOpt ])){
+				$this->curlOpt[$curlOpt] = $opt[ $curlOpt ];
+			}
+		}
 	}
 
 	/**
@@ -330,6 +349,11 @@ class HttpRequest {
 
 		curl_setopt( $c, CURLOPT_TIMEOUT, $this->timeout );
 		curl_setopt( $c, CURLOPT_USERAGENT, Http::userAgent() );
+
+		//set any curl specific opts:
+		foreach($this->curlOpt as $optKey => $optVal){
+			curl_setopt($c, constant( $optKey ),  $optVal);
+		}
 
 		if ( $this->headers_only ) {
 			curl_setopt( $c, CURLOPT_NOBODY, true );
