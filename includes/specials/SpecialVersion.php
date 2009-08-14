@@ -62,7 +62,8 @@ class SpecialVersion extends SpecialPage {
 		copyright © 2001-2009 Magnus Manske, Brion Vibber, Lee Daniel Crocker,
 		Tim Starling, Erik Möller, Gabriel Wicke, Ævar Arnfjörð Bjarmason,
 		Niklas Laxström, Domas Mituzas, Rob Church, Yuri Astrakhan, Aryeh Gregor,
-		Aaron Schulz and others.
+		Aaron Schulz, Andrew Garrett, Raimond Spekking, Alexandre Emsenhuber,
+		Siebrand Mazeland, Chad Horohoe and others.
 
 		MediaWiki is free software; you can redistribute it and/or modify
 		it under the terms of the GNU General Public License as published by
