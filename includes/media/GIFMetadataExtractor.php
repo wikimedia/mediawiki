@@ -57,7 +57,7 @@ class GIFMetadataExtractor {
 				// Found a frame
 				$frameCount++;
 				
-				## Skip dimensions (Why is this 8 bytes and not 4?)
+				## Skip bounding box
 				fread( $fh, 8 );
 				
 				## Read BPP
@@ -76,6 +76,7 @@ class GIFMetadataExtractor {
 				if ($extension_code == 0xF9) {
 					// Graphics Control Extension.
 					fread( $fh, 1 ); // Block size
+					
 					fread( $fh, 1 ); // Transparency, disposal method, user input
 					
 					$buf = fread( $fh, 2 ); // Delay, in hundredths of seconds.
@@ -99,11 +100,16 @@ class GIFMetadataExtractor {
 					
 					// NETSCAPE2.0 (application name)
 					if ($blockLength != 11 || $data != 'NETSCAPE2.0') {
+						fseek( $fh, -($blockLength + 1), SEEK_CUR );
 						self::skipBlock();
 						continue;
 					}
 					
-					fread( $fh, 2 ); // Block length and introduction, should be 03 01
+					$data = fread( $fh, 2 ); // Block length and introduction, should be 03 01
+					
+					if ($data != "\x03\x01") {
+						throw new Exception( "Expected \x03\x01, got $data" );
+					}
 					
 					// Unsigned little-endian integer, loop count or zero for "forever"
 					$loopData = fread( $fh, 2 );
@@ -116,6 +122,8 @@ class GIFMetadataExtractor {
 					
 					// Read out terminator byte
 					fread( $fh, 1 );
+				} else {
+					self::skipBlock( $fh );
 				}
 			} elseif ( $buf == self::$gif_term ) {
 				break;
