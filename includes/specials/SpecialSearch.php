@@ -439,9 +439,14 @@ class SpecialSearch {
 
 		if( $titleSnippet == '' )
 			$titleSnippet = null;
+		
+		$link_t = clone $t;
+		
+		wfRunHooks( 'ShowSearchHitTitle',
+					array( &$link_t, &$titleSnippet, $result, $terms, $this ) );
 
 		$link = $this->sk->linkKnown(
-			$t,
+			$link_t,
 			$titleSnippet
 		);
 
