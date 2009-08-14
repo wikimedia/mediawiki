@@ -148,6 +148,8 @@ class StubUserLang extends StubObject {
 	function _newObject() {
 		global $wgContLanguageCode, $wgRequest, $wgUser, $wgContLang;
 		$code = $wgRequest->getVal( 'uselang', $wgUser->getOption( 'language' ) );
+		// BCP 47 - letter case MUST NOT carry meaning
+		$code = strtolower( $code );
 
 		# Validate $code
 		if( empty( $code ) || !preg_match( '/^[a-z-]+$/', $code ) || ( $code === 'qqq' ) ) {
