@@ -306,11 +306,17 @@ class ConfEditor {
 	function parseScalar( $str ) {
 		if ( $str !== '' && $str[0] == '\'' )
 			// Single-quoted string
-			return strtr( substr( $str, 1, -1 ),
+			// @fixme trim() call is due to mystery bug where whitespace gets
+			// appended to the token; without it we ended up reading in the
+			// extra quote on the end!
+			return strtr( substr( trim( $str ), 1, -1 ),
 				array( '\\\'' => '\'', '\\\\' => '\\' ) );
 		if ( $str !== '' && @$str[0] == '"' )
 			// Double-quoted string
-			return stripcslashes( substr( $str, 1, -1 ) );
+			// @fixme trim() call is due to mystery bug where whitespace gets
+			// appended to the token; without it we ended up reading in the
+			// extra quote on the end!
+			return stripcslashes( substr( trim( $str ), 1, -1 ) );
 		if ( substr( $str, 0, 4 ) == 'true' )
 			return true;
 		if ( substr( $str, 0, 5 ) == 'false' )
