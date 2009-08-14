@@ -978,7 +978,8 @@ DEPRECATED: Use $wgLogActions
 &$actionText: array of strings
 
 'MagicWordMagicWords': When defining new magic word.
-DEPRECATED: Use LanguageGetMagic hook instead
+DEPRECATED: use $magicWords in a file listed in 
+$wgExtensionMessagesFiles instead.
 $magicWords: array of strings
 
 'MagicWordwgVariableIDs': When definig new magic words IDs.
