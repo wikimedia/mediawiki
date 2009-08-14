@@ -553,6 +553,7 @@ function os_eventKeyup(e){
 	if(r == null)
 		return; // not our event
 
+	os_last_keypress = 0;
 	// some browsers won't generate keypressed for arrow keys, catch it
 	if(os_keypressed_count == 0){
 		os_processKey(r,os_cur_keypressed,targ);
@@ -596,9 +597,9 @@ function os_eventKeypress(e){
 		var d = new Date()
 		var now = d.getTime();
 		if(now - os_last_keypress < 120){
-			os_last_keypress = now;
 			return;
 		}
+		os_last_keypress = now;
 	}
 
 	os_keypressed_count++;
@@ -616,7 +617,6 @@ function os_eventKeydown(e){
 	os_mouse_moved = false;
 
 	os_cur_keypressed = (e.keyCode == undefined) ? e.which : e.keyCode;
-	os_last_keypress = 0;
 	os_keypressed_count = 0;
 }
 
