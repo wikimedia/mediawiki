@@ -292,7 +292,7 @@ class HttpRequest {
 		// set the timeout to default sync timeout (unless the timeout option is provided)
 		$this->timeout = ( isset( $opt['timeout'] ) ) ? $opt['timeout'] : $wgSyncHTTPTimeout;
 		//check special key default
-		if($timeout == 'default'){
+		if($this->timeout == 'default'){
 			$opts['timeout'] = $wgSyncHTTPTimeout;
 		}
 
