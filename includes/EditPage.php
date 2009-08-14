@@ -1313,7 +1313,7 @@ class EditPage {
 		$cancel = $sk->link(
 			$wgTitle,
 			wfMsgExt( 'cancel', array( 'parseinline' ) ),
-			array(),
+			array( 'id' => 'mw-editform-cancel' ),
 			array(),
 			array( 'known', 'noclasses' )
 		);
