@@ -1558,11 +1558,9 @@ remoteSearchDriver.prototype = {
 	},
 	closeAll:function(){
 		 var _this = this;
-		 js_log("close all");
-		 $j('#rsd_resource_preview').remove();
-		 $j('#rsd_resource_edit').remove();
-		 //$j(_this.target_container).dialog('close');
-		 $j(_this.target_container).hide();		 
+		 js_log("close all:: "  + _this.target_container);
+		 _this.cancelClipEditCB();
+		 $j(_this.target_container).dialog('close');
 	},
 	setResultBarControl:function( ){
 		var _this = this;
