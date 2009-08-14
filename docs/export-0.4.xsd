@@ -10,7 +10,7 @@
 	as a list of defined namespaces.
 	
 	Version 0.4 adds per-revision delete flags, log exports,
-	and a per-page redirect flag.
+	discussion threading data, and a per-page redirect flag.
  
 	The canonical URL to the schema document is:
 	http://www.mediawiki.org/xml/export-0.4.xsd
@@ -114,6 +114,9 @@
 				<element name="upload" type="mw:UploadType" />
 				<element name="logitem" type="mw:LogItemType" />
 			</choice>
+			
+			<!-- Zero or One sets of discussion threading data -->
+			<element minOccurs="0" maxOccurs="1" type="mw:DiscussionThreadingInfo" />
 		</sequence>
 	</complexType>
 	
@@ -187,6 +190,20 @@
 			<element name="size" type="positiveInteger" />
 			
 			<!-- TODO: add other metadata fields -->
+		</sequence>
+	</complexType>
+	
+	<!-- Discussion threading data for LiquidThreads -->
+	<complexType name="DiscussionThreadingInfo">
+		<sequence>
+			<element name="ThreadSubject" type="string" />
+			<element name="ThreadParent" type="positiveInteger" />
+			<element name="ThreadAncestor" type="positiveInteger" />
+			<element name="ThreadPage" type="string" />
+			<element name="ThreadID" type="positiveInteger" />
+			<element name="ThreadAuthor" type="string" />
+			<element name="ThreadEditStatus" type="string" />
+			<element name="ThreadType" type="string" />
 		</sequence>
 	</complexType>
 	
