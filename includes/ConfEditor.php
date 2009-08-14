@@ -310,8 +310,7 @@ class ConfEditor {
 				array( '\\\'' => '\'', '\\\\' => '\\' ) );
 		if ( $str !== '' && @$str[0] == '"' )
 			// Double-quoted string
-			return strtr( stripcslashes( substr( $str, 1, -1 ) ),
-				 array( '\'' => '\\\'' ) );
+			return stripcslashes( substr( $str, 1, -1 ) );
 		if ( substr( $str, 0, 4 ) == 'true' )
 			return true;
 		if ( substr( $str, 0, 5 ) == 'false' )
