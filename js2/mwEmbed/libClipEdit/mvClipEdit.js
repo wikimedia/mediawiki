@@ -83,7 +83,7 @@ mvClipEdit.prototype = {
 			this.doDisplayEdit();
 		}else{				
 			//check the media_type:
-			js_log('mvClipEdit:: media type:' + this.media_type + ' base width: ' + this.rObj.width + ' bh: ' + this.rObj.height);		
+			//js_log('mvClipEdit:: media type:' + this.media_type + ' base width: ' + this.rObj.width + ' bh: ' + this.rObj.height);		
 			//could seperate out into media Types objects for now just call method
 			if(this.media_type == 'image'){
 				this.setUpImageCtrl();
@@ -466,7 +466,7 @@ mvClipEdit.prototype = {
 		var b_target =   _this.p_rsdObj.target_container + '~ .ui-dialog-buttonpane';
 		//empty the ui-dialog-buttonpane bar:
 		$j(b_target).empty();
-		for(var cbType in _this.controlActionsCb){
+		for( var cbType in _this.controlActionsCb ){
 			switch(cbType){
 				case 'insert_seq':
 					$j(b_target).append( $j.btnHtml(gM('mv_insert_into_sequence'), 'mv_insert_sequence', 'check' ) + ' ' )

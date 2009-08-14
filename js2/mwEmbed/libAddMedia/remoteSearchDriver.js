@@ -17,7 +17,7 @@ loadGM({
 	"rsd_results_prev" : "previous ",
 	"rsd_no_results"   : "No search results for <b>$1</b>",
 
-	"mv_upload" : "Upload",
+	"upload_tab" : "Upload",
 	"rsd_layout" : "Layout:",
 	"rsd_resource_edit" : "Edit Resource: $1",
 	"resource_description_page": "Resource Description Page",
@@ -34,7 +34,9 @@ loadGM({
 	"no_import_by_url": "This User or Wiki <b>can not</b> import assets from remote URLs. </p><p> Do you need to Login? </p><p> If permissions are set you may have to enable $wgAllowCopyUploads, <a href=\"http://www.mediawiki.org/wiki/Manual:$wgAllowCopyUploads\">more info</a></p>",
 	"results_from": "Results from <a href=\"$1\" target=\"_new\" >$2</a>",
 	
-	"missing_desc_see_soruce": "This Asset is missing a description. Please see the [$1 orginal source] and help describe it"
+	"missing_desc_see_soruce": "This Asset is missing a description. Please see the [$1 orginal source] and help describe it",
+	
+	"rsd_config_error": "Add media Wizard configuation error: $1"	
 });
 var default_remote_search_options = {
 	'profile':'mediawiki_edit',
@@ -63,7 +65,8 @@ var default_remote_search_options = {
 	'cFileNS':'File', //what is the cannonical namespace for images
 					  //@@todo (should get that from the api or inpage vars)
 					 
-	'enable_upload_tab':true // if we want to enable an uploads tab:	
+	'enable_upload_tab':true, // if we want to enable an uploads tab:	
+	'upload_api_target'	   : 'http://127.0.0.1/wiki_trunk/api.php' // can be local or the url of the upload api.
 }
 if(typeof wgServer == 'undefined')
 	wgServer = '';
@@ -93,7 +96,7 @@ remoteSearchDriver.prototype = {
 	 * sets the default display item:
 	 * can be any content_providers key or 'all'
 	 */
-	disp_item : 'this_wiki',
+	disp_item : 'upload',
 	/** the default content providers list. 
 	 *
 	 * (should be note that special tabs like "upload" and "combined" don't go into the content proviers list:
@@ -330,15 +333,16 @@ remoteSearchDriver.prototype = {
 			}
 		}	
 		
-		//make sure the selected cp has an api to query against: 
-		if(! this.content_providers[ this.disp_item ].api_url  ){
+		//make sure the selected cp has an api to query against (if its a content_provider 		
+		if( this.content_providers[ this.disp_item ] &&
+			!this.content_providers[ this.disp_item ].api_url  ){
 			for(var inx in this.content_providers){
 				if( this.content_providers[ inx ].api_url ){
 					this.disp_item = inx;
 					break;
 				}
 			}
-		}
+		}		
 			
 		
 		//set up the default model config: 
@@ -554,34 +558,49 @@ remoteSearchDriver.prototype = {
 		});	
 	},
 	doUploadInteface:function(){
-		var _this = this;
-		mv_set_loading('#tab-upload');
-		$j('#tab-upload').html('upload interface goes here ;)');
-	
-		//todo include firefogg support:
-		/*mvJsLoader.doLoad( [
-				'mvUploader'
-			],function(){			
-				_this.cUpLoader = new mvUploader({
-					'target_div': '#tab-upload',
-					'upload_done_action:': function( rTitle){
-						//set to loading:
-						mv_set_loading('#tab-upload');
-						//do a direct api query for resource info (to build rObj
-						_this.getResourceFromTitle( rTitle, function(rObj){
-							//call resource Edit:
-							_this.resourceEdit( rObj );
-						});
-					}											
-			});
-		}); */
+		js_log("doUploadInteface::");		
+		var _this = this;					
+		//set it to loading: 
+		mv_set_loading('#tab-upload');				
+			
+		//do config variable reality checks:
+		if( _this.upload_api_target == 'local' ){
+			if( ! _this.local_wiki_api_url ){
+				$j('#tab-upload').html( gM( 'rsd_config_error', 'missing_local_api_url' ) );
+				return false;
+			}else{
+				_this.upload_api_target = _this.local_wiki_api_url;
+			}			
+		}
+		//make sure we have a url for the upload target: 
+		if(  parseUri( _this.upload_api_target ).host ==  _this.upload_api_target ){
+			$j('#tab-upload').html( gM('rsd_config_error', 'bad_api_url') );
+			return false;
+		}
+		//output the form 
+		mvJsLoader.doLoad(['$j.fn.simpleUploadForm'],function(){
+			//set the form action based on domain: 
+			if( parseUri( document.URL ).host == parseUri( _this.upload_api_target ).host ){
+				//deal with the api form upload form directly:
+				$j('#tab-upload').simpleUploadForm({
+					"api_target" :	_this.upload_api_target 
+				})
+			}else{
+				//setup the proxy  
+			}
+		});									
 	},
 	runSearch: function(){		
 		js_log("f:runSearch::" + this.disp_item);
 		//draw_direct_flag
 		var draw_direct_flag = true;					
-		if( !this.content_providers[this.disp_item] ){
-			js_log("can't run search for:" + this.disp_item);
+		if( !this.content_providers[this.disp_item] ){			
+			//check if its the special upload tab case: 
+			if( this.disp_item == 'upload'){
+				this.doUploadInteface();				
+			}else{
+				js_log("can't run search for:" + this.disp_item);							
+			}
 			return false;
 		}			
 		cp = this.content_providers[this.disp_item];	
@@ -792,8 +811,10 @@ remoteSearchDriver.prototype = {
 			}
 			//do an upload tab if enabled:
 			if( this.enable_upload_tab ){			
-				o+='<li class="rsd_cp_tab" ><a id="rsd_tab_upload" href="#tab-upload">' + gM('upload') + '</a></li>';
+				o+='<li class="rsd_cp_tab" ><a id="rsd_tab_upload" href="#tab-upload">' + gM('upload_tab') + '</a></li>';
 				tabc+='<div id="tab-upload" />';		
+				if(this.disp_item == 'upload')
+					selected_tab = inx++;
 			}
 			o+='</ul>';
 			//output the tab content containers:
@@ -1087,31 +1108,36 @@ remoteSearchDriver.prototype = {
 											
 	},
 	/*set-up the control actions for clipEdit with relevent callbacks */
-	getClipEditControlActions:function(){
+	getClipEditControlActions:function( cp ){
 		var _this = this;
-		return {
-			'insert' :function(rObj){
-				_this.insertResource(rObj);
-			},			
-			'preview':function(rObj){
+		var cConf= {};
+		
+		cConf['insert'] = function(rObj){
+			_this.insertResource(rObj);
+		}
+		//if not directly inserting the resource is support a preview option:
+		if( _this.import_url_mode != 'remote_link'){			
+			cConf['preview'] = function(rObj){
 				_this.previewResource( rObj )
-			},			
-			'cancel' :function(){
-				_this.cancelClipEditCB()
-			}				
-		};
+			};
+		}
+		cConf['cancel'] = function(){			
+			_this.cancelClipEditCB()
+		}						
+		return cConf;
 	},
 	//loads the media editor:
 	doMediaEdit:function( rObj , mediaType){
-		var _this = this;									
+		var _this = this;	
+		var cp = rObj.pSobj.cp;								
 		var mvClipInit = {
 				'rObj':rObj, //the resource object
-				'parent_ct':'rsd_modal_target',
-				'clip_disp_ct':'clip_edit_disp',
-				'control_ct': 'clip_edit_ctrl',								
-				'media_type': mediaType,
-				'p_rsdObj': _this,		
-				'controlActionsCb':_this.getClipEditControlActions()											
+				'parent_ct'			: 'rsd_modal_target',
+				'clip_disp_ct'		: 'clip_edit_disp',
+				'control_ct'		: 'clip_edit_ctrl',								
+				'media_type'		: mediaType,
+				'p_rsdObj'			: _this,		
+				'controlActionsCb'	: _this.getClipEditControlActions( cp )											
 		};	
 		
 		var clibs = ['mvClipEdit'];
@@ -1501,7 +1527,7 @@ remoteSearchDriver.prototype = {
 	updatePreviewText:function( rObj ){
 		var _this = this;
 			
-		if(_this.import_url_mode=='remote_link'){
+		if( _this.import_url_mode == 'remote_link' ){
 			_this.cur_embed_code = rObj.pSobj.getEmbedHTML(rObj);
 		}else{
 			_this.cur_embed_code = rObj.pSobj.getEmbedWikiCode( rObj );

@@ -150,13 +150,14 @@ lcPaths('',{
 	'$j.fn.datePicker'	: 'jquery/plugins/jquery.datePicker.js',
 	'$j.ui'				: 'jquery/jquery.ui-1.7.1/ui/ui.core.js',	
 	'$j.fn.ColorPicker'	: 'libClipEdit/colorpicker/js/colorpicker.js',
-	'$j.Jcrop'			: 'libClipEdit/Jcrop/js/jquery.Jcrop.js'
+	'$j.Jcrop'			: 'libClipEdit/Jcrop/js/jquery.Jcrop.js',
+	'$j.fn.simpleUploadForm': 'libAddMedia/simpleUploadForm.js'
 });	
 //query plugins
 lcPaths( 'jquery/plugins/', [
 	'$j.secureEvalJSON',	
 	'$j.cookie',
-	'$j.contextMenu',				
+	'$j.contextMenu'			
 ]);
 //jquery ui
 lcPaths('jquery/jquery.ui-1.7.1/ui/', [	
@@ -183,7 +184,7 @@ lcPaths('jquery/jquery.ui-1.7.1/ui/', [
 	'$j.effects.slide',
 	'$j.ui.accordion',
 	'$j.ui.draggable',
-	'$j.ui.selectable',
+	'$j.ui.selectable'
 ], 
 {'j_replace':''});
 //add mediaLibs
@@ -192,7 +193,7 @@ lcPaths('libAddMedia/', [
 	'mvAdvFirefogg',
     'mvBaseUploadInterface',
 	'remoteSearchDriver',
-	'seqRemoteSearchDriver',
+	'seqRemoteSearchDriver'	
 ]);
 //search libs: 
 lcPaths('libAddMedia/searchLibs/', [
@@ -1041,7 +1042,8 @@ function npt2seconds( npt_str ){
  * @param api_url 'optional' the target api url
  * @param callback the callback function to pass the token or "false" to  
  */
-function get_mw_token( title, api_url, callback){
+function get_mw_token( title, api_url, callback){	
+	js_log(':get_mw_token:');
 	if(!title && wgUserName){
 		title = 'User:' + wgUserName; 
 	}
