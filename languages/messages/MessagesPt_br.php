@@ -11,6 +11,7 @@
  * @author Brunoy Anastasiya Seryozhenko
  * @author Carla404
  * @author Crazymadlover
+ * @author Diego Queiroz
  * @author Eduardo.mps
  * @author GKnedo
  * @author Giro720
@@ -286,17 +287,17 @@ $messages = array(
 'november-gen'  => 'Novembro',
 'december-gen'  => 'Dezembro',
 'jan'           => 'jan',
-'feb'           => 'Fev',
-'mar'           => 'Mar',
-'apr'           => 'Abr',
-'may'           => 'Mai',
-'jun'           => 'Jun',
-'jul'           => 'Jul',
-'aug'           => 'Ago',
-'sep'           => 'Set',
-'oct'           => 'Out',
-'nov'           => 'Nov',
-'dec'           => 'Dez',
+'feb'           => 'fev',
+'mar'           => 'mar',
+'apr'           => 'abr',
+'may'           => 'maio',
+'jun'           => 'jun',
+'jul'           => 'jul',
+'aug'           => 'ago',
+'sep'           => 'set',
+'oct'           => 'out',
+'nov'           => 'nov',
+'dec'           => 'dez',
 
 # Categories related messages
 'pagecategories'                 => '{{PLURAL:$1|Categoria|Categorias}}',
@@ -404,7 +405,7 @@ $messages = array(
 'unprotectthispage' => 'Desproteger esta página',
 'newpage'           => 'Nova página',
 'talkpage'          => 'Discutir esta página',
-'talkpagelinktext'  => 'Discussão',
+'talkpagelinktext'  => 'disc',
 'specialpage'       => 'Página especial',
 'personaltools'     => 'Ferramentas pessoais',
 'postcomment'       => 'Nova seção',
@@ -2564,8 +2565,16 @@ Todas as acções de importação transwiki são registradas no [[Special:Log/im
 'monobook.css' => '/* o código CSS colocado aqui terá efeito nos usuários do tema Monobook */',
 
 # Scripts
-'common.js'   => '/* Códigos javascript aqui colocados serão carregados por todos aqueles que acessarem alguma página deste wiki */',
-'monobook.js' => '/* Qualquer JavaScript aqui colocado afetará os usuários do skin MonoBook */',
+'common.js'      => '/* Códigos JavaScript aqui colocados serão carregados por todos aqueles que acessarem alguma página deste wiki */',
+'standard.js'    => '/* Qualquer JavaScript aqui colocado afetará os usuários do skin Clássico */',
+'nostalgia.js'   => '/* Qualquer JavaScript aqui colocado afetará os usuários do skin Nostalgia */',
+'cologneblue.js' => '/* Qualquer JavaScript aqui colocado afetará os usuários do skin Azul colonial */',
+'monobook.js'    => '/* Qualquer JavaScript aqui colocado afetará os usuários do skin MonoBook */',
+'myskin.js'      => '/* Qualquer JavaScript aqui colocado afetará os usuários do skin MySkin */',
+'chick.js'       => '/* Qualquer JavaScript aqui colocado afetará os usuários do skin Chique */',
+'simple.js'      => '/* Qualquer JavaScript aqui colocado afetará os usuários do skin Simples */',
+'modern.js'      => '/* Qualquer JavaScript aqui colocado afetará os usuários do skin Moderno */',
+'vector.js'      => '/* Qualquer JavaScript aqui colocado afetará os usuários do skin Vector */',
 
 # Metadata
 'nodublincore'      => 'Os metadados RDF para Dublin Core estão desabilitados neste servidor.',

@@ -219,6 +219,9 @@ $messages = array(
 'underline-never'   => 'Nunca',
 'underline-default' => 'Padrão do navegador',
 
+# Font style option in Special:Preferences
+'editfont-monospace' => 'Fonte monoespaçada',
+
 # Dates
 'sunday'        => 'domingo',
 'monday'        => 'segunda-feira',
@@ -1403,6 +1406,13 @@ Pode também escolher permitir que outros entrem em contacto consigo através da
 'recentchanges-legend'              => 'Opções das mudanças recentes',
 'recentchangestext'                 => 'Veja as mais novas mudanças na {{SITENAME}} nesta página.',
 'recentchanges-feed-description'    => 'Acompanhe as Mudanças recentes deste wiki por este feed.',
+'recentchanges-label-legend'        => 'Legenda: $1.',
+'recentchanges-legend-newpage'      => '$1 -página nova',
+'recentchanges-label-newpage'       => 'Esta edição criou uma página nova',
+'recentchanges-legend-minor'        => '$1 - modificação menor',
+'recentchanges-label-minor'         => 'Esta é uma edição menor',
+'recentchanges-legend-bot'          => '$1 - edição de robô',
+'recentchanges-label-bot'           => 'Esta modificação foi realizada por um robô',
 'rcnote'                            => "A seguir {{PLURAL:$1|está listada '''uma''' alteração ocorrida|estão listadas '''$1''' alterações ocorridas}} {{PLURAL:$2|no último dia|nos últimos '''$2''' dias}}, a partir das $5 de $4.",
 'rcnotefrom'                        => 'Abaixo estão as mudanças desde <b>$2</b> (mostradas até <b>$1</b>).',
 'rclistfrom'                        => 'Mostrar as novas alterações a partir de $1',
@@ -2392,6 +2402,7 @@ Se desejar, pode utilizar uma ligação (por exemplo, [[{{#Special:Export}}/{{Me
 'allmessagestext'           => 'Esta é uma lista de todas as mensagens de sistema disponíveis no espaço nominal {{ns:mediawiki}}.
 Acesse [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] e [http://translatewiki.net translatewiki.net] caso deseje contribuir para traduções do MediaWiki feitas para uso geral.',
 'allmessagesnotsupportedDB' => "Esta página não pode ser utilizada, uma vez que '''\$wgUseDatabaseMessages''' foi desativado.",
+'allmessages-filter-legend' => 'Filtro',
 'allmessages-prefix'        => 'Filtrar por prefixo:',
 'allmessages-language'      => 'Língua:',
 'allmessages-filter-submit' => 'Ir',
@@ -2634,6 +2645,7 @@ $1',
 'svg-long-desc'        => '(ficheiro SVG, de $1 × $2 pixels, tamanho: $3)',
 'show-big-image'       => 'Resolução completa',
 'show-big-image-thumb' => '<small>Tamanho desta previsão: $1 × $2 pixels</small>',
+'file-info-gif-frames' => '$1 {{PLURAL:$1|quadro|quadros}}',
 
 # Special:NewFiles
 'newimages'             => 'Galeria de novos ficheiros',
@@ -3047,7 +3059,7 @@ Tente a previsão comum.',
 'watchlistedit-normal-explain' => 'Os títulos de sua lista de vigiados são exibidos a seguir.
 Para remover um título clique no box ao lado do mesmo e no botão Remover Títulos.
 Você também pode [[Special:Watchlist/raw|editar a lista crua]].',
-'watchlistedit-normal-submit'  => 'Remover Títulos',
+'watchlistedit-normal-submit'  => 'Remover títulos',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|um título foi removido|$1 títulos foram removidos}} de sua lista de vigiados:',
 'watchlistedit-raw-title'      => 'Edição crua dos vigiados',
 'watchlistedit-raw-legend'     => 'Edição crua dos vigiados',

@@ -1232,8 +1232,10 @@ The right to [[Special:CreateAccount|create a user account]].',
 The right to use the "This is a minor edit" checkbox. See {{msg|minoredit|pl=yes}} for the message used for that checkbox.',
 'right-move'                  => '{{doc-right}}
 The right to move any page that is not protected from moving.',
+'right-move-subpages'         => '{{doc-right|move-subpages}}',
 'right-move-rootuserpages'    => '{{doc-right}}',
 'right-movefile'              => '{{doc-right}}',
+'right-suppressredirect'      => '{{doc-right|suppressredirect}}',
 'right-upload'                => '{{doc-right}}
 The right to [[Special:Upload|upload]] a file (this includes images, media, audio, ...).',
 'right-reupload'              => '{{doc-right}}
@@ -1248,9 +1250,13 @@ The right to use <tt>&action=purge</tt> in the URL, without needing to confirm i
 'right-autoconfirmed'         => "{{doc-right}}
 If your account is older than [[mw:Manual:\$wgAutoConfirmAge|wgAutoConfirmAge]] and if you have at least [[mw:Manual:\$wgAutoConfirmCount|\$wgAutoConfirmCount]] edits, you are in the '''group \"autoconfirmed\"''' (note that you can't see this group at [[Special:ListUsers]]).
 If you are in that group, you have (by default) the '''right \"autoconfirmed\"'''. With this right, you can for example <!-- I think this right includes more things --> edit semi-protected pages.",
+'right-bot'                   => '{{doc-right|bot}}',
 'right-nominornewtalk'        => '{{doc-right}}
 If someone with this right (bots by default) edits a user talk page and marks it as minor (requires {{msg|right-minoredit|pl=yes}}), the user will not get a notification "You have new messages".',
+'right-apihighlimits'         => '{{doc-right|apihighlimits}}',
 'right-writeapi'              => '{{doc-right}}',
+'right-delete'                => '{{doc-right|delete}}',
+'right-bigdelete'             => '{{doc-right|bigdelete}}',
 'right-deleterevision'        => 'This is a user right that is part of the [[mw:RevisionDelete|RevisionDelete]] feature.
 It can be given to the group {{msg|group-sysop|pl=yes}}, although this right is disabled by default.
 
@@ -1258,6 +1264,9 @@ See also
 * {{msg|right-suppressionlog|pl=yes}}
 * {{msg|right-hideuser|pl=yes}}
 * {{msg|right-suppressrevision|pl=yes}}',
+'right-deletedhistory'        => '{{doc-right|deletedhistory}}',
+'right-browsearchive'         => '{{doc-right|browsearchive}}',
+'right-undelete'              => '{{doc-right|undelete}}',
 'right-suppressrevision'      => 'This is a user right that is part of the [[mw:RevisionDelete|RevisionDelete]] feature.
 It can be given to the group {{msg|group-suppress|pl=yes}}, although that group is disabled by default.
 
@@ -1272,6 +1281,8 @@ See also
 * {{msg|right-suppressrevision|pl=yes}}
 * {{msg|right-hideuser|pl=yes}}
 * {{msg|right-deleterevision|pl=yes}}',
+'right-block'                 => '{{doc-right|block}}',
+'right-blockemail'            => '{{doc-right|blockemail}}',
 'right-hideuser'              => 'This is a user right that is part of the [[mw:RevisionDelete|RevisionDelete]] feature.
 It can be given to the group {{msg|group-suppress|pl=yes}}, although that group is disabled by default.
 
@@ -1281,6 +1292,10 @@ See also
 * {{msg|right-deleterevision|pl=yes}}',
 'right-ipblock-exempt'        => 'This user automatically 
 bypasses IP blocks, auto-blocks and range blocks - so I presume - but I am uncertain',
+'right-proxyunbannable'       => '{{doc-right|proxyunbannable}}',
+'right-protect'               => '{{doc-right|protect}}',
+'right-editprotected'         => '{{doc-right|editprotected}}',
+'right-editinterface'         => '{{doc-right|editinterface}}',
 'right-editusercssjs'         => '{{doc-right|editusercssjs}}',
 'right-editusercss'           => '{{doc-right|editusercss}}',
 'right-edituserjs'            => '{{doc-right|edituserjs}}',
@@ -1292,11 +1307,18 @@ The rate limits have no effect on the groups that have this right. Rate limits i
 'right-import'                => '{{doc-right}}',
 'right-importupload'          => '{{doc-right}}',
 'right-patrol'                => '{{doc-right}}',
+'right-autopatrol'            => '{{doc-right|autopatrol}}',
+'right-patrolmarks'           => '{{doc-right|patrolmarks}}',
+'right-unwatchedpages'        => '{{doc-right|unwatchedpages}}',
 'right-trackback'             => '{{doc-right}}
 
 "Submit" in this instance means that something called [[:wikipedia:trackback|trackback]] is being sent to the wiki, and the wiki accepts it. When the right is not given to the user, the wiki rejects, or ignores it. There is a nice description at [http://cruftbox.com/cruft/docs/trackback.html How TrackBack Works]. In MediaWiki it is one of those obscure features that probably nobody uses (it is a huge spam trap).
 
 An alternative wording for translators could be \'Get the wiki to accept a trackback\'.',
+'right-mergehistory'          => '{{doc-right|mergehistory}}',
+'right-userrights'            => '{{doc-right|userrights}}',
+'right-userrights-interwiki'  => '{{doc-right|userrights-interwiki}}',
+'right-siteadmin'             => '{{doc-right|siteadmin}}',
 'right-reset-passwords'       => '{{doc-right}}',
 'right-override-export-depth' => '{{doc-right|override-export-depth}}',
 'right-versiondetail'         => '{{doc-right|versiondetail}}

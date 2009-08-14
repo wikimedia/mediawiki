@@ -2435,6 +2435,7 @@ $1',
 'exif-scenecapturetype'            => 'Үзэмжийн зураг авалтын төрөл',
 'exif-gaincontrol'                 => 'Үзэмжийн тохируулга',
 'exif-contrast'                    => 'харьцуулан үзэх',
+'exif-saturation'                  => 'Өнгөний ханалт',
 'exif-sharpness'                   => 'Хурц байдал',
 'exif-devicesettingdescription'    => 'Төхөөрөмжийн тохиргооны тайлбар',
 'exif-subjectdistancerange'        => 'Субъект байрлах зайн хэмжээ',
@@ -2444,19 +2445,32 @@ $1',
 'exif-gpslatitude'                 => 'өргөрөг',
 'exif-gpslongituderef'             => 'Зүүн эсвэл баруун уртраг',
 'exif-gpslongitude'                => 'уртраг',
+'exif-gpsaltituderef'              => 'Өндрийн лавлагаа',
 'exif-gpsaltitude'                 => 'далайн түвшин',
 'exif-gpstimestamp'                => 'GPS цаг (атом цаг)',
 'exif-gpssatellites'               => 'Хэмжээс хийхэд хэрэглэсэн хиймэл дагуулууд',
 'exif-gpsstatus'                   => 'Хүлээн авагчийн статус',
+'exif-gpsmeasuremode'              => 'Хэмжилтийн горим',
+'exif-gpsdop'                      => 'Хэмжилтийн нарийвчлал',
 'exif-gpsspeedref'                 => 'Хурдны нэгж',
 'exif-gpsspeed'                    => 'GPS харилцуурын хурд',
+'exif-gpstrackref'                 => 'Хөдөлгөөний чиглэлийн лавлагаа',
 'exif-gpstrack'                    => 'Хөдөлгөөний чиглэл',
+'exif-gpsimgdirectionref'          => 'Зургийн чиглэлийн лавлагаа',
 'exif-gpsimgdirection'             => 'Зургийн зүг чиг',
+'exif-gpsmapdatum'                 => 'Хэрэглэгдсэн геодезийн зураглалын мэдээлэл',
+'exif-gpsdestlatituderef'          => 'Зорьсон газрын өргөрөгийн лавлагаа',
 'exif-gpsdestlatitude'             => 'Өргөрөгийн байршил',
+'exif-gpsdestlongituderef'         => 'Зорьсон газрын уртрагийн лавлагаа',
 'exif-gpsdestlongitude'            => 'Уртгагийн байршил',
+'exif-gpsdestbearingref'           => 'Зорьсон газрын чиглэлийн лавлагаа',
+'exif-gpsdestbearing'              => 'Зорьсон газрын чиглэл',
+'exif-gpsdestdistanceref'          => 'Зорьсон газар руух зайн лавлагаа',
 'exif-gpsdestdistance'             => 'Байршил хүртэлх зай',
+'exif-gpsprocessingmethod'         => 'GPS боловсруулах аргын нэр',
 'exif-gpsareainformation'          => 'GPS бүсийн нэр',
 'exif-gpsdatestamp'                => 'GPS огноо',
+'exif-gpsdifferential'             => 'GPS дифференциал засвар',
 
 # EXIF attributes
 'exif-compression-1' => 'Шахаагүй',
@@ -2477,11 +2491,18 @@ $1',
 'exif-exposureprogram-0' => 'Тодорхойлоогүй',
 'exif-exposureprogram-1' => 'заавар',
 'exif-exposureprogram-2' => 'Ердийн программ',
+'exif-exposureprogram-7' => 'Хөрөг авах горим (ар хэсэг фокусаас гарсан, нүүрийг ойроос авсан)',
+'exif-exposureprogram-8' => 'Байгалийн үзэмж авах горим (ар хэсэг фокуст орсон, байгалийн зураг)',
 
 'exif-subjectdistance-value' => '$1 метр',
 
 'exif-meteringmode-0'   => 'Үл мэдэх',
 'exif-meteringmode-1'   => 'Дундаж',
+'exif-meteringmode-2'   => 'ТөвөөрЖинлэсэнДундаж',
+'exif-meteringmode-3'   => 'Толбо',
+'exif-meteringmode-4'   => 'ОлонТолбот',
+'exif-meteringmode-5'   => 'Хээ',
+'exif-meteringmode-6'   => 'Хэсгийн',
 'exif-meteringmode-255' => 'Бусад',
 
 'exif-lightsource-0'   => 'Үл мэдэх',
@@ -2492,12 +2513,31 @@ $1',
 'exif-lightsource-9'   => 'Таатай цаг агаар',
 'exif-lightsource-10'  => 'Үүлэрхэг цаг агаар',
 'exif-lightsource-11'  => 'Сүүдэр',
+'exif-lightsource-12'  => 'Өдрийн гэрлийн флуоресцент (D 5700 – 7100K)',
+'exif-lightsource-13'  => 'Өдрийн цагаан флуоресцент (N 4600 – 5400K)',
+'exif-lightsource-14'  => 'Сэрүүн цагаан флуоресцент (W 3900 – 4500K)',
+'exif-lightsource-15'  => 'Цагаан флуоресцент (WW 3200 – 3700K)',
+'exif-lightsource-17'  => 'Ердийн гэрэл A',
+'exif-lightsource-18'  => 'Ердийн гэрэл B',
+'exif-lightsource-19'  => 'Ердийн гэрэл C',
+'exif-lightsource-24'  => 'ISO студийн ламп',
 'exif-lightsource-255' => 'Бусад гэрлийн эх сурвалж',
+
+# Flash modes
+'exif-flash-fired-0'  => 'Гэрэл цацагч ажиллаагүй',
+'exif-flash-fired-1'  => 'Гэрэл цацагч ажилласан',
+'exif-flash-redeye-1' => 'улаан өнгөтэй нүдийг засах горим',
 
 'exif-focalplaneresolutionunit-2' => 'инч',
 
 'exif-customrendered-0' => 'Нормаль процесс',
 'exif-customrendered-1' => 'Энгийн процесс',
+
+'exif-exposuremode-0' => 'Гэрэл өгөх хурдыг автоматаар тохируулсан',
+'exif-exposuremode-1' => 'Гэрэл өгөх хурдыг гараар тохируулсан',
+
+'exif-whitebalance-0' => 'Автомат цагаан өнгийн тэнцвэр',
+'exif-whitebalance-1' => 'Гараар тохируулсан цагаан өнгийн тэнцвэр',
 
 'exif-scenecapturetype-0' => 'Стандарт',
 'exif-scenecapturetype-1' => 'Байгалийн',
@@ -2511,12 +2551,17 @@ $1',
 'exif-contrast-2' => 'хатуу',
 
 'exif-saturation-0' => 'энгийн',
+'exif-saturation-1' => 'Бага ханалт',
+'exif-saturation-2' => 'Өндөр ханалт',
 
 'exif-sharpness-0' => 'энгийн',
 'exif-sharpness-1' => 'Зөөлөн',
 'exif-sharpness-2' => 'Хатуу',
 
 'exif-subjectdistancerange-0' => 'Үл мэдэх',
+'exif-subjectdistancerange-1' => 'Макро',
+'exif-subjectdistancerange-2' => 'Ойртуулсан үзэмж',
+'exif-subjectdistancerange-3' => 'Холын үзэмж',
 
 # Pseudotags used for GPSLatitudeRef and GPSDestLatitudeRef
 'exif-gpslatitude-n' => 'хойд өргөрөг',
@@ -2529,9 +2574,17 @@ $1',
 'exif-gpsstatus-a' => 'Явцын хэмжүүр',
 'exif-gpsstatus-v' => 'Хамтарсан үйлдлийн хэмжүүр',
 
+'exif-gpsmeasuremode-2' => '2D хэмжилт',
+'exif-gpsmeasuremode-3' => '3D хэмжилт',
+
 # Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'километр/цаг',
 'exif-gpsspeed-m' => 'Миль/цаг',
+'exif-gpsspeed-n' => 'Зангилаа',
+
+# Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
+'exif-gpsdirection-t' => 'Бодит чиглэл',
+'exif-gpsdirection-m' => 'Соронзон чиглэл',
 
 # External editor support
 'edit-externally'      => 'Гадны программыг ашиглан энэ файлыг засварлах',
@@ -2550,6 +2603,8 @@ $1',
 'confirmemail_text'        => 'Вики нь мэйлийн боломжуудыг ашиглахын тулд мэйл хаягаа баталгаажуулахыг хэрэглэгчээс шаарддаг болно. Та өөрийн хаяг руу баталгаажуулах мэйл илгээхийн тулд доорх товчлуурыг идэвхжүүлнэ үү. Уг мэйл нь код бүхий холбоос агуулах бөгөөд та уг холбоос руу орсноор таны мэйл хаяг баталгаажих болно.',
 'confirmemail_send'        => 'Баталгаажуулах кодыг мэйлээр илгээх.',
 'confirmemail_sent'        => 'Баталгаажуулах мэйл илгээгдлээ.',
+'confirmemail_oncreate'    => 'Таны мэйл хаяг руу баталгаажуулалтын кодыг явууллаа.
+Нэвтрэхийн тулд энэ код хэрэггүй ч гэсэн вики дахь мэйлтэй холбогдсон функцуудыг ашиглахын тулд хэрэг болно.',
 'confirmemail_sendfailed'  => 'Баталгаажуулах мэйлийг илгээж чадсангүй. Та хаягаа зөв бичсэн эсэхээ нягтална уу.
 
 Буцаж ирсэн мэйл: $1',
@@ -2574,7 +2629,13 @@ $5
 'invalidateemail'          => 'Мэйл хаягыг баталгаажуулах явдлыг цуцлах',
 
 # Scary transclusion
-'scarytranscludetoolong' => '[URL хэт урт байна; уучлаарай]',
+'scarytranscludedisabled' => '[Интервики оруулалтыг идэвхижүүлээгүй]',
+'scarytranscludefailed'   => '[$1 загварыг авчирч чадсангүй]',
+'scarytranscludetoolong'  => '[URL хэт урт байна; уучлаарай]',
+
+# Trackbacks
+'trackbacklink'     => 'Тракбак',
+'trackbackdeleteok' => 'Тракбакыг амжилттай устгалаа.',
 
 # Delete conflict
 'deletedwhileediting' => 'Анхаар: Таныг засвар хийж эхлэвэл энэ хуудас устгагдах болно!',
@@ -2585,13 +2646,17 @@ $5
 # action=purge
 'confirm_purge_button' => 'Tэг',
 'confirm-purge-top'    => 'энэ хуудасны нөөц хувилбарыг устгах уу?',
+'confirm-purge-bottom' => 'Хийсвэр санах ойг цэвэрлэснээр хамгийн сүүлийн засвар харагдахад хүргэнэ.',
 
 # Multipage image navigation
 'imgmultipageprev' => '← өмнөх хуудас',
 'imgmultipagenext' => 'дараагийн хуудас →',
 'imgmultigo'       => 'Үргэлжлүүл!',
+'imgmultigoto'     => '$1 хуудас руу явах',
 
 # Table pager
+'ascending_abbrev'         => 'өгсөх',
+'descending_abbrev'        => 'буурах',
 'table_pager_next'         => 'Дараагийн хуудас',
 'table_pager_prev'         => 'Өмнөх хуудас',
 'table_pager_first'        => 'Эхний хуудас',
@@ -2606,11 +2671,22 @@ $5
 'autoredircomment' => '[[$1]] руу автоматаар холбогдож байна',
 'autosumm-new'     => 'Шинэ хуудас: $1',
 
+# Live preview
+'livepreview-loading' => 'Ушшиж байна...',
+'livepreview-ready'   => 'Ушшиж байна...Боллоо!',
+'livepreview-failed'  => 'Шууд урьдчилж харах боломжгүй байна! Ердийн аргаар урьдчилж харна уу.',
+
 # Watchlist editor
-'watchlistedit-normal-title' => 'Хянах жагсаалтаа засварлах',
-'watchlistedit-raw-title'    => 'Түүхий хянах жагсаалтыг засварлах',
-'watchlistedit-raw-legend'   => 'Түүхий хянах жагсаалтыг засварлах',
-'watchlistedit-raw-titles'   => 'Гарчигууд:',
+'watchlistedit-normal-title'  => 'Хянах жагсаалтаа засварлах',
+'watchlistedit-normal-submit' => 'Хуудсуудыг авч хаях',
+'watchlistedit-normal-done'   => 'Таны хянаж буй хуудсуудын жагсаалтаас {{PLURAL:$1|1 хуудсыг|$1 хуудсыг}} авч хаялаа:',
+'watchlistedit-raw-title'     => 'Түүхий хянах жагсаалтыг засварлах',
+'watchlistedit-raw-legend'    => 'Түүхий хянах жагсаалтыг засварлах',
+'watchlistedit-raw-titles'    => 'Гарчигууд:',
+'watchlistedit-raw-submit'    => 'Хянаж буй хуудсуудын жагсаалтыг шинэчлэх',
+'watchlistedit-raw-done'      => 'Таны хянаж буй хуудсуудын жагсаалтыг шинэчлэлээ.',
+'watchlistedit-raw-added'     => '{{PLURAL:$1|1 хуудсыг|$1 хуудсыг}} нэмлээ:',
+'watchlistedit-raw-removed'   => '{{PLURAL:$1|1 хуудсыг|$1 хуудсыг}} авч хаялаа:',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Холбогдох өөрчлөлтүүдийг үзэх',
@@ -2619,12 +2695,16 @@ $5
 
 # Special:Version
 'version'                  => 'Хувилбар',
+'version-specialpages'     => 'Тусгай хуудсууд',
+'version-other'            => 'Бусад',
+'version-license'          => 'Лиценз',
 'version-software'         => 'Суулгасан программ',
 'version-software-version' => 'Хувилбар',
 
 # Special:FilePath
-'filepath'      => 'файлын зам',
-'filepath-page' => 'Файл:',
+'filepath'        => 'файлын зам',
+'filepath-page'   => 'Файл:',
+'filepath-submit' => 'Зам',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch-filename' => 'Файлын нэр:',
@@ -2632,13 +2712,18 @@ $5
 'fileduplicatesearch-info'     => '$1 × $2 пиксэл<br />Файлын хэмжээ: $3<br />MIME төрөл: $4',
 
 # Special:SpecialPages
-'specialpages'             => 'Тусгай хуудсууд',
-'specialpages-group-login' => 'Нэвтрэх / бүртгүүлэх',
+'specialpages'                 => 'Тусгай хуудсууд',
+'specialpages-group-other'     => 'Бусад тусгай хуудсууд',
+'specialpages-group-login'     => 'Нэвтрэх / бүртгүүлэх',
+'specialpages-group-pages'     => 'Хуудсуудын жагсаалтууд',
+'specialpages-group-wiki'      => 'Вики мэдээлэл ба багаж хэрэгслүүд',
+'specialpages-group-redirects' => 'Чиглүүлдэг тусгай хуудсууд',
 
 # Special:Tags
 'tag-filter-submit' => 'Шүүлтүүр',
 
 # HTML forms
-'htmlform-reset' => 'Өөрчлөлтүүдийг цуцлах',
+'htmlform-reset'               => 'Өөрчлөлтүүдийг цуцлах',
+'htmlform-selectorother-other' => 'Бусад',
 
 );
