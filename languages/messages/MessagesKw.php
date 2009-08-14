@@ -598,7 +598,8 @@ Ty a yll [[:\$1|gwruthyl an folen ma]].",
 'watchlist-options' => 'Dewisyansow an rol golyas',
 
 # Displayed when you click the "watch" button and it is in the process of watching
-'watching' => 'Ow kolya...',
+'watching'   => 'Ow kolya...',
+'unwatching' => 'Ow tisgolya...',
 
 # Delete
 'deletepage'            => 'Dilea an folen',

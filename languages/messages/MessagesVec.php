@@ -133,7 +133,7 @@ $specialPageAliases = array(
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'Sotołinea i cołegamenti:',
-'tog-highlightbroken'         => "Evidensia i cołegamenti che i punta a voxe 'ncora da scrìvar",
+'tog-highlightbroken'         => 'Evidensia <a href="" class="new">cussita/a> i cołegamenti che i punta a voxe \'ncora da scrìvar (se disativà vien fora <a href="" class="internal">cussita</a>).',
 'tog-justify'                 => 'Paragrafo: giustificà',
 'tog-hideminor'               => 'Scondi łe modifighe picenine n\'te ła paxena "Ultime modifighe"',
 'tog-hidepatrolled'           => 'Scondi le modìfeghe verificà tra le ultime modìfeghe',
@@ -1119,7 +1119,7 @@ Assicùrete che la continuità storica de la pagina no la vegna alterà.',
 'prefs-edits'                   => 'Nùmaro de modifiche:',
 'prefsnologin'                  => 'No te ghè eseguìo el login',
 'prefsnologintext'              => 'Te ghè da aver eseguìo el <span class="plainlinks">[{{fullurl:{{#Special:UserLogin}}|returnto=$1}} login] par poder personalixare le to preferense.',
-'changepassword'                => 'Cambia ła password',
+'changepassword'                => 'Cànbia ła password',
 'prefs-skin'                    => 'Aspeto grafico',
 'skin-preview'                  => 'Anteprima',
 'prefs-math'                    => 'Formułe matematiche',
@@ -1382,7 +1382,7 @@ In più te pol anca farte contatar da altri tramite la to pagina personale o la 
 'recentchanges-label-bot'           => 'Sta modifica el la ga fata un bot',
 'recentchanges-legend-unpatrolled'  => '$1 - modifica mia verificà',
 'recentchanges-label-unpatrolled'   => 'Sta modifica no la xe stà gnancora verificà',
-'rcnote'                            => "Qua soto ghe xe {{PLURAL:$1|l'ultimo cambiamento|i ultimi '''$1''' canbiamenti}} ne {{PLURAL:$2|l'ultimo giòrno|i ultimi '''$2''' giòrni}}; i dati i xe agiornà a le ore $5 del $4.",
+'rcnote'                            => "Qua soto ghe xe {{PLURAL:$1|l'ultimo canbiamento|i ultimi '''$1''' canbiamenti}} ne {{PLURAL:$2|l'ultimo giòrno|i ultimi '''$2''' giòrni}}; i dati i xe agiornà a le ore $5 del $4.",
 'rcnotefrom'                        => " Qui di seguito sono elencate le modifiche da '''$2''' (fino a '''$1''').",
 'rclistfrom'                        => 'Mostra łe modìfeghe fate a partir da le $1',
 'rcshowhideminor'                   => '$1 le modìfeghe picenine',
@@ -1742,9 +1742,7 @@ Le righe <s>sbarà</s> le xe xà stà sistemà.',
 'booksources-search-legend' => 'Riçerca de fonti librarie',
 'booksources-go'            => 'Và',
 'booksources-text'          => 'De seguito vien presentà un elenco de colegamenti verso siti foresti che vende libri novi e usài, atraverso i quali se pol otegner piassè informazioni sul testo çercà.',
-'booksources-invalid-isbn'  => "The given ISBN number does not appear to be valid; check for errors copying from the original source.
-
-El nùmaro ISBN inserìo no'l xe mia valido: controla de novo se te l'è scrito justo.",
+'booksources-invalid-isbn'  => "El nùmaro ISBN inserìo no'l xe mia valido: controla de novo se te lo ghè copià justo da la fonte originale.",
 
 # Special:Log
 'specialloguserlabel'  => 'Utente:',
@@ -1900,7 +1898,7 @@ Le future modìfeghe a sta pagina e a la relativa pagina de discussion le sarà 
 'enotif_reset'                 => 'Segna tute łe pàxene visitae',
 'enotif_newpagetext'           => 'Sta qua la xe na nova pàxena.',
 'enotif_impersonal_salutation' => 'Utente de {{SITENAME}}',
-'changed'                      => 'cambià',
+'changed'                      => 'canbià',
 'created'                      => 'Creà',
 'enotif_subject'               => 'La pagina $PAGETITLE de {{SITENAME}} la xe stà $CHANGEDORCREATED da $PAGEEDITOR',
 'enotif_lastvisited'           => 'Varda $1 par tute le modifiche da la to ultima visita.',
@@ -2233,8 +2231,7 @@ $1 xe xà blocà. Vuto canbiar le inpostassion?',
 # Developer tools
 'lockdb'              => 'Blocca el database',
 'unlockdb'            => 'Sbloca el database',
-'lockdbtext'          => 'Bloccare il database sospenderà la possibilità per tutti gli Utenti di modificare le pagine o di crearne di nuove, di cambiare le loro preferenze, di modificare le loro liste di Osservati Speciali, ed in genere non consentirà a nessuno di eseguire operazioni che richiedano modifiche del database.<br /><br />
-Per cortesia, conferma che questo è effettivamente quanto tu intendi ora effettuare e, soprattutto, che il prima possibile sbloccherai nuovamente il database, ripristinandone la corretta funzionalità, non appena avrai terminato le tue manutenzioni.',
+'lockdbtext'          => 'Blocar el database a vol dir sospéndar, par tuti i utenti, la possibilità de modificar le pagine o de creàrghene de nove, de canbiar le preferense e canbiar le liste dei osservati speciali, e in general de tute le operassion che richiede modifiche al database. Par piaser, conferma che te sì proprio sicuro de volerlo far e che a la fine de le operassion de manutension de desblocarè el database.',
 'unlockdbtext'        => 'Desblocando el database se ripristinarà la possibilità par tuti i utenti de modificar le pagine o de crearghine de nove, de canbiar le so preferense, de modificar le so liste de Osservati Speciali, e in genere de eseguir operassion che richieda modifiche del database.
 Per piaser, conferma che questo xe efettivamente quel che te vol far.',
 'lockconfirm'         => 'Sì, efetivamente intendo, soto la me responsabilità, blocar el database.',
@@ -2788,7 +2785,7 @@ I colegamenti sucessivi, su la stessa riga, i xe considerà come ecezion (cioè 
 'exif-lightsource-4'   => 'Flash',
 'exif-lightsource-9'   => 'Tenpo beło',
 'exif-lightsource-10'  => 'Nùvoło',
-'exif-lightsource-11'  => 'In ombrìa',
+'exif-lightsource-11'  => 'In onbrìa',
 'exif-lightsource-12'  => 'Daylight fluorescent (D 5700 â€“ 7100K)',
 'exif-lightsource-13'  => 'Day white fluorescent (N 4600 â€“ 5400K)',
 'exif-lightsource-14'  => 'Cool white fluorescent (W 3900 â€“ 4500K)',

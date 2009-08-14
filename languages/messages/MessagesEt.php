@@ -1051,7 +1051,7 @@ Jõus olevad keelud ja blokeeringud leiad [[Special:IPBlockList|blokeeritud IP-a
 
 # Merge log
 'mergelog'           => 'Liitmise logi',
-'pagemerge-logentry' => 'lehekülg [[$1]] liideti leheküljele [[$2]] (muudatusi kuni $3)',
+'pagemerge-logentry' => 'liitis lehekülje [[$1]] leheküljelega [[$2]] (muudatusi kuni $3)',
 'revertmerge'        => 'Tühista ühendamine',
 'mergelogpagetext'   => 'Allpool on hiljuti üksteisega liidetud leheküljeajalugude logi.',
 
@@ -1862,7 +1862,7 @@ Toetatud protokollid: <tt>$1</tt>',
 'newuserlogpagetext'          => 'See logi sisaldab infot äsja loodud uute kasutajate kohta.',
 'newuserlog-byemail'          => 'parool saadetud e-postiga',
 'newuserlog-create-entry'     => 'Uus kasutaja',
-'newuserlog-create2-entry'    => 'loodud uus konto $1',
+'newuserlog-create2-entry'    => 'lõi uue konto $1',
 'newuserlog-autocreate-entry' => 'Konto loodud automaatselt',
 
 # Special:ListGroupRights
@@ -2226,7 +2226,7 @@ Kehtivaid blokeeringuid vaata [[Special:IPBlockList|blokeeringute loendist]].',
 'blocklogpage'                 => 'Blokeerimise logi',
 'blocklog-fulllog'             => 'Täielik blokeerimise logi',
 'blocklogentry'                => 'blokeeris kasutaja [[$1]]. Blokeeringu aegumistähtaeg on $2 $3',
-'reblock-logentry'             => 'muudeti kasutaja või IP-aadressi [[$1]] blokeeringu sätteid. Blokeering kestab $2 $3',
+'reblock-logentry'             => 'muutis kasutaja või IP-aadressi [[$1]] blokeeringu sätteid. Blokeering aegumistähtaeg: $2. Põhjus: $3',
 'blocklogtext'                 => 'See on kasutajate blokeerimiste ja blokeeringute eemaldamiste nimekiri. Automaatselt blokeeritud IP aadresse siin ei näidata. Hetkel aktiivsete blokeeringute ja redigeerimiskeeldude nimekirja vaata [[Special:IPBlockList|IP blokeeringute nimekirja]] leheküljelt.',
 'unblocklogentry'              => 'eemaldas kasutaja $1 blokeeringu',
 'block-log-flags-anononly'     => 'ainult anonüümsed kasutajad',
@@ -2410,9 +2410,11 @@ Puudub ajutine kataloog.',
 Palun ürita uuesti.',
 
 # Import log
-'importlogpage'          => 'Impordi logi',
-'importlogpagetext'      => 'Importimislogi kuvab leheküljed, mille redigeerimisajalugu pärineb teistest vikidest.',
-'import-logentry-upload' => 'importis faili üleslaadimisega lehekülje [[$1]]',
+'importlogpage'                    => 'Impordi logi',
+'importlogpagetext'                => 'Importimislogi kuvab leheküljed, mille redigeerimisajalugu pärineb teistest vikidest.',
+'import-logentry-upload'           => 'importis faili üleslaadimisega lehekülje [[$1]]',
+'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|redaktsioon|redaktsiooni}}',
+'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|redaktsioon|redaktsiooni}} vikist $2',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Sinu kasutajaleht',

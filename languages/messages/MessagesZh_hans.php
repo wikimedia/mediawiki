@@ -563,7 +563,7 @@ $1',
 'viewsource'           => '查看源代码',
 'viewsourcefor'        => '对$1的源代码',
 'actionthrottled'      => '操作被限制',
-'actionthrottledtext'  => '基于反垃圾的考量，您现在于这段短时间之中限制去作这一个动作，而您已经超过这个上限。请在数分钟后再尝试。',
+'actionthrottledtext'  => '基于反垃圾链接的考量，您被限制在短时间内多次重复该操作，但您已超过此上限。请在数分钟后再尝试。',
 'protectedpagetext'    => '该页面已被锁定以防止编辑。',
 'viewsourcetext'       => '您可以查看并复制此页面的源代码：',
 'protectedinterface'   => '该页提供了软件的界面文本，它已被锁定以防止随意的修改。',
@@ -1168,7 +1168,7 @@ $1",
 'prefs-watchlist-days-max'      => '最多7天',
 'prefs-watchlist-edits'         => '在增强的监视列表中显示最多更改次数：',
 'prefs-watchlist-edits-max'     => '最多数量：1000',
-'prefs-watchlist-token'         => '监视列表币',
+'prefs-watchlist-token'         => '监视列表权标',
 'prefs-misc'                    => '杂项',
 'prefs-resetpass'               => '更改密码',
 'prefs-email'                   => '邮箱选项',
@@ -1181,7 +1181,7 @@ $1",
 'rows'                          => '行：',
 'columns'                       => '列：',
 'searchresultshead'             => '搜索',
-'resultsperpage'                => '每页显示链接数',
+'resultsperpage'                => '每页显示链接数：',
 'contextlines'                  => '每链显示行数：',
 'contextchars'                  => '每行显示字数：',
 'stub-threshold'                => '<a href="#" class="stub">短页面链接</a>格式门槛值（字节）：',
@@ -1189,9 +1189,7 @@ $1",
 'recentchangesdays-max'         => '最大 $1 日',
 'recentchangescount'            => '默认显示的编辑数：',
 'prefs-help-recentchangescount' => '这个包括最近更改、页面历史以及日志。',
-'prefs-help-watchlist-token'    => '在这栏加入一个秘密钥会生成一个对您监视列表中的RSS源。
-任何一位知道在这个栏位上的匙可以阅读到您的监视列表，请选择一个安全的值。
-这里有一个任意生成的值，供您选择：$1',
+'prefs-help-watchlist-token'    => '此栏填写的密钥可以生成您监视列表的RSS源。任何知晓本栏密钥的人都能阅读您的监视列表，因此请使用安全的数值。这里已提供了一个随机生成的数值供您选择：$1',
 'savedprefs'                    => '您的个人参数设置已经保存。',
 'timezonelegend'                => '时区：',
 'localtime'                     => '当地时间：',
@@ -2057,9 +2055,9 @@ $NEWPAGE
 'protect-otherreason'         => '其它／附加的理由：',
 'protect-otherreason-op'      => '其它／附加的理由',
 'protect-dropdown'            => '*通用保护理由
-** 过量的破坏
-** 过量的灌水
-** 反生产性编辑战
+** 遭到过度破坏
+** 过度张贴垃圾链接
+** 无意义的编辑战
 ** 高流量页面',
 'protect-edit-reasonlist'     => '编辑保护理由',
 'protect-expiry-options'      => '1小时:1 hour,1天:1 day,1周:1 week,2周:2 weeks,1个月:1 month,3个月:3 months,6个月:6 months,1年:1 year,永久:infinite',
@@ -2576,13 +2574,12 @@ $1已经被封锁。您是否想更改这个设置？',
 'nocredits'        => '该页没有致谢名单信息。',
 
 # Spam protection
-'spamprotectiontitle' => '广告保护过滤器',
-'spamprotectiontext'  => '您要保存的页面被广告过滤器阻止。
-这可能是由于一个到外部站点的链接引起的。',
-'spamprotectionmatch' => '以下是触发广告过滤器的文本：$1',
-'spambot_username'    => 'MediaWiki广告清理器',
-'spam_reverting'      => '恢复到不包含链接至$1的最近修订版本',
-'spam_blanking'       => '所有包含链接至$1的修订，消隐',
+'spamprotectiontitle' => '垃圾链接过滤器',
+'spamprotectiontext'  => '您要保存的页面被垃圾链接过滤器阻止。这可能是由于某个链往外部站点的链接匹配黑名单引起的。',
+'spamprotectionmatch' => '以下文本触发了我们的垃圾链接过滤器：$1',
+'spambot_username'    => 'MediaWiki垃圾链接清理器',
+'spam_reverting'      => '恢复到不包含链接的最近修订版本$1',
+'spam_blanking'       => '消隐所有包含链接至$1的修订',
 
 # Info page
 'infosubtitle'   => '页面信息',
@@ -2612,10 +2609,10 @@ $1已经被封锁。您是否想更改这个设置？',
 'math_unknown_function' => '未知函数',
 'math_lexing_error'     => '句法错误',
 'math_syntax_error'     => '语法错误',
-'math_image_error'      => 'PNG 转换失败；请检查是否正确安装了 latex, dvips, gs 和 convert',
+'math_image_error'      => 'PNG转换失败；请检查是否正确安装了latex、dvips、gs和convert',
 'math_bad_tmpdir'       => '无法写入或建立数学公式临时目录',
 'math_bad_output'       => '无法写入或建立数学公式输出目录',
-'math_notexvc'          => '无法执行"texvc"；请参照 math/README 进行配置。',
+'math_notexvc'          => '无法执行texvc；请参照math/README进行配置。',
 
 # Patrolling
 'markaspatrolleddiff'                 => '标记为已检查',
@@ -2633,7 +2630,7 @@ $1已经被封锁。您是否想更改这个设置？',
 'patrol-log-header'    => '这是已巡查的修订版本的日志。',
 'patrol-log-line'      => '$2的版本$1已被标记为已巡查$3',
 'patrol-log-auto'      => '（自动）',
-'patrol-log-diff'      => '修订 $1',
+'patrol-log-diff'      => '修订$1',
 'log-show-hide-patrol' => '$1巡查纪录',
 
 # Image deletion
@@ -2642,7 +2639,7 @@ $1已经被封锁。您是否想更改这个设置？',
 'filedeleteerror-long'            => '当删除文件时遇到错误:
 
 $1',
-'filedelete-missing'              => '因为文件“$1”不存在，所以它不可以删除。',
+'filedelete-missing'              => '文件“$1”不存在而无法删除。',
 'filedelete-old-unregistered'     => '所指定的文件修订“$1”在数据库中不存在。',
 'filedelete-current-unregistered' => '所指定的文件“$1”在数据库中不存在。',
 'filedelete-archive-read-only'    => '存档目录“$1”在网页服务器中不可写。',
@@ -2660,11 +2657,11 @@ $1',
 'thumbsize'            => '缩略图大小：',
 'widthheightpage'      => '$1×$2，$3页',
 'file-info'            => '（文件大小：$1，MIME类型：$2）',
-'file-info-size'       => '（$1 × $2像素，文件大小：$3，MIME类型：$4）',
+'file-info-size'       => '（$1×$2像素，文件大小：$3，MIME类型：$4）',
 'file-nohires'         => '<small>无更高分辨率可提供。</small>',
-'svg-long-desc'        => '（SVG文件，名义大小：$1 × $2像素，文件大小：$3）',
+'svg-long-desc'        => '（SVG文件，名义大小：$1×$2像素，文件大小：$3）',
 'show-big-image'       => '完整分辨率',
-'show-big-image-thumb' => '<small>这幅缩略图的分辨率：$1 × $2像素</small>',
+'show-big-image-thumb' => '<small>这幅缩略图的分辨率：$1×$2像素</small>',
 'file-info-gif-looped' => '循环',
 'file-info-gif-frames' => '$1帧',
 
@@ -2674,7 +2671,7 @@ $1',
 'newimages-summary'     => '这个特殊页面中显示最后已上传的文件。',
 'newimages-legend'      => '过滤',
 'newimages-label'       => '文件名（或它的一部份）：',
-'showhidebots'          => '($1机器人)',
+'showhidebots'          => '（$1机器人）',
 'noimages'              => '无可查看图像。',
 'ilsubmit'              => '搜索',
 'bydate'                => '按日期',
@@ -2720,22 +2717,22 @@ Variants for Chinese language
 # EXIF tags
 'exif-imagewidth'                  => '宽度',
 'exif-imagelength'                 => '高度',
-'exif-bitspersample'               => '每象素比特数',
-'exif-compression'                 => '压缩方案',
-'exif-photometricinterpretation'   => '象素合成',
+'exif-bitspersample'               => '每像素字节数',
+'exif-compression'                 => '压缩方法',
+'exif-photometricinterpretation'   => '像素构成',
 'exif-orientation'                 => '方位',
-'exif-samplesperpixel'             => '象素数',
+'exif-samplesperpixel'             => '像素数',
 'exif-planarconfiguration'         => '数据排列',
 'exif-ycbcrsubsampling'            => '黄色对洋红二次抽样比率',
 'exif-ycbcrpositioning'            => '黄色和洋红配置',
 'exif-xresolution'                 => '水平分辨率',
 'exif-yresolution'                 => '垂直分辨率',
-'exif-resolutionunit'              => 'X 轴与 Y 轴分辨率单位',
+'exif-resolutionunit'              => 'X和Y轴分辨率单位',
 'exif-stripoffsets'                => '图像数据区',
 'exif-rowsperstrip'                => '每带行数',
 'exif-stripbytecounts'             => '每压缩带字节数',
-'exif-jpeginterchangeformat'       => 'JPEG SOI 偏移',
-'exif-jpeginterchangeformatlength' => 'JPEG 数据字节',
+'exif-jpeginterchangeformat'       => 'JPEG SOI偏移',
+'exif-jpeginterchangeformatlength' => 'JPEG数据字节',
 'exif-transferfunction'            => '转移功能',
 'exif-whitepoint'                  => '白点色度',
 'exif-primarychromaticities'       => '主要色度',
@@ -2748,8 +2745,8 @@ Variants for Chinese language
 'exif-software'                    => '所用软件',
 'exif-artist'                      => '作者',
 'exif-copyright'                   => '版权所有者',
-'exif-exifversion'                 => 'Exif 版本',
-'exif-flashpixversion'             => '支持的 Flashpix 版本',
+'exif-exifversion'                 => 'Exif版本',
+'exif-flashpixversion'             => '支持的Flashpix版本',
 'exif-colorspace'                  => '颜色空间',
 'exif-componentsconfiguration'     => '每分量含义',
 'exif-compressedbitsperpixel'      => '图像压缩模式',
@@ -2764,11 +2761,11 @@ Variants for Chinese language
 'exif-subsectimeoriginal'          => '原始日期时间秒',
 'exif-subsectimedigitized'         => '数字化日期时间秒',
 'exif-exposuretime'                => '曝光时间',
-'exif-exposuretime-format'         => '$1 秒 ($2)',
-'exif-fnumber'                     => '光圈(F值)',
+'exif-exposuretime-format'         => '$1秒（$2）',
+'exif-fnumber'                     => '光圈（F值）',
 'exif-exposureprogram'             => '曝光模式',
 'exif-spectralsensitivity'         => '感光',
-'exif-isospeedratings'             => 'ISO 速率',
+'exif-isospeedratings'             => 'ISO速率',
 'exif-oecf'                        => '光电转换因子',
 'exif-shutterspeedvalue'           => '快门速度',
 'exif-aperturevalue'               => '光圈',
@@ -2791,7 +2788,7 @@ Variants for Chinese language
 'exif-sensingmethod'               => '感光模式',
 'exif-filesource'                  => '文件源',
 'exif-scenetype'                   => '场景类型',
-'exif-cfapattern'                  => 'CFA 模式',
+'exif-cfapattern'                  => 'CFA模式',
 'exif-customrendered'              => '自定义图像处理',
 'exif-exposuremode'                => '曝光模式',
 'exif-whitebalance'                => '白平衡',
@@ -2805,20 +2802,20 @@ Variants for Chinese language
 'exif-devicesettingdescription'    => '设备设定描述',
 'exif-subjectdistancerange'        => '主体距离范围',
 'exif-imageuniqueid'               => '唯一图像ID',
-'exif-gpsversionid'                => 'GPS 标签(tag)版本',
+'exif-gpsversionid'                => 'GPS标签版本',
 'exif-gpslatituderef'              => '北纬或南纬',
 'exif-gpslatitude'                 => '纬度',
 'exif-gpslongituderef'             => '东经或西经',
 'exif-gpslongitude'                => '经度',
 'exif-gpsaltituderef'              => '海拔正负参照',
 'exif-gpsaltitude'                 => '海拔',
-'exif-gpstimestamp'                => 'GPS 时间(原子时钟)',
+'exif-gpstimestamp'                => 'GPS时间（原子钟）',
 'exif-gpssatellites'               => '测量使用的卫星',
 'exif-gpsstatus'                   => '接收器状态',
 'exif-gpsmeasuremode'              => '测量模式',
 'exif-gpsdop'                      => '测量精度',
 'exif-gpsspeedref'                 => '速度单位',
-'exif-gpsspeed'                    => 'GPS 接收器速度',
+'exif-gpsspeed'                    => 'GPS接收器速度',
 'exif-gpstrackref'                 => '运动方位参照',
 'exif-gpstrack'                    => '运动方位',
 'exif-gpsimgdirectionref'          => '图像方位参照',
@@ -2832,10 +2829,10 @@ Variants for Chinese language
 'exif-gpsdestbearing'              => '目标方位',
 'exif-gpsdestdistanceref'          => '目标距离参照',
 'exif-gpsdestdistance'             => '目标距离',
-'exif-gpsprocessingmethod'         => 'GPS 处理方法名称',
-'exif-gpsareainformation'          => 'GPS 区域名称',
-'exif-gpsdatestamp'                => 'GPS 日期',
-'exif-gpsdifferential'             => 'GPS 差动修正',
+'exif-gpsprocessingmethod'         => 'GPS处理方法名称',
+'exif-gpsareainformation'          => 'GPS区域名称',
+'exif-gpsdatestamp'                => 'GPS日期',
+'exif-gpsdifferential'             => 'GPS差动修正',
 
 # EXIF attributes
 'exif-compression-1' => '未压缩',
@@ -2846,10 +2843,10 @@ Variants for Chinese language
 'exif-orientation-2' => '水平翻转',
 'exif-orientation-3' => '旋转180°',
 'exif-orientation-4' => '垂直翻转',
-'exif-orientation-5' => '旋转90° 逆时针并垂直翻转',
-'exif-orientation-6' => '旋转90° 顺时针',
-'exif-orientation-7' => '旋转90° 顺时针并垂直翻转',
-'exif-orientation-8' => '旋转90° 逆时针',
+'exif-orientation-5' => '逆时针旋转90°并垂直翻转',
+'exif-orientation-6' => '顺时针旋转90°',
+'exif-orientation-7' => '顺时针旋转90°并垂直翻转',
+'exif-orientation-8' => '逆时针旋转90°',
 
 'exif-planarconfiguration-1' => '矮胖格式',
 'exif-planarconfiguration-2' => '平面格式',
@@ -2861,10 +2858,10 @@ Variants for Chinese language
 'exif-exposureprogram-2' => '标准程序',
 'exif-exposureprogram-3' => '光圈优先模式',
 'exif-exposureprogram-4' => '快门优先模式',
-'exif-exposureprogram-5' => '艺术程序(景深优先)',
-'exif-exposureprogram-6' => '运动程序(快速快门速度优先)',
-'exif-exposureprogram-7' => '肖像模式(适用于背景在焦距以外的近距摄影)',
-'exif-exposureprogram-8' => '风景模式(适用于背景在焦距上的风景照片)',
+'exif-exposureprogram-5' => '艺术程序（景深优先）',
+'exif-exposureprogram-6' => '运动程序（高快门速度优先）',
+'exif-exposureprogram-7' => '肖像模式（适用于背景在焦距以外的近距摄影）',
+'exif-exposureprogram-8' => '风景模式（适用于背景在焦距上的风景照片）',
 
 'exif-subjectdistance-value' => '$1米',
 
@@ -2880,7 +2877,7 @@ Variants for Chinese language
 'exif-lightsource-0'   => '未知',
 'exif-lightsource-1'   => '日光灯',
 'exif-lightsource-2'   => '荧光灯',
-'exif-lightsource-3'   => '钨丝灯(白炽灯)',
+'exif-lightsource-3'   => '钨丝灯（白炽灯）',
 'exif-lightsource-4'   => '闪光灯',
 'exif-lightsource-9'   => '晴天',
 'exif-lightsource-10'  => '多云',
@@ -2953,7 +2950,7 @@ Variants for Chinese language
 'exif-sharpness-2' => '高',
 
 'exif-subjectdistancerange-0' => '未知',
-'exif-subjectdistancerange-1' => '自动处理程序(宏)',
+'exif-subjectdistancerange-1' => '宏程序',
 'exif-subjectdistancerange-2' => '近景',
 'exif-subjectdistancerange-3' => '远景',
 
@@ -2972,7 +2969,7 @@ Variants for Chinese language
 'exif-gpsmeasuremode-3' => '三维测量',
 
 # Pseudotags used for GPSSpeedRef
-'exif-gpsspeed-k' => '公里每小时',
+'exif-gpsspeed-k' => '千米每小时',
 'exif-gpsspeed-m' => '英里每小时',
 'exif-gpsspeed-n' => '海里每小时(节)',
 
@@ -2993,7 +2990,7 @@ Variants for Chinese language
 
 # E-mail address confirmation
 'confirmemail'             => '确认邮箱地址',
-'confirmemail_noemail'     => '您没有在您的[[Special:Preferences|用户设置]]里面输入一个有效的 email 地址。',
+'confirmemail_noemail'     => '您还没有在您的[[Special:Preferences|参数设置]]中设定一个有效的email地址。',
 'confirmemail_text'        => '{{SITENAME}}要求您在使用邮件功能之前验证您的邮箱地址。
 点击以下按钮可向您的邮箱发送一封确认邮件。该邮件包含有一行代码链接；
 请在您的浏览器中加载此链接以确认您的邮箱地址是有效的。',
@@ -3052,7 +3049,7 @@ $1',
 'confirm-purge-bottom' => '清理一页将会清除快取以及强迫显示最现时之修订版本。',
 
 # Separators for various lists, etc.
-'comma-separator' => '、',
+'comma-separator' => '<span>、</span>',
 'word-separator'  => '',
 'parentheses'     => '（$1）',
 
@@ -3155,7 +3152,7 @@ $1',
 'fileduplicatesearch-legend'   => '搜索重复文件',
 'fileduplicatesearch-filename' => '文件名：',
 'fileduplicatesearch-submit'   => '搜索',
-'fileduplicatesearch-info'     => '$1 × $2像素<br />文件大小：$3<br />MIME类型：$4',
+'fileduplicatesearch-info'     => '$1×$2像素<br />文件大小：$3<br />MIME类型：$4',
 'fileduplicatesearch-result-1' => '文件“$1”没有完全相同的重复副本。',
 'fileduplicatesearch-result-n' => '文件“$1”有$2项完全相同的重复副本。',
 
@@ -3175,21 +3172,21 @@ $1',
 'specialpages-group-pagetools'   => '页面工具',
 'specialpages-group-wiki'        => 'Wiki数据和工具',
 'specialpages-group-redirects'   => '重定向特殊页面',
-'specialpages-group-spam'        => '反垃圾工具',
+'specialpages-group-spam'        => '反垃圾链接工具',
 
 # Special:BlankPage
 'blankpage'              => '空白页面',
 'intentionallyblankpage' => '这个页面被故意留为空白',
 
 # External image whitelist
-'external_image_whitelist' => ' #留下这行一样的文字<pre>
-#在下面（//之中间部份）输入正规表达式
-#这些将会跟外部（已超链接的）图像配合
-#那些配合到出来的会显示成图像，否则就只会显示成链接
-#有 # 开头的行会当成注解
+'external_image_whitelist' => ' #请保留此行文本<pre>
+#在下方书写正则表达式（//中间的部份）
+#这些规则将与外部（盗链）图像的URL匹配
+#匹配的URL将被显示为图像，否则只会显示链向图像的链接
+#以#开头的行会被视为注释
 #大小写不敏感
 
-#在这行上面输入所有的regex。留下这行一样的文字</pre>',
+#在此行上方输入所有的正则表达式。请保留此行文本</pre>',
 
 # Special:Tags
 'tags'                    => '有效更改过的标签',
