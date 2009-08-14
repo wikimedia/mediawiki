@@ -58,6 +58,7 @@ $wgJSAutoloadLocalClasses['j.ui.selectable']	= $wgMwEmbedDirectory . 'jquery/jqu
 // libAddMedia:
 $wgJSAutoloadLocalClasses['mvFirefogg'] 		= $wgMwEmbedDirectory . 'libAddMedia/mvFirefogg.js';
 $wgJSAutoloadLocalClasses['mvAdvFirefogg'] 		= $wgMwEmbedDirectory . 'libAddMedia/mvAdvFirefogg.js';
+$wgJSAutoloadLocalClasses['j.fn.simpleUploadForm']	= $wgMwEmbedDirectory . 'libAddMedia/simpleUploadForm.js';
 $wgJSAutoloadLocalClasses['mvBaseUploadInterface'] = $wgMwEmbedDirectory . 'libAddMedia/mvBaseUploadInterface.js';
 $wgJSAutoloadLocalClasses['remoteSearchDriver'] = $wgMwEmbedDirectory . 'libAddMedia/remoteSearchDriver.js';
 $wgJSAutoloadLocalClasses['seqRemoteSearchDriver'] = $wgMwEmbedDirectory . 'libAddMedia/seqRemoteSearchDriver.js';

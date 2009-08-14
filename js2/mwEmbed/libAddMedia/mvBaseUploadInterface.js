@@ -78,7 +78,7 @@ mvBaseUploadInterface.prototype = {
 	setupForm:function(){	
 		var _this = this;		
 		//set up the local pointer to the edit form:
-		_this.editForm = _this.getEditForm();		
+		_this.editForm = _this.getEditForm();				
 		
 		if( _this.editForm ){
 			//set up the org_onsubmit if not set: 
@@ -86,7 +86,7 @@ mvBaseUploadInterface.prototype = {
 				_this.org_onsubmit = _this.editForm.onsubmit;					
 			
 			//have to define the onsubmit function inline or its hard to pass the "_this" instance
-			$j( '#mw-upload-form' ).submit( function(){		
+			$j( _this.editForm ).submit( function(){		
 				//run the original onsubmit (if not run yet set flag to avoid excessive chaining ) 
 				if( typeof( _this.org_onsubmit ) == 'function' ){								  
 					if( ! _this.org_onsubmit() ){
@@ -95,8 +95,7 @@ mvBaseUploadInterface.prototype = {
 					}
 				}				
 				//check for post action override: 															
-				if( _this.form_post_override ){
-					//alert('will submit here');
+				if( _this.form_post_override ){					
 					return true;
 				}									
 				//get the input form data in flat json: 										

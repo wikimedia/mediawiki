@@ -150,7 +150,7 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 		var out = '';		
 		$j.each(default_firefogg_options, function(target, na){			
 			if(target.substring(0, 6)=='target'){
-				js_log('check for target html: ' + target);
+				//js_log('check for target html: ' + target);
 				//check for the target if missing add to the output: 
 				if( _this[target] === false){					
 					out += _this.getTargetHtml(target) + ' ';
@@ -450,7 +450,7 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 	//doChunkUpload does both uploading and encoding at the same time and uploads one meg chunks as they are ready
 	doChunkUpload : function(){
 		js_log('doChunkUpload::');
-		var _this = this;			
+		var _this = this;					
 		_this.action_done = false;					
 		//extension should already be ogg but since its user editable,
 		//check again
@@ -466,7 +466,29 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 			_this.formData['wpDestFile'] = sf.replace(extreg, '.ogg');
 		}
 		//add chunk response hook to build the resultURL when uploading chunks		
-		
+				
+		//check for editToken:
+		if(!this.etoken){
+			if( _this.formData['wpEditToken']){
+				_this.etoken = _this.formData['wpEditToken'];
+				_this.doChunkWithFormData();
+			}else{
+				get_mw_token(
+					'File:'+ _this.formData['wpDestFile'], 
+					_this.api_url, 
+					function( eToken ){										
+						_this.etoken = eToken;
+						_this.doChunkWithFormData();
+					}
+				);
+			}
+		}else{
+			_this.doChunkWithFormData();
+		}
+	},
+	doChunkWithFormData:function(){
+		var _this = this;
+		js_log("doChunkWithFormData::"  + _this.etoken);
 		//build the api url: 
 		var aReq ={
 			'action'		: 'upload',
@@ -475,11 +497,8 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 			'comment'		: _this.formData['wpUploadDescription'],
 			'enablechunks'	: 'true'
 		};
-		//check for editToken:
-		if(!this.etoken)
-			this.etoken = _this.formData['wpEditToken'];
-			
-		if( this.etoken )
+		
+		if( _this.etoken )
 			aReq['token'] = this.etoken;
 		
 		if( _this.formData['wpWatchthis'] )
@@ -554,7 +573,7 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 	},
 	doUploadStatus:function() {	
 		var _this = this;
-		$j('#up-status-state').html( gM('uploaded-status')  );
+		$j( '#up-status-state' ).html( gM('uploaded-status')  );
 		
 		_this.oldResponseText = '';
 		//setup a local function for timed callback:				 

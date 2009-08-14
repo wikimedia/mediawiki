@@ -156,7 +156,7 @@ mvEmbed = {
 		if( force_id == null && force_id != '' ){
 			var j_selector = 'video,audio,playlist';			   	
 		}else{
-			var j_selector = '#'+force_id;
+			var j_selector = '#' + force_id;
 		}
 		//process selected elements: 
 		//ie8 does not play well with the jQuery video,audio,playlist selector use native: 
@@ -2175,8 +2175,8 @@ embedVideo.prototype = {
 		
 		 $j("#mv_play_pause_button_" + this_id + ' span').removeClass('ui-icon-play').addClass('ui-icon-pause');			   
 		 $j("#mv_play_pause_button_" + this_id).unbind().btnBind().click(function(){					
-		   $j('#' + this_id ).get(0).pause();
-	   	  }).attr('title', gM('pause_clip'));
+		 	$j('#' + this_id ).get(0).pause();
+	   	 }).attr('title', gM('pause_clip'));
 		   
 	},
 	load:function(){
@@ -2393,7 +2393,7 @@ embedVideo.prototype = {
 			var val = parseInt( perc*1000 ); 
 			$j('#mv_play_head_'+this_id).slider('value', val);
 			
-			js_log("embed video set: " + '#mv_play_head_'+this_id + ' to ' + val);
+			//js_log("embed video set: " + '#mv_play_head_'+this_id + ' to ' + val);
 		}
 		//js_log('set#mv_seeker_slider_'+this_id + ' perc in: ' + perc + ' * ' + $j('#mv_seeker_'+this_id).width() + ' = set to: '+ val + ' - '+ Math.round(this.mv_seeker_width*perc) );
 		//js_log('op:' + offset_perc + ' *('+perc+' * ' + $j('#slider_'+id).width() + ')');
