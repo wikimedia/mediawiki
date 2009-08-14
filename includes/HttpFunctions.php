@@ -29,7 +29,6 @@ class Http {
 	 */
 	public static function get( $url, $timeout = false, $opts = array() ) {
 		global $wgSyncHTTPTimeout;
-		$opts = array();
 		if( $timeout )
 			$opts['timeout'] = $timeout;
 		return Http::request( 'GET', $url, $opts );
