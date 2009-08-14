@@ -1235,6 +1235,13 @@ $text: Text being shown
 $title: Title of the custom script/stylesheet page
 $output: Current OutputPage object
 
+'ShowSearchHitTitle': Customise display of search hit title/link.
+&$title: Title to link to
+&$text: Text to use for the link
+$result: The search result
+$terms: The search terms entered
+$page: The SpecialSearch object.
+
 'SiteNoticeBefore': Before the sitenotice/anonnotice is composed
 &$siteNotice: HTML returned as the sitenotice
 Return true to allow the normal method of notice selection/rendering to work,
