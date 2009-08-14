@@ -30,10 +30,24 @@ class ShowJobs extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->mDescription = "Show number of jobs waiting in master database";
+		$this->addOption( 'group', 'Show number of jobs per job type' );
 	}
 	public function execute() {
 		$dbw = wfGetDB( DB_MASTER );
-		$this->output( $dbw->selectField( 'job', 'count(*)', '', __METHOD__ ) . "\n" );
+		if ( $this->hasOption( 'group' ) ) {
+			$res = $dbw->select(
+				'job',
+				array( 'job_cmd', 'count(*) as count' ),
+				array(),
+				__METHOD__,
+				array( 'GROUP BY' => 'job_cmd' )
+			);
+			foreach( $res as $row ) {
+				$this->output( $row->job_cmd . ': ' . $row->count . "\n" );
+			}
+		} else {
+			$this->output( $dbw->selectField( 'job', 'count(*)', '', __METHOD__ ) . "\n" );
+		}
 	}
 }
 
