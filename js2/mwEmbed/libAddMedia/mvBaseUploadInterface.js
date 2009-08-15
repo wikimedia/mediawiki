@@ -47,8 +47,8 @@ var default_bui_options = {
 	'done_upload_cb': null,
 	'target_edit_from':null,
 	
-	//upload_mode can be 'post', 'chunks' or autodetect. (autodetect issues an api call)
-	'upload_mode':'autodetect'
+	//upload_mode can be 'post', 'api' or 'autodetect'. (autodetect issues an api call)
+	'upload_mode': 'autodetect'
 	
 }
 var mvBaseUploadInterface = function( iObj ){
@@ -79,25 +79,27 @@ mvBaseUploadInterface.prototype = {
 		var _this = this;		
 		//set up the local pointer to the edit form:
 		_this.editForm = _this.getEditForm();				
-		
+		$j(_this.editForm).attr('target', 'f_1');
 		if( _this.editForm ){
 			//set up the org_onsubmit if not set: 
 			if( typeof( _this.org_onsubmit ) == 'undefined' &&  _this.editForm.onsubmit )
-				_this.org_onsubmit = _this.editForm.onsubmit;					
+				_this.org_onsubmit = _this.editForm.onsubmit;											
 			
-			//have to define the onsubmit function inline or its hard to pass the "_this" instance
-			$j( _this.editForm ).submit( function(){		
+			//set up the submit action: 
+			$j( _this.editForm ).submit( function(){	
+				js_log('j.onSubmit');	
 				//run the original onsubmit (if not run yet set flag to avoid excessive chaining ) 
 				if( typeof( _this.org_onsubmit ) == 'function' ){								  
 					if( ! _this.org_onsubmit() ){
 						//error in org submit return false;
 						return false;
 					}
-				}				
+				}	
 				//check for post action override: 															
-				if( _this.form_post_override ){					
+				if( _this.form_post_override ){	
+					js_log('form_post_override is true do form proccessing:');														
 					return true;
-				}									
+				}										
 				//get the input form data in flat json: 										
 				var tmpAryData = $j( _this.editForm ).serializeArray();					
 				for(var i=0; i < tmpAryData.length; i++){
@@ -164,29 +166,72 @@ mvBaseUploadInterface.prototype = {
 		var _this = this;			
 		js_log('mvUPload:doUploadSwitch():' + _this.upload_mode);			
 		//issue a normal post request 		
-		if( _this.upload_mode == 'post' || //we don't support the upload api
-			(_this.upload_mode=='api' &&  ( $j('#wpSourceTypeFile').length ==  0 || $j('#wpSourceTypeFile').get(0).checked ) ) // web form uplaod even though we support api			
-		){			
-			js_log('do original submit form');
-			//update the status to 100% progress bar: 
-			$j( '#up-progressbar' ).progressbar('value', parseInt( 100 ) );		
-							
-			$j('#up-status-container').html( gM('upload-in-progress') );
-			//do normal post upload no status indicators (also since its a file I think we have to submit the form)
-			_this.form_post_override = true;
-			
-			//trick the browser into thinking the wpUpload button was pressed (there might be a cleaner way to do this)
-			
+		if( _this.upload_mode == 'post' ) {
+			//we don't support the upload api
+			//trick the browser into thinking the wpUpload button was pressed (there might be a cleaner way to do this)			
 			$j(_this.editForm).append(
 				'<input type="hidden" name="wpUpload" value="' + $j('input[name=\'wpUpload\']').val() + '"/>'
-			);
-			
-			//@@todo support firefox 3.0 ajax file upload progress
-			//http://igstan.blogspot.com/2009/01/pure-javascript-file-upload.html
-			
+			);			
+			//do normal post
+			_this.form_post_override = true;
 			//do the submit :			
 			_this.editForm.submit();
-			return true;
+		}else if(
+			_this.upload_mode=='api' &&  
+			( $j('#wpSourceTypeFile').length ==  0 || $j('#wpSourceTypeFile').get(0).checked ) 		
+		){	
+			//@@TODO check for sendAsBinnary to support firefox 3.5 progress 				
+			//else remap to iframe target
+			var id = 'f_' + ($j('iframe').length + 1);
+			$j("body").append('<iframe src="javascript:false;" id="' + id + '" ' +
+				'name="' + id + '" style="display:none;" ></iframe>');			
+			//set up the done binding
+			$j('#' + id).load(function(){
+				var iframe = $j(this).get(0);	
+				_this.proccessIframeResult( iframe );
+			});		
+			//set the editForm iframe target
+			//$j(_this.editForm).attr('target', id);
+			
+			//set the action to the api url:
+			$j(_this.editForm).attr('action', _this.api_url );
+			//add api action:
+			if( $j(_this.editForm).find("[name='action']").length == 0)
+				$j(_this.editForm).append('<input type="hidden" name="action" value="upload">');
+			
+			//add json format
+			if( $j(_this.editForm).find("[name='format']").length == 0)
+				$j(_this.editForm).append('<input type="hidden" name="format" value="json">');
+			
+			//add text format type request (IE tries to "run"/download the script otherwise) 
+			if( $j(_this.editForm).find("[name='ctypetext']").length == 0)
+				$j(_this.editForm).append('<input type="hidden" name="ctypetext" value="true">');				
+			
+			//map the form vars to api vars:  
+			$j(_this.editForm).find('#wpUploadFile').attr('name', 'file');
+			$j(_this.editForm).find('#wpDestFile').attr('name', 'filename');
+			$j(_this.editForm).find('#wpUploadDescription').attr('name', 'comment');
+			$j(_this.editForm).find('#wpEditToken').attr('name', 'token');			
+			$j(_this.editForm).find('#wpIgnoreWarning').attr('name', 'ignorewarnings');
+			$j(_this.editForm).find('#wpWatchthis').attr('name', 'watch');
+			
+			//update the status to 100% progress bar (no status in iframe submit) 
+			$j('#up-progressbar' ).progressbar('value', parseInt( 100 ) );								
+			$j('#up-status-container').html( gM('upload-in-progress') );
+			
+			
+			js_log('do iframe form submit');
+						
+
+			//do post override
+			_this.form_post_override = true;							
+			//reset the done with action flag:
+			_this.action_done = false;					 
+			//do the submit :
+			js_log('do the submit');	
+			_this.editForm.submit();
+														
+			return false;
 		}else if( _this.upload_mode == 'api' && $j('#wpSourceTypeURL').get(0).checked){	
 			js_log('doHttpUpload (no form submit) ');
 			//if the api is supported.. && source type is http do upload with http status updates
@@ -194,18 +239,64 @@ mvBaseUploadInterface.prototype = {
 			    'url'		: $j('#wpUploadFileURL').val(),
 			    'filename'	: $j('#wpDestFile').val(),
 			    'comment' 	: $j('#wpUploadDescription').val(),				
-				'watch'		:  ($j('#wpWatchthis').is(':checked'))?'true':'false'    				    
+				'watch'		: ($j('#wpWatchthis').is(':checked'))?'true':'false'    				    
 			}
+			//set up ignore warnings and watch arguments: 
 			if( $j('#wpIgnoreWarning').is(':checked') ){
 				httpUpConf[ 'ignorewarnings'] =  'true';
 			}
+			if( $j('#wpWatchthis').is(':checked') ){
+				httpUpConf[ 'watch'] =  'true';
+			}
 			//check for editToken
-			_this.etoken = $j("input[name='wpEditToken']").val();						
+			_this.etoken = $j("#wpEditToken").val();						
 			_this.doHttpUpload( httpUpConf );
 		}else{
 			js_error( 'Error: unrecongized upload mode: ' + _this.upload_mode );
 		}				
 		return false;
+	},
+	proccessIframeResult:function(iframe){
+		var _this = this;
+		var doc = iframe.contentDocument ? iframe.contentDocument : frames[iframe.id].document;
+		// fixing Opera 9.26
+		if (doc.readyState && doc.readyState != 'complete'){
+			// Opera fires load event multiple times
+			// Even when the DOM is not ready yet
+			// this fix should not affect other browsers
+			return;
+		}
+		
+		// fixing Opera 9.64
+		if (doc.body && doc.body.innerHTML == "false"){
+			// In Opera 9.64 event was fired second time
+			// when body.innerHTML changed from false 
+			// to server response approx. after 1 sec
+			return;				
+		}
+		
+		var response;
+							
+		if (doc.XMLDocument){
+			// response is a xml document IE property
+			response = doc.XMLDocument;
+		} else if (doc.body){
+			// response is html document or plain text
+			response = doc.body.innerHTML;		
+			// try and parse the api response:
+			if (doc.body.firstChild && doc.body.firstChild.nodeName.toUpperCase() == 'PRE'){
+				response = doc.body.firstChild.firstChild.nodeValue;
+			}
+			if (response) {
+				response = window["eval"]("(" + response + ")");
+			} else {
+				response = {};
+			}
+		} else {
+			// response is a xml document
+			var response = doc;
+		}					
+		_this.processApiResult(	response );
 	},
 	doHttpUpload:function( opt ){
 		var _this = this;
@@ -342,6 +433,7 @@ mvBaseUploadInterface.prototype = {
 			//gennerate the error button:		
 			var bObj = {};
 			bObj[ gM('return-to-form') ] = 	function(){
+					_this.form_post_override = false;
 					$j(this).dialog('close');
 			 };  		
 			 
@@ -476,6 +568,7 @@ mvBaseUploadInterface.prototype = {
 			};
 			bObj[ gM('return-to-form') ] = function(){
 				$j(this).dialog('close');
+				_this.form_post_override = false;
 			}
 			_this.updateProgressWin(  gM('uploadwarning'),  '<h3>' + gM('uploadwarning') + '</h3>' +wmsg + '<p>',bObj);
 			return false;
@@ -515,6 +608,7 @@ mvBaseUploadInterface.prototype = {
 					var bObj = {};
 					bObj[ gM('return-to-form')] = function(){
 						$j(this).dialog('close');
+						_this.form_post_override = false;
 					}
 					bObj[ gM('go-to-resource') ] = function(){
 							window.location = url;

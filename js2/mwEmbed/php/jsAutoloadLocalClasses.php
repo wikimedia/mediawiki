@@ -10,12 +10,9 @@ $wgJSAutoloadLocalClasses['mv_embed']			= $wgMwEmbedDirectory . 'mv_embed.js';
 $wgJSAutoloadLocalClasses['window.jQuery']		= $wgMwEmbedDirectory . 'jquery/jquery-1.3.2.js';
 
 $wgJSAutoloadLocalClasses['j.secureEvalJSON']	= $wgMwEmbedDirectory . 'jquery/plugins/jquery.json-1.3.js';
-
 $wgJSAutoloadLocalClasses['j.cookie']			= $wgMwEmbedDirectory . 'jquery/plugins/jquery.cookie.js';
-
 $wgJSAutoloadLocalClasses['j.contextMenu']		= $wgMwEmbedDirectory . 'jquery/plugins/jquery.contextMenu.js';
 $wgJSAutoloadLocalClasses['j.fn.pngFix']		= $wgMwEmbedDirectory . 'jquery/plugins/jquery.pngFix.js';
-
 $wgJSAutoloadLocalClasses['j.fn.autocomplete']	= $wgMwEmbedDirectory . 'jquery/plugins/jquery.autocomplete.js';
 $wgJSAutoloadLocalClasses['j.fn.hoverIntent']	= $wgMwEmbedDirectory . 'jquery/plugins/jquery.hoverIntent.js';
 $wgJSAutoloadLocalClasses['Date.fromString']  	= $wgMwEmbedDirectory . 'jquery/plugins/date.js';
@@ -58,7 +55,7 @@ $wgJSAutoloadLocalClasses['j.ui.selectable']	= $wgMwEmbedDirectory . 'jquery/jqu
 // libAddMedia:
 $wgJSAutoloadLocalClasses['mvFirefogg'] 		= $wgMwEmbedDirectory . 'libAddMedia/mvFirefogg.js';
 $wgJSAutoloadLocalClasses['mvAdvFirefogg'] 		= $wgMwEmbedDirectory . 'libAddMedia/mvAdvFirefogg.js';
-$wgJSAutoloadLocalClasses['j.fn.simpleUploadForm']	= $wgMwEmbedDirectory . 'libAddMedia/simpleUploadForm.js';
+
 $wgJSAutoloadLocalClasses['mvBaseUploadInterface'] = $wgMwEmbedDirectory . 'libAddMedia/mvBaseUploadInterface.js';
 $wgJSAutoloadLocalClasses['remoteSearchDriver'] = $wgMwEmbedDirectory . 'libAddMedia/remoteSearchDriver.js';
 $wgJSAutoloadLocalClasses['seqRemoteSearchDriver'] = $wgMwEmbedDirectory . 'libAddMedia/seqRemoteSearchDriver.js';
@@ -67,6 +64,8 @@ $wgJSAutoloadLocalClasses['mediaWikiSearch'] 	= $wgMwEmbedDirectory . 'libAddMed
 $wgJSAutoloadLocalClasses['metavidSearch'] 		= $wgMwEmbedDirectory . 'libAddMedia/searchLibs/metavidSearch.js';
 $wgJSAutoloadLocalClasses['archiveOrgSearch'] 	= $wgMwEmbedDirectory . 'libAddMedia/searchLibs/archiveOrgSearch.js';
 $wgJSAutoloadLocalClasses['baseRemoteSearch']	= $wgMwEmbedDirectory . 'libAddMedia/searchLibs/baseRemoteSearch.js';
+
+$wgJSAutoloadLocalClasses['j.fn.simpleUploadForm']	= $wgMwEmbedDirectory . 'libAddMedia/simpleUploadForm.js';
 
 // libClipEdit:
 $wgJSAutoloadLocalClasses['mvClipEdit'] 		= $wgMwEmbedDirectory . 'libClipEdit/mvClipEdit.js';

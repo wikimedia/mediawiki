@@ -230,8 +230,8 @@ mvEmbed = {
 		$j('#'+embed_video.id).get(0).on_dom_swap();	
 			  
 		// now that "embed_video" is stable, do more initialization (if we are ready)
-		if($j('#'+embed_video.id).get(0).loading_external_data==false && 
-			   $j('#'+embed_video.id).get(0).init_with_sources_loadedDone==false){
+		if($j('#'+embed_video.id).get(0).loading_external_data == false && 
+			   $j('#'+embed_video.id).get(0).init_with_sources_loadedDone == false){
 			//load and set ready state since source are available: 
 			$j('#'+embed_video.id).get(0).init_with_sources_loaded();
 		}
@@ -2399,7 +2399,7 @@ embedVideo.prototype = {
 		//js_log('op:' + offset_perc + ' *('+perc+' * ' + $j('#slider_'+id).width() + ')');
 	},
 	highlightPlaySection:function(options){
-		js_log('highlightPlaySection');		
+		js_log('highlightPlaySection');
 		var this_id = (this.pc)?this.pc.pp.id:this.id;
 		var dur = this.getDuration();
 		var hide_progress = true;		
