@@ -15,6 +15,25 @@
 
 $fallback = 'ru';
 
+$datePreferences = false;
+
+$defaultDateFormat = 'dmy';
+
+$dateFormats = array(
+        'mdy time' => 'H:i',
+        'mdy date' => 'M j, Y',
+        'mdy both' => 'H:i, M j, Y',
+        'dmy time' => 'H:i',
+        'dmy date' => 'j. M Y',
+        'dmy both' => 'j. M Y, H:i',
+        'ymd time' => 'H:i',
+        'ymd date' => 'Y M j',
+        'ymd both' => 'H:i, Y M j',
+        'ISO 8601 time' => 'xnH:xni:xns',
+        'ISO 8601 date' => 'xnY-xnm-xnd',
+        'ISO 8601 both' => 'xnY-xnm-xnd"T"xnH:xni:xns',
+);
+
 $namespaceNames = array(
 	NS_MEDIA            => 'Медиа',
 	NS_SPECIAL          => 'Махсус',
@@ -35,24 +54,67 @@ $namespaceNames = array(
 );
 
 $namespaceAliases = array(
-	'Служебная' => NS_SPECIAL,
-	'Обсуждение' => NS_TALK,
-	'Участница' => NS_USER,
-	'Обсуждение участницы' => NS_USER_TALK,
-	'Участник' => NS_USER,
-	'Обсуждение_участника' => NS_USER_TALK,
+	'Служебная'                          => NS_SPECIAL,
+	'Обсуждение'                         => NS_TALK,
+	'Участница'                          => NS_USER,
+	'Обсуждение участницы'               => NS_USER_TALK,
+	'Участник'                           => NS_USER,
+	'Обсуждение_участника'               => NS_USER_TALK,
 	'Обсуждение_{{GRAMMAR:genitive|$1}}' => NS_PROJECT_TALK,
-	'Изображение' => NS_FILE,
-	'Обсуждение_изображения' => NS_FILE_TALK,
-	'Файл' => NS_FILE,
-	'Обсуждение_файла' => NS_FILE_TALK,
-	'Обсуждение_MediaWiki' => NS_MEDIAWIKI_TALK,
-	'Шаблон' => NS_TEMPLATE,
-	'Обсуждение_шаблона' => NS_TEMPLATE_TALK,
-	'Справка' => NS_HELP,
-	'Обсуждение_справки' => NS_HELP_TALK,
-	'Категория' => NS_CATEGORY,
-	'Обсуждение_категории' => NS_CATEGORY_TALK,
+	'Изображение'                        => NS_FILE,
+	'Обсуждение_изображения'             => NS_FILE_TALK,
+	'Файл'                               => NS_FILE,
+	'Обсуждение_файла'                   => NS_FILE_TALK,
+	'Обсуждение_MediaWiki'               => NS_MEDIAWIKI_TALK,
+	'Шаблон'                             => NS_TEMPLATE,
+	'Обсуждение_шаблона'                 => NS_TEMPLATE_TALK,
+	'Справка'                            => NS_HELP,
+	'Обсуждение_справки'                 => NS_HELP_TALK,
+	'Категория'                          => NS_CATEGORY,
+	'Обсуждение_категории'               => NS_CATEGORY_TALK,
+
+	// tt-latn namespace names
+	'Maxsus'           => NS_SPECIAL,
+	'Bäxäs'            => NS_TALK,
+	'Äğzä'             => NS_USER,
+	'Äğzä_bäxäse'      => NS_USER_TALK,
+	'$1_bäxäse'        => NS_PROJECT_TALK,
+	'Räsem'            => NS_FILE,
+	'Räsem_bäxäse'     => NS_FILE_TALK,
+	'MediaWiki_bäxäse' => NS_MEDIAWIKI_TALK,
+	'Ürnäk'            => NS_TEMPLATE,
+	'Ürnäk_bäxäse'     => NS_TEMPLATE_TALK,
+	'Yärdäm'           => NS_HELP,
+	'Yärdäm_bäxäse'    => NS_HELP_TALK,
+	'Törkem'           => NS_CATEGORY,
+	'Törkem_bäxäse'    => NS_CATEGORY_TALK,
+);
+
+$magicWords = array(
+	'redirect'              => array( '0', '#yünältü', '#REDIRECT' ),
+	'notoc'                 => array( '0', '__ETYUQ__', '__NOTOC__' ),
+	'forcetoc'              => array( '0', '__ETTIQ__', '__FORCETOC__' ),
+	'toc'                   => array( '0', '__ET__', '__TOC__' ),
+	'noeditsection'         => array( '0', '__BÜLEMTÖZÄTÜYUQ__', '__NOEDITSECTION__' ),
+	'currentmonth'          => array( '1', 'AĞIMDAĞI_AY', 'CURRENTMONTH', 'CURRENTMONTH2' ),
+	'currentmonthname'      => array( '1', 'AĞIMDAĞI_AY_İSEME', 'CURRENTMONTHNAME' ),
+	'currentmonthnamegen'   => array( '1', 'AĞIMDAĞI_AY_İSEME_GEN', 'CURRENTMONTHNAMEGEN' ),
+	'currentday'            => array( '1', 'AĞIMDAĞI_KÖN', 'CURRENTDAY' ),
+	'currentdayname'        => array( '1', 'AĞIMDAĞI_KÖN_İSEME', 'CURRENTDAYNAME' ),
+	'currentyear'           => array( '1', 'AĞIMDAĞI_YIL', 'CURRENTYEAR' ),
+	'currenttime'           => array( '1', 'AĞIMDAĞI_WAQIT', 'CURRENTTIME' ),
+	'numberofarticles'      => array( '1', 'MÄQÄLÄ_SANI', 'NUMBEROFARTICLES' ),
+	'pagename'              => array( '1', 'BİTİSEME', 'PAGENAME' ),
+	'namespace'             => array( '1', 'İSEMARA', 'NAMESPACE' ),
+	'subst'                 => array( '0', 'TÖPÇEK:', 'SUBST:' ),
+	'img_right'             => array( '1', 'uñda', 'right' ),
+	'img_left'              => array( '1', 'sulda', 'left' ),
+	'img_none'              => array( '1', 'yuq', 'none' ),
+	'int'                   => array( '0', 'EÇKE:', 'INT:' ),
+	'sitename'              => array( '1', 'SÄXİFÄİSEME', 'SITENAME' ),
+	'ns'                    => array( '0', 'İA:', 'NS:' ),
+	'localurl'              => array( '0', 'URINLIURL:', 'LOCALURL:' ),
+	'localurle'             => array( '0', 'URINLIURLE:', 'LOCALURLE:' ),
 );
 
 $messages = array(
