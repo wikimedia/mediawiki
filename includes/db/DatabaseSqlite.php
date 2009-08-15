@@ -280,6 +280,10 @@ class DatabaseSqlite extends DatabaseBase {
 		return $this->lastErrno() ==  SQLITE_SCHEMA;
 	}
 
+	function wasReadOnlyError() {
+		return $this->lastErrno() == SQLITE_READONLY;
+	}
+
 	/**
 	 * @return string wikitext of a link to the server software's web site
 	 */

@@ -91,7 +91,7 @@ function &wfGetCache( $inputType ) {
 
 	if ( $type == CACHE_DB || ( $inputType == CACHE_ANYTHING && $cache === false ) ) {
 		if ( !array_key_exists( CACHE_DB, $wgCaches ) ) {
-			$wgCaches[CACHE_DB] = new MediaWikiBagOStuff('objectcache');
+			$wgCaches[CACHE_DB] = new SqlBagOStuff('objectcache');
 		}
 		$cache =& $wgCaches[CACHE_DB];
 	}

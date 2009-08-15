@@ -1715,17 +1715,27 @@ abstract class DatabaseBase {
 
 	/**
 	 * Determines if the last failure was due to a deadlock
+	 * STUB
 	 */
 	function wasDeadlock() {
-		return $this->lastErrno() == 1213;
+		return false;
 	}
 
 	/**
 	 * Determines if the last query error was something that should be dealt 
-	 * with by pinging the connection and reissuing the query
+	 * with by pinging the connection and reissuing the query.
+	 * STUB
 	 */
 	function wasErrorReissuable() {
-		return $this->lastErrno() == 2013 || $this->lastErrno() == 2006;
+		return false;
+	}
+
+	/**
+	 * Determines if the last failure was due to the database being read-only.
+	 * STUB
+	 */
+	function wasReadOnlyError() {
+		return false;
 	}
 
 	/**
