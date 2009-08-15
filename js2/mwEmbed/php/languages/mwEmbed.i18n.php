@@ -41,6 +41,7 @@ $messages['en'] = array(
 	'ignorewarning' => 'Ignore warning and save file anyway',
 	'file-thumbnail-no' => 'The filename begins with <b><tt>$1</tt></b>',
 	'go-to-resource' => 'Go to Resource Page',
+	'upload-misc-error' => 'Unknown upload error',
 	'wgfogg_waring_bad_extension' => 'You have selected a file with an unsuported extension (<a href="http://commons.wikimedia.org/wiki/Commons:Firefogg#Supported_File_Types">more information</a>).',
 	'cancel-button' => 'Cancel',
 	'ok-button' => 'OK',

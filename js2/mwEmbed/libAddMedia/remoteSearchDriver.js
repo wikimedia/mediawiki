@@ -577,18 +577,25 @@ remoteSearchDriver.prototype = {
 			$j('#tab-upload').html( gM('rsd_config_error', 'bad_api_url') );
 			return false;
 		}
-		//output the form 
-		mvJsLoader.doLoad(['$j.fn.simpleUploadForm'],function(){
-			//set the form action based on domain: 
-			if( parseUri( document.URL ).host == parseUri( _this.upload_api_target ).host ){
+		//output the form 		
+		//set the form action based on domain: 
+		if( parseUri( document.URL ).host == parseUri( _this.upload_api_target ).host ){
+			mvJsLoader.doLoad(['$j.fn.simpleUploadForm'],function(){
 				//deal with the api form upload form directly:
 				$j('#tab-upload').simpleUploadForm({
-					"api_target" :	_this.upload_api_target 
+					"api_target" :	_this.upload_api_target ,
+					"ondone_cb"	: function( resultData ){
+						var cat = resultData;
+						debugger;						
+						return false;
+					}
 				})
-			}else{
-				//setup the proxy  
-			}
-		});									
+			});
+		}else{
+			//setup the proxy  
+			js_log('do proxy:: ' + parseUri( _this.upload_api_target ).host);
+			$j('#tab-upload').html('proxy upload not yet ready');
+		}							
 	},
 	runSearch: function(){		
 		js_log("f:runSearch::" + this.disp_item);
@@ -1352,8 +1359,7 @@ remoteSearchDriver.prototype = {
 		mvJsLoader.doLoad([
 			'mvBaseUploadInterface',		
 			'$j.ui.progressbar'	
-		],function(){	 
-			
+		],function(){	 			
 			//initicate a download similar to url copy:
 			myUp = new mvBaseUploadInterface({
 				'api_url' : _this.local_wiki_api_url,
@@ -1363,7 +1369,9 @@ remoteSearchDriver.prototype = {
 				   //close up the rsd_resource_import
 				   $j('#rsd_resource_import').remove();
 				   //run the parent callback:
-				   cir_callback(); 
+				   cir_callback();
+				   //return false to avoid BaseUploadInterface done actions
+				   return false;
 				}
 			});
 			//set the edit token if we have it handy

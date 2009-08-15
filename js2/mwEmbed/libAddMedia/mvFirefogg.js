@@ -25,7 +25,7 @@ var firefogg_install_links =  {
 
 var default_firefogg_options = {
 	//what to do when finished uploading
-	'upload_done_action':'redirect',
+	'done_upload_cb':false,
 	//if firefoog is enabled
 	'fogg_enabled':false,
 	//the api url to upload to
@@ -476,7 +476,8 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 				get_mw_token(
 					'File:'+ _this.formData['wpDestFile'], 
 					_this.api_url, 
-					function( eToken ){										
+					function( eToken ){		
+						if(eToken==)								
 						_this.etoken = eToken;
 						_this.doChunkWithFormData();
 					}
@@ -631,9 +632,18 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 					   		buttons[gM('go-to-resource')] =  function(){
 								window.location = _this.fogg.resultUrl;
 							}
-							var go_to_url_txt = gM('go-to-resource');			   
-						   //should have an json result:
-						   _this.updateProgressWin( gM('successfulupload'),  gM( 'mv_upload_done', _this.fogg.resultUrl),buttons);	
+							var go_to_url_txt = gM('go-to-resource');			   						   
+						   	if( typeof _this.done_upload_cb == 'function' ){
+						   		//if done action return 'true'
+								if( _this.done_upload_cb() ){										
+									//update status
+						   			_this.updateProgressWin( gM('successfulupload'),  gM( 'mv_upload_done', _this.fogg.resultUrl),buttons);	
+								}else{
+									//if done action returns 'false' //close progress window
+									this.action_done = true;							  	        
+						  	       	$j('#upProgressDialog').dialog('close');	
+								} 
+						   	}
 					   }else{
 						   //done state with error? ..not really possible given how firefogg works
 						   js_log(" upload done, in chunks mode, but no resultUrl!");
@@ -682,14 +692,14 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 		_this.updateProgressWin( gM('mv_upload_completed'), result_txt );
 												
 		if( result_page && result_page.toLowerCase().indexOf( sstring.toLowerCase() ) != -1){	
-			js_log( 'upload done got redirect found: ' + sstring + ' r:' + _this.upload_done_action );										
-			if( _this.upload_done_action == 'redirect' ){
+			js_log( 'upload done got redirect found: ' + sstring + ' r:' + _this.done_upload_cb );										
+			if( _this.done_upload_cb == 'redirect' ){
 				$j( '#dlbox-centered' ).html( '<h3>Upload Completed:</h3>' + result_txt + '<br>' + form_txt);
 				window.location = wgArticlePath.replace( /\$1/, 'File:' + _this.formData['wpDestFile'] );
 			}else{
 				//check if the add_done_action is a callback:
-				if( typeof _this.upload_done_action == 'function' )
-					_this.upload_done_action();
+				if( typeof _this.done_upload_cb == 'function' )
+					_this.done_upload_cb();
 			}									
 		}else{								
 			//js_log( 'upload page error: did not find: ' +sstring + ' in ' + "\n" + result_page );					
