@@ -544,12 +544,14 @@ var mvJsLoader = {
 	embedVideoCheck:function( callback ){
 		var _this = this;
 		js_log('embedVideoCheck:');
+		//set videonojs to loading		
 		//issue a style sheet request get both mv_embed and jquery styles: 
 		loadExternalCss( mv_jquery_skin_path + 'jquery-ui-1.7.1.custom.css' );
 		loadExternalCss( mv_embed_path  + 'skins/'+mv_skin_name+'/styles.css');
 				 
 		//make sure we have jQuery
 		_this.jQueryCheck(function(){
+			$j('.videonojs').html( gM('loading_txt') );
 			var depReq = [
 				[
 					'$j.ui', 
@@ -557,7 +559,7 @@ var mvJsLoader = {
 					'$j.cookie'					 															
 				], 
 				[
-					'$j.ui.slider',					
+					'$j.ui.slider'					
 				]
 			];				
 			//add png fix if needed:
@@ -567,6 +569,7 @@ var mvJsLoader = {
 			_this.doLoadDepMode(depReq,function(){												 
 				embedTypes.init();										
 				callback();	
+				$j('.videonojs').remove();
 			});
 		});
 	},	
@@ -614,10 +617,14 @@ function mwdomReady(force){
 	//handle the execution of Queded function with jQuery "ready"	
 	
 	//check if this page does have video or playlist
-	if(document.getElementsByTagName("video").length!=0 ||
-	   document.getElementsByTagName("audio").length!=0 ||
-	   document.getElementsByTagName("playlist").length!=0){
-		js_log('we have things to rewrite');					
+	var e = [ 
+		document.getElementsByTagName("video"), 
+	 	document.getElementsByTagName("audio"),
+	 	document.getElementsByTagName("playlist")
+	];	
+	if(e[0].length!=0 || e[1].length!=0 || e[2].length!=0){
+		js_log('we have items to rewrite');								
+			
 		//load libs and proccess:					 
 		mvJsLoader.embedVideoCheck(function(){
 			//run any queded global events:
