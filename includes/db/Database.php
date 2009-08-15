@@ -941,27 +941,24 @@ abstract class DatabaseBase {
 	 * Returns estimated count, based on EXPLAIN output
 	 * Takes same arguments as Database::select()
 	 */
-	
-	function estimateRowCount( $table, $vars='*', $conds='', $fname = 'Database::estimateRowCount', $options = array() ) {
-		$options['EXPLAIN']=true;
-		$res = $this->select ($table, $vars, $conds, $fname, $options );
+	public function estimateRowCount( $table, $vars='*', $conds='', $fname = 'Database::estimateRowCount', $options = array() ) {
+		$options['EXPLAIN'] = true;
+		$res = $this->select( $table, $vars, $conds, $fname, $options );
 		if ( $res === false )
 			return false;
-		if (!$this->numRows($res)) {
+		if ( !$this->numRows( $res ) ) {
 			$this->freeResult($res);
 			return 0;
 		}
-		
-		$rows=1;
-	
+
+		$rows = 1;
 		while( $plan = $this->fetchObject( $res ) ) {
-			$rows *= ($plan->rows > 0)?$plan->rows:1; // avoid resetting to zero
+			$rows *= $plan->rows > 0 ? $plan->rows : 1; // avoid resetting to zero
 		}
-		
+
 		$this->freeResult($res);
 		return $rows;		
 	}
-	
 
 	/**
 	 * Removes most variables from an SQL query and replaces them with X or N for numbers.
