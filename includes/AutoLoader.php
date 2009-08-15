@@ -398,7 +398,6 @@ $wgAutoloadLocalClasses = array(
 	# includes/filerepo
 	'ArchivedFile' => 'includes/filerepo/ArchivedFile.php',
 	'File' => 'includes/filerepo/File.php',
-	'FileCache' => 'includes/filerepo/FileCache.php',
 	'FileRepo' => 'includes/filerepo/FileRepo.php',
 	'FileRepoStatus' => 'includes/filerepo/FileRepoStatus.php',
 	'ForeignAPIFile' => 'includes/filerepo/ForeignAPIFile.php',

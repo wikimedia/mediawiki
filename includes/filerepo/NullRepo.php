@@ -29,7 +29,7 @@ class NullRepo extends FileRepo {
 	function newFile( $title, $time = false ) {
 		return false;
 	}
-	function findFile( $title, $time = false ) {
+	function findFile( $title, $options = array() ) {
 		return false;
 	}
 }

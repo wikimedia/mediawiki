@@ -696,7 +696,7 @@ class Linker {
 			### HOTFIX. Instead of breaking, return empty string.
 			return $text;
 		} else {
-			$img  = wfFindFile( $title, $time );
+			$img  = wfFindFile( $title, array( 'time' => $time ) );
 			if( $img ) {
 				$url  = $img->getURL();
 				$class = 'internal';
@@ -1909,7 +1909,7 @@ class Linker {
 		if ( $valign ) {
 			$frameParams['valign'] = $valign;
 		}
-		$file = wfFindFile( $title, $time );
+		$file = wfFindFile( $title, array( 'time' => $time ) );
 		return $this->makeImageLink2( $title, $file, $frameParams, $handlerParams, $time );
 	}
 

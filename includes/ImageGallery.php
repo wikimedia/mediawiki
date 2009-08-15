@@ -242,7 +242,7 @@ class ImageGallery
 			$time = $descQuery = false;
 			wfRunHooks( 'BeforeGalleryFindFile', array( &$this, &$nt, &$time, &$descQuery ) );
 
-			$img = wfFindFile( $nt, $time );
+			$img = wfFindFile( $nt, array( 'time' => $time ) );
 
 			if( $nt->getNamespace() != NS_FILE || !$img ) {
 				# We're dealing with a non-image, spit out the name and be done with it.

@@ -157,7 +157,7 @@ class ApiDelete extends ApiBase {
 		if( $oldimage && !FileDeleteForm::isValidOldSpec($oldimage) )
 			return array(array('invalidoldimage'));
 
-		$file = wfFindFile($title, false, FileRepo::FIND_IGNORE_REDIRECT);
+		$file = wfFindFile( $title, array( 'ignoreRedirect' => true ) );
 		$oldfile = false;
 		
 		if( $oldimage )

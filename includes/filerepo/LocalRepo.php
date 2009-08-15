@@ -161,30 +161,6 @@ class LocalRepo extends FSRepo {
 		$res->free();
 		return $result;
 	}
-	
-	/*
-	 * Find many files using one query
-	 */
-	function findFiles( $titles ) {
-	 	// FIXME: Only accepts a $titles array where the keys are the sanitized
-	 	// file names.
-	 	 
-		if ( count( $titles ) == 0 ) return array();		
-	
-		$dbr = $this->getSlaveDB();
-		$res = $dbr->select(
-			'image',
-			LocalFile::selectFields(),
-			array( 'img_name' => array_keys( $titles ) )		
-		);
-		
-		$result = array();
-		while ( $row = $res->fetchObject() ) {
-			$result[$row->img_name] = $this->newFileFromRow( $row );
-		}
-		$res->free();
-		return $result;
-	}
 
 	/**
 	 * Get a connection to the slave DB

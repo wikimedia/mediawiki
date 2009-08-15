@@ -8,8 +8,6 @@
 abstract class FileRepo {
 	const FILES_ONLY = 1;
 	const DELETE_SOURCE = 1;
-	const FIND_PRIVATE = 1;
-	const FIND_IGNORE_REDIRECT = 2;
 	const OVERWRITE = 2;
 	const OVERWRITE_SAME = 4;
 
@@ -82,9 +80,24 @@ abstract class FileRepo {
 	 * version control should return false if the time is specified.
 	 *
 	 * @param mixed $title Title object or string
-	 * @param mixed $time 14-character timestamp, or false for the current version
+	 * @param $options Associative array of options:
+	 *     time:           requested time for an archived image, or false for the
+	 *                     current version. An image object will be returned which was
+	 *                     created at the specified time.
+	 *
+	 *     ignoreRedirect: If true, do not follow file redirects
+	 *
+	 *     private:        If true, return restricted (deleted) files if the current 
+	 *                     user is allowed to view them. Otherwise, such files will not
+	 *                     be found.
 	 */
-	function findFile( $title, $time = false, $flags = 0 ) {
+	function findFile( $title, $options = array() ) {
+		if ( !is_array( $options ) ) {
+			// MW 1.15 compat
+			$time = $options;
+		} else {
+			$time = isset( $options['time'] ) ? $options['time'] : false;
+		}
 		if ( !($title instanceof Title) ) {
 			$title = Title::makeTitleSafe( NS_FILE, $title );
 			if ( !is_object( $title ) ) {
@@ -105,17 +118,17 @@ abstract class FileRepo {
 			if ( $img && $img->exists() ) {
 				if ( !$img->isDeleted(File::DELETED_FILE) ) {
 					return $img;
-				} else if ( ($flags & FileRepo::FIND_PRIVATE) && $img->userCan(File::DELETED_FILE) ) {
+				} else if ( !empty( $options['private'] )  && $img->userCan(File::DELETED_FILE) ) {
 					return $img;
 				}
 			}
 		}
 				
 		# Now try redirects
-		if ( $flags & FileRepo::FIND_IGNORE_REDIRECT ) {
+		if ( !empty( $options['ignoreRedirect'] ) ) {
 			return false;
 		}
-		$redir = $this->checkRedirect( $title );		
+		$redir = $this->checkRedirect( $title );	
 		if( $redir && $redir->getNamespace() == NS_FILE) {
 			$img = $this->newFile( $redir );
 			if( !$img ) {
@@ -131,13 +144,25 @@ abstract class FileRepo {
 	
 	/*
 	 * Find many files at once. 
-	 * @param array $titles, an array of titles
-	 * @todo Think of a good way to optionally pass timestamps to this function.
+	 * @param array $items, an array of titles, or an array of findFile() options with
+	 *    the "title" option giving the title. Example:
+	 *
+	 *     $findItem = array( 'title' => $title, 'private' => true );
+	 *     $findBatch = array( $findItem );
+	 *     $repo->findFiles( $findBatch );
 	 */
-	function findFiles( $titles ) {
+	function findFiles( $items ) {
 		$result = array();
-		foreach ( $titles as $index => $title ) {
-			$file = $this->findFile( $title );
+		foreach ( $items as $index => $item ) {
+			if ( is_array( $item ) ) {
+				$title = $item['title'];
+				$options = $item;
+				unset( $options['title'] );
+			} else {
+				$title = $item;
+				$options = array();
+			}
+			$file = $this->findFile( $title, $options );
 			if ( $file )
 				$result[$file->getTitle()->getDBkey()] = $file;
 		}
@@ -171,9 +196,16 @@ abstract class FileRepo {
 	 * version control should return false if the time is specified.
 	 *
 	 * @param string $sha1 string
-	 * @param mixed $time 14-character timestamp, or false for the current version
+	 * @param array $options Option array, same as findFile(). 
 	 */
-	function findFileFromKey( $sha1, $time = false, $flags = 0 ) {
+	function findFileFromKey( $sha1, $options = array() ) {
+		if ( !is_array( $options ) ) {
+			# MW 1.15 compat
+			$time = $options;
+		} else {
+			$time = isset( $options['time'] ) ? $options['time'] : false;
+		}
+
 		# First try the current version of the file to see if it precedes the timestamp
 		$img = $this->newFileFromKey( $sha1 );
 		if ( !$img ) {
@@ -188,7 +220,7 @@ abstract class FileRepo {
 			if ( $img->exists() ) {
 				if ( !$img->isDeleted(File::DELETED_FILE) ) {
 					return $img;
-				} else if ( ($flags & FileRepo::FIND_PRIVATE) && $img->userCan(File::DELETED_FILE) ) {
+				} else if ( !empty( $options['private'] ) && $img->userCan(File::DELETED_FILE) ) {
 					return $img;
 				}
 			}
