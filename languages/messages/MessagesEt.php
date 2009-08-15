@@ -1661,7 +1661,7 @@ Tulba päisel klõpsamine muudab sortimist.',
 'mimesearch-summary' => 'Selle leheküljega saab faile otsida MIME tüübi järgi.
 Sisesta kujul tüüp/alamtüüp, näiteks <tt>image/jpeg</tt>.',
 'mimetype'           => 'MIME tüüp:',
-'download'           => 'lae alla',
+'download'           => 'laadi alla',
 
 # Unwatched pages
 'unwatchedpages' => 'Jälgimata lehed',

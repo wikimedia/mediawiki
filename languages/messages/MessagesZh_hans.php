@@ -3049,7 +3049,7 @@ $1',
 'confirm-purge-bottom' => '清理一页将会清除快取以及强迫显示最现时之修订版本。',
 
 # Separators for various lists, etc.
-'comma-separator' => '<span>、</span>',
+'comma-separator' => '、',
 'word-separator'  => '',
 'parentheses'     => '（$1）',
 

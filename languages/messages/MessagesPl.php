@@ -1983,7 +1983,7 @@ Sprawdź stronę z [[{{MediaWiki:Listgrouprights-helppage}}|dodatkowymi informac
 'listgrouprights-addgroup-all'         => 'Możliwość dodania użytkownika do każdej grupy',
 'listgrouprights-removegroup-all'      => 'Możliwość usunięcia użytkownika z każdej grupy',
 'listgrouprights-addgroup-self'        => 'Może dodać własne konto do {{PLURAL:$2|grupy|grup:}} $1',
-'listgrouprights-removegroup-self'     => 'Może usunąć własne konto z {{PLURAL:$2|grupy|grup:}} $1',
+'listgrouprights-removegroup-self'     => 'Możliwość usunięcia własnego konta z {{PLURAL:$2|grupy|grup:}} $1',
 'listgrouprights-addgroup-self-all'    => 'Może dodać własne konto do wszystkich grup',
 'listgrouprights-removegroup-self-all' => 'Może usunąć własne konto ze wszystkich grup',
 
