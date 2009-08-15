@@ -513,11 +513,11 @@ abstract class Maintenance {
 	/**
 	 * Handle some last-minute setup here.
 	 */
-	private function finalSetup() {
+	public function finalSetup() {
 		global $wgCommandLineMode, $wgUseNormalUser, $wgShowSQLErrors;
 		global $wgTitle, $wgProfiling, $IP, $wgDBadminuser, $wgDBadminpassword;
 		global $wgDBuser, $wgDBpassword, $wgDBservers, $wgLBFactoryConf;
-		
+
 		# Turn off output buffering again, it might have been turned on in the settings files
 		if( ob_get_level() ) {
 			ob_end_flush();
@@ -529,12 +529,12 @@ abstract class Maintenance {
 		if( $this->mDbUser )
 			$wgDBadminuser = $this->mDbUser;
 		if( $this->mDbPass )
-			$wgDBadminpass = $this->mDbPass;
+			$wgDBadminpassword = $this->mDbPass;
 
 		if ( empty( $wgUseNormalUser ) && isset( $wgDBadminuser ) ) {
 			$wgDBuser = $wgDBadminuser;
 			$wgDBpassword = $wgDBadminpassword;
-	
+
 			if( $wgDBservers ) {
 				foreach ( $wgDBservers as $i => $server ) {
 					$wgDBservers[$i]['user'] = $wgDBuser;
@@ -546,7 +546,7 @@ abstract class Maintenance {
 				$wgLBFactoryConf['serverTemplate']['password'] = $wgDBpassword;
 			}
 		}
-	
+
 		if ( defined( 'MW_CMDLINE_CALLBACK' ) ) {
 			$fn = MW_CMDLINE_CALLBACK;
 			$fn();
@@ -616,8 +616,6 @@ abstract class Maintenance {
 		if ( $lang == 'test' && $site == 'wikipedia' ) {
 			define( 'TESTWIKI', 1 );
 		}
-
-		$this->finalSetup();
 	}
 
 	/**
@@ -648,7 +646,6 @@ abstract class Maintenance {
 		}
 		$wgCommandLineMode = true;
 		$DP = $IP;
-		$this->finalSetup();
 		return $settingsFile;
 	}
 	
