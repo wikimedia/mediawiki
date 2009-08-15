@@ -19,7 +19,7 @@
 # 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 # http://www.gnu.org/copyleft/gpl.html
 
-error_reporting( E_ALL );
+error_reporting( E_ALL | E_STRICT );
 header( "Content-type: text/html; charset=utf-8" );
 @ini_set( "display_errors", true );
 
@@ -328,7 +328,7 @@ foreach (array_keys($ourdb) as $db) {
 		$ourdb[$db]['havedriver'] = 1;
 	}
 }
-error_reporting( E_ALL );
+error_reporting( E_ALL | E_STRICT );
 
 if (!$phpdatabases) {
 	print "Could not find a suitable database driver!<ul>";
@@ -686,7 +686,7 @@ if( !preg_match( '/^[A-Za-z_0-9]*$/', $conf->DBprefix_ora ) ) {
 	$errs["DBprefix_ora"] = "Invalid table prefix";
 }
 
-error_reporting( E_ALL );
+error_reporting( E_ALL | E_STRICT );
 
 /**
  * Initialise $wgLang and $wgContLang to something so we can
@@ -848,7 +848,7 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 		chdir( "config" );
 
 		$wgTitle = Title::newFromText( "Installation script" );
-		error_reporting( E_ALL );
+		error_reporting( E_ALL | E_STRICT );
 		print "<li>Loading class: " . htmlspecialchars( $dbclass ) . "</li>\n";
 		if ( $conf->DBtype != 'sqlite' ) {
 			$dbc = new $dbclass;
@@ -930,6 +930,10 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 			echo( "<li>Attempting to connect to database \"" . htmlspecialchars( $wgDBname ) . 
 				"\" as \"" . htmlspecialchars( $db_user ) . "\"..." );
 			$wgDatabase = $dbc->newFromParams($wgDBserver, $db_user, $db_pass, $wgDBname, 1);
+			// enable extra debug messages
+			$dbc->setMode(DatabaseIbm_db2::INSTALL_MODE);
+			$wgDatabase->setMode(DatabaseIbm_db2::INSTALL_MODE);
+			
 			if (!$wgDatabase->isOpen()) {
 				print " error: " . htmlspecialchars( $wgDatabase->lastError() ) . "</li>\n";
 			} else {
@@ -1017,7 +1021,7 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 				$myver = $wgDatabase->getServerVersion();
 			}
 		} else { # not mysql
-			error_reporting( E_ALL );
+			error_reporting( E_ALL | E_STRICT );
 			$wgSuperUser = '';
 			## Possible connect as a superuser
 			// Changed !mysql to postgres check since it seems to only apply to postgres
@@ -1182,6 +1186,7 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 			chdir( "config" );
 			print "</pre>\n";
 			print "<ul><li>Finished update checks.</li>\n";
+		// if tables don't yet exist
 		} else {
 			# Determine available storage engines if possible
 			if ( $conf->DBtype == 'mysql' && version_compare( $myver, "4.1.2", "ge" ) ) {
@@ -1216,6 +1221,20 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 			}
 
 			print " done.</li>\n";
+			
+		
+			if ($conf->DBtype == 'ibm_db2') {
+				// Now that table creation is done, make sure everything is committed
+				// Do this before doing inserts through API
+				if ($wgDatabase->lastError()) {
+					print "<li>Errors encountered during table creation -- rolled back</li>\n";
+					$wgDatabase->rollback();
+				}
+				else {
+					print "<li>MediaWiki tables successfully created</li>\n";
+					$wgDatabase->commit();
+				}
+			}
 
 			print "<li>Initializing statistics...</li>\n";
 			$wgDatabase->insert( 'site_stats',
@@ -1279,8 +1298,6 @@ if( $conf->posted && ( 0 == count( $errs ) ) ) {
 			$revid = $revision->insertOn( $wgDatabase );
 			$article->updateRevisionOn( $wgDatabase, $revision );
 		}
-		// Now that all database work is done, make sure everything is committed
-		$wgDatabase->commit();
 
 		/* Write out the config file now that all is well */
 		print "<li style=\"list-style: none\">\n";
