@@ -46,10 +46,6 @@ class ApiFormatJson extends ApiFormatBase {
 		if( $params['callback']){
 			return 'text/javascript';
 		}
-		//check for text content request		
-		if( isset( $params['ctypetext']) &&  $params['ctypetext']) {			
-			return 'text/plain';
-		}
 		return 'application/json';
 	}
 
@@ -86,22 +82,20 @@ class ApiFormatJson extends ApiFormatBase {
 		if (!function_exists('json_encode') || $isHtml || strtolower(json_encode("\xf0\xa0\x80\x80")) != '\ud840\udc00') {
 			$json = new Services_JSON();
 			return $json->encode($value, $isHtml) ;
-		} else {
+		} else {			
 			return json_encode($value);
 		}
 	}
 
 	public function getAllowedParams() {
 		return array (
-			'callback'  => null,
-			'ctypetext' => null		
+			'callback'  => null,				
 		);
 	}
 
 	public function getParamDescription() {
 		return array (
-			'callback' => 'If specified, wraps the output into a given function call. For safety, all user-specific data will be restricted.',
-			'ctypetext'=> 'Used to set the content type of the json result to plain-text (useful for evaling iframe uploads)',
+			'callback' => 'If specified, wraps the output into a given function call. For safety, all user-specific data will be restricted.',			
 		);
 	}
 
