@@ -2916,20 +2916,23 @@ function &wfGetLBFactory() {
 /**
  * Find a file.
  * Shortcut for RepoGroup::singleton()->findFile()
- * @param $title Title object or string. May be interwiki.
- * @param $time Mixed: requested time for an archived image, or false for the
- *              current version. An image object will be returned which was
- *              created at the specified time.
- * @param $flags Mixed: FileRepo::FIND_ flags
- * @param $bypass Boolean: bypass the file cache even if it could be used
+ * @param $options Associative array of options:
+ *     time:           requested time for an archived image, or false for the
+ *                     current version. An image object will be returned which was
+ *                     created at the specified time.
+ *
+ *     ignoreRedirect: If true, do not follow file redirects
+ *
+ *     private:        If true, return restricted (deleted) files if the current 
+ *                     user is allowed to view them. Otherwise, such files will not
+ *                     be found.
+ *
+ *     bypassCache:    If true, do not use the process-local cache of File objects
+ *
  * @return File, or false if the file does not exist
  */
-function wfFindFile( $title, $time = false, $flags = 0, $bypass = false ) {
-        if( !$time && !$flags && !$bypass ) {
-		return FileCache::singleton()->findFile( $title );
-	} else {
-		return RepoGroup::singleton()->findFile( $title, $time, $flags );
-	}
+function wfFindFile( $title, $options = array() ) {
+	return RepoGroup::singleton()->findFile( $title, $options );
 }
 
 /**

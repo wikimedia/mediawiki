@@ -13,8 +13,10 @@
 class RepoGroup {
 	var $localRepo, $foreignRepos, $reposInitialised = false;
 	var $localInfo, $foreignInfo;
+	var $cache;
 
 	protected static $instance;
+	const MAX_CACHE_SIZE = 1000;
 
 	/**
 	 * Get a RepoGroup instance. At present only one instance of RepoGroup is
@@ -54,56 +56,116 @@ class RepoGroup {
 	function __construct( $localInfo, $foreignInfo ) {
 		$this->localInfo = $localInfo;
 		$this->foreignInfo = $foreignInfo;
+		$this->cache = array();
 	}
 
 	/**
 	 * Search repositories for an image.
 	 * You can also use wfGetFile() to do this.
 	 * @param mixed $title Title object or string
-	 * @param mixed $time The 14-char timestamp the file should have
-	 *                    been uploaded, or false for the current version
-	 * @param mixed $flags FileRepo::FIND_ flags
+	 * @param $options Associative array of options:
+	 *     time:           requested time for an archived image, or false for the
+	 *                     current version. An image object will be returned which was
+	 *                     created at the specified time.
+	 *
+	 *     ignoreRedirect: If true, do not follow file redirects
+	 *
+	 *     private:        If true, return restricted (deleted) files if the current 
+	 *                     user is allowed to view them. Otherwise, such files will not
+	 *                     be found.
+	 *
+	 *     bypassCache:    If true, do not use the process-local cache of File objects
 	 * @return File object or false if it is not found
 	 */
-	function findFile( $title, $time = false, $flags = 0 ) {
+	function findFile( $title, $options = array() ) {
+		if ( !is_array( $options ) ) {
+			// MW 1.15 compat
+			$options = array( 'time' => $options );
+		}
 		if ( !$this->reposInitialised ) {
 			$this->initialiseRepos();
 		}
+		if ( !($title instanceof Title) ) {
+			$title = Title::makeTitleSafe( NS_FILE, $title );
+			if ( !is_object( $title ) ) {
+				return false;
+			}
+		}
 
-		$image = $this->localRepo->findFile( $title, $time, $flags );
+		# Check the cache
+		if ( empty( $options['ignoreRedirect'] ) 
+			&& empty( $options['private'] ) 
+			&& empty( $options['bypassCache'] ) ) 
+		{
+			$useCache = true;
+			$time = isset( $options['time'] ) ? $options['time'] : '';
+			$dbkey = $title->getDBkey();
+			if ( isset( $this->cache[$dbkey][$time] ) ) {
+				wfDebug( __METHOD__.": got File:$dbkey from process cache\n" );
+				# Move it to the end of the list so that we can delete the LRU entry later
+				$tmp = $this->cache[$dbkey];
+				unset( $this->cache[$dbkey] );
+				$this->cache[$dbkey] = $tmp;
+				# Return the entry
+				return $this->cache[$dbkey][$time];
+			} else {
+				# Add a negative cache entry, may be overridden
+				$this->trimCache();
+				$this->cache[$dbkey][$time] = false;
+				$cacheEntry =& $this->cache[$dbkey][$time];
+			}
+		} else {
+			$useCache = false;
+		}
+
+		# Check the local repo
+		$image = $this->localRepo->findFile( $title, $options );
 		if ( $image ) {
+			if ( $useCache ) {
+				$cacheEntry = $image;
+			}
 			return $image;
 		}
+
+		# Check the foreign repos
 		foreach ( $this->foreignRepos as $repo ) {
-			$image = $repo->findFile( $title, $time, $flags );
+			$image = $repo->findFile( $title, $options );
 			if ( $image ) {
+				if ( $useCache ) {
+					$cacheEntry = $image;
+				}
 				return $image;
 			}
 		}
+		# Not found, do not override negative cache
 		return false;
 	}
-	function findFiles( $titles ) {
+
+	function findFiles( $inputItems ) {
 		if ( !$this->reposInitialised ) {
 			$this->initialiseRepos();
 		}
 
-		$titleObjs = array();
-		foreach ( $titles as $title ) {
-			if ( !( $title instanceof Title ) )
-				$title = Title::makeTitleSafe( NS_FILE, $title );
-			if ( $title )
-				$titleObjs[$title->getDBkey()] = $title;
+		$items = array();
+		foreach ( $inputItems as $item ) {
+			if ( !is_array( $item ) ) {
+				$item = array( 'title' => $item );
+			}
+			if ( !( $item['title'] instanceof Title ) )
+				$item['title'] = Title::makeTitleSafe( NS_FILE, $item['title'] );
+			if ( $item['title'] )
+				$items[$item['title']->getDBkey()] = $item;
 		}
 
-		$images = $this->localRepo->findFiles( $titleObjs );
+		$images = $this->localRepo->findFiles( $items );
 
 		foreach ( $this->foreignRepos as $repo ) {
-			// Remove found files from $titleObjs
-			foreach ( $images as $name => $image )
-				if ( isset( $titleObjs[$name] ) )
-					unset( $titleObjs[$name] );
+			// Remove found files from $items
+			foreach ( $images as $name => $image ) {
+				unset( $items[$name] );
+			}
 			
-			$images = array_merge( $images, $repo->findFiles( $titleObjs ) );
+			$images = array_merge( $images, $repo->findFiles( $items ) );
 		}
 		return $images;
 	}
@@ -252,6 +314,18 @@ class RepoGroup {
 			return $repo->getFileProps( $fileName );
 		} else {
 			return File::getPropsFromPath( $fileName );
+		}
+	}
+
+	/**
+	 * Limit cache memory
+	 */
+	function trimCache() {
+		while ( count( $this->cache ) >= self::MAX_CACHE_SIZE ) {
+			reset( $this->cache );
+			$key = key( $this->cache );
+			wfDebug( __METHOD__.": evicting $key\n" );
+			unset( $this->cache[$key] );
 		}
 	}
 }
