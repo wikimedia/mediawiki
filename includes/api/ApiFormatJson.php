@@ -41,7 +41,16 @@ class ApiFormatJson extends ApiFormatBase {
 	}
 
 	public function getMimeType() {
-		return 'text/javascript';
+		$params = $this->extractRequestParams();
+		//callback: 		
+		if( $params['callback']){
+			return 'text/javascript';
+		}
+		//check for text content request		
+		if( isset( $params['ctypetext']) &&  $params['ctypetext']) {			
+			return 'text/plain';
+		}
+		return 'application/json';
 	}
 
 	public function getNeedsRawData() {
@@ -84,13 +93,15 @@ class ApiFormatJson extends ApiFormatBase {
 
 	public function getAllowedParams() {
 		return array (
-			'callback' => null
+			'callback'  => null,
+			'ctypetext' => null		
 		);
 	}
 
 	public function getParamDescription() {
 		return array (
 			'callback' => 'If specified, wraps the output into a given function call. For safety, all user-specific data will be restricted.',
+			'ctypetext'=> 'Used to set the content type of the json result to plain-text (useful for evaling iframe uploads)',
 		);
 	}
 
