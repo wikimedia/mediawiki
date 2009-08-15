@@ -1,6 +1,6 @@
 <?php
 // Define this so scripts can easily find doMaintenance.php
-define( 'DO_MAINTENANCE', dirname(__FILE__) . '/doMaintenance.php' );
+define( 'DO_MAINTENANCE', dirname( __FILE__ ) . '/doMaintenance.php' );
 
 // Make sure we're on PHP5 or better
 if( version_compare( PHP_VERSION, '5.0.0' ) < 0 ) {
@@ -45,13 +45,13 @@ abstract class Maintenance {
 	const DB_NONE  = 0;
 	const DB_STD   = 1;
 	const DB_ADMIN = 2;
-	
+
 	// Const for getStdin()
 	const STDIN_ALL = 'all';
 
 	// This is the desired params
 	private $mParams = array();
-	
+
 	// Array of desired args
 	private $mArgList = array();
 
@@ -60,7 +60,7 @@ abstract class Maintenance {
 
 	// This is the list of arguments that were actually passed
 	protected $mArgs = array();
-	
+
 	// Name of the script currently running
 	protected $mSelf;
 
@@ -70,14 +70,14 @@ abstract class Maintenance {
 
 	// A description of the script, children should change this
 	protected $mDescription = '';
-	
+
 	// Have we already loaded our user input?
 	private $mInputLoaded = false;
-	
+
 	// Batch size. If a script supports this, they should set
 	// a default with setBatchSize()
 	protected $mBatchSize = null;
-	
+
 	/**
 	 * List of all the core maintenance scripts. This is added
 	 * to scripts added by extensions in $wgMaintenanceScripts
@@ -108,18 +108,18 @@ abstract class Maintenance {
 	 * @param $withArg Boolean Is an argument required with this option?
 	 */
 	protected function addOption( $name, $description, $required = false, $withArg = false ) {
-		$this->mParams[ $name ] = array( 'desc' => $description, 'require' => $required, 'withArg' => $withArg );
+		$this->mParams[$name] = array( 'desc' => $description, 'require' => $required, 'withArg' => $withArg );
 	}
-	
+
 	/**
 	 * Checks to see if a particular param exists.
 	 * @param $name String The name of the param
 	 * @return boolean
 	 */
 	protected function hasOption( $name ) {
-		return isset( $this->mOptions[ $name ] );
+		return isset( $this->mOptions[$name] );
 	}
-	
+
 	/**
 	 * Get an option, or return the default
 	 * @param $name String The name of the param
@@ -127,7 +127,7 @@ abstract class Maintenance {
 	 * @return mixed
 	 */
 	protected function getOption( $name, $default = null ) {
-		if( $this->hasOption($name) ) {
+		if( $this->hasOption( $name ) ) {
 			return $this->mOptions[$name];
 		} else {
 			// Set it so we don't have to provide the default again
@@ -135,21 +135,21 @@ abstract class Maintenance {
 			return $this->mOptions[$name];
 		}
 	}
-	
+
 	/**
 	 * Add some args that are needed. Used in formatting help
 	 */
 	protected function addArgs( $args ) {
 		$this->mArgList = array_merge( $this->mArgList, $args );
 	}
-	
+
 	/**
 	 * Does a given argument exist?
 	 * @param $argId int The integer value (from zero) for the arg
 	 * @return boolean
 	 */
 	protected function hasArg( $argId = 0 ) {
-		return isset( $this->mArgs[ $argId ] ) ;
+		return isset( $this->mArgs[$argId] );
 	}
 
 	/**
@@ -159,7 +159,7 @@ abstract class Maintenance {
 	 * @return mixed
 	 */
 	protected function getArg( $argId = 0, $default = null ) {
-		return $this->hasArg($argId) ? $this->mArgs[$argId] : $default;
+		return $this->hasArg( $argId ) ? $this->mArgs[$argId] : $default;
 	}
 
 	/**
@@ -192,7 +192,7 @@ abstract class Maintenance {
 		if( !$len )
 			return $f;
 		$input = fgets( $f, $len );
-		fclose ( $f );
+		fclose( $f );
 		return rtrim( $input );
 	}
 
@@ -269,7 +269,7 @@ abstract class Maintenance {
 		// If we haven't already specified, kill setup procedures
 		// for child scripts, we've already got a sane environment
 		self::disableSetup();
-		
+
 		// Make sure the class is loaded first
 		if( !class_exists( $maintClass ) ) {
 			if( $classFile ) {
@@ -279,7 +279,7 @@ abstract class Maintenance {
 				$this->error( "Cannot spawn child: $maintClass" );
 			}
 		}
-		
+
 		$child = new $maintClass();
 		$child->loadParamsAndArgs( $this->mSelf, $this->mOptions, $this->mArgs );
 		return $child;
@@ -327,21 +327,21 @@ abstract class Maintenance {
 		# Set the memory limit
 		ini_set( 'memory_limit', -1 );
 
-		$wgRequestTime = microtime(true);
+		$wgRequestTime = microtime( true );
 
-		# Define us as being in Mediawiki
+		# Define us as being in MediaWiki
 		define( 'MEDIAWIKI', true );
 
 		# Setup $IP, using MW_INSTALL_PATH if it exists
-		$IP = strval( getenv('MW_INSTALL_PATH') ) !== ''
-			? getenv('MW_INSTALL_PATH')
+		$IP = strval( getenv( 'MW_INSTALL_PATH' ) ) !== ''
+			? getenv( 'MW_INSTALL_PATH' )
 			: realpath( dirname( __FILE__ ) . '/..' );
-		
+
 		$wgCommandLineMode = true;
 		# Turn off output buffering if it's on
 		@ob_end_flush();
 
-		if (!isset( $wgUseNormalUser ) ) {
+		if ( !isset( $wgUseNormalUser ) ) {
 			$wgUseNormalUser = false;
 		}
 
@@ -459,7 +459,7 @@ abstract class Maintenance {
 	private function validateParamsAndArgs() {
 		# Check to make sure we've got all the required ones
 		foreach( $this->mParams as $opt => $info ) {
-			if( $info['require'] && !$this->hasOption($opt) ) {
+			if( $info['require'] && !$this->hasOption( $opt ) ) {
 				$this->error( "Param $opt required.", true );
 			}
 		}
@@ -469,7 +469,7 @@ abstract class Maintenance {
 			$this->error( "Not enough arguments passed", true );
 		}
 	}
-	
+
 	/**
 	 * Handle the special variables that are global to all scripts
 	 */
@@ -490,7 +490,7 @@ abstract class Maintenance {
 	 */
 	private function maybeHelp( $force = false ) {
 		ksort( $this->mParams );
-		if( $this->hasOption('help') || in_array( 'help', $this->mArgs ) || $force ) {
+		if( $this->hasOption( 'help' ) || in_array( 'help', $this->mArgs ) || $force ) {
 			$this->mQuiet = false;
 			if( $this->mDescription ) {
 				$this->output( "\n" . $this->mDescription . "\n" );
@@ -509,7 +509,7 @@ abstract class Maintenance {
 			die( 1 );
 		}
 	}
-	
+
 	/**
 	 * Handle some last-minute setup here.
 	 */
@@ -551,10 +551,10 @@ abstract class Maintenance {
 			$fn = MW_CMDLINE_CALLBACK;
 			$fn();
 		}
-	
+
 		$wgShowSQLErrors = true;
 		@set_time_limit( 0 );
-	
+
 		$wgProfiling = false; // only for Profiler.php mode; avoids OOM errors
 	}
 
@@ -582,7 +582,7 @@ abstract class Maintenance {
 				$db = array_shift( $this->mArgs );
 			}
 			list( $site, $lang ) = $wgConf->siteFromDB( $db );
-	
+
 			# If not, work out the language and site the old way
 			if ( is_null( $site ) || is_null( $lang ) ) {
 				if ( !$db ) {
@@ -600,19 +600,19 @@ abstract class Maintenance {
 			$lang = 'aa';
 			$site = 'wikipedia';
 		}
-	
+
 		# This is for the IRC scripts, which now run as the apache user
 		# The apache user doesn't have access to the wikiadmin_pass command
 		if ( $_ENV['USER'] == 'apache' ) {
 		#if ( posix_geteuid() == 48 ) {
 			$wgUseNormalUser = true;
 		}
-	
+
 		putenv( 'wikilang=' . $lang );
-	
+
 		$DP = $IP;
 		ini_set( 'include_path', ".:$IP:$IP/includes:$IP/languages:$IP/maintenance" );
-	
+
 		if ( $lang == 'test' && $site == 'wikipedia' ) {
 			define( 'TESTWIKI', 1 );
 		}
@@ -639,8 +639,8 @@ abstract class Maintenance {
 			define( 'MW_DB', $bits[0] );
 			define( 'MW_PREFIX', $bits[1] );
 		}
-	
-		if ( ! is_readable( $settingsFile ) ) {
+
+		if ( !is_readable( $settingsFile ) ) {
 			$this->error( "A copy of your installation's LocalSettings.php\n" .
 			  			"must exist and be readable in the source directory.", true );
 		}
@@ -648,7 +648,7 @@ abstract class Maintenance {
 		$DP = $IP;
 		return $settingsFile;
 	}
-	
+
 	/**
 	 * Support function for cleaning up redundant text records
 	 * @param $delete boolean Whether or not to actually delete the records
@@ -704,7 +704,7 @@ abstract class Maintenance {
 		# Done
 		$dbw->commit();
 	}
-	
+
 	/**
 	 * Get the maintenance directory.
 	 */
@@ -722,7 +722,7 @@ abstract class Maintenance {
 		global $wgMaintenanceScripts;
 		return $wgMaintenanceScripts + self::getCoreScripts();
 	}
-	
+
 	/**
 	 * Return all of the core maintenance scripts
 	 * @return array
