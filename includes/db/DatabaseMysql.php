@@ -360,6 +360,31 @@ class DatabaseMysql extends DatabaseBase {
 		$encValue = $value ? '1' : '0';
 		$this->query( "SET sql_big_selects=$encValue", __METHOD__ );
 	}
+
+	
+	/**
+	 * Determines if the last failure was due to a deadlock
+	 */
+	function wasDeadlock() {
+		return $this->lastErrno() == 1213;
+	}
+
+	/**
+	 * Determines if the last query error was something that should be dealt 
+	 * with by pinging the connection and reissuing the query
+	 */
+	function wasErrorReissuable() {
+		return $this->lastErrno() == 2013 || $this->lastErrno() == 2006;
+	}
+
+	/**
+	 * Determines if the last failure was due to the database being read-only.
+	 */
+	function wasReadOnlyError() {
+		return $this->lastErrno() == 1223 || 
+			( $this->lastErrno() == 1290 && strpos( $this->lastError(), '--read-only' ) !== false );
+	}
+
 }
 
 /**

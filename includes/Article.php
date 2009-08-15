@@ -3080,6 +3080,9 @@ class Article {
 	 */
 	public function viewUpdates() {
 		global $wgDeferredUpdateList, $wgDisableCounters, $wgUser;
+		if ( wfReadOnly() ) {
+			return;
+		}
 		# Don't update page view counters on views from bot users (bug 14044)
 		if( !$wgDisableCounters && !$wgUser->isAllowed('bot') && $this->getID() ) {
 			Article::incViewCount( $this->getID() );

@@ -723,6 +723,7 @@ class LCStore_DB implements LCStore {
 	var $currentLang;
 	var $writesDone = false;
 	var $dbw, $batch;
+	var $readOnly = false;
 
 	public function get( $code, $key ) {
 		if ( $this->writesDone ) {
@@ -740,17 +741,34 @@ class LCStore_DB implements LCStore {
 	}
 
 	public function startWrite( $code ) {
+		if ( $this->readOnly ) {
+			return;
+		}
 		if ( !$code ) {
 			throw new MWException( __METHOD__.": Invalid language \"$code\"" );
 		}
 		$this->dbw = wfGetDB( DB_MASTER );
-		$this->dbw->begin();
-		$this->dbw->delete( 'l10n_cache', array( 'lc_lang' => $code ), __METHOD__ );
+		try {
+			$this->dbw->begin();
+			$this->dbw->delete( 'l10n_cache', array( 'lc_lang' => $code ), __METHOD__ );
+		} catch ( DBQueryError $e ) {
+			if ( $this->dbw->wasReadOnlyError() ) {
+				$this->readOnly = true;
+				$this->dbw->rollback();
+				$this->dbw->ignoreErrors( false );
+				return;
+			} else {
+				throw $e;
+			}
+		}
 		$this->currentLang = $code;
 		$this->batch = array();
 	}
 
 	public function finishWrite() {
+		if ( $this->readOnly ) {
+			return;
+		}
 		if ( $this->batch ) {
 			$this->dbw->insert( 'l10n_cache', $this->batch, __METHOD__ );
 		}
@@ -762,6 +780,9 @@ class LCStore_DB implements LCStore {
 	}
 
 	public function set( $key, $value ) {
+		if ( $this->readOnly ) {
+			return;
+		}
 		if ( is_null( $this->currentLang ) ) {
 			throw new MWException( __CLASS__.': must call startWrite() before calling set()' );
 		}

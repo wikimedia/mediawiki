@@ -432,16 +432,10 @@ class MessageCache {
 
 		$cacheKey = wfMemcKey( 'messages', $code );
 
-		$i = 0;
 		if ( $memc ) {
-			# Save in memcached
-			# Keep trying if it fails, this is kind of important
-
-			for ($i=0; $i<20 &&
-				!$this->mMemc->set( $cacheKey, $cache, $this->mExpiry );
-				$i++ ) {
-				usleep(mt_rand(500000,1500000));
-			}
+			$success = $this->mMemc->set( $cacheKey, $cache, $this->mExpiry );
+		} else {
+			$success = true;
 		}
 
 		# Save to local cache
@@ -456,11 +450,6 @@ class MessageCache {
 			}
 		}
 
-		if ( $i == 20 ) {
-			$success = false;
-		} else {
-			$success = true;
-		}
 		wfProfileOut( __METHOD__ );
 		return $success;
 	}
