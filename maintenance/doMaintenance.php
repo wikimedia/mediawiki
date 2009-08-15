@@ -72,6 +72,7 @@ if( file_exists( dirname(__FILE__).'/wikimedia-mode' ) ) {
 	require_once( "$IP/includes/Defines.php" );
 	require_once( $maintenance->loadSettings() );
 }
+$maintenance->finalSetup();
 // Some last includes
 require_once( "$IP/includes/Setup.php" );
 require_once( "$IP/install-utils.inc" );
