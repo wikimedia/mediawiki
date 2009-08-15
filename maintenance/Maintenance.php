@@ -327,6 +327,11 @@ abstract class Maintenance {
 		# Set the memory limit
 		ini_set( 'memory_limit', -1 );
 
+		# Set max execution time to 0 (no limit). PHP.net says that
+		# "When running PHP from the command line the default setting is 0."
+		# But sometimes this doesn't seem to be the case.
+		ini_set( 'max_execution_time', 0 );
+
 		$wgRequestTime = microtime( true );
 
 		# Define us as being in MediaWiki
