@@ -45,8 +45,10 @@ function convertLinks() {
 
 	$dbw = wfGetDB( DB_MASTER );
 	list ($cur, $links, $links_temp, $links_backup) = $dbw->tableNamesN( 'cur', 'links', 'links_temp', 'links_backup' );
-
-	$res = $dbw->query( "SELECT l_from FROM $links LIMIT 1" );
+	
+	// Get database-agnostic limit clause
+	$sql_limit = $dbw->limitResult( "SELECT l_from FROM $links", 1 );
+	$res = $dbw->query(  $sql_limit );
 	if ( $dbw->fieldType( $res, 0 ) == "int" ) {
 		wfOut( "Schema already converted\n" );
 		return;

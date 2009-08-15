@@ -57,7 +57,8 @@ function compressPage( $row, $extdb ) {
 			'old_text' => $compress
 		), array( /* WHERE */
 			'old_id' => $row->old_id
-		), $fname, 'LIMIT 1'
+		), $fname,
+		array( 'LIMIT' => 1 )
 	);
 	return true;
 }
