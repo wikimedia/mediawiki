@@ -380,6 +380,7 @@ Guuck aach [[Special:Version|Versionsblatt]]',
 'listfiles_count' => 'Versione',
 
 # File description page
+'filehist'           => 'Versione vun Feils',
 'filehist-deleteall' => 'All Versione lösche',
 'filehist-deleteone' => 'Sell Version lösche',
 'filehist-revert'    => 'zerick',
@@ -477,6 +478,7 @@ Guuck aach [[Special:Version|Versionsblatt]]',
 'deletedarticle'         => 'hot „[[$1]]“ gelöscht',
 'dellogpage'             => 'Lischt vun gelöschte Bledder',
 'deletecomment'          => 'Grund fers Lösche:',
+'deleteotherreason'      => 'Annre Grind:',
 'deletereasonotherlist'  => 'Annerer Grund',
 'delete-edit-reasonlist' => 'Grind fers Lösche ennere',
 
