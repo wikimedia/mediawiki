@@ -41,7 +41,7 @@ class ApiFormatJson extends ApiFormatBase {
 	}
 
 	public function getMimeType() {
-		return 'application/json';
+		return 'text/javascript';
 	}
 
 	public function getNeedsRawData() {

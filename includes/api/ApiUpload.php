@@ -237,7 +237,13 @@ class ApiUpload extends ApiBase {
 			$warnings = $this->mUpload->checkWarnings();
 			if( $warnings ) {
 				$this->getResult()->setIndexedTagName( $warnings, 'warning' );
-
+				//also add index to duplicate: 
+				if(isset($warnings['duplicate']))
+					$this->getResult()->setIndexedTagName( $warnings['duplicate'], 'duplicate');
+				
+				if(isset($warnings['exists']))
+					$this->getResult()->setIndexedTagName( $warnings['exists'], 'exists');
+					
 				$result['result'] = 'Warning';
 				$result['warnings'] = $warnings;
 				if( isset( $result['filewasdeleted'] ) )
