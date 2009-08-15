@@ -201,7 +201,7 @@ mvBaseUploadInterface.prototype = {
 			
 			//add json format
 			if( $j(_this.editForm).find("[name='format']").length == 0)
-				$j(_this.editForm).append('<input type="hidden" name="format" value="json">');
+				$j(_this.editForm).append('<input type="hidden" name="format" value="jsonfm">');
 			
 			//add text format type request (IE tries to "run"/download the script otherwise) 
 			if( $j(_this.editForm).find("[name='ctypetext']").length == 0)
@@ -261,34 +261,22 @@ mvBaseUploadInterface.prototype = {
 		var doc = iframe.contentDocument ? iframe.contentDocument : frames[iframe.id].document;
 		// fixing Opera 9.26
 		if (doc.readyState && doc.readyState != 'complete'){
-			// Opera fires load event multiple times
-			// Even when the DOM is not ready yet
-			// this fix should not affect other browsers
 			return;
-		}
-		
+		}		
 		// fixing Opera 9.64
-		if (doc.body && doc.body.innerHTML == "false"){
-			// In Opera 9.64 event was fired second time
-			// when body.innerHTML changed from false 
-			// to server response approx. after 1 sec
+		if (doc.body && doc.body.innerHTML == "false"){		
 			return;				
-		}
-		
-		var response;
-							
+		}		
+		var response;		
 		if (doc.XMLDocument){
 			// response is a xml document IE property
 			response = doc.XMLDocument;
 		} else if (doc.body){
-			// response is html document or plain text
-			response = doc.body.innerHTML;		
-			// try and parse the api response:
-			if (doc.body.firstChild && doc.body.firstChild.nodeName.toUpperCase() == 'PRE'){
-				response = doc.body.firstChild.firstChild.nodeValue;
-			}
-			if (response) {
-				response = window["eval"]("(" + response + ")");
+			// get the json str:
+			json_str = $j(doc.body).find('pre').html();			
+			//htmlentties 
+			if (json_str) {
+				response = window["eval"]("(" +json_str + ")");
 			} else {
 				response = {};
 			}
@@ -296,6 +284,7 @@ mvBaseUploadInterface.prototype = {
 			// response is a xml document
 			var response = doc;
 		}					
+		//do proccess the api result
 		_this.processApiResult(	response );
 	},
 	doHttpUpload:function( opt ){
