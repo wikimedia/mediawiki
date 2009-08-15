@@ -232,8 +232,9 @@ lcPaths( 'libTimedText/', [
 
 //depencency mapping for css files for self contained included plugins:
 lcCssPath({
-	'$j.Jcrop'		: 'libClipEdit/Jcrop/css/jquery.Jcrop.css',
-	'$j.fn.ColorPicker': 'libClipEdit/colorpicker/css/colorpicker.css'
+	'$j.ui'				: 'jquery/' + jQueryUiVN + '.custom.css',
+	'$j.Jcrop'			: 'libClipEdit/Jcrop/css/jquery.Jcrop.css',
+	'$j.fn.ColorPicker'	: 'libClipEdit/colorpicker/css/colorpicker.css'
 })
 
 /**
@@ -1191,7 +1192,7 @@ function do_request(req_url, callback){
 		//prepend json_ to feed_format if not already requesting json format
 		if( req_url.indexOf("feed_format=")!=-1 &&  req_url.indexOf("feed_format=json")==-1)
 			req_url = req_url.replace(/feed_format=/, 'feed_format=json_');													
-		loadExternalJs(req_url+'&cb=mv_jsdata_cb&cb_inx='+(global_req_cb.length-1));			
+		loadExternalJs( req_url + '&cb=mv_jsdata_cb&cb_inx=' + (global_req_cb.length-1));			
 	}
 }
 
@@ -1238,7 +1239,7 @@ function mv_jsdata_cb(response){
 	global_req_cb[response['cb_inx']]( response['pay_load'] );
 }
 //load external js via dom injection
-function loadExternalJs( url ){
+function loadExternalJs( url, callback ){
 	  js_log('load js: '+ url);
 	//if(window['$j']) //use jquery call:	
 	   /*$j.ajax({
@@ -1251,11 +1252,13 @@ function loadExternalJs( url ){
 		var e = document.createElement("script");
 		e.setAttribute('src', url);
 		e.setAttribute('type',"text/javascript");
+		/*if(callback)
+			e.onload = callback;
+		*/
 		//e.setAttribute('defer', true);
-		document.getElementsByTagName("head")[0].appendChild(e);
+		document.getElementsByTagName("head")[0].appendChild(e);		
    // }
 }
-
 function styleSheetPresent(url){
 	style_elements = document.getElementsByTagName('link');
 	if( style_elements.length > 0) {

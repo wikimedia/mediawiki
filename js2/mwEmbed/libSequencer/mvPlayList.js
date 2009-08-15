@@ -2,10 +2,13 @@
  * the mvPlayList object code 
  * only included if playlist object found
  * 
- * part of mv_embed: 
- * http://metavid.org/wiki/index.php/Mv_embed 
+ * part of mwEmbed media projects see:  
+ * http://www.mediawiki.org/wiki/Media_Projects_Overview
+ * 
+ * @author: Michael Dale  mdale@wikimedia.org
+ * @license GPL2
  */
-var mv_default_playlist_attributes = {
+var mv_default_playlist_attributes = {	
 	//playlist attributes :
 	"id":null,
 	"title":null,
@@ -27,6 +30,7 @@ var MV_ANIMATION_CB_RATE = 33;
 //globals:
 //10 possible colors for clips: (can be in hexadecimal)
 var mv_clip_colors = new Array('aqua', 'blue', 'fuchsia', 'green', 'lime', 'maroon', 'navy', 'olive', 'purple', 'red');
+
 //the base url for requesting stream metadata 
 if(typeof wgServer=='undefined'){
 	var defaultMetaDataProvider = 'http://metavid.org/overlay/archive_browser/export_cmml?stream_name=';
@@ -1980,8 +1984,9 @@ var mv_smil_ref_supported_attributes = new Array(
 		'fill',
 		'dur',
 		'title',
-		
+		//some custom attributes:
 		'uri',			
+		'durationHint',
 		'poster'
 );
 /* extension to mvClip to support smil properties */
@@ -2039,7 +2044,10 @@ mvSMILClip.prototype = {
 		}		
 		//parse duration / begin times: 
 		if( this.dur )
-			this.dur = smilParseTime( this.dur );									
+			this.dur = smilParseTime( this.dur );		
+		//parse the media duration hint ( the source media length) 
+		if( this.durationHint )
+			this.durationHint = smilParseTime( this.durationHint );								
 		
 		//conform type to vido/ogg:
 		if( this.type == 'application/ogg' )
@@ -2077,7 +2085,7 @@ mvSMILClip.prototype = {
 		if( this.dur )
 			return this.dur;			
 		return this.embed.getDuration();					
-	},
+	},	
 	//gets the duration of the clip subracting transitions
 	getSoloDuration:function(){
 		var fulldur = this.getDuration();
@@ -2087,6 +2095,13 @@ mvSMILClip.prototype = {
 
 		//js_log("getSoloDuration:: td: " + this.getDuration() + ' sd:' + fulldur);
 		return fulldur;
+	},
+	//gets the duration of the original media asset (usefull for bounding setting of in-out-points)
+	getSourceDuration:function(){
+		if( this.durationHint )
+			return this.durationHint;
+		//if we have no source duration just return the media dur: 
+		return this.getDuration();
 	}
 }
 /*

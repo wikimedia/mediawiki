@@ -32,8 +32,8 @@ var mwEditPageHelper = {
 		);		
 				
 		//add to new toolbar (need to use api) 
-		//$j('[rel=insert] .tool-file').addMediaWiz( 
-		//		mwAddMediaConfig 
-		//);				
+		/*$j('[rel=insert] tool-file').addMediaWiz( 
+				mwAddMediaConfig 
+		);*/				
 	}
 }
