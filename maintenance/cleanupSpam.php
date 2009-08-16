@@ -44,20 +44,19 @@ class CleanupSpam extends Maintenance {
 		if ( !$like ) {
 			$this->error( "Not a valid hostname specification: $spec", true );
 		}
-
-		$dbr = wfGetDB( DB_SLAVE );
 	
 		if ( $this->hasOption('all') ) {
 			// Clean up spam on all wikis
-			$dbr = wfGetDB( DB_SLAVE );
-			$this->output( "Finding spam on " . count($wgLocalDatabases) . " wikis\n" );
+			$this->output( "Finding spam on " . count( $wgLocalDatabases ) . " wikis\n" );
 			$found = false;
-			foreach ( $wgLocalDatabases as $db ) {
-				$count = $dbr->selectField( "`$db`.externallinks", 'COUNT(*)', 
+			foreach ( $wgLocalDatabases as $wikiID ) {
+				$dbr = wfGetDB( DB_SLAVE, array(), $wikiID );
+
+				$count = $dbr->selectField( 'externallinks', 'COUNT(*)', 
 					array( 'el_index LIKE ' . $dbr->addQuotes( $like ) ), __METHOD__ );
 				if ( $count ) {
 					$found = true;
-					passthru( "php cleanupSpam.php $db $spec | sed s/^/$db:  /" );
+					passthru( "php cleanupSpam.php --wiki='$wikiID' $spec | sed 's/^/$wikiID:  /'" );
 				}
 			}
 			if ( $found ) {
@@ -67,11 +66,13 @@ class CleanupSpam extends Maintenance {
 			}
 		} else {
 			// Clean up spam on this wiki
+
+			$dbr = wfGetDB( DB_SLAVE );
 			$res = $dbr->select( 'externallinks', array( 'DISTINCT el_from' ), 
 				array( 'el_index LIKE ' . $dbr->addQuotes( $like ) ), __METHOD__ );
 			$count = $dbr->numRows( $res );
 			$this->output( "Found $count articles containing $spec\n" );
-			while ( $row = $dbr->fetchObject( $res ) ) {
+			foreach ( $res as $row ) {
 				$this->cleanupArticle( $row->el_from, $spec );
 			}
 			if ( $count ) {
