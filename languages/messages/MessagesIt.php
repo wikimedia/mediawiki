@@ -1706,7 +1706,7 @@ Di seguito viene mostrata la descrizione presente nella [$2 pagina di descrizion
 
 # Random page
 'randompage'         => 'Una pagina a caso',
-'randompage-nopages' => 'Non ci sono pagine nel namespace "$1".',
+'randompage-nopages' => 'Non ci sono pagine {{PLURAL:$2|nel seguente namespace|nei seguenti namespace}}: $1.',
 
 # Random redirect
 'randomredirect'         => 'Un redirect a caso',

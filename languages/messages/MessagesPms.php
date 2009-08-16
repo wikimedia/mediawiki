@@ -1558,7 +1558,7 @@ Arcòrda ëd verifiché che në stamp a-j serva nen a dj'àutri stamp anans che 
 
 # Random page
 'randompage'         => 'Na pàgina qualsëssìa',
-'randompage-nopages' => 'A-i é pa gnun-a pàgina ant lë spassi nominal "$1"',
+'randompage-nopages' => 'A-i é pa gnun-a pàgina ant {{PLURAL:$2|lë spassi nominal|jë spassi nominaj}}: lë spassi nominal "$1"',
 
 # Random redirect
 'randomredirect'         => 'Na ridiression qualsëssìa',

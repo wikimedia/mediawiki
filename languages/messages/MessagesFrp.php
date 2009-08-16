@@ -1877,7 +1877,7 @@ Oubliâd pas de controlar s’y at pas d’ôtros lims de vers los modèlos deva
 
 # Random page
 'randompage'         => 'Pâge a l’hasârd',
-'randompage-nopages' => 'Y at gins de pâge dens l’èspâço de noms « $1 ».',
+'randompage-nopages' => 'Y at gins de pâge dens {{PLURAL:$2|ceti èspâço|cetos èspâços}} de noms : $1.',
 
 # Random redirect
 'randomredirect'         => 'Pâge de redirèccion a l’hasârd',

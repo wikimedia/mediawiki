@@ -1079,6 +1079,7 @@ Cofiwch y gall mynegeion Google o gynnwys {{SITENAME}} fod ar ei hôl hi.",
 'prefs-watchlist-days-max'      => '(hyd at 7 diwrnod)',
 'prefs-watchlist-edits'         => "Nifer y golygiadau i'w dangos wrth ehangu'r rhestr gwylio:",
 'prefs-watchlist-edits-max'     => '(hyd at uchafswm o 1000)',
+'prefs-watchlist-token'         => 'Tocyn y rhestr wylio',
 'prefs-misc'                    => 'Amrywiol',
 'prefs-resetpass'               => 'Newid y cyfrinair',
 'prefs-email'                   => 'E-bostio',
@@ -1573,7 +1574,7 @@ Cofiwch chwilio am gysylltiadau eraill at nodyn a'u hystyried cyn ei ddileu.",
 
 # Random page
 'randompage'         => 'Tudalen ar hap',
-'randompage-nopages' => 'Does dim tudalennau yn y parth "$1".',
+'randompage-nopages' => 'Does dim tudalennau yn y {{PLURAL:$2|parth hwn|parth hwn|parthau hyn|parthau hyn|parthau hyn|parthau hyn}}: $1.',
 
 # Random redirect
 'randomredirect'         => 'Tudalen ailgyfeirio ar hap',
@@ -2763,10 +2764,16 @@ Ymateb yr amledd gofodol',
 'exif-lightsource-255' => "Tarddiad arall i'r goleuni",
 
 # Flash modes
-'exif-flash-fired-0'  => 'Ni daniodd y fflach',
-'exif-flash-fired-1'  => 'Taniodd y fflach',
-'exif-flash-mode-3'   => 'modd awtomatig',
-'exif-flash-redeye-1' => 'modd lleddfu llygaid cochion',
+'exif-flash-fired-0'    => 'Ni daniodd y fflach',
+'exif-flash-fired-1'    => 'Taniodd y fflach',
+'exif-flash-return-0'   => "hepgor synhwyro golau'r fflach wedi ei daflu yn ôl",
+'exif-flash-return-2'   => "ni synhwyrwyd golau'r fflach wedi ei daflu yn ôl",
+'exif-flash-return-3'   => "synhwyrwyd golau'r fflach wedi ei daflu yn ôl",
+'exif-flash-mode-1'     => 'gosod y fflach i danio',
+'exif-flash-mode-2'     => 'hepgorwyd y fflach',
+'exif-flash-mode-3'     => 'modd awtomatig',
+'exif-flash-function-1' => 'Dim fflach',
+'exif-flash-redeye-1'   => 'modd lleddfu llygaid cochion',
 
 'exif-focalplaneresolutionunit-2' => 'modfeddi',
 

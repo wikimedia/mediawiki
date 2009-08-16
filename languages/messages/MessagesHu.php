@@ -1811,7 +1811,7 @@ Ellenőrizd a meglévő hivatkozásokat, mielőtt törölnéd őket.',
 
 # Random page
 'randompage'         => 'Lap találomra',
-'randompage-nopages' => 'A(z) „$1” névtérben nincsenek lapok.',
+'randompage-nopages' => 'A következő {{PLURAL:$2|névtérben|névterekben}} nincsenek lapok: $1.',
 
 # Random redirect
 'randomredirect'         => 'Átirányítás találomra',

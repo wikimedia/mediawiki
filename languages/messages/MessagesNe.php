@@ -139,13 +139,28 @@ $messages = array(
 'dec'           => 'डिसेम्बर',
 
 # Categories related messages
-'pagecategories'           => '{{PLURAL:$1|श्रेणी|श्रेणीहरु}}',
-'category_header'          => '"$1" श्रेणीमा भएका लेखहरू',
-'subcategories'            => 'उपश्रेणीहरु',
-'category-media-header'    => '"$1" श्रेणीमा रहेका मिडियाहरू',
-'category-empty'           => "''यो श्रेणीमा हाल कुनै पृष्ठ या मिडियाहरु रहेका छैनन् ।''",
-'hidden-categories'        => '{{PLURAL:$1|लुकाइएको श्रेणी|लुकाइएका श्रेणीहरु}}',
-'hidden-category-category' => 'लुकाइएका श्रेणीहरु',
+'pagecategories'                 => '{{PLURAL:$1|श्रेणी|श्रेणीहरु}}',
+'category_header'                => '"$1" श्रेणीमा भएका लेखहरू',
+'subcategories'                  => 'उपश्रेणीहरु',
+'category-media-header'          => '"$1" श्रेणीमा रहेका मिडियाहरू',
+'category-empty'                 => "''यो श्रेणीमा हाल कुनै पृष्ठ या मिडियाहरु रहेका छैनन् ।''",
+'hidden-categories'              => '{{PLURAL:$1|लुकाइएको श्रेणी|लुकाइएका श्रेणीहरु}}',
+'hidden-category-category'       => 'लुकाइएका श्रेणीहरु',
+'category-subcat-count'          => '{{PLURAL:$2|यो श्रेणीमा निम्न उपश्रेणीहरु मात्र छन्।|यो श्रेणीको निम्न {{PLURAL:$1|उपश्रेणी|$1 उपश्रेणीहरु}},  $2 कुल मध्ये श्रेणीहरु छन् ।}}',
+'category-subcat-count-limited'  => 'यो श्रेणीको निम्न {{PLURAL:$1|उपश्रेणी|$1 उपश्रेणीहरु}} छ।',
+'category-article-count'         => '{{PLURAL:$2|यो श्रेणीमा एक मात्र पृष्ठरहेको छ।|यो श्रेणीमा  {{PLURAL:$1|पृष्ठ|$1 पृष्ठहरु}} , कुल $2 मध्ये रहेका छन् । }}',
+'category-article-count-limited' => 'निम्न {{PLURAL:$1|पृष्ठ|$1 पृष्ठहरु}} यस श्रेणीमा रहेको ।',
+'category-file-count'            => '{{PLURAL:$2|यो श्रेणीमा निम्न फाइल मात्र छ ।|निम्न श्रेणीमा {{PLURAL:$1|फाइल|$1 फाइलहरु}} , कुल  $2 मध्ये रहेको ।}}',
+'category-file-count-limited'    => 'निम्न  {{PLURAL:$1|फाइल|$1 फाइलहरु}} यस श्रेणीमा रहेको ।',
+'listingcontinuesabbrev'         => 'निरन्तरता...',
+
+'mainpagetext'      => "<big>'''MediaWiki सफलतापूर्वक स्थापना भयो ।'''</big>",
+'mainpagedocfooter' => " विकी अनुप्रयोग कसरी प्रयोग गर्ने भन्ने जानकारीको लागि  [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] हेर्नुहोस् 
+
+== सुरू गर्नको लागि  ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Configuration settings list]
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki FAQ]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki release mailing list]",
 
 'about'         => 'बारेमा',
 'article'       => 'मुख्य-लेख पृष्ठ',
@@ -163,6 +178,7 @@ $messages = array(
 'qbbrowse'       => 'खोज',
 'qbedit'         => 'परिवर्तन्',
 'qbpageoptions'  => 'यो पेज',
+'qbpageinfo'     => 'सन्दर्भ',
 'qbmyoptions'    => 'मेरो पेज',
 'qbspecialpages' => 'विशेष पृष्ठहरु',
 'faq'            => 'धैरै सोधिएका प्रश्नहरु',
@@ -336,10 +352,43 @@ $1',
 'nosuchspecialpage' => 'त्यस्तो विषेश पृष्ठ छैन',
 
 # General errors
-'badarticleerror' => 'यो कार्य यस पृष्ठमा गर्न मिल्दैन।',
-'badtitle'        => 'गलत शिर्षक',
-'perfcached'      => 'तलको डाटाहरु क्याचमा रहेका कुराहरु हुन्। अपटुडेट नहुनपनि सक्छन्।',
-'perfcachedts'    => 'तलको डाटाहरु क्याचमा रहेका कुराहरु हुन् र यो पछिल्लो पल्ट $1 मा अपडेट गरीएको थियो ।',
+'missing-article'      => 'डेटाबेसले पृष्ठको पाठ भेटाएन जुन भेटिनु पर्ने थियो , नाम "$1" $2.
+
+यस्तो प्राय: मिति नाघिसकेको diff वा इतिहास वा कुनै मेटिसकेको पानाको लिंक पछ्याउनाले हुन्छ ।
+
+यदी यस्तो भएको होइन भने सफ्टवेयरको त्रुटी पनि हुनस्छ ।
+कृपया यसको url खुलाइ यहाँ उजुरी गर्नुहोस्  [[Special:ListUsers/sysop|administrator]].',
+'internalerror'        => 'आन्तरिक त्रुटि',
+'internalerror_info'   => 'आन्तरिक त्रुटि: $1',
+'fileappenderror'      => ' "$2".लाई"$1" मा जोडन सकिएन ।',
+'filecopyerror'        => 'फाइल  "$1" लाई "$2" मा प्रतिलिपी गर्न सकिएन ।',
+'filerenameerror'      => 'फाइल "$1" को नाम "$2" मा परिवर्तन गर्न सकिएन ।',
+'filedeleteerror'      => 'फाइल "$1"  मेट्न सकिएन ।',
+'directorycreateerror' => 'डाइरेक्टरी "$1" निर्माणगर्न सकिएन ।',
+'filenotfound'         => '"$1" फाइल भेटिएन ।',
+'fileexistserror'      => 'फाइल  "$1 लेख्न सकिएन : फाइल पहिले देखि रहेको छ',
+'unexpected'           => 'अप्रत्यासित मान :"$1"="$2" ।',
+'formerror'            => 'त्रुटी : फर्म बुझाउन सकिएन',
+'badarticleerror'      => 'यो कार्य यस पृष्ठमा गर्न मिल्दैन।',
+'cannotdelete'         => 'खुलाइएको फाइल वा पृष्ठ मेट्न सकिएन ।
+यो पहिले नै अरु कसै द्वारा मेटाइएको हुन सक्छ ।',
+'badtitle'             => 'गलत शिर्षक',
+'badtitletext'         => 'अनुरोध गरेको पृष्ठ शिर्षक अमान्य, खाली वा गलत रुपमा अन्तर भाषा वा अन्तर विकी सम्बन्ध गरिएको थियो।  यसमा शिर्षकमा प्रयोग गर्न नमिल्ने एक वा बढी अक्षरहरू रहेका हुनसक्छन ।',
+'perfcached'           => 'तलको डाटाहरु क्याचमा रहेका कुराहरु हुन्। अपटुडेट नहुनपनि सक्छन्।',
+'perfcachedts'         => 'तलको डाटाहरु क्याचमा रहेका कुराहरु हुन् र यो पछिल्लो पल्ट $1 मा अपडेट गरीएको थियो ।',
+'querypage-no-updates' => 'यो पृष्ठको अध्यावधी कार्य निस्क्रिय गरिएको छ।
+यहाँको डेटा तत्कालै ताजा पारिने  छैन।',
+'wrong_wfQuery_params' => 'गलत प्यारामेटर  wfQuery()को लागि <br />
+फङ्सन: $1<br />
+क्वेरी: $2',
+'viewsource'           => 'स्रोत हेर्नुहोस',
+'viewsourcefor'        => '$1 को लागि',
+'actionthrottled'      => 'कार्य रोकियो',
+'actionthrottledtext'  => 'स्पामबाट बच्ने तरिकाको रुपमा , तपाईँलाई यो कार्य थोरै समयमा धेरै पटक गर्नबाट सिमित गरिएको छ, र तपाईले आफ्नो सिमा पार गरिसक्नु भयो । 
+कृपया केही मिनेटहरु पछि पुन: प्रयास गर्नुहोस्  ।',
+'protectedpagetext'    => 'यो पृष्ठ सम्पादन हुनबाट बचाउन सम्पादनमा रोक  लगाइएको छ।',
+'viewsourcetext'       => 'तपाईँले यस पृष्ठको स्रोत हेर्न र प्रतिलिपी गर्न सक्नुहुन्छ ।',
+'protectedinterface'   => 'यो पृष्ठले सफ्टवेयरको लागि अन्तरमोहडा पाठ प्रदान गर्दछ , र यसलाई दुरुपयोग हुनबाट बचाउन ताल्चा मारिएको छ।',
 
 # Login and logout pages
 'welcomecreation'            => '== स्वागतम् , $1! ==
@@ -349,18 +398,41 @@ $1',
 'yourpasswordagain'          => 'पासवर्ड फेरी टाईप गर्नुहोस्',
 'yourdomainname'             => 'तपाइको कार्यक्षेत्र(डोमेन)',
 'login'                      => 'प्रवेश (लग ईन)',
+'nav-login-createaccount'    => 'प्रवेश गर्नुहोस्  / नयँ खाता खोल्नुहोस्',
+'loginprompt'                => 'तपाईले  {{SITENAME}}मा प्रवेशगर्न कुकीहरू सक्रिय बनाउनुपर्छ ।',
 'userlogin'                  => 'प्रवेश / खाता खोल्नुहोस्',
 'logout'                     => 'निर्गमन (लग आउउ)',
 'userlogout'                 => 'निर्गमन (लग आउउ)',
 'notloggedin'                => 'प्रवेश (लग ईन) नगरिएको',
+'nologin'                    => 'के तपाईसँग खाता छैन ?$1 ।',
 'nologinlink'                => 'नयाँ खाता खोल्नुहोस्',
 'createaccount'              => 'खाता खोल्नुहोस्',
+'gotaccount'                 => 'के तपाईँसँग पहिले देखि नै खाता छ ? $1 ।',
 'gotaccountlink'             => 'लग इन',
+'createaccountmail'          => 'इ-मेलबाट',
 'badretype'                  => 'तपाईंले दिनुभएको पासवर्ड मिल्दैन।',
+'userexists'                 => 'तपाईले प्रविष्ट गर्नुभएको प्रयोगकर्ताको नाम पहिले देखिनै प्रयोगमा छ ।
+कृपया फरक नाम छान्नुहोला ।',
+'loginerror'                 => 'प्रवेश त्रुटी',
+'nocookiesnew'               => 'तपाईँको खाता बनाइयो, तर तपाईँ प्रवेश गर्नुभएको छैन । 
+{{SITENAME}} ले प्रयोगकर्ता प्रवेश गराउन कुकीहरू प्रयोग गर्छ ।
+तपाईँको कुकीहरू निस्क्रिय गरिएको छ।
+कृपया सक्रिय बनाइ , नाम र प्रवेशशव्द राखी प्रवेश गर्नुहोला ।',
+'nocookieslogin'             => '{{SITENAME}} ले प्रयोगकर्ता प्रवेश गराउन कुकीहरू प्रयोग गर्छ । तपाईँको कुकीहरू निस्क्रिय गरिएको छ। कृपया सक्रिय बनाइ , नाम र प्रवेशशव्द राखी प्रवेश गर्नुहोला ।',
 'noname'                     => 'तपाईले सहि युजर नेम उल्लेख गर्नु भएन.',
+'loginsuccesstitle'          => 'प्रवेश सफल',
+'loginsuccess'               => "'''तपाईँ अहिले {{SITENAME}} मा \"\$1\"को रूपमा प्रवेशगर्नु भएकोछ ।'''",
+'nosuchuser'                 => '"$1" को नामबाट कुनै पनि प्रयोगकर्ता भेटिएनन् ।
+प्रयोगकर्ता नाम वर्णसंवेदनशील हुन्छन् ।
+हिज्जे जाँच्नुहोस् , या [[Special:UserLogin/signup|नयाँ खाता बनाउनुहोस्]].',
+'nosuchusershort'            => ' "<nowiki>$1</nowiki>"नामबाट कुनैपनि प्रयोगकर्ता भेटिएनन् ।
+ तपाईँको हिज्जे जाँच्नुहोस् ।',
 'nouserspecified'            => 'तपाँईले प्रयोगकर्तानाम (युजरनेम) जनाउनुपर्छ।',
 'wrongpassword'              => 'पासवर्ड गलत हालियो । कृपया फेरी प्रयास गर्नुहोला ।',
 'wrongpasswordempty'         => 'तपाइले हालेको पासवर्ड खालि थियो । कृपया फेरी प्रयास गर्नुहोला ।',
+'passwordtooshort'           => 'तपाईको प्रवेशशव्द धेरै छोटो थियो ।
+यो कम्तिमा{{PLURAL:$1|१ अक्षर |$1 अक्षरहरु }}को हुनुपर्छ ।',
+'password-name-match'        => 'तपाईँको प्रवेशशव्द प्रयोगकर्ता नाम भन्दा फरक हुनुपर्छ ।',
 'mailmypassword'             => '',
 'passwordremindertitle'      => 'नयाँ अस्थाइ प्रवेशशव्द {{SITENAME}} को लागि ।',
 'passwordremindertext'       => 'कसैले (सायद तपाईँ, IP ठेगाना $1 बाट), {{SITENAME}}($4) को लागि नयाँ प्रवेशशव्द अनुरोध गर्नुभएको छ । प्रयोगकर्ता "$2" को लागि नयाँ अस्थाई प्रवेशशव्द "$3"तयार पारिएको छ। यदि यो तपाईको इच्छामा भएको भए अहिले तपाईले तपाईँले प्रवेशगरी नयाँ प्रवेशशव्द छान्नु पर्ने हुन्छ।
@@ -372,6 +444,8 @@ $1',
 'passwordsent'               => '"$1" को लागि दर्ता गरिएको इमेल ठेगानामा एक प्रवेशशव्द पठाइएको छ।
 कृपया त्यसलाई प्राप्त गरेपछि प्रवेश गर्नुहोला ।',
 'blocked-mailpassword'       => 'तपाईको IP ठेगानालाई सम्पादनगर्नबाट रोक लगाइएको छ, र त्यसैले दुरुपयोग रोक्नको लागि प्रवेशशव्द पुनर्लाभ प्रक्रिया प्रयोग गर्न अनुमति छैन ।',
+'eauthentsent'               => 'दिइएको इमेलठेगनामा  किटानी इमेल ठाइएको छ ।
+तपाईको खातामा अरु इमेल पठउनु अघि , इमेलमा लेखिएको मार्गदर्शन अनुसार , त्यो खाता तपाईँकै हो भनेर निश्चित गराउनु पर्नेछ ।',
 'acct_creation_throttle_hit' => 'माफ गर्नुहोला तपाइले पहिलेनै $1 वटा खाताहरु खोलिसक्नुभएको छ। तपाइले अब अरु बनाउन सक्नुहुन्न।',
 'emailconfirmlink'           => 'तपाईंको ई-मेल ठेगाना कन्फर्म गर्नुहोस्',
 'accountcreated'             => 'खाता खोलियो',
@@ -385,13 +459,24 @@ $1',
 # Edit page toolbar
 'bold_sample'     => 'गाढा अक्षर',
 'bold_tip'        => 'गाढा अक्षर',
+'italic_sample'   => 'इटालिक पाठ',
+'italic_tip'      => 'इटालिक पाठ',
+'link_sample'     => 'शिर्षक लिंङ्क',
+'link_tip'        => 'आन्तरिक लिङ्क',
+'extlink_sample'  => 'http://www.example.com लिङ्क शिर्षक',
+'extlink_tip'     => 'बाह्य लिङ्क (सम्झनुहोस् http:// prefix)',
 'headline_sample' => 'शिर्षक अक्षर',
+'headline_tip'    => 'दोस्रो स्तर शिर्षपंक्ति',
 'math_sample'     => 'सूत्र यहाँ थप्नुहोस्',
 'math_tip'        => 'गणितीय सूत्र (LaTeX)',
 'nowiki_sample'   => 'यहाँ नन फर्म्याटेड ट्क्स्ट घुसाउनुहोस/लेख्नुहोस् ।',
 'nowiki_tip'      => 'विकि फरम्याटिङ्लाइ वास्ता नगर्ने (इग्नोर गर्ने)',
 'image_sample'    => 'उदाहरण.jpg',
+'image_tip'       => 'इम्बेडेड(जडान गरिएको) फाइल',
 'media_sample'    => 'उदाहरण.ogg',
+'media_tip'       => 'फाइल लिङ्क',
+'sig_tip'         => 'तपाईँको समयछाप सहितको दस्तखत',
+'hr_tip'          => 'क्षितिजिय रेखा (कम प्रयोग गर्नुहोस्)',
 
 # Edit pages
 'summary'                => 'सारांश:',
@@ -403,14 +488,41 @@ $1',
 'showpreview'            => 'पूर्वालोकन देखाउनुहोस्',
 'showlivepreview'        => 'प्रत्यक्ष पूर्वालोकन',
 'showdiff'               => 'परिवर्तन देखाउनुहोस्',
+'anoneditwarning'        => "'''चेतावनी:''' तपाईँले प्रवेश गर्नु भएको छैन। 
+तपाईँको IP ठेगाना पृष्ठसम्पादन इतिहासमा दर्तागरिने छ ।",
+'missingsummary'         => "'''यादगर्नुहोस् :''' तपाईले सम्पादन सारांश दिनुभएको छैन ।
+यदि तपाईले संग्रहगर्नुहोस्  थिच्नुभयो भने , सारांश बिना नै संग्रहित गरिने छ ।",
+'missingcommenttext'     => 'कृपया टिप्पणी प्रविष्ठ गर्नुहोस् ।',
+'missingcommentheader'   => "'''याद गर्नुहोस् :''' तपाईँले टिप्पणीमा विषय /शिर्ष पंक्ति  दिनुभएको छैन ।
+तपाईँले फेरि संग्रह गर्नुहोस्  थिच्नु भएमा , तपाईको सम्पादन यसै रुपमा संग्रहित हुनेछ ।",
 'summary-preview'        => 'सारांश पूर्वालोकन:',
+'subject-preview'        => 'विषय/शिर्षपंंक्ति पूर्वरुप:',
+'blockedtitle'           => 'प्रयोककर्तालाई रोक लगाइएको छ',
+'blockedtext'            => "<big>'''तपाईँको प्रयोगकर्ता नाम या IP ठेगानालाई रोक लगाइएको छ ।'''</big>
+
+रोक लगाउने  $1.
+रोक लगाउनाको कारण ''$2''.
+
+* रोक सुरूहुने : $8
+* रोक सकिने: $6
+* रोकबाट लक्षित: $7
+
+तपाईले  $1 वा अरु कुनै  [[{{MediaWiki:Grouppage-sysop}}|administrator]] सँग रोकको बारेमा छलफल गर्न सम्पर्क गर्न सक्नुहुन्छ ।
+तपाईँले  'प्रयोगकर्तालाई इ-मेल गर्ने ' सुविधा मान्य इमेल ठेगाना [[Special:Preferences|account preferences]] मा नखुलाए सम्म प्रयोगगर्न पाउनुहुने छैन र यसको प्रयोग गर्नबाट रोक लगाइएको छैन ।
+तपाईको IP ठेगाना $3 को, र रोक्का संख्या #$5.
+कृपया तपाईँको प्रश्नमा सबै जानकारी खुलाउनुहोला ।",
 'blockedoriginalsource'  => "'''$1''' को स्रोत तल देखाइएको छ:",
 'whitelistedittitle'     => 'सम्पादन गर्नको लागि प्रवेश (लग इन) आवश्यक छ',
 'whitelistedittext'      => 'पाना सम्पादन गर्न तपाँईले $1 गर्नु पर्दछ।',
 'loginreqlink'           => 'प्रवेश (लग ईन)',
 'accmailtitle'           => 'पासवर्ड पठाइयो',
-'accmailtext'            => '"$1" को पासवर्ड $2मा पठाइएको छ ।',
+'accmailtext'            => "जथाभावीरुपमा शृजना गरिएको प्रवेशशब्द प्रयोगकर्ता [[User talk:$1|$1]] को  $2 मा पठाइएको छ। 
+
+यो नयाँ खाताको प्रवेशशब्द  ''[[Special:ChangePassword|change password]]'' मा प्रवेश गरेर परिवर्तन गर्न सकिन्छ ।",
 'newarticle'             => '(नयाँ)',
+'newarticletext'         => "तपाईँले अहिले सम्म नभएको पृष्ठको लिंङ्क पहिल्याउनु भएको छ।
+यो पृष्ठ निर्माण गर्न तलको बाक्सामा टाइप गर्नुहोस्  ।(थप जानकारीको लागि [[{{MediaWiki:Helppage}}|help page]] हेर्नुहोस् )।
+यहाँ त्यत्तिकै आइपुग्नु भएको हो भने , ब्राउजरको  '''back''' बटन थिच्नुहोस ।",
 'note'                   => "'''सुझाव:'''",
 'previewnote'            => "'''यो केवल पूर्वालोकन मात्र हो; परिवर्तनहरू संग्रह गरिसकिएको छैन!'''",
 'editing'                => '$1 सम्पादन गरिँदै',
@@ -427,19 +539,107 @@ $1',
 # History pages
 'viewpagelogs'     => 'यस पृष्ठका लगहरू हेर्नुहोस्',
 'nohistory'        => 'यस पृष्ठको लागी कुनै सम्पादन इतिहास छैन।',
+'currentrev-asof'  => '$1को रुपमा हालको पुनरावलोकनहरु',
+'revisionasof'     => '$1 जस्तै गरी पुनरावलोकन',
+'revision-info'    => ' $2द्वारा $1को रुपमा पुनरावलोकन गर्ने',
 'previousrevision' => '← पुरानो संशोधन',
 'nextrevision'     => 'नयाँ संशोधन →',
+'cur'              => 'cur पृष्ठको लिंक इतिहास',
 'next'             => 'अर्को',
+'last'             => 'पूर्वरुप',
 'histfirst'        => 'पहिलो',
 'histlast'         => 'अन्तिम',
 
+# Revision deletion
+'rev-delundel'            => 'देखाउने/छुपाउने',
+'revisiondelete'          => 'मेटाउने/मेटाएको रद्दगर्ने  पुनरावलोकनहरु',
+'revdelete-nooldid-title' => 'अमान्य पुनरावलोकन लक्ष',
+'revdel-restore'          => 'दृष्टि परिवर्तन गर्ने',
+
+# Merge log
+'revertmerge' => 'नजोड्ने',
+
 # Diffs
-'compareselectedversions' => 'छानिएका संस्करणहरू दाँज्नुहोस्',
+'difference'               => '(पुनरावलोकनहरुको बीचमा भिन्नता)',
+'lineno'                   => 'पंक्ति $1:',
+'compareselectedversions'  => 'छानिएका संस्करणहरू दाँज्नुहोस्',
+'showhideselectedversions' => 'छानिएका पुनरावलोकनहरु देखाउने/लुकाउने',
+'editundo'                 => 'रद्द गर्ने',
+'diff-multi'               => '({{PLURAL:$1|एक मध्य पुनरावलोकन|$1 मध्य पुनरावलोकनहरू}} नदेखाइएको)',
+'diff-movedto'             => '$1 मा सारिएको',
+'diff-styleadded'          => '$1 ढाँचा थपिएको',
+'diff-added'               => '$1 थपिएको',
+'diff-changedto'           => '$1 मा परिवर्तन गरिएको',
+'diff-movedoutof'          => '$1 बाट बाहिर सारिएको',
+'diff-styleremoved'        => '$1 ढाँचा हटाइएको',
+'diff-removed'             => '$1 हटाइएको',
+'diff-changedfrom'         => '$1 बाट परिवर्तन गरिएको',
+'diff-src'                 => 'स्रोत',
+'diff-withdestination'     => 'गन्तब्य $1 मा',
+'diff-with'                => '&#32;साथमा $1 $2',
+'diff-with-final'          => '&#32;र $1 $2',
+'diff-width'               => 'चौडाई',
+'diff-height'              => 'उचाई',
+'diff-p'                   => "एक '''अनुच्छेद'''",
+'diff-blockquote'          => "एक '''कथन'''",
+'diff-h1'                  => "एक '''शिर्ष पंक्ति स्तर १'''",
+'diff-h2'                  => "एक '''शिर्ष पंक्ति स्तर २'''",
+'diff-h3'                  => "एक '''शिर्ष पंक्ति स्तर ३'''",
+'diff-h4'                  => "एक ''' शिर्ष पंक्ति स्तर ४'''",
+'diff-h5'                  => "एक '''शिर्ष पंक्ति स्तर ५'''",
 
 # Search results
-'notitlematches' => 'कुनैपनि पृष्ठको शिर्षक संग मिल्दैन',
-'notextmatches'  => 'अक्षरस् पेज भेटिएन',
-'nextn'          => 'अर्को {{PLURAL:$1|$1}}',
+'searchresults'             => 'खोज नतिजाहरू',
+'searchresults-title'       => ' "$1"को लागि खोज नतिजाहरु',
+'searchresulttext'          => ' {{SITENAME}}मा खोज्ने बारे थप जानकारीको लागि,[[{{MediaWiki:Helppage}}|{{int:help}}]] मा हेर्नुहोस् ।',
+'searchsubtitle'            => 'तपाईँले \'\'\'[[:$1]]\'\'\' खोज्नु भएको थियो ([[Special:Prefixindex/$1| "$1"बाट सुरु हुने पृष्ठ ]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|"$1" मा जोडिने पृष्ठ]])',
+'noexactmatch'              => "'''\"\$1\" शिर्षक भएको पृष्ठ छैन ।'''
+तपाई [[:\$1|यस पृष्ठ निर्माण गर्न सक्नुहुन्छ ]]।",
+'notitlematches'            => 'कुनैपनि पृष्ठको शिर्षक संग मिल्दैन',
+'notextmatches'             => 'अक्षरस् पेज भेटिएन',
+'prevn'                     => 'पहिलेको {{PLURAL:$1|$1}}',
+'nextn'                     => 'अर्को {{PLURAL:$1|$1}}',
+'viewprevnext'              => 'हेर्नुहोस् ($1) ($2) ($3)',
+'search-result-size'        => '$1 ({{PLURAL:$2|1 शव्द|$2 शव्दहरु}})',
+'search-result-score'       => 'मिल्ने :$1%',
+'search-redirect'           => '(जाने $1)',
+'search-section'            => '(खण्ड $1)',
+'search-suggest'            => 'के तपाईको मतलब : $1',
+'search-interwiki-caption'  => 'भगिनी आयोजना',
+'search-interwiki-default'  => '$1 नतिजाहरु:',
+'search-interwiki-more'     => '(धेरै)',
+'search-mwsuggest-enabled'  => 'सुझाव सहितको',
+'search-mwsuggest-disabled' => 'सुझाव बाहेकको',
+'search-relatedarticle'     => 'सम्बन्धित',
+'mwsuggest-disable'         => 'AJAX सुझाव निस्क्रिय पार्नुहोस्',
+'searcheverything-enable'   => 'सबै नेमस्पेसेजहरुमा खोज्नुहोस्',
+'searchrelated'             => 'सम्बन्धित',
+'searchall'                 => 'सबै',
+'showingresults'            => "देखाउदै  {{PLURAL:$1|'''१''' नतिजा|'''$1''' नतिजाहरु }} , #'''$2''' बाट सुरुहुने ।",
+'showingresultsnum'         => "तल देखाउदै  {{PLURAL:$3|'''१''' नतिजा|'''$3''' नतिजाहरु }}, #'''$2''' बाट सुरुहुने ।",
+'showingresultstotal'       => "तल देखाउदै {{PLURAL:$4|नतिजा '''$1''' को '''$3'''|नतिजाहरू '''$1 - $2''' को '''$3'''}}",
+'showingresultsheader'      => "{{PLURAL:$5|नतिजा '''$1''' को '''$3'''|नतिजाहरु '''$1 - $2''' को'''$3'''}}  ,'''$4''' को लागि",
+'nonefound'                 => "'''द्रष्टव्य''': पूर्वनिर्धारित रुपमा केहीमात्र नेमस्पेसेजहरू खोजिन्छ ।त
+तपाईँको क्वेरीलाई  ''all:'' राखी सवै(वार्रतालाप , टेम्लेट सहित, इत्यादी)सामग्री खोज्ने गरी मिलाउनुहोस् , ‍नत्र चाहेको नेमस्पेसलाई अगाडि जोड्नुहोस् ।",
+'search-nonefound'          => 'तपाईँको क्वेरीसँग मेल खाने नतिजाहरू भेटिएनन्',
+'powersearch'               => 'उन्नत खोज',
+'powersearch-legend'        => 'उन्नत खोज',
+'powersearch-ns'            => 'नेमस्पेसेजहरुमा खोज्ने :',
+'powersearch-redir'         => 'रिडाइरेक्टहरू सूचीकृत गर्ने',
+'powersearch-field'         => 'को लागि खोज्ने',
+'powersearch-togglelabel'   => 'जाँच्ने :',
+'search-external'           => 'बाह्य खोज',
+'searchdisabled'            => '{{SITENAME}} खोज निस्कृय पारिएको छ ।
+यस समयमा तपाईले Google द्वारा खोज्न सक्नुहुन्छ ।
+याद गर्नुहोस् उनीहरुको {{SITENAME}}को सूची सामग्री पुरानो पनि हुनसक्छ ।',
+
+# Quickbar
+'qbsettings'               => 'क्विकबार',
+'qbsettings-none'          => 'कुनैपनि होइन',
+'qbsettings-fixedleft'     => 'देब्रे निश्चित गरिएको',
+'qbsettings-fixedright'    => 'दाहिने निश्चित गरिएको',
+'qbsettings-floatingleft'  => 'देब्रे तैरने',
+'qbsettings-floatingright' => 'दाहिने तैरने',
 
 # Preferences page
 'preferences'                   => 'रोजाईहरू',
@@ -532,24 +732,40 @@ HTML ट्यागहरु जाँच्नुहोस् ।',
 'userrights' => 'प्रयोगकर्ता अधिकार व्यवस्थापन',
 
 # Groups
-'group-bot' => 'बोटहरु',
+'group-bot'   => 'बोटहरु',
+'group-sysop' => 'प्रवन्धकहरू',
 
 'group-bot-member'   => 'बोट',
 'group-sysop-member' => 'सिसप',
 
+'grouppage-sysop' => '{{ns:project}}: प्रशासकहरु',
+
 # Recent changes
-'recentchanges'     => 'नयाँ परिवर्तनहरु',
-'rclistfrom'        => '$1 देखिका नयाँ परिवर्तनहरू देखाउनु',
-'diff'              => 'भिन्न',
-'hist'              => 'इतिहास',
-'hide'              => 'लुकाउनुहोस्',
-'show'              => 'देखाउनुहोस्',
-'rc_categories_any' => 'कुनै',
+'recentchanges'      => 'नयाँ परिवर्तनहरु',
+'rclistfrom'         => '$1 देखिका नयाँ परिवर्तनहरू देखाउनु',
+'rcshowhideminor'    => '$1 सामान्य सम्पादन',
+'rcshowhidebots'     => '$1 बोटहरू',
+'rcshowhideliu'      => '$1 प्रवेश गरेका प्रयोगकर्ताहरु',
+'rcshowhideanons'    => '$1 अज्ञात प्रयोगकर्ता',
+'rcshowhidemine'     => '$1 मेरो सम्पादनहरु',
+'rclinks'            => 'पछिल्ला $1 परिवर्तनहरु पछिल्ला $2 दिनहरुमा<br />$3',
+'diff'               => 'भिन्न',
+'hist'               => 'इतिहास',
+'hide'               => 'लुकाउनुहोस्',
+'show'               => 'देखाउनुहोस्',
+'minoreditletter'    => 'सा',
+'newpageletter'      => 'न',
+'boteditletter'      => 'बो',
+'rc_categories_any'  => 'कुनै',
+'rc-enhanced-expand' => 'जानकारी देखाउने( जाभा स्क्रिप्ट चाहिने)',
+'rc-enhanced-hide'   => 'जानकारी लुकाउने',
 
 # Recent changes linked
 'recentchangeslinked'         => 'संबन्धित परिवर्तनहरु',
 'recentchangeslinked-feed'    => 'संबन्धित परिवर्तनहरु',
 'recentchangeslinked-toolbox' => 'संबन्धित परिवर्तनहरु',
+'recentchangeslinked-summary' => "यो खुलाईएको पृष्ठसँग जोडिएका पृष्ठहरुमा गरिएको परिवर्तनहरुको सुची हो(या खुलाइएको श्रेणी )[[Special:Watchlist|तपाईँको निगरानी सूची]] का पृष्ठहरु '''बोल्ड'''.",
+'recentchangeslinked-page'    => 'पृष्ठ नाम:',
 
 # Upload
 'upload'            => 'फाइल अपलोड',
@@ -571,8 +787,19 @@ HTML ट्यागहरु जाँच्नुहोस् ।',
 'listfiles_description' => 'वर्णन',
 
 # File description page
-'file-anchor-link' => 'फाईल',
-'nolinkstoimage'   => 'यो फाईलसंग लिंकभएको कुनै पृष्ठ छैन.',
+'file-anchor-link'    => 'फाईल',
+'filehist'            => 'फाइल इतिहास',
+'filehist-help'       => 'मिति/समय मा क्लिक गरेर त्यससमयमा यो फाइल कस्तो थियो भनेर हेर्न सकिन्छ ।',
+'filehist-current'    => 'हालको',
+'filehist-datetime'   => 'मिति/समय',
+'filehist-thumb'      => 'थम्बनेल',
+'filehist-thumbtext'  => 'थम्बनेल $1 सस्करणको रुपमा',
+'filehist-user'       => 'प्रयोगकर्ता',
+'filehist-dimensions' => 'आकारहरू',
+'filehist-comment'    => 'टिप्पणी',
+'imagelinks'          => 'फाइल लिंकहरू',
+'linkstoimage'        => 'यस फाइलमा निम्न{{PLURAL:$1|पृष्ठ जोडिन्छ|$1 पृष्ठहरु जोडिन्छन}}:',
+'nolinkstoimage'      => 'यो फाईलसंग लिंकभएको कुनै पृष्ठ छैन.',
 
 # MIME search
 'download' => 'डाउनलोड',
@@ -589,6 +816,12 @@ HTML ट्यागहरु जाँच्नुहोस् ।',
 'withoutinterwiki-summary' => 'यी पानाहरूले अन्य भाषाका संस्करणहरूमा संबन्ध राखेका छैनन्:',
 
 # Miscellaneous special pages
+'nbytes'            => '$1 {{PLURAL:$1|बाइट|बाइटहरू}}',
+'ncategories'       => '$1 {{PLURAL:$1|श्रेणी|श्रेणीहरू}}',
+'nlinks'            => '$1 {{PLURAL:$1|लिंक|लिंकहरु}}',
+'nmembers'          => '$1 {{PLURAL:$1|सदस्य|सदस्यहरू}}',
+'nrevisions'        => '$1 {{PLURAL:$1|पुनरावलोकन|पुनरावलोकनहरु}}',
+'nviews'            => '$1 {{PLURAL:$1|अवलोकन|अवलोकनहरु}}',
 'specialpage-empty' => 'यो पृष्ठ खाली छ।',
 'lonelypages'       => 'अनाथ पृष्ठहरु',
 'popularpages'      => 'धेरै रूचाईएका पृष्ठहरू',
@@ -606,6 +839,8 @@ HTML ट्यागहरु जाँच्नुहोस् ।',
 'move'              => 'सार्ने',
 'movethispage'      => 'यो पृष्ठ सार्नुहोस्',
 'notargettitle'     => 'कुनैपनि निसाना(टारगेट) छैन',
+'pager-newer-n'     => '{{PLURAL:$1|नयाँ १|नयाँ $1}}',
+'pager-older-n'     => '{{PLURAL:$1|पुरानो १|पुरानो $1}}',
 
 # Book sources
 'booksources'               => 'किताबका श्रोतहरु',
@@ -615,6 +850,7 @@ HTML ट्यागहरु जाँच्नुहोस् ।',
 # Special:Log
 'specialloguserlabel'  => 'प्रयोगकर्ता:',
 'speciallogtitlelabel' => 'शिर्षक:',
+'log'                  => 'लगहरु',
 
 # Special:AllPages
 'allpages'       => 'सबै पृष्ठहरु',
@@ -660,10 +896,15 @@ HTML ट्यागहरु जाँच्नुहोस् ।',
 'addedwatch'           => 'अवलोकनसूची मा थपियो',
 'watch'                => 'अवलोकन',
 'watchthispage'        => 'यो पृष्ठ अवलोकन गर्नुहोस्',
+'unwatch'              => 'निगरानीबाट हटाउने',
 'notanarticle'         => 'सामाग्री सहितको पेज हैन',
 'wlheader-enotif'      => '* ईमेलद्वारा जानकारी गराउने तरिका enable गरियो ।',
 'wlheader-showupdated' => "* तपाइले पछिल्लो पल्ट भ्रमण गरेपछि परिवर्तन भएका पृष्ठहरूलाई '''गाढा''' गरेर देखाइएको छ ।",
 'wlshowlast'           => 'पछिल्ला $2 दिनहरूका $3 $1 घण्टाहरूका देखाउनुहोस्',
+
+# Displayed when you click the "watch" button and it is in the process of watching
+'watching'   => 'निगरानी गर्दै...',
+'unwatching' => 'निगरानीबाट हटाउँदै...',
 
 'enotif_newpagetext' => 'यो नयाँ पृष्ठ हो।',
 'changed'            => 'परिवर्तन भइसकेको',
@@ -672,16 +913,27 @@ HTML ट्यागहरु जाँच्नुहोस् ।',
 'excontent'      => "लेख थियो: '$1'",
 'historywarning' => 'खबरदारी: तपाईंले मेटाउन लाग्नुभएको पृष्ठको इतिहास छ:',
 'actioncomplete' => 'काम सकियो',
+'deletedarticle' => '"[[$1]]" मेटियो',
+'dellogpage'     => 'मेटाएको लग',
 'reverted'       => 'अघिल्लो संशोधनको स्थितिमा फर्काइयो',
+
+# Rollback
+'rollbacklink' => 'पहिलेको रुपमा फर्काउने',
 
 # Protect
 'protectlogpage'              => 'सुरक्षण लग',
 'protectedarticle'            => '"[[$1]]" लाई सुरक्षित गरियो',
 'prot_1movedto2'              => '[[$1]] लाई [[$2]]मा सारियो',
 'protectcomment'              => 'बचाउको कारण',
-'protect-default'             => '(स्वतह)',
+'protect-text'                => "तपाईँ यो पृष्ठको यहाँ'''<nowiki>$1</nowiki>''' सुरक्षा स्तर परिवर्तन गर्न र हेर्न सक्नुहुन्छ ।",
+'protect-default'             => 'सबै प्रयोगकर्ताहरुलाई अनुमति दिने',
 'protect-level-autoconfirmed' => 'दर्ता नभएका प्रयोगकर्ताहरूलाई रोक',
 'protect-level-sysop'         => 'सिस्अपहरू मात्र',
+'protect-summary-cascade'     => 'लाममा राख्ने',
+'protect-expiring'            => '$1 (UTC) मा सकिने छ ।',
+'protect-cantedit'            => 'तपाईँ यस पृष्ठको सुरक्षा स्तर परिवर्तन गर्न सक्नुहुन्न , किनकी तपाईँलाई यसको सम्पादनको अनुमति छैन ।',
+'restriction-type'            => 'अनुमति:',
+'restriction-level'           => 'सिमितता स्तर:',
 
 # Restrictions (nouns)
 'restriction-edit' => 'परिवर्तन्',
@@ -689,17 +941,25 @@ HTML ट्यागहरु जाँच्नुहोस् ।',
 
 # Undelete
 'viewdeletedpage' => 'मेटिएका पृष्ठहरू हेर्नुहोस्',
+'undeletelink'    => 'हेर्ने/पूर्वरुपमा फर्काउने',
 
 # Namespace form on various pages
-'namespace' => 'नेमस्पेस:',
+'namespace'      => 'नेमस्पेस:',
+'invert'         => 'रोजाइ उल्टाउने',
+'blanknamespace' => '(मुख्य)',
 
 # Contributions
 'contributions' => 'प्रयोगकर्ताका योगदानहरू',
 'mycontris'     => 'मेरो योगदान',
+'month'         => 'महिना देखि (र पहिले):',
 
 # What links here
-'whatlinkshere'       => 'यहाँ के जोडिन्छ',
-'whatlinkshere-title' => '$1 सँग संबन्ध राख्ने पानाहरू',
+'whatlinkshere'           => 'यहाँ के जोडिन्छ',
+'whatlinkshere-title'     => '$1 सँग जोडिएका पानाहरू',
+'whatlinkshere-page'      => 'पृष्ठ:',
+'whatlinkshere-links'     => '← लिंकहरु',
+'whatlinkshere-hidelinks' => '$1 लिंकहरु',
+'whatlinkshere-filters'   => 'फिल्टरहरू',
 
 # Block/unblock
 'blockip'            => 'प्रयोगकर्तालाइ निषेध गर्नुहोस',
@@ -709,7 +969,9 @@ HTML ट्यागहरु जाँच्नुहोस् ।',
 'blocklistline'      => '$1, $2 द्वारा रोकियो $3 ($4)',
 'anononlyblock'      => 'anon. हरु मात्र',
 'blocklink'          => 'रोक्नुहोस्',
-'contribslink'       => 'योगदान',
+'unblocklink'        => 'रोक फुकुवा गर्ने',
+'change-blocklink'   => 'ढिका परिवर्तन गर्नुहोस्',
+'contribslink'       => 'योगदानहरु',
 'blocklogpage'       => 'निषेध सूची',
 'proxyblocksuccess'  => 'सकियो.',
 
@@ -726,13 +988,21 @@ HTML ट्यागहरु जाँच्नुहोस् ।',
 'pagemovedsub'            => 'सार्ने काम सफल भयो',
 'movedto'                 => 'मा सारियो',
 '1movedto2'               => '[[$1]] लाई [[$2]]मा सारियो',
+'movelogpage'             => 'लग सार्ने',
 'movereason'              => 'कारण',
+'revertmove'              => 'पहिलेको रुपमा फर्काउने',
 'delete_and_move_confirm' => 'हो, पृष्ठ मेट्नुहोस्',
+
+# Export
+'export' => 'पृष्ठ निर्यात गर्ने',
 
 # Namespace 8 related
 'allmessages'     => 'सिस्टम सन्देशहरू',
 'allmessagesname' => 'नाम',
 'allmessagestext' => 'यो मिडियाविकि नेमस्पेसमा पाइने सिस्टम सन्देशहरूको सूची हो।',
+
+# Thumbnails
+'thumbnail-more' => 'ठूलो बनाउने',
 
 # Special:Import
 'import'                  => 'पृष्ठहरु आयात गर्नुहोस्',
@@ -741,25 +1011,67 @@ HTML ट्यागहरु जाँच्नुहोस् ।',
 'importsuccess'           => 'आयात सम्पन्न भयो!',
 
 # Tooltip help for the actions
-'tooltip-pt-userpage'     => 'मेरो प्रयोगकर्ता पृष्ठ',
-'tooltip-pt-mytalk'       => 'मेरो वार्तालाप पृष्ठ',
-'tooltip-pt-preferences'  => 'मेरा अभिरुचिहरू (प्रेफरेन्सेस्‌हरू)',
-'tooltip-pt-watchlist'    => 'पृष्ठहरूको सूची जसका परिवर्तनहरूलाई तपाईँले निगरानी गरिरहनु भएको छ',
-'tooltip-pt-mycontris'    => 'मेरा योगदानहरूको सूची',
-'tooltip-pt-anonlogin'    => 'तपाईँलाई लग-इन गर्न प्रोत्साहन गरिन्छ, तर यो अनिवार्य चाँही होइन।',
-'tooltip-pt-logout'       => 'निर्गमन (लग आउट) गर्नुहोस्',
-'tooltip-ca-viewsource'   => 'यो पृष्ठ सुरक्षित गरिएको छ। यसको श्रोत हेर्न सक्नुहुन्छ।',
-'tooltip-ca-protect'      => 'यो पृष्ठलाई संरक्षित गर्नुहोस्',
-'tooltip-ca-delete'       => 'यो पृष्ठ मेटाउनुहोस्',
-'tooltip-ca-move'         => 'यो पृष्ठलाई सार्नुहोस्',
-'tooltip-ca-watch'        => 'यो पृष्ठलाई तपाईँको अवलोकनसूचीमा थप्नुहोस्',
-'tooltip-ca-unwatch'      => 'यो पृष्ठलाई तपाईँको अवलोकनसूचीबाट हटाउनुहोस्',
-'tooltip-search'          => '{{SITENAME}} मा खोज्नुहोस्',
-'tooltip-p-logo'          => 'मुख्य पृष्ठ',
-'tooltip-t-contributions' => 'यस प्रयोगकर्ताका योगदानहरूको सूची हेर्नुहोस्',
-'tooltip-t-specialpages'  => 'सबै विशेष पृष्ठहरूको सूची',
-'tooltip-save'            => 'तपाईँले गरेका परिवर्तनहरू संग्रह (सेभ) गर्नुहोस्',
-'tooltip-watch'           => 'यो पृष्ठलाई तपाईँको अवलोकनसूचीमा थप्नुहोस्',
+'tooltip-pt-userpage'             => 'तपाईको प्रयोगकर्ता पृष्ठ',
+'tooltip-pt-mytalk'               => 'तपाईको वार्ता पृष्ठ',
+'tooltip-pt-preferences'          => 'मेरा अभिरुचिहरू (प्रेफरेन्सेस्‌हरू)',
+'tooltip-pt-watchlist'            => 'पृष्ठहरूको सूची जसका परिवर्तनहरूलाई तपाईँले निगरानी गरिरहनु भएको छ',
+'tooltip-pt-mycontris'            => 'तपाईको योगदानको सूची',
+'tooltip-pt-login'                => 'तपाईँलाई प्रवेशगर्न सुझाव दिइन्छ ; तर यो जरुरी भने छैन',
+'tooltip-pt-anonlogin'            => 'तपाईँलाई लग-इन गर्न प्रोत्साहन गरिन्छ, तर यो अनिवार्य चाँही होइन।',
+'tooltip-pt-logout'               => 'निर्गमन (लग आउट) गर्नुहोस्',
+'tooltip-ca-talk'                 => 'सामग्री पृष्ठकोबारेमा छलफल',
+'tooltip-ca-edit'                 => 'तपाईँले यो पृष्ठ सम्पादन गर्न सक्नुहुन्छ ।
+कृपया संग्रह ‍पहिले पूर्वावलोकन बटन प्रयोग गर्नुहोला ।',
+'tooltip-ca-addsection'           => 'नयाँ खण्ड सुरूगर्नुहोस्',
+'tooltip-ca-viewsource'           => 'यो पृष्ठ सुरक्षित गरिएको छ। यसको श्रोत हेर्न सक्नुहुन्छ।',
+'tooltip-ca-history'              => 'यस पृष्ठको पहिलेका पुनरावलोकनहरु',
+'tooltip-ca-protect'              => 'यो पृष्ठलाई संरक्षित गर्नुहोस्',
+'tooltip-ca-delete'               => 'यो पृष्ठ मेटाउनुहोस्',
+'tooltip-ca-undelete'             => 'मेटिपको भए पनि यो पृष्ठको सम्पादनहरु पुन:प्राप्त गर्नुहोस्',
+'tooltip-ca-move'                 => 'यो पृष्ठलाई सार्नुहोस्',
+'tooltip-ca-watch'                => 'यो पृष्ठलाई तपाईँको अवलोकनसूचीमा थप्नुहोस्',
+'tooltip-ca-unwatch'              => 'यो पृष्ठलाई तपाईँको अवलोकनसूचीबाट हटाउनुहोस्',
+'tooltip-search'                  => '{{SITENAME}} मा खोज्नुहोस्',
+'tooltip-search-go'               => 'यदि यो नामको पृष्ठ रहेको छ भने त्यसमा जाने',
+'tooltip-search-fulltext'         => 'यो पाठको लागि पृष्ठहरु खोज्नुहोस्',
+'tooltip-p-logo'                  => 'मुख्य पृष्ठ',
+'tooltip-n-mainpage'              => 'मुख्य पृष्ठमा जानुहोस्',
+'tooltip-n-portal'                => 'आयोजनाका बारेमा , तपाईँ के गर्न सक्नुहुन्छ , सामग्री कहाँ भेट्टाउने',
+'tooltip-n-currentevents'         => 'हालैको घटनाको बारेमा पृष्ठभूमि जानकारी पत्तालगाउनुहोस्',
+'tooltip-n-recentchanges'         => 'विकीमा गरिएका हालैका परिवर्तनहरुको सूची',
+'tooltip-n-randompage'            => 'जुन कुनै पृष्ठ खोल्ने',
+'tooltip-n-help'                  => 'पत्तालगाउनु पर्ने स्थान',
+'tooltip-t-whatlinkshere'         => 'यहाँ लिङ्क गरिएका विकी पृष्ठहरुको सूची',
+'tooltip-t-recentchangeslinked'   => 'यस पृष्ठमा जोडिएका पृष्ठहरुमा हालैको परिवर्तन',
+'tooltip-feed-rss'                => 'यो पृष्ठको लागि RSS फिड',
+'tooltip-feed-atom'               => 'यो पृष्ठको लागि Atom फिड',
+'tooltip-t-contributions'         => 'यस प्रयोगकर्ताका योगदानहरूको सूची हेर्नुहोस्',
+'tooltip-t-emailuser'             => 'यो प्रयोगकर्तालाई इमेल पठाउनुहोस्',
+'tooltip-t-upload'                => 'फाइल उर्ध्वभरण(upload) गर्ने',
+'tooltip-t-specialpages'          => 'सबै विशेष पृष्ठहरूको सूची',
+'tooltip-t-print'                 => 'यो पृष्ठको मुद्रण योग्य संस्करण',
+'tooltip-t-permalink'             => 'पृष्ठको यो पुनरावलोकनको लागि स्थाई लिङ्क',
+'tooltip-ca-nstab-main'           => 'सामग्री पृष्ठ हेर्नुहोस',
+'tooltip-ca-nstab-user'           => 'प्रयोगकर्ता पृष्ठ हेर्नुहोस्',
+'tooltip-ca-nstab-media'          => 'मिडिया पृष्ठ हेर्नुहोस्',
+'tooltip-ca-nstab-special'        => 'यो विशेष पृष्ठ हो , तपाईँले आफै सम्पादन गर्न सक्नुहुन्न',
+'tooltip-ca-nstab-project'        => 'आयोजान पृष्ठ हेर्नुहोस्',
+'tooltip-ca-nstab-image'          => 'फाइल पृष्ठ हेर्नुहोस्',
+'tooltip-ca-nstab-mediawiki'      => 'प्रणाली सन्देश हेर्नुहोस्',
+'tooltip-ca-nstab-template'       => 'टेम्प्लेट(नमूना) हेर्नुहोस्',
+'tooltip-ca-nstab-help'           => 'सहायता पृष्ठ हेर्नुहोस्',
+'tooltip-ca-nstab-category'       => 'श्रेणी पृष्ठ हेर्नुहोस्',
+'tooltip-minoredit'               => 'यसलाई सामान्य सम्पादनको रुपमा चिनो लगाउने',
+'tooltip-save'                    => 'तपाईँले गरेका परिवर्तनहरू संग्रह (सेभ) गर्नुहोस्',
+'tooltip-preview'                 => 'तपाईँको परिवर्तनको पूर्वरूप , कृपया संग्रह गर्नु अघि यो प्रयोग गर्नुहोला !',
+'tooltip-diff'                    => 'तपाईँले पाठमा के के परिवर्तन गर्नुभयो भनेर देखाउने',
+'tooltip-compareselectedversions' => 'यस पृष्ठको छानिएका दुई पुनरावलोकन बीच फरक हेर्नुहोस्',
+'tooltip-watch'                   => 'यो पृष्ठलाई तपाईँको अवलोकनसूचीमा थप्नुहोस्',
+'tooltip-recreate'                => 'मेटिएको भए ता पनि यो पृष्ट पुन:निर्माण गर्नुहोस् ।',
+'tooltip-upload'                  => 'उर्ध्वभरण(upload) सुरुगर्ने',
+'tooltip-rollback'                => '"पूर्वरुप" ले यो पृष्ठको सम्पादन(हरु) खारेज गरी पृष्ठलाई पछिल्लो सम्पादनमा एक क्लिकमा पुर्याइ दिन्छ',
+'tooltip-undo'                    => '"रद्द"ले पछिल्लो सम्पादन खारेज गरी पूर्वावलोकन मा देखाउछ ।
+यसले सारांशमा कारण राख्न दिन्छ ।',
 
 # Attribution
 'lastmodifiedatby' => 'यो पृष्ठ अन्तिमपटक $3द्वारा $2, $1 मा परिवर्तन गरिएको थियो।',
@@ -782,8 +1094,14 @@ HTML ट्यागहरु जाँच्नुहोस् ।',
 'patrol-log-auto' => '(स्वचालित)',
 
 # Browsing diffs
-'previousdiff' => '← अधिल्लो भिन्नता',
+'previousdiff' => '← पहिलेको सम्पादन',
 'nextdiff'     => 'पछिल्लो भिन्नता →',
+
+# Media information
+'file-info-size'       => '($1 × $2 पिक्सेलहरु, फाइल आकार: $3, MIME प्रकार: $4)',
+'file-nohires'         => '<small>उच्च रिजोल्युशन अनुपलब्ध</small>',
+'show-big-image'       => 'पूरा रिजोल्युशन',
+'show-big-image-thumb' => '<small>यस पूर्वावलोकनको आकार : $1 × $2 pixels</small>',
 
 # Special:NewFiles
 'noimages' => 'हेर्नको लागि केही छैन.',
@@ -843,11 +1161,15 @@ HTML ट्यागहरु जाँच्नुहोस् ।',
 'exif-gpsspeed-k' => 'किलोमिटर प्रति घण्टा',
 'exif-gpsspeed-m' => 'माइल प्रति घण्टा',
 
+# External editor support
+'edit-externally' => 'यो फाइललाई बाह्य अनुप्रयोग प्रयोग गरेर सम्पादन गर्ने',
+
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'सबै',
 'imagelistall'     => 'सबै',
 'watchlistall2'    => 'सबै',
 'namespacesall'    => 'सबै',
+'monthsall'        => 'सबै',
 
 # E-mail address confirmation
 'confirmemail' => 'इमेल ठेगाना पक्का गर्नुहोस्',

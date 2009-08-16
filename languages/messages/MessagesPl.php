@@ -1777,7 +1777,7 @@ Sprawdź inne linki do szablonów, zanim usuniesz tę stronę.',
 
 # Random page
 'randompage'         => 'Losuj stronę',
-'randompage-nopages' => 'Brak jakichkolwiek stron w przestrzeni nazw „$1”.',
+'randompage-nopages' => 'Brak stron w {{PLURAL:$2|przestrzeni nazw|przestrzeniach nazw:}} $1.',
 
 # Random redirect
 'randomredirect'         => 'Losowe przekierowanie',

@@ -1539,6 +1539,12 @@ Palun kaalutlege, kas Te tõesti soovite seda faili üles laadida.',
 Olemasoleva faili nimi: '''<tt>$2</tt>'''<br />
 Palun vali teistsugune nimi.",
 'fileexists-thumb'            => "<center>'''Fail on olemas'''</center>",
+'fileexists-thumbnail-yes'    => "See paistab olevat vähendatud suurusega pilt (''pisipilt'').
+Palun vaata faili '''<tt>$1</tt>'''.<br />
+Kui vaadatud fail on sama pilt algupärases suuruses, pole vaja täiendavat pisipilti üles laadida.",
+'file-thumbnail-no'           => "Failinimi algab eesliitega '''<tt>$1</tt>'''.
+See paistab vähendatud suurusega pilt (''pisipilt'') olevat.
+Kui sul on ka selle pildi täislahutusega versioon, laadi palun hoopis see üles, vastasel korral muuda palun faili nime.",
 'fileexists-forbidden'        => 'Sellise nimega fail on juba olemas, seda ei saa üle kirjutada.
 Palun pöörduge tagasi ja laadige fail üles mõne teise nime all. [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Samanimeline fail on juba olemas jagatud meediavaramus.
@@ -1613,8 +1619,8 @@ Tulba päisel klõpsamine muudab sortimist.',
 'filehist-revert'           => 'taasta',
 'filehist-current'          => 'viimane',
 'filehist-datetime'         => 'Kuupäev/kellaaeg',
-'filehist-thumb'            => 'Pöialpilt',
-'filehist-thumbtext'        => 'Pöialpilt $1 versioonile',
+'filehist-thumb'            => 'Pisipilt',
+'filehist-thumbtext'        => 'Pisipilt $1 versioonile',
 'filehist-nothumb'          => 'Pisipilti ei ole',
 'filehist-user'             => 'Kasutaja',
 'filehist-dimensions'       => 'Mõõtmed',

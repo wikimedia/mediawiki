@@ -1419,7 +1419,7 @@ Le pagine che te stè tegnendo d'ocio sui [[Special:Watchlist|osservati speciali
 
 # Upload
 'upload'                      => 'Carga sù un file',
-'uploadbtn'                   => 'Carga el file',
+'uploadbtn'                   => 'Carga file',
 'reupload'                    => 'Carga da novo',
 'reuploaddesc'                => 'Lassa pèrdar el caricamento e torna al modulo de caricamento',
 'uploadnologin'               => 'Te devi far el login par exeguire sta operassion.',
@@ -1625,7 +1625,7 @@ Qua soto vien mostrà la descrission presente in te la [$2 pàxena de descrissio
 
 # Random page
 'randompage'         => 'Pàxena a caso',
-'randompage-nopages' => 'Nissuna pàxena in tel namespace "$1".',
+'randompage-nopages' => 'No ghe xe nissuna pàxena in {{PLURAL:$2|tel|tei}} namespace "$1".',
 
 # Random redirect
 'randomredirect'         => 'Un redirect a caso',

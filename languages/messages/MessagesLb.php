@@ -1643,7 +1643,7 @@ Dir musst ëmmer de Medien- a Subtyp aginn: z. Bsp. <tt>image/jpeg</tt>.",
 
 # Random page
 'randompage'         => 'Zoufallssäit',
-'randompage-nopages' => 'Et gëtt keng Säiten am Nummraum $1.',
+'randompage-nopages' => 'Et gëtt keng Säiten {{PLURAL:$2|am Nummraum|an den Nummraim}}: $1.',
 
 # Random redirect
 'randomredirect'         => 'Zoufälleg Viruleedung',
