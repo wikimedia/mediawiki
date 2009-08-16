@@ -42,7 +42,7 @@ class DemoMaint extends Maintenance {
     parent::__construct();
   }
 
-  protected function execute() {
+  public function execute() {
   }
 }
 

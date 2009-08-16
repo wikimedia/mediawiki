@@ -56,7 +56,7 @@ Primary classes:
     interface language is instantiated as $wgLang, and the local content
     language as $wgContLang; be sure to use the *correct* language object
     depending upon the circumstances.
-	See also language.txt.
+    See also language.txt.
 
   Parser
     Class used to transform wikitext to html.
