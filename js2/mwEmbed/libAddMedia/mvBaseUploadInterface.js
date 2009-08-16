@@ -202,11 +202,7 @@ mvBaseUploadInterface.prototype = {
 			
 			//add json format
 			if( $j(_this.editForm).find("[name='format']").length == 0)
-				$j(_this.editForm).append('<input type="hidden" name="format" value="jsonfm">');
-			
-			//add text format type request (IE tries to "run"/download the script otherwise) 
-			if( $j(_this.editForm).find("[name='ctypetext']").length == 0)
-				$j(_this.editForm).append('<input type="hidden" name="ctypetext" value="true">');				
+				$j(_this.editForm).append('<input type="hidden" name="format" value="jsonfm">');		
 			
 			//map the form vars to api vars:  
 			$j(_this.editForm).find('#wpUploadFile').attr('name', 'file');

@@ -70,7 +70,7 @@ function doJsonMerge( $json_txt ){
 		}
 		return $out;
     } else {
-        print "could not get any json vars\n";
+        print "could not get any json vars from:$curFileName \n";
         return '';
     }
 }
