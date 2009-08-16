@@ -1898,7 +1898,7 @@ Vergeet niet de "Verwijzingen naar deze pagina" te controleren alvorens dit sjab
 
 # Random page
 'randompage'         => 'Willekeurige pagina',
-'randompage-nopages' => 'Er zijn geen pagina\'s in de naamruimte "$1".',
+'randompage-nopages' => "Er zijn geen pagina's in de volgende {{PLURAL:$2|naamruimte|naamruimten}}: $1.",
 
 # Random redirect
 'randomredirect'         => 'Willekeurige doorverwijzing',

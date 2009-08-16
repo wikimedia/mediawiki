@@ -1811,7 +1811,7 @@ Vstup: <code>typ obsahu/podtyp</code>, např. <code>image/jpeg</code>.',
 
 # Random page
 'randompage'         => 'Náhodná stránka',
-'randompage-nopages' => 'Ve jmenném prostoru „$1“ nejsou žádné stránky.',
+'randompage-nopages' => 'V {{PLURAL:$2|následujícím jmenném prostoru|následujících jmených prostorech}} nejsou žádné stránky: $1.',
 
 # Random redirect
 'randomredirect'         => 'Náhodné přesměrování',

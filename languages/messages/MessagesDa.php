@@ -1649,7 +1649,7 @@ Husk at kontrollere for andre henvisninger til skabelonerne før de slettes.',
 
 # Random page
 'randompage'         => 'Tilfældig artikel',
-'randompage-nopages' => 'Der er ingen sider i navnerummet $1.',
+'randompage-nopages' => 'Der er ingen sider i {{PLURAL:$2|navnerummet|disse navnerum:}} $1.',
 
 # Random redirect
 'randomredirect'         => 'Tilfældige henvisninger',

@@ -1762,7 +1762,7 @@ $1",
 
 # Random page
 'randompage'         => 'Выпадковая старонка',
-'randompage-nopages' => 'У прасторы назваў «$1» няма старонак.',
+'randompage-nopages' => 'Няма старонак у {{PLURAL:$2|наступнай прасторы|наступных прасторах}} назваў: $1.',
 
 # Random redirect
 'randomredirect'         => 'Выпадковае перанакіраваньне',

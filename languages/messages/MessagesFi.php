@@ -1735,7 +1735,7 @@ Tiedot [$2 tiedoston kuvaussivulta] näkyvät alla.',
 
 # Random page
 'randompage'         => 'Satunnainen sivu',
-'randompage-nopages' => 'Nimiavaruudessa ”$1” ei ole sivuja.',
+'randompage-nopages' => '{{PLURAL:$2|Nimiavaruudessa|Nimiavaruuksissa}} $1 ei ole sivuja.',
 
 # Random redirect
 'randomredirect'         => 'Satunnainen ohjaus',

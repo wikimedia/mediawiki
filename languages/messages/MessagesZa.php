@@ -191,7 +191,7 @@ $messages = array(
 'showpreview'        => 'Okqhaej piu-ngoengx',
 'showdiff'           => 'Okqhaej gaeqgaei',
 'whitelistedittitle' => 'Laezdiuz haeuj aiq naej san-zonz',
-'newarticle'         => '(Moq)',
+'newarticle'         => '（Moq）',
 
 # Diffs
 'editundo' => 'siu',
@@ -289,7 +289,7 @@ $messages = array(
 # Contributions
 'contributions' => 'Gaeq bouxdeiz haej',
 'mycontris'     => 'Gaeq gou haej',
-'uctop'         => '(dingz)',
+'uctop'         => '（dingz）',
 
 'sp-contributions-submit' => 'Cwmh',
 
