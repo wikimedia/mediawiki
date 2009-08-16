@@ -162,6 +162,7 @@ $wgUpdates = array(
 		array( 'add_field', 'logging',       'log_user_text',  'patch-log_user_text.sql' ),
 		array( 'add_table', 'l10n_cache',              'patch-l10n_cache.sql' ),
 		array( 'add_table', 'external_user', 'patch-external_user.sql' ),
+		array( 'add_index', 'log_search', 'ls_field_val', 'patch-log_search-rename-index.sql' ),
 	),
 
 	'sqlite' => array(
