@@ -140,6 +140,7 @@ $magicWords = array(
 	'img_bottom'            => array( '1', 'למטה', 'bottom' ),
 	'img_text_bottom'       => array( '1', 'בתחתית הטקסט', 'text-bottom' ),
 	'img_link'              => array( '1', 'קישור=$1', 'link=$1' ),
+	'img_crop'              => array( '1', 'חיתוך=$1', 'crop=$1'                                ),
 	'img_alt'               => array( '1', 'טקסט=$1', 'alt=$1' ),
 	'int'                   => array( '0', 'הודעה:', 'INT:' ),
 	'sitename'              => array( '1', 'שם האתר', 'SITENAME' ),
@@ -1836,7 +1837,7 @@ PICT # שונות
 
 # Random page
 'randompage'         => 'דף אקראי',
-'randompage-nopages' => 'אין דפים במרחב השם "$1".',
+'randompage-nopages' => 'אין דפים ב{{PLURAL:$2|מרחב השם הבא|מרחבי השם הבאים}}: $1.',
 
 # Random redirect
 'randomredirect'         => 'הפניה אקראית',
