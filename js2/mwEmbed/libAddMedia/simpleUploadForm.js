@@ -24,6 +24,7 @@ var default_form_options = {
 
 (function($) {
 	$.fn.simpleUploadForm = function( opt , callback){
+		var _this = this;
 		//set the options: 
 		for(var i in default_form_options){
 			if(!opt[i])
@@ -38,30 +39,39 @@ var default_form_options = {
 					
 		//@@todo this is just a proof of concept
 		//much todo to improved this web form
-		get_mw_token('File:MyRandomFileTokenCheck', opt.api_target, function(eToken){		
-			debugger;	
+		get_mw_token('File:MyRandomFileTokenCheck', opt.api_target, function(eToken){	
+				
 			if( !eToken || eToken == '+\\' ){
 				$(this.selector).html( gM('error_not_loggedin') );
 				return false;
 			}
-			
+			//build the api based upload form: 
 			var o = '<div style="margin: 0 auto;width:450px;">'+
-				'<form id="suf-upload" enctype="multipart/form-data" action="" method="post">'  +	
-				'<label for="wpUploadFile">' + gM('select_file') + '</label><br>'+									
-				'<input type="file" style="display: inline;" name="wpUploadFile" id="wpUploadFile" size="10"/><br>' +		
-				'<label for="wpDestFile">' +gM('destfilename') + '</label><br>'+
-					'<input type="text" id="wpDestFile" name="wpDestFile" size="30" /><br>'+
-				'<label for="wpUploadDescription">' + gM('summary') + ':</label><br>' +
-					'<textarea cols="30" rows="3" id="wpUploadDescription" name="wpUploadDescription" tabindex="3"/><br>'+ 
-					gM('select_ownwork') + '<br>' + 
+				'<form id="suf-upload" enctype="multipart/form-data" action="' + opt.api_target + '" method="post">'  +
+				//hidden input:	
+				'<input type="hidden" name="action" value="upload">'+
+				'<input type="hidden" name="format" value="jsonfm">'+
+				'<input type="hidden" name="token" value="'+ eToken +'">' +
+				
+				//api form name set:
+				'<label for="file">' + gM('select_file') + '</label><br>'+									
+				'<input type="file" style="display: inline;" name="file" size="15"/><br>' +		
+				
+				'<label for="filename">' +gM('destfilename') + '</label><br>'+
+				'<input type="text" name="filename" size="30" /><br>'+
+				
+				'<label for="comment">' + gM('summary') + ':</label><br>' +
+				'<textarea cols="30" rows="3" name="comment" tabindex="3"/><br>'+
+				 
+				gM('select_ownwork') + '<br>' + 
 				'<input type="checkbox" id="wpLicence" name="wpLicence" value="cc-by-sa">' + gM('licence_cc-by-sa') + '<br>' +			
 							
 				'<input type="submit" accesskey="s" value="' + gM('upload') + '" name="wpUploadBtn" id="wpUploadBtn"  tabindex="9"/>' +
 				//close the form and div  
-				'</form></div>';		
+				'</form></div>';					
 				
 			//set the target with the form output:
-			$( this.selector ).html( o );			
+			$( _this.selector ).html( o );			
 			//by default dissable: 
 			$j('#wpUploadBtn').attr('disabled', 'disabled');
 			

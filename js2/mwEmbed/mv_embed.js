@@ -1,5 +1,5 @@
 /*
- * ~mv_embed version 1.0~
+ * ~mv_embed ~
  * for details see: http://metavid.org/wiki/index.php/Mv_embed
  *
  * All Metavid Wiki code is Released under the GPL2
@@ -20,7 +20,7 @@ if( MV_EMBED_VERSION ){
 	MV_DO_INIT=false;	
 }
 //used to grab fresh copies of scripts. (should be changed on commit)  
-var MV_EMBED_VERSION = '1.0r18';
+var MV_EMBED_VERSION = '1.0r19';
 
 /*
  * Configuration variables (can be set from some precceding script) 
@@ -231,8 +231,7 @@ lcPaths( 'libTimedText/', [
 ]);
 
 //depencency mapping for css files for self contained included plugins:
-lcCssPath({
-	'$j.ui'				: 'jquery/' + jQueryUiVN + '.custom.css',
+lcCssPath({	
 	'$j.Jcrop'			: 'libClipEdit/Jcrop/css/jquery.Jcrop.css',
 	'$j.fn.ColorPicker'	: 'libClipEdit/colorpicker/css/colorpicker.css'
 })

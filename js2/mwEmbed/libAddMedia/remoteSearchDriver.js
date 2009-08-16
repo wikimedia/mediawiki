@@ -66,7 +66,7 @@ var default_remote_search_options = {
 					  //@@todo (should get that from the api or inpage vars)
 					 
 	'enable_upload_tab':true, // if we want to enable an uploads tab:	
-	'upload_api_target'	   : 'http://127.0.0.1/wiki_trunk/api.php' // can be local or the url of the upload api.
+	'upload_api_target'	   : 'http://localhost/wiki_trunk/api.php' // can be local or the url of the upload api.
 }
 if(typeof wgServer == 'undefined')
 	wgServer = '';
@@ -586,11 +586,11 @@ remoteSearchDriver.prototype = {
 					"api_target" :	_this.upload_api_target ,
 					"ondone_cb"	: function( resultData ){
 						var cat = resultData;
-						debugger;						
+						debugger;							
 						return false;
 					}
 				})
-			});
+			});	
 		}else{
 			//setup the proxy  
 			js_log('do proxy:: ' + parseUri( _this.upload_api_target ).host);
