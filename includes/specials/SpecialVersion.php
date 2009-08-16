@@ -12,6 +12,13 @@
 class SpecialVersion extends SpecialPage {
 	private $firstExtOpened = true;
 
+	static $viewvcUrls = array(
+		'svn+ssh://svn.wikimedia.org/svnroot/mediawiki' => 'http://svn.wikimedia.org/viewvc/mediawiki',
+		'http://svn.wikimedia.org/svnroot/mediawiki' => 'http://svn.wikimedia.org/viewvc/mediawiki',
+		# Doesn't work at the time of writing but maybe some day: 
+		'https://svn.wikimedia.org/viewvc/mediawiki' => 'http://svn.wikimedia.org/viewvc/mediawiki',
+	);
+
 	function __construct(){
 		parent::__construct( 'Version' );	
 	}
@@ -125,35 +132,49 @@ class SpecialVersion extends SpecialPage {
 	public static function getVersion( $flags = ''  ) {
 		global $wgVersion, $IP;
 		wfProfileIn( __METHOD__ );
-		$svn = self::getSvnRevision( $IP, false, false , false );
-		$svnCo = self::getSvnRevision( $IP, true, false , false );
-		if ( !$svn ) {
+
+		$info = self::getSvnInfo( $IP );
+		if ( !$info ) {
 			$version = $wgVersion;
 		} elseif( $flags === 'nodb' ) {
-			$version = "$wgVersion (r$svnCo)";
+			$version = "$wgVersion (r{$info['checkout-rev']})";
 		} else {
-			$version = $wgVersion . wfMsg( 'version-svn-revision', $svn, $svnCo );
+			$version = $wgVersion . 
+				wfMsg( 
+					'version-svn-revision', 
+					isset( $info['directory-rev'] ) ? $info['directory-rev'] : '',
+					$info['checkout-rev']
+				);
 		}
+
 		wfProfileOut( __METHOD__ );
 		return $version;
 	}
 	
 	/**
-	 * Return a string of the MediaWiki version with a link to SVN revision if
-	 * available
+	 * Return a wikitext-formatted string of the MediaWiki version with a link to
+	 * the SVN revision if available
 	 *
 	 * @return mixed
 	 */
 	public static function getVersionLinked() {
 		global $wgVersion, $IP;
 		wfProfileIn( __METHOD__ );
-		$svn = self::getSvnRevision( $IP, false, false, false );
-		$svnCo = self::getSvnRevision( $IP, true, false, false );
-		$svnDir = self::getSvnRevision( $IP, true, false, true );
-		$viewvcStart = 'http://svn.wikimedia.org/viewvc/mediawiki/';
-		$viewvcEnd = '/?pathrev=';
-		$viewvc = $viewvcStart . $svnDir .  $viewvcEnd;
-		$version = $svn ? $wgVersion . " [{$viewvc}{$svnCo} " . wfMsg( 'version-svn-revision', $svn, $svnCo ) . ']' : $wgVersion;
+		$info = self::getSvnInfo( $IP );
+		if ( isset(  $info['checkout-rev'] ) ) {
+			$linkText = wfMsg(
+				'version-svn-revision',
+				isset( $info['directory-rev'] ) ? $info['directory-rev'] : '',
+				$info['checkout-rev']
+			);
+			if ( isset( $info['viewvc-url'] ) ) {
+				$version = "$wgVersion [{$info['viewvc-url']} $linkText]";
+			} else {
+				$version = "$wgVersion $linkText";
+			}
+		} else {
+			$version = $wgVersion;
+		}
 		wfProfileOut( __METHOD__ );
 		return $version;
 	}
@@ -184,32 +205,7 @@ class SpecialVersion extends SpecialPage {
 				usort( $wgExtensionCredits[$type], array( $this, 'compare' ) );
 
 				foreach ( $wgExtensionCredits[$type] as $extension ) {
-					$version = null;
-					$subVersion = null;
-					$subVersionCo = null;
-					$viewvc = null;
-					if ( isset( $extension['path'] ) ) {
-						$subVersion = self::getSvnRevision(dirname($extension['path']), false, true, false);
-						$subVersionCo = self::getSvnRevision(dirname($extension['path']), true, true, false);
-						$subVersionDir = self::getSvnRevision(dirname($extension['path']), false, true, true);
-						if ($subVersionDir)
-							$viewvc = $subVersionDir . $subVersionCo;
-					}
-					if ( isset( $extension['version'] ) ) {
-						$version = $extension['version'];
-					}
-
-					$out .= $this->formatCredits(
-						isset ( $extension['name'] )           ? $extension['name']        : '',
-						$version,
-						$subVersion,
-						$subVersionCo,
-						$viewvc,
-						isset ( $extension['author'] )         ? $extension['author']      : '',
-						isset ( $extension['url'] )            ? $extension['url']         : null,
-						isset ( $extension['description'] )    ? $extension['description'] : '',
-						isset ( $extension['descriptionmsg'] ) ? $extension['descriptionmsg'] : null
-					);
+					$out .= $this->formatCredits( $extension );
 				}
 			}
 		}
@@ -251,15 +247,46 @@ class SpecialVersion extends SpecialPage {
 		}
 	}
 
-	function formatCredits( $name, $version = null, $subVersion = null, $subVersionCo = null, $subVersionURL = null, $author = null, $url = null, $description = null, $descriptionMsg = null ) {
-		$haveSubversion = $subVersion;
-		$extension = isset( $url ) ? "[$url $name]" : $name;
-		$version = isset( $version ) ? '<span class="mw-version-ext-version">' . wfMsg( 'version-version', $version ) . '</span>' : '';
-		$subVersion = isset( $subVersion ) ? wfMsg( 'version-svn-revision', $subVersion, $subVersionCo ) : '';
-		$subVersion = isset( $subVersionURL ) ? "[$subVersionURL $subVersion]" : $subVersion;
+	function formatCredits( $extension ) {
+		$name = isset( $extension['name'] ) ? $extension['name'] : '[no name]';
+		if ( isset( $extension['path'] ) ) {
+			$svnInfo = self::getSvnInfo( dirname($extension['path']) );
+			$directoryRev = isset( $svnInfo['directory-rev'] ) ? $svnInfo['directory-rev'] : null;
+			$checkoutRev = isset( $svnInfo['checkout-rev'] ) ? $svnInfo['checkout-rev'] : null;
+			$viewvcUrl = isset( $svnInfo['viewvc-url'] ) ? $svnInfo['viewvc-url'] : null;
+		} else {
+			$directoryRev = null;
+			$checkoutRev = null;
+			$viewvcUrl = null;
+		}
 
-		# Look for a localized description
-		if( isset( $descriptionMsg ) ) {
+		# Make main link (or just the name if there is no URL)
+		if ( isset( $extension['url'] ) ) {
+			$mainLink = "[{$extension['url']} $name]";
+		} else {
+			$mainLink = $name;
+		}
+		if ( isset( $extension['version'] ) ) {
+			$versionText = '<span class="mw-version-ext-version">' . 
+				wfMsg( 'version-version', $extension['version'] ) . 
+				'</span>';
+		} else {
+			$versionText = '';
+		}
+
+		# Make subversion text/link
+		if ( $checkoutRev ) {
+			$svnText = wfMsg( 'version-svn-revision', $directoryRev, $checkoutRev );
+			$svnText = isset( $viewvcUrl ) ? "[$viewvcUrl $svnText]" : $svnText;
+		} else {
+			$svnText = false;
+		}
+
+		# Make description text
+		$description = isset ( $extension['description'] ) ? $extension['description'] : '';
+		if( isset ( $extension['descriptionmsg'] ) ) {
+			# Look for a localized description
+			$descriptionMsg = $extension['descriptionmsg'];
 			if( is_array( $descriptionMsg ) ) {
 				$descriptionMsgKey = $descriptionMsg[0]; // Get the message key
 				array_shift( $descriptionMsg ); // Shift out the message key to get the parameters only
@@ -273,19 +300,19 @@ class SpecialVersion extends SpecialPage {
  			}
 		}
 
-		if ( $haveSubversion ) {
-		$extNameVer = "<tr>
-				<td><em>$extension $version</em></td>
-				<td><em>$subVersion</em></td>";
+		if ( $svnText !== false ) {
+			$extNameVer = "<tr>
+				<td><em>$mainLink $versionText</em></td>
+				<td><em>$svnText</em></td>";
 		} else {
-		$extNameVer = "<tr>
-				<td colspan=\"2\"><em>$extension $version</em></td>";
+			$extNameVer = "<tr>
+				<td colspan=\"2\"><em>$mainLink $versionText</em></td>";
 		}
+		$author = isset ( $extension['author'] ) ? $extension['author'] : array();
 		$extDescAuthor = "<td>$description</td>
-				  <td>" . $this->listToText( (array)$author ) . "</td>
-			    </tr>\n";
-		return $ret = $extNameVer . $extDescAuthor;
-		return $ret;
+			<td>" . $this->listToText( (array)$author ) . "</td>
+			</tr>\n";
+		return $extNameVer . $extDescAuthor;
 	}
 
 	/**
@@ -384,18 +411,20 @@ class SpecialVersion extends SpecialPage {
 	}
 
 	/**
-	 * Retrieve the revision number of a Subversion working directory.
+	 * Get an associative array of information about a given path, from its .svn 
+	 * subdirectory. Returns false on error, such as if the directory was not 
+	 * checked out with subversion.
 	 *
-	 * @param String $dir Directory of the svn checkout
-	 * @param Boolean $coRev optional to return value whether is Last Modified
-	 *                or Checkout revision number
-	 * @param Boolean $extension optional to check the path whether is from
-	 *                Wikimedia SVN server or not
-	 * @param Boolean $relPath optional to get the end part of the checkout path
-	 * @return mixed revision number as int, end part of the checkout path, 
-	 *               or false if not a SVN checkout
+	 * Returned keys are:
+	 *    Required:
+	 *        checkout-rev          The revision which was checked out
+	 *    Optional:
+	 *        directory-rev         The revision when the directory was last modified
+	 *        url                   The subversion URL of the directory
+	 *        repo-url              The base URL of the repository
+	 *        viewvc-url            A ViewVC URL pointing to the checked-out revision
 	 */
-	public static function getSvnRevision( $dir, $coRev = false, $extension = false, $relPath = false) {
+	public static function getSvnInfo( $dir ) {
 		// http://svnbook.red-bean.com/nightly/en/svn.developer.insidewc.html
 		$entries = $dir . '/.svn/entries';
 
@@ -403,10 +432,13 @@ class SpecialVersion extends SpecialPage {
 			return false;
 		}
 
-		$content = file( $entries );
+		$lines = file( $entries );
+		if ( !count( $lines ) ) {
+			return false;
+		}
 
 		// check if file is xml (subversion release <= 1.3) or not (subversion release = 1.4)
-		if( preg_match( '/^<\?xml/', $content[0] ) ) {
+		if( preg_match( '/^<\?xml/', $lines[0] ) ) {
 			// subversion is release <= 1.3
 			if( !function_exists( 'simplexml_load_file' ) ) {
 				// We could fall back to expat... YUCK
@@ -423,49 +455,57 @@ class SpecialVersion extends SpecialPage {
 					if( $xml->entry[0]['name'] == '' ) {
 						// The directory entry should always have a revision marker.
 						if( $entry['revision'] ) {
-							return intval( $entry['revision'] );
+							return array( 'checkout-rev' => intval( $entry['revision'] ) );
 						}
 					}
 				}
 			}
 			return false;
-		} else {
-			// subversion is release 1.4 or above
-			if ($relPath) {
-				$endPath = strstr( $content[4], 'tags' );
-				if (!$endPath) {
-					$endPath = strstr( $content[4], 'branches' );
-					if (!$endPath) {
-						$endPath = strstr( $content[4], 'trunk' );
-						if (!$endPath)
-							return false;
-					}
-				}
-				$endPath = trim ( $endPath );
-				if ($extension) {
-					$wmSvnPath = 'svn.wikimedia.org/svnroot/mediawiki';
-					$isWMSvn = strstr($content[5],$wmSvnPath);
-					if (!strcmp($isWMSvn,null)) {
-						return false;
-					} else {
-						$viewvcStart = 'http://svn.wikimedia.org/viewvc/mediawiki/';
-						if (strstr( $content[4], 'trunk' ))
-							$viewvcEnd = '/?pathrev=';
-						else
-							// Avoids 404 error using pathrev when it does not found
-							$viewvcEnd = '/?revision=';
-						$viewvc = $viewvcStart . $endPath . $viewvcEnd;
-						return $viewvc;
-					}
-				}
-				return $endPath;
+		}
+
+		// subversion is release 1.4 or above
+		if ( count( $lines ) < 11 ) {
+			return false;
+		}
+		$info = array(
+			'checkout-rev' => intval( trim( $lines[3] ) ),
+			'url' => trim( $lines[4] ),
+			'repo-url' => trim( $lines[5] ),
+			'directory-rev' => intval( trim( $lines[10] ) )
+		);
+		if ( isset( self::$viewvcUrls[$info['repo-url']] ) ) {
+			$viewvc = str_replace( 
+				$info['repo-url'], 
+				self::$viewvcUrls[$info['repo-url']],
+				$info['url']
+			);
+			$pathRelativeToRepo = substr( $info['url'], strlen( $info['repo-url'] ) );
+			if ( substr( $pathRelativeToRepo, 0, 6 ) == '/trunk' ) {
+				$viewvc .= '/?pathrev=';
+			} else {
+				// Avoids 404 error using pathrev when it does not found
+				$viewvc .= '/?revision=';
 			}
-			if ($coRev)
-				// get the directory checkout revsion number
-				return intval( $content[3]) ;
-			else
-				// get the directory last modified revision number
-				return intval( $content[10] );
+			$viewvc .= urlencode( $info['checkout-rev'] );
+			$info['viewvc-url'] = $viewvc;
+		}
+		return $info;
+	}
+
+	/**
+	 * Retrieve the revision number of a Subversion working directory.
+	 *
+	 * @param String $dir Directory of the svn checkout
+	 * @return int revision number as int
+	 */
+	public static function getSvnRevision( $dir ) {
+		$info = self::getSvnInfo( $dir );
+		if ( $info === false ) {
+			return false;
+		} elseif ( isset( $info['checkout-rev'] ) ) {
+			return $info['checkout-rev'];
+		} else {
+			return false;
 		}
 	}
 
