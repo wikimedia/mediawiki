@@ -10,11 +10,9 @@
 class RandomPage extends SpecialPage {
 	private $namespaces;  // namespaces to select pages from
 
-	function __construct( $name = 'Randompage' ){
+	public function __construct( $name = 'Randompage' ){
 		global $wgContentNamespaces;
-
 		$this->namespaces = $wgContentNamespaces;
-
 		parent::__construct( $name );
 	}
 
@@ -44,12 +42,30 @@ class RandomPage extends SpecialPage {
 
 		if( is_null( $title ) ) {
 			$this->setHeaders();
-			$wgOut->addWikiMsg( strtolower( $this->mName ) . '-nopages',  $wgContLang->getNsText( $this->namespace ) );
+			$wgOut->addWikiMsg( strtolower( $this->mName ) . '-nopages', 
+				$this->getNsList(), count( $this->namespaces ) );
 			return;
 		}
 
 		$query = $this->isRedirect() ? 'redirect=no' : '';
 		$wgOut->redirect( $title->getFullUrl( $query ) );
+	}
+
+	/**
+	 * Get a comma-delimited list of namespaces we don't have
+	 * any pages in
+	 * @return String
+	 */
+	private function getNsList() {
+		global $wgContLang;
+		$nsNames = array();
+		foreach( $this->namespaces as $n ) {
+			if( $n === NS_MAIN )
+				$nsNames[] = wfMsgForContent( 'blanknamespace' );
+			else
+				$nsNames[] = $wgContLang->getNsText( $n );
+		}
+		return $wgContLang->commaList( $nsNames );
 	}
 
 
