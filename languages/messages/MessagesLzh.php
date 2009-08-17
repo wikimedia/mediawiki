@@ -1421,6 +1421,7 @@ $1",
 
 # Random page
 'randompage' => '風掀',
+'randompage-nopages' => '下列{{PLURAL:$2|名集}}中無頁也：$1',
 
 # Random redirect
 'randomredirect'         => '任渡',
