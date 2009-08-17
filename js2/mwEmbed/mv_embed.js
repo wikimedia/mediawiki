@@ -24,22 +24,24 @@ var MV_EMBED_VERSION = '1.0r19';
 
 /*
  * Configuration variables (can be set from some precceding script) 
+ * set up mwConfig global overide any of the defaultMwConfig values:
+ * @@ more config valuse on the way ;)
  */
-//the name of the player skin (default is mvpcf)
-if(!mv_skin_name)
-	var mv_skin_name = 'mvpcf';
-	
-if(!mwjQueryUiSkin)
-	var mwjQueryUiSkin = 'redmond';
+var defaultMwConfig = { 
+	'skin_name': 'mvpcf',
+	'video_size':'400x300' 
+}
+
+if(!mwConfig)
+	  var mwConfig = {};
+	  
+//install the default config values for anything not set in  mwConfig
+checkDefaultMwConfig();
 
 //whether or not to load java from an iframe.
 //note: this is necessary for remote embedding because of java security model)
 if(!mv_java_iframe)
 	var mv_java_iframe = true;
-
-//the default height/width of the video (if no style or width attribute provided)
-if(!mv_default_video_size)	
-	var mv_default_video_size = '400x300'; 
 	
 //for when useing mv_embed with script-loader in root mediawiki path
 var mediaWiki_mvEmbed_path = 'js2/mwEmbed/';
@@ -62,8 +64,8 @@ var jQueryUiVN = 'jquery.ui-1.7.1';
 
 
 //setup the skin path: 
-var mv_jquery_skin_path = mv_embed_path + 'jquery/' + jQueryUiVN + '/themes/' + mwjQueryUiSkin + '/';
-var mv_skin_img_path = mv_embed_path + 'skins/' + mv_skin_name + '/images/';
+var mv_jquery_skin_path = mv_embed_path + 'jquery/' + jQueryUiVN + '/themes/redmond/';
+var mv_skin_img_path = mv_embed_path + 'skins/' + mwConfig['skin_name'] + '/images/';
 var mv_default_thumb_url = mv_skin_img_path + 'vid_default_thumb.jpg';
 
 
@@ -547,7 +549,7 @@ var mvJsLoader = {
 		//set videonojs to loading		
 		//issue a style sheet request get both mv_embed and jquery styles: 
 		loadExternalCss( mv_jquery_skin_path + 'jquery-ui-1.7.1.custom.css' );
-		loadExternalCss( mv_embed_path  + 'skins/'+mv_skin_name+'/styles.css');
+		loadExternalCss( mv_embed_path  + 'skins/'+mwConfig['skin_name']+'/styles.css');
 				 
 		//make sure we have jQuery
 		_this.jQueryCheck(function(){
@@ -642,7 +644,7 @@ function mwdomReady(force){
 function js2AddOnloadHook( func ) {				 
 	//make sure the skin/style sheets are avaliable always: 
 	loadExternalCss( mv_jquery_skin_path + 'jquery-ui-1.7.1.custom.css' );
-	loadExternalCss( mv_embed_path  + 'skins/'+mv_skin_name+'/styles.css');
+	loadExternalCss( mv_embed_path  + 'skins/'+mwConfig['skin_name']+'/styles.css');
 				 
 	//if we have already run the dom ready just run the function directly: 
 	if( mvJsLoader.doneReadyEvents ){
@@ -770,7 +772,7 @@ function mv_jqueryBindings(){
 			
 			//load the mv_embed_base skin:											 
 			loadExternalCss( mv_jquery_skin_path + 'jquery-ui-1.7.1.custom.css' );			
-			loadExternalCss( mv_embed_path  + 'skins/'+mv_skin_name+'/styles.css' );																								
+			loadExternalCss( mv_embed_path  + 'skins/'+mwConfig['skin_name']+'/styles.css' );																								
 			//load all the req libs: 
 			mvJsLoader.jQueryCheck(function(){				
 				//load with staged dependeinces (for ie and safari that don't execute in order) 
@@ -799,7 +801,7 @@ function mv_jqueryBindings(){
 			iObj['target_sequence_container'] = this.selector;
         	//issue a request to get the css file (if not already included):	
         	loadExternalCss( mv_jquery_skin_path + 'jquery-ui-1.7.1.custom.css');
-        	loadExternalCss( mv_embed_path+'skins/'+mv_skin_name+'/mv_sequence.css');	
+        	loadExternalCss( mv_embed_path+'skins/'+mwConfig['skin_name']+'/mv_sequence.css');	
         	//make sure we have the required mv_embed libs (they are not loaded when no video element is on the page)	
         	mvJsLoader.embedVideoCheck(function(){	        		       		
         		//load playlist object and then jquery ui stuff:
@@ -842,7 +844,7 @@ function mv_jqueryBindings(){
 				iObj={};
 			//add base theme css:
 			loadExternalCss( mv_jquery_skin_path + 'jquery-ui-1.7.1.custom.css');
-			loadExternalCss( mv_embed_path  + 'skins/'+mv_skin_name+'/styles.css' );
+			loadExternalCss( mv_embed_path  + 'skins/'+mwConfig['skin_name']+'/styles.css' );
 						
 			//check if we already have firefogg loaded (the call just updates properties for that element) 
 			var sElm = $j(this.selector).get(0);									
@@ -1405,6 +1407,14 @@ function js_log(string){
   }
   return false;
 }
+
+function checkDefaultMwConfig(){
+	for(var i in defaultMwConfig){		  
+	     if(typeof(mwConfig[i])=='undefined'){
+	          mwConfig[i] =defaultMwConfig[i];
+	     }
+	  }
+	}
 
 function js_error(string){
 	alert(string);

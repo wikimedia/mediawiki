@@ -1156,7 +1156,7 @@ embedVideo.prototype = {
 		this.duration = parseFloat(this.duration);  
 		js_log("duration is: " +  this.duration);
 		//if style is set override width and height
-		var dwh = mv_default_video_size.split('x');
+		var dwh = mwConfig['video_size'].split('x');
 		this.width = element.style.width ? element.style.width : dwh[0];
 		this.height = element.style.height ? element.style.height : dwh[1];
 		//set the plugin id
