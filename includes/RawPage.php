@@ -109,19 +109,9 @@ class RawPage {
 	}
 
 	function view() {
-		global $wgOut, $wgScript;
+		global $wgOut, $wgScript, $wgRequest;
 
-		$url = wfGetScriptUrl();
-		if( $url == '' ) {
-			# This will make the next check fail with a confusing error
-			# message, so we should mention it separately.
-			wfHttpError( 500, 'Internal Server Error',
-				"\$_SERVER['URL'] is not set.  Perhaps you're using CGI" .
-				" and haven't set cgi.fix_pathinfo = 1 in php.ini?" );
-			return;
-		}
-
-		if( strcmp( $wgScript, $url ) ) {
+		if( $wgRequest->isPathInfoBad() ) {
 			# Internet Explorer will ignore the Content-Type header if it
 			# thinks it sees a file extension it recognizes. Make sure that
 			# all raw requests are done through the script node, which will
@@ -135,6 +125,7 @@ class RawPage {
 			#
 			# Just return a 403 Forbidden and get it over with.
 			wfHttpError( 403, 'Forbidden',
+				'Invalid file extension found in PATH_INFO. ' . 
 				'Raw pages must be accessed through the primary script entry point.' );
 			return;
 		}

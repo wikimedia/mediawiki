@@ -406,6 +406,8 @@ this. Was used when mwEmbed was going to be an extension.
 * (bug 20273) Fix broken output when no pages are found in the content
   namespaces
 * (bug 20265) Make AncientPages and UnusedFiles work on SQLite
+* Fixed XSS vulnerability for Internet Explorer clients (only pre-release 
+  versions of MediaWiki were affected).
 
 == API changes in 1.16 ==
 
