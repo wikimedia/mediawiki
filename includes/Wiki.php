@@ -532,7 +532,7 @@ class MediaWiki {
 				if( $request->getFullRequestURL() == $title->getInternalURL( 'action=history' ) ) {
 					$output->setSquidMaxage( $this->getVal( 'SquidMaxage' ) );
 				}
-				$history = new PageHistory( $article );
+				$history = new HistoryPage( $article );
 				$history->history();
 				break;
 			default:
