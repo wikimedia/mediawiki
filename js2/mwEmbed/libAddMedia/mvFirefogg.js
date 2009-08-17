@@ -626,34 +626,36 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 			}//check upload state
 			else if( _this.fogg.state == 'upload done' || 
 						 _this.fogg.state == 'done' ||
-						 _this.fogg.state == 'encoding done' ) {	
-				   js_log( 'firefogg:upload done: ');																														   
-				   //if in "post" upload mode read the html response (should be depricated): 
-				   	if( _this.upload_mode == 'post' && _this.api_url ) {					   					  
-					   _this.procPageResponse( response_text );						   
-				   	}else if( _this.upload_mode == 'api'){										  
-					   if( _this.fogg.resultUrl ){	
+						 _this.fogg.state == 'encoding done' ) {					   				   																										 
+				   //if in "post" upload mode read the html response (should be depricated): 				   			   
+				   if( _this.upload_mode == 'api' ){										  
+					   if( apiResult.resultUrl ){	
 					   		var buttons ={}; 
 					   		buttons[gM('go-to-resource')] =  function(){
-								window.location = _this.fogg.resultUrl;
+								window.location = apiResult.resultUrl;
 							}
 							var go_to_url_txt = gM('go-to-resource');			   						   
 						   	if( typeof _this.done_upload_cb == 'function' ){
 						   		//if done action return 'true'
 								if( _this.done_upload_cb() ){										
 									//update status
-						   			_this.updateProgressWin( gM('successfulupload'),  gM( 'mv_upload_done', _this.fogg.resultUrl),buttons);	
+						   			_this.updateProgressWin( gM('successfulupload'),  gM( 'mv_upload_done', apiResult.resultUrl),buttons);	
 								}else{
 									//if done action returns 'false' //close progress window
 									this.action_done = true;							  	        
 						  	       	$j('#upProgressDialog').dialog('close');	
 								} 
+						   	}else{
+						   		//update status (without done_upload_cb) 
+						   		_this.updateProgressWin( gM('successfulupload'),  gM( 'mv_upload_done', apiResult.resultUrl),buttons);	
 						   	}
 					   }else{
 						   //done state with error? ..not really possible given how firefogg works
 						   js_log(" upload done, in chunks mode, but no resultUrl!");
 					   }																										   
-				   }													
+				   }else if( _this.upload_mode == 'post' && _this.api_url ) {					   					  
+					   _this.procPageResponse( response_text );
+				   }																
 			}else{  
 				//upload error: 
 				js_log('Error:firefogg upload error: ' + _this.fogg.state );		
