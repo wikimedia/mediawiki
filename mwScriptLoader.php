@@ -30,8 +30,9 @@ require_once('includes/WebStart.php');
 wfProfileIn( 'mwScriptLoader.php' );
 
 
-if( strpos( wfGetScriptUrl(), "mwScriptLoader{$wgScriptExtension}" ) === false ){
+if( $wgRequest->isPathInfoBad() ){
 	wfHttpError( 403, 'Forbidden',
+		'Invalid file extension found in PATH_INFO. ' . 
 		'mwScriptLoader must be accessed through the primary script entry point.' );
 	return;
 }

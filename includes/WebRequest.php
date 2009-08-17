@@ -670,6 +670,33 @@ class WebRequest {
 	public function setSessionData( $key, $data ) {
 		$_SESSION[$key] = $data;
 	}
+
+	/**
+	 * Returns true if the PATH_INFO ends with an extension other than a script 
+	 * extension. This could confuse IE for scripts that send arbitrary data which
+	 * is not HTML but may be detected as such.
+	 *
+	 * Various past attempts to use the URL to make this check have generally 
+	 * run up against the fact that CGI does not provide a standard method to 
+	 * determine the URL. PATH_INFO may be mangled (e.g. if cgi.fix_pathinfo=0), 
+	 * but only by prefixing it with the script name and maybe some other stuff, 
+	 * the extension is not mangled. So this should be a reasonably portable 
+	 * way to perform this security check.
+	 */
+	public function isPathInfoBad() {
+		global $wgScriptExtension;
+		
+		if ( !isset( $_SERVER['PATH_INFO'] ) ) {
+			return false;
+		}
+		$pi = $_SERVER['PATH_INFO'];
+		$dotPos = strrpos( $pi, '.' );
+		if ( $dotPos === false ) {
+			return false;
+		}
+		$ext = substr( $pi, $dotPos );
+		return !in_array( $ext, array( $wgScriptExtension, '.php', '.php5' ) );
+	}
 }
 
 /**
@@ -738,6 +765,10 @@ class FauxRequest extends WebRequest {
 
 	public function setSessionData( $key, $data ) {
 		$this->notImplemented( __METHOD__ );
+	}
+
+	public function isPathInfoBad() {
+		return false;
 	}
 
 }
