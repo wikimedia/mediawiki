@@ -29,8 +29,8 @@ class HistoryPage {
 	 */
 	function __construct( $article ) {
 		global $wgUser;
-		$this->article =& $article;
-		$this->title =& $article->getTitle();
+		$this->article = $article;
+		$this->title = $article->getTitle();
 		$this->skin = $wgUser->getSkin();
 		$this->preCacheMessages();
 	}
