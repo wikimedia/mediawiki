@@ -1689,7 +1689,7 @@ var mvTransLib = {
 		this['type'][tObj.type][tObj.subtype].u(tObj,percent);
 	},
 	getTransitionIcon:function( type, subtype){
-		return mv_embed_path +'/skins/'+mv_skin_name+'/transition_images/'+ type+'_'+ subtype+ '.png';
+		return mv_embed_path +'/skins/'+mwConfig['skin_name']+'/transition_images/'+ type+'_'+ subtype+ '.png';
 	},
 	/*
 	 * mvTransLib: functional library mapping:
