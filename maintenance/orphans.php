@@ -84,7 +84,7 @@ class Orphans extends Maintenance {
 			global $wgContLang;
 			$this->output( "$orphans orphan revisions...\n" );
 			$this->output( sprintf( "%10s %10s %14s %20s %s\n", 'rev_id', 'rev_page', 'rev_timestamp', 'rev_user_text', 'rev_comment' ) );
-			while( $row = $dbw->fetchObject( $result ) ) {
+			foreach( $result as $row ) {
 				$comment = ( $row->rev_comment == '' )
 					? ''
 					: '(' . $wgContLang->truncate( $row->rev_comment, 40 ) . ')';
@@ -136,7 +136,7 @@ class Orphans extends Maintenance {
 			global $wgContLang;
 			$this->output( "$widows childless pages...\n" );
 			$this->output( sprintf( "%10s %11s %2s %s\n", 'page_id', 'page_latest', 'ns', 'page_title' ) );
-			while( $row = $dbw->fetchObject( $result ) ) {
+			foreach( $result as $row ) {
 				printf( "%10d %11d %2d %s\n",
 					$row->page_id,
 					$row->page_latest,
@@ -178,7 +178,7 @@ class Orphans extends Maintenance {
 			FROM $page LEFT OUTER JOIN $revision ON page_latest=rev_id
 		");
 		$found = 0;
-		while( $row = $dbw->fetchObject( $result ) ) {
+		foreach( $result as $row ) {
 			$result2 = $dbw->query( "
 				SELECT MAX(rev_timestamp) as max_timestamp
 				FROM $revision

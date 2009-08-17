@@ -50,7 +50,7 @@ class DeleteArchivedFiles extends Maintenance {
 		$this->output( "Searching for and deleting archived files...\n" );
 		$res = $dbw->query( "SELECT fa_id,fa_storage_group,fa_storage_key FROM $tbl_arch" );
 		$count = 0;
-		while( $row = $dbw->fetchObject( $res ) ) {
+		foreach( $res as $row ) {
 			$key = $row->fa_storage_key;
 			$group = $row->fa_storage_group;
 			$id = $row->fa_id;

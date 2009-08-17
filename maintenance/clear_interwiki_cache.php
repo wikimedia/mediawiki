@@ -35,7 +35,7 @@ class ClearInterwikiCache extends Maintenance {
 		$dbr = wfGetDB( DB_SLAVE );
 		$res = $dbr->select( 'interwiki', array( 'iw_prefix' ), false );
 		$prefixes = array();
-		while ( $row = $dbr->fetchObject( $res ) ) {
+		foreach ( $res as $row ) {
 			$prefixes[] = $row->iw_prefix;
 		}
 

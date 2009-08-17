@@ -54,7 +54,7 @@ class UpdateRestrictions extends Maintenance {
 			$cond = "page_id BETWEEN $blockStart AND $blockEnd AND page_restrictions !=''";
 			$res = $db->select( 'page', array('page_id','page_namespace','page_restrictions'), $cond, __METHOD__ );
 			$batch = array();
-			while( $row = $db->fetchObject( $res ) ) {
+			foreach( $res as $row ) {
 				$oldRestrictions = array();
 				foreach( explode( ':', trim( $row->page_restrictions ) ) as $restrict ) {
 					$temp = explode( '=', trim( $restrict ) );

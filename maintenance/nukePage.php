@@ -56,7 +56,7 @@ class NukePage extends Maintenance {
 			# Get corresponding revisions
 			$this->output( "Searching for revisions..." );
 			$res = $dbw->query( "SELECT rev_id FROM $tbl_rev WHERE rev_page = $id" );
-			while( $row = $dbw->fetchObject( $res ) ) {
+			foreach( $res as $row ) {
 				$revs[] = $row->rev_id;
 			}
 			$count = count( $revs );

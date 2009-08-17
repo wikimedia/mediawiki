@@ -70,7 +70,7 @@ class RebuildFileCache extends Maintenance {
 					"page_id BETWEEN $blockStart AND $blockEnd" ),
 				array('ORDER BY' => 'page_id ASC','USE INDEX' => 'PRIMARY')
 			);
-			while( $row = $dbr->fetchObject( $res ) ) {
+			foreach( $res as $row ) {
 				$rebuilt = false;
 				$wgTitle = Title::makeTitleSafe( $row->page_namespace, $row->page_title );
 				if( null == $wgTitle ) {

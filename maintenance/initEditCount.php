@@ -73,7 +73,7 @@ in $wgDBservers, usually indicating a replication environment.' );
 					GROUP BY user_id",
 					__METHOD__ );
 
-				while( $row = $dbr->fetchObject( $result ) ) {
+				foreach( $result as $row ) {
 					$dbw->update( 'user',
 						array( 'user_editcount' => $row->user_editcount ),
 						array( 'user_id' => $row->user_id ),

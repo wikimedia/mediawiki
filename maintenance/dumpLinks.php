@@ -51,7 +51,7 @@ class DumpLinks extends Maintenance {
 			array( 'ORDER BY' => 'page_id' ) );
 	
 		$lastPage = null;
-		while( $row = $dbr->fetchObject( $result ) ) {
+		foreach( $result as $row ) {
 			if( $lastPage != $row->page_id ) {
 				if( isset( $lastPage ) ) {
 					$this->output( "\n" );

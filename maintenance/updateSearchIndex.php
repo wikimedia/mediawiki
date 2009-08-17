@@ -99,7 +99,7 @@ class UpdateSearchIndex extends Maintenance {
 		}
 
 		# Loop through the results and do a search update
-		while ( $row = $dbw->fetchObject( $res ) ) {
+		foreach ( $res as $row ) {
 			# Allow reads to be processed
 			if ( $maxLockTime && time() > $lockTime + $maxLockTime ) {
 				$this->output( "    --- Relocking ---" );

@@ -55,7 +55,7 @@ class ConvertUserOptions extends Maintenance {
 
 	function convertOptionBatch( $res, $dbw ) {
 		$id = null;
-		while ($row = $dbw->fetchObject( $res ) ) {
+		foreach ( $res as $row ) {
 			$this->mConversionCount++;
 	
 			$u = User::newFromRow( $row );

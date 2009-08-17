@@ -214,7 +214,7 @@ class GenerateSitemap extends Maintenance {
 			)
 		);
 
-		while ( $row = $this->dbr->fetchObject( $res ) )
+		foreach ( $res as $row )
 			$this->namespaces[] = $row->page_namespace;
 	}
 
@@ -281,7 +281,7 @@ class GenerateSitemap extends Maintenance {
 
 			$fns = $wgContLang->getFormattedNsText( $namespace );
 			$this->output( "$namespace ($fns)" );
-			while ( $row = $this->dbr->fetchObject( $res ) ) {
+			foreach ( $res as $row ) {
 				if ( $i++ === 0 || $i === $this->url_limit + 1 || $length + $this->limit[1] + $this->limit[2] > $this->size_limit ) {
 					if ( $this->file !== false ) {
 						$this->write( $this->file, $this->closeFile() );

@@ -42,7 +42,7 @@ class DumpSisterSites extends Maintenance {
 			),
 			__METHOD__ );
 
-		while( $row = $dbr->fetchObject( $result ) ) {
+		foreach( $result as $row ) {
 			$title = Title::makeTitle( $row->page_namespace, $row->page_title );
 			$url = $title->getFullUrl();
 			$text = $title->getPrefixedText();

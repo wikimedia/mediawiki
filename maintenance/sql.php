@@ -61,7 +61,7 @@ class MwSql extends Maintenance {
 		if ( !$res ) {
 			// Do nothing
 		} elseif ( is_object( $res ) && $res->numRows() ) {
-			while ( $row = $res->fetchObject() ) {
+			foreach ( $res as $row ) {
 				$this->output( print_r( $row, true ) );
 			}
 		} else {

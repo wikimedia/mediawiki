@@ -106,7 +106,7 @@ class RebuildRecentchanges extends Maintenance {
 	
 		$lastCurId = 0;
 		$lastOldId = 0;
-		while ( $obj = $dbw->fetchObject( $res ) ) {
+		foreach ( $res as $obj ) {
 			$new = 0;
 			if( $obj->rc_cur_id != $lastCurId ) {
 				# Switch! Look up the previous last edit, if any
@@ -233,7 +233,7 @@ class RebuildRecentchanges extends Maintenance {
 				"WHERE ug_group IN($botwhere) AND user_id = ug_user";
 			$res = $dbw->query( $sql, DB_MASTER );
 	
-			while( $obj = $dbw->fetchObject( $res ) ) {
+			foreach( $res as $obj ) {
 				$botusers[] = $dbw->addQuotes( $obj->user_name );
 			}
 			# Fill in the rc_bot field
@@ -257,7 +257,7 @@ class RebuildRecentchanges extends Maintenance {
 				"WHERE ug_group IN($patrolwhere) AND user_id = ug_user";
 			$res = $dbw->query( $sql, DB_MASTER );
 	
-			while( $obj = $dbw->fetchObject( $res ) ) {
+			foreach( $res as $obj ) {
 				$patrolusers[] = $dbw->addQuotes( $obj->user_name );
 			}
 	

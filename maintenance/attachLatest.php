@@ -43,7 +43,7 @@ class AttachLatest extends Maintenance {
 			__METHOD__ );
 
 		$n = 0;
-		while( $row = $dbw->fetchObject( $result ) ) {
+		foreach( $result as $row ) {
 			$pageId = intval( $row->page_id );
 			$title = Title::makeTitle( $row->page_namespace, $row->page_title );
 			$name = $title->getPrefixedText();

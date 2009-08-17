@@ -95,7 +95,7 @@ class RebuildTextIndex extends Maintenance {
 					   AND rev_text_id=old_id";
 			$res = $database->query($sql, "rebuildTextIndex" );
 	
-			while( $s = $database->fetchObject($res) ) {
+			foreach( $res as $s ) {
 				$revtext = Revision::getRevisionText( $s );
 				$u = new SearchUpdate( $s->page_id, $s->page_title, $revtext );
 				$u->doUpdate();
