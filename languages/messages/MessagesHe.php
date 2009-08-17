@@ -2200,7 +2200,7 @@ $NEWPAGE
 'prot_1movedto2'              => '[[$1]] הועבר ל[[$2]]',
 'protect-backlink'            => '→ $1',
 'protect-legend'              => 'אישור הפעלת ההגנה',
-'protectcomment'              => 'הערה:',
+'protectcomment'              => 'סיבה:',
 'protectexpiry'               => 'פקיעת ההגנה:',
 'protect_expiry_invalid'      => 'זמן פקיעת ההגנה בלתי חוקי.',
 'protect_expiry_old'          => 'זמן פקיעת ההגנה כבר עבר.',
