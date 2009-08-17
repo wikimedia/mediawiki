@@ -37,6 +37,9 @@ class AncientPagesPage extends QueryPage {
 			case 'oracle': 
 				$epoch = '((trunc(rev_timestamp) - to_date(\'19700101\',\'YYYYMMDD\')) * 86400)'; 
 				break;
+			case 'sqlite':
+				$epoch = 'rev_timestamp';
+				break;
 			default:
 				$epoch = 'EXTRACT(epoch FROM rev_timestamp)';
 		}

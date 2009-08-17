@@ -405,6 +405,7 @@ this. Was used when mwEmbed was going to be an extension.
 * (bug 20203) "Powered by Mediawiki" now has height/width on image tag
 * (bug 20273) Fix broken output when no pages are found in the content
   namespaces
+* (bug 20265) Make AncientPages and UnusedFiles work on SQLite
 
 == API changes in 1.16 ==
 
