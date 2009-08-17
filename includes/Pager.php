@@ -50,7 +50,7 @@ interface Pager {
  *      last page depending on the dir parameter.
  *
  *  Subclassing the pager to implement concrete functionality should be fairly
- *  simple, please see the examples in PageHistory.php and
+ *  simple, please see the examples in HistoryPage.php and
  *  SpecialIpblocklist.php. You just need to override formatRow(),
  *  getQueryInfo() and getIndexField(). Don't forget to call the parent
  *  constructor if you override it.
@@ -86,6 +86,9 @@ abstract class IndexPager implements Pager {
 	 */
 	public $mDefaultDirection;
 	public $mIsBackwards;
+
+	/** True if the current result set is the first one */
+	public $mIsFirst;
 
 	/**
 	 * Result object for the query. Warning: seek before use.
