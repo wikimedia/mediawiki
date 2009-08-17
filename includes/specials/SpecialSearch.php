@@ -526,7 +526,7 @@ class SpecialSearch {
 			'search-result-size',
 			array( 'parsemag', 'escape' ),
 			$this->sk->formatSize( $byteSize ),
-			$wordCount
+			$wgLang->formatNum( $wordCount )
 		);
 		$date = $wgLang->timeanddate( $timestamp );
 
@@ -881,12 +881,17 @@ class SpecialSearch {
 		}
 		$out .= Xml::closeElement( 'ul' );
 		$out .= Xml::closeElement('div') ;
-		
+
 		// Results-info
 		if ( $resultsShown > 0 ) {
 			if ( $totalNum > 0 ){
-				$top = wfMsgExt('showingresultsheader', array( 'parseinline' ),
-					$this->offset+1, $this->offset+$resultsShown, $totalNum, wfEscapeWikiText($term), $resultsShown );
+				$top = wfMsgExt( 'showingresultsheader', array( 'parseinline' ),
+					$wgLang->formatNum( $this->offset + 1 ),
+					$wgLang->formatNum( $this->offset + $resultsShown ),
+					$wgLang->formatNum( $totalNum ),
+					wfEscapeWikiText( $term ),
+					$wgLang->formatNum( $resultsShown )
+				);
 			} elseif ( $resultsShown >= $this->limit ) {
 				$top = wfShowingResults( $this->offset, $this->limit );
 			} else {
