@@ -1,5 +1,5 @@
 <?php
-/** Yue (粵語)
+/** Cantonese (粵語/廣東話)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -1628,7 +1628,7 @@ $1",
 
 # Random page
 'randompage'         => '隨便一版',
-'randompage-nopages' => '響 "$1" 空間名度搵唔到一版。',
+'randompage-nopages' => '響下面嘅{{PLURAL:$2|空間名}}度搵唔到一版: $1',
 
 # Random redirect
 'randomredirect'         => '隨便彈',

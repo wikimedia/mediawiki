@@ -1,5 +1,5 @@
 <?php
-/** Simplified Chinese (‪中文(简体)‬)
+/** Simplified Chinese (‪中文(简化字)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -1660,7 +1660,7 @@ $1",
 
 # Random page
 'randompage'         => '随机页面',
-'randompage-nopages' => '在 "$1" 名字空间中没有页面。',
+'randompage-nopages' => '在以下的{{PLURAL:$2|名字空间}}中没有页面：$1',
 
 # Random redirect
 'randomredirect'         => '随机重定向页面',

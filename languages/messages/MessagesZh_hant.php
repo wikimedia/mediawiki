@@ -1,5 +1,5 @@
 <?php
-/** Traditional Chinese (‪中文(繁體)‬)
+/** Traditional Chinese (‪中文(傳統字)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -1647,7 +1647,7 @@ $1",
 
 # Random page
 'randompage'         => '隨機頁面',
-'randompage-nopages' => '在 "$1" 名字空間中沒有頁面。',
+'randompage-nopages' => '在以下的{{PLURAL:$2|名字空間}}中沒有頁面：$1',
 
 # Random redirect
 'randomredirect'         => '隨機重定向頁面',
