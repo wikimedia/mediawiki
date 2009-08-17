@@ -1415,7 +1415,7 @@ class EditPage {
 			$editsummary = "<div class='editOptions'>\n";
 			global $wgParser;
 			$formattedSummary = wfMsgForContent( 'newsectionsummary', $wgParser->stripSectionName( $this->summary ) );
-			$subjectpreview = $summarytext && $this->preview ?
+			$subjectpreview = $summarytext && ( $this->preview || $this->diff ) ?
 				"<div class=\"mw-summary-preview\">". wfMsgExt('subject-preview', 'parseinline') . $sk->commentBlock( $formattedSummary, $this->mTitle, true )."</div>\n" : '';
 			$summarypreview = '';
 		} else {
@@ -1442,7 +1442,7 @@ class EditPage {
 							. $editsummary . '<br/>';
 
 			$summarypreview = '';
-			if ( $summarytext && $this->preview ) {
+			if ( $summarytext && ( $this->preview || $this->diff ) ) {
 				$summarypreview =
 					Xml::tags( 'div',
 						array( 'class' => 'mw-summary-preview' ),
