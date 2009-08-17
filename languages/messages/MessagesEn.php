@@ -2684,7 +2684,7 @@ See the [[Special:ProtectedPages|protected pages list]] for the list of currentl
 'prot_1movedto2'              => '[[$1]] moved to [[$2]]',
 'protect-backlink'            => '← $1', # only translate this message to other languages if you have to change it
 'protect-legend'              => 'Confirm protection',
-'protectcomment'              => 'Comment:',
+'protectcomment'              => 'Reason:',
 'protectexpiry'               => 'Expires:',
 'protect_expiry_invalid'      => 'Expiry time is invalid.',
 'protect_expiry_old'          => 'Expiry time is in the past.',
