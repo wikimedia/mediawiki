@@ -137,7 +137,7 @@ class NamespaceConflictChecker extends Maintenance {
 	private function getInterwikiList() {
 		$result = $this->db->select( 'interwiki', array( 'iw_prefix' ) );
 		$prefixes = array();
-		while( $row = $this->db->fetchObject( $result ) ) {
+		foreach( $result as $row ) {
 			$prefixes[] = $row->iw_prefix;
 		}
 		$this->db->freeResult( $result );
@@ -216,7 +216,7 @@ class NamespaceConflictChecker extends Maintenance {
 		$result = $this->db->query( $sql, __METHOD__ );
 
 		$set = array();
-		while( $row = $this->db->fetchObject( $result ) ) {
+		foreach( $result as $row ) {
 			$set[] = $row;
 		}
 		$this->db->freeResult( $result );

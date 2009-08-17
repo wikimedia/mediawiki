@@ -52,7 +52,7 @@ class DeleteImageCache extends Maintenance {
 		$i = 0;
 		$total = $this->getImageCount();
 
-		while ( $row = $dbr->fetchObject( $res ) ) {
+		foreach ( $res as $row ) {
 			if ($i % $this->report == 0)
 				$this->output( sprintf("%s: %13s done (%s)\n", wfWikiID(), "$i/$total", wfPercent( $i / $total * 100 ) ) );
 			$md5 = md5( $row->img_name );

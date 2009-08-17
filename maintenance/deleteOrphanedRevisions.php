@@ -49,7 +49,7 @@ class DeleteOrphanedRevisions extends Maintenance {
 	
 		# Stash 'em all up for deletion (if needed)
 		$revisions = array();
-		while( $row = $dbw->fetchObject( $res ) )
+		foreach( $res as $row )
 			$revisions[] = $row->rev_id;
 		$dbw->freeResult( $res );
 		$count = count( $revisions );

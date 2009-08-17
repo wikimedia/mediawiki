@@ -35,7 +35,7 @@ class FixUserRegistration extends Maintenance {
 
 		// Get user IDs which need fixing
 		$res = $dbr->select( 'user', 'user_id', 'user_registration IS NULL', __METHOD__ );
-		while ( $row = $dbr->fetchObject( $res ) ) {
+		foreach ( $res as $row ) {
 			$id = $row->user_id;
 			// Get first edit time
 			$timestamp = $dbr->selectField( 'revision', 'MIN(rev_timestamp)', array( 'rev_user' => $id ), __METHOD__ );

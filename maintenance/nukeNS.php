@@ -55,24 +55,24 @@ class NukeNS extends Maintenance {
 
 		$n_deleted = 0;
 
-		while( $row = $dbw->fetchObject( $res ) ) {
+		foreach( $res as $row ) {
 			//echo "$ns_name:".$row->page_title, "\n";
-			$title = Title::newFromText($row->page_title, $ns);
+			$title = Title::makeTitle( $ns, $row->page_title );
 			$id   = $title->getArticleID();
 
 			// Get corresponding revisions
 			$res2 = $dbw->query( "SELECT rev_id FROM $tbl_rev WHERE rev_page = $id" );
 			$revs = array();
 
-			while( $row2 = $dbw->fetchObject( $res2 ) ) {
+			foreach( $res2 as $row2 ) {
 				$revs[] = $row2->rev_id;
 			}
 			$count = count( $revs );
 
 			//skip anything that looks modified (i.e. multiple revs)
-			if (($count == 1)) {
+			if ( $count == 1 ) {
 				#echo $title->getPrefixedText(), "\t", $count, "\n";
-				$this->output( "delete: ", $title->getPrefixedText(), "\n" );
+				$this->output( "delete: " . $title->getPrefixedText() . "\n" );
 
 				//as much as I hate to cut & paste this, it's a little different, and
 				//I already have the id & revs
@@ -86,23 +86,25 @@ class NukeNS extends Maintenance {
 					$n_deleted ++;
 				}
 			} else {
-			  $this->output( "skip: ", $title->getPrefixedText(), "\n" );
+			  $this->output( "skip: " . $title->getPrefixedText() . "\n" );
 			}
 		}
 		$dbw->commit();
 
-		if ($n_deleted > 0) {
-		#update statistics - better to decrement existing count, or just count
-		#the page table?
-		$pages = $dbw->selectField('site_stats', 'ss_total_pages');
-		$pages -= $n_deleted;
-		$dbw->update( 'site_stats', 
-			  array('ss_total_pages' => $pages ), 
-			  array( 'ss_row_id' => 1),
-			  __METHOD__ );
+		if ( $n_deleted > 0 ) {
+			#update statistics - better to decrement existing count, or just count
+			#the page table?
+			$pages = $dbw->selectField( 'site_stats', 'ss_total_pages' );
+			$pages -= $n_deleted;
+			$dbw->update(
+				'site_stats', 
+				array( 'ss_total_pages' => $pages ), 
+				array( 'ss_row_id' => 1 ),
+				__METHOD__
+			);
 		}
 	
-		if (!$delete) {
+		if ( !$delete ) {
 			$this->output( "To update the database, run the script with the --delete option.\n" );
 		}
 	}

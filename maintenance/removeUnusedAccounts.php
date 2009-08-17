@@ -51,7 +51,7 @@ class RemoveUnusedAccounts extends Maintenance {
 			$this->error( "Please put a valid positive integer on the --ignore-touched parameter.", true );
 		}
 		$touchedSeconds = 86400 * $touched;
-		while( $row = $dbr->fetchObject( $res ) ) {
+		foreach( $res as $row ) {
 			# Check the account, but ignore it if it's within a $excludedGroups group or if it's touched within the $touchedSeconds seconds.
 			$instance = User::newFromId( $row->user_id );
 			if( count( array_intersect( $instance->getEffectiveGroups(), $excludedGroups ) ) == 0

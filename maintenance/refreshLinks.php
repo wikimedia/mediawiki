@@ -91,7 +91,7 @@ class RefreshLinks extends Maintenance {
 			$num = $dbr->numRows( $res );
 			$this->output( "Refreshing $num old redirects from $start...\n" );
 
-			while( $row = $dbr->fetchObject( $res ) ) {
+			foreach( $res as $row ) {
 				if ( !( ++$i % $reportingInterval ) ) {
 					$this->output( "$i\n" );
 					wfWaitForSlaves( $maxLag );
@@ -111,7 +111,7 @@ class RefreshLinks extends Maintenance {
 			$this->output( "$num new articles...\n" );
 	
 			$i = 0;
-			while ( $row = $dbr->fetchObject( $res ) ) {
+			foreach ( $res as $row ) {
 				if ( !( ++$i % $reportingInterval ) ) {
 					$this->output( "$i\n" );
 					wfWaitForSlaves( $maxLag );

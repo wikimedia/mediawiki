@@ -62,7 +62,7 @@ class DeleteOldRevisions extends Maintenance {
 		# Get "active" revisions from the page table
 		$this->output( "Searching for active revisions..." );
 		$res = $dbw->query( "SELECT page_latest FROM $tbl_pag{$pageIdClause}" );
-		while( $row = $dbw->fetchObject( $res ) ) {
+		foreach( $res as $row ) {
 			$cur[] = $row->page_latest;
 		}
 		$this->output( "done.\n" );
@@ -71,7 +71,7 @@ class DeleteOldRevisions extends Maintenance {
 		$this->output( "Searching for inactive revisions..." );
 		$set = implode( ', ', $cur );
 		$res = $dbw->query( "SELECT rev_id FROM $tbl_rev WHERE rev_id NOT IN ( $set ){$revPageClause}" );
-		while( $row = $dbw->fetchObject( $res ) ) {
+		foreach( $res as $row ) {
 			$old[] = $row->rev_id;
 		}
 		$this->output( "done.\n" );

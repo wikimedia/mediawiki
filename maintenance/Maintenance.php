@@ -671,7 +671,7 @@ abstract class Maintenance {
 		# Get "active" text records from the revisions table
 		$this->output( "Searching for active text records in revisions table..." );
 		$res = $dbw->query( "SELECT DISTINCT rev_text_id FROM $tbl_rev" );
-		while( $row = $dbw->fetchObject( $res ) ) {
+		foreach( $res as $row ) {
 			$cur[] = $row->rev_text_id;
 		}
 		$this->output( "done.\n" );
@@ -679,7 +679,7 @@ abstract class Maintenance {
 		# Get "active" text records from the archive table
 		$this->output( "Searching for active text records in archive table..." );
 		$res = $dbw->query( "SELECT DISTINCT ar_text_id FROM $tbl_arc" );
-		while( $row = $dbw->fetchObject( $res ) ) {
+		foreach( $res as $row ) {
 			$cur[] = $row->ar_text_id;
 		}
 		$this->output( "done.\n" );
@@ -689,7 +689,7 @@ abstract class Maintenance {
 		$set = implode( ', ', $cur );
 		$res = $dbw->query( "SELECT old_id FROM $tbl_txt WHERE old_id NOT IN ( $set )" );
 		$old = array();
-		while( $row = $dbw->fetchObject( $res ) ) {
+		foreach( $res as $row ) {
 			$old[] = $row->old_id;
 		}
 		$this->output( "done.\n" );

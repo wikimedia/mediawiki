@@ -54,7 +54,7 @@ class DeleteDefaultMessages extends Maintenance {
 
 		$dbw = wfGetDB( DB_MASTER );
 
-		while ( $row = $dbr->fetchObject( $res ) ) {
+		foreach ( $res as $row ) {
 			if ( function_exists( 'wfWaitForSlaves' ) ) {
 				wfWaitForSlaves( 5 );
 			}
