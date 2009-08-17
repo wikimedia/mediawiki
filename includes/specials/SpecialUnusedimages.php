@@ -32,6 +32,9 @@ class UnusedimagesPage extends ImageQueryPage {
 			case 'oracle': 
 				$epoch = '((trunc(img_timestamp) - to_date(\'19700101\',\'YYYYMMDD\')) * 86400)'; 
 				break;
+			case 'sqlite':
+				$epoch = 'img_timestamp';
+				break;
 			default:
 				$epoch = 'EXTRACT(epoch FROM img_timestamp)';
 		}
