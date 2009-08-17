@@ -45,6 +45,7 @@ var default_form_options = {
 				$(this.selector).html( gM('error_not_loggedin') );
 				return false;
 			}
+			
 			//build the api based upload form: 
 			var o = '<div style="margin: 0 auto;width:450px;">'+
 				'<form id="suf-upload" enctype="multipart/form-data" action="' + opt.api_target + '" method="post">'  +
