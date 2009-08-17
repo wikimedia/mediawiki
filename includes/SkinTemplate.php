@@ -162,10 +162,13 @@ class SkinTemplate extends Skin {
 		wfProfileIn( __METHOD__ . '-stuff' );
 		$this->thispage = $this->mTitle->getPrefixedDBkey();
 		$this->thisurl = $this->mTitle->getPrefixedURL();
-		$query = $wgRequest->getValues();
-		unset( $query['title'] );
-		unset( $query['returnto'] );
-		unset( $query['returntoquery'] );
+		$query = array();
+		if ( !$wgRequest->wasPosted() ) {
+			$query = $wgRequest->getValues();
+			unset( $query['title'] );
+			unset( $query['returnto'] );
+			unset( $query['returntoquery'] );
+		}
 		$this->thisquery = wfUrlencode( wfArrayToCGI( $query ) );
 		$this->loggedin = $wgUser->isLoggedIn();
 		$this->iscontent = ( $this->mTitle->getNamespace() != NS_SPECIAL );
