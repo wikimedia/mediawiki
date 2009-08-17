@@ -57,6 +57,7 @@ if( !is_null( $maxLag ) && !$mediaWiki->checkMaxLag( $maxLag ) ) {
 $action = $wgRequest->getVal( 'action', 'view' );
 $title = $wgRequest->getVal( 'title' );
 
+# Set title from request parameters
 $wgTitle = $mediaWiki->checkInitialQueries( $title, $action );
 if( $wgTitle === NULL ) {
 	unset( $wgTitle );
@@ -80,26 +81,20 @@ if( $wgUseFileCache && isset( $wgTitle ) ) {
 	// Raw pages should handle cache control on their own,
 	// even when using file cache. This reduces hits from clients.
 	if( $action != 'raw' && HTMLFileCache::useFileCache() ) {
-		/* Set the title from the page ID if needed... */
-		if( $curid = $wgRequest->getInt('curid') ) {
-			$wgTitle = Title::newFromID( $curid );
-		}
-		if( !is_null($wgTitle) ) {
-			/* Try low-level file cache hit */
-			$cache = new HTMLFileCache( $wgTitle, $action );
-			if( $cache->isFileCacheGood( /* Assume up to date */ ) ) {
-				/* Check incoming headers to see if client has this cached */
-				if( !$wgOut->checkLastModified( $cache->fileCacheTime() ) ) {
-					$cache->loadFromFileCache();
-				}
-				# Do any stats increment/watchlist stuff
-				$wgArticle = MediaWiki::articleFromTitle( $wgTitle );
-				$wgArticle->viewUpdates();
-				# Tell $wgOut that output is taken care of
-				wfProfileOut( 'main-try-filecache' );
-				$mediaWiki->restInPeace();
-				exit;
+		/* Try low-level file cache hit */
+		$cache = new HTMLFileCache( $wgTitle, $action );
+		if( $cache->isFileCacheGood( /* Assume up to date */ ) ) {
+			/* Check incoming headers to see if client has this cached */
+			if( !$wgOut->checkLastModified( $cache->fileCacheTime() ) ) {
+				$cache->loadFromFileCache();
 			}
+			# Do any stats increment/watchlist stuff
+			$wgArticle = MediaWiki::articleFromTitle( $wgTitle );
+			$wgArticle->viewUpdates();
+			# Tell $wgOut that output is taken care of
+			wfProfileOut( 'main-try-filecache' );
+			$mediaWiki->restInPeace();
+			exit;
 		}
 	}
 	wfProfileOut( 'main-try-filecache' );
