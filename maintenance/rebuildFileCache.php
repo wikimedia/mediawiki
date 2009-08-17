@@ -32,7 +32,8 @@ class RebuildFileCache extends Maintenance {
 	}
 
 	public function execute() {
-		global $wgUseFileCache, $wgContentNamespaces, $wgDisableCounters, $wgTitle, $wgArticle, $wgOut;
+		global $wgUseFileCache, $wgDisableCounters, $wgContentNamespaces;
+		global $wgTitle, $wgArticle, $wgOut, $wgUser;
 		if( !$wgUseFileCache ) {
 			$this->error( "Nothing to do -- \$wgUseFileCache is disabled.", true );
 		}
@@ -73,9 +74,11 @@ class RebuildFileCache extends Maintenance {
 				$rebuilt = false;
 				$wgTitle = Title::makeTitleSafe( $row->page_namespace, $row->page_title );
 				if( null == $wgTitle ) {
-					$this->output( "Page {$row->page_id} bad title\n" );
+					$this->output( "Page {$row->page_id} has bad title\n" );
 					continue; // broken title?
 				}
+				$wgOut->setTitle( $wgTitle ); // set display title
+				$wgUser->getSkin( $wgTitle ); // set skin title
 				$wgArticle = new Article( $wgTitle );
 				// If the article is cacheable, then load it
 				if( $wgArticle->isFileCacheable() ) {
