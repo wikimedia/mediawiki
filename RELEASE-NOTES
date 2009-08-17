@@ -79,6 +79,8 @@ this. Was used when mwEmbed was going to be an extension.
   to control which external domains may access the API via cross-site AJAX.
 * $wgMaintenanceScripts for extensions to add their scripts to the default list
 * $wgMemoryLimit has been added, default value '50M'
+* $wgExtraRandompageSQL is deprecated, the SpecialRandomGetRandomTitle hook 
+  should be used instead
 
 === New features in 1.16 ===
 
@@ -195,6 +197,9 @@ this. Was used when mwEmbed was going to be an extension.
    output by omitting some things like quotation marks where HTML 5 allows.
 * Added crop for inline images.
 * The description message in $wgExtensionCredits can be an array with parameters
+* New hook SpecialRandomGetRandomTitle allows extensions to modify the selection
+  criteria used by Special:Random and subclasses, or substitute a custom result,
+  deprecating the $wgExtraRandompageSQL config variable
 
 === Bug fixes in 1.16 ===
 
