@@ -1376,6 +1376,15 @@ $newTitle: new title (object)
 hook to remove a core special page
 $list: list (array) of core special pages
 
+'SpecialRandomGetRandomTitle': called during the execution of Special:Random,
+use this to change some selection criteria or substitute a different title
+&$randstr: The random number from wfRandom()
+&$isRedir: Boolean, whether to select a redirect or non-redirect 
+&$namespaces: An array of namespace indexes to get the title from
+&$extra: An array of extra SQL statements 
+&$title: If the hook returns false, a Title object to use instead of the
+result from the normal query
+
 'SpecialRecentChangesPanel': called when building form options in
 SpecialRecentChanges
 &$extraOpts: array of added items, to which can be added

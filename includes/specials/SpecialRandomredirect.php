@@ -10,10 +10,7 @@
 class SpecialRandomredirect extends RandomPage {
 	function __construct(){
 		parent::__construct( 'Randomredirect' );
+		$this->isRedir = true;
 	}
 
-	// Override parent::isRedirect()
-	public function isRedirect(){
-		return true;
-	}
 }

@@ -9,6 +9,8 @@
  */
 class RandomPage extends SpecialPage {
 	private $namespaces;  // namespaces to select pages from
+	protected $isRedir = false; // should the result be a redirect?
+	protected $extra = array(); // Extra SQL statements
 
 	public function __construct( $name = 'Randompage' ){
 		global $wgContentNamespaces;
@@ -26,9 +28,8 @@ class RandomPage extends SpecialPage {
 	}
 
 	// select redirects instead of normal pages?
-	// Overriden by SpecialRandomredirect
 	public function isRedirect(){
-		return false;
+		return $this->isRedir;
 	}
 
 	public function execute( $par ) {
@@ -75,6 +76,10 @@ class RandomPage extends SpecialPage {
 	 */
 	public function getRandomTitle() {
 		$randstr = wfRandom();
+		$title = null;
+		if ( !wfRunHooks( 'SpecialRandomGetRandomTitle', array( &$randstr, &$this->isRedir, &$this->namespaces, &$this->extra, &$title ) ) ) {
+			return $title;
+		}
 		$row = $this->selectRandomPageFromDB( $randstr );
 
 		/* If we picked a value that was higher than any in
@@ -102,9 +107,17 @@ class RandomPage extends SpecialPage {
 
 		$ns = implode( ",", $this->namespaces );
 		$redirect = $this->isRedirect() ? 1 : 0;
-
-		$extra = $wgExtraRandompageSQL ? "AND ($wgExtraRandompageSQL)" : "";
-		$extra .= $this->addExtraSQL() ? "AND (".$this->addExtraSQL().")" : "";
+		
+		if ( $wgExtraRandompageSQL ) {
+			$this->extra[] = $wgExtraRandompageSQL;
+		}
+		if ( $this->addExtraSQL() ) {
+			$this->extra[] = $this->addExtraSQL();
+		}
+		$extra = '';
+		if ( $this->extra ) {
+			$extra = 'AND (' . implode( ') AND (', $this->extra ) . ')';
+		}
 		$sql = "SELECT page_title, page_namespace
 			FROM $page $use_index
 			WHERE page_namespace IN ( $ns )
@@ -118,8 +131,10 @@ class RandomPage extends SpecialPage {
 		return $dbr->fetchObject( $res );
 	}
 
-	// an alternative to $wgExtraRandompageSQL so extensions
-	// can add their own SQL by overriding this function
+	/* an alternative to $wgExtraRandompageSQL so subclasses
+	 * can add their own SQL by overriding this function
+	 * @deprecated, append to $this->extra instead
+	 */
 	public function addExtraSQL() {
 		return '';
 	}
