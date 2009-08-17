@@ -14,10 +14,12 @@ loadGM({
 	"fogg-use_latest_fox"		: "Please first install <a href=\"http://www.mozilla.com/en-US/firefox/upgrade.html?from=firefogg\">Firefox 3.5</a> (or later). <i>then revisit this page to install the <b>firefogg</b> extention</i>",	
 	"fogg-passthrough_mode"	    : "Your selected file is already ogg or not a video file",
 	"fogg-transcoding"			: "Encoding Video to Ogg",
-	"fogg-encoding-done"		: "Encoding Done"
+	"fogg-encoding-done"		: "Encoding Done",
+	"fogg-badtoken"				: "Token is not valid"
+	
 });
 
-var firefogg_install_links =  {
+var firefogg_install_inks =  {
 	'macosx':	'http://firefogg.org/macosx/Firefogg.xpi',
 	'win32'	:	'http://firefogg.org/win32/Firefogg.xpi',
 	'linux' :	'http://firefogg.org/linux/Firefogg.xpi'
@@ -477,7 +479,10 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 					'File:'+ _this.formData['wpDestFile'], 
 					_this.api_url, 
 					function( eToken ){		
-						if(eToken==)								
+						if( !eToken || eToken == '+\\' ){
+							_this.updateProgressWin(gM('fogg-badtoken'), gM('fogg-badtoken'));
+							return false;
+						}							
 						_this.etoken = eToken;
 						_this.doChunkWithFormData();
 					}
