@@ -2857,11 +2857,12 @@ class Title {
 		$newid = $nt->getArticleID();
 		$oldid = $this->getArticleID();
 		$latest = $this->getLatestRevID();
+
+		$dbw = wfGetDB( DB_MASTER );
+
 		$rcts = $dbw->timestamp( $nt->getEarliestRevTime() );
 		$newns = $nt->getNamespace();
 		$newdbk = $nt->getDBkey();
-
-		$dbw = wfGetDB( DB_MASTER );
 
 		# Delete the old redirect. We don't save it to history since
 		# by definition if we've got here it's rather uninteresting.
