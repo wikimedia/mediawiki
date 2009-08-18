@@ -413,6 +413,7 @@ this. Was used when mwEmbed was going to be an extension.
 * (bug 20265) Make AncientPages and UnusedFiles work on SQLite
 * Fixed XSS vulnerability for Internet Explorer clients (only pre-release 
   versions of MediaWiki were affected).
+* (bug 14817) Moving a page to a subpage of itself moves it twice
 
 == API changes in 1.16 ==
 
