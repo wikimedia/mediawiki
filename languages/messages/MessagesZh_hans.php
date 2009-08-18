@@ -2027,7 +2027,7 @@ $NEWPAGE
 'protect-title'               => '正在更改"$1"的保护等级',
 'prot_1movedto2'              => '[[$1]]移动到[[$2]]',
 'protect-legend'              => '确认保护',
-'protectcomment'              => '注解：',
+'protectcomment'              => '理由：',
 'protectexpiry'               => '到期：',
 'protect_expiry_invalid'      => '输入的终止时间无效。',
 'protect_expiry_old'          => '终止时间已过去。',
