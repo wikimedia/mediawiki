@@ -1870,14 +1870,8 @@ class OutputPage {
 	 */
 	public function addStyle( $style, $media='', $condition='', $dir='' ) {
 		$options = array();
-		// In Opera, fullscreen mode is treated as projection mode, and it causes
-		// styles set for screen to not be loaded - thus breaking the page -  so
-		// we can just append projection to the media attribute when it's screen
-		// so the browser is happy and - with no side-effects on other browsers.
-		// Also - even though we expect the media type to be lowercase, but here
-		// we force it to lowercase to be safe.
-		if ( strtolower( $media ) == 'screen' )
-			$media .= ',projection';
+		// Even though we expect the media type to be lowercase, but here we
+		// force it to lowercase to be safe.
 		if( $media )
 			$options['media'] = $media;
 		if( $condition )
