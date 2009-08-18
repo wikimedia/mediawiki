@@ -13,7 +13,6 @@ var os_map = {};
 var os_cache = {};
 // global variables for suggest_keypress
 var os_cur_keypressed = 0;
-var os_last_keypress = 0;
 var os_keypressed_count = 0;
 // type: Timer
 var os_timer = null;
@@ -553,7 +552,6 @@ function os_eventKeyup(e){
 	if(r == null)
 		return; // not our event
 
-	os_last_keypress = 0;
 	// some browsers won't generate keypressed for arrow keys, catch it
 	if(os_keypressed_count == 0){
 		os_processKey(r,os_cur_keypressed,targ);
@@ -593,14 +591,6 @@ function os_eventKeypress(e){
 		return; // not our event
 
 	var keypressed = os_cur_keypressed;
-	if(keypressed == 38 || keypressed == 40){
-		var d = new Date()
-		var now = d.getTime();
-		if(now - os_last_keypress < 120){
-			return;
-		}
-		os_last_keypress = now;
-	}
 
 	os_keypressed_count++;
 	os_processKey(r,keypressed,targ);
