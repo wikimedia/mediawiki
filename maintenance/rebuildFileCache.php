@@ -26,8 +26,8 @@ class RebuildFileCache extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->mDescription = "Build file cache for content pages";
-		//$this->addArgs( array( 'start' ) );
-		$this->addOption( 'overwrite', 'Refresh page cache', false );
+		$this->addArg( 'start', 'Page_id to start from', true );
+		$this->addArg( 'overwrite', 'Refresh page cache', false );
 		$this->setBatchSize( 100 );
 	}
 

@@ -27,7 +27,7 @@ class PatchSql extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->mDescription = "Run an SQL file into the DB, replacing prefix and charset vars";
-		$this->addArgs( array( 'patch-name' ) );
+		$this->addArg( 'patch-name', 'Name of the patch file, either full path or in maintenance/archives' );
 	}
 
 	protected function getDbType() {

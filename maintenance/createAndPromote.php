@@ -30,7 +30,8 @@ class CreateAndPromote extends Maintenance {
 		parent::__construct();
 		$this->mDescription = "Create a new user account with administrator rights";
 		$this->addOption( "bureaucrat", "Grant the account bureaucrat rights" );
-		$this->addArgs( array( "username", "password" ) );
+		$this->addArg( "username", "Username of new user" );
+		$this->addArg( "password", "Password to set" );
 	}
 
 	public function execute() {

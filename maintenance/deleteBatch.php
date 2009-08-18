@@ -37,7 +37,7 @@ class DeleteBatch extends Maintenance {
 		$this->addOption( 'u', "User to perform deletion", false, true );
 		$this->addOption( 'r', "Reason to delete page", false, true );
 		$this->addOption( 'i', "Interval to sleep between deletions" );
-		$this->addArgs( array( 'listfile' ) );
+		$this->addArg( 'listfile', 'File with titles to delete, separated by newlines', false );
 	}
 	
 	public function execute() {

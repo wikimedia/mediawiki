@@ -29,7 +29,9 @@ class AddWiki extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->mDescription = "Add a new wiki to the family. Wikimedia specific!";
-		$this->addArgs( 'language', 'site', 'dbname' );
+		$this->addArg( 'language', 'Language code of new site' );
+		$this->addArg( 'site', 'Type of site' );
+		$this->addArg( 'dbname', 'Name of database to create' );
 	}
 
 	protected function getDbType() {

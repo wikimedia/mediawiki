@@ -31,7 +31,8 @@ class ReassignEdits extends Maintenance {
 		$this->addOption( "force", "Reassign even if the target user doesn't exist" );
 		$this->addOption( "norc", "Don't update the recent changes table" );
 		$this->addOption( "report", "Print out details of what would be changed, but don't update it" );
-		$this->addArgs( array( 'from', 'to' ) );
+		$this->addArg( 'from', 'Old user to take edits from' );
+		$this->addArg( 'to', 'New user to give edits to' );
 	}
 	
 	public function execute() {

@@ -30,7 +30,7 @@ class RefreshLinks extends Maintenance {
 		$this->addOption( 'old-redirects-only', 'Only fix redirects with no redirect table entry' );
 		$this->addOption( 'm', 'Maximum replication lag', false, true );
 		$this->addOption( 'e', 'Last page id to refresh', false, true );
-		$this->addArgs( array( 'start' => true ) );
+		$this->addArg( 'start', 'Page_id to start from, default 1' );
 		$this->setBatchSize( 100 );
 	}
 

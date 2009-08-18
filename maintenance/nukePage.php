@@ -29,7 +29,7 @@ class NukePage extends Maintenance {
 		parent::__construct();
 		$this->mDescription = "Remove a page record from the database";
 		$this->addOption( 'delete', "Actually delete the page" );
-		$this->addArgs( array( 'title' ) );
+		$this->addArg( 'title', 'Title to delete' );
 	}
 
 	public function execute() {
