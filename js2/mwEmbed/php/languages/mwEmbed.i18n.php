@@ -23,8 +23,7 @@ $messages['en'] = array(
 	'upload-in-progress' => 'Upload in progress (do not close this window)',
 	'upload-transcoded-status' => 'Transcoded',
 	'uploaded-status' => 'Uploaded',
-	'wgfogg_wrong_version' => 'You have Firefogg installed but it is outdated.
-<a href="http://firefogg.org">Please upgrade</a> ',
+	'wgfogg_wrong_version' => 'You have Firefogg installed but it is outdated. <a href="http://firefogg.org">Please upgrade</a>.',
 	'upload-stats-fileprogres' => '$1 of $2',
 	'mv_upload_completed' => 'Your upload is complete',
 	'mv_upload_done' => '<a href="$1">Your upload <i>should be</i> accessible</a>.',
@@ -36,8 +35,7 @@ $messages['en'] = array(
 	'unknown-error' => 'Unknown error:',
 	'return-to-form' => 'Return to form',
 	'file-exists-duplicate' => 'This file is a duplicate of the following file:',
-	'fileexists' => 'A file with this name exists already.
-Please check <b><tt>$1</tt></b> if you are not sure if you want to change it.',
+	'fileexists' => 'A file with this name exists already. Please check <b><tt>$1</tt></b> if you are not sure if you want to change it.',
 	'fileexists-thumb' => '<center><b>Existing file</b></center>',
 	'ignorewarning' => 'Ignore warning and save file anyway',
 	'file-thumbnail-no' => 'The filename begins with <b><tt>$1</tt></b>',
@@ -67,8 +65,7 @@ Please check <b><tt>$1</tt></b> if you are not sure if you want to change it.',
 	/*
 	 * js file: /libAddMedia/searchLibs/baseRemoteSearch.js
 	 */
-	'imported_from' => '$1 imported from [$2 $3].
-See the original [$4 resource page] for more information.',
+	'imported_from' => '$1 imported from [$2 $3]. See the original [$4 resource page] for more information.',
 
 	/*
 	 * js file: /libAddMedia/mvFirefogg.js
@@ -80,10 +77,8 @@ See the original [$4 resource page] for more information.',
 	'fogg-check_for_fogg' => 'Checking for Firefogg <blink>...</blink>',
 	'fogg-installed' => 'Firefogg is installed',
 	'fogg-for_improved_uplods' => 'For improved uploads:',
-	'fogg-please_install' => '<a href="$1">Install Firefogg</a>.
-More <a href="http://commons.wikimedia.org/wiki/Commons:Firefogg">about Firefogg</a>',
-	'fogg-use_latest_fox' => 'Please first install <a href="http://www.mozilla.com/en-US/firefox/upgrade.html?from=firefogg">Firefox 3.5</a> (or later).
-<i>Then revisit this page to install the <b>Firefogg</b> extention</i>.',
+	'fogg-please_install' => '<a href="$1">Install Firefogg</a>. More <a href="http://commons.wikimedia.org/wiki/Commons:Firefogg">about Firefogg</a>',
+	'fogg-use_latest_fox' => 'Please first install <a href="http://www.mozilla.com/en-US/firefox/upgrade.html?from=firefogg">Firefox 3.5</a> (or later). <i>Then revisit this page to install the <b>Firefogg</b> extension.</i>',
 	'fogg-passthrough_mode' => 'Your selected file is already Ogg or not a video file',
 	'fogg-transcoding' => 'Encoding video to Ogg',
 	'fogg-encoding-done' => 'Encoding complete',
@@ -108,9 +103,9 @@ More <a href="http://commons.wikimedia.org/wiki/Commons:Firefogg">about Firefogg
 	'mv_media_search' => 'Media search',
 	'rsd_box_layout' => 'Box layout',
 	'rsd_list_layout' => 'List layout',
-	'rsd_results_desc' => 'Results ',
-	'rsd_results_next' => 'next ',
-	'rsd_results_prev' => 'previous ',
+	'rsd_results_desc' => 'Results',
+	'rsd_results_next' => 'next',
+	'rsd_results_prev' => 'previous',
 	'rsd_no_results' => 'No search results for <b>$1</b>',
 	'upload_tab' => 'Upload',
 	'rsd_layout' => 'Layout:',
@@ -125,12 +120,9 @@ More <a href="http://commons.wikimedia.org/wiki/Commons:Firefogg">about Firefogg
 	'cc_sa_title' => 'Share Alike',
 	'cc_pd_title' => 'Public Domain',
 	'unknown_license' => 'Unknown license',
-	'no_import_by_url' => 'This user or wiki <b>can not</b> import assets from remote URLs.</p>
-<p>Do you need to login?</p>
-<p>If permissions are set, you may have to enable $wgAllowCopyUploads (<a href="http://www.mediawiki.org/wiki/Manual:$wgAllowCopyUploads">more information</a>).</p>',
+	'no_import_by_url' => 'This user or wiki <b>can not</b> import assets from remote URLs.</p><p>Do you need to login?</p><p>If permissions are set, you may have to enable $wgAllowCopyUploads (<a href="http://www.mediawiki.org/wiki/Manual:$wgAllowCopyUploads">more information</a>).</p>',
 	'results_from' => 'Results from <a href="$1" target="_new" >$2</a>',
-	'missing_desc_see_soruce' => 'This asset is missing a description.
-Please see the [$1 orginal source] and help describe it',
+	'missing_desc_see_soruce' => 'This asset is missing a description. Please see the [$1 orginal source] and help describe it.',
 	'rsd_config_error' => 'Add media wizard configuration error: $1',
 
 	/*
@@ -149,8 +141,7 @@ Please see the [$1 orginal source] and help describe it',
 	'saving_wait' => 'Save in progress (please wait)',
 	'save_done' => 'Save complete',
 	'edit_cancel' => 'Cancel sequence edit',
-	'edit_cancel_confirm' => 'Are you sure you want to cancel your edit?
-Changes will be lost.',
+	'edit_cancel_confirm' => 'Are you sure you want to cancel your edit? Changes will be lost.',
 	'zoom_in' => 'Zoom in',
 	'zoom_out' => 'Zoom out',
 	'cut_clip' => 'Cut clips',
@@ -161,13 +152,9 @@ Changes will be lost.',
 	'rmclip' => 'Remove clip',
 	'clip_in' => 'clip in',
 	'clip_out' => 'clip out',
-	'mv_welcome_to_sequencer' => '<h3>Welcome to the sequencer demo</h3>
-Very <b>limited</b> functionality right now.
-Not much documentation yet either',
-	'no_selected_resource' => '<h3>No resource selected</h3>
-Select a clip to enable editing',
-	'error_edit_multiple' => '<h3>Multiple resources selected</h3>
-Select a single clip to edit it',
+	'mv_welcome_to_sequencer' => '<h3>Welcome to the sequencer demo</h3> Very <b>limited</b> functionality right now. Not much documentation yet either.',
+	'no_selected_resource' => '<h3>No resource selected</h3> Select a clip to enable editing.',
+	'error_edit_multiple' => '<h3>Multiple resources selected</h3> Select a single clip to edit it.',
 	'mv_editor_options' => 'Editor options',
 	'mv_editor_mode' => 'Editor mode',
 	'mv_simple_editor_desc' => 'simple editor (iMovie style)',
@@ -183,18 +170,17 @@ Select a single clip to edit it',
 	'transition_out' => 'Transition out',
 	'effects' => 'Effects stack',
 	'remove_transition' => 'Remove transition',
-	'edit_transin' => 'Edit Transition into clip',
-	'edit_transout' => 'Edit Transition out of clip',
+	'edit_transin' => 'Edit transition into clip',
+	'edit_transout' => 'Edit transition out of clip',
 
 	/*
 	 * js file: /libEmbedVideo/embedVideo.js
 	 */
-	'loading_plugin' => 'loading plugin<blink>...</blink>',
+	'loading_plugin' => 'loading plugin <blink>...</blink>',
 	'select_playback' => 'Set playback preference',
 	'link_back' => 'Link back',
 	'error_load_lib' => 'Error: mv_embed was unable to load required JavaScript libraries.
-Insert script via DOM has failed.
-Please try reloading this page.',
+Insert script via DOM has failed. Please try reloading this page.',
 	'error_swap_vid' => 'Error: mv_embed was unable to swap the video tag for the mv_embed interface',
 	'add_to_end_of_sequence' => 'Add to end of sequence',
 	'missing_video_stream' => 'The video file for this stream is missing',
@@ -232,10 +218,8 @@ Please try reloading this page.',
 	'mv_ogg-player-flowplayer' => 'Flowplayer',
 	'mv_ogg-player-selected' => ' (selected)',
 	'mv_ogg-player-omtkplayer' => 'OMTK Flash Vorbis',
-	'mv_generic_missing_plugin' => 'You browser does not appear to support the following playback type: <b>$1</b><br />
-Visit the <a href="http://commons.wikimedia.org/wiki/Commons:Media_help">Playback Methods</a> page to download a player.<br />',
-	'mv_for_best_experience' => 'For a better video playback experience we recommend:<br />
-<b><a href="http://www.mozilla.com/en-US/firefox/upgrade.html?from=mwEmbed">Firefox 3.5</a></b>',
+	'mv_generic_missing_plugin' => 'You browser does not appear to support the following playback type: <b>$1</b><br />Visit the <a href="http://commons.wikimedia.org/wiki/Commons:Media_help">Playback Methods</a> page to download a player.<br />',
+	'mv_for_best_experience' => 'For a better video playback experience we recommend:<br /><b><a href="http://www.mozilla.com/en-US/firefox/upgrade.html?from=mwEmbed">Firefox 3.5</a>.</b>',
 	'mv_do_not_warn_again' => 'Dissmiss for now.',
 	'players' => 'Players',
 
@@ -274,3 +258,4 @@ Visit the <a href="http://commons.wikimedia.org/wiki/Commons:Media_help">Playbac
 	'size-kilobytes' => '$1 K',
 	'size-bytes' => '$1 B',
 );
+ 
