@@ -137,10 +137,17 @@ abstract class Maintenance {
 	}
 
 	/**
-	 * Add some args that are needed. Used in formatting help
+	 * Add some args that are needed
+	 * @param $arg String Name of the arg, like 'start'
+	 * @param $description String Short description of the arg
+	 * @param $required Boolean Is this required?
 	 */
-	protected function addArgs( $args ) {
-		$this->mArgList = array_merge( $this->mArgList, $args );
+	protected function addArg( $arg, $description, $required = true ) {
+		$this->mArgList[] = array( 
+			'name' => $arg,
+			'desc' => $description, 
+			'require' => $required 
+		);
 	}
 
 	/**
@@ -462,17 +469,23 @@ abstract class Maintenance {
 	 * Run some validation checks on the params, etc
 	 */
 	private function validateParamsAndArgs() {
-		# Check to make sure we've got all the required ones
+		$die = false;
+		# Check to make sure we've got all the required options
 		foreach( $this->mParams as $opt => $info ) {
 			if( $info['require'] && !$this->hasOption( $opt ) ) {
-				$this->error( "Param $opt required.", true );
+				$this->error( "Param $opt required!" );
+				$die = true;
 			}
 		}
-
-		# Also make sure we've got enough arguments
-		if ( count( $this->mArgs ) < count( $this->mArgList ) ) {
-			$this->error( "Not enough arguments passed", true );
+		# Check arg list too
+		foreach( $this->mArgList as $k => $info ) {
+			if( $info['require'] && !$this->hasArg($k) ) {
+				$this->error( "Argument <" . $info['name'] . "> required!" );
+				$die = true;
+			}
 		}
+		
+		if( $die ) $this->maybeHelp( true );
 	}
 
 	/**
@@ -505,11 +518,19 @@ abstract class Maintenance {
 				$this->output( " [--" . implode( array_keys( $this->mParams ), "|--" ) . "]" );
 			}
 			if( $this->mArgList ) {
-				$this->output( " <" . implode( $this->mArgList, "> <" ) . ">" );
+				$this->output( " <" );
+				foreach( $this->mArgList as $k => $arg ) {
+					$this->output( $arg['name'] . ">" );
+					if( $k < count( $this->mArgList ) - 1 )
+						$this->output( " <" );
+				}
 			}
 			$this->output( "\n" );
 			foreach( $this->mParams as $par => $info ) {
 				$this->output( "\t$par : " . $info['desc'] . "\n" );
+			}
+			foreach( $this->mArgList as $info ) {
+				$this->output( "\t<" . $info['name'] . "> : " . $info['desc'] . "\n" );
 			}
 			die( 1 );
 		}

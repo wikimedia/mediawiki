@@ -42,7 +42,7 @@ class MoveBatch extends Maintenance {
 		$this->addOption( 'u', "User to perform move", false, true );
 		$this->addOption( 'r', "Reason to move page", false, true );
 		$this->addOption( 'i', "Interval to sleep between moves" );
-		$this->addArgs( array( 'listfile' ) );
+		$this->addArg( 'listfile', 'List of pages to move, newline delimited', false );
 	}
 	
 	public function execute() {

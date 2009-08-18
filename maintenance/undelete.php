@@ -14,7 +14,7 @@ class Undelete extends Maintenance {
 		$this->mDescription = "Undelete a page";
 		$this->addOption( 'u', 'The user to perform the undeletion', false, true );
 		$this->addOption( 'r', 'The reason to undelete', false, true );
-		$this->addArgs( array( 'pagename' ) );
+		$this->addArg( 'pagename', 'Page to undelete' );
 	}
 
 	public function execute() {

@@ -23,7 +23,7 @@ require_once( dirname(__FILE__) . '/Maintenance.php' );
 
 class WaitForSlave extends Maintenance {
 	public function __construct() {
-		$this->addArgs( array( 'maxlag' ) );
+		$this->addArg( 'maxlag', 'How long to wait for the slaves, default 10 seconds', false );
 	}
 	public function execute() {
 		wfWaitForSlaves( $this->getArg( 0, 10 ) );

@@ -30,7 +30,9 @@ class FixTimestamps extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->mDescription = "";
-		$this->addArgs( array( 'offset', 'start', 'end' ) );
+		$this->addArg( 'offset', '' );
+		$this->addArg( 'start', 'Starting timestamp' );
+		$this->addArg( 'end', 'Ending timestamp' );
 	}
 
 	public function execute() {

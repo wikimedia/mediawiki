@@ -32,7 +32,7 @@ class EditCLI extends Maintenance {
 		$this->addOption( 'b', 'Bot edit' );
 		$this->addOption( 'a', 'Enable autosummary' );
 		$this->addOption( 'no-rc', 'Do not show the change in recent changes' );
-		$this->addArgs( array( 'title' ) );
+		$this->addArg( 'title', 'Title of article to edit' );
 	}
 
 	public function execute() {

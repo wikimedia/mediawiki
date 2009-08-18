@@ -27,7 +27,7 @@ class CleanupSpam extends Maintenance {
 		parent::__construct();
 		$this->mDescription = "Cleanup all spam from a given hostname";
 		$this->addOption( 'all', 'Check all wikis in $wgLocalDatabases' );
-		$this->addArgs( array( 'hostname' ) );
+		$this->addArg( 'hostname', 'Hostname that was spamming' );
 	}
 
 	public function execute() {
