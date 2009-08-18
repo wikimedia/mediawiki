@@ -1756,7 +1756,7 @@ $NEWPAGE
 'protect-title'               => '更"$1"之緘',
 'prot_1movedto2'              => '[[$1]]遷至[[$2]]',
 'protect-legend'              => '准緘',
-'protectcomment'              => '贊曰',
+'protectcomment'              => '贊因',
 'protectexpiry'               => '屆期',
 'protect_expiry_invalid'      => '屆期不明。',
 'protect_expiry_old'          => '屆期已過。',

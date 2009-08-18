@@ -1983,7 +1983,7 @@ wiki: $PAGEEDITOR_WIKI
 'protect-title'               => '改緊「$1」嘅保護等級',
 'prot_1movedto2'              => '[[$1]]搬到去[[$2]]',
 'protect-legend'              => '確認保護',
-'protectcomment'              => '註解:',
+'protectcomment'              => '原因:',
 'protectexpiry'               => '到期:',
 'protect_expiry_invalid'      => '到期時間唔正確。',
 'protect_expiry_old'          => '到期時間係響之前過去嘅。',
