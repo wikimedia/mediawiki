@@ -414,6 +414,7 @@ this. Was used when mwEmbed was going to be an extension.
 * Fixed XSS vulnerability for Internet Explorer clients (only pre-release 
   versions of MediaWiki were affected).
 * (bug 14817) Moving a page to a subpage of itself moves it twice
+* (bug 20289) $wgMaximumMovedPages should only count pages actually moved
 
 == API changes in 1.16 ==
 

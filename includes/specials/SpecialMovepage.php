@@ -490,6 +490,11 @@ class MovePageForm {
 					);
 					$newLink = $skin->linkKnown( $newSubpage );
 					$extraOutput []= wfMsgHtml( 'movepage-page-moved', $oldLink, $newLink );
+					++$count;
+					if( $count >= $wgMaximumMovedPages ) {
+						$extraOutput []= wfMsgExt( 'movepage-max-pages', array( 'parsemag', 'escape' ), $wgLang->formatNum( $wgMaximumMovedPages ) );
+						break;
+					}
 				} else {
 					$oldLink = $skin->linkKnown( $oldSubpage );
 					$newLink = $skin->link( $newSubpage );
@@ -497,11 +502,6 @@ class MovePageForm {
 				}
 			}
 
-			++$count;
-			if( $count >= $wgMaximumMovedPages ) {
-				$extraOutput []= wfMsgExt( 'movepage-max-pages', array( 'parsemag', 'escape' ), $wgLang->formatNum( $wgMaximumMovedPages ) );
-				break;
-			}
 		}
 
 		if( $extraOutput !== array() ) {
