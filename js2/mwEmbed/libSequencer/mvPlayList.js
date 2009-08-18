@@ -1052,7 +1052,7 @@ mvPlayList.prototype = {
 	},
 	playerPixelWidth : function()
 	{
-		var player = $j('#mv_embedded_player_'+this.id).get(0);
+		var player = $j('#dc_'+this.id).get(0);
 		if(typeof player!='undefined' && player['offsetWidth'])
 			return player.offsetWidth;
 		else
@@ -1060,7 +1060,7 @@ mvPlayList.prototype = {
 	},
 	playerPixelHeight : function()
 	{
-		var player = $j('#mv_embedded_player_'+this.id).get(0);
+		var player = $j('#dc_'+this.id).get(0);
 		if(typeof player!='undefined' && player['offsetHeight'])
 			return player.offsetHeight;
 		else

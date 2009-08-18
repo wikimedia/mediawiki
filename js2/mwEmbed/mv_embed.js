@@ -27,7 +27,7 @@ var MV_EMBED_VERSION = '1.0r19';
  * set up mwConfig global overide any of the defaultMwConfig values:
  * @@ more config valuse on the way ;)
  */
-var defaultMwConfig = { 
+var defaultMwConfig = {
 	'skin_name': 'kskin',
 	'video_size':'400x300' 
 }
@@ -60,11 +60,9 @@ var parseUri=function(d){var o=parseUri.options,value=o.parser[o.strictMode?"str
 if( !mv_embed_path ){
 	var mv_embed_path = getMvEmbedPath();
 }
-var jQueryUiVN = 'jquery.ui-1.7.1'; 
-
 
 //setup the skin path: 
-var mv_jquery_skin_path = mv_embed_path + 'jquery/' + jQueryUiVN + '/themes/base/';
+var mv_jquery_skin_path = mv_embed_path + 'jquery/jquery.ui/themes/base/';
 var mv_skin_img_path = mv_embed_path + 'skins/' + mwConfig['skin_name'] + '/images/';
 var mv_default_thumb_url = mv_skin_img_path + 'vid_default_thumb.jpg';
 
@@ -99,37 +97,20 @@ loadGM({
  * 		if an array $j.className become jquery.className.js
  * 		if an asssociative object then key => value paris are used
  */
-if(typeof mvClassPaths == 'undefined')
-	mvClassPaths = {};
+if(typeof mvAutoLoadClasses == 'undefined')
+	mvAutoLoadClasses = {};
 	
-function lcPaths( path, gClasses , opt){	
-	if(!opt)
-		opt = {};
-	if(typeof opt['j_replace'] == 'undefined')
-		opt['j_replace'] = 'jquery.';	
-	if(!path)
-		path = '';	
-	if(gClasses.length){
-		//do array loop: 
-		for(var i=0; i < gClasses.length; i++){
-			if(typeof gClasses[i] != 'undefined'){
-				//setup normal replacement of j with jquery			
-				var jsName = ( gClasses[i].substr(0,3) == '$j.' ) ? opt['j_replace'] + gClasses[i].substr(3) : gClasses[i];							
-				mvClassPaths[ gClasses[i] ] = path + jsName + '.js';
-			}
-		}		
-	}else{
-		//do object loop: 
-		for(var i in gClasses){			
-			//assume object with key:path:
-			mvClassPaths[i] = path + gClasses[ i ];
-		}
-	}		
+//the script that loads the classet
+function lcPaths( classSet){
+	for(var i in classSet){
+		mvAutoLoadClasses[i] = classSet[i];
+	}
 }
+	
 function mvGetClassPath(k){		
-	if( mvClassPaths[k] ){
+	if( mvAutoLoadClasses[k] ){
 		//js_log('got classpath:' + k +  ' : '+ mvClassPaths[k]);
-		return mvClassPaths[k];
+		return mvAutoLoadClasses[k];
 	}else{
 		return js_error('could not find path for requested class ' + k );
 	}
@@ -142,95 +123,98 @@ function lcCssPath(cssSet){
 		mvCssPaths[i]= mv_embed_path + cssSet[i];
 	}
 }
-//core and (non-standard named files relative to class the init):
-lcPaths('',{
-	'mv_embed'			: 'mv_embed.js',
-	'window.jQuery'		: 'jquery/jquery-1.3.2.js',	
-	'$j.fn.pngFix'		: 'jquery/plugins/jquery.pngFix.js',
-	'$j.fn.autocomplete': 'jquery/plugins/jquery.autocomplete.js',
-	'$j.fn.hoverIntent'	: 'jquery/plugins/jquery.hoverIntent.js',
-	'$j.fn.datePicker'	: 'jquery/plugins/jquery.datePicker.js',
-	'$j.ui'				: 'jquery/jquery.ui-1.7.1/ui/ui.core.js',	
-	'$j.fn.ColorPicker'	: 'libClipEdit/colorpicker/js/colorpicker.js',
-	'$j.Jcrop'			: 'libClipEdit/Jcrop/js/jquery.Jcrop.js',
-	'$j.fn.simpleUploadForm': 'libAddMedia/simpleUploadForm.js'
+
+/*
+ * --  Load Class Paths --
+ * 
+ * MUST BE VALID JSON (NOT JS) 
+ * is used by the scriptloader to autoLoad classes (so we only define this once for php & javascript) 
+ * 
+ * this is more verbose than earlier version that compressed paths
+ * but its all good gziping help compress repetative path strings
+ * grouped by 
+ * 
+ * right now php AutoLoader only reads this mv_embed.js file
+ * in the future we could have multiple lcPath calls that php reads 
+ * (if our autoloading class list becomes too long) just have to add thouse 
+ * files to the jsAutoLoader file list. 
+ */   
+lcPaths({
+	"mv_embed"			: "mv_embed.js",
+	"window.jQuery"		: "jquery/jquery-1.3.2.js",	
+	"$j.fn.pngFix"		: "jquery/plugins/jquery.pngFix.js",
+	"$j.fn.autocomplete": "jquery/plugins/jquery.autocomplete.js",
+	"$j.fn.hoverIntent"	: "jquery/plugins/jquery.hoverIntent.js",
+	"$j.fn.datePicker"	: "jquery/plugins/jquery.datePicker.js",
+	"$j.ui"				: "jquery/jquery.ui/ui/ui.core.js",	
+	"$j.fn.ColorPicker"	: "libClipEdit/colorpicker/js/colorpicker.js",
+	"$j.Jcrop"			: "libClipEdit/Jcrop/js/jquery.Jcrop.js",
+	"$j.fn.simpleUploadForm": "libAddMedia/simpleUploadForm.js",
+	
+	"baseSkin"	: "skins/baseSkin.js",
+	"kskin"		: "skins/kskin/kskin.js",
+	"mvpcf"		: "skins/mvpcf/mvpcf.js",
+	
+	"$j.secureEvalJSON"	: "jquery/plugins/jquery.secureEvalJSON.js",		
+	"$j.cookie"			: "jquery/plugins/jquery.cookie.js",
+	"$j.contextMenu"	: "jquery/plugins/jquery.contextMenu.js",
+	
+	"$j.effects.blind"		: "jquery/jquery.ui/ui/effects.blind.js",
+	"$j.effects.drop"		: "jquery/jquery.ui/ui/effects.drop.js",
+	"$j.effects.pulsate"	: "jquery/jquery.ui/ui/effects.pulsate.js",
+	"$j.effects.transfer"	: "jquery/jquery.ui/ui/effects.transfer.js",
+	"$j.ui.droppable"		: "jquery/jquery.ui/ui/ui.droppable.js",
+	"$j.ui.slider"			: "jquery/jquery.ui/ui/ui.slider.js",
+	"$j.effects.bounce"		: "jquery/jquery.ui/ui/effects.bounce.js",
+	"$j.effects.explode"	: "jquery/jquery.ui/ui/effects.explode.js",
+	"$j.effects.scale"		: "jquery/jquery.ui/ui/effects.scale.js",
+	"$j.ui.datepicker"		: "jquery/jquery.ui/ui/ui.datepicker.js",
+	"$j.ui.progressbar"		: "jquery/jquery.ui/ui/ui.progressbar.js",
+	"$j.ui.sortable"		: "jquery/jquery.ui/ui/ui.sortable.js",
+	"$j.effects.clip"		: "jquery/jquery.ui/ui/effects.clip.js",
+	"$j.effects.fold"		: "jquery/jquery.ui/ui/effects.fold.js",
+	"$j.effects.shake"		: "jquery/jquery.ui/ui/effects.shake.js",
+	"$j.ui.dialog"			: "jquery/jquery.ui/ui/ui.dialog.js",
+	"$j.ui.resizable"		: "jquery/jquery.ui/ui/ui.resizable.js",
+	"$j.ui.tabs"			: "jquery/jquery.ui/ui/ui.tabs.js",
+	"$j.effects.core"		: "jquery/jquery.ui/ui/effects.core.js",
+	"$j.effects.highlight"	: "jquery/jquery.ui/ui/effects.highlight.js",
+	"$j.effects.slide"		: "jquery/jquery.ui/ui/effects.slide.js",
+	"$j.ui.accordion"		: "jquery/jquery.ui/ui/ui.accordion.js",
+	"$j.ui.draggable"		: "jquery/jquery.ui/ui/ui.draggable.js",
+	"$j.ui.selectable"		: "jquery/jquery.ui/ui/ui.selectable.js",
+	
+	"mvFirefogg"			: "libAddMedia/mvFirefogg.js",
+	"mvAdvFirefogg"			: "libAddMedia/mvAdvFirefogg.js",
+    "mvBaseUploadInterface"	: "libAddMedia/mvBaseUploadInterface.js",
+	"remoteSearchDriver"	: "libAddMedia/remoteSearchDriver.js",
+	"seqRemoteSearchDriver" : "libAddMedia/seqRemoteSearchDriver.js",	
+	
+	"baseRemoteSearch"		: "libAddMedia/searchLibs/baseRemoteSearch.js",
+	"mediaWikiSearch"		: "libAddMedia/searchLibs/mediaWikiSearch.js",
+	"metavidSearch"			: "libAddMedia/searchLibs/metavidSearch.js",
+	"archiveOrgSearch"		: "libAddMedia/searchLibs/archiveOrgSearch.js",
+	"baseRemoteSearch"		: "libAddMedia/searchLibs/baseRemoteSearch.js",
+	
+	"mvClipEdit"			: "libClipEdit/mvClipEdit.js",
+	
+	"embedVideo"		: "libEmbedVideo/embedVideo.js",
+	"flashEmbed"		: "libEmbedVideo/flashEmbed.js",
+	"genericEmbed"		: "libEmbedVideo/genericEmbed.js",
+	"htmlEmbed"			: "libEmbedVideo/htmlEmbed.js",
+	"javaEmbed"			: "libEmbedVideo/javaEmbed.js",
+	"nativeEmbed"		: "libEmbedVideo/nativeEmbed.js",
+	"quicktimeEmbed"	: "libEmbedVideo/quicktimeEmbed.js",
+	"vlcEmbed"			: "libEmbedVideo/vlcEmbed.js",
+	
+	"mvPlayList"		: "libSequencer/mvPlayList.js",
+	"mvSequencer"		: "libSequencer/mvSequencer.js",
+	"mvFirefoggRender"	: "libSequencer/mvFirefoggRender.js",
+	"mvTimedEffectsEdit": "libSequencer/mvTimedEffectsEdit.js",
+	
+	"libTimedText"		: "libTimedText/mvTextInterface.js"	
+	
 });	
-//query plugins
-lcPaths( 'jquery/plugins/', [
-	'$j.secureEvalJSON',	
-	'$j.cookie',
-	'$j.contextMenu'			
-]);
-//jquery ui
-lcPaths('jquery/jquery.ui-1.7.1/ui/', [	
-	'$j.effects.blind',
-	'$j.effects.drop',
-	'$j.effects.pulsate',
-	'$j.effects.transfer',
-	'$j.ui.droppable',
-	'$j.ui.slider',
-	'$j.effects.bounce',
-	'$j.effects.explode',
-	'$j.effects.scale',
-	'$j.ui.datepicker',
-	'$j.ui.progressbar',
-	'$j.ui.sortable',
-	'$j.effects.clip',
-	'$j.effects.fold',
-	'$j.effects.shake',
-	'$j.ui.dialog',
-	'$j.ui.resizable',
-	'$j.ui.tabs',
-	'$j.effects.core',
-	'$j.effects.highlight',
-	'$j.effects.slide',
-	'$j.ui.accordion',
-	'$j.ui.draggable',
-	'$j.ui.selectable'
-], 
-{'j_replace':''});
-//add mediaLibs
-lcPaths('libAddMedia/', [
-	'mvFirefogg',
-	'mvAdvFirefogg',
-    'mvBaseUploadInterface',
-	'remoteSearchDriver',
-	'seqRemoteSearchDriver'	
-]);
-//search libs: 
-lcPaths('libAddMedia/searchLibs/', [
-	'baseRemoteSearch',
-	'mediaWikiSearch',
-	'metavidSearch',
-	'archiveOrgSearch',
-	'baseRemoteSearch'
-]);			
-//libclip edit
-lcPaths( 'libClipEdit/', [
-	'mvClipEdit'	
-])	
-//libEmbedObj (we could load all these clasess in embedVideo):
-lcPaths( 'libEmbedVideo/', [
-	'embedVideo',
-	'flashEmbed',
-	'genericEmbed',
-	'htmlEmbed',
-	'javaEmbed',
-	'nativeEmbed',
-	'quicktimeEmbed',
-	'vlcEmbed'
-])
-//libSequencer:	
-lcPaths( 'libSequencer/', [
-	'mvPlayList',
-	'mvSequencer',
-	'mvFirefoggRender',
-	'mvTimedEffectsEdit'
-])
-//libTimedText:
-lcPaths( 'libTimedText/', [
-	'mvTextInterface'
-]);
 
 //depencency mapping for css files for self contained included plugins:
 lcCssPath({	

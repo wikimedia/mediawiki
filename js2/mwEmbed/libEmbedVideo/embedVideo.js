@@ -62,8 +62,7 @@ loadGM({
 	"mv_for_best_experience": "For a better video playback experience we recommend:<br> <b><a href=\"http://www.mozilla.com/en-US/firefox/upgrade.html?from=mwEmbed\">Firefox 3.5</a></b>",
 	"mv_do_not_warn_again": "Dissmiss for now.",
 	
-	"players": "Players",
-		
+	"players": "Players"		
 });
 
 var default_video_attributes = {
@@ -123,170 +122,8 @@ var mv_default_source_attr= new Array(
 );
 //set the dismissNativeWarn flag: 
 _global['dismissNativeWarn'] = false;
-/*
-* Converts all occurrences of <video> tag into video object
-*/
-function mv_video_embed(swap_done_callback, force_id){
-	mvEmbed.init( swap_done_callback, force_id );
-}
-mvEmbed = {	
-	//flist stores the set of functions to run after the video has been swaped in. 
-	flist:new Array(),
-	init:function( swap_done_callback, force_id ){
-		
-		if(swap_done_callback)
-			mvEmbed.flist.push( swap_done_callback );
-			
-		//get mv_embed location if it has not been set
-		js_log('mv_embed ' + MV_EMBED_VERSION);				
-		
-		var loadPlaylistLib=false;						
-		
-		var eAction = function(this_elm){
-			js_log( "Do SWAP: " + $j(this_elm).attr("id") + ' tag: '+ this_elm.tagName.toLowerCase() );
-					
-			if( $j(this_elm).attr("id") == '' ){
-				$j(this_elm).attr("id", 'v'+ global_player_list.length);
-			}			
-			//stre a global reference to the id	
-		   global_player_list.push( $j(this_elm).attr("id") );
-		   //if video doSwap
-		   switch( this_elm.tagName.toLowerCase()){
-			   case 'video':
-				    var videoInterface = new embedVideo(this_elm);	 
-					mvEmbed.swapEmbedVideoElement( this_elm, videoInterface );
-			   break;
-			   case 'audio':
-				   var videoInterface = new embedVideo(this_elm);	 
-				   videoInterface.type ='audio';
-				   mvEmbed.swapEmbedVideoElement( this_elm, videoInterface );
-			   break;
-			   case 'playlist':
-				   loadPlaylistLib=true;
-			   break;
-		   }		
-		}
-		
-		if( force_id == null && force_id != '' ){
-			var j_selector = 'video,audio,playlist';			   	
-		}else{
-			var j_selector = '#' + force_id;
-		}
-		//process selected elements: 
-		//ie8 does not play well with the jQuery video,audio,playlist selector use native: 
-		if($j.browser.msie && $j.browser.version >= 8){
-			jtags = j_selector.split(',');				
-			for( var i=0; i < jtags.length; i++){				
-				$j( document.getElementsByTagName( jtags[i] )).each(function(){
-					eAction(this);
-				});
-			}				
-		}else{			
-			$j( j_selector ).each(function(){
-				eAction(this);
-			});	
-		}				
-		if(loadPlaylistLib){		
-			mvJsLoader.doLoad([ 
-				'mvPlayList',
-				'$j.ui',	//include dialog for pop-ing up thigns
-				'$j.ui.dialog'	
-			], function(){
-				$j('playlist').each(function(){															 														 				
-					//create new playlist interface:
-					var plObj = new mvPlayList( this );
-					mvEmbed.swapEmbedVideoElement(this, plObj);
-					var added_height = plObj.pl_layout.title_bar_height + plObj.pl_layout.control_height;
-					//move into a blocking display container with height + controls + title height: 
-					$j('#'+plObj.id).wrap('<div style="display:block;height:' + (plObj.height + added_height) + 'px;"></div>');										
-				});
-			});
-		}	   
-		this.checkClipsReady();
-	},
-	/*
-	* swapEmbedVideoElement
-	* takes a video element as input and swaps it out with
-	* an embed video interface based on the video_elements attributes
-	*/
-	swapEmbedVideoElement:function(video_element, videoInterface){
-		js_log('do swap ' + videoInterface.id + ' for ' + video_element);
-		embed_video = document.createElement('div');
-		//make sure our div has a hight/width set:
-			
-		$j(embed_video).css({
-			'width':videoInterface.width,
-			'height':videoInterface.height
-		}).html( mv_get_loading_img() );		
-		//inherit the video interface
-		for(var method in videoInterface){ //for in loop oky in Element context	
-			if(method!='readyState'){ //readyState crashes IE
-				if(method=='style'){
-						embed_video.setAttribute('style', videoInterface[method]);
-				}else if(method=='class'){
-					if( $j.browser.msie )
-						embed_video.setAttribute("className", videoInterface['class']);
-					else
-						embed_video.setAttribute("class", videoInterface['class']);
-				}else{
-					//normal inherit:
-					embed_video[method]=videoInterface[method];
-				}
-			}
-			//string -> boolean:
-			if(embed_video[method]=="false")embed_video[method]=false;
-			if(embed_video[method]=="true")embed_video[method]=true;
-		}	
-		///js_log('did vI style');  
-		//now swap out the video element for the embed_video obj:	  
-		$j(video_element).after(embed_video).remove();	
-		//js_log('did swap');		  
-		$j('#'+embed_video.id).get(0).on_dom_swap();	
-			  
-		// now that "embed_video" is stable, do more initialization (if we are ready)
-		if($j('#'+embed_video.id).get(0).loading_external_data == false && 
-			   $j('#'+embed_video.id).get(0).init_with_sources_loadedDone == false){
-			//load and set ready state since source are available: 
-			$j('#'+embed_video.id).get(0).init_with_sources_loaded();
-		}
-		
-		js_log('done with child: ' + embed_video.id + ' len:' + global_player_list.length);
-		return true;
-	},
-	//this should not be needed.
-	checkClipsReady : function(){
-		//js_log('checkClipsReady');
-		var is_ready=true;	  
-		  for(var i=0; i < global_player_list.length; i++){
-			  if( $j('#'+global_player_list[i]).length !=0){
-				  var cur_vid =  $j('#'+global_player_list[i]).get(0);		  
-				is_ready = ( cur_vid.ready_to_play ) ? is_ready : false;
-				if( !is_ready && cur_vid.load_error ){ 
-					is_ready=true;
-					$j(cur_vid).html( cur_vid.load_error );
-				}
-			}
-		}
-		if( is_ready ){
-			mvEmbed.allClipsReady = true;
-			// run queued functions 
-			//js_log('run queded functions:' + mvEmbed.flist[0]);
-			mvEmbed.runFlist();
-		}else{				 
-			 setTimeout( 'mvEmbed.checkClipsReady()', 25 );
-		 }			  
-	},
-	runFlist:function(){
-		while (this.flist.length){				
-			this.flist.shift()();
-		}
-	}
-}
 
-/* 
- * controlsBuilder:
- * 
- */
+
 var ctrlBuilder = {
 	height:29,
 	supports:{
@@ -678,6 +515,166 @@ var ctrlBuilder = {
 			}
 		}
 	}	
+}
+
+/*
+* Converts all occurrences of <video> tag into video object
+*/
+function mv_video_embed(swap_done_callback, force_id){
+	mvEmbed.init( swap_done_callback, force_id );
+}
+mvEmbed = {	
+	//flist stores the set of functions to run after the video has been swaped in. 
+	flist:new Array(),
+	init:function( swap_done_callback, force_id ){
+		
+		if(swap_done_callback)
+			mvEmbed.flist.push( swap_done_callback );
+			
+		//get mv_embed location if it has not been set
+		js_log('mv_embed ' + MV_EMBED_VERSION);				
+		
+		var loadPlaylistLib=false;						
+		
+		var eAction = function(this_elm){
+			js_log( "Do SWAP: " + $j(this_elm).attr("id") + ' tag: '+ this_elm.tagName.toLowerCase() );
+					
+			if( $j(this_elm).attr("id") == '' ){
+				$j(this_elm).attr("id", 'v'+ global_player_list.length);
+			}			
+			//stre a global reference to the id	
+		   global_player_list.push( $j(this_elm).attr("id") );
+		   //if video doSwap
+		   switch( this_elm.tagName.toLowerCase()){
+			   case 'video':
+				    var videoInterface = new embedVideo(this_elm);	 
+					mvEmbed.swapEmbedVideoElement( this_elm, videoInterface );
+			   break;
+			   case 'audio':
+				   var videoInterface = new embedVideo(this_elm);	 
+				   videoInterface.type ='audio';
+				   mvEmbed.swapEmbedVideoElement( this_elm, videoInterface );
+			   break;
+			   case 'playlist':
+				   loadPlaylistLib=true;
+			   break;
+		   }		
+		}
+		
+		if( force_id == null && force_id != '' ){
+			var j_selector = 'video,audio,playlist';			   	
+		}else{
+			var j_selector = '#' + force_id;
+		}
+		//process selected elements: 
+		//ie8 does not play well with the jQuery video,audio,playlist selector use native: 
+		if($j.browser.msie && $j.browser.version >= 8){
+			jtags = j_selector.split(',');				
+			for( var i=0; i < jtags.length; i++){				
+				$j( document.getElementsByTagName( jtags[i] )).each(function(){
+					eAction(this);
+				});
+			}				
+		}else{			
+			$j( j_selector ).each(function(){
+				eAction(this);
+			});	
+		}				
+		if(loadPlaylistLib){		
+			mvJsLoader.doLoad([ 
+				'mvPlayList',
+				'$j.ui',	//include dialog for pop-ing up thigns
+				'$j.ui.dialog'	
+			], function(){
+				$j('playlist').each(function(){															 														 				
+					//create new playlist interface:
+					var plObj = new mvPlayList( this );
+					mvEmbed.swapEmbedVideoElement(this, plObj);
+					var added_height = plObj.pl_layout.title_bar_height + plObj.pl_layout.control_height;
+					//move into a blocking display container with height + controls + title height: 
+					$j('#'+plObj.id).wrap('<div style="display:block;height:' + (plObj.height + added_height) + 'px;"></div>');										
+				});
+			});
+		}	   
+		this.checkClipsReady();
+	},
+	/*
+	* swapEmbedVideoElement
+	* takes a video element as input and swaps it out with
+	* an embed video interface based on the video_elements attributes
+	*/
+	swapEmbedVideoElement:function(video_element, videoInterface){
+		js_log('do swap ' + videoInterface.id + ' for ' + video_element);
+		embed_video = document.createElement('div');
+		//make sure our div has a hight/width set:
+			
+		$j(embed_video).css({
+			'width':videoInterface.width,
+			'height':videoInterface.height
+		}).html( mv_get_loading_img() );		
+		//inherit the video interface
+		for(var method in videoInterface){ //for in loop oky in Element context	
+			if(method!='readyState'){ //readyState crashes IE
+				if(method=='style'){
+						embed_video.setAttribute('style', videoInterface[method]);
+				}else if(method=='class'){
+					if( $j.browser.msie )
+						embed_video.setAttribute("className", videoInterface['class']);
+					else
+						embed_video.setAttribute("class", videoInterface['class']);
+				}else{
+					//normal inherit:
+					embed_video[method]=videoInterface[method];
+				}
+			}
+			//string -> boolean:
+			if(embed_video[method]=="false")embed_video[method]=false;
+			if(embed_video[method]=="true")embed_video[method]=true;
+		}	
+		///js_log('did vI style');  
+		//now swap out the video element for the embed_video obj:	  
+		$j(video_element).after(embed_video).remove();	
+		//js_log('did swap');		  
+		$j('#'+embed_video.id).get(0).on_dom_swap();	
+			  
+		// now that "embed_video" is stable, do more initialization (if we are ready)
+		if($j('#'+embed_video.id).get(0).loading_external_data == false && 
+			   $j('#'+embed_video.id).get(0).init_with_sources_loadedDone == false){
+			//load and set ready state since source are available: 
+			$j('#'+embed_video.id).get(0).init_with_sources_loaded();
+		}
+		
+		js_log('done with child: ' + embed_video.id + ' len:' + global_player_list.length);
+		return true;
+	},
+	//this should not be needed.
+	checkClipsReady : function(){
+		//js_log('checkClipsReady');
+		var is_ready=true;	  
+		  for(var i=0; i < global_player_list.length; i++){
+			  if( $j('#'+global_player_list[i]).length !=0){
+				  var cur_vid =  $j('#'+global_player_list[i]).get(0);		  
+				is_ready = ( cur_vid.ready_to_play ) ? is_ready : false;
+				if( !is_ready && cur_vid.load_error ){ 
+					is_ready=true;
+					$j(cur_vid).html( cur_vid.load_error );
+				}
+			}
+		}
+		if( is_ready ){
+			mvEmbed.allClipsReady = true;
+			// run queued functions 
+			//js_log('run queded functions:' + mvEmbed.flist[0]);
+			mvEmbed.runFlist();
+		}else{				 
+			 setTimeout( 'mvEmbed.checkClipsReady()', 25 );
+		 }			  
+	},
+	runFlist:function(){
+		while (this.flist.length){				
+			this.flist.shift()();
+		}
+	}
 }
 
 /**
