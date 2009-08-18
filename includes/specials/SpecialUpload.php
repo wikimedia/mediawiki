@@ -39,7 +39,7 @@ class UploadForm extends SpecialPage {
 
 	protected function initForm() {
 		global $wgRequest, $wgUser;
-		
+
 		if ( is_null( $this->mRequest ) ) {
 			$request = $wgRequest;
 		} else {
@@ -96,7 +96,7 @@ class UploadForm extends SpecialPage {
 
 		$this->setHeaders();
 		$this->outputHeader();
-		
+
 		$this->initForm();
 
 		# Check uploading enabled
@@ -606,7 +606,7 @@ class UploadForm extends SpecialPage {
 		$wgOut->addHTML(
 			Xml::openElement( 'form', array( 'method' => 'post', 'action' => $titleObj->getLocalURL( 'action=submit' ),
 				 'enctype' => 'multipart/form-data', 'id' => 'uploadwarning' ) ) . "\n" .
-			Xml::hidden('wpEditToken', $wgUser->editToken()) .
+			Xml::hidden('wpEditToken', $wgUser->editToken(), array("id" => 'wpEditToken')) .
 			Xml::hidden( 'wpIgnoreWarning', '1' ) . "\n" .
 			Xml::hidden( 'wpSourceType', 'stash' ) . "\n" .
 			Xml::hidden( 'wpSessionKey', $this->mSessionKey ) . "\n" .
@@ -833,7 +833,7 @@ wgUploadAutoFill = {$autofill};
 		$wgOut->addHTML(
 			 Xml::openElement( 'form', array( 'method' => 'post', 'action' => $titleObj->getLocalURL( 'action=submit' ),
 				 'enctype' => 'multipart/form-data', 'id' => 'mw-upload-form' ) ) .
-			 Xml::hidden('wpEditToken', $wgUser->editToken()) .
+			 Xml::hidden('wpEditToken', $wgUser->editToken(), array('id' => 'wpEditToken')) .
 			 Xml::openElement( 'fieldset' ) .
 			 Xml::element( 'legend', null, wfMsg( 'upload' ) ) .
 			 Xml::openElement( 'table', array( 'border' => '0', 'id' => 'mw-upload-table' ) ) .

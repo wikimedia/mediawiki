@@ -19,7 +19,7 @@ loadGM({
 	
 });
 
-var firefogg_install_inks =  {
+var firefogg_install_links =  {
 	'macosx':	'http://firefogg.org/macosx/Firefogg.xpi',
 	'win32'	:	'http://firefogg.org/win32/Firefogg.xpi',
 	'linux' :	'http://firefogg.org/linux/Firefogg.xpi'

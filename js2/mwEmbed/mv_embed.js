@@ -62,7 +62,7 @@ if( !mv_embed_path ){
 }
 
 //setup the skin path: 
-var mv_jquery_skin_path = mv_embed_path + 'jquery/jquery.ui/themes/base/';
+var mv_jquery_skin_path = mv_embed_path + 'jquery/jquery.ui/themes/redmond/';
 var mv_skin_img_path = mv_embed_path + 'skins/' + mwConfig['skin_name'] + '/images/';
 var mv_default_thumb_url = mv_skin_img_path + 'vid_default_thumb.jpg';
 
