@@ -66,8 +66,8 @@ function doJsonMerge( $json_txt ) {
 	global $curFileName;
 
 	$out = "\n\t/*
-	\t * js file: {$curFileName}
-	\t */\n";
+\t * js file: {$curFileName}
+\t */\n";
 	$jmsg = json_decode( '{' . $json_txt . '}', true );
 	if ( count( $jmsg ) != 0 ) {
 		foreach ( $jmsg as $k => $v ) {
