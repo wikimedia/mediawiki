@@ -273,7 +273,6 @@ $messages = array(
 'aboutsite'            => 'Пра {{GRAMMAR:вінавальны|{{SITENAME}}}}',
 'aboutpage'            => 'Project:Пра {{GRAMMAR:вінавальны|{{SITENAME}}}}',
 'copyright'            => 'Матэрыял даступны на ўмовах $1.',
-'copyrightpagename'    => 'Аўтарскія правы {{GRAMMAR:родны|{{SITENAME}}}}',
 'copyrightpage'        => '{{ns:project}}:Аўтарскія правы',
 'currentevents'        => 'Актуальныя падзеі',
 'currentevents-url'    => 'Project:Актуальныя падзеі',

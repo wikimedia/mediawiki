@@ -321,7 +321,6 @@ Li sighenti cullegamenti so in linga ingrese:
 'aboutsite'            => 'Infuimmazioni in {{SITENAME}}',
 'aboutpage'            => 'Project:Infuimmazioni',
 'copyright'            => "Cuntinuddi suggetti a licèntzia d'usu $1.",
-'copyrightpagename'    => 'Lu copyright i {{SITENAME}}',
 'copyrightpage'        => '{{ns:project}}:Copyright',
 'currentevents'        => 'Attuarità',
 'currentevents-url'    => 'Project:Attuarità',

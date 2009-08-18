@@ -215,7 +215,6 @@ $messages = array(
 'aboutsite'            => 'Heqa {{SITENAME}} de',
 'aboutpage'            => 'Project:Heqa',
 'copyright'            => 'Nuştey bınê Lisansê $1 de vêrenê.',
-'copyrightpagename'    => 'Heqa telifê {{SITENAME}}',
 'copyrightpage'        => '{{ns:project}}:Heqê telifi',
 'currentevents'        => 'Textey cerrebi',
 'currentevents-url'    => 'Project:Textey cerrebi',

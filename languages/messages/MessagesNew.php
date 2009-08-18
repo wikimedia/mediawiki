@@ -204,7 +204,6 @@ $messages = array(
 'aboutsite'            => '{{SITENAME}}या बारेय्',
 'aboutpage'            => 'Project:बारेय्',
 'copyright'            => 'कण्टेण्ट $1 कथं उपलब्ध दु।',
-'copyrightpagename'    => '{{SITENAME}} लेखाधिकार',
 'copyrightpage'        => '{{ns:project}}:लेखाधिकार',
 'currentevents'        => 'जुयाच्वँगु घटना',
 'currentevents-url'    => 'Project:जुयाच्वँगु घटना',

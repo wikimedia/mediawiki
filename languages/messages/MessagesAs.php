@@ -285,7 +285,6 @@ $messages = array(
 'aboutsite'            => '{{SITENAME}}ৰ ইতিবৃত্ত',
 'aboutpage'            => 'Project:ইতিবৃত্ত',
 'copyright'            => 'এই লিখনী $1 ৰ অন্তর্গত উপলব্ধ।',
-'copyrightpagename'    => '{{SITENAME}} স্বত্বাধিকাৰ',
 'copyrightpage'        => '{{ns:project}}:স্বত্ব',
 'currentevents'        => 'সাম্প্রতিক ঘটনাৱলী',
 'currentevents-url'    => 'Project:শেহতীয়া ঘটনাৱলী',

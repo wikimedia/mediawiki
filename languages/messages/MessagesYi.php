@@ -395,7 +395,6 @@ $messages = array(
 'aboutsite'            => 'וועגן {{SITENAME}}',
 'aboutpage'            => 'Project:וועגן',
 'copyright'            => 'דער אינהאַלט איז בארעכטיגט אונטער $1.',
-'copyrightpagename'    => 'קאפירעכטן פון {{SITENAME}}',
 'copyrightpage'        => '{{ns:project}}:קאפירעכטן',
 'currentevents'        => 'אקטועלע געשעענישן',
 'currentevents-url'    => 'Project:אקטועלע געשענישען',

@@ -236,7 +236,6 @@ $messages = array(
 'aboutsite'            => 'Uo {{GRAMMAR:MS.lp|{{SITENAME}}}}',
 'aboutpage'            => 'Project:Uo serwiśe',
 'copyright'            => 'Tekst udostympńany na licencyji $1.',
-'copyrightpagename'    => 'prawami autorskimi {{GRAMMAR:D.lp|{{SITENAME}}}}',
 'copyrightpage'        => '{{ns:project}}:Prawa autorske',
 'currentevents'        => 'Bježůnce wydařyńa',
 'currentevents-url'    => 'Project:Bježůnce wydařyńa',

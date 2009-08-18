@@ -193,7 +193,6 @@ $messages = array(
 'aboutsite'            => 'کا تعارف {{SITENAME}}',
 'aboutpage'            => 'Project:تعارف',
 'copyright'            => 'تمام مواد $1 کے تحت میسر ہے۔',
-'copyrightpagename'    => '{{SITENAME}} حق تصنیف',
 'copyrightpage'        => '{{ns:project}}:حقوق تصانیف',
 'currentevents'        => 'حالیہ واقعات',
 'currentevents-url'    => 'Project:حالیہ واقعات',

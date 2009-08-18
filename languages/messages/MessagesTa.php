@@ -256,7 +256,6 @@ $messages = array(
 'aboutsite'            => '{{SITENAME}} பற்றி',
 'aboutpage'            => 'Project:விபரம்',
 'copyright'            => 'உள்ளடக்கங்கள் $1 இன் கீழ் கிடைக்கின்றன.',
-'copyrightpagename'    => '{{SITENAME}} பதிப்புரிமை',
 'copyrightpage'        => '{{ns:project}}:பதிப்புரிமை',
 'currentevents'        => 'தற்போதைய நிகழ்வுகள்',
 'currentevents-url'    => 'Project:நடப்பு நிகழ்வுகள்',

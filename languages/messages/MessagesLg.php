@@ -127,7 +127,6 @@ $messages = array(
 'aboutsite'            => 'Okutangaaza ku {{SITENAME}}',
 'aboutpage'            => 'Project:Okutangaaza ku',
 'copyright'            => 'Ebiri kuno bifugibwa $1.',
-'copyrightpagename'    => "bino biriko ekikuguzo eky'obwananyi ekya {{SITENAME}}",
 'copyrightpage'        => "{{ns:project}}:Ebikugizo eby'obwa nannyini",
 'currentevents'        => 'Ebibindabinda',
 'currentevents-url'    => 'Project:Ebibindabinda',

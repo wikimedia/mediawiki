@@ -312,7 +312,6 @@ $messages = array(
 'aboutsite'            => '{{SITENAME}} акъкъында',
 'aboutpage'            => 'Project:Акъкъында',
 'copyright'            => 'Малюмат $1 бинаэн кечилип ола.',
-'copyrightpagename'    => '{{SITENAME}} муэллифлик акълары',
 'copyrightpage'        => '{{ns:project}}:Муэллифлик акълары',
 'currentevents'        => 'Агъымдаки вакъиалар',
 'currentevents-url'    => 'Project:Агъымдаки вакъиалар',

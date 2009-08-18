@@ -189,7 +189,6 @@ $messages = array(
 'aboutsite'            => '{{SITENAME}} Turında',
 'aboutpage'            => 'Project:Turında',
 'copyright'            => 'Eçtälek $1 buyınça ireşüle.',
-'copyrightpagename'    => '{{SITENAME}} qälämxaqı',
 'copyrightpage'        => '{{ns:project}}:Qälämxaq',
 'currentevents'        => 'Xäzerge waqíğalar',
 'currentevents-url'    => 'Project:Xäzerge waqíğalar',

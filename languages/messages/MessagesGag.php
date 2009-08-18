@@ -208,7 +208,6 @@ $messages = array(
 'aboutsite'            => '{{SITENAME}} için',
 'aboutpage'            => 'Project:Uurunda',
 'copyright'            => 'İçersindeki $1 altında.',
-'copyrightpagename'    => '{{SITENAME}} korunmak hakları',
 'copyrightpage'        => '{{ns:project}}:Avtorluk hakları',
 'currentevents'        => 'Hergünkü sluçaylar',
 'currentevents-url'    => 'Project:Hergünkü sluçaylar',

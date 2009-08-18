@@ -261,7 +261,6 @@ $messages = array(
 'aboutsite'            => 'Ītechcopa {{SITENAME}}',
 'aboutpage'            => 'Project:Ītechcopa',
 'copyright'            => 'Tlahcuilōltzin cah yōllōxoxouhqui īpan $1',
-'copyrightpagename'    => '{{SITENAME}} copyright',
 'copyrightpage'        => '{{ns:project}}:Tlachīhualōni ītlapiyaliz',
 'currentevents'        => 'Āxcāncāyōtl',
 'currentevents-url'    => 'Project:Āxcāncāyōtl',

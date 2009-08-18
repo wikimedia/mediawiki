@@ -388,7 +388,6 @@ $messages = array(
 'aboutsite'            => '{{SITENAME}} ланга',
 'aboutpage'            => 'Project:Эстэдензэ',
 'copyright'            => '$1-сто муят мезе тесэ.',
-'copyrightpagename'    => '{{SITENAME}} копиянь теемань прават',
 'copyrightpage'        => '{{ns:project}}:Ломанень видечинзэ',
 'currentevents'        => 'Мезе ней моли',
 'currentevents-url'    => 'Project:Мезе ней моли',

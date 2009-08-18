@@ -570,7 +570,6 @@ $messages = array(
 'aboutsite'            => '{{SITENAME}} twralı',
 'aboutpage'            => 'Project:Joba twralı',
 'copyright'            => 'Mağlumat $1 şartımen jetimdi.',
-'copyrightpagename'    => '{{SITENAME}} awtorlıq quqıqtarı',
 'copyrightpage'        => '{{ns:project}}:Awtorlıq quqıqtar',
 'currentevents'        => 'Ağımdağı oqïğalar',
 'currentevents-url'    => 'Project:Ağımdağı oqïğalar',

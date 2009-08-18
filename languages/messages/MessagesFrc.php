@@ -205,7 +205,6 @@ $messages = array(
 'aboutsite'            => "Qui c'est {{SITENAME}}?",
 'aboutpage'            => 'Project:Info',
 'copyright'            => 'Les matières sont avalable en accord avec $1',
-'copyrightpagename'    => '{{SITENAME}} Protection de Droits',
 'copyrightpage'        => '{{ns:project}}:Protection de Droits',
 'currentevents'        => 'Événements',
 'currentevents-url'    => 'Project:Événements',

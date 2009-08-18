@@ -442,7 +442,6 @@ un dat [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Brukerhandbook] 
 'aboutsite'            => 'Över {{SITENAME}}',
 'aboutpage'            => 'Project:Över_{{SITENAME}}',
 'copyright'            => 'Inholt is verfögbor ünner de $1.',
-'copyrightpagename'    => '{{SITENAME}} Copyright',
 'copyrightpage'        => '{{ns:project}}:Lizenz',
 'currentevents'        => 'Aktuell Schehn',
 'currentevents-url'    => 'Project:Aktuell Schehn',

@@ -379,7 +379,6 @@ $messages = array(
 'aboutsite'            => 'De {{grammar:ablative|{{SITENAME}}}}',
 'aboutpage'            => 'Project:De {{GRAMMAR:ablative|{{SITENAME}}}}',
 'copyright'            => 'Res ad manum sub $1.',
-'copyrightpagename'    => '{{grammar:genitive|{{SITENAME}}}} verba privata',
 'copyrightpage'        => '{{ns:project}}:Verba privata',
 'currentevents'        => 'Novissima',
 'currentevents-url'    => 'Project:Novissima',

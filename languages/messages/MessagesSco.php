@@ -251,7 +251,6 @@ $messages = array(
 'aboutsite'            => 'Aboot {{SITENAME}}',
 'aboutpage'            => 'Project:Aboot',
 'copyright'            => 'Aa text is available unner $1',
-'copyrightpagename'    => '{{SITENAME}} copyricht',
 'copyrightpage'        => '{{ns:project}}:Copyrichts',
 'currentevents'        => 'Gaun on the nou',
 'currentevents-url'    => 'Project:Gaun on the nou',

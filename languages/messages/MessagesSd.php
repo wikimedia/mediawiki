@@ -307,7 +307,6 @@ $messages = array(
 'aboutsite'            => '{{SITENAME}} بابت',
 'aboutpage'            => 'Project:بابت',
 'copyright'            => 'سمورو مواد $1 تحت ميسر ڪجي ٿو',
-'copyrightpagename'    => '{{SITENAME}} حق ۽ واسطا',
 'copyrightpage'        => '{{ns:project}}:حق ۽ واسطا',
 'currentevents'        => 'ھاڻوڪا واقعا',
 'currentevents-url'    => 'Project: اعداد',

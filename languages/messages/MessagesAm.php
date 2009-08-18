@@ -255,7 +255,6 @@ $messages = array(
 'aboutsite'            => 'ስለ {{SITENAME}} መርሃግብር',
 'aboutpage'            => 'Project:ስለ',
 'copyright'            => 'ይዘቱ በ$1 ሥር ይገኛል።',
-'copyrightpagename'    => '{{SITENAME}} የቅጂ መብት',
 'copyrightpage'        => '{{ns:project}}:የማብዛት መብት ደንብ',
 'currentevents'        => 'ወቅታዊ ጉዳዮች',
 'currentevents-url'    => 'Project:ወቅታዊ ጉዳዮች',

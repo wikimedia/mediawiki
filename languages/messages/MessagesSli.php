@@ -263,7 +263,6 @@ $messages = array(
 'aboutsite'            => 'Ieber {{SITENAME}}',
 'aboutpage'            => 'Project:Ieber',
 'copyright'            => 'Inhalt ies verfügbar unter der $1.',
-'copyrightpagename'    => '{{SITENAME}} Urheberrecht',
 'copyrightpage'        => '{{ns:project}}:Urheberrecht',
 'currentevents'        => 'Aktuelle Ereignisse',
 'currentevents-url'    => 'Project:Aktuelle Ereignisse',

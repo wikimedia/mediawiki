@@ -116,7 +116,6 @@ $messages = array(
 'aboutsite'            => 'Na bòt {{SITENAME}}',
 'aboutpage'            => 'Project:Na bòt',
 'copyright'            => 'Dis kòtènt-im prais nò pass $1 .',
-'copyrightpagename'    => '{{wehbsait-im nem}} kohpirait',
 'disclaimers'          => 'Disklema-dèm',
 'disclaimerpage'       => 'Project:Disklema fò òltin',
 'edithelp'             => 'Advais foh we yu wan ehdit',

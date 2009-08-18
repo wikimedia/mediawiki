@@ -175,7 +175,6 @@ $messages = array(
 'aboutsite'            => 'ވިކިޕީޑިއާ ގެ ތާރަފު',
 'aboutpage'            => 'Project:ތާރަފު',
 'copyright'            => 'ހުރިހާ މާއްދާއެއް $1 ގެ ދަށުން ލިބެން އެބަހުއްޓެވެ.',
-'copyrightpagename'    => 'ވިކިޕީޑިއާ:ނަކަލުކުރުމުގެ ހައްގު',
 'copyrightpage'        => '{{ns:project}}:ނަކަލުކުރުމުގެހައްގު',
 'currentevents'        => 'ހިނގަމުންދާ ހާދިސާތައް',
 'disclaimers'          => 'އިއުލާނުތައް',

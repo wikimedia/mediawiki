@@ -369,7 +369,6 @@ $messages = array(
 'aboutsite'            => '{{SITENAME}} વિષે',
 'aboutpage'            => 'Project:વિષે',
 'copyright'            => '$1 હેઠળ માહિતિ ઉપલબ્ધ છે.',
-'copyrightpagename'    => '{{SITENAME}} પ્રકાશનાધિકાર',
 'copyrightpage'        => '{{ns:project}}:પ્રકાશનાધિકાર',
 'currentevents'        => 'વર્તમાન ઘટનાઓ',
 'currentevents-url'    => 'Project:વર્તમાન ઘટનાઓ',

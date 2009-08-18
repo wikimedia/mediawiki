@@ -288,7 +288,6 @@ $messages = array(
 'aboutsite'            => '{{SITENAME}} বৃত্তান্ত',
 'aboutpage'            => 'Project:বৃত্তান্ত',
 'copyright'            => '$1 এর আওতায় প্রাপ্য।',
-'copyrightpagename'    => '{{SITENAME}} কপিরাইট',
 'copyrightpage'        => '{{ns:project}}:কপিরাইটসমূহ',
 'currentevents'        => 'সমসাময়িক ঘটনা',
 'currentevents-url'    => 'Project:সমসাময়িক ঘটনাসমূহ',

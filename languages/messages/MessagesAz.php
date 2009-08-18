@@ -280,7 +280,6 @@ $messages = array(
 'aboutsite'            => '{{SITENAME}} haqqında',
 'aboutpage'            => 'Project:İzah',
 'copyright'            => 'Bu məzmun $1 əhatəsindədir.',
-'copyrightpagename'    => '{{SITENAME}} müəllif',
 'copyrightpage'        => '{{ns:project}}:Müəllif',
 'currentevents'        => 'Güncəl hadisələr',
 'currentevents-url'    => 'Project:Güncəl hadisələr',

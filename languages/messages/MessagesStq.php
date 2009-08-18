@@ -242,7 +242,6 @@ $messages = array(
 'aboutsite'            => 'Uur {{SITENAME}}',
 'aboutpage'            => 'Project:Uur_{{SITENAME}}',
 'copyright'            => 'Inhoold is ferföichboar unner de $1.',
-'copyrightpagename'    => '{{SITENAME}} Uurheebergjuchte',
 'copyrightpage'        => '{{ns:project}}:Uurheebergjuchte',
 'currentevents'        => 'Aktuälle Geböärnisse',
 'currentevents-url'    => 'Project:Aktuälle Geböärnisse',

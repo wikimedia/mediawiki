@@ -265,7 +265,6 @@ $wgMessageStructure = array(
 		'aboutsite',
 		'aboutpage',
 		'copyright',
-		'copyrightpagename',
 		'copyrightpage',
 		'currentevents',
 		'currentevents-url',

@@ -567,7 +567,6 @@ $messages = array(
 'aboutsite'            => '{{SITENAME}} туралы',
 'aboutpage'            => 'Project:Жоба туралы',
 'copyright'            => 'Мағлұмат $1 шартымен жетімді.',
-'copyrightpagename'    => '{{SITENAME}} ауторлық құқықтары',
 'copyrightpage'        => '{{ns:project}}:Ауторлық құқықтар',
 'currentevents'        => 'Ағымдағы оқиғалар',
 'currentevents-url'    => 'Project:Ағымдағы оқиғалар',

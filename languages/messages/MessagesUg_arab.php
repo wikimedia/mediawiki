@@ -243,7 +243,6 @@ $messages = array(
 'aboutsite'            => '{{SITENAME}} ھەققىدە',
 'aboutpage'            => 'Project:ھەققىدە',
 'copyright'            => 'بۇ بېكەتتىكى بارلىق تېكست مەزمۇنى $1 ماددىسىغا ئاساسەن تەمىنلىنىدۇ.',
-'copyrightpagename'    => '{{SITENAME}} نەشر ھوقۇقى',
 'copyrightpage'        => '{{ns:project}}:نەشر ئۇچۇرى',
 'currentevents'        => 'نۆۋەتتىكى ھادىسە',
 'currentevents-url'    => 'Project:نۆۋەتتىكى ھادىسە',

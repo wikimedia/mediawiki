@@ -215,7 +215,6 @@ $messages = array(
 'aboutsite'            => 'Nípa {{SITENAME}}',
 'aboutpage'            => 'Project:Nípa',
 'copyright'            => 'Gbogbo ohun inú ibí yìí wà lábẹ́  $1.',
-'copyrightpagename'    => '{{SITENAME}} ẹ̀tọ́àwòkọ',
 'copyrightpage'        => '{{ns:project}}:Ẹ̀tọ́àwòko',
 'currentevents'        => 'Ìṣẹ̀lẹ̀ lọ́wọ́lọ́wọ́',
 'currentevents-url'    => 'Project:Ìṣẹ̀lẹ̀ lọ́wọ́lọ́wọ́',

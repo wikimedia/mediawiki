@@ -248,7 +248,6 @@ $messages = array(
 'aboutsite'            => 'Over {{SITENAME}}',
 'aboutpage'            => 'Project:Info',
 'copyright'            => 'Den inoud is beschikbaer onder de $1.',
-'copyrightpagename'    => '{{SITENAME}} auteursrechen',
 'copyrightpage'        => '{{ns:project}}:Auteursrechen',
 'currentevents'        => "In 't nieuws",
 'currentevents-url'    => "Project:In 't nieuws",

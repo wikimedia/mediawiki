@@ -209,7 +209,6 @@ $messages = array(
 'aboutsite'            => 'Yû-kôan {{SITENAME}}',
 'aboutpage'            => 'Project:Kôan-yî',
 'copyright'            => 'Pún-chham ke chhiòn-phu vùn-pún nui-yùng chhai $1 chṳ̂ thiàu-khóan hâ thì-kiûng.',
-'copyrightpagename'    => '{{SITENAME}} pán-khièn',
 'copyrightpage'        => '{{ns:project}}:Pán-khièn sin-sit',
 'currentevents'        => 'Hien-sṳ̀ sṳ-khien',
 'currentevents-url'    => 'Project:Hien-sṳ̀ sṳ-khien',

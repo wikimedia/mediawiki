@@ -150,7 +150,6 @@ $messages = array(
 'aboutsite'            => 'Guăng-ṳ̀ {{SITENAME}}',
 'aboutpage'            => 'Project:Guăng-ṳ̀',
 'copyright'            => 'Buōng câng gì cṳ̆-lâiu dŭ sê gŏng-gé̤ṳ $1 huák-buó gì.',
-'copyrightpagename'    => '{{SITENAME}} bēng-guòng',
 'copyrightpage'        => '{{ns:project}}:Bēng-guòng',
 'currentevents'        => 'Duâi chéu â',
 'currentevents-url'    => 'Project:Duâi chéu â',

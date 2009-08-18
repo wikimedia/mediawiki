@@ -221,7 +221,6 @@ $messages = array(
 'aboutsite'            => '{{SITENAME}} ದ ಬಗ್ಗೆ',
 'aboutpage'            => 'Project:ನಮ್ಮ ಬಗ್ಗೆ',
 'copyright'            => 'ಉಂದು ಈ ಕಾಪಿರೈಟ್‌ಡ್ ಲಭ್ಯವುಂಡು $1.',
-'copyrightpagename'    => '{{SITENAME}} ಕಾಪಿರೈಟ್',
 'copyrightpage'        => '{{ns:project}}:ಕೃತಿಸ್ವಾಮ್ಯತೆಲು',
 'currentevents'        => 'ಇತ್ತೆದ ಸಂಗತಿಲು',
 'currentevents-url'    => 'Project:ಇತ್ತೆದ ಸಂಗತಿಲು',

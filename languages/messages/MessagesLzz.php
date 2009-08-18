@@ -78,7 +78,6 @@ $messages = array(
 'aboutsite'            => '{{SITENAME}} şeni',
 'aboutpage'            => 'Project:Ambarepe',
 'copyright'            => 'Content is available under $1.',
-'copyrightpagename'    => '{{SITENAME}} copyright',
 'mainpage'             => "Dudi But'k'a",
 'mainpage-description' => "Dudi But'k'a",
 

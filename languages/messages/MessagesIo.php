@@ -314,7 +314,6 @@ $messages = array(
 'aboutsite'            => 'Pri {{SITENAME}}',
 'aboutpage'            => 'Project:Pri {{SITENAME}}',
 'copyright'            => 'La kontenajo esas disponebla sub $1.',
-'copyrightpagename'    => '{{SITENAME}} kopiyuro',
 'currentevents'        => 'Aktualaji',
 'currentevents-url'    => 'Project:Aktualaji',
 'disclaimers'          => 'Legala averto',

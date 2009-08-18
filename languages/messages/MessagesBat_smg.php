@@ -252,7 +252,6 @@ $messages = array(
 'aboutsite'            => 'Aple {{SITENAME}}',
 'aboutpage'            => 'Project:Aple',
 'copyright'            => 'Turinīs pateikts so $1 licencėjė.',
-'copyrightpagename'    => '{{SITENAME}} autorėnės teisės',
 'copyrightpage'        => '{{ns:project}}:Autuoriu teisės',
 'currentevents'        => '** Vielībė̅jė ivīkē **',
 'currentevents-url'    => 'Project:Vielībė̅jė ivīkē',

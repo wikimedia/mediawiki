@@ -297,7 +297,6 @@ $messages = array(
 'aboutsite'            => 'Manonongod sa {{SITENAME}}',
 'aboutpage'            => 'Project:Manonongod',
 'copyright'            => 'Makukua an laog sa $1.',
-'copyrightpagename'    => '{{SITENAME}} derechos nin parásurat',
 'copyrightpage'        => '{{ns:project}}:Mga derechos nin parásurat',
 'currentevents'        => 'Mga panyayari sa ngonyan',
 'currentevents-url'    => 'Project:Mga panyayari sa ngonyan',

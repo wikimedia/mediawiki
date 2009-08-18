@@ -278,7 +278,6 @@ $messages = array(
 'aboutsite'            => 'ಕನ್ನಡ {{SITENAME}} ಬಗ್ಗೆ',
 'aboutpage'            => 'Project:ನಮ್ಮ ಬಗ್ಗೆ',
 'copyright'            => 'ಇದು ಈ ಕಾಪಿರೈಟ್‌ನಲ್ಲಿ ಲಭ್ಯವಿದೆ $1.',
-'copyrightpagename'    => '{{SITENAME}} ಕಾಪಿರೈಟ್',
 'copyrightpage'        => '{{ns:project}}:ಕೃತಿಸ್ವಾಮ್ಯತೆಗಳು',
 'currentevents'        => 'ಪ್ರಚಲಿತ',
 'currentevents-url'    => 'Project:ಪ್ರಚಲಿತ',

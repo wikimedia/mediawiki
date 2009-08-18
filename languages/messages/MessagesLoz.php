@@ -192,7 +192,6 @@ $messages = array(
 'aboutsite'            => "Ngesi ye ng'i atulile {{SITENAME}}",
 'aboutpage'            => "Project:Ngesi ye ng'i atulile",
 'copyright'            => 'Bye sa ilonungi di $1.',
-'copyrightpagename'    => "{{SITENAME}} copyright ng'i",
 'copyrightpage'        => "{{ns:project}}:Copyright ng'i",
 'currentevents'        => 'Muembatami',
 'currentevents-url'    => 'Project:Muembatami',

@@ -219,7 +219,6 @@ $messages = array(
 'aboutsite'            => 'Maipapan iti {{SITENAME}}',
 'aboutpage'            => 'Project:Maipapan',
 'copyright'            => 'Dagiti linaon ket maidaya babaen ti $1.',
-'copyrightpagename'    => '{{SITENAME}} karbengan-pablaak',
 'copyrightpage'        => '{{ns:project}}:Dagiti Karbengan-Panagipablaak',
 'currentevents'        => 'Paspasamak',
 'currentevents-url'    => 'Project:Agdama a paspasamak',

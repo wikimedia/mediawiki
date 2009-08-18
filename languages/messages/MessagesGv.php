@@ -217,7 +217,6 @@ $messages = array(
 'aboutsite'            => 'Mychione {{SITENAME}}',
 'aboutpage'            => 'Project:Mychione',
 'copyright'            => 'Ta stoo ry-gheddyn rere $1.',
-'copyrightpagename'    => 'Coip-chiart {{GRAMMAR:genitive|{{SITENAME}}}}',
 'copyrightpage'        => '{{ns:project}}:Coip-chiartyn',
 'currentevents'        => 'Cooishyn y laa',
 'currentevents-url'    => 'Project:Cooishyn y laa',
