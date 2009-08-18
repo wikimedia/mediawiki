@@ -77,10 +77,9 @@ mvBaseUploadInterface.prototype = {
 		}		
 	},
 	setupForm:function(){	
-		var _this = this;		
+		var _this = this;	
 		//set up the local pointer to the edit form:
-		_this.editForm = _this.getEditForm();				
-		$j(_this.editForm).attr('target', 'f_1');
+		_this.editForm = _this.getEditForm();		
 		if( _this.editForm ){
 			//set up the org_onsubmit if not set: 
 			if( typeof( _this.org_onsubmit ) == 'undefined' &&  _this.editForm.onsubmit )
@@ -182,15 +181,20 @@ mvBaseUploadInterface.prototype = {
 			( $j('#wpSourceTypeFile').length ==  0 || $j('#wpSourceTypeFile').get(0).checked ) 		
 		){	
 			//@@TODO check for sendAsBinnary to support firefox 3.5 progress 				
-			//else remap to iframe target
-			var id = 'f_' + ($j('iframe').length + 1);
-			$j("body").append('<iframe src="javascript:false;" id="' + id + '" ' +
-				'name="' + id + '" style="display:none;" ></iframe>');			
+			
+			//set the form target to iframe target: 
+			_this.iframeId = 'f_' + ($j('iframe').length + 1);
+			$j(_this.editForm).attr('target', _this.iframeId);
+					
+			//add the iframe			
+			$j("body").append('<iframe src="javascript:false;" id="' + _this.iframeId + '" ' +
+				'name="' + _this.iframeId + '" style="display:none;" ></iframe>');								
+					
 			//set up the done binding
-			$j('#' + id).load(function(){
-				var iframe = $j(this).get(0);	
-				_this.proccessIframeResult( iframe );
+			$j('#' + _this.iframeId).load(function(){				
+				_this.proccessIframeResult(  $j(this).get(0) );
 			});		
+		
 			//set the editForm iframe target
 			//$j(_this.editForm).attr('target', id);
 			
@@ -215,17 +219,14 @@ mvBaseUploadInterface.prototype = {
 			//update the status to 100% progress bar (no status in iframe submit) 
 			$j('#up-progressbar' ).progressbar('value', parseInt( 100 ) );								
 			$j('#up-status-container').html( gM('upload-in-progress') );
-			
-			
-			js_log('do iframe form submit');
 						
+			js_log('do iframe form submit to: ' +  $j(_this.editForm).attr('target'));			
 
 			//do post override
 			_this.form_post_override = true;							
 			//reset the done with action flag:
-			_this.action_done = false;					 
-			//do the submit :
-			js_log('do the submit');	
+			_this.action_done = false;					 			
+			
 			_this.editForm.submit();
 														
 			return false;
