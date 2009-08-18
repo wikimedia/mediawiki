@@ -79,7 +79,7 @@ class Html {
 	 *   escaped!
 	 * @return string Raw HTML
 	 */
-	public static function element( $element, $attribs = array(), $contents = '' ) {
+	public static function rawElement( $element, $attribs = array(), $contents = '' ) {
 		global $wgWellFormedXml;
 		$element = strtolower( $element );
 		$start = "<$element" . self::expandAttributes( $attribs );
@@ -91,6 +91,13 @@ class Html {
 		} else {
 			return "$start>$contents</$element>";
 		}
+	}
+
+	/**
+	 * Identical to rawElement(), but HTML-escapes $contents.
+	 */
+	public static function element( $element, $attribs = array(), $contents = '' ) {
+		return self::rawElement( $element, $attribs, htmlspecialchars( $contents ) );
 	}
 
 	/**
@@ -158,6 +165,10 @@ class Html {
 	 * escaping as well, like if $contents contains literal '</script>' or (for
 	 * XML) literal "]]>".
 	 *
+	 * Note that $contents will not be escaped, since JS may legitimately
+	 * contain unescaped characters like "<".  Make sure you don't output
+	 * untrusted user input here!
+	 *
 	 * @param $contents string JavaScript
 	 * @return string Raw HTML
 	 */
@@ -169,7 +180,7 @@ class Html {
 			$attrs['type'] = $wgJsMimeType;
 			$contents = "/*<![CDATA[*/$contents/*]]>*/";
 		}
-		return self::element( 'script', $attrs, $contents );
+		return self::rawElement( 'script', $attrs, $contents );
 	}
 
 	/**
@@ -194,6 +205,10 @@ class Html {
 	 * (if any).  TODO: do some useful escaping as well, like if $contents
 	 * contains literal '</style>' (admittedly unlikely).
 	 *
+	 * Note that $contents will not be escaped, since CSS may legitimately
+	 * contain unescaped characters like "<".  Make sure you don't output
+	 * untrusted user input here!
+	 *
 	 * @param $contents string CSS
 	 * @param $media mixed A media type string, like 'screen', or null for all
 	 *   media
@@ -212,7 +227,7 @@ class Html {
 		if ( $media !== null ) {
 			$attrs['media'] = $media;
 		}
-		return self::element( 'style', $attrs, $contents );
+		return self::rawElement( 'style', $attrs, $contents );
 	}
 
 	/**
