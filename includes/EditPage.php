@@ -1706,14 +1706,7 @@ END
 	function doLivePreviewScript() {
 		global $wgOut, $wgTitle;
 		$wgOut->addScriptFile( 'preview.js' );
-		$liveAction = $wgTitle->getLocalUrl( array(
-			'action' => $this->action,
-			'wpPreview' => 'true',
-			'live' => 'true'
-		) );
-		return "return !lpDoPreview(" .
-			"editform.wpTextbox1.value," .
-			'"' . $liveAction . '"' . ")";
+		return "";
 	}
 
 	protected function showTosSummary() {
@@ -2271,6 +2264,8 @@ END
 
 		++$tabindex; // use the same for preview and live preview
 		if ( $wgLivePreview && $wgUser->getOption( 'uselivepreview' ) ) {
+			$this->doLivePreviewScript(); // Add to output
+			
 			$temp = array(
 				'id'        => 'wpPreview',
 				'name'      => 'wpPreview',
@@ -2291,8 +2286,8 @@ END
 				'value'     => wfMsg('showlivepreview'),
 				'accesskey' => wfMsg('accesskey-preview'),
 				'title'     => '',
-				'onclick'   => $this->doLivePreviewScript(),
 			);
+			
 			$buttons['live'] = Xml::element('input', $temp, '');
 		} else {
 			$temp = array(
