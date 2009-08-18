@@ -7,7 +7,6 @@
  * the following English language portion is automatically merged via the maintenance script.
  */
 
-#<JAVASCRIPT EN REPLACE>
 $messages['en'] = array(
 	/*
 	* js file: /libTimedText/mvTextInterface.js
@@ -259,4 +258,3 @@ $messages['en'] = array(
 	'size-kilobytes' => '$1 K',
 	'size-bytes' => '$1 B',
 );
-#</JAVASCRIPT EN REPLACE>

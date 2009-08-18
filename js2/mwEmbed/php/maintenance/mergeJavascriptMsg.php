@@ -15,8 +15,9 @@ define( 'MEDIAWIKI', true );
 // get the scriptLoader globals:
 require_once('../../jsScriptLoader.php');
 
-$mwSTART_MSG_KEY = '#<JAVASCRIPT EN REPLACE>';
-$mwEND_MSG_KEY = '#</JAVASCRIPT EN REPLACE>';
+$mwSTART_MSG_KEY = '$messages[\'en\'] = array(';
+$mwEND_MSG_KEY = ',
+);';
 $mwLangFilePath = '../languages/mwEmbed.i18n.php';
 // get options (like override JS or override PHP)
 
@@ -24,7 +25,7 @@ $mwLangFilePath = '../languages/mwEmbed.i18n.php';
 $rawLangFile = file_get_contents( $mwLangFilePath );
 
 $startInx = strpos( $rawLangFile, $mwSTART_MSG_KEY) + strlen( $mwSTART_MSG_KEY );
-$endInx = strpos( $rawLangFile, $mwEND_MSG_KEY );
+$endInx = strpos( $rawLangFile, $mwEND_MSG_KEY ) +1;
 if( $startInx === false || $endInx === false ){
     print "Could not find $mwSTART_MSG_KEY or $mwEND_MSG_KEY in mwEmbed.i18n.php \n";
 	exit();
@@ -39,7 +40,7 @@ $path = realpath('../../');
 
 $curFileName = '';
 // @@todo existing msgSet should be parsed (or we just "include" the file first)
-$msgSet = '$messages[\'en\'] = array(';
+$msgSet = "";
 
 $objects = new RecursiveIteratorIterator( new RecursiveDirectoryIterator( $path ), RecursiveIteratorIterator::SELF_FIRST );
 foreach( $objects as $fname => $object){
@@ -54,8 +55,12 @@ foreach( $objects as $fname => $object){
 		}
 	}
 }
-// close up the msgSet:
-$msgSet.= ");\n";
+// rebuild and output to file
+if( file_put_contents( $mwLangFilePath, trim( $preFile ) . "\n\t" . trim( $msgSet ) . "\n" . trim( $postFile ) ) ){
+    print "updated $mwLangFilePath file\n";
+    exit();
+}
+
 
 function doJsonMerge( $json_txt ){
     global $curFileName;
@@ -73,10 +78,4 @@ function doJsonMerge( $json_txt ){
         print "could not get any json vars from:$curFileName \n";
         return '';
     }
-}
-
-// rebuild and output to file
-if( file_put_contents( $mwLangFilePath, trim( $preFile ) . "\n" . trim( $msgSet ) . "\n" . trim( $postFile ) ) ){
-    print "updated $mwLangFilePath file\n";
-    exit();
 }
