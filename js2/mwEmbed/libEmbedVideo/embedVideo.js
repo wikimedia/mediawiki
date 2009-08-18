@@ -30,10 +30,22 @@ loadGM({
 	"download_segment" : "Download Selection:",
 	"download_full" : "Download Full Video File:",
 	"download_right_click": "To download right click and select <i>save target as</i>",
-	"download_clip" : "Download the Clip",
+	"download_clip" : "Download Video",
 	"download_text" : "Download Text (<a style=\"color:white\" title=\"cmml\" href=\"http://wiki.xiph.org/index.php/CMML\">cmml</a> xml):",
+	"download"		: "Download",
+	
+	"share"			: "Share",
+	"credits"		: "Credits",
 	
 	"clip_linkback" : "Clip Source Page",
+	"chose_player"	: "Choose Video Player", 
+	
+	"share_this_video" : "Share This Video",
+	"video_credits"	: "Video Credits",
+	
+	"menu_btn"	: "MENU",
+	"close_btn"	: "CLOSE",
+
 	
 	"mv_ogg-player-vlc-mozilla" : "VLC Plugin",
 	"mv_ogg-player-videoElement" : "Native Ogg Video Support",
@@ -48,7 +60,9 @@ loadGM({
 	"mv_generic_missing_plugin" : "You browser does not appear to support playback type: <b>$1</b><br> visit the <a href=\"http://commons.wikimedia.org/wiki/Commons:Media_help\">Playback Methods</a> page to download a player<br>",
 	
 	"mv_for_best_experience": "For a better video playback experience we recommend:<br> <b><a href=\"http://www.mozilla.com/en-US/firefox/upgrade.html?from=mwEmbed\">Firefox 3.5</a></b>",
-	"mv_do_not_warn_again": "Dissmiss for now."	
+	"mv_do_not_warn_again": "Dissmiss for now.",
+	
+	"players": "Players",
 		
 });
 
@@ -279,29 +293,22 @@ var ctrlBuilder = {
 		  'options':true,				 
 		  'borders':true			   
 	},
-	getControls:function( embedObj ){	
-		js_log('f:controlsBuilder:: opt:' + this.options);		
+	getControls:function( embedObj ){
+		js_log('f:controlsBuilder:: opt:');	
 		this.id = (embedObj.pc)?embedObj.pc.pp.id:embedObj.id;
 		this.available_width = embedObj.playerPixelWidth();
 		//make pointer to the embedObj
-		this.embedObj =embedObj;
+		this.embedObj = embedObj;
 		var _this = this;		
 		for(var i in embedObj.supports){			
 			_this.supports[i] = embedObj.supports[i];
 		};
 					
-		//special case vars: 
-		if( ( embedObj.roe || 
-				(embedObj.media_element.timedTextSources && 
-				embedObj.media_element.timedTextSources() ) 
-			)  && embedObj.show_meta_link  )
-			this.supports['closed_captions']=true;   
+		//check for close_captions tracks:
+		if( ( embedObj.roe || embedObj.timedTextSources() )
+			&& embedObj.show_meta_link  )
+			this.supports['closed_captions']=true;   		
 		
-			
-		//append options to body (if not already there)
-		if($j('#mv_vid_options_'+ctrlBuilder.id).length==0)
-			$j('body').append( this.components['mv_embedded_options'].o() );		
-					
 		var o='';	
 		for( var i in this.components ){
 			if( this.supports[i] ){
@@ -316,30 +323,32 @@ var ctrlBuilder = {
 				}
 			}
 		}		
+		//add the options menu 			
+		o+=this.components['mv_embedded_options'].o( embedObj );
 		return o;
 	},
 	 /*
 	 * addControlHooks
 	 * to be run once controls are attached to the dom
 	 */
-	addControlHooks:function(embedObj){								
+	addControlHooks:function( embedObj ){								
 		//add in drag/seek hooks: 
 		if(!embedObj.base_seeker_slider_offset &&  $j('#mv_seeker_slider_'+embedObj.id).get(0))
 			embedObj.base_seeker_slider_offset = $j('#mv_seeker_slider_'+embedObj.id).get(0).offsetLeft;			  
 		
 		//js_log('looking for: #mv_seeker_slider_'+embedObj.id + "\n " +
 		//		'start sec: '+embedObj.start_time_sec + ' base offset: '+embedObj.base_seeker_slider_offset);
+
+		var $tp=$j('#' + embedObj.id);
+
+		//@todo: which object is being play()'d (or whatever) ?
+		//We select the element to attach the event to this way:
+		//$tp.find('.ui-icon-play').parent().click(function(){alert(0)}); or we can give the button itself a class - probably better.
 		
-		//add play hook: 
-		$j('#mv_play_pause_button_' + embedObj.id).unbind().btnBind().click(function(){
+		//add play hook for play-btn and large_play_button
+		$tp.find('.play-btn,.play-btn-large').unbind().btnBind().click(function(){
 			$j('#' + embedObj.id).get(0).play();
 		})	
-		
-		//big_play_link_ play binding: 
-		$j('#big_play_link_' + embedObj.id).unbind().click(function(){
-			$j('#' + embedObj.id).get(0).play();
-		});		
-		
 		//add recomend firefox if non-native playback:
 		if( embedObj.doNativeWarningCheck() ){															
 			$j('#dc_'+ embedObj.id).hover(
@@ -353,7 +362,7 @@ var ctrlBuilder = {
 						'</div>');							
 						$j('#ffwarn_'+embedObj.id).click(function(){
 							if( $j(this).is(':checked') ){
-								//set up a cookie for 7 days:
+								//set up a cookie for 5 days:
 								$j.cookie('dismissNativeWarn', true, { expires: 5 });
 								//set the current instance
 								_global['dismissNativeWarn'] = true;
@@ -380,7 +389,6 @@ var ctrlBuilder = {
 			$j('#big_play_link_' + embedObj.id).pngFix();
 		}
 		
-		
 		//captions binding:
 		$j('#timed_text_'  + embedObj.id).unbind().btnBind().click(function(){
 			$j('#' + embedObj.id).get(0).showTextInterface();
@@ -397,7 +405,8 @@ var ctrlBuilder = {
 		});				
 		
 		js_log(" should add slider binding: " + $j('#mv_play_head_'+embedObj.id).length) ;
-		$j('#mv_play_head_'+embedObj.id).slider({
+//		$j('#mv_play_head_'+embedObj.id).slider({
+		$tp.find( '.j-scrubber' ).slider({
 			range: "min",
 			value: 0,
 			min: 0,
@@ -435,89 +444,140 @@ var ctrlBuilder = {
 					js_log('do jump to: '+embedObj.jump_time + ' perc:' +perc + ' sts:' + embedObj.seek_time_sec);								
 					embedObj.doSeek(perc);
 				}
-			}		  
+			}
+		});
+		//@todo: identify problem with volume button jumping...
+		$tp.find('.k-volume-slider').slider({
+			range: "min",
+			value: 80,
+			min: 0,
+			max: 100,
+                        slide: function(event, ui) {
+                                 embedObj.updateVolumen(ui.value/100);
+                        },
+			change: function(event, ui){
+				var level = ui.value/100;
+				if (level==0) {
+					$tp.find('.k-volume span').addClass('ui-icon-volume-off');
+				}else{
+					$tp.find('.k-volume span').removeClass('ui-icon-volume-off');
+				}
+				//only run the onChange event if done by a user slide:
+				if(embedObj.userSlide){
+					embedObj.userSlide=false;
+					embedObj.seeking=true;
+//					var perc = ui.value/100;
+					embedObj.updateVolumen(level);
+				}
+			}
 		});
 		//up the z-index of the default status indicator: 
-		$j('#mv_play_head_'+embedObj.id + ' .ui-slider-handle').css('z-index', 4);
-		$j('#mv_play_head_'+embedObj.id + ' .ui-slider-range').addClass('ui-corner-all').css('z-index', 2);
+//		$j('#mv_play_head_'+embedObj.id + ' .ui-slider-handle').css('z-index', 4);
+//		$j('#mv_play_head_'+embedObj.id + ' .ui-slider-range').addClass('ui-corner-all').css('z-index', 2);
 		//extended class list for jQuery ui themeing (we can probably refactor this with custom buffering highliter) 
-		$j('#mv_play_head_'+embedObj.id).append( ctrlBuilder.getMvBufferHtml() );
-				
+		$j('#' + embedObj.id + ' .j-scrubber').prepend( ctrlBuilder.getMvBufferHtml() );
+
+		
+		//options menu		
+		$tp.find('.k-menu').hide();       
+       	$tp.find('.k-options').click(function(){       		
+       		var $ktxt = $j(this).find('.ui-icon-k-menu');
+       		var $kmenu = $tp.find('.k-menu');
+			if( $kmenu.is(':visible') ){
+				$kmenu.fadeOut("fast",function(){
+       		 		$ktxt.html ( gM('menu_btn') );       		 	     		 
+				});
+				$tp.find('.play-btn-large').fadeIn('fast');
+			}else{
+       			$kmenu.fadeIn("fast", function(){
+       				$ktxt.html ( gM('close_btn') );
+       			});
+       			$tp.find('.play-btn-large').fadeOut('fast');       			
+			}       	
+        });
+
+
 		//videoOptions: 
-		$j('#mv_vid_options_'+ctrlBuilder.id+' .vo_selection').click(function(){
+        $tp.find('.k-player-btn').click(function(){
 			embedObj.selectPlaybackMethod();
-			$j('#mv_vid_options_'+ctrlBuilder.id).hide();
-			return false;
+            return false;
 		});
-		$j('#mv_vid_options_'+ctrlBuilder.id+' .vo_download').click(function(){
+
+		$tp.find('.k-download-btn').click(function(){
 			embedObj.showVideoDownload();
-			$j('#mv_vid_options_'+ctrlBuilder.id).hide();
-			return false;
-		})		
-		$j('#mv_vid_options_'+ctrlBuilder.id+' .vo_showcode').click(function(){
+            return false;
+		});
+		
+		$tp.find('.k-share-btn').click(function(){
 			embedObj.showEmbedCode();
-			$j('#mv_vid_options_'+ctrlBuilder.id).hide();
-			return false;
-		});		
-			
+            return false;
+		});
+		$tp.find('.k-credits-btn').click(function(){
+			//@@todo show credits menu screen;
+            return false;
+		});
+
 		//volume binding:
+		$tp.find('.k-volume').unbind().btnBind().click(function(){
+			$tp.toggleMute();
+		});
+		
 		var hoverOverDelay=false;
-		$j('#volume_control_'+embedObj.id).unbind().btnBind().click(function(){
+		/*$j('#volume_control_'+embedObj.id).unbind().btnBind().click(function(){
 			$j('#' +embedObj.id).get(0).toggleMute();
-		}).hover(
-			function(){			
+		});
+                .hover(
+			function(){
 				$j('#vol_container_' + embedObj.id).addClass('vol_container_top');
 				//set to "below" if playing and embedType != native
-				if(embedObj && embedObj.isPlaying && embedObj.isPlaying() && !embedObj.supports['overlays']){
+				if(embedObj && embedObj.isPlaying() && !embedObj.supports['overlays']){
 					$j('#vol_container_' + embedObj.id).removeClass('vol_container_top').addClass('vol_container_below');
 				}
-				
+
 				$j('#vol_container_' + embedObj.id).fadeIn('fast');
 				hoverOverDelay = true;
 			},
-			function(){		
-				hoverOverDelay= false;		
+			function(){
+				hoverOverDelay= false;
 				setTimeout(function doHideVolume(){
 					if(!hoverOverDelay){
 						$j('#vol_container_' + embedObj.id).fadeOut('fast');
 					}
-				}, 500);	
+				}, 500);
 			}
 		);
 		//Volumen Slider
 		$j('#volume_bar_'+embedObj.id).slider({
-			orientation: "vertical",			
+			orientation: "vertical",
 			range: "min",
 			value: 80,
 			min: 0,
-			max: 100,			
-			slide: function(event, ui) {									
-				var perc = ui.value/100;		
+			max: 100,
+			slide: function(event, ui) {
+				var perc = ui.value/100;
 				//js_log('update volume:' + perc);
-				embedObj.updateVolumen(perc);								
+				embedObj.updateVolumen(perc);
 			},
 			change:function(event, ui){
-				var perc = ui.value/100;	
+				var perc = ui.value/100;
 				if (perc==0) {
-					$j('#volume_control_'+embedObj.id + ' span').removeClass('ui-icon-volume-on').addClass('ui-icon-volume-off');								
-				}else{					
+					$j('#volume_control_'+embedObj.id + ' span').removeClass('ui-icon-volume-on').addClass('ui-icon-volume-off');
+				}else{
 					$j('#volume_control_'+embedObj.id + ' span').removeClass('ui-icon-volume-off').addClass('ui-icon-volume-on');
 				}
-				//only run the onChange event if done by a user slide: 
+				//only run the onChange event if done by a user slide:
 				if(embedObj.userSlide){
 					embedObj.userSlide=false;
-					embedObj.seeking=true;							
-					var perc = ui.value/100;														  
-					embedObj.updateVolumen(perc);					
+					embedObj.seeking=true;
+					var perc = ui.value/100;
+					embedObj.updateVolumen(perc);
 				}
-			}		  
-		});					
+			}
+		});*/
 		
-	},	
+	},
 	getMvBufferHtml:function(){
-		return '<div class="ui-slider-range ui-slider-range-min ui-widget-header ' +
-				'ui-state-highlight ui-corner-all '+
-				'mv_buffer" style="width:0px;height:100%;z-index:1;top:0px" />';
+		return '<div class="ui-slider-horizontal ui-corner-all ui-slider-buffer" />';
 	},
 	components:{
 		'borders':{
@@ -528,76 +588,95 @@ var ctrlBuilder = {
 		},
 		'mv_embedded_options':{
 			'w':0,
-			'o':function(){
-				var o= '<div id="mv_vid_options_'+ctrlBuilder.id+'" class="videoOptions">'+
-				'<div class="videoOptionsTop"></div>'+
-				'<div class="videoOptionsBox">'+
-				'<div class="block">'+
-					'<h6>Video Options</h6>'+
-				'</div>'+
-					'<div class="block">'+
-						'<p class="short_match vo_selection"><a href="#"><span>Stream Selection</span></a></p>'+
-						'<p class="short_match vo_download"><a href="#"><span>Download</span></a></p>'+
-						'<p class="short_match vo_showcode"><a href="#"><span>Share or Embed</span></a></p>';
-					
-					//link to the stream page if we are not already there: 
-					if( ctrlBuilder.embedObj.roe && typeof mv_stream_interface == 'undefined' )
-						o+='<p class="short_match"><a href="javascript:$j(\'#'+ctrlBuilder.id+'\').get(0).doLinkBack()"><span><strong>Source Page</strong></span></a></p>';
-											
-				o+='</div>'+  
-				'</div><!--videoOptionsInner-->' +   
-					'<div class="videoOptionsBot"></div>' +   
-				'</div><!--videoOptions-->';
+			'o':function( embedObj ){							
+				var o= '' +
+				'<div class="k-menu ui-widget-content" ' +
+					'style="width:' + embedObj.playerPixelWidth() + 'px; height:' + embedObj.playerPixelHeight() + 'px;">' +
+						'<ul class="k-menu-bar">' +
+							'<li class="k-players-btn"><a href="#player" title="'+ gM('players') +'">'+ gM('players') +'</a></li>' +
+							'<li class="k-download-btn"><a href="#player" title="'+ gM('download')+'">'+gM('download')+'</a></li>' +
+							'<li class="k-share-btn"><a href="#player" title="'+ gM('share')+'">'+gM('share')+'</a></li>' +
+							'<li class="k-credits-btn"><a href="#credits" title="'+ gM('credits')+'">'+gM('credits')+'</a></li>' +
+						'</ul>' +
+						'<div class="k-menu-screens" style="width:' + embedObj.playerPixelWidth() + 'px; height:' + embedObj.playerPixelHeight() + 'px;">' +
+							'<div class="k-screen k-players">' +
+								'<h2>' + gM('chose_player')+'</h2>' +
+							'</div>' +
+							'<div class="k-screen k-download">' +
+								'<h2>' + gM('download_clip')+'</h2>' +
+							'</div>' +
+							'<div class="k-screen k-players">' +
+								'<h2>' + gM('share_this_video') + '</h2>' +
+							'</div>' +
+							'<div class="k-screen k-players">' +
+								'<h2>' + gM('video_credits') + '</h2>' +
+							'</div>' +
+						'</div>' +
+					'</div>';
 				return o;
 			}
 		},
-		'fullscreen':{
-			'w':20,
-			'o':function(){
-				return '<div title="' + gM('player_fullscreen') + '" id="fullscreen_'+ctrlBuilder.id+'" class="ui-state-default ui-corner-all ui-icon_link rButton"><span class="ui-icon ui-icon-arrow-4-diag"></span></div>'
-			}
-		},
-		'options':{
-			'w':26,
-			'o':function(){
-				return '<div title="'+ gM('player_options') + '" id="options_button_'+ctrlBuilder.id+'" class="ui-state-default ui-corner-all ui-icon_link rButton"><span class="ui-icon ui-icon-wrench"></span></div>';						 
-			}
-		},
 		'pause':{
-			'w':24,
+			'w':147, //28 147
 			'o':function(){
-				return '<div title="' + gM('play_clip') + '" id="mv_play_pause_button_' + ctrlBuilder.id + '" class="ui-state-default ui-corner-all ui-icon_link lButton"><span class="ui-icon ui-icon-play"/></div>';
+				return '<button class="play-btn ui-state-default ui-corner-all" title="' + 
+					gM('play_clip') + '" ><span class="ui-icon ui-icon-play"></span></button>'
 			}
 		},
-		'closed_captions':{
-			'w':23,
+		'play_head':{  // scrubber
+			'w':0, //special case (takes up remaining space)
 			'o':function(){
-				return '<div title="' + gM('closed_captions') + '" id="timed_text_'+ctrlBuilder.id+'" class="ui-state-default ui-corner-all ui-icon_link rButton"><span class="ui-icon ui-icon-comment"></span></div>'
-			}			
-		},
-		'volume_control':{
-			'w':23,
-			'o':function(){
-					return '<div title="' + gM('volume_control') + '" id="volume_control_'+ctrlBuilder.id+'" class="ui-state-default ui-corner-all ui-icon_link rButton">' +
-								'<span class="ui-icon ui-icon-volume-on"></span>' +
-								'<div style="position:absolute;display:none;" id="vol_container_'+ctrlBuilder.id+'" class="vol_container ui-corner-all">' +
-									'<div class="volume_bar" id="volume_bar_' + ctrlBuilder.id + '"></div>' +
-								'</div>'+
-							'</div>';														
+				return '<div class="ui-slider ui-slider-horizontal ui-corner-all j-scrubber"' +
+						' style="width:' + ( ctrlBuilder.available_width - 30 ) + 'px;"></div>'
 			}
 		},
 		'time_display':{
-			'w':90,
+			'w':36,
 			'o':function(){
-				return '<div id="mv_time_'+ctrlBuilder.id+'" class="ui-widget time">' + ctrlBuilder.embedObj.getTimeReq() + '</div>';
+				return '<div class="k-timer">' + seconds2npt ( ctrlBuilder.embedObj.getDuration() ) + '</div>';			
 			}
 		},
-		'play_head':{
-			'w':0, //special case (takes up remaining space) 
+		'volume_control':{
+			'w':47,
 			'o':function(){
-				return '<div class="play_head" id="mv_play_head_' + ctrlBuilder.id + '" style="width: ' + ( ctrlBuilder.available_width - 30 ) + 'px;"></div>';
+				return '<button class="ui-state-default ui-corner-all k-volume">' +
+							'<span class="ui-icon ui-icon-volume-on"></span>' +
+						'</button>' +
+						'<div class="ui-slider ui-slider-horizontal k-volume-slider"></div>';
+				
+				//vertical volume control:
+				/* return '<div title="' + gM('volume_control') + '" id="volume_control_'+ctrlBuilder.id+'" class="ui-state-default ui-corner-all ui-icon_link rButton">' +
+					'<span class="ui-icon ui-icon-volume-on"></span>' +
+					'<div style="position:absolute;display:none;" id="vol_container_'+ctrlBuilder.id+'" class="vol_container ui-corner-all">' +
+						'<div class="volume_bar" id="volume_bar_' + ctrlBuilder.id + '"></div>' +
+						'</div>'+
+					'</div>';
+				*/
 			}
-		}										
+		},
+		'closed_captions':{
+			'w':24,
+			'o':function(){
+				return '<div title="' + gM('closed_captions') + '" id="timed_text_' + ctrlBuilder.id +'" ' +
+							'class="ui-state-default ui-corner-all ui-icon_link rButton">' +
+						'<span class="ui-icon ui-icon-comment"></span></div>';
+			}
+		},
+		'fullscreen':{
+			'w':24,
+			'o':function(){
+				return '<button class="ui-state-default ui-corner-all k-fullscreen" title="' + gM('player_fullscreen') + '">' +
+						'<span class="ui-icon ui-icon-arrow-4-diag"></span></button>'
+			}
+		},
+		'options':{
+			'w':50,
+			'o':function(){
+				return '<button class="ui-state-default ui-corner-bl k-options" title="'+ gM('player_options') + '" >' +
+							'<span class="ui-icon ui-icon-k-menu">'+ gM('menu_btn') + '</span>'							
+						'</button>'				
+			}
+		}
 	}	
 }
 
@@ -1117,7 +1196,7 @@ embedVideo.prototype = {
 	},
 	playerPixelWidth : function()
 	{
-		var player = $j('#mv_embedded_player_'+this.id).get(0);
+		var player = $j('#dc_'+this.id).get(0);
 		if(typeof player!='undefined' && player['offsetWidth'])
 			return player.offsetWidth;
 		else
@@ -1125,7 +1204,7 @@ embedVideo.prototype = {
 	},
 	playerPixelHeight : function()
 	{
-		var player = $j('#mv_embedded_player_'+this.id).get(0);
+		var player = $j('#dc_'+this.id).get(0);
 		if(typeof player!='undefined' && player['offsetHeight'])
 			return player.offsetHeight;
 		else
@@ -1343,6 +1422,11 @@ embedVideo.prototype = {
 		//return the duration
 		return this.duration;
 	},
+	timedTextSources:function(){
+		if(!this.media_element.timedTextSources)
+			return false;
+		return this.media_element.timedTextSources()
+	},
 	/*
 	 * wrapEmebedContainer
 	 * wraps the embed code into a container to better support playlist function
@@ -1400,7 +1484,7 @@ embedVideo.prototype = {
 //		if(!this.selected_player){
 //			return this.getPluginMissingHTML();		
 		//Set "loading" here
-		$j('#mv_embedded_player_'+_this.id).html(''+
+		$j('#dc_'+_this.id).html(''+
 			'<div style="color:black;width:'+this.width+'px;height:'+this.height+'px;">' + 
 				gM('loading_plugin') + 
 			'</div>'					
@@ -1411,7 +1495,7 @@ embedVideo.prototype = {
 			js_log('performing embed for ' + _this.id);			
 			var embed_code = _this.getEmbedHTML();			
 			//js_log('shopuld embed:' + embed_code);
-			$j('#mv_embedded_player_'+_this.id).html(embed_code);	
+			$j('#dc_'+_this.id).html(embed_code);	
 		});
 	},
 	onClipDone:function(){
@@ -1632,7 +1716,7 @@ embedVideo.prototype = {
 		var _this = this;
 		js_log('f:doThumbnailHTML'+ this.thumbnail_disp);		
 		this.closeDisplayedHTML();	   
-		$j( '#mv_embedded_player_' + this.id ).html( this.getThumbnailHTML() );
+		$j( '#dc_' + this.id ).html( this.getThumbnailHTML() );
 		this.paused = true;		
 		this.thumbnail_disp = true;
 	},
@@ -1652,26 +1736,23 @@ embedVideo.prototype = {
 		return ctrlBuilder.getControls( this );
 	},	
 	getHTML : function (){		
-		//@@todo check if we have sources avaliable	
-		js_log('embedVideo:getHTML : ' + this.id  + ' resource type: ' + this.type);			
-		var _this = this;				 
-		var html_code = '';		
-		html_code = '<div id="videoPlayer_'+this.id+'" style="width:'+this.width+'px;position:relative;" class="videoPlayer">';		
-		html_code += '<div style="width:'+parseInt(this.width)+'px;height:'+parseInt(this.height)+'px;"  id="mv_embedded_player_'+this.id+'">' +
-						this.getThumbnailHTML() + 
-					'</div>';											
-		//js_log("mvEmbed:controls "+ typeof this.controls);									
-		if( this.controls )
-		{
+		js_log('f:getHTML : ' + this.id );			
+		var _this = this;
+		var html_code = '';
+		
+		//get the thumbnail: 
+		html_code = this.getThumbnailHTML();
+									
+		if(this.controls){
 			js_log("f:getHTML:AddControls");
-			html_code +='<div id="mv_embedded_controls_' + this.id + '" class="ui-widget ui-corner-bottom ui-state-default controls" >';
+			html_code +='<div class="k-control-bar ui-widget-header ui-helper-clearfix">';
 			html_code += this.getControlsHTML();	   
 			html_code +='</div>';	  
 			//block out some space by encapulating the top level div 
 			$j(this).wrap('<div style="width:'+parseInt(this.width)+'px;height:'
-					+(parseInt(this.height)+ctrlBuilder.height)+'px"></div>');					
-		}
-		html_code += '</div>'; //videoPlayer div close		
+					+ (parseInt(this.height) + ctrlBuilder.height )+'px" id="k-player_' + this.id + '" class="k-player"></div>');
+		}		
+
 		//js_log('should set: '+this.id);
 		$j(this).html( html_code );					
 		//add hooks once Controls are in DOM
@@ -1821,15 +1902,16 @@ embedVideo.prototype = {
 		this.thumbnail = this.media_element.getThumbnailURL();
 
 		//put it all in the div container dc_id
-		thumb_html+= '<div id="dc_'+this.id+'" style="position:absolute;'+
+		thumb_html+= '<div id="dc_'+this.id+'" rel="emdded_play" style="position:relative;'+
 			' overflow:hidden; top:0px; left:0px; width:'+this.playerPixelWidth()+'px; height:'+this.playerPixelHeight()+'px; z-index:0;">'+
-			'<img width="'+this.playerPixelWidth()+'" height="'+this.playerPixelHeight()+'" style="position:relative;width:'+this.playerPixelWidth()+';height:'+this.playerPixelHeight()+'"' +
-			' id="img_thumb_'+this.id+'" src="' + this.thumbnail + '">';
+			'<img width="' + this.playerPixelWidth() + '" height="' + this.playerPixelHeight() + 
+			'" style="position:relative;width:'+this.playerPixelWidth()+';height:'+this.playerPixelHeight()+'"' +
+			' id="img_thumb_' + this.id+'" src="' + this.thumbnail + '">';
 		
-		if(this.play_button == true && this.controls == true)
+		if( this.play_button == true && this.controls == true )
 			  thumb_html+=this.getPlayButton();
 			  
-		   thumb_html+='</div>';
+		thumb_html+='</div>';
 		return thumb_html;
 	},
 	getEmbeddingHTML:function()
@@ -1870,10 +1952,9 @@ embedVideo.prototype = {
 	},
 	getPlayButton:function(id){
 		if(!id)id=this.id;
-		return '<div title="' + gM('play_clip') + '" id="big_play_link_'+id+'" class="large_play_button" '+
+		return '<div title="' + gM('play_clip') + '" class="ui-state-default play-btn-large" '+
 			'style="left:'+((this.playerPixelWidth()-130)/2)+'px;'+
 			'top:' + ((this.playerPixelHeight()-96)/2) + 'px;">'+
-			'<img src="' + mv_skin_img_path + 'player_big_play_button.png">'+
 			'</div>';
 	},
 	doLinkBack:function(){
@@ -2028,7 +2109,8 @@ embedVideo.prototype = {
 		var this_id = (this.pc!=null)?this.pc.pp.id:this.id;
 		
 		var _this=this;			   
-		var out= '<span style="color:#FFF;background-color:black;"><blockquote style="background-color:black;">';
+//		var out= '<span style="color:#FFF;background-color:black;"><blockquote style="background-color:black;">';
+		var out= '';
 		var _this=this;
 		//js_log('selected src'+ _this.media_element.selected_source.url);
 		$j.each( this.media_element.getPlayableSources(), function(source_id, source){			 
@@ -2051,35 +2133,40 @@ embedVideo.prototype = {
 			
 			if (default_player)
 			{
-				out += '<img src="'+image_src+'"/>';
-				if( ! is_selected )
-					out+='<a href="#" class="sel_source" id="sc_' + source_id + '_' + default_player.id +'">';
-				out += source.getTitle()+ (is_selected?'</a>':'') + ' ';
+//				out += '<img src="'+image_src+'"/>';
+                                out+='<div class="k-screen k-players">' +
+                                     ' <h2>Choose Video Player</h2>' +
+                                     ' <ul>';
+//				if( ! is_selected )
+//					out+='<a href="#" class="sel_source" id="sc_' + source_id + '_' + default_player.id +'">';
+//				out += source.getTitle()+ (is_selected?'</a>':'') + ' ';
 				
 				//output the player select code: 
-				var supporting_players = embedTypes.players.getMIMETypePlayers( source.getMIMEType() );		
-				out+='<div id="player_select_list_' + source_id + '" class="player_select_list"><ul>';
+				var supporting_players = embedTypes.players.getMIMETypePlayers( source.getMIMEType() );
+//				out+='<div id="player_select_list_' + source_id + '" class="player_select_list"><ul>';
 				for(var i=0; i < supporting_players.length ; i++){				
 					if( _this.selected_player.id == supporting_players[i].id && is_selected ){
-						out+='<li style="border-style:dashed;margin-left:20px;">'+
-									'<img border="0" width="16" height="16" src="' + mv_skin_img_path + 'plugin.png">' +
-									supporting_players[i].getName() +
-							'</li>';
+//						out+='<li style="border-style:dashed;margin-left:20px;">'+
+//                                                        '<img border="0" width="16" height="16" src="' + mv_skin_img_path + 'plugin.png">' +
+//                                                        supporting_players[i].getName() +
+                                            out+='<li>' + supporting_players[i].getName() +'</li>';
 					}else{
 						//else gray plugin and the plugin with link to select
-						out+='<li style="margin-left:20px;">'+
-								'<a href="#" class="sel_source" id="sc_' + source_id + '_' + supporting_players[i].id +'">'+
-									'<img border="0" width="16" height="16" src="' + mv_skin_img_path + 'plugin_disabled.png">'+
-									supporting_players[i].getName() +
-								'</a>'+
-							'</li>';
+//						out+='<li style="margin-left:20px;">'+
+//								'<a href="#" class="sel_source" id="sc_' + source_id + '_' + supporting_players[i].id +'">'+
+//									'<img border="0" width="16" height="16" src="' + mv_skin_img_path + 'plugin_disabled.png">'+
+//									supporting_players[i].getName() +
+//								'</a>'+
+                                            out+='<li>' + 
+                                                 '<a href="#" id="dc_' + source_id + '_' + supporting_players[i].id +'">' +
+                                                 supporting_players[i].getName() + '</a><li>';
 					}
 				 }
 				 out+='</ul></div>';		   
 			}else
 				out+= source.getTitle() + ' - no player available';
 		});
-		out+='</blockquote></span>';
+//		out+='</blockquote></span>';
 		this.displayHTML(out);
 		
 		//set up the click bindings:
@@ -2120,29 +2207,34 @@ embedVideo.prototype = {
 		}	   
 	},
 	getShowVideoDownload:function(){ 
-		var out='<div style="color:white">' +
-				'<b style="color:white;">'+gM('download_segment')+'</b><br>';
-		out+='<blockquote style="background:#000">'+
-				gM('download_right_click') + '</blockquote><br>';
-		var dl_list='';
-		var dl_txt_list='';		
+//		var out='<div style="color:white">' +
+//				'<b style="color:white;">'+gM('download_segment')+'</b><br>';
+//		out+='<blockquote style="background:#000">'+
+//				gM('download_right_click') + '</blockquote><br>';
+                var out='<div class="k-screen k-players">' +
+                        ' <h2>Download Video</h2>' +
+                        ' <ul>';
+//		var dl_list='';
+//		var dl_txt_list='';
 		$j.each(this.media_element.getSources(), function(index, source){
-			var dl_line = '<li>' + '<a style="color:white" href="' + source.getURI() +'"> '
-				+ source.getTitle()+'</a> '+ '</li>'+"\n";			
-			if(	 source.getURI().indexOf('?t=')!==-1){
-				out+=dl_line;
-			}else if( this.getMIMEType()=="text/cmml" || this.getMIMEType()=="text/x-srt" ){
-				dl_txt_list+=dl_line;
-			}else{
-				dl_list+=dl_line;
+//			var dl_line = '<li>' + '<a style="color:white" href="' + source.getURI() +'"> '
+//				+ source.getTitle()+'</a> '+ '</li>'+"\n";
+			var dl_line = '<li>' + '<a href="' + source.getURI() +'"> ' + source.getTitle() + '</a></li>\n';
+			if(source.getURI().indexOf('?t=')!==-1) {
+                            out+=dl_line;
+			}
+                        else if(this.getMIMEType()=="text/cmml" || this.getMIMEType()=="text/x-srt") {
+                            dl_txt_list+=dl_line;
+			}
+                        else {
+                            dl_list+=dl_line;
 			}
 		});		
-		
-		if(dl_list!='')
-			out+=gM('download_full') + '<blockquote style="background:#000">' + dl_list + '</blockquote>';
-		if(dl_txt_list!='')
-			out+=gM('download_text')+'<blockquote style="background:#000">' + dl_txt_list +'</blockquote>';
-		out+='</div>';
+//		if(dl_list!='')
+//			out+=gM('download_full') + '<blockquote style="background:#000">' + dl_list + '</blockquote>';
+//		if(dl_txt_list!='')
+//			out+=gM('download_text')+'<blockquote style="background:#000">' + dl_txt_list +'</blockquote>';
+		out+='</ul></div>';
 		return out;
 	},
 	/*
@@ -2172,11 +2264,11 @@ embedVideo.prototype = {
 			this.paused=false; //make sure we are not "paused"
 			this.seeking=false;
 		}				
-		
-		 $j("#mv_play_pause_button_" + this_id + ' span').removeClass('ui-icon-play').addClass('ui-icon-pause');			   
-		 $j("#mv_play_pause_button_" + this_id).unbind().btnBind().click(function(){					
+	
+		$j('#'+ this_id + ' .play-btn .ui-icon').removeClass('ui-icon-play').addClass('ui-icon-pause');			   
+		$j('#'+ this_id + ' .play-btn').unbind().btnBind().click(function(){					
 		 	$j('#' + this_id ).get(0).pause();
-	   	 }).attr('title', gM('pause_clip'));
+		}).attr('title', gM('pause_clip'));
 		   
 	},
 	load:function(){
@@ -2188,7 +2280,7 @@ embedVideo.prototype = {
 	}, 
 	/*
 	 * base embed pause
-	 *	there is no general way to pause the video
+	 *  there is no general way to pause the video
 	 *  must be overwritten by embed object to support this functionality.
 	 */
 	pause: function(){
@@ -2197,8 +2289,8 @@ embedVideo.prototype = {
 		//(playing) do pause		
 		this.paused = true; 
 		//update the ctrl "paused state"				
-		$j("#mv_play_pause_button_" + this_id + ' span').removeClass('ui-icon-pause').addClass('ui-icon-play');
-		$j("#mv_play_pause_button_" + this_id).unbind().btnBind().click(function(){							 
+		$j('#'+ this_id + ' .play-btn .ui-icon').removeClass('ui-icon-pause').addClass('ui-icon-play');
+		$j('#'+ this_id + ' .play-btn').unbind().btnBind().click(function(){							 
 				$j('#'+this_id).get(0).play();
 		}).attr('title', gM('play_clip'));
 	},	
@@ -2234,7 +2326,7 @@ embedVideo.prototype = {
 		}
 		
 		//make sure the big playbutton is has click action: 
-		$j('#big_play_link_' + _this.id).unbind('click').click(function(){
+		$j('#'+ _this.id +' .play-btn-large').unbind('click').btnBind().click(function(){
 			$j('#' +_this.id).get(0).play();
 		});
 		
@@ -2248,8 +2340,8 @@ embedVideo.prototype = {
 		var this_id = (this.pc!=null)?this.pc.pp.id:this.id;	
 		if(this.muted){
 			this.muted=false;
-			$j('#volume_control_'+this_id + ' span').removeClass('ui-icon-volume-off').addClass('ui-icon-volume-on');
-			$j('#volume_bar_'+this_id).slider('value', 100); 
+			$j( '#volume_control_' + this_id + ' span').removeClass('ui-icon-volume-off').addClass('ui-icon-volume-on');
+			$j( '#volume_bar_' + this_id).slider('value', 100); 
 			this.updateVolumen(1);
 		}else{
 			this.muted=true;
@@ -2265,7 +2357,7 @@ embedVideo.prototype = {
 	fullscreen:function(){
 		js_log('fullscreen not supported with current playback type');
 	},
-	/* returns bool true if playing or paused, false if stooped
+	/* returns bool true if playing or paused, false if stopped
 	 */
 	isPlaying : function(){
 		if(this.thumbnail_disp){
@@ -2338,12 +2430,11 @@ embedVideo.prototype = {
 			this.monitorTimerId = 0;
 		}
 	},
-	updateBufferStatus: function(){
-			
+	updateBufferStatus: function(){			
 		//build the buffer targeet based for playlist vs clip 
 		var buffer_select = (this.pc) ? 
-			'#cl_status_' + this.id + ' .mv_buffer': 
-			'#mv_play_head_' + this.id + ' .mv_buffer';
+			'#cl_status_' + this.id + ' .ui-slider-buffer': 
+			'#' + this.id + ' .ui-slider-buffer';
 			
 		//update the buffer progress bar (if available )
 		if( this.bufferedPercent != 0 ){
@@ -2387,19 +2478,17 @@ embedVideo.prototype = {
 		//do head request if on the same domain
 		return this.media_element.selected_source.URLTimeEncoding;
 	},
-	setSliderValue: function(perc, hide_progress){		
+	setSliderValue: function(perc, hide_progress){
 		if(this.controls){		
 			var this_id = (this.pc)?this.pc.pp.id:this.id;
-			var val = parseInt( perc*1000 ); 
-			$j('#mv_play_head_'+this_id).slider('value', val);
-			
-			//js_log("embed video set: " + '#mv_play_head_'+this_id + ' to ' + val);
+			var val = parseInt( perc*1000 );
+			$j('#'+this.id + ' .j-scrubber').slider('value', val); 			
 		}
 		//js_log('set#mv_seeker_slider_'+this_id + ' perc in: ' + perc + ' * ' + $j('#mv_seeker_'+this_id).width() + ' = set to: '+ val + ' - '+ Math.round(this.mv_seeker_width*perc) );
 		//js_log('op:' + offset_perc + ' *('+perc+' * ' + $j('#slider_'+id).width() + ')');
 	},
 	highlightPlaySection:function(options){
-		js_log('highlightPlaySection');
+		js_log('highlightPlaySection');		
 		var this_id = (this.pc)?this.pc.pp.id:this.id;
 		var dur = this.getDuration();
 		var hide_progress = true;		
@@ -2450,7 +2539,8 @@ embedVideo.prototype = {
 	setStatus:function(value){
 		var id = (this.pc)?this.pc.pp.id:this.id;
 		//update status:
-		$j('#mv_time_'+id).html(value);
+		//$j('#mv_time_'+id).html(value);
+		$j('#'+this.id + ' .k-timer').html(value);
 	}	
 }
 

@@ -28,7 +28,7 @@ var MV_EMBED_VERSION = '1.0r19';
  * @@ more config valuse on the way ;)
  */
 var defaultMwConfig = { 
-	'skin_name': 'mvpcf',
+	'skin_name': 'kskin',
 	'video_size':'400x300' 
 }
 
@@ -64,7 +64,7 @@ var jQueryUiVN = 'jquery.ui-1.7.1';
 
 
 //setup the skin path: 
-var mv_jquery_skin_path = mv_embed_path + 'jquery/' + jQueryUiVN + '/themes/redmond/';
+var mv_jquery_skin_path = mv_embed_path + 'jquery/' + jQueryUiVN + '/themes/base/';
 var mv_skin_img_path = mv_embed_path + 'skins/' + mwConfig['skin_name'] + '/images/';
 var mv_default_thumb_url = mv_skin_img_path + 'vid_default_thumb.jpg';
 
@@ -1252,7 +1252,7 @@ function loadExternalJs( url, callback ){
   //  else{
 		var e = document.createElement("script");
 		e.setAttribute('src', url);
-		e.setAttribute('type',"text/javascript");
+		e.setAttribute('type', "text/javascript");
 		/*if(callback)
 			e.onload = callback;
 		*/

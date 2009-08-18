@@ -46,7 +46,7 @@ var nativeEmbed = {
 	},
 	//@@todo : loading progress	
 	postEmbedJS:function(){
-		var _this = this;
+		var _this = this;		
 		js_log("f:native:postEmbedJS:");		
 		this.getVID();
 		var doActualPlay= function(){
