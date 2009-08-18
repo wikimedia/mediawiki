@@ -167,8 +167,8 @@ var javaEmbed = {
 		}   */		 
 	},
 	doThumbnailHTML:function(){		
-		//empty out player html (jquery with java applets does not work) :			
-		var pelm = document.getElementById('mv_embedded_player_' + this.id );
+		//empty out player html (jquery with java applets does mix) :			
+		var pelm = document.getElementById('dc_' + this.id );
 		pelm.innerHTML = '';		
 		this.parent_doThumbnailHTML();
 	},
