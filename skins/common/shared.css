@@ -376,7 +376,6 @@ table.mw-userrights-groups * td,table.mw-userrights-groups * th {
 	border-color: #AAAAAA;
 	border-width: 1px;
 	z-index:99;
-	visibility:hidden;
 	font-size:95%;
 }
 
@@ -388,7 +387,7 @@ table.os-suggest-results {
 	width: 100%;
 }
 
-td.os-suggest-result, td.os-suggest-result-hl {
+.os-suggest-result, .os-suggest-result-hl {
 	white-space: nowrap;
 	background-color: white;
 	background-color: Window;
@@ -396,12 +395,12 @@ td.os-suggest-result, td.os-suggest-result-hl {
 	color: WindowText;
 	padding: 2px;
 }
-td.os-suggest-result-hl,
-td.os-suggest-result-hl-webkit {
+.os-suggest-result-hl,
+.os-suggest-result-hl-webkit {
 	background-color: #4C59A6;
 	color: white;
 }
-td.os-suggest-result-hl {
+.os-suggest-result-hl {
 	/* System colors are misimplemented in Safari 3.0 and earlier,
 	   making highlighted text illegible... */
 	background-color: Highlight;
