@@ -3074,7 +3074,11 @@ class Title {
 				break;
 			}
 
-			if( $oldSubpage->getArticleId() == $this->getArticleId() )
+			// We don't know whether this function was called before
+			// or after moving the root page, so check both
+			// $this and $nt
+			if( $oldSubpage->getArticleId() == $this->getArticleId() ||
+					$oldSubpage->getArticleID() == $nt->getArticleId() )
 				// When moving a page to a subpage of itself,
 				// don't move it twice
 				continue;
