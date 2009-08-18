@@ -1,0 +1,110 @@
+
+/* player styles */
+.k-player { width:400px; height:340px; position:relative;} /* inline via jq */
+.k-player * { padding:0; margin:0;} /* inline via jq */
+ .k-edit-bar { }
+  .k-edit-bar a { width:33px; padding: 1px 0 0; display:block; text-align:center; font-weight:bold; color:#888; text-decoration:none; background:#F2F2F2;}
+
+ .k-video { width:400px; height:300px; background:#000; margin-bottom:1px;}  /* h & w inline via jq */
+ .k-control-bar { height:21px; padding: 2px 0 0 6px; margin-top:1px; background: url(images/ksprite.png) repeat-x 0 -81px; font: normal 11px arial,sans-serif; color:#555;}
+  .k-control-bar button, .k-control-bar div.ui-slider, .k-control-bar div.k-timer { float:left;}
+  .k-timer { margin-top:2px;}
+  .k-volume-slider { width:26px;}
+  .k-control-bar .k-options { width:50px; height:22px; margin-top:-2px; border: solid 1px #aaa; border-top:none; float:right; font: bold 11px arial,sans-serif; color:#555;}
+   span.ui-icon.ui-icon-k-menu { width:auto; padding-left:2px; background:none; outline:none; cursor:default;}
+.k-menu { background:#181818; position:absolute; top:0; left:0; display:none,filter:alpha(opacity=90); opacity: 0.9;} /* h, w, top inline via jq top:15px*/
+	ul.k-menu-bar { height:128px; padding: 0 0 5px;position:absolute; bottom:5px;right:0px; list-style: none outside none; background: url(images/ksprite.png) -99px -104px no-repeat;} /* eventually: mtop inline via jq */
+	.k-menu-bar li a { display:block; width:49px; height:32px; margin-left:1px; text-indent:99999px; background: url(images/ksprite.png) -51px -110px no-repeat; overflow:hidden;}
+	.k-menu-bar li a:hover { background-position: -1px -110px;}
+	.k-menu-bar li.k-download-btn a { background-position: -51px -141px;}
+	.k-menu-bar li.k-download-btn a:hover { background-position: -1px -141px;}
+	.k-menu-bar li.k-share-btn a { background-position: -51px -172px;}
+	.k-menu-bar li.k-share-btn a:hover { background-position: -1px -172px;}
+	.k-menu-bar li.k-credits-btn a { background-position: -51px -203px;}
+	.k-menu-bar li.k-credits-btn a:hover { background-position: -1px -203px;}
+ 
+.k-menu-screens { width:320px; padding: 13px 10px 15px 15px; float:left;} /* w & h inline via jq */
+   .k-menu-screens h2 { padding: 0 0 5px 1px; clear:both; font-size:12px; color:#666;}
+   .k-menu-screens p { margin: 6px 0;}
+   .k-menu-screens a { ;}
+    .k-menu-screens a img { border:none;}
+   .k-menu-screens ul { padding:0; margin: 6px 0 0; list-style: none outside none;}
+
+.k-edit-screen { width:370px; height:223px; padding-top:77px; text-align:center; background:#181818; color:#fff;}
+ .k-edit-screen div { }
+ .k-edit-screen a { color:#7BB8FC;}
+  .k-edit-screen a img { border:none;}
+
+/* end player */
+
+.k-slide-window { overflow:hidden;}
+.k-screen.k-credits ul { float:left;}
+.k-screen.k-credits li { height:39px; padding: 11px 11px 11px 11px; margin-bottom:12px; display:block; background:#333;}
+ .k-screen.k-credits li a { padding:0; background:none;}
+ .k-screen.k-credits li img { float:left; background:blue;}
+ .k-screen.k-credits li div { height:39px; padding-left:11px; floats:left; overflow:hidden;}
+ 
+ a.k-prev-credit, a.k-next-credit { width:65px; height:28px; margin: -13px auto -6px; display:block; background: url(images/ksprite.png) 0px -320px no-repeat;} 
+  a.k-next-credit { margin: 0 0 1px; position:absolute; bottom:0; background-position: -0px -290px;}
+  a:hover.k-prev-credit { background-position: 0px -238px;}
+  a:hover.k-next-credit { background-position: 0px -260px;}
+  
+ .k-logo { margin:8px 0 0 1px; display:block;}
+ 
+ .k_field_wrap { border: solid 1px #444; margin-bottom:7px;}
+ .k-screen.k-share button { width:70px; padding:2px 5px 3px; border:1px solid #000; float:right; background: #D4D4D4 url(images/ksprite.png) no-repeat -32px 0; color:#000; float:right;}
+  .k-menu textarea { width:100%; height:15px; border: solid 2px #000; border-bottom:none; border-right:none; background:transparent; color:#ccc; overflow:hidden;}
+  
+  .k-screen.k-share div.ui-state-highlight { width:90px; padding:2px 5px; border-color:#554926; float:left; background:none; color:#FFE96E;}
+   .k-screen.k-share div.ui-state-highlight a { color:#FFE96E; font-weight:bold;}
+   .k-screen.k-share div.ui-state-highlight a:hover { }
+  
+.k-menu-screens li { height:14px; margin-bottom:6px;}
+.k-menu-screens li a { padding-left:22px; background:url(images/ksprite.png) no-repeat -85px -274px; text-decoration:none;}
+.k-menu-screens li a.active, .k-menu-screens li a:hover.active  { background-position: -85px -247px;}
+.k-menu-screens li a:hover { background-position: -85px -260px;}
+
+.k-options.ui-state-hover { color:blue;}
+
+.k-players { display:none}
+.k-credits { display:nones}
+
+.ui-state-default .ui-icon, .ui-state-hover .ui-icon { background: url(images/ksprite.png) no-repeat 0 -48px;}
+.ui-state-default .ui-icon-play { background:url(images/ksprite.png) no-repeat 0 0;}
+.ui-state-hover .ui-icon-play { background-position: -16px 0;}
+
+.ui-state-default .ui-icon-pause { background:url(images/ksprite.png) no-repeat 0 -17px;}
+.ui-state-hover .ui-icon-pause { background-position: -16px -17px;}
+
+ 
+ .ui-state-default .ui-icon-arrow-4-diag { background-position: 0 -32px;} /* fullscreen */
+ .ui-state-hover .ui-icon-arrow-4-diag { background-position: -16px -32px;}
+ .ui-state-default .ui-icon-volume-on,  .ui-state-hover .ui-icon-volume-off,  { margin-left:-6px; background-position: -16px -48px;}
+ .ui-state-hover .ui-icon-volume-on, .ui-state-default .ui-icon-volume-off { margin-left:-6px; background-position: 0 -48px;}
+
+ .k-control-bar .ui-slider { height:8px; border: solid 1px #eee; margin: 4px 10px 0 7px; position:relative; background:url(images/ksprite.png) repeat-x 0 -350px;}
+ .k-control-bar .ui-slider-handle { width:8px; height:8px; border: solid 1px #888; margin: -1px 0 0 -5px; display:block; position:relative; background: url(images/ksprite.png) no-repeat -67px -341px; position:absolute;}
+ .k-control-bar .ui-slider-range { height:8px; position:absolute; background: url(images/ksprite.png) repeat-x 0 -368px; -moz-border-radius:5px; -webkit-border-radius:5px;}
+ .k-control-bar .ui-slider-buffer { height:8px; position:absolute; background: url(images/ksprite.png) repeat-x 0 -359px; -moz-border-radius:5px; -webkit-border-radius:5px;}
+ 
+ .k-control-bar .ui-slider.k-volume-slider { height:15px; margin: 2px 3px 0 -4px; /* ie = m: 3 3 0 -2 */ border:none; background-position: -66px -323px; -moz-border-radius:0px; -webkit-border-radius:0px;}
+ .k-control-bar .k-volume-slider a.ui-slider-handle { width:8px; height:18px; margin: -3px 5px 0 -1px; border:none; display:block; position:absolute; background:none;}
+ .k-control-bar .k-volume-slider a:hover.ui-slider-handle { border: solid 1px #999;}
+ .k-control-bar .k-volume-slider .ui-slider-range { height:17px; position:absolute; background: url(images/ksprite.png) repeat-x -66px -306px; -moz-border-radius:0; -webkit-border-radius:0;}  
+
+ .play-btn-large { width:120px; height:55px; background: url(images/ksprite.png) no-repeat 28px -433px; position:absolute; cursor:pointer;} /*.ui-state-default */
+ .play-btn-large.ui-state-hover { background: url(images/ksprite.png) no-repeat 28px -377px; }
+
+ .k-volume.ui-state-hover { margin-left:6px; }
+
+ /* move to ie css */
+ .k-volume-slider span, span.ui-icon-play, span.ui-icon-volume-on, button.k-fullscreen { *margin-top:-1px;}
+ span.ui-icon-volume-on { *margin-left:0 !important;}
+ .ui-state-hover.k-volume { *margin-left:0 !important;}
+ span.ui-icon-k-menu { *margin-top:3px;}
+ .k-control-bar .ui-slider.k-volume-slider { *margin-left:-2px;}
+ /* end css */
+
+ /* debug only ! */
+ .k-menu-screens { display:none;}
+ /* end debug */
