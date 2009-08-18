@@ -937,7 +937,7 @@ class Revision {
 	 * @param int      $pageId ID number of the page to read from
 	 * @param string   $summary
 	 * @param bool     $minor
-	 * @return Revision
+	 * @return mixed Revision, or null on error
 	 */
 	public static function newNullRevision( $dbw, $pageId, $summary, $minor ) {
 		wfProfileIn( __METHOD__ );
