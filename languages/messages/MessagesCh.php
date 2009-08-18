@@ -211,7 +211,6 @@ $messages = array(
 'aboutsite'            => 'Pot {{SITENAME}}',
 'aboutpage'            => 'Project:Pot',
 'copyright'            => 'Guåha i sinahguan gi halom $1.',
-'copyrightpagename'    => "{{SITENAME}} direchun i mantituge'",
 'copyrightpage'        => "{{ns:project}}:Direchun i mantituge'",
 'currentevents'        => 'Estorian modetnu siha',
 'currentevents-url'    => 'Project:Estorian modetnu siha',

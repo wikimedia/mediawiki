@@ -295,7 +295,6 @@ $messages = array(
 'aboutsite'            => 'Icde {{SITENAME}}',
 'aboutpage'            => 'Project:Icdeuca',
 'copyright'            => 'Deraykan cek kare $1.',
-'copyrightpagename'    => 'sorta {{SITENAME}}',
 'copyrightpage'        => '{{ns:project}}:Digirarokeem',
 'currentevents'        => 'Noelaca yo',
 'currentevents-url'    => 'Project:Noelaf bif yo',

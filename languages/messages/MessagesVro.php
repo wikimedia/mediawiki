@@ -246,7 +246,6 @@ $messages = array(
 'aboutsite'            => '{{SITENAME}} tutvustus',
 'aboutpage'            => 'Project:Pääteedüs',
 'copyright'            => "Teksti või vabalt pruukiq $1'i perrä.",
-'copyrightpagename'    => '{{SITENAME}} ja tegijäõigusõq',
 'copyrightpage'        => '{{ns:project}}:Tegijäõigusõq',
 'currentevents'        => 'Miä sünnüs',
 'currentevents-url'    => 'Project:Miä sünnüs',

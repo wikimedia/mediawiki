@@ -503,7 +503,6 @@ $messages = array(
 'aboutsite'            => 'Dwar {{SITENAME}}',
 'aboutpage'            => 'Project:Dwar',
 'copyright'            => 'Kontenut aċċessibli taħt $1.',
-'copyrightpagename'    => 'Copyright {{SITENAME}}',
 'copyrightpage'        => '{{ns:project}}:Copyright',
 'currentevents'        => 'Ġrajjiet kurrenti',
 'currentevents-url'    => 'Project:Ġrajjiet kurrenti',

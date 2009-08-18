@@ -329,7 +329,6 @@ $messages = array(
 'aboutsite'            => 'Informazión sobre {{SITENAME}}',
 'aboutpage'            => 'Project:Sobre',
 'copyright'            => 'O conteniu ye disponible baxo a lizenzia $1.',
-'copyrightpagename'    => "Dreitos d'autor de {{SITENAME}}",
 'copyrightpage'        => "{{ns:project}}:Dreitos d'autor",
 'currentevents'        => 'Autualidat',
 'currentevents-url'    => 'Project:Autualidat',

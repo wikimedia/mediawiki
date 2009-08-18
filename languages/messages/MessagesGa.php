@@ -299,7 +299,6 @@ agus an [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide Lámhleabhar ú
 'aboutsite'            => 'Maidir leis an {{SITENAME}}',
 'aboutpage'            => 'Project:Maidir leis',
 'copyright'            => 'Tá an t-ábhar le fáil faoin $1.',
-'copyrightpagename'    => 'Cóipcheart {{GRAMMAR:genitive|{{SITENAME}}}}',
 'copyrightpage'        => '{{ns:project}}:Cóipchearta',
 'currentevents'        => 'Cúrsaí reatha',
 'currentevents-url'    => 'Project:Cúrsaí reatha',

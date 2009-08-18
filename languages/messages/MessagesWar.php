@@ -227,7 +227,6 @@ $messages = array(
 'aboutsite'            => 'Mahitungod han {{SITENAME}}',
 'aboutpage'            => 'Project:Mahitungod han',
 'copyright'            => 'In sulod mabiblingan ha ilarom han $1.',
-'copyrightpagename'    => '{{SITENAME}} kopirayt',
 'copyrightpage'        => '{{ns:project}}:Mga kopirayt',
 'currentevents'        => 'Mga panhitabo',
 'currentevents-url'    => 'Project:Mga panhitabo',

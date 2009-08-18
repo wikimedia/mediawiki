@@ -359,7 +359,6 @@ $messages = array(
 'aboutsite'            => '{{SITENAME}} haqqında',
 'aboutpage'            => 'Project:Proyekt haqqında',
 'copyright'            => "Mag'lıwmat $1 boyınsha alıng'an.",
-'copyrightpagename'    => "{{SITENAME}} proyektinin' avtorlıq huquqları",
 'copyrightpage'        => '{{ns:project}}:Avtorlıq huquqları',
 'currentevents'        => "Ha'zirgi ha'diyseler",
 'currentevents-url'    => "Project:Ha'zirgi ha'diyseler",

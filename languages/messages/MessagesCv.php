@@ -244,7 +244,6 @@ $messages = array(
 'aboutsite'            => '{{SITENAME}} çинчен',
 'aboutpage'            => 'Project:çинчен',
 'copyright'            => 'Ку ăшлăх $1 килĕшӳллĕн сарăлать.',
-'copyrightpagename'    => '{{SITENAME}} проектăн автор прависем',
 'copyrightpage'        => '{{ns:project}}:Автор прависем',
 'currentevents'        => 'Хыпарсем',
 'currentevents-url'    => 'Project:Хыпарсем',

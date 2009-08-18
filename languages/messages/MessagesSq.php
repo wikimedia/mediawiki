@@ -384,7 +384,6 @@ $messages = array(
 'aboutsite'            => 'Rreth {{SITENAME}}',
 'aboutpage'            => 'Project:Rreth',
 'copyright'            => 'Përmbajtja është në disponim nëpërmjet licencës $1.',
-'copyrightpagename'    => '{{SITENAME}} Të drejta autori',
 'copyrightpage'        => '{{ns:project}}:Të drejta autori',
 'currentevents'        => 'Ngjarjet e tanishme',
 'currentevents-url'    => 'Project:Ngjarjet e tanishme',

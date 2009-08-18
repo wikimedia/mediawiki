@@ -218,7 +218,6 @@ $messages = array(
 'aboutsite'            => 'Al tentu {{SITENAME}}',
 'aboutpage'            => 'Project:Enholmación',
 'copyright'            => 'Continiu disponibri bahu $1.',
-'copyrightpagename'    => 'Copyright de {{SITENAME}}',
 'copyrightpage'        => '{{ns:project}}:Copyright',
 'currentevents'        => 'La trohi las notícias',
 'currentevents-url'    => 'Project:La trohi las notícias',

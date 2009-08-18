@@ -211,7 +211,6 @@ $messages = array(
 'aboutsite'            => 'Mabapi le {{SITENAME}}',
 'aboutpage'            => 'Project:Mabapi',
 'copyright'            => 'Mateng a hwetšagala tlase ga $1.',
-'copyrightpagename'    => '{{SITENAME}} tumello ya bangwadi',
 'copyrightpage'        => '{{ns:project}}:Tomello ya Mongwadi',
 'currentevents'        => 'Ditirago tša bjale',
 'currentevents-url'    => 'Project:Ditiragalo tša bjale',

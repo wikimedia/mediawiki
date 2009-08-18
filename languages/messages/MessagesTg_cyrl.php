@@ -277,7 +277,6 @@ $messages = array(
 'aboutsite'            => 'Дар бораи {{SITENAME}}',
 'aboutpage'            => 'Project:Дар бораи',
 'copyright'            => 'Мӯҳтаво таҳти иҷозатномаи $1 дастрас аст.',
-'copyrightpagename'    => 'Википедиа copyright',
 'copyrightpage'        => '{{ns:project}}:Copyrights',
 'currentevents'        => 'Вокеаҳои кунунӣ',
 'currentevents-url'    => 'Project:Воқеаҳои кунунӣ',

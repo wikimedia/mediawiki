@@ -257,7 +257,6 @@ $messages = array(
 'aboutsite'            => 'Åd fwait di {{SITENAME}}',
 'aboutpage'            => 'Project:Åd fwait',
 'copyright'            => "Li contnou est dizo l' $1.",
-'copyrightpagename'    => 'Abondroets {{SITENAME}}',
 'copyrightpage'        => '{{ns:project}}:Abondroets',
 'currentevents'        => 'Actouwålités',
 'currentevents-url'    => 'Project:Actouwålités',

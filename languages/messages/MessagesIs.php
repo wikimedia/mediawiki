@@ -423,7 +423,6 @@ $messages = array(
 'aboutsite'            => 'Um {{SITENAME}}',
 'aboutpage'            => 'Project:Um',
 'copyright'            => 'Efni má nota samkvæmt $1.',
-'copyrightpagename'    => 'Höfundarréttarreglum {{SITENAME}}',
 'copyrightpage'        => '{{ns:project}}:Höfundarréttur',
 'currentevents'        => 'Potturinn',
 'currentevents-url'    => 'Project:Potturinn',

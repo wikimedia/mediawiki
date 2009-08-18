@@ -209,7 +209,6 @@ $messages = array(
 'aboutsite'            => "{{SITENAME}}'m",
 'aboutpage'            => 'Project:Åm',
 'copyright'            => 'Endholtet er udgævet under $1.',
-'copyrightpagename'    => '{{SITENAME}} åphavsret',
 'copyrightpage'        => '{{ns:project}}:Åphavsret',
 'currentevents'        => 'Nænte begevenheder',
 'currentevents-url'    => 'Project:Nænte begevenheder',

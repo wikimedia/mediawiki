@@ -366,7 +366,6 @@ $messages = array(
 'aboutsite'            => '{{SITENAME}}(e)ri buruz',
 'aboutpage'            => 'Project:Honi_buruz',
 'copyright'            => 'Eduki guztia $1(r)en babespean dago.',
-'copyrightpagename'    => '{{SITENAME}}ren egile eskubideak',
 'copyrightpage'        => '{{ns:project}}:Eskubideak',
 'currentevents'        => 'Albisteak',
 'currentevents-url'    => 'Project:Albisteak',

@@ -252,7 +252,6 @@ $messages = array(
 'aboutsite'            => 'A propòsitu de {{SITENAME}}',
 'aboutpage'            => 'Project:Informatziones',
 'copyright'            => 'Cuntènnidu a suta lissèntzia $1.',
-'copyrightpagename'    => 'Copyright de {{SITENAME}}',
 'copyrightpage'        => '{{ns:project}}:Copyrights',
 'currentevents'        => 'Noas',
 'currentevents-url'    => 'Project:Noas',

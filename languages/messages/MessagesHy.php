@@ -477,7 +477,6 @@ $messages = array(
 'aboutsite'            => '{{grammar:genitive|{{SITENAME}}}} մասին',
 'aboutpage'            => 'Project:Էությունը',
 'copyright'            => 'Կայքի բովանդակությունը գտնվում է «$1» լիցենզիայի տակ։',
-'copyrightpagename'    => '{{SITENAME}} հեղինակային իրավունքները',
 'copyrightpage'        => '{{ns:project}}:Հեղինակային իրավունքներ',
 'currentevents'        => 'Ընթացիկ իրադարձություններ',
 'currentevents-url'    => 'Project:Ընթացիկ իրադարձություններ',

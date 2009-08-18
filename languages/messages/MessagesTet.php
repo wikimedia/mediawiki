@@ -219,7 +219,6 @@ $messages = array(
 'aboutsite'            => 'Kona-ba {{SITENAME}}',
 'aboutpage'            => 'Project:Kona-ba',
 'copyright'            => 'Testu pájina nian iha $1 okos.',
-'copyrightpagename'    => 'Direitu autór sira nian iha {{SITENAME}}',
 'copyrightpage'        => '{{ns:project}}:Direitu_autór_nian',
 'currentevents'        => 'Mamosuk atuál sira',
 'currentevents-url'    => 'Project:Mamosuk atuál sira',

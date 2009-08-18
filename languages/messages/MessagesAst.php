@@ -261,7 +261,6 @@ $messages = array(
 'aboutsite'            => 'Tocante a {{SITENAME}}',
 'aboutpage'            => 'Project:Tocante a',
 'copyright'            => 'Esti conteníu ta disponible baxo los términos de la  $1.',
-'copyrightpagename'    => "Drechos d'autor de {{SITENAME}}",
 'copyrightpage'        => "{{ns:project}}:Derechos d'autor",
 'currentevents'        => 'Fechos actuales',
 'currentevents-url'    => 'Project:Fechos actuales',

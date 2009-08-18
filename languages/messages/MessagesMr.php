@@ -501,7 +501,6 @@ $messages = array(
 'aboutsite'            => '{{SITENAME}} बद्दल',
 'aboutpage'            => 'Project:माहितीपृष्ठ',
 'copyright'            => 'येथील मजकूर $1च्या अंतर्गत उपलब्ध आहे.',
-'copyrightpagename'    => '{{SITENAME}} प्रताधिकार',
 'copyrightpage'        => '{{ns:project}}:प्रताधिकार',
 'currentevents'        => 'सद्य घटना',
 'currentevents-url'    => 'Project:सद्य घटना',

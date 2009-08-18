@@ -247,7 +247,6 @@ $messages = array(
 'aboutsite'            => '{{SITENAME}}র বারে',
 'aboutpage'            => 'Project:বারে',
 'copyright'            => '$1-র মাতুঙে এহানর মেথেলহানি পানা একরের।',
-'copyrightpagename'    => '{{SITENAME}} স্বত্তাধিকারহান',
 'copyrightpage'        => '{{ns:project}}:স্বত্তাধিকারহানি',
 'currentevents'        => 'হাদি এহানর ঘটনা',
 'currentevents-url'    => 'Project:হাদি এহানর ঘটনাহানি',

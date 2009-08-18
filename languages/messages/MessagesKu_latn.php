@@ -242,7 +242,6 @@ $messages = array(
 'aboutsite'            => 'Der barê {{SITENAME}}',
 'aboutpage'            => 'Project:Der barê',
 'copyright'            => 'Ji bo naverokê $1 derbas dibe.',
-'copyrightpagename'    => 'Mafên nivîsanê',
 'copyrightpage'        => '{{ns:project}}:Mafên nivîsanê',
 'currentevents'        => 'Bûyerên rojane',
 'currentevents-url'    => 'Project:Bûyerên rojane',

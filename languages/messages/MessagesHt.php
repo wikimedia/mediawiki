@@ -330,7 +330,6 @@ $messages = array(
 'aboutsite'            => 'Apwopo {{SITENAME}}',
 'aboutpage'            => 'Project:Apwopo',
 'copyright'            => 'Konteni avalab anba $1.',
-'copyrightpagename'    => '{{SITENAME}} dwa rezève',
 'copyrightpage'        => '{{ns:project}}:Dwa rezève',
 'currentevents'        => 'Aktyalite yo',
 'currentevents-url'    => 'Project:Aktyalite yo',

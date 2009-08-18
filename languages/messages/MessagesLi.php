@@ -358,7 +358,6 @@ $messages = array(
 'aboutsite'            => 'Euver {{SITENAME}}',
 'aboutpage'            => 'Project:Info',
 'copyright'            => 'De inhawd is besjikbaar ónger de $1.',
-'copyrightpagename'    => '{{SITENAME}} auteursrechte',
 'copyrightpage'        => '{{ns:project}}:Auteursrechte',
 'currentevents'        => "In 't nuujs",
 'currentevents-url'    => "Project:In 't nuujs",

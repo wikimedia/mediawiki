@@ -226,7 +226,6 @@ $messages = array(
 'aboutsite'            => '关于 {{SITENAME}}',
 'aboutpage'            => 'Project:关于',
 'copyright'            => '个版𠮶内容系根据$1𠮶条款发布。',
-'copyrightpagename'    => '{{SITENAME}} 版权',
 'copyrightpage'        => '{{ns:project}}:版权资讯',
 'currentevents'        => '新出𠮶事',
 'currentevents-url'    => 'Project:新出𠮶事',

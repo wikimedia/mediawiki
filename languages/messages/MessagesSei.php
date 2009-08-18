@@ -203,7 +203,6 @@ $messages = array(
 'aboutsite'            => '{{SITENAME}} mii',
 'aboutpage'            => 'Project:Miilà',
 'copyright'            => 'Contentua coitáamb $1 tan.',
-'copyrightpagename'    => 'Copyright {{SITENAME}}',
 'copyrightpage'        => '{{ns:project}}:Copyrightám',
 'currentevents'        => 'Hualtezxes',
 'currentevents-url'    => 'Project:Hualtezxes',

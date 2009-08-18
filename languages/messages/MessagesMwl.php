@@ -249,7 +249,6 @@ $messages = array(
 'aboutsite'            => 'Subre {{SITENAME}}',
 'aboutpage'            => 'Project:Subre',
 'copyright'            => 'Cuntenido çponible subre la lhicença $1.',
-'copyrightpagename'    => 'Dreitos de outor de {{SITENAME}}',
 'copyrightpage'        => '{{ns:project}}:Dreitos de outor',
 'currentevents'        => 'Amboras atuales',
 'currentevents-url'    => 'Project:Amboras atuales',

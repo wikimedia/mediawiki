@@ -190,7 +190,6 @@ $messages = array(
 'aboutpage'            => 'Project:درباره',
 'copyright'            => 'محتوا باای شماره قابل دسترسیه
  $1.',
-'copyrightpagename'    => '{{SITENAME}} کپی رایت',
 'copyrightpage'        => '{{ns:project}}:کپی رایت',
 'currentevents'        => 'اتفاقات جاری',
 'currentevents-url'    => 'Project:اتفاقات جاری',

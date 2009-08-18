@@ -344,7 +344,6 @@ $messages = array(
 'aboutsite'            => 'Tefü {{SITENAME}}',
 'aboutpage'            => 'Project:Tefü',
 'copyright'            => 'Ninäd gebidon ma el $1.',
-'copyrightpagename'    => 'Kopiedagität {{SITENAME}}a',
 'copyrightpage'        => '{{ns:project}}:Kopiedagitäts',
 'currentevents'        => 'Jenots nuik',
 'currentevents-url'    => 'Project:Jenots nuik',

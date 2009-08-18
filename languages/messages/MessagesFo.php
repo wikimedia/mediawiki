@@ -283,7 +283,6 @@ $messages = array(
 'aboutsite'            => 'Um {{SITENAME}}',
 'aboutpage'            => 'Project:Um',
 'copyright'            => 'Innihald er tøkt undir $1.',
-'copyrightpagename'    => '{{SITENAME}} útgávurættur',
 'copyrightpage'        => '{{ns:project}}:Útgávurættur',
 'currentevents'        => 'Núverandi hendingar',
 'currentevents-url'    => 'Project:Núverandi hendingar',

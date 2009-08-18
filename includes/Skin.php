@@ -1584,15 +1584,6 @@ END;
 		return $s;
 	}
 
-	function copyrightLink() {
-		$title = Title::newFromText( wfMsgForContent( 'copyrightpage' ) );
-		$s = $this->linkKnown(
-			$title,
-			wfMsg( 'copyrightpagename' )
-		);
-		return $s;
-	}
-
 	private function footerLink ( $desc, $page ) {
 		// if the link description has been set to "-" in the default language,
 		if ( wfMsgForContent( $desc )  == '-') {

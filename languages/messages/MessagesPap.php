@@ -111,7 +111,6 @@ $messages = array(
 'aboutsite'            => 'Tokante {{SITENAME}}',
 'aboutpage'            => 'Project:Info',
 'copyright'            => 'E kontenido ta disponibel bou di $1.',
-'copyrightpagename'    => '{{SITENAME}} derecho di outor',
 'copyrightpage'        => '{{ns:project}}:Derechinan di outor',
 'currentevents'        => 'Eventonan aktual',
 'currentevents-url'    => 'Project:Eventonan aktual',

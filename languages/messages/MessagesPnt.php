@@ -240,7 +240,6 @@ $messages = array(
 'aboutsite'            => 'Περί {{SITENAME}}',
 'aboutpage'            => 'Project:Σχετικά',
 'copyright'            => 'Το περιεχόμενον εν άμον ντο λεει η $1.',
-'copyrightpagename'    => '{{SITENAME}} δικαιώματα πνευματί',
 'copyrightpage'        => '{{ns:project}}:Δικαιώματα πνευματί',
 'currentevents'        => 'Ατωριζνά γεγονότα',
 'currentevents-url'    => 'Project:Ατωριζνά γεγονότα',

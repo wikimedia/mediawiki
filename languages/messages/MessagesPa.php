@@ -209,7 +209,6 @@ $messages = array(
 'aboutsite'            => '{{SITENAME}} ਬਾਰੇ',
 'aboutpage'            => 'Project:ਬਾਰੇ',
 'copyright'            => 'ਸਮੱਗਰੀ $1 ਹੇਠ ਉਪਲੱਬਧ ਹੈ।',
-'copyrightpagename'    => '{{SITENAME}} ਕਾਪੀਰਾਈਟ',
 'copyrightpage'        => '{{ns:project}}:ਕਾਪੀਰਾਈਟ',
 'currentevents'        => 'ਮੌਜੂਦਾ ਇਵੈਂਟ',
 'currentevents-url'    => 'Project:ਮੌਜੂਦਾ ਈਵੈਂਟ',

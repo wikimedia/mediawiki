@@ -345,7 +345,6 @@ $messages = array(
 'aboutsite'            => 'Tungkol sa {{SITENAME}}',
 'aboutpage'            => 'Project:Patungkol',
 'copyright'            => 'Maaaring gamitin ang nilalaman sa ilalim ng $1.',
-'copyrightpagename'    => 'Karapatang-ari sa {{SITENAME}}',
 'copyrightpage'        => '{{ns:project}}:Mga karapatang-ari',
 'currentevents'        => 'Mga kasalukuyang kaganapan',
 'currentevents-url'    => 'Project:Mga kasalukuyang pangyayari',

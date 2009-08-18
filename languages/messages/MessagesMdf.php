@@ -350,7 +350,6 @@ $messages = array(
 'aboutsite'            => '{{SITENAME}} колга',
 'aboutpage'            => 'Project:Колга',
 'copyright'            => 'Сёрматфсь ули кода мумс $1-са.',
-'copyrightpagename'    => '{{SITENAME}} копияма видекс',
 'copyrightpage'        => '{{ns:project}}:Копияма видекст',
 'currentevents'        => 'Мезе тяса моли',
 'currentevents-url'    => 'Project:Мезе тяса моли',

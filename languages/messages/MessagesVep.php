@@ -292,7 +292,6 @@ $messages = array(
 'aboutsite'            => 'Informacii saitas {{SITENAME}}',
 'aboutpage'            => 'Project:Informacii',
 'copyright'            => 'Südäimišt kävutadas $1-licenzijan mödhe.',
-'copyrightpagename'    => '{{SITENAME}} tegijan oiktused',
 'copyrightpage'        => '{{ns:project}}:tegijan oiktused',
 'currentevents'        => 'Nügüdläižed tegod',
 'currentevents-url'    => 'Project:Nügüdläižed tegod',

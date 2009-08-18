@@ -190,7 +190,6 @@ $messages = array(
 'aboutsite'            => 'Davart {{SITENAME}}',
 'aboutpage'            => 'Project:Davart',
 'copyright'            => 'Cuntegn disponibel sut $1.',
-'copyrightpagename'    => '{{ns:project}}:Resguardar_dretgs_d_autur',
 'copyrightpage'        => '{{ns:project}}:Resguardar_dretgs_d_autur',
 'currentevents'        => 'Events actuals',
 'currentevents-url'    => 'Project:Events actuals',

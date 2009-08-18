@@ -222,7 +222,6 @@ $messages = array(
 'aboutsite'            => 'Awal ɣef {{SITENAME}}',
 'aboutpage'            => 'Project:Awal ɣef...',
 'copyright'            => 'Tzemreḍ ad twaliḍ ayen yella deg $1.',
-'copyrightpagename'    => 'Copyright n {{SITENAME}}',
 'currentevents'        => 'Isallen',
 'currentevents-url'    => 'Project:Isallen',
 'disclaimers'          => 'Iɣtalen',

@@ -608,7 +608,6 @@ $messages = array(
 'aboutsite'            => '{{SITENAME}} تۋرالى',
 'aboutpage'            => 'Project:جوبا تۋرالى',
 'copyright'            => 'ماعلۇمات $1 شارتىمەن جەتىمدى.',
-'copyrightpagename'    => '{{SITENAME}} اۋتورلىق قۇقىقتارى',
 'copyrightpage'        => '{{ns:project}}:اۋتورلىق قۇقىقتار',
 'currentevents'        => 'اعىمداعى وقىيعالار',
 'currentevents-url'    => 'Project:اعىمداعى وقىيعالار',

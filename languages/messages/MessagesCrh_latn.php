@@ -310,7 +310,6 @@ $messages = array(
 'aboutsite'            => '{{SITENAME}} aqqında',
 'aboutpage'            => 'Project:Aqqında',
 'copyright'            => 'Malümat $1 binaen keçilip ola.',
-'copyrightpagename'    => '{{SITENAME}} müelliflik aqları',
 'copyrightpage'        => '{{ns:project}}:Müelliflik aqları',
 'currentevents'        => 'Ağımdaki vaqialar',
 'currentevents-url'    => 'Project:Ağımdaki vaqialar',

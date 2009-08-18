@@ -130,7 +130,6 @@ $messages = array(
 'aboutsite'         => '{{SITENAME}} ŋutinya',
 'aboutpage'         => 'Project:Ŋutinya',
 'copyright'         => 'Nusiwo le afii le $1 mɔɖeɖea te.',
-'copyrightpagename' => '{{SITENAME}} mɔɖeɖewo',
 'copyrightpage'     => '{{ns:project}}:Mɔɖeɖewo',
 'currentevents'     => 'Amaneɛ',
 'currentevents-url' => 'Project:Nusiwo le dzɔdzɔm',

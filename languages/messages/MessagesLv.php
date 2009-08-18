@@ -275,7 +275,6 @@ $messages = array(
 'aboutsite'            => 'Par {{grammar:akuzatīvs|{{SITENAME}}}}',
 'aboutpage'            => 'Project:Par',
 'copyright'            => 'Saturs ir pieejams saskaņā ar $1.',
-'copyrightpagename'    => '{{grammar:ģenitīvs|{{SITENAME}}}} autortiesības',
 'copyrightpage'        => '{{ns:project}}:Autortiesības',
 'currentevents'        => 'Aktualitātes',
 'currentevents-url'    => 'Project:Aktualitātes',

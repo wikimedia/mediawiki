@@ -233,7 +233,6 @@ $messages = array(
 'aboutsite'            => 'Mahitungod sa {{SITENAME}}',
 'aboutpage'            => 'Project:Mahitungod sa',
 'copyright'            => 'Mga sulod makita sa $1.',
-'copyrightpagename'    => '{{SITENAME}} katungod sa pagpatik',
 'currentevents'        => 'Mga bag-ong panghitabo',
 'currentevents-url'    => 'Project:Kasamtangang panghitabo',
 'disclaimers'          => 'Mga pagpasabot',

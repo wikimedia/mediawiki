@@ -319,7 +319,6 @@ $1',
 'aboutsite'            => '述{{SITENAME}}',
 'aboutpage'            => 'Project:述',
 'copyright'            => '文奉$1行。',
-'copyrightpagename'    => '權歸{{SITENAME}}',
 'copyrightpage'        => '{{ns:project}}:版權',
 'currentevents'        => '世事',
 'currentevents-url'    => 'Project:世事',
@@ -1420,7 +1419,7 @@ $1",
 'unusedtemplateswlh'  => '支鏈',
 
 # Random page
-'randompage' => '風掀',
+'randompage'         => '風掀',
 'randompage-nopages' => '下列{{PLURAL:$2|名集}}中無頁也：$1',
 
 # Random redirect

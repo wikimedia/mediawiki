@@ -450,7 +450,6 @@ $messages = array(
 'aboutsite'            => 'O projektu {{SITENAME}}',
 'aboutpage'            => 'Project:O',
 'copyright'            => 'Sadržaj je objavljen pod $1.',
-'copyrightpagename'    => 'Autorska prava projekta {{SITENAME}}',
 'copyrightpage'        => '{{ns:project}}:Autorska prava',
 'currentevents'        => 'Trenutni događaji',
 'currentevents-url'    => 'Project:Trenutni događaji',

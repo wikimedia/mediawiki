@@ -245,7 +245,6 @@ kiçi kategoriýadan {{PLURAL:$1|sany kiçi kategoriýa|$1 sany kiçi kategoriý
 'aboutsite'            => '{{SITENAME}} hakynda',
 'aboutpage'            => 'Project:Hakynda',
 'copyright'            => 'Mazmun $1 esasynda elýeterlidir.',
-'copyrightpagename'    => '{{SITENAME}} taslamasynyň awtorlyk hukugy',
 'copyrightpage'        => '{{ns:project}}:Awtorlyk hukugy',
 'currentevents'        => 'Oba güzeri',
 'currentevents-url'    => 'Project:Oba güzeri',

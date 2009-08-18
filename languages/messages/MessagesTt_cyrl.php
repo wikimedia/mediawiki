@@ -355,7 +355,6 @@ $messages = array(
 'aboutsite'            => '{{GRAMMAR:genitive|{{SITENAME}}}} турында',
 'aboutpage'            => 'Project:Тасвирлау',
 'copyright'            => 'Мәглүмат ирешерлек моның буенча: $1.',
-'copyrightpagename'    => '{{SITENAME}} проектының авторлык хокукы',
 'copyrightpage'        => '{{ns:project}}:Авторлык хокуклары',
 'currentevents'        => 'Хәзерге вакыйгалар',
 'currentevents-url'    => 'Project:Хәзерге вакыйгалар',

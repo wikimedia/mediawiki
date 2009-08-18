@@ -269,7 +269,6 @@ $messages = array(
 'aboutsite'            => 'Informaçioin in scia {{SITENAME}}',
 'aboutpage'            => 'Project:Informassioîn',
 'copyright'            => 'O contegnûo o se peu trovâ a $1.',
-'copyrightpagename'    => "Diritti d'autô de {{SITENAME}}",
 'copyrightpage'        => "{{ns:project}}:Diritti d'autô",
 'currentevents'        => 'Attualitæ',
 'currentevents-url'    => 'Project:Attualitæ',
