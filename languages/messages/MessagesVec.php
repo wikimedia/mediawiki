@@ -1623,7 +1623,7 @@ Qua soto vien mostrà la descrission presente in te la [$2 pàxena de descrissio
 'unusedtemplateswlh'  => 'altri cołegamenti',
 
 # Random page
-'randompage'         => 'Pàxena a caso',
+'randompage'         => 'Na pàxena a ocio',
 'randompage-nopages' => 'No ghe xe nissuna pàxena in {{PLURAL:$2|tel|tei}} namespace "$1".',
 
 # Random redirect
@@ -2171,7 +2171,7 @@ Varda [[Special:IPBlockList|lista IP bloccati]] par védar tuti i blochi.",
 'unblockip'                       => 'Sbloca indirizzo IP',
 'unblockiptext'                   => 'Dòpara el modulo qua soto par ridarghe el dirito de scritura a un indirizzo IP precedentemente blocà.',
 'ipusubmit'                       => 'Cava sto bloco',
-'unblocked'                       => "L'utente [[User:$1|$1]] el xe stà sblocà",
+'unblocked'                       => '[[User:$1|$1]] el xe stà sblocà',
 'unblocked-id'                    => 'El bloco $1 el xe stà cavà',
 'ipblocklist'                     => 'Nomi utenti e indirizi IP blocài',
 'ipblocklist-legend'              => 'Cata fora un utente blocà',

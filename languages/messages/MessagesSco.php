@@ -462,14 +462,16 @@ Ye dinna hae tae heed this message, if this accoont wis creatit by mistak.',
 'loginlanguagelabel'         => 'Leid: $1',
 
 # Password reset dialog
-'resetpass'           => 'Chynge passwaird',
-'resetpass_announce'  => 'Ye loggit in wi a short term e-mailed code. To be duin logging in, ye hae tae mak a new passwaird here:',
-'resetpass_header'    => 'Chynge accoont password',
-'oldpassword'         => 'Auld password',
-'resetpass_submit'    => 'Mak passwaird an log in',
-'resetpass_success'   => 'Yer passwaird chynge wis braw! Nou loggin ye in...',
-'resetpass_forbidden' => 'Passwords canna be chynged',
-'resetpass-no-info'   => 'Ye maun be loggit in tae access this page directly.',
+'resetpass'                 => 'Chynge passwaird',
+'resetpass_announce'        => 'Ye loggit in wi a short term e-mailed code. To be duin logging in, ye hae tae mak a new passwaird here:',
+'resetpass_header'          => 'Chynge accoont password',
+'oldpassword'               => 'Auld password',
+'newpassword'               => 'New passwaird:',
+'resetpass_submit'          => 'Mak passwaird an log in',
+'resetpass_success'         => 'Yer passwaird chynge wis braw! Nou loggin ye in...',
+'resetpass_forbidden'       => 'Passwords canna be chynged',
+'resetpass-no-info'         => 'Ye maun be loggit in tae access this page directly.',
+'resetpass-submit-loggedin' => 'Chynge passwaird',
 
 # Edit page toolbar
 'bold_sample'     => 'Bauld text',
@@ -719,6 +721,7 @@ there micht be parteeculars in the [{{fullurl:{{#Special:Log}}/suppress|page={{F
 'prefs-personal'            => 'Uiser data',
 'prefs-rc'                  => 'Recent chynges an shawin stubs',
 'prefs-misc'                => 'Antrin settins',
+'prefs-resetpass'           => 'Chynge passwaird',
 'saveprefs'                 => 'Hain preferences',
 'prefs-editing'             => 'Editin',
 'searchresultshead'         => 'Rake result settins',
@@ -758,8 +761,10 @@ there micht be parteeculars in the [{{fullurl:{{#Special:Log}}/suppress|page={{F
 
 # Groups
 'group-bot' => 'Bots',
+'group-all' => '(aw)',
 
 'group-user-member' => 'Uiser',
+'group-bot-member'  => 'Bot',
 
 # Rights
 'right-delete' => 'Delete pages',
@@ -1363,8 +1368,19 @@ Please confirm that ye really want tae recreate this airticle.",
 'autosumm-replace' => "Replacin page wi '$1'",
 'autoredircomment' => 'Reguidin tae [[$1]]',
 
+# Special:FilePath
+'filepath-page' => 'File:',
+
+# Special:FileDuplicateSearch
+'fileduplicatesearch-filename' => 'Filename:',
+'fileduplicatesearch-submit'   => 'Rake',
+
 # Special:SpecialPages
 'specialpages' => 'Byordinar pages',
+
+# Special:Tags
+'tag-filter-submit' => 'Filter',
+'tags-edit'         => 'edit',
 
 # HTML forms
 'htmlform-selectorother-other' => 'Ither',

@@ -799,7 +799,7 @@ Você está, ao mesmo tempo, a garantir-nos que isto é algo escrito por si, ou 
 'longpagewarning'                  => "'''AVISO:''' Esta página possui $1 kilobytes; alguns
 navegadores possuem problemas em editar páginas maiores que 32 kb.
 Por favor, considere seccionar a página em secções de menor dimensão.",
-'longpageerror'                    => "'''ERRO: O texto de página que você submeteu tem mais de $1 kilobytes em tamanho, que é maior que o máximo de $2 kilobytes. A página não pode ser salva.'''",
+'longpageerror'                    => "'''ERRO: O texto de página que você submeteu tem mais de $1 quilobytes em tamanho, que é maior que o máximo de $2 quilobytes. A página não pode ser salva.'''",
 'readonlywarning'                  => "'''Aviso: A base de dados foi bloqueada para manutenção, pelo que não poderá gravar a sua edição neste momento.'''
 Pode, no entanto, copiar o seu texto para um editor externo e guardá-lo para posterior submissão.
 

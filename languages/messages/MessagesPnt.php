@@ -63,6 +63,10 @@ $messages = array(
 'underline-always' => 'Πάντα',
 'underline-never'  => 'Καμίαν',
 
+# Font style option in Special:Preferences
+'editfont-sansserif' => 'Γραμματοσειρά σαν-σερίφ',
+'editfont-serif'     => 'Γραμματοσειράν σερίφ',
+
 # Dates
 'sunday'        => 'Κερεκήν',
 'monday'        => 'Δευτέραν',
@@ -186,7 +190,7 @@ $messages = array(
 'returnto'          => 'Επιστροφήν σο $1.',
 'tagline'           => 'Ασό {{SITENAME}}',
 'help'              => 'Βοήθειαν',
-'search'            => 'αράεμαν',
+'search'            => 'Αράεμαν',
 'searchbutton'      => 'Εύρον',
 'go'                => 'Δέβα',
 'searcharticle'     => 'Δέβα',
@@ -332,7 +336,7 @@ $messages = array(
 'protectedpagetext'    => "Αβούτη σελίδαν εν ασπαλιγμένον και 'κ αλλάζ'.",
 'viewsourcetext'       => "Επορείτε να τερείτε και ν' αντιγράφετε το κείμενον τ' ατεινές τη σελίδας:",
 'protectedinterface'   => "Αβούτη σελίδαν έχ' απές κείμενον για το interface τη software και για τ' ατό εν ασπαλιγμένον.",
-'namespaceprotected'   => "'Κ επορείτε να αλλάζετε σελίδας σο namespace '''$1'''.",
+'namespaceprotected'   => "'Κ επορείτε να αλλάζετε σελίδας σην περιοχἠν ονοματίων '''$1'''.",
 'customcssjsprotected' => "'Κ επορείτε να αλλάζετε αβούτο τη σελίδαν. Ατουπές, άλλος χρήστες έχ' τα προσωπικά τ'αγαπεμένα τ'.",
 'ns-specialprotected'  => "Τα ειδικά τα σελίδας 'κ επορούν ν' επεξεργάσκουνταν.",
 
@@ -550,15 +554,16 @@ $messages = array(
 'history-feed-item-nocomment' => '$1 σο $2',
 
 # Revision deletion
-'rev-delundel'      => 'δείξον/κρύψον',
-'revdel-restore'    => 'Ἀλλαγμαν ορατότητας',
-'pagehist'          => 'Ιστορίαν σελίδας',
-'deletedhist'       => 'Σβηγμένον ιστορίαν',
-'revdelete-content' => 'περιεχόμενον',
-'revdelete-summary' => 'σύνοψην',
-'revdelete-uname'   => "όνεμαν χρήστ'",
-'revdelete-hid'     => 'κρυφόν $1',
-'revdelete-unhid'   => 'όχι κρυφόν $1',
+'rev-delundel'               => 'δείξον/κρύψον',
+'revdelete-show-file-submit' => 'Ναι',
+'revdel-restore'             => 'Ἀλλαγμαν ορατότητας',
+'pagehist'                   => 'Ιστορίαν σελίδας',
+'deletedhist'                => 'Σβηγμένον ιστορίαν',
+'revdelete-content'          => 'περιεχόμενον',
+'revdelete-summary'          => 'σύνοψην',
+'revdelete-uname'            => "όνεμαν χρήστ'",
+'revdelete-hid'              => 'κρυφόν $1',
+'revdelete-unhid'            => 'όχι κρυφόν $1',
 
 # History merging
 'mergehistory-from' => 'Σελίδα πηγή:',
@@ -581,6 +586,8 @@ $messages = array(
 'diff-height'             => 'ύψος',
 'diff-td'                 => "'''κελλίον'''",
 'diff-dt'                 => "'''όρον ορισμού'''",
+'diff-font'               => "'''γραμματοσειράν'''",
+'diff-big'                => "'''τρανόν'''",
 'diff-strike'             => "'''εγκάρσιον σβήσεμαν'''",
 
 # Search results
@@ -610,13 +617,14 @@ $messages = array(
 'search-mwsuggest-disabled' => 'θίχως οδηγίας',
 'searchall'                 => 'ούλαι',
 'showingresultstotal'       => "Αδά επουκά επορείτε να ελέπετε {{PLURAL:$4|τ'αποτέλεσμαν '''$1''' ασα '''$3'''|τ'αποτελέσματα '''$1 - $2''' ασα '''$3'''}}",
-'nonefound'                 => "'''Σημείωση:''' Κανονικά ολίγα περιοχάς ονοματίων αραεύκουνταν μαναχόν. Βαλέστεν ''all:'' ασην λέξην εμπροστά για ίνεται το αράεμαν σ'όλεα τα σελίδας (και σελίδας καλατσεματί, πρότυπα κλπ.) ή βαλέστεν τ'όνομαν τη περιοχής π'θέλετε για να αραεύετε εκαικά.",
+'nonefound'                 => "'''Σημείωση:''' Κανονικά ολίγα περιοχάς ονοματίων αραεύκουνταν μαναχόν. Βαλέστεν ''all:'' ασην λέξην εμπροστά για ίνεται το αράεμαν σ'όλεα τα σελίδας (και σελίδας καλατσεματί, πρότυπα κλπ.) ή βαλέστεν ους πρόθεμαν την περιοχήν ονοματίων π'θέλετε για να αραεύετε εκαικά.",
 'powersearch'               => 'Αναλυτικόν αράεμαν',
 'powersearch-legend'        => 'Αναλυτικόν αράεμαν',
 'powersearch-ns'            => "Αράεμαν σα τόπε τ' ονοματίων:",
 'powersearch-redir'         => 'Κατάλογον με διπλά συνδέσμ',
 'powersearch-field'         => 'Αράεμαν τη',
 'powersearch-toggleall'     => 'Όλια',
+'powersearch-togglenone'    => 'Τιδέν',
 'search-external'           => 'Εύρον σα εξ μερέαν',
 
 # Quickbar
@@ -631,13 +639,22 @@ $messages = array(
 'prefs-math'                => 'Απόδοσην μαθηματικίων',
 'prefs-datetime'            => 'Ημερομηνίαν και ώραν',
 'prefs-rc'                  => 'Υστερνά αλλαγάς',
+'prefs-watchlist'           => 'Κατάλογον ωριαγματί',
 'prefs-misc'                => 'Διαφ',
 'saveprefs'                 => 'Αποθήκεμαν',
 'searchresultshead'         => 'Εύρον',
 'timezonelegend'            => 'Χρονικόν ζώνην:',
 'localtime'                 => 'Τοπικόν χρόνον:',
 'timezoneoffset'            => 'Διαφοράν ωρίων¹:',
+'timezoneregion-africa'     => 'Αφρικήν',
+'timezoneregion-america'    => 'Αμερικήν',
+'timezoneregion-antarctica' => 'Ανταρκτικήν',
+'timezoneregion-arctic'     => 'Aρκτικός',
+'timezoneregion-asia'       => 'Ασίαν',
 'timezoneregion-atlantic'   => 'Ατλαντικόν Ωκεανός',
+'timezoneregion-australia'  => 'Αυστραλίαν',
+'timezoneregion-europe'     => 'Ευρώπην',
+'timezoneregion-indian'     => 'Ινδικόν Ωκεανός',
 'timezoneregion-pacific'    => 'Ειρηνικόν Ωκεανός',
 'default'                   => 'προεπιλογήν',
 'prefs-files'               => 'Αρχεία',
@@ -791,7 +808,7 @@ $messages = array(
 'file-anchor-link'          => 'Εικόνα',
 'filehist'                  => "Ιστορικόν τ' αρχείου",
 'filehist-help'             => "Εφτάτε κλικ σ' έναν ημερομηνίαν/ώραν απάν αέτς για να τερείτε πως έτον τ' αρχείον σ' εκείνεν την ώραν.",
-'filehist-deleteone'        => 'επαναφορά',
+'filehist-deleteone'        => 'σβήσεμαν',
 'filehist-revert'           => 'επαναφορά',
 'filehist-current'          => 'υστερινά',
 'filehist-datetime'         => 'Ώραν/Ημερομ.',
@@ -807,9 +824,11 @@ $messages = array(
 'nolinkstoimage'            => "'Κ εχ σελίδας ντο δεκνίζνε σ' αβούτεν εικόναν.",
 'sharedupload'              => "Αούτον τ' αρχείον εφορτώθεν ασό $1 για κοινόν κουλάνεμαν κι επορεί να χρησιμοποισκάται και σ' άλλα έργα.",
 'uploadnewversion-linktext' => "Σκώσ' καινούραιον έκδοσην τ' αρχείου",
+'shared-repo-from'          => 'ασό $1',
 
 # File reversion
 'filerevert-comment' => 'Σχόλιον:',
+'filerevert-submit'  => 'Επαναφορά',
 
 # File deletion
 'filedelete-comment'          => 'Αιτία για το σβήσεμαν:',
@@ -917,8 +936,13 @@ $messages = array(
 'categoriespagetext' => "{{PLURAL:$1|Η αφκά κατηγορίαν εχ|Τ' αφκά τα κατηγορίας έχνε}} απές σελίδας και μέσα. [[Special:UnusedCategories|Κατηγορίας που 'κ εμεταχειρίσκουνταν]] 'κ επορείτε να ελέπετε τα αδακά.
 Τερέστεν και τα [[Special:WantedCategories|κατηγορίας που χρειάσκουνταν]].",
 
+# Special:DeletedContributions
+'sp-deletedcontributions-contribs' => "δουλείας ντ' εποίκε",
+
 # Special:LinkSearch
-'linksearch' => 'Συνδέσμαι',
+'linksearch'    => 'Συνδέσμαι',
+'linksearch-ns' => 'Περιοχή ονοματίων:',
+'linksearch-ok' => 'Αράεμαν',
 
 # Special:ListUsers
 'listusers-submit' => 'Δείξον',
@@ -1162,8 +1186,10 @@ $messages = array(
 'export-download'   => 'Αποθήκεμαν άμον αρχείον',
 
 # Namespace 8 related
-'allmessages'     => 'Μενέματα συστηματί',
-'allmessagesname' => 'Όνεμαν',
+'allmessages'               => 'Μενέματα συστηματί',
+'allmessagesname'           => 'Όνεμαν',
+'allmessages-filter-legend' => 'Φίλτρον',
+'allmessages-language'      => 'Λαλίαν:',
 
 # Thumbnails
 'thumbnail-more'  => 'Ποίσον κι άλλο τρανόν',

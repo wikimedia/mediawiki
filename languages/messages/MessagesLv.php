@@ -646,7 +646,7 @@ $3 norādītais iemesls ir ''$2''",
 'revisionasof'           => 'Versija, kas saglabāta $1',
 'revision-info'          => 'Versija $1 laikā, kādu to atstāja $2',
 'previousrevision'       => '←Senāka versija',
-'nextrevision'           => 'Jaunāka versija→',
+'nextrevision'           => 'Jaunāka versija →',
 'currentrevisionlink'    => 'skatīt pašreizējo versiju',
 'cur'                    => 'ar pašreizējo',
 'next'                   => 'nākamais',
@@ -957,7 +957,7 @@ Ja tu izvēlies to norādīt, tas tiks izmantots, lai identificētu tavu darbu (
 'recentchangeslinked-summary'  => "Šiet ir nesen izdarītās izmaiņas lapās, uz kurām ir saites no norādītās lapas (vai norādītajā kategorijā ietilpstošās lapas).
 Lapas, kas ir tavā [[Special:Watchlist|uzraugāmo rakstu sarakstā]] ir '''treknas'''.",
 'recentchangeslinked-page'     => 'Lapas nosaukums:',
-'recentchangeslinked-to'       => 'Rādīt izmaiņas lapās, kurās ir saites uz šo lapu (nevs lapās uz kurām ir saites no šīs lapas)',
+'recentchangeslinked-to'       => 'Rādīt izmaiņas lapās, kurās ir saites uz šo lapu (nevis lapās uz kurām ir saites no šīs lapas)',
 
 # Upload
 'upload'                 => 'Augšuplādēt failu',
@@ -1120,7 +1120,7 @@ Uzklikšķinot uz kādas kolonnas virsraksta, var sakārtot pēc kāda cita para
 
 # Unused templates
 'unusedtemplates'     => 'Neizmantotās veidnes',
-'unusedtemplatestext' => 'Šajā lapā ir uzskaitītas visas veidnes, kas nav iekļautas nevienā citā lapā. Pirms dzēšanas jāpārbauda citu veidu saites.',
+'unusedtemplatestext' => 'Šajā lapā ir uzskaitītas visas veidnes, kas nav iekļautas nevienā citā lapā. Ja tās paredzēts dzēst, pirms dzēšanas jāpārbauda citu veidu saites uz dzēšamajām veidnēm.',
 'unusedtemplateswlh'  => 'citas saites',
 
 # Random page
@@ -1218,6 +1218,7 @@ Katrā rindiņā ir saites uz pirmo un otro pāradresācijas lapu, kā arī pirm
 'alllogstext'          => 'Visi pieejamie {{grammar:akuzatīvs{{SITENAME}}}} reģistri.
 Tu vari sašaurināt aplūkojamo reģistru, izvēloties reģistra veidu, lietotāja vārdu vai reģistrēto lapu. Visi teksta lauki izšķir lielos un mazos burtus.',
 'logempty'             => 'Reģistrā nav atbilstošu ierakstu.',
+'log-title-wildcard'   => 'Meklēt virsrakstus, kas sākas ar šo tekstu',
 
 # Special:AllPages
 'allpages'       => 'Visas lapas',
@@ -1476,6 +1477,7 @@ kāds cits iespējams to ir atjaunojis ātrāk.',
 'sp-contributions-newbies-sub' => 'Jaunie lietotāji',
 'sp-contributions-blocklog'    => 'Bloķēšanas reģistrs',
 'sp-contributions-deleted'     => 'Izdzēstais lietotāju devums',
+'sp-contributions-logs'        => 'reģistri',
 'sp-contributions-talk'        => 'diskusija',
 'sp-contributions-userrights'  => 'Lietotāju tiesību pārvaldība',
 'sp-contributions-search'      => 'Meklēt lietotāju veiktās izmaiņas',
@@ -1539,7 +1541,7 @@ Visus blokus var apskatīties [[Special:IPBlockList|IP bloku sarakstā]].',
 'unblockip'                => 'Atbloķēt lietotāju',
 'unblockiptext'            => 'Šeit var atbloķēt iepriekš nobloķētu IP adresi vai lietotāja vārdu (atjaunot viņiem rakstīšanas piekļuvi).',
 'ipusubmit'                => 'Noņemt šo bloku',
-'unblocked'                => '[[Lietotājs:$1|$1]] tika atbloķēts',
+'unblocked'                => '[[User:$1|$1]] tika atbloķēts',
 'unblocked-id'             => 'Bloks $1 tika noņemts',
 'ipblocklist'              => 'Bloķētās IP adreses un lietotājvārdi',
 'ipblocklist-username'     => 'Lietotāja vārds vai IP adrese:',

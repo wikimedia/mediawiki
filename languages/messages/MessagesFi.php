@@ -2091,7 +2091,7 @@ Viimeisimmän muokkauksen on tehnyt käyttäjä [[User:$3|$3]] ([[User talk:$3|k
 'protect-title'               => 'Sivun $1 suojaus',
 'prot_1movedto2'              => 'siirsi sivun ”$1” uudelle nimelle ”$2”',
 'protect-legend'              => 'Suojaukset',
-'protectcomment'              => 'Perustelu',
+'protectcomment'              => 'Syy',
 'protectexpiry'               => 'Vanhenee',
 'protect_expiry_invalid'      => 'Vanhenemisaika ei kelpaa.',
 'protect_expiry_old'          => 'Vanhenemisaika on menneisyydessä.',

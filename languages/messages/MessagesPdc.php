@@ -15,6 +15,7 @@ $fallback = 'de';
 
 $messages = array(
 # User preference toggles
+'tog-underline'          => 'Gleecher unnerleine:',
 'tog-hideminor'          => 'Gleene Enneringe verschwinne losse',
 'tog-watchdefault'       => 'Vun mir gennerte Ardickele watsche',
 'tog-nocache'            => 'Ken Bledder-Scheier',
@@ -211,6 +212,7 @@ Guuck aach [[Special:Version|Versionsblatt]]',
 'userlogout'              => 'Geh naus',
 'gotaccountlink'          => 'Kumm nei',
 'createaccountmail'       => 'iwwer E-Mail',
+'noemail'                 => 'Yuuser „$1“ hot ken E-Mail aagewwe.',
 'loginlanguagelabel'      => 'Schprooch: $1',
 
 # Password reset dialog
@@ -221,6 +223,7 @@ Guuck aach [[Special:Version|Versionsblatt]]',
 'link_tip'       => 'Gleecher',
 'extlink_sample' => 'http://www.example.com Gleecher-Text',
 'extlink_tip'    => 'Gewebbgleecher (acht uff http://)',
+'media_tip'      => 'Gleecher fer Feil',
 
 # Edit pages
 'minoredit'       => 'Nur gleene Enneringe gemacht',
@@ -295,6 +298,7 @@ Guuck aach [[Special:Version|Versionsblatt]]',
 
 # Preferences page
 'preferences'              => 'paerseenlich Profil',
+'mypreferences'            => 'Mei Uffschtelling',
 'changepassword'           => 'Paesswatt ennere',
 'prefs-personal'           => 'Yuuser Profile',
 'prefs-watchlist'          => 'Watsch-Lischt',

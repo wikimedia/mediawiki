@@ -1771,7 +1771,7 @@ Slijedeći popis prikazuje {{PLURAL:$1|stranice koje|prvih $1 stranica koje}} vo
 
 # Random page
 'randompage'         => 'Slučajna stranica',
-'randompage-nopages' => 'Nema stranica u imenskom prostoru "$1".',
+'randompage-nopages' => 'Nema stranica u {{PLURAL:$2|imenskom prostoru|imenskim prostorima}}: $1.',
 
 # Random redirect
 'randomredirect'         => 'Slučajno preusmjeravanje',
@@ -2143,7 +2143,7 @@ Pogledajte [[Special:ProtectedPages|zaštićene stranice]] za popis trenutačno 
 'protect-title'               => 'Zaštićujem "$1"',
 'prot_1movedto2'              => '$1 premješteno na $2',
 'protect-legend'              => 'Potvrda zaštite',
-'protectcomment'              => 'Komentar:',
+'protectcomment'              => 'Razlog:',
 'protectexpiry'               => 'Trajanje zaštite:',
 'protect_expiry_invalid'      => 'Upisani vremenski rok nije valjan.',
 'protect_expiry_old'          => 'Vrijeme isteka je u prošlosti.',

@@ -1876,7 +1876,7 @@ $NEWPAGE
 'protect-title'               => '"$1" కు సంరక్షణ స్థాయిని సెట్ చేస్తున్నాం',
 'prot_1movedto2'              => '$1, $2కు తరలించబడింది',
 'protect-legend'              => 'సంరక్షణను నిర్ధారించు',
-'protectcomment'              => 'సంరక్షించడానికి కారణం',
+'protectcomment'              => 'కారణం:',
 'protectexpiry'               => 'గడువు:',
 'protect_expiry_invalid'      => 'గడువు సమయాన్ని సరిగ్గా ఇవ్వలేదు.',
 'protect_expiry_old'          => 'మీరిచ్చిన గడువు ప్రస్తుత సమయం కంటే ముందు ఉంది.',

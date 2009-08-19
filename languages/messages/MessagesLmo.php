@@ -296,19 +296,42 @@ $1",
 'showtoc'                 => 'fà vidè',
 'hidetoc'                 => 'scund',
 'thisisdeleted'           => 'Varda o rimet a post $1?',
-'restorelink'             => '{{PLURAL:$1|1 mudifica scancelada|$1 mudifich scancelaa}}',
+'viewdeleted'             => 'Te vöret vidè $1?',
+'restorelink'             => '{{PLURAL:$1|1 mudifega scancelada|$1 mudifegh scancelaa}}',
+'feedlinks'               => 'Feed:',
+'feed-invalid'            => 'Mudalità de sotascrizión del feed minga valida',
+'feed-unavailable'        => "Gh'en è minga de feed",
+'site-rss-feed'           => 'Feed RSS de $1',
+'site-atom-feed'          => 'Feed Atom de $1',
+'page-rss-feed'           => 'Feed RSS per "$1"',
+'page-atom-feed'          => 'Feed Atom per "$1"',
 'red-link-title'          => "$1 (la pagina la gh'è minga)",
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-main'      => 'Artícol',
-'nstab-user'      => 'Pagina personala',
-'nstab-special'   => 'Pagina special',
-'nstab-project'   => 'Pagina',
-'nstab-mediawiki' => 'Messácc',
+'nstab-main'      => 'Articul',
+'nstab-user'      => 'Pagina persunala',
+'nstab-media'     => 'Pagina multimediala',
+'nstab-special'   => 'Pagina speciala',
+'nstab-project'   => 'Pagina de servizi',
+'nstab-image'     => 'Figüra',
+'nstab-mediawiki' => 'Messagg',
 'nstab-template'  => 'Bueta',
-'nstab-category'  => 'Categuría',
+'nstab-help'      => 'Ajüt',
+'nstab-category'  => 'Categuria',
+
+# Main script and global functions
+'nosuchaction'      => 'Uperaziun minga recugnussüda',
+'nosuchactiontext'  => "L'uperaziun che t'hee ciamaa in del ligam URL a l'è minga recugnussüda.<br />
+Pö vess che t'hee batüü mal l'URL, o che seet andaa adree a un ligam minga bun.<br />
+Quest chì al pudaria anca indicà un bug dent in del software dupraa de {{SITENAME}}.",
+'nosuchspecialpage' => "La gh'è minga una pagina pagina special tan 'me quela che t'hee ciamaa",
+'nospecialpagetext' => "<big>'''T'hee ciamaa una pagina speciala minga valida.'''</big>
+
+Una lista di paginn special la se pö truà in de la [[Special:SpecialPages|{{int:specialpages}}]].",
 
 # General errors
+'error'             => 'Erur',
+'databaseerror'     => 'Erur in del database',
 'internalerror'     => 'Erur in del sistema',
 'badtitle'          => 'Títul mía bun',
 'viewsource'        => 'Còdas surgent',

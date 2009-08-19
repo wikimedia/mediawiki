@@ -1654,7 +1654,7 @@ La descripció de la seva [$2 pàgina de descripció] es mostra a continuació.'
 
 # Random page
 'randompage'         => "Pàgina a l'atzar",
-'randompage-nopages' => "No hi ha cap pàgina en l'espai de noms «$1».",
+'randompage-nopages' => "No hi ha cap pàgina en {{PLURAL:$2|l'espai de noms següent|els espais de noms següents}}: $1.",
 
 # Random redirect
 'randomredirect'         => "Redirecció a l'atzar",
@@ -2021,7 +2021,7 @@ La darrera edició ha estat feta per l'usuari [[User:$3|$3]] ([[User talk:$3|Dis
 'protect-title'               => 'Canviant la protecció de «$1»',
 'prot_1movedto2'              => '[[$1]] mogut a [[$2]]',
 'protect-legend'              => 'Confirmeu la protecció',
-'protectcomment'              => 'Motiu de la protecció',
+'protectcomment'              => 'Motiu:',
 'protectexpiry'               => "Data d'expiració",
 'protect_expiry_invalid'      => "Data d'expiració no vàlida",
 'protect_expiry_old'          => 'El temps de termini ja ha passat.',
@@ -2648,6 +2648,7 @@ $1",
 'svg-long-desc'        => '(fitxer SVG, nominalment $1 × $2 píxels, mida del fitxer: $3)',
 'show-big-image'       => 'Imatge en màxima resolució',
 'show-big-image-thumb' => "<small>Mida d'aquesta previsualització: $1 × $2 píxels</small>",
+'file-info-gif-frames' => '$1 {{PLURAL:$1|marc|marcs}}',
 
 # Special:NewFiles
 'newimages'             => 'Galeria de nous fitxers',

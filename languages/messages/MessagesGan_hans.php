@@ -331,7 +331,7 @@ MySQL回到错误“$3: $4”。',
 'perfcached'           => '底下系缓存资料，可能伓系最新𠮶。',
 'perfcachedts'         => '底下系缓存资料，佢最晏更新𠮶时间系 $1。',
 'querypage-no-updates' => '个页目前改伓正，佢𠮶资料伓能仰上更新。',
-'wrong_wfQuery_params' => '参数错误斢到嘞 wfQuery（）<br />
+'wrong_wfQuery_params' => '参数错误斢到嘞 wfQuery()<br />
 函数： $1<br />
 查询： $2',
 'viewsource'           => '源代码',

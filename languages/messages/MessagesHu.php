@@ -2177,7 +2177,7 @@ Kérjük, hogy nyomd meg a "vissza" gombot, és töltsd le újra az oldalt, ahon
 'protect-title'               => '„$1” levédése',
 'prot_1movedto2'              => '[[$1]] lapot átneveztem [[$2]] névre',
 'protect-legend'              => 'Levédés megerősítése',
-'protectcomment'              => 'A védelem oka',
+'protectcomment'              => 'A védelem oka:',
 'protectexpiry'               => 'Időtartam',
 'protect_expiry_invalid'      => 'A lejárati idő érvénytelen.',
 'protect_expiry_old'          => 'A lejárati idő a múltban van.',

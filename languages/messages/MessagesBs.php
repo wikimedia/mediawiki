@@ -1812,7 +1812,7 @@ Prije brisanja provjerite da li druge stranice vode na te šablone.',
 
 # Random page
 'randompage'         => 'Slučajna stranica',
-'randompage-nopages' => 'Nema stranica u imenskom prostoru "$1".',
+'randompage-nopages' => 'Nema stranica u {{PLURAL:$2|slijedećem imenskom prostoru|slijedećim imenskim prostorima}}: "$1".',
 
 # Random redirect
 'randomredirect'         => 'Slučajno preusmjerenje',
@@ -2186,7 +2186,7 @@ vraćeno na posljednju verziju koju je sačuvao $2.',
 'protect-title'               => 'Zaštićuje se "$1"',
 'prot_1movedto2'              => 'članak [[$1]] premješten na [[$2]]',
 'protect-legend'              => 'Potvrdite zaštitu',
-'protectcomment'              => 'Komentar:',
+'protectcomment'              => 'Razlog:',
 'protectexpiry'               => 'Ističe:',
 'protect_expiry_invalid'      => 'Upisani vremenski rok nije valjan.',
 'protect_expiry_old'          => 'Upisani vremenski rok je u prošlosti.',

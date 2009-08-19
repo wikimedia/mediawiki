@@ -368,7 +368,7 @@ MySQL回到錯誤“$3: $4”。',
 'perfcached'           => '底下係緩存資料，可能伓係最新嗰。',
 'perfcachedts'         => '底下係緩存資料，佢最晏更新嗰時間係 $1。',
 'querypage-no-updates' => '箇頁目前改伓正，佢嗰資料伓能仰上更新。',
-'wrong_wfQuery_params' => '參數錯誤斢到嘞 wfQuery（）<br />
+'wrong_wfQuery_params' => '參數錯誤斢到嘞 wfQuery()<br />
 函數： $1<br />
 查詢： $2',
 'viewsource'           => '原始碼',

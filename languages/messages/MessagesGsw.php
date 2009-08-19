@@ -1611,7 +1611,7 @@ Iberprief anderi Gleicher zue dr Vorlage, voreb Du die leschesch.',
 
 # Random page
 'randompage'         => 'Zuefalls-Artikel',
-'randompage-nopages' => 'Im Namensruum „$1“ sin kei Syte vorhande.',
+'randompage-nopages' => 'S het kei Syte in {{PLURAL:$2|däm Namensruum|däne Namensryym}}:  $1.',
 
 # Random redirect
 'randomredirect'         => 'Zuefälligi Wyterleitig',
@@ -1969,7 +1969,7 @@ Bitte gang zruck, tue d Syte nej lade un versuech s nomol.',
 'protect-title'               => 'Schutz vu „$1“ ändere',
 'prot_1movedto2'              => '[[$1]] isch uf [[$2]] verschobe worde.',
 'protect-legend'              => 'Syteschutzstatus ändere',
-'protectcomment'              => 'Grund vu dr Sperrig',
+'protectcomment'              => 'Grund:',
 'protectexpiry'               => 'Gsperrt bis:',
 'protect_expiry_invalid'      => 'Di gwählti Duur isch nid gültig.',
 'protect_expiry_old'          => 'Di gwählti Duur isch scho vergange.',

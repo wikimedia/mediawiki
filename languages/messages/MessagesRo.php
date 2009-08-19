@@ -1791,7 +1791,7 @@ Lista tipurilor MIME recunoscute de MediaWiki poate fi găsită la [http://svn.w
 
 # Random page
 'randompage'         => 'Pagină aleatorie',
-'randompage-nopages' => 'Nu există pagini în spaţiul de nume "$1".',
+'randompage-nopages' => 'Nu există pagini în {{PLURAL:$2|spaţiul|spaţiile}} de nume: $1.',
 
 # Random redirect
 'randomredirect'         => 'Redirecţionare aleatorie',
@@ -2154,7 +2154,7 @@ revenire la ultima versiune de $2.',
 'protect-title'               => 'Protejare "$1"',
 'prot_1movedto2'              => 'a mutat [[$1]] la [[$2]]',
 'protect-legend'              => 'Confirmă protejare',
-'protectcomment'              => 'Comentariu:',
+'protectcomment'              => 'Motiv:',
 'protectexpiry'               => 'Expiră:',
 'protect_expiry_invalid'      => 'Timpul de expirare este nevalid.',
 'protect_expiry_old'          => 'Timpul de expirare este în trecut.',

@@ -916,9 +916,13 @@ $2',
 'revdelete-hide-comment'      => 'באהאלט ענדערן הערה',
 'revdelete-hide-user'         => "באהאלט רעדאקטער'ס באנוצער-נאמען/איי.פי.",
 'revdelete-hide-restricted'   => 'באהאלט אינפארמאציע אויך פון אדמיניסטראטורן פונקט ווי פשוטע באנוצער',
+'revdelete-suppress'          => 'באהאלט דאטע פון אדמיניסטראטורן ווי אויך אנדערע',
 'revdelete-hide-image'        => 'באהאלט טעקע אינהאלט',
 'revdelete-unsuppress'        => 'טוה אפ באגרענעצונגן אין גענדערטע רעוויזיעס',
 'revdelete-log'               => 'לאג-בוך הערה:',
+'revdelete-submit'            => 'צושטעלן צו סעלעקטירטער רעוויזיע',
+'revdelete-success'           => "'''רעוויזיעס זעהן סוקסעספול אנגעשטעלט.'''",
+'logdelete-success'           => "'''לאג באהאלטן איז סוקסעספול איינגעשטעלט.'''",
 'revdel-restore'              => 'טויש די זעבארקייט',
 'pagehist'                    => 'בלאט היסטאריע',
 'deletedhist'                 => 'אויסגעמעקטע ווערסיעס',
@@ -997,8 +1001,14 @@ $2',
 'diff-tr'                 => "א '''שורה'''",
 'diff-td'                 => "א '''צעל'''",
 'diff-th'                 => "אַ '''קעפל'''",
+'diff-dl'                 => "א '''דעפאניציע ליסטע'''",
+'diff-dt'                 => "א '''דעפאניציע טערמין'''",
+'diff-dd'                 => "א '''דעפאניציע'''",
+'diff-form'               => "א '''פארעם'''",
 'diff-img'                => "אַ '''בילד'''",
 'diff-span'               => "א '''שטיק'''",
+'diff-a'                  => "א '''לינק'''",
+'diff-i'                  => "'''גענייגט'''",
 'diff-b'                  => "'''דיק'''",
 'diff-strong'             => "'''שטארק'''",
 'diff-em'                 => "'''טעקסט געדרוקט'''",
@@ -1070,9 +1080,11 @@ $2',
 'search-external'                => 'דרויסנדיק זוכן',
 
 # Quickbar
-'qbsettings-none'       => 'גארנישט',
-'qbsettings-fixedleft'  => 'קבוע לינקס',
-'qbsettings-fixedright' => 'קבוע רעכטס',
+'qbsettings-none'          => 'גארנישט',
+'qbsettings-fixedleft'     => 'קבוע לינקס',
+'qbsettings-fixedright'    => 'קבוע רעכטס',
+'qbsettings-floatingleft'  => 'שווימנדיג לינקס',
+'qbsettings-floatingright' => 'שווימנדיג רעכטס',
 
 # Preferences page
 'preferences'                 => 'פרעפערענצן',
@@ -1095,6 +1107,7 @@ $2',
 'prefs-misc'                  => 'באַאַרבעטן',
 'prefs-resetpass'             => 'טוישן פאַסווארט',
 'prefs-email'                 => 'אימעיל אפציעס',
+'prefs-rendering'             => 'אויסזעהן',
 'saveprefs'                   => 'אפהיטן',
 'resetprefs'                  => 'אוועקנעמען נישט-אויפגעהיטענע ענדערונגען',
 'restoreprefs'                => 'צוריקשטעלן אלע גרונטלעכע שטעלונגען',
@@ -1159,6 +1172,7 @@ $2',
 'prefs-advancedsearchoptions' => 'אדוואנסירטע אפציעס',
 'prefs-advancedwatchlist'     => 'אדוואנסירטע אפציעס',
 'prefs-display'               => 'ווייז אפציעס',
+'prefs-diffs'                 => 'צווישנשיידן',
 
 # User rights
 'userrights'                  => 'באנוצער רעכטן פארוואלטערשאפט',
@@ -1223,9 +1237,11 @@ $2',
 'right-suppressrevision'   => 'קוק-איבער און דריי-צוריק רעוויזיעס באהאלטן פון אדימיניסטראטורן',
 'right-suppressionlog'     => 'זעה פריוואטע לאגס',
 'right-import'             => 'אימפארטירן בלעטער פון אנדערע וויקיס',
+'right-importupload'       => 'אימפארטירט בלעטער דורך אפלאודן פייל',
 'right-patrol'             => 'צייכנען די רעדאַקטירונגען פֿון אַנדערע ווי פאַטראלירט',
 'right-mergehistory'       => 'צונויפֿגיסן די היסטאריע פֿון בלעטער',
 'right-userrights'         => 'רעדאַקטירן אלע באַניצער רעכטן',
+'right-siteadmin'          => 'פארשליס און שליס-אויף די דאטעבאזע',
 
 # User rights log
 'rightslog'      => 'באַניצער רעכטן לאג',
@@ -1251,6 +1267,9 @@ $2',
 'action-browsearchive'      => 'זוכן אויסגעמעקטע בלעטער',
 'action-undelete'           => 'צוריקשטעלן דעם בלאט',
 'action-suppressionlog'     => 'באקוקן דעם פריוואטן לאג',
+'action-patrol'             => "אנצייכענען אנדערס' רעדאקטירונגן אלס נאכגעקוקט",
+'action-autopatrol'         => 'אנצוצייכענען אייערע רעדאקטירונגן אלס איבערגעקוקטע',
+'action-unwatchedpages'     => 'זעה די ליסטע פון נישט אויפגעפאסטע בלעטער',
 'action-userrights'         => 'רעדאַקטירן אלע באַניצער רעכטן',
 
 # Recent changes
@@ -1259,6 +1278,8 @@ $2',
 'recentchanges-legend'              => 'ברירות פאר לעצטע ענדערונגען',
 'recentchangestext'                 => 'גיי נאך די לעצטע ענדערונגען צו דער וויקי אויף דעם בלאט.',
 'recentchanges-feed-description'    => 'גייט נאך די לעצטע ענדערונגען צו דער וויקי אין דעם בלאט.',
+'recentchanges-label-newpage'       => 'די ענדערונג האט באשאפען א נייער בלאט',
+'recentchanges-label-unpatrolled'   => 'די רעדאקטירונג איז נאך נישט נאכגעקוקט',
 'rcnote'                            => "אונטן {{PLURAL:$1|איז '''1''' ענדערונג|זײַנען די לעצטע '''$1''' ענדערונגען}} אין {{PLURAL:$2|דעם לעצטן טאג|די לעצטע $2 טעג}}, ביז $5, $4.",
 'rcnotefrom'                        => "פֿאלגנד זענען די ענדערונגען זײַט '''$2''' (ביז '''$1''')",
 'rclistfrom'                        => 'װײַזן נײַע ענדערונגען פֿון $1',
@@ -1277,6 +1298,7 @@ $2',
 'newpageletter'                     => 'נ',
 'boteditletter'                     => 'ב',
 'number_of_watching_users_pageview' => '[{{PLURAL:$1|איין באַניצער פאַסט|$1 באַניצערס פאַסן}} אויף]',
+'rc_categories_any'                 => 'אלע',
 'newsectionsummary'                 => '/* $1 */ נייע אפטיילונג',
 'rc-enhanced-expand'                => 'צייג דעטאלען (פארלאנגט זיך JavaScript)',
 'rc-enhanced-hide'                  => 'באהאלט דעטאלן',
@@ -1295,6 +1317,7 @@ $2',
 # Upload
 'upload'              => 'אַרױפֿלאָדן בילדער/טעקעס',
 'uploadbtn'           => 'אַרױפֿלאָדן טעקע',
+'reupload'            => 'ווידער ארויפלאדירן',
 'uploadnologin'       => 'נישט אַרײַנלאגירט',
 'uploadnologintext'   => 'איר מוזט זײַן [[Special:UserLogin| אַרײַנלאָָגירט]] כדי ארויפֿצולאָדן טעקעס',
 'uploaderror'         => 'אַרויפֿלאָדן פֿעלער',
@@ -1336,6 +1359,11 @@ $2',
 'upload-maxfilesize'  => 'מאַקסימום טעקע גרייס: $1',
 'watchthisupload'     => 'אויפֿפאַסן דעם בלאט',
 
+'upload-file-error'   => 'אינערליכער פעלער',
+'upload-unknown-size' => 'אומוויסענדע גרויס',
+
+'license' => 'לייסענסאינג:',
+
 # Special:ListFiles
 'listfiles_search_for'  => 'זוכן פֿאַר מעדיע נאָמען:',
 'imgfile'               => 'טעקע',
@@ -1373,6 +1401,7 @@ $2',
 זעט דעם [$2 טעקע באשרייבונג בלאט] פאר מער אינפארמאציע.',
 'sharedupload-desc-here'    => 'די טעקע איז פֿון $1 און מען מעג זי ניצן אין אנדערע פראיעקטן.
 די באשרייבונג פון איר  [$2 טעקע באשרייבונג בלאט] דארט ווערן געוויזן אונטן.',
+'filepage-nofile'           => 'עס עקזיסטירט נישט קיין פייל מיט דעם נאמען.',
 'uploadnewversion-linktext' => 'ארויפֿלאדן א נײַע ווערסיע פֿוו דער טעקע',
 'shared-repo-from'          => 'פֿון $1',
 
@@ -1397,6 +1426,9 @@ $2',
 # MIME search
 'mimesearch' => 'זוך MIME',
 'download'   => 'אַראָפלאָדן',
+
+# Unwatched pages
+'unwatchedpages' => 'בלעטער וואס זענען נישט אויפגעפאסט',
 
 # List redirects
 'listredirects' => 'ליסטע פון ווײַטערפֿירונגען',
@@ -1488,6 +1520,7 @@ $2',
 'deadendpages'            => 'בלינדע בלעטער',
 'deadendpagestext'        => 'די פאלגנדע בלעטער לינקען נישט צו קיין אנדערע בלעטער אין דער וויקי.',
 'protectedpages'          => 'געשיצטע בלעטער',
+'protectedpages-indef'    => 'שטענדיגע באשוצינגן בלויז',
 'protectedpagestext'      => 'די פֿאלגנדע בלעטער זענען געשיצט פון רעדאַקטירן און באוועגן:',
 'protectedpagesempty'     => 'אצינד זענען קיין בלעטער נישט געשיצט מיט די דאזיגע פאַראַמעטערס.',
 'protectedtitles'         => 'געשיצטע קעפלעך',
@@ -1521,9 +1554,10 @@ $2',
 'specialloguserlabel'  => 'באַניצער:',
 'speciallogtitlelabel' => 'קעפל:',
 'log'                  => 'לאג-ביכער',
-'all-logs-page'        => 'אלע לאג-ביכער',
+'all-logs-page'        => 'אלע פובליק לאגס',
 'alllogstext'          => 'קאמבינירטער אויסשטעל פון אלע לאגס פון {{SITENAME}}.
 מען קען פֿאַרשמעלרן די אויסוואל דורך אויסוועלן דעם סארט לאג, באַניצער נאמען אדער אנרירנדע בלעטער.',
+'logempty'             => 'נישטא קיין ענדליכע זאכן אין דעם לאג.',
 
 # Special:AllPages
 'allpages'          => 'אַלע בלעטער',
@@ -1543,12 +1577,13 @@ $2',
 'allpages-bad-ns'   => '{{SITENAME}} האט נישט קיין נאָמענטייל "$1".',
 
 # Special:Categories
-'categories'                  => 'קאַטעגאָריעס',
-'categoriespagetext'          => 'די פֿאלגענדע {{PLURAL:$1| קאַטעגאָריע אַנטהאַלט|קאַטעגאָריעס אַנטהאַלטן}} בלעטער אדער מעדיע.
+'categories'                    => 'קאַטעגאָריעס',
+'categoriespagetext'            => 'די פֿאלגענדע {{PLURAL:$1| קאַטעגאָריע אַנטהאַלט|קאַטעגאָריעס אַנטהאַלטן}} בלעטער אדער מעדיע.
 [[Special:UnusedCategories|אומבאַניצטע קאַטעגאריעס]] זענען נישט געוויזן דא.
 זעט אויך [[Special:WantedCategories|געזוכטע קאַטעגאריעס]].',
-'categoriesfrom'              => 'ווײַזן קאַטעגאריעס אָנהייבנדיג פֿון:',
-'special-categories-sort-abc' => 'סארטירן אַלפֿאַבעטיש',
+'categoriesfrom'                => 'ווײַזן קאַטעגאריעס אָנהייבנדיג פֿון:',
+'special-categories-sort-count' => 'סארטיר לויטן צאל בלעטער',
+'special-categories-sort-abc'   => 'סארטירן אַלפֿאַבעטיש',
 
 # Special:DeletedContributions
 'deletedcontributions'       => 'אויסגעמעקטע באַניצער בײַשטײַערונגען',
@@ -1587,6 +1622,7 @@ $2',
 'listgrouprights-removegroup-all' => 'רשות אוועקצונעמען אלע גרופעס',
 
 # E-mail user
+'mailnologin'     => 'נישטא קיין אדרעס צו שיקן',
 'emailuser'       => 'אַרויסשיקן ע-פאסט צו דעם באַניצער',
 'emailpage'       => 'אַרויסשיקן ע-פאסט צו באַניצער.',
 'emailpagetext'   => 'איר קענט ניצן דעם פֿארעם אונטן צו שיקן אן בליצבריוו צו דעם דאזיגן באַניצער.
@@ -1686,6 +1722,7 @@ $NEWPAGE
 
 ביטע באשטעטיגט אז דאס איז טאקע אייער כוונה, אז איר פארשטייט פולערהייט די קאנסקווענסן פון אזא הארבע אקט, און אז דאס איז אין איינקלאנג מיטן פאליסי פון דעם סייט.',
 'actioncomplete'         => 'די אַקציע אָט זיך דורכגעפֿירט',
+'actionfailed'           => 'אקציע דורכגעפאלן',
 'deletedtext'            => '"<nowiki>$1</nowiki>" אויסגעמעקט. זעה $2 פאר רעקארד פון לעצטיגע אויסמעקונגען.',
 'deletedarticle'         => 'אויסגעמעקט "[[$1]]"',
 'suppressedarticle'      => 'באַהאַלטן "[[$1]]"',
@@ -1890,8 +1927,10 @@ $NEWPAGE
 'blockipsuccesssub'               => 'בלאק איז דורכגפירט מיט דערפֿאלג',
 'blockipsuccesstext'              => 'באנוצער [[Special:Contributions/$1|$1]] <br />איז פארשפארט.
 זעהט די [[Special:IPBlockList|ליסטע פון בלאקירטע באנוצער]] כדי צו זעהן די בלאקירונגן.',
+'ipb-edit-dropdown'               => 'רעדאקטיר בלאקירונג סיבות',
 'ipb-unblock-addr'                => 'אויפֿבלאקירן $1',
 'ipb-unblock'                     => 'אויפֿבלאקירן א באַניצער נאמען אדער IP אדרעס',
+'ipb-blocklist'                   => 'זעה עקזיסטירנדע בלאקירונגען',
 'ipb-blocklist-contribs'          => 'בײַשטײַערונגען פֿון $1',
 'unblockip'                       => 'אויפֿבלאקירן באניצער',
 'ipblocklist'                     => ' ליסטע פון בלאקירטע באניצערס און IP אדרעסן',
@@ -1934,10 +1973,13 @@ $NEWPAGE
 'proxyblocker'                    => 'פראקסי בלאקער',
 'proxyblocker-disabled'           => 'די  פֿונקציע איז אומאַקטיווירט.',
 'proxyblockreason'                => 'אייער איי.פי. אדרעס איז געווארן געבלאקט צוליב דעם ווייל דאס איז א אפענער פראקסי. ביטע פארבינדט זיך מיט אייער אינטערנעט סערוויס פראוויידער אדער טעקס סאפארט צו אינפארמירן זיי איבער דעם ערענסטן זיכערהייט פראבלעם.',
+'proxyblocksuccess'               => 'געטאן.',
 
 # Developer tools
 'lockdb'            => 'פֿאַרשליסן די דאַטנבאַזע',
 'unlockdb'          => 'אויפֿשליסן די דאַטנבאַזע',
+'lockconfirm'       => 'יא, איך וויל פארשפארן די דאטעבאזע.',
+'unlockconfirm'     => 'יא, איך וויל באמת אויפשליסן די דאטעבאזע.',
 'unlockbtn'         => 'אויפֿשליסן די דאַטנבאַזע',
 'databasenotlocked' => 'די דאַטנבאַזע איז נישט פֿאַרשלאסן.',
 
@@ -2039,6 +2081,9 @@ $NEWPAGE
 
 ביטע באזוכט [http://www.mediawiki.org/wiki/Localisation מעדיעוויקי לאקאליזאציע] און [http://translatewiki.net בעטאוויקי] אויב איר ווילט ביישטייערן צו דער גענערישער מעדיעוויקי לאקאליזאציע.',
 'allmessagesnotsupportedDB' => 'מען קען זיך נישט באניצן מיט דעם בלאט וויבאלד די $wgUseDatabseMessages איז געווארן בטל.',
+'allmessages-filter-legend' => 'פילטער',
+'allmessages-filter-all'    => 'אלע',
+'allmessages-filter-submit' => 'צייג',
 
 # Thumbnails
 'thumbnail-more'           => 'פארגרעסער',
@@ -2160,6 +2205,9 @@ $NEWPAGE
 'siteusers'        => '{{PLURAL:$2|באַניצער| באַניצערס}} {{SITENAME}} $1',
 'creditspage'      => 'בלאט קרעדיטס',
 
+# Spam protection
+'spamprotectiontitle' => 'ספעם באשיצונג פילטער',
+
 # Info page
 'infosubtitle' => 'אינפארמאציע וועגן בלאט',
 'numedits'     => 'צאל פון רעדאקציעס (בלאט): $1',
@@ -2253,6 +2301,8 @@ $NEWPAGE
 'exif-imagedescription'         => 'בילד טיטל',
 'exif-make'                     => 'פֿאטא-אפאראט פֿאבריצירער',
 'exif-model'                    => 'פֿאטא-אפאראט מאדעל',
+'exif-software'                 => 'סאפטווער אין באנוץ',
+'exif-artist'                   => 'מחבר',
 'exif-copyright'                => 'קאפירעכטן האלטער',
 'exif-exifversion'              => 'Exif ווערסיע',
 'exif-flashpixversion'          => 'ווערסיע Flashpix סאפארטעד',
@@ -2261,6 +2311,7 @@ $NEWPAGE
 'exif-compressedbitsperpixel'   => 'בילד צוזאמקוועטשן מאוד',
 'exif-pixelydimension'          => 'גילטיגע ברייט פֿון בילד',
 'exif-pixelxdimension'          => 'גילטיגע הייך פֿון בילד',
+'exif-usercomment'              => 'באנוצער קאמענטורן',
 'exif-datetimeoriginal'         => 'דאטום און צייט פון פייל באשאפונג',
 'exif-datetimedigitized'        => 'דאטום און צייט פון דיזשיטייזונג',
 'exif-exposuretime'             => 'עקספאוזשער צייט',
@@ -2273,6 +2324,7 @@ $NEWPAGE
 'exif-flash'                    => 'פלעש',
 'exif-focallength'              => 'לענס פאוקאל לענג',
 'exif-focallength-format'       => '$1 מ"מ',
+'exif-subjectarea'              => 'סוביעקט געגנט',
 'exif-flashenergy'              => 'פלעש ענערגיע',
 'exif-focalplanexresolution'    => 'פאקאל פלעין עקס רעזאלוציע',
 'exif-focalplaneresolutionunit' => 'פאקאל פלעין רעזאלוציע מאס',
@@ -2319,6 +2371,8 @@ $NEWPAGE
 'exif-exposureprogram-7' => 'פארטרעיט מצב (פאר קלאוסאפ בילדער אין די בעקגראונד ארויס פון פאקוס)',
 'exif-exposureprogram-8' => 'לענדסקעיפ מצב (פאר בילדער פון פאנאראמעס וואס בעקגראונד איז אין פאקוס)',
 
+'exif-meteringmode-0' => 'אומבאוויסט',
+
 'exif-focalplaneresolutionunit-2' => 'אינטשעס',
 
 'exif-customrendered-0' => 'נארמאלער פראצעס',
@@ -2327,6 +2381,8 @@ $NEWPAGE
 'exif-exposuremode-0' => 'אוטאמאטיק עקספאוזשער',
 'exif-exposuremode-1' => 'מעניואל עקספאוזשער',
 'exif-exposuremode-2' => 'אטאמאטישער לייסטל',
+
+'exif-scenecapturetype-0' => 'סטאנדארט',
 
 'exif-gaincontrol-0' => 'גארנישט',
 'exif-gaincontrol-1' => 'נידעריגע צובאקומען ארויף',
@@ -2338,12 +2394,17 @@ $NEWPAGE
 'exif-contrast-1' => 'ווייך',
 'exif-contrast-2' => 'הארט',
 
+'exif-sharpness-0' => 'נארמאל',
+'exif-sharpness-1' => 'ווייך',
+'exif-sharpness-2' => 'הארט',
+
 # Pseudotags used for GPSLatitudeRef and GPSDestLatitudeRef
 'exif-gpslatitude-n' => 'צפון לעטיטוד',
 'exif-gpslatitude-s' => 'דרום לאטיטוד',
 
 # Pseudotags used for GPSSpeedRef
 'exif-gpsspeed-k' => 'ק"מ אין א שעה',
+'exif-gpsspeed-m' => 'מייל פער שעה',
 
 # Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
 'exif-gpsdirection-t' => 'ריכטיגע דירעקציע',
@@ -2408,8 +2469,9 @@ $5
 'confirm-purge-top'    => 'אויסקלארן די קאשעי פון דעם בלאט?',
 
 # Multipage image navigation
-'imgmultigo'   => 'גייט!',
-'imgmultigoto' => 'אריבער צו בלאט $1',
+'imgmultipagenext' => 'צום קומענדיגן בלאט ←',
+'imgmultigo'       => 'גייט!',
+'imgmultigoto'     => 'אריבער צו בלאט $1',
 
 # Table pager
 'ascending_abbrev'         => 'ארויף',
@@ -2434,6 +2496,7 @@ $5
 
 # Watchlist editor
 'watchlistedit-normal-title' => 'רעדאַקטירן די אויפֿפאַסונג ליסטע',
+'watchlistedit-raw-submit'   => 'דערהיינטיג אויפפאסונג ליסטע',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'ווייזן שייכדיגע ענדערונגען',

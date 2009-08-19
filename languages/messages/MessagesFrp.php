@@ -2249,7 +2249,7 @@ Vêde la [[Special:ProtectedPages|lista de les pâges protègiês]] por vêre le
 'protect-title'               => 'Changiér lo nivél de protèccion por « $1 »',
 'prot_1movedto2'              => 'at renomâ [[$1]] en [[$2]]',
 'protect-legend'              => 'Confirmar la protèccion',
-'protectcomment'              => 'Rêson de la protèccion :',
+'protectcomment'              => 'Rêson :',
 'protectexpiry'               => 'Dâta d’èxpiracion :',
 'protect_expiry_invalid'      => 'La dâta d’èxpiracion est envalida.',
 'protect_expiry_old'          => 'La dâta d’èxpiracion est ja passâ.',
