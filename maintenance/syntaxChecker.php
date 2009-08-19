@@ -43,7 +43,15 @@ class SyntaxChecker extends Maintenance {
 		$this->output( "done.\n" );
 
 		$this->output( "Checking syntax (this can take a really long time)...\n\n" );
-		$res = $this->checkSyntax();
+		foreach( $this->mFiles as $f ) {
+			if( function_exists( 'parsekit_compile_file' ) ) {
+				$this->checkFileWithParsekit( $f );
+			} else {
+				$this->checkFileWithCli( $f );
+			}
+		}
+		$this->output( "\nDone! " . count( $this->mFiles ) . " files checked, " .
+			count( $this->mFailures ) . " failures found" );
 	}
 
 	/**
@@ -80,21 +88,50 @@ class SyntaxChecker extends Maintenance {
 	}
 
 	/**
-	 * Check the files for syntax errors
+	 * Check a file for syntax errors using Parsekit. Shamelessly stolen
+	 * from tools/lint.php by TimStarling
+	 * @param $file String Path to a file to check for syntax errors
 	 * @return boolean
 	 */
-	private function checkSyntax() {
-		foreach( $this->mFiles as $f ) {
-			$res = exec( 'php -l ' . $f ); 
-			if( strpos( $res, 'No syntax errors detected' ) === false ) {
-				$this->mFailures[] = $f;
-				$this->error( $res . "\n" );
+	private function checkFileWithParsekit( $file ) {
+		static $okErrors = array(
+			'Redefining already defined constructor',
+			'Assigning the return value of new by reference is deprecated',
+		);
+		$errors = array();
+		parsekit_compile_file( $file, $errors, PARSEKIT_SIMPLE );
+		$ret = true;
+		if ( $errors ) {
+			foreach ( $errors as $error ) {
+				foreach ( $okErrors as $okError ) {
+					if ( substr( $error['errstr'], 0, strlen( $okError ) ) == $okError ) {
+						continue 2;
+					}
+				}
+				$ret = false;
+				$this->output( "Error in $file line {$error['lineno']}: {$error['errstr']}\n" );
+				$this->mFailures[$file] = $errors;
 			}
 		}
-		$this->output( count($this->mFiles) . " files checked, " 
-			. count($this->mFailures) . " failures\n" );
+		return $ret;
+	}
+
+	/**
+	 * Check a file for syntax errors using php -l
+	 * @param $file String Path to a file to check for syntax errors
+	 * @return boolean
+	 */
+	private function checkFileWithCli( $file ) {
+		$res = exec( 'php -l ' . $file ); 
+		if( strpos( $res, 'No syntax errors detected' ) === false ) {
+			$this->mFailures[$file] = $res;
+			$this->output( $res . "\n" );
+			return false;
+		}
+		return true;
 	}
 }
 
 $maintClass = "SyntaxChecker";
 require_once( DO_MAINTENANCE );
+
