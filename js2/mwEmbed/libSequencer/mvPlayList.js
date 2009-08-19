@@ -158,16 +158,16 @@ mvPlayList.prototype = {
 		});
 					
 	},
-	selectPlaybackMethod:function(){
-		this.cur_clip.embed.selectPlaybackMethod();
+	showPlayerselect:function(){
+		this.cur_clip.embed.showPlayerselect();
 	},
 	closeDisplayedHTML:function(){
 		this.cur_clip.embed.closeDisplayedHTML();
 	},
-	showVideoDownload:function(){
-		this.cur_clip.embed.showVideoDownload();
+	showDownload:function(){
+		this.cur_clip.embed.showDownload();
 	},
-	showEmbedCode:function(){
+	showShare:function(){
 		var embed_code = '&lt;script type=&quot;text/javascript&quot; '+
 						'src=&quot;'+mv_embed_path+'mv_embed.js&quot;&gt;&lt;/script&gt '+"\n" + 
 						'&lt;playlist id=&quot;'+this.id+'&quot; ';
@@ -178,7 +178,7 @@ mvPlayList.prototype = {
 							embed_code+= this.data.htmlEntities();
 							embed_code+='&lt;playlist/&gt;';
 						}
-		this.cur_clip.embed.showEmbedCode(embed_code);
+		this.cur_clip.embed.showShare( embed_code );
 	},
 	getPlaylist:function(){		
 		js_log("f:getPlaylist: " + this.srcType );
