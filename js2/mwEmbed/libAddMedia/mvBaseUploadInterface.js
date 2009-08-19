@@ -30,7 +30,6 @@ loadGM({
 	"mwe-ok-button" : "OK"
 });
 
-
 var default_bui_options = {
 	'api_url':null,
 	'parent_uploader':null,

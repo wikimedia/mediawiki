@@ -149,9 +149,9 @@ lcPaths({
 	"$j.Jcrop"			: "libClipEdit/Jcrop/js/jquery.Jcrop.js",
 	"$j.fn.simpleUploadForm": "libAddMedia/simpleUploadForm.js",
 
-	"baseSkin"	: "skins/baseSkin.js",
-	"kskin"		: "skins/kskin/kskin.js",
-	"mvpcf"		: "skins/mvpcf/mvpcf.js",
+	"ctrlBuilder"	: "skins/ctrlBuilder.js",
+	"kskin"			: "skins/kskin/kskin.js",
+	"mvpcf"			: "skins/mvpcf/mvpcf.js",
 
 	"$j.secureEvalJSON"	: "jquery/plugins/jquery.secureEvalJSON.js",
 	"$j.cookie"			: "jquery/plugins/jquery.cookie.js",
@@ -540,6 +540,7 @@ var mvJsLoader = {
 				[
 					'$j.ui',
 					'embedVideo',
+					'ctrlBuilder',
 					'$j.cookie'
 				],
 				[
