@@ -42,7 +42,7 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 
 	private $fld_comment = false, $fld_user = false, $fld_flags = false,
 			$fld_timestamp = false, $fld_title = false, $fld_ids = false,
-			$fld_sizes = false, $fld_tags = false;
+			$fld_sizes = false;
 	/**
 	 * Get an array mapping token names to their handler functions.
 	 * The prototype for a token function is func($pageid, $title, $rc)
@@ -174,7 +174,6 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 			$this->fld_redirect = isset($prop['redirect']);
 			$this->fld_patrolled = isset($prop['patrolled']);
 			$this->fld_loginfo = isset($prop['loginfo']);
-			$this->fld_tags = isset($prop['tags']);
 
 			global $wgUser;
 			if($this->fld_patrolled && !$wgUser->useRCPatrol() && !$wgUser->useNPPatrol())
@@ -204,17 +203,6 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 				$this->addFields('page_is_redirect');
 			}
 		}
-		
-		if($this->fld_tags || !is_null($params['tag'])) {
-			$this->addTables('tag_summary');
-			$this->addJoinConds(array('tag_summary' => array('LEFT JOIN', array('rc_id=ts_rc_id'))));
-			$this->addFields('ts_tags');
-		}
-			
-		if(!is_null($params['tag'])) {
-			$this->addWhereFld('ts_tags' , $params['tag']);
-		}
-		
 		$this->token = $params['token'];
 		$this->addOption('LIMIT', $params['limit'] +1);
 		$this->addOption('USE INDEX', array('recentchanges' => $index));
@@ -347,10 +335,6 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 				$row->rc_log_type, $row->rc_timestamp);
 		}
 		
-		if ($this->fld_tags && isset($row->ts_tags)) {
-			$vals['tags'] = $row->ts_tags;
-		}
-		
 		if(!is_null($this->token))
 		{
 			$tokenFunctions = $this->getTokenFunctions();
@@ -424,7 +408,6 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 					'redirect',
 					'patrolled',
 					'loginfo',
-					'tags',
 				)
 			),
 			'token' => array(
@@ -460,8 +443,7 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 					'new',
 					'log'
 				)
-			),
-			'tag' => null,
+			)
 		);
 	}
 
@@ -480,7 +462,6 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 				'For example, to see only minor edits done by logged-in users, set show=minor|!anon'
 			),
 			'type' => 'Which types of changes to show.',
-			'tag' => 'Only list changes with this tag',
 			'limit' => 'How many total changes to return.'
 		);
 	}

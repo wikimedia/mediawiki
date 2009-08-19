@@ -42,7 +42,7 @@ class ApiQueryContributions extends ApiQueryBase {
 	private $params, $username;
 	private $fld_ids = false, $fld_title = false, $fld_timestamp = false,
 			$fld_comment = false, $fld_flags = false,
-			$fld_patrolled = false, $fld_tags = false;
+			$fld_patrolled = false;
 
 	public function execute() {
 
@@ -57,7 +57,6 @@ class ApiQueryContributions extends ApiQueryBase {
 		$this->fld_flags = isset($prop['flags']);
 		$this->fld_timestamp = isset($prop['timestamp']);
 		$this->fld_patrolled = isset($prop['patrolled']);
-		$this->fld_tags = isset($prop['tags']);
 
 		// TODO: if the query is going only against the revision table, should this be done?
 		$this->selectNamedDB('contributions', DB_SLAVE, 'contributions');
@@ -142,7 +141,7 @@ class ApiQueryContributions extends ApiQueryBase {
 	private function prepareQuery() {
 		// We're after the revision table, and the corresponding page
 		// row for anything we retrieve. We may also need the
-		// recentchanges row and/or tag summary row.
+		// recentchanges row.
 		global $wgUser;
 		$tables = array('page', 'revision'); // Order may change
 		$this->addWhere('page_id=rev_page');
@@ -246,16 +245,6 @@ class ApiQueryContributions extends ApiQueryBase {
 		$this->addFieldsIf('rev_minor_edit', $this->fld_flags);
 		$this->addFieldsIf('rev_parent_id', $this->fld_flags);
 		$this->addFieldsIf('rc_patrolled', $this->fld_patrolled);
-		
-		if($this->fld_tags || !is_null($this->params['tag'])) {
-			$this->addTables('tag_summary');
-			$this->addJoinConds(array('tag_summary' => array('LEFT JOIN', array('rev_id=ts_rev_id'))));
-			$this->addFields('ts_tags');
-		}
-		
-		if( !is_null($this->params['tag']) ) {
-			$this->addWhereFld('ts_tags', $this->params['tag']);
-		}
 	}
 
 	/**
@@ -303,9 +292,6 @@ class ApiQueryContributions extends ApiQueryBase {
 		if ($this->fld_size && !is_null($row->rev_len))
 			$vals['size'] = intval($row->rev_len);
 
-		if ($this->fld_tags && $row->ts_tags)
-			$vals['tags'] = $row->ts_tags;
-			
 		return $vals;
 	}
 	
@@ -357,7 +343,6 @@ class ApiQueryContributions extends ApiQueryBase {
 					'size',
 					'flags',
 					'patrolled',
-					'tags',
 				)
 			),
 			'show' => array (
@@ -369,7 +354,6 @@ class ApiQueryContributions extends ApiQueryBase {
 					'!patrolled',
 				)
 			),
-			'tag' => null,
 		);
 	}
 
@@ -386,7 +370,6 @@ class ApiQueryContributions extends ApiQueryBase {
 			'prop' => 'Include additional pieces of information',
 			'show' => array('Show only items that meet this criteria, e.g. non minor edits only: show=!minor',
 					'NOTE: if show=patrolled or show=!patrolled is set, revisions older than $wgRCMaxAge won\'t be shown',),
-			'tag' => 'Only list contributions with this tag',
 		);
 	}
 

@@ -25,9 +25,15 @@ class SpecialTags extends SpecialPage {
 				Xml::tags( 'th', null, wfMsgExt( 'tags-description-header', 'parseinline' ) ) .
 				Xml::tags( 'th', null, wfMsgExt( 'tags-hitcount-header', 'parseinline' ) )
 			);
+		$dbr = wfGetDB( DB_SLAVE );
+		$res = $dbr->select( 'change_tag', array( 'ct_tag', 'count(*) as hitcount' ), array(), __METHOD__, array( 'GROUP BY' => 'ct_tag', 'ORDER BY' => 'hitcount DESC' ) );
 
-		foreach( ChangeTags::getHitCounts() as $tag => $hitcount ) {
-			$html .= $this->doTagRow( $tag, $hitcount );
+		while ( $row = $res->fetchObject() ) {
+			$html .= $this->doTagRow( $row->ct_tag, $row->hitcount );
+		}
+
+		foreach( ChangeTags::listDefinedTags() as $tag ) {
+			$html .= $this->doTagRow( $tag, 0 );
 		}
 
 		$wgOut->addHTML( Xml::tags( 'table', array( 'class' => 'wikitable mw-tags-table' ), $html ) );

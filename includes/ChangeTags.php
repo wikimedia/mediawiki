@@ -185,35 +185,4 @@ class ChangeTags {
 		$wgMemc->set( $key, $emptyTags, 300 );
 		return $emptyTags;
 	}
-	
-	/** Returns associative array of tag names and hitcounts */
-	static function getHitCounts() {
-	
-		global $wgMemc;
-		$key = wfMemcKey( 'hitcounts' );
-		
-		if ($hitcounts = $wgMemc->get( $key ))
-			return $hitcounts;
-		
-		$dbr = wfGetDB( DB_SLAVE );
-		$hitcounts = array();
-		
-		// Fetch defined tags
-		$res = $dbr->select( 'valid_tag', 'vt_tag', array(), __METHOD__ );
-		while( $row = $res->fetchObject() ) {
-			$hitcounts[$row->vt_tag] = 0;
-		}
-		
-		// Fetch hit counts
-		$res = $dbr->select( 'change_tag', array('ct_tag', 'count(*) AS hitcount'),	array(), __METHOD__, array('GROUP BY' => 'ct_tag', 'ORDER BY' => 'hitcount DESC') );
-		
-		while( $row = $res->fetchObject() ) {
-			$hitcounts[$row->ct_tag] = $row->hitcount;
-		}
-		
-		// Short-term caching
-		$wgMemc->set( $key, $hitcounts, 300 );
-		return $hitcounts;
-	}
-	
 }

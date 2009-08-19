@@ -51,7 +51,6 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		$this->fld_timestamp = in_array('timestamp', $prop);
 		$this->fld_comment = in_array('comment', $prop);
 		$this->fld_details = in_array('details', $prop);
-		$this->fld_tags = in_array('tags', $prop);
 
 		list($tbl_logging, $tbl_page, $tbl_user) = $db->tableNamesN('logging', 'page', 'user');
 
@@ -85,16 +84,6 @@ class ApiQueryLogEvents extends ApiQueryBase {
 		$this->addFieldsIf('log_title', $this->fld_title);
 		$this->addFieldsIf('log_comment', $this->fld_comment);
 		$this->addFieldsIf('log_params', $this->fld_details);
-		
-		if($this->fld_tags || !is_null($params['tag'])) {
-			$this->addTables('tag_summary');
-			$this->addJoinConds(array('tag_summary' => array('LEFT JOIN', 'log_id=ts_log_id')));
-			$this->addFields('ts_tags');
-		}
-		
-		if( !is_null($params['tag']) ) {
-			$this->addWhereFld('ts_tags', $params['tag']);
-		}
 		
 		if( !is_null($params['type']) ) {
 			$this->addWhereFld('log_type', $params['type']);
@@ -258,10 +247,6 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			}
 		}
 
-		if ($this->fld_tags && isset($row->ts_tags)) {
-			$vals['tags'] = $row->ts_tags;
-		}
-		
 		return $vals;
 	}
 
@@ -280,7 +265,6 @@ class ApiQueryLogEvents extends ApiQueryBase {
 					'timestamp',
 					'comment',
 					'details',
-					'tags'
 				)
 			),
 			'type' => array (
@@ -301,7 +285,6 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			),
 			'user' => null,
 			'title' => null,
-			'tag' => null,
 			'limit' => array (
 				ApiBase :: PARAM_DFLT => 10,
 				ApiBase :: PARAM_TYPE => 'limit',
@@ -321,7 +304,6 @@ class ApiQueryLogEvents extends ApiQueryBase {
 			'dir' => 'In which direction to enumerate.',
 			'user' => 'Filter entries to those made by the given user.',
 			'title' => 'Filter entries to those related to a page.',
-			'tag' => 'Only list entries with this tag',
 			'limit' => 'How many total event entries to return.'
 		);
 	}
