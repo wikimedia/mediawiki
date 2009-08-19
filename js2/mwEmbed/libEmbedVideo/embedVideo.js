@@ -47,7 +47,7 @@ loadGM({
 	"mv_generic_missing_plugin" : "You browser does not appear to support the following playback type :  <b>$1<\/b><br \/>Visit the <a href=\"http : \/\/commons.wikimedia.org\/wiki\/Commons : Media_help\">Playback Methods<\/a> page to download a player.<br \/>",
 	"mv_for_best_experience" : "For a better video playback experience we recommend : <br \/><b><a href=\"http : \/\/www.mozilla.com\/en-US\/firefox\/upgrade.html?from=mwEmbed\">Firefox 3.5<\/a>.<\/b>",
 	"mv_do_not_warn_again" : "Dissmiss for now.",
-	"players" : "Players"
+	"playerselect" : "Players"
 });
 
 var default_video_attributes = {
@@ -115,6 +115,13 @@ var ctrlBuilder = {
 		  'options':true,
 		  'borders':true
 	},
+	menu_items:[
+		'playerselect',
+		'download',
+		'share', 
+		'credits',
+	],	
+	default_menu_item:'download',
 	getControls:function( embedObj ){
 		js_log('f:controlsBuilder:: opt:');
 		this.id = (embedObj.pc)?embedObj.pc.pp.id:embedObj.id;
@@ -144,9 +151,7 @@ var ctrlBuilder = {
 					js_log('not enough space for control component:' + i);
 				}
 			}
-		}
-		//add the options menu
-		o+=this.components['mv_embedded_options'].o( embedObj );
+		}		
 		return o;
 	},
 	 /*
@@ -300,9 +305,53 @@ var ctrlBuilder = {
 		$j('#' + embedObj.id + ' .j-scrubber').prepend( ctrlBuilder.getMvBufferHtml() );
 
 
-		//options menu
-		$tp.find('.k-menu').hide();
-       	$tp.find('.k-options').click(function(){
+		//adds options and bindings: (we do this onClick for faster vidoe tag startup times)  
+		var addMvOptions = function(){
+			if($j('#' + embedObj.id + ' .k-menu').length != 0 )
+				return false;
+				
+			$j('#' + embedObj.id).prepend( ctrlBuilder.components['mv_embedded_options'].o( embedObj ) );
+			
+			//by default its hidden:
+   			$tp.find('.k-menu').hide();
+   			
+   			//output menu-items: 
+   			for(i=0; i < ctrlBuilder.menu_items.length ; i++){
+		        $tp.find('.k-player-btn').click(function(){ 
+		        	$target = $j('#' + embedObj.id  + ' .k-menu-screens .menu-player'); 
+		        	//gennerate the menu if not already done:
+		        	if( $target.children().length == 0 ) 
+						embedObj.selectPlaybackMethod();
+					
+					//now slide in the item:
+					if( $target.is(':visible') )
+						 $target.slideOut("fast");
+					else
+						 $target.slideIn("fast");
+						 
+		            return false;
+				});	
+   			}		
+			$tp.find('.k-download-btn').click(function(){
+				embedObj.showVideoDownload();
+	            return false;
+			});
+	
+			$tp.find('.k-share-btn').click(function(){
+				embedObj.showEmbedCode();
+			    return false;
+			});
+			$tp.find('.k-credits-btn').click(function(){
+				//@@todo show credits menu screen;
+				return false;		
+			});
+		}	
+   		
+   		//options menu display:			
+       	$tp.find('.k-options').click(function(){      
+       		if($j('#' + embedObj.id + ' .k-menu').length == 0 )
+       			addMvOptions();
+       			 					
        		var $ktxt = $j(this).find('.ui-icon-k-menu');
        		var $kmenu = $tp.find('.k-menu');
 			if( $kmenu.is(':visible') ){
@@ -316,28 +365,7 @@ var ctrlBuilder = {
        			});
        			$tp.find('.play-btn-large').fadeOut('fast');
 			}
-        });
-
-
-		//videoOptions:
-        $tp.find('.k-player-btn').click(function(){
-			embedObj.selectPlaybackMethod();
-            return false;
-		});
-
-		$tp.find('.k-download-btn').click(function(){
-			embedObj.showVideoDownload();
-            return false;
-		});
-
-		$tp.find('.k-share-btn').click(function(){
-			embedObj.showEmbedCode();
-            return false;
-		});
-		$tp.find('.k-credits-btn').click(function(){
-			//@@todo show credits menu screen;
-            return false;
-		});
+        });	
 
 		//volume binding:
 		$tp.find('.k-volume').unbind().btnBind().click(function(){
@@ -414,25 +442,23 @@ var ctrlBuilder = {
 				var o= '' +
 				'<div class="k-menu ui-widget-content" ' +
 					'style="width:' + embedObj.playerPixelWidth() + 'px; height:' + embedObj.playerPixelHeight() + 'px;">' +
-						'<ul class="k-menu-bar">' +
-							'<li class="k-players-btn"><a href="#player" title="'+ gM('players') +'">'+ gM('players') +'</a></li>' +
-							'<li class="k-download-btn"><a href="#player" title="'+ gM('download')+'">'+gM('download')+'</a></li>' +
-							'<li class="k-share-btn"><a href="#player" title="'+ gM('share')+'">'+gM('share')+'</a></li>' +
-							'<li class="k-credits-btn"><a href="#credits" title="'+ gM('credits')+'">'+gM('credits')+'</a></li>' +
-						'</ul>' +
-						'<div class="k-menu-screens" style="width:' + embedObj.playerPixelWidth() + 'px; height:' + embedObj.playerPixelHeight() + 'px;">' +
-							'<div class="k-screen k-players">' +
-								'<h2>' + gM('chose_player')+'</h2>' +
-							'</div>' +
-							'<div class="k-screen k-download">' +
-								'<h2>' + gM('download_clip')+'</h2>' +
-							'</div>' +
-							'<div class="k-screen k-players">' +
-								'<h2>' + gM('share_this_video') + '</h2>' +
-							'</div>' +
-							'<div class="k-screen k-players">' +
-								'<h2>' + gM('video_credits') + '</h2>' +
-							'</div>' +
+						'<ul class="k-menu-bar">';						
+							//output menu item containers: 
+							for(i=0; i < ctrlBuilder.menu_items.length; i++){		
+								var mk = ctrlBuilder.menu_items[i];				
+								o+= '<li class="k-' + mk + '-btn">' +
+										'<a href="#" title="' + gM( mk ) +'">' + gM( mk ) +'</a></li>';
+							}							
+						o+='</ul>' +
+						//we have to substract the width of the k-menu-bar
+						'<div class="k-menu-screens" style="width:' + ( embedObj.playerPixelWidth() -75) +
+							'px; height:' + (embedObj.playerPixelHeight() - ctrlBuilder.height) + 'px;">';
+						
+						//output menu item containers: 
+						for(i=0; i < ctrlBuilder.menu_items; i++){							
+							o+= '<div class="menu-' + ctrlBuilder.menu_items[i] + '"></div>';
+						}
+													 				
 						'</div>' +
 					'</div>';
 				return o;
@@ -2086,13 +2112,14 @@ embedVideo.prototype = {
 		 });
 		 return false; //onclick action return false
 	},
-	selectPlaybackMethod:function(){
+	selectPlaybackMethod:function( target ){
 		//get id (in case where we have a parent container)
 		var this_id = (this.pc!=null)?this.pc.pp.id:this.id;
 
 		var _this=this;
 //		var out= '<span style="color:#FFF;background-color:black;"><blockquote style="background-color:black;">';
 		var out= '';
+		out+='<h2>' + gM('chose_player') + '</h2>';
 		var _this=this;
 		//js_log('selected src'+ _this.media_element.selected_source.url);
 		$j.each( this.media_element.getPlayableSources(), function(source_id, source){
@@ -2115,23 +2142,13 @@ embedVideo.prototype = {
 
 			if (default_player)
 			{
-//				out += '<img src="'+image_src+'"/>';
-                                out+='<div class="k-screen k-players">' +
-                                     ' <h2>Choose Video Player</h2>' +
-                                     ' <ul>';
-//				if( ! is_selected )
-//					out+='<a href="#" class="sel_source" id="sc_' + source_id + '_' + default_player.id +'">';
-//				out += source.getTitle()+ (is_selected?'</a>':'') + ' ';
-
+				out+=' <ul>';
 				//output the player select code:
 				var supporting_players = embedTypes.players.getMIMETypePlayers( source.getMIMEType() );
-//				out+='<div id="player_select_list_' + source_id + '" class="player_select_list"><ul>';
+
 				for(var i=0; i < supporting_players.length ; i++){
 					if( _this.selected_player.id == supporting_players[i].id && is_selected ){
-//						out+='<li style="border-style:dashed;margin-left:20px;">'+
-//                                                        '<img border="0" width="16" height="16" src="' + mv_skin_img_path + 'plugin.png">' +
-//                                                        supporting_players[i].getName() +
-                                            out+='<li>' + supporting_players[i].getName() +'</li>';
+						out+='<li>' + supporting_players[i].getName() +'</li>';
 					}else{
 						//else gray plugin and the plugin with link to select
 //						out+='<li style="margin-left:20px;">'+
@@ -2139,9 +2156,9 @@ embedVideo.prototype = {
 //									'<img border="0" width="16" height="16" src="' + mv_skin_img_path + 'plugin_disabled.png">'+
 //									supporting_players[i].getName() +
 //								'</a>'+
-                                            out+='<li>' +
-                                                 '<a href="#" id="dc_' + source_id + '_' + supporting_players[i].id +'">' +
-                                                 supporting_players[i].getName() + '</a><li>';
+                        out+='<li>' +
+                             '<a href="#" id="dc_' + source_id + '_' + supporting_players[i].id +'">' +
+                             supporting_players[i].getName() + '</a><li>';
 					}
 				 }
 				 out+='</ul></div>';
@@ -2149,7 +2166,7 @@ embedVideo.prototype = {
 				out+= source.getTitle() + ' - no player available';
 		});
 //		out+='</blockquote></span>';
-		this.displayHTML(out);
+		$j(target).html(out);
 
 		//set up the click bindings:
 		$j('.sel_source').each(function(){
