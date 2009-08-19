@@ -42,16 +42,45 @@
 class Html {
 	# List of void elements from HTML 5, section 9.1.2 as of 2009-08-10
 	private static $voidElements = array(
-		'area', 'base', 'br', 'col', 'command', 'embed', 'hr', 'img', 'input',
-		'keygen', 'link', 'meta', 'param', 'source'
+		'area',
+		'base',
+		'br',
+		'col',
+		'command',
+		'embed',
+		'hr',
+		'img',
+		'input',
+		'keygen',
+		'link',
+		'meta',
+		'param',
+		'source',
 	);
 
 	# Boolean attributes, which may have the value omitted entirely.  Manually
 	# collected from the HTML 5 spec as of 2009-08-10.
-	private static $boolAttribs = array( 'async', 'autobuffer', 'autofocus',
-		'autoplay', 'checked', 'controls', 'defer', 'disabled',
-		'formnovalidate', 'hidden', 'ismap', 'loop', 'multiple', 'novalidate',
-		'open', 'readonly', 'required', 'reversed', 'scoped', 'seamless'
+	private static $boolAttribs = array(
+		'async',
+		'autobuffer',
+		'autofocus',
+		'autoplay',
+		'checked',
+		'controls',
+		'defer',
+		'disabled',
+		'formnovalidate',
+		'hidden',
+		'ismap',
+		'loop',
+		'multiple',
+		'novalidate',
+		'open',
+		'readonly',
+		'required',
+		'reversed',
+		'scoped',
+		'seamless',
 	);
 
 	/**
@@ -268,13 +297,38 @@ class Html {
 		global $wgHtml5;
 
 		if ( !$wgHtml5 ) {
-			if ( !in_array( $type, array( 'hidden', 'text', 'password',
-			'checkbox', 'radio', 'file', 'submit', 'image', 'reset', 'button'
-			) ) ) {
+			// With $wgHtml5 off we want to validate as XHTML 1, so we
+			// strip out any fancy HTML 5-only input types for now.
+			//
+			// Whitelist of valid types:
+			$validTypes = array(
+				'hidden',
+				'text',
+				'password',
+				'checkbox',
+				'radio',
+				'file',
+				'submit',
+				'image',
+				'reset',
+				'button',
+			);
+			if ( !in_array( $type, $validTypes ) ) {
 				$type = 'text';
 			}
-			foreach ( array( 'autocomplete', 'autofocus', 'max', 'min', 'multiple',
-			'pattern', 'placeholder', 'required', 'step' ) as $badAttr ) {
+			// Here we're blacklisting some HTML5-only attributes...
+			$html5attribs = array(
+				'autocomplete',
+				'autofocus',
+				'max',
+				'min',
+				'multiple',
+				'pattern',
+				'placeholder',
+				'required',
+				'step',
+			);
+			foreach ( $html5attribs as $badAttr ) {
 				unset( $attribs[$badAttr] );
 			}
 		}
