@@ -28,8 +28,8 @@ class RenameWiki extends Maintenance {
 	public function __construct() {
 		parent::__construct();
 		$this->mDescription = "Rename external storage dbs and leave a new one";
-		$this->addArg( 'olddb' 'Old DB name' );
-		$this->addArg( 'newdb' 'New DB name' );
+		$this->addArg( 'olddb', 'Old DB name' );
+		$this->addArg( 'newdb', 'New DB name' );
 	}
 	
 	protected function getDbType() {
