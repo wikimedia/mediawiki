@@ -42,7 +42,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 	}
 
 	private $fld_ids = false, $fld_flags = false, $fld_timestamp = false, $fld_size = false,
-			$fld_comment = false, $fld_user = false, $fld_content = false, $fld_tags = false;
+			$fld_comment = false, $fld_user = false, $fld_content = false;
 
 	protected function getTokenFunctions() {
 		// tokenname => function
@@ -121,8 +121,9 @@ class ApiQueryRevisions extends ApiQueryBase {
 		}
 
 		$db = $this->getDB();
-		$this->addTables(array('page', 'revision'));
+		$this->addTables('revision');
 		$this->addFields(Revision::selectFields());
+		$this->addTables('page');
 		$this->addWhere('page_id = rev_page');
 
 		$prop = array_flip($params['prop']);
@@ -134,7 +135,6 @@ class ApiQueryRevisions extends ApiQueryBase {
 		$this->fld_timestamp = isset ($prop['timestamp']);
 		$this->fld_comment = isset ($prop['comment']);
 		$this->fld_size = isset ($prop['size']);
-		$this->fld_tags = isset ($prop['tags']);
 		$this->fld_user = isset ($prop['user']);
 		$this->token = $params['token'];
 		$this->diffto = $params['diffto'];
@@ -143,16 +143,6 @@ class ApiQueryRevisions extends ApiQueryBase {
 			$this->addFields( Revision::selectPageFields() );
 		}
 
-		if ($this->fld_tags || !is_null($params['tag'])) {
-			$this->addTables('tag_summary');
-			$this->addJoinConds(array('tag_summary' => array('LEFT JOIN', array('rev_id=ts_rev_id'))));
-			$this->addFields('ts_tags');
-		}
-		
-		if( !is_null($params['tag']) ) {
-			$this->addWhereFld('ts_tags', $params['tag']);
-		}
-		
 		if (isset ($prop['content'])) {
 
 			// For each page we will request, the user must have read rights for that page
@@ -303,9 +293,9 @@ class ApiQueryRevisions extends ApiQueryBase {
 				$this->setContinueEnumParameter('startid', intval($row->rev_id));
 				break;
 			}
-			
+			$revision = new Revision( $row );
 			//
-			$fit = $this->addPageSubItem($row->rev_page, $this->extractRowInfo($row), 'rev');
+			$fit = $this->addPageSubItem($revision->getPage(), $this->extractRowInfo($revision), 'rev');
 			if(!$fit)
 			{
 				if($enumRevMode)
@@ -321,8 +311,7 @@ class ApiQueryRevisions extends ApiQueryBase {
 		$db->freeResult($res);
 	}
 
-	private function extractRowInfo( $row ) {
-		$revision = new Revision( $row );
+	private function extractRowInfo( $revision ) {
 		$title = $revision->getTitle();
 		$vals = array ();
 
@@ -364,9 +353,6 @@ class ApiQueryRevisions extends ApiQueryBase {
 			}
 		}	
 
-		if ($this->fld_tags && $row->ts_tags)
-			$vals['tags'] = $row->ts_tags;
-		
 		if(!is_null($this->token))
 		{
 			$tokenFunctions = $this->getTokenFunctions();
@@ -441,7 +427,6 @@ class ApiQueryRevisions extends ApiQueryBase {
 					'size',
 					'comment',
 					'content',
-					'tags'
 				)
 			),
 			'limit' => array (
@@ -475,7 +460,6 @@ class ApiQueryRevisions extends ApiQueryBase {
 			'excludeuser' => array(
 				ApiBase :: PARAM_TYPE => 'user'
 			),
-			'tag' => null,
 			'expandtemplates' => false,
 			'generatexml' => false,
 			'section' => null,
@@ -499,7 +483,6 @@ class ApiQueryRevisions extends ApiQueryBase {
 			'dir' => 'direction of enumeration - towards "newer" or "older" revisions (enum)',
 			'user' => 'only include revisions made by user',
 			'excludeuser' => 'exclude revisions made by user',
-			'tag' => 'only list revisions with this tag',
 			'expandtemplates' => 'expand templates in revision content',
 			'generatexml' => 'generate XML parse tree for revision content',
 			'section' => 'only retrieve the content of this section',
