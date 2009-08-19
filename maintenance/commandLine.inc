@@ -257,7 +257,7 @@ if( version_compare( phpversion(), '5.2.4' ) >= 0 ) {
 $wgShowSQLErrors = true;
 
 require_once( "$IP/includes/Setup.php" );
-require_once( "$IP/install-utils.inc" );
+require_once( "$IP/maintenance/install-utils.inc" );
 $wgTitle = null; # Much much faster startup than creating a title object
 @set_time_limit(0);
 
