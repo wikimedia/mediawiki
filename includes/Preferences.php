@@ -1121,9 +1121,6 @@ class Preferences {
 			// When no fancy sig used, make sure ~{3,5} get removed.
 			$signature = $wgParser->cleanSigInSig( $signature );
 		}
-		
-		global $wgUser;
-		if (!$signature) $signature = $wgUser->getName();
 
 		return $signature;
 	}
