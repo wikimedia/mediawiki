@@ -350,7 +350,7 @@ var ctrlBuilder = {
        	$tp.find('.k-options').click(function(){      
        		if($j('#' + embedObj.id + ' .k-menu').length == 0 )
        			addMvOptions();
-       			 					
+       		//set up the text and menu:       			 					
        		var $ktxt = $j(this).find('.ui-icon-k-menu');
        		var $kmenu = $tp.find('.k-menu');
 			if( $kmenu.is(':visible') ){
@@ -639,8 +639,8 @@ mvEmbed = {
 				}
 			}
 			//string -> boolean:
-			if(embed_video[method]=="false")embed_video[method]=false;
-			if(embed_video[method]=="true")embed_video[method]=true;
+			if( embed_video[method] == "false") embed_video[method] = false;
+			if( embed_video[method] == "true") embed_video[method] = true;
 		}
 		///js_log('did vI style');
 		//now swap out the video element for the embed_video obj:
@@ -1757,8 +1757,10 @@ embedVideo.prototype = {
 			html_code += this.getControlsHTML();
 			html_code +='</div>';
 			//block out some space by encapulating the top level div
-			$j(this).wrap('<div style="width:'+parseInt(this.width)+'px;height:'
+			if($j(this).parents('.k-player').length==0){
+				$j(this).wrap('<div style="width:'+parseInt(this.width)+'px;height:'
 					+ (parseInt(this.height) + ctrlBuilder.height )+'px" id="k-player_' + this.id + '" class="k-player ui-widget"></div>');
+			}
 		}
 
 		//js_log('should set: '+this.id);
