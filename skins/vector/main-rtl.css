@@ -21,7 +21,7 @@ body {
 	margin: 0;
 	padding: 0;
 	font-family: sans-serif;
-	font-size: 13px;
+	font-size: 1em;
 }
 body {
 	background-color: #f3f3f3;
@@ -29,7 +29,7 @@ body {
 }
 /* Content */
 #content {
-	margin-right: 12em;
+	margin-right: 10em;
 	padding: 1em;
 	background-image: url(images/border.png);
 	background-position: top right;
@@ -38,16 +38,16 @@ body {
 }
 /* Head */
 #page-base {
-	height: 6em;
+	height: 5em;
 	background-color: white;
 	background-image: url(images/page-fade.png);
 	background-position: bottom right;
 	background-repeat: repeat-x;
 }
 #head-base {
-	margin-top: -6em;
-	margin-right: 12em;
-	height: 6em;
+	margin-top: -5em;
+	margin-right: 10em;
+	height: 5em;
 	background-image: url(images/border.png);
 	background-position: bottom right;
 	background-repeat: repeat-x;
@@ -84,17 +84,17 @@ body {
 	#p-personal li {
 		margin-right: 0.75em;
 		margin-top: 0.5em;
-		font-size: 0.9em;
+		font-size: 0.7em;
 	}
 	/* Navigation Containers */
 	#left-navigation {
 		position: absolute;
-		right: 12em;
-		top: 3em;
+		right: 10em;
+		top: 2.5em;
 	}
 	#right-navigation {
 		float: left;
-		margin-top: 3em;
+		margin-top: 2.5em;
 	}
 	/* Navigation Labels */
 	div.vectorTabs h5,
@@ -148,9 +148,9 @@ body {
 	/* OVERRIDDEN BY COMPLIANT BROWSERS */
 	div.vectorTabs li a {
 		display: inline-block;
-		height: 3em;
-		padding-right: 0.5em;
-		padding-left: 0.5em;
+		height: 2.5em;
+		padding-right: 0.4em;
+		padding-left: 0.4em;
 		background-image: url(images/tab-break.png);
 		background-position: bottom left;
 		background-repeat: no-repeat;
@@ -159,6 +159,9 @@ body {
 	div.vectorTabs li a span {
 		color: #0645ad;
 		cursor: pointer;
+	}
+	div.vectorTabs li a span {
+		font-size: 0.8em;
 	}
 	/* IGNORED BY IE6 */
 	div.vectorTabs li > a {
@@ -208,7 +211,7 @@ body {
 	div.vectorMenu h5 a {
 		display: inline-block;
 		width: 24px;
-		height: 3em;
+		height: 2.5em;
 		text-decoration: none;
 		background-image: url(images/tab-break.png);
 		background-position: bottom left;
@@ -256,7 +259,7 @@ body {
 	/* Fixes old versions of FireFox */
 	div.vectorMenu ul,
 	x:-moz-any-link {
-		min-width: 6em;
+		min-width: 5em;
 	}
 	/* Returns things back to normal in modern versions of FireFox */
 	div.vectorMenu ul,
@@ -280,15 +283,13 @@ body {
 	div.vectorMenu li > a {
 		display: block;
 	}
-	div.vectorMenu li a,
-	div.vectorMenu li a span {
+	div.vectorMenu li a {
 		color: #0645ad;
 		cursor: pointer;
+		font-size: 0.8em;
 	}
 	div.vectorMenu li.selected a,
-	div.vectorMenu li.selected a span,
-	div.vectorMenu li.selected a:visited
-	div.vectorMenu li.selected a:visited span {
+	div.vectorMenu li.selected a:visited {
 		color: #333333;
 		text-decoration: none;
 	}
@@ -323,7 +324,7 @@ body {
 		border-width: 0;
 		padding: 0.25em;
 		line-height: 1em;
-		font-size: 0.9em;
+		font-size: 0.8em;
 		width: 9em;
 		background-color: transparent;
 	}
@@ -347,22 +348,23 @@ body {
 /* Panel */
 #panel {
 	position: absolute;
-	top: 12em;
-	width: 12em;
+	top: 160px;
+	padding-top: 1em;
+	width: 10em;
 	right: 0;
 }
 	#panel div.portal {
-		padding-top: 1.5em;
+		padding-bottom: 1.5em;
 	}
 	#panel div.portal h5 {
 		font-weight: normal;
 		color: #444444;
-		padding: 0.5em;
+		padding: 0.25em;
 		padding-top: 0;
-		padding-right: 1.25em;
+		padding-right: 1.75em;
 		cursor: default;
 		border: none;
-		font-size: 0.9em;
+		font-size: 0.7em;
 	}
 	#panel div.portal div.body {
 		margin: 0;
@@ -385,7 +387,7 @@ body {
 		padding-bottom: 0.5em;
 		margin: 0;
 		overflow: hidden;
-		font-size: 0.9em;
+		font-size: 0.7em;
 	}
 	#panel div.portal div.body ul li a {
 		color: #0645ad;
@@ -395,7 +397,7 @@ body {
 	}
 /* Footer */
 #footer {
-	margin-right: 12em;
+	margin-right: 10em;
 	margin-top: 0;
 	padding: 0.75em;
 	background-image: url(images/border.png);
@@ -415,7 +417,7 @@ body {
 	padding-top: 0.5em;
 	padding-bottom: 0.5em;
 	color: #333333;
-	font-size: 0.9em;
+	font-size: 0.7em;
 }
 #footer #footer-icons {
 	float: left;
@@ -439,17 +441,17 @@ body {
 /* Logo */
 #p-logo {
 	position: absolute;
-	top: -12em;
+	top: -160px;
 	right: 0;
-	height: 12em;
-	width: 12em;
+	width: 10em;
+	height: 160px;
 }
 #p-logo a {
 	display: block;
-	width: 12em;
-	height: 12em;
+	width: 10em;
+	height: 160px;
 	background-repeat: no-repeat;
-	background-position: 50% 50%;
+	background-position: center center;
 	text-decoration: none;
 }
 
@@ -558,6 +560,9 @@ body {
  */
 #content {
 	line-height: 1.5em;
+}
+#bodyContent {
+	font-size: 0.8em;
 }
 /* Links */
 a {
@@ -861,7 +866,7 @@ img.thumbborder {
 /* Site Notice */
 #siteNotice {
 	text-align: center;
-	font-size: 95%;
+	font-size: 0.8em;
 	margin: 0;
 }
 	#siteNotice div,
@@ -924,6 +929,7 @@ h3, h4, h5 {
 	padding-top: 0;
 	margin-bottom: 0.1em;
 	line-height: 1.2em;
+	font-size: 1.6em;
 	padding-bottom: 0;
 }
 #content a.external,
