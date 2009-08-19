@@ -3,50 +3,37 @@
 */
 
 loadGM({
-	"loading_plugin" : "loading plugin <blink>...</blink>",
-
+	"loading_plugin" : "loading plugin <blink>...<\/blink>",
 	"select_playback" : "Set playback preference",
 	"link_back" : "Link back",
-	"error_load_lib" : "Error: mv_embed was unable to load required JavaScript libraries.\nInsert script via DOM has failed. Please try reloading this page.",
-
-	"error_swap_vid" : "Error: mv_embed was unable to swap the video tag for the mv_embed interface",
-
+	"error_load_lib" : "Error :  mv_embed was unable to load required JavaScript libraries.\nInsert script via DOM has failed. Please try reloading this page.",
+	"error_swap_vid" : "Error :  mv_embed was unable to swap the video tag for the mv_embed interface",
 	"add_to_end_of_sequence" : "Add to end of sequence",
-
 	"missing_video_stream" : "The video file for this stream is missing",
-
 	"play_clip" : "Play clip",
-	"pause_clip": "Pause clip",
-	"volume_control": "Volume control",
-	"player_options": "Player options",
-	"closed_captions": "Close captions",
-	"player_fullscreen": "Fullscreen",
-
+	"pause_clip" : "Pause clip",
+	"volume_control" : "Volume control",
+	"player_options" : "Player options",
+	"closed_captions" : "Close captions",
+	"player_fullscreen" : "Fullscreen",
 	"next_clip_msg" : "Play next clip",
 	"prev_clip_msg" : "Play previous clip",
 	"current_clip_msg" : "Continue playing this clip",
 	"seek_to" : "Seek to",
-
-	"download_segment" : "Download selection:",
-	"download_full" : "Download full video file:",
-	"download_right_click": "To download right click and select <i>Save target as...</i>",
+	"download_segment" : "Download selection : ",
+	"download_full" : "Download full video file : ",
+	"download_right_click" : "To download, right click and select <i>Save target as...<\/i>",
 	"download_clip" : "Download video",
-	"download_text" : "Download text (<a style=\"color:white\" title=\"cmml\" href=\"http://wiki.xiph.org/index.php/CMML\">CMML</a> xml):",
-	"download"		: "Download",
-
-	"share"			: "Share",
-	"credits"		: "Credits",
-
+	"download_text" : "Download text (<a style=\"color : white\" title=\"cmml\" href=\"http : \/\/wiki.xiph.org\/index.php\/CMML\">CMML<\/a> xml) : ",
+	"download" : "Download",
+	"share" : "Share",
+	"credits" : "Credits",
 	"clip_linkback" : "Clip source page",
-	"chose_player"	: "Choose video player",
-
+	"chose_player" : "Choose video player",
 	"share_this_video" : "Share this video",
-	"video_credits"	: "Video credits",
-
-	"menu_btn"	: "Menu",
-	"close_btn"	: "Close",
-
-
+	"video_credits" : "Video credits",
+	"menu_btn" : "Menu",
+	"close_btn" : "Close",
 	"mv_ogg-player-vlc-mozilla" : "VLC plugin",
 	"mv_ogg-player-videoElement" : "Native Ogg video support",
 	"mv_ogg-player-vlc-activex" : "VLC ActiveX",
@@ -57,12 +44,10 @@ loadGM({
 	"mv_ogg-player-flowplayer" : "Flowplayer",
 	"mv_ogg-player-selected" : " (selected)",
 	"mv_ogg-player-omtkplayer" : "OMTK Flash Vorbis",
-	"mv_generic_missing_plugin" : "You browser does not appear to support the following playback type: <b>$1</b><br />Visit the <a href=\"http://commons.wikimedia.org/wiki/Commons:Media_help\">Playback Methods</a> page to download a player.<br />",
-
-	"mv_for_best_experience": "For a better video playback experience we recommend:<br /><b><a href=\"http://www.mozilla.com/en-US/firefox/upgrade.html?from=mwEmbed\">Firefox 3.5</a>.</b>",
-	"mv_do_not_warn_again": "Dissmiss for now.",
-
-	"players": "Players"
+	"mv_generic_missing_plugin" : "You browser does not appear to support the following playback type :  <b>$1<\/b><br \/>Visit the <a href=\"http : \/\/commons.wikimedia.org\/wiki\/Commons : Media_help\">Playback Methods<\/a> page to download a player.<br \/>",
+	"mv_for_best_experience" : "For a better video playback experience we recommend : <br \/><b><a href=\"http : \/\/www.mozilla.com\/en-US\/firefox\/upgrade.html?from=mwEmbed\">Firefox 3.5<\/a>.<\/b>",
+	"mv_do_not_warn_again" : "Dissmiss for now.",
+	"players" : "Players"
 });
 
 var default_video_attributes = {

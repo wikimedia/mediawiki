@@ -8,35 +8,31 @@
 	and archive.org
 */
 loadGM({
-	"add_media_wizard": "Add media wizard",
+	"add_media_wizard" : "Add media wizard",
 	"mv_media_search" : "Media search",
 	"rsd_box_layout" : "Box layout",
 	"rsd_list_layout" : "List layout",
 	"rsd_results_desc" : "Results",
 	"rsd_results_next" : "next",
 	"rsd_results_prev" : "previous",
-	"rsd_no_results"   : "No search results for <b>$1</b>",
-
+	"rsd_no_results" : "No search results for <b>$1<\/b>",
 	"upload_tab" : "Upload",
-	"rsd_layout" : "Layout:",
-	"rsd_resource_edit" : "Edit resource: $1",
-	"resource_description_page": "Resource description page",
-	"rsd_local_resource_title": "Local resource title",
-	"rsd_do_insert": "Do insert",
-
-	"cc_title": "Creative Commons",
-	"cc_by_title": "Attribution",
-	"cc_nc_title": "Noncommercial",
-	"cc_nd_title": "No Derivative Works",
-	"cc_sa_title": "Share Alike",
-	"cc_pd_title": "Public Domain",
-	"unknown_license": "Unknown license",
-	"no_import_by_url": "This user or wiki <b>can not</b> import assets from remote URLs.</p><p>Do you need to login?</p><p>If permissions are set, you may have to enable $wgAllowCopyUploads (<a href=\"http://www.mediawiki.org/wiki/Manual:$wgAllowCopyUploads\">more information</a>).</p>",
-	"results_from": "Results from <a href=\"$1\" target=\"_new\" >$2</a>",
-
-	"missing_desc_see_soruce": "This asset is missing a description. Please see the [$1 orginal source] and help describe it.",
-
-	"rsd_config_error": "Add media wizard configuration error: $1"
+	"rsd_layout" : "Layout : ",
+	"rsd_resource_edit" : "Edit resource :  $1",
+	"resource_description_page" : "Resource description page",
+	"rsd_local_resource_title" : "Local resource title",
+	"rsd_do_insert" : "Do insert",
+	"cc_title" : "Creative Commons",
+	"cc_by_title" : "Attribution",
+	"cc_nc_title" : "Noncommercial",
+	"cc_nd_title" : "No Derivative Works",
+	"cc_sa_title" : "Share Alike",
+	"cc_pd_title" : "Public Domain",
+	"unknown_license" : "Unknown license",
+	"no_import_by_url" : "This user or wiki <b>can not<\/b> import assets from remote URLs.<\/p><p>Do you need to login?<\/p><p>If permissions are set, you may have to enable $wgAllowCopyUploads (<a href=\"http : \/\/www.mediawiki.org\/wiki\/Manual : $wgAllowCopyUploads\">more information<\/a>).<\/p>",
+	"results_from" : "Results from <a href=\"$1\" target=\"_new\" >$2<\/a>",
+	"missing_desc_see_soruce" : "This asset is missing a description. Please see the [$1 orginal source] and help describe it.",
+	"rsd_config_error" : "Add media wizard configuration error :  $1"
 });
 var default_remote_search_options = {
 	'profile':'mediawiki_edit',

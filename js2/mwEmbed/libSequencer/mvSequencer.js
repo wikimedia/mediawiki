@@ -24,19 +24,15 @@ loadGM({
 	"menu_cliplib" : "Add media",
 	"menu_resource_overview" : "Resource overview",
 	"menu_options" : "Options",
-
-	"loading_timeline" : "Loading timeline <blink>...</blink>",
-	"loading_user_rights" : "Loading user rights <blink>...</blink>",
-
+	"loading_timeline" : "Loading timeline <blink>...<\/blink>",
+	"loading_user_rights" : "Loading user rights <blink>...<\/blink>",
 	"no_edit_permissions" : "You do not have permissions to save changes to this sequence",
-
 	"edit_clip" : "Edit clip",
 	"edit_save" : "Save sequence changes",
-	"saving_wait": "Save in progress (please wait)",
-	"save_done"	:	"Save complete",
+	"saving_wait" : "Save in progress (please wait)",
+	"save_done" : "Save complete",
 	"edit_cancel" : "Cancel sequence edit",
 	"edit_cancel_confirm" : "Are you sure you want to cancel your edit? Changes will be lost.",
-
 	"zoom_in" : "Zoom in",
 	"zoom_out" : "Zoom out",
 	"cut_clip" : "Cut clips",
@@ -47,20 +43,16 @@ loadGM({
 	"rmclip" : "Remove clip",
 	"clip_in" : "clip in",
 	"clip_out" : "clip out",
-
-	"mv_welcome_to_sequencer" : "<h3>Welcome to the sequencer demo</h3> Very <b>limited</b> functionality right now. Not much documentation yet either.",
-
-	"no_selected_resource" : "<h3>No resource selected</h3> Select a clip to enable editing.",
-	"error_edit_multiple" : "<h3>Multiple resources selected</h3> Select a single clip to edit it.",
-
+	"mv_welcome_to_sequencer" : "<h3>Welcome to the sequencer demo<\/h3> Very <b>limited<\/b> functionality right now. Not much documentation yet either.",
+	"no_selected_resource" : "<h3>No resource selected<\/h3> Select a clip to enable editing.",
+	"error_edit_multiple" : "<h3>Multiple resources selected<\/h3> Select a single clip to edit it.",
 	"mv_editor_options" : "Editor options",
 	"mv_editor_mode" : "Editor mode",
 	"mv_simple_editor_desc" : "simple editor (iMovie style)",
 	"mv_advanced_editor_desc" : "advanced editor (Final Cut style)",
 	"mv_other_options" : "Other options",
 	"mv_contextmenu_opt" : "Enable context menus",
-
-	"mv_sequencer_credit_line":"Developed by <a href=\"http://kaltura.com\">Kaltura, Inc.</a> in partnership with the <a href=\"http://wikimediafoundation.org/wiki/Home\">Wikimedia Foundation</a> (<a href=\"#\">more information</a>)."
+	"mv_sequencer_credit_line" : "Developed by <a href=\"http : \/\/kaltura.com\">Kaltura, Inc.<\/a> in partnership with the <a href=\"http : \/\/wikimediafoundation.org\/wiki\/Home\">Wikimedia Foundation<\/a> (<a href=\"#\">more information<\/a>)."
 });
  //used to set default values and validate the passed init object
 var sequencerDefaultValues = {

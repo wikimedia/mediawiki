@@ -5,14 +5,14 @@
 //@@todo put all msg text into loadGM json
 
 loadGM({
-	"help-sticky": "Help (click to stick)",
-	"fogg-cg-preset": "Preset: <strong>$1</strong>",
-	"fogg-cg-quality": "Basic quality and resolution control",
-	"fogg-cg-meta":	"Metadata for the clip",
+	"help-sticky" : "Help (click to stick)",
+	"fogg-cg-preset" : "Preset :  <strong>$1<\/strong>",
+	"fogg-cg-quality" : "Basic quality and resolution control",
+	"fogg-cg-meta" : "Metadata for the clip",
 	"fogg-cg-range" : "Encoding range",
-	"fogg-cg-advVideo": "Advanced video encoding controls",
-	"fogg-cg-advAudio": "Advanced audio encoding controls",
-	"fogg-preset-custom": "Custom settings"
+	"fogg-cg-advVideo" : "Advanced video encoding controls",
+	"fogg-cg-advAudio" : "Advanced audio encoding controls",
+	"fogg-preset-custom" : "Custom settings"
 });
 
 var mvAdvFirefogg = function( iObj ){

@@ -39,6 +39,7 @@ for($i=0;$i<3;$i++){
 	print '.';
 	sleep(1);
 }
+print "\n";
 
 // read in mwEmbed.i18n.php
 $rawLangFile = file_get_contents( $mwLangFilePath );
@@ -99,26 +100,32 @@ function doJsonMerge( $json_txt ){
     	foreach( $jmsg as $k => $v ){
 			//check if the existing value is changed and merge and merge ->right
 			if(isset( $messages['en'][$k] )){
-				if($messages['en'][$k] != $v )
+				if($messages['en'][$k] != $v ){
 					$doReplaceFlag=true;
-				//add the actual value:
+					print "'$k'does not match:\n" . $messages['en'][$k] . "\n!=\n" . $v . "\n";
+				}
+				//add the actual value: (replace new lines (not compatible json)
+				//$jsMsgAry[$k] = str_replace("\n", '\\n', $messages['en'][$k]);
 				$jsMsgAry[$k] = $messages['en'][$k];
 				$doReplaceFlag=true;
 			};
 	        $outPhp.="\t'{$k}' => '" . str_replace( '\'', '\\\'', $v ) . "',\n";
 		}
 		//merge the jsLanguage array back in and wrap the output
-		if($mergeToJS){
+		if($mergeToJS && $doReplaceFlag){
 			$json = json_encode($jsMsgAry );
 			$json_txt = jsonReadable($json);
 			//escape $1 for preg replace:
 			$json_txt = str_replace('$', '\$', $json_txt);
+			//print "json:\n$json_txt \n";
 			$str = preg_replace ('/loadGM\s*\(\s*{(.*)}\s*\)\s*/siU',
 				"loadGM(" . $json_txt . ")",
 				 $jsFileText);
 
+			//print substr($str, 0, 600);
+
 			if( file_put_contents($fname, $str) ){
-				print "updated $curFileName from php\n";
+				print "\nupdated $curFileName from php\n\n";
 			}else{
 				die("could not write to: " . $fname);
 			}
@@ -159,7 +166,11 @@ function jsonReadable($json) {
                     $result = trim($result) . $newline . str_repeat($tab, $tabcount) . $char;
                     break;
                 case ',':
-                    $result .= $char . $newline . str_repeat($tab, $tabcount);
+                	if($inquote){
+                		$result .= $char;
+                	}else{
+                		$result .= $char . $newline . str_repeat($tab, $tabcount);
+                	}
                     break;
                 case ':':
                 	$result .= ' ' . $char . ' ';

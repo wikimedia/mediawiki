@@ -258,4 +258,3 @@ Insert script via DOM has failed. Please try reloading this page.',
 	'size-kilobytes' => '$1 K',
 	'size-bytes' => '$1 B',
 );
- 

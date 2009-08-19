@@ -6,31 +6,28 @@
 	'audio':0			//should allow controlling the audio volume (with keyframes)
 */
 //set gMsg object:
-loadGM( {
-	"mv_crop": "Crop image",
-	"mv_apply_crop": "Apply crop to image",
-	"mv_reset_crop": "Reset crop",
-	"mv_insert_image_page": "Insert into page",
-	"mv_insert_into_sequence": "Insert into sequence",
-	"mv_preview_insert": "Preview insert",
-	"mv_cancel_image_insert": "Cancel insert",
-
-	"sc_fileopts": "Clip detail edit",
-	"sc_inoutpoints": "Set in-out points",
-	"sc_overlays": "Overlays",
-	"sc_audio": "Audio control",
-	"sc_duration": "Duration",
-
-	"mv_template_properties": "Template properties",
-	"mv_custom_title": "Custom title",
-	"mv_edit_properties": "Edit properties",
-	"mv_other_properties": "Other properties",
-	"mv_resource_page": "Resource page:",
-
-	"mv_set_in_out_points": "Set in-out points",
-	"mv_start_time": "Start time",
-	"mv_end_time": "End time",
-	"mv_preview_inout": "Preview/play in-out points"
+loadGM({
+	"mv_crop" : "Crop image",
+	"mv_apply_crop" : "Apply crop to image",
+	"mv_reset_crop" : "Reset crop",
+	"mv_insert_image_page" : "Insert into page",
+	"mv_insert_into_sequence" : "Insert into sequence",
+	"mv_preview_insert" : "Preview insert",
+	"mv_cancel_image_insert" : "Cancel insert",
+	"sc_fileopts" : "Clip detail edit",
+	"sc_inoutpoints" : "Set in-out points",
+	"sc_overlays" : "Overlays",
+	"sc_audio" : "Audio control",
+	"sc_duration" : "Duration",
+	"mv_template_properties" : "Template properties",
+	"mv_custom_title" : "Custom title",
+	"mv_edit_properties" : "Edit properties",
+	"mv_other_properties" : "Other properties",
+	"mv_resource_page" : "Resource page : ",
+	"mv_set_in_out_points" : "Set in-out points",
+	"mv_start_time" : "Start time",
+	"mv_end_time" : "End time",
+	"mv_preview_inout" : "Preview\/play in-out points"
 });
 
 var default_clipedit_values = {
