@@ -32,7 +32,7 @@ $wgRequestTime = microtime( true );
 
 // Run version checks before including other files
 // so people don't see a scary parse error.
-require_once( "$IP/install-utils.inc" );
+require_once( "$IP/maintenance/install-utils.inc" );
 install_version_checks();
 
 require_once( "$IP/includes/Defines.php" );
@@ -250,7 +250,6 @@ if( !is_writable( "." ) ) {
 }
 
 
-require_once( "$IP/install-utils.inc" );
 require_once( "$IP/maintenance/updaters.inc" );
 
 class ConfigData {
