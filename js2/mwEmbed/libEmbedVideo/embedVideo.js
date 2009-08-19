@@ -29,7 +29,7 @@ loadGM({
 	"share" : "Share",
 	"credits" : "Credits",
 	"clip_linkback" : "Clip source page",
-	"chose_player" : "Choose video player",
+	"chose_player" : "Choose Video Player",
 	"share_this_video" : "Share this video",
 	"video_credits" : "Video credits",
 	"menu_btn" : "Menu",
@@ -139,11 +139,21 @@ var ctrlBuilder = {
 			this.supports['closed_captions']=true;
 
 		var o='';
+		//get the length of the scruber
+		this.player_head_length =  embedObj.playerPixelWidth();		
 		for( var i in this.components ){
+			if( this.supports[i] ){
+				if( i != 'play_head'){
+					js_log(this.player_head_length +  ' - ph: ' + this.components[i].w );
+					this.player_head_length -= this.components[i].w;
+				}
+			}
+		}		
+		for(var i in this.components){
 			if( this.supports[i] ){
 				if( this.available_width > this.components[i].w ){
 					//special case with playhead don't add unless we have 60px
-					if( i == 'play_head' && ctrlBuilder.available_width < 60 )
+					if( i == 'play_head' && this.player_head_length < 60 )
 						continue;
 					o+=this.components[i].o();
 					this.available_width -= this.components[i].w;
@@ -151,7 +161,7 @@ var ctrlBuilder = {
 					js_log('not enough space for control component:' + i);
 				}
 			}
-		}		
+		}				
 		return o;
 	},
 	 /*
@@ -227,7 +237,7 @@ var ctrlBuilder = {
 		});
 
 		//fullscreen binding:
-		$j('#fullscreen_'+embedObj.id).unbind().btnBind().click(function(){
+		$j('#fullscreen_' + embedObj.id).unbind().btnBind().click(function(){
 			$j('#' +embedObj.id).get(0).fullscreen();
 		});
 
@@ -454,7 +464,7 @@ var ctrlBuilder = {
 			}
 		},
 		'pause':{
-			'w':147, //28 147
+			'w':28, //28 147
 			'o':function(){
 				return '<button class="play-btn ui-state-default ui-corner-all" title="' +
 					gM('play_clip') + '" ><span class="ui-icon ui-icon-play"></span></button>'
@@ -464,7 +474,7 @@ var ctrlBuilder = {
 			'w':0, //special case (takes up remaining space)
 			'o':function(){
 				return '<div class="ui-slider ui-slider-horizontal ui-corner-all j-scrubber"' +
-						' style="width:' + ( ctrlBuilder.available_width - 30 ) + 'px;"></div>'
+						' style="width:' + ( ctrlBuilder.player_head_length - 30 ) + 'px;"></div>'
 			}
 		},
 		'time_display':{
@@ -474,7 +484,7 @@ var ctrlBuilder = {
 			}
 		},
 		'volume_control':{
-			'w':47,
+			'w':40,
 			'o':function(){
 				return '<button class="ui-state-default ui-corner-all k-volume">' +
 							'<span class="ui-icon ui-icon-volume-on"></span>' +
@@ -1748,7 +1758,7 @@ embedVideo.prototype = {
 			html_code +='</div>';
 			//block out some space by encapulating the top level div
 			$j(this).wrap('<div style="width:'+parseInt(this.width)+'px;height:'
-					+ (parseInt(this.height) + ctrlBuilder.height )+'px" id="k-player_' + this.id + '" class="k-player"></div>');
+					+ (parseInt(this.height) + ctrlBuilder.height )+'px" id="k-player_' + this.id + '" class="k-player ui-widget"></div>');
 		}
 
 		//js_log('should set: '+this.id);
@@ -2106,11 +2116,10 @@ embedVideo.prototype = {
 	showPlayerselect:function( target ){
 		//get id (in case where we have a parent container)
 		var this_id = (this.pc!=null)?this.pc.pp.id:this.id;
-
 		var _this=this;
 //		var out= '<span style="color:#FFF;background-color:black;"><blockquote style="background-color:black;">';
-		var out= '';
-		out+='<h2>' + gM('chose_player') + '</h2>';
+		var o= '';
+		o+='<h2>' + gM('chose_player') + '</h2>';
 		var _this=this;
 		//js_log('selected src'+ _this.media_element.selected_source.url);
 		$j.each( this.media_element.getPlayableSources(), function(source_id, source){
@@ -2120,7 +2129,7 @@ embedVideo.prototype = {
 			var image_src =  mv_skin_img_path ;
 
 			//set the Playable source type:
-			if( source.mime_type == 'video/x-flv' ){
+			/*if( source.mime_type == 'video/x-flv' ){
 				image_src += 'flash_icon_';
 			}else if( source.mime_type == 'video/h264'){
 				//for now all mp4 content is pulled from archive.org (so use archive.org icon)
@@ -2130,37 +2139,40 @@ embedVideo.prototype = {
 			}
 			image_src += is_selected ? 'color':'bw';
 			image_src += '.png';
-
-			if (default_player)
-			{
-				out+=' <ul>';
+			*/
+			if (default_player){
+				o+='<ul>';
 				//output the player select code:
 				var supporting_players = embedTypes.players.getMIMETypePlayers( source.getMIMEType() );
 
 				for(var i=0; i < supporting_players.length ; i++){
 					if( _this.selected_player.id == supporting_players[i].id && is_selected ){
-						out+='<li>' + supporting_players[i].getName() +'</li>';
+						o+='<li>' +
+							'<a href="#" class="active" rel="sel_source" id="sc_' + source_id + '_' + supporting_players[i].id +'">' +
+								supporting_players[i].getName() +
+							'</li>';
 					}else{
 						//else gray plugin and the plugin with link to select
-//						out+='<li style="margin-left:20px;">'+
-//								'<a href="#" class="sel_source" id="sc_' + source_id + '_' + supporting_players[i].id +'">'+
-//									'<img border="0" width="16" height="16" src="' + mv_skin_img_path + 'plugin_disabled.png">'+
-//									supporting_players[i].getName() +
-//								'</a>'+
-                        out+='<li>' +
-                             '<a href="#" id="dc_' + source_id + '_' + supporting_players[i].id +'">' +
-                             supporting_players[i].getName() + '</a><li>';
+						/*out+='<li style="margin-left:20px;">'+
+						'<a href="#" class="sel_source" id="sc_' + source_id + '_' + supporting_players[i].id +'">'+
+							'<img border="0" width="16" height="16" src="' + mv_skin_img_path + 'plugin_disabled.png">'+
+							supporting_players[i].getName() +
+						'</a>'+*/
+                        o+='<li>' +
+                         '<a href="#" rel="sel_source" id="sc_' + source_id + '_' + supporting_players[i].id +'">' +
+                         	supporting_players[i].getName() + '</a>' +
+						'</li>';
 					}
 				 }
-				 out+='</ul></div>';
-			}else
-				out+= source.getTitle() + ' - no player available';
+				 o+='</ul>';
+			}else{
+				o+= source.getTitle() + ' - no player available';
+			}
 		});
-//		out+='</blockquote></span>';
-		$j(target).html(out);
+		$j(target).html(o);
 
 		//set up the click bindings:
-		$j('.sel_source').each(function(){
+		$j(target).find("[rel='sel_source']").each(function(){
 			$j(this).click(function(){
 				var iparts = $j(this).attr( 'id' ).replace(/sc_/,'').split('_');
 				var source_id = iparts[0];
