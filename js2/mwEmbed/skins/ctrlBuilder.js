@@ -1,6 +1,10 @@
 //set the dismissNativeWarn flag:
 _global['dismissNativeWarn'] = false;
 
+var baseSkin = function(){
+	return this.init();
+}
+
 var ctrlBuilder = {
 	height:29,
 	supports:{
@@ -14,6 +18,8 @@ var ctrlBuilder = {
 		'credits',
 	],	
 	default_menu_item:'download',
+	//define skin path 
+		
 	getControls:function( embedObj ){
 		js_log('f:controlsBuilder:: opt:');
 		this.id = (embedObj.pc)?embedObj.pc.pp.id:embedObj.id;
@@ -410,7 +416,7 @@ var ctrlBuilder = {
 			'w':50,
 			'o':function(){
 				return '<button class="ui-state-default ui-corner-bl k-options" title="'+ gM('player_options') + '" >' +
-							'<span class="ui-icon ui-icon-k-menu">'+ gM('menu_btn') + '</span>'
+							gM('menu_btn') +
 						'</button>'
 			}
 		}
