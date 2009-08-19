@@ -1737,7 +1737,7 @@ Hãy nhớ kiểm tra các liên kết khác đến tiêu bản trước khi xó
 
 # Random page
 'randompage'         => 'Trang ngẫu nhiên',
-'randompage-nopages' => 'Hiện chưa có trang nào trong không gian tên “$1”.',
+'randompage-nopages' => 'Hiện chưa có trang nào trong {{PLURAL:$2||các}} không gian tên: $1.',
 
 # Random redirect
 'randomredirect'         => 'Trang đổi hướng ngẫu nhiên',

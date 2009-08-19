@@ -314,7 +314,7 @@ $messages = array(
 'tog-enotifrevealaddr'        => '通知メールに自分のメールアドレスを記載する',
 'tog-shownumberswatching'     => 'ページをウォッチしている利用者数を表示する',
 'tog-oldsig'                  => '現在の署名のプレビュー:',
-'tog-fancysig'                => '署名をウィキテキストとして扱う （自動でリンクしない）',
+'tog-fancysig'                => '署名をウィキテキストとして扱う（自動でリンクしない）',
 'tog-externaleditor'          => '編集に外部アプリケーションを使う （上級者向け・コンピュータに特殊な設定が必要）',
 'tog-externaldiff'            => '差分表示に外部アプリケーションを使う （上級者向け・コンピュータに特殊な設定が必要）',
 'tog-showjumplinks'           => 'アクセシビリティのための「{{int:jumpto}}」リンクを有効にする',
@@ -656,7 +656,7 @@ $5 の返したエラー "$3: $4"',
 'perfcached'           => '以下のデータはキャッシュであり、最新の更新を反映していない可能性があります。',
 'perfcachedts'         => '以下のデータは $1 に最終更新されたキャッシュです。',
 'querypage-no-updates' => 'ページの更新は無効になっています。以下のデータの更新は現在行われていません。',
-'wrong_wfQuery_params' => 'wfQuery（）へ誤った引数が渡されました。<br />
+'wrong_wfQuery_params' => 'wfQuery()へ誤った引数が渡されました。<br />
 関数: $1<br />
 クエリ: $2',
 'viewsource'           => 'ソースを表示',
@@ -1158,7 +1158,7 @@ $1",
 'prevn-title'                      => '前の$1{{PLURAL:$1|件}}',
 'nextn-title'                      => '次の$1{{PLURAL:$1|件}}',
 'shown-title'                      => 'ページあたり$1{{PLURAL:$1|件}}の結果を表示',
-'viewprevnext'                     => '（$1） （$2） （$3） を表示',
+'viewprevnext'                     => '（$1）（$2）（$3）を表示',
 'searchmenu-legend'                => '検索オプション',
 'searchmenu-exists'                => "'''このウィキには「[[:$1]]」という名前のページがあります'''",
 'searchmenu-new'                   => "'''このウィキでページ「[[:$1|$1]]」を新規作成する'''",
@@ -1722,7 +1722,7 @@ PICT # その他
 
 # Random page
 'randompage'         => 'おまかせ表示',
-'randompage-nopages' => '「$1」名前空間には、ページがありません。',
+'randompage-nopages' => '以下の{{PLURAL:$2|名前空間}}には、ページがありません: $1。',
 
 # Random redirect
 'randomredirect'         => 'おまかせリダイレクト',
@@ -2074,7 +2074,7 @@ $NEWPAGE
 'protect-title'               => '「$1」の保護レベルを変更',
 'prot_1movedto2'              => '[[$1]] を [[$2]] へ移動',
 'protect-legend'              => '保護の確認',
-'protectcomment'              => 'コメント:',
+'protectcomment'              => '理由:',
 'protectexpiry'               => '期限:',
 'protect_expiry_invalid'      => '期間の指定が無効です。',
 'protect_expiry_old'          => '保護期限が過去の時刻です。',

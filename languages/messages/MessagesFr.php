@@ -10,6 +10,7 @@
  * @author Agzennay
  * @author Cedric31
  * @author ChrisPtDe
+ * @author Coyau
  * @author Crochet.david
  * @author Delhovlyn
  * @author Dereckson
@@ -1737,7 +1738,7 @@ Si le problème persiste, contactez un [[Special:ListUsers/sysop|administrateur]
 'upload-curl-error28'      => 'Dépassement du délai lors du téléversement',
 'upload-curl-error28-text' => 'Le site a mis trop longtemps à répondre. Vérifiez que le site est en ligne, attendez un peu et réessayez. Vous pouvez aussi réessayer à une heure de moindre affluence.',
 
-'license'            => 'Publié sous licence :',
+'license'            => 'Publié sous licence(s)',
 'nolicense'          => 'Aucune licence sélectionnée',
 'license-nopreview'  => '(Prévisualisation non disponible)',
 'upload_source_url'  => ' (une URL valide et accessible publiquement)',
@@ -1841,7 +1842,7 @@ N’oubliez pas de vérifier s’il n’y a pas d’autres liens vers les modèl
 
 # Random page
 'randompage'         => 'Page au hasard',
-'randompage-nopages' => 'Il n’y a aucune page dans l’espace de noms « $1 ».',
+'randompage-nopages' => 'Il n’y a aucune page dans {{PLURAL:$2|l’espace de noms|les espaces de noms}} : $1.',
 
 # Random redirect
 'randomredirect'         => 'Page de redirection au hasard',
@@ -2210,7 +2211,7 @@ Consultez la [[Special:ProtectedPages|liste des pages protégées]] pour la list
 'protect-title'               => 'Changer le niveau de protection pour « $1 »',
 'prot_1movedto2'              => '[[$1]] renommé en [[$2]]',
 'protect-legend'              => 'Confirmer la protection',
-'protectcomment'              => 'Motif de la protection :',
+'protectcomment'              => 'Raison :',
 'protectexpiry'               => 'Date d’expiration :',
 'protect_expiry_invalid'      => 'La date d’expiration est invalide.',
 'protect_expiry_old'          => 'La date d’expiration est déjà passée.',

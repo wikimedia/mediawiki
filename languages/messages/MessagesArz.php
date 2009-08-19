@@ -1025,7 +1025,7 @@ $2',
 'rev-deleted-user'            => '(اسم اليوزر اتشال)',
 'rev-deleted-event'           => '(السجل إتشال)',
 'rev-deleted-text-permission' => 'مراجعة الصفحه دى إتمسحت من الأرشيفات العامه.
-ممكن تكون فيه تفاصيل فى [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} سجل المسح].',
+ممكن تكون فيه تفاصيل فى [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} سجل المسح].',
 'rev-deleted-text-unhide'     => "مراجعة الصفحه دى '''اتمسحت'''. ممكن تلاقى تفاصيل فى [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} سجل المسح].
 لو كنت انت ادارى ممكن[$1 تشوف المراجعه دى] لو كنت عايز تكمل..",
 'rev-deleted-text-view'       => 'التعديل ده اتمسح من الأرشيف العام. ممكن تشوف التعديل ده علشان إنت إدارى فى {{SITENAME}} .
@@ -1533,6 +1533,7 @@ $1",
 'recentchanges-legend'              => 'اختيارات اخر التعديلات',
 'recentchangestext'                 => 'تابع آخر التغييرات فى الويكى على الصفحة دى.',
 'recentchanges-feed-description'    => 'تابع اخر التعديلات للويكى ده عن طريق الفييد ده .',
+'recentchanges-label-legend'        => 'المفتاح: $1.',
 'rcnote'                            => "فيه تحت {{PLURAL:$1|'''1''' تغيير|آخر '''$1''' تغيير}} فى آخر {{PLURAL:$2|يوم|'''$2''' يوم}}، بدءا من $5، $4.",
 'rcnotefrom'                        => "دى التعديلات من '''$2''' (ل '''$1''' معروضه).",
 'rclistfrom'                        => 'اظهر التعديلات بدايه من $1',
@@ -1809,7 +1810,7 @@ PICT # misc.
 
 # Random page
 'randompage'         => 'صفحة عشوائيه',
-'randompage-nopages' => 'مافيش صفحات فى النطاق "$1"..',
+'randompage-nopages' => 'مافيش صفحات فى النطاق {{PLURAL:$2|namespace|namespaces}}: $1.',
 
 # Random redirect
 'randomredirect'         => 'تحويله عشوائيه',

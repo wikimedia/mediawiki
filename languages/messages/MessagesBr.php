@@ -1192,7 +1192,7 @@ Gallout a rit lezel tud all da vont e darempred ganeoc'h dre ho pajennoù implij
 # Groups
 'group'               => 'Strollad :',
 'group-user'          => 'Implijerien',
-'group-autoconfirmed' => 'Implijerien bet kadarnaet en emgefre',
+'group-autoconfirmed' => 'Implijerien bet kadarnaet ent emgefre',
 'group-bot'           => 'Botoù',
 'group-sysop'         => 'Merourien',
 'group-bureaucrat'    => 'Pennoù-bras',
@@ -1276,7 +1276,7 @@ Gallout a rit lezel tud all da vont e darempred ganeoc'h dre ho pajennoù implij
 # User rights log
 'rightslog'      => 'Marilh statud an implijerien',
 'rightslogtext'  => "Setu marilh ar c'hemmoù statud bet c'hoarvezet d'an implijerien.",
-'rightslogentry' => 'en/he deus cheñchet gwirioù implijer $1 a oa $2 hag a zo bet lakaet da $3',
+'rightslogentry' => 'en/he deus cheñchet gwirioù an implijer $1 a oa $2 hag a zo bet lakaet da $3',
 'rightsnone'     => '(netra)',
 
 # Associated actions - in the sentence "You do not have permission to X"
@@ -1523,7 +1523,7 @@ Klikañ war penn ar bann a cheñch an urzh kinnig.',
 'filehist-comment'          => 'Notenn',
 'filehist-missing'          => 'Restr diank',
 'imagelinks'                => "Liammoù d'ar restr",
-'linkstoimage'              => "Liammet eo ar {{PLURAL:$1|bajenn-mañ|$1 ar pajennoù-mañ}} d'ar restr-mañ :",
+'linkstoimage'              => "Liammet eo {{PLURAL:$1|ar bajenn-mañ|an $1 pajenn-mañ}} d'ar restr-mañ :",
 'linkstoimage-more'         => "Ouzhpenn $1 {{PLURAL:$1|bajenn zo liammet ouzh|pajenn zo liammet ouzh}} ar restr-mañ.
 Ne laka ar roll-mañ war wel nemet {{PLURAL:$1|ar bajenn gentañ liammet ouzh|an $1 pajenn gentañ liammet ouzh}} ar rest-mañ.
 Ur [[Special:WhatLinksHere/$2|roll klok]] a c'haller da gaout.",
@@ -1589,7 +1589,7 @@ Diskouezet eo deskrivadur he [$2 fajenn zeskrivañ] amañ dindan.',
 
 # Random page
 'randompage'         => 'Ur bajenn dre zegouezh',
-'randompage-nopages' => 'N\'eus pajenn ebet en esaouenn anv "$1".',
+'randompage-nopages' => 'N\'eus pajenn ebet en {{PLURAL:$2|esaouennn anv|esaouennoù anv}} da-heul : "$1".',
 
 # Random redirect
 'randomredirect'         => 'Ur bajenn adkas dre zegouezh',
@@ -1960,7 +1960,7 @@ Klikit war "kent" hag adkargit ar bajenn oc\'h deuet drezi; goude klaskit en-dro
 'protect-title'               => 'Stankañ "$1"',
 'prot_1movedto2'              => '[[$1]] adkaset war-du [[$2]]',
 'protect-legend'              => 'Kadarnaat ar stankañ',
-'protectcomment'              => 'Abeg ar stankañ',
+'protectcomment'              => 'Abeg ar stankañ :',
 'protectexpiry'               => 'Termen',
 'protect_expiry_invalid'      => 'Direizh eo termen ar prantad.',
 'protect_expiry_old'          => 'Echuet eo ar prantad termen.',

@@ -1757,7 +1757,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 
 # Random page
 'randompage'         => '임의 문서로',
-'randompage-nopages' => '"$1" 이름공간에는 문서가 없습니다.',
+'randompage-nopages' => '{{PLURAL:$2|다음}} 이름공간에는 문서가 없습니다: $1',
 
 # Random redirect
 'randomredirect'         => '임의 넘겨주기 문서로',

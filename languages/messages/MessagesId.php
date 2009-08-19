@@ -1768,7 +1768,7 @@ Cek dahulu pranala lain ke templat tersebut sebelum menghapusnya.',
 
 # Random page
 'randompage'         => 'Halaman sembarang',
-'randompage-nopages' => 'Tak terdapat halaman pada ruang nama "$1".',
+'randompage-nopages' => 'Tidak ada halaman pada {{PLURAL:$2||}}ruang nama berikut: $1.',
 
 # Random redirect
 'randomredirect'         => 'Pengalihan sembarang',
@@ -2128,7 +2128,7 @@ Lihat [[Special:ProtectedPages|daftar halaman yang dilindungi]] untuk daftar ter
 'protect-title'               => 'Melindungi "$1"',
 'prot_1movedto2'              => '[[$1]] dipindahkan ke [[$2]]',
 'protect-legend'              => 'Konfirmasi perlindungan',
-'protectcomment'              => 'Komentar:',
+'protectcomment'              => 'Alasan:',
 'protectexpiry'               => 'Kadaluwarsa:',
 'protect_expiry_invalid'      => 'Waktu kadaluwarsa tidak sah.',
 'protect_expiry_old'          => 'Waktu kadaluwarsa adalah pada masa lampau.',

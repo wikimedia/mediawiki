@@ -1082,7 +1082,7 @@ Gezinti bağlantılarının bu sütunu sıfırlayacağını unutmayın.',
 'searchprofile-articles'           => 'İçerik sayfaları',
 'searchprofile-project'            => 'Yardım ve proje sayfaları',
 'searchprofile-images'             => 'Çokluortam',
-'searchprofile-everything'         => 'Herşey',
+'searchprofile-everything'         => 'Her şey',
 'searchprofile-advanced'           => 'Gelişmiş',
 'searchprofile-articles-tooltip'   => '$1 içinde ara',
 'searchprofile-project-tooltip'    => '$1 içinde ara',
@@ -1663,7 +1663,7 @@ Sıradaki liste sadece bu dosyaya bağlantı veren {{PLURAL:$1|ilk dosyayı|ilk 
 
 # Random page
 'randompage'         => 'Rastgele sayfa',
-'randompage-nopages' => '"$1" ad alanında hiç bir sayfa yok.',
+'randompage-nopages' => 'Şu {{PLURAL:$2|ad alanında|ad alanlarında}} hiç bir sayfa yok: $1.',
 
 # Random redirect
 'randomredirect'         => 'Rastgele yönlendirme',
@@ -2034,7 +2034,7 @@ Daha fazla bilgi için [[Project:Koruma altına alınmış sayfa]] sayfasına ba
 'protect-title'               => '"$1" için bir koruma seviyesi seçiniz',
 'prot_1movedto2'              => '[[$1]] sayfasının yeni adı: [[$2]]',
 'protect-legend'              => 'Korumayı onayla',
-'protectcomment'              => 'Koruma altına alma nedeni',
+'protectcomment'              => 'Sebep:',
 'protectexpiry'               => 'Bitiş tarihi:',
 'protect_expiry_invalid'      => 'Geçersiz bitiş tarihi.',
 'protect_expiry_old'          => 'Geçmişteki son kullanma zamanı.',

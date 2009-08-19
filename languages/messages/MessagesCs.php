@@ -1810,7 +1810,7 @@ Vstup: <code>typ obsahu/podtyp</code>, např. <code>image/jpeg</code>.',
 
 # Random page
 'randompage'         => 'Náhodná stránka',
-'randompage-nopages' => 'V {{PLURAL:$2|následujícím jmenném prostoru|následujících jmených prostorech}} nejsou žádné stránky: $1.',
+'randompage-nopages' => 'V {{PLURAL:$2|následujícím jmenném prostoru|následujících jmenných prostorech}} nejsou žádné stránky: $1.',
 
 # Random redirect
 'randomredirect'         => 'Náhodné přesměrování',
@@ -2168,7 +2168,7 @@ Stiskněte tlačítko „zpět“, obnovte stránku, ze které jste přišli a z
 'protect-title'               => 'Zamyká se „$1“',
 'prot_1movedto2'              => 'Stránka [[$1]] přemístěna na stránku [[$2]]',
 'protect-legend'              => 'Potvrdit zamčení',
-'protectcomment'              => 'Důvod zamčení',
+'protectcomment'              => 'Důvod:',
 'protectexpiry'               => 'Čas vypršení',
 'protect_expiry_invalid'      => 'Čas vypršení je chybný.',
 'protect_expiry_old'          => 'Čas vypršení již minul.',
@@ -2432,7 +2432,11 @@ $1 je již zablokován(a). Chcete změnit nastavení bloku?',
 # Move page
 'move-page'                    => 'Přesunout „$1“',
 'move-page-legend'             => 'Přesunout stránku',
-'movepagetext'                 => 'Pomocí tohoto formuláře změníte název stránky a přesunete i celou její historii pod nový název. Původní název se stane přesměrováním na nový název. Odkazy na předchozí název <i>nebudou</i> změněny. <b>VAROVÁNÍ!</b> Toto může drastická a nečekaná změna pro oblíbené stránky. Ujistěte se, prosím, že chápete důsledky vašeho kroku před tím, než změnu provedete.',
+'movepagetext'                 => "Použitím tohoto formuláře změníte název stránky a přesunete i celou její historii na nový název. Původní název se stane přesměrováním na nový název, odkazy na předchozí název ''nebudou'' změněny, nezapomeňte poté zkontrolovat případná [[Special:DoubleRedirects|dvojitá]] nebo [[Special:BrokenRedirects|přerušená]] přesměrování.
+
+Stránku není možno přejmenovat, '''pokud pod cílovým názvem již nějaká stránka existuje''', s výjimkou situace, kdy je cílová stránka přesměrováním na tuto stránku a nemá žádnou historii editací. Pokud potřebujete přesto stránku přesunout, '''nepoužívejte copy&paste''', ale kontaktujte správce, který přesun zařídí.
+
+'''Upozornění!''' Přejmenování oblíbené stránky může být drastická a nečekaná změna. Ujistěte se, prosím, že chápete důsledky svého kroku před tím, než změnu provedete.",
 'movepagetalktext'             => "Přidružená diskusní stránka, pokud existuje, bude automaticky přesunuta společně se stránkou, '''pokud:'''
 * Dosud neexistuje neprázdná diskusní stránka pod novým jménem a
 * nezrušíte křížek ve formuláři.

@@ -938,7 +938,7 @@ Kaip administratorius, jūs vis tiek galite [$1 pamatyti šį skirtumą].",
 'revdelete-nologid-title'     => 'Neleistinas istorijos įrašas',
 'revdelete-nologid-text'      => 'Jūs arba nenurodėte paskirties istorijos įvykio, kuriam atlikti šį veiksmą, arba nurodytas įrašas neegzistuoja.',
 'revdelete-no-file'           => 'Nurodytas failas neegzistuoja.',
-'revdelete-show-file-confirm' => 'Ar tikrai norite peržiūrėti ištrintą failo "<nowiki>$1</nowiki>" $2 $3 versiją?',
+'revdelete-show-file-confirm' => 'Ar tikrai norite peržiūrėti ištrintą failo „<nowiki>$1</nowiki>“ $2 $3 versiją?',
 'revdelete-show-file-submit'  => 'Taip',
 'revdelete-selected'          => "'''{{PLURAL:$2|Pasirinkta [[:$1]] versija|Pasirinktos [[:$1]] versijos}}:'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Pasirinktas istorijos įvykis|Pasirinkti istorijos įvykiai}}:'''",
@@ -980,11 +980,11 @@ $1",
 'revdelete-unhid'             => 'atslėpti $1',
 'revdelete-log-message'       => '$1 $2 {{PLURAL:$2|versijai|versijoms|versijų}}',
 'logdelete-log-message'       => '$1 $2 {{PLURAL:$2|įvykiui|įvykiams|įvykių}}',
-'revdelete-hide-current'      => 'Klaida slepiant $2,$1 keitimą, tai yra dabartinė versija.
+'revdelete-hide-current'      => 'Klaida slepiant $1, $2 keitimą: tai yra dabartinė versija.
 Ji negali būti paslėpta.',
-'revdelete-show-no-access'    => 'Klaida rodant $2,$1 keitimą, jis pažymėtas ženklu "uždraustas".
+'revdelete-show-no-access'    => 'Klaida rodant $1, $2 keitimą: jis pažymėtas ženklu „apribotas“.
 Jūs neturite teisių jo peržiūrai.',
-'revdelete-modify-no-access'  => 'Klaida taisant $2,$1 keitimą, jis pažymėtas ženklu "uždraustas".
+'revdelete-modify-no-access'  => 'Klaida taisant $1, $2 keitimą: jis pažymėtas ženklu „apribotas“.
 Jūs neturite teisių jo taisymui.',
 'revdelete-modify-missing'    => 'Klaida keičiant versiją $1: ji nerandama duomenų bazėje!',
 'revdelete-no-change'         => "'''Įspėjimas:''' versija $2, $1 jau turi norimus rodomumo nustatymus.",
@@ -1677,7 +1677,7 @@ Informacija iš [$2 failo aprašymo puslapio] yra pateikiama žemiau.',
 
 # Random page
 'randompage'         => 'Atsitiktinis puslapis',
-'randompage-nopages' => 'Vardų srityje "$1" nėra jokių puslapių.',
+'randompage-nopages' => '{{PLURAL:$2|Šioje vardų srityje|Šiose vardų srityse}} nėra jokių puslapių: $1.',
 
 # Random redirect
 'randomredirect'         => 'Atsitiktinis peradresavimas',
@@ -2042,7 +2042,7 @@ Dabar veikiančių puslapių apsaugų sąrašą rasite [[Special:ProtectedPages|
 'protect-title'               => 'Nustatomas apsaugos lygis puslapiui „$1“',
 'prot_1movedto2'              => '[[$1]] pervadintas į [[$2]]',
 'protect-legend'              => 'Užrakinimo patvirtinimas',
-'protectcomment'              => 'Komentaras:',
+'protectcomment'              => 'Priežastis:',
 'protectexpiry'               => 'Baigia galioti:',
 'protect_expiry_invalid'      => 'Galiojimo laikas neteisingas.',
 'protect_expiry_old'          => 'Galiojimo laikas yra praeityje.',

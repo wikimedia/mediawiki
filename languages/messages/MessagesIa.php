@@ -1706,7 +1706,7 @@ Memora verificar que non existe altere ligamines al patronos ante que tu los del
 
 # Random page
 'randompage'         => 'Pagina aleatori',
-'randompage-nopages' => 'Il non ha paginas in le spatio de nomines "$1".',
+'randompage-nopages' => 'Il non ha paginas in le sequente {{PLURAL:$2|spatio|spatios}} de nomines: $1.',
 
 # Random redirect
 'randomredirect'         => 'Redirection aleatori',

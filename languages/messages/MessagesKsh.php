@@ -1883,7 +1883,7 @@ wääde, un luur Der der iehr ander Links aan!',
 
 # Random page
 'randompage'         => 'Zofällije Sigg',
-'randompage-nopages' => 'En dem Appachtemang „$1“ sin ja kein Sigge dren.',
+'randompage-nopages' => 'En {{PLURAL:$2|dem Appachtemang|dä Appachtemangs|keinem Appachtemang}} „$1“ sin ja kein Sigge dren.',
 
 # Random redirect
 'randomredirect'         => 'Zofällije Ömleitung',
@@ -2274,7 +2274,7 @@ De Neuste Änderung aan dä Sigg es jetz vun däm Metmaacher „[[User:$3|$3]]�
 'protect-title'               => 'Sigge Schotz för „$1“ ändere',
 'prot_1movedto2'              => 'hät de Sigg vun „[[$1]]“ en „[[$2]]“ ömjenannt.',
 'protect-legend'              => 'Sigg schötze',
-'protectcomment'              => 'Dä Jrund oder Aanlass för et Schötze',
+'protectcomment'              => 'Dä Jrund oder Aanlass för et Schötze:',
 'protectexpiry'               => 'Duur, wi lang:',
 'protect_expiry_invalid'      => 'Die Duur för ze Schötz es Kappes, di künne mer nit verstonn.',
 'protect_expiry_old'          => 'Do häs De Desch verdonn. Die Zick för ze Schötze es doch ald eröm!',

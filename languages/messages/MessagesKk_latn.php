@@ -2054,7 +2054,7 @@ Buğattardı şolıp şığw üşin [[{{#special:Ipblocklist}}|IP buğattaw tizi
 'unblockip'                   => 'Qatıswşını buğattamaw',
 'unblockiptext'               => 'Tömendegi pişindi aldındağı IP mekenjaýımen ne atımen buğattalğan qatıswşığa jazw qatınawın qalpına keltiriwi üşin qoldanıñız.',
 'ipusubmit'                   => 'Osı mekenjaýdı buğattamaw',
-'unblocked'                   => '[[{{ns:user}}:$1|$1]] buğattawı öşirildi',
+'unblocked'                   => '[[User:$1|$1]] buğattawı öşirildi',
 'unblocked-id'                => '$1 buğattaw alastaldı',
 'ipblocklist'                 => 'Buğattalğan qatıswşı / IP mekenjaý tizimi',
 'ipblocklist-legend'          => 'Buğattalğan qatıswşını tabw',

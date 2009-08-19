@@ -638,13 +638,19 @@ $1 is the minimum number of characters in the password.',
 'login-throttled'            => 'Error message shown at [[Special:UserLogin]] after 5 wrong passwords. The hardcoded waiting time is 300 seconds.',
 
 # Password reset dialog
-'resetpass'                 => 'The caption of [[Special:Resetpass]]',
-'resetpass_header'          => '{{Identical|Reset password}}',
+'resetpass'                 => 'The caption of [[Special:Resetpass]]
+
+{{Identical|Change password}}',
+'resetpass_header'          => 'Header on box on special page [[Special:ChangePassword]].
+
+{{Identical|Reset password}}',
 'oldpassword'               => "Used on the 'User profile' tab of 'my preferences'. This is the text next to an entry box for the old password in the 'change password' section.",
 'newpassword'               => '{{Identical|New password}}',
 'retypenew'                 => "Appears on the 'User profile' tab of the 'Preferences' special page in the 'Change password' section. It appears next to the text box for entering the new password a second time.",
 'resetpass_submit'          => 'Submit button on [[Special:Resetpass]]',
-'resetpass-submit-loggedin' => 'Button on [[Special:ResetPass]] to submit new password.',
+'resetpass-submit-loggedin' => 'Button on [[Special:ResetPass]] to submit new password.
+
+{{Identical|Change password}}',
 'resetpass-wrong-oldpass'   => 'Error message shown on [[Special:Resetpass]] when the old password is not valid.',
 'resetpass-temp-password'   => 'The label of the input box for the temporary password (received by e-mail) on the form displayed after logging in with a temporary password.',
 
@@ -966,6 +972,7 @@ Used, possibly repeatedly, in a {{msg-mw|comma-separator}} separated list after 
 Used in the final position of a {{msg-mw|comma-separator}} separated list headed by {{msg-mw|diff-with}} followed by zero or more repetitions of {{msg-mw|diff-with-additional}}.',
 'diff-width'              => '{{Identical|Width}}',
 'diff-height'             => '{{Identical|Height}}',
+'diff-dt'                 => 'I guess that this refers to HTML, as described in the article [http://en.wikipedia.org/wiki/HTML_elements#Lists HTML elements] on Wikipedia.',
 'diff-i'                  => '{{Identical|Italic}}',
 'diff-b'                  => '{{Identical|Bold}}',
 
@@ -1078,8 +1085,10 @@ $1 is the relevance of this result in per cent.
 'prefs-watchlist-edits'         => 'Used in [[Special:Preferences]], tab "Watchlist".',
 'prefs-watchlist-edits-max'     => 'Shown as hint in [[Special:Preferences]], tab "Watchlist"',
 'prefs-watchlist-token'         => 'Used in [[Special:Preferences]], tab Watchlist.',
-'prefs-misc'                    => 'Used in user preferences.',
-'prefs-resetpass'               => 'Button on user data tab in user preferences. When you click the button you go to the special page [[Special:ResetPass]].',
+'prefs-misc'                    => 'Tab used on the [[Special:Preferences|user preferences]] special page.',
+'prefs-resetpass'               => 'Button on user data tab in user preferences. When you click the button you go to the special page [[Special:ResetPass]].
+
+{{Identical|Change password}}',
 'prefs-rendering'               => 'Title of tab in [[Special:Preferences]].',
 'saveprefs'                     => 'Button for saving changes in the preferences page.
 
@@ -1112,6 +1121,7 @@ Shown as legend of the second fieldset of the tab 'Search' in [[Special:Preferen
 'prefs-custom-css'              => 'visible on [[Special:Preferences]] -[Skins].',
 'prefs-reset-intro'             => 'Used in [[Special:Preferences/reset]].',
 'prefs-emailconfirm-label'      => 'Used in [[Special:Preferences]].',
+'prefs-textboxsize'             => "Header for the box specifying the size of the editing window, displayed on the 'editing' tab of the [[Special:Preferences|user preferences]] special page.",
 'youremail'                     => 'Label of the e-mail text box of the "E-mail options" section of "Special:Preferences".
 
 {{Identical|E-mail}}',
@@ -1145,6 +1155,7 @@ Used in [[Special:Preferences]]. Parameters are:
 'email'                         => '{{Identical|E-mail}}',
 'prefs-help-realname'           => 'In user preferences.',
 'prefs-help-email'              => 'Shown as explanation text on [[Special:Preferences]].',
+'prefs-info'                    => "Header for the box giving basic information on the user account, displayed on the 'user profile' tab of the [[Special:Preferences|user preferences]] special page.",
 'prefs-signature'               => '{{Identical|Signature}}',
 'prefs-dateformat'              => 'Used in [[Special:Preferences]], tab "Date and time".',
 'prefs-timeoffset'              => 'Used in [[Special:Preferences]], tab "Date and time".',
@@ -1788,9 +1799,10 @@ $1 is a page title",
 'suppress'                => '{{Identical|Oversight}}',
 
 # Book sources
-'booksources'      => 'Name of special page displayed in [[Special:SpecialPages]]',
-'booksources-isbn' => '{{optional}}',
-'booksources-go'   => 'Name of button in [[Special:BookSources]]
+'booksources'               => 'Name of special page displayed in [[Special:SpecialPages]]',
+'booksources-search-legend' => 'Box heading on [[Special:BookSources|book sources]] special page. The box is for searching for places where a particular book can be bought or viewed.',
+'booksources-isbn'          => '{{optional}}',
+'booksources-go'            => 'Name of button in [[Special:BookSources]]
 
 {{Identical|Go}}',
 
@@ -2033,7 +2045,7 @@ Additionally available:
 
 Shown as subtitle of the protection form. $1 is the title of the page to be (un)protected.',
 'protect-legend'            => 'Legend of the fieldset around the input form of the protection form.',
-'protectcomment'            => '{{Identical|Comment}}',
+'protectcomment'            => '{{Identical|Reason}}',
 'protectexpiry'             => '{{Identical|Expires}}',
 'protect-unchain'           => 'Used for a checkbox to be able to change move permissions. See [[meta:Protect]] for more information.',
 'protect-text'              => 'Intro of the protection interface. See [[meta:Protect]] for more information.',
@@ -2234,6 +2246,7 @@ Parameter $1 is the message "[[MediaWiki:Hide/{{SUBPAGENAME}}|hide]]" or "[[Medi
 * Go to [[Special:BlockList]]
 * Click "unblock" for any block (but you can only see "unblock" if you have administrator rights)
 * It is now the button below the form',
+'unblocked'                    => 'Do not translate the namespace "User:".',
 'ipblocklist'                  => 'Title of [[Special:Ipblocklist]].',
 'ipblocklist-sh-userblocks'    => 'Top selection button at [[Special:IPBlockList]], which means Show/Hide indefinite blocks
 

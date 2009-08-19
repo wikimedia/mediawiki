@@ -1800,7 +1800,7 @@ Môžete si pozrieť [[Special:WhatLinksHere/$2|úplný zoznam]].',
 
 # Random page
 'randompage'         => 'Náhodná stránka',
-'randompage-nopages' => 'V mennom priestore „$1“ nie sú žiadne stránky.',
+'randompage-nopages' => '{{PLURAL:$2|V mennom priestore „$1“ nie sú žiadne stránky.|V nasledovných menných priestoroch nie sú žiadne stránky: $1}}',
 
 # Random redirect
 'randomredirect'         => 'Náhodná presmerovacia stránka',
@@ -2164,7 +2164,7 @@ Môžete si pozrieť aj [[Special:ProtectedPages|zoznam momentálne platných za
 'protect-title'               => 'Zamykám „$1“',
 'prot_1movedto2'              => '[[$1]] premiestnená na [[$2]]',
 'protect-legend'              => 'Potvrďte zamknutie',
-'protectcomment'              => 'Komentár:',
+'protectcomment'              => 'Dôvod:',
 'protectexpiry'               => 'Zamknuté do:',
 'protect_expiry_invalid'      => 'Neplatný čas vypršania.',
 'protect_expiry_old'          => 'Čas vypršania je v minulosti.',

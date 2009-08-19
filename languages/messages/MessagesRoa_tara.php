@@ -1594,7 +1594,7 @@ Arrecuèrdete de condrollà pe otre collegaminde a le template apprime de scange
 
 # Random page
 'randompage'         => 'Pàgene a uecchie',
-'randompage-nopages' => 'Non ge stonne pàggene jndr\'à \'u namespace "$1".',
+'randompage-nopages' => "Non ge stonne pàggene jndr'à {{PLURAL:$2|'u seguende namespace|le seguende namespace}}: $1.",
 
 # Random redirect
 'randomredirect'         => 'Redirezionamende a uecchie',
@@ -1970,7 +1970,7 @@ Vide 'a [[Special:ProtectedPages|liste de le pàggene prutette]] pa liste de le 
 'prot_1movedto2'              => "[[$1]] spustete jndr'à [[$2]]",
 'protect-backlink'            => '← $1',
 'protect-legend'              => "Conferme 'a protezione",
-'protectcomment'              => 'Commende:',
+'protectcomment'              => 'Mutive:',
 'protectexpiry'               => 'More:',
 'protect_expiry_invalid'      => 'Orarie de scadenze jè invalide.',
 'protect_expiry_old'          => "L'ore de scadenza jè jndr'à 'u passate.",

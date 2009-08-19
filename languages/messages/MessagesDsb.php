@@ -1633,7 +1633,7 @@ Slědujuca lisćina pokazujo jano {{PLURAL:$1|prědny wótkaz|prědnej $1 wótka
 
 # Random page
 'randompage'         => 'Pśipadny nastawk',
-'randompage-nopages' => 'W mjenjowem rumje "$1" njejsu žedne boki.',
+'randompage-nopages' => 'W {{PLURAL:$2|slědujucem mjenjowem rumje|slědujucyma mjenjowyma rumoma|slědujucych mjenjowych rumach|slědujucych mjenjowych rumach}} žedne boki njejsu: $1',
 
 # Random redirect
 'randomredirect'         => 'Pśipadne dalejpósrědnjenje',
@@ -1990,7 +1990,7 @@ Pšosym nawroś se na bok, wót kótaregož sy pśišeł a wopytaj hyšći raz.'
 'protect-title'               => 'Šćit boka „$1“ změniś',
 'prot_1movedto2'              => '„[[$1]]“ pśesunjone na „[[$2]]“',
 'protect-legend'              => 'Šćitanje wobkšuśiś',
-'protectcomment'              => 'Komentar:',
+'protectcomment'              => 'Pśicyna:',
 'protectexpiry'               => 'cas wótběžy:',
 'protect_expiry_invalid'      => 'Zapódany cas jo njekorektny.',
 'protect_expiry_old'          => 'Zapódany cas jo wótběžał.',

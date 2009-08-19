@@ -578,17 +578,17 @@ Lista ta' paġni speċjali validi tinsab hawn [[Special:SpecialPages|{{int:speci
 # General errors
 'error'                => 'Problema',
 'databaseerror'        => 'Problema fid-database',
-'dberrortext'          => 'Kien hemm żball fis-sintassi ta\' rikjesta tad-database.
-Din tista\' turi li hemm problema fis-software 
-L-aħħar attentat tar-rikjesta tad-database kienet:
+'dberrortext'          => 'Kien hemm żball fis-sintassi ta\' rikjesta tad-databażi.
+Dan jista\' jindika li hemm problema fis-softwer 
+L-aħħar attentat ta\' rikjesta tad-databażi kienet:
 <blockquote><tt>$1</tt></blockquote>
-mill-funżjoni ta\' "<tt>$2</tt>".
-MySQL ta problema ta\' "<tt>$3: $4</tt>".',
-'dberrortextcl'        => 'Kien hemm żball fis-sintassi ta\' rikjesta tad-database. 
-L-Aħħar attentat tar-rikjesta tad-database kienet:
+mill-funzjoni ta\' "<tt>$2</tt>".
+$5 tat problema ta\' "<tt>$3: $4</tt>".',
+'dberrortextcl'        => 'Kien hemm żball fis-sintassi ta\' rikjesta tad-databażi. 
+L-aħħar attentat ta\' rikjesta tad-databażi kienet:
 "$1"
-mill-funżjoni "$2".
-MySQL ta problema ta\'  "$3: $4"',
+mill-funzjoni "$2".
+$5 tat problema ta\' "$3: $4"',
 'laggedslavemode'      => "Twissija: Il-Paġna jista' ma jkollhiex l-affarijiet aġġornati.",
 'readonly'             => 'Database magħluq',
 'enterlockreason'      => "Daħħal raġuni għala qiegħed tagħlqu, inkludi l-istima ta' meta l-għeluq se tieħu effett",
@@ -989,11 +989,11 @@ Prova [[Special:Search|fittex fuq il-wiki]] għal paġni relevanti ġodda.",
 'rev-deleted-comment'         => '(tneħħa l-kumment)',
 'rev-deleted-user'            => '(l-isem tal-utent tneħħa)',
 'rev-deleted-event'           => '(azzjoni tal-log tneħħa)',
-'rev-deleted-text-permission' => "Din il-verżjoni ta' din il-paġna ġiet '''imħassra'''.
-Jista' jkun hemm dettalji fir-[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} reġistru tat-tħassir].",
+'rev-deleted-text-permission' => "Din ir-reviżjoni ta' din il-paġna ġiet '''imħassra'''.
+Ikkonsulta r-[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} reġistru tat-tħassir] għal aktar dettalji.",
 'rev-deleted-text-unhide'     => "Din ir-reviżjoni ta' din il-paġna ġiet '''imħassra'''.
-Bħala amministratur inti tista' taraha; jista' jkun li hemm dettalji fir-[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} reġistru tat-tħassir].
-Bħala amministratur inti tista' [$1 tara din ir-reviżjoni] jekk tixtieq li tipproċedi.",
+Ikkonsulta r-[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} reġistru tat-tħassir] għal aktar dettalji.
+Bħala amministratur inti tista' [$1 tara din ir-reviżjoni] jekk huwa neċessarju.",
 'rev-deleted-text-view'       => "Din ir-reviżjoni ta' din il-paġna ġiet '''imħassra'''.
 Bħala amministratur inti tista' taraha; jista' jkun li hemm dettalji fir-[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} reġistru tat-tħassir].",
 'rev-delundel'                => 'uri/aħbi',
@@ -2134,9 +2134,9 @@ Ara l-[[Special:IPBlockList|lista tal-blokki ta' l-IP]] biex tara l-blokki attiv
 'ipblocklist-legend'              => 'Fittex utent ibblokkjat',
 'ipblocklist-username'            => 'Isem tal-utent u indirizz IP:',
 'ipblocklist-submit'              => 'Fittex',
-'blocklistline'                   => '$1, $2 ibblokkja lil $3 (sa $4)',
+'blocklistline'                   => '$1, $2 imblokka lil $3 (sa $4)',
 'infiniteblock'                   => 'infinit',
-'expiringblock'                   => 'sa $1 $2',
+'expiringblock'                   => 'jiskadi sa $1 fil-$2',
 'anononlyblock'                   => 'anonimu biss',
 'noautoblockblock'                => 'bla blokk awtomatiku',
 'createaccountblock'              => 'ħolqien tal-kont blokkat',
