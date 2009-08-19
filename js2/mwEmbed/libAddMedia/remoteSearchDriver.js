@@ -278,7 +278,7 @@ remoteSearchDriver.prototype = {
 	* @param licence_url the url of the license
 	*/
 	getLicenceFromUrl: function( license_url ){
-		js_log("getLicenceFromUrl::" + license_url);
+		//js_log("getLicenceFromUrl::" + license_url);
 		//first do a direct lookup check:
 		for(var i in this.licenses.cc.licenses){
 			var lkey = this.licenses.cc.licenses[i].split('/')[0];

@@ -85,14 +85,14 @@ var nativeEmbed = {
 			}			
 		}else if(this.vid && this.vid.duration ){	   
 			//(could also check bufferedPercent > perc seek (and issue oggz_chop request or not) 
-			this.doNativeSeek(perc);	
+			this.doNativeSeek( perc );	
 		}else{
-			this.doPlayThenSeek(perc)
+			this.doPlayThenSeek( perc )
 		}				  
 	},	
-	doNativeSeek:function(perc){
+	doNativeSeek:function(perc){	
 		this.seek_time_sec=0;			 
-		this.vid.currentTime = perc * this.vid.duration;
+		this.vid.currentTime = perc * this.vid.duration;		
 		this.parent_monitor();	
 	},
 	doPlayThenSeek:function(perc){

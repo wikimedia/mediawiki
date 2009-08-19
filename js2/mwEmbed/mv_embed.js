@@ -28,7 +28,7 @@ var MV_EMBED_VERSION = '1.0r19';
  * @@ more config valuse on the way ;)
  */
 var defaultMwConfig = {
-	'skin_name': 'kskin',
+	'skin_name': 'mvpcf',
 	'video_size':'400x300'
 }
 
@@ -62,7 +62,7 @@ if( !mv_embed_path ){
 }
 
 //setup the skin path:
-var mv_jquery_skin_path = mv_embed_path + 'jquery/jquery.ui/themes/base/';
+var mv_jquery_skin_path = mv_embed_path + 'jquery/jquery.ui/themes/redmond/';
 var mv_skin_img_path = mv_embed_path + 'skins/' + mwConfig['skin_name'] + '/images/';
 var mv_default_thumb_url = mv_skin_img_path + 'vid_default_thumb.jpg';
 

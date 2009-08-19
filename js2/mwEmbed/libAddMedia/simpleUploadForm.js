@@ -32,7 +32,7 @@ var default_form_options = {
 		}
 
 		//first do a reality check on the options:
-		if(!opt.api_target){
+		if( !opt.api_target ){
 			$(this.selector).html('Error: Missing api target');
 			return false;
 		}
@@ -40,7 +40,6 @@ var default_form_options = {
 		//@@todo this is just a proof of concept
 		//much todo to improved this web form
 		get_mw_token('File:MyRandomFileTokenCheck', opt.api_target, function(eToken){
-
 			if( !eToken || eToken == '+\\' ){
 				$(this.selector).html( gM('error_not_loggedin') );
 				return false;

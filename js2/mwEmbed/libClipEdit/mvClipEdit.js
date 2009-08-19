@@ -524,7 +524,7 @@ mvClipEdit.prototype = {
 					'<a href="#" class="mv_crop_msg">' + gM('mv_crop') + '</a> '+
 					'<span style="display:none" class="mv_crop_msg_load">' + gM('mwe-loading_txt') + '</span> '+
 					'<a href="#" style="display:none" class="mv_apply_crop">' + gM('mv_apply_crop') + '</a> '+
-					'<a href="#" style="display:none" class="mv_rest_crop">' + gM('mv_reset_crop') + '</a> '+
+					'<a href="#" style="display:none" class="mv_reset_crop">' + gM('mv_reset_crop') + '</a> '+
 				'<hr style="clear:both"/><br>'+
 			'<span style="float:left;">Layout:</span>' +
 				'<input type="radio" name="mv_layout" id="mv_layout_left" style="float:left"><div id="mv_layout_left_img" title="'+gM('mv_layout_left')+'"/>'+
@@ -539,7 +539,7 @@ mvClipEdit.prototype = {
 		 '<div class="mv_edit_button mv_scale_button_base" id="mv_scale_button" alt="crop" title="'+gM('mv_scale')+'"></div>'+
 				'<a href="#" class="mv_scale_msg">' + gM('mv_scale') + '</a><br>'+
 				'<a href="#" style="display:none" class="mv_apply_scale">' + gM('mv_apply_scale') + '</a> '+
-				'<a href="#" style="display:none" class="mv_rest_scale">' + gM('mv_reset_scale') + '</a><br> '+
+				'<a href="#" style="display:none" class="mv_reset_scale">' + gM('mv_reset_scale') + '</a><br> '+
 
 		*/
 		//add bindings:
@@ -570,8 +570,8 @@ mvClipEdit.prototype = {
 				_this.enableCrop();
 			}
 		});
-		$j('.mv_rest_crop').click(function(){
-			$j('.mv_apply_crop,.mv_rest_crop').hide();
+		$j('.mv_reset_crop').click(function(){
+			$j('.mv_apply_crop,.mv_reset_crop').hide();
 			$j('.mv_crop_msg').show();
 			$j('#mv_crop_button').removeClass('mv_crop_button_selected').addClass('mv_crop_button_base').attr('title',gM('mv_crop'));
 			_this.rObj.crop=null;
@@ -627,7 +627,7 @@ mvClipEdit.prototype = {
 		$j('.mv_crop_msg_load').show();
 		var doEnableCrop = function(){
 			$j('.mv_crop_msg_load').hide();
-			$j('.mv_rest_crop,.mv_apply_crop').show();
+			$j('.mv_reset_crop,.mv_apply_crop').show();
 			$j('#mv_crop_button').removeClass('mv_crop_button_base').addClass('mv_crop_button_selected').attr('title',gM('mv_crop_done'));
 			$j('#' + _this.clip_disp_ct + ' img').Jcrop({
 				 onSelect: function(c){

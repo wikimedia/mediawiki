@@ -134,17 +134,16 @@ var ctrlBuilder = {
 		};
 
 		//check for close_captions tracks:
-		if( ( embedObj.roe || embedObj.timedTextSources() )
+		if( ( embedObj.roe ||  embedObj.timedTextSources() )
 			&& embedObj.show_meta_link  )
 			this.supports['closed_captions']=true;
 
 		var o='';
-		//get the length of the scruber
+		//get the length of the play_head
 		this.player_head_length =  embedObj.playerPixelWidth();		
 		for( var i in this.components ){
 			if( this.supports[i] ){
 				if( i != 'play_head'){
-					js_log(this.player_head_length +  ' - ph: ' + this.components[i].w );
 					this.player_head_length -= this.components[i].w;
 				}
 			}
@@ -1518,8 +1517,8 @@ embedVideo.prototype = {
 		if(this.width < 300){
 			return ;
 		}
-		this.onClipDone_disp=true;
-		this.thumbnail_disp=true;
+		this.onClipDone_disp = true;
+		this.thumbnail_disp = true;
 		//make sure we are not in preview mode( no end clip actions in preview mode)
 		if( this.preview_mode )
 			return ;

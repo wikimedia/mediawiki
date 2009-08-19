@@ -180,6 +180,9 @@ mvPlayList.prototype = {
 						}
 		this.cur_clip.embed.showShare( embed_code );
 	},
+	timedTextSources:function(){
+		return false;
+	},
 	getPlaylist:function(){		
 		js_log("f:getPlaylist: " + this.srcType );
 		//@@todo lazy load plLib
