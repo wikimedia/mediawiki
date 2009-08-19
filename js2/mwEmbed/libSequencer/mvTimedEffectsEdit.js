@@ -7,12 +7,12 @@
 
 //add our local msgs
 loadGM({
-	"transition_in": "Transition in",
-	"transition_out": "Transition out",
-	"effects": "Effects stack",
-	"remove_transition": "Remove transition",
-	"edit_transin": "Edit transition into clip",
-	"edit_transout": "Edit transition out of clip"
+	"transition_in" : "Transition in",
+	"transition_out" : "Transition out",
+	"effects" : "Effects stack",
+	"remove_transition" : "Remove transition",
+	"edit_transin" : "Edit transition into clip",
+	"edit_transout" : "Edit transition out of clip"
 });
 
 

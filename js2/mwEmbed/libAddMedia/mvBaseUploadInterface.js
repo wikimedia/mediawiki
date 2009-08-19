@@ -4,40 +4,31 @@
  * this base uploader is optionally extended by firefogg
  */
 loadGM({
-	"upload-transcode-in-progress": "Transcode and upload in progress (do not close this window)",
-	"upload-in-progress": "Upload in progress (do not close this window)",
-	"upload-transcoded-status": "Transcoded",
-	"uploaded-status": "Uploaded",
-
-	"wgfogg_wrong_version": "You have Firefogg installed but it is outdated. <a href=\"http://firefogg.org\">Please upgrade</a>.",
-	"upload-stats-fileprogres": "$1 of $2",
-
-	"mv_upload_completed":  "Your upload is complete",
-
-	"mv_upload_done": "<a href=\"$1\">Your upload <i>should be</i> accessible</a>.",
-	"upload-unknown-size": "Unknown size",
-
-	"mv-cancel-confim"	 : "Are you sure you want to cancel?",
-
-	"successfulupload": "Upload successful",
+	"upload-transcode-in-progress" : "Transcode and upload in progress (do not close this window)",
+	"upload-in-progress" : "Upload in progress (do not close this window)",
+	"upload-transcoded-status" : "Transcoded",
+	"uploaded-status" : "Uploaded",
+	"wgfogg_wrong_version" : "You have Firefogg installed but it is outdated. <a href=\"http : \/\/firefogg.org\">Please upgrade<\/a>.",
+	"upload-stats-fileprogres" : "$1 of $2",
+	"mv_upload_completed" : "Your upload is complete",
+	"mv_upload_done" : "<a href=\"$1\">Your upload <i>should be<\/i> accessible<\/a>.",
+	"upload-unknown-size" : "Unknown size",
+	"mv-cancel-confim" : "Are you sure you want to cancel?",
+	"successfulupload" : "Upload successful",
 	"uploaderror" : "Upload error",
-	"uploadwarning": "Upload warning",
-	"unknown-error": "Unknown error:",
-	"return-to-form": "Return to form",
-
-	"file-exists-duplicate": "This file is a duplicate of the following file:",
-	"fileexists" : "A file with this name exists already. Please check <b><tt>$1</tt></b> if you are not sure if you want to change it.",
-	"fileexists-thumb": "<center><b>Existing file</b></center>",
+	"uploadwarning" : "Upload warning",
+	"unknown-error" : "Unknown error : ",
+	"return-to-form" : "Return to form",
+	"file-exists-duplicate" : "This file is a duplicate of the following file : ",
+	"fileexists" : "A file with this name exists already. Please check <b><tt>$1<\/tt><\/b> if you are not sure if you want to change it.",
+	"fileexists-thumb" : "<center><b>Existing file<\/b><\/center>",
 	"ignorewarning" : "Ignore warning and save file anyway",
-	"file-thumbnail-no" :  "The filename begins with <b><tt>$1</tt></b>",
+	"file-thumbnail-no" : "The filename begins with <b><tt>$1<\/tt><\/b>",
 	"go-to-resource" : "Go to resource page",
 	"upload-misc-error" : "Unknown upload error",
-
-	"wgfogg_waring_bad_extension" : "You have selected a file with an unsuported extension (<a href=\"http://commons.wikimedia.org/wiki/Commons:Firefogg#Supported_File_Types\">more information</a>).",
-
-	"cancel-button"  : "Cancel",
-	"ok-button"	  : "OK"
-
+	"wgfogg_waring_bad_extension" : "You have selected a file with an unsuported extension (<a href=\"http : \/\/commons.wikimedia.org\/wiki\/Commons : Firefogg#Supported_File_Types\">more information<\/a>).",
+	"cancel-button" : "Cancel",
+	"ok-button" : "OK"
 });
 
 

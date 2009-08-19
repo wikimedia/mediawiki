@@ -6,13 +6,13 @@
 
 loadGM({
 	"select_file" : "Select file",
-	"more_licence_options" : "For more licence options, view the <a href=\"$1\">normal upload page</a>",
-	"select_ownwork": "I am uploading entirely my own work, and licencing it under:",
-	"licence_cc-by-sa": "Creative Commons Share Alike (3.0)",
-	"upload": "Upload file",
-	"destfilename": "Destination filename:",
-	"summary": "Summary",
-	"error_not_loggedin": "You do not appear to be logged in or do not have upload privlages."
+	"more_licence_options" : "For more licence options, view the <a href=\"$1\">normal upload page<\/a>",
+	"select_ownwork" : "I am uploading entirely my own work, and licencing it under : ",
+	"licence_cc-by-sa" : "Creative Commons Share Alike (3.0)",
+	"upload" : "Upload file",
+	"destfilename" : "Destination filename : ",
+	"summary" : "Summary",
+	"error_not_loggedin" : "You do not appear to be logged in or do not have upload privlages."
 });
 
 var default_form_options = {

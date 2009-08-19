@@ -3,19 +3,19 @@
  */
 
 loadGM({
-	"fogg-select_file": "Select file",
-	"fogg-select_new_file": "Select new file",
-	"fogg-select_url": "Select URL",
-	"fogg-save_local_file": "Save Ogg",
-	"fogg-check_for_fogg": "Checking for Firefogg <blink>...</blink>",
-	"fogg-installed": "Firefogg is installed",
-	"fogg-for_improved_uplods": "For improved uploads:",
-	"fogg-please_install": "<a href=\"$1\">Install Firefogg</a>. More <a href=\"http://commons.wikimedia.org/wiki/Commons:Firefogg\">about Firefogg</a>",
-	"fogg-use_latest_fox": "Please first install <a href=\"http://www.mozilla.com/en-US/firefox/upgrade.html?from=firefogg\">Firefox 3.5</a> (or later). <i>Then revisit this page to install the <b>Firefogg</b> extension.</i>",
-	"fogg-passthrough_mode": "Your selected file is already Ogg or not a video file",
-	"fogg-transcoding": "Encoding video to Ogg",
-	"fogg-encoding-done": "Encoding complete",
-	"fogg-badtoken": "Token is not valid"
+	"fogg-select_file" : "Select file",
+	"fogg-select_new_file" : "Select new file",
+	"fogg-select_url" : "Select URL",
+	"fogg-save_local_file" : "Save Ogg",
+	"fogg-check_for_fogg" : "Checking for Firefogg <blink>...<\/blink>",
+	"fogg-installed" : "Firefogg is installed",
+	"fogg-for_improved_uplods" : "For improved uploads : ",
+	"fogg-please_install" : "<a href=\"$1\">Install Firefogg<\/a>. More <a href=\"http : \/\/commons.wikimedia.org\/wiki\/Commons : Firefogg\">about Firefogg<\/a>",
+	"fogg-use_latest_fox" : "Please first install <a href=\"http : \/\/www.mozilla.com\/en-US\/firefox\/upgrade.html?from=firefogg\">Firefox 3.5<\/a> (or later). <i>Then revisit this page to install the <b>Firefogg<\/b> extension.<\/i>",
+	"fogg-passthrough_mode" : "Your selected file is already Ogg or not a video file",
+	"fogg-transcoding" : "Encoding video to Ogg",
+	"fogg-encoding-done" : "Encoding complete",
+	"fogg-badtoken" : "Token is not valid"
 });
 
 var firefogg_install_links =  {

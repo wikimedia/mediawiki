@@ -62,7 +62,7 @@ if( !mv_embed_path ){
 }
 
 //setup the skin path:
-var mv_jquery_skin_path = mv_embed_path + 'jquery/jquery.ui/themes/redmond/';
+var mv_jquery_skin_path = mv_embed_path + 'jquery/jquery.ui/themes/base/';
 var mv_skin_img_path = mv_embed_path + 'skins/' + mwConfig['skin_name'] + '/images/';
 var mv_default_thumb_url = mv_skin_img_path + 'vid_default_thumb.jpg';
 
@@ -79,9 +79,8 @@ function loadGM( msgSet ){
 
 //all default msg in [English] should be overwritten by the CMS language msg system.
 loadGM({
-	"loading_txt":"loading <blink>...</blink>",
-	"loading_title"  : "Loading...",
-
+	"loading_txt" : "loading <blink>...<\/blink>",
+	"loading_title" : "Loading...",
 	"size-gigabytes" : "$1 GB",
 	"size-megabytes" : "$1 MB",
 	"size-kilobytes" : "$1 K",
@@ -218,7 +217,7 @@ lcPaths({
 //depencency mapping for css files for self contained included plugins:
 lcCssPath({
 	'$j.Jcrop'			: 'libClipEdit/Jcrop/css/jquery.Jcrop.css',
-	'$j.fn.ColorPicker'	: 'libClipEdit/colorpicker/css/colorpicker.css'
+	'$j.fn.ColorPicker'	: 'libClipEdit/colorpicker/css/colorpicker.css'	
 })
 
 /**
