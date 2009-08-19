@@ -586,10 +586,12 @@ class simpleFileWriter {
 		$status = Status::newGood();
 		// start the session (if necessary)
 		if( !$wgSessionsInMemcached ){
-			if(  @session_start() === false){
+			wfSuppressWarnings();
+			if( session_start() === false ){
 				wfDebug( __METHOD__ . ' could not start session' );
 				exit( 0 );
 			}
+			wfRestoreWarnings();
 		}
 		$sd =& $_SESSION['wsDownload'][ $this->upload_session_key ];
 		// check if the user canceled the request:
