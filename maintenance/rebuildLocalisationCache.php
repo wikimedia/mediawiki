@@ -45,6 +45,18 @@ class RebuildLocalisationCache extends Maintenance {
 
 		$force = $this->hasOption('force');
 		$threads = $this->getOption( 'threads', 1 );
+		if( $threads < 1 || $threads != intval( $threads ) ) {
+			$this->output( "Invalid thread count specified; running single-threaded.\n" );
+			$threads = 1;
+		}
+		if( $threads > 1 && wfIsWindows() ) {
+			$this->output( "Threaded rebuild is not supported on Windows; running single-threaded.\n" );
+			$threads = 1;
+		}
+		if( $threads > 1 && !function_exists( 'pcntl_fork' ) ) {
+			$this->output( "PHP pcntl extension is not present; running single-threaded.\n" );
+			$threads = 1;
+		}
 
 		$conf = $wgLocalisationCacheConf;
 		$conf['manualRecache'] = false; // Allow fallbacks to create CDB files
