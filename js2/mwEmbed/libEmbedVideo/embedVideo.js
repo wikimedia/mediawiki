@@ -316,35 +316,24 @@ var ctrlBuilder = {
    			$tp.find('.k-menu').hide();
    			
    			//output menu-items: 
-   			for(i=0; i < ctrlBuilder.menu_items.length ; i++){
-		        $tp.find('.k-player-btn').click(function(){ 
-		        	$target = $j('#' + embedObj.id  + ' .k-menu-screens .menu-player'); 
-		        	//gennerate the menu if not already done:
-		        	if( $target.children().length == 0 ) 
-						embedObj.selectPlaybackMethod();
-					
-					//now slide in the item:
-					if( $target.is(':visible') )
-						 $target.slideOut("fast");
-					else
-						 $target.slideIn("fast");
-						 
+   			for(i=0; i < ctrlBuilder.menu_items.length ; i++){   				
+		        $tp.find('.k-' +  ctrlBuilder.menu_items[i] + '-btn').click(function(){ 
+		        	var mk = $j(this).attr('rel');
+		        	$target = $j('#' + embedObj.id  + ' .menu-'+mk).hide();		        	
+		        	//gennerate the menu html not already done:
+		        	if( $target.children().length == 0 ){
+						//call the function show{Menuitem} with target:	        		
+						embedObj['show' + mk.charAt(0).toUpperCase() + mk.substring(1)](
+							$j('#' + embedObj.id + ' .menu-'+mk)
+						);
+		        	}		        			        
+		        	//slide out the others 
+		        	 $j('#' + embedObj.id  + ' .menu-screen').hide();
+		        	 $target.fadeIn("fast");
+					//don't follow the # link								
 		            return false;
 				});	
-   			}		
-			$tp.find('.k-download-btn').click(function(){
-				embedObj.showVideoDownload();
-	            return false;
-			});
-	
-			$tp.find('.k-share-btn').click(function(){
-				embedObj.showEmbedCode();
-			    return false;
-			});
-			$tp.find('.k-credits-btn').click(function(){
-				//@@todo show credits menu screen;
-				return false;		
-			});
+   			}			
 		}	
    		
    		//options menu display:			
@@ -446,7 +435,7 @@ var ctrlBuilder = {
 							//output menu item containers: 
 							for(i=0; i < ctrlBuilder.menu_items.length; i++){		
 								var mk = ctrlBuilder.menu_items[i];				
-								o+= '<li class="k-' + mk + '-btn">' +
+								o+= '<li class="k-' + mk + '-btn" rel="'+mk+'">' +
 										'<a href="#" title="' + gM( mk ) +'">' + gM( mk ) +'</a></li>';
 							}							
 						o+='</ul>' +
@@ -455,8 +444,8 @@ var ctrlBuilder = {
 							'px; height:' + (embedObj.playerPixelHeight() - ctrlBuilder.height) + 'px;">';
 						
 						//output menu item containers: 
-						for(i=0; i < ctrlBuilder.menu_items; i++){							
-							o+= '<div class="menu-' + ctrlBuilder.menu_items[i] + '"></div>';
+						for(i=0; i < ctrlBuilder.menu_items.length; i++){							
+							o+= '<div class="menu-screen menu-' + ctrlBuilder.menu_items[i] + '"></div>';
 						}
 													 				
 						'</div>' +
@@ -619,10 +608,11 @@ mvEmbed = {
 		embed_video = document.createElement('div');
 		//make sure our div has a hight/width set:
 
-		$j(embed_video).css({
+		/*$j(embed_video).css({
 			'width':videoInterface.width,
 			'height':videoInterface.height
-		}).html( mv_get_loading_img() );
+		}).html( mv_get_loading_img() );*/
+		
 		//inherit the video interface
 		for(var method in videoInterface){ //for in loop oky in Element context
 			if(method!='readyState'){ //readyState crashes IE
@@ -1552,7 +1542,7 @@ embedVideo.prototype = {
 			function(){
 				//animation done.. add "loading" to div if empty
 				if($j('#liks_info_'+_this.id).html()==''){
-					$j('#liks_info_'+_this.id).html(gM('mwe-loading_txt'));
+					$j('#liks_info_'+_this.id).html(gM('loading_txt'));
 				}
 			}
 		)
@@ -1968,7 +1958,7 @@ embedVideo.prototype = {
 	doLinkBack:function(){
 		if(this.roe && this.media_element.addedROEData==false){
 			var _this = this;
-			this.displayHTML(gM('mwe-loading_txt'));
+			this.displayHTML(gM('loading_txt'));
 			do_request(this.roe, function(data)
 			   {
 				  _this.media_element.addROE(data);
@@ -1982,27 +1972,28 @@ embedVideo.prototype = {
 			}
 		}
 	},
+	showCredits: function($target){
+		$target.html('credits page goes here');	
+	},
 	//display the code to remotely embed this video:
-	showEmbedCode : function(embed_code){
-		if(!embed_code)
-			embed_code = this.getEmbeddingHTML();
-		var o='';
+	showShare:function($target){	
+		var	embed_code = this.getEmbeddingHTML();
+		var o = '';
 		if(this.linkback){
 			o+='<a class="email" href="'+this.linkback+'">Share Clip via Link</a> '+
 			'<p>or</p> ';
 		}
-		o+='<div>' +
-				'<span style="color:#FFF;font-size:14px;">Embed Clip in Blog or Site</span><br>'+
+		o+='<span style="color:#FFF;font-size:14px;">Embed Clip in Blog or Site</span><br>'+
 				'<span style="color:#FFF;font-size:12px;"><a style="color:red" href="http://metavid.org/wiki/Security_Notes_on_Remote_Embedding">'+
 					'Read This</a> before embeding.</span>'+
 				'<div class="embed_code"> '+
-					'<textarea onClick="this.select();" id="embedding_user_html_'+this.id+'" name="embed">' +
+					'<textarea onClick="this.select();" id="embedding_user_html_' + this.id + '" name="embed">' +
 						embed_code+
 					'</textarea> '+
-					'<button onClick="$j(\'#'+this.id+'\').get(0).copyText(); return false;" class="copy_to_clipboard">Copy to Clipboard</button> '+
-				'</div> '+
-			'</div>';
-		this.displayHTML(o);
+					'<button onClick="$j(\'#' + this.id + '\').get(0).copyText(); return false;" class="copy_to_clipboard">Copy to Clipboard</button> '+
+				'</div>';			
+		js_log("should set share: " + o);
+		$target.html(o);		
 	},
 	copyText:function(){
 	  $j('#embedding_user_html_'+this.id).focus().select();
@@ -2023,7 +2014,7 @@ embedVideo.prototype = {
 						'height:'+ parseInt( this.height )+'px;width:400px;' +
 						'display:none;" ' +
 						'id="metaBox_' + this.id + '">'+
-							gM('mwe-loading_txt') +
+							gM('loading_txt') +
 						'</div>');
 		}
 		//fade in the text display
@@ -2112,7 +2103,7 @@ embedVideo.prototype = {
 		 });
 		 return false; //onclick action return false
 	},
-	selectPlaybackMethod:function( target ){
+	showPlayerselect:function( target ){
 		//get id (in case where we have a parent container)
 		var this_id = (this.pc!=null)?this.pc.pp.id:this.id;
 
@@ -2190,51 +2181,45 @@ embedVideo.prototype = {
 			});
 		});
 	},
-	showVideoDownload:function(){
+	showDownload:function( $target ){
 		//load the roe if available (to populate out download options:
-		//js_log('f:showVideoDownload '+ this.roe + ' ' + this.media_element.addedROEData);
+		//js_log('f:showDownload '+ this.roe + ' ' + this.media_element.addedROEData);
 		if(this.roe && this.media_element.addedROEData == false){
 			var _this = this;
-			this.displayHTML(gM('mwe-loading_txt'));
+			$target.html( gM('loading_txt') );
 			do_request(this.roe, function(data)
 			{
 			   _this.media_element.addROE(data);
-			   $j('#mv_disp_inner_'+_this.id).html( _this.getShowVideoDownload() );
+			   $target.html( _this.getShowVideoDownload() );
 			});
 		}else{
-			this.displayHTML( this.getShowVideoDownload() );
+			$target.html( this.getShowVideoDownload() );
 		}
 	},
-	getShowVideoDownload:function(){
-//		var out='<div style="color:white">' +
-//				'<b style="color:white;">'+gM('download_segment')+'</b><br>';
-//		out+='<blockquote style="background:#000">'+
-//				gM('download_right_click') + '</blockquote><br>';
-                var out='<div class="k-screen k-players">' +
-                        ' <h2>Download Video</h2>' +
-                        ' <ul>';
-//		var dl_list='';
-//		var dl_txt_list='';
+	getShowVideoDownload:function(){        
+		var dl_txt_list = dl_list = '';
 		$j.each(this.media_element.getSources(), function(index, source){
-//			var dl_line = '<li>' + '<a style="color:white" href="' + source.getURI() +'"> '
-//				+ source.getTitle()+'</a> '+ '</li>'+"\n";
-			var dl_line = '<li>' + '<a href="' + source.getURI() +'"> ' + source.getTitle() + '</a></li>\n';
-			if(source.getURI().indexOf('?t=')!==-1) {
-                            out+=dl_line;
-			}
-                        else if(this.getMIMEType()=="text/cmml" || this.getMIMEType()=="text/x-srt") {
-                            dl_txt_list+=dl_line;
-			}
-                        else {
-                            dl_list+=dl_line;
+			var dl_line = '<li>' + '<a href="' + source.getURI() +'"> ' + source.getTitle() + '</a></li>\n';			
+			if(this.getMIMEType()=="text/cmml" || this.getMIMEType()=="text/x-srt") {
+	            dl_txt_list += dl_line;
+			}else {
+				dl_list += dl_line;
 			}
 		});
-//		if(dl_list!='')
-//			out+=gM('download_full') + '<blockquote style="background:#000">' + dl_list + '</blockquote>';
-//		if(dl_txt_list!='')
-//			out+=gM('download_text')+'<blockquote style="background:#000">' + dl_txt_list +'</blockquote>';
-		out+='</ul></div>';
-		return out;
+		var o='<h2>' + gM('download_clip') + '</h2>'+
+                '<ul>' +
+                	dl_list +                 
+				'</ul>';
+				
+		//add text links: 		
+		if(dl_txt_list != '')
+			o+='<h2>' + gM('download_text') + '</h2>' + 
+				'<ul>' +
+                	dl_txt_list +                 
+				'</ul>';
+					
+		o+='</div>';
+		return o;
 	},
 	/*
 	*  base embed controls
