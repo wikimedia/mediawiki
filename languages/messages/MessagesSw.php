@@ -823,6 +823,7 @@ Kwa kutumia faili katika makala, tumia moja kati ya viungo vifuatavyo:
 'statistics-header-edits'      => 'Takwimu za kuhariri',
 'statistics-header-views'      => 'Onyesha takwimu',
 'statistics-header-users'      => 'Takwimu za watumiaji',
+'statistics-header-hooks'      => 'Takwimu zingine',
 'statistics-articles'          => 'Kurasa zilizopo',
 'statistics-pages'             => 'Kurasa',
 'statistics-pages-desc'        => 'Kurasa zote za katika wiki, zikiwemo kurasa za majadiliano, elekezo, n.k.',

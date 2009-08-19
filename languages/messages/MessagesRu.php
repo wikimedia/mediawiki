@@ -21,6 +21,7 @@
  * @author Innv
  * @author Kaganer
  * @author Kalan
+ * @author Kv75
  * @author Lockal
  * @author MaxSem
  * @author Putnik
@@ -1389,7 +1390,7 @@ $1",
 'group-bot-member'           => 'бот',
 'group-sysop-member'         => 'администратор',
 'group-bureaucrat-member'    => 'бюрократ',
-'group-suppress-member'      => 'Ревизор',
+'group-suppress-member'      => 'ревизор',
 
 'grouppage-user'          => '{{ns:project}}:Участники',
 'grouppage-autoconfirmed' => '{{ns:project}}:Автоподтверждённые участники',
@@ -2650,6 +2651,7 @@ $1',
 # Stylesheets
 'common.css'   => '/** Размещённый здесь CSS будет применяться ко всем темам оформления */',
 'monobook.css' => '/* Размещённый здесь CSS будет применяться к теме оформления Monobook */',
+'print.css'    => '/* Размещённый здесь CSS будет применяться к версии для печати */',
 
 # Scripts
 'common.js'   => '/* Размещённый здесь JavaScript код будет загружаться всем пользователям при обращении к каждой странице */',

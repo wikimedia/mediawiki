@@ -1122,7 +1122,7 @@ $1",
 'allowemail'                    => 'ڕێگە بدە بە بەکارھێنەرانی تر کە ئیمەیلم بۆ بنێرن',
 'prefs-searchoptions'           => 'ھەڵبژاردەکانی گەڕان',
 'prefs-namespaces'              => 'بۆشایی‌ناوەکان',
-'defaultns'                     => 'ئەگینا لەم بۆشایی ناوانەدا بگەڕە:',
+'defaultns'                     => 'ئەگەرنا لەم بۆشایی ناوانەدا بگەڕە:',
 'default'                       => 'بنچینەیی',
 'prefs-files'                   => 'پەڕگەکان',
 'prefs-custom-css'              => 'CSSی دڵخواز',
@@ -2791,6 +2791,9 @@ $5
 
 # Scary transclusion
 'scarytranscludetoolong' => '[URL زۆر درێژە]',
+
+# Trackbacks
+'trackbackremove' => '([سڕینەوە $1])',
 
 # Delete conflict
 'recreate' => 'درووست‌کردنەوە',
