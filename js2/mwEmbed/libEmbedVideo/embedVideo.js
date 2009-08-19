@@ -1336,15 +1336,15 @@ embedVideo.prototype = {
 
 		if(this.controls){
 			js_log("f:getHTML:AddControls");
-			html_code +='<div class="k-control-bar ui-widget-header ui-helper-clearfix">';
+			html_code += '<div class="k-control-bar ui-widget-header ui-helper-clearfix">';
 			html_code += this.getControlsHTML();
-			html_code +='</div>';
+			html_code += '</div>';
 			//block out some space by encapulating the top level div
 			if($j(this).parents('.k-player').length==0){
 				$j(this).wrap('<div style="width:'+parseInt(this.width)+'px;height:'
 					+ (parseInt(this.height) + ctrlBuilder.height )+'px" ' +
 					'id="k-player_' + this.id + '" class="k-player ui-widget"></div>'
-					);
+				);
 			}
 		}
 
@@ -1548,8 +1548,8 @@ embedVideo.prototype = {
 	getPlayButton:function(id){
 		if(!id)id=this.id;
 		return '<div title="' + gM('play_clip') + '" class="ui-state-default play-btn-large" '+
-			'style="left:'+((this.playerPixelWidth()-130)/2)+'px;'+
-			'top:' + ((this.playerPixelHeight()-96)/2) + 'px;">'+
+			'style="left:'+((this.playerPixelWidth()-120)/2)+'px;'+
+			'top:' + ((this.playerPixelHeight()-56)/2) + 'px;">'+
 			'</div>';
 	},
 	doLinkBack:function(){
@@ -1576,19 +1576,26 @@ embedVideo.prototype = {
 	showShare:function($target){	
 		var	embed_code = this.getEmbeddingHTML();
 		var o = '';
-		if(this.linkback){
-			o+='<a class="email" href="'+this.linkback+'">Share Clip via Link</a> '+
-			'<p>or</p> ';
-		}
-		o+='<span style="color:#FFF;font-size:14px;">Embed Clip in Blog or Site</span><br>'+
-				'<span style="color:#FFF;font-size:12px;"><a style="color:red" href="http://metavid.org/wiki/Security_Notes_on_Remote_Embedding">'+
-					'Read This</a> before embeding.</span>'+
-				'<div class="embed_code"> '+
-					'<textarea onClick="this.select();" id="embedding_user_html_' + this.id + '" name="embed">' +
-						embed_code+
-					'</textarea> '+
-					'<button onClick="$j(\'#' + this.id + '\').get(0).copyText(); return false;" class="copy_to_clipboard">Copy to Clipboard</button> '+
-				'</div>';			
+                //@todo: hook events to two a's for swapping in and out code for link vs. embed;
+                //       hook events for changing active class of li based on a.
+		o+= '<h2>Share This Video</h2>\n' +
+			' <ul>\n' +
+			'  <li><a href="#" id="k-share-embed" class="active">Embed on your site or blog</a></li>\n';
+		if(this.linkback) {
+		  o+=   '  <li><a href="#" id="k-share-link">' + this.linkback + '</a></li>\n';
+                }
+		o+=	' </ul>\n' +
+			' <div class="k_field_wrap"><textarea>' + embed_code + '</textarea></div>\n' +
+			' <button class="ui-state-default ui-corner-all"> Copy Code </button>\n' +
+			' <div class="ui-state-highlight ui-corner-all"><a href="http://metavid.org/wiki/Security_Notes_on_Remote_Embedding" target="_blank">' +
+				'Read This</a> before embeding!</div>\n' +
+			'</div>'
+
+//                '<textarea onClick="this.select();" id="embedding_user_html_' + this.id + '" name="embed">' +
+//                        embed_code+
+//                '</textarea> '+
+//                '<button onClick="$j(\'#' + this.id + '\').get(0).copyText(); return false;" class="copy_to_clipboard">Copy to Clipboard</button> '+
+
 		js_log("should set share: " + o);
 		$target.html(o);		
 	},
@@ -2122,6 +2129,8 @@ embedVideo.prototype = {
 	setStatus:function(value){
 		var id = (this.pc)?this.pc.pp.id:this.id;
 		//update status:
+		//check if short or long time desc: 
+		
 		//$j('#mv_time_'+id).html(value);
 		$j('#'+this.id + ' .k-timer').html(value);
 	}

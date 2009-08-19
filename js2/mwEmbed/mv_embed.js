@@ -28,7 +28,8 @@ var MV_EMBED_VERSION = '1.0r19';
  * @@ more config valuse on the way ;)
  */
 var defaultMwConfig = {
-	'skin_name': 'mvpcf',
+	'skin_name': 'kskin',
+	'jui_skin': 'redmond',
 	'video_size':'400x300'
 }
 
@@ -49,7 +50,7 @@ var mediaWiki_mvEmbed_path = 'js2/mwEmbed/';
 var global_player_list = new Array(); //the global player list per page
 var global_req_cb = new Array(); //the global request callback array
 var _global = this; //global obj
-var mv_init_done=false;
+var mv_init_done = false;
 var global_cb_count =0;
 
 /*parseUri class parses URIs:*/
@@ -62,7 +63,7 @@ if( !mv_embed_path ){
 }
 
 //setup the skin path:
-var mv_jquery_skin_path = mv_embed_path + 'jquery/jquery.ui/themes/redmond/';
+var mv_jquery_skin_path = mv_embed_path + 'jquery/jquery.ui/themes/' +mwConfig['jui_skin'] + '/';
 var mv_skin_img_path = mv_embed_path + 'skins/' + mwConfig['skin_name'] + '/images/';
 var mv_default_thumb_url = mv_skin_img_path + 'vid_default_thumb.jpg';
 
