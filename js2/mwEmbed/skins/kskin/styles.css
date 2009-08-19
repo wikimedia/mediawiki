@@ -69,22 +69,14 @@ a:hover.k-next-credit { background-position: 0px -260px;}
 .k-menu-screens li a:hover { background-position: -85px -260px;}
 
 .k-options.ui-state-hover { color:blue;}
-
-.ui-state-default .ui-icon, .ui-state-hover .ui-icon { background: url(images/ksprite.png) no-repeat 0 -48px;}
-.ui-state-default .ui-icon-play { background:url(images/ksprite.png) no-repeat 0 0;}
-.ui-state-hover .ui-icon-play { background-position: -16px 0;}
-
-.ui-state-default .ui-icon-pause { background:url(images/ksprite.png) no-repeat 0 -17px;}
-.ui-state-hover .ui-icon-pause { background-position: -16px -17px;}
-
  
-.ui-state-default .ui-icon-arrow-4-diag { background-position: 0 -32px;} /* fullscreen */
-.ui-state-hover .ui-icon-arrow-4-diag { background-position: -16px -32px;}
-.ui-state-default .ui-icon-volume-on,  .ui-state-hover .ui-icon-volume-off,  { margin-left:-6px; background-position: -16px -48px;}
-.ui-state-hover .ui-icon-volume-on, .ui-state-default .ui-icon-volume-off { margin-left:-6px; background-position: 0 -48px;}
+.k-player .ui-state-default .ui-icon-arrow-4-diag { background-position: 0 -32px;} /* fullscreen */
+.k-player .ui-state-hover .ui-icon-arrow-4-diag { background-position: -16px -32px;}
+.k-player .ui-state-default .ui-icon-volume-on,  .ui-state-hover .ui-icon-volume-off,  { margin-left:-6px; background-position: -16px -48px;}
+.k-player .ui-state-hover .ui-icon-volume-on, .ui-state-default .ui-icon-volume-off { margin-left:-6px; background-position: 0 -48px;}
 
 .k-control-bar .ui-slider { height:8px; border: solid 1px #eee; margin: 4px 10px 0 7px; position:relative; background:url(images/ksprite.png) repeat-x 0 -350px;}
-.k-control-bar .ui-slider-handle { width:8px; height:8px; border: solid 1px #888; margin: -1px 0 0 -5px; display:block; position:relative; background: url(images/ksprite.png) no-repeat -67px -341px; position:absolute;}
+.k-control-bar .ui-slider-handle { width:8px; height:8px; top:0px; border: solid 1px #888; margin: -1px 0 0 -5px; display:block; position:relative; background: url(images/ksprite.png) no-repeat -67px -341px; position:absolute;}
 .k-control-bar .ui-slider-range { height:8px; position:absolute; background: url(images/ksprite.png) repeat-x 0 -368px; -moz-border-radius:5px; -webkit-border-radius:5px;}
 .k-control-bar .ui-slider-buffer { height:8px; position:absolute; background: url(images/ksprite.png) repeat-x 0 -359px; -moz-border-radius:5px; -webkit-border-radius:5px;}
  
@@ -105,3 +97,36 @@ span.ui-icon-volume-on { *margin-left:0 !important;}
 span.ui-icon-k-menu { *margin-top:3px;}
 .k-control-bar .ui-slider.k-volume-slider { *margin-left:-2px;}
 /* end IE css */
+
+/* fixes for jquery.ui themes */
+.play-btn-large.ui-state-default{ border:none; }
+.k-control-bar button{ border:none; background:transparent;}
+.k-control-bar.ui-widget-header{ border:none; margin-top:0px;}
+
+ui-widget-content a {
+	text-decoration:underline;
+}
+
+.ui-icon_link {
+	padding:0.4em 1em 0.4em 20px;
+	position:relative;
+	text-decoration:none;
+}
+.ui-icon_link span.ui-icon {
+	left:0.2em;
+	margin:-8px 5px 0 0;
+	position:absolute;
+	right:auto;
+	top:50%;
+}
+.ui-dialog-buttonpane {
+	padding:10px !important;
+}
+
+.mv_clip_box_result {
+border:thin solid #BBBBBB;
+float:left;
+overflow:hidden;
+padding:10px;
+}
+
