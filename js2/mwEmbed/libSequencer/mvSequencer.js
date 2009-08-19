@@ -52,7 +52,7 @@ loadGM({
 	"mv_advanced_editor_desc" : "advanced editor (Final Cut style)",
 	"mv_other_options" : "Other options",
 	"mv_contextmenu_opt" : "Enable context menus",
-	"mv_sequencer_credit_line" : "Developed by <a href=\"http : \/\/kaltura.com\">Kaltura, Inc.<\/a> in partnership with the <a href=\"http : \/\/wikimediafoundation.org\/wiki\/Home\">Wikimedia Foundation<\/a> (<a href=\"#\">more information<\/a>)."
+	"mv_sequencer_credit_line" : "Developed by <a href=\"http:\/\/kaltura.com\">Kaltura, Inc.<\/a> in partnership with the <a href=\"http:\/\/wikimediafoundation.org\/wiki\/Home\">Wikimedia Foundation<\/a> (<a href=\"#\">more information<\/a>)."
 });
  //used to set default values and validate the passed init object
 var sequencerDefaultValues = {
@@ -142,7 +142,7 @@ mvSequencer.prototype = {
 		},
 		'cliplib':{
 			'd':0,
-			'html': gM('loading_txt'),
+			'html': gM('mwe-loading_txt'),
 			'js':function( this_seq ){
 				//load the search interface with sequence tool targets
 				mvJsLoader.doLoad( [

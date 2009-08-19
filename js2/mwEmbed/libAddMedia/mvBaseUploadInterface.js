@@ -4,31 +4,30 @@
  * this base uploader is optionally extended by firefogg
  */
 loadGM({
-	"upload-transcode-in-progress" : "Transcode and upload in progress (do not close this window)",
-	"upload-in-progress" : "Upload in progress (do not close this window)",
-	"upload-transcoded-status" : "Transcoded",
-	"uploaded-status" : "Uploaded",
-	"wgfogg_wrong_version" : "You have Firefogg installed but it is outdated. <a href=\"http : \/\/firefogg.org\">Please upgrade<\/a>.",
-	"upload-stats-fileprogres" : "$1 of $2",
-	"mv_upload_completed" : "Your upload is complete",
-	"mv_upload_done" : "<a href=\"$1\">Your upload <i>should be<\/i> accessible<\/a>.",
-	"upload-unknown-size" : "Unknown size",
-	"mv-cancel-confim" : "Are you sure you want to cancel?",
-	"successfulupload" : "Upload successful",
-	"uploaderror" : "Upload error",
-	"uploadwarning" : "Upload warning",
-	"unknown-error" : "Unknown error : ",
-	"return-to-form" : "Return to form",
-	"file-exists-duplicate" : "This file is a duplicate of the following file : ",
-	"fileexists" : "A file with this name exists already. Please check <b><tt>$1<\/tt><\/b> if you are not sure if you want to change it.",
-	"fileexists-thumb" : "<center><b>Existing file<\/b><\/center>",
-	"ignorewarning" : "Ignore warning and save file anyway",
-	"file-thumbnail-no" : "The filename begins with <b><tt>$1<\/tt><\/b>",
-	"go-to-resource" : "Go to resource page",
-	"upload-misc-error" : "Unknown upload error",
-	"wgfogg_waring_bad_extension" : "You have selected a file with an unsuported extension (<a href=\"http : \/\/commons.wikimedia.org\/wiki\/Commons : Firefogg#Supported_File_Types\">more information<\/a>).",
-	"cancel-button" : "Cancel",
-	"ok-button" : "OK"
+	"mwe-upload-transcode-in-progress" : "Transcode and upload in progress (do not close this window)",
+	"mwe-upload-in-progress" : "Upload in progress (do not close this window)",
+	"mwe-upload-transcoded-status" : "Transcoded",
+	"mwe-uploaded-status" : "Uploaded",
+	"mwe-upload-stats-fileprogres" : "$1 of $2",
+	"mwe-upload_completed" : "Your upload is complete",
+	"mwe-upload_done" : "<a href=\"$1\">Your upload <i>should be<\/i> accessible<\/a>.",
+	"mwe-upload-unknown-size" : "Unknown size",
+	"mwe-cancel-confim" : "Are you sure you want to cancel?",
+	"mwe-successfulupload" : "Upload successful",
+	"mwe-uploaderror" : "Upload error",
+	"mwe-uploadwarning" : "Upload warning",
+	"mwe-unknown-error" : "Unknown error:",
+	"mwe-return-to-form" : "Return to form",
+	"mwe-file-exists-duplicate" : "This file is a duplicate of the following file:",
+	"mwe-fileexists" : "A file with this name exists already. Please check <b><tt>$1<\/tt><\/b> if you are not sure if you want to change it.",
+	"mwe-fileexists-thumb" : "<center><b>Existing file<\/b><\/center>",
+	"mwe-ignorewarning" : "Ignore warning and save file anyway",
+	"mwe-file-thumbnail-no" : "The filename begins with <b><tt>$1<\/tt><\/b>",
+	"mwe-go-to-resource" : "Go to resource page",
+	"mwe-upload-misc-error" : "Unknown upload error",
+	"mwe-wgfogg_warning_bad_extension" : "You have selected a file with an unsuported extension (<a href=\"http:\/\/commons.wikimedia.org\/wiki\/Commons:Firefogg#Supported_File_Types\">more information<\/a>).",
+	"mwe-cancel-button" : "Cancel",
+	"mwe-ok-button" : "OK"
 });
 
 
@@ -209,7 +208,7 @@ mvBaseUploadInterface.prototype = {
 
 			//update the status to 100% progress bar (no status in iframe submit)
 			$j('#up-progressbar' ).progressbar('value', parseInt( 100 ) );
-			$j('#up-status-container').html( gM('upload-in-progress') );
+			$j('#up-status-container').html( gM('mwe-upload-in-progress') );
 
 			js_log('do iframe form submit to: ' +  $j(_this.editForm).attr('target'));
 
@@ -381,7 +380,7 @@ mvBaseUploadInterface.prototype = {
 					_this.updateProgress( perc );
 					//special case update the file progress where we have data size:
 					$j('#up-status-container').html(
-						gM('upload-stats-fileprogres', [
+						gM('mwe-upload-stats-fileprogres', [
 							formatSize( data.upload['loaded'] ),
 							formatSize( data.upload['content_length'] )
 							]
@@ -392,9 +391,9 @@ mvBaseUploadInterface.prototype = {
 					js_log('just have loaded (no cotent length: ' + data.upload['loaded']);
 					//for lack of content-length requests:
 					$j('#up-status-container').html(
-						gM('upload-stats-fileprogres', [
+						gM('mwe-upload-stats-fileprogres', [
 							formatSize( data.upload['loaded'] ),
-							gM('upload-unknown-size')
+							gM('mwe-upload-unknown-size')
 							]
 						)
 					);
@@ -410,7 +409,7 @@ mvBaseUploadInterface.prototype = {
 		if( apiRes.error || ( apiRes.upload && apiRes.upload.result == "Failure" ) ){
 			//gennerate the error button:
 			var bObj = {};
-			bObj[ gM('return-to-form') ] = 	function(){
+			bObj[ gM('mwe-return-to-form') ] = function(){
 					_this.form_post_override = false;
 					$j(this).dialog('close');
 			 };
@@ -472,31 +471,31 @@ mvBaseUploadInterface.prototype = {
 				if( apiRes.upload.error == 'internal-error'){
 					errorKey = apiRes.upload.details[0];
 					gMsgLoadRemote(errorKey, function(){
-						_this.updateProgressWin( gM( 'uploaderror' ), gM( errorKey ), bObj );
+						_this.updateProgressWin( gM( 'mwe-uploaderror' ), gM( errorKey ), bObj );
 
 					});
 					return false;
 				}
 
-				_this.updateProgressWin( gM('uploaderror'), gM('unknown-error') + '<br>' + error_msg, bObj );
+				_this.updateProgressWin( gM('mwe-uploaderror'), gM('mwe-unknown-error') + '<br>' + error_msg, bObj );
 				return false;
 			}else{
 				if(apiRes.error && apiRes.error.info ){
-					_this.updateProgressWin(  gM('uploaderror'), apiRes.error.info ,bObj);
+					_this.updateProgressWin(  gM('mwe-uploaderror'), apiRes.error.info ,bObj);
 					return false;
 				}else{
 					if(typeof error_code == 'number' && typeof error_msg_key[error_code] == 'undefined' ){
 						if(apiRes.upload.code.finalExt){
-							_this.updateProgressWin(  gM('uploaderror'), gM('wgfogg_waring_bad_extension', apiRes.upload.code.finalExt) , bObj);
+							_this.updateProgressWin(  gM('mwe-uploaderror'), gM('mwe-wgfogg_warning_bad_extension', apiRes.upload.code.finalExt) , bObj);
 						}else{
-							_this.updateProgressWin( gM('uploaderror'), gM('unknown-error') + ' : ' + error_code, bObj);
+							_this.updateProgressWin( gM('mwe-uploaderror'), gM('mwe-unknown-error') + ' : ' + error_code, bObj);
 						}
 					}else{
 						js_log('get key: ' + error_msg_key[ error_code ])
 						gMsgLoadRemote( error_msg_key[ error_code ], function(){
-							_this.updateProgressWin(  gM('uploaderror'), gM(  error_msg_key[ error_code ], errorReplaceArg ), bObj);
+							_this.updateProgressWin(  gM('mwe-uploaderror'), gM(  error_msg_key[ error_code ], errorReplaceArg ), bObj);
 						});
-						js_log("api.erorr");
+						js_log("api.error");
 					}
 					return false;
 				}
@@ -505,7 +504,7 @@ mvBaseUploadInterface.prototype = {
 		//check for upload.error type erros.
 		if( apiRes.upload && apiRes.upload.error){
 			js_log(' apiRes.upload.error: ' +  apiRes.upload.error );
-			_this.updateProgressWin( gM('uploaderror'), gM('unknown-error') + '<br>', bObj);
+			_this.updateProgressWin( gM('mwe-uploaderror'), gM('mwe-unknown-error') + '<br>', bObj);
 			return false;
 		}
 		//check for known warnings:
@@ -519,18 +518,18 @@ mvBaseUploadInterface.prototype = {
 					case 'duplicate':
 					case 'exists':
 						if(winfo[1] && winfo[1].title && winfo[1].title.mTextform){
-							wmsg += gM('file-exists-duplicate') +' '+
+							wmsg += gM('mwe-file-exists-duplicate') +' '+
 									'<b>' + winfo[1].title.mTextform + '</b>';
 						}else{
 							//misc error (weird that winfo[1] not present
-							wmsg += gM('upload-misc-error') + ' ' + wtype;
+							wmsg += gM('mwe-upload-misc-error') + ' ' + wtype;
 						}
 					break;
 					case 'file-thumbnail-no':
-						wmsg += gM('file-thumbnail-no', winfo);
+						wmsg += gM('mwe-file-thumbnail-no', winfo);
 					break;
 					default:
-						wmsg += gM('upload-misc-error') + ' ' + wtype;
+						wmsg += gM('mwe-upload-misc-error') + ' ' + wtype;
 					break;
 				}
 				wmsg+='</li>';
@@ -539,16 +538,16 @@ mvBaseUploadInterface.prototype = {
 			if( apiRes.upload.warnings.sessionkey)
 			 	_this.warnings_sessionkey = apiRes.upload.warnings.sessionkey;
 			var bObj = {};
-			bObj[ gM('ignorewarning') ] =  	function() {
+			bObj[ gM('mwe-ignorewarning') ] =  	function() {
 				//re-inciate the upload proccess
 				$j('#wpIgnoreWarning').attr('checked', true);
 				$j( '#mw-upload-form' ).submit();
 			};
-			bObj[ gM('return-to-form') ] = function(){
+			bObj[ gM('mwe-return-to-form') ] = function(){
 				$j(this).dialog('close');
 				_this.form_post_override = false;
 			}
-			_this.updateProgressWin(  gM('uploadwarning'),  '<h3>' + gM('uploadwarning') + '</h3>' +wmsg + '<p>',bObj);
+			_this.updateProgressWin( gM('mwe-uploadwarning'),  '<h3>' + gM('mwe-uploadwarning') + '</h3>' +wmsg + '<p>',bObj);
 			return false;
 		}
 		//should be "OK"
@@ -584,15 +583,15 @@ mvBaseUploadInterface.prototype = {
 					_this.done_upload_cb( url );
 				}else{
 					var bObj = {};
-					bObj[ gM('return-to-form')] = function(){
+					bObj[ gM('mwe-return-to-form')] = function(){
 						$j(this).dialog('close');
 						_this.form_post_override = false;
 					}
-					bObj[ gM('go-to-resource') ] = function(){
+					bObj[ gM('mwe-go-to-resource') ] = function(){
 							window.location = url;
 					};
 					_this.action_done = true;
-					_this.updateProgressWin( gM('successfulupload'),  gM( 'mv_upload_done', url), bObj);
+					_this.updateProgressWin( gM('mwe-successfulupload'),  gM( 'mwe-upload_done', url), bObj);
 					js_log('apiRes.upload.imageinfo::'+url);
 				}
 				return ;
@@ -612,14 +611,14 @@ mvBaseUploadInterface.prototype = {
 		 }else{
 			 //@@todo should convice the jquery ui people to not use object keys as user msg's
 			 var bObj = {};
-			 bObj[ gM('ok-button') ] =  function(){
+			 bObj[ gM('mwe-ok-button') ] =  function(){
 				  $j(this).dialog('close');
 			 };
 			 $j('#upProgressDialog').dialog('option','buttons', bObj);
 		 }
 	},
 	getProgressTitle:function(){
-		return gM('upload-in-progress');
+		return gM('mwe-upload-in-progress');
 	},
 	getEditForm:function(){
 		if( this.target_edit_from && $j( this.target_edit_from ).length != 0){
@@ -665,7 +664,7 @@ mvBaseUploadInterface.prototype = {
 			'<div id="up-progressbar" style="height:15px;"></div>' +
 			'<div id="up-status-container">'+
 				'<span id="up-pstatus">0% - </span> ' +
-				'<span id="up-status-state">' + gM('uploaded-status') + '</span> ' +
+				'<span id="up-status-state">' + gM('mwe-uploaded-status') + '</span> ' +
 			'</div>'+
 		'</div>'
 	  )
@@ -680,14 +679,14 @@ mvBaseUploadInterface.prototype = {
 	cancel_button:function(){
 	   var _this = this;
 	   var cancelBtn = new Array();
-	   cancelBtn[ gM('cancel-button') ] =  function(){
+	   cancelBtn[ gM('mwe-cancel-button') ] =  function(){
 	   		return _this.cancel_action(this)
 	   };
 	   return cancelBtn;
 	},
 	cancel_action : function( dlElm ){
 		//confirm:
-		if( confirm( gM('mv-cancel-confim') )){
+		if( confirm( gM('mwe-cancel-confim') )){
 			//@@todo (cancel the encode / upload)
 			$j(this).dialog('close');
 			return false;

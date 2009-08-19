@@ -9,9 +9,9 @@ loadGM({
 	"fogg-save_local_file" : "Save Ogg",
 	"fogg-check_for_fogg" : "Checking for Firefogg <blink>...<\/blink>",
 	"fogg-installed" : "Firefogg is installed",
-	"fogg-for_improved_uplods" : "For improved uploads : ",
-	"fogg-please_install" : "<a href=\"$1\">Install Firefogg<\/a>. More <a href=\"http : \/\/commons.wikimedia.org\/wiki\/Commons : Firefogg\">about Firefogg<\/a>",
-	"fogg-use_latest_fox" : "Please first install <a href=\"http : \/\/www.mozilla.com\/en-US\/firefox\/upgrade.html?from=firefogg\">Firefox 3.5<\/a> (or later). <i>Then revisit this page to install the <b>Firefogg<\/b> extension.<\/i>",
+	"fogg-for_improved_uplods" : "For improved uploads:",
+	"fogg-please_install" : "<a href=\"$1\">Install Firefogg<\/a>. More <a href=\"http:\/\/commons.wikimedia.org\/wiki\/Commons:Firefogg\">about Firefogg<\/a>",
+	"fogg-use_latest_fox" : "Please first install <a href=\"http:\/\/www.mozilla.com\/en-US\/firefox\/upgrade.html?from=firefogg\">Firefox 3.5<\/a> (or later). <i>Then revisit this page to install the <b>Firefogg<\/b> extension.<\/i>",
 	"fogg-passthrough_mode" : "Your selected file is already Ogg or not a video file",
 	"fogg-transcoding" : "Encoding video to Ogg",
 	"fogg-encoding-done" : "Encoding complete",
@@ -430,7 +430,7 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 		if( !this.form_rewrite )
 		  return gM('fogg-transcoding');
 		//else return our upload+transcode msg:
-		return gM('upload-transcode-in-progress');
+		return gM('mwe-upload-transcode-in-progress');
 	},
 	doUploadSwitch:function(){
 		var _this = this;
@@ -529,7 +529,7 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 
 
 		 //show transcode status:
-		$j('#up-status-state').html( gM('upload-transcoded-status') );
+		$j('#up-status-state').html( gM('mwe-upload-transcoded-status') );
 
 		//setup a local function for timed callback:
 		var encodingStatus = function() {
@@ -578,7 +578,7 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 	},
 	doUploadStatus:function() {
 		var _this = this;
-		$j( '#up-status-state' ).html( gM('uploaded-status')  );
+		$j( '#up-status-state' ).html( gM('mwe-uploaded-status')  );
 
 		_this.oldResponseText = '';
 		//setup a local function for timed callback:
@@ -630,15 +630,15 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 				   if( _this.upload_mode == 'api' ){
 					   if( apiResult.resultUrl ){
 					   		var buttons ={};
-					   		buttons[gM('go-to-resource')] =  function(){
+					   		buttons[gM('mwe-go-to-resource')] =  function(){
 								window.location = apiResult.resultUrl;
 							}
-							var go_to_url_txt = gM('go-to-resource');
+							var go_to_url_txt = gM('mwe-go-to-resource');
 						   	if( typeof _this.done_upload_cb == 'function' ){
 						   		//if done action return 'true'
 								if( _this.done_upload_cb() ){
 									//update status
-						   			_this.updateProgressWin( gM('successfulupload'),  gM( 'mv_upload_done', apiResult.resultUrl),buttons);
+						   			_this.updateProgressWin( gM('mwe-successfulupload'),  gM( 'mwe-upload_done', apiResult.resultUrl),buttons);
 								}else{
 									//if done action returns 'false' //close progress window
 									this.action_done = true;
@@ -646,11 +646,11 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 								}
 						   	}else{
 						   		//update status (without done_upload_cb)
-						   		_this.updateProgressWin( gM('successfulupload'),  gM( 'mv_upload_done', apiResult.resultUrl),buttons);
+						   		_this.updateProgressWin( gM('mwe-successfulupload'),  gM( 'mwe-upload_done', apiResult.resultUrl),buttons);
 						   	}
 					   }else{
 						   //done state with error? ..not really possible given how firefogg works
-						   js_log(" upload done, in chunks mode, but no resultUrl!");
+						   js_log(" Upload done in chunks mode, but no resultUrl!");
 					   }
 				   }else if( _this.upload_mode == 'post' && _this.api_url ) {
 					   _this.procPageResponse( response_text );
@@ -667,7 +667,7 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 			return this.pe_cancel_action();
 		}
 	  	js_log('firefogg:cancel')
-	  	if( confirm( gM('mv-cancel-confim') )){
+	  	if( confirm( gM('mwe-cancel-confim') )){
 	  	    if(navigator.oscpu && navigator.oscpu.search('Win') >= 0){
 	  	         alert( 'sorry we do not yet support cancel on windows' );
 	  	    }else{
@@ -689,13 +689,13 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 		var sstring = 'var wgTitle = "' + this.formData['wpDestFile'].replace('_',' ');
 
 		if(wgArticlePath){
-			var result_txt = gM('mv_upload_done', wgArticlePath.replace(/\$1/, 'File:' + _this.formData['wpDestFile'] ) );
+			var result_txt = gM('mwe-upload_done', wgArticlePath.replace(/\$1/, 'File:' + _this.formData['wpDestFile'] ) );
 		}else{
-			result_txt = 'File has uploaded but api "done" url was provided. Check the log for result page output';
+			result_txt = 'File has uploaded but api "done" URL was provided. Check the log for result page output';
 		}
 
 		//set the error text in case we dont' get far along in processing the response
-		_this.updateProgressWin( gM('mv_upload_completed'), result_txt );
+		_this.updateProgressWin( gM('mwe-upload_completed'), result_txt );
 
 		if( result_page && result_page.toLowerCase().indexOf( sstring.toLowerCase() ) != -1){
 			js_log( 'upload done got redirect found: ' + sstring + ' r:' + _this.done_upload_cb );
