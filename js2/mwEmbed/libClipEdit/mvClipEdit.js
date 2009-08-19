@@ -23,7 +23,7 @@ loadGM({
 	"mv_custom_title" : "Custom title",
 	"mv_edit_properties" : "Edit properties",
 	"mv_other_properties" : "Other properties",
-	"mv_resource_page" : "Resource page : ",
+	"mv_resource_page" : "Resource page:",
 	"mv_set_in_out_points" : "Set in-out points",
 	"mv_start_time" : "Start time",
 	"mv_end_time" : "End time",
@@ -522,7 +522,7 @@ mvClipEdit.prototype = {
 			'<h3>Edit tools</h3>' +
 					'<div class="mv_edit_button mv_crop_button_base" id="mv_crop_button" alt="crop" title="'+gM('mv_crop')+'"/>'+
 					'<a href="#" class="mv_crop_msg">' + gM('mv_crop') + '</a> '+
-					'<span style="display:none" class="mv_crop_msg_load">' + gM('loading_txt') + '</span> '+
+					'<span style="display:none" class="mv_crop_msg_load">' + gM('mwe-loading_txt') + '</span> '+
 					'<a href="#" style="display:none" class="mv_apply_crop">' + gM('mv_apply_crop') + '</a> '+
 					'<a href="#" style="display:none" class="mv_rest_crop">' + gM('mv_reset_crop') + '</a> '+
 				'<hr style="clear:both"/><br>'+

@@ -6,8 +6,8 @@ loadGM({
 	"loading_plugin" : "loading plugin <blink>...<\/blink>",
 	"select_playback" : "Set playback preference",
 	"link_back" : "Link back",
-	"error_load_lib" : "Error :  mv_embed was unable to load required JavaScript libraries.\nInsert script via DOM has failed. Please try reloading this page.",
-	"error_swap_vid" : "Error :  mv_embed was unable to swap the video tag for the mv_embed interface",
+	"error_load_lib" : "Error: mv_embed was unable to load required JavaScript libraries.\nInsert script via DOM has failed. Please try reloading this page.",
+	"error_swap_vid" : "Error: mv_embed was unable to swap the video tag for the mv_embed interface",
 	"add_to_end_of_sequence" : "Add to end of sequence",
 	"missing_video_stream" : "The video file for this stream is missing",
 	"play_clip" : "Play clip",
@@ -20,11 +20,11 @@ loadGM({
 	"prev_clip_msg" : "Play previous clip",
 	"current_clip_msg" : "Continue playing this clip",
 	"seek_to" : "Seek to",
-	"download_segment" : "Download selection : ",
-	"download_full" : "Download full video file : ",
+	"download_segment" : "Download selection:",
+	"download_full" : "Download full video file:",
 	"download_right_click" : "To download, right click and select <i>Save target as...<\/i>",
 	"download_clip" : "Download video",
-	"download_text" : "Download text (<a style=\"color : white\" title=\"cmml\" href=\"http : \/\/wiki.xiph.org\/index.php\/CMML\">CMML<\/a> xml) : ",
+	"download_text" : "Download text (<a style=\"color:white\" title=\"cmml\" href=\"http:\/\/wiki.xiph.org\/index.php\/CMML\">CMML<\/a> xml):",
 	"download" : "Download",
 	"share" : "Share",
 	"credits" : "Credits",
@@ -44,8 +44,8 @@ loadGM({
 	"mv_ogg-player-flowplayer" : "Flowplayer",
 	"mv_ogg-player-selected" : " (selected)",
 	"mv_ogg-player-omtkplayer" : "OMTK Flash Vorbis",
-	"mv_generic_missing_plugin" : "You browser does not appear to support the following playback type :  <b>$1<\/b><br \/>Visit the <a href=\"http : \/\/commons.wikimedia.org\/wiki\/Commons : Media_help\">Playback Methods<\/a> page to download a player.<br \/>",
-	"mv_for_best_experience" : "For a better video playback experience we recommend : <br \/><b><a href=\"http : \/\/www.mozilla.com\/en-US\/firefox\/upgrade.html?from=mwEmbed\">Firefox 3.5<\/a>.<\/b>",
+	"mv_generic_missing_plugin" : "You browser does not appear to support the following playback type: <b>$1<\/b><br \/>Visit the <a href=\"http:\/\/commons.wikimedia.org\/wiki\/Commons:Media_help\">Playback Methods<\/a> page to download a player.<br \/>",
+	"mv_for_best_experience" : "For a better video playback experience we recommend:<br \/><b><a href=\"http:\/\/www.mozilla.com\/en-US\/firefox\/upgrade.html?from=mwEmbed\">Firefox 3.5<\/a>.<\/b>",
 	"mv_do_not_warn_again" : "Dissmiss for now.",
 	"playerselect" : "Players"
 });
@@ -1552,7 +1552,7 @@ embedVideo.prototype = {
 			function(){
 				//animation done.. add "loading" to div if empty
 				if($j('#liks_info_'+_this.id).html()==''){
-					$j('#liks_info_'+_this.id).html(gM('loading_txt'));
+					$j('#liks_info_'+_this.id).html(gM('mwe-loading_txt'));
 				}
 			}
 		)
@@ -1968,7 +1968,7 @@ embedVideo.prototype = {
 	doLinkBack:function(){
 		if(this.roe && this.media_element.addedROEData==false){
 			var _this = this;
-			this.displayHTML(gM('loading_txt'));
+			this.displayHTML(gM('mwe-loading_txt'));
 			do_request(this.roe, function(data)
 			   {
 				  _this.media_element.addROE(data);
@@ -2023,7 +2023,7 @@ embedVideo.prototype = {
 						'height:'+ parseInt( this.height )+'px;width:400px;' +
 						'display:none;" ' +
 						'id="metaBox_' + this.id + '">'+
-							gM('loading_txt') +
+							gM('mwe-loading_txt') +
 						'</div>');
 		}
 		//fade in the text display
@@ -2195,7 +2195,7 @@ embedVideo.prototype = {
 		//js_log('f:showVideoDownload '+ this.roe + ' ' + this.media_element.addedROEData);
 		if(this.roe && this.media_element.addedROEData == false){
 			var _this = this;
-			this.displayHTML(gM('loading_txt'));
+			this.displayHTML(gM('mwe-loading_txt'));
 			do_request(this.roe, function(data)
 			{
 			   _this.media_element.addROE(data);

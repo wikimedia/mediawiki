@@ -222,7 +222,7 @@ mvTextInterface.prototype = {
 				'right:0px;bottom:0px;' +
 				'height:'+(this.pe.height-30)+
 				'px;overflow:auto;"><span style="display:none;" id="mv_txt_load_' + this.pe.id + '">'+
-					gM('loading_txt')+'</span>' +
+					gM('mwe-loading_txt')+'</span>' +
 				'</div>';
 	},
 	getTsSelect:function(){

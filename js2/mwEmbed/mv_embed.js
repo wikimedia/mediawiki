@@ -79,12 +79,12 @@ function loadGM( msgSet ){
 
 //all default msg in [English] should be overwritten by the CMS language msg system.
 loadGM({
-	"loading_txt" : "loading <blink>...<\/blink>",
-	"loading_title" : "Loading...",
-	"size-gigabytes" : "$1 GB",
-	"size-megabytes" : "$1 MB",
-	"size-kilobytes" : "$1 K",
-	"size-bytes" : "$1 B"
+	"mwe-loading_txt" : "loading <blink>...<\/blink>",
+	"mwe-loading_title" : "Loading...",
+	"mwe-size-gigabytes" : "$1 GB",
+	"mwe-size-megabytes" : "$1 MB",
+	"mwe-size-kilobytes" : "$1 K",
+	"mwe-size-bytes" : "$1 B"
 });
 
 /**
@@ -299,15 +299,15 @@ function formatSize( size ) {
 			round = 2;
 			if( size > 1024 ) {
 				size = size / 1024;
-				msg = 'size-gigabytes';
+				msg = 'mwe-size-gigabytes';
 			} else {
-				msg = 'size-megabytes';
+				msg = 'mwe-size-megabytes';
 			}
 		} else {
-			msg = 'size-kilobytes';
+			msg = 'mwe-size-kilobytes';
 		}
 	} else {
-		msg = 'size-bytes';
+		msg = 'mwe-size-bytes';
 	}
 	//javascript does not let you do precession points in rounding
 	var p =  Math.pow(10,round);
@@ -535,7 +535,7 @@ var mvJsLoader = {
 
 		//make sure we have jQuery
 		_this.jQueryCheck(function(){
-			$j('.videonojs').html( gM('loading_txt') );
+			$j('.videonojs').html( gM('mwe-loading_txt') );
 			var depReq = [
 				[
 					'$j.ui',
@@ -748,7 +748,7 @@ function mv_jqueryBindings(){
 	(function($) {
 		$.fn.addMediaWiz = function( iObj, callback ){
 			//first set the cursor for the button to "loading"
-			$j(this.selector).css('cursor','wait').attr('title', gM('loading_title'));
+			$j(this.selector).css('cursor','wait').attr('title', gM('mwe-loading_title'));
 
 			iObj['target_invocation'] = this.selector;
 
