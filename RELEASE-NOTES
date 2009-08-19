@@ -396,7 +396,7 @@ this. Was used when mwEmbed was going to be an extension.
   preferences
 * (bug 18855) commandLine.inc and Maintenance.php are now properly included
   using the full path
-* (bug 18497) Opera in fullscreen mode doesn't use any style sheets
+* (bug 18497) Fixed broken style sheets in Opera fullscreen mode
 * (bug 16084) Default memory limit has be increased to 50M, see $wgMemoryLimit
 * (bug 17864/19519) Added proper input normalization in Special:UserRights
 * (bug 20086) Add Hook to add extra statistics at the end of Special:Statistics
