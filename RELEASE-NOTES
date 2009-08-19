@@ -195,7 +195,6 @@ this. Was used when mwEmbed was going to be an extension.
 ** Unnecessary type="" attribute removed for CSS and JS.
 ** If $wgWellFormedXml is set to false, some bytes will be shaved off of HTML
    output by omitting some things like quotation marks where HTML 5 allows.
-* Added crop for inline images.
 * The description message in $wgExtensionCredits can be an array with parameters
 * New hook SpecialRandomGetRandomTitle allows extensions to modify the selection
   criteria used by Special:Random and subclasses, or substitute a custom result,
