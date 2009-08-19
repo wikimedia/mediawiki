@@ -51,7 +51,7 @@ class SyntaxChecker extends Maintenance {
 			}
 		}
 		$this->output( "\nDone! " . count( $this->mFiles ) . " files checked, " .
-			count( $this->mFailures ) . " failures found" );
+			count( $this->mFailures ) . " failures found\n" );
 	}
 
 	/**
