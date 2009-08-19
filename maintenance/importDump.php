@@ -25,7 +25,6 @@
 $optionsWithArgs = array( 'report' );
 
 require_once( dirname(__FILE__) . '/commandLine.inc' );
-require_once( '7zip.inc' );
 
 /**
  * @ingroup Maintenance

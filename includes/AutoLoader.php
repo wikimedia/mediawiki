@@ -586,6 +586,7 @@ $wgAutoloadLocalClasses = array(
 	'metawikiStatsOutput' => 'maintenance/language/StatOutputs.php',
 	'textStatsOutput' => 'maintenance/language/StatOutputs.php',
 	'csvStatsOutput' => 'maintenance/language/StatOutputs.php',
+	'SevenZipStream' => 'maintenance/7zip.inc',
 
 );
 
