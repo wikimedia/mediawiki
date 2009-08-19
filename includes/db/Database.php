@@ -2210,9 +2210,11 @@ abstract class DatabaseBase {
 		return $this->indexName( $matches[1] );
 	}
 
-	/*
+	/**
 	 * Build a concatenation list to feed into a SQL query
-	*/
+	 * @param $stringList Array: list of raw SQL expressions; caller is responsible for any quoting
+	 * @return String
+	 */
 	function buildConcat( $stringList ) {
 		return 'CONCAT(' . implode( ',', $stringList ) . ')';
 	}
