@@ -366,14 +366,10 @@ class VectorTemplate extends QuickTemplate {
 	 * Outputs the entire contents of the XHTML page
 	 */
 	public function execute() {
-		global $wgRequest, $wgOut, $wgContLang, $wgDevelopmentWarnings;
+		global $wgRequest, $wgOut, $wgContLang;
 
 		$this->skin = $this->data['skin'];
 		$action = $wgRequest->getText( 'action' );
-
-		// Suppress warnings to prevent notices about missing indexes in
-		// $this->data (is this really the best way to handle this?)
-		$wgDevelopmentWarnings && wfSuppressWarnings();
 
 		// Build additional attributes for navigation urls
 		$nav = $this->skin->buildNavigationUrls();
@@ -578,8 +574,6 @@ class VectorTemplate extends QuickTemplate {
 	</body>
 </html>
 <?php
-		// We're done with abusing arrays now...
-		$wgDevelopmentWarnings && wfRestoreWarnings();
 	}
 
 	/**
