@@ -614,7 +614,7 @@ class ParserTest {
 			'wgEnableUploads' => true,
 			'wgStyleSheetPath' => '/skins',
 			'wgSitename' => 'MediaWiki',
-			'wgServerName' => 'Britney Spears',
+			'wgServerName' => 'Britney-Spears',
 			'wgLanguageCode' => $lang,
 			'wgContLanguageCode' => $lang,
 			'wgDBprefix' => 'parsertest_',
