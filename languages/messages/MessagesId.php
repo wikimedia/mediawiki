@@ -2113,7 +2113,7 @@ pengguna lain telah menyunting atau melakukan pengembalian terhadap halaman ini.
 
 Suntingan terakhir dilakukan oleh [[User:$3|$3]] ([[User talk:$3|bicara]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment'      => "Komentar penyuntingan adalah: \"''\$1''\".",
-'revertpage'       => 'Suntingan [[Special:Contributions/$2|$2]] ([[User talk:$2|bicara]]) dikembalikan ke versi terakhir oleh [[User:$1|$1]]',
+'revertpage'       => '←Suntingan [[Special:Contributions/$2|$2]] ([[User talk:$2|bicara]]) dikembalikan ke versi terakhir oleh [[User:$1|$1]]',
 'rollback-success' => 'Pengembalian suntingan oleh $1; dikembalikan ke versi terakhir oleh $2.',
 'sessionfailure'   => 'Sepertinya ada masalah dengan sesi log anda; log anda telah dibatalkan untuk mencegah pembajakan. Silahkan tekan tombol "back" dan muat kembali halaman sebelum anda masuk, lalu coba lagi.',
 

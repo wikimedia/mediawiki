@@ -63,6 +63,7 @@ Sahypalary keşirleme',
 'tog-enotifminoredits'        => 'Sahypalardaky ujypsyzja özgerdişlerde-de maňa e-poçta iber',
 'tog-enotifrevealaddr'        => 'E-poçta adresimi bildiriş e-poçtalarynda görkez.',
 'tog-shownumberswatching'     => 'Gözegçilikde saklaýan ulanyjylaryň sanyny görkez',
+'tog-oldsig'                  => 'Bar bolan goluň deslapky syny:',
 'tog-fancysig'                => 'Gola wikitekst hökmünde çemeleş (awtomatik çykgytsyz)',
 'tog-externaleditor'          => 'Başga programmalar bilen redaktirle (diňe hünärmenler üçin, kompýuteriňizde ýörite sazlamalar talap edilýär)',
 'tog-externaldiff'            => 'Başga programmalaryň üsti bilen deňeşdir (diňe hünärmenler üçin, kompýuteriňizde ýörite sazlamalar talap edilýär)',
@@ -83,6 +84,13 @@ Sahypalary keşirleme',
 'underline-always'  => 'Hemişe',
 'underline-never'   => 'Hiç haçan',
 'underline-default' => 'Brauzeriň sazlamalary',
+
+# Font style option in Special:Preferences
+'editfont-style'     => 'Redaktirleme meýdançasynyň şriftiniň tipi:',
+'editfont-default'   => 'Brauzeriň sazlan şrifti',
+'editfont-monospace' => 'Mono-inli şrift',
+'editfont-sansserif' => 'Sans-serif şrifti',
+'editfont-serif'     => 'Serif şrifti',
 
 # Dates
 'sunday'        => 'Ýekşenbe',
@@ -183,6 +191,33 @@ kiçi kategoriýadan {{PLURAL:$1|sany kiçi kategoriýa|$1 sany kiçi kategoriý
 'faq'            => 'KSS',
 'faqpage'        => 'Project:KSS',
 
+# Vector skin
+'vector-action-addsection'   => 'Tema goş',
+'vector-action-delete'       => 'Öçür',
+'vector-action-move'         => 'Adyny üýtget',
+'vector-action-protect'      => 'Goraga al',
+'vector-action-undelete'     => 'Öçürmäni yzyna al',
+'vector-action-unprotect'    => 'Goragy aýyr',
+'vector-namespace-category'  => 'Kategoriýa',
+'vector-namespace-help'      => 'Ýardam sahypasy',
+'vector-namespace-image'     => 'Faýl',
+'vector-namespace-main'      => 'Sahypa',
+'vector-namespace-media'     => 'Media sahypasy',
+'vector-namespace-mediawiki' => 'Habarlaşyk',
+'vector-namespace-project'   => 'Taslama sahypasy',
+'vector-namespace-special'   => 'Ýörite sahypa',
+'vector-namespace-talk'      => 'Çekişme',
+'vector-namespace-template'  => 'Şablon',
+'vector-namespace-user'      => 'Ulanyjy sahypasy',
+'vector-view-create'         => 'Döret',
+'vector-view-edit'           => 'Redaktirle',
+'vector-view-history'        => 'Geçmişi gör',
+'vector-view-view'           => 'Oka',
+'vector-view-viewsource'     => 'Çeşmäni gör',
+'actions'                    => 'Hereketler',
+'namespaces'                 => 'At giňişlikleri',
+'variants'                   => 'Wariantlar',
+
 # Metadata in edit box
 'metadata_help' => 'Meta-maglumat:',
 
@@ -240,6 +275,11 @@ kiçi kategoriýadan {{PLURAL:$1|sany kiçi kategoriýa|$1 sany kiçi kategoriý
 'jumpto'            => 'Git we:',
 'jumptonavigation'  => 'ulan',
 'jumptosearch'      => 'gözle',
+'view-pool-error'   => 'Gynansak-da, şu wagt serwerler hetdenaşa işli.
+Biçak köp ulanyjy şu sahypany görmäge synanyşýar.
+Bir sellem garaşyp, soňra synanyşmagyňyzy towakga edýäris. 
+
+$1',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => '{{SITENAME}} hakynda',
@@ -327,12 +367,12 @@ Onuň programmanyň özündäki bir säwlik bolmagy ahmal.
 "<tt>$2</tt>" funksiýasyndan synalyp görülen iň soňky talap:
 <blockquote><tt>$1</tt></blockquote>.
 
-MySQL-iň goýberen säwligi "<tt>$3: $4</tt>".',
+$5 tarapyndan yzyna gaýtarylan säwlik "<tt>$3: $4</tt>".',
 'dberrortextcl'        => 'Maglumat bazasyndan edilen talapda sintaksis ýalňyşlygy ýüze çykdy.
 "$2" funksiýasyndan synalyp görülen iň soňky talap:
 "$1"
 
-MySQL-iň goýberen säwligi "$3: $4"',
+$5 tarapyndan yzyna gaýtarylan säwlik "$3: $4"',
 'laggedslavemode'      => 'Duýduryş: Sahypada soňky täzelemeler ýok bolmagy ahmal.',
 'readonly'             => 'Maglumat bazasy gulplandy',
 'enterlockreason'      => 'Gulplamak üçin bir sebäp görkeziň. Gulpuň haçan açyljakdygy barada takmynan bir sene ýazyň.',
@@ -350,6 +390,7 @@ Muny bir [[Special:ListUsers/sysop|administratora]] URL-ni belläp alyp ýetirme
 'readonly_lag'         => 'Ätiýaçlyk serwerler esasy serwere boýunça täzelenýärkä, maglumat bazasy awtomatik usulda gulplandy.',
 'internalerror'        => 'Içerki säwlik',
 'internalerror_info'   => 'Içerki säwlik: $1',
+'fileappenderror'      => '"$1" faýlyny "$2" faýlyna goşup bolmady.',
 'filecopyerror'        => '"$1" faýlyny  "$2" faýlyna göçürip bolmady.',
 'filerenameerror'      => '"$1" faýlynyň adyny "$2" diýip üýtgedip bolmady.',
 'filedeleteerror'      => '"$1" faýlyny öçürip bolmady.',
@@ -440,8 +481,9 @@ Ulanyjy atlary baş hem-de setir harplara duýgurdyr.
 'nouserspecified'            => 'Ulanyjy adyny görkezmegiňiz hökmanydyr.',
 'wrongpassword'              => 'Paroly nädogry girizdiňiz. Gaýtadan synanyşmagyňyzy haýyş edýäris.',
 'wrongpasswordempty'         => 'Paroly boş girizdiňiz. Gaýtadan synanyşmagyňyzy haýyş edýäris.',
-'passwordtooshort'           => 'Parolyňyz nädogry ýa-da çakdanaşa gysga.
-Parol iň bolmanda {{PLURAL:$1|1 simwoldan|$1 simwoldan}} ybarat hem-de ulanyjy adyňyzdan tapawutly bolmalydyr.',
+'passwordtooshort'           => 'Parolyňyz çakdanaşa gysga.
+Ol iň bolmanda {{PLURAL:$1|1 simwoldan|$1 simwoldan}} ybarat bolmalydyr.',
+'password-name-match'        => 'Parolyňyz ulanyjy adyňyzdan tapawutly bolmalydyr.',
 'mailmypassword'             => 'Maňa e-poçta bilen täze parol iber',
 'passwordremindertitle'      => '{{SITENAME}} üçin täze wagtlaýyn parol',
 'passwordremindertext'       => 'Kimdir biri (ähtimal özüňiz $1 IP adresinden) {{SITENAME}} ($4) üçin täze parol iberilmegini talap etdi. "$2" ulanyjysy üçin wagtlaýynça "$3" paroly döredildi. Eger bu siziň öz talabyňyz bolsa, onda sessiýa açyp, bir täze parol saýlap almagyňyz zerurdyr. Wagtlaýyn parolyňyzyň möhleti {{PLURAL:$5|1 günden|$5 günden}} gutarjakdyr.
@@ -487,6 +529,7 @@ Sessiýa açmaklygy tamamlamak üçin, bu ýere täze parol ýazyň:',
 'resetpass_submit'          => 'Paroly sazlaň we sessiýa açyň',
 'resetpass_success'         => 'Parolyňyz şowlulyk bilen üýtgedildi! Häzir sessiýaňyz açylýar...',
 'resetpass_forbidden'       => 'Parollary üýtgedip bolmaýar',
+'resetpass-no-info'         => 'Bu sahypany gönüden-göni açmak üçin sessiýa açmagyňyz zerurdyr.',
 'resetpass-submit-loggedin' => 'Paroly üýtget',
 'resetpass-wrong-oldpass'   => 'Nädogry wagtlaýyn ýa-da häzirki parol.
 Parolyňyzy eýýäm şowlulyk bilen üýtgeden ýa-da täze wagtlaýyn parol talap eden bolmagyňyz ahmal.',
@@ -526,9 +569,22 @@ Parolyňyzy eýýäm şowlulyk bilen üýtgeden ýa-da täze wagtlaýyn parol ta
 'missingsummary'                   => "'''Ýatlatma:''' Redaktirleme mazmunyny ýazmadyňyz.  
 Sahypany ýazdyr düwmesine ýene bir gezek bassaňyz, redaktirlemäňiz mazmunsyz ýazdyrylar.",
 'missingcommenttext'               => 'Aşakda teswir ýazmagyňyzy haýyş edýäris.',
+'missingcommentheader'             => "'''Ýatlatma:''' Bu teswir üçin tema/at görkezmediňiz. Eger Ýazdyr düwmesine gaýtadan bassaňyz, üýtgeşmäňiz temasyz/atsyz ýazdyrylar.",
 'summary-preview'                  => 'Deslapky synyň mazmuny:',
 'subject-preview'                  => 'Temanyň/adyň deslapky syny:',
 'blockedtitle'                     => 'Ulanyjy blokirlenen',
+'blockedtext'                      => '<big>\'\'\'Ulanyjy adyňyz ýa-da IP adresiňiz blokirlenipdir.\'\'\'</big>
+
+Sizi blokirlän administrator: $1.<br />
+Blokirlemäniň sebäbi: \'\'$2\'\'.
+
+* Blokirlemäniň başlangyjy: $8
+* Blokirlemäniň ahyry: $6
+* Blokirleme möhleti: $7
+
+Blokirleme barada pikir alyşmak üçin $1 ýa-da başga bir [[{{MediaWiki:Grouppage-sysop}}|administrator]] bilen habarlaşyp bilersiňiz. [[Special:Preferences|Sazlamalarym]] böleginde dogry bir e-poçta adresi görezilmedik bolsa, "Ulanyja e-poçta iber" amalyndan peýdalanyp bilmersiňiz, ony ulanmaklygyňyz bolsa blokirlenmändir.   
+Häzirki IP adresiňiz $3, blokirleme belgiňiz bolsa #$5.
+Ýokaryda görkezilen ähli jikme-jiklikleri öz ähli ýüztutmalaryňyza girizmegiňizi haýyş edýäris.',
 'blockednoreason'                  => 'sebäp görkezilmedik',
 'blockedoriginalsource'            => "'''$1''' sahypasynyň çeşmesi aşakda görkezilýär:",
 'whitelistedittitle'               => 'Redaktirlemek üçin sessiýa açmaly',
@@ -1014,7 +1070,7 @@ Bu amalyň getirip biljek netijelerine gözüňiz ýetýän bolsa we amalyň [[{
 'protectedarticle'            => '"[[$1]]" sahypasyny gorag astyna aldy.',
 'modifiedarticleprotection'   => '"[[$1]]" üçin gorag derejesi üýtgedildi',
 'prot_1movedto2'              => '[[$1]] sahypasy [[$2]] sahypasyna göçürildi',
-'protectcomment'              => 'Gorag astyna almagyň sebäbi:',
+'protectcomment'              => 'Sebäp:',
 'protectexpiry'               => 'Gutaryş senesi:',
 'protect_expiry_invalid'      => 'Gutaryş möhleti nädogry.',
 'protect_expiry_old'          => 'Geçmişdäki gutaryş möhleti.',
@@ -1221,6 +1277,10 @@ Ondan soňraky çykgyt(lar) kadadan çykma hökmünde kabul edilýär, meselem: 
 'namespacesall' => 'ählisi',
 'monthsall'     => 'ählisi',
 
+# Live preview
+'livepreview-loading' => 'Ýüklenýär...',
+'livepreview-ready'   => 'Ýüklenýär... Taýýar!',
+
 # Watchlist editing tools
 'watchlisttools-view' => 'Degişli üýtgeşmeleri görkez',
 'watchlisttools-edit' => 'Gözegçilik sanawyna göz aýla we redaktirle',
@@ -1235,5 +1295,10 @@ Ondan soňraky çykgyt(lar) kadadan çykma hökmünde kabul edilýär, meselem: 
 # Special:Tags
 'tag-filter-submit' => 'Filtr',
 'tags-edit'         => 'redaktirle',
+
+# HTML forms
+'htmlform-submit'              => 'Iber',
+'htmlform-reset'               => 'Üýtgeşmeleri yzyna al',
+'htmlform-selectorother-other' => 'Başga',
 
 );

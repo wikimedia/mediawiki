@@ -522,6 +522,20 @@ $2، $1',
 # Special:NewFiles
 'ilsubmit' => 'سرک بنک',
 
+# EXIF tags
+'exif-gpsareainformation' => 'جی پی اس ناحیه نوم',
+'exif-gpsdatestamp'       => 'جی پی اس تاریخ',
+'exif-gpsdifferential'    => 'جی پی اس په‌چه‌ک درس هأکه‌ردن',
+
+# EXIF attributes
+'exif-compression-1' => 'فه‌شورده نئی',
+
+'exif-unknowndate' => 'نه‌شناسی چه‌کوت',
+
+'exif-orientation-1' => 'معمولی',
+'exif-orientation-3' => '180 درجه چرخ بزوئن',
+'exif-orientation-4' => 'عمودی په‌شت ئو روبئی',
+
 # External editor support
 'edit-externally' => 'ای فـایـل ره، أتـا دأیـا بـه‌رنـومـه هـه‌مـرا، دأچـیـه‌نـیـن',
 

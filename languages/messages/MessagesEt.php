@@ -587,7 +587,7 @@ Viimane andmebaasipäring oli:
 <blockquote><tt>$1</tt></blockquote>
 ja see kutsuti funktsioonist "<tt>$2</tt>".
 $5 tagastas veateate "<tt>$3: $4</tt>".',
-'dberrortextcl'        => 'Andmebaasipäringus oli süntakiviga.
+'dberrortextcl'        => 'Andmebaasipäringus oli süntaksiviga.
 Viimane andmebaasipäring oli:
 "$1"
 ja see kutsuti funktsioonist "$2".
@@ -1635,7 +1635,7 @@ Tulba päisel klõpsamine muudab sortimist.',
 'filepage-nofile'           => 'Sellenimelist faili ei ole.',
 'filepage-nofile-link'      => 'Sellenimelist faili ei ole, kuid sa saad selle [$1 üles laadida].',
 'uploadnewversion-linktext' => 'Laadi üles selle faili uus versioon',
-'shared-repo-from'          => 'kohast $1',
+'shared-repo-from'          => 'varamust $1',
 'shared-repo'               => 'jagatud varamu',
 
 # File reversion
@@ -1681,7 +1681,7 @@ Sisesta kujul tüüp/alamtüüp, näiteks <tt>image/jpeg</tt>.',
 
 # Random page
 'randompage'         => 'Juhuslik artikkel',
-'randompage-nopages' => 'Nimeruumis "$1" ei ole lehekülgi.',
+'randompage-nopages' => '{{PLURAL:$2|Järgmises nimeruumis|Järgmistes nimeruumides}} ei ole ühtegi lehekülge: $1.',
 
 # Random redirect
 'randomredirect'         => 'Juhuslik ümbersuunamine',
@@ -1953,7 +1953,7 @@ Kui tahad seda lehte hiljem jälgimisloendist eemaldada, klõpsa päisenupule "L
 'enotif_impersonal_salutation' => '{{SITENAME}} kasutaja',
 'changed'                      => 'muudetud',
 'created'                      => 'lehekülg loodud',
-'enotif_lastvisited'           => 'Aadressil $1 on kõik muudatused su viimase külastuse järel.',
+'enotif_lastvisited'           => 'Kõigi sinu viimase külastuse järel tehtud muudatuste nägemiseks vaata: $1.',
 'enotif_lastdiff'              => 'Muudatus on leheküljel $1.',
 'enotif_anon_editor'           => 'anonüümne kasutaja $1',
 
@@ -2488,15 +2488,15 @@ Samuti võimaldab see resümee reale põhjenduse lisamist.',
 # Metadata
 'nodublincore'      => "Dublin Core'i RDF-meta-andmed ei ole selles serveris lubatud.",
 'nocreativecommons' => 'Creative Commonsi RDF-meta-andmed ei ole selles serveris lubatud.',
-'notacceptable'     => 'Viki server ei saa esitada andmeid selles formaadis, mida su veebilugeja suudab lugeda.',
+'notacceptable'     => 'Viki server ei saa esitada andmeid formaadis, mida sinu veebiklient lugeda suudab.',
 
 # Attribution
 'anonymous'        => '{{SITENAME}} {{PLURAL:$1|anonüümne kasutaja|anonüümsed kasutajad}}',
 'siteuser'         => 'viki kasutaja $1',
 'lastmodifiedatby' => 'Viimati muutis lehekülge $3 $2 kell $1.',
-'othercontribs'    => 'Põhineb $1 tööl.',
+'othercontribs'    => 'Põhineb kasutajate $1 tööl.',
 'others'           => 'teised',
-'siteusers'        => 'Võrgukoha {{SITENAME}} {{PLURAL:$2|kasutaja|kasutajad}} $1',
+'siteusers'        => 'võrgukoha {{SITENAME}} {{PLURAL:$2|kasutaja|kasutajate}} $1',
 'creditspage'      => 'Lehekülje toimetajate loend',
 'nocredits'        => 'Selle lehekülje toimetajate loend ei ole kättesaadav.',
 
@@ -2798,10 +2798,10 @@ Kui faili on rakendustarkvaraga töödeldud, võib osa andmeid olla muudetud võ
 'confirmemail'             => 'Kinnita e-posti aadress',
 'confirmemail_noemail'     => 'Sul ei ole e-aadress määratud [[Special:Preferences|eelistustes]].',
 'confirmemail_text'        => 'Enne kui saad e-postiga seotud teenuseid kasutada, pead sa oma e-posti aadressi õigsust kinnitama. Allpool olevale nupule klikkides meilitakse sulle kinnituskood, koodi kinnitamiseks kliki meilis oleval lingil.',
-'confirmemail_pending'     => 'Kinnituskood on juba su e-aadressile saadetud. Kui tegid konto hiljuti, oota palun mõni minut selle saabumist, enne kui üritad uuesti.',
+'confirmemail_pending'     => 'Kinnituskood on juba su meiliaadressile saadetud. Kui tegid konto hiljuti, oota palun mõni minut selle saabumist, enne kui üritad uuesti.',
 'confirmemail_send'        => 'Meili kinnituskood',
 'confirmemail_sent'        => 'Kinnitusmeil saadetud.',
-'confirmemail_oncreate'    => 'Kinnituskood saadeti su e-aadressile. See kood ei ole vajalik sisselogimisel, kuid seda on vaja, et kasutada vikis e-posti-põhiseid toiminguid.',
+'confirmemail_oncreate'    => 'Kinnituskood saadeti su meiliaadressile. See kood ei ole vajalik sisselogimisel, kuid seda on vaja, et kasutada vikis e-posti-põhiseid toiminguid.',
 'confirmemail_sendfailed'  => 'Kinnitusmeili ei õnnestunud saata. 
 Kontrolli aadressi õigsust.
 
@@ -2867,7 +2867,7 @@ Kinnituskood aegub $4.',
 'livepreview-ready'   => 'Laadimisel... Valmis!',
 'livepreview-failed'  => 'Elav eelvaade ebaõnnestus! Proovi normaalset eelvaadet.',
 'livepreview-error'   => 'Ühendus ebaõnnestus: $1 "$2".
-Proovi normaalset eelvaadet.',
+Proovi tavalist eelvaadet.',
 
 # Friendlier slave lag warnings
 'lag-warn-normal' => 'Hilisemad muudatused kui $1 {{PLURAL:$1|sekund|sekundit}} ei pruugi selles loendis näha olla.',
@@ -2981,7 +2981,7 @@ Sisesta faili nimi eesliiteta "{{ns:file}}:".',
 # HTML forms
 'htmlform-select-badoption'    => 'Antud number ei ole kõlbulik.',
 'htmlform-int-invalid'         => 'Antud väärtus ei ole täisarv.',
-'htmlform-float-invalid'       => 'Määratud väärtus ei ole number.',
+'htmlform-float-invalid'       => 'Määratud väärtus ei ole arvuline.',
 'htmlform-int-toolow'          => 'Antud suurus on väiksem kui minimaalne $1',
 'htmlform-int-toohigh'         => 'Antud suurus on suurem kui maksimaalne $1',
 'htmlform-submit'              => 'Saada',

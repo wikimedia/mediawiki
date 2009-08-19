@@ -1709,7 +1709,7 @@ $NEWPAGE
 'protect-title'               => 'Ἀλλάττειν κλίμακα προστασίας διὰ "$1"',
 'prot_1movedto2'              => '[[$1]] ἐκινήθη πρὸς [[$2]]',
 'protect-legend'              => 'Ἐπιβεβαιοῦν φύλαξιν',
-'protectcomment'              => 'Σχόλιον:',
+'protectcomment'              => 'Αιτία:',
 'protectexpiry'               => 'Λήγει:',
 'protect_expiry_invalid'      => 'Ἄκυρος χρόνος λήξεως.',
 'protect_expiry_old'          => 'Χρόνος λήξεως ἐν τῷ παρελθόντι ἐστίν.',

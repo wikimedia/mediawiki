@@ -2118,7 +2118,7 @@ $NEWPAGE
 'protect-title'               => '"$1" 보호하기',
 'prot_1movedto2'              => '[[$1]]을(를) [[$2]](으)로 옮김',
 'protect-legend'              => '보호 확인',
-'protectcomment'              => '보호 이유:',
+'protectcomment'              => '이유:',
 'protectexpiry'               => '보호 기간:',
 'protect_expiry_invalid'      => '보호 기간이 잘못되었습니다.',
 'protect_expiry_old'          => '기한을 과거로 입력했습니다.',

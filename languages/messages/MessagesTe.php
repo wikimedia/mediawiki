@@ -1527,7 +1527,7 @@ $3 చెప్పిన కారణం: ''$2''",
 
 # Random page
 'randompage'         => 'యాధృచ్ఛిక పేజీ',
-'randompage-nopages' => '"$1" అనే పేరుబరిలో పేజీలేమీ లేవు.',
+'randompage-nopages' => 'ఈ క్రింది {{PLURAL:$2|పెరుబరిలో|పెరుబరులలో}} పేజీలు ఏమి లేవు:$1',
 
 # Random redirect
 'randomredirect'         => 'యాదృచ్చిక దారిమార్పు',

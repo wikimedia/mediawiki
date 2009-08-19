@@ -2355,7 +2355,7 @@ Můžete si prohlédnout [[Special:IPBlockList|seznam zablokovaných uživatelů
 'unblockip'                       => 'Odblokovat uživatele',
 'unblockiptext'                   => 'Tímto formulářem je možno obnovit právo blokované IP adresy či uživatele opět přispívat do {{grammar:2sg|{{SITENAME}}}}.',
 'ipusubmit'                       => 'Odblokovat',
-'unblocked'                       => '[[User:$1|$1]] byl odblokován',
+'unblocked'                       => '{{GENDER:$1|||Uživatel}} [[User:$1|$1]] {{GENDER:$1|byl odblokován|byla odblokována|byl odblokován}}',
 'unblocked-id'                    => 'Blok $1 byl zrušen',
 'ipblocklist'                     => 'Blokované IP adresy a uživatelská jména',
 'ipblocklist-legend'              => 'Hledat zablokovaného uživatele',
