@@ -404,7 +404,7 @@ mvClipEdit.prototype = {
 			max: max_slider,
 			values: [start_sec, end_sec],
 			slide: function(event, ui) {
-				js_log(" vals:"+  seconds2npt( ui.values[0] ) + ' : ' + seconds2npt( ui.values[1]) );
+				//js_log(" vals:"+  seconds2npt( ui.values[0] ) + ' : ' + seconds2npt( ui.values[1]) );
 				$j('#'+_this.control_ct + ' .startInOut').val( seconds2npt( ui.values[0] ) );
 				$j('#'+_this.control_ct + ' .endInOut').val( seconds2npt( ui.values[1] ) );
 			},
