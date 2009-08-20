@@ -405,9 +405,11 @@ var ctrlBuilder = {
 		'closed_captions':{
 			'w':24,
 			'o':function(){
-				return '<div title="' + gM('closed_captions') + '" id="timed_text_' + ctrlBuilder.id +'" ' +
+				return '<button class="ui-state-default ui-corner-all k-close_captions" title="' + gM('closed_captions')  + '">' +
+						'<span class="ui-icon  ui-icon-comment"></span></button>'
+				/*return '<div title="' + gM('closed_captions') + '" id="timed_text_' + ctrlBuilder.id +'" ' +
 							'class="ui-state-default ui-corner-all ui-icon_link rButton">' +
-						'<span class="ui-icon ui-icon-comment"></span></div>';
+						'<span class="ui-icon ui-icon-comment"></span></div>';*/
 			}
 		},
 		'fullscreen':{

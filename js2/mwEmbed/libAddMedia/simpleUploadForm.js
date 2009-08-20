@@ -64,7 +64,8 @@ var default_form_options = {
 				'<textarea cols="30" rows="3" name="wpUploadDescription" tabindex="3"/><br>'+
 				
 				'<div id="wpDestFile-warning"></div>' +
-								
+				'<div style="clear:both;"></div>' +
+				
 				gM('select_ownwork') + '<br>' +
 				'<input type="checkbox" id="wpLicence" name="wpLicence" value="cc-by-sa">' + gM('licence_cc-by-sa') + '<br>' +
 
@@ -90,16 +91,16 @@ var default_form_options = {
 				opt.ondone_cb = false;
 
 			//set up the binding per the config
-			if( opt.enable_fogg ){				
+			if( opt.enable_fogg ){
 				$j("#suf-upload [name='wpUploadFile']").firefogg({
 					//an api url (we won't submit directly to action of the form)
 					'api_url' : opt.api_target,
 					'form_rewrite': true,
 					'target_edit_from' : '#suf-upload',
 					'new_source_cb' : function( orgFilename, oggName ){
-							$j("#suf-upload [name='wpDestFile']").val( oggName ).doDestCheck({								
-								warn_target: "#wpDestFile-warning" 
-							});							
+						$j("#suf-upload [name='wpDestFile']").val( oggName ).doDestCheck({								
+							warn_target: "#wpDestFile-warning" 
+						});							
 					},
 					'done_upload_cb' : opt.ondone_cb
 				});
