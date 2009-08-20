@@ -199,6 +199,7 @@ this. Was used when mwEmbed was going to be an extension.
 * New hook SpecialRandomGetRandomTitle allows extensions to modify the selection
   criteria used by Special:Random and subclasses, or substitute a custom result,
   deprecating the $wgExtraRandompageSQL config variable
+* (bug 20318) Distinct CSS classes for ISBN/RFC/PMID special links added
 
 === Bug fixes in 1.16 ===
 
