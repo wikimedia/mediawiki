@@ -425,14 +425,13 @@ mvPlayList.prototype = {
 			//append title & controler:
 			$j('#dc_'+_this.id).append(
 				'<div style="font-size:13px;border:solid thin;width:'+this.width+'px;" id="ptitle_'+this.id+'"></div>' +
-				'<div class="videoPlayer" style="z-index:-1;position:absolute;top:'+(_this.height+_this.pl_layout.title_bar_height+4)+'px">' +
-				//'<div id="mv_embedded_controls_'+_this.id+'" class="ui-widget ui-corner-bottom ui-state-default controls" '+
-				'<div class="k-control-bar ui-widget-header ui-helper-clearfix" ' + 
+				'<div class="videoPlayer" style="position:absolute;top:'+(_this.height+_this.pl_layout.title_bar_height+4)+'px">' +
+				'<div id="mv_embedded_controls_'+_this.id+'" class="ui-widget ui-corner-bottom ui-state-default controls" '+
 					'style="width:' + _this.width + 'px" >' + 
 						 _this.getControlsHTML() +
 					'</div>'+
 				'</div>'
-			);											
+			);												
 					
 			//add the play button:						
 			$j('#dc_'+_this.id).append(
@@ -549,13 +548,11 @@ mvPlayList.prototype = {
 	setStatus:function(value){
 		$j('#mv_time_'+this.id).html( value );
 	},
-	setSliderValue:function(value){		
-		var _this = this;		
+	setSliderValue:function(value){				
 		//slider is on 1000 scale: 
 		var val = parseInt( value *1000 ); 			
-		$//j('#mv_play_head_' + this.id).slider('value', val);	
-		$j('#'+this.id + ' .j-scrubber').slider('value', val);	
-	},	
+		$j('#mv_play_head_' + this.id).slider('value', val);		
+	},
 	getPlayHeadPos: function(prec_done){
 		var	_this = this;
 		if($j('#mv_seeker_'+this.id).length==0){
