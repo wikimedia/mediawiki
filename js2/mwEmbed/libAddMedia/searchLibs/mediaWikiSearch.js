@@ -15,7 +15,7 @@ mediaWikiSearch.prototype = {
 		//inherit the cp settings for 
 	},	
 	//returns a rObj by title 
-	getRObjByTitle:function( title , callback){		
+	addByTitle:function( title , callback){		
 		var _this = this;
 		var reqObj = {
 			'action':'query',
@@ -28,15 +28,8 @@ mediaWikiSearch.prototype = {
 		do_api_req( {
 			'data':reqObj, 
 			'url':this.cp.api_url 
-			}, function(data){
-				_this.clearResults();				
-				//get results with rObj callback
-				_this.addResults(data);				
-				//should only be one value:
-				for(var i in _this.resultsObj){											
-					callback(  _this.resultsObj[i] );
-					break;			
-				}			
+			}, function(data){		
+				callback( _this.addSingleResult(data) );			
 			}
 		);			
 	},
@@ -82,7 +75,7 @@ mediaWikiSearch.prototype = {
 					'rvprop':'content'	
 				},
 				'url':_this.cp.api_url
-			},function(data){
+			},function(data){				
 				_this.clearResults();
 				_this.addResults(data);
 				if(callback)
@@ -130,7 +123,11 @@ mediaWikiSearch.prototype = {
 				_this.loading = false;
 		});			
 	},	
-	addResults:function( data ){	
+	//same as below but returns your rObj for convience
+	addSingleResult:function( data ){	
+		return this.addResults(data, true);
+	},
+	addResults:function( data, returnFirst ){	
 		js_log("f:addResults");
 		var _this = this		
 		//check if we have 
@@ -158,6 +155,7 @@ mediaWikiSearch.prototype = {
 				if( !page.imageinfo )
 					continue;
 				var rObj = 	{
+					'id'		 : page_id,
 					'titleKey'	 : page.title,
 					'link'		 : page.imageinfo[0].descriptionurl,				
 					'title'		 : page.title.replace(/File:|.jpg|.png|.svg|.ogg|.ogv|.oga/ig, ''),
@@ -174,21 +172,24 @@ mediaWikiSearch.prototype = {
 					'meta':{
 						'categories':page.categories
 					}
-				};
-				
+				};			
 				//attempt to parse out some stuff from the teplate: 
 				var desc = rObj.desc.match(/\|Description=(([^\n]*\n)*)\|Source=/)
 				if( desc && desc[1] ){					
 					rObj.desc = $j.trim( desc[1] );
-				}												
-				
+				}										
 				//likely a audio clip if no poster and type application/ogg 
 				//@@todo we should return audio/ogg for the mime type or some other way to specify its "audio" 
 				if( ! rObj.poster && rObj.mime == 'application/ogg' ){					
 					rObj.mime = 'audio/ogg';
-				}								
+				}
+				//add to the resultObj
+				this.resultsObj[page_id] = rObj;
 				
-				this.resultsObj[page_id]= rObj;				
+				//if returnFirst flag:
+				if(returnFirst)
+					return this.resultsObj[page_id];
+				
 				
 				this.num_results++;	
 				//for(var i in this.resultsObj[page_id]){

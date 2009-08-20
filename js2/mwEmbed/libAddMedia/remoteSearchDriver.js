@@ -33,7 +33,10 @@ loadGM({
 	"results_from" : "Results from <a href=\"$1\" target=\"_new\" >$2<\/a>",
 	"missing_desc_see_soruce" : "This asset is missing a description. Please see the [$1 orginal source] and help describe it.",
 	"rsd_config_error" : "Add media wizard configuration error :  $1",
-	"uploaded_itmes" : "Uploaded Items:"
+	"uploaded_itmes" : "Uploaded Items:",
+	
+	"your_recent_uploads" : "Your Recent Uploads",
+	"upload_a_file": "Upload a New File"
 });
 var default_remote_search_options = {
 	'profile':'mediawiki_edit',
@@ -590,10 +593,20 @@ remoteSearchDriver.prototype = {
 				//load  this_wiki search system to grab the rObj
 				_this.loadSearchLib(cp, function(){
 					//do basic layout form on left upload "bin" on right
-					$j('#tab-upload').html('<table>' +
+					$j('#tab-upload').html('<table cellspacing="10">' +
 					'<tr>' +
-						'<td style="width:350px;padding:10px" id="upload_form">' + mv_get_loading_img() +'</td>' +
-						'<td valign="top" id="upload_bin"></td>' +
+						'<td valign="top" style="width:350px;">' +
+							'<h4>' + gM('upload_a_file') + '</h4>' +  
+						 	'<div id="upload_form">' +						 	
+						 		mv_get_loading_img() +
+						 	'</div>' +
+						'</td>' +
+						'<td valign="top" id="upload_bin_cnt">' +
+						'<h4>' + gM('your_recent_uploads') + '</h4>' +  
+							'<div id="upload_bin">' +
+								mv_get_loading_img() +
+							'</div>'+
+						'</td>' +
 					'</tr>' +
 					'</table>');
 					
@@ -605,7 +618,7 @@ remoteSearchDriver.prototype = {
 							_this.drawOutputResults();
 						});								
 					}else{		
-						$j('#upload_bin').empty();										
+						$j('#upload_bin_cnt').empty();										
 					}						
 					
 					//deal with the api form upload form directly:
@@ -618,9 +631,12 @@ remoteSearchDriver.prototype = {
 								'style="position:absolute;top:0px;left:0px;bottom:5px;right:4px;background-color:#FFF;">' +
 									mv_get_loading_img('position:absolute;top:30px;left:30px') +
 							'</div>');											
-								cp.sObj.getRObjByTitle( wTitle, function( rObj ){
+								cp.sObj.addByTitle( wTitle, function( rObj ){
 									$j( _this.target_container ).find('#temp_edit_loader').remove();
-									//append the image to the upload bin
+									//redraw (with added result if new) 
+									_this.drawOutputResults();																	
+									//pull up recource editor: 
+									_this.resourceEdit( rObj, $j('#res_upload_' + rObj.id).get(0) );
 								});								
 							//return false to close progress window:
 							return false;
@@ -916,20 +932,21 @@ remoteSearchDriver.prototype = {
 	//@@todo we could load the id with the content provider id to find the object faster...
 	getResourceFromId:function( rid ){
 		//js_log('getResourceFromId:' + rid );
-		//strip out /res/ if preset:
+		//strip out /res/ if preset:				
 		rid = rid.replace(/res_/, '');
-		for(var cp_id in  this.content_providers){
-			cp = this.content_providers[ cp_id ];
-			if(rid.indexOf( cp_id ) != -1){
-				rid = rid.replace( cp_id + '_','');
-				if(	cp['sObj']){
-					for(var rInx in cp.sObj.resultsObj){
-						if( rInx == rid )
-							return cp.sObj.resultsObj[rInx];
-					};
-				}
-			}
-		}
+		js_log("looking at: " + rid);
+		p = rid.split('_');
+		var cp_id = p[0];
+		var rid = p[1];		
+		if(cp_id == 'upload')
+			cp_id = 'this_wiki';
+			
+		var cp = this.content_providers[cp_id];
+		
+		if(cp['sObj'] && cp.sObj.resultsObj[rid]){
+			return cp.sObj.resultsObj[rid];
+		}		
+	
 		js_log("ERROR: could not find " + rid);
 		return false;
 	},
