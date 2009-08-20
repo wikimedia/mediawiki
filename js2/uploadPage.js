@@ -25,7 +25,9 @@ var mwUploadHelper = {
 				'new_source_cb' : function( orgFilename, oggName ){
 				        if($j('#wpDestFile').val() == "")
 						    $j('#wpDestFile').val( oggName );
-						mwUploadHelper.doDestCheck();
+						$j('#wpDestFile').doDestCheck({
+							'warn_target':'#wpDestFile-warning'
+						});
 				},
 				'detect_cb':function( fogg_installed ){
 					if(fogg_installed){
@@ -48,7 +50,11 @@ var mwUploadHelper = {
 
 		if( wgAjaxUploadDestCheck ){
 			//do destination check:
-			$j('#wpDestFile').change( mwUploadHelper.doDestCheck );
+			$j('#wpDestFile').change(function(){
+				$j(this).doDestCheck({
+					'warn_target':'#wpDestFile-warning'
+				});
+			});
 		}
 
 		//check if we have http enabled & setup enable/disable toggle:
@@ -86,72 +92,11 @@ var mwUploadHelper = {
 					'firefogg_form_action': $j('#wpSourceTypeFile').attr('checked')
 			});
 		}
-	},
-	/**
-	 * doDestCheck checks the destination
-	 */
-	doDestCheck:function(){
-		var _this = this;
-		$j('#wpDestFile-warning').empty();
-		//show loading
-		$j('#wpDestFile').after('<img id = "mw-spinner-wpDestFile" src ="'+ stylepath + '/common/images/spinner.gif" />');
-		//try and get a thumb of the current file (check its destination)
-		do_api_req({
-			'data':{
-				'titles': 'File:' + $j('#wpDestFile').val(),//@@todo we may need a more clever way to get a the filename
-				'prop':  'imageinfo',
-				'iiprop':'url|mime|size',
-				'iiurlwidth': 150
-			},
-			'url': _this.api_url
-		},function(data){
-			//remove spinner:
-			$j('#mw-spinner-wpDestFile').remove();
-			if(data && data.query && data.query.pages){
-				if( data.query.pages[-1] ){
-					//all good no file there
-				}else{
-					for(var page_id in data.query.pages){
-						if( data.query.normalized){
-							var ntitle = data.query.normalized[0].to;
-						}else{
-							var ntitle = data.query.pages[ page_id ].title;
-						}
-						var img = data.query.pages[ page_id ].imageinfo[0];
-						$j('#wpDestFile-warning').html(
-							'<ul>' +
-								'<li>'+
-									gM('mwe-fileexists', ntitle) +
-								'</li>'+
-								'<div class="thumb tright">' +
-									'<div style="width: ' + ( parseInt(img.thumbwidth)+2 ) + 'px;" class="thumbinner">' +
-										'<a title="' + ntitle + '" class="image" href="' + img.descriptionurl + '">' +
-											'<img width="' + img.thumbwidth + '" height="' + img.thumbheight + '" border="0" class="thumbimage" ' +
-											'src="' + img.thumburl + '"' +
-											'	 alt="' + ntitle + '"/>' +
-										'</a>' +
-										'<div class="thumbcaption">' +
-											'<div class="magnify">' +
-												'<a title="' + gM('thumbnail-more') + '" class="internal" ' +
-													'href="' + img.descriptionurl +'"><img width="15" height="11" alt="" ' +
-													'src="' + stylepath + "/common/images/magnify-clip.png\" />" +
-												'</a>'+
-											'</div>'+
-											gM('mwe-fileexists-thumb') +
-										'</div>' +
-									'</div>'+
-								'</div>' +
-							'</ul>'
-						);
-					}
-				}
-			}
-		});
-	},
+	},	
 	/**
 	 * doDestinationFill fills in a destination file-name based on a source asset name.
 	 */
-	doDestinationFill:function( targetElm ){
+	doDestinationFill : function( targetElm ){
 		js_log("doDestinationFill")
 		//remove any previously flagged errors
 		$j('#mw-upload-permitted,#mw-upload-prohibited').hide();

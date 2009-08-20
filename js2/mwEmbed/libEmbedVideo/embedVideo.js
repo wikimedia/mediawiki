@@ -26,7 +26,7 @@ loadGM({
 	"download_clip" : "Download video",
 	"download_text" : "Download text (<a style=\"color:white\" title=\"cmml\" href=\"http:\/\/wiki.xiph.org\/index.php\/CMML\">CMML<\/a> xml):",
 	"download" : "Download",
-	"share" : "Share",
+	"share" : "Share",	
 	"credits" : "Credits",
 	"clip_linkback" : "Clip source page",
 	"chose_player" : "Choose Video Player",
@@ -47,7 +47,9 @@ loadGM({
 	"mv_generic_missing_plugin" : "You browser does not appear to support the following playback type: <b>$1<\/b><br \/>Visit the <a href=\"http:\/\/commons.wikimedia.org\/wiki\/Commons:Media_help\">Playback Methods<\/a> page to download a player.<br \/>",
 	"mv_for_best_experience" : "For a better video playback experience we recommend:<br \/><b><a href=\"http:\/\/www.mozilla.com\/en-US\/firefox\/upgrade.html?from=mwEmbed\">Firefox 3.5<\/a>.<\/b>",
 	"mv_do_not_warn_again" : "Dissmiss for now.",
-	"playerselect" : "Players"
+	"playerselect" : "Players",
+	"read_before_embed": 'Please <a href="http://mediawiki.org/wiki/Security_Notes_on_Remote_Embedding" target="_new">Read This</a> before embeding!',
+	"embed_site_or_blog": "Embed on your site or blog"
 });
 
 var default_video_attributes = {
@@ -1576,19 +1578,18 @@ embedVideo.prototype = {
 	showShare:function($target){	
 		var	embed_code = this.getEmbeddingHTML();
 		var o = '';
-                //@todo: hook events to two a's for swapping in and out code for link vs. embed;
-                //       hook events for changing active class of li based on a.
-		o+= '<h2>Share This Video</h2>\n' +
+        //@todo: hook events to two a's for swapping in and out code for link vs. embed;
+        //       hook events for changing active class of li based on a.
+		o+= '<h2>' + gM('share_this_video') + '</h2>\n' +
 			' <ul>\n' +
-			'  <li><a href="#" id="k-share-embed" class="active">Embed on your site or blog</a></li>\n';
+			'  <li><a href="#" id="k-share-embed" class="active">'+gM('embed_site_or_blog')+'</a></li>\n';
 		if(this.linkback) {
-		  o+=   '  <li><a href="#" id="k-share-link">' + this.linkback + '</a></li>\n';
-                }
+			o+=   '  <li><a href="#" id="k-share-link">' + this.linkback + '</a></li>\n';
+        }
 		o+=	' </ul>\n' +
 			' <div class="k_field_wrap"><textarea>' + embed_code + '</textarea></div>\n' +
 			' <button class="ui-state-default ui-corner-all"> Copy Code </button>\n' +
-			' <div class="ui-state-highlight ui-corner-all"><a href="http://metavid.org/wiki/Security_Notes_on_Remote_Embedding" target="_blank">' +
-				'Read This</a> before embeding!</div>\n' +
+			' <div class="ui-state-highlight ui-corner-all">'+gM('read_before_embed') + '</div>\n' +
 			'</div>'
 
 //                '<textarea onClick="this.select();" id="embedding_user_html_' + this.id + '" name="embed">' +
@@ -1930,13 +1931,13 @@ embedVideo.prototype = {
 		var this_id = (this.pc!=null)?this.pc.pp.id:this.id;
 		if(this.muted){
 			this.muted=false;
-			$j( '#volume_control_' + this_id + ' span').removeClass('ui-icon-volume-off').addClass('ui-icon-volume-on');
-			$j( '#volume_bar_' + this_id).slider('value', 100);
+			$j( '#'+ this_id + ' .volume_control span').removeClass('ui-icon-volume-off').addClass('ui-icon-volume-on');
+			$j( '#'+ this_id + ' .volume_bar' ).slider('value', 100);
 			this.updateVolumen(1);
 		}else{
 			this.muted=true;
-			$j('#volume_control_'+this_id + ' span').removeClass('ui-icon-volume-on').addClass('ui-icon-volume-off');
-			$j('#volume_bar_'+this_id).slider('value', 0);
+			$j( '#'+ this_id + ' .volume_control span').removeClass('ui-icon-volume-on').addClass('ui-icon-volume-off');
+			$j( '#'+ this_id + ' .volume_bar' ).slider('value', 0);
 			this.updateVolumen(0);
 		}
 		js_log('f:toggleMute::' + this.muted);

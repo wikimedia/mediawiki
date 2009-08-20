@@ -13,7 +13,83 @@ mediaWikiSearch.prototype = {
 			}
 		}
 		//inherit the cp settings for 
+	},	
+	//returns a rObj by title 
+	getRObjByTitle:function( title , callback){		
+		var _this = this;
+		var reqObj = {
+			'action':'query',
+			'titles':'File:'+title,	
+			'prop':'imageinfo|revisions|categories',
+			'iiprop':'url|mime|size',
+			'iiurlwidth': parseInt( this.rsd.thumb_width ),
+			'rvprop':'content'	
+		}
+		do_api_req( {
+			'data':reqObj, 
+			'url':this.cp.api_url 
+			}, function(data){
+				_this.clearResults();				
+				//get results with rObj callback
+				_this.addResults(data);				
+				//should only be one value:
+				for(var i in _this.resultsObj){											
+					callback(  _this.resultsObj[i] );
+					break;			
+				}			
+			}
+		);			
 	},
+	clearResults:function(){
+		this.resultsObj = {};		
+		this.last_query ='';
+	},
+	//update the resultObj with recently uploaded items by current User:
+	getUserRecentUploads:function(wgUser, callback){
+		var _this = this;
+		do_api_req({
+			'data':{
+				'action':'query',
+				'list':'recentchanges',
+				'rcnamespace':6, //only files
+				'rcuser': wgUser,
+				'rclimit':15, //get last 15 uploaded files 				
+			},
+			'url':this.cp.api_url
+		},function(data){			
+			var titleSet = {};
+			var titleStr=''
+			var pound='';
+			//loop over the data and group by title
+			if(data.query && data.query.recentchanges){	
+				for(var i in data.query.recentchanges){
+					var rc = data.query.recentchanges[i];
+					if( !titleSet[ rc.title ] ){
+						titleSet[ rc.title ]=true;
+						titleStr+= pound + rc.title;
+						pound ='|';
+					}
+				}
+			}					
+			//now run the actual query ( too bad we cant use recentchanges as a gennerator
+			do_api_req({
+				'data' : {
+					'action':'query',
+					'titles':titleStr,	
+					'prop':'imageinfo|revisions|categories',
+					'iiprop':'url|mime|size',
+					'iiurlwidth': parseInt( _this.rsd.thumb_width ),
+					'rvprop':'content'	
+				},
+				'url':_this.cp.api_url
+			},function(data){
+				_this.clearResults();
+				_this.addResults(data);
+				if(callback)
+					callback();
+			});			
+		});
+	}, 	
 	getSearchResults:function(){
 		//call parent: 
 		this.parent_getSearchResults();
@@ -62,8 +138,7 @@ mediaWikiSearch.prototype = {
 			if( typeof data['query-continue'].search != 'undefined')
 				this.more_results = true;			
 		}
-		//make sure we have pages to iderate: 
-		
+		//make sure we have pages to iderate: 	
 		if(data.query && data.query.pages){
 			for(var page_id in  data.query.pages){
 				var page =  data.query.pages[ page_id ];
@@ -75,15 +150,14 @@ mediaWikiSearch.prototype = {
 				}
 				
 				//make sure the page is not a redirect
-				if(page.revisions[0]['*'].indexOf('#REDIRECT')===0){
+				if(page.revisions[0]['*'] && page.revisions[0]['*'].indexOf('#REDIRECT')===0){
 					//skip page is redirect 
 					continue;
 				}								
 				//skip if its an empty or missing imageinfo: 
 				if( !page.imageinfo )
 					continue;
-										
-				this.resultsObj[page_id]={
+				var rObj = 	{
 					'titleKey'	 : page.title,
 					'link'		 : page.imageinfo[0].descriptionurl,				
 					'title'		 : page.title.replace(/File:|.jpg|.png|.svg|.ogg|.ogv|.oga/ig, ''),
@@ -100,20 +174,21 @@ mediaWikiSearch.prototype = {
 					'meta':{
 						'categories':page.categories
 					}
-				}
+				};
+				
 				//attempt to parse out some stuff from the teplate: 
-				var desc = this.resultsObj[page_id].desc.match(/\|Description=(([^\n]*\n)*)\|Source=/)
+				var desc = rObj.desc.match(/\|Description=(([^\n]*\n)*)\|Source=/)
 				if( desc && desc[1] ){					
-					this.resultsObj[page_id].desc = $j.trim( desc[1] );
-				}				
-				
-				
+					rObj.desc = $j.trim( desc[1] );
+				}												
 				
 				//likely a audio clip if no poster and type application/ogg 
 				//@@todo we should return audio/ogg for the mime type or some other way to specify its "audio" 
-				if( ! this.resultsObj[page_id].poster && this.resultsObj[page_id].mime == 'application/ogg' ){					
-					this.resultsObj[page_id].mime = 'audio/ogg';
-				}
+				if( ! rObj.poster && rObj.mime == 'application/ogg' ){					
+					rObj.mime = 'audio/ogg';
+				}								
+				
+				this.resultsObj[page_id]= rObj;				
 				
 				this.num_results++;	
 				//for(var i in this.resultsObj[page_id]){
@@ -122,7 +197,7 @@ mediaWikiSearch.prototype = {
 			}
 		}else{
 			js_log('no results:' + data);
-		}
+		}	
 	},	
 	//check request done used for when we have multiple requests to check before formating results. 
 	checkRequestDone:function(){

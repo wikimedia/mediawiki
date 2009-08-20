@@ -28,7 +28,7 @@ var MV_EMBED_VERSION = '1.0r19';
  * @@ more config valuse on the way ;)
  */
 var defaultMwConfig = {
-	'skin_name': 'kskin',
+	'skin_name': 'mvpcf',
 	'jui_skin': 'redmond',
 	'video_size':'400x300'
 }
@@ -414,9 +414,9 @@ var mvJsLoader = {
 			this.callbacks.push(callback);
 		}
 		if( this.checkLoading() ){
-			 if( this.load_time++ > 1000){ //time out after ~80seconds
+			 if( this.load_time++ > 2000){ //time out after ~80seconds
 				 js_error( gM('error_load_lib') +  this.missing_path );
-				 this.load_error=true;
+				 this.load_error = true;
 			 }else{
 				setTimeout( 'mvJsLoader.doLoad()', 20 );
 			 }
@@ -469,7 +469,7 @@ var mvJsLoader = {
 		 	});
 	 	}		 },
 	 checkLoading:function(){
-		  var loading=0;
+		 var loading=0;
 		 var i=null;
 		 for(var i in this.libs){ //for in loop oky on object
 			 if( !this.checkObjPath( i ) ){

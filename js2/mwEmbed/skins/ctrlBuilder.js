@@ -88,7 +88,7 @@ var ctrlBuilder = {
 			$j('#dc_'+ embedObj.id).hover(
 				function(){
 					if($j('#gnp_' + embedObj.id).length==0){
-						$j(this).append('<div id="gnp_' + embedObj.id + '" class="ui-state-highlight ui-corner-all" ' +
+						$j(this).append('<div id="gnp_' + embedObj.id + '" class="ui-state-highlight ui-corner-all gnp-warning" ' +
 							'style="position:absolute;display:none;background:#FFF;top:10px;left:10px;right:10px;height:60px;">' +
 							gM('mv_for_best_experience') +
 						'<br><input id="ffwarn_'+embedObj.id+'" type=\"checkbox\">' +
@@ -129,12 +129,12 @@ var ctrlBuilder = {
 		});
 
 		//options binding:
-		$j('#options_button_' + embedObj.id).unbind().btnBind().click(function(){
-			$j('#' +embedObj.id).get(0).doOptionsHTML();
-		});
+		//$j('#options_button_' + embedObj.id).unbind().btnBind().click(function(){
+		//	$j('#' +embedObj.id).get(0).doOptionsHTML();
+		//});
 
 		//fullscreen binding:
-		$j('#fullscreen_' + embedObj.id).unbind().btnBind().click(function(){
+		$tp.find('.k-fullscreen').unbind().btnBind().click(function(){
 			$j('#' +embedObj.id).get(0).fullscreen();
 		});
 
@@ -186,9 +186,9 @@ var ctrlBuilder = {
 			value: 80,
 			min: 0,
 			max: 100,
-                        slide: function(event, ui) {
-                                 embedObj.updateVolumen(ui.value/100);
-                        },
+            slide: function(event, ui) {
+                     embedObj.updateVolumen(ui.value/100);
+            },
 			change: function(event, ui){
 				var level = ui.value/100;
 				if (level==0) {
@@ -244,11 +244,16 @@ var ctrlBuilder = {
 		}	
    		
    		//options menu display:			
-       	$tp.find('.k-options').click(function(){      
-       		if($j('#' + embedObj.id + ' .k-menu').length == 0 )
+       	$tp.find('.k-options').click(function(){          		   
+       		if($j('#' + embedObj.id + ' .k-menu').length == 0 ){
+       			//stop the player if it does not support overlays: 
+       			if(!embedObj.supports['overlays'])
+       				$tp.get(0).stop();
+				//add the options       				
        			addMvOptions();
+       		}
        		//set up the text and menu:       			 					
-       		var $ktxt = $j(this).find('.ui-icon-k-menu');
+       		var $ktxt = $j(this);
        		var $kmenu = $tp.find('.k-menu');
 			if( $kmenu.is(':visible') ){
 				$kmenu.fadeOut("fast",function(){
@@ -264,8 +269,8 @@ var ctrlBuilder = {
         });	
 
 		//volume binding:
-		$tp.find('.k-volume').unbind().btnBind().click(function(){
-			$tp.toggleMute();
+		$tp.find('.k-volume').unbind().btnBind().click(function(){	
+			$tp.get(0).toggleMute();
 		});
 
 		var hoverOverDelay=false;
@@ -382,7 +387,7 @@ var ctrlBuilder = {
 		'volume_control':{
 			'w':40,
 			'o':function(){
-				return '<button class="ui-state-default ui-corner-all k-volume">' +
+				return '<button class="ui-state-default ui-corner-all k-volume_control">' +
 							'<span class="ui-icon ui-icon-volume-on"></span>' +
 						'</button>' +
 						'<div class="ui-slider ui-slider-horizontal k-volume-slider"></div>';

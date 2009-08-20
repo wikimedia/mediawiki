@@ -11,12 +11,14 @@
 .k-timer { margin-top:2px;}
 .k-volume-slider { width:26px;}
 .k-control-bar .k-options { width:50px; height:22px; text-transform:uppercase; margin-top:-2px; border: solid 1px #aaa; border-top:none; float:right; font: bold 11px arial,sans-serif; color:#555;}
+
 span.ui-icon.ui-icon-k-menu { width:auto; padding-left:2px; background:none; outline:none; cursor:default;}
-.k-menu { z-index:1; width:400px; height:300px; background:#181818; position:absolute;opacity:0.9;filter:alpha(opacity=90); top:0px; left:0px; display:none} /* h, w, top inline via jq top:15px*/
+.k-menu { opacity:0.9; filter:alpha(opacity=90); z-index:1; width:400px; height:300px; background:#181818; position:absolute; top:0px; left:0px;} /* h, w, top inline via jq top:15px*/
 
 ul.k-menu-bar{ height:128px; padding: 0 0 5px;position:absolute; bottom:5px;right:0px; list-style: none outside none; background: url(images/ksprite.png) -99px -104px no-repeat;} /* eventually: mtop inline via jq */
 .k-menu-bar li a { display:block; width:49px; height:32px; margin-left:1px; text-indent:99999px; background: url(images/ksprite.png) -51px -110px no-repeat; overflow:hidden;}
 .k-menu-bar li a:hover { background-position: -1px -110px;}
+
 
 .k-menu-bar li.k-download-btn a { background-position: -51px -203px;}
 .k-menu-bar li.k-download-btn a:hover { background-position: -1px -203px;}
@@ -26,6 +28,8 @@ ul.k-menu-bar{ height:128px; padding: 0 0 5px;position:absolute; bottom:5px;righ
 
 .k-menu-bar li.k-credits-btn a { background-position: -51px -141px;}
 .k-menu-bar li.k-credits-btn a:hover { background-position: -1px -141px;}
+ 
+ 
  
 .k-menu-screens { width:320px; padding: 13px 10px 15px 15px; float:left;} /* w & h inline via jq */
 .k-menu-screens h2 { padding: 0 0 5px 1px; clear:both; font-size:12px; color:#666;}
@@ -70,10 +74,18 @@ a:hover.k-next-credit { background-position: 0px -260px;}
 
 .k-options.ui-state-hover { color:blue;}
  
+.k-player .ui-state-default .ui-icon, .k-player .ui-state-hover .ui-icon {background:transparent url(images/ksprite.png) no-repeat scroll 0 -48px;}
+ 
 .k-player .ui-state-default .ui-icon-arrow-4-diag { background-position: 0 -32px;} /* fullscreen */
 .k-player .ui-state-hover .ui-icon-arrow-4-diag { background-position: -16px -32px;}
 .k-player .ui-state-default .ui-icon-volume-on,  .ui-state-hover .ui-icon-volume-off,  { margin-left:-6px; background-position: -16px -48px;}
 .k-player .ui-state-hover .ui-icon-volume-on, .ui-state-default .ui-icon-volume-off { margin-left:-6px; background-position: 0 -48px;}
+
+.k-player .ui-state-default .ui-icon-play { background:url(images/ksprite.png) no-repeat 0 0;}
+.k-player .ui-state-hover .ui-icon-play { background-position: -16px 0;}
+
+.k-player .ui-state-default .ui-icon-pause { background:url(images/ksprite.png) no-repeat 0 -17px;}
+.k-player .ui-state-hover .ui-icon-pause { background-position: -16px -17px;}
 
 .k-control-bar .ui-slider { height:8px; border: solid 1px #eee; margin: 4px 10px 0 7px; position:relative; background:url(images/ksprite.png) repeat-x 0 -350px;}
 .k-control-bar .ui-slider-handle { width:8px; height:8px; top:0px; border: solid 1px #888; margin: -1px 0 0 -5px; display:block; position:relative; background: url(images/ksprite.png) no-repeat -67px -341px; position:absolute;}
