@@ -1431,7 +1431,7 @@ mvSequencer.prototype = {
 		$j(this.target_sequence_container).append('<div id="'+ this.timeline_id +'_pl_control"'+
 			' style="position:absolute;top:' + (this.plObj.height) +'px;'+
 			'right:1px;width:'+this.plObj.width+'px;height:'+this.plObj.org_control_height+'" '+
-			'class="videoPlayer"><div class="ui-widget ui-corner-bottom ui-state-default controls">'+
+			'class="k-player"><div class="ui-widget ui-corner-bottom ui-state-default k-control-bar">'+
 					 this.plObj.getControlsHTML() +
 				 '</div>'+
 			'</div>');

@@ -678,24 +678,23 @@ div.rsd_selected {
 /* jquery.ui overides */
 
 .ui-icon_link {
-	padding: .4em 1em .4em 20px;
-	text-decoration: none;
+	padding: .4em 1em .4em 20px !Important;
+	text-decoration: none !Important;
 	position: relative;	
 }
 .ui-icon_link span.ui-icon {
-	margin: 0 5px 0 0;
-	position: absolute;
-	left: 0.2em;
-	right: auto;
-	top: 50%;
-	margin-top: -8px;
-	zoom: 1;
+	margin: 0 5px 0 0 !Important;	
+	position: absolute !Important;	
+	left: 0.2em !Important;	
+	right: auto !Important;	
+	top: 50% !Important;	
+	margin-top: -8px !Important;	
 }
 .ui-icon_link span.ui-text {	
-	position: absolute;
-	left: 0.2em;
-	right: auto;	
-	margin-top: -3px;
+	position: absolute !Important;	
+	left: 0.2em !Important;	
+	right: auto;		
+	margin-top: -3px !Important;	
 	zoom: 1;
 }
 
@@ -853,12 +852,12 @@ a:hover.k-next-credit { background-position: 0px -260px;}
 .k-control-bar .k-volume-slider a:hover.ui-slider-handle { border: solid 1px #999;}
 .k-control-bar .k-volume-slider .ui-slider-range { height:17px; position:absolute; background: url(images/ksprite.png) repeat-x -66px -306px; -moz-border-radius:0; -webkit-border-radius:0;}  
 
-.play-btn-large { width:120px; height:55px; border:none; background: url(images/ksprite.png) no-repeat 28px -433px; position:absolute; cursor:pointer;} /*.ui-state-default */
+.play-btn-large { width:120px; height:55px; border:none; background: url(images/ksprite.png) no-repeat 28px -433px !Important; position:absolute; cursor:pointer;} /*.ui-state-default */
 .play-btn-large.ui-state-hover { background: url(images/ksprite.png) no-repeat 28px -377px; }
 
 .k-volume.ui-state-hover { margin-left:6px; }
 
-
+	
 /* move to ie css */
 .k-volume-slider span, span.ui-icon-play, span.ui-icon-volume-on, button.k-fullscreen { *margin-top:-1px;}
 span.ui-icon-volume-on { *margin-left:0 !important;}
@@ -871,6 +870,9 @@ span.ui-icon-k-menu { *margin-top:3px;}
 /* end debug */
 
 .ui-state-default, .ui-widget-content .ui-state-default {
-	border:none;
+	border: thin solid;
+}
+.k-player .ui-state-default, .ui-widget-content .ui-state-default {
+	border: none;
 }
 /*** end player ***/
