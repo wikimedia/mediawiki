@@ -270,6 +270,11 @@ class HistoryPager extends ReverseChronologicalPager {
 		$this->tagFilter = $tagFilter;
 		$this->getDateCond( $year, $month );
 	}
+	
+	// For hook compatibility...
+	function getArticle() {
+		return $this->historyPage->getArticle();
+	}
 
 	function getQueryInfo() {
 		$queryInfo = array(
