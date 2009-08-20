@@ -658,9 +658,9 @@ mvBaseUploadInterface.prototype = {
 		  buttons: _this.cancel_button()
 	  });
 	  $j('#upProgressDialog').html(
-	  //set initial content:
+	  	//set initial content:
 		'<div id="up-pbar-container" style="width:90%;height:15px;" >' +
-			'<div id="up-progressbar" style="height:15px;"></div>' +
+		'<div id="up-progressbar" style="height:15px;"></div>' +
 			'<div id="up-status-container">'+
 				'<span id="up-pstatus">0% - </span> ' +
 				'<span id="up-status-state">' + gM('mwe-uploaded-status') + '</span> ' +
@@ -694,3 +694,71 @@ mvBaseUploadInterface.prototype = {
 		}
 	}
 };
+
+//add some jquery bindings:
+(function($) {
+	/**
+	 * doDestCheck checks the destination
+	 */
+	$.fn.doDestCheck = function( opt ){
+		var _this = this;	
+		var destFile = this.selector;	
+		//set up option defaults; 
+		if(!opt.warn_target)
+			opt.warn_target = '#wpDestFile-warning';
+		
+		//empty target warn: 
+		$j(opt.warn_target).empty();
+		
+		//show loading
+		$j(destFile).after('<img id = "mw-spinner-wpDestFile" src ="'+ stylepath + '/common/images/spinner.gif" />');
+		//try and get a thumb of the current file (check its destination)
+		do_api_req({
+			'data':{
+				'titles': 'File:' + $j(destFile).val(),//@@todo we may need a more clever way to get a the filename
+				'prop':  'imageinfo',
+				'iiprop':'url|mime|size',
+				'iiurlwidth': 150
+			}
+		},function(data){
+			//remove spinner:
+			$j('#mw-spinner-wpDestFile').remove();
+			if(data && data.query && data.query.pages){
+				if( data.query.pages[-1] ){
+					//all good no file there
+				}else{
+					for(var page_id in data.query.pages){
+						var ntitle = ( data.query.normalized)? data.query.normalized[0].to : data.query.pages[ page_id ].title						
+						var img = data.query.pages[ page_id ].imageinfo[0];
+						$j('#wpDestFile-warning').html(
+							'<ul>' +
+								'<li>'+
+									gM('mwe-fileexists', ntitle) +
+								'</li>'+
+								'<div class="thumb tright">' +
+									'<div style="width: ' + ( parseInt(img.thumbwidth)+2 ) + 'px;" class="thumbinner">' +
+										'<a title="' + ntitle + '" class="image" href="' + img.descriptionurl + '">' +
+											'<img width="' + img.thumbwidth + '" height="' + img.thumbheight + '" border="0" class="thumbimage" ' +
+											'src="' + img.thumburl + '"' +
+											'	 alt="' + ntitle + '"/>' +
+										'</a>' +
+										'<div class="thumbcaption">' +
+											'<div class="magnify">' +
+												'<a title="' + gM('thumbnail-more') + '" class="internal" ' +
+													'href="' + img.descriptionurl +'"><img width="15" height="11" alt="" ' +
+													'src="' + stylepath + "/common/images/magnify-clip.png\" />" +
+												'</a>'+
+											'</div>'+
+											gM('mwe-fileexists-thumb') +
+										'</div>' +
+									'</div>'+
+								'</div>' +
+							'</ul>'
+						);
+					}
+				}
+			}
+		});
+	}	
+})(jQuery);
+

@@ -636,7 +636,7 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 							var go_to_url_txt = gM('mwe-go-to-resource');
 						   	if( typeof _this.done_upload_cb == 'function' ){
 						   		//if done action return 'true'
-								if( _this.done_upload_cb() ){
+								if( _this.done_upload_cb( _this.formData ) ){
 									//update status
 						   			_this.updateProgressWin( gM('mwe-successfulupload'),  gM( 'mwe-upload_done', apiResult.resultUrl),buttons);
 								}else{

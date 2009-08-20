@@ -45,37 +45,39 @@ var default_form_options = {
 				return false;
 			}
 
-			//build the api based upload form:
-			var o = '<div style="margin: 0 auto;width:450px;">'+
+			//build an upload form:
+			var o = ''+
 				'<form id="suf-upload" enctype="multipart/form-data" action="' + opt.api_target + '" method="post">'  +
 				//hidden input:
 				'<input type="hidden" name="action" value="upload">'+
 				'<input type="hidden" name="format" value="jsonfm">'+
 				'<input type="hidden" name="token" value="'+ eToken +'">' +
 
-				//api form name set:
-				'<label for="file">' + gM('select_file') + '</label><br>'+
-				'<input type="file" style="display: inline;" name="file" size="15"/><br>' +
+				//form name set:
+				'<label for="wpUploadFile">' + gM('select_file') + '</label><br>'+
+				'<input type="file" style="display: inline;" name="wpUploadFile" size="15"/><br>' +
 
-				'<label for="filename">' +gM('destfilename') + '</label><br>'+
-				'<input type="text" name="filename" size="30" /><br>'+
+				'<label for="wpDestFile">' +gM('destfilename') + '</label><br>'+
+				'<input type="text" name="wpDestFile" size="30" /><br>'+								
 
-				'<label for="comment">' + gM('summary') + ':</label><br>' +
-				'<textarea cols="30" rows="3" name="comment" tabindex="3"/><br>'+
-
+				'<label for="wpUploadDescription">' + gM('summary') + ':</label><br>' +
+				'<textarea cols="30" rows="3" name="wpUploadDescription" tabindex="3"/><br>'+
+				
+				'<div id="wpDestFile-warning"></div>' +
+								
 				gM('select_ownwork') + '<br>' +
 				'<input type="checkbox" id="wpLicence" name="wpLicence" value="cc-by-sa">' + gM('licence_cc-by-sa') + '<br>' +
 
 				'<input type="submit" accesskey="s" value="' + gM('upload') + '" name="wpUploadBtn" id="wpUploadBtn"  tabindex="9"/>' +
 				//close the form and div
-				'</form></div>';
+				'</form>';
 
 			//set the target with the form output:
 			$( _this.selector ).html( o );
 			//by default dissable:
 			$j('#wpUploadBtn').attr('disabled', 'disabled');
 
-			//set up basic binding:
+			//set up basic licence binding:
 			$j('#wpLicence').click(function(){
 				if( $j(this).is(':checked') ){
 					$j('#wpUploadBtn').removeAttr('disabled');
@@ -88,21 +90,19 @@ var default_form_options = {
 				opt.ondone_cb = false;
 
 			//set up the binding per the config
-			if( opt.enable_fogg ){
-				$j('#wpUploadFile').firefogg({
+			if( opt.enable_fogg ){				
+				$j("#suf-upload [name='wpUploadFile']").firefogg({
 					//an api url (we won't submit directly to action of the form)
 					'api_url' : opt.api_target,
 					'form_rewrite': true,
 					'target_edit_from' : '#suf-upload',
 					'new_source_cb' : function( orgFilename, oggName ){
-							$j('#wpDestFile').val( oggName );
-							//@@TODO:
-							//mwUploadHelper.doDestCheck();
+							$j("#suf-upload [name='wpDestFile']").val( oggName ).doDestCheck({								
+								warn_target: "#wpDestFile-warning" 
+							});							
 					},
 					'done_upload_cb' : opt.ondone_cb
 				});
-			}else{
-				//simple web form rewrite
 			}
 		});
 	}
