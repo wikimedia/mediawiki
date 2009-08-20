@@ -1597,6 +1597,16 @@ title=[[0]]
 </p>
 !! end
 
+!! test
+Non-breaking spaces in title
+!! input
+[[&nbsp; Main &nbsp; Page &nbsp;]]
+!! result
+<p><a href="/wiki/Main_Page" title="Main Page">&nbsp; Main &nbsp; Page &nbsp;</a>
+</p>
+!!end
+
+
 ###
 ### Interwiki links (see maintenance/interwiki.sql)
 ###
