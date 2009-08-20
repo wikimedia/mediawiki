@@ -207,8 +207,7 @@ class LanguageConverter {
 			}
 		}
 
-		$this->mPreferredVariant = $this->mMainLanguageCode;
-		return $this->mPreferredVariant;
+		return $this->mMainLanguageCode;
 	}
 	
 	/**
