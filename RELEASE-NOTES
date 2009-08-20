@@ -415,6 +415,9 @@ this. Was used when mwEmbed was going to be an extension.
   versions of MediaWiki were affected).
 * (bug 14817) Moving a page to a subpage of itself moves it twice
 * (bug 20289) $wgMaximumMovedPages should only count pages actually moved
+* (bug 15248) Non-breaking spaces and certain other Unicode space characters
+  are now normalized to ordinary spaces in titles; if your wiki has existing
+  titles with such characters, run cleanupTitles.php and/or cleanupImages.php
 
 == API changes in 1.16 ==
 
