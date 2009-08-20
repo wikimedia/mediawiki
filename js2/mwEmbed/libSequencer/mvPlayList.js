@@ -549,7 +549,8 @@ mvPlayList.prototype = {
 	setStatus:function(value){
 		$j('#mv_time_'+this.id).html( value );
 	},
-	setSliderValue:function(value){				
+	setSliderValue:function(value){		
+		var _this = this;		
 		//slider is on 1000 scale: 
 		var val = parseInt( value *1000 ); 			
 		$//j('#mv_play_head_' + this.id).slider('value', val);	

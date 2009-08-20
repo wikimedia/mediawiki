@@ -1098,12 +1098,24 @@ embedVideo.prototype = {
 		this.seek_time_sec = 0;
 		this.setSliderValue(0);
 		var _this = this;
-
+		//alert(" w:" + this.width +  ' h: ' + this.height);
 		//if the clip resolution is < 320 don't do fancy onClipDone stuff
 		if(this.width < 300){
-			return ;
+			$j('#dc_'+this.id).html('<div style="width: '+this.width+'px; height: '+this.height+'px; padding-top: 21px;" class="k-edit-screen">'+
+  						'<div>'+
+   						'<h1 style="font-family: arial,sans-serif; font-style: normal; font-variant: normal; font-weight: bold; font-size: 16px; line-height: normal; font-size-adjust: none; font-stretch: normal; -x-system-font: none;">You can <a href="">edit</a> this video with<br/>the <a title="Online Open Source Video Platform" target="_blank" href="http://corp.kaltura.com/">Kaltura</a> video editor</h1>'+
+   						'<a title="Online Open Source Video Platform" target="_blank" href="http://corp.kaltura.com/"><img width="30" height="30" alt="Online Open Source Video Platform" src="'+mv_skin_img_path+'kaltura_open_source_video_platform.gif"/></a>'+
+  					'</div><!-- div -->'+
+ 					'</div>');
+		}else{
+			$j('#dc_'+this.id).html(
+			'<div class="k-edit-screen" style="width:'+this.width+'px;height:'+this.height+'px;" >'+	  
+			   '<h1 style="font-family: arial,sans-serif; font-style: normal; font-variant: normal; font-weight: bold; font-size: 25px; line-height: normal; font-size-adjust: none; font-stretch: normal; -x-system-font: none;">You can <a href="">edit</a> this video with<br/>the <a title="Open Source Video Platform" target="_blank" href="http://corp.kaltura.com/">Kaltura</a> video editor</h1>'+
+			   '<a title="Open Source Video Platform" target="_blank" href="http://corp.kaltura.com/"><img width="30" height="30" alt="Open Source Video Platform" src="'+mv_skin_img_path+'kaltura_open_source_video_platform.gif"/></a>'+
+			  '</div>');
 		}
-		this.onClipDone_disp = true;
+		$j('.k-edit-screen').width(this.width);
+		/*this.onClipDone_disp = true;
 		this.thumbnail_disp = true;
 		//make sure we are not in preview mode( no end clip actions in preview mode)
 		if( this.preview_mode )
@@ -1150,7 +1162,7 @@ embedVideo.prototype = {
 			});
 		}else{
 			this.getNextPrevLinks();
-		}
+		}*/
 	},
 	//@@todo we should merge getNextPrevLinks with textInterface .. there is repeated code between them.
 	getNextPrevLinks:function(){
