@@ -2183,7 +2183,7 @@ Magic links: RFC (bug 479)
 !! input
 RFC 822
 !! result
-<p><a href="http://tools.ietf.org/html/rfc822" class="external">RFC 822</a>
+<p><a href="http://tools.ietf.org/html/rfc822" class="external mw-magiclink-rfc">RFC 822</a>
 </p>
 !! end
 
@@ -2192,7 +2192,7 @@ Magic links: ISBN (bug 1937)
 !! input
 ISBN 0-306-40615-2
 !! result
-<p><a href="/wiki/Special:BookSources/0306406152" class="internal">ISBN 0-306-40615-2</a>
+<p><a href="/wiki/Special:BookSources/0306406152" class="internal mw-magiclink-isbn">ISBN 0-306-40615-2</a>
 </p>
 !! end
 
@@ -2201,7 +2201,7 @@ Magic links: PMID incorrectly converts space to underscore
 !! input
 PMID 1234
 !! result
-<p><a href="http://www.ncbi.nlm.nih.gov/pubmed/1234?dopt=Abstract" class="external">PMID 1234</a>
+<p><a href="http://www.ncbi.nlm.nih.gov/pubmed/1234?dopt=Abstract" class="external mw-magiclink-pmid">PMID 1234</a>
 </p>
 !! end
 
@@ -3290,7 +3290,7 @@ BUG 1887: A ISBN with a thumbnail
 !! input
 [[Image:foobar.jpg|thumb|ISBN 1235467890]]
 !! result
-<div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" width="180" height="20" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"><img src="/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div><a href="/wiki/Special:BookSources/1235467890" class="internal">ISBN 1235467890</a></div></div></div>
+<div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" width="180" height="20" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"><img src="/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div><a href="/wiki/Special:BookSources/1235467890" class="internal mw-magiclink-isbn">ISBN 1235467890</a></div></div></div>
 
 !! end
 
@@ -3299,7 +3299,7 @@ BUG 1887: A RFC with a thumbnail
 !! input
 [[Image:foobar.jpg|thumb|This is RFC 12354]]
 !! result
-<div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" width="180" height="20" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"><img src="/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>This is <a href="http://tools.ietf.org/html/rfc12354" class="external">RFC 12354</a></div></div></div>
+<div class="thumb tright"><div class="thumbinner" style="width:182px;"><a href="/wiki/File:Foobar.jpg" class="image"><img alt="" src="http://example.com/images/thumb/3/3a/Foobar.jpg/180px-Foobar.jpg" width="180" height="20" class="thumbimage" /></a>  <div class="thumbcaption"><div class="magnify"><a href="/wiki/File:Foobar.jpg" class="internal" title="Enlarge"><img src="/skins/common/images/magnify-clip.png" width="15" height="11" alt="" /></a></div>This is <a href="http://tools.ietf.org/html/rfc12354" class="external mw-magiclink-rfc">RFC 12354</a></div></div></div>
 
 !! end
 
@@ -6298,7 +6298,7 @@ ISBN code coverage
 !! input
 ISBN  978-0-1234-56&#x20;789
 !! result
-<p><a href="/wiki/Special:BookSources/9780123456" class="internal">ISBN 978-0-1234-56</a>&#x20;789
+<p><a href="/wiki/Special:BookSources/9780123456" class="internal mw-magiclink-isbn">ISBN 978-0-1234-56</a>&#x20;789
 </p>
 !! end
 
@@ -6316,7 +6316,7 @@ Double ISBN
 !! input
 ISBN ISBN 1234567890
 !! result
-<p>ISBN <a href="/wiki/Special:BookSources/1234567890" class="internal">ISBN 1234567890</a>
+<p>ISBN <a href="/wiki/Special:BookSources/1234567890" class="internal mw-magiclink-isbn">ISBN 1234567890</a>
 </p>
 !! end
 
@@ -6325,7 +6325,7 @@ Double RFC
 !! input
 RFC RFC 1234
 !! result
-<p>RFC <a href="http://tools.ietf.org/html/rfc1234" class="external">RFC 1234</a>
+<p>RFC <a href="http://tools.ietf.org/html/rfc1234" class="external mw-magiclink-rfc">RFC 1234</a>
 </p>
 !! end
 
@@ -6343,7 +6343,7 @@ RFC code coverage
 !! input
 RFC   983&#x20;987
 !! result
-<p><a href="http://tools.ietf.org/html/rfc983" class="external">RFC 983</a>&#x20;987
+<p><a href="http://tools.ietf.org/html/rfc983" class="external mw-magiclink-rfc">RFC 983</a>&#x20;987
 </p>
 !! end
 
@@ -6652,7 +6652,7 @@ ISBN with space-delimited number
 !! input
 ISBN 92 9017 032 8
 !! result
-<p><a href="/wiki/Special:BookSources/9290170328" class="internal">ISBN 92 9017 032 8</a>
+<p><a href="/wiki/Special:BookSources/9290170328" class="internal mw-magiclink-isbn">ISBN 92 9017 032 8</a>
 </p>
 !! end
 
@@ -6677,7 +6677,7 @@ ISBN 1234567890
 ISBN 12345678901
 !! result
 <p>ISBN 123456789
-</p><p><a href="/wiki/Special:BookSources/1234567890" class="internal">ISBN 1234567890</a>
+</p><p><a href="/wiki/Special:BookSources/1234567890" class="internal mw-magiclink-isbn">ISBN 1234567890</a>
 </p><p>ISBN 12345678901
 </p>
 !! end
@@ -6690,8 +6690,8 @@ ISBN 1-234-56789-0 - 2006
 
 ISBN 1 234 56789 0 - 2006
 !! result
-<p><a href="/wiki/Special:BookSources/1234567890" class="internal">ISBN 1-234-56789-0</a> - 2006
-</p><p><a href="/wiki/Special:BookSources/1234567890" class="internal">ISBN 1 234 56789 0</a> - 2006
+<p><a href="/wiki/Special:BookSources/1234567890" class="internal mw-magiclink-isbn">ISBN 1-234-56789-0</a> - 2006
+</p><p><a href="/wiki/Special:BookSources/1234567890" class="internal mw-magiclink-isbn">ISBN 1 234 56789 0</a> - 2006
 </p>
 !! end
 
