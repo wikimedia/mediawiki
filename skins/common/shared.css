@@ -747,3 +747,15 @@ div.gallerytext {
 	padding: 2px 4px;
 }
 
+table.mw-enhanced-rc {
+	background: none;
+	padding:0;
+	border:0;
+	border-spacing:0;
+}
+td.mw-enhanced-rc {
+	white-space:nowrap;
+	vertical-align:top;
+	font-family:monospace
+}
+
