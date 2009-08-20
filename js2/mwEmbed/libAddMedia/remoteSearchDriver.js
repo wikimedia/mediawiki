@@ -934,7 +934,7 @@ remoteSearchDriver.prototype = {
 		//js_log('getResourceFromId:' + rid );
 		//strip out /res/ if preset:				
 		rid = rid.replace(/res_/, '');
-		js_log("looking at: " + rid);
+		//js_log("looking at: " + rid);
 		p = rid.split('_');
 		var cp_id = p[0];
 		var rid = p[1];		

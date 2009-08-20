@@ -198,12 +198,12 @@ mvBaseUploadInterface.prototype = {
 				$j(_this.editForm).append('<input type="hidden" name="format" value="jsonfm">');
 
 			//map the form vars to api vars:
-			$j(_this.editForm).find('#wpUploadFile').attr('name', 'file');
-			$j(_this.editForm).find('#wpDestFile').attr('name', 'filename');
-			$j(_this.editForm).find('#wpUploadDescription').attr('name', 'comment');
-			$j(_this.editForm).find('#wpEditToken').attr('name', 'token');
-			$j(_this.editForm).find('#wpIgnoreWarning').attr('name', 'ignorewarnings');
-			$j(_this.editForm).find('#wpWatchthis').attr('name', 'watch');
+			$j(_this.editForm).find("[name='wpUploadFile']").attr('name', 'file');
+			$j(_this.editForm).find("[name='wpDestFile']").attr('name', 'filename');
+			$j(_this.editForm).find("[name='wpUploadDescription']").attr('name', 'comment');
+			$j(_this.editForm).find("[name='wpEditToken']").attr('name', 'token');
+			$j(_this.editForm).find("[name='wpIgnoreWarning']").attr('name', 'ignorewarnings');
+			$j(_this.editForm).find("[name='wpWatchthis']").attr('name', 'watch');
 
 			//update the status to 100% progress bar (no status in iframe submit)
 			$j('#up-progressbar' ).progressbar('value', parseInt( 100 ) );

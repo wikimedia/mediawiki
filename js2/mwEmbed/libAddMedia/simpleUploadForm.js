@@ -86,7 +86,38 @@ var default_form_options = {
 					$j('#wpUploadBtn').attr('disabled', 'disabled');
 				}
 			});
-
+			//do destination fill:
+			//@@should integrate with doDestinationFill on upload page
+			$j("[name='wpUploadFile']").change(function(){
+				var path = $j(this).val();
+				// Find trailing part
+				var slash = path.lastIndexOf('/');
+				var backslash = path.lastIndexOf('\\');
+				var fname;
+				if (slash == -1 && backslash == -1) {
+					fname = path;
+				} else if (slash > backslash) {
+					fname = path.substring(slash+1, 10000);
+				} else {
+					fname = path.substring(backslash+1, 10000);
+				}
+				fname = fname.charAt(0).toUpperCase().concat(fname.substring(1,10000)).replace(/ /g, '_');
+				// Output result
+				$j("[name='wpDestFile']").val( fname );
+				//do destination check
+				$j("[name='wpDestFile']").doDestCheck({
+					'warn_target':'#wpDestFile-warning'
+				});
+			});
+			
+			
+			//do destination check:
+			$j("[name='wpDestFile']").change(function(){				
+				$j(this).doDestCheck({
+					'warn_target':'#wpDestFile-warning'
+				});
+			});
+			
 			if(typeof opt.ondone_cb == 'undefined')
 				opt.ondone_cb = false;
 
