@@ -2242,7 +2242,7 @@ class Title {
 
 		# Clean up whitespace
 		#
-		$dbkey = preg_replace( '/[ _]+/', '_', $dbkey );
+		$dbkey = preg_replace( '/[ _\xA0\x{1680}\x{180E}\x{2000}-\x{200B}\x{2028}\x{2029}\x{202F}\x{205F}\x{3000}]+/u', '_', $dbkey );
 		$dbkey = trim( $dbkey, '_' );
 
 		if ( '' == $dbkey ) {
