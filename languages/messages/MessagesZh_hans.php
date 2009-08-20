@@ -164,6 +164,8 @@ $specialPageAliases = array(
 	'Activeusers'               => array( '活跃用户' ),
 );
 
+$linkTrail = '/^()(.*)$/sD';
+
 $extraUserToggles = array(
 	'nolangconversion',
 );
