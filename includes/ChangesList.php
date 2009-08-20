@@ -776,7 +776,7 @@ class EnhancedChangesList extends ChangesList {
 
 		wfProfileIn( __METHOD__ );
 
-		$r = '<table cellpadding="0" cellspacing="0" border="0" style="background: none"><tr>';
+		$r = '<table class="mw-enhanced-rc"><tr>';
 
 		# Collate list of users
 		$userlinks = array();
@@ -846,13 +846,13 @@ class EnhancedChangesList extends ChangesList {
 
 		$tl = "<span id='mw-rc-openarrow-$jsid' class='mw-changeslist-expanded' style='visibility:hidden'><a href='#' $toggleLink title='$expandTitle'>" . $this->sideArrow() . "</a></span>";
 		$tl .= "<span id='mw-rc-closearrow-$jsid' class='mw-changeslist-hidden' style='display:none'><a href='#' $toggleLink title='$closeTitle'>" . $this->downArrow() . "</a></span>";
-		$r .= '<td valign="top" style="white-space: nowrap"><tt>'.$tl.'&nbsp;';
+		$r .= '<td class="mw-enhanced-rc">'.$tl.'&nbsp;';
 
 		# Main line
 		$r .= $this->recentChangesFlags( $isnew, false, $unpatrolled, '&nbsp;', $bot );
 
 		# Timestamp
-		$r .= '&nbsp;'.$block[0]->timestamp.'&nbsp;</tt></td><td>';
+		$r .= '&nbsp;'.$block[0]->timestamp.'&nbsp;</td><td>';
 
 		# Article link
 		if( $namehidden ) {
@@ -944,7 +944,7 @@ class EnhancedChangesList extends ChangesList {
 
 		# Sub-entries
 		$r .= '<div id="mw-rc-subentries-'.$jsid.'" class="mw-changeslist-hidden">';
-		$r .= '<table cellpadding="0" cellspacing="0"  border="0" style="background: none">';
+		$r .= '<table class="mw-enhanced-rc">';
 		foreach( $block as $rcObj ) {
 			# Extract fields from DB into the function scope (rc_xxxx variables)
 			// FIXME: Would be good to replace this extract() call with something
@@ -954,10 +954,10 @@ class EnhancedChangesList extends ChangesList {
 			extract( $rcObj->mAttribs );
 
 			#$r .= '<tr><td valign="top">'.$this->spacerArrow();
-			$r .= '<tr><td valign="top">';
-			$r .= '<tt>'.$this->spacerIndent() . $this->spacerIndent();
+			$r .= '<tr><td style="vertical-align:top;font-family:monospace">';
+			$r .= $this->spacerIndent() . $this->spacerIndent();
 			$r .= $this->recentChangesFlags( $rc_new, $rc_minor, $rcObj->unpatrolled, '&nbsp;', $rc_bot );
-			$r .= '&nbsp;</tt></td><td valign="top">';
+			$r .= '&nbsp;</td><td style="vertical-align:top"><span style="font-family:monospace">';
 
 			$params = $queryParams;
 
@@ -967,27 +967,26 @@ class EnhancedChangesList extends ChangesList {
 
 			# Log timestamp
 			if( $rc_type == RC_LOG ) {
-				$link = '<tt>'.$rcObj->timestamp.'</tt> ';
+				$link = $rcObj->timestamp;
 			# Revision link
 			} else if( !ChangesList::userCan($rcObj,Revision::DELETED_TEXT) ) {
-				$link = '<span class="history-deleted"><tt>'.$rcObj->timestamp.'</tt></span> ';
+				$link = '<span class="history-deleted">'.$rcObj->timestamp.'</span> ';
 			} else {
 				if ( $rcObj->unpatrolled && $rc_type == RC_NEW) {
 					$params['rcid'] = $rcObj->mAttribs['rc_id'];
 				}
 
-				$link = '<tt>' .
-					$this->skin->link(
+				$link = $this->skin->link(
 						$rcObj->getTitle(),
 						$rcObj->timestamp,
 						array(),
 						$params,
 						array( 'known', 'noclasses' )
-					) . '</tt>';
+					);
 				if( $this->isDeleted($rcObj,Revision::DELETED_TEXT) )
 					$link = '<span class="history-deleted">'.$link.'</span> ';
 			}
-			$r .= $link;
+			$r .= $link . '</span>';
 
 			if ( !$rc_type == RC_LOG || $rc_type == RC_NEW ) {
 				$r .= ' (';
@@ -1092,15 +1091,15 @@ class EnhancedChangesList extends ChangesList {
 		extract( $rcObj->mAttribs );
 		$query['curid'] = $rc_cur_id;
 
-		$r = '<table cellspacing="0" cellpadding="0" border="0" style="background: none"><tr>';
-		$r .= '<td valign="top" style="white-space: nowrap"><tt>' . $this->spacerArrow() . '&nbsp;';
+		$r = '<table class="mw-enhanced-rc"><tr>';
+		$r .= '<td class="mw-enhanced-rc">' . $this->spacerArrow() . '&nbsp;';
 		# Flag and Timestamp
 		if( $rc_type == RC_MOVE || $rc_type == RC_MOVE_OVER_REDIRECT ) {
 			$r .= '&nbsp;&nbsp;&nbsp;&nbsp;'; // 4 flags -> 4 spaces
 		} else {
 			$r .= $this->recentChangesFlags( $rc_type == RC_NEW, $rc_minor, $rcObj->unpatrolled, '&nbsp;', $rc_bot );
 		}
-		$r .= '&nbsp;'.$rcObj->timestamp.'&nbsp;</tt></td><td>';
+		$r .= '&nbsp;'.$rcObj->timestamp.'&nbsp;</td><td>';
 		# Article or log link
 		if( $rc_log_type ) {
 			$logtitle = Title::newFromText( "Log/$rc_log_type", NS_SPECIAL );
