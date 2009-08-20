@@ -200,15 +200,15 @@ class LanguageConverter {
 					// strip whitespace
 					$language = trim( $language );
 					if( in_array( $language, $this->mVariants ) ) {
-						return $language;
-						break;
+						$this->mPreferredVariant = $language;
+						return $this->mPreferredVariant;
 					}
 				}
 			}
 		}
 
-		return $this->mMainLanguageCode;
-
+		$this->mPreferredVariant = $this->mMainLanguageCode;
+		return $this->mPreferredVariant;
 	}
 	
 	/**
