@@ -467,14 +467,6 @@ $wgMaxUploadSize = 1024*1024*100; # 100MB
 */
 $wgEnableFirefogg = true;
 
-
-/**
- * enable oggz_chop support
- * if enabled the mv_embed player will use temporal urls
- * for helping with seeking with some plugin types
- */
-$wgEnableTemporalOggUrls = false;
-
 /**
  * Point the upload navigation link to an external URL
  * Useful if you want to use a shared repository by default
