@@ -194,10 +194,6 @@ class Html {
 	 * escaping as well, like if $contents contains literal '</script>' or (for
 	 * XML) literal "]]>".
 	 *
-	 * Note that $contents will not be escaped, since JS may legitimately
-	 * contain unescaped characters like "<".  Make sure you don't output
-	 * untrusted user input here!
-	 *
 	 * @param $contents string JavaScript
 	 * @return string Raw HTML
 	 */
@@ -233,10 +229,6 @@ class Html {
 	 * Output a <style> tag with the given contents for the given media type
 	 * (if any).  TODO: do some useful escaping as well, like if $contents
 	 * contains literal '</style>' (admittedly unlikely).
-	 *
-	 * Note that $contents will not be escaped, since CSS may legitimately
-	 * contain unescaped characters like "<".  Make sure you don't output
-	 * untrusted user input here!
 	 *
 	 * @param $contents string CSS
 	 * @param $media mixed A media type string, like 'screen', or null for all
