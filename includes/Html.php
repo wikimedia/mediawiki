@@ -339,8 +339,8 @@ class Html {
 	 * @param $name    string name attribute
 	 * @param $value   mixed  value attribute (null = omit)
 	 * @param $type    string type attribute
-	 * @param $attribs array  Assocative array of miscellaneous extra attributes,
-	 *   passed to Html::element()
+	 * @param $attribs array  Associative array of miscellaneous extra
+	 *   attributes, passed to Html::element()
 	 * @return string Raw HTML
 	 */
 	public static function input( $name, $value = null, $type = 'text', $attribs = array() ) {
