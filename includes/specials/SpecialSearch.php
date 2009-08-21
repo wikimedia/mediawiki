@@ -918,13 +918,17 @@ class SpecialSearch {
 	protected function shortDialog( $term ) {
 		$searchTitle = SpecialPage::getTitleFor( 'Search' );
 		$searchable = SearchEngine::searchableNamespaces();
-		$out = Xml::hidden( 'title', $searchTitle->getPrefixedText() ) . "\n";
+		$out = Html::hidden( 'title', $searchTitle->getPrefixedText() ) . "\n";
 		// Keep redirect setting
-		$out .= Xml::hidden( "redirs", (int)$this->searchRedirects );
+		$out .= Html::hidden( "redirs", (int)$this->searchRedirects ) . "\n";
 		// Term box
-		$out .= Xml::input( 'search', 50, $term, array( 'type' => 'text', 'id' => 'searchText' ) ) . "\n";
-		$out .= Xml::hidden( 'fulltext', 'Search' );
-		$out .= Xml::submitButton( wfMsg( 'searchbutton' ) );
+		$out .= Html::input( 'search', $term, 'search', array(
+			'id' => 'searchText',
+			'size' => '50',
+			'autofocus'
+		) ) . "\n";
+		$out .= Html::hidden( 'fulltext', 'Search' ) . "\n";
+		$out .= Xml::submitButton( wfMsg( 'searchbutton' ) ) . "\n";
 		return $out . $this->didYouMeanHtml;		
 	}
 

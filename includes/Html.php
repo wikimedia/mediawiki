@@ -354,4 +354,18 @@ class Html {
 
 		return self::element( 'input', $attribs );
 	}
+
+	/**
+	 * Convenience function to produce an input element with type=hidden, like
+	 * Xml::hidden.
+	 *
+	 * @param $name    string name attribute
+	 * @param $value   string value attribute
+	 * @param $attribs array  Associative array of miscellaneous extra
+	 *   attributes, passed to Html::element()
+	 * @return string Raw HTML
+	 */
+	public static function hidden( $name, $value, $attribs = array() ) {
+		return self::input( $name, $value, 'hidden', $attribs );
+	}
 }
