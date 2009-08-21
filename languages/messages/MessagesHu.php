@@ -285,6 +285,7 @@ $magicWords = array(
 	'numberingroup'         => array( '1', 'CSOPORTTAGOK', 'NUMBERINGROUP', 'NUMINGROUP' ),
 	'staticredirect'        => array( '1', '__ÁLLANDÓÁTIRÁNYÍTÁS__', '__STATIKUSÁTIRÁNYÍTÁS__', '__STATICREDIRECT__' ),
 	'protectionlevel'       => array( '1', 'VÉDELMISZINT', 'PROTECTIONLEVEL' ),
+	'formatdate'            => array( '0', 'dátumformázás', 'formatdate', 'dateformat' ),
 );
 
 $linkTrail = '/^([a-záéíóúöüőűÁÉÍÓÚÖÜŐŰ]+)(.*)$/sDu';

@@ -184,6 +184,7 @@ $magicWords = array(
 	'int'                   => array( '0', 'ВНУТР:', 'INT:' ),
 	'sitename'              => array( '1', 'НАЗВАНИЕ_САЙТА', 'SITENAME' ),
 	'ns'                    => array( '0', 'ПИ:', 'NS:' ),
+	'nse'                   => array( '0', 'ПИК:', 'NSE:' ),
 	'localurl'              => array( '0', 'ЛОКАЛЬНЫЙ_АДРЕС:', 'LOCALURL:' ),
 	'localurle'             => array( '0', 'ЛОКАЛЬНЫЙ_АДРЕС_2:', 'LOCALURLE:' ),
 	'server'                => array( '0', 'СЕРВЕР', 'SERVER' ),

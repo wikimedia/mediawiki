@@ -217,9 +217,13 @@ $magicWords = array(
 	'special'               => array( '0', 'speciální', 'special' ),
 	'defaultsort'           => array( '1', 'KLÍČŘAZENÍ:', 'DEFAULTSORT:', 'DEFAULTSORTKEY:', 'DEFAULTCATEGORYSORT:' ),
 	'filepath'              => array( '0', 'CESTAKSOUBORU', 'FILEPATH:' ),
+	'tag'                   => array( '0', 'značka', 'tag' ),
 	'hiddencat'             => array( '1', '__SKRÝTKAT__', '__HIDDENCAT__' ),
 	'pagesincategory'       => array( '1', 'STRÁNEKVKATEGORII', 'STRÁNEKVKAT', 'PAGESINCATEGORY', 'PAGESINCAT' ),
 	'pagesize'              => array( '1', 'VELIKOSTSTRÁNKY', 'PAGESIZE' ),
+	'index'                 => array( '1', '__INDEXOVAT__', '__INDEX__' ),
+	'noindex'               => array( '1', '__NEINDEXOVAT__', '__NOINDEX__' ),
+	'staticredirect'        => array( '1', '__STATICKÉPŘESMĚROVÁNÍ__', '__STATICREDIRECT__' ),
 	'protectionlevel'       => array( '1', 'ÚROVEŇZAMČENÍ', 'PROTECTIONLEVEL' ),
 );
 

@@ -174,6 +174,7 @@ $magicWords = array(
 	'pagename'              => array( '1', 'ISEMTAL-PAĠNA', 'PAGENAME' ),
 	'pagenamee'             => array( '1', 'ISEMTAL-PAĠNAE', 'PAGENAMEE' ),
 	'namespace'             => array( '1', 'SPAZJUTAL-ISEM', 'NAMESPACE' ),
+	'namespacee'            => array( '1', 'SPAZJUTAL-ISEME', 'NAMESPACEE' ),
 	'talkspace'             => array( '1', 'SPAZJUTA\'DISKUSSJONI', 'TALKSPACE' ),
 	'talkspacee'            => array( '1', 'SPAZJUTA\'DISKUSSJONIE', 'TALKSPACEE' ),
 	'subjectspace'          => array( '1', 'SPAZJUTAS-SUĠĠETT', 'SPAZJUTAL-ARTIKLU', 'SUBJECTSPACE', 'ARTICLESPACE' ),
