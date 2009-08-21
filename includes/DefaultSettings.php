@@ -259,7 +259,7 @@ $wgForeignFileRepos = array();
  *
  * Problematic punctuation:
  *  []{}|#    Are needed for link syntax, never enable these
- *  <         Causes problems with HTML escaping, don't use
+ *  <>        Causes problems with HTML escaping, don't use
  *  %         Enabled by default, minor problems with path to query rewrite rules, see below
  *  +         Enabled by default, but doesn't work with path to query rewrite rules, corrupted by apache
  *  ?         Enabled by default, but doesn't work with path to PATH_INFO rewrites
@@ -279,7 +279,7 @@ $wgForeignFileRepos = array();
  * Theoretically 0x80-0x9F of ISO 8859-1 should be disallowed, but
  * this breaks interlanguage links
  */
-$wgLegalTitleChars = " %!\"$&'()*,\\-.\\/0-9:;=?@A-Z\\\\^_`a-z~\\x80-\\xFF+>";
+$wgLegalTitleChars = " %!\"$&'()*,\\-.\\/0-9:;=?@A-Z\\\\^_`a-z~\\x80-\\xFF+";
 
 
 /**
