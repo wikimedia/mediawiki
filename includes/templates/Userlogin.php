@@ -41,9 +41,10 @@ class UserloginTemplate extends QuickTemplate {
 				'id' => 'wpName1',
 				'tabindex' => '1',
 				'size' => '20',
-				'required',
-				'autofocus'
-			) ); ?>
+				'required'
+				# Can't do + array( 'autofocus' ) because + for arrays in PHP
+				# only works right for associative arrays!  Thanks, PHP.
+			) + ( $this->data['name'] ? array() : array( 'autofocus' => '' ) ) ); ?>
 
 			</td>
 		</tr>
@@ -56,7 +57,7 @@ class UserloginTemplate extends QuickTemplate {
 				'id' => 'wpPassword1',
 				'tabindex' => '2',
 				'size' => '20'
-			) ); ?>
+			) + ( $this->data['name'] ? array( 'autofocus' ) : array() ) ); ?>
 
 			</td>
 		</tr>
