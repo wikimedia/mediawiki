@@ -282,7 +282,7 @@ fail, returning an error message or an <edit result="Failure"> tag
 if $resultArr was filled.
 $EditPage : the EditPage object
 $text : the new text of the article (has yet to be saved)
-$resultArr : data in this array will be added to the API result
+&$resultArr : data in this array will be added to the API result
 
 'APIGetAllowedParams': use this hook to modify a module's parameters.
 &$module: Module object
@@ -621,7 +621,7 @@ $summary: Edit summary for page
 'EditFilterMerged': Post-section-merge edit filter
 $editor: EditPage instance (object)
 $text: content of the edit box
-$error: error message to return
+&$error: error message to return
 $summary: Edit summary for page
 
 'EditFormPreloadText': Allows population of the edit form when creating
@@ -631,7 +631,7 @@ new pages
 
 'EditPage::attemptSave': called before an article is
 saved, that is before insertNewArticle() is called
-&$editpage_Obj: the current EditPage object
+$editpage_Obj: the current EditPage object
 
 'EditPage::importFormData': allow extensions to read additional data
 posted in the form
