@@ -15,6 +15,10 @@
  * @author לערי ריינהארט
  */
 
+$magicWords = array(
+	'redirect'              => array( '0', '#VARDA', '#RINVIA', '#RINVIO', '#RIMANDO', '#REDIRECT' ),
+);
+
 $fallback = 'it';
 
 $namespaceNames = array(
