@@ -398,17 +398,10 @@ class Xml {
 	}
 
 	/**
-	 * Convenience function to build an HTML hidden form field.
-	 * @param $name String: name attribute for the field
-	 * @param $value String: value for the hidden field
-	 * @param $attribs Array: optional custom attributes
-	 * @return string HTML
+	 * @deprecated Synonymous to Html::hidden()
 	 */
-	public static function hidden( $name, $value, $attribs=array() ) {
-		return self::element( 'input', array(
-			'name' => $name,
-			'type' => 'hidden',
-			'value' => $value ) + $attribs );
+	public static function hidden( $name, $value, $attribs = array() ) {
+		return Html::hidden( $name, $value, $attribs );
 	}
 
 	/**
