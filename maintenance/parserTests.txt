@@ -6897,16 +6897,34 @@ language=zh variant=zh-tw
 
 
 !! test
-Adding explicit session-wise language variant mapping (A flag)
+Explicit session-wise language variant mapping (A flag and - flag)
 !! options
 language=zh variant=zh-tw
 !! input
--{A|zh:China;zh-tw:Taiwan}- is China
+Taiwan is not China.
+But -{A|zh:China;zh-tw:Taiwan}- is China,
+(This-{-|zh:China;zh-tw:Taiwan}- should be stripped!)
+and -{China}- is China.
 !! result
-<p>Taiwan is Taiwan
+<p>Taiwan is not China.
+But Taiwan is Taiwan,
+(This should be stripped!)
+and China is China.
 </p>
 !! end
 
+!! test
+Explicit session-wise language variant mapping (H flag for hide)
+!! options
+language=zh variant=zh-tw
+!! input
+(This-{H|zh:China;zh-tw:Taiwan}- should be stripped!)
+Taiwan is China.
+!! result
+<p>(This should be stripped!)
+Taiwan is Taiwan.
+</p>
+!! end
 
 !! test
 Adding explicit conversion rule for title (T flag)
