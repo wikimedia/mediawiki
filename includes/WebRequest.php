@@ -44,7 +44,7 @@ if ( !function_exists( '__autoload' ) ) {
  */
 class WebRequest {
 	protected $data, $headers = array();
-	private $_response, $mFixMagicQuotes;
+	private $_response;
 
 	public function __construct() {
 		/// @fixme This preemptive de-quoting can interfere with other web libraries
@@ -179,8 +179,9 @@ class WebRequest {
 	 * time could damage the values.
 	 */
 	private function checkMagicQuotes() {
-		$this->mFixMagicQuotes = function_exists( 'get_magic_quotes_gpc' ) && get_magic_quotes_gpc();		
-		if( $this->mFixMagicQuotes ) {
+		$mustFixQuotes = function_exists( 'get_magic_quotes_gpc' )
+			&& get_magic_quotes_gpc();		
+		if( $mustFixQuotes ) {
 			$this->fix_magic_quotes( $_COOKIE );
 			$this->fix_magic_quotes( $_ENV );
 			$this->fix_magic_quotes( $_GET );
