@@ -74,8 +74,10 @@ class LinkCache {
 	 */
 	public function addGoodLinkObj( $id, $title, $len = -1, $redir = NULL ) {
 		$dbkey = $title->getPrefixedDbKey();
-		$this->mGoodLinks[$dbkey] = $id;
-		$this->mGoodLinkFields[$dbkey] = array( 'length' => $len, 'redirect' => $redir );
+		$this->mGoodLinks[$dbkey] = intval( $id );
+		$this->mGoodLinkFields[$dbkey] = array(
+			'length' => intval( $len ),
+			'redirect' => intval( $redir ) );
 	}
 
 	public function addBadLinkObj( $title ) {
@@ -167,9 +169,9 @@ class LinkCache {
 			__METHOD__, $options );
 		# Set fields...
 		if ( $s !== false ) {
-			$id = $s->page_id;
-			$len = $s->page_len;
-			$redirect = $s->page_is_redirect;
+			$id = intval( $s->page_id );
+			$len = intval( $s->page_len );
+			$redirect = intval( $s->page_is_redirect );
 		} else {
 			$len = -1;
 			$redirect = 0;
