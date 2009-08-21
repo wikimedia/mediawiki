@@ -266,7 +266,10 @@ class SpecialContributions extends SpecialPage {
 				'contribs', 'newbie' , 'newbie', $this->opts['contribs'] == 'newbie' ? true : false ) . '<br />' .
 			Xml::radioLabel( wfMsgExt( 'sp-contributions-username', array( 'parsemag' ) ), 
 				'contribs' , 'user', 'user', $this->opts['contribs'] == 'user' ? true : false ) . ' ' .
-			Xml::input( 'target', 20, $this->opts['target']) . ' '.
+			Html::input( 'target', $this->opts['target'], 'text', array(
+				'size' => '20',
+				'required' => ''
+			) + ( $this->opts['target'] ? array() : array( 'autofocus' ) ) ) . ' '.
 			'<span style="white-space: nowrap">' .
 			Xml::label( wfMsg( 'namespace' ), 'namespace' ) . ' ' .
 			Xml::namespaceSelector( $this->opts['namespace'], '' ) .

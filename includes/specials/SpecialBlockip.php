@@ -154,11 +154,13 @@ class IPBlockForm {
 					{$mIpaddress}
 				</td>
 				<td class='mw-input'>" .
-					Xml::input( 'wpBlockAddress', 45, $this->BlockAddress,
-						array(
-							'tabindex' => '1',
-							'id' => 'mw-bi-target',
-							'onchange' => 'updateBlockOptions()' ) ). "
+					Html::input( 'wpBlockAddress', $this->BlockAddress, 'text', array(
+						'tabindex' => '1',
+						'id' => 'mw-bi-target',
+						'onchange' => 'updateBlockOptions()',
+						'size' => '45',
+						'required' => ''
+					) + ( $this->BlockAddress ? array() : array( 'autofocus' ) ) ). "
 				</td>
 			</tr>
 			<tr>"
@@ -203,8 +205,12 @@ class IPBlockForm {
 					{$mIpbreason}
 				</td>
 				<td class='mw-input'>" .
-					Xml::input( 'wpBlockReason', 45, $this->BlockReason,
-						array( 'tabindex' => '5', 'id' => 'mw-bi-reason', 'maxlength'=> '200' ) ) . "
+				Html::input( 'wpBlockReason', $this->BlockReason, 'text', array(
+					'tabindex' => '5',
+					'id' => 'mw-bi-reason',
+					'maxlength' => '200',
+					'size' => '45'
+				) + ( $this->BlockAddress ? array( 'autofocus' ) : array() ) ) . "
 				</td>
 			</tr>
 			<tr id='wpAnonOnlyRow'>
