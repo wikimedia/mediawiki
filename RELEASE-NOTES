@@ -353,8 +353,6 @@ this. Was used when mwEmbed was going to be an extension.
 * (bug 19839) Comments in log items are no more double escaped
 * (bug 18161) Fix inconsistent separators in watchlist link toolbars with
   "enhanced recent changes"
-* (bug 19857) maintenance/deleteRevision.php on last revision no longer breaks
-  target page
 * (bug 16877) Moving a page over a redirect no longer leaves an orphan entry in
   the recentchanges table
 * (bug 16009) Limit selection forms based on Pager now links to the correct page

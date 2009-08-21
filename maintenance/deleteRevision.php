@@ -64,13 +64,6 @@ class DeleteRevision extends Maintenance {
 			} else {
 				$affected += $dbw->affectedRows();
 				$dbw->delete( 'revision', array( 'rev_id' => $revID ) );
-				
-				// Database integrity
-				$pageID = $dbw->selectField( 'page', 'page_id', array( 'page_latest' => $revID ), __METHOD__ );
-				if ( $pageID ) {
-					$newLatest = $dbw->selectField( 'revision', 'rev_id', array( 'rev_page' => $pageID ), __METHOD__, array( 'ORDER BY' => 'rev_timestamp DESC' ) );
-					$dbw->update( 'page', array( 'page_latest' => $newLatest ), array( 'page_id' => $pageID ), __METHOD__ );
-				}
 			}
 		}
 		$this->output( "Deleted $affected revisions\n" );
