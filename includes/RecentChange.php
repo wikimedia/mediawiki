@@ -196,7 +196,8 @@ class RecentChange
 				$this->mAttribs['rc_timestamp'],
 				$this->mAttribs['rc_comment'],
 				$this->mAttribs['rc_minor'],
-				$this->mAttribs['rc_last_oldid'] );
+				$this->mAttribs['rc_last_oldid'],
+				$this->mAttribs['rc_deleted'] );
 		}
 	}
 	
