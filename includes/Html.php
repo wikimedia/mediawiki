@@ -347,7 +347,7 @@ class Html {
 		if ( $type != 'text' ) {
 			$attribs['type'] = $type;
 		}
-		if ( $value !== null ) {
+		if ( $value !== null && $value !== '' ) {
 			$attribs['value'] = $value;
 		}
 		$attribs['name'] = $name;
