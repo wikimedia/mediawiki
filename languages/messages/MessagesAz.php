@@ -15,7 +15,6 @@
  */
 
 $namespaceNames = array(
-	NS_MEDIA            => 'Mediya',
 	NS_SPECIAL          => 'Xüsusi',
 	NS_MAIN             => '',
 	NS_TALK             => 'Müzakirə',
@@ -32,6 +31,10 @@ $namespaceNames = array(
 	NS_HELP_TALK        => 'Kömək_müzakirəsi',
 	NS_CATEGORY         => 'Kateqoriya',
 	NS_CATEGORY_TALK    => 'Kateqoriya_müzakirəsi',
+);
+
+$namespaceAliases = array(
+	'Mediya'      => NS_MEDIA,
 );
 
 $specialPageAliases = array(

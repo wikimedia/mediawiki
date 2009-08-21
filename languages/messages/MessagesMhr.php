@@ -13,6 +13,41 @@
 
 $fallback = 'ru';
 
+$namespaceNames = array(
+	NS_SPECIAL          => 'Лӱмын ыштыме',
+	NS_TALK             => 'Каҥашымаш',
+	NS_USER             => 'Пайдаланыше',
+	NS_USER_TALK        => 'Пайдаланышын_каҥашымаш',
+	NS_PROJECT_TALK     => '$1ын_каҥашымаш',
+	NS_FILE             => 'Файл',
+	NS_FILE_TALK        => 'Файлын_каҥашымаш',
+	NS_TEMPLATE         => 'Ямдылык',
+	NS_TEMPLATE_TALK    => 'Ямдылыкын_каҥашымаш',
+	NS_HELP             => 'Полшык',
+	NS_HELP_TALK        => 'Полшыкын_каҥашымаш',
+	NS_CATEGORY         => 'Категорий',
+	NS_CATEGORY_TALK    => 'Категорийын_каҥашымаш',
+);
+
+$namespaceAliases = array(
+	// Fallbacks for all 'ru' namespace aliases
+	'Медиа' => NS_MEDIA,
+	'Служебная' => NS_SPECIAL,
+	'Обсуждение' => NS_TALK,
+	'Участник' => NS_USER,
+	'Обсуждение_участника' => NS_USER_TALK,
+	'Обсуждение_{{GRAMMAR:genitive|$1}}' => NS_PROJECT_TALK,
+	'Файл' => NS_FILE,
+	'Обсуждение_файла' => NS_FILE_TALK,
+	'Обсуждение_MediaWiki' => NS_MEDIAWIKI_TALK,
+	'Шаблон' => NS_TEMPLATE,
+	'Обсуждение_шаблона' => NS_TEMPLATE_TALK,
+	'Справка' => NS_HELP,
+	'Обсуждение_справки' => NS_HELP_TALK,
+	'Категория' => NS_CATEGORY,
+	'Обсуждение_категории' => NS_CATEGORY_TALK,
+);
+
 $messages = array(
 # User preference toggles
 'tog-underline'            => 'Кузе кылвер-влакым ӱлычын удыралаш?',

@@ -41,6 +41,15 @@ $digitTransformTable = array(
 	',' => '٬', # &#x066c;
 );
 
+$namespaceNames = array(
+	NS_MAIN             => '',
+	NS_USER             => 'بەکارھێنەر',
+	NS_USER_TALK        => 'قسەی_بەکارھێنەر',
+	NS_TEMPLATE         => 'قاڵب',
+	NS_HELP             => 'یارمەتی',
+	NS_CATEGORY         => 'پۆل',
+);
+
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'ھێڵ ھێنان بەژێر بەستەرەکان:',
