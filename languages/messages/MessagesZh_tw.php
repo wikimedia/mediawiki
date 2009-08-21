@@ -17,9 +17,11 @@
  */
 
 $specialPageAliases = array(
+	'Recentchanges'             => array( '近期變動' ),
 	'Disambiguations'           => array( '消歧義頁' ),
 	'Blockme'                   => array( '封禁我' ),
 	'Blockip'                   => array( '查封用戶' ),
+	'Ancientpages'              => array( '最舊頁面' ),
 	'Lockdb'                    => array( '鎖定數據庫' ),
 	'Unlockdb'                  => array( '解除數據庫鎖定' ),
 	'FileDuplicateSearch'       => array( '搜索重復文件' ),
