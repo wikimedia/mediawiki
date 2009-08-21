@@ -183,7 +183,7 @@ class LanguageConverter {
 				// explode by comma
 				$result = explode(',', $acceptLanguage);
 				
-				$languages  = array();
+				$languages = array();
 
 				foreach( $result as $elem ) {
 					// if $elem likes 'zh-cn;q=0.9'
@@ -196,12 +196,30 @@ class LanguageConverter {
 					}
 				}
 
+				$fallback_languages = array();
 				foreach( $languages as $language ) {
 					// strip whitespace
 					$language = trim( $language );
 					if( in_array( $language, $this->mVariants ) ) {
-						$this->mPreferredVariant = $language;
-						return $this->mPreferredVariant;
+						return $language;
+					}
+					else {
+						// To see if there are fallbacks of current language.
+						// We record these fallback variants, and process
+						// them later.
+						$fallbacks = $this->getVariantFallbacks( $language );
+						if( is_string( $fallbacks ) )
+							$fallback_languages[] = $fallbacks;
+						elseif( is_array( $fallbacks ) )
+							$fallback_languages = array_merge( $fallback_languages, $fallbacks );
+					}
+				}
+
+				// process fallback languages now
+				$fallback_languages = array_unique( $fallback_languages );
+				foreach( $fallback_languages as $language ) {
+					if( in_array( $language, $this->mVariants ) ) {
+						return $language;
 					}
 				}
 			}
