@@ -195,6 +195,17 @@ class Html {
 
 		$ret = '';
 		foreach ( $attribs as $key => $value ) {
+			# For boolean attributes, support array( 'foo' ) instead of
+			# requiring array( 'foo' => 'meaningless' ).
+			if ( is_int( $key )
+			&& in_array( strtolower( $value ), self::$boolAttribs ) ) {
+				$key = $value;
+			}
+
+			# Not technically required in HTML 5, but required in XHTML 1.0,
+			# and we'd like consistency and better compression anyway.
+			$key = strtolower( $key );
+
 			# See the "Attributes" section in the HTML syntax part of HTML 5,
 			# 9.1.2.3 as of 2009-08-10.  Most attributes can have quotation
 			# marks omitted, but not all.  (Although a literal " is not
