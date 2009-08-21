@@ -89,17 +89,13 @@ class Html {
 	 * values.  If you're hardcoding all the attributes, or there are none, you
 	 * should probably type out the string yourself.
 	 *
-	 * This is quite similar to Xml::element(), but it implements some useful
+	 * This is quite similar to Xml::tags(), but it implements some useful
 	 * HTML-specific logic.  For instance, there is no $allowShortTag
 	 * parameter: the closing tag is magically omitted if $element has an empty
 	 * content model.  If $wgWellFormedXml is false, then a few bytes will be
 	 * shaved off the HTML output as well.  In the future, other HTML-specific
 	 * features might be added, like allowing arrays for the values of
 	 * attributes like class= and media=.
-	 *
-	 * One notable difference to Xml::element() is that $contents is *not*
-	 * escaped.  This means that Html::element() can be usefully nested, rather
-	 * than using the rather clumsy Xml::openElement() and Xml::closeElement().
 	 *
 	 * @param $element  string The element's name, e.g., 'a'
 	 * @param $attribs  array  Associative array of attributes, e.g., array(
@@ -123,7 +119,8 @@ class Html {
 	}
 
 	/**
-	 * Identical to rawElement(), but HTML-escapes $contents.
+	 * Identical to rawElement(), but HTML-escapes $contents (like
+	 * Xml::element()).
 	 */
 	public static function element( $element, $attribs = array(), $contents = '' ) {
 		return self::rawElement( $element, $attribs, strtr( $contents, array(
