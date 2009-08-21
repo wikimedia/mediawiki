@@ -105,8 +105,53 @@ class Html {
 	 * @return string Raw HTML
 	 */
 	public static function rawElement( $element, $attribs = array(), $contents = '' ) {
-		global $wgWellFormedXml;
+		global $wgHtml5, $wgWellFormedXml;
+		# This is not required in HTML 5, but let's do it anyway, for
+		# consistency and better compression.
 		$element = strtolower( $element );
+
+		# Element-specific hacks to slim down output and ensure validity
+		if ( $element == 'input' ) {
+			if ( !$wgHtml5 ) {
+				# With $wgHtml5 off we want to validate as XHTML 1, so we
+				# strip out any fancy HTML 5-only input types for now.
+				#
+				# Whitelist of valid types:
+				$validTypes = array(
+					'hidden',
+					'text',
+					'password',
+					'checkbox',
+					'radio',
+					'file',
+					'submit',
+					'image',
+					'reset',
+					'button',
+				);
+				if ( isset( $attribs['type'] )
+				&& !in_array( $attribs['type'], $validTypes ) ) {
+					# Fall back to type=text, the default
+					unset( $attribs['type'] );
+				}
+				# Here we're blacklisting some HTML5-only attributes...
+				$html5attribs = array(
+					'autocomplete',
+					'autofocus',
+					'max',
+					'min',
+					'multiple',
+					'pattern',
+					'placeholder',
+					'required',
+					'step',
+				);
+				foreach ( $html5attribs as $badAttr ) {
+					unset( $attribs[$badAttr] );
+				}
+			}
+		}
+
 		$start = "<$element" . self::expandAttributes( $attribs );
 		if ( in_array( $element, self::$voidElements ) ) {
 			if ( $wgWellFormedXml ) {
@@ -288,44 +333,6 @@ class Html {
 	 * @return string Raw HTML
 	 */
 	public static function input( $name, $value = null, $type = 'text', $attribs = array() ) {
-		global $wgHtml5;
-
-		if ( !$wgHtml5 ) {
-			// With $wgHtml5 off we want to validate as XHTML 1, so we
-			// strip out any fancy HTML 5-only input types for now.
-			//
-			// Whitelist of valid types:
-			$validTypes = array(
-				'hidden',
-				'text',
-				'password',
-				'checkbox',
-				'radio',
-				'file',
-				'submit',
-				'image',
-				'reset',
-				'button',
-			);
-			if ( !in_array( $type, $validTypes ) ) {
-				$type = 'text';
-			}
-			// Here we're blacklisting some HTML5-only attributes...
-			$html5attribs = array(
-				'autocomplete',
-				'autofocus',
-				'max',
-				'min',
-				'multiple',
-				'pattern',
-				'placeholder',
-				'required',
-				'step',
-			);
-			foreach ( $html5attribs as $badAttr ) {
-				unset( $attribs[$badAttr] );
-			}
-		}
 		if ( $type != 'text' ) {
 			$attribs['type'] = $type;
 		}
