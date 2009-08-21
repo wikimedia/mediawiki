@@ -415,6 +415,8 @@ this. Was used when mwEmbed was going to be an extension.
 * (bug 20296) Fixed an PHP warning in Language::getMagic() in PHP 5.3
 * When creating accounts, don't prefill name from current username (which
   presumably is already taken)
+* (bug 15646) Page creation notification email is not longer sent when a 
+  watched page is deleted
 
 == API changes in 1.16 ==
 
