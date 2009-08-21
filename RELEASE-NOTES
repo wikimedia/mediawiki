@@ -73,8 +73,6 @@ this. Was used when mwEmbed was going to be an extension.
   to same server
 * $wgSpecialVersionExtended shows the extended version information besides 
   PHP and database version.
-* $wgSecondaryGoNamespaces allows an arry of namespaces to be checked when the
-  GO button is pressed, in addition to the main namespace.
 * (bug 19907) $wgCrossSiteAJAXdomains and $wgCrossSiteAJAXdomainExceptions added 
   to control which external domains may access the API via cross-site AJAX.
 * $wgMaintenanceScripts for extensions to add their scripts to the default list
@@ -156,8 +154,6 @@ this. Was used when mwEmbed was going to be an extension.
 * (bug 14201) Set $wgDBadminuser/$wgDBadminpassword during setup
 * (bug 18768) Remove AdminSettings requirements. Maintenance environment
   will still load it if it exists, but it's not required for anything
-* Added $wgSecondaryGoNamespaces, allowing an array of namespaces to be checked
-  when the Go button is pressed in addition to the main namespace.
 * (bug 19900) The "listgrouprights-key" message is now wrapped in a div with
   class "mw-listgrouprights-key"
 * (bug 471) Allow RSS feeds for watchlist, using an opt-in security token

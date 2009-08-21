@@ -63,7 +63,7 @@ class SearchEngine {
 	 * @return Title
 	 */
 	public static function getNearMatch( $searchterm ) {
-		global $wgContLang, $wgSecondaryGoNamespaces;
+		global $wgContLang;
 
 		$allSearchTerms = array($searchterm);
 
@@ -86,14 +86,6 @@ class SearchEngine {
 			$article = MediaWiki::articleFromTitle( $title );
 			if( $article->hasViewableContent() ) {
 				return $title;
-			}
-
-			# If a match is not found in the main namespace look in secondary go namespaces.
-			if( $wgSecondaryGoNamespaces && $title->getNamespace() == NS_MAIN ) {
-				foreach( $wgSecondaryGoNamespaces as $ns ) {
-					$title = Title::newFromText( $term, $ns );
-					if( $title && $title->exists() ) return $title;
-				}
 			}
 
 			# Now try all lower case (i.e. first letter capitalized)
