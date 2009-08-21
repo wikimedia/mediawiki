@@ -1441,9 +1441,6 @@ EOF;
 		return 'IBM DB2';
 	}
 
-	###
-	# Fix search crash
-	###
 	/**
 	 * Get search engine class. All subclasses of this
 	 * need to implement this if they wish to use searching.
@@ -1453,10 +1450,7 @@ EOF;
 	public function getSearchEngine() {
 		return "SearchIBM_DB2";
 	}
-	
-	###
-	# Tuesday the 14th of October, 2008
-	###
+
 	/**
 	 * Did the last database access fail because of deadlock?
 	 * @return bool
