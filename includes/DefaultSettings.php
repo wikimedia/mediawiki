@@ -4128,14 +4128,6 @@ $wgAutocreatePolicy = 'login';
  */
 $wgAllowPrefChange = array();
 
-/**
- * If an exact match is not found, try to find a match in different namespaces
- * before performing a search.
- *
- * Array: Ids of namespaces to attempt match in, in desired order.
- */
-$wgSecondaryGoNamespaces = null;
-
 
 /**
  * Settings for incoming cross-site AJAX requests:
