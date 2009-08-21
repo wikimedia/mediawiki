@@ -406,15 +406,15 @@ class Article {
 		if( $data ) {
 			$lc->addGoodLinkObj( $data->page_id, $this->mTitle, $data->page_len, $data->page_is_redirect );
 
-			$this->mTitle->mArticleID = $data->page_id;
+			$this->mTitle->mArticleID = intval( $data->page_id );
 
 			# Old-fashioned restrictions
 			$this->mTitle->loadRestrictions( $data->page_restrictions );
 
-			$this->mCounter     = $data->page_counter;
+			$this->mCounter     = intval( $data->page_counter );
 			$this->mTouched     = wfTimestamp( TS_MW, $data->page_touched );
-			$this->mIsRedirect  = $data->page_is_redirect;
-			$this->mLatest      = $data->page_latest;
+			$this->mIsRedirect  = intval( $data->page_is_redirect );
+			$this->mLatest      = intval( $data->page_latest );
 		} else {
 			if( is_object( $this->mTitle ) ) {
 				$lc->addBadLinkObj( $this->mTitle );

@@ -2158,7 +2158,7 @@ class Title {
 		$linkCache->clearBadLink( $this->getPrefixedDBkey() );
 
 		if ( $newid === false ) { $this->mArticleID = -1; }
-		else { $this->mArticleID = $newid; }
+		else { $this->mArticleID = intval( $newid ); }
 		$this->mRestrictionsLoaded = false;
 		$this->mRestrictions = array();
 	}
