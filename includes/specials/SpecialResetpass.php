@@ -111,8 +111,8 @@ class SpecialResetpass extends SpecialPage {
 			$this->pretty( array(
 				array( 'wpName', 'username', 'text', $this->mUserName ),
 				array( 'wpPassword', $oldpassMsg, 'password', $this->mOldpass ),
-				array( 'wpNewPassword', 'newpassword', 'password', '' ),
-				array( 'wpRetype', 'retypenew', 'password', '' ),
+				array( 'wpNewPassword', 'newpassword', 'password', null ),
+				array( 'wpRetype', 'retypenew', 'password', null ),
 			) ) . "\n" .
 			$rememberMe .
 			"<tr>\n" .
