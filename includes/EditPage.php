@@ -365,7 +365,7 @@ class EditPage {
 	function edit() {
 		global $wgOut, $wgRequest, $wgEnableJS2system;
 		// Allow extensions to modify/prevent this form or submission
-		if ( !wfRunHooks( 'AlternateEdit', array( &$this ) ) ) {
+		if ( !wfRunHooks( 'AlternateEdit', array( $this ) ) ) {
 			return;
 		}
 
@@ -675,7 +675,7 @@ class EditPage {
 		wfProfileOut( $fname );
 
 		// Allow extensions to modify form data
-		wfRunHooks( 'EditPage::importFormData', array( &$this, $request ) );
+		wfRunHooks( 'EditPage::importFormData', array( $this, $request ) );
 	}
 
 	/**
@@ -767,7 +767,7 @@ class EditPage {
 		wfProfileIn( $fname );
 		wfProfileIn( "$fname-checks" );
 
-		if ( !wfRunHooks( 'EditPage::attemptSave', array( &$this ) ) )
+		if ( !wfRunHooks( 'EditPage::attemptSave', array( $this ) ) )
 		{
 			wfDebug( "Hook 'EditPage::attemptSave' aborted article saving\n" );
 			return self::AS_HOOK_ERROR;
@@ -886,7 +886,7 @@ class EditPage {
 			}
 
 			// Run post-section-merge edit filter
-			if ( !wfRunHooks( 'EditFilterMerged', array( &$this, $this->textbox1, &$this->hookError, $this->summary ) ) ) {
+			if ( !wfRunHooks( 'EditFilterMerged', array( $this, $this->textbox1, &$this->hookError, $this->summary ) ) ) {
 				# Error messages etc. could be handled within the hook...
 				wfProfileOut( $fname );
 				return self::AS_HOOK_ERROR;
@@ -974,7 +974,7 @@ class EditPage {
 		$oldtext = $this->mArticle->getContent();
 
 		// Run post-section-merge edit filter
-		if ( !wfRunHooks( 'EditFilterMerged', array( &$this, $text, &$this->hookError, $this->summary ) ) ) {
+		if ( !wfRunHooks( 'EditFilterMerged', array( $this, $text, &$this->hookError, $this->summary ) ) ) {
 			# Error messages etc. could be handled within the hook...
 			wfProfileOut( $fname );
 			return self::AS_HOOK_ERROR;
