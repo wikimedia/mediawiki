@@ -32,7 +32,7 @@ $namespaceNames = array(
 	NS_HELP             => 'Yardım',
 	NS_HELP_TALK        => 'Yardım_muzakeresi',
 	NS_CATEGORY         => 'Kategoriya',
-	NS_CATEGORY_TALK    => 'Kategoriya_muzakeresi'
+	NS_CATEGORY_TALK    => 'Kategoriya_muzakeresi',
 );
 
 # Aliases to cyril namespaces

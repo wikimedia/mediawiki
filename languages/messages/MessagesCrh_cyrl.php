@@ -36,7 +36,7 @@ $namespaceNames = array(
 	NS_HELP             => 'Ярдым',
 	NS_HELP_TALK        => 'Ярдым_музакереси',
 	NS_CATEGORY         => 'Категория',
-	NS_CATEGORY_TALK    => 'Категория_музакереси'
+	NS_CATEGORY_TALK    => 'Категория_музакереси',
 );
 
 # Aliases to latin namespaces

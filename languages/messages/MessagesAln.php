@@ -28,7 +28,7 @@ $namespaceNames = array(
 	NS_HELP             => 'Ndihmë',
 	NS_HELP_TALK        => 'Ndihmë_diskutim',
 	NS_CATEGORY         => 'Kategoria',
-	NS_CATEGORY_TALK    => 'Kategoria_diskutim'
+	NS_CATEGORY_TALK    => 'Kategoria_diskutim',
 );
 
 $namespaceAliases = array(

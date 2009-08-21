@@ -16,21 +16,21 @@
 
 $namespaceNames = array(
 	NS_MEDIA            => 'Media',
-	NS_SPECIAL          => 'Arbennek',
-	NS_TALK             => 'Kows',
+	NS_SPECIAL          => 'Arbednek',
+	NS_TALK             => 'Cows',
 	NS_USER             => 'Devnydhyer',
-	NS_USER_TALK        => 'Kows Devnydhyer',
-	NS_PROJECT_TALK     => 'Kows_$1',
+	NS_USER_TALK        => 'Cows Devnydhyer',
+	NS_PROJECT_TALK     => 'Cows_$1',
 	NS_FILE             => 'Restren',
-	NS_FILE_TALK        => 'Kows_Restren',
+	NS_FILE_TALK        => 'Cows_Restren',
 	NS_MEDIAWIKI        => 'MediaWiki',
-	NS_MEDIAWIKI_TALK   => 'Kows_MediaWiki',
-	NS_TEMPLATE         => 'Skantlyn',
-	NS_TEMPLATE_TALK    => 'Kows_Skantlyn',
+	NS_MEDIAWIKI_TALK   => 'Cows_MediaWiki',
+	NS_TEMPLATE         => 'Scantlyn',
+	NS_TEMPLATE_TALK    => 'Cows_Scantlyn',
 	NS_HELP             => 'Gweres',
-	NS_HELP_TALK        => 'Kows_Gweres',
-	NS_CATEGORY         => 'Klasyans',
-	NS_CATEGORY_TALK    => 'Kows_Klasyans',
+	NS_HELP_TALK        => 'Cows_Gweres',
+	NS_CATEGORY         => 'Class',
+	NS_CATEGORY_TALK    => 'Cows_Class',
 );
 
 $specialPageAliases = array(
