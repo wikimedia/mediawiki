@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Jens Liebenau
  * @author Jonny84
  * @author Piotron
  * @author Purodha
@@ -372,7 +373,7 @@ Falls dies nicht der Fall ist, hast du eventuell einen Fehler in der Software ge
 'badtitletext'         => 'Dar Tittel dar oagefurderta Seite ies ungieltig, laar oder a ungieltiger Sproachlink voo eenem andern Wiki.',
 'perfcached'           => 'De folgenden Daten stomma oaus damm Cache und sein meegliecherweise nee aktuell:',
 'perfcachedts'         => 'Diese Daten stomma oaus damm Cache, letztes Update: $1',
-'querypage-no-updates' => "'''De Aktualisierungsfunktion fier diese Seyte ies zur Zeit deaktiviert. De Daten waan bis uff weiteres nee erneuert.'''",
+'querypage-no-updates' => "'''De Aktualisierungsfunktion fier diese Seyte ies zurzeit deaktiviert. De Daten waan bis uff Weiteres nee erneuert.'''",
 'wrong_wfQuery_params' => 'Foalsche Parameter fier wfQuery()<br />
 Funksjonn: $1<br />
 Abfroage: $2',

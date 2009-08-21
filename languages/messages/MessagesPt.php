@@ -196,6 +196,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Enviar-me um email também quando forem edições menores',
 'tog-enotifrevealaddr'        => 'Revelar o meu endereço de email nas notificações',
 'tog-shownumberswatching'     => 'Mostrar o número de utilizadores a vigiar',
+'tog-oldsig'                  => 'Previsualização da assinatura atual:',
 'tog-fancysig'                => 'Tratar assinatura como wikitexto (sem ligação automática)',
 'tog-externaleditor'          => 'Utilizar editor externo por defeito (apenas para usuários avançados, já que serão necessárias configurações adicionais em seus computadores)',
 'tog-externaldiff'            => 'Utilizar diferenças externas por defeito (apenas para usuários avançados, já que serão necessárias configurações adicionais em seus computadores)',
@@ -220,7 +221,11 @@ $messages = array(
 'underline-default' => 'Padrão do navegador',
 
 # Font style option in Special:Preferences
+'editfont-style'     => 'Editar estilo da área da fonte:',
+'editfont-default'   => 'Navegador padrão',
 'editfont-monospace' => 'Fonte monoespaçada',
+'editfont-sansserif' => 'Fonte sans-serif',
+'editfont-serif'     => 'Fonte serifada',
 
 # Dates
 'sunday'        => 'domingo',
@@ -405,6 +410,11 @@ $messages = array(
 'jumpto'            => 'Ir para:',
 'jumptonavigation'  => 'navegação',
 'jumptosearch'      => 'pesquisa',
+'view-pool-error'   => 'Desculpe-nos, os servidores estão sobrecarregados no momento.
+Muitos utilizadores estão tentando visualizar essa página.
+Por favor espere um pouco antes de tentar acessar a página novamente.
+
+$1',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'Sobre {{SITENAME}}',
@@ -486,15 +496,16 @@ Uma lista de páginas especiais válidas poderá ser encontrada em [[Special:Spe
 'error'                => 'Erro',
 'databaseerror'        => 'Erro na base de dados',
 'dberrortext'          => 'Ocorreu um erro de sintaxe na pesquisa à base de dados.
+Isto pode indicar um bug no software.
 A última tentativa de busca na base de dados foi:
 <blockquote><tt>$1</tt></blockquote>
 na função "<tt>$2</tt>".
-O MySQL retornou o erro "<tt>$3: $4</tt>".',
-'dberrortextcl'        => 'Ocorre um erro de sintaxe na pesquisa à base de dados.
+$5 retornou o erro "<tt>$3: $4</tt>".',
+'dberrortextcl'        => 'Ocorreu um erro de sintaxe na pesquisa à base de dados.
 A última tentativa de busca na base de dados foi:
-<blockquote><tt>$1</tt></blockquote>
-na função "<tt>$2</tt>".
-O MySQL retornou o erro "<tt>$3: $4</tt>".',
+"$1"
+na função "$2".
+$5 retornou o erro "$3: $4"',
 'laggedslavemode'      => 'Aviso: A página poderá não conter actualizações recentes.',
 'readonly'             => 'Base de dados no modo "somente leitura"',
 'enterlockreason'      => 'Introduza um motivo para trancar, incluindo uma estimativa de quando poderá ser destrancada',
@@ -901,16 +912,21 @@ Tente [[Special:Search|pesquisar na wiki]] por páginas relevantes.',
 'rev-deleted-user'            => '(nome de utilizador removido)',
 'rev-deleted-event'           => '(entrada removida)',
 'rev-deleted-text-permission' => "Esta edição desta página foi '''eliminada'''.
-Poderão existir detalhes no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registo de supressão].",
+Poderão existir detalhes no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registo de eliminação].",
 'rev-deleted-text-unhide'     => "Esta edição desta página foi '''eliminada'''.
-Poderão existir detalhes no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registo de eliminação].
+Poderão existir detalhes no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registo de eliminação].
 Por ser um administrador, você pode mesmo assim [$1 ver esta edição] se desejar prosseguir.",
+'rev-suppressed-text-unhide'  => "Esta edição desta página foi '''suprimida'''.
+Poderão existir detalhes no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registo de supressão].
+Por ser um administrador, você pode ainda [$1 ver esta edição] se desejar prosseguir.",
 'rev-deleted-text-view'       => "Esta edição desta página foi '''eliminada'''.
+Por ser um administrador, você pode vê-la; poderão existir detalhes no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registo de eliminação].",
+'rev-suppressed-text-view'    => "Esta edição desta página foi '''suprimida'''.
 Por ser um administrador, você pode vê-la; poderão existir detalhes no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registo de supressão].",
-'rev-deleted-no-diff'         => "Você não pode ver estas diferenças porque uma das revisões foi '''eliminada'''.
-Poderá haver detalhes no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registo de supressão].",
+'rev-deleted-no-diff'         => "Você não pode ver esta diferença entre revisões porque uma das revisões foi '''eliminada'''.
+Poderá haver detalhes no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registo de eliminação].",
 'rev-deleted-unhide-diff'     => "Uma das revisões destas diferenças foi '''eliminada'''.
-Poderá haver detalhes no [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} registo de supressão].
+Poderá haver detalhes no [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} registo de eliminação].
 Por ser um administrador, você pode mesmo assim [$1 ver estas diferenças], se desejar prosseguir.",
 'rev-delundel'                => 'mostrar/esconder',
 'revisiondelete'              => 'Eliminar/restaurar edições',
@@ -1168,6 +1184,7 @@ Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desac
 'prefs-watchlist-days-max'      => '(máximo: 7 dias)',
 'prefs-watchlist-edits'         => 'Número de edições a mostrar na lista de vigiados expandida:',
 'prefs-watchlist-edits-max'     => '(máximo: 1000)',
+'prefs-watchlist-token'         => 'Sinal da lista de vigiados',
 'prefs-misc'                    => 'Diversos',
 'prefs-resetpass'               => 'Alterar palavra-chave',
 'prefs-email'                   => 'Opções de email',
@@ -1188,6 +1205,9 @@ Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desac
 'recentchangesdays-max'         => '(máximo: $1 {{PLURAL:$1|dia|dias}})',
 'recentchangescount'            => 'Número de edições a serem exibidas por defeito:',
 'prefs-help-recentchangescount' => 'Isto inclui mudanças recentes, histórico de páginas e registos.',
+'prefs-help-watchlist-token'    => 'O preenchimento desse campo com uma chave secreta irá gerar um feed RSS para a sua lista de vigiados.
+Qualquer um que conhecer a chave desta área poderá ler os sua lista de vigiados, então escolha uma palavra secreta segura.
+Aqui está uma palavra secreta gerada aleatoriamente que você poderá usar: $1',
 'savedprefs'                    => 'As suas preferências foram gravadas.',
 'timezonelegend'                => 'Fuso horário:',
 'localtime'                     => 'Horário local:',
@@ -1227,6 +1247,7 @@ Esta acção não pode ser desfeita.',
 'yourlanguage'                  => 'Idioma:',
 'yourvariant'                   => 'Variante',
 'yournick'                      => 'Assinatura:',
+'prefs-help-signature'          => 'Comentários nas páginas de discussão devem ser assinados com "<nowiki>~~~~</nowiki>" que será convertido em sua assinatura e a data da edição',
 'badsig'                        => 'Assinatura inválida; verifique o código HTML utilizado.',
 'badsiglength'                  => 'A sua assinatura é muito longa.
 Não deverá ter mais de $1 {{PLURAL:$1|caráter|carateres}}.',
@@ -1356,6 +1377,7 @@ Pode também escolher permitir que outros entrem em contacto consigo através da
 'right-siteadmin'             => 'Bloquear e desbloquear a base de dados',
 'right-reset-passwords'       => 'Repor a palavra-chave de outros utilizadores',
 'right-override-export-depth' => 'Exportar páginas incluindo páginas ligadas até uma profundidade de 5',
+'right-versiondetail'         => 'Mostrar informações completas da versão de software',
 
 # User rights log
 'rightslog'      => 'Registo de privilégios de utilizador',
@@ -1412,6 +1434,8 @@ Pode também escolher permitir que outros entrem em contacto consigo através da
 'recentchanges-label-minor'         => 'Esta é uma edição menor',
 'recentchanges-legend-bot'          => '$1 - edição de robô',
 'recentchanges-label-bot'           => 'Esta modificação foi realizada por um robô',
+'recentchanges-legend-unpatrolled'  => '$1 - edição não patrulhada',
+'recentchanges-label-unpatrolled'   => 'Esta edição ainda não foi patrulhada',
 'rcnote'                            => "A seguir {{PLURAL:$1|está listada '''uma''' alteração ocorrida|estão listadas '''$1''' alterações ocorridas}} {{PLURAL:$2|no último dia|nos últimos '''$2''' dias}}, a partir das $5 de $4.",
 'rcnotefrom'                        => 'Abaixo estão as mudanças desde <b>$2</b> (mostradas até <b>$1</b>).',
 'rclistfrom'                        => 'Mostrar as novas alterações a partir de $1',
@@ -1547,17 +1571,18 @@ MGP # Pentax
 PICT # misc.
  #</pre> <!-- deixe esta linha exactamente como está -->',
 
-'upload-proto-error'      => 'Protocolo incorrecto',
-'upload-proto-error-text' => 'O envio de ficheiros remotos requer endereços (URLs) que iniciem com <code>http://</code> ou <code>ftp://</code>.',
-'upload-file-error'       => 'Erro interno',
-'upload-file-error-text'  => 'Ocorreu um erro interno ao se tentar criar um arquivo temporário no servidor.
+'upload-proto-error'        => 'Protocolo incorrecto',
+'upload-proto-error-text'   => 'O envio de ficheiros remotos requer endereços (URLs) que iniciem com <code>http://</code> ou <code>ftp://</code>.',
+'upload-file-error'         => 'Erro interno',
+'upload-file-error-text'    => 'Ocorreu um erro interno ao se tentar criar um arquivo temporário no servidor.
 Por gentileza, contate um [[Special:ListUsers/sysop|administrador]].',
-'upload-misc-error'       => 'Erro desconhecido de envio',
-'upload-misc-error-text'  => 'Ocorreu um erro desconhecido durante o envio.
+'upload-misc-error'         => 'Erro desconhecido de envio',
+'upload-misc-error-text'    => 'Ocorreu um erro desconhecido durante o envio.
 Verifique se o endereço (URL) é válido e acessível e tente novamente.
 Caso o problema persista, contacte um [[Special:ListUsers/sysop|administrador]].',
-'upload-unknown-size'     => 'Tamanho desconhecido',
-'upload-http-error'       => 'Ocorreu um erro HTTP: $1',
+'upload-too-many-redirects' => 'O URL continha muitos redirecionamentos',
+'upload-unknown-size'       => 'Tamanho desconhecido',
+'upload-http-error'         => 'Ocorreu um erro HTTP: $1',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Não foi possível acessar a URL',
@@ -1669,7 +1694,7 @@ A descrição presente na sua [$2 página de descrição] é mostrada abaixo.',
 
 # Random page
 'randompage'         => 'Página aleatória',
-'randompage-nopages' => 'Não há páginas no espaço nominal "$1".',
+'randompage-nopages' => 'Não há páginas {{PLURAL:$2|no seguinte espaço nominal|nos seguintes espaços nominais}}: $1.',
 
 # Random redirect
 'randomredirect'         => 'Redireccionamento aleatório',
@@ -1681,6 +1706,7 @@ A descrição presente na sua [$2 página de descrição] é mostrada abaixo.',
 'statistics-header-edits'      => 'Estatísticas de edições',
 'statistics-header-views'      => 'Ver estatísticas',
 'statistics-header-users'      => 'Estatísticas de utilizadores',
+'statistics-header-hooks'      => 'Outras estatísticas',
 'statistics-articles'          => 'Páginas de conteúdo',
 'statistics-pages'             => 'Páginas',
 'statistics-pages-desc'        => 'Todas as páginas do wiki, incluindo páginas de discussão, redirecionamentos, etc.',
@@ -1701,7 +1727,9 @@ A descrição presente na sua [$2 página de descrição] é mostrada abaixo.',
 Uma página é considerada como de desambiguação se utilizar uma predefinição que esteja definida em [[MediaWiki:Disambiguationspage]]",
 
 'doubleredirects'            => 'Redireccionamentos duplos',
-'doubleredirectstext'        => 'Cada linha contém ligações para o primeiro e segundo redireccionamento, bem como a primeira linha de conteúdo do segundo redireccionamento, geralmente contendo a página destino "real", que devia ser o destino do primeiro redireccionamento.',
+'doubleredirectstext'        => 'Esta página lista páginas que redirecionam para outras páginas de redirecionamento.
+Cada linha contém ligações para o primeiro e segundo redirecionamento, bem como o destino do segundo redirecionamento, geralmente contendo a página destino "real", que devia ser o destino do primeiro redirecionamento.
+<s>Entradas cortadas</s> foram já solucionadas.',
 'double-redirect-fixed-move' => '[[$1]] foi movido, passando a redirecionar para [[$2]]',
 'double-redirect-fixer'      => 'Corretor de redirecionamentos',
 
@@ -2033,7 +2061,7 @@ Veja a [[Special:ProtectedPages|lista de páginas protegidas]] para uma listagem
 'protect-title'               => 'Protegendo "$1"',
 'prot_1movedto2'              => 'moveu [[$1]] para [[$2]]',
 'protect-legend'              => 'Confirmar protecção',
-'protectcomment'              => 'Motivo de protecção',
+'protectcomment'              => 'Motivo:',
 'protectexpiry'               => 'Expiração',
 'protect_expiry_invalid'      => 'O tempo de expiração fornecido é inválido.',
 'protect_expiry_old'          => 'O tempo de expiração fornecido se situa no passado.',
@@ -2394,17 +2422,21 @@ Se desejar, pode utilizar uma ligação (por exemplo, [[{{#Special:Export}}/{{Me
 'export-pagelinks'  => 'Includir páginas ligadas até uma profundidade de:',
 
 # Namespace 8 related
-'allmessages'               => 'Todas as mensagens de sistema',
-'allmessagesname'           => 'Nome',
-'allmessagesdefault'        => 'Texto padrão',
-'allmessagescurrent'        => 'Texto actual',
-'allmessagestext'           => 'Esta é uma lista de todas as mensagens de sistema disponíveis no espaço nominal {{ns:mediawiki}}.
+'allmessages'                   => 'Todas as mensagens de sistema',
+'allmessagesname'               => 'Nome',
+'allmessagesdefault'            => 'Texto padrão',
+'allmessagescurrent'            => 'Texto actual',
+'allmessagestext'               => 'Esta é uma lista de todas as mensagens de sistema disponíveis no espaço nominal {{ns:mediawiki}}.
 Acesse [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] e [http://translatewiki.net translatewiki.net] caso deseje contribuir para traduções do MediaWiki feitas para uso geral.',
-'allmessagesnotsupportedDB' => "Esta página não pode ser utilizada, uma vez que '''\$wgUseDatabaseMessages''' foi desativado.",
-'allmessages-filter-legend' => 'Filtro',
-'allmessages-prefix'        => 'Filtrar por prefixo:',
-'allmessages-language'      => 'Língua:',
-'allmessages-filter-submit' => 'Ir',
+'allmessagesnotsupportedDB'     => "Esta página não pode ser utilizada, uma vez que '''\$wgUseDatabaseMessages''' foi desativado.",
+'allmessages-filter-legend'     => 'Filtro',
+'allmessages-filter'            => 'Filtrar por estado de personalização:',
+'allmessages-filter-unmodified' => 'Não modificado',
+'allmessages-filter-all'        => 'Todas',
+'allmessages-filter-modified'   => 'Modificado',
+'allmessages-prefix'            => 'Filtrar por prefixo:',
+'allmessages-language'          => 'Língua:',
+'allmessages-filter-submit'     => 'Ir',
 
 # Thumbnails
 'thumbnail-more'           => 'Ampliar',

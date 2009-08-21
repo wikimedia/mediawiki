@@ -1920,7 +1920,7 @@ Hier is die huidige verstellings vir bladsy '''$1''':",
 'restriction-level-all'           => 'enige vlak',
 
 # Undelete
-'undelete'                   => 'Herstel geskrapte bladsy',
+'undelete'                   => 'Besigtig geskrapte bladsye',
 'undeletepage'               => 'Bekyk en herstel geskrapte bladsye',
 'undeletepagetitle'          => "'''Hier onder is die verwyderde bydraes van [[:$1]]'''.",
 'viewdeletedpage'            => 'Bekyk geskrapte bladsye',

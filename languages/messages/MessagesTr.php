@@ -1391,6 +1391,7 @@ Aynı zamanda diğer kullanıcıların kullanıcı ve kullanıcı mesaj sayfalar
 'recentchanges-legend'              => 'Son değişiklikler seçenekleri',
 'recentchangestext'                 => 'Yapılan en son değişiklikleri bu sayfadan izleyin.',
 'recentchanges-feed-description'    => "Bu beslemedeki viki'de yapılan en son değişiklikleri takip edin.",
+'recentchanges-label-legend'        => 'Açıklamalar: $1.',
 'recentchanges-legend-newpage'      => '$1 - yeni sayfa',
 'recentchanges-label-newpage'       => 'Bu değişiklik yeni bir sayfa oluşturdu',
 'recentchanges-legend-minor'        => '$1 - küçük değişiklik',

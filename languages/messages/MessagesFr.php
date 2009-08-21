@@ -814,7 +814,7 @@ Veuillez attendre avant d’essayer à nouveau.',
 'newpassword'               => 'Nouveau mot de passe :',
 'retypenew'                 => 'Confirmer le nouveau mot de passe :',
 'resetpass_submit'          => 'Changer le mot de passe et se connecter',
-'resetpass_success'         => 'Votre mot de passe a été changé avec succès ! Connexion en cours...',
+'resetpass_success'         => 'Votre mot de passe a été changé avec succès ! Connexion en cours…',
 'resetpass_forbidden'       => 'Les mots de passe ne peuvent pas être changés',
 'resetpass-no-info'         => 'Vous devez être connecté pour avoir accès à cette page.',
 'resetpass-submit-loggedin' => 'Changer le mot de passe',
@@ -1093,7 +1093,7 @@ En tant qu’administrateur vous pouvez toujours [$1 voir cette différence] si 
 Les autres administrateurs de {{SITENAME}} pourront toujours accéder au contenu caché et le restaurer à travers cette même interface, à moins que des restrictions supplémentaires ne soit mises en place. Confirmez que ceci est bien ce que vous avez l’intention de faire, que vous en comprenez les conséquences, et que vous faites ceci en accord avec les [[{{MediaWiki:Policy-url}}|règles établies]].",
 'revdelete-suppress-text'     => "La suppression ne doit être utilisée '''que''' dans les cas suivants :
 * Informations personnelles inappropriées
-*: ''adresse, numéro de téléphone, numéro de sécurité sociale, ...''",
+*: ''adresse, numéro de téléphone, numéro de sécurité sociale, …''",
 'revdelete-legend'            => 'Mettre en place des restrictions de visibilité :',
 'revdelete-hide-text'         => 'Masquer le texte de la version',
 'revdelete-hide-name'         => 'Masquer l’action et la cible',
@@ -1230,7 +1230,7 @@ Assurez-vous que cette opération conservera la continuité de l’historique de
 'diff-font'                => "'''police'''",
 'diff-big'                 => "'''grand'''",
 'diff-del'                 => "'''supprimé'''",
-'diff-tt'                  => "'''largeur fixée'''",
+'diff-tt'                  => "'''espacement constant'''",
 'diff-sub'                 => "'''indice'''",
 'diff-sup'                 => "'''exposant'''",
 'diff-strike'              => "'''barré'''",
@@ -1922,7 +1922,7 @@ Les entrées <s>barrées</s> ont été résolues.',
 'mostcategories'          => 'Pages utilisant le plus de catégories',
 'mostimages'              => 'Fichiers les plus utilisés',
 'mostrevisions'           => 'Pages les plus modifiées',
-'prefixindex'             => 'Toutes les pages débutant par...',
+'prefixindex'             => 'Toutes les pages débutant par…',
 'shortpages'              => 'Pages courtes',
 'longpages'               => 'Pages longues',
 'deadendpages'            => 'Pages en impasse',
@@ -2109,8 +2109,8 @@ L’adresse électronique que vous avez indiquée dans [[Special:Preferences|vos
 'watchlist-options'    => 'Options de la liste de suivi',
 
 # Displayed when you click the "watch" button and it is in the process of watching
-'watching'   => 'Suivi...',
-'unwatching' => 'Fin du suivi...',
+'watching'   => 'Suivi…',
+'unwatching' => 'Fin du suivi…',
 
 'enotif_mailer'                => 'Système de notification par courriel de {{SITENAME}}',
 'enotif_reset'                 => 'Marquer toutes les pages comme visitées',
@@ -2628,7 +2628,7 @@ Toutes les actions d’importation inter-wiki sont consignées dans l’[[Specia
 'import-comment'             => 'Commentaire :',
 'importtext'                 => 'Veuillez exporter le fichier depuis le wiki d’origine en utilisant son [[Special:Export|outil d’exportation]].
 Sauvegardez-le sur votre disque dur puis téléversez-le ici.',
-'importstart'                => 'Importation des pages...',
+'importstart'                => 'Importation des pages…',
 'import-revision-count'      => '$1 version{{PLURAL:$1||s}}',
 'importnopages'              => 'Aucune page à importer.',
 'importfailed'               => 'Échec de l’importation : <nowiki>$1</nowiki>',
@@ -3279,8 +3279,8 @@ Veuillez confirmer que vous désirez réellement recréer cette page.",
 'size-gigabytes' => '$1 Gio',
 
 # Live preview
-'livepreview-loading' => 'Chargement...',
-'livepreview-ready'   => 'Chargement... terminé !',
+'livepreview-loading' => 'Chargement…',
+'livepreview-ready'   => 'Chargement… terminé !',
 'livepreview-failed'  => 'L’aperçu rapide a échoué !
 Essayez la prévisualisation normale.',
 'livepreview-error'   => 'Impossible de se connecter : $1 « $2 ».

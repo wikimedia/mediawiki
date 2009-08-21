@@ -298,18 +298,20 @@ $messages = array(
 'tog-shownumberswatching'     => "Uri n-numru ta' utenti li qegħdin isegwu din il-paġna",
 'tog-oldsig'                  => 'Dehra proviżorja tal-firma attwali:',
 'tog-fancysig'                => 'Itratta l-firem bħala test tal-wiki (mingħajr ħolqa awtomatika)',
-'tog-externaleditor'          => "Uża bid-''default'' modifikatur ta' testi esternali (għal esperti biss, għandha bżonn preferenzi speċjali fuq il-komputer tiegħek)",
-'tog-externaldiff'            => "Uża bid-''default'' diff estern (għal esperti biss, għandhek bżonn preferenzi speċjali fuq il-komputer tiegħek)",
-'tog-showjumplinks'           => 'Ħalli "aqbeż għal" linkjar aċċessibbli',
+'tog-externaleditor'          => 'Uża awtomatikament modifikatur estern għat-testi (għal esperti biss, għandha bżonn preferenzi speċjali fuq il-komputer tiegħek)',
+'tog-externaldiff'            => 'Uża awtomatikament diff estern (għal esperti biss, għandhek bżonn preferenzi speċjali fuq il-komputer tiegħek)',
+'tog-showjumplinks'           => 'Attiva l-ħoloq aċċessibbli "aqbeż għal"',
 'tog-uselivepreview'          => "Attiva l-funzjoni ''Live preview'' (bżonn tal-JavaScript; sperimentali)",
 'tog-forceeditsummary'        => 'Nebbaħni meta ndaħħal taqsira tal-modifika vojta',
-'tog-watchlisthideown'        => "Aħbi l-modifiki tiegħi mil-lista t'osservazzjoni",
-'tog-watchlisthidebots'       => "Aħbi modifiki tal-bots mil-lista t'osservazzjoni tiegħi",
+'tog-watchlisthideown'        => "Aħbi l-modifiki tiegħi mil-lista ta' osservazzjoni",
+'tog-watchlisthidebots'       => "Aħbi l-modifiki tal-bots mil-lista ta' osservazzjoni",
 'tog-watchlisthideminor'      => "Aħbi modifiki żgħar mil-lista t'osservazzjoni",
+'tog-watchlisthideliu'        => "Aħbi modifiki minn utenti illogjati mil-lista ta' osservazzjoni tiegħi",
 'tog-nolangconversion'        => 'Disattiva konversazzjonijiet fost varjanti lingwistiċi',
 'tog-ccmeonemails'            => "Ibgħatli kopji tal-posti elettroniċi li nibgħat 'l utenti l-oħrajn",
 'tog-diffonly'                => 'Turiex kontenut tal-paġni wara li tkun għamilt paragun bejn il-verżjonijiet',
 'tog-showhiddencats'          => 'Uri kategoriji moħbija',
+'tog-norollbackdiff'          => "Turix il-paragun bejn il-verżjonijiet wara li tkun effettwajt ir-''rollback''",
 
 'underline-always'  => 'Dejjem',
 'underline-never'   => 'Qatt',
@@ -369,13 +371,13 @@ $messages = array(
 
 # Categories related messages
 'pagecategories'                 => '{{PLURAL:$1|Kategorija|Kategoriji}}',
-'category_header'                => 'Paġni f\'din il-kategorija "$1"',
+'category_header'                => 'Paġni fil-kategorija "$1"',
 'subcategories'                  => 'Sottokategoriji',
-'category-media-header'          => 'Medja fil-kategorija "$1"',
-'category-empty'                 => "''Din il-kategorija bħalissa m'għandiex paġni jew medja.''",
-'hidden-categories'              => '{{PLURAL:$1|Kategorija moħbija|Kategoriji moħbijin}}',
+'category-media-header'          => 'Fajls fil-kategorija "$1"',
+'category-empty'                 => "''Bħalissa, din il-kategorija m'għandiex paġni jew fajls multimedjali.''",
+'hidden-categories'              => '{{PLURAL:$1|Kategorija moħbija|Kategoriji moħbija}}',
 'hidden-category-category'       => 'Kategoriji moħbija',
-'category-subcat-count'          => "{{PLURAL:$2|Din il-kategorija għanda biss din is-subkategorija.|Din il-kategorija għanda biss din {{PLURAL:$1|subkategorija|$1 subkategoriji}}, minn total ta' $2.}}",
+'category-subcat-count'          => "{{PLURAL:$2|Din il-kategorija għandha biss din is-sottokategorija segwenti.|Din il-kategorija għandha {{PLURAL:$1|s-sottokategorija indikata|$1 sottokategoriji}}, minn total ta' $2.}}",
 'category-subcat-count-limited'  => 'Din il-kategorija għandha {{PLURAL:$1|sottokategorija|$1 sottokategoriji}}.',
 'category-article-count'         => "{{PLURAL:$2|Din il-kategorija għandha biss din il-paġna, kif indikat.| Din il-kategorija għandha {{PLURAL:$1|l-paġna indikata|l-$1 paġni indikati}}, minn total ta' $2.}}",
 'category-article-count-limited' => 'Din il-kategorija għanda {{PLURAL:$1|l-paġna indikata|l-$1 paġni indikati}}.',
@@ -384,13 +386,13 @@ $messages = array(
 'listingcontinuesabbrev'         => 'kompli',
 
 'linkprefix'        => '/^(.*?)([a-żA-Ż\\x80-\\xff]+)$/sD',
-'mainpagetext'      => "<big>'''MedjaWiki ġiet installat b'suċċess.'''</big>",
-'mainpagedocfooter' => "Konsulta ma' [http://meta.wikimedia.org/wiki/Help:Contents User's Guide] għal informazzjoni dwar kif tuża software tal-wiki.
+'mainpagetext'      => "<big>'''MediaWiki ġie installat b'suċċess.'''</big>",
+'mainpagedocfooter' => "Ikkonsulta l-[http://meta.wikimedia.org/wiki/Help:Contents Gwida għall-utenti] sabiex tikseb iktar informazzjoni dwar kif tuża' s-softwer tal-wiki.
 
 == Biex tibda ==
-* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Lista ta' preferenzi għal konfigurazzjoni]
-* [http://www.mediawiki.org/wiki/Manual:FAQ FAQ ta'MedjaWiki]
-* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki oħroġ lista ta' posta]",
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Lista ta' preferenzi għall-konfigurazzjoni]
+* [http://www.mediawiki.org/wiki/Manual:FAQ Mistoqsijiet rikorrenti fuq il-MediaWiki]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce Il-lista tal-posta tħabbar 'l MediaWiki]",
 
 'about'         => 'Dwar',
 'article'       => 'artiklu',
@@ -490,8 +492,8 @@ $messages = array(
 'categorypage'      => 'Ara l-paġna tal-kategorija',
 'viewtalkpage'      => 'Ara d-diskussjonijiet',
 'otherlanguages'    => "F'lingwi oħrajn",
-'redirectedfrom'    => '(Rindirizzat minn $1)',
-'redirectpagesub'   => 'Paġna li tidderieġi',
+'redirectedfrom'    => '(Riindirizzat minn $1)',
+'redirectpagesub'   => "Paġna ta' riindirizzament",
 'lastmodifiedat'    => 'Din il-paġna kienet modifikata l-aħħar: $2, $1 .',
 'viewcount'         => 'Din il-paġna ġiet aċċessata {{PLURAL:$1|darba|$1 darba}}.',
 'protectedpage'     => 'Paġna protetta',
@@ -994,8 +996,8 @@ Ikkonsulta r-[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} reġi
 'rev-deleted-text-unhide'     => "Din ir-reviżjoni ta' din il-paġna ġiet '''imħassra'''.
 Ikkonsulta r-[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} reġistru tat-tħassir] għal aktar dettalji.
 Bħala amministratur inti tista' [$1 tara din ir-reviżjoni] jekk huwa neċessarju.",
-'rev-deleted-text-view'       => "Din ir-reviżjoni ta' din il-paġna ġiet '''imħassra'''.
-Bħala amministratur inti tista' taraha; jista' jkun li hemm dettalji fir-[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} reġistru tat-tħassir].",
+'rev-deleted-text-view'       => "Ir-reviżjoni ta' din il-paġna ġiet '''imħassra'''.
+Bħala amministratur inti tista' taraha; jista' jkun li hemm dettalji fir-[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} reġistru tat-tħassir].",
 'rev-delundel'                => 'uri/aħbi',
 'revisiondelete'              => 'Ħassar/irkupra reviżjonijiet',
 'revdelete-nooldid-title'     => 'Reviżjoni tarka invalida',
@@ -1003,9 +1005,10 @@ Bħala amministratur inti tista' taraha; jista' jkun li hemm dettalji fir-[{{ful
 'revdelete-show-file-submit'  => 'Iva',
 'revdelete-selected'          => "'''{{PLURAL:$2|Reviżjoni magħżula|Reviżjonijiet magħżula}} ta' [[:$1]]:'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Avveniment tar-reġistru magħżul|Avvenimenti tar-reġistri magħżula}}:'''",
-'revdelete-text'              => "'''Reviżjonijiet imħassra u avvenimenti xorta jidhru fil-kronoloġija tal-paġna, filwaqt partijiet tal-kontenut jiġu inaċċessibli għal pubbliku.'''
+'revdelete-text'              => "'''Reviżjonijiet u azzjonijiet imħassra xorta waħda jidhru fil-kronoloġija tal-paġna, filwaqt lipartijiet tal-kontenut jiġu inaċċessibli għall-pubbliku.'''
+L-amminstraturi l-oħrajn fuq {{SITENAME}} xorta jkunu jistgħu jidħlu fuq il-kontenut moħbi u jistgħu jirkuprawh minn din l-istess interfaċċa, sakemm restrizzjonijiet ulterjuri jiġu definiti.
 
-L-Amminstraturi l-oħrajn fuq {{SITENAME}} xorta jkunu jistgħu jitħlu fuq il-kontenut moħbi u jistgħu jiġu irkuprati mill-istess ''interface'', sakemm m'hemmx aktar limiti fil-fażi ta' installazjoni ta' dan is-sit.",
+Jekk jogħġbok ikkonferma li intiż li tipproċedi fit-tħassir, u li tifhem il-konsegwenzi, u li qiegħed tagħmel dan skont il-linji gwida stabbiliti fil-[[{{MediaWiki:Policy-url}}|politika]].",
 'revdelete-legend'            => "Oħloq limiti ta' viżibilitá",
 'revdelete-hide-text'         => 'Aħbi l-kontenut tar-reviżjoni',
 'revdelete-hide-name'         => 'Aħbi l-azzjoni u it-tarka',
@@ -1096,6 +1099,8 @@ Nota li l-użu tal-links tan-navigazzjoni jagħmel reset tal-kolonna.",
 'diff-tbody'              => "'''kontenut ta' tabella'''",
 'diff-tr'                 => "'''ringiela'''",
 'diff-img'                => "'''stampa'''",
+'diff-i'                  => "'''tipa korsiva'''",
+'diff-b'                  => "'''tipa ħoxna'''",
 
 # Search results
 'searchresults'                    => 'Riżultat tat-tfittxija',
@@ -1199,7 +1204,7 @@ Innota però li l-werreja tal-kontenut ta' {{SITENAME}} f'dawn is-siti, jistgħu
 'stub-threshold'                => 'Valur minimu għal <a href="#" class="stub">link għas-stub</a>:',
 'recentchangesdays'             => "Numru ta' ġranet li jidher fl-aħħar modifiki:",
 'recentchangesdays-max'         => '(massimu $1 ġurnata)',
-'recentchangescount'            => "Numru ta' fillieri fit-tibdil riċenti, kronoloġiji, u fir-reġistri:",
+'recentchangescount'            => "Numru ta' fillieri fit-tibdil riċenti:",
 'prefs-help-recentchangescount' => 'Din tinkludi tibdil riċenti, kronoloġiji u reġistri.',
 'savedprefs'                    => 'Il-Preferenzi tiegħek ġew salvati.',
 'timezonelegend'                => 'Żona tal-ħin:',
@@ -1222,7 +1227,7 @@ Innota però li l-werreja tal-kontenut ta' {{SITENAME}} f'dawn is-siti, jistgħu
 'allowemail'                    => 'Ħalli li jaslulek emails mingħand utenti oħrajn',
 'prefs-searchoptions'           => 'Preferenzi għat-tfittxija',
 'prefs-namespaces'              => 'Namespace',
-'defaultns'                     => 'Namespace predefinit għat-tfittxija:',
+'defaultns'                     => "Fil-każ kuntrarju, fittex f'dawn l-ispazji tal-isem:",
 'default'                       => 'predefinit',
 'prefs-files'                   => 'Fajls',
 'youremail'                     => 'E-mail:',
@@ -1238,8 +1243,8 @@ Innota però li l-werreja tal-kontenut ta' {{SITENAME}} f'dawn is-siti, jistgħu
 'badsiglength'                  => 'Il-firma hija twila wisq. Trid tkun inqas minn $1 {{PLURAL:$1|karattru|karattru}}.',
 'yourgender'                    => 'Sess:',
 'gender-unknown'                => 'Mhux speċifikat',
-'gender-male'                   => 'Maskili',
-'gender-female'                 => 'Femminili',
+'gender-male'                   => 'Maskil',
+'gender-female'                 => 'Femminil',
 'prefs-help-gender'             => 'Opzjonali: użat biex jagħmel l-indikazzjoni tas-sess mis-softwer. Din l-informazzjoni tkun pubblika.',
 'email'                         => 'Posta elettronika',
 'prefs-help-realname'           => 'L-isem propju mhuwiex obbligatorju; jekk tagħżel li tipprovdih, dan jintuża biss biex jagħtik attribuzzjoni għax-xogħol tiegħek.',
@@ -1638,7 +1643,7 @@ Daħħal: tip/subtip, e.ż. <tt>image/jpeg</tt>.",
 
 # Random page
 'randompage'         => 'Paġna kwalunkwe',
-'randompage-nopages' => 'M\'hemmx paġni fl-ispazju tal-isem "$1".',
+'randompage-nopages' => "M'hemm l-ebda paġna fl-{{PLURAL:$2|ispazju tal-isem|ispazji tal-isem}} segwenti: $1.",
 
 # Random redirect
 'randomredirect'         => 'Rindirizz kwalunkwe',
@@ -1665,12 +1670,13 @@ Daħħal: tip/subtip, e.ż. <tt>image/jpeg</tt>.",
 Paġna tiġi stimata paġna ta' diżambigwazzjoni dawk kollha li jagħmlu użu mit-template elenkat f'[[MediaWiki:Disambiguationspage]]",
 
 'doubleredirects'            => 'Riindirizzi doppji',
-'doubleredirectstext'        => '<b>Twissija:</b> Din il-paġna tagħmel lista tal-paġni li jiġu rindirizzati f\'paġni li jiġu rindirizzati mill-ġdid. Kull filiera għandha links għall-ewwel u t-tieni rindirizz, kif ukoll fejn tirindirizza t-tieni paġna, is-soltu magħrufa bħalha l-paġna "reali" fejn se twassal, fejn l-ewwel rindirizz għandu jipponta.',
+'doubleredirectstext'        => 'Din il-paġna telenka dawk il-paġni li jindirizzaw lejn paġna oħra ta\' riindirizzament.
+Kull filliera għandha ħolqa għall-ewwel u t-tieni riindirizz, kif ukoll fejn tirrindirizza t-tieni paġna, is-soltu magħrufa bħalha l-paġna "reali" fejn se twassal, fejn suppost l-ewwel riindirizz għandu jipponta.',
 'double-redirect-fixed-move' => '[[$1]] ġie mmexxi awtomatikament, issa hu rindirizz għal [[$2]]',
 
 'brokenredirects'        => 'Riindirizzi ħżiena',
 'brokenredirectstext'    => 'Ir-riindirizzi segwenti għandhom ħoloq għal paġni ineżistenti:',
-'brokenredirects-edit'   => 'modifika',
+'brokenredirects-edit'   => 'editja',
 'brokenredirects-delete' => 'ħassar',
 
 'withoutinterwiki'         => 'Paġni bla interwiki',
@@ -1745,7 +1751,7 @@ Paġna tiġi stimata paġna ta' diżambigwazzjoni dawk kollha li jagħmlu użu m
 'specialloguserlabel'  => 'Utent:',
 'speciallogtitlelabel' => 'Titlu:',
 'log'                  => 'Logs',
-'all-logs-page'        => 'Ir-reġistri kollha',
+'all-logs-page'        => 'Ir-reġistri pubbliċi kollha',
 'alllogstext'          => "Preżentazzjoni unifikata tar-reġistri kollha ta' {{SITENAME}}.<br />
 Tista' tqassar il-kriterji ta' tfittxija billi tagħżel it-tip ta' log, l-isem tal-utent, jew il-paġna affetwata (it-tnejn tal-aħħar huma sensittivi għal kif jinkitbu l-karattri).",
 'logempty'             => "Il-log m'għandu ebda element korrispondenti mat-tfittxija tiegħek.",
@@ -1770,8 +1776,9 @@ Tista' tqassar il-kriterji ta' tfittxija billi tagħżel it-tip ta' log, l-isem 
 
 # Special:Categories
 'categories'                    => 'Kategoriji',
-'categoriespagetext'            => 'Il-kategoriji segwenti għandhom paġni jew fajls multimedjali.<br />
-Il-[[Special:UnusedCategories|kategoriji vojta]] u dawk [[Special:WantedCategories|rikjesti]] ma jidhrux hawnhekk.',
+'categoriespagetext'            => 'Il-{{PLURAL:$1|kategorija segwenti għandha|kategoriji segwenti għandhom}} paġni jew fajls multimedjali.<br />
+Il-[[Special:UnusedCategories|kategoriji vojta]] ma jidhrux hawnhekk.
+Ara wkoll il-[[Special:WantedCategories|kategoriji rikjesti]].',
 'categoriesfrom'                => 'Uri kategoriji minn:',
 'special-categories-sort-count' => 'irranġa skont in-numru',
 'special-categories-sort-abc'   => 'irranġa skont l-alfabett',
@@ -1956,7 +1963,7 @@ Ara [[Special:ProtectedPages|l-lista ta' paġni protetti]] għal lista ta' paġn
 'protect-title'               => 'Modifika livell ta\' protezzjoni ta\' "$1"',
 'prot_1movedto2'              => '[[$1]] tmexxa lejn [[$2]]',
 'protect-legend'              => 'Ikkonferma l-protezzjoni',
-'protectcomment'              => 'Kumment:',
+'protectcomment'              => 'Raġuni:',
 'protectexpiry'               => 'Jiskadi:',
 'protect_expiry_invalid'      => 'Skadenza mhux valida.',
 'protect_expiry_old'          => 'Skadenza ġa inġarbet.',
@@ -3051,7 +3058,7 @@ Daħħal l-isem tal-fajl mingħajr il-prefiss \"{{ns:file}}:\".",
 
 # Special:Tags
 'tag-filter-submit' => 'Filtru',
-'tags-edit'         => 'immodifika',
+'tags-edit'         => 'editja',
 
 # Database error messages
 'dberr-header'   => 'Din il-wiki għandha problema',

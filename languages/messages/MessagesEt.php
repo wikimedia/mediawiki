@@ -490,7 +490,7 @@ ning [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide kasutusjuhendit].'
 'categorypage'      => 'Kategoorialehekülg',
 'viewtalkpage'      => 'Arutelulehekülg',
 'otherlanguages'    => 'Teistes keeltes',
-'redirectedfrom'    => '(Ümber suunatud artiklist $1)',
+'redirectedfrom'    => '(Ümber suunatud leheküljelt $1)',
 'redirectpagesub'   => 'Ümbersuunamisleht',
 'lastmodifiedat'    => 'Viimane muutmine: $2, $1',
 'viewcount'         => 'Seda lehekülge on külastatud {{PLURAL:$1|üks kord|$1 korda}}.',
@@ -888,6 +888,7 @@ Te kinnitate ka, et kirjutasite selle ise või võtsite selle kopeerimiskitsendu
 Ülem, kes andmebaasi lukustas, andis järgmise selgituse: $1",
 'protectedpagewarning'             => "'''HOIATUS: See lehekülg on lukustatud, nii et seda saavad redigeerida ainult ülema õigustega kasutajad.'''",
 'semiprotectedpagewarning'         => "'''Märkus:''' See lehekülg on lukustatud nii, et üksnes registreeritud kasutajad saavad seda muuta.",
+'cascadeprotectedwarning'          => "'''Hoiatus:''' See lehekülg on nii lukustatud, et ainult ülema õigustega kasutajad saavad seda redigeerida, sest lehekülg on osa {{PLURAL:$1|järgmisest|järgmisest}} kaskaadkaitsega {{PLURAL:$1|leheküljest|lehekülgedest}}:",
 'titleprotectedwarning'            => "'''Hoiatus: See lehekülg on nii lukustatud, et selle loomiseks on tarvis [[Special:ListGroupRights|eriõigusi]].'''",
 'templatesused'                    => 'Sellel lehel on kasutusel järgnevad mallid:',
 'templatesusedpreview'             => 'Selles eelvaates kasutatakse järgmisi malle:',
@@ -971,8 +972,13 @@ See võib olla vikist kustutatud või ümber nimetatud.
 'rev-deleted-text-unhide'     => "See lehekülje redaktsioon on '''kustutatud'''.
 Üksikasju võib olla [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} kustutamise logis].
 Administraatorina võid [$1 seda redaktsiooni] näha, kui soovid jätkata.",
+'rev-suppressed-text-unhide'  => "See redaktsioon leheküljest on '''varjatud'''.
+Võimalik, et [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} varjamislogis] on üksikasju.
+Ülemana saad soovi korral siiski [$1 seda redaktsiooni vaadata].",
 'rev-deleted-text-view'       => "See lehekülje redaktsioon on '''kustutatud'''.
 Administraatorina võid seda näha. Üksikasju võib olla [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} kustutamise logis].",
+'rev-suppressed-text-view'    => "See redaktsioon leheküljest on '''varjatud'''.
+Ülemana saad seda vaadata. Võimalik, et üksikasjad on [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} varjamislogis].",
 'rev-deleted-no-diff'         => "Seda erinevust ei saa vaadata, kuna üks redaktsioonidest on '''kustutatud'''.
 Üksikasju võib olla [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} kustutamise logis].",
 'rev-deleted-unhide-diff'     => "Üks selle lehekülje muudatustest on '''kustutatud'''.
@@ -987,6 +993,7 @@ Administraatorina võid [$1 seda muudatust] näha, kui soovid jätkata.",
 'revdelete-show-file-confirm' => 'Kas oled kindel, et soovid häha faili "<nowiki>$1</nowiki>" kustutatud redaktsiooni, mis tehti $2 kell $3?',
 'revdelete-show-file-submit'  => 'Jah',
 'revdelete-selected'          => "'''{{PLURAL:$2|Valitud versioon|Valitud versioonid}} artiklist [[:$1]]:'''",
+'logdelete-selected'          => "'''Valitud {{PLURAL:$1|logisissekanne|logisissekanded}}:'''",
 'revdelete-suppress-text'     => "Andmed tuleks varjata '''ainult''' järgnevatel juhtudel:
 * Sobimatu isiklik teave
 *: ''kodune aadress ja telefoninumber, sotsiaalhoolekandenumber jne''",
@@ -1019,8 +1026,16 @@ $1",
 'revdelete-unrestricted'      => 'eemaldas ülematelt piirangud',
 'revdelete-hid'               => 'peitsin: $1',
 'revdelete-unhid'             => 'tegin nähtavaks: $1',
+'revdelete-hide-current'      => 'Tõrge üksuse kuupäevaga $2, kell $1 peitmisel: see on praegune redaktsioon.
+Seda ei saa peita.',
 'revdelete-show-no-access'    => 'Tõrge ajatempliga $1 kell $2 üksuse näitamisel: selle on märge "piiranguga".
 Sul ei ole sellele ligipääsu.',
+'revdelete-modify-no-access'  => 'Tõrge üksuse kuupäeva $2, kell $1 muutmisel: see on märgitud kui "piiranguga".
+Sul ei ole sellele ligipääsu.',
+'revdelete-modify-missing'    => 'Tõrge üksuse $1 muutmisel: see puudub andmebaasist!',
+'revdelete-no-change'         => "'''Hoiatus:''' Üksusel kuupäevaga $2, kell $1 olid juba soovitud nähtavussätted.",
+'revdelete-concurrent-change' => 'Tõrge üksuse kuupäevaga $2, kell $1 muutmisel: paistab, et keegi teine on selle olekut sel ajal muutnud, kui sina seda muuta üritasid.
+Palun vaata logisid.',
 'revdelete-only-restricted'   => 'Sa ei saa ilma veel ühte varjamissätet valimata üksuski ülemate eest varjata.',
 
 # Suppression log
@@ -1125,11 +1140,13 @@ Jõus olevad keelud ja blokeeringud leiad [[Special:IPBlockList|blokeeritud IP-a
 'nextn'                            => 'järgmised {{PLURAL:$1|$1}}',
 'prevn-title'                      => '{{PLURAL:$1|Eelmine tulemus|Eelmised $1 tulemust}}',
 'nextn-title'                      => '{{PLURAL:$1|Järgmine tulemus|Järgmised $1 tulemust}}',
+'shown-title'                      => 'Näita lehekülje kohta $1 {{PLURAL:$1|tulemus|tulemust}}',
 'viewprevnext'                     => 'Näita ($1) ($2) ($3).',
 'searchmenu-legend'                => 'Otsingu sätted',
 'searchmenu-exists'                => "'''Lehekülg pealkirjaga \"[[:\$1]]\" on selles vikis olemas.'''",
 'searchmenu-new'                   => "'''Loo lehekülg pealkirjaga \"[[:\$1]]\" siia vikisse!'''",
 'searchhelp-url'                   => 'Help:Juhend',
+'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Sirvi selle eesliitega lehekülgi]]',
 'searchprofile-articles'           => 'Sisuleheküljed',
 'searchprofile-project'            => 'Abi- ja projektilehed',
 'searchprofile-images'             => 'Multimeedia',
@@ -1523,6 +1540,8 @@ Faili lisamiseks artiklile kasuta linki ühel kujul järgnevatest:
 'minlength1'                  => 'Faili nimes peab olema vähemalt üks kirjamärk.',
 'illegalfilename'             => 'Faili "$1" nimi sisaldab sümboleid, mis pole pealkirjades lubatud. Palun nimetage fail ümber ja proovige uuesti.',
 'badfilename'                 => 'Pildi nimi on muudetud. Uus nimi on "$1".',
+'filetype-badmime'            => 'MIME tüübiga "$1" faile ei ole lubatud üles laadida.',
+'filetype-bad-ie-mime'        => 'Seda faili ei saa üles laadida, sest Internet Explorer avastaks, et selle MIME tüüp on "$1", mis on keelatud või võimalik ohtlik failitüüp.',
 'filetype-unwanted-type'      => "'''\".\$1\"''' on soovimatu failitüüp.
 Eelistatud {{PLURAL:\$3|failitüüp on|failitüübid on}} \$2.",
 'filetype-banned-type'        => "'''\".\$1\"''' ei ole lubatud failitüüp.  Lubatud {{PLURAL:\$3|failitüüp|failitüübid}} on  \$2.",
@@ -1533,6 +1552,9 @@ Eelistatud {{PLURAL:\$3|failitüüp on|failitüübid on}} \$2.",
 See võib olla tingitud vigasest failinimest.
 Palun kaalutlege, kas Te tõesti soovite seda faili üles laadida.',
 'fileexists'                  => "Sellise nimega fail on juba olemas. Palun kontrollige '''<tt>$1</tt>''', kui te ei ole kindel, kas tahate seda muuta.",
+'filepageexists'              => "Selle faili kirjelduslehekülg '''<tt>$1</tt>''' on juba loodud, aga selle nimega faili hetkel pole.
+Sinu sisestatud kokkuvõtet ei kuvata kirjeldusleheküljel.
+Sinu kokkuvõtte kuvamiseks tuleb kirjelduslehekülge eraldi redigeerida.",
 'fileexists-extension'        => "Sarnase nimega fail on olemas:<br />
 Üleslaetava faili nimi: '''<tt>$1</tt>'''<br />
 Olemasoleva faili nimi: '''<tt>$2</tt>'''<br />
