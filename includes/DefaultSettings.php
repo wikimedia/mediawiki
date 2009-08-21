@@ -4142,20 +4142,29 @@ $wgSecondaryGoNamespaces = null;
  * Newer browsers support cross-site AJAX when the target resource allows requests
  * from the origin domain by the Access-Control-Allow-Origin header.
  * This is currently only used by the API (requests to api.php)
- * $wgCrossSiteAJAXdomains can be set as follows:
+ * $wgCrossSiteAJAXdomains can be set using a wildcard syntax:
  * 
- * - the string '*' to allow requests from any domain
- * - an array of domains to allow AJAX requests from, e.g.
- *   array( 'http://en.wikipedia.org', 'http://en.wikibooks.org' );
- * - if $wgCrossSiteAJAXdomainsRegex is true, an array of regexes to be
- *   matched against the request origin. Anything that matches will be allowed
+ * '*' matches any number of characters
+ * '?' matches any 1 character
+ *
+ * Example:
+ $wgCrossSiteAJAXdomains = array(
+  'www.mediawiki.org',
+  '*.wikipedia.org',
+  '*.wikimedia.org',
+  '*.wiktionary.org',
+ );
+ *
  */
 $wgCrossSiteAJAXdomains = array();
 
 /**
- * Set to true to treat $wgCrossSiteAJAXdomains as regexes instead of strings
+ * Domains that should not be allowed to make AJAX requests,
+ * even if they match one of the domains allowed by $wgCrossSiteAJAXdomains
+ * Uses the same syntax as $wgCrossSiteAJAXdomains
  */
-$wgCrossSiteAJAXdomainsRegex = false;
+
+$wgCrossSiteAJAXdomainExceptions = array();
 
 /**
  * The minimum amount of memory that MediaWiki "needs"; MediaWiki will try to raise PHP's memory limit if it's below this amount.

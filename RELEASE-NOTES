@@ -75,7 +75,7 @@ this. Was used when mwEmbed was going to be an extension.
   PHP and database version.
 * $wgSecondaryGoNamespaces allows an arry of namespaces to be checked when the
   GO button is pressed, in addition to the main namespace.
-* (bug 19907) $wgCrossSiteAJAXdomains and $wgCrossSiteAJAXdomainsRegex added 
+* (bug 19907) $wgCrossSiteAJAXdomains and $wgCrossSiteAJAXdomainExceptions added 
   to control which external domains may access the API via cross-site AJAX.
 * $wgMaintenanceScripts for extensions to add their scripts to the default list
 * $wgMemoryLimit has been added, default value '50M'
