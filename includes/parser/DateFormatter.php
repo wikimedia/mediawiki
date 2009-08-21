@@ -268,7 +268,7 @@ class DateFormatter
 		$isoDate = implode( '-', $isoBits );;
 		
 		// Output is not strictly HTML (it's wikitext), but <span> is whitelisted.
-		$text = Xml::tags( 'span',
+		$text = Html::rawElement( 'span',
 					array( 'class' => 'mw-formatted-date', 'title' => $isoDate ), $text );
 		
 		return $text;

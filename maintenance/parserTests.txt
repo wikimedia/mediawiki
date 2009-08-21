@@ -1467,7 +1467,7 @@ Link containing "<#" and ">#" as hex sequences
 !! input
 [[%3c%23]][[%3e%23]]
 !! result
-<p>[[%3c%23]]<a href="/index.php?title=%3E&amp;action=edit&amp;redlink=1" class="new" title="&gt; (page does not exist)">&gt;#</a>
+<p>[[%3c%23]]<a href="/index.php?title=%3E&amp;action=edit&amp;redlink=1" class="new" title="> (page does not exist)">&gt;#</a>
 </p>
 !! end
 
@@ -3502,7 +3502,7 @@ Link to category
 !! input
 [[:Category:MediaWiki User's Guide]]
 !! result
-<p><a href="/wiki/Category:MediaWiki_User%27s_Guide" title="Category:MediaWiki User&#39;s Guide">Category:MediaWiki User's Guide</a>
+<p><a href="/wiki/Category:MediaWiki_User%27s_Guide" title="Category:MediaWiki User's Guide">Category:MediaWiki User's Guide</a>
 </p>
 !! end
 
@@ -3513,7 +3513,7 @@ cat
 !! input
 [[Category:MediaWiki User's Guide]]
 !! result
-<a href="/wiki/Category:MediaWiki_User%27s_Guide" title="Category:MediaWiki User&#039;s Guide">MediaWiki User's Guide</a>
+<a href="/wiki/Category:MediaWiki_User%27s_Guide" title="Category:MediaWiki User's Guide">MediaWiki User's Guide</a>
 !! end
 
 !! test
@@ -6820,7 +6820,7 @@ language=sr cat
 !! input
 [[:Category:МедиаWики Усер'с Гуиде]]
 !! result
-<a href="/wiki/Category:MediaWiki_User%27s_Guide" title="Category:MediaWiki User&#039;s Guide">MediaWiki User's Guide</a>
+<a href="/wiki/Category:MediaWiki_User%27s_Guide" title="Category:MediaWiki User's Guide">MediaWiki User's Guide</a>
 !! end
 
 
