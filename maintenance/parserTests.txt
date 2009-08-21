@@ -1453,7 +1453,7 @@ Link containing % as a double hex sequence interpreted to hex sequence
 !!end
 
 !! test
-Link containing "#<" and "#>" % as hex sequences- these are valid section anchors
+Link containing "#<" and "#>" % as a hex sequences- these are valid section anchors
 Example for such a section: == < ==
 !! input
 [[%23%3c]][[%23%3e]]
@@ -1463,11 +1463,11 @@ Example for such a section: == < ==
 !! end
 
 !! test
-Link containing "<#" and ">#" as hex sequences
+Link containing "<#" and ">#" as a hex sequences
 !! input
 [[%3c%23]][[%3e%23]]
 !! result
-<p>[[%3c%23]]<a href="/index.php?title=%3E&amp;action=edit&amp;redlink=1" class="new" title="> (page does not exist)">&gt;#</a>
+<p>[[%3c%23]][[%3e%23]]
 </p>
 !! end
 
