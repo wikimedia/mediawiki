@@ -64,21 +64,37 @@ if (!$wgEnableAPI) {
 }
 
 // Selectively allow cross-site AJAX
-if ( $wgCrossSiteAJAXdomains && isset($_SERVER['HTTP_ORIGIN']) ) {
-	if ( $wgCrossSiteAJAXdomains == '*' ) {
-		header( "Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}" );
-		header( 'Access-Control-Allow-Credentials: true' );
-	} elseif ( $wgCrossSiteAJAXdomainsRegex ) {
-		foreach ( $wgCrossSiteAJAXdomains as $regex ) {
-			if ( preg_match( $regex, $_SERVER['HTTP_ORIGIN'] ) ) {
-				header( "Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}" );
-				header( 'Access-Control-Allow-Credentials: true' );
-				break;
+
+/*
+ * Helper function to convert wildcard string into a regex
+ * '*' => '.*?'
+ * '?' => '.'
+ * @ return string
+ */
+function convertWildcard( $search ) {
+	$search = preg_quote( $search, '/' );
+	$search = str_replace(
+		array( '\*', '\?' ),
+		array( '.*?', '.' ),
+		$search
+	);
+	return "/$search/";
+}
+
+if ( $wgCrossSiteAJAXdomains && isset($_SERVER['HTTP_ORIGIN']) ) {	
+	$exceptions = array_map( 'convertWildcard', $wgCrossSiteAJAXdomainExceptions );
+	$regexes = array_map( 'convertWildcard', $wgCrossSiteAJAXdomains );
+	foreach ( $regexes as $regex ) {
+		if ( preg_match( $regex, $_SERVER['HTTP_ORIGIN'] ) ) {
+			foreach ( $exceptions as $exc ) { // Check against exceptions
+				if ( preg_match( $exc, $_SERVER['HTTP_ORIGIN'] ) ) {
+					break 2;
+				}
 			}
+			header( "Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}" );
+			header( 'Access-Control-Allow-Credentials: true' );
+			break;
 		}
-	} elseif ( in_array( $_SERVER['HTTP_ORIGIN'], $wgCrossSiteAJAXdomains ) ) {
-		header( "Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}" );
-		header( 'Access-Control-Allow-Credentials: true' );
 	}
 }
 
