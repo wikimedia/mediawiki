@@ -126,7 +126,12 @@ class Html {
 	 * Identical to rawElement(), but HTML-escapes $contents.
 	 */
 	public static function element( $element, $attribs = array(), $contents = '' ) {
-		return self::rawElement( $element, $attribs, htmlspecialchars( $contents ) );
+		return self::rawElement( $element, $attribs, strtr( $contents, array(
+			# There's no point in escaping quotes, >, etc. in the contents of
+			# elements.
+			'&' => '&amp;',
+			'<' => '&lt;'
+		) ) );
 	}
 
 	/**
