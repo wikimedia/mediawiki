@@ -259,7 +259,10 @@ $specialPageAliases = array(
 	'Filepath'                  => array( 'Cale fişier' ),
 	'Invalidateemail'           => array( 'Invalidează email' ),
 	'Blankpage'                 => array( 'Pagină goală' ),
+	'LinkSearch'                => array( 'Căutare legături' ),
 	'DeletedContributions'      => array( 'Contibuţii şterse' ),
+	'Tags'                      => array( 'Etichete' ),
+	'Activeusers'               => array( 'Utilizatori activi' ),
 );
 
 $datePreferences = false;

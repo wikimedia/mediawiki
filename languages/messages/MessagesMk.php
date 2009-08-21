@@ -175,7 +175,7 @@ $specialPageAliases = array(
 	'Blankpage'                 => array( 'ПразнаСтраница' ),
 	'LinkSearch'                => array( 'ПребарајВрска' ),
 	'DeletedContributions'      => array( 'ИзбришаниПридонеси' ),
-	'Tags'                      => array( 'Приврзоци' ),
+	'Tags'                      => array( 'Oзнаки', 'Приврзоци' ),
 	'Activeusers'               => array( 'АктивниКорисници' ),
 );
 
