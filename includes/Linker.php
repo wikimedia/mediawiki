@@ -206,7 +206,7 @@ class Linker {
 
 		$ret = null;
 		if( wfRunHooks( 'LinkEnd', array( $this, $target, $options, &$text, &$attribs, &$ret ) ) ) {
-			$ret = Xml::openElement( 'a', $attribs ) . $text . Xml::closeElement( 'a' );
+			$ret = Html::rawElement( 'a', $attribs, $text );
 		}
 
 		wfProfileOut( __METHOD__ );
@@ -382,7 +382,7 @@ class Linker {
 			wfDebug("Hook LinkerMakeExternalImage changed the output of external image with url {$url} and alt text {$alt} to {$img}\n", true);
 			return $img;
 		}
-		return Xml::element( 'img',
+		return Html::element( 'img',
 			array(
 				'src' => $url,
 				'alt' => $alt ) );
@@ -753,7 +753,7 @@ class Linker {
 			return $link;
 		}
 		if ( $attribs ) {
-			$attribsText .= Xml::expandAttributes( $attribs );
+			$attribsText .= Html::expandAttributes( $attribs );
 		}
 		return '<a href="'.$url.'"'.$attribsText.'>'.$text.'</a>';
 	}
