@@ -1676,11 +1676,11 @@ PICT # misc.
 'upload-proto-error'        => 'Protocòl incorrècte',
 'upload-proto-error-text'   => "L’impòrt requerís d'URLs començant per <code>http://</code> o <code>ftp://</code>.",
 'upload-file-error'         => 'Error intèrna',
-'upload-file-error-text'    => 'Una error intèrna es subrevenguda en volent crear un fichièr temporari sul servidor. Contactatz un [[Special:ListUsers/sysop|administrator de sistèma]].',
+'upload-file-error-text'    => "Una error intèrna s'es producha en volent crear un fichièr temporari sul servidor. Contactatz un [[Special:ListUsers/sysop|administrator del sistèma]].",
 'upload-misc-error'         => 'Error d’impòrt desconeguda',
-'upload-misc-error-text'    => 'Una error desconeguda es subrevenguda pendent l’impòrt.
-Verificatz que l’URL es valida e accessibla, puèi ensajatz tornarmai.
-Se lo problèma persistís, contactatz un [[Special:ListUsers/sysop|administrator del sistèma]].',
+'upload-misc-error-text'    => "Una error desconeguda s'es producha pendent l’impòrt.
+Verificatz que l’URL es valida e accessibla, puèi ensajatz tornamai.
+Se lo problèma persistís, contactatz un [[Special:ListUsers/sysop|administrator del sistèma]].",
 'upload-too-many-redirects' => "L'URL conten tròp de redireccions",
 'upload-unknown-size'       => 'Talha desconeguda',
 'upload-http-error'         => 'Una error HTTP es intervenguda : $1',
@@ -2208,7 +2208,7 @@ Clicatz sus « Precedent » e tornatz cargar la pagina d’ont venètz, puèi en
 'restriction-upload' => 'Importar',
 
 # Restriction levels
-'restriction-level-sysop'         => 'Proteccion complèta',
+'restriction-level-sysop'         => 'Proteccion completa',
 'restriction-level-autoconfirmed' => 'Semiproteccion',
 'restriction-level-all'           => 'Totes',
 
@@ -2516,7 +2516,7 @@ Per exportar de paginas, entratz lors títols dins la bóstia de tèxte çaijós
 Dins aqueste darrièr cas, podètz tanben utilizar un ligam, coma [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] per la pagina [[{{MediaWiki:Mainpage}}]].",
 'exportcuronly'     => 'Exportar unicament la version correnta sens l’istoric complet',
 'exportnohistory'   => "----
-'''Nòta :''' l’exportacion complèta de l’istoric de las paginas amb l’ajuda d'aqueste formulari es estada desactivada per de rasons de performàncias.",
+'''Nòta :''' l’exportacion completa de l’istoric de las paginas amb l’ajuda d'aqueste formulari es estada desactivada per de rasons de performàncias.",
 'export-submit'     => 'Exportar',
 'export-addcattext' => 'Apondre las paginas de la categoria :',
 'export-addcat'     => 'Apondre',
@@ -3135,7 +3135,7 @@ Retorn del programa de corrièr : $1',
 'confirmemail_needlogin'   => 'Vos cal vos $1 per confirmar vòstra adreça de corrièr electronic.',
 'confirmemail_success'     => 'Vòstra adreça de corrièr electronic es confirmada. Ara, vos podètz connectar e aprofechar del wiki.',
 'confirmemail_loggedin'    => 'Ara, vòstra adreça es confirmada',
-'confirmemail_error'       => 'Un problèma es subrevengut en volent enregistrar vòstra confirmacion',
+'confirmemail_error'       => "Un problèma s'es produch en volent enregistrar vòstra confirmacion.",
 'confirmemail_subject'     => 'Confirmacion d’adreça de corrièr electronic per {{SITENAME}}',
 'confirmemail_body'        => "Qualqu’un, probablament vos,e amb l’adreça IP $1, a enregistrat un compte « $2 » amb aquesta adreça de corrièr electronic sul site {{SITENAME}}.
 
@@ -3328,7 +3328,7 @@ Picatz lo nom del fichièr sens lo prefix « {{ns:file}}: ».',
 'tags-intro'              => 'Aquesta pagina lista las balisas que lo logicial pòt utilizar per marcar una modificacion, e lor significacion.',
 'tags-tag'                => 'Nom intèrne de la balisa',
 'tags-display-header'     => 'Aparéncia dins las listas de modificacions',
-'tags-description-header' => 'Descripcion complèta de la balisa',
+'tags-description-header' => 'Descripcion completa de la balisa',
 'tags-hitcount-header'    => 'Modificacions balisadas',
 'tags-edit'               => 'modificar',
 'tags-hitcount'           => '$1 {{PLURAL:$1|cambiament|cambiaments}}',

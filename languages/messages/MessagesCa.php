@@ -2648,6 +2648,7 @@ $1",
 'svg-long-desc'        => '(fitxer SVG, nominalment $1 × $2 píxels, mida del fitxer: $3)',
 'show-big-image'       => 'Imatge en màxima resolució',
 'show-big-image-thumb' => "<small>Mida d'aquesta previsualització: $1 × $2 píxels</small>",
+'file-info-gif-looped' => 'embuclat',
 'file-info-gif-frames' => '$1 {{PLURAL:$1|marc|marcs}}',
 
 # Special:NewFiles
