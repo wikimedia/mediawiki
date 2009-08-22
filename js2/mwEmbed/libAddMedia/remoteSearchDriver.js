@@ -1,12 +1,13 @@
 /*
-* a library for doing remote media searches
-*
-* initial targeted archives are:
+ * a library for doing remote media searches
+ *
+ * initial targeted archives are:
 	the local wiki
 	wikimedia commons
 	metavid
 	and archive.org
-*/
+ */
+
 loadGM({
 	"mwe-add_media_wizard" : "Add media wizard",
 	"mwe-media_search" : "Media search",
@@ -17,7 +18,7 @@ loadGM({
 	"rsd_results_prev" : "previous",
 	"rsd_no_results" : "No search results for <b>$1<\/b>",
 	"mwe-upload_tab" : "Upload",
-	"rsd_layout" : "Layout : ",
+	"rsd_layout" : "Layout:",
 	"rsd_resource_edit" : "Edit resource: $1",
 	"mwe-resource_description_page" : "Resource description page",
 	"rsd_local_resource_title" : "Local resource title",
@@ -29,7 +30,7 @@ loadGM({
 	"mwe-cc_sa_title" : "Share Alike",
 	"mwe-cc_pd_title" : "Public Domain",
 	"mwe-unknown_license" : "Unknown license",
-	"mwe-no_import_by_url" : "This user or wiki <b>can not<\/b> import assets from remote URLs.<\/p><p>Do you need to login?<\/p><p>If permissions are set, you may have to enable $wgAllowCopyUploads (<a href=\"http : \/\/www.mediawiki.org\/wiki\/Manual : $wgAllowCopyUploads\">more information<\/a>).<\/p>",
+	"mwe-no_import_by_url" : "This user or wiki <b>can not<\/b> import assets from remote URLs.<\/p><p>Do you need to login?<\/p><p>If permissions are set, you may have to enable $wgAllowCopyUploads (<a href=\"http : \/\/www.mediawiki.org\/wiki\/Manual:$wgAllowCopyUploads\">more information<\/a>).<\/p>",
 	"mwe-results_from" : "Results from <a href=\"$1\" target=\"_new\" >$2<\/a>",
 	"mwe-missing_desc_see_source" : "This asset is missing a description. Please see the [$1 orginal source] and help describe it.",
 	"rsd_config_error" : "Add media wizard configuration error: $1",
@@ -47,6 +48,7 @@ loadGM({
 	"mwe-importing_asset" : "Importing asset",
 	"mwe-preview_insert_resource" : "Preview insert of resource: $1"
 });
+
 var default_remote_search_options = {
 	'profile':'mediawiki_edit',
 	'target_container':null, //the div that will hold the search interface
@@ -77,6 +79,7 @@ var default_remote_search_options = {
 	'enable_upload_tab':true, // if we want to enable an uploads tab:
 	'upload_api_target'	   : 'http://localhost/wiki_trunk/api.php' // can be local or the url of the upload api.
 }
+
 if(typeof wgServer == 'undefined')
 	wgServer = '';
 if(typeof wgScriptPath == 'undefined')
@@ -85,8 +88,8 @@ if(typeof stylepath == 'undefined')
 	stylepath = '';
 
 /*
-*	base remoteSearch Driver interface
-*/
+ *	base remoteSearch Driver interface
+ */
 var remoteSearchDriver = function(iObj){
 	return this.init( iObj );
 }
@@ -136,7 +139,7 @@ remoteSearchDriver.prototype = {
 			@local : if the content provider assets need to be imported or not.
 			@local_domains : sets of domains for which the content is local
 			//@@todo should query wgForeignFileRepos setting maybe interwikimap from the api
-		*/
+		 */
 		'this_wiki':{
 			'enabled': 1,
 			'checked': 1,
@@ -249,9 +252,9 @@ remoteSearchDriver.prototype = {
 		}
 	},
 	/*
-	* getlicenseImgSet
-	* @param license_key  the license key (ie "by-sa" or "by-nc-sa" etc)
-	*/
+	 * getlicenseImgSet
+	 * @param license_key  the license key (ie "by-sa" or "by-nc-sa" etc)
+	 */
 	getlicenseImgSet: function( licenseObj ){
 		//js_log('output images: '+ imgs);
 		return '<div class="rsd_license" title="'+ licenseObj.title + '" >' +
@@ -262,9 +265,9 @@ remoteSearchDriver.prototype = {
 				  '</div>';
 	},
 	/*
-	* getLicenceKeyFromKey
-	* @param license_key the key of the license (must be defined in: this.licenses.cc.licenses)
-	*/
+	 * getLicenceKeyFromKey
+	 * @param license_key the key of the license (must be defined in: this.licenses.cc.licenses)
+	 */
 	getLicenceFromKey:function( license_key , force_url){
 		if( typeof( this.licenses.cc.licenses[ license_key ]) == 'undefined')
 			return js_error('could not find:' + license_key);
@@ -288,9 +291,9 @@ remoteSearchDriver.prototype = {
 		};
 	},
 	/*
-	* getLicenceKeyFromUrl
-	* @param licence_url the url of the license
-	*/
+	 * getLicenceKeyFromUrl
+	 * @param licence_url the url of the license
+	 */
 	getLicenceFromUrl: function( license_url ){
 		//js_log("getLicenceFromUrl::" + license_url);
 		//first do a direct lookup check:
@@ -768,10 +771,10 @@ remoteSearchDriver.prototype = {
 		}
 	},
 	/*
-	* checkForCopyURLPermission:
-	* not really nessesary the api request to upload will return apopprirate error if the user lacks permission. or $wgAllowCopyUploads is set to false
-	* (use this function if we want to issue a warning up front)
-	*/
+	 * checkForCopyURLPermission:
+	 * not really nessesary the api request to upload will return apopprirate error if the user lacks permission. or $wgAllowCopyUploads is set to false
+	 * (use this function if we want to issue a warning up front)
+	 */
 	checkForCopyURLPermission:function( callback ){
 		var _this = this;
 		//do api check:
