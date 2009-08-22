@@ -293,13 +293,6 @@ class DatabaseMysql extends DatabaseBase {
 		return false;
 	}
 
-	/**
-	 * @return String: Database type for use in messages
-	*/
-	function getDBtypeForMsg() {
-		return 'MySQL';
-	}
-
 	public function setTimeout( $timeout ) {
 		$this->query( "SET net_read_timeout=$timeout" );
 		$this->query( "SET net_write_timeout=$timeout" );

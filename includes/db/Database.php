@@ -1966,15 +1966,6 @@ abstract class DatabaseBase {
 	abstract function getSoftwareLink();
 
 	/**
-	 * Returns the database type for user-visible purposes
-	 * e.g. DB error messages
-	 * Other uses should just use $wgDBtype
-	 *
-	 * @return String: Database type for use in messages
-	*/
-	abstract function getDBtypeForMsg();
-
-	/**
 	 * A string describing the current software version, like from
 	 * mysql_get_server_info().  Will be listed on Special:Version, etc.
 	 * 
@@ -2601,8 +2592,7 @@ class DBQueryError extends DBError {
 	function getText() {
 		if ( $this->useMessageCache() ) {
 			return wfMsg( 'dberrortextcl', htmlspecialchars( $this->getSQL() ),
-			  htmlspecialchars( $this->fname ), $this->errno, htmlspecialchars( $this->error ),
-			  htmlspecialchars( $this->db->getDBtypeForMsg() ) ) . "\n";
+			  htmlspecialchars( $this->fname ), $this->errno, htmlspecialchars( $this->error ) ) . "\n";
 		} else {
 			return $this->getMessage();
 		}
@@ -2629,8 +2619,7 @@ class DBQueryError extends DBError {
 	function getHTML() {
 		if ( $this->useMessageCache() ) {
 			return wfMsgNoDB( 'dberrortext', htmlspecialchars( $this->getSQL() ),
-			  htmlspecialchars( $this->fname ), $this->errno, htmlspecialchars( $this->error ),
-			  htmlspecialchars( $this->db->getDBtypeForMsg() ) );
+			  htmlspecialchars( $this->fname ), $this->errno, htmlspecialchars( $this->error ) );
 		} else {
 			return nl2br( htmlspecialchars( $this->getMessage() ) );
 		}

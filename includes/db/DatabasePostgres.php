@@ -1048,13 +1048,6 @@ class DatabasePostgres extends DatabaseBase {
 	}
 
 	/**
-	 * @return String: Database type for use in messages
-	*/
-	function getDBtypeForMsg() {
-		return 'PostgreSQL';
-	}
-
-	/**
 	 * @return string Version information from the database
 	 */
 	function getServerVersion() {
