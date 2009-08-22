@@ -237,13 +237,13 @@ class ApiUpload extends ApiBase {
 			$warnings = $this->mUpload->checkWarnings();
 			if( $warnings ) {
 				$this->getResult()->setIndexedTagName( $warnings, 'warning' );
-				//also add index to duplicate: 
+				//also add index to duplicate:
 				if(isset($warnings['duplicate']))
 					$this->getResult()->setIndexedTagName( $warnings['duplicate'], 'duplicate');
-				
+
 				if(isset($warnings['exists']))
 					$this->getResult()->setIndexedTagName( $warnings['exists'], 'exists');
-					
+
 				$result['result'] = 'Warning';
 				$result['warnings'] = $warnings;
 				if( isset( $result['filewasdeleted'] ) )
@@ -274,12 +274,21 @@ class ApiUpload extends ApiBase {
 
 		// Append imageinfo to the result
 
-		// might be a cleaner way to call this:
-		$imParam = ApiQueryImageInfo::getAllowedParams();
-		$imProp = $imParam['prop'][ApiBase::PARAM_TYPE];
-		$result['imageinfo'] = ApiQueryImageInfo::getInfo( $file,
-			array_flip( $imProp ),
-			$this->getResult() );
+		//get all the image properties:
+		$imParam = Array('timestamp',
+					'user',
+					'comment',
+					'url',
+					'size',
+					'sha1',
+					'mime',
+					'metadata',
+					'archivename',
+					'bitdepth');
+        $result['imageinfo'] = ApiQueryImageInfo::getInfo( $file,
+			array_flip( $imParam ),
+            $this->getResult() );
+
 
 		return $result;
 	}
