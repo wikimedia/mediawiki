@@ -2112,13 +2112,16 @@ PICT # שונות
 'enotif_impersonal_salutation' => 'משתמש של {{SITENAME}}',
 'changed'                      => 'שונה',
 'created'                      => 'נוצר',
+'deleted'                      => 'נמחק',
+'enotif_deletedpagetext'       => 'דף זה אינו זמין עוד.',
 'enotif_subject'               => 'הדף $PAGETITLE ב{{grammar:תחילית|{{SITENAME}}}} $CHANGEDORCREATED על ידי $PAGEEDITOR',
 'enotif_lastvisited'           => 'ראו $1 לכל השינויים מאז ביקורכם האחרון.',
 'enotif_lastdiff'              => 'ראו $1 לשינוי זה.',
 'enotif_anon_editor'           => 'משתמש אנונימי $1',
+'enotif_rev_info'              => 'ראו $1 לגרסה הנוכחית.',
 'enotif_body'                  => 'לכבוד $WATCHINGUSERNAME,
 
-הדף $PAGETITLE ב{{grammar:תחילית|{{SITENAME}}}} $CHANGEDORCREATED ב־$PAGEEDITDATE על ידי $PAGEEDITOR, ראו $PAGETITLE_URL לגרסה הנוכחית.
+הדף $PAGETITLE ב{{grammar:תחילית|{{SITENAME}}}} $CHANGEDORCREATED ב־$PAGEEDITDATE על ידי $PAGEEDITOR. $REVINFO
 
 $NEWPAGE
 
