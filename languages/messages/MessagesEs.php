@@ -2003,33 +2003,37 @@ Cuando quieras eliminar la página de tu lista de seguimiento, presiona «Dejar 
 'enotif_impersonal_salutation' => 'usuario de {{SITENAME}}',
 'changed'                      => 'modificada',
 'created'                      => 'creada',
+'deleted'                      => 'borrado',
+'enotif_deletedpagetext'       => 'Esta página no está disponible más',
 'enotif_subject'               => 'La página $PAGETITLE de {{SITENAME}} ha sido $CHANGEDORCREATED por $PAGEEDITOR',
 'enotif_lastvisited'           => 'Vaya a $1 para ver todos los cambios desde su última visita.',
 'enotif_lastdiff'              => 'Vaya a $1 para ver este cambio.',
 'enotif_anon_editor'           => 'usuario anónimo $1',
+'enotif_rev_info'              => 'Mira $1 para la revisión actual.',
 'enotif_body'                  => 'Estimado/a $WATCHINGUSERNAME,
 
-La página de {{SITENAME}} «$PAGETITLE»
-ha sido $CHANGEDORCREATED por el usuario $PAGEEDITOR el $PAGEEDITDATE.
-La versión actual se encuentra en {{fullurl:$PAGETITLE}}
+La página de {{SITENAME}} $PAGETITLE ha sido $CHANGEDORCREATED el $PAGEEDITDATE por el usuario $PAGEEDITOR.
+$REVINFO
 
 $NEWPAGE
 
 El resumen de edición es: $PAGESUMMARY $PAGEMINOREDIT
 
-Para comunicarse con el usuario:
-por correo electrónico: {{fullurl:Special:Emailuser|target=$PAGEEDITOR}}
-en el wiki: {{fullurl:User:$PAGEEDITOR}}
+Contacta al editor:
+correo electrónico: $PAGEEDITOR_EMAIL
+wiki: $PAGEEDITOR_WIKI
 
-Para recibir nuevas notificaciones de cambios de esta página, deberá visitarla nuevamente.
-También puede, en su lista de seguimiento, modificar las opciones de notificación de sus
-páginas vigiladas.
+No habrá otras notificaciones en caso de cambios adicionales, a menos que visites esta página nuevamente.
+También puedes reestablecer las notificaciones para todas tus páginas vigiladas en tu página de vigilancia.
 
              El sistema de notificación de {{SITENAME}}.
 
 --
-Cambie las opciones de su lista de seguimiento en:
-{{fullurl:Special:Watchlist|edit=yes}}',
+Para cambiar las opciones de su lista de seguimiento, visite:
+{{fullurl:{{ns:special}}:Watchlist/edit}}
+
+Retroalimentación y asistencia adicional:
+{{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Borrar esta página',

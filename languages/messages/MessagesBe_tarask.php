@@ -2036,14 +2036,17 @@ $1",
 'enotif_impersonal_salutation' => 'Удзельнік {{GRAMMAR:родны|{{SITENAME}}}}',
 'changed'                      => 'зьмененая',
 'created'                      => 'створаная',
+'deleted'                      => 'выдаленая',
+'enotif_deletedpagetext'       => 'Гэтая старонка больш не даступная.',
 'enotif_subject'               => 'Старонка {{GRAMMAR:родны|{{SITENAME}}}} $PAGETITLE была $CHANGEDORCREATED удзельнікам $PAGEEDITOR',
 'enotif_lastvisited'           => 'Глядзіце на $1 усе апошнія зьмены, якія адбыліся пасьля Вашага апошняга наведваньня.',
 'enotif_lastdiff'              => 'Глядзіце $1, каб пабачыць гэтую зьмену.',
 'enotif_anon_editor'           => 'ананімны ўдзельнік $1',
-'enotif_body'                  => '$WATCHINGUSERNAME,
+'enotif_rev_info'              => 'Глядзіце цяперашнюю вэрсію $1.',
+'enotif_body'                  => 'Шаноўны $WATCHINGUSERNAME,
 
 
-Старонка $PAGETITLE {{GRAMMAR:родны|{{SITENAME}}}} была $CHANGEDORCREATED $PAGEEDITDATE удзельнікам $PAGEEDITOR, цяперашнюю вэрсію глядзіце на $PAGETITLE_URL.
+Старонка $PAGETITLE {{GRAMMAR:родны|{{SITENAME}}}} была $CHANGEDORCREATED $PAGEEDITDATE удзельнікам $PAGEEDITOR.
 
 $NEWPAGE
 
@@ -2054,7 +2057,7 @@ $NEWPAGE
 вікі-старонка: $PAGEEDITOR_WIKI
 
 Паведамленьні ня будуць дасылацца ў выпадку паўторных рэдагаваньняў, пакуль Вы не наведаеце гэтую старонку.
-Вы можаце пазначыць сьцяжкі дасылкі паведамленьняў ва ўсіх старонках назіраньня Вашага сьпісу назіраньня.
+Вы можаце пазначыць сьцяжкі дасылкі паведамленьняў для ўсіх старонках назіраньня Вашага сьпісу назіраньня.
 
              Сыстэма паведамленьняў {{GRAMMAR:родны|{{SITENAME}}}} 
 

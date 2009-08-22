@@ -1571,6 +1571,7 @@ Palun pöörduge tagasi ja laadige fail üles mõne teise nime all. [[File:$1|th
 'fileexists-shared-forbidden' => 'Samanimeline fail on juba olemas jagatud meediavaramus.
 Kui soovid siiski oma faili üles laadida, siis palun mine tagasi ja kasuta teist failinime.
 [[File:$1|thumb|center|$1]]',
+'file-exists-duplicate'       => 'See fail on {{PLURAL:$1|järgneva faili|järgnevate failide}} duplikaat:',
 'file-deleted-duplicate'      => 'Selle failiga ([[$1]]) identne fail on hiljuti kustutatud.
 Vaata selle faili kustutamise ajalugu enne jätkamist.',
 'successfulupload'            => 'Üleslaadimine õnnestus',
@@ -1580,6 +1581,7 @@ Vaata selle faili kustutamise ajalugu enne jätkamist.',
 'overwroteimage'              => 'laadis üles faili "[[$1]]" uue versiooni',
 'uploaddisabled'              => 'Üleslaadimine hetkel keelatud',
 'uploaddisabledtext'          => 'Faili üleslaadimine on keelatud.',
+'uploadscripted'              => 'See fail sisaldab HTML- või skriptikoodi, mida veebilehitseja võib valesti kuvada.',
 'uploadcorrupt'               => 'Fail on vigane või vale laiendiga. Palun kontrolli faili ja proovi seda uuesti üles laadida.',
 'uploadvirus'                 => 'Fail sisaldab viirust! Täpsemalt: $1',
 'sourcefilename'              => 'Lähtefail:',
@@ -1592,6 +1594,8 @@ Kontrolli $1 enne jätkamist.',
 
 Peaksid kaaluma, kas selle faili üleslaadimise jätkamine on sobilik.
 Selle faili kustutamislogi on toodud siinsamas:",
+'filename-bad-prefix'         => "Üleslaaditava faili nimi algab eesliitega '''\"\$1\"''', mis on omane digikaamera antud ebamäärastele nimedele.
+Palun vali oma failile kirjeldavam nimi.",
 
 'upload-proto-error'        => 'Vigane protokoll',
 'upload-file-error'         => 'Sisemine viga',
@@ -1634,7 +1638,7 @@ Tulba päisel klõpsamine muudab sortimist.',
 # File description page
 'file-anchor-link'          => 'Pilt',
 'filehist'                  => 'Faili ajalugu',
-'filehist-help'             => 'Klõpsa Kuupäev/kellaaeg, et näha faili sel ajahetkel.',
+'filehist-help'             => 'Klõpsa kuupäeva ja kellaaega, et näha sel ajahetkel kasutusel olnud failiversiooni.',
 'filehist-deleteall'        => 'kustuta kõik',
 'filehist-deleteone'        => 'kustuta see',
 'filehist-revert'           => 'taasta',
@@ -1650,7 +1654,13 @@ Tulba päisel klõpsamine muudab sortimist.',
 'filehist-missing'          => 'Fail puudub',
 'imagelinks'                => 'Viited failile',
 'linkstoimage'              => 'Sellele pildile {{PLURAL:$1|viitab järgmine lehekülg|viitavad järgmised leheküljed}}:',
+'linkstoimage-more'         => 'Sellele failile viitab enam kui $1 {{PLURAL:$1|lehekülg|lehekülge}}.
+Järgnevas loetelus on kuvatud ainult {{PLURAL:$1|esimene viitav lehekülg|esimesed $1 viitavat lehekülge}}.
+[[Special:WhatLinksHere/$2|Kogu loetelu]] on saadaval.',
 'nolinkstoimage'            => 'Sellele pildile ei viita ükski lehekülg.',
+'morelinkstoimage'          => 'Vaata [[Special:WhatLinksHere/$1|veel linke]], mis sellele failile viitavad.',
+'redirectstofile'           => 'Selle faili juurde {{PLURAL:$1|suunab järgnev fail|suunavad järgnevad $1 faili}}:',
+'duplicatesoffile'          => '{{PLURAL:$1|Järgnev fail|Järgnevad $1 faili}} on selle faili {{PLURAL:$1|duplikaat|duplikaadid}} ([[Special:FileDuplicateSearch/$2|üksikasjad]]):',
 'sharedupload'              => 'See fail pärineb allikast $1 ning võib olla kasutusel ka teistes projektides.',
 'sharedupload-desc-there'   => 'See fail pärineb kesksest failivaramust $1. Palun vaata [$2 faili kirjelduse lehekülge], et saada rohkem teavet.',
 'sharedupload-desc-here'    => 'See on jagutud fail allikast $1 ja seda saab kasutada ka teistes projektides. Faili sealne [$2 kirjeldus] on kuvatud allpool.',
@@ -1662,10 +1672,12 @@ Tulba päisel klõpsamine muudab sortimist.',
 
 # File reversion
 'filerevert'                => 'Taasta $1',
-'filerevert-legend'         => 'Taasta fail',
+'filerevert-legend'         => 'Faili taastamine',
+'filerevert-intro'          => "Sa taastad faili '''[[Media:$1|$1]]''' seisuga [$4 $3, $2 kasutusel olnud versiooni].",
 'filerevert-comment'        => 'Põhjus:',
 'filerevert-defaultcomment' => 'Naaseti redaktsiooni juurde, mis loodi $1 kell $2',
 'filerevert-submit'         => 'Taasta',
+'filerevert-success'        => "Faili '''[[Media:$1|$1]]''' seisuga [$4 $3, $2 kasutusel olnud versioon] on taastatud.",
 'filerevert-badversion'     => 'Failist ei ole kohalikku versiooni tagatud ajamarkeeringuga.',
 
 # File deletion
@@ -2437,7 +2449,7 @@ Puudub ajutine kataloog.',
 Palun ürita uuesti.',
 
 # Import log
-'importlogpage'                    => 'Impordi logi',
+'importlogpage'                    => 'Impordilogi',
 'importlogpagetext'                => 'Importimislogi kuvab leheküljed, mille redigeerimisajalugu pärineb teistest vikidest.',
 'import-logentry-upload'           => 'importis faili üleslaadimisega lehekülje [[$1]]',
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|redaktsioon|redaktsiooni}}',
@@ -2603,6 +2615,7 @@ $1',
 'imagemaxsize'         => "Maksimaalne pildi suurus:<br />''(faili kirjeldusleheküljel)''",
 'thumbsize'            => 'Pisipildi suurus:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|lehekülg|lehekülge}}',
+'file-info'            => '(faili suurus: $1, MIME tüüp: $2)',
 'file-info-size'       => '($1 × $2 pikslit, faili suurus: $3, MIME tüüp: $4)',
 'file-nohires'         => '<small>Sellest suuremat pilti pole.</small>',
 'svg-long-desc'        => '(SVG fail, algsuurus $1 × $2 pikslit, faili suurus: $3)',
@@ -2807,7 +2820,7 @@ Kui faili on rakendustarkvaraga töödeldud, võib osa andmeid olla muudetud võ
 
 # External editor support
 'edit-externally'      => 'Töötle faili välise programmiga',
-'edit-externally-help' => 'Lisainfot loe leheküljelt [http://www.mediawiki.org/wiki/Manual:External_editors meta:väliste redaktorite kasutamine]',
+'edit-externally-help' => '(Vaata väliste redaktorite [http://www.mediawiki.org/wiki/Manual:External_editors kasutusjuhendit])',
 
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'kõik',
@@ -2957,6 +2970,7 @@ Sisesta faili nimi eesliiteta "{{ns:file}}:".',
 'fileduplicatesearch-submit'   => 'Otsi',
 'fileduplicatesearch-info'     => '$1 × $2 pikslit<br />Faili suurus: $3<br />MIME-tüüp: $4',
 'fileduplicatesearch-result-1' => 'Failil "$1" ei ole identset duplikaati.',
+'fileduplicatesearch-result-n' => 'Failil "$1" on {{PLURAL:$2|1 samane duplikaat|$2 samast duplikaati}}.',
 
 # Special:SpecialPages
 'specialpages'                   => 'Erileheküljed',

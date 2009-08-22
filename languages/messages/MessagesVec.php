@@ -1904,14 +1904,17 @@ Le future modìfeghe a sta pagina e a la relativa pagina de discussion le sarà 
 'enotif_newpagetext'           => 'Sta qua la xe na nova pàxena.',
 'enotif_impersonal_salutation' => 'Utente de {{SITENAME}}',
 'changed'                      => 'canbià',
-'created'                      => 'Creà',
+'created'                      => 'creà',
+'deleted'                      => 'scancelà',
+'enotif_deletedpagetext'       => 'Sta pagina no la xe pi disponibile.',
 'enotif_subject'               => 'La pagina $PAGETITLE de {{SITENAME}} la xe stà $CHANGEDORCREATED da $PAGEEDITOR',
 'enotif_lastvisited'           => 'Varda $1 par tute le modifiche da la to ultima visita.',
 'enotif_lastdiff'              => 'Varda $1 par visualizar la modifica.',
 'enotif_anon_editor'           => 'utente anonimo $1',
+'enotif_rev_info'              => 'Varda $1 par la version corente.',
 'enotif_body'                  => 'Caro $WATCHINGUSERNAME,
 
-ła pàxena $PAGETITLE de {{SITENAME}} la xè stà $CHANGEDORCREATED el $PAGEEDITDATE da $PAGEEDITOR, varda $PAGETITLE_URL par ła version atuałe.
+ła pàxena $PAGETITLE de {{SITENAME}} la xè stà $CHANGEDORCREATED el $PAGEEDITDATE da $PAGEEDITOR. $REVINFO
 
 $NEWPAGE
 
@@ -1921,7 +1924,8 @@ Contatta el redator:
 mail: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
-No ghe sarà altre notifiche in caso de ulteriori canbiamenti, a manco che ti no te visiti sta pàxena. Te podi anca reinpostar l\'avixo de notifica par tuti i osservati speciałi de ła to łista.
+No ghe sarà altre notifiche in caso de ulteriori canbiamenti, a manco che ti no te visiti sta pàxena. 
+Te podi anca reinpostar l\'avixo de notifica par tuti i osservati speciałi de ła to łista.
 
              El to amichevole sistema de notifica de {{SITENAME}}
 
@@ -1930,7 +1934,7 @@ Par canbiar łe inpostassion de i to osservati speciałi, visita
 {{fullurl:Special:Watchlist/edit}}
 
 Par riscontri e ulteriore assistensa:
-{{fullurl:Help:Ciacołe}}',
+{{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Scanceła pàxena',

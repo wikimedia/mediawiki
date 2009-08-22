@@ -1,5 +1,5 @@
 <?php
-/** Traditional Chinese (‪中文(傳統字)‬)
+/** Traditional Chinese (‪中文(繁體)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -2372,7 +2372,7 @@ $1已經被封鎖。您是否想更改這個設定？',
 並選擇{{GENDER:|你|妳|你}}是否需要匯出帶有頁面歷史的以前的修訂版本，
 或是只選擇匯出帶有最後一次編輯訊息的當前修訂版本。
 
-此外{{GENDER:|你|妳|你}}還可以利用連結匯出檔案，例如{{GENDER:|你|妳|你}}可以使用[[{{MediaWiki:Mainpage}}]]匯出"[[{{MediaWiki:Mainpage}}]]"頁面。',
+此外{{GENDER:|你|妳|你}}還可以利用連結匯出檔案，例如{{GENDER:|你|妳|你}}可以使用[[{{#Special:Export}}/{{MediaWiki:Mainpage}}]]匯出"[[{{MediaWiki:Mainpage}}]]"頁面。',
 'exportcuronly'     => '僅包含當前的修訂，而不是全部的歷史。',
 'exportnohistory'   => "----
 '''注意:''' 由於性能原因，從此表單匯出頁面的全部歷史已被停用。",

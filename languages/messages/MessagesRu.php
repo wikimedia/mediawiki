@@ -383,7 +383,7 @@ $messages = array(
 'listingcontinuesabbrev'         => '(продолжение)',
 
 'mainpagetext'      => "<big>'''Вики-движок «MediaWiki» успешно установлен.'''</big>",
-'mainpagedocfooter' => 'Информацию по работе с этой вики можно найти в [http://meta.wikimedia.org/wiki/%D0%9F%D0%BE%D0%BC%D0%BE%D1%89%D1%8C:%D0%A1%D0%BE%D0%B4%D0%B5%D1%80%D0%B6%D0%B0%D0%BD%D0%B8%D0%B5 руководстве пользователя].
+'mainpagedocfooter' => 'Информацию по работе с этой вики можно найти в [http://meta.wikimedia.org/wiki/%D0%9F%D0%BE%D0%BC%D0%BE%D1%89%D1%8C:%D0%A1%D0%BE%D0%B4%D0%B5%D1%80%D0%B6%D0%B0%D0%BD%D0%B8%D0%B5 справочном руководстве].
 
 == Некоторые полезные ресурсы ==
 * [http://www.mediawiki.org/wiki/Manual:Configuration_settings Список возможных настроек];
@@ -1319,7 +1319,7 @@ $1",
 'prefs-textboxsize'             => 'Размер окна редактирования',
 'youremail'                     => 'Электронная почта:',
 'username'                      => 'Регистрационное имя:',
-'uid'                           => 'Идентификатор пользователя:',
+'uid'                           => 'Идентификатор участника:',
 'prefs-memberingroups'          => 'Член {{PLURAL:$1|группы|групп}}:',
 'prefs-registration'            => 'Время регистрации:',
 'yourrealname'                  => 'Ваше настоящее имя:',
@@ -1371,8 +1371,8 @@ $1",
 'userrights-reason'           => 'Причина изменения:',
 'userrights-no-interwiki'     => 'У вас нет разрешения изменять права участников на других вики.',
 'userrights-nodatabase'       => 'База данных $1 не существует или не является локальной.',
-'userrights-nologin'          => 'Вы должны [[Special:UserLogin|представиться системе]] с учётной записи администратора, чтобы назначать права пользователям.',
-'userrights-notallowed'       => 'С вашей учётной записи не разрешено назначать права пользователям.',
+'userrights-nologin'          => 'Вы должны [[Special:UserLogin|представиться системе]] с учётной записи администратора, чтобы присваивать права участникам.',
+'userrights-notallowed'       => 'С вашей учётной записи не разрешено присваивать права участникам.',
 'userrights-changeable-col'   => 'Группы, которые вы можете изменять',
 'userrights-unchangeable-col' => 'Группы, которые вы не можете изменять',
 
@@ -2051,13 +2051,16 @@ PICT # различные
 'enotif_impersonal_salutation' => 'Участник {{grammar:genitive|{{SITENAME}}}}',
 'changed'                      => 'изменена',
 'created'                      => 'создана',
+'deleted'                      => 'удалена',
+'enotif_deletedpagetext'       => 'Эта страница больше не доступна.',
 'enotif_subject'               => 'Страница проекта «{{SITENAME}}» $PAGETITLE была $CHANGEDORCREATED участником $PAGEEDITOR',
 'enotif_lastvisited'           => 'См. $1 для просмотра всех изменений, произошедших с вашего последнего посещения.',
 'enotif_lastdiff'              => 'См. $1 для ознакомления с изменением.',
 'enotif_anon_editor'           => 'анонимный участник $1',
+'enotif_rev_info'              => 'Для просмотра текущей версии см. $1.',
 'enotif_body'                  => '$WATCHINGUSERNAME,
 
-$PAGEEDITDATE страница проекта «{{SITENAME}}» $PAGETITLE была $CHANGEDORCREATED участником $PAGEEDITOR, см. $PAGETITLE_URL для просмотра текущей версии.
+$PAGEEDITDATE страница проекта «{{SITENAME}}» $PAGETITLE была $CHANGEDORCREATED участником $PAGEEDITOR. $REVINFO
 
 $NEWPAGE
 
@@ -2067,12 +2070,12 @@ $NEWPAGE
 эл. почта $PAGEEDITOR_EMAIL
 вики $PAGEEDITOR_WIKI
 
-Не будет никаких других уведомлений в случае дальнейших изменений, если Вы не посещаете эту страницу. Вы могли также повторно установить флаги уведомления для всех ваших наблюдаемых страниц в вашем списке наблюдения.
+Если Вы не посетите эту страницу, то в случае её дальнейших изменений уведомлений больше не будет. Вы можете также отключить опцию уведомления для всех страниц в вашем списке наблюдения.
 
              Система оповещения {{grammar:genitive|{{SITENAME}}}}
 
 --
-Чтобы изменить настройки вашего списка наблюдения обратитесь к
+Изменить настройки вашего списка наблюдения:
 {{fullurl:{{ns:special}}:Watchlist/edit}}
 
 Обратная связь и помощь:

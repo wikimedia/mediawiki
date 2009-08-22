@@ -1836,13 +1836,16 @@ Se a vorèissa mai gavé st'articol-sì da 'nt la lista dij ''Sot Euj'', che a s
 'enotif_impersonal_salutation' => 'utent ëd {{SITENAME}}',
 'changed'                      => 'cangià',
 'created'                      => 'creà',
+'deleted'                      => 'scanselà',
+'enotif_deletedpagetext'       => "Sta pàgina-sì a l'é pa pì disponìbila.",
 'enotif_subject'               => 'La pàgina $PAGETITLE ëd {{SITENAME}} a l\'é staita $CHANGEDORCREATED da $PAGEEDITOR',
 'enotif_lastvisited'           => "Che as varda $1 për ës-ciaré tute le modìfiche da 'nt l'ùltima vira che a l'é passà.",
 'enotif_lastdiff'              => "Ch'a varda $1 për visioné sta modìfica.",
 'enotif_anon_editor'           => 'utent anònim $1',
+'enotif_rev_info'              => 'Varda $1 për la vërsion corenta.',
 'enotif_body'                  => 'A l\'atension ëd $WATCHINGUSERNAME,
 
-La pàgina $PAGETITLE dël sit {{SITENAME}} a l\'é staita $CHANGEDORCREATED al $PAGEEDITDATE da $PAGEEDITOR, che a varda $PAGETITLE_URL për la version corenta.
+La pàgina $PAGETITLE dël sit {{SITENAME}} a l\'é staita $CHANGEDORCREATED al $PAGEEDITDATE da $PAGEEDITOR. $REVINFO
 
 $NEWPAGE
 

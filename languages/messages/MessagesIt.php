@@ -19,6 +19,7 @@
  * @author Felis
  * @author FollowTheMedia
  * @author Gianfranco
+ * @author Marco 27
  * @author Martorell
  * @author Marzedu
  * @author McDutchie
@@ -1980,10 +1981,12 @@ il titolo della pagina apparirà in '''grassetto''' nella pagina delle [[Special
 'enotif_impersonal_salutation' => 'Utente di {{SITENAME}}',
 'changed'                      => 'modificata',
 'created'                      => 'creata',
+'enotif_deletedpagetext'       => 'Questa pagina non è più disponibile.',
 'enotif_subject'               => 'La pagina $PAGETITLE di {{SITENAME}} è stata $CHANGEDORCREATED da $PAGEEDITOR',
 'enotif_lastvisited'           => "Consultare $1 per vedere tutte le modifiche dall'ultima visita.",
 'enotif_lastdiff'              => 'Vedere $1 per visualizzare la modifica.',
 'enotif_anon_editor'           => 'utente anonimo $1',
+'enotif_rev_info'              => 'Vedi $1 per la revisione attuale.',
 'enotif_body'                  => 'Gentile $WATCHINGUSERNAME,
 
 la pagina $PAGETITLE di {{SITENAME}} è stata $CHANGEDORCREATED in data $PAGEEDITDATE da $PAGEEDITOR; la versione attuale si trova all\'indirizzo $PAGETITLE_URL.

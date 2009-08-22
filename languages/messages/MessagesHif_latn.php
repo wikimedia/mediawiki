@@ -43,6 +43,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Panna me mamuli badlao khatir bhi hame E-mail karo',
 'tog-enotifrevealaddr'        => 'Notification E-mail me hamaar E-mail address ke dekhao.',
 'tog-shownumberswatching'     => 'Ketna sadasya dekhe hai ke number dekhao',
+'tog-oldsig'                  => 'Abhi ke signature ke preview:',
 'tog-fancysig'                => 'Signature ke wikitext ke rakam dekho (binaa automatic jorr se)',
 'tog-externaleditor'          => 'Apne se bahaari editor ke use karo (khali chalaak logan khatir, computer me special settings ke jaruri hai)',
 'tog-externaldiff'            => 'Apne se bahaari diff ke use karo (khali chalaak logan khatir, computer me special settings ke jaruri hai)',

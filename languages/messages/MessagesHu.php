@@ -2090,26 +2090,29 @@ Ezután minden, a lapon vagy annak vitalapján történő változást ott fogsz 
 'enotif_impersonal_salutation' => '{{SITENAME}} felhasználó',
 'changed'                      => 'megváltoztatta',
 'created'                      => 'létrehozta',
+'deleted'                      => 'törölve',
+'enotif_deletedpagetext'       => 'Ez a lap már nem elérhető.',
 'enotif_subject'               => 'A(z) {{SITENAME}} $PAGETITLE című oldalát $CHANGEDORCREATED $PAGEEDITOR',
 'enotif_lastvisited'           => 'Lásd a $1 lapot az utolsó látogatásod történt változtatásokért.',
 'enotif_lastdiff'              => 'Lásd a $1 lapot ezen változtatás megtekintéséhez.',
 'enotif_anon_editor'           => '$1 névtelen felhasználó',
+'enotif_rev_info'              => 'Lásd a jelenlegi változatot itt:  $1.',
 'enotif_body'                  => 'Kedves $WATCHINGUSERNAME!
 
 
-$PAGEEDITDATE-n $PAGEEDITOR $CHANGEDORCREATED a(z) {{SITENAME}} $PAGETITLE című oldalát; a jelenlegi verziót a $PAGETITLE_URL webcímen találod.
+$PAGEEDITOR $PAGEEDITDATE-kor $CHANGEDORCREATED a(z) $PAGETITLE című lapot a(z) {{SITENAME}} wikin; $REVINFO
 
 $NEWPAGE
 
-A szerkesztő összegzése: $PAGESUMMARY $PAGEMINOREDIT
+A szerkesztési összefoglaló a következő volt: $PAGESUMMARY $PAGEMINOREDIT
 
 A szerkesztő elérhetősége:
-levél: $PAGEEDITOR_EMAIL
+e-mail küldése: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
-Amíg nem keresed fel az oldalt, vagy nem állítod alaphelyzetbe a figyelőlistádnál, nem kapsz értesítést a további változtatásokról.
+Amíg nem keresed fel az oldalt, addig nem érkeznek újabb értesítések az oldal változásaival kapcsolatban. A figyelőlistádon is beállíthatod, hogy újból kapj értesítéseket, az összes lap után.
 
-             Baráti üdvözlettel: {{SITENAME}} értesítő rendszere
+             Baráti üdvözlettel: a(z) {{SITENAME}} értesítő rendszere
 
 --
 A figyelőlistád módosításához keresd fel a

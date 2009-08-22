@@ -409,7 +409,7 @@ Wenn Sie die Seite wieder von Ihrer Beobachtungsliste entfernen möchten, klicke
 
 'enotif_body' => 'Hallo $WATCHINGUSERNAME,
 
-die {{SITENAME}}-Seite "$PAGETITLE" wurde von $PAGEEDITOR am $PAGEEDITDATE $CHANGEDORCREATED.
+die {{SITENAME}}-Seite „$PAGETITLE“ wurde von $PAGEEDITOR am $PAGEEDITDATE $CHANGEDORCREATED. $REVINFO
 
 Aktuelle Version: $PAGETITLE_URL
 

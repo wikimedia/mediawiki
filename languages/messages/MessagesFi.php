@@ -2008,10 +2008,13 @@ Lisätietoa yksittäisistä käyttäjäoikeuksista saattaa löytyä [[{{MediaWik
 'enotif_impersonal_salutation' => '{{SITENAME}}-käyttäjä',
 'changed'                      => 'muuttanut sivua',
 'created'                      => 'luonut sivun',
+'deleted'                      => 'poistettu',
+'enotif_deletedpagetext'       => 'Tämä sivu ei ole enää saatavilla.',
 'enotif_subject'               => '$PAGEEDITOR on $CHANGEDORCREATED $PAGETITLE',
 'enotif_lastvisited'           => 'Osoitteessa $1 on kaikki muutokset viimeisen käyntisi jälkeen.',
 'enotif_lastdiff'              => 'Muutos on osoitteessa $1.',
 'enotif_anon_editor'           => 'kirjautumaton käyttäjä $1',
+'enotif_rev_info'              => 'Katso $1 nähdäksesi nykyisen version.',
 'enotif_body'                  => 'Käyttäjä $WATCHINGUSERNAME,
 
 {{GRAMMAR:genitive|{{SITENAME}}}} käyttäjä $PAGEEDITOR on $CHANGEDORCREATED $PAGETITLE $PAGEEDITDATE. Nykyinen versio on osoitteessa $PAGETITLE_URL .

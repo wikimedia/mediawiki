@@ -1971,10 +1971,12 @@ Special:EmailUser appears when you click on the link "E-mail this user" in the s
 'watching'   => 'Text displayed when clicked on the watch tab: [[MediaWiki:Watch/{{SUBPAGENAME}}|{{int:watch}}]]. It means the wiki is adding that page to your watchlist.',
 'unwatching' => 'Text displayed when clicked on the unwatch tab: [[MediaWiki:Unwatch/{{SUBPAGENAME}}|{{int:unwatch}}]]. It means the wiki is removing that page from your watchlist.',
 
-'changed'        => 'Possible value for $CHANGEDORCREATED in {{msg|enotif_subject}} and {{msg|enotif_body}}.',
-'created'        => 'Possible value for $CHANGEDORCREATED in {{msg|enotif_subject}} and {{msg|enotif_body}}.',
-'enotif_subject' => '$CHANGEDORCREATED can be one of {{msg|changed}} and {{msg|created}}.',
-'enotif_body'    => '$CHANGEDORCREATED can be one of {{msg|changed}} and {{msg|created}}.',
+'changed'         => 'Possible value for $CHANGEDORCREATED in {{msg|enotif_subject}} and {{msg|enotif_body}}.',
+'created'         => 'Possible value for $CHANGEDORCREATED in {{msg|enotif_subject}} and {{msg|enotif_body}}.',
+'deleted'         => '{{Identical|Deleted}}',
+'enotif_subject'  => '$CHANGEDORCREATED can be one of {{msg|changed}} and {{msg|created}}.',
+'enotif_rev_info' => 'Substituted as $REVINFO in {{msg-mw|enotif body|notext=1}}',
+'enotif_body'     => '$CHANGEDORCREATED can be one of {{msg-mw|changed}} and {{msg-mw|created}}.',
 
 # Delete
 'confirm'                => 'Submit button text for protection confirmation
