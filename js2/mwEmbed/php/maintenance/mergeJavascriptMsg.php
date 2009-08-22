@@ -27,7 +27,7 @@ $mergeToPhp = false;
 $mergeToJS = true;
 
 if ( $mergeToPhp && $mergeToJS )
-die( 'please only set either $mergeToPhp or $mergeToJS' );
+die( 'Please only set either $mergeToPhp or $mergeToJS' );
 
 if ( $mergeToPhp )
 print "Will merge *Javascript to PHP* in 3 seconds ";
@@ -47,7 +47,7 @@ $rawLangFile = file_get_contents( $mwLangFilePath );
 $startInx = strpos( $rawLangFile, $mwSTART_MSG_KEY ) + strlen( $mwSTART_MSG_KEY );
 $endInx = strpos( $rawLangFile, $mwEND_MSG_KEY ) + 1;
 if ( $startInx === false || $endInx === false ) {
-	print "Could not find $mwSTART_MSG_KEY or $mwEND_MSG_KEY in mwEmbed.i18n.php \n";
+	print "Could not find $mwSTART_MSG_KEY or $mwEND_MSG_KEY in mwEmbed.i18n.php\n";
 	exit();
 }
 
@@ -77,7 +77,7 @@ foreach ( $objects as $fname => $object ) {
 }
 // rebuild and output to single php file if mergeToPHP is on
 if ( $mergeToPhp ) {
-	if ( file_put_contents( $mwLangFilePath, trim( $preFile ) . "\n\t" . trim( $msgSet ) . "\n" . trim( $postFile ) ) ) {
+	if ( file_put_contents( $mwLangFilePath, trim( $preFile ) . "\n\t" . trim( $msgSet ) . "\n" . ltrim( $postFile ) ) ) {
 		print "updated $mwLangFilePath file\n";
 		exit();
 	}
