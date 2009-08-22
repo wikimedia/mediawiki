@@ -610,7 +610,7 @@ function mwdomReady(force){
 	];
 	if(e[0].length!=0 || e[1].length!=0 || e[2].length!=0){
 		js_log('we have items to rewrite');
-
+		setSwapableToLoading(e);
 		//load libs and proccess:
 		mvJsLoader.embedVideoCheck(function(){
 			//run any queded global events:
@@ -623,6 +623,14 @@ function mwdomReady(force){
 		//run any queded global events:
 		mvJsLoader.runQuededFunctions();
 	}
+}
+//a quick function that sets the intial text of swapable elements to "loading" 
+// (jquery might not be ready) 
+//(does not destroy inner elements)    
+function setSwapableToLoading(e){
+	//for(var i =0)
+	//for(var j = 0; i < j.length; j++){		
+	//}	
 }
 //js2AddOnloadHook: ensure jQuery and the DOM are ready:
 function js2AddOnloadHook( func ) {

@@ -667,12 +667,13 @@ mvBaseUploadInterface.prototype = {
 			'</div>'+
 		'</div>'
 	  )
+	  //just display an empty progress window
+	  $j('#upProgressDialog').dialog('open');
+	   
 	  //setup progress bar:
-	   $j('#up-progressbar').progressbar({
-		   value:0
-	   });
-	   //just display an empty progress window
-	   $j('#upProgressDialog').dialog('open');
+	  $j('#up-progressbar').progressbar({
+		  value:0
+	  });
 
 	},
 	cancel_button:function(){
@@ -695,7 +696,7 @@ mvBaseUploadInterface.prototype = {
 	}
 };
 
-//add some jquery bindings:
+//add some jquery binding helpers
 (function($) {
 	/**
 	 * doDestCheck checks the destination

@@ -78,7 +78,7 @@ var ctrlBuilder = {
 				function(){										
 					if($j('#gnp_' + embedObj.id).length==0){
 						$j(this).append('<div id="gnp_' + embedObj.id + '" class="ui-state-highlight ui-corner-all" ' +
-							'style="position:absolute;display:none;background:#FFF;top:10px;left:10px;right:10px;height:60px;">' +
+							'style="position:absolute;display:none;background:#FFF;top:10px;left:10px;right:10px;">' +
 							gM('mv_for_best_experience') + 
 						'<br><input id="ffwarn_'+embedObj.id+'" type=\"checkbox\">' + 
 							gM('mv_do_not_warn_again') + 

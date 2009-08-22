@@ -138,7 +138,9 @@ var mwUploadHelper = {
 		$j('#wpDestFile').val( fname );
 
 		//do a destination check
-		this.doDestCheck();
+		$j('#wpDestFile').doDestCheck({
+			'warn_target':'#wpDestFile-warning'
+		});
 	}
 }
 
