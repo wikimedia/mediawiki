@@ -1682,13 +1682,16 @@ $1",
 'enotif_impersonal_salutation' => '貴客',
 'changed'                      => '易',
 'created'                      => '撰',
+'deleted'                      => '刪',
+'enotif_deletedpagetext'       => '此頁無存矣。',
 'enotif_subject'               => '{{SITENAME}}簿{$PAGEEDITOR}{$CHANGEDORCREATED}{$PAGETITLE}',
 'enotif_lastvisited'           => '自子出簿，有易見$1。',
 'enotif_lastdiff'              => '欲閱此易，見$1。',
 'enotif_anon_editor'           => '過客$1',
+'enotif_rev_info'              => '閱審之見$1。',
 'enotif_body'                  => '$WATCHINGUSERNAME鈞鑑
 
-{$PAGEEDITDATE}{{SITENAME}}簿{$PAGEEDITOR}{$CHANGEDORCREATED}{$PAGETITLE}，閱審之見{$PAGETITLE_URL}。
+$PAGEEDITDATE{{SITENAME}}簿$PAGEEDITOR$CHANGEDORCREATED$PAGETITLE。$REVINFO
 
 $NEWPAGE
 
