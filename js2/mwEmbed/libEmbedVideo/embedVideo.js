@@ -1,6 +1,6 @@
 /*  the base video control JSON object with default attributes
-*	for supported attribute details see README
-*/
+ *	for supported attribute details see README
+ */
 
 loadGM({
 	"mwe-loading_plugin" : "loading plugin <blink>...<\/blink>",
@@ -48,7 +48,7 @@ loadGM({
 	"mwe-for_best_experience" : "For a better video playback experience we recommend:<br \/><b><a href=\"http:\/\/www.mozilla.com\/en-US\/firefox\/upgrade.html?from=mwEmbed\">Firefox 3.5<\/a>.<\/b>",
 	"mwe-do_not_warn_again" : "Dissmiss for now.",
 	"mwe-playerselect" : "Players",
-	"mwe-read_before_embed" : 'Please <a href=\"http:\/\/mediawiki.org\/wiki\/Security_Notes_on_Remote_Embedding" target="_new">Read This<\/a> before embeding!',
+	"mwe-read_before_embed" : "Please <a href=\"http:\/\/mediawiki.org\/wiki\/Security_Notes_on_Remote_Embedding\" target=\"_new\">Read This<\/a> before embeding!",
 	"mwe-embed_site_or_blog" : "Embed on your site or blog"
 });
 
