@@ -1,12 +1,12 @@
 /*
-* Adds advanced firefogg support (let you control and structure advanced controls over many aspects of video encoding)
-*/
+ * Adds advanced firefogg support (let you control and structure advanced controls over many aspects of video encoding)
+ */
 
 //@@todo put all msg text into loadGM json
 
 loadGM({
 	"fogg-help-sticky" : "Help (click to stick)",
-	"fogg-cg-preset" : "Preset :  <strong>$1<\/strong>",
+	"fogg-cg-preset" : "Preset: <strong>$1<\/strong>",
 	"fogg-cg-quality" : "Basic quality and resolution control",
 	"fogg-cg-meta" : "Metadata for the clip",
 	"fogg-cg-range" : "Encoding range",
