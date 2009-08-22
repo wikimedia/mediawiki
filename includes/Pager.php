@@ -837,17 +837,22 @@ abstract class TablePager extends IndexPager {
 			'last' => 'table_pager_last',
 		);
 		$images = array(
-			'first' => $wgContLang->isRTL() ? 'arrow_last_25.png' : 'arrow_first_25.png',
-			'prev' =>  $wgContLang->isRTL() ? 'arrow_right_25.png' : 'arrow_left_25.png',
-			'next' =>  $wgContLang->isRTL() ? 'arrow_left_25.png' : 'arrow_right_25.png',
-			'last' =>  $wgContLang->isRTL() ? 'arrow_first_25.png' : 'arrow_last_25.png',
+			'first' => 'arrow_first_25.png',
+			'prev' => 'arrow_left_25.png',
+			'next' => 'arrow_right_25.png',
+			'last' => 'arrow_last_25.png',
 		);
 		$disabledImages = array(
-			'first' => $wgContLang->isRTL() ? 'arrow_disabled_last_25.png' : 'arrow_disabled_first_25.png',
-			'prev' =>  $wgContLang->isRTL() ? 'arrow_disabled_right_25.png' : 'arrow_disabled_left_25.png',
-			'next' =>  $wgContLang->isRTL() ? 'arrow_disabled_left_25.png' : 'arrow_disabled_right_25.png',
-			'last' =>  $wgContLang->isRTL() ? 'arrow_disabled_first_25.png' : 'arrow_disabled_last_25.png',
+			'first' => 'arrow_disabled_first_25.png',
+			'prev' => 'arrow_disabled_left_25.png',
+			'next' => 'arrow_disabled_right_25.png',
+			'last' => 'arrow_disabled_last_25.png',
 		);
+		if( $wgContLang->isRTL() ) {
+			$keys = array_keys( $labels );
+			$images = array_combine( $keys, array_reverse( $images ) );
+			$disabledImages = array_combine( $keys, array_reverse( $disabledImages ) );
+		}
 
 		$linkTexts = array();
 		$disabledTexts = array();

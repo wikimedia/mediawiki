@@ -484,7 +484,7 @@ class Linker {
 			# If  thumbnail width has not been provided, it is set
 			# to the default user option as specified in Language*.php
 			if ( $fp['align'] == '' ) {
-				$fp['align'] = $wgContLang->isRTL() ? 'left' : 'right';
+				$fp['align'] = $wgContLang->alignEnd();
 			}
 			return $prefix.$this->makeThumbLink2( $title, $file, $fp, $hp, $time, $query ).$postfix;
 		}

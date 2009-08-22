@@ -99,7 +99,7 @@ function wfSpecialFileDuplicateSearch( $par = null ) {
 	);
 
 	if( $hash != '' ) {
-		$align = $wgContLang->isRtl() ? 'left' : 'right';
+		$align = $wgContLang->alignEnd();
 
 		# Show a thumbnail of the file
 		$img = wfFindFile( $title );

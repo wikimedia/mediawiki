@@ -1689,7 +1689,7 @@ class OutputPage {
 			$this->setHTMLTitle(  wfMsg( 'pagetitle', $this->getPageTitle() ));
 		}
 
-		$dir = $wgContLang->isRTL() ? 'rtl' : 'ltr';
+		$dir = $wgContLang->getDir();
 
 		if ( $wgHtml5 ) {
 			$ret .= "<!doctype html>\n";
@@ -1909,7 +1909,7 @@ class OutputPage {
 
 		if( isset( $options['dir'] ) ) {
 			global $wgContLang;
-			$siteDir = $wgContLang->isRTL() ? 'rtl' : 'ltr';
+			$siteDir = $wgContLang->getDir();
 			if( $siteDir != $options['dir'] )
 				return '';
 		}

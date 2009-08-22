@@ -101,7 +101,7 @@ class SkinStandard extends Skin {
 		}
 		wfProfileOut( __METHOD__ . '-2' );
 		wfProfileIn( __METHOD__ . '-3' );
-		$l = $wgContLang->isRTL() ? 'right' : 'left';
+		$l = $wgContLang->alignStart();
 		$s .= "<td class='bottom' align='$l' valign='top'>";
 
 		$s .= $this->bottomLinks();

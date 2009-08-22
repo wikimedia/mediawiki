@@ -276,7 +276,7 @@ class SkinTemplate extends Skin {
 		$tpl->setRef( 'serverurl', $wgServer );
 		$tpl->setRef( 'logopath', $wgLogo );
 		$tpl->setRef( 'lang', $wgContLanguageCode );
-		$tpl->set( 'dir', $wgContLang->isRTL() ? 'rtl' : 'ltr' );
+		$tpl->set( 'dir', $wgContLang->getDir() );
 		$tpl->set( 'rtl', $wgContLang->isRTL() );
 		$tpl->set( 'capitalizeallnouns', $wgLang->capitalizeAllNouns() ? ' capitalize-all-nouns' : '' );
 		$tpl->set( 'langname', $wgContLang->getLanguageName( $wgContLanguageCode ) );
