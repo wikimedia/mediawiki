@@ -339,7 +339,7 @@ class EmailNotification {
 
 	}
 
-	/*
+	/**
 	 * Immediate version of notifyOnPageChange().
 	 *
 	 * Send emails corresponding to the user $editor editing the page $title.
@@ -354,7 +354,7 @@ class EmailNotification {
 	 * @param $watchers array of user IDs
 	 * @param $deleted boolean If page was deleted
 	 */
-	function actuallyNotifyOnPageChange($editor, $title, $timestamp, $summary, $minorEdit, $oldid, $watchers) {
+	function actuallyNotifyOnPageChange( $editor, $title, $timestamp, $summary, $minorEdit, $oldid, $watchers, $deleted ) {
 		# we use $wgPasswordSender as sender's address
 		global $wgEnotifWatchlist;
 		global $wgEnotifMinorEdits, $wgEnotifUserTalk;
