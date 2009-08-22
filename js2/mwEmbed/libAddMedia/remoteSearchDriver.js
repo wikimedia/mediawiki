@@ -18,7 +18,7 @@ loadGM({
 	"rsd_no_results" : "No search results for <b>$1<\/b>",
 	"mwe-upload_tab" : "Upload",
 	"rsd_layout" : "Layout : ",
-	"rsd_resource_edit" : "Edit resource :  $1",
+	"rsd_resource_edit" : "Edit resource: $1",
 	"mwe-resource_description_page" : "Resource description page",
 	"rsd_local_resource_title" : "Local resource title",
 	"rsd_do_insert" : "Do insert",
@@ -32,20 +32,20 @@ loadGM({
 	"mwe-no_import_by_url" : "This user or wiki <b>can not<\/b> import assets from remote URLs.<\/p><p>Do you need to login?<\/p><p>If permissions are set, you may have to enable $wgAllowCopyUploads (<a href=\"http : \/\/www.mediawiki.org\/wiki\/Manual : $wgAllowCopyUploads\">more information<\/a>).<\/p>",
 	"mwe-results_from" : "Results from <a href=\"$1\" target=\"_new\" >$2<\/a>",
 	"mwe-missing_desc_see_source" : "This asset is missing a description. Please see the [$1 orginal source] and help describe it.",
-	"rsd_config_error" : "Add media wizard configuration error :  $1",
+	"rsd_config_error" : "Add media wizard configuration error: $1",
 
 	"mwe-your_recent_uploads" : "Your recent uploads",
-	"mwe-upload_a_file": "Upload a new file",
+	"mwe-upload_a_file" : "Upload a new file",
 
-	"mwe-resource_page_desc":"Resource page description:",
-	"mwe-edit_resource_desc": "Edit wiki text resource description:",
-	"mwe-local_resource_title": "Local resource title:",
-	"mwe-watch_this_page": "Watch this page",
-	"mwe-do_import_resource": "Import resource",
-	"mwe-update_preview": "Update preview",
-	"mwe-cancel_import": "Cancel import",
+	"mwe-resource_page_desc" : "Resource page description:",
+	"mwe-edit_resource_desc" : "Edit wiki text resource description:",
+	"mwe-local_resource_title" : "Local resource title:",
+	"mwe-watch_this_page" : "Watch this page",
+	"mwe-do_import_resource" : "Import resource",
+	"mwe-update_preview" : "Update preview",
+	"mwe-cancel_import" : "Cancel import",
 	"mwe-importing_asset" : "Importing asset",
-	"mwe-preview_insert_resource": "Preview insert of resource: $1"
+	"mwe-preview_insert_resource" : "Preview insert of resource: $1"
 });
 var default_remote_search_options = {
 	'profile':'mediawiki_edit',
