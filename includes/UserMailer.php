@@ -477,7 +477,7 @@ class EmailNotification {
 		$pagetitle = $this->title->getPrefixedText();
 		$keys['$PAGETITLE']          = $pagetitle;
 		$keys['$REVINFO'] = $this->deleted ? '' : 
-			wfMsgForContent( 'enotif_rev_info' $this->title->getFullUrl() );
+			wfMsgForContent( 'enotif_rev_info', $this->title->getFullUrl() );
 
 		$keys['$PAGEMINOREDIT']      = $medit;
 		$keys['$PAGESUMMARY']        = $summary;
