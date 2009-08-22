@@ -711,7 +711,7 @@ END;
 		$a['onload'] = $wgOut->getOnloadHandler();
 		$a['class'] =
 			'mediawiki' .
-			' '.( $wgContLang->isRTL() ? 'rtl' : 'ltr' ).
+			' '.( $wgContLang->getDir() ).
 			' '.$this->getPageClasses( $this->mTitle ) .
 			' skin-'. Sanitizer::escapeClass( $this->getSkinName() );
 		return $a;
@@ -775,13 +775,13 @@ END;
 		} elseif( $left ) {
 			$s .= $this->getQuickbarCompensator( $rows );
 		}
-		$l = $wgContLang->isRTL() ? 'right' : 'left';
+		$l = $wgContLang->alignStart();
 		$s .= "<td {$borderhack} align='$l' valign='top'>\n";
 
 		$s .= $this->topLinks();
 		$s .= "<p class='subtitle'>" . $this->pageTitleLinks() . "</p>\n";
 
-		$r = $wgContLang->isRTL() ? 'left' : 'right';
+		$r = $wgContLang->alignEnd();
 		$s .= "</td>\n<td {$borderhack} valign='top' align='$r' nowrap='nowrap'>";
 		$s .= $this->nameAndLogin();
 		$s .= "\n<br />" . $this->searchForm() . "</td>";
@@ -819,7 +819,7 @@ END;
 
 		// Use Unicode bidi embedding override characters,
 		// to make sure links don't smash each other up in ugly ways.
-		$dir = $wgContLang->isRTL() ? 'rtl' : 'ltr';
+		$dir = $wgContLang->getDir();
 		$embed = "<span dir='$dir'>";
 		$pop = '</span>';
 

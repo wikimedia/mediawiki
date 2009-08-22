@@ -33,11 +33,8 @@ class SpecialVersion extends SpecialPage {
 		$this->setHeaders();
 		$this->outputHeader();
 
-		if( $wgContLang->isRTL() ) {
-			$wgOut->addHTML( '<div dir="rtl">' );
-		} else {
-			$wgOut->addHTML( '<div dir="ltr">' );
-		}
+		$wgOut->addHTML( Xml::openElement( 'div',
+			array( 'dir' => $wgContLang->getDir() ) ) );
 		$text = 
 			$this->MediaWikiCredits() .
 			$this->softwareInformation() .

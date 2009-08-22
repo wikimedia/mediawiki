@@ -330,14 +330,11 @@ class UploadForm extends SpecialPage {
 		global $wgUser, $wgContLang;
 		// Check for uppercase extension. We allow these filenames but check if an image
 		// with lowercase extension exists already
-		$warning = '';
-		$align = $wgContLang->isRtl() ? 'left' : 'right';
-
 		if( $exists === false )
 			return '';
 
 		$warning = '';
-		$align = $wgContLang->isRtl() ? 'left' : 'right';
+		$align = $wgContLang->alignEnd();
 
 		list( $existsType, $file ) = $exists;
 

@@ -1863,6 +1863,38 @@ class Language {
 	function isRTL() { 
 		return self::$dataCache->getItem( $this->mCode, 'rtl' );
 	}
+	
+	/**
+	 * Return the correct HTML 'dir' attribute value for this language.
+	 * @return String
+	 */
+	function getDir() {
+		return $this->isRTL() ? 'rtl' : 'ltr';
+	}
+	
+	/**
+	 * Return 'left' or 'right' as appropriate alignment for line-start
+	 * for this language's text direction.
+	 *
+	 * Should be equivalent to CSS3 'start' text-align value....
+	 *
+	 * @return String
+	 */
+	function alignStart() {
+		return $this->isRTL() ? 'right' : 'left';
+	}
+	
+	/**
+	 * Return 'right' or 'left' as appropriate alignment for line-end
+	 * for this language's text direction.
+	 *
+	 * Should be equivalent to CSS3 'end' text-align value....
+	 *
+	 * @return String
+	 */
+	function alignEnd() {
+		return $this->isRTL() ? 'left' : 'right';
+	}
 
 	/**
 	 * A hidden direction mark (LRM or RLM), depending on the language direction
