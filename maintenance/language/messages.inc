@@ -1706,10 +1706,13 @@ $wgMessageStructure = array(
 		'enotif_impersonal_salutation',
 		'changed',
 		'created',
+		'deleted',
+		'enotif_deletedpagetext',
 		'enotif_subject',
 		'enotif_lastvisited',
 		'enotif_lastdiff',
 		'enotif_anon_editor',
+		'enotif_rev_info',
 		'enotif_body',
 	),
 	'delete' => array(
