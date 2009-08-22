@@ -1435,13 +1435,6 @@ EOF;
 	}
 	
 	/**
-	 * @return String: Database type for use in messages
-	*/
-	function getDBtypeForMsg() {
-		return 'IBM DB2';
-	}
-
-	/**
 	 * Get search engine class. All subclasses of this
 	 * need to implement this if they wish to use searching.
 	 * 
