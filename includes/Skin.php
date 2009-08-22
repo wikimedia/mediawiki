@@ -1104,7 +1104,7 @@ END;
 
 		$s = array();
 
-		if ( !$wgRequest->getBool( 'printable' ) ) {
+		if ( !$wgOut->isPrintable() ) {
 			$printurl = $wgRequest->escapeAppendQuery( 'printable=yes' );
 			$s[] = "<a href=\"$printurl\" rel=\"alternate\">" . wfMsg( 'printableversion' ) . '</a>';
 		}
