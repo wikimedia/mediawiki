@@ -510,8 +510,9 @@ class LocalisationCache {
 			$data = $this->readPHPFile( $fileName, 'extension' );
 			$used = false;
 			foreach ( $data as $key => $item ) {
-				$used = $used |
-					$this->mergeExtensionItem( $codeSequence, $key, $allData[$key], $item );
+				if( $this->mergeExtensionItem( $codeSequence, $key, $allData[$key], $item ) ) {
+					$used = true;
+				}
 			}
 			if ( $used ) {
 				$deps[] = new FileDependency( $fileName );
