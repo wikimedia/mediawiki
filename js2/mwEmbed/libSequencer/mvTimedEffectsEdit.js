@@ -7,14 +7,13 @@
 
 //add our local msgs
 loadGM({
-	"transition_in" : "Transition in",
-	"transition_out" : "Transition out",
-	"effects" : "Effects stack",
-	"remove_transition" : "Remove transition",
-	"edit_transin" : "Edit transition into clip",
-	"edit_transout" : "Edit transition out of clip"
+	"mwe-transition_in" : "Transition in",
+	"mwe-transition_out" : "Transition out",
+	"mwe-effects" : "Effects stack",
+	"mwe-remove_transition" : "Remove transition",
+	"mwe-edit_transin" : "Edit transition into clip",
+	"mwe-edit_transout" : "Edit transition out of clip"
 });
-
 
 var default_timed_effect_values = {
 	'rObj':	null,		 // the resource object
@@ -35,21 +34,21 @@ mvTimedEffectsEdit.prototype = {
 	//the menu_items Object contains: default html, js setup/loader functions
 	menu_items : {
 		'transin':{
-			'title':gM('transition_in'),
+			'title':gM('mwe-transition_in'),
 			'clip_attr':'transIn',
 			'doEdit':function(_this){
 				_this.doTransitionDisplayEdit('transin');
 			}
 		},
 		'transout':{
-			'title':gM('transition_out'),
+			'title':gM('mwe-transition_out'),
 			'clip_attr':'transOut',
 			'doEdit':function(_this){
 				_this.doTransitionDisplayEdit('transout');
 			}
 		},
 		'effects':{
-			'title':gM('effects'),
+			'title':gM('mwe-effects'),
 			'clip_attr':'Effects',
 			'doEdit':function(_this){
 				//display
@@ -126,7 +125,7 @@ mvTimedEffectsEdit.prototype = {
 		var _this = this;
 		var appendTarget = '#te_effects';
 		js_log('type:' + _this.rObj['type']);
-		$j(appendTarget).html(gM('loading_txt'));
+		$j(appendTarget).html(gM('mwe-loading_txt'));
 		//@@todo integrate into core and loading system:
 		loadExternalJs(mv_embed_path + 'libClipEdit/pixastic-editor/editor.js?' + getMvUniqueReqId() );
 		loadExternalJs(mv_embed_path + 'libClipEdit/pixastic-editor/pixastic.all.js?' + getMvUniqueReqId() );
@@ -159,7 +158,7 @@ mvTimedEffectsEdit.prototype = {
 			return ;
 		}
 		var cTran = this.rObj[ this.menu_items[ target_item ].clip_attr ];
-		var o='<h3>' + gM('edit_'+target_item ) + '</h3>';
+		var o='<h3>' + gM('mwe-edit_'+target_item ) + '</h3>';
 		o+='Type: ' +
 			'<select class="te_select_type">';
 		for(var typeKey in mvTransLib.type){
@@ -180,7 +179,7 @@ mvTimedEffectsEdit.prototype = {
 		_this.getSubTypeControl( target_item, cTran.type, apendTarget + ' .te_subtype_container' );
 
 		//add remove transition button:
-		$j(apendTarget).append( '<br><br>' + $j.btnHtml(gM('remove_transition'), 'te_remove_transition', 'close'  ) )
+		$j(apendTarget).append( '<br><br>' + $j.btnHtml(gM('mwe-remove_transition'), 'te_remove_transition', 'close'  ) )
 			.children('.te_remove_transition')
 			.click(function(){
 				//remove the transtion from the playlist

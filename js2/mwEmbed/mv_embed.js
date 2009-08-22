@@ -218,7 +218,7 @@ lcPaths({
 //depencency mapping for css files for self contained included plugins:
 lcCssPath({
 	'$j.Jcrop'			: 'libClipEdit/Jcrop/css/jquery.Jcrop.css',
-	'$j.fn.ColorPicker'	: 'libClipEdit/colorpicker/css/colorpicker.css'	
+	'$j.fn.ColorPicker'	: 'libClipEdit/colorpicker/css/colorpicker.css'
 })
 
 /**
@@ -415,7 +415,7 @@ var mvJsLoader = {
 		}
 		if( this.checkLoading() ){
 			 if( this.load_time++ > 2000){ //time out after ~80seconds
-				 js_error( gM('error_load_lib') +  this.missing_path );
+				 js_error( gM('mwe-error_load_lib') +  this.missing_path );
 				 this.load_error = true;
 			 }else{
 				setTimeout( 'mvJsLoader.doLoad()', 20 );
@@ -624,13 +624,13 @@ function mwdomReady(force){
 		mvJsLoader.runQuededFunctions();
 	}
 }
-//a quick function that sets the intial text of swapable elements to "loading" 
-// (jquery might not be ready) 
-//(does not destroy inner elements)    
+//a quick function that sets the intial text of swapable elements to "loading"
+// (jquery might not be ready)
+//(does not destroy inner elements)
 function setSwapableToLoading(e){
 	//for(var i =0)
-	//for(var j = 0; i < j.length; j++){		
-	//}	
+	//for(var j = 0; i < j.length; j++){
+	//}
 }
 //js2AddOnloadHook: ensure jQuery and the DOM are ready:
 function js2AddOnloadHook( func ) {

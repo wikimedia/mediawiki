@@ -7,27 +7,27 @@
 */
 //set gMsg object:
 loadGM({
-	"mv_crop" : "Crop image",
-	"mv_apply_crop" : "Apply crop to image",
-	"mv_reset_crop" : "Reset crop",
-	"mv_insert_image_page" : "Insert into page",
-	"mv_insert_into_sequence" : "Insert into sequence",
-	"mv_preview_insert" : "Preview insert",
-	"mv_cancel_image_insert" : "Cancel insert",
-	"sc_fileopts" : "Clip detail edit",
-	"sc_inoutpoints" : "Set in-out points",
-	"sc_overlays" : "Overlays",
-	"sc_audio" : "Audio control",
-	"sc_duration" : "Duration",
-	"mv_template_properties" : "Template properties",
-	"mv_custom_title" : "Custom title",
-	"mv_edit_properties" : "Edit properties",
-	"mv_other_properties" : "Other properties",
-	"mv_resource_page" : "Resource page:",
-	"mv_set_in_out_points" : "Set in-out points",
-	"mv_start_time" : "Start time",
-	"mv_end_time" : "End time",
-	"mv_preview_inout" : "Preview\/play in-out points"
+	"mwe-crop" : "Crop image",
+	"mwe-apply_crop" : "Apply crop to image",
+	"mwe-reset_crop" : "Reset crop",
+	"mwe-insert_image_page" : "Insert into page",
+	"mwe-insert_into_sequence" : "Insert into sequence",
+	"mwe-preview_insert" : "Preview insert",
+	"mwe-cancel_image_insert" : "Cancel insert",
+	"mwe-sc_fileopts" : "Clip detail edit",
+	"mwe-sc_inoutpoints" : "Set in-out points",
+	"mwe-sc_overlays" : "Overlays",
+	"mwe-sc_audio" : "Audio control",
+	"mwe-sc_duration" : "Duration",
+	"mwe-template_properties" : "Template properties",
+	"mwe-custom_title" : "Custom title",
+	"mwe-edit_properties" : "Edit properties",
+	"mwe-other_properties" : "Other properties",
+	"mwe-resource_page" : "Resource page:",
+	"mwe-set_in_out_points" : "Set in-out points",
+	"mwe-start_time" : "Start time",
+	"mwe-end_time" : "End time",
+	"mwe-preview_inout" : "Preview\/play in-out points"
 });
 
 var default_clipedit_values = {
@@ -218,11 +218,11 @@ mvClipEdit.prototype = {
 		//add html for rObj resource:
 		var o=	'<table>' +
 				'<tr>' +
-					'<td colspan="2"><b>'+gM('mv_edit_properties')+'</b></td>'+
+					'<td colspan="2"><b>'+gM('mwe-edit_properties')+'</b></td>'+
 				'</tr>'+
 				'<tr>'+
 					'<td>' +
-						gM('mv_custom_title') +
+						gM('mwe-custom_title') +
 					'</td>'+
 					'<td><input type="text" size="15" maxwidth="255" value="';
 						if(_this.rObj.title != null)
@@ -235,7 +235,7 @@ mvClipEdit.prototype = {
 			var testing_a = _this.rObj.tVars;
 			//debugger;
 			o+= '<tr>'+
-					'<td colspan="2"><b>' + gM('mv_template_properties') + '</b></td>'+
+					'<td colspan="2"><b>' + gM('mwe-template_properties') + '</b></td>'+
 				'</tr>';
 			for(var i =0; i < _this.rObj.tVars.length ; i++){
 				o+='<tr>'+
@@ -260,11 +260,11 @@ mvClipEdit.prototype = {
 			var res_title = parseUri(_this.rObj.src).file;
 		}
 		o+=	'<tr>'+
-					'<td colspan="2"><b>'+gM('mv_other_properties')+'</b></td>'+
+					'<td colspan="2"><b>'+gM('mwe-other_properties')+'</b></td>'+
 				'</tr>'+
 				'<tr>'+
 					'<td>' +
-						gM('mv_resource_page') +
+						gM('mwe-resource_page') +
 					'</td>' +
 					'<td><a href="' + res_src  +'" '+
 						' target="new">'+
@@ -331,7 +331,7 @@ mvClipEdit.prototype = {
 			}
 			if(include){
 				o+=	'<li>'+
-						'<a id="mv_smi_'+sInx+'" href="#sc_' + sInx + '">' + gM('sc_' + sInx ) + '</a>'+
+						'<a id="mv_smi_'+sInx+'" href="#sc_' + sInx + '">' + gM('mwe-sc_' + sInx ) + '</a>'+
 					'</li>';
 				tabc += '<div id="sc_' + sInx + '" style="overflow:auto;" ></div>';
 			}
@@ -429,23 +429,23 @@ mvClipEdit.prototype = {
 
 	},
 	getSetInOutHtml:function( setInt ){
-		return '<strong>' + gM('mv_set_in_out_points') + '</strong>'+
+		return '<strong>' + gM('mwe-set_in_out_points') + '</strong>'+
 			'<table border="0" style="background: transparent; width:94%;height:50px;">'+
 				'<tr>' +
 					'<td style="width:55px">'+
-						gM('mv_start_time') +
+						gM('mwe-start_time') +
 						'<input class="ui-widget-content ui-corner-all startInOut" size="9" value="' + setInt.start_ntp +'">'+
 					'</td>' +
 					'<td>' +
 						'<div class="inOutSlider"></div>'+
 					'</td>' +
 					'<td style="width:55px">'+
-						gM('mv_end_time') +
+						gM('mwe-end_time') +
 						'<input class="ui-widget-content ui-corner-all endInOut" size="9" value="'+ setInt.end_ntp +'">'+
 					'</td>' +
 				'</tr>' +
 			'</table>'+
-			'<a href="#" class="ui-state-default ui-corner-all ui-icon_link inOutPreviewClip"><span class="ui-icon ui-icon-video"></span>'+ gM('mv_preview_inout') +'</a>';
+			'<a href="#" class="ui-state-default ui-corner-all ui-icon_link inOutPreviewClip"><span class="ui-icon ui-icon-video"></span>'+ gM('mwe-preview_inout') +'</a>';
 	},
 	getInsertDescHtml:function(){
 		var o= '<h3>Inline Description</h3>'+
@@ -466,7 +466,7 @@ mvClipEdit.prototype = {
 		for( var cbType in _this.controlActionsCb ){
 			switch(cbType){
 				case 'insert_seq':
-					$j(b_target).append( $j.btnHtml(gM('mv_insert_into_sequence'), 'mv_insert_sequence', 'check' ) + ' ' )
+					$j(b_target).append( $j.btnHtml(gM('mwe-insert_into_sequence'), 'mv_insert_sequence', 'check' ) + ' ' )
 						.children('.mv_insert_sequence')
 						.btnBind()
 						.click(function(){
@@ -475,7 +475,7 @@ mvClipEdit.prototype = {
 						});
 				break;
 				case 'insert':
-					$j(b_target).append(  $j.btnHtml(gM('mv_insert_image_page'), 'mv_insert_image_page', 'check' ) + ' ' )
+					$j(b_target).append(  $j.btnHtml(gM('mwe-insert_image_page'), 'mv_insert_image_page', 'check' ) + ' ' )
 						.children('.mv_insert_image_page')
 						.btnBind()
 						.click(function(){
@@ -484,7 +484,7 @@ mvClipEdit.prototype = {
 						}).show('slow');
 				break;
 				case 'preview':
-					$j(b_target).append( $j.btnHtml( gM('mv_preview_insert'), 'mv_preview_insert', 'refresh') + ' ' )
+					$j(b_target).append( $j.btnHtml( gM('mwe-preview_insert'), 'mv_preview_insert', 'refresh') + ' ' )
 						.children('.mv_preview_insert')
 						.btnBind()
 						.click(function(){
@@ -493,7 +493,7 @@ mvClipEdit.prototype = {
 						}).show('slow');
 				break;
 				case 'cancel':
-					$j(b_target).append( $j.btnHtml( gM('mv_cancel_image_insert'), 'mv_cancel_img_edit', 'close') + ' ')
+					$j(b_target).append( $j.btnHtml( gM('mwe-cancel_image_insert'), 'mv_cancel_img_edit', 'close') + ' ')
 						.children('.mv_cancel_img_edit')
 						.btnBind()
 						.click(function(){
@@ -520,15 +520,15 @@ mvClipEdit.prototype = {
 		//by default apply Crop tool
 		$j('#'+this.control_ct).html(
 			'<h3>Edit tools</h3>' +
-					'<div class="mv_edit_button mv_crop_button_base" id="mv_crop_button" alt="crop" title="'+gM('mv_crop')+'"/>'+
-					'<a href="#" class="mv_crop_msg">' + gM('mv_crop') + '</a> '+
+					'<div class="mv_edit_button mv_crop_button_base" id="mv_crop_button" alt="crop" title="'+gM('mwe-crop')+'"/>'+
+					'<a href="#" class="mv_crop_msg">' + gM('mwe-crop') + '</a> '+
 					'<span style="display:none" class="mv_crop_msg_load">' + gM('mwe-loading_txt') + '</span> '+
-					'<a href="#" style="display:none" class="mv_apply_crop">' + gM('mv_apply_crop') + '</a> '+
-					'<a href="#" style="display:none" class="mv_reset_crop">' + gM('mv_reset_crop') + '</a> '+
+					'<a href="#" style="display:none" class="mv_apply_crop">' + gM('mwe-apply_crop') + '</a> '+
+					'<a href="#" style="display:none" class="mv_reset_crop">' + gM('mwe-reset_crop') + '</a> '+
 				'<hr style="clear:both"/><br>'+
 			'<span style="float:left;">Layout:</span>' +
-				'<input type="radio" name="mv_layout" id="mv_layout_left" style="float:left"><div id="mv_layout_left_img" title="'+gM('mv_layout_left')+'"/>'+
-				'<input type="radio" name="mv_layout" id="mv_layout_right" style="float:left"><div id="mv_layout_right_img" title="'+gM('mv_layout_left')+'"/>'+
+				'<input type="radio" name="mv_layout" id="mv_layout_left" style="float:left"><div id="mv_layout_left_img" title="'+gM('mwe-layout_left')+'"/>'+
+				'<input type="radio" name="mv_layout" id="mv_layout_right" style="float:left"><div id="mv_layout_right_img" title="'+gM('mwe-layout_left')+'"/>'+
 			'<hr style="clear:both" /><br>' +
 				_this.getInsertDescHtml()
 		);
@@ -536,10 +536,10 @@ mvClipEdit.prototype = {
 		_this.updateInsertControlActions()
 
 		/*scale:
-		 '<div class="mv_edit_button mv_scale_button_base" id="mv_scale_button" alt="crop" title="'+gM('mv_scale')+'"></div>'+
-				'<a href="#" class="mv_scale_msg">' + gM('mv_scale') + '</a><br>'+
-				'<a href="#" style="display:none" class="mv_apply_scale">' + gM('mv_apply_scale') + '</a> '+
-				'<a href="#" style="display:none" class="mv_reset_scale">' + gM('mv_reset_scale') + '</a><br> '+
+		 '<div class="mv_edit_button mv_scale_button_base" id="mv_scale_button" alt="crop" title="'+gM('mwe-scale')+'"></div>'+
+				'<a href="#" class="mv_scale_msg">' + gM('mwe-scale') + '</a><br>'+
+				'<a href="#" style="display:none" class="mv_apply_scale">' + gM('mwe-apply_scale') + '</a> '+
+				'<a href="#" style="display:none" class="mv_reset_scale">' + gM('mwe-reset_scale') + '</a><br> '+
 
 		*/
 		//add bindings:
@@ -573,7 +573,7 @@ mvClipEdit.prototype = {
 		$j('.mv_reset_crop').click(function(){
 			$j('.mv_apply_crop,.mv_reset_crop').hide();
 			$j('.mv_crop_msg').show();
-			$j('#mv_crop_button').removeClass('mv_crop_button_selected').addClass('mv_crop_button_base').attr('title',gM('mv_crop'));
+			$j('#mv_crop_button').removeClass('mv_crop_button_selected').addClass('mv_crop_button_base').attr('title',gM('mwe-crop'));
 			_this.rObj.crop=null;
 			$j('#' + _this.clip_disp_ct ).empty().html(
 				'<img src="' + _this.rObj.edit_url + '" id="rsd_edit_img">'
@@ -600,7 +600,7 @@ mvClipEdit.prototype = {
 		var _this = this;
 		$j('.mv_apply_crop').hide();
 		$j('.mv_crop_msg').show();
-		$j('#mv_crop_button').removeClass('mv_crop_button_selected').addClass('mv_crop_button_base').attr('title',gM('mv_crop'));
+		$j('#mv_crop_button').removeClass('mv_crop_button_selected').addClass('mv_crop_button_base').attr('title',gM('mwe-crop'));
 		js_log( 'click:turn off' );
 		var cat = _this.rObj;
 		if(_this.rObj.crop){
@@ -628,7 +628,7 @@ mvClipEdit.prototype = {
 		var doEnableCrop = function(){
 			$j('.mv_crop_msg_load').hide();
 			$j('.mv_reset_crop,.mv_apply_crop').show();
-			$j('#mv_crop_button').removeClass('mv_crop_button_base').addClass('mv_crop_button_selected').attr('title',gM('mv_crop_done'));
+			$j('#mv_crop_button').removeClass('mv_crop_button_base').addClass('mv_crop_button_selected').attr('title',gM('mwe-crop_done'));
 			$j('#' + _this.clip_disp_ct + ' img').Jcrop({
 				 onSelect: function(c){
 					 js_log('on select:' + c.x +','+ c.y+','+ c.x2+','+ c.y2+','+ c.w+','+ c.h);

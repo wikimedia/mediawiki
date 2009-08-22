@@ -5,7 +5,7 @@
 //@@todo put all msg text into loadGM json
 
 loadGM({
-	"help-sticky" : "Help (click to stick)",
+	"fogg-help-sticky" : "Help (click to stick)",
 	"fogg-cg-preset" : "Preset :  <strong>$1<\/strong>",
 	"fogg-cg-quality" : "Basic quality and resolution control",
 	"fogg-cg-meta" : "Metadata for the clip",
@@ -37,48 +37,48 @@ mvAdvFirefogg.prototype = {
 	config_groups : [ 'preset', 'range', 'quality', 'meta', 'advVideo', 'advAudio'],
 	//list of pre-sets:
 	//local instance encoder config:
-	default_local_settings:{
-		'd'	: 'webvideo',
-		'type'	: 'select',
-		'selectVal': ['webvideo'],
-		'group' : "preset",
-		'pSet' : {
-			'custom':{
-				'descKey': 'fogg-preset-custom',
-				'conf': {}
-			},
-			'webvideo': {
-				'desc': "Web Video Theora, Vorbis 400kbs & 400px max width",
-				'conf': {
-						'maxSize'		: 400,
-						'videoBitrate'	: 544,
-						'audioBitrate'	: 96,
-           				'noUpscaling' 	: true,
-					}
-			},
-			'savebandwith': {
-				'desc': "Low Bandwith Theora, Vorbis 164kbs & 200px max size",
-				'conf': {
-						'maxSize'		: 200,
-						'videoBitrate'	: 164,
-						'audioBitrate' 	: 32,
-            			'samplerate'    : 22050,
-            			'framerate'     : 15,
-            			'channels'      : 1,
-            			'noUpscaling'   : true
-					}
-			},
-			'hqstream':{
-				'desc': "High Quality Theora, Vorbis 1080px max width",
-				'conf': {
-						'maxSize'		: 1080,
-						'videoQuality'	: 6,
-						'audioQuality'	: 3,
-           				'noUpscaling' 	: true,
-					}
-			},
-		}
-	},
+default_local_settings:{
+	'd'	: 'webvideo',
+	'type'	: 'select',
+	'selectVal': ['webvideo'],
+	'group' : "preset",
+	'pSet' : {
+		'custom':{
+			'descKey': 'fogg-preset-custom',
+			'conf': {}
+		},
+		'webvideo': {
+			'desc': "Web Video Theora, Vorbis 400kbs & 400px max width",
+			'conf': {
+				'maxSize'      : 400,
+				'videoBitrate' : 544,
+				'audioBitrate' : 96,
+				'noUpscaling'  : true,
+			}
+		},
+		'savebandwith': {
+			'desc': "Low Bandwith Theora, Vorbis 164kbs & 200px max size",
+			'conf': {
+				'maxSize'       : 200,
+				'videoBitrate'  : 164,
+				'audioBitrate'  : 32,
+				'samplerate'    : 22050,
+				'framerate'     : 15,
+				'channels'      : 1,
+				'noUpscaling'   : true
+			}
+		},
+		'hqstream':{
+			'desc': "High Quality Theora, Vorbis 1080px max width",
+			'conf': {
+				'maxSize'      : 1080,
+				'videoQuality' : 6,
+				'audioQuality' : 3,
+				'noUpscaling'  : true,
+			}
+		},
+	}
+},
 	local_settings: {},
 
 	//core firefogg default encoder configuration
@@ -86,18 +86,18 @@ mvAdvFirefogg.prototype = {
 	default_encoder_config : {
 		//base quality settings:
 		'videoQuality': {
-			'd'			: 5,
-			't'			: 'Video Quality',
-			'range'	 : {'min':0,'max':10},
-			'type'		 : 'slider',
-			'group'		: 'quality',
-			'help'		 : "Used to set the <i>Visual Quality</i> of the encoded video. (not used if you set bitrate in advanced controls below)"
+			'd'     : 5,
+			't'     : 'Video Quality',
+			'range' : {'min':0,'max':10},
+			'type'  : 'slider',
+			'group' : 'quality',
+			'help'  : "Used to set the <i>Visual Quality</i> of the encoded video. (not used if you set bitrate in advanced controls below)"
 		},
 		'twopass':{
-			't'		: "Two Pass Encoding",
-			'type'	: "boolean",
-			'group'	: "quality",
-			'help'	: "Two Pass Encoding enables more consitant quality by making two passes over the video file"
+			't'     : "Two Pass Encoding",
+			'type'  : "boolean",
+			'group' : "quality",
+			'help'  : "Two Pass Encoding enables more consitant quality by making two passes over the video file"
 		},
 		'starttime':{
 			't'		: "Start Second",
@@ -210,8 +210,8 @@ mvAdvFirefogg.prototype = {
 			'type'		: 'select',
 			'selectVal'	: [{'22050':'22 kHz'}, {'44100':'44 khz'}, {'48000':'48 khz'}],
 			'formatSelect'	: function(val){
-        						return (Math.round(val/100)*10) + ' Hz';
-        					},
+				return (Math.round(val/100)*10) + ' Hz';
+			},
 			'help'		: "set output samplerate (in Hz)."
 		},
 		'noaudio':{
@@ -393,7 +393,7 @@ mvAdvFirefogg.prototype = {
 		out+='<tr><td valign="top">'+
 			'<label for="_' + cK + '">' +
 			 cConf.t + ':' +
-			 '<span title="' + gM('help-sticky') + '" class="help_'+ cK + ' ui-icon ui-icon-info" style="float:left"></span>'+
+			 '<span title="' + gM('fogg-help-sticky') + '" class="help_'+ cK + ' ui-icon ui-icon-info" style="float:left"></span>'+
 			 '</label></td><td valign="top">';
 		//if we don't value for this:
 		var dv = ( this.default_encoder_config[cK].d ) ? this.default_encoder_config[cK].d : '';

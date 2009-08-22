@@ -5,14 +5,14 @@
  */
 
 loadGM({
-	"select_file" : "Select file",
-	"more_licence_options" : "For more licence options, view the <a href=\"$1\">normal upload page<\/a>",
-	"select_ownwork" : "I am uploading entirely my own work, and licencing it under : ",
-	"licence_cc-by-sa" : "Creative Commons Share Alike (3.0)",
-	"upload" : "Upload file",
-	"destfilename" : "Destination filename : ",
-	"summary" : "Summary",
-	"error_not_loggedin" : "You do not appear to be logged in or do not have upload privlages."
+	"mwe-select_file" : "Select file",
+	"mwe-more_licence_options" : "For more licence options, view the <a href=\"$1\">normal upload page<\/a>",
+	"mwe-select_ownwork" : "I am uploading entirely my own work, and licencing it under:",
+	"mwe-licence_cc-by-sa" : "Creative Commons Share Alike (3.0)",
+	"mwe-upload" : "Upload file",
+	"mwe-destfilename" : "Destination filename:",
+	"mwe-summary" : "Summary",
+	"mwe-error_not_loggedin" : "You do not appear to be logged in or do not have upload privileges."
 });
 
 var default_form_options = {
@@ -41,7 +41,7 @@ var default_form_options = {
 		//much todo to improved this web form
 		get_mw_token('File:MyRandomFileTokenCheck', opt.api_target, function(eToken){
 			if( !eToken || eToken == '+\\' ){
-				$(this.selector).html( gM('error_not_loggedin') );
+				$(this.selector).html( gM('mwe-error_not_loggedin') );
 				return false;
 			}
 
@@ -54,22 +54,22 @@ var default_form_options = {
 				'<input type="hidden" name="token" value="'+ eToken +'">' +
 
 				//form name set:
-				'<label for="wpUploadFile">' + gM('select_file') + '</label><br>'+
+				'<label for="wpUploadFile">' + gM('mwe-select_file') + '</label><br>'+
 				'<input type="file" style="display: inline;" name="wpUploadFile" size="15"/><br>' +
 
-				'<label for="wpDestFile">' +gM('destfilename') + '</label><br>'+
-				'<input type="text" name="wpDestFile" size="30" /><br>'+								
+				'<label for="wpDestFile">' +gM('mwe-destfilename') + '</label><br>'+
+				'<input type="text" name="wpDestFile" size="30" /><br>'+
 
-				'<label for="wpUploadDescription">' + gM('summary') + ':</label><br>' +
+				'<label for="wpUploadDescription">' + gM('mwe-summary') + ':</label><br>' +
 				'<textarea cols="30" rows="3" name="wpUploadDescription" tabindex="3"/><br>'+
-				
+
 				'<div id="wpDestFile-warning"></div>' +
 				'<div style="clear:both;"></div>' +
-				
-				gM('select_ownwork') + '<br>' +
-				'<input type="checkbox" id="wpLicence" name="wpLicence" value="cc-by-sa">' + gM('licence_cc-by-sa') + '<br>' +
 
-				'<input type="submit" accesskey="s" value="' + gM('upload') + '" name="wpUploadBtn" id="wpUploadBtn"  tabindex="9"/>' +
+				gM('mwe-select_ownwork') + '<br>' +
+				'<input type="checkbox" id="wpLicence" name="wpLicence" value="cc-by-sa">' + gM('mwe-licence_cc-by-sa') + '<br>' +
+
+				'<input type="submit" accesskey="s" value="' + gM('mwe-upload') + '" name="wpUploadBtn" id="wpUploadBtn"  tabindex="9"/>' +
 				//close the form and div
 				'</form>';
 
@@ -109,15 +109,15 @@ var default_form_options = {
 					'warn_target':'#wpDestFile-warning'
 				});
 			});
-			
-			
+
+
 			//do destination check:
-			$j("[name='wpDestFile']").change(function(){				
+			$j("[name='wpDestFile']").change(function(){
 				$j(this).doDestCheck({
 					'warn_target':'#wpDestFile-warning'
 				});
 			});
-			
+
 			if(typeof opt.ondone_cb == 'undefined')
 				opt.ondone_cb = false;
 
@@ -129,9 +129,9 @@ var default_form_options = {
 					'form_rewrite': true,
 					'target_edit_from' : '#suf-upload',
 					'new_source_cb' : function( orgFilename, oggName ){
-						$j("#suf-upload [name='wpDestFile']").val( oggName ).doDestCheck({								
-							warn_target: "#wpDestFile-warning" 
-						});							
+						$j("#suf-upload [name='wpDestFile']").val( oggName ).doDestCheck({
+							warn_target: "#wpDestFile-warning"
+						});
 					},
 					'done_upload_cb' : opt.ondone_cb
 				});

@@ -1,9 +1,10 @@
 
 loadGM({
-	"select_transcript_set" : "Select layers",
-	"auto_scroll" : "auto scroll",
-	"close" : "close",
-	"improve_transcript" : "Improve"
+	"mwe-select_transcript_set" : "Select layers",
+	"mwe-auto_scroll" : "auto scroll",
+	"mwe-close" : "close",
+	"mwe-improve_transcript" : "Improve",
+	"mwe-no_text_tracks_found" : "No text tracks were found"
 })
 // text interface object (for inline display captions)
 var mvTextInterface = function( parentEmbed ){
@@ -94,7 +95,7 @@ mvTextInterface.prototype = {
 
 		//if nothing found anywhere update the loading icon to say no tracks found
 		if(!default_found)
-			$j('#mv_txt_load_'+_this.pe.id).html( gM('no_text_tracks_found') );
+			$j('#mv_txt_load_'+_this.pe.id).html( gM('mwe-no_text_tracks_found') );
 
 
 	},
@@ -229,7 +230,7 @@ mvTextInterface.prototype = {
 		var _this = this;
 		js_log('getTsSelect');
 		var selHTML = '<div id="mvtsel_' + this.pe.id + '" style="position:absolute;background:#FFF;top:30px;left:0px;right:0px;bottom:0px;overflow:auto;">';
-		selHTML+='<b>' + gM('select_transcript_set') + '</b><ul>';
+		selHTML+='<b>' + gM('mwe-select_transcript_set') + '</b><ul>';
 		//debugger;
 		for(var i in _this.availableTracks){ //for in loop ok on object
 			var checked = ( _this.availableTracks[i].display ) ? 'checked' : '';
@@ -237,7 +238,7 @@ mvTextInterface.prototype = {
 				_this.availableTracks[i].getTitle() + '</li>';
 		}
 		selHTML+='</ul>' +
-					'<a href="#" onClick="document.getElementById(\'' + this.pe.id + '\').textInterface.applyTsSelect();return false;">'+gM('close')+'</a>'+
+					'<a href="#" onClick="document.getElementById(\'' + this.pe.id + '\').textInterface.applyTsSelect();return false;">'+gM('mwe-close')+'</a>'+
 				'</div>';
 		$j('#metaBox_'+_this.pe.id).append( selHTML );
 	},
@@ -342,13 +343,13 @@ mvTextInterface.prototype = {
 		//add in loading icon:
 		var as_checked = (this.autoscroll)?'checked':'';
 		out+= '<div id="tt_mmenu_'+this.pe.id+'" class="ui-widget-header" style="font-size:.6em;position:absolute;top:0;height:30px;left:0px;right:0px;">' +
-				$j.btnHtml(gM('select_transcript_set'), 'tt-select', 'shuffle');
+				$j.btnHtml(gM('mwe-select_transcript_set'), 'tt-select', 'shuffle');
 		if(this.pe.media_element.linkback){
-			out+=' ' + $j.btnHtml(gM('improve_transcript'), 'tt-improve', 'document', {href:this.pe.media_element.linkback, target:'_new'});
+			out+=' ' + $j.btnHtml(gM('mwe-improve_transcript'), 'tt-improve', 'document', {href:this.pe.media_element.linkback, target:'_new'});
 		}
 		out+='<input onClick="document.getElementById(\''+this.pe.id+'\').textInterface.setAutoScroll(this.checked);return false;" ' +
-				'type="checkbox" '+as_checked +'>'+gM('auto_scroll') + ' ' +
-              $j.btnHtml(gM('close'), 'tt-close', 'circle-close');
+				'type="checkbox" '+as_checked +'>'+gM('mwe-auto_scroll') + ' ' +
+              $j.btnHtml(gM('mwe-close'), 'tt-close', 'circle-close');
 		out+='</div>';
 		return out;
 	},
