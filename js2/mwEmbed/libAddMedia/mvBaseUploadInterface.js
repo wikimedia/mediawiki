@@ -576,6 +576,7 @@ mvBaseUploadInterface.prototype = {
 				var url = apiRes.upload.imageinfo.descriptionurl;
 				//check done action:
 				if( _this.done_upload_cb && typeof _this.done_upload_cb == 'function'){
+					js_log("call done_upload_cb");
 					//close up shop:
 					$j('#upProgressDialog').dialog('close');
 					//call the callback:

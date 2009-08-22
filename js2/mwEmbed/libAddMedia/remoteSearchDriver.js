@@ -1064,9 +1064,7 @@ remoteSearchDriver.prototype = {
 	addResourceEditLoader:function(maxWidth, overflow_style){
 		var _this = this;
 		if(!maxWidth)maxWidth=400;
-		if(!overflow_style)overflow_style='overflow:auto;';
-		//hide the results container
-		$j('#rsd_results_container').hide();			
+		if(!overflow_style)overflow_style='overflow:auto;';					
 		//remove any old instance: 
 		$j( _this.target_container ).find('#rsd_resource_edit').remove();
 		//add the edit layout window with loading place holders	
@@ -1123,7 +1121,7 @@ remoteSearchDriver.prototype = {
 
 
 		//try and keep aspect ratio for the thumbnail that we clicked:
-		var tRatio =   $j('#rsd_edit_img').height() / $j('#rsd_edit_img').width();
+		var tRatio =    $j('#rsd_edit_img').width() / $j('#rsd_edit_img').height() ;
 		if(	! tRatio )
 			var tRatio = 1; //set ratio to 1 if the width of the thumbnail can't be found for some reason
 
@@ -1162,16 +1160,14 @@ remoteSearchDriver.prototype = {
 			rObj['width'] = imObj.width;
 			rObj['height'] = imObj.height;
 
-			//see if we need to animate some transition
-			var newSize = false;
+			//see if we need to animate some transition			
 			if( size.width != imObj.width ){
 				js_log('loadHQImg:size mismatch: ' + size.width + ' != ' + imObj.width );
-				newSize={
+				//set the target id to the new size:
+				$j('#'+target_img_id).animate( {
 					'width':imObj.width + 'px',
 					'height':imObj.height + 'px'
-				}
-				//set the target id to the new size:
-				$j('#'+target_img_id).animate( newSize );
+				});
 			}else{
 				js_log('using req size: ' + imObj.width + 'x' + imObj.height);
 				$j('#'+target_img_id).animate( {'width':imObj.width+'px', 'height' : imObj.height + 'px'});
@@ -1679,7 +1675,7 @@ remoteSearchDriver.prototype = {
 				 //update if its video or audio:
 				 if( rObj.mime.indexOf('audio')!=-1 ||
 				 	 rObj.mime.indexOf('video')!=-1 ||
-				 	 rObj.mime.indexOf('/ogg') !=-1){
+				 	 rObj.mime.indexOf('/ogg') !=-1){				 	
 					 mvJsLoader.embedVideoCheck(function(){
 					 	mv_video_embed();
 					 });
