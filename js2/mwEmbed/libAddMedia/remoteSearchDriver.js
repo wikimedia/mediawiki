@@ -8,45 +8,44 @@
 	and archive.org
 */
 loadGM({
-	"add_media_wizard" : "Add media wizard",
-	"mv_media_search" : "Media search",
+	"mwe-add_media_wizard" : "Add media wizard",
+	"mwe-media_search" : "Media search",
 	"rsd_box_layout" : "Box layout",
 	"rsd_list_layout" : "List layout",
 	"rsd_results_desc" : "Results",
 	"rsd_results_next" : "next",
 	"rsd_results_prev" : "previous",
 	"rsd_no_results" : "No search results for <b>$1<\/b>",
-	"upload_tab" : "Upload",
+	"mwe-upload_tab" : "Upload",
 	"rsd_layout" : "Layout : ",
 	"rsd_resource_edit" : "Edit resource :  $1",
-	"resource_description_page" : "Resource description page",
+	"mwe-resource_description_page" : "Resource description page",
 	"rsd_local_resource_title" : "Local resource title",
 	"rsd_do_insert" : "Do insert",
-	"cc_title" : "Creative Commons",
-	"cc_by_title" : "Attribution",
-	"cc_nc_title" : "Noncommercial",
-	"cc_nd_title" : "No Derivative Works",
-	"cc_sa_title" : "Share Alike",
-	"cc_pd_title" : "Public Domain",
-	"unknown_license" : "Unknown license",
-	"no_import_by_url" : "This user or wiki <b>can not<\/b> import assets from remote URLs.<\/p><p>Do you need to login?<\/p><p>If permissions are set, you may have to enable $wgAllowCopyUploads (<a href=\"http : \/\/www.mediawiki.org\/wiki\/Manual : $wgAllowCopyUploads\">more information<\/a>).<\/p>",
-	"results_from" : "Results from <a href=\"$1\" target=\"_new\" >$2<\/a>",
-	"missing_desc_see_soruce" : "This asset is missing a description. Please see the [$1 orginal source] and help describe it.",
+	"mwe-cc_title" : "Creative Commons",
+	"mwe-cc_by_title" : "Attribution",
+	"mwe-cc_nc_title" : "Noncommercial",
+	"mwe-cc_nd_title" : "No Derivative Works",
+	"mwe-cc_sa_title" : "Share Alike",
+	"mwe-cc_pd_title" : "Public Domain",
+	"mwe-unknown_license" : "Unknown license",
+	"mwe-no_import_by_url" : "This user or wiki <b>can not<\/b> import assets from remote URLs.<\/p><p>Do you need to login?<\/p><p>If permissions are set, you may have to enable $wgAllowCopyUploads (<a href=\"http : \/\/www.mediawiki.org\/wiki\/Manual : $wgAllowCopyUploads\">more information<\/a>).<\/p>",
+	"mwe-results_from" : "Results from <a href=\"$1\" target=\"_new\" >$2<\/a>",
+	"mwe-missing_desc_see_source" : "This asset is missing a description. Please see the [$1 orginal source] and help describe it.",
 	"rsd_config_error" : "Add media wizard configuration error :  $1",
-	"uploaded_itmes" : "Uploaded Items:",
-	
-	"your_recent_uploads" : "Your Recent Uploads",
-	"upload_a_file": "Upload a New File",
-	
-	"resource_page_desc":"Resource Page Description:",
-	"edit_resource_desc": "Edit WikiText Resource Description:",
-	"local_resource_title": "Local Resource Title:",
-	"watch_this_page": "Watch this page",
-	"do_import_resource": "Do Import Resource",
-	"update_preview": "Update Preview",
-	"cancel_import": "Cancel Import",
-	"importing_asset" : "Importing Asset",
-	"preview_insert_resource": "Preview Insert of Resource: $1"
+
+	"mwe-your_recent_uploads" : "Your recent uploads",
+	"mwe-upload_a_file": "Upload a new file",
+
+	"mwe-resource_page_desc":"Resource page description:",
+	"mwe-edit_resource_desc": "Edit wiki text resource description:",
+	"mwe-local_resource_title": "Local resource title:",
+	"mwe-watch_this_page": "Watch this page",
+	"mwe-do_import_resource": "Import resource",
+	"mwe-update_preview": "Update preview",
+	"mwe-cancel_import": "Cancel import",
+	"mwe-importing_asset" : "Importing asset",
+	"mwe-preview_insert_resource": "Preview insert of resource: $1"
 });
 var default_remote_search_options = {
 	'profile':'mediawiki_edit',
@@ -111,7 +110,7 @@ remoteSearchDriver.prototype = {
 	 *
 	 * (should be note that special tabs like "upload" and "combined" don't go into the content proviers list:
 	 * @note do not use double underscore in content providers names (used for id lookup)
-	 * 
+	 *
 	 * @@todo we will want to load more per user-preference and per category lookup
 	 */
 	content_providers:{
@@ -147,7 +146,7 @@ remoteSearchDriver.prototype = {
 			'lib'	 : 'mediaWiki',
 			'local'	 : true,
 			'tab_img': false
-		},		
+		},
 		'wiki_commons':{
 			'enabled': 1,
 			'checked': 1,
@@ -271,12 +270,12 @@ remoteSearchDriver.prototype = {
 			return js_error('could not find:' + license_key);
 		//set the current license pointer:
 		var cl = this.licenses.cc;
-		var title = gM('cc_title');
+		var title = gM('mwe-cc_title');
 		var imgs = '';
 		var license_set = license_key.split('-');
 		for(var i=0;i < license_set.length; i++){
 			lkey =	 license_set[i];
-			title += ' ' + gM( 'cc_' + lkey + '_title');
+			title += ' ' + gM( 'mwe-cc_' + lkey + '_title');
 			imgs +='<img class="license_desc" width="20" src="' + cl.base_img_url +
 				cl.license_img[ lkey ].im + '">';
 		}
@@ -302,10 +301,10 @@ remoteSearchDriver.prototype = {
 				return this.getLicenceFromKey( i , license_url);
 			}
 		}
-		//could not find it return unknown_license
+		//could not find it return mwe-unknown_license
 		return {
-			'title'	 	: gM('unknown_license'),
-			'img_html'	: '<span>' + gM('unknown_license') + '</span>',
+			'title'	 	: gM('mwe-unknown_license'),
+			'img_html'	: '<span>' + gM('mwe-unknown_license') + '</span>',
 			'lurl'		: license_url
 		};
 	},
@@ -372,7 +371,7 @@ remoteSearchDriver.prototype = {
 			js_log("RemoteSearchDriver:: no target invocation provided (will have to run your own doInitDisplay() )");
 		}else{
 			if(this.target_invocation){
-				$j(this.target_invocation).css('cursor','pointer').attr('title', gM('add_media_wizard')).click(function(){
+				$j(this.target_invocation).css('cursor','pointer').attr('title', gM('mwe-add_media_wizard')).click(function(){
 					_this.doInitDisplay();
 				});
 			}
@@ -443,7 +442,7 @@ remoteSearchDriver.prototype = {
 		var _this = this;
 		//add the parent target_container if not provided or missing
 		if(!_this.target_container || $j(_this.target_container).length==0){
-			$j('body').append('<div id="rsd_modal_target" style="position:absolute;top:30px;left:0px;bottom:45px;right:0px;" title="' + gM('add_media_wizard') + '" ></div>');
+			$j('body').append('<div id="rsd_modal_target" style="position:absolute;top:30px;left:0px;bottom:45px;right:0px;" title="' + gM('mwe-add_media_wizard') + '" ></div>');
 			_this.target_container = '#rsd_modal_target';
 			//js_log('appended: #rsd_modal_target' + $j(_this.target_container).attr('id'));
 			//js_log('added target id:' + $j(_this.target_container).attr('id'));
@@ -521,7 +520,7 @@ remoteSearchDriver.prototype = {
 					'<form id="rsd_form" action="javascript:return false;" method="GET">'+
 						'<input class="ui-widget-content ui-corner-all" type="text" tabindex="1" value="' + dq + '" maxlength="512" id="rsd_q" name="rsd_q" '+
 							'size="20" autocomplete="off"/> '+
-						$j.btnHtml( gM('mv_media_search'), 'rms_search_button', 'search') +
+						$j.btnHtml( gM('mwe-media_search'), 'rms_search_button', 'search') +
 					'</form>';
 		//close up the control container:
 		o+='</div>';
@@ -574,7 +573,7 @@ remoteSearchDriver.prototype = {
 		//set it to loading:
 		mv_set_loading('#tab-upload');
 		//do things async to keep interface snapy
-		setTimeout(function(){				
+		setTimeout(function(){
 			//do config variable reality checks:
 			if( _this.upload_api_target == 'local' ){
 				if( ! _this.local_wiki_api_url ){
@@ -593,46 +592,46 @@ remoteSearchDriver.prototype = {
 			//set the form action based on domain:
 			if( parseUri( document.URL ).host == parseUri( _this.upload_api_target ).host ){
 				mvJsLoader.doLoad(['$j.fn.simpleUploadForm'],function(){
-									
+
 					//get extened info about the file
 					var cp = _this.content_providers['this_wiki'];
 					//check for "this_wiki" enabled
 					if(!cp.enabled){
 						$j('#tab-upload').html('error this_wiki not enabled (can\'t get uploaded file info)');
 						return false;
-					}				
-								
+					}
+
 					//load  this_wiki search system to grab the rObj
 					_this.loadSearchLib(cp, function(){
 						//do basic layout form on left upload "bin" on right
 						$j('#tab-upload').html('<table cellspacing="10">' +
 						'<tr>' +
 							'<td valign="top" style="width:350px;">' +
-								'<h4>' + gM('upload_a_file') + '</h4>' +  
-							 	'<div id="upload_form">' +						 	
+								'<h4>' + gM('mwe-upload_a_file') + '</h4>' +
+							 	'<div id="upload_form">' +
 							 		mv_get_loading_img() +
 							 	'</div>' +
 							'</td>' +
 							'<td valign="top" id="upload_bin_cnt">' +
-							'<h4>' + gM('your_recent_uploads') + '</h4>' +  
+							'<h4>' + gM('mwe-your_recent_uploads') + '</h4>' +
 								'<div id="upload_bin">' +
 									mv_get_loading_img() +
 								'</div>'+
 							'</td>' +
 						'</tr>' +
 						'</table>');
-						
-						
+
+
 						//fill in the user page:
 						if(typeof wgUserName != 'undefined' && wgUserName){
-							//load the upload bin with anything the current user has uploaded 
+							//load the upload bin with anything the current user has uploaded
 							cp.sObj.getUserRecentUploads( wgUserName, function(){
 								_this.drawOutputResults();
-							});								
-						}else{		
-							$j('#upload_bin_cnt').empty();										
-						}						
-						
+							});
+						}else{
+							$j('#upload_bin_cnt').empty();
+						}
+
 						//deal with the api form upload form directly:
 						$j('#upload_form').simpleUploadForm({
 							"api_target" :	_this.upload_api_target ,
@@ -642,14 +641,14 @@ remoteSearchDriver.prototype = {
 								$j( _this.target_container ).append('<div id="temp_edit_loader" '+
 									'style="position:absolute;top:0px;left:0px;bottom:5px;right:4px;background-color:#FFF;">' +
 										mv_get_loading_img('position:absolute;top:30px;left:30px') +
-								'</div>');											
+								'</div>');
 									cp.sObj.addByTitle( wTitle, function( rObj ){
 										$j( _this.target_container ).find('#temp_edit_loader').remove();
-										//redraw (with added result if new) 
-										_this.drawOutputResults();																	
-										//pull up recource editor: 
+										//redraw (with added result if new)
+										_this.drawOutputResults();
+										//pull up recource editor:
 										_this.resourceEdit( rObj, $j('#res_upload_' + rObj.id).get(0) );
-									});								
+									});
 								//return false to close progress window:
 								return false;
 							}
@@ -807,18 +806,18 @@ remoteSearchDriver.prototype = {
 				//combined results are harder to error handle just ignore that repo
 				cp.sObj.loading = false;
 			}else{
-				$j('#tab-' + this.disp_item).html( '<div style="padding:10px">'+ gM('no_import_by_url') +'</div>');
+				$j('#tab-' + this.disp_item).html( '<div style="padding:10px">'+ gM('mwe-no_import_by_url') +'</div>');
 			}
 			return false;
-		}		
+		}
 		_this.loadSearchLib(cp, function(){
 			//do search
 			cp.sObj.getSearchResults();
 			_this.checkResultsDone();
-		});		
+		});
 	},
 	loadSearchLib:function(cp, callback){
-		var _this = this;		
+		var _this = this;
 		//set up the library req:
 		mvJsLoader.doLoad( [
 			'baseRemoteSearch',
@@ -891,7 +890,7 @@ remoteSearchDriver.prototype = {
 			}
 			//do an upload tab if enabled:
 			if( this.enable_upload_tab ){
-				o+='<li class="rsd_cp_tab" ><a id="rsd_tab_upload" href="#tab-upload">' + gM('upload_tab') + '</a></li>';
+				o+='<li class="rsd_cp_tab" ><a id="rsd_tab_upload" href="#tab-upload">' + gM('mwe-upload_tab') + '</a></li>';
 				tabc+='<div id="tab-upload" />';
 				if(this.disp_item == 'upload')
 					selected_tab = inx++;
@@ -945,20 +944,20 @@ remoteSearchDriver.prototype = {
 	//@@todo we could load the id with the content provider id to find the object faster...
 	getResourceFromId:function( rid ){
 		js_log('getResourceFromId:' + rid );
-		//strip out /res/ if preset:				
+		//strip out /res/ if preset:
 		rid = rid.replace(/res_/, '');
 		//js_log("looking at: " + rid);
-		p = rid.split('__');		
+		p = rid.split('__');
 		var cp_id = p[0];
-		var rid = p[1];		
-	
+		var rid = p[1];
+
 		if(cp_id == 'upload')
 			cp_id = 'this_wiki';
-			
+
 		var cp = this.content_providers[cp_id];
 		if(cp && cp['sObj'] && cp.sObj.resultsObj[rid]){
 			return cp.sObj.resultsObj[rid];
-		}		
+		}
 		js_log("ERROR: could not find " + rid);
 		return false;
 	},
@@ -966,15 +965,15 @@ remoteSearchDriver.prototype = {
 		js_log('f:drawOutputResults::' + this.disp_item);
 		var _this = this;
 		var o='';
-		
+
 		var cp_id = this.disp_item;
 		var tab_target = '';
 		if(this.disp_item == 'upload'){
 			tab_target = '#upload_bin';
 			var cp = this.content_providers['this_wiki'];
-		}else{			
+		}else{
 			var cp = this.content_providers[this.disp_item];
-			tab_target = '#tab-' + cp_id;			
+			tab_target = '#tab-' + cp_id;
 		}
 		//empty the existing results:
 		$j(tab_target).empty();
@@ -1002,7 +1001,7 @@ remoteSearchDriver.prototype = {
 						//add a linkback to resource page in upper right:
 						if( rItem.link )
 							o+='<a target="_new" style="position:absolute;top:0px;right:0px" title="' +
-								 gM('resource_description_page') +
+								 gM('mwe-resource_description_page') +
 								'" href="' + rItem.link + '"><img src="http://upload.wikimedia.org/wikipedia/commons/6/6b/Magnify-clip.png"></a>';
 						//add license icons if present
 						if( rItem.license )
@@ -1064,10 +1063,10 @@ remoteSearchDriver.prototype = {
 	addResourceEditLoader:function(maxWidth, overflow_style){
 		var _this = this;
 		if(!maxWidth)maxWidth=400;
-		if(!overflow_style)overflow_style='overflow:auto;';					
-		//remove any old instance: 
+		if(!overflow_style)overflow_style='overflow:auto;';
+		//remove any old instance:
 		$j( _this.target_container ).find('#rsd_resource_edit').remove();
-		//add the edit layout window with loading place holders	
+		//add the edit layout window with loading place holders
 		$j( _this.target_container ).append('<div id="rsd_resource_edit" '+
 			'style="position:absolute;top:0px;left:0px;bottom:5px;right:4px;background-color:#FFF;">' +
 				'<div id="clip_edit_disp" style="position:absolute;' + overflow_style + 'width:100%;height:100%;padding:5px;'+
@@ -1103,7 +1102,7 @@ remoteSearchDriver.prototype = {
 		//append to the top level of model window:
 		_this.addResourceEditLoader(maxWidth, overflow_style);
 		//update add media wizard title:
-		$j( _this.target_container ).dialog( 'option', 'title', gM('add_media_wizard')+': '+ gM('rsd_resource_edit', rObj.title ) );
+		$j( _this.target_container ).dialog( 'option', 'title', gM('mwe-add_media_wizard')+': '+ gM('rsd_resource_edit', rObj.title ) );
 		js_log('did append to: '+ _this.target_container );
 
 		$j('#rsd_resource_edit').css('opacity',0);
@@ -1133,8 +1132,8 @@ remoteSearchDriver.prototype = {
 			'left':'5px',
 			'width': maxWidth + 'px',
 			'height': parseInt( tRatio * maxWidth)  + 'px'
-		}, "slow"); // do it slow to give it a chance to finish loading the HQ version				
-		
+		}, "slow"); // do it slow to give it a chance to finish loading the HQ version
+
 		if( mediaType == 'image' ){
 			_this.loadHQImg(rObj, {'width':maxWidth}, 'rsd_edit_img', function(){
 				$j('.mv_loading_img').remove();
@@ -1160,7 +1159,7 @@ remoteSearchDriver.prototype = {
 			rObj['width'] = imObj.width;
 			rObj['height'] = imObj.height;
 
-			//see if we need to animate some transition			
+			//see if we need to animate some transition
 			if( size.width != imObj.width ){
 				js_log('loadHQImg:size mismatch: ' + size.width + ' != ' + imObj.width );
 				//set the target id to the new size:
@@ -1188,10 +1187,10 @@ remoteSearchDriver.prototype = {
 		var _this = this;
 		var b_target =   _this.target_container + '~ .ui-dialog-buttonpane';
 		$j('#rsd_resource_edit').remove();
-		//restore the resource container: 
+		//restore the resource container:
 		$j('#rsd_results_container').show();
 		//restore the title:
-		$j( _this.target_container ).dialog( 'option', 'title', gM('add_media_wizard'));
+		$j( _this.target_container ).dialog( 'option', 'title', gM('mwe-add_media_wizard'));
 		js_log("should update: " + b_target + ' with: cancel');
 		//restore the buttons:
 		$j(b_target).html( $j.btnHtml( 'Cancel' , 'mv_cancel_rsd', 'close'))
@@ -1346,7 +1345,7 @@ remoteSearchDriver.prototype = {
 						if( rObj.desc ){
 							wt += '|Description= ' + rObj.desc + "\n";
 						}else{
-							wt += '|Description= ' + gM('missing_desc_see_soruce', rObj.link ) + "\n";
+							wt += '|Description= ' + gM('mwe-missing_desc_see_source', rObj.link ) + "\n";
 						}
 
 						//output search specific info
@@ -1365,13 +1364,13 @@ remoteSearchDriver.prototype = {
 							wt+='|other_versions=' + rObj.other_versions + "\n";
 
 						wt+='}}';
-						
+
 						//get any extra categories or helpful links
 						wt+= rObj.pSobj.getExtraResourceDescWiki( rObj );
 
 
 						$j('#rsd_resource_import').remove();//remove any old resource imports
-						
+
 						//@@ show user dialog to import the resource
 						$j( _this.target_container ).append('<div id="rsd_resource_import" '+
 						'class="ui-state-highlight ui-widget-content ui-state-error" ' +
@@ -1380,27 +1379,27 @@ remoteSearchDriver.prototype = {
 								'<div id="rsd_preview_import_container" style="position:absolute;width:50%;bottom:0px;left:0px;overflow:auto;top:30px;">' +
 									rObj.pSobj.getEmbedHTML( rObj, {'id': _this.target_container + '_rsd_pv_vid', 'max_height':'200','only_poster':true} )+ //get embedHTML with small thumb:
 									'<br style="clear both">'+
-									'<strong>'+gM('resource_page_desc') +'</strong>'+
+									'<strong>'+gM('mwe-resource_page_desc') +'</strong>'+
 									'<div id="rsd_import_desc" syle="display:inline;">'+
 										mv_get_loading_img('position:absolute;top:5px;left:5px') +
 									'</div>'+
 								'</div>'+
 								'<div id="rds_edit_import_container" style="position:absolute;left:50%;' +
 									'bottom:0px;top:30px;right:0px;overflow:auto;">'+
-									'<strong>' + gM('local_resource_title') + '</strong><br>'+
+									'<strong>' + gM('mwe-local_resource_title') + '</strong><br>'+
 									'<input type="text" size="30" value="' + rObj.target_resource_title + '" readonly="true"><br>'+
-									'<strong>' + gM('edit_resource_desc') + '</strong>' +
+									'<strong>' + gM('mwe-edit_resource_desc') + '</strong>' +
 									'<textarea id="rsd_import_ta" id="mv_img_desc" style="width:90%;" rows="8" cols="50">' +
 										wt +
 									'</textarea><br>' +
 									'<input type="checkbox" value="true" id="wpWatchthis" name="wpWatchthis" tabindex="7"/>' +
-									'<label for="wpWatchthis">'+gM('watch_this_page')+'</label><br><br><br>' +
+									'<label for="wpWatchthis">'+gM('mwe-watch_this_page')+'</label><br><br><br>' +
 
-									$j.btnHtml(gM('do_import_resource'), 'rsd_import_doimport', 'check' ) + ' ' +
+									$j.btnHtml(gM('mwe-do_import_resource'), 'rsd_import_doimport', 'check' ) + ' ' +
 
-									$j.btnHtml(gM('update_preview'), 'rsd_import_apreview', 'refresh' ) + '<div style="clear:both;height:20px;"/>' +
+									$j.btnHtml(gM('mwe-update_preview'), 'rsd_import_apreview', 'refresh' ) + '<div style="clear:both;height:20px;"/>' +
 
-									$j.btnHtml(gM('cancel_import'), 'rsd_import_acancel', 'close' ) + ' ' +
+									$j.btnHtml(gM('mwe-cancel_import'), 'rsd_import_acancel', 'close' ) + ' ' +
 
 								'</div>'+
 								//output the rendered and non-renderd version of description for easy swiching:
@@ -1536,7 +1535,7 @@ remoteSearchDriver.prototype = {
 							'style="position:absolute;top:0px;'+
 								'left:0px;width:100%;height:100%;'+
 								'z-index:5;background:#FFF;overflow:auto;">'+
-									'<div style="position:absolute;left:30%;right:30%"><h3>'+gM('importing_asset')+'</h3><br>' +
+									'<div style="position:absolute;left:30%;right:30%"><h3>'+gM('mwe-importing_asset')+'</h3><br>' +
 										mv_get_loading_img('','mv_loading_bar_img') +
 									'</div>'+
 							'</div>'
@@ -1568,7 +1567,7 @@ remoteSearchDriver.prototype = {
 									js_log( 'error text is: ' + error_txt );
 									$j( '#rsd_resource_import' ).html( '<h3>Error</h3>' + error_txt + '<br>' + form_txt +
 											'<br>'+
-										'<a href="#" id="rsd_import_error" >' + gM('cancel_import') + '</a>'
+										'<a href="#" id="rsd_import_error" >' + gM('mwe-cancel_import') + '</a>'
 									);
 									//set up cancel action:
 									$j('#rsd_import_error').click(function(){
@@ -1591,12 +1590,12 @@ remoteSearchDriver.prototype = {
 					'style="position:absolute;overflow:hidden;z-index:4;top:0px;bottom:75px;right:0px;left:0px;background-color:#FFF;">' +
 						mv_get_loading_img('top:30px;left:30px') +
 					'</div>');
-			
+
 			var bPlaneTarget = _this.target_container +'~ .ui-dialog-buttonpane';
 			var pTitle = $j( _this.target_container ).dialog('option', 'title');
 
 			//update title:
-			$j( _this.target_container ).dialog('option', 'title', gM('preview_insert_resource', rObj.title) );
+			$j( _this.target_container ).dialog('option', 'title', gM('mwe-preview_insert_resource', rObj.title) );
 
 			//update buttons preview:
 			$j(bPlaneTarget).html( $j.btnHtml( gM('rsd_do_insert'), 'preview_do_insert', 'check') + ' ' )
@@ -1675,7 +1674,7 @@ remoteSearchDriver.prototype = {
 				 //update if its video or audio:
 				 if( rObj.mime.indexOf('audio')!=-1 ||
 				 	 rObj.mime.indexOf('video')!=-1 ||
-				 	 rObj.mime.indexOf('/ogg') !=-1){				 	
+				 	 rObj.mime.indexOf('/ogg') !=-1){
 					 mvJsLoader.embedVideoCheck(function(){
 					 	mv_video_embed();
 					 });
@@ -1701,7 +1700,7 @@ remoteSearchDriver.prototype = {
 		if( this.content_providers[this.disp_item] ){
 			var cp = this.content_providers[this.disp_item];
 			about_desc ='<span style="position:relative;top:0px;font-style:italic;">' +
-					'<i>' + gM('results_from', [cp.homepage, cp.title]) + '</i></span>';
+					'<i>' + gM('mwe-results_from', [cp.homepage, cp.title]) + '</i></span>';
 			$j('#tab-'+this.disp_item).append( '<div id="rds_results_bar">'+
 				'<span style="float:left;top:0px;font-style:italic;">'+
 					gM('rsd_layout')+' '+

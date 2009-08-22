@@ -1,7 +1,9 @@
 /**
  * the base Upload Interface for uploading.
  *
- * this base uploader is optionally extended by firefogg
+ * this base uploader is optionally extended by Firefogg
+ *
+ * @@todo: checkme: gM 'thumbnail-more' is used; only defined in MediaWiki core. Will that work properly?
  */
 loadGM({
 	"mwe-upload-transcode-in-progress" : "Transcode and upload in progress (do not close this window)",
@@ -670,7 +672,7 @@ mvBaseUploadInterface.prototype = {
 	  )
 	  //just display an empty progress window
 	  $j('#upProgressDialog').dialog('open');
-	   
+
 	  //setup progress bar:
 	  $j('#up-progressbar').progressbar({
 		  value:0
@@ -703,15 +705,15 @@ mvBaseUploadInterface.prototype = {
 	 * doDestCheck checks the destination
 	 */
 	$.fn.doDestCheck = function( opt ){
-		var _this = this;	
-		var destFile = this.selector;	
-		//set up option defaults; 
+		var _this = this;
+		var destFile = this.selector;
+		//set up option defaults;
 		if(!opt.warn_target)
 			opt.warn_target = '#wpDestFile-warning';
-		
-		//empty target warn: 
+
+		//empty target warn:
 		$j(opt.warn_target).empty();
-		
+
 		//show loading
 		$j(destFile).after('<img id = "mw-spinner-wpDestFile" src ="'+ stylepath + '/common/images/spinner.gif" />');
 		//try and get a thumb of the current file (check its destination)
@@ -730,7 +732,7 @@ mvBaseUploadInterface.prototype = {
 					//all good no file there
 				}else{
 					for(var page_id in data.query.pages){
-						var ntitle = ( data.query.normalized)? data.query.normalized[0].to : data.query.pages[ page_id ].title						
+						var ntitle = ( data.query.normalized)? data.query.normalized[0].to : data.query.pages[ page_id ].title
 						var img = data.query.pages[ page_id ].imageinfo[0];
 						$j('#wpDestFile-warning').html(
 							'<ul>' +
@@ -761,6 +763,5 @@ mvBaseUploadInterface.prototype = {
 				}
 			}
 		});
-	}	
+	}
 })(jQuery);
-

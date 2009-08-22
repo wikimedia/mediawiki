@@ -1,7 +1,7 @@
 //base remote search obj
 
 loadGM({
-	"imported_from" : "$1 imported from [$2 $3]. See the original [$4 resource page] for more information."
+	"mwe-imported_from" : "$1 imported from [$2 $3]. See the original [$4 resource page] for more information."
 })
 // @key is name of rObj variable
 // @value is where to find the value in the item xml
@@ -171,7 +171,7 @@ baseRemoteSearch.prototype = {
 
 	},
 	getImportResourceDescWiki:function(rObj){
-		return gM('imported_from', [rObj.title,  this.cp.homepage, this.cp.title, rObj.link]);
+		return gM('mwe-imported_from', [rObj.title,  this.cp.homepage, this.cp.title, rObj.link]);
 	},
 	//for thigns like categories and the like
 	getExtraResourceDescWiki:function( rObj ){

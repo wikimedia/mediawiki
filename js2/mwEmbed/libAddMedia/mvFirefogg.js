@@ -723,7 +723,7 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 					form_txt = res.form_txt;
 			}
 			js_log( 'error text is: ' + result_txt );
-			$j( '#dlbox-centered' ).html( '<h3>' + gM('mv_upload_completed') + '</h3>' + result_txt + '<br>' + form_txt);
+			$j( '#dlbox-centered' ).html( '<h3>' + gM('mwe-upload_completed') + '</h3>' + result_txt + '<br>' + form_txt);
 		}
 	}
 };

@@ -19,40 +19,40 @@
  */
 
 loadGM({
-	"menu_clipedit" : "Edit media",
-	"menu_transition" : "Transitions and effects",
-	"menu_cliplib" : "Add media",
-	"menu_resource_overview" : "Resource overview",
-	"menu_options" : "Options",
-	"loading_timeline" : "Loading timeline <blink>...<\/blink>",
-	"loading_user_rights" : "Loading user rights <blink>...<\/blink>",
-	"no_edit_permissions" : "You do not have permissions to save changes to this sequence",
-	"edit_clip" : "Edit clip",
-	"edit_save" : "Save sequence changes",
-	"saving_wait" : "Save in progress (please wait)",
-	"save_done" : "Save complete",
-	"edit_cancel" : "Cancel sequence edit",
-	"edit_cancel_confirm" : "Are you sure you want to cancel your edit? Changes will be lost.",
-	"zoom_in" : "Zoom in",
-	"zoom_out" : "Zoom out",
-	"cut_clip" : "Cut clips",
-	"expand_track" : "Expand track",
-	"colapse_track" : "Collapse track",
-	"play_from_position" : "Play from playline position",
-	"pixle2sec" : "pixles to seconds",
-	"rmclip" : "Remove clip",
-	"clip_in" : "clip in",
-	"clip_out" : "clip out",
-	"mv_welcome_to_sequencer" : "<h3>Welcome to the sequencer demo<\/h3> Very <b>limited<\/b> functionality right now. Not much documentation yet either.",
-	"no_selected_resource" : "<h3>No resource selected<\/h3> Select a clip to enable editing.",
-	"error_edit_multiple" : "<h3>Multiple resources selected<\/h3> Select a single clip to edit it.",
-	"mv_editor_options" : "Editor options",
-	"mv_editor_mode" : "Editor mode",
-	"mv_simple_editor_desc" : "simple editor (iMovie style)",
-	"mv_advanced_editor_desc" : "advanced editor (Final Cut style)",
-	"mv_other_options" : "Other options",
-	"mv_contextmenu_opt" : "Enable context menus",
-	"mv_sequencer_credit_line" : "Developed by <a href=\"http:\/\/kaltura.com\">Kaltura, Inc.<\/a> in partnership with the <a href=\"http:\/\/wikimediafoundation.org\/wiki\/Home\">Wikimedia Foundation<\/a> (<a href=\"#\">more information<\/a>)."
+	"mwe-menu_clipedit" : "Edit media",
+	"mwe-menu_transition" : "Transitions and effects",
+	"mwe-menu_cliplib" : "Add media",
+	"mwe-menu_resource_overview" : "Resource overview",
+	"mwe-menu_options" : "Options",
+	"mwe-loading_timeline" : "Loading timeline <blink>...<\/blink>",
+	"mwe-loading_user_rights" : "Loading user rights <blink>...<\/blink>",
+	"mwe-no_edit_permissions" : "You do not have permissions to save changes to this sequence",
+	"mwe-edit_clip" : "Edit clip",
+	"mwe-edit_save" : "Save sequence changes",
+	"mwe-saving_wait" : "Save in progress (please wait)",
+	"mwe-save_done" : "Save complete",
+	"mwe-edit_cancel" : "Cancel sequence edit",
+	"mwe-edit_cancel_confirm" : "Are you sure you want to cancel your edit? Changes will be lost.",
+	"mwe-zoom_in" : "Zoom in",
+	"mwe-zoom_out" : "Zoom out",
+	"mwe-cut_clip" : "Cut clips",
+	"mwe-expand_track" : "Expand track",
+	"mwe-collapse_track" : "Collapse track",
+	"mwe-play_from_position" : "Play from playline position",
+	"mwe-pixle2sec" : "pixels to seconds",
+	"mwe-rmclip" : "Remove clip",
+	"mwe-clip_in" : "clip in",
+	"mwe-clip_out" : "clip out",
+	"mwe-welcome_to_sequencer" : "<h3>Welcome to the sequencer demo<\/h3> Very <b>limited<\/b> functionality right now. Not much documentation yet either.",
+	"mwe-no_selected_resource" : "<h3>No resource selected<\/h3> Select a clip to enable editing.",
+	"mwe-error_edit_multiple" : "<h3>Multiple resources selected<\/h3> Select a single clip to edit it.",
+	"mwe-editor_options" : "Editor options",
+	"mwe-editor_mode" : "Editor mode",
+	"mwe-simple_editor_desc" : "simple editor (iMovie style)",
+	"mwe-advanced_editor_desc" : "advanced editor (Final Cut style)",
+	"mwe-other_options" : "Other options",
+	"mwe-contextmenu_opt" : "Enable context menus",
+	"mwe-sequencer_credit_line" : "Developed by <a href=\"http:\/\/kaltura.com\">Kaltura, Inc.<\/a> in partnership with the <a href=\"http:\/\/wikimediafoundation.org\/wiki\/Home\">Wikimedia Foundation<\/a> (<a href=\"#\">more information<\/a>)."
 });
  //used to set default values and validate the passed init object
 var sequencerDefaultValues = {
@@ -131,7 +131,7 @@ mvSequencer.prototype = {
 		},
 		'transition':{
 			'd':0,
-			'html' : '<h3>' + gM('menu_transition') + '</h3>',
+			'html' : '<h3>' + gM('mwe-menu_transition') + '</h3>',
 			'js':function(this_seq){
 				this_seq.doEditTransitionSelectedClip();
 			},
@@ -156,15 +156,15 @@ mvSequencer.prototype = {
 		},
 		'options':{
 			'd':0,
-			'html' : '<h3>' + gM('menu_options') + '</h3>' +
-				gM('mv_editor_mode') + '<br> ' +
+			'html' : '<h3>' + gM('mwe-menu_options') + '</h3>' +
+				gM('mwe-editor_mode') + '<br> ' +
 				'<blockquote><input type="radio" value="simple_editor" name="opt_editor">' +
-						gM('mv_simple_editor_desc') + ' </blockquote>' +
+						gM('mwe-simple_editor_desc') + ' </blockquote>' +
 				'<blockquote><input type="radio" value="advanced_editor" name="opt_editor">' +
-						gM('mv_advanced_editor_desc') + ' </blockquote>'+
-				gM('mv_other_options') + '<br>' +
+						gM('mwe-advanced_editor_desc') + ' </blockquote>'+
+				gM('mwe-other_options') + '<br>' +
 				'<blockquote><input type="checkbox" value="contextmenu_opt" name="contextmenu_opt">' +
-						gM('mv_contextmenu_opt') + ' </blockquote>',
+						gM('mwe-contextmenu_opt') + ' </blockquote>',
 			'js':function(this_seq){
 				$j('#options_ic input[value=\'simple_editor\']').attr({
 					'checked':(this_seq.timeline_mode=='storyboard')?true:false
@@ -216,14 +216,14 @@ mvSequencer.prototype = {
 				'width:' + this.video_width + 'px;height:'+this.video_height+'px;border:solid thin blue;background:#FFF;font-color:black;"/>'+
 			'<div id="' + this.timeline_id + '" class="ui-widget ui-widget-content ui-corner-all" style="position:absolute;' +
 				'left:0px;right:0px;top:'+(this.video_height+34)+'px;bottom:35px;overflow:auto;">'+
-					gM('loading_timeline')+ '</div>'+
+					gM('mwe-loading_timeline')+ '</div>'+
 			'<div class="seq_status" style="position:absolute;left:0px;width:300px;"></div>'+
 			'<div class="seq_save_cancel" style="position:absolute;'+
 				'left:5px;bottom:0px;height:25px;">'+
-					gM('loading_user_rights') +
+					gM('mwe-loading_user_rights') +
 			'</div>'+
 			'<div class="about_editor" style="position:absolute;right:5px;bottom:7px;">' +
-				gM('mv_sequencer_credit_line') +
+				gM('mwe-sequencer_credit_line') +
 			'</div>'+
 			'<div id="'+this.sequence_tools_id+'" style="position:absolute;' +
 				'left:0px;right:'+(this.video_width+15)+'px;top:0px;height:'+(this.video_height+23)+'px;"/>'
@@ -266,15 +266,15 @@ mvSequencer.prototype = {
 		var _this = this;
 		if( this.sequenceEditToken ){
 			$j(this.target_sequence_container+' .seq_save_cancel').html(
-				$j.btnHtml( gM('edit_save'), 'seq_edit_save', 'close') + ' ' +
-				$j.btnHtml( gM('edit_cancel'), 'seq_edit_cancel', 'close')
+				$j.btnHtml( gM('mwe-edit_save'), 'seq_edit_save', 'close') + ' ' +
+				$j.btnHtml( gM('mwe-edit_cancel'), 'seq_edit_cancel', 'close')
 			);
 		}else{
-			$j(this.target_sequence_container+' .seq_save_cancel').html( cancel_button + gM('no_edit_permissions') );
+			$j(this.target_sequence_container+' .seq_save_cancel').html( cancel_button + gM('mwe-no_edit_permissions') );
 		}
 		//assing bindings
 		$j(this.target_sequence_container +' .seq_edit_cancel').unbind().click(function(){
-			var x = window.confirm( gM('edit_cancel_confirm') );
+			var x = window.confirm( gM('mwe-edit_cancel_confirm') );
 			if( x ){
 				_this.closeModEditor();
 			}else{
@@ -285,7 +285,7 @@ mvSequencer.prototype = {
 			//pop up progress dialog ~requesting edit line summary~
 			//remove any other save dialog
 			$j('#seq_save_dialog').remove();
-			$j('body').append('<div id="seq_save_dialog" title="'+ gM('edit_save') +'">' +
+			$j('body').append('<div id="seq_save_dialog" title="'+ gM('mwe-edit_save') +'">' +
 						'<span class="mw-summary">'+
 							'<label for="seq_save_summary">Edit summary: </label>' +
 						'</span>'+
@@ -309,7 +309,7 @@ mvSequencer.prototype = {
 						};
 						//change to progress bar and save:
 						$j('#seq_save_dialog').html('<div class="progress" /><br>' +
-							gM('saving_wait')
+							gM('mwe-saving_wait')
 						)
 						$j('#seq_save_dialog .progress').progressbar({
 							value: 100
@@ -319,7 +319,7 @@ mvSequencer.prototype = {
 							'data': saveReq,
 							'url' : _this.getLocalApiUrl()
 						},function(data){
-							$j('#seq_save_dialog').html( gM('save_done') );
+							$j('#seq_save_dialog').html( gM('mwe-save_done') );
 							$j('#seq_save_dialog').dialog('option',
 								'buttons', {
 									"Done":function(){
@@ -373,16 +373,16 @@ mvSequencer.prototype = {
 			$j('#'+this.timeline_id).html(''+
 				'<div id="'+this.timeline_id+'_left_cnt" class="mv_tl_left_cnt">'+
 					'<div id="'+this.timeline_id+'_head_control" style="position:absolute;top:0px;left:0px;right:0px;height:30px;">' +
-						'<a title="'+gM('play_from_position')+'" href="javascript:'+this.instance_name+'.play_jt()">'+
+						'<a title="'+gM('mwe-play_from_position')+'" href="javascript:'+this.instance_name+'.play_jt()">'+
 							'<img style="width:16px;height:16px;border:0" src="' + mv_embed_path + 'images/control_play_blue.png">'+
 						'</a>'+
-						'<a title="'+gM('zoom_in')+'" href="javascript:'+this.instance_name+'.zoom_in()">'+
+						'<a title="'+gM('mwe-zoom_in')+'" href="javascript:'+this.instance_name+'.zoom_in()">'+
 							'<img style="width:16px;height:16px;border:0" src="' + mv_embed_path + 'images/zoom_in.png">'+
 						'</a>'+
-						'<a title="'+gM('zoom_out')+'" href="javascript:'+this.instance_name+'.zoom_out()">'+
+						'<a title="'+gM('mwe-zoom_out')+'" href="javascript:'+this.instance_name+'.zoom_out()">'+
 							'<img style="width:16px;height:16px;border:0" src="' + mv_embed_path + 'images/zoom_out.png">'+
 						'</a>'+
-						'<a title="'+gM('cut_clip')+'" href="javascript:'+this.instance_name+'.cut_mode()">'+
+						'<a title="'+gM('mwe-cut_clip')+'" href="javascript:'+this.instance_name+'.cut_mode()">'+
 							'<img style="width:16px;height:16px;border:0" src="' + mv_embed_path + 'images/cut.png">'+
 							'</a>'+
 					'</div>' +
@@ -406,13 +406,13 @@ mvSequencer.prototype = {
 						var track_height=60;
 						var exc_img = 'opened';
 						var exc_action='close';
-						var exc_msg = gM('colapse_track');
+						var exc_msg = gM('mwe-collapse_track');
 					break;
 					case 'text':
 						var track_height=20;
 						var exc_img = 'closed';
 						var exc_action='open';
-						var exc_msg = gM('expand_track');
+						var exc_msg = gM('mwe-expand_track');
 					break;
 				}
 				//add track name:
@@ -555,11 +555,11 @@ mvSequencer.prototype = {
 			}
 
 			o+='<li>' +
-				'<a id="mv_menu_item_'+tab_id+'" href="#' + tab_id + '_ic">'+gM('menu_' + tab_id ) + '</a>' +
+				'<a id="mv_menu_item_'+tab_id+'" href="#' + tab_id + '_ic">'+gM('mwe-menu_' + tab_id ) + '</a>' +
 			'</li>';
 
 			tabc += '<div id="' + tab_id + '_ic" style="overflow:auto;height:268px;" >';
-				tabc += (menu_item.html) ? menu_item.html : '<h3>' + gM('menu_'+tab_id) + '</h3>';
+				tabc += (menu_item.html) ? menu_item.html : '<h3>' + gM('mwe-menu_'+tab_id) + '</h3>';
 			tabc +='</div>';
 			inx++;
 		};
@@ -714,10 +714,10 @@ mvSequencer.prototype = {
 			_this.doEditTransition( _this.getClipFromSeqID( $j('.mv_selected_clip').parent().attr('id') ) );
 		}else if( $j('.mv_selected_clip').length === 0){
 			//no clip selected warning:
-			$j('#transition_ic').html( gM('no_selected_resource') );
+			$j('#transition_ic').html( gM('mwe-no_selected_resource') );
 		}else{
 			//multiple clip selected warning:
-			$j('#transition_ic').html( gM('error_edit_multiple') );
+			$j('#transition_ic').html( gM('mwe-error_edit_multiple') );
 		}
 	},
 	doEditSelectedClip:function(){
@@ -727,10 +727,10 @@ mvSequencer.prototype = {
 			this.doEditClip( this.getClipFromSeqID( $j('.mv_selected_clip').parent().attr('id') ) );
 		}else if( $j('.mv_selected_clip').length === 0){
 			//no clip selected warning:
-			$j('#clipedit_ic').html( gM('no_selected_resource') );
+			$j('#clipedit_ic').html( gM('mwe-no_selected_resource') );
 		}else{
 			//multiple clip selected warning:
-			$j('#clipedit_ic').html( gM('error_edit_multiple') );
+			$j('#clipedit_ic').html( gM('mwe-error_edit_multiple') );
 		}
 	},
 	doEditTransition:function( cObj ){
@@ -1075,9 +1075,9 @@ mvSequencer.prototype = {
 									'" class="mv_time_clip_text mv_clip_drag">'+clip.title;
 						}
 						//add in per clip controls
-						track_html+='<div title="'+gM('clip_in')+' '+clip.embed.start_ntp+'" class="ui-resizable-w ui-resizable-handle" style="width: 16px; height: 16px; left: 0px; top: 2px;background:url(\''+mv_embed_path+'images/application_side_contract.png\');" ></div>'+"\n";
-						track_html+='<div title="'+gM('clip_out')+' '+clip.embed.end_ntp+'" class="ui-resizable-e ui-resizable-handle" style="width: 16px; height: 16px; right: 0px; top: 2px;background:url(\''+mv_embed_path+'images/application_side_expand.png\');" ></div>'+"\n";
-						track_html+='<div title="'+gM('rmclip')+'" onClick="'+this.instance_name + '.removeClips(new Array([' + track_id + ',' + j + ']))" style="position:absolute;cursor:pointer;width: 16px; height: 16px; left: 0px; bottom:2px;background:url(\''+mv_embed_path+'images/delete.png\');"></div>'+"\n";
+						track_html+='<div title="'+gM('mwe-clip_in')+' '+clip.embed.start_ntp+'" class="ui-resizable-w ui-resizable-handle" style="width: 16px; height: 16px; left: 0px; top: 2px;background:url(\''+mv_embed_path+'images/application_side_contract.png\');" ></div>'+"\n";
+						track_html+='<div title="'+gM('mwe-clip_out')+' '+clip.embed.end_ntp+'" class="ui-resizable-e ui-resizable-handle" style="width: 16px; height: 16px; right: 0px; top: 2px;background:url(\''+mv_embed_path+'images/application_side_expand.png\');" ></div>'+"\n";
+						track_html+='<div title="'+gM('mwe-rmclip')+'" onClick="'+this.instance_name + '.removeClips(new Array([' + track_id + ',' + j + ']))" style="position:absolute;cursor:pointer;width: 16px; height: 16px; left: 0px; bottom:2px;background:url(\''+mv_embed_path+'images/delete.png\');"></div>'+"\n";
 						track_html+='<span style="display:none;" class="mv_clip_stats"></span>';
 
 						track_html+='</span>';
