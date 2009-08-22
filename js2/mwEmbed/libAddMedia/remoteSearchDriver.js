@@ -36,7 +36,17 @@ loadGM({
 	"uploaded_itmes" : "Uploaded Items:",
 	
 	"your_recent_uploads" : "Your Recent Uploads",
-	"upload_a_file": "Upload a New File"
+	"upload_a_file": "Upload a New File",
+	
+	"resource_page_desc":"Resource Page Description:",
+	"edit_resource_desc": "Edit WikiText Resource Description:",
+	"local_resource_title": "Local Resource Title:",
+	"watch_this_page": "Watch this page",
+	"do_import_resource": "Do Import Resource",
+	"update_preview": "Update Preview",
+	"cancel_import": "Cancel Import",
+	"importing_asset" : "Importing Asset",
+	"preview_insert_resource": "Preview Insert of Resource: $1"
 });
 var default_remote_search_options = {
 	'profile':'mediawiki_edit',
@@ -96,11 +106,12 @@ remoteSearchDriver.prototype = {
 	 * sets the default display item:
 	 * can be any content_providers key or 'all'
 	 */
-	disp_item : 'upload',
+	disp_item : 'wiki_commons',
 	/** the default content providers list.
 	 *
 	 * (should be note that special tabs like "upload" and "combined" don't go into the content proviers list:
-	 *
+	 * @note do not use double underscore in content providers names (used for id lookup)
+	 * 
 	 * @@todo we will want to load more per user-preference and per category lookup
 	 */
 	content_providers:{
@@ -562,93 +573,95 @@ remoteSearchDriver.prototype = {
 		var _this = this;
 		//set it to loading:
 		mv_set_loading('#tab-upload');
-
-		//do config variable reality checks:
-		if( _this.upload_api_target == 'local' ){
-			if( ! _this.local_wiki_api_url ){
-				$j('#tab-upload').html( gM( 'rsd_config_error', 'missing_local_api_url' ) );
-				return false;
-			}else{
-				_this.upload_api_target = _this.local_wiki_api_url;
-			}
-		}
-		//make sure we have a url for the upload target:
-		if(  parseUri( _this.upload_api_target ).host ==  _this.upload_api_target ){
-			$j('#tab-upload').html( gM('rsd_config_error', 'bad_api_url') );
-			return false;
-		}
-		//output the form
-		//set the form action based on domain:
-		if( parseUri( document.URL ).host == parseUri( _this.upload_api_target ).host ){
-			mvJsLoader.doLoad(['$j.fn.simpleUploadForm'],function(){
-								
-				//get extened info about the file
-				var cp = _this.content_providers['this_wiki'];
-				//check for "this_wiki" enabled
-				if(!cp.enabled){
-					$j('#tab-upload').html('error this_wiki not enabled (can\'t get uploaded file info)');
+		//do things async to keep interface snapy
+		setTimeout(function(){				
+			//do config variable reality checks:
+			if( _this.upload_api_target == 'local' ){
+				if( ! _this.local_wiki_api_url ){
+					$j('#tab-upload').html( gM( 'rsd_config_error', 'missing_local_api_url' ) );
 					return false;
-				}				
-							
-				//load  this_wiki search system to grab the rObj
-				_this.loadSearchLib(cp, function(){
-					//do basic layout form on left upload "bin" on right
-					$j('#tab-upload').html('<table cellspacing="10">' +
-					'<tr>' +
-						'<td valign="top" style="width:350px;">' +
-							'<h4>' + gM('upload_a_file') + '</h4>' +  
-						 	'<div id="upload_form">' +						 	
-						 		mv_get_loading_img() +
-						 	'</div>' +
-						'</td>' +
-						'<td valign="top" id="upload_bin_cnt">' +
-						'<h4>' + gM('your_recent_uploads') + '</h4>' +  
-							'<div id="upload_bin">' +
-								mv_get_loading_img() +
-							'</div>'+
-						'</td>' +
-					'</tr>' +
-					'</table>');
-					
-					
-					//fill in the user page:
-					if(typeof wgUserName != 'undefined' && wgUserName){
-						//load the upload bin with anything the current user has uploaded 
-						cp.sObj.getUserRecentUploads( wgUserName, function(){
-							_this.drawOutputResults();
-						});								
-					}else{		
-						$j('#upload_bin_cnt').empty();										
-					}						
-					
-					//deal with the api form upload form directly:
-					$j('#upload_form').simpleUploadForm({
-						"api_target" :	_this.upload_api_target ,
-						"ondone_cb"	: function( resultData ){
-							var wTitle = resultData['wpDestFile'];
-							//add a loading div
-							$j( _this.target_container ).append('<div id="temp_edit_loader" '+
-								'style="position:absolute;top:0px;left:0px;bottom:5px;right:4px;background-color:#FFF;">' +
-									mv_get_loading_img('position:absolute;top:30px;left:30px') +
-							'</div>');											
-								cp.sObj.addByTitle( wTitle, function( rObj ){
-									$j( _this.target_container ).find('#temp_edit_loader').remove();
-									//redraw (with added result if new) 
-									_this.drawOutputResults();																	
-									//pull up recource editor: 
-									_this.resourceEdit( rObj, $j('#res_upload_' + rObj.id).get(0) );
-								});								
-							//return false to close progress window:
-							return false;
-						}
-					})
+				}else{
+					_this.upload_api_target = _this.local_wiki_api_url;
+				}
+			}
+			//make sure we have a url for the upload target:
+			if(  parseUri( _this.upload_api_target ).host ==  _this.upload_api_target ){
+				$j('#tab-upload').html( gM('rsd_config_error', 'bad_api_url') );
+				return false;
+			}
+			//output the form
+			//set the form action based on domain:
+			if( parseUri( document.URL ).host == parseUri( _this.upload_api_target ).host ){
+				mvJsLoader.doLoad(['$j.fn.simpleUploadForm'],function(){
+									
+					//get extened info about the file
+					var cp = _this.content_providers['this_wiki'];
+					//check for "this_wiki" enabled
+					if(!cp.enabled){
+						$j('#tab-upload').html('error this_wiki not enabled (can\'t get uploaded file info)');
+						return false;
+					}				
+								
+					//load  this_wiki search system to grab the rObj
+					_this.loadSearchLib(cp, function(){
+						//do basic layout form on left upload "bin" on right
+						$j('#tab-upload').html('<table cellspacing="10">' +
+						'<tr>' +
+							'<td valign="top" style="width:350px;">' +
+								'<h4>' + gM('upload_a_file') + '</h4>' +  
+							 	'<div id="upload_form">' +						 	
+							 		mv_get_loading_img() +
+							 	'</div>' +
+							'</td>' +
+							'<td valign="top" id="upload_bin_cnt">' +
+							'<h4>' + gM('your_recent_uploads') + '</h4>' +  
+								'<div id="upload_bin">' +
+									mv_get_loading_img() +
+								'</div>'+
+							'</td>' +
+						'</tr>' +
+						'</table>');
+						
+						
+						//fill in the user page:
+						if(typeof wgUserName != 'undefined' && wgUserName){
+							//load the upload bin with anything the current user has uploaded 
+							cp.sObj.getUserRecentUploads( wgUserName, function(){
+								_this.drawOutputResults();
+							});								
+						}else{		
+							$j('#upload_bin_cnt').empty();										
+						}						
+						
+						//deal with the api form upload form directly:
+						$j('#upload_form').simpleUploadForm({
+							"api_target" :	_this.upload_api_target ,
+							"ondone_cb"	: function( resultData ){
+								var wTitle = resultData['wpDestFile'];
+								//add a loading div
+								$j( _this.target_container ).append('<div id="temp_edit_loader" '+
+									'style="position:absolute;top:0px;left:0px;bottom:5px;right:4px;background-color:#FFF;">' +
+										mv_get_loading_img('position:absolute;top:30px;left:30px') +
+								'</div>');											
+									cp.sObj.addByTitle( wTitle, function( rObj ){
+										$j( _this.target_container ).find('#temp_edit_loader').remove();
+										//redraw (with added result if new) 
+										_this.drawOutputResults();																	
+										//pull up recource editor: 
+										_this.resourceEdit( rObj, $j('#res_upload_' + rObj.id).get(0) );
+									});								
+								//return false to close progress window:
+								return false;
+							}
+						})
+					});
 				});
-			});
-		}else{
-			//setup the proxy
-			js_log('do proxy:: ' + parseUri( _this.upload_api_target ).host);
-			$j('#tab-upload').html('proxy upload not yet ready');
-		}
+			}else{
+				//setup the proxy
+				js_log('do proxy:: ' + parseUri( _this.upload_api_target ).host);
+				$j('#tab-upload').html('proxy upload not yet ready');
+			}
+		},1);
 	},
 	runSearch: function(){
 		js_log("f:runSearch::" + this.disp_item);
@@ -931,22 +944,21 @@ remoteSearchDriver.prototype = {
 	},
 	//@@todo we could load the id with the content provider id to find the object faster...
 	getResourceFromId:function( rid ){
-		//js_log('getResourceFromId:' + rid );
+		js_log('getResourceFromId:' + rid );
 		//strip out /res/ if preset:				
 		rid = rid.replace(/res_/, '');
 		//js_log("looking at: " + rid);
-		p = rid.split('_');
+		p = rid.split('__');		
 		var cp_id = p[0];
 		var rid = p[1];		
+	
 		if(cp_id == 'upload')
 			cp_id = 'this_wiki';
 			
 		var cp = this.content_providers[cp_id];
-		
-		if(cp['sObj'] && cp.sObj.resultsObj[rid]){
+		if(cp && cp['sObj'] && cp.sObj.resultsObj[rid]){
 			return cp.sObj.resultsObj[rid];
 		}		
-	
 		js_log("ERROR: could not find " + rid);
 		return false;
 	},
@@ -983,7 +995,7 @@ remoteSearchDriver.prototype = {
 							rItem.poster = mv_skin_img_path + 'sound_music_icon-80.png';
 						}
 						//get a thumb with proper resolution transform if possible:
-						o+='<img title="'+rItem.title+'" class="rsd_res_item" id="res_' + cp_id + '_' + rInx +
+						o+='<img title="'+rItem.title+'" class="rsd_res_item" id="res_' + cp_id + '__' + rInx +
 								'" style="width:' + _this.thumb_width + 'px;" src="' +
 								cp.sObj.getImageTransform( rItem, {'width':_this.thumb_width } )
 								+ '">';
@@ -1110,8 +1122,8 @@ remoteSearchDriver.prototype = {
 		});
 
 
-		//assume we keep aspect ratio for the thumbnail that we clicked:
-		var tRatio = $j(rsdElement).height() / $j(rsdElement).width();
+		//try and keep aspect ratio for the thumbnail that we clicked:
+		var tRatio =   $j('#rsd_edit_img').height() / $j('#rsd_edit_img').width();
 		if(	! tRatio )
 			var tRatio = 1; //set ratio to 1 if the width of the thumbnail can't be found for some reason
 
@@ -1123,8 +1135,8 @@ remoteSearchDriver.prototype = {
 			'left':'5px',
 			'width': maxWidth + 'px',
 			'height': parseInt( tRatio * maxWidth)  + 'px'
-		}, "slow"); // do it slow to give it a chance to finish loading the HQ version
-
+		}, "slow"); // do it slow to give it a chance to finish loading the HQ version				
+		
 		if( mediaType == 'image' ){
 			_this.loadHQImg(rObj, {'width':maxWidth}, 'rsd_edit_img', function(){
 				$j('.mv_loading_img').remove();
@@ -1341,7 +1353,7 @@ remoteSearchDriver.prototype = {
 							wt += '|Description= ' + gM('missing_desc_see_soruce', rObj.link ) + "\n";
 						}
 
-						//output person and bill info if
+						//output search specific info
 						wt+='|Source=' + rObj.pSobj.getImportResourceDescWiki( rObj ) + "\n";
 
 						if( rObj.author )
@@ -1357,11 +1369,13 @@ remoteSearchDriver.prototype = {
 							wt+='|other_versions=' + rObj.other_versions + "\n";
 
 						wt+='}}';
+						
 						//get any extra categories or helpful links
 						wt+= rObj.pSobj.getExtraResourceDescWiki( rObj );
 
 
 						$j('#rsd_resource_import').remove();//remove any old resource imports
+						
 						//@@ show user dialog to import the resource
 						$j( _this.target_container ).append('<div id="rsd_resource_import" '+
 						'class="ui-state-highlight ui-widget-content ui-state-error" ' +
@@ -1370,27 +1384,27 @@ remoteSearchDriver.prototype = {
 								'<div id="rsd_preview_import_container" style="position:absolute;width:50%;bottom:0px;left:0px;overflow:auto;top:30px;">' +
 									rObj.pSobj.getEmbedHTML( rObj, {'id': _this.target_container + '_rsd_pv_vid', 'max_height':'200','only_poster':true} )+ //get embedHTML with small thumb:
 									'<br style="clear both">'+
-									'<strong>Resource Page Description:</strong>'+
+									'<strong>'+gM('resource_page_desc') +'</strong>'+
 									'<div id="rsd_import_desc" syle="display:inline;">'+
 										mv_get_loading_img('position:absolute;top:5px;left:5px') +
 									'</div>'+
 								'</div>'+
 								'<div id="rds_edit_import_container" style="position:absolute;left:50%;' +
 									'bottom:0px;top:30px;right:0px;overflow:auto;">'+
-									'<strong>Local Resource Title:</strong><br>'+
+									'<strong>' + gM('local_resource_title') + '</strong><br>'+
 									'<input type="text" size="30" value="' + rObj.target_resource_title + '" readonly="true"><br>'+
-									'<strong>Edit WikiText Resource Description:</strong>(will be replaced by forms soon)' +
+									'<strong>' + gM('edit_resource_desc') + '</strong>' +
 									'<textarea id="rsd_import_ta" id="mv_img_desc" style="width:90%;" rows="8" cols="50">' +
 										wt +
 									'</textarea><br>' +
 									'<input type="checkbox" value="true" id="wpWatchthis" name="wpWatchthis" tabindex="7"/>' +
-									'<label for="wpWatchthis">Watch this page</label><br><br><br>' +
+									'<label for="wpWatchthis">'+gM('watch_this_page')+'</label><br><br><br>' +
 
-									$j.btnHtml('Do Import Resource', 'rsd_import_doimport', 'check' ) + ' ' +
+									$j.btnHtml(gM('do_import_resource'), 'rsd_import_doimport', 'check' ) + ' ' +
 
-									$j.btnHtml('Update Preview', 'rsd_import_apreview', 'refresh' ) + '<div style="clear:both;height:20px;"/>' +
+									$j.btnHtml(gM('update_preview'), 'rsd_import_apreview', 'refresh' ) + '<div style="clear:both;height:20px;"/>' +
 
-									$j.btnHtml('Cancel Import', 'rsd_import_acancel', 'close' ) + ' ' +
+									$j.btnHtml(gM('cancel_import'), 'rsd_import_acancel', 'close' ) + ' ' +
 
 								'</div>'+
 								//output the rendered and non-renderd version of description for easy swiching:
@@ -1526,7 +1540,7 @@ remoteSearchDriver.prototype = {
 							'style="position:absolute;top:0px;'+
 								'left:0px;width:100%;height:100%;'+
 								'z-index:5;background:#FFF;overflow:auto;">'+
-									'<div style="position:absolute;left:30%;right:30%"><h3>Importing Asset</h3><br>' +
+									'<div style="position:absolute;left:30%;right:30%"><h3>'+gM('importing_asset')+'</h3><br>' +
 										mv_get_loading_img('','mv_loading_bar_img') +
 									'</div>'+
 							'</div>'
@@ -1558,7 +1572,7 @@ remoteSearchDriver.prototype = {
 									js_log( 'error text is: ' + error_txt );
 									$j( '#rsd_resource_import' ).html( '<h3>Error</h3>' + error_txt + '<br>' + form_txt +
 											'<br>'+
-										'<a href="#" id="rsd_import_error" >Cancel import</a>'
+										'<a href="#" id="rsd_import_error" >' + gM('cancel_import') + '</a>'
 									);
 									//set up cancel action:
 									$j('#rsd_import_error').click(function(){
@@ -1581,12 +1595,12 @@ remoteSearchDriver.prototype = {
 					'style="position:absolute;overflow:hidden;z-index:4;top:0px;bottom:75px;right:0px;left:0px;background-color:#FFF;">' +
 						mv_get_loading_img('top:30px;left:30px') +
 					'</div>');
-
+			
 			var bPlaneTarget = _this.target_container +'~ .ui-dialog-buttonpane';
 			var pTitle = $j( _this.target_container ).dialog('option', 'title');
 
 			//update title:
-			$j( _this.target_container ).dialog('option', 'title', 'Preview Insert of Resource: ' + rObj.title );
+			$j( _this.target_container ).dialog('option', 'title', gM('preview_insert_resource', rObj.title) );
 
 			//update buttons preview:
 			$j(bPlaneTarget).html( $j.btnHtml( gM('rsd_do_insert'), 'preview_do_insert', 'check') + ' ' )
