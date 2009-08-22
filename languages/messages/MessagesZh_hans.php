@@ -1,5 +1,5 @@
 <?php
-/** Simplified Chinese (‪中文(简体)‬)
+/** Simplified Chinese (‪中文(简化字)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -1943,13 +1943,16 @@ Template:消除歧義',
 'enotif_impersonal_salutation' => '{{SITENAME}}用户',
 'changed'                      => '修改了',
 'created'                      => '建立了',
+'deleted'                      => '删除了',
+'enotif_deletedpagetext'       => '这个页面已经不再存在。',
 'enotif_subject'               => '{{SITENAME}}有页面 $PAGETITLE 被 $PAGEEDITOR $CHANGEDORCREATED',
 'enotif_lastvisited'           => '查看您上次访问后的所有更改请访问$1。',
 'enotif_lastdiff'              => '检视更改请访问$1。',
 'enotif_anon_editor'           => '匿名用户$1',
-'enotif_body'                  => '亲爱的 $WATCHINGUSERNAME,
+'enotif_rev_info'              => '请到$1查看当前修订版本。',
+'enotif_body'                  => '亲爱的 $WATCHINGUSERNAME，
 
-$PAGEEDITOR已经在$PAGEEDITDATE$CHANGEDORCREATED{{SITENAME}}的$PAGETITLE页面，请到$PAGETITLE_URL查看当前修订版本。
+$PAGEEDITOR已经在$PAGEEDITDATE$CHANGEDORCREATED{{SITENAME}}的$PAGETITLE页面。$REVINFO
 
 $NEWPAGE
 
