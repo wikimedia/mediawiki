@@ -339,13 +339,13 @@ class UploadForm extends SpecialPage {
 		list( $existsType, $file ) = $exists;
 
 		if( strpos( $file->getName(), '.' ) == false ) {
-            $partname = $file->getName();
-            $rawExtension = '';
-        } else {
-            $n = strrpos( $file->getName(), '.' );
-            $rawExtension = substr( $file->getName(), $n + 1 );
-            $partname = substr( $file->getName(), 0, $n );
-        }
+			$partname = $file->getName();
+			$rawExtension = '';
+		} else {
+			$n = strrpos( $file->getName(), '.' );
+			$rawExtension = substr( $file->getName(), $n + 1 );
+			$partname = substr( $file->getName(), 0, $n );
+		}
 
 		$sk = $wgUser->getSkin();
 
