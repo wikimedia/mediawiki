@@ -488,7 +488,7 @@ class Skin extends Linker {
 				'action=raw&ctype='.$wgJsMimeType );
 			$wgOut->addScriptFile( $userjs );
 		}
-		return "\t" . $vars . "\t" . $out->mScripts;
+		return $vars . "\n" . $out->mScripts;
 	}
 
 	/**
@@ -980,7 +980,7 @@ END;
 	 * @return String HTML-wrapped JS code to be put before </body>
 	 */
 	function bottomScripts() {
-		$bottomScriptText = "\n\t\t" . Html::inlineScript( 'if (window.runOnloadHook) runOnloadHook();' ) . "\n";
+		$bottomScriptText = "\n" . Html::inlineScript( 'if (window.runOnloadHook) runOnloadHook();' ) . "\n";
 		wfRunHooks( 'SkinAfterBottomScripts', array( $this, &$bottomScriptText ) );
 		return $bottomScriptText;
 	}

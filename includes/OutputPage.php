@@ -98,7 +98,7 @@ class OutputPage {
 		}
 	}
 	function addScript( $script ) {
-		$this->mScripts .= "\t\t" . $script . "\n";
+		$this->mScripts .= $script . "\n";
 	}
 
 	/**
@@ -275,7 +275,7 @@ class OutputPage {
 	 * @param string $script JavaScript text, no <script> tags
 	 */
 	function addInlineScript( $script ) {
-		$this->mScripts .= "\t\t" . Html::inlineScript( "\n\t\t$script\n\t\t" ) . "\n";
+		$this->mScripts .= Html::inlineScript( "\n$script\n" ) . "\n";
 	}
 
 	function getScript() {
@@ -1703,7 +1703,8 @@ class OutputPage {
 			$ret .= "xml:lang=\"$wgContLanguageCode\" lang=\"$wgContLanguageCode\" dir=\"$dir\">\n";
 		}
 
-		$ret .= "<head>\n\t<title>" . htmlspecialchars( $this->getHTMLTitle() ) . "</title>\n\t";
+		$ret .= "<head>\n";
+		$ret .= "<title>" . htmlspecialchars( $this->getHTMLTitle() ) . "</title>\n";
 		$ret .= implode( "\n", array(
 			$this->getHeadLinks(),
 			$this->buildCssLinks(),
@@ -1824,7 +1825,7 @@ class OutputPage {
 			}
 		}
 
-		return implode( "\n\t", $tags ) . "\n";
+		return implode( "\n", $tags ) . "\n";
 	}
 
 	/**
@@ -1901,7 +1902,7 @@ class OutputPage {
 				$links[] = $link;
 		}
 
-		return "\t" . implode( "\n\t", $links );
+		return implode( "\n", $links );
 	}
 
 	protected function styleLink( $style, $options ) {
