@@ -333,13 +333,17 @@ class Skin extends Linker {
 	}
 
 	static function makeVariablesScript( $data ) {
-		$r = array();
-		foreach ( $data as $name => $value ) {
-			$encValue = Xml::encodeJsVar( $value );
-			$r[] = "var $name = $encValue;";
+		if( $data ) {
+			$r = array();
+			foreach ( $data as $name => $value ) {
+				$encValue = Xml::encodeJsVar( $value );
+				$r[] = "$name=$encValue";
+			}
+			$js = 'var ' . implode( ",\n", $r ) . ';';
+			return Html::inlineScript( "\n$js\n" );
+		} else {
+			return '';
 		}
-		return Html::inlineScript( "\n\t\t" . implode( "\n\t\t", $r ) .
-			"\n\t\t" );
 	}
 
 	/**
