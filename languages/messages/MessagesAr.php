@@ -1986,7 +1986,7 @@ PICT # متنوع
 
 # Random page
 'randompage'         => 'صفحة عشوائية',
-'randompage-nopages' => 'لا توجد صفحات في النطاق "$1".',
+'randompage-nopages' => 'لا توجد صفحات في {{PLURAL:$2||النطاق التالي|النطاقين التاليين|النطاقات التالية}}: $1.',
 
 # Random redirect
 'randomredirect'         => 'تحويلة عشوائية',
@@ -2262,33 +2262,37 @@ PICT # متنوع
 'enotif_reset'                 => 'التعليم على كل الصفحات كمزارة',
 'enotif_newpagetext'           => 'هذه صفحة جديدة.',
 'enotif_impersonal_salutation' => 'مستخدم {{SITENAME}}',
-'changed'                      => 'تم التغيير',
-'created'                      => 'أنشأ',
+'changed'                      => 'غُيّرت',
+'created'                      => 'أنشئت',
+'deleted'                      => 'حُذفت',
+'enotif_deletedpagetext'       => 'لم تعد هذه الصفحة متوفرة.',
 'enotif_subject'               => 'صفحة {{SITENAME}} $PAGETITLE تم $CHANGEDORCREATED بواسطة $PAGEEDITOR',
 'enotif_lastvisited'           => 'انظر $1 لكل التغييرات منذ زيارتك الأخيرة.',
 'enotif_lastdiff'              => 'انظر $1 لرؤية هذا التغيير.',
 'enotif_anon_editor'           => 'مستخدم مجهول $1',
+'enotif_rev_info'              => 'راجع $1 للمراجعة الحالية.',
 'enotif_body'                  => 'عزيزي $WATCHINGUSERNAME،
 
-إن صفحة $PAGETITLE في {{SITENAME}} قد تغيرت إلى $CHANGEDORCREATED من قبل $PAGEEDITOR، لرؤية النسخة الحالية من الصفحة انظر: $PAGETITLE_URL.
+$CHANGEDORCREATED صفحة $PAGETITLE في {{SITENAME}} من قبل $PAGEEDITOR، لرؤية النسخة الحالية من الصفحة راجع: $PAGETITLE_URL.
 
 $NEWPAGE
 
 ملخص تعديل المحرر: $PAGESUMMARY $PAGEMINOREDIT
 
 اتصل بالمحرر:
-بريد إلكتروني: $PAGEEDITOR_EMAIL
-صفحة المستخدم: $PAGEEDITOR_WIKI
+عبر بريد إلكتروني: $PAGEEDITOR_EMAIL
+عبر الويكي: $PAGEEDITOR_WIKI
 
-لن يكون هنالك أي إخطارات أخرى عن أية تغييرات تتم في المستقبل إلا إذا زرت هذه الصفحة. يمكنك أيضا أن تعيد تصفير عداد الإخطارات لجميع الصفحات التي تراقبها في قائمة مراقبتك.
+لن يكون هنالك أي إخطارات أخرى عن أية تغييرات تتم في المستقبل إلا إذا زرت هذه الصفحة.
+يمكنك أيضا أن تعيد تصفير عداد الإخطارات لجميع الصفحات التي تراقبها في قائمة مراقبتك.
 
-نظام إخطار {{SITENAME}}
+             نظام إخطار {{SITENAME}} الودود
 
 --
 لتغيير إعدادات قائمة مراقبتك، اذهب إلى:
 {{fullurl:{{ns:special}}:Watchlist/edit}}
 
-للاقتراحات والحصول على مساعدة إضافية:
+للاقتراحات وللحصول على مساعدة إضافية:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete

@@ -1989,14 +1989,17 @@ render lo plus facile de deteger.",
 'enotif_impersonal_salutation' => 'Usator de {{SITENAME}}',
 'changed'                      => 'modificate',
 'created'                      => 'create',
+'deleted'                      => 'delite',
+'enotif_deletedpagetext'       => 'Iste pagina non es plus disponibile.',
 'enotif_subject'               => 'Le pagina $PAGETITLE de {{SITENAME}} ha essite $CHANGEDORCREATED per $PAGEEDITOR',
 'enotif_lastvisited'           => 'Vide $1 pro tote le modificationes depost tu ultime visita.',
 'enotif_lastdiff'              => 'Vide $1 pro revider iste modification.',
 'enotif_anon_editor'           => 'usator anonyme $1',
+'enotif_rev_info'              => 'Vide $1 pro le version actual.',
 'enotif_body'                  => 'Car $WATCHINGUSERNAME,
 
 
-Le pagina de {{SITENAME}} titulate $PAGETITLE ha essite $CHANGEDORCREATED le $PAGEEDITDATE per $PAGEEDITOR. Vide $PAGETITLE_URL pro le version actual.
+Le pagina de {{SITENAME}} titulate $PAGETITLE ha essite $CHANGEDORCREATED le $PAGEEDITDATE per $PAGEEDITOR. $REVINFO
 
 $NEWPAGE
 
@@ -2015,7 +2018,7 @@ Como alternativa tu pote reinitialisar le optiones de notification pro tote le p
 Pro cambiar le configuration de tu observatorio, visita
 {{fullurl:{{ns:special}}:Watchlist/edit}}
 
-Reactiones e ulterior assistentia:
+Feedback e ulterior assistentia:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
@@ -2085,7 +2088,7 @@ Vide le [[Special:ProtectedPages|lista de paginas protegite]] pro le lista de pr
 'protect-title'               => 'Cambiar nivello de protection de "$1"',
 'prot_1movedto2'              => 'displaciava [[$1]] verso [[$2]]',
 'protect-legend'              => 'Confirmar protection',
-'protectcomment'              => 'Commento:',
+'protectcomment'              => 'Motivo:',
 'protectexpiry'               => 'Expiration:',
 'protect_expiry_invalid'      => 'Le tempore de expiration es invalide.',
 'protect_expiry_old'          => 'Le tempore de expiration es in le passato.',

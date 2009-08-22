@@ -2058,13 +2058,16 @@ Promjene na ovoj stranici i njenoj stranici za razgovor bit će tamo prikazani, 
 'enotif_impersonal_salutation' => '{{SITENAME}} suradnik',
 'changed'                      => 'promijenio',
 'created'                      => 'stvorio',
+'deleted'                      => 'izbrisan',
+'enotif_deletedpagetext'       => 'Ova stranica više nije dostupna.',
 'enotif_subject'               => '{{SITENAME}}: Stranicu $PAGETITLE je $CHANGEDORCREATED suradnik $PAGEEDITOR',
 'enotif_lastvisited'           => 'Pogledaj $1 za promjene od zadnjeg posjeta.',
 'enotif_lastdiff'              => 'Pogledajte $1 kako biste mogli vidjeti tu izmjenu.',
 'enotif_anon_editor'           => 'neprijavljeni suradnik $1',
-'enotif_body'                  => '$WATCHINGUSERNAME,
+'enotif_rev_info'              => 'Pogledajte $1 za trenutačnu inačicu.',
+'enotif_body'                  => 'Poštovani $WATCHINGUSERNAME,
 
-stranicu na projektu {{SITENAME}} s naslovom $PAGETITLE je dana $PAGEEDITDATE $CHANGEDORCREATED suradnik $PAGEEDITOR,
+stranicu na projektu {{SITENAME}} s naslovom $PAGETITLE je dana $PAGEEDITDATE $CHANGEDORCREATED suradnik $PAGEEDITOR. $REVINFO
 pogledajte $PAGETITLE_URL za trenutačnu inačicu.
 
 $NEWPAGE
@@ -2075,14 +2078,14 @@ Možete se javiti uredniku:
 mail: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
-Do vašeg ponovnog posjeta stranici nećete dobivati daljnja izviješća.
-Postavke za izvješćivanje možete resetirati na svom popisu praćenja.
+Do Vašeg ponovnog posjeta stranici nećete dobivati daljnje obavijesti.
+Postavke za izvješćivanje možete resetirati za sve praćene stranice svog popisa praćenja.
 
-            Vaš sustav izvješćivanja - hrvatska {{SITENAME}}.
+            Vaš sustav izvješćivanja {{SITENAME}}.
 
 --
-Za promjene svog popisa praćenja posjetite
-{{fullurl:Special:Watchlist|edit=yes}}
+Za promjene svog popisa praćenja, posjetite
+{{fullurl:{{ns:special}}:Watchlist/edit}}
 
 Za pomoć posjetite:
 {{fullurl:{{MediaWiki:Helppage}}}}',

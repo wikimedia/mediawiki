@@ -86,7 +86,7 @@ $messages = array(
 'article'       => 'Blatt',
 'newwindow'     => '(in em nei Fenschder)',
 'cancel'        => 'Zerick',
-'moredotdotdot' => 'Mehr…',
+'moredotdotdot' => 'Mehner…',
 'mypage'        => 'Mei Blatt',
 'mytalk'        => 'Mei Gschwetz-Blatt',
 'anontalk'      => 'Gschwetz-Blatt fer die IP',
@@ -106,7 +106,7 @@ $messages = array(
 'vector-action-delete'     => 'Lösche',
 'vector-action-move'       => 'Ziehe',
 'vector-namespace-help'    => 'Hilfblatt',
-'vector-namespace-image'   => 'File',
+'vector-namespace-image'   => 'Feil',
 'vector-namespace-main'    => 'Blatt',
 'vector-namespace-special' => 'Besunneres Blatt',
 'vector-namespace-talk'    => 'Gschwetz',
@@ -190,7 +190,7 @@ Guuck aach [[Special:Version|Versionsblatt]]',
 'nstab-user'    => 'Yuuser-Blatt',
 'nstab-special' => 'Besunneres Blatt',
 'nstab-project' => 'Project-Blatt',
-'nstab-image'   => 'File',
+'nstab-image'   => 'Feil',
 'nstab-help'    => 'Hilf',
 
 # General errors
@@ -323,23 +323,29 @@ Guuck aach [[Special:Version|Versionsblatt]]',
 # User rights
 'userrights-editusergroup' => 'Mitgliedschaft vun Yuuser ennere',
 'userrights-groupsmember'  => 'Mitglied vun:',
+'userrights-reason'        => 'Grund fer die Ennering:',
 
 # Groups
-'group'      => 'Druppe:',
-'group-user' => 'Yuuser',
-'group-bot'  => 'Bots',
-'group-all'  => '(all)',
+'group'       => 'Druppe:',
+'group-user'  => 'Yuuser',
+'group-bot'   => 'Bots',
+'group-sysop' => 'Verwalter',
+'group-all'   => '(all)',
 
-'group-user-member' => 'Yuuser',
-'group-bot-member'  => 'Bot',
+'group-user-member'  => 'Yuuser',
+'group-bot-member'   => 'Bot',
+'group-sysop-member' => 'Verwalter',
 
-'grouppage-user' => '{{ns:project}}:Yuuser',
-'grouppage-bot'  => '{{ns:project}}:Bots',
+'grouppage-user'  => '{{ns:project}}:Yuuser',
+'grouppage-bot'   => '{{ns:project}}:Bots',
+'grouppage-sysop' => '{{ns:project}}:Verwalter',
 
 # Rights
 'right-read'     => 'Bledder lese',
 'right-edit'     => 'Bledder ennere',
 'right-move'     => 'Bledder ziehe',
+'right-movefile' => 'Feils ziehe',
+'right-upload'   => 'Feils ufflade',
 'right-writeapi' => 'Yuus vun write API',
 'right-delete'   => 'Bledder lösche',
 
@@ -353,28 +359,34 @@ Guuck aach [[Special:Version|Versionsblatt]]',
 'action-delete' => 'des Blatt zu lösche',
 
 # Recent changes
-'nchanges'          => '$1 {{PLURAL:$1|Ennerung|Enneringe}}',
-'recentchanges'     => 'Was mer letscht geduh henn',
-'rcshowhideminor'   => 'Gleene Enneringe $1',
-'rcshowhidebots'    => 'Bots $1',
-'rcshowhideanons'   => 'IP-Yuuser $1',
-'rcshowhidemine'    => 'Mei Ardickele $1',
-'rclinks'           => 'Zeig die letscht $1 Enneringe vun de letscht $2 Daag.<br />$3',
-'diff'              => 'Unnerschidd',
-'hist'              => 'Gschicht',
-'hide'              => 'verschwinne losse',
-'show'              => 'zeige',
-'minoreditletter'   => 'g',
-'newpageletter'     => 'N',
-'boteditletter'     => 'B',
-'rc_categories_any' => 'All',
-'newsectionsummary' => 'Neier Abschnitt /* $1 */',
+'nchanges'                     => '$1 {{PLURAL:$1|Ennering|Enneringe}}',
+'recentchanges'                => 'Was mer letscht geduh henn',
+'recentchanges-legend-newpage' => '$1 - neies Blatt',
+'recentchanges-legend-minor'   => '$1 - gleene Ennering',
+'recentchanges-label-minor'    => 'Gleene Ennering',
+'recentchanges-legend-bot'     => '$1 - Ennering vun em Waddefresser',
+'recentchanges-label-bot'      => 'Ennering vun em Waddefresser',
+'rcshowhideminor'              => 'Gleene Enneringe $1',
+'rcshowhidebots'               => 'Bots $1',
+'rcshowhideanons'              => 'IP-Yuuser $1',
+'rcshowhidemine'               => 'Mei Ardickele $1',
+'rclinks'                      => 'Zeig die letscht $1 Enneringe vun de letscht $2 Daag.<br />$3',
+'diff'                         => 'Unnerschidd',
+'hist'                         => 'Gschicht',
+'hide'                         => 'verschwinne losse',
+'show'                         => 'zeige',
+'minoreditletter'              => 'g',
+'newpageletter'                => 'N',
+'boteditletter'                => 'B',
+'rc_categories_any'            => 'All',
+'newsectionsummary'            => 'Neier Abschnitt /* $1 */',
 
 # Recent changes linked
 'recentchangeslinked-page' => 'Blatt:',
 
 # Upload
 'upload'          => 'Ufflade',
+'uploadbtn'       => 'Feil ufflade',
 'watchthisupload' => 'Watsch des Blatt',
 
 # Special:ListFiles
@@ -384,14 +396,15 @@ Guuck aach [[Special:Version|Versionsblatt]]',
 'listfiles_count' => 'Versione',
 
 # File description page
-'filehist'           => 'Versione vun Feils',
-'filehist-deleteall' => 'All Versione lösche',
-'filehist-deleteone' => 'Sell Version lösche',
-'filehist-revert'    => 'zerick',
-'filehist-datetime'  => 'Version vum',
-'filehist-user'      => 'Yuuser',
-'filehist-comment'   => 'Comment',
-'shared-repo-from'   => 'vun $1',
+'filehist'            => 'Versione vun Feils',
+'filehist-deleteall'  => 'All Versione lösche',
+'filehist-deleteone'  => 'Sell Version lösche',
+'filehist-revert'     => 'zerick',
+'filehist-datetime'   => 'Version vum',
+'filehist-user'       => 'Yuuser',
+'filehist-dimensions' => 'Grees',
+'filehist-comment'    => 'Comment',
+'shared-repo-from'    => 'vun $1',
 
 # File reversion
 'filerevert-comment' => 'Grund:',
@@ -422,13 +435,14 @@ Guuck aach [[Special:Version|Versionsblatt]]',
 'shortpages'        => 'Glee Bledder',
 'longpages'         => 'Grosse Bledder',
 'listusers'         => 'Lischt vun Yuuser',
-'usereditcount'     => '$1 {{PLURAL:$1|Ennerung|Enneringe}}',
+'usereditcount'     => '$1 {{PLURAL:$1|Ennering|Enneringe}}',
 'newpages'          => 'Neie Bledder',
 'newpages-username' => 'Yuuser-Naame:',
 'ancientpages'      => 'Eldere Bledder',
 'move'              => 'Ziehe',
 'movethispage'      => 'Blatt ziehe',
 'pager-newer-n'     => '{{PLURAL:$1|neegscht|neegscht $1}}',
+'pager-older-n'     => '{{PLURAL:$1|letscht|letscht $1}}',
 
 # Special:Log
 'specialloguserlabel' => 'Yuuser:',
@@ -459,13 +473,17 @@ Guuck aach [[Special:Version|Versionsblatt]]',
 'emailto'   => 'Fer:',
 
 # Watchlist
-'watchlist'     => 'Mei Watsch-Lischt',
-'mywatchlist'   => 'Mei Watsch-Lischt',
-'watchlistfor'  => "(fer '''$1''')",
-'watch'         => 'watsche',
-'watchthispage' => 'watsch des Blatt',
-'unwatch'       => 'Nimmi watsche',
-'wlshowlast'    => 'Zeig die Enneringe vun de letscht $1 Schtund, $2 Daag odder $3.',
+'watchlist'         => 'Mei Watsch-Lischt',
+'mywatchlist'       => 'Mei Watsch-Lischt',
+'watchlistfor'      => "(fer '''$1''')",
+'addedwatch'        => 'Zu de Watsch-Lischt dezu geduh',
+'watch'             => 'watsche',
+'watchthispage'     => 'watsch des Blatt',
+'unwatch'           => 'Nimmi watsche',
+'unwatchthispage'   => 'Nimmi watsche',
+'watchlist-details' => '{{PLURAL:$1|$1 Blatt|$1 Bledder}} uff dei Watch-Lischt, ohne Gschwetz-Bledder',
+'watchlistcontains' => 'Dei Watsch-Lischt hot $1 {{PLURAL:$1|Blatt|Bledder}}.',
+'wlshowlast'        => 'Zeig die Enneringe vun de letscht $1 Schtund, $2 Daag odder $3.',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Watsche…',
@@ -473,6 +491,7 @@ Guuck aach [[Special:Version|Versionsblatt]]',
 
 'enotif_newpagetext'           => 'Des iss en neies Blatt.',
 'enotif_impersonal_salutation' => '{{SITENAME}}-Yuuser',
+'changed'                      => 'gennert',
 
 # Delete
 'deletepage'             => 'Blatt lösche',
@@ -489,6 +508,7 @@ Guuck aach [[Special:Version|Versionsblatt]]',
 # Protect
 'protectcomment'         => 'Grund:',
 'protect-default'        => 'All Yuuser',
+'protect-level-sysop'    => 'Nur Verwalter',
 'protect-expiry-options' => '1 Schtund:1 hour,1 Daag:1 day,1 Woch:1 week,2 Woche:2 weeks,1 Munet:1 month,3 Munede:3 months,6 Munede:6 months,1 Yaar:1 year,Fer immer:infinite',
 'pagesize'               => '(Bytes)',
 
@@ -513,6 +533,7 @@ Guuck aach [[Special:Version|Versionsblatt]]',
 'uctop'               => '(ewwerscht)',
 'year'                => 'bis Yaahr:',
 
+'sp-contributions-talk'     => 'Gschwetz',
 'sp-contributions-search'   => 'Guuck fer Ardickel',
 'sp-contributions-username' => 'IP-Adress odder Yuusernaame',
 'sp-contributions-submit'   => 'Guuck uff',
@@ -546,6 +567,9 @@ Guuck aach [[Special:Version|Versionsblatt]]',
 'revertmove'              => 'zerick ziehe',
 'delete_and_move_confirm' => 'Ya, es Blatt lösche',
 
+# Export
+'export-addns' => 'Dezu duh',
+
 # Namespace 8 related
 'allmessagesname'               => 'Naame',
 'allmessages-filter-unmodified' => 'Net gennert',
@@ -567,12 +591,14 @@ Guuck aach [[Special:Version|Versionsblatt]]',
 'tooltip-p-logo'           => 'Haaptblatt',
 'tooltip-n-mainpage'       => 'Zum Haaptblatt geh',
 'tooltip-t-contributions'  => 'Lischt von Ardickele vun dem Yuuser zeige',
+'tooltip-t-upload'         => 'Feils ufflade',
 'tooltip-t-specialpages'   => 'Lischt vun alle besunnere Bledder',
 'tooltip-ca-nstab-special' => 'Sell iss en besunneres Blatt. Du kannscht es Blatt net ennere.',
 
 # Attribution
-'siteuser' => '{{SITENAME}}-Yuuser $1',
-'others'   => 'annere',
+'siteuser'  => '{{SITENAME}}-Yuuser $1',
+'others'    => 'annere',
+'siteusers' => '{{SITENAME}}-{{PLURAL:$2|Yuuser|Yuuser}} $1',
 
 # Media information
 'widthheightpage' => '$1×$2, {{PLURAL:$3|1 Blatt|$3 Bledder}}',
@@ -580,7 +606,7 @@ Guuck aach [[Special:Version|Versionsblatt]]',
 
 # Special:NewFiles
 'showhidebots' => '(Bots $1)',
-'noimages'     => 'Ken Date gfunne.',
+'noimages'     => 'Keene Feils gfunne.',
 'ilsubmit'     => 'Guuck uff',
 
 # Metadata
@@ -660,7 +686,7 @@ Guuck aach [[Special:Version|Versionsblatt]]',
 
 # Special:Tags
 'tags-edit'     => 'ennere',
-'tags-hitcount' => '$1 {{PLURAL:$1|Ennerung|Enneringe}}',
+'tags-hitcount' => '$1 {{PLURAL:$1|Ennering|Enneringe}}',
 
 # HTML forms
 'htmlform-reset'               => 'Enneringe zerick nemme',

@@ -1,5 +1,5 @@
 <?php
-/** Simplified Chinese (‪中文(简化字)‬)
+/** Simplified Chinese (‪中文(简体)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -1463,16 +1463,16 @@ $1",
 'upload_directory_missing'    => '上传目录（$1）遗失，不能由网页服务器建立。',
 'upload_directory_read_only'  => '上传目录（$1）不存在或无写权限。',
 'uploaderror'                 => '上传错误',
-'uploadtext'                  => "使用下面的表单来上传用在页面内新的文件。
+'uploadtext'                  => "使用下面的表单来上传文件。
 要查看或搜索以前上传的文件
 可以进入[[Special:FileList|文件上传列表]]，
 （重新）上传将在[[Special:Log/upload|上传日志]]中记录，
 而删除将在[[Special:Log/delete|删除日志]]中记录。
 
-要在页面中加入文件，使用以下形式的连接：
-'''<nowiki>[[</nowiki>{{ns:file}}</nowiki>:file.jpg]]</nowiki>'''，
-'''<nowiki>[[</nowiki>{{ns:file}}</nowiki>:file.png|替换文字]]</nowiki>''' 或
-'''<nowiki>[[</nowiki>{{ns:media}}</nowiki>:file.ogg]]</nowiki>'''。",
+要在页面中加入文件，使用以下其中一种形式的连接:
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:file.jpg]]</nowiki></tt>'''去用文件的完整版本
+* '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:file.png|200px|thumb|left|替换文字]]</nowiki></tt>'''去用一个200像素宽，左面盒上有'替换文字'的描述
+* '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:file.ogg]]</nowiki></tt>'''去直接连接到文件而不显示文件",
 'upload-permitted'            => '允许的文件类型：$1。',
 'upload-preferred'            => '建议的文件类型：$1。',
 'upload-prohibited'           => '禁止的文件类型：$1。',
@@ -1993,7 +1993,7 @@ $NEWPAGE
 'deletedarticle'         => '已删除"[[$1]]"',
 'suppressedarticle'      => '已废止"[[$1]]"',
 'dellogpage'             => '删除日志',
-'dellogpagetext'         => '以下是最近删除的纪录列列表：',
+'dellogpagetext'         => '以下是最近删除的纪录列表：',
 'deletionlog'            => '删除日志',
 'reverted'               => '恢复到早期版本',
 'deletecomment'          => '删除原因：',

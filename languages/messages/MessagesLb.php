@@ -1918,15 +1918,16 @@ Wann dir dës Säit net méi iwwerwaache wëllt, klickt op \"Net méi iwwerwaach
 'enotif_impersonal_salutation' => '{{SITENAME}}-Benotzer',
 'changed'                      => 'geännert',
 'created'                      => 'gemaach',
+'deleted'                      => 'geläscht',
+'enotif_deletedpagetext'       => 'Dës Säit gëtt et net méi.',
 'enotif_subject'               => '[{{SITENAME}}] D\'Säit "$PAGETITLE" gouf vum $PAGEEDITOR $CHANGEDORCREATED',
 'enotif_lastvisited'           => 'All Ännerungen op ee Bléck: $1',
 'enotif_lastdiff'              => 'Kuckt $1 fir dës Ännerung.',
 'enotif_anon_editor'           => 'Anonyme Benotzer $1',
+'enotif_rev_info'              => 'Kuckt $1 fir déi aktuell Versioun.',
 'enotif_body'                  => 'Léiwe $WATCHINGUSERNAME,
 
-d\'{{SITENAME}}-Säit "$PAGETITLE" gouf vum $PAGEEDITOR den $PAGEEDITDATE $CHANGEDORCREATED.
-
-Aktuell Versioun: $PAGETITLE_URL
+D\'{{SITENAME}}-Säit "$PAGETITLE" gouf vum $PAGEEDITOR den $PAGEEDITDATE $CHANGEDORCREATED. $REVINFO
 
 $NEWPAGE
 
@@ -1936,13 +1937,18 @@ Dëse Mataarbechter kontaktéieren:
 E-Mail: $PAGEEDITOR_EMAIL
 Wiki: $PAGEEDITOR_WIKI
 
-Et gi soulaang keng weider Maile geschéckt, bis Dir d\'Säit nees emol besicht hutt. Op ärer Iwwerwaachungslëscht kënnt Dir all Benoorichtigungsmarkeren zesummen zrécksetzen. 
+Et gi soulaang keng weider Maile geschéckt, bis Dir d\'Säit nees emol besicht hutt.
+Op Ärer Iwwerwaachungslëscht kënnt Dir all Benoorichtigungsmarkeren zesummen zrécksetzen. 
 
 
              Äre frëndleche {{SITENAME}} Benoriichtigungssystem
 
 --
-Fir d\'Astellungen op ärer Iwwerwaachungslëscht unzupassen, besicht w.e.g.: {{fullurl:Special:Watchlist/edit}}',
+Fir d\'Astellungen op ärer Iwwerwaachungslëscht unzupassen, besicht w.e.g.
+{{fullurl:Special:Watchlist/edit}}
+
+Reaktiounen a méi Hëllef:
+{{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Säit läschen',
