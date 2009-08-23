@@ -412,6 +412,8 @@ this. Was used when mwEmbed was going to be an extension.
 * (bug 15248) Non-breaking spaces and certain other Unicode space characters
   are now normalized to ordinary spaces in titles; if your wiki has existing
   titles with such characters, run cleanupTitles.php and/or cleanupImages.php
+* (bug 11143) Links containing invalid UTF-8 percent-code sequences are now
+  cleanly disabled instead of breaking parsing entirely on PHP 5.2.
 * (bug 20296) Fixed an PHP warning in Language::getMagic() in PHP 5.3
 * When creating accounts, don't prefill name from current username (which
   presumably is already taken)
