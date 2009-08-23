@@ -251,7 +251,9 @@ class SpecialStatistics extends SpecialPage {
 				)
 			);
 			if( $res->numRows() > 0 ) {
+				$text .= Xml::openElement( 'tr' );
 				$text .= Xml::tags( 'th', array( 'colspan' => '2' ), wfMsgExt( 'statistics-mostpopular', array( 'parseinline' ) ) );
+				$text .= Xml::closeElement( 'tr' );
 				while( $row = $res->fetchObject() ) {
 					$title = Title::makeTitleSafe( $row->page_namespace, $row->page_title );
 					if( $title instanceof Title ) {

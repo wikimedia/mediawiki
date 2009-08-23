@@ -421,6 +421,8 @@ this. Was used when mwEmbed was going to be an extension.
   watched page is deleted
 * (bug 20358) Unprotect tab was missing accesskey; now same as protect tab.
 * (bug 20317) Cleaned up default main page link accesskey settings
+* (bug 20362) Special:Statistics now produces valid HTML when view counters are
+  enabled
 
 == API changes in 1.16 ==
 
