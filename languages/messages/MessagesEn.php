@@ -3170,6 +3170,7 @@ Please try again.',
 'accesskey-ca-viewsource'           => 'e', # do not translate or duplicate this message to other languages
 'accesskey-ca-history'              => 'h', # do not translate or duplicate this message to other languages
 'accesskey-ca-protect'              => '=', # do not translate or duplicate this message to other languages
+'accesskey-ca-unprotect'            => '=', # do not translate or duplicate this message to other languages
 'accesskey-ca-delete'               => 'd', # do not translate or duplicate this message to other languages
 'accesskey-ca-undelete'             => 'd', # do not translate or duplicate this message to other languages
 'accesskey-ca-move'                 => 'm', # do not translate or duplicate this message to other languages
@@ -3233,6 +3234,7 @@ Please use the preview button before saving',
 You can view its source',
 'tooltip-ca-history'              => 'Past revisions of this page',
 'tooltip-ca-protect'              => 'Protect this page',
+'tooltip-ca-unprotect'            => 'Unprotect this page',
 'tooltip-ca-delete'               => 'Delete this page',
 'tooltip-ca-undelete'             => 'Restore the edits done to this page before it was deleted',
 'tooltip-ca-move'                 => 'Move this page',
