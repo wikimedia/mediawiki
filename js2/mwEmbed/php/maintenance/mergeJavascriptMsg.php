@@ -126,14 +126,14 @@ function doJsonMerge( $json_txt ) {
 			if ( file_put_contents( $fname, $str ) ) {
 				print "\nupdated $curFileName from php\n\n";
 			} else {
-				die( "could not write to: " . $fname );
+				die( "Could not write to: " . $fname );
 			}
 		}
 		// return phpOut for building msgSet in outer function
 		return $outPhp;
 
 	} else {
-		print "could not get any json vars from:$curFileName \n";
+		print "Could not get any json vars from: $curFileName\n";
 		return '';
 	}
 }
@@ -170,9 +170,11 @@ function jsonReadable( $json ) {
 						$result .= $char . $newline . str_repeat( $tab, $tabcount );
 					}
 				break;
+/* FIXME: this will change "key" : "message:" to "key" : "messages : ". Not intended.
+          now "key" : "message" will become "key":"message:", but that's not too big of a problem.
 					case ':':
 					$result .= ' ' . $char . ' ';
-					break;
+					break; */
 				case '"':
 					$inquote = !$inquote;
 					$result .= $char;
