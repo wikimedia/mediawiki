@@ -1155,7 +1155,7 @@ $2',
 'enotif_anon_editor'           => '匿名用户$1',
 'enotif_body'                  => '$WATCHINGUSERNAME先生/小姐倷好，
 
-$CHANGEDORCREATED{{SITENAME}}𠮶 $PAGETITLE 页面已经由$PAGEEDITOR到 $PAGEEDITDATE，请到 $PAGETITLE_URL眵吖目前𠮶版本。
+$CHANGEDORCREATED{{SITENAME}}𠮶 $PAGETITLE 页面已经由$PAGEEDITOR到 $PAGEEDITDATEANDTIME，请到 $PAGETITLE_URL眵吖目前𠮶版本。
 
 $NEWPAGE
 编辑摘要: $PAGESUMMARY $PAGEMINOREDIT
@@ -1163,7 +1163,7 @@ $NEWPAGE
 
 本站: $PAGEEDITOR_WIKI 今后伓会通知倷将来𠮶改动，除非接到来到个页。倷也能设过倷全部监视页𠮶通知标记。
 
-{{SITENAME}}通知系统 – 会改卟倷𠮶监视列表设置，请去 {{fullurl:{{ns:special}}:Watchlist/edit}}
+{{SITENAME}}通知系统 – 会改卟倷𠮶监视列表设置，请去 {{fullurl:{{#special:Watchlist}}/edit}}
 
 回馈同到别𠮶说明: {{fullurl:{{MediaWiki:Helppage}}}}',
 

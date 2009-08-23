@@ -608,22 +608,17 @@ $1',
 # General errors
 'error'                => 'エラー',
 'databaseerror'        => 'データベース・エラー',
-'dberrortext'          => 'データベースクエリの構文エラーが発生しました。ソフトウェアのバグによる可能性があります。
-
+'dberrortext'          => 'データベースクエリの構文エラーが発生しました。
+ソフトウェアにバグがある可能性があります。
 最後に実行を試みたクエリは次の通りです:
-
 関数 "<tt>$2</tt>" 内
 <blockquote><tt>$1</tt></blockquote>
-
-$5 の返したエラー "<tt>$3: $4</tt>"',
+データベースの返したエラー "<tt>$3: $4</tt>"',
 'dberrortextcl'        => 'データベースクエリの構文エラーが発生しました。
-
 最後に実行を試みたクエリは次の通りです:
-
 関数 "$2" 内
 "$1"
-
-$5 の返したエラー "$3: $4"',
+データベースの返したエラー "$3: $4"',
 'laggedslavemode'      => "'''警告:''' ページに最新の編集が反映されていない可能性があります。",
 'readonly'             => 'データベースがロックされています',
 'enterlockreason'      => 'ロックの理由とロック解除の予定を入力してください',
@@ -720,7 +715,7 @@ $2',
 'nouserspecified'            => '利用者名を指定してください。',
 'wrongpassword'              => 'パスワードが間違っています。再度入力してください。',
 'wrongpasswordempty'         => 'パスワードを空にすることはできません。再度入力してください。',
-'passwordtooshort'           => 'パスワードが短すぎます。パスワードは{{PLURAL:$1|$1文字}}以上でなければなりません。',
+'passwordtooshort'           => 'パスワードは{{PLURAL:$1|$1文字}}以上でなければなりません。',
 'password-name-match'        => '利用者名と同じパスワードは使えません。',
 'mailmypassword'             => '新しいパスワードをメールで送る',
 'passwordremindertitle'      => '{{SITENAME}} 仮パスワード通知',
@@ -1997,7 +1992,7 @@ PICT # その他
 'enotif_rev_info'              => '最新版は$1をご覧ください。',
 'enotif_body'                  => '$WATCHINGUSERNAME さん
 
-{{SITENAME}}のページ「$PAGETITLE」が $PAGEEDITDATE に
+{{SITENAME}}のページ「$PAGETITLE」が $PAGEEDITDATEANDTIME に
 $PAGEEDITOR によって$CHANGEDORCREATEDされました。
 $REVINFO
 
@@ -2016,7 +2011,7 @@ $NEWPAGE
 
 --
 ウォッチリストの設定を変更する:
-{{fullurl:{{ns:special}}:Watchlist/edit}}
+{{fullurl:{{#special:Watchlist}}/edit}}
 
 ご意見・お問い合わせ:
 {{fullurl:{{MediaWiki:Helppage}}}}',
@@ -2513,6 +2508,7 @@ $1 は、すでにブロックされています。設定を変更しますか�
 'tooltip-ca-viewsource'           => 'このページは保護されています。ページのソースを閲覧できます。',
 'tooltip-ca-history'              => 'このページの過去の版',
 'tooltip-ca-protect'              => 'このページを保護',
+'tooltip-ca-unprotect'            => 'このページを保護解除する',
 'tooltip-ca-delete'               => 'このページを削除',
 'tooltip-ca-undelete'             => '削除されたページを復帰する',
 'tooltip-ca-move'                 => 'このページを移動',
@@ -2523,6 +2519,7 @@ $1 は、すでにブロックされています。設定を変更しますか�
 'tooltip-search-fulltext'         => '入力された文字列が含まれるページを検索します',
 'tooltip-p-logo'                  => 'メインページに移動',
 'tooltip-n-mainpage'              => 'メインページに移動',
+'tooltip-n-mainpage-description'  => 'メインページに移動する',
 'tooltip-n-portal'                => 'このプロジェクトについて・あなたのできること・情報を入手する場所',
 'tooltip-n-currentevents'         => '最近の出来事',
 'tooltip-n-recentchanges'         => 'このウィキにおける最近の更新の一覧',

@@ -1687,7 +1687,7 @@ Input:contenttype/subtype, e.g. <tt>image/jpeg</tt>.',
 'enotif_body'                  => 'प्रिय $WATCHINGUSERNAME,
 
 
-The {{SITENAME}}चे  $PAGETITLE पान $PAGEEDITORने $PAGEEDITDATE तारखेस $CHANGEDORCREATED केले आहे ,सध्याच्या आवृत्तीकरिता पहा $PAGETITLE_URL.
+The {{SITENAME}}चे  $PAGETITLE पान $PAGEEDITORने $PAGEEDITDATEANDTIME तारखेस $CHANGEDORCREATED केले आहे ,सध्याच्या आवृत्तीकरिता पहा $PAGETITLE_URL.
 
 $NEWPAGE
 
@@ -1703,7 +1703,7 @@ $NEWPAGE
 
 --
 
-तुमचे पहार्‍यातील पानांची मांडणावळ (कोंदण) बदलू शकता,{{fullurl:{{ns:special}}:Watchlist/edit}}ला भेट द्या
+तुमचे पहार्‍यातील पानांची मांडणावळ (कोंदण) बदलू शकता,{{fullurl:{{#special:Watchlist}}/edit}}ला भेट द्या
 
 पुढील सहाय्य आणि प्रतिक्रीया:
 {{fullurl:{{MediaWiki:Helppage}}}}',

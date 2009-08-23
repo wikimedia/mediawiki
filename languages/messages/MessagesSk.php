@@ -2085,7 +2085,7 @@ Ak budete chcieť neskôr stránku odstrániť zo sledovaných stránok, kliknit
 'enotif_anon_editor'           => 'anonymný používateľ $1',
 'enotif_body'                  => 'Drahý $WATCHINGUSERNAME,
 
-na {{GRAMMAR:lokál|{{SITENAME}}}} došlo $PAGEEDITDATE k $CHANGEDORCREATED stránky $PAGETITLE používateľom $PAGEEDITOR, pozrite si aktuálnu verziu $PAGETITLE_URL .
+na {{GRAMMAR:lokál|{{SITENAME}}}} došlo $PAGEEDITDATEANDTIME k $CHANGEDORCREATED stránky $PAGETITLE používateľom $PAGEEDITOR, pozrite si aktuálnu verziu $PAGETITLE_URL .
 
 $NEWPAGE
 

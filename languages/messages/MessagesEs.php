@@ -550,14 +550,14 @@ Puedes ver una lista de las páginas especiales en [[Special:SpecialPages|{{int:
 'databaseerror'        => 'Error de la base de datos',
 'dberrortext'          => 'Ha ocurrido un error de sintaxis en una consulta a la base de datos.
 Esto puede indicar un error en el software.
-La última consulta que se intentó fue: <blockquote><tt>$1</tt></blockquote>
+La última consulta a la base de datos que se intentó fue: <blockquote><tt>$1</tt></blockquote>
 dentro de la función "<tt>$2</tt>".
-El error devuelto por $5 fue "<tt>$3: $4</tt>".',
+El error devuelto "<tt>$3: $4</tt>".',
 'dberrortextcl'        => 'Ha ocurrido un error de sintaxis en una consulta a la base de datos.
-La última consulta que se intentó fue:
+La última consulta a la base de datos que se intentó fue:
 "$1"
 desde la función "$2".
-$5 devolvió el error "$3: $4".',
+Base de datos retornó error "$3: $4".',
 'laggedslavemode'      => 'Aviso: puede que falten las actualizaciones más recientes en esta página.',
 'readonly'             => 'Base de datos bloqueada',
 'enterlockreason'      => 'Explique el motivo del bloqueo, incluyendo una estimación de cuándo se producirá el desbloqueo',
@@ -2012,7 +2012,7 @@ Cuando quieras eliminar la página de tu lista de seguimiento, presiona «Dejar 
 'enotif_rev_info'              => 'Mira $1 para la revisión actual.',
 'enotif_body'                  => 'Estimado/a $WATCHINGUSERNAME,
 
-La página de {{SITENAME}} $PAGETITLE ha sido $CHANGEDORCREATED el $PAGEEDITDATE por el usuario $PAGEEDITOR.
+La página de {{SITENAME}} $PAGETITLE ha sido $CHANGEDORCREATED el $PAGEEDITDATEANDTIME por el usuario $PAGEEDITOR.
 $REVINFO
 
 $NEWPAGE
@@ -2030,7 +2030,7 @@ También puedes reestablecer las notificaciones para todas tus páginas vigilada
 
 --
 Para cambiar las opciones de su lista de seguimiento, visite:
-{{fullurl:{{ns:special}}:Watchlist/edit}}
+{{fullurl:{{#special:Watchlist}}/edit}}
 
 Retroalimentación y asistencia adicional:
 {{fullurl:{{MediaWiki:Helppage}}}}',

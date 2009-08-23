@@ -1856,7 +1856,7 @@ Os ydych am ddiddymu'r dudalen o'r rhestr gwylio, cliciwch ar \"Stopio gwylio\" 
 'enotif_anon_editor'           => 'defnyddiwr anhysbys $1',
 'enotif_body'                  => 'Annwyl $WATCHINGUSERNAME,
 
-$CHANGEDORCREATED y dudalen \'$PAGETITLE\' ar {{SITENAME}} ar $PAGEEDITDATE gan $PAGEEDITOR; gweler $PAGETITLE_URL am y diwygiad presennol.
+$CHANGEDORCREATED y dudalen \'$PAGETITLE\' ar {{SITENAME}} ar $PAGEEDITDATEANDTIME gan $PAGEEDITOR; gweler $PAGETITLE_URL am y diwygiad presennol.
 
 $NEWPAGE
 
@@ -1872,7 +1872,7 @@ Os digwydd mwy o olygiadau i\'r dudalen cyn i chi ymweld â hi, ni chewch ragor 
 
 --
 I newid eich gosodiadau gwylio, ymwelwch â
-{{fullurl:{{ns:special}}:Watchlist/edit}}
+{{fullurl:{{#special:Watchlist}}/edit}}
 
 Am fwy o gymorth ac adborth:
 {{fullurl:{{MediaWiki:Helppage}}}}',

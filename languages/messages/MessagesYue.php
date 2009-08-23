@@ -1,5 +1,5 @@
 <?php
-/** Cantonese (粵語/廣東話)
+/** Yue (粵語)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -1909,7 +1909,7 @@ Template:搞清楚',
 'enotif_rev_info'              => '現時修訂請睇$1。',
 'enotif_body'                  => '$WATCHINGUSERNAME先生／小姐你好，
 
-{{SITENAME}}嘅頁面$PAGETITLE已經由$PAGEEDITOR喺$PAGEEDITDATE$CHANGEDORCREATED。$REVINFO
+{{SITENAME}}嘅頁面$PAGETITLE已經由$PAGEEDITOR喺$PAGEEDITDATEANDTIME$CHANGEDORCREATED。$REVINFO
 
 $NEWPAGE
 
@@ -1924,7 +1924,7 @@ wiki: $PAGEEDITOR_WIKI
             {{SITENAME}}通知系統
 
 --
-要修改你嘅監視清單設定，請睇{{fullurl:{{ns:special}}:Watchlist/edit}}
+要修改你嘅監視清單設定，請睇{{fullurl:{{#special:Watchlist}}/edit}}
 
 回饋及更多幫助：
 {{fullurl:{{MediaWiki:Helppage}}}}',

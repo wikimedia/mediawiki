@@ -1426,7 +1426,7 @@ $1 பயனரையோ அல்லது வேறு [[{{MediaWiki:Grouppage
 'enotif_body'                  => 'வணக்கம் $WATCHINGUSERNAME,
 
 
-{{SITENAME}} தளத்தின் $PAGETITLE பக்கம் $PAGEEDITDATE அன்று $PAGEEDITOR என்ற பெயருடைய பயனரால் $CHANGEDORCREATED, இப்பக்கத்தின் தற்போதைய பதிப்பை $PAGETITLE_URL என்ற இணைப்பின் வழிச் சென்றுக் காணலாம்.
+{{SITENAME}} தளத்தின் $PAGETITLE பக்கம் $PAGEEDITDATEANDTIME அன்று $PAGEEDITOR என்ற பெயருடைய பயனரால் $CHANGEDORCREATED, இப்பக்கத்தின் தற்போதைய பதிப்பை $PAGETITLE_URL என்ற இணைப்பின் வழிச் சென்றுக் காணலாம்.
 
 
 $NEWPAGE
@@ -1443,7 +1443,7 @@ $NEWPAGE
 
 --
 உங்கள் கவனிப்புப் பட்டியல் அமைவுகளை மாற்ற
-{{fullurl:{{ns:special}}:Watchlist/edit}}
+{{fullurl:{{#special:Watchlist}}/edit}}
 
 பின்னூட்டம், மேலதிக உதவிகளுக்கு:
 {{fullurl:{{MediaWiki:Helppage}}}}',

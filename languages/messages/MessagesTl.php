@@ -1832,7 +1832,7 @@ Makikita doon ang lahat ng mga susunod na pagbabago sa pahinang ito pati na ang 
 'enotif_body'                  => 'Mahal na $WATCHINGUSERNAME,
 
 
-Ang pahinang $PAGETITLE ng {{SITENAME}} ay $CHANGEDORCREATED noong $PAGEEDITDATE ni $PAGEEDITOR, tingnan ang $PAGETITLE_URL para sa pangkasalukuyang bersyon.
+Ang pahinang $PAGETITLE ng {{SITENAME}} ay $CHANGEDORCREATED noong $PAGEEDITDATEANDTIME ni $PAGEEDITOR, tingnan ang $PAGETITLE_URL para sa pangkasalukuyang bersyon.
 
 $NEWPAGE
 
@@ -1849,7 +1849,7 @@ Maaari mo ring muling itakda ang mga watawat (mga \'\'flag\'\') na pangpaguulat 
 
 --
 Para baguhin ang mga pagtatakda ng iyong talaan ng mga binabantayan, dalawin ang
-{{fullurl:{{ns:special}}:Watchlist/edit}}
+{{fullurl:{{#special:Watchlist}}/edit}}
 
 Balik-tugon at karagdagang tulong:
 {{fullurl:{{MediaWiki:Helppage}}}}',

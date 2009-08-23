@@ -1383,7 +1383,7 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'enotif_body'                  => 'ለ$WATCHINGUSERNAME ይድረስ፣
 
 
-የ{{SITENAME}} ገጽ $PAGETITLE በ$PAGEEDITDATE በ$PAGEEDITOR $CHANGEDORCREATED፤ ለአሁኑኑ እትም $PAGETITLE_URL ይዩ።
+የ{{SITENAME}} ገጽ $PAGETITLE በ$PAGEEDITDATEANDTIME በ$PAGEEDITOR $CHANGEDORCREATED፤ ለአሁኑኑ እትም $PAGETITLE_URL ይዩ።
 
 $NEWPAGE
 
@@ -1398,7 +1398,7 @@ $NEWPAGE
              ከክብር ጋር፣ የ{{SITENAME}} ኢሜል-ማስታወቂያ መርሃግብር።
 
 --
-የሚከታተሉት ገጾች ዝርዝር ለመቀየር፣ {{fullurl:{{ns:special}}:Watchlist/edit}} ይጎበኙ።
+የሚከታተሉት ገጾች ዝርዝር ለመቀየር፣ {{fullurl:{{#special:Watchlist}}/edit}} ይጎበኙ።
 
 በተጨማሪ ለመረዳት፦
 {{fullurl:{{MediaWiki:Helppage}}}}',

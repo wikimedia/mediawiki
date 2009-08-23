@@ -656,12 +656,12 @@ Ceci peut indiquer un bogue dans le logiciel.
 La dernière requête traitée par la base de données était :
 <blockquote><tt>$1</tt></blockquote>
 depuis la fonction « <tt>$2</tt> ».
-$5 a renvoyé l’erreur « <tt>$3 : $4</tt> ».',
+La base de données a renvoyé l’erreur « <tt>$3 : $4</tt> ».',
 'dberrortextcl'        => 'Une requête dans la base de données comporte une erreur de syntaxe.
 La dernière requête émise était :
 « $1 »
 dans la fonction « $2 ».
-$5 a renvoyé l’erreur « $3 : $4 ».',
+La base de données a renvoyé l’erreur « $3 : $4 ».',
 'laggedslavemode'      => 'Attention, cette page peut ne pas contenir les toutes dernières modifications effectuées',
 'readonly'             => 'Base de données verrouillée',
 'enterlockreason'      => 'Indiquez la raison du verrouillage ainsi qu’une estimation de sa durée',
@@ -765,8 +765,7 @@ Vérifiez l’orthographe, ou [[Special:UserLogin/signup|créez un nouveau compt
 'nouserspecified'            => 'Vous devez saisir un nom d’utilisateur.',
 'wrongpassword'              => 'Le mot de passe est incorrect. Veuillez essayer à nouveau.',
 'wrongpasswordempty'         => 'Vous n’avez pas entré de mot de passe. Veuillez essayer à nouveau.',
-'passwordtooshort'           => 'Votre mot de passe est trop court.
-Il doit contenir au moins $1 caractère{{PLURAL:$1||s}}.',
+'passwordtooshort'           => 'Votre mot de passe doit contenir au moins $1 caractère{{PLURAL:$1||s}}.',
 'password-name-match'        => 'Votre mot de passe doit être différent de votre nom d’utilisateur.',
 'mailmypassword'             => 'Recevoir un nouveau mot de passe par courriel',
 'passwordremindertitle'      => 'Nouveau mot de passe temporaire pour {{SITENAME}}',
@@ -2118,13 +2117,16 @@ L’adresse électronique que vous avez indiquée dans [[Special:Preferences|vos
 'enotif_impersonal_salutation' => 'Utilisateur de {{SITENAME}}',
 'changed'                      => 'modifiée',
 'created'                      => 'créée',
+'deleted'                      => 'supprimée',
+'enotif_deletedpagetext'       => "Cette page n'est plus disponible",
 'enotif_subject'               => 'La page $PAGETITLE de {{SITENAME}} a été $CHANGEDORCREATED par $PAGEEDITOR',
 'enotif_lastvisited'           => 'Voyez $1 pour tous les changements depuis votre dernière visite.',
 'enotif_lastdiff'              => 'Voyez $1 pour visualiser ces changements.',
 'enotif_anon_editor'           => 'utilisateur non-enregistré $1',
+'enotif_rev_info'              => 'Visitez $1 pour visualiser la version actuelle',
 'enotif_body'                  => 'Cher $WATCHINGUSERNAME,
 
-La page « $PAGETITLE » de {{SITENAME}} a été $CHANGEDORCREATED le $PAGEEDITDATE par « $PAGEEDITOR », visitez $PAGETITLE_URL pour visualiser la version actuelle.
+La page « $PAGETITLE » de {{SITENAME}} a été $CHANGEDORCREATED le $PAGEEDITDATEANDTIME par « $PAGEEDITOR ». $REVINFO
 
 $NEWPAGE
 
@@ -2141,7 +2143,7 @@ Vous pouvez aussi réinitialiser les drapeaux de notification pour toutes les pa
 
 --
 Pour modifier les paramètres de votre liste de suivi, visitez
-{{fullurl:Special:Watchlist/edit}}
+{{fullurl:{{#special:Watchlist}}/edit}}
 
 Retour et assistance :
 {{fullurl:{{MediaWiki:Helppage}}}}',
@@ -2681,6 +2683,7 @@ Veuillez utiliser le bouton de prévisualisation avant d’enregistrer.',
 Vous pouvez toutefois en visualiser la source.',
 'tooltip-ca-history'              => 'Les versions passées de cette page (avec leurs contributeurs)',
 'tooltip-ca-protect'              => 'Protéger cette page',
+'tooltip-ca-unprotect'            => 'Déprotéger cette page',
 'tooltip-ca-delete'               => 'Supprimer cette page',
 'tooltip-ca-undelete'             => 'Rétablir les modifications faites sur cette page avant sa suppression',
 'tooltip-ca-move'                 => 'Renommer cette page',
@@ -2691,6 +2694,7 @@ Vous pouvez toutefois en visualiser la source.',
 'tooltip-search-fulltext'         => 'Rechercher les pages comportant ce texte.',
 'tooltip-p-logo'                  => 'Page principale',
 'tooltip-n-mainpage'              => 'Visiter la page d’accueil du site',
+'tooltip-n-mainpage-description'  => 'Aller à l’accueil',
 'tooltip-n-portal'                => 'À propos du projet',
 'tooltip-n-currentevents'         => 'Trouver les informations de fond sur l’actualité du moment',
 'tooltip-n-recentchanges'         => 'Liste des modifications récentes sur le wiki',

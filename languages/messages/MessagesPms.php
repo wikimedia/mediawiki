@@ -363,17 +363,17 @@ Son-sì a podrìa ëdcò esse un bug an drinta al software dovrà da {{SITENAME}
 # General errors
 'error'                => 'Eror',
 'databaseerror'        => 'Eror ant la base dat',
-'dberrortext'          => 'Eror ëd sintassi ant la domanda mandà a la base dat.
+'dberrortext'          => 'A l\'é capitaje n\'eror ëd sintassi ant la domanda mandà a la base dat.
 Sòn-sì a peul andiché n\'eror ant ël software.
 L\'ùltima domanda mandà a la base dat a l\'é staita:
 <blockquote><tt>$1</tt></blockquote>
 da \'nt la funsion "<tt>$2</tt>".
-$5 a l\'ha dane andré n\'eror "<tt>$3: $4</tt>".',
+La base dat a l\'ha dane andré n\'eror "<tt>$3: $4</tt>".',
 'dberrortextcl'        => 'A-i é staje n\'eror ant la sintassi d\'anterogassion dla base dat.
 L\'ùltima anterogassion a l\'é staita:
 "$1"
 da andrinta a la funsion "$2".
-$5 a l\'ha dane n\'eror "$3: $4"',
+La base dat a l\'ha dane n\'eror "$3: $4"',
 'laggedslavemode'      => 'Avis: la pàgina a podrìa ëdcò nen mostré tute soe modìfiche.',
 'readonly'             => 'Acess a la base dat sërà për chèich temp.',
 'enterlockreason'      => 'Che a buta na rason për ël blocagi, con andrinta data e ora ëd quand che a stima che a sarà gavà.',
@@ -472,8 +472,7 @@ Controla ël nòm che it l\'has batù, o [[Special:UserLogin/signup|fà un neuv 
 'nouserspecified'            => 'A venta che a specìfica në stranòm utent',
 'wrongpassword'              => "La ciav batùa a l'é pa giusta.<br /><br />Che a preuva torna, për piasì.",
 'wrongpasswordempty'         => "A l'ha butà na ciav veujda. Për piasì, che a preuva torna.",
-'passwordtooshort'           => "Soa ciav a l'é tròp curta.
-A la deuv avej almanch {{PLURAL:$1|1 caràter|$1 caràter}}.",
+'passwordtooshort'           => 'Le ciav a deuvo avej almanch {{PLURAL:$1|1 caràter|$1 caràter}}.',
 'password-name-match'        => 'Toa ciav a deuv esse diferenta da tò stranòm.',
 'mailmypassword'             => 'Mandme na neuva ciav via email',
 'passwordremindertitle'      => 'Servissi për visé la paròla ciav ëd {{SITENAME}}',
@@ -1845,7 +1844,7 @@ Se a vorèissa mai gavé st'articol-sì da 'nt la lista dij ''Sot Euj'', che a s
 'enotif_rev_info'              => 'Varda $1 për la vërsion corenta.',
 'enotif_body'                  => 'A l\'atension ëd $WATCHINGUSERNAME,
 
-La pàgina $PAGETITLE dël sit {{SITENAME}} a l\'é staita $CHANGEDORCREATED al $PAGEEDITDATE da $PAGEEDITOR. $REVINFO
+La pàgina $PAGETITLE dël sit {{SITENAME}} a l\'é staita $CHANGEDORCREATED al $PAGEEDITDATEANDTIME da $PAGEEDITOR. $REVINFO
 
 $NEWPAGE
 
@@ -2397,6 +2396,7 @@ Për piasì preuva torna.',
 'tooltip-ca-viewsource'           => 'Sta pàgina-sì a l',
 'tooltip-ca-history'              => 'Veje version dla pàgina.',
 'tooltip-ca-protect'              => 'Për protege sta pàgina-sì.',
+'tooltip-ca-unprotect'            => 'Sprotegg sta pàgina-sì',
 'tooltip-ca-delete'               => 'Scancelé sta pàgina-sì',
 'tooltip-ca-undelete'             => 'Pijé andré le modìfiche faite a sta pàgina-sì, anans che a fussa scancelà.',
 'tooltip-ca-move'                 => 'Tramudé sta pàgina, visadì cangeje tìtol.',
@@ -2407,6 +2407,7 @@ Për piasì preuva torna.',
 'tooltip-search-fulltext'         => 'Sërché ës test-sì antra le pàgine dël sit',
 'tooltip-p-logo'                  => 'Pàgina prinsipal.',
 'tooltip-n-mainpage'              => 'Visité la pàgina prinsipal.',
+'tooltip-n-mainpage-description'  => 'Vìsita la pàgina prinsipal',
 'tooltip-n-portal'                => 'Rësguard al proget, lòn che a peul fé, andoa trové còsa.',
 'tooltip-n-currentevents'         => 'Informassion ansima a lòn che a-i riva.',
 'tooltip-n-recentchanges'         => 'Lista dj',

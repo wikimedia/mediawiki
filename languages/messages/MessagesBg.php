@@ -1959,7 +1959,7 @@ $2',
 'enotif_anon_editor'           => 'анонимен потребител $1',
 'enotif_body'                  => 'Уважаеми(а) $WATCHINGUSERNAME,
 
-на $PAGEEDITDATE страницата „$PAGETITLE“ в {{SITENAME}} е била $CHANGEDORCREATED от $PAGEEDITOR.
+на $PAGEEDITDATEANDTIME страницата „$PAGETITLE“ в {{SITENAME}} е била $CHANGEDORCREATED от $PAGEEDITOR.
 
 Текуща версия: $PAGETITLE_URL
 
@@ -1976,7 +1976,7 @@ $NEWPAGE
              Системата за известяване на {{SITENAME}}
 
 --
-За да промените настройките на списъка си за наблюдение, посетете {{fullurl:{{ns:special}}:Watchlist/edit}}
+За да промените настройките на списъка си за наблюдение, посетете {{fullurl:{{#special:Watchlist}}/edit}}
 
 Обратна връзка и помощ: {{fullurl:{{MediaWiki:Helppage}}}}',
 

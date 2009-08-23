@@ -666,10 +666,10 @@ Der Grund kann ein Programmierfehler sein.
 Die letzte Datenbankabfrage lautete:
 <blockquote><tt>$1</tt></blockquote>
 aus der Funktion „<tt>$2</tt>“.
-$5 meldete den Fehler „<tt>$3: $4</tt>“.',
+Die Datenbank meldete den Fehler „<tt>$3: $4</tt>“.',
 'dberrortextcl'        => 'Es gab einen Syntaxfehler in der Datenbankabfrage.
 Die letzte Datenbankabfrage lautete: „$1“ aus der Funktion „<tt>$2</tt>“.
-$5 meldete den Fehler: „<tt>$3: $4</tt>“.',
+Die Datenbank meldete den Fehler: „<tt>$3: $4</tt>“.',
 'laggedslavemode'      => "'''Achtung:''' Die angezeigte Seite könnte unter Umständen nicht die letzten Bearbeitungen enthalten.",
 'readonly'             => 'Datenbank gesperrt',
 'enterlockreason'      => 'Bitte gib einen Grund ein, warum die Datenbank gesperrt werden soll und eine Abschätzung über die Dauer der Sperrung',
@@ -770,8 +770,7 @@ Vergiss nicht, deine [[Special:Preferences|{{SITENAME}}-Einstellungen]] anzupass
 'nouserspecified'            => 'Bitte gib einen Benutzernamen an.',
 'wrongpassword'              => 'Das Passwort ist falsch (oder fehlt). Bitte versuche es erneut.',
 'wrongpasswordempty'         => 'Es wurde kein Passwort eingegeben. Bitte versuche es erneut.',
-'passwordtooshort'           => 'Dein Passwort ist zu kurz.
-Es muss mindestens {{PLURAL:$1|1 Zeichen|$1 Zeichen}} lang sein.',
+'passwordtooshort'           => 'Passwörter müssen mindestens {{PLURAL:$1|1 Zeichen|$1 Zeichen}} lang sein.',
 'password-name-match'        => 'Dein Passwort muss sich von deinem Benutzernamen unterscheiden.',
 'mailmypassword'             => 'Neues Passwort zusenden',
 'passwordremindertitle'      => 'Neues Passwort für ein {{SITENAME}}-Benutzerkonto',
@@ -2124,17 +2123,17 @@ Wenn du die Seite wieder von deiner Beobachtungsliste entfernen möchtest, klick
 'enotif_newpagetext'           => 'Das ist eine neue Seite.',
 'enotif_impersonal_salutation' => '{{SITENAME}}-Benutzer',
 'changed'                      => 'geändert',
-'created'                      => 'erzeugt',
+'created'                      => 'erstellt',
 'deleted'                      => 'gelöscht',
 'enotif_deletedpagetext'       => 'Diese Seite ist nicht mehr verfügbar.',
 'enotif_subject'               => '[{{SITENAME}}] Die Seite "$PAGETITLE" wurde von $PAGEEDITOR $CHANGEDORCREATED',
 'enotif_lastvisited'           => 'Alle Änderungen auf einen Blick: $1',
 'enotif_lastdiff'              => 'Siehe $1 nach dieser Änderung.',
 'enotif_anon_editor'           => 'Anonymer Benutzer $1',
-'enotif_rev_info'              => 'Siehe $1 für die aktuelle Version.',
+'enotif_rev_info'              => 'Die aktuelle Version ist auf $1 zu finden.',
 'enotif_body'                  => 'Hallo $WATCHINGUSERNAME,
 
-die {{SITENAME}}-Seite „$PAGETITLE“ wurde von $PAGEEDITOR am $PAGEEDITDATE $CHANGEDORCREATED. $REVINFO
+die {{SITENAME}}-Seite „$PAGETITLE“ wurde von $PAGEEDITOR am $PAGEEDITDATE um $PAGEEDITTIME Uhr $CHANGEDORCREATED. $REVINFO
 
 Aktuelle Version: $PAGETITLE_URL
 
@@ -2665,6 +2664,7 @@ Alle Transwiki-Import-Aktionen werden im [[Special:Log/import|Import-Logbuch]] p
 'tooltip-ca-viewsource'           => 'Diese Seite ist geschützt. Der Quelltext kann angesehen werden.',
 'tooltip-ca-history'              => 'Frühere Versionen dieser Seite',
 'tooltip-ca-protect'              => 'Diese Seite schützen',
+'tooltip-ca-unprotect'            => 'Diese Seite freigeben',
 'tooltip-ca-delete'               => 'Diese Seite löschen',
 'tooltip-ca-undelete'             => 'Einträge wiederherstellen, bevor diese Seite gelöscht wurde',
 'tooltip-ca-move'                 => 'Diese Seite verschieben',
@@ -2675,6 +2675,7 @@ Alle Transwiki-Import-Aktionen werden im [[Special:Log/import|Import-Logbuch]] p
 'tooltip-search-fulltext'         => 'Suche nach Seiten, die diesen Text enthalten',
 'tooltip-p-logo'                  => 'Hauptseite',
 'tooltip-n-mainpage'              => 'Hauptseite anzeigen',
+'tooltip-n-mainpage-description'  => 'Hauptseite besuchen',
 'tooltip-n-portal'                => 'Über das Portal, was du tun kannst, wo was zu finden ist',
 'tooltip-n-currentevents'         => 'Hintergrundinformationen zu aktuellen Ereignissen',
 'tooltip-n-recentchanges'         => 'Liste der letzten Änderungen in {{SITENAME}}',

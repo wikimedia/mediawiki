@@ -2110,7 +2110,7 @@ PICT # misc.
 'enotif_anon_editor'           => 'анонимен корисник $1',
 'enotif_body'                  => '$WATCHINGUSERNAME,
 
-Страницата за разговор на {{SITENAME}} беше променета на $PAGEEDITDATE од \'\'\'$PAGEEDITOR\'\'\', видете $PAGETITLE_URL.
+Страницата за разговор на {{SITENAME}} беше променета на $PAGEEDITDATEANDTIME од \'\'\'$PAGEEDITOR\'\'\', видете $PAGETITLE_URL.
 
 $NEWPAGE
 

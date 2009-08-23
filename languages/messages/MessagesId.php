@@ -2048,7 +2048,7 @@ Perubahan-perubahan berikutnya pada halaman tersebut dan halaman pembicaraan ter
 'enotif_anon_editor'           => 'pengguna anonim $1',
 'enotif_body'                  => 'Halo $WATCHINGUSERNAME,
 
-Halaman $PAGETITLE di {{SITENAME}} telah $CHANGEDORCREATED pada $PAGEEDITDATE oleh $PAGEEDITOR, lihat $PAGETITLE_URL untuk revisi terakhir.
+Halaman $PAGETITLE di {{SITENAME}} telah $CHANGEDORCREATED pada $PAGEEDITDATEANDTIME oleh $PAGEEDITOR, lihat $PAGETITLE_URL untuk revisi terakhir.
 
 $NEWPAGE
 
@@ -2064,7 +2064,7 @@ Kami tidak akan mengirimkan pemberitahuan perubahan lainnya sampai Anda mengunju
 
 --
 Untuk mengubah preferensi daftar pantauan Anda, kunjungi
-{{fullurl:{{ns:special}}:Watchlist/edit}}
+{{fullurl:{{#special:Watchlist}}/edit}}
 
 Umpan balik dan bantuan lebih lanjut:
 {{fullurl:{{MediaWiki:Helppage}}}}',

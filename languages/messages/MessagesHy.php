@@ -1488,7 +1488,7 @@ $3 մասնակիցը տվել է հետևյալ պատճառը. ''$2''",
 'enotif_anon_editor'           => 'անանուն մասնակից $1',
 'enotif_body'                  => 'Հարգելի $WATCHINGUSERNAME,
 
-$PAGEEDITDATE {{grammar:genitive|{{SITENAME}}}} «$PAGETITLE» էջը $CHANGEDORCREATED $PAGEEDITOR մասնակցի կողմից, տես $PAGETITLE_URL՝ ընթացիկ տարբերակի համար։
+$PAGEEDITDATEANDTIME {{grammar:genitive|{{SITENAME}}}} «$PAGETITLE» էջը $CHANGEDORCREATED $PAGEEDITOR մասնակցի կողմից, տես $PAGETITLE_URL՝ ընթացիկ տարբերակի համար։
 
 $NEWPAGE
 
@@ -1504,7 +1504,7 @@ $NEWPAGE
 
 --
 Ձեր հսկացանկի նախընտրությունները փոխելու համար այցելեք՝
-{{fullurl:{{ns:special}}:Watchlist/edit}}
+{{fullurl:{{#special:Watchlist}}/edit}}
 
 Հետադարձ կապ և օգնություն՝
 {{fullurl:{{MediaWiki:Helppage}}}}',

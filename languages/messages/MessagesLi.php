@@ -1787,7 +1787,7 @@ Ouch versjiene gevolgde pazjena\'s in \'t <b>vèt</b> in de [[Special:RecentChan
 'enotif_anon_editor'           => 'anonieme gebroeker $1',
 'enotif_body'                  => 'Bèste $WATCHINGUSERNAME,
 
-De {{SITENAME}}-pazjena "$PAGETITLE" is $CHANGEDORCREATED op $PAGEEDITDATE door $PAGEEDITOR, zuug $PAGETITLE_URL veur de hujige versie.
+De {{SITENAME}}-pazjena "$PAGETITLE" is $CHANGEDORCREATED op $PAGEEDITDATEANDTIME door $PAGEEDITOR, zuug $PAGETITLE_URL veur de hujige versie.
 
 $NEWPAGE
 

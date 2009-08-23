@@ -1927,7 +1927,7 @@ Den e-mail-adresse du har angivet i [[Special:Preferences|dine indstillinger]] v
 'enotif_anon_editor'           => 'anonym bruger $1',
 'enotif_body'                  => 'Kære $WATCHINGUSERNAME,
 
-{{SITENAME}}-siden $PAGETITLE er blevet ændret den $PAGEEDITDATE af $PAGEEDITOR, se $PAGETITLE_URL for den nyeste version.
+{{SITENAME}}-siden $PAGETITLE er blevet ændret den $PAGEEDITDATEANDTIME af $PAGEEDITOR, se $PAGETITLE_URL for den nyeste version.
 
 
 $NEWPAGE
@@ -1950,7 +1950,7 @@ Tilbagemelding og yderligere hjælp:
 'deletepage'             => 'Slet side',
 'confirm'                => 'Bekræft',
 'excontent'              => "indholdet var: '$1'",
-'excontentauthor'        => "indholdet var: '$1' (og den eneste forfatter var '$2')",
+'excontentauthor'        => "indholdet var: '$1' (og den eneste forfatter var '[[Special:Contributions/$2|$2]]')",
 'exbeforeblank'          => "indholdet før siden blev tømt var: '$1'",
 'exblank'                => 'siden var tom',
 'delete-confirm'         => 'Slet "$1"',

@@ -484,12 +484,12 @@ To by mógło zmólki w softwarje byś.
 Slědne wótpšašowanje jo było: 
 <blockquote><tt>$1</tt></blockquote> 
 z funkcije "<tt>$2</tt>".
-$5 jo zmólku "<tt>$3: $4</tt>" wrośił.',
+Datowa banka jo zmólku "<tt>$3: $4</tt>" wrośiła.',
 'dberrortextcl'        => 'Syntaktiska zmólka pśi wótpšašowanju datoweje banki nastata.
 Slědne wopytane wótpšašowanje jo było: 
 "$1"
 z funkcije "$2".
-$5 jo zmólku "$3: $4" wrośił',
+Datowa banka jo zmólku "$3: $4" wrośiła',
 'laggedslavemode'      => 'Glědaj: Jo móžno, až pokazany bok nejaktualnjejše změny njewopśimjejo.',
 'readonly'             => 'Datowa banka jo zacynjona',
 'enterlockreason'      => 'Pšosym zapódaj pśicynu za zacynjenje datoweje banki a informaciju, ga buźo zasej pśistupna',
@@ -586,7 +586,7 @@ Pśeglěduj pšawopis abo [[Special:UserLogin/signup|załož nowe konto]].',
 'nouserspecified'            => 'Pšosym pódaj wužywarske mě.',
 'wrongpassword'              => 'Zapódane šćitne gronidło njejo pšawe. Pšosym wopytaj hyšći raz.',
 'wrongpasswordempty'         => 'Šćitne gronidło jo było prozne. Pšosym zapódaj jo hyšći raz.',
-'passwordtooshort'           => 'Twójo gronidło jo njepłaśiwe abo pśeliš krotke. Dej nanejmjenjej {{PLURAL:$|1 znamuško|$1 znamušce|$1 znamuška|$1 znamuškow}} měś.',
+'passwordtooshort'           => 'Gronidła deje nanejmjenjej {{PLURAL:$|1 znamuško|$1 znamušce|$1 znamuška|$1 znamuškow}} měś.',
 'password-name-match'        => 'Twójo gronidło musy se wót swójogo wužywarskego mjenja rozeznaś.',
 'mailmypassword'             => 'Nowe gronidło pśipósłaś',
 'passwordremindertitle'      => 'Nowe nachylne pótajmne słowo za {{SITENAME}}',
@@ -1908,15 +1908,17 @@ Coš-lic bok zasej z twójich wobglědowańkow wulašowaś, kliknij na wótpowě
 'enotif_impersonal_salutation' => '{{SITENAME}}-wužywaŕ',
 'changed'                      => 'změnjone',
 'created'                      => 'wutwórjone',
+'deleted'                      => 'wulašowany',
+'enotif_deletedpagetext'       => 'Toś ten bok wěcej njestoj k dispoziciji.',
 'enotif_subject'               => '[{{SITENAME}}] Bok "$PAGETITLE" jo se wót $PAGEEDITOR $CHANGEDORCREATED',
 'enotif_lastvisited'           => 'Wšykne změny na jadno póglědnjenje: $1',
 'enotif_lastdiff'              => 'Za toś tu změnu glědaj w $1.',
 'enotif_anon_editor'           => 'anonymny wužywaŕ $1',
+'enotif_rev_info'              => 'Glědaj $1 za aktualnu wersiju.',
 'enotif_body'                  => 'Luby/a $WATCHINGUSERNAME,
 
-{{SITENAME}} bok "$PAGETITLE" jo se wót $PAGEEDITOR $PAGEEDITDATE $CHANGEDORCREATED.
-
-Aktualna wersija: $PAGETITLE_URL
+{{SITENAME}} bok "$PAGETITLE" jo se wót $PAGEEDITOR $PAGEEDITDATEANDTIME $CHANGEDORCREATED.
+$REVINFO
 
 $NEWPAGE
 
@@ -1930,7 +1932,10 @@ Dalšne e-mailowe powěsći se tak dłujko njepósćelu, až njejsy bok zasej wo
 
              Twój pśijaśelny {{SITENAME}} powěsćowy system
 --
-Aby nastajenja twójich wobglědowańkow změnił, woglědaj: {{fullurl:Special:Watchlist/edit}}',
+Aby nastajenja twójich wobglědowańkow změnił, woglědaj: {{fullurl:Special:Watchlist/edit}}
+
+Pčašanja a dalšna pomoc:
+{{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Bok wulašowaś',
@@ -2437,6 +2442,7 @@ Wšykne transwiki-importowe akcije protokolěruju se w [[Special:Log/import|log-
 'tooltip-ca-viewsource'           => 'Bok jo šćitany. Jo móžno, žrědłowy tekst woglědaś.',
 'tooltip-ca-history'              => 'Něgajšne wersije togo boka.',
 'tooltip-ca-protect'              => 'Toś ten bok šćitaś',
+'tooltip-ca-unprotect'            => 'Tutu stronu hižo nješkitać',
 'tooltip-ca-delete'               => 'Toś ten bok wulašowaś',
 'tooltip-ca-undelete'             => 'Zapise pśed wulašowanim boka nawrośiś.',
 'tooltip-ca-move'                 => 'Toś ten bok pśesunuś',
@@ -2447,6 +2453,7 @@ Wšykne transwiki-importowe akcije protokolěruju se w [[Special:Log/import|log-
 'tooltip-search-fulltext'         => 'Toś ten tekst w bokach pytaś',
 'tooltip-p-logo'                  => 'Głowny bok',
 'tooltip-n-mainpage'              => 'Glowny bok pokazaś',
+'tooltip-n-mainpage-description'  => 'Hłownu stronu wopytać',
 'tooltip-n-portal'                => 'Wó portalu, co móžoš cyniś, źo co namakajoš',
 'tooltip-n-currentevents'         => 'Slězynowe informacije k aktualnym tšojenjam',
 'tooltip-n-recentchanges'         => 'Lisćina aktualnych změnow w(e) {{SITENAME}}.',

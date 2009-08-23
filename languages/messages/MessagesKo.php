@@ -2056,7 +2056,7 @@ $NEWPAGE
 
 --
 주시문서 설정을 바꾸려면 다음을 사용하세요:
-{{fullurl:{{ns:special}}:Watchlist/edit}}
+{{fullurl:{{#special:Watchlist}}/edit}}
 
 도움말:
 {{fullurl:{{MediaWiki:Helppage}}}}',

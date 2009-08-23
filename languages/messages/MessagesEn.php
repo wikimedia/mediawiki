@@ -3179,7 +3179,7 @@ Please try again.',
 'accesskey-search-go'               => '', # do not translate or duplicate this message to other languages
 'accesskey-search-fulltext'         => '', # do not translate or duplicate this message to other languages
 'accesskey-p-logo'                  => '', # do not translate or duplicate this message to other languages
-'accesskey-n-mainpage'              => 'z', # for back-compat... do not translate or duplicate this message to other languages
+'accesskey-n-mainpage'              => 'z', # do not translate or duplicate this message to other languages
 'accesskey-n-mainpage-description'  => 'z', # do not translate or duplicate this message to other languages
 'accesskey-n-portal'                => '', # do not translate or duplicate this message to other languages
 'accesskey-n-currentevents'         => '', # do not translate or duplicate this message to other languages
@@ -3243,8 +3243,8 @@ You can view its source',
 'tooltip-search'                  => 'Search {{SITENAME}}',
 'tooltip-search-go'               => 'Go to a page with this exact name if exists',
 'tooltip-search-fulltext'         => 'Search the pages for this text',
-'tooltip-p-logo'                  => 'Visit the main page', # for back-compat
-'tooltip-n-mainpage'              => 'Visit the main page', # for back-compat
+'tooltip-p-logo'                  => 'Visit the main page',
+'tooltip-n-mainpage'              => 'Visit the main page',
 'tooltip-n-mainpage-description'  => 'Visit the main page',
 'tooltip-n-portal'                => 'About the project, what you can do, where to find things',
 'tooltip-n-currentevents'         => 'Find background information on current events',

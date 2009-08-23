@@ -677,7 +677,7 @@ Wennst de Seitn wieder vo deina Beobachtungslistn wegdoa mechtn, klickst auf da 
 'changed'            => "g'ändat",
 'enotif_lastvisited' => 'Alle Änderungen auf oan Blick: $1',
 'enotif_body'        => 'Liaba/e $WATCHINGUSERNAME,
-de {{SITENAME}} Seitn "$PAGETITLE" is vo $PAGEEDITOR am $PAGEEDITDATE $CHANGEDORCREATED worn.
+de {{SITENAME}} Seitn "$PAGETITLE" is vo $PAGEEDITOR am $PAGEEDITDATEANDTIME $CHANGEDORCREATED worn.
 Zusammenfassung vom Bearbeiter: $PAGESUMMARY $PAGEMINOREDIT
 Es wern solang koae weitern Benachrichtigungsmails gsendt, bis Sie de Seitn wieder besuacht ham. Auf Eanana Beobachtungsseitn kinnans S\' alle Benachrichtigungsmarker zsamm zrucksetzen.
              Eana {{SITENAME}} Benachrichtigungssystem

@@ -464,13 +464,17 @@ Morda ste odkrili hrošča v programski opremi {{GRAMMAR:genitive|{{SITENAME}}}}
 # General errors
 'error'                => 'Napaka',
 'databaseerror'        => 'Napaka zbirke podatkov',
-'dberrortext'          => 'Prišlo je do napake zbirke podatkov.
+'dberrortext'          => 'Prišlo je do napake podatkovne zbirke.
 Vzrok bi lahko bil nesprejemljiv iskalni niz ali programski hrošč.
 Zadnje poskušano iskanje:
 <blockquote><tt>$1</tt></blockquote>
 znotraj funkcije »<tt>$2</tt>«.
-$5 je vrnil napako »<tt>$3: $4</tt>«.',
-'dberrortextcl'        => 'Pri iskanju v zbirki podatkov je prišlo do skladenjske napake. Zadnje iskanje v zbirki podatkov: »$1« iz funkcije »$2«. $5 je vrnil napako »$3: $4«.',
+Podatkovna zbirka je vrnila napako »<tt>$3: $4</tt>«.',
+'dberrortextcl'        => 'Pri iskanju v podatkoovni zbirki je prišlo do skladenjske napake.
+Zadnje iskanje v zbirki podatkov:
+»$1«
+iz funkcije »$2«.
+Podatkovna zbirka je vrnila napako »$3: $4«.',
 'laggedslavemode'      => 'Opozorilo: stran morda ne vsebuje najnovejših posodobitev',
 'readonly'             => 'Zbirka podatkov je zaklenjena',
 'enterlockreason'      => 'Vnesite razlog za zaklenitev in oceno, kdaj bo urejanje spet mogoče',
@@ -571,8 +575,7 @@ Preverite črkovanje ali pa si z [[Special:UserLogin/signup|ustvarite nov uporab
 'nouserspecified'            => 'Prosimo, vpišite uporabniško ime.',
 'wrongpassword'              => 'Vnesli ste napačno geslo. Prosimo, poskusite znova.',
 'wrongpasswordempty'         => 'Vpisali ste prazno geslo. Prosimo, poskusite znova.',
-'passwordtooshort'           => 'Vaše geslo je prekratko.
-Imeti mora najmanj $1 {{PLURAL:$1|znak|znaka|znake|znakov|znakov}}.',
+'passwordtooshort'           => 'Geslo mora imeti najmanj $1 {{PLURAL:$1|znak|znaka|znake|znakov|znakov}}.',
 'password-name-match'        => 'Vaše geslo se mora razlikovati od vašega uporabniškega imena.',
 'mailmypassword'             => 'Pošlji mi novo geslo',
 'passwordremindertitle'      => 'Geselski opomnik iz {{GRAMMAR:rodilnik|{{SITENAME}}}}',
@@ -1853,7 +1856,7 @@ Da bo prejemnik lahko odgovoril neposredno vam, bo v glavi sporočila zapisan ''
 'enotif_anon_editor'           => 'anonimni uporabnik $1',
 'enotif_body'                  => '$WATCHINGUSERNAME,
 
-stran v {{GRAMMAR:dajalnik|{{SITENAME}}}} $PAGETITLE je bila $PAGEEDITDATE $CHANGEDORCREATED s strani $PAGEEDITOR,
+stran v {{GRAMMAR:dajalnik|{{SITENAME}}}} $PAGETITLE je bila $PAGEEDITDATEANDTIME $CHANGEDORCREATED s strani $PAGEEDITOR,
 za trenutno redakcijo glejte $PAGETITLE_URL
 
 $NEWPAGE

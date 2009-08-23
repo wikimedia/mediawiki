@@ -1482,7 +1482,7 @@ PICT # misc.
 'enotif_body'                  => 'प्रिय $WATCHINGUSERNAME,
 
 
-{{SITENAME}} पृष्ठ $PAGETITLE $PAGEEDITOR द्वारा $PAGEEDITDATE को  $CHANGEDORCREATED किया है, वर्त्तमान संस्करण के लिए $PAGETITLE_URL देखें।
+{{SITENAME}} पृष्ठ $PAGETITLE $PAGEEDITOR द्वारा $PAGEEDITDATEANDTIME को  $CHANGEDORCREATED किया है, वर्त्तमान संस्करण के लिए $PAGETITLE_URL देखें।
 
 $NEWPAGE
 
@@ -1499,7 +1499,7 @@ $NEWPAGE
 
 --
 अपनी ध्यानसूची में समायोजन में परिवर्तन के लिए, देखें
-{{fullurl:{{ns:special}}:Watchlist/edit}}
+{{fullurl:{{#special:Watchlist}}/edit}}
 
 प्रतिपुष्टि एवं सहायता के लिए:
 {{fullurl:{{MediaWiki:Helppage}}}}',

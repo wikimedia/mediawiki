@@ -463,12 +463,12 @@ Lisćina płaćiwych specialnych stronow hodźi so pod [[Special:SpecialPages|Li
 To móhło zmylk w programje być. Poslednje spytane wotprašenje w datowej bance běše:
 <blockquote><tt>$1</tt></blockquote>
 z funkcije "<tt>$2</tt>".
-$5 wróći zmylk "tt>$3: $4</tt>".',
+Datowa banka wróći zmylk "tt>$3: $4</tt>".',
 'dberrortextcl'        => 'Syntaktiski zmylk je we wotprašowanju datoweje banki wustupił.
 Poslednje wotprašenje w datowej bance běše:
 "$1"
 z funkcije "$2".
-$5 wróći zmylk "$3: $4"',
+Datowa banka wróći zmylk "$3: $4"',
 'laggedslavemode'      => 'Kedźbu: Je móžno, zo strona žane zaktualizowanja njewobsahuje.',
 'readonly'             => 'Datowa banka je zawrjena',
 'enterlockreason'      => 'Zapodaj přičinu za zawrjenje a přibližny čas, hdy budźe zawrjenje zběhnjene',
@@ -569,8 +569,7 @@ Přepruwuj swój prawopis abo [[Special:UserLogin/signup|wutwor nowe konto]].',
 'nouserspecified'            => 'Dyrbiš wužiwarske mjeno podać',
 'wrongpassword'              => 'Hesło, kotrež sy zapodał, je wopačne. Prošu spytaj hišće raz.',
 'wrongpasswordempty'         => 'Hesło, kotrež sy zapodał, běše prózdne. Prošu spytaj hišće raz.',
-'passwordtooshort'           => 'Twoje hesło je překrótke. 
-Dyrbi znajmjeńša {{PLURAL:$1|1 znamješko|$1 znamješce|$1 znamješka|$1 znamješkow}} měć.',
+'passwordtooshort'           => 'Hesła dyrbja znajmjeńša {{PLURAL:$1|1 znamješko|$1 znamješce|$1 znamješka|$1 znamješkow}} měć.',
 'password-name-match'        => 'Twoje hesło dyrbi so wot twojeho wužiwarskeho mjena rozeznać.',
 'mailmypassword'             => 'Nowe hesło e-mejlować',
 'passwordremindertitle'      => 'Skedźbnjenje na hesło z {{GRAMMAR:genitiw|{{SITENAME}}}}',
@@ -1886,14 +1885,18 @@ Jeli chceš stronu pozdźišo ze swojich wobkedźbowankow wotstronić, klikń na
 'enotif_impersonal_salutation' => 'wužiwar {{GRAMMAR:genitiw|{{SITENAME}}}}',
 'changed'                      => 'změnjena',
 'created'                      => 'wutworjena',
+'deleted'                      => 'wušmórnjeny',
+'enotif_deletedpagetext'       => 'Tuta strona hižo k dispoziciji njesteji.',
 'enotif_subject'               => '[{{SITENAME}}] Strona „$PAGETITLE” bu přez wužiwarja $PAGEEDITOR $CHANGEDORCREATED.',
 'enotif_lastvisited'           => 'Hlej $1 za wšě změny po twojim poslednim wopyće.',
 'enotif_lastdiff'              => 'Hlej $1 za tutu změnu.',
 'enotif_anon_editor'           => 'anonymny wužiwar $1',
-'enotif_body'                  => 'Luby $WATCHINGUSERNAME,<br />
+'enotif_rev_info'              => 'Hlej $1 za aktualnu wersiju.',
+'enotif_body'                  => 'Luby $WATCHINGUSERNAME,
 
-Strona we {{GRAMMAR:lokatiw|{{SITENAME}}}} z mjenom $PAGETITLE bu dnja $PAGEEDITDATE wot $PAGEEDITOR $CHANGEDORCREATED,
-hlej $PAGETITLE_URL za aktualnu wersiju.
+
+Strona we {{GRAMMAR:lokatiw|{{SITENAME}}}} z mjenom $PAGETITLE bu dnja $PAGEEDITDATEANDTIME wot $PAGEEDITOR $CHANGEDORCREATED.
+$REVINFO
 
 $NEWPAGE
 
@@ -1910,7 +1913,7 @@ Móžeš tež zdźělenske marki za wšě swoje wobkedźbowane strony we swojich
 
 --
 Zo by nastajenja twojich wobkedźbowankow změnił, wopytaj
-{{fullurl:{{ns:special}}:Watchlist/edit}}
+{{fullurl:{{#special:Watchlist}}/edit}}
 
 Wospjetne prašenja a dalša pomoc:
 {{fullurl:{{MediaWiki:Helppage}}}}',
@@ -2408,6 +2411,7 @@ W poslednim padźe móžeš tež wotkaz wužiwać, na př. „[[{{#Special:Expor
 'tooltip-ca-viewsource'           => 'Strona je škitana. Móžeš pak jeje žórło wobhladać.',
 'tooltip-ca-history'              => 'stawizny tuteje strony',
 'tooltip-ca-protect'              => 'stronu škitać',
+'tooltip-ca-unprotect'            => 'Tutu stronu hižo nješkitać',
 'tooltip-ca-delete'               => 'stronu wušmórnyć',
 'tooltip-ca-undelete'             => 'změny wobnowić, kotrež buchu do wušmórnjenja sčinjene',
 'tooltip-ca-move'                 => 'stronu přesunyć',
@@ -2418,6 +2422,7 @@ W poslednim padźe móžeš tež wotkaz wužiwać, na př. „[[{{#Special:Expor
 'tooltip-search-fulltext'         => 'Strony za tutym tekstom přepytać',
 'tooltip-p-logo'                  => 'hłowna strona',
 'tooltip-n-mainpage'              => 'hłownu stronu pokazać',
+'tooltip-n-mainpage-description'  => 'Hłownu stronu wopytać',
 'tooltip-n-portal'                => 'wo projekće, što móžeš činić, hdźe móžeš informacije namakać',
 'tooltip-n-currentevents'         => 'pozadkowe informacije wo aktualnych podawkach pytać',
 'tooltip-n-recentchanges'         => 'lisćina aktualnych změnow w tutym wikiju',

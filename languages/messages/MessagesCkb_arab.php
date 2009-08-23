@@ -1888,7 +1888,7 @@ $1",
 'enotif_lastdiff'              => 'بۆ دیتنی ئەم گۆڕانە $1 ببینە.',
 'enotif_anon_editor'           => 'بەکارهێنەری نەناسراو $1',
 'enotif_body'                  => 'بەڕێز $WATCHINGUSERNAME،
-پەڕەی $PAGETITLE لە {{SITENAME}} دا لە ڕێکەوتی $PAGEEDITDATE بە دەستی $PAGEEDITOR $CHANGEDORCREATED کراوە، سەردانی $PAGETITLE_URL بکە بۆ وەشانی ھەنووکەی ئەو پەڕە.
+پەڕەی $PAGETITLE لە {{SITENAME}} دا لە ڕێکەوتی $PAGEEDITDATEANDTIME بە دەستی $PAGEEDITOR $CHANGEDORCREATED کراوە، سەردانی $PAGETITLE_URL بکە بۆ وەشانی ھەنووکەی ئەو پەڕە.
 
 $NEWPAGE
 
@@ -1905,7 +1905,7 @@ $NEWPAGE
              بە سوپاسەوە، سیستەمی ڕاگەیاندنی {{SITENAME}}
 --
 بۆ گۆڕینی تەنزیماتی لیستی چاودێڕییەکانت، سەربدە لە
-{{fullurl:{{ns:special}}:Watchlist/edit}}
+{{fullurl:{{#special:Watchlist}}/edit}}
 
 رێنوێنیی زۆرتر و دەربڕینی بیروڕا:
 {{fullurl:{{MediaWiki:Helppage}}}}',

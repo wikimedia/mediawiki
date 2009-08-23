@@ -1810,7 +1810,7 @@ $3 చెప్పిన కారణం: ''$2''",
 'enotif_body'                  => 'ప్రియమైన $WATCHINGUSERNAME,
 
 
-{{SITENAME}} పేజీ, $PAGETITLE ని $PAGEEDITDATE తేదీన $PAGEEDITOR గారు $CHANGEDORCREATED. ప్రస్తుత కూర్పు కొరకు $PAGETITLE_URL చూడండి.
+{{SITENAME}} పేజీ, $PAGETITLE ని $PAGEEDITDATEANDTIME తేదీన $PAGEEDITOR గారు $CHANGEDORCREATED. ప్రస్తుత కూర్పు కొరకు $PAGETITLE_URL చూడండి.
 
 $NEWPAGE
 
@@ -1826,7 +1826,7 @@ $NEWPAGE
 
 --
 మీ వీక్షణ జాబితా సెట్టింగులను మార్చేందుకు చూడండి:
-{{fullurl:{{ns:special}}:Watchlist/edit}}
+{{fullurl:{{#special:Watchlist}}/edit}}
 
 మీ అభిప్రయాలు చెప్పేందుకు, మరింత సహాయానికై:
 {{fullurl:{{MediaWiki:helppage}}}}',

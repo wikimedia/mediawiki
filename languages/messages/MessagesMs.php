@@ -181,6 +181,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Juga e-melkan saya apabila berlaku penyuntingan kecil',
 'tog-enotifrevealaddr'        => 'Serlahkan alamat e-mel saya dalam e-mel pemberitahuan',
 'tog-shownumberswatching'     => 'Tunjukkan bilangan pemantau',
+'tog-oldsig'                  => 'Pratonton bagi tanda tangan yang sedia ada:',
 'tog-fancysig'                => 'Anggap tandatangan sebagai teks wiki (tanpa pautan automatik)',
 'tog-externaleditor'          => 'Gunakan penyunting luar secara lalai',
 'tog-externaldiff'            => 'Gunakan pembeza luar secara lalai (untuk pakar sahaja, perlu penetapan khas pada komputer anda)',
@@ -203,6 +204,13 @@ $messages = array(
 'underline-always'  => 'Sentiasa',
 'underline-never'   => 'Jangan',
 'underline-default' => 'Ikut tetapan pelayar',
+
+# Font style option in Special:Preferences
+'editfont-style'     => 'Gaya fon ruang sunting:',
+'editfont-default'   => 'Lalai pelayar',
+'editfont-monospace' => 'Fon monospace',
+'editfont-sansserif' => 'Fon sans-serif',
+'editfont-serif'     => 'Fon serif',
 
 # Dates
 'sunday'        => 'Ahad',
@@ -319,6 +327,7 @@ $messages = array(
 'vector-namespace-project'   => 'Laman projek',
 'vector-namespace-special'   => 'Laman khas',
 'vector-namespace-talk'      => 'Bincang',
+'vector-namespace-template'  => 'Templat',
 'vector-namespace-user'      => 'Laman pengguna',
 'vector-view-create'         => 'Cipta',
 'vector-view-edit'           => 'Sunting',
@@ -469,15 +478,17 @@ Senarai laman khas yang sah boleh dilihat di [[Special:SpecialPages]].",
 # General errors
 'error'                => 'Ralat',
 'databaseerror'        => 'Ralat pangkalan data',
-'dberrortext'          => 'Terdapat ralat pada sintaks pertanyaan pangkalan data.
+'dberrortext'          => 'Ralat sintaks pertanyaan pangkalan data telah terjadi.
 Ini mungkin menandakan pepijat dalam perisian wiki ini.
 Pertanyaan pangkalan data yang terakhir ialah:
 <blockquote><tt>$1</tt></blockquote>
-dari dalam fungsi "<tt>$2</tt>".
-$5 memulangkan ralat "<tt>$3: $4</tt>".',
-'dberrortextcl'        => 'Terdapat ralat sintaks pada pertanyaan pangkalan data.
-Pertanyaan terakhir ialah: "$1" dari dalam fungsi "$2".
-$5 memulangkan ralat "$3: $4".',
+daripada fungsi "<tt>$2</tt>".
+Pangkalan data memulangkan ralat "<tt>$3: $4</tt>".',
+'dberrortextcl'        => 'Terdapat ralat sintaks pertanyaan pangkalan data.
+Pertanyaan terakhir ialah:
+"$1" 
+daripada fungsi "$2".
+Pangkalan data memulangkan ralat "$3: $4".',
 'laggedslavemode'      => 'Amaran: Laman ini mungkin bukan yang terkini.',
 'readonly'             => 'Pangkalan data dikunci',
 'enterlockreason'      => 'Sila nyatakan sebab penguncian dan jangkaan
@@ -575,7 +586,7 @@ Akaun anda telah dibuka. Jangan lupa untuk mengubah [[Special:Preferences|keutam
 'nouserspecified'            => 'Sila nyatakan nama pengguna.',
 'wrongpassword'              => 'Kata laluan yang dimasukkan adalah salah. Sila cuba lagi.',
 'wrongpasswordempty'         => 'Kata laluan yang dimasukkan adalah kosong. Sila cuba lagi.',
-'passwordtooshort'           => 'Kata laluan anda terlalu pendek. Panjangnya mestilah sekurang-kurangnya {{PLURAL:$1|1 aksara|$1 aksara}} dan berbeza daripada nama pengguna.',
+'passwordtooshort'           => 'Kata laluan mestilah sekurang-kurangnya {{PLURAL:$1|1 aksara|$1 aksara}}.',
 'password-name-match'        => 'Kata laluan anda mesti berbeza daripada nama pengguna anda.',
 'mailmypassword'             => 'E-melkan kata laluan baru',
 'passwordremindertitle'      => 'Pengingat kata laluan daripada {{SITENAME}}',
@@ -873,15 +884,15 @@ Cuba [[Special:Search|cari]] laman lain yang mungkin berkaitan.',
 'rev-deleted-text-permission' => "Semakan laman ini telah '''dihapuskan'''.
 Perinciannya mungkin ada di dalam [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log penghapusan].",
 'rev-deleted-text-unhide'     => "Semakan laman ini telah '''dihapuskan'''.
-Butiran lanjut mungkin boleh didapati dalam [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} log penyelindungan].
-Sebagai pentadbir anda masih boleh [$1 melihat semakan ini] jika anda ingin.",
+Butiran lanjut mungkin boleh didapati dalam [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log penghapusan].
+Sebagai seorang pentadbir anda masih boleh [$1 melihat semakan ini] jika anda ingin teruskan.",
 'rev-deleted-text-view'       => "Semakan laman ini telah '''dihapuskan'''.
-Sebagai seorang pentadbir anda boleh melihatnya; butiran lanjut mungkin boleh didapati dalam [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} log penyelindungan].",
-'rev-deleted-no-diff'         => "Anda tidak boleh melihat perbezaan ini kerana satu daripada semakan yang dibandingkan telah '''dihapuskan'''.
-Butiran lanjut mungkin boleh didapati dalam [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} log penyelindungan].",
+Sebagai seorang pentadbir anda boleh melihatnya; butiran lanjut mungkin boleh didapati dalam [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log penghapusan].",
+'rev-deleted-no-diff'         => "Anda tidak boleh melihat perbezaan ini kerana salah satu daripada semakannya telah '''dihapuskan'''.
+Mungkin terdapat butiran lanjut di dalam [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log penghapusan].",
 'rev-deleted-unhide-diff'     => "Salah satu semakan laman ini telah '''dihapuskan'''.
-Butiran lanjut mungkin boleh didapati dalam [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} log penyelindungan].
-Sebagai pentadbir anda masih boleh [$1 melihat semakan ini] jika anda ingin.",
+Butiran lanjut mungkin boleh didapati dalam [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} log penghapusan].
+Sebagai seorang pentadbir anda masih boleh [$1 melihat semakan ini] jika anda ingin teruskan.",
 'rev-delundel'                => 'tunjuk/sembunyi',
 'revisiondelete'              => 'Hapus/nyahhapus semakan',
 'revdelete-nooldid-title'     => 'Tiada semakan sasaran',
@@ -1579,7 +1590,7 @@ Penerangan pada [$2 laman penerangan failnya] di sana ditunjukkan di bawah.',
 
 # Random page
 'randompage'         => 'Laman rawak',
-'randompage-nopages' => 'Tiada laman dalam ruang nama "$1".',
+'randompage-nopages' => 'Tiada laman dalam {{PLURAL:$2|ruang|ruang-ruang}} nama berikut: $1.',
 
 # Random redirect
 'randomredirect'         => 'Lencongan rawak',
@@ -1726,9 +1737,9 @@ serta mungkin mempunyai maklumat lanjut mengenai buku yang anda cari:',
 
 # Special:Categories
 'categories'                    => 'Kategori',
-'categoriespagetext'            => 'Kategori-kategori berikut mengandungi laman-laman dan bahan-bahan media.
+'categoriespagetext'            => '{{PLURAL:$1|Kategori|Kategori-kategori}} berikut mengandungi laman-laman atau media.
 [[Special:UnusedCategories|Kategori yang tidak digunakan]] tidak dipaparkan di sini.
-Lihat juga [[Special:WantedCategories|senarai kategori dikehendaki]].',
+Lihat juga [[Special:WantedCategories|kategori yang dikehendaki]].',
 'categoriesfrom'                => 'Paparkan kategori bermula daripada:',
 'special-categories-sort-count' => 'susun mengikut tertib bilangan',
 'special-categories-sort-abc'   => 'susun mengikut tertib abjad',
@@ -1769,8 +1780,8 @@ Anda boleh mengetahui [[{{MediaWiki:Listgrouprights-helppage}}|maklumat tambahan
 'listgrouprights-rights'          => 'Hak',
 'listgrouprights-helppage'        => 'Help:Hak kumpulan',
 'listgrouprights-members'         => '(senarai ahli)',
-'listgrouprights-addgroup'        => 'Boleh menambah kumpulan: $1',
-'listgrouprights-removegroup'     => 'Boleh membuang kumpulan: $1',
+'listgrouprights-addgroup'        => 'Tambah {{PLURAL:$2|kumpulan|kumpulan}}: $1',
+'listgrouprights-removegroup'     => 'Buang {{PLURAL:$2|kumpulan|kumpulan}}: $1',
 'listgrouprights-addgroup-all'    => 'Boleh menambah semua kumpulan',
 'listgrouprights-removegroup-all' => 'Boleh membuang semua kumpulan',
 
@@ -1854,23 +1865,24 @@ Jika anda mahu membuang laman tersebut daripada senarai pantau, klik \"Nyahpanta
 'enotif_body'                  => 'Saudara/saudari $WATCHINGUSERNAME,
 
 
-Laman $PAGETITLE di {{SITENAME}} telah $CHANGEDORCREATED pada $PAGEEDITDATE oleh $PAGEEDITOR, sila lihat $PAGETITLE_URL untuk versi semasa.
+Laman $PAGETITLE di {{SITENAME}} telah $CHANGEDORCREATED pada $PAGEEDITDATEANDTIME oleh $PAGEEDITOR. $REVINFO
 
 $NEWPAGE
 
 Ringkasan: $PAGESUMMARY $PAGEMINOREDIT
 
-Anda boleh menghubungi si penyunting melalui:
-e-mel: $PAGEEDITOR_EMAIL
+Hubungi penyunting tersebut:
+mel: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
-Tiada pemberitahuan lain akan dikirim selagi anda tidak mengunjungi laman tersebut. Anda juga boleh mengeset semula tanda pemberitahuan bagi semua laman dalam senarai pantau anda.
+Tiada pemberitahuan lain akan dikirim berkaitan perubahan selanjutnya melainkan anda mengunjungi laman tersebut.
+Anda juga boleh menetapkan semula penanda pemberitahuan bagi semua laman dalam senarai pantau anda.
 
-         Sistem pemberitahuan {{SITENAME}}
+         Sistem pemberitahuan {{SITENAME}} anda yang mesra
 
 --
 Untuk mengubah tetapan senarai pantau anda, sila kunjungi
-{{fullurl:{{ns:special}}:Watchlist/edit}}
+{{fullurl:{{#special:Watchlist}}/edit}}
 
 Maklum balas dan bantuan:
 {{fullurl:{{MediaWiki:Helppage}}}}',
@@ -1934,7 +1946,7 @@ Sila tekan butang "back" dan muatkan semula laman yang telah anda kunjungi sebel
 'protect-title'               => 'Menetapkan peringkat perlindungan bagi "$1"',
 'prot_1movedto2'              => '[[$1]] dipindahkan ke [[$2]]',
 'protect-legend'              => 'Sahkan perlindungan',
-'protectcomment'              => 'Komen:',
+'protectcomment'              => 'Sebab:',
 'protectexpiry'               => 'Sehingga:',
 'protect_expiry_invalid'      => 'Waktu tamat tidak sah.',
 'protect_expiry_old'          => 'Waktu tamat telah berlalu.',
@@ -2258,7 +2270,7 @@ Sila pilih nama lain.',
 'move-redirect-suppressed'     => 'halang pelencongan',
 'movelogpage'                  => 'Log pemindahan',
 'movelogpagetext'              => 'Yang berikut ialah senarai pemindahan laman.',
-'movesubpage'                  => 'Sublaman',
+'movesubpage'                  => '{{PLURAL:$1|Sublaman|Sublaman}}',
 'movesubpagetext'              => 'Laman ini mempunyai $1 sublaman berikut.',
 'movenosubpage'                => 'Laman ini tidak mempunyai sublaman.',
 'movereason'                   => 'Sebab:',

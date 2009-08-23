@@ -1284,7 +1284,7 @@ Kun boot mong halîon an páhina sa pigbabantayan mo sa maabot na panahon, pindo
 'enotif_body'                  => 'Namómòtan na $WATCHINGUSERNAME,
 
 
-An páhinang {{SITENAME}} na $PAGETITLE binâgo $CHANGEDORCREATED sa $PAGEEDITDATE ni $PAGEEDITOR, hilingón an $PAGETITLE_URL para sa presenteng bersyón.
+An páhinang {{SITENAME}} na $PAGETITLE binâgo $CHANGEDORCREATED sa $PAGEEDITDATEANDTIME ni $PAGEEDITOR, hilingón an $PAGETITLE_URL para sa presenteng bersyón.
 
 $NEWPAGE
 
@@ -1300,7 +1300,7 @@ Mayô nang iba pang paisi na ipapadara dapit sa iba pang mga pagbabâgo kun dai 
 
 --
 Para bâgohon an pagpwesto kan saimong mga pigbabantayan, bisitahon an
-{{fullurl:{{ns:special}}:Watchlist/edit}}
+{{fullurl:{{#special:Watchlist}}/edit}}
 
 Komentaryo asin iba pang tabang:
 {{fullurl:{{MediaWiki:Helppage}}}}',

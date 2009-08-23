@@ -1885,7 +1885,7 @@ Jekk f'xi ħin tkun tixtieq tneħħi l-paġna mil-lista ta' osservazzjoni tiegħ
 'enotif_anon_editor'           => 'utent anonimu $1',
 'enotif_body'                  => 'Għażiż $WATCHINGUSERNAME,
 
-Il-Paġna $PAGETITLE ta\' {{SITENAME}} ġiet $CHANGEDORCREATED - $PAGEEDITDATE minn $PAGEEDITOR; il-verżjoni kurrenti tinsab fl-indirizz $PAGETITLE_URL.
+Il-Paġna $PAGETITLE ta\' {{SITENAME}} ġiet $CHANGEDORCREATED - $PAGEEDITDATEANDTIME minn $PAGEEDITOR; il-verżjoni kurrenti tinsab fl-indirizz $PAGETITLE_URL.
 
 $NEWPAGE
 
@@ -1901,7 +1901,7 @@ Mhux se jiġu mibgħuta notifiki aktar fil-każ ta\' aktar modifiki, sakemm ma t
 
 --
 Biex tagħmel modifiki fil-lista t\'osservazzjoni tiegħek:
-{{fullurl:{{ns:special}}:Watchlist/edit}}
+{{fullurl:{{#special:Watchlist}}/edit}}
 
 Biex tagħti l-kumment tiegħek u għal aktar għajnuna:
 {{fullurl:{{MediaWiki:Helppage}}}}',

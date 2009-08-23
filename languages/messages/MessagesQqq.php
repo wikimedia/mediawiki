@@ -311,81 +311,82 @@ This can also appear in the credits page if the credits feature is enabled,for e
 # Metadata in edit box
 'metadata_help' => '{{Identical|Metadata}}',
 
-'errorpagetitle'   => 'Message shown in browser title bar when encountering error operation.
+'errorpagetitle'    => 'Message shown in browser title bar when encountering error operation.
 
 {{Identical|Error}}',
-'returnto'         => '{{Identical|Return to $1}}',
-'tagline'          => 'Used to idenify the source of copied information. Do not change <nowiki>{{SITENAME}}</nowiki>.',
-'help'             => 'General text (noun) used in the sidebar (by default). 
+'returnto'          => '{{Identical|Return to $1}}',
+'tagline'           => 'Used to idenify the source of copied information. Do not change <nowiki>{{SITENAME}}</nowiki>.',
+'help'              => 'General text (noun) used in the sidebar (by default). 
 
 See also [[MediaWiki:Helppage/{{SUBPAGENAME}}|{{int:helppage}}]] and [[MediaWiki:Edithelp/{{SUBPAGENAME}}|{{int:edithelp}}]].
 
 {{Identical|Help}}',
-'search'           => 'Noun. Text of menu section shown on every page of the wiki above the search form.
+'search'            => 'Noun. Text of menu section shown on every page of the wiki above the search form.
 
 {{Identical|Search}}',
-'searchbutton'     => 'The button you can see in the sidebar, below the search input box. The "Go" button is [[MediaWiki:Searcharticle/{{SUBPAGENAME}}]].
+'searchbutton'      => 'The button you can see in the sidebar, below the search input box. The "Go" button is [[MediaWiki:Searcharticle/{{SUBPAGENAME}}]].
 
 {{Identical|Search}}',
-'go'               => '{{Identical|Go}}',
-'searcharticle'    => 'Button description in the search menu displayed on every page. The "Search" button is [[MediaWiki:Searchbutton/{{SUBPAGENAME}}]].
+'go'                => '{{Identical|Go}}',
+'searcharticle'     => 'Button description in the search menu displayed on every page. The "Search" button is [[MediaWiki:Searchbutton/{{SUBPAGENAME}}]].
 
 {{Identical|Go}}',
-'history_short'    => 'Text used on the history tab.
+'history_short'     => 'Text used on the history tab.
 
 {{Identical|History}}',
-'updatedmarker'    => 'Displayed in the page history (of a page you are [[Special:Watchlist|watching]]), when the page has been edited since the last time you visited it.',
-'printableversion' => 'Display name for link in wiki menu that leads to a printable version of a content page. Example: see one but last menu item on [[Main Page]].',
-'permalink'        => 'Display name for a permanent link to the current revision of a page. When the page is edited, permalink will still link to this revision. Example: Last menu link on [[{{MediaWiki:Mainpage}}]]',
-'edit'             => 'The text of the tab going to the edit form. When the page is protected, you will see "[[MediaWiki:Viewsource/{{SUBPAGENAME}}|{{int:viewsource}}]]". Should be in the infinitive mood.
+'updatedmarker'     => 'Displayed in the page history (of a page you are [[Special:Watchlist|watching]]), when the page has been edited since the last time you visited it.',
+'printableversion'  => 'Display name for link in wiki menu that leads to a printable version of a content page. Example: see one but last menu item on [[Main Page]].',
+'permalink'         => 'Display name for a permanent link to the current revision of a page. When the page is edited, permalink will still link to this revision. Example: Last menu link on [[{{MediaWiki:Mainpage}}]]',
+'edit'              => 'The text of the tab going to the edit form. When the page is protected, you will see "[[MediaWiki:Viewsource/{{SUBPAGENAME}}|{{int:viewsource}}]]". Should be in the infinitive mood.
 
 {{Identical|Edit}}',
-'create'           => 'The text on the tab for to the edit form on unexisting pages.
+'create'            => 'The text on the tab for to the edit form on unexisting pages.
 
 {{Identical|Create}}',
-'editthispage'     => 'This is the "edit" link as used in the skins Classic/Standard, Cologne Blue and Nostalgia. See {{msg|create-this-page}} for when the page does not exist.',
-'create-this-page' => 'In the skins Classic/Standard, Cologne Blue and Nostalgia this is the text for the link leading to the edit form on pages that have not yet been created. See {{msg|editthispage}} for when the page already exists.
+'editthispage'      => 'This is the "edit" link as used in the skins Classic/Standard, Cologne Blue and Nostalgia. See {{msg|create-this-page}} for when the page does not exist.',
+'create-this-page'  => 'In the skins Classic/Standard, Cologne Blue and Nostalgia this is the text for the link leading to the edit form on pages that have not yet been created. See {{msg|editthispage}} for when the page already exists.
 {{Identical|Createpage}}',
-'delete'           => 'Name of the Delete tab shown for admins. Should be in the imperative mood.
+'delete'            => 'Name of the Delete tab shown for admins. Should be in the imperative mood.
 
 {{Identical|Delete}}',
-'deletethispage'   => '{{Identical|Delete this page}}',
-'undelete_short'   => "It is tab label. It's really can be named ''nstab-undelete''.",
-'protect'          => 'Name of protect tab displayed for admins
+'deletethispage'    => '{{Identical|Delete this page}}',
+'undelete_short'    => "It is tab label. It's really can be named ''nstab-undelete''.",
+'protect'           => 'Name of protect tab displayed for admins
 
 {{Identical|Protect}}',
-'protect_change'   => 'Text on links for each entry in [[Special:ProtectedPages]] to change the protection of pages (only displayed to admins).',
-'protectthispage'  => '{{Identical|Protect this page}}',
-'unprotect'        => 'Name of unprotect tab displayed for admins
+'protect_change'    => 'Text on links for each entry in [[Special:ProtectedPages]] to change the protection of pages (only displayed to admins).',
+'protectthispage'   => '{{Identical|Protect this page}}',
+'unprotect'         => 'Name of unprotect tab displayed for admins
 
 {{Identical|Unprotect}}',
-'talkpagelinktext' => 'Used as name of links going to talk page in some places, like in the subheading of [[Special:Mycontributions|Special:Contributions]], in [[Special:RecentChanges]], and in [[Special:Watchlist]].
+'unprotectthispage' => '{{Identical|Unprotect this page}}',
+'talkpagelinktext'  => 'Used as name of links going to talk page in some places, like in the subheading of [[Special:Mycontributions|Special:Contributions]], in [[Special:RecentChanges]], and in [[Special:Watchlist]].
 
 {{Identical|Talk}}',
-'personaltools'    => 'Heading for a group of links to your user page, talk page, preferences, watchlist, and contributions. This heading is visible in the sidebar in some skins. For an example, see [http://translatewiki.net/wiki/Main_Page?useskin=simple Main Page using simple skin].',
-'articlepage'      => '{{Identical|Content page}}',
-'talk'             => 'Used as display name for the tab to all talk pages. These pages accompany all content pages and can be used for discussing the content page. Example: [[Talk:Example]].
+'personaltools'     => 'Heading for a group of links to your user page, talk page, preferences, watchlist, and contributions. This heading is visible in the sidebar in some skins. For an example, see [http://translatewiki.net/wiki/Main_Page?useskin=simple Main Page using simple skin].',
+'articlepage'       => '{{Identical|Content page}}',
+'talk'              => 'Used as display name for the tab to all talk pages. These pages accompany all content pages and can be used for discussing the content page. Example: [[Talk:Example]].
 
 {{Identical|Discussion}}',
-'views'            => 'Subtitle for the list of available views, for the current page. In "monobook" skin the list of views are shown as tabs, so this sub-title is not shown.  To check when and where this message is displayed switch to "simple" skin.
+'views'             => 'Subtitle for the list of available views, for the current page. In "monobook" skin the list of views are shown as tabs, so this sub-title is not shown.  To check when and where this message is displayed switch to "simple" skin.
 
 \'\'\'Note:\'\'\' This is "views" as in "appearances"/"representations", \'\'\'not\'\'\' as in "visits"/"accesses".',
-'toolbox'          => 'The title of the toolbox below the search menu.',
-'otherlanguages'   => 'This message is shown under the toolbox. It is used if there are interwiki links added to the page, like <tt><nowiki>[[</nowiki>en:Interwiki article]]</tt>.',
-'redirectedfrom'   => 'The text displayed when a certain page is redirected to another page. Variable <tt>$1</tt> contains the name of the page user came from.',
-'redirectpagesub'  => 'Displayed under the page title of a page which is a redirect to another page, see [{{fullurl:Project:Translators|redirect=no}} Project:Translators] for example.
+'toolbox'           => 'The title of the toolbox below the search menu.',
+'otherlanguages'    => 'This message is shown under the toolbox. It is used if there are interwiki links added to the page, like <tt><nowiki>[[</nowiki>en:Interwiki article]]</tt>.',
+'redirectedfrom'    => 'The text displayed when a certain page is redirected to another page. Variable <tt>$1</tt> contains the name of the page user came from.',
+'redirectpagesub'   => 'Displayed under the page title of a page which is a redirect to another page, see [{{fullurl:Project:Translators|redirect=no}} Project:Translators] for example.
 
 {{Identical|Redirect page}}',
-'lastmodifiedat'   => 'This message is shown below each page, in the footer with the logos and links.
+'lastmodifiedat'    => 'This message is shown below each page, in the footer with the logos and links.
 * $1: date
 * $2: time
 
 See also [[MediaWiki:Lastmodifiedatby/{{SUBPAGENAME}}]].',
-'jumpto'           => '"Jump to" navigation links. Hidden by default in monobook skin. The format is: {{int:jumpto}} [[MediaWiki:Jumptonavigation/{{SUBPAGENAME}}|{{int:jumptonavigation}}]], [[MediaWiki:Jumptosearch/{{SUBPAGENAME}}|{{int:jumptosearch}}]].',
-'jumptonavigation' => 'Part of the "jump to" navigation links. Hidden by default in monobook skin. The format is: [[MediaWiki:Jumpto/{{SUBPAGENAME}}|{{int:jumpto}}]] {{int:jumptonavigation}}, [[MediaWiki:Jumptosearch/{{SUBPAGENAME}}|{{int:jumptosearch}}]].
+'jumpto'            => '"Jump to" navigation links. Hidden by default in monobook skin. The format is: {{int:jumpto}} [[MediaWiki:Jumptonavigation/{{SUBPAGENAME}}|{{int:jumptonavigation}}]], [[MediaWiki:Jumptosearch/{{SUBPAGENAME}}|{{int:jumptosearch}}]].',
+'jumptonavigation'  => 'Part of the "jump to" navigation links. Hidden by default in monobook skin. The format is: [[MediaWiki:Jumpto/{{SUBPAGENAME}}|{{int:jumpto}}]] {{int:jumptonavigation}}, [[MediaWiki:Jumptosearch/{{SUBPAGENAME}}|{{int:jumptosearch}}]].
 
 {{Identical|Navigation}}',
-'jumptosearch'     => 'Part of the "jump to" navigation links. Hidden by default in monobook skin. The format is: [[MediaWiki:Jumpto/{{SUBPAGENAME}}|{{int:jumpto}}]] [[MediaWiki:Jumptonavigation/{{SUBPAGENAME}}|{{int:jumptonavigation}}]], {{int:jumptosearch}}.
+'jumptosearch'      => 'Part of the "jump to" navigation links. Hidden by default in monobook skin. The format is: [[MediaWiki:Jumpto/{{SUBPAGENAME}}|{{int:jumpto}}]] [[MediaWiki:Jumptonavigation/{{SUBPAGENAME}}|{{int:jumptonavigation}}]], {{int:jumptosearch}}.
 
 {{Identical|Search}}',
 
@@ -520,8 +521,11 @@ HTML markup cannot be used.",
 'error'                => '{{Identical|Error}}',
 'dberrortext'          => 'Parameters:
 *$5 is the database engine, such as MySQL, PostgreSQL, etc.',
-'dberrortextcl'        => 'Parameters:
-*$5 is the database engine, such as MySQL, PostgreSQL, etc.',
+'dberrortextcl'        => 'Parameters
+* $1 - The last SQL command/query
+* $2 - SQL function name
+* $3 - Error number
+* $4 - Error description',
 'enterlockreason'      => 'For developers when locking the database',
 'missing-article'      => "This message is shown when a revision does not exist, either as permalink or as diff. Examples:
 
@@ -1973,15 +1977,17 @@ Special:EmailUser appears when you click on the link "E-mail this user" in the s
 
 'changed'         => 'Possible value for $CHANGEDORCREATED in {{msg|enotif_subject}} and {{msg|enotif_body}}.',
 'created'         => 'Possible value for $CHANGEDORCREATED in {{msg|enotif_subject}} and {{msg|enotif_body}}.',
-'deleted'         => '{{Identical|Deleted}}',
-'enotif_subject'  => '$CHANGEDORCREATED can be one of {{msg|changed}} and {{msg|created}}.',
-'enotif_rev_info' => 'Substituted as $REVINFO in {{msg-mw|enotif body|notext=1}}',
-'enotif_body'     => '$CHANGEDORCREATED can be one of {{msg-mw|changed}} and {{msg-mw|created}}.
+'deleted'         => 'Verb in {{msg-mw|Enotif body|notext=1}}
 
-$PAGEEDITDATEANDTIME is the date and time of the edit, alternatively
-$PAGEEDITDATE is the date of the edit, and
-$PAGEEDITTIME is the time of the edit.
-',
+{{Identical|Deleted}}',
+'enotif_subject'  => '$CHANGEDORCREATED can be one of {{msg|changed}} and {{msg|created}}.',
+'enotif_rev_info' => 'Substituted as $REVINFO in {{msg-mw|enotif body|notext=1}}
+
+* $1 is an URL to the page',
+'enotif_body'     => 'Text of a notification e-mail sent when a watched page has been edited or deleted.
+
+* <tt>$CHANGEDORCREATED</tt> can be one of {{msg-mw|changed}}, {{msg-mw|created}}, or {{msg-mw|deleted}}.
+* <tt>$REVINFO</tt> is {{msg-mw|Enotif rev info}} (if the page has not been deleted).',
 
 # Delete
 'confirm'                => 'Submit button text for protection confirmation
@@ -2471,6 +2477,7 @@ Related messages: {{msg|right-importupload|pl=yes}} (the user right for this).',
 'tooltip-ca-addsection'           => 'Tooltip shown when hovering over the "addsection" tab (shown on talk pages).',
 'tooltip-ca-viewsource'           => 'Tooltip displayed when hovering over the {{msg|viewsource}} tab.',
 'tooltip-ca-protect'              => '{{Identical|Protect this page}}',
+'tooltip-ca-unprotect'            => '{{Identical|Unprotect this page}}',
 'tooltip-ca-delete'               => 'Tooltip shown when hovering over the "[[MediaWiki:Delete/{{SUBPAGENAME}}|{{int:delete}}]]" tab.
 
 {{Identical|Delete this page}}',
@@ -2481,8 +2488,10 @@ Related messages: {{msg|right-importupload|pl=yes}} (the user right for this).',
 'tooltip-search-go'               => 'This is the text of the tooltip displayed when hovering the mouse over the “[[MediaWiki:Go|Go]]” button next to the search box.',
 'tooltip-search-fulltext'         => 'This is the text of the tooltip displayed when hovering the mouse over the “[[MediaWiki:Search|Search]]” button under the search box.',
 'tooltip-p-logo'                  => 'Tool tip shown when hovering the mouse over the logo that links to [[Main Page]].
-{{Identical|Main page}}',
-'tooltip-n-mainpage'              => 'Tool tip shown when hovering the mouse over the link to [[{{MediaWiki:Mainpage}}]].',
+{{Identical|Visit the main page}}',
+'tooltip-n-mainpage'              => 'Tool tip shown when hovering the mouse over the link to [[{{MediaWiki:Mainpage}}]].
+{{Identical|Visit the main page}}',
+'tooltip-n-mainpage-description'  => '{{Identical|Visit the main page}}',
 'tooltip-n-portal'                => "Tooltip shown when hovering over the link to 'Community portal' shown in the side bar menu on all pages.",
 'tooltip-n-currentevents'         => 'Tooltip shown when hovering over {{msg|currentevents}} in the sidebar.',
 'tooltip-n-recentchanges'         => 'The tooltip when hovering over the "[[MediaWiki:Recentchanges/{{SUBPAGENAME}}|{{int:recentchanges}}]]" link in the sidebar going to the special page [[Special:RecentChanges]].',

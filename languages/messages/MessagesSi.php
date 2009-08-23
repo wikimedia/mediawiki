@@ -2016,7 +2016,7 @@ PICT # විවිධ.
 'enotif_body'                  => 'සාදර  $WATCHINGUSERNAME,
 
 
-{{SITENAME}} හි  $PAGETITLE පිටුව,  $PAGEEDITDATE  දිනදී  $PAGEEDITOR විසින් $CHANGEDORCREATED කර ඇති අතර, වත්මන් අනුවාදය සඳහා $PAGETITLE_URL බලන්න.
+{{SITENAME}} හි  $PAGETITLE පිටුව,  $PAGEEDITDATEANDTIME  දිනදී  $PAGEEDITOR විසින් $CHANGEDORCREATED කර ඇති අතර, වත්මන් අනුවාදය සඳහා $PAGETITLE_URL බලන්න.
 
 $NEWPAGE
 
@@ -2033,7 +2033,7 @@ $NEWPAGE
 
 --
 ඔබගේ මුරලැයිස්තු පරිස්ථිතීන් වෙනස්කිරීම සඳහා 
-{{fullurl:{{ns:special}}:Watchlist/edit}} වෙත පිවිසෙන්න
+{{fullurl:{{#special:Watchlist}}/edit}} වෙත පිවිසෙන්න
 
 ප්‍රතිපෝෂණය හා වැඩිමනත්  සහාය:
 {{fullurl:{{MediaWiki:Helppage}}}}',

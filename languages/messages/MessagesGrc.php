@@ -1637,7 +1637,7 @@ $1",
 'enotif_body'                  => 'Φίλτατε  $WATCHINGUSERNAME,
 
 
-Ἡ τοῦ {{SITENAME}} δέλτος $PAGETITLE $CHANGEDORCREATED ἐστὶ τῇ $PAGEEDITDATE ὑπὸ τοῦ $PAGEEDITOR, ἴδε $PAGETITLE_URL διὰ τὴν παροῦσαν ἔκδοσιν.
+Ἡ τοῦ {{SITENAME}} δέλτος $PAGETITLE $CHANGEDORCREATED ἐστὶ τῇ $PAGEEDITDATEANDTIME ὑπὸ τοῦ $PAGEEDITOR, ἴδε $PAGETITLE_URL διὰ τὴν παροῦσαν ἔκδοσιν.
 
 $NEWPAGE
 
@@ -1653,7 +1653,7 @@ $NEWPAGE
 
 --
 Διὰ τὸ ἀλλάξειν τὰς ῥυθμίσεις τὴς ἐφοροδιαλογῆς σου, ἐπίσκεψαι
-{{fullurl:{{ns:special}}:Watchlist/edit}}
+{{fullurl:{{#special:Watchlist}}/edit}}
 
 Ἀνάδρασις καὶ περαιτέρω βοήθεια:
 {{fullurl:{{MediaWiki:Helppage}}}}',

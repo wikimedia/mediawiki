@@ -2058,7 +2058,7 @@ Każda zmiana treści tej strony lub związanej z nią strony dyskusji zostanie 
 'enotif_anon_editor'           => 'użytkownik anonimowy $1',
 'enotif_body'                  => 'Drogi (droga) $WATCHINGUSERNAME,
 
-strona $PAGETITLE w {{GRAMMAR:MS.lp|{{SITENAME}}}} została $CHANGEDORCREATED $PAGEEDITDATE przez użytkownika $PAGEEDITOR. Zobacz na stronie $PAGETITLE_URL aktualną wersję.
+strona $PAGETITLE w {{GRAMMAR:MS.lp|{{SITENAME}}}} została $CHANGEDORCREATED $PAGEEDITDATEANDTIME przez użytkownika $PAGEEDITOR. Zobacz na stronie $PAGETITLE_URL aktualną wersję.
 
 $NEWPAGE
 
@@ -2075,7 +2075,7 @@ Możesz także zresetować wszystkie flagi powiadomień na swojej liście stron 
 
 --
 W celu zmiany ustawień swojej listy obserwowanych odwiedź
-{{fullurl:{{ns:special}}:Watchlist/edit}}
+{{fullurl:{{#special:Watchlist}}/edit}}
 
 Pomoc:
 {{fullurl:{{MediaWiki:Helppage}}}}',

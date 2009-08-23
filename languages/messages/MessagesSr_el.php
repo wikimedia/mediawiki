@@ -1874,7 +1874,7 @@ Ako kasnije želite da uklonite stranicu sa vašeg spiska nadgledanja, kliknite 
 'enotif_anon_editor'           => 'anonimni korisnik $1',
 'enotif_body'                  => 'Dragi $WATCHINGUSERNAME,
 
-{{SITENAME}} stranicaa $PAGETITLE je bila $CHANGEDORCREATED ($PAGEEDITDATE) od strane $PAGEEDITOR,
+{{SITENAME}} stranicaa $PAGETITLE je bila $CHANGEDORCREATED ($PAGEEDITDATEANDTIME) od strane $PAGEEDITOR,
 pogledajte $PAGETITLE_URL za trenutnu verziju.
 
 $NEWPAGE
@@ -1892,7 +1892,7 @@ Takođe možete da resetujete zastavice za obaveštenja za sve vaše nadgledane 
 
 --
 Da promenite podešavanja vezana za spisak nadgledanja posetite
-{{fullurl:{{ns:special}}:Watchlist/edit}}
+{{fullurl:{{#special:Watchlist}}/edit}}
 
 Fidbek i dalja pomoć:
 {{fullurl:{{ns:help}}:Sadržaj}}',

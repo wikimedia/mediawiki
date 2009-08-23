@@ -1305,7 +1305,7 @@ Si quieis ehal de vehilal la páhina, pursa sobri \"Ehal de vehilal\".",
 'enotif_body'                  => 'Estimau $WATCHINGUSERNAME,
 
 
-S\'á $CHANGEDORCREATED el artículu $PAGETITLE (de {{SITENAME}}) el $PAGEEDITDATE, siendu el su autol  $PAGEEDITOR. Consurta la $PAGETITLE_URL pa leyel la nueva velsión.
+S\'á $CHANGEDORCREATED el artículu $PAGETITLE (de {{SITENAME}}) el $PAGEEDITDATEANDTIME, siendu el su autol  $PAGEEDITOR. Consurta la $PAGETITLE_URL pa leyel la nueva velsión.
 
 $NEWPAGE
 
@@ -1321,7 +1321,7 @@ Nel chascu en que nu vesitis el artículu, nu se te hazrán mas notificacionis. 
 
 --
 Pa hazel chambus ena tu lista e seguimientu, vesita
-{{fullurl:{{ns:special}}:Watchlist/edit}}
+{{fullurl:{{#special:Watchlist}}/edit}}
 
 Ayua la Güiquipeya:
 {{fullurl:{{MediaWiki:Helppage}}}}',

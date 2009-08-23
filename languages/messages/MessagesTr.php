@@ -479,12 +479,12 @@ Bu, {{SITENAME}} sitesindeki bir hatayı da belirtebilir.",
 Bu yazılımdaki bir hatadan kaynaklanabilir.
 "<tt>$2</tt>" işlevinden denenen son sorgulama:
 <blockquote><tt>$1</tt></blockquote>.
-$5\'in rapor ettiği hata "<tt>$3: $4</tt>".',
+Veritabanının rapor ettiği hata "<tt>$3: $4</tt>".',
 'dberrortextcl'        => 'Veritabanı sorgu sözdizimi hatası oluştu.
 Son yapılan veritabanı sorgusu:
 "$1"
 Kullanılan fonksiyon "$2".
-$5\'in verdiği hata mesajı "$3: $4"',
+Veritabanının verdiği hata mesajı "$3: $4"',
 'laggedslavemode'      => 'Uyarı: Sayfa son güncellemeleri içermeyebilir.',
 'readonly'             => 'Veritabanı kilitlendi',
 'enterlockreason'      => 'Koruma için bir neden belirtin. Korumanın ne zaman kaldırılacağına dair tahmini bir tarih eklemeyi unutmayın.',
@@ -588,8 +588,7 @@ Yazılışı kontrol edin veya [[Special:UserLogin/signup|yeni bir hesap açın]
 'nouserspecified'            => 'Bir kullanıcı adı belirtmek zorundasınız.',
 'wrongpassword'              => 'Parolayı yanlış girdiniz. Lütfen tekrar deneyiniz.',
 'wrongpasswordempty'         => 'Boş parola girdiniz. Lütfen tekrar deneyiniz.',
-'passwordtooshort'           => 'Parolanız çok kısa.
-En az {{PLURAL:$1|1 karakter|$1 karakter}} içermeli.',
+'passwordtooshort'           => 'Parolalar en az {{PLURAL:$1|1 karakter|$1 karakter}} uzunluğunda olmalı.',
 'password-name-match'        => 'Şifreniz kullanıcı adınızdan farklı olmalıdır.',
 'mailmypassword'             => 'Bana e-posta ile yeni parola gönder',
 'passwordremindertitle'      => '{{SITENAME}} için yeni geçici şifre',
@@ -1943,13 +1942,16 @@ Sayfayı izleme listenizden çıkarmak istediğinizde "sayfayı izlemeyi durdur"
 'enotif_impersonal_salutation' => '{{SITENAME}} kullanıcı',
 'changed'                      => 'değiştirildi',
 'created'                      => 'oluşturuldu',
+'deleted'                      => 'silindi',
+'enotif_deletedpagetext'       => 'Bu sayfa artık mevcut değil.',
 'enotif_subject'               => '{{SITENAME}} sayfası $PAGETITLE, $PAGEEDITOR tarafından $CHANGEDORCREATED',
 'enotif_lastvisited'           => "Son ziyaretinizden bu yana olan tüm değişiklikleri görmek için $1'e bakın.",
 'enotif_lastdiff'              => 'Bu değişikliği görmek için, $1 sayfasına bakınız.',
 'enotif_anon_editor'           => 'anonim kullanıcı $1',
+'enotif_rev_info'              => 'Geçerli revizyon için $1 sayfasına bakın.',
 'enotif_body'                  => 'Sayın $WATCHINGUSERNAME,
 
-{{SITENAME}} sitesindeki $PAGETITLE başlıklı sayfa $PAGEEDITDATE tarihinde $PAGEEDITOR tarafından $CHANGEDORCREATED. $REVINFO
+{{SITENAME}} sitesindeki $PAGETITLE başlıklı sayfa $PAGEEDITDATEANDTIME tarihinde $PAGEEDITOR tarafından $CHANGEDORCREATED. $REVINFO
 
 $NEWPAGE
 
@@ -2494,6 +2496,7 @@ Geçici dosya kayıp.',
 'tooltip-ca-viewsource'           => 'Bu sayfa koruma altında. Sadece kaynak kodunu sadece görebilirsiniz. İçeriği değiştiremezsiniz.',
 'tooltip-ca-history'              => 'Bu sayfanın geçmiş versiyonları.',
 'tooltip-ca-protect'              => 'Bu sayfayı koru',
+'tooltip-ca-unprotect'            => 'Bu sayfanın korumasını kaldır',
 'tooltip-ca-delete'               => 'Sayfayı sil',
 'tooltip-ca-undelete'             => 'Sayfayı silinmeden önceki haline geri getirin',
 'tooltip-ca-move'                 => 'Sayfanın adını değiştir',
@@ -2504,6 +2507,7 @@ Geçici dosya kayıp.',
 'tooltip-search-fulltext'         => 'Bu metin için sayfaları ara',
 'tooltip-p-logo'                  => 'Ana sayfa',
 'tooltip-n-mainpage'              => 'Ana sayfaya dön',
+'tooltip-n-mainpage-description'  => 'Ana sayfaya git',
 'tooltip-n-portal'                => 'Proje üzerine, ne nerdedir, neler yapılabilir',
 'tooltip-n-currentevents'         => 'Güncel olaylarla ilgili son bilgiler',
 'tooltip-n-recentchanges'         => 'Vikide yapılmış son değişikliklerin listesi.',

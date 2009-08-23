@@ -617,17 +617,17 @@ Una lista de las paginas especialas pòt èsser trobada sus [[Special:SpecialPag
 # General errors
 'error'                => 'Error',
 'databaseerror'        => 'Error de la banca de donadas',
-'dberrortext'          => 'Une error de sintaxi de la requèsta dins la banca de donadas es susvenguda.
-Benlèu qu\'aquesta error es deguda a una error dins lo logicial.
+'dberrortext'          => "Una error de sintaxi de la requèsta dins la banca de donadas s'es producha.
+Aquò pòt indicar una error dins lo logicial.
 La darrièra requèsta tractada per la banca de donadas èra :
 <blockquote><tt>$1</tt></blockquote>
-dempuèi la foncion "<tt>$2</tt>".
-$5 a renviat l\'error "<tt>$3: $4</tt>".',
-'dberrortextcl'        => "Una requèsta dins la banca de donadas compòrta una error de sintaxi.
+dempuèi la foncion « <tt>$2</tt> ».
+La banca de donadas a renviat l’error « <tt>$3 : $4</tt> ».",
+'dberrortextcl'        => 'Una requèsta dins la banca de donadas compòrta una error de sintaxi.
 La darrièra requèsta emesa èra :
 « $1 »
 dins la foncion « $2 ».
-$5 a renviat l'error « $3 : $4 ».",
+La banca de donadas a renviat l’error « $3 : $4 ».',
 'laggedslavemode'      => 'Atencion : Aquesta pagina pòt conténer pas totes los darrièrs cambiaments efectuats.',
 'readonly'             => 'Mesas a jorn blocadas sus la banca de donadas',
 'enterlockreason'      => 'Indicatz la rason del blocatge, e mai una estimacion de sa durada',
@@ -728,8 +728,7 @@ Verificatz qu'avètz plan ortografiat lo nom, o [[Special:UserLogin/signup|creat
 'nouserspecified'            => "Vos cal especificar vòstre nom d'utilizaire.",
 'wrongpassword'              => 'Lo senhal es incorrècte. Ensajatz tornarmai.',
 'wrongpasswordempty'         => 'Lo senhal picat èra void. Se vos plai, ensajatz tornarmai.',
-'passwordtooshort'           => 'Vòstre senhal es tròp cort.
-Deu conténer almens {{PLURAL:$1|1 caractèr|$1 caractèrs}}.',
+'passwordtooshort'           => 'Vòstre senhal deu conténer al mens {{PLURAL:$1|1 caractèr|$1 caractèrs}}.',
 'password-name-match'        => 'Vòstre senhal deu èsser diferent de vòstre nom d’utilizaire.',
 'mailmypassword'             => 'Mandar un senhal novèl per corrièr electronic',
 'passwordremindertitle'      => 'Senhal temporari novèl sus {{SITENAME}}',
@@ -2073,29 +2072,32 @@ Las modificacions venentas d\'aquesta pagina e de la pagina de discussion associ
 'enotif_impersonal_salutation' => 'Utilizaire de {{SITENAME}}',
 'changed'                      => 'modificada',
 'created'                      => 'creada',
+'deleted'                      => 'suprimida',
+'enotif_deletedpagetext'       => 'Aquesta pagina es pas pus disponible',
 'enotif_subject'               => 'La pagina $PAGETITLE de {{SITENAME}} es estada $CHANGEDORCREATED per $PAGEEDITOR',
 'enotif_lastvisited'           => 'Consultatz $1 per totes los cambiaments dempuèi vòstra darrièra visita.',
 'enotif_lastdiff'              => 'Consultatz $1 per veire aquesta modificacion.',
 'enotif_anon_editor'           => 'utilizaire anonim $1',
+'enotif_rev_info'              => 'Visitatz $1 per visualizar la version actuala',
 'enotif_body'                  => 'Car $WATCHINGUSERNAME,
 
-la pagina de {{SITENAME}} $PAGETITLE es estada $CHANGEDORCREATED lo $PAGEEDITDATE per $PAGEEDITOR, vejatz $PAGETITLE_URL per la version actuala.
+La pagina « $PAGETITLE » de {{SITENAME}} es estada $CHANGEDORCREATED lo $PAGEEDITDATEANDTIME per « $PAGEEDITOR ». $REVINFO
 
 $NEWPAGE
 
-Resumit de l’editor : $PAGESUMMARY $PAGEMINOREDIT
+Resumit del contributor : $PAGESUMMARY $PAGEMINOREDIT
 
-Contactatz l’editor :
+Contactatz aqueste contributor :
 corrièr electronic : $PAGEEDITOR_EMAIL
 wiki : $PAGEEDITOR_WIKI
 
-I aurà pas de notificacions novèlas en cas d’autras modificacions a mens que visitetz aquesta pagina. Podètz tanben remetre a zèro lo notificator per totas las paginas de vòstra lista de seguit.
+I aurà pas de notificacions mai en cas de cambiaments ulteriors, levat se visitatz aquesta pagina.
+Tanben podètz reïnicializar las bandièras de notificacion per totas las paginas de vòstra lista de seguit.
 
-             Vòstre {{SITENAME}} sistèma de notificacion
-
+             Vòstre sistèma de notificacion de {{SITENAME}}
 --
 Per modificar los paramètres de vòstra lista de seguit, visitatz
-{{fullurl:Special:Watchlist/edit}}
+{{fullurl:{{#special:Watchlist}}/edit}}
 
 Retorn e assisténcia :
 {{fullurl:{{MediaWiki:Helppage}}}}',
@@ -2617,6 +2619,7 @@ Totas las accions d’importacion interwiki son conservadas dins lo [[Special:Lo
 'tooltip-ca-viewsource'           => 'Aquesta pagina es protegida. Çaquelà, ne podètz veire lo contengut.',
 'tooltip-ca-history'              => "Los autors e versions precedentas d'aquesta pagina.",
 'tooltip-ca-protect'              => 'Protegir aquesta pagina',
+'tooltip-ca-unprotect'            => 'Desprotegir aquesta pagina',
 'tooltip-ca-delete'               => 'Suprimir aquesta pagina',
 'tooltip-ca-undelete'             => 'Restablir aquesta pagina',
 'tooltip-ca-move'                 => 'Tornar nomenar aquesta pagina',
@@ -2627,6 +2630,7 @@ Totas las accions d’importacion interwiki son conservadas dins lo [[Special:Lo
 'tooltip-search-fulltext'         => 'Recercar las paginas que compòrtan aqueste tèxte.',
 'tooltip-p-logo'                  => 'Pagina principala',
 'tooltip-n-mainpage'              => 'Visitatz la pagina principala',
+'tooltip-n-mainpage-description'  => 'Anar a l’acuèlh',
 'tooltip-n-portal'                => 'A prepaus del projècte',
 'tooltip-n-currentevents'         => "Trobar d'entresenhas suls eveniments actuals",
 'tooltip-n-recentchanges'         => 'Lista dels darrièrs cambiaments sul wiki.',

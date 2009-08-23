@@ -700,7 +700,7 @@ Note that some pages may continue to be displayed as if you were still logged in
 
 # Random page
 'randompage'         => 'ܡܓܠ̈ܐ ܚܘܝܚ̈ܐ',
-'randompage-nopages' => 'ܠܝܬ ܦܐܬܬ̈ܐ ܒܚܩܠܐ ܕ "$1".',
+'randompage-nopages' => 'ܠܝܬ ܦܐܬܬ̈ܐ ܒ{{PLURAL:$2|ܚܩܠܐ ܕ|ܚܩܠܬ̈ܐ ܕ}}: $1.',
 
 # Random redirect
 'randomredirect'         => 'ܨܘܝܒ̈ܐ ܚܘܝܚ̈ܐ',

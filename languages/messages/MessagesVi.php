@@ -2018,7 +2018,7 @@ Nếu bạn muốn cho trang này ra khỏi danh sách theo dõi, nhấn vào "N
 'enotif_body'                  => '$WATCHINGUSERNAME thân mến,
 
 
-Trang $PAGETITLE tại {{SITENAME}} đã được $PAGEEDITOR $CHANGEDORCREATED vào $PAGEEDITDATE, xem phiên bản hiện hành tại $PAGETITLE_URL.
+Trang $PAGETITLE tại {{SITENAME}} đã được $PAGEEDITOR $CHANGEDORCREATED vào $PAGEEDITDATEANDTIME, xem phiên bản hiện hành tại $PAGETITLE_URL.
 
 $NEWPAGE
 
@@ -2034,7 +2034,7 @@ Sẽ không có thông báo nào khác nếu có sự thay đổi tiếp theo tr
 
 --
 Để thay đổi các thiết lập danh sách theo dõi, mời xem
-{{fullurl:{{ns:special}}:Watchlist/edit}}
+{{fullurl:{{#special:Watchlist}}/edit}}
 
 Phản hồi và cần sự hỗ trợ:
 {{fullurl:{{MediaWiki:Helppage}}}}',

@@ -1239,7 +1239,7 @@ ja sul piät umin [[Special:Preferences|säädmiisin]] olõma e-postiaadrõs, et
 'enotif_anon_editor'           => 'nimeldä pruukja $1',
 'enotif_body'                  => 'Hüä $WATCHINGUSERNAME,
 
-{{SITENAME}} lehte $PAGETITLE $CHANGEDORCREATED $PAGEEDITDATE $PAGEEDITOR, parhillast kujjo kaeq $PAGETITLE_URL.
+{{SITENAME}} lehte $PAGETITLE $CHANGEDORCREATED $PAGEEDITDATEANDTIME $PAGEEDITOR, parhillast kujjo kaeq $PAGETITLE_URL.
 
 $NEWPAGE
 

@@ -516,7 +516,7 @@ $messages = array(
 'enotif_anon_editor'           => '匿名使用者$1',
 'enotif_body'                  => '親愛的 $WATCHINGUSERNAME,
 
-$PAGEEDITOR 已經在 $PAGEEDITDATE $CHANGEDORCREATED{{SITENAME}}的 $PAGETITLE 頁面，請到 $PAGETITLE_URL 檢視當前版本。
+$PAGEEDITOR 已經在 $PAGEEDITDATEANDTIME $CHANGEDORCREATED{{SITENAME}}的 $PAGETITLE 頁面，請到 $PAGETITLE_URL 檢視當前版本。
 
 $NEWPAGE
 
@@ -534,7 +534,7 @@ $NEWPAGE
 
 --
 要改變您的監視列表設定，請參閱
-{{fullurl:{{ns:special}}:Watchlist/edit}}
+{{fullurl:{{#special:Watchlist}}/edit}}
 
 回饋和進一步的說明:
 {{fullurl:{{MediaWiki:Helppage}}}}',

@@ -86,8 +86,7 @@ Sie haben Cookies deaktiviert, bitte aktivieren Sie diese und versuchen Sie es e
 'nouserspecified'            => 'Bitte geben Sie einen Benutzernamen an.',
 'wrongpassword'              => 'Das Passwort ist falsch (oder fehlt). Bitte versuchen Sie es erneut.',
 'wrongpasswordempty'         => 'Es wurde kein Passwort eingegeben. Bitte versuchen Sie es erneut.',
-'passwordtooshort'           => 'Ihr Passwort ist zu kurz.
-Es muss mindestens {{PLURAL:$1|1 Zeichen|$1 Zeichen}} lang sein.',
+'passwordtooshort'           => 'Passwörter müssen mindestens {{PLURAL:$1|1 Zeichen|$1 Zeichen}} lang sein.',
 'password-name-match'        => 'Ihr Passwort muss sich von Ihrem Benutzernamen unterscheiden.',
 'passwordremindertext'       => 'Jemand mit der IP-Adresse $1, wahrscheinlich Sie selbst, hat ein neues Passwort für die Anmeldung bei {{SITENAME}} ($4) angefordert.
 
@@ -409,7 +408,7 @@ Wenn Sie die Seite wieder von Ihrer Beobachtungsliste entfernen möchten, klicke
 
 'enotif_body' => 'Hallo $WATCHINGUSERNAME,
 
-die {{SITENAME}}-Seite „$PAGETITLE“ wurde von $PAGEEDITOR am $PAGEEDITDATE $CHANGEDORCREATED. $REVINFO
+die {{SITENAME}}-Seite „$PAGETITLE“ wurde von $PAGEEDITOR am $PAGEEDITDATE um $PAGEEDITTIME Uhr $CHANGEDORCREATED. $REVINFO
 
 Aktuelle Version: $PAGETITLE_URL
 

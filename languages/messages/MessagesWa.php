@@ -1022,7 +1022,7 @@ Si vos vloz bodjî l' pådje foû di vosse djivêye des shuvous, clitchîz so «
 'enotif_lastvisited' => 'Loukîz $1 po tos les candjmints dispoy vosse dierinne vizite.',
 'enotif_body'        => 'Binamé $WATCHINGUSERNAME,
 
-Li pådje «$PAGETITLE» so {{SITENAME}} a stî $CHANGEDORCREATED li $PAGEEDITDATE pa $PAGEEDITOR, loukîz $PAGETITLE_URL pol modêye do moumint.
+Li pådje «$PAGETITLE» so {{SITENAME}} a stî $CHANGEDORCREATED li $PAGEEDITDATEANDTIME pa $PAGEEDITOR, loukîz $PAGETITLE_URL pol modêye do moumint.
 
 $NEWPAGE
 
@@ -1039,7 +1039,7 @@ I n\' årè nén d\' ôtes notifiaedjes po ds ôtes candjmints di ç\' minme på
 
 --
 Po candjî l\' apontiaedje di vosse djivêye a shuve, loukîz
-{{fullurl:{{ns:special}}:Watchlist/edit}}
+{{fullurl:{{#special:Watchlist}}/edit}}
 
 Po pus d\' aidance:
 {{fullurl:{{ns:help}}:Aidance}}',

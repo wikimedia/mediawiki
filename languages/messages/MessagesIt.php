@@ -560,12 +560,12 @@ Ciò potrebbe indicare la presenza di un bug nel software.
 L\'ultima query inviata al database è stata:
 <blockquote><tt>$1</tt></blockquote>
 richiamata dalla funzione "<tt>$2</tt>".
-$5 ha restituito il seguente errore "<tt>$3: $4</tt>".',
+Il database ha restituito il seguente errore "<tt>$3: $4</tt>".',
 'dberrortextcl'        => 'Errore di sintassi nella richiesta inoltrata al database.
 L\'ultima query inviata al database è stata:
 "$1"
 richiamata dalla funzione "$2".
-$5 ha restituito il seguente errore "$3: $4".',
+Il database ha restituito il seguente errore "$3: $4".',
 'laggedslavemode'      => "'''Attenzione:''' la pagina potrebbe non riportare gli aggiornamenti più recenti.",
 'readonly'             => 'Database bloccato',
 'enterlockreason'      => 'Indicare il motivo del blocco, specificando il momento in cui è presumibile che venga rimosso',
@@ -666,8 +666,7 @@ Scegliere un nome utente diverso.',
 'nouserspecified'            => 'È necessario specificare un nome utente.',
 'wrongpassword'              => 'La password inserita non è corretta. Riprovare.',
 'wrongpasswordempty'         => 'Non è stata inserita alcuna password. Riprovare.',
-'passwordtooshort'           => 'La password inserita è troppo breve. 
-Deve contenere almeno {{PLURAL:$1|1 carattere|$1 caratteri}}.',
+'passwordtooshort'           => 'Le password devono contenere almeno {{PLURAL:$1|1 carattere|$1 caratteri}}.',
 'password-name-match'        => 'La password deve essere diversa dal nome utente.',
 'mailmypassword'             => 'Invia una nuova password al mio indirizzo e-mail',
 'passwordremindertitle'      => 'Servizio Password Reminder di {{SITENAME}}',
@@ -1989,7 +1988,7 @@ il titolo della pagina apparirà in '''grassetto''' nella pagina delle [[Special
 'enotif_rev_info'              => 'Vedi $1 per la revisione attuale.',
 'enotif_body'                  => 'Gentile $WATCHINGUSERNAME,
 
-la pagina $PAGETITLE di {{SITENAME}} è stata $CHANGEDORCREATED in data $PAGEEDITDATE da $PAGEEDITOR; la versione attuale si trova all\'indirizzo $PAGETITLE_URL.
+la pagina $PAGETITLE di {{SITENAME}} è stata $CHANGEDORCREATED in data $PAGEEDITDATEANDTIME da $PAGEEDITOR. $REVINFO
 
 $NEWPAGE
 

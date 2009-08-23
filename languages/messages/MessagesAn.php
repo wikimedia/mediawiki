@@ -1727,7 +1727,7 @@ L\'adreza de correu-e que endicó en as suyas [[Special:Preferences|preferenzias
 'enotif_body'                  => 'Quiesto/a $WATCHINGUSERNAME,
 
 A pachina «$PAGETITLE» de {{SITENAME}}
-ha estato $CHANGEDORCREATED por l\'usuario $PAGEEDITOR o $PAGEEDITDATE.
+ha estato $CHANGEDORCREATED por l\'usuario $PAGEEDITOR o $PAGEEDITDATEANDTIME.
 Puede trobar a bersión autual en {{fullurl:$PAGETITLE}}
 
 $NEWPAGE

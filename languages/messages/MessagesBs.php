@@ -583,12 +583,12 @@ Moguće je i da je ovo greška u {{SITENAME}} softveru.',
 'dberrortext'          => 'Desila se sintaksna greška upita baze.
 Ovo se desilo zbog moguće greške u softveru.
 Posljednji pokušani upit je bio: <blockquote><tt>$1</tt></blockquote> iz funkcije "<tt>$2</tt>".
-$5 je vratio grešku "<tt>$3: $4</tt>".',
+Baza podataka je vratila grešku "<tt>$3: $4</tt>".',
 'dberrortextcl'        => 'Desila se sintaksna greška upita baze.
 Posljednji pokušani upit je bio:
 "$1"
 iz funkcije "$2".
-$5 je vratio grešku "$3: $4".',
+Baza podataka je vratila grešku "$3: $4".',
 'laggedslavemode'      => "'''Upozorenje''': Stranica, možda, nije ažurirana.",
 'readonly'             => 'Baza je zaključana',
 'enterlockreason'      => 'Unesite razlog za zaključavanje, uključujući procjenu vremena otključavanja',
@@ -2094,33 +2094,35 @@ Ako kasnije želite da uklonite stranicu sa vašeg spiska praćenih članaka, kl
 'enotif_reset'                 => 'Označi sve strane kao posjećene',
 'enotif_newpagetext'           => 'Ovo je novi članak.',
 'enotif_impersonal_salutation' => '{{SITENAME}} korisnik',
-'changed'                      => 'promijenjeno',
-'created'                      => 'napravljeno',
+'changed'                      => 'promijenjena',
+'created'                      => 'napravljena',
+'deleted'                      => 'obrisana',
+'enotif_deletedpagetext'       => 'Ova stranica više nije dostupna.',
 'enotif_subject'               => '{{SITENAME}} strana $PAGETITLE je bila $CHANGEDORCREATED od strane $PAGEEDITOR',
 'enotif_lastvisited'           => 'Pogledajte $1 za sve izmjene od vaše posljednje posjete.',
 'enotif_lastdiff'              => 'Vidi $1 da pregledate ovu promjenu.',
 'enotif_anon_editor'           => 'anonimni korisnik $1',
+'enotif_rev_info'              => 'Pogledajte $1 za trenutnu reviziju.',
 'enotif_body'                  => 'Dragi $WATCHINGUSERNAME,
 
-{{SITENAME}} strana $PAGETITLE je bila $CHANGEDORCREATED $PAGEEDITDATE od strane $PAGEEDITOR,
-pogledajte {{fullurl:$PAGETITLE}} za trenutnu verziju.
+{{SITENAME}} strana $PAGETITLE je bila $CHANGEDORCREATED $PAGEEDITDATEANDTIME od strane $PAGEEDITOR. $REVINFO
 
 $NEWPAGE
 
-Rezime editora: $PAGESUMMARY $PAGEMINOREDIT
+Sažetak editora: $PAGESUMMARY $PAGEMINOREDIT
 
 Kontaktirajte editora:
-pošta {{fullurl:Special:Emailuser|target=$PAGEEDITOR}}
-viki {{fullurl:User:$PAGEEDITOR}}
+pošta: $PAGEEDITOR_EMAIL
+wiki: $PAGEEDITOR_WIKI
 
 Neće biti drugih obaviještenja u slučaju daljih izmjena ukoliko ne posjetite ovu stranu.
-Takođe možete da resetujete zastavice za obaviještenja za sve Vaše praćene stranice na vašem spisku praćenenih članaka.
+Također možete da resetujete zastavice za obaviještenja za sve Vaše praćene stranice na vašem spisku praćenih članaka.
 
              Vaš prijateljski {{SITENAME}} sistem obaviještavanja
 
 --
-Da promjenite podešavanja vezana za spisak praćenenih članaka posjetite
-{{fullurl:Special:Watchlist|edit=yes}}
+Da promjenite podešavanja vezana za spisak praćenih članaka posjetite
+{{fullurl:{{#special:Watchlist}}/edit}}
 
 Fidbek i dalja pomoć:
 {{fullurl:{{MediaWiki:Helppage}}}}',

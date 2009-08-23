@@ -276,7 +276,7 @@ $messages = array(
 'article'       => 'Inhoudbladsy',
 'newwindow'     => '(verskyn in nuwe venster)',
 'cancel'        => 'Kanselleer',
-'moredotdotdot' => 'Meer...',
+'moredotdotdot' => 'Meer…',
 'mypage'        => 'My bladsy',
 'mytalk'        => 'My besprekings',
 'anontalk'      => 'Besprekingsblad vir hierdie IP',
@@ -289,7 +289,7 @@ $messages = array(
 'qbedit'         => 'Wysig',
 'qbpageoptions'  => 'Bladsyopsies',
 'qbpageinfo'     => 'Bladsyinligting',
-'qbmyoptions'    => 'My opsies',
+'qbmyoptions'    => 'My bladsye',
 'qbspecialpages' => 'Spesiale bladsye',
 'faq'            => 'Gewilde vrae',
 'faqpage'        => 'Project:GewildeVrae',
@@ -344,13 +344,13 @@ $messages = array(
 'editthispage'      => 'Wysig hierdie bladsy',
 'create-this-page'  => 'Skep hierdie bladsy',
 'delete'            => 'Skrap',
-'deletethispage'    => 'Skrap bladsy',
+'deletethispage'    => 'Skrap die bladsy',
 'undelete_short'    => 'Herstel {{PLURAL:$1|een wysiging|$1 wysigings}}',
 'protect'           => 'Beskerm',
 'protect_change'    => 'wysig',
 'protectthispage'   => 'Beskerm hierdie bladsy',
 'unprotect'         => 'Verwyder beskerming',
-'unprotectthispage' => 'Verwyder beskerming',
+'unprotectthispage' => 'Verwyder beskerming vir die bladsy',
 'newpage'           => 'Nuwe bladsy',
 'talkpage'          => 'Bespreek hierdie bladsy',
 'talkpagelinktext'  => 'Besprekings',
@@ -466,12 +466,12 @@ Dit kan moontlik dui op \'n fout in die sagteware.
 Die laaste navraag was:
 <blockquote><tt>$1</tt></blockquote>
 vanuit funksie "<tt>$2</tt>".
-$5 gee foutboodskap "<tt>$3: $4</tt>".',
+Databasis gee foutboodskap "<tt>$3: $4</tt>".',
 'dberrortextcl'        => 'Sintaksisfout in databasisnavraag.
 Die laaste navraag was:
 "$1"
 vanuit funksie "$2".
-$5 gee foutboodskap: "$3: $4".',
+Databasis gee foutboodskap: "$3: $4".',
 'laggedslavemode'      => 'Waarskuwing: Onlangse wysigings dalk nie in bladsy vervat nie.',
 'readonly'             => 'Databasis gesluit',
 'enterlockreason'      => 'Rede vir die sluiting,
@@ -579,8 +579,7 @@ Maak seker dit is reg gespel of [[Special:UserLogin/signup|skep \'n nuwe rekenin
 'nouserspecified'            => "U moet 'n gebruikersnaam spesifiseer.",
 'wrongpassword'              => 'Ongeldige wagwoord, probeer weer.',
 'wrongpasswordempty'         => 'Die wagwoord was leeg. Probeer asseblief weer.',
-'passwordtooshort'           => 'U wagwoord is te kort.
-Dit moet ten minste {{PLURAL:$1|1 karakter|$1 karakters}} lank wees.',
+'passwordtooshort'           => 'Wagwoorde moet ten minste {{PLURAL:$1|1 karakter|$1 karakters}} lank wees.',
 'password-name-match'        => 'U wagwoord mag nie dieselfde as u gebruikersnaam wees nie.',
 'mailmypassword'             => "E-pos my 'n nuwe wagwoord",
 'passwordremindertitle'      => 'Wagwoordwenk van {{SITENAME}}',
@@ -633,9 +632,9 @@ U het moontlik reeds u wagwoord gewysig of 'n nuwe tydelike wagwoord aangevra.",
 'resetpass-temp-password'   => 'Tydelike wagwoord:',
 
 # Edit page toolbar
-'bold_sample'     => 'Vet teks',
+'bold_sample'     => 'Vetgedrukte teks',
 'bold_tip'        => 'Vetdruk',
-'italic_sample'   => 'Skuins teks',
+'italic_sample'   => 'Skuinsgedrukte teks',
 'italic_tip'      => 'Skuinsdruk',
 'link_sample'     => 'Skakelnaam',
 'link_tip'        => 'Interne skakel',
@@ -1450,7 +1449,7 @@ Die nuutste lêer word eerste vertoon.
 Klik op die opskrifte om die tabel anders te sorteer.',
 'listfiles_search_for'  => 'Soek vir medianaam:',
 'imgfile'               => 'lêer',
-'listfiles'             => 'Prentelys',
+'listfiles'             => 'Lêerlys',
 'listfiles_date'        => 'Datum',
 'listfiles_name'        => 'Naam',
 'listfiles_user'        => 'Gebruiker',
@@ -1538,7 +1537,7 @@ Klik op die opskrifte om die tabel anders te sorteer.',
 'randomredirect-nopages' => 'Daar is geen aansture in naamspasie "$1".',
 
 # Statistics
-'statistics'                   => 'Statistiek',
+'statistics'                   => 'Statistieke',
 'statistics-header-pages'      => 'Bladsy statistieke',
 'statistics-header-edits'      => 'Wysig statistieke',
 'statistics-header-views'      => 'Wys statistieke',
@@ -1662,7 +1661,7 @@ U kan die resultate vernou deur 'n boekstaaftipe, gebruikersnaam of spesifieke b
 'prevpage'          => 'Vorige bladsye ($1)',
 'allpagesfrom'      => 'Wys bladsye vanaf:',
 'allpagesto'        => 'Wys bladsye tot:',
-'allarticles'       => 'Alle artikels',
+'allarticles'       => 'Alle bladsye',
 'allinnamespace'    => 'Alle bladsye (naamruimte $1)',
 'allnotinnamespace' => 'Alle bladsye (nie in naamruimte $1 nie)',
 'allpagesprev'      => 'Vorige',
@@ -1806,9 +1805,10 @@ As u die bladsy later van u dophoulys wil verwyder, kliek \"verwyder van dophoul
 'enotif_lastvisited'           => 'Sien $1 vir alle wysigings sedert u laaste besoek.',
 'enotif_lastdiff'              => 'Sien $1 om hierdie wysiging te bekyk.',
 'enotif_anon_editor'           => 'anonieme gebruiker $1',
+'enotif_rev_info'              => 'Sien $1 vir die huidige weergawe.',
 'enotif_body'                  => 'Beste $WATCHINGUSERNAME,
 
-Die bladsy $PAGETITLE op {{SITENAME}} is $CHANGEDORCREATED op $PAGEEDITDATE deur $PAGEEDITOR, sien $PAGETITLE_URL vir die nuutste weergawe.
+Die bladsy $PAGETITLE op {{SITENAME}} is $CHANGEDORCREATED op $PAGEEDITDATEANDTIME deur $PAGEEDITOR. $REVINFO
 
 $NEWPAGE
 
@@ -1818,13 +1818,14 @@ Outeur se kontakdetails:
 E-pos: $PAGEEDITOR_EMAIL
 Wiki: $PAGEEDITOR_WIKI
 
-Tensy u hierdie bladsy besoek, sal u geen verdere kennisgewings ontvang nie. U kan ook die waarskuwingsvlag op u dophoulys verstel.
+Tensy u hierdie bladsy besoek, sal u geen verdere kennisgewings ontvang nie.
+U kan ook die waarskuwingsvlag op u dophoulys verstel.
 
              Groete van die {{SITENAME}} waarskuwingssisteem.
 
 --
 U kan u dophoulys wysig by:
-{{fullurl:Special:Watchlist/edit}}
+{{fullurl:{{#special:Watchlist}}/edit}}
 
 Terugvoer en verdere bystand:
 {{fullurl:{{MediaWiki:Helppage}}}}',
@@ -1846,11 +1847,11 @@ Bevestig asseblief dat u dit wil doen, dat u die gevolge verstaan en dat u dit d
 'deletedtext'            => '"<nowiki>$1</nowiki>" is geskrap.
 Kyk na $2 vir \'n rekord van onlangse skrappings.',
 'deletedarticle'         => '"$1" geskrap',
-'dellogpage'             => 'Skraplogboek',
+'dellogpage'             => 'Skrap-logboek',
 'dellogpagetext'         => "Hier onder is 'n lys van die mees onlangse skrappings. Alle tye is bedienertyd (UGT).",
-'deletionlog'            => 'skrappingslogboek',
+'deletionlog'            => 'skrappings-logboek',
 'reverted'               => 'Het terug gegaan na vroeëre weergawe',
-'deletecomment'          => 'Rede vir skrapping',
+'deletecomment'          => 'Rede vir skrapping:',
 'deleteotherreason'      => 'Ander/ekstra rede:',
 'deletereasonotherlist'  => 'Andere rede',
 'deletereason-dropdown'  => '*Algemene redes vir verwydering
@@ -1893,7 +1894,7 @@ Hier is die huidige verstellings vir bladsy '''$1''':",
 'protect-level-autoconfirmed' => 'Nuwe en ongeregistreerde gebruikers versper',
 'protect-level-sysop'         => 'Slegs administrateurs',
 'protect-summary-cascade'     => 'kaskade',
-'protect-expiring'            => 'verval $1 (UTC)',
+'protect-expiring'            => 'verval op $2 om $3 (UTC)',
 'protect-expiry-indefinite'   => 'verval nie',
 'protect-cascade'             => 'Beveilig bladsye insluitend die bladsy (kaskade effek)',
 'protect-cantedit'            => 'U kan nie die veiligheidsvlak van die blad verander nie, want u het nie regte om dit te wysig nie.',
@@ -2002,7 +2003,7 @@ $1',
 'linkshere'                => "Die volgende bladsye skakel na '''[[:$1]]''':",
 'nolinkshere'              => "Geen bladsye skakel na '''[[:$1]]'''.",
 'nolinkshere-ns'           => "Geen bladsye skakel na '''[[:$1]]''' in die verkose naamruimte nie.",
-'isredirect'               => 'Stuur bladsy aan',
+'isredirect'               => 'aanstuurblad',
 'istemplate'               => 'insluiting',
 'isimage'                  => 'lêerskakel',
 'whatlinkshere-prev'       => '{{PLURAL:$1|vorige|vorige $1}}',
@@ -2037,7 +2038,7 @@ Vul 'n spesifieke rede hier onder in (haal byvoorbeeld spesifieke bladsye wat ge
 'ipbcreateaccount'             => 'Blokkeer registrasie van gebruikers',
 'ipbemailban'                  => 'Verbied gebruiker om e-pos te stuur',
 'ipbenableautoblock'           => 'Outomaties die IP-adresse van die gebruiker blokkeer',
-'ipbsubmit'                    => 'Versper hierdie adres',
+'ipbsubmit'                    => 'Versper hierdie gebruiker',
 'ipbother'                     => 'Ander tydperk:',
 'ipboptions'                   => '2 ure:2 hours,1 dag:1 day,3 dae:3 days,1 week:1 week,2 weke:2 weeks,1 maand:1 month,3 maande:3 months,6 maande:6 months,1 jaar:1 year,onbeperk:infinite',
 'ipbotheroption'               => 'ander',
@@ -2069,7 +2070,7 @@ Sien die [[Special:IPBlockList|IP-bloklys]] vir 'n oorsig van blokkerings.",
 'ipblocklist-sh-addressblocks' => 'enkel IP-blokkades $1',
 'ipblocklist-submit'           => 'Soek',
 'blocklistline'                => '$1, $2 het $3 geblok ($4)',
-'infiniteblock'                => 'oneindig',
+'infiniteblock'                => 'is onbeperk',
 'expiringblock'                => 'verval op $1 om $2',
 'anononlyblock'                => 'anoniem-alleen',
 'noautoblockblock'             => 'autoblok afgeskakel',
@@ -2284,16 +2285,18 @@ Gaan na [http://www.mediawiki.org/wiki/Localisation MediaWiki-lokalisasie] en [h
 'tooltip-ca-viewsource'           => 'Hierdie bladsy is beskerm. U kan die bronteks besigtig.',
 'tooltip-ca-history'              => 'Ouer weergawes van hierdie bladsy.',
 'tooltip-ca-protect'              => 'Beskerm hierdie bladsy',
+'tooltip-ca-unprotect'            => 'Verwyder beskerming vir die bladsy',
 'tooltip-ca-delete'               => 'Skrap hierdie bladsy',
 'tooltip-ca-undelete'             => 'Herstel die bydraes aan hierdie bladsy voordat dit geskrap is',
 'tooltip-ca-move'                 => 'Skuif hierdie bladsy',
-'tooltip-ca-watch'                => 'Voeg hierdie bladsy tot u dophoulys',
+'tooltip-ca-watch'                => 'Voeg hierdie bladsy by u dophoulys',
 'tooltip-ca-unwatch'              => 'Verwyder hierdie bladsy van u dophoulys',
 'tooltip-search'                  => 'Deursoek {{SITENAME}}',
 'tooltip-search-go'               => "Gaan na 'n bladsy met hierdie naam indien dit bestaan",
 'tooltip-search-fulltext'         => 'Deursoek die bladsye vir die teks',
-'tooltip-p-logo'                  => 'Tuisblad',
+'tooltip-p-logo'                  => 'Besoek die tuisblad',
 'tooltip-n-mainpage'              => 'Besoek die Tuisblad',
+'tooltip-n-mainpage-description'  => 'Gaan na die tuisblad',
 'tooltip-n-portal'                => 'Meer oor die projek, wat u kan doen, nuttige skakels',
 'tooltip-n-currentevents'         => "'n Plek waar almal gesellig kan verkeer",
 'tooltip-n-recentchanges'         => "'n Lys van onlangse wysigings",

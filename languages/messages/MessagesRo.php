@@ -2077,7 +2077,7 @@ Dacă doriţi să eliminaţi această pagină din lista dv. de pagini urmărite 
 'enotif_anon_editor'           => 'utilizator anonim $1',
 'enotif_body'                  => 'Domnule/Doamnă $WATCHINGUSERNAME,
 
-pagina $PAGETITLE de la {{SITENAME}} a fost $CHANGEDORCREATED în $PAGEEDITDATE de $PAGEEDITOR, vedeţi la $PAGETITLE_URL versiunea curentă.
+pagina $PAGETITLE de la {{SITENAME}} a fost $CHANGEDORCREATED în $PAGEEDITDATEANDTIME de $PAGEEDITOR, vedeţi la $PAGETITLE_URL versiunea curentă.
 
 $NEWPAGE
 
@@ -2093,7 +2093,7 @@ Nu vor mai fi alte notificări în cazul unor viitoare modificări în afara caz
 
 --
 Pentru a modifica preferinţele listei de urmărire, vizitaţi
-{{fullurl:{{ns:special}}:Watchlist/edit}}
+{{fullurl:{{#special:Watchlist}}/edit}}
 
 Asistenţă şi suport:
 {{fullurl:{{MediaWiki:Helppage}}}}',

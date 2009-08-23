@@ -1424,7 +1424,7 @@ Ta sulara va batu bu div rinafi suzdasiki, koe grablexo va « Mea suzdá » vule
 'enotif_body'                  => 'Dear $WATCHINGUSERNAME,
 
 
-The {{SITENAME}} page $PAGETITLE has been $CHANGEDORCREATED on $PAGEEDITDATE by $PAGEEDITOR, see $PAGETITLE_URL for the current version.
+The {{SITENAME}} page $PAGETITLE has been $CHANGEDORCREATED on $PAGEEDITDATEANDTIME by $PAGEEDITOR, see $PAGETITLE_URL for the current version.
 
 $NEWPAGE
 
@@ -1441,7 +1441,7 @@ You could also reset the notification flags for all your watched pages on your w
 
 --
 To change your watchlist settings, visit
-{{fullurl:{{ns:special}}:Watchlist/edit}}
+{{fullurl:{{#special:Watchlist}}/edit}}
 
 Feedback and further assistance:
 {{fullurl:{{MediaWiki:Helppage}}}}',
