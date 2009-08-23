@@ -12,8 +12,15 @@
 class GIFHandler extends BitmapHandler {
 	
 	function getMetadata( $image, $filename ) {
-		if ( !isset($image->parsedGIFMetadata) )
-			$image->parsedGIFMetadata = GIFMetadataExtractor::getMetadata( $filename );
+		if ( !isset($image->parsedGIFMetadata) ) {
+			try {
+				$image->parsedGIFMetadata = GIFMetadataExtractor::getMetadata( $filename );
+			} catch( Exception $e ) {
+				// Broken file?
+				wfDebug( __METHOD__ . ': ' . $e->getMessage() . "\n" );
+				return '0';
+			}
+		}
 
 		return serialize($image->parsedGIFMetadata);
 
