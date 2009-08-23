@@ -420,6 +420,7 @@ this. Was used when mwEmbed was going to be an extension.
 * (bug 15646) Page creation notification email is not longer sent when a 
   watched page is deleted
 * (bug 20358) Unprotect tab was missing accesskey; now same as protect tab.
+* (bug 20317) Cleaned up default main page link accesskey settings
 
 == API changes in 1.16 ==
 
