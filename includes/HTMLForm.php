@@ -1,7 +1,6 @@
 <?php
 
 class HTMLForm {
-
 	static $jsAdded = false;
 
 	/* The descriptor is an array of arrays.

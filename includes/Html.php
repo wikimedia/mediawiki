@@ -256,11 +256,13 @@ class Html {
 	 * @return string Raw HTML
 	 */
 	public static function inlineScript( $contents ) {
-		global $wgHtml5, $wgJsMimeType;
+		global $wgHtml5, $wgJsMimeType, $wgWellFormedXml;
 
 		$attrs = array();
 		if ( !$wgHtml5 ) {
 			$attrs['type'] = $wgJsMimeType;
+		}
+		if ( $wgWellFormedXml && preg_match( '/[<&]/', $contents ) ) {
 			$contents = "/*<![CDATA[*/$contents/*]]>*/";
 		}
 		return self::rawElement( 'script', $attrs, $contents );
@@ -294,14 +296,14 @@ class Html {
 	 * @return string Raw HTML
 	 */
 	public static function inlineStyle( $contents, $media = null ) {
-		global $wgHtml5;
+		global $wgHtml5, $wgWellFormedXml;
 
 		$attrs = array();
 		if ( !$wgHtml5 ) {
-			# Technically we should probably add CDATA stuff here like with
-			# scripts, but in practice, stylesheets tend not to have
-			# problematic characters anyway.
 			$attrs['type'] = 'text/css';
+		}
+		if ( $wgWellFormedXml && preg_match( '/[<&]/', $contents ) ) {
+			$contents = "/*<![CDATA[*/$contents/*]]>*/";
 		}
 		if ( $media !== null ) {
 			$attrs['media'] = $media;
