@@ -2241,6 +2241,9 @@ class Title {
 		$dbkey = preg_replace( '/\xE2\x80[\x8E\x8F\xAA-\xAE]/S', '', $dbkey );
 
 		# Clean up whitespace
+		# Note: use of the /u option on preg_replace here will cause
+		# input with invalid UTF-8 sequences to be nullified out in PHP 5.2.x,
+		# conveniently disabling them.
 		#
 		$dbkey = preg_replace( '/[ _\xA0\x{1680}\x{180E}\x{2000}-\x{200B}\x{2028}\x{2029}\x{202F}\x{205F}\x{3000}]+/u', '_', $dbkey );
 		$dbkey = trim( $dbkey, '_' );
