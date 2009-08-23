@@ -757,8 +757,7 @@ $2',
 'nouserspecified'            => 'עליכם לציין שם משתמש.',
 'wrongpassword'              => 'הסיסמה שהקלדתם שגויה, אנא נסו שנית.',
 'wrongpasswordempty'         => 'הסיסמה שהקלדתם ריקה. אנא נסו שנית.',
-'passwordtooshort'           => 'סיסמתכם קצרה מדי.
-עליה להיות מורכבת מ{{PLURAL:$1|תו אחד|־$1 תווים}} לפחות.',
+'passwordtooshort'           => 'סיסמאות חייבות להיות באורך {{PLURAL:$1|תו אחד|$1 תווים}} לפחות.',
 'password-name-match'        => 'סיסמתכם חייבת להיות שונה משם המשתמש שלכם.',
 'mailmypassword'             => 'שלחו לי סיסמה חדשה',
 'passwordremindertitle'      => 'סיסמה זמנית חדשה מ{{grammar:תחילית|{{SITENAME}}}}',
@@ -2121,7 +2120,7 @@ PICT # שונות
 'enotif_rev_info'              => 'ראו $1 לגרסה הנוכחית.',
 'enotif_body'                  => 'לכבוד $WATCHINGUSERNAME,
 
-הדף $PAGETITLE ב{{grammar:תחילית|{{SITENAME}}}} $CHANGEDORCREATED ב־$PAGEEDITDATE על ידי $PAGEEDITOR. $REVINFO
+הדף $PAGETITLE ב{{grammar:תחילית|{{SITENAME}}}} $CHANGEDORCREATED ב־$PAGEEDITDATEANDTIME על ידי $PAGEEDITOR. $REVINFO
 
 $NEWPAGE
 
@@ -2137,10 +2136,10 @@ $NEWPAGE
 
 --
 כדי לשנות את הגדרות רשימת המעקב, בקרו בדף
-{{fullurl:Special:Watchlist/edit}}
+{{fullurl:{{#special:Watchlist}}/edit}}
 
 למשוב ולעזרה נוספת:
-{{fullurl:Project:עזרה}}',
+{{fullurl::{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'מחיקה',
@@ -2664,6 +2663,7 @@ $1 כבר נחסם. האם ברצונכם לשנות את הגדרות החסי�
 'tooltip-ca-viewsource'           => 'זהו דף מוגן, אך באפשרותכם לצפות במקורו',
 'tooltip-ca-history'              => 'גרסאות קודמות של דף זה',
 'tooltip-ca-protect'              => 'הגנה על דף זה',
+'tooltip-ca-unprotect'            => 'הסרת ההגנה על דף זה',
 'tooltip-ca-delete'               => 'מחיקת דף זה',
 'tooltip-ca-undelete'             => 'שחזור עריכות שנעשו בדף זה לפני שנמחק',
 'tooltip-ca-move'                 => 'העברת דף זה',
@@ -2674,6 +2674,7 @@ $1 כבר נחסם. האם ברצונכם לשנות את הגדרות החסי�
 'tooltip-search-fulltext'         => 'חיפוש טקסט זה בדפים',
 'tooltip-p-logo'                  => 'ביקור בעמוד הראשי',
 'tooltip-n-mainpage'              => 'ביקור בעמוד הראשי',
+'tooltip-n-mainpage-description'  => 'ביקור בעמוד הראשי',
 'tooltip-n-portal'                => 'אודות המיזם, איך תוכלו לעזור, איפה למצוא דברים',
 'tooltip-n-currentevents'         => 'מציאת מידע רקע על האירועים האחרונים',
 'tooltip-n-recentchanges'         => 'רשימת השינויים האחרונים באתר',
