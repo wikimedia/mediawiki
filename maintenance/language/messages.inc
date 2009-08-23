@@ -2250,6 +2250,7 @@ $wgMessageStructure = array(
 		'tooltip-search-fulltext',
 		'tooltip-p-logo',
 		'tooltip-n-mainpage',
+		'tooltip-n-mainpage-description',
 		'tooltip-n-portal',
 		'tooltip-n-currentevents',
 		'tooltip-n-recentchanges',
