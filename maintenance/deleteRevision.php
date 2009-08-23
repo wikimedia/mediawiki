@@ -63,7 +63,14 @@ class DeleteRevision extends Maintenance {
 				$this->output( "Revision $revID not found\n" );
 			} else {
 				$affected += $dbw->affectedRows();
+				$pageID = $dbw->selectField( 'revision', 'rev_page', array( 'rev_id' => $revID ), __METHOD__ );
+				$pageLatest = $dbw->selectField( 'page', 'page_latest', array( 'page_id' => $pageID ), __METHOD__ );
 				$dbw->delete( 'revision', array( 'rev_id' => $revID ) );
+				if ( $pageLatest == $revID ) {
+					// Database integrity
+					$newLatest = $dbw->selectField( 'revision', 'rev_id', array( 'rev_page' => $pageID ), __METHOD__, array( 'ORDER BY' => 'rev_timestamp DESC' ) );
+					$dbw->update( 'page', array( 'page_latest' => $newLatest ), array( 'page_id' => $pageID ), __METHOD__ );
+				}
 			}
 		}
 		$this->output( "Deleted $affected revisions\n" );

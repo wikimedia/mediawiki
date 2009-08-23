@@ -423,6 +423,9 @@ this. Was used when mwEmbed was going to be an extension.
 * (bug 20317) Cleaned up default main page link accesskey settings
 * (bug 20362) Special:Statistics now produces valid HTML when view counters are
   enabled
+* (bug 19857) maintenance/deleteRevision.php on last revision no longer breaks
+  target page
+
 
 == API changes in 1.16 ==
 
