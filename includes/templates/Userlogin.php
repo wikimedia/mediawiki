@@ -133,8 +133,6 @@ class UsercreateTemplate extends QuickTemplate {
 	}
 	
 	function execute() {
-		global $wgMinimalPasswordLength;
-
 		if( $this->data['message'] ) {
 ?>
 	<div class="<?php $this->text('messagetype') ?>box">
@@ -176,7 +174,7 @@ class UsercreateTemplate extends QuickTemplate {
 				'id' => 'wpPassword2',
 				'tabindex' => '2',
 				'size' => '20'
-			) + ( $wgMinimalPasswordLength > 0 ? array( 'required' ) : array() ) ); ?>
+			) + User::passwordChangeInputAttribs() ); ?>
 			</td>
 		</tr>
 	<?php if( $this->data['usedomain'] ) {
@@ -204,7 +202,7 @@ class UsercreateTemplate extends QuickTemplate {
 			'id' => 'wpRetype',
 			'tabindex' => '4',
 			'size' => '20'
-		) + ( $wgMinimalPasswordLength > 0 ? array( 'required' ) : array() ) ); ?>
+		) + User::passwordChangeInputAttribs() ); ?>
 			</td>
 		</tr>
 		<tr>
