@@ -1,27 +1,30 @@
 <?php
 
 /**
- General information about this file:
-  We're now using the HTMLForm object with some customisation to generate the Preferences
-   form. This object handles generic submission, CSRF protection, layout and other logic
-   in a reusable manner. We subclass it as a PreferencesForm to make some minor
-   customisations.
-  In order to generate the form, the HTMLForm object needs an array structure detailing the
-   form fields available, and that's what this class is for. Each element of the array is
-   a basic property-list, including the type of field, the label it is to be given in the
-   form, callbacks for validation and 'filtering', and other pertinent information. Note that
-   the 'default' field is named for generic forms, and does not represent the preference's
-   default (which is stored in $wgDefaultUserOptions), but the default for the form field,
-   which should be whatever the user has set for that preference. There is no need to
-   override it unless you have some special storage logic (for instance, those not presently
-   stored as options, but which are best set from the user preferences view).
-  Field types are implemented as subclasses of the generic HTMLFormField object, and
-   typically implement at least getInputHTML, which generates the HTML for the input field
-   to be placed in the table. 
-  Once fields have been retrieved and validated, submission logic is handed over to the
-   tryUISubmit static method of this class.
-  */
-
+ * We're now using the HTMLForm object with some customisation to generate the
+ * Preferences form. This object handles generic submission, CSRF protection,
+ * layout and other logic in a reusable manner. We subclass it as a PreferencesForm
+ * to make some minor customisations.
+ *
+ * In order to generate the form, the HTMLForm object needs an array structure
+ * detailing the form fields available, and that's what this class is for. Each
+ * element of the array is a basic property-list, including the type of field,
+ * the label it is to be given in the form, callbacks for validation and
+ * 'filtering', and other pertinent information. Note that the 'default' field
+ * is named for generic forms, and does not represent the preference's default
+ * (which is stored in $wgDefaultUserOptions), but the default for the form
+ * field, which should be whatever the user has set for that preference. There
+ * is no need to override it unless you have some special storage logic (for
+ * instance, those not presently stored as options, but which are best set from
+ * the user preferences view).
+ *
+ * Field types are implemented as subclasses of the generic HTMLFormField
+ * object, and typically implement at least getInputHTML, which generates the
+ * HTML for the input field to be placed in the table.
+ *
+ * Once fields have been retrieved and validated, submission logic is handed
+ * over to the tryUISubmit static method of this class.
+ */
 class Preferences {
 	static $defaultPreferences = null;
 	static $saveFilters =
