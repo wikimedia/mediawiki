@@ -2108,7 +2108,7 @@ $NEWPAGE
 
 --
 لتغيير إعدادات قايمة مراقبتك، روح على:
-{{fullurl:{{ns:special}}:Watchlist/edit}}
+{{fullurl:{{#special:Watchlist}}/edit}}
 
 للاقتراحات والحصول على مساعدة إضافية:
 {{fullurl:{{MediaWiki:Helppage}}}}',

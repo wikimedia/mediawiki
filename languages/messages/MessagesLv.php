@@ -1202,6 +1202,9 @@ Katrā rindiņā ir saites uz pirmo un otro pāradresācijas lapu, kā arī pirm
 'protectedtitlesempty'    => 'Pagaidām nevienas lapas nosaukums nav aizsargāts ar šiem paraametriem.',
 'listusers'               => 'Lietotāju uzskaitījums',
 'listusers-editsonly'     => 'Rādīt tikai lietotājus, kas ir izdarījuši kādas izmaiņas',
+'listusers-creationsort'  => 'Kārtot pēc izveidošanas datuma',
+'usereditcount'           => '$1 {{PLURAL:$1|izmaiņa|izmaiņas}}',
+'usercreated'             => 'Izveidots $1, $2',
 'newpages'                => 'Jaunas lapas',
 'newpages-username'       => 'Lietotājs:',
 'ancientpages'            => 'Senākās lapas',
@@ -1323,7 +1326,7 @@ Ja vēlāk pārdomāsi un nevēlēsies vairs uzraudzīt šo lapu, klikšķini uz
 'enotif_body'        => '$WATCHINGUSERNAME,
 
 
-{{grammar:ģenitīvs|{{SITENAME}}}} lapu $PAGETITLE $CHANGEDORCREATED $PAGEEDITOR, $PAGEEDITDATE, pašreizējā versja ir $PAGETITLE_URL.
+{{grammar:ģenitīvs|{{SITENAME}}}} lapu $PAGETITLE $CHANGEDORCREATED $PAGEEDITOR, $PAGEEDITDATEANDTIME, pašreizējā versja ir $PAGETITLE_URL.
 
 $NEWPAGE
 
@@ -1340,7 +1343,7 @@ Tu arī vari noresetot visu uzraugāmo lapu paziņojumu statusus uzraugāmo lapu
 
 --
 Lai izmainītu uzraugāmo lapu saraksta uzstādījumus:
-{{fullurl:{{ns:special}}:Watchlist/edit}}
+{{fullurl:{{#special:Watchlist}}/edit}}
 
 Papildus informācija:
 {{fullurl:{{MediaWiki:Helppage}}}}',

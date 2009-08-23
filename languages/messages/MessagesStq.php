@@ -1673,7 +1673,7 @@ Wan du die Artikkel wier fon ju Foulgelieste ou hoalje moatest, klik ap ju Siede
 'enotif_anon_editor'           => 'Anonyme Benutser $1',
 'enotif_body'                  => 'Ljoowe $WATCHINGUSERNAME,
 
-ju {{SITENAME}} Siede $PAGETITLE wuude fon $PAGEEDITOR an dän $PAGEEDITDATE $CHANGEDORCREATED, ju aktuälle Version is: $PAGETITLE_URL
+ju {{SITENAME}} Siede $PAGETITLE wuude fon $PAGEEDITOR an dän $PAGEEDITDATEANDTIME $CHANGEDORCREATED, ju aktuälle Version is: $PAGETITLE_URL
 
 $NEWPAGE
 
@@ -1690,7 +1690,7 @@ Jou früntelke {{SITENAME}} Becheedtälsystem
 --
 
 Jou Beooboachtengslieste
-{{fullurl:{{ns:special}}:Watchlist/edit}}
+{{fullurl:{{#special:Watchlist}}/edit}}
 
 Hälpe tou ju Benutsenge rakt
 {{fullurl:{{MediaWiki:Helppage}}}}',

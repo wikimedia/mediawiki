@@ -534,13 +534,13 @@ Dat künnd_enne Fääler em Wikki-Projamm sin.
 De läzde Date_Bank_Befääl eß jewääse:
 <blockquote><code>$1</code></blockquote>
 uß dä Funkzjohn: „<code>$2</code>“.
-$5 mälldt dä Fääler: „<code>$3: $4</code>“.',
+De Datebank mälldt dä Fääler: „<code>$3: $4</code>“.',
 'dberrortextcl'        => 'En dä Syntax vun enem Befähl för de Daatebank es
 ene Fähler es opjefalle.
 Dä letzte Befähl för de Daatebank es jewäse:
 <blockquote><code>$1</code></blockquote>
 un kohm us däm Projramm singe Funktion: „<code>$2</code>“.
-$5 meld dä Fähler: „<code>$3: $4</code>“.',
+De Datebank meld dä Fähler: „<code>$3: $4</code>“.',
 'laggedslavemode'      => '<strong>Opjepass:</strong> Künnt sin, dat hee nit dä neuste Stand vun dä Sigg aanjezeich weed.',
 'readonly'             => 'De Daatebank es jesperrt',
 'enterlockreason'      => 'Jevv aan, woröm un för wie lang dat de Daatebank jesperrt wääde soll',
@@ -663,7 +663,7 @@ Udder donn_[[Special:UserLogin/signup|ene neue Metmaacher aanmelde]].',
 'nouserspecified'            => 'Dat jeiht nit als ene Metmaacher Name',
 'wrongpassword'              => 'Dat Passwood oder dä Metmaacher Name wor verkihrt. Jetz muss De et noch ens versöke.',
 'wrongpasswordempty'         => "Dat Passwood ka'mer nit fottlooße. Jetz muss De et noch ens versöke.",
-'passwordtooshort'           => 'Dat Passwood es ze koot - et mööte ald winnichstens <strong>$1</strong> Zeiche, Zeffer{{PLURAL:$1||e|e}}, un Bochstave dren sin.',
+'passwordtooshort'           => 'En Paßwööter {{PLURAL:$1|moß|möße|moß}} winnichstens {{PLURAL:ei|$1|kei}} Zeiche, Zeffer{{PLURAL:$1||e|e}}, un Bochstave dren sin.',
 'password-name-match'        => 'Ding Poßwoot moß anders wi Dinge Name als ene Metmaacher sin.',
 'mailmypassword'             => 'Passwood verjesse?',
 'passwordremindertitle'      => 'Enlogge op {{SITENAME}}',
@@ -2193,30 +2193,37 @@ dann klick op „Nimieh drop oppasse“ wann De die Sigg om Schirm häs.",
 'enotif_impersonal_salutation' => 'Metmaacher en de {{SITENAME}}',
 'changed'                      => 'jeändert',
 'created'                      => 'neu aanjelaht',
+'deleted'                      => 'fottjeschmeße',
+'enotif_deletedpagetext'       => 'Di Sigg es nim_mieh doh.',
 'enotif_subject'               => '{{SITENAME}}: Sigg "$PAGETITLE" vun "$PAGEEDITOR" $CHANGEDORCREATED.',
 'enotif_lastvisited'           => 'Luur unger „$1“ - do fings de all die Änderunge zick Dingem letzte Besoch hee.',
 'enotif_lastdiff'              => 'Loor noh $1 öm di änderung ze sinn.',
 'enotif_anon_editor'           => 'Dä namelose Metmaacher $1',
+'enotif_rev_info'              => 'De neuste Version is op $1 ze fenge.',
 'enotif_body'                  => 'Leeven $WATCHINGUSERNAME,
-en de {{SITENAME}} wood die Sigg „$PAGETITLE“ am $PAGEEDITDATE vun „$PAGEEDITOR“ $CHANGEDORCREATED, unger 
-$PAGETITLE_URL fings Do de Neuste Version.
+
+en de {{SITENAME}} wood die Sigg „$PAGETITLE“ am $PAGEEDITDATEANDTIME vun „$PAGEEDITOR“ $CHANGEDORCREATED.
+$REVINFO
+
 $NEWPAGE
-Koot Zosammejefass, Quell: „$PAGESUMMARY“ $PAGEMINOREDIT
+
+{{int:summary}} „$PAGESUMMARY“ $PAGEMINOREDIT
+
 Do kanns dä Metmaacher „$PAGEEDITOR“ aanspreche:
 * E-Mail: $PAGEEDITOR_EMAIL
 * wiki: $PAGEEDITOR_WIKI
-Do kriss vun jetz aan kein E-Mail mieh, bes dat Do Der die Sigg aanjeluurt häs. Do kanns ävver och all die E-Mail 
 
-Merker för die Sigge en Dinger Oppassliss op eimol ändere.
+Do kriss vun jetz aan kein E-Mail mieh, bes dat Do Der die Sigg aanjeluurt häs.
+Do kanns ävver och all die E-Mail Merker för die Sigge en Dinger Oppassliss op eimol ändere.
 
 Ene schöne Jroß vun de {{SITENAME}}.
 
 --
 Do kanns hee Ding Oppassliss ändere:
-{{FULLURL:Special:Watchlist/edit}}
+{{fullurl:{{#special:Watchlist}}/edit}}
 
 Do kanns hee noh Hölp luure:
-{{FULLURL:int:MediaWiki:Helppage}}',
+{{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Schmieß die Sigg jetz fott',
@@ -2745,6 +2752,7 @@ Bes esu joot, un versök et noch ens.',
 'tooltip-ca-viewsource'           => "Die Sigg es jeschötz. Dä Wikitex kam'mer ävver beloore.",
 'tooltip-ca-history'              => 'Ällder Versione vun dä Sigg',
 'tooltip-ca-protect'              => 'Dun die Sigg schötze',
+'tooltip-ca-unprotect'            => 'Donn dä Schoz vun dä Sigg heh ophävve.',
 'tooltip-ca-delete'               => 'Dun die Sigg fottschmieße',
 'tooltip-ca-undelete'             => 'Don de Änderunge widder zerök holle, di aan dä Sigg hee jemat woode wore, ih dat se fottjeschmesse wood',
 'tooltip-ca-move'                 => 'Dun die Sigg ömbenenne',
@@ -2755,6 +2763,7 @@ Bes esu joot, un versök et noch ens.',
 'tooltip-search-fulltext'         => 'Sök noh Sigge, wo dä Tex dren enthallde es',
 'tooltip-p-logo'                  => 'Houpsigg',
 'tooltip-n-mainpage'              => 'Houpsigk aanzeije',
+'tooltip-n-mainpage-description'  => 'Jangk op de {{int:Mainpage}}.',
 'tooltip-n-portal'                => 'Övver dat Projek hee, wat De donn un wie de metmaache kanns, wat wo ze fenge es',
 'tooltip-n-currentevents'         => 'Hee kreß De e beßje Enfommazjohn övver wat jraad am Jang eß',
 'tooltip-n-recentchanges'         => 'En Liss met de neuste Änderunge hee aam Wiki.',

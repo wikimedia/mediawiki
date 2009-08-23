@@ -2091,7 +2091,7 @@ Framtida ändringar av den här sidan och dess diskussionssida kommer att listas
 'enotif_anon_editor'           => 'anonym användare $1',
 'enotif_body'                  => '$WATCHINGUSERNAME,
 
-{{SITENAME}}-sidan $PAGETITLE har blivit $CHANGEDORCREATED $PAGEEDITDATE av $PAGEEDITOR; den nuvarande versionen hittar du på $PAGETITLE_URL.
+{{SITENAME}}-sidan $PAGETITLE har blivit $CHANGEDORCREATED $PAGEEDITDATEANDTIME av $PAGEEDITOR; den nuvarande versionen hittar du på $PAGETITLE_URL.
 
 $NEWPAGE
 
@@ -2108,7 +2108,7 @@ Hälsningar från {{SITENAME}}s meddelandesystem
 
 --
 För att ändra inställningarna i din bevakningslista, besök
-{{fullurl:{{ns:special}}:Watchlist/edit}}
+{{fullurl:{{#special:Watchlist}}/edit}}
 
 Feedback och hjälp:
 {{fullurl:{{MediaWiki:Helppage}}}}',

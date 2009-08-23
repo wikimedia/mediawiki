@@ -1457,7 +1457,7 @@ $messages = array(
 'enotif_body'                  => 'Мӯҳтарам $WATCHINGUSERNAME,
 
 
-Саҳифаи $PAGETITLE дар {{SITENAME}} аз тарафаи $PAGEEDITOR дар $PAGEEDITDATE  $CHANGEDORCREATED шуд, барои нусхаи кунунӣ, нигаред ба $PAGETITLE_URL.
+Саҳифаи $PAGETITLE дар {{SITENAME}} аз тарафаи $PAGEEDITOR дар $PAGEEDITDATEANDTIME  $CHANGEDORCREATED шуд, барои нусхаи кунунӣ, нигаред ба $PAGETITLE_URL.
 
 $NEWPAGE
 
@@ -1473,7 +1473,7 @@ $NEWPAGE
 
 --
 Барои танзимоти феҳристи пайгириҳоятон биравед ба
-{{fullurl:{{ns:special}}:Watchlist/edit}}
+{{fullurl:{{#special:Watchlist}}/edit}}
 
 Пешниҳодот ва кӯмаки бештар:
 {{fullurl:{{MediaWiki:Helppage}}}}',

@@ -1961,7 +1961,7 @@ taip pat bus '''paryškinti''' [[Special:RecentChanges|naujausių keitimų sąra
 'enotif_body'                  => '$WATCHINGUSERNAME,
 
 
-$PAGEEDITDATE {{SITENAME}} projekte $PAGEEDITOR $CHANGEDORCREATED puslapį „$PAGETITLE“, dabartinę versiją rasite adresu $PAGETITLE_URL.
+$PAGEEDITDATEANDTIME {{SITENAME}} projekte $PAGEEDITOR $CHANGEDORCREATED puslapį „$PAGETITLE“, dabartinę versiją rasite adresu $PAGETITLE_URL.
 
 $NEWPAGE
 
@@ -1977,7 +1977,7 @@ Daugiau pranešimų apie vėlesnius pakeitimus nebus siunčiama, jei neapsilanky
 
 --
 Norėdami pakeisti stebimų puslapių nustatymus, užeikite į
-{{fullurl:{{ns:special}}:Watchlist/edit}}
+{{fullurl:{{#special:Watchlist}}/edit}}
 
 Atsiliepimai ir pagalba:
 {{fullurl:{{MediaWiki:Helppage}}}}',

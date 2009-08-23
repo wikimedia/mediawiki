@@ -1393,7 +1393,7 @@ manibat anyang tawli kang linabas.',
 'enotif_body'                  => 'Kakaluguran kung $WATCHINGUSERNAME,
 
 
-Ining bulung a {{SITENAME}} a maki bansag a $PAGETITLE me$CHANGEDORCREATED ya aniang $PAGEEDITDATE kapamilata\'nang $PAGEEDITOR. Lon me ing $PAGETITLE_URL para king salukuyan a bersion.
+Ining bulung a {{SITENAME}} a maki bansag a $PAGETITLE me$CHANGEDORCREATED ya aniang $PAGEEDITDATEANDTIME kapamilata\'nang $PAGEEDITOR. Lon me ing $PAGETITLE_URL para king salukuyan a bersion.
 
 $NEWPAGE
 
@@ -1409,7 +1409,7 @@ Maliari mo muring isubli king sadia (reset) deng markang pamipabalu (notificatio
              Ing talabie kapabaluan ning {{SITENAME}} a magmalasakit keka           
 --
 Ba mong ayalilan deng pakatuldu king kekang tala ring babanten (watchlist settings), munta ka king
-{{fullurl:{{ns:special}}:Watchlist/edit}}
+{{fullurl:{{#special:Watchlist}}/edit}}
 
 Keni ka magparalang puna/komentu at maniad karagdagang saup:
 {{fullurl:{{MediaWiki:Helppage}}}}',

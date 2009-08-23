@@ -2161,7 +2161,7 @@ Los changements a vegnir de ceta pâge et de sa pâge de discussion y seront lis
 'enotif_anon_editor'           => 'utilisator pas enregistrâ $1',
 'enotif_body'                  => 'Chier(a) $WATCHINGUSERNAME,
 
-la pâge « $PAGETITLE » de {{SITENAME}} at étâ $CHANGEDORCREATED lo $PAGEEDITDATE per $PAGEEDITOR, vêde $PAGETITLE_URL por vêre la vèrsion d’ora.
+la pâge « $PAGETITLE » de {{SITENAME}} at étâ $CHANGEDORCREATED lo $PAGEEDITDATEANDTIME per $PAGEEDITOR, vêde $PAGETITLE_URL por vêre la vèrsion d’ora.
 
 $NEWPAGE
 
@@ -2178,7 +2178,7 @@ Vos pouede asse-ben tornar inicialisar lo notifior por totes les pâges de voutr
 
 --
 Por changiér los paramètres de voutra lista de survelyence, visitâd
-{{fullurl:{{ns:special}}:Watchlist/edit}}
+{{fullurl:{{#special:Watchlist}}/edit}}
 
 Retôrn et assistance :
 {{fullurl:{{MediaWiki:Helppage}}}}',

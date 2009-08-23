@@ -203,7 +203,9 @@ $messages = array(
 # Font style option in Special:Preferences
 'editfont-style'     => 'רעדאקטירונג פאנט סטיל:',
 'editfont-default'   => 'בראוזער דיפאלט',
+'editfont-monospace' => 'פֿאנט מיט באשטימטער ברייט',
 'editfont-sansserif' => 'פאנטס אן קיין תגים (sans-serif)',
+'editfont-serif'     => 'סעריף שריפֿט',
 
 # Dates
 'sunday'        => 'זונטאג',
@@ -388,8 +390,10 @@ $messages = array(
 'jumptonavigation'  => 'נאַוויגאַציע',
 'jumptosearch'      => 'זוכן',
 'view-pool-error'   => 'אנטשולדיגט, די סערווערס זענען איבערגעפילט איצט.
-צופיל באנוצער פרובירן צו ליינען דעם בלאט.
-ביטע ווארטן עטוואס צייט בעפאר איר פרובירט ווידער אריינגיין אינעם בלאט.',
+צופיל באניצער פרובירן צו ליינען דעם בלאט.
+ביטע ווארטן א ביסל צייט בעפאר איר פרובירט ווידער אריינגיין אינעם בלאט.
+
+$1',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'וועגן {{SITENAME}}',
@@ -470,43 +474,17 @@ $messages = array(
 # General errors
 'error'                => 'פעלער',
 'databaseerror'        => 'דאטאבאזע פעלער',
-'dberrortext'          => '<p><b>א דאטעבאזע זוכונג סינטאקס גרייז האט פאסירט</b>.</p>
-<p>דאס טעות קען זיין אלס קאנסעקווענס פון אן אומגעזעצלעכע זוכונג, אדער דאס קען זיין א באג אין דער מעדיעוויקי סיסטעם.</p>
-<table class="toccolours">
-<tr>
-<th colspan="2" style="background-color: #F8F8F8; text-align: center;">מידע על השגיאה</th>
-</tr>
-<tr>
-<td>די לעצטע זוכונג איז געווען:</td>
-<td style="direction: ltr;">$1</td>
-</tr>
-<tr>
-<td>די פונקציע וואס האט דאס גערופן איז געווען:</td>
-<td style="direction: ltr;">$2</td>
-</tr>
-<tr>
-<td>טעות מעלדונג וואס איז צוריקגעקומען:</td>
-<td style="direction: ltr;">$3: $4</td>
-</tr>
-</table>',
-'dberrortextcl'        => '<p><b>עס האט זיך געטראפן א עראר אינעם זיכונג סינטעקס</b>.</p>
-<table class="toccolours">
-<tr>
-<th colspan="2" style="background-color: #F8F8F8; text-align: center;">מידע על השגיאה</th>
-</tr>
-<tr>
-<td>די לעצטע זיכונג וואס איז געווען איז:</td>
-<td style="direction: ltr;">$1</td>
-</tr>
-<tr>
-<td>פאנקציע וואס ליינט דאס איז:</td>
-<td style="direction: ltr;">$2</td>
-</tr>
-<tr>
-<td>מעלדונג פון זיכונג טעות וואס איז צוריקגעקומען איז:</td>
-<td style="direction: ltr;">$3: $4</td>
-</tr>
-</table>',
+'dberrortext'          => 'א דאטנבאזע זוכונג סינטאקס גרייז האט פאסירט.
+דאס טעות קען זיין צוליב א באג אינעם ווייכווארג.
+די לעצטע דאטנבאזע זוכונג איז געווען:
+<blockquote><tt>$1</tt></blockquote>
+פון דער פונקציע "<tt>$2</tt>".
+דאטנבאזע האט צוריקגעגעבן גרייז "<tt>$3: $4</tt>".',
+'dberrortextcl'        => 'א דאטנבאזע זוכונג סינטאקס גרייז האט פאסירט.
+די לעצטע דאטנבאזע זוכונג איז געווען:
+"$1"
+פון דער פונקציע "$2".
+דאטנבאזע האט צוריקגעגעבן גרייז "$3: $4".',
 'laggedslavemode'      => 'ווארענונג: בלאט טוט מעגליך נישט אנטהאלטן לעצטיגע דערהײַנטיגונגען.',
 'readonly'             => 'דאטעבאזע פארשפארט',
 'enterlockreason'      => 'שטעלט א סיבה פארן אפשפאר, אריינגערעכנט א געשאצטער צייט אויף ווען דאס וועט זיך צוריקעפענען די פארשפארונג.',
@@ -606,7 +584,7 @@ $2',
 'nouserspecified'            => 'איר ברויכט ספעציפיזירן א באנוצער-נאמען.',
 'wrongpassword'              => 'אומריכטיגע פאסווארט אריינגעלייגט, ביטע פרובירט נאכאמאל.',
 'wrongpasswordempty'         => 'פאסווארט אריינגעלייגט איז געווען ליידיג, ביטע פרובירט נאכאמאל.',
-'passwordtooshort'           => 'אײַער פאַסווארט איז צו קורץ. עס דארף האבן כאטש {{PLURAL:$1|איין כאַראַקטער|$1 כאַראַקטערס}}.',
+'passwordtooshort'           => 'פאַסווערטער מוזן זײַן כאטש {{PLURAL:$1|איין כאַראַקטער|$1 כאַראַקטערס}}.',
 'password-name-match'        => 'אײַער פאַסווארט מוז זײַן אנדערש פון אײַער באַניצער נאָמען.',
 'mailmypassword'             => 'שיקט מיין נייע פאסווארט',
 'passwordremindertitle'      => 'ניי צייטווייליג פאסווארט פאר {{SITENAME}}',
@@ -896,9 +874,20 @@ $2',
 'rev-deleted-event'           => '(לאגירן אקציע אראפגענומען)',
 'rev-deleted-text-permission' => "די בלאט רעוויזיע איז געווארן '''אויסגעמעקט '''. 
 עס איז מעגלעך דא נאך פרטים אין דעם
-[{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} באהעלטעניש לאג].",
-'rev-deleted-text-view'       => "די בלאט רעוויזיע איז געווארן '''אויסגעמעקט'''. 
-אלס סיסאפ קענט איר באַקוקן די רעוויזיע; עס איז מעגליך דא נאך דעטאלן אינעם [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} באהעלטעניש לאג בוך].",
+[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} אויסמעקונג לאג].",
+'rev-deleted-text-unhide'     => "די בלאט רעוויזיע איז געווארן '''אויסגעמעקט '''. 
+עס איז מעגלעך דא נאך פרטים אין דעם
+[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} אויסמעקונג לאג].
+אלס סיסאפ קענט איר נאך  [$1 באקוקן די רעוויזיע] אויב איר ווילט גיין ווײַטער.",
+'rev-suppressed-text-unhide'  => "די בלאט רעוויזיע איז געווארן '''באהאלטן'''. 
+עס איז מעגלעך דא נאך פרטים אין דעם [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} באהעלטעניש לאג].
+אלס סיסאפ קענט איר נאך  [$1 באקוקן די רעוויזיע] אויב איר ווילט גיין ווײַטער.",
+'rev-deleted-text-view'       => "די בלאט רעוויזיע איז געווארן '''אויסגעמעקט '''. 
+אלס סיסאפ קענט איר זען זי;
+עס איז מעגלעך דא נאך פרטים אין דעם [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} אויסמעקונג לאג].",
+'rev-suppressed-text-view'    => "די בלאט רעוויזיע איז געווארן '''באהאלטן '''. 
+אלס סיסאפ קענט איר זען זי;
+עס איז מעגלעך דא נאך פרטים אין דעם [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} באהעלטעניש לאג].",
 'rev-delundel'                => 'ווייז/באהאלט',
 'revisiondelete'              => 'אויסמעקן\\צוריקשטעלן רעוויזיעס',
 'revdelete-nooldid-title'     => 'ציל ווערסיע נישט גילטיג',
@@ -1167,7 +1156,7 @@ $2',
 'gender-male'                 => 'זכר',
 'gender-female'               => 'נקבה',
 'prefs-help-gender'           => 'אפציאנאַל: באניצט בכדי דאס ווייכוואַרג זאל אײַך אַדרעסירן מיטן געהעריגן מין פֿארעם. די אינפֿארמאַציע ווערט ידוע צו אַלעמען.',
-'email'                       => 'אי-מעיל',
+'email'                       => 'ע-פאסט',
 'prefs-help-realname'         => '* עכטער נאמען (אפציאנאל): אויב וועט איר אויסוועלן צוצישטעלן דאס, וועט גענוצט ווערן צו געבן אטריביאציע צו אייער ארבייט.',
 'prefs-help-email'            => 'ע-פאסט אדרעס איז ברירהדיק, אבער עס דערמעגליכט אז מען קען אייך שיקן א ניי פאסווארט טאמער איר פֿארגעסט דאס אלטע.
 איר קענט אויך לאזן אנדערע צו קאנטאקטן אייך דורך אייער באניצער אדער באניצער רעדן בלאט אן ארויסגעבן אייער אידענטיטעט.',
@@ -1288,6 +1277,7 @@ $2',
 'recentchanges-legend'              => 'ברירות פאר לעצטע ענדערונגען',
 'recentchangestext'                 => 'גיי נאך די לעצטע ענדערונגען צו דער וויקי אויף דעם בלאט.',
 'recentchanges-feed-description'    => 'גייט נאך די לעצטע ענדערונגען צו דער וויקי אין דעם בלאט.',
+'recentchanges-legend-newpage'      => '$1 - נײַער בלאַט',
 'recentchanges-label-newpage'       => 'די ענדערונג האט באשאפען א נייער בלאט',
 'recentchanges-label-unpatrolled'   => 'די רעדאקטירונג איז נאך נישט נאכגעקוקט',
 'rcnote'                            => "אונטן {{PLURAL:$1|איז '''1''' ענדערונג|זײַנען די לעצטע '''$1''' ענדערונגען}} אין {{PLURAL:$2|דעם לעצטן טאג|די לעצטע $2 טעג}}, ביז $5, $4.",
@@ -1354,6 +1344,7 @@ $2',
 'uploadedfiles'       => 'ארויפֿגעלאדעטע טעקעס',
 'minlength1'          => 'א טעקע נאמען מוז האבן כאטש איין אות.',
 'badfilename'         => 'טעקע נאמען איז געטוישט צו "$1".',
+'filetype-missing'    => 'די טעקע האט נישט קיין פארברייטערונג (למשל ".jpg").',
 'emptyfile'           => 'די טעקע וואס איר האט ארויפֿלגעלאָדן איז ליידיג.
 עס קען זיין אז די סיבה איז פשוט א טייפא. 
 ביטע קוקט איבער צי איר ווילט ארויפֿלאדן  די דאזיקע טעקע.',
@@ -1369,6 +1360,7 @@ $2',
 'upload-maxfilesize'  => 'מאַקסימום טעקע גרייס: $1',
 'watchthisupload'     => 'אויפֿפאַסן דעם בלאט',
 
+'upload-proto-error'  => 'פאלשער פראטאקאל',
 'upload-file-error'   => 'אינערליכער פעלער',
 'upload-unknown-size' => 'אומוויסענדע גרויס',
 
@@ -1697,7 +1689,7 @@ $2',
 'enotif_anon_editor'           => 'אַנאנימער באַניצער $1',
 'enotif_body'                  => 'לכבוד $WATCHINGUSERNAME,
 
-דער {{SITENAME}} בלאט $PAGETITLE איז געווארן $CHANGEDORCREATED אום $PAGEEDITDATE דורך $PAGEEDITOR, זעט $PAGETITLE_URL פאר דער איצטיגער ווערסיע.
+דער {{SITENAME}} בלאט $PAGETITLE איז געווארן $CHANGEDORCREATED אום $PAGEEDITDATEANDTIME דורך $PAGEEDITOR, זעט $PAGETITLE_URL פאר דער איצטיגער ווערסיע.
 
 $NEWPAGE
 
@@ -1713,7 +1705,7 @@ $NEWPAGE
 
 --
 צו ענדערן אייער אויפֿפאסונג ליסטע, באזוכט
-{{fullurl:{{ns:special}}:Watchlist/edit}}
+{{fullurl:{{#special:Watchlist}}/edit}}
 
 פאר מער הילף:
 {{fullurl:{{MediaWiki:Helppage}}}}',
@@ -1758,7 +1750,7 @@ $NEWPAGE
 'rollbacklink'     => 'צוריקדרייען',
 'rollbackfailed'   => 'צוריקדרייען דורכגעפֿאַלן',
 'cantrollback'     => 'מען קען נישט צוריקדרייען די ענדערונג – די לעצטער באטייליגער איז דער איינציגסטער באטייליגונג; פארט, קען מען אויסמעקן דעם בלאט.',
-'alreadyrolled'    => 'מען קעגן נישט צוריקדריין די לעצטע ענדערונג פון בלאט [[:$1]] פֿון
+'alreadyrolled'    => 'מען קען נישט צוריקדרייען די לעצטע ענדערונג פון בלאט [[:$1]] פֿון
 [[User:$2|$2]] ([[User talk:$2|רעדן]]{{int:pipe-separator}} [[Special:Contributions/$2|{{int:contribslink}}]]); 
 אן אנדערער האט שוין געענדערט אדער צוריקגעדרייט דעם בלאט.
 

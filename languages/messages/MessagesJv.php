@@ -1794,7 +1794,7 @@ Owah-owahan sing dumadi ing tembé ing kaca iku lan kaca dhiskusi sing kagandhè
 'enotif_anon_editor'           => 'panganggo anonim $1',
 'enotif_body'                  => 'Sing minulya $WATCHINGUSERNAME,
 
-Kaca $PAGETITLE ing {{SITENAME}} wis $CHANGEDORCREATED ing $PAGEEDITDATE déning $PAGEEDITOR, mangga mirsani $PAGETITLE_URL kanggo vèrsi pungkasan.
+Kaca $PAGETITLE ing {{SITENAME}} wis $CHANGEDORCREATED ing $PAGEEDITDATEANDTIME déning $PAGEEDITOR, mangga mirsani $PAGETITLE_URL kanggo vèrsi pungkasan.
 
 $NEWPAGE
 
@@ -1810,7 +1810,7 @@ Kita ora bakal ngandhani manèh yèn diowahi manèh, kejaba panjenengan wis mirs
 
 --
 Kanggo ngowahi préferènsi ing daftar pangawasan panjenengan, mangga mirsani
-{{fullurl:{{ns:special}}:Watchlist/edit}}
+{{fullurl:{{#special:Watchlist}}/edit}}
 
 Umpan balik lan pitulung sabanjuré:
 {{fullurl:{{MediaWiki:Helppage}}}}',

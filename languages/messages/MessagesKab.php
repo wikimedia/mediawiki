@@ -1035,7 +1035,7 @@ Ma tebɣiḍ ad tekkseḍ asebter seg wumuɣ n uɛessi inek, wekki ɣef \"Fakk a
 'enotif_lastdiff'              => 'Ẓer $1 akken ad tmuqleḍ abeddel.',
 'enotif_body'                  => 'Ay $WATCHINGUSERNAME,
 
-Asebter n {{SITENAME}} $PAGETITLE $CHANGEDORCREATED deg wass $PAGEEDITDATE sɣur $PAGEEDITOR, ẓer $PAGETITLE_URL i tasiwelt n tura.
+Asebter n {{SITENAME}} $PAGETITLE $CHANGEDORCREATED deg wass $PAGEEDITDATEANDTIME sɣur $PAGEEDITOR, ẓer $PAGETITLE_URL i tasiwelt n tura.
 
 $NEWPAGE
 
@@ -1051,7 +1051,7 @@ Ur yelli ara email n talɣut asmi llan ibeddlen deg usebter ala lukan teẓreḍ
 
 --
 Akken ad tbeddleḍ n wumuɣ n uɛessi inek settings, ruḥ ɣer
-{{fullurl:{{ns:special}}:Watchlist/edit}}
+{{fullurl:{{#special:Watchlist}}/edit}}
 
 Tadhelt:
 {{fullurl:{{MediaWiki:Helppage}}}}',

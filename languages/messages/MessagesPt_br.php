@@ -520,12 +520,12 @@ Isto pode indicar um problema com o \'\'software\'\'.
 A última tentativa de busca no banco de dados foi:
 <blockquote><tt>$1</tt></blockquote>
 na função "<tt>$2</tt>".
-$5 retornou o erro "<tt>$3: $4</tt>".',
+O banco de dados retornou o erro "<tt>$3: $4</tt>".',
 'dberrortextcl'        => 'Ocorreu um erro de sintaxe de busca no banco de dados.
 A última tentativa de busca no banco de dados foi:
 "$1"
 na função "$2".
-$5 retornou o erro "$3: $4".',
+O banco de dados retornou o erro "$3: $4".',
 'laggedslavemode'      => 'Aviso: a página poderá não conter atualizações recentes.',
 'readonly'             => 'Banco de dados disponível no modo "somente leitura"',
 'enterlockreason'      => 'Entre com um motivo para trancá-lo, incluindo uma estimativa de quando poderá novamente ser destrancado',
@@ -1980,7 +1980,7 @@ Modificações futuras em tal página e páginas de discussão a ela associadas 
 'enotif_body'                  => 'Caro $WATCHINGUSERNAME,
 
 
-A página $PAGETITLE na {{SITENAME}} foi $CHANGEDORCREATED a $PAGEEDITDATE por $PAGEEDITOR; consulte $PAGETITLE_URL para a versão atual.
+A página $PAGETITLE na {{SITENAME}} foi $CHANGEDORCREATED a $PAGEEDITDATEANDTIME por $PAGEEDITOR; consulte $PAGETITLE_URL para a versão atual.
 
 $NEWPAGE
 

@@ -622,8 +622,8 @@ Tämä voi myös mahdollisesti olla ohjelmistovirhe.',
 # General errors
 'error'                => 'Virhe',
 'databaseerror'        => 'Tietokantavirhe',
-'dberrortext'          => 'Tietokantakyselyssä oli syntaksivirhe. Syynä saattaa olla virheellinen kysely, tai se saattaa johtua ohjelmointivirheestä. Viimeinen tietokantakysely, jota yritettiin, oli: <blockquote><tt>$1</tt></blockquote>. Se tehtiin funktiosta ”<tt>$2</tt>”. $5 palautti virheen ”<tt>$3: $4</tt>”.',
-'dberrortextcl'        => 'Tietokantakyselyssä oli syntaksivirhe. Viimeinen tietokantakysely, jota yritettiin, oli: ”$1”. Se tehtiin funktiosta ”$2”. $5 palautti virheen ”$3: $4”.',
+'dberrortext'          => 'Tietokantakyselyssä oli syntaksivirhe. Syynä saattaa olla virheellinen kysely, tai se saattaa johtua ohjelmointivirheestä. Viimeinen tietokantakysely, jota yritettiin, oli: <blockquote><tt>$1</tt></blockquote>. Se tehtiin funktiosta ”<tt>$2</tt>”. Tietokanta palautti virheen ”<tt>$3: $4</tt>”.',
+'dberrortextcl'        => 'Tietokantakyselyssä oli syntaksivirhe. Viimeinen tietokantakysely, jota yritettiin, oli: ”$1”. Se tehtiin funktiosta ”$2”. Tietokanta palautti virheen ”$3: $4”.',
 'laggedslavemode'      => 'Varoitus: Sivu ei välttämättä sisällä viimeisimpiä muutoksia.',
 'readonly'             => 'Tietokanta on lukittu',
 'enterlockreason'      => 'Anna lukituksen syy sekä sen arvioitu poistamisaika',
@@ -720,8 +720,7 @@ Käyttäjätunnuksesi on luotu.
 'nouserspecified'            => 'Käyttäjätunnusta ei ole määritelty.',
 'wrongpassword'              => 'Syöttämäsi salasana ei ole oikein. Ole hyvä ja yritä uudelleen.',
 'wrongpasswordempty'         => 'Et voi antaa tyhjää salasanaa.',
-'passwordtooshort'           => 'Salasanasi on liian lyhyt.
-Salasanan täytyy olla vähintään {{PLURAL:$1|yhden merkin pituinen|$1 merkkiä pitkä}}.',
+'passwordtooshort'           => 'Salasanan täytyy olla vähintään {{PLURAL:$1|yhden merkin pituinen|$1 merkkiä pitkä}}.',
 'password-name-match'        => 'Salasanasi täytyy olla eri kuin käyttäjätunnuksesi.',
 'mailmypassword'             => 'Lähetä uusi salasana sähköpostitse',
 'passwordremindertitle'      => 'Salasanamuistutus {{GRAMMAR:elative|{{SITENAME}}}}',
@@ -2017,7 +2016,7 @@ Lisätietoa yksittäisistä käyttäjäoikeuksista saattaa löytyä [[{{MediaWik
 'enotif_rev_info'              => 'Katso $1 nähdäksesi nykyisen version.',
 'enotif_body'                  => 'Käyttäjä $WATCHINGUSERNAME,
 
-{{GRAMMAR:genitive|{{SITENAME}}}} käyttäjä $PAGEEDITOR on $CHANGEDORCREATED $PAGETITLE $PAGEEDITDATE. Nykyinen versio on osoitteessa $PAGETITLE_URL .
+{{GRAMMAR:genitive|{{SITENAME}}}} käyttäjä $PAGEEDITOR on $CHANGEDORCREATED $PAGETITLE $PAGEEDITDATEANDTIME. $REVINFO
 
 $NEWPAGE
 
@@ -2532,6 +2531,7 @@ Jos haluat muokata MediaWikin yleistä kotoistusta, käy [http://www.mediawiki.o
 'tooltip-ca-viewsource'           => 'Näytä sivun lähdekoodi',
 'tooltip-ca-history'              => 'Sivun aikaisemmat versiot',
 'tooltip-ca-protect'              => 'Suojaa tämä sivu',
+'tooltip-ca-unprotect'            => 'Poista suojaus tältä sivulta',
 'tooltip-ca-delete'               => 'Poista tämä sivu',
 'tooltip-ca-undelete'             => 'Palauta tämä sivu',
 'tooltip-ca-move'                 => 'Siirrä tämä sivu',
@@ -2542,6 +2542,7 @@ Jos haluat muokata MediaWikin yleistä kotoistusta, käy [http://www.mediawiki.o
 'tooltip-search-fulltext'         => 'Etsi sivuilta tätä tekstiä',
 'tooltip-p-logo'                  => 'Etusivu',
 'tooltip-n-mainpage'              => 'Mene etusivulle',
+'tooltip-n-mainpage-description'  => 'Mene etusivulle',
 'tooltip-n-portal'                => 'Keskustelua projektista',
 'tooltip-n-currentevents'         => 'Taustatietoa tämänhetkisistä tapahtumista',
 'tooltip-n-recentchanges'         => 'Lista tuoreista muutoksista',

@@ -465,12 +465,12 @@ Dëst kann op e Feeler an der Software hiweisen.
 De läschte versichten Datebank Query war:
 <blockquote><tt>$1</tt></blockquote>
 vun der Funktioun "<tt>$2</tt>". 
-$5 huet de Feeler "<tt>$3: $4</tt>" gemellt.',
+D\'Datebank huet de Feeler "<tt>$3: $4</tt>" gemellt.',
 'dberrortextcl'        => 'En Datebank Syntax Feeler ass opgetrueden.
 De läschten Datebank Query war: 
 "$1" 
 vun der Funktioun "$2".
-$5 huet de Feeler "$3: $4" gemellt.',
+D\'Datebank huet de Feeler "$3: $4" gemellt.',
 'laggedslavemode'      => 'Opgepasst: Dës Säit ass net onbedingt um neiste Stand.',
 'readonly'             => "D'Datebank ass gespaart",
 'enterlockreason'      => "Gitt w.e.g. e Grond u firwat d'Datebak gespaart ass, a wéi laang dës Spär ongeféier bestoe soll.",
@@ -575,8 +575,7 @@ Kuckt w.e.g. op d\'Schreifweis richteg ass, oder [[Special:UserLogin/signup|maac
 'nouserspecified'            => 'Gitt w.e.g. e Benotzernumm un.',
 'wrongpassword'              => 'Dir hutt e falscht (oder kee) Passwuert aginn. Probéiert w.e.g. nach eng Kéier.',
 'wrongpasswordempty'         => "D'Passwuert dat Dir aginn hutt war eidel. Probéiert w.e.g. nach eng Kéier.",
-'passwordtooshort'           => 'Ärt Passwuert ass ze kuerz.
-Et muss mindestens {{PLURAL:$1|1 Zeeche|$1 Zeeche}} laang sinn.',
+'passwordtooshort'           => 'Passwierder musse mindestens {{PLURAL:$1|1 Zeeche|$1 Zeeche}} laang sinn.',
 'password-name-match'        => 'Ärt Passwuert muss verschidde vun Ärem Benotzernumm sinn.',
 'mailmypassword'             => 'Neit Passwuert per E-Mail kréien',
 'passwordremindertitle'      => 'Neit Passwuert fir ee {{SITENAME}}-Benotzerkont',
@@ -1927,7 +1926,7 @@ Wann dir dës Säit net méi iwwerwaache wëllt, klickt op \"Net méi iwwerwaach
 'enotif_rev_info'              => 'Kuckt $1 fir déi aktuell Versioun.',
 'enotif_body'                  => 'Léiwe $WATCHINGUSERNAME,
 
-D\'{{SITENAME}}-Säit "$PAGETITLE" gouf vum $PAGEEDITOR den $PAGEEDITDATE $CHANGEDORCREATED. $REVINFO
+D\'{{SITENAME}}-Säit "$PAGETITLE" gouf vum $PAGEEDITOR den $PAGEEDITDATEANDTIME $CHANGEDORCREATED. $REVINFO
 
 $NEWPAGE
 
@@ -2470,6 +2469,7 @@ Späichert en op ärem Computer of a lued en hei nees erop.',
 'tooltip-ca-viewsource'           => 'Dës Säit ass gespaart. Nëmmen de Quelltext ka gewise ginn.',
 'tooltip-ca-history'              => 'Vireg Versioune vun dëser Säit',
 'tooltip-ca-protect'              => 'Dës Säit spären',
+'tooltip-ca-unprotect'            => "D'Spär vun dëser Säit ophiewen",
 'tooltip-ca-delete'               => 'Dës Säit läschen',
 'tooltip-ca-undelete'             => 'Dës Säit restauréieren',
 'tooltip-ca-move'                 => 'Dës Säit réckelen',
@@ -2480,6 +2480,7 @@ Späichert en op ärem Computer of a lued en hei nees erop.',
 'tooltip-search-fulltext'         => 'No Säite sichen, an deenen dësen Text dran ass',
 'tooltip-p-logo'                  => 'Haaptsäit',
 'tooltip-n-mainpage'              => 'Eis Entréesdier',
+'tooltip-n-mainpage-description'  => "Besicht d'Haaptsäit",
 'tooltip-n-portal'                => 'Iwwer de Portal, wat Dir maache kënnt, wou wat ze fannen ass',
 'tooltip-n-currentevents'         => "D'Aktualitéit a wat derhannert ass",
 'tooltip-n-recentchanges'         => 'Lëscht vun de rezenten Ännerungen op {{SITENAME}}.',

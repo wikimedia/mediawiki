@@ -2012,7 +2012,7 @@ Os cambios futuros nesta páxina e na súa páxina de conversa asociada serán l
 'enotif_anon_editor'           => 'usuario anónimo $1',
 'enotif_body'                  => 'Estimado $WATCHINGUSERNAME,
 
-a páxina de {{SITENAME}} "$PAGETITLE" foi $CHANGEDORCREATED o $PAGEEDITDATE por $PAGEEDITOR, vexa $PAGETITLE_URL para comprobar a versión actual.
+a páxina de {{SITENAME}} "$PAGETITLE" foi $CHANGEDORCREATED o $PAGEEDITDATEANDTIME por $PAGEEDITOR, vexa $PAGETITLE_URL para comprobar a versión actual.
 
 $NEWPAGE
 
@@ -2028,7 +2028,7 @@ Non se producirán novas notificacións cando haxa novos cambios ata que vostede
 
 --
 Para cambiar a súa lista de vixilancia, visite
-{{fullurl:{{ns:special}}:Watchlist/edit}}
+{{fullurl:{{#special:Watchlist}}/edit}}
 
 Axuda:
 {{fullurl:{{MediaWiki:Helppage}}}}',

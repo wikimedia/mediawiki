@@ -637,12 +637,12 @@ Mogelijk zit er een fout in de software.
 Het laatste verzoek aan de database was:
 <blockquote><tt>$1</tt></blockquote>
 vanuit de functie “<tt>$2</tt>”.
-$5 gaf de foutmelding “<tt>$3: $4</tt>”.',
+De database gaf de volgende foutmelding “<tt>$3: $4</tt>”.',
 'dberrortextcl'        => 'Er is een syntaxisfout in het databaseverzoek opgetreden.
 Het laatste verzoek aan de database was:
 “$1”
 vanuit de functie “$2”.
-$5 gaf de volgende foutmelding: “$3: $4”',
+De database gaf de volgende foutmelding: “$3: $4”',
 'laggedslavemode'      => 'Waarschuwing: de pagina zou verouderd kunnen zijn.',
 'readonly'             => 'Database geblokkeerd',
 'enterlockreason'      => 'Geef een reden op voor de blokkade en geef op wanneer die waarschijnlijk wordt opgeheven',
@@ -759,8 +759,7 @@ Controleer de schrijfwijze.',
 Probeer het opnieuw.',
 'wrongpasswordempty'         => 'Het opgegeven wachtwoord was leeg.
 Probeer het opnieuw.',
-'passwordtooshort'           => 'Uw wachtwoord is te kort.
-Het dient minstens uit {{PLURAL:$1|1 teken|$1 tekens}} bestaan.',
+'passwordtooshort'           => 'Wachtwoorden moeten uit minstens {{PLURAL:$1|$1 teken|$1 tekens}} bestaan.',
 'password-name-match'        => 'Uw wachtwoord en uw gebruikersnaam mogen niet overeenkomen.',
 'mailmypassword'             => 'Nieuw wachtwoord e-mailen',
 'passwordremindertitle'      => 'Nieuw tijdelijk wachtwoord voor {{SITENAME}}',
@@ -2189,7 +2188,7 @@ Toekomstige bewerkingen van deze pagina en de bijbehorende overlegpagina worden 
 'enotif_rev_info'              => 'Zie $1 voor de huidige versie.',
 'enotif_body'                  => 'Beste $WATCHINGUSERNAME,
 
-De pagina $PAGETITLE op {{SITENAME}} is $CHANGEDORCREATED op $PAGEEDITDATE door $PAGEEDITOR. $REVINFO
+De pagina $PAGETITLE op {{SITENAME}} is $CHANGEDORCREATED op $PAGEEDITDATEANDTIME door $PAGEEDITOR. $REVINFO
 
 $NEWPAGE
 
@@ -2750,6 +2749,7 @@ Gebruik de voorbeeldweergaveknop alvorens te bewaren.',
 U kunt wel de broncode bekijken.',
 'tooltip-ca-history'              => 'Eerdere versies van deze pagina',
 'tooltip-ca-protect'              => 'Deze pagina beveiligen',
+'tooltip-ca-unprotect'            => 'De beveiliging voor deze pagina opheffen',
 'tooltip-ca-delete'               => 'Deze pagina verwijderen',
 'tooltip-ca-undelete'             => 'Verwijderde bewerkingen van deze pagina terugplaatsen',
 'tooltip-ca-move'                 => 'Deze pagina hernoemen',
@@ -2760,6 +2760,7 @@ U kunt wel de broncode bekijken.',
 'tooltip-search-fulltext'         => "De pagina's voor deze tekst zoeken",
 'tooltip-p-logo'                  => 'Hoofdpaginalogo',
 'tooltip-n-mainpage'              => 'Ga naar de Hoofdpagina',
+'tooltip-n-mainpage-description'  => 'Ga naar de Hoofdpagina',
 'tooltip-n-portal'                => 'Informatie over het project: wie, wat, hoe en waarom',
 'tooltip-n-currentevents'         => 'Achtergrondinformatie over actuele zaken',
 'tooltip-n-recentchanges'         => 'De lijst van recente wijzigingen in deze wiki.',

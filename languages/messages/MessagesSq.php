@@ -1693,7 +1693,7 @@ Në qoftë se dëshironi të hiqni një faqe nga lista mbikqyrëse më vonë, sh
 'enotif_anon_editor'           => 'përdorues anonim $1',
 'enotif_body'                  => 'I/E dashur $WATCHINGUSERNAME,
 
-faqja $PAGETITLE tek {{SITENAME}} është $CHANGEDORCREATED më $PAGEEDITDATE nga $PAGEEDITOR, shikoni $PAGETITLE_URL për versionin e tanishëm.
+faqja $PAGETITLE tek {{SITENAME}} është $CHANGEDORCREATED më $PAGEEDITDATEANDTIME nga $PAGEEDITOR, shikoni $PAGETITLE_URL për versionin e tanishëm.
 
 $NEWPAGE
 

@@ -1823,7 +1823,7 @@ $1",
 'enotif_body'                  => 'เรียน $WATCHINGUSERNAME,
 
 
-ทางระบบจากเว็บ {{SITENAME}} ต้องการแจ้งให้ทราบว่า หน้า $PAGETITLE ได้ $CHANGEDORCREATED เมื่อ $PAGEEDITDATE โดย $PAGEEDITOR ดูรุ่นปัจจุบันได้ที่ $PAGETITLE_URL
+ทางระบบจากเว็บ {{SITENAME}} ต้องการแจ้งให้ทราบว่า หน้า $PAGETITLE ได้ $CHANGEDORCREATED เมื่อ $PAGEEDITDATEANDTIME โดย $PAGEEDITOR ดูรุ่นปัจจุบันได้ที่ $PAGETITLE_URL
 
 $NEWPAGE
 
@@ -1840,7 +1840,7 @@ $NEWPAGE
 
 --
 ถ้าต้องการเปลี่ยนแปลงรายการเฝ้าดู ให้เข้าที่:
-{{fullurl:{{ns:special}}:Watchlist/edit}}
+{{fullurl:{{#special:Watchlist}}/edit}}
 
 ถ้าต้องการความช่วยเหลือเพิ่มเติม ให้เข้าที่:
 {{fullurl:{{MediaWiki:Helppage}}}}',

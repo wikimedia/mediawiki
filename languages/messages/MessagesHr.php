@@ -2067,7 +2067,7 @@ Promjene na ovoj stranici i njenoj stranici za razgovor bit će tamo prikazani, 
 'enotif_rev_info'              => 'Pogledajte $1 za trenutačnu inačicu.',
 'enotif_body'                  => 'Poštovani $WATCHINGUSERNAME,
 
-stranicu na projektu {{SITENAME}} s naslovom $PAGETITLE je dana $PAGEEDITDATE $CHANGEDORCREATED suradnik $PAGEEDITOR. $REVINFO
+stranicu na projektu {{SITENAME}} s naslovom $PAGETITLE je dana $PAGEEDITDATEANDTIME $CHANGEDORCREATED suradnik $PAGEEDITOR. $REVINFO
 pogledajte $PAGETITLE_URL za trenutačnu inačicu.
 
 $NEWPAGE
@@ -2085,7 +2085,7 @@ Postavke za izvješćivanje možete resetirati za sve praćene stranice svog pop
 
 --
 Za promjene svog popisa praćenja, posjetite
-{{fullurl:{{ns:special}}:Watchlist/edit}}
+{{fullurl:{{#special:Watchlist}}/edit}}
 
 Za pomoć posjetite:
 {{fullurl:{{MediaWiki:Helppage}}}}',

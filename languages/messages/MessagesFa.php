@@ -2202,7 +2202,7 @@ $1",
 'enotif_anon_editor'           => 'کاربر ناشناس $1',
 'enotif_body'                  => '$WATCHINGUSERNAME گرامی،
 
-صفحهٔ «$PAGETITLE» {{SITENAME}} در $PAGEEDITDATE به دست $PAGEEDITOR $CHANGEDORCREATED است. برای دیدن نسخهٔ کنونی به $PAGETITLE_URL بروید.
+صفحهٔ «$PAGETITLE» {{SITENAME}} در $PAGEEDITDATEANDTIME به دست $PAGEEDITOR $CHANGEDORCREATED است. برای دیدن نسخهٔ کنونی به $PAGETITLE_URL بروید.
 
 $NEWPAGE
 
@@ -2220,7 +2220,7 @@ $NEWPAGE
 سامانهٔ آگاهی‌رسانی  {{SITENAME}}.
 
 --
-برای تغییر تنظیمات فهرست پی‌گیری‌هایتان به {{fullurl:{{ns:special}}:Watchlist/edit}} بروید.
+برای تغییر تنظیمات فهرست پی‌گیری‌هایتان به {{fullurl:{{#special:Watchlist}}/edit}} بروید.
 
 بازخورد و کمک بیشتر:
 {{fullurl:{{ns:help}}:Contents}}',

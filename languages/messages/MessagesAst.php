@@ -1670,7 +1670,7 @@ Si más tarde quies quitala de la llista de vixilancia calca en "Dexar de vixila
 'enotif_body'                  => 'Estimáu $WATCHINGUSERNAME,
 
 
-La páxina de {{SITENAME}} $PAGETITLE foi $CHANGEDORCREATED el $PAGEEDITDATE por $PAGEEDITOR, vete $PAGETITLE_URL pa ver la versión actual.
+La páxina de {{SITENAME}} $PAGETITLE foi $CHANGEDORCREATED el $PAGEEDITDATEANDTIME por $PAGEEDITOR, vete $PAGETITLE_URL pa ver la versión actual.
 
 $NEWPAGE
 
@@ -1686,7 +1686,7 @@ En casu de producise más cambeos, nun habrá más notificaciones a nun ser que 
 
 --
 Pa camudar la configuración de la to llista de vixilancia, visita
-{{fullurl:{{ns:special}}:Watchlist/edit}}
+{{fullurl:{{#special:Watchlist}}/edit}}
 
 Más aida y sofitu:
 {{fullurl:{{MediaWiki:Helppage}}}}',

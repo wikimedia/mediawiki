@@ -1894,7 +1894,7 @@ $1",
 'enotif_anon_editor'           => 'ანონიმური მომხმარებელი $1',
 'enotif_body'                  => 'პატივცემულო $WATCHINGUSERNAME,
 
-პროექტის "{{SITENAME}}" გვერდი $PAGETITLE $CHANGEDORCREATED იქნა მომხმარებლის $PAGEEDITOR მიერ შემდეგი თარიღით: $PAGEEDITDATE. ამჟამინდელი ვერსია იხილეთ აქ: $PAGETITLE_URL.
+პროექტის "{{SITENAME}}" გვერდი $PAGETITLE $CHANGEDORCREATED იქნა მომხმარებლის $PAGEEDITOR მიერ შემდეგი თარიღით: $PAGEEDITDATEANDTIME. ამჟამინდელი ვერსია იხილეთ აქ: $PAGETITLE_URL.
 
 $NEWPAGE
 

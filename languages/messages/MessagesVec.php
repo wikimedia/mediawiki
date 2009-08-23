@@ -467,12 +467,12 @@ Podarìa èssar dovù a un bug in tel software.
 L\'ultima richiesta inoltrà al database l\'è stà:
 <blockquote><tt>$1</tt></blockquote>
 da la funsion "<tt>$2</tt>".
-$5 gà restituìo un eror "<tt>$3: $4</tt>".',
+El database el gà restituìo un eror "<tt>$3: $4</tt>".',
 'dberrortextcl'        => 'Se gà verificà un eror de sintassi ne la richiesta al database.
 L\'ultima richiesta al database l\'è stà:
 "$1"
 da la funsion "$2".
-$5 gà restituìo l\'eror "$3: $4".',
+El database el gà restituìo l\'eror "$3: $4".',
 'laggedslavemode'      => 'Ocio: la pàxena la podarìa no contegner mìa i ultimi agiornamenti.',
 'readonly'             => 'Accesso al database tenporaneamente disabilità',
 'enterlockreason'      => 'Fornissi na spiegassion sui motivi del bloco, includendo le probabili data ed ora de riativazion o de rimozion del bloco.',
@@ -576,8 +576,7 @@ Verifica che el nome inserìo el sia giusto o [[Special:UserLogin/signup|crea na
 'nouserspecified'            => 'Bisogna specificar un nome utente.',
 'wrongpassword'              => "La password che te ghe messo no l'è mia giusta.<br /><br />Riproa, par piaser.",
 'wrongpasswordempty'         => 'La password inseria la xè voda. Ripróa da novo.',
-'passwordtooshort'           => 'La to password la xe massa curta.
-La gà da èssar longa almanco {{PLURAL:$1|$1 caràtere|$1 caràteri}}.',
+'passwordtooshort'           => 'La password la gà da èssar longa almanco {{PLURAL:$1|$1 caràtere|$1 caràteri}}.',
 'password-name-match'        => 'La to password la ga da èssar difarente dal to nome utente.',
 'mailmypassword'             => 'Màndeme na password nova par posta eletronica',
 'passwordremindertitle'      => 'Servizio Password Reminder de {{SITENAME}}',
@@ -1914,7 +1913,7 @@ Le future modìfeghe a sta pagina e a la relativa pagina de discussion le sarà 
 'enotif_rev_info'              => 'Varda $1 par la version corente.',
 'enotif_body'                  => 'Caro $WATCHINGUSERNAME,
 
-ła pàxena $PAGETITLE de {{SITENAME}} la xè stà $CHANGEDORCREATED el $PAGEEDITDATE da $PAGEEDITOR. $REVINFO
+ła pàxena $PAGETITLE de {{SITENAME}} la xè stà $CHANGEDORCREATED el $PAGEEDITDATEANDTIME da $PAGEEDITOR. $REVINFO
 
 $NEWPAGE
 
@@ -2443,6 +2442,7 @@ Salvalo sul to computer e càrghelo qua.',
 'tooltip-ca-viewsource'           => 'Sta pàxena la xè proteta, ma te podi vedar el so còdexe sorgente.',
 'tooltip-ca-history'              => 'Version vèce de sta pàxena.',
 'tooltip-ca-protect'              => 'Protegi sta pàxena',
+'tooltip-ca-unprotect'            => 'Cava la protession a sta pagina',
 'tooltip-ca-delete'               => 'Scanceła sta pàxena',
 'tooltip-ca-undelete'             => "Ripristina la pàxena come l'era prima de la scancelassion",
 'tooltip-ca-move'                 => "Sposta sta pàxena a n'altro titoło",
@@ -2453,6 +2453,7 @@ Salvalo sul to computer e càrghelo qua.',
 'tooltip-search-fulltext'         => 'Serca in te le pagine sto testo quà',
 'tooltip-p-logo'                  => 'Pàxena prinçipałe',
 'tooltip-n-mainpage'              => 'Visita la pàxena prinsipałe',
+'tooltip-n-mainpage-description'  => 'Visita la pagina prinsipal',
 'tooltip-n-portal'                => 'Descrission del projeto, cossa te podi far, e dove catar le robe',
 'tooltip-n-currentevents'         => 'Eventi de atuałità',
 'tooltip-n-recentchanges'         => 'La lista de le ùltime modìfeghe a sta wiki',

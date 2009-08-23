@@ -886,7 +886,7 @@ Bee caghlaaghyn jeant er y duillag shoh as e ghuillag resoonaght ry-akin ayns y 
 'enotif_body'                  => 'Y charrey,
 
 
-Va\'n duilag $PAGETITLE er {{SITENAME}} $CHANGEDORCREATED er $PAGEEDITDATE liorish $PAGEEDITOR, jeeagh er $PAGETITLE_URL dys y lhieggan roie dy akin.
+Va\'n duilag $PAGETITLE er {{SITENAME}} $CHANGEDORCREATED er $PAGEEDITDATEANDTIME liorish $PAGEEDITOR, jeeagh er $PAGETITLE_URL dys y lhieggan roie dy akin.
 
 $NEWPAGE
 
@@ -903,7 +903,7 @@ Foddee shiu aajeshaghey bratteeyn ny fograghyn ry hoi dagh duillag er dty rolley
 
 --
 Dys kiartee dty rolley arrey y chaghlaa, cur keayrt er
-{{fullurl:{{ns:special}}:Watchlist/edit}}
+{{fullurl:{{#special:Watchlist}}/edit}}
 
 Aaveaghey as cooney s\'odjey:
 {{fullurl:{{MediaWiki:Helppage}}}}',

@@ -1938,7 +1938,7 @@ Template:消除歧義',
 'enotif_rev_info'              => '請到 $1 檢視當前修訂版本。',
 'enotif_body'                  => '親愛的 $WATCHINGUSERNAME，
 
-$PAGEEDITOR 已經在 $PAGEEDITDATE $CHANGEDORCREATED{{SITENAME}}的 $PAGETITLE 頁面。$REVINFO
+$PAGEEDITOR 已經在 $PAGEEDITDATEANDTIME $CHANGEDORCREATED{{SITENAME}}的 $PAGETITLE 頁面。$REVINFO
 
 $NEWPAGE
 
@@ -1956,7 +1956,7 @@ $NEWPAGE
 
 --
 要改變您的監視列表設定，請參閱
-{{fullurl:{{ns:special}}:Watchlist/edit}}
+{{fullurl:{{#special:Watchlist}}/edit}}
 
 回饋和進一步的幫助:
 {{fullurl:{{MediaWiki:Helppage}}}}',

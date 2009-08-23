@@ -1293,7 +1293,7 @@ Birazdan soñ közetüv cedveliñizden bir de bir saifeni yoq etmege isteseñiz 
 'enotif_body'                  => 'Sayğılı $WATCHINGUSERNAME,
 
 
-{{SITENAME}} saytındaki $PAGETITLE serlevalı saife $PAGEEDITDATE tarihında $PAGEEDITOR tarafından $CHANGEDORCREATED. Şimdiki versiyağa $PAGETITLE_URL adresinden yetişip olasıñız.
+{{SITENAME}} saytındaki $PAGETITLE serlevalı saife $PAGEEDITDATEANDTIME tarihında $PAGEEDITOR tarafından $CHANGEDORCREATED. Şimdiki versiyağa $PAGETITLE_URL adresinden yetişip olasıñız.
 
 $NEWPAGE
 

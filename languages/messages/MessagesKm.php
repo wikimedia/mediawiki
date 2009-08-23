@@ -1988,7 +1988,7 @@ PICT # ផ្សេង​ៗ​
 'enotif_body'                  => 'ជូនចំពោះ $WATCHINGUSERNAME ជាទីរាប់អាន,
 
 
-ទំព័រ $PAGETITLE នៃ {{SITENAME}} ត្រូវបាន  $CHANGEDORCREATED ថ្ងៃ $PAGEEDITDATE ដោយ $PAGEEDITOR។ សូមមើល $PAGETITLE_URL សម្រាប់​កំណែបច្ចុប្បន្ន។
+ទំព័រ $PAGETITLE នៃ {{SITENAME}} ត្រូវបាន  $CHANGEDORCREATED ថ្ងៃ $PAGEEDITDATEANDTIME ដោយ $PAGEEDITOR។ សូមមើល $PAGETITLE_URL សម្រាប់​កំណែបច្ចុប្បន្ន។
 
 $NEWPAGE
 
@@ -2006,7 +2006,7 @@ $NEWPAGE
 
 --
 ដើម្បីផ្លាស់ប្តូរ ការកំណត់បញ្ជីតាមដាន, សូមចូលមើល
-{{fullurl:{{ns:special}}:Watchlist/edit}}
+{{fullurl:{{#special:Watchlist}}/edit}}
 
 ប្រតិកម្ម និង ជំនួយបន្ថែម ៖
 {{fullurl:{{MediaWiki:Helppage}}}}',

@@ -459,16 +459,16 @@ Un lista de paginas special valide se trova a [[Special:SpecialPages|{{int:speci
 'error'                => 'Error',
 'databaseerror'        => 'Error de base de datos',
 'dberrortext'          => 'Un error de syntaxe occurreva durante un consulta del base de datos.
-Isto poterea indicar le presentia de un defecto in le software.
+Isto pote indicar le presentia de un defecto in le software.
 Le ultime consulta que se tentava es:
 <blockquote><tt>$1</tt></blockquote>
 effectuate per le function "<tt>$2</tt>".
-$5 retornava le error "<tt>$3: $4</tt>".',
+Le base de datos retornava le error "<tt>$3: $4</tt>".',
 'dberrortextcl'        => 'Un error de syntaxe occurreva durante un consulta del base de datos.
 Le ultime consulta que se tentava es:
 "$1"
 effectuate per le function "$2".
-$5 retornava le error "$3: $4"',
+Le base de datos retornava le error "$3: $4"',
 'laggedslavemode'      => 'Attention: Es possibile que le pagina non contine actualisationes recente.',
 'readonly'             => 'Base de datos blocate',
 'enterlockreason'      => 'Describe le motivo del blocada, includente un estimation
@@ -1999,7 +1999,7 @@ render lo plus facile de deteger.",
 'enotif_body'                  => 'Car $WATCHINGUSERNAME,
 
 
-Le pagina de {{SITENAME}} titulate $PAGETITLE ha essite $CHANGEDORCREATED le $PAGEEDITDATE per $PAGEEDITOR. $REVINFO
+Le pagina de {{SITENAME}} titulate $PAGETITLE ha essite $CHANGEDORCREATED le $PAGEEDITDATEANDTIME per $PAGEEDITOR. $REVINFO
 
 $NEWPAGE
 
@@ -2016,7 +2016,7 @@ Como alternativa tu pote reinitialisar le optiones de notification pro tote le p
 
 --
 Pro cambiar le configuration de tu observatorio, visita
-{{fullurl:{{ns:special}}:Watchlist/edit}}
+{{fullurl:{{#special:Watchlist}}/edit}}
 
 Feedback e ulterior assistentia:
 {{fullurl:{{MediaWiki:Helppage}}}}',

@@ -1569,7 +1569,7 @@ Na tyi liśće bydźeš mjou rejer přišuych sprowjyń tyi zajty i jeji zajty g
 'enotif_anon_editor'           => 'užytkowńik anůnimowy $1',
 'enotif_body'                  => 'Drogi/o $WATCHINGUSERNAME,
 
-zajta $PAGETITLE we {{GRAMMAR:MS.lp|{{SITENAME}}}} zostoua $CHANGEDORCREATED $PAGEEDITDATE bez užytkowńika $PAGEEDITOR. Uobejřij na zajće $PAGETITLE_URL aktualno wersja.
+zajta $PAGETITLE we {{GRAMMAR:MS.lp|{{SITENAME}}}} zostoua $CHANGEDORCREATED $PAGEEDITDATEANDTIME bez užytkowńika $PAGEEDITOR. Uobejřij na zajće $PAGETITLE_URL aktualno wersja.
 
 $NEWPAGE
 
@@ -1586,7 +1586,7 @@ Možeš tyž zresetować wšyjstke flagi powjadůmjyń na swojej liśće zajtůw
 
 --
 Kejbyś chćou půmjyńić štalowańo swojej listy zajtůw, na kere dowoš pozůr, uodwjydź
-{{fullurl:{{ns:special}}:Watchlist/edit}}
+{{fullurl:{{#special:Watchlist}}/edit}}
 
 Pomoc:
 {{fullurl:{{MediaWiki:Helppage}}}}',

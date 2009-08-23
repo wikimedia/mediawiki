@@ -1892,7 +1892,7 @@ WÃ¤nn Du d Syte speter wider vu dr Lischt witt stryyche, deno druck eifach uf â€
 'enotif_anon_editor'           => 'Anonyme Benutzer $1',
 'enotif_body'                  => 'Liebe/r $WATCHINGUSERNAME,
 
-d {{SITENAME}} Syte $PAGETITLE isch vom $PAGEEDITOR am $PAGEEDITDATE $CHANGEDORCREATED,
+d {{SITENAME}} Syte $PAGETITLE isch vom $PAGEEDITOR am $PAGEEDITDATEANDTIME $CHANGEDORCREATED,
 di aktuelli Version isch: $PAGETITLE_URL
 
 $NEWPAGE

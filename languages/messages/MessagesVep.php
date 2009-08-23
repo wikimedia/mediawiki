@@ -1598,7 +1598,7 @@ Kc. mugažo [[Special:WantedCategories|ectud kategorijoiden nimikirjutez]].',
 'enotif_body'                  => 'Kalliž $WATCHINGUSERNAME,
 
 
-{{SITENAME}}-saitan $PAGETITLE-lehtpol\' om $CHANGEDORCREATED datal $PAGEEDITDATE. Toižetusen avtor om $PAGEEDITOR. Kc. $PAGETITLE_URL, miše nägištada jäl\'gmäine versii.
+{{SITENAME}}-saitan $PAGETITLE-lehtpol\' om $CHANGEDORCREATED datal $PAGEEDITDATEANDTIME. Toižetusen avtor om $PAGEEDITOR. Kc. $PAGETITLE_URL, miše nägištada jäl\'gmäine versii.
 
 $NEWPAGE
 
@@ -1615,7 +1615,7 @@ Tö voinuiži mugažo znamoita völ kerdan lehtpoled kaclemižeks teiden kaclend
 
 --
 Miše toižetada teiden kaclendnimikirjutesen järgendused, mängat tänna:
-{{fullurl:{{ns:special}}:Watchlist/edit}}
+{{fullurl:{{#special:Watchlist}}/edit}}
 
 Tugedand da abu:
 {{fullurl:{{MediaWiki:Helppage}}}}',

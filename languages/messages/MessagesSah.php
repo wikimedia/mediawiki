@@ -367,12 +367,12 @@ $1',
 Билии олоҕор бүтэһик ыйытык маннык:
 <blockquote><tt>$1</tt></blockquote>
 (бу пуунсуйаттан тахсыбыт "<tt>$2</tt>").
-$5 маннык сыыһаны төнүннэрдэ (көрдөрдө) "<tt>$3: $4</tt>".',
+Билии олоҕо сыыһаны көрдөрдө "<tt>$3: $4</tt>".',
 'dberrortextcl'        => 'Билии олоҕор ыйытык синтаксииһын сыыһата таҕыста.
 Билии олоҕор бүтэһик ыйытык:
 "$1"
 "$2" пуунсуйаттан тахсыбыт.
-$5 маннык сыыһаны төнүннэрдэ (көрдөрдө) "$3: $4"',
+Билии олоҕо маннык сыыһаны көрдөрдө "$3: $4"',
 'laggedslavemode'      => 'Болҕой: Бу сирэй бүтэһик уларытыылара суох буолуон сөп',
 'readonly'             => 'Билии олоҕун уларытар бобуллубут',
 'enterlockreason'      => 'Уларытыыны бобуу төрүөтүн уонна төһө өр бобулларын ый.',
@@ -1563,7 +1563,7 @@ PICT # misc.
 
 # Random page
 'randompage'         => 'Түбэспиччэ сирэй',
-'randompage-nopages' => 'Бу аат дала ($1) кураанах.',
+'randompage-nopages' => 'Бу {{PLURAL:$2|аат дала кураана|аат далларыгар сирэйдэр суохтар}}: $1.',
 
 # Random redirect
 'randomredirect'         => 'Түбэспиччэ утаарыы',
@@ -1839,13 +1839,16 @@ PICT # misc.
 'enotif_impersonal_salutation' => '{{SITENAME}} кыттааччыта',
 'changed'                      => 'уларыппыт (уларытыллыбыт)',
 'created'                      => 'айыллыбыт',
+'deleted'                      => 'сотулунна',
+'enotif_deletedpagetext'       => 'Бу сирэй билигин көстөр кыаҕа суох.',
 'enotif_subject'               => '«{{SITENAME}}» $PAGETITLE кыттааччыга сыһыаннаах сирэйи $PAGEEDITOR кыттааччы $CHANGEDORCREATED',
 'enotif_lastvisited'           => 'Бутэһик киирииҥ кэнниттэн оҥоһуллубут уларыйыылары барытын көрөргө манна киир: $1.',
 'enotif_lastdiff'              => 'Уларытыыны манна көрүҥ: $1.',
 'enotif_anon_editor'           => 'ааттамматах кыттааччы $1',
+'enotif_rev_info'              => 'Билиҥҥи барылы көрөргө маны көр: $1.',
 'enotif_body'                  => 'Күндү $WATCHINGUSERNAME,
 
-«{{SITENAME}}» $PAGETITLE кыттаачыга сыһыаннаах сирэйи $PAGEEDITDATE $PAGEEDITOR кыттааччы $CHANGEDORCREATED. Сирэй билиҥҥи туругун манна көр: $PAGETITLE_URL.
+«{{SITENAME}}» $PAGETITLE кыттаачыга сыһыаннаах сирэйи $PAGEEDITDATEANDTIME $PAGEEDITOR кыттааччы $CHANGEDORCREATED. $REVINFO
 
 $NEWPAGE
 
@@ -1861,9 +1864,10 @@ $NEWPAGE
 
 --
 Кэтиир сирэйдэриҥ тиһигин уларытарга маны көр
-{{fullurl:{{ns:special}}:Watchlist/edit}}
+{{fullurl:{{#special:Watchlist}}/edit}}
 
-Көмөлөһүннэрэр уонна быһаартарар сир: {{fullurl:{{MediaWiki:Helppage}}}}',
+Көмөлөһүннэрэр уонна быһаартарар сир: 
+{{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
 'deletepage'             => 'Сирэйи сот',
@@ -1926,7 +1930,7 @@ $NEWPAGE
 'protect-title'               => '"$1": Уларытыы таһымын туруоруу',
 'prot_1movedto2'              => '[[$1]] аата манныкка уларытылынна: [[$2]]',
 'protect-legend'              => 'Уларытыы таһымын бигэргэт',
-'protectcomment'              => 'Хос быһаарыы:',
+'protectcomment'              => 'Төрүөтэ:',
 'protectexpiry'               => 'Бүтүөхтээх:',
 'protect_expiry_invalid'      => 'Уларытыыны хааччахтааһын болдьоҕун кэмэ сатаан турбата.',
 'protect_expiry_old'          => 'Болдьох кэмэ сыыһа ааспыт кэмҥэ турбут.',

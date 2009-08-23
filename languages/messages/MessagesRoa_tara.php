@@ -1880,7 +1880,7 @@ Le cangiaminde future a sta pàgene e 'a pàgene de le 'ngazzaminde associete le
 'enotif_body'                  => 'Care $WATCHINGUSERNAME,
 
 
-\'A pàgene $PAGETITLE de {{SITENAME}} ha state $CHANGEDORCREATED \'u $PAGEEDITDATE da $PAGEEDITOR, vide $PAGETITLE_URL pa versina corrende.
+\'A pàgene $PAGETITLE de {{SITENAME}} ha state $CHANGEDORCREATED \'u $PAGEEDITDATEANDTIME da $PAGEEDITOR, vide $PAGETITLE_URL pa versina corrende.
 
 $NEWPAGE
 
@@ -1897,7 +1897,7 @@ Tu puè pure azzerà \'a spunde de le notifiche pe tutte le pàggene condrollete
 
 --
 Pe cangià le \'mbostaziune d\'a liste de le pàggene condrollete tue, vè vide
-{{fullurl:{{ns:special}}:Watchlist/edit}}
+{{fullurl:{{#special:Watchlist}}/edit}}
 
 Segnalaziune e otre assistenze:
 {{fullurl:{{MediaWiki:Helppage}}}}',

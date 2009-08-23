@@ -1259,7 +1259,7 @@ Aoriana, raha irinao ny hanaisotra azy ao amin'ny PejyArahiMaso-nao, dia tsindri
 'enotif_lastvisited' => "Jereo eto $1 ny niova rehetra hatramin'ny fitsidihanao farany.",
 'enotif_body'        => '$WATCHINGUSERNAME,
 
-$CHANGEDORCREATED $PAGEEDITOR tamin\'ny $PAGEEDITDATE ny pejy $PAGETITLE tao amin\'ny sehatra {{SITENAME}}. Jereo eto $PAGETITLE_URL ny votoatiny ankehitriny.
+$CHANGEDORCREATED $PAGEEDITOR tamin\'ny $PAGEEDITDATEANDTIME ny pejy $PAGETITLE tao amin\'ny sehatra {{SITENAME}}. Jereo eto $PAGETITLE_URL ny votoatiny ankehitriny.
 
 $NEWPAGE
 
@@ -1276,7 +1276,7 @@ Azonao atao koa ny manajanona ny fampahafantarana anao aloha na misy manova aza 
 
 --
 Raha hanova ny fandehan\'ny momba ny lisitry ny pejy arahi-maso, jereo
-{{fullurl:{{ns:special}}:Watchlist/edit}}
+{{fullurl:{{#special:Watchlist}}/edit}}
 
 Hevitrao sy fanampiana:
 {{fullurl:{{MediaWiki:Helppage}}}}',

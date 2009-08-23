@@ -415,16 +415,16 @@ Marteze zo un draen er meziant implijet gant {{SITENAME}} ivez.",
 # General errors
 'error'                => 'Fazi',
 'databaseerror'        => 'Fazi bank roadennoù',
-'dberrortext'          => 'C\'hoarvezet ez eus ur fazi ereadurezh ar reked er bank roadennoù, ar pezh a c\'hall talvezout ez eus un draen er meziant. 
+'dberrortext'          => 'C\'hoarvezet ez eus ur fazi ereadur eus ar reked er bank roadennoù, ar pezh a c\'hall talvezout ez eus un draen er meziant. 
 Setu ar goulenn bet pledet gantañ da ziwezhañ :
 <blockquote><tt>$1</tt></blockquote>
 adal an arc\'hwel "<tt>$2</tt>".
-$5 en deus adkaset ar fazi "<tt>$3: $4</tt>".',
-'dberrortextcl'        => 'Ur fazi ereadur zo en ur goulenn graet ouzh ar bank roadennoù. 
+Adkaset eo bet ar fazi "<tt>$3: $4</tt>" gant ar bank roadennoù.',
+'dberrortextcl'        => 'Ur fazi ereadur zo en ur reked savet ouzh ar bank roadennoù. 
 Setu ar goulenn bet pledet gantañ da ziwezhañ :
 "$1"
 adal an arc\'hwel "$2"
-$5 en deus adkaset ar fazi "$3 : $4".',
+Adkaset eo bet ar fazi "$3 : $4" gant ar bank roadennoù.',
 'laggedslavemode'      => "Diwallit : marteze a-walc'h n'emañ ket ar c'hemmoù diwezhañ war ar bajenn-mañ",
 'readonly'             => 'Hizivadurioù stanket war ar bank roadennoù',
 'enterlockreason'      => 'Merkit perak eo stanket hag istimit pegeit e chomo evel-henn',
@@ -525,8 +525,7 @@ Gwiriit eo bet skrivet mat an anv ganeoc\'h pe [[Special:UserLogin/signup|krouit
 'nouserspecified'            => "Ret eo deoc'h spisaat un anv implijer.",
 'wrongpassword'              => 'Ger-tremen kamm. Klaskit en-dro.',
 'wrongpasswordempty'         => 'Ger-tremen ebet. Lakait unan mar plij.',
-'passwordtooshort'           => 'Re verr eo ho ker-tremen. 
-{{PLURAL:$1|1 arouezenn|$1 arouezenn}} a rank bezañ ennañ da nebeutañ.',
+'passwordtooshort'           => '{{PLURAL:$1|1 arouezenn|$1 arouezenn}} hir a rank bezañ ar gerioù-tremen da nebeutañ.',
 'password-name-match'        => "Rankout a ra ho ker-tremen bezañ disheñvel diouzh hoc'h anv implijer.",
 'mailmypassword'             => 'Kasit din ur ger-tremen nevez',
 'passwordremindertitle'      => 'Ho ker-tremen berrbad nevez evit {{SITENAME}}',
@@ -1872,28 +1871,32 @@ Evit tennañ ar bajenn-mañ a-ziwar ho rollad evezhiañ. klikit war "Paouez da e
 'enotif_impersonal_salutation' => 'implijer {{SITENAME}}',
 'changed'                      => 'kemmet',
 'created'                      => 'Krouet',
+'deleted'                      => 'diverket',
+'enotif_deletedpagetext'       => "N'eo ket hegerz ar bajenn-mañ ken.",
 'enotif_subject'               => '$CHANGEDORCREATED eo bet pajenn $PAGETITLE {{SITENAME}} gant $PAGEEDITOR',
 'enotif_lastvisited'           => 'Sellet ouzh $1 evit gwelet an holl gemmoù abaoe ho selladenn ziwezhañ.',
 'enotif_lastdiff'              => "Gwelet $1 evit sellet ouzh ar c'hemm-mañ.",
 'enotif_anon_editor'           => 'implijer dizanv $1',
+'enotif_rev_info'              => 'Sellet ouzh $1 a-benn gwelet ar stumm red.',
 'enotif_body'                  => '$WATCHINGUSERNAME ker,
 
-$CHANGEDORCREATED eo bet ar bajenn {{SITENAME}} evit $PAGETITLE gant $PAGEEDITOR d\'an $PAGEEDITDATE, gwelet $PAGETITLE_URL evit gwelet ar stumm red.
+$CHANGEDORCREATED eo bet ar bajenn {{SITENAME}} evit $PAGETITLE gant $PAGEEDITOR d\'an $PAGEEDITDATEANDTIME, gwelet $PAGETITLE_URL evit gwelet ar stumm red.
 
 $NEWPAGE
 
-Diverrañ an Implijer : $PAGESUMMARY $PAGEMINOREDIT
+Diverrañ an aozer : $PAGESUMMARY $PAGEMINOREDIT
 
-Mont e darempred gant an implijer:
+Mont e darempred gant an aozer :
 postel: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
-Nemet e yafec\'h da welet ar bajenn end-eeun, ne vo kemenn all ebet ma vez degaset kemmoù enni pelloc\'h. Gallout a rit nevesaat doare ar pennadoù evezhiet ganeoc\'h en ho rollad evezhiañ ivez.
+Nemet e yafec\'h da welet ar bajenn end-eeun, ne vo kemenn all ebet ma vez degaset kemmoù enni pelloc\'h. 
+Gallout a rit nevesaat doare ar pennadoù evezhiet ganeoc\'h en ho rollad evezhiañ ivez.
 
             Ho reizhiad kemenn {{SITENAME}} muiañ karet
 
 --
-A-benn kemmañ doare ho rollad evezhiañ, sellit ouzh {{fullurl:{{ns:special}}:Watchlist/edit}}
+A-benn kemmañ doare ho rollad evezhiañ, sellit ouzh {{fullurl:{{#special:Watchlist}}/edit}}
 
 Evezhiadennoù ha skoazell pelloc\'h :
 {{fullurl:{{MediaWiki:Helppage}}}}',
@@ -2415,6 +2418,7 @@ Miret eo an holl enporzhiadennoù etrewiki e-barzh [[Special:Log/import|log an e
 'tooltip-ca-viewsource'           => 'Gwarezet eo ar bajenn-mañ. Gallout a rit gwelet an danvez anezhañ memes tra.',
 'tooltip-ca-history'              => 'Stummoù kozh ar bajenn-mañ gant an aozerien anezhi.',
 'tooltip-ca-protect'              => 'Gwareziñ ar bajenn-mañ',
+'tooltip-ca-unprotect'            => 'Diwareziñ ar bajenn',
 'tooltip-ca-delete'               => 'Diverkañ ar bajenn-mañ',
 'tooltip-ca-undelete'             => 'Adsevel ar bajenn-mañ',
 'tooltip-ca-move'                 => 'Adenvel ar bajenn-mañ',
@@ -2425,6 +2429,7 @@ Miret eo an holl enporzhiadennoù etrewiki e-barzh [[Special:Log/import|log an e
 'tooltip-search-fulltext'         => 'Klask an destenn-mañ er pajennoù',
 'tooltip-p-logo'                  => 'Pajenn bennañ',
 'tooltip-n-mainpage'              => 'Diskouez ar Bajenn bennañ',
+'tooltip-n-mainpage-description'  => 'Kit da welet an degemer',
 'tooltip-n-portal'                => "Diwar-benn ar raktres, ar pezh a c'hallit ober, pelec'h kavout an traoù",
 'tooltip-n-currentevents'         => 'Tapout keleier diwar-benn an darvoudoù diwezhañ',
 'tooltip-n-recentchanges'         => "Roll ar c'hemmoù diwezhañ c'hoarvezet war ar wiki.",

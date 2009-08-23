@@ -2048,7 +2048,7 @@ PICT # різні
 'enotif_anon_editor'           => 'анонімний користувач $1',
 'enotif_body'                  => '$WATCHINGUSERNAME,
 
-$PAGEEDITDATE сторінка проекту «{{SITENAME}}» $PAGETITLE була $CHANGEDORCREATED користувачем $PAGEEDITOR, див. $PAGETITLE_URL, щоб переглянути поточну версію.
+$PAGEEDITDATEANDTIME сторінка проекту «{{SITENAME}}» $PAGETITLE була $CHANGEDORCREATED користувачем $PAGEEDITOR, див. $PAGETITLE_URL, щоб переглянути поточну версію.
 
 $NEWPAGE
 
@@ -2064,7 +2064,7 @@ $NEWPAGE
 
 --
 Змінити налаштування вашого списку спостереження можна на
-{{fullurl:{{ns:special}}:Watchlist/edit}}
+{{fullurl:{{#special:Watchlist}}/edit}}
 
 Зворотний зв\'язок та допомога:
 {{fullurl:{{ns:help}}:Зміст}}',

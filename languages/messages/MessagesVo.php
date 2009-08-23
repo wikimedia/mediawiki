@@ -1739,7 +1739,7 @@ If vilol poso moükön padi de galädalised olik, välolös lä on knopi: „neg
 'enotif_body'                  => 'O $WATCHINGUSERNAME löfik!
 
 
-Pad: $PAGETITLE in {{SITENAME}} $CHANGEDORCREATED tü $PAGEEDITDATE fa geban: $PAGEEDITOR; otuvol fomami anuik in $PAGETITLE_URL.
+Pad: $PAGETITLE in {{SITENAME}} $CHANGEDORCREATED tü $PAGEEDITDATEANDTIME fa geban: $PAGEEDITOR; otuvol fomami anuik in $PAGETITLE_URL.
 
 $NEWPAGE
 
@@ -1756,7 +1756,7 @@ Kanol i geükön nunamastänis padas valik galädaliseda olik.
 
 --
 Ad votükön parametami galädaliseda olik, loglös
-{{fullurl:{{ns:special}}:Watchlist/edit}}
+{{fullurl:{{#special:Watchlist}}/edit}}
 
 Küpets e yuf pluik:
 {{fullurl:{{MediaWiki:Helppage}}}}',

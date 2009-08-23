@@ -618,15 +618,15 @@ Az érvényes speciális lapok listáját a [[Special:SpecialPages|Speciális la
 # General errors
 'error'                => 'Hiba',
 'databaseerror'        => 'Adatbázishiba',
-'dberrortext'          => 'Szintaktikai hiba található az adatbázis-lekérdezésben. 
+'dberrortext'          => 'Szintaktikai hiba található az adatbázis-lekérdezésben.
 Ez szoftverhiba miatt történhetett.
 Az utolsó adatbázis-lekérdezés a(z) „<tt>$2</tt>” függvényből történt, és a következő volt:
 <blockquote><tt>$1</tt></blockquote>
-A(z) $5 ezzel a hibával tért vissza: „<tt>$3: $4</tt>”.',
+Az adatbázis ezzel a hibával tért vissza: „<tt>$3: $4</tt>”.',
 'dberrortextcl'        => 'Szintaktikai hiba található az adatbázis-lekérdezésben. 
-Az utolsó adatbázis-lekérdezés a(z) „<tt>$2</tt>” függvényből történt, és a következő volt:
-<blockquote><tt>$1</tt></blockquote>
-A(z) $5 ezzel a hibával tért vissza: „<tt>$3: $4</tt>”.',
+Az utolsó adatbázis-lekérdezés a(z) „$2” függvényből történt, és a következő volt:
+„$1”
+Az adatbázis ezzel a hibával tért vissza: „$3: $4”.',
 'laggedslavemode'      => 'Figyelem: Ez a lap nem feltétlenül tartalmazza a legfrissebb változtatásokat!',
 'readonly'             => 'Az adatbázis le van zárva',
 'enterlockreason'      => 'Add meg a lezárás okát, valamint egy becslést, hogy mikor kerül a lezárás feloldásra',
@@ -731,8 +731,7 @@ Ellenőrizd, hogy helyesen írtad-e be.',
 'nouserspecified'            => 'Meg kell adnod a felhasználói nevet.',
 'wrongpassword'              => 'A megadott jelszó érvénytelen. Próbáld meg újra.',
 'wrongpasswordempty'         => 'Nem adtál meg jelszót. Próbáld meg újra.',
-'passwordtooshort'           => 'Az általad megadott jelszó túl rövid.
-Legalább {{PLURAL:$1|egy|$1}} karakterből kell állnia.',
+'passwordtooshort'           => 'A jelszónak legalább {{PLURAL:$1|egy|$1}} karakterből kell állnia.',
 'password-name-match'        => 'A jelszavadnak különböznie kell a szerkesztőnevedtől.',
 'mailmypassword'             => 'Új jelszó küldése e-mailben',
 'passwordremindertitle'      => 'Ideiglenes jelszó a(z) {{SITENAME}} wikire',
@@ -882,7 +881,7 @@ Ha úgy látod, hogy az üzenetek, amiket ide kapsz, nem neked szólnak, [[Speci
 'noarticletext'                    => 'Ez a lap jelenleg nem tartalmaz szöveget.
 [[Special:Search/{{PAGENAME}}|Rákereshetsz erre a címszóra]],
 <span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} megtekintheted a kapcsolódó naplókat],
-vagy [{{fullurl:{{FULLPAGENAME}}|action=edit}} szerkesztheted a lapot].',
+vagy [{{fullurl:{{FULLPAGENAME}}|action=edit}} szerkesztheted a lapot].</span>',
 'userpage-userdoesnotexist'        => 'Nincs „$1” nevű regisztrált szerkesztőnk.
 Nézd meg, hogy valóban ezt a lapot szeretnéd létrehozni vagy szerkeszteni.',
 'clearyourcache'                   => "'''Megjegyzés: mentés után frissítened kell a böngésződ gyorsítótárát, hogy lásd a változásokat.''' '''Mozilla''' / '''Firefox''' / '''Safari:''' tartsd lenyomva a Shift gombot és kattints a ''Reload'' / ''Frissítés'' gombra az eszköztáron, vagy használd a ''Ctrl–F5'' billentyűkombinációt (Apple Mac-en ''Cmd–Shift–R''); '''Konqueror:''' egyszerűen csak kattints a ''Reload'' / ''Frissítés'' gombra vagy nyomj ''F5''-öt; '''Opera:''' ürítsd ki a gyorsítótárat az ''Eszközök→Személyes adatok törlése'' / ''Tools→Preferences'' menüben; '''Internet Explorer:''' tartsd nyomva a ''Ctrl''-t, és kattints a ''Reload / Frissítés'' gombra, vagy nyomj ''Ctrl–F5''-öt.",
@@ -2100,7 +2099,7 @@ Ezután minden, a lapon vagy annak vitalapján történő változást ott fogsz 
 'enotif_body'                  => 'Kedves $WATCHINGUSERNAME!
 
 
-$PAGEEDITOR $PAGEEDITDATE-kor $CHANGEDORCREATED a(z) $PAGETITLE című lapot a(z) {{SITENAME}} wikin; $REVINFO
+$PAGEEDITOR $PAGEEDITDATEANDTIME-kor $CHANGEDORCREATED a(z) $PAGETITLE című lapot a(z) {{SITENAME}} wikin; $REVINFO
 
 $NEWPAGE
 
@@ -2116,7 +2115,7 @@ Amíg nem keresed fel az oldalt, addig nem érkeznek újabb értesítések az ol
 
 --
 A figyelőlistád módosításához keresd fel a
-{{fullurl:{{ns:special}}:Watchlist/edit}} címet
+{{fullurl:{{#special:Watchlist}}/edit}} címet
 
 Visszajelzés és további segítség:
 {{fullurl:{{MediaWiki:Helppage}}}}',
@@ -2648,6 +2647,7 @@ Valamennyi transwiki importálási művelet az [[Special:Log/import|importálás
 'tooltip-ca-viewsource'           => 'Ez egy védett lap. Ide kattintva megnézheted a forrását.',
 'tooltip-ca-history'              => 'A lap korábbi változatai',
 'tooltip-ca-protect'              => 'A lap levédése',
+'tooltip-ca-unprotect'            => 'Lapvédelem feloldása',
 'tooltip-ca-delete'               => 'A lap törlése',
 'tooltip-ca-undelete'             => 'A törölt lapváltozatok visszaállítása',
 'tooltip-ca-move'                 => 'A lap áthelyezése',
@@ -2658,6 +2658,7 @@ Valamennyi transwiki importálási művelet az [[Special:Log/import|importálás
 'tooltip-search-fulltext'         => 'Oldalak keresése a megadott szöveg alapján',
 'tooltip-p-logo'                  => 'Kezdőlap',
 'tooltip-n-mainpage'              => 'A kezdőlap felkeresése',
+'tooltip-n-mainpage-description'  => 'A kezdőlap megtekintése',
 'tooltip-n-portal'                => 'A közösségről, miben segíthetsz, mit hol találsz meg',
 'tooltip-n-currentevents'         => 'Háttérinformáció az aktuális eseményekről',
 'tooltip-n-recentchanges'         => 'A wikiben történt legutóbbi változtatások listája',

@@ -1371,7 +1371,7 @@ Si daboi s'à gana d'eliminà la pàgina da la listha di l'abbaidaddi ippiziarii
 'enotif_body'                  => 'Gintiri $WATCHINGUSERNAME,
 
 
-La pàgina $PAGETITLE di {{SITENAME}} è isthadda $CHANGEDORCREATED in data $PAGEEDITDATE da $PAGEEDITOR; la versioni attuari s\'acciappa a l\'indirizzu $PAGETITLE_URL.
+La pàgina $PAGETITLE di {{SITENAME}} è isthadda $CHANGEDORCREATED in data $PAGEEDITDATEANDTIME da $PAGEEDITOR; la versioni attuari s\'acciappa a l\'indirizzu $PAGETITLE_URL.
 
 $NEWPAGE
 
@@ -1387,7 +1387,7 @@ Nò sarani inviaddi althri nutìfichi in casu d\'althri ciambamenti, arumancu ch
 
 --
 Pa mudìfiggà l\'impusthazioni di la listha di l\'abbaidaddi ippiziari, visita
-{{fullurl:{{ns:special}}:Watchlist/edit}}
+{{fullurl:{{#special:Watchlist}}/edit}}
 
 Pa dì cosa ni pensi e dumandà assisthènzia:
 {{fullurl:{{MediaWiki:Helppage}}}}',

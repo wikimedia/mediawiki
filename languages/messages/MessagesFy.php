@@ -1851,7 +1851,7 @@ At jo letter in side net mear folgje wolle, dan brûke jo op dy side de keppelin
 'created'                      => 'oanmakke',
 'enotif_body'                  => 'Bêste $WATCHINGUSERNAME,
 
-De {{SITENAME}}side \'$PAGETITLE\' is op $PAGEEDITDATE $CHANGEDORCREATED troch meidogger $PAGEEDITOR; 
+De {{SITENAME}}side \'$PAGETITLE\' is op $PAGEEDITDATEANDTIME $CHANGEDORCREATED troch meidogger $PAGEEDITOR; 
 sjoch $PAGETITLE_URL foar de aktuele ferzje.
 
 $NEWPAGE
@@ -1867,7 +1867,7 @@ Fierdere meldings wurde jo net tastjoerd, oant jo de side lêzen hawwe. Op jo fo
                  Jo freonlike {{SITENAME}}-meldingssysteem.
 
 -- 
-Gean nei {{fullurl:{{ns:special}}:Watchlist/edit}}
+Gean nei {{fullurl:{{#special:Watchlist}}/edit}}
 om jo folchlistynstellings te feroarjen.
 
 Reaksjes en fierdere help:

@@ -654,12 +654,12 @@ Příčinou může být chyba v programu.
 Poslední dotaz byl:
 <blockquote><tt>$1</tt></blockquote>
 z funkce „<tt>$2</tt>“.
-$5 vrátil chybu „<tt>$3: $4</tt>“.',
+Databáze vrátila chybu „<tt>$3: $4</tt>“.',
 'dberrortextcl'        => 'Při dotazu do databáze došlo k syntaktické chybě.
 Poslední dotaz byl:
 „$1“
 z funkce „$2“.
-$5 vrátil chybu „$3: $4“',
+Databáze vrátila chybu „$3: $4“',
 'laggedslavemode'      => 'Upozornění: Stránka nemusí být zcela aktuální.',
 'readonly'             => 'Databáze je uzamčena',
 'enterlockreason'      => 'Udejte důvod zamčení, včetně odhadu, za jak dlouho dojde k odemčení.',
@@ -754,8 +754,7 @@ Nezapomeňte si upravit [[Special:Preferences|nastavení {{grammar:2sg|{{SITENAM
 'nouserspecified'            => 'Musíte zadat uživatelské jméno.',
 'wrongpassword'              => 'Vámi uvedené heslo nesouhlasí. Zkuste to znovu.',
 'wrongpasswordempty'         => 'Bylo zadáno prázdné heslo. Zkuste to znovu.',
-'passwordtooshort'           => 'Vaše heslo je příliš krátké.
-Musí obsahovat nejméně $1 {{PLURAL:$1|znak|znaky|znaků}}.',
+'passwordtooshort'           => 'Heslo musí být dlouhé nejméně $1 {{PLURAL:$1|znak|znaky|znaků}}.',
 'password-name-match'        => 'Vaše heslo nesmí být stejné jako uživatelské jméno.',
 'mailmypassword'             => 'Poslat e-mailem nové heslo',
 'passwordremindertitle'      => 'Nové dočasné heslo na {{grammar:4sg|{{SITENAME}}}}',
@@ -2088,13 +2087,16 @@ E-mailová adresa, kterou máte uvedenu v [[Special:Preferences|nastavení]], se
 'enotif_impersonal_salutation' => 'Uživateli wiki {{SITENAME}}',
 'changed'                      => 'upravil',
 'created'                      => 'vytvořil',
+'deleted'                      => 'smazal',
+'enotif_deletedpagetext'       => 'Tato stránka už není k dispozici.',
 'enotif_subject'               => '$PAGEEDITOR upravil stránku $PAGETITLE na {{grammar:6sg|{{SITENAME}}}}.',
 'enotif_lastvisited'           => 'Vizte $1 pro seznam všech změn od minulé návštěvy.',
 'enotif_lastdiff'              => 'Tuto změnu vizte na $1 .',
 'enotif_anon_editor'           => 'anonymní uživatel $1',
+'enotif_rev_info'              => 'Na $1 můžete vidět aktuální verzi.',
 'enotif_body'                  => 'Vážený uživateli $WATCHINGUSERNAME,
 
-Ve $PAGEEDITDATE $CHANGEDORCREATED $PAGEEDITOR stránku $PAGETITLE, vizte aktuální verzi na $PAGETITLE_URL .
+Ve $PAGEEDITDATEANDTIME $CHANGEDORCREATED $PAGEEDITOR stránku $PAGETITLE. $REVINFO
 
 $NEWPAGE
 
@@ -2104,7 +2106,7 @@ Uživatele, který změnu provedl, můžete kontaktovat:
 e-mailem: $PAGEEDITOR_EMAIL
 na wiki: $PAGEEDITOR_WIKI
 
-Dokud stránku nenavštívíte, nebudou vám zasílána další oznámení o změnách této stránky, případně do doby, než vynulujete příznaky ve svém seznamu sledovaných stránek.
+Dokud stránku nenavštívíte, nebudou vám zasílána další oznámení o změnách této stránky, případně si můžete vynulovat příznaky ve svém seznamu sledovaných stránek.
 
 	S pozdravem váš zasílač hlášení {{grammar:2sg|{{SITENAME}}}}
 
@@ -2609,6 +2611,7 @@ Pokud si přejete přispívat k lokalizaci programu MediaWiki, navštivte [http:
 'tooltip-ca-viewsource'           => 'Tato stránka je zamčena. Můžete si prohlédnout její zdrojový kód.',
 'tooltip-ca-history'              => 'Starší verze této stránky.',
 'tooltip-ca-protect'              => 'Zamknout tuto stránku.',
+'tooltip-ca-unprotect'            => 'Odemknout tuto stránku.',
 'tooltip-ca-delete'               => 'Smazat tuto stránku.',
 'tooltip-ca-undelete'             => 'Obnovit editace této stránky provedené před jejím smazáním.',
 'tooltip-ca-move'                 => 'Přesunout tuto stránku',
@@ -2619,6 +2622,7 @@ Pokud si přejete přispívat k lokalizaci programu MediaWiki, navštivte [http:
 'tooltip-search-fulltext'         => 'Hledat stránky s tímto textem',
 'tooltip-p-logo'                  => 'Hlavní strana',
 'tooltip-n-mainpage'              => 'Navštívit Hlavní stranu',
+'tooltip-n-mainpage-description'  => 'Přejít na hlavní stranu',
 'tooltip-n-portal'                => 'O projektu, jak můžete pomoci, kde hledat',
 'tooltip-n-currentevents'         => 'Informace o aktuálních událostech',
 'tooltip-n-recentchanges'         => 'Seznam posledních změn na této wiki',
@@ -2665,6 +2669,7 @@ Pokud si přejete přispívat k lokalizaci programu MediaWiki, navštivte [http:
 'chick.css'       => '/* Zde uvedené CSS bude ovlivňovat pouze styl „Kuře“ */',
 'simple.css'      => '/* Zde uvedené CSS bude ovlivňovat pouze styl „Jednoduchý“ */',
 'modern.css'      => '/* Zde uvedené CSS bude ovlivňovat pouze styl „Moderní“ */',
+'vector.css'      => '/* Zde uvedené CSS bude ovlivňovat pouze styl „Vektor“ */',
 'print.css'       => '/* Zde uvedené CSS bude ovlivňovat tiskový výstup */',
 'handheld.css'    => '/* Zde uvedené CSS bude ovlivňovat přenosná zařízení vycházející ze stylu nastaveného v proměnné $wgHandheldStyle */',
 
@@ -2678,6 +2683,7 @@ Pokud si přejete přispívat k lokalizaci programu MediaWiki, navštivte [http:
 'chick.js'       => '/* JavaScript pro uživatele používající vzhled „Kuře“ */',
 'simple.js'      => '/* JavaScript pro uživatele používající vzhled „Jednoduchý“ */',
 'modern.js'      => '/* JavaScript pro uživatele používající vzhled „Moderní“ */',
+'vector.js'      => '/* JavaScript pro uživatele používající vzhled „Vektor“ */',
 
 # Metadata
 'nodublincore'      => 'Na tomto serveru je vypnuto generování metadat Dublin Core RDF.',
@@ -2718,6 +2724,7 @@ Pokud si přejete přispívat k lokalizaci programu MediaWiki, navštivte [http:
 'skinname-chick'       => 'Kuře',
 'skinname-simple'      => 'Jednoduchý',
 'skinname-modern'      => 'Moderní',
+'skinname-vector'      => 'Vektor',
 
 # Math options
 'mw_math_png'    => 'Vždy jako PNG',

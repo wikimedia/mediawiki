@@ -1691,7 +1691,7 @@ $1",
 'enotif_rev_info'              => '閱審之見$1。',
 'enotif_body'                  => '$WATCHINGUSERNAME鈞鑑
 
-$PAGEEDITDATE{{SITENAME}}簿$PAGEEDITOR$CHANGEDORCREATED$PAGETITLE。$REVINFO
+$PAGEEDITDATEANDTIME{{SITENAME}}簿$PAGEEDITOR$CHANGEDORCREATED$PAGETITLE。$REVINFO
 
 $NEWPAGE
 
@@ -1703,7 +1703,7 @@ $NEWPAGE
 {{SITENAME}}敬上
 
 --
-欲更哨令，惠訪{{fullurl:{{ns:special}}:Watchlist/edit}}
+欲更哨令，惠訪{{fullurl:{{#special:Watchlist}}/edit}}
 饋助之，惠訪{{fullurl:{{ns:help}}:Contents}}',
 
 # Delete
