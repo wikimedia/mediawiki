@@ -425,7 +425,8 @@ this. Was used when mwEmbed was going to be an extension.
   enabled
 * (bug 19857) maintenance/deleteRevision.php on last revision no longer breaks
   target page
-
+* (bug 20365) Page name with with c/g/h/j/s/u + x are now correctly handled in
+  Special:MovePage with Esperanto as content language
 
 == API changes in 1.16 ==
 

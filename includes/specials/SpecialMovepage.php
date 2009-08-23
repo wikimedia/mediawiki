@@ -17,8 +17,8 @@ function wfSpecialMovepage( $par = null ) {
 	}
 
 	$target = isset( $par ) ? $par : $wgRequest->getVal( 'target' );
-	$oldTitleText = $wgRequest->getText( 'wpOldTitle', $target );
-	$newTitleText = $wgRequest->getText( 'wpNewTitle' );
+	$oldTitleText = $wgRequest->getVal( 'wpOldTitle', $target );
+	$newTitleText = $wgRequest->getVal( 'wpNewTitle' );
 
 	$oldTitle = Title::newFromText( $oldTitleText );
 	$newTitle = Title::newFromText( $newTitleText );
