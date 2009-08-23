@@ -101,7 +101,7 @@ class GIFMetadataExtractor {
 					// NETSCAPE2.0 (application name)
 					if ($blockLength != 11 || $data != 'NETSCAPE2.0') {
 						fseek( $fh, -($blockLength + 1), SEEK_CUR );
-						self::skipBlock();
+						self::skipBlock( $fh );
 						continue;
 					}
 					
