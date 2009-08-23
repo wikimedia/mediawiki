@@ -2186,6 +2186,7 @@ $wgMessageStructure = array(
 		'accesskey-search-fulltext',
 		'accesskey-p-logo',
 		'accesskey-n-mainpage',
+		'accesskey-n-mainpage-description',
 		'accesskey-n-portal',
 		'accesskey-n-currentevents',
 		'accesskey-n-recentchanges',
