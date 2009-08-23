@@ -3586,4 +3586,49 @@ class User {
 		$dbw->commit();
 	}
 
+	/**
+	 * Provide an array of HTML 5 attributes to put on an input element
+	 * intended for the user to enter a new password.  This may include
+	 * required, title, and/or pattern, depending on $wgMinimalPasswordLength.
+	 *
+	 * Do *not* use this when asking the user to enter his current password!
+	 * Regardless of configuration, users may have invalid passwords for whatever
+	 * reason (e.g., they were set before requirements were tightened up).
+	 * Only use it when asking for a new password, like on account creation or
+	 * ResetPass.
+	 *
+	 * Obviously, you still need to do server-side checking.
+	 *
+	 * @return array Array of HTML attributes suitable for feeding to
+	 *   Html::element(), directly or indirectly.  (Don't feed to Xml::*()!
+	 *   That will potentially output invalid XHTML 1.0 Transitional, and will
+	 *   get confused by the boolean attribute syntax used.)
+	 */
+	public static function passwordChangeInputAttribs() {
+		global $wgMinimalPasswordLength;
+
+		if ( $wgMinimalPasswordLength == 0 ) {
+			return array();
+		}
+
+		# Note that the pattern requirement will always be satisfied if the
+		# input is empty, so we need required in all cases.
+		$ret = array( 'required' );
+
+		# We can't actually do this right now, because Opera 9.6 will print out
+		# the entered password visibly in its error message!  When other
+		# browsers add support for this attribute, or Opera fixes its support,
+		# we can add support with a version check to avoid doing this on Opera
+		# versions where it will be a problem.  Reported to Opera as
+		# DSK-262266, but they don't have a public bug tracker for us to follow.
+		/*
+		if ( $wgMinimalPasswordLength > 1 ) {
+			$ret['pattern'] = '.{' . intval( $wgMinimalPasswordLength ) . ',}';
+			$ret['title'] = wfMsgExt( 'passwordtooshort', 'parsemag',
+				$wgMinimalPasswordLength );
+		}
+		*/
+
+		return $ret;
+	}
 }

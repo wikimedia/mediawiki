@@ -128,8 +128,6 @@ class SpecialResetpass extends SpecialPage {
 	}
 
 	function pretty( $fields ) {
-		global $wgMinimalPasswordLength;
-
 		$out = '';
 		foreach ( $fields as $list ) {
 			list( $name, $label, $type, $value ) = $list;
@@ -137,14 +135,9 @@ class SpecialResetpass extends SpecialPage {
 				$field = htmlspecialchars( $value );
 			} else {
 				$attribs = array( 'id' => $name );
-				# The current password field is never required; it's possible
-				# that existing users might have empty passwords on any wiki.
-				# The two other password fields are required if
-				# $wgMinimalPasswordLength > 0 (not allowed to set an empty
-				# password).
-				if ( ( $name == 'wpNewPassword' || $name == 'wpRetype' )
-				&& $wgMinimalPasswordLength > 0 ) {
-					$attribs[] = 'required';
+				if ( $name == 'wpNewPassword' || $name == 'wpRetype' ) {
+					$attribs = array_merge( $attribs,
+						User::passwordChangeInputAttribs() );
 				}
 				if ( $name == 'wpPassword' ) {
 					$attribs[] = 'autofocus';
