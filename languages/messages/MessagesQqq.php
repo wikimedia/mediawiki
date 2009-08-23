@@ -1976,7 +1976,12 @@ Special:EmailUser appears when you click on the link "E-mail this user" in the s
 'deleted'         => '{{Identical|Deleted}}',
 'enotif_subject'  => '$CHANGEDORCREATED can be one of {{msg|changed}} and {{msg|created}}.',
 'enotif_rev_info' => 'Substituted as $REVINFO in {{msg-mw|enotif body|notext=1}}',
-'enotif_body'     => '$CHANGEDORCREATED can be one of {{msg-mw|changed}} and {{msg-mw|created}}.',
+'enotif_body'     => '$CHANGEDORCREATED can be one of {{msg-mw|changed}} and {{msg-mw|created}}.
+
+$PAGEEDITDATEANDTIME is the date and time of the edit, alternatively
+$PAGEEDITDATE is the date of the edit, and
+$PAGEEDITTIME is the time of the edit.
+',
 
 # Delete
 'confirm'                => 'Submit button text for protection confirmation

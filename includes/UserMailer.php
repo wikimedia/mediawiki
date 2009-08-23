@@ -582,8 +582,13 @@ class EmailNotification {
 		# $PAGEEDITDATE is the time and date of the page change
 		# expressed in terms of individual local time of the notification
 		# recipient, i.e. watching user
-		$body = str_replace('$PAGEEDITDATE',
-			$wgContLang->timeanddate( $this->timestamp, true, false, $timecorrection ),
+		$body = str_replace(
+			array(	'$PAGEEDITDATEANDTIME',
+				'$PAGEEDITDATE',
+				'$PAGEEDITTIME' ),
+			array(	$wgContLang->timeanddate( $this->timestamp, true, false, $timecorrection ),
+				$wgContLang->date( $this->timestamp, true, false, $timecorrection ),
+				$wgContLang->time( $this->timestamp, true, false, $timecorrection ) ),
 			$body);
 
 		return UserMailer::send($to, $this->from, $this->subject, $body, $this->replyto);
