@@ -258,19 +258,23 @@ class MovePageForm {
 				<tr>
 					<td></td>
 					<td class=\"mw-input\">" .
-				Xml::checkLabel( wfMsgExt(
+				Xml::check(
+					'wpMovesubpages',
+					# Don't check the box if we only have talk subpages to
+					# move and we aren't moving the talk page.
+					$this->moveSubpages && ($this->oldTitle->hasSubpages() || $this->moveTalk),
+					array( 'id' => 'wpMovesubpages' )
+				) . '&nbsp;' .
+				Xml::tags( 'label', array( 'for' => 'wpMovesubpages' ),
+					wfMsgExt(
 						( $this->oldTitle->hasSubpages()
 							? 'move-subpages'
 							: 'move-talk-subpages' ),
-						array( 'parsemag' ),
+						array( 'parseinline' ),
 						$wgLang->formatNum( $wgMaximumMovedPages ),
 						# $2 to allow use of PLURAL in message.
 						$wgMaximumMovedPages
-					),
-					'wpMovesubpages', 'wpMovesubpages',
-					# Don't check the box if we only have talk subpages to
-					# move and we aren't moving the talk page.
-					$this->moveSubpages && ($this->oldTitle->hasSubpages() || $this->moveTalk)
+					)
 				) .
 					"</td>
 				</tr>"
