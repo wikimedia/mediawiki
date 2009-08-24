@@ -234,14 +234,37 @@ abstract class DatabaseBase {
 	 */
 	function isOpen() { return $this->mOpened; }
 
+	/**
+	 * Set a flag for this connection
+	 *
+	 * @param $flag Integer: DBO_* constants from Defines.php:
+	 *   - DBO_DEBUG: output some debug info (same as debug())
+	 *   - DBO_NOBUFFER: don't buffer results (inverse of bufferResults())
+	 *   - DBO_IGNORE: ignore errors (same as ignoreErrors())
+	 *   - DBO_TRX: automatically start transactions
+	 *   - DBO_DEFAULT: automatically sets DBO_TRX if not in command line mode
+	 *       and removes it in command line mode
+	 *   - DBO_PERSISTENT: use persistant database connection 
+	 */
 	function setFlag( $flag ) {
 		$this->mFlags |= $flag;
 	}
 
+	/**
+	 * Clear a flag for this connection
+	 *
+	 * @param $flag: same as setFlag()'s $flag param
+	 */
 	function clearFlag( $flag ) {
 		$this->mFlags &= ~$flag;
 	}
 
+	/**
+	 * Returns a boolean whether the flag $flag is set for this connection
+	 *
+	 * @param $flag: same as setFlag()'s $flag param
+	 * @return Boolean
+	 */
 	function getFlag( $flag ) {
 		return !!($this->mFlags & $flag);
 	}

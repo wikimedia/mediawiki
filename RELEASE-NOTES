@@ -430,6 +430,8 @@ this. Was used when mwEmbed was going to be an extension.
 * (bug 20364) Fixed regression in GIF metadata loading
 * (bug 20299) MediaWiki:Move-subpages and MediaWiki:Move-talk-subpages can now
   use wikitext
+* (bug 15475) DatabaseBase::setFlag(), DatabaseBase::clearFlag() and
+  DatabaseBase::getFlag() now have documentation
 
 == API changes in 1.16 ==
 
