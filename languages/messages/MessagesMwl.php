@@ -709,8 +709,9 @@ Páiginas que steian ne ls [[Special:Watchlist|tous begiados]] son amostradas an
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error28' => 'Ultrapassado l tiempo lhemite pa l ambio de l fexeiro',
 
-'license'   => 'Lhicença:',
-'nolicense' => 'Nanhua scolhida',
+'license'        => 'Lhicença:',
+'license-header' => 'Lhicença:',
+'nolicense'      => 'Nanhua scolhida',
 
 # Special:ListFiles
 'imgfile'               => 'fexeiro',

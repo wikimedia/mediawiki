@@ -1313,6 +1313,7 @@ Gjörðu svo vel og endurnefndu skrána og hladdu henni inn aftur.',
 'upload-curl-error28' => 'Innhleðslutími útrunninn',
 
 'license'            => 'Leyfisupplýsingar:',
+'license-header'     => 'Leyfisupplýsingar:',
 'nolicense'          => 'Ekkert valið',
 'license-nopreview'  => '(Forskoðun ekki fáanleg)',
 'upload_source_file' => '(skrá á tölvunni þinni)',

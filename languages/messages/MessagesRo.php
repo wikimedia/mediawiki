@@ -1677,6 +1677,7 @@ Te rog verifică dacă situl este activ, aşteaptă puţin şi încearcă apoi.
 Poate doreşti să încerci la o oră mai puţin ocupată.',
 
 'license'            => 'Licenţiere:',
+'license-header'     => 'Licenţiere:',
 'nolicense'          => 'Nici una selectată',
 'license-nopreview'  => '(Previzualizare indisponibilă)',
 'upload_source_url'  => ' (un URL valid, accesibil public)',

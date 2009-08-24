@@ -1738,6 +1738,7 @@ Si le problème persiste, contactez un [[Special:ListUsers/sysop|administrateur]
 'upload-curl-error28-text' => 'Le site a mis trop longtemps à répondre. Vérifiez que le site est en ligne, attendez un peu et réessayez. Vous pouvez aussi réessayer à une heure de moindre affluence.',
 
 'license'            => 'Publié sous licence(s)',
+'license-header'     => 'Publié sous licence(s)',
 'nolicense'          => 'Aucune licence sélectionnée',
 'license-nopreview'  => '(Prévisualisation non disponible)',
 'upload_source_url'  => ' (une URL valide et accessible publiquement)',

@@ -1512,6 +1512,7 @@ Razlog brisanja ovog fajla ranije je:",
 'upload-curl-error28-text' => 'Sajtu je trebalo previše vremena da odgovori. Proverite da li sajt radi, ili sačekajte malo i pokušajte ponovo.',
 
 'license'            => 'Licenca:',
+'license-header'     => 'Licenca:',
 'nolicense'          => 'Nema',
 'license-nopreview'  => '(prikaz nije dostupan)',
 'upload_source_url'  => ' (validan, javno dostupan URL)',

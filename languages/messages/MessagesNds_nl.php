@@ -1671,6 +1671,7 @@ Bedenk eers of 't inderdaod de bedoeling is dat dit bestaand toe-evoeg wonnen.
 'upload-curl-error28-text' => "'t Duren te lange veurdat de webstee reageren. Kiek effen nao of de webstee bereikbaor is, wach effen en prebeer 't daornao weer. Prebeer 't aanders as 't wat rustiger is.",
 
 'license'            => 'Licentie',
+'license-header'     => 'Licentie',
 'nolicense'          => 'Gien licentie ekeuzen',
 'license-nopreview'  => '(Naokieken is neet meugelijk)',
 'upload_source_url'  => ' (een geldig, pebliek toegankelijk webadres)',

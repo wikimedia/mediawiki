@@ -1691,6 +1691,7 @@ Se lo problèma persistís, contactatz un [[Special:ListUsers/sysop|administrato
 'upload-curl-error28-text' => "Lo site a pres tròp de temps per respondre. Verificatz que lo site es en linha, esperatz un pauc e ensajatz tornarmai. Tanben podètz ensajar a una ora d'afluéncia mendra.",
 
 'license'            => 'Licéncia&nbsp;:',
+'license-header'     => 'Licéncia&nbsp;:',
 'nolicense'          => 'Cap de licéncia seleccionada',
 'license-nopreview'  => '(Previsualizacion impossibla)',
 'upload_source_url'  => ' (una URL valida e accessibla publicament)',

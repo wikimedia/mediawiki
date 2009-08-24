@@ -1617,6 +1617,7 @@ Palun kontrolli kas võrgukoht on ikka üleval, oota natuke ja proovi uuesti.
 Samuti võid proovida siis, kui võrgukoht on vähem hõivatud.',
 
 'license'            => 'Litsents:',
+'license-header'     => 'Litsents:',
 'nolicense'          => 'pole valitud',
 'license-nopreview'  => '(Eelvaade ei ole saadaval)',
 'upload_source_url'  => '(avalikult ligipääsetav URL)',

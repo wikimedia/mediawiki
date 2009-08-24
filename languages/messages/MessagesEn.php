@@ -2150,6 +2150,7 @@ Please check the site is up, wait a short while and try again.
 You may want to try at a less busy time.',
 
 'license'            => 'Licensing:',
+'license-header'     => 'Licensing',
 'nolicense'          => 'None selected',
 'licenses'           => '-', # do not translate or duplicate this message to other languages
 'license-nopreview'  => '(Preview not available)',

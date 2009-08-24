@@ -674,6 +674,7 @@ Ta duillagyn er [[Special:Watchlist|dty rolley arrey]] ayns '''clou trome'''.",
 'upload-file-error' => 'Marranys ynveanagh',
 
 'license'            => 'Kieddagh:',
+'license-header'     => 'Kieddagh:',
 'license-nopreview'  => '(Cha nel roie-haishbynys ry-gheddyn)',
 'upload_source_file' => ' (coadan er dty cho-earrooder)',
 

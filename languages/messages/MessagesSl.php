@@ -1497,6 +1497,7 @@ Prosimo obrnite se na [[Special:ListUsers/sysop|administrator]]ja.',
 'upload-curl-error28' => 'Časovna prekinitev nalaganja',
 
 'license'            => 'Dovoljenje:',
+'license-header'     => 'Dovoljenje:',
 'nolicense'          => 'Nobeno (opomba: datoteka bo morda izbrisana)',
 'license-nopreview'  => '(Predogled ni na voljo)',
 'upload_source_url'  => ' (veljaven, javnosti dostopen URL)',

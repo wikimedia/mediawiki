@@ -651,8 +651,9 @@ fyri at leggja fílur upp.',
 
 'upload-file-error' => 'Innvortis brek',
 
-'license'   => 'Loyvi:',
-'nolicense' => 'Onki valt',
+'license'        => 'Loyvi:',
+'license-header' => 'Loyvi:',
+'nolicense'      => 'Onki valt',
 
 # Special:ListFiles
 'listfiles'      => 'Myndalisti',

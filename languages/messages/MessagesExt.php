@@ -1007,6 +1007,7 @@ Velaquí el antigu rustrihu d´esborrau pa esti archivu:",
 'upload-curl-error28-text' => "La páhina está tardandu abondu en contestal. Pol favol, compreba qu'el sirviol hunciona, aspera un pocu i güervi a ententalu. Quiciás prefieras ententalu n'otru momentu con menus carga.",
 
 'license'            => 'Licéncia:',
+'license-header'     => 'Licéncia:',
 'nolicense'          => 'Dengunu selecionau',
 'license-nopreview'  => '(Nu se puei previsoreal)',
 'upload_source_url'  => ' (una URL vália i acesibri)',

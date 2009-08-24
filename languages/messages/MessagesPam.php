@@ -1099,6 +1099,7 @@ Pakilawe mu nung makasalangi ya iti, manaya ka saguli, at subukan mung pasibayu.
 Mapaliaring mas masanting yang subukan nung mas ditak la reng gagamit.',
 
 'license'            => 'Pamamie lisensia:',
+'license-header'     => 'Pamamie lisensia:',
 'nolicense'          => 'Alang mepili',
 'license-nopreview'  => '(Alang preview maliaring lon)',
 'upload_source_url'  => ' (metung a URL a matatanggap at aluban ding malda)',

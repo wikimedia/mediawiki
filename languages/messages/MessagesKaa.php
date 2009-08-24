@@ -1214,6 +1214,7 @@ Siz ja'ne de basqa paydalanıwshılarg'a siz benen (adresin'izdi bilmegen halda)
 'upload-curl-error28' => 'Aploudqa berilgen waqıt pitti',
 
 'license'            => 'Litsenziyalandırıwı:',
+'license-header'     => 'Litsenziyalandırıwı:',
 'nolicense'          => "Hesh na'rse saylanbag'an",
 'license-nopreview'  => "(Aldınnan ko'riw imkaniyatı joq)",
 'upload_source_url'  => " (jaramlı, ha'mmege ashıq URL)",

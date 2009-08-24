@@ -1487,6 +1487,7 @@ Pe piacere condrolle ca 'u site funzione, aspitte 'nu picche e pruève 'n'otra v
 Sinde a me, vue ccu pruève quanne ste mene casine?",
 
 'license'            => 'Licenziete da:',
+'license-header'     => 'Licenziete da:',
 'nolicense'          => 'Ninde selezionete',
 'license-nopreview'  => "(L'andeprime non g'è disponibbile)",
 'upload_source_url'  => " ('na URL, valide e accessibbile pubblicamende)",

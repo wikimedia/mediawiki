@@ -625,8 +625,9 @@ E paggine in osservassion son dipinte in '''grascietto'''.",
 
 'upload-file-error' => 'Errô interno',
 
-'license'   => 'Permisso:',
-'nolicense' => 'Nisciûnn-a liçensa indicâa',
+'license'        => 'Permisso:',
+'license-header' => 'Permisso:',
+'nolicense'      => 'Nisciûnn-a liçensa indicâa',
 
 # Special:ListFiles
 'listfiles_search_for' => "Çerca pe nomme de l'imàgine:",

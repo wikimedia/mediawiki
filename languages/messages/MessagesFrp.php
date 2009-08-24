@@ -1771,6 +1771,7 @@ Volyéd controlar que lo seto est en legne, atendre un pou et pués tornar èpro
 Vos pouede asse-ben tornar èprovar a una hora de muendra afluence.',
 
 'license'            => 'Licence :',
+'license-header'     => 'Licence :',
 'nolicense'          => 'Gins de licence chouèsia',
 'license-nopreview'  => '(Prèvisualisacion pas disponibla)',
 'upload_source_url'  => '  (una URL valida et accèssibla publicament)',

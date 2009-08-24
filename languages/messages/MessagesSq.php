@@ -1340,6 +1340,7 @@ Ju lutem kontrolloni nëse faqja është në rrjet, prisni pak dhe provojeni pë
 Këshillohet që ta provoni kur të jetë më pak e zënë.',
 
 'license'            => 'Licencimi:',
+'license-header'     => 'Licencimi:',
 'nolicense'          => 'Asnjë nuk është zgjedhur',
 'license-nopreview'  => '(Nuk ka parapamje)',
 'upload_source_url'  => ' (URL e vlefshme, publikisht e përdorshme)',

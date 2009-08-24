@@ -420,7 +420,8 @@ Dov dorje värrhtoedimmie gååvnese bielieh, jallh [[Special:UserLogin|logge s�
 
 'upload-file-error' => 'Sjisjnjie båajhtode',
 
-'license' => 'Liseense',
+'license'        => 'Liseense',
+'license-header' => 'Liseense',
 
 # Special:ListFiles
 'listfiles_search_for' => 'Ohtsedh ihke guvvie nomme:',

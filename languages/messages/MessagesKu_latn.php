@@ -887,7 +887,8 @@ Zanibe, ku ev barkirina kê were qebûlkirin ya na.
 Înformasyonan li ser jêbirinê kevin ra:",
 'filename-bad-prefix'    => "Nava wê data'yê, yê tu niha bardikê, bi '''\"\$1\"''' destpêdike. Kamêrayên dîjîtal wan navan didin wêneyên xwe. Ji kerema xwe navekî baştir binivisîne ji bo mirov zûtir zanibin ku şayeşê vê wêneyê çî ye.",
 
-'license' => 'Lîsens:',
+'license'        => 'Lîsens:',
+'license-header' => 'Lîsens:',
 
 # Special:ListFiles
 'listfiles_search_for'  => 'Li navî wêneyê bigere:',

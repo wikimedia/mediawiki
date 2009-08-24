@@ -339,7 +339,8 @@ $messages = array(
 'fileuploadsummary' => 'Учр-утх:',
 'savefile'          => 'Хадһлх',
 
-'license' => 'Закан:',
+'license'        => 'Закан:',
+'license-header' => 'Закан:',
 
 # File description page
 'filehist-current' => 'ода цагин',

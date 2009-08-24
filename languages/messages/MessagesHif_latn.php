@@ -1440,6 +1440,7 @@ Meharbani kar ke dekho ki ii site chale hai, thora deri tak wait kar ke fir se k
 Saait aap ke kamti busy time kosis kare ke chaahi.',
 
 'license'            => 'Licensing:',
+'license-header'     => 'Licensing:',
 'nolicense'          => 'Koi bhi selct nai karaa gais hai',
 'license-nopreview'  => '(Preview abhi taiyaar nai hai)',
 'upload_source_url'  => ' (ek valid, publicly accessible URL)',

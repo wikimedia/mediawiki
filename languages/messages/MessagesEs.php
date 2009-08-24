@@ -1620,6 +1620,7 @@ Por favor, elige un nombre más descriptivo.",
 'upload-curl-error28-text' => 'La página tardó demasiado en responder. Por favor, compruebe que el servidor está funcionando, espere un poco y vuelva a intentarlo. Quizás desee intentarlo en otro momento de menos carga.',
 
 'license'            => 'Licencia:',
+'license-header'     => 'Licencia:',
 'nolicense'          => 'Ninguna seleccionada',
 'license-nopreview'  => '(Previsualización no disponible)',
 'upload_source_url'  => ' (una URL válida y accesible públicamente)',

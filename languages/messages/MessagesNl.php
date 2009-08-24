@@ -1791,6 +1791,7 @@ Controleer of de website beschikbaar is, wacht even en probeer het dan opnieuw.
 U kunt het misschien proberen als het minder druk is.',
 
 'license'            => 'Licentie:',
+'license-header'     => 'Licentie:',
 'nolicense'          => 'Maak een keuze',
 'license-nopreview'  => '(Voorvertoning niet beschikbaar)',
 'upload_source_url'  => ' (een geldige, publiek toegankelijke URL)',

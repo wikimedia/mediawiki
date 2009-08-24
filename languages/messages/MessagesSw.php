@@ -762,7 +762,8 @@ Kwa kutumia faili katika makala, tumia moja kati ya viungo vifuatavyo:
 'ignorewarning'     => 'Hifadhi bila kujali maonyo yoyote.',
 'uploadedimage'     => ' "[[$1]]" imepakiwa',
 
-'license' => 'Hatimiliki:',
+'license'        => 'Hatimiliki:',
+'license-header' => 'Hatimiliki:',
 
 # Special:ListFiles
 'imgfile'               => 'faili',

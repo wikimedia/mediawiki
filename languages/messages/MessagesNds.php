@@ -1524,6 +1524,7 @@ Kiek na, wat de Siet ok online is, tööv en Stoot un versöök dat denn noch we
 Kann angahn, dat dat beter geiht, wenn du dat to en Tiet versöchst, to de op de Siet nich ganz so veel los is.',
 
 'license'            => 'Lizenz:',
+'license-header'     => 'Lizenz:',
 'nolicense'          => 'nix utwählt',
 'license-nopreview'  => '(Vörschau nich mööglich)',
 'upload_source_url'  => ' (gellen, apen togängliche URL)',

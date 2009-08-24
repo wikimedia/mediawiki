@@ -1237,6 +1237,7 @@ Commodule notatio fasciculorum deletorum hic datur:",
 'upload-unknown-size' => 'Magnitudo ignota',
 
 'license'           => 'Typus permissionis:',
+'license-header'    => 'Typus permissionis:',
 'nolicense'         => 'Nulla selecta',
 'license-nopreview' => '(Praevisum monstrari non potest)',
 

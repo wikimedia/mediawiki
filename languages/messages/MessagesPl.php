@@ -1671,6 +1671,7 @@ Sprawdź, czy strona działa, odczekaj kilka minut i spróbuj ponownie.
 Możesz także spróbować w czasie mniejszego obciążenia serwera.',
 
 'license'            => 'Licencja',
+'license-header'     => 'Licencja',
 'nolicense'          => 'Nie wybrano',
 'license-nopreview'  => '(Podgląd niedostępny)',
 'upload_source_url'  => ' (poprawny, publicznie dostępny adres URL)',

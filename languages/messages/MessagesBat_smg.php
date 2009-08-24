@@ -965,6 +965,7 @@ Tuo faila pašalinėma istuorėjė īr pateikta dielē patuogoma:",
 'upload-curl-error28-text' => 'Atsakontė svetainė ožtronk par ėlgā. Patėkrėnkėt, a svetainė veik, palaukėt tropoti ė vielē pamiegīkit. Mažo Tamstā rēktu pamiegītė ne tuokio apkrauto čieso.',
 
 'license'            => 'Licensėjė',
+'license-header'     => 'Licensėjė',
 'nolicense'          => 'Nepasėrėnkt',
 'license-nopreview'  => '(Parveiza negalėma)',
 'upload_source_url'  => ' (tėkrs, vėišā priėinams URL)',

@@ -1773,6 +1773,7 @@ Waat ene Moment un versök et nor_ens.
 Velleich probees De et och zo en Zick, wo winnijer loss es.',
 
 'license'            => 'Lizenz:',
+'license-header'     => 'Lizenz:',
 'nolicense'          => 'Nix usjesök',
 'license-nopreview'  => '(Kein Vör-Aansich ze hann)',
 'upload_source_url'  => ' (richtije öffentlije URL)',

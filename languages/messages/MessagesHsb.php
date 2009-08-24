@@ -1514,6 +1514,7 @@ PICT # misc.
 'upload-curl-error28-text' => 'Sydło za wotmołwu předołho trjebaše. Prošu pruwuj, hač sydło je docpějomne, čakaj wokomik a spytaj hišće raz. Spytaj hewak w druhim času hišće raz.',
 
 'license'            => 'Licenca:',
+'license-header'     => 'Licenca:',
 'nolicense'          => 'žadyn wuběr',
 'license-nopreview'  => '(žadyn přehlad k dispoziciji)',
 'upload_source_url'  => ' (płaćiwy, zjawnje docpějomny URL)',

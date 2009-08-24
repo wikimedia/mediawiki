@@ -213,7 +213,8 @@ $messages = array(
 # Upload
 'fileuploadsummary' => 'Uñt’ayawi:',
 
-'license' => 'Iyawsawi:',
+'license'        => 'Iyawsawi:',
+'license-header' => 'Iyawsawi:',
 
 # Special:ListFiles
 'listfiles_date'        => 'Uru jakhu',

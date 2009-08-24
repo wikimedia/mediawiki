@@ -432,6 +432,8 @@ this. Was used when mwEmbed was going to be an extension.
   use wikitext
 * (bug 15475) DatabaseBase::setFlag(), DatabaseBase::clearFlag() and
   DatabaseBase::getFlag() now have documentation
+* (bug 19966) MediaWiki:License-header is now used for the licensing header in
+  the file description page instead of MediaWiki:License
 
 == API changes in 1.16 ==
 

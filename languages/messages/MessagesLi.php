@@ -1418,6 +1418,7 @@ Lèver zeker te zeen detse gesjik bös om door te gaon met 't uploade van dit be
 'upload-curl-error28-text' => "'t Doorde te lang veurdet de website antwaord goof. Controleer a.u.b. of de website besjikbaar is, wach effe en probeer 't dan opnuuj. De kèns 't mesjiens probere es 't minder drök is.",
 
 'license'            => 'Lisènsie:',
+'license-header'     => 'Lisènsie:',
 'nolicense'          => "Maak 'ne keuze",
 'license-nopreview'  => '(Veurvertuun neet besjikbaar)',
 'upload_source_url'  => " ('ne geldige, publiek toegankelike URL)",

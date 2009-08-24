@@ -748,6 +748,7 @@ Informacion: (curt) = quiíxde vercion currentua,
 'upload-curl-error28' => 'Time-outde uploadan',
 
 'license'           => 'Licenciónom:',
+'license-header'    => 'Licenciónom:',
 'nolicense'         => 'Seleccion coccebj hun',
 'license-nopreview' => '(Necuáxiit)',
 

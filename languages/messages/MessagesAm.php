@@ -1070,6 +1070,7 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 ምናልባትም በሌላ ጊዜ ትራፊኩ ይቀነሳል።',
 
 'license'            => 'የፈቃድ አይነት፦',
+'license-header'     => 'የፈቃድ አይነት፦',
 'nolicense'          => 'ምንም አልተመረጠም',
 'license-nopreview'  => '(ቅድመ-ዕይታ አይገኝም)',
 'upload_source_url'  => ' (ትክክለኛ፣ በግልጽ የሚገኝ URL)',

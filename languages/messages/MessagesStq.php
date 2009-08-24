@@ -1311,6 +1311,7 @@ Wan dät Problem fääre bestoant, informier n [[Special:ListUsers/sysop|System-
 'upload-curl-error28-text' => 'Ju Siede bruukt tou loange foar ne Oantwoud. Pröif, of ju Siede online is, täif n kuuten Moment un fersäik et dan fonnäien. Dät kon sinful weese, n näien Fersäik tou ne uur Tied tou probierjen..',
 
 'license'            => 'Lizenz:',
+'license-header'     => 'Lizenz:',
 'nolicense'          => 'naan Foaruutwoal',
 'license-nopreview'  => '(der is neen Foarschau ferföigboar)',
 'upload_source_url'  => ' (gultige, eepentelk tougongelke URL)',

@@ -1492,6 +1492,7 @@ Kontrolearje oft it webstee beskikber is, wachtsje efkes en besykje it dan wer.
 Jo kinne it faaks besykje as it wat minder drok is.",
 
 'license'            => 'Lisinsje:',
+'license-header'     => 'Lisinsje:',
 'nolicense'          => 'Neat keazen',
 'license-nopreview'  => '(Foarfertoaning net beskikber)',
 'upload_source_url'  => ' (in jildige, publyk tagonklike URL)',

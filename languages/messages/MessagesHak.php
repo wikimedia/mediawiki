@@ -820,6 +820,7 @@ Kó-yèn ngì yû liá-ke thù-hìn ke vàn-cháng thai-séu.",
 'upload-curl-error28-text' => 'Mióng-chham fì-yin sṳ̀-kiên ko-chhòng. Chhiáng kiám-chhà chhṳ́ mióng-chham ke fóng-mun he-feu chṳn-sòng, chai chin-hàng sòng-chhṳ. Ngì khó-nèn sî-yeu chhai mióng-lu fóng-mun khûng-hàn sṳ̀-kiên chai-lòi chin-hàng sòng-chhṳ.',
 
 'license'            => 'Su-khièn',
+'license-header'     => 'Su-khièn',
 'nolicense'          => 'Mò-yû sién-thin',
 'upload_source_url'  => '（Yit-ke yû-háu ke, hí-khó kûng-khôi fóng-mun ke URL）',
 'upload_source_file' => '（ngì thien-nó chûng ke tóng-on）',

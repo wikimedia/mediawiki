@@ -1664,6 +1664,7 @@ Log penghapusan berkas adalah sebagai berikut:",
 'upload-curl-error28-text' => 'Situs yang dituju terlalu lambat merespon. Tolong cek apakah situs tersebut aktif, tunggu sebentar, dan coba lagi. Mungkin Anda perlu mencobanya di saat yang lebih longgar.',
 
 'license'            => 'Jenis lisensi:',
+'license-header'     => 'Jenis lisensi:',
 'nolicense'          => 'Tidak ada yang dipilih',
 'license-nopreview'  => '(Pratayang tak tersedia)',
 'upload_source_url'  => ' (suatu URL valid yang dapat diakses publik)',

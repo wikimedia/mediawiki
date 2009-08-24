@@ -1364,7 +1364,8 @@ $2',
 'upload-file-error'   => 'אינערליכער פעלער',
 'upload-unknown-size' => 'אומוויסענדע גרויס',
 
-'license' => 'לייסענסאינג:',
+'license'        => 'לייסענסאינג:',
+'license-header' => 'לייסענסאינג:',
 
 # Special:ListFiles
 'listfiles_search_for'  => 'זוכן פֿאַר מעדיע נאָמען:',
