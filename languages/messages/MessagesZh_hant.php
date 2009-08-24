@@ -1,5 +1,5 @@
 <?php
-/** Traditional Chinese (‪中文(繁體)‬)
+/** Traditional Chinese (‪中文(傳統字)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -500,12 +500,12 @@ $1',
 最後一次資料庫查詢指令是:
 <blockquote><tt>$1</tt></blockquote>
 來自於函數 "<tt>$2</tt>"。
-$5返回錯誤 "<tt>$3: $4</tt>"。',
+數據庫返回錯誤 "<tt>$3: $4</tt>"。',
 'dberrortextcl'        => '發生了一個資料庫查詢語法錯誤。
 最後一次的資料庫查詢是:
 「$1」
 來自於函數「$2」。
-$5返回錯誤「$3: $4」。',
+數據庫返回錯誤「$3: $4」。',
 'laggedslavemode'      => '警告: 頁面可能不包含最近的更新。',
 'readonly'             => '資料庫禁止訪問',
 'enterlockreason'      => '請輸入禁止訪問原因, 包括估計重新開放的時間',
@@ -601,7 +601,7 @@ $2',
 'nouserspecified'            => '{{GENDER:|你|妳|你}}需要指定一個用戶名。',
 'wrongpassword'              => '您輸入的密碼錯誤，請再試一次。',
 'wrongpasswordempty'         => '沒有輸入密碼！請重試。',
-'passwordtooshort'           => '您的密碼太短，不能少於$1個字元。',
+'passwordtooshort'           => '您的密碼不能少於$1個字元。',
 'password-name-match'        => '您的密碼必須跟您的用戶名不相同。',
 'mailmypassword'             => '將新密碼寄給我',
 'passwordremindertitle'      => '{{SITENAME}}的新臨時密碼',
@@ -2476,7 +2476,8 @@ $1已經被封鎖。您是否想更改這個設定？',
 'tooltip-ca-addsection'           => '開始一個新小節',
 'tooltip-ca-viewsource'           => '該頁面已被保護。{{GENDER:|你|妳|你}}可以查看該頁原始碼。',
 'tooltip-ca-history'              => '本頁面的早前修訂版本',
-'tooltip-ca-protect'              => '保護該頁面',
+'tooltip-ca-protect'              => '保護這個頁面',
+'tooltip-ca-unprotect'            => '解除保護這個頁面',
 'tooltip-ca-delete'               => '刪除本頁',
 'tooltip-ca-undelete'             => '將這個頁面恢復到被刪除以前的狀態',
 'tooltip-ca-move'                 => '移動本頁',
@@ -2487,6 +2488,7 @@ $1已經被封鎖。您是否想更改這個設定？',
 'tooltip-search-fulltext'         => '搜尋該文字的頁面',
 'tooltip-p-logo'                  => '訪問首頁',
 'tooltip-n-mainpage'              => '訪問首頁',
+'tooltip-n-mainpage-description'  => '訪問首頁',
 'tooltip-n-portal'                => '關於本計劃、{{GENDER:|你|妳|你}}可以做什麼、應該如何做',
 'tooltip-n-currentevents'         => '提供當前新聞事件的背景資料',
 'tooltip-n-recentchanges'         => '列出該網站中的最近修改',

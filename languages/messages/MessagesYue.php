@@ -1,5 +1,5 @@
 <?php
-/** Yue (粵語)
+/** Cantonese (粵語/廣東話)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -472,12 +472,12 @@ $1',
 最後一次資料庫嘅嘗試係：
 <blockquote><tt>$1</tt></blockquote>
 於 "<tt>$2</tt>" 功能中。
-$5 嘅錯誤回應 "<tt>$3: $4</tt>"。',
+數據庫嘅錯誤回應 "<tt>$3: $4</tt>"。',
 'dberrortextcl'        => '資料庫查詢語法錯咗。
 最後一次資料庫嘅嘗試係：
 "$1"
 於 "$2"功能中。
-$5 嘅錯誤回應 "$3: $4"',
+數據庫嘅錯誤回應 "$3: $4"',
 'laggedslavemode'      => '警告：呢頁可能未包括最新嘅更新。',
 'readonly'             => '資料庫鎖咗',
 'enterlockreason'      => '輸入鎖資料庫嘅原因，同埋預計幾耐後會解鎖',
@@ -575,7 +575,7 @@ $5 嘅錯誤回應 "$3: $4"',
 'nouserspecified'            => '你需要指定一個用戶名。',
 'wrongpassword'              => '密碼唔啱，麻煩你再試多次。',
 'wrongpasswordempty'         => '你都未入密碼，唔該再試多次啦。',
-'passwordtooshort'           => '你嘅密碼太短。佢最少要有$1個半形字元。',
+'passwordtooshort'           => '你嘅密碼最少要有$1個半形字元。',
 'password-name-match'        => '你嘅密碼一定要同你嘅用戶名唔一樣。',
 'mailmypassword'             => '寄個新密碼',
 'passwordremindertitle'      => '{{SITENAME}}嘅新臨時密碼',
@@ -2434,6 +2434,7 @@ $1已經被封鎖。你係咪想更改呢個設定？',
 'tooltip-ca-viewsource'           => '呢一頁已經被保護。你可以睇吓呢一頁呢原始碼。',
 'tooltip-ca-history'              => '呢一頁之前嘅修訂',
 'tooltip-ca-protect'              => '保護呢一頁',
+'tooltip-ca-unprotect'            => '唔再保護呢一頁',
 'tooltip-ca-delete'               => '刪除呢一頁',
 'tooltip-ca-undelete'             => '將呢個頁面還原到被刪除之前嘅狀態',
 'tooltip-ca-move'                 => '移動呢一頁',
@@ -2444,6 +2445,7 @@ $1已經被封鎖。你係咪想更改呢個設定？',
 'tooltip-search-fulltext'         => '搵呢個文字嘅版',
 'tooltip-p-logo'                  => '睇頭版',
 'tooltip-n-mainpage'              => '睇頭版',
+'tooltip-n-mainpage-description'  => '睇頭版',
 'tooltip-n-portal'                => '關於呢個計劃，你可以做乜，應該要點做',
 'tooltip-n-currentevents'         => '提供而家發生嘅事嘅背景資料',
 'tooltip-n-recentchanges'         => '列出呢個 wiki 中嘅最近修改',
