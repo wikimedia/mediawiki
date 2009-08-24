@@ -1381,6 +1381,7 @@ Kontrololös, begö! va bevüresodatopäd at jäfidon, stebedolös timüli e ste
 Binosöv gudikum, if steifülolöv dönu ün tim votik läs jäfädik.',
 
 'license'            => 'Dälastad:',
+'license-header'     => 'Dälastad:',
 'nolicense'          => 'Nonik pelevälon',
 'license-nopreview'  => '(Büologed no gebidon)',
 'upload_source_url'  => ' (el URL lonöföl ä fa valans gebovik)',

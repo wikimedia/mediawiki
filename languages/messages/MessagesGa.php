@@ -1003,6 +1003,7 @@ uaslódáil é arís, le do thoil.',
 'upload-file-error'  => 'Earráid inmheánach',
 
 'license'            => 'Ceadúnas:',
+'license-header'     => 'Ceadúnas:',
 'nolicense'          => 'Níl aon cheann roghnaithe',
 'upload_source_url'  => ' (URL bailí is féidir a rochtain go poiblí)',
 'upload_source_file' => ' (comhad ar do riomhaire)',

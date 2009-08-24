@@ -798,6 +798,7 @@ Wenn du dich miet dam Thema oauskennst, koast du selbst [[:$1|die Seite verfassa
 'upload-curl-error6' => 'URL ies nee erreichbar',
 
 'license'            => 'Lizenz:',
+'license-header'     => 'Lizenz:',
 'upload_source_file' => '  (anne Datei uff dennem Computer)',
 
 # Special:ListFiles

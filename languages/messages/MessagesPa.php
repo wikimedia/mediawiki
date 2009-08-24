@@ -596,6 +596,7 @@ to upload files.',
 'upload-curl-error28' => 'ਅੱਪਲੋਡ ਟਾਈਮ-ਆਉਟ',
 
 'license'            => 'ਲਾਈਸੈਂਸਿੰਗ:',
+'license-header'     => 'ਲਾਈਸੈਂਸਿੰਗ:',
 'nolicense'          => 'ਕੁਝ ਵੀ ਚੁਣਿਆ',
 'license-nopreview'  => '(ਝਲਕ ਉਪਲੱਬਧ ਨਹੀਂ)',
 'upload_source_file' => ' (ਤੁਹਾਡੇ ਕੰਪਿਊਟਰ ਉੱਤੇ ਇੱਕ ਫਾਇਲ)',

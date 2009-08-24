@@ -1263,6 +1263,7 @@ Olgat hüväd, kodvgat, om-ik adres oiged i voib-ik säta sido saitanke.',
 'upload-curl-error28'     => 'Jügutoitandan aig om männu',
 
 'license'            => 'Licenzii:',
+'license-header'     => 'Licenzii:',
 'nolicense'          => 'Ei ole licenzijoid',
 'license-nopreview'  => '(Ei voi ezikacta)',
 'upload_source_file' => ' (fail teiden kompjuteras)',

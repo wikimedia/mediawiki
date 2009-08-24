@@ -1106,6 +1106,7 @@ Sulara \"log\" va batu bu krafiason batlize zo nedir :",
 'upload-curl-error28' => 'Kalvajara kaikiana',
 
 'license'            => 'Gelfara :',
+'license-header'     => 'Gelfara :',
 'nolicense'          => 'Mecoba rebana',
 'license-nopreview'  => '(Abdinedira me zo roderaykar)',
 'upload_source_url'  => ' (enafe sanegon rovansane URL mane)',

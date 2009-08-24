@@ -1042,6 +1042,7 @@ Bu fayl içün yoq etüvniñ jurnalını mında baqıp olasıñız:",
 'upload-curl-error28-text' => 'Sayt çoqtan cevap qaytarmay. Lütfen, saytnıñ doğru çalışqanını teşkerip birazdan soñ tekrarlañız. Belki de istegen areketiñizni soñ, sayt boşça olğanda, etmek kerektir.',
 
 'license'            => 'Litsenzirleme:',
+'license-header'     => 'Litsenzirleme:',
 'nolicense'          => 'Yoq',
 'license-nopreview'  => '(Baqıp çıquv irişilmez)',
 'upload_source_url'  => ' (doğru, püblik tarzda kirmege musaadeli internet adres)',

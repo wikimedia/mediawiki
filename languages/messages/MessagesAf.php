@@ -1438,6 +1438,7 @@ Die verwyderingsinligting van die lêer word vir u gemak hier herhaal:",
 'upload-curl-error28' => 'Oplaai neem te lank',
 
 'license'            => 'Lisensiëring:',
+'license-header'     => 'Lisensiëring:',
 'nolicense'          => 'Niks gekies',
 'license-nopreview'  => '(Voorskou nie beskikbaar)',
 'upload_source_url'  => " ('n geldige, publiek toeganklike URL)",

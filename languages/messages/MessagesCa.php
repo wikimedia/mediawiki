@@ -1551,6 +1551,7 @@ A continuació teniu el registre d'eliminació per a que pugueu comprovar els mo
 'upload-curl-error28-text' => "El lloc ha trigat massa a respondre. Comproveu que està funcionant, espereu una estona i torneu-ho a provar. Podeu mirar d'intentar-ho quan hi hagi menys trànsit a la xarxa.",
 
 'license'            => 'Llicència:',
+'license-header'     => 'Llicència:',
 'nolicense'          => "No se n'ha seleccionat cap",
 'license-nopreview'  => '(La previsualització no està disponible)',
 'upload_source_url'  => ' (un URL vàlid i accessible públicament)',

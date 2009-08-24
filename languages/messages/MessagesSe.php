@@ -639,6 +639,7 @@ $1 | $2',
 'upload-curl-error6' => 'Čujuhus ii doaimma',
 
 'license'            => 'Liseansa',
+'license-header'     => 'Liseansa',
 'nolicense'          => 'Ii liseansa',
 'license-nopreview'  => '(ovdalgihtii geahččan ii leat vejolaš)',
 'upload_source_url'  => ' (almmolaš URL-čujuhus)',

@@ -1706,6 +1706,7 @@ PICT # ált.
 'upload-curl-error28-text' => 'A webhely túl sokára válaszolt. Kérjük, ellenőrizd, hogy a webhely elérhető-e, várj egy kicsit, aztán próbáld újra. Kevésbé forgalmas időben is megpróbálhatod.',
 
 'license'            => 'Licenc:',
+'license-header'     => 'Licenc:',
 'nolicense'          => 'Válassz licencet!',
 'license-nopreview'  => '(Előnézet nem elérhető)',
 'upload_source_url'  => ' (egy érvényes, nyilvánosan elérhető URL)',

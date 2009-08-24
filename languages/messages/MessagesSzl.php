@@ -1220,6 +1220,7 @@ Rejer wyćepań tygo plika je podany půńižej, cobyś miou wygoda:",
 'upload-curl-error28-text' => 'Zajta uodpowjado za powoli. Proša, sprawdź čy zajta dźauo, uodčekej pora minut i sprůbuj zaś. Možeš tyž sprůbować wončas kej zajta bydźe mńij uobćůnžůno.',
 
 'license'            => 'Licencyjo:',
+'license-header'     => 'Licencyjo:',
 'nolicense'          => 'Ńy wybrano (naškryflej rynčńy!)',
 'license-nopreview'  => '(Podglůnd ńydostympny)',
 'upload_source_url'  => ' (poprowny, publičńy dostympny URL)',

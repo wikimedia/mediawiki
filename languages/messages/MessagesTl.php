@@ -1461,6 +1461,7 @@ Pakisuri kung buhay ang sayt, maghintay ng kaunti at subukin uli.
 Maaaring ibigin mong subukin uli sa isang hindi gaanong abalang panahon.',
 
 'license'            => 'Paglilisensya:',
+'license-header'     => 'Paglilisensya:',
 'nolicense'          => 'Walang napili',
 'license-nopreview'  => '(Walang makuhang paunang tingin)',
 'upload_source_url'  => ' (isang tanggap at napupuntahan ng publikong URL)',

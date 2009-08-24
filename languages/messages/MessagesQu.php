@@ -1625,6 +1625,7 @@ Kay qatiqpiqa willañiqimanta qulluy hallch'atam rikunki:",
 'upload-curl-error28-text' => "Llika tiyayqa mana kutichispa nisyutam suyachiwarqanchik. Ama hina kaspa, sirwiq llamk'achkanchu chaymanta llanchispa asllatapas suyaspa musuqmanta ruraykachay. Ruraykachankimanpas huk kuti aswan pisi ruraqkuna yaykuchkaptin.",
 
 'license'            => 'Saqillay:',
+'license-header'     => 'Saqillay:',
 'nolicense'          => 'Manam imapas akllasqachu',
 'license-nopreview'  => '(Ama qhawarichunkuchu)',
 'upload_source_url'  => ' (allin, sapsi chayanalla URL tiyay)',

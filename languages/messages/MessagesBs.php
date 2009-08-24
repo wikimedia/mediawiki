@@ -1707,6 +1707,7 @@ Molimo provjerite da li je stranica postavljena, malo pričekajte i pokušajte p
 Možda možete pokušati kada bude manje opterećenje.',
 
 'license'            => 'Licenca:',
+'license-header'     => 'Licenca:',
 'nolicense'          => 'Ništa nije odabrano',
 'license-nopreview'  => '(Pregled nije dostupan)',
 'upload_source_url'  => ' (validni, javno dostupni URL)',

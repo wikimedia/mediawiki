@@ -1591,6 +1591,7 @@ Caso o problema persista, contacte um [[Special:ListUsers/sysop|administrador]].
 'upload-curl-error28-text' => 'O sítio demorou muito tempo a responder. Por gentileza, verifique se o sítio está acessível, aguarde alguns momentos e tente novamente. Talvez você deseje fazer nova tentativa em um horário menos congestionado.',
 
 'license'            => 'Licença:',
+'license-header'     => 'Licença:',
 'nolicense'          => 'Nenhuma seleccionada',
 'license-nopreview'  => '(Previsão não disponível)',
 'upload_source_url'  => ' (um URL válido, publicamente acessível)',

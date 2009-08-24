@@ -1478,6 +1478,7 @@ Bul torap iste ekenin tekserip şığıñız, azğana kidire turıñız da qaýt
 Talabıñızdı qol tïgen kezinde qaýta baýqap körwiñiz mümkin.',
 
 'license'            => 'Lïcenzïyalandırwı:',
+'license-header'     => 'Lïcenzïyalandırwı:',
 'nolicense'          => 'Eşteñe bölektenbegen',
 'license-nopreview'  => '(Qarap şığw jetimdi emes)',
 'upload_source_url'  => ' (jaramdı, barşağa qatınawlı URL)',

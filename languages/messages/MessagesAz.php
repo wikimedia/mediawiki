@@ -771,8 +771,9 @@ Həmçinin kimliyinizi gostərmədən belə, başqalarının sizinlə istifadə�
 Əvvəlcədən bu faylı yenidən yükləməyin nə dərəcədə lazımlı olduğunu müəyyənləşdirməniz məsləhətdir.
 Bu səhifə üçün silmə qeydləri aşağıda göstərilmişdir:",
 
-'license'   => 'Lisenziya',
-'nolicense' => 'Heç biri seçilməmişdir',
+'license'        => 'Lisenziya',
+'license-header' => 'Lisenziya',
+'nolicense'      => 'Heç biri seçilməmişdir',
 
 # Special:ListFiles
 'listfiles'      => 'Fayl siyahısı',

@@ -806,8 +806,9 @@ Par includi une figure intune pagjine, dopre un leam inte form
 'destfilename'       => 'Non dal file di destinazion:',
 'watchthisupload'    => 'Ten di voli',
 
-'license'   => 'Licence pal ûs:',
-'nolicense' => 'Nissune licence sielte',
+'license'        => 'Licence pal ûs:',
+'license-header' => 'Licence pal ûs:',
+'nolicense'      => 'Nissune licence sielte',
 
 # Special:ListFiles
 'listfiles'             => 'Liste des figuris',

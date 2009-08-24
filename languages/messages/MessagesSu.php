@@ -1262,6 +1262,7 @@ Catet yén salaku kaca wiki, nu séjén bisa ngarobah atawa ngahapus muatan anje
 'upload-curl-error28' => 'Seep waktos kanggo muatkeun',
 
 'license'            => 'Lisénsi:',
+'license-header'     => 'Lisénsi:',
 'nolicense'          => 'Taya nu dipilih',
 'license-nopreview'  => '(euweuh pramidang)',
 'upload_source_url'  => '(URL nu sohéh sarta bisa dibuka ku umum)',

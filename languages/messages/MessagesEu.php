@@ -1466,6 +1466,7 @@ Aukera ezazu, mesedez, fitxategi izen deskriptiboago bat.",
 'upload-curl-error28-text' => 'Guneak denbora gehiegi behar du erantzuteko. Egiaztatu gunea martxan dagoela, itxaron pixka bat eta saiatu berriz. Karga txikiagoa denean probatu zenezake.',
 
 'license'            => 'Lizentzia:',
+'license-header'     => 'Lizentzia:',
 'nolicense'          => 'Hautatu gabe',
 'license-nopreview'  => '(Aurreikuspenik ez)',
 'upload_source_url'  => ' (baliozko URL publikoa)',

@@ -1409,6 +1409,7 @@ Mangga dipriksa menawa situsé aktif, nunggu sedélok lan coba manèh.
 Mbok-menawa panjenengan bisa nyoba manèh ing wektu sing luwih longgar.',
 
 'license'            => 'Jenis lisènsi:',
+'license-header'     => 'Jenis lisènsi:',
 'nolicense'          => 'Durung ana sing dipilih',
 'license-nopreview'  => '(Pratayang ora sumedya)',
 'upload_source_url'  => ' (sawijining URL absah sing bisa diaksès publik)',

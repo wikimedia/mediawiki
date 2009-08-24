@@ -579,8 +579,9 @@ Ko e ʻuhinga loka ko e $1 ia.",
 'watchthisupload'             => 'Leʻo he pēsí ni',
 'filewasdeleted'              => 'Kuo hiki hake ʻa e faile mo e hingoa ʻeni pea naʻe tāmateʻi ia. Kuo pau te ke vakai ki he $1 ʻi muʻa haʻo feinga ʻo toe hiki hake ia.',
 
-'license'   => 'Laiseni:',
-'nolicense' => 'ʻIkai fili ha taha',
+'license'        => 'Laiseni:',
+'license-header' => 'Laiseni:',
+'nolicense'      => 'ʻIkai fili ha taha',
 
 # Special:ListFiles
 'listfiles_search_for'  => 'Kumi ki he hingoa ʻo e faitā:',

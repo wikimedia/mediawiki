@@ -485,7 +485,8 @@ Check your spelling, ka [[Special:UserLogin/signup|kria konta foun]].',
 'uploadbtn'       => 'Tau iha arkivu laran',
 'watchthisupload' => "Hateke pájina ne'e",
 
-'license' => 'Lisensa:',
+'license'        => 'Lisensa:',
+'license-header' => 'Lisensa:',
 
 # Special:ListFiles
 'listfiles_date' => 'Tempu',

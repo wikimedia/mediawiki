@@ -1562,6 +1562,7 @@ Lütfen sitenin açık olduğunu kontrol edin, kısa bir süre bekleyin ve yenid
 Sitenin daha az meşgul olduğu bir zamanda denemek daha iyi olabilir.',
 
 'license'            => 'Lisans:',
+'license-header'     => 'Lisans:',
 'nolicense'          => 'Hiçbirini seçme',
 'license-nopreview'  => '(Önizleme etkin değil)',
 'upload_source_url'  => ' (geçerli, herkesin ulaşabileceği bir URL)',

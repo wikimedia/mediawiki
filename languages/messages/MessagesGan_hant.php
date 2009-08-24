@@ -963,6 +963,7 @@ $2',
 'upload-curl-error28-text' => '站點回應時間過長。請檢查箇隻網站嗰訪問係否正常，過吖再試過。倷可能要等網絡伓咁卡嗰時間再試吖。',
 
 'license'            => '授權:',
+'license-header'     => '授權:',
 'nolicense'          => '冇選定',
 'license-nopreview'  => '（冇預覽用得正）',
 'upload_source_url'  => '（一隻有效嗰，公開嗰 URL）',

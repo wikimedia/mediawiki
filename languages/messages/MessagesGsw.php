@@ -1511,6 +1511,7 @@ Wänn s Problem alno uftritt, informier e [[Special:ListUsers/sysop|Ammann]].',
 'upload-curl-error28-text' => 'D Syte brucht z lang fir e Antwort. Prief, eb d Syte online isch, wart e Rung un versuech s derno nomol. S cha au sinnvoll syy, s speter nomol z versueche.',
 
 'license'            => 'Lizänz:',
+'license-header'     => 'Lizänz:',
 'nolicense'          => 'kei Voruswahl',
 'license-nopreview'  => '(s isch kei Vorschau verfiegbar)',
 'upload_source_url'  => ' (giltige, effentli zuegänglig URL)',

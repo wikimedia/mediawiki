@@ -1287,6 +1287,7 @@ $wgMessageStructure = array(
 	),
 	'licenses' => array(
 		'license',
+		'license-header',
 		'nolicense',
 		'licenses',
 		'license-nopreview',

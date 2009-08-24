@@ -894,6 +894,7 @@ $2',
 'upload-curl-error28-text' => '站点回应时间过长。请检查个只网站𠮶访问系否正常，过吖再试过。倷可能要等网络伓咁卡𠮶时间再试吖。',
 
 'license'            => '授权:',
+'license-header'     => '授权:',
 'nolicense'          => '冇选定',
 'license-nopreview'  => '（冇预览用得正）',
 'upload_source_url'  => '（一只有效𠮶，公开𠮶 URL）',

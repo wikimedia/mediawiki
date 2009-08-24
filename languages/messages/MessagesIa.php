@@ -1601,6 +1601,7 @@ Per favor controla que le sito sia in operation, attende un poco e reprova.
 Pote esser preferite reprovar quando le sito es minus occupate.',
 
 'license'            => 'Licentia:',
+'license-header'     => 'Licentia:',
 'nolicense'          => 'Necun licentia seligite',
 'license-nopreview'  => '(Previsualisation non disponibile)',
 'upload_source_url'  => ' (un adresse URL valide e publicamente accessibile)',

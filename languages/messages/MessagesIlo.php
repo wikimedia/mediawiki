@@ -858,6 +858,7 @@ Dagiti panid iti [[Special:Watchlist|listaan ti bambantayam]] ket '''naipuskol''
 'upload-curl-error28' => 'Timeout ti upload',
 
 'license'            => 'Lisensia:',
+'license-header'     => 'Lisensia:',
 'nolicense'          => 'Awan ti napili',
 'license-nopreview'  => '(Saan a mabalin ti preview)',
 'upload_source_url'  => ' (maysa a valido, ken maakses ti publico nga URL)',

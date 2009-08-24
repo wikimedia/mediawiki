@@ -1489,6 +1489,7 @@ Untuk rujukan, yang berikut ialah log penghapusan bagi fail ini:",
 'upload-curl-error28-text' => 'Tapak web tersebut terlalu lambat bertindak balas. Sila pastikan bahawa tapak web tersebut hidup, tunggu sebentar dan cuba lagi. Anda boleh mencuba lagi pada waktu yang kurang sibuk.',
 
 'license'            => 'Lesen:',
+'license-header'     => 'Lesen:',
 'nolicense'          => 'Tidak dipilih',
 'license-nopreview'  => '(Tiada pratonton)',
 'upload_source_url'  => ' (URL yang boleh diakses oleh orang awam)',

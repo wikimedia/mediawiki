@@ -1703,6 +1703,7 @@ PICT # misc.
 يمكن تجرب تانى فى وقت مايكونش فيه زحمة.',
 
 'license'            => 'ترخيص:',
+'license-header'     => 'ترخيص:',
 'nolicense'          => 'مش متحدد',
 'license-nopreview'  => '(البروفه مش متوفره)',
 'upload_source_url'  => '  (اليوأرإل صحيح وممكن توصل ليه)',
