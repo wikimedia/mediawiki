@@ -181,23 +181,14 @@ var mwEditButtons = [];
 var mwCustomEditButtons = []; // eg to add in MediaWiki:Common.js
 
 function escapeQuotes(text) {
-	var re = new RegExp("'","g");
-	text = text.replace(re,"\\'");
-	re = new RegExp("\\n","g");
-	text = text.replace(re,"\\n");
-	return escapeQuotesHTML(text);
+	return escapeQuotesHTML(text.replace(/'/g,"\\'").replace(/\n/g,"\\n"));
 }
 
 function escapeQuotesHTML(text) {
-	var re = new RegExp('&',"g");
-	text = text.replace(re,"&amp;");
-	re = new RegExp('"',"g");
-	text = text.replace(re,"&quot;");
-	re = new RegExp('<',"g");
-	text = text.replace(re,"&lt;");
-	re = new RegExp('>',"g");
-	text = text.replace(re,"&gt;");
-	return text;
+	return text.replace(/&/g,"&amp;")
+		.replace(/"/g,"&quot;")
+		.replace(/</gre,"&lt;")
+		.replace(/>/g,"&gt;");
 }
 
 
@@ -308,7 +299,7 @@ function addPortletLink(portlet, href, text, id, tooltip, accesskey, nextnode) {
 		link.setAttribute( "title", tooltip );
 	}
 	if ( accesskey && tooltip ) {
-		updateTooltipAccessKeys( new Array( link ) );
+		updateTooltipAccessKeys( [link] );
 	}
 
 	if ( nextnode && nextnode.parentNode == node )
@@ -354,7 +345,7 @@ function akeytt( doId ) {
 	// A lot of user scripts (and some of the code below) break if
 	// ta isn't defined, so we make sure it is.  Explictly using
 	// window.ta avoids a "ta is not defined" error.
-	if (!window.ta) window.ta = new Array;
+	if (!window.ta) window.ta = [];
 
 	// Make a local, possibly restricted, copy to avoid clobbering
 	// the original.
@@ -367,7 +358,7 @@ function akeytt( doId ) {
 
 	// Now deal with evil deprecated ta
 	var watchCheckboxExists = document.getElementById( 'wpWatchthis' ) ? true : false;
-	for (var id in ta) {
+	for (var id = 0; id < ta.length; id++) {
 		var n = document.getElementById(id);
 		if (n) {
 			var a = null;
@@ -498,7 +489,7 @@ function toggle_element_check(ida,idb) {
 	From http://www.robertnyman.com/2005/11/07/the-ultimate-getelementsbyclassname/
 */
 function getElementsByClassName(oElm, strTagName, oClassNames){
-	var arrReturnElements = new Array();
+	var arrReturnElements = [];
 	if ( typeof( oElm.getElementsByClassName ) == "function" ) {
 		/* Use a native implementation where possible FF3, Saf3.2, Opera 9.5 */
 		var arrNativeReturn = oElm.getElementsByClassName( oClassNames );
@@ -511,7 +502,7 @@ function getElementsByClassName(oElm, strTagName, oClassNames){
 		return arrReturnElements;
 	}
 	var arrElements = (strTagName == "*" && oElm.all)? oElm.all : oElm.getElementsByTagName(strTagName);
-	var arrRegExpClassNames = new Array();
+	var arrRegExpClassNames = [];
 	if(typeof oClassNames == "object"){
 		for(var i=0; i<oClassNames.length; i++){
 			arrRegExpClassNames[arrRegExpClassNames.length] =
@@ -680,8 +671,8 @@ function ts_resortTable(lnk) {
 
 	var reverse = (span.getAttribute("sortdir") == 'down');
 
-	var newRows = new Array();
-	var staticRows = new Array();
+	var newRows = new [];
+	var staticRows = new [];
 	for (var j = rowStart; j < table.rows.length; j++) {
 		var row = table.rows[j];
 		if((" "+row.className+" ").indexOf(" unsortable ") < 0) {
@@ -689,8 +680,8 @@ function ts_resortTable(lnk) {
 			var oldIndex = (reverse ? -j : j);
 			var preprocessed = preprocessor( keyText.replace(/^[\s\xa0]+/, "").replace(/[\s\xa0]+$/, "") );
 
-			newRows[newRows.length] = new Array(row, preprocessed, oldIndex);
-		} else staticRows[staticRows.length] = new Array(row, false, j-rowStart);
+			newRows[newRows.length] = new [row, preprocessed, oldIndex];
+		} else staticRows[staticRows.length] = [row, false, j-rowStart];
 	}
 
 	newRows.sort(sortfn);
