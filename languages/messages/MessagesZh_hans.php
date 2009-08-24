@@ -1,5 +1,5 @@
 <?php
-/** Simplified Chinese (‪中文(简体)‬)
+/** Simplified Chinese (‪中文(简化字)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -521,10 +521,10 @@ $1',
 'databaseerror'        => '数据库错误',
 'dberrortext'          => '发生了数据库查询语法错误，可能是由于软件自身的错误所引起。最后一次数据库查询指令是：
 <blockquote><tt>$1</tt></blockquote>
-来自函数“<tt>$2</tt>”内。$5返回错误“<tt>$3: $4</tt>”。',
+来自函数“<tt>$2</tt>”内。数据库返回错误“<tt>$3: $4</tt>”。',
 'dberrortextcl'        => '发生了数据库查询语法错误。最后一次数据库查询指令是：
 “$1”
-来自函数“$2”内。$5返回错误“$3: $4”。',
+来自函数“$2”内。数据库返回错误“$3: $4”。',
 'laggedslavemode'      => "'''警告'''：页面可能未包含最近的更新。",
 'readonly'             => '数据库被锁定',
 'enterlockreason'      => '请输入锁定的原因，包括预计重新开放的时间',
@@ -621,7 +621,7 @@ $2',
 'nouserspecified'            => '你需要指定一个用户名。',
 'wrongpassword'              => '您输入的密码错误，请再试一次。',
 'wrongpasswordempty'         => '您没有输入密码，请重试！',
-'passwordtooshort'           => '您的密码过短，至少需要$1个字符。',
+'passwordtooshort'           => '您的密码至少需要$1个字符。',
 'password-name-match'        => '您的密码必须和您的用户名不相同。',
 'mailmypassword'             => '将新密码寄给我',
 'passwordremindertitle'      => '{{SITENAME}}的新临时密码',
@@ -2490,6 +2490,7 @@ $1已经被封锁。您是否想更改这个设置？',
 'tooltip-ca-viewsource'           => '该页面已被保护。你可以查看该页源码。',
 'tooltip-ca-history'              => '此页面的早前修订版本',
 'tooltip-ca-protect'              => '保护此页',
+'tooltip-ca-unprotect'            => '解除保护此页',
 'tooltip-ca-delete'               => '删除此页',
 'tooltip-ca-undelete'             => '将这个页面恢复到被删除以前的状态',
 'tooltip-ca-move'                 => '移动此页',
@@ -2500,6 +2501,7 @@ $1已经被封锁。您是否想更改这个设置？',
 'tooltip-search-fulltext'         => '搜索该文字的页面',
 'tooltip-p-logo'                  => '访问首页',
 'tooltip-n-mainpage'              => '访问首页',
+'tooltip-n-mainpage-description'  => '访问首页',
 'tooltip-n-portal'                => '关于本计划，您可以做什么，应该如何做',
 'tooltip-n-currentevents'         => '查找当前事件的背景信息',
 'tooltip-n-recentchanges'         => '列出该网站的最近修改',
