@@ -671,8 +671,8 @@ function ts_resortTable(lnk) {
 
 	var reverse = (span.getAttribute("sortdir") == 'down');
 
-	var newRows = new [];
-	var staticRows = new [];
+	var newRows = [];
+	var staticRows = [];
 	for (var j = rowStart; j < table.rows.length; j++) {
 		var row = table.rows[j];
 		if((" "+row.className+" ").indexOf(" unsortable ") < 0) {
