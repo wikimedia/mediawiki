@@ -317,12 +317,13 @@ class HistoryPager extends ReverseChronologicalPager {
 	 * @return string HTML output
 	 */
 	function getStartBody() {
-		global $wgScript, $wgEnableHtmlDiff, $wgUser;
+		global $wgScript, $wgEnableHtmlDiff, $wgUser, $wgOut;
 		$this->lastRow = false;
 		$this->counter = 1;
 		$this->oldIdChecked = 0;
 
-		$s = wfMsgExt( 'histlegend', array( 'parse') );
+		$wgOut->wrapWikiMsg( "<div class='mw-history-legend'>\n$1</div>", 'histlegend' );
+		$s = '';
 		if( $this->getNumRows() > 1 && $wgUser->isAllowed('deleterevision') ) {
 			$revdel = SpecialPage::getTitleFor( 'Revisiondelete' );
 			$s .= Xml::openElement( 'form',
