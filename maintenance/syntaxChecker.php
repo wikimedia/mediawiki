@@ -42,9 +42,12 @@ class SyntaxChecker extends Maintenance {
 		$this->buildFileList();
 		$this->output( "done.\n" );
 
+		// ParseKit is broken on PHP 5.3+, disabled until this is fixed
+		$useParseKit = function_exists( 'parsekit_compile_file' ) && version_compare( PHP_VERSION, '5.3', '<' );
+
 		$this->output( "Checking syntax (this can take a really long time)...\n\n" );
 		foreach( $this->mFiles as $f ) {
-			if( function_exists( 'parsekit_compile_file' ) ) {
+			if( $useParseKit ) {
 				$this->checkFileWithParsekit( $f );
 			} else {
 				$this->checkFileWithCli( $f );
