@@ -680,7 +680,7 @@ function ts_resortTable(lnk) {
 			var oldIndex = (reverse ? -j : j);
 			var preprocessed = preprocessor( keyText.replace(/^[\s\xa0]+/, "").replace(/[\s\xa0]+$/, "") );
 
-			newRows[newRows.length] = new [row, preprocessed, oldIndex];
+			newRows[newRows.length] = [row, preprocessed, oldIndex];
 		} else staticRows[staticRows.length] = [row, false, j-rowStart];
 	}
 
