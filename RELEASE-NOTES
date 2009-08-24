@@ -428,6 +428,8 @@ this. Was used when mwEmbed was going to be an extension.
 * (bug 20365) Page name with with c/g/h/j/s/u + x are now correctly handled in
   Special:MovePage with Esperanto as content language
 * (bug 20364) Fixed regression in GIF metadata loading
+* (bug 20299) MediaWiki:Move-subpages and MediaWiki:Move-talk-subpages can now
+  use wikitext
 
 == API changes in 1.16 ==
 
