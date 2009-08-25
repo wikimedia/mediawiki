@@ -2437,7 +2437,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Ocio''': Sto file qua el podarìa contegner codice maligno; la so esecuzion la podarìa danegiar el proprio sistema informatico.<hr />",
-'imagemaxsize'         => "Dimension massima de le imagini:<br />''(su le relative pagine de descrizion)''",
+'imagemaxsize'         => 'Dimension massima de le imagini su le relative pagine de descrizion:',
 'thumbsize'            => 'Grandeza de le miniature:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|pagina|pagine}}',
 'file-info'            => 'Dimensioni: $1, tipo MIME: $2',

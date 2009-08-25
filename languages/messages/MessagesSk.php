@@ -2563,7 +2563,7 @@ $1',
 # Media information
 'mediawarning'         => "'''Upozornenie''': Tento súbor môže obsahovať nebezpečný programový kód, po spustení ktorého by bol váš systém kompromitovaný.
 <hr />",
-'imagemaxsize'         => "Obmedziť veľkosť obrázka:<br />''(na popisnej stránke súboru)''",
+'imagemaxsize'         => 'Obmedziť obrázky na popisnej stránke súboru na:',
 'thumbsize'            => 'Veľkosť náhľadu:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|stránka|stránky|stránok}}',
 'file-info'            => '(veľkosť súboru: $1, MIME typ: $2)',

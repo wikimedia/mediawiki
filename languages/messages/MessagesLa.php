@@ -2007,8 +2007,7 @@ Paginae nomen petitum "[[:$1]]" iam existit. Vin tu eam delere ut pagina illic m
 'visual-comparison' => 'Comparatio visualis',
 
 # Media information
-'imagemaxsize'         => "Magnitudo maxima fasciculorum:<br />
-''(in pagina descriptionis fasciculi)''",
+'imagemaxsize'         => 'Terminare imagines in paginis imaginum ad:',
 'thumbsize'            => 'Magnitudo pollicisunguis:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|pagina|paginae}}',
 'file-info'            => '(magnitudo fasciculi: $1, typus MIME: $2)',

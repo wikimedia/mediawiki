@@ -2473,7 +2473,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Amaran''': Fail ini boleh mengandungi kod yang berbahaya dan merosakkan komputer anda.<hr />",
-'imagemaxsize'         => "Had saiz imej:<br />''(untuk laman keterangan fail)''",
+'imagemaxsize'         => 'Had saiz imej di laman keterangannya:',
 'thumbsize'            => 'Saiz imej ringkas:',
 'widthheightpage'      => '$1×$2, $3 halaman',
 'file-info'            => '(saiz file: $1, jenis MIME: $2)',

@@ -2564,7 +2564,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Åtvaring''': Denne fila kan innehalda skadelege program, ved å opna ho kan systemet ditt ta skade.<hr />",
-'imagemaxsize'         => "Avgrens storleiken for bilete:<br />''(for sider som skildrar filer)''",
+'imagemaxsize'         => 'Avgrens bilete på filsider til (pikslar):',
 'thumbsize'            => 'Miniatyrstørrelse:',
 'widthheightpage'      => '$1×$2, {{PLURAL:$3|éi side|$3 sider}}',
 'file-info'            => '(filstorleik: $1, MIME-type: $2)',

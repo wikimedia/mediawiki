@@ -5,7 +5,8 @@ setting since version 1.2.0. If you have it on, turn it *off* if you can.
 
 == MediaWiki 1.15.2 ==
 
-??
+* (bug 20239) MediaWiki:Imagemaxsize does not contain anymore a <br /> tag which
+  was displayed to the user
 
 === Changes since 1.15.1 ===
 

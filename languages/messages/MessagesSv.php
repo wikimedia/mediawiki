@@ -2647,7 +2647,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Varning:''': Denna fil kan innehålla programkod som, om den körs, kan skada din dator.",
-'imagemaxsize'         => "Begränsa bilders storlek:<br />''(för filbeskrivningssidor)''",
+'imagemaxsize'         => 'Begränsa bilders storlek på filbeskrivningssidor till:',
 'thumbsize'            => 'Storlek på minibild:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|sida|sidor}}',
 'file-info'            => '(filstorlek: $1, MIME-typ: $2)',

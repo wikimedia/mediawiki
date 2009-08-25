@@ -3148,7 +3148,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Warning''': This file may contain malicious code, by executing it your system may be compromised.<hr />",
-'imagemaxsize'         => "Image size limit:<br />''(for file description pages)''",
+'imagemaxsize'         => 'Limit images on file description pages to:',
 'thumbsize'            => 'Thumbnail size:',
 'widthheight'          => '$1×$2', # only translate this message to other languages if you have to change it
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|page|pages}}',

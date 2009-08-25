@@ -2605,7 +2605,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Attention''': Iste file pote continer codice maligne. Si tu lo executa, tu systema pote esser compromittite.<hr />",
-'imagemaxsize'         => "Dimension maxime de imagines:<br />''(pro paginas de description de files)''",
+'imagemaxsize'         => 'Limitar le imagines in paginas de description de files a:',
 'thumbsize'            => 'Grandor del miniaturas:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|pagina|paginas}}',
 'file-info'            => '(grandor del file: $1, typo MIME: $2)',

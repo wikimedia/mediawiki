@@ -2516,7 +2516,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''警告'''：该文件可能包含恶意代码，运行它可能对您的系统带来危险。<hr />",
-'imagemaxsize'         => "图像大小限制：<br />''（用于文件描述页面）''",
+'imagemaxsize'         => '在文件描述页对图像大小限制为:',
 'thumbsize'            => '缩略图大小：',
 'widthheightpage'      => '$1×$2，$3页',
 'file-info'            => '（文件大小：$1，MIME类型：$2）',

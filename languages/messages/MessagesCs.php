@@ -2625,8 +2625,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Upozornění''': Tento soubor může obsahovat škodlivý kód, spuštěním můžete ohrozit svůj počítač.<hr />",
-'imagemaxsize'         => "Maximální velikost obrázku:<br />
-''(na stránce s popisem souboru)''",
+'imagemaxsize'         => 'Omezit obrázky na stránkách s popiskem na:',
 'thumbsize'            => 'Velikost náhledu:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|stránka|stránky|stránek}}',
 'file-info'            => '(velikost souboru: $1, MIME typ: $2)',

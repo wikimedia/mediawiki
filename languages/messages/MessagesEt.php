@@ -1804,7 +1804,7 @@ Samuti võimaldab see resümee reale põhjenduse lisamist.',
 
 # Media information
 'mediawarning'         => "'''Hoiatus''': See fail võib sisaldada pahatahtlikku koodi, mille käivitamime võib kahjustada teie arvutisüsteemi.<hr />",
-'imagemaxsize'         => "Maksimaalne pildi suurus:<br />''kirjelduslehekülgedel''",
+'imagemaxsize'         => 'Maksimaalne faili suurus kirjelduslehekülgedel:',
 'thumbsize'            => 'Pisipildi suurus:',
 'file-info-size'       => '($1 × $2 pikslit, faili suurus: $3, MIME tüüp: $4)',
 'file-nohires'         => '<small>Sellest suuremat pilti pole.</small>',

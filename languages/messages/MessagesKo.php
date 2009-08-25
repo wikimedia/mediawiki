@@ -2567,7 +2567,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''경고''': 이 파일에는 시스템을 위험하게 만드는 악성 코드가 들어있을 수 있습니다.<hr />",
-'imagemaxsize'         => "그림 크기를 제한하기:<br />''(파일 설명 페이지)''",
+'imagemaxsize'         => '파일 설명 문서의 그림 크기를 제한하기:',
 'thumbsize'            => '섬네일 크기:',
 'widthheightpage'      => '$1×$2, $3페이지',
 'file-info'            => '(파일 크기: $1, MIME 종류: $2)',

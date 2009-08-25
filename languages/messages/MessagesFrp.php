@@ -2534,7 +2534,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Atencion :''' ceti fichiér porrêt contegnir de code mâlvelyent, voutron sistèmo porrêt étre betâ en dangiér pendent son ègzécucion.<hr />",
-'imagemaxsize'         => "Format lo ples grant de les émâges :<br />''(por les pâges de dèscripcion d’émâges)''",
+'imagemaxsize'         => 'Format lo ples grant por les émâges dens les pâges de dèscripcion d’émâges :',
 'thumbsize'            => 'Talye de la figura :',
 'widthheightpage'      => '$1 × $2, $3 pâge{{PLURAL:$3||s}}',
 'file-info'            => '(Talye du fichiér : $1, tipo MIME : $2)',
