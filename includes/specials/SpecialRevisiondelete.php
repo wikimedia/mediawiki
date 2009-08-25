@@ -183,7 +183,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 	protected function showConvenienceLinks() {
 		global $wgOut, $wgUser, $wgLang;
 		# Give a link to the logs/hist for this page
-		if( $this->targetObj ) {
+		if( $this->targetObj && $this->targetObj->getNamespace() != NS_SPECIAL ) {
 			$links = array();
 			$logtitle = SpecialPage::getTitleFor( 'Log' );
 			$links[] = $this->skin->linkKnown(
