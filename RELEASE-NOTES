@@ -434,6 +434,8 @@ this. Was used when mwEmbed was going to be an extension.
   DatabaseBase::getFlag() now have documentation
 * (bug 19966) MediaWiki:License-header is now used for the licensing header in
   the file description page instead of MediaWiki:License
+* (bug 20380) Link to history/log action at the top of Special:RevisionDelete
+  are new more displayed when when doing log suppression
 
 == API changes in 1.16 ==
 
