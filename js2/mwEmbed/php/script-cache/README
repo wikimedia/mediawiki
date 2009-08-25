@@ -1,4 +1,6 @@
-This folder holds cached versions of grouped script requests.
+This folder holds cached versions of grouped script requests (if running mwEmbed in stand-alone-mode.
+(otherwise  $wgFileCacheDirectory from mediaWiki is used) 
+
 Be sure to enable write access by your web-server to this directory. 
   
 You can specify a different directory by updating the $wgFileCacheDirectory variable in noMediaWikiConfig.php

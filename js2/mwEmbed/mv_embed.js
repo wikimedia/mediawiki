@@ -211,7 +211,7 @@ lcPaths({
 	"mvFirefoggRender"	: "libSequencer/mvFirefoggRender.js",
 	"mvTimedEffectsEdit": "libSequencer/mvTimedEffectsEdit.js",
 
-	"libTimedText"		: "libTimedText/mvTextInterface.js"
+	"mvTextInterface"	: "libTimedText/mvTextInterface.js"
 
 });
 
@@ -1093,7 +1093,7 @@ function do_api_req( options, callback ){
 	if(!options.data['action'])
 		options.data['action']='query';
 
-	js_log('do api req: ' + options.url +'?' +  jQuery.param(options.data) );
+	//js_log('do api req: ' + options.url +'?' +  jQuery.param(options.data) );
 	//build request string:
 	if( parseUri( document.URL ).host == parseUri( options.url ).host ){
 		//local request do api request directly
