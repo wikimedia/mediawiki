@@ -111,8 +111,16 @@ class SpecialContributions extends SpecialPage {
 
 		# Show the appropriate "footer" message - WHOIS tools, etc.
 		if( $target != 'newbies' ) {
-			$message = IP::isIPAddress( $target ) ?
-				'sp-contributions-footer-anon' : 'sp-contributions-footer';
+			$message = 'sp-contributions-footer';
+			if ( IP::isIPAddress( $target ) ) {
+				$message = 'sp-contributions-footer-anon';
+			} else {
+				$user = User::newFromName( $target );
+				if ( !$user || $user->isAnon() ) {
+					// No message for non-existing users
+					return;
+				}
+			}
 
 			$text = wfMsgNoTrans( $message, $target );
 			if( !wfEmptyMsg( $message, $text ) && $text != '-' ) {
