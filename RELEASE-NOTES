@@ -487,6 +487,8 @@ this. Was used when mwEmbed was going to be an extension.
 * (bug 19907) $wgCrossSiteAJAXdomains added to allow specified (or all)
   external domains to access api.php via AJAX, if the browser supports the 
   Access-Control-Allow-Origin HTTP header
+* (bug 19999) Made metadata and properties of search results optional. Added
+  srprop and srinfo.
 
 === Languages updated in 1.16 ===
 
