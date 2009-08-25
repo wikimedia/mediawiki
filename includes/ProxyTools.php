@@ -174,7 +174,7 @@ function wfProxyCheck() {
 						escapeshellarg( $port ),
 						escapeshellarg( $url )
 						));
-			exec( "php $params &>" . wfGetNull() . " &" );
+			exec( "php $params >" . wfGetNull() . " 2>&1 &" );
 		}
 		# Set MemCached key
 		$wgMemc->set( $mcKey, 1, $wgProxyMemcExpiry );
