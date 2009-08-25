@@ -33,7 +33,10 @@ function doLivePreview( e ) {
 				//  with the content of the loaded page
 				var copyContent = page.find( copyElements[i] ).contents();
 				$j(copyElements[i]).empty().append( copyContent );
+				var newClasses = page.find( copyElements[i] ).attr('class');
+				$j(copyElements[i]).attr( 'class', newClasses );
 			}
+			
 			$j('#wikiPreview').slideDown();
 		} );
 }

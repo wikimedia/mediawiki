@@ -2604,6 +2604,8 @@ class Article {
 		$wgOut->setSubtitle( wfMsgHtml( 'delete-backlink', $deleteBackLink ) );
 		$wgOut->setRobotPolicy( 'noindex,nofollow' );
 		$wgOut->addWikiMsg( 'confirmdeletetext' );
+		
+		wfRunHooks( 'ArticleConfirmDelete', array( $this, $wgOut, &$reason ) );
 
 		if( $wgUser->isAllowed( 'suppressrevision' ) ) {
 			$suppress = "<tr id=\"wpDeleteSuppressRow\" name=\"wpDeleteSuppressRow\">
@@ -2703,14 +2705,14 @@ class Article {
 				$wgOut->addWikiMsg( 'deletedtext', $deleted, $loglink );
 				$wgOut->returnToMain( false );
 				wfRunHooks('ArticleDeleteComplete', array(&$this, &$wgUser, $reason, $id));
+			}
+		} else {
+			if( $error == '' ) {
+				$wgOut->showFatalError( wfMsgExt( 'cannotdelete', array( 'parse' ) ) );
+				$wgOut->addHTML( Xml::element( 'h2', null, LogPage::logName( 'delete' ) ) );
+				LogEventsList::showLogExtract( $wgOut, 'delete', $this->mTitle->getPrefixedText() );
 			} else {
-				if( $error == '' ) {
-					$wgOut->showFatalError( wfMsgExt( 'cannotdelete', array( 'parse' ) ) );
-					$wgOut->addHTML( Xml::element( 'h2', null, LogPage::logName( 'delete' ) ) );
-					LogEventsList::showLogExtract( $wgOut, 'delete', $this->mTitle->getPrefixedText() );
-				} else {
-					$wgOut->showFatalError( $error );
-				}
+				$wgOut->showFatalError( $error );
 			}
 		}
 	}
