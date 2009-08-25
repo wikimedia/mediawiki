@@ -24,7 +24,8 @@ function doLivePreview( e ) {
 	page.load( wgScript+'?action=submit',
 				postData,
 		function() {
-			var copyElements = ['#wikiPreview', '.templatesUsed', '.hiddencats'];
+			var copyElements = ['#wikiPreview', '.templatesUsed', '.hiddencats',
+								'#catlinks'];
 			
 			for( var i=0; i<copyElements.length; ++i) {
 				// For all the specified elements, find the elements in the loaded page
