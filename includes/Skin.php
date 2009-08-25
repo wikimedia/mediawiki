@@ -178,17 +178,15 @@ class Skin extends Linker {
 
 		wfProfileIn( __METHOD__ );
 
-		# Add favicons and Apple touch icons, if they're not the defaults
-		#
 		# Generally the order of the favicon and apple-touch-icon links
 		# should not matter, but Konqueror (3.5.9 at least) incorrectly
 		# uses whichever one appears later in the HTML source.  Make sure
 		# apple-touch-icon is specified first to avoid this.
-		if( false !== $wgAppleTouchIcon && wfExpandUrl('/apple-touch-icon.png') != wfExpandUrl($wgAppleTouchIcon) ) {
+		if( false !== $wgAppleTouchIcon ) {
 			$out->addLink( array( 'rel' => 'apple-touch-icon', 'href' => $wgAppleTouchIcon ) );
 		}
 
-		if( false !== $wgFavicon && wfExpandUrl('/favicon.ico') != wfExpandUrl($wgFavicon) ) {
+		if( false !== $wgFavicon ) {
 			$out->addLink( array( 'rel' => 'shortcut icon', 'href' => $wgFavicon ) );
 		}
 

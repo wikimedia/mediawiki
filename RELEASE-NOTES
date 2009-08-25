@@ -371,8 +371,6 @@ this. Was used when mwEmbed was going to be an extension.
 * (bugs 18407, 18409) Special:Upload is now listed on Special:Specialpages only
   if uploads are enabled and the user can access it
 * (bug 17988) Spaces before [[Category:]] links are no longer ignored
-* (bug 19392) Favicon, apple-touch-icon links matching the defaults are no 
-  longer sent
 * (bug 19957) All known-failing tests now marked disabled; added --run-disabled
   option to parser test suite to run disabled tests if desired.
 * (bug 16311) Make recent change flags (n/m/b) <abbr>s instead of <span>s
