@@ -1651,7 +1651,6 @@ You can [[:\$1|create this page]].",
 'searchall'                        => 'all',
 'showingresults'                   => "Showing below up to {{PLURAL:$1|'''1''' result|'''$1''' results}} starting with #'''$2'''.",
 'showingresultsnum'                => "Showing below {{PLURAL:$3|'''1''' result|'''$3''' results}} starting with #'''$2'''.",
-'showingresultstotal'              => "Showing below {{PLURAL:$4|result '''$1''' of '''$3'''|results '''$1 - $2''' of '''$3'''}}",
 'showingresultsheader'             => "{{PLURAL:$5|Result '''$1''' of '''$3'''|Results '''$1 - $2''' of '''$3'''}} for '''$4'''",
 'nonefound'                        => "'''Note''': Only some namespaces are searched by default.
 Try prefixing your query with ''all:'' to search all content (including talk pages, templates, etc), or use the desired namespace as prefix.",
