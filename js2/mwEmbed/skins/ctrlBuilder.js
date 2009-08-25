@@ -79,9 +79,9 @@ var ctrlBuilder = {
 					if($j('#gnp_' + embedObj.id).length==0){
 						$j(this).append('<div id="gnp_' + embedObj.id + '" class="ui-state-highlight ui-corner-all" ' +
 							'style="position:absolute;display:none;background:#FFF;top:10px;left:10px;right:10px;">' +
-							gM('mv_for_best_experience') + 
+							gM('mwe-for_best_experience') + 
 						'<br><input id="ffwarn_'+embedObj.id+'" type=\"checkbox\">' + 
-							gM('mv_do_not_warn_again') + 
+							gM('mwe-do_not_warn_again') + 
 						'</div>');							
 						$j('#ffwarn_'+embedObj.id).click(function(){
 							if( $j(this).is(':checked') ){
@@ -146,7 +146,7 @@ var ctrlBuilder = {
 				var perc = ui.value/1000;																																			
 				embedObj.jump_time = seconds2npt( parseFloat( parseFloat(embedObj.getDuration()) * perc ) + embedObj.start_time_sec);	
 				//js_log('perc:' + perc + ' * ' + embedObj.getDuration() + ' jt:'+  this.jump_time);
-				embedObj.setStatus( gM('seek_to')+' '+embedObj.jump_time );	
+				embedObj.setStatus( gM('mwe-seek_to')+' '+embedObj.jump_time );	
 				//update the thumbnail / frame 
 				if(embedObj.isPlaying==false){
 					embedObj.updateThumbPerc( perc );
@@ -268,9 +268,9 @@ var ctrlBuilder = {
 					'<h6>Video Options</h6>'+
 				'</div>'+
 					'<div class="block">'+
-						'<p class="short_match vo_selection"><a href="#"><span>Stream Selection</span></a></p>'+
-						'<p class="short_match vo_download"><a href="#"><span>Download</span></a></p>'+
-						'<p class="short_match vo_showcode"><a href="#"><span>Share or Embed</span></a></p>';
+						'<p class="short_match vo_selection"><a href="#"><span>'+gM('mwe-chose_player')+'</span></a></p>'+
+						'<p class="short_match vo_download"><a href="#"><span>'+gM('mwe-download')+'</span></a></p>'+
+						'<p class="short_match vo_showcode"><a href="#"><span>'+gM('mwe-share')+'</span></a></p>';
 					
 					//link to the stream page if we are not already there: 
 					if( ctrlBuilder.embedObj.roe && typeof mv_stream_interface == 'undefined' )
@@ -286,31 +286,31 @@ var ctrlBuilder = {
 		'fullscreen':{
 			'w':20,
 			'o':function(){
-				return '<div title="' + gM('player_fullscreen') + '" id="fullscreen_'+ctrlBuilder.id+'" class="ui-state-default ui-corner-all ui-icon_link rButton"><span class="ui-icon ui-icon-arrow-4-diag"></span></div>'
+				return '<div title="' + gM('mwe-player_fullscreen') + '" id="fullscreen_'+ctrlBuilder.id+'" class="ui-state-default ui-corner-all ui-icon_link rButton"><span class="ui-icon ui-icon-arrow-4-diag"></span></div>'
 			}
 		},
 		'options':{
 			'w':26,
 			'o':function(){
-				return '<div title="'+ gM('player_options') + '" id="options_button_'+ctrlBuilder.id+'" class="ui-state-default ui-corner-all ui-icon_link rButton"><span class="ui-icon ui-icon-wrench"></span></div>';						 
+				return '<div title="'+ gM('mwe-player_options') + '" id="options_button_'+ctrlBuilder.id+'" class="ui-state-default ui-corner-all ui-icon_link rButton"><span class="ui-icon ui-icon-wrench"></span></div>';						 
 			}
 		},
 		'pause':{
 			'w':24,
 			'o':function(){
-				return '<div title="' + gM('play_clip') + '" id="mv_play_pause_button_' + ctrlBuilder.id + '" class="ui-state-default ui-corner-all ui-icon_link lButton"><span class="ui-icon ui-icon-play"/></div>';
+				return '<div title="' + gM('mwe-play_clip') + '" id="mv_play_pause_button_' + ctrlBuilder.id + '" class="ui-state-default ui-corner-all ui-icon_link lButton"><span class="ui-icon ui-icon-play"/></div>';
 			}
 		},
 		'closed_captions':{
 			'w':23,
 			'o':function(){
-				return '<div title="' + gM('closed_captions') + '" id="timed_text_'+ctrlBuilder.id+'" class="ui-state-default ui-corner-all ui-icon_link rButton"><span class="ui-icon ui-icon-comment"></span></div>'
+				return '<div title="' + gM('mwe-closed_captions') + '" id="timed_text_'+ctrlBuilder.id+'" class="ui-state-default ui-corner-all ui-icon_link rButton"><span class="ui-icon ui-icon-comment"></span></div>'
 			}			
 		},
 		'volume_control':{
 			'w':23,
 			'o':function(){
-					return '<div title="' + gM('volume_control') + '" id="volume_control_'+ctrlBuilder.id+'" class="ui-state-default ui-corner-all ui-icon_link rButton">' +
+					return '<div title="' + gM('mwe-volume_control') + '" id="volume_control_'+ctrlBuilder.id+'" class="ui-state-default ui-corner-all ui-icon_link rButton">' +
 								'<span class="ui-icon ui-icon-volume-on"></span>' +
 								'<div style="position:absolute;display:none;" id="vol_container_'+ctrlBuilder.id+'" class="vol_container ui-corner-all">' +
 									'<div class="volume_bar" id="volume_bar_' + ctrlBuilder.id + '"></div>' +

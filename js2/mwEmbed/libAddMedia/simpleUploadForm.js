@@ -46,32 +46,33 @@ var default_form_options = {
 			}
 
 			//build an upload form:
-			var o = ''+
-				'<form id="suf-upload" enctype="multipart/form-data" action="' + opt.api_target + '" method="post">'  +
-				//hidden input:
-				'<input type="hidden" name="action" value="upload">'+
-				'<input type="hidden" name="format" value="jsonfm">'+
-				'<input type="hidden" name="token" value="'+ eToken +'">' +
-
-				//form name set:
-				'<label for="wpUploadFile">' + gM('mwe-select_file') + '</label><br>'+
-				'<input type="file" style="display: inline;" name="wpUploadFile" size="15"/><br>' +
-
-				'<label for="wpDestFile">' +gM('mwe-destfilename') + '</label><br>'+
-				'<input type="text" name="wpDestFile" size="30" /><br>'+
-
-				'<label for="wpUploadDescription">' + gM('mwe-summary') + ':</label><br>' +
-				'<textarea cols="30" rows="3" name="wpUploadDescription" tabindex="3"/><br>'+
-
-				'<div id="wpDestFile-warning"></div>' +
-				'<div style="clear:both;"></div>' +
-
-				gM('mwe-select_ownwork') + '<br>' +
-				'<input type="checkbox" id="wpLicence" name="wpLicence" value="cc-by-sa">' + gM('mwe-licence_cc-by-sa') + '<br>' +
-
-				'<input type="submit" accesskey="s" value="' + gM('mwe-upload') + '" name="wpUploadBtn" id="wpUploadBtn"  tabindex="9"/>' +
-				//close the form and div
-				'</form>';
+			var o = '<div>'+
+						'<form id="suf-upload" enctype="multipart/form-data" action="' + opt.api_target + '" method="post">'  +
+						//hidden input:
+						'<input type="hidden" name="action" value="upload">'+
+						'<input type="hidden" name="format" value="jsonfm">'+
+						'<input type="hidden" name="token" value="'+ eToken +'">' +
+			
+						//form name set:
+						'<label for="wpUploadFile">' + gM('mwe-select_file') + '</label><br>'+
+						'<input type="file" style="display: inline;" name="wpUploadFile" size="15"/><br>' +
+			
+						'<label for="wpDestFile">' +gM('mwe-destfilename') + '</label><br>'+
+						'<input type="text" name="wpDestFile" size="30" /><br>'+
+			
+						'<label for="wpUploadDescription">' + gM('mwe-summary') + ':</label><br>' +
+						'<textarea cols="30" rows="3" name="wpUploadDescription" tabindex="3"/><br>'+
+			
+						'<div id="wpDestFile-warning"></div>' +
+						'<div style="clear:both;"></div>' +
+			
+						gM('mwe-select_ownwork') + '<br>' +
+						'<input type="checkbox" id="wpLicence" name="wpLicence" value="cc-by-sa">' + gM('mwe-licence_cc-by-sa') + '<br>' +
+			
+						'<input type="submit" accesskey="s" value="' + gM('mwe-upload') + '" name="wpUploadBtn" id="wpUploadBtn"  tabindex="9"/>' +
+						//close the form and div
+						'</form>' +
+				'</div>';
 
 			//set the target with the form output:
 			$( _this.selector ).html( o );
@@ -88,7 +89,7 @@ var default_form_options = {
 			});
 			//do destination fill:
 			//@@should integrate with doDestinationFill on upload page
-			$j("[name='wpUploadFile']").change(function(){
+			$j("#suf-upload [name='wpUploadFile']").change(function(){
 				var path = $j(this).val();
 				// Find trailing part
 				var slash = path.lastIndexOf('/');
@@ -103,9 +104,9 @@ var default_form_options = {
 				}
 				fname = fname.charAt(0).toUpperCase().concat(fname.substring(1,10000)).replace(/ /g, '_');
 				// Output result
-				$j("[name='wpDestFile']").val( fname );
+				$j("#suf-upload [name='wpDestFile']").val( fname );
 				//do destination check
-				$j("[name='wpDestFile']").doDestCheck({
+				$j("#suf-upload [name='wpDestFile']").doDestCheck({
 					'warn_target':'#wpDestFile-warning'
 				});
 			});

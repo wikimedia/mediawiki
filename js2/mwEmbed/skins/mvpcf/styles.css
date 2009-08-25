@@ -740,3 +740,57 @@ ui-widget-overlay{
 	position:absolute;
 	left:-1px;		
 }
+
+/* related videos Video */
+.related_vids {			
+	top:10px;
+	left:5px;
+	right:5px;
+	bottom:5px;
+	position:absolute;
+	overflow-y:auto;	
+}
+.related_vids h1 {
+	border:medium none;
+	font-size:20px;
+	margin:4px 0px 4px 11px;
+	padding:0;
+	color:#F0F0F0;
+	font-family:arial,sans-serif;
+}
+
+.related_vids ul {
+	margin:0;
+	padding:0;
+	
+	list-style-image:none;
+	list-style-position:inside;
+	list-style-type:none;
+	margin:0;
+	padding:0;
+}
+
+
+.related_vids li{
+	-x-system-font:none;
+	color:#FAFAFA;
+	display:table;
+	font-family:arial,sans-serif;
+	font-size:11px;
+	line-height:normal;
+	margin:0 0 6px 35px;
+	padding:0;
+}
+
+.related_vids li div {
+	float:right;
+	margin:5px 0 0 10px;
+	width:200px;
+}
+
+.related_vids img {
+	width:80px;	
+	z-index:2;
+	border-bottom:3px solid #36393D;
+	border-top:3px solid #36393D;
+}

@@ -607,9 +607,9 @@ remoteSearchDriver.prototype = {
 					//load  this_wiki search system to grab the rObj
 					_this.loadSearchLib(cp, function(){
 						//do basic layout form on left upload "bin" on right
-						$j('#tab-upload').html('<table cellspacing="10">' +
+						$j('#tab-upload').html('<table>' +
 						'<tr>' +
-							'<td valign="top" style="width:350px;">' +
+							'<td valign="top" style="width:350px; padding-right: 12px;">' +
 								'<h4>' + gM('mwe-upload_a_file') + '</h4>' +
 							 	'<div id="upload_form">' +
 							 		mv_get_loading_img() +
@@ -639,19 +639,16 @@ remoteSearchDriver.prototype = {
 						$j('#upload_form').simpleUploadForm({
 							"api_target" :	_this.upload_api_target ,
 							"ondone_cb"	: function( resultData ){
-								var wTitle = resultData['wpDestFile'];
+								var wTitle = resultData['wpDestFile'];								
 								//add a loading div
-								$j( _this.target_container ).append('<div id="temp_edit_loader" '+
-									'style="position:absolute;top:0px;left:0px;bottom:5px;right:4px;background-color:#FFF;">' +
-										mv_get_loading_img('position:absolute;top:30px;left:30px') +
-								'</div>');
-									cp.sObj.addByTitle( wTitle, function( rObj ){
-										$j( _this.target_container ).find('#temp_edit_loader').remove();
-										//redraw (with added result if new)
-										_this.drawOutputResults();
-										//pull up recource editor:
-										_this.resourceEdit( rObj, $j('#res_upload_' + rObj.id).get(0) );
-									});
+								_this.addResourceEditLoader();
+								
+								cp.sObj.addByTitle( wTitle, function( rObj ){									
+									//redraw (with added result if new)
+									_this.drawOutputResults();
+									//pull up recource editor:									
+									_this.resourceEdit( rObj, $j('#res_upload__' + rObj.id).get(0) );									
+								});
 								//return false to close progress window:
 								return false;
 							}
@@ -1012,7 +1009,7 @@ remoteSearchDriver.prototype = {
 					o+='</div>';
 				}else if(_this.result_display_mode == 'list'){
 					o+='<div id="mv_result_' + rInx + '" class="mv_clip_list_result" style="width:90%">';
-						o+='<img title="'+rItem.title+'" class="rsd_res_item" id="res_' + cp_id + '_' + rInx +'" style="float:left;width:' +
+						o+='<img title="'+rItem.title+'" class="rsd_res_item" id="res_' + cp_id + '__' + rInx +'" style="float:left;width:' +
 								 _this.thumb_width + 'px;" src="' +
 								 cp.sObj.getImageTransform( rItem, {'width':_this.thumb_width } )
 								  + '">';
@@ -1456,14 +1453,13 @@ remoteSearchDriver.prototype = {
 			myUp = new mvBaseUploadInterface({
 				'api_url' : _this.local_wiki_api_url,
 				'done_upload_cb':function(){
-				   //we have finished the upload:
-
-				   //close up the rsd_resource_import
-				   $j('#rsd_resource_import').remove();
-				   //run the parent callback:
-				   cir_callback();
-				   //return false to avoid BaseUploadInterface done actions
-				   return false;
+					js_log('doImportAPI:: run callback::' );
+					//we have finished the upload:
+				
+					//close up the rsd_resource_import
+					$j('#rsd_resource_import').remove();
+					//return the parent callback:
+					return cir_callback();					
 				}
 			});
 			//set the edit token if we have it handy
@@ -1577,7 +1573,6 @@ remoteSearchDriver.prototype = {
 										$j('#rsd_resource_import').remove();
 									});
 								}
-
 							}
 						);
 					}
