@@ -24,8 +24,8 @@ var os_mouse_moved = false;
 // delay between keypress and suggestion (in ms)
 var os_search_timeout = 250;
 // these pairs of inputs/forms will be autoloaded at startup
-var os_autoload_inputs = ['searchInput', 'searchInput2', 'powerSearchText', 'searchText'];
-var os_autoload_forms = ['searchform', 'searchform2', 'powersearch', 'search'];
+var os_autoload_inputs = new Array('searchInput', 'searchInput2', 'powerSearchText', 'searchText');
+var os_autoload_forms = new Array('searchform', 'searchform2', 'powersearch', 'search' );
 // if we stopped the service
 var os_is_stopped = false;
 // max lines to show in suggest table
@@ -364,7 +364,7 @@ function os_createResultTable(r, results){
 	var c = document.getElementById(r.container);
 	var width = c.offsetWidth - os_operaWidthFix(c.offsetWidth);
 	var html = "<table class=\"os-suggest-results\" id=\""+r.resultTable+"\" style=\"width: "+width+"px;\">";
-	r.results = [];
+	r.results = new Array();
 	r.resultCount = results.length;
 	for(i=0;i<results.length;i++){
 		var title = os_decodeValue(results[i]);

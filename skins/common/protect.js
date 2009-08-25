@@ -250,7 +250,7 @@ var ProtectionForm = {
 	 */
 	'getLevelSelectors': function() {
 		var all = document.getElementsByTagName("select");
-		var ours = [];
+		var ours = new Array();
 		for (var i = 0; i < all.length; i++) {
 			var element = all[i];
 			if (element.id.match(/^mwProtect-level-/)) {
@@ -279,7 +279,7 @@ var ProtectionForm = {
 	 */
 	'getExpiryInputs': function() {
 		var all = document.getElementsByTagName("input");
-		var ours = [];
+		var ours = new Array();
 		for (var i = 0; i < all.length; i++) {
 			var element = all[i];
 			if (element.name.match(/^mwProtect-expiry-/)) {
@@ -307,7 +307,7 @@ var ProtectionForm = {
 	 */
 	'getExpirySelectors': function() {
 		var all = document.getElementsByTagName("select");
-		var ours = [];
+		var ours = new Array();
 		for (var i = 0; i < all.length; i++) {
 			var element = all[i];
 			if (element.id.match(/^mwProtectExpirySelection-/)) {
