@@ -1542,7 +1542,7 @@ $1",
 'upload-curl-error28-text' => '網站回應時間過長。請檢查此網站的訪問是否正常，過一會再進行嘗試。您可能需要在網路訪問空閒時間再次進行嘗試。',
 
 'license'            => '授權:',
-'license-header'     => '授權:',
+'license-header'     => '授權',
 'nolicense'          => '未選定',
 'license-nopreview'  => '（無預覽可用）',
 'upload_source_url'  => ' （一個有效的，可公開訪問的 URL）',

@@ -1557,7 +1557,7 @@ $1",
 'upload-curl-error28-text' => '站点响应时间过长。请检查此网站的访问是否正常，过一会再进行尝试。您可能需要在网络访问空闲时间再次进行尝试。',
 
 'license'            => '授权：',
-'license-header'     => '授权：',
+'license-header'     => '授权',
 'nolicense'          => '未选定',
 'license-nopreview'  => '（无预览可用）',
 'upload_source_url'  => '（有效、可以公开访问的URL）',

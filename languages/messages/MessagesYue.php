@@ -1523,7 +1523,7 @@ $1",
 'upload-curl-error28-text' => '個網站用咗太多時間回應。請檢查個網站已經係上咗綫，等多一陣然後再試過。你可以響冇咁繁忙嘅時間再試。',
 
 'license'            => '協議:',
-'license-header'     => '協議:',
+'license-header'     => '協議',
 'nolicense'          => '未揀',
 'license-nopreview'  => '（無預覽可以用得到）',
 'upload_source_url'  => ' （啱嘅，公開嘅網址）',

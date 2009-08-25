@@ -1321,6 +1321,8 @@ $1",
 'upload-unknown-size'       => '未知之積',
 'upload-http-error'         => '發一HTTP之錯：$1',
 
+'license'            => '權：',
+'license-header'     => '權',
 'license-nopreview' => '（謝草覽）',
 
 # Special:ListFiles
