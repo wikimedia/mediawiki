@@ -902,14 +902,11 @@ END;
 
 		$classes = 'catlinks';
 
-		if( strpos( $catlinks, '<div id="mw-normal-catlinks">' ) === false &&
-			strpos( $catlinks, '<div id="mw-hidden-catlinks" class="mw-hidden-cats-hidden">' ) !== false ) {
+		if( strpos( $catlinks, '<div id="mw-normal-catlinks">' ) === false ) {
 			$classes .= ' catlinks-allhidden';
 		}
 
-		if( !empty( $catlinks ) ){
-			return "<div id='catlinks' class='$classes'>{$catlinks}</div>";
-		}
+		return "<div id='catlinks' class='$classes'>{$catlinks}</div>";
 	}
 
 	function getQuickbarCompensator( $rows = 1 ) {

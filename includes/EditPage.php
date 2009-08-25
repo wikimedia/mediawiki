@@ -1581,6 +1581,12 @@ END
 END
 );
 
+		if (!$this->preview) {
+			$wgOut->addHTML( Xml::tags( 'div',
+										array( 'class' => 'catlinks catlinks-allhidden',
+												'id' => 'catlinks' ), ' ' ) );
+		}
+
 		if ( $this->isConflict && wfRunHooks( 'EditPageBeforeConflictDiff', array( &$this, &$wgOut ) ) ) {
 			$wgOut->wrapWikiMsg( '==$1==', "yourdiff" );
 
@@ -2316,36 +2322,6 @@ END
 
 		wfRunHooks( 'EditPageBeforeEditButtons', array( &$this, &$buttons, &$tabindex ) );
 		return $buttons;
-	}
-
-	/**
-	 * Output preview text only. This can be sucked into the edit page
-	 * via JavaScript, and saves the server time rendering the skin as
-	 * well as theoretically being more robust on the client (doesn't
-	 * disturb the edit box's undo history, won't eat your text on
-	 * failure, etc).
-	 *
-	 * @todo This doesn't include category or interlanguage links.
-	 *       Would need to enhance it a bit, <s>maybe wrap them in XML
-	 *       or something...</s> that might also require more skin
-	 *       initialization, so check whether that's a problem.
-	 */
-	function livePreview() {
-		global $wgOut;
-		$wgOut->disable();
-		header( 'Content-type: text/xml; charset=utf-8' );
-		header( 'Cache-control: no-cache' );
-
-		$previewText = $this->getPreviewText();
-		#$categories = $skin->getCategoryLinks();
-
-		$s =
-		'<?xml version="1.0" encoding="UTF-8" ?>' . "\n" .
-		Xml::tags( 'livepreview', null,
-			Xml::element( 'preview', null, $previewText )
-			#.	Xml::element( 'category', null, $categories )
-		);
-		echo $s;
 	}
 
 
