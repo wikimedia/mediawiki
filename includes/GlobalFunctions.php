@@ -33,18 +33,71 @@ if( !function_exists('iconv') ) {
 	}
 }
 
-# UTF-8 substr function based on a PHP manual comment
 if ( !function_exists( 'mb_substr' ) ) {
-	function mb_substr( $str, $start ) {
-		$ar = array();
-		preg_match_all( '/./us', $str, $ar );
-
-		if( func_num_args() >= 3 ) {
-			$end = func_get_arg( 2 );
-			return join( '', array_slice( $ar[0], $start, $end ) );
-		} else {
-			return join( '', array_slice( $ar[0], $start ) );
+	/**
+	 * Fallback implementation for mb_substr, hardcoded to UTF-8.
+	 * Attempts to be at least _moderately_ efficient; best optimized
+	 * for relatively small offset and count values -- about 5x slower
+	 * than native mb_string in my testing.
+	 *
+	 * Larger offsets are still fairly efficient for Latin text, but
+	 * can be up to 100x slower than native if the text is heavily
+	 * multibyte and we have to slog through a few hundred kb.
+	 */
+	function mb_substr( $str, $start, $count='end' ) {
+		if( $start != 0 ) {
+			$split = mb_substr_split_unicode( $str, intval( $start ) );
+			$str = substr( $str, $split );
 		}
+		
+		if( $count !== 'end' ) {
+			$split = mb_substr_split_unicode( $str, intval( $count ) );
+			$str = substr( $str, 0, $split );
+		}
+		
+		return $str;
+	}
+	
+	function mb_substr_split_unicode( $str, $splitPos ) {
+		if( $splitPos == 0 ) {
+			return 0;
+		}
+		
+		$byteLen = strlen( $str );
+		
+		if( $splitPos > 0 ) {
+			if( $splitPos > 256 ) {
+				// Optimize large string offsets by skipping ahead N bytes.
+				// This will cut out most of our slow time on Latin-based text,
+				// and 1/2 to 1/3 on East European and Asian scripts.
+				$bytePos = $splitPos;
+				while ($bytePos < $byteLen && $str{$bytePos} >= "\x80" && $str{$bytePos} < "\xc0")
+					++$bytePos;
+				$charPos = mb_strlen( substr( $str, 0, $bytePos ) );
+			} else {
+				$charPos = 0;
+				$bytePos = 0;
+			}
+			
+			while( $charPos++ < $splitPos ) {
+				++$bytePos;
+				// Move past any tail bytes
+				while ($bytePos < $byteLen && $str{$bytePos} >= "\x80" && $str{$bytePos} < "\xc0")
+					++$bytePos;
+			}
+		} else {
+			$splitPosX = $splitPos + 1;
+			$charPos = 0; // relative to end of string; we don't care about the actual char position here
+			$bytePos = $byteLen;
+			while( $bytePos > 0 && $charPos-- >= $splitPosX ) {
+				--$bytePos;
+				// Move past any tail bytes
+				while ($bytePos > 0 && $str{$bytePos} >= "\x80" && $str{$bytePos} < "\xc0")
+					--$bytePos;
+			}
+		}
+		
+		return $bytePos;
 	}
 }
 
