@@ -2641,6 +2641,7 @@ class Article {
 				"</td>
 				<td class='mw-input'>" .
 				Html::input( 'wpReason', $reason, 'text', array(
+					'size' => '60',
 					'maxlength' => '255',
 					'tabindex' => '2',
 					'id' => 'wpReason',
