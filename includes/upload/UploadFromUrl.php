@@ -62,11 +62,6 @@ class UploadFromUrl extends UploadBase {
 	 * @param $request Object: WebRequest object
 	 */
 	public function initializeFromRequest( &$request ) {
-
-		// set dl mode if not set:
-		if( !$this->dl_mode )
-			$this->dl_mode = Http::SYNC_DOWNLOAD;
-
 		$desiredDestName = $request->getText( 'wpDestFile' );
 		if( !$desiredDestName )
 			$desiredDestName = $request->getText( 'wpUploadFile' );

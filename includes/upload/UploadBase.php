@@ -18,6 +18,7 @@ abstract class UploadBase {
 	protected $mDesiredDestName, $mDestName, $mRemoveTempFile, $mSourceType;
 	protected $mTitle = false, $mTitleError = 0;
 	protected $mFilteredName, $mFinalExtension;
+	protected $mLocalFile;
 
 	const SUCCESS = 0;
 	const OK = 0;
@@ -175,17 +176,19 @@ abstract class UploadBase {
 		if( $verification !== true ) {
 			if( !is_array( $verification ) )
 				$verification = array( $verification );
-			$verification['status'] = self::VERIFICATION_ERROR;
-			return $verification;
+			return array( 'status' => self::VERIFICATION_ERROR,
+					'details' => $verification );
+
 		}
 
 		$error = '';
 		if( !wfRunHooks( 'UploadVerification',
 				array( $this->mDestName, $this->mTempPath, &$error ) ) ) {
+			// This status needs another name...
 			return array( 'status' => self::UPLOAD_VERIFICATION_ERROR, 'error' => $error );
 		}
 
-		return self::OK;
+		return array( 'status' => self::OK );
 	}
 
 	/**
@@ -202,7 +205,7 @@ abstract class UploadBase {
 
 		#magically determine mime type
 		$magic = MimeMagic::singleton();
-		$mime = $magic->guessMimeType( $this->mTempFile, false );
+		$mime = $magic->guessMimeType( $this->mTempPath, false );
 
 		#check mime type, if desired
 		global $wgVerifyMimeType;
@@ -212,11 +215,11 @@ abstract class UploadBase {
 				return array( 'filetype-badmime', $mime );
 
 			# Check IE type
-			$fp = fopen( $this->mTempFile, 'rb' );
+			$fp = fopen( $this->mTempPath, 'rb' );
 			$chunk = fread( $fp, 256 );
 			fclose( $fp );
 			$extMime = $magic->guessTypesForExtension( $this->mFinalExtension );
-			$ieTypes = $magic->getIEMimeTypes( $tmpfile, $chunk, $extMime );
+			$ieTypes = $magic->getIEMimeTypes( $this->mTempPath, $chunk, $extMime );
 			foreach ( $ieTypes as $ieType ) {
 				if ( $this->checkFileExtension( $ieType, $wgMimeTypeBlacklist ) ) {
 					return array( 'filetype-bad-ie-mime', $ieType );
@@ -225,11 +228,11 @@ abstract class UploadBase {
 		}
 
 		#check for htmlish code and javascript
-		if( self::detectScript( $tmpfile, $mime, $this->mFinalExtension ) ) {
+		if( self::detectScript( $this->mTempPath, $mime, $this->mFinalExtension ) ) {
 			return 'uploadscripted';
 		}
 		if( $this->mFinalExtension == 'svg' || $mime == 'image/svg+xml' ) {
-			if( self::detectScriptInSvg( $tmpfile ) ) {
+			if( self::detectScriptInSvg( $this->mTempPath ) ) {
 				return 'uploadscripted';
 			}
 		}
@@ -237,7 +240,7 @@ abstract class UploadBase {
 		/**
 		* Scan the uploaded file for viruses
 		*/
-		$virus = $this->detectVirus( $tmpfile );
+		$virus = $this->detectVirus( $this->mTempPath );
 		if ( $virus ) {
 			return array( 'uploadvirus', $virus );
 		}

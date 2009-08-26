@@ -226,8 +226,8 @@ class UploadForm extends SpecialPage {
 
 			case UploadBase::VERIFICATION_ERROR:
 				unset( $details['status'] );
-				$code = array_shift( $details );
-				$this->uploadError( wfMsgExt( $code, 'parseinline', $details ) );
+				$code = array_shift( $details['details'] );
+				$this->uploadError( wfMsgExt( $code, 'parseinline', $details['details'] ) );
 				break;
 
 			case UploadBase::UPLOAD_VERIFICATION_ERROR:
@@ -284,7 +284,7 @@ class UploadForm extends SpecialPage {
 
 		// Check whether this is a sane upload
 		$result = $this->mUpload->verifyUpload();
-		if( $result != UploadBase::OK )
+		if( $result['status'] != UploadBase::OK )
 			return $result;
 
 		$this->mLocalFile = $this->mUpload->getLocalFile();
