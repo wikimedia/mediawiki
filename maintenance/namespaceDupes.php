@@ -132,6 +132,7 @@ class NamespaceConflictChecker extends Maintenance {
 
 	/**
 	 * Get the interwiki list
+	 * @todo Needs to respect interwiki cache!
 	 * @return array
 	 */
 	private function getInterwikiList() {
@@ -280,9 +281,9 @@ class NamespaceConflictChecker extends Maintenance {
 			}
 			$this->output( "...  *** using suffixed form [[" . $title->getPrefixedText() . "]] ***\n" );
 		}
-		$tables = array( 'page' );
+		$tables = array( 'page' => 'page' );
 		foreach( $tables as $table ) {
-			$this->resolveConflictOn( $row, $table );
+			$this->resolveConflictOn( $row, $table, $prefix );
 		}
 		return true;
 	}
@@ -291,18 +292,19 @@ class NamespaceConflictChecker extends Maintenance {
 	 * Resolve a given conflict
 	 * @param $row Row from the old broken entry
 	 * @param $table String Table to update
+	 * @param $prefix String Prefix for column name, like page or ar
 	 */
-	private function resolveConflictOn( $row, $table ) {
+	private function resolveConflictOn( $row, $table, $prefix ) {
 		$this->output( "... resolving on $table... " );
 		$newTitle = Title::makeTitleSafe( $row->namespace, $row->title );
 		$this->db->update( $table,
 			array(
-				"{$table}_namespace" => $newTitle->getNamespace(),
-				"{$table}_title"     => $newTitle->getDBkey(),
+				"{$prefix}_namespace" => $newTitle->getNamespace(),
+				"{$prefix}_title"     => $newTitle->getDBkey(),
 			),
 			array(
-				"{$table}_namespace" => 0,
-				"{$table}_title"     => $row->oldtitle,
+				"{$prefix}_namespace" => 0,
+				"{$prefix}_title"     => $row->oldtitle,
 			),
 			__METHOD__ );
 		$this->output( "ok.\n" );
