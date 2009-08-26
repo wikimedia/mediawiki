@@ -7029,6 +7029,32 @@ Bug 5678: Double-parsed template invocation
 !! end
 
 !! test
+Case insensitivity of parser functions for non-ASCII characters (bug 8143)
+!! options
+language=cs
+title=[[Main Page]]
+!! input
+{{PRVNÍVELKÉ:ěščř}}
+{{prvnívelké:ěščř}}
+{{PRVNÍMALÉ:ěščř}}
+{{prvnímalé:ěščř}}
+{{MALÁ:ěščř}}
+{{malá:ěščř}}
+{{VELKÁ:ěščř}}
+{{velká:ěščř}}
+!! result
+<p>Ěščř
+Ěščř
+ěščř
+ěščř
+ěščř
+ěščř
+ĚŠČŘ
+ĚŠČŘ
+</p>
+!! end
+
+!! test
 Morwen/13: Unclosed link followed by heading
 !! input
 [[link

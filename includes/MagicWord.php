@@ -230,6 +230,14 @@ class MagicWord {
 		return self::$mDoubleUnderscoreArray;
 	}
 
+	/**
+	 * Clear the self::$mObjects variable
+	 * For use in parser tests
+	 */
+	public static function clearCache() {
+		self::$mObjects = array();
+	}
+
 	# Initialises this object with an ID
 	function load( $id ) {
 		global $wgContLang;
