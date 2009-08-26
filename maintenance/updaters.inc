@@ -1005,6 +1005,7 @@ function index_has_field($table, $index, $field) {
 }
 
 function do_backlinking_indices_update() {
+	global $wgDatabase;
 	wfOut( "Checking for backlinking indices...\n" );
 	if (!index_has_field('pagelinks', 'pl_namespace', 'pl_from') ||
 		!index_has_field('templatelinks', 'tl_namespace', 'tl_from') ||
@@ -1016,6 +1017,7 @@ function do_backlinking_indices_update() {
 }
 
 function do_categorylinks_indices_update() {
+	global $wgDatabase;
 	wfOut( "Checking for categorylinks indices...\n" );
 	if (!index_has_field('categorylinks', 'cl_sortkey', 'cl_from'))
 	{	
