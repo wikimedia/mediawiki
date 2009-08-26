@@ -2760,7 +2760,7 @@ class Parser
 					$function = $this->mFunctionSynonyms[1][$function];
 				} else {
 					# Case insensitive functions
-					$function = strtolower( $function );
+					$function = $wgContLang->lc( $function );
 					if ( isset( $this->mFunctionSynonyms[0][$function] ) ) {
 						$function = $this->mFunctionSynonyms[0][$function];
 					} else {
@@ -4140,6 +4140,8 @@ class Parser
 	 * @return The old callback function for this name, if any
 	 */
 	function setFunctionHook( $id, $callback, $flags = 0 ) {
+		global $wgContLang;
+
 		$oldVal = isset( $this->mFunctionHooks[$id] ) ? $this->mFunctionHooks[$id][0] : null;
 		$this->mFunctionHooks[$id] = array( $callback, $flags );
 
@@ -4154,7 +4156,7 @@ class Parser
 		foreach ( $synonyms as $syn ) {
 			# Case
 			if ( !$sensitive ) {
-				$syn = strtolower( $syn );
+				$syn = $wgContLang->lc( $syn );
 			}
 			# Add leading hash
 			if ( !( $flags & SFH_NO_HASH ) ) {

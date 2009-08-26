@@ -434,6 +434,8 @@ this. Was used when mwEmbed was going to be an extension.
   the file description page instead of MediaWiki:License
 * (bug 20380) Link to history/log action at the top of Special:RevisionDelete
   are new more displayed when when doing log suppression
+* (bug 8143) Localised parser function names are now correctly case insensitive
+  if they contain non-ASCII characters
 
 == API changes in 1.16 ==
 
