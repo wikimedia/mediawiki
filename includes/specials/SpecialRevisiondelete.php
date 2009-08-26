@@ -183,7 +183,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 	protected function showConvenienceLinks() {
 		global $wgOut, $wgUser, $wgLang;
 		# Give a link to the logs/hist for this page
-		if( $this->targetObj && $this->targetObj->getNamespace() != NS_SPECIAL ) {
+		if( $this->targetObj ) {
 			$links = array();
 			$logtitle = SpecialPage::getTitleFor( 'Log' );
 			$links[] = $this->skin->linkKnown(
@@ -192,22 +192,24 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 				array(),
 				array( 'page' => $this->targetObj->getPrefixedText() )
 			);
-			# Give a link to the page history
-			$links[] = $this->skin->linkKnown(
-				$this->targetObj,
-				wfMsgHtml( 'pagehist' ),
-				array(),
-				array( 'action' => 'history' )
-			);
-			# Link to deleted edits
-			if( $wgUser->isAllowed('undelete') ) {
-				$undelete = SpecialPage::getTitleFor( 'Undelete' );
+			if ( $this->targetObj->getNamespace() != NS_SPECIAL ) {
+				# Give a link to the page history
 				$links[] = $this->skin->linkKnown(
-					$undelete,
-					wfMsgHtml( 'deletedhist' ),
+					$this->targetObj,
+					wfMsgHtml( 'pagehist' ),
 					array(),
-					array( 'target' => $this->targetObj->getPrefixedDBkey() )
+					array( 'action' => 'history' )
 				);
+				# Link to deleted edits
+				if( $wgUser->isAllowed('undelete') ) {
+					$undelete = SpecialPage::getTitleFor( 'Undelete' );
+					$links[] = $this->skin->linkKnown(
+						$undelete,
+						wfMsgHtml( 'deletedhist' ),
+						array(),
+						array( 'target' => $this->targetObj->getPrefixedDBkey() )
+					);
+				}
 			}
 			# Logs themselves don't have histories or archived revisions
 			$wgOut->setSubtitle( '<p>' . $wgLang->pipeList( $links ) . '</p>' );
