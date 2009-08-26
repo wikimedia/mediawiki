@@ -170,7 +170,7 @@ abstract class UploadBase {
 		 * type but it's corrupt or data of the wrong type, we should
 		 * probably not accept it.
 		 */
-		$verification = $this->verifyFile( $this->mTempPath );
+		$verification = $this->verifyFile();
 
 		if( $verification !== true ) {
 			if( !is_array( $verification ) )
@@ -196,13 +196,13 @@ abstract class UploadBase {
 	 * @param string $tmpfile the full path of the temporary file to verify
 	 * @return mixed true of the file is verified, a string or array otherwise.
 	 */
-	protected function verifyFile( $tmpfile ) {
+	protected function verifyFile() {
 		$this->mFileProps = File::getPropsFromPath( $this->mTempPath, $this->mFinalExtension );
 		$this->checkMacBinary();
 
 		#magically determine mime type
 		$magic = MimeMagic::singleton();
-		$mime = $magic->guessMimeType( $tmpfile, false );
+		$mime = $magic->guessMimeType( $this->mTempFile, false );
 
 		#check mime type, if desired
 		global $wgVerifyMimeType;
@@ -212,7 +212,7 @@ abstract class UploadBase {
 				return array( 'filetype-badmime', $mime );
 
 			# Check IE type
-			$fp = fopen( $tmpfile, 'rb' );
+			$fp = fopen( $this->mTempFile, 'rb' );
 			$chunk = fread( $fp, 256 );
 			fclose( $fp );
 			$extMime = $magic->guessTypesForExtension( $this->mFinalExtension );
