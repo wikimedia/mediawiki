@@ -2348,6 +2348,8 @@ function wfShellExec( $cmd, &$retval=null ) {
 /**
  * Executes a shell command in the background. Passes back the PID of the operation 
  *
+ * FIXME: Does not work on Windows; does not work at all (See CodeReview r55575)
+ *
  * @param $cmd String
  */
 function wfShellBackgroundExec( $cmd ){	

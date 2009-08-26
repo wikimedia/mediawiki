@@ -862,7 +862,8 @@ abstract class ApiBase {
 		'undo-failure' => array('code' => 'undofailure', 'info' => 'Undo failed due to conflicting intermediate edits'),
 
 		//uploadMsgs
-		'invalid-session-key' => array( 'code' => 'invalid-session-key', 'info'=>'Not a valid session key' ),
+		'invalid-session-key' => array( 'code' => 'invalid-session-key', 'info' => 'Not a valid session key' ),
+		'nouploadmodule' => array( 'code' => 'nouploadmodule', 'info' => 'No upload module set' ),
 	);
 
 	/**

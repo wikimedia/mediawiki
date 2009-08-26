@@ -79,7 +79,7 @@ class UploadFromChunks extends UploadBase {
 	function verifyUpload() {
 		// no checks on chunk upload mode:
 		if( $this->chunk_mode ==  UploadFromChunks::INIT )
-			return self::OK;
+			return array( 'status' => self::OK );
 
 		// verify on init and last chunk request
 		if(	$this->chunk_mode == UploadFromChunks::CHUNK ||
