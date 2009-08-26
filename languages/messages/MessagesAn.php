@@ -8,6 +8,7 @@
  * @file
  *
  * @author Juanpabl
+ * @author Malafaya
  * @author Remember the dot
  * @author Urhixidur
  * @author Willtron
@@ -945,7 +946,7 @@ Asegure-se que iste cambio no crebará a continidat de l'istorial d'a pachina.",
 'viewprevnext'                     => 'Beyer ($1) ($2) ($3)',
 'searchmenu-legend'                => 'Opzions de busca',
 'searchmenu-exists'                => "'''Bi ha una pachina clamada \"[[\$1]]\" en ista wiki'''",
-'searchmenu-new'                   => "'''[[:\$1|Creyar]] a pachina \"[:\$1]\" en ista wiki!'''",
+'searchmenu-new'                   => "'''Creyar a pachina \"[[:\$1]]\" en ista wiki!'''",
 'searchhelp-url'                   => 'Help:Aduya',
 'searchmenu-prefix'                => '[[Special:PrefixIndex/$1|Beyer pachinas con iste prefixo]]',
 'searchprofile-articles'           => 'Articlos',
@@ -974,7 +975,6 @@ Asegure-se que iste cambio no crebará a continidat de l'istorial d'a pachina.",
 'searchall'                        => 'toz',
 'showingresults'                   => "Contino se bi {{PLURAL:$1|amuestra '''1''' resultau|amuestran '''$1''' resultaus}} prenzipiando por o numero '''$2'''.",
 'showingresultsnum'                => "Contino se bi {{PLURAL:$3|amuestra '''1''' resultau|amuestran os '''$3''' resultaus}} prenzipiando por o numero '''$2'''.",
-'showingresultstotal'              => "Contino {{PLURAL:$4|s'amuestra o resultau '''$1''' de '''$3'''|s'amuestran os resultaus '''$1 - $2''' de '''$3'''}}",
 'nonefound'                        => "'''Pare cuenta''': Por defeuto nomás se mira en bels espazios de nombres. Si quiere mirar en toz os contenius (encluyendo pachinas de descusión, plantillas, etc), adiba o prefixo ''all:'' u clabe como prefixo o espazio de nombres deseyau.",
 'search-nonefound'                 => "No s'ha trobato garra resultau que cumpla os criterios.",
 'powersearch'                      => 'Busca abanzata',

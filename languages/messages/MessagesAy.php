@@ -56,6 +56,7 @@ $messages = array(
 'tog-watchlisthideliu'        => "Unch'ukit waruchatana qillqt'ayasita apnaqirina askiptawipax imantaña",
 'tog-watchlisthideanons'      => "Unch'ukit waruchatana sutiwisa apnaqirina askiptawipax imantaña",
 'tog-watchlisthidepatrolled'  => "Unch'ukit waruchatana unch'ukit askiptawix imantaña",
+'tog-nolangconversion'        => "Yaqha aruptaxa jark'aña",
 'tog-ccmeonemails'            => 'Chaski jalayirija nayax yaqhar apayayäta qillqaqawix nayaru apayaña',
 'tog-diffonly'                => 'Manqha diff-nakax uñstawit yati utjawi janiw uñachayaña',
 'tog-showhiddencats'          => 'Imantata patawix uñachayaña',

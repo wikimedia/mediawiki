@@ -329,7 +329,6 @@ Pwede ka [[:\$1|makahimo sini nga pahina]].",
 'search-interwiki-more'     => '(damu)',
 'search-mwsuggest-enabled'  => 'may suhestiyon',
 'search-mwsuggest-disabled' => 'wala suhestiyon',
-'showingresultstotal'       => "Nagapakita sa dalum {{PLURAL:$4|resulta '''$1''' of '''$3'''|mga resulta '''$1 - $2''' sang '''$3'''}}",
 'nonefound'                 => "'''Tandaan''': Ang iban lang nga mga ngalan-espasyo ay ginapangita nga daan.
 Testingan mo i-prefiks ang imo pamangkot upod sang ''tanan:'' para makita mo ang tanan nga unod (dala na dira ang pahina paghisayranay, templeyts, etc), o gamita amg imo nanamian nga ngalan-espasyo bilang prefiks.",
 'powersearch'               => 'Abanse nga pagpangita',

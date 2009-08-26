@@ -442,12 +442,12 @@ Dr Grund cha ne e Programmierfähler syy.
 Di letscht Datebankabfrog isch
 <blockquote><tt>$1</tt></blockquote>
 us dr Funktion „<tt>$2</tt>“ gsi.
-$5 het dr Fähler „<tt>$3: $4</tt>“ gmäldet.',
+D Datebank het dr Fähler „<tt>$3: $4</tt>“ gmäldet.',
 'dberrortextcl'        => 'S het e Syntaxfähler gee in dr Abfrog vu dr Datebank.
 Di letscht Datebankabfrog isch
 „$1“
 us dr Funktion „$2“ gsi.
-$5 het dr Fähler „$3: $4“ gmäldet.',
+D Datebank het dr Fähler „$3: $4“ gmäldet.',
 'laggedslavemode'      => 'Warnig: di letschte Änderige wäre u. U. nonig aazeigt!',
 'readonly'             => 'Datebank isch gsperrt',
 'enterlockreason'      => 'Bitte gib e Grund y, worum d Datebank soll gsperrt wäre un e Yschätzig wie lang si soll gsperrt blybe',
@@ -549,8 +549,7 @@ Iberprief d Schrybwys, oder mäld Di as [[Special:UserLogin/signup|neje Benutzer
 'nouserspecified'            => 'Bitte gib e Benutzername yy.',
 'wrongpassword'              => 'Des Passwort isch falsch (oder fählt). Bitte versuech s nomol.',
 'wrongpasswordempty'         => 'Du hesch vergässe dyy Passwort yyzgee. Bitte versuech s nomol.',
-'passwordtooshort'           => 'Dyy Passwort isch uugiltig oder z churz.
-S muess zmindescht {{PLURAL:$1|1 Zeiche|$1 Zeiche}} haa.',
+'passwordtooshort'           => 'Passwerter mien zmindescht {{PLURAL:$1|1 Zeiche|$1 Zeiche}} haa.',
 'password-name-match'        => 'Dyy Passwort muess sich vu Dyynem Benutzername unterscheide.',
 'mailmypassword'             => 'Es nöis Passwort schicke',
 'passwordremindertitle'      => 'Nei Passwort fir {{SITENAME}}',
@@ -1079,7 +1078,6 @@ Du chasch die [[:$1|Syte nöu schrybe]].",
 'searchall'                        => 'alli',
 'showingresults'                   => "Do {{PLURAL:$1|isch '''1''' Ergebnis|sin '''$1''' Ergebniss}}, s fangt aa mit dr Nummerer '''$2.'''",
 'showingresultsnum'                => "Do {{PLURAL:$3|isch '''1''' Ergebnis|sin '''$3''' Ergebniss}}, s fangt aa mit dr Nummere '''$2.'''",
-'showingresultstotal'              => "S {{PLURAL:$4|folgt s Suechergebnis '''$1''' vu '''$3:'''|folge d Suechergebniss '''$1–$2''' vu '''$3:'''}}",
 'showingresultsheader'             => "{{PLURAL:$5|Ergebnis '''$1''' vu '''$3'''|Ergebnis '''$1 - $2''' vu '''$3'''}} fir '''$4'''",
 'nonefound'                        => "'''Hiiwyys:''' S wäre standardmässig nume e Teil Namensryym dursuecht. Setz ''all:'' vor Dyy Suechbegriff go alli Syte (mit Diskussionssyte, Vorlage usw.) dursueche oder diräkt dr Name vum Namensruum, wu sett dursuecht wäre.",
 'search-nonefound'                 => 'Fir Dyyni Suechaafrog sin keini Ergebniss gfunde wore.',
@@ -1511,7 +1509,7 @@ Wänn s Problem alno uftritt, informier e [[Special:ListUsers/sysop|Ammann]].',
 'upload-curl-error28-text' => 'D Syte brucht z lang fir e Antwort. Prief, eb d Syte online isch, wart e Rung un versuech s derno nomol. S cha au sinnvoll syy, s speter nomol z versueche.',
 
 'license'            => 'Lizänz:',
-'license-header'     => 'Lizänz:',
+'license-header'     => 'Lizänzierig',
 'nolicense'          => 'kei Voruswahl',
 'license-nopreview'  => '(s isch kei Vorschau verfiegbar)',
 'upload_source_url'  => ' (giltige, effentli zuegänglig URL)',
@@ -1887,14 +1885,17 @@ Wänn Du d Syte speter wider vu dr Lischt witt stryyche, deno druck eifach uf �
 'enotif_impersonal_salutation' => '{{SITENAME}}-Benutzer',
 'changed'                      => 'gänderet',
 'created'                      => 'aagleit',
+'deleted'                      => 'glescht',
+'enotif_deletedpagetext'       => 'Die Syte git s nimi.',
 'enotif_subject'               => 'D {{SITENAME}} Syte $PAGETITLE isch vum $PAGEEDITOR $CHANGEDORCREATED wore.',
 'enotif_lastvisited'           => '$1 zeigt alli Änderige uf s Mol.',
 'enotif_lastdiff'              => 'Lueg $1 no däre Änderig.',
 'enotif_anon_editor'           => 'Anonyme Benutzer $1',
+'enotif_rev_info'              => 'Di nejscht Version git s uf $1.',
 'enotif_body'                  => 'Liebe/r $WATCHINGUSERNAME,
 
-d {{SITENAME}} Syte $PAGETITLE isch vom $PAGEEDITOR am $PAGEEDITDATEANDTIME $CHANGEDORCREATED,
-di aktuelli Version isch: $PAGETITLE_URL
+d {{SITENAME}}-Syte $PAGETITLE isch vum $PAGEEDITOR am $PAGEEDITDATEANDTIME $CHANGEDORCREATED wore. $REVINFO
+
 
 $NEWPAGE
 
@@ -2406,6 +2407,7 @@ Alli Transwiki-Import-Aktione werde im [[Special:Log/import|Import-Logbuech]] pr
 'tooltip-ca-viewsource'           => 'Die Syte isch geschützt. Du chasch der Quelltext aaluege.',
 'tooltip-ca-history'              => 'Früecheri Versione vo dere Syte.',
 'tooltip-ca-protect'              => 'Seite beschütze',
+'tooltip-ca-unprotect'            => 'Dr Schutz vu däre Syte ufhebe',
 'tooltip-ca-delete'               => 'Syten entsorge',
 'tooltip-ca-undelete'             => 'Sodeli, da isch es wider.',
 'tooltip-ca-move'                 => 'Dür ds Verschiebe gits e nöie Name.',
@@ -2416,6 +2418,7 @@ Alli Transwiki-Import-Aktione werde im [[Special:Log/import|Import-Logbuech]] pr
 'tooltip-search-fulltext'         => 'Suech nooch Syte wo de Teggscht dinne hen',
 'tooltip-p-logo'                  => 'Houptsyte',
 'tooltip-n-mainpage'              => 'Gang uf d Houptsyte',
+'tooltip-n-mainpage-description'  => 'Uf Hauptsyte goh',
 'tooltip-n-portal'                => 'Über ds Projekt, was du chasch mache, wo du was findsch',
 'tooltip-n-currentevents'         => 'Hindergrundinformatione zu aktuellen Ereignis finde',
 'tooltip-n-recentchanges'         => 'Lischte vo de letschten Änderige i däm Wiki.',

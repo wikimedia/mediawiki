@@ -934,7 +934,6 @@ $1",
 'searchall'                        => '全',
 'showingresults'                   => "見'''$1'''尋，自'''$2'''始：",
 'showingresultsnum'                => "見'''$3'''尋，自'''$2'''始：",
-'showingresultstotal'              => "見'''$1{{PLURAL:$4||至$2}}'''，共'''$3'''尋",
 'showingresultsheader'             => "見'''$4'''，{{PLURAL:$5|'''$1''''''$3'''之尋|'''$1 - $2'''，共'''$3'''之尋}}",
 'nonefound'                        => "'''注'''：部名冊預尋也。。試''all:''尋全名刪之頁（含議模等），或可用要之名冊為前綴也。",
 'search-nonefound'                 => '詢中無結。',
@@ -1321,8 +1320,8 @@ $1",
 'upload-unknown-size'       => '未知之積',
 'upload-http-error'         => '發一HTTP之錯：$1',
 
-'license'            => '權：',
-'license-header'     => '權',
+'license'           => '權：',
+'license-header'    => '權',
 'license-nopreview' => '（謝草覽）',
 
 # Special:ListFiles

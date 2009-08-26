@@ -16,6 +16,7 @@
  * @author Dereckson
  * @author Diti
  * @author Elfix
+ * @author Enzoreg
  * @author Esbardu
  * @author Fryed-peach
  * @author Grondin
@@ -399,7 +400,7 @@ $messages = array(
 'thu'           => 'jeu',
 'fri'           => 'ven',
 'sat'           => 'sam',
-'january'       => 'janvier',
+'january'       => 'Janvier',
 'february'      => 'février',
 'march'         => 'mars',
 'april'         => 'avril',
@@ -1285,7 +1286,6 @@ Assurez-vous que cette opération conservera la continuité de l’historique de
 'searchall'                        => 'tout',
 'showingresults'                   => 'Affichage de <b>$1</b> résultat{{PLURAL:$1||s}} à partir du #<b>$2</b>.',
 'showingresultsnum'                => 'Affichage de <b>$3</b> résultat{{PLURAL:$3||s}} à partir du #<b>$2</b>.',
-'showingresultstotal'              => "Affichage {{PLURAL:$4|du résultat '''$1'''|des résultats '''$1 – $2'''}} sur '''$3'''",
 'showingresultsheader'             => "{{PLURAL:$5|Resultat '''$1'''|Resultats '''$1 - $2'''}} de '''$3''' pour '''$4'''",
 'nonefound'                        => "'''Note''' : seuls certains espaces de noms sont recherchés par défaut.
 Essayez en utilisant le préfixe ''all:'' pour rechercher dans tout le contenu (y compris les pages de discussion, les modèles, etc.) ou bien utilisez l’espace de noms souhaité comme préfixe.",
@@ -1737,7 +1737,7 @@ Si le problème persiste, contactez un [[Special:ListUsers/sysop|administrateur]
 'upload-curl-error28'      => 'Dépassement du délai lors du téléversement',
 'upload-curl-error28-text' => 'Le site a mis trop longtemps à répondre. Vérifiez que le site est en ligne, attendez un peu et réessayez. Vous pouvez aussi réessayer à une heure de moindre affluence.',
 
-'license'            => 'Publié sous licence(s)',
+'license'            => 'Licence :',
 'license-header'     => 'Publié sous licence(s)',
 'nolicense'          => 'Aucune licence sélectionnée',
 'license-nopreview'  => '(Prévisualisation non disponible)',

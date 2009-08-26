@@ -596,7 +596,7 @@ moet die instruksies in bogenoemde pos gevolg word om te bevestig dat die adres 
 'throttled-mailpassword'     => "Daar is reeds 'n wagwoordwenk in die laaste {{PLURAL:$1|uur|$1 ure}} gestuur.
 Om misbruik te voorkom, word slegs een wagwoordwenk per {{PLURAL:$1|uur|$1 ure}} gestuur.",
 'mailerror'                  => 'Fout tydens e-pos versending: $1',
-'acct_creation_throttle_hit' => "Jammer, maar u het reeds {{PLURAL:$1|'n rekening|$1 rekeninge}} geskep. U kan nie nog skep nie.",
+'acct_creation_throttle_hit' => "Besoekers aan hierdie wiki wat u IP-adres gebruik het reeds {{PLURAL:$1|'n rekening|$1 rekeninge}} in die laaste dag geskep, wat die maksimum toelaatbaar is vir die periode. Dus kan besoekers wat hierdie IP-adres gebruik tans nie meer nuwe gebruikers registreer nie.",
 'emailauthenticated'         => 'U e-posadres is op $2 om $3 bevestig.',
 'emailnotauthenticated'      => 'U e-poasadres is <strong>nog nie bevestig nie</strong>. Geen e-pos sal gestuur word vir die volgende funksies nie.',
 'noemailprefs'               => "Spesifiseer 'n eposadres vir hierdie funksies om te werk.",
@@ -711,7 +711,9 @@ Omdat die afdeling $1 nie bestaan nie, kan u wysigings nie gestoor word nie.",
 'loginreqlink'                     => 'teken in',
 'loginreqpagetext'                 => 'U moet $1 om ander bladsye te bekyk.',
 'accmailtitle'                     => 'Wagwoord gestuur.',
-'accmailtext'                      => "Die wagwoord van '$1' is gestuur aan $2.",
+'accmailtext'                      => "'n Lukraakgegenereerde wagwoord vir [[User talk:$1|$1]] is na $2 gestuur.
+
+Die wagwoord vir hierdie nuwe gebruiker kan verander word op die ''[[Special:ChangePassword|verander wagwoord]]'' bladsy nadat ingeteken is.",
 'newarticle'                       => '(Nuut)',
 'newarticletext'                   => "Die bladsy waarna geskakel is, bestaan nie.
 Om 'n nuwe bladsy te skep, tik in die invoerboks hier onder. Lees die [[{{MediaWiki:Helppage}}|hulpbladsy]]
@@ -1041,7 +1043,6 @@ $1",
 'searchall'                        => 'alle',
 'showingresults'                   => "Hier volg {{PLURAL:$1|'''1''' resultaat|'''$1''' resultate}} wat met #'''$2''' begin.",
 'showingresultsnum'                => "Hier onder {{PLURAL:$3|is '''1''' resultaat|is '''$3''' resultate}} vanaf #'''$2'''.",
-'showingresultstotal'              => "Hier onder is {{PLURAL:$4|resultaat '''$1''' van '''$3'''|resultate '''$1 - $2''' van '''$3'''}}",
 'showingresultsheader'             => "{{PLURAL:$5|Resultaat '''$1''' van '''$3'''|Resultate '''$1 - $2''' van '''$3'''}} vir '''$4'''",
 'nonefound'                        => "<strong>Opmerking</strong>: nie alle naamruimtes word by verstek deursoek nie. 
 As die voorvoegsel \"''all:''\" in 'n soekopdrag gebruik word, word alle bladsye deursoek (inklusief besprekengsbladsye, sjablone, ensovoorts). 
@@ -1438,7 +1439,7 @@ Die verwyderingsinligting van die lêer word vir u gemak hier herhaal:",
 'upload-curl-error28' => 'Oplaai neem te lank',
 
 'license'            => 'Lisensiëring:',
-'license-header'     => 'Lisensiëring:',
+'license-header'     => 'Lisensiëring',
 'nolicense'          => 'Niks gekies',
 'license-nopreview'  => '(Voorskou nie beskikbaar)',
 'upload_source_url'  => " ('n geldige, publiek toeganklike URL)",
@@ -1531,7 +1532,7 @@ Klik op die opskrifte om die tabel anders te sorteer.',
 
 # Random page
 'randompage'         => 'Lukrake bladsy',
-'randompage-nopages' => 'Daar is geen bladye in naamspasie "$1".',
+'randompage-nopages' => 'Daar is geen bladye in die volgende {{PLURAL:$2|naamspasie|naamspasies}}: $1.',
 
 # Random redirect
 'randomredirect'         => 'Lukrake aanstuur',
@@ -1650,8 +1651,8 @@ Elke ry bevat skakels na die eerste en die tweede aanstuur, asook die eerste re�
 'speciallogtitlelabel' => 'Titel:',
 'log'                  => 'Logboeke',
 'all-logs-page'        => 'Alle openbare logboeke',
-'alllogstext'          => "Vertoon 'n samestelling van laai-, skrap-, beskerm-, versper- en administrateurboekstawings van {{SITENAME}}.
-U kan die resultate vernou deur 'n boekstaaftipe, gebruikersnaam of spesifieke blad te kies.",
+'alllogstext'          => "Vertoon 'n samestelling van alle boekstawings van {{SITENAME}}.
+U kan die resultate vernou deur 'n boekstaaftipe, gebruikersnaam (kas-sensitief) of spesifieke blad (ook kas-sensitief) te kies.",
 'logempty'             => 'Geen inskrywings in die logboek voldoen aan die kriteria nie.',
 'log-title-wildcard'   => 'Soek bladsye wat met die naam begin',
 
@@ -2414,7 +2415,7 @@ $1',
 'visual-comparison' => 'Visuele vergelyking',
 
 # Media information
-'imagemaxsize'         => 'Beperk beelde op beeldbeskrywingsbladsye tot:',
+'imagemaxsize'         => "Beperk beeldgrootte tot:<br />''(vir lêerbeskrywingsbladsye)''",
 'thumbsize'            => 'Grootte van duimnaelskets:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|bladsy|bladsye}}',
 'file-info'            => '(lêergrootte: $1, MIME-tipe: $2)',

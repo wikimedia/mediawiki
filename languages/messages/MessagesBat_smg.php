@@ -714,7 +714,6 @@ Kėtė admėnėstratuorē šėtom pruojekte vėsdar galės pasėiktė pasliepta 
 'searchall'                        => 'vėsė',
 'showingresults'                   => "Žemiau ruodoma lėgė '''$1''' {{PLURAL:$1|rezoltata|rezoltatu|rezoltatu}} pradedont #'''$2'''.",
 'showingresultsnum'                => "Žemiau ruodoma '''$3''' {{PLURAL:$3|rezoltata|rezoltatu|rezoltatu}} pradedant #'''$2'''.",
-'showingresultstotal'              => "Žemiau ruodom{{PLURAL:$4|s rezoltats '''$1''' ėš '''$3'''|ė rezoltatā '''$1 - $2''' ėš '''$3'''}}",
 'nonefound'                        => "'''Pastebiejėms''': Palē nutīliejėma ėiškuoma tėktās kāp katruosė vardū srėtīsė. Pamiegīkėt prirašītė prėišdieli ''all:'', jēgo nuorėt ėiškiuotė vėsa torėnė (tamė tarpė aptarėma poslapius, šabluonus ė tēp tuoliau), aba nauduokėt nuorėma vardū srėti kāp prėišdieli.",
 'search-nonefound'                 => 'Nier rezoltatu, katrėi atitėktu ožklausėma.',
 'powersearch'                      => 'Ėiškuotė',

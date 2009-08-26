@@ -790,7 +790,6 @@ Sistèm an ap montre, anba paj sa, jounal tout vèsyon paj an ki efase pou sèvi
 'search-interwiki-more'     => '(plis)',
 'search-mwsuggest-enabled'  => 'ak sigjesyon, kèk lide',
 'search-mwsuggest-disabled' => 'san lide, san endikasyon',
-'showingresultstotal'       => "Ap montre {{PLURAL:$4|rezilta '''$1'''|rezilta '''$1 – $2'''}} anlè '''$3'''",
 'nonefound'                 => "'''Remak''' : sèl kèk espas non chache nan sityasyon nòmal.
 Eseye pou wè si ak prefiks ''all:'' pou chache nan tout kontni a (anndann nou ap twouve paj diskisyon yo, modèl yo, etc.) oubyen itilize espas non ou ta renmen pou prefiks.",
 'powersearch'               => 'Fouye fon',

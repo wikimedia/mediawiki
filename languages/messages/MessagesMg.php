@@ -859,7 +859,6 @@ Mety any amin'ny [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} t
 'searchall'                 => 'rehetra',
 'showingresults'            => "Omeo ny valiny miisa hatramin'ny <b>$1</b> manomboka ny #<b>$2</b>.",
 'showingresultsnum'         => 'Omeo ny valiny miisa <b>$3</b> manomboka ny #<b>$2</b>.',
-'showingresultstotal'       => "Fampisehon'ny {{PLURAL:$4|vokany|vokany}} '''$1''' – $2''' amin'ny '''$3'''",
 'nonefound'                 => "'''Fanamarihana''': ny mahatonga ny fikarohana tsy hahita vokany matetika dia ny 
 fampiasanao teny miasa matetika toy ny \"izay\" sy ny \"tsy\",
 na ny fanomezanao teny mihoatra ny iray (ny pejy ahitana ny teny rehetra hokarohina

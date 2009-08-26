@@ -395,7 +395,7 @@ ning [http://meta.wikimedia.org/wiki/MediaWiki_User%27s_Guide kasutusjuhendit].'
 'about'         => 'Tiitelandmed',
 'article'       => 'artikkel',
 'newwindow'     => '(avaneb uues aknas)',
-'cancel'        => 'Tühista',
+'cancel'        => 'Loobu',
 'moredotdotdot' => 'Veel...',
 'mypage'        => 'Minu lehekülg',
 'mytalk'        => 'Arutelu',
@@ -586,12 +586,12 @@ Selle võis tingida tarkvaraviga.
 Viimane andmebaasipäring oli:
 <blockquote><tt>$1</tt></blockquote>
 ja see kutsuti funktsioonist "<tt>$2</tt>".
-$5 tagastas veateate "<tt>$3: $4</tt>".',
+Andmebaas tagastas veateate "<tt>$3: $4</tt>".',
 'dberrortextcl'        => 'Andmebaasipäringus oli süntaksiviga.
 Viimane andmebaasipäring oli:
 "$1"
 ja see kutsuti funktsioonist "$2".
-$5 tagastas veateate "$3: $4".',
+Andmebaas tagastas veateate "$3: $4".',
 'laggedslavemode'      => 'Hoiatus: Leheküljel võivad puududa viimased uuendused.',
 'readonly'             => 'Andmebaas on hetkel kirjutuskaitse all',
 'enterlockreason'      => 'Sisesta lukustamise põhjus ning juurdepääsu taastamise ligikaudne aeg',
@@ -631,6 +631,8 @@ Päring: $2',
 'viewsource'           => 'Vaata lähteteksti',
 'viewsourcefor'        => '$1',
 'actionthrottled'      => 'Toiming nurjus',
+'actionthrottledtext'  => 'Rämpsmuudatuste vastase meetmena pole sul lühikse aja jooksul seda toimingut liiga palju kordi lubatud sooritada. Sa oled lühikse aja jooskul seda toimingut liiga palju kordi sooritanud.
+Palun proovi mõne minuti pärast uuesti.',
 'protectedpagetext'    => 'See lehekülg on lukustatud, et muudatusi ei tehtaks.',
 'viewsourcetext'       => 'Võite vaadata ja kopeerida lehekülje algteksti:',
 'protectedinterface'   => 'Sellel leheküljel on tarkvara kasutajaliidese tekst. Kuritahtliku muutmise vältimiseks on lehekülg lukustatud.',
@@ -1174,7 +1176,6 @@ Jõus olevad keelud ja blokeeringud leiad [[Special:IPBlockList|blokeeritud IP-a
 'searchall'                        => 'kõik',
 'showingresults'                   => "Allpool näitame {{PLURAL:$1|'''ühte''' tulemit|'''$1''' tulemit}} alates tulemist #'''$2'''.",
 'showingresultsnum'                => "Allpool näitame {{PLURAL:$3|'''ühte''' tulemit|'''$3''' tulemit}} alates tulemist #'''$2'''.",
-'showingresultstotal'              => "Allpool näidatakse {{PLURAL:$4|'''$1'''. tulemust (otsingutulemuste koguarv '''$3''')|'''$1. - $2.''' tulemust (otsingutulemuste koguarv '''$3''')}}",
 'showingresultsheader'             => "{{PLURAL:$5|'''$1''' '''$3'''-st vastest|Vasted '''$1–$2''' '''$3'''-st}} päringule '''$4'''",
 'nonefound'                        => "'''Märkus''': Otsing hõlmab vaikimisi vaid osasid nimeruume.
 Kui soovid otsida ühekorraga kõigist nimeruumidest (kaasa arvatud arutelulehed, mallid, jne) kasuta
@@ -1603,6 +1604,9 @@ Palun vali oma failile kirjeldavam nimi.",
 'upload-file-error-text'    => 'Sisemine viga ilmnes, kui üritati luua ajutist faili serveris. 
 Palun kontakteeru [[Special:ListUsers/sysop|administraatoriga]].',
 'upload-misc-error'         => 'Tundmatu viga üleslaadimisel',
+'upload-misc-error-text'    => 'Üleslaadimisel ilmnes tundmatu tõrge.
+Palun veendu, et internetiaadress on õige ja ligipääsetav ning proovi uuesti.
+Kui probleem ei kao, võta ühendust [[Special:ListUsers/sysop|ülemaga]].',
 'upload-too-many-redirects' => 'URL sisaldas liiga palju ümbersuunamisi',
 'upload-unknown-size'       => 'Tundmatu suurus',
 'upload-http-error'         => 'HTTP-viga: $1',
@@ -1617,7 +1621,7 @@ Palun kontrolli kas võrgukoht on ikka üleval, oota natuke ja proovi uuesti.
 Samuti võid proovida siis, kui võrgukoht on vähem hõivatud.',
 
 'license'            => 'Litsents:',
-'license-header'     => 'Litsents:',
+'license-header'     => 'Litsents',
 'nolicense'          => 'pole valitud',
 'license-nopreview'  => '(Eelvaade ei ole saadaval)',
 'upload_source_url'  => '(avalikult ligipääsetav URL)',
@@ -1879,14 +1883,15 @@ Vaata ka [[Special:WantedCategories|puuduvaid kategooriaid]].',
 'sp-deletedcontributions-contribs' => 'kaastöö',
 
 # Special:LinkSearch
-'linksearch'      => 'Välislingid',
-'linksearch-pat'  => 'Otsimisvorm:',
-'linksearch-ns'   => 'Nimeruum:',
-'linksearch-ok'   => 'Otsi',
-'linksearch-text' => 'Metamärgina võib kasutada tärni, näiteks "*.wikipedia.org".
+'linksearch'       => 'Välislingid',
+'linksearch-pat'   => 'Otsimisvorm:',
+'linksearch-ns'    => 'Nimeruum:',
+'linksearch-ok'    => 'Otsi',
+'linksearch-text'  => 'Metamärgina võib kasutada tärni, näiteks "*.wikipedia.org".
 
 Toetatud protokollid: <tt>$1</tt>',
-'linksearch-line' => '$1 on lingitud leheküljelt $2',
+'linksearch-line'  => '$1 on lingitud leheküljelt $2',
+'linksearch-error' => 'Metamärk võib olla ainult internetiaadressi alguses.',
 
 # Special:ListUsers
 'listusersfrom'      => 'Näita kasutajaid alustades:',
@@ -1978,6 +1983,7 @@ Kui tahad seda lehte hiljem jälgimisloendist eemaldada, klõpsa päisenupule "L
 'watchmethod-recent'   => 'jälgitud lehekülgedel tehtud viimaste muudatuste läbivaatamine',
 'watchmethod-list'     => 'jälgitavate lehekülgede viimased muudatused',
 'watchlistcontains'    => 'Sinu jälgimisloendis on $1 {{PLURAL:$1|artikkel|artiklit}}.',
+'iteminvalidname'      => "Probleem üksusega '$1'. Selle nimes on viga.",
 'wlnote'               => "Allpool on {{PLURAL:$1|viimane muudatus|viimased '''$1''' muudatust}} viimase {{PLURAL:$2|tunni|'''$2''' tunni}} jooksul.",
 'wlshowlast'           => 'Näita viimast $1 tundi $2 päeva. $3',
 'watchlist-options'    => 'Jälgimisloendi võimalused',
@@ -1991,10 +1997,12 @@ Kui tahad seda lehte hiljem jälgimisloendist eemaldada, klõpsa päisenupule "L
 'enotif_impersonal_salutation' => '{{SITENAME}} kasutaja',
 'changed'                      => 'muudetud',
 'created'                      => 'lehekülg loodud',
+'deleted'                      => 'kustutatud',
 'enotif_deletedpagetext'       => 'See lehekülg pole enam saadaval.',
 'enotif_lastvisited'           => 'Kõigi sinu viimase külastuse järel tehtud muudatuste nägemiseks vaata: $1.',
 'enotif_lastdiff'              => 'Muudatus on leheküljel $1.',
 'enotif_anon_editor'           => 'anonüümne kasutaja $1',
+'enotif_rev_info'              => 'Praegune redaktsioon on leheküljel $1.',
 
 # Delete
 'deletepage'             => 'Kustuta lehekülg',
@@ -2025,6 +2033,10 @@ Kõik toodud kellaajad järgivad serveriaega.',
 ** Autoriõiguste rikkumine
 ** Vandalism',
 'delete-edit-reasonlist' => 'Redigeeri kustutamise põhjuseid',
+'delete-toobig'          => 'See lehekülg on pika redigeerimisajalooga – üle {{PLURAL:$1|ühe muudatuse|$1 muudatuse}}.
+Selle kustutamine on keelatud, et ära hoida ekslikku võrgukoha {{SITENAME}} töö häirimist.',
+'delete-warning-toobig'  => 'See lehekülg on pika redigeerimis ajalooga – üle {{PLURAL:$1|ühe muudatuse|$1 muudatuse}}.
+Ettevaatust, selle kustutamine võib esile kutsuda häireid võrgukoha {{SITENAME}} andmebaasi töös.',
 
 # Rollback
 'rollback'         => 'Tühista muudatused',
@@ -2285,9 +2297,11 @@ Kehtivaid blokeeringuid vaata [[Special:IPBlockList|blokeeringute loendist]].',
 'ipb-needreblock'              => '==Juba blokeeritud==
 $1 on juba blokeeritud.
 Kas soovid muuta blokeeringu sätteid?',
-'ipb_blocked_as_range'         => 'Viga: Seda IP-d $1 pole otseselt keelatud seega ei saa seda keeldu ka tühistada.
-Kuid, siiski, see IP on keelatud osana IP vahemikust $2, mida aga on võimalik tühistada.',
-'ip_range_invalid'             => 'Vigane IP vahemik.',
+'ipb_cant_unblock'             => 'Tõrge: Blokeerimis-ID $1 pole leitav.
+Blokeering võib juba eemaldatud olla.',
+'ipb_blocked_as_range'         => 'Tõrge: IP-aadressi $1 pole eraldi blokeeritud ja blokeeringut ei saa eemaldada.
+See kuulub aga blokeeritud IP-vahemikku $2, mille blokeeringut saab eemaldada.',
+'ip_range_invalid'             => 'Vigane IP-vahemik.',
 'blockme'                      => 'Blokeeri mind',
 'proxyblocker-disabled'        => 'See funktsioon ei toimi.',
 'proxyblockreason'             => 'Teie IP aadress on blokeeritud, sest see on anonüümne proxy server. Palun kontakteeruga oma internetiteenuse pakkujaga või tehnilise toega ning informeerige neid sellest probleemist.',
@@ -2297,8 +2311,8 @@ Kuid, siiski, see IP on keelatud osana IP vahemikust $2, mida aga on võimalik t
 # Developer tools
 'lockdb'              => 'Lukusta andmebaas',
 'unlockdb'            => 'Tee andmebaas lukust lahti',
-'lockdbtext'          => 'Andmebaasi lukustamine peatab kõigil kasutajatel võimaluse muuta lehti, muuta oma eelistusi, muuta oma jälgimisloendit, ja teha teisi toiminguid, mis vajaksid muudatusi andmebaasis.
-Palun kinnitage uuesti oma soov ja et te nõustute hooldustööde lõpetamisel avama taas andmebaasi.',
+'lockdbtext'          => 'Andmebaasi lukustamine peatab kõigi kasutajate võimaluse muuta lehtekülgi, oma eelistusi ja jälgimisloendit ning teha teisi toiminguid, mis vajavad muudatusi andmebaasis.
+Palun kinnitage, et te soovite seda teha ja et avate andmebaasi, kui hööldustööd on tehtud.',
 'unlockdbtext'        => 'Andmebaasi lukust lahti tegemine taastab kõigi kasutajate võimaluse toimetada lehekülgi, muuta oma eelistusi, toimetada oma jälgimisloendeid ja muud, mis nõuab muudatusi andmebaasis.
 Palun kinnita, et sa tahad seda teha.',
 'lockconfirm'         => 'Jah, ma soovin andmebaasi lukustada.',
@@ -2354,24 +2368,26 @@ kasutajaks ja [[Special:UserLogin|sisse logima]]',
 'talkexists'                   => 'Artikkel on teisaldatud, kuid arutelulehekülge ei saanud teisaldada, sest uue nime all on arutelulehekülg juba olemas. Palun ühendage aruteluleheküljed ise.',
 'movedto'                      => 'Teisaldatud pealkirja alla:',
 'movetalk'                     => 'Teisalda ka "arutelu", kui saab.',
-'move-subpages'                => 'Teisalda alalehed (kuni $1)',
-'move-talk-subpages'           => 'Teisalda arutelulehe alalehed (kuni $1)',
+'move-subpages'                => 'Teisalda alamleheküljed (kuni $1)',
+'move-talk-subpages'           => 'Teisalda arutelulehekülje alamleheküljed (kuni $1)',
 'movepage-page-exists'         => 'Lehekülg $1 on juba olemas ja seda ei saa automaatselt üle kirjutada.',
 'movepage-page-moved'          => 'Lehekülg $1 on teisaldatud pealkirja $2 alla.',
 'movepage-page-unmoved'        => 'Lehekülge $1 ei saanud teisaldada pealkirja $2 alla.',
+'movepage-max-pages'           => 'Teisaldatud on $1 {{PLURAL:$1|lehekülg|lehekülge}}, mis on teisaldatavate lehekülgede ülemmäär. Rohkem lehekülgi automaatselt ei teisaldata.',
 '1movedto2'                    => 'teisaldas lehekülje [[$1]] pealkirja [[$2]] alla',
 '1movedto2_redir'              => 'teisaldas lehekülje [[$1]] ümbersuunamisega pealkirja [[$2]] alla',
 'move-redirect-suppressed'     => 'ümbersuunamiseta',
 'movelogpage'                  => 'Teisaldamise logi',
 'movelogpagetext'              => 'See logi sisaldab infot lehekülgede teisaldamistest.',
-'movesubpage'                  => '{{PLURAL:$1|Alamleht|Alamlehte}}',
+'movesubpage'                  => '{{PLURAL:$1|Alamlehekülg|Alamleheküljed}}',
+'movesubpagetext'              => 'Selle lehekülje $1 {{PLURAL:$1|alamlehekülg|alamlehekülge}} on kuvatud allpool.',
 'movenosubpage'                => 'Sellel leheküljel ei ole alalehekülgi.',
 'movereason'                   => 'Põhjus',
 'revertmove'                   => 'taasta',
 'delete_and_move'              => 'Kustuta ja teisalda',
 'delete_and_move_text'         => '== Vajalik kustutamine ==
-Siht lehekülg "[[:$1]]" juba eksisteerib.
-Kas sa tahad seda kustutada, et luua võimalus teisaldamiseks?',
+Sihtlehekülg "[[:$1]]" on juba olemas.
+Kas kustutad selle, et luua võimalus teisaldamiseks?',
 'delete_and_move_confirm'      => 'Jah, kustuta lehekülg',
 'delete_and_move_reason'       => 'Kustutatud, et asemele tõsta teine lehekülg',
 'immobile-source-namespace'    => 'Lehekülgi ei saa teisaldada nimeruumis $1',
@@ -2396,7 +2412,7 @@ Et eksportida lehekülgi, sisesta nende pealkirjad all olevasse teksti kasti, ig
 Viimasel juhul võid sa näiteks "[[{{MediaWiki:Mainpage}}]]" lehekülje, jaoks kasutada samuti linki kujul:  [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]].',
 'exportcuronly'     => 'Lisa vaid viimane versioon lehest, ning mitte kogu ajalugu',
 'exportnohistory'   => "----
-'''Note:''' Lehekülgede eksportimine koos nende täieliku ajalooga on siin leheküljel jõudluse kaalutlusel blokeeritud.",
+'''Märkus:''' Lehekülgede täieliku ajaloo eksportimine on siin leheküljel jõudluse tagamiseks blokeeritud.",
 'export-submit'     => 'Ekspordi',
 'export-addcattext' => 'Kõik leheküljed kategooriast:',
 'export-addcat'     => 'Lisa',
@@ -2431,6 +2447,9 @@ Kui soovid MediaWiki tarkvara tõlkimises osaleda siis vaata lehti [http://www.m
 # Special:Import
 'import'                     => 'Lehekülgede import',
 'importinterwiki'            => 'Vikidevaheline import',
+'import-interwiki-text'      => 'Vali importimiseks viki ja lehekülje pealkiri.
+Redigeerimisajad ja toimetajate nimed säilitatakse.
+Kõik vikide vahelised toimingud on [[Special:Log/import|impordilogis]].',
 'import-interwiki-source'    => 'Lähteviki/lehekülg:',
 'import-interwiki-history'   => 'Kopeeri selle lehekülje kogu ajalugu',
 'import-interwiki-templates' => 'Liida kõik mallid',
@@ -2462,12 +2481,14 @@ Puudub ajutine kataloog.',
 'import-nonewrevisions'      => 'Kõik versioonid on eelnevalt imporditud.',
 'import-token-mismatch'      => 'Seansiandmed läksid kaduma.
 Palun ürita uuesti.',
+'import-invalid-interwiki'   => 'Määratud vikist ei saa importida.',
 
 # Import log
 'importlogpage'                    => 'Impordilogi',
 'importlogpagetext'                => 'Importimislogi kuvab leheküljed, mille redigeerimisajalugu pärineb teistest vikidest.',
 'import-logentry-upload'           => 'importis faili üleslaadimisega lehekülje [[$1]]',
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|redaktsioon|redaktsiooni}}',
+'import-logentry-interwiki'        => 'importis teisest vikist lehekülje $1',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|redaktsioon|redaktsiooni}} vikist $2',
 
 # Tooltip help for the actions
@@ -2497,6 +2518,7 @@ Palun ürita uuesti.',
 'tooltip-search-fulltext'         => 'Otsitakse teksti sisaldavaid artikleid',
 'tooltip-p-logo'                  => 'Esileht',
 'tooltip-n-mainpage'              => 'Mine esilehele',
+'tooltip-n-mainpage-description'  => 'Mine esilehele',
 'tooltip-n-portal'                => 'Projekti kohta, mida te saate teha, kuidas leida informatsiooni jne',
 'tooltip-n-currentevents'         => 'Leia informatsiooni sündmuste kohta maailmas',
 'tooltip-n-recentchanges'         => 'Vikis tehtud viimaste muudatuste loend.',
@@ -2589,6 +2611,8 @@ See on ilmselt põhjustatud linkimisest mustas nimekirjas olevasse välisvõrguk
 'math_unknown_function' => 'Tundmatu funktsioon',
 'math_lexing_error'     => 'Väljalugemisviga',
 'math_syntax_error'     => 'Süntaksiviga',
+'math_image_error'      => "PNG konverteerimine ebaõnnestus;
+kontrollige oma ''latex'', ''dvips'', ''gs'', ''convert'' installatsioonide korrektsust.",
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Märgi kui kontrollitud',
@@ -2616,6 +2640,7 @@ See on ilmselt põhjustatud linkimisest mustas nimekirjas olevasse välisvõrguk
 
 $1',
 'filedelete-missing'              => 'Faili "$1" ei saa kustutada, sest seda ei ole.',
+'filedelete-old-unregistered'     => 'Etteantud failiversiooni "$1" pole andmebaasis.',
 'filedelete-current-unregistered' => 'Fail "$1" ei ole andmebaasis.',
 
 # Browsing diffs
@@ -2682,9 +2707,10 @@ Kui faili on rakendustarkvaraga töödeldud, võib osa andmeid olla muudetud võ
 'exif-planarconfiguration'         => 'Andmejärjestus',
 'exif-xresolution'                 => 'Horisontaalne eraldus',
 'exif-yresolution'                 => 'Vertikaalne eraldus',
+'exif-resolutionunit'              => 'X ja Y resolutsiooni ühik',
 'exif-stripoffsets'                => 'Pildi andmete asukoht',
-'exif-jpeginterchangeformat'       => 'JPEG SOI asukoht',
-'exif-jpeginterchangeformatlength' => 'JPEG infot (Baiti)',
+'exif-jpeginterchangeformat'       => 'Kaugus JPEG SOI-ni',
+'exif-jpeginterchangeformatlength' => 'JPEG-andmete suurus baitides',
 'exif-transferfunction'            => 'Siirdefunktsioon',
 'exif-whitepoint'                  => 'Valge punkti heledus',
 'exif-datetime'                    => 'Faili muutmise kuupäev ja kellaaeg',
@@ -2695,15 +2721,16 @@ Kui faili on rakendustarkvaraga töödeldud, võib osa andmeid olla muudetud võ
 'exif-artist'                      => 'Autor',
 'exif-copyright'                   => 'Autoriõiguste omanik',
 'exif-exifversion'                 => 'Exif versioon',
-'exif-flashpixversion'             => 'Toetatud FlashPix versioon',
+'exif-flashpixversion'             => 'Toetatud Flashpixi versioon',
 'exif-colorspace'                  => 'Värviruum',
 'exif-componentsconfiguration'     => 'Iga komponendi tähendus',
+'exif-compressedbitsperpixel'      => 'Pildi pakkimise meetod',
 'exif-pixelydimension'             => 'Kehtiv pildi laius',
 'exif-pixelxdimension'             => 'Kehtiv pildi kõrgus',
 'exif-makernote'                   => 'Tootja märkmed',
 'exif-usercomment'                 => 'Kasutaja kommentaarid',
 'exif-relatedsoundfile'            => 'Seotud helifail',
-'exif-datetimeoriginal'            => 'Andmete genereerimise kuupäev ja kellaaeg',
+'exif-datetimeoriginal'            => 'Andmete loomise kuupäev ja kellaaeg',
 'exif-datetimedigitized'           => 'Digitaliseerimise kuupäev ja kellaaeg',
 'exif-subsectime'                  => 'Kuupäev/Kellaaeg sekundi murdosad',
 'exif-subsectimeoriginal'          => 'Loomisaja sekundi murdosad',
@@ -2713,6 +2740,7 @@ Kui faili on rakendustarkvaraga töödeldud, võib osa andmeid olla muudetud võ
 'exif-exposureprogram'             => 'Säriprogramm',
 'exif-spectralsensitivity'         => 'Spektraalne tundlikkus',
 'exif-isospeedratings'             => 'Kiirus (ISO)',
+'exif-shutterspeedvalue'           => 'Katiku kiirus',
 'exif-aperturevalue'               => 'Avaarv',
 'exif-brightnessvalue'             => 'Heledus',
 'exif-exposurebiasvalue'           => 'Särituse mõju',
@@ -2724,10 +2752,10 @@ Kui faili on rakendustarkvaraga töödeldud, võib osa andmeid olla muudetud võ
 'exif-subjectlocation'             => 'Subjekti asukoht',
 'exif-exposureindex'               => 'Särituse number',
 'exif-filesource'                  => 'Faili päritolu',
-'exif-customrendered'              => 'Kohaldatud pilditöötlus',
+'exif-customrendered'              => 'Kohandatud pilditöötlus',
 'exif-exposuremode'                => 'Särituse meetod',
 'exif-whitebalance'                => 'Valge tasakaal',
-'exif-digitalzoomratio'            => 'Digitaal suurenduse arv',
+'exif-digitalzoomratio'            => 'Digisuumi tegur',
 'exif-contrast'                    => 'Kontrastsus',
 'exif-saturation'                  => 'Küllastus',
 'exif-sharpness'                   => 'Teravus',
@@ -2761,18 +2789,18 @@ Kui faili on rakendustarkvaraga töödeldud, võib osa andmeid olla muudetud võ
 'exif-orientation-2' => 'Pööratud pikali',
 'exif-orientation-3' => 'Pööratud 180°',
 'exif-orientation-4' => 'Pööratud püsti',
-'exif-orientation-5' => 'Keeratud 90° Vastupäeva ja vertikaalis pööratud',
-'exif-orientation-6' => 'Keeratud 90° Päripäeva',
-'exif-orientation-7' => 'Keeratud 90° Päripäeva ja vertikaalis pööratud',
-'exif-orientation-8' => 'Keeratud 90° Vastupäeva',
+'exif-orientation-5' => 'Pööratud 90° vastupäeva ja püstselt ümberpööratud',
+'exif-orientation-6' => 'Pööratud 90° päripäeva',
+'exif-orientation-7' => 'Pööratud 90° päripäeva ja püstselt ümberpööratud',
+'exif-orientation-8' => 'Pööratud 90° vastupäeva',
 
 'exif-componentsconfiguration-0' => 'ei ole',
 
 'exif-exposureprogram-0' => 'Määratlemata',
 'exif-exposureprogram-1' => 'Manuaalne',
-'exif-exposureprogram-2' => 'Normaal programm',
-'exif-exposureprogram-3' => 'Ava prioriteetne',
-'exif-exposureprogram-4' => 'Katik prioriteetne',
+'exif-exposureprogram-2' => 'Tavaprogramm',
+'exif-exposureprogram-3' => 'Ava prioriteet',
+'exif-exposureprogram-4' => 'Katiku prioriteet',
 'exif-exposureprogram-7' => 'Portree töörežiim (lähifotode jaoks, taust fookusest väljas)',
 'exif-exposureprogram-8' => 'Maastiku töörežiim (maastikupiltide jaoks, taust on fokuseeritud)',
 
@@ -2782,7 +2810,7 @@ Kui faili on rakendustarkvaraga töödeldud, võib osa andmeid olla muudetud võ
 'exif-meteringmode-1'   => 'Keskmine',
 'exif-meteringmode-2'   => 'Kaalutud keskmine',
 'exif-meteringmode-3'   => 'Punkt',
-'exif-meteringmode-4'   => 'Mitu Punkti',
+'exif-meteringmode-4'   => 'Mitmikpunkt',
 'exif-meteringmode-5'   => 'Muster',
 'exif-meteringmode-6'   => 'Osaline',
 'exif-meteringmode-255' => 'Muu',
@@ -2808,6 +2836,11 @@ Kui faili on rakendustarkvaraga töödeldud, võib osa andmeid olla muudetud võ
 # Flash modes
 'exif-flash-fired-0'    => 'Välk ei töötanud',
 'exif-flash-fired-1'    => 'Välk töötas',
+'exif-flash-return-0'   => 'ei ole välgu peegeldumist tuvastavat funktsiooni',
+'exif-flash-return-2'   => 'välgu peegeldust ei tuvastatud',
+'exif-flash-return-3'   => 'tuvastati välgu peegeldus',
+'exif-flash-mode-1'     => 'sund välk',
+'exif-flash-mode-2'     => 'välk keelatud',
 'exif-flash-mode-3'     => 'automaatne töörežiim',
 'exif-flash-function-1' => 'Välgu funktsiooni ei ole',
 'exif-flash-redeye-1'   => 'Punasilmsust vähendav reziim',
@@ -2962,7 +2995,8 @@ Palun kinnita, et soovid tõesti selle lehekülje taasluua.",
 Proovi tavalist eelvaadet.',
 
 # Friendlier slave lag warnings
-'lag-warn-normal' => 'Hilisemad muudatused kui $1 {{PLURAL:$1|sekund|sekundit}} ei pruugi selles loendis näha olla.',
+'lag-warn-normal' => 'Viimase {{PLURAL:$1|ühe sekundi|$1 sekundi}} jooksul tehtud muudatused ei pruugi selles loendis näha olla.',
+'lag-warn-high'   => 'Andmebaasiserveri töö viivituste tõttu ei pruugi viimase {{PLURAL:$1|ühe sekundi|$1 sekundi}} jooksul tehtud muudatused selles loendis näha olla.',
 
 # Watchlist editor
 'watchlistedit-numitems'       => 'Teie jälgimisloendis on ilma arutelulehtedeta {{PLURAL:$1|1 leht|$1 lehte}}.',
@@ -3053,8 +3087,20 @@ Sisesta faili nimi eesliiteta "{{ns:file}}:".',
 'blankpage'              => 'Tühi leht',
 'intentionallyblankpage' => 'See lehekülg on sihilikult tühjaks jäetud.',
 
+# External image whitelist
+'external_image_whitelist' => '  #Jäta see rida muutmata kujule<pre>
+#Pane regulaaravaldise osad (vaid //-märkide vahel olev osa) allapoole
+#Need on vastavuses vikiväliste piltide internetiaadressidega
+#Vastavuses olevad kuvatakse piltidena, muul juhul kuvatakse ainult pildi link
+#Märgiga # algavad read on kommentaarid
+#See on tõstutundetu
+
+#Pane kõik regulaaravaldise osad selle joone kohale. Jäta see rida muutmata kujule</pre>',
+
 # Special:Tags
 'tags'                    => 'Käibivad muudatusmärgised',
+'tag-filter'              => '[[Special:Tags|Märgisefilter]]:',
+'tag-filter-submit'       => 'Filtri',
 'tags-title'              => 'Märgised',
 'tags-intro'              => 'See lehekülg loetleb märgised, millega tarkvara võib muudatused märgistada, ja nende kirjeldused.',
 'tags-tag'                => 'Sisene märgisenimi',
@@ -3074,6 +3120,7 @@ Sisesta faili nimi eesliiteta "{{ns:file}}:".',
 'dberr-cachederror' => 'See koopia taotletud leheküljest on vahemälus ja ei pruugi olla ajakohane.',
 
 # HTML forms
+'htmlform-invalid-input'       => 'Osaga sinu sisestatust on probleeme',
 'htmlform-select-badoption'    => 'Antud number ei ole kõlbulik.',
 'htmlform-int-invalid'         => 'Antud väärtus ei ole täisarv.',
 'htmlform-float-invalid'       => 'Määratud väärtus ei ole arvuline.',

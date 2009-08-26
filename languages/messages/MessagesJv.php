@@ -969,7 +969,6 @@ Gunakna tombol radio kanggo nggabungaké révisi-révisi sing digawé sadurungé
 'searchall'                        => 'kabèh',
 'showingresults'                   => "Ing ngisor iki dituduhaké {{PLURAL:$1|'''1''' kasil|'''$1''' kasil}}, wiwitané saking #<strong>$2</strong>.",
 'showingresultsnum'                => "Ing ngisor iki dituduhaké {{PLURAL:$3|'''1''' kasil|'''$3''' kasil}}, wiwitané saka #<strong>$2</strong>.",
-'showingresultstotal'              => "Ing ngisor iki kapacak pituwas {{PLURAL:$4|'''$1'''|'''$1 - $2'''}} saka '''$3'''",
 'showingresultsheader'             => "{{PLURAL:$5|Asil '''$1''' saka '''$3'''|Asil '''$1 - $2''' saka '''$3'''}} kanggo '''$4'''",
 'nonefound'                        => "'''Cathetan''': Namung sawetara bilik nama sing digolèki sacara baku. Coba seselana mawa awalan ''all:'' kanggo golèk kabèh isi (kalebu kaca dhiskusi, cithakan lsp.), utawa nganggo bilik nama sing dipèngèni minangka préfiks.",
 'search-nonefound'                 => "Ora ana kasil sing cocog karo pitakonan (''query'').",

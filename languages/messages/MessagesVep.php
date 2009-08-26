@@ -912,7 +912,6 @@ Tö voit [[:\$1|säta mugoi lehtpol']].",
 'searchall'                        => 'kaik',
 'showingresults'                   => "Alemba ozutadas {{PLURAL:$1|'''1''' rezul'tat|'''$1''' rezul'tatad}} nomeraspäi #'''$2''' augotaden.",
 'showingresultsnum'                => "Alemba ozutadas {{PLURAL:$3|'''1''' rezul'tat|'''$3''' rezul'tatad}} nomeraspäi '''$2''' augotaden.",
-'showingresultstotal'              => "Alemba ozutadas {{PLURAL:$4|rezul'tat '''$1'''|rezul'tatad '''$1 - $2'''}} ühthižes luguspäi '''$3'''.",
 'nonefound'                        => "'''Note''': Ectäs tobjimalaz kaidetud nimiavaruzišpäi.
 Kävutagat prefiks ''all:'', miše ectä kaikes südäimištospäi (lodulehtpolid, šablonoid i m. e. mülütaden), vai kävutagat tarbhaine nimiavaruz.",
 'search-nonefound'                 => "Ecmižhe ei löudnus rezul'tatoid.",

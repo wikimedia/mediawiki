@@ -433,7 +433,6 @@ Tı şeno/eşkeno [[:\$1|ena name dı nuşte bınusi]].",
 'search-interwiki-more'     => '(hona)',
 'search-mwsuggest-enabled'  => 'be teklifan',
 'search-mwsuggest-disabled' => 'teklifi çıniyê',
-'showingresultstotal'       => "mucneno bın  {{PLURAL:$4|netice '''$1''' of '''$3'''|neticeyan '''$1 - $2''' of '''$3'''}}",
 'nonefound'                 => "'''Teme''': Teyna tay namecayan cıgeyro beno. 
 Pe verbendi ''all:'', vaceyê xo bıvurni ki contenti hemi cıgeyro (pelanê mınaqeşe, templatenan, ucb.) ya zi cıgeyro ser namecay ki tı wazeni.",
 'powersearch'               => 'Cıgeyrayışo hera',

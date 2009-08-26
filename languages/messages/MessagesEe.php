@@ -254,7 +254,6 @@ Wòateŋu [[:\$1|adze axa sia gɔme]].",
 'searchmenu-exists'     => "'''Axa si ŋkɔ enye \"[[:\$1]]\" le wiki sia dzi'''",
 'searchmenu-new'        => "'''Dze axa \"[[:\$1]]\" sia ŋlɔm ɖe wiki la dzi!'''",
 'search-result-size'    => '$1 ({{PLURAL:$2|nya 1|nya $2}})',
-'showingresultstotal'   => "Wofia {{PLURAL:$4|wò didi '''$1''' tso '''$3''' me|wò didiwo  '''$1 - $2''' tso '''$3''' me}} le afii",
 'powersearch'           => 'Dii de eme',
 'powersearch-field'     => 'Di',
 

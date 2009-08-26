@@ -763,7 +763,6 @@ Mahimo mong [[:\$1|isulat kini nga panid]].",
 'search-interwiki-more'     => '(dugang pa)',
 'search-mwsuggest-enabled'  => 'may mga sugyot',
 'search-mwsuggest-disabled' => 'walay mga sugyot',
-'showingresultstotal'       => "Gipakita sa ubos {{PLURAL:$4|resulta '''$1''' sa '''$3'''|mga resulta '''$1 - $2''' sa '''$3'''}}",
 'showingresultsheader'      => "{{PLURAL:$5|Resulta '''$1''' sa '''$3'''|Mga resulta '''$1 - $2''' of '''$3'''}} sa '''$4'''",
 'nonefound'                 => "'''Bantayi''': Dili tanang ngalang espasyo (namespaces) ang gipangita by default.
 Sulayi'g prefix ang imong gipangita gamit ang ''all:'' alang mangita sa tanang sulod (apil ang mga panid sa hisgot, plantilya, ubp), o gamita ang gikinahanglang ngalang espasyo isip prefix.",

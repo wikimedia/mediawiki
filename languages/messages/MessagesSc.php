@@ -581,7 +581,6 @@ Podes [[:\$1|creare custa pàgina]].",
 'search-mwsuggest-disabled'      => 'chentza impostos',
 'searchall'                      => 'totu',
 'showingresults'                 => "Innoe sighende {{PLURAL:$1|benit amostau '''1''' resurtadu|benint amostaos '''$1''' resurtados}} incumentzende dae su nùmeru '''$2'''.",
-'showingresultstotal'            => "De sighidu {{PLURAL:$4|benit amostadu su resurtadu '''$1''' de '''$3'''|benint amostados is resurtados '''$1 - $2''' de '''$3'''}}",
 'showingresultsheader'           => "{{PLURAL:$5|Resultadu '''$1''' de '''$3'''|Resultadus '''$1 - $2''' de '''$3'''}} pro '''$4'''",
 'nonefound'                      => "'''Annota''': sa chirca est fata pro difetu isceti in unos Nòmene-logos. 
 Prova a scioberai ''totu:'' pro chircare in totu su cuntènnidu (includius pàginas de cuntierra, template, etc), oppuru sciobera comente prefissu su pretzisu Nòmene-logu chi boles.",

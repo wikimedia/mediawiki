@@ -1030,7 +1030,6 @@ Tu puè [[:\$1|ccrejà sta pàgene]].",
 'searchall'                        => 'tutte',
 'showingresults'                   => "Stoche a fazze vedè aqquà sotte {{PLURAL:$1|'''1''' resultete|'''$1''' resultete}} ca accumenzene cu #'''$2'''.",
 'showingresultsnum'                => "Stoche a fazze vedè {{PLURAL:$3|'''1''' resultete|'''$3''' resultete}} ca accumenzene cu #'''$2'''.",
-'showingresultstotal'              => "Ste vide aqquà sotte {{PLURAL:$4|resultete '''$1''' de '''$3'''|resultete '''$1 - $2''' de '''$3'''}}",
 'showingresultsheader'             => "{{PLURAL:$5|Resultate '''$1''' de '''$3'''|Resultate '''$1 - $2''' de '''$3'''}} pe '''$4'''",
 'nonefound'                        => "'''Vide bbuene''': Sulamende sus a certe namespace avène fatte 'a ricerche pe default.
 Prueve mettènne nnande a l'inderrogaziona toje 'u prefisse '''all:''' pe cercà jndr'à tutte le namespace (ingludenne le pàggene de le 'ngazzaminde, le template, etc), o ause 'u namespace addò vuliva fa 'a ricerche cumme prefisse.",

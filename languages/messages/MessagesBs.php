@@ -575,7 +575,9 @@ $1',
 Možda ste pogriješili pri unosu URL-a ili ste slijedili pokvaren link.
 Moguće je i da je ovo greška u {{SITENAME}} softveru.',
 'nosuchspecialpage' => 'Nema takve posebne stranice',
-'nospecialpagetext' => 'Tražili ste posebnu stranicu, koju {{SITENAME}} softver nije prepoznao.',
+'nospecialpagetext' => "<big>'''Tražili ste nevaljanu posebnu stranicu.'''</big>
+
+Spisak valjanih posebnih stranica se može naći na [[Special:SpecialPages|{{int:specialpages}}]].",
 
 # General errors
 'error'                => 'Greška',
@@ -657,8 +659,9 @@ Iz razloga "\'\'$2\'\'".',
 
 Možete nastaviti da koristite {{SITENAME}} anonimno, ili se ponovo [[Special:UserLogin|prijaviti]] kao isti ili kao drugi korisnik.
 Obratite pažnju da neke stranice mogu nastaviti da se prikazuju kao da ste još uvijek prijavljeni, dok ne očistite keš svog preglednika.",
-'welcomecreation'            => '<h2>Dobro došli, $1!</h2><p>Vaš nalog je napravljen.
-Ne zaboravite da prilagodite sebi svoja podešavanja.',
+'welcomecreation'            => '== Dobro došli, $1 ==
+Vaš nalog je napravljen.
+Ne zaboravite da prilagodite sebi svoja [[Special:Preferences|{{SITENAME}} podešavanja]].',
 'yourname'                   => 'Korisničko ime:',
 'yourpassword'               => 'Šifra:',
 'yourpasswordagain'          => 'Ponovite šifru:',
@@ -697,8 +700,7 @@ Provjerite da li ste dobro ukucali.',
 Molimo Vas da pokušate ponovno.',
 'wrongpasswordempty'         => 'Šifra je bila prazna.
 Molimo Vas da pokušate ponovno.',
-'passwordtooshort'           => 'Vaša šifra je prekratka.
-Šifra mora imati najmanje {{PLURAL:$1|1 znak|$1 znakova}}.',
+'passwordtooshort'           => 'Šifra mora imati najmanje {{PLURAL:$1|1 znak|$1 znaka|$1 znakova}}.',
 'password-name-match'        => 'Vaša šifra mora biti različita od Vašeg korisničkog imena.',
 'mailmypassword'             => 'Pošalji mi novu šifru',
 'passwordremindertitle'      => 'Nova privremena šifra za {{SITENAME}}',
@@ -1246,7 +1248,6 @@ Možete [[:\$1|da napravite članak sa tim naslovom]].
 'searchall'                        => 'sve',
 'showingresults'                   => "Dole {{PLURAL:$1|je prikazan '''1''' rezultat|su prikazana '''$1''' rezultata|je prikazano '''$1''' rezultata}} počev od '''$2'''.",
 'showingresultsnum'                => "Dolje {{PLURAL:$3|je prikazan '''1''' rezultat|su prikazana '''$3''' rezultata|je prikazano '''$3''' rezultata}} počev od #'''$2'''.",
-'showingresultstotal'              => "Ispod {{PLURAL:$4|je prikazan rezultat '''$1''' od '''$3'''|su prikazani rezultati '''$1 - $2''' od ukupno '''$3'''}}",
 'showingresultsheader'             => "{{PLURAL:$5|Rezultat '''$1''' od '''$3'''|Rezultati '''$1 - $2''' od '''$3'''}} za '''$4'''",
 'nonefound'                        => "'''Pažnja''': Po pretpostavljenim postavkama pretražuju se samo neki imenski prostori.
 Pokušajte u Vaš upit uključiti prefiks ''all:'' da bi ste pretražili sav sadržaj (uključujući stranice za razgovor, šablone i sl.) ili koristite željeni imenski prostor kao prefiks.",
@@ -1707,7 +1708,7 @@ Molimo provjerite da li je stranica postavljena, malo pričekajte i pokušajte p
 Možda možete pokušati kada bude manje opterećenje.',
 
 'license'            => 'Licenca:',
-'license-header'     => 'Licenca:',
+'license-header'     => 'Licenciranje',
 'nolicense'          => 'Ništa nije odabrano',
 'license-nopreview'  => '(Pregled nije dostupan)',
 'upload_source_url'  => ' (validni, javno dostupni URL)',
@@ -2668,6 +2669,7 @@ Nedostaje privremeni folder.',
 'tooltip-ca-viewsource'           => 'Ovaj članak je zaključan. Možete ga samo vidjeti ili kopirati kod.',
 'tooltip-ca-history'              => 'Prethodne verzije ove stranice.',
 'tooltip-ca-protect'              => 'Zaštitite stranicu od budućih izmjena',
+'tooltip-ca-unprotect'            => 'Odštiti ovu stranicu',
 'tooltip-ca-delete'               => 'Izbrišite ovu stranicu',
 'tooltip-ca-undelete'             => 'Vratite izmjene koje su načinjene prije brisanja stranice',
 'tooltip-ca-move'                 => 'Pomjerite stranicu',
@@ -2678,6 +2680,7 @@ Nedostaje privremeni folder.',
 'tooltip-search-fulltext'         => 'Pretraga stranica sa ovim tekstom',
 'tooltip-p-logo'                  => 'Glavna stranica',
 'tooltip-n-mainpage'              => 'Posjetite početnu stranicu',
+'tooltip-n-mainpage-description'  => 'Posjetite početnu stranicu',
 'tooltip-n-portal'                => 'O projektu, šta možete da uradite, gdje se šta nalazi',
 'tooltip-n-currentevents'         => 'Podaci o onome na čemu se trenutno radi',
 'tooltip-n-recentchanges'         => 'Spisak nedavnih izmjena na wiki.',

@@ -648,7 +648,6 @@ Wenn du dich miet dam Thema oauskennst, koast du selbst [[:$1|die Seite verfassa
 'search-relatedarticle'          => 'Verwandte',
 'searchrelated'                  => 'verwandt',
 'searchall'                      => 'olle',
-'showingresultstotal'            => "Is {{PLURAL:$4|folgt Suchergebnis '''$1''' voo '''$3:'''|fulga de Suchergebnisse '''$1–$2''' voo '''$3:'''}}",
 'nonefound'                      => "'''Hinweis:''' Is waan standardmäßig ocke eenige Noamensräume dorchsucht. Setze ''all:'' vur denn Suchbegriff, im olle Seita (inkl. Diskussionsseiten, Vorlagen usw.) zu dorchsucha oder gezielt dan Noama des zu dorchsuchenden Noamensraumes.",
 'powersearch'                    => 'Erweiterte Suche',
 'powersearch-legend'             => 'Erweiterte Suche',

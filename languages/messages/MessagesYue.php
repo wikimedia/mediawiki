@@ -1,5 +1,5 @@
 <?php
-/** Cantonese (粵語/廣東話)
+/** Yue (粵語)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -1090,7 +1090,6 @@ $1",
 'searchall'                        => '全部',
 'showingresults'                   => "'自#'''$2'''起顯示最多'''$1'''個結果。",
 'showingresultsnum'                => "自#'''$2'''起顯示'''$3'''個結果。",
-'showingresultstotal'              => "下面顯示緊由第'''$1{{PLURAL:$4|| - $2}}'''項，總共'''$3'''項嘅結果",
 'showingresultsheader'             => "對'''$4'''嘅{{PLURAL:$5|第'''$1'''到第'''$3'''項結果|第'''$1 - $2'''項，共'''$3'''項結果}}",
 'nonefound'                        => "'''注意''': 只有一啲空間名係會作預設搵嘢。試吓''all:''去搵全部嘅嘢（包埋討論版、模等），或用需要嘅空間名做前綴。",
 'search-nonefound'                 => '響個查詢度無結果配合。',
