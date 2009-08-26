@@ -247,9 +247,15 @@ HTML
 		<div id="searchBody" class="pBody">
 			<form action="<?php $this->text('wgScript') ?>" id="searchform">
 				<input type='hidden' name="title" value="<?php $this->text('searchtitle') ?>"/>
-				<input id="searchInput" name="search" type="text"<?php echo $this->skin->tooltipAndAccesskey('search');
-					if( isset( $this->data['search'] ) &&  $this->data['search'] ) {
-						?> value="<?php $this->text('search') ?>"<?php } ?> />
+				<?php
+		echo Html::input( 'search',
+			isset( $this->data['search'] ) ? $this->data['search'] : '', 'search',
+			array(
+				'id' => 'searchInput',
+				'title' => $this->skin->titleAttrib( 'search' ),
+				'accesskey' => $this->skin->accesskey( 'search' )
+			) ); ?>
+
 				<input type='submit' name="go" class="searchButton" id="searchGoButton"	value="<?php $this->msg('searcharticle') ?>"<?php echo $this->skin->tooltipAndAccesskey( 'search-go' ); ?> /><?php if ($wgUseTwoButtonsSearchForm) { ?>&nbsp;
 				<input type='submit' name="fulltext" class="searchButton" id="mw-searchButton" value="<?php $this->msg('searchbutton') ?>"<?php echo $this->skin->tooltipAndAccesskey( 'search-fulltext' ); ?> /><?php } else { ?>
 
