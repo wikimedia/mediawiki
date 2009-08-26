@@ -56,7 +56,7 @@ class UploadFromStash extends UploadBase {
 	/**
 	 * File has been previously verified so no need to do so again.
 	 */
-	protected function verifyFile( $tmpfile ) {
+	protected function verifyFile() {
 		return true;
 	}
 

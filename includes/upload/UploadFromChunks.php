@@ -88,7 +88,7 @@ class UploadFromChunks extends UploadBase {
 	}
 
 	// only run verifyFile on completed uploaded chunks
-	function verifyFile( $tmpFile ){
+	function verifyFile(){
 		if( $this->chunk_mode == UploadFromChunks::DONE ){
 			// first append last chunk (so we can do a real verifyFile check... (check file type etc)
 			$status = $this->doChunkAppend();
