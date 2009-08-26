@@ -851,8 +851,8 @@ $1 または他の[[{{MediaWiki:Grouppage-sysop}}|管理者]]にこの件につ�
 * '''Opera:''' 「ツール」→「設定」からキャッシュをクリア。",
 'usercssyoucanpreview'             => "'''助言:''' 「{{int:showpreview}}」ボタンを使うと保存前に新しいスタイルシートやスクリプトをテストできます。",
 'userjsyoucanpreview'              => "'''助言:''' 「{{int:showpreview}}」ボタンを使うと保存前に新しいスタイルシートやスクリプトをテストできます。",
-'usercsspreview'                   => "'''ユーザーCSSをプレビューしています。まだ保存されていないので注意してください。'''",
-'userjspreview'                    => "'''ユーザー JavaScript を試験・プレビューしています。まだ保存されていないので注意してください。'''",
+'usercsspreview'                   => "'''カスタムCSSをプレビューしています。まだ保存されていないので注意してください。'''",
+'userjspreview'                    => "'''カスタム JavaScript を試験・プレビューしています。まだ保存されていないので注意してください。'''",
 'userinvalidcssjstitle'            => "'''警告:''' 「$1」というスキンはありません。.css と .js ページを編集する際にはサブページ名を小文字にすることを忘れないでください。例えば {{ns:user}}:Hoge/Monobook.css ではなく {{ns:user}}:Hoge/monobook.css となります。",
 'updated'                          => '（更新）',
 'note'                             => "'''お知らせ:'''",
@@ -1186,7 +1186,6 @@ $1",
 'searchall'                        => 'すべて',
 'showingresults'                   => "'''$2'''件目から{{PLURAL:$1|'''$1'''件}}を表示しています。",
 'showingresultsnum'                => "'''$2'''件目から{{PLURAL:$3|'''$3'''件}}を表示しています。",
-'showingresultstotal'              => "'''$3''' 件中 {{PLURAL:$4|'''$1'''|'''$1 - $2'''}}件目の検索結果を表示しています",
 'showingresultsheader'             => "「'''$4'''」に対する結果{{PLURAL:$5|'''$3'''件中'''$1'''件|'''$3'''件中'''$1 - $2'''件}}",
 'nonefound'                        => "'''注意''': 通常の設定では一部の名前空間しか検索されません。全ページを検索するためには、''all:'' を冒頭につけて検索するか、検索を行いたい名前空間を指定してください。",
 'search-nonefound'                 => '問い合わせに合致する結果はありませんでした。',
@@ -1274,8 +1273,8 @@ $1",
 'defaultns'                     => 'その他の場合、次の名前空間でのみ検索する:',
 'default'                       => 'デフォルト',
 'prefs-files'                   => 'ファイル',
-'prefs-custom-css'              => 'ユーザーCSS',
-'prefs-custom-js'               => 'ユーザーJS',
+'prefs-custom-css'              => 'カスタムCSS',
+'prefs-custom-js'               => 'カスタムJS',
 'prefs-reset-intro'             => 'このページを使うと、あなたの個人設定をこのサイトの既定のものに再設定することができます。この操作は取り消しができません。',
 'prefs-emailconfirm-label'      => 'メール確認:',
 'prefs-textboxsize'             => '編集画面の大きさ',
@@ -1619,7 +1618,7 @@ PICT # その他
 'upload-curl-error28-text' => '相手サイトからの応答がありませんでした。指定したサイトが現在使用可能かを確認した上で、しばらく待ってもう一度お試しください。また、インターネットが混雑していない時間帯に実行することを推奨します。',
 
 'license'            => 'ライセンス:',
-'license-header'     => 'ライセンス:',
+'license-header'     => 'ライセンス',
 'nolicense'          => '選択なし',
 'license-nopreview'  => '（プレビューはありません）',
 'upload_source_url'  => '（有効かつ一般に公開されているURL）',
@@ -3077,6 +3076,10 @@ $1',
 'confirm-purge-top'    => 'ページのキャッシュを破棄します。よろしいですか？',
 'confirm-purge-bottom' => 'ページをパージすると、キャッシュを破棄し、強制的に最新の版が表示されます。',
 
+# Separators for various lists, etc.
+'comma-separator' => '、',
+'word-separator'  => '',
+
 # Multipage image navigation
 'imgmultipageprev' => '&larr; 前ページ',
 'imgmultipagenext' => '次ページ &rarr;',
@@ -3137,7 +3140,7 @@ $1',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'ウォッチリストの確認',
-'watchlisttools-edit' => 'ウォッチリストの表示・編集',
+'watchlisttools-edit' => 'ウォッチリストの表示と編集',
 'watchlisttools-raw'  => 'ウォッチリストをテキストで編集',
 
 # Iranian month names

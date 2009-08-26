@@ -556,12 +556,12 @@ Może to oznaczać błąd w oprogramowaniu.
 Ostatnie, nieudane zapytanie to:
 <blockquote><tt>$1</tt></blockquote>
 wysłane przez funkcję „<tt>$2</tt>”.
-$5 zgłosił błąd „<tt>$3: $4</tt>”.',
+Baza danych zgłosiła błąd „<tt>$3: $4</tt>”.',
 'dberrortextcl'        => 'Wystąpił błąd składni w zapytaniu do bazy danych.
 Ostatnie, nieudane zapytanie to:
 „$1”
 wywołane zostało przez funkcję „$2”.
-$5 zgłosił błąd „$3: $4”',
+Baza danych zgłosiła błąd „$3: $4”',
 'laggedslavemode'      => 'Uwaga! Ta strona może nie zawierać najnowszych aktualizacji.',
 'readonly'             => 'Baza danych jest zablokowana',
 'enterlockreason'      => 'Podaj powód zablokowania bazy oraz szacunkowy termin jej odblokowania',
@@ -672,8 +672,7 @@ Sprawdź poprawność pisowni.',
 'nouserspecified'            => 'Musisz podać nazwę użytkownika.',
 'wrongpassword'              => 'Podane hasło jest nieprawidłowe. Spróbuj jeszcze raz.',
 'wrongpasswordempty'         => 'Wprowadzone hasło jest puste. Spróbuj ponownie.',
-'passwordtooshort'           => 'Twoje hasło jest za krótkie.
-Musi mieć co najmniej $1 {{PLURAL:$1|znak|znaki|znaków}}.',
+'passwordtooshort'           => 'Hasło musi mieć co najmniej $1 {{PLURAL:$1|znak|znaki|znaków}}.',
 'password-name-match'        => 'Hasło musi być inne niż nazwa użytkownika.',
 'mailmypassword'             => 'Wyślij mi nowe hasło poprzez e‐mail',
 'passwordremindertitle'      => 'Nowe tymczasowe hasło do {{GRAMMAR:D.lp|{{SITENAME}}}}',
@@ -1211,7 +1210,6 @@ Możesz [[:$1|utworzyć tę stronę]].",
 'searchall'                        => 'wszystkie',
 'showingresults'                   => "Poniżej znajduje się lista {{PLURAL:$1|z '''1''' wynikiem|'''$1''' wyników}}, rozpoczynając od wyniku numer '''$2'''.",
 'showingresultsnum'                => "Poniżej znajduje się lista {{PLURAL:$3|z '''1''' wynikiem|'''$3''' wyników}}, rozpoczynając od wyniku numer '''$2'''.",
-'showingresultstotal'              => "Poniżej {{PLURAL:$4|znajduje się wynik wyszukania numer '''$1''' z '''$3'''|znajdują się wyniki wyszukiwania '''$1 – $2''', z ogólnej liczby '''$3'''}}",
 'showingresultsheader'             => "{{PLURAL:$5|Wynik '''$1''' z '''$3'''|Wyniki '''$1 – $2''' z '''$3'''}} dla '''$4'''",
 'nonefound'                        => "'''Uwaga''': Domyślnie przeszukiwane są wyłącznie niektóre przestrzenie nazw. Spróbuj poprzedzić wyszukiwaną frazę przedrostkiem ''all:'', co spowoduje przeszukanie całej zawartości {{GRAMMAR:D.lp|{{SITENAME}}}} (włącznie ze stronami dyskusji, szablonami itp) lub spróbuj użyć jako przedrostka wybranej, jednej przestrzeni nazw.",
 'search-nonefound'                 => 'Brak wyników spełniających kryteria podane w zapytaniu.',
@@ -2053,32 +2051,35 @@ Każda zmiana treści tej strony lub związanej z nią strony dyskusji zostanie 
 'enotif_impersonal_salutation' => 'użytkownik {{GRAMMAR:D.lp|{{SITENAME}}}}',
 'changed'                      => 'zmieniona',
 'created'                      => 'utworzona',
+'deleted'                      => 'usunięta',
+'enotif_deletedpagetext'       => 'Ta strona nie jest już dostępna.',
 'enotif_subject'               => 'Strona $PAGETITLE w {{GRAMMAR:MS.lp|{{SITENAME}}}} została $CHANGEDORCREATED przez użytkownika $PAGEEDITOR',
 'enotif_lastvisited'           => 'Zobacz na stronie $1 wszystkie zmiany od Twojej ostatniej wizyty.',
 'enotif_lastdiff'              => 'Zobacz na stronie $1 tę zmianę.',
 'enotif_anon_editor'           => 'użytkownik anonimowy $1',
-'enotif_body'                  => 'Drogi (droga) $WATCHINGUSERNAME,
+'enotif_rev_info'              => 'Zobacz aktualną wersją na stronie $1.',
+'enotif_body'                  => 'Szanowny $WATCHINGUSERNAME,
 
-strona $PAGETITLE w {{GRAMMAR:MS.lp|{{SITENAME}}}} została $CHANGEDORCREATED $PAGEEDITDATEANDTIME przez użytkownika $PAGEEDITOR. Zobacz na stronie $PAGETITLE_URL aktualną wersję.
+strona $PAGETITLE w {{GRAMMAR:MS.lp|{{SITENAME}}}} została $CHANGEDORCREATED $PAGEEDITDATEANDTIME przez użytkownika $PAGEEDITOR. $REVINFO
 
 $NEWPAGE
 
 Opis zmiany: $PAGESUMMARY $PAGEMINOREDIT
 
-Skontaktuj się z autorem:
-mail: $PAGEEDITOR_EMAIL
-wiki: $PAGEEDITOR_WIKI
+Kontakt do autora:
+mail – $PAGEEDITOR_EMAIL
+wiki – $PAGEEDITOR_WIKI
 
 W przypadku kolejnych zmian nowe powiadomienia nie zostaną wysłane, dopóki nie odwiedzisz tej strony.
 Możesz także zresetować wszystkie flagi powiadomień na swojej liście stron obserwowanych.
 
-	Wiadomość systemu powiadomień {{GRAMMAR:D.lp|{{SITENAME}}}}
+	Wiadomość z systemu powiadomień {{GRAMMAR:D.lp|{{SITENAME}}}}
 
 --
 W celu zmiany ustawień swojej listy obserwowanych odwiedź
 {{fullurl:{{#special:Watchlist}}/edit}}
 
-Pomoc:
+Pomoc
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
@@ -2613,6 +2614,7 @@ Brak katalogu dla plików tymczasowych.',
 'tooltip-ca-viewsource'           => 'Ta strona jest zabezpieczona. Możesz zobaczyć tekst źródłowy.',
 'tooltip-ca-history'              => 'Starsze wersje tej strony.',
 'tooltip-ca-protect'              => 'Zabezpiecz tę stronę.',
+'tooltip-ca-unprotect'            => 'Odbezpiecz tę stronę',
 'tooltip-ca-delete'               => 'Usuń tę stronę',
 'tooltip-ca-undelete'             => 'Przywróć wersję tej strony sprzed usunięcia',
 'tooltip-ca-move'                 => 'Przenieś tę stronę.',
@@ -2623,6 +2625,7 @@ Brak katalogu dla plików tymczasowych.',
 'tooltip-search-fulltext'         => 'Szukaj wprowadzonego tekstu w treści stron',
 'tooltip-p-logo'                  => 'Strona główna',
 'tooltip-n-mainpage'              => 'Zobacz stronę główną',
+'tooltip-n-mainpage-description'  => 'Przejdź na stronę główną',
 'tooltip-n-portal'                => 'O projekcie, co możesz zrobić, gdzie możesz znaleźć informacje',
 'tooltip-n-currentevents'         => 'Informacje o aktualnych wydarzeniach',
 'tooltip-n-recentchanges'         => 'Lista ostatnich zmian na {{GRAMMAR:D.lp|{{SITENAME}}}}.',

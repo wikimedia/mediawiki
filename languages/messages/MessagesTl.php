@@ -1060,7 +1060,6 @@ Maaari mong [[:\$1|likhain ang pahinang ito]].",
 'searchall'                        => 'lahat',
 'showingresults'                   => "Ipinapakita sa ibaba ang magpahanggang sa {{PLURAL:$1|'''1''' resultang|'''$1''' mga resultang}} nagsisimula sa #'''$2'''.",
 'showingresultsnum'                => "Ipinapakita sa ibaba ang {{PLURAL:$3|'''1''' resultang|'''$3''' mga resultang}} nagsisimula sa #'''$2'''.",
-'showingresultstotal'              => "Ipinapakita sa ibaba ang {{PLURAL:$4|resultang '''$1''' ng '''$3'''|mga resultang '''$1 - $2''' ng '''$3'''}}",
 'nonefound'                        => "'''Paunawa''': Ilang mga espasyo ng pangalan lamang ang hinahanap ayon sa likas na pagkakatakda.
 Subuking lagyan ng unlapi/paunang ''all:'' upang hanapin ang lahat ng mga nialalaman (kabilang ang mga pahina ng usapan, mga suleras, atbp), o gamitin ang ninanais na espasyo ng pangalan bilang unlapi.",
 'search-nonefound'                 => 'Walang mga resultang tumutugma sa katanungan/pagtatanong.',

@@ -923,7 +923,6 @@ Sha'rtli belgiler: (ha'z.) = ha'zirgi nusqasi menen parqı,
 'searchall'                        => 'barlıq',
 'showingresults'                   => "To'mende '''$2''' ornınan baslap {{PLURAL:$1|'''1''' na'tiyje|'''$1''' shekemgi na'tiyjeler}} ko'rsetilgen.",
 'showingresultsnum'                => "To'mende '''$2''' ornınan baslap {{PLURAL:$3|'''1''' na'tiyje|'''$3''' na'tiyje}} ko'rsetilgen.",
-'showingresultstotal'              => "To'mende {{PLURAL:$4|'''$3''' arasınan '''$1''' na'tiyje ko'rsetiledi|'''$3''' arasınan '''$1 — $2''' na'tiyjeler ko'rsetiledi}}",
 'nonefound'                        => "'''Esletpe''': Defolt boyınsha tek g'ana sheklengen isimler ko'pliginen izlenedi. 
 Barlıq mag'lıwmat tu'rin (sonın' ishinde sa'wbet betlerdi, shablonlardı h.t.b.) izlew ushın izlewin'izdi ''all:'' prefiksi menen baslan', yamasa qa'legen isimler ko'pligin prefiks esabında qollanın'.",
 'search-nonefound'                 => "Sorawg'a sa'ykes na'tiyje tabılmadı.",

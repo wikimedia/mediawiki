@@ -672,7 +672,6 @@ Surskriburo: '''({{int:cur}})''' = diferi kun l'aktuala versiono,
 'searchall'                 => 'omna',
 'showingresults'            => "Montrante infre {{PLURAL:$1|'''1''' rezulto|'''$1''' rezulti}}, qui komencas kun numero #'''$2'''.",
 'showingresultsnum'         => "Montrante infre {{PLURAL:$3|'''1''' rezulto|'''$3''' rezulti}}, qui komencas kun numero #'''$2'''.",
-'showingresultstotal'       => "Yen {{PLURAL:$4|rezultajo '''$1''' di '''$3'''|rezultaji '''$1 - $2''' of '''$3'''}}",
 'nonefound'                 => "'''Atencez''': Nespecigite, nur ula nomari esas serchata.
 Probez prefixizar vua demando kun ''all:'' por serchar omna kontenajo (inkluzanta debato-pagini, shabloni, edc.), od uzar la dezirata nomaro kom prefixo.",
 'powersearch'               => 'Avancita sercho',

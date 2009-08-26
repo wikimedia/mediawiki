@@ -926,7 +926,6 @@ Asegúrate de qu'esti cambéu caltenga la continuidá del históricu de la páxi
 'searchall'                        => 'toos',
 'showingresults'                   => "Abaxo {{PLURAL:$1|amuésase '''un''' resultáu|amuésense '''$1''' resultaos}}, entamando col #'''$2'''.",
 'showingresultsnum'                => "Abaxo {{PLURAL:$3|amuésase '''un''' resultáu|amuésense '''$3''' resultaos}}, entamando col #'''$2'''.",
-'showingresultstotal'              => "Amosando {{PLURAL:$4|embaxo'l resultáu '''$1''' de '''$3'''|embaxo los resultaos '''$1 - $2''' de '''$3'''}}",
 'nonefound'                        => "'''Nota''': Por defeutu namái se busca en dalgunos de los espacios de nome. Prueba a poner delantre de la to consulta ''all:'' pa buscar en tol conteníu (inxiriendo páxines d'alderique, plantíes, etc.), o usa como prefixu l'espaciu de nome deseáu.",
 'search-nonefound'                 => 'Nun hebo resultaos que concueyen cola consulta.',
 'powersearch'                      => 'Buscar',

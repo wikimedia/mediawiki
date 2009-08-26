@@ -910,7 +910,6 @@ Wan du die mäd dät Thema uutkoanst, koast du sälwen ju [[:$1|Siede ferfoatje]
 'searchall'                        => 'aal',
 'showingresults'                   => "Hier {{PLURAL:$1|is '''1''' Resultoat|sunt '''$1''' Resultoate}}, ounfangend mäd Nuumer '''$2'''.",
 'showingresultsnum'                => "Hier {{PLURAL:$3|is '''1''' Resultoat|sunt '''$3''' Resultoate}}, ounfangend mäd Nuumer '''$2'''.",
-'showingresultstotal'              => "Hier {{PLURAL:$4|foulget Säikresultoat '''$1''' fon '''$3:'''|foulgje do Säikresultoate '''$1–$2''' fon '''$3:'''}}",
 'nonefound'                        => "'''Waiwiesenge:''' Der wäide standoardmäitich man oankelde Noomensruume truchsoacht. Sät ''all:'' foar din Säikbegrip, uum aal Sieden (bietou Diskussionssieden, Foarloagen usw.) tou truchsäiken of sield dän Noome fon dän truchtousäikende Noomensruum.",
 'search-nonefound'                 => 'Foar dien Säikanfroage wuuden neen Resultoate fuunen.',
 'powersearch'                      => 'Fääre säike',

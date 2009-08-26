@@ -1243,7 +1243,6 @@ Asseguratz-vos qu'aqueste cambiament pòsca conservar la continuitat de l'istori
 'searchall'                        => 'Totes',
 'showingresults'                   => "Afichatge {{PLURAL:$1|d''''1''' resultat|de '''$1''' resultats}} a partir del #'''$2'''.",
 'showingresultsnum'                => "Afichatge {{PLURAL:$3|d''''1''' resultat|de '''$3''' resultats}} a partir del #'''$2'''.",
-'showingresultstotal'              => "Visionament çaijós {{PLURAL:$4|del resultat '''$1''' de '''$3'''|dels resultats de '''$1 - $2''' de '''$3'''}}",
 'showingresultsheader'             => "{{PLURAL:$5|Resultat '''$1'''|Resultats '''$1 - $2'''}} de '''$3''' per '''$4'''",
 'nonefound'                        => "<strong>Nòta</strong>: Sonque qualques espacis de noms son recercats per defaut
 Ensajatz en utilizant lo prefix ''all:'' per recercar tot lo contengut (tot incluent las paginas de discussion, los modèls, etc), o utilizatz l'espaci de nom coma prefix.",
@@ -1691,7 +1690,7 @@ Se lo problèma persistís, contactatz un [[Special:ListUsers/sysop|administrato
 'upload-curl-error28-text' => "Lo site a pres tròp de temps per respondre. Verificatz que lo site es en linha, esperatz un pauc e ensajatz tornarmai. Tanben podètz ensajar a una ora d'afluéncia mendra.",
 
 'license'            => 'Licéncia&nbsp;:',
-'license-header'     => 'Licéncia&nbsp;:',
+'license-header'     => 'Publicat jos licéncia(s)',
 'nolicense'          => 'Cap de licéncia seleccionada',
 'license-nopreview'  => '(Previsualizacion impossibla)',
 'upload_source_url'  => ' (una URL valida e accessibla publicament)',

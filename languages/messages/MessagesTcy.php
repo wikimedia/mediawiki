@@ -441,7 +441,6 @@ $messages = array(
 'search-interwiki-more'     => '(ಮಸ್ತ್)',
 'search-mwsuggest-enabled'  => 'ಸಲಹೆದೊಟ್ಟಿಗೆ',
 'search-mwsuggest-disabled' => 'ಓವು ಸಲಹೆಲಾ ಇಜ್ಜಿ',
-'showingresultstotal'       => "ಒಟ್ಟು '''$3''' ನಾಡಟದ ಫಲಿತಾಂಶೊಲೆಡ್ '''$1 - $2''' ತಿರ್ತ್ ತೋಜಾದ್’ನ್ಡ್",
 'powersearch'               => 'ನಾಡ್’ಲೆ',
 'powersearch-legend'        => 'ಅಡ್ವಾನ್ಸ್’ಡ್ ಸರ್ಚ್',
 'powersearch-ns'            => 'ನೇಮ್-ಸ್ಪೇಸ್’ಲೆಡ್ ನಾಡ್ಲೆ',

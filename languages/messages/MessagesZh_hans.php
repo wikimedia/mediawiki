@@ -1,5 +1,5 @@
 <?php
-/** Simplified Chinese (‪中文(简化字)‬)
+/** Simplified Chinese (‪中文(简体)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -1127,7 +1127,6 @@ $1",
 'searchall'                        => '所有',
 'showingresults'                   => '下面显示从第<b>$2</b>条开始的<b>$1</b>条结果：',
 'showingresultsnum'                => '下面显示从第<b>$2</b>条开始的<b>$3</b>条结果：',
-'showingresultstotal'              => "下面显示从第'''$1{{PLURAL:$4|| - $2}}'''项，总共'''$3'''项之结果",
 'showingresultsheader'             => "对'''$4'''的{{PLURAL:$5|第'''$1'''至第'''$3'''项结果|第'''$1－$2'''项，共'''$3'''项结果}}",
 'nonefound'                        => "'''注意'''：只有部分名字空间的页面会被默认搜索。尝试在您的搜索语句前添加“all:”前缀，这样可以搜索全部页面（包括讨论页、模板等），或者亦可使用所需名字空间作为前缀。",
 'search-nonefound'                 => '找不到和查询相匹配的结果。',
@@ -2103,7 +2102,7 @@ $NEWPAGE
 'undeletebtn'                  => '恢复',
 'undeletelink'                 => '查看／恢复',
 'undeleteviewlink'             => '查看',
-'undeletereset'                => '重设',
+'undeletereset'                => '重置',
 'undeleteinvert'               => '反向选择',
 'undeletecomment'              => '评论：',
 'undeletedarticle'             => '已恢复的"[[$1]]"',

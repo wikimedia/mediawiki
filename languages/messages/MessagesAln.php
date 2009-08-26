@@ -391,12 +391,12 @@ Kjo mundet me tregue gabim në software.
 Kërkesa e fundit në databazë ishte:
 <blockquote><tt>$1</tt></blockquote>
 mbrenda funksionit "<tt>$2</tt>".
-$5 ktheu gabimin "<tt>$3: $4</tt>".',
+Databaza ktheu gabimin "<tt>$3: $4</tt>".',
 'dberrortextcl'        => 'Ka ndodh nji gabim sintaksor në kërkesën në databazë. 
 Kërkesa e fundit në databazë ishte:
 "$1"
 mbrenda funksionit "$2".
-$5 ktheu gabimin "$3: $4".',
+Databaza ktheu gabimin "$3: $4".',
 'laggedslavemode'      => "'''Kujdes:''' Kjo faqe mundet mos me përmbajtë ndryshime të reja.",
 'readonly'             => 'Databaza âsht e bllokueme',
 'enterlockreason'      => 'Futni një arsye për bllokimin, gjithashtu futni edhe kohën se kur pritet të çbllokohet',
@@ -511,8 +511,7 @@ Kontrollo drejtshkrimin.',
 Provo prap.',
 'wrongpasswordempty'         => 'Fjalëkalimi ishte i shprazët.
 Provo prap.',
-'passwordtooshort'           => 'Fjalëkalimi juej âsht shumë i shkurtë.
-Duhet me i pasë së paku {{PLURAL:$1|1 shêjë|$1 shêja}}.',
+'passwordtooshort'           => 'Fjalëkalimi juej duhet me i pasë së paku {{PLURAL:$1|1 shêjë|$1 shêja}}.',
 'password-name-match'        => 'Fjalëkalimi duhet me qenë i ndryshëm prej nofkës.',
 'mailmypassword'             => 'Dërgo fjalëkalimin me email',
 'passwordremindertitle'      => 'Fjalëkalim i ri i përkohshëm për {{SITENAME}}',
@@ -842,7 +841,6 @@ Mundeni [[:\$1|me krijue këtë faqe]].",
 'searchall'                        => 'tâna',
 'showingresults'                   => "Mâ poshtë {{PLURAL:$1|tregohet '''1''' rezultat|tregohen '''$1''' rezultate}} që nisin me #'''$2'''.",
 'showingresultsnum'                => "Mâ poshtë {{PLURAL:$3|tregohet '''1''' rezultat|tregohen '''$3''' rezultate}} që nisin me #'''$2'''.",
-'showingresultstotal'              => "Mâ poshtë {{PLURAL:$4|tregohet rezultati '''$1''' prej '''$3'''|tregohen rezultatet '''$1 - $2''' prej '''$3'''}}",
 'showingresultsheader'             => "{{PLURAL:$5|Rezultati '''$1''' prej '''$3'''|Rezultatet '''$1 - $2''' prej '''$3'''}} për '''$4'''",
 'nonefound'                        => "'''Shenim''': Vetëm disa hapësina kërkohen me t'lême.
 Provoni me ia parashtue kërkesës tuej ''tâna:'' që me lypë tânë përmbajtjen (përfshî edhe diskutimet, shabllonat, etj.), ose përdorni hapësinën e dëshirueme si parashtesë.",

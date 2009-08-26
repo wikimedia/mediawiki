@@ -1063,7 +1063,6 @@ $2',
 'searchall'                        => 'אלץ',
 'showingresults'                   => "ווייזן ביז {{PLURAL:$1|רעזולטאט '''איינס'''|'''$1''' רעזולטאטן}} אנגעפאנגן פון נומער #'''$2''':",
 'showingresultsnum'                => "ווייזן {{PLURAL:$3|רעזולטאט '''איינס'''|'''$3''' רעזולטאטן}} אנגעפאנגן פון נומער #'''$2''':",
-'showingresultstotal'              => "ווײַזן {{PLURAL:$4| רעזולטאט '''$1''' פֿון '''$3'''| רעזולטאטן '''$1 - $2''' פֿון '''$3'''}}",
 'nonefound'                        => "'''  אכטונג''': בלויז אין טייל נאמענטיילן ווערט געזוכט גרונטלעך. 
 איר קענט שרייבן'''all:''' בעפאר דער זוך טערמין כדי צו זוכן אין אלע בלעטער (אריינגערעכנט שמועס בלעטער, מוסטערן, א.א.וו.), אדער שרייבן בעפארן זוך-טערמין דעם נאמענטייל וואס איר זענט אינטערסירט דערין.",
 'search-nonefound'                 => 'נישטא קיין רעזולטאטן פֿאַר דער שאלה.',
@@ -1770,7 +1769,7 @@ $NEWPAGE
 'protect-title'               => 'ענדערן שיץ ניווא פֿאַר "$1"',
 'prot_1movedto2'              => '[[$1]] אריבערגעפירט צו [[$2]]',
 'protect-legend'              => 'באַשטעטיגן שיץ',
-'protectcomment'              => 'הערה:',
+'protectcomment'              => 'אורזאַך:',
 'protectexpiry'               => 'גייט אויס:',
 'protect_expiry_invalid'      => 'אויסגיין צײַט אומגילטיג.',
 'protect_expiry_old'          => 'שוין דערנאך דער אויסגיין צײַט.',
@@ -2156,6 +2155,7 @@ $NEWPAGE
 'tooltip-search-fulltext'         => 'זוכט דעם טעקסט אין די בלעטער',
 'tooltip-p-logo'                  => 'הויפט זייט',
 'tooltip-n-mainpage'              => 'באַזוכט דעם הויפּט־זײַט',
+'tooltip-n-mainpage-description'  => 'באַזוכן דעם הויפט בלאַט',
 'tooltip-n-portal'                => 'גייט אריין אין די געמיינדע צו שמועסן',
 'tooltip-n-currentevents'         => 'מער אינפארמאציע איבער אקטועלע געשענישען',
 'tooltip-n-recentchanges'         => 'ליסטע פון לעצטע ענדערונגען',
@@ -2374,7 +2374,8 @@ $NEWPAGE
 'exif-exposureprogram-7' => 'פארטרעיט מצב (פאר קלאוסאפ בילדער אין די בעקגראונד ארויס פון פאקוס)',
 'exif-exposureprogram-8' => 'לענדסקעיפ מצב (פאר בילדער פון פאנאראמעס וואס בעקגראונד איז אין פאקוס)',
 
-'exif-meteringmode-0' => 'אומבאוויסט',
+'exif-meteringmode-0'   => 'אומבאוויסט',
+'exif-meteringmode-255' => 'אנדער',
 
 'exif-focalplaneresolutionunit-2' => 'אינטשעס',
 
@@ -2540,6 +2541,7 @@ $5
 # Special:Version
 'version'              => 'ווערסיע',
 'version-specialpages' => 'ספעציעלע בלעטער',
+'version-other'        => 'אנדער',
 'version-version'      => '(ווערסיע $1)',
 
 # Special:FilePath
@@ -2574,5 +2576,8 @@ $5
 # Database error messages
 'dberr-header'   => 'די וויקי האט א פראבלעם',
 'dberr-problems' => 'אנטשולדיגט! דער דאזיקער סייט האט טעכנישע פראבלעמען.',
+
+# HTML forms
+'htmlform-selectorother-other' => 'אנדער',
 
 );

@@ -501,12 +501,12 @@ Tai gali reikšti klaidą programinėje įrangoje.
 Paskutinė mėginta duomenų bazės užklausa buvo:
 <blockquote><tt>$1</tt></blockquote>
 iš funkcijos: „<tt>$2</tt>“.
-$5 grąžino klaidą „<tt>$3: $4</tt>“.',
+Duomenų bazė grąžino klaidą „<tt>$3: $4</tt>“.',
 'dberrortextcl'        => 'Įvyko duomenų bazės užklausos sintaksės klaida.
 Paskutinė mėginta duomenų bazės užklausa buvo:
 „$1“
 iš funkcijos: „$2“.
-$5 grąžino klaidą „$3: $4“',
+Duomenų bazė grąžino klaidą „$3: $4“',
 'laggedslavemode'      => 'Dėmesio: Puslapyje gali nesimatyti naujausių pakeitimų.',
 'readonly'             => 'Duomenų bazė užrakinta',
 'enterlockreason'      => 'Įveskite užrakinimo priežastį, taip pat datą, kada bus atrakinta',
@@ -611,8 +611,7 @@ Patikrinkite rašybą, arba [[Special:UserLogin/signup|sukurkite naują paskyrą
 'nouserspecified'            => 'Jums reikia nurodyti naudotojo vardą.',
 'wrongpassword'              => 'Įvestas neteisingas slaptažodis. Pamėginkite dar kartą.',
 'wrongpasswordempty'         => 'Įvestas slaptažodis yra tuščias. Pamėginkite vėl.',
-'passwordtooshort'           => 'Jūsų slaptažodis yra per trumpas.
-Jis turi būti bent $1 {{PLURAL:$1|simbolio|simbolių|simbolių}} ilgio.',
+'passwordtooshort'           => 'Slaptažodžiai turi būti bent $1 {{PLURAL:$1|simbolio|simbolių|simbolių}} ilgio.',
 'password-name-match'        => 'Jūsų slaptažodis turi skirtis nuo jūsų naudotojo vardo.',
 'mailmypassword'             => 'Atsiųsti naują slaptažodį el. paštu',
 'passwordremindertitle'      => 'Laikinasis {{SITENAME}} slaptažodis',
@@ -1142,7 +1141,6 @@ Prašome patikrinti sąrašus.',
 'searchall'                        => 'visi',
 'showingresults'                   => "Žemiau rodoma iki '''$1''' {{PLURAL:$1|rezultato|rezultatų|rezultatų}} pradedant #'''$2'''.",
 'showingresultsnum'                => "Žemiau rodoma '''$3''' {{PLURAL:$3|rezultato|rezultatų|rezultatų}}rezultatų pradedant #'''$2'''.",
-'showingresultstotal'              => "Žemiau rodom{{PLURAL:$4|as rezultatas '''$1''' iš '''$3'''|i rezultatai '''$1 - $2''' iš '''$3'''}}",
 'showingresultsheader'             => "{{PLURAL:$5|Rezultatas '''$1''' iš '''$3'''|Rezultatai '''$1 - $2''' iš '''$3'''}} pagal užklausą '''$4'''",
 'nonefound'                        => "'''Pastaba''': Pagal nutylėjimą ieškoma tik kai kuriose vardų srityse. Pamėginkite prirašyti priešdėlį ''all:'', jei norite ieškoti viso turinio (įskaitant aptarimo puslapius, šablonus ir t. t.), arba naudokite norimą vardų sritį kaip priešdėlį.",
 'search-nonefound'                 => 'Nėra rezultatų, atitinkančių užklausą.',
@@ -1955,6 +1953,7 @@ taip pat bus '''paryškinti''' [[Special:RecentChanges|naujausių keitimų sąra
 'enotif_impersonal_salutation' => '{{SITENAME}} naudotojau',
 'changed'                      => 'pakeitė',
 'created'                      => 'sukurė',
+'deleted'                      => 'ištrintas',
 'enotif_subject'               => '{{SITENAME}} projekte $PAGEEDITOR $CHANGEDORCREATED $PAGETITLE',
 'enotif_lastvisited'           => 'Užeikite į $1, jei norite matyti pakeitimus nuo paskutiniojo apsilankymo.',
 'enotif_lastdiff'              => 'Užeikite į $1, jei norite pamatyti šį pakeitimą.',
@@ -2514,6 +2513,7 @@ Visi tarpprojektiniai importo veiksmai yra registruojami  [[Special:Log/import|i
 'tooltip-ca-viewsource'           => 'Puslapis yra užrakintas. Galite pažiūrėti turinį.',
 'tooltip-ca-history'              => 'Ankstesnės puslapio versijos.',
 'tooltip-ca-protect'              => 'Užrakinti šį puslapį',
+'tooltip-ca-unprotect'            => 'Atrakinti šį puslapį',
 'tooltip-ca-delete'               => 'Ištrinti šį puslapį',
 'tooltip-ca-undelete'             => 'Atkurti puslapį su visais darytais keitimais',
 'tooltip-ca-move'                 => 'Pervadinti puslapį',
@@ -2524,6 +2524,7 @@ Visi tarpprojektiniai importo veiksmai yra registruojami  [[Special:Log/import|i
 'tooltip-search-fulltext'         => 'Ieškoti puslapių su šiuo tekstu',
 'tooltip-p-logo'                  => 'Pradinis puslapis',
 'tooltip-n-mainpage'              => 'Eiti į pradinį puslapį',
+'tooltip-n-mainpage-description'  => 'Eiti į pradinį puslapį',
 'tooltip-n-portal'                => 'Apie projektą, ką galima daryti, kur ką rasti',
 'tooltip-n-currentevents'         => 'Raskite naujausią informaciją',
 'tooltip-n-recentchanges'         => 'Paskutinių keitimų sąrašas šiame projekte.',

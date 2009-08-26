@@ -788,7 +788,6 @@ Ta ropasusu warzafu bu yo va [[Special:Search|aneyara ko wiki]] yawal.',
 'searchall'                      => 'kot',
 'showingresults'                 => "Vlevefa nedira va {{PLURAL:$1|'''1''' trasiks|'''$1''' trasiks}} dem #'''$2''' toza.",
 'showingresultsnum'              => "Nedira va '''$3''' trasiks male #'''$2'''.",
-'showingresultstotal'            => "Vleveon nedira va {{PLURAL:$4|trasiks '''$1''' va '''$3'''|trasiks '''$1 - $2''' va '''$3'''}}",
 'nonefound'                      => "'''Straga''': Anton yoltxo omavon zo aneyar.
 Kan ''all:'' laganeyal ta varafa exulera (gon keyaksexo is teza ikz-), oke wetce abdueosta va galpeno yoltxo favel.",
 'powersearch'                    => 'Aneyara',

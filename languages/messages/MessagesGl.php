@@ -219,6 +219,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Enviádeme tamén unha mensaxe de correo electrónico cando se produzan edicións pequenas nas páxinas',
 'tog-enotifrevealaddr'        => 'Revelar o meu enderezo de correo electrónico nos correos de notificación',
 'tog-shownumberswatching'     => 'Mostrar o número de usuarios que están a vixiar',
+'tog-oldsig'                  => 'Vista previa da sinatura actual:',
 'tog-fancysig'                => 'Tratar a sinatura como se fose texto wiki (sen ligazón automática)',
 'tog-externaleditor'          => 'Usar un editor externo por omisión (só para expertos, precisa duns parámetros especiais no seu computador)',
 'tog-externaldiff'            => 'Usar diferenzas externas (dif) por omisión (só para expertos, precisa duns parámetros especiais no seu computador)',
@@ -521,12 +522,12 @@ Isto pódese deber a un erro no programa.
 A última consulta á base de datos foi:
 <blockquote><tt>$1</tt></blockquote>
 desde a función "<tt>$2</tt>".
-$5 devolveu o erro "<tt>$3: $4</tt>".',
+A base de datos devolveu o erro "<tt>$3: $4</tt>".',
 'dberrortextcl'        => 'Ocorreu un erro de sintaxe na consulta.
 A última consulta á base de datos foi:
 "$1"
 desde a función "$2".
-$5 devolveu o erro "$3: $4"',
+A base de datos devolveu o erro "$3: $4"',
 'laggedslavemode'      => 'Aviso: a páxina pode non conter actualizacións recentes.',
 'readonly'             => 'Base de datos fechada',
 'enterlockreason'      => 'Dea unha razón para o fechamento, incluíndo unha estimación de até cando se manterá.',
@@ -636,8 +637,7 @@ Verifique o nome que inseriu.',
 Por favor, insira outro.',
 'wrongpasswordempty'         => 'O campo do contrasinal estaba en branco.
 Por favor, inténteo de novo.',
-'passwordtooshort'           => 'O seu contrasinal é demasiado curto.
-Debe conter, como mínimo, {{PLURAL:$1|1 carácter|$1 caracteres}}.',
+'passwordtooshort'           => 'Os contrasinais deben conter, como mínimo, {{PLURAL:$1|1 carácter|$1 caracteres}}.',
 'password-name-match'        => 'O seu contrasinal debe ser diferente do seu nome de usuario.',
 'mailmypassword'             => 'Enviádeme un contrasinal novo por correo',
 'passwordremindertitle'      => 'Novo contrasinal temporal para {{SITENAME}}',
@@ -1178,7 +1178,6 @@ Se quere, pode [[:\$1|creala]].",
 'searchall'                        => 'todo',
 'showingresults'                   => "Amósanse {{PLURAL:$1|'''1''' resultado|'''$1''' resultados}} comezando polo número '''$2'''.",
 'showingresultsnum'                => "Embaixo {{PLURAL:$3|amósase '''1''' resultado|amósanse '''$3''' resultados}}, comezando polo número '''$2'''.",
-'showingresultstotal'              => "Embaixo {{PLURAL:$4|amósase o resultado '''$1''', dun total de '''$3'''|amósanse os resultados do '''$1''' ao '''$2''', dun total de '''$3'''}}",
 'showingresultsheader'             => "{{PLURAL:\$5|Resultado '''\$1''' de '''\$3'''|Resultados do '''\$1''' ao '''\$2''' de '''\$3'''}} para \"'''\$4'''\"",
 'nonefound'                        => "'''Nota:''' só algúns espazos de nomes son procurados por omisión.
 Probe a fixar a súa petición con ''all:'' para procurar en todo o contido (incluíndo páxinas de conversa, modelos, etc.) ou use como prefixo o espazo de nomes desexado.",
@@ -1286,6 +1285,7 @@ Este cambio non se poderá desfacer.',
 'yourlanguage'                  => 'Lingua da interface:',
 'yourvariant'                   => 'Variante de lingua:',
 'yournick'                      => 'Sinatura:',
+'prefs-help-signature'          => 'Os comentarios feitos nas páxinas de conversa deben asinarse con catro tiles ("<nowiki>~~~~</nowiki>"), que se converterán na súa sinatura con data e hora.',
 'badsig'                        => 'Sinatura non válida; comprobe o código HTML utilizado.',
 'badsiglength'                  => 'A súa sinatura é demasiado longa.
 Ha de ter menos {{PLURAL:$1|dun carácter|de $1 caracteres}}.',
@@ -1465,6 +1465,15 @@ Tamén pode deixar que outras persoas se poñan en contacto con vostede desde a 
 'recentchanges-legend'              => 'Opcións dos cambios',
 'recentchangestext'                 => 'Sigue, nesta páxina, as modificacións máis recentes no wiki.',
 'recentchanges-feed-description'    => 'Siga os cambios máis recentes deste wiki con esta fonte de noticias.',
+'recentchanges-label-legend'        => 'Lenda: $1.',
+'recentchanges-legend-newpage'      => '$1 - nova páxina',
+'recentchanges-label-newpage'       => 'Esta edición creou unha nova páxina',
+'recentchanges-legend-minor'        => '$1 - edición pequena',
+'recentchanges-label-minor'         => 'Esta é unha edición pequena',
+'recentchanges-legend-bot'          => '$1 - edición feita por un bot',
+'recentchanges-label-bot'           => 'Esta edición foi realizada por un bot',
+'recentchanges-legend-unpatrolled'  => '$1 - edición non patrullada',
+'recentchanges-label-unpatrolled'   => 'Esta edición aínda non foi comprobada',
 'rcnote'                            => "Embaixo {{PLURAL:$1|amósase '''1''' cambio|amósanse os últimos '''$1''' cambios}} {{PLURAL:$2|no último día|nos últimos '''$2''' días}} ata as $5 do $4.",
 'rcnotefrom'                        => "Abaixo amósanse os cambios desde '''$2''' (móstranse ata '''$1''').",
 'rclistfrom'                        => 'Mostrar os cambios novos desde $1',
@@ -1627,7 +1636,7 @@ Por favor, comprobe que está activo, agarde un anaco e inténteo de novo.
 Tamén pode reintentalo cando haxa menos actividade.',
 
 'license'            => 'Licenza:',
-'license-header'     => 'Licenza:',
+'license-header'     => 'Licenza',
 'nolicense'          => 'Ningunha (os ficheiros sen licenza teñen que ser eliminados)',
 'license-nopreview'  => '(Vista previa non dispoñíbel)',
 'upload_source_url'  => '  (un URL válido, accesible publicamente)',
@@ -1733,7 +1742,7 @@ Lembre verificar outras ligazóns cara aos modelos antes de borralos.',
 
 # Random page
 'randompage'         => 'Páxina aleatoria',
-'randompage-nopages' => 'Non hai páxinas no espazo de nomes "$1".',
+'randompage-nopages' => 'Non hai páxinas {{PLURAL:$2|no seguinte espazo de nomes|nos seguintes espazos de nomes}}: $1.',
 
 # Random redirect
 'randomredirect'         => 'Redirección aleatoria',
@@ -1745,6 +1754,7 @@ Lembre verificar outras ligazóns cara aos modelos antes de borralos.',
 'statistics-header-edits'      => 'Estatísticas das edicións',
 'statistics-header-views'      => 'Estatísticas das vistas',
 'statistics-header-users'      => 'Estatísticas dos usuarios',
+'statistics-header-hooks'      => 'Outras estatísticas',
 'statistics-articles'          => 'Páxinas de contido',
 'statistics-pages'             => 'Páxinas',
 'statistics-pages-desc'        => 'Todas as páxinas do wiki; isto inclúe as páxinas de conversa, redireccións, etc.',
@@ -2007,13 +2017,16 @@ Os cambios futuros nesta páxina e na súa páxina de conversa asociada serán l
 'enotif_impersonal_salutation' => 'usuario de {{SITENAME}}',
 'changed'                      => 'modificada',
 'created'                      => 'creada',
+'deleted'                      => 'borrada',
+'enotif_deletedpagetext'       => 'Esta páxina xa non está dispoñible.',
 'enotif_subject'               => 'A páxina de {{SITENAME}} chamada "$PAGETITLE" foi $CHANGEDORCREATED por $PAGEEDITOR',
 'enotif_lastvisited'           => 'Vexa $1 para comprobar todos os cambios desde a súa última visita.',
 'enotif_lastdiff'              => 'Vexa $1 para visualizar esta modificación.',
 'enotif_anon_editor'           => 'usuario anónimo $1',
+'enotif_rev_info'              => 'Olle $1 para ver a revisión actual.',
 'enotif_body'                  => 'Estimado $WATCHINGUSERNAME,
 
-a páxina de {{SITENAME}} "$PAGETITLE" foi $CHANGEDORCREATED o $PAGEEDITDATEANDTIME por $PAGEEDITOR, vexa $PAGETITLE_URL para comprobar a versión actual.
+a páxina de {{SITENAME}} "$PAGETITLE" foi $CHANGEDORCREATED o $PAGEEDITDATEANDTIME por $PAGEEDITOR. $REVINFO
 
 $NEWPAGE
 
@@ -2023,7 +2036,8 @@ Pode contactar co editor:
 por correo electrónico: $PAGEEDITOR_EMAIL
 no wiki: $PAGEEDITOR_WIKI
 
-Non se producirán novas notificacións cando haxa novos cambios ata que vostede visite a páxina. Pode borrar os indicadores de aviso de notificación para o conxunto das páxinas marcadas na súa lista de vixilancia.
+Non se producirán novas notificacións cando haxa novos cambios ata que vostede visite a páxina.
+Pode borrar os indicadores de aviso de notificación para o conxunto das páxinas marcadas na súa lista de vixilancia.
 
              O sistema de aviso de {{SITENAME}}
 
@@ -2560,6 +2574,7 @@ Gráveo no seu disco duro e cárgueo aquí.',
 'tooltip-ca-viewsource'           => 'Esta páxina está protexida. Pode ver o código fonte.',
 'tooltip-ca-history'              => 'Versións anteriores desta páxina',
 'tooltip-ca-protect'              => 'Protexer esta páxina',
+'tooltip-ca-unprotect'            => 'Desprotexer esta páxina',
 'tooltip-ca-delete'               => 'Eliminar esta páxina',
 'tooltip-ca-undelete'             => 'Restaurar as edicións feitas nesta páxina antes de que fose eliminada',
 'tooltip-ca-move'                 => 'Mover esta páxina',
@@ -2570,6 +2585,7 @@ Gráveo no seu disco duro e cárgueo aquí.',
 'tooltip-search-fulltext'         => 'Procurar este texto nas páxinas',
 'tooltip-p-logo'                  => 'Portada',
 'tooltip-n-mainpage'              => 'Visitar a Portada',
+'tooltip-n-mainpage-description'  => 'Visitar a Portada',
 'tooltip-n-portal'                => 'Acerca do proxecto, o que vostede pode facer, onde atopar cousas',
 'tooltip-n-currentevents'         => 'Atopar documentación acerca de acontecementos de actualidade',
 'tooltip-n-recentchanges'         => 'A lista de modificacións recentes no wiki.',
@@ -2723,6 +2739,8 @@ $1',
 'svg-long-desc'        => '(ficheiro SVG, nominalmente $1 × $2 píxeles, tamaño do ficheiro: $3)',
 'show-big-image'       => 'Imaxe na máxima resolución',
 'show-big-image-thumb' => '<small>Tamaño desta presentación da imaxe: $1 × $2 píxeles</small>',
+'file-info-gif-looped' => 'en bucle',
+'file-info-gif-frames' => '$1 {{PLURAL:$1|fotograma|fotogramas}}',
 
 # Special:NewFiles
 'newimages'             => 'Galería de imaxes novas',

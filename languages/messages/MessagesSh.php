@@ -431,17 +431,21 @@ Molimo vas da sačekate prije nego što pokušate ponovo.',
 'loginlanguagelabel'         => 'Jezik: $1',
 
 # Password reset dialog
-'resetpass'           => 'Promijeni korisničku šifru',
-'resetpass_announce'  => 'Prijavili ste se sa privremenim kodom koji ste dobili na e-mail.
+'resetpass'                 => 'Promijeni korisničku šifru',
+'resetpass_announce'        => 'Prijavili ste se sa privremenim kodom koji ste dobili na e-mail.
 Da biste završili prijavu, morate unijeti novu šifru ovdje:',
-'resetpass_header'    => 'Obnovi lozinku za račun',
-'oldpassword'         => 'Stara šifra:',
-'newpassword'         => 'Nova šifra:',
-'retypenew'           => 'Ukucajte ponovo novu šifru:',
-'resetpass_submit'    => 'Odredi lozinku i prijavi se',
-'resetpass_success'   => 'Vaša šifra je uspiješno promjenjena! Prijava u toku...',
-'resetpass_forbidden' => 'Šifre ne mogu biti promjenjene',
-'resetpass-no-info'   => 'Morate biti prijavljeni da bi ste pristupili ovoj stranici direktno.',
+'resetpass_header'          => 'Obnovi lozinku za račun',
+'oldpassword'               => 'Stara šifra:',
+'newpassword'               => 'Nova šifra:',
+'retypenew'                 => 'Ukucajte ponovo novu šifru:',
+'resetpass_submit'          => 'Odredi lozinku i prijavi se',
+'resetpass_success'         => 'Vaša šifra je uspiješno promjenjena! Prijava u toku...',
+'resetpass_forbidden'       => 'Šifre ne mogu biti promjenjene',
+'resetpass-no-info'         => 'Morate biti prijavljeni da bi ste pristupili ovoj stranici direktno.',
+'resetpass-submit-loggedin' => 'Promijeni lozinku',
+'resetpass-wrong-oldpass'   => 'Privremena ili trenutna lozinka nije valjana.  
+Možda ste već uspješno promijenili Vašu lozinku ili ste tražili novu privremenu lozinku.',
+'resetpass-temp-password'   => 'Privremena lozinka:',
 
 # Edit page toolbar
 'bold_sample'     => 'Podebljan tekst',
@@ -471,22 +475,121 @@ Da biste završili prijavu, morate unijeti novu šifru ovdje:',
 'savearticle'                      => 'Snimi stranicu',
 'preview'                          => 'Pretpregled',
 'showpreview'                      => 'Prikaži izgled',
+'showlivepreview'                  => 'Pretpregled uživo',
 'showdiff'                         => 'Prikaži izmjene',
 'anoneditwarning'                  => "'''Upozorenje:''' Niste prijavljeni.
 Vaša IP adresa će biti zabilježena u historiji ove stranice.",
+'missingsummary'                   => "'''Podsjećanje:''' Niste unijeli sažetak izmjene.
+Ako kliknete na Sačuvaj/Snimi, Vaša izmjena će biti snimljena bez sažetka.",
+'missingcommenttext'               => 'Molimo unesite komentar ispod.',
+'missingcommentheader'             => "'''Podsjetnik:''' Niste napisali temu/naslov za ovaj komentar.
+Ako ponovo kliknete na '''Snimi stranicu''', Vaše izmjene će biti snimljene bez teme/naslova.",
 'summary-preview'                  => 'Pretpregled sažetka:',
+'subject-preview'                  => 'Pretpregled teme/naslova:',
+'blockedtitle'                     => 'Korisnik je blokiran',
+'blockedtext'                      => "<big>'''Vaše korisničko ime ili IP adresa je blokirana.'''</big>
+
+Blokada izvršena od strane $1.
+Dati razlog je slijedeći: ''$2''.
+
+*Početak blokade: $8
+*Kraj perioda blokade: $6
+*Ime blokiranog korisnika: $7
+
+Možete kontaktirati $1 ili nekog drugog [[{{MediaWiki:Grouppage-sysop}}|administratora]] da biste razgovarali o blokadi.
+
+Ne možete koristiti opciju ''Pošalji e-mail korisniku'' osim ako niste unijeli e-mail adresu u [[Special:Preferences|Vaše postavke]].
+Vaša trenutna IP adresa je $3, a oznaka blokade je #$5.
+Molimo Vas da navedete gornje podatke u zahtjevu za deblokadu.",
+'autoblockedtext'                  => 'Vaša IP adresa je automatski blokirana jer je korištena od strane drugog korisnika, a blokirao ju je $1.
+Naveden je slijedeći razlog:
+
+:\'\'$2\'\'
+
+* Početak blokade: $8
+* Kraj blokade: $6
+* Blokirani korisnik: $7
+
+Možete kontaktirati $1 ili nekog drugog iz grupe [[{{MediaWiki:Grouppage-sysop}}|administratora]] i zahtijevati da Vas deblokira.
+
+Zapamtite da ne možete koristiti opciju "pošalji e-mail ovom korisniku" sve dok ne unesete validnu e-mail adresu pri registraciji u Vašim [[Special:Preferences|korisničkim postavkama]] te Vas ne spriječava ga je koristite.
+
+Vaša trenutna IP adresa je $3, a ID blokade je $5.
+Molimo da navedete sve gore navedene detalje u zahtjevu za deblokadu.',
+'blockednoreason'                  => 'razlog nije naveden',
+'blockedoriginalsource'            => "Izvor '''$1''' je prikazan ispod:",
+'blockededitsource'                => "Sadržaj '''vaših izmjena''' na '''$1''' je prikazan ispod:",
+'whitelistedittitle'               => 'Za uređivanje je obavezna prijava',
+'whitelistedittext'                => 'Da bi ste uređivali stranice, morate se $1.',
+'confirmedittext'                  => 'Morate potvrditi Vašu e-mail adresu prije nego počnete mijenjati stranice.
+Molimo da postavite i verifikujete Vašu e-mail adresu putem Vaših [[Special:Preferences|korisničkih opcija]].',
+'nosuchsectiontitle'               => 'Nema takve sekcije',
+'nosuchsectiontext'                => 'Pokušali ste uređivati sekciju koja ne postoji.
+Pošto sekcija $1 ne postoji, nije moguće spremiti Vaše promjene.',
+'loginreqtitle'                    => 'Potrebno je prijavljivanje',
+'loginreqlink'                     => 'prijavi se',
+'loginreqpagetext'                 => 'Morate $1 da bi ste vidjeli druge stranice.',
+'accmailtitle'                     => 'Lozinka poslana.',
+'accmailtext'                      => "Nasumično odabrana lozinka za nalog [[User talk:$1|$1]] je poslata na adresu $2.
+
+Lozinka za ovaj novi račun može biti promijenjena na stranici ''[[Special:ChangePassword|izmjene šifre]]'' nakon prijave.",
 'newarticle'                       => '(Novi)',
 'newarticletext'                   => "Preko linka ste došli na stranicu koja još uvijek ne postoji.
 * Ako želite stvoriti stranicu, počnite tipkati u okviru dolje (v. [[{{MediaWiki:Helppage}}|stranicu za pomoć]] za više informacija).
 * Ukoliko ste došli greškom, pritisnike dugme '''Nazad''' ('''back''') na vašem pregledniku.",
+'anontalkpagetext'                 => "----''Ovo je stranica za razgovor za anonimnog korisnika koji još nije napravio račun ili ga ne koristi.
+Zbog toga moramo da koristimo brojčanu IP adresu kako bismo identifikovali njega ili nju.
+Takvu adresu može dijeliti više korisnika.
+Ako ste anonimni korisnik i mislite da su vam upućene nebitne primjedbe, molimo Vas da [[Special:UserLogin/signup|napravite račun]] ili se [[Special:UserLogin|prijavite]] da biste izbjegli buduću zabunu sa ostalim anonimnim korisnicima.''",
 'noarticletext'                    => 'Na ovoj stranici trenutno nema teksta.
 Možete [[Special:Search/{{PAGENAME}}|tražiti naslov ove stranice]] u drugim stranicama,
 <span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} pretraživati srodne registre],
 ili [{{fullurl:{{FULLPAGENAME}}|action=edit}} urediti ovu stranicu]</span>.',
+'userpage-userdoesnotexist'        => 'Korisnički račun "$1" nije registrovan.
+Molimo provjerite da li želite napraviti/izmijeniti ovu stranicu.',
+'clearyourcache'                   => "'''Pažnja: Nakon što snimite izmjene, morate \"osvježiti\" keš memoriju vašeg pretraživača da bi ste vidjeli nova podešenja.'''
+'''Mozilla / Firefox / Safari:''' držite ''Shift'' tipku i kliknite na ''Reload'' dugme ili ''Ctrl-R'' ili ''Ctrl-F5'' (''Command-R'' na Macintoshu);
+'''Konqueror:''' klikni na ''Reload'' ili pritisnite dugme ''F5'';
+'''Opera:''' očistite \"keš\" preko izbornika ''Tools → Preferences'';
+'''Internet Explorer:''' držite tipku ''Ctrl'' i kliknite na ''Refresh'' ili pritisnite ''Ctrl-F5''.",
+'usercsspreview'                   => "'''Zapamtite ovo je samo izgled Vašeg CSS-a.'''
+'''Još uvijek nije snimljen!'''",
+'userjspreview'                    => "'''Zapamite da je ovo samo test/pretpregled Vaše JavaScript-e.'''
+'''Još uvijek nije snimljena!'''",
+'userinvalidcssjstitle'            => "'''Upozorenje:''' Ne postoji interfejs (skin) pod imenom \"\$1\".
+Ne zaboravite da imena stranica s .css i .js kodom počinju malim slovom, npr. {{ns:user}}:Foo/monobook.css, a ne {{ns:user}}:Foo/Monobook.css.",
+'updated'                          => '(Osvježeno)',
+'note'                             => "'''Napomena:'''",
 'previewnote'                      => "'''Upamtite da je ovo samo pretpregled.'''
 Vaše izmjene još uvijek nisu snimljene!",
+'previewconflict'                  => 'Ovaj pretpregled reflektuje tekst u gornjem polju
+kako će izgledati ako pritisnete "Snimi stranicu".',
+'session_fail_preview'             => "'''Izvinjavamo se! Nismo mogli obraditi vašu izmjenu zbog gubitka podataka o prijavi. Molimo pokušajte ponovno. Ako i dalje ne bude radilo, pokušajte se [[Special:UserLogout|odjaviti]] i ponovno prijaviti.'''",
+'session_fail_preview_html'        => "'''Žao nam je! Nismo mogli da obradimo vašu izmjenu zbog gubitka podataka.'''
+
+''Zbog toga što {{SITENAME}} ima omogućen izvorni HTML, predpregled je sakriven kao predostrožnost protiv JavaScript napada.''
+
+'''Ako ste pokušali da napravite pravu izmjenu, molimo pokušajte ponovo. Ako i dalje ne radi, pokušajte da se [[Special:UserLogout|odjavite]] i ponovo prijavite.'''",
+'token_suffix_mismatch'            => "'''Vaša izmjena nije prihvaćena jer je Vaš web preglednik ubacio znakove interpunkcije u token uređivanja.'''
+Izmjena je odbačena da bi se spriječilo uništavanje teksta stranice.
+To se događa ponekad kad korisite problematični anonimni proxy koji je baziran na web-u.",
 'editing'                          => 'Uređujete $1',
 'editingsection'                   => 'Uređujete $1 (sekciju)',
+'editingcomment'                   => 'Uređujete $1 (nova sekcija)',
+'editconflict'                     => 'Sukobljenje izmjene: $1',
+'explainconflict'                  => 'Neko drugi je promujenio ovu stranicu otkad ste Vi počeli da je mijenjate.
+Gornje tekstualno polje sadrži tekst stranice koji trenutno postoji.
+Vaše izmjene su prikazane u donjem tekstu.
+Moraćete da unesete svoje promjene u postojeći tekst.
+<b>Samo</b> tekst u gornjem tekstualnom polju će biti snimljen kad
+pritisnete "Snimi stranicu".<br />',
+'yourtext'                         => 'Vaš tekst',
+'storedversion'                    => 'Uskladištena verzija',
+'nonunicodebrowser'                => "'''UPOZORENJE: Vaš preglednik ne podržava Unicode zapis znakova.
+Molimo Vas promijenite ga prije sljedećeg uređivanja članaka. Znakovi koji nisu po ASCII standardu će se u prozoru za izmjene pojaviti kao heksadecimalni kodovi.'''",
+'editingold'                       => "'''PAŽNJA:  Vi mijenjate stariju reviziju ove stranice.
+Ako je snimite, sve promjene učinjene od ove revizije će biti izgubljene.'''",
+'yourdiff'                         => 'Razlike',
 'copyrightwarning'                 => "Molimo da uzmete u obzir kako se smatra da su svi doprinosi u {{SITENAME}} izdani pod $2 (v. $1 za detalje).
 Ukoliko ne želite da vaše pisanje bude nemilosrdno uređivano i redistribuirano po tuđoj volji, onda ga nemojte ovdje objavljivati.<br />
 Također obećavate kako ste ga napisali sami ili kopirali iz izvora u javnoj domeni ili sličnog slobodnog izvora.
@@ -569,7 +672,6 @@ Možete [[:\$1|stvoriti ovu stranicu]].",
 'mwsuggest-disable'                => 'Onemogući AJAX prijedloge',
 'showingresults'                   => "Dole {{PLURAL:$1|je prikazan '''1''' rezultat|su prikazana '''$1''' rezultata|je prikazano '''$1''' rezultata}} počev od '''$2'''.",
 'showingresultsnum'                => "Dolje {{PLURAL:$3|je prikazan '''1''' rezultat|su prikazana '''$3''' rezultata|je prikazano '''$3''' rezultata}} počev od #'''$2'''.",
-'showingresultstotal'              => "Ispod {{PLURAL:$4|je prikazan rezultat '''$1''' od '''$3'''|su prikazani rezultati '''$1 - $2''' od ukupno '''$3'''}}",
 'nonefound'                        => "'''Napomene''': Samo neki imenski prostori se pretražuju po početnim postavkama.
 Pokušajte u svoju pretragu staviti ''all:'' da se pretražuje cjelokupan sadržaj (uključujući stranice za razgovor, šablone/predloške itd.), ili koristite imenski prostor kao prefiks.",
 'search-nonefound'                 => 'Nisu pronađeni rezultati koji odgovaraju upitu.',

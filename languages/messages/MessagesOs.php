@@ -426,7 +426,6 @@ $messages = array(
 'search-mwsuggest-enabled'  => 'æмбарынгæнæнтимæ',
 'search-mwsuggest-disabled' => 'æнæ æмбарынгæнæнтæ',
 'searchall'                 => 'æппæт',
-'showingresultstotal'       => "Дæлæ дæ агуырды {{PLURAL:$4|'''$1''' фæстиуæг, æдæппæт сты '''$3'''|фæстиуджытæ '''$1 — $2''', æдæппæт сты '''$3'''}}",
 'powersearch'               => 'Сæрмагонд агуырд',
 'powersearch-legend'        => 'Сæрмагонд агуырд',
 'powersearch-redir'         => 'Рарвыстытæ дæр æвдис',

@@ -792,7 +792,6 @@ Kesgitleme: ('''häzirki''') = häzirki wersiýa bilen aradaky tapawut,
 'search-mwsuggest-enabled'         => 'teklipler bilen',
 'search-mwsuggest-disabled'        => 'teklip ýok',
 'searchall'                        => 'ählisi',
-'showingresultstotal'              => "Aşakda {{PLURAL:$4|'''$3''' netijeden '''$1''' sanysy|'''$1 - $2''' aralygyndaky '''$3''' netije}} görkezilýär",
 'nonefound'                        => "'''Bellik''': Diňe käbir at giňişlikleri gaýybana tertipde gözlenilýär.
 Gözlegiňiziň başyna '''all:''' pristawkasyny goşup tutuş mazmuny (şol sanda pikir alyşma sahypalaryny, şablonlary we şm.) gözlemäge synanyşyň ýa-da pristawka hökmünde gerekleýän at giňişligiňizi ulanyň.",
 'powersearch'                      => 'Giňişleýin gözleg',

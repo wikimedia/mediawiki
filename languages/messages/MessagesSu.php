@@ -977,7 +977,6 @@ Pastikeun yén ieu parobahan bisa miara jujutan kaca sagemblengna.',
 'searchall'                 => 'sadayana',
 'showingresults'            => "Di handap ieu némbongkeun {{PLURAL:$1|'''1''' hasil|'''$1''' hasil}}, dimimitianku  #'''$2'''.",
 'showingresultsnum'         => "Di handap ieu némbongkeun {{PLURAL:$3|'''1''' hasil|'''$3''' hasil}}, dimimitian #'''$2'''.",
-'showingresultstotal'       => "Nembongkeun {{PLURAL:$4|hasil '''$1'''|'''$1 - $2'''}} ti '''$3''' sungsi",
 'nonefound'                 => "'''Catetan''': Ti buhunna (default), panyusud téh ukur ngawengku sababaraha ngaran rohang.
 Coba susud dimimitian ku ''all:'' pikeun nyusud sakabéh kandunganana (kaasup kaca obrolan, citakan, jsb.) atawa pilih rohang ngaran dina awalanana luyu jeung nu dimaksud.",
 'powersearch'               => 'Sungsi',

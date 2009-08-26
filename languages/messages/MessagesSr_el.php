@@ -1118,7 +1118,6 @@ Ostali administratori na ovoj Vikipediji će i dalje imati mogućnost da vide sk
 'searchall'                        => 'sve',
 'showingresults'                   => "Prikazujem ispod '''$1''' rezultata počev od #'''$2'''.",
 'showingresultsnum'                => "Prikazujem ispod '''$3''' rezultate počev od #'''$2'''.",
-'showingresultstotal'              => "Prikazivanje {{PLURAL:$4|rezultat '''$1''' od '''$3'''|rezultata '''$1 - $2''' od '''$3'''}}",
 'nonefound'                        => "'''Napomena''': neuspešne pretrage su
 često izazvane traženjem čestih reči kao \"je\" ili \"od\",
 koje nisu indeksirane, ili navođenjem više od jednog izraza za traženje (samo stranice

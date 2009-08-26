@@ -762,7 +762,6 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'searchall'                        => 'ሁሉ',
 'showingresults'                   => 'ከ ቁ.#<b>$2</b> ጀምሮ እስከ <b>$1</b> ውጤቶች ድረስ ከዚህ በታች ይታያሉ።',
 'showingresultsnum'                => "ከ#'''$2''' ጀምሮ {{PLURAL:$3|'''1''' ውጤት|'''$3''' ውጤቶች}} ከዚህ ታች ማየት ይቻላል።",
-'showingresultstotal'              => "ከዚህ ታች {{PLURAL:$4|ውጤት '''$1''' (ከ '''$3''') ይታያል።|ውጤቶች '''$1 - $2''' ከ '''$3''' ይታያሉ።}}",
 'search-nonefound'                 => 'ለጥያቄው ምንም የሚስማማ ውጤት አልተገኘም።',
 'powersearch'                      => 'ፍለጋ',
 'powersearch-legend'               => 'ተጨማሪ ፍለጋ',

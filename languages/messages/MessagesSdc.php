@@ -838,7 +838,6 @@ Cunsulthà lu [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} rigi
 'searchall'                 => 'tutti',
 'showingresults'            => "Accó {{PLURAL:$1|màssimu '''1''' risulthaddu|màssimu li '''$1''' risulthaddi}} à partì da lu nùmaru #'''$2'''.",
 'showingresultsnum'         => "Accó {{PLURAL:$3|'''1''' risulthaddu |li '''$3''' risulthaddi}} à partì da lu nùmaru #'''$2'''.",
-'showingresultstotal'       => "Inogghi {{PLURAL:$4|è musthraddu lu risulthaddu  '''$1''' di '''$3'''|so musthraddi li risulthaddi '''$1 - $2''' di '''$3'''}}",
 'nonefound'                 => "'''Nota''': Soru zerthi tipi di pàgina so zirchaddi i'otomàtiggu. Pruba ischribendi primma di la zercha toia ''all:'' pa zirchà tutti li cuntinuddi (dischussioni, mudelli, etc), o usa lu tipi di pàgina disizaddu cumenti prefissu.",
 'powersearch'               => 'Zercha abanzadda',
 'powersearch-legend'        => 'Zercha abanzadda',

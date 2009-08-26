@@ -629,7 +629,6 @@ Leiende: (cur) = difarencis cun la version atuâl, (prec) = difarencis cun la ve
 'searchall'                      => 'ducj',
 'showingresults'                 => "Ca sot {{PLURAL:$1|al è fin a '''1''' risultât|a son fin a '''$1''' risultâts}} scomençant dal numar '''$2'''.",
 'showingresultsnum'              => "Ca sot {{PLURAL:$3|al è '''1''' risultât|a son '''$3''' risultâts}} scomençant dal numar '''$2'''.",
-'showingresultstotal'            => "Ca sot {{PLURAL:$4|al ven mostrât il risultât '''$1''' su '''$3'''|a vegnin mostrâts i risultâts '''$1 - $2''' su '''$3'''}}",
 'nonefound'                      => "'''Note''': la ricercje e ven fate normalmentri dome in cualchi spazi dai nons. Prove a scrivi ''all:'' prime dal test di cjatâ par cirî in ducj i nons dai spazis (includint lis pagjinis di discussion, i modei e v.i.) o se no dopre il non dal spazi desiderât come prefìs.",
 'search-nonefound'               => 'Nissun risultât par cheste ricercje.',
 'powersearch'                    => 'Cîr',

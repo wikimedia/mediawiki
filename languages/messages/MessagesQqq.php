@@ -790,7 +790,8 @@ Please report at [[Support]] if you are unable to properly translate this messag
 'undo-success' => '{{Identical|Undo}}',
 'undo-failure' => '{{Identical|Undo}}',
 'undo-norev'   => '{{Identical|Undo}}',
-'undo-summary' => '{{Identical|Undo}}',
+'undo-summary' => 'Please change "Special" to <nowiki>{{ns:special}}</nowiki> and "User talk" to <nowiki>{{ns:user_talk}}</nowiki>
+{{Identical|Undo}}',
 
 # History pages
 'viewpagelogs'           => 'Link displayed in history of pages',
@@ -1034,10 +1035,6 @@ $1 is the relevance of this result in per cent.
 'searchall'                      => '{{Identical|All}}',
 'showingresults'                 => "This message is used on some special pages such as 'Wanted categories'. $1 is the total number of results in the batch shown and $2 is the number of the first item listed.",
 'showingresultsnum'              => '$3 is the number of results on the page and $2 is the first number in the batch of results.',
-'showingresultstotal'            => 'Text above list of search results on special page of search results. 
-* $1–$2 is the range of results shown on the page
-* $3 is the total number of results from the search
-* $4 is the number of results shown on the page (equal to the size of the $1–$2 interval)',
 'showingresultsheader'           => 'Used in search results of [[Special:Search]].',
 'nonefound'                      => 'This message appears on the search results page if no results are found.
 {{doc-important|Do not translate "all:".}}',
@@ -1517,6 +1514,7 @@ Parameter $1 is a link to the deletion log, with the text in {{msg|deletionlog}}
 
 'upload-file-error' => '{{Identical|Internal error}}',
 
+'license'           => 'This appears in the upload form for the license drop-down. The header in the file description page is now at {{msg-mw|License-header}}.',
 'nolicense'         => '{{Identical|None selected}}',
 'license-nopreview' => 'Error message when a certain license does not exist',
 
@@ -1909,6 +1907,7 @@ $1 is a page title",
 'listgrouprights-helppage'        => "The link used on [[Special:ListGroupRights]]. Just translate \"Group rights\", and '''leave the \"Help:\" namespace exactly as it is'''.",
 'listgrouprights-members'         => 'Used on [[Special:ListGroupRights]] and [[Special:Statistics]] as a link to [[Special:ListUsers|Special:ListUsers/"group"]], a list of members in that group.',
 'listgrouprights-right-display'   => '{{optional}}',
+'listgrouprights-right-revoked'   => '{{optional}}',
 'listgrouprights-addgroup'        => 'This is an individual right for groups, used on [[Special:ListGroupRights]].
 * $1 is an enumeration of group names.
 * $2 is the number of group names in $1.
@@ -3041,11 +3040,14 @@ Do ''not'' change the leading ;  and the first : as it is wiki markup.
 'confirm_purge_button' => '{{Identical|OK}}',
 
 # Separators for various lists, etc.
+'comma-separator' => '{{optional}}',
 'colon-separator' => "Optional message. Change it only if your language uses another character for ':' or it needs an extra space before the colon.",
 'pipe-separator'  => '{{optional}}',
 'word-separator'  => 'This is a string which is (usually) put between words of the language. It is used, e.g. when messages are concatenated (appended to each other). Note that you must express a space as html entity &amp;#32; because the editing and updating process strips leading and trailing spaces from messages.
 
-Most languages use a space, but some Asian languages, such as Thai and Chinese, do not.',
+Most languages use a space, but some Asian languages, such as Thai and Chinese, do not.
+
+{{optional}}',
 
 # Multipage image navigation
 'imgmultipageprev' => '{{Identical|Previous page}}',

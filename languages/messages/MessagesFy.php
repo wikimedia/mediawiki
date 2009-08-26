@@ -1052,7 +1052,6 @@ Prebearje in oare sykopdracht.',
 'searchall'                        => 'alle',
 'showingresults'                   => "{{PLURAL:$1|'''1''' resultaat|'''$1''' resultaten}} fan #'''$2''' ôf.",
 'showingresultsnum'                => "{{PLURAL:$3|'''1''' resultaat|'''$3''' resultaten}} fan #'''$2''' ôf.",
-'showingresultstotal'              => "It binne hjirûnder  {{PLURAL:$4|resultaat '''$1''' fan '''$3'''|resultaten '''$1 - $2''' fan '''$3'''}}",
 'nonefound'                        => "'''Opmerking''': standert wurde net alle nammerûmten trochsocht.
 As Jo yn Jo sykopdracht as foarheaksel \"''all:''\" brûke, wurde alle siden trochsocht (ynklusyf oerlissiden, sjabloanen ens.).
 Jo kinne ek in nammerûmte as foarheaksel brûke.",

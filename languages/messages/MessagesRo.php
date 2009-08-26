@@ -1234,7 +1234,6 @@ Folosirea linkurilor de navigare va reseta această coloană.',
 'searchall'                        => 'toate',
 'showingresults'                   => "Mai jos {{PLURAL:$1|apare '''1''' rezultat|apar '''$1''' rezultate}} începând cu #<b>$2</b>.",
 'showingresultsnum'                => "Mai jos {{PLURAL:$3|apare '''1''' rezultat|apar '''$3''' rezultate}} cu #<b>$2</b>.",
-'showingresultstotal'              => "Arată {{PLURAL:$4|rezultatul '''$1''' din '''$3'''|rezultatele '''$1 - $2''' din '''$3'''}}",
 'showingresultsheader'             => "{{PLURAL:$5|Rezultat '''$1'''|Resultate '''$1 - $2'''}} ale '''$3''' pentru '''$4'''",
 'nonefound'                        => "'''Notă''': Numai unele spaţii de nume sunt căutate implicit.
 Încercaţi să puneţi ca şi prefix al căutării ''all:'' pentru a căuta în tot conţinutul (incluzând şi paginile de discuţii, formate, etc), sau folosiţi spaţiul de nume dorit ca şi prefix.",
