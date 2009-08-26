@@ -1,10 +1,23 @@
 <?php
-
-class UploadBase {
-	var $mTempPath;
-	var $mDesiredDestName, $mDestName, $mRemoveTempFile, $mSourceType;
-	var $mTitle = false, $mTitleError = 0;
-	var $mFilteredName, $mFinalExtension;
+/**
+ * @file 
+ * @ingroup upload
+ * 
+ * UploadBase and subclasses are the backend of MediaWiki's file uploads.
+ * The frontends are formed by ApiUpload and SpecialUpload.
+ * 
+ * See also includes/docs/upload.txt
+ * 
+ * @author Brion Vibber
+ * @author Bryan Tong Minh
+ * @author Michael Dale
+ */
+ 
+abstract class UploadBase {
+	protected $mTempPath;
+	protected $mDesiredDestName, $mDestName, $mRemoveTempFile, $mSourceType;
+	protected $mTitle = false, $mTitleError = 0;
+	protected $mFilteredName, $mFinalExtension;
 
 	const SUCCESS = 0;
 	const OK = 0;
@@ -29,7 +42,7 @@ class UploadBase {
 	 * Returns true if uploads are enabled.
 	 * Can be override by subclasses.
 	 */
-	static function isEnabled() {
+	public static function isEnabled() {
 		global $wgEnableUploads;
 		if ( !$wgEnableUploads )
 			return false;
@@ -46,7 +59,7 @@ class UploadBase {
 	 * identifying the missing permission.
 	 * Can be overriden by subclasses.
 	 */
-	static function isAllowed( $user ) {
+	public static function isAllowed( $user ) {
 		if( !$user->isAllowed( 'upload' ) )
 			return 'upload';
 		return true;
@@ -58,21 +71,24 @@ class UploadBase {
 	/**
 	 * Create a form of UploadBase depending on wpSourceType and initializes it
 	 */
-	static function createFromRequest( &$request, $type = null ) {
+	public static function createFromRequest( &$request, $type = null ) {
 		$type = $type ? $type : $request->getVal( 'wpSourceType' );
 
 		if( !$type )
 			return null;
 
+		// Get the upload class
 		$type = ucfirst( $type );
 		$className = 'UploadFrom' . $type;
 		wfDebug( __METHOD__ . ": class name: $className\n" );
 		if( !in_array( $type, self::$uploadHandlers ) )
 			return null;
 
+		// Check whether this upload class is enabled
 		if( !call_user_func( array( $className, 'isEnabled' ) ) )
 			return null;
 
+		// Check whether the request is valid
 		if( !call_user_func( array( $className, 'isValidRequest' ), $request ) )
 			return null;
 
@@ -85,33 +101,38 @@ class UploadBase {
 	/**
 	 * Check whether a request if valid for this handler
 	 */
-	static function isValidRequest( $request ) {
+	public static function isValidRequest( $request ) {
 		return false;
 	}
 
-	function __construct() {}
+	public function __construct() {}
 
 	/**
 	 * Do the real variable initialization
 	 */
-	function initialize( $name, $tempPath, $fileSize, $removeTempFile = false ) {
+	public function initialize( $name, $tempPath, $fileSize, $removeTempFile = false ) {
 		$this->mDesiredDestName = $name;
 		$this->mTempPath = $tempPath;
 		$this->mFileSize = $fileSize;
 		$this->mRemoveTempFile = $removeTempFile;
 	}
+	
+	/**
+	 * Initialize from a WebRequest. Override this in a subclass.
+	 */
+	public abstract function initializeFromRequest( &$request );
 
 	/**
 	 * Fetch the file. Usually a no-op
 	 */
-	function fetchFile() {
+	public function fetchFile() {
 		return Status::newGood();
 	}
 
 	/**
 	 * Return the file size
 	 */
-	function isEmptyFile(){
+	public function isEmptyFile(){
 		return empty( $this->mFileSize );
 	}
 
@@ -119,7 +140,7 @@ class UploadBase {
 	 * Verify whether the upload is sane.
 	 * Returns self::OK or else an array with error information
 	 */
-	function verifyUpload() {
+	public function verifyUpload() {
 		/**
 		 * If there was no filename or a zero size given, give up quick.
 		 */
@@ -135,8 +156,7 @@ class UploadBase {
 				$result['finalExt'] = $this->mFinalExtension;
 			return $result;
 		}
-		$this->mLocalFile = wfLocalFile( $nt );
-		$this->mDestName = $this->mLocalFile->getName();
+		$this->mDestName = $this->getLocalFile()->getName();
 
 		/**
 		 * In some cases we may forbid overwriting of existing files.
@@ -171,7 +191,7 @@ class UploadBase {
 	/**
 	 * Verifies that it's ok to include the uploaded file
 	 *
-	 * this function seems to intermixes tmpfile and $this->mTempPath .. no idea why this is
+	 * FIXME: this function seems to intermixes tmpfile and $this->mTempPath .. no idea why this is
 	 *
 	 * @param string $tmpfile the full path of the temporary file to verify
 	 * @return mixed true of the file is verified, a string or array otherwise.
@@ -186,7 +206,7 @@ class UploadBase {
 
 		#check mime type, if desired
 		global $wgVerifyMimeType;
-		if ($wgVerifyMimeType) {		
+		if ( $wgVerifyMimeType ) {		
 			global $wgMimeTypeBlacklist;
 			if ( $this->checkFileExtension( $mime, $wgMimeTypeBlacklist ) )
 				return array( 'filetype-badmime', $mime );
@@ -205,11 +225,11 @@ class UploadBase {
 		}
 
 		#check for htmlish code and javascript
-		if( $this->detectScript( $tmpfile, $mime, $this->mFinalExtension ) ) {
+		if( self::detectScript( $tmpfile, $mime, $this->mFinalExtension ) ) {
 			return 'uploadscripted';
 		}
 		if( $this->mFinalExtension == 'svg' || $mime == 'image/svg+xml' ) {
-			if( $this->detectScriptInSvg( $tmpfile ) ) {
+			if( self::detectScriptInSvg( $tmpfile ) ) {
 				return 'uploadscripted';
 			}
 		}
@@ -226,9 +246,13 @@ class UploadBase {
 	}
 
 	/**
-	 * Check whether the user can edit, upload and create the image
+	 * Check whether the user can edit, upload and create the image.
+	 * 
+	 * @param User $user the user to verify the permissions against
+	 * @return mixed An array as returned by getUserPermissionsErrors or true
+	 *               in case the user has proper permissions.
 	 */
-	function verifyPermissions( $user ) {
+	public function verifyPermissions( $user ) {
 		/**
 		 * If the image is protected, non-sysop users won't be able
 		 * to modify it by uploading a new revision.
@@ -249,11 +273,14 @@ class UploadBase {
 
 	/**
 	 * Check for non fatal problems with the file
+	 * 
+	 * @return array Array of warnings
 	 */
-	function checkWarnings() {
+	public function checkWarnings() {
 		$warning = array();
 
-		$filename = $this->mLocalFile->getName();
+		$localFile = $this->getLocalFile();
+		$filename = $localFile->getName();
 		$n = strrpos( $filename, '.' );
 		$partname = $n ? substr( $filename, 0, $n ) : $filename;
 
@@ -284,14 +311,14 @@ class UploadBase {
 			$warning['emptyfile'] = true;
 
 
-		$exists = self::getExistsWarning( $this->mLocalFile );
+		$exists = self::getExistsWarning( $localFile );
 		if( $exists !== false )
 			$warning['exists'] = $exists;
 
 		// Check whether this may be a thumbnail
 		if( $exists !== false && $exists[0] != 'thumb'
-				&& self::isThumbName( $this->mLocalFile->getName() ) ){
-			//make the title:
+				&& self::isThumbName( $filename ) ){
+			// Make the title
 			$nt = $this->getTitle();
 			$warning['file-thumbnail-no'] = substr( $filename, 0,
 				strpos( $nt->getText() , '-' ) +1 );
@@ -324,22 +351,25 @@ class UploadBase {
 
 		# If the file existed before and was deleted, warn the user of this
 		# Don't bother doing so if the file exists now, however
-		if( $this->mLocalFile->wasDeleted() && !$this->mLocalFile->exists() )
-			$warning['filewasdeleted'] = $this->mLocalFile->getTitle();
+		if( $localFile->wasDeleted() && !$localFile->exists() )
+			$warning['filewasdeleted'] = $localFile->getTitle();
 
 		return $warning;
 	}
 
 	/**
-	 * Really perform the upload.
+	 * Really perform the upload. Stores the file in the local repo, watches 
+	 * if necessary and runs the UploadComplete hook.
+	 * 
+	 * @return mixed Status indicating the whether the upload succeeded.
 	 */
-	function performUpload( $comment, $pageText, $watch, $user ) {
+	public function performUpload( $comment, $pageText, $watch, $user ) {
 		wfDebug( "\n\n\performUpload: sum:" . $comment . ' c: ' . $pageText . ' w:' . $watch );
-		$status = $this->mLocalFile->upload( $this->mTempPath, $comment, $pageText,
+		$status = $this->getLocalFile()->upload( $this->mTempPath, $comment, $pageText,
 			File::DELETE_SOURCE, $this->mFileProps, false, $user );
 
 		if( $status->isGood() && $watch )
-			$user->addWatch( $this->mLocalFile->getTitle() );
+			$user->addWatch( $this->getLocalFile()->getTitle() );
 
 		if( $status->isGood() )
 			wfRunHooks( 'UploadComplete', array( &$this ) );
@@ -348,9 +378,12 @@ class UploadBase {
 	}
 
 	/**
-	 * Returns a title or null
+	 * Returns the title of the file to be uploaded. Sets mTitleError in case
+	 * the name was illegal.
+	 * 
+	 * @return Title The title of the file or null in case the name was illegal
 	 */
-	function getTitle() {
+	public function getTitle() {
 		if ( $this->mTitle !== false )
 			return $this->mTitle;
 
@@ -415,7 +448,10 @@ class UploadBase {
 		return $this->mTitle = $nt;
 	}
 
-	function getLocalFile() {
+	/**
+	 * Return the local file and initializes if necessary. 
+	 */
+	public function getLocalFile() {
 		if( is_null( $this->mLocalFile ) ) {
 			$nt = $this->getTitle();
 			$this->mLocalFile = is_null( $nt ) ? null : wfLocalFile( $nt );
@@ -435,14 +471,20 @@ class UploadBase {
 	 * @return string - full path the stashed file, or false on failure
 	 * @access private
 	 */
-	function saveTempUploadedFile( $saveName, $tempName ) {
+	protected function saveTempUploadedFile( $saveName, $tempName ) {
 		$repo = RepoGroup::singleton()->getLocalRepo();
 		$status = $repo->storeTemp( $saveName, $tempName );
 		return $status;
 	}
 
-	/* append to a stashed file */
-	function appendToUploadFile( $srcPath, $toAppendPath ){
+	/** 
+	 * Append a file to a stashed file.
+	 * 
+	 * @param string $srcPath Path to file to append from
+	 * @param string $toAppendPath Path to file to append to
+	 * @return Status Status
+	 */
+	public function appendToUploadFile( $srcPath, $toAppendPath ){
 		$repo = RepoGroup::singleton()->getLocalRepo();
 		$status = $repo->append( $srcPath, $toAppendPath );
 		return $status;
@@ -454,21 +496,19 @@ class UploadBase {
 	 * Returns a key value which will be passed through a form
 	 * to pick up the path info on a later invocation.
 	 *
-	 * @return int
-	 * @access private
+	 * @return int Session key
 	 */
-	function stashSession() {
+	public function stashSession() {
 		$status = $this->saveTempUploadedFile( $this->mDestName, $this->mTempPath );
 		if( !$status->isOK() ) {
 			# Couldn't save the file.
 			return false;
 		}
-		$mTempPath = $status->value;
 		if(!isset($_SESSION))
 			session_start(); // start up the session (might have been previously closed to prevent php session locking)
 		$key = $this->getSessionKey();
 		$_SESSION['wsUploadData'][$key] = array(
-			'mTempPath'       => $mTempPath,
+			'mTempPath'       => $status->value,
 			'mFileSize'       => $this->mFileSize,
 			'mFileProps'      => $this->mFileProps,
 			'version'         => self::SESSION_VERSION,
@@ -477,9 +517,9 @@ class UploadBase {
 	}
 
 	/**
-	 * Pull session key gen from stash in cases where we want to start an upload without much information
+	 * Generate a random session key from stash in cases where we want to start an upload without much information
 	 */
-	function getSessionKey(){
+	protected function getSessionKey(){
 		$key = mt_rand( 0, 0x7fffffff );
 		$_SESSION['wsUploadData'][$key] = array();
 		return $key;
@@ -489,7 +529,7 @@ class UploadBase {
 	 * Remove a temporarily kept file stashed by saveTempUploadedFile().
 	 * @return success
 	 */
-	function unsaveUploadedFile() {
+	public function unsaveUploadedFile() {
 		$repo = RepoGroup::singleton()->getLocalRepo();
 		$success = $repo->freeTemp( $this->mTempPath );
 		return $success;
@@ -500,14 +540,14 @@ class UploadBase {
 	 * on exit to clean up.
 	 * @access private
 	 */
-	function cleanupTempFile() {
+	public function cleanupTempFile() {
 		if ( $this->mRemoveTempFile && $this->mTempPath && file_exists( $this->mTempPath ) ) {
 			wfDebug( __METHOD__ . ": Removing temporary file {$this->mTempPath}\n" );
 			unlink( $this->mTempPath );
 		}
 	}
 
-	function getTempPath() {
+	public function getTempPath() {
 		return $this->mTempPath;
 	}
 
@@ -602,7 +642,7 @@ class UploadBase {
 	 * @param string $extension The extension of the file
 	 * @return bool true if the file contains something looking like embedded scripts
 	 */
-	function detectScript( $file, $mime, $extension ) {
+	public static function detectScript( $file, $mime, $extension ) {
 		global $wgAllowTitlesInSVG;
 
 		#ugly hack: for text files, always look at the entire file.
@@ -700,7 +740,7 @@ class UploadBase {
 		return false;
 	}
 
-	function detectScriptInSvg( $filename ) {
+	protected function detectScriptInSvg( $filename ) {
 		$check = new XmlTypeCheck( $filename, array( $this, 'checkSvgScriptCallback' ) );
 		return $check->filterMatch;
 	}
@@ -708,7 +748,7 @@ class UploadBase {
 	/**
 	 * @todo Replace this with a whitelist filter!
 	 */
-	function checkSvgScriptCallback( $element, $attribs ) {
+	public function checkSvgScriptCallback( $element, $attribs ) {
 		$stripped = $this->stripXmlNamespace( $element );
 
 		if( $stripped == 'script' ) {
@@ -745,7 +785,7 @@ class UploadBase {
 	 *         or a string containing feedback from the virus scanner if a virus was found.
 	 *         If textual feedback is missing but a virus was found, this function returns true.
 	 */
-	function detectVirus( $file ) {
+	public static function detectVirus( $file ) {
 		global $wgAntivirus, $wgAntivirusSetup, $wgAntivirusRequired, $wgOut;
 
 		if ( !$wgAntivirus ) {
@@ -843,7 +883,7 @@ class UploadBase {
 	 *
 	 * @access private
 	 */
-	function checkMacBinary() {
+	private function checkMacBinary() {
 		$macbin = new MacBinary( $this->mTempPath );
 		if( $macbin->isValid() ) {
 			$dataFile = tempnam( wfTempDir(), 'WikiMacBinary' );
@@ -865,18 +905,19 @@ class UploadBase {
 	 * Check if there's an overwrite conflict and, if so, if restrictions
 	 * forbid this user from performing the upload.
 	 *
-	 * @return mixed true on success, WikiError on failure
+	 * @return mixed true on success, error string on failure
 	 * @access private
 	 */
-	function checkOverwrite() {
+	private function checkOverwrite() {
 		global $wgUser;
 		// First check whether the local file can be overwritten
-		if( $this->mLocalFile->exists() )
-			if( !self::userCanReUpload( $wgUser, $this->mLocalFile ) )
+		$file = $this->getLocalFile();
+		if( $file->exists() )
+			if( !self::userCanReUpload( $wgUser, $file ) )
 				return 'fileexists-forbidden';
 
 		// Check shared conflicts
-		$file = wfFindFile( $this->mLocalFile->getName() );
+		$file = wfFindFile( $file->getName() );
 		if ( $file && ( !$wgUser->isAllowed( 'reupload' ) ||
 				!$wgUser->isAllowed( 'reupload-shared' ) ) )
 			return 'fileexists-shared-forbidden';
@@ -904,6 +945,17 @@ class UploadBase {
 		return $user->getId() == $img->getUser( 'id' );
 	}
 
+	/**
+	 * Helper function that does various existence checks for a file.
+	 * The following checks are performed: 
+	 * - The file exists
+	 * - Article with the same name as the file exists
+	 * - File exists with normalized extension
+	 * - The file looks like a thumbnail and the original exists
+	 * 
+	 * @param File $file The file to check 
+	 * @return mixed False if the file does not exists, else an array
+	 */
 	public static function getExistsWarning( $file ) {
 		if( $file->exists() )
 			return array( 'exists', $file );
@@ -944,6 +996,9 @@ class UploadBase {
 		return false;
 	}
 
+	/**
+	 * Helper function that checks whether the filename looks like a thumbnail
+	 */
 	public static function isThumbName( $filename ) {
 		$n = strrpos( $filename, '.' );
 		$partname = $n ? substr( $filename, 0, $n ) : $filename;

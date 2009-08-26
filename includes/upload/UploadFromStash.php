@@ -1,8 +1,15 @@
 <?php
-
+/**
+ * @file
+ * @ingroup upload
+ * 
+ * Implements uploading from previously stored file.
+ * 
+ * @author Bryan Tong Minh
+ */
+ 
 class UploadFromStash extends UploadBase {
-
-	static function isValidSessionKey( $key, $sessionData ) {
+	public static function isValidSessionKey( $key, $sessionData ) {
 		return !empty( $key ) && 
 			is_array( $sessionData ) && 
 			isset( $sessionData[$key] ) && 
@@ -10,7 +17,7 @@ class UploadFromStash extends UploadBase {
 			$sessionData[$key]['version'] == self::SESSION_VERSION;
 	}
 
-	static function isValidRequest( $request ) {
+	public static function isValidRequest( $request ) {
 		$sessionData = $request->getSessionData( 'wsUploadData' );
 		return self::isValidSessionKey( 
 			$request->getInt( 'wpSessionKey' ),
@@ -20,7 +27,7 @@ class UploadFromStash extends UploadBase {
 	/*
 	 * some $na vars for uploadBase method compatibility.
 	 */
-	function initialize( $name, $sessionData, $na, $na2=false ) {
+	public function initialize( $name, $sessionData, $na, $na2=false ) {
 			/**
 			 * Confirming a temporarily stashed upload.
 			 * We don't want path names to be forged, so we keep
@@ -36,7 +43,7 @@ class UploadFromStash extends UploadBase {
 			$this->mFileProps = $sessionData['mFileProps'];
 	}
 
-	function initializeFromRequest( &$request ) {
+	public function initializeFromRequest( &$request ) {
 		$sessionKey = $request->getInt( 'wpSessionKey' );
 		$sessionData = $request->getSessionData('wsUploadData');
 
@@ -56,7 +63,7 @@ class UploadFromStash extends UploadBase {
 	/**
 	 * We're here from "ignore warnings anyway" so return just OK
 	 */
-	function checkWarnings() {
+	public function checkWarnings() {
 		return array();
 	}
 

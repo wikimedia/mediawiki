@@ -1,5 +1,13 @@
 <?php
-
+/**
+ * @file
+ * @ingroup upload
+ * 
+ * Implements uploading from a HTTP resource.
+ * 
+ * @author Bryan Tong Minh
+ * @author Michael Dale
+ */
 class UploadFromUrl extends UploadBase {
 	protected $mTempDownloadPath;
 
@@ -7,9 +15,10 @@ class UploadFromUrl extends UploadBase {
 	protected $dl_mode =  Http::SYNC_DOWNLOAD;
 
 	/**
-	 * Checks if the user is allowed to use the upload-by-URL feature
+	 * Checks if the user is allowed to use the upload-by-URL feature. If the 
+	 * user is allowed, pass on permissions checking to the parent.
 	 */
-	static function isAllowed( $user ) {
+	public static function isAllowed( $user ) {
 		if( !$user->isAllowed( 'upload_by_url' ) )
 			return 'upload_by_url';
 		return parent::isAllowed( $user );
@@ -18,13 +27,15 @@ class UploadFromUrl extends UploadBase {
 	/**
 	 * Checks if the upload from URL feature is enabled
 	 */
-	static function isEnabled() {
+	public static function isEnabled() {
 		global $wgAllowCopyUploads;
 		return $wgAllowCopyUploads && parent::isEnabled();
 	}
 
-	/* entry point for API upload:: ASYNC_DOWNLOAD (if possible) */
-	function initialize( $name, $url, $asyncdownload, $na = false ) {
+	/** 
+	 * Entry point for API upload:: ASYNC_DOWNLOAD (if possible) 
+	 */
+	public function initialize( $name, $url, $asyncdownload, $na = false ) {
 		global $wgTmpDirectory, $wgPhpCli;
 
 		// check for $asyncdownload request:
@@ -36,8 +47,8 @@ class UploadFromUrl extends UploadBase {
 			}
 		}
 
-		$local_file = tempnam( $wgTmpDirectory, 'WEBUPLOAD' );
-		parent::initialize( $name, $local_file, 0, true );
+		$localFile = tempnam( $wgTmpDirectory, 'WEBUPLOAD' );
+		parent::initialize( $name, $localFile, 0, true );
 
 		$this->mUrl = trim( $url );
 	}
@@ -50,7 +61,7 @@ class UploadFromUrl extends UploadBase {
 	 * Entry point for SpecialUpload no ASYNC_DOWNLOAD possible
 	 * @param $request Object: WebRequest object
 	 */
-	function initializeFromRequest( &$request ) {
+	public function initializeFromRequest( &$request ) {
 
 		// set dl mode if not set:
 		if( !$this->dl_mode )
@@ -69,16 +80,16 @@ class UploadFromUrl extends UploadBase {
 	/**
 	 * Do the real fetching stuff
 	 */
-	function fetchFile() {
-		// entry point for SpecialUplaod
-		if( self::isValidURI( $this->mUrl ) === false ) {
+	public function fetchFile() {
+		// Entry point for SpecialUpload
+		if( Http::isValidURI( $this->mUrl ) === false ) {
 			return Status::newFatal( 'upload-proto-error' );
 		}
 
-		// now do the actual download to the target file:
+		// Now do the actual download to the target file:
 		$status = Http::doDownload( $this->mUrl, $this->mTempPath, $this->dl_mode );
 
-		// update the local filesize var:
+		// Update the local filesize var:
 		$this->mFileSize = filesize( $this->mTempPath );
 
 		return $status;
@@ -87,23 +98,13 @@ class UploadFromUrl extends UploadBase {
 	/**
 	 * @param $request Object: WebRequest object
 	 */
-	static function isValidRequest( $request ){
+	public static function isValidRequest( $request ){
 		if( !$request->getVal( 'wpUploadFileURL' ) )
 			return false;
 		// check that is a valid url:
-		return self::isValidURI( $request->getVal( 'wpUploadFileURL' ) );
+		return Http::isValidURI( $request->getVal( 'wpUploadFileURL' ) );
 	}
 
-	/**
-	 * Checks that the given URI is a valid one
-	 * @param $uri Mixed: URI to check for validity
-	 */
-	static function isValidURI( $uri ){
-		return preg_match(
-			'/(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/',
-			$uri,
-			$matches
-		);
-	}
+
 
 }

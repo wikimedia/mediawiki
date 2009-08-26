@@ -54,7 +54,7 @@ class Http {
 		// check for redirects:
 		if( isset( $head['Location'] ) && strrpos( $head[0], '302' ) !== false ){
 			if( $redirectCount < $wgMaxRedirects ){
-				if( UploadFromUrl::isValidURI( $head['Location'] ) ){
+				if( self::isValidURI( $head['Location'] ) ){
 					return self::doDownload( $head['Location'], $target_file_path, $dl_mode, $redirectCount++ );
 				} else {
 					return Status::newFatal( 'upload-proto-error' );
@@ -272,6 +272,18 @@ class Http {
 		global $wgVersion;
 		return "MediaWiki/$wgVersion";
 	}
+	
+	/**
+	 * Checks that the given URI is a valid one
+	 * @param $uri Mixed: URI to check for validity
+	 */
+	public static function isValidURI( $uri ){
+		return preg_match(
+			'/(ftp|http|https):\/\/(\w+:{0,1}\w*@)?(\S+)(:[0-9]+)?(\/|\/([\w#!:.?+=&%@!\-\/]))?/',
+			$uri,
+			$matches
+		);
+	}
 }
 
 class HttpRequest {
@@ -322,7 +334,7 @@ class HttpRequest {
 	 */
 	public function doRequest() {
 		# Make sure we have a valid url
-		if( !UploadFromUrl::isValidURI( $this->url ) )
+		if( !Http::isValidURI( $this->url ) )
 			return Status::newFatal('bad-url');
 
 		# Use curl if available

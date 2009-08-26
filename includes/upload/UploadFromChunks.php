@@ -1,5 +1,10 @@
 <?php
 /**
+ * @file
+ * @ingroup upload
+ * 
+ * @author Michael Dale
+ * 
  * first destination checks are made (if ignorewarnings is not checked) errors / warning is returned.
  *
  * we return the uploadUrl

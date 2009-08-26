@@ -1,6 +1,14 @@
 <?php
-
+/**
+ * @file
+ * @ingroup upload
+ * 
+ * @author Bryan Tong Minh
+ * 
+ * Implements regular file uploads
+ */
 class UploadFromFile extends UploadBase {
+
 
 	function initializeFromRequest( &$request ) {
 		$desiredDestName = $request->getText( 'wpDestFile' );
