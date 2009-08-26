@@ -673,6 +673,8 @@ class ParserTest {
 
 		//$GLOBALS['wgMessageCache'] = new MessageCache( new BagOStuff(), false, 0, $GLOBALS['wgDBname'] );
 
+		MagicWord::clearCache();
+
 		global $wgUser;
 		$wgUser = new User();
 	}
