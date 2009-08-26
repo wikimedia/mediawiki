@@ -258,18 +258,6 @@ class SpecialSearch {
 		
 		$wgOut->addHtml( Xml::closeElement( 'form' ) );
 		$wgOut->addHtml( "<div class='searchresults'>" );
-		
-		// show direct page/create link
-		if( !is_null($t) ) {
-			if( !$t->exists() ) {
-				$wgOut->addWikiMsg( 'searchmenu-new', wfEscapeWikiText( $t->getPrefixedText() ) );
-			} else {
-				$wgOut->addWikiMsg( 'searchmenu-exists', wfEscapeWikiText( $t->getPrefixedText() ) );
-			}
-		} else {
-			// preserve the paragraph for margins etc...
-			$wgOut->addHTML('<p></p>');
-		}
 
 		// prev/next links
 		if( $num || $this->offset ) {
@@ -313,6 +301,18 @@ class SpecialSearch {
 		}
 		if( $num === 0 ) {
 			$wgOut->addWikiMsg( 'search-nonefound', wfEscapeWikiText( $term ) );
+		}
+
+		// show direct page/create link
+		if( !is_null($t) ) {
+			if( !$t->exists() ) {
+				$wgOut->addWikiMsg( 'searchmenu-new', wfEscapeWikiText( $t->getPrefixedText() ) );
+			} else {
+				$wgOut->addWikiMsg( 'searchmenu-exists', wfEscapeWikiText( $t->getPrefixedText() ) );
+			}
+		} else {
+			// preserve the paragraph for margins etc...
+			$wgOut->addHTML('<p></p>');
 		}
 		$wgOut->addHtml( "</div>" );
 		if( $num === 0 ) {
