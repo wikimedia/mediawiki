@@ -168,18 +168,7 @@ class ApiQueryAllimages extends ApiQueryGeneratorBase {
 			'sha1' => null,
 			'sha1base36' => null,
 			'prop' => array (
-				ApiBase :: PARAM_TYPE => array(
-					'timestamp',
-					'user',
-					'comment',
-					'url',
-					'size',
-					'dimensions', // Obsolete
-					'mime',
-					'sha1',
-					'metadata',
-					'bitdepth',
-				),
+				ApiBase :: PARAM_TYPE => ApiQueryImageInfo::getPropertyNames(),
 				ApiBase :: PARAM_DFLT => 'timestamp|url',
 				ApiBase :: PARAM_ISMULTI => true
 			)

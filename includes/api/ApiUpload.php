@@ -275,16 +275,7 @@ class ApiUpload extends ApiBase {
 		// Append imageinfo to the result
 
 		//get all the image properties:
-		$imParam = Array('timestamp',
-					'user',
-					'comment',
-					'url',
-					'size',
-					'sha1',
-					'mime',
-					'metadata',
-					'archivename',
-					'bitdepth');
+		$imParam = ApiQueryImageInfo::getPropertyNames();
         $result['imageinfo'] = ApiQueryImageInfo::getInfo( $file,
 			array_flip( $imParam ),
             $this->getResult() );

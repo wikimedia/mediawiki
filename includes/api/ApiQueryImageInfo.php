@@ -250,18 +250,7 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			'prop' => array (
 				ApiBase :: PARAM_ISMULTI => true,
 				ApiBase :: PARAM_DFLT => 'timestamp|user',
-				ApiBase :: PARAM_TYPE => array (
-					'timestamp',
-					'user',
-					'comment',
-					'url',
-					'size',
-					'sha1',
-					'mime',
-					'metadata',
-					'archivename',
-					'bitdepth',
-				)
+				ApiBase :: PARAM_TYPE => self::getPropertyNames()
 			),
 			'limit' => array(
 				ApiBase :: PARAM_TYPE => 'limit',
@@ -286,6 +275,25 @@ class ApiQueryImageInfo extends ApiQueryBase {
 			),
 			'continue' => null,
 		);
+	}
+	
+	/**
+	 * Returns all possible parameters to iiprop
+	 */
+	public static function getPropertyNames() {
+		return array (
+					'timestamp',
+					'user',
+					'comment',
+					'url',
+					'size',
+					'dimensions', // For backwards compatibility with Allimages
+					'sha1',
+					'mime',
+					'metadata',
+					'archivename',
+					'bitdepth',
+				);
 	}
 
 	public function getParamDescription() {
