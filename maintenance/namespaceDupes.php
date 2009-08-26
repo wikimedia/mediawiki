@@ -93,7 +93,7 @@ class NamespaceConflictChecker extends Maintenance {
 		foreach( $wgNamespaceAliases as $name => $ns ) {
 			$spaces[$name] = $ns;
 		}
-		foreach( $wgContLang->namespaceAliases as $name => $ns ) {
+		foreach( $wgContLang->getNamespaceAliases() as $name => $ns ) {
 			$spaces[$name] = $ns;
 		}
 		
