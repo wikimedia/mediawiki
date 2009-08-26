@@ -151,7 +151,6 @@ this. Was used when mwEmbed was going to be an extension.
 * If config/ directory is not executable, the command to make it executable 
   now asks the user to cd to the correct directory
 * Add experimental new external authentication framework, ExternalAuth
-* (bug 14201) Set $wgDBadminuser/$wgDBadminpassword during setup
 * (bug 18768) Remove AdminSettings requirements. Maintenance environment
   will still load it if it exists, but it's not required for anything
 * (bug 19900) The "listgrouprights-key" message is now wrapped in a div with
