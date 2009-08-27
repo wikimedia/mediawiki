@@ -1882,7 +1882,7 @@ class Parser
 		elseif ( ';' === $char ) {
 			$result .= '<dl><dt>';
 			$this->mDTopen = true;
-		} elseif ( '>' === $char ) { $result .= "<blockquote><p>"; }
+		}
 		else { $result = '<!-- ERR 1 -->'; }
 
 		return $result;
@@ -1890,7 +1890,6 @@ class Parser
 
 	/* private */ function nextItem( $char ) {
 		if ( '*' === $char || '#' === $char ) { return '</li><li>'; }
-		elseif ( '>' === $char ) { return "</p><p>"; }
 		elseif ( ':' === $char || ';' === $char ) {
 			$close = '</dd>';
 			if ( $this->mDTopen ) { $close = '</dt>'; }
@@ -1908,7 +1907,6 @@ class Parser
 	/* private */ function closeList( $char ) {
 		if ( '*' === $char ) { $text = '</li></ul>'; }
 		elseif ( '#' === $char ) { $text = '</li></ol>'; }
-		elseif ( '>' === $char ) { $text = "</p></blockquote>"; }
 		elseif ( ':' === $char ) {
 			if ( $this->mDTopen ) {
 				$this->mDTopen = false;
@@ -1954,23 +1952,14 @@ class Parser
 			// # = ol
 			// ; = dt
 			// : = dd
-			// > = blockquote
 
 			$lastPrefixLength = strlen( $lastPrefix );
 			$preCloseMatch = preg_match('/<\\/pre/i', $oLine );
 			$preOpenMatch = preg_match('/<pre/i', $oLine );
-			
-			// Need to decode &gt; --> > for blockquote syntax. Re-encode later.
-			// To avoid collision with real >s, we temporarily convert them to &gt;
-			// This is a weird choice of armouring, but it's totally resistant to any
-			//  collision.
-			$orig = $oLine;
-			$oLine = strtr( $oLine, array( '&gt;' => '>', '>' => '&gt;' ) );
-			
 			// If not in a <pre> element, scan for and figure out what prefixes are there.
 			if ( !$this->mInPre ) {
 				# Multiple prefixes may abut each other for nested lists.
-				$prefixLength = strspn( $oLine, '*#:;>' );
+				$prefixLength = strspn( $oLine, '*#:;' );
 				$prefix = substr( $oLine, 0, $prefixLength );
 
 				# eh?
@@ -1986,9 +1975,6 @@ class Parser
 				$prefix = $prefix2 = '';
 				$t = $oLine;
 			}
-			
-			// Re-encode >s now
-			$t = strtr( $t, array( '&gt;' => '>', '>' => '&gt;' ) );
 
 			# List generation
 			if( $prefixLength && $lastPrefix === $prefix2 ) {

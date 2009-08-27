@@ -136,7 +136,6 @@ this. Was used when mwEmbed was going to be an extension.
 * Added a feature to allow per-article process pool size control for the parsing 
   task, to limit resource usage when the cache for a heavily-viewed article is
   invalidated. Requires an external daemon. 
-* Leading > is now syntax for <blockquote>.
 * (bug 19576) Moved the id attribues from the anchors accompanying section
   headers to the <span class="mw-headline"> elements within the section headers,
   removing the redundant anchor elements.

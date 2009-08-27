@@ -6577,9 +6577,9 @@ RAW magic word
 !! test
 Always escape literal '>' in output, not just after '<'
 !! input
-test ><>
+><>
 !! result
-<p>test &gt;&lt;&gt;
+<p>&gt;&lt;&gt;
 </p>
 !! end
 
@@ -7397,24 +7397,6 @@ wgUseDynamicDates=true
 !! result
 <p><span class="mw-formatted-date" title="01-15"><a href="/index.php?title=January_15&amp;action=edit&amp;redlink=1" class="new" title="January 15 (page does not exist)">January 15</a></span>
 </p>
-!! end
-
-!! test
-Leading > blockquote syntax
-!! input
-> Hi
-> This
-> Is
-> A
-> Quote
-!! result
-<blockquote><p> Hi
-</p><p> This
-</p><p> Is
-</p><p> A
-</p><p> Quote
-</p></blockquote>
-
 !! end
 
 #
