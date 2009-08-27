@@ -2,9 +2,9 @@
 /**
  * @file
  * @ingroup upload
- * 
+ *
  * @author Michael Dale
- * 
+ *
  * first destination checks are made (if ignorewarnings is not checked) errors / warning is returned.
  *
  * we return the uploadUrl
@@ -22,8 +22,10 @@ class UploadFromChunks extends UploadBase {
 	const INIT 	= 1;
 	const CHUNK = 2;
 	const DONE 	= 3;
-
-	function initializeFromParams( $param, &$request ) {
+	public function initializeFromRequest( &$request ){
+		//should merge initializeFromParams (but just needs to be working atm)
+	}
+	public function initializeFromParams( $param, &$request ) {
 		$this->initFromSessionKey( $param['chunksessionkey'], $request );
 		// set the chunk mode:
 		if( !$this->mSessionKey && !$param['done'] ){
@@ -46,7 +48,6 @@ class UploadFromChunks extends UploadBase {
 
 		return $this->status;
 	}
-
 	static function isValidRequest( $request ) {
 		$sessionData = $request->getSessionData( 'wsUploadData' );
 		if( !self::isValidSessionKey(
