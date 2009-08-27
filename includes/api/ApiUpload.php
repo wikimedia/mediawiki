@@ -242,14 +242,23 @@ class ApiUpload extends ApiBase {
 				// Add indices
 				$this->getResult()->setIndexedTagName( $warnings, 'warning' );
 				
-				if( isset( $warnings['duplicate'] ) )
-					$this->getResult()->setIndexedTagName( $warnings['duplicate'], 'duplicate');
+				if( isset( $warnings['duplicate'] ) ) {
+					$dupes = array();
+					foreach( $warnings['duplicate'] as $key => $dupe )
+						$dupes[] = $dupe->getName();
+					$this->getResult()->setIndexedTagName( $dupes, 'duplicate');
+					$warnings['duplicate'] = $dupes;
+				}
 
-				if( isset( $warnings['exists'] ) )
-					$this->getResult()->setIndexedTagName( $warnings['exists'], 'exists' );
+
+				if( isset( $warnings['exists'] ) ) {
+					$warning = $warnings['exists'];
+					unset( $warnings['exists'] );
+					$warnings[$warning[0]] = $warning[1]->getName(); 
+				}
 				
 				if( isset( $warnings['filewasdeleted'] ) )
-					$warnings['filewasdeleted'] = $warnings['filewasdeleted']->getDBkey();
+					$warnings['filewasdeleted'] = $warnings['filewasdeleted']->getName();
 					
 				$result['result'] = 'Warning';
 				$result['warnings'] = $warnings;

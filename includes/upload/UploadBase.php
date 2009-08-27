@@ -280,7 +280,7 @@ abstract class UploadBase {
 	 * @return array Array of warnings
 	 */
 	public function checkWarnings() {
-		$warning = array();
+		$warnings = array();
 
 		$localFile = $this->getLocalFile();
 		$filename = $localFile->getName();
@@ -297,33 +297,33 @@ abstract class UploadBase {
 			$comparableName = $wgContLang->ucfirst( $comparableName );
 		}
 		if( $this->mDesiredDestName != $filename && $comparableName != $filename )
-			$warning['badfilename'] = $filename;
+			$warnings['badfilename'] = $filename;
 
 		// Check whether the file extension is on the unwanted list
 		global $wgCheckFileExtensions, $wgFileExtensions;
 		if ( $wgCheckFileExtensions ) {
 			if ( !$this->checkFileExtension( $this->mFinalExtension, $wgFileExtensions ) )
-				$warning['filetype-unwanted-type'] = $this->mFinalExtension;
+				$warnings['filetype-unwanted-type'] = $this->mFinalExtension;
 		}
 
 		global $wgUploadSizeWarning;
 		if ( $wgUploadSizeWarning && ( $this->mFileSize > $wgUploadSizeWarning ) )
-			$warning['large-file'] = $wgUploadSizeWarning;
+			$warnings['large-file'] = $wgUploadSizeWarning;
 
 		if ( $this->mFileSize == 0 )
-			$warning['emptyfile'] = true;
+			$warnings['emptyfile'] = true;
 
 
 		$exists = self::getExistsWarning( $localFile );
 		if( $exists !== false )
-			$warning['exists'] = $exists;
+			$warnings['exists'] = $exists;
 
 		// Check whether this may be a thumbnail
 		if( $exists !== false && $exists[0] != 'thumb'
 				&& self::isThumbName( $filename ) ){
 			// Make the title
 			$nt = $this->getTitle();
-			$warning['file-thumbnail-no'] = substr( $filename, 0,
+			$warnings['file-thumbnail-no'] = substr( $filename, 0,
 				strpos( $nt->getText() , '-' ) +1 );
 		}
 
@@ -337,17 +337,17 @@ abstract class UploadBase {
 				unset( $dupes[$key] );
 		}
 		if( $dupes )
-			$warning['duplicate'] = $dupes;
+			$warnings['duplicate'] = $dupes;
 
 		// Check dupes against archives
 		$archivedImage = new ArchivedFile( null, 0, "{$hash}.{$this->mFinalExtension}" );
 		if ( $archivedImage->getID() > 0 )
-			$warning['duplicate-archive'] = $archivedImage->getName();
+			$warnings['duplicate-archive'] = $archivedImage->getName();
 
 		$filenamePrefixBlacklist = self::getFilenamePrefixBlacklist();
 		foreach( $filenamePrefixBlacklist as $prefix ) {
 			if ( substr( $partname, 0, strlen( $prefix ) ) == $prefix ) {
-				$warning['filename-bad-prefix'] = $prefix;
+				$warnings['filename-bad-prefix'] = $prefix;
 				break;
 			}
 		}
@@ -355,9 +355,9 @@ abstract class UploadBase {
 		# If the file existed before and was deleted, warn the user of this
 		# Don't bother doing so if the file exists now, however
 		if( $localFile->wasDeleted() && !$localFile->exists() )
-			$warning['filewasdeleted'] = $localFile->getTitle();
+			$warnings['filewasdeleted'] = $localFile->getTitle();
 
-		return $warning;
+		return $warnings;
 	}
 
 	/**
