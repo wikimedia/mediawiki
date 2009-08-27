@@ -170,11 +170,13 @@ function jsonReadable( $json ) {
 						$result .= $char . $newline . str_repeat( $tab, $tabcount );
 					}
 				break;
-/* FIXME: this will change "key" : "message:" to "key" : "messages : ". Not intended.
-          now "key" : "message" will become "key":"message:", but that's not too big of a problem.
-					case ':':
-					$result .= ' ' . $char . ' ';
-					break; */
+				case ':':
+					if($inquote){
+						$result .= $char;
+					}else{
+						$result .= ' ' . $char . ' ';
+					}
+					break;
 				case '"':
 					$inquote = !$inquote;
 					$result .= $char;
