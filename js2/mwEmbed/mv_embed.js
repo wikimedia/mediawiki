@@ -842,7 +842,7 @@ function mv_jqueryBindings(){
 			var sElm = $j(this.selector).get(0);
 			if(sElm['firefogg']){
 				if(sElm['firefogg']=='loading'){
-					js_log("Error: called firefogg operations on Firefogg selector that is not done loading");
+					js_log("Error: called firefogg operations on Firefogg selector that is not done loading");					
 					return false;
 				}
 				//update properties:
@@ -887,7 +887,7 @@ function mv_jqueryBindings(){
 					}else{
 						var myFogg = new mvFirefogg( iObj );
 					}
-					if(myFogg){
+					if(myFogg){						
 						myFogg.doRewrite( callback );
 						var selectorElement = $j( iObj.selector ).get(0);
 						selectorElement['firefogg']=myFogg;

@@ -7,8 +7,7 @@ js2AddOnloadHook( function(){
 });
 var mwUploadFormTarget = '#mw-upload-form';
 //set up the upoload form bindings once all dom manipluation is done
-var mwUploadHelper = {
-	firefogg_installed:false,
+var mwUploadHelper = {	
 	init:function(){
 		var _this = this;
 		//if not boolean false set to true:
@@ -23,21 +22,13 @@ var mwUploadHelper = {
 				'form_rewrite': true,
 				'target_edit_from' : mwUploadFormTarget,
 				'new_source_cb' : function( orgFilename, oggName ){
-				        if($j('#wpDestFile').val() == "")
-						    $j('#wpDestFile').val( oggName );
-						$j('#wpDestFile').doDestCheck({
-							'warn_target':'#wpDestFile-warning'
-						});
-				},
-				'detect_cb':function( fogg_installed ){
-					if(fogg_installed){
-						_this.firefogg_installed=true;
-					}else{
-						_this.firefogg_installed=false;
-					}
-				}
-			});
-
+			        if($j('#wpDestFile').val() == "")
+					    $j('#wpDestFile').val( oggName );
+					$j('#wpDestFile').doDestCheck({
+						'warn_target':'#wpDestFile-warning'
+					});
+				}				
+			});			
 		}else{
 			//Add basic upload profile support ( http status monitoring, progress box for browsers that support it etc.)
 			if($j('#wpUploadFileURL').length != 0){
@@ -51,7 +42,7 @@ var mwUploadHelper = {
 		if( wgAjaxUploadDestCheck ){
 			//do destination check:
 			$j('#wpDestFile').change(function(){
-				$j(this).doDestCheck({
+				$j('#wpDestFile').doDestCheck({
 					'warn_target':'#wpDestFile-warning'
 				});
 			});

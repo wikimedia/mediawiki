@@ -39,8 +39,8 @@ var default_bui_options = {
 	'done_upload_cb': null,
 	'target_edit_from':null,
 
-	//upload_mode can be 'post', 'api' or 'autodetect'. (autodetect issues an api call)
-	'upload_mode': 'autodetect'
+	//default upload mode is 'api' but if no api_url will try tp post
+	'upload_mode': 'api'
 
 }
 var mvBaseUploadInterface = function( iObj ){
@@ -72,13 +72,19 @@ mvBaseUploadInterface.prototype = {
 		//set up the local pointer to the edit form:
 		_this.editForm = _this.getEditForm();
 		if( _this.editForm ){
+					
+			//if in api re-map the upload form to api: (we have to do this BEFORE the users selects a file) 
+			if(_this.upload_mode == 'api'){
+				_this.doRemapFormToApi();
+			}
+			
 			//set up the org_onsubmit if not set:
 			if( typeof( _this.org_onsubmit ) == 'undefined' &&  _this.editForm.onsubmit )
 				_this.org_onsubmit = _this.editForm.onsubmit;
 
 			//set up the submit action:
 			$j( _this.editForm ).submit( function(){
-				js_log('j.onSubmit');
+				js_log('setupForm.onSubmit:');
 				//run the original onsubmit (if not run yet set flag to avoid excessive chaining )
 				if( typeof( _this.org_onsubmit ) == 'function' ){
 					if( ! _this.org_onsubmit() ){
@@ -92,6 +98,7 @@ mvBaseUploadInterface.prototype = {
 					return true;
 				}
 				//get the input form data in flat json:
+				js_log('update formData::');
 				var tmpAryData = $j( _this.editForm ).serializeArray();
 				for(var i=0; i < tmpAryData.length; i++){
 					if( tmpAryData[i]['name'] )
@@ -105,10 +112,10 @@ mvBaseUploadInterface.prototype = {
 					//for some unknown reason we have to drop down the #p-search z-index:
 					$j('#p-search').css('z-index', 1);
 
-					//select upload mode:
+					//select upload mode:					
 					_this.detectUploadMode();
 				}catch(e){
-
+					js_log('::error in dispProgressOverlay or detectUploadMode');
 				}
 
 				//don't submit the form we will do the post in ajax
@@ -119,14 +126,15 @@ mvBaseUploadInterface.prototype = {
 	},
 	detectUploadMode:function( callback ){
 		var _this = this;
+		js_log('detectUploadMode::' +  _this.upload_mode);
 		//check the upload mode:
 		if( _this.upload_mode == 'autodetect' ){
 			js_log('detectUploadMode::' + _this.upload_mode + ' api:' + _this.api_url);
 			if( ! _this.api_url )
 				return js_error( 'Error: can\'t autodetect mode without api url' );
 			do_api_req( {
-				'data':{ 'action':'paraminfo','modules':'upload' },
-				'url' :_this.api_url
+				'data': { 'action' : 'paraminfo', 'modules' : 'upload' },
+				'url' : _this.api_url
 			}, function(data){
 				if( typeof data.paraminfo == 'undefined' || typeof data.paraminfo.modules == 'undefined' )
 					return js_error( 'Error: bad api results' );
@@ -153,6 +161,37 @@ mvBaseUploadInterface.prototype = {
 			_this.doUploadSwitch();
 		}
 	},
+	//@@NOTE this could probably be depricated to just have a special:upload page that uses api keys? 
+	// or maybe its usefull to seperate js and non-js submits
+	doRemapFormToApi:function(){
+		var _this = this;
+		if( !_this.api_url )
+			return false;
+			
+		//add the action api 
+		$j(_this.editForm).attr('action', _this.api_url);
+		
+		//add api url 
+		//add api action:
+		if( $j(_this.editForm).find("[name='action']").length == 0)
+			$j(_this.editForm).append('<input type="hidden" name="action" value="upload">');
+
+		//add json format
+		if( $j(_this.editForm).find("[name='format']").length == 0)
+			$j(_this.editForm).append('<input type="hidden" name="format" value="jsonfm">');
+
+		//map a new hidden form
+		$j(_this.editForm).find("[name='wpUploadFile']").attr('name', 'file');
+		$j(_this.editForm).find("[name='wpDestFile']").attr('name', 'filename');
+		$j(_this.editForm).find("[name='wpUploadDescription']").attr('name', 'comment');
+		$j(_this.editForm).find("[name='wpEditToken']").attr('name', 'token');
+		$j(_this.editForm).find("[name='wpIgnoreWarning']").attr('name', 'ignorewarnings');
+		$j(_this.editForm).find("[name='wpWatchthis']").attr('name', 'watch');
+
+		//update the status to 100% progress bar (no status in iframe submit)
+		$j('#up-progressbar' ).progressbar( 'value', parseInt( 100 ) );
+		$j('#up-status-container').html( gM('mwe-upload-in-progress') );		
+	},
 	doUploadSwitch:function(){
 		var _this = this;
 		js_log('mvUPload:doUploadSwitch():' + _this.upload_mode);
@@ -165,60 +204,45 @@ mvBaseUploadInterface.prototype = {
 			);
 			//do normal post
 			_this.form_post_override = true;
+			js_log('doUploadSwitch:: submit call');
 			//do the submit :
 			_this.editForm.submit();
 		}else if(
-			_this.upload_mode=='api' &&
+			_this.upload_mode == 'api' &&
 			( $j('#wpSourceTypeFile').length ==  0 || $j('#wpSourceTypeFile').get(0).checked )
 		){
 			//@@TODO check for sendAsBinnary to support firefox 3.5 progress
 
-			//set the form target to iframe target:
-			_this.iframeId = 'f_' + ($j('iframe').length + 1);
-			$j(_this.editForm).attr('target', _this.iframeId);
-
+			//set the form target to iframe target:	
+			_this.iframeId = 'f_' + ($j('iframe').length + 1);					
 			//add the iframe
 			$j("body").append('<iframe src="javascript:false;" id="' + _this.iframeId + '" ' +
-				'name="' + _this.iframeId + '" style="display:none;" ></iframe>');
+				'name="' + _this.iframeId + '" style="display:none;" ></iframe>');	
+			$j(_this.editForm).attr('target', _this.iframeId);
 
 			//set up the done binding
 			$j('#' + _this.iframeId).load(function(){
 				_this.proccessIframeResult(  $j(this).get(0) );
 			});
-
-			//set the editForm iframe target
-			//$j(_this.editForm).attr('target', id);
-
 			//set the action to the api url:
 			$j(_this.editForm).attr('action', _this.api_url );
-			//add api action:
-			if( $j(_this.editForm).find("[name='action']").length == 0)
-				$j(_this.editForm).append('<input type="hidden" name="action" value="upload">');
-
-			//add json format
-			if( $j(_this.editForm).find("[name='format']").length == 0)
-				$j(_this.editForm).append('<input type="hidden" name="format" value="jsonfm">');
-
-			//map the form vars to api vars:
-			$j(_this.editForm).find("[name='wpUploadFile']").attr('name', 'file');
-			$j(_this.editForm).find("[name='wpDestFile']").attr('name', 'filename');
-			$j(_this.editForm).find("[name='wpUploadDescription']").attr('name', 'comment');
-			$j(_this.editForm).find("[name='wpEditToken']").attr('name', 'token');
-			$j(_this.editForm).find("[name='wpIgnoreWarning']").attr('name', 'ignorewarnings');
-			$j(_this.editForm).find("[name='wpWatchthis']").attr('name', 'watch');
-
-			//update the status to 100% progress bar (no status in iframe submit)
-			$j('#up-progressbar' ).progressbar('value', parseInt( 100 ) );
-			$j('#up-status-container').html( gM('mwe-upload-in-progress') );
-
-			js_log('do iframe form submit to: ' +  $j(_this.editForm).attr('target'));
-
+			
+			js_log('do iframe form submit to: ' +  $j(_this.editForm).attr('target') 
+					+ ' destName:' + $j(_this.editForm).find("[name='filename']").val() );					
+			
+			
 			//do post override
 			_this.form_post_override = true;
 			//reset the done with action flag:
 			_this.action_done = false;
-
-			_this.editForm.submit();
+			
+			js_log('run editForm submit()');
+			var tmpAryData = $j('#mw-upload-form' ).serializeArray();
+			for(var i=0; i < tmpAryData.length; i++){
+				if( tmpAryData[i]['name'] )
+					js_log('name: ' + tmpAryData[i]['name'] + ' = ' + tmpAryData[i]['value']);
+			}
+			$j('#mw-upload-form').submit();
 
 			return false;
 		}else if( _this.upload_mode == 'api' && $j('#wpSourceTypeURL').get(0).checked){
@@ -263,6 +287,7 @@ mvBaseUploadInterface.prototype = {
 		} else if (doc.body){
 			// get the json str:
 			json_str = $j(doc.body).find('pre').html();
+			js_log('iframe:json::' + json_str + "\nbody:" + $j(doc.body).html() );
 			//htmlentties
 			if (json_str) {
 				response = window["eval"]("(" +json_str + ")");
@@ -329,14 +354,14 @@ mvBaseUploadInterface.prototype = {
 		});
 	},
 	doAjaxUploadStatus:function() {
-		var _this = this;
-
+		var _this = this;	
+		
 		//set up the progress display for status updates:
 		_this.dispProgressOverlay();
 		var req = {
-					'action'	 : 'upload',
-					'httpstatus' : 'true',
-					'sessionkey' : _this.upload_session_key
+			'action'	 : 'upload',
+			'httpstatus' : 'true',
+			'sessionkey' : _this.upload_session_key
 		};
 		//add token if present:
 		if(this.etoken)
@@ -540,6 +565,7 @@ mvBaseUploadInterface.prototype = {
 			 	_this.warnings_sessionkey = apiRes.upload.warnings.sessionkey;
 			var bObj = {};
 			bObj[ gM('mwe-ignorewarning') ] =  	function() {
+				js_log('ignorewarning req:')
 				//re-inciate the upload proccess
 				$j('#wpIgnoreWarning').attr('checked', true);
 				$j( '#mw-upload-form' ).submit();
@@ -556,7 +582,7 @@ mvBaseUploadInterface.prototype = {
 	},
 	processApiResult: function( apiRes ){
 		var _this = this;
-		js_log('processApiResult::');
+		js_log('processApiResult::');		
 		//check for upload api error:
 		// {"upload":{"result":"Failure","error":"unknown-error","code":{"status":5,"filtered":"NGC2207%2BIC2163.jpg"}}}
 		if( _this.apiUpdateErrorCheck(apiRes) === false){
@@ -637,6 +663,7 @@ mvBaseUploadInterface.prototype = {
 	/*update to jQuery.ui progress display type */
 	dispProgressOverlay:function(){
 	  var _this = this;
+	  
 	  //remove old instance:
 	  if($j('#upProgressDialog').length!=0){
 		 $j('#upProgressDialog').dialog( 'destroy' ).remove();
@@ -706,25 +733,27 @@ mvBaseUploadInterface.prototype = {
 	 */
 	$.fn.doDestCheck = function( opt ){
 		var _this = this;
-		var destFile = this.selector;
+		js_log('doDestCheck::' + _this.selector);
+
 		//set up option defaults;
 		if(!opt.warn_target)
 			opt.warn_target = '#wpDestFile-warning';
 
 		//empty target warn:
-		$j(opt.warn_target).empty();
-
-		//show loading
-		$j(destFile).after('<img id = "mw-spinner-wpDestFile" src ="'+ stylepath + '/common/images/spinner.gif" />');
+		$j( opt.warn_target ).empty();
+		
+		//show loading		
+		$j( _this.selector ).append('<img id="mw-spinner-wpDestFile" src ="'+ stylepath + '/common/images/spinner.gif" />');
+		
 		//try and get a thumb of the current file (check its destination)
 		do_api_req({
 			'data':{
-				'titles': 'File:' + $j(destFile).val(),//@@todo we may need a more clever way to get a the filename
+				'titles': 'File:' + $j(_this.selector).val(),//@@todo we may need a more clever way to get a the filename
 				'prop':  'imageinfo',
 				'iiprop':'url|mime|size',
 				'iiurlwidth': 150
 			}
-		},function(data){
+		},function(data){	
 			//remove spinner:
 			$j('#mw-spinner-wpDestFile').remove();
 			if(data && data.query && data.query.pages){

@@ -442,7 +442,7 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 		//check what mode to use firefogg in:
 		if( _this.upload_mode == 'post' ){
 			_this.doEncode();
-		}else if( _this.upload_mode == 'api' && _this.chunks_supported){ //if api mode and chunks supported do chunkUpload
+		}else if( _this.upload_mode == 'api' ){ //if api mode and chunks supported do chunkUpload
 			_this.doChunkUpload();
 		}else{
 			js_error( 'Error: unrecongized upload mode: ' + _this.upload_mode );
@@ -450,36 +450,38 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 	},
 	//doChunkUpload does both uploading and encoding at the same time and uploads one meg chunks as they are ready
 	doChunkUpload : function(){
-		js_log('doChunkUpload::');
+		js_log('firefogg::doChunkUpload');
 		var _this = this;
 		_this.action_done = false;
+		
 		//extension should already be ogg but since its user editable,
 		//check again
 		//we are transcoding so we know it will be an ogg
 		//(should not be done for passthrough mode)
-		var sf = _this.formData['wpDestFile'];
+		var sf = _this.formData['filename'];
 		var ext = '';
 		if(	sf.lastIndexOf('.') != -1){
 			ext = sf.substring( sf.lastIndexOf('.') ).toLowerCase();
 		}
-		if(!_this.encoder_settings['passthrough'] && $j.inArray(ext.substr(1), _this.ogg_extensions) == -1 ){
+		if( !_this.encoder_settings['passthrough'] && $j.inArray(ext.substr(1), _this.ogg_extensions) == -1 ){
 			var extreg = new RegExp(ext + '$', 'i');
-			_this.formData['wpDestFile'] = sf.replace(extreg, '.ogg');
+			_this.formData['filename'] = sf.replace(extreg, '.ogg');
 		}
 		//add chunk response hook to build the resultURL when uploading chunks
 
 		//check for editToken:
 		if(!this.etoken){
-			if( _this.formData['wpEditToken']){
-				_this.etoken = _this.formData['wpEditToken'];
+			js_log('missing token try ' + _this.formData['token']);
+			if( _this.formData['token']){
+				_this.etoken = _this.formData['token'];
 				_this.doChunkWithFormData();
 			}else{
 				get_mw_token(
-					'File:'+ _this.formData['wpDestFile'],
+					'File:'+ _this.formData['filename'],
 					_this.api_url,
 					function( eToken ){
 						if( !eToken || eToken == '+\\' ){
-							_this.updateProgressWin(gM('fogg-badtoken'), gM('fogg-badtoken'));
+							_this.updateProgressWin( gM('fogg-badtoken'), gM('fogg-badtoken') );
 							return false;
 						}
 						_this.etoken = eToken;
@@ -488,29 +490,30 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 				);
 			}
 		}else{
+			js_log('we already have token: ' + this.etoken);
 			_this.doChunkWithFormData();
 		}
 	},
 	doChunkWithFormData:function(){
 		var _this = this;
-		js_log("doChunkWithFormData::"  + _this.etoken);
+		js_log("firefogg::doChunkWithFormData"  + _this.etoken);
 		//build the api url:
 		var aReq ={
 			'action': 'upload',
 			'format': 'json',
-			'filename': _this.formData['wpDestFile'],
-			'comment': _this.formData['wpUploadDescription'],
+			'filename': _this.formData['filename'],
+			'comment': _this.formData['comment'],
 			'enablechunks': 'true'
 		};
 
 		if( _this.etoken )
 			aReq['token'] = this.etoken;
 
-		if( _this.formData['wpWatchthis'] )
-			aReq['watch'] =  _this.formData['wpWatchthis'];
+		if( _this.formData['watch'] )
+			aReq['watch'] =  _this.formData['watch'];
 
-		if(  _this.formData['wpIgnoreWarning'] )
-			aReq['ignorewarnings'] = _this.formData['wpIgnoreWarning'];
+		if(  _this.formData['ignorewarnings'] )
+			aReq['ignorewarnings'] = _this.formData['ignorewarnings'];
 
 		js_log('do fogg upload/encode call: '+ _this.api_url + ' :: ' + JSON.stringify( aReq ) );
 		js_log('foggEncode: '+ JSON.stringify( _this.encoder_settings ) );
@@ -562,7 +565,7 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 			_this.formData[ 'wpSourceType' ] = 'upload';
 			_this.formData[ 'action' ]		 = 'submit';
 			//wpUploadFile is set by firefogg
-			delete _this.formData[ 'wpUploadFile' ];
+			delete _this.formData[ 'file' ];
 
 			_this.fogg.post( _this.editForm.action, 'wpUploadFile', JSON.stringify( _this.formData ) );
 			//update upload status:
@@ -606,7 +609,7 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 						var apiResult = eval( response_text );
 					}catch(e){
 						var apiResult = null;
-					}
+					}					
 				}
 				if(apiResult && _this.apiUpdateErrorCheck( apiResult ) === false){
 					//stop status update we have an error
@@ -621,14 +624,13 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 			//loop to get new status if still uploading (could also be encoding if we are in chunk upload mode)
 			if( _this.fogg.state == 'encoding' || _this.fogg.state == 'uploading') {
 				setTimeout(uploadStatus, 100);
-
 			}//check upload state
 			else if( _this.fogg.state == 'upload done' ||
 						 _this.fogg.state == 'done' ||
 						 _this.fogg.state == 'encoding done' ) {
 				   //if in "post" upload mode read the html response (should be depricated):
 				   if( _this.upload_mode == 'api' ){
-					   if( apiResult.resultUrl ){
+					   if( apiResult && apiResult.resultUrl ){
 					   		var buttons ={};
 					   		buttons[gM('mwe-go-to-resource')] =  function(){
 								window.location = apiResult.resultUrl;
@@ -686,10 +688,10 @@ mvFirefogg.prototype = { //extends mvBaseUploadInterface
 	procPageResponse:function( result_page ){
 		var _this = this;
 		js_log('f:procPageResponse');
-		var sstring = 'var wgTitle = "' + this.formData['wpDestFile'].replace('_',' ');
+		var sstring = 'var wgTitle = "' + this.formData['filename'].replace('_',' ');
 
 		if(wgArticlePath){
-			var result_txt = gM('mwe-upload_done', wgArticlePath.replace(/\$1/, 'File:' + _this.formData['wpDestFile'] ) );
+			var result_txt = gM('mwe-upload_done', wgArticlePath.replace(/\$1/, 'File:' + _this.formData['filename'] ) );
 		}else{
 			result_txt = 'File has uploaded but api "done" URL was provided. Check the log for result page output';
 		}
