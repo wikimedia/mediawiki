@@ -125,12 +125,19 @@ wfLogProfilingData();
 
 // Log the request
 if ( $wgAPIRequestLog ) {
-	wfErrorLog( implode( ',', array(
+	$items = array(
 			wfTimestamp( TS_MW ),
 			$endtime - $starttime,
 			wfGetIP(),
-			wfArrayToCGI( $wgRequest->getValues() )
-	) ) . "\n", $wgAPIRequestLog );
+			$_SERVER['HTTP_USER_AGENT']
+	);
+	$items[] = $wgRequest->wasPosted() ? 'POST' : 'GET';
+	if ( $processor->getModule()->mustBePosted() ) {
+		$items[] = "action=" . $wgRequest->getVal( 'action' );
+	} else {
+		$items[] = wfArrayToCGI( $wgRequest->getValues() );
+	}
+	wfErrorLog( implode( ',', $items ) . "\n", $wgAPIRequestLog );
 	wfDebug( "Logged API request to $wgAPIRequestLog\n" );
 }
 

@@ -123,7 +123,8 @@ class ApiMain extends ApiBase {
 
 
 	private $mPrinter, $mModules, $mModuleNames, $mFormats, $mFormatNames;
-	private $mResult, $mAction, $mShowVersions, $mEnableWrite, $mRequest, $mInternalMode, $mSquidMaxage;
+	private $mResult, $mAction, $mShowVersions, $mEnableWrite, $mRequest;
+	private $mInternalMode, $mSquidMaxage, $mModule;
 
 	/**
 	* Constructs an instance of ApiMain that utilizes the module and format specified by $request.
@@ -189,6 +190,13 @@ class ApiMain extends ApiBase {
 	 */
 	public function getResult() {
 		return $this->mResult;
+	}
+	
+	/**
+	 * Get the API module object. Only works after executeAction()
+	 */
+	public function getModule() {
+		return $this->mModule;
 	}
 
 	/**
@@ -368,6 +376,7 @@ class ApiMain extends ApiBase {
 
 		// Instantiate the module requested by the user
 		$module = new $this->mModules[$this->mAction] ($this, $this->mAction);
+		$this->mModule = $module;
 
 		if( $module->shouldCheckMaxlag() && isset( $params['maxlag'] ) ) {
 			// Check for maxlag
