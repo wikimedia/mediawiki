@@ -38,6 +38,7 @@
 require (dirname(__FILE__) . '/includes/WebStart.php');
 
 wfProfileIn('api.php');
+$starttime = microtime( true );
 
 // URL safety checks
 //
@@ -118,8 +119,20 @@ $processor->execute();
 wfDoUpdates();
 
 // Log what the user did, for book-keeping purposes.
+$endtime = microtime( true );
 wfProfileOut('api.php');
 wfLogProfilingData();
+
+// Log the request
+if ( $wgAPIRequestLog ) {
+	wfErrorLog( implode( ',', array(
+			wfTimestamp( TS_MW ),
+			$endtime - $starttime,
+			wfGetIP(),
+			wfArrayToCGI( $wgRequest->getValues() )
+	) ) . "\n", $wgAPIRequestLog );
+	wfDebug( "Logged API request to $wgAPIRequestLog\n" );
+}
 
 // Shut down the database
 wfGetLBFactory()->shutdown();
