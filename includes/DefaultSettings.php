@@ -3823,6 +3823,12 @@ $wgAPIMaxResultSize = 8388608;
 $wgAPIMaxUncachedDiffs = 1;
 
 /**
+ * Log file or URL (TCP or UDP) to log API requests to, or false to disable
+ * API request logging
+ */
+$wgAPIRequestLog = false;
+
+/**
  * Parser test suite files to be run by parserTests.php when no specific
  * filename is passed to it.
  *
