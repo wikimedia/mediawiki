@@ -123,12 +123,13 @@ class UserloginTemplate extends QuickTemplate {
  * @ingroup Templates
  */
 class UsercreateTemplate extends QuickTemplate {
-	function addInputItem( $name, $value, $type, $msg ) {
+	function addInputItem( $name, $value, $type, $msg, $helptext = false ) {
 		$this->data['extraInput'][] = array(
 			'name' => $name,
 			'value' => $value,
 			'type' => $type,
 			'msg' => $msg,
+			'helptext' => $helptext,
 		);
 	}
 	
@@ -285,7 +286,12 @@ class UsercreateTemplate extends QuickTemplate {
 				<label for="<?php echo htmlspecialchars( $inputItem['name'] ); ?>"><?php
 					$this->msgHtml( $inputItem['msg'] ) ?></label><?php
 					}
+				if( $inputItem['helptext'] !== false ) {
 				?>
+				<div class="prefsectiontip">
+					<?php $this->msgWiki( $inputItem['helptext'] ); ?>
+				</div>
+				<?php } ?>
 			</td>
 		</tr>
 <?php				
