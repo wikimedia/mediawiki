@@ -45,11 +45,11 @@ loadGM({
 	"mwe-ogg-player-selected" : "(selected)",
 	"mwe-ogg-player-omtkplayer" : "OMTK Flash Vorbis",
 	"mwe-generic_missing_plugin" : "You browser does not appear to support the following playback type: <b>$1<\/b><br \/>Visit the <a href=\"http:\/\/commons.wikimedia.org\/wiki\/Commons:Media_help\">Playback Methods<\/a> page to download a player.<br \/>",
-	"mwe-for_best_experience" : "For a better video playback experience we recommend: <b><a href=\"http:\/\/www.mozilla.com\/en-US\/firefox\/upgrade.html?from=mwEmbed\">Firefox 3.5<\/a>.<\/b>",
+	"mwe-for_best_experience" : "For a better video playback experience we recommend:<br \/><b><a href=\"http:\/\/www.mozilla.com\/en-US\/firefox\/upgrade.html?from=mwEmbed\">Firefox 3.5<\/a>.<\/b>",
 	"mwe-do_not_warn_again" : "Dissmiss for now.",
 	"mwe-playerselect" : "Players",
 	"mwe-read_before_embed" : "Please <a href=\"http:\/\/mediawiki.org\/wiki\/Security_Notes_on_Remote_Embedding\" target=\"_new\">Read This<\/a> before embeding!",
-	"mwe-embed_site_or_blog" : "Embed on your site or blog",
+	"mwe-embed_site_or_blog" : "Embed on your site or blog", 
 	"mwe_related_videos" : "Related Videos"
 });
 
@@ -1094,14 +1094,14 @@ embedVideo.prototype = {
 		var _this = this; 		    
 		js_log('switch video Relational'  );		
 		var reqObj = {
-			'action':'query',			 
-			'titles':  this.wikiTitleKey,
-		    'generator':'categories'
+			'action'	:	'query',			 
+			'titles'	:  	this.wikiTitleKey,
+		    'generator'	:	'categories'
 		};				
 		var req_categories= new Array();						
 	    do_api_req( {
-			'data':reqObj, 
-			'url': commons_api_url
+			'data'	: reqObj, 
+			'url'	: commons_api_url
 	    },  function(data){ 
 			req_categories = Array();
 			if(data.query && data.query.pages){
@@ -1133,8 +1133,6 @@ embedVideo.prototype = {
 			},  function(data){ 		            
 		            //empty the videos:		            
 		            $j('#dc_'+ _this.id + ' .related_vids ul').html(' ');
-		            var leyenda="";
-		            var titule="";	
 		            				           
 					for(var j in data.query.pages){		
 						//setup poster default: 					
@@ -1152,17 +1150,15 @@ embedVideo.prototype = {
 								var liout = '<li>' +
 										'<a href="' + descriptionurl + '" >' +
 											'<img src="' + local_poster + '">' +
-										'</a>' +
-										'<div>' +
-											'<a title="' + title_str + '" target="_blank" ' +
-												'href="'+ descriptionurl +'">' + title_str + '</a>' +
-										'</div>' +
+										'</a>' +										
+											' <a title="' + title_str + '" target="_blank" ' +
+												'href="'+ descriptionurl +'">' + title_str + '</a>' +							
 									'</li>';						
 								$j('#dc_'+ _this.id + ' .related_vids ul').append(liout) ;								
 							}
 						 }
 					};
-					js_log( 'content: ' + $j('#dc_'+ _this.id + ' .related_vids ul').html() );
+					//js_log( 'content: ' + $j('#dc_'+ _this.id + ' .related_vids ul').html() );
 				}); //end do_api_req
 		};
 	},
@@ -1378,7 +1374,7 @@ embedVideo.prototype = {
 								time_req + '\'); return false; "';				
 					}
 					html+=' title="' + title_msg + '">' + 
-						 gM(link_type+'_clip_msg') +				  
+						 gM('mwe-' + link_type+'_clip_msg') +				  
 					'</a><br><span style="font-size:small">'+ title_msg +'<span></p>';
 				}							
 			}

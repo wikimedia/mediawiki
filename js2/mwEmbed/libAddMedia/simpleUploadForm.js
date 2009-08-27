@@ -55,10 +55,10 @@ var default_form_options = {
 			
 						//form name set:
 						'<label for="wpUploadFile">' + gM('mwe-select_file') + '</label><br>'+
-						'<input type="file" style="display: inline;" name="wpUploadFile" size="15"/><br>' +
+						'<input id="wpUploadFile" type="file" style="display: inline;" name="wpUploadFile" size="15"/><br>' +
 			
 						'<label for="wpDestFile">' +gM('mwe-destfilename') + '</label><br>'+
-						'<input type="text" name="wpDestFile" size="30" /><br>'+
+						'<input type="text" id="wpDestFile" name="wpDestFile" size="30" /><br>'+
 			
 						'<label for="wpUploadDescription">' + gM('mwe-summary') + ':</label><br>' +
 						'<textarea cols="30" rows="3" name="wpUploadDescription" tabindex="3"/><br>'+
@@ -124,7 +124,7 @@ var default_form_options = {
 
 			//set up the binding per the config
 			if( opt.enable_fogg ){
-				$j("#suf-upload [name='wpUploadFile']").firefogg({
+				$j("#wpUploadFile").firefogg({
 					//an api url (we won't submit directly to action of the form)
 					'api_url' : opt.api_target,
 					'form_rewrite': true,

@@ -34,10 +34,8 @@ loadGM({
 	"mwe-results_from" : "Results from <a href=\"$1\" target=\"_new\" >$2<\/a>",
 	"mwe-missing_desc_see_source" : "This asset is missing a description. Please see the [$1 orginal source] and help describe it.",
 	"rsd_config_error" : "Add media wizard configuration error: $1",
-
 	"mwe-your_recent_uploads" : "Your recent uploads",
 	"mwe-upload_a_file" : "Upload a new file",
-
 	"mwe-resource_page_desc" : "Resource page description:",
 	"mwe-edit_resource_desc" : "Edit wiki text resource description:",
 	"mwe-local_resource_title" : "Local resource title:",
