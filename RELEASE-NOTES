@@ -348,8 +348,6 @@ this. Was used when mwEmbed was going to be an extension.
 * (bug 17374) Special:Export no longer exports multiple copies of pages
 * (bug 19818) Edits to user CSS/JS subpages can now be marked as patrolled by
   users who can't edit them
-* (bug 15745) The edit summary link parser now handles mismatched brackets
-  better
 * (bug 19839) Comments in log items are no more double escaped
 * (bug 18161) Fix inconsistent separators in watchlist link toolbars with
   "enhanced recent changes"

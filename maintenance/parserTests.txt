@@ -7515,17 +7515,6 @@ title=[[Main Page]]
 <a href="/wiki/Main_Page#section" title="Main Page">#section</a>
 !! end
 
-!! test
-Edit comment with mismatched brackets (bug 15745)
-!! options
-comment
-title=[[Main Page]]
-!!input
-Some text, a [[broken link|bad and a [[good link|good]]
-!! result
-Some text, a [[broken link|bad and a <a href="/index.php?title=Good_link&amp;action=edit&amp;redlink=1" class="new" title="Good link (page does not exist)">good</a>
-!! end
-
 TODO:
 more images
 more tables

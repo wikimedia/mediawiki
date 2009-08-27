@@ -1012,22 +1012,10 @@ class Linker {
 	public function formatLinksInComment( $comment, $title = null, $local = false ) {
 		$this->commentContextTitle = $title;
 		$this->commentLocal = $local;
-		# Borrowed from Parser::replaceInternalLinks2
-		$parts = StringUtils::explode( '[[', ' ' . $comment );
-		$start = $parts->current();
-		$parts->next();
-		$line = $parts->current();
-		$html = substr( $start, 1 );
-		for ( ; $line !== false && $line !== null ; $parts->next(), $line = $parts->current() ) {			
-			$linked = preg_replace_callback(
-				'/^:?(.*?)(\|(.*?))*\]\]([^[]*)/',
-				array( $this, 'formatLinksInCommentCallback' ),
-				$line, -1, $count );
-			if( !$count ) { // No valid link found, put the brackets back
-				$linked = '[[' . $linked;
-			}
-			$html .= $linked;
-		}
+		$html = preg_replace_callback(
+			'/\[\[:?(.*?)(\|(.*?))*\]\]([^[]*)/',
+			array( $this, 'formatLinksInCommentCallback' ),
+			$comment );
 		unset( $this->commentContextTitle );
 		unset( $this->commentLocal );
 		return $html;
@@ -1056,7 +1044,7 @@ class Linker {
 		$thelink = null;
 		if( preg_match( '/^' . $medians . '(.*)$/i', $match[1], $submatch ) ) {
 			# Media link; trail not supported.
-			$linkRegexp = '/^(.*?)\]\]/';
+			$linkRegexp = '/\[\[(.*?)\]\]/';
 			$title = Title::makeTitleSafe( NS_FILE, $submatch[1] );
 			$thelink = $this->makeMediaLinkObj( $title, $text );
 		} else {
@@ -1066,7 +1054,7 @@ class Linker {
 			} else {
 				$trail = "";
 			}
-			$linkRegexp = '/^(.*?)\]\]' . preg_quote( $trail, '/' ) . '/';
+			$linkRegexp = '/\[\[(.*?)\]\]' . preg_quote( $trail, '/' ) . '/';
 			if (isset($match[1][0]) && $match[1][0] == ':')
 				$match[1] = substr($match[1], 1);
 			list( $inside, $trail ) = Linker::splitTrail( $trail );
