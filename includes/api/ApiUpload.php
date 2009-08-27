@@ -74,7 +74,7 @@ class ApiUpload extends ApiBase {
 			// TODO: Move to subclass
 			$sd = & $_SESSION['wsDownload'][ $this->mParams['internalhttpsession'] ];
 
-			wfDebug("InternalHTTP:: " . print_r($this->mParams, true));
+			//wfDebug("InternalHTTP:: " . print_r($this->mParams, true));
 			// get the params from the init session:
 			$this->mUpload = new UploadFromFile();
 
@@ -305,7 +305,8 @@ class ApiUpload extends ApiBase {
 	}
 
 	public function getAllowedParams() {
-		return array(
+		global $wgEnableAsyncDownload;
+		$params = array(
 			'filename' => null,
 			'comment' => array(
 				ApiBase::PARAM_DFLT => ''
@@ -319,11 +320,14 @@ class ApiUpload extends ApiBase {
 			'chunk' => null,
 			'done' => false,
 			'url' => null,
-			/*'asyncdownload' => false,*/ // btongminh: Disabled pending fixing wfShellBackgroundExec
 			'httpstatus' => false,
 			'sessionkey' => null,
 			'internalhttpsession' => null,
 		);
+		if($wgEnableAsyncDownload){
+			$params['asyncdownload'] = false;
+		}
+		return $params;
 	}
 
 	public function getParamDescription() {
