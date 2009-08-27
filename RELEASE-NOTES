@@ -196,7 +196,7 @@ this. Was used when mwEmbed was going to be an extension.
   deprecating the $wgExtraRandompageSQL config variable
 * (bug 20318) Distinct CSS classes for ISBN/RFC/PMID special links added
 * (bug 20404) Custom fields in the user creation form template can now have
-  tooltips
+  detail labels in prefsectiontip divs.
 
 === Bug fixes in 1.16 ===
 
