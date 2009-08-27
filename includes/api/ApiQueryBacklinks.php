@@ -103,7 +103,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 		 * LIMIT 11 ORDER BY pl_from
 		 */
 		$db = $this->getDB();
-		$this->addTables(array('page', $this->bl_table));
+		$this->addTables(array($this->bl_table, 'page'));
 		$this->addWhere("{$this->bl_from}=page_id");
 		if(is_null($resultPageSet))
 			$this->addFields(array('page_id', 'page_title', 'page_namespace'));
@@ -122,6 +122,7 @@ class ApiQueryBacklinks extends ApiQueryGeneratorBase {
 			$this->addWhereFld('page_is_redirect', 0);
 		$this->addOption('LIMIT', $this->params['limit'] + 1);
 		$this->addOption('ORDER BY', $this->bl_from);
+		$this->addOption('STRAIGHT_JOIN');
 	}
 
 	private function prepareSecondQuery($resultPageSet = null) {
