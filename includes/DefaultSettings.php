@@ -2812,8 +2812,8 @@ $wgUseSiteJs = true;
 /** Use the site's Cascading Style Sheets (CSS)? */
 $wgUseSiteCss = true;
 
-/** 
- * Filter for Special:Randompage. Part of a WHERE clause 
+/**
+ * Filter for Special:Randompage. Part of a WHERE clause
  * @deprecated as of 1.16, use the SpecialRandomGetRandomTitle hook
 */
 
@@ -3591,6 +3591,12 @@ $wgSyncHTTPTimeout = 25;
 */
 $wgAsyncHTTPTimeout = 60*20;
 
+/*
+ * if AsyncDownload is enabled (works on unix platforms)
+ * fix for windows is pending.
+ */
+$wgEnableAsyncDownload = false;
+
 /**
  * Proxy to use for CURL requests.
  */
@@ -4135,7 +4141,7 @@ $wgAllowPrefChange = array();
  * from the origin domain by the Access-Control-Allow-Origin header.
  * This is currently only used by the API (requests to api.php)
  * $wgCrossSiteAJAXdomains can be set using a wildcard syntax:
- * 
+ *
  * '*' matches any number of characters
  * '?' matches any 1 character
  *
