@@ -86,7 +86,7 @@ class Revision {
 			'len'        => $row->ar_len);
 		if ( isset( $row->ar_text ) && !$row->ar_text_id ) {
 			// Pre-1.5 ar_text row
-			$attribs['text'] = $row->ar_text;
+			$attribs['text'] = self::getRevisionText( $row, 'ar_' );
 		}
 		return new self( $attribs );
 	}
