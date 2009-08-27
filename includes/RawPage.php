@@ -135,7 +135,8 @@ class RawPage {
 		$mode = $this->mPrivateCache ? 'private' : 'public';
 		header( 'Cache-Control: '.$mode.', s-maxage='.$this->mSmaxage.', max-age='.$this->mMaxage );
 		
-		if( HTMLFileCache::useFileCache() ) {
+		global $wgUseFileCache;
+		if( $wgUseFileCache and HTMLFileCache::useFileCache() ) {
 			$cache = new HTMLFileCache( $this->mTitle, 'raw' );
 			if( $cache->isFileCacheGood( /* Assume up to date */ ) ) {
 				$cache->loadFromFileCache();

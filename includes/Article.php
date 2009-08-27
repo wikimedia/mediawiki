@@ -3427,7 +3427,8 @@ class Article {
 	 */
 	public function isFileCacheable() {
 		$cacheable = false;
-		if( HTMLFileCache::useFileCache() ) {
+		global $wgUseFileCache;
+		if( $wgUseFileCache and HTMLFileCache::useFileCache() ) {
 			$cacheable = $this->getID() && !$this->mRedirectedFrom;
 			// Extension may have reason to disable file caching on some pages.
 			if( $cacheable ) {
