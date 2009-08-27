@@ -61,7 +61,10 @@ class ApiFormatXml extends ApiFormatBase {
 		$this->printText('<?xml version="1.0"?>');
 		if (!is_null($this->mXslt))
 			$this->addXslt();
-		$this->recXmlPrint($this->mRootElemName, $this->getResultData(), $this->getIsHtml() ? -2 : null);
+		$this->printText($this->recXmlPrint($this->mRootElemName,
+				$this->getResultData(),
+				$this->getIsHtml() ? -2 : null,
+				$this->mDoubleQuote));
 	}
 
 	/**
@@ -77,7 +80,8 @@ class ApiFormatXml extends ApiFormatBase {
 	* If neither key is found, all keys become element names, and values become element content.
 	* The method is recursive, so the same rules apply to any sub-arrays.
 	*/
-	function recXmlPrint($elemName, $elemValue, $indent) {
+	public static function recXmlPrint($elemName, $elemValue, $indent, $doublequote = false) {
+		$retval = '';
 		if (!is_null($indent)) {
 			$indent += 2;
 			$indstr = "\n" . str_repeat(" ", $indent);
@@ -90,8 +94,8 @@ class ApiFormatXml extends ApiFormatBase {
 			case 'array' :
 				if (isset ($elemValue['*'])) {
 					$subElemContent = $elemValue['*'];
-					if ($this->mDoubleQuote)
-						$subElemContent = $this->doubleQuote($subElemContent);
+					if ($doublequote)
+						$subElemContent = Sanitizer::encodeAttribute($subElemContent);
 					unset ($elemValue['*']);
 					
 					// Add xml:space="preserve" to the
@@ -112,8 +116,8 @@ class ApiFormatXml extends ApiFormatBase {
 				$indElements = array ();
 				$subElements = array ();
 				foreach ($elemValue as $subElemId => & $subElemValue) {
-					if (is_string($subElemValue) && $this->mDoubleQuote)
-						$subElemValue = $this->doubleQuote($subElemValue);
+					if (is_string($subElemValue) && $doublequote)
+						$subElemValue = Sanitizer::encodeAttribute($subElemValue);
 					
 					if (gettype($subElemId) === 'integer') {
 						$indElements[] = $subElemValue;
@@ -131,28 +135,29 @@ class ApiFormatXml extends ApiFormatBase {
 					ApiBase :: dieDebug(__METHOD__, "($elemName, ...) has content and subelements");
 
 				if (!is_null($subElemContent)) {
-					$this->printText($indstr . Xml::element($elemName, $elemValue, $subElemContent));
+					$retval .= $indstr . Xml::element($elemName, $elemValue, $subElemContent);
 				} elseif (!count($indElements) && !count($subElements)) {
-						$this->printText($indstr . Xml::element($elemName, $elemValue));
+						$retval .= $indstr . Xml::element($elemName, $elemValue);
 				} else {
-					$this->printText($indstr . Xml::element($elemName, $elemValue, null));
+					$retval .= $indstr . Xml::element($elemName, $elemValue, null);
 
 					foreach ($subElements as $subElemId => & $subElemValue)
-						$this->recXmlPrint($subElemId, $subElemValue, $indent);
+						$retval .= self::recXmlPrint($subElemId, $subElemValue, $indent);
 
 					foreach ($indElements as $subElemId => & $subElemValue)
-						$this->recXmlPrint($subElemIndName, $subElemValue, $indent);
+						$retval .= self::recXmlPrint($subElemIndName, $subElemValue, $indent);
 
-					$this->printText($indstr . Xml::closeElement($elemName));
+					$retval .= $indstr . Xml::closeElement($elemName);
 				}
 				break;
 			case 'object' :
 				// ignore
 				break;
 			default :
-				$this->printText($indstr . Xml::element($elemName, null, $elemValue));
+				$retval .= $indstr . Xml::element($elemName, null, $elemValue);
 				break;
 		}
+		return $retval;
 	}
 	function addXslt() {
 		$nt = Title::newFromText( $this->mXslt );
@@ -171,10 +176,6 @@ class ApiFormatXml extends ApiFormatBase {
 		$this->printText( '<?xml-stylesheet href="' . $nt->escapeLocalURL( 'action=raw' ) . '" type="text/xsl" ?>' );
 	}
 	
-	private function doubleQuote( $text ) {
-		return Sanitizer::encodeAttribute( $text );
-	}
-
 	public function getAllowedParams() {
 		return array (
 			'xmldoublequote' => false,
