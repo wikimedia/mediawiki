@@ -219,12 +219,15 @@ Special:Allpages:
 
 Special:Recentchanges (feed):
 	stored in: $messageMemc
-	key: $wgDBname:rcfeed:$format:limit:$imit:minor:$hideminor and
+	key: $wgDBname:rcfeed:$format:$limit:$hideminor:$target and
 		rcfeed:$format:timestamp
-	ex: wikidb:rcfeed:rss:limit:50:minor:0 and rcfeed:rss:timestamp
+	ex: wikidb:rcfeed:rss:50:: and rcfeed:rss:timestamp
 	stores: xml output of feed
 	expiry: one day
-	clear by: calling Special:Recentchanges?action=purge
+	clear by: maintenance/rebuildrecentchanges.php script, or
+	calling Special:Recentchanges?action=purge&feed=rss,
+	Special:Recentchanges?action=purge&feed=atom,
+	but note need $wgGroupPermissions[...]['purge'] permission.
 
 Statistics:
 	controlled by: $wgStatsMethod
