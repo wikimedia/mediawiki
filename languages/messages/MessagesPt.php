@@ -500,12 +500,12 @@ Isto pode indicar um bug no software.
 A última tentativa de busca na base de dados foi:
 <blockquote><tt>$1</tt></blockquote>
 na função "<tt>$2</tt>".
-$5 retornou o erro "<tt>$3: $4</tt>".',
+base de dados retornou o erro "<tt>$3: $4</tt>".',
 'dberrortextcl'        => 'Ocorreu um erro de sintaxe na pesquisa à base de dados.
 A última tentativa de busca na base de dados foi:
 "$1"
 na função "$2".
-$5 retornou o erro "$3: $4"',
+Base de dados retornou o erro "$3: $4"',
 'laggedslavemode'      => 'Aviso: A página poderá não conter actualizações recentes.',
 'readonly'             => 'Base de dados no modo "somente leitura"',
 'enterlockreason'      => 'Introduza um motivo para trancar, incluindo uma estimativa de quando poderá ser destrancada',
@@ -607,8 +607,7 @@ Verifique a ortografia, ou [[Special:UserLogin/signup|crie uma nova conta]].',
 'nouserspecified'            => 'Precisa de especificar um nome de utilizador.',
 'wrongpassword'              => 'A palavra-chave que introduziu é inválida. Por favor, tente novamente.',
 'wrongpasswordempty'         => 'A palavra-chave introduzida está em branco. Por favor, tente novamente.',
-'passwordtooshort'           => 'A sua palavra-chave é inválida ou demasiado curta.
-Deve de ter no mínimo {{PLURAL:$1|1 caráter|$1 carateres}}.',
+'passwordtooshort'           => 'A sua palavra-chave deve de ter no mínimo {{PLURAL:$1|1 caráter|$1 carateres}}.',
 'password-name-match'        => 'A sua palavra-passe deverá ser diferente do seu nome de utilizador.',
 'mailmypassword'             => 'Enviar uma nova palavra-chave por e-mail',
 'passwordremindertitle'      => 'Nova palavra-chave temporária em {{SITENAME}}',
@@ -1590,7 +1589,7 @@ Caso o problema persista, contacte um [[Special:ListUsers/sysop|administrador]].
 'upload-curl-error28-text' => 'O sítio demorou muito tempo a responder. Por gentileza, verifique se o sítio está acessível, aguarde alguns momentos e tente novamente. Talvez você deseje fazer nova tentativa em um horário menos congestionado.',
 
 'license'            => 'Licença:',
-'license-header'     => 'Licença:',
+'license-header'     => 'Licenciamento',
 'nolicense'          => 'Nenhuma seleccionada',
 'license-nopreview'  => '(Previsão não disponível)',
 'upload_source_url'  => ' (um URL válido, publicamente acessível)',
@@ -1969,14 +1968,17 @@ Modificações futuras em tal página e páginas de discussão a ela associadas 
 'enotif_impersonal_salutation' => 'Utilizador do projeto "{{SITENAME}}"',
 'changed'                      => 'alterada',
 'created'                      => 'criada',
+'deleted'                      => 'suprimido',
+'enotif_deletedpagetext'       => 'Esta página já não está disponível.',
 'enotif_subject'               => '{{SITENAME}}: A página $PAGETITLE foi $CHANGEDORCREATED por $PAGEEDITOR',
 'enotif_lastvisited'           => 'Consulte $1 para todas as alterações efectuadas desde a sua última visita.',
 'enotif_lastdiff'              => 'Acesse $1 para ver esta alteração.',
 'enotif_anon_editor'           => 'utilizador anonimo $1',
+'enotif_rev_info'              => 'Veja $1 para a revisão atual.',
 'enotif_body'                  => 'Caro $WATCHINGUSERNAME,
 
 
-A página $PAGETITLE na {{SITENAME}} foi $CHANGEDORCREATED a $PAGEEDITDATEANDTIME por $PAGEEDITOR; consulte $PAGETITLE_URL para a versão actual.
+A página $PAGETITLE na {{SITENAME}} foi $CHANGEDORCREATED a $PAGEEDITDATEANDTIME por $PAGEEDITOR. $REVINFO
 
 $NEWPAGE
 
@@ -2513,6 +2515,7 @@ Salve o ficheiro para o seu disco e importe-o aqui.',
 'tooltip-ca-viewsource'           => 'Esta página está protegida; você pode exibir seu código, no entanto.',
 'tooltip-ca-history'              => 'Edições anteriores desta página.',
 'tooltip-ca-protect'              => 'Proteger esta página',
+'tooltip-ca-unprotect'            => 'Desproteger esta página',
 'tooltip-ca-delete'               => 'Apagar esta página',
 'tooltip-ca-undelete'             => 'Restaurar edições feitas a esta página antes da eliminação',
 'tooltip-ca-move'                 => 'Mover esta página',
@@ -2523,6 +2526,7 @@ Salve o ficheiro para o seu disco e importe-o aqui.',
 'tooltip-search-fulltext'         => 'Procurar por páginas contendo este texto',
 'tooltip-p-logo'                  => 'Visite a página principal',
 'tooltip-n-mainpage'              => 'Visitar a página principal',
+'tooltip-n-mainpage-description'  => 'Visitar a página principal',
 'tooltip-n-portal'                => 'Sobre o projecto',
 'tooltip-n-currentevents'         => 'Informação temática sobre eventos actuais',
 'tooltip-n-recentchanges'         => 'A lista de mudanças recentes nesta wiki.',

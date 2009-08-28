@@ -880,6 +880,16 @@ HTML tags جانچئے.',
 # Special:Import
 'import' => 'درآمد صفحات',
 
+# Tooltip help for the actions
+'tooltip-n-mainpage'             => 'اصل صفحہ پر جائیے',
+'tooltip-n-mainpage-description' => 'اصل صفحہ پر جائیے',
+'tooltip-n-portal'               => 'منصوبہ کے متعلق، آپ کیا کرسکتے ہیں، چیزیں کہاں ڈھونڈنی ہیں',
+'tooltip-n-currentevents'        => 'حالیہ واقعات پر پس منظری معلومات دیکھیئے',
+'tooltip-n-recentchanges'        => 'ویکی میں حالیہ تبدیلیوں کی فہرست',
+'tooltip-n-randompage'           => 'ایک تصادفی صفحہ لائیے',
+'tooltip-n-help'                 => 'ڈھونڈ نکالنے کی جگہ',
+'tooltip-t-whatlinkshere'        => 'اُن تمام ویکی صفحات کی فہرست جن کا یہاں ربط ہے',
+
 # Attribution
 'anonymous' => '{{SITENAME}} گمنام صارف',
 'others'    => 'دیگر',

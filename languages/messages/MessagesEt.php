@@ -1867,6 +1867,8 @@ Valiku kitsendamiseks vali logitüüp, sisesta kasutajanimi (tõstutundlik) või
 'allpagesnext'      => 'Järgmised',
 'allpagessubmit'    => 'Näita',
 'allpagesprefix'    => 'Kuva leheküljed eesliitega:',
+'allpagesbadtitle'  => 'Lehekülje pealkiri oli vigane või sisaldas teise viki või keele eesliidet.
+See võib sisaldada üht või enamat märki, mida ei saa pealkirjades kasutada.',
 
 # Special:Categories
 'categories'                    => 'Kategooriad',
@@ -2291,6 +2293,7 @@ Kehtivaid blokeeringuid vaata [[Special:IPBlockList|blokeeringute loendist]].',
 'block-log-flags-noemail'      => 'e-mail blokeeritud',
 'block-log-flags-nousertalk'   => 'ei saa muuta enda arutelulehte',
 'block-log-flags-hiddenname'   => 'kasutajanimi peidetud',
+'range_block_disabled'         => 'Ülema õigus blokeerida IP-aadresside vahemik on ära võetud.',
 'ipb_expiry_invalid'           => 'Vigane aegumise tähtaeg.',
 'ipb_expiry_temp'              => 'Peidetud kasutajanime blokeeringud peavad olema alalised.',
 'ipb_already_blocked'          => '"$1" on juba blokeeritud.',

@@ -1561,7 +1561,7 @@ Lütfen sitenin açık olduğunu kontrol edin, kısa bir süre bekleyin ve yenid
 Sitenin daha az meşgul olduğu bir zamanda denemek daha iyi olabilir.',
 
 'license'            => 'Lisans:',
-'license-header'     => 'Lisans:',
+'license-header'     => 'Lisanslama',
 'nolicense'          => 'Hiçbirini seçme',
 'license-nopreview'  => '(Önizleme etkin değil)',
 'upload_source_url'  => ' (geçerli, herkesin ulaşabileceği bir URL)',
@@ -2658,6 +2658,7 @@ $1',
 'svg-long-desc'        => '(SVG dosyası, sözde $1 × $2 piksel, dosya boyutu: $3)',
 'show-big-image'       => 'Tam çözünürlük',
 'show-big-image-thumb' => '<small>Ön izleme boyutu: $1 × $2 piksel</small>',
+'file-info-gif-looped' => 'döngüye girdi',
 'file-info-gif-frames' => '$1 {{PLURAL:$1|kare|kare}}',
 
 # Special:NewFiles
