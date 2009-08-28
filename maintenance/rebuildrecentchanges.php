@@ -37,6 +37,7 @@ class RebuildRecentchanges extends Maintenance {
 		$this->rebuildRecentChangesTablePass2();
 		$this->rebuildRecentChangesTablePass3();
 		$this->rebuildRecentChangesTablePass4();
+		$this->purgeFeeds();
 		$this->output( "Done.\n" );
 	}
 
@@ -272,6 +273,20 @@ class RebuildRecentchanges extends Maintenance {
 	
 		$dbw->freeResult( $res );
 	}
+
+	/**
+	 * Purge cached feeds in $messageMemc
+	 */
+	private function purgeFeeds() {
+		global $wgFeedClasses, $messageMemc;
+
+		$this->output( "Deleting feed timestamps.\n" );
+
+		foreach( $wgFeedClasses as $feed => $className ) {
+			$messageMemc->delete( wfMemcKey( 'rcfeed', $feed, 'timestamp' ) ); # Good enough for now.
+		}
+	}
+
 }
 
 $maintClass = "RebuildRecentchanges";

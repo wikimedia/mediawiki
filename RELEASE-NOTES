@@ -434,6 +434,8 @@ this. Was used when mwEmbed was going to be an extension.
   Special:RevisionDelete are no more displayed when when doing log suppression
 * (bug 8143) Localised parser function names are now correctly case insensitive
   if they contain non-ASCII characters
+* (bug 19055) maintenance/rebuildrecentchanges.php now purges
+  Special:Recentchanges's RSS and Atom feed cache
 
 == API changes in 1.16 ==
 
