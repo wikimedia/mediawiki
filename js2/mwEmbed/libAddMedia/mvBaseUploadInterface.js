@@ -236,13 +236,13 @@ mvBaseUploadInterface.prototype = {
 			//reset the done with action flag:
 			_this.action_done = false;
 			
-			js_log('run editForm submit()');
-			var tmpAryData = $j('#mw-upload-form' ).serializeArray();
+			/*js_log('run editForm submit()');
+			var tmpAryData = $j(_this.editForm).serializeArray();
 			for(var i=0; i < tmpAryData.length; i++){
 				if( tmpAryData[i]['name'] )
 					js_log('name: ' + tmpAryData[i]['name'] + ' = ' + tmpAryData[i]['value']);
-			}
-			$j('#mw-upload-form').submit();
+			}*/
+			$j(_this.editForm).submit();
 
 			return false;
 		}else if( _this.upload_mode == 'api' && $j('#wpSourceTypeURL').get(0).checked){
@@ -568,7 +568,7 @@ mvBaseUploadInterface.prototype = {
 				js_log('ignorewarning req:')
 				//re-inciate the upload proccess
 				$j('#wpIgnoreWarning').attr('checked', true);
-				$j( '#mw-upload-form' ).submit();
+				$j( _this.editForm ).submit();
 			};
 			bObj[ gM('mwe-return-to-form') ] = function(){
 				$j(this).dialog('close');
@@ -608,7 +608,8 @@ mvBaseUploadInterface.prototype = {
 					//close up shop:
 					$j('#upProgressDialog').dialog('close');
 					//call the callback:
-					_this.done_upload_cb( url );
+					_this.done_upload_cb( apiRes.upload );
+					return false;
 				}else{
 					var bObj = {};
 					bObj[ gM('mwe-return-to-form')] = function(){
@@ -621,8 +622,8 @@ mvBaseUploadInterface.prototype = {
 					_this.action_done = true;
 					_this.updateProgressWin( gM('mwe-successfulupload'),  gM( 'mwe-upload_done', url), bObj);
 					js_log('apiRes.upload.imageinfo::'+url);
+					return true;
 				}
-				return ;
 			}
 		}
 	},

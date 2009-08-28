@@ -16,6 +16,7 @@ mediaWikiSearch.prototype = {
 	},	
 	//returns a rObj by title 
 	addByTitle:function( title , callback){		
+		js_log("AddByTitle::" + title);
 		var _this = this;
 		var reqObj = {
 			'action':'query',
@@ -28,7 +29,7 @@ mediaWikiSearch.prototype = {
 		do_api_req( {
 			'data':reqObj, 
 			'url':this.cp.api_url 
-			}, function(data){		
+			}, function(data){						
 				callback( _this.addSingleResult(data) );			
 			}
 		);			

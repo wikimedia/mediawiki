@@ -58,11 +58,17 @@ var default_form_options = {
 						'<input id="wpUploadFile" type="file" style="display: inline;" name="wpUploadFile" size="15"/><br>' +
 			
 						'<label for="wpDestFile">' +gM('mwe-destfilename') + '</label><br>'+
-						'<input type="text" id="wpDestFile" name="wpDestFile" size="30" /><br>'+
+						'<input id="wpDestFile" type="text" id="wpDestFile" name="wpDestFile" size="30" /><br>'+
 			
 						'<label for="wpUploadDescription">' + gM('mwe-summary') + ':</label><br>' +
-						'<textarea cols="30" rows="3" name="wpUploadDescription" tabindex="3"/><br>'+
-			
+						'<textarea id="wpUploadDescription" cols="30" rows="3" name="wpUploadDescription" tabindex="3"/><br>'+
+						
+						'<input type="checkbox" value="true" id="wpWatchthis" name="watch" tabindex="7"/>'+
+						'<label for="wpWatchthis">Watch this file</label>'+
+						
+						'<input type="checkbox" value="true" id="wpIgnoreWarning" name="ignorewarnings" tabindex="8"/>'+
+						'<label for="wpIgnoreWarning">Ignore any warnings</label></br>'+
+						
 						'<div id="wpDestFile-warning"></div>' +
 						'<div style="clear:both;"></div>' +
 			
@@ -89,7 +95,7 @@ var default_form_options = {
 			});
 			//do destination fill:
 			//@@should integrate with doDestinationFill on upload page
-			$j("#suf-upload [name='wpUploadFile']").change(function(){
+			$j("#wpUploadFile").change(function(){
 				var path = $j(this).val();
 				// Find trailing part
 				var slash = path.lastIndexOf('/');
@@ -104,17 +110,17 @@ var default_form_options = {
 				}
 				fname = fname.charAt(0).toUpperCase().concat(fname.substring(1,10000)).replace(/ /g, '_');
 				// Output result
-				$j("#suf-upload [name='wpDestFile']").val( fname );
+				$j("#wpDestFile").val( fname );
 				//do destination check
-				$j("#suf-upload [name='wpDestFile']").doDestCheck({
+				$j("#wpDestFile").doDestCheck({
 					'warn_target':'#wpDestFile-warning'
 				});
 			});
 
 
 			//do destination check:
-			$j("[name='wpDestFile']").change(function(){
-				$j(this).doDestCheck({
+			$j("#wpDestFile").change(function(){
+				$j("#wpDestFile").doDestCheck({
 					'warn_target':'#wpDestFile-warning'
 				});
 			});
@@ -130,7 +136,7 @@ var default_form_options = {
 					'form_rewrite': true,
 					'target_edit_from' : '#suf-upload',
 					'new_source_cb' : function( orgFilename, oggName ){
-						$j("#suf-upload [name='wpDestFile']").val( oggName ).doDestCheck({
+						$j("#wpDestFile").val( oggName ).doDestCheck({
 							warn_target: "#wpDestFile-warning"
 						});
 					},

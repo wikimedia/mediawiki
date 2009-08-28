@@ -443,7 +443,7 @@ remoteSearchDriver.prototype = {
 		var _this = this;
 		//add the parent target_container if not provided or missing
 		if(!_this.target_container || $j(_this.target_container).length==0){
-			$j('body').append('<div id="rsd_modal_target" style="position:absolute;top:30px;left:0px;bottom:45px;right:0px;" title="' + gM('mwe-add_media_wizard') + '" ></div>');
+			$j('body').append('<div id="rsd_modal_target" style="position:absolute;top:30px;left:0px;bottom:33px;right:0px;" title="' + gM('mwe-add_media_wizard') + '" ></div>');
 			_this.target_container = '#rsd_modal_target';
 			//js_log('appended: #rsd_modal_target' + $j(_this.target_container).attr('id'));
 			//js_log('added target id:' + $j(_this.target_container).attr('id'));
@@ -636,11 +636,11 @@ remoteSearchDriver.prototype = {
 						//deal with the api form upload form directly:
 						$j('#upload_form').simpleUploadForm({
 							"api_target" :	_this.upload_api_target ,
-							"ondone_cb"	: function( resultData ){
-								var wTitle = resultData['wpDestFile'];								
+							"ondone_cb"	: function( resultData ){				
+								var wTitle = resultData['filename'];	
 								//add a loading div
 								_this.addResourceEditLoader();
-								
+								//@@note: we have most of what we need in resultData imageinfo
 								cp.sObj.addByTitle( wTitle, function( rObj ){									
 									//redraw (with added result if new)
 									_this.drawOutputResults();
