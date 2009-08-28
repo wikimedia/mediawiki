@@ -2346,21 +2346,24 @@ function wfShellExec( $cmd, &$retval=null ) {
 }
 
 /**
- * Executes a shell command in the background. Passes back the PID of the operation 
- *
- * FIXME: Does not work on Windows; does not work at all (See CodeReview r55575)
+ * Executes a shell command in the background. Returns true of successful. 
  *
  * @param $cmd String
  */
-function wfShellBackgroundExec( $cmd ){	
+function wfShellBackgroundExec( $cmd ) {	
 	wfDebug( "wfShellBackgroundExec: $cmd\n" );
 	
 	if ( ! wfShellExecEnabled() ) {
-		return "Unable to run external programs";
+		return false;
 	}
 	
-	$pid = shell_exec( "nohup $cmd > /dev/null & echo $!" );
-	return $pid;
+	if ( wfIsWindows() ) {
+		shell_exec( "start /b $cmd >nul");
+		return true;
+	} else {
+		$pid = shell_exec( "nohup $cmd > /dev/null & echo $!" );
+		return (bool)$pid;
+	}
 }
 
 /**
