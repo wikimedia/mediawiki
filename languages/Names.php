@@ -44,7 +44,6 @@
 	'bqi' => 'بختياري',	# Bakthiari
 	'br' => 'Brezhoneg',	# Breton
 	'bs' => 'Bosanski',		# Bosnian
-	'bto' => 'Iriga Bicolano',		# Iriga Bicolano/Rinconada Bikol
 	'bug' => 'ᨅᨔ ᨕᨘᨁᨗ',	# Bugis
 	'bxr' => 'Буряад',	# Buryat (Russia)
 	'ca' => 'Català',	# Catalan
@@ -248,7 +247,6 @@
 	'pi' => 'पािऴ',	# Pali
 	'pih' => 'Norfuk / Pitkern', # Norfuk/Pitcairn/Norfolk
 	'pl' => 'Polski',		# Polish
-	'plm' => 'Palembang',		# Palembang
 	'pms' => 'Piemontèis',	# Piedmontese
 	'pnb' => 'پنجابی',	# Western Punjabi
 	'pnt' => 'Ποντιακά',	# Pontic/Pontic Greek
@@ -328,7 +326,6 @@
 	'tw' => 'Twi',			# Twi, (FIXME!)
 	'ty' => 'Reo Mā`ohi',	# Tahitian
 	'tyv' => 'Тыва дыл',	# Tyvan
-	'tzm' => 'ⵜⴰⵎⴰⵣⵉⵖⵜ',	# (Central Morocco) Tamazight
 	'udm' => 'Удмурт',	# Udmurt
 	'ug' => 'Uyghurche‎ / ئۇيغۇرچە',	# Uyghur (multiple scripts - defaults to Latin)
 	'ug-arab' => 'ئۇيغۇرچە', # Uyghur (Arabic script)
@@ -350,7 +347,6 @@
 	'xal' => 'Хальмг',		# Kalmyk-Oirat (Kalmuk, Kalmuck, Kalmack, Qalmaq, Kalmytskii Jazyk, Khal:mag, Oirat, Volga Oirat, European Oirat, Western Mongolian)
 	'xh' => 'isiXhosa',		# Xhosan
 	'xmf' => 'მარგალური',	# Mingrelian
-	'ydd' => 'מיזרח־ייִדיש', # Eastern Yiddish
 	'yi' => 'ייִדיש',	# Yiddish
 	'yo' => 'Yorùbá',	# Yoruba
 	'yue' => '粵語',	# Cantonese -- (bug 8217) yue instead of zh-yue, http://www.sil.org/iso639-3/codes.asp?order=639_3&letter=y
