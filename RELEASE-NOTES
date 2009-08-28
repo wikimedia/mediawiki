@@ -196,6 +196,7 @@ this. Was used when mwEmbed was going to be an extension.
 * (bug 20318) Distinct CSS classes for ISBN/RFC/PMID special links added
 * (bug 20404) Custom fields in the user creation form template can now have
   detail labels in prefsectiontip divs.
+* MakeSysop and MakeBot are now aliases for Special:UserRights
 
 === Bug fixes in 1.16 ===
 
