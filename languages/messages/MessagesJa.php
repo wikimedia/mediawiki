@@ -430,7 +430,7 @@ $messages = array(
 'mytalk'        => '自分の会話',
 'anontalk'      => 'このIP利用者の会話',
 'navigation'    => '案内',
-'and'           => '&#32;および',
+'and'           => 'および',
 
 # Cologne Blue skin
 'qbfind'         => '検索',
@@ -1421,7 +1421,7 @@ $1",
 # User rights log
 'rightslog'      => '利用者権限変更記録',
 'rightslogtext'  => '以下は利用者権限の変更記録です。',
-'rightslogentry' => '$1 の所属グループを $2 から $3 へ変更しました',
+'rightslogentry' => '$1 の所属グループを$2から$3へ変更しました',
 'rightsnone'     => '（権限なし）',
 
 # Associated actions - in the sentence "You do not have permission to X"
@@ -3050,7 +3050,7 @@ $5
 
 この確認用コードは $4 に期限切れになります。',
 'confirmemail_invalidated' => 'メールアドレスの認証がキャンセルされました',
-'invalidateemail'          => 'メールアドレスの認証をキャンセルする',
+'invalidateemail'          => 'メールアドレスの認証を中止する',
 
 # Scary transclusion
 'scarytranscludedisabled' => '[ウィキ間トランスクルージョンは無効になっています]',

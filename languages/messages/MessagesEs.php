@@ -988,7 +988,7 @@ Otros administradores de {{SITENAME}} aún podrán acceder al contenido oculto y
 Por favor confirme que está intentando hacer esto, que usted entiende las consecuencias, y que lo esta haciendo de acuerso con [[{{MediaWiki:Policy-url}}|la política]].",
 'revdelete-suppress-text'     => "Supresión debería '''solamente''' ser usado para los siguientes casos:
 * Información personal inapropiada
-*: ''dirección domiciliaria y números telefónicos, números de seguridad social, etc.''",
+*: ''dirección domiciliaria y números telefónicos, números de la seguridad social, etc.''",
 'revdelete-legend'            => 'Establecer restricciones de revisión:',
 'revdelete-hide-text'         => 'Ocultar el texto de la revisión',
 'revdelete-hide-name'         => 'Ocultar acción y objetivo',
@@ -1012,10 +1012,10 @@ $1",
 'pagehist'                    => 'Historial de la página',
 'deletedhist'                 => 'Historial borrado',
 'revdelete-content'           => 'contenido',
-'revdelete-summary'           => 'editar resumen',
+'revdelete-summary'           => 'resumen de edición',
 'revdelete-uname'             => 'nombre de usuario',
-'revdelete-restricted'        => 'restricciones para sysops aplicadas',
-'revdelete-unrestricted'      => 'restricciones para sysops eliminadas',
+'revdelete-restricted'        => 'restricciones para administradores aplicadas',
+'revdelete-unrestricted'      => 'restricciones para administradores eliminadas',
 'revdelete-hid'               => 'ocultar $1',
 'revdelete-unhid'             => 'mostrar $1',
 'revdelete-log-message'       => '$1 para $2 {{PLURAL:$2|revisión|revisiones}}',
@@ -1044,7 +1044,7 @@ Asegúrate de que esto mantendrá la continuidad histórica de la página.',
 'mergehistory-from'                => 'Página origen:',
 'mergehistory-into'                => 'Página destino:',
 'mergehistory-list'                => 'Historial de ediciones fusionable',
-'mergehistory-merge'               => 'Laa siguientes revisiones de [[:$1]] pueden fusionarse en [[:$2]].
+'mergehistory-merge'               => 'Las siguientes revisiones de [[:$1]] pueden fusionarse en [[:$2]].
 Usa la columna de casillas para fusionar sólo las revisiones creadas en y antes de la fecha especificada.
 Nota que usar los enlaces de navegación borrará las selecciones de esta columna.',
 'mergehistory-go'                  => 'Muestra ediciones fusionables',

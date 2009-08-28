@@ -269,14 +269,19 @@ This can also appear in the credits page if the credits feature is enabled,for e
 
 # Vector skin
 'vector-action-addsection'   => 'Used in the Vector skin. See for example http://translatewiki.net/wiki/Talk:Main_Page?useskin=vector',
-'vector-action-delete'       => 'Used in the Vector skin. See for example http://translatewiki.net/wiki/Main_Page?useskin=vector
+'vector-action-delete'       => 'Used in the Vector skin, as the name of a tab at the top of the page. See for example http://translatewiki.net/wiki/Main_Page?useskin=vector
 
 {{Identical|Delete}}',
-'vector-action-move'         => 'Used in the Vector skin. See for example http://translatewiki.net/wiki/Talk:Main_Page?useskin=vector
+'vector-action-move'         => 'Used in the Vector skin, on the tabs at the top of the page. See for example http://translatewiki.net/wiki/Talk:Main_Page?useskin=vector
 
 {{Identical|Move}}',
-'vector-action-protect'      => '{{Identical|Protect}}',
-'vector-action-unprotect'    => '{{Identical|Unprotect}}',
+'vector-action-protect'      => 'Tab at top of page, in vector skin
+
+{{Identical|Protect}}',
+'vector-action-undelete'     => 'Tab at top of page, in vector skin.',
+'vector-action-unprotect'    => 'Tab at top of page, in vector skin.
+
+{{Identical|Unprotect}}',
 'vector-namespace-category'  => 'Tab label in the Vector skin. See for example http://translatewiki.net/wiki/Category:Translatewiki.net?useskin=vector
 
 {{Identical|Category}}',
@@ -2499,9 +2504,7 @@ Related messages: {{msg|right-importupload|pl=yes}} (the user right for this).',
 'tooltip-t-whatlinkshere'         => 'Tooltip shown when hovering over the {{msg|whatlinkshere}} message in the toolbox.',
 'tooltip-t-contributions'         => 'Tooltip shown when hovering over {{msg|contributions}} in the toolbox.',
 'tooltip-t-emailuser'             => 'Tooltip shown when hovering over the {{msg|emailuser}} link in the toolbox (sidebar, below).',
-'tooltip-t-upload'                => 'Tooltip shown when hovering over the link to upload files shown in the side bar menu on all pages.
-
-{{Identical|Upload files}}',
+'tooltip-t-upload'                => 'Tooltip shown when hovering over the link to upload files shown in the side bar menu on all pages.',
 'tooltip-t-specialpages'          => 'The tooltip when hovering over the link "[[MediaWiki:Specialpages/{{SUBPAGENAME}}|{{int:specialpages}}]]" going to a list of all special pages available in the wiki.',
 'tooltip-ca-nstab-main'           => '{{Identical|Content page}}',
 'tooltip-ca-nstab-user'           => 'Tooltip shown when hovering over {{msg|nstab-user}} (User namespace tab).',

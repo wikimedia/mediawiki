@@ -609,18 +609,19 @@ Een lieste mit bestaonde speciale pagina ku-j vienen op [[Special:SpecialPages|{
 # General errors
 'error'                => 'Foutmelding',
 'databaseerror'        => 'Fout in de databanke',
-'dberrortext'          => 'Bie \'t zeuken is een syntaxfout in de databanke op-etrejen.
+'dberrortext'          => 'Bie \'t zeuken is een syntaxisfout in de databanke op-etrejen.
 De oorzake hiervan kan dujen op een fout in de pregrammetuur.
-
+Der is een syntaxisfout in \'t databankeverzeuk op-etrejen.
+\'t Kan ween dat der een fout in de pregrammetuur zit.
 De leste zeukpoging in de databanke was:
 <blockquote><tt>$1</tt></blockquote>
 vanuut de functie "<tt>$2</tt>".
-$5 gaf de foutmelding "<tt>$3: $4</tt>".',
+De databanke gaf de volgende foutmelding "<tt>$3: $4</tt>".',
 'dberrortextcl'        => 'Der is een syntaxisfout in \'t databankeverzeuk op-etrejen. 
 \'t Leste veurzeuk an de databanke was:
 "$1"
 vanuut de functie "$2"
-$5 gaf de volgende foutmelding: "$3: $4"',
+De databanke gaf de volgende foutmelding: "$3: $4"',
 'laggedslavemode'      => "<strong>Waorschuwing:</strong> 't is meugelijk dat leste wiezigingen in de tekse van dit artikel nog neet verwark bin.",
 'readonly'             => 'De databanke is beveilig',
 'enterlockreason'      => "Geef een rejen veur de blokkering op en hoelange 't geet duren. De op-egeven rejen zal an de gebrukers eteund wonnen.",
@@ -721,8 +722,7 @@ Kiek de schriefwieze effen nao of [[Special:UserLogin/signup|maak een nieje gebr
 'nouserspecified'            => 'Vul asjeblief een naam in',
 'wrongpassword'              => "verkeerd wachwoord, prebeer 't opniej.",
 'wrongpasswordempty'         => "Gien wachwoord in-evoerd. Prebeer 't opniej.",
-'passwordtooshort'           => "'t Wachwoord is te kort.
-'t Mut uut teminsens {{PLURAL:$1|1 teken|$1 tekens}} bestaon.",
+'passwordtooshort'           => 'Wachwoorden mutten uut teminsen {{PLURAL:$1|$1 teken|$1 tekens}} bestaon.',
 'password-name-match'        => 'Joew wachwoord en gebrukersnaam maggen neet liekeleens ween.',
 'mailmypassword'             => 'Niej wachwoord opsturen',
 'passwordremindertitle'      => 'niej tiedelik wachwoord veur {{SITENAME}}',
@@ -1773,7 +1773,7 @@ Vergeet neet de verwiezingen nao te kieken veurda-j de mal vortdoon.",
 
 # Random page
 'randompage'         => 'Willekeurig artikel',
-'randompage-nopages' => 'Der staon gien pagina\'s in de naamruumte "$1".',
+'randompage-nopages' => "Der staon gien pagina's in de {{PLURAL:$2|naamruumte|naamruumtes}}: $1.",
 
 # Random redirect
 'randomredirect'         => 'Willekeurige deurverwiezing',
@@ -2050,13 +2050,16 @@ Toekomstige wiezigingen op disse pagina en de overlegpagina zullen hier vermeld 
 'enotif_impersonal_salutation' => '{{SITENAME}}-gebruker',
 'changed'                      => 'ewiezig',
 'created'                      => 'an-emaak',
+'deleted'                      => 'vort-edaon',
+'enotif_deletedpagetext'       => 'Disse pagina is neet langer beschikbaor.',
 'enotif_subject'               => '{{SITENAME}}-pagina $PAGETITLE is $CHANGEDORCREATED deur $PAGEEDITOR',
 'enotif_lastvisited'           => 'Zie $1 veur alle wiezigingen sinds joew leste bezeuk.',
 'enotif_lastdiff'              => 'Zie $1 um disse wieziging te bekieken.',
 'enotif_anon_editor'           => 'annenieme gebruker $1',
+'enotif_rev_info'              => "Zie $1 veur de versie zoas 't noen is",
 'enotif_body'                  => 'Beste $WATCHINGUSERNAME,
 
-De pagina $PAGETITLE op {{SITENAME}} is $CHANGEDORCREATED op $PAGEEDITDATEANDTIME deur $PAGEEDITOR, zie $PAGETITLE_URL veur de leste versie.
+De pagina $PAGETITLE op {{SITENAME}} is $CHANGEDORCREATED op $PAGEEDITDATEANDTIME deur $PAGEEDITOR. $REVINFO
 
 $NEWPAGE
 
@@ -2136,7 +2139,7 @@ De leste bewarking op disse pagina is edaon deur [[User:$3|$3]] ([[User talk:$3|
 'protect-title'               => 'Instellen van beveiligingsnivo veur "$1"',
 'prot_1movedto2'              => '[[$1]] is ewiezig naor [[$2]]',
 'protect-legend'              => 'Beveiliging bevestigen',
-'protectcomment'              => 'Rejen',
+'protectcomment'              => 'Rejen:',
 'protectexpiry'               => 'Duur',
 'protect_expiry_invalid'      => 'Verlooptied is ongeldig.',
 'protect_expiry_old'          => 'De verlooptied is al veurbie.',
@@ -2580,6 +2583,7 @@ De tiedelijke map is neet anwezig.",
 'tooltip-ca-viewsource'           => 'Disse bladziede is beveiligd teagn veraandern. Iej könt wal kiekn noar de bladziede',
 'tooltip-ca-history'              => 'Oaldere versies van disse bladziede',
 'tooltip-ca-protect'              => 'Beveilig disse bladziede teagn veraandern',
+'tooltip-ca-unprotect'            => 'Disse pagina vriegeven',
 'tooltip-ca-delete'               => 'Smiet disse bladziede vort',
 'tooltip-ca-undelete'             => 'Haal n inhoald van disse bladziede oet n emmer',
 'tooltip-ca-move'                 => 'Gef disse bladziede nen aandern titel',
@@ -2590,6 +2594,7 @@ De tiedelijke map is neet anwezig.",
 'tooltip-search-fulltext'         => "De pagina's vuur disse tekst zeukn",
 'tooltip-p-logo'                  => 'Vuurziede',
 'tooltip-n-mainpage'              => 'Goa noar de vuurziede',
+'tooltip-n-mainpage-description'  => "Gao naor 't veurblad",
 'tooltip-n-portal'                => 'Informoasie oaver t projekt: wel, wat, hoo en woarum',
 'tooltip-n-currentevents'         => 'Achtergroondinformoasie oaver dinge in t niejs',
 'tooltip-n-recentchanges'         => 'Lieste van pas verrichte veraanderingn',

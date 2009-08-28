@@ -95,6 +95,9 @@ $messages = array(
 'underline-never'   => 'எப்போதுமில்லை',
 'underline-default' => 'உலாவி இயல்பிருப்பு',
 
+# Font style option in Special:Preferences
+'editfont-style' => 'தொகுத்தல் பெட்டி எழுத்துரு:',
+
 # Dates
 'sunday'        => 'ஞாயிறு',
 'monday'        => 'திங்கள்',
@@ -194,6 +197,9 @@ $messages = array(
 'faq'            => 'அடிக்கடி கேட்கப்படும் கேள்விகள்',
 'faqpage'        => 'Project:அடிக்கடி கேட்கப்படும் கேள்விகள்',
 
+# Vector skin
+'vector-namespace-talk' => 'உரையாடல்',
+
 # Metadata in edit box
 'metadata_help' => 'மேல்நிலைத் தரவு:',
 
@@ -229,14 +235,14 @@ $messages = array(
 'talkpagelinktext'  => 'பேச்சு',
 'specialpage'       => 'சிறப்புப் பக்கம்',
 'personaltools'     => 'தனிப்பட்ட பயன்பாட்டுக் கருவிகள்',
-'postcomment'       => 'கருத்துக்களை அனுப்பு',
+'postcomment'       => 'புதிய கருத்து',
 'articlepage'       => 'உள்ளடக்கப் பக்கத்தைப் பார்',
 'talk'              => 'உரையாடல்',
 'views'             => 'பார்வைகள்',
 'toolbox'           => 'கருவிப் பெட்டி',
 'userpage'          => 'பயனர் பக்கத்தைப் பார்',
 'projectpage'       => 'திட்டப் பக்கத்தைப் பார்',
-'imagepage'         => 'படிமப் பக்கத்தைப் பார்',
+'imagepage'         => 'கோப்புப் பக்கத்தை நோக்க',
 'mediawikipage'     => 'தகவல் பக்கத்தைப் பார்',
 'templatepage'      => 'வார்ப்புரு பக்கத்தைப் பார்',
 'viewhelppage'      => 'உதவிப் பக்கததைப் பார்',

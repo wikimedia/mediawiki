@@ -1728,26 +1728,25 @@ L\'adreza de correu-e que endicó en as suyas [[Special:Preferences|preferenzias
 'enotif_body'                  => 'Quiesto/a $WATCHINGUSERNAME,
 
 A pachina «$PAGETITLE» de {{SITENAME}}
-ha estato $CHANGEDORCREATED por l\'usuario $PAGEEDITOR o $PAGEEDITDATEANDTIME.
-Puede trobar a bersión autual en {{fullurl:$PAGETITLE}}
+ha estato $CHANGEDORCREATED por l\'usuario $PAGEEDITOR o $PAGEEDITDATEANDTIME. $REVINFO
 
 $NEWPAGE
 
 O resumen d\'a edizión ye: $PAGESUMMARY $PAGEMINOREDIT
 
 Ta comunicar-se con l\'usuario:
-por correu: {{fullurl:Special:Emailuser|target=$PAGEEDITOR}}
-en o wiki: {{fullurl:User:$PAGEEDITOR}}
+por correu: $PAGEEDITOR_EMAIL
+en o wiki: $PAGEEDITOR_WIKI
 
 Ta recullir nuebas notificazions de cambios d\'ista pachina abrá de besitar-la nuebament.
 Tamién puede cambiar, en a su lista de seguimiento, as opzions de notificazión d\'as pachinas que ye cosirando.
 
 Atentament,
- O sistema de notificazión de {{SITENAME}}.
+O sistema de notificazión de {{SITENAME}}.
 
 --
 Ta cambiar as opzions d\'a suya lista de seguimiento en:
-{{fullurl:Special:Watchlist|edit=yes}}
+{{fullurl:{{#special:Watchlist}}/edit}}
 
 Ta obtenir más informazión y aduya:
 {{fullurl:{{MediaWiki:Helppage}}}}',
