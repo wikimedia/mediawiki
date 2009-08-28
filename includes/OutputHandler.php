@@ -78,7 +78,7 @@ function wfGzipHandler( $s ) {
 		$tokens = preg_split( '/[,; ]/', $_SERVER['HTTP_ACCEPT_ENCODING'] );
 		if ( in_array( 'gzip', $tokens ) ) {
 			header( 'Content-Encoding: gzip' );
-			$s = gzencode( $s, 3 );
+			$s = gzencode( $s, 6 );
 		}
 	}
 
