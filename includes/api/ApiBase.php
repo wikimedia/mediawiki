@@ -439,18 +439,18 @@ abstract class ApiBase {
 	/**
 	* Using getAllowedParams(), this function makes an array of the values
 	* provided by the user, with key being the name of the variable, and
-	* value - validated value from user or default. limit=max will not be
-	* parsed if $parseMaxLimit is set to false; use this when the max
+	* value - validated value from user or default. limits will not be
+	* parsed if $parseLimit is set to false; use this when the max
 	* limit is not definitive yet, e.g. when getting revisions.
-	* @param $parseMaxLimit bool
+	* @param $parseLimit bool
 	* @return array
 	*/
-	public function extractRequestParams($parseMaxLimit = true) {
+	public function extractRequestParams($parseLimit = true) {
 		$params = $this->getFinalParams();
 		$results = array ();
 
 		foreach ($params as $paramName => $paramSettings)
-			$results[$paramName] = $this->getParameterFromSettings($paramName, $paramSettings, $parseMaxLimit);
+			$results[$paramName] = $this->getParameterFromSettings($paramName, $paramSettings, $parseLimit);
 
 		return $results;
 	}
@@ -458,13 +458,13 @@ abstract class ApiBase {
 	/**
 	 * Get a value for the given parameter
 	 * @param $paramName string Parameter name
-	 * @param $parseMaxLimit bool see extractRequestParams()
+	 * @param $parseLimit bool see extractRequestParams()
 	 * @return mixed Parameter value
 	 */
-	protected function getParameter($paramName, $parseMaxLimit = true) {
+	protected function getParameter($paramName, $parseLimit = true) {
 		$params = $this->getFinalParams();
 		$paramSettings = $params[$paramName];
-		return $this->getParameterFromSettings($paramName, $paramSettings, $parseMaxLimit);
+		return $this->getParameterFromSettings($paramName, $paramSettings, $parseLimit);
 	}
 	
 	/**
@@ -510,10 +510,10 @@ abstract class ApiBase {
 	 * @param $paramName String: parameter name
 	 * @param $paramSettings Mixed: default value or an array of settings
 	 *  using PARAM_* constants.
-	 * @param $parseMaxLimit Boolean: parse limit when max is given?
+	 * @param $parseLimit Boolean: parse limit?
 	 * @return mixed Parameter value
 	 */
-	protected function getParameterFromSettings($paramName, $paramSettings, $parseMaxLimit) {
+	protected function getParameterFromSettings($paramName, $paramSettings, $parseLimit) {
 
 		// Some classes may decide to change parameter names
 		$encParamName = $this->encodeParamName($paramName);
@@ -572,23 +572,23 @@ abstract class ApiBase {
 
 						if (!is_null($min) || !is_null($max)) {
 							$values = is_array($value) ? $value : array($value);
-							foreach ($values as $v) {
+							foreach ($values as &$v) {
 								$this->validateLimit($paramName, $v, $min, $max);
 							}
 						}
 						break;
 					case 'limit' :
+						if ( !$parseLimit )
+							// Don't do any validation whatsoever
+							break;
 						if (!isset ($paramSettings[self :: PARAM_MAX]) || !isset ($paramSettings[self :: PARAM_MAX2]))
 							ApiBase :: dieDebug(__METHOD__, "MAX1 or MAX2 are not defined for the limit $encParamName");
 						if ($multi)
 							ApiBase :: dieDebug(__METHOD__, "Multi-values not supported for $encParamName");
 						$min = isset ($paramSettings[self :: PARAM_MIN]) ? $paramSettings[self :: PARAM_MIN] : 0;
 						if( $value == 'max' ) {
-							if( $parseMaxLimit ) {
 								$value = $this->getMain()->canApiHighLimits() ? $paramSettings[self :: PARAM_MAX2] : $paramSettings[self :: PARAM_MAX];
 								$this->getResult()->addValue( 'limits', $this->getModuleName(), $value );
-								$this->validateLimit($paramName, $value, $min, $paramSettings[self :: PARAM_MAX], $paramSettings[self :: PARAM_MAX2]);
-							}
 						}
 						else {
 							$value = intval($value);
@@ -681,9 +681,10 @@ abstract class ApiBase {
 	 * @param $max int Maximum value for users
 	 * @param $botMax int Maximum value for sysops/bots
 	 */
-	function validateLimit($paramName, $value, $min, $max, $botMax = null) {
+	function validateLimit($paramName, &$value, $min, $max, $botMax = null) {
 		if (!is_null($min) && $value < $min) {
-			$this->dieUsage($this->encodeParamName($paramName) . " may not be less than $min (set to $value)", $paramName);
+			$this->setWarning($this->encodeParamName($paramName) . " may not be less than $min (set to $value)");
+			$value = $min;
 		}
 
 		// Minimum is always validated, whereas maximum is checked only if not running in internal call mode
@@ -695,10 +696,12 @@ abstract class ApiBase {
 		if (!is_null($max) && $value > $max) {
 			if (!is_null($botMax) && $this->getMain()->canApiHighLimits()) {
 				if ($value > $botMax) {
-					$this->dieUsage($this->encodeParamName($paramName) . " may not be over $botMax (set to $value) for bots or sysops", $paramName);
+					$this->setWarning($this->encodeParamName($paramName) . " may not be over $botMax (set to $value) for bots or sysops");
+					$value = $botMax;
 				}
 			} else {
-				$this->dieUsage($this->encodeParamName($paramName) . " may not be over $max (set to $value) for users", $paramName);
+				$this->setWarning($this->encodeParamName($paramName) . " may not be over $max (set to $value) for users");
+				$value = $max;
 			}
 		}
 	}
