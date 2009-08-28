@@ -497,6 +497,10 @@ changes to languages because of MediaZilla reports.
 * Lower Silesian (sli) (new)
 * Picard (pcd) (new)
 * Uyghur (Arabic script) (ug-arab) (new)
+* Eastern Yiddish (ydd) (removed)
+* Iriga Bicolano (bto) (removed)
+* Palembang (plm) (removed)
+* Tamazight (tzm) (removed)
 
 * (bug 18474) Sorani (ckb - Central Kurdish) (renamed from ku-arab)
 * Add PLURAL function for Scots Gaelic (gd)
