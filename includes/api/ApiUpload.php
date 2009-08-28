@@ -44,7 +44,7 @@ class ApiUpload extends ApiBase {
 		$this->mParams = $this->extractRequestParams();
 		$request = $this->getMain()->getRequest();
 
-		// do token checks:
+		// Do token checks:
 		if ( is_null( $this->mParams['token'] ) )
 			$this->dieUsageMsg( array( 'missingparam', 'token' ) );
 		if ( !$wgUser->matchEditToken( $this->mParams['token'] ) )
@@ -57,21 +57,23 @@ class ApiUpload extends ApiBase {
 		// Check whether upload is enabled
 		if ( !UploadBase::isEnabled() )
 			$this->dieUsageMsg( array( 'uploaddisabled' ) );
-
+		
 		// One and only one of the following parameters is needed
 		$this->requireOnlyOneParameter( $this->mParams,
-			'sessionkey', 'file', 'url', 'enablechunks' );
-
+			'sessionkey', 'file', 'url', 'enablechunks' );		
+			
 		if ( $this->mParams['enablechunks'] ) {
-			// chunks upload enabled
+			/**
+			 * Chunked upload mode
+			 */
+
 			$this->mUpload = new UploadFromChunks();
 			$status = $this->mUpload->initializeFromParams( $this->mParams, $request );
 
 			if( isset( $status['error'] ) )
 				$this->dieUsageMsg( $status['error'] );
 
-		} elseif ( $this->mParams['internalhttpsession'] ) {
-			// TODO: Move to subclass
+		} elseif ( isset( $this->mParams['internalhttpsession'] ) && $this->mParams['internalhttpsession'] ) {
 			$sd = & $_SESSION['wsDownload'][ $this->mParams['internalhttpsession'] ];
 
 			//wfDebug("InternalHTTP:: " . print_r($this->mParams, true));
@@ -82,16 +84,17 @@ class ApiUpload extends ApiBase {
 				$sd['target_file_path'],
 				filesize( $sd['target_file_path'] )
 			);
-
 		} elseif ( $this->mParams['httpstatus'] && $this->mParams['sessionkey'] ) {
-			// return the status of the given upload session_key:
+			/**
+			 * Return the status of the given background upload session_key:
+			 */
 			
 			// Check the session key
 			if( !isset( $_SESSION['wsDownload'][$this->mParams['sessionkey']] ) )
 					return $this->dieUsageMsg( array( 'invalid-session-key' ) );
 			
 			$sd =& $_SESSION['wsDownload'][$this->mParams['sessionkey']];
-			// keep passing down the upload sessionkey
+			// Keep passing down the upload sessionkey
 			$statusResult = array(
 				'upload_session_key' => $this->mParams['sessionkey']
 			);
@@ -105,16 +108,20 @@ class ApiUpload extends ApiBase {
 				$statusResult['content_length'] = $sd['content_length'];
 
 			return $this->getResult()->addValue( null, 
-					$this->getModuleName(), $statusResult);
+					$this->getModuleName(), $statusResult );
 			
-		} else if( $this->mParams['sessionkey'] ) {
-			// Stashed upload
+		} elseif( $this->mParams['sessionkey'] ) {
+			/**
+			 * Upload stashed in a previous request
+			 */
 			$this->mUpload = new UploadFromStash();
 			$this->mUpload->initialize( $this->mParams['filename'], 
 					$_SESSION['wsUploadData'][$this->mParams['sessionkey']] );
 		} else {
-			// Upload from url or file
-			// Parameter filename is required
+			/**
+			 * Upload from url or file
+			 * Parameter filename is required
+			 */
 			if ( !isset( $this->mParams['filename'] ) )
 				$this->dieUsageMsg( array( 'missingparam', 'filename' ) );
 
@@ -132,7 +139,7 @@ class ApiUpload extends ApiBase {
 						$this->mParams['url'], $this->mParams['asyncdownload'] );
 
 				$status = $this->mUpload->fetchFile();
-				if( !$status->isOK() ){
+				if( !$status->isOK() ) {
 					return $this->dieUsage( 'fetchfileerror', $status->getWikiText() );
 				}
 				
@@ -152,15 +159,16 @@ class ApiUpload extends ApiBase {
 									array( 'upload_session_key' => $upload_session_key
 							));
 				}
-				//else the file downloaded in place continue with validation:
 			}
 		}
-
+		
 		if( !isset( $this->mUpload ) )
 			$this->dieUsage( 'No upload module set', 'nomodule' );
-
-		//finish up the exec command:
+		
+		
+		// Finish up the exec command:
 		$this->doExecUpload();
+
 	}
 
 	protected function doExecUpload(){
@@ -287,8 +295,6 @@ class ApiUpload extends ApiBase {
 		$result['filename'] = $file->getName();
 
 		// Append imageinfo to the result
-
-		//get all the image properties:
 		$imParam = ApiQueryImageInfo::getPropertyNames();
         $result['imageinfo'] = ApiQueryImageInfo::getInfo( $file,
 				array_flip( $imParam ), $this->getResult() );
@@ -322,12 +328,15 @@ class ApiUpload extends ApiBase {
 			'url' => null,
 			'httpstatus' => false,
 			'sessionkey' => null,
-			'internalhttpsession' => null,
 		);
+
+		if ( $this->getMain()->isInternalMode() )
+			$params['internalhttpsession'] = null;
 		if($wgEnableAsyncDownload){
 			$params['asyncdownload'] = false;
 		}
 		return $params;
+
 	}
 
 	public function getParamDescription() {
@@ -385,4 +394,5 @@ class ApiUpload extends ApiBase {
 		return __CLASS__ . ': $Id: ApiUpload.php 51812 2009-06-12 23:45:20Z dale $';
 	}
 }
+
 
