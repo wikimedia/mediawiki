@@ -509,10 +509,15 @@ class MessageCache {
 
 		$message = false;
 
-		# Normalise title-case input
+		# Normalise title-case input (with some inlining)
 		$lckey = str_replace( ' ', '_', $key );
-		$lckey[0] = strtolower( $lckey[0] );
-		$uckey = ucfirst( $lckey );
+		if ( ord( $key ) < 128 ) {
+			$lckey[0] = strtolower( $lckey[0] );
+			$uckey = ucfirst( $lckey );
+		} else {
+			$lckey = $wgContLang->lcfirst( $lckey );
+			$uckey = $wgContLang->ucfirst( $lckey );
+		}
 
 		# Try the MediaWiki namespace
 		if( !$this->mDisable && $useDB ) {

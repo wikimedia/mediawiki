@@ -1509,9 +1509,15 @@ class Language {
 	}
 
 	function ucfirst( $str ) {
-		if ( empty($str) ) return $str;
-		if ( ord($str[0]) < 128 ) return ucfirst($str);
-		else return self::uc($str,true); // fall back to more complex logic in case of multibyte strings
+		$o = ord( $str );
+		if ( $o < 96 ) {
+			return $str;
+		} elseif ( $o < 128 ) {
+			return ucfirst($str);
+		} else {
+			// fall back to more complex logic in case of multibyte strings
+			return self::uc($str,true); 
+		}
 	}
 
 	function uc( $str, $first = false ) {
@@ -1541,13 +1547,17 @@ class Language {
 	}
 	
 	function lcfirst( $str ) {
-		if ( empty($str) ) return $str;
-		if ( is_string( $str ) && ord($str[0]) < 128 ) {
-			// editing string in place = cool
-			$str[0]=strtolower($str[0]);
+		$o = ord( $str );
+		if ( !$o ) {
+			return strval( $str );
+		} elseif ( $o >= 128 ) {
+			return self::lc( $str, true );
+		} elseif ( $o > 96 ) {
+			return $str;
+		} else {
+			$str[0] = strtolower( $str[0] );
 			return $str;
 		}
-		else return self::lc( $str, true );
 	}
 
 	function lc( $str, $first = false ) {
