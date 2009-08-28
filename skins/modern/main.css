@@ -646,14 +646,6 @@ span.updatedmarker {
 	background-color: #0f0;
 }
 
-span.comment {
-	font-style: italic;
-}
-
-span.changedby {
-	font-size: 95%;
-}
-
 .previewnote {
 	text-indent: 3em;
 	color: #c00;

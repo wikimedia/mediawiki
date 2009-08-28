@@ -1135,14 +1135,6 @@ span.updatedmarker {
 	background-color: #0f0;
 }
 
-span.comment {
-	font-style: italic;
-}
-
-span.changedby {
-	font-size: 95%;
-}
-
 .previewnote {
 	color: #c00;
 	margin-bottom: 1em;
