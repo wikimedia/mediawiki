@@ -319,6 +319,9 @@ body {
 		background-position: top right;
 		background-repeat: repeat-x;
 	}
+	#simpleSearch label {
+		font-size: 0.8em;
+	}
 	#simpleSearch input#searchInput {
 		margin: 0;
 		border-width: 0;
