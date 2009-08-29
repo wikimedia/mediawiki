@@ -437,6 +437,7 @@ this. Was used when mwEmbed was going to be an extension.
   if they contain non-ASCII characters
 * (bug 19055) maintenance/rebuildrecentchanges.php now purges
   Special:Recentchanges's RSS and Atom feed cache
+* The installer will now try to bypass PHP's max_execution_time
 
 == API changes in 1.16 ==
 
