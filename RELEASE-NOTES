@@ -438,6 +438,9 @@ this. Was used when mwEmbed was going to be an extension.
 * (bug 19055) maintenance/rebuildrecentchanges.php now purges
   Special:Recentchanges's RSS and Atom feed cache
 * The installer will now try to bypass PHP's max_execution_time
+* (bug 20260) SQLite no longer tries to automatically create the database at
+  execution time, this now happens only at install time; if it is not available 
+  at script execution, it now throws an exception
 
 == API changes in 1.16 ==
 

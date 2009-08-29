@@ -21,12 +21,12 @@ class DatabaseSqlite extends DatabaseBase {
 	 * Constructor
 	 */
 	function __construct($server = false, $user = false, $password = false, $dbName = false, $failFunction = false, $flags = 0) {
-		global $wgSQLiteDataDir, $wgSQLiteDataDirMode;
-		if ("$wgSQLiteDataDir" == '') $wgSQLiteDataDir = dirname($_SERVER['DOCUMENT_ROOT']).'/data';
-		if (!is_dir($wgSQLiteDataDir)) wfMkdirParents( $wgSQLiteDataDir, $wgSQLiteDataDirMode );
+		global $wgSQLiteDataDir;
 		$this->mFailFunction = $failFunction;
 		$this->mFlags = $flags;
 		$this->mDatabaseFile = "$wgSQLiteDataDir/$dbName.sqlite";
+		if( !is_readable( $this->mDatabaseFile ) )
+			throw new DBConnectionError( $this, "SQLite database not accessible" );
 		$this->mName = $dbName;
 		$this->open($server, $user, $password, $dbName);
 	}
