@@ -1,5 +1,5 @@
 <?php
-/** Simplified Chinese (‪中文(简体)‬)
+/** Simplified Chinese (‪中文(简化字)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -3200,7 +3200,7 @@ $1',
 'tag-filter-submit'       => '过滤器',
 'tags-title'              => '标签',
 'tags-intro'              => '这个页面列出了在软件中已标示的编辑，以及它们的解释。',
-'tags-tag'                => '内部标签名称',
+'tags-tag'                => '标签名称',
 'tags-display-header'     => '在更改列表中的出现方式',
 'tags-description-header' => '解释完整描述',
 'tags-hitcount-header'    => '已加上标签的更改',
