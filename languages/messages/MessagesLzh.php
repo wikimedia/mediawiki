@@ -2613,6 +2613,7 @@ $1',
 #入正表式。同留</pre>',
 
 # Special:Tags
+'tags-tag'  => '標名',
 'tags-edit' => '纂',
 
 # HTML forms

@@ -1,5 +1,5 @@
 <?php
-/** Traditional Chinese (‪中文(繁體)‬)
+/** Traditional Chinese (‪中文(傳統字)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -3188,7 +3188,7 @@ $1',
 'tag-filter-submit'       => '過濾器',
 'tags-title'              => '標籤',
 'tags-intro'              => '這個頁面列示出在軟件中已標示的編輯，以及它們的解釋。',
-'tags-tag'                => '內部標籤名稱',
+'tags-tag'                => '標籤名稱',
 'tags-display-header'     => '在更改清單中的出現方式',
 'tags-description-header' => '解釋完整描述',
 'tags-hitcount-header'    => '已加上標籤的更改',
