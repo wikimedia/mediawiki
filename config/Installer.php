@@ -460,6 +460,11 @@ if( !function_exists( 'preg_match' ) )
 	dieout( "The PCRE support module appears to be missing. MediaWiki requires the
 	Perl-compatible regular expression functions." );
 
+# The installer can take a while, and we really don't want it to time out
+wfSuppressWarnings();
+set_time_limit( 0 );
+wfRestoreWarnings();
+
 $memlimit = ini_get( "memory_limit" );
 if( $memlimit == -1 ) {
 	print "<li>PHP is configured with no <tt>memory_limit</tt>.</li>\n";
