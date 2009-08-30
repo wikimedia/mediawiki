@@ -879,9 +879,9 @@ abstract class TablePager extends IndexPager {
 	function getLimitSelect() {
 		global $wgLang;
 		$s = "<select name=\"limit\">";
-		foreach ( $this->mLimitsShown as $limit ) {
+		foreach ( $this->mLimitsShown as $limit => $text ) {
 			$selected = $limit == $this->mLimit ? 'selected="selected"' : '';
-			$formattedLimit = $wgLang->formatNum( $limit );
+			$formattedLimit = $text ? $text : $wgLang->formatNum( $limit );
 			$s .= "<option value=\"$limit\" $selected>$formattedLimit</option>\n";
 		}
 		$s .= "</select>";
