@@ -441,6 +441,8 @@ this. Was used when mwEmbed was going to be an extension.
 * (bug 20260) SQLite no longer tries to automatically create the database at
   execution time, this now happens only at install time; if it is not available 
   at script execution, it now throws an exception
+* Fixed EditFilterMerged hook so the hookError parameter serves a purpose
+  (analogous to EditFilter hook)
 
 == API changes in 1.16 ==
 

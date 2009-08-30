@@ -890,6 +890,10 @@ class EditPage {
 				# Error messages etc. could be handled within the hook...
 				wfProfileOut( $fname );
 				return self::AS_HOOK_ERROR;
+			} elseif ( $this->hookError != '' ) {
+				# ...or the hook could be expecting us to produce an error
+				wfProfileOut( $fname );
+				return self::AS_HOOK_ERROR_EXPECTED;
 			}
 			
 			# Handle the user preference to force summaries here. Check if it's not a redirect.
@@ -978,6 +982,10 @@ class EditPage {
 			# Error messages etc. could be handled within the hook...
 			wfProfileOut( $fname );
 			return self::AS_HOOK_ERROR;
+		} elseif ( $this->hookError != '' ) {
+			# ...or the hook could be expecting us to produce an error
+			wfProfileOut( $fname );
+			return self::AS_HOOK_ERROR_EXPECTED;
 		}
 
 		# Handle the user preference to force summaries here, but not for null edits
