@@ -160,8 +160,6 @@ this. Was used when mwEmbed was going to be an extension.
 * (bug 9691) Add type (signup or login) parameter to AuthPlugin::ModifyUITemplate()
 * (bug 14454) "Member of group(s)" in Special:Preferences causes language difficulties
 * (bug 16697) Unicode combining characters are difficult to edit in some browsers
-* IndexPager->mLimitsShown can now be an associative array of limit => text-to-
-  display-in-limit-form.
 * Parser test supports uploading results to remote CodeReview instance
 * (bug 20013) Added CSS class "mw-version-ext-version" is wrapped on the 
   extension version in Special:Version
@@ -199,6 +197,8 @@ this. Was used when mwEmbed was going to be an extension.
 * (bug 20404) Custom fields in the user creation form template can now have
   detail labels in prefsectiontip divs.
 * MakeSysop and MakeBot are now aliases for Special:UserRights
+* IndexPager->mLimitsShown can now be an associative array of limit => text-to-
+  display-in-limit-form.
 
 === Bug fixes in 1.16 ===
 
