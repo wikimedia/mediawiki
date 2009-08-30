@@ -443,6 +443,8 @@ this. Was used when mwEmbed was going to be an extension.
   at script execution, it now throws an exception
 * Fixed EditFilterMerged hook so the hookError parameter serves a purpose
   (analogous to EditFilter hook)
+* (bug 2257) Tag extensions can expand template parameters provided to the tag,
+  by using a new parameter added to the recursiveTagParse function
 
 == API changes in 1.16 ==
 

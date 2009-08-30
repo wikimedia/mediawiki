@@ -436,12 +436,17 @@ class Parser
 	/**
 	 * Recursive parser entry point that can be called from an extension tag
 	 * hook.
+	 *
+	 * If $frame is not provided, then template variables (e.g., {{{1}}}) within $text are not expanded
+	 *
+	 * @param $text String: text extension wants to have parsed
+	 * @param PPFrame $frame: The frame to use for expanding any template variables
 	 */
-	function recursiveTagParse( $text ) {
+	function recursiveTagParse( $text, $frame=false ) {
 		wfProfileIn( __METHOD__ );
 		wfRunHooks( 'ParserBeforeStrip', array( &$this, &$text, &$this->mStripState ) );
 		wfRunHooks( 'ParserAfterStrip', array( &$this, &$text, &$this->mStripState ) );
-		$text = $this->internalParse( $text, false );
+		$text = $this->internalParse( $text, false, $frame );
 		wfProfileOut( __METHOD__ );
 		return $text;
 	}
@@ -862,7 +867,7 @@ class Parser
 	 *
 	 * @private
 	 */
-	function internalParse( $text, $isMain = true ) {
+	function internalParse( $text, $isMain = true, $frame=false ) {
 		wfProfileIn( __METHOD__ );
 		
 		$origText = $text;
@@ -873,7 +878,22 @@ class Parser
 			return $text ;
 		}
 
-		$text = $this->replaceVariables( $text );
+		// if $frame is provided, then use $frame for replacing any variables
+		if ($frame) {
+			// use frame depth to infer how include/noinclude tags should be handled
+			// depth=0 means this is the top-level document; otherwise it's an included document
+			if( !$frame->depth ) 
+				$flag = 0;
+			else
+				$flag = Parser::PTD_FOR_INCLUSION;
+			$dom = $this->preprocessToDom( $text, $flag );
+			$text = $frame->expand( $dom );
+		}
+		// if $frame is not provided, then use old-style replaceVariables
+		else {
+			$text = $this->replaceVariables( $text );
+		}
+
 		$text = Sanitizer::removeHTMLtags( $text, array( &$this, 'attributeStripCallback' ), false, array_keys( $this->mTransparentTagHooks ) );
 		wfRunHooks( 'InternalParseBeforeLinks', array( &$this, &$text, &$this->mStripState ) );
 
@@ -2277,7 +2297,7 @@ class Parser
 	 *
 	 * @private
 	 */
-	function getVariableValue( $index ) {
+	function getVariableValue( $index, $frame=false ) {
 		global $wgContLang, $wgSitename, $wgServer, $wgServerName, $wgScriptPath;
 
 		/**
@@ -2500,7 +2520,7 @@ class Parser
 				return $wgContLanguageCode;
 			default:
 				$ret = null;
-				if ( wfRunHooks( 'ParserGetVariableValueSwitch', array( &$this, &$this->mVarCache, &$index, &$ret ) ) )
+				if ( wfRunHooks( 'ParserGetVariableValueSwitch', array( &$this, &$this->mVarCache, &$index, &$ret, &$frame ) ) )
 					return $ret;
 				else
 					return null;
@@ -2707,7 +2727,7 @@ class Parser
 		if ( !$found && $args->getLength() == 0 ) {
 			$id = $this->mVariables->matchStartToEnd( $part1 );
 			if ( $id !== false ) {
-				$text = $this->getVariableValue( $id );
+				$text = $this->getVariableValue( $id, $frame );
 				if (MagicWord::getCacheTTL($id)>-1)
 					$this->mOutput->mContainsOldMagic = true;
 				$found = true;
@@ -3210,7 +3230,7 @@ class Parser
 							throw new MWException( "Tag hook for $name is not callable\n" );
 						}
 						$output = call_user_func_array( $this->mTagHooks[$name],
-							array( $content, $attributes, $this ) );
+							array( $content, $attributes, $this, $frame ) );
 					} elseif( isset( $this->mFunctionTagHooks[$name] ) ) {
 						list( $callback, $flags ) = $this->mFunctionTagHooks[$name];
 						if( !is_callable( $callback ) )
