@@ -197,8 +197,6 @@ this. Was used when mwEmbed was going to be an extension.
 * (bug 20404) Custom fields in the user creation form template can now have
   detail labels in prefsectiontip divs.
 * MakeSysop and MakeBot are now aliases for Special:UserRights
-* IndexPager->mLimitsShown can now be an associative array of limit => text-to-
-  display-in-limit-form.
 
 === Bug fixes in 1.16 ===
 
