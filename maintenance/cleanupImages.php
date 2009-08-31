@@ -101,6 +101,14 @@ class ImageCleanup extends TableCleanup {
 		return $this->repo->getRootDirectory() . '/' . $this->repo->getHashPath( $name ) . $name;
 	}
 
+	function imageExists( $name, $db ) {
+		return $db->selectField( 'image', '1', array( 'img_name' => $name ), __METHOD__ );
+	}
+
+	function pageExists( $name, $db ) {
+		return $db->selectField( 'page', '1', array( 'page_namespace' => NS_FILE, 'page_title' => $name ), __METHOD__ );
+	}
+	
 	private function pokeFile( $orig, $new ) {
 		$path = $this->filePath( $orig );
 		if( !file_exists( $path ) ) {
@@ -109,14 +117,24 @@ class ImageCleanup extends TableCleanup {
 		}
 		
 		$db = wfGetDB( DB_MASTER );
+
+		/*
+		 * To prevent key collisions in the update() statements below,
+		 * if the target title exists in the image table, or if both the
+		 * original and target titles exist in the page table, append
+		 * increasing version numbers until the target title exists in
+		 * neither.  (See also bug 16916.)
+		 */
 		$version = 0;
 		$final = $new;
+		$conflict = ( $this->imageExists( $final, $db ) ||
+			      ( $this->pageExists( $orig, $db ) && $this->pageExists( $final, $db ) ) );
 		
-		while( $db->selectField( 'image', 'img_name', array( 'img_name' => $final ), __METHOD__ ) ||
-			Title::makeTitle( NS_FILE, $final )->exists() ) {
+		while( $conflict ) {
 			$this->output( "Rename conflicts with '$final'...\n" );
 			$version++;
 			$final = $this->appendTitle( $new, "_$version" );
+			$conflict = ( $this->imageExists( $final, $db ) || $this->pageExists( $final, $db ) );
 		}
 		
 		$finalPath = $this->filePath( $final );
