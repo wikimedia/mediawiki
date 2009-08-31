@@ -3814,6 +3814,7 @@ Others will be hidden by default.
 'watchlistall2'    => 'all',
 'namespacesall'    => 'all',
 'monthsall'        => 'all',
+'limitall'         => 'all',
 
 # E-mail address confirmation
 'confirmemail'             => 'Confirm e-mail address',
