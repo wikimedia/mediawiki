@@ -3158,6 +3158,7 @@ $1',
 'watchlistall2'    => 'הכול',
 'namespacesall'    => 'הכול',
 'monthsall'        => 'הכול',
+'limitall'         => 'הכול',
 
 # E-mail address confirmation
 'confirmemail'             => 'אימות כתובת דוא"ל',
