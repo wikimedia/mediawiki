@@ -3000,6 +3000,7 @@ Ondan sonraki link(ler) kural dışı olarak kabul edilir, örneğin: resim sayf
 'watchlistall2'    => 'Hepsini göster',
 'namespacesall'    => 'Hepsi',
 'monthsall'        => 'hepsi',
+'limitall'         => 'tümü',
 
 # E-mail address confirmation
 'confirmemail'             => 'E-posta adresini onayla',
@@ -3211,7 +3212,7 @@ Dosya adını "{{ns:file}}:" öneki olmadan gir.',
 'tag-filter-submit'       => 'Süzgeç',
 'tags-title'              => 'Etiketler',
 'tags-intro'              => 'Bu sayfa, yazılımın bir değişikliği işaretleyebileceği etiketleri ve bunların anlamlarını listeler.',
-'tags-tag'                => 'Dahili etiket adı',
+'tags-tag'                => 'Etiket adı',
 'tags-display-header'     => 'Değişiklik listelerindeki görünüm',
 'tags-description-header' => 'Anlamının tam açıklaması',
 'tags-hitcount-header'    => 'Etiketli değişiklikler',

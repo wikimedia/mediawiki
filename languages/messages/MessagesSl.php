@@ -2850,7 +2850,7 @@ Vnesite ime datoteke brez predpone »{{ns:image}}:«.',
 'tag-filter'        => 'Filter [[Special:Tags|oznak]]:',
 'tag-filter-submit' => 'Filter',
 'tags-title'        => 'Oznake',
-'tags-tag'          => 'Notranje ime oznake',
+'tags-tag'          => 'Ime oznake',
 'tags-edit'         => 'uredi',
 'tags-hitcount'     => '$1 {{PLURAL:$1|sprememba|spremembi|spremembe|sprememb|sprememb}}',
 

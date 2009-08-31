@@ -2884,6 +2884,7 @@ Nasledne wotkazy na samsnej lince definuja wuwzaća, hdźež so wobraz smě naje
 'watchlistall2'    => 'wšě',
 'namespacesall'    => 'wšě',
 'monthsall'        => 'wšě',
+'limitall'         => 'wšě',
 
 # E-mail address confirmation
 'confirmemail'             => 'Emailowu adresu wobkrućić',
@@ -3089,7 +3090,7 @@ Zapodaj datajowe mjeno '''bjez''' prefiksa \"{{ns:file}}:\".",
 'tag-filter-submit'       => 'Filter',
 'tags-title'              => 'Taflički',
 'tags-intro'              => 'Tuta strona nalistuje taflički, z kotrymiž softwara móže změnu markěrować a jich woznam.',
-'tags-tag'                => 'Interne mjeno taflički',
+'tags-tag'                => 'Mjeno taflički',
 'tags-display-header'     => 'Napohlad na lisćinach změnow',
 'tags-description-header' => 'Dospołne wopisanje woznama',
 'tags-hitcount-header'    => 'Změny z tafličkami',

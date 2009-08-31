@@ -3033,6 +3033,7 @@ Existen otros campos que se mantendrán ocultos por defecto.
 'watchlistall2'    => 'todos',
 'namespacesall'    => 'todos',
 'monthsall'        => 'todos',
+'limitall'         => 'Todos',
 
 # E-mail address confirmation
 'confirmemail'             => 'Confirmar dirección de correo electrónico',
@@ -3239,7 +3240,7 @@ Ingrese el nombre del archivo sin el prefijo "{{ns:file}}:".',
 'tag-filter-submit'       => 'Filtro',
 'tags-title'              => 'Etiquetas',
 'tags-intro'              => 'Esta página lista las etiquetas con las que el software puede marcar una edición y su significado.',
-'tags-tag'                => 'Nombre de la etiqueta interna',
+'tags-tag'                => 'Nombre de etiqueta',
 'tags-display-header'     => 'Apariencia de la lista de cambios',
 'tags-description-header' => 'Descripción completa de significado',
 'tags-hitcount-header'    => 'Cambios etiquetados',

@@ -237,7 +237,7 @@ $messages = array(
 'projectpage'       => 'ግብራዊ ገጹን ለማየት',
 'imagepage'         => 'የፋይሉን ገጽ ለማየት',
 'mediawikipage'     => 'የመልእክቱን ገጽ ለማየት',
-'templatepage'      => 'የመልጠፊያውን ገጽ ለማየት',
+'templatepage'      => 'የመለጠፊያውን ገጽ ለማየት',
 'viewhelppage'      => 'የእርዳታ ገጽ ለማየት',
 'categorypage'      => 'የመደቡን ገጽ ለማየት',
 'viewtalkpage'      => 'ውይይቱን ለማየት',
@@ -574,8 +574,8 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'cascadeprotectedwarning'          => "'''ማስጠንቀቂያ፦''' ይህ ገጽ በመጋቢ ብቻ እንዲታረም ተቆልፏል። ምክንያቱም {{PLURAL:$1|በሚከተለው በውስጡ የሚያቆልፍ ገጽ|በሚከተሉ በውስጡ ይሚያቆልፉ ገጾች}} ውስጥ ይገኛል።",
 'titleprotectedwarning'            => "'''ማስጠንቀቂያ፦ ይህ ገጽ አንዳንድ ተጠቃሚ ብቻ ሊፈጠር እንዲችል ተቆልፏል።'''",
 'templatesused'                    => 'በዚሁ ገጽ ላይ የሚገኙት መለጠፊያዎች እነዚህ ናቸው፦',
-'templatesusedpreview'             => 'በዚሁ ቅድመ-እይታ የሚገኙት መልጠፊያዎች እነዚህ ናቸው፦',
-'templatesusedsection'             => 'በዚሁ ክፍል የተጠቀሙት መልጠፊያዎች፦',
+'templatesusedpreview'             => 'በዚሁ ቅድመ-እይታ የሚገኙት መለጠፊያዎች እነዚህ ናቸው፦',
+'templatesusedsection'             => 'በዚሁ ክፍል የተጠቀሙት መለጠፊያዎች፦',
 'template-protected'               => '(የተቆለፈ)',
 'template-semiprotected'           => '(በከፊል የተቆለፈ)',
 'hiddencategories'                 => 'ይህ ገጽ በ{{PLURAL:$1|1 የተደበቀ መደብ|$1 የተደበቁ መድቦች}} ውስጥ ይገኛል።',
@@ -1147,8 +1147,8 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'listredirects' => 'መምሪያ መንገዶች ሁሉ',
 
 # Unused templates
-'unusedtemplates'     => 'ያልተለጠፉ መልጠፊያዎች',
-'unusedtemplatestext' => 'እነኚህ መልጠፊያዎች አሁን ባንዳችም ገጽ ላይ አልተለጠፉም።',
+'unusedtemplates'     => 'ያልተለጠፉ መለጠፊያዎች',
+'unusedtemplatestext' => 'በ{{ns:template}} ክፍለ-ዊኪ ያሉት መለጠፊያዎች በአንዳችም ገጽ ላይ ካልተለጠፉ፣ በዚህ ገጽ ይዘረዝራሉ። መጋቢዎች ሳያጥፉዋቸው ግን ወደነሱ ሌላ መያያዣ አለመኖሩን ያረጋግጡ።',
 'unusedtemplateswlh'  => 'ሌሎች መያያዣዎች',
 
 # Random page
@@ -1177,7 +1177,7 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'disambiguations'      => 'ወደ መንታ መንገድ የሚያያይዝ',
 'disambiguationspage'  => 'Template:መንታ',
 'disambiguations-text' => "የሚከተሉት ጽሑፎች ወደ '''መንታ መንገድ''' እየተያያዙ ነውና ብዙ ጊዜ እንዲህ ሳይሆን ወደሚገባው ርዕስ ቢወስዱ ይሻላል። <br />
-መንታ መንገድ ማለት የመንታ መልጠፊያ ([[MediaWiki:Disambiguationspage]]) ሲኖርበት ነው።",
+መንታ መንገድ ማለት የመንታ መለጠፊያ ([[MediaWiki:Disambiguationspage]]) ሲኖርበት ነው።",
 
 'doubleredirects'            => 'ድርብ መምሪያ መንገዶች',
 'doubleredirectstext'        => 'ይህ ድርብ መምሪያ መንገዶች ይዘርዘራል።
@@ -1211,17 +1211,17 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'uncategorizedpages'      => 'ገና ያልተመደቡ ጽሑፎች',
 'uncategorizedcategories' => 'ያልተመደቡ መደቦች (ንዑስ ያልሆኑ)',
 'uncategorizedimages'     => 'ያልተመደቡ ፋይሎች',
-'uncategorizedtemplates'  => 'ያልተመደቡ መልጠፊያዎች',
+'uncategorizedtemplates'  => 'ያልተመደቡ መለጠፊያዎች',
 'unusedcategories'        => 'ባዶ መደቦች',
 'unusedimages'            => 'ያልተያያዙ ፋይሎች',
 'popularpages'            => 'የሚወደዱ ገጾች',
 'wantedcategories'        => 'ቀይ መያያዣዎች የበዙላቸው መደቦች',
 'wantedpages'             => 'ቀይ መያያዣዎች የበዙላቸው አርእስቶች',
 'wantedfiles'             => 'የተፈለጉ ፋይሎች',
-'wantedtemplates'         => 'የተፈለጉ መልጠፊያዎች',
+'wantedtemplates'         => 'የተፈለጉ መለጠፊያዎች',
 'mostlinked'              => 'መያያዣዎች የበዙላቸው ገጾች',
 'mostlinkedcategories'    => 'መያያዣዎች የበዙላቸው መደቦች',
-'mostlinkedtemplates'     => 'መያያዣዎች የበዙላቸው መልጠፊያዎች',
+'mostlinkedtemplates'     => 'መያያዣዎች የበዙላቸው መለጠፊያዎች',
 'mostcategories'          => 'መደቦች የበዙላቸው መጣጥፎች',
 'mostimages'              => 'መያያዣዎች የበዙላቸው ስዕሎች',
 'mostrevisions'           => 'ለውጦች የበዙላቸው መጣጥፎች',
@@ -1735,7 +1735,7 @@ $1 አሁን ገና ታግዷል። ዝርዝሩን ማስተካከል ፈለጉ
 'export-addcattext' => 'ከዚሁ መደብ ገጾች ይጨመሩ፦',
 'export-addcat'     => 'ለመጨምር',
 'export-download'   => 'እንደ ፋይል ለመቆጠብ',
-'export-templates'  => 'ከነመልጠፊያዎቹ',
+'export-templates'  => 'ከነመለጠፊያዎቹ',
 
 # Namespace 8 related
 'allmessages'               => 'የድረገጽ መልክ መልእክቶች',
@@ -1826,7 +1826,7 @@ Please visit [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation]
 'tooltip-ca-nstab-project'        => 'ግብራዊ ገጹን ለማየት',
 'tooltip-ca-nstab-image'          => 'የፋይሉን ገጽ ለማየት',
 'tooltip-ca-nstab-mediawiki'      => 'መልእክቱን ለማየት',
-'tooltip-ca-nstab-template'       => 'የመልጠፊያውን ገጽ ለመመልከት',
+'tooltip-ca-nstab-template'       => 'የመለጠፊያውን ገጽ ለመመልከት',
 'tooltip-ca-nstab-help'           => 'የእርዳታ ገጽ ለማየት',
 'tooltip-ca-nstab-category'       => 'የመደቡን ገጽ ለማየት',
 'tooltip-minoredit'               => 'እንደ ጥቃቅን ለውጥ (ጥ) ለማመልከት',

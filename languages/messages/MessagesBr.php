@@ -308,7 +308,7 @@ $messages = array(
 'newpage'           => 'Pajenn nevez',
 'talkpage'          => 'Pajenn gaozeal',
 'talkpagelinktext'  => 'Kaozeal',
-'specialpage'       => 'Pajenn zibar',
+'specialpage'       => 'Pajenn dibar',
 'personaltools'     => 'Ostilhoù personel',
 'postcomment'       => 'Rann nevez',
 'articlepage'       => 'Sellet ouzh ar pennad',
@@ -409,8 +409,10 @@ $1',
 'nosuchactiontext'  => "Direizh eo an ober spisaet en URL.
 Marteze hoc'h eus graet ur fazi bizskrivañ en URL pe heuliet ul liamm kamm.
 Marteze zo un draen er meziant implijet gant {{SITENAME}} ivez.",
-'nosuchspecialpage' => "N'eus ket eus ar bajenn zibar-mañ",
-'nospecialpagetext' => "Goulennet hoc'h eus ur bajenn zibar n'eo ket anavezet gant ar wiki.",
+'nosuchspecialpage' => "N'eus ket eus ar bajenn dibar-mañ",
+'nospecialpagetext' => "<big>'''Goulennet hoc'h eus ur bajenn dibar n'eus ket anezhi.'''</big>
+
+Ur roll eus ar pajennoù dibar reizh a c'hallit kavour war [[Special:SpecialPages|{{int:specialpages}}]].",
 
 # General errors
 'error'                => 'Fazi',
@@ -464,7 +466,7 @@ Goulenn : $2",
 'viewsource'           => 'Sellet ouzh tarzh an destenn',
 'viewsourcefor'        => 'evit $1',
 'actionthrottled'      => 'Ober daleet',
-'actionthrottledtext'  => "A-benn dizarbenn ar spam, n'haller ket implijout an ober-mañ re alies en ur frapad amzer lakaet, hag aet oc'h dreist ar muzul. Klaskit en-dro a-benn un nebeut munutennoù.",
+'actionthrottledtext'  => "A-benn dizarbenn ar strob, n'haller ket implijout an ober-mañ re alies en ur frapad amzer lakaet, hag aet oc'h dreist ar muzul. Klaskit en-dro a-benn un nebeut munutennoù.",
 'protectedpagetext'    => "Prennet eo bet ar bajenn-mañ. N'haller ket degas kemmoù enni.",
 'viewsourcetext'       => 'Gallout a rit gwelet hag eilañ danvez ar bajenn-mañ',
 'protectedinterface'   => 'Testenn ar bajenn-mañ a dalvez evit etrefas ar meziant. Setu perak eo bet gwarezet ar bajenn.',
@@ -571,7 +573,7 @@ Na daolit ket evezh ouzh ar c\'hemenn-mañ m\'eo bet krouet ar gont dre fazi.',
 'newpassword'               => 'Ger-tremen nevez :',
 'retypenew'                 => 'Kadarnaat ar ger-tremen nevez',
 'resetpass_submit'          => 'Kemmañ ar ger-tremen hag en em lugañ',
-'resetpass_success'         => "Kemmet mat eo bet ho ker-temen ! Emaoc'h oc'h en em lugañ e-barzh...",
+'resetpass_success'         => "Kemmet mat eo bet ho ker-tremen ! Emaoc'h oc'h en em lugañ e-barzh...",
 'resetpass_forbidden'       => "N'haller ket cheñch ar gerioù-termen",
 'resetpass-no-info'         => "Ret eo deoc'h bezañ luget a-benn mont d'ar bajenn-se war-eeun.",
 'resetpass-submit-loggedin' => 'Kemmañ ar ger-tremen',
@@ -592,7 +594,7 @@ Na daolit ket evezh ouzh ar c\'hemenn-mañ m\'eo bet krouet ar gont dre fazi.',
 'math_sample'     => 'Lakait ho formulenn amañ',
 'math_tip'        => 'Formulenn jedoniel (LaTeX)',
 'nowiki_sample'   => 'Lakait an destenn anfurmadet amañ',
-'nowiki_tip'      => 'Na ober van da ereadur ar wiki',
+'nowiki_tip'      => 'Na ober van ouzh ereadur ar wiki',
 'image_sample'    => 'Skouer.jpg',
 'image_tip'       => 'Skeudenn enframmet',
 'media_sample'    => 'Skouer.ogg',
@@ -1359,7 +1361,7 @@ Gallout a rit lezel tud all da vont e darempred ganeoc'h dre ho pajennoù implij
 'recentchangeslinked-toolbox'  => 'Heuliañ al liammoù',
 'recentchangeslinked-title'    => 'Kemmoù a denn da "$1"',
 'recentchangeslinked-noresult' => 'Kemm ebet war ar pajennoù liammet e-pad an amzer spisaet.',
-'recentchangeslinked-summary'  => "Rollet eo war ar bajenn zibar-mañ ar c'hemmoù diwezhañ bet degaset war ar pajennoù liammet ouzh ur bajenn lakaet (pe ouzh izili ur rummad lakaet). 
+'recentchangeslinked-summary'  => "Rollet eo war ar bajenn dibar-mañ ar c'hemmoù diwezhañ bet degaset war ar pajennoù liammet ouzh ur bajenn lakaet (pe ouzh izili ur rummad lakaet). 
 E '''tev''' emañ ar pajennoù zo war ho [[Special:Watchlist|roll evezhiañ]].",
 'recentchangeslinked-page'     => 'Anv ar bajenn:',
 'recentchangeslinked-to'       => "Diskouez ar c'hemmoù war-du ar pajennoù liammet kentoc'h eget re ar bajenn lakaet",
@@ -1492,9 +1494,9 @@ Ma talc'h ar gudenn, kit e darempred gant [[Special:ListUsers/sysop|merourien ar
 'upload_source_file' => " (ur restr war hoc'h urzhiataer)",
 
 # Special:ListFiles
-'listfiles-summary'     => 'Diskouez a ra ar bajenn zibar-mañ an holl restroù bet enporzhiet.
+'listfiles-summary'     => 'Diskouez a ra ar bajenn dibar-mañ an holl restroù bet enporzhiet.
 Dre ziouer e teu ar restroù enporzhiet da ziwezhañ e laez ar roll.
-Klikañ war penn ar bann a cheñch an urzh kinnig.',
+Klikañ e penn ar bann a cheñch an urzh kinnig.',
 'listfiles_search_for'  => 'Klask anv ar skeudenn :',
 'imgfile'               => 'restr',
 'listfiles'             => 'Roll ar skeudennoù',
@@ -1992,7 +1994,7 @@ Setu an doare a-vremañ evit ar bajenn-mañ '''$1''':",
 'protect-otherreason-op'      => 'abeg all/ouzhpenn',
 'protect-dropdown'            => '*Abegoù gwareziñ boutin
 ** Vandalerezh betek re
-** Spammerezh betek re
+** Stroberezh betek re
 ** Tabutoù toull war kemmoù zo
 ** Pajenn kemmet alies-tre',
 'protect-edit-reasonlist'     => 'Kemmañ abegoù ar gwareziñ',
@@ -2124,7 +2126,7 @@ Roit a-is an abeg resis (o verkañ, da skouer, roll ar pajennoù bet graet gaou 
 'ipbreason-dropdown'              => "*Abegoù stankañ boutinañ
 ** Degas titouroù faos
 ** Tennañ danvez eus ar pajennoù
-** Degas liammoù Spam war-du lec'hiennoù diavaez
+** Degas liammoù Strobus war-du lec'hiennoù diavaez
 ** Degas danvez diboell/dizoare er pajennoù
 ** Emzalc'h hegazus/handeus betek re
 ** Mont re bell gant implij meur a gont
@@ -2493,11 +2495,11 @@ Talvezout a ra da ouzhpennañ un displegadenn er c\'hombod diverrañ.',
 'nocredits'        => "N'eus tamm titour kred hegerz ebet evit ar bajenn-mañ.",
 
 # Spam protection
-'spamprotectiontitle' => "Pajenn warezet ent emgefre abalamour d'ar Spam",
+'spamprotectiontitle' => "Sil gwareziñ a-enep d'ar Strob",
 'spamprotectiontext'  => "Stanket eo bet ar bajenn a felle deoc'h enrollañ gant ar siler stroboù.
 Sur a-walc'h abalamour d'ul liamm enni a gas d'ul lec'hienn ziavaez berzet.",
-'spamprotectionmatch' => 'Dihunet eo bet an detektour Spam: $1 gant an destenn-mañ',
-'spambot_username'    => 'Naetaat spam MediaWiki',
+'spamprotectionmatch' => 'Dihunet eo bet an detektour Strob gant an destenn-mañ : $1',
+'spambot_username'    => 'Naetaat ar strob gant MediaWiki',
 'spam_reverting'      => "Distreiñ d'ar stumm diwezhañ hep liamm davet $1",
 'spam_blanking'       => 'Diverkañ an holl stummoù enno liammoù davet $1',
 
@@ -2592,7 +2594,7 @@ $1',
 # Special:NewFiles
 'newimages'             => 'Roll ar restroù nevez',
 'imagelisttext'         => "Setu aze ur roll '''$1''' {{PLURAL:$1|file|files}} rummet $2.",
-'newimages-summary'     => 'Diskouez a ra ar bajenn zibar-mañ roll ar restroù diwezhañ bet enporzhiet.',
+'newimages-summary'     => 'Diskouez a ra ar bajenn dibar-mañ roll ar restroù diwezhañ bet enporzhiet.',
 'newimages-legend'      => 'Sil',
 'newimages-label'       => 'Anv ar restr (pe darn anezhi) :',
 'showhidebots'          => '($1 bot)',
@@ -3118,7 +3120,7 @@ Merkañ anv ar restr hep ar rakger "{{ns:file}}:"',
 'tag-filter-submit'       => 'Silañ',
 'tags-title'              => 'Balizennoù',
 'tags-intro'              => "Rollañ a ra ar bajenn-mañ ar balizennoù a c'hall ar meziant implijout da verkañ kemmoù hag an dalvoudegezh anezho.",
-'tags-tag'                => 'Anv diabarzh ar valizenn',
+'tags-tag'                => 'Anv ar valizenn',
 'tags-display-header'     => "Neuz e rolloù ar c'hemmoù",
 'tags-description-header' => 'Deskrivadur klok ar valizenn',
 'tags-hitcount-header'    => 'Kemmoù balizennet',

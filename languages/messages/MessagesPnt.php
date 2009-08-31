@@ -1228,6 +1228,7 @@ $messages = array(
 'tooltip-search-go'               => 'Δέβα σε σελίδαν με αΐκον όνεμαν αν υπάρχει',
 'tooltip-search-fulltext'         => 'Εύρον αούτον το κείμενον',
 'tooltip-n-mainpage'              => 'Τερέστεν το αρχικόν τη σελίδαν',
+'tooltip-n-mainpage-description'  => 'Τερέστεν το αρχικόν τη σελίδαν',
 'tooltip-n-portal'                => 'Σχετικά με το Wiκi - πώς μπορείτε να εφτάτε γιαρτήμ, πού θα ευρίετε πράγματα',
 'tooltip-n-currentevents'         => "Εύρον άλλα πληροφορίας για τ' ατά ντ' ίντανε οψεκές.",
 'tooltip-n-recentchanges'         => "Κατάλογον με τ' υστερνά αλλαγάς σο wiki.",

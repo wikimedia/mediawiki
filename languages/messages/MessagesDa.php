@@ -17,6 +17,7 @@
  * @author Jan Friberg
  * @author Jon Harald Søby
  * @author Lars J. Helbo <lars.helbo@gmail.com>
+ * @author Leolaursen
  * @author Masz
  * @author MinuteElectron
  * @author Morten LJ
@@ -252,7 +253,7 @@ $messages = array(
 'december'      => 'december',
 'january-gen'   => 'januars',
 'february-gen'  => 'februars',
-'march-gen'     => 'marts',
+'march-gen'     => "marts'",
 'april-gen'     => 'aprils',
 'may-gen'       => 'majs',
 'june-gen'      => 'junis',
@@ -3131,7 +3132,7 @@ Angiv filnavnet uden "{{ns:file}}:"-præfikset.',
 'tags-title'              => 'Tags',
 'tags-intro'              => 'This page lists the tags that the software may mark an edit with, and their meaning.
 Denne side oplister de tags som programmet kan mærke en redigering med, og deres betydning.',
-'tags-tag'                => 'Internt tagnavn',
+'tags-tag'                => 'Tagnavn',
 'tags-display-header'     => 'Udseende på ændringslister',
 'tags-description-header' => 'Beskrivelse af betydning',
 'tags-hitcount-header'    => 'Taggede ændringer',

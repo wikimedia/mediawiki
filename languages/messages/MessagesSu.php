@@ -2018,6 +2018,7 @@ Sadaya aktivitas impor transwiki baris kacatet dina [[Special:Log/import|log imp
 'tooltip-search-fulltext'         => 'Sungsi kaca-kaca nu ngandung tulisan ieu',
 'tooltip-p-logo'                  => 'Tepas',
 'tooltip-n-mainpage'              => 'Sindang ka Tepas',
+'tooltip-n-mainpage-description'  => 'Sindang ka Tepas',
 'tooltip-n-portal'                => 'Ngeunaan proyékna, naon nu bisa dipigawé, di mana néangan naon',
 'tooltip-n-currentevents'         => 'Panggihan iber ngeunaan naon baé nu keur lumangsung',
 'tooltip-n-recentchanges'         => 'Daptar nu anyar robah na wiki.',
