@@ -2433,6 +2433,7 @@ $1',
 'watchlistall2'    => '全',
 'namespacesall'    => '全',
 'monthsall'        => '全',
+'messagesall'      => '全',
 
 # E-mail address confirmation
 'confirmemail'             => '核郵驛',
