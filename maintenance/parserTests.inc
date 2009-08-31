@@ -367,6 +367,12 @@ class ParserTest {
 						$section = null;
 						continue;
 					}
+					if ( preg_match('/\\bmath\\b/i', $data['options']) && !$this->savedGlobals['wgUseTeX'] ) {
+						# don't run math tests if $wgUseTeX is set to false in LocalSettings
+						$data = array();
+						$section = null;
+						continue;
+					}
 					$result = $this->runTest(
 						$this->chomp( $data['test'] ),
 						$this->chomp( $data['input'] ),
