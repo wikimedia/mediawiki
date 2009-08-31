@@ -41,6 +41,7 @@ class Article {
 	var $mUser = -1;                  //!< Not loaded
 	var $mUserText = '';              //!<
 	var $mParserOptions;              //!<
+	var $mParserOutput;               //!<
 	/**@}}*/
 
 	/**
@@ -772,7 +773,6 @@ class Article {
 		}
 
 		$wgOut->setArticleFlag( true );
-		$wgOut->setRobotPolicy( $this->getRobotPolicyForView() );
 		# Set page title (may be overridden by DISPLAYTITLE)
 		$wgOut->setPageTitle( $this->mTitle->getPrefixedText() );
 
@@ -794,8 +794,8 @@ class Article {
 		# For the main page, overwrite the <title> element with the con-
 		# tents of 'pagetitle-view-mainpage' instead of the default (if
 		# that's not empty).
-		if( $this->mTitle->equals( Title::newMainPage() ) 
-			&& wfMsgForContent( 'pagetitle-view-mainpage' ) !== '' ) 
+		if( $this->mTitle->equals( Title::newMainPage() )
+			&& wfMsgForContent( 'pagetitle-view-mainpage' ) !== '' )
 		{
 			$wgOut->setHTMLTitle( wfMsgForContent( 'pagetitle-view-mainpage' ) );
 		}
@@ -803,108 +803,123 @@ class Article {
 		$wasRedirected = $this->showRedirectedFromHeader();
 		$this->showNamespaceHeader();
 
+		# Iterate through the possible ways of constructing the output text.
+		# Keep going until $outputDone is set, or we run out of things to do.
+		$pass = 0;
 		$outputDone = false;
-		wfRunHooks( 'ArticleViewHeader', array( &$this, &$outputDone, &$useParserCache ) );
+		while( !$outputDone && ++$pass ){
+			switch( $pass ){
 
-		# Try the parser cache
-		if( !$outputDone && $useParserCache ) {
-			$parserOutput = $parserCache->get( $this, $parserOptions );
-			if ( $parserOutput !== false ) {
-				wfDebug( __METHOD__.": showing parser cache contents\n" );
-				$wgOut->addParserOutput( $parserOutput );
-				// Ensure that UI elements requiring revision ID have
-				// the correct version information.
-				$wgOut->setRevisionId( $this->mLatest );
-				$outputDone = true;
+				case 1:
+					wfRunHooks( 'ArticleViewHeader', array( &$this, &$outputDone, &$useParserCache ) );
+					break;
+
+				case 2:
+					# Try the parser cache
+					if( $useParserCache ) {
+						$this->mParserOutput = $parserCache->get( $this, $parserOptions );
+						if ( $this->mParserOutput !== false ) {
+							wfDebug( __METHOD__.": showing parser cache contents\n" );
+							$wgOut->addParserOutput( $this->mParserOutput );
+							# Ensure that UI elements requiring revision ID have
+							# the correct version information.
+							$wgOut->setRevisionId( $this->mLatest );
+							$outputDone = true;
+						}
+					}
+					break;
+
+				case 3:
+					$text = $this->getContent();
+					if( $text === false || $this->getID() == 0 ) {
+						wfDebug( __METHOD__.": showing missing article\n" );
+						$this->showMissingArticle();
+						wfProfileOut( __METHOD__ );
+						return;
+					}
+
+					# Another whitelist check in case oldid is altering the title
+					if( !$this->mTitle->userCanRead() ) {
+						wfDebug( __METHOD__.": denied on secondary read check\n" );
+						$wgOut->loginToUse();
+						$wgOut->output();
+						$wgOut->disable();
+						wfProfileOut( __METHOD__ );
+						return;
+					}
+
+					# Are we looking at an old revision
+					if( $oldid && !is_null( $this->mRevision ) ) {
+						$this->setOldSubtitle( $oldid );
+						if ( !$this->showDeletedRevisionHeader() ) {
+							wfDebug( __METHOD__.": cannot view deleted revision\n" );
+							wfProfileOut( __METHOD__ );
+							return;
+						}
+
+						if ( $oldid === $this->getLatest() && $this->useParserCache( false ) ) {
+							$this->mParserOutput = $parserCache->get( $this, $parserOptions );
+							if ( $this->mParserOutput ) {
+								wfDebug( __METHOD__.": showing parser cache for current rev permalink\n" );
+								$wgOut->addParserOutput( $this->mParserOutput );
+								$this->showViewFooter();
+								$this->viewUpdates();
+								wfProfileOut( __METHOD__ );
+								return;
+							}
+						}
+					}
+
+					# Ensure that UI elements requiring revision ID have
+					# the correct version information.
+					$wgOut->setRevisionId( $this->getRevIdFetched() );
+
+					# Pages containing custom CSS or JavaScript get special treatment
+					if( $this->mTitle->isCssOrJsPage() || $this->mTitle->isCssJsSubpage() ) {
+						wfDebug( __METHOD__.": showing CSS/JS source\n" );
+						$this->showCssOrJsPage();
+						$outputDone = true;
+					} else if( $rt = Title::newFromRedirectArray( $text ) ) {
+						wfDebug( __METHOD__.": showing redirect=no page\n" );
+						# Viewing a redirect page (e.g. with parameter redirect=no)
+						# Don't append the subtitle if this was an old revision
+						$wgOut->addHTML( $this->viewRedirect( $rt, !$wasRedirected && $this->isCurrent() ) );
+						# Parse just to get categories, displaytitle, etc.
+						$this->mParserOutput = $wgParser->parse( $text, $this->mTitle, $parserOptions );
+						$wgOut->addParserOutputNoText( $this->mParserOutput );
+						$outputDone = true;
+					}
+					break;
+
+				case 4:
+					# Run the parse, protected by a pool counter
+					wfDebug( __METHOD__.": doing uncached parse\n" );
+					$key = $parserCache->getKey( $this, $parserOptions );
+					$poolCounter = PoolCounter::factory( 'Article::view', $key );
+					$dirtyCallback = $useParserCache ? array( $this, 'tryDirtyCache' ) : false;
+					$status = $poolCounter->executeProtected( array( $this, 'doViewParse' ), $dirtyCallback );
+
+					if ( !$status->isOK() ) {
+						# Connection or timeout error
+						$this->showPoolError( $status );
+						wfProfileOut( __METHOD__ );
+						return;
+					} else {
+						$outputDone = true;
+					}
+					break;
+
+				# Should be unreachable, but just in case...
+				default:
+					break 2;
 			}
 		}
 
-		if ( $outputDone ) {
-			$this->showViewFooter();
-			$this->viewUpdates();
-			wfProfileOut( __METHOD__ );
-			return;
-		}
-
-		$text = $this->getContent();
-		if( $text === false || $this->getID() == 0 ) {
-			wfDebug( __METHOD__.": showing missing article\n" );
-			$this->showMissingArticle();
-			wfProfileOut( __METHOD__ );
-			return;
-		}
-
-		# Another whitelist check in case oldid is altering the title
-		if( !$this->mTitle->userCanRead() ) {
-			wfDebug( __METHOD__.": denied on secondary read check\n" );
-			$wgOut->loginToUse();
-			$wgOut->output();
-			$wgOut->disable();
-			wfProfileOut( __METHOD__ );
-			return;
-		}
-
-		# We're looking at an old revision
-		if( $oldid && !is_null( $this->mRevision ) ) {
-			$this->setOldSubtitle( $oldid );
-			if ( !$this->showDeletedRevisionHeader() ) {
-				wfDebug( __METHOD__.": cannot view deleted revision\n" );
-				wfProfileOut( __METHOD__ );
-				return;
-			}
-
-			if ( $oldid === $this->getLatest() && $this->useParserCache( false ) ) {
-				$parserOutput = $parserCache->get( $this, $parserOptions );
-				if ( $parserOutput ) {
-					wfDebug( __METHOD__.": showing parser cache for current rev permalink\n" );
-					$wgOut->addParserOutput( $parserOutput );
-					$this->showViewFooter();
-					$this->viewUpdates();
-					wfProfileOut( __METHOD__ );
-					return;
-				}
-			}
-		}
-
-		// Ensure that UI elements requiring revision ID have
-		// the correct version information.
-		$wgOut->setRevisionId( $this->getRevIdFetched() );
-
-		// Pages containing custom CSS or JavaScript get special treatment
-		if( $this->mTitle->isCssOrJsPage() || $this->mTitle->isCssJsSubpage() ) {
-			wfDebug( __METHOD__.": showing CSS/JS source\n" );
-			$this->showCssOrJsPage();
-			$outputDone = true;
-		} else if( $rt = Title::newFromRedirectArray( $text ) ) {
-			wfDebug( __METHOD__.": showing redirect=no page\n" );
-			# Viewing a redirect page (e.g. with parameter redirect=no)
-			# Don't append the subtitle if this was an old revision
-			$wgOut->addHTML( $this->viewRedirect( $rt, !$wasRedirected && $this->isCurrent() ) );
-			# Parse just to get categories, displaytitle, etc.
-			$parserOutput = $wgParser->parse( $text, $this->mTitle, $parserOptions );
-			$wgOut->addParserOutputNoText( $parserOutput );
-			$outputDone = true;
-		}
-		if ( $outputDone ) {
-			$this->showViewFooter();
-			$this->viewUpdates();
-			wfProfileOut( __METHOD__ );
-			return;
-		}
-
-		# Run the parse, protected by a pool counter
-		wfDebug( __METHOD__.": doing uncached parse\n" );
-		$key = $parserCache->getKey( $this, $parserOptions );
-		$poolCounter = PoolCounter::factory( 'Article::view', $key );
-		$dirtyCallback = $useParserCache ? array( $this, 'tryDirtyCache' ) : false;
-		$status = $poolCounter->executeProtected( array( $this, 'doViewParse' ), $dirtyCallback );
-
-		if ( !$status->isOK() ) {
-			# Connection or timeout error
-			$this->showPoolError( $status );
-			wfProfileOut( __METHOD__ );
-			return;
-		}
+		# Now that we've filled $this->mParserOutput, we know whether
+		# there are any __NOINDEX__ tags on the page
+		$policy = $this->getRobotPolicy( 'view' );
+		$wgOut->setIndexPolicy( $policy['index'] );
+		$wgOut->setFollowPolicy( $policy['follow'] );
 
 		$this->showViewFooter();
 		$this->viewUpdates();
@@ -962,8 +977,24 @@ class Article {
 
 	/**
 	 * Get the robot policy to be used for the current action=view request.
+	 * @return String the policy that should be set
+	 * @deprecated use getRobotPolicy() instead, which returns an associative
+	 *    array
 	 */
 	public function getRobotPolicyForView() {
+		wfDeprecated( __FUNC__ );
+		$policy = $this->getRobotPolicy( 'view' );
+		return $policy['index'] . ',' . $policy['follow'];
+	}
+	
+	/**
+	 * Get the robot policy to be used for the current view
+	 * @param $action String the action= GET parameter
+	 * @return Array the policy that should be set
+	 * TODO: actions other than 'view'
+	 */
+	public function getRobotPolicy( $action ){
+		
 		global $wgOut, $wgArticleRobotPolicies, $wgNamespaceRobotPolicies;
 		global $wgDefaultRobotPolicy, $wgRequest;
 
@@ -973,27 +1004,77 @@ class Article {
 			if( !$this->mTitle->isSubpage() ) {
 				$block = new Block();
 				if( $block->load( $this->mTitle->getText() ) ) {
-					return 'noindex,nofollow';
+					return array( 'index'  => 'noindex',
+					              'follow' => 'nofollow' );
 				}
 			}
 		}
 
 		if( $this->getID() === 0 || $this->getOldID() ) {
-			return 'noindex,nofollow';
+			# Non-articles (special pages etc), and old revisions
+			return array( 'index'  => 'noindex',
+			              'follow' => 'nofollow' );
 		} elseif( $wgOut->isPrintable() ) {
 			# Discourage indexing of printable versions, but encourage following
-			return 'noindex,follow';
+			return array( 'index'  => 'noindex',
+			              'follow' => 'follow' );
 		} elseif( $wgRequest->getInt('curid') ) {
 			# For ?curid=x urls, disallow indexing
-			return 'noindex,follow';
-		} elseif( isset( $wgArticleRobotPolicies[$this->mTitle->getPrefixedText()] ) ) {
-			return $wgArticleRobotPolicies[$this->mTitle->getPrefixedText()];
-		} elseif( isset( $wgNamespaceRobotPolicies[$ns] ) ) {
-			# Honour customised robot policies for this namespace
-			return $wgNamespaceRobotPolicies[$ns];
-		} else {
-			return $wgDefaultRobotPolicy;
+			return array( 'index'  => 'noindex',
+			              'follow' => 'follow' );
 		}
+
+		# Otherwise, construct the policy based on the various config variables.
+		$policy = self::formatRobotPolicy( $wgDefaultRobotPolicy );
+
+		if( isset( $wgNamespaceRobotPolicies[$ns] ) ){
+			# Honour customised robot policies for this namespace
+			$policy = array_merge( $policy,
+			                       self::formatRobotPolicy( $wgNamespaceRobotPolicies[$ns] ) );
+		}
+
+		if( $this->mTitle->canUseNoindex() && $this->mParserOutput->getIndexPolicy() ){
+			# __INDEX__ and __NOINDEX__ magic words, if allowed.
+			$policy = array_merge( $policy,
+			                       array( 'index' => $this->mParserOutput->getIndexPolicy() ) );
+		}
+
+		if( isset( $wgArticleRobotPolicies[$this->mTitle->getPrefixedText()] ) ){
+			# (bug 14900) site config can override user-defined __INDEX__ or __NOINDEX__
+			$policy = array_merge( $policy,
+			                       self::formatRobotPolicy( $wgArticleRobotPolicies[$this->mTitle->getPrefixedText()] ) );
+		}
+
+		return $policy;
+
+	}
+
+	/**
+	 * Converts a String robot policy into an associative array, to allow
+	 * merging of several policies using array_merge().
+	 * @param $policy Mixed, returns empty array on null/false/'', transparent
+	 *            to already-converted arrays, converts String.
+	 * @return associative Array: 'index' => <indexpolicy>, 'follow' => <followpolicy>
+	 */
+	public static function formatRobotPolicy( $policy ){
+		if( is_array( $policy ) ){
+			return $policy;
+		} elseif( !$policy ){
+			return array();
+		}
+
+		$policy = explode( ',', $policy );
+		$policy = array_map( 'trim', $policy );
+
+		$arr = array();
+		foreach( $policy as $var ){
+			if( in_array( $var, array('index','noindex') ) ){
+				$arr['index'] = $var;
+			} elseif( in_array( $var, array('follow','nofollow') ) ){
+				$arr['follow'] = $var;
+			}
+		}
+		return $arr;
 	}
 
 	/**
@@ -3848,9 +3929,9 @@ class Article {
 	 */
 	public function outputWikiText( $text, $cache = true, $parserOptions = false ) {
 		global $wgOut;
-		
-		$parserOutput = $this->getOutputFromWikitext( $text, $cache, $parserOptions );
-		$wgOut->addParserOutput( $parserOutput );
+
+		$this->mParserOutput = $this->getOutputFromWikitext( $text, $cache, $parserOptions );
+		$wgOut->addParserOutput( $this->mParserOutput );
 	}
 	
 	/**
@@ -3866,7 +3947,7 @@ class Article {
 		}
 
 		$time = -wfTime();
-		$parserOutput = $wgParser->parse( $text, $this->mTitle,
+		$this->mParserOutput = $wgParser->parse( $text, $this->mTitle,
 			$parserOptions, true, true, $this->getRevIdFetched() );
 		$time += wfTime();
 
@@ -3876,18 +3957,18 @@ class Article {
 				$this->mTitle->getPrefixedDBkey()));
 		}
 
-		if( $wgEnableParserCache && $cache && $this && $parserOutput->getCacheTime() != -1 ) {
+		if( $wgEnableParserCache && $cache && $this && $this->mParserOutput->getCacheTime() != -1 ) {
 			$parserCache = ParserCache::singleton();
-			$parserCache->save( $parserOutput, $this, $parserOptions );
+			$parserCache->save( $this->mParserOutput, $this, $parserOptions );
 		}
 		// Make sure file cache is not used on uncacheable content.
 		// Output that has magic words in it can still use the parser cache
 		// (if enabled), though it will generally expire sooner.
-		if( $parserOutput->getCacheTime() == -1 || $parserOutput->containsOldMagic() ) {
+		if( $this->mParserOutput->getCacheTime() == -1 || $this->mParserOutput->containsOldMagic() ) {
 			$wgUseFileCache = false;
 		}
-		$this->doCascadeProtectionUpdates( $parserOutput );
-		return $parserOutput;
+		$this->doCascadeProtectionUpdates( $this->mParserOutput );
+		return $this->mParserOutput;
 	}
 
 	/**
