@@ -557,28 +557,31 @@ class LogEventsList {
 
 	/**
 	 * Quick function to show a short log extract
-	 * @param $out OutputPage
+	 * @param $out OutputPage or String-by-reference
 	 * @param $types String or Array
 	 * @param $page String
 	 * @param $user String
 	 * @param $lim Integer
 	 * @param $conds Array
 	 */
-	public static function showLogExtract( $out, $types=array(), $page='', $user='', $lim=0, $conds=array() ) {
-		global $wgUser;
+	public static function showLogExtract( &$out, $types=array(), $page='', $user='', $lim=0, $conds=array() ) {
+		global $wgUser, $wgOut;
 		# Insert list of top 50 or so items
-		$loglist = new LogEventsList( $wgUser->getSkin(), $out, 0 );
+		$loglist = new LogEventsList( $wgUser->getSkin(), $wgOut, 0 );
 		$pager = new LogPager( $loglist, $types, $user, $page, '', $conds );
 		if( $lim > 0 ) $pager->mLimit = $lim;
 		$logBody = $pager->getBody();
 		if( $logBody ) {
-			$out->addHTML(
-				$loglist->beginLogEventsList() .
-				$logBody .
-				$loglist->endLogEventsList()
-			);
+			$s = $loglist->beginLogEventsList() .
+				 $logBody .
+				 $loglist->endLogEventsList();
 		} else {
-			$out->addWikiMsg( 'logempty' );
+			$s = wfMsgExt( 'logempty', array('parse') );
+		}
+		if( $out instanceof OutputPage ){
+			$out->addHTML( $s );
+		} else {
+			$out = $s;
 		}
 		return $pager->getNumRows();
 	}

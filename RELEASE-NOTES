@@ -199,6 +199,8 @@ this. Was used when mwEmbed was going to be an extension.
 * MakeSysop and MakeBot are now aliases for Special:UserRights
 * IndexPager->mLimitsShown can now be an associative array of limit => text-to-
   display-in-limit-form.
+* (bug 18880) LogEventsList::showLogExtract() can now take a string-by-reference
+  and add its HTML to it, rather than having to go straight to $wgOut.
 
 === Bug fixes in 1.16 ===
 
