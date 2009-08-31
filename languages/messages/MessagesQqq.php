@@ -2997,6 +2997,9 @@ Please leave the link http://www.mediawiki.org/wiki/Manual:External_editors exac
 'monthsall'        => 'Used in a drop-down box on [[Special:Contributions]] as an option for "all months". See also [[MediaWiki:Month/{{SUBPAGENAME}}]].
 
 {{Identical|All}}',
+'limitall'      => 'Used on [[Special:AllMessages]] (and potentially other TablePager based tables) to display "all" the messages. 
+
+{{Identical|All}}',
 
 # E-mail address confirmation
 'confirmemail_needlogin'   => 'Used on [[Special:ConfirmEmail]] when you are logged out.
