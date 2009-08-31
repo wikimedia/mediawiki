@@ -3929,8 +3929,11 @@ $wgRegisterInternalExternals = false;
 $wgExceptionHooks = array();
 
 /**
- * Page property link table invalidation lists. Should only be set by exten-
- * sions.
+ * Page property link table invalidation lists. When a page property
+ * changes, this may require other link tables to be updated (eg
+ * adding __HIDDENCAT__ means the hiddencat tracking category will
+ * have been added, so the categorylinks table needs to be rebuilt). 
+ * This array can be added to by extensions.
  */
 $wgPagePropLinkInvalidations = array(
 	'hiddencat' => 'categorylinks',
