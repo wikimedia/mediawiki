@@ -101,11 +101,11 @@ class ImageCleanup extends TableCleanup {
 		return $this->repo->getRootDirectory() . '/' . $this->repo->getHashPath( $name ) . $name;
 	}
 
-	function imageExists( $name, $db ) {
+	private function imageExists( $name, $db ) {
 		return $db->selectField( 'image', '1', array( 'img_name' => $name ), __METHOD__ );
 	}
 
-	function pageExists( $name, $db ) {
+	private function pageExists( $name, $db ) {
 		return $db->selectField( 'page', '1', array( 'page_namespace' => NS_FILE, 'page_title' => $name ), __METHOD__ );
 	}
 	
