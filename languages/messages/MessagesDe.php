@@ -3164,6 +3164,7 @@ Darauf folgende Seitenlinks in derselben Zeile definieren Ausnahmen, in deren Ko
 'watchlistall2'    => 'alle',
 'namespacesall'    => 'alle',
 'monthsall'        => 'alle',
+'limitall'         => 'alle',
 
 # E-mail address confirmation
 'confirmemail'             => 'E-Mail-Adresse bestätigen (Authentifizierung)',
@@ -3377,7 +3378,7 @@ Die Eingabe muss ohne den Zusatz „{{ns:file}}:“ erfolgen.',
 'tag-filter-submit'       => 'Filter',
 'tags-title'              => 'Markierungen',
 'tags-intro'              => 'Diese Seite zeigt alle Markierungen, die für Bearbeitungen verwendet werden, sowie deren Bedeutung.',
-'tags-tag'                => 'Interner Markierungsname',
+'tags-tag'                => 'Markierungsname',
 'tags-display-header'     => 'Benennung auf den Änderungslisten',
 'tags-description-header' => 'Vollständige Beschreibung',
 'tags-hitcount-header'    => 'Markierte Änderungen',

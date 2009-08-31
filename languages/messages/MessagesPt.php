@@ -1480,9 +1480,9 @@ Páginas que estejam em [[Special:Watchlist|sua lista de vigiados]] são exibida
 'upload_directory_read_only'  => 'O directório de recebimento de ficheiros ($1) não tem permissões de escrita para o servidor Web.',
 'uploaderror'                 => 'Erro ao carregar',
 'uploadtext'                  => "Utilize o formulário abaixo para carregar novos ficheiros.
-Para ver ou pesquisar imagens anteriormente carregadas consulte a [[Special:FileList|lista de ficheiros carregados]]. (Re)Carregamentos são também registados no [[Special:Log/upload|registo de carregamentos]]. Eliminações no [[Special:Log/delete|registo de eliminação]]
+Para ver ou pesquisar imagens anteriormente carregadas, consulte a [[Special:FileList|lista de ficheiros carregados]]. (Re)envios são também registados no [[Special:Log/upload|registo de carregamentos]], e as eliminações, no [[Special:Log/delete|registo de eliminação]].
 
-Para incluir a imagem numa página, utilize o link em um dos seguintes formatos:
+Para incluir a imagem em uma página, utilize o ''link'' em um dos seguintes formatos:
 * '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:ficheiro.jpg]]</nowiki></tt>''' para utilizar a versão completa da imagem;
 * '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:ficheiro.png|200px|thumb|left|texto]]</nowiki></tt>''' para utilizar uma renderização de 200 pixels dentro de um box posicionado à esquerda contendo 'texto' como descrição;
 * '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:ficheiro.ogg]]</nowiki></tt>''' para uma ligação direta ao ficheiro.",
@@ -2390,7 +2390,8 @@ Por favor, escolha outro nome.',
 A página de destino ("[[:$1]]") já existe. Deseja eliminá-la de modo a poder mover?',
 'delete_and_move_confirm'      => 'Sim, eliminar a página',
 'delete_and_move_reason'       => 'Eliminada para poder mover outra página para este título',
-'selfmove'                     => 'O título fonte e o título destinatário são os mesmos; não é possível mover uma página para ela mesma.',
+'selfmove'                     => 'O título de origem e de destinato são os mesmos; 
+não é possível mover uma página para ela mesma.',
 'immobile-source-namespace'    => 'Não é possível mover páginas no espaço nominal "$1"',
 'immobile-target-namespace'    => 'Não é possível mover páginas para o espaço nominal "$1"',
 'immobile-target-namespace-iw' => 'Uma ligação interwiki não é um destino válido para uma movimentação de página.',
@@ -2646,7 +2647,7 @@ Tal bloqueio foi provavelmente causado por uma ligação para um website externo
 # Patrol log
 'patrol-log-page'      => 'Registo de edições patrulhadas',
 'patrol-log-header'    => 'Este é um registo de edições patrulhadas.',
-'patrol-log-line'      => 'marcou a edição $1 de $2 como uma edição patrulhada $3',
+'patrol-log-line'      => 'marcou a $1 de $2 como uma edição patrulhada $3',
 'patrol-log-auto'      => 'automaticamente',
 'patrol-log-diff'      => 'edição $1',
 'log-show-hide-patrol' => '$1 registo de edições patrulhadas',
@@ -3196,7 +3197,7 @@ Entre com o nome de ficheiro sem fornecer o prefixo "{{ns:file}}:".',
 'tag-filter-submit'       => 'Filtrar',
 'tags-title'              => 'Etiquetas',
 'tags-intro'              => 'Esta página lista as etiquetas com que o software poderá marcar uma edição, e o seu significado.',
-'tags-tag'                => 'Nome interno da etiqueta',
+'tags-tag'                => 'Nome da etiqueta',
 'tags-display-header'     => 'Aparência nas listas de modificações',
 'tags-description-header' => 'Descrição completa do significado',
 'tags-hitcount-header'    => 'Modificações etiquetadas',

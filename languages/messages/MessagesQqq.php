@@ -2997,7 +2997,7 @@ Please leave the link http://www.mediawiki.org/wiki/Manual:External_editors exac
 'monthsall'        => 'Used in a drop-down box on [[Special:Contributions]] as an option for "all months". See also [[MediaWiki:Month/{{SUBPAGENAME}}]].
 
 {{Identical|All}}',
-'limitall'      => 'Used on [[Special:AllMessages]] (and potentially other TablePager based tables) to display "all" the messages. 
+'limitall'         => 'Used on [[Special:AllMessages]] (and potentially other TablePager based tables) to display "all" the messages. 
 
 {{Identical|All}}',
 
@@ -3245,20 +3245,22 @@ $1 is the name of the requested file.',
 'external_image_whitelist' => "As usual please leave all the wiki markup, including the spaces, as they are. You can translate the text, including 'Leave this line exactly as it is'. The first line of this messages has one (1) leading space.",
 
 # Special:Tags
-'tags'                    => 'Shown on [[Special:Specialpages]] for page listing the tags that the software may mark an edit with, and their meaning.',
+'tags'                    => "Shown on [[Special:Specialpages]] for page listing the tags that the software may mark an edit with, and their meaning. For more information on tags see [http://www.mediawiki.org/wiki/Manual:Tags Mediawiki].
+
+It appears that the word 'valid' describes 'tags', not 'change'. It also appears that you could use the term 'defined' instead of 'valid', or perhaps use a phrase meaning 'Change tags in use'.",
 'tag-filter'              => 'Caption of a filter shown on lists of changes (e.g. [[Special:Log]], [[Special:Contributions]], [[Special:Newpages]], [[Special:Recentchanges]], [[Special:Recentchangeslinked]], page histories)',
 'tag-filter-submit'       => 'Caption of the submit button displayed next to the tag filter on lists of changes (e.g. [[Special:Log]], [[Special:Contributions]], [[Special:Newpages]], [[Special:Recentchanges]], [[Special:Recentchangeslinked]], page histories)
 
 {{Identical|Filter}}',
 'tags-title'              => 'The title of [[Special:Tags]]',
-'tags-intro'              => 'Explanation on top of [[Special:Tags]].',
-'tags-tag'                => 'Caption of a column in [[Special:Tags]].',
-'tags-display-header'     => 'Caption of a column in [[Special:Tags]]',
-'tags-description-header' => 'Caption of a column in [[Special:Tags]]',
-'tags-hitcount-header'    => 'Caption of a column in [[Special:Tags]]',
+'tags-intro'              => 'Explanation on top of [[Special:Tags]]. For more information on tags see [http://www.mediawiki.org/wiki/Manual:Tags Mediawiki].',
+'tags-tag'                => 'Caption of a column in [[Special:Tags]]. For more information on tags see [http://www.mediawiki.org/wiki/Manual:Tags Mediawiki].',
+'tags-display-header'     => 'Caption of a column in [[Special:Tags]]. For more information on tags see [http://www.mediawiki.org/wiki/Manual:Tags Mediawiki].',
+'tags-description-header' => 'Caption of a column in [[Special:Tags]]. For more information on tags see [http://www.mediawiki.org/wiki/Manual:Tags Mediawiki].',
+'tags-hitcount-header'    => 'Caption of a column in [[Special:Tags]]. For more information on tags see [http://www.mediawiki.org/wiki/Manual:Tags Mediawiki].',
 'tags-edit'               => '{{Identical|Edit}}
 Used on [[Special:Tags]]. Verb. Used as display text on a link to create/edit a description.',
-'tags-hitcount'           => 'Shown in the “Tagged changes” column in [[Special:Tags]].
+'tags-hitcount'           => 'Shown in the “Tagged changes” column in [[Special:Tags]]. For more information on tags see [http://www.mediawiki.org/wiki/Manual:Tags Mediawiki].
 
 * <code>$1</code> is the number of changes marked with the tag',
 

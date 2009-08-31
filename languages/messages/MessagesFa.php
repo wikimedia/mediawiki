@@ -728,13 +728,13 @@ $1',
 آخرین دستوری که برای پایگاه داده فرستاد شد این بود:
 <div dir="ltr"><blockquote><tt>$1</tt></blockquote></div>
 این دستور از درون عملگر <span dir="ltr"><tt>$2</tt></span> فرستاده شد
-$5 این خطا را باز گرداند:
+پایگاه داده این خطا را باز گرداند:
 <div dir="ltr"><tt>$3: $4</tt></div>',
 'dberrortextcl'        => 'اشکالی در دستور فرستاده شده به پایگاه داده رخ داد.
 آخرین دستوری که برای پایگاه داده فرستاد شد این بود:
 <div dir="ltr">$1</div>
 این دستور از درون عملگر <span dir="ltr">$2</span> فرستاده شد
-$5 این خطا را باز گرداند:
+پایگاه داده این خطا را باز گرداند:
 <div dir="ltr">$3: $4</div>',
 'laggedslavemode'      => 'هشدار: صفحه ممکن است به‌روزرسانی‌های اخیر را شامل نگردد.',
 'readonly'             => 'پایگاه داده قفل شد',
@@ -839,8 +839,7 @@ $2',
 'nouserspecified'            => 'باید یک نام کاربری مشخص کنید.',
 'wrongpassword'              => 'گذرواژه‌ای که وارد کردید نادرست است. لطفاً دوباره تلاش کنید.',
 'wrongpasswordempty'         => 'گذرواژه‌ای که وارد کرده‌اید، خالی است. خواهشمندیم دوباره تلاش کنید.',
-'passwordtooshort'           => 'گذرواژه‌ای که وارد کرده‌اید خیلی کوتاه است.
-گذرواژه باید دست کم {{PLURAL:$1|$1 حرف|$1 حرف}} داشته باشد.',
+'passwordtooshort'           => 'گذرواژه باید دست کم {{PLURAL:$1|$1 حرف|$1 حرف}} داشته باشد.',
 'password-name-match'        => 'گذرواژهٔ شما باید با نام کاربری شما تفاوت داشته باشد.',
 'mailmypassword'             => 'گذرواژهٔ جدید فرستاده شود',
 'passwordremindertitle'      => 'یادآور گذرواژهٔ {{SITENAME}}',
@@ -1806,7 +1805,7 @@ $1",
 'upload-curl-error28-text' => 'این وب‌گاه بیش از اندازه در پاسخ تعلل کرد. لطفاً بررسی کنید که آیا وب‌گاه فعال و برخط است یا نه. سپس لختی درنگ کنید و دوباره تلاش نمایید. شاید بد نباشد که در زمان خلوت‌تری دوباره تلاش کنید.',
 
 'license'            => 'اجازه‌نامه:',
-'license-header'     => 'اجازه‌نامه:',
+'license-header'     => 'اجازه‌نامه',
 'nolicense'          => 'هیچیک انتخاب نشده‌است.',
 'license-nopreview'  => '(پیش‌نمایش وجود ندارد)',
 'upload_source_url'  => '(یک نشانی اینترنتی معتبر و قابل دسترسی برای عموم)',
@@ -1914,7 +1913,7 @@ $1",
 
 # Random page
 'randompage'         => 'صفحهٔ تصادفی',
-'randompage-nopages' => 'هیچ صفحه‌ای در فضای نام «$1» موجود نیست.',
+'randompage-nopages' => 'هیچ صفحه‌ای در این {{PLURAL:$2|فضای نام|فضاهای نام}} موجود نیست: $1',
 
 # Random redirect
 'randomredirect'         => 'تغییرمسیر تصادفی',
@@ -2196,13 +2195,16 @@ $1",
 'enotif_impersonal_salutation' => 'کاربر {{SITENAME}}',
 'changed'                      => 'تغییر یافته',
 'created'                      => 'ایجاد شد',
+'deleted'                      => 'حذف شده',
+'enotif_deletedpagetext'       => 'این صفحه دیگر موجود نیست.',
 'enotif_subject'               => 'صفحهٔ «$PAGETITLE» {{SITENAME}} به دست $PAGEEDITOR $CHANGEDORCREATED‌است.',
 'enotif_lastvisited'           => 'برای دیدن همهٔ تغییرات از آخرین باری که سر زده‌اید $1 را ببینید.',
 'enotif_lastdiff'              => 'برای نمایش این تغییر $1 را ببینید.',
 'enotif_anon_editor'           => 'کاربر ناشناس $1',
-'enotif_body'                  => '$WATCHINGUSERNAME گرامی،
+'enotif_rev_info'              => '$1 را برای نسخهٔ اخیر ببینید.',
+'enotif_body'                  => 'WATCHINGUSERNAME گرامی،
 
-صفحهٔ «$PAGETITLE» {{SITENAME}} در $PAGEEDITDATEANDTIME به دست $PAGEEDITOR $CHANGEDORCREATED است. برای دیدن نسخهٔ کنونی به $PAGETITLE_URL بروید.
+صفحهٔ «$PAGETITLE» {{SITENAME}} در $PAGEEDITDATEANDTIME به دست $PAGEEDITOR $CHANGEDORCREATED است. $REVINFO
 
 $NEWPAGE
 
@@ -2288,7 +2290,7 @@ $NEWPAGE
 'protect-title'               => 'تغییر وضعیت محافظت «$1»',
 'prot_1movedto2'              => '$1 به $2 منتقل شد',
 'protect-legend'              => 'تأیید حفاظت',
-'protectcomment'              => 'دلیل محافظت',
+'protectcomment'              => 'دلیل:',
 'protectexpiry'               => 'زمان سرآمدن:',
 'protect_expiry_invalid'      => 'زمان سرآمدن نامعتبر است.',
 'protect_expiry_old'          => 'زمان سرآمدن در گذشته‌است.',
@@ -2745,6 +2747,7 @@ $1',
 'tooltip-ca-viewsource'           => 'این صفحه محافظت‌شده است. می‌توانید متن مبدأ آن را مشاهده کنید.',
 'tooltip-ca-history'              => 'نسخه‌های پیشین این صفحه',
 'tooltip-ca-protect'              => 'محافظت از این صفحه',
+'tooltip-ca-unprotect'            => 'به در آوردن این صفحه از محافظت',
 'tooltip-ca-delete'               => 'حذف این صفحه',
 'tooltip-ca-undelete'             => 'بازگرداندن نسخه‌های صفحهٔ حذف‌شده',
 'tooltip-ca-move'                 => 'انتقال این صفحه',
@@ -2755,6 +2758,7 @@ $1',
 'tooltip-search-fulltext'         => 'این عبارت را در صفحه‌ها جستجو کن',
 'tooltip-p-logo'                  => 'صفحهٔ اصلی',
 'tooltip-n-mainpage'              => 'بازدید از صفحهٔ اصلی',
+'tooltip-n-mainpage-description'  => 'مشاهدهٔ صفحهٔ اصلی',
 'tooltip-n-portal'                => 'پیرامون پروژه، چه‌ها توانید کرد و کجا توانید یافت',
 'tooltip-n-currentevents'         => 'یافتن اطلاعات پیشزمینه پیرامون وقایع کنونی',
 'tooltip-n-recentchanges'         => 'فهرست تغییرات اخیر در ویکی.',
@@ -3217,6 +3221,7 @@ $1',
 'watchlistall2'    => 'همه',
 'namespacesall'    => 'همه',
 'monthsall'        => 'همهٔ ماه‌ها',
+'limitall'         => 'همه',
 
 # E-mail address confirmation
 'confirmemail'             => 'تأیید نشانی پست الکترونیکی',
@@ -3490,7 +3495,7 @@ $1',
 'tag-filter-submit'       => 'پالایه',
 'tags-title'              => 'برچسب‌ها',
 'tags-intro'              => 'این صفحه برچسب‌هایی را که نرم‌افزار ممکن است ویرایش‌ها را توسط آن‌ها علامت گذاری کند، به همراه معنای آن‌ها فهرست می‌کند.',
-'tags-tag'                => 'نام داخلی برچسب',
+'tags-tag'                => 'نام برچسب',
 'tags-display-header'     => 'نمایش در فهرست‌های تغییرات',
 'tags-description-header' => 'توضیح کامل معنی',
 'tags-hitcount-header'    => 'تغییرهای برچسب‌دار',

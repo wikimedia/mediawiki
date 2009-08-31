@@ -509,12 +509,12 @@ Açò podria indicar un error en el programari.
 La darrera consulta que s'ha intentat fer ha estat:
 <blockquote><tt>$1</tt></blockquote>
 des de la funció «<tt>$2</tt>».
-L'error de retorn de $5 ha estat «<tt>$3: $4</tt>».",
+L'error de retorn ha estat «<tt>$3: $4</tt>».",
 'dberrortextcl'        => "S'ha produït un error de sintaxi en una consulta a la base de dades.
 La darrera consulta que s'ha intentat fer ha estat:
 <blockquote><tt>$1</tt></blockquote>
 des de la funció «<tt>$2</tt>».
-L'error de retorn de $5 ha estat «<tt>$3: $4</tt>».",
+L'error de retorn ha estat «<tt>$3: $4</tt>».",
 'laggedslavemode'      => 'Avís: La pàgina podria mancar de modificacions recents.',
 'readonly'             => 'La base de dades es troba bloquejada',
 'enterlockreason'      => 'Escriviu una raó pel bloqueig, així com una estimació de quan tindrà lloc el desbloqueig',
@@ -3177,7 +3177,7 @@ Introduïu el nom del fitxer sense el prefix «{{ns:file}}:».",
 'tag-filter-submit'       => 'Filtra',
 'tags-title'              => 'Etiquetes',
 'tags-intro'              => 'Aquesta pàgina llista les etiquetes amb les què el programari pot marcar una edició, i llur significat.',
-'tags-tag'                => "Nom de l'etiqueta interna",
+'tags-tag'                => "Nom de l'etiqueta",
 'tags-display-header'     => 'Aparença de la llista de canvis',
 'tags-description-header' => 'Descripció completa del significat',
 'tags-hitcount-header'    => 'Canvis etiquetats',

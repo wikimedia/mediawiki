@@ -858,6 +858,9 @@ Gan eich bod yn weinyddwr gallwch ei weld; gall fod manylion yn y [{{fullurl:{{#
 Fe fydd gweinyddwyr eraill {{SITENAME}} o hyd yn gallu gweld yr hyn a guddiwyd. Fe allant ei ddatguddio trwy ddefnyddio'r dudalen arbennig hon, cyhyd ag nad oes cyfyngiadau ychwanegol wedi eu gosod.
 
 Byddwch gystal â chadarnhau eich bod yn bwriadu gwneud hyn, eich bod yn deall yr effaith a gaiff, a'ch bod yn ei wneud yn ôl y [[{{MediaWiki:Policy-url}}|y polisi]].",
+'revdelete-suppress-text'     => "'''Dim ond''' yn yr achosion sy'n dilyn y dylech fentro cuddio gwybodaeth:
+* Gwybodaeth bersonol anaddas
+*: ''cyfeiriad cartref, rhif ffôn, rhif yswiriant cenedlaethol, ayb.''",
 'revdelete-legend'            => 'Gosod cyfyngiadau ar y gallu i weld',
 'revdelete-hide-text'         => 'Cuddio testun y diwygiad',
 'revdelete-hide-name'         => "Cuddio'r weithred a'r targed",
@@ -3056,11 +3059,15 @@ Rhowch enw\'r ffeil heb y rhagddodiad "{{ns:file}}:".',
 #Put all regex fragments above this line. Leave this line exactly as it is</pre>",
 
 # Special:Tags
+'tags'                    => 'Tagiau newidiadau',
 'tag-filter'              => 'Hidl [[Special:Tags|tagiau]]:',
 'tag-filter-submit'       => 'Hidlo',
 'tags-title'              => 'Tagiau',
-'tags-tag'                => "Enw'r tag mewnol",
-'tags-description-header' => 'Disgrifiad llawn yr ystyr',
+'tags-intro'              => "Dyma restr o'r tagiau y mae'r meddalwedd yn defnyddio i farcio golygiad, ynghyd â'r rhesymau dros eu defnyddio.",
+'tags-tag'                => "Enw'r tag",
+'tags-display-header'     => 'Y nodyn a welir ar logiau',
+'tags-description-header' => 'Disgrifiad llawn y tag',
+'tags-hitcount-header'    => 'Nifer wedi tagio',
 'tags-edit'               => 'golygu',
 'tags-hitcount'           => '$1 {{PLURAL:$1|newid}}',
 

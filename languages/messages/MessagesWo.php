@@ -657,7 +657,9 @@ walla [{{fullurl:{{FULLPAGENAME}}|action=edit}} soppi xët wii].',
 ''Segam ci bii dal dañ fee doxal HTML bu ñumm, ngir ay ngirtey kaaraange, wonendi gi du gisu.''
 
 '''Su tolof-tolof bi wéyee, man nga jéem a génn te duggaat .'''",
-'token_suffix_mismatch'            => "'''Votre édition n’a été acceptée car votre navigateur a mélangé les caractères de ponctuation dans l’identifiant d’édition. L’édition a été rejetée afin d’empêcher la corruption du texte de l’article. Ce problème se produit lorsque vous utilisez un proxy anonyme à problème.'''",
+'token_suffix_mismatch'            => "'''Votre modification n’a pas été acceptée car votre navigateur a mal codé les caractères de ponctuation dans l’identifiant de modification.'''
+Ce rejet est nécessaire pour empêcher la corruption du texte de la page.
+Ce problème se produit parfois lorsque vous utilisez un serveur mandataire anonyme problématique basé sur le web.",
 'editing'                          => 'Coppiteg $1',
 'editingsection'                   => 'Coppiteg $1 (xaaj)',
 'editingcomment'                   => 'Coppiteg $1 (xaaj bu bees)',

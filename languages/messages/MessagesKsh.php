@@ -3261,6 +3261,7 @@ Donoh kumme, en däsellve Reih, Links op Sigge wo die Datei trotz dämm jenehm e
 'watchlistall2'    => 'all',
 'namespacesall'    => 'all',
 'monthsall'        => 'all',
+'limitall'         => 'alle',
 
 # E-mail address confirmation
 'confirmemail'             => 'E-Mail Adress bestätije',

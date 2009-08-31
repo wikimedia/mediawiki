@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Amdf
  * @author Jose77
  * @author Сай
  */
@@ -203,6 +204,7 @@ $messages = array(
 'helppage'             => 'Help:Полшык',
 'mainpage'             => 'Тӱҥ лаштык',
 'mainpage-description' => 'Тӱҥ лаштык',
+'portal'               => 'Тӱшка',
 'privacy'              => 'Конфиденциальность политике',
 'privacypage'          => 'Project:Конфиденциальность политике',
 
@@ -450,7 +452,7 @@ $messages = array(
 
 # Recent changes
 'nchanges'                       => '$1 {{PLURAL:$1|тӧрлатымаш|тӧрлатымаш-влак}}',
-'recentchanges'                  => 'Шукертсе огыл тӧрлымаш-влак',
+'recentchanges'                  => 'Пытартыш тӧрлатымаш-влак',
 'recentchanges-legend'           => 'Шукертсе огыл тӧрлымаш-влак келыштарымаш',
 'recentchanges-feed-description' => 'Викин тиде кылыште пытартыш вашталтышым шекланаш.',
 'rcnote'                         => "Ӱлнӧ {{PLURAL:$1|'''1'''|'''$1'''}} вашталтыш пытартыш {{PLURAL:$2||'''$2'''}} кечылан, $5-лан, $4-лан.",
@@ -669,7 +671,7 @@ $messages = array(
 # Contributions
 'contributions'       => 'Пайдаланышын надырем',
 'contributions-title' => '$1 пайдаланышын надыр',
-'mycontris'           => 'Мыйын надырем',
+'mycontris'           => 'Мыйын паша',
 'contribsub2'         => '$1 лан ($2)',
 'uctop'               => '(пытартыш)',
 'month'               => 'Могай тылзе гыч тӱҥалаш? (але ондакрак):',
@@ -781,7 +783,7 @@ $messages = array(
 'tooltip-p-logo'                  => 'Тӱҥ лаштык',
 'tooltip-n-mainpage'              => 'Тӱҥ лаштыкыш куснаш',
 'tooltip-n-portal'                => 'Проект нерген, мом тый ыштен кертат, мо кушто улеш',
-'tooltip-n-currentevents'         => 'Кызытсе событий нерген увер',
+'tooltip-n-currentevents'         => 'Кызытсе лиймаш-влак нерген увер',
 'tooltip-n-recentchanges'         => 'Шукертсе огыл тӧрлатыме лаштык-влак лӱмер',
 'tooltip-n-randompage'            => 'Вучыдымо лаштыкыш куснаш',
 'tooltip-n-help'                  => 'Википедийым кучылтмо да тӧрлатыме шотышто полшык.',

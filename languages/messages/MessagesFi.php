@@ -3006,6 +3006,7 @@ Vain *-merkillä alkavat rivit otetaan huomioon. Ensimmäisen linkin on osoitett
 'watchlistall2'    => ', koko historia',
 'namespacesall'    => 'kaikki',
 'monthsall'        => 'kaikki',
+'limitall'         => 'kaikki',
 
 # E-mail address confirmation
 'confirmemail'             => 'Varmenna sähköpostiosoite',
@@ -3210,7 +3211,7 @@ Kirjoita tiedostonimi ilman ”{{ns:file}}:”-etuliitettä.',
 'tag-filter-submit'       => 'Suodata',
 'tags-title'              => 'Merkinnät',
 'tags-intro'              => 'Tämä sivu luetteloi merkinnät, joilla ohjelmisto voi merkitä muokkauksia, ja niiden tarkoitukset.',
-'tags-tag'                => 'Sisäinen merkintänimi',
+'tags-tag'                => 'Merkintänimi',
 'tags-display-header'     => 'Näkyvyys muutosluetteloissa',
 'tags-description-header' => 'Täysi kuvaus tarkoituksesta',
 'tags-hitcount-header'    => 'Merkityt muutokset',

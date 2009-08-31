@@ -3016,6 +3016,7 @@ Variants for Chinese language
 'watchlistall2'    => 'すべて',
 'namespacesall'    => 'すべて',
 'monthsall'        => 'すべて',
+'limitall'         => 'すべて',
 
 # E-mail address confirmation
 'confirmemail'             => 'メールアドレスの確認',
@@ -3284,7 +3285,7 @@ $1',
 'tag-filter-submit'       => '絞り込み',
 'tags-title'              => 'タグ一覧',
 'tags-intro'              => 'このページでは、ソフトウェアが編集に対してつけるタグとその意味を一覧します。',
-'tags-tag'                => '内部タグ名',
+'tags-tag'                => 'タグ名',
 'tags-display-header'     => '変更一覧に表示されるタグ名',
 'tags-description-header' => 'タグの説明',
 'tags-hitcount-header'    => 'タグが付与された変更',

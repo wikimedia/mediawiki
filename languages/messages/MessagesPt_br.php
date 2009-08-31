@@ -194,7 +194,7 @@ $messages = array(
 'tog-hideminor'               => 'Esconder edições secundárias nas mudanças recentes',
 'tog-hidepatrolled'           => 'Esconder edições patrulhadas nas mudanças recentes',
 'tog-newpageshidepatrolled'   => 'Esconder páginas patrulhadas da lista de páginas novas',
-'tog-extendwatchlist'         => 'Expandir a lista de vigiados para mostrar todas as alterações aplicáveis, não apenas as mais recentes',
+'tog-extendwatchlist'         => 'Expandir a lista de páginas vigiadas para mostrar todas as alterações aplicáveis, não apenas as mais recentes',
 'tog-usenewrc'                => 'Utilizar mudanças recentes melhoradas (requer JavaScript)',
 'tog-numberheadings'          => 'Auto-numerar cabeçalhos',
 'tog-showtoolbar'             => 'Mostrar barra de edição (JavaScript)',
@@ -204,15 +204,15 @@ $messages = array(
 'tog-showtoc'                 => 'Mostrar Tabela de Conteúdos (para páginas com mais de três cabeçalhos)',
 'tog-rememberpassword'        => 'Lembrar senha entre sessões',
 'tog-editwidth'               => 'Alargar a caixa de edição para preecher a tela inteira',
-'tog-watchcreations'          => 'Adicionar páginas criadas por mim à minha lista de vigiados',
-'tog-watchdefault'            => 'Adicionar páginas editadas por mim à minha lista de vigiados',
-'tog-watchmoves'              => 'Adicionar páginas movidas por mim à minha lista de vigiados',
-'tog-watchdeletion'           => 'Adicionar páginas eliminadas por mim à minha lista de vigiados',
+'tog-watchcreations'          => 'Adicionar páginas criadas por mim à minha lista de páginas vigiadas',
+'tog-watchdefault'            => 'Adicionar páginas editadas por mim à minha lista de páginas vigiadas',
+'tog-watchmoves'              => 'Adicionar páginas movidas por mim à minha lista de páginas vigiadas',
+'tog-watchdeletion'           => 'Adicionar páginas eliminadas por mim à minha lista de páginas vigiadas',
 'tog-minordefault'            => 'Marcar todas as edições como secundárias, por padrão',
 'tog-previewontop'            => 'Mostrar previsão antes da caixa de edição',
 'tog-previewonfirst'          => 'Mostrar previsão na primeira edição',
 'tog-nocache'                 => 'Desactivar caching de páginas',
-'tog-enotifwatchlistpages'    => 'Enviar-me um email quando uma página da minha lista de vigiados for alterada',
+'tog-enotifwatchlistpages'    => 'Enviar-me um email quando uma página da minha lista de páginas vigiadas for alterada',
 'tog-enotifusertalkpages'     => 'Enviar-me um email quando a minha página de discussão for editada',
 'tog-enotifminoredits'        => 'Enviar-me um email também quando forem edições menores',
 'tog-enotifrevealaddr'        => 'Revelar o meu endereço de email nas notificações',
@@ -224,12 +224,12 @@ $messages = array(
 'tog-showjumplinks'           => 'Ativar hiperligações de acessibilidade "ir para"',
 'tog-uselivepreview'          => 'Utilizar pré-visualização em tempo real (JavaScript) (Experimental)',
 'tog-forceeditsummary'        => 'Avisar-me ao introduzir um sumário vazio',
-'tog-watchlisthideown'        => 'Esconder as minhas edições da lista de artigos vigiados',
-'tog-watchlisthidebots'       => 'Esconder edições efetuadas por robôs da lista de artigos vigiados',
-'tog-watchlisthideminor'      => 'Esconder edições menores da lista de artigos vigiados',
-'tog-watchlisthideliu'        => 'Ocultar edições de usuários autenticados da lista de vigiados',
-'tog-watchlisthideanons'      => 'Ocultar edições de usuários anônimos da lista de vigiados',
-'tog-watchlisthidepatrolled'  => 'Esconder edições patrulhadas na lista de artigos vigiados',
+'tog-watchlisthideown'        => 'Esconder as minhas edições da lista de páginas vigiadas',
+'tog-watchlisthidebots'       => 'Esconder edições efetuadas por robôs da lista de páginas vigiadas',
+'tog-watchlisthideminor'      => 'Esconder edições menores da lista de páginas vigiadas',
+'tog-watchlisthideliu'        => 'Ocultar edições de usuários autenticados da lista de páginas vigiadas',
+'tog-watchlisthideanons'      => 'Ocultar edições de usuários anônimos da lista de páginas vigiadas',
+'tog-watchlisthidepatrolled'  => 'Esconder edições patrulhadas na lista de páginas vigiadas',
 'tog-nolangconversion'        => 'Desabilitar conversão de variantes de idioma',
 'tog-ccmeonemails'            => 'Enviar para mim cópias de e-mails que eu enviar a outros usuários',
 'tog-diffonly'                => 'Não mostrar o conteúdo da página ao comparar duas edições',
@@ -810,9 +810,10 @@ Você terá que mesclar suas modificações no texto existente.
 <b>SOMENTE</b> o texto na área acima será salvo quando você pressionar "Salvar página".<br />',
 'yourtext'                         => 'Seu texto',
 'storedversion'                    => 'Versão guardada',
-'nonunicodebrowser'                => "'''AVISO: O seu navegador não é compatível com as especificações unicode. Um contorno terá de ser utilizado para permitir que você possa editar com segurança os artigos: os caracteres não-ASCII aparecerão na caixa de edição no formato de códigos hexadecimais.'''",
-'editingold'                       => "'''CUIDADO: Você está editando uma revisão desatualizada deste artigo.
-Se você salvá-lo, todas as mudanças feitas a partir desta revisão serão perdidas.'''",
+'nonunicodebrowser'                => "'''AVISO: O seu navegador não é compatível com as especificações unicode.'''
+Um contorno terá de ser utilizado para permitir que você possa editar as páginas com segurança: os caracteres não-ASCII aparecerão na caixa de edição no formato de códigos hexadecimais.",
+'editingold'                       => "'''CUIDADO: Você está editando uma revisão desatualizada desta página.'''
+Se você salvá-la, todas as mudanças feitas a partir desta revisão serão perdidas.",
 'yourdiff'                         => 'Diferenças',
 'copyrightwarning'                 => "Por favor, note que todas as suas contribuições em {{SITENAME}} são consideradas como lançadas nos termos da licença $2 (veja $1 para detalhes). Se não deseja que o seu texto seja inexoravelmente editado e redistribuído de tal forma, não o envie.<br />
 Você está, ao mesmo tempo, garantindo-nos que isto é algo escrito por você mesmo ou algo copiado de uma fonte de textos em domínio público ou similarmente de teor livre.
@@ -1187,12 +1188,12 @@ Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desat
 'prefs-datetime'                => 'Data e hora',
 'prefs-personal'                => 'Perfil de usuário',
 'prefs-rc'                      => 'Mudanças recentes',
-'prefs-watchlist'               => 'Lista de artigos vigiados',
-'prefs-watchlist-days'          => 'Dias a mostrar na lista de artigos vigiados:',
+'prefs-watchlist'               => 'Lista de páginas vigiadas',
+'prefs-watchlist-days'          => 'Dias a mostrar na lista de páginas vigiadas:',
 'prefs-watchlist-days-max'      => '(no máximo 7 dias)',
-'prefs-watchlist-edits'         => 'Número de edições mostradas na lista de vigiados expandida:',
+'prefs-watchlist-edits'         => 'Número de edições mostradas na lista de páginas vigiadas expandida:',
 'prefs-watchlist-edits-max'     => '(número máximo: 1000)',
-'prefs-watchlist-token'         => 'Senha para a lista de vigiados',
+'prefs-watchlist-token'         => 'Senha para a lista de páginas vigiadas',
 'prefs-misc'                    => 'Diversos',
 'prefs-resetpass'               => 'Alterar senha',
 'prefs-email'                   => 'Opções de email',
@@ -1213,8 +1214,8 @@ Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desat
 'recentchangesdays-max'         => '(máximo: $1 {{PLURAL:$1|dia|dias}})',
 'recentchangescount'            => 'Número de edições a serem exibidas por padrão:',
 'prefs-help-recentchangescount' => 'Isto inclui mudanças recentes, histórico de páginas e registos.',
-'prefs-help-watchlist-token'    => "O preenchimento deste campo com uma senha secreta irá gerar um ''feed'' RSS para a sua lista de vigiados.
-Qualquer um que conheça a senha deste campo será capaz de ler sua lista de vigiados, então escolha um valor seguro.
+'prefs-help-watchlist-token'    => "O preenchimento deste campo com uma senha secreta irá gerar um ''feed'' RSS para a sua lista de páginas vigiadas.
+Qualquer um que conheça a senha deste campo será capaz de ler sua lista de páginas vigiadas, então escolha um valor seguro.
 Eis um valor gerado aleatoriamente que você pode usar: $1",
 'savedprefs'                    => 'As suas preferências foram salvas.',
 'timezonelegend'                => 'Fuso horário:',
@@ -1473,8 +1474,8 @@ Ela deve ter menos de $1 {{PLURAL:$1|caractere|caracteres}}.',
 'recentchangeslinked-toolbox'  => 'Alterações relacionadas',
 'recentchangeslinked-title'    => 'Alterações relacionadas com "$1"',
 'recentchangeslinked-noresult' => 'Não ocorreram alterações em páginas relacionadas no intervalo de tempo fornecido.',
-'recentchangeslinked-summary'  => "Esta página especial lista as alterações mais recentes de páginas que possuam um link a outra (ou de membros de uma categoria especificada).
-Páginas que estejam em [[Special:Watchlist|sua lista de vigiados]] são exibidas em '''negrito'''.",
+'recentchangeslinked-summary'  => "Esta página especial lista as alterações mais recentes de páginas que possuam uma ligação a outra (ou de membros de uma categoria especificada).
+Páginas que estejam em [[Special:Watchlist|sua lista de páginas vigiadas]] são exibidas em '''negrito'''.",
 'recentchangeslinked-page'     => 'Nome da página:',
 'recentchangeslinked-to'       => 'Mostrar alterações a páginas relacionadas com a página fornecida',
 
@@ -1593,7 +1594,7 @@ PICT # misc.
 'upload-curl-error28-text' => 'O site demorou muito tempo para responder. Por gentileza, verifique se o site está acessível, aguarde alguns momentos e tente novamente. Talvez você deseje fazer nova tentativa em um horário menos congestionado.',
 
 'license'            => 'Licença:',
-'license-header'     => 'Licença:',
+'license-header'     => 'Licenciamento',
 'nolicense'          => 'Nenhuma selecionada',
 'license-nopreview'  => '(Previsão não disponível)',
 'upload_source_url'  => ' (um URL válido, publicamente acessível)',
@@ -1935,14 +1936,14 @@ O endereço eletrônico que você inseriu em [[Special:Preferences|suas preferê
 'watchlist'            => 'Páginas vigiadas',
 'mywatchlist'          => 'Páginas vigiadas',
 'watchlistfor'         => "(para '''$1''')",
-'nowatchlist'          => 'A sua lista de vigiados não possui títulos.',
-'watchlistanontext'    => 'Por favor $1 para ver ou editar os itens na sua lista de páginas vigiados.',
+'nowatchlist'          => 'A sua lista de páginas vigiadas não possui títulos.',
+'watchlistanontext'    => 'Por favor $1 para ver ou editar os itens na sua lista de páginas vigiadas.',
 'watchnologin'         => 'Não está autenticado',
-'watchnologintext'     => 'Você precisa estar [[Special:UserLogin|autenticado]] para modificar a sua lista de artigos vigiados.',
+'watchnologintext'     => 'Você precisa estar [[Special:UserLogin|autenticado]] para modificar a sua lista de páginas vigiadas.',
 'addedwatch'           => 'Adicionado à lista',
-'addedwatchtext'       => "A página \"[[:\$1]]\" foi adicionada à sua [[Special:Watchlist|lista de vigiados]].
+'addedwatchtext'       => "A página \"[[:\$1]]\" foi adicionada à sua [[Special:Watchlist|lista de páginas vigiadas]].
 Modificações futuras em tal página e páginas de discussão a ela associadas serão listadas lá, com a página aparecendo a '''negrito''' na [[Special:RecentChanges|lista de mudanças recentes]], para que possa encontrá-la com maior facilidade.",
-'removedwatch'         => 'Removida da lista de páginas vigiados',
+'removedwatch'         => 'Removida da lista de páginas vigiadas',
 'removedwatchtext'     => 'A página "<nowiki>$1</nowiki>" foi removida de sua lista de páginas vigiadas.',
 'watch'                => 'Vigiar',
 'watchthispage'        => 'Vigiar esta página',
@@ -1950,17 +1951,17 @@ Modificações futuras em tal página e páginas de discussão a ela associadas 
 'unwatchthispage'      => 'Parar de vigiar esta página',
 'notanarticle'         => 'Não é uma página de conteúdo',
 'notvisiblerev'        => 'Edição eliminada',
-'watchnochange'        => 'Nenhum dos itens vigiados foram editados no período exibido.',
+'watchnochange'        => 'Nenhuma das páginas vigiadas foi editada no período exibido.',
 'watchlist-details'    => '{{PLURAL:$1|$1 página|$1 páginas}} na sua lista de páginas vigiadas, excluindo páginas de discussão.',
 'wlheader-enotif'      => '* A notificação por email encontra-se ativada.',
 'wlheader-showupdated' => "* As páginas modificadas desde a sua última visita são mostradas em '''negrito'''",
 'watchmethod-recent'   => 'verificando edições recentes para as páginas vigiadas',
 'watchmethod-list'     => 'verificando páginas vigiadas para edições recentes',
-'watchlistcontains'    => 'Sua lista de vigiados contém $1 {{PLURAL:$1|página|páginas}}.',
+'watchlistcontains'    => 'Sua lista de páginas vigiadas contém $1 {{PLURAL:$1|página|páginas}}.',
 'iteminvalidname'      => "Problema com item '$1', nome inválido...",
 'wlnote'               => "A seguir {{PLURAL:$1|está a última alteração ocorrida|estão as últimas '''$1''' alterações ocorridas}} {{PLURAL:$2|na última hora|nas últimas '''$2''' horas}}.",
 'wlshowlast'           => 'Ver últimas $1 horas $2 dias $3',
-'watchlist-options'    => 'Opções da lista de vigiados',
+'watchlist-options'    => 'Opções da lista de páginas vigiadas',
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'Vigiando...',
@@ -1972,14 +1973,17 @@ Modificações futuras em tal página e páginas de discussão a ela associadas 
 'enotif_impersonal_salutation' => 'Usuário do projeto "{{SITENAME}}"',
 'changed'                      => 'alterada',
 'created'                      => 'criada',
+'deleted'                      => 'eliminado',
+'enotif_deletedpagetext'       => 'Esta página já não está disponível.',
 'enotif_subject'               => '{{SITENAME}}: A página $PAGETITLE foi $CHANGEDORCREATED por $PAGEEDITOR',
 'enotif_lastvisited'           => 'Consulte $1 para todas as alterações efetuadas desde a sua última visita.',
 'enotif_lastdiff'              => 'Acesse $1 para ver esta alteração.',
 'enotif_anon_editor'           => 'usuário anônimo $1',
+'enotif_rev_info'              => 'Veja $1 para a revisão atual.',
 'enotif_body'                  => 'Caro $WATCHINGUSERNAME,
 
 
-A página $PAGETITLE na {{SITENAME}} foi $CHANGEDORCREATED a $PAGEEDITDATEANDTIME por $PAGEEDITOR; consulte $PAGETITLE_URL para a versão atual.
+A página $PAGETITLE na {{SITENAME}} foi $CHANGEDORCREATED a $PAGEEDITDATEANDTIME por $PAGEEDITOR. $REVINFO
 
 $NEWPAGE
 
@@ -1989,15 +1993,15 @@ Contate o editor:
 e-mail: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
-Não haverá mais notificações no caso de futuras alterações a não ser que visite esta página. Poderá também restaurar as bandeiras de notificação para todas as suas páginas vigiadas na sua lista de páginas vigiadas.
+Não haverá mais notificações no caso de futuras alterações a não ser que visite esta página. Você poderá também restaurar as bandeiras de notificação para todas as suas páginas vigiadas na sua lista de páginas vigiadas.
 
-             O seu amigável sistema de notificação da {{SITENAME}}
+             O seu amigável sistema de notificação de {{SITENAME}}
 
 --
-Para alterar as suas preferências da lista de páginas vigiados, visite
+Para alterar as suas preferências da lista de páginas vigiadas, visite
 {{fullurl:Special:Watchlist/edit}}
 
-Contato e assistência
+Contato e assistência:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
@@ -2064,7 +2068,7 @@ Veja a [[Special:ProtectedPages|lista de páginas protegidas]] para uma listagem
 'protect-title'               => 'Protegendo "$1"',
 'prot_1movedto2'              => '[[$1]] foi movido para [[$2]]',
 'protect-legend'              => 'Confirmar proteção',
-'protectcomment'              => 'Motivo de proteção',
+'protectcomment'              => 'Motivo:',
 'protectexpiry'               => 'Expiração',
 'protect_expiry_invalid'      => 'O tempo de expiração fornecido é inválido.',
 'protect_expiry_old'          => 'O tempo de expiração fornecido se situa no passado.',
@@ -2238,7 +2242,7 @@ Isto só deve ser feito para prevenir vandalismo, e de acordo com a [[{{MediaWik
 'ipbotheroption'                  => 'outro',
 'ipbotherreason'                  => 'Outro motivo/motivo adicional:',
 'ipbhidename'                     => 'Ocultar nome de utilizador em edições e listas',
-'ipbwatchuser'                    => 'Vigiar as páginas de usuários e de discussão deste usuário',
+'ipbwatchuser'                    => 'Vigiar a página de usuário e a página de discussão deste usuário',
 'ipballowusertalk'                => 'Permitir que este usuário edite sua própria página de discussão mesmo estando bloqueado',
 'ipb-change-block'                => 'Bloquear o usuário novamente com estes parâmetros',
 'badipaddress'                    => 'Endereço de IP inválido',
@@ -2315,9 +2319,10 @@ $1 já se encontra bloqueado. Deseja alterar as configurações?',
 # Developer tools
 'lockdb'              => 'Trancar banco de dados',
 'unlockdb'            => 'Destrancar banco de dados',
-'lockdbtext'          => 'Trancar o banco de dados suspenderá a habilidade de todos os usuários de editarem páginas, mudarem suas preferências, lista de artigos vigiados e outras coisas que requerem mudanças na base de dados.<br />
+'lockdbtext'          => 'Trancar o banco de dados suspenderá a habilidade de todos os usuários de editarem páginas, mudarem suas preferências, lista de páginas vigiadas e outras coisas que requerem mudanças na base de dados.<br />
 Por favor, confirme que você realmente pretende fazer isso e que vai destrancar a base de dados quando a manutenção estiver concluída.',
-'unlockdbtext'        => 'Desbloquear a base de dados vai restaurar a habilidade de todos os usuários de editarem páginas, mudarem suas preferências, alterarem suas listas de artigos vigiados e outras coisas que requerem mudanças na base de dados. Por favor, confirme que realmente pretende fazer isso.',
+'unlockdbtext'        => 'Desbloquear a base de dados vai restaurar a habilidade de todos os usuários de editarem páginas, mudarem suas preferências, alterarem suas listas de páginas vigiadas e outras coisas que requerem mudanças na base de dados.
+Por favor, confirme que realmente pretende fazer isso.',
 'lockconfirm'         => 'Sim, eu realmente desejo bloquear a base de dados.',
 'unlockconfirm'       => 'Sim, eu realmente desejo desbloquear a base de dados.',
 'lockbtn'             => 'Bloquear base de dados',
@@ -2497,11 +2502,11 @@ Todas as acções de importação transwiki são registradas no [[Special:Log/im
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'Sua página de utilizador',
-'tooltip-pt-anonuserpage'         => 'A página de usuário para o ip que está a utilizar para editar',
+'tooltip-pt-anonuserpage'         => 'A página de usuário para o ip com o qual você está editando',
 'tooltip-pt-mytalk'               => 'Sua página de discussão',
 'tooltip-pt-anontalk'             => 'Discussão sobre edições deste endereço de ip',
-'tooltip-pt-preferences'          => 'Minhas preferências',
-'tooltip-pt-watchlist'            => 'Lista de artigos vigiados.',
+'tooltip-pt-preferences'          => 'Suas preferências',
+'tooltip-pt-watchlist'            => 'A lista de páginas cujas alterações você está monitorando',
 'tooltip-pt-mycontris'            => 'Lista das suas contribuições',
 'tooltip-pt-login'                => 'Você é encorajado a autenticar-se, apesar disso não ser obrigatório.',
 'tooltip-pt-anonlogin'            => 'Você é encorajado a autenticar-se, apesar disso não ser obrigatório.',
@@ -2512,16 +2517,18 @@ Todas as acções de importação transwiki são registradas no [[Special:Log/im
 'tooltip-ca-viewsource'           => 'Esta página está protegida; você pode exibir seu código, no entanto.',
 'tooltip-ca-history'              => 'Edições anteriores desta página.',
 'tooltip-ca-protect'              => 'Proteger esta página',
+'tooltip-ca-unprotect'            => 'Desproteger esta página',
 'tooltip-ca-delete'               => 'Apagar esta página',
 'tooltip-ca-undelete'             => 'Restaurar edições feitas a esta página antes da eliminação',
 'tooltip-ca-move'                 => 'Mover esta página',
-'tooltip-ca-watch'                => 'Adicionar esta página aos artigos vigiados',
-'tooltip-ca-unwatch'              => 'Remover esta página dos artigos vigiados',
+'tooltip-ca-watch'                => 'Adicionar esta página às páginas vigiadas',
+'tooltip-ca-unwatch'              => 'Remover esta página da lista de páginas vigiadas',
 'tooltip-search'                  => 'Pesquisar nesta wiki',
 'tooltip-search-go'               => 'Ir a uma página com este exato nome, caso exista',
 'tooltip-search-fulltext'         => 'Procurar por páginas contendo este texto',
 'tooltip-p-logo'                  => 'Página principal',
 'tooltip-n-mainpage'              => 'Visitar a página principal',
+'tooltip-n-mainpage-description'  => 'Visitar a página principal',
 'tooltip-n-portal'                => 'Sobre o projeto',
 'tooltip-n-currentevents'         => 'Informação temática sobre eventos atuais',
 'tooltip-n-recentchanges'         => 'A lista de mudanças recentes nesta wiki.',
@@ -2552,9 +2559,9 @@ Todas as acções de importação transwiki são registradas no [[Special:Log/im
 'tooltip-preview'                 => 'Prever as alterações, por favor utilizar antes de salvar!',
 'tooltip-diff'                    => 'Mostrar alterações que fez a este texto.',
 'tooltip-compareselectedversions' => 'Ver as diferenças entre as duas versões selecionadas desta página.',
-'tooltip-watch'                   => 'Adicionar esta página à sua lista de artigos vigiados',
+'tooltip-watch'                   => 'Adicionar esta página à sua lista de páginas vigiadas',
 'tooltip-recreate'                => 'Recriar a página apesar de ter sido eliminada',
-'tooltip-upload'                  => 'Iniciar o upload',
+'tooltip-upload'                  => 'Iniciar o carregamento',
 'tooltip-rollback'                => '"{{int:rollbacklink}}" reverte, com um só clique, as edições do último editor desta página.',
 'tooltip-undo'                    => '"{{int:editundo}}" reverte esta edição exibindo a caixa de edição no modo de previsão, permitindo alterações adicionais e o uso do sumário de edição para justificativas.',
 
@@ -2637,7 +2644,7 @@ Tal bloqueio foi provavelmente causado por uma ligação para um ''website'' ext
 
 # Patrolling
 'markaspatrolleddiff'                 => 'Marcar como verificado',
-'markaspatrolledtext'                 => 'Marcar este artigo como verificado',
+'markaspatrolledtext'                 => 'Marcar esta página como verificada',
 'markedaspatrolled'                   => 'Marcado como verificado',
 'markedaspatrolledtext'               => 'A revisão selecionada foi marcada como verificada.',
 'rcpatroldisabled'                    => 'Edições verificadas nas Mudanças Recentes desactivadas',
@@ -2649,7 +2656,7 @@ Tal bloqueio foi provavelmente causado por uma ligação para um ''website'' ext
 # Patrol log
 'patrol-log-page'      => 'Registro de edições patrulhadas',
 'patrol-log-header'    => 'Este é um registro de edições patrulhadas.',
-'patrol-log-line'      => 'marcou a edição $1 de $2 como uma edição patrulhada $3',
+'patrol-log-line'      => 'marcou a $1 de $2 como uma edição patrulhada $3',
 'patrol-log-auto'      => 'automaticamente',
 'patrol-log-diff'      => 'edição $1',
 'log-show-hide-patrol' => '$1 registro de edições patrulhadas',
@@ -2701,8 +2708,9 @@ $1',
 # Bad image list
 'bad_image_list' => 'O formato é o seguinte:
 
-Só itens da lista (linhas começando com *) são considerados. O primeiro link em uma linha deve ser um link para uma má imagem.
-Qualquer link posterior na mesma linha são consideradas como exceções, ou seja, artigos onde a imagem pode ficar como linha.',
+Só itens da lista (linhas começando com *) são considerados.
+A primeira ligação em uma linha deve ser uma ligação para um arquivo ruim.
+Qualquer ligação posterior na mesma linha são consideradas como exceções, ou seja, páginas nas quais o arquivo pode aparecer na linha.',
 
 # Metadata
 'metadata'          => 'Metadados',
@@ -3090,29 +3098,30 @@ Tente a previsão comum.',
 'lag-warn-high'   => 'Devido a sérios problemas de latência no servidor do banco de dados, as alterações mais recentes que $1 {{PLURAL:$1|segundo|segundos}} poderão não ser exibidas nesta lista.',
 
 # Watchlist editor
-'watchlistedit-numitems'       => 'A sua lista de vigiados possui {{PLURAL:$1|um título|$1 títulos}}, além das respectivas páginas de discussão.',
-'watchlistedit-noitems'        => 'A sua lista de vigiados não possui títulos.',
-'watchlistedit-normal-title'   => 'Editar lista de vigiados',
-'watchlistedit-normal-legend'  => 'Remover títulos da lista de vigiados',
-'watchlistedit-normal-explain' => 'Os títulos de sua lista de vigiados são exibidos a seguir.
-Para remover um título clique no box ao lado do mesmo e no botão Remover Títulos. Você também pode [[Special:Watchlist/raw|editar a lista crua]].',
+'watchlistedit-numitems'       => 'A sua lista de páginas vigiadas possui {{PLURAL:$1|um título|$1 títulos}}, além das respectivas páginas de discussão.',
+'watchlistedit-noitems'        => 'A sua lista de páginas vigiadas não possui títulos.',
+'watchlistedit-normal-title'   => 'Editar lista de páginas vigiadas',
+'watchlistedit-normal-legend'  => 'Remover títulos da lista de páginas vigiadas',
+'watchlistedit-normal-explain' => 'Os títulos de sua lista de páginas vigiadas são exibidos a seguir.
+Para remover um título, marque a caixa ao lado do mesmo e clique no botão Remover Títulos.
+Você também pode [[Special:Watchlist/raw|editar a lista crua]].',
 'watchlistedit-normal-submit'  => 'Remover Títulos',
-'watchlistedit-normal-done'    => '{{PLURAL:$1|um título foi removido|$1 títulos foram removidos}} de sua lista de vigiados:',
-'watchlistedit-raw-title'      => 'Edição crua dos vigiados',
-'watchlistedit-raw-legend'     => 'Edição crua dos vigiados',
-'watchlistedit-raw-explain'    => 'Os títulos de sua lista de vigiados são exibidos a seguir e podem ser adicionados ou removidos ao se editar a lista, mantendo-se um por linha.
+'watchlistedit-normal-done'    => '{{PLURAL:$1|um título foi removido|$1 títulos foram removidos}} de sua lista de páginas vigiadas:',
+'watchlistedit-raw-title'      => 'Edição crua da lista de páginas vigiadas',
+'watchlistedit-raw-legend'     => 'Edição crua da lista de páginas vigiadas',
+'watchlistedit-raw-explain'    => 'Os títulos de sua lista de páginas vigiadas são exibidos a seguir e podem ser adicionados ou removidos ao se editar a lista, mantendo-se um por linha.
 Ao terminar, clique no botão correspondente para atualizar.
 Você também pode [[Special:Watchlist/edit|editar a lista da forma convencional]].',
 'watchlistedit-raw-titles'     => 'Títulos:',
-'watchlistedit-raw-submit'     => 'Atualizar a lista de vigiados',
-'watchlistedit-raw-done'       => 'Sua lista de vigiados foi atualizada.',
+'watchlistedit-raw-submit'     => 'Atualizar a lista de páginas vigiadas',
+'watchlistedit-raw-done'       => 'Sua lista de páginas vigiadas foi atualizada.',
 'watchlistedit-raw-added'      => '{{PLURAL:$1|Foi adicionado um título|Foram adicionados $1 títulos}}:',
 'watchlistedit-raw-removed'    => '{{PLURAL:$1|Foi removido um título|Foram removidos $1 títulos}}:',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Ver alterações relevantes',
-'watchlisttools-edit' => 'Ver e editar a lista de vigiados',
-'watchlisttools-raw'  => 'Edição crua dos vigiados',
+'watchlisttools-edit' => 'Ver e editar a lista de páginas vigiadas',
+'watchlisttools-raw'  => 'Edição crua da lista de páginas vigiadas',
 
 # Core parser functions
 'unknown_extension_tag' => '"$1" é uma tag de extensão desconhecida',
@@ -3197,7 +3206,7 @@ Entre com o nome de arquivo sem fornecer o prefixo "{{ns:file}}:".',
 'tag-filter-submit'       => 'Filtrar',
 'tags-title'              => 'Etiquetas',
 'tags-intro'              => 'Esta página lista as etiquetas com que o software poderá marcar uma edição, e o seu significado.',
-'tags-tag'                => 'Nome interno da etiqueta',
+'tags-tag'                => 'Nome da etiqueta',
 'tags-display-header'     => 'Aparência nas listas de modificações',
 'tags-description-header' => 'Descrição completa do significado',
 'tags-hitcount-header'    => 'Modificações etiquetadas',

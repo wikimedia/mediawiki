@@ -2918,6 +2918,7 @@ Slědujuce wótkaze w tej samej smužce se za wuwześa naglědaju, w kótarychž
 'watchlistall2'    => 'wšykne',
 'namespacesall'    => 'wšykne',
 'monthsall'        => 'wšykne',
+'limitall'         => 'wšykne',
 
 # E-mail address confirmation
 'confirmemail'             => 'E-mailowu adresu wobkšuśiś.',
@@ -3128,7 +3129,7 @@ Zapódaj datajowe mě bźez prefiksa "{{ns:file}}:".',
 'tag-filter-submit'       => 'Filter',
 'tags-title'              => 'Toflicki',
 'tags-intro'              => 'Toś ten bok nalicyjo toflicki, z kótarymiž softwara móžo změnu markěrowaś a jich wóznam.',
-'tags-tag'                => 'Interne mě toflicki',
+'tags-tag'                => 'Mě toflicki',
 'tags-display-header'     => 'Naglěd na lisćinach změnow',
 'tags-description-header' => 'Dopołne wopisanje wóznama',
 'tags-hitcount-header'    => 'Změny z toflickami',

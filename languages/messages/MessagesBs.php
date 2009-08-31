@@ -1614,7 +1614,7 @@ Da bi ste prikazali datoteku na stranici, koristite link na jedan od slijedećih
 'minlength1'                  => 'Ime datoteke mora imati barem jedno slovo.',
 'illegalfilename'             => 'Ime datoteke "$1" sadrži simbol koji nije dozvoljen u imenu datoteke.
 Molimo Vas da promijenite ime datoteke i pokušate da je ponovo postavite.',
-'badfilename'                 => 'Ime slike je promijenjeno u "$1".',
+'badfilename'                 => 'Ime datoteke je promijenjeno u "$1".',
 'filetype-badmime'            => 'Datoteke MIME vrste "$1" nije dopušteno postavljati.',
 'filetype-bad-ie-mime'        => 'Ne može se postaviti ova datoteka jer je Internet Explorer prepoznaje kao "$1", što je nedozvoljena i potencijalno opasna vrsta datoteke.',
 'filetype-unwanted-type'      => "'''\".\$1\"''' je nepoželjna vrsta datoteke.
@@ -3438,7 +3438,7 @@ Unesite ime datoteke bez "{{ns:file}}:" prefiksa.',
 'tag-filter-submit'       => 'Filter',
 'tags-title'              => 'Oznake',
 'tags-intro'              => 'Ova stranica prikazuje spisak oznaka koje softver može staviti na svaku izmjenu i njihovo značenje.',
-'tags-tag'                => 'Unutrašnji naziv oznake',
+'tags-tag'                => 'Naziv oznake',
 'tags-display-header'     => 'Vidljivost na spisku izmjena',
 'tags-description-header' => 'Puni opis značenja',
 'tags-hitcount-header'    => 'Označene izmjene',

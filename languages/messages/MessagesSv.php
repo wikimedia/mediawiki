@@ -618,10 +618,11 @@ I [[Special:SpecialPages|listan över specialsidor]] kan du se vilka specialsido
 'error'                => 'Fel',
 'databaseerror'        => 'Databasfel',
 'dberrortext'          => 'Ett syntaxfel i databasfrågan har uppstått.
-Den senaste utförda databasfrågan var:
+Detta kan indikera en bug i mjukvaran.
+Den senaste databasfrågan att köras var:
 <blockquote><tt>$1</tt></blockquote>
 från funktionen "<tt>$2</tt>".
-$5 returnerade felen "$3<tt>: $4</tt>".',
+Databasen returnerade felet "<tt>$3: $4</tt>".',
 'dberrortextcl'        => 'Ett felaktigt utformat sökbegrepp har påträffats. Senaste sökbegrepp var: "$1"  från funktionen "$2". $5 svarade med felmeddelandet "$3: $4"',
 'laggedslavemode'      => 'Varning: Sidan kan sakna de senaste uppdateringarna.',
 'readonly'             => 'Databasen är skrivskyddad',
@@ -728,8 +729,7 @@ Kontrollera din stavning, eller [[Special:UserLogin/signup|skapa ett nytt konto]
 'nouserspecified'            => 'Du måste ange ett användarnamn.',
 'wrongpassword'              => 'Lösenordet du angav är felaktigt. Försök igen',
 'wrongpasswordempty'         => 'Lösenordet som angavs var blankt. Var god försök igen.',
-'passwordtooshort'           => 'Ditt lösenord är för kort.
-Det måste innehålla minst {{PLURAL:$1|$1 tecken}}.',
+'passwordtooshort'           => 'Lösenord måste innehålla minst {{PLURAL:$1|$1 tecken}}.',
 'password-name-match'        => 'Ditt lösenord måste vara olikt ditt användarnamn.',
 'mailmypassword'             => 'Skicka nytt lösenord',
 'passwordremindertitle'      => 'Nytt temporärt lösenord från {{SITENAME}}',
@@ -2085,6 +2085,7 @@ Framtida ändringar av den här sidan och dess diskussionssida kommer att listas
 'enotif_impersonal_salutation' => '{{SITENAME}}användare',
 'changed'                      => 'ändrad',
 'created'                      => 'skapad',
+'deleted'                      => 'raderad',
 'enotif_subject'               => '{{SITENAME}}-sidan $PAGETITLE har blivit $CHANGEDORCREATED av $PAGEEDITOR',
 'enotif_lastvisited'           => 'På $1 återfinner du alla ändringar sedan ditt senaste besök.',
 'enotif_lastdiff'              => 'Se denna ändring på $1',
@@ -2632,6 +2633,7 @@ Vänligen använd förhandsgranskningsknappen innan du sparar.',
 'tooltip-ca-viewsource'           => 'Den här sidan är skrivskyddad. Du kan se källtexten.',
 'tooltip-ca-history'              => 'Tidigare versioner av sidan',
 'tooltip-ca-protect'              => 'Skydda den här sidan',
+'tooltip-ca-unprotect'            => 'Ta bort skrivskyddet från den här sidan',
 'tooltip-ca-delete'               => 'Radera denna sida',
 'tooltip-ca-undelete'             => 'Återställ alla redigeringar som gjorts innan sidan raderades',
 'tooltip-ca-move'                 => 'Flytta den här sidan',
@@ -2640,8 +2642,9 @@ Vänligen använd förhandsgranskningsknappen innan du sparar.',
 'tooltip-search'                  => 'Sök på {{SITENAME}}',
 'tooltip-search-go'               => 'Gå till sidan med detta namn om den finns',
 'tooltip-search-fulltext'         => 'Sök efter sidor som innehåller denna text',
-'tooltip-p-logo'                  => 'Huvudsida',
+'tooltip-p-logo'                  => 'Besök huvudsidan',
 'tooltip-n-mainpage'              => 'Besök huvudsidan',
+'tooltip-n-mainpage-description'  => 'Besök huvudsidan',
 'tooltip-n-portal'                => 'Om projektet, vad du kan göra, var man kan hitta saker',
 'tooltip-n-currentevents'         => 'Hitta bakgrundsinformation om aktuella händelser',
 'tooltip-n-recentchanges'         => 'Lista över senaste ändringar i wikin',

@@ -959,7 +959,7 @@ Beberapa templat akan diabaikan.',
 'undo-success' => 'Suntingan ini dapat dibatalkan. Tolong cek perbandingan di bawah untuk meyakinkan bahwa benar itu yang Anda ingin lakukan, lalu simpan perubahan tersebut untuk menyelesaikan pembatalan suntingan.',
 'undo-failure' => 'Suntingan ini tidak dapat dibatalkan karena konflik penyuntingan antara.',
 'undo-norev'   => 'Suntingan ini tidak dapat dibatalkan karena halaman tidak ditemukan atau telah dihapuskan.',
-'undo-summary' => '←Membatalkan revisi $1 oleh [[{{ns:special}}:Kontribusi/$2|$2]] ([[{{ns:user_talk}}:$2|Bicara]])',
+'undo-summary' => '←Membatalkan revisi $1 oleh [[Special:Contributions/$2|$2]] ([[User talk:$2|Bicara]])',
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Akun tak dapat dibuat',
@@ -3065,6 +3065,7 @@ Pranala-pranala selanjutnya pada baris yang sama dianggap sebagai pengecualian, 
 'watchlistall2'    => 'semua',
 'namespacesall'    => 'semua',
 'monthsall'        => 'semua',
+'limitall'         => 'semua',
 
 # E-mail address confirmation
 'confirmemail'             => 'Konfirmasi alamat surat-e',
@@ -3306,7 +3307,7 @@ Keterangan tampilan:
 'tag-filter-submit'       => 'Penyaring',
 'tags-title'              => 'Tag',
 'tags-intro'              => 'Halaman ini berisi daftar tag yang dapat ditandai oleh perangkat lunak terhadap suatu suntingan berikut artinya.',
-'tags-tag'                => 'Nama tag internal',
+'tags-tag'                => 'Nama tag',
 'tags-display-header'     => 'Tampilan di daftar perubahan',
 'tags-description-header' => 'Deskripsi lengkap atau makna',
 'tags-hitcount-header'    => 'Perubahan bertag',

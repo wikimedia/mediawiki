@@ -356,7 +356,7 @@ $messages = array(
 'tog-shownumberswatching'     => 'Afficher le nombre d’utilisateurs qui suivent cette page',
 'tog-oldsig'                  => 'Aperçu de la signature existante :',
 'tog-fancysig'                => 'Traiter la signature comme du wikitexte (sans lien automatique)',
-'tog-externaleditor'          => 'Utiliser un éditeur de texte externe par défaut (pour les utilisateurs avancés, nécessite des réglages sur votre ordinateur)',
+'tog-externaleditor'          => 'Utiliser par défaut un éditeur de texte externe (pour les utilisateurs avancés, nécessite des réglages spécifiques sur votre ordinateur)',
 'tog-externaldiff'            => 'Utiliser un comparateur externe par défaut (pour les utilisateurs avancés, nécessite des réglages sur votre ordinateur)',
 'tog-showjumplinks'           => 'Activer les liens « navigation » et « recherche » en haut de page',
 'tog-uselivepreview'          => 'Utiliser l’aperçu rapide (nécessite JavaScript) (expérimental)',
@@ -400,7 +400,7 @@ $messages = array(
 'thu'           => 'jeu',
 'fri'           => 'ven',
 'sat'           => 'sam',
-'january'       => 'Janvier',
+'january'       => 'janvier',
 'february'      => 'février',
 'march'         => 'mars',
 'april'         => 'avril',
@@ -936,9 +936,9 @@ Si cela échoue de nouveau, essayez en vous [[Special:UserLogout|déconnectant]]
 
 '''Si la tentative de modification était légitime, veuillez réessayer.'''
 Si cela échoue de nouveau, [[Special:UserLogout|déconnectez-vous]], puis reconnectez-vous.",
-'token_suffix_mismatch'            => "'''Votre modification n’a pas été acceptée car votre navigateur web a mélangé les caractères de ponctuation dans l’identifiant de modification.'''
-La modification a été rejetée afin d’empêcher la corruption du texte de la page.
-Ce problème se produit lorsque vous utilisez un serveur mandataire anonyme problématique.",
+'token_suffix_mismatch'            => "'''Votre modification n’a pas été acceptée car votre navigateur a mal codé les caractères de ponctuation dans l’identifiant de modification.'''
+Ce rejet est nécessaire pour empêcher la corruption du texte de la page.
+Ce problème se produit parfois lorsque vous utilisez un serveur mandataire anonyme problématique basé sur le web.",
 'editing'                          => 'Modification de $1',
 'editingsection'                   => 'Modification de $1 (section)',
 'editingcomment'                   => 'Modification de $1 (nouvelle section)',
@@ -1071,7 +1071,7 @@ En tant qu’administrateur, vous pouvez la visualiser ; il peut y avoir des dé
 'rev-suppressed-text-view'    => "Cette version de la page a été '''supprimée'''.
 En tant qu’administrateur, vous pouvez la visualiser ; il peut y avoir des détails dans le [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} journal des suppressions].",
 'rev-deleted-no-diff'         => "Vous ne pouvez par voir ce diff parce qu’une des versions a été '''effacée'''.
-Il peut y avoir plus de détails dans le [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} jounral des effacements].",
+Il peut y avoir plus de détails dans le [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} journal des effacements].",
 'rev-deleted-unhide-diff'     => "Une des révisions de cette différence a été '''effacée'''.
 Il peut y avoir plus de détails dans le [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} journal des effacements].
 En tant qu’administrateur vous pouvez toujours [$1 voir cette différence] si vous le voulez.",
@@ -1737,7 +1737,7 @@ Si le problème persiste, contactez un [[Special:ListUsers/sysop|administrateur]
 'upload-curl-error28'      => 'Dépassement du délai lors du téléversement',
 'upload-curl-error28-text' => 'Le site a mis trop longtemps à répondre. Vérifiez que le site est en ligne, attendez un peu et réessayez. Vous pouvez aussi réessayer à une heure de moindre affluence.',
 
-'license'            => 'Licence :',
+'license'            => 'Licence',
 'license-header'     => 'Publié sous licence(s)',
 'nolicense'          => 'Aucune licence sélectionnée',
 'license-nopreview'  => '(Prévisualisation non disponible)',
@@ -3178,6 +3178,7 @@ Les autres liens sur la même ligne sont considérés comme des exceptions, par 
 'watchlistall2'    => 'tout',
 'namespacesall'    => 'Tous',
 'monthsall'        => 'tous',
+'limitall'         => 'tous',
 
 # E-mail address confirmation
 'confirmemail'             => 'Confirmer l’adresse de courriel',
@@ -3411,7 +3412,7 @@ Entrez le nom du fichier sans le préfixe « {{ns:file}}: ».',
 'tag-filter-submit'       => 'Filtrer',
 'tags-title'              => 'Balises',
 'tags-intro'              => 'Cette page liste les balises que le logiciel peut utiliser pour marquer une modification et la signification de chacune.',
-'tags-tag'                => 'Nom interne de la balise',
+'tags-tag'                => 'Nom de la balise',
 'tags-display-header'     => 'Apparence dans les listes de modifications',
 'tags-description-header' => 'Description complète de la balise',
 'tags-hitcount-header'    => 'Modifications balisées',
