@@ -434,22 +434,14 @@ class OutputPage {
 	 * @return null
 	 */
 	public function setRobotPolicy( $policy ) {
-		$policy = explode( ',', $policy );
-		$policy = array_map( 'trim', $policy );
+		$policy = Article::formatRobotPolicy( $policy );
 
-		# The default policy is follow, so if nothing is said explicitly, we
-		# do that.
-		if( in_array( 'nofollow', $policy ) ) {
-			$this->mFollowPolicy = 'nofollow';
-		} else {
-			$this->mFollowPolicy = 'follow';
-		}
-
-		if( in_array( 'noindex', $policy ) ) {
-			$this->mIndexPolicy = 'noindex';
-		} else {
-			$this->mIndexPolicy = 'index';
-		}
+		if( isset( $policy['index'] ) ){
+			$this->setIndexPolicy( $policy['index'] );
+ 		}
+		if( isset( $policy['follow'] ) ){
+			$this->setFollowPolicy( $policy['follow'] );
+ 		}
 	}
 
 	/**
@@ -720,17 +712,6 @@ class OutputPage {
 		$this->addCategoryLinks( $parserOutput->getCategories() );
 		$this->mNewSectionLink = $parserOutput->getNewSection();
 		$this->mHideNewSectionLink = $parserOutput->getHideNewSection();
-
-		if( is_null( $wgExemptFromUserRobotsControl ) ) {
-			$bannedNamespaces = $wgContentNamespaces;
-		} else {
-			$bannedNamespaces = $wgExemptFromUserRobotsControl;
-		}
-		if( !in_array( $this->getTitle()->getNamespace(), $bannedNamespaces ) ) {
-			# FIXME (bug 14900): This overrides $wgArticleRobotPolicies, and it
-			# shouldn't
-			$this->setIndexPolicy( $parserOutput->getIndexPolicy() );
-		}
 
 		$this->mParseWarnings = $parserOutput->getWarnings();
 		if ( $parserOutput->getCacheTime() == -1 ) {

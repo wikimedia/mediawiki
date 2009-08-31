@@ -3717,4 +3717,21 @@ class Title {
 		}
 		return $this->mBacklinkCache;
 	}
+
+	/**
+	 * Whether the magic words __INDEX__ and __NOINDEX__ function for
+	 * this page.
+	 * @return Bool
+	 */
+	public function canUseNoindex(){
+		global $wgArticleRobotPolicies, $wgContentNamespaces,
+		       $wgExemptFromUserRobotsControl;
+
+		$bannedNamespaces = is_null( $wgExemptFromUserRobotsControl )
+			? $wgContentNamespaces
+			: $wgExemptFromUserRobotsControl;
+
+		return !in_array( $this->mNamespace, $bannedNamespaces );
+
+	}
 }
