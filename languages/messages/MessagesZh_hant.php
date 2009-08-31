@@ -2981,6 +2981,7 @@ Variants for Chinese language
 'watchlistall2'    => '全部',
 'namespacesall'    => '全部',
 'monthsall'        => '全部',
+'messagesall'      => '全部',
 
 # E-mail address confirmation
 'confirmemail'             => '確認郵箱位址',
