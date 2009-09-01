@@ -636,7 +636,7 @@ remoteSearchDriver.prototype = {
 						//deal with the api form upload form directly:
 						$j('#upload_form').simpleUploadForm({
 							"api_target" :	_this.upload_api_target ,
-							"ondone_cb"	: function( resultData ){				
+							"ondone_cb"	: function( resultData ){
 								var wTitle = resultData['filename'];	
 								//add a loading div
 								_this.addResourceEditLoader();
@@ -1118,7 +1118,13 @@ remoteSearchDriver.prototype = {
 
 
 		//try and keep aspect ratio for the thumbnail that we clicked:
-		var tRatio =    $j('#rsd_edit_img').width() / $j('#rsd_edit_img').height() ;
+		var rh = $j('#rsd_edit_img').height();
+		var rw = $j('#rsd_edit_img').width(); 
+		if( rw > rh ){
+			var tRatio = rw / rh;
+		}else{
+			var tRatio = rh / rw;
+		}
 		if(	! tRatio )
 			var tRatio = 1; //set ratio to 1 if the width of the thumbnail can't be found for some reason
 
