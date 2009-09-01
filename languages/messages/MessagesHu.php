@@ -3130,6 +3130,7 @@ tartalmazni fogja. A többi alapértelmezésként rejtett marad.
 'watchlistall2'    => 'bármikor',
 'namespacesall'    => 'Összes',
 'monthsall'        => 'mind',
+'limitall'         => 'mind',
 
 # E-mail address confirmation
 'confirmemail'             => 'E-mail cím megerősítése',

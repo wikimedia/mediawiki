@@ -428,6 +428,7 @@ $1",
 'viewdeleted'             => 'Weis $1?',
 'restorelink'             => '$1 geläschte {{PLURAL:$1|Versioun|Versiounen}}',
 'feedlinks'               => 'Feed:',
+'feed-invalid'            => 'Net valabelen Typ vun Abonnements-Feed',
 'feed-unavailable'        => "''Syndication Feeds'' stinn net zur Verfügung.",
 'site-rss-feed'           => 'RSS-Feed fir $1',
 'site-atom-feed'          => 'Atom-Feed fir $1',
@@ -1803,13 +1804,14 @@ Kuckt och [[Special:WantedCategories|Gewënschte Kategorien]].',
 'sp-deletedcontributions-contribs' => 'Kontributiounen',
 
 # Special:LinkSearch
-'linksearch'      => 'Extern Linken',
-'linksearch-pat'  => 'Sich-Critère:',
-'linksearch-ns'   => 'Nummraum:',
-'linksearch-ok'   => 'Sichen',
-'linksearch-text' => 'Sougennante "Wildcards" wéi zum Beispill <tt>*.example.com</tt> kënne benotzt ginn.<br />
+'linksearch'       => 'Extern Linken',
+'linksearch-pat'   => 'Sich-Critère:',
+'linksearch-ns'    => 'Nummraum:',
+'linksearch-ok'    => 'Sichen',
+'linksearch-text'  => 'Sougennante "Wildcards" wéi zum Beispill <tt>*.example.com</tt> kënne benotzt ginn.<br />
 Ënnerstëtzte Protekoller: <tt>$1</tt>',
-'linksearch-line' => '$1 verlinkt vun $2',
+'linksearch-line'  => '$1 verlinkt vun $2',
+'linksearch-error' => 'Wildcards (*,?) kënnen nëmmen am Ufank vum Host-Numm benotzt ginn.',
 
 # Special:ListUsers
 'listusersfrom'      => "D'Benotzer uweisen, ugefaange bei:",
@@ -2862,7 +2864,9 @@ Duerno sti Linken déi Ausnamen definéieren, an deenen hirem Kontext dat Bild a
 'exif-sensingmethod-2' => 'Een-Chip-Faarfsensor',
 'exif-sensingmethod-3' => 'Zwee-Chip-Faarfsensor',
 'exif-sensingmethod-4' => 'Dräi-Chip-Faarfsensor',
+'exif-sensingmethod-5' => 'Sequentielle raimleche Farwsensor',
 'exif-sensingmethod-7' => 'Dräilineare Sensor',
+'exif-sensingmethod-8' => 'Sequentielle lineare Farwsensor',
 
 'exif-scenetype-1' => "D'Bild gouf photograféiert",
 
@@ -2937,6 +2941,7 @@ Duerno sti Linken déi Ausnamen definéieren, an deenen hirem Kontext dat Bild a
 'watchlistall2'    => 'all',
 'namespacesall'    => 'all',
 'monthsall'        => 'all',
+'limitall'         => 'all',
 
 # E-mail address confirmation
 'confirmemail'             => 'E-Mailadress confirméieren',

@@ -345,12 +345,12 @@ Saait software me bug hoi.
 Pahile waala database ke khoj ke kosis rahaa:
 <blockquote><tt>$1</tt></blockquote>
 "<tt>$2</tt>" function ke bhitar se.
-$5 ke galti sandes rahaa "<tt>$3: $4</tt>".',
+Database ke galti sandes rahaa "<tt>$3: $4</tt>".',
 'dberrortextcl'        => 'Database ke khoj me syntax error hoe gais hae.
 Pahile waala database ke khoj ke kosis rahaa:
 "$1"
 "$2" function ke bhitar se.
-$5 ke galti sandes rahaa "$3: $4"',
+Database ke galti sandes rahaa "$3: $4"',
 'laggedslavemode'      => 'Chetawni: Panna me nawaa badlao sait nai hoi.',
 'readonly'             => 'Database band hai',
 'enterlockreason'      => 'Band kare ke kaaran likho, aur ii bhi likho ki kab khola jaai.',
@@ -464,8 +464,7 @@ Aapan spelling check karo.',
 'nouserspecified'            => 'Aap ke aapan username de ke parri.',
 'wrongpassword'              => 'Galat password likha gais hai. Fir se kosis karo.',
 'wrongpasswordempty'         => 'Koi password nai likha gais hai. Fir se kosis karo.',
-'passwordtooshort'           => 'Aap ke password bahut chhota hai. 
-Password me kamti se kamti {{PLURAL:$1|1 character|$1 characters}} hoe ke chahi.',
+'passwordtooshort'           => 'Password me kamti se kamti {{PLURAL:$1|1 character|$1 characters}} hoe ke chahi.',
 'password-name-match'        => 'Aap ke password ke aap ke username se different rahe ke chaahi.',
 'mailmypassword'             => 'Nawaa password ke E-mail karo',
 'passwordremindertitle'      => '{{SITENAME}} ke khatir nawaa temporary password',
@@ -1107,6 +1106,7 @@ Iske pahile jaise nai karaa jaawe sake hai.',
 'yourlanguage'                  => 'Bhasa:',
 'yourvariant'                   => 'Variant:',
 'yournick'                      => 'Signature:',
+'prefs-help-signature'          => 'Baat waala panna me aap ke bichar ke "<nowiki>~~~~</nowiki>" se sign kare ke chaahi jiske signature aur timestamp me badal dewa jaai.',
 'badsig'                        => 'Invalid raw signature; HTML tags ke check karo.',
 'badsiglength'                  => 'Signature bahut lambaa hai.
 Iske $1 {{PLURAL:$1|character|characters}} se kamti rahe ke chaahi.',
@@ -1286,6 +1286,15 @@ Aap duusra log ke aap se aapan user_talk panna se aap ke contact kar le de sakta
 'recentchanges-legend'              => 'Nawaa badlao options',
 'recentchangestext'                 => 'Wiki me ii panna ke nawaa badlao pe dhyan rakho.',
 'recentchanges-feed-description'    => 'Abhi haali me bhae ii wiki ke feed me ke track karo.',
+'recentchanges-label-legend'        => 'Matlab: $1',
+'recentchanges-legend-newpage'      => '$1 - nawaa panna',
+'recentchanges-label-newpage'       => 'Ii badlao ek nawaa panna banais hae',
+'recentchanges-legend-minor'        => '$1 - chhota badlao',
+'recentchanges-label-minor'         => 'Ii ek chhota badlao hae',
+'recentchanges-legend-bot'          => '$1 - bot se badlao',
+'recentchanges-label-bot'           => 'Ii badlao ke ek bot karis hae',
+'recentchanges-legend-unpatrolled'  => '$1 - bina pahraa dewa gais badlao',
+'recentchanges-label-unpatrolled'   => 'Ii badlao pe abhi pahraa nai dewa gais hae.',
 'rcnote'                            => "Niche {{PLURAL:$1|hai '''1''' badlao|aakhri hai '''$1''' badlao}} pahile {{PLURAL:$2|din|'''$2''' din}}, $5, $4 talak.",
 'rcnotefrom'                        => "Niche '''$2''' se badlao hai ('''$1''' tak )",
 'rclistfrom'                        => '$1 se suruu kar ke nawaa badlao dekhao',
@@ -1439,7 +1448,7 @@ Meharbani kar ke dekho ki ii site chale hai, thora deri tak wait kar ke fir se k
 Saait aap ke kamti busy time kosis kare ke chaahi.',
 
 'license'            => 'Licensing:',
-'license-header'     => 'Licensing:',
+'license-header'     => 'Licensing',
 'nolicense'          => 'Koi bhi selct nai karaa gais hai',
 'license-nopreview'  => '(Preview abhi taiyaar nai hai)',
 'upload_source_url'  => ' (ek valid, publicly accessible URL)',
@@ -1545,7 +1554,7 @@ Templates ke delete kare se pahile duusra links ke bhi check kare ke nai bhulna.
 
 # Random page
 'randompage'         => 'Koi bhi panna',
-'randompage-nopages' => 'Namespace "$1" me koi panna nai hai.',
+'randompage-nopages' => 'Ii {{PLURAL:$2|namespace|namespaces}} me koi panna nai hae:  $1',
 
 # Random redirect
 'randomredirect'         => 'Random redirect',
@@ -1557,6 +1566,7 @@ Templates ke delete kare se pahile duusra links ke bhi check kare ke nai bhulna.
 'statistics-header-edits'      => 'Statistics ke badlo',
 'statistics-header-views'      => 'Statistics ke dekho',
 'statistics-header-users'      => 'Sadasya ke statistics',
+'statistics-header-hooks'      => 'Duusra statistics',
 'statistics-articles'          => 'Content panna',
 'statistics-pages'             => 'Panna',
 'statistics-pages-desc'        => 'Wiki me sab panna, including salah waala panna, redirects, etc.',
@@ -1822,10 +1832,12 @@ Future changes to this page and its associated talk page will be listed there, a
 'enotif_impersonal_salutation' => '{{SITENAME}} sadasya',
 'changed'                      => 'badal dewa gais hai',
 'created'                      => 'banae dewa gais hai',
+'deleted'                      => 'mitae dewa gais hae',
 'enotif_subject'               => '$PAGEEDITOR {{SITENAME}} panna $PAGETITLE ke badal $CHANGEDORCREATED diis hai',
 'enotif_lastvisited'           => 'Aap ke pichhla visit ke baad ke badlao ke khatir $1 ke dekho.',
 'enotif_lastdiff'              => 'Ii badlao ke dekhe ke khatir $1 ke dekho.',
 'enotif_anon_editor'           => 'bina naam ke sadasya $1',
+'enotif_rev_info'              => 'Abhi ke version ke khatir $1 ke dekho',
 'enotif_body'                  => 'Dear $WATCHINGUSERNAME,
 
 
@@ -1915,7 +1927,7 @@ Abhi ke laabu panna protection ke dekho [[Special:ProtectedPages|protected pages
 'protect-title'               => '"$1" ke protection level ke badlo',
 'prot_1movedto2'              => '[[$1]] ke naam badal ke [[$2]] kar dewa gae hai',
 'protect-legend'              => 'Protection ke confirm karo',
-'protectcomment'              => 'Tiprri:',
+'protectcomment'              => 'Kaaran:',
 'protectexpiry'               => 'Khalas hoe hai:',
 'protect_expiry_invalid'      => 'Khalas hoe waala time valid nai hai.',
 'protect_expiry_old'          => 'Khalas hoe waala time past me hai.',

@@ -1076,7 +1076,7 @@ Tafadhali hakikisha kwamba unalenga kufanya hivyo, na kwamba unaelewa matokeo ya
 'rollbackfailed'   => 'Haikufaulu kurejesha',
 'cantrollback'     => 'Haiwezekana kujesha sahihisho;
 ukurasa huu una mhariri mmoja tu.',
-'revertpage'       => 'Masahihisho aliyefanya [[Special:Contributions/$2|$2]] ([[User talk:$2|Majadiliano]]) yalirejeshwa hadi sahihisho la mwisho na [[user:$1|$1]]',
+'revertpage'       => 'Masahihisho aliyefanya [[Special:Contributions/$2|$2]] ([[User talk:$2|Majadiliano]]) yalirejeshwa hadi sahihisho la mwisho na [[User:$1|$1]]',
 'rollback-success' => 'Masahihisho aliyeyafanya $1 yalirejeshwa hadi kufika sahihisho la mwisho aliyefanya $2.',
 
 # Protect

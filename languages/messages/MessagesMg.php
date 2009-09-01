@@ -229,6 +229,7 @@ $messages = array(
 'vector-namespace-help'      => 'fanoroana',
 'vector-namespace-image'     => 'rakitra',
 'vector-namespace-main'      => 'pejy',
+'vector-namespace-media'     => 'Pejy Media',
 'vector-namespace-mediawiki' => 'hafatra',
 'vector-namespace-project'   => 'tetikasa',
 'vector-namespace-special'   => 'pejy manokana',
@@ -240,6 +241,9 @@ $messages = array(
 'vector-view-history'        => 'ampiseho ny tantarany',
 'vector-view-view'           => 'vakio',
 'vector-view-viewsource'     => 'hijery fango',
+'actions'                    => 'Tao',
+'namespaces'                 => 'Namespace',
+'variants'                   => "Ny ''skin'' Voasintona",
 
 # Metadata in edit box
 'metadata_help' => 'Metadata :',
@@ -316,7 +320,7 @@ $messages = array(
 'policy-url'           => 'Project:Fepetra',
 'portal'               => 'Toerana iraisana',
 'portal-url'           => 'Project:Fikambanana',
-'privacy'              => 'Fepetra momba ny zavatra privé',
+'privacy'              => 'Fitsipika momba ny zavatra tsy sarababem-bahoaka',
 'privacypage'          => 'Project:Konfidansialite',
 
 'badaccess'        => 'Tsy manana alàlana',
@@ -328,6 +332,7 @@ Mitaky version $1-n'i MediaWiki",
 'versionrequiredtext' => "Mitaky version $1-n'i MediaWiki ny fampiasana ity pejy ity. Jereo [[Special:Version]].",
 
 'ok'                      => 'Eka',
+'pagetitle'               => '$1 - {{SITENAME}}',
 'retrievedfrom'           => 'Hita tao amin\'ny "$1"',
 'youhavenewmessages'      => 'Manana $1 ($2).',
 'newmessageslink'         => 'hafatra vaovao',
@@ -488,6 +493,7 @@ Mila manaiky cookies ianao raha te hiditra amin'ny {{SITENAME}}.",
 'wrongpasswordempty'         => 'Tsy nampiditra tenimiafina ianao, azafady mba avereno indray.',
 'passwordtooshort'           => 'Fohy loatra io tenimiafina io.
 Farafahakeliny tokony hisy litera $1 ny tenimiafina.',
+'password-name-match'        => 'Tsy maintsy samihafa ny solonanaranao sy ny tenimiafinao tompoko.',
 'mailmypassword'             => 'Alefaso imailaka ny tenimiafiko',
 'passwordremindertitle'      => "Fampatsiahivana tenimiafina avy amin'i {{SITENAME}}",
 'passwordremindertext'       => 'Nisy olona, izay ianao ihany angamba, avy tamin\'ny adiresy IP $1, nangataka
@@ -677,6 +683,7 @@ koa tsy afaka mitahiry ny fanovana nataonao aloha ianao izao. Angamba tokony han
 ianao dia tehirizo anaty rakitra ny fanovanao mandra-paha.'''",
 'protectedpagewarning'             => "'''FAMPITANDREMANA:  Voaaro ity pejy ity ka ny mpikambana manana ny fahazoan-dàlana sysop ihany no afaka manova azy.'''",
 'semiprotectedpagewarning'         => "'''Naoty''' : Voaaro ity pejy ity, ny mpikambana nanokatra kaonty tato ihany no afaka manova azy.",
+'titleprotectedwarning'            => "'''TANDREMO''' : Ny mpikambana manana [[Special:ListGroupRights|alàlana manokana]] ihany no afaka manova ity pejy ity.",
 'templatesused'                    => "endrika miasa eto amin'ity pejy ity:",
 'templatesusedpreview'             => "endrika miasa anatin'ity topi-maso ity :",
 'templatesusedsection'             => "Endrika miasa anatin'ity fizaràna ity :",
@@ -689,6 +696,9 @@ ianao dia tehirizo anaty rakitra ny fanovanao mandra-paha.'''",
 'permissionserrors'                => 'Tsy azonao atao',
 'permissionserrorstext'            => 'Tsy afaka manao ilay asa nanontanianao ianao satria :',
 'permissionserrorstext-withaction' => '{{PLURAL:$1|Tsy manana alalàna ianao|Tsy manana alalàna ianao}} $2. Io ny antony ($2):',
+'log-fulllog'                      => "Hijery ny tantaran'asa (log)",
+'edit-hook-aborted'                => 'Tsy nety ny fanovàna
+Tsy nanome antony',
 'edit-conflict'                    => 'Adi-panovàna.',
 
 # Parser/template warnings
@@ -696,12 +706,16 @@ ianao dia tehirizo anaty rakitra ny fanovanao mandra-paha.'''",
 'parser-template-loop-warning'            => 'endrika vono hita tao : [[$1]]',
 
 # "Undo" feature
+'undo-success' => 'Ho voafafa io fanovana io. Marino tsara ny fanovana eo ambany, ary tehirizo rehefa vita.',
 'undo-failure' => "Tsy afaka esorina io fanovàna io : mety tsy miraikitra amin'ny fanovàna misy eo ampivoaniny ra esorina",
 'undo-norev'   => 'Tsy afaka nesorina ilay fanovàna satria tsy misy na efa voafafa izy.',
 'undo-summary' => "Niala ny fanovàna $1 nataon'i [[Special:Contributions/$2|$2]] ([[User talk:$2|resaho]])",
 
 # Account creation failure
 'cantcreateaccounttitle' => 'Tsy afaka manokatra kaonty ianao.',
+'cantcreateaccount-text' => "Voasakan'i [[User:$3|$3]] ny fanokafana kaonty avy amin'ity adiresy IP (<b>$1</b>)
+
+''$2'' ny antony.",
 
 # History pages
 'viewpagelogs'           => "Hijery ny fanovan'ity pejy ity",
@@ -746,8 +760,19 @@ Mety any amin'ny [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} t
 'revisiondelete'              => 'Hamafa/hamerina revision',
 'revdelete-nooldid-title'     => 'tsy izy ny version tanjona',
 'revdelete-nologtype-title'   => "Tsy misy tantaran'asa nampidirana/nomena",
+'revdelete-nologtype-text'    => "Tsy nosafidianao akory ny tantaran'asa anaovana io tao io ianao",
 'revdelete-nologid-title'     => "Misy diso ny tantaran'asa nampidiranao",
+'revdelete-nologid-text'      => "Tsy nosafidianao akory ny tantaran'asa anaovana io tao io ianao, na tsy misy ilay zavatra notenenina",
+'revdelete-no-file'           => 'Tsy misy ilay rakitra hofafàna.',
+'revdelete-show-file-confirm' => "Tapa-kevitra hamafa ny ''revision''-n'i rakitra <nowiki>$1</nowiki> tamin'ny $2 tamin'ny $3 ve ianao ?",
+'revdelete-show-file-submit'  => 'Eny',
 'revdelete-selected'          => "'''{{PLURAL:$2|Votoatiny nosafidiana|Votoatiny nosafidiana}}n'i '''[[:$1]]''' :'''",
+'revdelete-text'              => "'''Mbola ao amin'ny tantaran'asa ny version voafafa, fa tsy afaka jeren'ny vahoaka ny lahatsoratra ao aminy.'''
+
+Afaka mijery ny lahatsoratra nasitrika sy mamerina azy ny mpandrindra hafa ny {{SITENAME}} amin'ny alalan'ity interface ity, raha tsy misy restriction hafa koa. Marino tsara fa io no zavatra tianao hatao, raha fantatrao ny vokany ary ra ataonao [[{{MediaWiki:Policy-url}}|ara-pitsipika]] io.",
+'revdelete-suppress-text'     => "Ny famafàna pejy dia ampiasaina rehefa :
+* Misy information tsy sarababem-bahoaka tsy metimety
+*: ''Misy adiresy nomeraona antso an-tariby, nomeraona sécurité sociale, sns.''",
 'revdelete-legend'            => 'Ampetraho ny restriction nà fijerena :',
 'revdelete-hide-text'         => "Asitrio ny lahatsoratr'ity version ity",
 'revdelete-hide-name'         => 'Asitrio ny asa sy ny tarigehitra',
@@ -799,7 +824,7 @@ Mety any amin'ny [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} t
 # Merge log
 'mergelog'           => "tantaran'asa ny fitambarana",
 'pagemerge-logentry' => "voatambatra tamin'ny [[$2]] [[$1]] (fanovàna hatramin'ny $3)",
-'revertmerge'        => 'Sarao',
+'revertmerge'        => 'Saraho',
 
 # Diffs
 'history-title'           => "Tantara ny endrik'i « $1 »",
@@ -1080,7 +1105,7 @@ Hamarino tsara aloha dia avereno alefa indray.',
 'filehist-help'             => "Tsindrio eo amin'ny daty/ora iray mba hijery ny toetra n'ilay rakitra tamin'io fotoana io.",
 'filehist-current'          => 'ankehitriny',
 'filehist-datetime'         => 'Daty sy ora',
-'filehist-thumb'            => 'sari-tapaka',
+'filehist-thumb'            => 'saritapaka',
 'filehist-thumbtext'        => "Vignette hoan'ny $1",
 'filehist-user'             => 'Mpikambana',
 'filehist-dimensions'       => 'Hangeza',
@@ -1561,7 +1586,7 @@ Etsy amin'ny toerana farany dia afaka mampiasa rohy ihany koa ianao, ohatra [[{{
 'allmessagesnotsupportedDB' => "Tsy mbola mandeha ny '''{{ns:special}}:Allmessages''' satria tsy mandeha koa ny '''\$wgUseDatabaseMessages'''.",
 
 # Thumbnails
-'thumbnail-more' => 'Angezao',
+'thumbnail-more' => 'Angedazina',
 'filemissing'    => 'Tsy hita ny rakitra',
 
 # Tooltip help for the actions
@@ -1570,7 +1595,7 @@ Etsy amin'ny toerana farany dia afaka mampiasa rohy ihany koa ianao, ohatra [[{{
 'tooltip-pt-preferences'          => 'Ny safidinao',
 'tooltip-pt-watchlist'            => 'Ny lisitra ny pejy arahanao-maso',
 'tooltip-pt-mycontris'            => "Lisitra ny fandraisan'anjaranao",
-'tooltip-pt-login'                => 'Tsara aminao no miditra na manoratra anarana, fa tsy voatery ianao.',
+'tooltip-pt-login'                => 'Tsara aminao no miditra na manoratra anarana, fa tsy voatery manoratra anarana ianao.',
 'tooltip-pt-logout'               => 'Hidio',
 'tooltip-ca-talk'                 => "resaka momba n'io takelaka io",
 'tooltip-ca-edit'                 => "Azonao atao no manova n'ity pejy ity.

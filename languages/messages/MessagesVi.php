@@ -561,12 +561,12 @@ Có vẻ như nguyên nhân của vấn đề này xuất phát từ một lỗi
 Truy vấn vừa rồi là:
 <blockquote><tt>$1</tt></blockquote>
 từ hàm “<tt>$2</tt>”.
-$5 báo lỗi “<tt>$3: $4</tt>”.',
+Cơ sở dữ liệu  báo lỗi “<tt>$3: $4</tt>”.',
 'dberrortextcl'        => 'Đã xảy ra lỗi cú pháp trong truy vấn cơ sở dữ liệu.
 Truy vấn vừa rồi là:
 “$1”
 từ hàm “$2”.
-$5 báo lỗi “$3: $4”',
+Cơ sở dữ liệu báo lỗi “$3: $4”',
 'laggedslavemode'      => 'Cảnh báo: Trang có thể chưa được cập nhật.',
 'readonly'             => 'Cơ sở dữ liệu bị khóa',
 'enterlockreason'      => 'Nêu lý do khóa, cùng với thời hạn khóa',
@@ -667,8 +667,7 @@ Hãy kiểm tra lại chính tả, hoặc [[Special:UserLogin/signup|mở tài k
 'nouserspecified'            => 'Bạn phải đưa ra tên đăng ký.',
 'wrongpassword'              => 'Mật khẩu sai. Xin vui lòng nhập lại.',
 'wrongpasswordempty'         => 'Bạn chưa gõ vào mật khẩu. Xin thử lần nữa.',
-'passwordtooshort'           => 'Mật khẩu của bạn quá ngắn.
-Nó phải có ít nhất {{PLURAL:$1|1 ký tự|$1 ký tự}}.',
+'passwordtooshort'           => 'Mật khẩu phải có ít nhất {{PLURAL:$1|1 ký tự|$1 ký tự}}.',
 'password-name-match'        => 'Mật khẩu của bạn phải khác với tên người dùng của bạn.',
 'mailmypassword'             => 'Gửi mật khẩu mới qua thư điện tử',
 'passwordremindertitle'      => 'Mật khẩu tạm thời cho {{SITENAME}}',
@@ -1631,7 +1630,7 @@ Nếu vẫn còn bị lỗi, xin hãy liên hệ với một [[Special:ListUsers
 'upload-curl-error28-text' => 'Trang web phản hồi quá chậm. Xin hãy kiểm tra lại xem trang web còn hoạt động hay không, đợi một thời gian ngắn rồi thử lại. Bạn nên thử lại vào lúc trang rảnh rỗi hơn.',
 
 'license'            => 'Giấy phép:',
-'license-header'     => 'Giấy phép:',
+'license-header'     => 'Giấy phép',
 'nolicense'          => 'chưa chọn',
 'license-nopreview'  => '(Không xem trước được)',
 'upload_source_url'  => ' (địa chỉ URL đúng, có thể truy cập)',
@@ -2009,16 +2008,19 @@ Nếu bạn muốn cho trang này ra khỏi danh sách theo dõi, nhấn vào "N
 'enotif_reset'                 => 'Đánh dấu đã xem mọi trang',
 'enotif_newpagetext'           => 'Trang này mới',
 'enotif_impersonal_salutation' => 'thành viên {{SITENAME}}',
-'changed'                      => 'đã sửa',
-'created'                      => 'đã viết mới',
+'changed'                      => 'thay đổi',
+'created'                      => 'viết mới',
+'deleted'                      => 'xóa đi',
+'enotif_deletedpagetext'       => 'Trang này không còn tồn tại.',
 'enotif_subject'               => '$PAGETITLE tại {{SITENAME}} đã được $CHANGEDORCREATED bởi $PAGEEDITOR',
 'enotif_lastvisited'           => 'Xem $1 để biết các thay đổi diễn ra từ lần xem cuối cùng của bạn.',
 'enotif_lastdiff'              => 'Vào $1 để xem sự thay đổi này.',
 'enotif_anon_editor'           => 'thành viên vô danh $1',
+'enotif_rev_info'              => 'Xem phiên bản hiện nay tại $1.',
 'enotif_body'                  => '$WATCHINGUSERNAME thân mến,
 
 
-Trang $PAGETITLE tại {{SITENAME}} đã được $PAGEEDITOR $CHANGEDORCREATED vào $PAGEEDITDATEANDTIME, xem phiên bản hiện hành tại $PAGETITLE_URL.
+Trang $PAGETITLE tại {{SITENAME}} đã được $PAGEEDITOR $CHANGEDORCREATED vào $PAGEEDITDATEANDTIME. $REVINFO
 
 $NEWPAGE
 
@@ -2028,7 +2030,8 @@ Liên lạc với người viết trang qua:
 thư: $PAGEEDITOR_EMAIL
 wiki: $PAGEEDITOR_WIKI
 
-Sẽ không có thông báo nào khác nếu có sự thay đổi tiếp theo trừ khi bạn xem trang đó. Bạn cũng có thể thiết lập lại việc nhắc nhở cho tất cả các trang nằm trong danh sách theo dõi của bạn.
+Sẽ không có thông báo nào khác nếu có sự thay đổi tiếp theo trừ khi bạn xem trang đó. 
+Bạn cũng có thể thiết lập lại việc nhắc nhở cho tất cả các trang nằm trong danh sách theo dõi của bạn.
 
               Hệ thống báo tin {{SITENAME}} thân thiện của bạn
 
@@ -2563,6 +2566,7 @@ Lưu nó vào máy tính của bạn rồi tải nó lên đây.',
 'tooltip-ca-viewsource'           => 'Trang này được khóa. Bạn có thể xem mã nguồn.',
 'tooltip-ca-history'              => 'Những phiên bản cũ của trang này.',
 'tooltip-ca-protect'              => 'Khóa trang này lại',
+'tooltip-ca-unprotect'            => 'Mở khóa trang này',
 'tooltip-ca-delete'               => 'Xóa trang này',
 'tooltip-ca-undelete'             => 'Phục hồi những sửa đổi trên trang này như trước khi nó bị xóa',
 'tooltip-ca-move'                 => 'Di chuyển trang này',
@@ -2573,6 +2577,7 @@ Lưu nó vào máy tính của bạn rồi tải nó lên đây.',
 'tooltip-search-fulltext'         => 'Tìm trang có nội dung này',
 'tooltip-p-logo'                  => 'Trang Chính',
 'tooltip-n-mainpage'              => 'Đi đến Trang Chính',
+'tooltip-n-mainpage-description'  => 'Xem trang chính',
 'tooltip-n-portal'                => 'Giới thiệu dự án, cách sử dụng và tìm kiếm thông tin ở đây',
 'tooltip-n-currentevents'         => 'Các trang có liên quan đến thời sự',
 'tooltip-n-recentchanges'         => 'Danh sách các thay đổi gần đây',
@@ -3059,6 +3064,7 @@ Những thông tin khác mặc định sẽ được ẩn đi.
 'watchlistall2'    => 'tất cả',
 'namespacesall'    => 'tất cả',
 'monthsall'        => 'tất cả',
+'limitall'         => 'tất cả',
 
 # E-mail address confirmation
 'confirmemail'             => 'Xác nhận thư điện tử',
@@ -3311,7 +3317,7 @@ Hãy cho vào tên của tập tin, trừ tiền tố “{{ns:file}}:”.',
 'tag-filter-submit'       => 'Bộ lọc',
 'tags-title'              => 'Thẻ đánh dấu',
 'tags-intro'              => 'Trang này liệt kê các thẻ đánh dấu mà phần mềm dùng nó để đánh dấu một sửa đổi, và ý nghĩa của nó.',
-'tags-tag'                => 'Tên thẻ nội bộ',
+'tags-tag'                => 'Tên thẻ',
 'tags-display-header'     => 'Hiển thị trên danh sách thay đổi',
 'tags-description-header' => 'Mô tả ý nghĩa đầy đủ',
 'tags-hitcount-header'    => 'Các thay đổi được ghi thẻ',

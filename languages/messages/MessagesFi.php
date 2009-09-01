@@ -1538,7 +1538,7 @@ Tässä satunnaisesti tuotettu arvo, jota voit käyttää: $1',
 
 # Upload
 'upload'                      => 'Tallenna tiedosto',
-'uploadbtn'                   => 'Tallenna',
+'uploadbtn'                   => 'Tallenna tiedosto',
 'reupload'                    => 'Lähetä uudelleen',
 'reuploaddesc'                => 'Peruuta tallennus ja palaa tallennuslomakkeelle.',
 'uploadnologin'               => 'Et ole kirjautunut sisään',

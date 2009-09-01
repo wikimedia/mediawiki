@@ -3103,6 +3103,7 @@ Obsahuje pouze seznam s odrážkami (řádka začíná s *). První odkaz na ř�
 'watchlistall2'    => 'všechny',
 'namespacesall'    => 'všechny',
 'monthsall'        => 'všechny',
+'limitall'         => 'vše',
 
 # E-mail address confirmation
 'confirmemail'             => 'Potvrzení e-mailové adresy',

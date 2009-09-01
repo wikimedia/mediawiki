@@ -589,8 +589,17 @@ $1',
 # General errors
 'error'                => '오류',
 'databaseerror'        => '데이터베이스 오류',
-'dberrortext'          => '데이터베이스 쿼리 구문 오류가 발생했습니다. 소프트웨어의 버그가 있을 수 있습니다. 마지막으로 요청한 데이터베이스 쿼리는 "<tt>$2</tt>" 함수에서 쓰인 <blockquote><tt>$1</tt></blockquote>입니다. $5은 "<tt>$3: $4</tt>" 오류를 냈습니다.',
-'dberrortextcl'        => '데이터베이스 쿼리 구문 오류가 발생했습니다. 마지막으로 요청한 데이터베이스 쿼리는 "$2" 함수에서 쓰인 "$1"입니다. $5은 "$3: $4" 오류를 냈습니다.',
+'dberrortext'          => '데이터베이스 쿼리 구문 오류가 발생했습니다.
+소프트웨어의 버그가 있을 수 있습니다.
+마지막으로 요청한 데이터베이스 쿼리는 "<tt>$2</tt>" 함수에서 쓰인
+<blockquote><tt>$1</tt></blockquote>
+입니다.
+데이터베이스는 "<tt>$3: $4</tt>" 오류를 일으켰습니다.',
+'dberrortextcl'        => '데이터베이스 쿼리 구문 오류가 발생했습니다.
+마지막으로 요청한 데이터베이스 쿼리는 "$2" 함수에서 쓰인
+"$1"
+입니다. 
+데이터베이스는 "$3: $4" 오류를 일으켰습니다.',
 'laggedslavemode'      => "'''주의:''' 문서가 최근에 바뀐 내용이 아닐 수도 있습니다.",
 'readonly'             => '데이터베이스 잠김',
 'enterlockreason'      => '데이터베이스를 잠그는 이유와 예상되는 기간을 적어 주세요.',
@@ -691,8 +700,7 @@ $2',
 'wrongpassword'              => '암호가 틀렸습니다. 다시 시도해 주세요.',
 'wrongpasswordempty'         => '암호를 쓰지 않았습니다.
 다시 시도해 주세요.',
-'passwordtooshort'           => '암호가 너무 짧습니다.
-암호는 적어도 $1자보다 길어야 합니다.',
+'passwordtooshort'           => '암호는 적어도 $1자보다 길어야 합니다.',
 'password-name-match'        => '암호는 반드시 사용자 이름과 달라야 합니다.',
 'mailmypassword'             => '새 암호를 이메일로 보내기',
 'passwordremindertitle'      => '{{SITENAME}}에서 보내는 새 임시 암호',
@@ -1652,7 +1660,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'upload-curl-error28-text' => '사이트에서 응답하는 시간이 너무 깁니다. 사이트 접속이 가능한지 확인한 다음 다시 시도해주세요. 해당 사이트에 접속이 많을 경우, 접속이 원활한 시간대에 시도해주세요.',
 
 'license'            => '라이선스:',
-'license-header'     => '라이선스:',
+'license-header'     => '라이선스',
 'nolicense'          => '선택하지 않음',
 'license-nopreview'  => '(미리보기 불가능)',
 'upload_source_url'  => ' (유효하고, 모든 사람이 접근 가능한 URL)',
@@ -2033,13 +2041,16 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'enotif_impersonal_salutation' => '{{SITENAME}} 사용자',
 'changed'                      => '바꾸',
 'created'                      => '만들',
+'deleted'                      => '삭제됨',
+'enotif_deletedpagetext'       => '이 문서는 더 이상 사용할 수 없습니다.',
 'enotif_subject'               => '{{SITENAME}}에서 $PAGEEDITOR 사용자가 $PAGETITLE 문서를 $CHANGEDORCREATED었습니다.',
 'enotif_lastvisited'           => '마지막으로 방문한 뒤 생긴 모든 변경 사항을 보려면 $1을(를) 보십시오.',
 'enotif_lastdiff'              => '이 바뀐 내용을 보려면 $1을 보십시오.',
 'enotif_anon_editor'           => '익명 사용자 $1',
+'enotif_rev_info'              => '현재의 문서는 $1 에서 볼 수 있습니다.',
 'enotif_body'                  => '$WATCHINGUSERNAME님,
 
-{{SITENAME}}의 $PAGETITLE 문서를 $PAGEEDITOR님이 $CHANGEDORCREATED었습니다. 현재의 문서는 $PAGETITLE_URL 에서 볼 수 있습니다.
+{{SITENAME}}의 $PAGETITLE 문서를 $PAGEEDITDATEANDTIME에 $PAGEEDITOR님이 $CHANGEDORCREATED었습니다. $REVINFO
 
 $NEWPAGE
 
@@ -2050,7 +2061,7 @@ $NEWPAGE
 위키: $PAGEEDITOR_WIKI
 
 이 문서를 열기 전에는 다른 알림 이메일을 더 이상 보내지 않습니다.
-주시 문서 목록을 지울 수도 있습니다.
+모든 주시 문서의 알림 딱지를 초기화할 수도 있습니다.
 
              {{SITENAME}} 알림 시스템
 
@@ -2058,7 +2069,7 @@ $NEWPAGE
 주시문서 설정을 바꾸려면 다음을 사용하세요:
 {{fullurl:{{#special:Watchlist}}/edit}}
 
-도움말:
+도움을 얻거나 피드백 하기:
 {{fullurl:{{MediaWiki:Helppage}}}}',
 
 # Delete
@@ -2579,6 +2590,7 @@ $1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습�
 'tooltip-ca-viewsource'           => '문서가 잠겨 있습니다. 문서의 소스만 볼 수 있습니다.',
 'tooltip-ca-history'              => '문서의 과거 버전들',
 'tooltip-ca-protect'              => '문서 보호하기',
+'tooltip-ca-unprotect'            => '이 문서 보호 헤제하기',
 'tooltip-ca-delete'               => '문서 삭제하기',
 'tooltip-ca-undelete'             => '삭제된 문서 복구하기',
 'tooltip-ca-move'                 => '문서 이동하기',
@@ -2589,6 +2601,7 @@ $1 사용자는 이미 차단되었습니다. 차단 설정을 바꾸시겠습�
 'tooltip-search-fulltext'         => '이 문자열이 포함된 문서 찾기',
 'tooltip-p-logo'                  => '대문',
 'tooltip-n-mainpage'              => '대문으로',
+'tooltip-n-mainpage-description'  => '대문으로',
 'tooltip-n-portal'                => '이 프로젝트에 대해',
 'tooltip-n-currentevents'         => '최근의 소식을 봅니다.',
 'tooltip-n-recentchanges'         => '이 위키에서 최근 바뀐 점의 목록입니다.',
@@ -3062,6 +3075,7 @@ Variants for Chinese language
 'watchlistall2'    => '모든 기간',
 'namespacesall'    => '모두',
 'monthsall'        => '모든 달',
+'limitall'         => '모두',
 
 # E-mail address confirmation
 'confirmemail'             => '이메일 주소 확인',
@@ -3263,7 +3277,7 @@ $1',
 'tag-filter-submit'       => '필터',
 'tags-title'              => '태그',
 'tags-intro'              => '이 페이지는 소프트웨어에서 편집에 대해 표시하는 태그와 그 의미를 설명하는 목록입니다.',
-'tags-tag'                => '내부 태그 이름',
+'tags-tag'                => '태그 이름',
 'tags-display-header'     => '변경 목록의 모양',
 'tags-description-header' => '태그에 대한 설명',
 'tags-hitcount-header'    => '태그된 바뀜',
