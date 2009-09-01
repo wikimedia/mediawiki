@@ -14,7 +14,7 @@ class Http {
 
 	public static function request( $method, $url, $opts = array() ){
 		$opts['method'] = ( strtoupper( $method ) == 'GET' || strtoupper( $method ) == 'POST' ) ? strtoupper( $method ) : null;
-		$req = new HttpRequest( $url, $opts );
+		$req = HttpRequest::newRequest( $url, $opts );
 		$status = $req->doRequest();
 		if( $status->isOK() ){
 			return $status->value;
@@ -44,7 +44,7 @@ class Http {
 	public static function doDownload( $url, $target_file_path, $dl_mode = self::SYNC_DOWNLOAD, $redirectCount = 0 ){
 		global $wgPhpCli, $wgMaxUploadSize, $wgMaxRedirects;
 		// do a quick check to HEAD to insure the file size is not > $wgMaxUploadSize
-		$headRequest = new HttpRequest( $url, array( 'headers_only' => true ) );
+		$headRequest = HttpRequest::newRequest( $url, array( 'headers_only' => true ) );
 		$headResponse = $headRequest->doRequest();
 		if( !$headResponse->isOK() ){
 			return $headResponse;
@@ -85,7 +85,7 @@ class Http {
 			// SYNC_DOWNLOAD download as much as we can in the time we have to execute
 			$opts['method'] = 'GET';
 			$opts['target_file_path'] = $target_file_path;
-			$req = new HttpRequest( $url, $opts );
+			$req = HttpRequest::newRequest( $url, $opts );
 			return $req->doRequest();
 		}
 	}
@@ -174,7 +174,7 @@ class Http {
 		if( !$wgSessionsInMemcached )
 			session_write_close();
 
-		$req = new HttpRequest( $sd['url'], array(
+		$req = HttpRequest::newRequest( $sd['url'], array(
 			'target_file_path'  => $sd['target_file_path'],
 			'upload_session_key'=> $upload_session_key,
 			'timeout'           => $wgAsyncHTTPTimeout,
@@ -289,18 +289,10 @@ class Http {
 class HttpRequest {
 	var $target_file_path;
 	var $upload_session_key;
-	var $supportedCurlOpts = array(
-		'CURLOPT_SSL_VERIFYHOST',
-		'CURLOPT_CAINFO',
-		'CURLOPT_COOKIE',
-		'CURLOPT_FOLLOWLOCATION',
-		'CURLOPT_FAILONERROR'
-	);
 	function __construct( $url, $opt ){
+		
 		global $wgSyncHTTPTimeout;
-		// double check that it's a valid url:
-		$this->url = $url;
-
+		$this->url = $url;		
 		// set the timeout to default sync timeout (unless the timeout option is provided)
 		$this->timeout = ( isset( $opt['timeout'] ) ) ? $opt['timeout'] : $wgSyncHTTPTimeout;
 		//check special key default
@@ -315,13 +307,19 @@ class HttpRequest {
 		$this->do_close_session_update = isset( $opt['do_close_session_update'] );
 		$this->postData = isset( $opt['postdata'] ) ? $opt['postdata'] : '';
 
-		$this->curlOpt = array();
-		//check for some curl options:
-		foreach($this->supportedCurlOpts as $curlOpt){
-			if(isset($opt[ $curlOpt ])){
-				$this->curlOpt[$curlOpt] = $opt[ $curlOpt ];
-			}
-		}
+		$this->ssl_verifyhost = (isset( $opt['ssl_verifyhost'] ))? $opt['ssl_verifyhost']: false;
+		
+		$this->cainfo = (isset( $opt['cainfo'] ))? $op['cainfo']: false;	
+		
+	}
+	
+	public static function newRequest($url, $opt){
+		# select the handler (use curl if available)
+		if ( function_exists( 'curl_init' ) ) {
+			return new curlHttpRequest($url, $opt);
+		} else {
+			return new phpHttpRequest($url, $opt);
+		}	
 	}
 
 	/**
@@ -336,16 +334,12 @@ class HttpRequest {
 		# Make sure we have a valid url
 		if( !Http::isValidURI( $this->url ) )
 			return Status::newFatal('bad-url');
-
-		# Use curl if available
-		if ( function_exists( 'curl_init' ) ) {
-			return $this->doCurlReq();
-		} else {
-			return $this->doPhpReq();
-		}
+		//do the actual request: 				
+		return $this->doReq();
 	}
-
-	private function doCurlReq(){
+}
+class curlHttpRequest extends HttpRequest {
+	public function doReq(){		
 		global $wgHTTPProxy, $wgTitle;
 
 		$status = Status::newGood();
@@ -361,10 +355,11 @@ class HttpRequest {
 		curl_setopt( $c, CURLOPT_TIMEOUT, $this->timeout );
 		curl_setopt( $c, CURLOPT_USERAGENT, Http::userAgent() );
 
-		//set any curl specific opts:
-		foreach($this->curlOpt as $optKey => $optVal){
-			curl_setopt($c, constant( $optKey ),  $optVal);
-		}
+		if($this->ssl_verifyhost)
+			curl_setopt( $c, CURLOPT_SSL_VERIFYHOST, $this->ssl_verifyhost);
+			
+		if($this->cainfo)
+			curl_setopt( $c, CURLOPT_CAINFO, $this->cainfo);
 
 		if ( $this->headers_only ) {
 			curl_setopt( $c, CURLOPT_NOBODY, true );
@@ -461,13 +456,13 @@ class HttpRequest {
 			}
 		}
 
-		curl_close( $c );
-
+		curl_close( $c );		
 		// return the result obj
 		return $status;
 	}
-
-	public function doPhpReq(){
+}
+class phpHttpRequest extends HttpRequest {
+	public function doReq(){
 		global $wgTitle, $wgHTTPProxy;
 		# Check for php.ini allow_url_fopen
 		if( !ini_get( 'allow_url_fopen' ) ){
