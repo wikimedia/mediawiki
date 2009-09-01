@@ -35,10 +35,10 @@ class MigrateUserGroup extends Maintenance {
 		$count = 0;
 		$oldGroup = $this->getArg( 0 );
 		$newGroup = $this->getArg( 1 );
-		$dbr = wfGetDB( DB_SLAVE );
-		$start = $dbr->selectField( 'user_groups', 'MIN(ug_user)',
+		$dbw = wfGetDB( DB_MASTER );
+		$start = $dbw->selectField( 'user_groups', 'MIN(ug_user)',
 			array('ug_group' => $oldGroup), __FUNCTION__ );
-		$end = $dbr->selectField( 'user_groups', 'MAX(ug_user)',
+		$end = $dbw->selectField( 'user_groups', 'MAX(ug_user)',
 			array('ug_group' => $oldGroup), __FUNCTION__ );
 		if( $start === null ) {
 			$this->error( "Nothing to do - no users in the '$oldGroup' group", true );
@@ -48,7 +48,6 @@ class MigrateUserGroup extends Maintenance {
 		$blockStart = $start;
 		$blockEnd = $start + $this->mBatchSize - 1;
 		// Migrate users over in batches...
-		$dbw = wfGetDB( DB_MASTER );
 		while( $blockEnd <= $end ) {
 			$this->output( "Doing users $blockStart to $blockEnd\n" );
 			$dbw->begin();
