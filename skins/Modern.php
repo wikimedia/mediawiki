@@ -231,8 +231,8 @@ HTML
 				<div><a href="<?php $this->text('searchaction') ?>" rel="search"><?php $this->msg('powersearch-legend') ?></a></div><?php } ?>
 
 			</form>
-		</div><!-- pBody -->
-	</div><!-- portlet -->
+		</div>
+	</div>
 <?php
 	}
 
@@ -289,18 +289,17 @@ HTML
 		}
 
 		wfRunHooks( 'SkinTemplateToolboxEnd', array( &$this ) );
-?>			</ul>
-		</div><!-- pBody -->
-	</div><!-- portlet -->
+?>
+			</ul>
+		</div>
+	</div>
 <?php
 	}
 
 	/*************************************************************************************************/
 	function languageBox() {
+		if( $this->data['language_urls'] ) {
 ?>
-	<!-- languages -->
-<?php
-		if( $this->data['language_urls'] ) { ?>
 	<div id="p-lang" class="portlet">
 		<h5><?php $this->msg('otherlanguages') ?></h5>
 		<div class="pBody">
@@ -310,8 +309,8 @@ HTML
 				?><a href="<?php echo htmlspecialchars($langlink['href']) ?>"><?php echo $langlink['text'] ?></a></li>
 <?php		} ?>
 			</ul>
-		</div><!-- pBody -->
-	</div><!-- portlet -->
+		</div>
+	</div>
 <?php
 		}
 	}
@@ -335,10 +334,11 @@ HTML
 			print $cont;
 		} 
 ?>
-		</div><!-- pBody -->
-	</div><!-- portlet -->
+		</div>
+	</div>
 <?php
 	}
 
 } // end of class
-?>
+
+
