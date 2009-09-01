@@ -451,6 +451,7 @@ this. Was used when mwEmbed was going to be an extension.
   by using a new parameter added to the recursiveTagParse function
 * (bug 14900) __INDEX__ and __NOINDEX__ no longer override site config set in
   $wgArticleRobotPolicies.
+* (bug 20466) Hidden categories are no more displayed when printing
 
 == API changes in 1.16 ==
 
