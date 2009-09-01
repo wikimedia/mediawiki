@@ -709,7 +709,7 @@ $wgAuth = new AuthPlugin();
 if( $conf->SysopName ) {
 	# Check that the user can be created
 	$u = User::newFromName( $conf->SysopName );
-	if( is_a($u, 'User') ) { // please do not use instanceof, it breaks PHP4
+	if( $u instanceof User ) {
 		# Various password checks
 		if( $conf->SysopPass != '' ) {
 			if( $conf->SysopPass == $conf->SysopPass2 ) {
