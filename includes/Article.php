@@ -1032,9 +1032,9 @@ class Article {
 			$policy = array_merge( $policy,
 			                       self::formatRobotPolicy( $wgNamespaceRobotPolicies[$ns] ) );
 		}
-
-		if( $this->mTitle->canUseNoindex() && $this->mParserOutput->getIndexPolicy() ){
-			# __INDEX__ and __NOINDEX__ magic words, if allowed.
+		if( $this->mTitle->canUseNoindex() && is_object( $this->mParserOutput ) && $this->mParserOutput->getIndexPolicy() ){
+			# __INDEX__ and __NOINDEX__ magic words, if allowed. Incorporates
+			# a final sanity check that we have really got the parser output.
 			$policy = array_merge( $policy,
 			                       array( 'index' => $this->mParserOutput->getIndexPolicy() ) );
 		}
@@ -1335,6 +1335,7 @@ class Article {
 			wfDebug( __METHOD__.": sending dirty output\n" );
 			wfDebugLog( 'dirty', "dirty output " . $parserCache->getKey( $this, $options ) . "\n" );
 			$wgOut->setSquidMaxage( 0 );
+			$this->mParserOutput = $output;
 			$wgOut->addParserOutput( $output );
 			$wgOut->addHTML( "<!-- parser cache is expired, sending anyway due to pool overload-->\n" );
 			return true;
