@@ -3167,6 +3167,7 @@ Svi drugi linkovi u istoj liniji se smatraju izuzecima, npr. kod stranica gdje s
 'watchlistall2'    => 'sve',
 'namespacesall'    => 'sve',
 'monthsall'        => 'sve',
+'limitall'         => 'sve',
 
 # E-mail address confirmation
 'confirmemail'             => 'Potvrdite adresu e-pošte',

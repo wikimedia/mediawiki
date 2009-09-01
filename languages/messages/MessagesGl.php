@@ -3052,6 +3052,7 @@ Os demais agocharanse por omisión.
 'watchlistall2'    => 'todo',
 'namespacesall'    => 'todos',
 'monthsall'        => 'todos',
+'limitall'         => 'todas',
 
 # E-mail address confirmation
 'confirmemail'             => 'Confirmar o enderezo de correo electrónico',

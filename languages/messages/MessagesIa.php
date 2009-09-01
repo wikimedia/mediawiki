@@ -3063,6 +3063,7 @@ Le alteres essera initialmente celate.
 'watchlistall2'    => 'totes',
 'namespacesall'    => 'totes',
 'monthsall'        => 'totes',
+'limitall'         => 'totes',
 
 # E-mail address confirmation
 'confirmemail'             => 'Confirmar adresse de e-mail',
@@ -3274,7 +3275,7 @@ Entra le nomine del file sin le prefixo \"{{ns:file}}:\".",
 'tag-filter-submit'       => 'Filtrar',
 'tags-title'              => 'Etiquettas',
 'tags-intro'              => 'Iste pagina lista le etiquettas con le quales le software pote marcar un modification, e lor significato.',
-'tags-tag'                => 'Nomine interne del etiquetta',
+'tags-tag'                => 'Nomine del etiquetta',
 'tags-display-header'     => 'Apparentia in listas de modificationes',
 'tags-description-header' => 'Description complete del significato',
 'tags-hitcount-header'    => 'Modificationes etiquettate',

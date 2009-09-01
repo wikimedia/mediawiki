@@ -153,7 +153,8 @@ $messages = array(
 'tog-enotifminoredits'        => 'E-mèl mwen tou pou edit minè paj yo',
 'tog-enotifrevealaddr'        => 'Montre adrès e-mèl mwen nan kominikasyon notifikasyon yo',
 'tog-shownumberswatching'     => 'Montre kantite itlizatè k’ap swiv',
-'tog-fancysig'                => 'Signati kri (san lyen otomatik)',
+'tog-oldsig'                  => 'Gade pou wè siyati ki egziste deja:',
+'tog-fancysig'                => 'Konsidere siyati sa tankou yon wikitèks (san lyen ki ta otomatik)',
 'tog-externaleditor'          => 'Itilize editè ki pa nan sistèm wikimedya pa defo',
 'tog-externaldiff'            => 'Itilize yon konparatè ki pa nan sitsèm wikimedya pa defo',
 'tog-showjumplinks'           => 'Demare « jonpe a » asesabilite lyen',
@@ -162,13 +163,24 @@ $messages = array(
 'tog-watchlisthideown'        => 'Kache edisyon m yo nan lis siveye-a',
 'tog-watchlisthidebots'       => 'Kache edisyon bot nan lis siveye-a',
 'tog-watchlisthideminor'      => 'Kache edisyon minè yo nan lis siveye-a',
+'tog-watchlisthideliu'        => 'Kache modifikasyon yo ki fèt ba itilizatè yo ki enskri nan lis swivi',
+'tog-watchlisthideanons'      => 'Kache modifikasyon anonim nan lis swivi an',
+'tog-watchlisthidepatrolled'  => 'Kache modifikasyon yo ki siveye nan lis swivi an',
 'tog-ccmeonemails'            => 'Voye yon kopi e-mèl mwen voye ba lòt ban mwen',
 'tog-diffonly'                => 'Piga moutre enfòmsyon yon paj piba diffs',
 'tog-showhiddencats'          => 'Moutre kategori kache yo',
+'tog-norollbackdiff'          => 'Pa montre diferans lè li genyen yon revokasyon',
 
 'underline-always'  => 'Toujou',
 'underline-never'   => 'Jamè',
 'underline-default' => 'Brozè defo',
+
+# Font style option in Special:Preferences
+'editfont-style'     => 'Edite fòm tèks an:',
+'editfont-default'   => 'si la ki pa defo nan navigatè a',
+'editfont-monospace' => 'Monospaced estil',
+'editfont-sansserif' => 'estil Sans-serif',
+'editfont-serif'     => 'Fòm Serif',
 
 # Dates
 'sunday'        => 'dimanch',
@@ -268,6 +280,16 @@ $messages = array(
 'qbspecialpages' => 'Paj espesyal',
 'faq'            => 'FAQ',
 'faqpage'        => 'Project:FAQ',
+
+# Vector skin
+'vector-action-addsection'  => 'Ajoute yon sijè',
+'vector-action-delete'      => 'Efase',
+'vector-action-move'        => 'Chanje non',
+'vector-action-protect'     => 'Pwoteje',
+'vector-action-undelete'    => 'Retabli',
+'vector-action-unprotect'   => 'Pa pwoteje',
+'vector-namespace-category' => 'Kategori',
+'vector-namespace-help'     => 'Èd',
 
 # Metadata in edit box
 'metadata_help' => 'Metadata:',

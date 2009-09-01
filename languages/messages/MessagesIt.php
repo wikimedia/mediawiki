@@ -2999,6 +2999,7 @@ I collegamenti successivi, sulla stessa riga, sono considerati come eccezioni (o
 'watchlistall2'    => 'tutte',
 'namespacesall'    => 'Tutti',
 'monthsall'        => 'tutti',
+'limitall'         => 'tutti',
 
 # E-mail address confirmation
 'confirmemail'             => 'Conferma indirizzo e-mail',

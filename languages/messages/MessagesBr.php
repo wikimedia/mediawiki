@@ -2896,6 +2896,7 @@ Kement liamm all war an hevelep linenn a seller outañ evel un nemedenn, da skou
 'watchlistall2'    => 'pep tra',
 'namespacesall'    => 'pep tra',
 'monthsall'        => 'an holl',
+'limitall'         => 'An holl',
 
 # E-mail address confirmation
 'confirmemail'             => "Kadarnaat ar chomlec'h postel",

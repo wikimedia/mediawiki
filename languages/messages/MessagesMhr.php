@@ -8,6 +8,7 @@
  * @file
  *
  * @author Amdf
+ * @author Azim
  * @author Jose77
  * @author Сай
  */
@@ -162,6 +163,7 @@ $messages = array(
 'help'             => 'Полшык',
 'search'           => 'Кычалмаш',
 'searchbutton'     => 'Кычалаш',
+'go'               => 'Куснаш',
 'searcharticle'    => 'Куснаш',
 'history'          => 'Лаштыкын эртымгорно',
 'history_short'    => 'Эртымгорно',
@@ -453,7 +455,7 @@ $messages = array(
 # Recent changes
 'nchanges'                       => '$1 {{PLURAL:$1|тӧрлатымаш|тӧрлатымаш-влак}}',
 'recentchanges'                  => 'Пытартыш тӧрлатымаш-влак',
-'recentchanges-legend'           => 'Шукертсе огыл тӧрлымаш-влак келыштарымаш',
+'recentchanges-legend'           => 'Пытартыш тӧрлатымаш-влакын келыштарымашышт',
 'recentchanges-feed-description' => 'Викин тиде кылыште пытартыш вашталтышым шекланаш.',
 'rcnote'                         => "Ӱлнӧ {{PLURAL:$1|'''1'''|'''$1'''}} вашталтыш пытартыш {{PLURAL:$2||'''$2'''}} кечылан, $5-лан, $4-лан.",
 'rclistfrom'                     => '$1 гыч тӱҥалын у вашталтымашым ончыкташ',

@@ -3141,6 +3141,7 @@ $1',
 'watchlistall2'    => 'όλες',
 'namespacesall'    => 'όλα',
 'monthsall'        => 'όλα',
+'limitall'         => 'όλες',
 
 # E-mail address confirmation
 'confirmemail'             => 'Επαλήθευση διεύθυνσης e-mail',

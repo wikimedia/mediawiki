@@ -3251,6 +3251,7 @@ Andere velden worden verborgen.
 'watchlistall2'    => 'alles',
 'namespacesall'    => 'alle',
 'monthsall'        => 'alle',
+'limitall'         => 'alle',
 
 # E-mail address confirmation
 'confirmemail'             => 'E-mailadres bevestigen',

@@ -628,12 +628,12 @@ Cen pôt endicar una cofierie dens la programeria.
 La dèrriére requéta trètâ per la bâsa de balyês ére :
 <blockquote><tt>$1</tt></blockquote>
 dês la fonccion « <tt>$2</tt> ».
-$5 at retornâ l’èrror « <tt>$3 : $4</tt> ».',
+La bâsa de balyês at retornâ l’èrror « <tt>$3 : $4</tt> ».',
 'dberrortextcl'        => 'Una èrror de sintaxa de la requéta dens la bâsa de balyês est arrevâ.
 La dèrriére requéta trètâ per la bâsa de balyês ére :
 « $1 »
 dês la fonccion « $2 ».
-$5 at retornâ l’èrror « $3 : $4 ».',
+La bâsa de balyês at retornâ l’èrror « $3 : $4 ».',
 'laggedslavemode'      => 'Atencion : cela pâge pôt pas contegnir tôs los dèrriérs changements fêts.',
 'readonly'             => 'Bâsa de balyês vèrrolyê',
 'enterlockreason'      => 'Balyéd la rêson du vèrrolyâjo et pués una èstimacion de son temps',
@@ -747,8 +747,7 @@ Volyéd controlar l’ortografia.',
 Volyéd tornar èprovar.',
 'wrongpasswordempty'         => 'Vos éd pas buchiê de mot de pâssa.
 Volyéd tornar èprovar.',
-'passwordtooshort'           => 'Voutron mot de pâssa est trop côrt.
-Dêt contegnir u muens $1 caractèro{{PLURAL:$1||s}}.',
+'passwordtooshort'           => 'Voutron mot de pâssa dêt contegnir u muens $1 caractèro{{PLURAL:$1||s}}.',
 'password-name-match'        => 'Voutron mot de pâssa dêt étre difèrent de voutron nom d’utilisator.',
 'mailmypassword'             => 'Recêvre un novél mot de pâssa per mèl',
 'passwordremindertitle'      => 'Voutron novél mot de pâssa temporèro dessus {{SITENAME}}',
@@ -1770,7 +1769,7 @@ Volyéd controlar que lo seto est en legne, atendre un pou et pués tornar èpro
 Vos pouede asse-ben tornar èprovar a una hora de muendra afluence.',
 
 'license'            => 'Licence :',
-'license-header'     => 'Licence :',
+'license-header'     => 'Licence',
 'nolicense'          => 'Gins de licence chouèsia',
 'license-nopreview'  => '(Prèvisualisacion pas disponibla)',
 'upload_source_url'  => '  (una URL valida et accèssibla publicament)',
@@ -2155,13 +2154,17 @@ Los changements a vegnir de ceta pâge et de sa pâge de discussion y seront lis
 'enotif_impersonal_salutation' => 'Utilisator de {{SITENAME}}',
 'changed'                      => 'changiê',
 'created'                      => 'fêta',
+'deleted'                      => 'suprimâ',
+'enotif_deletedpagetext'       => 'Ceta pâge est pas més disponibla.',
 'enotif_subject'               => 'La pâge « $PAGETITLE » de {{SITENAME}} at étâ $CHANGEDORCREATED per $PAGEEDITOR',
 'enotif_lastvisited'           => 'Vêde $1 por tôs los changements dês voutra dèrriére visita.',
 'enotif_lastdiff'              => 'Vêde $1 por vêre cél changement.',
 'enotif_anon_editor'           => 'utilisator pas enregistrâ $1',
+'enotif_rev_info'              => 'Visitâd $1 por vêre la vèrsion d’ora.',
 'enotif_body'                  => 'Chier(a) $WATCHINGUSERNAME,
 
-la pâge « $PAGETITLE » de {{SITENAME}} at étâ $CHANGEDORCREATED lo $PAGEEDITDATEANDTIME per $PAGEEDITOR, vêde $PAGETITLE_URL por vêre la vèrsion d’ora.
+
+la pâge « $PAGETITLE » de {{SITENAME}} at étâ $CHANGEDORCREATED lo $PAGEEDITDATEANDTIME per « $PAGEEDITOR ». $REVINFO
 
 $NEWPAGE
 
@@ -2172,7 +2175,7 @@ mèl : $PAGEEDITOR_EMAIL
 vouiqui : $PAGEEDITOR_WIKI
 
 Y arat pas d’ôtres notificacions en câs de changements a vegnir, a muens que vos visitâd cela pâge.
-Vos pouede asse-ben tornar inicialisar lo notifior por totes les pâges de voutra lista de survelyence.
+Vos pouede asse-ben tornar inicialisar los drapéls de notificacion por totes les pâges de voutra lista de survelyence.
 
              Voutron sistèmo de notificacion de {{SITENAME}}
 
@@ -2728,6 +2731,7 @@ Volyéd utilisar lo boton de prèvisualisacion devant que sôvar.',
 Portant, vos en pouede vêre lo tèxto sôrsa.',
 'tooltip-ca-history'              => 'Les vèrsions passâs de ceta pâge (avouéc lors contributors)',
 'tooltip-ca-protect'              => 'Protègiér ceta pâge',
+'tooltip-ca-unprotect'            => 'Dèprotègiér ceta pâge',
 'tooltip-ca-delete'               => 'Suprimar ceta pâge',
 'tooltip-ca-undelete'             => 'Refâre los changements fêts sur ceta pâge devant sa suprèssion',
 'tooltip-ca-move'                 => 'Renomar ceta pâge',
@@ -2738,6 +2742,7 @@ Portant, vos en pouede vêre lo tèxto sôrsa.',
 'tooltip-search-fulltext'         => 'Rechèrchiér les pâges que presentont ceti tèxto.',
 'tooltip-p-logo'                  => 'Pâge principâla',
 'tooltip-n-mainpage'              => 'Visitar la pâge de reçua du seto',
+'tooltip-n-mainpage-description'  => 'Alar a la reçua',
 'tooltip-n-portal'                => 'A propôs du projèt',
 'tooltip-n-currentevents'         => 'Trovar les enformacions de fond sur les dèrriéres novèles',
 'tooltip-n-recentchanges'         => 'Lista des dèrriérs changements sur lo vouiqui',
@@ -3229,6 +3234,7 @@ Los ôtros champs seront cachiês per dèfôt.
 'watchlistall2'    => 'tot',
 'namespacesall'    => 'Tôs',
 'monthsall'        => 'tôs',
+'limitall'         => 'tôs',
 
 # E-mail address confirmation
 'confirmemail'             => 'Confirmar l’adrèce de mèl',
@@ -3516,7 +3522,7 @@ Buchiéd lo nom du fichiér sen lo prèfixo « {{ns:file}}: ».',
 'tag-filter-submit'       => 'Filtrar',
 'tags-title'              => 'Balises',
 'tags-intro'              => 'Ceta pâge liste les balises que la programeria pôt utilisar por marcar un changement avouéc, et lor significacion.',
-'tags-tag'                => 'Nom de dedens de la balisa',
+'tags-tag'                => 'Nom de la balisa',
 'tags-display-header'     => 'Aparence dens les listes de changements',
 'tags-description-header' => 'Dèscripcion complèta de la balisa',
 'tags-hitcount-header'    => 'Changements balisâs',
