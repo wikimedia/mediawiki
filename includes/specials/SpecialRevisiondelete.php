@@ -107,10 +107,25 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		$this->outputHeader();
 		$this->submitClicked = $wgRequest->wasPosted() && $wgRequest->getBool( 'wpSubmit' );
 		# Handle our many different possible input types.
-		# Use CSV, since the cgi handling will break on arrays.
-		$this->ids = explode( ',', $wgRequest->getVal('ids') );
+		$ids = $wgRequest->getVal( 'ids' );
+		if ( !is_null( $ids ) ) {
+			# Allow CSV, for backwards compatibility, or a single ID for show/hide links
+			$this->ids = explode( ',', $ids );
+		} else {
+			# Array input
+			$this->ids = array_keys( $wgRequest->getArray( 'ids' ) );
+		}
+		$this->ids = array_map( 'intval', $this->ids );
 		$this->ids = array_unique( array_filter( $this->ids ) );
-		$this->targetObj = Title::newFromText( $wgRequest->getText( 'target' ) );
+
+		if ( $wgRequest->getVal( 'action' ) == 'revisiondelete' ) {
+			# For show/hide form submission from history page
+			$this->targetObj = $GLOBALS['wgTitle'];
+			$this->typeName = 'revision';
+		} else {
+			$this->typeName = $wgRequest->getVal( 'type' );
+			$this->targetObj = Title::newFromText( $wgRequest->getText( 'target' ) );
+		}
 
 		# For reviewing deleted files...
 		$this->archiveName = $wgRequest->getVal( 'file' );
@@ -120,7 +135,6 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 			return;
 		}
 
-		$this->typeName = $wgRequest->getVal( 'type' );
 		if ( isset( self::$deprecatedTypeMap[$this->typeName] ) ) {
 			$this->typeName = self::$deprecatedTypeMap[$this->typeName];
 		}
