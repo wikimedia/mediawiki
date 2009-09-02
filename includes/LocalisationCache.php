@@ -669,6 +669,7 @@ class LocalisationCache {
 	 */
 	public function disableBackend() {
 		$this->store = new LCStore_Null;
+		$this->manualRecache = false;
 	}
 }
 
