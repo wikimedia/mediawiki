@@ -535,6 +535,11 @@ class MediaWiki {
 				$history = new HistoryPage( $article );
 				$history->history();
 				break;
+			case 'revisiondelete':
+				# For show/hide submission from history page
+				$special = SpecialPage::getPage( 'Revisiondelete' );
+				$special->execute( '' );
+				break;
 			default:
 				if( wfRunHooks( 'UnknownAction', array( $action, $article ) ) ) {
 					$output->showErrorPage( 'nosuchaction', 'nosuchactiontext' );

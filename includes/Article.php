@@ -937,7 +937,7 @@ class Article {
 		$rcid = $wgRequest->getVal( 'rcid' );
 		$diffOnly = $wgRequest->getBool( 'diffonly', $wgUser->getOption( 'diffonly' ) );
 		$purge = $wgRequest->getVal( 'action' ) == 'purge';
-		$htmldiff = $wgRequest->getVal( 'htmldiff' , false);
+		$htmldiff = $wgRequest->getBool( 'htmldiff' );
 		$unhide = $wgRequest->getInt('unhide') == 1;
 		$oldid = $this->getOldID();
 

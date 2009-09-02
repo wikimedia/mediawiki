@@ -260,7 +260,7 @@ class HistoryPage {
  * @ingroup Pager
  */
 class HistoryPager extends ReverseChronologicalPager {
-	public $lastRow = false, $counter, $historyPage, $title;
+	public $lastRow = false, $counter, $historyPage, $title, $buttons;
 	protected $oldIdChecked;
 
 	function __construct( $historyPage, $year='', $month='', $tagFilter = '' ) {
@@ -323,58 +323,56 @@ class HistoryPager extends ReverseChronologicalPager {
 		$this->oldIdChecked = 0;
 
 		$wgOut->wrapWikiMsg( "<div class='mw-history-legend'>\n$1</div>", 'histlegend' );
-		$s = '';
-		if( $this->getNumRows() > 1 && $wgUser->isAllowed('deleterevision') ) {
-			$revdel = SpecialPage::getTitleFor( 'Revisiondelete' );
-			$s .= Xml::openElement( 'form',
+		$s = Xml::openElement( 'form', array( 'action' => $wgScript,
+			'id' => 'mw-history-compare' ) ) . "\n";
+		$s .= Xml::hidden( 'title', $this->title->getPrefixedDbKey() ) . "\n";
+
+		$this->buttons = '<div>';
+		if( $wgUser->isAllowed('deleterevision') ) {
+			$this->buttons .= Xml::element( 'button', 
 				array(
-					'action' => $revdel->getLocalURL( array( 
-						'type' => 'revision',
-						'target' => $this->title->getPrefixedDbKey()
-					) ),
-					'method' => 'post', 
-					'id' => 'mw-history-revdeleteform',
-					'style'  => 'visibility:hidden;float:right;'
-				)
-			);
-			$s .= Xml::hidden( 'ids', '', array('id'=>'revdel-oldid') );
-			$s .= Xml::submitButton( wfMsg( 'showhideselectedversions' ) );
-			$s .= Xml::closeElement( 'form' );
+					'type' => 'submit',
+					'name' => 'action',
+					'value' => 'revisiondelete',
+					'style' => 'float: right',
+				),
+				wfMsg( 'showhideselectedversions' )
+			) . "\n";
 		}
-		$s .= Xml::openElement( 'form', array( 'action' => $wgScript,
-			'id' => 'mw-history-compare' ) );
-		$s .= Xml::hidden( 'title', $this->title->getPrefixedDbKey() );
 		if( $wgEnableHtmlDiff ) {
-			$s .= $this->submitButton( wfMsg( 'visualcomparison'),
+			$this->buttons .= Xml::element( 'button',
 				array(
-					'name' => 'htmldiff',
+					'type'      => 'submit',
+					'name'      => 'htmldiff',
+					'value'     => '1',
 					'class'     => 'historysubmit',
 					'accesskey' => wfMsg( 'accesskey-visualcomparison' ),
 					'title'     => wfMsg( 'tooltip-compareselectedversions' ),
-				)
-			);
-			$s .= $this->submitButton( wfMsg( 'wikicodecomparison'),
+				),
+				wfMsg( 'visualcomparison')
+			) . "\n";
+			$this->buttons .= $this->submitButton( wfMsg( 'wikicodecomparison'),
 				array(
 					'class'     => 'historysubmit',
 					'accesskey' => wfMsg( 'accesskey-compareselectedversions' ),
 					'title'     => wfMsg( 'tooltip-compareselectedversions' ),
 				)
-			);
+			) . "\n";
 		} else {
-			$s .= $this->submitButton( wfMsg( 'compareselectedversions'),
+			$this->buttons .= $this->submitButton( wfMsg( 'compareselectedversions'),
 				array(
 					'class'     => 'historysubmit',
 					'accesskey' => wfMsg( 'accesskey-compareselectedversions' ),
 					'title'     => wfMsg( 'tooltip-compareselectedversions' ),
 				)
-			);
+			) . "\n";
 		}
-		$s .= '<ul id="pagehistory">' . "\n";
+		$this->buttons .= '</div>';
+		$s .= $this->buttons . '<ul id="pagehistory">' . "\n";
 		return $s;
 	}
 
 	function getEndBody() {
-
 		if( $this->lastRow ) {
 			$latest = $this->counter == 1 && $this->mIsFirst;
 			$firstInList = $this->counter == 1;
@@ -394,34 +392,8 @@ class HistoryPager extends ReverseChronologicalPager {
 		} else {
 			$s = '';
 		}
-
-		global $wgEnableHtmlDiff;
-		$s .= '</ul>';
-		if( $wgEnableHtmlDiff ) {
-			$s .= $this->submitButton( wfMsg( 'visualcomparison'),
-				array(
-					'name' => 'htmldiff',
-					'class'     => 'historysubmit',
-					'accesskey' => wfMsg( 'accesskey-visualcomparison' ),
-					'title'     => wfMsg( 'tooltip-compareselectedversions' ),
-				)
-			);
-			$s .= $this->submitButton( wfMsg( 'wikicodecomparison'),
-				array(
-					'class'     => 'historysubmit',
-					'accesskey' => wfMsg( 'accesskey-compareselectedversions' ),
-					'title'     => wfMsg( 'tooltip-compareselectedversions' ),
-				)
-			);
-		} else {
-			$s .= $this->submitButton( wfMsg( 'compareselectedversions'),
-				array(
-					'class'     => 'historysubmit',
-					'accesskey' => wfMsg( 'accesskey-compareselectedversions' ),
-					'title'     => wfMsg( 'tooltip-compareselectedversions' ),
-				)
-			);
-		}
+		$s .= "</ul>\n";
+		$s .= $this->buttons;
 		$s .= '</form>';
 		return $s;
 	}
@@ -470,26 +442,19 @@ class HistoryPager extends ReverseChronologicalPager {
 		$s = "($curlink) ($lastlink) $diffButtons";
 
 		if( $wgUser->isAllowed( 'deleterevision' ) ) {
-			// Hide JS by default for non-JS browsing
-			$hidden = array( 'style' => 'display:none' );
 			// If revision was hidden from sysops
 			if( !$rev->userCan( Revision::DELETED_RESTRICTED ) ) {
-				$del = Xml::check( 'deleterevisions', false,
-					$hidden + array('disabled' => 'disabled') );
+				$del = Xml::check( 'deleterevisions', false, array('disabled' => 'disabled') );
 				$del .= Xml::tags( 'span', array( 'class'=>'mw-revdelundel-link' ),
 					'(' . $this->historyPage->message['rev-delundel'] . ')' );
 			// Otherwise, show the link...
 			} else {
 				$id = $rev->getId();
-				$jsCall = "updateShowHideForm($id,this.checked)";
-				$del = Xml::check( 'showhiderevisions', false,
-					$hidden + array(
-						'onchange' => $jsCall,
-						'id' => "mw-revdel-$id" ) );
+				$del = Xml::check( 'showhiderevisions', false, array( 'name' => "ids[$id]" ) );
 				$query = array(
 					'type' => 'revision',
 					'target' => $this->title->getPrefixedDbkey(),
-					'ids' => $rev->getId() );
+					'ids' => $id );
 				$del .= $this->getSkin()->revDeleteLink( $query,
 					$rev->isDeleted( Revision::DELETED_RESTRICTED ) );
 			}
