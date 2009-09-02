@@ -356,7 +356,7 @@ class Skin extends Linker {
 			$skinName = $skinName['skinname'];
 		}
 		global $wgScript, $wgTitle, $wgStylePath, $wgUser;
-		global $wgArticlePath, $wgScriptPath, $wgServer, $wgContLang, $wgLang, $wgVariant;
+		global $wgArticlePath, $wgScriptPath, $wgServer, $wgContLang, $wgLang;
 		global $wgCanonicalNamespaceNames, $wgOut, $wgArticle;
 		global $wgBreakFrames, $wgRequest, $wgVariantArticlePath, $wgActionPaths;
 		global $wgUseAjax, $wgAjaxWatch;
@@ -399,7 +399,6 @@ class Skin extends Linker {
 			'wgIsArticle' => $wgOut->isArticle(),
 			'wgUserName' => $wgUser->isAnon() ? NULL : $wgUser->getName(),
 			'wgUserGroups' => $wgUser->isAnon() ? NULL : $wgUser->getEffectiveGroups(),
-			'wgUserVariant' => $wgVariant->getCode(),
 			'wgUserLanguage' => $wgLang->getCode(),
 			'wgContentLanguage' => $wgContLang->getCode(),
 			'wgBreakFrames' => $wgBreakFrames,
@@ -411,8 +410,8 @@ class Skin extends Linker {
 			'wgDigitTransformTable' => $compactDigitTransTable,
 			'wgMainPageTitle' => $mainPage ? $mainPage->getPrefixedText() : null,
 		);
-		if ( !( $wgContLang->hasVariants() ) ) {
-			unset( $vars['wgUserVariant'] );
+		if ( $wgContLang->hasVariants() ) {
+			$vars['wgUserVariant'] = $wgContLang->getPreferredVariant();
 		}
 
 		//if on upload page output the extension list & js_upload
