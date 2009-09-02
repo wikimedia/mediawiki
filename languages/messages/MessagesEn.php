@@ -1462,7 +1462,13 @@ Please confirm that you intend to do this, that you understand the consequences,
 'revdelete-suppress'          => 'Suppress data from administrators as well as others',
 'revdelete-hide-image'        => 'Hide file content',
 'revdelete-unsuppress'        => 'Remove restrictions on restored revisions',
-'revdelete-log'               => 'Log comment:',
+'revdelete-reasonotherlist'   => 'Other reason',
+'revdelete-reason-dropdown'   => '*Common delete reasons
+** Author request
+** Copyright violation
+** Vandalism',
+'revdelete-log'               => 'Reason for deletion:',
+'revdelete-otherreason'       => 'Other/additional reason:',
 'revdelete-submit'            => 'Apply to selected revision',
 'revdelete-logentry'          => 'changed revision visibility of [[$1]]',
 'logdelete-logentry'          => 'changed event visibility of [[$1]]',
