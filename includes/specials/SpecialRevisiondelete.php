@@ -113,7 +113,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 			$this->ids = explode( ',', $ids );
 		} else {
 			# Array input
-			$this->ids = array_keys( $wgRequest->getArray( 'ids' ) );
+			$this->ids = array_keys( $wgRequest->getArray('ids',array()) );
 		}
 		$this->ids = array_map( 'intval', $this->ids );
 		$this->ids = array_unique( array_filter( $this->ids ) );
@@ -1325,8 +1325,7 @@ class RevDel_FileItem extends RevDel_Item {
 	}
 
 	public function getBits() {
-		/** FIXME: use accessor */
-		return $this->file->deleted;
+		return $this->file->getVisibility();
 	}
 
 	public function setBits( $bits ) {
@@ -1511,7 +1510,8 @@ class RevDel_ArchivedFileItem extends RevDel_FileItem {
 				'target' => $this->list->title->getPrefixedText(),
 				'file' => $key,
 				'token' => $wgUser->editToken( $key )
-			) );
+			)
+		);
 	}
 }
 
@@ -1614,8 +1614,8 @@ class RevDel_LogItem extends RevDel_Item {
 				$action = '<span class="history-deleted">' . $action . '</span>';
 		}
 		// User links
-		$userLink = $this->special->skin->userLink( 
-			$this->row->log_user, User::WhoIs( $this->row->log_user ) );
+		$userLink = $this->special->skin->userLink( $this->row->log_user,
+			User::WhoIs( $this->row->log_user ) );
 		if( LogEventsList::isDeleted($this->row,LogPage::DELETED_USER) ) {
 			$userLink = '<span class="history-deleted">' . $userLink . '</span>';
 		}
