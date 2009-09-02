@@ -153,6 +153,8 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 			$rev = Revision::newFromId( $this->ids[0] );
 			$this->targetObj = $rev ? $rev->getTitle() : $this->targetObj;
 		}
+		
+		$this->otherReason = $wgRequest->getVal( 'wpReason' );
 		# We need a target page!
 		if( is_null($this->targetObj) ) {
 			$wgOut->addWikiMsg( 'undelete-header' );
@@ -365,9 +367,17 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 			Xml::openElement( 'fieldset' ) .
 			Xml::element( 'legend', null,  wfMsg( 'revdelete-legend' ) ) .
 			$this->buildCheckBoxes( $bitfields ) .
-			'<p>' . Xml::inputLabel( wfMsg( 'revdelete-log' ), 'wpReason', 'wpReason', 60 ) . '</p>' . 
-			'<p>' . Xml::submitButton( wfMsg( 'revdelete-submit' ), 
-				array( 'name' => 'wpSubmit' ) ) . '</p>' .
+			"\n<table><tr>\n" .
+				'<td>' . Xml::label( wfMsg('revdelete-log'), 'wpRevDeleteReasonList' ) . '</td>' .
+				'<td>' . Xml::listDropDown( 'wpRevDeleteReasonList',
+							wfMsgForContent( 'revdelete-reason-dropdown' ),
+							wfMsgForContent( 'revdelete-reasonotherlist' ), '', 'wpReasonDropDown', 1
+						) . '</td>' .
+			"\n</tr><tr>\n" .
+				'<td>' . Xml::label( wfMsg( 'revdelete-otherreason' ), 'wpReason' ) . '</td>' .
+				'<td>' . Xml::input( 'wpReason', 60, $this->otherReason, array('id'=>'wpReason') ) . '</td>' .
+			"\n</tr></table>\n" .
+			Xml::submitButton( wfMsg( 'revdelete-submit' ), array( 'name' => 'wpSubmit' ) ) .
 			Xml::hidden( 'wpEditToken', $wgUser->editToken() ) .
 			Xml::hidden( 'target', $this->targetObj->getPrefixedText() ) .
 			Xml::hidden( 'type', $this->typeName ) .
@@ -398,9 +408,10 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		// FIXME: all items checked for just one rev are checked, even if not set for the others
 		foreach( $this->checks as $item ) {
 			list( $message, $name, $field ) = $item;
-			$line = Xml::tags( 'div', null, Xml::checkLabel( wfMsg($message), $name, $name,
-				$bitfields & $field ) );
-			if( $field == Revision::DELETED_RESTRICTED ) $line = "<b>$line</b>";
+			$innerHTML = Xml::checkLabel( wfMsg($message), $name, $name, $bitfields & $field );
+			if( $field == Revision::DELETED_RESTRICTED )
+				$innerHTML = "<b>$innerHTML</b>";
+			$line = Xml::tags( 'div', null, $innerHTML );
 			$html .= $line;
 		}
 		return $html;
@@ -418,7 +429,14 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 			return false;
 		}
 		$bitfield = $this->extractBitfield( $request );
-		$comment = $request->getText( 'wpReason' );
+		$listReason = $request->getText( 'wpRevDeleteReasonList', 'other' ); // from dropdown
+		$comment = $listReason;
+		if( $comment != 'other' && $this->otherReason != '' ) {
+			// Entry from drop down menu + additional comment
+			$comment .= wfMsgForContent( 'colon-separator' ) . $this->otherReason;
+		} elseif( $comment == 'other' ) {
+			$comment = $this->otherReason;
+		}
 		# Can the user set this field?
 		if( $bitfield & Revision::DELETED_RESTRICTED && !$wgUser->isAllowed('suppressrevision') ) {
 			$wgOut->permissionRequired( 'suppressrevision' );
