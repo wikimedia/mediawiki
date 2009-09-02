@@ -2561,7 +2561,7 @@ Future changes to this page and its associated talk page will be listed there, a
 'unwatch'              => 'Unwatch',
 'unwatchthispage'      => 'Stop watching',
 'notanarticle'         => 'Not a content page',
-'notvisiblerev'        => 'Revision has been deleted',
+'notvisiblerev'        => 'The last revision by a different user has been deleted',
 'watchnochange'        => 'None of your watched items were edited in the time period displayed.',
 'watchlist-details'    => '{{PLURAL:$1|$1 page|$1 pages}} on your watchlist, not counting talk pages.',
 'wlheader-enotif'      => '* E-mail notification is enabled.',
