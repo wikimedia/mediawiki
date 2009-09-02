@@ -1753,6 +1753,7 @@ $wgMessageStructure = array(
 		'alreadyrolled',
 		'editcomment',
 		'revertpage',
+		'revertpage-nouser',
 		'rollback-success',
 		'sessionfailure',
 	),
