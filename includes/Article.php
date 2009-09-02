@@ -3003,6 +3003,8 @@ class Article {
 		}
 
 		$from = str_replace( '_', ' ', $fromP );
+		# User name given should match up with the top revision.
+		# If the user was deleted then $from should be empty.
 		if( $from != $current->getUserText() ) {
 			$resultDetails = array( 'current' => $current );
 			return array(array('alreadyrolled',
@@ -3012,9 +3014,10 @@ class Article {
 			));
 		}
 
-		# Get the last edit not by this guy
-		$user = intval( $current->getUser() );
-		$user_text = $dbw->addQuotes( $current->getUserText() );
+		# Get the last edit not by this guy...
+		# Note: these may not be public values
+		$user = intval( $current->getRawUser() );
+		$user_text = $dbw->addQuotes( $current->getRawUserText() );
 		$s = $dbw->selectRow( 'revision',
 			array( 'rev_id', 'rev_timestamp', 'rev_deleted' ),
 			array(	'rev_page' => $current->getPage(),
@@ -3041,20 +3044,24 @@ class Article {
 			$set['rc_patrolled'] = 1;
 		}
 
-		if( $set ) {
+		if( count($set) ) {
 			$dbw->update( 'recentchanges', $set,
-					array( /* WHERE */
-						'rc_cur_id' => $current->getPage(),
-						'rc_user_text' => $current->getUserText(),
-						"rc_timestamp > '{$s->rev_timestamp}'",
-					), __METHOD__
-				);
+				array( /* WHERE */
+					'rc_cur_id' => $current->getPage(),
+					'rc_user_text' => $current->getUserText(),
+					"rc_timestamp > '{$s->rev_timestamp}'",
+				), __METHOD__
+			);
 		}
 
 		# Generate the edit summary if necessary
 		$target = Revision::newFromId( $s->rev_id );
-		if( empty( $summary ) ){
-			$summary = wfMsgForContent( 'revertpage' );
+		if( empty( $summary ) ) {
+			if( $from == '' ) { // no public user name
+				$summary = wfMsgForContent( 'revertpage-nouser' );
+			} else {
+				$summary = wfMsgForContent( 'revertpage' );
+			}
 		}
 
 		# Allow the custom summary to use the same args as the default message
@@ -3086,8 +3093,8 @@ class Article {
 		$resultDetails = array(
 			'summary' => $summary,
 			'current' => $current,
-			'target' => $target,
-			'newid' => $revId
+			'target'  => $target,
+			'newid'   => $revId
 		);
 		return array();
 	}
