@@ -281,12 +281,16 @@ class UserrightsPage extends SpecialPage {
 			$database = '';
 		} else {
 			list( $name, $database ) = array_map( 'trim', $parts );
-
-			if( !$wgUser->isAllowed( 'userrights-interwiki' ) ) {
-				return new WikiErrorMsg( 'userrights-no-interwiki' );
-			}
-			if( !UserRightsProxy::validDatabase( $database ) ) {
-				return new WikiErrorMsg( 'userrights-nodatabase', $database );
+			
+			if( $database == wfWikiID() ) {
+				$database = '';
+			} else {
+				if( !$wgUser->isAllowed( 'userrights-interwiki' ) ) {
+					return new WikiErrorMsg( 'userrights-no-interwiki' );
+				}
+				if( !UserRightsProxy::validDatabase( $database ) ) {
+					return new WikiErrorMsg( 'userrights-nodatabase', $database );
+				}
 			}
 		}
 
