@@ -270,7 +270,6 @@ $wgRequest->interpolateTitle();
 
 $wgUser = new StubUser;
 $wgLang = new StubUserLang;
-$wgVariant = new StubUserVariant;
 $wgOut = new StubObject( 'wgOut', 'OutputPage' );
 $wgParser = new StubObject( 'wgParser', $wgParserConf['class'], array( $wgParserConf ) );
 
