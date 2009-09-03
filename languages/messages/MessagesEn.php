@@ -1464,9 +1464,8 @@ Please confirm that you intend to do this, that you understand the consequences,
 'revdelete-unsuppress'        => 'Remove restrictions on restored revisions',
 'revdelete-reasonotherlist'   => 'Other reason',
 'revdelete-reason-dropdown'   => '*Common delete reasons
-** Author request
 ** Copyright violation
-** Vandalism',
+** Inappropriate personal information',
 'revdelete-log'               => 'Reason for deletion:',
 'revdelete-otherreason'       => 'Other/additional reason:',
 'revdelete-submit'            => 'Apply to selected revision',
