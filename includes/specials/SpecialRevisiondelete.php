@@ -1398,9 +1398,9 @@ class RevDel_FileItem extends RevDel_Item {
 		if ( $this->isDeleted() ) {
 			# Hidden files...
 			if ( !$this->canView() ) {
-				return $date;
+				$link = $date;
 			} else {
-				return $this->special->skin->link( 
+				$link = $this->special->skin->link( 
 					$this->special->getTitle(), 
 					$date, array(), 
 					array(
@@ -1409,6 +1409,7 @@ class RevDel_FileItem extends RevDel_Item {
 					)
 				);
 			}
+			return '<span class="history-deleted">' . $link . '</span>';
 		} else {
 			# Regular files...
 			$url = $this->file->getUrl();
