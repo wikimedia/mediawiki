@@ -125,7 +125,7 @@ $messages = array(
 'mypage'        => 'Em pache',
 'mytalk'        => 'Mi bavouér',
 'anontalk'      => "Bavouér pou chl'IP-lo",
-'navigation'    => 'Navigachion',
+'navigation'    => 'Navigachon',
 'and'           => '&#32;pi',
 
 # Cologne Blue skin
@@ -137,6 +137,18 @@ $messages = array(
 'qbspecialpages' => 'Espéciales paches',
 'faq'            => 'FAQ',
 'faqpage'        => 'Project:FAQ',
+
+# Vector skin
+'vector-action-delete'      => 'Défacer',
+'vector-action-move'        => "Canger ch'nom",
+'vector-namespace-image'    => 'Fichié',
+'vector-namespace-main'     => 'Pache',
+'vector-namespace-template' => 'Modéle',
+'vector-namespace-user'     => 'Pache dechl uzeu',
+'vector-view-create'        => 'Créer',
+'vector-view-edit'          => 'Éditer',
+'vector-view-view'          => 'Lire',
+'vector-view-viewsource'    => "Vir l'source",
 
 # Metadata in edit box
 'metadata_help' => 'Metadata:',
@@ -152,10 +164,10 @@ $messages = array(
 'history'          => 'Pache historique',
 'history_short'    => 'Histoère',
 'info_short'       => 'Informachion',
-'printableversion' => 'Imprimabe vérchion',
+'printableversion' => 'Imprimabe vérchon',
 'permalink'        => 'Loïen pérmanint',
 'print'            => 'Imprimer',
-'edit'             => 'Editer',
+'edit'             => 'Éditer',
 'create'           => 'Créer',
 'editthispage'     => "Éditer chl'pache-lo",
 'create-this-page' => "Créer chl'pache lo",
@@ -184,13 +196,13 @@ $messages = array(
 'viewhelppage'     => 'Vir aïude pache',
 'categorypage'     => "Vir l'pache éd chés catégories",
 'viewtalkpage'     => 'Vir distchussion',
-'otherlanguages'   => "Din d'autes langaches",
+'otherlanguages'   => "Din d'eutes langaches",
 'redirectedfrom'   => '(Érdirection édpis $1)',
 'redirectpagesub'  => 'Pache érdérivée',
 'lastmodifiedat'   => "L'pache-lo ale o té modifiée l'fouos darin l' $1, à $2.",
 'protectedpage'    => 'Pache défènnée',
 'jumpto'           => 'Aler à:',
-'jumptonavigation' => 'navigachion',
+'jumptonavigation' => 'navigachon',
 'jumptosearch'     => 'tracher',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
@@ -221,7 +233,7 @@ $messages = array(
 'viewsourceold'           => "vir l'source",
 'editlink'                => 'édite',
 'viewsourcelink'          => 'vir el source',
-'editsectionhint'         => 'Éditer el sekchion: $1',
+'editsectionhint'         => 'Éditer el sekchon: $1',
 'toc'                     => 'Étnus',
 'showtoc'                 => 'Aficher',
 'hidetoc'                 => 'muche',
@@ -326,7 +338,7 @@ j'm'escuse mais i feut prinde un aute nom.",
 'summary'                          => 'Résumè:',
 'subject'                          => 'Sujet/in-téte:',
 'minoredit'                        => "Ch'est eune tiote édition",
-'watchthis'                        => "Vir l'pache-lo",
+'watchthis'                        => "Suire l'pache-lo",
 'savearticle'                      => "Seuver l'pache",
 'preview'                          => 'Prévir',
 'showpreview'                      => "Fouaire vir l'prévue",
@@ -380,7 +392,7 @@ Vos cangemints, is sont poin coèr inrégistrés!",
 # Search results
 'searchresults'             => 'Tracher chés résultats',
 'searchresults-title'       => 'Tracher chés résultats pou "$1"',
-'searchresulttext'          => "Pou pus d'informacions quant qu'vos trachez {{SITENAME}}, vir [[{{MediaWiki:Helppage}}|{{int:help}}]].",
+'searchresulttext'          => "Pou pus d'informachons quant qu'vos trachez {{SITENAME}}, vir [[{{MediaWiki:Helppage}}|{{int:help}}]].",
 'searchsubtitle'            => "Vos trachez  « '''[[:$1]]''' » ([[Special:Prefixindex/$1|toutes chés paches aroutant pèr « $1 »]]{{int:pipe-separator}}[[Special:WhatLinksHere/$1|toutes chés paches qu'ont un loïen dsus « $1 »]])",
 'searchsubtitleinvalid'     => "vos trachez apreu '''$1'''",
 'noexactmatch'              => "'''I n'y o poin d'pache lonmée \"\$1\".'''
@@ -396,7 +408,7 @@ Os pouvez [[:\$1|créer chol pache]].",
 'viewprevnext'              => 'Vir ($1) ($2) ($3)',
 'search-result-size'        => '$1 ({{PLURAL:$2|1 mot|$2 mots}})',
 'search-redirect'           => '(érdirection $1)',
-'search-section'            => '(sekcion $1)',
+'search-section'            => '(sekchon $1)',
 'search-suggest'            => 'Cha vo ti dire: $1',
 'search-interwiki-caption'  => 'Proujé analocq',
 'search-interwiki-default'  => '$1 résultats:',
@@ -476,12 +488,12 @@ Ale doét mie éte pu longue éq $1 {{PLURAL:$1|caracter|caractéres}}.',
 'filehist-current'          => 'courant',
 'filehist-datetime'         => 'Date/Tans',
 'filehist-thumb'            => 'Tiote image',
-'filehist-thumbtext'        => "Image pou l'vérchion conme $1",
+'filehist-thumbtext'        => "Image pou l'vérchon éd $1",
 'filehist-user'             => 'Uzeu',
 'filehist-dimensions'       => 'Diminsions',
 'filehist-comment'          => 'Fichié éd chés conmints',
 'imagelinks'                => 'Loïens dech fichié',
-'linkstoimage'              => "{{PLURAL:$1|L'pache d'apreu est liée|Chées $1 paches d'apreu sont liées}} à ch'fichié-lo :",
+'linkstoimage'              => "{{PLURAL:$1|L'pache d'apreu est liée|Chés $1 paches d'apreu sont liées}} à ch'fichié-lo :",
 'sharedupload'              => "Cht'fichié vient éd $1 pi i put ète imploïé par d'eutes proujés.",
 'uploadnewversion-linktext' => 'Quértcher eune novèle vérchion del pache-lo',
 
@@ -495,7 +507,7 @@ Ale doét mie éte pu longue éq $1 {{PLURAL:$1|caracter|caractéres}}.',
 'newpages'      => 'Novèles paches',
 'move'          => 'Déplacher',
 'movethispage'  => "Déplacher l'pache-lo",
-'pager-newer-n' => '{{PLURAL:$1|pu nouvieu 1|pu nouvieu $1}}',
+'pager-newer-n' => '{{PLURAL:$1|pu nouvieu 1|pu nouvieus $1}}',
 'pager-older-n' => '{{PLURAL:$1|pus viu 1|pus vius $1}}',
 
 # Book sources
@@ -535,22 +547,22 @@ Ale doét mie éte pu longue éq $1 {{PLURAL:$1|caracter|caractéres}}.',
 'emailpage' => 'Imèle dech uzeu',
 
 # Watchlist
-'watchlist'         => 'Em lisse à vir',
-'mywatchlist'       => "M'lisse à vir",
+'watchlist'         => 'Em lisse à suire',
+'mywatchlist'       => "M'lisse à suire",
 'watchlistfor'      => "(pou '''$1''')",
 'addedwatch'        => "Rajouté su l'lisse à suire",
 'removedwatch'      => 'Értiré del lisse à suire',
 'removedwatchtext'  => "L'pache « [[:$1]] » o té értirée éd vote [[Special:Watchlist|lisse à suire]].",
-'watch'             => 'Vir',
+'watch'             => 'Suire',
 'watchthispage'     => "Suire l'pache-lo",
-'unwatch'           => "N'poin vir",
+'unwatch'           => "N'poin suire",
 'watchlist-details' => "{{PLURAL:$1|$1 pache|$1 paches}} din vote lisse à suire, chés paches éd disqhuchon n'sont poin conptées.",
 'wlshowlast'        => 'Montrer darin $1 eûres $2 jours $3',
 'watchlist-options' => 'Opchons del lisse à suire',
 
 # Displayed when you click the "watch" button and it is in the process of watching
-'watching'   => 'Vir…',
-'unwatching' => "n'poin vir…",
+'watching'   => 'Suire…',
+'unwatching' => "n'poin suire…",
 
 # Delete
 'deletepage'            => "Défacer l'pache",
@@ -583,6 +595,8 @@ L' passèie édition del pache étoait par  [[User:$3|$3]] ([[User talk:$3|Talk]
 'protect_expiry_old'          => "L'date d'éspirachon ale est déjo érpassée.",
 'protect-unchain'             => 'Déblotcher chés pérmichons éd déplachemint',
 'protect-text'                => "Os pouvez vir pi canger ech nivieu d'protécchon ichi pou l'pache-lo '''<nowiki>$1</nowiki>'''.",
+'protect-locked-access'       => "Vos n’avez poin chés droés pou canger chés nivieus d'protécchon des paches.<br />
+Vlo chés réglages del pache '''$1''' à ch'momint-chi:",
 'protect-default'             => 'Por tertous chés uzeus',
 'protect-fallback'            => 'I feut avoèr l\'pérmission "$1"',
 'protect-level-autoconfirmed' => 'Blotcher nouvieus pi mie-inrégistrés uzeus',
@@ -600,7 +614,7 @@ L' passèie édition del pache étoait par  [[User:$3|$3]] ([[User talk:$3|Talk]
 
 # Namespace form on various pages
 'namespace'      => 'Éspace du nom:',
-'invert'         => 'Invérser el sélékchion',
+'invert'         => 'Invérser el sélékchon',
 'blanknamespace' => '(Moaite)',
 
 # Contributions
@@ -608,7 +622,7 @@ L' passèie édition del pache étoait par  [[User:$3|$3]] ([[User talk:$3|Talk]
 'contributions-title' => 'Contérbuchons dechl uzeu à pérpos éd $1',
 'mycontris'           => 'Ems contérbuchons',
 'contribsub2'         => 'Pou $1 ($2)',
-'uctop'               => '(heut)',
+'uctop'               => '(darin)',
 'month'               => "Dpuis ch'moés (pi édvant)",
 'year'                => 'Del innée (pi avint)',
 
@@ -679,15 +693,15 @@ L' passèie édition del pache étoait par  [[User:$3|$3]] ([[User talk:$3|Talk]
 'tooltip-ca-talk'                 => 'Distchussion à pérpos del pache-lo',
 'tooltip-ca-edit'                 => 'Os pouvez éditer l\'pache-lo.
 Mérci d\'imploéyer ch\'bouton "vir" édvant éd "warder"',
-'tooltip-ca-addsection'           => 'Débuter eune novèle sekcion',
+'tooltip-ca-addsection'           => 'Débuter eune novèle sekchon',
 'tooltip-ca-viewsource'           => "Cht' pache-lo ale est garantie.
 
 Os pouvez vir l'source",
-'tooltip-ca-history'              => 'Anciens canjemints éd chol pache-lo',
+'tooltip-ca-history'              => 'Antieus canjemints éd chol pache-lo',
 'tooltip-ca-protect'              => "Garantir l'pache-lo",
 'tooltip-ca-delete'               => "Défacer l'pache-lo",
 'tooltip-ca-move'                 => "Déplacher l'pache",
-'tooltip-ca-watch'                => "Ajouter l'pache-lo à vo lisse à vir",
+'tooltip-ca-watch'                => "Ajouter l'pache-lo à vo lisse à suire",
 'tooltip-ca-unwatch'              => "Értirer l'pache-lo d'vote lisse à suire",
 'tooltip-search'                  => 'Tracher {{SITENAME}}',
 'tooltip-search-go'               => "Aler à l'pache aveuc ech meume jusse nom s'il y in o eune",
@@ -707,8 +721,8 @@ Os pouvez vir l'source",
 'tooltip-t-contributions'         => "Vir l'lisse éd chés contérbuchons dech uzeu-lo",
 'tooltip-t-emailuser'             => "Éspédier un imèle à cht'uzeu-lo",
 'tooltip-t-upload'                => 'Quértcher chés fichiés',
-'tooltip-t-specialpages'          => 'Lisse éd tertous chés paches éspéchiales',
-'tooltip-t-print'                 => 'Imprimabe vérchion del pache-lo',
+'tooltip-t-specialpages'          => 'Lisse éd tous chés paches éspéchiales',
+'tooltip-t-print'                 => 'Imprimabe vérchon del pache-lo',
 'tooltip-t-permalink'             => "Loïen définitive aveuc cht'canjemint del pache",
 'tooltip-ca-nstab-main'           => "Vir echl'étnu del pache",
 'tooltip-ca-nstab-user'           => 'Vir el pache dech uzeu',
@@ -722,7 +736,7 @@ Os pouvez vir l'source",
 'tooltip-preview'                 => "Prévir vos cangemints, uzer cha édvant d'inr'gister mérci!",
 'tooltip-diff'                    => "Montrer chés cangemints éq'vos avez foait din ch'teske-lo",
 'tooltip-compareselectedversions' => 'Vir chés diférinches intre chés deus couésies vérchons del pache-lo',
-'tooltip-watch'                   => 'Ajouter chol pache-lo à vo lisse à vir',
+'tooltip-watch'                   => 'Ajouter chol pache-lo à vo lisse à suire',
 'tooltip-rollback'                => '« Racacher » cancéle aveuc un clic el (ou chés) modificachon(s) del pache-lo pèr sin darin contérbucheu.',
 
 # Browsing diffs
@@ -756,7 +770,7 @@ Chés eutes cans is s'ront muchés pèr défeut.
 
 # 'all' in various places, this might be different for inflected languages
 'watchlistall2' => 'tertous',
-'namespacesall' => 'tertous',
+'namespacesall' => 'tous',
 'monthsall'     => 'tertous',
 
 # Watchlist editing tools

@@ -911,7 +911,7 @@ Confirméiert w.eg. datt Dir dëst maache wellt, datt dir d'Konsequenzen dovu ve
 'revdelete-suppress'          => 'Grond vum Läschen och fir Administrateure verstoppt',
 'revdelete-hide-image'        => 'Bildinhalt verstoppen',
 'revdelete-unsuppress'        => 'Limitatiounen fir restauréiert Versiounen ophiewen',
-'revdelete-log'               => "Bemierkung (fir d'Logbicher/Lëschten):",
+'revdelete-log'               => "Grond fir d'Läschen:",
 'revdelete-submit'            => 'Op déi gewielte Versioun uwenden',
 'revdelete-logentry'          => 'Sichtbarkeet vun der Versioun gouf geännert fir [[$1]]',
 'logdelete-logentry'          => "huet d'Sichtbarkeet vun [[$1]] geännert",
@@ -944,6 +944,8 @@ Dir hutt keen Zougang dozou.',
 'revdelete-concurrent-change' => "Feeler beim Ännere vum Element vum $1 ëm $2 Auer: säit Statut schéngt geännert ginn ze si während Dir vericht hutt et z'änneren.
 Kuckt w.e.g. an de Logbicher no.",
 'revdelete-only-restricted'   => 'Dir kënnt keng Objete virun den Administrateure verstoppen ouni och eng vun den anere Läschoptiounen erauszesichen.',
+'revdelete-otherreason'       => 'Aneren/zousätzleche Grond:',
+'revdelete-reasonotherlist'   => 'Anere Grond:',
 
 # Suppression log
 'suppressionlog'     => 'Lëscht vun de verstoppten a geläschte Säiten',
@@ -1987,19 +1989,20 @@ D'Läschen dovun kann zu Stéierungen am Funktionnement vun {{SITENAME}} féiere
 dës Aktioun soll mat Vierssiicht gemaach ginn.",
 
 # Rollback
-'rollback'         => 'Ännerungen zrécksetzen',
-'rollback_short'   => 'Zrécksetzen',
-'rollbacklink'     => 'Zrécksetzen',
-'rollbackfailed'   => 'Zrécksetzen huet net geklappt',
-'cantrollback'     => 'Lescht Ännerung kann net zréckgesat ginn. De leschten Auteur ass deen eenzegen Auteur vun dëser Säit.',
-'alreadyrolled'    => 'Déi lescht Ännerung vun der Säit [[$1]] vum [[User:$2|$2]] ([[User talk:$2|Diskussioun]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]); kann net zréckgesat ginn; 
+'rollback'          => 'Ännerungen zrécksetzen',
+'rollback_short'    => 'Zrécksetzen',
+'rollbacklink'      => 'Zrécksetzen',
+'rollbackfailed'    => 'Zrécksetzen huet net geklappt',
+'cantrollback'      => 'Lescht Ännerung kann net zréckgesat ginn. De leschten Auteur ass deen eenzegen Auteur vun dëser Säit.',
+'alreadyrolled'     => 'Déi lescht Ännerung vun der Säit [[$1]] vum [[User:$2|$2]] ([[User talk:$2|Diskussioun]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]); kann net zréckgesat ginn; 
 een Aneren huet dëst entweder scho gemaach oder nei Ännerungen agedroen.
 
 Déi lescht Ännerung vun der Säit ass vum [[User:$3|$3]] ([[User talk:$3|Diskussioun]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'      => "De Resumé vun der Ännerung war: \"''\$1''\".",
-'revertpage'       => 'Ännerunge vum [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskussioun]]) zréckgesat op déi lescht Versioun vum [[User:$1|$1]]',
-'rollback-success' => "D'Ännerunge vum $1 goufen zréckgesat op déi lescht Versioun vum $2.",
-'sessionfailure'   => 'Et schéngt e Problem mat ärer Loginséance ze ginn;
+'editcomment'       => "De Resumé vun der Ännerung war: \"''\$1''\".",
+'revertpage'        => 'Ännerunge vum [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskussioun]]) zréckgesat op déi lescht Versioun vum [[User:$1|$1]]',
+'revertpage-nouser' => 'Zréckgesaten Ännerungen vum (Benotzernummewechgeholl) op déilescht Versioun vum [[User:$1|$1]]',
+'rollback-success'  => "D'Ännerunge vum $1 goufen zréckgesat op déi lescht Versioun vum $2.",
+'sessionfailure'    => 'Et schéngt e Problem mat ärer Loginséance ze ginn;
 Dës Aktioun gouf aus Sécherheetsgrënn ofgebrach, fir ze verhënneren datt är Séance piratéiert ka ginn.
 Klickt w.e.g. op "Zréck" a lued déi Säit vun däer Dir komm sidd nei, a versicht et dann nach eng Kéier.',
 

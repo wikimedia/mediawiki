@@ -1068,7 +1068,7 @@ Potvrďte prosím, že toto je vaším zámerom, že rozumiete dôsledkom a že 
 'revdelete-suppress'          => 'Skryť údaje pred správcami rovnako ako pred ostatnými',
 'revdelete-hide-image'        => 'Skryť obsah súboru',
 'revdelete-unsuppress'        => 'Odstrániť obmedzenia obnovených revízií',
-'revdelete-log'               => 'Komentár záznamu:',
+'revdelete-log'               => 'Dôvod zmazania:',
 'revdelete-submit'            => 'Použiť na zvolenú revíziu',
 'revdelete-logentry'          => 'viditeľnosť revízie bola zmenená pre [[$1]]',
 'logdelete-logentry'          => 'viditeľnosť udalosti [[$1]] bola zmenená',
@@ -1101,6 +1101,11 @@ Nemáte k nej prístup.',
 'revdelete-concurrent-change' => 'Chyba pri zmene položky s dátumom $2, $1: zdá sa, že kým ste ju menili vykonal zmenu niekto iný.
 Pozrite sa prosím do záznamov.',
 'revdelete-only-restricted'   => 'Nemôžete skryť položku pred správcami bez toho, aby ste vybrali aj jednu z ďalších možností skrytia.',
+'revdelete-reason-dropdown'   => '*Bežné dôvody zmazania
+** Porušenie autorských práv
+** Nevhodné osobné informácie',
+'revdelete-otherreason'       => 'Ďalšie dôvody:',
+'revdelete-reasonotherlist'   => 'Iný dôvod',
 
 # Suppression log
 'suppressionlog'     => 'Záznam potlačení',
@@ -2140,18 +2145,19 @@ Na $2 nájdete zoznam posledných zmazaní.',
 'delete-warning-toobig'  => 'Táto stránka má veľkú históriu úprav, viac ako $1 {{PLURAL:$1|revíziu|revízie|revízií}}. Jej zmazanie by mohlo narušiť databázové operácie {{GRAMMAR:genitív|{{SITENAME}}}}; postupujte opatrne.',
 
 # Rollback
-'rollback'         => 'Rollback úprav',
-'rollback_short'   => 'Rollback',
-'rollbacklink'     => 'rollback',
-'rollbackfailed'   => 'Rollback neúspešný',
-'cantrollback'     => 'Nie je možné úpravu vrátiť späť, posledný autor je jediný autor tejto stránky.',
-'alreadyrolled'    => 'Nemožno vrátiť späť poslednú úpravu [[:$1]] od [[User:$2|$2]] ([[User talk:$2|Diskusia]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]); niekto iný buď upravoval stránku alebo už vrátil úpravy späť.
+'rollback'          => 'Rollback úprav',
+'rollback_short'    => 'Rollback',
+'rollbacklink'      => 'rollback',
+'rollbackfailed'    => 'Rollback neúspešný',
+'cantrollback'      => 'Nie je možné úpravu vrátiť späť, posledný autor je jediný autor tejto stránky.',
+'alreadyrolled'     => 'Nemožno vrátiť späť poslednú úpravu [[:$1]] od [[User:$2|$2]] ([[User talk:$2|Diskusia]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]); niekto iný buď upravoval stránku alebo už vrátil úpravy späť.
 
 Autorom poslednej úpravy je [[User:$3|$3]] ([[User talk:$3|Diskusia]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'      => "Zhrnutie úpravy bolo: „''$1''“.",
-'revertpage'       => 'Posledné úpravy používateľa [[Special:Contributions/$2|$2]] ([[User talk:$2|diskusia]]) vrátené; bola obnovená posledná úprava $1',
-'rollback-success' => 'Úpravy $1 vrátené; obnovená posledná verzia od $2.',
-'sessionfailure'   => 'Zdá sa, že je problém s vašou prihlasovacou reláciou;
+'editcomment'       => "Zhrnutie úpravy bolo: „''$1''“.",
+'revertpage'        => 'Posledné úpravy používateľa [[Special:Contributions/$2|$2]] ([[User talk:$2|diskusia]]) vrátené; bola obnovená posledná úprava $1',
+'revertpage-nouser' => 'Vrátené úpravy (meno používateľa odstránené) na poslednú revíziu od [[User:$1|$1]]',
+'rollback-success'  => 'Úpravy $1 vrátené; obnovená posledná verzia od $2.',
+'sessionfailure'    => 'Zdá sa, že je problém s vašou prihlasovacou reláciou;
 táto akcia bola zrušená ako prevencia proti zneužitiu relácie (session).
 Prosím, stlačte "naspäť", obnovte stránku, z ktorej ste sa sem dostali, a skúste to znova.',
 
@@ -3130,6 +3136,7 @@ Každý ďalší odkaz na rovnakom riadku sa považuje za výnimku, t.j. článk
 'watchlistall2'    => 'všetky',
 'namespacesall'    => 'všetky',
 'monthsall'        => 'všetky',
+'limitall'         => 'všetky',
 
 # E-mail address confirmation
 'confirmemail'             => 'Potvrdiť e-mailovú adresu',
@@ -3344,7 +3351,7 @@ Zadajte názov súboru bez predpony „{{ns:file}}:“.',
 'tag-filter-submit'       => 'Filter',
 'tags-title'              => 'Značky',
 'tags-intro'              => 'Táto stránka obsahuje zoznam značiek, s ktorým softvér môže pracovať a upravovať ich a ich význam.',
-'tags-tag'                => 'Vnútorný názov značky',
+'tags-tag'                => 'Názov značky',
 'tags-display-header'     => 'Vzhľad v zoznamoch úprav',
 'tags-description-header' => 'Úplný popis významu',
 'tags-hitcount-header'    => 'Označené úpravy',

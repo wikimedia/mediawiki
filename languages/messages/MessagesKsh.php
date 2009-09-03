@@ -1099,7 +1099,7 @@ Bes esu joot un don bestääteje, dat De dat maache wells, dat De versteihß wat
 'revdelete-suppress'          => 'Donn dä Jrond och för de Wiki-Köbesse versteische',
 'revdelete-hide-image'        => 'De Enhallt vun däm Beld versteiche',
 'revdelete-unsuppress'        => 'De Beschrängkonge för der widderjehollte Versione ophevve',
-'revdelete-log'               => 'Bemerkung för et LogBoch:',
+'revdelete-log'               => 'Der Jrond för et Fottschmiiße:',
 'revdelete-submit'            => 'Op de aanjekrützte Version aanwende',
 'revdelete-logentry'          => 'Zojang zo de Versione verändert för „[[$1]]“',
 'logdelete-logentry'          => '„[[$1]]“ verstoche udder widder seeschba jemaat',
@@ -1126,6 +1126,11 @@ Bes esu joot un don bestääteje, dat De dat maache wells, dat De versteihß wat
 'revdelete-no-change'         => "'''Opjepaß:''' Dä Version vum $1 öm $2 Uhr ier Seeschbaakeit es ald esu, wi De se han wells.",
 'revdelete-concurrent-change' => 'Ene Fähler es opjetodde beim Ändere. Dä Version vum $1 öm $2 Uhr ier Seeschbaakeit schingk ald esu ze sinn, wi De se han wullts. Looer Der de Logbööscher aan.',
 'revdelete-only-restricted'   => 'Do kanns kein Enndrääsch vör de Wiki_Köbeße verschteijsche, oohne noch en Zoot Verschteijsche ußzewähle',
+'revdelete-reason-dropdown'   => '*Jewöhnlijje Jrönd för et Fottschmiiße
+** Vershtüß jääje et Uerhävverrääsch.
+** Esu en päsöönlesche Enfomazjuhne sin nit aanjebraach, udder esujaa jääje der Dateschoz.',
+'revdelete-otherreason'       => 'Ene andere ov zohsäzlejje Jrund:',
+'revdelete-reasonotherlist'   => 'Ene andere Jrund',
 
 # Suppression log
 'suppressionlog'     => 'Et Logboch fum Versteiche',
@@ -2258,18 +2263,19 @@ Do kanns hee noh Hölp luure:
 'delete-warning-toobig'  => 'Di Sigg hät {{PLURAL:$1|ein Version|$1 Versione|jakein Version}}. Dat sinn_er ärsch fill. Wann De die all fottschmieße wells, dat kann dem Wiki sing Datenbangk schwer ußbremse.',
 
 # Rollback
-'rollback'         => 'Em Letzte sing Änderunge zeröcknemme',
-'rollback_short'   => 'Zeröcknemme',
-'rollbacklink'     => 'All dem Letzte sing Änderunge zeröckdriehe',
-'rollbackfailed'   => 'Dat Zeröcknemme jingk scheiv',
-'cantrollback'     => 'De letzte Änderung zeröckzenemme es nit müjjelich. Dä letzte Schriever es dä einzije, dä aan dä Sigg hee jet jedon hät!',
-'alreadyrolled'    => 'Mer künne de letzte Änderunge vun dä Sigg „[[:$1]]“ vum Metmaacher „[[User:$2|$2]]“ ([[User talk:$2|Klaaf]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) nimieh zeröcknemme, dat hät ene Andere enzwesche ald jedon, udder de Sigg ömjeändert.
+'rollback'          => 'Em Letzte sing Änderunge zeröcknemme',
+'rollback_short'    => 'Zeröcknemme',
+'rollbacklink'      => 'All dem Letzte sing Änderunge zeröckdriehe',
+'rollbackfailed'    => 'Dat Zeröcknemme jingk scheiv',
+'cantrollback'      => 'De letzte Änderung zeröckzenemme es nit müjjelich. Dä letzte Schriever es dä einzije, dä aan dä Sigg hee jet jedon hät!',
+'alreadyrolled'     => 'Mer künne de letzte Änderunge vun dä Sigg „[[:$1]]“ vum Metmaacher „[[User:$2|$2]]“ ([[User talk:$2|Klaaf]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) nimieh zeröcknemme, dat hät ene Andere enzwesche ald jedon, udder de Sigg ömjeändert.
 
 De Neuste Änderung aan dä Sigg es jetz vun däm Metmaacher „[[User:$3|$3]]“ ([[User talk:$3|Klaaf]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'      => "Bei dä Änderung stundt: „''$1''“.",
-'revertpage'       => 'Änderunge vun däm Metmaacher „[[Special:Contributions/$2|$2]]“ ([[User talk:$2|däm sing Klaafsigg]]) fottjeschmesse, un doför de letzte Version vum „[[User:$1|$1]]“ widder zeröckjehollt',
-'rollback-success' => 'De Änderungen vum $1 zeröckjenumme, un dobei de letzte Version vum $2 widder jehollt.',
-'sessionfailure'   => "Et jov wall e technisch Problem met Dingem Login. Dröm ha'mer dat us Vörsich jetz nit jemaht, domet mer nit villeich Ding Änderung däm verkihrte Metmaacher ungerjubele. Jangk zeröck un versök et noch ens.",
+'editcomment'       => "Bei dä Änderung stundt: „''$1''“.",
+'revertpage'        => 'Änderunge vun däm Metmaacher „[[Special:Contributions/$2|$2]]“ ([[User talk:$2|däm sing Klaafsigg]]) fottjeschmesse, un doför de letzte Version vum „[[User:$1|$1]]“ widder zeröckjehollt',
+'revertpage-nouser' => 'Änderunge vun enem Metmaacher, däm singe Name vershtoche es, retuur jemaat op de letzte Version {{GENDER:$1|vum|vum|vum Metmaacher|vun dä|vum}} [[User:$1|$1]]',
+'rollback-success'  => 'De Änderungen vum $1 zeröckjenumme, un dobei de letzte Version vum $2 widder jehollt.',
+'sessionfailure'    => "Et jov wall e technisch Problem met Dingem Login. Dröm ha'mer dat us Vörsich jetz nit jemaht, domet mer nit villeich Ding Änderung däm verkihrte Metmaacher ungerjubele. Jangk zeröck un versök et noch ens.",
 
 # Protect
 'protectlogpage'              => 'Logboch vum Sigge Schötze',

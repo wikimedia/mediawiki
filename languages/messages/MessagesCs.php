@@ -1085,7 +1085,7 @@ Prosím potvrďte, že to opravdu chcete učinit, že si uvědomujete důsledky 
 'revdelete-suppress'          => 'Utajit data i před správci',
 'revdelete-hide-image'        => 'Skrýt obsah souboru',
 'revdelete-unsuppress'        => 'Odstranit omezení na vrácené verze',
-'revdelete-log'               => 'Komentář:',
+'revdelete-log'               => 'Zdůvodnění smazání:',
 'revdelete-submit'            => 'Aplikovat nastavení',
 'revdelete-logentry'          => 'změnil viditelnost revizí u [[$1]]',
 'logdelete-logentry'          => 'mění viditelnost události [[$1]]',
@@ -1118,6 +1118,11 @@ Nemáte k ní přístup.',
 'revdelete-concurrent-change' => 'Chyba při změně položky z $1 $2: zdá se, že mezitím její stav změnil někdo jiný.
 Prohlédněte si protokolovací záznamy.',
 'revdelete-only-restricted'   => 'Nemůžete položky pouze skrýt před správci, aniž byste současně vybrali i některou z dalších možností utajení.',
+'revdelete-reason-dropdown'   => '*Obvyklé důvody smazání
+** Porušení autorských práv
+** Nevhodné osobní údaje',
+'revdelete-otherreason'       => 'Jiný/další důvod:',
+'revdelete-reasonotherlist'   => 'Jiný důvod',
 
 # Suppression log
 'suppressionlog'     => 'Záznam utajení',
@@ -1786,8 +1791,8 @@ Níže jsou zobrazeny informace, které obsahuje jeho [$2 tamější stránka s 
 'filedelete-success-old'      => "Verze souboru '''[[Media:$1|$1]]''' z $3 $2 byla smazána.",
 'filedelete-nofile'           => "Soubor '''$1''' neexistuje.",
 'filedelete-nofile-old'       => "Neexistuje archivní verze souboru '''$1''' s udávanými atributy.",
-'filedelete-otherreason'      => 'Jiný či další důvod:',
-'filedelete-reason-otherlist' => 'Zadejte níže důvod mazání nebo vyberte z tohoto seznamu',
+'filedelete-otherreason'      => 'Jiný/další důvod:',
+'filedelete-reason-otherlist' => 'Jiný důvod',
 'filedelete-reason-dropdown'  => '*Obvyklé důvody smazání
 ** Porušení autorských práv
 ** Nadbytečná kopie',
@@ -2138,8 +2143,8 @@ Rady a kontakt:
 'deletionlog'            => 'Kniha smazaných stránek',
 'reverted'               => 'Obnovení předchozí verze',
 'deletecomment'          => 'Důvod smazání:',
-'deleteotherreason'      => 'Jiný či další důvod:',
-'deletereasonotherlist'  => 'Zadejte níže důvod mazání nebo vyberte z tohoto seznamu',
+'deleteotherreason'      => 'Jiný/další důvod:',
+'deletereasonotherlist'  => 'Jiný důvod',
 'deletereason-dropdown'  => '*Obvyklé důvody smazání
 ** Na žádost autora
 ** Porušení autorských práv
@@ -2149,18 +2154,19 @@ Rady a kontakt:
 'delete-warning-toobig'  => 'Tato stránka má velkou historii editací, přes $1 {{plural:$1|verzi|verze|verzí}}. Mazání takových stránek může narušit databázové operace {{grammar:2sg|{{SITENAME}}}}; postupujte opatrně.',
 
 # Rollback
-'rollback'         => 'Vrátit zpět editace',
-'rollback_short'   => 'Vrátit zpět',
-'rollbacklink'     => 'vrácení zpět',
-'rollbackfailed'   => 'Nešlo vrátit zpět',
-'cantrollback'     => 'Nelze vrátit zpět poslední editaci, neboť poslední přispěvatel je jediným autorem této stránky.',
-'alreadyrolled'    => 'Nelze vrátit zpět poslední editaci [[:$1]] od uživatele [[User:$2|$2]] ([[User talk:$2|diskuse]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]), protože někdo jiný již stránku editoval nebo vrátil tuto změnu zpět.
+'rollback'          => 'Vrátit zpět editace',
+'rollback_short'    => 'Vrátit zpět',
+'rollbacklink'      => 'vrácení zpět',
+'rollbackfailed'    => 'Nešlo vrátit zpět',
+'cantrollback'      => 'Nelze vrátit zpět poslední editaci, neboť poslední přispěvatel je jediným autorem této stránky.',
+'alreadyrolled'     => 'Nelze vrátit zpět poslední editaci [[:$1]] od uživatele [[User:$2|$2]] ([[User talk:$2|diskuse]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]), protože někdo jiný již stránku editoval nebo vrátil tuto změnu zpět.
 
 Poslední editaci této stránky provedl(a) [[User:$3|$3]] ([[User talk:$3|diskuse]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'      => "Shrnutí editace bylo: ''„$1“''.",
-'revertpage'       => 'Editace uživatele „$2“ vrácena do předchozího stavu, jehož autorem je „$1“.',
-'rollback-success' => 'Editace uživatele $1 byla vrácena na poslední verzi od uživatele $2.',
-'sessionfailure'   => 'Zřejmě je nějaký problém s vaším přihlášením;
+'editcomment'       => "Shrnutí editace bylo: ''„$1“''.",
+'revertpage'        => 'Editace uživatele „[[Special:Contributions/$2|$2]]“ ([[User talk:$2|diskuse]]) vráceny do předchozího stavu, jehož autorem je „[[User:$1|$1]]“',
+'revertpage-nouser' => 'Editace uživatele (uživatelské jméno skryto) vráceny do předchozího stavu, jehož autorem je „[[User:$1|$1]]“',
+'rollback-success'  => 'Editace uživatele $1 byla vrácena na poslední verzi od uživatele $2.',
+'sessionfailure'    => 'Zřejmě je nějaký problém s vaším přihlášením;
 vámi požadovaná činnost byla stornována jako prevence před neoprávněným přístupem.
 Stiskněte tlačítko „zpět“, obnovte stránku, ze které jste přišli a zkuste činnost znovu.',
 
@@ -2198,7 +2204,7 @@ Současné nastavení pro tuto stránku je: '''$1''':",
 'protect-othertime'           => 'Jiný čas vypršení:',
 'protect-othertime-op'        => 'jiný čas',
 'protect-existing-expiry'     => 'Současný čas vypršení: $2, $3',
-'protect-otherreason'         => 'Jiný nebo další důvod:',
+'protect-otherreason'         => 'Jiný/další důvod:',
 'protect-otherreason-op'      => 'jiný/další důvod',
 'protect-dropdown'            => '*Obvyklé důvody zamčení
 ** Opakovaný vandalismus
@@ -2343,7 +2349,7 @@ Udejte přesný důvod níže (například ocitujte, které stránky byly poško
 'ipbother'                        => 'Jiný čas vypršení:',
 'ipboptions'                      => '2 hodiny:2 hours,1 den:1 day,3 dny:3 days,1 týden:1 week,2 týdny:2 weeks,1 měsíc:1 month,3 měsíce:3 months,6 měsíců:6 months,1 rok:1 year,do odvolání:infinite',
 'ipbotheroption'                  => 'jiný',
-'ipbotherreason'                  => 'Jiný nebo další důvod:',
+'ipbotherreason'                  => 'Jiný/další důvod:',
 'ipbhidename'                     => 'Skrýt uživatelské jméno u editací a v seznamech',
 'ipbwatchuser'                    => 'Sledovat uživatelskou a diskusní stranu tohoto uživatele',
 'ipballowusertalk'                => 'Umožnit tomuto uživateli i při zablokování editovat svou diskusní stránku',

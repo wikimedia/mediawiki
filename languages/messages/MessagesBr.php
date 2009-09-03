@@ -857,7 +857,7 @@ Kadarnait eo mat an dra-se a fell deoc'h ober, e komprenit mat ar pezh a empleg,
 'revdelete-suppress'          => 'Diverkañ roadennoù ar verourien hag ar re all',
 'revdelete-hide-image'        => 'Kuzhat danvez ar restr',
 'revdelete-unsuppress'        => 'Lemel ar strishadurioù war ar stummoù assavet',
-'revdelete-log'               => 'Notenn evit ar marilh :',
+'revdelete-log'               => 'Abeg an diverkañ :',
 'revdelete-submit'            => 'Lakaat da dalvezout evit ar stumm diuzet',
 'revdelete-logentry'          => 'Cheñchet eo bet hewelusted ar stumm evit [[$1]]',
 'logdelete-logentry'          => 'kemmet eo bet gwelusted an darvoud evit [[$1]]',
@@ -889,6 +889,11 @@ N\'oc\'h ket aotreet da vont outi.',
 'revdelete-no-change'         => "'''Evezh :''' emañ an arventennoù gweluster goulennet gant an elfenn deiziataet eus an $1 da $2 dija",
 'revdelete-concurrent-change' => "Fazi pa'z eus bet bet degaset kemmoù en elfenn deiziataet eus an $1 da $2 : cheñchet eo bet e statud gant unan bennak all dres pa oac'h-chwi o kemmañ anezhi. Gwiriit ar marilhoù.",
 'revdelete-only-restricted'   => "N'hallit ket tennañ an elfennoù-mañ digant ar verourien ma ne zibabit ket ivez an dibarzhioù diverkañ all.",
+'revdelete-reason-dropdown'   => '*Abegoù diverkañ boutin
+**Gaou ouzh ar gwirioù implijout
+** Titouroù personel dizereat',
+'revdelete-otherreason'       => 'Abeg all/ouzhpenn :',
+'revdelete-reasonotherlist'   => 'Abeg all',
 
 # Suppression log
 'suppressionlog'     => 'Marilh diverkañ',
@@ -1940,19 +1945,20 @@ Diverkañ anezhi a c'hallo degas reuz war mont en-dro diaz titouroù {{SITENAME}
 taolit evezh bras.",
 
 # Rollback
-'rollback'         => "disteuler ar c'hemmoù",
-'rollback_short'   => 'Disteuler',
-'rollbacklink'     => 'disteuler',
-'rollbackfailed'   => "C'hwitet eo bet an distaoladenn",
-'cantrollback'     => 'Dibosupl da zisteuler: an aozer diwezhañ eo an hini nemetañ da vezañ kemmet ar pennad-mañ',
-'alreadyrolled'    => "Dibosupl eo disteuler ar c'hemm diwezhañ graet d'ar bajenn [[:$1]] gant [[User:$2|$2]] ([[User talk:$2|Kaozeal]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]);
+'rollback'          => "disteuler ar c'hemmoù",
+'rollback_short'    => 'Disteuler',
+'rollbacklink'      => 'disteuler',
+'rollbackfailed'    => "C'hwitet eo bet an distaoladenn",
+'cantrollback'      => 'Dibosupl da zisteuler: an aozer diwezhañ eo an hini nemetañ da vezañ kemmet ar pennad-mañ',
+'alreadyrolled'     => "Dibosupl eo disteuler ar c'hemm diwezhañ graet d'ar bajenn [[:$1]] gant [[User:$2|$2]] ([[User talk:$2|Kaozeal]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]);
 kemmet pe distaolet eo bet c'hoazh gant unan bennak all.
 
 Ar c'hemm diwezhañ d'ar bajenn-mañ a oa bet graet gant [[User:$3|$3]] ([[User talk:$3|Kaozeal]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
-'editcomment'      => "Diverradenn ar c'hemm a oa : \"''\$1''\".",
-'revertpage'       => "Kemmoù distaolet gant [[Special:Contributions/$2|$2]] ([[User talk:$2|Kaozeal]]); adlakaet d'ar stumm diwezhañ a-gent gant [[User:$1|$1]]",
-'rollback-success' => 'Disteuler kemmoù $1; distreiñ da stumm diwezhañ $2.',
-'sessionfailure'   => 'Evit doare ez eus ur gudenn gant ho talc\'h;
+'editcomment'       => "Diverradenn ar c'hemm a oa : \"''\$1''\".",
+'revertpage'        => "Kemmoù distaolet gant [[Special:Contributions/$2|$2]] ([[User talk:$2|Kaozeal]]); adlakaet d'ar stumm diwezhañ a-gent gant [[User:$1|$1]]",
+'revertpage-nouser' => "Disteuler kemmoù (anv implijer distaolet) ha distreiñ d'ar stumm diwezhañ gant [[User:$1|$1]]",
+'rollback-success'  => 'Disteuler kemmoù $1; distreiñ da stumm diwezhañ $2.',
+'sessionfailure'    => 'Evit doare ez eus ur gudenn gant ho talc\'h;
 Nullet eo bet an ober-mañ a-benn en em wareziñ diouzh an tagadennoù preizhañ.
 Klikit war "kent" hag adkargit ar bajenn oc\'h deuet drezi; goude klaskit en-dro.',
 

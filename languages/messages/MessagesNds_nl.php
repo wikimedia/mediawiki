@@ -3050,6 +3050,7 @@ Alle volgende verwiezingen dee op dezelfde regel staon, wonnen behaandeld as uut
 'watchlistall2'    => 'alles',
 'namespacesall'    => 'alles',
 'monthsall'        => 'alles',
+'limitall'         => 'alles',
 
 # E-mail address confirmation
 'confirmemail'             => 'Bevestig netposadres',
@@ -3250,7 +3251,7 @@ Voer de bestaansnaam in zonder \'t veurvoegsel "{{ns:file}}:".',
 'tag-filter-submit'       => 'Filtreren',
 'tags-title'              => 'Etiket',
 'tags-intro'              => 'Op disse pagina staon de etiketten waormee de pregrammetuur elke bewarking kan markeren, en de betekenisse dervan.',
-'tags-tag'                => 'Interne etiketnaam',
+'tags-tag'                => 'Etiketnaam',
 'tags-display-header'     => 'Weergave in wiezigingsliesten',
 'tags-description-header' => 'Beschrieving van de betekenisse',
 'tags-hitcount-header'    => 'Bewarkingen mit etiket',

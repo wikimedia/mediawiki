@@ -1080,9 +1080,9 @@ Kérlek, erősítsd meg, hogy valóban ez a szándékod, tisztában vagy a köve
 'revdelete-suppress'          => 'Adatok elrejtése az adminisztrátorok és a többi felhasználó elől is',
 'revdelete-hide-image'        => 'A fájl tartalomának elrejtése',
 'revdelete-unsuppress'        => 'Korlátozások eltávolítása a visszaállított változatokról',
-'revdelete-log'               => 'Megjegyzés:',
+'revdelete-log'               => 'A törlés oka:',
 'revdelete-submit'            => 'Alkalmazás a kiválasztott változatra',
-'revdelete-logentry'          => '[[$1]] változatának láthatóságának módosítása',
+'revdelete-logentry'          => 'módosította [[$1]] változatának láthatóságát',
 'logdelete-logentry'          => '[[$1]] eseményének láthatóságának módosítása',
 'revdelete-success'           => "'''A változat láthatóságának beállítása sikeresen elvégezve.'''",
 'revdelete-failure'           => "'''Nem sikerült módosítani a változat láthatóságát:'''
@@ -1110,6 +1110,11 @@ $1",
 'revdelete-concurrent-change' => 'Hiba történt a(z) $1 $2-kori elem módosítása közben: úgy tűnik, valaki megváltoztatta az állapotát, miközben módosítani próbáltad.
 Ellenőrizd a naplókat.',
 'revdelete-only-restricted'   => 'Nem rejthetsz el az adminisztrátorok elől elemeket anélkül, hogy ne választanál ki egy másik elrejtési beállítást.',
+'revdelete-reason-dropdown'   => '*Általános törlési okok
+** Jogsértő tartalom
+** Kényes személyes információk',
+'revdelete-otherreason'       => 'Más/további ok:',
+'revdelete-reasonotherlist'   => 'Más ok',
 
 # Suppression log
 'suppressionlog'     => 'Adatvédelmibiztos-napló',
@@ -2154,19 +2159,20 @@ A legutóbbi törlések listájához lásd a $2 lapot.',
 'delete-warning-toobig'  => 'Ennek a lapnak a laptörténete több mint {{PLURAL:$1|egy|$1}} változatot őriz. Törlése fennakadásokat okozhat a wiki adatbázis-műveleteiben; óvatosan járj el.',
 
 # Rollback
-'rollback'         => 'Szerkesztések visszaállítása',
-'rollback_short'   => 'Visszaállítás',
-'rollbacklink'     => 'visszaállítás',
-'rollbackfailed'   => 'A visszaállítás nem sikerült',
-'cantrollback'     => 'Nem lehet visszaállítani: az utolsó szerkesztést végző felhasználó az egyetlen, aki a lapot szerkesztette.',
-'alreadyrolled'    => '[[:$1]] utolsó, [[User:$2|$2]] ([[User talk:$2|vita]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) általi szerkesztését nem lehet visszavonni:
+'rollback'          => 'Szerkesztések visszaállítása',
+'rollback_short'    => 'Visszaállítás',
+'rollbacklink'      => 'visszaállítás',
+'rollbackfailed'    => 'A visszaállítás nem sikerült',
+'cantrollback'      => 'Nem lehet visszaállítani: az utolsó szerkesztést végző felhasználó az egyetlen, aki a lapot szerkesztette.',
+'alreadyrolled'     => '[[:$1]] utolsó, [[User:$2|$2]] ([[User talk:$2|vita]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) általi szerkesztését nem lehet visszavonni:
 időközben valaki már visszavonta, vagy szerkesztette a lapot.
 
 Az utolsó szerkesztést [[User:$3|$3]] ([[User talk:$3|vita]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]) végezte.',
-'editcomment'      => "A szerkesztési összefoglaló „''$1''” volt.",
-'revertpage'       => 'Visszaállítottam a lap korábbi változatát: [[Special:Contributions/$2|$2]]  ([[User talk:$2|vita]]) szerkesztéséről [[User:$1|$1]] szerkesztésére',
-'rollback-success' => '$1 szerkesztéseit visszaállítottam $2 utolsó változatára.',
-'sessionfailure'   => 'Úgy látszik, hogy probléma van a bejelentkezési munkameneteddel;
+'editcomment'       => "A szerkesztési összefoglaló „''$1''” volt.",
+'revertpage'        => 'Visszaállítottam a lap korábbi változatát: [[Special:Contributions/$2|$2]]  ([[User talk:$2|vita]]) szerkesztéséről [[User:$1|$1]] szerkesztésére',
+'revertpage-nouser' => 'Visszaállítottam a lap korábbi változatát (szerkesztőnév eltávolítva) szerkesztéséről [[User:$1|$1]] szerkesztésére',
+'rollback-success'  => '$1 szerkesztéseit visszaállítottam $2 utolsó változatára.',
+'sessionfailure'    => 'Úgy látszik, hogy probléma van a bejelentkezési munkameneteddel;
 ez a művelet a munkamenet eltérítése miatti óvatosságból megszakadt.
 Kérjük, hogy nyomd meg a "vissza" gombot, és töltsd le újra az oldalt, ahonnan jöttél, majd próbáld újra.',
 

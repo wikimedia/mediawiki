@@ -994,7 +994,7 @@ Por favor, confirme que esta é a súa intención, que comprende as consecuencia
 'revdelete-suppress'          => 'Eliminar os datos tanto dos administradores como dos demais',
 'revdelete-hide-image'        => 'Agochar o contido do ficheiro',
 'revdelete-unsuppress'        => 'Retirar as restricións sobre as revisións restauradas',
-'revdelete-log'               => 'Comentario do rexistro:',
+'revdelete-log'               => 'Motivo para o borrado:',
 'revdelete-submit'            => 'Aplicar á revisión seleccionada',
 'revdelete-logentry'          => 'mudou a visibilidade dunha revisión de "[[$1]]"',
 'logdelete-logentry'          => 'mudouse a visibilidade do evento para [[$1]]',
@@ -1027,6 +1027,11 @@ Non ten acceso a el.',
 'revdelete-concurrent-change' => 'Produciuse un erro ao modificar o elemento con data de $1 ás $2: o seu estado parece ter sido cambiado por alguén mentres intentaba modificalo.
 Por favor, comprobe o rexistros.',
 'revdelete-only-restricted'   => 'Non pode eliminar os elementos da vista dos administradores sen tamén seleccionar algunha das outras opcións de eliminación.',
+'revdelete-reason-dropdown'   => '* Motivos frecuentes para borrar
+** Violación dos dereitos de autor
+** Información persoal inapropiada',
+'revdelete-otherreason'       => 'Outro/motivo adicional:',
+'revdelete-reasonotherlist'   => 'Outro motivo',
 
 # Suppression log
 'suppressionlog'     => 'Rexistro de supresión',
@@ -2085,19 +2090,20 @@ Ao eliminala pódense provocar problemas de funcionamento nas operacións da bas
 proceda con coidado.',
 
 # Rollback
-'rollback'         => 'Reverter as edicións',
-'rollback_short'   => 'Reverter',
-'rollbacklink'     => 'reverter',
-'rollbackfailed'   => 'Houbo un fallo ao reverter as edicións',
-'cantrollback'     => 'Non se pode desfacer a edición; o último contribuínte é o único autor desta páxina.',
-'alreadyrolled'    => 'Non se pode desfacer a edición en "[[:$1]]" feita por [[User:$2|$2]] ([[User talk:$2|conversa]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]); alguén máis editou ou desfixo os cambios desta páxina.
+'rollback'          => 'Reverter as edicións',
+'rollback_short'    => 'Reverter',
+'rollbacklink'      => 'reverter',
+'rollbackfailed'    => 'Houbo un fallo ao reverter as edicións',
+'cantrollback'      => 'Non se pode desfacer a edición; o último contribuínte é o único autor desta páxina.',
+'alreadyrolled'     => 'Non se pode desfacer a edición en "[[:$1]]" feita por [[User:$2|$2]] ([[User talk:$2|conversa]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]); alguén máis editou ou desfixo os cambios desta páxina.
 
 A última edición fíxoa [[User:$3|$3]] ([[User talk:$3|conversa]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]).',
-'editcomment'      => "O resumo de edición era: \"''\$1''\".",
-'revertpage'       => 'Desfixéronse as edicións de [[Special:Contributions/$2|$2]] ([[User talk:$2|conversa]]); cambiado á última versión feita por [[User:$1|$1]]',
-'rollback-success' => 'Desfixéronse as edicións de $1;
+'editcomment'       => "O resumo de edición era: \"''\$1''\".",
+'revertpage'        => 'Desfixéronse as edicións de [[Special:Contributions/$2|$2]] ([[User talk:$2|conversa]]); cambiado á última versión feita por [[User:$1|$1]]',
+'revertpage-nouser' => 'Desfixéronse as edicións de (nome eliminado); cambiado á última versión feita por [[User:$1|$1]]',
+'rollback-success'  => 'Desfixéronse as edicións de $1;
 volveuse á última edición, feita por $2.',
-'sessionfailure'   => 'Parece que hai un problema co rexistro da súa sesión;
+'sessionfailure'    => 'Parece que hai un problema co rexistro da súa sesión;
 esta acción cancelouse como precaución fronte ao secuestro de sesións.
 Prema no botón "atrás", volva cargar a páxina da que proviña e inténteo de novo.',
 

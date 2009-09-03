@@ -1007,7 +1007,7 @@ $3による理由は以下の通りです: ''$2''",
 'revdelete-suppress'          => '他の利用者と同様に管理者からもデータを隠す',
 'revdelete-hide-image'        => 'ファイル内容を隠す',
 'revdelete-unsuppress'        => '復帰版に対する制限を外す',
-'revdelete-log'               => '要約:',
+'revdelete-log'               => '削除の理由:',
 'revdelete-submit'            => '選択した版に適用',
 'revdelete-logentry'          => '[[$1]]の版の閲覧レベルを変更しました',
 'logdelete-logentry'          => '[[$1]]の操作の閲覧レベルを変更しました',
@@ -1036,6 +1036,11 @@ $1",
 'revdelete-no-change'         => "'''警告:''' $1$2の項目には既に要求された閲覧レベルが設定されています。",
 'revdelete-concurrent-change' => '$1$2の項目の変更に失敗しました: あなたが変更を加えている間に他の利用者によって設定が変更されたようです。ログを確認してください。',
 'revdelete-only-restricted'   => '管理者から項目を秘匿するには、他の秘匿設定のうちどれかをさらに選択しなければなりません。',
+'revdelete-reason-dropdown'   => '*よくある削除理由
+** 著作権侵害
+** 不適切な個人情報',
+'revdelete-otherreason'       => '他の、または追加の理由:',
+'revdelete-reasonotherlist'   => '他の理由',
 
 # Suppression log
 'suppressionlog'     => '秘匿記録',
@@ -2048,18 +2053,19 @@ $NEWPAGE
 'delete-warning-toobig'  => 'このページには、 $1{{PLURAL:$1|版}}を超える多くの編集履歴があります。削除の際、{{SITENAME}}のデータベース処理に大きな負荷がかかりますので、十分に注意してください。',
 
 # Rollback
-'rollback'         => '編集をロールバック',
-'rollback_short'   => 'ロールバック',
-'rollbacklink'     => 'ロールバック',
-'rollbackfailed'   => 'ロールバックに失敗しました',
-'cantrollback'     => '投稿者がただ一人であるため、編集を差し戻せません。',
-'alreadyrolled'    => 'ページ [[:$1]] の [[User:$2|$2]] （[[User talk:$2|会話]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]） による編集のロールバックに失敗しました。他の利用者がすでに編集を行ったかロールバックしたためです。
+'rollback'          => '編集をロールバック',
+'rollback_short'    => 'ロールバック',
+'rollbacklink'      => 'ロールバック',
+'rollbackfailed'    => 'ロールバックに失敗しました',
+'cantrollback'      => '投稿者がただ一人であるため、編集を差し戻せません。',
+'alreadyrolled'     => 'ページ [[:$1]] の [[User:$2|$2]] （[[User talk:$2|会話]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]） による編集のロールバックに失敗しました。他の利用者がすでに編集を行ったかロールバックしたためです。
 
 このページの最後の編集は [[User:$3|$3]] （[[User talk:$3|会話]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]） によるものです。',
-'editcomment'      => "編集内容の要約: 「''$1''」",
-'revertpage'       => '[[Special:Contributions/$2|$2]] （[[User talk:$2|会話]]） による編集を [[User:$1|$1]] による版へ差し戻し',
-'rollback-success' => '$1 による編集を取り消して $2 による最後の版へ差し戻しました。',
-'sessionfailure'   => 'ログイン・セッションに問題が発生しました。セッションハイジャックを防ぐために操作は取り消されました。ブラウザの「戻る」を押して直前のページを再度読み込んだ後に、もう一度操作を行ってください。',
+'editcomment'       => "編集内容の要約: 「''$1''」",
+'revertpage'        => '[[Special:Contributions/$2|$2]] ([[User talk:$2|会話]]) による編集を [[User:$1|$1]] による最後の版へ差し戻し',
+'revertpage-nouser' => '(利用者名削除) による編集を [[User:$1|$1]] による版へ差し戻し',
+'rollback-success'  => '$1 による編集を取り消して $2 による最後の版へ差し戻しました。',
+'sessionfailure'    => 'ログイン・セッションに問題が発生しました。セッションハイジャックを防ぐために操作は取り消されました。ブラウザの「戻る」を押して直前のページを再度読み込んだ後に、もう一度操作を行ってください。',
 
 # Protect
 'protectlogpage'              => '保護記録',

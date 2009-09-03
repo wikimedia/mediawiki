@@ -1027,7 +1027,7 @@ Potwierdź, że jesteś pewien tego co robisz, rozumiesz konsekwencje oraz, że 
 'revdelete-suppress'          => 'Utajnij informacje przed administratorami, tak samo jak przed innymi',
 'revdelete-hide-image'        => 'Ukryj zawartość pliku',
 'revdelete-unsuppress'        => 'Wyłącz utajnianie dla odtwarzanej historii zmian',
-'revdelete-log'               => 'Komentarz',
+'revdelete-log'               => 'Powód usunięcia:',
 'revdelete-submit'            => 'Zaakceptuj dla wybranej wersji',
 'revdelete-logentry'          => 'zmienił widoczność wersji w [[$1]]',
 'logdelete-logentry'          => 'zmienił widoczność zdarzenia dla [[$1]]',
@@ -1057,6 +1057,11 @@ $1",
 'revdelete-concurrent-change' => 'Wystąpił błąd przy próbie modyfikacji elementu datowanego na $2, $1. Prawdopodobnie w międzyczasie ktoś zdążył zmienić ustawienia widoczności tego elementu.
 Proszę sprawdzić rejestr operacji.',
 'revdelete-only-restricted'   => 'Nie można ukrywać elementów przed administratorami bez określenia jednej z pozostałych opcji ukrywania.',
+'revdelete-reason-dropdown'   => '* Najczęstsze powody usunięcia
+** Naruszenie praw autorskich
+** Informacja naruszająca prywatność',
+'revdelete-otherreason'       => 'Inny lub dodatkowy powód:',
+'revdelete-reasonotherlist'   => 'Inny powód',
 
 # Suppression log
 'suppressionlog'     => 'Rejestr utajniania',
@@ -2118,20 +2123,21 @@ Usunięcie jej mogłoby spowodować zakłócenia w pracy {{GRAMMAR:D.lp|{{SITENA
 Bądź ostrożny, ponieważ usunięcie jej może spowodować zakłócenia w pracy {{GRAMMAR:D.lp|{{SITENAME}}}}.',
 
 # Rollback
-'rollback'         => 'Cofnij edycję',
-'rollback_short'   => 'Cofnij',
-'rollbacklink'     => 'cofnij',
-'rollbackfailed'   => 'Nie udało się cofnąć zmiany',
-'cantrollback'     => 'Nie można cofnąć edycji, ponieważ jest tylko jedna wersja tej strony.',
-'alreadyrolled'    => 'Nie można dla strony [[:$1|$1]] cofnąć ostatniej zmiany, którą wykonał [[User:$2|$2]] ([[User talk:$2|dyskusja]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]).
+'rollback'          => 'Cofnij edycję',
+'rollback_short'    => 'Cofnij',
+'rollbacklink'      => 'cofnij',
+'rollbackfailed'    => 'Nie udało się cofnąć zmiany',
+'cantrollback'      => 'Nie można cofnąć edycji, ponieważ jest tylko jedna wersja tej strony.',
+'alreadyrolled'     => 'Nie można dla strony [[:$1|$1]] cofnąć ostatniej zmiany, którą wykonał [[User:$2|$2]] ([[User talk:$2|dyskusja]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]).
 Ktoś inny zdążył już to zrobić lub wprowadził własne poprawki do treści strony.
 
 Autorem ostatniej zmiany jest teraz [[User:$3|$3]] ([[User talk:$3|dyskusja]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'      => "Edycję opisał „''$1''”.",
-'revertpage'       => 'Wycofano edycje użytkownika [[Special:Contributions/$2|$2]] ([[User talk:$2|dyskusja]]). Autor przywróconej wersji to [[User:$1|$1]].',
-'rollback-success' => 'Wycofano edycje użytkownika $1.
+'editcomment'       => "Edycję opisał „''$1''”.",
+'revertpage'        => 'Wycofano edycje użytkownika [[Special:Contributions/$2|$2]] ([[User talk:$2|dyskusja]]). Autor przywróconej wersji to [[User:$1|$1]].',
+'revertpage-nouser' => 'Wycofano edycje (nazwa użytkownika usunięta). Autor przywróconej wersji to [[User:$1|$1]].',
+'rollback-success'  => 'Wycofano edycje użytkownika $1.
 Przywrócono ostatnią wersję autorstwa $2.',
-'sessionfailure'   => 'Wystąpił problem z weryfikacją zalogowania.
+'sessionfailure'    => 'Wystąpił problem z weryfikacją zalogowania.
 Polecenie zostało anulowane, aby uniknąć przechwycenia sesji.
 Naciśnij „wstecz” w przeglądarce, przeładuj stronę, po czym ponownie wydaj polecenie.',
 

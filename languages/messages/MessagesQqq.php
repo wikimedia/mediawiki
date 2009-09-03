@@ -873,9 +873,7 @@ This is the introduction explaining the feature.',
 'revdelete-suppress'          => 'Option for oversight',
 'revdelete-hide-image'        => 'Option for <del>oversight</del> [[:mw:RevisionDelete|RevisionDelete]] feature.',
 'revdelete-unsuppress'        => '{{RevisionDelete}}',
-'revdelete-log'               => 'Log comment text for oversight
-
-{{Identical|Log comment}}',
+'revdelete-log'               => 'Log comment text for oversight',
 'revdelete-submit'            => '{{RevisionDelete}}
 This is the submit button on [[Special:RevisionDelete]].',
 'revdelete-logentry'          => '{{RevisionDelete}}
@@ -936,6 +934,8 @@ Please note that the parameters in a log entry will appear in the log only in th
 'revdelete-concurrent-change' => 'Parameters:
 * $1 is a date
 * $2 is a time',
+'revdelete-otherreason'       => '{{Identical|Other/additional reason}}',
+'revdelete-reasonotherlist'   => '{{Identical|Other reason}}',
 
 # Suppression log
 'suppressionlog'     => 'Title of the suppression log. Shown in the drop down menu at [[Special:log]] and as header of [[Special:log/suppress]].',
