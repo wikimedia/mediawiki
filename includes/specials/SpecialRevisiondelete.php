@@ -115,7 +115,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 			# Array input
 			$this->ids = array_keys( $wgRequest->getArray('ids',array()) );
 		}
-		$this->ids = array_map( 'intval', $this->ids );
+		// $this->ids = array_map( 'intval', $this->ids );
 		$this->ids = array_unique( array_filter( $this->ids ) );
 
 		if ( $wgRequest->getVal( 'action' ) == 'revisiondelete' ) {
