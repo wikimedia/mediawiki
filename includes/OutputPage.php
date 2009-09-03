@@ -306,7 +306,7 @@ class OutputPage {
 
 	function setETag($tag) { $this->mETag = $tag; }
 	function setArticleBodyOnly($only) { $this->mArticleBodyOnly = $only; }
-	function getArticleBodyOnly($only) { return $this->mArticleBodyOnly; }
+	function getArticleBodyOnly() { return $this->mArticleBodyOnly; }
 
 	function addLink( $linkarr ) {
 		# $linkarr should be an associative array of attributes. We'll escape on output.
