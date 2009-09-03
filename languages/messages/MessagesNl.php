@@ -1128,7 +1128,7 @@ Bevestig dat u dit wilde doen, dat u de consequenties begrijpt en dat u dit doet
 'revdelete-suppress'          => 'Gegevens voor zowel beheerders als anderen onderdrukken',
 'revdelete-hide-image'        => 'Bestandsinhoud verbergen',
 'revdelete-unsuppress'        => 'Beperkingen op teruggezette wijzigingen verwijderen',
-'revdelete-log'               => 'Opmerking in logboek:',
+'revdelete-log'               => 'Reden voor verwijderen:',
 'revdelete-submit'            => 'Toepassen op de geselecteerde bewerking',
 'revdelete-logentry'          => 'zichtbaarheid van bewerkingen is gewijzigd voor [[$1]]',
 'logdelete-logentry'          => 'wijzigde zichtbaarheid van gebeurtenis [[$1]]',
@@ -1161,6 +1161,8 @@ U hebt geen toegang tot dit object.',
 'revdelete-concurrent-change' => 'Er is een fout opgetreden bij het wijzigen van het object van $1 om $2 uur: de status is inmiddels gewijzigd door iemand anders.
 Controleer de logboeken.',
 'revdelete-only-restricted'   => 'U kunt geen objecten voor beheerders onderdrukken zonder ook de andere opties voor onderdrukken te selecteren.',
+'revdelete-otherreason'       => 'Andere reden:',
+'revdelete-reasonotherlist'   => 'Andere reden',
 
 # Suppression log
 'suppressionlog'     => 'Verbergingslogboek',

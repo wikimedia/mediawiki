@@ -989,7 +989,7 @@ Conferma che è tua intenzione procedere a tale cancellazione, che hai piena con
 'revdelete-suppress'          => 'Nascondi le informazioni anche agli amministratori',
 'revdelete-hide-image'        => 'Nascondi i contenuti del file',
 'revdelete-unsuppress'        => 'Elimina le limitazioni sulle revisioni ripristinate',
-'revdelete-log'               => 'Commento per il log:',
+'revdelete-log'               => 'Motivo per la cancellazione:',
 'revdelete-submit'            => 'Applica alla revisione selezionata',
 'revdelete-logentry'          => 'ha modificato la visibilità per una revisione di [[$1]]',
 'logdelete-logentry'          => "ha modificato la visibilità dell'evento [[$1]]",
@@ -1018,6 +1018,11 @@ $1",
 'revdelete-no-change'         => "'''Attenzione:''' l'oggetto con data $1 $2 aveva già le impostazioni di visibilità richieste.",
 'revdelete-concurrent-change' => "Impossibile modificare l'oggetto con data $1 $2 in quanto il suo stato è stato modificato da un altro utente mentre se ne tentava la modifica.",
 'revdelete-only-restricted'   => "Non è possibile nascondere oggetti alla vista degli amministratori senza selezionare almeno un'altra delle opzioni di rimozione.",
+'revdelete-reason-dropdown'   => '*Motivazioni più comuni per la cancellazione
+** Violazione di copyright
+** Informazioni personali inappropriate',
+'revdelete-otherreason'       => 'Altra motivazione o motivazione aggiuntiva:',
+'revdelete-reasonotherlist'   => 'Altra motivazione',
 
 # Suppression log
 'suppressionlog'     => 'Log delle soppressioni',
@@ -2043,18 +2048,19 @@ Consultare il log delle $2 per un elenco delle pagine cancellate di recente.',
 'delete-warning-toobig'  => 'La cronologia di questa pagina è molto lunga (oltre $1 {{PLURAL:$1|revisione|revisioni}}). La sua cancellazione può creare dei problemi di funzionamento al database di {{SITENAME}}; procedere con cautela.',
 
 # Rollback
-'rollback'         => 'Annulla le modifiche',
-'rollback_short'   => 'Rollback',
-'rollbacklink'     => 'rollback',
-'rollbackfailed'   => 'Rollback fallito',
-'cantrollback'     => "Impossibile annullare le modifiche; l'utente che le ha effettuate è l'unico ad aver contribuito alla pagina.",
-'alreadyrolled'    => 'Non è possibile annullare le modifiche apportate alla pagina [[:$1]] da parte di [[User:$2|$2]] ([[User talk:$2|discussione]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]); un altro utente ha già modificato la pagina oppure ha effettuato il rollback.
+'rollback'          => 'Annulla le modifiche',
+'rollback_short'    => 'Rollback',
+'rollbacklink'      => 'rollback',
+'rollbackfailed'    => 'Rollback fallito',
+'cantrollback'      => "Impossibile annullare le modifiche; l'utente che le ha effettuate è l'unico ad aver contribuito alla pagina.",
+'alreadyrolled'     => 'Non è possibile annullare le modifiche apportate alla pagina [[:$1]] da parte di [[User:$2|$2]] ([[User talk:$2|discussione]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]); un altro utente ha già modificato la pagina oppure ha effettuato il rollback.
 
 La modifica più recente alla pagina è stata apportata da [[User:$3|$3]] ([[User talk:$3|discussione]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'      => "L'oggetto della modifica era: \"''\$1''\".",
-'revertpage'       => 'Annullate le modifiche di [[Special:Contributions/$2|$2]] ([[User talk:$2|discussione]]), riportata alla versione precedente di [[User:$1|$1]]',
-'rollback-success' => "Annullate le modifiche di $1; pagina riportata all'ultima versione di $2.",
-'sessionfailure'   => "Si è verificato un problema nella sessione che identifica l'accesso; il sistema non ha eseguito il comando impartito per precauzione. Tornare alla pagina precedente con il tasto 'Indietro' del proprio browser, ricaricare la pagina e riprovare.",
+'editcomment'       => "L'oggetto della modifica era: \"''\$1''\".",
+'revertpage'        => 'Annullate le modifiche di [[Special:Contributions/$2|$2]] ([[User talk:$2|discussione]]), riportata alla versione precedente di [[User:$1|$1]]',
+'revertpage-nouser' => 'Annullate le modifiche di (nome utente rimosso), riportata alla versione precedente di [[User:$1|$1]]',
+'rollback-success'  => "Annullate le modifiche di $1; pagina riportata all'ultima versione di $2.",
+'sessionfailure'    => "Si è verificato un problema nella sessione che identifica l'accesso; il sistema non ha eseguito il comando impartito per precauzione. Tornare alla pagina precedente con il tasto 'Indietro' del proprio browser, ricaricare la pagina e riprovare.",
 
 # Protect
 'protectlogpage'              => 'Protezioni',

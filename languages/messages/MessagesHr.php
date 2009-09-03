@@ -3084,6 +3084,7 @@ Svaka sljedeća poveznica u istom retku je izuzetak, npr. kod stranica gdje se s
 'watchlistall2'    => 'sve',
 'namespacesall'    => 'sve',
 'monthsall'        => 'sve',
+'limitall'         => 'sve',
 
 # E-mail address confirmation
 'confirmemail'             => 'Potvrda e-mail adrese',
@@ -3288,7 +3289,7 @@ Unesite ime datoteke bez prefiksa "{{ns:file}}:"',
 'tag-filter-submit'       => 'Filter',
 'tags-title'              => 'Oznake',
 'tags-intro'              => 'Ova je stranica popis oznaka s kojima softver može označiti promjenu te njihovo značenje.',
-'tags-tag'                => 'Unutrašnje ime oznake',
+'tags-tag'                => 'Naziv oznake',
 'tags-display-header'     => 'Izgled na popisima izmjena',
 'tags-description-header' => 'Puni opis značenja',
 'tags-hitcount-header'    => 'Označene izmjene',

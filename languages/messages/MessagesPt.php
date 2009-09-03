@@ -956,7 +956,7 @@ Por favor, confirme que pretende fazer isto, que compreende as consequências, e
 'revdelete-suppress'          => 'Suprimir dados de administradores, bem como de outros',
 'revdelete-hide-image'        => 'Ocultar conteúdos do ficheiro',
 'revdelete-unsuppress'        => 'Remover restrições das edições restauradas',
-'revdelete-log'               => 'Comentário de registo:',
+'revdelete-log'               => 'Motivo da eliminação:',
 'revdelete-submit'            => 'Aplicar à edição seleccionada',
 'revdelete-logentry'          => 'modificou visibilidade de edições de [[$1]]',
 'logdelete-logentry'          => 'alterou a visibilidade de eventos para [[$1]]',
@@ -2990,6 +2990,7 @@ Caso o ficheiro tenha sido modificado a partir do seu estado original, alguns de
 'watchlistall2'    => 'todas',
 'namespacesall'    => 'todos',
 'monthsall'        => 'todos',
+'limitall'         => 'todas',
 
 # E-mail address confirmation
 'confirmemail'             => 'Confirmar endereço de E-mail',

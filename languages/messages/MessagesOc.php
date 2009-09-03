@@ -950,7 +950,7 @@ Cap d'explicacion pas balhada.",
 Sembla que siá estada suprimida.',
 'edit-conflict'                    => 'Modificar lo conflicte.',
 'edit-no-change'                   => 'Vòstra modificacion es estada ignorada perque cap de cambiament es pas estat fach dins lo tèxte.',
-'edit-already-exists'              => 'A pas pogut crea una pagina novèla.
+'edit-already-exists'              => 'La pagina novèla a pogut èsser creada .
 Existís ja.',
 
 # Parser/template warnings
@@ -3121,6 +3121,7 @@ Los autres ligams sus la meteissa linha son considerats coma d'excepcions, per e
 'watchlistall2'    => 'tot',
 'namespacesall'    => 'Totes',
 'monthsall'        => 'totes',
+'limitall'         => 'totes',
 
 # E-mail address confirmation
 'confirmemail'             => "Confirmar l'adreça de corrièr electronic",

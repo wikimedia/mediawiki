@@ -883,7 +883,7 @@ Prošu wobkruć, zo chceš to činić, zo rozumiš sćěhi a zo činiš to wotpo
 'revdelete-suppress'          => 'Přičinu wušmórnjenja tež za administratorow schować',
 'revdelete-hide-image'        => 'Wobsah wobraza schować',
 'revdelete-unsuppress'        => 'Wobmjezowanja za wobnowjene wersije zběhnyć',
-'revdelete-log'               => 'Komentar w protokolu:',
+'revdelete-log'               => 'Přičina za wušmórnjenje:',
 'revdelete-submit'            => 'Na wubranu wersiju nałožować',
 'revdelete-logentry'          => 'Widźomnosć wersije změnjena za [[$1]]',
 'logdelete-logentry'          => 'je widźomnosć za [[$1]] změnił',
@@ -916,6 +916,12 @@ Nimaš přistup na njón.',
 'revdelete-concurrent-change' => 'Zmylk při změnjenju zapiska wot $2, $1: zda so, zo jeho status je so wot někoho druheho změnił, mjeztym zo sy spytał jón změnić.
 Prošu přepruwuj protokole.',
 'revdelete-only-restricted'   => 'Njemóžeš zapiski před wočemi administratorow potłóčić, bjez toho zo wuběraš tež jednu z druhich potłóčowanskich opcijow.',
+'revdelete-reason-dropdown'   => '*Zwučene přičiny za wušmórnjenje
+** Prostwa awtora
+** přeńdźenje awtorskeho prawa
+** Wandalizm',
+'revdelete-otherreason'       => 'Druha/přidatna přičina:',
+'revdelete-reasonotherlist'   => 'Druha přičina',
 
 # Suppression log
 'suppressionlog'     => 'Protokol potłóčenjow',
@@ -1951,18 +1957,19 @@ Prošu potwjerdź, zo maš wotpohlad to činić, zo rozumiš sćěwki a zo to wo
 'delete-warning-toobig'  => 'Tuta strona ma z wjace hač $1 {{PLURAL:$1|wersiju|wersijomaj|wersijemi|wersijemi}} wulke wobdźěłanske stawizny. Wušmórnjenje móže operacije datoweje banki {{SITENAME}} přetorhnyć; pokročuj z kedźbliwosću.',
 
 # Rollback
-'rollback'         => 'Změny cofnyć',
-'rollback_short'   => 'Cofnyć',
-'rollbacklink'     => 'Cofnyć',
-'rollbackfailed'   => 'Cofnjenje njeporadźiło',
-'cantrollback'     => 'Njemóžno změnu cofnyć; strona nima druhich awtorow.',
-'alreadyrolled'    => 'Njemóžno poslednu změnu [[:$1]] přez wužiwarja [[User:$2|$2]] ([[User talk:$2|Diskusija]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) cofnyć; něchtó druhi je stronu wobdźěłał abo změnu hižo cofnył.
+'rollback'          => 'Změny cofnyć',
+'rollback_short'    => 'Cofnyć',
+'rollbacklink'      => 'Cofnyć',
+'rollbackfailed'    => 'Cofnjenje njeporadźiło',
+'cantrollback'      => 'Njemóžno změnu cofnyć; strona nima druhich awtorow.',
+'alreadyrolled'     => 'Njemóžno poslednu změnu [[:$1]] přez wužiwarja [[User:$2|$2]] ([[User talk:$2|Diskusija]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) cofnyć; něchtó druhi je stronu wobdźěłał abo změnu hižo cofnył.
 
 Poslednja změna bě wot wužiwarja [[User:$3|$3]] ([[User talk:$3|Diskusija]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'      => "Zjeće wobdźěłanja bě: \"''\$1''\".",
-'revertpage'       => 'Změny [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskusija]]) cofnjene a nawróćene k poslednjej wersiji wužiwarja [[User:$1|$1]]',
-'rollback-success' => 'Změny wužiwarja $1 cofnjene; wróćo na wersiju wužiwarja $2.',
-'sessionfailure'   => 'Zda so, zo je problem z twojim přizjewjenjom; tuta akcija bu wěstosće dla přećiwo zadobywanju do posedźenja znjemóžniła. Prošu klikń na "Wróćo" a začitaj stronu, z kotrejež přińdźeš, znowa; potom spytaj hišće raz.',
+'editcomment'       => "Zjeće wobdźěłanja bě: \"''\$1''\".",
+'revertpage'        => 'Změny [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskusija]]) cofnjene a nawróćene k poslednjej wersiji wužiwarja [[User:$1|$1]]',
+'revertpage-nouser' => 'Staji změny wot (wužiwarske mjeno wotstronjene) na předchadnu wersiju wot [[User:$1|$1]] wróćo',
+'rollback-success'  => 'Změny wužiwarja $1 cofnjene; wróćo na wersiju wužiwarja $2.',
+'sessionfailure'    => 'Zda so, zo je problem z twojim přizjewjenjom; tuta akcija bu wěstosće dla přećiwo zadobywanju do posedźenja znjemóžniła. Prošu klikń na "Wróćo" a začitaj stronu, z kotrejež přińdźeš, znowa; potom spytaj hišće raz.',
 
 # Protect
 'protectlogpage'              => 'Protokol škita',

@@ -908,7 +908,7 @@ Pšosym wobkšuś, až coš to cyniś, až rozmějoš slědy a až cyniš to wó
 'revdelete-suppress'          => 'Pśicynu wulašowanja teke za administratorow schowaś',
 'revdelete-hide-image'        => 'Wopśimjeśe dataje schowaś',
 'revdelete-unsuppress'        => 'Wobgranicowanja za wótnowjone wersije zasej zwignuś.',
-'revdelete-log'               => 'Komentar w log-lisćinje:',
+'revdelete-log'               => 'Pśicyna za wulašowanje:',
 'revdelete-submit'            => 'We wuzwólonej wersiji nałožyś',
 'revdelete-logentry'          => 'Woglědanje wersije změnjone za [[$1]]',
 'logdelete-logentry'          => 'wiźobnosć za [[$1]] změnjona.',
@@ -941,6 +941,11 @@ Njamaš pśistup na njen.',
 'revdelete-concurrent-change' => 'Zmólka pśi změnjanju zapiska wót $2, $1: zda se, až jogo status jo se změnił wót někogo drugego, mjaztym až sy wopytał jen změniś.
 Pšosym pśeglědaj protokole.',
 'revdelete-only-restricted'   => 'Njamóžoš zapiski pśed wócami administratorow  pódtłocyś, mimo až teke wuběraš jadnu z drugich pódtłócwańskich opcijow.',
+'revdelete-reason-dropdown'   => '*Zwucone pśicyny za wulašowanje
+** Pśestupjenje awtorskego pšawa
+** Njegóźece se wósobinske informacije',
+'revdelete-otherreason'       => 'Druga/pśidatna pśicyna:',
+'revdelete-reasonotherlist'   => 'Druga pśicyna',
 
 # Suppression log
 'suppressionlog'     => 'Protokol pódłocowanjow',
@@ -1970,18 +1975,19 @@ Pčašanja a dalšna pomoc:
 póstupujśo z glědanim.',
 
 # Rollback
-'rollback'         => 'Wobźěłanja slědk wześ',
-'rollback_short'   => 'anulěrowaś',
-'rollbacklink'     => 'anulěrowaś',
-'rollbackfailed'   => 'Slědkwześe njejo se raźiło.',
-'cantrollback'     => 'Njejo móžno změnu slědk wześ, slědny pśinosowaŕ jo jadnučki awtor boka.',
-'alreadyrolled'    => 'Njejo móžno slědnu změnu w nastawku [[:$1]] wót [[User:$2|$2]] ([[User talk:$2|diskusija]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) slědk wześ; drugi wužywaŕ jo mjaztym bok změnił abo južo slědk stajił .
+'rollback'          => 'Wobźěłanja slědk wześ',
+'rollback_short'    => 'anulěrowaś',
+'rollbacklink'      => 'anulěrowaś',
+'rollbackfailed'    => 'Slědkwześe njejo se raźiło.',
+'cantrollback'      => 'Njejo móžno změnu slědk wześ, slědny pśinosowaŕ jo jadnučki awtor boka.',
+'alreadyrolled'     => 'Njejo móžno slědnu změnu w nastawku [[:$1]] wót [[User:$2|$2]] ([[User talk:$2|diskusija]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) slědk wześ; drugi wužywaŕ jo mjaztym bok změnił abo južo slědk stajił .
 
 Slědnu změnu k bokoju jo pśewjadł [[User:$3|$3]] ([[User talk:$3|diskusija]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'      => "Zapominanje k slědnej změnje jo było: \"''\$1''\".",
-'revertpage'       => 'Změny wužywarja [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskusija]]) su se wótwrośili a slědna wersija wužywarja [[User:$1|$1]] jo se wótnowiła.',
-'rollback-success' => 'Změny wót $1 su se slědk wzeli a slědna wersija wót $2 jo zasej se nawrośiła.',
-'sessionfailure'   => 'Problem z twójim wužywarskim pósejźenim jo se wujawił.
+'editcomment'       => "Zapominanje k slědnej změnje jo było: \"''\$1''\".",
+'revertpage'        => 'Změny wužywarja [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskusija]]) su se wótwrośili a slědna wersija wužywarja [[User:$1|$1]] jo se wótnowiła.',
+'revertpage-nouser' => 'Jo změny wót (wužywarske mě wótpórane) na slědnu wersiju wót [[User:$1|$1]] slědk stajił',
+'rollback-success'  => 'Změny wót $1 su se slědk wzeli a slědna wersija wót $2 jo zasej se nawrośiła.',
+'sessionfailure'    => 'Problem z twójim wužywarskim pósejźenim jo se wujawił.
 Wěstoty dla jo akcija se pśetergnuła, aby se zadorało wopacnemu pśirědowanjoju twójeje změny drugemu wužywarjeju.
 Pšosym nawroś se na bok, wót kótaregož sy pśišeł a wopytaj hyšći raz.',
 

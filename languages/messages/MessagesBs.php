@@ -1060,7 +1060,7 @@ Molimo potvrdite da namjeravate ovo učiniti, da razumijete posljedice i da to �
 'revdelete-suppress'          => 'Sakrij podatke od administratora kao i od drugih',
 'revdelete-hide-image'        => 'Sakrij sadržaj datoteke',
 'revdelete-unsuppress'        => 'Ukloni ograničenja na vraćenim revizijama',
-'revdelete-log'               => 'Komentar evidencije:',
+'revdelete-log'               => 'Razlog za brisanje:',
 'revdelete-submit'            => 'Primijeni na odabranu reviziju',
 'revdelete-logentry'          => 'promijenjena vidljivost revizije [[$1]]',
 'logdelete-logentry'          => 'promijenjena vidljivost događaja [[$1]]',
@@ -1093,6 +1093,11 @@ Nemate pristup ovoj stavci.',
 'revdelete-concurrent-change' => 'Greška pri mijenjanju stavke od $2, $1: njen status je izmijenjen od strane nekog drugog dok ste je pokušavali mijenjati.
 Molimo provjerite zapise.',
 'revdelete-only-restricted'   => 'Ne možete ukloniti stavke od pregledavanja administratora bez da odaberete neku od drugih opcija za uklanjanje.',
+'revdelete-reason-dropdown'   => '*Uobičajeni razlozi brisanja
+** Kršenje autorskih prava
+** Neadekvatni lični podaci',
+'revdelete-otherreason'       => 'Ostali/dodatni razlog:',
+'revdelete-reasonotherlist'   => 'Ostali razlozi',
 
 # Suppression log
 'suppressionlog'     => 'Zapisi sakrivanja',
@@ -2166,19 +2171,20 @@ Njeno brisanje može dovesti do opterećenja operacione baze na {{SITENAME}};
 nastavite s oprezom.',
 
 # Rollback
-'rollback'         => 'Vrati izmjene',
-'rollback_short'   => 'Vrati',
-'rollbacklink'     => 'vrati',
-'rollbackfailed'   => 'Vraćanje nije uspjelo',
-'cantrollback'     => 'Ne može se vratiti izmjena; posljednji autor je ujedno i jedini.',
-'alreadyrolled'    => 'Ne može se vratiti posljednja izmjena [[:$1]] od korisnika [[User:$2|$2]] ([[User talk:$2|razgovor]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]); neko drugi je već izmjenio ili vratio članak.
+'rollback'          => 'Vrati izmjene',
+'rollback_short'    => 'Vrati',
+'rollbacklink'      => 'vrati',
+'rollbackfailed'    => 'Vraćanje nije uspjelo',
+'cantrollback'      => 'Ne može se vratiti izmjena; posljednji autor je ujedno i jedini.',
+'alreadyrolled'     => 'Ne može se vratiti posljednja izmjena [[:$1]] od korisnika [[User:$2|$2]] ([[User talk:$2|razgovor]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]); neko drugi je već izmjenio ili vratio članak.
 
 Posljednja izmjena je bila od korisnika [[User:$3|$3]] ([[User talk:$3|razgovor]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'      => "Sažetak izmjene je bio: \"''\$1''\".",
-'revertpage'       => 'Vraćene izmjene [[Special:Contributions/$2|$2]] ([[User talk:$2|razgovor]]) na posljednju izmjenu korisnika [[User:$1|$1]]',
-'rollback-success' => 'Poništene izmjene korisnika $1;
+'editcomment'       => "Sažetak izmjene je bio: \"''\$1''\".",
+'revertpage'        => 'Vraćene izmjene [[Special:Contributions/$2|$2]] ([[User talk:$2|razgovor]]) na posljednju izmjenu korisnika [[User:$1|$1]]',
+'revertpage-nouser' => 'Vraćene izmjene korisnika (korisničko ime uklonjeno) na posljednju reviziju koju je načinio [[User:$1|$1]]',
+'rollback-success'  => 'Poništene izmjene korisnika $1;
 vraćeno na posljednju verziju koju je sačuvao $2.',
-'sessionfailure'   => "Izgleda da postoji problem sa vašom sesijom; ova akcija je otkazana kao prevencija protiv napadanja sesija. Kliknite \"back\" (''nazad'') i osvježite stranicu sa koje ste došli, i opet pokušajte.",
+'sessionfailure'    => "Izgleda da postoji problem sa vašom sesijom; ova akcija je otkazana kao prevencija protiv napadanja sesija. Kliknite \"back\" (''nazad'') i osvježite stranicu sa koje ste došli, i opet pokušajte.",
 
 # Protect
 'protectlogpage'              => 'Protokol zaključavanja',

@@ -480,7 +480,7 @@ $messages = array(
 # Metadata in edit box
 'metadata_help' => 'Metadata:',
 
-'errorpagetitle'    => 'Galat',
+'errorpagetitle'    => 'Kesalahan',
 'returnto'          => 'Kembali ke $1.',
 'tagline'           => 'Dari {{SITENAME}}',
 'help'              => 'Bantuan',

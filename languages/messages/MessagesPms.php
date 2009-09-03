@@ -815,7 +815,7 @@ Për piasì conferma che it veulo fé sòn-sì, che it capisse le conseguense, e
 'revdelete-suppress'          => "Smon-je pa ij dat gnanca a j'aministrator",
 'revdelete-hide-image'        => "Stërma ël contnù dl'archivi",
 'revdelete-unsuppress'        => "Gava le limitassion da 'nt le version ciapà andaré",
-'revdelete-log'               => 'Coment për ël registr:',
+'revdelete-log'               => 'Rason për la scanselassion:',
 'revdelete-submit'            => 'But-jlo a la version selessionà',
 'revdelete-logentry'          => 'visibilità dla revision cangià për [[$1]]',
 'logdelete-logentry'          => "a l'ha cangiaje visibilità a l'event [[$1]]",
@@ -847,6 +847,12 @@ It peule pa vëddlo.',
 'revdelete-no-change'         => "'''Atension:''' l'element datà $2, $1 a l'ha già le ampostassion ëd visibilità ciamà.",
 'revdelete-concurrent-change' => "Eror an modificand l'element $2, $1: sò stat a smija che a sia stàit cambià da cheicun àutr an mente it provave a modifichelo. Për piasì contròla ij registr.",
 'revdelete-only-restricted'   => "It peule pa stërmé dj'element a j'aministrador sensa ëdcò selessioné un-a dle àutre opsion ëd rimossion.",
+'revdelete-reason-dropdown'   => "*Rason comon-e dë scanselassion
+** Arcesta dl'autor
+** Violassion dël copyright
+** Vandalism",
+'revdelete-otherreason'       => 'Àutra rason o adissional:',
+'revdelete-reasonotherlist'   => 'Àutra rason',
 
 # Suppression log
 'suppressionlog'     => 'Registr ëd le sopression',
@@ -1904,19 +1910,20 @@ A scancelela as peul fesse darmagi a j'operassion dla base dat ëd {{SITENAME}};
 ch'a fasa euj a lòn ch'a fa.",
 
 # Rollback
-'rollback'         => 'Dòvra na revision pì veja',
-'rollback_short'   => 'Ripristinè',
-'rollbacklink'     => "ripristiné j'archivi",
-'rollbackfailed'   => "A l'é pa podusse ripristiné",
-'cantrollback'     => "As peul pa tornesse a na version pì veja: l'ùltima modìfica a l'ha fala l'ùnich utent che a l'abia travajà a cost artìcol-sì.",
-'alreadyrolled'    => "As peulo pa anulé j'ultime modìfiche ëd [[:$1]] faite da [[User:$2|$2]] ([[User talk:$2|Talk]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]); 
+'rollback'          => 'Dòvra na revision pì veja',
+'rollback_short'    => 'Ripristinè',
+'rollbacklink'      => "ripristiné j'archivi",
+'rollbackfailed'    => "A l'é pa podusse ripristiné",
+'cantrollback'      => "As peul pa tornesse a na version pì veja: l'ùltima modìfica a l'ha fala l'ùnich utent che a l'abia travajà a cost artìcol-sì.",
+'alreadyrolled'     => "As peulo pa anulé j'ultime modìfiche ëd [[:$1]] faite da [[User:$2|$2]] ([[User talk:$2|Talk]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]); 
 cheidun d'àutr a l'ha già modificà ò pura anulà le modìfiche a sta pàgina-sì.
 
 L'ùltima modìfica a la pàgina a l'é staita faita da [[User:$3|$3]] ([[User talk:$3|Talk]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
-'editcomment'      => "Ël coment dla modìfica a l'era: \"''\$1''\".",
-'revertpage'       => "Gavà via le modìfiche ëd [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]); ël contnù a l'é stait tirà andarè a l'ùltima version dl'utent [[User:$1|$1]]",
-'rollback-success' => "Modìfiche anulà da $1; tirà andré a l'ùltima version da $2.",
-'sessionfailure'   => "A-i son ëstaje dle gran-e con la session che a identìfica sò acess; ël sistema a l'ha nen eseguì l'ordin che a l'ha daje për precaussion. Che a torna andaré a la pàgina prima con ël boton \"andaré\" ëd sò programa ëd navigassion (browser), peuj che as carìa n'àutra vira costa pàgina-sì e che a preuva torna a fé lòn che vorìa fé.",
+'editcomment'       => "Ël coment dla modìfica a l'era: \"''\$1''\".",
+'revertpage'        => "Gavà via le modìfiche ëd [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]); ël contnù a l'é stait tirà andarè a l'ùltima version dl'utent [[User:$1|$1]]",
+'revertpage-nouser' => "Scanselà le modìfiche dë (stranòm gavà) a l'ùltima vërsion ëd [[User:$1|$1]]",
+'rollback-success'  => "Modìfiche anulà da $1; tirà andré a l'ùltima version da $2.",
+'sessionfailure'    => "A-i son ëstaje dle gran-e con la session che a identìfica sò acess; ël sistema a l'ha nen eseguì l'ordin che a l'ha daje për precaussion. Che a torna andaré a la pàgina prima con ël boton \"andaré\" ëd sò programa ëd navigassion (browser), peuj che as carìa n'àutra vira costa pàgina-sì e che a preuva torna a fé lòn che vorìa fé.",
 
 # Protect
 'protectlogpage'              => 'Registr dle protession',
@@ -2870,6 +2877,7 @@ J'anliure ch'a-i ven-o dapress, ant sla midema riga, as conto për ecession (vis
 'watchlistall2'    => 'tute',
 'namespacesall'    => 'tùit',
 'monthsall'        => 'tuti',
+'limitall'         => 'tùit',
 
 # E-mail address confirmation
 'confirmemail'             => "Confermé l'adrëssa postal",

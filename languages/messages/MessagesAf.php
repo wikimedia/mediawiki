@@ -901,6 +901,7 @@ $1",
 'revdelete-log-message'       => '$1 vir $2 {{PLURAL:$2|weergawe|weergawes}}',
 'logdelete-log-message'       => '$1 vir $2 {{PLURAL:$2|gebeurtenis|gebeurtenisse}}',
 'revdelete-modify-missing'    => 'Fout met die wysiging van item ID $1: dit is nie in die databasis nie!',
+'revdelete-reasonotherlist'   => 'Ander rede',
 
 # Suppression log
 'suppressionlog' => 'Verbergingslogboek',
@@ -2237,7 +2238,7 @@ Gaan na [http://www.mediawiki.org/wiki/Localisation MediaWiki-lokalisasie] en [h
 'allmessages-filter-modified'   => 'Verander',
 'allmessages-prefix'            => 'Filter op voorvoegsel:',
 'allmessages-language'          => 'Taal:',
-'allmessages-filter-submit'     => 'Gaan',
+'allmessages-filter-submit'     => 'Laat waai',
 
 # Thumbnails
 'thumbnail-more'           => 'Vergroot',
@@ -2740,7 +2741,7 @@ Bevestig asseblief dat u regtig hierdie blad oor wil skep.",
 # Multipage image navigation
 'imgmultipageprev' => '← vorige bladsy',
 'imgmultipagenext' => 'volgende bladsy →',
-'imgmultigo'       => 'Gaan!',
+'imgmultigo'       => 'Laat waai!',
 'imgmultigoto'     => 'Gaan na bladsy $1',
 
 # Table pager
@@ -2751,7 +2752,7 @@ Bevestig asseblief dat u regtig hierdie blad oor wil skep.",
 'table_pager_first'        => 'Eerste bladsy',
 'table_pager_last'         => 'Laaste bladsy',
 'table_pager_limit'        => 'Wys $1 resultate per bladsy',
-'table_pager_limit_submit' => 'Gaan',
+'table_pager_limit_submit' => 'Laat waai',
 'table_pager_empty'        => 'Geen resultate',
 
 # Auto-summaries

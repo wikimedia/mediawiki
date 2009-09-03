@@ -902,9 +902,9 @@ A justificativa apresentada por $3 foi ''$2''",
 'last'                   => 'ult',
 'page_first'             => 'primeira',
 'page_last'              => 'última',
-'histlegend'             => 'Seleção para diferença: marque as caixas em uma das versões que deseja comparar e clique no botão.<br />
-Legenda: (atu) = diferenças da versão atual,
-(ult) = diferença da versão anterior, m = edição menor',
+'histlegend'             => "Seleção para diferenças: marque as caixas de seleção das versões que deseja comparar e clique no botão na parte inferior.<br />
+Legenda: ''({{int:cur}})''' = diferença com relação a versão atual,
+'''({{int:last}})''' = diferença com relação a versão anterior, '''{{int:minoreditletter}}''' = edição menor.",
 'history-fieldset-title' => 'Navegar pelo histórico',
 'histfirst'              => 'Mais antigas',
 'histlast'               => 'Mais recentes',

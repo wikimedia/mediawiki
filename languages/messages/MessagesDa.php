@@ -2931,6 +2931,7 @@ Kun indholdet af lister (linjer startende med *) bliver brugt. Den første henvi
 'watchlistall2'    => 'alle',
 'namespacesall'    => 'alle',
 'monthsall'        => 'alle',
+'limitall'         => 'alle',
 
 # E-mail address confirmation
 'confirmemail'             => 'Bekræft e-mail-adressen',
