@@ -1462,12 +1462,7 @@ Please confirm that you intend to do this, that you understand the consequences,
 'revdelete-suppress'          => 'Suppress data from administrators as well as others',
 'revdelete-hide-image'        => 'Hide file content',
 'revdelete-unsuppress'        => 'Remove restrictions on restored revisions',
-'revdelete-reasonotherlist'   => 'Other reason',
-'revdelete-reason-dropdown'   => '*Common delete reasons
-** Copyright violation
-** Inappropriate personal information',
 'revdelete-log'               => 'Reason for deletion:',
-'revdelete-otherreason'       => 'Other/additional reason:',
 'revdelete-submit'            => 'Apply to selected revision',
 'revdelete-logentry'          => 'changed revision visibility of [[$1]]',
 'logdelete-logentry'          => 'changed event visibility of [[$1]]',
@@ -1500,6 +1495,11 @@ You do not have access to it.',
 'revdelete-concurrent-change' => 'Error modifying the item dated $2, $1: its status appears to have been changed by someone else while you attempted to modify it.
 Please check the logs.',
 'revdelete-only-restricted'   => 'You cannot suppress items from view by administrators without also selecting one of the other suppression options.',
+'revdelete-reason-dropdown'   => '*Common delete reasons
+** Copyright violation
+** Inappropriate personal information',
+'revdelete-otherreason'       => 'Other/additional reason:',
+'revdelete-reasonotherlist'   => 'Other reason',
 
 # Suppression log
 'suppressionlog'     => 'Suppression log',
@@ -2659,22 +2659,22 @@ Deleting it may disrupt database operations of {{SITENAME}};
 proceed with caution.',
 
 # Rollback
-'rollback'         => 'Roll back edits',
-'rollback_short'   => 'Rollback',
-'rollbacklink'     => 'rollback',
-'rollbackfailed'   => 'Rollback failed',
-'cantrollback'     => 'Cannot revert edit;
+'rollback'          => 'Roll back edits',
+'rollback_short'    => 'Rollback',
+'rollbacklink'      => 'rollback',
+'rollbackfailed'    => 'Rollback failed',
+'cantrollback'      => 'Cannot revert edit;
 last contributor is only author of this page.',
-'alreadyrolled'    => 'Cannot rollback last edit of [[:$1]] by [[User:$2|$2]] ([[User talk:$2|Talk]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]);
+'alreadyrolled'     => 'Cannot rollback last edit of [[:$1]] by [[User:$2|$2]] ([[User talk:$2|Talk]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]);
 someone else has edited or rolled back the page already.
 
 The last edit to the page was by [[User:$3|$3]] ([[User talk:$3|Talk]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'      => "The edit summary was: \"''\$1''\".",
-'revertpage'       => 'Reverted edits by [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]) to last revision by [[User:$1|$1]]',
+'editcomment'       => "The edit summary was: \"''\$1''\".",
+'revertpage'        => 'Reverted edits by [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]) to last revision by [[User:$1|$1]]',
 'revertpage-nouser' => 'Reverted edits by (username removed) to last revision by [[User:$1|$1]]',
-'rollback-success' => 'Reverted edits by $1;
+'rollback-success'  => 'Reverted edits by $1;
 changed back to last revision by $2.',
-'sessionfailure'   => 'There seems to be a problem with your login session;
+'sessionfailure'    => 'There seems to be a problem with your login session;
 this action has been canceled as a precaution against session hijacking.
 Please hit "back" and reload the page you came from, then try again.',
 

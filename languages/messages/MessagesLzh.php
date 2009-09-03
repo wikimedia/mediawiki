@@ -756,12 +756,7 @@ $2',
 'revdelete-suppress'          => '廢有秩與簿之事',
 'revdelete-hide-image'        => '藏檔',
 'revdelete-unsuppress'        => '復審解限',
-'revdelete-reasonotherlist'   => '它因',
-'revdelete-reason-dropdown'   => '*常因
-** 侵權
-** 無合之人料',
 'revdelete-log'               => '誌贊：',
-'revdelete-otherreason'       => '它附因：',
 'revdelete-submit'            => '擇審使之',
 'revdelete-logentry'          => '[[$1]]之見審動矣',
 'logdelete-logentry'          => '[[$1]]之事見動矣',
@@ -790,6 +785,11 @@ $1",
 'revdelete-no-change'         => '警：於$1 $2之項求示設也。',
 'revdelete-concurrent-change' => '錯改於$1 $2項：眾改之設，乃另之改。查誌。',
 'revdelete-only-restricted'   => '爾無廢有秩見之項，而無選另廢項也。',
+'revdelete-reason-dropdown'   => '*常因
+** 侵權
+** 無合之人料',
+'revdelete-otherreason'       => '它附因：',
+'revdelete-reasonotherlist'   => '它因',
 
 # Suppression log
 'suppressionlog'     => '誌廢',
@@ -1743,17 +1743,17 @@ $NEWPAGE
 'delete-warning-toobig'  => '此頁含大誌，過$1修。刪之可亂{{SITENAME}}之事也；續時留神之。',
 
 # Rollback
-'rollback'         => '反正',
-'rollback_short'   => '正',
-'rollbacklink'     => '正',
-'rollbackfailed'   => '未能反正',
-'cantrollback'     => '獨一作者，無以反正。',
-'alreadyrolled'    => '[[User:$2|$2]]（[[User talk:$2|議]] | [[Special:Contributions/$2|{{int:contribslink}}]]）作[[:$1]]，退不成也。有易或已退焉。新纂者為[[User:$3|$3]]（[[User talk:$3|議]] | [[Special:Contributions/$3|{{int:contribslink}}]]）',
-'editcomment'      => "贊曰\"''\$1''\"",
-'revertpage'       => '去[[Special:Contributions/$2|$2]]之作（欲言之，可至[[User talk:$2|此]]）為[[User:$1|$1]]之本耳',
+'rollback'          => '反正',
+'rollback_short'    => '正',
+'rollbacklink'      => '正',
+'rollbackfailed'    => '未能反正',
+'cantrollback'      => '獨一作者，無以反正。',
+'alreadyrolled'     => '[[User:$2|$2]]（[[User talk:$2|議]] | [[Special:Contributions/$2|{{int:contribslink}}]]）作[[:$1]]，退不成也。有易或已退焉。新纂者為[[User:$3|$3]]（[[User talk:$3|議]] | [[Special:Contributions/$3|{{int:contribslink}}]]）',
+'editcomment'       => "贊曰\"''\$1''\"",
+'revertpage'        => '去[[Special:Contributions/$2|$2]]之作（欲言之，可至[[User talk:$2|此]]）為[[User:$1|$1]]之本耳',
 'revertpage-nouser' => '去（刪簿）之作為[[User:$1|$1]]之本耳',
-'rollback-success' => '去$1之作，復為$2之本耳。',
-'sessionfailure'   => '登簿有變。為防盜簿，返前重取再為之。',
+'rollback-success'  => '去$1之作，復為$2之本耳。',
+'sessionfailure'    => '登簿有變。為防盜簿，返前重取再為之。',
 
 # Protect
 'protectlogpage'              => '誌緘',

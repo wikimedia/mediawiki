@@ -930,12 +930,7 @@ $2',
 'revdelete-suppress'          => '同時廢止由操作員以及其他用戶的資料',
 'revdelete-hide-image'        => '隱藏檔案內容',
 'revdelete-unsuppress'        => '在已恢復的修訂中移除限制',
-'revdelete-reasonotherlist'   => '其它理由',
-'revdelete-reason-dropdown'   => '*常用刪除理由
-** 侵犯版權
-** 不合適的個人資料',
 'revdelete-log'               => '日誌註釋：',
-'revdelete-otherreason'       => '其它／附加的理由：',
 'revdelete-submit'            => '應用於選取的修訂',
 'revdelete-logentry'          => '[[$1]]的修訂可見性已更改',
 'logdelete-logentry'          => '[[$1]]的事件可見性已更改',
@@ -964,6 +959,11 @@ $1",
 'revdelete-no-change'         => '警告：於$1 $2之項目已經請求了可見性的設定。',
 'revdelete-concurrent-change' => '正在更改於$1 $2之項目錯誤：當我們嘗試更改它的設定時，已經被另一些人更改過。請檢查紀錄。',
 'revdelete-only-restricted'   => '您不可以廢止管理員可以看見的項目，而不選另外其中一個廢止選項。',
+'revdelete-reason-dropdown'   => '*常用刪除理由
+** 侵犯版權
+** 不合適的個人資料',
+'revdelete-otherreason'       => '其它／附加的理由：',
+'revdelete-reasonotherlist'   => '其它理由',
 
 # Suppression log
 'suppressionlog'     => '廢止日誌',
@@ -1999,20 +1999,20 @@ $NEWPAGE
 'delete-warning-toobig'  => '這個頁面有一個十分大量的編輯歷史，超過$1次修訂。刪除它可能會擾亂{{SITENAME}}的資料庫操作；在繼續此動作前請小心。',
 
 # Rollback
-'rollback'         => '恢復編輯',
-'rollback_short'   => '恢復',
-'rollbacklink'     => '恢復',
-'rollbackfailed'   => '無法恢復',
-'cantrollback'     => '無法恢復編輯；最後的貢獻者是本文的唯一作者。',
-'alreadyrolled'    => '無法恢復由[[User:$2|$2]] （[[User talk:$2|討論]] {{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]）進行的[[$1]]的最後編輯；
+'rollback'          => '恢復編輯',
+'rollback_short'    => '恢復',
+'rollbacklink'      => '恢復',
+'rollbackfailed'    => '無法恢復',
+'cantrollback'      => '無法恢復編輯；最後的貢獻者是本文的唯一作者。',
+'alreadyrolled'     => '無法恢復由[[User:$2|$2]] （[[User talk:$2|討論]] {{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]）進行的[[$1]]的最後編輯；
 其他人已經編輯或是恢復了該頁。
 
 最後對頁面編輯的編輯者: [[User:$3|$3]] （[[User talk:$3|討論]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]）。',
-'editcomment'      => "編輯摘要: \"''\$1''\"。",
-'revertpage'       => '恢復由[[Special:Contributions/$2|$2]] （[[User talk:$2|對話]]）的編輯至[[User:$1|$1]]的最後一個修訂版本',
+'editcomment'       => "編輯摘要: \"''\$1''\"。",
+'revertpage'        => '恢復由[[Special:Contributions/$2|$2]] （[[User talk:$2|對話]]）的編輯至[[User:$1|$1]]的最後一個修訂版本',
 'revertpage-nouser' => '恢復由（移除了的用戶名）的編輯到[[User:$1|$1]]的最後一個修訂版本',
-'rollback-success' => '恢復由$1的編輯；更改回$2的最後一個修訂版本。',
-'sessionfailure'   => '您的登入資訊似乎有問題，為防止此該訊息被攔截，本次操作已經取消，請按「上一頁」重新載入。',
+'rollback-success'  => '恢復由$1的編輯；更改回$2的最後一個修訂版本。',
+'sessionfailure'    => '您的登入資訊似乎有問題，為防止此該訊息被攔截，本次操作已經取消，請按「上一頁」重新載入。',
 
 # Protect
 'protectlogpage'              => '保護日誌',

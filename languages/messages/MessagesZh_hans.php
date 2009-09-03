@@ -947,12 +947,7 @@ $2',
 'revdelete-suppress'          => '同时阻止管理员与其他用户查看数据',
 'revdelete-hide-image'        => '隐藏文件内容',
 'revdelete-unsuppress'        => '在已恢复的修订中移除限制',
-'revdelete-reasonotherlist'   => '其它理由',
-'revdelete-reason-dropdown'   => '*常用删除理由
-** 侵犯版权
-** 不合适的个人资料',
 'revdelete-log'               => '日志注释：',
-'revdelete-otherreason'       => '其它／附加的理由：',
 'revdelete-submit'            => '应用于选中的修订',
 'revdelete-logentry'          => '[[$1]]的修订可见性已更改',
 'logdelete-logentry'          => '[[$1]]的事件可见性已更改',
@@ -981,6 +976,11 @@ $1",
 'revdelete-no-change'         => '警告：于$1 $2之项目已经请求了可见性的设置。',
 'revdelete-concurrent-change' => '正在更改于$1 $2之项目错误：当我们尝试更改它的设置时，已经被另一些人更改过。请检查纪录。',
 'revdelete-only-restricted'   => '您不可以废止管理员可以看见的项目，而不选另外其中一个废止选项。',
+'revdelete-reason-dropdown'   => '*常用删除理由
+** 侵犯版权
+** 不合适的个人资料',
+'revdelete-otherreason'       => '其它／附加的理由：',
+'revdelete-reasonotherlist'   => '其它理由',
 
 # Suppression log
 'suppressionlog'     => '阻止日志',
@@ -2013,19 +2013,19 @@ $NEWPAGE
 'delete-warning-toobig'  => '这个页面有一个十分大量的编辑历史，超过$1次修订。删除它可能会扰乱{{SITENAME}}的数据库操作；在继续此动作前请小心。',
 
 # Rollback
-'rollback'         => '回退编辑',
-'rollback_short'   => '回退',
-'rollbacklink'     => '回退',
-'rollbackfailed'   => '回退失败',
-'cantrollback'     => '无法恢复编辑；最后的贡献者是本文的唯一作者。',
-'alreadyrolled'    => '无法回退由[[User:$2|$2]]（[[User talk:$2|讨论]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]）在[[:$1]]上的最后一次编辑；其他人已经编辑或者回退了该页。
+'rollback'          => '回退编辑',
+'rollback_short'    => '回退',
+'rollbacklink'      => '回退',
+'rollbackfailed'    => '回退失败',
+'cantrollback'      => '无法恢复编辑；最后的贡献者是本文的唯一作者。',
+'alreadyrolled'     => '无法回退由[[User:$2|$2]]（[[User talk:$2|讨论]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]）在[[:$1]]上的最后一次编辑；其他人已经编辑或者回退了该页。
 
 对此页面的最后一次编辑是由[[User:$3|$3]]（[[User talk:$3|讨论]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]）进行的。',
-'editcomment'      => '编辑摘要："<i>$1</i>"。',
-'revertpage'       => '已恢复[[Special:Contributions/$2|$2]]（[[User talk:$2|对话]]）的编辑至[[User:$1|$1]]的最后修订版本',
+'editcomment'       => '编辑摘要："<i>$1</i>"。',
+'revertpage'        => '已恢复[[Special:Contributions/$2|$2]]（[[User talk:$2|对话]]）的编辑至[[User:$1|$1]]的最后修订版本',
 'revertpage-nouser' => '恢复由（移除了的用户名）的编辑到[[User:$1|$1]]的最后一个修订版本',
-'rollback-success' => '已恢复$1的编辑；更改回$2的最后修订版本。',
-'sessionfailure'   => '似乎在您登录时发生问题，作为一项防范性措施，该动作已经被取消。请单击"后退"再次尝试！',
+'rollback-success'  => '已恢复$1的编辑；更改回$2的最后修订版本。',
+'sessionfailure'    => '似乎在您登录时发生问题，作为一项防范性措施，该动作已经被取消。请单击"后退"再次尝试！',
 
 # Protect
 'protectlogpage'              => '保护日志',
