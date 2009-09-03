@@ -82,6 +82,23 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 	}
 
 	/**
+	 * Sets internal state to include the desired properties in the output.
+	 * @param $prop associative array of properties, only keys are used here
+	 */
+	public function initProperties( $prop ) {
+		$this->fld_comment = isset ($prop['comment']);
+		$this->fld_user = isset ($prop['user']);
+		$this->fld_flags = isset ($prop['flags']);
+		$this->fld_timestamp = isset ($prop['timestamp']);
+		$this->fld_title = isset ($prop['title']);
+		$this->fld_ids = isset ($prop['ids']);
+		$this->fld_sizes = isset ($prop['sizes']);
+		$this->fld_redirect = isset($prop['redirect']);
+		$this->fld_patrolled = isset($prop['patrolled']);
+		$this->fld_loginfo = isset($prop['loginfo']);
+	}
+
+	/**
 	 * Generates and outputs the result of this query based upon the provided parameters.
 	 */
 	public function execute() {
@@ -164,16 +181,7 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 			$prop = array_flip($params['prop']);
 
 			/* Set up internal members based upon params. */
-			$this->fld_comment = isset ($prop['comment']);
-			$this->fld_user = isset ($prop['user']);
-			$this->fld_flags = isset ($prop['flags']);
-			$this->fld_timestamp = isset ($prop['timestamp']);
-			$this->fld_title = isset ($prop['title']);
-			$this->fld_ids = isset ($prop['ids']);
-			$this->fld_sizes = isset ($prop['sizes']);
-			$this->fld_redirect = isset($prop['redirect']);
-			$this->fld_patrolled = isset($prop['patrolled']);
-			$this->fld_loginfo = isset($prop['loginfo']);
+			$this->initProperties( $prop );
 
 			global $wgUser;
 			if($this->fld_patrolled && !$wgUser->useRCPatrol() && !$wgUser->useNPPatrol())
@@ -245,9 +253,9 @@ class ApiQueryRecentChanges extends ApiQueryBase {
 	 *
 	 * @param $row The row from which to extract the data.
 	 * @return An array mapping strings (descriptors) to their respective string values.
-	 * @access private
+	 * @access public
 	 */
-	private function extractRowInfo($row) {
+	public function extractRowInfo($row) {
 		/* If page was moved somewhere, get the title of the move target. */
 		$movedToTitle = false;
 		if (isset($row->rc_moved_to_title) && $row->rc_moved_to_title !== '')
