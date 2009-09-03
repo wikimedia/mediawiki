@@ -454,6 +454,8 @@ this. Was used when mwEmbed was going to be an extension.
 * (bug 20466) Hidden categories are no more displayed when printing
 * (bug 20446) When changing user rights with User@remotewiki and remotewiki is
   the local wiki, the user is now treated as the local user
+* (bug 20494) OutputPage::getArticleBodyOnly() no longer requires an useless
+  argument
 
 == API changes in 1.16 ==
 
