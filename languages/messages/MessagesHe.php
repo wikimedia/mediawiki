@@ -1042,9 +1042,9 @@ $2',
 נסו [[Special:Search|לחפש]] אחר דפים רלוונטיים חדשים.',
 
 # Revision deletion
-'rev-deleted-comment'         => '(תקציר העריכה הוסתר)',
-'rev-deleted-user'            => '(שם המשתמש הוסתר)',
-'rev-deleted-event'           => '(פעולת היומן הוסתרה)',
+'rev-deleted-comment'         => '(תקציר העריכה הוסר)',
+'rev-deleted-user'            => '(שם המשתמש הוסר)',
+'rev-deleted-event'           => '(פעולת היומן הוסרה)',
 'rev-deleted-text-permission' => "גרסת הדף הזו '''נמחקה'''.
 ייתכן שישנם פרטים נוספים על כך ב[{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} יומן המחיקות].",
 'rev-deleted-text-unhide'     => "גרסת הדף הזו '''נמחקה'''.
@@ -1124,6 +1124,11 @@ $1",
 'revdelete-concurrent-change' => 'שגיאה בשינוי הפריט מתאריך $2, $1: נראה שמצבו שונה על ידי מישהו אחר בזמן שאתם ניסיתם לשנות אותו.
 אנא בדקו ביומנים.',
 'revdelete-only-restricted'   => 'אין באפשרותכם להסתיר פרטים מצפיית מפעילי מערכת בלי לבחור גם באחת מאפשרויות ההסתרה האחרות.',
+'revdelete-reason-dropdown'   => '* סיבות מחיקה נפוצות
+** הפרת זכויות יוצרים
+** מידע אישי בלתי מתאים',
+'revdelete-otherreason'       => 'סיבה אחרת/נוספת:',
+'revdelete-reasonotherlist'   => 'סיבה אחרת',
 
 # Suppression log
 'suppressionlog'     => 'יומן הסתרות',
@@ -2088,7 +2093,7 @@ PICT # שונות
 'unwatch'              => 'הפסקת מעקב',
 'unwatchthispage'      => 'הפסקת המעקב אחרי דף זה',
 'notanarticle'         => 'זהו אינו דף תוכן',
-'notvisiblerev'        => 'הגרסה נמחקה',
+'notvisiblerev'        => 'הגרסה האחרונה שנוצרה על ידי משתמש אחר נמחקה',
 'watchnochange'        => 'אף אחד מהדפים ברשימת המעקב לא עודכן בפרק הזמן המצוין למעלה.',
 'watchlist-details'    => 'ברשימת המעקב יש {{PLURAL:$1|דף אחד|$1 דפים}} (לא כולל דפי שיחה).',
 'wlheader-enotif'      => '* הודעות דוא"ל מאופשרות.',
@@ -2176,18 +2181,19 @@ $NEWPAGE
 'delete-warning-toobig'  => 'דף זה כולל מעל {{PLURAL:$1|גרסה אחת|$1 גרסאות}} בהיסטוריית העריכות שלו. מחיקה שלו עלולה להפריע לפעולות בבסיס הנתונים; אנא שיקלו שנית את המחיקה.',
 
 # Rollback
-'rollback'         => 'שחזור עריכות',
-'rollback_short'   => 'שחזור',
-'rollbacklink'     => 'שחזור',
-'rollbackfailed'   => 'השחזור נכשל',
-'cantrollback'     => 'לא ניתן לשחזר את העריכה – התורם האחרון הוא היחיד שכתב דף זה; עם זאת, ניתן למחוק את הדף.',
-'alreadyrolled'    => 'לא ניתן לשחזר את עריכת הדף [[:$1]] על ידי [[User:$2|$2]] ([[User talk:$2|שיחה]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]); מישהו אחר כבר ערך או שחזר דף זה.
+'rollback'          => 'שחזור עריכות',
+'rollback_short'    => 'שחזור',
+'rollbacklink'      => 'שחזור',
+'rollbackfailed'    => 'השחזור נכשל',
+'cantrollback'      => 'לא ניתן לשחזר את העריכה – התורם האחרון הוא היחיד שכתב דף זה; עם זאת, ניתן למחוק את הדף.',
+'alreadyrolled'     => 'לא ניתן לשחזר את עריכת הדף [[:$1]] על ידי [[User:$2|$2]] ([[User talk:$2|שיחה]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]); מישהו אחר כבר ערך או שחזר דף זה.
 
 העריכה האחרונה הייתה של [[User:$3|$3]] ([[User talk:$3|שיחה]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'      => "תקציר העריכה היה: \"'''\$1'''\".",
-'revertpage'       => 'שוחזר מעריכה של [[Special:Contributions/$2|$2]] ([[User talk:$2|שיחה]]) לעריכה האחרונה של [[User:$1|$1]]',
-'rollback-success' => 'שוחזר מעריכה של $1 לעריכה האחרונה של $2',
-'sessionfailure'   => 'נראה שיש בעיה בחיבורכם לאתר. פעולתכם בוטלה כאמצעי זהירות כנגד התחזות לתקשורת ממחשבכם. אנא חיזרו לדף הקודם ונסו שנית.',
+'editcomment'       => "תקציר העריכה היה: \"'''\$1'''\".",
+'revertpage'        => 'שוחזר מעריכות של [[Special:Contributions/$2|$2]] ([[User talk:$2|שיחה]]) לעריכה האחרונה של [[User:$1|$1]]',
+'revertpage-nouser' => 'שוחזר מעריכות של (שם המשתמש הוסר) לעריכה האחרונה של [[User:$1|$1]]',
+'rollback-success'  => 'שוחזר מעריכה של $1 לעריכה האחרונה של $2',
+'sessionfailure'    => 'נראה שיש בעיה בחיבורכם לאתר. פעולתכם בוטלה כאמצעי זהירות כנגד התחזות לתקשורת ממחשבכם. אנא חיזרו לדף הקודם ונסו שנית.',
 
 # Protect
 'protectlogpage'              => 'יומן הגנות',
