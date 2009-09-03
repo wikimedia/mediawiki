@@ -585,6 +585,10 @@ class RecentChange
 		return isset( $this->mAttribs[$name] ) ? $this->mAttribs[$name] : NULL;
 	}
 
+	public function getAttributes() {
+		return $this->mAttribs;
+	}
+
 	/**
 	 * Gets the end part of the diff URL associated with this object
 	 * Blank if no diff link should be displayed
