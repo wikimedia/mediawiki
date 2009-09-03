@@ -676,6 +676,7 @@ class ParserTest {
 		$GLOBALS['wgLang'] = $langObj;
 		$GLOBALS['wgContLang'] = $langObj;
 		$GLOBALS['wgMemc'] = new FakeMemCachedClient;
+		$GLOBALS['wgOut'] = new OutputPage;
 
 		//$GLOBALS['wgMessageCache'] = new MessageCache( new BagOStuff(), false, 0, $GLOBALS['wgDBname'] );
 

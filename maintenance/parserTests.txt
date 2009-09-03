@@ -6818,9 +6818,9 @@ Simple category in language variants
 !! options
 language=sr cat
 !! input
-[[:Category:МедиаWики Усер'с Гуиде]]
+[[Category:МедиаWики Усер'с Гуиде]]
 !! result
-<a href="/wiki/Category:MediaWiki_User%27s_Guide" title="Category:MediaWiki User's Guide">MediaWiki User's Guide</a>
+<a href="/wiki/%D0%9A%D0%B0%D1%82%D0%B5%D0%B3%D0%BE%D1%80%D0%B8%D1%98%D0%B0:MediaWiki_User%27s_Guide" title="Категорија:MediaWiki User's Guide">MediaWiki User's Guide</a>
 !! end
 
 
