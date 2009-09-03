@@ -911,12 +911,7 @@ $1',
 'revdelete-suppress'          => '同時壓制由操作員以及其他用戶的資料',
 'revdelete-hide-image'        => '隱藏資料內容',
 'revdelete-unsuppress'        => '響已經恢復咗嘅修訂度移除限制',
-'revdelete-reasonotherlist'   => '其它原因',
-'revdelete-reason-dropdown'   => '*常用刪除原因
-** 侵犯版權
-** 唔合適嘅個人資料',
 'revdelete-log'               => '記錄註解：',
-'revdelete-otherreason'       => '其它／附加的原因：',
 'revdelete-submit'            => '應用到已經選取嘅修訂',
 'revdelete-logentry'          => '已經更改[[$1]]嘅修訂可見性',
 'logdelete-logentry'          => '已經更改[[$1]]嘅事件可見性',
@@ -945,6 +940,11 @@ $1",
 'revdelete-no-change'         => '警告：響$1 $2嘅項目已經請求咗可見性設定。',
 'revdelete-concurrent-change' => '改緊響$1 $2嘅項目錯誤：當我哋試吓改佢嘅設定嗰陣，已經畀另一啲人改過。請檢查紀錄。',
 'revdelete-only-restricted'   => '你唔可以廢止管理員睇到嘅項目，而唔再揀另外其中一個廢止選項。',
+'revdelete-reason-dropdown'   => '*常用刪除原因
+** 侵犯版權
+** 唔合適嘅個人資料',
+'revdelete-otherreason'       => '其它／附加的原因：',
+'revdelete-reasonotherlist'   => '其它原因',
 
 # Suppression log
 'suppressionlog'     => '廢止日誌',
@@ -1967,19 +1967,19 @@ wiki: $PAGEEDITOR_WIKI
 'delete-warning-toobig'  => '呢一版有一個好大量嘅編輯歷史，過咗$1次修訂。刪除佢可能會擾亂{{SITENAME}}嘅資料庫操作；響繼續嗰陣請小心。',
 
 # Rollback
-'rollback'         => '反轉修改',
-'rollback_short'   => '反轉',
-'rollbacklink'     => '反轉',
-'rollbackfailed'   => '反轉唔到',
-'cantrollback'     => '反轉唔到；上一位貢獻者係唯一修改過呢版嘅人。',
-'alreadyrolled'    => '無法反轉[[User:$2|$2]]（[[User talk:$2|留言]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]）對[[:$1]]嘅最後編輯；有人已經修改過或者反轉咗呢個頁面。
+'rollback'          => '反轉修改',
+'rollback_short'    => '反轉',
+'rollbacklink'      => '反轉',
+'rollbackfailed'    => '反轉唔到',
+'cantrollback'      => '反轉唔到；上一位貢獻者係唯一修改過呢版嘅人。',
+'alreadyrolled'     => '無法反轉[[User:$2|$2]]（[[User talk:$2|留言]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]）對[[:$1]]嘅最後編輯；有人已經修改過或者反轉咗呢個頁面。
 
 上次對呢版嘅編輯係由[[User:$3|$3]]（[[User talk:$3|留言]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]）做嘅。',
-'editcomment'      => "編輯摘要係：「'''$1'''」。",
-'revertpage'       => '已經反轉由[[Special:Contributions/$2|$2]]（[[User talk:$2|對話]]）所寫嘅編輯到[[User:$1|$1]]嘅最後修訂。',
+'editcomment'       => "編輯摘要係：「'''$1'''」。",
+'revertpage'        => '已經反轉由[[Special:Contributions/$2|$2]]（[[User talk:$2|對話]]）所寫嘅編輯到[[User:$1|$1]]嘅最後修訂。',
 'revertpage-nouser' => '已經反轉由（刪咗用戶名）所寫嘅編輯到[[User:$1|$1]]所寫嘅最後修訂。',
-'rollback-success' => '已經反轉由$1所寫嘅編輯；恢復到$2嘅最後修訂。',
-'sessionfailure'   => '你嘅登入會話 (session) 好似有啲問題；為咗防止會話劫持，呢個操作已經取消。請撳「返轉頭」然後重新載入你嚟自嘅頁面，然後再試吓啦。',
+'rollback-success'  => '已經反轉由$1所寫嘅編輯；恢復到$2嘅最後修訂。',
+'sessionfailure'    => '你嘅登入會話 (session) 好似有啲問題；為咗防止會話劫持，呢個操作已經取消。請撳「返轉頭」然後重新載入你嚟自嘅頁面，然後再試吓啦。',
 
 # Protect
 'protectlogpage'              => '保護日誌',
