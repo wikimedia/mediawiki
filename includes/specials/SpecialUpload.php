@@ -50,6 +50,7 @@ class UploadForm extends SpecialPage {
 		if( !$this->mDesiredDestName )
 			$this->mDesiredDestName = $request->getText( 'wpUploadFile' );
 
+		$this->mForReUpload       = $request->getBool( 'wpForReUpload' ); // updating a file
 		$this->mIgnoreWarning     = $request->getCheck( 'wpIgnoreWarning' );
 		$this->mComment           = $request->getText( 'wpUploadDescription' );
 
@@ -75,9 +76,7 @@ class UploadForm extends SpecialPage {
 		$this->mSourceType        = $request->getText( 'wpSourceType' );
 		$this->mDestWarningAck    = $request->getText( 'wpDestFileWarningAck' );
 
-		$this->mForReUpload       = $request->getBool( 'wpForReUpload' );
-
-		$this->mReUpload          = $request->getCheck( 'wpReUpload' );
+		$this->mReUpload          = $request->getCheck( 'wpReUpload' ); // retrying upload
 
 		$this->mAction            = $request->getVal( 'action' );
 		$this->mUpload            = UploadBase::createFromRequest( $request );
