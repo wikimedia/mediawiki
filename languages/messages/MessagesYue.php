@@ -1,5 +1,5 @@
 <?php
-/** Yue (粵語)
+/** Cantonese (粵語/廣東話)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -911,7 +911,12 @@ $1',
 'revdelete-suppress'          => '同時壓制由操作員以及其他用戶的資料',
 'revdelete-hide-image'        => '隱藏資料內容',
 'revdelete-unsuppress'        => '響已經恢復咗嘅修訂度移除限制',
+'revdelete-reasonotherlist'   => '其它原因',
+'revdelete-reason-dropdown'   => '*常用刪除原因
+** 侵犯版權
+** 唔合適嘅個人資料',
 'revdelete-log'               => '記錄註解：',
+'revdelete-otherreason'       => '其它／附加的原因：',
 'revdelete-submit'            => '應用到已經選取嘅修訂',
 'revdelete-logentry'          => '已經更改[[$1]]嘅修訂可見性',
 'logdelete-logentry'          => '已經更改[[$1]]嘅事件可見性',
@@ -1877,7 +1882,7 @@ Template:搞清楚',
 'unwatch'              => '唔使監視',
 'unwatchthispage'      => '停止監視',
 'notanarticle'         => '唔係一個內容頁',
-'notvisiblerev'        => '修訂已經刪除咗',
+'notvisiblerev'        => '上次由唔同用戶嘅修訂已經刪除咗',
 'watchnochange'        => '響顯示嘅時間之內，你所監視嘅頁面並無任何嘅更改。',
 'watchlist-details'    => '唔計討論頁，有 $1 版響你個監視清單度。',
 'wlheader-enotif'      => '* 電子郵件通知已經啟用。',
@@ -1972,6 +1977,7 @@ wiki: $PAGEEDITOR_WIKI
 上次對呢版嘅編輯係由[[User:$3|$3]]（[[User talk:$3|留言]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]）做嘅。',
 'editcomment'      => "編輯摘要係：「'''$1'''」。",
 'revertpage'       => '已經反轉由[[Special:Contributions/$2|$2]]（[[User talk:$2|對話]]）所寫嘅編輯到[[User:$1|$1]]嘅最後修訂。',
+'revertpage-nouser' => '已經反轉由（刪咗用戶名）所寫嘅編輯到[[User:$1|$1]]所寫嘅最後修訂。',
 'rollback-success' => '已經反轉由$1所寫嘅編輯；恢復到$2嘅最後修訂。',
 'sessionfailure'   => '你嘅登入會話 (session) 好似有啲問題；為咗防止會話劫持，呢個操作已經取消。請撳「返轉頭」然後重新載入你嚟自嘅頁面，然後再試吓啦。',
 

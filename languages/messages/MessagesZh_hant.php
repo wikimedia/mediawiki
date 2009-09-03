@@ -1,5 +1,5 @@
 <?php
-/** Traditional Chinese (‪中文(繁體)‬)
+/** Traditional Chinese (‪中文(傳統字)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -930,7 +930,12 @@ $2',
 'revdelete-suppress'          => '同時廢止由操作員以及其他用戶的資料',
 'revdelete-hide-image'        => '隱藏檔案內容',
 'revdelete-unsuppress'        => '在已恢復的修訂中移除限制',
-'revdelete-log'               => '日誌註釋:',
+'revdelete-reasonotherlist'   => '其它理由',
+'revdelete-reason-dropdown'   => '*常用刪除理由
+** 侵犯版權
+** 不合適的個人資料',
+'revdelete-log'               => '日誌註釋：',
+'revdelete-otherreason'       => '其它／附加的理由：',
 'revdelete-submit'            => '應用於選取的修訂',
 'revdelete-logentry'          => '[[$1]]的修訂可見性已更改',
 'logdelete-logentry'          => '[[$1]]的事件可見性已更改',
@@ -1906,7 +1911,7 @@ Template:消除歧義',
 'unwatch'              => '取消監視',
 'unwatchthispage'      => '停止監視',
 'notanarticle'         => '不是頁面',
-'notvisiblerev'        => '修訂版本已經刪除',
+'notvisiblerev'        => '上次由不同用戶所作的修訂版本已經刪除',
 'watchnochange'        => '在顯示的時間段內您所監視的頁面沒有更改。',
 'watchlist-details'    => '不包含討論頁，有 $1 頁在您的監視列表上。',
 'wlheader-enotif'      => '* 已經啟動電子郵件通知功能。',
@@ -2005,6 +2010,7 @@ $NEWPAGE
 最後對頁面編輯的編輯者: [[User:$3|$3]] （[[User talk:$3|討論]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]）。',
 'editcomment'      => "編輯摘要: \"''\$1''\"。",
 'revertpage'       => '恢復由[[Special:Contributions/$2|$2]] （[[User talk:$2|對話]]）的編輯至[[User:$1|$1]]的最後一個修訂版本',
+'revertpage-nouser' => '恢復由（移除了的用戶名）的編輯到[[User:$1|$1]]的最後一個修訂版本',
 'rollback-success' => '恢復由$1的編輯；更改回$2的最後一個修訂版本。',
 'sessionfailure'   => '您的登入資訊似乎有問題，為防止此該訊息被攔截，本次操作已經取消，請按「上一頁」重新載入。',
 

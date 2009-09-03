@@ -1,5 +1,5 @@
 <?php
-/** Simplified Chinese (‪中文(简体)‬)
+/** Simplified Chinese (‪中文(简化字)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -947,7 +947,12 @@ $2',
 'revdelete-suppress'          => '同时阻止管理员与其他用户查看数据',
 'revdelete-hide-image'        => '隐藏文件内容',
 'revdelete-unsuppress'        => '在已恢复的修订中移除限制',
+'revdelete-reasonotherlist'   => '其它理由',
+'revdelete-reason-dropdown'   => '*常用删除理由
+** 侵犯版权
+** 不合适的个人资料',
 'revdelete-log'               => '日志注释：',
+'revdelete-otherreason'       => '其它／附加的理由：',
 'revdelete-submit'            => '应用于选中的修订',
 'revdelete-logentry'          => '[[$1]]的修订可见性已更改',
 'logdelete-logentry'          => '[[$1]]的事件可见性已更改',
@@ -1920,7 +1925,7 @@ Template:消除歧義',
 'unwatch'              => '取消监视',
 'unwatchthispage'      => '停止监视',
 'notanarticle'         => '不是页面',
-'notvisiblerev'        => '修订版本已经删除',
+'notvisiblerev'        => '上次由不同用户所作的修订版本已经删除',
 'watchnochange'        => '在显示的时间段内您所监视的页面没有更改。',
 'watchlist-details'    => '不包含讨论页，有 $1 页在您的监视列表上。',
 'wlheader-enotif'      => '* 已经启动电子邮件通知功能。',
@@ -2018,6 +2023,7 @@ $NEWPAGE
 对此页面的最后一次编辑是由[[User:$3|$3]]（[[User talk:$3|讨论]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]）进行的。',
 'editcomment'      => '编辑摘要："<i>$1</i>"。',
 'revertpage'       => '已恢复[[Special:Contributions/$2|$2]]（[[User talk:$2|对话]]）的编辑至[[User:$1|$1]]的最后修订版本',
+'revertpage-nouser' => '恢复由（移除了的用户名）的编辑到[[User:$1|$1]]的最后一个修订版本',
 'rollback-success' => '已恢复$1的编辑；更改回$2的最后修订版本。',
 'sessionfailure'   => '似乎在您登录时发生问题，作为一项防范性措施，该动作已经被取消。请单击"后退"再次尝试！',
 
