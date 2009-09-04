@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Localization file for mwEmbed
  * updates can be merged from javascript by running maintenance/mergeJavascriptMsg.php
@@ -260,8 +261,8 @@ Insert script via DOM has failed. Please try reloading this page.',
 	'mwe-ogg-player-videoElement' => 'Native Ogg video support',
 	'mwe-ogg-player-vlc-activex' => 'VLC ActiveX',
 	'mwe-ogg-player-oggPlugin' => 'Generic Ogg plugin',
-	'mwe-ogg-player-quicktime-mozilla' => 'Quicktime plugin',
-	'mwe-ogg-player-quicktime-activex' => 'Quicktime ActiveX',
+	'mwe-ogg-player-quicktime-mozilla' => 'QuickTime plugin',
+	'mwe-ogg-player-quicktime-activex' => 'QuickTime ActiveX',
 	'mwe-ogg-player-cortado' => 'Java Cortado',
 	'mwe-ogg-player-flowplayer' => 'Flowplayer',
 	'mwe-ogg-player-selected' => '(selected)',
@@ -1854,8 +1855,8 @@ Versöhk ens, di Sigg heh neu ue laade.',
 	'mwe-ogg-player-videoElement' => 'Däm <i lang="en">Ogg</i>-Shpeller singe enjeboute Viddejo',
 	'mwe-ogg-player-vlc-activex' => 'Dä <i lang="en">VLC</i>-Speller över <i lang="en">ActiveX</i>',
 	'mwe-ogg-player-oggPlugin' => 'Däm <i lang="en">Ogg</i>-Shpeller sing Stanndatt-<i lang="en">plugin</i>',
-	'mwe-ogg-player-quicktime-mozilla' => 'Dä <i lang="en">Quicktime</i>-Shpeller als <i lang="en">plugin</i>',
-	'mwe-ogg-player-quicktime-activex' => 'Dä <i lang="en">Quicktime</i>-Shpeller övver <i lang="en">ActiveX</i>',
+	'mwe-ogg-player-quicktime-mozilla' => 'Dä <i lang="en">QuickTime</i>-Shpeller als <i lang="en">plugin</i>',
+	'mwe-ogg-player-quicktime-activex' => 'Dä <i lang="en">QuickTime</i>-Shpeller övver <i lang="en">ActiveX</i>',
 	'mwe-ogg-player-cortado' => '<i lang="en">Java Cortado</i> Shpeller',
 	'mwe-ogg-player-flowplayer' => '<i lang="en">Flow</i>shpeller',
 	'mwe-ogg-player-selected' => '(ußjesöhk)',
