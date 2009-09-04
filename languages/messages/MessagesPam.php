@@ -708,6 +708,7 @@ Abusni da pa murin deng aliwang talapanibala (admin) king {{SITENAME}} itang lam
 'revdelete-unhid'             => 'ipakit $1',
 'revdelete-log-message'       => '$1 para $2 {{PLURAL:$2|pamanalili|pamanalili}}',
 'logdelete-log-message'       => '$1 para $2 {{PLURAL:$2|miliari|miliari}}',
+'revdelete-edit-reasonlist'   => 'I-edit la reng sangkan king pamamura',
 
 # Suppression log
 'suppressionlog'     => 'Tala da reng mibawal (suppression log)',

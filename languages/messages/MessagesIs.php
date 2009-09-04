@@ -903,6 +903,7 @@ Prófaðu [[Special:Search|að leita á þessari wiki síðu]] að svipuðum sí
 'revdelete-restricted'      => 'hömlur settar á stjórnendur',
 'revdelete-unrestricted'    => 'fjarlægja hömlur á stjórnendur',
 'revdelete-log-message'     => '$1 fyrir $2 {{PLURAL:$2|breytingu|breytingar}}',
+'revdelete-edit-reasonlist' => 'Eyðingarástæður',
 
 # History merging
 'mergehistory'      => 'Sameina breytingaskrár',

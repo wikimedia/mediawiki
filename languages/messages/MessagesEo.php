@@ -988,6 +988,7 @@ Vi ne rajtas atingi ĝin.',
 'revdelete-concurrent-change' => 'Eraro ŝanĝante la aĵon de $2, $1: ĝia statuso estis ŝanĝita de alia uzanto dume dum vi provis ŝanĝi ĝin.
 Bonvolu kontroli la protokolojn.',
 'revdelete-only-restricted'   => 'Vi ne povas subpremi aĵojn de vido de administrantoj sen ankaux selekti unu el la aliaj subpremo-opcioj.',
+'revdelete-edit-reasonlist'   => 'Redakti kialojn por forigo',
 
 # Suppression log
 'suppressionlog'     => 'Protokolo pri subigado',

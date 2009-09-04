@@ -686,6 +686,7 @@ Mēģiniet [[Special:Search|meklēt]], lai atrastu saistītas lapas!',
 'revdelete-nologid-title'   => 'Nederīgs žurnāla ieraksts',
 'revdelete-hide-image'      => 'Paslēpt faila saturu',
 'revdel-restore'            => 'mainīt redzamību',
+'revdelete-edit-reasonlist' => 'Izmainīt dzēšanas iemeslus',
 
 # History merging
 'mergehistory-reason' => 'Iemesls:',

@@ -1065,6 +1065,7 @@ $1",
 ** Інфармацыя, якая парушае прыватнасьць',
 'revdelete-otherreason'       => 'Іншая/дадатковая прычына:',
 'revdelete-reasonotherlist'   => 'Іншая прычына',
+'revdelete-edit-reasonlist'   => 'Рэдагаваць прычыны выдаленьня',
 
 # Suppression log
 'suppressionlog'     => 'Журнал схаваньняў',

@@ -847,6 +847,7 @@ Manoo cee dugg.",
 'revdelete-concurrent-change' => 'Njuumte ci coppiteg cër bi taarixam doon $2, $1: beneen jëfandikukat moo soppi nekkiinam ci jamono ji nga koy jéem a soppi.
 Xoolal jaar-jaar yi.',
 'revdelete-only-restricted'   => 'Manoo fare yii cër ci gisu yorkat yi te tànnoo lu bon-bon benn ci yeneen tànneefi far yi.',
+'revdelete-edit-reasonlist'   => 'Soppi ngirtey far gi',
 
 # Suppression log
 'suppressionlog'     => 'Yéenekaayu far yi',

@@ -1094,6 +1094,7 @@ Nemate pristup do nje.',
 'revdelete-concurrent-change' => 'Greška pri izmjeni stavke od $2, $1: izgleda da je njen status promijenio netko drugi dok ste ju pokušavali mijenjati. 
 Provjerite evidencije.',
 'revdelete-only-restricted'   => 'Ne možete sakriti stavke od pregleda administratora bez odabira još jedne od drugih mogućnosti skrivanja.',
+'revdelete-edit-reasonlist'   => 'Uredi razloge za brisanje',
 
 # Suppression log
 'suppressionlog'     => 'Evidencije sakrivanja',

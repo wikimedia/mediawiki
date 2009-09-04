@@ -947,6 +947,7 @@ $1",
 'revdelete-unhid'             => 'memunculkan $1',
 'revdelete-log-message'       => '$1 bagi {{PLURAL:$2|sebuah|$2 buah}} semakan',
 'logdelete-log-message'       => '$1 bagi $2 peristiwa',
+'revdelete-edit-reasonlist'   => 'Ubah sebab-sebab hapus',
 
 # Suppression log
 'suppressionlog'     => 'Log penahanan',

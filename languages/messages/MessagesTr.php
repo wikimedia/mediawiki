@@ -952,6 +952,7 @@ Erişiminiz yok.',
 'revdelete-concurrent-change' => '$2 $1 tarihli öğe değiştirilirken hata: öğenin durumu siz değiştirmeye çalışırken bir başkası tarafından değiştirilmiş görünüyor.
 Lütfen günlükleri kontrol edin.',
 'revdelete-only-restricted'   => 'Öğeleri, diğer bastırma seçeneklerinden birini seçmeksizin, yönetici görünümden bastıramazsınız.',
+'revdelete-edit-reasonlist'   => 'Silme nedenlerini değiştir',
 
 # Suppression log
 'suppressionlog'     => 'Gizleme kayıtları',

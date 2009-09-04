@@ -995,6 +995,7 @@ $2',
 'revdelete-unhid'             => 'откривено: $1',
 'revdelete-log-message'       => '$1 за $2 {{PLURAL:$2|ревизију|ревизије|ревизија}}',
 'logdelete-log-message'       => '$1 за $2 {{PLURAL:$2|догађај|догађаја}}',
+'revdelete-edit-reasonlist'   => 'Уреди разлоге за брисање',
 
 # Suppression log
 'suppressionlog'     => 'Лог сакривања',

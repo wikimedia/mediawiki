@@ -1041,6 +1041,7 @@ $1",
 ** 不適切な個人情報',
 'revdelete-otherreason'       => '他の、または追加の理由:',
 'revdelete-reasonotherlist'   => '他の理由',
+'revdelete-edit-reasonlist'   => '削除理由を編集する',
 
 # Suppression log
 'suppressionlog'     => '秘匿記録',

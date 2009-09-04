@@ -626,6 +626,7 @@ Sedemê qedexekirinê ji $3 ev e: ''$2''",
 'revdelete-suppress'          => 'Sedemê jêbirinê ji koordînatoran ra jî veşêre',
 'revdelete-hid'               => '$1 veşêre',
 'revdelete-unhid'             => '$1 nîşanbide',
+'revdelete-edit-reasonlist'   => 'Sedemên jêbirinê biguherîne',
 
 # History merging
 'mergehistory-from' => 'Çavkanîya rûpelê:',

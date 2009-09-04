@@ -941,6 +941,7 @@ $1",
 'revdelete-unhid'             => 'แสดง $1',
 'revdelete-log-message'       => '$1 สำหรับ $2 {{PLURAL:$2|รุ่น|รุ่น}}',
 'logdelete-log-message'       => '$1 สำหรับ $2 {{PLURAL:$2|เหตุการณ์|เหตุการณ์}}',
+'revdelete-edit-reasonlist'   => 'แก้ไขรายชื่อเหตุผลในการลบ',
 
 # Suppression log
 'suppressionlog' => 'บันทึกการระงับ',

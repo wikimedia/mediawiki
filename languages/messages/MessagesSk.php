@@ -1106,6 +1106,7 @@ Pozrite sa prosím do záznamov.',
 ** Nevhodné osobné informácie',
 'revdelete-otherreason'       => 'Ďalšie dôvody:',
 'revdelete-reasonotherlist'   => 'Iný dôvod',
+'revdelete-edit-reasonlist'   => 'Upraviť dôvody zmazania',
 
 # Suppression log
 'suppressionlog'     => 'Záznam potlačení',

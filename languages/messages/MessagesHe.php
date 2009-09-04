@@ -1129,6 +1129,7 @@ $1",
 ** מידע אישי בלתי מתאים',
 'revdelete-otherreason'       => 'סיבה אחרת/נוספת:',
 'revdelete-reasonotherlist'   => 'סיבה אחרת',
+'revdelete-edit-reasonlist'   => 'עריכת סיבות המחיקה',
 
 # Suppression log
 'suppressionlog'     => 'יומן הסתרות',

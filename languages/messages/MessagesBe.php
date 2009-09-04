@@ -785,6 +785,7 @@ $2',
 'revdelete-unhid'             => 'паказваць $1',
 'revdelete-log-message'       => '$1 для $2 {{PLURAL:$2|версіі|версій}}',
 'logdelete-log-message'       => '$1 для $2 {{PLURAL:$2|падзеі|падзей}}',
+'revdelete-edit-reasonlist'   => 'Правіць прычыны сцірання',
 
 # Suppression log
 'suppressionlog'     => 'Журнал падаўленняў',

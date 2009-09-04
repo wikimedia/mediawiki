@@ -982,6 +982,7 @@ Tu non ha accesso a illo.',
 'revdelete-concurrent-change' => 'Error de modificar le entrata del $2, $1: il pare que alcuno altere ha cambiate su stato durante que tu tentava modificar lo.
 Per favor verifica le registros.',
 'revdelete-only-restricted'   => 'Tu non pote render entratas inaccessibile a administratores sin seliger tamben un del altere optiones de suppression.',
+'revdelete-edit-reasonlist'   => 'Modificar motivos pro deletion',
 
 # Suppression log
 'suppressionlog'     => 'Registro de suppressiones',

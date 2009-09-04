@@ -939,6 +939,7 @@ $1",
 'revdelete-unhid'             => ' $1پنهاه مکن',
 'revdelete-log-message'       => '$1 په $2 {{PLURAL:$2|بازبینی|بازبینی ان}}',
 'logdelete-log-message'       => '$1 په $2 {{PLURAL:$2|رویداد|رویدادان}}',
+'revdelete-edit-reasonlist'   => 'اصلاح دلایل حذف',
 
 # Suppression log
 'suppressionlog'     => 'آمار توقیف',

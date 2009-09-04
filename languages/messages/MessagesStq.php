@@ -816,6 +816,7 @@ Bestäätigje, dät du dät dwoo wolt, do Konsequenze ferstoanst un dät in Uure
 'revdelete-unhid'             => 'moakede $1 wier eepentelk',
 'revdelete-log-message'       => '$1 foar $2 {{PLURAL:$2|Version|Versione}}',
 'logdelete-log-message'       => '$1 foar $2 {{PLURAL:$2|Logboukiendraach|Logboukiendraage}}',
+'revdelete-edit-reasonlist'   => 'Läskgruunde beoarbaidje',
 
 # Suppression log
 'suppressionlog'     => 'Uursicht-Logbouk',

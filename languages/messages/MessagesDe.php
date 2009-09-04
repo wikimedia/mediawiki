@@ -1137,6 +1137,7 @@ Du hast darauf keinen Zugriff.',
 'revdelete-concurrent-change' => 'Fehler beim Bearbeiten des Eintrags vom $1, $2 Uhr: Es scheint, als ob der Status von jemandem geändert wurde, bevor du vorhattest, ihn zu bearbeiten.
 Bitte prüfe die Logbücher.',
 'revdelete-only-restricted'   => 'Du kannst keine Einträge vor Administratoren unterdrücken, ohne dass du auch eine der anderen Unterdrückungsoptionen ausgewählt hast.',
+'revdelete-edit-reasonlist'   => 'Löschgründe bearbeiten',
 
 # Suppression log
 'suppressionlog'     => 'Oversight-Logbuch',

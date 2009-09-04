@@ -714,6 +714,7 @@ Inkśi admińistratoři {{GRAMMAR:D.lp|{{SITENAME}}}} dali bydům mjeć dostymp 
 'revdelete-unhid'             => 'ńy schrůńaj $1',
 'revdelete-log-message'       => '$1 - $2 {{PLURAL:$2|wersyjo|wersyji|wersjůw}}',
 'logdelete-log-message'       => '$1 - $2 {{PLURAL:$2|zdařyńe|zdařyńa|zdařyń}}',
+'revdelete-edit-reasonlist'   => 'Sprowjańe powodůw wyćepańo zajty',
 
 # Suppression log
 'suppressionlog'     => 'Log schrůńyńć',

@@ -910,6 +910,7 @@ $1",
 'revdelete-unhid'             => 'unhid $1',
 'revdelete-log-message'       => '$1 za $2 {{PLURAL:$2|redakcija|redakciji|redakcije|redakcij|redakcij}}',
 'logdelete-log-message'       => '$1 za $2 {{PLURAL:$2|dogodek|dogodka|dogodke|dogodkov}}',
+'revdelete-edit-reasonlist'   => 'Uredi razloge za brisanje',
 
 # Suppression log
 'suppressionlog' => 'Dnevnik vračanj',

@@ -1131,6 +1131,7 @@ Bes esu joot un don bestääteje, dat De dat maache wells, dat De versteihß wat
 ** Esu en päsöönlesche Enfomazjuhne sin nit aanjebraach, udder esujaa jääje der Dateschoz.',
 'revdelete-otherreason'       => 'Ene andere ov zohsäzlejje Jrund:',
 'revdelete-reasonotherlist'   => 'Ene andere Jrund',
+'revdelete-edit-reasonlist'   => 'De Jrönde för et Fottschmieße beärbeide',
 
 # Suppression log
 'suppressionlog'     => 'Et Logboch fum Versteiche',
@@ -3436,7 +3437,7 @@ De könnts Ding Oppassliss ävver och [[Special:Watchlist/edit|övver e Fomulaa 
 # Core parser functions
 'unknown_extension_tag' => '„<code>$1</code>“ es en zosäzlejje Kennzeichnung, die kenne mer nit.',
 'duplicate-defaultsort' => "'''Opjepaß:'''
-Dä Shtanndat-Zooteer-Schlößel „$1“ övverschriif dä älldere Zooteer-Schlößel „$2“.",
+Dä Shtanndat-Zoot-Schlößel „$1“ övverschriif dä älldere Zoot-Schlößel „$2“.",
 
 # Special:Version
 'version'                          => 'Version vun de Wiki Soffwär zeije',

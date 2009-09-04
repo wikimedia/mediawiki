@@ -1115,6 +1115,7 @@ Ellenőrizd a naplókat.',
 ** Kényes személyes információk',
 'revdelete-otherreason'       => 'Más/további ok:',
 'revdelete-reasonotherlist'   => 'Más ok',
+'revdelete-edit-reasonlist'   => 'Törlési okok szerkesztése',
 
 # Suppression log
 'suppressionlog'     => 'Adatvédelmibiztos-napló',

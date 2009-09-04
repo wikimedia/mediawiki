@@ -861,6 +861,7 @@ Kuncén séjén bakalan bisa ngakses eusi nunyumput sarta bisa ngabolaykeun hapu
 'revdelete-unhid'             => 'tembongkeun $1',
 'revdelete-log-message'       => '$1 Keur $2 {{PLURAL:$2|révisi}}',
 'logdelete-log-message'       => '$1 keur $2 {{PLURAL:$2|kajadian|kajadian}}',
+'revdelete-edit-reasonlist'   => 'Alesan ngahapus éditan',
 
 # Suppression log
 'suppressionlog'     => 'Log nyumputken',

@@ -965,6 +965,7 @@ Du har ikke adgang til det.',
 'revdelete-concurrent-change' => 'Fejl under modificering af objekt dateret $1 klokken $2: Dens status ser ud til at være blevet ændret af en, imens du prøvede at modificere den.
 Se venligst loglisterne.',
 'revdelete-only-restricted'   => 'Du kan ikke skjule objekter for administratorerne uden at vælge en alternativ indstilling.',
+'revdelete-edit-reasonlist'   => 'Rediger sletningsårsager',
 
 # Suppression log
 'suppressionlog'     => 'Skjulningslog',

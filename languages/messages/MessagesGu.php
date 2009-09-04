@@ -731,8 +731,9 @@ Please log in again after you receive it.
 'history-feed-item-nocomment' => '$1, $2 સમયે',
 
 # Revision deletion
-'rev-delundel'   => 'બતાવો/છુપાવો',
-'revdel-restore' => 'વિઝિબિલિટિ બદલો',
+'rev-delundel'              => 'બતાવો/છુપાવો',
+'revdel-restore'            => 'વિઝિબિલિટિ બદલો',
+'revdelete-edit-reasonlist' => 'ભુંસવાનું કારણ બદલો.',
 
 # Merge log
 'revertmerge' => 'છુટુ પાડો',

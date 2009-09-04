@@ -829,6 +829,7 @@ Don't forget to personalize your {{SITENAME}} preferences.",
 'revdelete-unhid'             => 'दर्शायें $1',
 'revdelete-log-message'       => '$2 {{PLURAL:$2|अवतरण|अवतरणों}}के लिये $1',
 'logdelete-log-message'       => '$2 {{PLURAL:$2|घटना|घटनाओं}}के लिये $1',
+'revdelete-edit-reasonlist'   => 'हटाने के कारण बदलें',
 
 # Suppression log
 'suppressionlog'     => 'सप्रेशन सूची',

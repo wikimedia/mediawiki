@@ -853,6 +853,7 @@ It peule pa vëddlo.',
 ** Vandalism",
 'revdelete-otherreason'       => 'Àutra rason o adissional:',
 'revdelete-reasonotherlist'   => 'Àutra rason',
+'revdelete-edit-reasonlist'   => 'Modifiché la rason ëd lë scancelament',
 
 # Suppression log
 'suppressionlog'     => 'Registr ëd le sopression',

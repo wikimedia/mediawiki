@@ -1042,6 +1042,7 @@ Du har ikkje tilgang til henne.',
 'revdelete-concurrent-change' => 'Feil ved endring av eininga datert $2, $1: statusen ser ut til å ha vorte endra av einkvan annan medan du prøvde å endre ho.
 Sjekk gjerne loggføringa.',
 'revdelete-only-restricted'   => 'Du kan ikkje hindra vising av objekt av administratorar utan å òg velja eit av dei andre alternativa for hindring av vising.',
+'revdelete-edit-reasonlist'   => 'Endre grunnar til sletting',
 
 # Suppression log
 'suppressionlog'     => 'Logg over historikkfjerningar',

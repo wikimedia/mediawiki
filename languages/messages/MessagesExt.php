@@ -668,6 +668,7 @@ El restu e çahorilis desti güiqui sí tendrán premisu pa visoreal el continiu
 'revdelete-unrestricted'      => 'las restricionis a los çahorilis án siu esborrás',
 'revdelete-log-message'       => '$1 de $2 {{PLURAL:$2|revisión|revisionis}}',
 'logdelete-log-message'       => '$1 de $2 {{PLURAL:$2|eventu|eventus}}',
+'revdelete-edit-reasonlist'   => 'Eital razonis del esborrau',
 
 # Suppression log
 'suppressionlogtext' => 'Embahu se muestra una lista colos esborraus i tarugus mas nuevus, encruyendu conteniu açonchau polos çahorilis. Guipai la [[Special:IPBlockList|lista e tarugus a IP]] pa visoreal una lista colos tarugus ativus atualmenti.',

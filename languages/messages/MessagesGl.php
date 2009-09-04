@@ -1032,6 +1032,7 @@ Por favor, comprobe o rexistros.',
 ** Información persoal inapropiada',
 'revdelete-otherreason'       => 'Outro/motivo adicional:',
 'revdelete-reasonotherlist'   => 'Outro motivo',
+'revdelete-edit-reasonlist'   => 'Editar os motivos de borrado',
 
 # Suppression log
 'suppressionlog'     => 'Rexistro de supresión',

@@ -1058,6 +1058,7 @@ $1",
 'revdelete-concurrent-change' => '$1 $2에 수정된 항목을 갱신하면서 오류 발생: 이런 현상은 당신이 문서를 편집하고 있을 때 다른 사람이 문서를 편집했기 때문에 발생합니다.
 관련 로그를 확인해 보세요.',
 'revdelete-only-restricted'   => '다른 숨기기 설정을 같이 설정하면서 관리자가 보지 못하도록 특정 판을 숨길 수 없습니다.',
+'revdelete-edit-reasonlist'   => '삭제 이유 편집',
 
 # Suppression log
 'suppressionlog'     => '숨기기 기록',

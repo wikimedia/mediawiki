@@ -1521,7 +1521,6 @@ Parameter $1 is a link to the deletion log, with the text in {{msg|deletionlog}}
 
 # img_auth script messages
 'img-auth-accessdenied' => '[[Manual:Image Authorization]] Access Denied',
-'img-auth-desc'         => '[[Manual:Image Authorization]] script, see http://www.mediawiki.org/wiki/Manual:Image_Authorization',
 'img-auth-nopathinfo'   => '[[Manual:Image Authorization]] Missing PATH_INFO - see english description',
 'img-auth-notindir'     => '[[Manual:Image Authorization]] when the specified path is not in upload directory.',
 'img-auth-badtitle'     => '[[Manual:Image Authorization]] bad title, $1 is the invalid title',

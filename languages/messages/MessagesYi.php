@@ -925,6 +925,7 @@ $2',
 'revdelete-log-message'       => '$1 פֿאר  {{PLURAL:$2|איין רעוויזיע|$2 רעוויזיעס}}',
 'logdelete-log-message'       => '$1 פֿאר {{PLURAL:$2|איין פאסירונג|$2 פאסירונגען}}',
 'revdelete-only-restricted'   => 'איר קענט נישט באהאלטן פרטים פון זעהן דורך אדמיניסטראטורן נאר אויב איר סעלעקטירט איינע פון די אנדערע באהאלטן ברירות.',
+'revdelete-edit-reasonlist'   => 'רעדאַקטירן אויסמעקן סיבות',
 
 # Suppression log
 'suppressionlog' => 'באהאלטונגען לאג',

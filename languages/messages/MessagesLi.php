@@ -874,6 +874,7 @@ Anger beheerders van {{SITENAME}} kinne de verborge inhoud benäöjere en de ver
 'revdelete-unhid'             => 'haet $1 zichbaar gemaak',
 'revdelete-log-message'       => '$1 veur $2 {{PLURAL:$2|versie|versies}}',
 'logdelete-log-message'       => '$1 veur $2 {{PLURAL:$2|logbookregel|logbookregels}}',
+'revdelete-edit-reasonlist'   => 'Reeje veur verwiedering bewèrke',
 
 # Suppression log
 'suppressionlog'     => 'Verbergingslogbook',

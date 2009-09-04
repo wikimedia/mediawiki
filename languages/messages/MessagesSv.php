@@ -1104,6 +1104,7 @@ Du har inte behörighet till det.',
 'revdelete-concurrent-change' => 'Fel vid förändring av objektet daterat $2, $1: dess status verkar ha ändrats av någon annan medan du försökte förändra det.
 Vänligen kontrollera loggarna.',
 'revdelete-only-restricted'   => 'Du kan inte hindra visning av objekt av administratörer utan att också välja en av de övriga visningshindrande alternativen.',
+'revdelete-edit-reasonlist'   => 'Redigera anledningar för radering',
 
 # Suppression log
 'suppressionlog'     => 'Undanhållandelogg',

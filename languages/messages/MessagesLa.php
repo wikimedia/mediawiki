@@ -782,6 +782,7 @@ Titulus: '''({{int:cur}})''' = dissimilis ab emendatione novissima,
 'revdelete-unhid'            => 'monstravit $1',
 'revdelete-log-message'      => '$1 {{PLURAL:$2|unius emendationis|$2 emendationum}}',
 'logdelete-log-message'      => '$1 {{PLURAL:$2|unius eventi|$2 eventorum}}',
+'revdelete-edit-reasonlist'  => 'Causas deletionum fasciculorum recensere',
 
 # Suppression log
 'suppressionlog' => 'Acta suppressionum',

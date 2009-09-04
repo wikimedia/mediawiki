@@ -898,6 +898,7 @@ $3 చెప్పిన కారణం: ''$2''",
 'revdelete-unhid'             => '$1 చూపించు',
 'revdelete-log-message'       => '$2 {{PLURAL:$2|కూర్పు|కూర్పుల}}పై $1',
 'logdelete-log-message'       => '$2 {{PLURAL:$2|ఘటన|ఘటనల}}కు $1',
+'revdelete-edit-reasonlist'   => 'తొలగింపు కారణాలని మార్చండి',
 
 # Suppression log
 'suppressionlog'     => 'అణచివేతల చిట్టా',

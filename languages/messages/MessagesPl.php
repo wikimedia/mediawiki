@@ -1062,6 +1062,7 @@ Proszę sprawdzić rejestr operacji.',
 ** Informacja naruszająca prywatność',
 'revdelete-otherreason'       => 'Inny lub dodatkowy powód:',
 'revdelete-reasonotherlist'   => 'Inny powód',
+'revdelete-edit-reasonlist'   => 'Edycja listy powodów usunięcia pliku',
 
 # Suppression log
 'suppressionlog'     => 'Rejestr utajniania',

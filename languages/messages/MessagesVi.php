@@ -1030,6 +1030,7 @@ Bạn không có đủ quyền để truy cập nó.',
 'revdelete-concurrent-change' => 'Có lỗi khi sửa mục ghi vào lúc $2, $1: trạng thái của nó dường như đã được ai khác sửa đổi trong khi bạn đang sửa.
 Xin hãy kiểm tra nhật trình.',
 'revdelete-only-restricted'   => 'Bạn không thể ẩn mục này không để bảo quản viên nhìn thấy mà không chọn một trong các tùy chọn ẩn khác.',
+'revdelete-edit-reasonlist'   => 'Sửa lý do xóa',
 
 # Suppression log
 'suppressionlog'     => 'Nhật trình ẩn giấu',

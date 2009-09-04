@@ -1001,6 +1001,7 @@ Você não tem acesso a ele.',
 'revdelete-concurrent-change' => 'Erro ao modificar o item datado de $2, $1: o seu estado parece ter sido alterado por outra pessoa enquanto você tentava modificá-lo.
 Por favor, verifique os registos.',
 'revdelete-only-restricted'   => 'Não pode suprimir itens de serem visualizados por administradores sem também selecionar uma das outras opções de supressão.',
+'revdelete-edit-reasonlist'   => 'Editar motivos de eliminação',
 
 # Suppression log
 'suppressionlog'     => 'Registro de supressões',

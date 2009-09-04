@@ -1136,6 +1136,7 @@ Vous n'y avez pas accès.",
 'revdelete-concurrent-change' => "Erreur lors de la modification de l'élément daté du $1 à $2 : son statut a été changé par quelqu'un d'autre pendant que vous le modifiez.
 Vérifiez les journaux.",
 'revdelete-only-restricted'   => 'Vous ne pouvez pas supprimer ces éléments aux administrateurs sans également sélectionner des autres options de suppression.',
+'revdelete-edit-reasonlist'   => 'Modifier les motifs fréquents de suppression',
 
 # Suppression log
 'suppressionlog'     => 'Journal des suppressions',

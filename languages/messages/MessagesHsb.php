@@ -922,6 +922,7 @@ Prošu přepruwuj protokole.',
 ** Wandalizm',
 'revdelete-otherreason'       => 'Druha/přidatna přičina:',
 'revdelete-reasonotherlist'   => 'Druha přičina',
+'revdelete-edit-reasonlist'   => 'Přičiny za wušmórnjenje wobdźěłać',
 
 # Suppression log
 'suppressionlog'     => 'Protokol potłóčenjow',

@@ -902,6 +902,7 @@ $1",
 'logdelete-log-message'       => '$1 vir $2 {{PLURAL:$2|gebeurtenis|gebeurtenisse}}',
 'revdelete-modify-missing'    => 'Fout met die wysiging van item ID $1: dit is nie in die databasis nie!',
 'revdelete-reasonotherlist'   => 'Ander rede',
+'revdelete-edit-reasonlist'   => 'Wysig skrap redes',
 
 # Suppression log
 'suppressionlog' => 'Verbergingslogboek',

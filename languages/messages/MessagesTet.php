@@ -364,9 +364,10 @@ Check your spelling, ka [[Special:UserLogin/signup|kria konta foun]].',
 'history-feed-item-nocomment' => '$1 iha $2',
 
 # Revision deletion
-'rev-delundel'        => 'hatudu/subar',
-'revisiondelete'      => 'Halakon/restaurar versaun',
-'revdelete-hide-user' => "Subar naran edita-na'in/IP",
+'rev-delundel'              => 'hatudu/subar',
+'revisiondelete'            => 'Halakon/restaurar versaun',
+'revdelete-hide-user'       => "Subar naran edita-na'in/IP",
+'revdelete-edit-reasonlist' => 'Edita lista motivu nian',
 
 # Diffs
 'lineno' => 'Liña $1:',

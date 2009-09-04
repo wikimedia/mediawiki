@@ -1076,6 +1076,7 @@ $1",
 ** Вандализм',
 'revdelete-otherreason'       => 'Другая/дополнительная причина:',
 'revdelete-reasonotherlist'   => 'Другая причина',
+'revdelete-edit-reasonlist'   => 'Править список причин',
 
 # Suppression log
 'suppressionlog'     => 'Журнал сокрытий',
