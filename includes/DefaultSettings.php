@@ -288,6 +288,7 @@ $wgForeignFileRepos = array();
  * this breaks interlanguage links
  */
 $wgLegalTitleChars = " %!\"$&'()*,\\-.\\/0-9:;=?@A-Z\\\\^_`a-z~\\x80-\\xFF+";
+$wgIllegalFileChars = ":";  // These are additional characters that should be replaced with '-' in file names
 
 /**
  * The external URL protocols
