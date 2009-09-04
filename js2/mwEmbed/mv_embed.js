@@ -335,6 +335,11 @@ function mv_set_loading(target, load_id){
 /**
   * mvJsLoader class handles initialization and js file loads
   */
+  
+//shortcut: 
+function mwLoad(loadSet, callback){
+	mvJsLoader.doLoad(loadSet, callback);
+} 
 var mvJsLoader = {
 	 libreq : {},
 	 libs : {},
