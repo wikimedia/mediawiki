@@ -10,13 +10,10 @@
  */
 
 /** */
+define( 'MW_CMDLINE_CALLBACK', 'wfSetupUpdateScript' );
 $wgUseMasterForMaintenance = true;
 require_once( dirname(__FILE__) . '/commandLine.inc' );
 require( "updaters.inc" );
-
-# Don't try to load stuff from l10n_cache yet
-$lc = Language::getLocalisationCache();
-$lc->disableBackend();
 
 $wgTitle = Title::newFromText( "MediaWiki database updater" );
 
@@ -43,4 +40,16 @@ do_all_updates( $shared, $purge );
 
 print "Done.\n";
 
+function wfSetupUpdateScript() {
+	global $wgLocalisationCacheConf;
 
+	# Don't try to access the database
+	# This needs to be disabled early since extensions will try to use the l10n 
+	# cache from $wgExtensionSetupFunctions (bug 20471)
+	$wgLocalisationCacheConf = array(
+		'class' => 'LocalisationCache',	
+		'storeClass' => 'LCStore_Null',
+		'storeDirectory' => false,
+		'manualRecache' => false,
+	);
+}
