@@ -275,7 +275,9 @@ class LocalisationCache {
 			$this->initLanguage( $code );
 		}
 		// Check to see if initLanguage() loaded it for us
-		if ( isset( $this->loadedSubitems[$code][$key][$subkey] ) ) {
+		if ( isset( $this->loadedItems[$code][$key] )
+			|| isset( $this->loadedSubitems[$code][$key][$subkey] ) )
+		{
 			return;
 		}
 		if ( isset( $this->shallowFallbacks[$code] ) ) {
