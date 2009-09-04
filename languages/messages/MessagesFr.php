@@ -1103,7 +1103,7 @@ Les autres administrateurs de {{SITENAME}} pourront toujours accéder au contenu
 'revdelete-suppress'          => 'Cacher les données également pour les administrateurs',
 'revdelete-hide-image'        => 'Masquer le contenu du fichier',
 'revdelete-unsuppress'        => 'Enlever les restrictions sur les versions restaurées',
-'revdelete-log'               => 'Commentaire pour le journal :',
+'revdelete-log'               => 'Raison de la suppression :',
 'revdelete-submit'            => 'Appliquer à la version sélectionnée',
 'revdelete-logentry'          => 'a modifié la visibilité de la version de [[$1]]',
 'logdelete-logentry'          => 'a modifié la visibilité de l’événement de [[$1]]',
@@ -1136,6 +1136,11 @@ Vous n'y avez pas accès.",
 'revdelete-concurrent-change' => "Erreur lors de la modification de l'élément daté du $1 à $2 : son statut a été changé par quelqu'un d'autre pendant que vous le modifiez.
 Vérifiez les journaux.",
 'revdelete-only-restricted'   => 'Vous ne pouvez pas supprimer ces éléments aux administrateurs sans également sélectionner des autres options de suppression.',
+'revdelete-reason-dropdown'   => "* Raisons courantes de suppression 
+** Violation des droits d'auteurs
+** Renseignements personnels inappropriés",
+'revdelete-otherreason'       => 'Autre raison / raison supplémentaire :',
+'revdelete-reasonotherlist'   => 'Autre raison',
 'revdelete-edit-reasonlist'   => 'Modifier les motifs fréquents de suppression',
 
 # Suppression log
@@ -2186,21 +2191,22 @@ La supprimer peut perturber le fonctionnement de la base de données de {{SITENA
 veuiller ne procéder qu’avec prudence.',
 
 # Rollback
-'rollback'         => 'Révoquer les modifications',
-'rollback_short'   => 'Révoquer',
-'rollbacklink'     => 'révoquer',
-'rollbackfailed'   => 'La révocation a échoué',
-'cantrollback'     => 'Impossible de révoquer la modification ;
+'rollback'          => 'Révoquer les modifications',
+'rollback_short'    => 'Révoquer',
+'rollbacklink'      => 'révoquer',
+'rollbackfailed'    => 'La révocation a échoué',
+'cantrollback'      => 'Impossible de révoquer la modification ;
 le dernier contributeur est le seul auteur de cette page.',
-'alreadyrolled'    => 'Impossible de révoquer la dernière modification de la page « [[:$1]] » effectuée par [[User:$2|$2]] ([[User talk:$2|Discuter]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) ;
+'alreadyrolled'     => 'Impossible de révoquer la dernière modification de la page « [[:$1]] » effectuée par [[User:$2|$2]] ([[User talk:$2|Discuter]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) ;
 quelqu’un d’autre a déjà modifié ou révoqué la page.
 
 La dernière modification de la page a été effectuée par [[User:$3|$3]] ([[User talk:$3|Discuter]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'      => "Le résumé de la modification était : « ''$1'' ».",
-'revertpage'       => 'Révocation des modifications de [[Special:Contributions/$2|$2]] ([[User talk:$2|discussion]]) vers la dernière version de [[User:$1|$1]]',
-'rollback-success' => 'Révocation des modifications effectuées par $1 ;
+'editcomment'       => "Le résumé de la modification était : « ''$1'' ».",
+'revertpage'        => 'Révocation des modifications de [[Special:Contributions/$2|$2]] ([[User talk:$2|discussion]]) vers la dernière version de [[User:$1|$1]]',
+'revertpage-nouser' => 'Révocation des modifications par (nom d’utilisateur supprimé) à la dernière version par [[User:$1|$1]]',
+'rollback-success'  => 'Révocation des modifications effectuées par $1 ;
 rétablissement de la dernière version par $2.',
-'sessionfailure'   => 'Votre session de connexion semble avoir des problèmes ;
+'sessionfailure'    => 'Votre session de connexion semble avoir des problèmes ;
 cette action a été annulée en prévention d’un piratage de session.
 Veuillez cliquer sur « Précédent », rechargez la page d’où vous venez, puis réessayez.',
 

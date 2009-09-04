@@ -1104,7 +1104,7 @@ Bitte bestätige, dass du beabsichtigst, dies zu tun, die Konsequenzen verstehst
 'revdelete-suppress'          => 'Grund der Löschung auch vor Administratoren verstecken',
 'revdelete-hide-image'        => 'Bildinhalt verstecken',
 'revdelete-unsuppress'        => 'Einschränkungen für wiederhergestellte Versionen aufheben',
-'revdelete-log'               => 'Kommentar/Begründung (erscheint im Logbuch):',
+'revdelete-log'               => 'Grund der Löschung:',
 'revdelete-submit'            => 'Auf ausgewählte Version anwenden',
 'revdelete-logentry'          => 'hat die Versionsansicht für „[[$1]]“ geändert',
 'logdelete-logentry'          => 'hat die Sichtbarkeit für „[[$1]]“ geändert',
@@ -1137,6 +1137,11 @@ Du hast darauf keinen Zugriff.',
 'revdelete-concurrent-change' => 'Fehler beim Bearbeiten des Eintrags vom $1, $2 Uhr: Es scheint, als ob der Status von jemandem geändert wurde, bevor du vorhattest, ihn zu bearbeiten.
 Bitte prüfe die Logbücher.',
 'revdelete-only-restricted'   => 'Du kannst keine Einträge vor Administratoren unterdrücken, ohne dass du auch eine der anderen Unterdrückungsoptionen ausgewählt hast.',
+'revdelete-reason-dropdown'   => '*Allgemeine Löschgründe
+** Urheberrechtsverletzung
+** Unangebrachte persönliche Informationen',
+'revdelete-otherreason'       => 'Andere/zusätzliche Begründung:',
+'revdelete-reasonotherlist'   => 'Andere Begründung',
 'revdelete-edit-reasonlist'   => 'Löschgründe bearbeiten',
 
 # Suppression log
@@ -1738,6 +1743,24 @@ Wenn das Problem weiter besteht, informiere einen [[Special:ListUsers/sysop|Syst
 'upload-unknown-size'       => 'Unbekannte Größe',
 'upload-http-error'         => 'Ein HTTP-Fehler ist aufgetreten: $1',
 
+# img_auth script messages
+'img-auth-accessdenied' => 'Zugriff verweigert',
+'img-auth-nopathinfo'   => 'PATH_INFO fehlt.
+Dein Server ist nicht dafür eingerichtet, diese Information weiterzugeben.
+Es könnte CGI-basiert sein und unterstützt img_auth nicht.
+Siehe http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
+'img-auth-notindir'     => 'Der gewünschte Pfad ist nicht im konfigurierten Uploadverzeichnis.',
+'img-auth-badtitle'     => 'Aus „$1“ kann kein gültiger Titel erstellt werden.',
+'img-auth-nologinnWL'   => 'Du bist nicht angemeldet und „$1“ ist nicht in der weißen Liste.',
+'img-auth-nofile'       => 'Datei „$1“ existiert nicht.',
+'img-auth-isdir'        => 'Du versuchst, auf ein Verzeichnis „$1“ zuzugreifen.
+Nur Dateizugriff ist erlaubt.',
+'img-auth-streaming'    => 'Lade „$1“.',
+'img-auth-public'       => 'img_auth.php gibt Dateien von einem privaten Wiki aus.
+Dieses Wiki wurde als ein öffentliches Wiki konfiguriert.
+Aus Sicherheitsgründen ist img_auth.php deaktiviert.',
+'img-auth-noread'       => 'Benutzer hat keine Berechtigung, „$1“ zu lesen.',
+
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'URL ist nicht erreichbar',
 'upload-curl-error6-text'  => 'Die angegebene URL ist nicht erreichbar. Prüfe sowohl die URL auf Fehler als auch den Online-Status der Seite.',
@@ -2187,18 +2210,19 @@ Rückmeldungen und weitere Hilfe: {{fullurl:{{MediaWiki:Helppage}}}}',
 'delete-warning-toobig'  => 'Diese Seite hat mit mehr als $1 {{PLURAL:$1|Version|Versionen}} eine sehr lange Versionsgeschichte. Das Löschen kann zu Störungen im Datenbankbetrieb führen.',
 
 # Rollback
-'rollback'         => 'Zurücksetzen der Änderungen',
-'rollback_short'   => 'Zurücksetzen',
-'rollbacklink'     => 'Zurücksetzen',
-'rollbackfailed'   => 'Zurücksetzen gescheitert',
-'cantrollback'     => 'Die Änderung kann nicht zurückgesetzt werden, da es keine früheren Autoren gibt.',
-'alreadyrolled'    => 'Das Zurücksetzen der Änderungen von [[User:$2|$2]] ([[User talk:$2|Diskussion]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) an [[:$1]] ist gescheitert, da in der Zwischenzeit ein anderer Benutzer die Seite geändert hat.
+'rollback'          => 'Zurücksetzen der Änderungen',
+'rollback_short'    => 'Zurücksetzen',
+'rollbacklink'      => 'Zurücksetzen',
+'rollbackfailed'    => 'Zurücksetzen gescheitert',
+'cantrollback'      => 'Die Änderung kann nicht zurückgesetzt werden, da es keine früheren Autoren gibt.',
+'alreadyrolled'     => 'Das Zurücksetzen der Änderungen von [[User:$2|$2]] ([[User talk:$2|Diskussion]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) an [[:$1]] ist gescheitert, da in der Zwischenzeit ein anderer Benutzer die Seite geändert hat.
 
 Die letzte Änderung stammt von [[User:$3|$3]] ([[User talk:$3|Diskussion]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'      => "Die Änderungszusammenfassung lautet: ''„$1“''.",
-'revertpage'       => 'Änderungen von [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskussion]]) rückgängig gemacht und letzte Version von [[User:$1|$1]] wiederhergestellt',
-'rollback-success' => 'Die Änderungen von $1 wurden rückgängig gemacht und die letzte Version von $2 wurde wiederhergestellt.',
-'sessionfailure'   => 'Es gab ein Problem mit der Übertragung deiner Benutzerdaten.
+'editcomment'       => "Die Änderungszusammenfassung lautet: ''„$1“''.",
+'revertpage'        => 'Änderungen von [[Special:Contributions/$2|$2]] ([[User talk:$2|Diskussion]]) rückgängig gemacht und letzte Version von [[User:$1|$1]] wiederhergestellt',
+'revertpage-nouser' => 'Änderungen von (Benutzername entfernt) rückgängig gemacht und letzte Version von [[User:$1|$1]] wiederhergestellt',
+'rollback-success'  => 'Die Änderungen von $1 wurden rückgängig gemacht und die letzte Version von $2 wurde wiederhergestellt.',
+'sessionfailure'    => 'Es gab ein Problem mit der Übertragung deiner Benutzerdaten.
 Diese Aktion wurde daher sicherheitshalber abgebrochen, um eine falsche Zuordnung deiner Änderungen zu einem anderen Benutzer zu verhindern.
 Bitte gehe zurück und versuche den Vorgang erneut auszuführen.',
 

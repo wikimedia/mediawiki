@@ -870,7 +870,7 @@ Byddwch gystal â chadarnhau eich bod yn bwriadu gwneud hyn, eich bod yn deall y
 'revdelete-suppress'          => 'Atal data oddi wrth Weinyddwyr yn ogystal ag eraill',
 'revdelete-hide-image'        => 'Cuddio cynnwys y ffeil',
 'revdelete-unsuppress'        => "Tynnu'r cyfyngiadau ar y golygiadau a adferwyd",
-'revdelete-log'               => 'Sylw ar gyfer y lòg:',
+'revdelete-log'               => 'Rheswm dros ddileu:',
 'revdelete-submit'            => 'Rhoi ar waith ar y golgiad dewisedig',
 'revdelete-logentry'          => 'wedi newid y gallu i weld golygiadau ar [[$1]]',
 'logdelete-logentry'          => 'wedi newid y gallu i weld y digwyddiad ar [[$1]]',

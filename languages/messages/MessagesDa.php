@@ -932,7 +932,7 @@ Vær venlig at bekræfte at du vil gøre dette, at du forstår konsekvenserne, o
 'revdelete-suppress'          => 'Skjul også informationen for administratorer',
 'revdelete-hide-image'        => 'Skjul filindhold',
 'revdelete-unsuppress'        => 'Ophæv begrænsninger for gendannede versioner',
-'revdelete-log'               => 'Kommentar til loggen:',
+'revdelete-log'               => 'Sletningsårsag:',
 'revdelete-submit'            => 'Bruge på udvalgte versioner',
 'revdelete-logentry'          => 'Versionsvisning ændret for [[$1]]',
 'logdelete-logentry'          => "ændrede [[$1]]'s synlighed",
@@ -965,6 +965,11 @@ Du har ikke adgang til det.',
 'revdelete-concurrent-change' => 'Fejl under modificering af objekt dateret $1 klokken $2: Dens status ser ud til at være blevet ændret af en, imens du prøvede at modificere den.
 Se venligst loglisterne.',
 'revdelete-only-restricted'   => 'Du kan ikke skjule objekter for administratorerne uden at vælge en alternativ indstilling.',
+'revdelete-reason-dropdown'   => '* Almindelige sletningsårsager
+** Overtrædelse af ophavsret
+** Upassende personlige oplysninger',
+'revdelete-otherreason'       => 'Anden/yderligere årsag:',
+'revdelete-reasonotherlist'   => 'Anden årsag',
 'revdelete-edit-reasonlist'   => 'Rediger sletningsårsager',
 
 # Suppression log
@@ -1549,7 +1554,7 @@ Sletningsloggen for denne fil er gengivet herunder.",
 'upload-curl-error28-text' => 'Siden er for længe om at svare. Kontroller om siden er online, vent et øjeblik og prøv igen. Det kan måske hjælpe at prøve på et senere tidspunkt.',
 
 'license'            => 'Licens',
-'license-header'     => 'Licens',
+'license-header'     => 'Licensering',
 'nolicense'          => 'intet forvalg',
 'license-nopreview'  => '(forhåndsvisning ikke mulig)',
 'upload_source_url'  => ' (gyldig, offentligt tillgængelig URL)',
@@ -1990,20 +1995,21 @@ Bekræft venligst at du virkelig vil gøre dette, at du forstår konsekvenserne,
 'delete-warning-toobig'  => 'Denne side har en stor historik, over {{PLURAL:$1|en version|$1 versioner}} versioner, slettes den kan det forstyrre driften af {{SITENAME}}, gå forsigtigt frem.',
 
 # Rollback
-'rollback'         => 'Fjern redigeringer',
-'rollback_short'   => 'Fjern redigering',
-'rollbacklink'     => 'fjern redigering',
-'rollbackfailed'   => 'Kunne ikke fjerne redigeringen',
-'cantrollback'     => 'Kan ikke fjerne redigering; den sidste bruger er den eneste forfatter.',
-'alreadyrolled'    => 'Kan ikke fjerne den seneste redigering af [[:$1]] foretaget af [[User:$2|$2]] ([[User talk:$2|diskussion]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]);
+'rollback'          => 'Fjern redigeringer',
+'rollback_short'    => 'Fjern redigering',
+'rollbacklink'      => 'fjern redigering',
+'rollbackfailed'    => 'Kunne ikke fjerne redigeringen',
+'cantrollback'      => 'Kan ikke fjerne redigering; den sidste bruger er den eneste forfatter.',
+'alreadyrolled'     => 'Kan ikke fjerne den seneste redigering af [[:$1]] foretaget af [[User:$2|$2]] ([[User talk:$2|diskussion]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]);
 en anden har allerede redigeret siden eller fjernet redigeringen.
 
 Den seneste redigering er foretaget af [[User:$3|$3]] ([[User talk:$3|diskussion]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'      => "Redigeringsbeskrivelsen var: \"''\$1''\".",
-'revertpage'       => 'Gendannelse til seneste version ved [[User:$1|$1]], fjerner ændringer fra [[Special:Contributions/$2|$2]] ([[User talk:$2|diskussion]])',
-'rollback-success' => 'Ændringerne fra $1 er fjernet,
+'editcomment'       => "Redigeringsbeskrivelsen var: \"''\$1''\".",
+'revertpage'        => 'Gendannelse til seneste version ved [[User:$1|$1]], fjerner ændringer fra [[Special:Contributions/$2|$2]] ([[User talk:$2|diskussion]])',
+'revertpage-nouser' => 'Gendannet til seneste version af [[User:$1|$1]], ændringer fra (brugernavn fjernet) fjernet',
+'rollback-success'  => 'Ændringerne fra $1 er fjernet,
 og den seneste version af $2 er gendannet.',
-'sessionfailure'   => 'Der lader til at være et problem med din loginsession; denne handling blev annulleret som en sikkerhedsforanstaltning mod kapring af sessionen. Tryk på "tilbage"-knappen og genindlæs den side du kom fra, og prøv dernæst igen.',
+'sessionfailure'    => 'Der lader til at være et problem med din loginsession; denne handling blev annulleret som en sikkerhedsforanstaltning mod kapring af sessionen. Tryk på "tilbage"-knappen og genindlæs den side du kom fra, og prøv dernæst igen.',
 
 # Protect
 'protectlogpage'              => 'Skrivebeskyttelseslog',

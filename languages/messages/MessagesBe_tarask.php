@@ -1650,6 +1650,10 @@ $1",
 'upload-unknown-size'       => 'Невядомы памер',
 'upload-http-error'         => 'Узьнікла памылка HTTP: $1',
 
+# img_auth script messages
+'img-auth-badtitle' => 'Немагчыма стварыць слушную назву з «$1».',
+'img-auth-nofile'   => 'Файл «$1» не існуе.',
+
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Немагчыма дасягнуць URL-адрас',
 'upload-curl-error6-text'  => 'Немагчыма адкрыць пазначаны URL-адрас.

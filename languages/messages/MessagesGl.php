@@ -1633,6 +1633,9 @@ Se o problema persiste contacte cun [[Special:ListUsers/sysop|administrador]] do
 'upload-unknown-size'       => 'Tamaño descoñecido',
 'upload-http-error'         => 'Produciuse un erro HTTP: $1',
 
+# img_auth script messages
+'img-auth-accessdenied' => 'Acceso denegado',
+
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Non se logrou acceder a ese URL',
 'upload-curl-error6-text'  => 'Non se logrou acceder ao URL que indicou. Comprobe que ese URL é correcto e que o sitio está activo.',

@@ -611,12 +611,12 @@ Aceasta se poate datora probleme în program.
 Ultima interogare încercată a fost:
 <blockquote><tt>$1</tt></blockquote>
 din cadrul funcţiei "<tt>$2</tt>".
-$5 a returnat eroarea "<tt>$3: $4</tt>".',
+Baza de date a returnat eroarea "<tt>$3: $4</tt>".',
 'dberrortextcl'        => 'A apărut o eroare de sintaxă în interogare.
 Ultima interogare încercată a fost:
 „$1”
 din funcţia „$2”.
-$5 a returnat eroarea „$3: $4”',
+Baza de date a returnat eroarea „$3: $4”',
 'laggedslavemode'      => 'Atenţie: S-ar putea ca pagina să nu conţină ultimele actualizări.',
 'readonly'             => 'Baza de date este blocată la scriere',
 'enterlockreason'      => 'Precizează motivul pentru blocare, incluzând o estimare a termenului de deblocare a bazei de date',
@@ -715,8 +715,7 @@ Verifică dacă ai scris corect sau [[Special:UserLogin/signup|creează un nou c
 'nouserspecified'            => 'Trebuie să specificaţi un nume de utilizator.',
 'wrongpassword'              => 'Parola pe care ai introdus-o este greşită. Te rugăm să încerci din nou.',
 'wrongpasswordempty'         => 'Spaţiul pentru introducerea parolei nu a fost completat. Vă rugăm să încercaţi din nou.',
-'passwordtooshort'           => 'Parola dumneavoastră este prea scurtă.
-Aceasta trebuie să aibă cel puţin {{PLURAL:$1|1 caracter|$1 caractere}}.',
+'passwordtooshort'           => 'Parola trebuie să aibă cel puţin {{PLURAL:$1|1 caracter|$1 caractere}}.',
 'password-name-match'        => 'Parola dumneavoastră trebuie să fie diferită de numele de utilizator.',
 'mailmypassword'             => 'Trimite-mi parola pe e-mail!',
 'passwordremindertitle'      => 'Noua parolă temporară la {{SITENAME}}',
@@ -1049,7 +1048,7 @@ Alţi administratori {{SITENAME}} vor putea accesa conţinutul ascuns şi îl po
 'revdelete-suppress'          => 'Ascunde de asemenea reviziile faţă de administratori',
 'revdelete-hide-image'        => 'Ascunde conţinutul fişierului',
 'revdelete-unsuppress'        => 'Elimină restricţiile în reviziile restaurate',
-'revdelete-log'               => 'Comentariu log:',
+'revdelete-log'               => 'Motiv pentru ştergere:',
 'revdelete-submit'            => 'Aplică reviziilor selectate',
 'revdelete-logentry'          => 'vizibilitatea reviziei pentru [[$1]] a fost modificată',
 'logdelete-logentry'          => 'a fost modificată vizibilitatea evenimentului [[$1]]',
@@ -1081,6 +1080,11 @@ Nu ai acces asupra lui.',
 'revdelete-no-change'         => "'''Atenţie:''' elementul datat $2, $1 are deja aplicată vizibilitatea cerută.",
 'revdelete-concurrent-change' => 'Eroare la modificarea elementului datat $2, $1: statutul său a fost modificat de altcineva în timpul acestei modificări.',
 'revdelete-only-restricted'   => 'Nu poţi suprima aceste elemente la vizualizarea de către administratori fără a marca una din celelalte opţiuni de suprimare.',
+'revdelete-reason-dropdown'   => '*Motive de ştergere
+** Violare drepturi de autor
+** Informaţii personale inadecvate',
+'revdelete-otherreason'       => 'Motiv diferit/adiţional',
+'revdelete-reasonotherlist'   => 'Alt motiv',
 'revdelete-edit-reasonlist'   => 'Modifică motivele ştergerii',
 
 # Suppression log
@@ -1667,6 +1671,10 @@ Dacă problema persistă, contactaţi un [[Special:ListUsers/sysop|administrator
 'upload-unknown-size'       => 'Mărime necunoscută',
 'upload-http-error'         => 'A avut loc o eroare HTTP: $1',
 
+# img_auth script messages
+'img-auth-accessdenied' => 'Acces interzis',
+'img-auth-nofile'       => 'Fişierul "$1" nu există.',
+
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Nu pot găsi adresa URL',
 'upload-curl-error6-text'  => 'Adresa URL introdusă nu a putut fi atinsă.
@@ -1677,7 +1685,7 @@ Te rog verifică dacă situl este activ, aşteaptă puţin şi încearcă apoi.
 Poate doreşti să încerci la o oră mai puţin ocupată.',
 
 'license'            => 'Licenţiere:',
-'license-header'     => 'Licenţiere:',
+'license-header'     => 'Licenţiere',
 'nolicense'          => 'Nici una selectată',
 'license-nopreview'  => '(Previzualizare indisponibilă)',
 'upload_source_url'  => ' (un URL valid, accesibil public)',
@@ -2072,13 +2080,14 @@ Dacă doriţi să eliminaţi această pagină din lista dv. de pagini urmărite 
 'enotif_impersonal_salutation' => '{{SITENAME}} utilizator',
 'changed'                      => 'modificat',
 'created'                      => 'creat',
+'enotif_deletedpagetext'       => 'Această pagină nu mai este disponibilă.',
 'enotif_subject'               => 'Pagina $PAGETITLE de la {{SITENAME}} a fost $CHANGEDORCREATED de $PAGEEDITOR',
 'enotif_lastvisited'           => 'Vedeţi $1 pentru toate modificările de la ultima dvs. vizită.',
 'enotif_lastdiff'              => 'Apasă $1 pentru a vedea această schimbare.',
 'enotif_anon_editor'           => 'utilizator anonim $1',
 'enotif_body'                  => 'Domnule/Doamnă $WATCHINGUSERNAME,
 
-pagina $PAGETITLE de la {{SITENAME}} a fost $CHANGEDORCREATED în $PAGEEDITDATEANDTIME de $PAGEEDITOR, vedeţi la $PAGETITLE_URL versiunea curentă.
+pagina $PAGETITLE de la {{SITENAME}} a fost $CHANGEDORCREATED în $PAGEEDITDATEANDTIME de $PAGEEDITOR. $REVINFO
 
 $NEWPAGE
 
@@ -2622,6 +2631,7 @@ Un dosar temporar lipseşte.',
 'tooltip-ca-viewsource'           => 'Aceasta pagina este protejată. Poţi sa vezi doar codul sursă.',
 'tooltip-ca-history'              => 'Versiuni vechi ale acestui document.',
 'tooltip-ca-protect'              => 'Protejează acest document.',
+'tooltip-ca-unprotect'            => 'Deprotejează această pagină',
 'tooltip-ca-delete'               => 'Şterge acest document.',
 'tooltip-ca-undelete'             => 'Restaureaza editările făcute acestui document, înainte să fi fost şters.',
 'tooltip-ca-move'                 => 'Mută acest document.',

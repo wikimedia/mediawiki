@@ -998,7 +998,7 @@ Por favor confirme que está intentando hacer esto, que usted entiende las conse
 'revdelete-suppress'          => 'Suprimir datos a los administradores así como al resto',
 'revdelete-hide-image'        => 'Ocultar el contenido del archivo',
 'revdelete-unsuppress'        => 'Eliminar restricciones de revisiones restauradas',
-'revdelete-log'               => 'Comentario de registro:',
+'revdelete-log'               => 'Razón para borrado:',
 'revdelete-submit'            => 'Aplicar a la revisión seleccionada',
 'revdelete-logentry'          => 'cambiada la visibilidad de la revisión para [[$1]]',
 'logdelete-logentry'          => 'cambiada la visibilidad de eventos de [[$1]]',
@@ -1030,6 +1030,11 @@ No tienes acceso a él.',
 'revdelete-no-change'         => "'''Atención:''' la revisión de fecha $1 a las $2 ya tiene las restricciones de visibilidad solicitadas.",
 'revdelete-concurrent-change' => 'Error modificando el item fechado $2, $1: su status parece haber sido cambiado por alguien más cuando tratabas de modificarlo. Por favor verifica los registros.',
 'revdelete-only-restricted'   => 'No puede suprimir elementos a vista de los administradores sin seleccionar asímismo una de las otras opciones de supresión.',
+'revdelete-reason-dropdown'   => '*Razones de borrado comunes
+** Violación de Copyright
+** Información personal inapropiada',
+'revdelete-otherreason'       => 'Otra/adicional razón:',
+'revdelete-reasonotherlist'   => 'Otra razón',
 'revdelete-edit-reasonlist'   => 'Editar razones de borrado',
 
 # Suppression log
@@ -2073,20 +2078,21 @@ Véase $2 para un registro de los borrados recientes.',
 'delete-warning-toobig'  => 'Esta página tiene un historial de más de {{PLURAL:$1|revisión|revisiones}}. Eliminarla puede perturbar las operaciones de la base de datos de {{SITENAME}}. Ten cuidado al borrar.',
 
 # Rollback
-'rollback'         => 'Revertir ediciones',
-'rollback_short'   => 'Revertir',
-'rollbacklink'     => 'Revertir',
-'rollbackfailed'   => 'No se pudo revertir',
-'cantrollback'     => 'No se pueden revertir la edición;
+'rollback'          => 'Revertir ediciones',
+'rollback_short'    => 'Revertir',
+'rollbacklink'      => 'Revertir',
+'rollbackfailed'    => 'No se pudo revertir',
+'cantrollback'      => 'No se pueden revertir la edición;
 el último colaborador es el único autor de esta página.',
-'alreadyrolled'    => 'No se puede revertir la última edición de [[:$1]] hecha por [[User:$2|$2]] ([[User talk:$2|discusión]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]);
+'alreadyrolled'     => 'No se puede revertir la última edición de [[:$1]] hecha por [[User:$2|$2]] ([[User talk:$2|discusión]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]);
 alguien más ya ha editado o revertido esa página.
 
 La última edición fue hecha por [[User:$3|$3]] ([[User talk:$3|discusión]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'      => "El resumen de la edición fue: \"''\$1''\".",
-'revertpage'       => 'Revertidos los cambios de [[Special:Contributions/$2|$2]] ([[User talk:$2|disc.]]) a la última edición de [[User:$1|$1]]',
-'rollback-success' => 'Revertidas las ediciones de $1; recuperada la última versión de $2.',
-'sessionfailure'   => 'Parece que hay un problema con tu sesión;
+'editcomment'       => "El resumen de la edición fue: \"''\$1''\".",
+'revertpage'        => 'Revertidos los cambios de [[Special:Contributions/$2|$2]] ([[User talk:$2|disc.]]) a la última edición de [[User:$1|$1]]',
+'revertpage-nouser' => 'Revertidas ediciones hechas por (nombre de usuario eliminado) a la última revisión hecha por [[User:$1|$1]]',
+'rollback-success'  => 'Revertidas las ediciones de $1; recuperada la última versión de $2.',
+'sessionfailure'    => 'Parece que hay un problema con tu sesión;
 esta acción ha sido cancelada como medida de precaución contra secuestros de sesión.
 Por favor, pulsa "Atrás", recarga la página de la que viniste e inténtalo de nuevo.',
 

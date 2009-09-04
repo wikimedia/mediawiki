@@ -1161,6 +1161,9 @@ U hebt geen toegang tot dit object.',
 'revdelete-concurrent-change' => 'Er is een fout opgetreden bij het wijzigen van het object van $1 om $2 uur: de status is inmiddels gewijzigd door iemand anders.
 Controleer de logboeken.',
 'revdelete-only-restricted'   => 'U kunt geen objecten voor beheerders onderdrukken zonder ook de andere opties voor onderdrukken te selecteren.',
+'revdelete-reason-dropdown'   => '* Veel voorkomende redenen voor verwijderen
+** Auteursrechtenschending
+* Onbetamelijke persoonlijke informatie',
 'revdelete-otherreason'       => 'Andere reden:',
 'revdelete-reasonotherlist'   => 'Andere reden',
 'revdelete-edit-reasonlist'   => 'Redenen voor verwijderen bewerken',
@@ -1783,6 +1786,24 @@ Als het probleem aanhoudt, neem dan contact op met een [[Special:ListUsers/sysop
 'upload-unknown-size'       => 'Onbekende grootte',
 'upload-http-error'         => 'Er is een HTTP-fout opgetreden: $1',
 
+# img_auth script messages
+'img-auth-accessdenied' => 'Toegang geweigerd',
+'img-auth-nopathinfo'   => 'PATH_INFO mist.
+Uw server is niet ingesteld om deze informatie door te geven.
+Misschien gebruikt deze CGI, en dan wordt img_auth niet ondersteund.
+Zie http://www.mediawiki.org/wiki/Manual:Image_Authorization voor meer informatie.',
+'img-auth-notindir'     => 'Het opgevraagde pad is niet de ingestelde uploadmap.',
+'img-auth-badtitle'     => 'Het was niet mogelijk een geldige paginanaam te maken van "$1".',
+'img-auth-nologinnWL'   => 'U bent niet aangemeld en "$1" staat niet op de witte lijst.',
+'img-auth-nofile'       => 'Bestand "$1" bestaat niet.',
+'img-auth-isdir'        => 'U probeert de map "$1" te benaderen.
+Alleen toegang tot bestanden is toegestaan.',
+'img-auth-streaming'    => 'Bezig met het streamen van "$1".',
+'img-auth-public'       => 'Het doel van img_auth.php is de uitvoer van bestanden van een besloten wiki.
+Deze wiki is ingesteld als publieke wiki.
+Om beveiligingsreden is img_auth.php uitgeschakeld.',
+'img-auth-noread'       => 'De gebruiker heeft geen leestoegang tot "$1".',
+
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Kon de URL niet bereiken',
 'upload-curl-error6-text'  => 'De opgegeven URL is niet bereikbaar.
@@ -2249,20 +2270,21 @@ Het verwijderen van deze pagina kan de werking van de database van {{SITENAME}} 
 Wees voorzichtig.',
 
 # Rollback
-'rollback'         => 'Wijzigingen ongedaan maken',
-'rollback_short'   => 'Terugdraaien',
-'rollbacklink'     => 'terugdraaien',
-'rollbackfailed'   => 'Ongedaan maken van wijzigingen mislukt.',
-'cantrollback'     => 'Ongedaan maken van wijzigingen onmogelijk: deze pagina heeft slechts 1 auteur.',
-'alreadyrolled'    => 'Het is niet mogelijk om de bewerking van de pagina [[:$1]] door [[User:$2|$2]] ([[User talk:$2|overleg]]{{int:pipe-separator}}[[Special:Contributions/$2|bijdragen]]) ongedaan te maken.
+'rollback'          => 'Wijzigingen ongedaan maken',
+'rollback_short'    => 'Terugdraaien',
+'rollbacklink'      => 'terugdraaien',
+'rollbackfailed'    => 'Ongedaan maken van wijzigingen mislukt.',
+'cantrollback'      => 'Ongedaan maken van wijzigingen onmogelijk: deze pagina heeft slechts 1 auteur.',
+'alreadyrolled'     => 'Het is niet mogelijk om de bewerking van de pagina [[:$1]] door [[User:$2|$2]] ([[User talk:$2|overleg]]{{int:pipe-separator}}[[Special:Contributions/$2|bijdragen]]) ongedaan te maken.
 Iemand anders heeft deze pagina al bewerkt of hersteld naar een eerdere versie.
 
 De meest recente bewerking is gemaakt door [[User:$3|$3]] ([[User talk:$3|overleg]]{{int:pipe-separator}}[[Special:Contributions/$3|bijdragen]]).',
-'editcomment'      => "De bewerkingssamenvatting was: \"''\$1''\".",
-'revertpage'       => 'Wijzigingen door [[Special:Contributions/$2|$2]] ([[User talk:$2|Overleg]]) hersteld tot de laatste versie door [[User:$1|$1]]',
-'rollback-success' => 'De wijzigingen door $1 zijn teruggedraaid.
+'editcomment'       => "De bewerkingssamenvatting was: \"''\$1''\".",
+'revertpage'        => 'Wijzigingen door [[Special:Contributions/$2|$2]] ([[User talk:$2|Overleg]]) hersteld tot de laatste versie door [[User:$1|$1]]',
+'revertpage-nouser' => 'Wijzigingen door (gebruikersnaam verwijderd) teruggedraaid naar de laatste versie door [[User:$1|$1]]',
+'rollback-success'  => 'De wijzigingen door $1 zijn teruggedraaid.
 De laatste versie van $2 is hersteld.',
-'sessionfailure'   => 'Er lijkt een probleem te zijn met uw aanmeldsessie.
+'sessionfailure'    => 'Er lijkt een probleem te zijn met uw aanmeldsessie.
 Uw handeling is gestopt uit voorzorg tegen een beveiligingsrisico (dat bestaat uit mogelijke "hijacking" van deze sessie).
 Ga een pagina terug, laad die pagina opnieuw en probeer het nog eens.',
 

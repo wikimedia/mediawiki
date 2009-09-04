@@ -1041,7 +1041,7 @@ $1",
 ** 不適切な個人情報',
 'revdelete-otherreason'       => '他の、または追加の理由:',
 'revdelete-reasonotherlist'   => '他の理由',
-'revdelete-edit-reasonlist'   => '削除理由を編集する',
+'revdelete-edit-reasonlist'   => '削除理由を編集',
 
 # Suppression log
 'suppressionlog'     => '秘匿記録',
@@ -1616,6 +1616,18 @@ PICT # その他
 'upload-too-many-redirects' => 'その URL に含まれるリダイレクトが多すぎます',
 'upload-unknown-size'       => 'サイズ不明',
 'upload-http-error'         => 'HTTP エラー発生: $1',
+
+# img_auth script messages
+'img-auth-accessdenied' => 'アクセス拒否',
+'img-auth-nopathinfo'   => 'PATH_INFO が見つかりません。あなたのサーバーはこの情報を渡すように構成されていません。CGI ベースであるために img_auth に対応できない可能性もあります。http://www.mediawiki.org/wiki/Manual:Image_Authorization を参照ください。',
+'img-auth-notindir'     => '要求されたパスは設定済みのアップロード用ディレクトリーの中にありません。',
+'img-auth-badtitle'     => '「$1」からは有効なページ名を構築できません。',
+'img-auth-nologinnWL'   => 'あなたはログインしておらず、さらに「$1」はホワイトリストに入っていません。',
+'img-auth-nofile'       => 'ファイル「$1」は存在しません。',
+'img-auth-isdir'        => 'あなたはディレクトリー「$1」にアクセスしようとしています。ファイルへのアクセスのみが許可されています。',
+'img-auth-streaming'    => '「$1」を転送中',
+'img-auth-public'       => 'img_auth.php の機能は非公開ウィキからファイルを出力することです。このウィキは公開ウィキとして構成されています。最適なセキュリティーのため、img_auth.php は無効化されています。',
+'img-auth-noread'       => '利用者は「$1」を読む権限を持っていません。',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'URLに到達できませんでした',

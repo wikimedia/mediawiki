@@ -130,7 +130,7 @@ $messages = array(
 'edithelp'             => 'Чикллһнә дөң',
 'mainpage'             => 'Эклц',
 'mainpage-description' => 'Эклц',
-'portal'               => 'Бүрдәцин хурал',
+'portal'               => 'Бүрдәцин хург',
 
 'ok'                  => 'Чик',
 'retrievedfrom'       => '"$1" гидг халхас йовулсн',

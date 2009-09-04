@@ -1631,7 +1631,7 @@ Etsy amin'ny toerana farany dia afaka mampiasa rohy ihany koa ianao, ohatra [[{{
 'tooltip-pt-mycontris'            => "Lisitra ny fandraisan'anjaranao",
 'tooltip-pt-login'                => 'Tsara aminao no miditra na manoratra anarana, fa tsy voatery manoratra anarana ianao.',
 'tooltip-pt-logout'               => 'Hidio',
-'tooltip-ca-talk'                 => "resaka momba n'io takelaka io",
+'tooltip-ca-talk'                 => 'resaka momba io takelaka io',
 'tooltip-ca-edit'                 => "Azonao atao no manova n'ity pejy ity.
 Ampesao ny topi-maso aloha no mihatiry.",
 'tooltip-ca-addsection'           => 'hanomboka fizaràna vaovao',

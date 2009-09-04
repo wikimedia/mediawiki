@@ -1029,7 +1029,7 @@ Varmista, että haluat tehdä tämän, ymmärrät seuraukset ja teet tämän [[{
 'revdelete-suppress'          => 'Piilota myös ylläpitäjiltä',
 'revdelete-hide-image'        => 'Piilota tiedoston sisältö',
 'revdelete-unsuppress'        => 'Poista rajoitukset palautetuilta versiolta',
-'revdelete-log'               => 'Lokimerkintä',
+'revdelete-log'               => 'Syy poistoon:',
 'revdelete-submit'            => 'Toteuta',
 'revdelete-logentry'          => 'muutti sivun [[$1]] version näkyvyyttä',
 'logdelete-logentry'          => 'muutti sivun [[$1]] näkyvyyttä',
@@ -1059,6 +1059,11 @@ Sinulla ei ole oikeutta siihen.',
 'revdelete-no-change'         => "'''Varoitus:''' kohdalle $2 kello $1 on asetettu valmiiksi näkyvyysasetuksia.",
 'revdelete-concurrent-change' => 'Virhe $2, $1 päivätyn kohteen muokkauksessa: sen tilan on näköjään muuttanut joku sillä aikaa kun yritit muokata sitä. Ole hyvä ja tarkista lokit.',
 'revdelete-only-restricted'   => 'Et voi poistaa kohteita ylläpitäjien näkyviltä valitsematta myös jonkun muun näkyviltä poistovaihtoehdon.',
+'revdelete-reason-dropdown'   => '*Yleiset poistosyyt
+** Tekijänoikeusrikkomus
+** Sopimattomat henkilötiedot',
+'revdelete-otherreason'       => 'Muu syy tai tarkennus',
+'revdelete-reasonotherlist'   => 'Muu syy',
 'revdelete-edit-reasonlist'   => 'Muokkaa poistosyitä',
 
 # Suppression log
@@ -2071,18 +2076,19 @@ Sivulla $2 on lista viimeaikaisista poistoista.',
 'delete-warning-toobig'  => 'Tällä sivulla on pitkä muutoshistoria – yli $1 {{PLURAL:$1|versio|versiota}}. Näin suurien muutoshistorioiden poistaminen voi haitata sivuston suorituskykyä.',
 
 # Rollback
-'rollback'         => 'palauta aiempaan versioon',
-'rollback_short'   => 'Palautus',
-'rollbacklink'     => 'palauta',
-'rollbackfailed'   => 'Palautus epäonnistui',
-'cantrollback'     => 'Aiempaan versioon ei voi palauttaa, koska viimeisin kirjoittaja on sivun ainoa tekijä.',
-'alreadyrolled'    => 'Käyttäjän [[User:$2|$2]] ([[User talk:$2|keskustelu]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) tekemiä muutoksia sivuun [[:$1]] ei voi kumota, koska joku muu on muuttanut sivua.
+'rollback'          => 'palauta aiempaan versioon',
+'rollback_short'    => 'Palautus',
+'rollbacklink'      => 'palauta',
+'rollbackfailed'    => 'Palautus epäonnistui',
+'cantrollback'      => 'Aiempaan versioon ei voi palauttaa, koska viimeisin kirjoittaja on sivun ainoa tekijä.',
+'alreadyrolled'     => 'Käyttäjän [[User:$2|$2]] ([[User talk:$2|keskustelu]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) tekemiä muutoksia sivuun [[:$1]] ei voi kumota, koska joku muu on muuttanut sivua.
 
 Viimeisimmän muokkauksen on tehnyt käyttäjä [[User:$3|$3]] ([[User talk:$3|keskustelu]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'      => "Muokkauksen yhteenveto oli: ''$1''.",
-'revertpage'       => 'Käyttäjän [[Special:Contributions/$2|$2]] ([[User talk:$2|keskustelu]]) muokkaukset kumottiin ja sivu palautettiin viimeisimpään käyttäjän [[User:$1|$1]] tekemään versioon.',
-'rollback-success' => 'Käyttäjän ”$1” tekemät muokkaukset kumottiin ja artikkeli palautettiin käyttäjän $2 versioon.',
-'sessionfailure'   => 'Istuntosi kanssa on ongelma. Muutosta ei toteutettu varotoimena sessionkaappauksien takia. Käytä selaimen paluutoimintoa ja päivitä sivu, jolta tulit, ja yritä uudelleen.',
+'editcomment'       => "Muokkauksen yhteenveto oli: ''$1''.",
+'revertpage'        => 'Käyttäjän [[Special:Contributions/$2|$2]] ([[User talk:$2|keskustelu]]) muokkaukset kumottiin ja sivu palautettiin viimeisimpään käyttäjän [[User:$1|$1]] tekemään versioon.',
+'revertpage-nouser' => 'Takaisinpalautettiin (käyttäjänimi poistettu) muokkaukset viimeisimpään käyttäjän [[User:$1|$1]] muokkaamaan versioon.',
+'rollback-success'  => 'Käyttäjän ”$1” tekemät muokkaukset kumottiin ja artikkeli palautettiin käyttäjän $2 versioon.',
+'sessionfailure'    => 'Istuntosi kanssa on ongelma. Muutosta ei toteutettu varotoimena sessionkaappauksien takia. Käytä selaimen paluutoimintoa ja päivitä sivu, jolta tulit, ja yritä uudelleen.',
 
 # Protect
 'protectlogpage'              => 'Suojausloki',

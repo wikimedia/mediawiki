@@ -1047,7 +1047,7 @@ Harap konfirmasikan bahwa Anda memang ingin melakukan tindakan ini, bahwa Anda m
 'revdelete-suppress'          => 'Sembunyikan juga dari pengurus',
 'revdelete-hide-image'        => 'Sembunyikan isi berkas',
 'revdelete-unsuppress'        => 'Hapus batasan pada revisi yang dikembalikan',
-'revdelete-log'               => 'Komentar log:',
+'revdelete-log'               => 'Alasan penghapusan:',
 'revdelete-submit'            => 'Terapkan pada revisi terpilih',
 'revdelete-logentry'          => 'ubah tampilan revisi untuk [[$1]]',
 'logdelete-logentry'          => 'mengubah aturan penyembunyian dari [[$1]]',
@@ -1080,6 +1080,11 @@ Anda tidak memiliki akses ke revisi ini.',
 'revdelete-concurrent-change' => 'Gagal mengubah revisi per $2, $1: statusnya kemungkinan telah diubah oleh pengguna lain bersamaan dengan Anda.
 Silakan periksa catatan log.',
 'revdelete-only-restricted'   => 'Anda tidak dapat menyembunyikan revisi-revisi ini dari semua opsis tanpa memilih juga salah satu opsi penyembunyian lainnya.',
+'revdelete-reason-dropdown'   => '*Alasan penghapusan
+** Pelanggaran hakcipta
+** Informasi pribadi tidak pantas',
+'revdelete-otherreason'       => 'Alasan lain/tambahan:',
+'revdelete-reasonotherlist'   => 'Alasan lain',
 'revdelete-edit-reasonlist'   => 'Alasan penghapusan suntingan',
 
 # Suppression log
@@ -2106,19 +2111,20 @@ Penghapusan halaman dengan sejarah penyuntingan yang panjang tidak diperbolehkan
 Menghapus halaman ini dapat menyebabkan masalah dalam operasional basis data {{SITENAME}}.',
 
 # Rollback
-'rollback'         => 'Kembalikan suntingan',
-'rollback_short'   => 'Kembalikan',
-'rollbacklink'     => 'kembalikan',
-'rollbackfailed'   => 'Pengembalian gagal dilakukan',
-'cantrollback'     => 'Tidak dapat mengembalikan suntingan; pengguna terakhir adalah satu-satunya penulis artikel ini.',
-'alreadyrolled'    => 'Tidak dapat melakukan pengembalian ke revisi terakhir [[:$1]] oleh [[User:$2|$2]] ([[User talk:$2|bicara]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]);
+'rollback'          => 'Kembalikan suntingan',
+'rollback_short'    => 'Kembalikan',
+'rollbacklink'      => 'kembalikan',
+'rollbackfailed'    => 'Pengembalian gagal dilakukan',
+'cantrollback'      => 'Tidak dapat mengembalikan suntingan; pengguna terakhir adalah satu-satunya penulis artikel ini.',
+'alreadyrolled'     => 'Tidak dapat melakukan pengembalian ke revisi terakhir [[:$1]] oleh [[User:$2|$2]] ([[User talk:$2|bicara]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]);
 pengguna lain telah menyunting atau melakukan pengembalian terhadap halaman ini.
 
 Suntingan terakhir dilakukan oleh [[User:$3|$3]] ([[User talk:$3|bicara]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'      => "Komentar penyuntingan adalah: \"''\$1''\".",
-'revertpage'       => '←Suntingan [[Special:Contributions/$2|$2]] ([[User talk:$2|bicara]]) dikembalikan ke versi terakhir oleh [[User:$1|$1]]',
-'rollback-success' => 'Pengembalian suntingan oleh $1; dikembalikan ke versi terakhir oleh $2.',
-'sessionfailure'   => 'Sepertinya ada masalah dengan sesi log anda; log anda telah dibatalkan untuk mencegah pembajakan. Silahkan tekan tombol "back" dan muat kembali halaman sebelum anda masuk, lalu coba lagi.',
+'editcomment'       => "Komentar penyuntingan adalah: \"''\$1''\".",
+'revertpage'        => '←Suntingan [[Special:Contributions/$2|$2]] ([[User talk:$2|bicara]]) dikembalikan ke versi terakhir oleh [[User:$1|$1]]',
+'revertpage-nouser' => 'Pengembalian suntingan oleh (pengguna dihapus) ke suntingan terakhir oleh [[User:$1|$1]]',
+'rollback-success'  => 'Pengembalian suntingan oleh $1; dikembalikan ke versi terakhir oleh $2.',
+'sessionfailure'    => 'Sepertinya ada masalah dengan sesi log anda; log anda telah dibatalkan untuk mencegah pembajakan. Silahkan tekan tombol "back" dan muat kembali halaman sebelum anda masuk, lalu coba lagi.',
 
 # Protect
 'protectlogpage'              => 'Log perlindungan',

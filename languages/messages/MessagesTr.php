@@ -919,7 +919,7 @@ Lütfen, bunu yapmak istediğinizi , sonuçlarını anladığınızı, ve bunu [
 'revdelete-suppress'          => 'Hem diğerlerinden hem de yöneticilerden veriyi gizle',
 'revdelete-hide-image'        => 'Dosya içeriğini gizle',
 'revdelete-unsuppress'        => 'Geri döndürülmüş revizyonlardaki kısıtlamaları kaldır',
-'revdelete-log'               => 'Log açıklama:',
+'revdelete-log'               => 'Silinme için sebep:',
 'revdelete-submit'            => 'Seçilen sürüme uygula',
 'revdelete-logentry'          => '[[$1]] için revizyon görünürlüğü değişti',
 'logdelete-logentry'          => '[[$1]] için olay görünürlüğü değişti',
@@ -952,6 +952,11 @@ Erişiminiz yok.',
 'revdelete-concurrent-change' => '$2 $1 tarihli öğe değiştirilirken hata: öğenin durumu siz değiştirmeye çalışırken bir başkası tarafından değiştirilmiş görünüyor.
 Lütfen günlükleri kontrol edin.',
 'revdelete-only-restricted'   => 'Öğeleri, diğer bastırma seçeneklerinden birini seçmeksizin, yönetici görünümden bastıramazsınız.',
+'revdelete-reason-dropdown'   => '*Genel silme sebepleri
+** Telif ihlali
+** Uygunsuz kişisel bilgi',
+'revdelete-otherreason'       => 'Diğer/ek sebep:',
+'revdelete-reasonotherlist'   => 'Diğer sebep',
 'revdelete-edit-reasonlist'   => 'Silme nedenlerini değiştir',
 
 # Suppression log
@@ -2010,20 +2015,21 @@ Bunu silmek {{SITENAME}} işlemlerini aksatabilir;
 dikkatle devam edin.',
 
 # Rollback
-'rollback'         => 'değişiklikleri geri al',
-'rollback_short'   => 'geri al',
-'rollbacklink'     => 'eski haline getir',
-'rollbackfailed'   => 'geri alma işlemi başarısız',
-'cantrollback'     => 'Sayfaya son katkıda bulunan kullanıcı, sayfaya katkıda bulunmuş tek kişi olduğu için, değişiklikler geri alınamıyor.',
-'alreadyrolled'    => '[[User:$2|$2]] ([[User talk:$2|Talk]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) tarafından [[:$1]] sayfasında yapılmış son değişiklik geriye alınamıyor;
+'rollback'          => 'değişiklikleri geri al',
+'rollback_short'    => 'geri al',
+'rollbacklink'      => 'eski haline getir',
+'rollbackfailed'    => 'geri alma işlemi başarısız',
+'cantrollback'      => 'Sayfaya son katkıda bulunan kullanıcı, sayfaya katkıda bulunmuş tek kişi olduğu için, değişiklikler geri alınamıyor.',
+'alreadyrolled'     => '[[User:$2|$2]] ([[User talk:$2|Talk]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) tarafından [[:$1]] sayfasında yapılmış son değişiklik geriye alınamıyor;
 başka biri sayfada değişiklik yaptı ya da sayfayı geriye aldı.
 
 Son değişikliği yapan: [[User:$3|$3]] ([[User talk:$3|Talk]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'      => "Değişiklik özeti: \"''\$1''\" idi.",
-'revertpage'       => '[[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]) tarafından yapılan değişiklikler geri alınarak, [[User:$1|$1]] tarafından değiştirilmiş önceki sürüm geri getirildi.',
-'rollback-success' => '$1 tarafından yapılan değişiklikler geri alınarak;
+'editcomment'       => "Değişiklik özeti: \"''\$1''\" idi.",
+'revertpage'        => '[[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]) tarafından yapılan değişiklikler geri alınarak, [[User:$1|$1]] tarafından değiştirilmiş önceki sürüm geri getirildi.',
+'revertpage-nouser' => '(kullanıcı adı çıkarılmış) tarafından yapılan değişiklikler [[User:$1|$1]] tarafından yapılan son revizyona geri alındı',
+'rollback-success'  => '$1 tarafından yapılan değişiklikler geri alınarak;
 $2 tarafından değiştirilmiş önceki sürüme geri dönüldü.',
-'sessionfailure'   => 'Giriş oturumunuzla ilgili bir sorun var gibi görünüyor;
+'sessionfailure'    => 'Giriş oturumunuzla ilgili bir sorun var gibi görünüyor;
 bu eylem, oturum gaspına karşı önlem olarak iptal edildi.
 Lütfen "geri" gidin ve geldiğiniz sayfayı yeniden yükleyin, sonra tekrar deneyin.',
 

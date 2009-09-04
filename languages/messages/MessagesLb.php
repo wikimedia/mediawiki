@@ -944,6 +944,9 @@ Dir hutt keen Zougang dozou.',
 'revdelete-concurrent-change' => "Feeler beim Ännere vum Element vum $1 ëm $2 Auer: säit Statut schéngt geännert ginn ze si während Dir vericht hutt et z'änneren.
 Kuckt w.e.g. an de Logbicher no.",
 'revdelete-only-restricted'   => 'Dir kënnt keng Objete virun den Administrateure verstoppen ouni och eng vun den anere Läschoptiounen erauszesichen.',
+'revdelete-reason-dropdown'   => "* Generell Läschgrënn
+**Verletzung vun den Droits d'Auteur
+**Net ubruechte perséinlech Informatioun",
 'revdelete-otherreason'       => 'Aneren/zousätzleche Grond:',
 'revdelete-reasonotherlist'   => 'Anere Grond:',
 'revdelete-edit-reasonlist'   => 'Läschgrënn änneren',
@@ -1533,6 +1536,12 @@ Wann de Problem weider besteet, dann un de [[Special:ListUsers/sysop|Administrat
 'upload-too-many-redirects' => "Et waren zevill Viruleedungen fir d'URL do",
 'upload-unknown-size'       => 'Onbekannte Gréisst',
 'upload-http-error'         => 'Et ass en HTTP-Feeler geschitt: $1',
+
+# img_auth script messages
+'img-auth-accessdenied' => 'Zougang refuséiert',
+'img-auth-badtitle'     => 'Aus "$1" ka kee valabelen Titel gemaach ginn.',
+'img-auth-nofile'       => 'De Fichier "$1" gëtt et net.',
+'img-auth-noread'       => 'De Benotzer hut keen Zougang fir "$1" ze liesen',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => "URL ass net z'erreechen",

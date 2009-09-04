@@ -2526,6 +2526,7 @@ Besøk [http://translatewiki.net translatewiki.net] om du ønsker å bidra med o
 'tooltip-search-fulltext'         => 'Søk etter denne teksten',
 'tooltip-p-logo'                  => 'Hovedside',
 'tooltip-n-mainpage'              => 'Gå til hovedsiden',
+'tooltip-n-mainpage-description'  => 'Besøk hovedsiden',
 'tooltip-n-portal'                => 'Om prosjektet; hva du kan gjøre og hvor du kan finne ting',
 'tooltip-n-currentevents'         => 'Finn bakgrunnsinformasjon om aktuelle hendelser',
 'tooltip-n-recentchanges'         => 'Liste over siste endringer på wikien.',

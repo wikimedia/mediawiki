@@ -847,10 +847,9 @@ It peule pa vëddlo.',
 'revdelete-no-change'         => "'''Atension:''' l'element datà $2, $1 a l'ha già le ampostassion ëd visibilità ciamà.",
 'revdelete-concurrent-change' => "Eror an modificand l'element $2, $1: sò stat a smija che a sia stàit cambià da cheicun àutr an mente it provave a modifichelo. Për piasì contròla ij registr.",
 'revdelete-only-restricted'   => "It peule pa stërmé dj'element a j'aministrador sensa ëdcò selessioné un-a dle àutre opsion ëd rimossion.",
-'revdelete-reason-dropdown'   => "*Rason comon-e dë scanselassion
-** Arcesta dl'autor
+'revdelete-reason-dropdown'   => '*Rason comon-e dë scanselassion
 ** Violassion dël copyright
-** Vandalism",
+** Anformassion përsonaj pa aproprià',
 'revdelete-otherreason'       => 'Àutra rason o adissional:',
 'revdelete-reasonotherlist'   => 'Àutra rason',
 'revdelete-edit-reasonlist'   => 'Modifiché la rason ëd lë scancelament',
