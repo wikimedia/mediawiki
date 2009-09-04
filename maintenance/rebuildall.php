@@ -34,18 +34,18 @@ class RebuildAll extends Maintenance {
 		// Rebuild the text index
 		if ( $wgDBtype == 'mysql' ) {
 			$this->output( "** Rebuilding fulltext search index (if you abort this will break searching; run this script again to fix):\n" );
-			$rebuildText = $this->spawnChild( 'RebuildTextIndex', 'rebuildtextindex.php' );
+			$rebuildText = $this->runChild( 'RebuildTextIndex', 'rebuildtextindex.php' );
 			$rebuildText->execute();
 		}
 
 		// Rebuild RC
 		$this->output( "\n\n** Rebuilding recentchanges table:\n" );
-		$rebuildRC = $this->spawnChild( 'RebuildRecentchanges', 'rebuildrecentchanges.php' );
+		$rebuildRC = $this->runChild( 'RebuildRecentchanges', 'rebuildrecentchanges.php' );
 		$rebuildRC->execute();
 
 		// Rebuild link tables
 		$this->output( "\n\n** Rebuilding links tables -- this can take a long time. It should be safe to abort via ctrl+C if you get bored.\n" );
-		$rebuildLinks = $this->spawnChild( 'RefreshLinks', 'refreshLinks.php' );
+		$rebuildLinks = $this->runChild( 'RefreshLinks', 'refreshLinks.php' );
 		$rebuildLinks->execute();
 		
 		$this->output( "Done.\n" );
