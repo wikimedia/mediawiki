@@ -46,9 +46,9 @@ class jsScriptLoader {
 		}
 
 		// setup script loader header info
-		$this->jsout .= 'var mwSlScript = "' . $_SERVER['SCRIPT_NAME'] . '";' . "\n";
+		$this->jsout .= 'var mwSlScript = "' . htmlspecialchars( $_SERVER['SCRIPT_NAME'] ) . '";' . "\n";
 		$this->jsout .= 'var mwSlGenISODate = "' . date( 'c' ) . '";'  ."\n";
-		$this->jsout .= 'var mwSlURID = "' . $this->urid . '";'  ."\n";
+		$this->jsout .= 'var mwSlURID = "' . htmlspecialchars( $this->urid ) . '";'  ."\n";
 		// Build the output:
 		// swap in the appropriate language per js_file
 		foreach( $this->jsFileList as $classKey => $file_name ){
@@ -79,6 +79,11 @@ class jsScriptLoader {
 						continue;
 					}
 				} else {
+					//make sure the wiki title ends with .js
+					if( substr( $title_block, -3 ) != '.js'){
+						$this->error_msg .= 'WikiTitle includes should end with .js';
+						continue;
+					}
 					// it's a wikiTitle append the output of the wikitext:
 					$t = Title::newFromText( $title_block );
 					$a = new Article( $t );
@@ -92,11 +97,11 @@ class jsScriptLoader {
 			//dealing with files::
 			//check that the filename ends with .js and does not include ../ traversing
 			if( substr( $file_name, -3 ) != '.js'){
-				$this->jsout .= "\nError file name must end with .js: ". htmlspecialchars( $file_name ) . " \n ";
+				$this->error_msg .= "\nError file name must end with .js: ". htmlspecialchars( $file_name ) . " \n ";
 				continue;
 			}
 			if( strpos($file_name, '../') !== false ){
-				$this->jsout .= "\nError file name must not traverse paths: ". htmlspecialchars( $file_name ) . " \n ";
+				$this->error_msg .= "\nError file name must not traverse paths: ". htmlspecialchars( $file_name ) . " \n ";
 				continue;
 			}
 
@@ -205,7 +210,7 @@ class jsScriptLoader {
 						$this->jsFileList[$reqClass] = $wgJSAutoloadClasses[$reqClass];
 						$this->rKey.= $reqClass;
 					} else {
-						$this->error_msg.= 'Requested class: ' . $reqClass . ' not found' . "\n";
+						$this->error_msg.= 'Requested class: ' . htmlspecialchars( $reqClass ) . ' not found' . "\n";
 					}
 				}
 			}
@@ -288,7 +293,7 @@ class jsScriptLoader {
 			return 'loadGM( ' . json_encode( $jmsg ) . ')';
 		} else {
 			$this->error_msg.= "Could not parse JSON language msg in File:\n" .
-								$this->cur_file . "\n";
+								htmlspecialchars ( $this->cur_file ) . "\n";
 		}
 		// could not parse json (throw error?)
 		return $jvar[0];
