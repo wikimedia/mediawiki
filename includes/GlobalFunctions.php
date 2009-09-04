@@ -3228,8 +3228,9 @@ function wfGenerateToken( $salt = '' ) {
  * @param $name Mixed: filename to process
  */
 function wfStripIllegalFilenameChars( $name ) {
+	global $wgIllegalFileChars;
 	$name = wfBaseName( $name );
-	$name = preg_replace ( "/[^".Title::legalChars()."]|:/", '-', $name );
+	$name = preg_replace("/[^".Title::legalChars()."]".($wgIllegalFileChars ? "|[".$wgIllegalFileChars."]":"")."/",'-',$name);
 	return $name;
 }
 
