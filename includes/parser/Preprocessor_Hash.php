@@ -1186,8 +1186,7 @@ class PPTemplateFrame_Hash extends PPFrame_Hash {
 	var $numberedExpansionCache, $namedExpansionCache;
 
 	function __construct( $preprocessor, $parent = false, $numberedArgs = array(), $namedArgs = array(), $title = false ) {
-		$this->preprocessor = $preprocessor;
-		$this->parser = $preprocessor->parser;
+		PPFrame_Hash::__construct( $preprocessor );
 		$this->parent = $parent;
 		$this->numberedArgs = $numberedArgs;
 		$this->namedArgs = $namedArgs;
@@ -1299,8 +1298,7 @@ class PPCustomFrame_Hash extends PPFrame_Hash {
 	var $args;
 
 	function __construct( $preprocessor, $args ) {
-		$this->preprocessor = $preprocessor;
-		$this->parser = $preprocessor->parser;
+		PPFrame_Hash::__construct( $preprocessor );
 		$this->args = $args;
 	}
 

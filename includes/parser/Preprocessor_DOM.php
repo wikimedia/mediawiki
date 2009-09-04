@@ -1239,8 +1239,7 @@ class PPTemplateFrame_DOM extends PPFrame_DOM {
 	var $numberedExpansionCache, $namedExpansionCache;
 
 	function __construct( $preprocessor, $parent = false, $numberedArgs = array(), $namedArgs = array(), $title = false ) {
-		$this->preprocessor = $preprocessor;
-		$this->parser = $preprocessor->parser;
+		PPFrame_DOM::__construct( $preprocessor );
 		$this->parent = $parent;
 		$this->numberedArgs = $numberedArgs;
 		$this->namedArgs = $namedArgs;
@@ -1352,8 +1351,7 @@ class PPCustomFrame_DOM extends PPFrame_DOM {
 	var $args;
 
 	function __construct( $preprocessor, $args ) {
-		$this->preprocessor = $preprocessor;
-		$this->parser = $preprocessor->parser;
+		PPFrame_DOM::__construct( $preprocessor );
 		$this->args = $args;
 	}
 
