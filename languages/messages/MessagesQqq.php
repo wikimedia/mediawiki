@@ -2641,6 +2641,19 @@ The message appears after the name of the patroller.',
 * $1 is a date (example: ''19 March 2008'')
 * $2 is a time (example: ''12:15'')",
 
+#img_auth script messages
+'img-auth-desc' 		  => '[[Manual:Image Authorization]] script, see http://www.mediawiki.org/wiki/Manual:Image_Authorization',
+'img-auth-accessdenied'   => "[[Manual:Image Authorization]] Access Denied",
+'img-auth-nopathinfo'     => "[[Manual:Image Authorization]] Missing PATH_INFO - see english description",
+'img-auth-notindir' 	  => "[[Manual:Image Authorization]] when the specified path is not in upload directory.",
+'img-auth-badtitle' 	  => "[[Manual:Image Authorization]] bad title, $1 is the invalid title",
+'img-auth-nologinnWL'     => "[[Manual:Image Authorization]] logged in and file not whitelisted. $1 is the file not in whitelist.",
+'img-auth-nofile' 	      => "[[Manual:Image Authorization]] non existent file, $1 is the file that does not exist.",
+'img-auth-isdir' 		  => "[[Manual:Image Authorization]] trying to access a directory instead of a file, $1 is the directory.",
+'img-auth-streaming' 	  => "[[Manual:Image Authorization]] is now streaming file specified by $1.",
+'img-auth-public'		  => "[[Manual:Image Authorization]] an error message when the admin has configured the wiki to be a public wiki, but is using img_auth script - normally this is a configuration error, except when special restriction extensions are used",
+'img-auth-noread'		  => "[[Manual:Image Authorization]] User does not have access to read file, $1 is the file",
+
 # Video information, used by Language::formatTimePeriod() to format lengths in the above messages
 'seconds-abbrev' => '{{optional}}',
 'minutes-abbrev' => '{{optional}}',
