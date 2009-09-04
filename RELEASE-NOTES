@@ -201,6 +201,8 @@ this. Was used when mwEmbed was going to be an extension.
   display-in-limit-form.
 * (bug 18880) LogEventsList::showLogExtract() can now take a string-by-reference
   and add its HTML to it, rather than having to go straight to $wgOut.
+* Added $wgShowDBErrorBacktrace, to allow users to easily gather backtraces for
+  database connection and query errors.
 
 === Bug fixes in 1.16 ===
 
