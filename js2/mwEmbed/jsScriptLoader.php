@@ -52,6 +52,7 @@ class jsScriptLoader {
 		// Build the output:
 		// swap in the appropriate language per js_file
 		foreach( $this->jsFileList as $classKey => $file_name ){
+
 			// special case: - title classes:
 			if( substr( $classKey, 0, 3 ) == 'WT:' ){
 				global $wgUser;
@@ -88,16 +89,27 @@ class jsScriptLoader {
 					continue;
 				}
 			}
+			//dealing with files::
+			//check that the filename ends with .js and does not include ../ traversing
+			if( substr( $file_name, -3 ) != '.js'){
+				$this->jsout .= "\nError file name must end with .js: ". htmlspecialchars( $file_name ) . " \n ";
+				continue;
+			}
+			if( strpos($file_name, '../') !== false ){
+				$this->jsout .= "\nError file name must not traverse paths: ". htmlspecialchars( $file_name ) . " \n ";
+				continue;
+			}
 
 			if( trim( $file_name ) != '' ){
 				// if in debug add a comment with the file name:
 				if( $this->debug )
 					$this->jsout .= "\n/**
-* File: $file_name
+* File: ". htmlspecialchars( $file_name ) ."
 */\n";
 				$this->jsout .= ( $this->doProccessJsFile( $file_name ) ) . "\n";
 			}
 		}
+
 		// check if we should minify :
 		if( $wgEnableScriptMinify && !$this->debug ){
 			// do the minification and output

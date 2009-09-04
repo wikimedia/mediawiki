@@ -19,6 +19,9 @@ $wgUseFileCache = true;
 
 $wgEnableScriptLoaderJsFile = false;
 
+//init our wg Globals
+$wgJSAutoloadClasses = array();
+$wgJSAutoloadLocalClasses = array();
 
 /*Localization:*/
 $wgEnableScriptLocalization = true;
