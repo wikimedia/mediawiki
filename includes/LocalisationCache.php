@@ -377,9 +377,9 @@ class LocalisationCache {
 	 */
 	protected function readPHPFile( $_fileName, $_fileType ) {
 		// Disable APC caching
-		$_apcEnabled = ini_set( 'apc.enabled', '0' );
+		$_apcEnabled = ini_set( 'apc.cache_by_default', '0' );
 		include( $_fileName );
-		ini_set( 'apc.enabled', $_apcEnabled );
+		ini_set( 'apc.cache_by_default', $_apcEnabled );
 
 		if ( $_fileType == 'core' || $_fileType == 'extension' ) {
 			$data = compact( self::$allKeys );
