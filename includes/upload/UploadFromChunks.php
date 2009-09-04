@@ -155,7 +155,7 @@ class UploadFromChunks extends UploadBase {
 
 	// Lets us return an api result (as flow for chunk uploads is kind of different than others.
 	function performUpload( $summary = '', $comment = '', $watch = '', $user ){
-		global $wgServer, $wgScriptPath, $wgUser;
+		global $wgUser;
 
 		if( $this->chunk_mode == UploadFromChunks::INIT ){
 			// firefogg expects a specific result per:
@@ -168,7 +168,7 @@ class UploadFromChunks extends UploadBase {
 			$token = urlencode( $wgUser->editToken() );
 			ob_clean();
 			echo ApiFormatJson::getJsonEncode( array(
-					'uploadUrl' => "{$wgServer}{$wgScriptPath}/api.php?action=upload&".
+					'uploadUrl' => wfExpandUrl( wfScript( 'api' ) ) . "?action=upload&".
 									"token={$token}&format=json&enablechunks=true&chunksessionkey=".
 									$this->setupChunkSession( $summary, $comment, $watch ) ) );
 			exit( 0 );
