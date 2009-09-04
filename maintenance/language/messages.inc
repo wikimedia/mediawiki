@@ -1283,7 +1283,6 @@ $wgMessageStructure = array(
 	),
 	'img-auth' => array(
 		'img-auth-accessdenied',
-		'img-auth-desc',
 		'img-auth-nopathinfo',
 		'img-auth-notindir',
 		'img-auth-badtitle',
