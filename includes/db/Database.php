@@ -2420,6 +2420,15 @@ class DBError extends MWException {
 		$this->db =& $db;
 		parent::__construct( $error );
 	}
+
+	function getText() {
+		global $wgShowDBErrorBacktrace;
+		$s = $this->getMessage() . "\n";
+		if ( $wgShowDBErrorBacktrace ) {
+			$s .= "Backtrace:\n" . $this->getTraceAsString() . "\n";
+		}
+		return $s;
+	}
 }
 
 /**
@@ -2447,10 +2456,6 @@ class DBConnectionError extends DBError {
 		return false;
 	}
 	
-	function getText() {
-		return $this->getMessage() . "\n";
-	}
-
 	function getLogMessage() {
 		# Don't send to the exception log
 		return false;
@@ -2467,7 +2472,7 @@ class DBConnectionError extends DBError {
 	}
 
 	function getHTML() {
-		global $wgLang, $wgMessageCache, $wgUseFileCache;
+		global $wgLang, $wgMessageCache, $wgUseFileCache, $wgShowDBErrorBacktrace;
 
 		$sorry = 'Sorry! This site is experiencing technical difficulties.';
 		$again = 'Try waiting a few minutes and reloading.';
@@ -2491,12 +2496,9 @@ class DBConnectionError extends DBError {
 		$noconnect = "<p><strong>$sorry</strong><br />$again</p><p><small>$info</small></p>";
 		$text = str_replace( '$1', $this->error, $noconnect );
 
-		/*
-		if ( $GLOBALS['wgShowExceptionDetails'] ) {
-			$text .= '</p><p>Backtrace:</p><p>' . 
-				nl2br( htmlspecialchars( $this->getTraceAsString() ) ) . 
-				"</p>\n";
-		}*/
+		if ( $wgShowDBErrorBacktrace ) {
+			$text .= '<p>Backtrace:</p><p>' . nl2br( htmlspecialchars( $this->getTraceAsString() ) );
+		}
 
 		$extra = $this->searchForm();
 
@@ -2613,11 +2615,16 @@ class DBQueryError extends DBError {
 	}
 
 	function getText() {
+		global $wgShowDBErrorBacktrace;
 		if ( $this->useMessageCache() ) {
-			return wfMsg( 'dberrortextcl', htmlspecialchars( $this->getSQL() ),
-			  htmlspecialchars( $this->fname ), $this->errno, htmlspecialchars( $this->error ) ) . "\n";
+			$s = wfMsg( 'dberrortextcl', htmlspecialchars( $this->getSQL() ),
+				htmlspecialchars( $this->fname ), $this->errno, htmlspecialchars( $this->error ) ) . "\n";
+			if ( $wgShowDBErrorBacktrace ) {
+				$s .= "Backtrace:\n" . $this->getTraceAsString() . "\n";
+			}
+			return $s;
 		} else {
-			return $this->getMessage();
+			return parent::getText();
 		}
 	}
 	
@@ -2640,12 +2647,17 @@ class DBQueryError extends DBError {
 	}
 
 	function getHTML() {
+		global $wgShowDBErrorBacktrace;
 		if ( $this->useMessageCache() ) {
-			return wfMsgNoDB( 'dberrortext', htmlspecialchars( $this->getSQL() ),
+			$s = wfMsgNoDB( 'dberrortext', htmlspecialchars( $this->getSQL() ),
 			  htmlspecialchars( $this->fname ), $this->errno, htmlspecialchars( $this->error ) );
 		} else {
-			return nl2br( htmlspecialchars( $this->getMessage() ) );
+			$s = nl2br( htmlspecialchars( $this->getMessage() ) );
 		}
+		if ( $wgShowDBErrorBacktrace ) {
+			$s .= '<p>Backtrace:</p><p>' . nl2br( htmlspecialchars( $this->getTraceAsString() ) );
+		}
+		return $s;
 	}
 }
 

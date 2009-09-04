@@ -1173,6 +1173,11 @@ $wgColorErrors          = true;
 $wgShowExceptionDetails = false;
 
 /**
+ * If true, show a backtrace for database errors
+ */
+$wgShowDBErrorBacktrace = false;
+
+/**
  * Expose backend server host names through the API and various HTML comments
  */
 $wgShowHostnames = false;
