@@ -2145,7 +2145,7 @@ If the problem persists, contact an [[Special:ListUsers/sysop|administrator]].',
 'upload-http-error'         => 'An HTTP error occured: $1',
 
 # img_auth script messages
-'img-auth-accessdenied' => 'Access Denied',
+'img-auth-accessdenied' => 'Access denied',
 'img-auth-desc'         => 'Image authorisation script',
 'img-auth-nopathinfo'   => 'Missing PATH_INFO.
 Your server is not set up to pass this information.
