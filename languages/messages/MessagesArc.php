@@ -395,6 +395,7 @@ Note that some pages may continue to be displayed as if you were still logged in
 'revdelete-uname'            => 'ܫܡܐ ܕܡܦܠܚܢܐ',
 'revdelete-log-message'      => '$1 ܠ $2 {{PLURAL:$2|ܬܢܝܬܐ|ܬܢܝܬ̈ܐ}}',
 'logdelete-log-message'      => '$1 ܠ $2 {{PLURAL:$2|ܓܕܫܐ|ܓܕܫ̈ܐ}}',
+'revdelete-edit-reasonlist'  => 'ܫܚܠܦ ܥܠܠܬ̈ܐ ܕܫܝܦܐ',
 
 # History merging
 'mergehistory'             => 'ܚܒܘܛ ܬܫܥܝܬ̈ܐ ܕܦܐܬܐ',

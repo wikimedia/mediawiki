@@ -1109,6 +1109,7 @@ $3 كەلتىرىلگەن سەبەبى: ''$2''",
 'revdelete-unhid'             => '$1 اشتى',
 'revdelete-log-message'       => '$2 تۇزەتۋ ٴۇشىن $1',
 'logdelete-log-message'       => '$2 وقىيعا ٴۇشىن $1',
+'revdelete-edit-reasonlist'   => 'جويۋ سەبەپتەرىن وڭدەۋ',
 
 # Suppression log
 'suppressionlog'     => 'شەتتەتۋ جۋرنالى',

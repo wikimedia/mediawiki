@@ -1039,6 +1039,7 @@ Sul ei ole sellele ligipääsu.',
 'revdelete-concurrent-change' => 'Tõrge üksuse kuupäevaga $2, kell $1 muutmisel: paistab, et keegi teine on selle olekut sel ajal muutnud, kui sina seda muuta üritasid.
 Palun vaata logisid.',
 'revdelete-only-restricted'   => 'Sa ei saa ilma veel ühte varjamissätet valimata üksuski ülemate eest varjata.',
+'revdelete-edit-reasonlist'   => 'Redigeeri kustutamise põhjuseid',
 
 # Suppression log
 'suppressionlog'     => 'Varjamislogi',

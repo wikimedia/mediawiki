@@ -1071,6 +1071,7 @@ keltirilgen tüzetw joq, ne ağımdıq tüzetwdi jasırw üşin ärekettenip kö
 'revdelete-unhid'             => '$1 aştı',
 'revdelete-log-message'       => '$2 tüzetw üşin $1',
 'logdelete-log-message'       => '$2 oqïğa üşin $1',
+'revdelete-edit-reasonlist'   => 'Joyw sebepterin öñdew',
 
 # Suppression log
 'suppressionlog'     => 'Şettetw jwrnalı',

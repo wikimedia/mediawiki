@@ -894,6 +894,7 @@ N\'oc\'h ket aotreet da vont outi.',
 ** Titouroù personel dizereat',
 'revdelete-otherreason'       => 'Abeg all/ouzhpenn :',
 'revdelete-reasonotherlist'   => 'Abeg all',
+'revdelete-edit-reasonlist'   => 'Kemmañ a ra an abegoù diverkañ',
 
 # Suppression log
 'suppressionlog'     => 'Marilh diverkañ',

@@ -899,6 +899,7 @@ Oare behearders fan {{SITENAME}} kinne de ferburgen ynhâld benaderje en it fuor
 'revdelete-unhid'             => '$1 net mear ferburgen',
 'revdelete-log-message'       => '$1 foar $2 {{PLURAL:$2|ferzje|ferzjes}}',
 'logdelete-log-message'       => '$1 foar $2 {{PLURAL:$2|lochboekregel|lochboekregels}}',
+'revdelete-edit-reasonlist'   => 'Redenen foar fuortheljen bewurkje',
 
 # Suppression log
 'suppressionlog'     => 'Ferskûl-logboek',

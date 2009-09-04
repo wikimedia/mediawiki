@@ -1010,6 +1010,7 @@ Du har ikke tilgang til det.',
 'revdelete-concurrent-change' => 'Feil under endring av objektet datert $2, $1: dets status ser ut til å ha blitt endret av noen andre mens du prøvde å endre det.
 Vennligst sjekk loggen.',
 'revdelete-only-restricted'   => 'Du kan ikke hindre visning av objekter av administratorer uten å også velge en av de andre visningshindrende alternativene.',
+'revdelete-edit-reasonlist'   => 'Rediger begrunnelser for sletting',
 
 # Suppression log
 'suppressionlog'     => 'Sidefjerningslogg',

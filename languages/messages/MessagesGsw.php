@@ -933,6 +933,7 @@ Bitte prief d Logbiecher.',
 **Falschi Information iber Persone',
 'revdelete-otherreason'       => 'Andere/Zuesätzlige Grund:',
 'revdelete-reasonotherlist'   => 'Andere Grund',
+'revdelete-edit-reasonlist'   => 'Leschgrind bearbeite',
 
 # Suppression log
 'suppressionlog'     => 'Oversight-Logbuech',

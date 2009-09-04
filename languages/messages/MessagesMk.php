@@ -1103,6 +1103,7 @@ $1",
 ** Вандализам',
 'revdelete-otherreason'       => 'Друга/дополнителна причина:',
 'revdelete-reasonotherlist'   => 'Друга причина',
+'revdelete-edit-reasonlist'   => 'Уреди причини за бришење',
 
 # Suppression log
 'suppressionlog'     => 'Дневник на сокривања',

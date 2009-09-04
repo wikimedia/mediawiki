@@ -945,6 +945,7 @@ No ti gà acesso su de ela.',
 'revdelete-no-change'         => "''Ocio:''' la version datà $1 a le $2 la gà zà le inpostassion de visibilità da ti richieste.",
 'revdelete-concurrent-change' => "No se riesse a modificar la version datà $1 a le $2: pararìa che qualchidun altro el gavesse canbià el stato de la version intanto che ti te sercavi de far la stessa roba. Daghe n'ociada sui registri.",
 'revdelete-only-restricted'   => 'No te podi inpedirghe ai aministradori de vardar na revision se no te selessioni al tenpo stesso una de le altre opzioni de restrizion.',
+'revdelete-edit-reasonlist'   => 'Modifica le motivazion par la scancelazion',
 
 # Suppression log
 'suppressionlog'     => 'Registro dei ocultamenti',

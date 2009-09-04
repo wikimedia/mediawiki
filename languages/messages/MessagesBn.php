@@ -767,6 +767,7 @@ $3-এর দেয়া কারণ হল ''$2''",
 'revdelete-unhid'             => '$1 দেখাও',
 'revdelete-log-message'       => '$1 এর জন্য $2 {{PLURAL:$2|সংশোধন|সংশোধন সমূহ}}',
 'logdelete-log-message'       => '$1 এর জন্য $2 {{PLURAL:$2|ঘটনা|ঘটনা সমূহ}}',
+'revdelete-edit-reasonlist'   => 'অপসারণের কারণ সম্পাদনা',
 
 # History merging
 'mergehistory'                     => 'পাতার ইতিহাসগুলি একত্র করা হোক',

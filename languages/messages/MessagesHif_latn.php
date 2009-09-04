@@ -846,6 +846,7 @@ Aap ke ispe adhikar nai hai.',
 'revdelete-concurrent-change' => 'Item jiske date $2, $1 hai ke badle me error hoe gais hai: iske status ke saait aur koi badal diis hia jab aap iske badel ke kosis karta rahaa.
 Meharbani ka ke logs ke check karo.',
 'revdelete-only-restricted'   => 'Aap koi chij ke bhi administrators se lukae nai sakta hai bina duusra suppression option ke select kare.',
+'revdelete-edit-reasonlist'   => 'Delete kare ke kaaran ke badlo',
 
 # Suppression log
 'suppressionlog'     => 'Dabae waala log',

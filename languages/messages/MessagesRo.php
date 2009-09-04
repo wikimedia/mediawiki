@@ -1081,6 +1081,7 @@ Nu ai acces asupra lui.',
 'revdelete-no-change'         => "'''Atenţie:''' elementul datat $2, $1 are deja aplicată vizibilitatea cerută.",
 'revdelete-concurrent-change' => 'Eroare la modificarea elementului datat $2, $1: statutul său a fost modificat de altcineva în timpul acestei modificări.',
 'revdelete-only-restricted'   => 'Nu poţi suprima aceste elemente la vizualizarea de către administratori fără a marca una din celelalte opţiuni de suprimare.',
+'revdelete-edit-reasonlist'   => 'Modifică motivele ştergerii',
 
 # Suppression log
 'suppressionlog'     => 'Înlătură jurnalul',

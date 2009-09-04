@@ -907,6 +907,7 @@ $1",
 'revdelete-concurrent-change' => "Impussibili canciari l'oggettu cu data $1 $2 in quantu lu sò statu fu canciatu da n'autru utenti mentri si tintava lu canciamentu.
 Cuntrolla lu log.",
 'revdelete-only-restricted'   => "Nun poi ammucciari â vista di l'amministraturi senza silizziunari l'autri opzioni di supprissioni.",
+'revdelete-edit-reasonlist'   => 'Cancia li mutivazioni pi la cancillazzioni',
 
 # Suppression log
 'suppressionlog'     => 'Log dê supprissioni',

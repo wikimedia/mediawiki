@@ -979,6 +979,7 @@ Ostali administratori na ovoj Vikipediji će i dalje imati mogućnost da vide sk
 'revdelete-unhid'             => 'otkriveno: $1',
 'revdelete-log-message'       => '$1 za $2 {{PLURAL:$2|reviziju|revizije|revizija}}',
 'logdelete-log-message'       => '$1 za $2 {{PLURAL:$2|događaj|događaja}}',
+'revdelete-edit-reasonlist'   => 'Uredi razloge za brisanje',
 
 # Suppression log
 'suppressionlog'     => 'Log sakrivanja',

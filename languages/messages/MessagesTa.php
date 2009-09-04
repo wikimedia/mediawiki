@@ -729,6 +729,7 @@ $1 பயனரையோ அல்லது வேறு [[{{MediaWiki:Grouppage
 'revdelete-unhid'             => '$1 காட்டுக',
 'revdelete-log-message'       => '$2 {{PLURAL:$2|திருத்தத்திற்கு|திருத்தங்களிற்கு}} $1',
 'logdelete-log-message'       => '$2 {{PLURAL:$2|நிகழ்விற்கு|நிகழ்வுகளிற்கு}} $1',
+'revdelete-edit-reasonlist'   => 'நீக்கல் காரணங்களைத் தொகு',
 
 # Suppression log
 'suppressionlog'     => 'அடக்கல் பதிகை',

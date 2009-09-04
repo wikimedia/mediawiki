@@ -981,6 +981,7 @@ $1",
 ** 不合适的个人资料',
 'revdelete-otherreason'       => '其它／附加的理由：',
 'revdelete-reasonotherlist'   => '其它理由',
+'revdelete-edit-reasonlist'   => '编辑删除埋由',
 
 # Suppression log
 'suppressionlog'     => '阻止日志',

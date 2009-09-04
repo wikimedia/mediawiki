@@ -1030,6 +1030,7 @@ No tienes acceso a él.',
 'revdelete-no-change'         => "'''Atención:''' la revisión de fecha $1 a las $2 ya tiene las restricciones de visibilidad solicitadas.",
 'revdelete-concurrent-change' => 'Error modificando el item fechado $2, $1: su status parece haber sido cambiado por alguien más cuando tratabas de modificarlo. Por favor verifica los registros.',
 'revdelete-only-restricted'   => 'No puede suprimir elementos a vista de los administradores sin seleccionar asímismo una de las otras opciones de supresión.',
+'revdelete-edit-reasonlist'   => 'Editar razones de borrado',
 
 # Suppression log
 'suppressionlog'     => 'Registro de supresiones',

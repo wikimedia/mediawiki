@@ -871,6 +871,7 @@ Shiko tek [{{fullurl:{{#Special:Log}}/suppress|page={{FULLPAGENAMEE}}}} regjistr
 'revdelete-unhid'             => 'u tregua $1',
 'revdelete-log-message'       => '$1 për $2 {{PLURAL:$2|version|versione}}',
 'logdelete-log-message'       => '$1 për $2 {{PLURAL:$2|ngjarje|ngjarje}}',
+'revdelete-edit-reasonlist'   => 'Arsye grisjeje për redaktimet',
 
 # Suppression log
 'suppressionlog'     => 'Regjistri i ndalimeve',

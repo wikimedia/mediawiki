@@ -968,6 +968,7 @@ $1",
 'revdelete-unhid'             => 'hett $1 wedder sichtbor maakt',
 'revdelete-log-message'       => '$1 för $2 {{PLURAL:$2|Version|Versionen}}',
 'logdelete-log-message'       => '$1 för $2 {{PLURAL:$2|Logbook-Indrag|Logbook-Indrääg}}',
+'revdelete-edit-reasonlist'   => 'Grünn för’t Wegsmieten ännern',
 
 # Suppression log
 'suppressionlog'     => 'Oversight-Logbook',

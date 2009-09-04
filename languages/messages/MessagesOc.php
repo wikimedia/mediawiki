@@ -1093,6 +1093,7 @@ I avètz pas accès.",
 'revdelete-concurrent-change' => "Error al moment de la modificacion de l'element datat del $1 a $2 : son estatut es estat cambiat per qualqu'un mai pendent qu'o modificatz.
 Verificatz los jornals.",
 'revdelete-only-restricted'   => "Podètz pas suprimir aquestes elements als administrators sens seleccionar tanben d'autras opcions de supression.",
+'revdelete-edit-reasonlist'   => 'Modifica los motius de la supression',
 
 # Suppression log
 'suppressionlog'     => 'Jornal de las supressions',

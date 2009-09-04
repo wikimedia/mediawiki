@@ -983,6 +983,7 @@ $3ने ''$2'' कारण दिले आहे.",
 'revdelete-unhid'             => 'अनहिड $1',
 'revdelete-log-message'       => '$2 {{PLURAL:$2|आवॄत्ती|आवृत्त्यां}}साठी $1',
 'logdelete-log-message'       => '$2 {{PLURAL:$2|घटने|घटनां}}साठी $1',
+'revdelete-edit-reasonlist'   => 'वगळण्याची कारणे संपादीत करा',
 
 # Suppression log
 'suppressionlog'     => 'सप्रेशन नोंद',

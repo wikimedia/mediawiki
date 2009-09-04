@@ -845,6 +845,7 @@ $3-н тодорхойлсон шалтгаан нь ''$2''",
 'revdelete-unhid'             => 'нууцлахаа болиулсан $1',
 'revdelete-log-message'       => '$2 засварт $1',
 'logdelete-log-message'       => '$2 үйл явдалд $1',
+'revdelete-edit-reasonlist'   => 'Устгах шалтгаануудыг засварлах',
 
 # Suppression log
 'suppressionlog'     => 'Хязгаарлалтын лог',

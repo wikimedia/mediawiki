@@ -887,6 +887,7 @@ Mesedez berretsi ezazu hau egin nahi zenuela, ondorioak ulertzen dituzula eta [[
 'revdelete-unhid'             => '$1 azalarazi',
 'revdelete-log-message'       => '$1 {{PLURAL:$2|berrikusketara 1erako|$2 berrikuspenerako}}',
 'logdelete-log-message'       => '$1(e)tik {{PLURAL:$2|gertakari $2|$2 gertakari}}',
+'revdelete-edit-reasonlist'   => 'Ezabaketa arrazoiak aldatu',
 
 # Suppression log
 'suppressionlog'     => 'Ezabatze loga',

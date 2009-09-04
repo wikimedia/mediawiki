@@ -885,6 +885,7 @@ $3 макссь туфталсь - ''$2''",
 'revdelete-unhid'             => '$1 апак кяштт',
 'revdelete-log-message'       => '$1 $2 {{PLURAL:$2|верзиенди|верзиетненди}}',
 'logdelete-log-message'       => '$1 $2 {{PLURAL:$2|тевти|тефненди}}',
+'revdelete-edit-reasonlist'   => 'Петнемс нардамань туфталхне',
 
 # Suppression log
 'suppressionlog'     => 'Кяшемань лувомась',

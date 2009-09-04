@@ -632,14 +632,15 @@ Ans galiejė būtė ėštrėnts ėš pruojekta, aba parvardėnts.
 Pamiegīkėt [[Special:Search|ėiškoutė pruojektė]] sosėjosiu naujū poslapiu.',
 
 # Revision deletion
-'rev-delundel'         => 'ruodītė/kavuotė',
-'revisiondelete'       => 'Trintė/atkortė versėjės',
-'logdelete-selected'   => "{{PLURAL:$2|Pasėrinkts|Pasėrinktė|Pasėrinktė}} '''$1''' istuorėjės {{PLURAL:$2|atėtėkims|atsėtėkimā|atsėtėkimā}}:",
-'revdelete-text'       => "'''Ėštrintuos versėjės ėr ivīkē vistėik da bus ruodomė poslapė istuorėjuo ėr specēliūju veiksmū istuorėjuo, no anū torėnė dalīs nabus vėišā pasėikiamos.'''
+'rev-delundel'              => 'ruodītė/kavuotė',
+'revisiondelete'            => 'Trintė/atkortė versėjės',
+'logdelete-selected'        => "{{PLURAL:$2|Pasėrinkts|Pasėrinktė|Pasėrinktė}} '''$1''' istuorėjės {{PLURAL:$2|atėtėkims|atsėtėkimā|atsėtėkimā}}:",
+'revdelete-text'            => "'''Ėštrintuos versėjės ėr ivīkē vistėik da bus ruodomė poslapė istuorėjuo ėr specēliūju veiksmū istuorėjuo, no anū torėnė dalīs nabus vėišā pasėikiamos.'''
 Kėtė admėnėstratuorē šėtom pruojekte vėsdar galės pasėiktė pasliepta torėni ėr galės ana atkortė viel par šėta pate sasaja, nabent īr nostatītė papėlduomė aprėbuojėmā.",
-'revdelete-unsuppress' => 'Šalėntė apribuojėmos atkortuos versėjės',
-'logdelete-logentry'   => 'pakeists [[$1]] atsėtėkima veiziemoms',
-'revdel-restore'       => 'Keistė veizėmuma',
+'revdelete-unsuppress'      => 'Šalėntė apribuojėmos atkortuos versėjės',
+'logdelete-logentry'        => 'pakeists [[$1]] atsėtėkima veiziemoms',
+'revdel-restore'            => 'Keistė veizėmuma',
+'revdelete-edit-reasonlist' => 'Keistė trīnėma prīžastis',
 
 # Suppression log
 'suppressionlog' => 'Trīnėma istuorėjė',

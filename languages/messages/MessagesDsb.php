@@ -946,6 +946,7 @@ Pšosym pśeglědaj protokole.',
 ** Njegóźece se wósobinske informacije',
 'revdelete-otherreason'       => 'Druga/pśidatna pśicyna:',
 'revdelete-reasonotherlist'   => 'Druga pśicyna',
+'revdelete-edit-reasonlist'   => 'Pśicyny za lašowanje wobźěłaś',
 
 # Suppression log
 'suppressionlog'     => 'Protokol pódłocowanjow',

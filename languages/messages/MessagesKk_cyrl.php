@@ -1070,6 +1070,7 @@ $3 келтірілген себебі: ''$2''",
 'revdelete-unhid'             => '$1 ашты',
 'revdelete-log-message'       => '$2 түзету үшін $1',
 'logdelete-log-message'       => '$2 оқиға үшін $1',
+'revdelete-edit-reasonlist'   => 'Жою себептерін өңдеу',
 
 # Suppression log
 'suppressionlog'     => 'Шеттету журналы',

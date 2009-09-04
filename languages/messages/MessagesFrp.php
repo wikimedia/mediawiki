@@ -1147,6 +1147,7 @@ Vos y avéd pas accès.',
 'revdelete-concurrent-change' => 'Èrror pendent lo changement de l’èlèment datâ du $1 a $2 : son statut at étâ changiê per quârqu’un d’ôtro pendent que vos lo changiéd.
 Volyéd controlar los jornals.',
 'revdelete-only-restricted'   => 'Vos pouede pas suprimar celos èlèments ux administrators sen chouèsir avouéc des ôtros chouèx de suprèssion.',
+'revdelete-edit-reasonlist'   => 'Changiér les rêsons de suprèssion',
 
 # Suppression log
 'suppressionlog'     => 'Jornal de les suprèssions',

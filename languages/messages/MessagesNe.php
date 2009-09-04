@@ -707,6 +707,7 @@ $1",
 'logdelete-log-message'       => '$1 $2को लागि {{PLURAL:$2|घटना|घटनाहरु}}',
 'revdelete-hide-current'      => '$2, $1: मिति गरिएका वस्तुहरु लुकाउन मिलेन यो नै सबैभन्दा नयाँ संस्करण हो ।
 यसलाई लुकाउन मिल्दैन ।',
+'revdelete-edit-reasonlist'   => 'मेट्नको लागि अनुक्रमणिका',
 
 # Suppression log
 'suppressionlog' => 'कमगरेको लग',

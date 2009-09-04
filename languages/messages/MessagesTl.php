@@ -910,6 +910,7 @@ Pakitiyak kung ito ang nais mong gawin, na nauunawaan mo ang mga kahihinatnan, a
 'revdelete-unhid'             => 'pinalitaw $1',
 'revdelete-log-message'       => '$1 para sa $2 {{PLURAL:$2|pagbabago|mga pagbabago}}',
 'logdelete-log-message'       => '$1 para sa $2 {{PLURAL:$2|kaganapan|mga kaganapan}}',
+'revdelete-edit-reasonlist'   => 'Baguhin ang mga dahilan ng pagbura',
 
 # Suppression log
 'suppressionlog'     => 'Tala ng pagpipigil',

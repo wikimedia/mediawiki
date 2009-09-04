@@ -990,6 +990,7 @@ Jūs neturite teisių jo taisymui.',
 'revdelete-concurrent-change' => 'Klaida keičiant $2, $1 versiją: jos statusas jau buvo pakeistas kažkieno kito kol jūs redagavote.
 Prašome patikrinti sąrašus.',
 'revdelete-only-restricted'   => 'Jūs negalite nuslėpti versijų nuo administratorių be vieno iš parametrų pasirinkimo.',
+'revdelete-edit-reasonlist'   => 'Keisti trynimo priežastis',
 
 # Suppression log
 'suppressionlog'     => 'Trynimo istorija',

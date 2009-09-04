@@ -1098,6 +1098,7 @@ Molimo provjerite zapise.',
 ** Neadekvatni lični podaci',
 'revdelete-otherreason'       => 'Ostali/dodatni razlog:',
 'revdelete-reasonotherlist'   => 'Ostali razlozi',
+'revdelete-edit-reasonlist'   => 'Uredi razloge brisanja',
 
 # Suppression log
 'suppressionlog'     => 'Zapisi sakrivanja',

@@ -1023,6 +1023,7 @@ $1",
 ** Informazioni personali inappropriate',
 'revdelete-otherreason'       => 'Altra motivazione o motivazione aggiuntiva:',
 'revdelete-reasonotherlist'   => 'Altra motivazione',
+'revdelete-edit-reasonlist'   => 'Modifica le motivazioni per la cancellazione',
 
 # Suppression log
 'suppressionlog'     => 'Log delle soppressioni',

@@ -790,6 +790,7 @@ $1",
 ** 無合之人料',
 'revdelete-otherreason'       => '它附因：',
 'revdelete-reasonotherlist'   => '它因',
+'revdelete-edit-reasonlist'   => '纂刪因',
 
 # Suppression log
 'suppressionlog'     => '誌廢',

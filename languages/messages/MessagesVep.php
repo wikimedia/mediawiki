@@ -766,6 +766,7 @@ Olgat hüväd, meletagat völ kerdan, todest-ik tahtoit tehta necidä, el'gendat
 'revdelete-unhid'             => 'avaitud $1',
 'revdelete-log-message'       => '$1 $2 {{PLURAL:$2|versijan|versijoiden}} täht',
 'logdelete-log-message'       => '$1 $2 {{PLURAL:$2|tegendan|tegendoiden}} täht',
+'revdelete-edit-reasonlist'   => 'Redaktiruida čudandan süd',
 
 # Suppression log
 'suppressionlog' => 'Peitandoiden aigkirj',

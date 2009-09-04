@@ -1163,6 +1163,7 @@ Controleer de logboeken.',
 'revdelete-only-restricted'   => 'U kunt geen objecten voor beheerders onderdrukken zonder ook de andere opties voor onderdrukken te selecteren.',
 'revdelete-otherreason'       => 'Andere reden:',
 'revdelete-reasonotherlist'   => 'Andere reden',
+'revdelete-edit-reasonlist'   => 'Redenen voor verwijderen bewerken',
 
 # Suppression log
 'suppressionlog'     => 'Verbergingslogboek',

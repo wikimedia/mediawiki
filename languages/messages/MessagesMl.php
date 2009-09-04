@@ -991,6 +991,7 @@ $3 അതിനു കാണിച്ചിരിക്കുന്ന കാര
 'revdelete-uname'            => 'ഉപയോക്തൃനാമം',
 'revdelete-hid'              => '$1 അപ്രത്യക്ഷമാക്കി',
 'revdelete-unhid'            => '$1 പ്രത്യക്ഷമാക്കി',
+'revdelete-edit-reasonlist'  => 'മായ്ക്കലിന്റെ കാരണം തിരുത്തുക',
 
 # Suppression log
 'suppressionlog' => 'ഒതുക്കല്‍ രേഖ',

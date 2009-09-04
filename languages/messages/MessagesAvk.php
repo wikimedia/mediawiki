@@ -713,6 +713,7 @@ Ta ropasusu warzafu bu yo va [[Special:Search|aneyara ko wiki]] yawal.',
 'revdelete-unhid'           => '$1 volpals-',
 'revdelete-log-message'     => '$1 tori $2 {{PLURAL:$2|betara|betara}}',
 'logdelete-log-message'     => '$1 tori $2 {{PLURAL:$2|bif|bif}}',
+'revdelete-edit-reasonlist' => 'Betara va sularalazava',
 
 # Suppression log
 'suppressionlog' => 'Sulara "log"',

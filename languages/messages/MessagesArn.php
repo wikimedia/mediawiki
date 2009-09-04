@@ -211,6 +211,7 @@ $messages = array(
 'deletedhist'                => 'Ñamümüngelu pünon',
 'revdelete-uname'            => 'Üy kellufe',
 'revdelete-hid'              => 'Ellkan $1',
+'revdelete-edit-reasonlist'  => 'Wirin dungu ñamümgün mew',
 
 # History merging
 'mergehistory-reason' => 'Dungu:',

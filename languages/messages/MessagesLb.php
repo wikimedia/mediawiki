@@ -946,6 +946,7 @@ Kuckt w.e.g. an de Logbicher no.",
 'revdelete-only-restricted'   => 'Dir kënnt keng Objete virun den Administrateure verstoppen ouni och eng vun den anere Läschoptiounen erauszesichen.',
 'revdelete-otherreason'       => 'Aneren/zousätzleche Grond:',
 'revdelete-reasonotherlist'   => 'Anere Grond:',
+'revdelete-edit-reasonlist'   => 'Läschgrënn änneren',
 
 # Suppression log
 'suppressionlog'     => 'Lëscht vun de verstoppten a geläschte Säiten',

@@ -1037,6 +1037,7 @@ Jekk jogħġbok ikkonferma li intiż li tipproċedi fit-tħassir, u li tifhem il
 'revdelete-unhid'             => 'uri $1',
 'revdelete-log-message'       => '$1 għal $2 {{PLURAL:$2|revision|reviżjoni}}',
 'logdelete-log-message'       => '$1 għal $2 {{PLURAL:$2|event|avvenimenti}}',
+'revdelete-edit-reasonlist'   => 'Modifika raġunijiet dwar tħassir',
 
 # Suppression log
 'suppressionlog'     => "Log ta' ċaħdied",

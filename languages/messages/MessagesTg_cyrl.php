@@ -738,6 +738,7 @@ $messages = array(
 'revdelete-unhid'             => '$1-ро аз ҳолати пинҳон дар овард',
 'revdelete-log-message'       => '$1 барои $2 {{PLURAL:$2|нусха|нусха}}',
 'logdelete-log-message'       => '$1 барои $2 {{PLURAL:$2|воқеа|воқеаҳо}}',
+'revdelete-edit-reasonlist'   => 'Вироиш ҳазф далелҳо',
 
 # Suppression log
 'suppressionlog'     => 'Гузориши мавқуфсозӣ',

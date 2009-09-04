@@ -964,6 +964,7 @@ $1",
 ** 不合適的個人資料',
 'revdelete-otherreason'       => '其它／附加的理由：',
 'revdelete-reasonotherlist'   => '其它理由',
+'revdelete-edit-reasonlist'   => '編輯刪除埋由',
 
 # Suppression log
 'suppressionlog'     => '廢止日誌',

@@ -1123,6 +1123,7 @@ Prohlédněte si protokolovací záznamy.',
 ** Nevhodné osobní údaje',
 'revdelete-otherreason'       => 'Jiný/další důvod:',
 'revdelete-reasonotherlist'   => 'Jiný důvod',
+'revdelete-edit-reasonlist'   => 'Editovat důvody smazání',
 
 # Suppression log
 'suppressionlog'     => 'Záznam utajení',

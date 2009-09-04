@@ -848,6 +848,7 @@ Fümedolös, das vilol dunön osi, das suemol sekis, e das dunol osi baiädü [[
 'revdelete-unhid'             => '$1 pesäklänedon',
 'revdelete-log-message'       => '$1 tefü {{PLURAL:$2|fomam|fomams}} $2',
 'logdelete-log-message'       => '$1 tefü {{PLURAL:$2|jenot|jenots}} $2',
+'revdelete-edit-reasonlist'   => 'Redakön kodis moükama',
 
 # Suppression log
 'suppressionlog'     => 'Lovelogam-jenotalised',

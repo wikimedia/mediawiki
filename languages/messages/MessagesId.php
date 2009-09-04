@@ -1080,6 +1080,7 @@ Anda tidak memiliki akses ke revisi ini.',
 'revdelete-concurrent-change' => 'Gagal mengubah revisi per $2, $1: statusnya kemungkinan telah diubah oleh pengguna lain bersamaan dengan Anda.
 Silakan periksa catatan log.',
 'revdelete-only-restricted'   => 'Anda tidak dapat menyembunyikan revisi-revisi ini dari semua opsis tanpa memilih juga salah satu opsi penyembunyian lainnya.',
+'revdelete-edit-reasonlist'   => 'Alasan penghapusan suntingan',
 
 # Suppression log
 'suppressionlog'     => 'Log penyembunyian',
