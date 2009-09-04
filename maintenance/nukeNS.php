@@ -80,7 +80,7 @@ class NukeNS extends Maintenance {
 					$dbw->query( "DELETE FROM $tbl_pag WHERE page_id = $id" );
 					$dbw->commit();
 					// Delete revisions as appropriate
-					$child = $this->spawnChild( 'NukePage', 'NukePage.php' );
+					$child = $this->runChild( 'NukePage', 'NukePage.php' );
 					$child->deleteRevisions( $revs );
 					$this->purgeRedundantText( true );
 					$n_deleted ++;

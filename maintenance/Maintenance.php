@@ -51,13 +51,13 @@ abstract class Maintenance {
 	const STDIN_ALL = 'all';
 
 	// This is the desired params
-	private $mParams = array();
+	protected $mParams = array();
 
 	// Array of desired args
-	private $mArgList = array();
+	protected $mArgList = array();
 
 	// This is the list of options that were actually passed
-	private $mOptions = array();
+	protected $mOptions = array();
 
 	// This is the list of arguments that were actually passed
 	protected $mArgs = array();
@@ -66,14 +66,14 @@ abstract class Maintenance {
 	protected $mSelf;
 
 	// Special vars for params that are always used
-	private $mQuiet = false;
-	private $mDbUser, $mDbPass;
+	protected $mQuiet = false;
+	protected $mDbUser, $mDbPass;
 
 	// A description of the script, children should change this
 	protected $mDescription = '';
 
 	// Have we already loaded our user input?
-	private $mInputLoaded = false;
+	protected $mInputLoaded = false;
 
 	// Batch size. If a script supports this, they should set
 	// a default with setBatchSize()
@@ -248,7 +248,7 @@ abstract class Maintenance {
 	/**
 	 * Add the default parameters to the scripts
 	 */
-	private function addDefaultParams() {
+	protected function addDefaultParams() {
 		$this->addOption( 'help', "Display this help message" );
 		$this->addOption( 'quiet', "Whether to supress non-error output" );
 		$this->addOption( 'conf', "Location of LocalSettings.php, if not default", false, true );
@@ -267,13 +267,13 @@ abstract class Maintenance {
 	}
 
 	/**
-	 * Spawn a child maintenance script. Pass all of the current arguments
+	 * Run a child maintenance script. Pass all of the current arguments
 	 * to it.
 	 * @param $maintClass String A name of a child maintenance class
 	 * @param $classFile String Full path of where the child is
 	 * @return Maintenance child
 	 */
-	protected function spawnChild( $maintClass, $classFile = null ) {
+	protected function runChild( $maintClass, $classFile = null ) {
 		// If we haven't already specified, kill setup procedures
 		// for child scripts, we've already got a sane environment
 		self::disableSetup();
@@ -469,7 +469,7 @@ abstract class Maintenance {
 	/**
 	 * Run some validation checks on the params, etc
 	 */
-	private function validateParamsAndArgs() {
+	protected function validateParamsAndArgs() {
 		$die = false;
 		# Check to make sure we've got all the required options
 		foreach( $this->mParams as $opt => $info ) {
@@ -492,7 +492,7 @@ abstract class Maintenance {
 	/**
 	 * Handle the special variables that are global to all scripts
 	 */
-	private function loadSpecialVars() {
+	protected function loadSpecialVars() {
 		if( $this->hasOption( 'dbuser' ) )
 			$this->mDbUser = $this->getOption( 'dbuser' );
 		if( $this->hasOption( 'dbpass' ) )
@@ -507,9 +507,9 @@ abstract class Maintenance {
 	 * Maybe show the help.
 	 * @param $force boolean Whether to force the help to show, default false
 	 */
-	private function maybeHelp( $force = false ) {
+	protected function maybeHelp( $force = false ) {
 		ksort( $this->mParams );
-		if( $this->hasOption( 'help' ) || in_array( 'help', $this->mArgs ) || $force ) {
+		if( $this->hasOption( 'help' ) || $force ) {
 			$this->mQuiet = false;
 			if( $this->mDescription ) {
 				$this->output( "\n" . $this->mDescription . "\n" );
@@ -754,7 +754,7 @@ abstract class Maintenance {
 	 * Return all of the core maintenance scripts
 	 * @return array
 	 */
-	private static function getCoreScripts() {
+	protected static function getCoreScripts() {
 		if( !self::$mCoreScripts ) {
 			self::disableSetup();
 			$paths = array(

@@ -31,8 +31,6 @@ if ( !defined( 'DO_MAINTENANCE' ) ) {
 	exit( 1 );
 }
 
-error_reporting( E_ALL | E_STRICT );
-
 if( !$maintClass || !class_exists( $maintClass ) ) {
 	echo "\$maintClass is not set or is set to a non-existent class.";
 	exit( 1 );
