@@ -41,7 +41,7 @@ class ChangePassword extends Maintenance {
 		try {
 			$user->setPassword( $this->getOption('password') );
 			$user->saveSettings();
-			$this->output( "Password set for " . $user->getName() );
+			$this->output( "Password set for " . $user->getName() . "\n" );
 		} catch( PasswordError $pwe ) {
 			$this->error( $pwe->getText(), true );
 		}
