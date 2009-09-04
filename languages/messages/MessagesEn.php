@@ -2146,7 +2146,6 @@ If the problem persists, contact an [[Special:ListUsers/sysop|administrator]].',
 
 # img_auth script messages
 'img-auth-accessdenied' => 'Access denied',
-'img-auth-desc'         => 'Image authorisation script',
 'img-auth-nopathinfo'   => 'Missing PATH_INFO.
 Your server is not set up to pass this information.
 It may be CGI-based and cannot support img_auth.
