@@ -1500,6 +1500,7 @@ Please check the logs.',
 ** Inappropriate personal information',
 'revdelete-otherreason'       => 'Other/additional reason:',
 'revdelete-reasonotherlist'   => 'Other reason',
+'revdelete-edit-reasonlist'   => 'Edit delete reasons',
 
 # Suppression log
 'suppressionlog'     => 'Suppression log',
