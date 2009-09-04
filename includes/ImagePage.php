@@ -861,7 +861,6 @@ class ImageHistoryList {
 				if( $iscur || !$file->userCan(File::DELETED_RESTRICTED) ) {
 					$del = wfMsgHtml( 'rev-delundel' );
 				} else {
-					// If the file was hidden, link to sha-1
 					list( $ts, $name ) = explode( '!', $img, 2 );
 					$del = $this->skin->link( $revdel, wfMsgHtml( 'rev-delundel' ),
 						array(),
@@ -876,7 +875,7 @@ class ImageHistoryList {
 					if( $file->isDeleted(File::DELETED_RESTRICTED) )
 						$del = "<strong>$del</strong>";
 				}
-				$row .= "<tt style='white-space: nowrap;'><small>$del</small></tt>";
+				$row .= "<span class='mw-revdelundel-link'>$del</span>";
 			}
 			$row .= '</td>';
 		}
