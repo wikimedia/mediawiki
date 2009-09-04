@@ -1071,9 +1071,8 @@ $1",
 Пожалуйста, проверьте журналы.',
 'revdelete-only-restricted'   => 'Вы не можете скрыть запись от просмотра администраторами без выбора одной из других настроек сокрытия.',
 'revdelete-reason-dropdown'   => '* Стандартные причины удаления
-** Запрос автора
 ** Нарушение авторских прав
-** Вандализм',
+** Размещение некорректной личной информации',
 'revdelete-otherreason'       => 'Другая/дополнительная причина:',
 'revdelete-reasonotherlist'   => 'Другая причина',
 'revdelete-edit-reasonlist'   => 'Править список причин',
@@ -1668,6 +1667,9 @@ PICT # различные
 'upload-too-many-redirects' => 'URL содержит слишком много перенаправлений',
 'upload-unknown-size'       => 'Неизвестный размер',
 'upload-http-error'         => 'Произошла ошибка HTTP: $1',
+
+# img_auth script messages
+'img-auth-accessdenied' => 'Доступ запрещён',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Невозможно обратить по указанному адресу.',

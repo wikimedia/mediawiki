@@ -878,7 +878,7 @@ Die rede verskaf deur $3 is ''$2''",
 'revdelete-suppress'          => 'Onderdruk data van administrateurs en ander.',
 'revdelete-hide-image'        => 'Steek lêer inhoud weg',
 'revdelete-unsuppress'        => 'Verwyder beperkinge op herstelde weergawes',
-'revdelete-log'               => 'Boekstaaf opmerking:',
+'revdelete-log'               => 'Rede vir skrapping:',
 'revdelete-submit'            => 'Pas op gekose weergawe toe',
 'revdelete-logentry'          => 'sigbaarheid van weergawe is gewysig vir [[$1]]',
 'logdelete-logentry'          => 'verander sigbaarheid van gebeurtenis [[$1]]',
@@ -1438,6 +1438,9 @@ Die verwyderingsinligting van die lêer word vir u gemak hier herhaal:",
 'upload-too-many-redirects' => 'Die URL bevat te veel aansture',
 'upload-unknown-size'       => 'Onbekende grootte',
 'upload-http-error'         => "'n HTTP-fout het voorgekom: $1",
+
+# img_auth script messages
+'img-auth-accessdenied' => 'Toegang geweier',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'  => 'Kon nie die URL bereik nie',

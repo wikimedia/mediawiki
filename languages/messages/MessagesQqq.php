@@ -873,7 +873,8 @@ This is the introduction explaining the feature.',
 'revdelete-suppress'          => 'Option for oversight',
 'revdelete-hide-image'        => 'Option for <del>oversight</del> [[:mw:RevisionDelete|RevisionDelete]] feature.',
 'revdelete-unsuppress'        => '{{RevisionDelete}}',
-'revdelete-log'               => 'Log comment text for oversight',
+'revdelete-log'               => '{{Identical|Reason for deletion}}
+Log comment text for oversight',
 'revdelete-submit'            => '{{RevisionDelete}}
 This is the submit button on [[Special:RevisionDelete]].',
 'revdelete-logentry'          => '{{RevisionDelete}}
@@ -1520,16 +1521,16 @@ Parameter $1 is a link to the deletion log, with the text in {{msg|deletionlog}}
 'upload-file-error' => '{{Identical|Internal error}}',
 
 # img_auth script messages
-'img-auth-accessdenied' => '[[Manual:Image Authorization]] Access Denied',
-'img-auth-nopathinfo'   => '[[Manual:Image Authorization]] Missing PATH_INFO - see english description',
-'img-auth-notindir'     => '[[Manual:Image Authorization]] when the specified path is not in upload directory.',
-'img-auth-badtitle'     => '[[Manual:Image Authorization]] bad title, $1 is the invalid title',
-'img-auth-nologinnWL'   => '[[Manual:Image Authorization]] logged in and file not whitelisted. $1 is the file not in whitelist.',
-'img-auth-nofile'       => '[[Manual:Image Authorization]] non existent file, $1 is the file that does not exist.',
-'img-auth-isdir'        => '[[Manual:Image Authorization]] trying to access a directory instead of a file, $1 is the directory.',
-'img-auth-streaming'    => '[[Manual:Image Authorization]] is now streaming file specified by $1.',
-'img-auth-public'       => '[[Manual:Image Authorization]] an error message when the admin has configured the wiki to be a public wiki, but is using img_auth script - normally this is a configuration error, except when special restriction extensions are used',
-'img-auth-noread'       => '[[Manual:Image Authorization]] User does not have access to read file, $1 is the file',
+'img-auth-accessdenied' => '[[mw:Manual:Image Authorization|Manual:Image Authorization]]: Access Denied',
+'img-auth-nopathinfo'   => '[[mw:Manual:Image Authorization|Manual:Image Authorization]]: Missing PATH_INFO - see english description',
+'img-auth-notindir'     => '[[mw:Manual:Image Authorization|Manual:Image Authorization]]: When the specified path is not in upload directory.',
+'img-auth-badtitle'     => '[[mw:Manual:Image Authorization|Manual:Image Authorization]]: Bad title, $1 is the invalid title',
+'img-auth-nologinnWL'   => '[[mw:Manual:Image Authorization|Manual:Image Authorization]]: Logged in and file not whitelisted. $1 is the file not in whitelist.',
+'img-auth-nofile'       => '[[mw:Manual:Image Authorization|Manual:Image Authorization]]: Non existent file, $1 is the file that does not exist.',
+'img-auth-isdir'        => '[[mw:Manual:Image Authorization|Manual:Image Authorization]]: Trying to access a directory instead of a file, $1 is the directory.',
+'img-auth-streaming'    => '[[mw:Manual:Image Authorization|Manual:Image Authorization]]: Is now streaming file specified by $1.',
+'img-auth-public'       => '[[mw:Manual:Image Authorization|Manual:Image Authorization]]: An error message when the admin has configured the wiki to be a public wiki, but is using img_auth script - normally this is a configuration error, except when special restriction extensions are used',
+'img-auth-noread'       => '[[mw:Manual:Image Authorization|Manual:Image Authorization]]: User does not have access to read file, $1 is the file',
 
 'license'           => 'This appears in the upload form for the license drop-down. The header in the file description page is now at {{msg-mw|License-header}}.',
 'nolicense'         => '{{Identical|None selected}}',

@@ -894,7 +894,7 @@ N\'oc\'h ket aotreet da vont outi.',
 ** Titouroù personel dizereat',
 'revdelete-otherreason'       => 'Abeg all/ouzhpenn :',
 'revdelete-reasonotherlist'   => 'Abeg all',
-'revdelete-edit-reasonlist'   => 'Kemmañ a ra an abegoù diverkañ',
+'revdelete-edit-reasonlist'   => 'Kemmañ abegoù an diverkañ',
 
 # Suppression log
 'suppressionlog'     => 'Marilh diverkañ',
@@ -1485,6 +1485,11 @@ Ma talc'h ar gudenn, kit e darempred gant [[Special:ListUsers/sysop|merourien ar
 'upload-too-many-redirects' => 'Re a adkasoù zo en URL-mañ.',
 'upload-unknown-size'       => 'Ment dianav',
 'upload-http-error'         => 'Ur fazi HTTP zo bet : $1',
+
+# img_auth script messages
+'img-auth-accessdenied' => "Moned nac'het",
+'img-auth-nofile'       => 'n\'eus ket eus ar restr "$1".',
+'img-auth-noread'       => 'N\'eo ket aotreet an implijer da lenn "$1"',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => "N'eus ket bet gallet tizhout an URL",

@@ -1062,7 +1062,7 @@ Molimo potvrdite da to želite, da razumijete posljedice, i da to radite u sklad
 'revdelete-suppress'          => 'Sakrij podatke od administratora i ostalih suradnika',
 'revdelete-hide-image'        => 'Sakrij sadržaj datoteke (sakrij sliku)',
 'revdelete-unsuppress'        => 'Ukloni ograničenja na vraćenim izmjenama',
-'revdelete-log'               => 'Komentar za evidenciju:',
+'revdelete-log'               => 'Razlog za brisanje:',
 'revdelete-submit'            => 'Izvrši brisanje/sakrivanje',
 'revdelete-logentry'          => 'promijenjena vidljivost izmjene za [[$1]]',
 'logdelete-logentry'          => 'promijenjena vidljivost uređivanja [[$1]]',
@@ -1094,6 +1094,11 @@ Nemate pristup do nje.',
 'revdelete-concurrent-change' => 'Greška pri izmjeni stavke od $2, $1: izgleda da je njen status promijenio netko drugi dok ste ju pokušavali mijenjati. 
 Provjerite evidencije.',
 'revdelete-only-restricted'   => 'Ne možete sakriti stavke od pregleda administratora bez odabira još jedne od drugih mogućnosti skrivanja.',
+'revdelete-reason-dropdown'   => '*Uobičajeni razlozi brisanja
+** Kršenje autorskih prava
+** Neprimjereni osobni podaci',
+'revdelete-otherreason'       => 'Drugi/dodatni razlog:',
+'revdelete-reasonotherlist'   => 'Drugi razlog',
 'revdelete-edit-reasonlist'   => 'Uredi razloge za brisanje',
 
 # Suppression log
@@ -1667,6 +1672,24 @@ Ukoliko se problem ponovi, javite to [[Special:ListUsers/sysop|administratoru]].
 'upload-unknown-size'       => 'Nepoznata veličina',
 'upload-http-error'         => 'HTTP pogreška: $1',
 
+# img_auth script messages
+'img-auth-accessdenied' => 'Pristup onemogućen',
+'img-auth-nopathinfo'   => 'Nedostaje PATH_INFO.
+Vaš poslužitelj nije postavljen da prosljeđuje ovu informaciju.
+Možda se temelji na CGI i ne može podržavati img_auth.
+Pogledajte http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
+'img-auth-notindir'     => 'Zahtjevana putanja nije u direktoriju podešenom za postavljanje.',
+'img-auth-badtitle'     => 'Ne mogu stvoriti valjani naslov iz "$1".',
+'img-auth-nologinnWL'   => 'Niste prijavljeni i "$1" nije na popisu dozvoljenih.',
+'img-auth-nofile'       => 'Datoteka "$1" ne postoji.',
+'img-auth-isdir'        => 'Pokušavate pristupiti direktoriju "$1".
+Dozvoljen je samo pristup datotekama.',
+'img-auth-streaming'    => 'Tok "$1".',
+'img-auth-public'       => 'Funkcija img_auth.php služi za izlaz datoteka s privatnih wikija.
+Ovaj wiki je postavljena kao javni wiki.
+Za optimalnu sigurnost, img_auth.php je onemogućena.',
+'img-auth-noread'       => 'Suradnik nema pristup za čitanje "$1".',
+
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'URL nije dostupan',
 'upload-curl-error6-text'  => 'Dani URL nije dostupan. Provjerite da li je URL ispravno upisan i da li su web stranice dostupne.',
@@ -2126,18 +2149,19 @@ Sva vremena su prema poslužiteljevom vremenu.',
 'delete-warning-toobig'  => 'Ova stranica ima veliku povijest uređivanja, preko $1 {{PLURAL:$1|promjene|promjena}}. Brisanje može poremetiti bazu podataka {{SITENAME}}; postupajte s oprezom.',
 
 # Rollback
-'rollback'         => 'Ukloni posljednju promjenu',
-'rollback_short'   => 'Ukloni',
-'rollbacklink'     => 'ukloni',
-'rollbackfailed'   => 'Uklanjanje neuspješno',
-'cantrollback'     => 'Ne mogu ukloniti posljednju promjenu, postoji samo jedna promjena.',
-'alreadyrolled'    => 'Ne mogu ukloniti posljednju promjenu članka [[:$1]] koju je napravio  [[User:$2|$2]] ([[User talk:$2|Razgovor]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]); netko je već promijenio stranicu ili uklonio promjenu.
+'rollback'          => 'Ukloni posljednju promjenu',
+'rollback_short'    => 'Ukloni',
+'rollbacklink'      => 'ukloni',
+'rollbackfailed'    => 'Uklanjanje neuspješno',
+'cantrollback'      => 'Ne mogu ukloniti posljednju promjenu, postoji samo jedna promjena.',
+'alreadyrolled'     => 'Ne mogu ukloniti posljednju promjenu članka [[:$1]] koju je napravio  [[User:$2|$2]] ([[User talk:$2|Razgovor]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]); netko je već promijenio stranicu ili uklonio promjenu.
 
 Posljednju promjenu napravio je [[User:$3|$3]] ([[User talk:$3|Razgovor]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'      => "Sažetak promjene je bio: \"''\$1''\".",
-'revertpage'       => 'Uklonjena promjena suradnika $2, vraćeno na zadnju inačicu suradnika $1',
-'rollback-success' => 'Uklonjeno uređivanje suradnika $1; vraćeno na zadnju inačicu suradnika $2.',
-'sessionfailure'   => 'Uočili smo problem s vašom prijavom. Zadnja naredba nije izvršena
+'editcomment'       => "Sažetak promjene je bio: \"''\$1''\".",
+'revertpage'        => 'Uklonjena promjena suradnika $2, vraćeno na zadnju inačicu suradnika $1',
+'revertpage-nouser' => 'Vraćene izmjene suradnika (suradničko ime uklonjeno) na posljednju inačicu suradnika [[User:$1|$1]]',
+'rollback-success'  => 'Uklonjeno uređivanje suradnika $1; vraćeno na zadnju inačicu suradnika $2.',
+'sessionfailure'    => 'Uočili smo problem s vašom prijavom. Zadnja naredba nije izvršena
 kako bi izbjegla zloupotreba. Molimo vas da u pregledniku pritisnete "Natrag" (Back) i ponovno učitate stranicu
 s koje ste stigli.',
 

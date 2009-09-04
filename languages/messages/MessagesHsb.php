@@ -917,9 +917,8 @@ Nimaš přistup na njón.',
 Prošu přepruwuj protokole.',
 'revdelete-only-restricted'   => 'Njemóžeš zapiski před wočemi administratorow potłóčić, bjez toho zo wuběraš tež jednu z druhich potłóčowanskich opcijow.',
 'revdelete-reason-dropdown'   => '*Zwučene přičiny za wušmórnjenje
-** Prostwa awtora
-** přeńdźenje awtorskeho prawa
-** Wandalizm',
+** Přeńdźenje awtorskeho prawa
+** Njepřihódne wosobinske informacije',
 'revdelete-otherreason'       => 'Druha/přidatna přičina:',
 'revdelete-reasonotherlist'   => 'Druha přičina',
 'revdelete-edit-reasonlist'   => 'Přičiny za wušmórnjenje wobdźěłać',

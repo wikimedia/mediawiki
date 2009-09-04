@@ -211,7 +211,7 @@ $messages = array(
 'tog-minordefault'            => 'Marcar todas as edições como secundárias, por padrão',
 'tog-previewontop'            => 'Mostrar previsão antes da caixa de edição',
 'tog-previewonfirst'          => 'Mostrar previsão na primeira edição',
-'tog-nocache'                 => 'Desactivar caching de páginas',
+'tog-nocache'                 => "Desativar ''caching'' de páginas",
 'tog-enotifwatchlistpages'    => 'Enviar-me um email quando uma página da minha lista de páginas vigiadas for alterada',
 'tog-enotifusertalkpages'     => 'Enviar-me um email quando a minha página de discussão for editada',
 'tog-enotifminoredits'        => 'Enviar-me um email também quando forem edições menores',
@@ -560,8 +560,8 @@ Por favor, reporte este fato a um administrador, fazendo notar a URL.',
 'perfcachedts'         => 'Os seguintes dados encontram-se armazenados na cache e foram atualizados pela última vez às $1.',
 'querypage-no-updates' => 'Momentaneamente as atualizações para esta página estão desativadas. Por enquanto, os dados aqui presentes não poderão ser atualizados.',
 'wrong_wfQuery_params' => 'Parâmetros incorretos para wfQuery()<br />
-Function: $1<br />
-Query: $2',
+Função: $1<br />
+Consulta: $2',
 'viewsource'           => 'Ver código-fonte',
 'viewsourcefor'        => 'para $1',
 'actionthrottled'      => 'Ação controlada',
@@ -775,8 +775,11 @@ Se você chegou aqui por engano, apenas clique no botão '''voltar''' do seu nav
 Você pode [[Special:Search/{{PAGENAME}}|pesquisar pelo título desta página]] em outras páginas <span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} buscar nos registros relacionados],
 ou [{{fullurl:{{FULLPAGENAME}}|action=edit}} criar esta página]</span>.',
 'userpage-userdoesnotexist'        => 'A conta "$1" não se encontra registrada. Por gentileza, verifique se deseja mesmo criar/editar esta página.',
-'clearyourcache'                   => "'''Nota:''' Após salvar, terá de limpar a cache do seu navegador para ver as alterações.'''
-'''Mozilla / Firefox / Safari:''' pressione ''Shift'' enquanto clica em ''Recarregar'', ou pressione ou ''Ctrl-F5'' ou ''Ctrl-R'' (''Command-R'' para Macintosh); '''Konqueror:''': clique no botão ''Recarregar'' ou pressione ''F5''; '''Opera:''' limpe a sua cache em ''Ferramentas → Preferências'' (''Tools → Preferences''); '''Internet Explorer:''' pressione ''Ctrl'' enquanto clica em ''Recarregar'' ou pressione ''Ctrl-F5'';",
+'clearyourcache'                   => "'''Nota - Depois de salvar, você terá de limpar a ''cache'' do seu navegador para ver as alterações.'''
+'''Mozilla / Firefox / Safari:''' pressione ''Shift'' enquanto clica em ''Recarregar'', ou pressione ''Ctrl-F5'' ou ''Ctrl-R'' (''Command-R'' para Macintosh);
+'''Konqueror:''' clique no botão ''Recarregar'' ou pressione ''F5'';
+'''Opera:''' limpe a ''cache'' em ''Ferramentas → Preferências'' (''Tools → Preferences'');
+'''Internet Explorer:''' pressione ''Ctrl'' enquanto clica em ''Recarregar'' ou pressione ''Ctrl-F5'';",
 'usercssyoucanpreview'             => "'''Dica:''' Utilize o botão \"Mostrar previsão\" para testar seu novo CSS antes de salvar.",
 'userjsyoucanpreview'              => "'''Dica:''' Utilize o botão \"Mostrar previsão\" para testar seu novo JS antes de salvar.",
 'usercsspreview'                   => "'''Lembre-se que está apenas prevendo o seu CSS particular.'''
@@ -969,7 +972,7 @@ Por favor confirme que deseja fazê-lo, que entende as consequências e que est�
 'revdelete-suppress'          => 'Suprimir dados de administradores, bem como de outros',
 'revdelete-hide-image'        => 'Ocultar conteúdos do arquivo',
 'revdelete-unsuppress'        => 'Remover restrições das edições restauradas',
-'revdelete-log'               => 'Comentário de registro:',
+'revdelete-log'               => 'Motivo para a eliminação:',
 'revdelete-submit'            => 'Aplicar à edição selecionada',
 'revdelete-logentry'          => 'modificou visibilidade de revisão para [[$1]]',
 'logdelete-logentry'          => 'alterada visibilidade de eventos para [[$1]]',
@@ -2417,7 +2420,7 @@ Para exportar páginas, introduza os títulos na caixa de texto abaixo (um títu
 Se desejar, pode utilizar uma ligação (por exemplo, [[{{#Special:Export}}/{{MediaWiki:Mainpage}}]] para a [[{{MediaWiki:Mainpage}}]]).',
 'exportcuronly'     => 'Incluir apenas a revisão atual, não o histórico inteiro',
 'exportnohistory'   => "----
-'''Nota:''' a exportação do histórico completo das páginas através deste formulário foi desactivada devido a motivos de performance.",
+'''Nota:''' a exportação do histórico completo das páginas através deste formulário foi desativada devido a questões de performance.",
 'export-submit'     => 'Exportar',
 'export-addcattext' => 'Adicionar à listagem páginas da categoria:',
 'export-addcat'     => 'Adicionar',
@@ -2480,7 +2483,7 @@ Todas as acções de importação transwiki são registradas no [[Special:Log/im
 'importnotext'               => 'Vazio ou sem texto',
 'importsuccess'              => 'Importação completa!',
 'importhistoryconflict'      => 'Existem conflitos de edições no histórico (talvez esta página já foi importada antes)',
-'importnosources'            => 'Não foram definidas fontes de importação transwiki e o carregamento direto de históricos encontra-se desactivado.',
+'importnosources'            => 'Não foram definidas fontes de importação transwiki e o carregamento direto de históricos encontra-se desativado.',
 'importnofile'               => 'Nenhum arquivo de importação foi carregado.',
 'importuploaderrorsize'      => 'O envio do arquivo a ser importado falhou. O arquivo é maior do que o tamanho máximo permitido para upload.',
 'importuploaderrorpartial'   => 'O envio do arquivo a ser importado falhou. O arquivo foi recebido parcialmente.',
@@ -2648,8 +2651,8 @@ Tal bloqueio foi provavelmente causado por uma ligação para um ''website'' ext
 'markaspatrolledtext'                 => 'Marcar esta página como verificada',
 'markedaspatrolled'                   => 'Marcado como verificado',
 'markedaspatrolledtext'               => 'A revisão selecionada foi marcada como verificada.',
-'rcpatroldisabled'                    => 'Edições verificadas nas Mudanças Recentes desactivadas',
-'rcpatroldisabledtext'                => 'A funcionalidade de Edições verificadas nas Mudanças Recentes está atualmente desactivada.',
+'rcpatroldisabled'                    => 'Edições verificadas nas Mudanças Recentes desativadas',
+'rcpatroldisabledtext'                => 'A funcionalidade de Edições verificadas nas Mudanças Recentes está atualmente desativada.',
 'markedaspatrollederror'              => 'Não é possível marcar como verificado',
 'markedaspatrollederrortext'          => 'Você precisa de especificar uma revisão para poder marcar como verificado.',
 'markedaspatrollederror-noautopatrol' => 'Você não está autorizado a marcar suas próprias edições como edições patrulhadas.',
@@ -2780,7 +2783,7 @@ Caso o arquivo tenha sido modificado a partir do seu estado original, alguns det
 'exif-exposureprogram'             => 'Programa de exposição',
 'exif-spectralsensitivity'         => 'Sensibilidade espectral',
 'exif-isospeedratings'             => 'Taxa de velocidade ISO',
-'exif-oecf'                        => 'Factor optoelectrónico de conversão.',
+'exif-oecf'                        => 'Fator optoelectrónico de conversão.',
 'exif-shutterspeedvalue'           => 'Velocidade do obturador',
 'exif-aperturevalue'               => 'Abertura',
 'exif-brightnessvalue'             => 'Brilho',
@@ -3021,21 +3024,21 @@ O mailer retornou: $1',
 'confirmemail_loggedin'    => 'O seu endereço de e-mail foi agora confirmado.',
 'confirmemail_error'       => 'Alguma coisa correu mal ao guardar a sua confirmação.',
 'confirmemail_subject'     => '{{SITENAME}} confirmação de endereço de e-mail',
-'confirmemail_body'        => 'Alguém, provavelmente você com o endereço de IP $1,
+'confirmemail_body'        => 'Alguém, provavelmente você, com o endereço de IP $1,
 registrou uma conta "$2" com este endereço de e-mail em {{SITENAME}}.
 
-Para confirmar que esta conta realmente é sua, e para activar
+Para confirmar que esta conta realmente é sua, e para ativar
 as funcionalidades de e-mail em {{SITENAME}},
 abra o seguinte endereço no seu navegador:
 
 $3
 
-Caso este *não* seja você, siga o seguinte endereço
+Se você *não* registrou a conta, siga a seguinte ligação
 para cancelar a confirmação do endereço de e-mail:
 
 $5
 
-Este código de confirmação irá expirar a $4.',
+Este código de confirmação irá expirar em $4.',
 'confirmemail_invalidated' => 'Confirmação de endereço de e-mail cancelada',
 'invalidateemail'          => 'Cancelar confirmação de e-mail',
 
