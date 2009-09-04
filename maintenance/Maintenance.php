@@ -1,6 +1,7 @@
 <?php
 // Define this so scripts can easily find doMaintenance.php
 define( 'DO_MAINTENANCE', dirname( __FILE__ ) . '/doMaintenance.php' );
+$maintClass = false;
 
 // Make sure we're on PHP5 or better
 if( version_compare( PHP_VERSION, '5.0.0' ) < 0 ) {
