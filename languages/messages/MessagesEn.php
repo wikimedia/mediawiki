@@ -2152,7 +2152,7 @@ It may be CGI-based and cannot support img_auth.
 See http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
 'img-auth-notindir'     => 'Requested path is not in the configured upload directory.',
 'img-auth-badtitle'     => 'Unable to construct a valid title from "$1".',
-'img-auth-nologinnWL'   => 'You are not logged in and "$1" not in whitelist.',
+'img-auth-nologinnWL'   => 'You are not logged in and "$1" is not in the whitelist.',
 'img-auth-nofile'       => 'File "$1" does not exist.',
 'img-auth-isdir'        => 'You are trying to access a directory "$1".
 Only file access is allowed.',
