@@ -360,31 +360,55 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 		// Normal sysops can always see what they did, but can't always change it
 		if( !$UserAllowed ) return;
 
-		$wgOut->addHTML(
-			Xml::openElement( 'form', array( 'method' => 'post',
+		$out =  Xml::openElement( 'form', array( 'method' => 'post',
 				'action' => $this->getTitle()->getLocalUrl( array( 'action' => 'submit' ) ), 
 				'id' => 'mw-revdel-form-revisions' ) ) .
-			Xml::openElement( 'fieldset' ) .
-			Xml::element( 'legend', null,  wfMsg( 'revdelete-legend' ) ) .
+			Xml::fieldset( wfMsg( 'revdelete-legend' ) ) .
+			Xml::openElement( 'table' ) .
 			$this->buildCheckBoxes( $bitfields ) .
-			"\n<table><tr>\n" .
-				'<td>' . Xml::label( wfMsg('revdelete-log'), 'wpRevDeleteReasonList' ) . '</td>' .
-				'<td>' . Xml::listDropDown( 'wpRevDeleteReasonList',
-							wfMsgForContent( 'revdelete-reason-dropdown' ),
-							wfMsgForContent( 'revdelete-reasonotherlist' ), '', 'wpReasonDropDown', 1
-						) . '</td>' .
-			"\n</tr><tr>\n" .
-				'<td>' . Xml::label( wfMsg( 'revdelete-otherreason' ), 'wpReason' ) . '</td>' .
-				'<td>' . Xml::input( 'wpReason', 60, $this->otherReason, array('id'=>'wpReason') ) . '</td>' .
-			"\n</tr></table>\n" .
-			Xml::submitButton( wfMsg( 'revdelete-submit' ), array( 'name' => 'wpSubmit' ) ) .
+			"<tr>\n" .
+				'<td class="mw-label">' .
+					Xml::label( wfMsg( 'revdelete-log' ), 'wpRevDeleteReasonList' ) .
+				'</td>' .
+				'<td class="mw-input">' .
+					Xml::listDropDown( 'wpRevDeleteReasonList',
+						wfMsgForContent( 'revdelete-reason-dropdown' ),
+						wfMsgForContent( 'revdelete-reasonotherlist' ), '', 'wpReasonDropDown', 1
+					) .
+				'</td>' .
+			"</tr><tr>\n" .
+				'<td class="mw-label">' .
+					Xml::label( wfMsg( 'revdelete-otherreason' ), 'wpReason' ) .
+				'</td>' .
+				'<td class="mw-input">' .
+					Xml::input( 'wpReason', 60, $this->otherReason, array( 'id' => 'wpReason' ) ) .
+				'</td>' .
+			"</tr><tr>\n" .
+				'<td></td>' .
+				'<td class="mw-submit">' .
+					Xml::submitButton( wfMsg( 'revdelete-submit' ), array( 'name' => 'wpSubmit' ) ) .
+				'</td>' .
+			"</tr>\n" .
+			Xml::closeElement( 'table' ) .
 			Xml::hidden( 'wpEditToken', $wgUser->editToken() ) .
 			Xml::hidden( 'target', $this->targetObj->getPrefixedText() ) .
 			Xml::hidden( 'type', $this->typeName ) .
 			Xml::hidden( 'ids', implode( ',', $this->ids ) ) .
-			Xml::closeElement( 'fieldset' ) .
-			Xml::closeElement( 'form' ) . "\n"
-		);
+			Xml::closeElement( 'fieldset' ) . "\n";
+
+		if( $wgUser->isAllowed( 'editinterface' ) ) {
+			$title = Title::makeTitle( NS_MEDIAWIKI, 'revdelete-reason-dropdown' );
+			$link = $wgUser->getSkin()->link(
+				$title,
+				wfMsgHtml( 'revdelete-edit-reasonlist' ),
+				array(),
+				array( 'action' => 'edit' )
+			);
+			$out .= Xml::tags( 'p', array( 'class' => 'mw-revdel-editreasons' ), $link ) . "\n";
+		}
+		$out .= Xml::closeElement( 'form' ) . "\n";
+
+		$wgOut->addHTML( $out );
 	}
 
 	/**
@@ -411,8 +435,8 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 			$innerHTML = Xml::checkLabel( wfMsg($message), $name, $name, $bitfields & $field );
 			if( $field == Revision::DELETED_RESTRICTED )
 				$innerHTML = "<b>$innerHTML</b>";
-			$line = Xml::tags( 'div', null, $innerHTML );
-			$html .= $line;
+			$line = Xml::tags( 'td', array( 'class' => 'mw-input' ), $innerHTML );
+			$html .= '<tr><td></td>' . $line . "</tr>\n";
 		}
 		return $html;
 	}
