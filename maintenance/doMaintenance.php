@@ -26,11 +26,16 @@
  * @ingroup Maintenance
  */
 
+if ( !defined( 'DO_MAINTENANCE' ) ) {
+	echo "This file must be included after Maintenance.php\n";
+	exit( 1 );
+}
+
 error_reporting( E_ALL | E_STRICT );
 
-if( !isset( $maintClass ) || !class_exists( $maintClass ) ) {
+if( !$maintClass || !class_exists( $maintClass ) ) {
 	echo "\$maintClass is not set or is set to a non-existent class.";
-	die();
+	exit( 1 );
 }
 
 if( defined( 'MW_NO_SETUP' ) ) {
@@ -60,7 +65,7 @@ if( file_exists( dirname(__FILE__).'/wikimedia-mode' ) ) {
 	# Maybe a hook?
 	global $cluster;
 	$wgWikiFarm = true;
-	$cluster = 'pmtma';
+	$cluster = 'pmtpa';
 	require_once( "$IP/includes/AutoLoader.php" );
 	require_once( "$IP/includes/SiteConfiguration.php" );
 	require( "$IP/wgConf.php" );
