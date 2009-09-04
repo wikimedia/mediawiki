@@ -2144,6 +2144,19 @@ If the problem persists, contact an [[Special:ListUsers/sysop|administrator]].',
 'upload-unknown-size'       => 'Unknown size',
 'upload-http-error'         => 'An HTTP error occured: $1',
 
+#img_auth script messages
+'img-auth-accessdenied'   => "Access Denied",
+'img-auth-desc' 		  => 'Image authorisation script',
+'img-auth-nopathinfo'     => "Missing PATH_INFO.  Your server is not set up to pass this information - may be CGI-based and can't support img_auth. See http://www.mediawiki.org/wiki/Manual:Image_Authorization.",
+'img-auth-notindir' 	  => "Requested path is not in the configured upload directory.",
+'img-auth-badtitle' 	  => "Unable to construct a valid title from `$1`.",
+'img-auth-nologinnWL'     => "You are not logged in and `$1` not in whitelist.",
+'img-auth-nofile' 	      => "File `$1` does not exist.",
+'img-auth-isdir' 		  => "you are trying to access a directory`$1`.  Only file access is allowed.",
+'img-auth-streaming' 	  => "Streaming `$1`.",
+'img-auth-public'		  => "The function of img_auth.php is to output files from a private wiki. This wiki is configured as a public wiki. For optimal security, img_auth.php is disabled for this case.",
+'img-auth-noread'		  => "User does not have access to read `$1`.",
+
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Could not reach URL',
 'upload-curl-error6-text'  => 'The URL provided could not be reached.
