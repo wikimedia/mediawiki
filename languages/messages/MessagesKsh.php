@@ -3436,7 +3436,7 @@ De könnts Ding Oppassliss ävver och [[Special:Watchlist/edit|övver e Fomulaa 
 # Core parser functions
 'unknown_extension_tag' => '„<code>$1</code>“ es en zosäzlejje Kennzeichnung, die kenne mer nit.',
 'duplicate-defaultsort' => "'''Opjepaß:'''
-Dä Shtanndat-Zoot-Schlößel „$1“ övverschriif dä älldere Zoot-Schlößel „$2“.",
+Dä Shtanndat-Zooteer-Schlößel „$1“ övverschriif dä älldere Zooteer-Schlößel „$2“.",
 
 # Special:Version
 'version'                          => 'Version vun de Wiki Soffwär zeije',
