@@ -40,7 +40,6 @@ $namespaceAliases = array(
 	'Bild_Diskussioun' => NS_FILE_TALK,
 );
 
-
 $specialPageAliases = array(
 	'DoubleRedirects'           => array( 'Duebel Viruleedungen' ),
 	'BrokenRedirects'           => array( 'Futtis Viruleedungen' ),
@@ -130,6 +129,13 @@ $specialPageAliases = array(
 	'DeletedContributions'      => array( 'Geläschte Kontributiounen' ),
 	'Tags'                      => array( 'Taggen' ),
 	'Activeusers'               => array( 'Aktiv Benotzer' ),
+);
+
+$magicWords = array(
+	'img_right'             => array( '1', 'riets', 'rechts', 'right' ),
+	'img_left'              => array( '1', 'lénks', 'links', 'left' ),
+	'img_center'            => array( '1', 'zentréiert', 'zentriert', 'center', 'centre' ),
+	'img_border'            => array( '1', 'bord', 'rand', 'border' ),
 );
 
 $messages = array(

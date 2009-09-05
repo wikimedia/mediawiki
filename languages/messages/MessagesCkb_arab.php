@@ -64,6 +64,17 @@ $specialPageAliases = array(
 	'Search'                    => array( 'گەڕان' ),
 );
 
+$magicWords = array(
+	'img_thumbnail'         => array( '1', 'وێنۆک', 'thumbnail', 'thumb' ),
+	'img_right'             => array( '1', 'ڕاست', 'right' ),
+	'img_left'              => array( '1', 'چەپ', 'left' ),
+	'img_width'             => array( '1', '$1پیکسڵ', '$1px' ),
+	'img_center'            => array( '1', 'ناوەڕاست', 'center', 'centre' ),
+	'img_framed'            => array( '1', 'چوارچێوە', 'framed', 'enframed', 'frame' ),
+	'img_frameless'         => array( '1', 'بێچوارچێوە', 'frameless' ),
+	'img_border'            => array( '1', 'سنوور', 'border' ),
+);
+
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'ھێڵ ھێنان بەژێر بەستەرەکان:',

@@ -124,8 +124,8 @@ $defaultUserOptionOverrides = array(
 
 $magicWords = array(
 	'redirect'              => array( '0', '#ווייטערפירן', '#הפניה', '#REDIRECT' ),
-	'nogallery'             => array( '0', '__קיין_גאלעריע', '__ללא_גלריה', '__ללא_גלריה__', '__NOGALLERY__' ),
-	'toc'                   => array( '0', '__אינהאלט__', '__תוכן__', '__תוכן_עניינים__', '__TOC__' ),
+	'nogallery'             => array( '0', '__קיין_גאלעריע__', '__ללא_גלריה__', '__NOGALLERY__' ),
+	'toc'                   => array( '0', '__אינהאלט__', '__תוכן_עניינים__', '__תוכן__', '__TOC__' ),
 	'pagename'              => array( '1', 'בלאטנאמען', 'שם הדף', 'PAGENAME' ),
 	'namespace'             => array( '1', 'נאמענטייל', 'מרחב השם', 'NAMESPACE' ),
 	'fullpagename'          => array( '1', 'פולבלאטנאמען', 'שם הדף המלא', 'FULLPAGENAME' ),
