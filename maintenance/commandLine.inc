@@ -4,7 +4,10 @@
  * Backwards-compatibility wrapper for old-style maintenance scripts
  */
 require( dirname(__FILE__) . '/Maintenance.php' );
-$optionsWithArgs = array();
+
+if ( !isset( $optionsWithArgs ) ) {
+    $optionsWithArgs = array();
+}
 
 class CommandLineInc extends Maintenance {
 	public function __construct() {
