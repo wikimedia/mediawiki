@@ -105,6 +105,7 @@ class HistoryPage {
 		 */
 		if( !$this->title->exists() ) {
 			$wgOut->addWikiMsg( 'nohistory' );
+			$this->article->showLogs(); // show deletion/move log if there is an entry
 			wfProfileOut( __METHOD__ );
 			return;
 		}
