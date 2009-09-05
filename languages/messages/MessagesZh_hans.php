@@ -1,5 +1,5 @@
 <?php
-/** Simplified Chinese (‪中文(简体)‬)
+/** Simplified Chinese (‪中文(简化字)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -1554,6 +1554,24 @@ $1",
 'upload-too-many-redirects' => '在网址中有太多重新定向',
 'upload-unknown-size'       => '未知的大小',
 'upload-http-error'         => '已发生一个HTTP错误：$1',
+
+# img_auth script messages
+'img-auth-accessdenied' => '拒绝访问',
+'img-auth-nopathinfo'   => 'PATH_INFO遗失。
+您的服务器还没有设置这个资料。
+它可能是以CGI为本，不支持img_auth。
+参阅http://www.mediawiki.org/wiki/Manual:Image_Authorization。',
+'img-auth-notindir'     => '所请求的路径不在已经设置的上载目录。',
+'img-auth-badtitle'     => '不能够由"$1"建立一个有效标题。',
+'img-auth-nologinnWL'   => '您而家并未登入，"$1"不在白名单上。',
+'img-auth-nofile'       => '文件"$1"不存在。',
+'img-auth-isdir'        => '您尝试过访问一个目录"$1"。
+只是可以访问文件。',
+'img-auth-streaming'    => '串流中"$1"。',
+'img-auth-public'       => 'img_auth.php的功能是由一个公共wiki中输出文件。
+这个wiki是已经设置做一个公共wiki。
+基于保安最佳化，img_auth.php已经停用。',
+'img-auth-noread'       => '用户无访问权去读"$1"。',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => '无法访问 URL',
