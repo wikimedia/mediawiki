@@ -1539,8 +1539,13 @@ Wann de Problem weider besteet, dann un de [[Special:ListUsers/sysop|Administrat
 
 # img_auth script messages
 'img-auth-accessdenied' => 'Zougang refuséiert',
+'img-auth-notindir'     => 'De gefrote Pad ass net am Upload-Repertoire agestallt.',
 'img-auth-badtitle'     => 'Aus "$1" ka kee valabelen Titel gemaach ginn.',
+'img-auth-nologinnWL'   => 'Dir sidd net ageloggt a(n) "$1" ass net op der Wäisser Lëscht.',
 'img-auth-nofile'       => 'De Fichier "$1" gëtt et net.',
+'img-auth-isdir'        => 'Dir versicht op de Repertoire "$1" zouzegräifen.
+Nèemmen Datenofruff ass erlaabt.',
+'img-auth-streaming'    => '"$1" lueden.',
 'img-auth-noread'       => 'De Benotzer hut keen Zougang fir "$1" ze liesen',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
@@ -2853,6 +2858,8 @@ Duerno sti Linken déi Ausnamen definéieren, an deenen hirem Kontext dat Bild a
 'exif-lightsource-11'  => 'Schiet',
 'exif-lightsource-12'  => 'Dagesliicht fluoreszéiert (D 5700 – 7100 K)',
 'exif-lightsource-13'  => 'Dageswäiss fluoreszéierend (N 4600 – 5400K)',
+'exif-lightsource-14'  => 'Kill wäiss fluoreséierent (W 3900 – 4500K)',
+'exif-lightsource-15'  => 'Wäiss fluoreszéierent (WW 3200 – 3700K)',
 'exif-lightsource-17'  => 'Standardluucht A',
 'exif-lightsource-18'  => 'Standardluucht B',
 'exif-lightsource-19'  => 'Standardluucht C',

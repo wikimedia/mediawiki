@@ -694,8 +694,8 @@ Por favor, entre una dirección bien formada, o vacíe ese campo.',
 'accountcreated'             => 'Cuenta creada',
 'accountcreatedtext'         => 'La cuenta de usuario para $1 ha sido creada.',
 'createaccount-title'        => 'Creación de cuenta para {{SITENAME}}',
-'createaccount-text'         => 'Alguien creyó una cuenta para este correo electrónico en  {{SITENAME}} ($4) con el nombre "$2", y la contraseña "$3".
-Por favor entra y cambia tu contraseña ahora.
+'createaccount-text'         => 'Alguien creó en  {{SITENAME}} ($4) una cuenta asociada a este correo electrónico con el nombre "$2".
+La contraseña asignada automáticamente es "$3". Por favor entra ahora y cambia tu contraseña.
 
 Puedes ignorar este mensaje si esta cuenta fue creado erróneamente.',
 'login-throttled'            => 'Has intentado demasiadas veces dar la clave de esta cuenta. Por favor espera antes de intentarlo nuevamente.',
@@ -1617,6 +1617,16 @@ Por favor, elige un nombre más descriptivo.",
 'upload-too-many-redirects' => 'La URL contenía demasiadas redirecciones',
 'upload-unknown-size'       => 'Tamaño desconocido',
 'upload-http-error'         => 'Ha ocurrido un error HTTP: $1',
+
+# img_auth script messages
+'img-auth-accessdenied' => 'Acceso denegado',
+'img-auth-notindir'     => 'Ruta solicitad no esá en el directorio de cargas configurado',
+'img-auth-badtitle'     => 'Incapaz de construir un título válido de "$1".',
+'img-auth-nologinnWL'   => 'No has iniciado sesión y "$1" no está en la lista blanca.',
+'img-auth-nofile'       => 'Archivo "$1" no existe.',
+'img-auth-isdir'        => 'Estás tratando de acceder a un directorio "$1".
+Solamente acceso a archivos está permitido.',
+'img-auth-noread'       => 'Usuario no tiene acceso para leer "$1".',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'No se pudo alcanzar la URL',
@@ -3052,9 +3062,9 @@ El correo incluirá un enlace con un código. Introdúzcalo para confirmar la va
 'confirmemail_sent'        => 'Confirmación de correo enviada.',
 'confirmemail_oncreate'    => 'Se ha enviado un código de confirmación a tu dirección de correo electrónico.
 Este código no es necesario para entrar, pero necesitarás darlo antes de activar cualquier función basada en correo electrónico en el wiki.',
-'confirmemail_sendfailed'  => 'No fue posible enviar el correo de confirmación. Por favor, compruebe que no haya caracteres inválidos en la dirección de correo indicada.
+'confirmemail_sendfailed'  => 'No fue posible enviar el correo de confirmación. Por favor, compruebe la validez de la dirección de correo.
 
-Correo devuelto: $1',
+El servidor indicó el error: $1',
 'confirmemail_invalid'     => 'Código de confirmación incorrecto. El código debe haber expirado.',
 'confirmemail_needlogin'   => 'Necesitas $1 para confirmar tu dirección electrónica.',
 'confirmemail_success'     => 'Su dirección de correo ha sido confirmada
@@ -3062,13 +3072,13 @@ Ahora puedes [[Special:UserLogin|identificarte]] y colaborar en el wiki.',
 'confirmemail_loggedin'    => 'Tu dirección de correo electrónico ha sido confirmada.',
 'confirmemail_error'       => 'Algo salió mal al guardar su confirmación.',
 'confirmemail_subject'     => 'confirmación de la dirección de correo de {{SITENAME}}',
-'confirmemail_body'        => 'Alguien, probablemente usted mismo, ha registrado una cuenta "$2" con esta dirección de correo en {{SITENAME}}, desde la dirección IP $1.
+'confirmemail_body'        => 'Alguien, probablemente usted mismo, ha registrado desde la dirección IP $1 la cuenta "$2" en {{SITENAME}}, utilizando esta dirección de correo.
 
 Para confirmar que esta cuenta realmente le pertenece y activar el correo en {{SITENAME}}, siga este enlace:
 
 $3
 
-Si la cuenta *no* es suya, siga este enlace para cancelar la confirmación de la dirección de correo:
+Si la cuenta *no* es suya, siga este otro enlace para cancelar la confirmación de la dirección de correo:
 
 $5
 

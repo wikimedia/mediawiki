@@ -362,17 +362,16 @@ Bar bolan ähli ýörite sahypalary [[Special:SpecialPages|ýörite sahypalar]] 
 # General errors
 'error'                => 'Säwlik',
 'databaseerror'        => 'Maglumat bazasynyň säwligi',
-'dberrortext'          => 'Maglumat bazasyndan edilen talapda sintaksis ýalňyşlygy ýüze çykdy.
-Onuň programmanyň özündäki bir säwlik bolmagy ahmal.
-"<tt>$2</tt>" funksiýasyndan synalyp görülen iň soňky talap:
+'dberrortext'          => 'Maglumat bazasy gözleginde sintaksis säwligi ýüze çykdy.
+Onuň programmadaky bir säwlik bolmagy ahmal.
+"<tt>$2</tt>" funksiýasyndan synalyp görülen iň soňky maglumat bazasy gözlegi:
 <blockquote><tt>$1</tt></blockquote>.
-
-$5 tarapyndan yzyna gaýtarylan säwlik "<tt>$3: $4</tt>".',
-'dberrortextcl'        => 'Maglumat bazasyndan edilen talapda sintaksis ýalňyşlygy ýüze çykdy.
-"$2" funksiýasyndan synalyp görülen iň soňky talap:
+Maglumat bazasy tarapyndan yzyna gaýtarylan säwlik "<tt>$3: $4</tt>".',
+'dberrortextcl'        => 'Maglumat bazasy gözleginde sintaksis säwligi ýüze çykdy.
+Iň soňky maglumat bazasy gözlegi:
 "$1"
-
-$5 tarapyndan yzyna gaýtarylan säwlik "$3: $4"',
+Ulanylan funksiýa "$2".
+Maglumat bazasy tarapyndan yzyna gaýtarylan säwlik "$3: $4"',
 'laggedslavemode'      => 'Duýduryş: Sahypada soňky täzelemeler ýok bolmagy ahmal.',
 'readonly'             => 'Maglumat bazasy gulplandy',
 'enterlockreason'      => 'Gulplamak üçin bir sebäp görkeziň. Gulpuň haçan açyljakdygy barada takmynan bir sene ýazyň.',
@@ -437,7 +436,7 @@ Görkezilen sebäp: ''$2''.",
 # Login and logout pages
 'logouttext'                 => "'''Sessiýany ýapdyňyz.'''
 Indi anonim ýagdaýda {{SITENAME}} saýtyny ulanyp bilersiňiz, ýa-da şol bir ýa-da başga bir at bilen [[Special:UserLogin|sessiýany ýaňadan]] açyp bilersiňiz. Web brauzeriňiziň keşini arassalaýançaňyz käbir sahypalar sessiýaňyzyň açyk wagtkysy ýaly görünip biler.",
-'welcomecreation'            => '== Hoşgeldiňiz, $1! ==
+'welcomecreation'            => '== Hoş geldiňiz, $1! ==
 
 Hasabyňyz açyldy.  
 [[Special:Preferences|{{SITENAME}} saýtyndaky sazlamalaryňyzy]] üýtgetmegi ýatdan çykarmaň.',
@@ -481,8 +480,7 @@ Ulanyjy atlary baş hem-de setir harplara duýgurdyr.
 'nouserspecified'            => 'Ulanyjy adyny görkezmegiňiz hökmanydyr.',
 'wrongpassword'              => 'Paroly nädogry girizdiňiz. Gaýtadan synanyşmagyňyzy haýyş edýäris.',
 'wrongpasswordempty'         => 'Paroly boş girizdiňiz. Gaýtadan synanyşmagyňyzy haýyş edýäris.',
-'passwordtooshort'           => 'Parolyňyz çakdanaşa gysga.
-Ol iň bolmanda {{PLURAL:$1|1 simwoldan|$1 simwoldan}} ybarat bolmalydyr.',
+'passwordtooshort'           => 'Parollar iň bolmanda {{PLURAL:$1|1 simwoldan|$1 simwoldan}} ybarat bolmalydyr.',
 'password-name-match'        => 'Parolyňyz ulanyjy adyňyzdan tapawutly bolmalydyr.',
 'mailmypassword'             => 'Maňa e-poçta bilen täze parol iber',
 'passwordremindertitle'      => '{{SITENAME}} üçin täze wagtlaýyn parol',
@@ -709,7 +707,7 @@ Kesgitleme: ('''häzirki''') = häzirki wersiýa bilen aradaky tapawut,
 'revdelete-hide-comment' => 'Özgerdiş mazmunyny gizle',
 'revdelete-hide-user'    => 'Redaktirläniň ulanyjy adyny/IP-sini gizle',
 'revdelete-hide-image'   => 'Faýlyň mazmunyny gizle',
-'revdelete-log'          => 'Gündelik teswiri:',
+'revdelete-log'          => 'Öçürmekligiň sebäbi:',
 'revdel-restore'         => 'Görnüşi üýtget',
 'pagehist'               => 'Sahypanyň geçmişi',
 'deletedhist'            => 'Öçürilen geçmiş',
@@ -864,7 +862,7 @@ Gözlegiňiziň başyna '''all:''' pristawkasyny goşup tutuş mazmuny (şol san
 'yourlanguage'                => 'Interfeýs dili:',
 'yournick'                    => 'Lakamyňyz (gol hökmünde):',
 'prefs-help-signature'        => 'Çekişme sahypalaryndaky teswirlere "<nowiki>~~~~</nowiki>" bilen gol çekilmelidir, ol goluňyza we onuň senesine öwrüler.',
-'badsig'                      => 'Nädogry işlenmedik gol. HTML tegleri gözden geçiriň.',
+'badsig'                      => 'Nädogry işlenmedik gol. HTML belliklerini gözden geçiriň.',
 'badsiglength'                => 'Goluňyz çakdanaşa uzyn.
 $1 {{PLURAL:$1|simwoldan|simwoldan}} köp bolmaly däl.',
 'yourgender'                  => 'Jyns:',
@@ -1552,12 +1550,45 @@ Ondan soňraky çykgyt(lar) kadadan çykma hökmünde kabul edilýär, meselem: 
 # Special:BlankPage
 'blankpage' => 'Boş sahypa',
 
+# External image whitelist
+'external_image_whitelist' => '#Bu setiri bolşy ýaly goýuň<pre>
+#Tertipli aňlatma fragmentlerini (diňe // aralygyndaky bölegi) aşak goşuň
+#Bular daşarky (hotlink) suratlaryň URL-leri bilen deňeşdiriljekdir
+#Deň gelenler surat bolup görüner, galanlary bolsa diňe suratyň çykgydy hökmünde görkeziler
+# # bilen başlaýan setirler teswir hasap ediljekdir
+#Setirler baş we setir harplara duýgur däldir
+
+#Ähli tertipli aňlatma fragmentlerini bu setiriň üstüne goşuň. Bu setiri bolşy ýaly goýuň</pre>',
+
 # Special:Tags
-'tag-filter-submit' => 'Filtr',
-'tags-edit'         => 'redaktirle',
-'tags-hitcount'     => '$1 {{PLURAL:$1|üýtgeşme|üýtgeşme}}',
+'tags'                    => 'Dogry üýtgeşme bellikleri',
+'tag-filter'              => '[[Special:Tags|Bellik]] filtri:',
+'tag-filter-submit'       => 'Filtr',
+'tags-title'              => 'Bellikler',
+'tags-intro'              => 'Bu sahypa programmanyň bir üýtgeşmä goýmagy ahmal bolan belliklerini hem-de olaryň manylaryny görkezýär.',
+'tags-tag'                => 'Belligiň ady',
+'tags-display-header'     => 'Üýtgeşmeler sanawynyň daşky görnüşi',
+'tags-description-header' => 'Manynyň doly düşündirişi',
+'tags-hitcount-header'    => 'Bellenen üýtgeşmeler',
+'tags-edit'               => 'redaktirle',
+'tags-hitcount'           => '$1 {{PLURAL:$1|üýtgeşme|üýtgeşme}}',
+
+# Database error messages
+'dberr-header'      => 'Bu wikiniň bir problemasy bar',
+'dberr-problems'    => 'Bagyşlaň! Bu saýtda tehniki kynçylyklar ýüze çykdy.',
+'dberr-again'       => 'Birnäçe minut garaşyň we gaýtadan ýükläp görüň.',
+'dberr-info'        => '(Maglumat bazasynyň serwerine birigip bolanok: $1)',
+'dberr-usegoogle'   => 'Ýogsa-da, oňa çenli Google bilen gözleg geçirip bilersiňiz.',
+'dberr-outofdate'   => 'Olaryň biziň sahypalarymyz baradaky indeksi köne bolmagy mümkin.',
+'dberr-cachederror' => 'Bu talap edilen sahypanyň keşirlenen nusgasy bolup, soňky üýtgeşmeleri görkezmezligi mümkin.',
 
 # HTML forms
+'htmlform-invalid-input'       => 'Girizen maglumatyňyzyň bir böleginde problema bar',
+'htmlform-select-badoption'    => 'Görkezen bahaňyz dogry opsiýa däl.',
+'htmlform-int-invalid'         => 'Görkezen bahaňyz bitin san däl.',
+'htmlform-float-invalid'       => 'Görkezen bahaňyz san däl.',
+'htmlform-int-toolow'          => 'Görkezen bahaňyz $1 minimumyndan pes.',
+'htmlform-int-toohigh'         => 'Görkezen bahaňyz $1 maksimumyndan ýokary.',
 'htmlform-submit'              => 'Iber',
 'htmlform-reset'               => 'Üýtgeşmeleri yzyna al',
 'htmlform-selectorother-other' => 'Başga',

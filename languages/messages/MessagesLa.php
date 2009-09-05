@@ -457,7 +457,7 @@ Pro indice paginarum specialum validarum, vide [[Special:SpecialPages|{{int:spec
 Inquisitio basis datorum ultime apparata erat:
 "$1"
 ex functionis "$2".
-$5 erratum reddidit "$3: $4"',
+Basis datorum erratum reddidit "$3: $4"',
 'readonly'             => 'Basis datorum obstructa',
 'missingarticle-rev'   => '(numerus emendationis: $1)',
 'missingarticle-diff'  => '(Diss: $1, $2)',
@@ -770,7 +770,7 @@ Titulus: '''({{int:cur}})''' = dissimilis ab emendatione novissima,
 'revdelete-hide-text'        => 'Celare textum emendationis',
 'revdelete-hide-comment'     => 'Celare summarium emendationis',
 'revdelete-hide-image'       => 'Celare contentum fasciculi',
-'revdelete-log'              => 'Summarium pro actis:',
+'revdelete-log'              => 'Causa deletionis:',
 'revdelete-logentry'         => 'mutavit visibilitatem emendationis paginae [[$1]]',
 'revdel-restore'             => 'visibilitatem mutare',
 'pagehist'                   => 'Historia paginae',
@@ -782,7 +782,7 @@ Titulus: '''({{int:cur}})''' = dissimilis ab emendatione novissima,
 'revdelete-unhid'            => 'monstravit $1',
 'revdelete-log-message'      => '$1 {{PLURAL:$2|unius emendationis|$2 emendationum}}',
 'logdelete-log-message'      => '$1 {{PLURAL:$2|unius eventi|$2 eventorum}}',
-'revdelete-edit-reasonlist'  => 'Causas deletionum fasciculorum recensere',
+'revdelete-edit-reasonlist'  => 'Causas deletionum recensere',
 
 # Suppression log
 'suppressionlog' => 'Acta suppressionum',
@@ -1324,7 +1324,7 @@ Contenta [$2 paginae descriptionis fasciculi] subter monstrantur.',
 
 # Random page
 'randompage'         => 'Pagina fortuita',
-'randompage-nopages' => 'Non est ulla pagina in spatio nominali "$1".',
+'randompage-nopages' => 'Non est ulla pagina {{PLURAL:$2|hoc in spatio nominale|in his spatiis nominalibus}}: $1.',
 
 # Random redirect
 'randomredirect'         => 'Redirectio fortuita',
@@ -1648,7 +1648,7 @@ ad emendationem proximam ab $2.',
 'protect-title'               => 'Mutare protectionem paginae "$1"',
 'prot_1movedto2'              => 'movit [[$1]] ad [[$2]]',
 'protect-legend'              => 'Protectionem adfirmare',
-'protectcomment'              => 'Sententia:',
+'protectcomment'              => 'Causa:',
 'protectexpiry'               => 'Exitus:',
 'protect_expiry_invalid'      => 'Tempus post quod res exitur est invalidum.',
 'protect_expiry_old'          => 'Tempus est praeteritus.',

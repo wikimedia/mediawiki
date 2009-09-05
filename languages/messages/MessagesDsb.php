@@ -1532,6 +1532,24 @@ PICT # misc.
 'upload-unknown-size'       => 'Njeznata wjelikosć',
 'upload-http-error'         => 'HTTP-zmólka nastata: $1',
 
+# img_auth script messages
+'img-auth-accessdenied' => 'Pśistup zawobarany',
+'img-auth-nopathinfo'   => 'PATH_INFO felujo.
+Twój serwer njejo konfigurěrowany, aby toś te informacije dalej pósrědnił.
+Móžo na CGI bazěrowaś a njamóžo img_auth pódpěraś.
+Glědaj http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
+'img-auth-notindir'     => 'Pominana šćažka njejo w konfigurěrowanem nagraśowem zapisu.',
+'img-auth-badtitle'     => 'Njejo móžno z "$1" płaśiwy titel twóriś.',
+'img-auth-nologinnWL'   => 'Njejsy pśizjawjony a "$1" njejo w běłej lisćinje.',
+'img-auth-nofile'       => 'Dataja "$1" njeeksistěrujo.',
+'img-auth-isdir'        => 'Wopytujoš na zapis "$1" pśistup měś.
+Jano datajowy pśistup jo dowólony.',
+'img-auth-streaming'    => '"$1" se tšuga.',
+'img-auth-public'       => 'Funkcija img_auth.php jo za wudaśe datajow z priwatnego wikija.
+Toś ten wiki jo ako zjawny wiki konfigurěrowany.
+Za optimalnu wěstotu img_auth.php jo znjemóžnjony.',
+'img-auth-noread'       => 'Wužywaŕ njama pśistup, aby cytał "$1".',
+
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'URL njejo pśistupna.',
 'upload-curl-error6-text'  => 'Pódana URL njejo pśistupna. Pśeglěduj URL na zmólki a kontrolěruj online-status boka.',

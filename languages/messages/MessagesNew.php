@@ -8,6 +8,7 @@
  * @file
  *
  * @author Eukesh
+ * @author आलोक
  */
 
 $namespaceNames = array(
@@ -347,7 +348,7 @@ MySQL नं इरर "<tt>$3: $4</tt>" क्यंगु दु।',
 'show'          => 'क्यनादिसँ',
 
 # Upload
-'upload' => 'फाइल अपलोड',
+'upload' => 'संचिका चढ़ाएँ',
 
 # File description page
 'file-anchor-link' => 'फाइल',
@@ -407,7 +408,7 @@ MySQL नं इरर "<tt>$3: $4</tt>" क्यंगु दु।',
 'tooltip-feed-atom'               => 'थ्व पौया Atom फीड',
 'tooltip-t-contributions'         => 'थ्व छ्य्‌लामिया योगदानया धलः क्यनादिसँ',
 'tooltip-t-emailuser'             => 'थ्व छ्य्‌लामियात इ-मेल छ्वयादिसँ',
-'tooltip-t-upload'                => 'फाइल अपलोड',
+'tooltip-t-upload'                => 'संचिकाएँ चढ़ाएँ',
 'tooltip-t-specialpages'          => 'सकल विशेष पौस धलः',
 'tooltip-t-print'                 => 'थ्व पौस ध्वायेज्युगु संस्करण',
 'tooltip-t-permalink'             => 'थ्व पौस थ्व संस्करणया पर्मानेन्ट लिङ्क',

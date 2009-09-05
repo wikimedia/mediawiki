@@ -914,7 +914,7 @@ Par piaser conferma che te voli dal bon far sta scancelassion, che te conossi le
 'revdelete-suppress'          => 'Scondi le informazion anca ai aministradori',
 'revdelete-hide-image'        => 'Scondi i contenuti del file',
 'revdelete-unsuppress'        => 'Elimina le limitazion su le revision ripristinà',
-'revdelete-log'               => 'Comento par el registro:',
+'revdelete-log'               => 'Motivo de la scancelassion:',
 'revdelete-submit'            => 'Àplica a ła revixion selezionà',
 'revdelete-logentry'          => 'gà modificà la visibilità par una revision de [[$1]]',
 'logdelete-logentry'          => "gà modificà la visibilità de l'evento [[$1]]",
@@ -945,6 +945,11 @@ No ti gà acesso su de ela.',
 'revdelete-no-change'         => "''Ocio:''' la version datà $1 a le $2 la gà zà le inpostassion de visibilità da ti richieste.",
 'revdelete-concurrent-change' => "No se riesse a modificar la version datà $1 a le $2: pararìa che qualchidun altro el gavesse canbià el stato de la version intanto che ti te sercavi de far la stessa roba. Daghe n'ociada sui registri.",
 'revdelete-only-restricted'   => 'No te podi inpedirghe ai aministradori de vardar na revision se no te selessioni al tenpo stesso una de le altre opzioni de restrizion.',
+'revdelete-reason-dropdown'   => '*Motivassion pi comuni par la scancelassion
+** Violassion de copyright
+** Informassion personali inapropriàe',
+'revdelete-otherreason'       => 'Altro:',
+'revdelete-reasonotherlist'   => 'Altra motivassion',
 'revdelete-edit-reasonlist'   => 'Modifica le motivazion par la scancelazion',
 
 # Suppression log
@@ -1519,6 +1524,10 @@ Se el problema el persiste, contatar un [[Special:ListUsers/sysop|aministrador]]
 'upload-unknown-size'       => 'Dimension sconossiùa',
 'upload-http-error'         => 'Se gà verificà un eròr HTTP: $1',
 
+# img_auth script messages
+'img-auth-accessdenied' => 'Acesso negà',
+'img-auth-nofile'       => 'El file "$1" no l\'esiste mia.',
+
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'URL mìa ragiungibile',
 'upload-curl-error6-text'  => 'Inpossibile ragiùngiar la URL specificà. Verifica che la URL la sia scrita giusta e che el sito in question el sia ativo.',
@@ -1526,6 +1535,7 @@ Se el problema el persiste, contatar un [[Special:ListUsers/sysop|aministrador]]
 'upload-curl-error28-text' => 'El sito remoto el gà messo massa tenp par rispóndar. Verifica che el sito el sia ativo, speta qualche minuto e próa da novo, eventualmente in un momento de manco tràfico.',
 
 'license'            => "Licenza d'uso:",
+'license-header'     => "Licensa d'uso",
 'nolicense'          => 'Nissuna licensa indicà',
 'license-nopreview'  => '(Anteprima mìa disponibile)',
 'upload_source_url'  => ' (na URL coreta e acessibile)',
@@ -1969,18 +1979,19 @@ Par piaser, conferma che l'è to intenzion proçedere a tałe scancełazion, che
 'delete-warning-toobig'  => 'La cronologia de sta pagina le xe longa assè (oltre $1 {{PLURAL:$1|revision|revisioni}}). La so scancelazion la pode crear dei problemi de funzionamento al database de {{SITENAME}}; procedi con cautela.',
 
 # Rollback
-'rollback'         => 'Anula le modifiche',
-'rollback_short'   => 'Tira indrìo',
-'rollbacklink'     => 'tira indrìo',
-'rollbackfailed'   => 'Ripristino mìa riussìo',
-'cantrollback'     => "No xè mia possibiłe tornar a na versión precedente: l'ultima modifica la xè stà aportà da l'unico utente che gà laorà a sto articoło.",
-'alreadyrolled'    => "No xè mia possibile efetuar el ripristino de [[:$1]] da [[User:$2|$2]] ([[User talk:$2|discussion]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]); qualcun altro gà xà modificà o efetuà el ripristino de sta voçe.
+'rollback'          => 'Anula le modifiche',
+'rollback_short'    => 'Tira indrìo',
+'rollbacklink'      => 'tira indrìo',
+'rollbackfailed'    => 'Ripristino mìa riussìo',
+'cantrollback'      => "No xè mia possibiłe tornar a na versión precedente: l'ultima modifica la xè stà aportà da l'unico utente che gà laorà a sto articoło.",
+'alreadyrolled'     => "No xè mia possibile efetuar el ripristino de [[:$1]] da [[User:$2|$2]] ([[User talk:$2|discussion]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]); qualcun altro gà xà modificà o efetuà el ripristino de sta voçe.
 
 L'ultima modefega l'è stà fata da [[User:$3|$3]] ([[User talk:$3|discussion]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
-'editcomment'      => "El comento a la modifica el xera: \"''\$1''\".",
-'revertpage'       => 'Anułàe łe modifeghe de [[Special:Contributions/$2|$2]] ([[User talk:$2|discussion]]), riportà a ła version preçedente de [[User:$1|$1]]',
-'rollback-success' => 'Anulà le modifiche de $1; riportà a la version precedente de $2.',
-'sessionfailure'   => "Se gà verificà un problema ne la session che identifica l'acesso; el sistema, par precauzion, no'l gà mìa eseguìo el comando che te ghè dato. Torna a la pagina precedente col boton 'Indrìo' del to browser, ricarica la pagina e ripróa da novo.",
+'editcomment'       => "El comento a la modifica el xera: \"''\$1''\".",
+'revertpage'        => 'Anułàe łe modifeghe de [[Special:Contributions/$2|$2]] ([[User talk:$2|discussion]]), riportà a ła version preçedente de [[User:$1|$1]]',
+'revertpage-nouser' => 'Anulà le modìfeghe de (nome utente cavà), riportà a la version precedente de [[User:$1|$1]]',
+'rollback-success'  => 'Anulà le modifiche de $1; riportà a la version precedente de $2.',
+'sessionfailure'    => "Se gà verificà un problema ne la session che identifica l'acesso; el sistema, par precauzion, no'l gà mìa eseguìo el comando che te ghè dato. Torna a la pagina precedente col boton 'Indrìo' del to browser, ricarica la pagina e ripróa da novo.",
 
 # Protect
 'protectlogpage'              => 'Registro de protezión',
@@ -2905,6 +2916,7 @@ I colegamenti sucessivi, su la stessa riga, i xe considerà come ecezion (cioè 
 'watchlistall2'    => 'tute',
 'namespacesall'    => 'Tuti',
 'monthsall'        => 'tuti',
+'limitall'         => 'tuti quanti',
 
 # E-mail address confirmation
 'confirmemail'             => 'Conferma indirisso e-mail',
@@ -3108,7 +3120,7 @@ Inserissi el nome del file senza el prefisso \"{{ns:file}}:\"",
 'tag-filter-submit'       => 'Filtro',
 'tags-title'              => 'Tag',
 'tags-intro'              => 'Sta pàxena la elenca i tag che el software el podarìa marcar come na modifica e el so significato.',
-'tags-tag'                => 'Nome interno del tag',
+'tags-tag'                => 'Nome del tag',
 'tags-display-header'     => 'Aspetto ne la lista de le modifiche',
 'tags-description-header' => 'Descrission conpleta del significado',
 'tags-hitcount-header'    => 'Modifiche che gà dei tag',

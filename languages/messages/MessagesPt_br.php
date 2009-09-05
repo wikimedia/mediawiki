@@ -385,7 +385,7 @@ $messages = array(
 'go'                => 'Ir',
 'searcharticle'     => 'Ir',
 'history'           => 'Histórico',
-'history_short'     => 'História',
+'history_short'     => 'Histórico',
 'updatedmarker'     => 'atualizado desde a minha última visita',
 'info_short'        => 'Informação',
 'printableversion'  => 'Versão para impressão',
@@ -587,8 +587,8 @@ Quem o protegeu foi [[User:$1|$1]], com a justificativa: ''$2''.",
 # Login and logout pages
 'logouttext'                 => "'''Agora você está desautenticado.'''
 
-Você pode continuar usando o projeto {{SITENAME}} anonimamente, ou pode [[Special:UserLogin|se autenticar novamente]] com o mesmo nome de usuário ou com um nome de usuário diferente.
-Tenha em mente que algumas páginas poderão continuar sendo exibidas como se você ainda estivesse autenticado, até que a ''cache'' de seu navegador seja limpa.",
+Você pode continuar usando {{SITENAME}} anonimamente, ou você pode [[Special:UserLogin|autenticar-se novamente]] com o mesmo nome de usuário ou com um nome diferente.
+Note que algumas páginas podem continuar sendo exibidas como se você ainda estivesse autenticado, até que você limpe a ''cache'' do seu navegador.",
 'welcomecreation'            => '== Bem-vindo, $1! ==
 A sua conta foi criada.
 Não se esqueça de personalizar as suas [[Special:Preferences|preferências na {{SITENAME}}]].',
@@ -598,7 +598,7 @@ Não se esqueça de personalizar as suas [[Special:Preferences|preferências na 
 'remembermypassword'         => 'Lembrar de minha senha em outras sessões.',
 'yourdomainname'             => 'Seu domínio:',
 'externaldberror'            => 'Ocorreu um erro externo ao banco de dados durante a autenticação ou não lhe é permitido atualizar a sua conta externa.',
-'login'                      => 'Entrar',
+'login'                      => 'Autenticar-se',
 'nav-login-createaccount'    => 'Criar uma conta ou entrar',
 'loginprompt'                => 'É necessário estar com os <i>cookies</i> ativados para poder autenticar-se na {{SITENAME}}.',
 'userlogin'                  => 'Criar uma conta ou entrar',
@@ -609,7 +609,7 @@ Não se esqueça de personalizar as suas [[Special:Preferences|preferências na 
 'nologinlink'                => 'Criar uma conta',
 'createaccount'              => 'Criar nova conta',
 'gotaccount'                 => 'Já possui uma conta? $1.',
-'gotaccountlink'             => 'Entrar',
+'gotaccountlink'             => 'Autenticar-se',
 'createaccountmail'          => 'por e-mail',
 'badretype'                  => 'As senhas que você digitou não são iguais.',
 'userexists'                 => 'O nome de usuário que você digitou já existe.
@@ -690,7 +690,7 @@ Você pode já ter alterado com sucesso a sua senha, ou solicitado uma nova senh
 'link_tip'        => 'Ligação interna',
 'extlink_sample'  => 'http://www.example.com ligação externa',
 'extlink_tip'     => 'Link externo (lembre-se do prefixo http://)',
-'headline_sample' => 'Texto de cabeçalho',
+'headline_sample' => 'Texto do cabeçalho',
 'headline_tip'    => 'Seção de nível 2',
 'math_sample'     => 'Inserir fórmula aqui',
 'math_tip'        => 'Fórmula matemática (LaTeX)',

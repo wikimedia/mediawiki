@@ -887,6 +887,7 @@ Mesedez berretsi ezazu hau egin nahi zenuela, ondorioak ulertzen dituzula eta [[
 'revdelete-unhid'             => '$1 azalarazi',
 'revdelete-log-message'       => '$1 {{PLURAL:$2|berrikusketara 1erako|$2 berrikuspenerako}}',
 'logdelete-log-message'       => '$1(e)tik {{PLURAL:$2|gertakari $2|$2 gertakari}}',
+'revdelete-reasonotherlist'   => 'Beste arrazoi bat',
 'revdelete-edit-reasonlist'   => 'Ezabaketa arrazoiak aldatu',
 
 # Suppression log
@@ -1457,6 +1458,9 @@ Aukera ezazu, mesedez, fitxategi izen deskriptiboago bat.",
 'upload-too-many-redirects' => 'URLak birzuzenketa gehiegi zituen',
 'upload-unknown-size'       => 'Tamaina ezezaguna',
 'upload-http-error'         => 'HTTP errorea gertatu da: $1',
+
+# img_auth script messages
+'img-auth-accessdenied' => 'Sarbide ukatua',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Ezin izan da URLa eskuratu',
@@ -2870,6 +2874,7 @@ Zerrenda elementuak (hasieran * duten lerroak) baino ez dira kontuan hartzen. Le
 'watchlistall2'    => 'guztiak',
 'namespacesall'    => 'guztiak',
 'monthsall'        => 'guztiak',
+'limitall'         => 'guztiak',
 
 # E-mail address confirmation
 'confirmemail'             => 'E-posta helbidea egiaztatu',
@@ -3069,7 +3074,7 @@ Fitxategiaren izena sartu "{{ns:file}}:" aurrizkia gabe.',
 'tag-filter-submit'       => 'Iragazkia',
 'tags-title'              => 'Etiketak',
 'tags-intro'              => 'Orri honek softwareak aldatzeko bezala marka ditzazkeen etiketak zerrendatzen ditu, eta berauen esanahia.',
-'tags-tag'                => 'Barne etiketa izena',
+'tags-tag'                => 'Etiketaren izena',
 'tags-display-header'     => 'Aldaketa zerrenden itxura',
 'tags-description-header' => 'Esanahiaren deskribapen osoa',
 'tags-hitcount-header'    => 'Etiketatutako aldaketak',

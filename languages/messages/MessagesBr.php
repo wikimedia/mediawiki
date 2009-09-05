@@ -1488,7 +1488,20 @@ Ma talc'h ar gudenn, kit e darempred gant [[Special:ListUsers/sysop|merourien ar
 
 # img_auth script messages
 'img-auth-accessdenied' => "Moned nac'het",
+'img-auth-nopathinfo'   => "Mankout a ra ar PATH_INFO.
+N'eo ket kefluniet ho servijer evit reiñ an titour-mañ.
+Marteze eo diazezet war CGI-based ha n'hall ket skorañ img_auth.
+Gwelet http://www.mediawiki.org/wiki/Manual:Image_Authorization.",
+'img-auth-notindir'     => "N'emañ ket an hent merket er c'havlec'h enporzhiañ kefluniet.",
+'img-auth-badtitle'     => 'Dibosupl krouiñ un titl reizh adalek "$1".',
+'img-auth-nologinnWL'   => 'N\'oc\'h ket luget ha n\'emañ ket "$1" war ar roll gwenn',
 'img-auth-nofile'       => 'n\'eus ket eus ar restr "$1".',
+'img-auth-isdir'        => "Klakset hoc'h eus monet d'ar c'havlec'h \"\$1\".
+N'haller monet nemet d'ar restroù.",
+'img-auth-streaming'    => 'O lenn en ur dremen "$1"',
+'img-auth-public'       => "Talvezout a ra an arc'hwel img_auth.php da ezvont restroù adalek ur wiki prevez.
+Kefluniet eo bet ar wiki-mañ evel ur wiki foran.
+Diweredekaet eo bet img_auth.php evit ur surentez eus ar gwellañ",
 'img-auth-noread'       => 'N\'eo ket aotreet an implijer da lenn "$1"',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
@@ -2198,8 +2211,8 @@ Sellit ouzh [[Special:IPBlockList|roll ar chomlec\'hioù IP ha kontoù stanket]]
 'autoblocker'                     => 'Emstanket rak rannañ a rit ur chomlec\'h IP gant "$1". Abeg : "$2".',
 'blocklogpage'                    => 'Log stankañ',
 'blocklog-fulllog'                => 'Marilh klok ar stankadennoù',
-'blocklogentry'                   => 'stanket "[[$1]]" e-pad $2 $3',
-'reblock-logentry'                => "en deus kemmet arventennoù stankañ [[$1]] gant un termen d'an $2 $3",
+'blocklogentry'                   => 'stanket "[[$1]]" $2 $3',
+'reblock-logentry'                => "en deus kemmet arventennoù ar stankañ [[$1]] gant un termen d'an $2 $3",
 'blocklogtext'                    => "Setu roud stankadennoù ha distankadennoù an implijerien. N'eo ket bet rollet ar chomlec'hioù IP bet stanket outo ent emgefre. Sellet ouzh [[Special:IPBlockList|roll an implijerien stanket]] evit gwelet piv zo stanket e gwirionez.",
 'unblocklogentry'                 => 'distanket "$1"',
 'block-log-flags-anononly'        => 'implijerien dizanv hepken',
