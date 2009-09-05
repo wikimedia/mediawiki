@@ -28,8 +28,8 @@ $namespaceNames = array(
 	NS_MEDIAWIKI_TALK   => 'Dinika_amin\'ny_MediaWiki',
 	NS_TEMPLATE         => 'Endrika',
 	NS_TEMPLATE_TALK    => 'Dinika_amin\'ny_endrika',
-	NS_HELP             => 'Fanampiana',
-	NS_HELP_TALK        => 'Dinika_amin\'ny_fanampiana',
+	NS_HELP             => 'Fanoroana',
+	NS_HELP_TALK        => 'Dinika_amin\'ny_fanoroana',
 	NS_CATEGORY         => 'Sokajy',
 	NS_CATEGORY_TALK    => 'Dinika_amin\'ny_sokajy',
 );
@@ -46,6 +46,8 @@ $namespaceAliases = array(
 	'Discussion_Modèle' => NS_TEMPLATE_TALK,
 	'Aide' => NS_HELP,
 	'Discussion_Aide' => NS_HELP_TALK,
+	'Fanampiana' => NS_HELP,
+	'Dinika_amin\'ny_fanampiana' => NS_HELP_TALK,
 	'Catégorie' => NS_CATEGORY,
 	'Discussion_Catégorie' => NS_CATEGORY_TALK,
 );

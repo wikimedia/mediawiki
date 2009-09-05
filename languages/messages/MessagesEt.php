@@ -25,7 +25,7 @@ $namespaceNames = array(
 	NS_TALK             => 'Arutelu',
 	NS_USER             => 'Kasutaja',
 	NS_USER_TALK        => 'Kasutaja_arutelu',
-	NS_PROJECT_TALK     => '$1_arutelu',
+	NS_PROJECT_TALK     => '{{GRAMMAR:genitive|$1}}_arutelu',
 	NS_FILE             => 'Pilt',
 	NS_FILE_TALK        => 'Pildi_arutelu',
 	NS_MEDIAWIKI        => 'MediaWiki',
@@ -36,6 +36,10 @@ $namespaceNames = array(
 	NS_HELP_TALK        => 'Juhendi_arutelu',
 	NS_CATEGORY         => 'Kategooria',
 	NS_CATEGORY_TALK    => 'Kategooria_arutelu',
+);
+
+$namespaceAliases = array(
+	'$1_arutelu' => NS_PROJECT_TALK,
 );
 
 $specialPageAliases = array(
