@@ -364,8 +364,8 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 				'action' => $this->getTitle()->getLocalUrl( array( 'action' => 'submit' ) ), 
 				'id' => 'mw-revdel-form-revisions' ) ) .
 			Xml::fieldset( wfMsg( 'revdelete-legend' ) ) .
-			Xml::openElement( 'table' ) .
 			$this->buildCheckBoxes( $bitfields ) .
+			Xml::openElement( 'table' ) .
 			"<tr>\n" .
 				'<td class="mw-label">' .
 					Xml::label( wfMsg( 'revdelete-log' ), 'wpRevDeleteReasonList' ) .
@@ -428,7 +428,7 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 	* @return String: HTML
 	*/
 	protected function buildCheckBoxes( $bitfields ) {
-		$html = '';
+		$html = '<table>';
 		// FIXME: all items checked for just one rev are checked, even if not set for the others
 		foreach( $this->checks as $item ) {
 			list( $message, $name, $field ) = $item;
@@ -436,8 +436,9 @@ class SpecialRevisionDelete extends UnlistedSpecialPage {
 			if( $field == Revision::DELETED_RESTRICTED )
 				$innerHTML = "<b>$innerHTML</b>";
 			$line = Xml::tags( 'td', array( 'class' => 'mw-input' ), $innerHTML );
-			$html .= '<tr><td></td>' . $line . "</tr>\n";
+			$html .= '<tr>' . $line . "</tr>\n";
 		}
+		$html .= '</table>';
 		return $html;
 	}
 
