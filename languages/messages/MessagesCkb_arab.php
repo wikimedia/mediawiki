@@ -50,6 +50,20 @@ $namespaceNames = array(
 	NS_CATEGORY         => 'پۆل',
 );
 
+$specialPageAliases = array(
+	'CreateAccount'             => array( 'ھەژماردروستکردن' ),
+	'Upload'                    => array( 'بارکردن' ),
+	'Statistics'                => array( 'ئامارەکان' ),
+	'Newpages'                  => array( 'پەڕەنوێکان' ),
+	'Ancientpages'              => array( 'پەڕەکۆنەکان' ),
+	'Protectedpages'            => array( 'پەڕەپارێزراوەکان' ),
+	'Specialpages'              => array( 'پەڕەتایبەتەکان' ),
+	'Contributions'             => array( 'بەشدارییەکان' ),
+	'Export'                    => array( 'ھەناردن' ),
+	'Version'                   => array( 'وەشان' ),
+	'Search'                    => array( 'گەڕان' ),
+);
+
 $messages = array(
 # User preference toggles
 'tog-underline'               => 'ھێڵ ھێنان بەژێر بەستەرەکان:',

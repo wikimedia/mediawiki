@@ -45,12 +45,15 @@ $specialPageAliases = array(
 	'Statistics'                => array( 'Stadegoù' ),
 	'Newpages'                  => array( 'PajennoùNevez' ),
 	'Ancientpages'              => array( 'PajennoùKozh' ),
+	'Allpages'                  => array( 'AnHollBajennoù' ),
+	'Specialpages'              => array( 'PajennoùDibar' ),
 	'Categories'                => array( 'Rummadoù' ),
 	'Export'                    => array( 'Ezporzhiañ' ),
 	'Version'                   => array( 'Stumm' ),
 	'Undelete'                  => array( 'Diziverkañ' ),
 	'Import'                    => array( 'Enporzhiañ' ),
 	'Mypage'                    => array( 'MaFajenn' ),
+	'Mytalk'                    => array( 'MaC\'haozeadennoù' ),
 	'Search'                    => array( 'Klask' ),
 );
 
