@@ -59,18 +59,22 @@ $specialPageAliases = array(
 
 $magicWords = array(
 	'redirect'              => array( '0', '#ADKAS', '#REDIRECT' ),
+	'pagename'              => array( '1', 'ANVPAJENN', 'PAGENAME' ),
 	'img_right'             => array( '1', 'dehou', 'right' ),
 	'img_left'              => array( '1', 'kleiz', 'left' ),
 	'img_none'              => array( '1', 'netra', 'none' ),
 	'img_center'            => array( '1', 'kreiz', 'center', 'centre' ),
 	'img_top'               => array( '1', 'krec\'h', 'top' ),
 	'img_bottom'            => array( '1', 'traoñ', 'bottom' ),
+	'sitename'              => array( '1', 'ANVLEC\'HIENN', 'SITENAME' ),
 	'server'                => array( '0', 'SERVIJER', 'SERVER' ),
+	'servername'            => array( '0', 'ANVSERVIJER', 'SERVERNAME' ),
 	'grammar'               => array( '0', 'YEZHADUR:', 'GRAMMAR:' ),
 	'plural'                => array( '0', 'LIESTER:', 'PLURAL:' ),
 	'currentversion'        => array( '1', 'STUMMRED', 'CURRENTVERSION' ),
 	'language'              => array( '0', '#YEZH:', '#LANGUAGE:' ),
 	'special'               => array( '0', 'dibar', 'special' ),
+	'pagesize'              => array( '1', 'MENTPAJENN', 'PAGESIZE' ),
 );
 
 $bookstoreList = array(
