@@ -114,6 +114,7 @@ $specialPageAliases = array(
 	'Search'                    => array( 'זוכן' ),
 	'Withoutinterwiki'          => array( 'בלעטער אָן אינטערוויקי' ),
 	'Blankpage'                 => array( 'ליידיגער בלאט' ),
+	'Tags'                      => array( 'טאגן' ),
 );
 
 $defaultUserOptionOverrides = array(

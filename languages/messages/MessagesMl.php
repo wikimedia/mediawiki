@@ -143,6 +143,7 @@ $specialPageAliases = array(
 	'Search'                    => array( 'അന്വേഷണം' ),
 	'Resetpass'                 => array( 'രഹസ്യവാക്ക് മാറ്റുക' ),
 	'Withoutinterwiki'          => array( 'അന്തര്‍വിക്കിയില്ലാത്തവ' ),
+	'MergeHistory'              => array( 'നാള്‍വഴിലയിപ്പിക്കുക' ),
 	'Filepath'                  => array( 'പ്രമാണവിലാസം' ),
 	'Invalidateemail'           => array( 'സാധുവല്ലാത്ത ഇമെയില്‍' ),
 	'Blankpage'                 => array( 'ശൂന്യതാള്‍' ),

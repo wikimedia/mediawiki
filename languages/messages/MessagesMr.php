@@ -132,6 +132,7 @@ $specialPageAliases = array(
 	'LinkSearch'                => array( 'दुवाशोध' ),
 	'DeletedContributions'      => array( 'वगळलेलीयोगदाने' ),
 	'Tags'                      => array( 'खूणा' ),
+	'Activeusers'               => array( 'कार्यरतसदस्य' ),
 );
 
 $magicWords = array(
