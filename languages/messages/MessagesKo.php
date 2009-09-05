@@ -1058,6 +1058,10 @@ $1",
 'revdelete-concurrent-change' => '$1 $2에 수정된 항목을 갱신하면서 오류 발생: 이런 현상은 당신이 문서를 편집하고 있을 때 다른 사람이 문서를 편집했기 때문에 발생합니다.
 관련 로그를 확인해 보세요.',
 'revdelete-only-restricted'   => '다른 숨기기 설정을 같이 설정하면서 관리자가 보지 못하도록 특정 판을 숨길 수 없습니다.',
+'revdelete-reason-dropdown'   => '*일반적인 삭제 이유
+** 저작권 침해
+** 부적절한 개인 정보',
+'revdelete-reasonotherlist'   => '다른 이유',
 'revdelete-edit-reasonlist'   => '삭제 이유 편집',
 
 # Suppression log
@@ -1653,6 +1657,9 @@ PICT # 기타
 'upload-unknown-size'       => '크기를 알 수 없음',
 'upload-http-error'         => 'HTTP 오류 발생: $1',
 
+# img_auth script messages
+'img-auth-accessdenied' => '접근 거부됨',
+
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'URL 접근 불가',
 'upload-curl-error6-text'  => 'URL에 접근할 수 없습니다.
@@ -2107,18 +2114,19 @@ $NEWPAGE
 주의해 주세요.',
 
 # Rollback
-'rollback'         => '편집 되돌리기',
-'rollback_short'   => '되돌리기',
-'rollbacklink'     => '되돌리기',
-'rollbackfailed'   => '되돌리기 실패',
-'cantrollback'     => '편집을 되돌릴 수 없습니다. 문서를 편집한 사용자가 한명뿐입니다.',
-'alreadyrolled'    => '[[:$1]]에서 [[User:$2|$2]] ([[User talk:$2|토론]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) 의 편집을 되돌릴 수 없습니다; 누군가가 문서를 고치거나 되돌렸습니다.
+'rollback'          => '편집 되돌리기',
+'rollback_short'    => '되돌리기',
+'rollbacklink'      => '되돌리기',
+'rollbackfailed'    => '되돌리기 실패',
+'cantrollback'      => '편집을 되돌릴 수 없습니다. 문서를 편집한 사용자가 한명뿐입니다.',
+'alreadyrolled'     => '[[:$1]]에서 [[User:$2|$2]] ([[User talk:$2|토론]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) 의 편집을 되돌릴 수 없습니다; 누군가가 문서를 고치거나 되돌렸습니다.
 
 마지막으로 문서를 편집한 사람은 [[User:$3|$3]] ([[User talk:$3|토론]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]) 입니다.',
-'editcomment'      => "편집 요약: ''$1''",
-'revertpage'       => '[[Special:Contributions/$2|$2]]([[User talk:$2|토론]])의 편집을 [[User:$1|$1]]의 마지막 버전으로 되돌림',
-'rollback-success' => '$1의 편집을 $2의 마지막 버전으로 되돌렸습니다.',
-'sessionfailure'   => '로그인 세션에 문제가 발생한 것 같습니다. 세션 하이재킹을 막기 위해 동작이 취소되었습니다. 브라우저의 "뒤로" 버튼을 누르고 문서를 새로고침한 후에 다시 시도해 주세요.',
+'editcomment'       => "편집 요약: ''$1''",
+'revertpage'        => '[[Special:Contributions/$2|$2]]([[User talk:$2|토론]])의 편집을 [[User:$1|$1]]의 마지막 버전으로 되돌림',
+'revertpage-nouser' => '(계정 이름 삭제됨)의 편집을 [[User:$1|$1]]의 마지막 편집으로 되돌림',
+'rollback-success'  => '$1의 편집을 $2의 마지막 버전으로 되돌렸습니다.',
+'sessionfailure'    => '로그인 세션에 문제가 발생한 것 같습니다. 세션 하이재킹을 막기 위해 동작이 취소되었습니다. 브라우저의 "뒤로" 버튼을 누르고 문서를 새로고침한 후에 다시 시도해 주세요.',
 
 # Protect
 'protectlogpage'              => '문서 보호 기록',

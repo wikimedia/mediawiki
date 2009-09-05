@@ -385,11 +385,17 @@ $messages = array(
 'nstab-category'  => 'Jamii',
 
 # Main script and global functions
+'nosuchaction'      => 'Kitendo hiki hakipo',
+'nosuchactiontext'  => 'Haiwezikani kutenda kitendo kilichoandikwa kwenye KISARA.
+Labda ulikosea kuandika KISARA, au kiungo ulichofuata ina kasoro.
+Au labda kuna hitilafu kwenye programu inayotumika na {{SITENAME}}.',
 'nosuchspecialpage' => 'Ukurasa maalum huu hakuna',
 
 # General errors
 'error'                => 'Kosa',
 'databaseerror'        => 'Hitilafu ya hifadhidata',
+'laggedslavemode'      => "'''Ilani:'''Labda masahihisho ya hivi karibuni bado hayajaonekana.",
+'readonly'             => 'Hifadhidata imefungika',
 'missing-article'      => 'Database haijapata maneno ya ukurasa unaotafutwa, unaitwa "$1" $2.
 
 Jambo kama hili kikawaida husababishwa kwa kufuatia kwisha kwa diff au historia ya kiungo ambacho kilifutwa.
@@ -577,7 +583,7 @@ Fikiria kama inafaa kuendelea kuhariri ukurasa huu.
 Kumbukumbu za kufuta na kuhamisha ukurasa huu zinapatikana hapa kukusaidia:",
 
 # "Undo" feature
-'undo-summary' => 'Tengua toleo $1 lililoandikwa na [[{{ns:special}}:Contributions/$2|$2]] ([[{{ns:user_talk}}:$2|Majadiliano]])',
+'undo-summary' => 'Tengua toleo $1 lililoandikwa na [[Special:Contributions/$2|$2]] ([[User talk:$2|Majadiliano]])',
 
 # History pages
 'viewpagelogs'           => 'Tazama kumbukumbu kwa ukurasa huu',

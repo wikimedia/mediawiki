@@ -795,8 +795,7 @@ Please report at [[Support]] if you are unable to properly translate this messag
 'undo-success' => '{{Identical|Undo}}',
 'undo-failure' => '{{Identical|Undo}}',
 'undo-norev'   => '{{Identical|Undo}}',
-'undo-summary' => 'Please change "Special" to <nowiki>{{ns:special}}</nowiki> and "User talk" to <nowiki>{{ns:user_talk}}</nowiki>
-{{Identical|Undo}}',
+'undo-summary' => '{{Identical|Undo}}',
 
 # History pages
 'viewpagelogs'           => 'Link displayed in history of pages',

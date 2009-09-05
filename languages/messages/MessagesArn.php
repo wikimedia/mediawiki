@@ -99,6 +99,7 @@ $messages = array(
 'vector-namespace-user'      => 'Kellufe',
 'vector-view-create'         => 'Llitun',
 'vector-view-edit'           => 'Wirin',
+'vector-view-view'           => 'Chillkatun',
 
 'returnto'         => 'Amutun $1 püle.',
 'tagline'          => '{{SITENAME}} mew',
@@ -518,9 +519,10 @@ $messages = array(
 # 'all' in various places, this might be different for inflected languages
 'recentchangesall' => 'kom',
 'imagelistall'     => 'kom',
-'watchlistall2'    => 'Fill',
+'watchlistall2'    => 'kom',
 'namespacesall'    => 'kom',
 'monthsall'        => '(kom)',
+'limitall'         => 'Kom',
 
 # Trackbacks
 'trackbackremove' => '([$1 Ñamümün])',
