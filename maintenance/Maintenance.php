@@ -444,7 +444,7 @@ abstract class Maintenance {
 				# Short options
 				for ( $p=1; $p<strlen( $arg ); $p++ ) {
 					$option = $arg{$p};
-					if ( $this->mParams[$option]['withArg'] ) {
+					if ( isset( $this->mParams[$option]['withArg'] ) && $this->mParams[$option]['withArg'] ) {
 						$param = next( $argv );
 						if ( $param === false ) {
 							$this->error( "\nERROR: $option needs a value after it\n" );
