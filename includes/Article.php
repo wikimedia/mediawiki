@@ -809,7 +809,6 @@ class Article {
 		$outputDone = false;
 		while( !$outputDone && ++$pass ){
 			switch( $pass ){
-
 				case 1:
 					wfRunHooks( 'ArticleViewHeader', array( &$this, &$outputDone, &$useParserCache ) );
 					break;
@@ -856,12 +855,13 @@ class Article {
 							wfProfileOut( __METHOD__ );
 							return;
 						}
-
+						# If this "old" version is the current, then try the parser cache...
 						if ( $oldid === $this->getLatest() && $this->useParserCache( false ) ) {
 							$this->mParserOutput = $parserCache->get( $this, $parserOptions );
 							if ( $this->mParserOutput ) {
 								wfDebug( __METHOD__.": showing parser cache for current rev permalink\n" );
 								$wgOut->addParserOutput( $this->mParserOutput );
+								$wgOut->setRevisionId( $this->mLatest );
 								$this->showViewFooter();
 								$this->viewUpdates();
 								wfProfileOut( __METHOD__ );
