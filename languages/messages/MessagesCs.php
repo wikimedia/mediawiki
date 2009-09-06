@@ -325,7 +325,7 @@ $messages = array(
 'tog-extendwatchlist'         => 'Na seznamu sledovaných stránek zobrazovat všechny změny, ne jen tu poslední',
 'tog-usenewrc'                => 'Používat zdokonalené poslední změny (vyžaduje JavaScript)',
 'tog-numberheadings'          => 'Automaticky číslovat nadpisy',
-'tog-showtoolbar'             => 'Ukázat lištu s nástroji při editaci',
+'tog-showtoolbar'             => 'Zobrazit panel nástrojů (vyžaduje JavaScript)',
 'tog-editondblclick'          => 'Editovat dvojklikem (JavaScript)',
 'tog-editsection'             => 'Zapnout možnost editace části stránky pomocí odkazu [editovat]',
 'tog-editsectiononrightclick' => 'Zapnout možnost editace části stránky pomocí kliknutí pravým tlačítkem na nadpisy stránky (JavaScript)',
@@ -361,7 +361,7 @@ $messages = array(
 
 'underline-always'  => 'Vždy',
 'underline-never'   => 'Nikdy',
-'underline-default' => 'Podle prohlížeče',
+'underline-default' => 'Podle nastavení prohlížeče',
 
 'skinpreview' => '(Náhled)',
 
@@ -603,17 +603,17 @@ Zkuste se podívat na [[Special:SpecialPages|seznam všech existujících speci�
 # General errors
 'error'                => 'Chyba',
 'databaseerror'        => 'Databázová chyba',
-'dberrortext'          => "Při dotazu do databáze došlo k syntaktické chybě.
+'dberrortext'          => 'Při dotazu do databáze došlo k syntaktické chybě.
 Příčinou může být chyba v programu.
 Poslední dotaz byl:
 <blockquote><tt>$1</tt></blockquote>
-z funkce '<tt>$2</tt>'.
-MySQL vrátil chybu '<tt>$3: $4</tt>'.",
+z funkce „<tt>$2</tt>“.
+Databáze vrátila chybu „<tt>$3: $4</tt>“.',
 'dberrortextcl'        => 'Při dotazu do databáze došlo k syntaktické chybě.
 Poslední dotaz byl:
-"$1"
-z funkce "$2".
-MySQL vrátil chybu "$3: $4"',
+„$1“
+z funkce „$2“.
+Databáze vrátila chybu „$3: $4“',
 'noconnect'            => 'Tato wiki má nějaké technické potíže a nepodařilo se připojit k databázovém serveru.<br />
 $1',
 'nodb'                 => 'Nebylo možné vybrat databázi $1',
@@ -643,7 +643,7 @@ Pokud toto není váš případ, možná jste nalezli chybu v software. Prosíme
 'unexpected'           => 'Neočekávaná hodnota: "$1"="$2".',
 'formerror'            => 'Chyba: nebylo možné odeslat formulář',
 'badarticleerror'      => 'Tento úkon nelze použít na tuto stránku.',
-'cannotdelete'         => 'Nebylo možné smazat zvolenou stránku ani soubor. (Možná už byla smazána někým jiným.)',
+'cannotdelete'         => 'Nebylo možné smazat zvolenou stránku nebo soubor. (Možná už byla smazána někým jiným.)',
 'badtitle'             => 'Neplatný název',
 'badtitletext'         => 'Požadovaný název stránky byl neplatný, prázdný nebo obsahoval nesprávnou předponu mezijazykového či interwiki odkazu. Možná obsahoval znaky, které v názvu nejsou dovoleny.',
 'perfdisabled'         => 'Omlouváme se. Tato služba byla dočasně znepřístupněna, protože zpomalovala databázi natolik, že nikdo nemohl používat wiki.',
@@ -798,7 +798,7 @@ Pokud byl účet vytvořen omylem, považujte tuto zprávu za bezpředmětnou.',
 'image_tip'       => 'Vložený soubor',
 'media_sample'    => 'Příklad.ogg',
 'media_tip'       => 'Odkaz na mediální soubor',
-'sig_tip'         => 'Váš podpis s časovým údajem',
+'sig_tip'         => 'Váš podpis s datem a časem',
 'hr_tip'          => 'Vodorovná čára (používejte střídmě)',
 
 # Edit pages
@@ -1022,7 +1022,7 @@ Prosím potvrďte, že to opravdu chcete učinit, že si uvědomujete důsledky 
 'revdelete-suppress'          => 'Utajit data i před správci',
 'revdelete-hide-image'        => 'Skrýt obsah souboru',
 'revdelete-unsuppress'        => 'Odstranit omezení na vrácené verze',
-'revdelete-log'               => 'Komentář:',
+'revdelete-log'               => 'Zdůvodnění smazání:',
 'revdelete-submit'            => 'Aplikovat nastavení',
 'revdelete-logentry'          => 'změnil viditelnost revizí u [[$1]]',
 'logdelete-logentry'          => 'mění viditelnost události [[$1]]',
@@ -1172,7 +1172,7 @@ Pokud na začátek dotazu přidáte ''all:'', bude se hledat všude (včetně di
 'recentchangesdays'        => 'Počet dní zobrazených v posledních změnách:',
 'recentchangescount'       => 'Počet záznamů implicitně zobrazených v posledních změnách, historii a knihách záznamů:',
 'savedprefs'               => 'Vaše nastavení bylo uloženo.',
-'timezonelegend'           => 'Časové pásmo',
+'timezonelegend'           => 'Časové pásmo:',
 'timezonetext'             => '¹O kolik se váš místní čas liší od času na serveru (UTC).',
 'localtime'                => 'Místní časové pásmo',
 'timezoneoffset'           => 'Posun',
@@ -1209,7 +1209,7 @@ Pokud na začátek dotazu přidáte ''all:'', bude se hledat všude (včetně di
 # Groups
 'group'               => 'Skupina:',
 'group-user'          => 'Uživatelé',
-'group-autoconfirmed' => 'Schválení uživatelé',
+'group-autoconfirmed' => 'Automaticky schválení uživatelé',
 'group-bot'           => 'Boti',
 'group-sysop'         => 'Správci',
 'group-bureaucrat'    => 'Byrokraté',
@@ -1217,14 +1217,14 @@ Pokud na začátek dotazu přidáte ''all:'', bude se hledat všude (včetně di
 'group-all'           => '(všichni)',
 
 'group-user-member'          => 'uživatel',
-'group-autoconfirmed-member' => 'schválený uživatel',
+'group-autoconfirmed-member' => 'automaticky schválený uživatel',
 'group-bot-member'           => 'bot',
 'group-sysop-member'         => 'správce',
 'group-bureaucrat-member'    => 'byrokrat',
 'group-suppress-member'      => 'dohlížitel',
 
 'grouppage-user'          => '{{ns:project}}:Uživatelé',
-'grouppage-autoconfirmed' => '{{ns:project}}:Schválení uživatelé',
+'grouppage-autoconfirmed' => '{{ns:project}}:Automaticky schválení uživatelé',
 'grouppage-bot'           => '{{ns:project}}:Boti',
 'grouppage-sysop'         => '{{ns:project}}:Správci',
 'grouppage-bureaucrat'    => '{{ns:project}}:Byrokraté',
@@ -1303,7 +1303,7 @@ Pokud na začátek dotazu přidáte ''all:'', bude se hledat všude (včetně di
 'rcshowhideanons'                   => '$1 anonymní uživatele',
 'rcshowhidepatr'                    => '$1 prověřené editace',
 'rcshowhidemine'                    => '$1 moje editace',
-'rclinks'                           => 'Ukázat $1 posledních změn během {{PLURAL:$2|posledního dne|posledních $2 dnů|posledních $2 dnů}}<br />
+'rclinks'                           => 'Ukázat $1 posledních změn během posledních $2 dnů<br />
 $3',
 'diff'                              => 'rozdíl',
 'hist'                              => 'historie',
@@ -1501,8 +1501,8 @@ Kliknutím na hlavičku sloupce můžete změnit řazení.',
 'filedelete-nofile'           => "Soubor '''$1''' neexistuje.",
 'filedelete-nofile-old'       => "Neexistuje archivní verze souboru '''$1''' s udávanými atributy.",
 'filedelete-iscurrent'        => 'Pokoušíte se smazat současnou verzi souboru. Nejprve navraťte starší verzi souboru.',
-'filedelete-otherreason'      => 'Jiný či další důvod:',
-'filedelete-reason-otherlist' => 'Zadejte níže důvod mazání nebo vyberte z tohoto seznamu',
+'filedelete-otherreason'      => 'Jiný/další důvod:',
+'filedelete-reason-otherlist' => 'Jiný důvod',
 'filedelete-reason-dropdown'  => '*Obvyklé důvody smazání
 ** Porušení autorských práv
 ** Nadbytečná kopie',
@@ -1553,7 +1553,9 @@ Aktuální délka fronty údržby je '''$7'''.",
 'disambiguations-text' => 'Odkazy na následujících stránkách vedou na rozcestníky (stránky obsahující některou ze šablon uvedených na [[MediaWiki:Disambiguationspage|seznamu rozcestníkových šablon]]) místo na příslušný článek.',
 
 'doubleredirects'            => 'Dvojitá přesměrování',
-'doubleredirectstext'        => 'Na této stránce je seznam přesměrování vedoucí na další přesměrování. Každý řádek obsahuje odkaz na první a druhé přesměrování, a k tomu cíl druhého přesměrování, který obvykle ukazuje jméno „skutečné“ cílové stránky, na kterou by mělo první přesměrování odkazovat.',
+'doubleredirectstext'        => 'Na této stránce je seznam přesměrování vedoucích na další přesměrování.
+Každý řádek obsahuje odkaz na první a druhé přesměrování a k tomu cíl druhého přesměrování, který obvykle ukazuje jméno „skutečné“ cílové stránky, na kterou by mělo první přesměrování odkazovat.
+<s>Přeškrtnuté</s> položky již byly vyřešeny.',
 'double-redirect-fixed-move' => 'Stránka [[$1]] byla přesunuta, nyní přesměrovává na [[$2]]',
 'double-redirect-fixer'      => 'Opravář přesměrování',
 
@@ -1633,7 +1635,7 @@ Aktuální délka fronty údržby je '''$7'''.",
 'specialloguserlabel'  => 'Uživatel:',
 'speciallogtitlelabel' => 'Název:',
 'log'                  => 'Protokolovací záznamy',
-'all-logs-page'        => 'Všechny záznamy',
+'all-logs-page'        => 'Všechny veřejné záznamy',
 'log-search-legend'    => 'Hledání v protokolovacích záznamech',
 'log-search-submit'    => 'Hledat',
 'alllogstext'          => 'Společné zobrazení všech dostupných protokolovacích záznamů pro {{grammar:4sg|{{SITENAME}}}}.
@@ -1795,8 +1797,8 @@ Rady a kontakt:
 'deletionlog'                 => 'Kniha smazaných stránek',
 'reverted'                    => 'Obnovení předchozí verze',
 'deletecomment'               => 'Důvod smazání:',
-'deleteotherreason'           => 'Jiný či další důvod:',
-'deletereasonotherlist'       => 'Zadejte níže důvod mazání nebo vyberte z tohoto seznamu',
+'deleteotherreason'           => 'Jiný/další důvod:',
+'deletereasonotherlist'       => 'Jiný důvod',
 'deletereason-dropdown'       => '*Obvyklé důvody smazání
 ** Na žádost autora
 ** Porušení autorských práv
@@ -1813,7 +1815,7 @@ Rady a kontakt:
 
 Poslední editaci této stránky provedl(a) [[User:$3|$3]] ([[User talk:$3|diskuse]] | [[Special:Contributions/$3|{{int:contribslink}}]]).',
 'editcomment'                 => "Shrnutí editace bylo: ''„$1“''.", # only shown if there is an edit comment
-'revertpage'                  => 'Editace uživatele „$2“ vrácena do předchozího stavu, jehož autorem je „$1“.', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
+'revertpage'                  => 'Editace uživatele „[[Special:Contributions/$2|$2]]“ ([[User talk:$2|diskuse]]) vráceny do předchozího stavu, jehož autorem je „[[User:$1|$1]]“', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
 'rollback-success'            => 'Editace uživatele $1 byla vrácena na poslední verzi od uživatele $2.',
 'sessionfailure'              => 'Zřejmě je nějaký problém s vaším přihlášením;
 vámi požadovaná činnost byla stornována jako prevence před neoprávněným přístupem.
@@ -1825,7 +1827,7 @@ Stiskněte tlačítko „zpět“, obnovte stránku, ze které jste přišli a z
 'unprotectedarticle'          => 'odemyká „[[$1]]“',
 'protect-title'               => 'Zamyká se „$1“',
 'protect-legend'              => 'Potvrdit zamčení',
-'protectcomment'              => 'Důvod zamčení',
+'protectcomment'              => 'Důvod:',
 'protectexpiry'               => 'Čas vypršení',
 'protect_expiry_invalid'      => 'Čas vypršení je chybný.',
 'protect_expiry_old'          => 'Čas vypršení již minul.',
@@ -1973,7 +1975,7 @@ Udejte přesný důvod níže (například ocitujte, které stránky byly poško
 'ipbother'                        => 'Jiný čas vypršení:',
 'ipboptions'                      => '2 hodiny:2 hours,1 den:1 day,3 dny:3 days,1 týden:1 week,2 týdny:2 weeks,1 měsíc:1 month,3 měsíce:3 months,6 měsíců:6 months,1 rok:1 year,do odvolání:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'                  => 'jiný',
-'ipbotherreason'                  => 'Jiný nebo další důvod:',
+'ipbotherreason'                  => 'Jiný/další důvod:',
 'ipbhidename'                     => 'Skrýt uživatelské jméno u editací a v seznamech',
 'ipbwatchuser'                    => 'Sledovat uživatelskou a diskusní stranu tohoto uživatele',
 'badipaddress'                    => 'Neplatná IP adresa',
@@ -2006,7 +2008,7 @@ Můžete si prohlédnout [[Special:IPBlockList|seznam zablokovaných uživatelů
 'blocklink'                       => 'zablokovat',
 'unblocklink'                     => 'uvolnit',
 'contribslink'                    => 'příspěvky',
-'autoblocker'                     => 'Automaticky zablokováno, protože sdílíte IP adresu s „$1“. Důvod zablokování tohoto uživatele: „$2“.',
+'autoblocker'                     => 'Byli jste automaticky zablokováni, protože sdílíte IP adresu s uživatelem „[[User:$1|$1]]“. Důvod zablokování tohoto uživatele: „$2“',
 'blocklogpage'                    => 'Kniha zablokování',
 'blocklogentry'                   => 'blokuje „[[$1]]“ s časem vypršení $2 $3',
 'blocklogtext'                    => 'Toto je kniha úkonů blokování a odblokování uživatelů. Automaticky blokované IP adresy nejsou vypsány. Podívejte se na [[Special:IPBlockList|seznam blokování IP]] s výčtem aktuálních zákazů a blokování.',
@@ -2052,7 +2054,11 @@ Můžete si prohlédnout [[Special:IPBlockList|seznam zablokovaných uživatelů
 # Move page
 'move-page'               => 'Přesunout „$1“',
 'move-page-legend'        => 'Přesunout stránku',
-'movepagetext'            => 'Pomocí tohoto formuláře změníte název stránky a přesunete i celou její historii pod nový název. Původní název se stane přesměrováním na nový název. Odkazy na předchozí název <i>nebudou</i> změněny. <b>VAROVÁNÍ!</b> Toto může drastická a nečekaná změna pro oblíbené stránky. Ujistěte se, prosím, že chápete důsledky vašeho kroku před tím, než změnu provedete.',
+'movepagetext'            => "Použitím tohoto formuláře změníte název stránky a přesunete i celou její historii na nový název. Původní název se stane přesměrováním na nový název, odkazy na předchozí název ''nebudou'' změněny, nezapomeňte poté zkontrolovat případná [[Special:DoubleRedirects|dvojitá]] nebo [[Special:BrokenRedirects|přerušená]] přesměrování.
+
+Stránku není možno přejmenovat, '''pokud pod cílovým názvem již nějaká stránka existuje''', s výjimkou situace, kdy je cílová stránka přesměrováním na tuto stránku a nemá žádnou historii editací. Pokud potřebujete přesto stránku přesunout, '''nepoužívejte copy&paste''', ale kontaktujte správce, který přesun zařídí.
+
+'''Upozornění!''' Přejmenování oblíbené stránky může být drastická a nečekaná změna. Ujistěte se, prosím, že chápete důsledky svého kroku před tím, než změnu provedete.",
 'movepagetalktext'        => "Přidružená diskusní stránka, pokud existuje, bude automaticky přesunuta společně se stránkou, '''pokud:'''
 * Dosud neexistuje neprázdná diskusní stránka pod novým jménem a
 * nezrušíte křížek ve formuláři.
@@ -2069,7 +2075,7 @@ V těchto případech musíte přesunout nebo sloučit stránky manuálně, jest
 'cantmove-titleprotected' => 'Stránku nelze přesunout na zadané místo, protože název je uzamčen proti vytváření',
 'talkexists'              => 'Stránka byla přesunuta úspěšně, ale diskusní stránka přesunuta být nemohla, neboť pod novým názvem již nějaká stránka existuje. Proveďte prosím ruční sloučení.',
 'movedto'                 => 'přesunuto na',
-'movetalk'                => 'Přesunout také diskusní stránku, existuje-li.',
+'movetalk'                => 'Přesunout příslušnou diskusní stránku',
 'move-subpages'           => 'Přesunout i všechny podstránky, je-li to možné',
 'move-talk-subpages'      => 'Přesunout i všechny podstránky diskusní stránky, je-li to možné',
 'movepage-page-exists'    => 'Stránka $1 již existuje a nemůže být automaticky přepsána.',
@@ -2263,7 +2269,7 @@ Pokud si přejete přispívat k lokalizaci programu MediaWiki, navštivte [http:
 'siteuser'         => 'uživatel {{grammar:2sg|{{SITENAME}}}} $1',
 'lastmodifiedatby' => 'Tuto stránku naposledy měnil $3 v $2, $1.', # $1 date, $2 time, $3 user
 'othercontribs'    => 'Do textu přispěli $1.',
-'others'           => 'ostatní',
+'others'           => 'další',
 'siteusers'        => 'uživatel(é) {{grammar:2sg|{{SITENAME}}}} $1',
 'creditspage'      => 'Zásluhy za stránku',
 'nocredits'        => 'K této stránce neexistuje informace o zásluhách.',
@@ -2364,6 +2370,7 @@ Obsahuje pouze seznam s odrážkami (řádka začíná s *). První odkaz na ř�
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength', # Do not translate list items
 
 # EXIF tags

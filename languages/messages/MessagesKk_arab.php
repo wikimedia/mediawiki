@@ -2137,7 +2137,7 @@ $1',
 'unblockip'                   => 'قاتىسۋشىنى بۇعاتتاماۋ',
 'unblockiptext'               => 'تومەندەگى ٴپىشىندى الدىنداعى IP مەكەنجايىمەن نە اتىمەن بۇعاتتالعان قاتىسۋشىعا جازۋ قاتىناۋىن قالپىنا كەلتىرىۋى ٴۇشىن قولدانىڭىز.',
 'ipusubmit'                   => 'وسى مەكەنجايدى بۇعاتتاماۋ',
-'unblocked'                   => '[[{{ns:user}}:$1|$1]] بۇعاتتاۋى ٴوشىرىلدى',
+'unblocked'                   => '[[User:$1|$1]] بۇعاتتاۋى ٴوشىرىلدى',
 'unblocked-id'                => '$1 بۇعاتتاۋ الاستالدى',
 'ipblocklist'                 => 'بۇعاتتالعان قاتىسۋشى / IP مەكەنجاي ٴتىزىمى',
 'ipblocklist-legend'          => 'بۇعاتتالعان قاتىسۋشىنى تابۋ',
@@ -2543,6 +2543,7 @@ $1',
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength', # Do not translate list items
 
 # EXIF tags

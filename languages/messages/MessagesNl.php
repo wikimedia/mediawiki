@@ -431,7 +431,7 @@ $messages = array(
 'metadata_help' => 'Metadata:',
 
 'errorpagetitle'    => 'Fout',
-'returnto'          => 'Terug naar $1.',
+'returnto'          => 'Ga naar $1.',
 'tagline'           => 'Uit {{SITENAME}}',
 'help'              => 'Hulp',
 'search'            => 'Zoeken',
@@ -465,7 +465,7 @@ $messages = array(
 'postcomment'       => 'Nieuw kopje',
 'articlepage'       => 'Pagina bekijken',
 'talk'              => 'Overleg',
-'views'             => 'Aspecten/acties',
+'views'             => 'Weergaven',
 'toolbox'           => 'Hulpmiddelen',
 'userpage'          => 'Gebruikerspagina bekijken',
 'projectpage'       => 'Projectpagina bekijken',
@@ -575,12 +575,12 @@ Mogelijk zit er een fout in de software.
 Het laatste verzoek aan de database was:
 <blockquote><tt>$1</tt></blockquote>
 vanuit de functie “<tt>$2</tt>”.
-MySQL gaf de foutmelding “<tt>$3: $4</tt>”.',
+De database gaf de volgende foutmelding “<tt>$3: $4</tt>”.',
 'dberrortextcl'        => 'Er is een syntaxisfout in het databaseverzoek opgetreden.
 Het laatste verzoek aan de database was:
 “$1”
 vanuit de functie “$2”.
-MySQL gaf de volgende foutmelding: “$3: $4”',
+De database gaf de volgende foutmelding: “$3: $4”',
 'noconnect'            => 'De wiki ondervindt technische moeilijkheden en kan de database niet bereiken.<br />
 $1',
 'nodb'                 => 'Kon database $1 niet selecteren',
@@ -950,7 +950,7 @@ Het is misschien verstandig om uw tekst tijdelijk in een tekstbestand op te slaa
 U kunt reeds bestaande pagina's wijzigen, of u kunt [[Special:UserLogin|zich aanmelden of registreren]].",
 'nocreate-loggedin'                => "U hebt geen rechten om nieuwe pagina's te maken.",
 'permissionserrors'                => 'Fouten in rechten',
-'permissionserrorstext'            => 'U hebt geen rechten om dit te doen wegens de volgende {{PLURAL:$1|reden|redenen}}:',
+'permissionserrorstext'            => 'U hebt geen rechten om dit te doen om de volgende {{PLURAL:$1|reden|redenen}}:',
 'permissionserrorstext-withaction' => 'U hebt geen rechten om $2 om de volgende {{PLURAL:$1|reden|redenen}}:',
 'recreate-deleted-warn'            => "'''Waarschuwing: u bent bezig met het aanmaken van een pagina die in het verleden verwijderd is.'''
 
@@ -1031,7 +1031,7 @@ er kunnen details aanwezig zijn in het [{{fullurl:Special:Log/delete|page={{PAGE
 'revdelete-nooldid-title'     => 'Geen doelversie',
 'revdelete-nooldid-text'      => 'U hebt geen doelversie(s) voor deze handeling opgegeven, de aangegeven versie bestaat niet, of u probeert de laatste versie te verbergen.',
 'revdelete-selected'          => "'''Geselecteerde {{PLURAL:$2|bewerking|bewerkingen}} van [[:$1]]:'''",
-'logdelete-selected'          => "'''{{PLURAL:$1|Geselecteerde logboekactie|Geselecteerde logboekacties}}:'''",
+'logdelete-selected'          => "'''{{PLURAL:$1|Geselecteerde logboekhandeling|Geselecteerde logboekhandelingen}}:'''",
 'revdelete-text'              => "'''Verwijderde bewerkingen zijn zichtbaar in de geschiedenis en logboeken, maar delen van de inhoud zijn niet langer publiek toegankelijk.'''
 
 Andere beheerders van {{SITENAME}} kunnen de verborgen inhoud benaderen en de verwijdering ongedaan maken met behulp van dit scherm, tenzij er aanvullende beperkingen gelden die zijn ingesteld door de systeembeheerder.
@@ -1045,7 +1045,7 @@ Bevestig dat u dit wilde doen, dat u de consequenties begrijpt en dat u dit doet
 'revdelete-suppress'          => 'Gegevens voor zowel beheerders als anderen onderdrukken',
 'revdelete-hide-image'        => 'Bestandsinhoud verbergen',
 'revdelete-unsuppress'        => 'Beperkingen op teruggezette wijzigingen verwijderen',
-'revdelete-log'               => 'Opmerking in logboek:',
+'revdelete-log'               => 'Reden voor verwijderen:',
 'revdelete-submit'            => 'Toepassen op de geselecteerde bewerking',
 'revdelete-logentry'          => 'zichtbaarheid van bewerkingen is gewijzigd voor [[$1]]',
 'logdelete-logentry'          => 'wijzigde zichtbaarheid van gebeurtenis [[$1]]',
@@ -1203,7 +1203,7 @@ Ga na of latex, dvips en gs correct geïnstalleerd zijn en zet om',
 'recentchangesdays'        => 'Aantal dagen weer te geven in de recente wijzigingen:',
 'recentchangescount'       => "Standaard aantal bewerkingen in recente wijzigingen, paginageschiedenis en logboekpagina's:",
 'savedprefs'               => 'Uw voorkeuren zijn opgeslagen.',
-'timezonelegend'           => 'Tijdzone',
+'timezonelegend'           => 'Tijdzone:',
 'timezonetext'             => '¹Het aantal uren dat uw plaatselijke tijd afwijkt van de servertijd (UTC).',
 'localtime'                => 'Plaatselijke tijd',
 'timezoneoffset'           => 'Tijdsverschil¹',
@@ -1270,9 +1270,9 @@ Ga na of latex, dvips en gs correct geïnstalleerd zijn en zet om',
 'right-minoredit'            => 'Bewerkingen als klein markeren',
 'right-move'                 => "Pagina's hernoemen",
 'right-move-subpages'        => "Pagina's inclusief subpagina's verplaatsen",
-'right-suppressredirect'     => 'Een doorverwijzing op de doelpagina verwijderen bij het hernoemen van een pagina',
+'right-suppressredirect'     => "Geen doorverwijzingen achterlaten bij het hernoemen van pagina's",
 'right-upload'               => 'Bestanden uploaden',
-'right-reupload'             => 'Een bestaand bestand overschrijven',
+'right-reupload'             => 'Bestaande bestanden overschrijven',
 'right-reupload-own'         => 'Eigen bestandsuploads overschrijven',
 'right-reupload-shared'      => 'Media uit de gedeelde mediadatabank lokaal overschrijven',
 'right-upload_by_url'        => 'Bestanden uploaden via een URL',
@@ -1301,14 +1301,14 @@ Ga na of latex, dvips en gs correct geïnstalleerd zijn en zet om',
 'right-editusercssjs'        => 'De CSS- en JS-bestanden van andere gebruikers bewerken',
 'right-rollback'             => 'Snel de laatste bewerking(en) van een gebruiker van een pagina terugdraaien',
 'right-markbotedits'         => 'Teruggedraaide bewerkingen markeren als botbewerkingen',
-'right-noratelimit'          => 'Heeft geen tijdsafhankelijke beperkingen',
+'right-noratelimit'          => 'Tijdsafhankelijke beperkingen negeren',
 'right-import'               => "Pagina's uit andere wiki's importeren",
 'right-importupload'         => "Pagina's importeren uit een bestandsupload",
 'right-patrol'               => 'Bewerkingen als gecontroleerd markeren',
-'right-autopatrol'           => 'Bewerkingen worden automatisch als gecontroleerd gemarkeerd',
+'right-autopatrol'           => 'Bewerkingen automatisch als gecontroleerd gemarkeerd krijgen',
 'right-patrolmarks'          => 'Controletekens in recente wijzigingen bekijken',
 'right-unwatchedpages'       => "Een lijst met pagina's die niet op een volglijst staan bekijken",
-'right-trackback'            => 'Een trackback opgeven',
+'right-trackback'            => "Terugverwijzende pagina's opgeven",
 'right-mergehistory'         => "De geschiedenis van pagina's samenvoegen",
 'right-userrights'           => 'Alle gebruikersrechten bewerken',
 'right-userrights-interwiki' => "Gebruikersrechten van gebruikers in andere wiki's wijzigen",
@@ -1328,7 +1328,7 @@ Ga na of latex, dvips en gs correct geïnstalleerd zijn en zet om',
 'rcnote'                            => "Hieronder {{PLURAL:$1|staat de laatste bewerking|staan de laatste '''$1''' bewerkingen}} in de laatste {{PLURAL:$2|dag|'''$2''' dagen}}, op $4 om $5.",
 'rcnotefrom'                        => "Wijzigingen sinds '''$2''' (met een maximum van '''$1''' wijzigingen).",
 'rclistfrom'                        => 'Wijzigingen bekijken vanaf $1',
-'rcshowhideminor'                   => 'kleine wijzigingen $1',
+'rcshowhideminor'                   => 'Kleine wijzigingen $1',
 'rcshowhidebots'                    => 'bots $1',
 'rcshowhideliu'                     => 'aangemelde gebruikers $1',
 'rcshowhideanons'                   => 'anonieme gebruikers $1',
@@ -1564,10 +1564,10 @@ Klikken op een kolomkop verandert de sortering.',
 'filedelete-iscurrent'        => 'U probeert de nieuwste versie van dit bestand te verwijderen. Plaats alstublieft een oudere versie terug.',
 'filedelete-otherreason'      => 'Andere reden:',
 'filedelete-reason-otherlist' => 'Andere reden',
-'filedelete-reason-dropdown'  => '*Veelvoorkomende redenen voor verwijdering
+'filedelete-reason-dropdown'  => '*Veel voorkomende redenen voor verwijderen
 ** Auteursrechtenschending
 ** Duplicaatbestand',
-'filedelete-edit-reasonlist'  => 'Redenen voor verwijdering bewerken',
+'filedelete-edit-reasonlist'  => 'Redenen voor verwijderen bewerken',
 
 # MIME search
 'mimesearch'         => 'Zoeken op MIME-type',
@@ -1622,7 +1622,8 @@ Deze horen waarschijnlijk direct naar het juiste onderwerp te verwijzen.
 'doubleredirects'            => 'Dubbele doorverwijzingen',
 'doubleredirectstext'        => "Deze lijst bevat pagina's die doorverwijzen naar andere doorverwijspagina's.
 Elke rij bevat verwijzingen naar de eerste en de tweede doorverwijspagina en een verwijzing naar de doelpagina van de tweede doorverwijspagina.
-Meestal is de laatste pagina het eigenlijke doel.",
+Meestal is de laatste pagina het eigenlijke doel, waar de eerste pagina naar zou moeten doorverwijzen.
+<s>Doorgehaalde regels</s> geven aan dat het probleem al is opgelost.",
 'double-redirect-fixed-move' => '[[$1]] is verplaatst en is nu een doorverwijzing naar [[$2]]',
 'double-redirect-fixer'      => 'Doorverwijzingen opschonen',
 
@@ -1705,7 +1706,7 @@ Een bestand kan hier dus ten onrechte opgenomen zijn.',
 'specialloguserlabel'  => 'Gebruiker:',
 'speciallogtitlelabel' => 'Paginanaam:',
 'log'                  => 'Logboeken',
-'all-logs-page'        => 'Alle logboeken',
+'all-logs-page'        => 'Alle openbare logboeken',
 'log-search-legend'    => 'Zoek logboeken',
 'log-search-submit'    => 'OK',
 'alllogstext'          => 'Dit is het gecombineerde logboek van {{SITENAME}}.
@@ -1873,11 +1874,11 @@ Zie het $2 voor een overzicht van recente verwijderingen.',
 'deletecomment'               => 'Reden voor verwijderen:',
 'deleteotherreason'           => 'Andere/eventuele reden:',
 'deletereasonotherlist'       => 'Andere reden',
-'deletereason-dropdown'       => '*Veelvoorkomende verwijderingsredenen
+'deletereason-dropdown'       => '*Veel voorkomende verwijderredenen
 ** Op aanvraag van auteur
 ** Schending van auteursrechten
 ** Vandalisme',
-'delete-edit-reasonlist'      => 'Redenen voor verwijdering bewerken',
+'delete-edit-reasonlist'      => 'Redenen voor verwijderen bewerken',
 'delete-toobig'               => "Deze pagina heeft een lange bewerkingsgeschiedenis, meer dan $1 {{PLURAL:$1|versie|versies}}.
 Het verwijderen van dit soort pagina's is met rechten beperkt om het per ongeluk verstoren van de werking van {{SITENAME}} te voorkomen.",
 'delete-warning-toobig'       => 'Deze pagina heeft een lange bewerkingsgeschiedenis, meer dan $1 {{PLURAL:$1|versie|versies}}.
@@ -1894,7 +1895,8 @@ Iemand anders heeft deze pagina al bewerkt of hersteld naar een eerdere versie.
 De meest recente bewerking is gemaakt door [[User:$3|$3]] ([[User talk:$3|overleg]]| [[Special:Contributions/$3|bijdragen]]).',
 'editcomment'                 => "De bewerkingssamenvatting was: \"''\$1''\".", # only shown if there is an edit comment
 'revertpage'                  => 'Wijzigingen door [[Special:Contributions/$2|$2]] ([[User talk:$2|Overleg]]) hersteld tot de laatste versie door [[User:$1|$1]]', # Additional available: $3: revid of the revision reverted to, $4: timestamp of the revision reverted to, $5: revid of the revision reverted from, $6: timestamp of the revision reverted from
-'rollback-success'            => 'Wijzigingen door $1 teruggedraaid; laatste versie van $2 hersteld.',
+'rollback-success'            => 'De wijzigingen door $1 zijn teruggedraaid.
+De laatste versie van $2 is hersteld.',
 'sessionfailure'              => 'Er lijkt een probleem te zijn met uw aanmeldsessie.
 Uw handeling is gestopt uit voorzorg tegen een beveiligingsrisico (dat bestaat uit mogelijke "hijacking" van deze sessie).
 Ga een pagina terug, laad die pagina opnieuw en probeer het nog eens.',
@@ -1906,7 +1908,7 @@ Zie de [[Special:ProtectedPages|lijst met beveiligde pagina's]] voor alle beveil
 'unprotectedarticle'          => 'heeft de beveiliging van "[[$1]]" opgeheven',
 'protect-title'               => 'Instellen van beveiligingsniveau voor "$1"',
 'protect-legend'              => 'Beveiliging bevestigen',
-'protectcomment'              => 'Opmerkingen:',
+'protectcomment'              => 'Reden:',
 'protectexpiry'               => 'Duur:',
 'protect_expiry_invalid'      => 'De aangegeven duur is ongeldig.',
 'protect_expiry_old'          => 'Vervaldatum is in het verleden.',
@@ -2347,7 +2349,7 @@ U kunt wel de broncode bekijken.',
 'tooltip-ca-nstab-help'           => 'Hulppagina bekijken',
 'tooltip-ca-nstab-category'       => 'Categoriepagina bekijken',
 'tooltip-minoredit'               => 'Deze wijziging als een kleine wijziging markeren',
-'tooltip-save'                    => 'Uw wijzigen opslaan',
+'tooltip-save'                    => 'Uw wijzigingen opslaan',
 'tooltip-preview'                 => 'Een voorvertoning maken.
 Gebruik dit!',
 'tooltip-diff'                    => 'Gemaakte wijzigingen bekijken (zoals het in de geschiedenis zal te zien zijn)',
@@ -2498,6 +2500,7 @@ Andere velden worden verborgen.
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength', # Do not translate list items
 
 # EXIF tags
@@ -2813,8 +2816,8 @@ De bevestigingscode vervalt op $4.',
 Trackbacks voor deze pagina:<br />
 $1</div>",
 'trackbackremove'   => ' ([$1 Verwijderen])',
-'trackbacklink'     => 'Trackback',
-'trackbackdeleteok' => 'De trackback is verwijderd.',
+'trackbacklink'     => 'Terugverwijzende pagina',
+'trackbackdeleteok' => 'De terugverwijzende pagina is verwijderd.',
 
 # Delete conflict
 'deletedwhileediting' => "'''Let op''': deze pagina is verwijderd terwijl u bezig was met uw bewerking!",

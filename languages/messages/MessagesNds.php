@@ -1028,7 +1028,7 @@ de aver nich jümmer den aktuellsten Stand weerspegelt.<p>',
 'recentchangesdays'        => 'Daag, de de List vun de „Ne’esten Ännern“ wiesen schall:',
 'recentchangescount'       => 'Antall Ännern, de bi Letzte Ännern, in Versionsgeschichten un in Logböker wiest warrt:',
 'savedprefs'               => 'Allens spiekert.',
-'timezonelegend'           => 'Tietrebeet',
+'timezonelegend'           => 'Tiedrebeed:',
 'timezonetext'             => 'Giff de Antall vun de Stünnen an, de twüschen dien Tiedrebeet un UTC liggen.',
 'localtime'                => 'Oortstied',
 'timezoneoffset'           => 'Ünnerscheed',
@@ -2213,6 +2213,7 @@ Wat denn noch an Lenken kummt in de Reeg, dat sünd Utnahmen, bi de dat Bild lie
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength', # Do not translate list items
 
 # EXIF tags

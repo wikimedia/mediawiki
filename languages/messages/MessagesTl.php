@@ -2158,12 +2158,13 @@ Kapag nabago ang talaksan mula sa anyong orihinal nito, may ilang detalyeng hind
 'metadata-collapse' => 'Itago ang karugtong na mga detalye',
 'metadata-fields'   => 'Ang mga pook ng metadatang EXIF na nakatala sa mensaheng ito ay masasama sa ipinapakitang pahina ng larawan kapag tumiklop ang tabla ng metadata.
 Nakatakdang itago ang iba pa.
-* kayarian
-* modelo
-* petsaorasorihinal
-* lantadoras
-* pbilang
-* pokalhaba', # Do not translate list items
+* make
+* model
+* datetimeoriginal
+* exposuretime
+* fnumber
+* isospeedratings
+* focallength', # Do not translate list items
 
 # EXIF tags
 'exif-imagewidth'                  => 'Lapad',

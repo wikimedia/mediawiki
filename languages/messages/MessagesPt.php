@@ -7,6 +7,9 @@
  * @ingroup Language
  * @file
  *
+ * @author Crazymadlover
+ * @author Giro720
+ * @author Heldergeovane
  * @author Jorge Morais
  * @author Leonardo.stabile
  * @author Lijealso
@@ -17,6 +20,7 @@
  * @author Minh Nguyen
  * @author Nuno Tavares
  * @author Paulo Juntas
+ * @author Rafael Vargas
  * @author Rei-artur
  * @author Remember the dot
  * @author Rodrigo Calanca Nishino
@@ -210,20 +214,20 @@ $messages = array(
 'skinpreview' => '(Pré-visualizar)',
 
 # Dates
-'sunday'        => 'Domingo',
-'monday'        => 'Segunda-feira',
-'tuesday'       => 'Terça-feira',
-'wednesday'     => 'Quarta-feira',
-'thursday'      => 'Quinta-feira',
-'friday'        => 'Sexta-feira',
-'saturday'      => 'Sábado',
-'sun'           => 'Dom',
-'mon'           => 'Seg',
-'tue'           => 'Ter',
-'wed'           => 'Qua',
-'thu'           => 'Qui',
-'fri'           => 'Sex',
-'sat'           => 'Sáb',
+'sunday'        => 'domingo',
+'monday'        => 'segunda-feira',
+'tuesday'       => 'terça-feira',
+'wednesday'     => 'quarta-feira',
+'thursday'      => 'quinta-feira',
+'friday'        => 'sexta-feira',
+'saturday'      => 'sábado',
+'sun'           => 'dom',
+'mon'           => 'seg',
+'tue'           => 'ter',
+'wed'           => 'qua',
+'thu'           => 'qui',
+'fri'           => 'sex',
+'sat'           => 'sáb',
 'january'       => 'janeiro',
 'february'      => 'fevereiro',
 'march'         => 'março',
@@ -248,18 +252,18 @@ $messages = array(
 'october-gen'   => 'outubro',
 'november-gen'  => 'novembro',
 'december-gen'  => 'dezembro',
-'jan'           => 'Jan',
-'feb'           => 'Fev',
-'mar'           => 'Mar',
-'apr'           => 'Abr',
+'jan'           => 'jan',
+'feb'           => 'fev',
+'mar'           => 'mar',
+'apr'           => 'abr',
 'may'           => 'maio',
-'jun'           => 'Jun',
-'jul'           => 'Jul',
-'aug'           => 'Ago',
-'sep'           => 'Set',
-'oct'           => 'Out',
-'nov'           => 'Nov',
-'dec'           => 'Dez',
+'jun'           => 'jun',
+'jul'           => 'jul',
+'aug'           => 'ago',
+'sep'           => 'set',
+'oct'           => 'out',
+'nov'           => 'nov',
+'dec'           => 'dez',
 
 # Categories related messages
 'pagecategories'                 => '{{PLURAL:$1|Categoria|Categorias}}',
@@ -316,7 +320,7 @@ $messages = array(
 'go'                => 'Ir',
 'searcharticle'     => 'Ir',
 'history'           => 'Histórico',
-'history_short'     => 'História',
+'history_short'     => 'Histórico',
 'updatedmarker'     => 'actualizado desde a minha última visita',
 'info_short'        => 'Informação',
 'printableversion'  => 'Versão para impressão',
@@ -424,7 +428,7 @@ $messages = array(
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Página',
 'nstab-user'      => 'Página de utilizador',
-'nstab-media'     => 'Mídia',
+'nstab-media'     => 'Multimédia',
 'nstab-special'   => 'Página especial',
 'nstab-project'   => 'Página de projecto',
 'nstab-image'     => 'Ficheiro',
@@ -447,15 +451,16 @@ Uma lista de páginas especiais válidas poderá ser encontrada em [[Special:Spe
 'error'                => 'Erro',
 'databaseerror'        => 'Erro na base de dados',
 'dberrortext'          => 'Ocorreu um erro de sintaxe na pesquisa à base de dados.
+Isto pode indicar um bug no software.
 A última tentativa de busca na base de dados foi:
 <blockquote><tt>$1</tt></blockquote>
 na função "<tt>$2</tt>".
-O MySQL retornou o erro "<tt>$3: $4</tt>".',
-'dberrortextcl'        => 'Ocorre um erro de sintaxe na pesquisa à base de dados.
+base de dados retornou o erro "<tt>$3: $4</tt>".',
+'dberrortextcl'        => 'Ocorreu um erro de sintaxe na pesquisa à base de dados.
 A última tentativa de busca na base de dados foi:
-<blockquote><tt>$1</tt></blockquote>
-na função "<tt>$2</tt>".
-O MySQL retornou o erro "<tt>$3: $4</tt>".',
+"$1"
+na função "$2".
+Base de dados retornou o erro "$3: $4"',
 'noconnect'            => 'Desculpe! O wiki está a experimentar algumas dificuldades técnicas e não pode contactar o servidor da base de dados.<br />
 $1',
 'nodb'                 => 'Não foi possível seleccionar a base de dados $1',
@@ -503,7 +508,7 @@ Query: $2',
 'protectedpagetext'    => 'Esta página foi protegida contra novas edições.',
 'viewsourcetext'       => 'Você pode ver e copiar o código desta página:',
 'protectedinterface'   => 'Esta página fornece texto de interface ao software e encontra-se trancada para prevenir abusos.',
-'editinginterface'     => "'''Aviso:''' Encontra-se a editar uma página que é utilizada para fornecer texto de interface ao software. Alterações nesta página irão afectar a aparência da interface de utilizador para outros utilizadores. Para traduções, considere utilizar a [http://translatewiki.net/wiki/Main_Page?setlang=pt translatewiki.net], um projecto destinado à tradução do MediaWiki.",
+'editinginterface'     => "'''Aviso:''' Encontra-se a editar uma página que é utilizada para fornecer texto de interface ao software. Alterações nesta página irão afectar a aparência da interface de utilizador para outros utilizadores. Para traduções, considere utilizar a [http://translatewiki.net/wiki/Main_Page?setlang=pt translatewiki.net], um projeto destinado à tradução do MediaWiki.",
 'sqlhidden'            => '(Consulta SQL em segundo-plano)',
 'cascadeprotected'     => 'Esta página foi protegida contra edições por estar incluída {{PLURAL:$1|na página listada|nas páginas listadas}} a seguir, ({{PLURAL:$1|página essa que está protegida|páginas essas que estão protegidas}} com a opção de "proteção progressiva" ativada):
 $2',
@@ -535,7 +540,7 @@ Não se esqueça de personalizar as suas [[Special:Preferences|preferências na 
 'yourdomainname'             => 'Seu domínio',
 'externaldberror'            => 'Ocorreu um erro externo à base de dados durante a autenticação ou não lhe é permitido actualizar a sua conta externa.',
 'loginproblem'               => '<b>Houve um problema com a sua autenticação.</b><br />Tente novamente!',
-'login'                      => 'Entrar',
+'login'                      => 'Autenticar-se',
 'nav-login-createaccount'    => 'Entrar / criar conta',
 'loginprompt'                => 'Você necessita de ter os <i>cookies</i> ligados para poder autenticar-se na {{SITENAME}}.',
 'userlogin'                  => 'Criar uma conta ou entrar',
@@ -546,7 +551,7 @@ Não se esqueça de personalizar as suas [[Special:Preferences|preferências na 
 'nologinlink'                => 'Criar uma conta',
 'createaccount'              => 'Criar nova conta',
 'gotaccount'                 => 'Já possui uma conta? $1.',
-'gotaccountlink'             => 'Entrar',
+'gotaccountlink'             => 'Autentique-se',
 'createaccountmail'          => 'por email',
 'badretype'                  => 'As palavras-chaves que introduziu não são iguais.',
 'userexists'                 => 'O nome de utilizador que introduziu já existe.
@@ -569,7 +574,7 @@ Não deverá ter mais de $1 {{PLURAL:$1|caráter|carateres}}.',
 Pode também escolher permitir que outros entrem em contacto consigo através da sua página de utilizador ou discussão sem que tenha de lhes revelar a sua identidade.',
 'prefs-help-email-required'  => 'O endereço de correio electrónico é requerido.',
 'nocookiesnew'               => 'A conta de utilizador foi criada, mas você não foi autenticado. {{SITENAME}} utiliza <i>cookies</i> para ligar os utilizadores às suas contas. Por favor, os active, depois autentique-se com o seu nome de utilizador e a sua palavra-chave.',
-'nocookieslogin'             => 'Você tem os <i>cookies</i> desactivados no seu navegador, e a {{SITENAME}} utiliza <i>cookies</i> para ligar os utilizadores às suas contas. Por favor os active e tente novamente.',
+'nocookieslogin'             => 'Você tem os <i>cookies</i> desactivados no seu navegador, e a {{SITENAME}} utiliza <i>cookies</i> para autenticar os utilizadores. Por favor active-os e tente novamente.',
 'noname'                     => 'Você não colocou um nome de utilizador válido.',
 'loginsuccesstitle'          => 'Login bem sucedido',
 'loginsuccess'               => "'''Encontra-se agora ligado à {{SITENAME}} como \"\$1\"'''.",
@@ -633,7 +638,7 @@ Você pode ignorar esta mensagem caso a conta tenha sido criada por engano.',
 'link_tip'        => 'Ligação interna',
 'extlink_sample'  => 'http://www.example.com ligação externa',
 'extlink_tip'     => 'Ligação externa (lembre-se do prefixo http://)',
-'headline_sample' => 'Texto de cabeçalho',
+'headline_sample' => 'Texto do cabeçalho',
 'headline_tip'    => 'Secção de nível 2',
 'math_sample'     => 'Inserir fórmula aqui',
 'math_tip'        => 'Fórmula matemática (LaTeX)',
@@ -768,10 +773,10 @@ Você está, ao mesmo tempo, a garantir-nos que isto é algo escrito por si, ou 
 'copyrightwarning2'                => "Por favor, note que todas as suas contribuições em {{SITENAME}} podem ser editadas, alteradas ou removidas por outros contribuidores. Se você não deseja que o seu texto seja inexoravelmente editado, não o envie.<br />
 Você está, ao mesmo tempo, a garantir-nos que isto é algo escrito por si, ou algo copiado de alguma fonte de textos em domínio público ou similarmente de teor livre (veja $1 para detalhes).
 '''NÃO ENVIE TRABALHO PROTEGIDO POR DIREITOS DE AUTOR SEM A DEVIDA PERMISSÃO!'''",
-'longpagewarning'                  => "'''AVISO: Esta página possui $1 kilobytes; alguns
+'longpagewarning'                  => "'''AVISO:''' Esta página possui $1 kilobytes; alguns
 navegadores possuem problemas em editar páginas maiores que 32 kb.
-Por favor, considere seccionar a página em secções de menor dimensão.'''",
-'longpageerror'                    => "'''ERRO: O texto de página que você submeteu tem mais de $1 kilobytes em tamanho, que é maior que o máximo de $2 kilobytes. A página não pode ser salva.'''",
+Por favor, considere seccionar a página em secções de menor dimensão.",
+'longpageerror'                    => "'''ERRO: O texto de página que você submeteu tem mais de $1 quilobytes em tamanho, que é maior que o máximo de $2 quilobytes. A página não pode ser salva.'''",
 'readonlywarning'                  => '<strong>AVISO: A base de dados foi bloqueada para manutenção, pelo que não poderá salvar a sua edição neste momento. Pode, no entanto, copiar o seu texto num editor externo e guardá-lo para posterior submissão.</strong>',
 'protectedpagewarning'             => "'''AVISO: Esta página foi protegida e poderá ser editada apenas por utilizadores com privilégios sysop (administradores).'''",
 'semiprotectedpagewarning'         => "'''Nota:''' Esta página foi protegida de modo a que apenas utilizadores registados a possam editar.",
@@ -883,7 +888,7 @@ Por favor, confirme que pretende fazer isto, que compreende as consequências, e
 'revdelete-suppress'          => 'Suprimir dados de administradores, bem como de outros',
 'revdelete-hide-image'        => 'Ocultar conteúdos do ficheiro',
 'revdelete-unsuppress'        => 'Remover restrições das edições restauradas',
-'revdelete-log'               => 'Comentário de registo:',
+'revdelete-log'               => 'Motivo da eliminação:',
 'revdelete-submit'            => 'Aplicar à edição seleccionada',
 'revdelete-logentry'          => 'modificou visibilidade de edições de [[$1]]',
 'logdelete-logentry'          => 'alterou a visibilidade de eventos para [[$1]]',
@@ -1035,7 +1040,7 @@ Note que os índices do conteúdo da {{SITENAME}} destes sites podem estar desac
 'recentchangesdays'        => 'Dias a serem exibidos nas Mudanças recentes:',
 'recentchangescount'       => 'Número de edições a serem exibidas nas mudanças recentes, históricos de páginas e páginas de registos, por defeito:',
 'savedprefs'               => 'As suas preferências foram gravadas.',
-'timezonelegend'           => 'Fuso horário',
+'timezonelegend'           => 'Fuso horário:',
 'timezonetext'             => '¹Número de horas que o seu horário local difere do horário do servidor (UTC).',
 'localtime'                => 'Hora local',
 'timezoneoffset'           => 'Diferença horária¹',
@@ -1324,7 +1329,7 @@ Um clique sobre um cabeçalho de coluna altera a ordenação.',
 'filehist-help'                  => 'Clique em uma data/horário para ver o ficheiro tal como ele se encontrava em tal momento.',
 'filehist-deleteall'             => 'eliminar todas',
 'filehist-deleteone'             => 'eliminar',
-'filehist-revert'                => 'reverter',
+'filehist-revert'                => 'restaurar',
 'filehist-current'               => 'actual',
 'filehist-datetime'              => 'Data/Horário',
 'filehist-user'                  => 'Utilizador',
@@ -1426,7 +1431,9 @@ O tamanho actual da [http://www.mediawiki.org/wiki/Manual:Job_queue fila de tare
 Uma página é considerada como de desambiguação se utilizar uma predefinição que esteja definida em [[MediaWiki:Disambiguationspage]]",
 
 'doubleredirects'            => 'Redireccionamentos duplos',
-'doubleredirectstext'        => 'Cada linha contém ligações para o primeiro e segundo redireccionamento, bem como a primeira linha de conteúdo do segundo redireccionamento, geralmente contendo a página destino "real", que devia ser o destino do primeiro redireccionamento.',
+'doubleredirectstext'        => 'Esta página lista páginas que redirecionam para outras páginas de redirecionamento.
+Cada linha contém ligações para o primeiro e segundo redirecionamento, bem como o destino do segundo redirecionamento, geralmente contendo a página destino "real", que devia ser o destino do primeiro redirecionamento.
+<s>Entradas cortadas</s> foram já solucionadas.',
 'double-redirect-fixed-move' => '[[$1]] foi movido, passando a redirecionar para [[$2]]',
 'double-redirect-fixer'      => 'Corretor de redirecionamentos',
 
@@ -1459,7 +1466,7 @@ Uma página é considerada como de desambiguação se utilizar uma predefiniçã
 'unusedcategories'        => 'Categorias não utilizadas',
 'unusedimages'            => 'Ficheiros não utilizados',
 'popularpages'            => 'Páginas populares',
-'wantedcategories'        => 'Categorias pedidas',
+'wantedcategories'        => 'Categorias desejadas',
 'wantedpages'             => 'Páginas pedidas',
 'missingfiles'            => 'Ficheiros em falta',
 'mostlinked'              => 'Páginas com mais afluentes',
@@ -1506,7 +1513,7 @@ Uma página é considerada como de desambiguação se utilizar uma predefiniçã
 'specialloguserlabel'  => 'Utilizador:',
 'speciallogtitlelabel' => 'Título:',
 'log'                  => 'Registos',
-'all-logs-page'        => 'Todos os registos',
+'all-logs-page'        => 'Todos os registos públicos',
 'log-search-legend'    => 'Pesquisar nos registos',
 'log-search-submit'    => 'Ir',
 'alllogstext'          => 'Exposição combinada de todos registos disponíveis no wiki {{SITENAME}}.
@@ -1670,7 +1677,7 @@ Consulte $2 para um registo de eliminações recentes.',
 'dellogpage'                  => 'Registo de eliminação',
 'dellogpagetext'              => 'Abaixo uma lista das eliminações mais recentes.',
 'deletionlog'                 => 'registo de eliminação',
-'reverted'                    => 'Revertido para versão mais nova',
+'reverted'                    => 'Revertido para versão anterior',
 'deletecomment'               => 'Motivo de eliminação',
 'deleteotherreason'           => 'Justificativa adicional:',
 'deletereasonotherlist'       => 'Outro motivo',
@@ -1707,7 +1714,7 @@ Veja a [[Special:ProtectedPages|lista de páginas protegidas]] para uma listagem
 'unprotectedarticle'          => 'desprotegeu "[[$1]]"',
 'protect-title'               => 'Protegendo "$1"',
 'protect-legend'              => 'Confirmar protecção',
-'protectcomment'              => 'Motivo de protecção',
+'protectcomment'              => 'Motivo:',
 'protectexpiry'               => 'Expiração',
 'protect_expiry_invalid'      => 'O tempo de expiração fornecido é inválido.',
 'protect_expiry_old'          => 'O tempo de expiração fornecido se situa no passado.',
@@ -1987,7 +1994,8 @@ Por favor, escolha outro nome.',
 A página de destino ("[[:$1]]") já existe. Deseja eliminá-la de modo a poder mover?',
 'delete_and_move_confirm' => 'Sim, eliminar a página',
 'delete_and_move_reason'  => 'Eliminada para poder mover outra página para este título',
-'selfmove'                => 'O título fonte e o título destinatário são os mesmos; não é possível mover uma página para ela mesma.',
+'selfmove'                => 'O título de origem e de destinato são os mesmos; 
+não é possível mover uma página para ela mesma.',
 'immobile_namespace'      => 'O título destinatário é de um tipo especial; não é possível mover páginas para esse espaço nominal.',
 'imagenocrossnamespace'   => 'Não é possível mover imagem para espaço nominal que não de imagens',
 'imagetypemismatch'       => 'A extensão do novo ficheiro não corresponde ao seu tipo',
@@ -2015,7 +2023,7 @@ Se desejar, pode utilizar uma ligação (por exemplo, [[{{#Special:Export}}/{{Me
 'allmessagesname'           => 'Nome',
 'allmessagesdefault'        => 'Texto padrão',
 'allmessagescurrent'        => 'Texto actual',
-'allmessagestext'           => 'Esta é uma lista de todas mensagens de sistema disponíveis no espaço nominal {{ns:mediawiki}}.
+'allmessagestext'           => 'Esta é uma lista de todas as mensagens de sistema disponíveis no espaço nominal {{ns:mediawiki}}.
 Acesse [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] e [http://translatewiki.net translatewiki.net] caso deseje contribuir para traduções do MediaWiki feitas para uso geral.',
 'allmessagesnotsupportedDB' => "Esta página não pode ser utilizada, uma vez que '''\$wgUseDatabaseMessages''' foi desativado.",
 'allmessagesfilter'         => 'Filtro de nome de mensagem:',
@@ -2195,7 +2203,7 @@ Tal bloqueio foi provavelmente causado por uma ligação para um website externo
 # Patrol log
 'patrol-log-page'   => 'Registo de edições patrulhadas',
 'patrol-log-header' => 'Este é um registo de edições patrulhadas.',
-'patrol-log-line'   => 'marcou a edição $1 de $2 como uma edição patrulhada $3',
+'patrol-log-line'   => 'marcou a $1 de $2 como uma edição patrulhada $3',
 'patrol-log-auto'   => 'automaticamente',
 'patrol-log-diff'   => 'edição $1',
 
@@ -2254,6 +2262,7 @@ Caso o ficheiro tenha sido modificado a partir do seu estado original, alguns de
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength', # Do not translate list items
 
 # EXIF tags
@@ -2637,7 +2646,7 @@ Tente a previsão comum.',
 'watchlistedit-normal-explain' => 'Os títulos de sua lista de vigiados são exibidos a seguir.
 Para remover um título clique no box ao lado do mesmo e no botão Remover Títulos.
 Você também pode [[Special:Watchlist/raw|editar a lista crua]].',
-'watchlistedit-normal-submit'  => 'Remover Títulos',
+'watchlistedit-normal-submit'  => 'Remover títulos',
 'watchlistedit-normal-done'    => '{{PLURAL:$1|um título foi removido|$1 títulos foram removidos}} de sua lista de vigiados:',
 'watchlistedit-raw-title'      => 'Edição crua dos vigiados',
 'watchlistedit-raw-legend'     => 'Edição crua dos vigiados',

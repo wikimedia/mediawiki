@@ -81,7 +81,7 @@ $messages = array(
 'tog-editsectiononrightclick' => "Secties bewirke mit 'ne rechtermoesklik op sectietitels (JavaScript nudig)",
 'tog-showtoc'                 => "Inhaudsopgaaf veur pazjena's mit mie es 3 köpkes",
 'tog-rememberpassword'        => "Wachwaord ónthauwe bie 't aafmèlde",
-'tog-editwidth'               => 'Edit boks haet de vol breidte',
+'tog-editwidth'               => "Editveldj euver de vol breide van 't sjirm weergaeve",
 'tog-watchcreations'          => "Pazjena's die ich aanmaak automatisch volge",
 'tog-watchdefault'            => "Voog pazjena's die se bewirks toe aan dien volglies",
 'tog-watchmoves'              => "Pazjena's die ich verplaats automatisch volge",
@@ -295,7 +295,7 @@ $messages = array(
 
 'badaccess'        => 'Toeganksfout',
 'badaccess-group0' => 'Doe höbs gein rechte óm de gevraogde hanjeling oet te veure.',
-'badaccess-group1' => 'De gevräögde hanjeling is veurbehaoje aan gebroekers in de groep $1.',
+'badaccess-group1' => 'De gevraogde hanjeling is veurbehauwe aan gebroekers in de gróp $1.',
 'badaccess-group2' => 'De gevraogde hanjeling is veurbehauwe aan gebroekers in ein van de gróppe $1.',
 'badaccess-groups' => 'De gevraogde hanjeling is veurbehauwe aan gebroekers in ein van de gróppe $1.',
 
@@ -314,7 +314,7 @@ $messages = array(
 'editsectionhint'         => 'Deilpazjena bewirke: $1',
 'toc'                     => 'Inhaud',
 'showtoc'                 => 'tuine',
-'hidetoc'                 => 'verberg',
+'hidetoc'                 => 'versjtaek',
 'thisisdeleted'           => '$1 tuine of trökzètte?',
 'viewdeleted'             => '$1 tuine?',
 'restorelink'             => '{{PLURAL:$1|ein eweggesjafde versie|$1 eweggesjafde versies}}',
@@ -831,7 +831,7 @@ Wees zeker det deze wieziging de gesjiedenisdoorloupendheid van de pagina zal be
 'search-result-score'       => 'Relevantie: $1%',
 'search-redirect'           => '(doorverwiezing $1)',
 'search-section'            => '(subkop $1)',
-'search-suggest'            => 'Bedoeldese: $1',
+'search-suggest'            => 'Meins te sóms: $1',
 'search-interwiki-caption'  => 'Zösterprojecte',
 'search-interwiki-default'  => '$1 resultate:',
 'search-interwiki-more'     => '(meer)',
@@ -942,7 +942,7 @@ Mèrk op dat hun indexe van {{SITENAME}} content e bietje gedatierd kint zien.',
 'userrights-unchangeable-col' => 'Gróppe dies te neet kèns behere',
 
 # Groups
-'group'               => 'Groep:',
+'group'               => 'Gróp:',
 'group-user'          => 'Gebroekers',
 'group-autoconfirmed' => 'Geregistreerde gebroekers',
 'group-bot'           => 'Bots',
@@ -1405,7 +1405,7 @@ Zuuch ouch [[Special:WantedCategories|neet-bestaondje categorieë mit verwiezing
 'listgrouprights'          => 'Rechte van gebroekersgróppe',
 'listgrouprights-summary'  => 'Op dees pazjena sjtaon de gebroekersgróppe in deze wiki besjreve, mit zien biebehurende rechte.
 Infermasie daoreuver èn de individueel rechter vinjs te [[{{MediaWiki:Listgrouprights-helppage}}|hie]].',
-'listgrouprights-group'    => 'Groep',
+'listgrouprights-group'    => 'Gróp',
 'listgrouprights-rights'   => 'Rechte',
 'listgrouprights-helppage' => 'Help:Gebroekersrechte',
 'listgrouprights-members'  => '(ledelies)',
@@ -1751,7 +1751,7 @@ Zuug de [[Special:IPBlockList|lies van geblokkeerde IP-adresse]].',
 'block-log-flags-noautoblock'     => 'autoblok ongedaon gemaak',
 'block-log-flags-noemail'         => 'e-mail geblokkeerd',
 'block-log-flags-angry-autoblock' => 'oetgebreide automatische blokkade ingesjakeld',
-'range_block_disabled'            => "De meugelikheid veur beheerders om 'ne groep IP-adresse te blokkere is oetgesjakeld.",
+'range_block_disabled'            => "De meugelikheid veur beheerders om 'n gróp IP-adresse te blokkere is oetgesjakeld.",
 'ipb_expiry_invalid'              => 'Ongeldig verloup.',
 'ipb_expiry_temp'                 => 'Blokkaasj veur verbórge gebroekers mótte permanent zeen.',
 'ipb_already_blocked'             => '"$1" is al geblokkeerd',
@@ -2079,6 +2079,7 @@ Alle volgende links die op dezelfde regel sjtaon, waere behanjeld es oetzunjerin
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength", # Do not translate list items
 
 # EXIF tags

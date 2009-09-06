@@ -7,10 +7,17 @@
  * @ingroup Language
  * @file
  *
+ * @author Mdkidiri
  * @author sg.wikipedia.org sysops
  */
 
 $messages = array(
+# User preference toggles
+'tog-underline'       => 'Gbënëngö-gbegbê',
+'tog-highlightbroken' => 'Funda fängö gbê <a href="" class="new">like this</a> (wala ngâ: töngana sô : s<a href="" class="internal">?</a>)',
+'tog-justify'         => 'Lôngbi yângâ tî âsurä',
+'tog-hideminor'       => 'Hônde âkêtê lönzïngö-sû sô asï fadê na yâ tî gbâsû',
+
 'mytalk' => 'kpere tî mbï',
 
 'history'        => 'Mbayé',

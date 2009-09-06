@@ -132,8 +132,8 @@ $messages = array(
 'tog-highlightbroken'         => 'Furmatta <a href="" class="new">accussì</a> (o accussì<a href="" class="internal">?</a>) li culligamenti ca pùntanu a artìculi ancora a scrìviri.',
 'tog-justify'                 => 'Alliniamentu dû paràgrafu: giustificatu',
 'tog-hideminor'               => "Ammuccia li canciamenti nichi nta l'ùrtimi canciamenti",
-'tog-extendwatchlist'         => "Attiva li funzioni avanzati pi l'ossirvati spiciali",
-'tog-usenewrc'                => "''Ùrtimi canciamenti'' avanzati (arcuni browser ponnu aviri prubbremi ntô visualizzàrili)",
+'tog-extendwatchlist'         => "Attiva tutti li funzioni avanzati pi l'ossirvati spiciali, nun sulu l'ultima",
+'tog-usenewrc'                => 'Utilizza Ùrtimi canciamenti avanzati (richiedi JavaScript)',
 'tog-numberheadings'          => 'Nummirazzioni automàtica dî tìtuli di paràgrafu',
 'tog-showtoolbar'             => 'Ammustra la barra dî strumenta pi lu canciamentu',
 'tog-editondblclick'          => "Duppiu click pi canciari l'artìculu (richiedi Javascript)",
@@ -155,7 +155,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Mànnami na e-mail macari pi li canciamenti nichi di sta pàggina',
 'tog-enotifrevealaddr'        => 'Rivela lu mè ndirizzu e-mail ntê mail di nutificazzioni',
 'tog-shownumberswatching'     => 'Ammustra lu nùmmiru di utenti ca sèquinu la pàggina',
-'tog-fancysig'                => 'Nun canciari lu markup dâ firma (usari pi firmi nun standard)',
+'tog-fancysig'                => 'Interpitra li cumanna wiki nâ firma (senza liami automaticu)',
 'tog-externaleditor'          => 'Usa di default un editor sternu',
 'tog-externaldiff'            => 'Usa di default un prugramma di diff sternu',
 'tog-showjumplinks'           => "Attiva li culligamenti accissìbbili 'và a'",
@@ -411,8 +411,17 @@ L'alencu dî pàggini spiciali vàlidi s'attrova 'n [[Special:SpecialPages|Alenc
 # General errors
 'error'                => 'Erruri',
 'databaseerror'        => 'Erruri dû database',
-'dberrortext'          => 'Erruri di sintassi ntâ richiesta nultrata a lu database. Chistu putissi innicari la prisenza d\'un bug ntô software. L\'ùrtima query mannata a lu database hà stata: <blockquote><tt>$1</tt></blockquote> richiamata dâ funzioni "<tt>$2</tt>". MySQL hà ristituitu lu siquenti erruri "<tt>$3: $4</tt>".',
-'dberrortextcl'        => 'Erruri di sintassi ntâ richiesta nultrata a lu database. L\'ùrtima query mannata a lu database hà stata: "$1" richiamata dâ funzioni "$2". MySQL hà ristituitu lu siquenti erruri "$3: $4".',
+'dberrortext'          => 'Erruri di sintassi ntâ richiesta nultrata a lu database. 
+Chistu putissi innicari la prisenza d\'un bug ntô software. 
+L\'ùrtima query mannata a lu database hà stata: 
+<blockquote><tt>$1</tt></blockquote> 
+richiamata dâ funzioni "<tt>$2</tt>". 
+MySQL hà ristituitu lu siquenti erruri "<tt>$3: $4</tt>".',
+'dberrortextcl'        => 'Erruri di sintassi ntâ richiesta nultrata a lu database. 
+L\'ùrtima query mannata a lu database hà stata: 
+"$1" 
+richiamata dâ funzioni "$2". 
+MySQL hà ristituitu lu siquenti erruri "$3: $4".',
 'noconnect'            => 'Cunnissioni ô databbasi nun arrinisciuta a càusa di nu prubbrema tècnicu dô situ.<br />$1',
 'nodb'                 => 'Silizzioni dû database $1 nun arrinisciuta',
 'cachederror'          => "Chidda prisintata di sèquitu è na copia ''cache'' dâ pàggina richiesta; putissi quinni nun èssiri aggiurnata.",
@@ -776,13 +785,16 @@ Lu mutivu è ''$2''",
 'revdelete-nooldid-text'      => 'Nun hà statu spicificata arcuna virsioni dâ pàggina supra cui esèquiri sta funzioni.',
 'revdelete-selected'          => "'''{{PLURAL:$2|Virsioni silizziunata|Virsioni silizziunati}} di [[:$1]]:'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Eventu dû riggistru silizziunatu|Eventi dû riggistru silizziunati}}:'''",
-'revdelete-text'              => "'''Li virsioni cancillati rèstanu visìbbili ntâ cronoluggìa dâ pàggina, mentri lu testu cuntinutu nun è accissìbbili a lu pùbbricu.''' L'àutri amministratura dû situ ponnu accèdiri comu è gghiè a li cuntinuti ammucciati e ripristinàrili attraversu sta stissa nterfaccia, siddu nun hannu statu mpustati àutri limitazzioni n fasi di nstallazzioni dû situ.",
+'revdelete-text'              => "'''Li virsioni cancillati rèstanu visìbbili ntâ cronoluggìa dâ pàggina, mentri lu testu cuntinutu nun è accissìbbili a lu pùbbricu.''' 
+L'àutri amministratura dû situ ponnu accèdiri comu è gghiè a li cuntinuti ammucciati e ripristinàrili attraversu sta stissa nterfaccia, siddu nun hannu statu mpustati àutri limitazzioni n fasi di nstallazzioni dû situ.
+
+Pi favuri cunferma ca voi fari chistu, ca sai di li conseguenzi da tò azioni e ca essa è conformi ê linii guida stabiliti [[{{MediaWiki:Policy-url}}|ntâ policy]]",
 'revdelete-legend'            => 'Mposta li limitazzioni siquenti supra li virsioni cancillati:',
 'revdelete-hide-text'         => 'Ammuccia lu testu dâ virsioni',
 'revdelete-hide-name'         => 'Ammuccia azione e uggettu dâ stissa',
 'revdelete-hide-comment'      => "Ammuccia l'uggettu dû canciamentu",
 'revdelete-hide-user'         => "Ammuccia lu nomu o lu ndirizzu IP di l'auturi",
-'revdelete-hide-restricted'   => 'Àpplica li limitazzioni innicati macari a li amministratura',
+'revdelete-hide-restricted'   => "Ammuccia l'informazioni innicati macari a li amministratura",
 'revdelete-suppress'          => "Ammuccia nformazioni puru all'amministratura",
 'revdelete-hide-image'        => 'Ammuccia lu cuntinutu dû file',
 'revdelete-unsuppress'        => 'Elìmina le limitazzioni su li rivisioni ripristinati',
@@ -935,7 +947,7 @@ S'havi accirtari ca la cuntinuità storica di la pàggina nun veni altirata.",
 'recentchangesdays'        => "Nùmmuru di jorna a ammustrari nte l'urtimi cancaiamenti:",
 'recentchangescount'       => "Nùmmiru di righi nta l'ùrtimi canciamenti, storii e log (valuri pridifinitu):",
 'savedprefs'               => 'Li tò prifirenzi foru sarvati.',
-'timezonelegend'           => 'Zona oraria',
+'timezonelegend'           => 'Fusu orariu:',
 'timezonetext'             => "Mmetti lu nùmmiru d'uri di diffirenza tra la tò ura lucali e l'ura dû server (UTC).",
 'localtime'                => 'Ura lucali',
 'timezoneoffset'           => 'Uri di diffirenza¹',
@@ -1157,7 +1169,7 @@ Siddu si disponi dâ mmàggini ntâ risuluzzioni urigginali, si prega di carric�
 'sourcefilename'              => "Nomu dû file d'orìggini:",
 'destfilename'                => 'Nomu dû file di distinazzioni:',
 'upload-maxfilesize'          => 'Diminzioni màssima dû file: $1',
-'watchthisupload'             => 'Talìa sta pàggina',
+'watchthisupload'             => 'Talìa stu file',
 'filewasdeleted'              => 'Nu file cu stu nomu hà statu già carricatu e cancillatu n passatu. Virificari $1 prima di carricàrilu di novu.',
 'upload-wasdeleted'           => "'''Accura: stai carricannu nu file chi fu già cancillatu.'''
 
@@ -1317,7 +1329,9 @@ La cuda dî prucessi a esèquiri 'n background cunteni {{PLURAL:\$7|'''1''' elem
 Vèninu cunzidirati pàggini di disambiguazzioni tutti chiddi ca cuntèninu li template alincati 'n [[MediaWiki:Disambiguationspage]]",
 
 'doubleredirects'            => 'Rinnirizzamenti duppi',
-'doubleredirectstext'        => 'Chista pàggina alenca li pàggini chi rinnirìzzanu a àutri pàggini di rinnirizzamentu. Ognuna riga cunteni li culligamenti a lu primu e a lu secunnu redirect, oltri â prima riga di testu dû secunnu redirect ca di sòlitu cunteni la pàggina di distinazzioni "curretta" â quali avissi a puntari macari lu primu redirect.',
+'doubleredirectstext'        => 'Chista pàggina alenca li pàggini chi rinnirìzzanu a àutri pàggini di rinnirizzamentu. 
+Ognuna riga cunteni li culligamenti a lu primu e a lu secunnu redirect, oltri â prima riga di testu dû secunnu redirect ca di sòlitu cunteni la pàggina di distinazzioni "curretta" â quali avissi a puntari macari lu primu redirect.
+Li redirect <s>cancillati</s> furunu curretti.',
 'double-redirect-fixed-move' => "[[$1]] fu spustata 'n modu automàticu, ora è nu redirect a [[$2]]",
 'double-redirect-fixer'      => 'Curritturi di redirect',
 
@@ -1399,7 +1413,7 @@ chisti putìssiru quinni èssiri utilizzati puru siddu cumpàrinu nta l'alencu."
 'specialloguserlabel'  => 'Utenti:',
 'speciallogtitlelabel' => 'Tìtulu:',
 'log'                  => 'Log',
-'all-logs-page'        => 'Tutti li log',
+'all-logs-page'        => 'Tutti li log pubblici',
 'log-search-legend'    => "Va' cerca nte riggistri",
 'log-search-submit'    => 'Vai',
 'alllogstext'          => "Prisintazzioni unificata di tutti li riggistri di {{SITENAME}}. Poi limitari li criteri di circata silizziunannu lu tipu di riggistru, l'utenti ca fici l'azzioni (case-sensitive), e/o la pàggina ntirissata (pur'idda case-sensitive).",
@@ -1733,7 +1747,7 @@ $1',
 'ipboptions'                      => '2 uri:2 hours,1 jornu:1 day,3 jorna:3 days,1 simana:1 week,2 simani:2 weeks,1 misi:1 month,3 misi:3 months,6 misi:6 months,1 annu:1 year,nfinitu:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'                  => 'àutru',
 'ipbotherreason'                  => 'Àutri mutivi/dittagghi:',
-'ipbhidename'                     => "Ammuccia lu nomu utenti dô log dî blocchi, di l'alencu dî blocchi attivi e di l'alencu utenti.",
+'ipbhidename'                     => 'Ammuccia lu nomu utenti dê canciamenti e dê listi',
 'ipbwatchuser'                    => "Talìa li pàggini e li discussioni utenti di st'utenti",
 'badipaddress'                    => 'Ndirizzu IP nun vàlidu.',
 'blockipsuccesssub'               => 'Bloccu esiquitu',
@@ -2079,7 +2093,7 @@ $1',
 
 # Media information
 'mediawarning'         => "'''Accura''': Stu file pò cuntèniri còdici malignu, esiquènnulu lu vostru sistema putisi vèniri cumprumissu. <hr />",
-'imagemaxsize'         => 'Diminzioni màssima dî mmàggini supra li rilativi pàggini di o:',
+'imagemaxsize'         => "Diminzioni màssima dî mmàggini:<br />''(pi li pàggini di discrizzioni dô file)''",
 'thumbsize'            => 'Grannizza dî miniaturi:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|pàggina|pàggini}}',
 'file-info'            => '(Diminzioni: $1, tipu MIME: $2)',
@@ -2116,6 +2130,7 @@ Li lijami succissivi, supra la stissa riga, sunnu cunzidirati comu eccizzioni (p
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength", # Do not translate list items
 
 # EXIF tags

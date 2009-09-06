@@ -16,6 +16,7 @@
  * @author Karduelis
  * @author Katpatuka
  * @author Mach
+ * @author Metal Militia
  * @author Mskyrider
  * @author Myildirim2007
  * @author Runningfridgesrule
@@ -197,7 +198,7 @@ $messages = array(
 'metadata_help' => 'Metadata:',
 
 'errorpagetitle'    => 'Hata',
-'returnto'          => '$1.',
+'returnto'          => "$1'e dön.",
 'tagline'           => '{{SITENAME}} sitesinden',
 'help'              => 'Yardım',
 'search'            => 'ara',
@@ -333,17 +334,16 @@ Bu, {{SITENAME}} sitesindeki bir hatayı da belirtebilir.",
 # General errors
 'error'                => 'Hata',
 'databaseerror'        => 'Veritabanı hatası',
-'dberrortext'          => 'Veritabanı hatası.
-Bu bir yazılım hatası olabilir.
+'dberrortext'          => 'Veritabanı sorgu sözdizimi hatası oluştu.
+Bu yazılımdaki bir hatadan kaynaklanabilir.
 "<tt>$2</tt>" işlevinden denenen son sorgulama:
 <blockquote><tt>$1</tt></blockquote>.
-
-MySQL\'in rapor ettiği hata "<tt>$3: $4</tt>".',
-'dberrortextcl'        => 'Veritabanı komut hatası.
-Son yapılan veritabanı erişim komutu:
+Veritabanının rapor ettiği hata "<tt>$3: $4</tt>".',
+'dberrortextcl'        => 'Veritabanı sorgu sözdizimi hatası oluştu.
+Son yapılan veritabanı sorgusu:
 "$1"
 Kullanılan fonksiyon "$2".
-MySQL\'in verdiği hata mesajı "$3: $4"',
+Veritabanının verdiği hata mesajı "$3: $4"',
 'noconnect'            => 'Özür dileriz! Viki bazı teknik sorunlar yaşıyor ve veritabanı sunucusu ile iletişim kuramıyor.<br />
 $1',
 'nodb'                 => '$1 veri tabanı seçilemedi',
@@ -366,7 +366,7 @@ Lütfen bunu bir [[Special:ListUsers/sysop|hizmetliye]], URL\'yi not ederek ilet
 'internalerror'        => 'Yazılım hatası',
 'internalerror_info'   => 'İç hata: $1',
 'filecopyerror'        => '"$1"  "$2" dosyasına kopyalanamıyor.',
-'filerenameerror'      => '"$1" dosyasının adı "$2" ismine değiştirilemiyor.',
+'filerenameerror'      => '"$1" dosyasının ismi "$2" olarak değiştirilemedi.',
 'filedeleteerror'      => '"$1" dosyası silinemedi.',
 'directorycreateerror' => '"$1" dizini oluşturulamadı',
 'filenotfound'         => '"$1" dosyası bulunamadı.',
@@ -755,7 +755,7 @@ Lütfen, bunu yapmak istediğinizi , sonuçlarını anladığınızı, ve bunu [
 'revdelete-suppress'          => 'Hem diğerlerinden hem de yöneticilerden veriyi gizle',
 'revdelete-hide-image'        => 'Dosya içeriğini gizle',
 'revdelete-unsuppress'        => 'Geri döndürülmüş revizyonlardaki kısıtlamaları kaldır',
-'revdelete-log'               => 'Log açıklama:',
+'revdelete-log'               => 'Silinme için sebep:',
 'revdelete-submit'            => 'Seçilen sürüme uygula',
 'revdelete-logentry'          => '[[$1]] için revizyon görünürlüğü değişti',
 'logdelete-logentry'          => '[[$1]] için olay görünürlüğü değişti',
@@ -909,7 +909,7 @@ ayarlamak için math/README'ye bakın.",
 'recentchangesdays'        => 'Son değişikliklerde gösterilecek günler:',
 'recentchangescount'       => 'Son değişiklikler, sayfa geçmişi ve günlüklerde varsayılan olarak gösterilecek değişiklik sayısı',
 'savedprefs'               => 'Ayarlar kaydedildi.',
-'timezonelegend'           => 'Saat dilimi',
+'timezonelegend'           => 'Saat dilimi:',
 'timezonetext'             => '¹Viki sunucusu (UTC/GMT) ile aranızdaki saat farkı. (Türkiye için +02:00)',
 'localtime'                => 'Şu an sizin saatiniz',
 'timezoneoffset'           => 'Saat farkı',
@@ -1310,7 +1310,9 @@ Bu sayfa başına ortalama '''\$5''' katkıya, ve değişiklik başına '''\$6''
 'disambiguations-text' => 'İlk satırda yer alan sayfalar bir anlam ayrım sayfasına iç bağlantı olduğunu gösterir. İkinci sırada yer alan sayfalar anlam ayrım sayfalarını gösterir. <br />Burada [[MediaWiki:Disambiguationspage]] tüm anlam ayrım şablonlarına bağlantılar verilmesi gerekmektedir.',
 
 'doubleredirects'            => 'Yönlendirmeye olan yönlendirmeler',
-'doubleredirectstext'        => 'Her satır, ikinci yönlendirme metninin ilk satırının (genellikle ikinci yönlendirmenin de işaret etmesi gereken "asıl" hedefin) yanısıra ilk ve ikinci yönlendirmeye bağlantılar içerir.',
+'doubleredirectstext'        => 'Bu sayfa diğer yönlendirme sayfalarına yönlendirme yapan sayfaları listeler.
+Her satırın içerdiği bağlantılar; birinci ve ikinci yönlendirme, ayrıca ikinci yönlendirmenin hedefi, ki bu genelde birinci yönlendirmenin göstermesi gereken "gerçek" hedef sayfasıdır.
+<s>Üstü çizili</s> girdiler çözülmüştür.',
 'double-redirect-fixed-move' => '[[$1]] taşındı, artık [[$2]] sayfasına yönlendiriyor',
 'double-redirect-fixer'      => 'Yönlendirme tamircisi',
 
@@ -1390,7 +1392,7 @@ Bu sayfa başına ortalama '''\$5''' katkıya, ve değişiklik başına '''\$6''
 'specialloguserlabel'  => 'Kullanıcı:',
 'speciallogtitlelabel' => 'Başlık:',
 'log'                  => 'Kayıtlar',
-'all-logs-page'        => 'Tüm kayıtlar',
+'all-logs-page'        => 'Tüm umumi kayıtlar',
 'log-search-legend'    => 'Kayıtları ara',
 'log-search-submit'    => 'Git',
 'alllogstext'          => '{{SITENAME}} için mevcut tüm günlüklerin birleşik gösterimi.
@@ -1477,18 +1479,18 @@ Kolayca seçilebilmeleri için de [[Special:RecentChanges|son değişiklikler li
 Sayfayı izleme listenizden çıkarmak istediğinizde "sayfayı izlemeyi durdur" bağlantısına tıklayabilirsiniz.',
 'removedwatch'         => 'İzleme listenizden silindi',
 'removedwatchtext'     => '"<nowiki>$1</nowiki>" sayfası izleme listenizden silinmiştir.',
-'watch'                => 'izlemeye al',
+'watch'                => 'İzlemeye al',
 'watchthispage'        => 'Sayfayı izle',
 'unwatch'              => 'Sayfa izlemeyi durdur',
 'unwatchthispage'      => 'Sayfa izlemeyi durdur',
 'notanarticle'         => 'İçerik sayfası değil',
 'notvisiblerev'        => 'Revizyon silinmiş',
-'watchnochange'        => 'Gösterilen zaman aralığında izleme listenizdeki sayfaların hiçbiri güncellenmemiş.',
+'watchnochange'        => 'İzleme listenizdeki sayfaların hiçbiri, gösterilen zaman aralığında güncellenmemiş.',
 'watchlist-details'    => 'Tartışma sayfaları hariç {{PLURAL:$1|$1 sayfa|$1 sayfa}} izleme listenizdedir.',
 'wlheader-enotif'      => '* E-mail ile haber verme açılmıştır.',
-'wlheader-showupdated' => "* Son ziyaretinizden sonraki sayfa değişikleri '''kalın''' olarak gösterilmiştir.",
-'watchmethod-recent'   => 'son değişiklikler arasında izledğiniz sayfalar aranıyor',
-'watchmethod-list'     => 'izleme listenizdeki sayfalar kontrol ediliyor',
+'wlheader-showupdated' => "* Son ziyaretinizden sonraki sayfa değişiklikleri '''kalın yazıyla''' gösterilmiştir.",
+'watchmethod-recent'   => 'izlediğiniz sayfalarda yapılan son değişiklikler kontrol ediliyor',
+'watchmethod-list'     => 'izlediğiniz sayfalarda yapılan son değişiklikler kontrol ediliyor',
 'watchlistcontains'    => 'İzleme listenizde $1 tane {{PLURAL:$1|sayfa|sayfa}} var.',
 'iteminvalidname'      => "'$1' öğesi ile sorun, geçersiz isim...",
 'wlnote'               => "Son {{PLURAL:$2|bir saatte|'''$2''' saatte}} yapılan {{PLURAL:$1|son değişiklik|son '''$1''' değişiklik}} aşağıdadır.",
@@ -1502,7 +1504,7 @@ Sayfayı izleme listenizden çıkarmak istediğinizde "sayfayı izlemeyi durdur"
 
 # Displayed when you click the "watch" button and it is in the process of watching
 'watching'   => 'İzleniyor...',
-'unwatching' => 'Durduruluyor...',
+'unwatching' => 'İzlenmiyor...',
 
 'enotif_mailer'                => '{{SITENAME}} Bildirim Postası',
 'enotif_reset'                 => 'Tüm sayfaları ziyaret edilmiş olarak işaretle',
@@ -1513,7 +1515,7 @@ Sayfayı izleme listenizden çıkarmak istediğinizde "sayfayı izlemeyi durdur"
 'enotif_subject'               => '{{SITENAME}} sayfası $PAGETITLE, $PAGEEDITOR tarafından $CHANGEDORCREATED',
 'enotif_lastvisited'           => "Son ziyaretinizden bu yana olan tüm değişiklikleri görmek için $1'e bakın.",
 'enotif_lastdiff'              => 'Bu değişikliği görmek için, $1 sayfasına bakınız.',
-'enotif_anon_editor'           => 'anonim kullanıcılar $1',
+'enotif_anon_editor'           => 'anonim kullanıcı $1',
 'enotif_body'                  => 'Sayın $WATCHINGUSERNAME,
 
 {{SITENAME}} sitesindeki $PAGETITLE başlıklı sayfa $PAGEEDITDATE tarihinde $PAGEEDITOR tarafından $CHANGEDORCREATED. Sayfanın son haline $PAGETITLE_URL adresinden ulaşabilirsiniz.
@@ -1594,7 +1596,7 @@ Daha fazla bilgi için [[Project:Koruma altına alınmış sayfa]] sayfasına ba
 'unprotectedarticle'          => 'koruma kaldırıldı: "[[$1]]"',
 'protect-title'               => '"$1" için bir koruma seviyesi seçiniz',
 'protect-legend'              => 'Korumayı onayla',
-'protectcomment'              => 'Koruma altına alma nedeni',
+'protectcomment'              => 'Sebep:',
 'protectexpiry'               => 'Bitiş tarihi:',
 'protect_expiry_invalid'      => 'Geçersiz bitiş tarihi.',
 'protect_expiry_old'          => 'Geçmişteki son kullanma zamanı.',
@@ -2155,6 +2157,7 @@ Ondan sonraki link(ler) kural dışı olarak kabul edilir, örneğin: resim sayf
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength', # Do not translate list items
 
 # EXIF tags

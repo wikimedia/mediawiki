@@ -283,6 +283,7 @@ $messages = array(
 # Search results
 'searchresults'            => 'иска́ниꙗ ито́гъ',
 'search-result-size'       => '$1 ({{PLURAL:$2|$2 сло́во|$2 сло́ва|$2 словє́съ}})',
+'search-redirect'          => '(прѣнаправлє́ниѥ $1)',
 'search-interwiki-caption' => 'ро́дьствьна опꙑтьствова́ниꙗ',
 'searchall'                => 'вьсꙗ́',
 'powersearch'              => 'ищи́',
@@ -344,7 +345,7 @@ $messages = array(
 'fileuploadsummary' => 'опьса́ниѥ:',
 'successfulupload'  => 'дѣ́ло положєно ѥ́стъ',
 'uploadedimage'     => '⁖ [[$1]] ⁖ положє́нъ ѥ́стъ',
-'watchthisupload'   => 'си страни́цѧ блюдє́ниѥ',
+'watchthisupload'   => 'си дѣ́ла блюдє́ниѥ',
 
 # Special:ImageList
 'imgfile'        => 'дѣ́ло',

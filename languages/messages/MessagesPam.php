@@ -1482,8 +1482,8 @@ Makasulat la king $2 deng pekabayung mebura.',
 'deletereasonotherlist'       => 'Aliwang sangkan',
 'deletereason-dropdown'       => '*Karaniwang sangkan king pamamura
 ** Pekisabi ning sinulat 
-** Pamaglabang king katulirang mangopia (copyright violation)
-** Pamanyira (vandalism)',
+** Pamaglabang king katulirang mangopia
+** Pamanyira',
 'delete-edit-reasonlist'      => 'I-edit la reng sangkan king pamamura',
 'delete-toobig'               => 'Maki maragul yang amlat ning pamag-edit ing bulung a ini, nung nu maigit lang $1 deng miyalilan.
 Me-limita ing pamamura kareng bulung a anti kaniti, bang e maliliari ing e sasarian a kaguluan o pamag-distorbu king {{SITENAME}}.',
@@ -2057,6 +2057,7 @@ Detang aliwa tambing (by default) lang makasalikut.
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength', # Do not translate list items
 
 # EXIF tags

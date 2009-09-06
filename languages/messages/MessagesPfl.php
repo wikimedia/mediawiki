@@ -651,6 +651,7 @@ Annere Metadate sinn standardmäßig versteckelt.
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength', # Do not translate list items
 
 # External editor support

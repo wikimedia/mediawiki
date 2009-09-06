@@ -377,7 +377,7 @@ $messages = array(
 'jun'           => 'jún',
 'jul'           => 'júl',
 'aug'           => 'aug',
-'sep'           => 'szep',
+'sep'           => 'szept',
 'oct'           => 'okt',
 'nov'           => 'nov',
 'dec'           => 'dec',
@@ -518,7 +518,7 @@ $messages = array(
 
 'ok'                      => 'OK',
 'retrievedfrom'           => 'A lap eredeti címe: „$1”',
-'youhavenewmessages'      => 'Új üzenet vár $1! (Az üzenetet $2.)',
+'youhavenewmessages'      => 'Új üzenet vár $1! ($2)',
 'newmessageslink'         => 'a vitalapodon',
 'newmessagesdifflink'     => 'külön is megtekintheted',
 'youhavenewmessagesmulti' => 'Új üzenetet vár a(z) $1 wikin',
@@ -566,17 +566,15 @@ Az érvényes speciális lapok listáját a [[Special:SpecialPages|Speciális la
 # General errors
 'error'                => 'Hiba',
 'databaseerror'        => 'Adatbázishiba',
-'dberrortext'          => 'Szintaktikai hiba fordult elő az adatbázis lekérdezésekor.
-Ez a szoftverben lévő hibát jelezheti.
-Az utoljára megkísérelt adatbázis lekérdezés az alábbi volt:
+'dberrortext'          => 'Szintaktikai hiba található az adatbázis-lekérdezésben.
+Ez szoftverhiba miatt történhetett.
+Az utolsó adatbázis-lekérdezés a(z) „<tt>$2</tt>” függvényből történt, és a következő volt:
 <blockquote><tt>$1</tt></blockquote>
-a(z) „<tt>$2</tt>” függvényből.
-A MySQL ezzel a hibával tért vissza: „<tt>$3: $4</tt>”.',
-'dberrortextcl'        => 'Szintaktikai hiba fordult elő az adatbázis lekérdezésekor.
-Az utoljára megkísérelt adatbázis lekérdezés
-„$1” volt
-a „<tt>$2</tt>” függvényből.
-A MySQL ezzel a hibával tért vissza: „<tt>$3: $4</tt>”.',
+Az adatbázis ezzel a hibával tért vissza: „<tt>$3: $4</tt>”.',
+'dberrortextcl'        => 'Szintaktikai hiba található az adatbázis-lekérdezésben. 
+Az utolsó adatbázis-lekérdezés a(z) „$2” függvényből történt, és a következő volt:
+„$1”
+Az adatbázis ezzel a hibával tért vissza: „$3: $4”.',
 'noconnect'            => 'A wikin technikai problémák merültek fel, és nem sikerült csatlakozni az adatbázisszerverhez.<br />
 $1',
 'nodb'                 => 'Nem sikerült kiválasztani a(z) $1 adatbázist',
@@ -846,7 +844,7 @@ Ha úgy látod, hogy az üzenetek, amiket ide kapsz, nem neked szólnak, [[Speci
 'noarticletext'                    => 'Ez a lap jelenleg nem tartalmaz szöveget.
 [[Special:Search/{{PAGENAME}}|Rákereshetsz erre a címszóra]],
 <span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} megtekintheted a kapcsolódó naplókat],
-vagy [{{fullurl:{{FULLPAGENAME}}|action=edit}} szerkesztheted a lapot].',
+vagy [{{fullurl:{{FULLPAGENAME}}|action=edit}} szerkesztheted a lapot].</span>',
 'userpage-userdoesnotexist'        => 'Nincs „$1” nevű regisztrált szerkesztőnk.
 Nézd meg, hogy valóban ezt a lapot szeretnéd létrehozni vagy szerkeszteni.',
 'clearyourcache'                   => "'''Megjegyzés: mentés után frissítened kell a böngésződ gyorsítótárát, hogy lásd a változásokat.''' '''Mozilla''' / '''Firefox''' / '''Safari:''' tartsd lenyomva a Shift gombot és kattints a ''Reload'' / ''Frissítés'' gombra az eszköztáron, vagy használd a ''Ctrl–F5'' billentyűkombinációt (Apple Mac-en ''Cmd–Shift–R''); '''Konqueror:''' egyszerűen csak kattints a ''Reload'' / ''Frissítés'' gombra vagy nyomj ''F5''-öt; '''Opera:''' ürítsd ki a gyorsítótárat az ''Eszközök→Személyes adatok törlése'' / ''Tools→Preferences'' menüben; '''Internet Explorer:''' tartsd nyomva a ''Ctrl''-t, és kattints a ''Reload / Frissítés'' gombra, vagy nyomj ''Ctrl–F5''-öt.",
@@ -966,7 +964,7 @@ Jelmagyarázat: (akt) = eltérés az aktuális változattól, (előző) = eltér
 'deletedrev'          => '[törölve]',
 'histfirst'           => 'legelső',
 'histlast'            => 'legutolsó',
-'historysize'         => '($1 bájt)',
+'historysize'         => '({{PLURAL:$1|egy|$1}} bájt)',
 'historyempty'        => '(üres)',
 
 # Revision feed
@@ -1009,24 +1007,24 @@ Kérlek, erősítsd meg, hogy valóban ez a szándékod, tisztában vagy a köve
 'revdelete-suppress'          => 'Adatok elrejtése az adminisztrátorok és a többi felhasználó elől is',
 'revdelete-hide-image'        => 'A fájl tartalomának elrejtése',
 'revdelete-unsuppress'        => 'Korlátozások eltávolítása a visszaállított változatokról',
-'revdelete-log'               => 'Megjegyzés:',
+'revdelete-log'               => 'A törlés oka:',
 'revdelete-submit'            => 'Alkalmazás a kiválasztott változatra',
-'revdelete-logentry'          => '[[$1]] változatának láthatóságának módosítása',
+'revdelete-logentry'          => 'módosította [[$1]] változatának láthatóságát',
 'logdelete-logentry'          => '[[$1]] eseményének láthatóságának módosítása',
 'revdelete-success'           => "'''A változat láthatóságának beállítása sikeresen elvégezve.'''",
 'logdelete-success'           => "'''Az esemény láthatóságának beállítása sikeresen elvégezve.'''",
 'revdel-restore'              => 'Láthatóság megváltoztatása',
 'pagehist'                    => 'Laptörténet',
 'deletedhist'                 => 'Törölt változatok',
-'revdelete-content'           => 'tartalmát',
-'revdelete-summary'           => 'szerkesztési összefoglalóját',
-'revdelete-uname'             => 'szerkesztőjének nevét',
-'revdelete-restricted'        => 'változatot rejtett el az adminisztrátorok elől',
-'revdelete-unrestricted'      => 'változatot fedett fel az adminisztrátoroknak',
-'revdelete-hid'               => 'változat $1 rejtette el',
-'revdelete-unhid'             => 'változat $1 fedte fel',
-'revdelete-log-message'       => '$2 $1',
-'logdelete-log-message'       => '$1 $2',
+'revdelete-content'           => 'a tartalmát',
+'revdelete-summary'           => 'a szerkesztési összefoglalóját',
+'revdelete-uname'             => 'a szerkesztőjének nevét',
+'revdelete-restricted'        => 'elrejtett az adminisztrátorok elől',
+'revdelete-unrestricted'      => 'felfedett az adminisztrátoroknak',
+'revdelete-hid'               => 'elrejtette $1',
+'revdelete-unhid'             => 'felfedte $1',
+'revdelete-log-message'       => '$1 {{PLURAL:$1|egy|$2}} változatot',
+'logdelete-log-message'       => '$1 {{PLURAL:$2|egy|$2}} eseményt',
 
 # Suppression log
 'suppressionlog'     => 'Adatvédelmibiztos-napló',
@@ -1084,7 +1082,7 @@ Győződj meg róla, hogy a laptörténet folytonossága megmarad.',
 'viewprevnext'              => '($1) ($2) ($3)',
 'search-result-size'        => '$1 ({{PLURAL:$2|egy|$2}} szó)',
 'search-result-score'       => 'Relevancia: $1%',
-'search-redirect'           => '(átirányítás ide: $1)',
+'search-redirect'           => '(átirányítva innen: $1)',
 'search-section'            => '($1. fejezet)',
 'search-suggest'            => 'Keresési javaslat: $1',
 'search-interwiki-caption'  => 'Társlapok',
@@ -1158,7 +1156,7 @@ Győződj meg róla, hogy a laptörténet folytonossága megmarad.',
 'recentchangesdays'        => 'A friss változtatásokban mutatott napok száma:',
 'recentchangescount'       => 'A friss változtatásokban, a laptörténetekben és a naplókban mutatott szerkesztések száma:',
 'savedprefs'               => 'Az új beállításaid érvénybe léptek.',
-'timezonelegend'           => 'Időzóna',
+'timezonelegend'           => 'Időzóna:',
 'timezonetext'             => '¹Ennyi óra az eltérés a helyi idő és a szerver ideje (UTC) között.',
 'localtime'                => 'Helyi idő:',
 'timezoneoffset'           => 'Eltérés:',
@@ -1296,7 +1294,7 @@ Győződj meg róla, hogy a laptörténet folytonossága megmarad.',
 'minoreditletter'                   => 'a',
 'newpageletter'                     => 'Ú',
 'boteditletter'                     => 'b',
-'number_of_watching_users_pageview' => '[Jelenleg $1 felhasználó nézi]',
+'number_of_watching_users_pageview' => '[Jelenleg {{PLURAL:$1|egy|$1}} felhasználó figyeli]',
 'rc_categories'                     => 'Szűkítés kategóriákra („|” jellel válaszd el őket)',
 'rc_categories_any'                 => 'Bármelyik',
 'newsectionsummary'                 => '/* $1 */ (új szakasz)',
@@ -1305,7 +1303,7 @@ Győződj meg róla, hogy a laptörténet folytonossága megmarad.',
 'recentchangeslinked'          => 'Kapcsolódó változtatások',
 'recentchangeslinked-title'    => 'A(z) $1 laphoz kapcsolódó változtatások',
 'recentchangeslinked-noresult' => 'A megadott időtartam alatt nem történt változás a kapcsolódó lapokon.',
-'recentchangeslinked-summary'  => "Ez a lap azon lapoknak a legutóbbi változtatásait listázza, amelyek linkelve vannak a megadott oldalról (vagy tagjai a megadott kategóriának).
+'recentchangeslinked-summary'  => "Alább azon lapoknak a legutóbbi változtatásai láthatóak, amelyekre hivatkozik egy megadott lap (vagy tagjai a megadott kategóriának).
 A [[Special:Watchlist|figyelőlistádon]] szereplő lapok '''félkövérrel''' vannak jelölve.",
 'recentchangeslinked-page'     => 'Lap neve:',
 'recentchangeslinked-to'       => 'Inkább az erre linkelő lapok változtatásait mutasd',
@@ -1315,10 +1313,10 @@ A [[Special:Watchlist|figyelőlistádon]] szereplő lapok '''félkövérrel''' v
 'uploadbtn'                   => 'Fájl feltöltése',
 'reupload'                    => 'Fájl feltöltése újra',
 'reuploaddesc'                => 'Visszatérés a feltöltési űrlaphoz.',
-'uploadnologin'               => 'Nem jelentkeztél be',
+'uploadnologin'               => 'Nem vagy bejelentkezve',
 'uploadnologintext'           => 'Csak regisztrált felhasználók tölthetnek fel fájlokat. [[Special:UserLogin|Jelentkezz be]] vagy regisztrálj!',
-'upload_directory_missing'    => 'A feltöltési könyvtár ($1) hiányzik vagy nem tudja létrehozni a kiszolgáló.',
-'upload_directory_read_only'  => 'A feltöltési könyvtár ($1) nem írható a szerver által.',
+'upload_directory_missing'    => 'A feltöltési könyvtár ($1) nem létezik vagy nem tudja létrehozni a kiszolgáló.',
+'upload_directory_read_only'  => 'A kiszolgálónak nincs írási jogosultsága a feltöltési könyvtárban ($1).',
 'uploaderror'                 => 'Feltöltési hiba',
 'uploadtext'                  => "Az alábbi űrlap használatával tölthetsz fel fájlokat.
 A korábban feltöltött képek megtekintéséhez vagy a köztük való kereséshez menj a [[Special:ImageList|feltöltött fájlok listájához]], a(z újra)feltöltések a [[Special:Log/upload|feltöltési naplóban]], a törlések a [[Special:Log/upload|törlési naplóban]] vannak jegyezve.
@@ -1326,7 +1324,7 @@ A korábban feltöltött képek megtekintéséhez vagy a köztük való keresés
 Képet a következő módon illeszhetsz be egy oldalra: '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Kép.jpg]]</nowiki>''',
 '''<nowiki>[[</nowiki>{{ns:image}}<nowiki>:Kép.png|alternatív szöveg]]</nowiki>''' vagy a közvetlen hivatkozáshoz használd a
 '''<nowiki>[[</nowiki>{{ns:media}}<nowiki>:Fájl.ogg]]</nowiki>''' formát.",
-'upload-permitted'            => 'Megengedett fájltípusok: $1.',
+'upload-permitted'            => 'Engedélyezett fájltípusok: $1.',
 'upload-preferred'            => 'Támogatott fájltípusok: $1.',
 'upload-prohibited'           => 'Tiltott fájltípusok: $1.',
 'uploadlog'                   => 'feltöltési napló',
@@ -1351,11 +1349,11 @@ Az ajánlott {{PLURAL:$3|típus|típusok}}: $2.",
 'filetype-banned-type'        => "A(z) '''„.$1”''' nem megengedett fájltípus. 
 Az engedélyezett {{PLURAL:$3|típus|típusok}}: $2.",
 'filetype-missing'            => 'A fájlnak nincs kiterjesztése (pl. „.jpg”).',
-'large-file'                  => 'Javasoljuk, hogy a fájl ne legyen nagyobb, mint $1;
-a fájl, amit fel akarsz tölteni $2.',
+'large-file'                  => 'Javasoljuk, hogy ne tölts fel olyan fájlokat, melyek nagyobbak, mint $1;
+ez a fájl $2.',
 'largefileserver'             => 'A fájl mérete meghaladja a kiszolgálón beállított maximális értéket.',
 'emptyfile'                   => 'Az általad feltöltött fájl üresnek tűnik.
-Ez a fájlnévben lévő hibás karakter miatt lehet.
+Ez valószínűleg azért van, mert hibásan adtad meg a feltöltendő fájl nevét.
 Ellenőrizd, hogy valóban fel akarod-e tölteni ezt a fájlt.',
 'fileexists'                  => "'''<tt>$1</tt>''' névvel már létezik egy állomány. Ellenőrizd, hogy biztosan felül akarod-e írni!",
 'filepageexists'              => "Ehhez a fájlnévhez már létezik leírás a '''<tt>$1</tt>''' lapon, de jelenleg nincs feltöltve ilyen nevű fájl. A leírás, amit ebbe az űrlapba írsz, nem fogja felülírni a már létezőt, és sehol nem fog megjelenni. Ha meg akarod változtatni a leírást, meg kell nyitnod szerkesztésre a lapját.",
@@ -1550,7 +1548,9 @@ A megfelelő szócikkre kellene mutatniuk inkább.<br />
 Egy oldal egyértelműsítő lapnak számít, ha tartalmazza a [[MediaWiki:Disambiguationspage]] oldalról belinkelt sablonok valamelyikét.",
 
 'doubleredirects'            => 'Dupla átirányítások',
-'doubleredirectstext'        => '<strong>Figyelem:</strong> Ez a lista nem feltétlenül pontos. Ennek általában az oka az, hogy a #REDIRECT alatt további szöveg található.<br /> Minden sor tartalmazza az első és a második átirányítást, valamint a második átirányítás cikkének első sorát, ami általában a „valódi” célt tartalmazza, amire az elsőnek mutatnia kellene.',
+'doubleredirectstext'        => 'Ez a lap azokat a lapokat listázza, melyek átirányító lapokra irányítanak át.
+Minden sor tartalmaz egy hivatkozást az első, valamint a második átirányításra, valamint a második átirányítás céljára, ami általában a valódi céllap, erre kellene az első átirányításnak mutatnia.
+Az <s>áthúzott</s> sorok a lista elkészülése óta javítva lettek.',
 'double-redirect-fixed-move' => '[[$1]] átnevezve, a továbbiakban átirányításként működik a(z) [[$2]] lapra',
 'double-redirect-fixer'      => 'Átirányításjavító',
 
@@ -1567,12 +1567,12 @@ Egy oldal egyértelműsítő lapnak számít, ha tartalmazza a [[MediaWiki:Disam
 'fewestrevisions' => 'Legrövidebb laptörténetű lapok',
 
 # Miscellaneous special pages
-'nbytes'                  => '$1 bájt',
-'ncategories'             => '$1 kategória',
-'nlinks'                  => '$1 hivatkozás',
-'nmembers'                => '$1 elem',
-'nrevisions'              => '$1 változat',
-'nviews'                  => '$1 megtekintés',
+'nbytes'                  => '{{PLURAL:$1|egy|$1}} bájt',
+'ncategories'             => '{{PLURAL:$1|egy|$1}} kategória',
+'nlinks'                  => '{{PLURAL:$1|egy|$1}} hivatkozás',
+'nmembers'                => '{{PLURAL:$1|egy|$1}} elem',
+'nrevisions'              => '{{PLURAL:$1|egy|$1}} változat',
+'nviews'                  => '{{PLURAL:$1|egy|$1}} megtekintés',
 'specialpage-empty'       => 'Ez az oldal üres.',
 'lonelypages'             => 'Magányos lapok',
 'lonelypagestext'         => 'A következő lapok nincsenek linkelve vagy beillesztve más lapokra a(z) {{SITENAME}} wikin.',
@@ -1633,7 +1633,7 @@ további információkat lelhetsz ott az általad keresett könyvekről:',
 'specialloguserlabel'  => 'Felhasználó:',
 'speciallogtitlelabel' => 'Cím:',
 'log'                  => 'Rendszernaplók',
-'all-logs-page'        => 'Rendszernaplók',
+'all-logs-page'        => 'Minden nyilvános napló',
 'log-search-legend'    => 'Naplók keresése',
 'log-search-submit'    => 'Menj',
 'alllogstext'          => 'A(z) {{SITENAME}} naplóinak összesített listája.
@@ -1727,7 +1727,7 @@ Ezután minden, a lapon vagy annak vitalapján történő változást ott fogsz 
 'wlheader-showupdated' => "* Azok a lapok, amelyek megváltoztak, mióta utoljára megnézted őket, '''vastagon''' láthatóak.",
 'watchmethod-recent'   => 'a figyelt lapokon belüli legfrissebb szerkesztések',
 'watchmethod-list'     => 'a legfrissebb szerkesztésekben található figyelt lapok',
-'watchlistcontains'    => 'A figyelőlistádon $1 lap szerepel.',
+'watchlistcontains'    => 'A figyelőlistádon {{PLURAL:$1|egy|$1}} lap szerepel.',
 'iteminvalidname'      => "Probléma a '$1' elemmel: érvénytelen név...",
 'wlnote'               => "Az utolsó '''{{PLURAL:$2|egy|$2}}''' óra '''{{PLURAL:$1|egy|$1}}''' változtatása látható az alábbiakban.",
 'wlshowlast'           => 'Az elmúlt $1 órában | $2 napon | $3 történt változtatások legyenek láthatóak',
@@ -1825,11 +1825,11 @@ Kérjük, hogy nyomd meg a "vissza" gombot, és töltsd le újra az oldalt, ahon
 'protectlogpage'              => 'Lapvédelmi_napló',
 'protectlogtext'              => 'Ez a lapok lezárásának és megnyitásának listája. A [[Special:ProtectedPages|védett lapok listáján]] megtekintheted a jelenleg is érvényben lévő védelmeket.',
 'protectedarticle'            => 'levédte a(z) [[$1]] lapot',
-'modifiedarticleprotection'   => 'a védelmi szint a következőre változott: "[[$1]]"',
+'modifiedarticleprotection'   => 'megváltoztatta a(z) „[[$1]]” lap védelmi szintjét',
 'unprotectedarticle'          => 'eltávolította a védelmet a(z) „[[$1]]” lapról',
 'protect-title'               => '„$1” levédése',
 'protect-legend'              => 'Levédés megerősítése',
-'protectcomment'              => 'A védelem oka',
+'protectcomment'              => 'A védelem oka:',
 'protectexpiry'               => 'Időtartam',
 'protect_expiry_invalid'      => 'A lejárati idő érvénytelen.',
 'protect_expiry_old'          => 'A lejárati idő a múltban van.',
@@ -1880,7 +1880,7 @@ Megváltoztathatod ezen lap védelmi szintjét, de az nem lesz hatással a kaszk
 'undeleteextrahelp'            => "A lap teljes helyreállításához ne jelölj be egy jelölőnégyzetet sem, csak kattints a '''''Helyreállítás''''' gombra.
 A lap részleges helyreállításához jelöld be a kívánt változatok melletti jelölőnégyzeteket, és kattints a '''''Helyreállítás''''' gombra.
 Ha megnyomod a '''''Vissza''''' gombot, az törli a jelölőnégyzetek és az összefoglaló jelenlegi tartalmát.",
-'undeleterevisions'            => '$1 változat archiválva',
+'undeleterevisions'            => '{{PLURAL:$1|egy|$1}} változat archiválva',
 'undeletehistory'              => 'Ha helyreállítasz egy lapot, azzal visszahozod laptörténet összes változatát.
 Ha lap törlése óta azonos néven már létrehoztak egy újabb lapot, a helyreállított
 változatok a laptörténet végére kerülnek be, a jelenlegi lapváltozat módosítása nélkül.',
@@ -1895,13 +1895,13 @@ a törölt változatoknak a tényleges szövege csak az adminisztrátorok szám�
 változatot visszaállították vagy eltávolították az archívumból.',
 'undelete-nodiff'              => 'Nem található korábbi változat.',
 'undeletebtn'                  => 'Helyreállítás',
-'undeletelink'                 => 'megnéz/helyreállít',
+'undeletelink'                 => 'megtekintés/helyreállítás',
 'undeletereset'                => 'Vissza',
 'undeletecomment'              => 'Helyreállítás oka:',
 'undeletedarticle'             => '„[[$1]]” helyreállítva',
-'undeletedrevisions'           => '$1 változat helyreállítva',
-'undeletedrevisions-files'     => '$1 változat és $2 fájl visszaállítása kész',
-'undeletedfiles'               => '$1 fájl visszaállítása kész',
+'undeletedrevisions'           => '{{PLURAL:$1|egy|$1}} változat helyreállítva',
+'undeletedrevisions-files'     => '{{PLURAL:$1|egy|$1}} változat és {{PLURAL:$2|egy|$2}} fájl visszaállítva',
+'undeletedfiles'               => '{{PLURAL:$1|egy|$1}} fájl visszaállítva',
 'cannotundelete'               => 'Nem lehet a lapot visszaállítani; lehet, hogy azt már valaki visszaállította.',
 'undeletedpage'                => "<big>'''$1 helyreállítva'''</big>
 
@@ -1961,7 +1961,7 @@ $1',
 'whatlinkshere-hidetrans'  => 'beillesztések $1',
 'whatlinkshere-hidelinks'  => 'linkek $1',
 'whatlinkshere-hideimages' => 'képhivatkozás $1',
-'whatlinkshere-filters'    => 'Szűrés',
+'whatlinkshere-filters'    => 'Elemek szűrése',
 
 # Block/unblock
 'blockip'                         => 'Blokkolás',
@@ -2154,14 +2154,14 @@ Az utóbbi esetben közvetlen hivatkozást is használhatsz, például a [[{{#Sp
 'allmessagesname'           => 'Név',
 'allmessagesdefault'        => 'Alapértelmezett szöveg',
 'allmessagescurrent'        => 'Jelenlegi szöveg',
-'allmessagestext'           => 'Ez a MediaWiki-névtérben elérhető összes rendszerüzenet listája.
-Ha részt szeretnél venni a MediaWiki fordításában, látogass el a [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] és a [http://translatewiki.net translatewiki.net] oldalakra.',
+'allmessagestext'           => 'Ezen a lapon a MediaWiki-névtérben elérhető összes rendszerüzenet listája található.
+Ha részt szeretnél venni a MediaWiki fordításában, látogass el a [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation], valamint a [http://translatewiki.net translatewiki.net] oldalra.',
 'allmessagesnotsupportedDB' => "A '''''{{ns:special}}:Allmessages''''' lap nem használható, mert a '''\$wgUseDatabaseMessages''' ki van kapcsolva.",
 'allmessagesfilter'         => 'Üzenetnevek szűrése:',
 'allmessagesmodified'       => 'Csak a módosítottak mutatása',
 
 # Thumbnails
-'thumbnail-more'           => 'Nagyít',
+'thumbnail-more'           => 'A kép nagyítása',
 'filemissing'              => 'A fájl nincs meg',
 'thumbnail_error'          => 'Hiba a bélyegkép létrehozásakor: $1',
 'djvu_page_error'          => 'A DjVu lap a tartományon kívülre esik',
@@ -2206,9 +2206,9 @@ Valamennyi transwiki importálási művelet az [[Special:Log/import|importálás
 'importlogpage'                    => 'Importnapló',
 'importlogpagetext'                => 'Lapok szerkesztési előzményekkel történő adminisztratív imporálása más wikikből.',
 'import-logentry-upload'           => '[[$1]] importálása fájlfeltöltéssel kész',
-'import-logentry-upload-detail'    => '$1 változat',
+'import-logentry-upload-detail'    => '{{PLURAL:$1|egy|$1}} változat',
 'import-logentry-interwiki'        => '$1 más wikiből áthozva',
-'import-logentry-interwiki-detail' => '$1 változat innen: $2',
+'import-logentry-interwiki-detail' => '{{PLURAL:$1|egy|$1}} változat innen: $2',
 
 # Tooltip help for the actions
 'tooltip-pt-userpage'             => 'A szerkesztőlapod',
@@ -2325,7 +2325,7 @@ Ez valószínűleg egy olyan link miatt van, ami egy feketelistán lévő oldalr
 'markedaspatrolled'                   => 'Ellenőrzöttnek jelölve',
 'markedaspatrolledtext'               => 'A kiválasztott változatot ellenőrzöttnek jelölted.',
 'rcpatroldisabled'                    => 'A friss változtatások járőrözése kikapcsolva',
-'rcpatroldisabledtext'                => 'A Friss Változtatások Ellenőrzése jelenleg nincs engedélyezve.',
+'rcpatroldisabledtext'                => 'A friss változtatások ellenőrzése jelenleg nincs engedélyezve.',
 'markedaspatrollederror'              => 'Nem lehet ellenőrzöttnek jelölni',
 'markedaspatrollederrortext'          => 'Meg kell adnod egy ellenőrzöttként megjelölt változatot.',
 'markedaspatrollederror-noautopatrol' => 'A saját változtatásaid megjelölése ellenőrzöttként nem engedélyezett.',
@@ -2356,7 +2356,7 @@ $1',
 'mediawarning'         => "'''Figyelmeztetés''': Ez a fájl kártékony kódot tartalmazhat, futtatása során kárt tehet a számítógépedben.<hr />",
 'imagemaxsize'         => "A képek mérete, legfeljebb:<br />''(a leírólapokon)''",
 'thumbsize'            => 'Bélyegkép mérete:',
-'widthheightpage'      => '$1×$2, $3 oldal',
+'widthheightpage'      => '$1×$2, {{PLURAL:$3|egy|$3}} oldal',
 'file-info'            => '(fájlméret: $1, MIME-típus: $2)',
 'file-info-size'       => '($1 × $2 képpont, fájlméret: $3, MIME-típus: $4)',
 'file-nohires'         => '<small>Nem érhető el nagyobb felbontású változat.</small>',
@@ -2366,7 +2366,7 @@ $1',
 
 # Special:NewImages
 'newimages'             => 'Új fájlok galériája',
-'imagelisttext'         => 'Lentebb $1 kép látható, $2 rendezve.',
+'imagelisttext'         => "Lentebb '''{{PLURAL:$1|egy|$1}}''' kép látható, $2 rendezve.",
 'newimages-summary'     => 'Ezen a speciális lapon láthatóak a legutóbb feltöltött fájlok.',
 'showhidebots'          => '(botok szerkesztéseinek $1)',
 'noimages'              => 'Nem tekinthető meg semmi.',
@@ -2393,6 +2393,7 @@ tartalmazni fogja. A többi alapértelmezésként rejtett marad.
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength', # Do not translate list items
 
 # EXIF tags
@@ -2765,7 +2766,7 @@ $1',
 'lag-warn-high'   => 'Az adatbázisszerver túlterheltsége miatt {{PLURAL:$1|az egy|a(z) $1}} másodpercnél frissebb változtatások nem biztos, hogy megjelennek ezen a listán.',
 
 # Watchlist editor
-'watchlistedit-numitems'       => 'A figyelőlistádon $1 cikk szerepel (a vitalapok nélkül).',
+'watchlistedit-numitems'       => 'A figyelőlistádon {{PLURAL:$1|egy|$1}} cím szerepel (a vitalapok nélkül).',
 'watchlistedit-noitems'        => 'A figyelőlistád üres.',
 'watchlistedit-normal-title'   => 'A figyelőlista szerkesztése',
 'watchlistedit-normal-legend'  => 'Lapok eltávolítása a figyelőlistáról',
@@ -2832,7 +2833,7 @@ Add meg a fájl nevét „{{ns:image}}:” előtag nélkül.',
 'fileduplicatesearch-submit'   => 'Keresés',
 'fileduplicatesearch-info'     => '$1 × $2 pixel<br />Fájlméret: $3<br />MIME-típus: $4',
 'fileduplicatesearch-result-1' => 'A(z) „$1“ nevű fájlnak nincs duplikátuma.',
-'fileduplicatesearch-result-n' => 'A(z) „$1” nevű fájlnak $2 duplikátuma van.',
+'fileduplicatesearch-result-n' => 'A(z) „$1” nevű fájlnak {{PLURAL:$2|egy|$2}} duplikátuma van.',
 
 # Special:SpecialPages
 'specialpages'                   => 'Speciális lapok',

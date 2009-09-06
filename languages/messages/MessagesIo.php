@@ -43,6 +43,7 @@ $messages = array(
 'tog-highlightbroken'         => 'Formatigez ruptita ligili <a href="" class="new">tale</a> (alternativo: tale<a href="" class="internal">?</a>)',
 'tog-justify'                 => 'Adjustigez paragrafi',
 'tog-hideminor'               => 'Celez mikra redaktaji de recenta chanji',
+'tog-extendwatchlist'         => 'Expansez surveyo-listo por montrar omna chanji, vice nur la maxim recenta',
 'tog-usenewrc'                => 'Usez augmentita Recenta chanji (JavaScript bezonesas)',
 'tog-numberheadings'          => 'Autonumerez tituli',
 'tog-showtoolbar'             => 'Montrez redaktilo (JavaScript bezonesas)',
@@ -66,10 +67,13 @@ $messages = array(
 'tog-enotifrevealaddr'        => 'Montrez mea e-posto adreso en notifiko e-posti',
 'tog-shownumberswatching'     => 'Montrez nombro di surveyanta uzanti',
 'tog-fancysig'                => 'Traktez signaturo kom wikikodo (sen automata ligilo)',
+'tog-externaleditor'          => 'Uzez extera redaktanto nespecigite (nur por experti, bezonas specala moderi ye vua komputoro)',
+'tog-forceeditsummary'        => 'Notifikez me kande skribanta vakua redakto-rezumo',
 'tog-watchlisthideown'        => 'Celez mea redaktaji de la surveyaji',
 'tog-watchlisthidebots'       => 'Celez redaktaji da roboti de la surveyaji',
 'tog-watchlisthideminor'      => 'Celez mikra redaktaji de la surveyaji',
 'tog-ccmeonemails'            => 'Sendez a me exemplero di e-posti quin me sendos ad altra uzanti',
+'tog-diffonly'                => 'Ne montrez pagino kontenajo sub diferi',
 'tog-showhiddencats'          => 'Montrar celita kategorii',
 
 'underline-always' => 'Sempre',
@@ -144,7 +148,13 @@ $messages = array(
 'category-file-count-limited'    => 'La sequanta {{PLURAL:$1|arkivo|$1 arkivi}} es en la aktuala kategorio.',
 'listingcontinuesabbrev'         => 'seq.',
 
-'mainpagetext' => "<big>'''MediaWiki instalesis sucese.'''</big>",
+'mainpagetext'      => "<big>'''MediaWiki instalesis sucese.'''</big>",
+'mainpagedocfooter' => "Videz la [http://meta.wikimedia.org/wiki/Help:Contents Guidilo por Uzanti] por informo pri uzar la wiki programo.
+
+== Komencar ==
+* [http://www.mediawiki.org/wiki/Manual:Configuration_settings Listo di ''Configuration setting'']
+* [http://www.mediawiki.org/wiki/Manual:FAQ MediaWiki OQQ]
+* [https://lists.wikimedia.org/mailman/listinfo/mediawiki-announce MediaWiki nova versioni posto-listo]",
 
 'about'          => 'Pri',
 'article'        => 'artiklo',
@@ -227,6 +237,7 @@ $messages = array(
 'bugreports'           => 'Informajo pri erori',
 'bugreportspage'       => 'Project:Informajo pri erori',
 'copyright'            => 'La kontenajo esas disponebla sub $1.',
+'copyrightpagename'    => '{{SITENAME}} kopiyuro',
 'currentevents'        => 'Aktualaji',
 'currentevents-url'    => 'Project:Aktualaji',
 'disclaimers'          => 'Legala averto',
@@ -279,7 +290,7 @@ Videz [[Special:Version|versiono-pagino]].',
 'nstab-user'      => 'Uzanto-pagino',
 'nstab-special'   => 'Specala pagino',
 'nstab-project'   => 'Projeto pagino',
-'nstab-image'     => 'Arkivo',
+'nstab-image'     => 'Failo',
 'nstab-mediawiki' => 'Mesajo',
 'nstab-template'  => 'Modelo',
 'nstab-help'      => 'Helpo',
@@ -300,15 +311,15 @@ $1',
 'nodb'                => 'Onu ne povas selektar datumaro $1',
 'cachederror'         => "Co esas kopiuro registragita ye la ''cache'' di la solicitita pagino, ed ol povus ne esar aktuala.",
 'readonly'            => 'Datumaro esas blokusita',
-'enterlockreason'     => 'Explikez la motivo por la blokusado, inkluzante 
+'enterlockreason'     => 'Explikez la motivo por la blokuso, inkluzante 
 evaluo pri kande eventos la desblokuso',
 'missingarticle-rev'  => '(versiono#: $1)',
 'missingarticle-diff' => '(Difero: $1, $2)',
 'internalerror'       => 'Interna eroro',
 'internalerror_info'  => 'Interna eroro: $1',
-'filecopyerror'       => 'Onu ne povis kopiar la arkivo "$1" a "$2".',
-'filerenameerror'     => 'Onu ne povas rinomizar la arkivo "$1" ad "$2".',
-'filedeleteerror'     => 'Onu ne povis efacar la arkivo "$1".',
+'filecopyerror'       => 'Ne povis kopiar l\'arkivo "$1" a "$2".',
+'filerenameerror'     => 'Ne povas rinomizar l\'arkivo "$1" ad "$2".',
+'filedeleteerror'     => 'Onu ne povis efacar l\'arkivo "$1".',
 'filenotfound'        => 'Onu ne povas trovar la arkivo "$1".',
 'unexpected'          => 'Nevartita valoro: "$1"="$2".',
 'formerror'           => 'Eroro: Onu ne povis sendar la kontenajo di la formularo',
@@ -352,7 +363,7 @@ Voluntez, ne obliviez chanjor vua preferaji.',
 'createaccount'              => 'Krear nova konto',
 'gotaccount'                 => 'Ka vu ja havas konto? $1.',
 'gotaccountlink'             => 'Enirar',
-'createaccountmail'          => 'per elek-posto',
+'createaccountmail'          => 'per e-posto',
 'badretype'                  => 'La pasovorti vu donis ne esas sama.',
 'userexists'                 => 'La uzantonomo, quan vu skribis, ja selektesis antee.
 Voluntez, elektez ula diferanta uzantonomo.',
@@ -628,7 +639,7 @@ Probez prefixizar vua demando kun ''all:'' por serchar omna kontenajo (inkluzant
 'contextchars'         => 'Tipi di kuntexto ye singla lineo:',
 'recentchangescount'   => 'Quanto de redakti montrota kustume en la recenta chanji, pagino-versionari e registri:',
 'savedprefs'           => 'Vua preferaji registragesis.',
-'timezonelegend'       => 'Tempala zono',
+'timezonelegend'       => 'Tempala zono:',
 'timezonetext'         => 'Vua lokala tempo diferas de tempo dil servanto (UTC).',
 'localtime'            => 'Lokala tempo',
 'timezoneoffset'       => 'Difero',
@@ -701,6 +712,7 @@ Probez prefixizar vua demando kun ''all:'' por serchar omna kontenajo (inkluzant
 'recentchangeslinked-summary' => "Co esas listo di recenta chanji ad pagini ligita da specigita pagino, od pagini en specigita kategorio.
 Pagini en [[Special:Watchlist|vua surveryo-listo]] esas '''dika'''.",
 'recentchangeslinked-page'    => 'Nomo dil pagino:',
+'recentchangeslinked-to'      => 'Montrez chanji a pagini ligita a la specigita pagino vice',
 
 # Upload
 'upload'            => 'Adkargar arkivo',
@@ -716,7 +728,7 @@ Pagini en [[Special:Watchlist|vua surveryo-listo]] esas '''dika'''.",
 'filename'          => 'Arkivo-nomo',
 'filedesc'          => 'Titulo',
 'fileuploadsummary' => 'Rezumo:',
-'filestatus'        => "Stando di ''copyright'':",
+'filestatus'        => 'Stando di kopiyuro:',
 'filesource'        => 'Fonto:',
 'uploadedfiles'     => 'Adkargita arkivi',
 'ignorewarning'     => 'Ignorar la averto e gardar la arkivo irgakaze.',
@@ -1023,6 +1035,14 @@ restauris ad lasta versiono da $2.',
 'ipbexpiry'          => 'Expiro:',
 'ipbreason'          => 'Motivo:',
 'ipbreasonotherlist' => 'Altra motivo',
+'ipbreason-dropdown' => '*Ordinara motivi por blokuso
+** Insertar nevera informi
+** Efacar kontenajo de pagini
+** Insertadar ligili ad extera reti
+** Insertar radoto aden pagini
+** Timidiganta ago
+** Trouzar multa konti
+** Neaceptebla uzanto-nomo',
 'ipbanononly'        => 'Blokusez nur anonimala uzanti',
 'ipbcreateaccount'   => 'Preventez kreo di konti',
 'ipbsubmit'          => 'Blokusar ica uzanto',

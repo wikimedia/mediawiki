@@ -315,7 +315,7 @@ $messages = array(
 'protect'           => 'Šćitaś',
 'protect_change'    => 'změniś',
 'protectthispage'   => 'Bok šćitaś',
-'unprotect'         => 'Šćitanje wótpóraś',
+'unprotect'         => 'šćit wótpóraś',
 'unprotectthispage' => 'Šćitanje wótpóraś',
 'newpage'           => 'Nowy bok',
 'talkpage'          => 'Diskusija',
@@ -429,12 +429,17 @@ Lisćina płaśecych specialnych bokow namakajo se pód [[Special:SpecialPages|{
 # General errors
 'error'                => 'Zmólka',
 'databaseerror'        => 'Zmólka w datowej bance',
-'dberrortext'          => 'Syntaktiska zmólka pśi wótpšašowanju datoweje banki.
-Slědne wótpšašowanje jo było: <blockquote><tt>$1</tt></blockquote> z funkcije „<tt>$2</tt>“.
-MySQL jo zmólku „<tt>$3: $4</tt>“ wrośił.',
-'dberrortextcl'        => 'Syntaktiska zmólka pśi wótpšašowanju datoweje banki.
-Slědne wótpšašowanje jo było: <blockquote><tt>$1</tt></blockquote> z funkcije „<tt>$2</tt>“.
-MySQL jo zmólku „<tt>$3: $4</tt>“ wrośił.',
+'dberrortext'          => 'Syntaktiska zmólka pśi wótpšašowanju datoweje banki nastata.
+To by mógło zmólki w softwarje byś.
+Slědne wótpšašowanje jo było: 
+<blockquote><tt>$1</tt></blockquote> 
+z funkcije "<tt>$2</tt>".
+Datowa banka jo zmólku "<tt>$3: $4</tt>" wrośiła.',
+'dberrortextcl'        => 'Syntaktiska zmólka pśi wótpšašowanju datoweje banki nastata.
+Slědne wopytane wótpšašowanje jo było: 
+"$1"
+z funkcije "$2".
+Datowa banka jo zmólku "$3: $4" wrośiła',
 'noconnect'            => 'Wódaj! Wiki ma někotare techniske śěže a njamóžo žeden zwisk ze serwerom datoweje banki nawězaś.<br />
 $1',
 'nodb'                 => 'Njejo móžno było, datowu banku $1 wuzwóliś.',
@@ -511,12 +516,12 @@ Twójo konto jo se załožyło. Njezabydni změniś swóje [[Special:Preferences
 'yourdomainname'             => 'Twója domejna',
 'externaldberror'            => 'Abo jo wustupiła eksterna zmólka awtentifikacije datoweje banki, abo njesmějoš swójo eksterne wužywarske konto aktualizěrowaś.',
 'loginproblem'               => "'''Problem z pśizjawjenim.'''<br />Pšosym hyšći raz wopytaś !",
-'login'                      => 'Pśizjawiś se',
+'login'                      => 'pśizjawiś se',
 'nav-login-createaccount'    => 'Pśizjawiś se',
 'loginprompt'                => 'Za pśizjawjenje do boka {{SITENAME}} muse se cookije dopušćiś.',
-'userlogin'                  => 'Pśizjawiś se',
-'logout'                     => 'Wótzjawiś se',
-'userlogout'                 => 'Wótzjawiś se',
+'userlogin'                  => 'pśizjawiś se',
+'logout'                     => 'wótzjawiś se',
+'userlogout'                 => 'wótzjawiś se',
 'notloggedin'                => 'Njepśizjawjony(a)',
 'nologin'                    => 'Njamaš wužywarske konto? $1.',
 'nologinlink'                => 'Nowe wužywarske konto załožyś',
@@ -671,7 +676,7 @@ Zapśimjejśo pšosym wše górjejce pomjenjowane drobnosći do wšych napšašo
 'nosuchsectiontext'                => 'Sy wopytał wobźěłaś njeeksistěrujucy wótrězk $1. Dokulaž taki wótrězk njeeksistěrujo, njamóžoš swójo wobźěłanje niźi składowaś.',
 'loginreqtitle'                    => 'Pśizjawjenje trěbne',
 'loginreqlink'                     => 'se pśizjawiś',
-'loginreqpagetext'                 => 'Dejš se $1, aby mógł boki pšawje cytaś.',
+'loginreqpagetext'                 => 'Dejš $1, aby mógł boki pšawje cytaś.',
 'accmailtitle'                     => 'Šćitne gronidło jo se wótpósłało.',
 'accmailtext'                      => 'Šćitne gronidło za wužywarja "$1" jo na adresu $2 se wótpósłało.',
 'newarticle'                       => '(Nowy nastawk)',
@@ -826,7 +831,7 @@ Pšosym wobkšuś, až coš to cyniś, až rozmějoš slědy a až cyniš to wó
 'revdelete-suppress'          => 'Pśicynu wulašowanja teke za administratorow schowaś',
 'revdelete-hide-image'        => 'Wopśimjeśe dataje schowaś',
 'revdelete-unsuppress'        => 'Wobgranicowanja za wótnowjone wersije zasej zwignuś.',
-'revdelete-log'               => 'Komentar w log-lisćinje:',
+'revdelete-log'               => 'Pśicyna za wulašowanje:',
 'revdelete-submit'            => 'We wuzwólonej wersiji nałožyś',
 'revdelete-logentry'          => 'Woglědanje wersije změnjone za [[$1]]',
 'logdelete-logentry'          => 'wiźobnosć za [[$1]] změnjona.',
@@ -976,7 +981,7 @@ Móžoš bok ale teke [[:$1|sam załožyś]].",
 'recentchangesdays'        => 'Licba dnjow, kenž se pokazuju w "slědnych změnach":',
 'recentchangescount'       => 'Licba změnow w „Aktualne změny“, stawiznach boka a w protokolach pó standarźe:',
 'savedprefs'               => 'Twóje nastajenja su se składowali.',
-'timezonelegend'           => 'Casowa cona',
+'timezonelegend'           => 'Casowa cona:',
 'timezonetext'             => '¹Pódaj licbu góźinow, kótarež laže mjazy twójeju casoweju conu a UTC.',
 'localtime'                => 'Městny cas:',
 'timezoneoffset'           => 'Rozdźěl¹:',
@@ -1012,11 +1017,11 @@ Móžoš bok ale teke [[:$1|sam załožyś]].",
 
 # Groups
 'group'               => 'Kupka:',
-'group-user'          => 'Wužywarje',
-'group-autoconfirmed' => 'Wobkšuśone wužywarje',
+'group-user'          => 'wužywarje',
+'group-autoconfirmed' => 'wobkšuśone wužywarje',
 'group-bot'           => 'awtomatiske programy (boty)',
-'group-sysop'         => 'Administratory',
-'group-bureaucrat'    => 'Běrokraty',
+'group-sysop'         => 'administratory',
+'group-bureaucrat'    => 'běrokraty',
 'group-suppress'      => 'Doglědowanja',
 'group-all'           => '(wše)',
 
@@ -1366,7 +1371,8 @@ Wótkazujśo lubjej na pótrjefjony bok.<br />
 Bok wobjadnawa se ako bok wujasnjenja zapśimjeśa, gaž wótkazujo na nju [[MediaWiki:Disambiguationspage]].',
 
 'doubleredirects'            => 'Dwójne dalejpósrědnjenja',
-'doubleredirectstext'        => 'Toś ten bok nalicujo dalejpósrědnjenja, kótarež wótkazuju na druge dalejpósrědnjenja. Kužda smužka wopśimjejo wótkaze na prědne a druge dalejpósrědnjenje a teke na cyl drugego dalejpósrědnjenja, což jo w normalnem paźe wótmyslony cylowy bok, na kótaryž dejał južo prědne dalejpósrědnjenje wótkazowaś.',
+'doubleredirectstext'        => 'Toś ten bok nalicujo boki, kótarež dalej pósrědnjaju na druge dalejpósrědnjenja. 
+Kužda smužka wopśimjejo wótkaze na prědne a druge dalejpósrědnjenje a teke na cel drugego dalejpósrědnjenja, což jo w normalnem paźe "napšawdny" celowy bok, na kótaryž by mógło prědne dalejpósrědnjenje pokazaś. <s>Pśešmarnjone</s> zapiski su južo wobstarane.',
 'double-redirect-fixed-move' => '[[$1]] jo se pśesunuł, jo něnto dalejposrědnjenje do [[$2]]',
 'double-redirect-fixer'      => 'Pórěźaŕ dalejpósrědnjenjow',
 
@@ -1447,7 +1453,7 @@ Bok wobjadnawa se ako bok wujasnjenja zapśimjeśa, gaž wótkazujo na nju [[Med
 'specialloguserlabel'  => 'Wužywaŕ:',
 'speciallogtitlelabel' => 'Nadpismo:',
 'log'                  => 'Protokole',
-'all-logs-page'        => 'Wšykne protokole',
+'all-logs-page'        => 'Wšykne zjawne protokole',
 'log-search-legend'    => 'Protokole pytaś',
 'log-search-submit'    => 'Start',
 'alllogstext'          => 'To jo kombiněrowane zwobraznjenje wšyknych we {{GRAMMAR:lokatiw|{{SITENAME}}}} k dispoziciji stojecych protokolow. Móžoš naglěd pśez wubraśe protokolowego typa, wužywarskego mjenja (pód źiwanim wjelikopisanja) abo pótrjefjonego boka (teke pód źiwanim wjelikopisanja) wobgranicowaś.',
@@ -1517,7 +1523,7 @@ E-mailowa adresa, kótaruž sy zapódał w [[Special:Preferences|swójich wužyw
 'mywatchlist'          => 'mója wobglědowańka',
 'watchlistfor'         => "(za wužywarja '''$1''')",
 'nowatchlist'          => 'Žedne zapise w Twójich wobglědowańkach.',
-'watchlistanontext'    => 'Dejš se $1, aby mógał swóje wobglědowańka wiźeś abo zapise w nich wobźěłaś.',
+'watchlistanontext'    => 'Dejš $1, aby mógał swóje wobglědowańka wiźeś abo zapise w nich wobźěłaś.',
 'watchnologin'         => 'Njepśizjawjony(a)',
 'watchnologintext'     => 'Musyš byś [[Special:UserLogin|pśizjawjony]], aby mógał swóje wobglědowańka wobźěłaś.',
 'addedwatch'           => 'Jo k wobglědowańkam se dodało',
@@ -1526,7 +1532,7 @@ E-mailowa adresa, kótaruž sy zapódał w [[Special:Preferences|swójich wužyw
 Pózdźejšne změny na toś tom boku a w pśisłušecej diskusiji se tam nalicuju a w pśeglěźe [[Special:RecentChanges|slědnych změnow]] tucnje wóznamjeniju.
 
 Coš-lic bok zasej z twójich wobglědowańkow wulašowaś, kliknij na wótpowědujucem boce na "dalej njewobglědowaś".',
-'removedwatch'         => 'Jo z wobglědowańkow se wulašowało',
+'removedwatch'         => 'Jo se z wobglědowańkow wulašowało',
 'removedwatchtext'     => 'Bok „<nowiki>$1</nowiki>“ jo z twójich wobglědowańkow wulašowany.',
 'watch'                => 'Wobglědowaś',
 'watchthispage'        => 'Bok wobglědowaś',
@@ -1636,7 +1642,7 @@ Pšosym nawroś se na bok, wót kótaregož sy pśišeł a wopytaj hyšći raz.'
 'unprotectedarticle'          => 'Šćit za „[[$1]]“ jo se wótpórał.',
 'protect-title'               => 'Šćit boka „$1“ změniś',
 'protect-legend'              => 'Šćitanje wobkšuśiś',
-'protectcomment'              => 'Komentar:',
+'protectcomment'              => 'Pśicyna:',
 'protectexpiry'               => 'cas wótběžy:',
 'protect_expiry_invalid'      => 'Zapódany cas jo njekorektny.',
 'protect_expiry_old'          => 'Zapódany cas jo wótběžał.',
@@ -1725,7 +1731,7 @@ $1',
 
 # Contributions
 'contributions' => 'Wužywarske pśinoski',
-'mycontris'     => 'Móje pśinoski',
+'mycontris'     => 'móje pśinoski',
 'contribsub2'   => 'Za $1 ($2)',
 'nocontribs'    => 'Za toś te kriterije njejsu žedne změny se namakali.',
 'uctop'         => '(aktualny)',
@@ -1789,8 +1795,8 @@ $1',
 'ipbwatchuser'                    => 'Wužywarski a diskusijny bok toś togo wužywarja wobglědowaś',
 'badipaddress'                    => 'IP-adresa jo njekorektna',
 'blockipsuccesssub'               => 'Wuspěšnje blokěrowane',
-'blockipsuccesstext'              => 'Wužywaŕ/IP-adresa [[Special:Contributions/$1|$1]] jo se blokěrował(a).<br />
-Glědaj do [[Special:IPBlockList|lisćiny aktiwnych blokěrowanjow]].',
+'blockipsuccesstext'              => '[[Special:Contributions/$1|$1]] jo se blokěrował.<br />
+Glědaj do [[Special:IPBlockList|lisćiny aktiwnych blokěrowanjow]], aby blokěrowanja pśeglědał.',
 'ipb-edit-dropdown'               => 'Pśicyny blokěrowanja wobźěłaś',
 'ipb-unblock-addr'                => '$1 dopušćiś',
 'ipb-unblock'                     => 'Wužywarske mě abo IP-adresu dopušćiś',
@@ -2176,6 +2182,7 @@ Slědujuce wótkaze w tej samej smužce se za wuwześa naglědaju, w kótarychž
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength', # Do not translate list items
 
 # EXIF tags

@@ -25,8 +25,8 @@ $messages = array(
 'tog-highlightbroken'         => 'Uoznocz <a href="" class="new">tak</a> linki do zajtůw kere ńy trefjům (abo: dołůncz pytajńik<a href="" class="internal">?</a>).',
 'tog-justify'                 => 'Wyrůwnowej tekst we akapitach (justowańy)',
 'tog-hideminor'               => 'Schow drobne pomjyńańa we "Pomjyńanych na uostatku"',
-'tog-extendwatchlist'         => 'Poszyrzůno lista artikli, na kere dowom pozůr',
-'tog-usenewrc'                => 'Poszyrzyńy půmjyńanych na uostatku (JavaScript)',
+'tog-extendwatchlist'         => 'Pokoż na mjij pozorliśće wszyjske, a ńy yno uostatńe půmjyńańa',
+'tog-usenewrc'                => 'Używej poszyrzyńo ńydowno pomjyńanych (JavaScript)',
 'tog-numberheadings'          => 'Automatyczno numeracyjo titlůw',
 'tog-showtoolbar'             => 'Pokoż pasek przirzůndůw (JavaScript)',
 'tog-editondblclick'          => 'Przyńdź do sprowjańo po podwůjnym klikńyńću (JavaScript)',
@@ -34,7 +34,7 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Klikńyńće prawym kneflym myszy na titlu tajli<br />napoczyno jigo sprowjańy(JavaScript)',
 'tog-showtoc'                 => 'Pokoż spis treśći (na zajtach, kere majům wjyncyj jak trzi tajle)',
 'tog-rememberpassword'        => 'Pamjyntej můj ausdruk na tym komputrze',
-'tog-editwidth'               => 'Połna szerokość placu sprowjańo',
+'tog-editwidth'               => 'Poszyrz plac sprowjyń na cołki ekran',
 'tog-watchcreations'          => 'Dowom pozůr na zajty, kere żech naszkryfloł',
 'tog-watchdefault'            => 'Dowom pozůr na zajty, kere żech sprowjoł',
 'tog-watchmoves'              => 'Dowom pozůr na zajty, kere żech przećepnył',
@@ -48,7 +48,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Wyślij e-brifa tyž w takim raźe, kej by chodźiuo uo drobne pomjyńańa',
 'tog-enotifrevealaddr'        => 'Ńy chow mojigo e-brifa w powjadomjyńach',
 'tog-shownumberswatching'     => 'Pokoż, wjela sprowjorzy dowo pozůr',
-'tog-fancysig'                => 'Szrajbńij bez automatycznygo linka',
+'tog-fancysig'                => 'Szrajbńij s kodůma wiki (bez autůmatycznygo linka)',
 'tog-externaleditor'          => 'Sztandardowo używej zewnyntrznygo edytora (jyno do ekspertůw, trza mjyć ekstra sztalowańy we systymje)',
 'tog-externaldiff'            => 'Sztandardowo używej zewnyntrzny program do filowańo w pomjyńańach (jyno do ekspertůw, trza mjyć ekstra sztalowańy we systymje)',
 'tog-showjumplinks'           => 'Zapńij cajchnůndzki "przyńdź do"',
@@ -1880,7 +1880,7 @@ Wšyjstke uoperacyje importu transwiki sům uodnotowywane w [[Special:Log/import
 'tooltip-pt-anontalk'             => 'Godka užytkowńika do adresu IP spod kerygo sprowjoš',
 'tooltip-pt-preferences'          => 'Moje preferéncyje',
 'tooltip-pt-watchlist'            => 'Lista artiklůw na kere daješ pozor',
-'tooltip-pt-mycontris'            => 'Lista bezy mje sprowjônych',
+'tooltip-pt-mycontris'            => 'Lista uody mje sprowjonych',
 'tooltip-pt-login'                => 'My by chćeli cobyś śe zalůgowou, ale to ńy je uobowjůnzek.',
 'tooltip-pt-anonlogin'            => 'Zachyncůmy do zalůgowańo śe, nale to ńy je uobowjůnzek',
 'tooltip-pt-logout'               => 'Wyloguj sie z wiki',
@@ -2046,6 +2046,7 @@ Nostympne linki w lińii uwažůmy za wyjůntki, to sům nazwy zajtůw, kaj plik
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength', # Do not translate list items
 
 # EXIF tags

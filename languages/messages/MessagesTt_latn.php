@@ -1,5 +1,5 @@
 <?php
-/** Tatar (Latin) (Tatarça/Татарча (Latin))
+/** Tatar (Latin) (Татарча/Tatarça (Latin))
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net

@@ -115,8 +115,8 @@ $messages = array(
 'tog-highlightbroken'         => 'Boş bağlantılarnı <a href="" class="new">bu şekilde</a> (alternativ: <a href="" class="internal">bu şekilde</a>) köster.',
 'tog-justify'                 => 'Paragraf eki yaqqa yaslap tiz',
 'tog-hideminor'               => 'Kiçik deñişikliklerni "Soñki deñişiklikler" saifesinde gizle',
-'tog-extendwatchlist'         => 'Kelişken közetüv cedveli',
-'tog-usenewrc'                => 'Kelişken soñki deñişiklikler cedveli (JavaScript)',
+'tog-extendwatchlist'         => 'Közetüv cedvelini, tek soñki degil, bütün deñişikliklerni körmek içün kenişlet',
+'tog-usenewrc'                => 'Kelişken soñki deñişiklikler cedvelini qullan (JavaScript kerek)',
 'tog-numberheadings'          => 'Serlevalarnı avtomatik nomeralandır',
 'tog-showtoolbar'             => 'Deñişiklik yapqan vaqıtta yardımcı dögmelerni köster. (JavaScript)',
 'tog-editondblclick'          => 'Saifeni çift basıp deñiştirmege başla (JavaScript)',
@@ -124,7 +124,7 @@ $messages = array(
 'tog-editsectiononrightclick' => 'Bölük serlevasına oñ basıp bölükte deñişiklikke ruhset ber. (JavaScript)',
 'tog-showtoc'                 => 'Münderice cedveli köster (3 daneden ziyade serlevası olğan saifeler içün)',
 'tog-rememberpassword'        => 'Parolni hatırla',
-'tog-editwidth'               => 'Yazuv penceresi tam kenişlikte olsun',
+'tog-editwidth'               => 'Yazuv penceresini bütün ekrannı tolduracaq şekilde kenişlet',
 'tog-watchcreations'          => 'Men yaratqan saifelerni közetüv cedvelime kirset',
 'tog-watchdefault'            => 'Men deñiştirgen saifelerni közetüv cedvelime kirset',
 'tog-watchmoves'              => 'Menim tarafımdan adı deñiştirilgen saifelerni közetüv cedvelime kirset',
@@ -138,7 +138,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Saifelerde kiçik deñişiklik olğanda da de maña e-mail yolla',
 'tog-enotifrevealaddr'        => 'Bildirüv mektüplerinde e-mail adresimni köster',
 'tog-shownumberswatching'     => 'Közetken qullanıcı sayısını köster',
-'tog-fancysig'                => 'Adiy imza (imzañız yuqarıda belgilegeniñiz kibi körünir. Saifeñizge avtomatik bağlantı yaratılmaz)',
+'tog-fancysig'                => 'İmza vikimetin kibi olsun (avtomatik bağlantı olmaz)',
 'tog-externaleditor'          => 'Deñişikliklerni başqa editor programması ile yap',
 'tog-externaldiff'            => 'Teñeştirmelerni tış programmağa yaptır.',
 'tog-showjumplinks'           => '"Bar" bağlantısını faalleştir',
@@ -395,8 +395,8 @@ Bar olğan bütün mahsus saifelerni [[Special:SpecialPages|{{int:specialpages}}
 # General errors
 'error'                => 'Hata',
 'databaseerror'        => 'Malümat bazasınıñ hatası',
-'dberrortext'          => 'Malümat bazasına hata oldı.
-Bu bir içki hatası ola bile.
+'dberrortext'          => 'Malümat bazasından soratqanda sintaksis hatası oldı.
+Bu yazılımdaki bir hata ola bile.
 "<tt>$2</tt>" funktsiyasından deñengen soñki sorğulama:
 <blockquote><tt>$1</tt></blockquote>.
 MySQL-niñ esabat etkeni hata "<tt>$3: $4</tt>".',
@@ -513,7 +513,9 @@ Em de bu vikideki saifeñizden diger qullanıcılarğa siznen bağlanmağa imkâ
 'noname'                     => 'Qullanıcı adını belgilemediñiz.',
 'loginsuccesstitle'          => 'Kiriş yapıldı',
 'loginsuccess'               => "'''$1 adınen {{SITENAME}} saytında çalışıp olasıñız.'''",
-'nosuchuser'                 => '"$1" adlı qullanıcı yoq. Doğru yazğanıñıznı teşkeriñiz ya da [[Special:UserLogin/signup|yañı qullanıcı esabını açıñız]].',
+'nosuchuser'                 => '"$1" adlı qullanıcı yoq.
+Qullanıcı adlarında büyük ve kiçik arifler arasında farq bar.
+Doğru yazğanıñıznı teşkeriñiz ya da [[Special:UserLogin/signup|yañı qullanıcı esabını açıñız]].',
 'nosuchusershort'            => '"<nowiki>$1</nowiki>" adlı qullanıcı tapılamadı. Adıñıznı doğru yazğanıñızdan emin oluñız.',
 'nouserspecified'            => 'Qullanıcı adını belgilemek kereksiñiz.',
 'wrongpassword'              => 'Kirsetken paroliñiz yañlıştır. Lütfen, tekrar etiñiz.',
@@ -757,7 +759,7 @@ Vikide bu saifege oşağan saifelerni [[Special:Search|tapıp baqıñız]].',
 'revisiondelete'            => 'Versiyalarnı yoq et/keri ketir',
 'revdelete-hide-comment'    => 'Qısqa tarifni kösterme',
 'revdelete-hide-user'       => 'Deñişiklikni yapqan qullanıcı adını/IP-ni gizle',
-'revdelete-hide-restricted' => 'Bu sıñırlavlarnı administratorlar ve qullanıcılar içün işlet',
+'revdelete-hide-restricted' => 'Malümatnı adiy qullanıcılardan kibi administratorlardan da gizle',
 'revdelete-submit'          => 'Saylanğan versiyağa işlet',
 
 # Diffs
@@ -841,7 +843,7 @@ Vikide bu saifege oşağan saifelerni [[Special:Search|tapıp baqıñız]].',
 'recentchangesdays'     => 'Soñki deñişiklikler saifesinde kösterilecek kün sayısı:',
 'recentchangescount'    => 'Çeşit-türlü cedvel ve jurnallarda kösterilgen deñişiklikler ög belgilengen sayısı:',
 'savedprefs'            => 'Sazlamalarıñız saqlandı.',
-'timezonelegend'        => 'Saat quşağı',
+'timezonelegend'        => 'Saat quşağı:',
 'timezonetext'          => 'Viki serveri (UTC/GMT) ile arañızdaki saat farqı. (Ukraina ve Türkiye içün +02:00)',
 'localtime'             => 'Siziñ yerli vaqtıñız',
 'timezoneoffset'        => 'Saat farqı',
@@ -864,12 +866,13 @@ Vikide bu saifege oşağan saifelerni [[Special:Search|tapıp baqıñız]].',
 'userrights-groupsmember'  => 'Azası оlğan gruppalarıñız:',
 
 # Groups
-'group'            => 'Gruppa:',
-'group-user'       => 'Qullanıcılar',
-'group-bot'        => 'Botlar',
-'group-sysop'      => 'Administratorlar',
-'group-bureaucrat' => 'Bürokratlar',
-'group-all'        => '(episi)',
+'group'               => 'Gruppa:',
+'group-user'          => 'Qullanıcılar',
+'group-autoconfirmed' => 'Avtomatik tasdıqlanğan qullanıcılar',
+'group-bot'           => 'Botlar',
+'group-sysop'         => 'Administratorlar',
+'group-bureaucrat'    => 'Bürokratlar',
+'group-all'           => '(episi)',
 
 'group-user-member'       => 'Qullanıcı',
 'group-sysop-member'      => 'Administrator',
@@ -991,7 +994,7 @@ Eger bu faylnı ep bir yüklemege isteseñiz, keri qaytıñız ve fayl ismini de
 'sourcefilename'              => 'Yüklemege istegeniñiz fayl:',
 'destfilename'                => 'Faylnıñ istenilgen adı:',
 'upload-maxfilesize'          => 'Azamiy (maksimal) fayl büyükligi: $1',
-'watchthisupload'             => 'Bu faylnı közetüv cedveline kirset',
+'watchthisupload'             => 'Bu faylnı közet',
 'filewasdeleted'              => 'Bu isimde bir fayl bar edi, amma yoq etilgen edi. Lütfen, tekrar yüklemeden evel $1 teşkeriñiz.',
 'upload-wasdeleted'           => "'''Diqqat: Evelde yoq etilgen faylnı yüklemektesiñiz.'''
 
@@ -1108,7 +1111,9 @@ Belki de olar bir konkret saifege bağlantı olmalı.<br />
 Eger saifede, [[MediaWiki:Disambiguationspage]] saifesinde adı keçken şablon yerleştirilgen olsa, o saife çoq manalıdır.",
 
 'doubleredirects'     => 'Yollamağa olğan yollamalar',
-'doubleredirectstext' => 'Er satırda, ekinci yollama metniniñ ilk satırınıñ (umumen ekinci yollamanıñ da işaret etmek kerek olğanı "asıl" maqsatnıñ) yanında ilk ve ekinci yollamağa bağlantılar bar.',
+'doubleredirectstext' => 'Bu saifede diger yollama saifelerine yollanma olğan saifeleri kösterile.
+Er satırda birinci ve ekinci yollamağa bağlantılar da, ekinci yollamanıñ maqsat saifesi (adetince o birinci yollamanıñ kerekli maqsadı ola) da bar.
+<s>Üstü çızılğan</s> meseleler endi çezilgen.',
 
 'brokenredirects'        => 'Bar olmağan saifege yapılğan yollamalar',
 'brokenredirectstext'    => 'Aşağıdaki yollamalar bar olmağan saifelerge bağlantı bereler:',
@@ -1128,7 +1133,7 @@ Eger saifede, [[MediaWiki:Disambiguationspage]] saifesinde adı keçken şablon 
 'nrevisions'              => '{{PLURAL:$1|1 versiya|$1 versiya}}',
 'nviews'                  => '{{PLURAL:$1|1 körünüv|$1 körünüv}}',
 'lonelypages'             => 'Özüne iç bağlantı olmağan saifeler',
-'lonelypagestext'         => 'İlerideki saifelerge {{SITENAME}} saytınıñ diger saifelerinden bağlantı yoqtır.',
+'lonelypagestext'         => 'Aşağıdaki saifelerge {{SITENAME}} saytındaki diger saifelerden bağlantı berilmegen, ondan da ğayrı mezkür saifeler diger saiferlrge kirsetilmegen.',
 'uncategorizedpages'      => 'Er angi bir kategoriyada olmağan saifeler',
 'uncategorizedcategories' => 'Er angi bir kategoriyada olmağan kategoriyalar',
 'uncategorizedimages'     => 'Er angi bir kategoriyada olmağan resimler',
@@ -1409,35 +1414,36 @@ Bu saifeniñ qorçalav seviyesini deñiştirip olasıñız, amma kaskadlı qorç
 'whatlinkshere-links' => '← bağlantılar',
 
 # Block/unblock
-'blockip'                 => 'Bu IP adresinden irişimni ban et',
-'blockiptext'             => 'Aşağıdaki formanı qullanıp belli bir IP adresiniñ ya da qullanıcınıñ irişimini ban etip olasıñız. Bu tek vandalizmni ban etmek içün ve [[{{MediaWiki:Policy-url}}|qaidelerge]] uyğun olaraq yapılmalı. Aşağığa mıtlaqa ban etüv ile bağlı bir açıqlama yazıñız. (meselâ: Şu saifelerde vandalizm yaptı).',
+'blockip'                 => 'Bu IP adresinden irişimni blok et',
+'blockip-legend'          => 'Qullanıcını blok et',
+'blockiptext'             => 'Aşağıdaki formanı qullanıp belli bir IP adresiniñ ya da qullanıcınıñ irişimini blok etip olasıñız. Bu tek vandalizmni blok etmek içün ve [[{{MediaWiki:Policy-url}}|qaidelerge]] uyğun olaraq yapılmalı. Aşağığa mıtlaqa blok etüv ile bağlı bir izaat yazıñız. (meselâ: Şu saifelerde vandalizm yaptı).',
 'ipaddress'               => 'IP adresi',
 'ipadressorusername'      => 'IP adresi ya da qullanıcı adı',
 'ipbexpiry'               => 'Bitiş müddeti',
 'ipbreason'               => 'Sebep',
-'ipbsubmit'               => 'Bu qullanıcını ban et',
+'ipbsubmit'               => 'Bu qullanıcını blok et',
 'ipbother'                => 'Farqlı zaman',
 'ipboptions'              => '2 saat:2 hours,1 kün:1 day,3 kün:3 days,1 afta:1 week,2 afta:2 weeks,1 ay:1 month,3 ay:3 months,6 ay:6 months,1 yıl:1 year,müddetsiz:infinite', # display1:time1,display2:time2,...
 'ipbotheroption'          => 'farqlı',
 'ipbotherreason'          => 'Diger/ilâveli sebep:',
 'badipaddress'            => 'Yañlış IP adresi',
-'blockipsuccesssub'       => 'IP adresni ban etüv işlevi muvafaqiyetli oldı',
-'blockipsuccesstext'      => '"$1" ban etildi.
-<br />[[Special:IPBlockList|IP adresi ban etilgenler]] cedveline baqıñız .',
-'unblockip'               => 'Qullanıcınıñ ban etüvini çıqar',
+'blockipsuccesssub'       => 'Blok etme muvafaqiyetnen yapıldı',
+'blockipsuccesstext'      => '[[Special:Contributions/$1|$1]] blok etildi.<br />
+Blok etmelerni közden keçirmek içün [[Special:IPBlockList|IP adresi blok etilgenler]] cedveline baqıñız.',
+'unblockip'               => 'Qullanıcınıñ blok etmesini çıqar',
 'ipusubmit'               => 'Bu blok etmeni çıqar',
 'ipblocklist'             => 'Blok etilgen qullanıcılar ve IP adresleri',
 'blocklistline'           => '$1, $2 blok etti: $3 ($4)',
 'infiniteblock'           => 'müddetsiz',
 'expiringblock'           => '$1 tarihında bitecek',
-'blocklink'               => 'ban et',
-'unblocklink'             => 'ban etüvni çıqar',
+'blocklink'               => 'blok et',
+'unblocklink'             => 'blok etmesini çıqar',
 'contribslink'            => 'İsseler',
-'autoblocker'             => 'Avtomatik olaraq ban ettiñiz çünki yaqın zamanda IP adresiñiz "[[User:$1|$1]]" qullanıcısı tarafından qullanıldı. $1 adlı qullanıcınıñ ban etilüvi içün berilgen sebep: "\'\'\'$2\'\'\'"',
-'blocklogpage'            => 'İrişim ban etüv jurnalı',
+'autoblocker'             => 'Avtomatik olaraq blok etildiñiz çünki keçenlerde IP adresiñiz "[[User:$1|$1]]" qullanıcısı tarafından qullanıldı. $1 adlı qullanıcınıñ blok etilüvi içün bildirilgen sebep: "\'\'\'$2\'\'\'"',
+'blocklogpage'            => 'Blok etüv jurnalı',
 'blocklogentry'           => '"[[$1]]" irişimi $2 $3 toqtatıldı. Sebep',
-'blocklogtext'            => 'Mında qullanıcı irişimine yönelik ban etüv ve ban çıqaruv jurnalı cedvellene. Avtomatik IP adresi ban etüvleri cedvelge kirsetilmedi. Al-azırda irişimi toqtatılğan qullanıcılarnı [[Special:IPBlockList|IP ban etüv cedveli]] saifesinden körip olasıñız.',
-'unblocklogentry'         => '$1 qullanıcınıñ ban etüvi çıqarıldı',
+'blocklogtext'            => 'Mında qullanıcı irişimine yönelik blok etüv ve blok çıqaruv qaydları kösterile. Avtomatik IP adresi blok etüvleri cedvelge kirsetilmedi. Şimdi irişimi toqtatılğan qullanıcılarnı [[Special:IPBlockList|IP blok etüv cedveli]] saifesinden körip olasıñız.',
+'unblocklogentry'         => '$1 qullanıcısınıñ blok etmesi çıqarıldı',
 'block-log-flags-noemail' => 'e-mail blok etildi',
 'ipb_expiry_invalid'      => 'Yañlış bitiş zamanı.',
 'ipb_already_blocked'     => '"$1" endi blok etildi',
@@ -1630,7 +1636,7 @@ MediaWiki interfeysiniñ çeşit tillerge tercime etüvde iştirak etmege istese
 # Media information
 'mediawarning'         => "'''DİQQAT!''': Bu faylda yaman maqsatlı (virus kibi) qısım bulunıp ola ve operatsion sistemañızğa zarar ketirip olur.
 <hr />",
-'imagemaxsize'         => 'Resimlerniñ malümat saifelerindeki resimniñ azamiy (maksimal) ölçüsi:',
+'imagemaxsize'         => "Resim ölçüsi sıñırı:<br />''(fayl malümat saifeleri içün)''",
 'thumbsize'            => 'Kiçik ölçü:',
 'widthheightpage'      => '$1 × $2, $3 saife',
 'file-info'            => '(fayl büyükligi: $1, MIME çeşiti: $2)',
@@ -1672,6 +1678,7 @@ Er satır * işaretinen başlamalı. Satırnıñ birinci bağlantısı qоşmağ
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength', # Do not translate list items
 
 # EXIF tags

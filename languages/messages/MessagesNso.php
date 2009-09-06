@@ -785,7 +785,7 @@ Lebelela $2 go hweetša sedi ka diphulo tša bjale.',
 'protectlogpage'              => "''Log'' yago lota",
 'protectedarticle'            => 'lotilwe "[[$1]]"',
 'protect-legend'              => 'Tiišetša go lota',
-'protectcomment'              => 'Ahlaahla:',
+'protectcomment'              => 'Lebaka:',
 'protectexpiry'               => 'Fetatšatši:',
 'protect_expiry_invalid'      => 'Fetatšatši, nako ye ga ya dumelwa.',
 'protect_expiry_old'          => 'Fetatšatši ke ya nako yeo e fetilego.',
@@ -1024,6 +1024,7 @@ letlakala la seswantšho ge tafola ya metadata e bulwa. Tše dingwe tša di ''fi
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength", # Do not translate list items
 
 # EXIF tags

@@ -45,7 +45,7 @@ $messages = array(
 'tog-justify'                 => 'অনুচ্ছেদগুলি যথাযথ ফাঁক দিয়ে সাজানো (justify) হোক',
 'tog-hideminor'               => 'অনুল্লেখ্য সম্পাদনাগুলো সাম্প্রতিক পরিবর্তনে না দেখানো হোক',
 'tog-extendwatchlist'         => 'শুধু সাম্প্রতিক পরিবর্তনই নয়, সকল পরিবর্তন দেখতে নজর তালিকা সম্প্রসারণ করুন।',
-'tog-usenewrc'                => 'উন্নততর সাম্প্রতিক পরিবর্তনসমূহ (জাভাস্ক্রিপ্ট সংস্করণ)',
+'tog-usenewrc'                => 'উন্নততর সাম্প্রতিক পরিবর্তনসমূহ ব্যবহার করুন (জাভাস্ক্রিপ্ট প্রয়োজন)',
 'tog-numberheadings'          => 'শিরোনামগুলোকে স্বয়ংক্রিয়ভাবে ক্রমাঙ্কিত করা হোক',
 'tog-showtoolbar'             => 'সম্পাদনা টুলবার দেখানো হোক (জাভাস্ক্রিপ্ট)',
 'tog-editondblclick'          => 'দুইবার ক্লিক করে পাতা সম্পাদনা করার ক্ষমতা দেয়া হোক (জাভাস্ক্রিপ্ট)',
@@ -53,7 +53,7 @@ $messages = array(
 'tog-editsectiononrightclick' => 'পরিচ্ছেদের শিরোনামে ডান ক্লিকের মাধ্যমে <br />পরিচ্ছেদ সম্পাদনা করার ক্ষমতা দেয়া হোক (জাভাস্ক্রিপ্ট)',
 'tog-showtoc'                 => 'সূচিপত্র দেখানো হোক (৩টির বেশি পরিচ্ছেদের শিরোনামবিশিষ্ট পাতার জন্য)',
 'tog-rememberpassword'        => 'একাধিক সেশনের জন্য শব্দচাবি মনে রাখা হোক',
-'tog-editwidth'               => 'সম্পাদনা বাক্সটি পূর্ণ প্রস্থে আছে',
+'tog-editwidth'               => 'পুরো পর্দা ভরতে সম্পাদনা বাক্সটি প্রসস্ত করো',
 'tog-watchcreations'          => 'আমার তৈরি পাতাগুলি আমার নজরতালিকায় যোগ করা হোক',
 'tog-watchdefault'            => 'আমার সম্পাদিত পাতাগুলি আমার নজরতালিকায় যোগ করা হোক',
 'tog-watchmoves'              => 'আমার সরিয়ে ফেলা পাতাগুলি আমার নজরতালিকায় যোগ করা হোক',
@@ -140,17 +140,19 @@ $messages = array(
 'dec'           => 'ডিসেম্বর',
 
 # Categories related messages
-'pagecategories'                => '{{PLURAL:$1|বিষয়শ্রেণী|বিষয়শ্রেণীসমূহ}}',
-'category_header'               => '"$1" বিষয়শ্রেণীতে অন্তর্ভুক্ত পাতাগুলি',
-'subcategories'                 => 'উপবিষয়শ্রেণীসমূহ',
-'category-media-header'         => '"$1" বিষয়শ্রেণীতে অন্তর্ভুক্ত মিডিয়া ফাইলগুলি',
-'category-empty'                => "''এই বিষয়শ্রণীতে বর্তমানে কোন পাতা বা মিডিয়া ফাইল নেই।''",
-'hidden-categories'             => '{{PLURAL:$1|লুকায়িত বিষয়শ্রেণী|লুকায়িত বিষয়শ্রেণীসমূহ}}',
-'hidden-category-category'      => 'লুকায়িত বিষয়শ্রেণীসমূহ', # Name of the category where hidden categories will be listed
-'category-subcat-count'         => '{{PLURAL:$2|এই বিষয়শ্রেণীতে কেবলমাত্র নিচের উপবিষয়শ্রেণীটি আছে।|এই বিষয়শ্রেণীতে অন্তর্ভুক্ত মোট $2টি উপবিষয়শ্রেণীর মধ্যে{{PLURAL:$1|টি উপবিষয়শ্রেণী|$1টি উপবিষয়শ্রেণী}} নিচে দেখানো হয়েছে।}}',
-'category-subcat-count-limited' => 'এই বিষয়শ্রেণীতে নিচের {{PLURAL:$1|টি উপবিষয়শ্রেণী|$1টি উপবিষয়শ্রেণী আছে}}।',
-'category-article-count'        => '{{PLURAL:$2|এই বিষয়শ্রেণীতে কেবল নিচের পাতাটি আছে।|এই বিষয়শ্রেণীতে অন্তর্ভুক্ত মোট $2টি পাতার মধ্যে {{PLURAL:$1|টি পাতা|$1টি পাতা}} নিচে দেখানো হল।}}',
-'listingcontinuesabbrev'        => 'আরও আছে',
+'pagecategories'                 => '{{PLURAL:$1|বিষয়শ্রেণী|বিষয়শ্রেণীসমূহ}}',
+'category_header'                => '"$1" বিষয়শ্রেণীতে অন্তর্ভুক্ত পাতাগুলি',
+'subcategories'                  => 'উপবিষয়শ্রেণীসমূহ',
+'category-media-header'          => '"$1" বিষয়শ্রেণীতে অন্তর্ভুক্ত মিডিয়া ফাইলগুলি',
+'category-empty'                 => "''এই বিষয়শ্রণীতে বর্তমানে কোন পাতা বা মিডিয়া ফাইল নেই।''",
+'hidden-categories'              => '{{PLURAL:$1|লুকায়িত বিষয়শ্রেণী|লুকায়িত বিষয়শ্রেণীসমূহ}}',
+'hidden-category-category'       => 'লুকায়িত বিষয়শ্রেণীসমূহ', # Name of the category where hidden categories will be listed
+'category-subcat-count'          => '{{PLURAL:$2|এই বিষয়শ্রেণীতে কেবলমাত্র নিচের উপবিষয়শ্রেণীটি আছে।|এই বিষয়শ্রেণীতে অন্তর্ভুক্ত মোট $2টি উপবিষয়শ্রেণীর মধ্যে{{PLURAL:$1|টি উপবিষয়শ্রেণী|$1টি উপবিষয়শ্রেণী}} নিচে দেখানো হয়েছে।}}',
+'category-subcat-count-limited'  => 'এই বিষয়শ্রেণীতে নিচের {{PLURAL:$1|টি উপবিষয়শ্রেণী|$1টি উপবিষয়শ্রেণী আছে}}।',
+'category-article-count'         => '{{PLURAL:$2|এই বিষয়শ্রেণীতে কেবল নিচের পাতাটি আছে।|এই বিষয়শ্রেণীতে অন্তর্ভুক্ত মোট $2টি পাতার মধ্যে {{PLURAL:$1|টি পাতা|$1টি পাতা}} নিচে দেখানো হল।}}',
+'category-article-count-limited' => 'এই {{PLURAL:$1|পাতাটি|$1 পাতাগুলো}} এ বিষয়শ্রেণীতে রয়েছে।',
+'category-file-count-limited'    => 'নিচের {{PLURAL:$1|ফাইলটি|$1 ফাইলগুলো}} এই বিষয়শ্রেণীতে রয়েছে।',
+'listingcontinuesabbrev'         => 'আরও আছে',
 
 'mainpagetext'      => "<big>'''মিডিয়াউইকি সফলভাবে ইন্সটল করা হয়েছে।'''</big>",
 'mainpagedocfooter' => 'কী ভাবে উইকি সফটওয়্যারটি ব্যবহারকার করবেন, তা জানতে [http://meta.wikimedia.org/wiki/Help:Contents ব্যবহারকারী সহায়িকা] দেখুন।
@@ -231,7 +233,7 @@ $messages = array(
 'redirectedfrom'    => '($1 থেকে ঘুরে এসেছে)',
 'redirectpagesub'   => 'পুনর্নির্দেশ পাতা',
 'lastmodifiedat'    => 'এ পাতায় শেষ পরিবর্তন হয়েছিল $2টার সময়, $1 তারিখে।', # $1 date, $2 time
-'viewcount'         => 'এ পাতাটি $1 বার দেখা হয়েছে।',
+'viewcount'         => 'এ পাতাটি {{PLURAL:$1|বার|$1 বার}} দেখা হয়েছে।',
 'protectedpage'     => 'সুরক্ষিত পাতা',
 'jumpto'            => 'ঝাঁপ দাও:',
 'jumptonavigation'  => 'পরিভ্রমন',
@@ -389,6 +391,7 @@ $2',
 'titleprotected'       => "[[User:$1|$1]]-কে এই শিরোনামের পাতা সৃষ্টি করতে বাধা দেয়া হচ্ছে। কারণ: ''$2''।",
 
 # Virus scanner
+'virus-scanfailed'     => 'স্ক্যান করা যাচ্ছে না (কোড $1)',
 'virus-unknownscanner' => 'অজানা এন্টিভাইরাস:',
 
 # Login and logout pages
@@ -804,6 +807,7 @@ $3-এর দেয়া কারণ হল ''$2''",
 'powersearch-ns'            => 'নেমস্পেসে অনুসন্ধান করো:',
 'powersearch-redir'         => 'পুনঃনির্দেশনাসমূহের তালিকা',
 'powersearch-field'         => 'অনুসন্ধান করো',
+'search-external'           => 'বহিঃস্থ অনুসন্ধান',
 'searchdisabled'            => '{{SITENAME}} অনুসন্ধান এখন নিষ্ক্রিয় আছে। আপনি গুগলের মাধ্যমে অনুসন্ধান চালাতে পারেন। লক্ষ্য করুন যে {{SITENAME}}-এর বিষয়বস্তুর উপর গুগলের ইন্ডেক্সগুলি হালনাগাদ না-ও করা থাকতে পারে।',
 
 # Preferences page
@@ -870,19 +874,21 @@ $3-এর দেয়া কারণ হল ''$2''",
 'files'                    => 'ফাইল',
 
 # User rights
-'userrights'               => 'ব্যবহারকারী অধিকার ব্যবস্থাপনা', # Not used as normal message but as header for the special page itself
-'userrights-lookup-user'   => 'ব্যবহারকারী দল ব্যবস্থাপনা করুন',
-'userrights-user-editname' => 'ব্যবহারকারীর নাম লিখুন:',
-'editusergroup'            => 'ব্যবহারকারীর দল সম্পাদনা করো',
-'editinguser'              => "ব্যবহারকারী সম্পাদনা করছেন '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
-'userrights-editusergroup' => 'ব্যবহারকারীর দল সম্পাদনা করো',
-'saveusergroups'           => 'ব্যবহারকারীর দল সংরক্ষণ করো',
-'userrights-groupsmember'  => 'সদস্য:',
-'userrights-reason'        => 'পরিবর্তনের কারণ:',
-'userrights-no-interwiki'  => 'আপনার অন্য উইকিতে ব্যবহারকারী অধিকার সম্পাদনা করার অনুমতি নেই।',
-'userrights-nodatabase'    => '$1 ডাটাবেজটির হয় কোন অস্তিত্ব নেই অথবা এটি স্থানীয় ডাটাবেজ নয়।',
-'userrights-nologin'       => 'ব্যবহারকারী অধিকার প্রযুক্ত করতে হলে আপনাকে কোন প্রশাসকের অ্যাকাউন্টে [[Special:UserLogin|প্রবেশ]] করতে হবে।',
-'userrights-notallowed'    => 'আপনার অ্যাকাউন্ট থেকে ব্যবহারকারী অধিকার প্রযুক্ত করার অনুমতি নেই।',
+'userrights'                  => 'ব্যবহারকারী অধিকার ব্যবস্থাপনা', # Not used as normal message but as header for the special page itself
+'userrights-lookup-user'      => 'ব্যবহারকারী দল ব্যবস্থাপনা করুন',
+'userrights-user-editname'    => 'ব্যবহারকারীর নাম লিখুন:',
+'editusergroup'               => 'ব্যবহারকারীর দল সম্পাদনা করো',
+'editinguser'                 => "ব্যবহারকারী সম্পাদনা করছেন '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
+'userrights-editusergroup'    => 'ব্যবহারকারীর দল সম্পাদনা করো',
+'saveusergroups'              => 'ব্যবহারকারীর দল সংরক্ষণ করো',
+'userrights-groupsmember'     => 'সদস্য:',
+'userrights-reason'           => 'পরিবর্তনের কারণ:',
+'userrights-no-interwiki'     => 'আপনার অন্য উইকিতে ব্যবহারকারী অধিকার সম্পাদনা করার অনুমতি নেই।',
+'userrights-nodatabase'       => '$1 ডাটাবেজটির হয় কোন অস্তিত্ব নেই অথবা এটি স্থানীয় ডাটাবেজ নয়।',
+'userrights-nologin'          => 'ব্যবহারকারী অধিকার প্রযুক্ত করতে হলে আপনাকে কোন প্রশাসকের অ্যাকাউন্টে [[Special:UserLogin|প্রবেশ]] করতে হবে।',
+'userrights-notallowed'       => 'আপনার অ্যাকাউন্ট থেকে ব্যবহারকারী অধিকার প্রযুক্ত করার অনুমতি নেই।',
+'userrights-changeable-col'   => 'দল যা আপনি পরিবর্তন করতে পারেন',
+'userrights-unchangeable-col' => 'দল যা আপনি পরিবর্তন করতে পারবেন না',
 
 # Groups
 'group'               => 'দল:',
@@ -890,30 +896,44 @@ $3-এর দেয়া কারণ হল ''$2''",
 'group-autoconfirmed' => 'স্বয়ংক্রিয়ভাবে নিশ্চিতকৃত ব্যবহারকারীরা',
 'group-bot'           => 'বট',
 'group-sysop'         => 'প্রশাসক',
-'group-bureaucrat'    => 'নীতি নির্ধারক',
+'group-bureaucrat'    => 'ব্যুরোক্রেট',
 'group-all'           => '(সমস্ত)',
 
 'group-user-member'          => 'ব্যবহারকারী',
 'group-autoconfirmed-member' => 'স্বয়ংক্রিয়ভাবে নিশ্চিতকৃত ব্যবহারকারী',
 'group-bot-member'           => 'বট',
 'group-sysop-member'         => 'প্রশাসক',
-'group-bureaucrat-member'    => 'নীতি নির্ধারক',
+'group-bureaucrat-member'    => 'ব্যুরোক্রেট',
 
 'grouppage-user'          => '{{ns:project}}:ব্যবহারকারীগণ',
 'grouppage-autoconfirmed' => '{{ns:project}}:স্বয়ংক্রিয়ভাবে নিশ্চিতকৃত ব্যবহারকারীরা',
 'grouppage-bot'           => '{{ns:project}}:বটগুলি',
 'grouppage-sysop'         => '{{ns:project}}:প্রশাসকেরা',
-'grouppage-bureaucrat'    => '{{ns:project}}:আমলারা',
+'grouppage-bureaucrat'    => '{{ns:project}}:ব্যুরোক্রেট',
 
 # Rights
-'right-read'          => 'পাতাসমূহ পড়ুন',
-'right-edit'          => 'পাতা সম্পাদনা করুন',
-'right-createtalk'    => 'আলোচনা পাতা তৈরি করুন',
-'right-createaccount' => 'নতুন ব্যবহারকারীর অ্যাকাউন্ট তৈরি করুন',
-'right-move'          => 'পাতা সরান',
-'right-upload'        => 'ফাইল আপলোড করুন',
-'right-delete'        => 'পাতা মুছে ফেলুন',
-'right-browsearchive' => 'মুছে ফেলা পাতাসমূহ অনুসন্ধান করুন',
+'right-read'           => 'পাতাসমূহ পড়ুন',
+'right-edit'           => 'পাতা সম্পাদনা করুন',
+'right-createpage'     => 'পাতা তৈরি করো (আলাপের পাতা নয়)',
+'right-createtalk'     => 'আলোচনা পাতা তৈরি করুন',
+'right-createaccount'  => 'নতুন ব্যবহারকারীর অ্যাকাউন্ট তৈরি করুন',
+'right-minoredit'      => 'অনুল্লেখ্য সম্পাদনা হিসেবে চিহ্নিত',
+'right-move'           => 'পাতা সরান',
+'right-upload'         => 'ফাইল আপলোড করুন',
+'right-upload_by_url'  => 'URL থেকে ফাইল আপলোড',
+'right-autoconfirmed'  => 'সেমি-সুরক্ষিত পাতা সম্পাদনা',
+'right-delete'         => 'পাতা মুছে ফেলুন',
+'right-bigdelete'      => 'বিশাল ইতিহাস সম্বলিত পাতা মুছে ফেলো',
+'right-browsearchive'  => 'মুছে ফেলা পাতাসমূহ অনুসন্ধান করুন',
+'right-suppressionlog' => 'ব্যক্তিগত লগ দেখাও',
+'right-block'          => 'সম্পাদনা করতে কোনো ব্যবহারকারীকে বাঁধা দাও',
+'right-blockemail'     => 'ই-মেইল পাঠাতে কোনো ব্যবহারকারীকে বাঁধা দাও',
+'right-editprotected'  => 'সুরক্ষিত পাতা সম্পাদনা (ক্যাসকাডিং সুরক্ষা ছাড়া)',
+'right-editinterface'  => 'ব্যবহারকারী ইন্টারফেস সম্পাদনা',
+'right-editusercssjs'  => 'অন্য ব্যবহারকারীগণের CSS এবং JS ফাইল সম্পাদনা',
+'right-patrol'         => 'অন্যের সম্পাদনা পরীক্ষিত বলে চিহ্নিত করো',
+'right-mergehistory'   => 'পাতার ইতিহাস একীকরণ করুন।',
+'right-userrights'     => 'সকল ব্যবহারকারী অধিকার সম্পাদনা করুন',
 
 # User rights log
 'rightslog'      => 'ব্যবহারকারীর অধিকার লগ',
@@ -922,7 +942,7 @@ $3-এর দেয়া কারণ হল ''$2''",
 'rightsnone'     => '(নেই)',
 
 # Recent changes
-'nchanges'                          => '$1 টি পরিবর্তন',
+'nchanges'                          => '$1 {{PLURAL:$1|পরিবর্তন|পরিবর্তনসমূহ}}',
 'recentchanges'                     => 'সাম্প্রতিক পরিবর্তনসমূহ',
 'recentchangestext'                 => 'এই পাতায় উইকিটির সবচেয়ে সাম্প্রতিক পরিবর্তনগুলি অনুসরণ করুন।',
 'recentchanges-feed-description'    => 'এই ফিডে উইকিটির সবচেয়ে সাম্প্রতিক পরিবর্তনগুলি অনুসরণ করুন।',
@@ -1091,17 +1111,20 @@ $3-এর দেয়া কারণ হল ''$2''",
 'filerevert-badversion'     => 'প্রদত্ত তারিখ ও সময়ের জন্য এই ফাইলটির কোন স্থানীয় সংস্করণ নেই।',
 
 # File deletion
-'filedelete'             => '$1 মুছে ফেলা হোক',
-'filedelete-legend'      => 'ফাইল মুছে ফেলা হোক',
-'filedelete-intro'       => "আপনি '''[[Media:$1|$1]]''' ফাইলটি মুছে ফেলছেন।",
-'filedelete-intro-old'   => "আপনি '''[[Media:$1|$1]]''' ফাইলটির [$4 $3, $2] সংস্করণটি মুছে ফেলছেন।",
-'filedelete-comment'     => 'মন্তব্য:',
-'filedelete-submit'      => 'মুছে ফেলা হোক',
-'filedelete-success'     => "'''$1''' মুছে ফেলা হয়েছে।",
-'filedelete-success-old' => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' ফাইলটির এই $3, $2 সংস্করণটি মুছে ফেলা হয়েছে।</span>',
-'filedelete-nofile'      => "{{SITENAME}}-এ '''$1''' ফাইলটির কোন অস্তিত্ব নেই।",
-'filedelete-nofile-old'  => "নির্দেশিত বৈশিষ্ট্যগুলির জন্য '''$1'''-এর কোন আর্কাইভ সংস্করণ নেই।",
-'filedelete-iscurrent'   => 'আপনি এই ফাইলটির সবচেয়ে সাম্প্রতিক সংস্করণটি মুছে ফেলার চেষ্টা করছেন। অনুগ্রহ করে প্রথমে একটি পূর্বতন সংস্করণে ফাইলটিকে ফেরত নিন।',
+'filedelete'                  => '$1 মুছে ফেলা হোক',
+'filedelete-legend'           => 'ফাইল মুছে ফেলা হোক',
+'filedelete-intro'            => "আপনি '''[[Media:$1|$1]]''' ফাইলটি মুছে ফেলছেন।",
+'filedelete-intro-old'        => "আপনি '''[[Media:$1|$1]]''' ফাইলটির [$4 $3, $2] সংস্করণটি মুছে ফেলছেন।",
+'filedelete-comment'          => 'মন্তব্য:',
+'filedelete-submit'           => 'মুছে ফেলা হোক',
+'filedelete-success'          => "'''$1''' মুছে ফেলা হয়েছে।",
+'filedelete-success-old'      => '<span class="plainlinks">\'\'\'[[Media:$1|$1]]\'\'\' ফাইলটির এই $3, $2 সংস্করণটি মুছে ফেলা হয়েছে।</span>',
+'filedelete-nofile'           => "{{SITENAME}}-এ '''$1''' ফাইলটির কোন অস্তিত্ব নেই।",
+'filedelete-nofile-old'       => "নির্দেশিত বৈশিষ্ট্যগুলির জন্য '''$1'''-এর কোন আর্কাইভ সংস্করণ নেই।",
+'filedelete-iscurrent'        => 'আপনি এই ফাইলটির সবচেয়ে সাম্প্রতিক সংস্করণটি মুছে ফেলার চেষ্টা করছেন। অনুগ্রহ করে প্রথমে একটি পূর্বতন সংস্করণে ফাইলটিকে ফেরত নিন।',
+'filedelete-otherreason'      => 'অন্য/বাড়তি কারণ:',
+'filedelete-reason-otherlist' => 'অন্য কারণ',
+'filedelete-edit-reasonlist'  => 'অপসারণের কারণ সম্পাদনা',
 
 # MIME search
 'mimesearch'         => 'MIME অনুসন্ধান',
@@ -1152,15 +1175,16 @@ $3-এর দেয়া কারণ হল ''$2''",
 
 'withoutinterwiki'         => 'ভাষার সংযোগহীন পাতাসমূহ',
 'withoutinterwiki-summary' => 'এই পাতা সমূহ অন্য ভাষার সংস্করণের সাথে সংযুক্ত নয়:',
+'withoutinterwiki-legend'  => 'উপসর্গ',
 'withoutinterwiki-submit'  => 'দেখাও',
 
 'fewestrevisions' => 'সবচেয়ে কমসংখ্যক সংশোধিত পাতাগুলি',
 
 # Miscellaneous special pages
-'nbytes'                  => '$1 বাইট',
+'nbytes'                  => '$1 {{PLURAL:$1|বাইট|বাইট}}',
 'ncategories'             => '$1 টি বিষয়শ্রেণী',
 'nlinks'                  => '$1টি সংযোগ',
-'nmembers'                => '$1টি নিবন্ধ',
+'nmembers'                => '$1 {{PLURAL:$1|সদস্য|সদস্যবৃন্দ}}',
 'nrevisions'              => '$1 বার সম্পাদিত',
 'nviews'                  => '$1 {{PLURAL:$1|বার দেখা হয়েছে|বার দেখা হয়েছে}}',
 'specialpage-empty'       => 'এই রিপোর্টের জন্য কোন ফলাফল নেই।',
@@ -1249,6 +1273,8 @@ $3-এর দেয়া কারণ হল ''$2''",
 'listusers-noresult' => 'কোন ব্যবহারকারী খুঁজে পাওয়া যায়নি।',
 
 # Special:ListGroupRights
+'listgrouprights-group'   => 'দল',
+'listgrouprights-rights'  => 'অধিকারসমূহ',
 'listgrouprights-members' => '(সদস্যদের তালিকা)',
 
 # E-mail user
@@ -1395,7 +1421,7 @@ $NEWPAGE
 'unprotectedarticle'          => '"[[$1]]"-এর সুরক্ষা সরিয়ে নেওয়া হয়েছে',
 'protect-title'               => '"$1" সুরক্ষিত করা হচ্ছে',
 'protect-legend'              => 'সুরক্ষা নিশ্চিত করুন',
-'protectcomment'              => 'সুরক্ষার কারণ',
+'protectcomment'              => 'কারণ:',
 'protectexpiry'               => 'মেয়াদোত্তীর্ণ হবে:',
 'protect_expiry_invalid'      => 'মেয়াদোত্তীর্ণ সময় অবৈধ।',
 'protect_expiry_old'          => 'মেয়াদোত্তীর্ণ সময় অতীতে অবস্থিত।',
@@ -1425,6 +1451,7 @@ $NEWPAGE
 'restriction-edit'   => 'সম্পাদনা',
 'restriction-move'   => 'সরিয়ে নেওয়া',
 'restriction-create' => 'সৃষ্টি করা হোক',
+'restriction-upload' => 'আপলোড',
 
 # Restriction levels
 'restriction-level-sysop'         => 'সম্পূর্ণ সুরক্ষিত',
@@ -1470,6 +1497,7 @@ $NEWPAGE
 'undelete-error-long'          => 'ফাইলটি মোছা বাতিল করতে গিয়ে ত্রুটি ঘটেছে:
 
 $1',
+'undelete-show-file-submit'    => 'হ্যা',
 
 # Namespace form on various pages
 'namespace'      => 'নামস্থান:',
@@ -1507,7 +1535,9 @@ $1',
 'whatlinkshere-next'       => '{{PLURAL:$1|পরবর্তী|পরবর্তী $1টি}}',
 'whatlinkshere-links'      => '← সংযোগগুলি',
 'whatlinkshere-hideredirs' => '$1 টি পুননির্দেশনা',
+'whatlinkshere-hidetrans'  => '$1 ট্রান্সক্লুশন',
 'whatlinkshere-hidelinks'  => '$1 টি সংযোগ',
+'whatlinkshere-hideimages' => '$1 চিত্র সংযোগ',
 'whatlinkshere-filters'    => 'ছাকনী',
 
 # Block/unblock
@@ -1895,6 +1925,7 @@ $1',
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength', # Do not translate list items
 
 # EXIF tags
@@ -2226,6 +2257,7 @@ $1',
 'imgmultipageprev' => '← পূর্ববর্তী পাতা',
 'imgmultipagenext' => 'পরবর্তী পাতা →',
 'imgmultigo'       => 'চলো!',
+'imgmultigoto'     => '$1 পাতায় চলো',
 
 # Table pager
 'ascending_abbrev'         => 'আরোহণ',
@@ -2287,6 +2319,10 @@ $1',
 
 # Special:Version
 'version'                  => 'সংস্করণ', # Not used as normal message but as header for the special page itself
+'version-specialpages'     => 'বিশেষ পাতাসমূহ',
+'version-other'            => 'অন্য',
+'version-license'          => 'লাইসেন্স',
+'version-software'         => 'ইনস্টলকৃত সফটওয়্যার',
 'version-software-product' => 'পণ্য',
 'version-software-version' => 'সংস্করণ',
 
@@ -2296,7 +2332,8 @@ $1',
 'filepath-submit' => 'পথ',
 
 # Special:FileDuplicateSearch
-'fileduplicatesearch-submit' => 'অনুসন্ধান',
+'fileduplicatesearch-filename' => 'ফাইলনাম:',
+'fileduplicatesearch-submit'   => 'অনুসন্ধান',
 
 # Special:SpecialPages
 'specialpages'                   => 'বিশেষ পাতাসমূহ',

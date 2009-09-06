@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Chrisportelli
  * @author Malafaya
  * @author Nov ialiste
  * @author nov.wikipedia.org sysops
@@ -99,7 +100,7 @@ $messages = array(
 'printableversion' => 'Printindi versione',
 'permalink'        => 'Permananti linke',
 'print'            => 'Printa',
-'edit'             => 'Modifika',
+'edit'             => 'Immodifika',
 'editthispage'     => 'Modifika disi pagine',
 'delete'           => 'Ekarta',
 'deletethispage'   => 'Ekarta disi pagine',

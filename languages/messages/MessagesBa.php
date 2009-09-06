@@ -99,6 +99,9 @@ $messages = array(
 'nov'           => 'Ноябрь (Ҡырпағай)',
 'dec'           => 'Декабрь (Аҡъюлай)',
 
+# Categories related messages
+'pagecategories' => '{{PLURAL:$1|Төркөм|Төркөмдәр}}',
+
 'about'          => 'Тасуирлау',
 'article'        => 'Мәҡәлә',
 'newwindow'      => '(яңы биттә)',
@@ -113,6 +116,7 @@ $messages = array(
 
 'errorpagetitle'   => 'Хата',
 'returnto'         => '$1 битенә ҡайтыу.',
+'tagline'          => '{{SITENAME}} проектынан',
 'help'             => 'Белешмә',
 'search'           => 'Эҙләү',
 'searchbutton'     => 'Табыу',
@@ -123,18 +127,22 @@ $messages = array(
 'info_short'       => 'Мәғлүмәт',
 'printableversion' => 'Ҡағыҙға баҫыу өлгөһө',
 'permalink'        => 'Даими һылтау',
-'edit'             => 'Үҙгәртергә',
+'edit'             => 'Үҙгәртеү',
 'editthispage'     => 'Был мәҡәләне үҙгәртергә',
 'delete'           => 'Юҡ  итергә',
 'protect'          => 'Һаҡларға',
 'talkpage'         => 'Фекер алышыу',
+'talkpagelinktext' => 'Фекер алышыу',
 'specialpage'      => 'Ярҙамсы бит',
+'personaltools'    => 'Шәхси ҡоралдар',
 'articlepage'      => 'Мәҡәләне ҡарап сығырға',
 'talk'             => 'Фекер алышыу',
-'toolbox'          => 'Ярҙамсы йүнәлештәр',
+'views'            => 'Ҡарауҙар',
+'toolbox'          => 'Ҡоралдар',
 'otherlanguages'   => 'Башҡа телдәрҙә',
 'lastmodifiedat'   => 'Был биттең һуңғы тапҡыр үҙгәртелеү ваҡыты: $2, $1 .', # $1 date, $2 time
 'jumpto'           => 'Унда күсергә:',
+'jumptonavigation' => 'төп йүнәлештәр',
 'jumptosearch'     => 'эҙләү',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
@@ -151,16 +159,22 @@ $messages = array(
 'portal'               => 'Берләшмә',
 'portal-url'           => 'Project:Берләшмә ҡоро',
 'privacy'              => 'Сер һаҡлау сәйәсәте',
+'privacypage'          => 'Project:Сер һаҡлау сәйәсәте',
 
-'editsection' => 'үҙгәртергә',
-'toc'         => 'Эстәлеге',
-'showtoc'     => 'күрһәтергә',
-'hidetoc'     => 'йәшерергә',
+'retrievedfrom'   => 'Сығанағы — «$1»',
+'editsection'     => 'үҙгәртергә',
+'editsectionhint' => '$1 бүлеген үҙгәртеү',
+'toc'             => 'Эстәлеге',
+'showtoc'         => 'күрһәтергә',
+'hidetoc'         => 'йәшерергә',
+'site-rss-feed'   => '$1 — RSS таҫмаһы',
+'site-atom-feed'  => '$1 — Atom таҫмаһы',
+'red-link-title'  => '$1 (был бит юк)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
 'nstab-main'      => 'Мәҡәлә',
 'nstab-user'      => 'Ҡатнашыусы',
-'nstab-special'   => 'Ярҙамсы бит',
+'nstab-special'   => 'Махсус бит',
 'nstab-mediawiki' => 'MediaWiki белдереүе',
 
 # General errors
@@ -212,6 +226,17 @@ $messages = array(
 'yourtext'       => 'Һеҙҙең текст',
 'yourdiff'       => 'Айырмалыҡтар',
 
+# Diffs
+'lineno'   => '$1 юл:',
+'editundo' => 'кире алыу',
+
+# Search results
+'searchresults'             => 'Эҙләү һөҙөмтәләре',
+'viewprevnext'              => '($1) ($2) ($3) ҡарарға',
+'search-result-size'        => '$1 ({{PLURAL:$2|$2 һүҙ|$2 һүҙҙәр}})',
+'search-mwsuggest-enabled'  => 'кәңәштәр менән',
+'search-mwsuggest-disabled' => 'кәңәшһеҙ',
+
 # Preferences page
 'preferences' => 'Көйләүҙәр',
 
@@ -219,14 +244,24 @@ $messages = array(
 'editinguser' => "Мөхәрирләү  '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]] | [[Special:Contributions/$1|{{int:contribslink}}]])",
 
 # Groups
-'group-all' => '(бөтә)',
+'group-sysop' => 'Хәкимдәр',
+'group-all'   => '(бөтә)',
+
+'grouppage-sysop' => '{{ns:project}}:Хәкимдәр',
 
 # Recent changes
 'recentchanges'     => 'Һуңғы үҙгәртеүҙәр',
 'recentchangestext' => '{{grammar:genitive|{{SITENAME}}}}. биттәрендә индерелгән һуңғы үҙгәртеүҙәр исемлеге',
+'hist'              => 'тарих',
+'minoreditletter'   => 'ә',
+'newpageletter'     => 'Я',
+'boteditletter'     => 'б',
 
 # Recent changes linked
 'recentchangeslinked' => 'Бәйле үҙгәртеүҙәр',
+
+# Upload
+'upload' => 'Файл күсереү',
 
 # Special:ImageList
 'imagelist_user' => 'Ҡатнашыусы',
@@ -244,6 +279,7 @@ $messages = array(
 'userstatstext' => "Бөтәһе '''$1''' ҡатнашыусы теркәлгән, шуларҙан '''$2''' ($4 %) хәким бурыстарын үтәй.",
 
 # Miscellaneous special pages
+'nbytes'            => '$1 {{PLURAL:$1|байт}}',
 'listusers'         => 'Ҡатнашыусылар исемлеге',
 'newpages-username' => 'Ҡатнашыусы:',
 'ancientpages'      => 'Иң иҫке мәҡәләләр',
@@ -251,6 +287,7 @@ $messages = array(
 
 # Special:Log
 'specialloguserlabel' => 'Ҡатнашыусы:',
+'log'                 => 'Журналдар',
 
 # Special:AllPages
 'allpages'          => 'Бөтә биттәр',
@@ -283,10 +320,11 @@ $messages = array(
 
 # Delete/protect/revert
 'actioncomplete' => 'Ғәмәл үтәлде',
+'protectcomment' => 'Сәбәп:',
 
 # Namespace form on various pages
 'namespace'      => 'Исемдәр арауығы:',
-'blanknamespace' => 'Мәҡәләләр',
+'blanknamespace' => '(Төп)',
 
 # Contributions
 'contributions' => 'Ҡатнашыусы өлөшө',
@@ -296,10 +334,34 @@ $messages = array(
 'whatlinkshere' => 'Бында һылтанмалар',
 
 # Block/unblock
-'blockip' => 'Ҡатнашыусыны ябыу',
+'blockip'      => 'Ҡатнашыусыны ябыу',
+'blocklink'    => 'ябып ҡуйырға',
+'contribslink' => 'индергән өлөш',
 
 # Namespace 8 related
 'allmessagesname' => 'Хәбәр',
+
+# Tooltip help for the actions
+'tooltip-pt-login'              => 'Бында теркәлеү үтергә була, әмма был эш мәҗбүри түгел.',
+'tooltip-ca-talk'               => 'Биттең эстәлеге тураһында фекер алышу',
+'tooltip-ca-edit'               => 'Һеҙ был битте үҙгәртә алаһығыҙ. Зинһар, яҙып ҡуйыр алдынан ҡарап сығығыҙ',
+'tooltip-ca-history'            => 'Биттең төҙәтеүҙәр исемлеге',
+'tooltip-search'                => 'Эҙләргә {{SITENAME}}',
+'tooltip-search-go'             => 'Нәҡ ошондай исеме булған биткә күсергә',
+'tooltip-search-fulltext'       => 'Ошондай эстәлекле биттәрҙе табырға',
+'tooltip-n-mainpage'            => 'Баш биткә күсергә',
+'tooltip-n-portal'              => 'Проект тураһында, һеҙ нимә эшләй алауығыҙ һәм нимә ҡайҙа булыуы тураһында',
+'tooltip-n-recentchanges'       => 'Һуңғы үҙгәртеүҙәр исемлеге',
+'tooltip-n-randompage'          => 'Осраҡлы битте ҡарарға',
+'tooltip-n-help'                => '«{{SITENAME}}» буйынса белешмә',
+'tooltip-t-whatlinkshere'       => 'Был биткә һылталанған барлык биттәрҙең исемлеге',
+'tooltip-t-recentchangeslinked' => 'Был биттән һылталанған биттәрҙә һуңғы үҙгәртүҙәр',
+'tooltip-t-upload'              => 'Рәсем йәки тауыш эстәлекле файлдарҙы күсереп яҙырға',
+'tooltip-t-specialpages'        => 'Барлыҡ махсус биттәр исемлеге',
+'tooltip-t-print'               => 'Был биттең ҡағыҙға баҫыу өлгөһө',
+'tooltip-t-permalink'           => 'Биттең был өлгөһөнә даими һылтанма',
+'tooltip-ca-nstab-main'         => 'Мәҡәләнең эстәлеге',
+'tooltip-ca-nstab-special'      => 'Был махсус бит, уны үҙгәртеп булмай',
 
 # Attribution
 'siteuser'  => '{{grammar:genitive|{{SITENAME}}}} - ла ҡатнашыусы $1',

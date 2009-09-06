@@ -1223,7 +1223,7 @@ $3 келтірілген себебі: ''$2''",
 
 # Preferences page
 'preferences'              => 'Бапталымдар',
-'mypreferences'            => 'Бапталымдарым',
+'mypreferences'            => 'Баптауларым',
 'prefs-edits'              => 'Өңдеме саны:',
 'prefsnologin'             => 'Кірмегенсіз',
 'prefsnologintext'         => 'Пайдаланушылық бапталымдарыңызды қою үшін [[{{#special:Userlogin}}|кіруіңіз]] жөн.',
@@ -2115,7 +2115,7 @@ $1',
 'unblockip'                   => 'Қатысушыны бұғаттамау',
 'unblockiptext'               => 'Төмендегі пішінді алдындағы IP мекенжайымен не атымен бұғатталған қатысушыға жазу қатынауын қалпына келтіріуі үшін қолданыңыз.',
 'ipusubmit'                   => 'Осы мекенжайды бұғаттамау',
-'unblocked'                   => '[[{{ns:user}}:$1|$1]] бұғаттауы өшірілді',
+'unblocked'                   => '[[User:$1|$1]] бұғаттауы өшірілді',
 'unblocked-id'                => '$1 бұғаттау аласталды',
 'ipblocklist'                 => 'Бұғатталған қатысушы / IP мекенжай тізімі',
 'ipblocklist-legend'          => 'Бұғатталған қатысушыны табу',
@@ -2523,6 +2523,7 @@ $1',
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength', # Do not translate list items
 
 # EXIF tags

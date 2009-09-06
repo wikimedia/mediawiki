@@ -227,14 +227,14 @@ $messages = array(
 'talkpagelinktext'  => 'பேச்சு',
 'specialpage'       => 'சிறப்புப் பக்கம்',
 'personaltools'     => 'தனிப்பட்ட பயன்பாட்டுக் கருவிகள்',
-'postcomment'       => 'கருத்துக்களை அனுப்பு',
+'postcomment'       => 'புதிய கருத்து',
 'articlepage'       => 'உள்ளடக்கப் பக்கத்தைப் பார்',
 'talk'              => 'உரையாடல்',
 'views'             => 'பார்வைகள்',
 'toolbox'           => 'கருவிப் பெட்டி',
 'userpage'          => 'பயனர் பக்கத்தைப் பார்',
 'projectpage'       => 'திட்டப் பக்கத்தைப் பார்',
-'imagepage'         => 'படிமப் பக்கத்தைப் பார்',
+'imagepage'         => 'கோப்புப் பக்கத்தை நோக்க',
 'mediawikipage'     => 'தகவல் பக்கத்தைப் பார்',
 'templatepage'      => 'வார்ப்புரு பக்கத்தைப் பார்',
 'viewhelppage'      => 'உதவிப் பக்கததைப் பார்',
@@ -1969,6 +1969,7 @@ $1',
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength', # Do not translate list items
 
 # EXIF tags

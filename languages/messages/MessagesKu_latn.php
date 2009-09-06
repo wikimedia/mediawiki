@@ -1154,12 +1154,10 @@ Eger tu dixazê lîstêya xwe yê şopandinê biguherînê, li
 'deletecomment'               => 'Sedema jêbirinê',
 'deleteotherreason'           => 'Sedemekî din:',
 'deletereasonotherlist'       => 'Sedemekî din',
-'deletereason-dropdown'       => "*Sedemên jêbirinê
-** vandalîzm
+'deletereason-dropdown'       => '*Sedemên jêbirinê
 ** vala
 ** ne girek e
-** ne gotarek e
-** ceribandina IP'yekê",
+** vandalîzm',
 'delete-edit-reasonlist'      => 'Sedemên jêbirinê biguherîne',
 'delete-toobig'               => 'Dîroka vê rûpelê pir mezin e, zêdetirî $1 guherandin. Jêbirina van rûpelan hatîye sînorkirin, ji bo pir şaşbûn (error) di {{SITENAME}} da çênebin.',
 'delete-warning-toobig'       => "Dîroka vê rûpelê pir mezin e, zêdetirî $1 guherandin. Jêbirina van rûpelan dikarin şaşbûnan di database'ê {{SITENAME}} da çêkin; zandibe tu çi dikê!",

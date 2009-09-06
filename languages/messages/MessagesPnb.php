@@ -186,11 +186,11 @@ $messages = array(
 'edithelp'             => 'لکھن وچ مدد',
 'edithelppage'         => 'Help:لکھنا',
 'helppage'             => 'Help:فہرست',
-'mainpage'             => 'پہلا صفحہ',
-'mainpage-description' => 'پہلا صفحہ',
+'mainpage'             => 'پہلا صفہ',
+'mainpage-description' => 'پہلا صفہ',
 'policy-url'           => 'Project:پالیسی',
-'portal'               => 'بوآ',
-'portal-url'           => 'Project:بوآ',
+'portal'               => 'بیٹھک',
+'portal-url'           => 'Project:بیٹھک',
 'privacy'              => 'حفاظتی پالیسی',
 'privacypage'          => 'Project:حفاظتی پالیسی',
 
@@ -1086,7 +1086,7 @@ $messages = array(
 'tooltip-search'                  => 'کھوج {{SITENAME}}',
 'tooltip-search-go'               => 'اس ناں دے صفحے تے چلو، اگر اے ہے گا اے',
 'tooltip-search-fulltext'         => 'اس لفظ نوں صفحیاں چ لبو',
-'tooltip-p-logo'                  => 'پہلا صفحہ',
+'tooltip-p-logo'                  => 'پہلا صفہ',
 'tooltip-n-mainpage'              => 'پہلے صفحے دی سیر',
 'tooltip-n-portal'                => 'منصوبے دے بارے وچ، توسی کی کر سکدے او تے کنج کھوج سکدے او',
 'tooltip-n-currentevents'         => 'موجودہ حالات تے پچھلیاں معلومات دیکھو',
@@ -1162,6 +1162,7 @@ $messages = array(
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength', # Do not translate list items
 
 # EXIF tags
@@ -1280,7 +1281,7 @@ $messages = array(
 # Table pager
 'table_pager_next'  => 'اگلا صفحہ',
 'table_pager_prev'  => 'پچھلا صفحہ',
-'table_pager_first' => 'پہلا صفحہ',
+'table_pager_first' => 'پہلا صفہ',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'ملدیاں ہوئیاں تبدیلیاں ویکھو',

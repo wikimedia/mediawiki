@@ -1514,10 +1514,9 @@ Të gjitha kohët janë sipas orës së shërbyesit.',
 'deleteotherreason'           => 'Arsye tjetër:',
 'deletereasonotherlist'       => 'Arsyeja tjetër',
 'deletereason-dropdown'       => '*Arsye për grisje:
-** Vandalizëm
-** Përmbajtje jo-enciklopedike
 ** Pa të drejtë autori
-** Kërkesë nga autori',
+** Kërkesë nga autori
+** Vandalizëm',
 'delete-edit-reasonlist'      => 'Redakto arsyet e grisjes',
 'rollback'                    => 'Riktheji mbrapsh redaktimet',
 'rollback_short'              => 'Riktheje',
@@ -2024,6 +2023,7 @@ Të tjerat do të fshihen.
 * datetimeoriginal
 * exposuretime
 * fnumber
+* isospeedratings
 * focallength', # Do not translate list items
 
 # EXIF tags
