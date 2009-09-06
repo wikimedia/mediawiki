@@ -525,7 +525,12 @@ class HTMLTextField extends HTMLFormField {
 
 	function getInputHTML( $value ) {
 		global $wgHtml5;
-		$attribs = array( 'id' => $this->mID );
+		$attribs = array(
+			'id' => $this->mID,
+			'name' => $this->mName,
+			'size' => $this->getSize(),
+			'value' => $value,
+		);
 
 		if ( isset( $this->mParams['maxlength'] ) ) {
 			$attribs['maxlength'] = $this->mParams['maxlength'];
@@ -562,23 +567,18 @@ class HTMLTextField extends HTMLFormField {
 					$attribs['type'] = 'number';
 					$attribs['step'] = 'any';
 					break;
+				case 'password':
+					$attribs['type'] = 'password';
+					break;
 				}
 			}
 		}
 
-		$func = $this->mFunction;
-		return Xml::$func(
-			$this->mName,
-			$this->getSize(),
-			$value,
-			$attribs
-		);
+		return Html::element( 'input', $attribs );
 	}
 }
 
-class HTMLPasswordField extends HTMLTextField {
-	protected $mFunction = 'password';
-}
+class HTMLPasswordField extends HTMLTextField {}
 
 class HTMLFloatField extends HTMLTextField {
 	function getSize() {
