@@ -21,12 +21,12 @@ class HTMLForm {
 		'int' => 'HTMLIntField',
 		'float' => 'HTMLFloatField',
 		'info' => 'HTMLInfoField',
-		'password' => 'HTMLPasswordField',
 		'selectorother' => 'HTMLSelectOrOtherField',
 		# HTMLTextField will output the correct type="" attribute automagically.
 		# There are about four zillion other HTML 5 input types, like url, but
 		# we don't use those at the moment, so no point in adding all of them.
 		'email' => 'HTMLTextField',
+		'password' => 'HTMLTextField',
 	);
 
 	function __construct( $descriptor, $messagePrefix ) {
@@ -577,8 +577,6 @@ class HTMLTextField extends HTMLFormField {
 		return Html::element( 'input', $attribs );
 	}
 }
-
-class HTMLPasswordField extends HTMLTextField {}
 
 class HTMLFloatField extends HTMLTextField {
 	function getSize() {
