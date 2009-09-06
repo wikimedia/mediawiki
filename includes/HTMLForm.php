@@ -21,6 +21,7 @@ class HTMLForm {
 		'int' => 'HTMLIntField',
 		'float' => 'HTMLFloatField',
 		'info' => 'HTMLInfoField',
+		'password' => 'HTMLPasswordField',
 		'selectorother' => 'HTMLSelectOrOtherField',
 		# HTMLTextField will output the correct type="" attribute automagically.
 		# There are about four zillion other HTML 5 input types, like url, but
@@ -515,6 +516,9 @@ abstract class HTMLFormField {
 }
 
 class HTMLTextField extends HTMLFormField {
+	# Override in derived classes to use other Xml::... functions
+	protected $mFunction = 'input';
+	
 	function getSize() {
 		return isset( $this->mParams['size'] ) ? $this->mParams['size'] : 45;
 	}
@@ -562,13 +566,18 @@ class HTMLTextField extends HTMLFormField {
 			}
 		}
 
-		return Xml::input(
+		$func = $this->mFunction;
+		return Xml::$func(
 			$this->mName,
 			$this->getSize(),
 			$value,
 			$attribs
 		);
 	}
+}
+
+class HTMLPasswordField extends HTMLTextField {
+	protected $mFunction = 'password';
 }
 
 class HTMLFloatField extends HTMLTextField {
