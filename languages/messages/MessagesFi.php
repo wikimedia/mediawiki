@@ -2091,8 +2091,8 @@ Viimeisimmän muokkauksen on tehnyt käyttäjä [[User:$3|$3]] ([[User talk:$3|k
 'editcomment'       => "Muokkauksen yhteenveto oli: ''$1''.",
 'revertpage'        => 'Käyttäjän [[Special:Contributions/$2|$2]] ([[User talk:$2|keskustelu]]) muokkaukset kumottiin ja sivu palautettiin viimeisimpään käyttäjän [[User:$1|$1]] tekemään versioon.',
 'revertpage-nouser' => 'Käyttäjän (käyttäjänimi poistettu) muokkaukset kumottiin ja sivu palautettiin viimeisimpään käyttäjän [[User:$1|$1]] tekemään versioon.',
-'rollback-success'  => 'Käyttäjän ”$1” tekemät muokkaukset kumottiin ja artikkeli palautettiin käyttäjän $2 versioon.',
-'sessionfailure'    => 'Istuntosi kanssa on ongelma. Muutosta ei toteutettu varotoimena sessionkaappauksien takia. Käytä selaimen paluutoimintoa ja päivitä sivu, jolta tulit, ja yritä uudelleen.',
+'rollback-success'  => 'Käyttäjän ”$1” tekemät muokkaukset kumottiin ja sivu palautettiin käyttäjän $2 versioon.',
+'sessionfailure'    => 'Istuntosi kanssa on ongelma. Muutosta ei toteutettu varotoimena istuntokaappauksien takia. Käytä selaimen paluutoimintoa ja päivitä sivu, jolta tulit, ja yritä uudelleen.',
 
 # Protect
 'protectlogpage'              => 'Suojausloki',

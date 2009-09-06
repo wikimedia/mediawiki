@@ -449,12 +449,12 @@ Ieu bisa nunjukkeun ayana kutu na parabot leuleusna.
 Pamundut databasis nu panungtungan nyaéta:
 <blockquote><tt>$1</tt></blockquote>
 ti antara fungsi "<tt>$2</tt>".
-$5 ngahasilkeun kasalahan "<tt>$3: $4</tt>".',
+MySQL ngahasilkeun kasalahan "<tt>$3: $4</tt>".',
 'dberrortextcl'        => 'Kasalahan rumpaka mundut databasis.
 Pamuncut databasis nu panungtungan nyaéta:
 "$1"
 ti antara fungsi "$2".
-$5 ngahasilkeun kasalahan "$3: $4".',
+MySQL ngahasilkeun kasalahan "$3: $4".',
 'laggedslavemode'      => 'Awas: kandungan kaca bisa baé teu mutahir.',
 'readonly'             => 'pangkalan data dikonci',
 'enterlockreason'      => 'Asupkeun alesan pikeun ngonci, kaasup kira-kira iraha konci ieu rék dibuka',

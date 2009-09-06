@@ -1667,8 +1667,17 @@ Log penghapusan berkas adalah sebagai berikut:",
 Peladen anda tidak diatur untuk melewatkan informasi ini.
 Ini mungkin CGI-based dan tidak ditunjang img_auth.
 Lihat http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
+'img-auth-notindir'     => 'Alur yang diminta tidak diatur dalam direktori ungahan.',
 'img-auth-badtitle'     => 'Tidak dapat membangun judul yang sah dari "$1".',
 'img-auth-nologinnWL'   => 'Anda tidak masuk log dan "$1" tidak dalam daftar putih.',
+'img-auth-nofile'       => 'Berkas "$1" tidak ada.',
+'img-auth-isdir'        => 'Anda mencoba mengakses direktori "$1".
+Hanya akses berkas di bolehkan.',
+'img-auth-streaming'    => 'Streaming "$1".',
+'img-auth-public'       => 'Fungsi dari img_auth.php adalah mengeluarkan berkas dari wiki pribadi.
+Wiki ini di atur sebagai wiki umum.
+Untuk pilihan keamanan, img_auth.php dinonaktifkan.',
+'img-auth-noread'       => 'Pengguna tidak memiliki akses untuk membaca "$1".',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'URL tidak dapat dihubungi',

@@ -2225,7 +2225,7 @@ Současné nastavení pro tuto stránku je: '''$1''':",
 'protect-summary-cascade'     => 'kaskádový',
 'protect-expiring'            => 'vyprší $1 (UTC)',
 'protect-expiry-indefinite'   => 'do odvolání',
-'protect-cascade'             => 'Kaskádní zámek - zamkne všechny stránky vložené do této stránky.',
+'protect-cascade'             => 'Zamknout stránky vložené do této stránky (kaskádový zámek)',
 'protect-cantedit'            => 'Nemůžete měnit nastavení zámků této stránky, protože nemáte povoleno tuto stránku editovat.',
 'protect-othertime'           => 'Jiný čas vypršení:',
 'protect-othertime-op'        => 'jiný čas',
@@ -2764,7 +2764,7 @@ Pokud si přejete přispívat k lokalizaci programu MediaWiki, navštivte [http:
 'mw_math_html'   => 'HTML pokud je to možné, jinak PNG',
 'mw_math_source' => 'Ponechat jako TeX (pro textové prohlížeče)',
 'mw_math_modern' => 'Doporučené nastavení pro moderní prohlížeče',
-'mw_math_mathml' => 'MathML pokud je podporováno (experimentální)',
+'mw_math_mathml' => 'MathML, pokud je podporováno (experimentální)',
 
 # Math errors
 'math_failure'          => 'Nelze pochopit',

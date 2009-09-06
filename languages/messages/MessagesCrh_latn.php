@@ -389,12 +389,12 @@ Bar olğan bütün mahsus saifelerni [[Special:SpecialPages|{{int:specialpages}}
 Bu yazılımdaki bir hata ola bile.
 "<tt>$2</tt>" funktsiyasından deñengen soñki sorğulama:
 <blockquote><tt>$1</tt></blockquote>.
-$5-niñ esabat etken hatası "<tt>$3: $4</tt>".',
+MySQL-niñ esabat etken hatası "<tt>$3: $4</tt>".',
 'dberrortextcl'        => 'Malümat bazasından soratqanda sintaksis hatası çıqtı.
 Malümat bazasından soñki soratma:
 "$1"
 Qullanılğan funktsiya "$2".
-$5 "$3: $4" hatasını bildirdi.',
+MySQL "$3: $4" hatasını bildirdi.',
 'laggedslavemode'      => 'Diqqat! Bu saifede soñki yañaruv olmay bile.',
 'readonly'             => 'Malümat bazası kilitlendi',
 'enterlockreason'      => 'Blok etüvniñ sebebini ve tarihını belgileñiz.',

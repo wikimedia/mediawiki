@@ -464,12 +464,12 @@ Chistu putissi innicari la prisenza d\'un bug ntô software.
 L\'ùrtima query mannata a lu database hà stata: 
 <blockquote><tt>$1</tt></blockquote> 
 richiamata dâ funzioni "<tt>$2</tt>". 
-$5 hà ristituitu lu siquenti erruri "<tt>$3: $4</tt>".',
+MySQL hà ristituitu lu siquenti erruri "<tt>$3: $4</tt>".',
 'dberrortextcl'        => 'Erruri di sintassi ntâ richiesta nultrata a lu database. 
 L\'ùrtima query mannata a lu database hà stata: 
 "$1" 
 richiamata dâ funzioni "$2". 
-$5 hà ristituitu lu siquenti erruri "$3: $4".',
+MySQL hà ristituitu lu siquenti erruri "$3: $4".',
 'laggedslavemode'      => "Accura: La pàggina putissi nun ripurtari l'aggiurnamenti cchiù ricenti.",
 'readonly'             => 'Database bluccatu',
 'enterlockreason'      => "Ìnnica lu mutivu dû bloccu, spicificannu lu mumentu 'n cui è prisumìbbili ca veni rimossu.",

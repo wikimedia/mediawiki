@@ -1737,6 +1737,24 @@ Si le problème persiste, contactez un [[Special:ListUsers/sysop|administrateur]
 'upload-unknown-size'       => 'Taille inconnue',
 'upload-http-error'         => 'Une erreur HTTP est intervenue : $1',
 
+# img_auth script messages
+'img-auth-accessdenied' => 'Accès refusé',
+'img-auth-nopathinfo'   => "PATH_INFO manquant.
+Votre serveur n'est pas paramétré pour passer cette information.
+Il fonctionne peut-être en CGI et ne supporte pas img_atuh.
+Consultez http://www.mediawiki.org/wiki/Manual:Image_Authorization.",
+'img-auth-notindir'     => "Le chemin demandé n'est pas le répertoire de téléversement configuré.",
+'img-auth-badtitle'     => 'Impossible de construire un titre valide à partir de « $1 ».',
+'img-auth-nologinnWL'   => "Vous n'êtes pas connecté et « $1 » n'est pas dans la liste blanche.",
+'img-auth-nofile'       => "Le fichier « $1 » n'existe pas.",
+'img-auth-isdir'        => "Vous essayez d'accéder au répertoire « $1 ».
+Seul l'accès aux fichiers est permis.",
+'img-auth-streaming'    => 'Lecture en continu de « $1 ».',
+'img-auth-public'       => "La fonction de img_auth.php est d'afficher des fichiers d'un wiki privé.
+Ce wiki est configuré comme un wiki public.
+Pour une sécurité optimale, img_auth.php est désactivé.",
+'img-auth-noread'       => "L'utilisateur n'a pas le droit en lecture sur « $1 ».",
+
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'URL injoignable',
 'upload-curl-error6-text'  => 'L’URL fournie ne peut pas être atteinte. Veuillez vérifier que l’URL est correcte et que le site est en ligne.',

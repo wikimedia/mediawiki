@@ -949,7 +949,7 @@ Per favor confirma que tu ha le intention de facer isto, que tu comprende le con
 'revdelete-suppress'          => 'Supprimer le datos a administratores assi como a alteres',
 'revdelete-hide-image'        => 'Celar contento del file',
 'revdelete-unsuppress'        => 'Eliminar restrictiones super versiones restaurate',
-'revdelete-log'               => 'Commento pro registro:',
+'revdelete-log'               => 'Motivo pro deletion:',
 'revdelete-submit'            => 'Applicar al version seligite',
 'revdelete-logentry'          => 'cambiava le visibilitate de versiones pro [[$1]]',
 'logdelete-logentry'          => 'cambiava le visibilitate de eventos pro [[$1]]',
@@ -982,6 +982,11 @@ Tu non ha accesso a illo.',
 'revdelete-concurrent-change' => 'Error de modificar le entrata del $2, $1: il pare que alcuno altere ha cambiate su stato durante que tu tentava modificar lo.
 Per favor verifica le registros.',
 'revdelete-only-restricted'   => 'Tu non pote render entratas inaccessibile a administratores sin seliger tamben un del altere optiones de suppression.',
+'revdelete-reason-dropdown'   => '*Motivos commun pro deletion
+** Violation de copyright
+** Information personal inappropriate',
+'revdelete-otherreason'       => 'Altere/additional motivo:',
+'revdelete-reasonotherlist'   => 'Altere motivo',
 'revdelete-edit-reasonlist'   => 'Modificar motivos pro deletion',
 
 # Suppression log
@@ -1590,6 +1595,24 @@ Si le problema persiste, contacta un [[Special:ListUsers/sysop|administrator]].'
 'upload-unknown-size'       => 'Dimension incognite',
 'upload-http-error'         => 'Un error HTTP occurreva: $1',
 
+# img_auth script messages
+'img-auth-accessdenied' => 'Accesso refusate',
+'img-auth-nopathinfo'   => 'PATH_INFO mancante.
+Le servitor non ha essite configurate pro passar iste information.
+Illo pote esser basate super CGI e non pote supportar img_auth.
+Vide http://www.mediawiki.org/wiki/Manual:Image_Authorization .',
+'img-auth-notindir'     => 'Le cammino requestate non es in le directorio de cargas configurate.',
+'img-auth-badtitle'     => 'Impossibile construer un titulo valide ex "$1".',
+'img-auth-nologinnWL'   => 'Tu non ha aperite un session e "$1" non es in le lista blanc.',
+'img-auth-nofile'       => 'File "$1" non existe.',
+'img-auth-isdir'        => 'Tu tenta acceder a un directorio "$1".
+Solmente le accesso a files es permittite.',
+'img-auth-streaming'    => 'Fluxo de "$1" comenciate.',
+'img-auth-public'       => 'Le function de img_auth.php es de reproducer files ex un wiki private.
+Iste wiki es configurate como un wiki public.
+Pro securitate optimal, img_auth.php es disactivate.',
+'img-auth-noread'       => 'Le usator non ha accesso pro leger "$1".',
+
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Non poteva acceder al URL',
 'upload-curl-error6-text'  => 'Le adresse URL fornite es inaccessibile.
@@ -2059,21 +2082,22 @@ Le deletion de illo pote disrumper le operationes del base de datos de {{SITENAM
 procede con caution.',
 
 # Rollback
-'rollback'         => 'Revocar modificationes',
-'rollback_short'   => 'Revocar',
-'rollbacklink'     => 'revocar',
-'rollbackfailed'   => 'Revocation fallite',
-'cantrollback'     => 'Impossibile revocar le modification;
+'rollback'          => 'Revocar modificationes',
+'rollback_short'    => 'Revocar',
+'rollbacklink'      => 'revocar',
+'rollbackfailed'    => 'Revocation fallite',
+'cantrollback'      => 'Impossibile revocar le modification;
 le ultime contributor es le sol autor de iste pagina.',
-'alreadyrolled'    => 'Non pote revocar le ultime modification de [[:$1]] per [[User:$2|$2]] ([[User talk:$2|discussion]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]);
+'alreadyrolled'     => 'Non pote revocar le ultime modification de [[:$1]] per [[User:$2|$2]] ([[User talk:$2|discussion]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]);
 un altere persona ha ja modificate o revocate le pagina.
 
 Le ultime modification esseva facite per [[User:$3|$3]] ([[User talk:$3|discussion]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'      => "Le summario del modification esseva: \"''\$1''\".",
-'revertpage'       => 'Reverteva modificationes per [[Special:Contributions/$2|$2]] ([[User talk:$2|Discussion]]) al ultime version per [[User:$1|$1]]',
-'rollback-success' => 'Revocava modificationes per $1;
+'editcomment'       => "Le summario del modification esseva: \"''\$1''\".",
+'revertpage'        => 'Reverteva modificationes per [[Special:Contributions/$2|$2]] ([[User talk:$2|Discussion]]) al ultime version per [[User:$1|$1]]',
+'revertpage-nouser' => 'Reverteva modificationes per (nomine de usator removite) al ultime version per [[User:$1|$1]]',
+'rollback-success'  => 'Revocava modificationes per $1;
 retornava al version per $2.',
-'sessionfailure'   => 'Il pare haber un problema con tu session de conto;
+'sessionfailure'    => 'Il pare haber un problema con tu session de conto;
 iste action ha essite cancellate como precaution contra le sequestramento de sessiones.
 Per favor preme "retro" e recarga le pagina de ubi tu ha venite, postea reprova.',
 

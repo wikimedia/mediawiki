@@ -410,11 +410,11 @@ Man na nekk it ab njuumte ci tëriin bi.
 Laaj bi ñu mujje yónne ci dàttub njoxe bi moo doonoon:
 <blockquote><tt>$1</tt></blockquote>.
 bàyyikoo ci bii solo « <tt>$2</tt> ». 
-$5 moo delloo bii njuumte « <tt>$3 : $4</tt> ».',
+MySQL moo delloo bii njuumte « <tt>$3 : $4</tt> ».',
 'dberrortextcl'        => 'Ab laaj ca dàttub njoxe ba jur na ab njuumtey mbindin.
 Laaj bi ñu mujje yónne dàttub njoxe bi moo doonoon : « $1 » 
 bàyyikoo ci bii solo « $2 ». 
-$5 moo delloo bii njuumte « $3 : $4 ».',
+MySQL moo delloo bii njuumte « $3 : $4 ».',
 'laggedslavemode'      => 'Moytul, wii xët man naa bañ a man dékku coppite yi ñu mujjee def',
 'readonly'             => 'Dàttub njoxe bi dañu koo caabi',
 'enterlockreason'      => 'Biralal ngirtey tëj gi ak diir bi mu war a amee',

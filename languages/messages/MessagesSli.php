@@ -339,7 +339,7 @@ Oalle verfügbara Spezialseyta sein ei der [[Special:SpecialPages|Liste der Spez
 'databaseerror'        => 'Fehler ei der Datenbank',
 'dberrortext'          => 'Es gab einen Syntaxfehler in der Datenbankabfrage.
 Die letzte Datenbankabfrage lautete: <blockquote><tt>$1</tt></blockquote> aus der Funktion „<tt>$2</tt>“.
-$5 meldete den Fehler „<tt>$3: $4</tt>“.',
+MySQL meldete den Fehler „<tt>$3: $4</tt>“.',
 'dberrortextcl'        => 'Es gab einen Syntaxfehler in der Datenbankabfrage.
 Die letzte Datenbankabfrage lautete: „$1“ aus der Funktion „<tt>$2</tt>“.
 MySQL meldete den Fehler: „<tt>$3: $4</tt>“.',

@@ -586,12 +586,12 @@ Dan jista\' jindika li hemm problema fis-softwer
 L-aħħar attentat ta\' rikjesta tad-databażi kienet:
 <blockquote><tt>$1</tt></blockquote>
 mill-funzjoni ta\' "<tt>$2</tt>".
-$5 tat problema ta\' "<tt>$3: $4</tt>".',
+MySQL tat problema ta\' "<tt>$3: $4</tt>".',
 'dberrortextcl'        => 'Kien hemm żball fis-sintassi ta\' rikjesta tad-databażi. 
 L-aħħar attentat ta\' rikjesta tad-databażi kienet:
 "$1"
 mill-funzjoni "$2".
-$5 tat problema ta\' "$3: $4"',
+MySQL tat problema ta\' "$3: $4"',
 'laggedslavemode'      => "Twissija: Il-Paġna jista' ma jkollhiex l-affarijiet aġġornati.",
 'readonly'             => 'Database magħluq',
 'enterlockreason'      => "Daħħal raġuni għala qiegħed tagħlqu, inkludi l-istima ta' meta l-għeluq se tieħu effett",

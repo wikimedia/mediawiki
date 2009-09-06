@@ -935,6 +935,7 @@ ihany no miseho amin'ny vokatry ny karoka).",
 'powersearch-ns'                   => "Hitady anatin'ny toeran-anarana :",
 'powersearch-redir'                => 'Ampiseho ny redirect',
 'powersearch-field'                => 'Hitady',
+'search-external'                  => 'Hikaroka any ivelany',
 'searchdisabled'                   => "Tsy nalefa ny karoka eto amin'i {{SITENAME}}. Afaka mampiasa an'i Google aloha ianao mandra-paha. Nefa fantaro fa mety ho efa lany daty ny valiny omeny.",
 
 # Quickbar

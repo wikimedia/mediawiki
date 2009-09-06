@@ -446,12 +446,12 @@ Dit kan zien veroorzaak door \'n fout in de software.
 De lètste zeukpoging in de database waor:
 <blockquote><tt>$1</tt></blockquote>
 vanoet de functie "<tt>$2</tt>".
-$5 gaof de foutmelding "<tt>$3: $4</tt>".',
+MySQL gaof de foutmelding "<tt>$3: $4</tt>".',
 'dberrortextcl'        => 'Dao is \'n syntaxfout opgetreje bie \'t zeuke in de database.
 De lèste opgevraogde zeukactie waor:
 "$1"
 vanoet de functie "$2".
-$5 brach fout "$3" nao veure: "$4"',
+MySQL brach fout "$3" nao veure: "$4"',
 'laggedslavemode'      => 'Waorsjuwing: De pazjena kin veraajerd zeen.',
 'readonly'             => 'Database geblokkeerd',
 'enterlockreason'      => "Gaef 'n rae veur de blokkering en wie lank 't dinkelik zal dore. De ingegaeve rae zal aan de gebroekers getuind waere.",

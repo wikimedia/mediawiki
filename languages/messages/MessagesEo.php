@@ -498,12 +498,12 @@ Eble ankaŭ ĉi tiel indikus problemon de la programaro de {{SITENAME}}.",
 Jen la plej laste provita informmendo:
 <blockquote><tt>$1</tt></blockquote>
 el la funkcio "<tt>$2</tt>".
-$5 liveris eraron "<tt>$3: $4</tt>".',
+MySQL liveris eraron "<tt>$3: $4</tt>".',
 'dberrortextcl'        => 'Okazis sintaksa eraro dum la informpeto al la datumaro.
 La lasta provita peto estis:
 "$1"
 el la funkcio "$2".
-$5 liveris la erarmesaĝon "$3: $4".',
+MySQL liveris la erarmesaĝon "$3: $4".',
 'laggedslavemode'      => 'Avertu: la paĝo eble ne enhavas lastatempajn ĝisdatigojn.',
 'readonly'             => 'Datumaro ŝlosita, nurlega',
 'enterlockreason'      => 'Bonvolu klarigi, kial oni ŝlosas la datumaron, kaj

@@ -524,8 +524,11 @@ HTML markup cannot be used.",
 
 # General errors
 'error'                => '{{Identical|Error}}',
-'dberrortext'          => 'Parameters:
-*$5 is the database engine, such as MySQL, PostgreSQL, etc.',
+'dberrortext'          => 'Parameters
+* $1 - The last SQL command/query
+* $2 - SQL function name
+* $3 - Error number
+* $4 - Error description',
 'dberrortextcl'        => 'Parameters
 * $1 - The last SQL command/query
 * $2 - SQL function name
@@ -936,6 +939,7 @@ Please note that the parameters in a log entry will appear in the log only in th
 * $2 is a time',
 'revdelete-otherreason'       => '{{Identical|Other/additional reason}}',
 'revdelete-reasonotherlist'   => '{{Identical|Other reason}}',
+'revdelete-edit-reasonlist'   => '{{Identical|Edit delete reasons}}',
 
 # Suppression log
 'suppressionlog'     => 'Title of the suppression log. Shown in the drop down menu at [[Special:log]] and as header of [[Special:log/suppress]].',
@@ -1650,6 +1654,7 @@ $1 is the name of the shared repository. On wikimedia sites, $1 is {{msg-mw|shar
 
 # File deletion
 'filedelete-backlink'         => '{{optional}}',
+'filedelete-legend'           => '{{Identical|Delete}}',
 'filedelete-intro-old'        => 'Message displayed when you try to delete a version of a file.
 * $1 is the name of the media
 * $2 is a date

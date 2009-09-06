@@ -88,7 +88,7 @@ $messages = array(
 'tog-hidepatrolled'           => 'Peitta patruliruidud redakcijad veresiden toižetusiden nimikirjuteses',
 'tog-newpageshidepatrolled'   => 'Peitta patruliruidud redakcijad uziden lehtpoliden nimikirjuteses',
 'tog-extendwatchlist'         => 'Levitagat kaclendnimikirjutez, miše nähta kaik toižetused.',
-'tog-usenewrc'                => 'Veresiden toižetusiden paremboitud nimikirjutez (JavaScript)',
+'tog-usenewrc'                => 'Kävutagat paremboitud tantoižed toižetused (pidab otta radho JavaScript)',
 'tog-numberheadings'          => 'Nomeruida avtomatižikš pälkirjutesed',
 'tog-showtoolbar'             => "Ozutada azegiden üläpanel' redaktiruindan aigan (JavaScript)",
 'tog-editondblclick'          => 'Redaktiruida lehtpoled kaksitadud plokul (JavaScript)',
@@ -110,6 +110,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'Oigeta minei e-počt eskai siloi, konz toižetused oma minimaližed',
 'tog-enotifrevealaddr'        => 'Ozutada minun počtadres tedotuzkirjeižiš',
 'tog-shownumberswatching'     => 'Ozutada niiden kävutajiden lugu, kudambad oma mülütanuded lehtpolen ičeze kaclendnimikirjutesihe',
+'tog-oldsig'                  => 'Olijan allekirjutesen ezikacund:',
 'tog-fancysig'                => 'Ičeze allekirjutesen wiki-znamišt (avtomatižeta kosketuseta)',
 'tog-externaleditor'          => 'Kävutada irdredaktor augotižjärgendusen mödhe (vaiše ekspertoiden täht; pidab järgeta specialižikš kompjuter)',
 'tog-externaldiff'            => 'Kävutada irdprogramm versijoiden rindatades (vaiše ekspertoiden täht; pidab järgeta specialižikš kompjuter)',
@@ -131,6 +132,9 @@ $messages = array(
 'underline-always'  => 'Kaiken',
 'underline-never'   => 'Nikonz',
 'underline-default' => 'Kävutada kaclimen järgendused',
+
+# Font style option in Special:Preferences
+'editfont-default' => 'Järgeline kaclim',
 
 # Dates
 'sunday'        => 'pühäpäiv',
@@ -229,6 +233,10 @@ $messages = array(
 'qbspecialpages' => 'Specialižed lehtpoled',
 'faq'            => 'PPK',
 'faqpage'        => 'Project:PPK',
+
+# Vector skin
+'vector-action-delete'   => 'Čuta poiš',
+'vector-namespace-image' => 'Fail',
 
 # Metadata in edit box
 'metadata_help' => 'Metaandmused:',
@@ -372,7 +380,7 @@ Kc. [[Special:SpecialPages|specialižiden lehtpoliden nimikirj]].",
 Jäl\'gmäine ecind andmusiden bazas oli:
 "$1"
 funkcijaspäi "$2".
-MySQL pördi petusen "$3: $4"',
+Andmusiden baz pördi petusen "$3: $4"',
 'laggedslavemode'      => "Varutuz: voib olda, lehtpolen versijal ei ole jäl'gmäižid ližadusid.",
 'readonly'             => 'Andmusiden baz om luklostadud',
 'enterlockreason'      => 'Kirjutagat sü da pandud blokiruindan strok',
@@ -476,8 +484,7 @@ Kodvgat teiden oigedkirjutamine.',
 Kirjutagat se völ kerdan.',
 'wrongpasswordempty'      => "Nece peitsana om pall'az.
 Kirjutagat toine peitsana.",
-'passwordtooshort'        => 'Teiden peitsana om vär vai lühüdahk.
-Sille pidab mülütada {{PLURAL:$1|1 znam|$1 znamad}} i erineda teiden kävutajan nimelpäi.',
+'passwordtooshort'        => 'Peitsanha pidab mülütada {{PLURAL:$1|1 znam|$1 znamad}}.',
 'mailmypassword'          => "Oigeta minei uz' peitsana e-počtadme",
 'passwordremindertitle'   => "Uz' pordaigaline peitsana {{SITENAME}}-saitan täht",
 'noemail'                 => '"$1"-kävutai ei ole andnu ičeze e-počtan adresad.',
@@ -657,10 +664,10 @@ täht oli sätud kaskadkaičend:",
 Tö voit pörttas tagaze i redaktiruida toine lehtpol', vai [[Special:UserLogin|kirjutagatoiš sistemha, vai säkat registracii]].",
 'nocreate-loggedin'                => 'Teile ei sa säta uzid lehtpolid.',
 'permissionserrors'                => 'Oiktusiden petused',
-'permissionserrorstext'            => 'Teile ei sa tehta muga, sikš miše:',
-'permissionserrorstext-withaction' => 'Teile ei sa $2, sikš miše:',
+'permissionserrorstext'            => 'Teile ei sa tehta muga {{PLURAL:$1|necen sün|neniden süiden}} tagut:',
+'permissionserrorstext-withaction' => 'Teile ei sa $2 {{PLURAL:$1|necen sün|neciden süiden}} tagut:',
 'moveddeleted-notice'              => "Nece lehtpol' om čutud poiš.
-Alemba om anttud lehtpolen čudandan istorii.",
+Alemba om anttud lehtpolen čudandan vai sirdandan istorii kut abuandmused.",
 'edit-hook-aborted'                => 'Redakcijan azoti sabustaiprogramm.
 Ei ole ližasüid.',
 'edit-gone-missing'                => "Ei voi udištada lehtpol't.
@@ -876,7 +883,7 @@ Tö voit [[:\$1|säta mugoi lehtpol']].",
 'notitlematches'                   => 'Ei ole ningomid lehtpoliden nimid',
 'textmatches'                      => 'Löutud tekstanpalad lehtpolil',
 'notextmatches'                    => 'Lehtpoliden tekstoiš ei ole ectud sanad',
-'prevn'                            => 'edeline $1',
+'prevn'                            => 'vene (ru){{PLURAL:$1|edeline $1|edeližed $1}}',
 'nextn'                            => "jäl'ghižed {{PLURAL:$1|$1}}",
 'prevn-title'                      => "$1 {{PLURAL:$1|edeline rezul'tat|edelišt rezul'tatad}}",
 'nextn-title'                      => "$1 {{PLURAL:$1|jäl'ghine rezul'tat|jäl'ghišt rezul'tatad}}",
@@ -2066,6 +2073,7 @@ Sab lugeda sen augotižkod da kopiruida se.",
 'tooltip-search-fulltext'         => 'Ectä lehtpoled, kudambil om mugoi tekst',
 'tooltip-p-logo'                  => "Pälehtpol'",
 'tooltip-n-mainpage'              => 'Mäne pälehtpolele',
+'tooltip-n-mainpage-description'  => 'Tulgat pälehtpolele',
 'tooltip-n-portal'                => 'Lodud projektas',
 'tooltip-n-currentevents'         => 'Löuta ližainformacijad nügüdläižiš aigtegoiš',
 'tooltip-n-recentchanges'         => 'Tantoižiden toižetusiden nimikirjutez',

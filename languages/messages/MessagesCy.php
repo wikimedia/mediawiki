@@ -890,6 +890,9 @@ Byddwch gystal â chadarnhau eich bod yn bwriadu gwneud hyn, eich bod yn deall y
 'logdelete-log-message'       => '$1 $2 {{PLURAL:$2||digywddiad|ddigwyddiad|digwyddiad|digwyddiad|digwyddiad}}',
 'revdelete-hide-current'      => "Cafwyd gwall wrth geisio cuddio'r eitem a'r dyddiad $2, $1 arno: hwn yw'r diwygiad presennol.
 Ni ellir ei guddio.",
+'revdelete-reason-dropdown'   => '*Rhesymau cyffredin dros ddileu
+** Torri hawlfraint
+** Gwybodaeth bersonol anaddas',
 'revdelete-otherreason'       => 'Rheswm arall:',
 'revdelete-reasonotherlist'   => 'Rheswm arall',
 'revdelete-edit-reasonlist'   => 'Rhowch reswm dros y dileu',
@@ -1146,6 +1149,7 @@ Ni allwch ddadwneud y weithred hon.",
 'yourlanguage'                  => 'Iaith rhyngwyneb',
 'yourvariant'                   => 'Amrywiad',
 'yournick'                      => 'Eich llysenw (fel llofnod):',
+'prefs-help-signature'          => 'Dylid arwyddo sylwadau ar dudalennau sgwrs gyda "<nowiki>~~~~</nowiki>". Fe ymddengys hwn fel eich enw ac amser y sylw.',
 'badsig'                        => 'Llofnod crai annilys; gwiriwch y tagiau HTML.',
 'badsiglength'                  => "Mae'ch llysenw'n rhy hir. 
 Gall fod hyd at $1 {{PLURAL:$1|llythyren|lythyren|lythyren|llythyren|llythyren|llythyren}} o hyd.",
@@ -1439,6 +1443,8 @@ Ewch nôl ac uwchlwythwch y ffeil gydag enw gwahanol iddo.
 'overwroteimage'              => 'wedi uwchlwytho fersiwn newydd o "[[$1]]"',
 'uploaddisabled'              => "Ymddiheurwn; mae uwchlwytho wedi'i analluogi.",
 'uploaddisabledtext'          => 'Analluogwyd uwchlwytho ffeiliau ar y wefan hon.',
+'php-uploaddisabledtext'      => 'Anablwyd uwchlwytho ffeiliau yn PHP.
+Gwiriwch y gosodiad ar file_uploads.',
 'uploadscripted'              => "Mae'r ffeil hon yn cynnwys HTML neu sgript a all achosi problemau i borwyr gwe.",
 'uploadcorrupt'               => 'Mae nam ar y ffeil neu mae ganddi estyniad anghywir. Gwiriwch y ffeil ac uwchlwythwch eto.',
 'uploadvirus'                 => 'Mae firws gan y ffeil hon! Manylion: $1',
@@ -2178,6 +2184,7 @@ $1',
 'range_block_disabled'            => 'Ar hyn o bryd nid yw gweinyddwyr yn gallu blocio ystod o gyfeiriadau IP.',
 'ipb_expiry_invalid'              => 'Amser terfynu yn annilys.',
 'ipb_expiry_temp'                 => "Rhaid i floc ar ddefnyddiwr fod yn barhaus os am guddio'r enw.",
+'ipb_hide_invalid'                => "Ddim yn gallu cuddio'r cyfrif hwn; efallai bod ganddo ormod o olygiadau.",
 'ipb_already_blocked'             => 'Mae "$1" eisoes wedi ei flocio',
 'ipb-needreblock'                 => "== Wedi blocio'n barod ==
 Mae $1 wedi ei flocio'n barod. Ydych chi am newid y gosodiadau?",

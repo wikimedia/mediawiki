@@ -369,12 +369,15 @@ Iki manawa uga nuduhaké anané kesalahan ing piranti alus sing dipigunakaké d�
 # General errors
 'error'                => 'Kasalahan',
 'databaseerror'        => 'Kasalahan database',
-'dberrortext'          => 'Ana kasalahan sintaks ing panyuwunan database. Kasalahan iki mbokmenawa nuduhaké anané \'\'bug\'\' ing software. Panyuwunan database sing pungkasan iku: <blockquote><tt>$1</tt></blockquote> saka jroning fungsi "<tt>$2</tt>". $5 ngasilaké kasalahan "<tt>$3: $4</tt>".',
+'dberrortext'          => 'Ana kasalahan sintaks ing panyuwunan database.
+Kasalahan iki mbokmenawa nuduhaké anané \'\'bug\'\' ing software.
+Panyuwunan database sing pungkasan iku: <blockquote><tt>$1</tt></blockquote> saka jroning fungsi "<tt>$2</tt>".
+MySQL ngasilaké kasalahan "<tt>$3: $4</tt>".',
 'dberrortextcl'        => 'Ana kasalahan sintaks ing panyuwunan database. 
 Panyuwunan database sing pungkasan iku:
 "$1" 
 saka jroning fungsi "$2". 
-$5 ngasilaké Kasalahan "$3: $4".',
+MySQL ngasilaké Kasalahan "$3: $4".',
 'laggedslavemode'      => 'Pènget: Kaca iki mbokmenawa isiné dudu pangowahan pungkasan.',
 'readonly'             => 'Database dikunci',
 'enterlockreason'      => 'Lebokna alesan panguncèn, kalebu uga prakiran kapan kunci bakal dibuka',
