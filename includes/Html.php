@@ -237,7 +237,7 @@ class Html {
 			# marks omitted, but not all.  (Although a literal " is not
 			# permitted, we don't check for that, since it will be escaped
 			# anyway.)
-			if ( $wgWellFormedXml || $value == ''
+			if ( $wgWellFormedXml || $value === ''
 			|| preg_match( "/[ '=<>]/", $value ) ) {
 				$quote = '"';
 			} else {
