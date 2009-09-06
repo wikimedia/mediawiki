@@ -310,8 +310,9 @@ class MediaWiki {
 			wfRunHooks( 'InitializeArticleMaybeRedirect', 
 				array(&$title,&$request,&$ignoreRedirect,&$target,&$article) );
 
-			// Follow redirects only for... redirects
-			if( !$ignoreRedirect && $article->isRedirect() ) {
+			// Follow redirects only for... redirects.
+			// If $target is set, then a hook wanted to redirect.
+			if( !$ignoreRedirect && ($target || $article->isRedirect()) ) {
 				# Is the target already set by an extension?
 				$target = $target ? $target : $article->followRedirect();
 				if( is_string( $target ) ) {
