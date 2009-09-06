@@ -35,7 +35,7 @@ $fallback8bitEncoding = "windows-1251";
 
 $messages = array(
 # User preference toggles
-'tog-rememberpassword' => 'Намаг эн тоолчд тодлх',
+'tog-rememberpassword' => 'Намаг эн тоолвчд тодлх',
 
 # Dates
 'sunday'        => 'Нарн',
@@ -99,8 +99,8 @@ $messages = array(
 'help'             => 'Цәәлһлһн',
 'search'           => 'Хәәлһн',
 'searchbutton'     => 'Хәәлһн',
-'go'               => 'Орх',
-'searcharticle'    => 'Орх',
+'go'               => 'Ор',
+'searcharticle'    => 'Ор',
 'history'          => 'Чикллһнə бүрткл',
 'history_short'    => 'Чикллһнə бүрткл',
 'printableversion' => 'Барин бәәдл',
@@ -117,7 +117,7 @@ $messages = array(
 'newpage'          => 'Шин халх',
 'talkpage'         => 'Ухалвр',
 'talkpagelinktext' => 'Ухалвр',
-'personaltools'    => 'Күүнә зер-зев',
+'personaltools'    => 'Эврән зер-зев',
 'talk'             => 'Ухалвр',
 'toolbox'          => 'Зер-зев',
 'otherlanguages'   => 'Талдан келнд',
@@ -126,6 +126,7 @@ $messages = array(
 'jumptosearch'     => 'хәәлһн',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+'aboutsite'            => '{{SITENAME}} тускар',
 'currentevents'        => 'Ода болсн йовдл',
 'edithelp'             => 'Чикллһнә дөң',
 'mainpage'             => 'Эклц',

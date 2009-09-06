@@ -1670,6 +1670,7 @@ PICT # различные
 
 # img_auth script messages
 'img-auth-accessdenied' => 'Доступ запрещён',
+'img-auth-nofile'       => 'Файл «$1» не существует.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Невозможно обратить по указанному адресу.',

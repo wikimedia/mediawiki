@@ -329,7 +329,7 @@ $messages = array(
 'aboutsite'            => 'Kuhusu {{SITENAME}}',
 'aboutpage'            => 'Project:Kuhusu',
 'copyright'            => 'Yaliyomo yafuata $1.',
-'copyrightpage'        => '{{ns:project}}:Hatimiliki',
+'copyrightpage'        => '{{ns:project}}:Hakimiliki',
 'currentevents'        => 'Matukio ya hivi karibuni',
 'currentevents-url'    => 'Project:Matukio ya hivi karibuni',
 'disclaimers'          => 'Kanusho',
@@ -421,6 +421,9 @@ Kwa lengo la kutaka kutafsiri, tafadhali fikiria kutumia  [http://translatewiki.
 'sqlhidden'            => '(maulizo ya SQL yamefichwa)',
 
 # Login and logout pages
+'logouttext'              => "'''Umetoka kwenye akaunti yako.'''
+
+Unaweza kuendelea kutumia {{SITENAME}} bila kutaja jina lako, au unaweza [[Special:UserLogin|kuingia tena]] kwenye akaunti yako. Kumbuka kwamba kurasa nyingine zitaendelea kuonekana kana kwamba bado hujatoka kwenye akaunti yako, hadi utakaposafisha kache ya kivinjari.",
 'welcomecreation'         => '== Karibu, $1! ==
 Ushafunguliwa akaunti yako tayari.
 Usisahau kubadilisha mapendekezo yako ya [[Special:Preferences|{{SITENAME}}]].',
@@ -675,6 +678,9 @@ Ukitaka kutafuta kwenye maeneo yote (pamoja na kurasa za majadiliano, vigezo, nk
 'powersearch-togglenone'       => 'Bila',
 'search-external'              => 'Kutafuta nje',
 
+# Quickbar
+'qbsettings-none' => 'Hakuna',
+
 # Preferences page
 'preferences'                 => 'Mapendekezo',
 'mypreferences'               => 'Mapendekezo yangu',
@@ -689,6 +695,8 @@ Ukitaka kutafuta kwenye maeneo yote (pamoja na kurasa za majadiliano, vigezo, nk
 'prefs-personal'              => 'Kuhusu mtumiaji',
 'prefs-rc'                    => 'Mabadiliko ya karibuni',
 'prefs-watchlist'             => 'Maangalizi',
+'prefs-watchlist-days'        => 'Ionyeshwe siku ngapi kwenye orodha ya maangalizi?',
+'prefs-watchlist-edits'       => 'Upeo ya idadi ya mabadiliko yatakayoonyeshwa kwenye orodha ya maangalizi iliyotanuka:',
 'prefs-watchlist-edits-max'   => 'Idadi isiyopitishwa: 1000',
 'prefs-watchlist-token'       => 'Ufunguo wa orodha ya maangalizi',
 'prefs-misc'                  => 'Mengineyo',
@@ -696,10 +704,12 @@ Ukitaka kutafuta kwenye maeneo yote (pamoja na kurasa za majadiliano, vigezo, nk
 'prefs-email'                 => 'Hitiari za barua pepe',
 'prefs-rendering'             => 'Umbo',
 'saveprefs'                   => 'Hifadhi',
+'resetprefs'                  => 'Utupe mabadiliko yasijahifadhika',
 'prefs-editing'               => 'Kuhariri',
 'rows'                        => 'Mistari:',
 'columns'                     => 'Safu:',
 'searchresultshead'           => 'Kutafuta',
+'recentchangesdays'           => 'Ionyeshwe siku ngapi kwenye orodha ya mabadiliko ya karibuni?',
 'timezonelegend'              => 'Ukanda saa:',
 'servertime'                  => 'Saa ya seva:',
 'timezoneregion-africa'       => 'Afrika',
@@ -712,6 +722,7 @@ Ukitaka kutafuta kwenye maeneo yote (pamoja na kurasa za majadiliano, vigezo, nk
 'timezoneregion-europe'       => 'Ulaya',
 'timezoneregion-indian'       => 'Bahari ya Hindi',
 'timezoneregion-pacific'      => 'Bahari ya Pasifiki',
+'allowemail'                  => 'Wezesha barua pepe toka kwa watumiaji wengine',
 'prefs-searchoptions'         => 'Hitiari za kutafuta',
 'prefs-namespaces'            => 'Maeneo ya wiki',
 'prefs-files'                 => 'Mafaili',
@@ -832,12 +843,13 @@ Kwa kutumia faili katika makala, tumia moja kati ya viungo vifuatavyo:
 'ignorewarning'     => 'Hifadhi bila kujali maonyo yoyote.',
 'successfulupload'  => 'Upakiaji ulifaulu',
 'uploadwarning'     => 'Ilani kuhusu kupakia',
+'savefile'          => 'Hifadhi faili',
 'uploadedimage'     => 'ameipakia "[[$1]]"',
 'overwroteimage'    => 'alipakia toleo jipya la "[[$1]]"',
 'watchthisupload'   => 'Kufuatilia faili hili',
 
-'license'        => 'Hatimiliki:',
-'license-header' => 'Hatimiliki',
+'license'        => 'Hakimiliki:',
+'license-header' => 'Hakimiliki',
 
 # Special:ListFiles
 'imgfile'               => 'faili',
@@ -880,10 +892,15 @@ Kwa kutumia faili katika makala, tumia moja kati ya viungo vifuatavyo:
 'filerevert-submit'         => 'Rejesha',
 
 # File deletion
-'filedelete-intro-old'   => "You are deleting the version of '''[[Media:$1|$1]]''' as of [$4 $3, $2].",
-'filedelete-submit'      => 'Futa',
-'filedelete-success-old' => "The version of '''[[Media:$1|$1]]''' as of $3, $2 has been deleted.",
-'filedelete-nofile-old'  => "There is no archived version of '''$1''' with the specified attributes.",
+'filedelete'                  => 'Futa $1',
+'filedelete-legend'           => 'Futa faili',
+'filedelete-intro-old'        => "You are deleting the version of '''[[Media:$1|$1]]''' as of [$4 $3, $2].",
+'filedelete-comment'          => 'Sababu ya kufuta:',
+'filedelete-submit'           => 'Futa',
+'filedelete-success-old'      => "The version of '''[[Media:$1|$1]]''' as of $3, $2 has been deleted.",
+'filedelete-nofile-old'       => "There is no archived version of '''$1''' with the specified attributes.",
+'filedelete-otherreason'      => 'Sababu nyingine:',
+'filedelete-reason-otherlist' => 'Sababu nyingine',
 
 # MIME search
 'mimesearch' => 'Utafutaji wa MIME',
@@ -1303,6 +1320,9 @@ Chagua jina lengine.',
 'siteusers'        => '{{PLURAL:$2|mtumiaji|watumiaji}} wa {{SITENAME}} $1',
 'creditspage'      => 'Wandishi wa ukurasa',
 'nocredits'        => 'Taarifa kuhusu wandishi wa ukurasa huu haipatikana.',
+
+# Math errors
+'math_unknown_error' => 'hitilafu isiyojulikana',
 
 # Image deletion
 'filedelete-old-unregistered' => 'The specified file revision "$1" is not in the database.',

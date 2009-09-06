@@ -231,7 +231,7 @@ Doa kaun een Probleem enne Software senne.
 Daut latzte Opproope vonne Dotebank we:
 <blockquote><tt>$1</tt></blockquote>
 ute Funktioon "<tt>$2</tt>".
-$5 mald dem Fehla "<tt>$3: $4</tt>".',
+MySQL mald dem Fehla "<tt>$3: $4</tt>".',
 'laggedslavemode' => 'Oppjepausst: Dee jewesne Sied es nich onbedinjt dee latzte Versioon.',
 'readonly'        => 'Dotebank es jeschlote',
 'enterlockreason' => 'Nan bitte een Grunt doafea, wurom dee Dotebank jeschlote saul en saj, woolang daut onjefea diere saul',

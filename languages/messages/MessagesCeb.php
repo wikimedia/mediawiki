@@ -392,12 +392,12 @@ Mahimong nagpakita kini og bug sa software.
 Ang naulahing gi-attempt nga database query mao ang:
 <blockquote><tt>$1</tt></blockquote>
 from within function "<tt>$2</tt>".
-$5 returned error "<tt>$3: $4</tt>".',
+MySQL returned error "<tt>$3: $4</tt>".',
 'dberrortextcl'        => 'May nahitabong sayop sa database query syntax.
 Ang naulahing gi-attempt nga database query mao ang:
 "$1"
 from within function "$2".
-$5 returned error "$3: $4"',
+MySQL returned error "$3: $4"',
 'laggedslavemode'      => 'Pahibalo: Mahimong dili mahiapil sa panid ang mga bag-ong kausaban.',
 'readonly'             => 'Gitrangkahan ang database',
 'enterlockreason'      => 'Pagbutang og rason para sa lock, apil ang banabana kon kanus-a ma-release ang lock',

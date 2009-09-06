@@ -357,12 +357,12 @@ Quiste pò indicà 'nu bochere jndr'à 'u software.
 L'urteme tendative de inderrogazione sus a 'u database ha state:
 <blockquote><tt>\$1</tt></blockquote>
 cu 'a funzione \"<tt>\$2</tt>\".
-\$5 ha returnate l'errore \"<tt>\$3: \$4</tt>\".",
+MySQL ha returnate l'errore \"<tt>\$3: \$4</tt>\".",
 'dberrortextcl'        => 'A assute \'n\'errore de sindasse sus a \'n\'inderrogazione d\'u database.
 L\'urteme tendative de inderrogazione sus a \'u database ha state:
 "$1"
 ausanne \'a funzione "$2".
-$5 ha returnate l\'errore "$3: $4"',
+MySQL ha returnate l\'errore "$3: $4"',
 'laggedslavemode'      => "Attenzione: 'A pàgene no ge tène cangiaminde recente.",
 'readonly'             => 'Archivie blocchete',
 'enterlockreason'      => "Mitte 'na raggione p'u blocche, 'ncludenne 'na stime de quanne 'u blocche avène luate.",

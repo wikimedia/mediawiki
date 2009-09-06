@@ -447,11 +447,11 @@ Existitzen direnen zerrenda ikus dezakezu  [[Special:SpecialPages|{{int:specialp
 'dberrortext'          => 'Datu-basean kontsulta egiterakoan sintaxi errore bat gertatu da. Baliteke softwareak bug bat izatea. Datu-basean egindako azken kontsulta:
 <blockquote><tt>$1</tt></blockquote>
 Funtzio honekin: "<tt>$2</tt>".
-$5-(e)k emandako errore informazioa: "<tt>$3: $4</tt>".',
+MySQL-(e)k emandako errore informazioa: "<tt>$3: $4</tt>".',
 'dberrortextcl'        => 'Datu-basean kontsulta egiterakoan sintaxi errore bat gertatu da. Datu-basean egindako azken kontsulta:
 "$1"
 Funtzio honekin: "$2".
-$5-(e)k emandako errore informazioa: "$3: $4"',
+MySQL-(e)k emandako errore informazioa: "$3: $4"',
 'laggedslavemode'      => 'Oharra: Baliteke orrialde honetan azken aldaketak ez erakustea.',
 'readonly'             => 'Datu-basea blokeatuta dago',
 'enterlockreason'      => 'Zehaztu blokeatzeko arrazoia, noiz kenduko den jakinaraziz',

@@ -1025,7 +1025,7 @@ $2개 보다 적게 써야 하지만 지금은 $1개를 쓰고 있습니다.",
 'revdelete-suppress'          => '문서 내용을 관리자에게도 보이지 않게 숨기기',
 'revdelete-hide-image'        => '파일을 숨기기',
 'revdelete-unsuppress'        => '복구된 판에 대한 제한을 해제',
-'revdelete-log'               => '이유:',
+'revdelete-log'               => '삭제 이유:',
 'revdelete-submit'            => '선택된 판에 적용',
 'revdelete-logentry'          => '[[$1]]의 판의 보이기 설정을 변경함',
 'logdelete-logentry'          => '[[$1]]의 로그 보이기 설정을 변경함',
@@ -1061,6 +1061,7 @@ $1",
 'revdelete-reason-dropdown'   => '*일반적인 삭제 이유
 ** 저작권 침해
 ** 부적절한 개인 정보',
+'revdelete-otherreason'       => '다른 이유/부가적인 이유',
 'revdelete-reasonotherlist'   => '다른 이유',
 'revdelete-edit-reasonlist'   => '삭제 이유 편집',
 
@@ -1659,6 +1660,14 @@ PICT # 기타
 
 # img_auth script messages
 'img-auth-accessdenied' => '접근 거부됨',
+'img-auth-nopathinfo'   => 'PATH_INFO 가 빠졌습니다.
+서버에 이 정보가 설정되어 있지 않습니다.
+CGI 기반이거나 img_auth 를 지원하지 않을 수 있습니다.
+http://www.mediawiki.org/wiki/Manual:Image_Authorization 를 참고하세요.',
+'img-auth-badtitle'     => '"$1"에서 바른 제목을 만들 수 없습니다.',
+'img-auth-nofile'       => '"$1" 파일이 없습니다.',
+'img-auth-isdir'        => '"$1" 디렉토리에 접근을 시도했습니다.
+파일에만 접근할 수 있습니다.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'URL 접근 불가',

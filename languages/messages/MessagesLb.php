@@ -2764,6 +2764,7 @@ Duerno sti Linken déi Ausnamen definéieren, an deenen hirem Kontext dat Bild a
 'exif-focallength'                 => 'Brennwäit',
 'exif-subjectarea'                 => 'Beräich',
 'exif-flashenergy'                 => 'Blëtzstäerkt',
+'exif-spatialfrequencyresponse'    => 'Spatial-Frequenz',
 'exif-focalplanexresolution'       => 'Sensoropléisung horizontal',
 'exif-focalplaneyresolution'       => 'Sensoropléisung vertikal',
 'exif-focalplaneresolutionunit'    => 'Eenheet vun der Sensoropléisung',

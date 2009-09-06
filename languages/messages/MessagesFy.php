@@ -466,12 +466,12 @@ $1",
 De lêst besochte databankfraach wie:
 <blockquote><tt>$1</tt></blockquote>
 fan funksje "<tt>$2</tt>" út.
-$5 joech fout "<tt>$3: $4</tt>" werom.',
+MySQL joech fout "<tt>$3: $4</tt>" werom.',
 'dberrortextcl'        => 'Sinboufout yn databankfraach.
 De lêst besochte databankfraach wie:
 "$1"
 fanút funksje "$2" .
-$5 joech fout "$3: $4"',
+MySQL joech fout "$3: $4"',
 'laggedslavemode'      => 'Warskôging: Mûglik binne resinte bewurkings noch net trochfierd.',
 'readonly'             => "Databank is 'Net-skriuwe'.",
 'enterlockreason'      => "Skriuw wêrom de databank 'net-skriuwe' makke is, en hoenear't men wêr nei alle gedachten wer skriuwe kin.",

@@ -274,12 +274,12 @@ Lista valjanih posebnih stranica se može naći na [[Special:SpecialPages|{{int:
 'dberrortext'          => 'Desila se sintaksna greška upita baze.
 Ovo se desilo zbog moguće greške u softveru.
 Posljednji pokušani upit je bio: <blockquote><tt>$1</tt></blockquote> iz funkcije "<tt>$2</tt>".
-$5 je vratio grešku "<tt>$3: $4</tt>".',
+MySQL je vratio grešku "<tt>$3: $4</tt>".',
 'dberrortextcl'        => 'Desila se sintaksna greška upita baze.
 Posljednji pokušani upit je bio:
 "$1"
 iz funkcije "$2".
-$5 je vratio grešku "$3: $4".',
+MySQL je vratio grešku "$3: $4".',
 'laggedslavemode'      => "'''Upozorenje''': Stranica ne mora sadržavati posljednja ažuriranja.",
 'readonly'             => 'Baza podataka je zaključana',
 'enterlockreason'      => 'Unesite razlog za zaključavanje, uključujući procjenu vremena otključavanja',
