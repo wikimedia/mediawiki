@@ -83,6 +83,17 @@ class Html {
 		'seamless',
 	);
 
+	# A nested associative array of element => content attribute => default
+	# value.  Attributes that have the default value will be omitted, since
+	# they're pointless.  Currently the list hasn't been systematically
+	# populated.
+	private static $attribDefaults = array(
+		'input' => array(
+			'value' => '',
+			'type' => 'text',
+		),
+	);
+
 	/**
 	 * Returns an HTML element in a string.  The major advantage here over
 	 * manually typing out the HTML is that it will escape all attribute
@@ -150,6 +161,15 @@ class Html {
 				foreach ( $html5attribs as $badAttr ) {
 					unset( $attribs[$badAttr] );
 				}
+			}
+		}
+
+		# Don't bother outputting the default values for attributes
+		foreach ( $attribs as $attrib => $value ) {
+			$lcattrib = strtolower( $attrib );
+			if ( isset( self::$attribDefaults[$element][$lcattrib] ) &&
+			self::$attribDefaults[$element][$lcattrib] === $value ) {
+				unset( $attribs[$attrib] );
 			}
 		}
 
@@ -352,10 +372,8 @@ class Html {
 	 * @return string Raw HTML
 	 */
 	public static function input( $name, $value = null, $type = 'text', $attribs = array() ) {
-		if ( $type != 'text' ) {
-			$attribs['type'] = $type;
-		}
-		if ( $value !== null && $value !== '' ) {
+		$attribs['type'] = $type;
+		if ( $value !== null ) {
 			$attribs['value'] = $value;
 		}
 		$attribs['name'] = $name;
