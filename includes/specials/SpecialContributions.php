@@ -162,7 +162,7 @@ class SpecialContributions extends SpecialPage {
 			$tools[] = $sk->link( $talk, wfMsgHtml( 'sp-contributions-talk' ) );
 			if( ( $id != 0 && $wgSysopUserBans ) || ( $id == 0 && IP::isIPAddress( $nt->getText() ) ) ) {
 				if( $wgUser->isAllowed( 'block' ) ) { # Block / Change block / Unblock links
-					if ( $wgUser->isBlocked() ) {
+					if ( User::newFromId( $id )->isBlocked() ) {
 						$tools[] = $sk->linkKnown( # Change block link
 							SpecialPage::getTitleFor( 'Blockip', $nt->getDBkey() ),
 							wfMsgHtml( 'change-blocklink' )
@@ -174,8 +174,7 @@ class SpecialContributions extends SpecialPage {
 							array(
 								'action' => 'unblock',
 								'ip' => $nt->getDBkey() 
-							),
-							array( 'known' )
+							)
 						);
 					}
 					else { # User is not blocked
