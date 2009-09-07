@@ -239,14 +239,15 @@ class SpecialContributions extends SpecialPage {
 
 	/**
 	 * Show a note if the user is blocked and display the last block log entry.
-	 * @param Title $nt Title object for the target
+	 * @param Title $title Title object for the target
+	 * @param $userId ID of the user
 	 */
-	protected function showBlock( $nt, $id ) {
+	protected function showBlock( $title, $userId ) {
 		global  $wgUser, $wgOut;
-		if ( !User::newFromID( $id )->isBlocked() )
+		if ( !User::newFromID( $userId )->isBlocked() )
 			return; # User is not blocked, nothing to do here
 		$loglist = new LogEventsList( $wgUser->getSkin(), $wgOut );
-		$pager = new LogPager( $loglist, 'block', false, $nt->getPrefixedText() );
+		$pager = new LogPager( $loglist, 'block', false, $title->getPrefixedText() );
 		// Check if there is something in the block log.
 		// If this is not the case, either the user is not blocked,
 		// or the account has been hidden via hideuser.
@@ -264,7 +265,7 @@ class SpecialContributions extends SpecialPage {
 					SpecialPage::getTitleFor( 'Log', 'block' ),
 					wfMsgHtml( 'log-fulllog' ),
 					array(),
-					array( 'page' => $nt->getPrefixedText() )
+					array( 'page' => $title->getPrefixedText() )
 				) );
 			}
 			$wgOut->addHTML( '</div>' );
