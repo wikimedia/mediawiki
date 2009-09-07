@@ -1247,6 +1247,9 @@ If you are an anonymous user and feel that irrelevant comments have been directe
 You can [[Special:Search/{{PAGENAME}}|search for this page title]] in other pages,
 <span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} search the related logs],
 or [{{fullurl:{{FULLPAGENAME}}|action=edit}} edit this page]</span>.',
+'noarticletext-nopermission'       => 'There is currently no text in this page.
+You can [[Special:Search/{{PAGENAME}}|search for this page title]] in other pages,
+or <span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} search the related logs]</span>.',
 'noarticletextanon'                => '{{int:noarticletext}}', # do not translate or duplicate this message to other languages
 'userpage-userdoesnotexist'        => 'User account "$1" is not registered.
 Please check if you want to create/edit this page.',
