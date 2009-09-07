@@ -1120,16 +1120,17 @@ class OutputPage {
 			if( isset( $wgArticle ) && $this->getTitle() && $this->getTitle()->quickUserCan( 'edit' )
 				&& ( $this->getTitle()->exists() || $this->getTitle()->quickUserCan( 'create' ) ) ) {
 				// Original UniversalEditButton
+				$msg = wfMsg('edit');
 				$this->addLink( array(
 					'rel' => 'alternate',
 					'type' => 'application/x-wiki',
-					'title' => wfMsg( 'edit' ),
+					'title' => $msg,
 					'href' => $this->getTitle()->getLocalURL( 'action=edit' )
 				) );
 				// Alternate edit link
 				$this->addLink( array(
 					'rel' => 'edit',
-					'title' => wfMsg( 'edit' ),
+					'title' => $msg,
 					'href' => $this->getTitle()->getLocalURL( 'action=edit' )
 				) );
 			}
