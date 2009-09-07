@@ -244,8 +244,8 @@ $block: The block from which the autoblock is coming.
 'AbortLogin': Return false to cancel account login.
 $user: the User object being authenticated against
 $password: the password being submitted, not yet checked for validity
-&$retval: a LoginForm class constant to return from authenticateUserData();
-          default is LoginForm::ABORTED. Note that the client may be using
+&$retval: a Login class constant to return from authenticateUserData();
+          default is Login::ABORTED. Note that the client may be using
           a machine API rather than the HTML user interface.
 
 'AbortMove': allows to abort moving an article (title)
@@ -944,7 +944,7 @@ $code: language code
 succeeded or failed. No return data is accepted; this hook is for auditing only.
 $user: the User object being authenticated against
 $password: the password being submitted and found wanting
-$retval: a LoginForm class constant with authenticateUserData() return
+$retval: a Login class constant with authenticateUserData() return
 	value (SUCCESS, WRONG_PASS, etc)
 
 'LogLine': Processes a single log entry on Special:Log
@@ -1519,7 +1519,7 @@ override the default password checks
 	determine if the password was valid
 
 'UserCreateForm': change to manipulate the login form
-$template: SimpleTemplate instance for the form
+$sp: SpecialCreateAccount instance
 
 'UserCryptPassword': called when hashing a password, return false to implement
 your own hashing method
@@ -1589,7 +1589,7 @@ $user: the user object that was created on login
 $inject_html: Any HTML to inject after the "logged in" message.
 
 'UserLoginForm': change to manipulate the login form
-$template: SimpleTemplate instance for the form
+$sp: SpecialUserLogin instance
 
 'UserLoginMailPassword': Block users from emailing passwords
 $name: the username to email the password of.

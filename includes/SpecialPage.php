@@ -112,8 +112,8 @@ class SpecialPage {
 		'Listredirects'             => array( 'SpecialPage', 'Listredirects' ),	
 
 		# Login/create account
-		'Userlogin'                 => array( 'SpecialPage', 'Userlogin' ),		
-		'CreateAccount'             => array( 'SpecialRedirectToSpecial', 'CreateAccount', 'Userlogin', 'signup', array( 'uselang' ) ),
+		'Userlogin'                 => 'SpecialUserLogin',		
+		'CreateAccount'             => 'SpecialCreateAccount',
 
 		# Users and rights
 		'Blockip'                   => array( 'SpecialPage', 'Blockip', 'block' ),
