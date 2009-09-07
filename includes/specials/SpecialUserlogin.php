@@ -415,7 +415,7 @@ class SpecialUserLogin extends SpecialPage {
 
 	protected function processLogin(){
 		global $wgUser, $wgAuth;
-		$result = $this->mLogin->login();
+		$result = $this->mLogin->attemptLogin();
 		switch ( $result ) {
 			case Login::SUCCESS:
 				if( $this->hasSessionCookie() || $this->mSkipCookieCheck ) {

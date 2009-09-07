@@ -110,7 +110,7 @@ class Login {
 		return $this->mUser;
 	}
 	
-	public function login(){
+	public function attemptLogin(){
 		global $wgUser;
 		$code = $this->authenticateUserData();
 		if( !$code == self::SUCCESS ){
