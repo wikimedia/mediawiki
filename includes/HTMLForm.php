@@ -384,6 +384,16 @@ abstract class HTMLFormField {
 		return $value;
 	}
 
+	/**
+	 * Should this field have a label, or is there no input element with the
+	 * appropriate id for the label to point to?
+	 *
+	 * @return bool True to output a label, false to suppress
+	 */
+	protected function needsLabel() {
+		return true;
+	}
+
 	function loadDataFromRequest( $request ) {
 		if( $request->getCheck( $this->mName ) ) {
 			return $request->getText( $this->mName );
@@ -455,8 +465,14 @@ abstract class HTMLFormField {
 
 		$html = '';
 
+		# Don't output a for= attribute for labels with no associated input.
+		# Kind of hacky here, possibly we don't want these to be <label>s at all.
+		$for = array();
+		if ( $this->needsLabel() ) {
+			$for['for'] = $this->mID;
+		}
 		$html .= Html::rawElement( 'td', array( 'class' => 'mw-label' ),
-					Html::rawElement( 'label', array( 'for' => $this->mID ), $this->getLabel() )
+					Html::rawElement( 'label', $for, $this->getLabel() )
 				);
 		$html .= Html::rawElement( 'td', array( 'class' => 'mw-input' ),
 							$this->getInputHTML( $value ) ."\n$errors" );
@@ -837,6 +853,10 @@ class HTMLMultiSelectField extends HTMLFormField {
 			return array();
 		}
 	}
+
+	protected function needsLabel() {
+		return false;
+	}
 }
 
 class HTMLRadioField extends HTMLFormField {
@@ -886,6 +906,10 @@ class HTMLRadioField extends HTMLFormField {
 
 		return $html;
 	}
+
+	protected function needsLabel() {
+		return false;
+	}
 }
 
 class HTMLInfoField extends HTMLFormField {
@@ -905,5 +929,9 @@ class HTMLInfoField extends HTMLFormField {
 		}
 
 		return parent::getTableRow( $value );
+	}
+
+	protected function needsLabel() {
+		return false;
 	}
 }
