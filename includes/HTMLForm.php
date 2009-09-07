@@ -180,7 +180,7 @@ class HTMLForm {
 	}
 
 	function wrapForm( $html ) {
-		return Xml::tags(
+		return Html::rawElement(
 			'form',
 			array(
 				'action' => $this->getTitle()->getFullURL(),
@@ -194,8 +194,8 @@ class HTMLForm {
 		global $wgUser;
 		$html = '';
 
-		$html .= Xml::hidden( 'wpEditToken', $wgUser->editToken() ) . "\n";
-		$html .= Xml::hidden( 'title', $this->getTitle() ) . "\n";
+		$html .= Html::hidden( 'wpEditToken', $wgUser->editToken() ) . "\n";
+		$html .= Html::hidden( 'title', $this->getTitle() ) . "\n";
 
 		return $html;
 	}
@@ -213,7 +213,7 @@ class HTMLForm {
 		$html .= Xml::submitButton( $this->getSubmitText(), $attribs ) . "\n";
 
 		if( $this->mShowReset ) {
-			$html .= Xml::element(
+			$html .= Html::element(
 				'input',
 				array(
 					'type' => 'reset',
@@ -236,7 +236,7 @@ class HTMLForm {
 			$errorstr = $errors;
 		}
 		
-		$errorstr = Xml::tags( 'div', array( 'class' => 'error' ), $errorstr );
+		$errorstr = Html::rawElement( 'div', array( 'class' => 'error' ), $errorstr );
 
 		global $wgOut;
 		$wgOut->addHTML( $errorstr );
@@ -251,14 +251,14 @@ class HTMLForm {
 				$msg = $error;
 				$error = array();
 			}
-			$errorstr .= Xml::tags(
+			$errorstr .= Html::rawElement(
 				'li',
 				null,
 				wfMsgExt( $msg, array( 'parseinline' ), $error )
 			);
 		}
 
-		$errorstr = Xml::tags( 'ul', null, $errorstr );
+		$errorstr = Html::rawElement( 'ul', array(), $errorstr );
 
 		return $errorstr;
 	}
@@ -450,20 +450,20 @@ abstract class HTMLFormField {
 		if ( $errors === true || !$wgRequest->wasPosted() ) {
 			$errors = '';
 		} else {
-			$errors = Xml::tags( 'span', array( 'class' => 'error' ), $errors );
+			$errors = Html::rawElement( 'span', array( 'class' => 'error' ), $errors );
 		}
 
 		$html = '';
 
-		$html .= Xml::tags( 'td', array( 'class' => 'mw-label' ),
-					Xml::tags( 'label', array( 'for' => $this->mID ), $this->getLabel() )
+		$html .= Html::rawElement( 'td', array( 'class' => 'mw-label' ),
+					Html::rawElement( 'label', array( 'for' => $this->mID ), $this->getLabel() )
 				);
-		$html .= Xml::tags( 'td', array( 'class' => 'mw-input' ),
+		$html .= Html::rawElement( 'td', array( 'class' => 'mw-input' ),
 							$this->getInputHTML( $value ) ."\n$errors" );
 
 		$fieldType = get_class( $this );
 
-		$html = Xml::tags( 'tr', array( 'class' => "mw-htmlform-field-$fieldType" ),
+		$html = Html::rawElement( 'tr', array( 'class' => "mw-htmlform-field-$fieldType" ),
 							$html ) . "\n";
 
 		$helptext = null;
@@ -479,9 +479,9 @@ abstract class HTMLFormField {
 		}
 
 		if ( !is_null( $helptext ) ) {
-			$row = Xml::tags( 'td', array( 'colspan' => 2, 'class' => 'htmlform-tip' ),
+			$row = Html::rawElement( 'td', array( 'colspan' => 2, 'class' => 'htmlform-tip' ),
 				$helptext );
-			$row = Xml::tags( 'tr', null, $row );
+			$row = Html::rawElement( 'tr', array(), $row );
 			$html .= "$row\n";
 		}
 
@@ -637,7 +637,7 @@ class HTMLCheckField extends HTMLFormField {
 		}
 
 		return Xml::check( $this->mName, $value, $attr ) . '&nbsp;' .
-				Xml::tags( 'label', array( 'for' => $this->mID ), $this->mLabel );
+				Html::rawElement( 'label', array( 'for' => $this->mID ), $this->mLabel );
 	}
 
 	function getLabel() {
@@ -743,9 +743,9 @@ class HTMLSelectOrOtherField extends HTMLTextField {
 			$tbAttribs['maxlength'] = $this->mParams['maxlength'];
 		}
 
-		$textbox = Xml::input( $this->mName . '-other',
+		$textbox = Html::input( $this->mName . '-other',
 							$this->getSize(),
-							$valInSelect ? '' : $value,
+							$valInSelect ? 'text' : $value,
 							$tbAttribs );
 
 		return "$select<br/>\n$textbox";
@@ -800,14 +800,14 @@ class HTMLMultiSelectField extends HTMLFormField {
 
 		foreach( $options as $label => $info ) {
 			if( is_array( $info ) ) {
-				$html .= Xml::tags( 'h1', null, $label ) . "\n";
+				$html .= Html::rawElement( 'h1', array(), $label ) . "\n";
 				$html .= $this->formatOptions( $info, $value );
 			} else {
 				$thisAttribs = array( 'id' => $this->mID . "-$info", 'value' => $info );
 				
 				$checkbox = Xml::check( $this->mName . '[]', in_array( $info, $value ),
 								$attribs + $thisAttribs );
-				$checkbox .= '&nbsp;' . Xml::tags( 'label', array( 'for' => $this->mID . "-$info" ), $label );
+				$checkbox .= '&nbsp;' . Html::rawElement( 'label', array( 'for' => $this->mID . "-$info" ), $label );
 
 				$html .= $checkbox . '<br />';
 			}
@@ -871,14 +871,14 @@ class HTMLRadioField extends HTMLFormField {
 
 		foreach( $options as $label => $info ) {
 			if( is_array( $info ) ) {
-				$html .= Xml::tags( 'h1', null, $label ) . "\n";
+				$html .= Html::rawElement( 'h1', array(), $label ) . "\n";
 				$html .= $this->formatOptions( $info, $value );
 			} else {
 				$id = Sanitizer::escapeId( $this->mID . "-$info" );
 				$html .= Xml::radio( $this->mName, $info, $info == $value,
 										$attribs + array( 'id' => $id ) );
 				$html .= '&nbsp;' .
-						Xml::tags( 'label', array( 'for' => $id ), $label );
+						Html::rawElement( 'label', array( 'for' => $id ), $label );
 
 				$html .= "<br/>\n";
 			}
