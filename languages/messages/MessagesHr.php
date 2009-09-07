@@ -877,7 +877,7 @@ Nakon prijave, lozinka za ovaj novi račun može biti promijenjena na stranici '
 'anontalkpagetext'                 => "----''Ovo je stranica za razgovor s neprijavljenim suradnikom koji nije otvorio suradnički račun ili se njime ne koristi. Zbog toga se moramo služiti brojčanom IP adresom kako bismo ga identificirali. Takvu adresu često koristi više ljudi. Ako ste neprijavljeni suradnik i smatrate da su vam upućeni irelevantni komentari, molimo vas da [[Special:UserLogin|otvorite suradnički račun ili se prijavite]] te tako u budućnosti izbjegnete zamjenu s drugim neprijavljenim suradnicima.''",
 'noarticletext'                    => 'Na ovoj stranici trenutačno nema sadržaja.
 Možete [[Special:Search/{{PAGENAME}}|potražiti ovaj naslov]] na drugim stranicama,
-<span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} pretražiti povezane evidencije]
+<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} pretražiti povezane evidencije]
 ili [{{fullurl:{{FULLPAGENAME}}|action=edit}} urediti ovu stranicu]</span>.',
 'userpage-userdoesnotexist'        => 'Suradničko ime "$1" nije prijavljeno. Jeste li sigurni da želite stvoriti/uređivati ovu stranicu?',
 'clearyourcache'                   => "'''Napomena:''' Nakon snimanja trebate očistiti međuspremnik svog preglednika kako biste vidjeli promjene.
@@ -2292,17 +2292,18 @@ $1',
 'month'               => 'Od mjeseca (i ranije):',
 'year'                => 'Od godine (i ranije):',
 
-'sp-contributions-newbies'       => 'Prikaži samo doprinose novih suradnika',
-'sp-contributions-newbies-sub'   => 'Za nove suradnike',
-'sp-contributions-newbies-title' => 'Doprinosi novih suradnika',
-'sp-contributions-blocklog'      => 'Evidencija blokiranja',
-'sp-contributions-deleted'       => 'obrisani suradnički doprinosi',
-'sp-contributions-logs'          => 'evidencije',
-'sp-contributions-talk'          => 'razgovor',
-'sp-contributions-userrights'    => 'upravljanje suradničkim pravima',
-'sp-contributions-search'        => 'Pretraži doprinose',
-'sp-contributions-username'      => 'IP adresa ili suradnik:',
-'sp-contributions-submit'        => 'Traži',
+'sp-contributions-newbies'        => 'Prikaži samo doprinose novih suradnika',
+'sp-contributions-newbies-sub'    => 'Za nove suradnike',
+'sp-contributions-newbies-title'  => 'Doprinosi novih suradnika',
+'sp-contributions-blocklog'       => 'Evidencija blokiranja',
+'sp-contributions-deleted'        => 'obrisani suradnički doprinosi',
+'sp-contributions-logs'           => 'evidencije',
+'sp-contributions-talk'           => 'razgovor',
+'sp-contributions-userrights'     => 'upravljanje suradničkim pravima',
+'sp-contributions-blocked-notice' => 'Ovaj suranik trenutačno je blokiran. Posljednja stavka evidencije blokiranja navedena je niže kao napomena:',
+'sp-contributions-search'         => 'Pretraži doprinose',
+'sp-contributions-username'       => 'IP adresa ili suradnik:',
+'sp-contributions-submit'         => 'Traži',
 
 # What links here
 'whatlinkshere'            => 'Što vodi ovamo',

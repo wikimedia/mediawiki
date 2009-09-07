@@ -819,8 +819,11 @@ $1',
 Якщо ви — анонімний користувач і вважаєте, що отримали коментарі, адресовані не вам, будь ласка [[Special:UserLogin/signup|зареєструйтесь]] або [[Special:UserLogin|увійдіть до системи]], щоб у майбутньому уникнути можливої плутанини з іншими анонімними користувачами.''",
 'noarticletext'                    => 'Зараз на цій сторінці нема тексту.
 Ви можете [[Special:Search/{{PAGENAME}}|пошукати цю назву]] в інших сторінках,
-<span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} пошукати в журналах]
+<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} пошукати в журналах]
 або [{{fullurl:{{FULLPAGENAME}}|action=edit}} створити сторінку з такою назвою]</span>.',
+'noarticletext-nopermission'       => 'Зараз на цій сторінці відсутній текст.
+Ви можете [[Special:Search/{{PAGENAME}}|пошукати такий заголовок]] серед інших сторінок,
+або <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} пошукати пов\'язані записи в журналах]</span>.',
 'userpage-userdoesnotexist'        => 'Користувач під назвою "$1" не зареєстрований. Переконайтеся, що ви хочете створити/редагувати цю сторінку.',
 'clearyourcache'                   => "'''Зауваження:''' Після зберігання ви маєте відновити кеш вашого браузера, щоб побачити зміни. '''Mozilla / Firefox / Safari:''' тримайте ''Shift'', коли натискаєте ''Reload'', або натисніть ''Ctrl-Shift-R'' (''Cmd-Shift-R'' на Apple Mac); '''IE:''' тримайте ''Ctrl'', коли натискаєте ''Refresh'', або натисніть ''Ctrl-F5''; '''Konqueror:''': натисніть кнопку ''Reload'', або натисніть ''F5''; '''Opera:''' користувачам може знадобитись повністю очистити кеш у ''Tools→Preferences''.",
 'usercssyoucanpreview'             => "'''Підказка:''' Використовуйте кнопку попереднього перегляду, щоб протестувати ваш новий css-файл чи js-файл перед збереженням.",
@@ -1021,7 +1024,7 @@ $3 зазначив таку причину: ''$2''",
 'revdelete-suppress'          => 'Приховувати дані також і від адміністраторів',
 'revdelete-hide-image'        => 'Приховати вміст файлу',
 'revdelete-unsuppress'        => 'Зняти обмеження з відновлених версій',
-'revdelete-log'               => 'Коментар:',
+'revdelete-log'               => 'Причина вилучення:',
 'revdelete-submit'            => 'Застосувати до вибраної версії',
 'revdelete-logentry'          => 'Змінено видимість версії сторінки для [[$1]]',
 'logdelete-logentry'          => 'змінена видимість події для [[$1]]',
@@ -1054,6 +1057,11 @@ $1",
 'revdelete-concurrent-change' => 'Помилка редагування запису від $2, $1: його стан змінений кимось іншим, поки ви робили свої зміни.
 Будь ласка, перевірте журнал.',
 'revdelete-only-restricted'   => 'Ви не можете приховати запис від адміністраторів без вибору однієї з інших опцій.',
+'revdelete-reason-dropdown'   => '* Типові причини вилучення
+** Порушення авторських прав
+** Недоречна особиста інформація',
+'revdelete-otherreason'       => 'Інша/додаткова причина:',
+'revdelete-reasonotherlist'   => 'Інша причина',
 'revdelete-edit-reasonlist'   => 'Редагувати причини вилучень',
 
 # Suppression log
@@ -1658,6 +1666,20 @@ PICT # різні
 'upload-too-many-redirects' => 'URL містить надто багато перенаправлень',
 'upload-unknown-size'       => 'Невідомий розмір',
 'upload-http-error'         => 'Відбулася помилка HTTP: $1',
+
+# img_auth script messages
+'img-auth-accessdenied' => 'Відмовлено в доступі',
+'img-auth-nopathinfo'   => 'Брак PATH_INFO.
+Ваш сервер не налаштований для передачі цих даних.
+Можливо, він працює на основі CGI і не підтримує img_auth.
+Глядіть http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
+'img-auth-notindir'     => 'Проханий шлях не відноситься до теки завантажень, вказаної в налаштуваннях.',
+'img-auth-badtitle'     => 'Не можна побудувати правильний заголовок з «$1».',
+'img-auth-nologinnWL'   => 'Ви не ввійшли в систему, а «$1» не входить у білий список.',
+'img-auth-nofile'       => 'Файл «$1» не існує.',
+'img-auth-isdir'        => 'Ви пробуєте отримати доступ до каталогу «$1».
+Дозволений тільки доступ до файлів.',
+'img-auth-streaming'    => 'Потокова передача «$1».',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Неможливо досягнути вказану адресу.',

@@ -905,7 +905,7 @@ Pokud ji chcete vytvořit, napište text do rámečku níže a stiskněte tlač�
 Pokud jste zde omylem, stiskněte ve svém prohlížeči tlačítko ''Zpět''.",
 'anontalkpagetext'                 => "----''Toto je diskusní stránka anonymního uživatele, který si dosud nevytvořil účet nebo ho nepoužívá. K&nbsp;jeho identifikaci proto musíme používat číselnou IP adresu. Takovou IP adresu může sdílet několik uživatelů. Pokud jste anonymní uživatel a&nbsp;máte za to, že jsou vám adresovány irelevantní komentáře, prosíme, [[Special:UserLogin/signup|vytvořte si účet]] nebo [[Special:UserLogin|se přihlaste]], vyhnete se tím budoucí záměně s&nbsp;jinými anonymními uživateli.''",
 'noarticletext'                    => 'Tato stránka zatím neobsahuje žádný text.
-Můžete [[Special:Search/{{PAGENAME}}|zkusit tento název vyhledat]] na jiných stránkách, <span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} prohlédnout si příslušné protokolovací záznamy] nebo [{{fullurl:{{FULLPAGENAME}}|action=edit}} tuto stránku založit]</span>.',
+Můžete [[Special:Search/{{PAGENAME}}|zkusit tento název vyhledat]] na jiných stránkách, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} prohlédnout si příslušné protokolovací záznamy] nebo [{{fullurl:{{FULLPAGENAME}}|action=edit}} tuto stránku založit]</span>.',
 'userpage-userdoesnotexist'        => 'Uživatelský účet „$1“ není zaregistrován. Zkontrolujte zda skutečně chcete vytvořit či editovat tuto stránku.',
 'clearyourcache'                   => "'''Poznámka:''' Po uložení musíte smazat cache vašeho prohlížeče, jinak změny neuvidíte: '''Mozilla / Firefox:''' ''Ctrl-Shift-R'', '''IE:''' ''Ctrl-F5'', '''Safari:''' ''Cmd-Shift-R'', '''Konqueror''': ''F5''.",
 'usercssyoucanpreview'             => "'''Tip:''' Použijte tlačítko „Ukázat náhled“ k testování vašeho nového CSS před uložením.",
@@ -2317,17 +2317,18 @@ $1',
 'month'               => 'Do měsíce:',
 'year'                => 'Do roku:',
 
-'sp-contributions-newbies'       => 'Zobrazit příspěvky nově založených účtů',
-'sp-contributions-newbies-sub'   => 'Noví uživatelé',
-'sp-contributions-newbies-title' => 'Příspěvky nových uživatelů',
-'sp-contributions-blocklog'      => 'kniha zablokování',
-'sp-contributions-deleted'       => 'smazané editace uživatele',
-'sp-contributions-logs'          => 'protokolovací záznamy',
-'sp-contributions-talk'          => 'diskuse',
-'sp-contributions-userrights'    => 'správa uživatelských práv',
-'sp-contributions-search'        => 'Zobrazení příspěvků',
-'sp-contributions-username'      => 'IP adresa nebo uživatelské jméno:',
-'sp-contributions-submit'        => 'Zobrazit',
+'sp-contributions-newbies'        => 'Zobrazit příspěvky nově založených účtů',
+'sp-contributions-newbies-sub'    => 'Noví uživatelé',
+'sp-contributions-newbies-title'  => 'Příspěvky nových uživatelů',
+'sp-contributions-blocklog'       => 'kniha zablokování',
+'sp-contributions-deleted'        => 'smazané editace uživatele',
+'sp-contributions-logs'           => 'protokolovací záznamy',
+'sp-contributions-talk'           => 'diskuse',
+'sp-contributions-userrights'     => 'správa uživatelských práv',
+'sp-contributions-blocked-notice' => 'Tento uživatel je momentálně zablokován. Zde je pro přehled zobrazen nejnovější záznam z knihy zablokování:',
+'sp-contributions-search'         => 'Zobrazení příspěvků',
+'sp-contributions-username'       => 'IP adresa nebo uživatelské jméno:',
+'sp-contributions-submit'         => 'Zobrazit',
 
 # What links here
 'whatlinkshere'            => 'Odkazuje sem',
@@ -2470,11 +2471,17 @@ $1 je již zablokován(a). Chcete změnit nastavení bloku?',
 # Move page
 'move-page'                    => 'Přesunout „$1“',
 'move-page-legend'             => 'Přesunout stránku',
-'movepagetext'                 => "Použitím tohoto formuláře změníte název stránky a přesunete i celou její historii na nový název. Původní název se stane přesměrováním na nový název, odkazy na předchozí název ''nebudou'' změněny, nezapomeňte poté zkontrolovat případná [[Special:DoubleRedirects|dvojitá]] nebo [[Special:BrokenRedirects|přerušená]] přesměrování.
+'movepagetext'                 => "Použitím tohoto formuláře změníte název stránky a přesunete i celou její historii na nový název.
+Původní název se stane přesměrováním na nový název.
+Přesměrování na původní název můžete nechat aktualizovat automaticky.
+Pokud nenecháte, nezapomeňte poté zkontrolovat [[Special:DoubleRedirects|dvojitá]] nebo [[Special:BrokenRedirects|přerušená]] přesměrování.
+Je na vaší zodpovědnosti zajistit, aby odkazy stále vedly tam, kam mají.
 
-Stránku není možno přejmenovat, '''pokud pod cílovým názvem již nějaká stránka existuje''', s výjimkou situace, kdy je cílová stránka přesměrováním na tuto stránku a nemá žádnou historii editací. Pokud potřebujete přesto stránku přesunout, '''nepoužívejte copy&paste''', ale kontaktujte správce, který přesun zařídí.
+Stránku '''není možno''' přejmenovat, pokud pod cílovým názvem již nějaká stránka existuje, s výjimkou situace, kdy je cílová stránka prázdná nebo je přesměrováním na tuto stránku a nemá žádnou historii editací.
+To znamená, že stránku můžete přesunout zpět na původní název, pokud uděláte chybu, a že nemůžete přepsat existující stránku.
 
-'''Upozornění!''' Přejmenování oblíbené stránky může být drastická a nečekaná změna. Ujistěte se, prosím, že chápete důsledky svého kroku před tím, než změnu provedete.",
+'''Upozornění!'''
+Přejmenování oblíbené stránky může být drastická a nečekaná změna; ujistěte se, prosím, že chápete důsledky svého kroku před tím, než změnu provedete.",
 'movepagetalktext'             => "Přidružená diskusní stránka, pokud existuje, bude automaticky přesunuta společně se stránkou, '''pokud:'''
 * Dosud neexistuje neprázdná diskusní stránka pod novým jménem a
 * nezrušíte křížek ve formuláři.

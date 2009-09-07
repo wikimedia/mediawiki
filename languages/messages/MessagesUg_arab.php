@@ -523,7 +523,7 @@ $2',
  بۇ بەتنى قۇرسىڭىز، تۆۋەندىكى تەھرىرلەش رامكىسىغا مەزمۇن كىرگۈزۈڭ(تەپسىلاتىنى  [[{{MediaWiki:ياردەم بېتى}}|ياردەم بېتى]]دىن كۆرۈڭ)',
 'noarticletext'                    => 'بۇ بەتتە ھازىرچە مەزمۇن يوق.
  سىز باشقا بەتتە [[Special:Search/{{PAGENAME}}|بۇ بەتنىڭ ماۋزۇسىنى ئىزدىيەلەيسىز]] ياكى 
-<span class=\\"plainlinks\\">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} مۇناسىۋەتلىك خاتىرىسىنى ئىزدىيەلەيسىز،],
+<span class=\\"plainlinks\\">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} مۇناسىۋەتلىك خاتىرىسىنى ئىزدىيەلەيسىز،],
 [{{fullurl:{{FULLPAGENAME}}|action=edit}} بۇ بەتنى تەھرىرلىيەلەيسىز]</span>',
 'updated'                          => '(يېڭىلاندى)',
 'note'                             => "'''ئىزاھات:'''",

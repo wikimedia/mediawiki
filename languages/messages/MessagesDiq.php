@@ -361,7 +361,7 @@ Eq tı wazen yew bıvırazi, bınê eno nuşte dı yew quti esto u uca dı bınu
 Eg tı itiya semed yew heta ra amey, ser gocekê '''back'''i klik bıkin.",
 'noarticletext'                    => 'Ena pele dı hona çık çino.    
 Tı eşkeno zerre pelanê binan dı [[Special:Search/{{PAGENAME}}|ser ena name cıgeyro]],
-<span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} ser logan cıgeyro],
+<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} ser logan cıgeyro],
 ya zi [{{fullurl:{{FULLPAGENAME}}|action=edit}} ena pele bıvurno]</span>.',
 'previewnote'                      => "'''Teme! ena teyna verqeyda.'''
 Vurnayışê tu hama qeyd nıbiyo!",

@@ -904,7 +904,7 @@ Una adrèce IP pôt étre partagiê per un mouél d’utilisators.
 Se vos éte un utilisator pas enregistrâ et se vos constatâd que des comentèros que vos regârdont pas vos ont étâ adrèciês, vos pouede [[Special:UserLogin/signup|fâre un compto]] ou ben [[Special:UserLogin|vos branchiér]] por èvitar tota confusion a vegnir avouéc d’ôtros contributors pas enregistrâs.''",
 'noarticletext'                    => 'Y at por lo moment gins de tèxto sur ceta pâge.
 Vos pouede [[Special:Search/{{PAGENAME}}|fâre una rechèrche de ceti titro de pâge]] dens les ôtres pâges,
-<span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} rechèrchiér dens los jornals liyês]
+<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} rechèrchiér dens los jornals liyês]
 ou ben [{{fullurl:{{FULLPAGENAME}}|action=edit}} fâre cela pâge]</span>.',
 'userpage-userdoesnotexist'        => 'Lo compto utilisator « $1 » est pas enregistrâ.
 Volyéd controlar que vos voléd fâre ou ben changiér cela pâge.',
@@ -991,7 +991,7 @@ Vos pouede tornar arriér et pués changiér una pâge ègzistenta, ou ben [[Spe
 'permissionserrorstext-withaction' => 'Vos éte pas ôtorisâ a $2, por {{PLURAL:$1|ceta rêson|cetes rêsons}} :',
 'recreate-moveddeleted-warn'       => "'''Atencion : vos éte aprés refâre una pâge qu’at étâ suprimâ dês devant.'''
 
-Demandâd-vos s’o est franc favorâblo de continuar son changement.
+Demandâd-vos s’il fôt franc continuar son changement.
 Los jornals de les suprèssions et des changements de nom de cela pâge sont montrâs ce-desot :",
 'moveddeleted-notice'              => 'Ceta pâge at étâ suprimâ.
 Los jornals de les suprèssions et des changements de nom sont montrâs ce-desot coment refèrence.',
@@ -1114,7 +1114,7 @@ Volyéd confirmar qu’o est franc cen que vos voléd fâre, que vos en compregn
 'revdelete-suppress'          => 'Suprimar les balyês ux administrators et pués ux ôtros',
 'revdelete-hide-image'        => 'Cachiér lo contegnu du fichiér',
 'revdelete-unsuppress'        => 'Enlevar les rèstriccions sur les vèrsions refêtes',
-'revdelete-log'               => 'Comentèro por lo jornal :',
+'revdelete-log'               => 'Rêson de la suprèssion :',
 'revdelete-submit'            => 'Aplicar a la vèrsion chouèsia',
 'revdelete-logentry'          => 'at changiê la visibilitât de la vèrsion de [[$1]]',
 'logdelete-logentry'          => 'at changiê la visibilitât de l’entrâ de [[$1]]',
@@ -1147,6 +1147,11 @@ Vos y avéd pas accès.',
 'revdelete-concurrent-change' => 'Èrror pendent lo changement de l’èlèment datâ du $1 a $2 : son statut at étâ changiê per quârqu’un d’ôtro pendent que vos lo changiéd.
 Volyéd controlar los jornals.',
 'revdelete-only-restricted'   => 'Vos pouede pas suprimar celos èlèments ux administrators sen chouèsir avouéc des ôtros chouèx de suprèssion.',
+'revdelete-reason-dropdown'   => '* Rêsons de suprèssion les ples corentes
+** Violacion du drêt d’ôtor
+** Enformacions a sè que vont pas avouéc',
+'revdelete-otherreason'       => 'Ôtra rêson / rêson de ples :',
+'revdelete-reasonotherlist'   => 'Ôtra rêson',
 'revdelete-edit-reasonlist'   => 'Changiér les rêsons de suprèssion',
 
 # Suppression log
@@ -1524,7 +1529,7 @@ Vos pouede asse-ben dècidar de lèssiér los ôtros sè veriér vers vos avoué
 'right-editusercssjs'         => 'Changiér los fichiérs CSS et JS d’ôtros utilisators',
 'right-editusercss'           => 'Changiér los fichiérs CSS d’ôtros utilisators',
 'right-edituserjs'            => 'Changiér los fichiérs JS d’ôtros utilisators',
-'right-rollback'              => 'Rèvocar vito los changements u dèrriér contributor d’una pâge spècefica',
+'right-rollback'              => 'Rèvocar rêdo los changements u dèrriér contributor d’una pâge spècefica',
 'right-markbotedits'          => 'Marcar des changements rèvocâs coment èyent étâ fêts per un bot',
 'right-noratelimit'           => 'Pas étre afèctâ per les limites de quota',
 'right-import'                => 'Importar des pâges dês d’ôtros vouiquis',
@@ -1728,7 +1733,7 @@ Volyéd controlar lo fichiér devant que lo tornar tèlèchargiér.',
 Vos devriâd controlar lo $1 devant que lo tornar tèlèchargiér.',
 'upload-wasdeleted'           => "'''Atencion : vos éte aprés tèlèchargiér un fichiér qu’at étâ suprimâ dês devant.'''
 
-Demandâd-vos s’o est franc favorâblo de continuar son tèlèchargement.
+Demandâd-vos s’il fôt franc continuar son tèlèchargement.
 Lo jornal de les suprèssions de cél fichiér est montrâ ce-desot :",
 'filename-bad-prefix'         => "Lo nom du fichiér que vos tèlèchargiéd comence per '''« $1 »''' qu’est tipicament un nom balyê ôtomaticament per los aparèlys-fotô numericos.
 Volyéd chouèsir un nom de fichiér dèscriptif.",
@@ -1761,7 +1766,7 @@ Se lo problèmo continue, veriéd-vos vers un [[Special:ListUsers/sysop|administ
 'upload-http-error'         => 'Una èrror HTTP est arrevâ : $1',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
-'upload-curl-error6'       => 'URL pas juegnâbla',
+'upload-curl-error6'       => 'URL pas juentâbla',
 'upload-curl-error6-text'  => 'L’URL balyê pôt pas étre juenta.
 Volyéd controlar que l’URL est justa et que lo seto est en legne.',
 'upload-curl-error28'      => 'Dèpassement du dèlê pendent lo tèlèchargement',
@@ -1850,7 +1855,7 @@ La dèscripcion de sa [$2 pâge de dèscripcion] est montrâ ce-desot.',
 'filedelete-nofile-old'       => "Ègziste gins de vèrsion arch·ivâ de '''$1''' avouéc los atributs spècefiâs.",
 'filedelete-otherreason'      => 'Ôtra rêson / rêson de ples :',
 'filedelete-reason-otherlist' => 'Ôtra rêson',
-'filedelete-reason-dropdown'  => '* Rêsons de suprèssion comenes
+'filedelete-reason-dropdown'  => '* Rêsons de suprèssion les ples corentes
 ** Violacion du drêt d’ôtor
 ** Fichiér en doblo',
 'filedelete-edit-reasonlist'  => 'Changiér les rêsons de suprèssion',
@@ -2212,7 +2217,7 @@ Vêde lo $2 por una lista de les novèles suprèssions.',
 'deletecomment'          => 'Rêson de la suprèssion :',
 'deleteotherreason'      => 'Ôtra rêson / rêson de ples :',
 'deletereasonotherlist'  => 'Ôtra rêson',
-'deletereason-dropdown'  => '* Rêsons de suprèssion comenes
+'deletereason-dropdown'  => '* Rêsons de suprèssion les ples corentes
 ** Demanda a l’ôtor
 ** Violacion du drêt d’ôtor
 ** Vandalismo',
@@ -2281,7 +2286,7 @@ Vos pouede changiér lo nivél de protèccion de ceta pâge sen que cen afècte 
 'protect-existing-expiry'     => 'Dâta d’èxpiracion ègzistenta : $2 a $3',
 'protect-otherreason'         => 'Ôtra rêson / rêson de ples :',
 'protect-otherreason-op'      => 'ôtra rêson / rêson de ples',
-'protect-dropdown'            => '* Rêsons de protèccion comenes
+'protect-dropdown'            => '* Rêsons de protèccion les ples corentes
 ** Vandalismo èxcèssif
 ** Spame èxcèssif
 ** Conflits de changements contre-productifs
@@ -2417,7 +2422,7 @@ Balyéd ce-desot una rêson justa (per ègzemplo en citent les pâges qu’ont �
 'ipbexpiry'                       => 'Temps devant èxpiracion :',
 'ipbreason'                       => 'Rêson :',
 'ipbreasonotherlist'              => 'Ôtra rêson',
-'ipbreason-dropdown'              => '* Rêsons de blocâjo comenes
+'ipbreason-dropdown'              => '* Rêsons de blocâjo les ples corentes
 ** Entrebetâ d’enformacions fôsses
 ** Suprèssion pas èxplicâ de contegnu de les pâges
 ** Entrebetâ rèpètâ de lims de defôr publicitèros (spame)

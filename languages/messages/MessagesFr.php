@@ -912,7 +912,10 @@ Le mot de passe pour ce nouveau compte peut être changé sur la page ''[[Specia
 Pour créer cette page, entrez votre texte dans la boîte ci-dessous (vous pouvez consulter [[{{MediaWiki:Helppage}}|la page d’aide]] pour plus d’informations).
 Si vous êtes arrivé{{GENDER:||e|(e)}} ici par erreur, cliquez sur le bouton '''retour''' de votre navigateur.",
 'anontalkpagetext'                 => "---- ''Vous êtes sur la page de discussion d’un utilisateur anonyme qui n’a pas encore créé de compte ou qui n’en utilise pas. Pour cette raison, nous devons utiliser son adresse IP pour l’identifier. Une adresse IP peut être partagée par plusieurs utilisateurs. Si vous êtes un{{GENDER:||e|}} utilisat{{GENDER:|eur|rice|eur}} anonyme et si vous constatez que des commentaires qui ne vous concernent pas vous ont été adressés, vous pouvez [[Special:UserLogin/signup|créer un compte]] ou [[Special:UserLogin|vous connecter]] afin d’éviter toute confusion future avec d’autres contributeurs anonymes.''",
-'noarticletext'                    => 'Il n’y a pour l’instant aucun texte sur cette page ; vous pouvez [[Special:Search/{{PAGENAME}}|lancer une recherche de ce titre de page]] dans les autres pages, <span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} rechercher dans les opérations liées] ou [{{fullurl:{{urlencode:{{FULLPAGENAME}}}}|action=edit}} créer cette page]</span>.',
+'noarticletext'                    => 'Il n’y a pour l’instant aucun texte sur cette page ; vous pouvez [[Special:Search/{{PAGENAME}}|lancer une recherche de ce titre de page]] dans les autres pages, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} rechercher dans les opérations liées] ou [{{fullurl:{{urlencode:{{FULLPAGENAME}}}}|action=edit}} créer cette page]</span>.',
+'noarticletext-nopermission'       => 'Il n\'y a actuellement aucun texte dans cette page.
+Vous pouvez [[Special:Search/{{PAGENAME}}|faire une recherche sur le titre de la page]] dans les autres pages,
+ou <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} rechercher dans les journaux associés]</span>.',
 'userpage-userdoesnotexist'        => 'Le compte utilisateur « $1 » n’est pas enregistré. Veuillez vérifier que vous voulez créer cette page.',
 'clearyourcache'                   => "'''Note :''' après avoir enregistré vos préférences, vous devrez forcer le rechargement complet du cache de votre navigateur pour voir les changements.
 '''Mozilla / Firefox / Konqueror / Safari :''' maintenez la touche ''Majuscule'' (''Shift'') en cliquant sur le bouton ''Actualiser'' (''Reload'') ou pressez ''Maj-Ctrl-R'' (''Maj-Cmd-R'' sur Apple Mac) ;
@@ -2360,17 +2363,18 @@ $1',
 'month'               => 'À partir du mois (et précédents) :',
 'year'                => 'À partir de l’année (et précédentes) :',
 
-'sp-contributions-newbies'       => 'Ne montrer que les contributions des nouveaux utilisateurs',
-'sp-contributions-newbies-sub'   => 'Parmi les nouveaux comptes',
-'sp-contributions-newbies-title' => 'Contributions d’utilisateurs parmi les nouveaux comptes',
-'sp-contributions-blocklog'      => 'journal des blocages',
-'sp-contributions-deleted'       => 'contributions supprimées',
-'sp-contributions-logs'          => 'journaux',
-'sp-contributions-talk'          => 'discuter',
-'sp-contributions-userrights'    => 'gérer les droits',
-'sp-contributions-search'        => 'Rechercher les contributions',
-'sp-contributions-username'      => 'Adresse IP ou nom d’utilisateur :',
-'sp-contributions-submit'        => 'Rechercher',
+'sp-contributions-newbies'        => 'Ne montrer que les contributions des nouveaux utilisateurs',
+'sp-contributions-newbies-sub'    => 'Parmi les nouveaux comptes',
+'sp-contributions-newbies-title'  => 'Contributions d’utilisateurs parmi les nouveaux comptes',
+'sp-contributions-blocklog'       => 'journal des blocages',
+'sp-contributions-deleted'        => 'contributions supprimées',
+'sp-contributions-logs'           => 'journaux',
+'sp-contributions-talk'           => 'discuter',
+'sp-contributions-userrights'     => 'gérer les droits',
+'sp-contributions-blocked-notice' => 'Cet utilisateur est actuellement bloqué. La dernière entrée du journal des blocages est indiquée ci-dessous à titre d’information :',
+'sp-contributions-search'         => 'Rechercher les contributions',
+'sp-contributions-username'       => 'Adresse IP ou nom d’utilisateur :',
+'sp-contributions-submit'         => 'Rechercher',
 
 # What links here
 'whatlinkshere'            => 'Pages liées',

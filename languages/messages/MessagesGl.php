@@ -786,8 +786,11 @@ Se chegou aquí por erro, simplemente prema no botón '''atrás''' do seu navega
 'anontalkpagetext'                 => "----''Esta é a páxina de conversa dun usuario anónimo que aínda non creou unha conta ou que non a usa. Polo tanto, empregamos o enderezo IP para a súa identificación. Este enderezo IP pódeno compartir varios usuarios distintos. Se pensa que foron dirixidos contra a súa persoa comentarios inadecuados, por favor, [[Special:UserLogin/signup|cree unha conta]] ou [[Special:UserLogin|acceda ao sistema]] para evitar futuras confusións con outros usuarios anónimos.''",
 'noarticletext'                    => 'Actualmente non hai ningún texto nesta páxina.
 Pode [[Special:Search/{{PAGENAME}}|procurar polo título desta páxina]] noutras páxinas,
-<span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} ollar os rexistros relacionados]
-ou [{{fullurl:{{FULLPAGENAME}}|action=edit}} editar a páxina].',
+<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} ollar os rexistros relacionados]
+ou [{{fullurl:{{FULLPAGENAME}}|action=edit}} editar a páxina]</span>.',
+'noarticletext-nopermission'       => 'Actualmente non hai ningún texto nesta páxina.
+Pode [[Special:Search/{{PAGENAME}}|procurar polo título desta páxina]] noutras páxinas
+ou <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} ollar os rexistros relacionados]</span>.',
 'userpage-userdoesnotexist'        => 'A conta do usuario "$1" non está rexistrada. Comprobe se desexa crear/editar esta páxina.',
 'clearyourcache'                   => "'''Nota: despois de gravar cómpre limpar a memoria caché do seu navegador para ver os cambios.'''
 '''Mozilla / Firefox / Safari:''' prema ''Maiúsculas'' á vez que en ''Recargar'', ou prema en ''Ctrl-F5'' ou ''Ctrl-R'' (''Command-R'' nos Macintosh);
@@ -871,7 +874,7 @@ Pode voltar e editar unha páxina que xa existe ou, se non, [[Special:UserLogin|
 'recreate-moveddeleted-warn'       => "'''Atención: vai volver crear unha páxina que xa foi eliminada anteriormente.'''
 
 Debería considerar se é apropiado continuar a editar esta páxina.
-Velaquí están o rexistro de borrados e traslados desta páxina, por se quere consultalos:",
+Velaquí están o rexistro de borrados e mais o de traslados desta páxina, por se quere consultalos:",
 'moveddeleted-notice'              => 'Esta páxina foi borrada.
 A continuación pódese ver o rexistro de borrados e traslados desta páxina, por se os quere consultar.',
 'log-fulllog'                      => 'Ver o rexistro completo',
@@ -2255,17 +2258,18 @@ $1',
 'month'               => 'Desde o mes de (e anteriores):',
 'year'                => 'Desde o ano (e anteriores):',
 
-'sp-contributions-newbies'       => 'Mostrar só as contribucións das contas de usuario novas',
-'sp-contributions-newbies-sub'   => 'Contribucións dos usuarios novos',
-'sp-contributions-newbies-title' => 'Contribucións dos usuarios novos',
-'sp-contributions-blocklog'      => 'Rexistro de bloqueos',
-'sp-contributions-deleted'       => 'contribucións borradas do usuario',
-'sp-contributions-logs'          => 'rexistros',
-'sp-contributions-talk'          => 'conversa',
-'sp-contributions-userrights'    => 'xestión dos dereitos de usuario',
-'sp-contributions-search'        => 'Busca de contribucións',
-'sp-contributions-username'      => 'Enderezo IP ou nome de usuario:',
-'sp-contributions-submit'        => 'Procurar',
+'sp-contributions-newbies'        => 'Mostrar só as contribucións das contas de usuario novas',
+'sp-contributions-newbies-sub'    => 'Contribucións dos usuarios novos',
+'sp-contributions-newbies-title'  => 'Contribucións dos usuarios novos',
+'sp-contributions-blocklog'       => 'Rexistro de bloqueos',
+'sp-contributions-deleted'        => 'contribucións borradas do usuario',
+'sp-contributions-logs'           => 'rexistros',
+'sp-contributions-talk'           => 'conversa',
+'sp-contributions-userrights'     => 'xestión dos dereitos de usuario',
+'sp-contributions-blocked-notice' => 'Este usuario está bloqueado. Velaquí está a última entrada do rexistro de bloqueos, por se quere consultala:',
+'sp-contributions-search'         => 'Busca de contribucións',
+'sp-contributions-username'       => 'Enderezo IP ou nome de usuario:',
+'sp-contributions-submit'         => 'Procurar',
 
 # What links here
 'whatlinkshere'            => 'Páxinas que ligan con esta',

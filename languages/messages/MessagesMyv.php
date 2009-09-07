@@ -631,7 +631,7 @@ IP-тешкстэть — $3, саймас совавтоманть ID-сь — 
 Лисиндеряй тесэ ильведькс, лепштик браузерсэ '''back''' повнэнть.",
 'noarticletext'                    => 'Неень шкасто те лопасонть сёрмадовкс арась. Мусак [[Special:Search/{{PAGENAME}}|вешнемс  файлань те конякс]] лия сёрмадовкстнэстэ 
 <span class="plainlinks">
-[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} вешнемс малавикс журналтнэстэ],
+[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} вешнемс малавикс журналтнэстэ],
 эли [{{fullurl:
 {{FULLPAGENAME}}|action=edit}} витнемс-петнемс те лопанть]</span>.',
 'updated'                          => '(Одолгавтозь)',

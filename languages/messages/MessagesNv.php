@@ -7,6 +7,7 @@
  * @ingroup Language
  * @file
  *
+ * @author Seb az86556
  * @author לערי ריינהארט
  */
 
@@ -66,6 +67,10 @@ $messages = array(
 'dec'       => 'Ntsx',
 
 'edit' => 'Łahgo áshłééh',
+
+# All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
+'mainpage'             => 'Íiyisíí Naaltsoos',
+'mainpage-description' => 'Íiyisíí Naaltsoos',
 
 # Skin names
 'skinname-monobook' => "NaaltsoosŁáa'ígíí",

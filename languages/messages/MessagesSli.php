@@ -483,7 +483,7 @@ Vergiss nä, denne [[Special:Preferences|{{SITENAME}}-Eistellunga]] oazupoassa.'
 'newarticletext'                   => 'Hier dan Text dar neua Seyte eentraga. Bite oack ei ganza Sätza schreiba on keene urheberrechtsgeschietzta Texte anderer kopiera.',
 'noarticletext'                    => 'Diese Seyte enthält momentan noo kenn Text.
 Du koast diesen Tittel uffa andern Seyta [[Special:Search/{{PAGENAME}}|sucha]],
-<span class="plainlinks"> ei dan zugeheeriga [{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} Logbichern sucha] oder diese Seite [{{fullurl:{{FULLPAGENAME}}|action=edit}} beorbeeta]</span>.',
+<span class="plainlinks"> ei dan zugeheeriga [{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} Logbichern sucha] oder diese Seite [{{fullurl:{{FULLPAGENAME}}|action=edit}} beorbeeta]</span>.',
 'previewnote'                      => "'''Dies ies oack eene Vorschau, de Seyte wurde noo nee gespeichert!'''",
 'editing'                          => 'Beoarbeeta vo $1',
 'editingsection'                   => 'Beoarbeeta vo $1 (Oabsatz)',
