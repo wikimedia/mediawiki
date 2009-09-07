@@ -28,7 +28,7 @@ var mwEditPageHelper = {
 		//kind of tricky would be nice to use a "loader" call here to avoid concurancy issues. 
 		if( typeof $j.wikiEditor != 'undefined' ){
 			setTimeout(function(){
-				$j('.wikiEditor-ui [rel=file]').addMediaWiz( 
+				$j('.wikiEditor-ui [rel=file]').unbind().addMediaWiz( 
 					mwAddMediaConfig 
 				);		
 			},100 );
