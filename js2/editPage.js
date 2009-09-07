@@ -24,12 +24,21 @@ var mwEditPageHelper = {
 	init:function(){
 		var _this = this;
 		//@@todo check for new version of toolbar and via toolbar api:
-					
-		//add the add-media-wizard button for old toolbar: 
-		$j('#toolbar').append('<img style="cursor:pointer" id="btn-add-media-wiz" src="' + mv_skin_img_path + 'Button_add_media.png">');
-		$j('#btn-add-media-wiz').addMediaWiz( 
-				mwAddMediaConfig 
-		);		
+		
+		//kind of tricky would be nice to use a "loader" call here to avoid concurancy issues. 
+		if( typeof $j.wikiEditor != 'undefined' ){
+			setTimeout(function(){
+				$j('.wikiEditor-ui [rel=file]').addMediaWiz( 
+					mwAddMediaConfig 
+				);		
+			},100 );
+		}else{			
+			//add the add-media-wizard button for old toolbar: 
+			$j('#toolbar').append('<img style="cursor:pointer" id="btn-add-media-wiz" src="' + mv_skin_img_path + 'Button_add_media.png">');
+			$j('#btn-add-media-wiz').addMediaWiz( 
+					mwAddMediaConfig 
+			);		
+		}
 				
 		//add to new toolbar (need to use api) 
 		/*$j('[rel=insert] tool-file').addMediaWiz( 
