@@ -232,19 +232,24 @@ class Html {
 
 		$element = strtolower( $element );
 
-		# Simple checks using $attribDefaults
 		foreach ( $attribs as $attrib => $value ) {
 			$lcattrib = strtolower( $attrib );
+			$value = strval( $value );
 
+			# Simple checks using $attribDefaults
 			if ( isset( $attribDefaults[$element][$lcattrib] ) &&
-			$attribDefaults[$element][$lcattrib] === $value ) {
+			$attribDefaults[$element][$lcattrib] == $value ) {
+				unset( $attribs[$attrib] );
+			}
+
+			if ( $lcattrib == 'class' && $value == '' ) {
 				unset( $attribs[$attrib] );
 			}
 		}
 
 		# More subtle checks
 		if ( $element === 'link' && isset( $attribs['type'] )
-		&& $attribs['type'] === 'text/css' ) {
+		&& strval( $attribs['type'] ) == 'text/css' ) {
 			unset( $attribs['type'] );
 		}
 		if ( $element === 'select' && isset( $attribs['size'] ) ) {
@@ -252,12 +257,12 @@ class Html {
 				|| ( isset( $attribs['multiple'] ) && $attribs['multiple'] !== false )
 			) {
 				# A multi-select
-				if ( $attribs['size'] === '4' ) {
+				if ( strval( $attribs['size'] ) == '4' ) {
 					unset( $attribs['size'] );
 				}
 			} else {
 				# Single select
-				if ( $attribs['size'] === '1' ) {
+				if ( strval( $attribs['size'] ) == '1' ) {
 					unset( $attribs['size'] );
 				}
 			}

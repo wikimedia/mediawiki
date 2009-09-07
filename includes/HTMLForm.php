@@ -313,7 +313,8 @@ class HTMLForm {
 			$classes[] = 'mw-htmlform-nolabel';
 		$classes = implode( ' ', $classes );
 
-		$tableHtml = "<table class='$classes'><tbody>\n$tableHtml\n</tbody></table>\n";
+		$tableHtml = Html::rawElement( 'table', array( 'class' => $classes ),
+			Html::rawElement( 'tbody', array(), "\n$tableHtml\n" ) ) . "\n";
 
 		return $subsectionHtml . "\n" . $tableHtml;
 	}
