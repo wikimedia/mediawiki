@@ -534,7 +534,7 @@ class Parser
 		$matches = array();
 
 		$taglist = implode( '|', $elements );
-		$start = "/<($taglist)(\\s+[^>]*?|\\s*?)(\/?>)|<(!--)/i";
+		$start = "/<($taglist)(\\s+[^>]*?|\\s*?)(\/?" . ">)|<(!--)/i";
 
 		while ( '' != $text ) {
 			$p = preg_split( $start, $text, 2, PREG_SPLIT_DELIM_CAPTURE );
