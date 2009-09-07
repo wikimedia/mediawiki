@@ -1141,6 +1141,7 @@ $varCache: array to store the value in case of multiples calls of the
 	same magic word
 $index: index (string) of the magic
 $ret: value of the magic word (the hook should set it)
+$frame: PPFrame object to use for expanding any template variables
 
 'ParserGetVariableValueTs': use this to change the value of the time for the
 {{LOCAL...}} magic word
