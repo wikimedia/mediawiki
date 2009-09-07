@@ -195,7 +195,7 @@ class SpecialCreateAccount extends SpecialPage {
 				$this->showMainForm( wfMsg( 'mailerror' ) );
 			}
 		} else {
-			$wgOut->addWikiMsg( 'accmailtext', $this->mLogin->mUserer->getName(), $this->mLogin->mUser->getEmail() );
+			$wgOut->addWikiMsg( 'accmailtext', $this->mLogin->mUser->getName(), $this->mLogin->mUser->getEmail() );
 			$wgOut->returnToMain( false );
 		}
 	}
