@@ -3467,6 +3467,11 @@ $wgDisabledActions = array();
 $wgDisableHardRedirects = false;
 
 /**
+ * Disable tooltips and access keys
+ */
+$wgDisableTooltipsAndAccesskeys = false;
+
+/**
  * Use http.dnsbl.sorbs.net to check for open proxies
  */
 $wgEnableSorbs = false;
