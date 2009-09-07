@@ -467,6 +467,8 @@ this. Was used when mwEmbed was going to be an extension.
   argument
 * (bug 20136) Protection form JavaScript now synchronizes the expiry boxes on
   any change, in addition to onkeyup.
+* Don't link to "edit this page" on MediaWiki:Noarticletext if user is not allowed
+  to create page. Done via new message MediaWiki:Noarticletext-nopermission
 
 == API changes in 1.16 ==
 

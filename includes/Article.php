@@ -1213,7 +1213,10 @@ class Article {
 			// Use the default message text
 			$text = $this->getContent();
 		} else {
-			$text = wfMsgNoTrans( 'noarticletext' );
+			if ( $this->mTitle->userCan( 'edit' ) )
+				$text = wfMsgNoTrans( 'noarticletext' );
+			else
+				$text = wfMsgNoTrans( 'noarticletext-nopermission' );
 		}
 		$text = "<div class='noarticletext'>\n$text\n</div>";
 		if( !$this->hasViewableContent() ) {
