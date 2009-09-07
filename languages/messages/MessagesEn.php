@@ -2834,21 +2834,21 @@ $1',
 'month'               => 'From month (and earlier):',
 'year'                => 'From year (and earlier):',
 
-'sp-contributions-newbies'       => 'Show contributions of new accounts only',
-'sp-contributions-newbies-sub'   => 'For new accounts',
-'sp-contributions-newbies-title' => 'User contributions for new accounts',
-'sp-contributions-blocklog'      => 'block log',
-'sp-contributions-deleted'       => 'deleted user contributions',
-'sp-contributions-logs'          => 'logs',
-'sp-contributions-talk'          => 'talk',
-'sp-contributions-userrights'    => 'user rights management',
-'sp-contributions-blocked-notice'=> 'This user is currently blocked. The latest block log entry is provided below for reference:',
-'sp-contributions-search'        => 'Search for contributions',
-'sp-contributions-username'      => 'IP Address or username:',
-'sp-contributions-submit'        => 'Search',
-'sp-contributions-explain'       => '', # only translate this message to other languages if you have to change it
-'sp-contributions-footer'        => '-', # do not translate or duplicate this message to other languages
-'sp-contributions-footer-anon'   => '-', # do not translate or duplicate this message to other languages
+'sp-contributions-newbies'        => 'Show contributions of new accounts only',
+'sp-contributions-newbies-sub'    => 'For new accounts',
+'sp-contributions-newbies-title'  => 'User contributions for new accounts',
+'sp-contributions-blocklog'       => 'block log',
+'sp-contributions-deleted'        => 'deleted user contributions',
+'sp-contributions-logs'           => 'logs',
+'sp-contributions-talk'           => 'talk',
+'sp-contributions-userrights'     => 'user rights management',
+'sp-contributions-blocked-notice' => 'This user is currently blocked. The latest block log entry is provided below for reference:',
+'sp-contributions-search'         => 'Search for contributions',
+'sp-contributions-username'       => 'IP Address or username:',
+'sp-contributions-submit'         => 'Search',
+'sp-contributions-explain'        => '', # only translate this message to other languages if you have to change it
+'sp-contributions-footer'         => '-', # do not translate or duplicate this message to other languages
+'sp-contributions-footer-anon'    => '-', # do not translate or duplicate this message to other languages
 
 # What links here
 'whatlinkshere'            => 'What links here',
