@@ -447,7 +447,7 @@ class ContribsPager extends ReverseChronologicalPager {
 
 	function __construct( $target, $namespace = false, $year = false, $month = false, $tagFilter = false ) {
 		parent::__construct();
-		foreach( explode( ' ', 'uctop diff newarticle rollbacklink diff hist' ) as $msg ) {
+		foreach( explode( ' ', 'uctop diff newarticle rollbacklink diff hist rev-delundel' ) as $msg ) {
 			$this->messages[$msg] = wfMsgExt( $msg, array( 'escape') );
 		}
 		$this->target = $target;
@@ -638,12 +638,12 @@ class ContribsPager extends ReverseChronologicalPager {
 		} else {
 			$mflag = '';
 		}
-		
+
 		if( $wgUser->isAllowed( 'deleterevision' ) ) {
 			// If revision was hidden from sysops
 			if( !$rev->userCan( Revision::DELETED_RESTRICTED ) ) {
 				$del = Xml::tags( 'span', array( 'class'=>'mw-revdelundel-link' ),
-					'(' . $this->message['rev-delundel'] . ')' ) . ' ';
+					'(' . $this->messages['rev-delundel'] . ')' ) . ' ';
 			// Otherwise, show the link...
 			} else {
 				$query = array(
