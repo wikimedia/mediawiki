@@ -1893,6 +1893,7 @@ $wgMessageStructure = array(
 		'sp-contributions-logs',
 		'sp-contributions-talk',
 		'sp-contributions-userrights',
+		'sp-contributions-blocked-notice',
 		'sp-contributions-search',
 		'sp-contributions-username',
 		'sp-contributions-submit',
