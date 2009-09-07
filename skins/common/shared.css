@@ -772,3 +772,11 @@ td.mw-enhanced-rc {
 	font-family:monospace
 }
 
+.mw-ajax-loader {
+	background-image: url(images/ajax-loader.gif);
+	background-position: center center;
+	background-repeat: no-repeat;
+	padding: 16px;
+	position: relative;
+	top: -16px;
+}
