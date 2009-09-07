@@ -83,17 +83,6 @@ class Html {
 		'seamless',
 	);
 
-	# A nested associative array of element => content attribute => default
-	# value.  Attributes that have the default value will be omitted, since
-	# they're pointless.  Currently the list hasn't been systematically
-	# populated.
-	private static $attribDefaults = array(
-		'input' => array(
-			'value' => '',
-			'type' => 'text',
-		),
-	);
-
 	/**
 	 * Returns an HTML element in a string.  The major advantage here over
 	 * manually typing out the HTML is that it will escape all attribute
@@ -164,16 +153,8 @@ class Html {
 			}
 		}
 
-		# Don't bother outputting the default values for attributes
-		foreach ( $attribs as $attrib => $value ) {
-			$lcattrib = strtolower( $attrib );
-			if ( isset( self::$attribDefaults[$element][$lcattrib] ) &&
-			self::$attribDefaults[$element][$lcattrib] === $value ) {
-				unset( $attribs[$attrib] );
-			}
-		}
-
-		$start = "<$element" . self::expandAttributes( $attribs );
+		$start = "<$element" . self::expandAttributes(
+			self::dropDefaults( $element, $attribs ) );
 		if ( in_array( $element, self::$voidElements ) ) {
 			if ( $wgWellFormedXml ) {
 				return "$start />";
@@ -195,6 +176,94 @@ class Html {
 			'&' => '&amp;',
 			'<' => '&lt;'
 		) ) );
+	}
+
+	/**
+	 * Given an element name and an associative array of element attributes,
+	 * return an array that is functionally identical to the input array, but
+	 * possibly smaller.  In particular, attributes might be stripped if they
+	 * are given their default values.
+	 *
+	 * This method is not guaranteed to remove all redundant attributes, only
+	 * some common ones and some others selected arbitrarily at random.  It
+	 * only guarantees that the output array should be functionally identical
+	 * to the input array (currently per the HTML 5 draft as of 2009-09-06).
+	 *
+	 * @param $element string Name of the element, e.g., 'a'
+	 * @param $attribs array  Associative array of attributes, e.g., array(
+	 *   'href' => 'http://www.mediawiki.org/' ).
+	 * @return array An array of attributes functionally identical to $attribs
+	 */
+	private static function dropDefaults( $element, $attribs ) {
+		static $attribDefaults = array(
+			'area' => array( 'shape' => 'rect' ),
+			'button' => array(
+				'formaction' => 'GET',
+				'formenctype' => 'application/x-www-form-urlencoded',
+				'type' => 'submit',
+			),
+			'canvas' => array(
+				'height' => '150',
+				'width' => '300',
+			),
+			'command' => array( 'type' => 'command' ),
+			'form' => array(
+				'action' => 'GET',
+				'autocomplete' => 'on',
+				'enctype' => 'application/x-www-form-urlencoded',
+			),
+			'input' => array(
+				'formaction' => 'GET',
+				'type' => 'text',
+				'value' => '',
+			),
+			'keygen' => array( 'keytype' => 'rsa' ),
+			'link' => array( 'media' => 'all' ),
+			'menu' => array( 'type' => 'list' ),
+			# Note: the use of text/javascript here instead of other JavaScript
+			# MIME types follows the HTML 5 spec.
+			'script' => array( 'type' => 'text/javascript' ),
+			'style' => array(
+				'media' => 'all',
+				'type' => 'text/css',
+			),
+			'textarea' => array( 'wrap' => 'soft' ),
+		);
+
+		$element = strtolower( $element );
+
+		# Simple checks using $attribDefaults
+		foreach ( $attribs as $attrib => $value ) {
+			$lcattrib = strtolower( $attrib );
+
+			if ( isset( $attribDefaults[$element][$lcattrib] ) &&
+			$attribDefaults[$element][$lcattrib] === $value ) {
+				unset( $attribs[$attrib] );
+			}
+		}
+
+		# More subtle checks
+		if ( $element === 'link' && isset( $attribs['type'] )
+		&& $attribs['type'] === 'text/css' ) {
+			unset( $attribs['type'] );
+		}
+		if ( $element === 'select' && isset( $attribs['size'] ) ) {
+			if ( in_array( 'multiple', $attribs )
+				|| ( isset( $attribs['multiple'] ) && $attribs['multiple'] !== false )
+			) {
+				# A multi-select
+				if ( $attribs['size'] === '4' ) {
+					unset( $attribs['size'] );
+				}
+			} else {
+				# Single select
+				if ( $attribs['size'] === '1' ) {
+					unset( $attribs['size'] );
+				}
+			}
+		}
+
+		return $attribs;
 	}
 
 	/**
@@ -317,24 +386,19 @@ class Html {
 	 * contains literal '</style>' (admittedly unlikely).
 	 *
 	 * @param $contents string CSS
-	 * @param $media mixed A media type string, like 'screen', or null for all
-	 *   media
+	 * @param $media mixed A media type string, like 'screen'
 	 * @return string Raw HTML
 	 */
-	public static function inlineStyle( $contents, $media = null ) {
-		global $wgHtml5, $wgWellFormedXml;
+	public static function inlineStyle( $contents, $media = 'all' ) {
+		global $wgWellFormedXml;
 
-		$attrs = array();
-		if ( !$wgHtml5 ) {
-			$attrs['type'] = 'text/css';
-		}
 		if ( $wgWellFormedXml && preg_match( '/[<&]/', $contents ) ) {
 			$contents = "/*<![CDATA[*/$contents/*]]>*/";
 		}
-		if ( $media !== null ) {
-			$attrs['media'] = $media;
-		}
-		return self::rawElement( 'style', $attrs, $contents );
+		return self::rawElement( 'style', array(
+			'type' => 'text/css',
+			'media' => $media,
+		), $contents );
 	}
 
 	/**
@@ -342,21 +406,16 @@ class Html {
 	 * media type (if any).
 	 *
 	 * @param $url string
-	 * @param $media mixed A media type string, like 'screen', or null for all
-	 *   media
+	 * @param $media mixed A media type string, like 'screen'
 	 * @return string Raw HTML
 	 */
-	public static function linkedStyle( $url, $media = null ) {
-		global $wgHtml5;
-
-		$attrs = array( 'rel' => 'stylesheet', 'href' => $url );
-		if ( !$wgHtml5 ) {
-			$attrs['type'] = 'text/css';
-		}
-		if ( $media !== null ) {
-			$attrs['media'] = $media;
-		}
-		return self::element( 'link', $attrs );
+	public static function linkedStyle( $url, $media = 'all' ) {
+		return self::element( 'link', array(
+			'rel' => 'stylesheet',
+			'href' => $url,
+			'type' => 'text/css',
+			'media' => $media,
+		) );
 	}
 
 	/**
@@ -365,17 +424,15 @@ class Html {
 	 * $wgHtml5 is false.
 	 *
 	 * @param $name    string name attribute
-	 * @param $value   mixed  value attribute (null = omit)
+	 * @param $value   mixed  value attribute
 	 * @param $type    string type attribute
 	 * @param $attribs array  Associative array of miscellaneous extra
 	 *   attributes, passed to Html::element()
 	 * @return string Raw HTML
 	 */
-	public static function input( $name, $value = null, $type = 'text', $attribs = array() ) {
+	public static function input( $name, $value = '', $type = 'text', $attribs = array() ) {
 		$attribs['type'] = $type;
-		if ( $value !== null ) {
-			$attribs['value'] = $value;
-		}
+		$attribs['value'] = $value;
 		$attribs['name'] = $name;
 
 		return self::element( 'input', $attribs );
