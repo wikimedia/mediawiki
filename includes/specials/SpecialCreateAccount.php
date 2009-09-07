@@ -52,6 +52,7 @@ class SpecialCreateAccount extends SpecialPage {
 			'id'            => 'wpRealName',
 			'tabindex'      => '1',
 			'size'          => '20',
+			'help-message'  => 'prefs-help-realname',
 		),
 		'Remember' => array(
 			'type'          => 'check',
@@ -70,7 +71,6 @@ class SpecialCreateAccount extends SpecialPage {
 	public function __construct(){
 		parent::__construct( 'CreateAccount', 'createaccount' );
 		$this->mLogin = new Login();
-		$this->mFormFields['RealName']['help'] = wfMsg( 'prefs-help-realname' );
 	}
 	
 	public function execute( $par ){
@@ -82,25 +82,24 @@ class SpecialCreateAccount extends SpecialPage {
 		# Block signup here if in readonly. Keeps user from 
 		# going through the process (filling out data, etc) 
 		# and being informed later.
-		if ( wfReadOnly() ) {
+		if( wfReadOnly() ) {
 			$wgOut->readOnlyPage();
 			return;
 		} 
 		# Bail out straightaway on permissions errors
-		if ( !$this->userCanExecute( $wgUser ) ) {
+		if( !$this->userCanExecute( $wgUser ) ) {
 			$this->displayRestrictionError();
 			return;
-		} elseif ( $wgUser->isBlockedFromCreateAccount() ) {
+		} elseif( $wgUser->isBlockedFromCreateAccount() ) {
 			$this->userBlockedMessage();
 			return;
-		} elseif ( count( $permErrors = $this->getTitle()->getUserPermissionsErrors( 'createaccount', $wgUser, true ) )>0 ) {
-			var_dump('error');
+		} elseif( count( $permErrors = $this->getTitle()->getUserPermissionsErrors( 'createaccount', $wgUser, true ) )>0 ) {
 			$wgOut->showPermissionsErrorPage( $permErrors, 'createaccount' );
 			return;
 		}	
 		
 		if( $this->mPosted ) {
-			if ( $this->mCreateaccountMail ) {
+			if( $this->mCreateaccountMail ) {
 				return $this->addNewAccountMailPassword();
 			} else {
 				return $this->addNewAccount();
@@ -251,7 +250,7 @@ class SpecialCreateAccount extends SpecialPage {
 			$wgOut->setPageTitle( wfMsgHtml( 'accountcreated' ) );
 			$wgOut->setArticleRelated( false );
 			$wgOut->setRobotPolicy( 'noindex,nofollow' );
-			$wgOut->addHTML( wfMsgWikiHtml( 'accountcreatedtext', $user->getName() ) );
+			$wgOut->addWikiMsg( 'accountcreatedtext', $user->getName() );
 			$wgOut->returnToMain( false, $self );
 			wfRunHooks( 'AddNewAccount', array( $user ) );
 			$user->addNewUserLogEntry();
@@ -282,7 +281,7 @@ class SpecialCreateAccount extends SpecialPage {
 		# cation server before they create an account (otherwise, they can
 		# create a local account and login as any domain user). We only need
 		# to check this for domains that aren't local.
-		if(    !in_array( $this->mDomain, array( 'local', '' ) ) 
+		if( !in_array( $this->mDomain, array( 'local', '' ) ) 
 			&& !$wgAuth->canCreateAccounts() 
 			&& ( !$wgAuth->userExists( $this->mUsername ) 
 				|| !$wgAuth->authenticate( $this->mUsername, $this->mPassword ) 
@@ -293,7 +292,7 @@ class SpecialCreateAccount extends SpecialPage {
 		}
 
 		$ip = wfGetIP();
-		if ( $wgEnableSorbs && !in_array( $ip, $wgProxyWhitelist ) &&
+		if( $wgEnableSorbs && !in_array( $ip, $wgProxyWhitelist ) &&
 		  $wgUser->inSorbsBlacklist( $ip ) )
 		{
 			$this->showMainForm( wfMsg( 'sorbs_create_account_reason' ) . ' (' . htmlspecialchars( $ip ) . ')' );
@@ -303,24 +302,24 @@ class SpecialCreateAccount extends SpecialPage {
 		# Now create a dummy user ($user) and check if it is valid
 		$name = trim( $this->mUsername );
 		$user = User::newFromName( $name, 'creatable' );
-		if ( is_null( $user ) ) {
+		if( is_null( $user ) ) {
 			$this->showMainForm( wfMsg( 'noname' ) );
 			return false;
 		}
 
-		if ( 0 != $user->idForName() ) {
+		if( 0 != $user->idForName() ) {
 			$this->showMainForm( wfMsg( 'userexists' ) );
 			return false;
 		}
 
-		if ( 0 != strcmp( $this->mPassword, $this->mRetype ) ) {
+		if( 0 != strcmp( $this->mPassword, $this->mRetype ) ) {
 			$this->showMainForm( wfMsg( 'badretype' ) );
 			return false;
 		}
 
 		# check for minimal password length
 		$valid = $user->isValidPassword( $this->mPassword );
-		if ( $valid !== true ) {
+		if( $valid !== true ) {
 			if ( !$this->mCreateaccountMail ) {
 				$this->showMainForm( wfMsgExt( $valid, array( 'parsemag' ), $wgMinimalPasswordLength ) );
 				return false;
@@ -333,7 +332,7 @@ class SpecialCreateAccount extends SpecialPage {
 
 		# if you need a confirmed email address to edit, then obviously you
 		# need an email address.
-		if ( $wgEmailConfirmToEdit && empty( $this->mEmail ) ) {
+		if( $wgEmailConfirmToEdit && empty( $this->mEmail ) ) {
 			$this->showMainForm( wfMsg( 'noemailtitle' ) );
 			return false;
 		}
@@ -356,13 +355,13 @@ class SpecialCreateAccount extends SpecialPage {
 			return false;
 		}
 
-		if ( $wgAccountCreationThrottle && $wgUser->isPingLimitable() ) {
+		if( $wgAccountCreationThrottle && $wgUser->isPingLimitable() ) {
 			$key = wfMemcKey( 'acctcreate', 'ip', $ip );
 			$value = $wgMemc->get( $key );
 			if ( !$value ) {
 				$wgMemc->set( $key, 0, 86400 );
 			}
-			if ( $value >= $wgAccountCreationThrottle ) {
+			if( $value >= $wgAccountCreationThrottle ) {
 				$this->showMainForm( wfMsgExt( 'acct_creation_throttle_hit', array( 'parseinline' ), $wgAccountCreationThrottle ) ); 
 				return false;
 			}
@@ -418,8 +417,8 @@ class SpecialCreateAccount extends SpecialPage {
 		$blocker = User::whoIs( $wgUser->mBlock->mBy );
 		$block_reason = $wgUser->mBlock->mReason;
 
-		if ( strval( $block_reason ) === '' ) {
-			$block_reason = wfMsg( 'blockednoreason' );
+		if( strval( $block_reason ) === '' ) {
+			$block_reason = wfMsgExt( 'blockednoreason' );
 		}
 		$wgOut->addWikiMsg( 'cantcreateaccount-text', $ip, $block_reason, $blocker );
 		$wgOut->returnToMain( false );
@@ -514,10 +513,10 @@ class SpecialCreateAccount extends SpecialPage {
 			unset( $this->mFormFields['Email'] );
 		} else {
 			if( $wgEmailConfirmToEdit ){
-				$this->mFormFields['Email']['help'] = wfMsg( 'prefs-help-email-required' );
+				$this->mFormFields['Email']['help-message'] = 'prefs-help-email-required' ;
 				$this->mFormFields['Email']['required'] = '';
 			} else {
-				$this->mFormFields['Email']['help'] = wfMsg( 'prefs-help-email' );
+				$this->mFormFields['Email']['help-message'] = 'prefs-help-email';
 			}
 		}
 		
@@ -551,8 +550,8 @@ class SpecialCreateAccount extends SpecialPage {
 			. $form->getBody() 
 			. $form->getButtons()
 			. $buttons
-			. Xml::hidden( 'returnto', $this->mReturnTo )
-			. Xml::hidden( 'returntoquery', $this->mReturnToQuery )
+			. Html::hidden( 'returnto', $this->mReturnTo )
+			. Html::hidden( 'returntoquery', $this->mReturnToQuery )
 		;
 
 		$wgOut->setPageTitle( wfMsg( 'createaccount' ) );
