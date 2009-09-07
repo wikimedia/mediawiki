@@ -795,9 +795,9 @@ class Article {
 		# tents of 'pagetitle-view-mainpage' instead of the default (if
 		# that's not empty).
 		if( $this->mTitle->equals( Title::newMainPage() )
-			&& wfMsgForContent( 'pagetitle-view-mainpage' ) !== '' )
+			&& ($m=wfMsgForContent( 'pagetitle-view-mainpage' )) !== '' )
 		{
-			$wgOut->setHTMLTitle( wfMsgForContent( 'pagetitle-view-mainpage' ) );
+			$wgOut->setHTMLTitle( $m );
 		}
 
 		$wasRedirected = $this->showRedirectedFromHeader();
