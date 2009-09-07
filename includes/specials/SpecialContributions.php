@@ -223,7 +223,7 @@ class SpecialContributions extends SpecialPage {
 			wfRunHooks( 'ContributionsToolLinks', array( $id, $nt, &$tools ) );
 	
 			$links = $wgLang->pipeList( $tools );
-			$this->showBlock( $nt );
+			$this->showBlock( $nt, $id );
 		}
 	
 		// Old message 'contribsub' had one parameter, but that doesn't work for
@@ -241,8 +241,10 @@ class SpecialContributions extends SpecialPage {
 	 * Show a note if the user is blocked and display the last block log entry.
 	 * @param Title $nt Title object for the target
 	 */
-	protected function showBlock( $nt ) {
+	protected function showBlock( $nt, $id ) {
 		global  $wgUser, $wgOut;
+		if ( !User::newFromID( $id )->isBlocked() )
+			return; # User is not blocked, nothing to do here
 		$loglist = new LogEventsList( $wgUser->getSkin(), $wgOut );
 		$pager = new LogPager( $loglist, 'block', false, $nt->getPrefixedText() );
 		// Check if there is something in the block log.
