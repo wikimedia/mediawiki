@@ -216,7 +216,7 @@ class Linker {
 	/**
 	 * Identical to link(), except $options defaults to 'known'.
 	 */
-	public function linkKnown( $target, $text = null, $customAttribs = array(), $query = array(), $options = 'known' ) {
+	public function linkKnown( $target, $text = null, $customAttribs = array(), $query = array(), $options = array('known','noclasses') ) {
 		return $this->link( $target, $text, $customAttribs, $query, $options );
 	}
 
