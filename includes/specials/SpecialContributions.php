@@ -223,6 +223,7 @@ class SpecialContributions extends SpecialPage {
 			wfRunHooks( 'ContributionsToolLinks', array( $id, $nt, &$tools ) );
 	
 			$links = $wgLang->pipeList( $tools );
+			$this->showBlock( $nt );
 		}
 	
 		// Old message 'contribsub' had one parameter, but that doesn't work for
@@ -236,6 +237,37 @@ class SpecialContributions extends SpecialPage {
 		}
 	}
 
+	/**
+	 * Show a note if the user is blocked and display the last block log entry.
+	 * @param Title $nt Title object for the target
+	 */
+	protected function showBlock( $nt ) {
+		global  $wgUser, $wgOut;
+		$loglist = new LogEventsList( $wgUser->getSkin(), $wgOut );
+		$pager = new LogPager( $loglist, 'block', false, $nt->getPrefixedText() );
+		// Check if there is something in the block log.
+		// If this is not the case, either the user is not blocked,
+		// or the account has been hidden via hideuser.
+		if( $pager->getNumRows() > 0 ) {
+			$pager->mLimit = 1; # Show only latest log entry.
+			$wgOut->addHTML( '<div class="mw-warning-with-logexcerpt">' );
+			$wgOut->addWikiMsg( 'sp-contributions-blocked-notice' );
+			$wgOut->addHTML(
+				$loglist->beginLogEventsList() .
+				$pager->getBody() .
+				$loglist->endLogEventsList()
+			);
+			if( $pager->getNumRows() > $pager->mLimit ) {
+				$wgOut->addHTML( $wgUser->getSkin()->link(
+					SpecialPage::getTitleFor( 'Log', 'block' ),
+					wfMsgHtml( 'log-fulllog' ),
+					array(),
+					array( 'page' => $nt->getPrefixedText() )
+				) );
+			}
+			$wgOut->addHTML( '</div>' );
+		}
+	}
 	/**
 	 * Generates the namespace selector form with hidden attributes.
 	 * @param $this->opts Array: the options to be included.
