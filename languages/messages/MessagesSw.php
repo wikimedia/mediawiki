@@ -559,7 +559,7 @@ Anwani yako ya IP ni $3, na namba ya uzuio ni #$5. Tafadhali taja namba hizi uki
 Unaweza kubadilisha nywila hili kwenye ukurasa wa ''[[Special:ChangePassword|kubadilisha nywila]]'' baada ya kuingia kwenye wiki.",
 'newarticle'                       => '(Mpya)',
 'newarticletext'                   => "Ukurasa unaotaka haujaandikwa bado. Ukipenda unaweza kuuandika wewe mwenyewe kwa kutumia sanduku la hapa chini (tazama [[{{MediaWiki:Helppage}}|Mwongozo]] kwa maelezo zaidi). Ukifika hapa kwa makosa, bofya kibonyezi '''back''' (nyuma) cha programu yako.",
-'noarticletext'                    => 'Ukurasa huu haujaandikwa bado. [[Special:Search/{{PAGENAME}}|tafutia jina hili]] katika kurasa nyingine, <span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} tafuta kumbukumbu zinazohusika], au [{{fullurl:{{FULLPAGENAME}}|action=edit}} hariri ukurasa huu]</span>.',
+'noarticletext'                    => 'Ukurasa huu haujaandikwa bado. [[Special:Search/{{PAGENAME}}|tafutia jina hili]] katika kurasa nyingine, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} tafuta kumbukumbu zinazohusika], au [{{fullurl:{{FULLPAGENAME}}|action=edit}} hariri ukurasa huu]</span>.',
 'previewnote'                      => "'''Hii ni hakikisho tu; mabadiliko hayajahifadhiwa bado!'''",
 'editing'                          => 'Kuhariri $1',
 'editingsection'                   => 'Unahariri $1 (kipande)',
@@ -1186,7 +1186,26 @@ Hivi ni vipimo kwa ukurasa '''$1''':",
 'blockip'                  => 'Zuia mtumiaji',
 'ipbreason'                => 'Sababu:',
 'ipbreasonotherlist'       => 'Sababu nyingine',
+'ipbreason-dropdown'       => '*Sababu za kawaida za kuzuia
+** Kuingiza habari za uongo
+** Kuondosha yaliyomo katika kurasa
+** Viungo vya nje visivyotakiwa
+** Kuingiza upuuzi/ujinga sioeleweka kwenye makala
+** Adabu mbaya/kero
+** Kusumbua akaunti nyinginyingi
+** Jina la mutumiaji lisilokubalika',
+'ipbanononly'              => 'Zuia watumiaji wasio na majina tu',
+'ipbcreateaccount'         => 'Kinga usajili wa akaunti',
+'ipbemailban'              => 'Kinga mtumiaji asitume barua-pepe',
+'ipbenableautoblock'       => 'Zuia yenyewe anwani ya mwisho ya IP iliotumiwa na mtumiaji huyu, na IP zozote za baadaye zitakazo jaribu kuhariri ukurasa huu',
+'ipbsubmit'                => 'Zuia mtumiaji huyu',
+'ipbother'                 => 'Muda mwingine:',
 'ipboptions'               => 'Masaa 2:2 hours,siku 1:1 day,siku 3:3 days,wiki 1:1 week,wiki 2:2 weeks,mwezi 1:1 month,miezi 3:3 months,miezi 6:6 months,mwaka 1:1 year,milele:infinite',
+'ipbotheroption'           => 'engine',
+'ipbotherreason'           => 'Engine/sababu ya ziada:',
+'ipbhidename'              => 'Ficha jina la mtumiaji katika orodha na kuhariri',
+'ipbwatchuser'             => 'Tazama mtumiaji huyu na watumiaji na kurasa za majadiliano',
+'ipballowusertalk'         => 'Ruhusu mtumiaji huyu kuhariri ukurasa wake mwenyewe wa majadiano wakati wa kuzuiwa',
 'ipblocklist'              => 'Anwani za IP na majina ya watumiaji waliozuiliwa',
 'blocklink'                => 'zuia',
 'unblocklink'              => 'acha kuzuia',

@@ -698,7 +698,7 @@ $2',
 Уляндяряйхть иля тиинь мяльполатксонза конатнень аф видекста лувозь тоннекс, тондейть пароль сай пингста [[Special:UserLogin/signup|сёрматфтомс/сувамс]] иля лемфтома тиихнень марс аф шовореманкса.''",
 'noarticletext'                    => 'Тяни аш текст тя лопаса. 
 Тондейть ули кода [[Special:Search/{{PAGENAME}}|вешендемс тя лопать коняксонц]] иля лопава,
-<span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} вешендемс малады лувомава],
+<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} вешендемс малады лувомава],
 эли [{{fullurl:{{FULLPAGENAME}}|action=edit}} петнемс тя лопать]</span>.',
 'userpage-userdoesnotexist'        => 'Сёрматфтомась «$1» лемса аш. Арьсек лацкаста, афкукс тонь улендяряй мяльце тиемс эли полафтомс тя лопать.',
 'clearyourcache'                   => "'''Шарфтк мяльце:''' Ванфтомада меле од полафнематнень ваноманкса тондейть эряви нардамс эслек ванфневи файлхнень тонь интернет полатксонь вальмастонза. '''Mozilla / Firefox / Safari:''' ''Shift'' кирдезь, люпштак ''Reload'', эли люпштак ''Ctrl-Shift-F5'' эли ''Ctrl-R'' (''Command-Shift-R'' Macintosh машинаса); '''Konqueror: '''люпштак ''Reload'' эли люпштак ''F5;'' '''Opera:''' програмса тондейть эрявксты нардамс сембе эслек ванфневи файлхт  ''Tools→Preferences'' вельде; '' '''Internet Explorer:''' ''Ctrl'' кирдезь люпштакшнек ''Refresh'' эли люпштак ''Ctrl-F5.''",

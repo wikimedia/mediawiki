@@ -833,7 +833,7 @@ $2',
 
 ''This is the discussion page for an anonymous user who has not created an account yet or who does not use it. We therefore have to use the numerical IP address to identify him/her. Such an IP address can be shared by several users. If you are an anonymous user and feel that irrelevant comments have been directed at you, please [[Special:UserLogin|create an account or log in]] to avoid future confusion with other anonymous users.''",
 'noarticletext'                    => 'Цяпер тэкст на гэтай старонцы адсутнічае.
-Вы можаце [[Special:Search/{{PAGENAME}}|пашукаць гэтую назву]] ў іншых старонках, <span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} пашукаць у адпаведных журналах падзеяў] альбо [{{fullurl:{{NAMESPACE}}:{{PAGENAME}}|action=edit}} рэдагаваць гэтую старонку]</span>.',
+Вы можаце [[Special:Search/{{PAGENAME}}|пашукаць гэтую назву]] ў іншых старонках, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} пашукаць у адпаведных журналах падзеяў] альбо [{{fullurl:{{NAMESPACE}}:{{PAGENAME}}|action=edit}} рэдагаваць гэтую старонку]</span>.',
 'userpage-userdoesnotexist'        => 'Рахунак удзельніка «$1» не зарэгістраваны. Калі ласка, удакладніце, ці жадаеце Вы стварыць/рэдагаваць гэтую старонку.',
 'clearyourcache'                   => "'''Заўвага:''' Каб пабачыць зьмены пасьля захаваньня, Вам можа спатрэбіцца ацысьціць кэш Вашага браўзэра. '''Mozilla / Firefox / Safari:''' трымайце ''Shift'' і націсьніце ''Reload'', ці націсьніце ''Ctrl-Shift-R'' (''Cmd-Shift-R'' на Apple Mac); '''IE:''' трымайце ''Ctrl'' і націсьніце ''Refresh'', ці націсьніце ''Ctrl-F5''; '''Konqueror:''': проста націсьніце кнопку ''Reload'', ці націсьніце ''F5''; карыстальнікам '''Opera''' можа спатрэбіцца цалкам ачысьціць кэш праз ''Tools→Preferences''.",
 'usercssyoucanpreview'             => "'''Падказка:''' выкарыстоўвайце кнопку «Папярэдні прагляд», каб паспрабаваць новы код CSS перад тым як яго запісаць.",
@@ -1652,8 +1652,21 @@ $1",
 
 # img_auth script messages
 'img-auth-accessdenied' => 'Доступ забаронены',
+'img-auth-nopathinfo'   => 'Адсутнічае PATH_INFO.
+Ваш сэрвэр не ўстаноўлены на пропуск гэтай інфармацыі.
+Яна можа быць заснавана на CGI і ня можа падтрымліваць img_auth.
+Глядзіце http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
+'img-auth-notindir'     => 'Неабходнага шляху няма ў дырэкторыі загрузкі, пазначанай у канфігурацыі.',
 'img-auth-badtitle'     => 'Немагчыма стварыць слушную назву з «$1».',
+'img-auth-nologinnWL'   => 'Вы не ўвайшлі ў сыстэму, а «$1» не знаходзіцца ў белым сьпісе.',
 'img-auth-nofile'       => 'Файл «$1» не існуе.',
+'img-auth-isdir'        => 'Вы спрабуеце атрымаць доступ да дырэкторыі «$1».
+Дазволены толькі доступ да файлаў.',
+'img-auth-streaming'    => 'Перадача струменя «$1».',
+'img-auth-public'       => 'Функцыя img_auth.php ужываецца для файла выхаду з прыватнай вікі.
+Гэта вікі ўсталявана як публічная вікі.
+Для найлепшай бясьпекі img_auth.php выключана.',
+'img-auth-noread'       => 'Удзельнік ня мае доступу на чытаньне «$1».',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Немагчыма дасягнуць URL-адрас',

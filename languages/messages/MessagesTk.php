@@ -68,7 +68,7 @@ Sahypalary keşirleme',
 'tog-externaleditor'          => 'Başga programmalar bilen redaktirle (diňe hünärmenler üçin, kompýuteriňizde ýörite sazlamalar talap edilýär)',
 'tog-externaldiff'            => 'Başga programmalaryň üsti bilen deňeşdir (diňe hünärmenler üçin, kompýuteriňizde ýörite sazlamalar talap edilýär)',
 'tog-showjumplinks'           => '"Git" çykgydyny işlet',
-'tog-uselivepreview'          => 'Tiz deslapky syny ulan (JavaScript) (Synag edilýär)',
+'tog-uselivepreview'          => 'Gönümel deslapky syny ulan (JavaScript) (Synag edilýär)',
 'tog-forceeditsummary'        => 'Gysgaça mazmuny boş galdyran mahalym maňa ýatlat',
 'tog-watchlisthideown'        => 'Gözegçilik sanawymdan öz özgerdişlerimi gizle',
 'tog-watchlisthidebots'       => 'Gözegçilik sanawymdan bot özgerdişlerini gizle',
@@ -561,7 +561,7 @@ Parolyňyzy eýýäm şowlulyk bilen üýtgeden ýa-da täze wagtlaýyn parol ta
 'savearticle'                      => 'Sahypany ýazdyr',
 'preview'                          => 'Deslapky syn',
 'showpreview'                      => 'Deslapky syny görkez',
-'showlivepreview'                  => 'Tiz deslapky syn',
+'showlivepreview'                  => 'Gönümel deslapky syn',
 'showdiff'                         => 'Üýtgeşmeleri görkez',
 'anoneditwarning'                  => "'''Duýduryş:''' Sessiýa açmansyňyz. Şonuň üçin hem IP adresiňiz bu sahypanyň özgerdişler geçmişine ýazylyp alynjakdyr.",
 'missingsummary'                   => "'''Ýatlatma:''' Redaktirleme mazmunyny ýazmadyňyz.  
@@ -622,7 +622,7 @@ Bu paroly sessiýa açanyňyzdan soňra ''[[Special:ChangePassword|paroly üýtg
 Eger-de sizem anonim ulanyjy bolsaňyz we size siziň bilen dahyly ýok habarlaşyklar gelýän bolsa, onda mundan beýläk başga anonim ulanyjylar bilen garjaşmazlygyňyz üçin [[Special:UserLogin/signup|özüňize hasap ediniň]] ýa-da [[Special:UserLogin|sessiýa açyň]].''",
 'noarticletext'                    => 'Bu sahypa häzirki wagtda boş dur.
 Bu ady başga sahypalarda [[Special:Search/{{PAGENAME}}|gözläp bilersiňiz]],
-<span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} degişli gündeliklerde gözleg geçirip bilersiňiz],
+<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} degişli gündeliklerde gözleg geçirip bilersiňiz],
 ýa-da bu sahypany [{{fullurl:{{FULLPAGENAME}}|action=edit}} redaktirläp bilersiňiz]</span>.',
 'userpage-userdoesnotexist'        => '"$1" ulanyjy hasaby hasaba alynmandyr. 
 Bu sahypany döretmek/redaktirlemek isleýän bolsaňyz, onda esewan boluň.',
@@ -1397,6 +1397,7 @@ Onuň çeşmesini görüp bilersiňiz',
 'tooltip-search-go'               => 'Eger bar bolsa, anyk şu atdaky sahypa git',
 'tooltip-search-fulltext'         => 'Şu tekst bar bolan sahypalary gözle',
 'tooltip-n-mainpage'              => 'Baş sahypa baryp gör',
+'tooltip-n-mainpage-description'  => 'Baş sahypa baryp gör',
 'tooltip-n-portal'                => 'Taslama hakynda, nämeler edip bolar, nämeler nirede',
 'tooltip-n-currentevents'         => 'Bolup geçýän wakalar barada iň täze maglumatlar',
 'tooltip-n-recentchanges'         => 'Wikidäki soňky üýtgeşmeleriň sanawy',
@@ -1525,30 +1526,131 @@ Ondan soňraky çykgyt(lar) kadadan çykma hökmünde kabul edilýär, meselem: 
 'namespacesall' => 'ählisi',
 'monthsall'     => 'ählisi',
 
+# Multipage image navigation
+'imgmultipageprev' => '← öňki sahypa',
+'imgmultipagenext' => 'indiki sahypa →',
+'imgmultigo'       => 'Git!',
+'imgmultigoto'     => '$1 sahypasyna git',
+
+# Table pager
+'ascending_abbrev'         => 'kiçiden ula',
+'descending_abbrev'        => 'uludan kiçä',
+'table_pager_next'         => 'Indiki sahypa',
+'table_pager_prev'         => 'Öňki sahypa',
+'table_pager_first'        => 'Birinji sahypa',
+'table_pager_last'         => 'Soňky sahypa',
+'table_pager_limit'        => 'Sahypa başyna $1 element görkez',
+'table_pager_limit_submit' => 'Git',
+'table_pager_empty'        => 'Netije ýok',
+
+# Auto-summaries
+'autosumm-blank'   => 'Sahypany boşatdy',
+'autosumm-replace' => "Mazmun '$1' bilen çalşyryldy",
+'autoredircomment' => '[[$1]] sahypasyna gönükdirildi',
+'autosumm-new'     => "Sahypa döretdi, mazmuny: '$1'",
+
 # Live preview
 'livepreview-loading' => 'Ýüklenýär...',
 'livepreview-ready'   => 'Ýüklenýär... Taýýar!',
+'livepreview-failed'  => 'Gönümel deslapky syn şowsuz boldy! Adaty deslapky syny synap görüň.',
+'livepreview-error'   => 'Birigip bolmady: $1 "$2".
+Adaty deslapky syny synap görüň.',
+
+# Friendlier slave lag warnings
+'lag-warn-normal' => '$1 {{PLURAL:$1|sekuntdan|sekuntdan}} täzeki üýtgeşmeler bu sanawda görkezilmän biler.',
+'lag-warn-high'   => 'Maglumat bazasyndaky uly gijikme zerarly, $1 {{PLURAL:$1|sekuntdan|sekuntdan}} täzeki üýtgeşmeler bu sanawda görkezilmän biler.',
 
 # Watchlist editor
-'watchlistedit-normal-title' => 'Gözegçilik sanawyny redaktirle',
-'watchlistedit-raw-title'    => 'Işlenmedik gözegçilik sanawyny redaktirle',
-'watchlistedit-raw-legend'   => 'Işlenmedik gözegçilik sanawyny redaktirle',
+'watchlistedit-numitems'       => 'Gözegçilik sanawyňyzda çekişme sahypalaryny hasap etmäniňde {{PLURAL:$1|1 sany at|$1 sany at}} bar.',
+'watchlistedit-noitems'        => 'Gözegçilik sanawyňyzda hiç hili at ýok.',
+'watchlistedit-normal-title'   => 'Gözegçilik sanawyny redaktirle',
+'watchlistedit-normal-legend'  => 'Gözegçilik sanawyndan atlary aýyr',
+'watchlistedit-normal-explain' => 'Gözegçilik sanawyňyzdaky atlar aşakda görkezilýär.
+At aýyrmak üçin gapdalyndaky gutujygy belläp, Atlary aýyr düwmesine basyň.
+[[Special:Watchlist/raw|işlenmedik sanawy hem redaktirläp]] bilersiňiz.',
+'watchlistedit-normal-submit'  => 'Atlary aýyr',
+'watchlistedit-normal-done'    => '{{PLURAL:$1|1 sany at|$1 sany at}} gözegçilik sanawyndan aýyryldy:',
+'watchlistedit-raw-title'      => 'Işlenmedik gözegçilik sanawyny redaktirle',
+'watchlistedit-raw-legend'     => 'Işlenmedik gözegçilik sanawyny redaktirle',
+'watchlistedit-raw-explain'    => 'Gözegçilik sanawyňyzdaky atlar aşakda görkezilýär. Hersinde bir at ýerleşýän setirleri goşmak ýa-da aýyrmak arkaly sanawy üýtgedip bilersiňiz. Bolanyňyzdan soňra "Gözegçilik sanawyny täzele" düwmesine basyň. Şeýle-de siz  [[Special:Watchlist/edit|adaty usuldan]] hem peýdalanyp bilersiňiz.',
+'watchlistedit-raw-titles'     => 'Atlar:',
+'watchlistedit-raw-submit'     => 'Gözegçilik sanawyny täzele',
+'watchlistedit-raw-done'       => 'Gözegçilik sanawyňyz täzelendi.',
+'watchlistedit-raw-added'      => '{{PLURAL:$1|1 sany at|$1 sany at}} goşuldy:',
+'watchlistedit-raw-removed'    => '{{PLURAL:$1|1 sany at|$1 sany at}} öçürildi:',
 
 # Watchlist editing tools
 'watchlisttools-view' => 'Degişli üýtgeşmeleri görkez',
 'watchlisttools-edit' => 'Gözegçilik sanawyna göz aýla we redaktirle',
 'watchlisttools-raw'  => 'Işlenmedik gözegçilik sanawyny redaktirle',
 
+# Core parser functions
+'unknown_extension_tag' => 'Näbelli giňeltme belligi "$1"',
+'duplicate-defaultsort' => '\'\'\'Duýduryş\'\'\': Gaýybana "$2" sortlaýyş açary mundan ozalky "$1" sortlaýyş açaryny aradan aýyrýar.',
+
 # Special:Version
-'version-specialpages' => 'Ýörite sahypalar',
+'version'                          => 'Wersiýa',
+'version-extensions'               => 'Gurulgy giňeltmeler',
+'version-specialpages'             => 'Ýörite sahypalar',
+'version-parserhooks'              => 'Analizator ilgençekleri',
+'version-variables'                => 'Üýtgeýänler',
+'version-other'                    => 'Başga',
+'version-mediahandlers'            => 'Media işleýjiler',
+'version-hooks'                    => 'Ilgençekler',
+'version-extension-functions'      => 'Giňeltme funksiýalary',
+'version-parser-extensiontags'     => 'Analizator giňeltme bellikleri',
+'version-parser-function-hooks'    => 'Analizator funsiýasynyň ilgençekleri',
+'version-skin-extension-functions' => 'Bezeg giňeltme funksiýalary',
+'version-hook-name'                => 'Ilgençegiň ady',
+'version-hook-subscribedby'        => 'Abuna ýazylan',
+'version-version'                  => '(Wersiýa $1)',
+'version-license'                  => 'Ygtyýarnama',
+'version-software'                 => 'Gurlan programma üpjünçiligi',
+'version-software-product'         => 'Önüm',
+'version-software-version'         => 'Wersiýa',
+
+# Special:FilePath
+'filepath'         => 'Faýla barýan ýol',
+'filepath-page'    => 'Faýl:',
+'filepath-submit'  => 'Ýol',
+'filepath-summary' => 'Bu ýörite sahypa faýla barýan doly ýoly gaýtaryp getirýär. 
+Suratlar doly ölçegde görkezilýär, beýleki faýl görnüşleri degişli programmalary bilen gönümel başladylýar. 
+
+Faýlyň adyny "{{ns:file}}:" pristawkasyz giriziň.',
+
+# Special:FileDuplicateSearch
+'fileduplicatesearch'          => 'Dublikat faýllaryň gözlegi',
+'fileduplicatesearch-summary'  => 'Heş kodlary boýunça meňzeş faýllary gözle.
+
+Faýlyň adyny "{{ns:file}}:" pristawkasyz giriziň.',
+'fileduplicatesearch-legend'   => 'Dublikatyny gözle',
+'fileduplicatesearch-filename' => 'Faýlyň ady:',
+'fileduplicatesearch-submit'   => 'Gözle',
+'fileduplicatesearch-info'     => '$1 × $2 piksel<br />Faýlyň ölçegi: $3<br />MIME tipi: $4',
+'fileduplicatesearch-result-1' => '"$1" faýlynyň meňzeş dublikaty ýok.',
+'fileduplicatesearch-result-n' => '"$1" faýlynyň {{PLURAL:$2|1 sany meňzeş dublikaty|$2 sany meňzeş dublikaty}} bar.',
 
 # Special:SpecialPages
-'specialpages'                 => 'Ýörite sahypalar',
-'specialpages-group-other'     => 'Başga ýörite sahypalar',
-'specialpages-group-redirects' => 'Gönükdirmeli ýörite sahypalar',
+'specialpages'                   => 'Ýörite sahypalar',
+'specialpages-note'              => '----
+* Adaty ýörite sahypalar.
+* <strong class="mw-specialpagerestricted">Çäklendirilen ýörite sahypalar.</strong>',
+'specialpages-group-maintenance' => 'Tehniki abatlaýyş hasabatlary',
+'specialpages-group-other'       => 'Başga ýörite sahypalar',
+'specialpages-group-login'       => 'Sessiýa aç / hasap edin',
+'specialpages-group-changes'     => 'Soňky üýtgeşmeler we gündelikler',
+'specialpages-group-media'       => 'Media hasabatlary we ýüklemeler',
+'specialpages-group-users'       => 'Ulanyjylar we hukuklar',
+'specialpages-group-highuse'     => 'Köp ulanylýan sahypalar',
+'specialpages-group-pages'       => 'Sahypalaryň sanawlary',
+'specialpages-group-pagetools'   => 'Sahypa gurallary',
+'specialpages-group-wiki'        => 'Wiki maglumatlar we gurallar',
+'specialpages-group-redirects'   => 'Gönükdirmeli ýörite sahypalar',
+'specialpages-group-spam'        => 'Spam gurallary',
 
 # Special:BlankPage
-'blankpage' => 'Boş sahypa',
+'blankpage'              => 'Boş sahypa',
+'intentionallyblankpage' => 'Bu sahypa ýörite boş goýuldy.',
 
 # External image whitelist
 'external_image_whitelist' => '#Bu setiri bolşy ýaly goýuň<pre>

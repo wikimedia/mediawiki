@@ -921,7 +921,10 @@ Het is mogelijk dat meerdere personen hetzelfde IP-adres gebruiken.
 Mogelijk ontvangt u hier berichten die niet voor u bedoeld zijn.
 Als u dat wilt voorkomen, [[Special:UserLogin/signup|registreer u]] of [[Special:UserLogin|meld u aan]] om verwarring met andere anonieme gebruikers te voorkomen.''",
 'noarticletext'                    => 'Deze pagina bevat geen tekst.
-U kunt [[Special:Search/{{PAGENAME}}|naar deze term zoeken]] in andere pagina\'s, <span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} de logboeken doorzoeken] of [{{fullurl:{{FULLPAGENAME}}|action=edit}} deze pagina bewerken]</span>.',
+U kunt [[Special:Search/{{PAGENAME}}|naar deze term zoeken]] in andere pagina\'s, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} de logboeken doorzoeken] of [{{fullurl:{{FULLPAGENAME}}|action=edit}} deze pagina bewerken]</span>.',
+'noarticletext-nopermission'       => 'Deze pagina bevat geen tekst.
+U kunt [[Special:Search/{{PAGENAME}}|naar deze term zoeken]] in andere pagina\'s of
+<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} de logboeken doorzoeken]</span>.',
 'userpage-userdoesnotexist'        => 'U bewerkt een gebruikerspagina van een gebruiker die niet bestaat (gebruiker "$1").
 Controleer of u deze pagina wel wilt aanmaken/bewerken.',
 'clearyourcache'                   => "'''Let op! Nadat u de wijzigingen hebt opgeslagen is het wellicht nodig uw browsercache te legen.'''
@@ -2420,17 +2423,19 @@ $1',
 'month'               => 'Van maand (en eerder):',
 'year'                => 'Van jaar (en eerder):',
 
-'sp-contributions-newbies'       => 'Alleen de bijdragen van nieuwe gebruikers bekijken',
-'sp-contributions-newbies-sub'   => 'Voor nieuwelingen',
-'sp-contributions-newbies-title' => 'Bijdragen van nieuwe gebruikers',
-'sp-contributions-blocklog'      => 'blokkeerlogboek',
-'sp-contributions-deleted'       => 'verwijderde bijdragen',
-'sp-contributions-logs'          => 'logboeken',
-'sp-contributions-talk'          => 'overleg',
-'sp-contributions-userrights'    => 'gebruikersrechtenbeheer',
-'sp-contributions-search'        => 'Zoeken naar bijdragen',
-'sp-contributions-username'      => 'IP-adres of gebruikersnaam:',
-'sp-contributions-submit'        => 'Bekijken',
+'sp-contributions-newbies'        => 'Alleen de bijdragen van nieuwe gebruikers bekijken',
+'sp-contributions-newbies-sub'    => 'Voor nieuwelingen',
+'sp-contributions-newbies-title'  => 'Bijdragen van nieuwe gebruikers',
+'sp-contributions-blocklog'       => 'blokkeerlogboek',
+'sp-contributions-deleted'        => 'verwijderde bijdragen',
+'sp-contributions-logs'           => 'logboeken',
+'sp-contributions-talk'           => 'overleg',
+'sp-contributions-userrights'     => 'gebruikersrechtenbeheer',
+'sp-contributions-blocked-notice' => 'Deze gebruiker is op het moment geblokkeerd.
+De laatste regel uit het blokkeerlogboek wordt hieronder ter referentie weergegeven:',
+'sp-contributions-search'         => 'Zoeken naar bijdragen',
+'sp-contributions-username'       => 'IP-adres of gebruikersnaam:',
+'sp-contributions-submit'         => 'Bekijken',
 
 # What links here
 'whatlinkshere'            => 'Verwijzingen naar deze pagina',

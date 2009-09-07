@@ -862,7 +862,7 @@ zwesche de ungerscheidlichste IP Adresse wähßele, womöchlich ohne dat hä et 
 Metmaacher bes, un fings, dat hee Saache an Dich jeschrevve wääde, wo Do jar nix met am Hot häs, dann bes Do 
 wahrscheinlich och nit jemeint. Denk villeich ens drüvver noh, datte Dich [[Special:UserLogin/signup|anmelde]] deis, 
 domet De dann donoh nit mieh met esu en Ömständ ze dun häs, wie de andere namenlose Metmaacher hee. Wann de aanjemelldt bes un deis [[Special:UserLogin|enlogge]], dann kam_mer Desch och dun alle andere Metmaacher ongerschejde.</i>',
-'noarticletext'                    => '<span class="plainlinks">Em Momang es keine Tex op dä Sigg. Jangk en de Texte vun ander Sigge [[Special:Search/{{PAGENAME}}|noh däm Titel söke]], odder [{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} donn en de Logböcher donoh loore], oder [{{FULLURL:{{FULLPAGENAME}}|action=edit}} fang die Sigg aan] ze schrieve, oder jangk zeröck wo de her koms. Do hät Dinge Brauser ene Knopp för.</span>',
+'noarticletext'                    => '<span class="plainlinks">Em Momang es keine Tex op dä Sigg. Jangk en de Texte vun ander Sigge [[Special:Search/{{PAGENAME}}|noh däm Titel söke]], odder [{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} donn en de Logböcher donoh loore], oder [{{FULLURL:{{FULLPAGENAME}}|action=edit}} fang die Sigg aan] ze schrieve, oder jangk zeröck wo de her koms. Do hät Dinge Brauser ene Knopp för.</span>',
 'userpage-userdoesnotexist'        => 'Enne Metmaacher „$1“ hammer nit, beß De secher, dat De die Metmaachersigg ändere oder aanläje wellss?.',
 'clearyourcache'                   => "<br clear=\"all\" style=\"clear:both\">
 '''Opjepass:'''
@@ -2421,17 +2421,18 @@ $1',
 'month'               => 'un Moohnt:',
 'year'                => 'Beß Johr:',
 
-'sp-contributions-newbies'       => 'Nor neu Metmaacher ier Beidräg zeije',
-'sp-contributions-newbies-sub'   => 'För neu Metmaacher',
-'sp-contributions-newbies-title' => 'Neu Metmaacher ier Beidräsch',
-'sp-contributions-blocklog'      => 'Logboch met Metmaacher-Sperre',
-'sp-contributions-deleted'       => 'Fottjeschmesse Beidrääsch',
-'sp-contributions-logs'          => 'Logböcher',
-'sp-contributions-talk'          => 'Klaaf',
-'sp-contributions-userrights'    => 'Räächde verwalde',
-'sp-contributions-search'        => 'Söök noh Metmaacher ier Beidräg',
-'sp-contributions-username'      => 'Metmaachername odder IP-Address:',
-'sp-contributions-submit'        => 'Sööke',
+'sp-contributions-newbies'        => 'Nor neu Metmaacher ier Beidräg zeije',
+'sp-contributions-newbies-sub'    => 'För neu Metmaacher',
+'sp-contributions-newbies-title'  => 'Neu Metmaacher ier Beidräsch',
+'sp-contributions-blocklog'       => 'Logboch met Metmaacher-Sperre',
+'sp-contributions-deleted'        => 'Fottjeschmesse Beidrääsch',
+'sp-contributions-logs'           => 'Logböcher',
+'sp-contributions-talk'           => 'Klaaf',
+'sp-contributions-userrights'     => 'Räächde verwalde',
+'sp-contributions-blocked-notice' => 'Heh dä Metmaacher es em Momang jespert, Dä letzte Enndraach em Logbooch doh drövver kütt jez als ene Henwiiß:',
+'sp-contributions-search'         => 'Söök noh Metmaacher ier Beidräg',
+'sp-contributions-username'       => 'Metmaachername odder IP-Address:',
+'sp-contributions-submit'         => 'Sööke',
 
 # What links here
 'whatlinkshere'            => 'Wat noh hee link',

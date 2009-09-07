@@ -524,12 +524,12 @@ HTML markup cannot be used.",
 
 # General errors
 'error'                => '{{Identical|Error}}',
-'dberrortext'          => 'Parameters
+'dberrortext'          => 'Parameters:
 * $1 - The last SQL command/query
 * $2 - SQL function name
 * $3 - Error number
 * $4 - Error description',
-'dberrortextcl'        => 'Parameters
+'dberrortextcl'        => 'Parameters:
 * $1 - The last SQL command/query
 * $2 - SQL function name
 * $3 - Error number
@@ -2299,8 +2299,8 @@ Parameter $1 is the message "[[MediaWiki:Hide/{{SUBPAGENAME}}|hide]]" or "[[Medi
 * $4 contains "hour and date of expiry" ({{msg-mw|Expiringblock}} or {{msg-mw|Infiniteblock}})
 
 See also {{msg-mw|Blocklogentry}}.',
-'infiniteblock'                => "* contents of $4 in {{msg-mw|Blocklistline}}: (''{{int:Blocklistline}}'')
-* contents of $4 in {{msg-mw|Globalblocking-blocked}}:
+'infiniteblock'                => "* contents of $4 in {{msg-mw|Blocklistline|notext=1}}: (''{{int:Blocklistline}}'')
+* contents of $4 in {{msg-mw|Globalblocking-blocked|notext=1}}:
 <blockquote>''{{int:Globalblocking-blocked}}''</blockquote>
 *See also {{msg-mw|Expiringblock}}
 

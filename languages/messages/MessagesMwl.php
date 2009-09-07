@@ -459,7 +459,7 @@ Para criar la páigina, ampeça a screbir an la caixa ambaixo (bei la [[{{MediaW
 Se stás eiqui por anganho, carrega ne l boton '''retornar''' de l tou nabegador de la Anternete.",
 'noarticletext'                    => 'Nun hai neste sfergante testo nesta páigina.
 Tu puodes [[Special:Search/{{PAGENAME}}|percurar pul títalo desta páigina]] noutras páiginas,
-<span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} percurar ls registros que téngan a ber],
+<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} percurar ls registros que téngan a ber],
 ó [{{fullurl:{{FULLPAGENAME}}|action=edit}} eiditar esta páigina]</span>.',
 'note'                             => "'''Abiso:'''",
 'previewnote'                      => "'''Esto ye solo ua amostra; las alteraçones inda nun fúrun grabadas!'''",

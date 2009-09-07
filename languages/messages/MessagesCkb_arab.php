@@ -686,7 +686,7 @@ $2',
 ئای‌پی ئەدرەسی وا لەوانەیه لە لایەن چەندین بەکارهێنەروە بەکاربێت.
 ئەگەر تۆ بەکارهێنەرێکی نەناسراوی و هەست ئەکەی ئەم لێدوانە پەیوەندی بە تۆوە نیە تکایە [[Special:UserLogin/signup|ھەژمارێکی نوێ دروست بکە]] یان [[Special:UserLogin|بچۆ ژوورەوە]] لەبەر ئەوەی لەداهاتوودا دەگەڵ بەکارهێنەرانی‌ نەناسراوی دی تێکەڵ نەکرێیت. ''",
 'noarticletext'                    => 'ھەنووکە لەم پەڕەدا ھیچ دەقێک نیە.
-دەتوانی بۆ ئەم ناوە لە [[Special:Search/{{PAGENAME}}|پەڕەکانی تر دا بگەڕێی]] ،<span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} لە لۆگەکاندا بگەڕی ],
+دەتوانی بۆ ئەم ناوە لە [[Special:Search/{{PAGENAME}}|پەڕەکانی تر دا بگەڕێی]] ،<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} لە لۆگەکاندا بگەڕی ],
 یان [{{fullurl:{{FULLPAGENAME}}|action=edit}}  ئەم پەڕە دەستکاری بکەیت. ]</span>.',
 'userpage-userdoesnotexist'        => 'هەژماری بەکارهێنەری "$1" تۆمار نەکراوە.<br />
 گەر دەتەوێ ئەم لاپەڕە درووست‌کەی یان دەستکاری بکەی تکایە تاقی‌بکەوە .',

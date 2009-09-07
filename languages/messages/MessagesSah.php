@@ -623,7 +623,7 @@ IP-аадырыһа эрэ көстөр.
 Биир IP-аадырыс хас да киһиэхэ бэриллиэн сөп. Өскө атын киһиэхэ суруллубут суругу алҕас туппут буоллаххына, бэйэҥ [[Special:UserLogin/signup|ааккын билиһиннэр]] эбэтэр [[Special:UserLogin|киир]], оччоҕо кэлин да булкуур тахсыа суоҕа.''",
 'noarticletext'                    => 'Билигин бу сирэй кураанах.
 Бу аат атын ыстатыйалга туттулларын [[Special:Search/{{PAGENAME}}|булуоххун сөп]],
-<span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} сурунаалларга көрдүөххүн сөп],
+<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} сурунаалларга көрдүөххүн сөп],
 эбэтэр [{{fullurl:{{FULLPAGENAME}}|action=edit}} маннык ааттаах саҥа ыстатыйаны суруйуоххун] сөп</span>.',
 'userpage-userdoesnotexist'        => '"$1" аат бэлиэтэммэтэх. Бу сирэйи оҥорор/уларытар баҕалааххын дуо?',
 'clearyourcache'                   => "'''Болҕой - Уларыппыт сирэйгин сөпкө көрөргө интэриниэт бырагыраамматын кээһин ыраастаа.''' '''Mozilla / Firefox / Safari:''' ''Shift'' кнопканы тутан туран ''Reload'' баттаа, эбэтэр ''Ctrl-F5'', ''Ctrl-R'' дуу (Macintosh-ка ''Command-R'') баттаа; '''Konqueror: ''' ''Reload'' ''F5'' эбэтэр баттаа;

@@ -614,8 +614,11 @@ La ciav për cost neuv cont a peul esse cambià an dorvind la pàgina ''[[Specia
 'newarticletext'                   => 'Che a scriva sò test ambelessì.',
 'anontalkpagetext'                 => "----''Costa a l'é la pàgina ëd ciaciarade che a s-ciàira n'utent anònim che a l'é ancó pa dorbusse un cont, ò pura che a lo dòvra nen. Nen savend chi che a sia chiel (chila) i l'oma da dovré ël nùmer IP address për deje n'identificassion. Belavans, ës nùmer-sì a peul esse dovrà da vàire Utent. J'Utent anònim che a l'han l'impression d'arsèive dij coment sensa sust a dovrìo [[Special:UserLogin|creésse sò cont ò pura rintré ant ël sistema]] për evité dë fé confusion con dj'àutri Utent che a peulo avej l'istess nùmer IP.''",
 'noarticletext'                    => 'Al moment costa pàgina a l\'é veuida.
-It peule [[Special:Search/{{PAGENAME}}|sërché costa vos]] an drinta a d\'àutre pàgine, <span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} sërché ant ij registr colegà],
+It peule [[Special:Search/{{PAGENAME}}|sërché costa vos]] an drinta a d\'àutre pàgine, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} sërché ant ij registr colegà],
 o purament [{{fullurl:{{FULLPAGENAME}}|action=edit}} modìfiché la pàgina adess]</span>.',
+'noarticletext-nopermission'       => 'Al moment a-i é pa gnun test an sta pàgina-sì.
+It peule [[Special:Search/{{PAGENAME}}|sërché sto tìtol ëd pàgina-sì]] an d\'àutre pàgine,
+o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} sërché le argistrassion colegà]</span>.',
 'userpage-userdoesnotexist'        => 'Lë stranòm "$1" a l\'é pa registrà. Për piasì ch\'a varda se da bon a veul creé/modifiché sta pàgina.',
 'clearyourcache'                   => "'''Nòta:''' na vira che i l'ha salvà, a peul esse che a-j fasa da manca da passé via la memorisassion (cache) dël sò programa ëd navigassion (browser) për podej ës-ciairé le modìfiche.
 *'''Mozilla / Firefox / Safari:''' Che a ten-a sgnacà ''Shift'' antramentr che a sgnaca col rat ansima a ''Reload'', ò pura che a sgnaca tut ansema ''Ctrl-Shift-R'' (''Cmd-Shift-R'' ansima a j'Apple Mac);
@@ -2071,17 +2074,18 @@ $1",
 'month'               => 'Mèis:',
 'year'                => 'Ann:',
 
-'sp-contributions-newbies'       => 'Smon mach ël travaj dij cont neuv',
-'sp-contributions-newbies-sub'   => "Për j'utent neuv",
-'sp-contributions-newbies-title' => "Contribussion ëd j'utent për ij neuv cont",
-'sp-contributions-blocklog'      => "Fërma l'agiornament dij registr",
-'sp-contributions-deleted'       => "Modìfiche d'utent scanselà",
-'sp-contributions-logs'          => 'registr',
-'sp-contributions-talk'          => 'discussion',
-'sp-contributions-userrights'    => 'gestion dij drit utent',
-'sp-contributions-search'        => 'Arsërca contribussion',
-'sp-contributions-username'      => 'Adrëssa IP ò nòm utent:',
-'sp-contributions-submit'        => 'Arsërca',
+'sp-contributions-newbies'        => 'Smon mach ël travaj dij cont neuv',
+'sp-contributions-newbies-sub'    => "Për j'utent neuv",
+'sp-contributions-newbies-title'  => "Contribussion ëd j'utent për ij neuv cont",
+'sp-contributions-blocklog'       => "Fërma l'agiornament dij registr",
+'sp-contributions-deleted'        => "Modìfiche d'utent scanselà",
+'sp-contributions-logs'           => 'registr',
+'sp-contributions-talk'           => 'discussion',
+'sp-contributions-userrights'     => 'gestion dij drit utent',
+'sp-contributions-blocked-notice' => "St'utent-sì a l'é blocà al moment. L'ùltima intrada dël registr dij blòch a l'é butà sì sota për arferiment:",
+'sp-contributions-search'         => 'Arsërca contribussion',
+'sp-contributions-username'       => 'Adrëssa IP ò nòm utent:',
+'sp-contributions-submit'         => 'Arsërca',
 
 # What links here
 'whatlinkshere'            => "Pàgine con dj'anliure che a men-o a costa-sì",

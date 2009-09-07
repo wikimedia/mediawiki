@@ -405,12 +405,12 @@ Ab limu xëti jagleel yépp, ma nees na koo gis ci [[Special:SpecialPages|{{int:
 # General errors
 'error'                => 'Njuumte',
 'databaseerror'        => 'Njuumtey dàttub njoxe bi',
-'dberrortext'          => 'Njuumtey mbindin ci laaj bi nga yónne dàttub njoxe bi. 
+'dberrortext'          => '�Njuumtey mbindin ci laaj bi nga yónne dàttub njoxe bi. 
 Man na nekk it ab njuumte ci tëriin bi. 
-Laaj bi ñu mujje yónne ci dàttub njoxe bi moo doonoon:
+Laaj bees mujje yónne ci dàttub njoxe bi moo doonoon:
 <blockquote><tt>$1</tt></blockquote>.
 bàyyikoo ci bii solo « <tt>$2</tt> ». 
-MySQL moo delloo bii njuumte « <tt>$3 : $4</tt> ».',
+Dàttub njoxe bee delloo bii njuumte « <tt>$3 : $4</tt> ».',
 'dberrortextcl'        => 'Ab laaj ca dàttub njoxe ba jur na ab njuumtey mbindin.
 Laaj bi ñu mujje yónne dàttub njoxe bi moo doonoon : « $1 » 
 bàyyikoo ci bii solo « $2 ». 
@@ -503,8 +503,7 @@ Sag mbindu sotti na. Bul fatte soppi say tànneef ni nga ko bëggee ci {{SITENAM
 'nouserspecified'            => 'Laaj na nga tànn ab turu jëfandikukat',
 'wrongpassword'              => 'Bii baatujàll baaxul. Jéemaatal.',
 'wrongpasswordempty'         => 'Duggaloo ab baatujàll, jéemaatal.',
-'passwordtooshort'           => 'Sa baatujàll dafa gàtt. 
-War naa am  {{PLURAL:$1|1 màndarga|$1 màndarga}}   lumu néew néew.',
+'passwordtooshort'           => 'Sa baatujàll war naa am lumu néew  {{PLURAL:$1|1 màndarga|$1 màndarga}}.',
 'password-name-match'        => 'Sa baatujàll dafa war a wuute ak sa turu jëfandikukat',
 'mailmypassword'             => 'Yónne ma ab baatujàll bu bees',
 'passwordremindertitle'      => 'Sa baatujàll bu bees ci {{SITENAME}}',
@@ -638,7 +637,7 @@ Baatujàllub bii jëfandikukat bu bees man nga ko soppi ci ''[[Special:ChangePas
 'anontalkpagetext'                 => "---- ''Yaa ngi ci xëtu waxtaanuwaayu ab jëfandikukat bu kenn-xamul, bu bindoogul walla du jëfandikoo sàqam. 
 Kon ngir xamme ko faaw nga jëfandikoo màkkaanub IP wan. Te màkkaanub IP jëfandikukat yu bari man nañ ka bokk. 
 Su fekkee jëfandikukat bu kenn-xamul nga, te nga gis ne dañu laa féetale ay kàddu yoo moomul, man ngaa [[Special:UserLogin|bindu]] walla [[Special:UserLogin|dugg]] ngi benn jaxase bañatee am ëllëg .''",
-'noarticletext'                    => 'Fi mu ne ni amul menn mbind ci xët wii; man ngaa [[Special:Search/{{PAGENAME}}|seet koju xët wi]] ci yeneen xët, <span class="plainlinks">[{{fullurl:Special:Log|page={{urlencode:{{FULLPAGENAME}}}}}} seet ci xëtu jagleel wi ],
+'noarticletext'                    => 'Fi mu ne ni amul menn mbind ci xët wii; man ngaa [[Special:Search/{{PAGENAME}}|seet koju xët wi]] ci yeneen xët, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} seet ci xëtu jagleel wi ],
 walla [{{fullurl:{{FULLPAGENAME}}|action=edit}} soppi xët wii].',
 'userpage-userdoesnotexist'        => 'Mii sàqum jëfandikukat « $1 » du bu ku-bindu. Seetal bu baax ndax da ngaa namma sos walla soppi wii xët.',
 'clearyourcache'                   => "'''Karmat :''' Soo dence xët wi ba noppi, faaw nga far nëmbiitu sa joowukaay ngir man a gis say coppite, te nga, su dee '''Mozilla / Firefox / Safari :''' cuq ci ''yeesal'' te bësaale ''shift'', walla nga bës ''Shift-R'' walla ''Ctrl-F5'' (Command-R ci Mac ), su dee '''Konqueror''': cuq ''yeesal'' walla nga bës ''F5''; su dee '''Opera''' faral nëbiit li (''Jumtukaay → Tànneef'') su dee '''Internet Explorer:''' cuq ci ''yeesal te bësaale ''Ctrl''  walla nga bës ''Ctrl-F5''.",
