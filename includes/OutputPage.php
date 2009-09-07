@@ -1902,7 +1902,7 @@ class OutputPage {
 				return '';
 			}
 		} else {
-			$media = null;
+			$media = 'all';
 		}
 
 		if( substr( $style, 0, 1 ) == '/' ||
