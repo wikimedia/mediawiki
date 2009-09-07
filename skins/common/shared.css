@@ -105,6 +105,8 @@ td.mw-submit { white-space: nowrap; }
 
 table.mw-htmlform-nolabel td.mw-label { width: 0 !important; }
 
+#wpLoginAttempt, #wpCreateaccount { margin-right:0; }
+
 /**
  * Image captions
  */
