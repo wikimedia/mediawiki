@@ -118,7 +118,7 @@ loadGM({
 	"mwe-size-megabytes" : "$1 MB",
 	"mwe-size-kilobytes" : "$1 K",
 	"mwe-size-bytes" : "$1 B",
-	"mwe-error_load_lib" : "Error: mv_embed was unable to load required JavaScript libraries.\nInsert script via DOM has failed. Please try reloading this page."
+	"mwe-error_load_lib" : "Error:: Javascript $1 was not retrievable OR does not define $2"
 });
 
 /**
@@ -462,8 +462,11 @@ var mvJsLoader = {
 			this.callbacks.push( callback );
 		}
 		if( this.checkLoading() ) {
-			if( this.load_time++ > 2000 ){ // Time out after ~80 seconds
-				js_error( gM('mwe-error_load_lib') + this.missing_path );
+			//@@todo we should check the <script> Element .onLoad property to 
+			//make sure its just not a very slow connection
+			 
+			if( this.load_time++ > 4000 ){ // Time out after ~80 seconds
+				js_error( gM('mwe-error_load_lib', mvGetClassPath(this.missing_path),  this.missing_path) );
 				this.load_error = true;
 			} else {
 				setTimeout( 'mvJsLoader.doLoad()', 20 );
@@ -524,7 +527,6 @@ var mvJsLoader = {
 				if( !this.libreq[i] ) {
 					loadExternalJs( this.libs[i] );
 				}
-
 				this.libreq[i] = 1;
 				//js_log("has not yet loaded: " + i);
 				loading = 1;
@@ -541,7 +543,7 @@ var mvJsLoader = {
 			cur_path = (cur_path == '') ? cur_path + objPath[p] : cur_path + '.' + objPath[p];
 			eval( 'var ptest = typeof ( '+ cur_path + ' ); ');
 			if( ptest == 'undefined' ) {
-				this.missing_path = cur_path;
+				this.missing_path = cur_path;				
 				return false;
 			}
 		}

@@ -102,6 +102,7 @@ $messages['en'] = array(
 	'mwe-size-megabytes' => '$1 MB',
 	'mwe-size-kilobytes' => '$1 K',
 	'mwe-size-bytes' => '$1 B',
+	'mwe-error_load_lib' => 'Error:: Javascript $1 was not retrievable OR does not define $2',
 
 	/*
 	 * js file: /libAddMedia/mvFirefogg.js
@@ -228,8 +229,6 @@ $messages['en'] = array(
 	'mwe-loading_plugin' => 'loading plugin <blink>...</blink>',
 	'mwe-select_playback' => 'Set playback preference',
 	'mwe-link_back' => 'Link back',
-	'mwe-error_load_lib' => 'Error: mv_embed was unable to load required JavaScript libraries.
-Insert script via DOM has failed. Please try reloading this page.',
 	'mwe-error_swap_vid' => 'Error: mv_embed was unable to swap the video tag for the mv_embed interface',
 	'mwe-add_to_end_of_sequence' => 'Add to end of sequence',
 	'mwe-missing_video_stream' => 'The video file for this stream is missing',
