@@ -53,8 +53,38 @@ var _global = this; // Global obj
 var mv_init_done = false;
 var global_cb_count = 0;
 
-/*parseUri class parses URIs:*/
-var parseUri=function(d){var o=parseUri.options,value=o.parser[o.strictMode?"strict":"loose"].exec(d);for(var i=0,uri={};i<14;i++){uri[o.key[i]]=value[i]||""}uri[o.q.name]={};uri[o.key[12]].replace(o.q.parser,function(a,b,c){if(b)uri[o.q.name][b]=c});return uri};parseUri.options={strictMode:false,key:["source","protocol","authority","userInfo","user","password","host","port","relative","path","directory","file","query","anchor"],q:{name:"queryKey",parser:/(?:^|&)([^&=]*)=?([^&]*)/g},parser:{strict:/^(?:([^:\/?#]+):)?(?:\/\/((?:(([^:@]*):?([^:@]*))?@)?([^:\/?#]*)(?::(\d*))?))?((((?:[^?#\/]*\/)*)([^?#]*))(?:\?([^#]*))?(?:#(.*))?)/,loose:/^(?:(?![^:@]+:[^:@\/]*@)([^:\/?#.]+):)?(?:\/\/)?((?:(([^:@]*):?([^:@]*))?@)?([^:\/?#]*)(?::(\d*))?)(((\/(?:[^?#](?![^?#\/]*\.[^?#\/.]+(?:[?#]|$)))*\/?)?([^?#\/]*))(?:\?([^#]*))?(?:#(.*))?)/}};
+
+// parseUri 1.2.2
+// (c) Steven Levithan <stevenlevithan.com>
+// MIT License
+function parseUri (str) {
+	var	o   = parseUri.options,
+		m   = o.parser[o.strictMode ? "strict" : "loose"].exec(str),
+		uri = {},
+		i   = 14;
+
+	while (i--) uri[o.key[i]] = m[i] || "";
+
+	uri[o.q.name] = {};
+	uri[o.key[12]].replace(o.q.parser, function ($0, $1, $2) {
+		if ($1) uri[o.q.name][$1] = $2;
+	});
+
+	return uri;
+};
+parseUri.options = {
+	strictMode: false,
+	key: ["source","protocol","authority","userInfo","user","password","host","port","relative","path","directory","file","query","anchor"],
+	q:   {
+		name:   "queryKey",
+		parser: /(?:^|&)([^&=]*)=?([^&]*)/g
+	},
+	parser: {
+		strict: /^(?:([^:\/?#]+):)?(?:\/\/((?:(([^:@]*)(?::([^:@]*))?)?@)?([^:\/?#]*)(?::(\d*))?))?((((?:[^?#\/]*\/)*)([^?#]*))(?:\?([^#]*))?(?:#(.*))?)/,
+		loose:  /^(?:(?![^:@]+:[^:@\/]*@)([^:\/?#.]+):)?(?:\/\/)?((?:(([^:@]*)(?::([^:@]*))?)?@)?([^:\/?#]*)(?::(\d*))?)(((\/(?:[^?#](?![^?#\/]*\.[^?#\/.]+(?:[?#]|$)))*\/?)?([^?#\/]*))(?:\?([^#]*))?(?:#(.*))?)/
+	}
+};
+
 
 
 // Get the mv_embed location if it has not been set
@@ -87,7 +117,8 @@ loadGM({
 	"mwe-size-gigabytes" : "$1 GB",
 	"mwe-size-megabytes" : "$1 MB",
 	"mwe-size-kilobytes" : "$1 K",
-	"mwe-size-bytes" : "$1 B"
+	"mwe-size-bytes" : "$1 B",
+	"mwe-error_load_lib" : "Error: mv_embed was unable to load required JavaScript libraries.\nInsert script via DOM has failed. Please try reloading this page.",
 });
 
 /**
@@ -223,7 +254,6 @@ lcCssPath({
 	'$j.Jcrop'			: 'libClipEdit/Jcrop/css/jquery.Jcrop.css',
 	'$j.fn.ColorPicker'	: 'libClipEdit/colorpicker/css/colorpicker.css'
 })
-
 /**
  * Language Functions:
  *
@@ -248,9 +278,11 @@ function gM( key , args ) {
 		return '&lt;' + key + '&gt;';
 	}
 }
-/*
- * msgSet is either a string corresponding to a single message to load, or an
- * array with a set of messages to load.
+/**
+ * gMsgLoadRemote loads remote msg strings
+ * 
+ * @param mixed msgSet the set of msg to load remotely
+ * @param function callback  the callback to pass loaded msg to  
  */
 function gMsgLoadRemote( msgSet, callback ) {
 	var ammessages = '';
@@ -462,9 +494,6 @@ var mvJsLoader = {
 		}
 		this.ptime = this.ctime;
 	},
-	doLoadFullPaths: function( loadObj, callback ) {
-
-	},
 	doLoadDepMode: function( loadChain, callback ) {
 		// Firefox executes JS in the order in which it is included, so just directly issue the request
 		if( $j.browser.firefox ) {
@@ -654,7 +683,7 @@ function setSwappableToLoading( e ) {
 function js2AddOnloadHook( func ) {
 	// Make sure the skin/style sheets are always available:
 	loadExternalCss( mv_jquery_skin_path + 'jquery-ui-1.7.1.custom.css' );
-	loadExternalCss( mv_embed_path + 'skins/'+mwConfig['skin_name'] + '/styles.css' );
+	loadExternalCss( mv_embed_path + 'skins/' + mwConfig['skin_name'] + '/styles.css' );
 
 	// If we have already run the DOM-ready function, just run the function directly:
 	if( mvJsLoader.doneReadyEvents ) {
