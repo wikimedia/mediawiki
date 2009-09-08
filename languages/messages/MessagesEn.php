@@ -4199,7 +4199,7 @@ Enter the filename without the "{{ns:file}}:" prefix.',
 'ajax-add-category-submit'     => 'Add',
 'ajax-confirm-title'           => 'Confirm action',
 'ajax-confirm-prompt'          => 'You can provide an edit summary below.
-Click "Save" to save your edit.',
+Click "{{int:ajax-confirm-save}}" to save your edit.',
 'ajax-confirm-save'            => 'Save',
 'ajax-add-category-summary'    => 'Add category "$1"',
 'ajax-remove-category-summary' => 'Remove category "$1"',
