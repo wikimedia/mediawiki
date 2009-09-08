@@ -51,7 +51,7 @@ class SpecialResetpass extends SpecialPage {
 						$data['wpRemember'] = 1;
 					}
 					$login = new LoginForm( new FauxRequest( $data, true ) );
-					$login->login();
+					$login->attemptLogin();
 				}
 				$titleObj = Title::newFromText( $wgRequest->getVal( 'returnto' ) );
 				if ( !$titleObj instanceof Title ) {
