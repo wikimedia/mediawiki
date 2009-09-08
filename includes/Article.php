@@ -1199,7 +1199,7 @@ class Article {
 	 * namespace, show the default message text. To be called from Article::view().
 	 */
 	public function showMissingArticle() {
-		global $wgOut, $wgRequest;
+		global $wgOut, $wgRequest, $wgUser;
 		# Show delete and move logs
 		$this->showLogs();
 
@@ -1213,7 +1213,11 @@ class Article {
 			// Use the default message text
 			$text = $this->getContent();
 		} else {
-			if ( $this->mTitle->userCan( 'edit' ) )
+			$createErrors = $this->mTitle->getUserPermissionsErrors( 'create', $wgUser );
+			$editErrors = $this->mTitle->getUserPermissionsErrors( 'edit', $wgUser );
+			$errors = array_merge( $createErrors, $editErrors );
+			
+			if ( !count($errors) )
 				$text = wfMsgNoTrans( 'noarticletext' );
 			else
 				$text = wfMsgNoTrans( 'noarticletext-nopermission' );
