@@ -4208,4 +4208,5 @@ Click "{{int:ajax-confirm-save}}" to save your edit.',
 'ajax-error-dismiss'           => 'OK',
 'ajax-remove-category-error'   => 'It was not possible to remove this category.
 This usually occurs when the category has been added to the page in a template.',
+
 );
