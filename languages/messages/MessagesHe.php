@@ -3476,4 +3476,19 @@ $1',
 'htmlform-reset'               => 'ביטול השינויים',
 'htmlform-selectorother-other' => 'אחר',
 
+# Add categories per AJAX
+'ajax-add-category'            => 'הוספת קטגוריה',
+'ajax-add-category-submit'     => 'הוספה',
+'ajax-confirm-title'           => 'אישור הפעולה',
+'ajax-confirm-prompt'          => 'באפשרותכם לכתוב תקציר עריכה למטה.
+לחצו על "{{int:ajax-confirm-save}}" כדי לשמור את העריכה.',
+'ajax-confirm-save'            => 'שמירה',
+'ajax-add-category-summary'    => 'הוספת הקטגוריה "$1"',
+'ajax-remove-category-summary' => 'הסרת הקטגוריה "$1"',
+'ajax-confirm-actionsummary'   => 'הפעולה לביצוע:',
+'ajax-error-title'             => 'שגיאה',
+'ajax-error-dismiss'           => 'אישור',
+'ajax-remove-category-error'   => 'לא ניתן היה להסיר קטגוריה זו.
+הסיבה לכך היא בדרך כלל שהקטגוריה נוספה לדף בתוך תבנית.',
+
 );
