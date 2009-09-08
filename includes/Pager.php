@@ -884,7 +884,8 @@ abstract class TablePager extends IndexPager {
 			# will be numeric, or $limit => $text, in which case the $value
 			# will be a string.
 			if( is_int( $value ) ){
-				$limit = $text = $value;
+				$limit = $value;
+				$text = $wgLang->formatNum( $limit );
 			} else {
 				$limit = $key;
 				$text = $value;
