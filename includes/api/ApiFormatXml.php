@@ -61,7 +61,7 @@ class ApiFormatXml extends ApiFormatBase {
 		$this->printText('<?xml version="1.0"?>');
 		if (!is_null($this->mXslt))
 			$this->addXslt();
-		$this->printText($this->recXmlPrint($this->mRootElemName,
+		$this->printText(self::recXmlPrint($this->mRootElemName,
 				$this->getResultData(),
 				$this->getIsHtml() ? -2 : null,
 				$this->mDoubleQuote));
