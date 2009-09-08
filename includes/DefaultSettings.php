@@ -597,6 +597,10 @@ $wgDBpassword       = '';
 /** Database type */
 $wgDBtype           = 'mysql';
 
+/** Separate username and password for maintenance tasks. Leave as null to use the default */
+$wgDBadminuser = null;
+$wgDBadminpassword = null;
+
 /** Search type
  * Leave as null to select the default search engine for the
  * selected database type (eg SearchMySQL), or set to a class
