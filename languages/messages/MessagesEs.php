@@ -1618,16 +1618,6 @@ Por favor, elige un nombre más descriptivo.",
 'upload-unknown-size'       => 'Tamaño desconocido',
 'upload-http-error'         => 'Ha ocurrido un error HTTP: $1',
 
-# img_auth script messages
-'img-auth-accessdenied' => 'Acceso denegado',
-'img-auth-notindir'     => 'Ruta solicitad no esá en el directorio de cargas configurado',
-'img-auth-badtitle'     => 'Incapaz de construir un título válido de "$1".',
-'img-auth-nologinnWL'   => 'No has iniciado sesión y "$1" no está en la lista blanca.',
-'img-auth-nofile'       => 'Archivo "$1" no existe.',
-'img-auth-isdir'        => 'Estás tratando de acceder a un directorio "$1".
-Solamente acceso a archivos está permitido.',
-'img-auth-noread'       => 'Usuario no tiene acceso para leer "$1".',
-
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'No se pudo alcanzar la URL',
 'upload-curl-error6-text'  => 'La URL no pudo ser alcanzada. Por favor comprueba que la URL es correcta y el sitio web está funcionando.',

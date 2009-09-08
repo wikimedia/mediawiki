@@ -1731,24 +1731,6 @@ PICT # שונות
 'upload-unknown-size'       => 'גודל בלתי ידוע',
 'upload-http-error'         => 'התרחשה שגיאת HTTP: $1',
 
-# img_auth script messages
-'img-auth-accessdenied' => 'הגישה נדחתה',
-'img-auth-nopathinfo'   => 'PATH_INFO חסר.
-השרת אינו מוגדר להעברת מידע זה.
-ייתכן שהוא מבוסס על CGI ולכן אינו יכול לתמוך ב־img_auth.
-ראו http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
-'img-auth-notindir'     => 'הנתיב המבוקש אינו בתיקיית ההעלאות שהוגדרה.',
-'img-auth-badtitle'     => 'לא ניתן ליצור כותרת תקינה מתוך "$1".',
-'img-auth-nologinnWL'   => 'אינכם מחוברים לחשבון והדף "$1" אינו ברשימה המותרת.',
-'img-auth-nofile'       => 'הקובץ "$1" אינו קיים.',
-'img-auth-isdir'        => 'אתם מנסים לגשת לתיקייה "$1".
-רק גישה לקבצים מותרת.',
-'img-auth-streaming'    => 'מבצע הזרמה של "$1".',
-'img-auth-public'       => 'img_auth.php משמש להצגת קבצים מתוך אתר ויקי פרטי.
-אתר ויקי זה מוגדר כציבורי.
-כדי להשיג אבטחה מירבית, img_auth.php מבוטל.',
-'img-auth-noread'       => 'למשתמש אין הרשאה לקרוא את "$1".',
-
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'לא ניתן להגיע ל־URL',
 'upload-curl-error6-text'  => 'לא ניתן לכתובת ה־URL שנכתבה. אנא בדקו אם כתובת זו נכונה ואם האתר זמין.',

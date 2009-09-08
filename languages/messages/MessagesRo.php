@@ -1671,10 +1671,6 @@ Dacă problema persistă, contactaţi un [[Special:ListUsers/sysop|administrator
 'upload-unknown-size'       => 'Mărime necunoscută',
 'upload-http-error'         => 'A avut loc o eroare HTTP: $1',
 
-# img_auth script messages
-'img-auth-accessdenied' => 'Acces interzis',
-'img-auth-nofile'       => 'Fişierul "$1" nu există.',
-
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Nu pot găsi adresa URL',
 'upload-curl-error6-text'  => 'Adresa URL introdusă nu a putut fi atinsă.

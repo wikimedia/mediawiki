@@ -1723,17 +1723,6 @@ PICT # διάφορα
 'upload-unknown-size'       => 'Άγνωστο μέγεθος',
 'upload-http-error'         => 'Εμφανίστηκε κάποιο σφάλμα HTTP: $1',
 
-# img_auth script messages
-'img-auth-accessdenied' => 'Δεν επετράπη η πρόσβαση',
-'img-auth-notindir'     => 'Η ζητούμενη διαδρομή δεν βρίσκεται στον διαμορφωμένο αρχειοκατάλογο επιφορτώσεων',
-'img-auth-badtitle'     => 'Αδύνατη η κατασκευή έγκυρου τίτλου από "$1".',
-'img-auth-nologinnWL'   => 'Δεν έχετε συνδεθεί και η "$1" δεν είναι στην άσπρη λίστα.',
-'img-auth-nofile'       => 'Το αρχείο "$1" δεν υπάρχει',
-'img-auth-isdir'        => 'Προσπαθείτε να αποκτήσετε πρόσβαση στον αρχειοκατάλογο "$1".
-Μόνον η πρόσβαση σε αρχεία είναι επιτρεπτή.',
-'img-auth-streaming'    => 'Ροή "$1".',
-'img-auth-noread'       => 'Ο χρήστης δεν έχει πρόσβαση στο να διαβάσει το "$1".',
-
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Το URL δεν ήταν προσβάσιμο',
 'upload-curl-error6-text'  => 'Το παρεχόμενο URL δεν μπόρεσε να προσπελαστεί. Παρακαλώ εξετάστε διπλά, ότι το URL είναι ορθό και ότι ο ιστότοπος είναι διαθέσιμος.',

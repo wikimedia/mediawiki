@@ -1658,17 +1658,6 @@ PICT # 기타
 'upload-unknown-size'       => '크기를 알 수 없음',
 'upload-http-error'         => 'HTTP 오류 발생: $1',
 
-# img_auth script messages
-'img-auth-accessdenied' => '접근 거부됨',
-'img-auth-nopathinfo'   => 'PATH_INFO 가 빠졌습니다.
-서버에 이 정보가 설정되어 있지 않습니다.
-CGI 기반이거나 img_auth 를 지원하지 않을 수 있습니다.
-http://www.mediawiki.org/wiki/Manual:Image_Authorization 를 참고하세요.',
-'img-auth-badtitle'     => '"$1"에서 바른 제목을 만들 수 없습니다.',
-'img-auth-nofile'       => '"$1" 파일이 없습니다.',
-'img-auth-isdir'        => '"$1" 디렉토리에 접근을 시도했습니다.
-파일에만 접근할 수 있습니다.',
-
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'URL 접근 불가',
 'upload-curl-error6-text'  => 'URL에 접근할 수 없습니다.
