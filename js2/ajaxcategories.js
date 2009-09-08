@@ -257,6 +257,9 @@ var ajaxCategories = {
 	},
 	
 	setupAJAXCategories : function() {
+		// Only do it for articles.
+		if ( !wgIsArticle ) return;
+		
 		var clElement = $j('.catlinks');
 		
 		// Unhide hidden category holders.
