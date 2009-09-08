@@ -474,6 +474,10 @@ this. Was used when mwEmbed was going to be an extension.
   any change, in addition to onkeyup.
 * Don't link to "edit this page" on MediaWiki:Noarticletext if user is not allowed
   to create page. Done via new message MediaWiki:Noarticletext-nopermission
+* Improved compatibility between the Vector skin and addPortletLink() from wikibits.js:
+  empty portlets are now present but hidden, adding an element to a portlet unhides it
+* (bug 19531) addPortletLink() now wraps inserted labels in a <span> element to be
+  compatible with the CSS for the Vector skin
 
 == API changes in 1.16 ==
 

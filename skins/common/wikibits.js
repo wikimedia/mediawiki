@@ -287,13 +287,19 @@ function updateTooltipAccessKeys( nodeList ) {
  * @return Node -- the DOM node of the new item (an LI element) or null
  */
 function addPortletLink(portlet, href, text, id, tooltip, accesskey, nextnode) {
-	var node = document.getElementById(portlet);
-	if ( !node ) return null;
-	node = node.getElementsByTagName( "ul" )[0];
+	var root = document.getElementById(portlet);
+	if ( !root ) return null;
+	var node = root.getElementsByTagName( "ul" )[0];
 	if ( !node ) return null;
 
+	// unhide portlet if it was hidden before
+	root.className = root.className.replace( /(^| )emptyPortlet( |$)/, "$2" );
+
+	var span = document.createElement( "span" );
+	span.appendChild( document.createTextNode( text ) );
+
 	var link = document.createElement( "a" );
-	link.appendChild( document.createTextNode( text ) );
+	link.appendChild( span );
 	link.href = href;
 
 	var item = document.createElement( "li" );
