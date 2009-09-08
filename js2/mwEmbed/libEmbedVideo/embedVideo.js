@@ -6,7 +6,7 @@ loadGM({
 	"mwe-loading_plugin" : "loading plugin <blink>...<\/blink>",
 	"mwe-select_playback" : "Set playback preference",
 	"mwe-link_back" : "Link back",
-	"mwe-error_load_lib" : "Error: mv_embed was unable to load required JavaScript libraries.\nInsert script via DOM has failed. Please try reloading this page.",
+	"mwe-error_load_lib" : "Error: JavaScript $1 was not retrievable or does not define $2",
 	"mwe-error_swap_vid" : "Error: mv_embed was unable to swap the video tag for the mv_embed interface",
 	"mwe-add_to_end_of_sequence" : "Add to end of sequence",
 	"mwe-missing_video_stream" : "The video file for this stream is missing",
@@ -38,8 +38,8 @@ loadGM({
 	"mwe-ogg-player-videoElement" : "Native Ogg video support",
 	"mwe-ogg-player-vlc-activex" : "VLC ActiveX",
 	"mwe-ogg-player-oggPlugin" : "Generic Ogg plugin",
-	"mwe-ogg-player-quicktime-mozilla" : "Quicktime plugin",
-	"mwe-ogg-player-quicktime-activex" : "Quicktime ActiveX",
+	"mwe-ogg-player-quicktime-mozilla" : "QuickTime plugin",
+	"mwe-ogg-player-quicktime-activex" : "QuickTime ActiveX",
 	"mwe-ogg-player-cortado" : "Java Cortado",
 	"mwe-ogg-player-flowplayer" : "Flowplayer",
 	"mwe-ogg-player-selected" : "(selected)",
@@ -48,9 +48,9 @@ loadGM({
 	"mwe-for_best_experience" : "For a better video playback experience we recommend:<br \/><b><a href=\"http:\/\/www.mozilla.com\/en-US\/firefox\/upgrade.html?from=mwEmbed\">Firefox 3.5<\/a>.<\/b>",
 	"mwe-do_not_warn_again" : "Dismiss for now.",
 	"mwe-playerselect" : "Players",
-	"mwe-read_before_embed" : "Please <a href=\"http:\/\/mediawiki.org\/wiki\/Security_Notes_on_Remote_Embedding\" target=\"_new\">Read This<\/a> before embeding!",
-	"mwe-embed_site_or_blog" : "Embed on your site or blog", 
-	"mwe_related_videos" : "Related Videos"
+	"mwe-read_before_embed" : "Please read the <a href=\"http:\/\/mediawiki.org\/wiki\/Security_Notes_on_Remote_Embedding\" target=\"_new\">security notes on remote embedding<\/a> before acually embeding!",
+	"mwe-embed_site_or_blog" : "Embed on your site or blog",
+	"mwe_related_videos" : "Related videos"
 });
 
 //set the globals:

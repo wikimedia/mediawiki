@@ -118,7 +118,7 @@ loadGM({
 	"mwe-size-megabytes" : "$1 MB",
 	"mwe-size-kilobytes" : "$1 K",
 	"mwe-size-bytes" : "$1 B",
-	"mwe-error_load_lib" : "Error:: Javascript $1 was not retrievable OR does not define $2"
+	"mwe-error_load_lib" : "Error: JavaScript $1 was not retrievable or does not define $2"
 });
 
 /**
