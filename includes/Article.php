@@ -726,7 +726,7 @@ class Article {
 	public function view() {
 		global $wgUser, $wgOut, $wgRequest, $wgContLang;
 		global $wgEnableParserCache, $wgStylePath, $wgParser;
-		global $wgUseTrackbacks;
+		global $wgUseTrackbacks, $wgUseFileCache;
 
 		wfProfileIn( __METHOD__ );
 
@@ -752,7 +752,7 @@ class Article {
 				wfProfileOut( __METHOD__ );
 				return;
 			# Try file cache
-			} else if( $this->tryFileCache() ) {
+			} else if( $wgUseFileCache && $this->tryFileCache() ) {
 				wfDebug( __METHOD__.": done file cache\n" );
 				# tell wgOut that output is taken care of
 				$wgOut->disable();
@@ -3520,8 +3520,7 @@ class Article {
 	 */
 	public function isFileCacheable() {
 		$cacheable = false;
-		global $wgUseFileCache;
-		if( $wgUseFileCache and HTMLFileCache::useFileCache() ) {
+		if( HTMLFileCache::useFileCache() ) {
 			$cacheable = $this->getID() && !$this->mRedirectedFrom;
 			// Extension may have reason to disable file caching on some pages.
 			if( $cacheable ) {
