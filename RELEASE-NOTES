@@ -80,8 +80,6 @@ this. Was used when mwEmbed was going to be an extension.
 * $wgExtraRandompageSQL is deprecated, the SpecialRandomGetRandomTitle hook 
   should be used instead
 * (bug 20489) $wgIllegalFileChars added to override the default list of illegal characters in file names.
-* (bug 19646) $wgImgAuthDetails added  to display reason access to uploaded file was denied to users(img_auth only)
-* (bug 19646) $wgImgAuthPublicTest added to test to see if img_auth set up correctly (img_auth only)
 
 === New features in 1.16 ===
 
