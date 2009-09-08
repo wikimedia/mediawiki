@@ -64,7 +64,7 @@ $msgSet = "";
 
 $objects = new RecursiveIteratorIterator( new RecursiveDirectoryIterator( $path ), RecursiveIteratorIterator::SELF_FIRST );
 foreach ( $objects as $fname => $object ) {
-	if ( substr( $fname, -3 ) == '.js' ) {
+	if ( substr( $fname, - 3 ) == '.js' ) {
 		$jsFileText = file_get_contents( $fname );
 		$mwPos = strpos( $fname, 'mwEmbed' ) + 7;
 		$curFileName = substr( $fname, $mwPos );
@@ -171,9 +171,9 @@ function jsonReadable( $json ) {
 					}
 				break;
 				case ':':
-					if($inquote){
+					if ( $inquote ) {
 						$result .= $char;
-					}else{
+					} else {
 						$result .= ' ' . $char . ' ';
 					}
 					break;
