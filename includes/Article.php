@@ -1896,6 +1896,7 @@ class Article {
 
 		$dbw = wfGetDB( DB_MASTER );
 		$now = wfTimestampNow();
+		$this->mTimestamp=$now;
 
 		if( $flags & EDIT_UPDATE ) {
 			# Update article, but only if changed.
