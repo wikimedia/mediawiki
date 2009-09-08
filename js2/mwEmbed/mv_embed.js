@@ -191,6 +191,7 @@ lcPaths({
 	"$j.secureEvalJSON"	: "jquery/plugins/jquery.secureEvalJSON.js",
 	"$j.cookie"			: "jquery/plugins/jquery.cookie.js",
 	"$j.contextMenu"	: "jquery/plugins/jquery.contextMenu.js",
+	"$j.fn.suggestions"	: "jquery/plugins/jquery.suggestions.js",
 
 	"$j.effects.blind"		: "jquery/jquery.ui/ui/effects.blind.js",
 	"$j.effects.drop"		: "jquery/jquery.ui/ui/effects.drop.js",

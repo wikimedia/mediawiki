@@ -567,7 +567,9 @@ class Xml {
 			$s = 'null';
 		} elseif ( is_int( $value ) ) {
 			$s = $value;
-		} elseif ( is_array( $value ) ) {
+		} elseif ( is_array( $value ) && // Make sure it's not associative.
+					array_keys($value) === range(0,count($value)-1)
+				) {
 			$s = '[';
 			foreach ( $value as $elt ) {
 				if ( $s != '[' ) {
@@ -576,7 +578,8 @@ class Xml {
 				$s .= self::encodeJsVar( $elt );
 			}
 			$s .= ']';
-		} elseif ( is_object( $value ) ) {
+		} elseif ( is_object( $value ) || is_array( $value ) ) {
+			// Objects and associative arrays
 			$s = '{';
 			foreach ( (array)$value as $name => $elt ) {
 				if ( $s != '{' ) {
