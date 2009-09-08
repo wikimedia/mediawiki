@@ -118,7 +118,7 @@ loadGM({
 	"mwe-size-megabytes" : "$1 MB",
 	"mwe-size-kilobytes" : "$1 K",
 	"mwe-size-bytes" : "$1 B",
-	"mwe-error_load_lib" : "Error: mv_embed was unable to load required JavaScript libraries.\nInsert script via DOM has failed. Please try reloading this page.",
+	"mwe-error_load_lib" : "Error: mv_embed was unable to load required JavaScript libraries.\nInsert script via DOM has failed. Please try reloading this page."
 });
 
 /**
