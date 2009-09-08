@@ -1,31 +1,32 @@
 <?php
 /*
 mv_embed_iframe.php
-this allows for remote embedding without exposing the hosting site to remote javascript. 
+This allows for remote embedding, without exposing the hosting site to remote JavaScript.
 */
 
 mv_embed_iframe();
 
 function mv_embed_iframe() {
-	if( !function_exists( 'filter_input' ) ){
+	if ( !function_exists( 'filter_input' ) ) {
 		die( 'your version of PHP lacks <b>filter_input()</b> function<br />' );
 	}
-	// default to null media in not provided:
-	$stream_name = ( isset( $_GET['sn'] ) )? $_GET['sn'] : die('no stream name provided');
-	$time =	  ( isset( $_GET['t'] ) )? $_GET['t']: '';	
-	$width =  ( isset( $_GET['width'] )  )? intval( $_GET['width'] ) 	: '400';
-	$height = ( isset( $_GET['height'] ) )? intval( $_GET['height'] ) 	: '300';		//
+	// Default to null media if not provided
+	$stream_name = ( isset( $_GET['sn'] ) ) ? $_GET['sn'] : die( 'no stream name provided' );
+	$time =	  ( isset( $_GET['t'] ) ) ? $_GET['t']: '';
+	$width =  ( isset( $_GET['width'] )  ) ? intval( $_GET['width'] ) 	: '400';
+	$height = ( isset( $_GET['height'] ) ) ? intval( $_GET['height'] ) 	: '300';		//
 
-	$roe_url = 'http://metavid.org/wiki/Special:MvExportStream?feed_format=roe&stream_name=' . htmlspecialchars( $stream_name ) . 
-					'&t=' . htmlspecialchars( $time );
-	//everything good output page:
-	output_page(array(
+	$roe_url = 'http://metavid.org/wiki/Special:MvExportStream?feed_format=roe' . 
+		'&stream_name=' . htmlspecialchars( $stream_name ) .
+		'&t=' . htmlspecialchars( $time );
+	// Everything good, output page:
+	output_page( array(
 		'roe_url' => $roe_url,
 		'width' 	=> $width,
 		'height'	=> $height,
-	));
+	) );
 }
-function output_page( $params ){
+function output_page( $params ) {
 	extract( $params );
 ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
