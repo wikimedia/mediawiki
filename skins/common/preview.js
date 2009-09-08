@@ -20,6 +20,10 @@ function doLivePreview( e ) {
 	$j('.templatesUsed').slideUp();
 	$j('.hiddencats').slideUp();
 	
+	// Display a loading graphic
+	var loadSpinner = $j('<div class="mw-ajax-loader"/>');
+	$j('#wikiPreview').before( loadSpinner );
+	
 	var page = $j('<html/>');
 	page.load( wgScript+'?action=submit',
 				postData,
@@ -36,6 +40,8 @@ function doLivePreview( e ) {
 				var newClasses = page.find( copyElements[i] ).attr('class');
 				$j(copyElements[i]).attr( 'class', newClasses );
 			}
+			
+			loadSpinner.remove();
 			
 			$j('#wikiPreview').slideDown();
 		} );
