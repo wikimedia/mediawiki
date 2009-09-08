@@ -3464,9 +3464,11 @@ $wgDisabledActions = array();
 $wgDisableHardRedirects = false;
 
 /**
- * Disable tooltips and access keys
+ * Set to false to disable application of access keys and tooltips,
+ * eg to avoid keyboard conflicts with system keys or as a low-level
+ * optimization.
  */
-$wgDisableTooltipsAndAccesskeys = false;
+$wgEnableTooltipsAndAccesskeys = true;
 
 /**
  * Use http.dnsbl.sorbs.net to check for open proxies

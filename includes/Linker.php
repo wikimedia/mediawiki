@@ -1941,8 +1941,8 @@ class Linker {
 	 * @deprecated Returns raw bits of HTML, use titleAttrib() and accesskey()
 	 */
 	public function tooltipAndAccesskey( $name ) {
-		global $wgDisableTooltipsAndAccesskeys;
-		if ($wgDisableTooltipsAndAccesskeys)
+		global $wgEnableTooltipsAndAccesskeys;
+		if (!$wgEnableTooltipsAndAccesskeys)
 			return array();
 		# FIXME: If Sanitizer::expandAttributes() treated "false" as "output
 		# no attribute" instead of "output '' as value for attribute", this
@@ -1962,8 +1962,8 @@ class Linker {
 
 	/** @deprecated Returns raw bits of HTML, use titleAttrib() */
 	public function tooltip( $name, $options = null ) {
-		global $wgDisableTooltipsAndAccesskeys;
-		if ($wgDisableTooltipsAndAccesskeys)
+		global $wgEnableTooltipsAndAccesskeys;
+		if ($wgEnableTooltipsAndAccesskeys)
 			return array();
 		# FIXME: If Sanitizer::expandAttributes() treated "false" as "output
 		# no attribute" instead of "output '' as value for attribute", this
