@@ -772,6 +772,30 @@ td.mw-enhanced-rc {
 	font-family:monospace
 }
 
+#mw-addcategory-prompt {
+	display: inline;
+	margin-left: 1em;
+}
+ 
+#mw-addcategory-prompt input {
+	margin-left: 0.5em;
+	margin-right: 0.5em;
+}
+ 
+.mw-remove-category {
+	padding: 8px;
+	background-image: url(images/remove.png);
+	background-position: center center;
+	background-repeat: no-repeat;
+}
+ 
+.mw-ajax-addcategory {
+	padding-left: 20px;
+	background-image: url(images/add.png);
+	background-position: left center;
+	background-repeat: no-repeat;
+}
+
 .mw-ajax-loader {
 	background-image: url(images/ajax-loader.gif);
 	background-position: center center;

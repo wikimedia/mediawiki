@@ -619,6 +619,7 @@ $wgJSAutoloadLocalClasses = array(
 	// phase 2 javascript:
 	'uploadPage' => 'js2/uploadPage.js',
 	'editPage' => 'js2/editPage.js',
+	'ajaxCategories' => 'js2/ajaxcategories.js',
 );
 
 //Include the js2 autoLoadClasses

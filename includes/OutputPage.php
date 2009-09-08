@@ -1115,6 +1115,11 @@ class OutputPage {
 		if( $wgUser->getBoolOption( 'editsectiononrightclick' ) ) {
 			$this->addScriptFile( 'rightclickedit.js' );
 		}
+		
+		global $wgUseAJAXCategories;
+		if ($wgUseAJAXCategories) {
+			$this->addScriptClass( 'ajaxCategories' );
+		}
 
 		if( $wgUniversalEditButton ) {
 			if( isset( $wgArticle ) && $this->getTitle() && $this->getTitle()->quickUserCan( 'edit' )

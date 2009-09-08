@@ -409,6 +409,8 @@ class Skin extends Linker {
 			'wgSeparatorTransformTable' => $compactSeparatorTransTable,
 			'wgDigitTransformTable' => $compactDigitTransTable,
 			'wgMainPageTitle' => $mainPage ? $mainPage->getPrefixedText() : null,
+			'wgFormattedNamespaces' => $wgContLang->getFormattedNamespaces(),
+			'wgNamespaceIds' => $wgContLang->getNamespaceIds(),
 		);
 		if ( $wgContLang->hasVariants() ) {
 			$vars['wgUserVariant'] = $wgContLang->getPreferredVariant();

@@ -4195,3 +4195,8 @@ $wgCrossSiteAJAXdomainExceptions = array();
  * The minimum amount of memory that MediaWiki "needs"; MediaWiki will try to raise PHP's memory limit if it's below this amount.
  */
 $wgMemoryLimit = "50M";
+
+/**
+ * Whether or not to use the AJAX categories system.
+ */
+$wgUseAJAXCategories = false;
