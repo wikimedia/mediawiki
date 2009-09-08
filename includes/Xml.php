@@ -699,14 +699,12 @@ class Xml {
 			foreach( $headers as $id => $header ) {
 				$attribs = array();
 				if ( is_string( $id ) ) $attribs['id'] = $id;
-				if ( is_array( $id ) ) $attribs = $id;
 				$s .= Xml::element( 'th', $attribs, $header );
 			}
 		}
 		foreach( $rows as $id => $row ) {
 			$attribs = array();
 			if ( is_string( $id ) ) $attribs['id'] = $id;
-			if ( is_array( $id ) ) $attribs = $id;
 			$s .= Xml::buildTableRow( $attribs, $row );
 		}
 		$s .= Xml::closeElement( 'table' );
@@ -723,7 +721,6 @@ class Xml {
 		foreach( $cells as $id => $cell ) {
 			$attribs = array();
 			if ( is_string( $id ) ) $attribs['id'] = $id;
-			if ( is_array( $id ) ) $attribs = $id;
 			$s .= Xml::element( 'td', $attribs, $cell );
 		}
 		$s .= Xml::closeElement( 'tr' );
