@@ -295,7 +295,7 @@ function gMsgLoadRemote( msgSet, callback ) {
 		ammessages += msgSet;
 	}
 	if( ammessages == '' ) {
-		js_log( 'gMsgLoadRemote: no message set requested' );
+		js_log( 'gMsgLoadRemote: no message set requested' );		
 		return false;
 	}
 	do_api_req({
@@ -312,7 +312,6 @@ function gMsgLoadRemote( msgSet, callback ) {
 				loadGM( ld );
 			}
 		}
-		// Load the result into local msg var
 		callback();
 	});
 }
@@ -433,15 +432,17 @@ var mvJsLoader = {
 						coma = ',';
 					}
 				}
+				//Build the url to the scriptServer striping its request paramaters: 
 				var puri = parseUri( getMvEmbedURL() );
 				if( ( getMvEmbedURL().indexOf('://') != -1 )
 					&& puri.host != parseUri( document.URL ).host )
-				{
-					mwSlScript = puri.protocol + '://' + puri.authority + mwSlScript;
+				{					
+					var scriptPath = puri.protocol + '://' + puri.authority + puri.path;
+				}else{
+					var scriptPath = puri.path;
 				}
-
 				var dbug_attr = ( puri.queryKey['debug'] ) ? '&debug=true' : '';
-				this.libs[ last_class ] = mwSlScript + '?class=' + class_set +
+				this.libs[ last_class ] = scriptPath + '?class=' + class_set +
 					'&urid=' + getMvUniqueReqId() + dbug_attr;
 
 			} else {
@@ -466,7 +467,7 @@ var mvJsLoader = {
 			//make sure its just not a very slow connection
 			 
 			if( this.load_time++ > 4000 ){ // Time out after ~80 seconds
-				js_error( gM('mwe-error_load_lib', mvGetClassPath(this.missing_path),  this.missing_path) );
+				js_error( gM('mwe-error_load_lib', [mvGetClassPath(this.missing_path),  this.missing_path]) );
 				this.load_error = true;
 			} else {
 				setTimeout( 'mvJsLoader.doLoad()', 20 );
@@ -1355,8 +1356,13 @@ function getMvEmbedURL() {
 				( src.indexOf( 'mwScriptLoader.php' ) != -1 || src.indexOf('jsScriptLoader.php') != -1 )
 				&& src.indexOf('mv_embed') != -1) ) //(check for class=mv_embed script_loader call)
 			{
-				_global['mv_embed_url'] = src;
-				return src;
+				if(typeof wgScriptPath != 'undefined' && src.indexOf( 'mwScriptLoader.php' ) != -1 ){
+					_global['mv_embed_url'] = wgScriptPath + '/mwScriptLoader.php';
+					return _global['mv_embed_url']
+				}else{ 
+					_global['mv_embed_url'] = src;
+					return src;
+				}
 			}
 		}
 	}
