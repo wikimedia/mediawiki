@@ -71,8 +71,8 @@ var default_remote_search_options = {
 	'default_query':null, //default search query
 	//specific to sequence profile
 	'p_seq':null,
-	'cFileNS':'File', //what is the cannonical namespace for images
-					  //@@todo (should get that from the api or inpage vars)
+	'cFileNS':'File', //What is the canonical namespace prefix for images
+					  //@@todo (should get that from the api or in-page vars)
 
 	'enable_upload_tab':true, // if we want to enable an uploads tab:
 	'upload_api_target'	   : 'http://localhost/wiki_trunk/api.php' // can be local or the url of the upload api.
@@ -120,7 +120,7 @@ remoteSearchDriver.prototype = {
 		 *
 
 			@enabled: whether the search provider can be selected
-			@checked: whether the search provider will show up as seleatable tab (todo: user prefrence)
+			@checked: whether the search provider will show up as seleatable tab (todo: user preference)
 			@d:	   default: if the current cp should be displayed (only one should be the default)
 			@title:   the title of the search provider
 			@desc:	   can use html... todo: need to localize
@@ -387,7 +387,7 @@ remoteSearchDriver.prototype = {
 		//bind actions:
 		this.add_interface_bindings();
 
-		//update the target bining to just unhide the dialog:
+		//update the target binding to just un-hide the dialog:
 		$j(this.target_invocation).unbind().click(function(){
 		 	  js_log("re-open");
 			  //update the base text:
@@ -453,18 +453,24 @@ remoteSearchDriver.prototype = {
 				bgiframe: true,
 				autoOpen: true,
 				modal: true,
+				draggable:false,
+				resizable:false,
 				buttons: {
 					'_': function() {
 						//just a place-holder
 					}
 				},
 				close: function() {
+					//if we are 'editing' a item close that					
+					_this.cancelClipEditCB();
 					js_log('closed modal');
 					$j(this).parents('.ui-dialog').fadeOut('slow');
 				}
-			}).parent('.ui-dialog').css( _this.dmodalCss )
-			//@@bind on resize to disable css dialog to update dmodelCss
-			.bind('resizestart', function(event, ui) {
+			}).parent('.ui-dialog').css( _this.dmodalCss );
+			
+			//@@bind on resize to disable css dialog to update dmodelCss 
+			//(resize and drag presently disabled) 
+			/*.bind('resizestart', function(event, ui) {
 				 _this.dmodalCss = {};
 				 $j(this).css({});
 			})
@@ -472,7 +478,20 @@ remoteSearchDriver.prototype = {
 			.bind('dragstart', function(event, ui) {
 				 _this.dmodalCss = {};
 				 $j(this).css({});
-			});
+			});*/
+			
+			/*var resizeTimer = false;
+			$j(window).bind('resize', function() {
+				var adjustModal = function(){
+					var layout = _this.getMaxModalLayout();
+					//js_log("should adjust: h " + layout.h + ' width:' + layout.w);
+					$j(_this.target_container).dialog('option', 'width', layout.w);
+					$j(_this.target_container).dialog('option', 'height', layout.h);
+				}
+				if (resizeTimer) clearTimeout(resizeTimer);
+				var resizeTimer = setTimeout(adjustModal, 100);
+			});*/
+			
 			//update the child position: (some of this should be pushed up-stream via dialog config options
 			$j(_this.target_container +'~ .ui-dialog-buttonpane').css({
 				'position':'absolute',
@@ -485,18 +504,7 @@ remoteSearchDriver.prototype = {
 			js_log('done setup of target_container: ' +
 				$j(_this.target_container +'~ .ui-dialog-buttonpane').length);
 
-
-			/*var resizeTimer = false;
-			$j(window).bind('resize', function() {
-				var adjustModal = function(){
-					var layout = _this.getMaxModalLayout();
-					//js_log("should adjust: h " + layout.h + ' width:' + layout.w);
-					$j(_this.target_container).dialog('option', 'width', layout.w);
-					$j(_this.target_container).dialog('option', 'height', layout.h);
-				}
-				if (resizeTimer) clearTimeout(resizeTimer);
-				var resizeTimer = setTimeout(adjustModal, 100);
-			});*/
+			
 		}
 	},
 	getMaxModalLayout:function(border){
@@ -635,7 +643,7 @@ remoteSearchDriver.prototype = {
 
 						//deal with the api form upload form directly:
 						$j('#upload_form').simpleUploadForm({
-							"api_target" :	_this.upload_api_target ,
+							"api_target" :	_this.upload_api_target,
 							"ondone_cb"	: function( resultData ){
 								var wTitle = resultData['filename'];	
 								//add a loading div
@@ -941,7 +949,7 @@ remoteSearchDriver.prototype = {
 	},
 	//@@todo we could load the id with the content provider id to find the object faster...
 	getResourceFromId:function( rid ){
-		js_log('getResourceFromId:' + rid );
+		//js_log('getResourceFromId:' + rid );
 		//strip out /res/ if preset:
 		rid = rid.replace(/res_/, '');
 		//js_log("looking at: " + rid);
@@ -1120,15 +1128,13 @@ remoteSearchDriver.prototype = {
 		//try and keep aspect ratio for the thumbnail that we clicked:
 		var rh = $j('#rsd_edit_img').height();
 		var rw = $j('#rsd_edit_img').width(); 
-		if( rw > rh ){
-			var tRatio = rw / rh;
-		}else{
-			var tRatio = rh / rw;
-		}
-		if(	! tRatio )
-			var tRatio = 1; //set ratio to 1 if the width of the thumbnail can't be found for some reason
+		
+		var tRatio = rh / rw;
 
-		js_log('set from ' +  $j('#rsd_edit_img').width()+'x'+ $j('#rsd_edit_img').height() + ' to init thumbimage to ' + maxWidth + ' x ' + parseInt( tRatio * maxWidth) );
+		if(	! tRatio )
+			var tRatio = 1; //set ratio to 1 if tRatio did not work. 
+
+		//js_log('set from ' +  $j('#rsd_edit_img').width() + 'x' + $j('#rsd_edit_img').height() + ' to init thumbimage to ' + maxWidth + ' x ' + parseInt( tRatio * maxWidth) );
 		//scale up image and to swap with high res version
 		$j('#rsd_edit_img').animate({
 			'opacity':1,
@@ -1149,21 +1155,20 @@ remoteSearchDriver.prototype = {
 			'background-color':'#FFF',
 			'z-index':99
 		});
-		js_log('do load the media editor:');
 		//do load the media Editor
 		_this.doMediaEdit( rObj , mediaType );
 	},
 	loadHQImg:function(rObj, size, target_img_id, callback){
-		//get the HQ image url:
+		// Get the HQ image url:
 		rObj.pSobj.getImageObj( rObj, size, function( imObj ){
 			rObj['edit_url'] = imObj.url;
 
 			js_log("edit url: " + rObj.edit_url);
-			//update the rObj
+			// Update the rObj
 			rObj['width'] = imObj.width;
 			rObj['height'] = imObj.height;
 
-			//see if we need to animate some transition
+			// See if we need to animate some transition
 			if( size.width != imObj.width ){
 				js_log('loadHQImg:size mismatch: ' + size.width + ' != ' + imObj.width );
 				//set the target id to the new size:
@@ -1189,6 +1194,7 @@ remoteSearchDriver.prototype = {
 	},
 	cancelClipEditCB:function(){
 		var _this = this;
+		js_log('cancelClipEditCB');
 		var b_target =   _this.target_container + '~ .ui-dialog-buttonpane';
 		$j('#rsd_resource_edit').remove();
 		//restore the resource container:
@@ -1228,6 +1234,8 @@ remoteSearchDriver.prototype = {
 	doMediaEdit:function( rObj , mediaType){
 		var _this = this;
 		var cp = rObj.pSobj.cp;
+		js_log('remoteSearchDriver::doMediaEdit: ' + mediaType);
+		
 		var mvClipInit = {
 				'rObj':rObj, //the resource object
 				'parent_ct'			: 'rsd_modal_target',
