@@ -334,16 +334,15 @@ class SpecialSearch {
 		$nsAllSet = array_keys( SearchEngine::searchableNamespaces() );
 		if( $this->searchAdvanced )
 			$this->active = 'advanced';
-		else if( $this->namespaces === array(NS_FILE) || $this->startsWithImage( $term ) )
-			$this->active = 'images';
-		elseif( $this->namespaces === $nsAllSet || $this->startsWithAll( $term ) )
-			$this->active = 'all';
-		elseif( $this->namespaces === SearchEngine::defaultNamespaces() )
-			$this->active = 'default';
-		elseif( $this->namespaces === SearchEngine::helpNamespaces() )
-			$this->active = 'help';
-		else
-			$this->active = 'advanced';
+		else {
+			$profiles = $this->getSearchProfiles();
+			
+			foreach( $profiles as $key => $data ) {
+				if ( $this->namespaces == $data['namespaces'] && $key != 'advanced')
+					$this->active = $key;
+			}
+			
+		}
 		# Should advanced UI be used?
 		$this->searchAdvanced = ($this->active === 'advanced');
 		if( !empty( $term ) ) {
@@ -811,20 +810,11 @@ class SpecialSearch {
 				"document.getElementById('searchText').focus();" .
 			"});" );
 	}
-
-	protected function formHeader( $term, $resultsShown, $totalNum ) {
-		global $wgContLang, $wgCanonicalNamespaceNames, $wgLang;
-		
-		$out = Xml::openElement('div', array( 'class' =>  'mw-search-formheader' ) );
-		
-		$bareterm = $term;
-		if( $this->startsWithImage( $term ) ) {
-			// Deletes prefixes
-			$bareterm = substr( $term, strpos( $term, ':' ) + 1 );
-		}
+	
+	protected function getSearchProfiles() {
+		// Builds list of Search Types (profiles)
 		$nsAllSet = array_keys( SearchEngine::searchableNamespaces() );
 		
-		// Builds list of Search Types (profiles)
 		$profiles = array(
 			'default' => array(
 				'message' => 'searchprofile-articles',
@@ -859,6 +849,30 @@ class SpecialSearch {
 				'parameters' => array( 'advanced' => 1 ),
 			)
 		);
+		
+		wfRunHooks( 'SpecialSearchProfiles', array( &$profiles ) );
+
+		foreach( $profiles as $key => &$data ) {
+			sort($data['namespaces']);
+		}
+		
+		return $profiles;
+	}
+
+	protected function formHeader( $term, $resultsShown, $totalNum ) {
+		global $wgContLang, $wgCanonicalNamespaceNames, $wgLang;
+		
+		$out = Xml::openElement('div', array( 'class' =>  'mw-search-formheader' ) );
+		
+		$bareterm = $term;
+		if( $this->startsWithImage( $term ) ) {
+			// Deletes prefixes
+			$bareterm = substr( $term, strpos( $term, ':' ) + 1 );
+		}
+
+		
+		$profiles = $this->getSearchProfiles();
+		
 		// Outputs XML for Search Types
 		$out .= Xml::openElement( 'div', array( 'class' => 'search-types' ) );
 		$out .= Xml::openElement( 'ul' );

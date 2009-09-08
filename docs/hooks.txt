@@ -1402,6 +1402,9 @@ $opts: FormOptions for this request
 target doesn't exist
 $title: title object generated from the text entred by the user
 
+'SpecialSearchProfiles': allows modification of search profiles
+&$profiles: profiles, which can be modified.
+
 'SpecialSearchResults': called before search result display when there
 are matches
 $term: string of search term
