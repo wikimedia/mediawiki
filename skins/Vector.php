@@ -692,7 +692,7 @@ class VectorTemplate extends QuickTemplate {
 			switch ( $element ) {
 				case 'NAMESPACES':
 ?>
-<div id="namespaces" class="vectorTabs<?php if ( count( $this->data['namespace_urls'] ) == 0 ) echo ' emptyPortlet'; ?>">
+<div id="p-namespaces" class="vectorTabs<?php if ( count( $this->data['namespace_urls'] ) == 0 ) echo ' emptyPortlet'; ?>">
 	<h5><?php $this->msg('namespaces') ?></h5>
 	<ul <?php $this->html('userlangattributes') ?>>
 		<?php foreach ($this->data['namespace_urls'] as $key => $link ): ?>
@@ -704,7 +704,7 @@ class VectorTemplate extends QuickTemplate {
 				break;
 				case 'VARIANTS':
 ?>
-<div id="variants" class="vectorMenu<?php if ( count( $this->data['variant_urls'] ) == 0 ) echo ' emptyPortlet'; ?>">
+<div id="p-variants" class="vectorMenu<?php if ( count( $this->data['variant_urls'] ) == 0 ) echo ' emptyPortlet'; ?>">
 	<h5><span><?php $this->msg('variants') ?></span><a href="#"></a></h5>
 	<div class="menu">
 		<ul <?php $this->html('userlangattributes') ?>>
@@ -718,7 +718,7 @@ class VectorTemplate extends QuickTemplate {
 				break;
 				case 'VIEWS':
 ?>
-<div id="views" class="vectorTabs<?php if ( count( $this->data['view_urls'] ) == 0 ) echo ' emptyPortlet'; ?>">
+<div id="p-views" class="vectorTabs<?php if ( count( $this->data['view_urls'] ) == 0 ) echo ' emptyPortlet'; ?>">
 	<h5><?php $this->msg('views') ?></h5>
 	<ul <?php $this->html('userlangattributes') ?>>
 		<?php foreach ($this->data['view_urls'] as $key => $link ): ?>
