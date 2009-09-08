@@ -76,7 +76,7 @@ var ajaxCategories = {
 	
 	confirmEdit : function( page, fn, actionSummary, doneFn ) {
 		// Load jQuery UI
-		mvJsLoader.doLoad( ['$j.ui', '$j.ui.dialog', '$j.suggestions'], function() {
+		mvJsLoader.doLoad( ['$j.ui', '$j.ui.dialog', '$j.fn.suggestions'], function() {
 				// Produce a confirmation dialog
 				
 				var dialog = $j('<div/>');
