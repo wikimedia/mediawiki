@@ -1574,10 +1574,6 @@ $2',
 'upload-unknown-size'       => 'Неизвестен размер',
 'upload-http-error'         => 'Възникна HTTP грешка: $1',
 
-# img_auth script messages
-'img-auth-nofile' => 'Файлът „$1“ не съществува.',
-'img-auth-noread' => 'Потребителят няма достъп за четене на „$1“.',
-
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Не е възможно достигането на указания URL адрес',
 'upload-curl-error6-text'  => 'Търсеният адрес не може да бъде достигнат. Проверете дали е написан вярно.',

@@ -1667,20 +1667,6 @@ PICT # різні
 'upload-unknown-size'       => 'Невідомий розмір',
 'upload-http-error'         => 'Відбулася помилка HTTP: $1',
 
-# img_auth script messages
-'img-auth-accessdenied' => 'Відмовлено в доступі',
-'img-auth-nopathinfo'   => 'Брак PATH_INFO.
-Ваш сервер не налаштований для передачі цих даних.
-Можливо, він працює на основі CGI і не підтримує img_auth.
-Глядіть http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
-'img-auth-notindir'     => 'Проханий шлях не відноситься до теки завантажень, вказаної в налаштуваннях.',
-'img-auth-badtitle'     => 'Не можна побудувати правильний заголовок з «$1».',
-'img-auth-nologinnWL'   => 'Ви не ввійшли в систему, а «$1» не входить у білий список.',
-'img-auth-nofile'       => 'Файл «$1» не існує.',
-'img-auth-isdir'        => 'Ви пробуєте отримати доступ до каталогу «$1».
-Дозволений тільки доступ до файлів.',
-'img-auth-streaming'    => 'Потокова передача «$1».',
-
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Неможливо досягнути вказану адресу.',
 'upload-curl-error6-text'  => 'Неможливо досягнути вказану адресу. Будь-ласка, перевірте, що вказана адреса вірна, а сайт доступний.',

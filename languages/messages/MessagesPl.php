@@ -1666,23 +1666,6 @@ Jeśli problem będzie się powtarzał, skontaktuj się z [[Special:ListUsers/sy
 'upload-unknown-size'       => 'Nieznany rozmiar',
 'upload-http-error'         => 'Wystąpił błąd protokołu HTTP – $1',
 
-# img_auth script messages
-'img-auth-accessdenied' => 'Odmowa dostępu',
-'img-auth-nopathinfo'   => 'Brak PATH_INFO.
-Serwer nie został skonfigurowany, tak aby przekazywał tę informację.
-Możliwe, że jest oparty na CGI i nie może obsługiwać img_auth.
-Zobacz http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
-'img-auth-notindir'     => 'Żądana ścieżka nie jest w obrębie katalogu skonfigurowanego do przesyłania plików.',
-'img-auth-badtitle'     => 'Nie można wygenerować prawidłowego tytuł z „$1”.',
-'img-auth-nologinnWL'   => 'Nie jesteś zalogowany, a „$1” nie jest na białej liście.',
-'img-auth-nofile'       => 'Brak pliku „$1”.',
-'img-auth-isdir'        => 'Próbujesz uzyskać dostęp do katalogu „$1”.
-Dozwolony jest wyłącznie dostęp do plików.',
-'img-auth-streaming'    => 'Strumieniowanie „$1”.',
-'img-auth-public'       => 'Funkcja img_auth.php służy do pobierania plików z prywatnej wiki.
-Ponieważ ta wiki została skonfigurowana jako publiczna dla zapewnienia optymalnego bezpieczeństwa img_auth.php została wyłączona.',
-'img-auth-noread'       => 'Użytkownik nie ma dostępu do odczytu „$1”.',
-
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Adres URL jest nieosiągalny',
 'upload-curl-error6-text'  => 'Podany adres URL jest nieosiągalny. Upewnij się, czy podany adres URL jest prawidłowy i czy dana strona jest dostępna.',

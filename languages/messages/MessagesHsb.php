@@ -1512,24 +1512,6 @@ PICT # misc.
 'upload-unknown-size'       => 'Njeznata wulkosć',
 'upload-http-error'         => 'HTTP-zmylk je wustupił: $1',
 
-# img_auth script messages
-'img-auth-accessdenied' => 'Přistup wotpokazany',
-'img-auth-nopathinfo'   => 'PATH_INFO faluje.
-Twój serwer njeje za to konfigurował, zo by tute informacije dale posrědkował.
-By móhł na CGI bazować a ani njemóže img_auth podpěrać.
-Hlej http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
-'img-auth-notindir'     => 'Požadana šćežka w konfigurowanym nahraćowym zapisu njeje.',
-'img-auth-badtitle'     => 'Njeje móžno z "$1" płaćiwy titul tworić.',
-'img-auth-nologinnWL'   => 'Njejsy přizjewjeny a "$1" w běłej lisćinje njeje.',
-'img-auth-nofile'       => 'Dataja "$1" njeeksistuje.',
-'img-auth-isdir'        => 'Popsytuješ na zapis "$1" přistup měć.
-Jenož datajowy přistup je dowoleny.',
-'img-auth-streaming'    => '"$1" so prudźi.',
-'img-auth-public'       => 'Funkcija img_auth.php je za wudaće datjow z priwatneho wikija.
-Tutón wiki je jako zjawny wiki konfigurowany.
-Za optimalnu wěstotu je img_auth.php znjemóžnjeny.',
-'img-auth-noread'       => 'Wužiwar nima přistup, zo by "$1" čitał.',
-
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'URL docpějomny njeje.',
 'upload-curl-error6-text'  => 'Podaty URL njehodźeše so docpěć. Prošu přepruwuj, hač URL je korektny a sydło docpějomne.',

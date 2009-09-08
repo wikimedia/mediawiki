@@ -1715,24 +1715,6 @@ Ako se problem ne riješi, kontaktirajte [[Special:ListUsers/sysop|administrator
 'upload-unknown-size'       => 'Nepoznata veličina',
 'upload-http-error'         => 'Desila se HTTP greška: $1',
 
-# img_auth script messages
-'img-auth-accessdenied' => 'Pristup onemogućen',
-'img-auth-nopathinfo'   => 'Nedostaje PATH_INFO.
-Vaš server nije postavljen da daje ovu informaciju.
-On je zasnovan na CGI i ne može podržavati img_auth.
-Pogledajte http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
-'img-auth-notindir'     => 'Zahtjevana putanje nije u direktorijumu podešenom za postavljanje.',
-'img-auth-badtitle'     => 'Ne mogu napraviti valjani naslov iz "$1".',
-'img-auth-nologinnWL'   => 'Niste prijavljeni i "$1" nije na spisku dozvoljenih.',
-'img-auth-nofile'       => 'Datoteka "$1" ne postoji.',
-'img-auth-isdir'        => 'Pokušavate pristupiti direktorijumu "$1".
-Dozvoljen je samo pristup datotekama.',
-'img-auth-streaming'    => 'Tok "$1".',
-'img-auth-public'       => 'Funkcija img_auth.php služi za izlaz datoteka sa privatnih wikija.
-Ova wiki je postavljena kao javna wiki.
-Za optimalnu sigurnost, img_auth.php je onemogućena.',
-'img-auth-noread'       => 'Korisnik nema pristup za čitanje "$1".',
-
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Ovaj URL nije bilo moguće otvoriti',
 'upload-curl-error6-text'  => 'URL koji je naveden nije dostupan.

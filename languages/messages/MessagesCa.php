@@ -1546,16 +1546,6 @@ A continuació teniu el registre d'eliminació per a que pugueu comprovar els mo
 'upload-unknown-size'       => 'Mida desconeguda',
 'upload-http-error'         => 'Ha ocorregut un error HTTP: $1',
 
-# img_auth script messages
-'img-auth-accessdenied' => 'Accés denegat',
-'img-auth-nopathinfo'   => 'Falta PATH_INFO.
-El vostre servidor no està configurat per a tractar aquesta informació.
-Pot estar basat en CGI i no soportar img_auth.
-Vegeu http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
-'img-auth-notindir'     => "No s'ha trobat la ruta sol·licitada al directori de càrrega configurat.",
-'img-auth-badtitle'     => 'No s\'ha pogut construir un títol vàlid a partir de "$1".',
-'img-auth-nofile'       => 'No existeix el fitxer "$1".',
-
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => "No s'ha pogut accedir a l'URL",
 'upload-curl-error6-text'  => "No s'ha pogut accedir a l'URL que s'ha proporcionat. Torneu a comprovar que sigui correcte i que el lloc estigui funcionant.",

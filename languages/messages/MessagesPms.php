@@ -1453,24 +1453,6 @@ Se a-i riva sossì n'àotra vira, ch'as buta an comunicassion con n'[[Special:Li
 'upload-unknown-size'       => 'Dimension pa conossùa',
 'upload-http-error'         => "A l'é stàit-ie n'eror HTTP: $1.",
 
-# img_auth script messages
-'img-auth-accessdenied' => 'Acess negà',
-'img-auth-nopathinfo'   => "PATH_INFO mancant.
-Tò server a l'é pa ampostà për passé sta anformassion-sì.
-A peul esse basà an sij CGI e a peul pa apogé img_auth.
-Varda http://www.mediawiki.org/wiki/Manual:Image_Authorization.",
-'img-auth-notindir'     => "Ël path ciamà a l'é pa ant la directory configurà për carié.",
-'img-auth-badtitle'     => 'As peul pa fesse un tìtol bon për "$1".',
-'img-auth-nologinnWL'   => 'It ses pa intrà e "$1" a l\'é pa ant la whitelist.',
-'img-auth-nofile'       => 'Ël file "$1" a esist pa.',
-'img-auth-isdir'        => 'It ses an mente ch\'it preuve a andé ant na directory "$1".
-As peul mach acede ai file.',
-'img-auth-streaming'    => 'Streaming "$1".',
-'img-auth-public'       => "La funsion d'img_auth.php a l'é ëd dé an output file da na wiki privà.
-Sta wiki-sì a l'é configurà com na wiki pùblica.
-Për na sicurëssa otimal, img_auth.php a l'é disabilità.",
-'img-auth-noread'       => 'L\'utent a l\'ha pa ij privilegi për lese "$1".',
-
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => "L'anliura a l'arspond pa",
 'upload-curl-error6-text'  => "L'anliura che a l'ha butà a la travaja pa. Për piasì, ch'a contròla che st'anliura a la sia scrita giusta e che ël sit al funsion-a.",

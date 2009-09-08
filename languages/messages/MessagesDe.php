@@ -1743,24 +1743,6 @@ Wenn das Problem weiter besteht, informiere einen [[Special:ListUsers/sysop|Syst
 'upload-unknown-size'       => 'Unbekannte Größe',
 'upload-http-error'         => 'Ein HTTP-Fehler ist aufgetreten: $1',
 
-# img_auth script messages
-'img-auth-accessdenied' => 'Zugriff verweigert',
-'img-auth-nopathinfo'   => 'PATH_INFO fehlt.
-Dein Server ist nicht dafür eingerichtet, diese Information weiterzugeben.
-Es könnte CGI-basiert sein und unterstützt img_auth nicht.
-Siehe http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
-'img-auth-notindir'     => 'Der gewünschte Pfad ist nicht im konfigurierten Uploadverzeichnis.',
-'img-auth-badtitle'     => 'Aus „$1“ kann kein gültiger Titel erstellt werden.',
-'img-auth-nologinnWL'   => 'Du bist nicht angemeldet und „$1“ ist nicht in der weißen Liste.',
-'img-auth-nofile'       => 'Datei „$1“ existiert nicht.',
-'img-auth-isdir'        => 'Du versuchst, auf ein Verzeichnis „$1“ zuzugreifen.
-Nur Dateizugriff ist erlaubt.',
-'img-auth-streaming'    => 'Lade „$1“.',
-'img-auth-public'       => 'img_auth.php gibt Dateien von einem privaten Wiki aus.
-Dieses Wiki wurde als ein öffentliches Wiki konfiguriert.
-Aus Sicherheitsgründen ist img_auth.php deaktiviert.',
-'img-auth-noread'       => 'Benutzer hat keine Berechtigung, „$1“ zu lesen.',
-
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'URL ist nicht erreichbar',
 'upload-curl-error6-text'  => 'Die angegebene URL ist nicht erreichbar. Prüfe sowohl die URL auf Fehler als auch den Online-Status der Seite.',

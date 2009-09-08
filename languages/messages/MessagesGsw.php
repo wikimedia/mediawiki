@@ -1508,24 +1508,6 @@ Wänn s Problem alno uftritt, informier e [[Special:ListUsers/sysop|Ammann]].',
 'upload-unknown-size'       => 'Nit bekannti Greßi',
 'upload-http-error'         => 'E HTTP-Fähler isch ufträtte: $1',
 
-# img_auth script messages
-'img-auth-accessdenied' => 'Zuegriff verweigeret',
-'img-auth-nopathinfo'   => 'PATH_INFO fählt.
-Dyy Server isch nit derfir yygrichtet, die Information wyterzgee.
-S chennt CGI-basiert syy un unterstitzt img_auth nit.
-Lueg http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
-'img-auth-notindir'     => 'Dr gwinscht Pfad isch nit im konfigurierte Uploadverzeichnis.',
-'img-auth-badtitle'     => 'Giltige Titel vu „$1“ cha nit aagleit wäre.',
-'img-auth-nologinnWL'   => 'Du bisch nit aagmäldet un „$1“ isch nit in dr wyße Lischt.',
-'img-auth-nofile'       => 'Datei „$1“ git s nit.',
-'img-auth-isdir'        => 'Du versuechsch, uf e Verzeichnis „$1“ zuezgryfe.
-Nume Dateizuegriff isch erlaubt.',
-'img-auth-streaming'    => 'Am Lade vu „$1“.',
-'img-auth-public'       => 'img_auth.php git Dateie vun eme privaten Wiki uus.
-Des Wiki isch as effentlig Wiki konfiguriert.
-Us Sicherheitsgrinde isch img_auth.php deaktiviert.',
-'img-auth-noread'       => 'Benutzer derf „$1“ nit läse.',
-
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'URL isch nit z verwitsche',
 'upload-curl-error6-text'  => 'D URL, wu aagee woren isch, isch nit z verwitsche. Prief d URL uf Fähler un dr Online-Status vu dr Syte.',

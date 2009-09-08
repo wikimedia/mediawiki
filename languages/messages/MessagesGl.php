@@ -1636,24 +1636,6 @@ Se o problema persiste contacte cun [[Special:ListUsers/sysop|administrador]] do
 'upload-unknown-size'       => 'Tamaño descoñecido',
 'upload-http-error'         => 'Produciuse un erro HTTP: $1',
 
-# img_auth script messages
-'img-auth-accessdenied' => 'Acceso denegado',
-'img-auth-nopathinfo'   => 'Falta a PATH_INFO.
-O seu servidor non está configurado para pasar esta información.
-Pode ser que estea baseado en CGI e non puidese soportar img_auth.
-Olle http://www.mediawiki.org/wiki/Manual:Image_Authorization para obter máis información.',
-'img-auth-notindir'     => 'A ruta solicitada non está no directorio de carga configurado.',
-'img-auth-badtitle'     => 'Non é posible construír un título válido a partir de "$1".',
-'img-auth-nologinnWL'   => 'Non accedeu ao sistema e "$1" non está na lista de branca.',
-'img-auth-nofile'       => 'O ficheiro "$1" non existe.',
-'img-auth-isdir'        => 'Está intentando acceder ao directorio "$1".
-Só se permite o acceso ao ficheiro.',
-'img-auth-streaming'    => 'Secuenciando "$1".',
-'img-auth-public'       => 'A función de img_auth.php é para ficheiros de saída desde un wiki privado.
-Este wiki está configurado como público.
-Para unha seguridade óptima, img_auth.php está desactivado.',
-'img-auth-noread'       => 'O usuario non ten acceso á lectura de "$1".',
-
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Non se logrou acceder a ese URL',
 'upload-curl-error6-text'  => 'Non se logrou acceder ao URL que indicou. Comprobe que ese URL é correcto e que o sitio está activo.',

@@ -1326,24 +1326,6 @@ $1",
 'upload-unknown-size'       => '未知之積',
 'upload-http-error'         => '發一HTTP之錯：$1',
 
-# img_auth script messages
-'img-auth-accessdenied' => '無通',
-'img-auth-nopathinfo'   => 'PATH_INFO失之。
-爾之伺服器無此資料也。
-以CGI之本耳，無img_auth矣。
-閱http://www.mediawiki.org/wiki/Manual:Image_Authorization。',
-'img-auth-notindir'     => '求之徑無存貢錄中。',
-'img-auth-badtitle'     => '於「$1」無建效題也。',
-'img-auth-nologinnWL'   => '爾未登簿，「$1」無在白名中。',
-'img-auth-nofile'       => '檔「$1」無存也。',
-'img-auth-isdir'        => '爾試問錄「$1」。
-只問檔也。',
-'img-auth-streaming'    => '流「$1」中。',
-'img-auth-public'       => 'img_auth.php之功能乃由共wiki出貢。
-此wiki為公共wiki是也。
-保強，img_auth.php已停矣。',
-'img-auth-noread'       => '簿無權讀「$1」也。',
-
 'license'           => '權：',
 'license-header'    => '權',
 'license-nopreview' => '（謝草覽）',
