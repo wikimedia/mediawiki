@@ -863,6 +863,9 @@ Metmaacher bes, un fings, dat hee Saache an Dich jeschrevve wääde, wo Do jar n
 wahrscheinlich och nit jemeint. Denk villeich ens drüvver noh, datte Dich [[Special:UserLogin/signup|anmelde]] deis, 
 domet De dann donoh nit mieh met esu en Ömständ ze dun häs, wie de andere namenlose Metmaacher hee. Wann de aanjemelldt bes un deis [[Special:UserLogin|enlogge]], dann kam_mer Desch och dun alle andere Metmaacher ongerschejde.</i>',
 'noarticletext'                    => '<span class="plainlinks">Em Momang es keine Tex op dä Sigg. Jangk en de Texte vun ander Sigge [[Special:Search/{{PAGENAME}}|noh däm Titel söke]], odder [{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} donn en de Logböcher donoh loore], oder [{{FULLURL:{{FULLPAGENAME}}|action=edit}} fang die Sigg aan] ze schrieve, oder jangk zeröck wo de her koms. Do hät Dinge Brauser ene Knopp för.</span>',
+'noarticletext-nopermission'       => 'Op dä Sigg es em Momang nix drop.
+Do kanns noh däm Tittel vun heh dä Sigg [[Special:Search/{{PAGENAME}}|em Tex op ander Sigge söhke]],
+udder en dä zopaß <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} Logbööscher nohloore]</span>.',
 'userpage-userdoesnotexist'        => 'Enne Metmaacher „$1“ hammer nit, beß De secher, dat De die Metmaachersigg ändere oder aanläje wellss?.',
 'clearyourcache'                   => "<br clear=\"all\" style=\"clear:both\">
 '''Opjepass:'''
@@ -3547,5 +3550,20 @@ die De häs han welle. Se künnt jet ällder un nit mieh aktoäll sin.',
 'htmlform-submit'              => 'Loß Jonn!',
 'htmlform-reset'               => 'Änderunge retuur nämme',
 'htmlform-selectorother-other' => 'Annder',
+
+# Add categories per AJAX
+'ajax-add-category'            => 'Saachjropp dobei donn',
+'ajax-add-category-submit'     => 'Lohß jonn!',
+'ajax-confirm-title'           => 'Akßjuhn beschtähtejje',
+'ajax-confirm-prompt'          => 'Do kanns ene Enndraach för „{{int:summary}}“ maache, onge.
+Donn op „{{int:savearticle}}“ kleke, öm Ding Ändernug faßzehallde.',
+'ajax-confirm-save'            => 'Avshpeishere',
+'ajax-add-category-summary'    => 'Donn de Saachjropp „$1“ derbei.',
+'ajax-remove-category-summary' => 'Saachjropp „$1“ eruß nämme',
+'ajax-confirm-actionsummary'   => 'Wat jedonn wääde sull:',
+'ajax-error-title'             => 'Fähler',
+'ajax-error-dismiss'           => 'Han esch jelässe',
+'ajax-remove-category-error'   => 'Et wohr nit müjjelesch, di Saachjropp eruß ze nämme.
+Dat es fö jewöhnlej_esu, wann di Saachjropp övver en Schabloon en di Sigg jekumme es.',
 
 );

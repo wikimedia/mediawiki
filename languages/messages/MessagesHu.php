@@ -882,6 +882,8 @@ Ha úgy látod, hogy az üzenetek, amiket ide kapsz, nem neked szólnak, [[Speci
 [[Special:Search/{{PAGENAME}}|Rákereshetsz erre a címszóra]],
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} megtekintheted a kapcsolódó naplókat],
 vagy [{{fullurl:{{FULLPAGENAME}}|action=edit}} szerkesztheted a lapot].</span>',
+'noarticletext-nopermission'       => 'Ez a lap jelenleg nem tartalmaz szöveget.
+[[Special:Search/{{PAGENAME}}|Rákereshetsz a lap címére]] más lapok tartalmában, vagy <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} megtekintheted a kapcsolódó naplófájlokat]</span>.',
 'userpage-userdoesnotexist'        => 'Nincs „$1” nevű regisztrált szerkesztőnk.
 Nézd meg, hogy valóban ezt a lapot szeretnéd létrehozni vagy szerkeszteni.',
 'clearyourcache'                   => "'''Megjegyzés: mentés után frissítened kell a böngésződ gyorsítótárát, hogy lásd a változásokat.''' '''Mozilla''' / '''Firefox''' / '''Safari:''' tartsd lenyomva a Shift gombot és kattints a ''Reload'' / ''Frissítés'' gombra az eszköztáron, vagy használd a ''Ctrl–F5'' billentyűkombinációt (Apple Mac-en ''Cmd–Shift–R''); '''Konqueror:''' egyszerűen csak kattints a ''Reload'' / ''Frissítés'' gombra vagy nyomj ''F5''-öt; '''Opera:''' ürítsd ki a gyorsítótárat az ''Eszközök→Személyes adatok törlése'' / ''Tools→Preferences'' menüben; '''Internet Explorer:''' tartsd nyomva a ''Ctrl''-t, és kattints a ''Reload / Frissítés'' gombra, vagy nyomj ''Ctrl–F5''-öt.",
@@ -2309,17 +2311,18 @@ $1',
 'month'               => 'E hónap végéig:',
 'year'                => 'Eddig az évig:',
 
-'sp-contributions-newbies'       => 'Csak a nemrég regisztrált szerkesztők közreműködéseinek mutatása',
-'sp-contributions-newbies-sub'   => 'Új szerkesztők lapjai',
-'sp-contributions-newbies-title' => 'Új szerkesztők közreműködései',
-'sp-contributions-blocklog'      => 'Blokkolási napló',
-'sp-contributions-deleted'       => 'törölt szerkesztések',
-'sp-contributions-logs'          => 'naplók',
-'sp-contributions-talk'          => 'vitalap',
-'sp-contributions-userrights'    => 'szerkesztői jogok beállítása',
-'sp-contributions-search'        => 'Közreműködések szűrése',
-'sp-contributions-username'      => 'IP-cím vagy felhasználónév:',
-'sp-contributions-submit'        => 'Keresés',
+'sp-contributions-newbies'        => 'Csak a nemrég regisztrált szerkesztők közreműködéseinek mutatása',
+'sp-contributions-newbies-sub'    => 'Új szerkesztők lapjai',
+'sp-contributions-newbies-title'  => 'Új szerkesztők közreműködései',
+'sp-contributions-blocklog'       => 'Blokkolási napló',
+'sp-contributions-deleted'        => 'törölt szerkesztések',
+'sp-contributions-logs'           => 'naplók',
+'sp-contributions-talk'           => 'vitalap',
+'sp-contributions-userrights'     => 'szerkesztői jogok beállítása',
+'sp-contributions-blocked-notice' => 'Ez a szerkesztő blokkolva van. A blokknapló legutóbbi ide vonatkozó bejegyzése a következő:',
+'sp-contributions-search'         => 'Közreműködések szűrése',
+'sp-contributions-username'       => 'IP-cím vagy felhasználónév:',
+'sp-contributions-submit'         => 'Keresés',
 
 # What links here
 'whatlinkshere'            => 'Mi hivatkozik erre',
@@ -2469,12 +2472,12 @@ változtatni. Kérjük, erősítsd meg, hogy ezt kívánod tenni.',
 'move-page-legend'             => 'Lap átnevezése',
 'movepagetext'                 => "Az alábbi űrlap használatával nevezhetsz át egy lapot, és helyezheted át teljes laptörténetét az új nevére.
 A régi cím az új címre való átirányítás lesz.
-Frissítheted az átirányításokat úgy, hogy azok automatikusan a megfelelő címre mutassanak;
-ha nem teszed, ellenőrizd a [[Special:DoubleRedirects|dupla]]- vagy [[Special:BrokenRedirects|hibás átirányításokat]].
-Neked kell biztosítani azt, hogy a linkek továbbra is oda mutassanak, ahová mutatniuk kell.
+Frissítheted a régi címre mutató átirányításokat, hogy azok automatikusan a megfelelő címre mutassanak;
+ha nem teszed, ellenőrizd a [[Special:DoubleRedirects|dupla]] vagy [[Special:BrokenRedirects|hibás átirányításokat]].
+Neked kell biztosítanod, hogy a linkek továbbra is oda mutassanak, ahová mutatniuk kell.
 
 A lap '''nem''' nevezhető át, ha már van egy ugyanilyen című lap, hacsak nem üres vagy átirányítás, és nincs laptörténete.
-Ez azt jelenti, hogy visszanevezheted az oldalt az eredeti nevére, ha véletlenül hibázol, és létező oldalt nem tudsz felülírni.
+Ez azt jelenti, hogy vissza tudsz nevezni egy tévedésből átnevezett lapot, és nem tudsz egy már létező lapot véletlenül felülírni.
 
 '''FIGYELEM!'''
 Népszerű oldalak esetén ez drasztikus és nem várt változtatás lehet;

@@ -604,7 +604,7 @@ HTML markup cannot be used.",
 {{Identical|Not logged in}}',
 'nologin'                    => 'A message shown in the log in form. $1 is a link to the account creation form, and the text of it is "[[MediaWiki:Nologinlink/{{SUBPAGENAME}}|{{int:nologinlink}}]]".',
 'nologinlink'                => 'Text of the link to the account creation form. Before that link, the message [[MediaWiki:Nologin/{{SUBPAGENAME}}]] appears.',
-'createaccount'              => 'Used on the submit button in the form where you register a new account.',
+'createaccount'              => 'The title of Special:CreateAccount, where users can register a new account. Used on Special:SpecialPages, and also on the submit button in the form where you register a new account.',
 'gotaccount'                 => 'A message shown in the account creation form. $1 is a link to the log in form, and the text of it is "[[MediaWiki:Gotaccountlink/{{SUBPAGENAME}}|{{int:gotaccountlink}}]]".',
 'gotaccountlink'             => 'Text of the link to the log in form. Before that link, the message [[MediaWiki:Gotaccount/{{SUBPAGENAME}}]] appears.
 
@@ -757,7 +757,10 @@ Parameter $1 is the content of section parameter in the URL (for example 1234 in
 {{doc-important|Do not translate \"<nowiki>[[User talk:\$1|\$1]]</nowiki>\" and ''Special:ChangePassword''.}}",
 'newarticle'                       => '{{Identical|New}}',
 'newarticletext'                   => "Text displayed above the edit box in editor when trying to create a new page.<br />'''Very important:''' leave <tt><nowiki>{{MediaWiki:Helppage}}</nowiki></tt> exactly as it is!",
-'noarticletext'                    => 'This is the message that you get if you search for a term that has not yet got any entries on the wiki.',
+'noarticletext'                    => 'This is the message that you get if you search for a term that has not yet got any entries on the wiki.
+
+See also {{msg-mw|Noarticletext-nopermission}}.',
+'noarticletext-nopermission'       => 'See also {{msg-mw|Noarticletext}}.',
 'userpage-userdoesnotexist'        => 'Error message displayed when trying to edit or create a page or a subpage that belongs to a user who is not registered on the wiki',
 'clearyourcache'                   => 'Text at the top of .js/.css pages',
 'usercssyoucanpreview'             => "Text displayed on every css page. The 'Show preview' part should be the same as {{msg-mw|showpreview}} (or you can use <nowiki>{{int:showpreview}}</nowiki>).",
@@ -2178,20 +2181,21 @@ Shown as subtitle of the protection form. $1 is the title of the page to be (un)
 'month'               => 'Used in [[Special:Contributions]] and history pages ([{{fullurl:Sandbox|action=history}} example]), as label for a dropdown box to select a specific month to view the edits made in that month, and the earlier months. See also {{msg|year}}.',
 'year'                => 'Used in [[Special:Contributions]] and history pages ([{{fullurl:Sandbox|action=history}} example]), as label for a inputbox to select a specific year to view the edits made in that year, and the earlier years. See also {{msg|month}}.',
 
-'sp-contributions-newbies'       => 'Text of radio button on special page [[Special:Contributions]].',
-'sp-contributions-newbies-sub'   => "Note at the top of the page of results for a search on [[Special:Contributions]] where 'Show contributions for new accounts only' has been selected.",
-'sp-contributions-newbies-title' => 'The page title in your browser bar, but not the page title. See also {{msg|sp-contributions-newbies-sub}}.',
-'sp-contributions-blocklog'      => 'Used as a display name for a link to the block log on for example [[Special:Contributions/Mediawiki default]]
+'sp-contributions-newbies'        => 'Text of radio button on special page [[Special:Contributions]].',
+'sp-contributions-newbies-sub'    => "Note at the top of the page of results for a search on [[Special:Contributions]] where 'Show contributions for new accounts only' has been selected.",
+'sp-contributions-newbies-title'  => 'The page title in your browser bar, but not the page title. See also {{msg|sp-contributions-newbies-sub}}.',
+'sp-contributions-blocklog'       => 'Used as a display name for a link to the block log on for example [[Special:Contributions/Mediawiki default]]
 
 {{Identical|Block log}}',
-'sp-contributions-deleted'       => "This is a link anchor used in [[Special:Contributions]]/''name'', when user viewing the page has the right to delete pages, or to restore deleted pages.",
-'sp-contributions-logs'          => "Appears as an action link in the header of the Special:Contributions/''Username'' pages (e.g. \"For Somebody (talk | block log | logs)\").",
-'sp-contributions-talk'          => "This is a link anchor used in the [[Special:Contributions]]/''usernamename'' pages.
+'sp-contributions-deleted'        => "This is a link anchor used in [[Special:Contributions]]/''name'', when user viewing the page has the right to delete pages, or to restore deleted pages.",
+'sp-contributions-logs'           => "Appears as an action link in the header of the Special:Contributions/''Username'' pages (e.g. \"For Somebody (talk | block log | logs)\").",
+'sp-contributions-talk'           => "This is a link anchor used in the [[Special:Contributions]]/''usernamename'' pages.
 The link appears in a list of similar ones separated by {{msg-mw|pipe-separator}}, e.g. like this:<br />
 ( talk | block log | logs | deleted contributions | rights management )",
-'sp-contributions-userrights'    => "This is a link anchor used in [[Special:Contributions]]/''name'', if the user viewing the page has the right to set or alter user rights.",
-'sp-contributions-username'      => 'This message appears whenever someone requests [[Special:Contributions]].',
-'sp-contributions-submit'        => '{{Identical|Search}}',
+'sp-contributions-userrights'     => "This is a link anchor used in [[Special:Contributions]]/''name'', if the user viewing the page has the right to set or alter user rights.",
+'sp-contributions-blocked-notice' => 'Shown on top of contributions special page of currently blocked users.',
+'sp-contributions-username'       => 'This message appears whenever someone requests [[Special:Contributions]].',
+'sp-contributions-submit'         => '{{Identical|Search}}',
 
 # What links here
 'whatlinkshere'            => 'The text of the link in the toolbox (on the left, below the search menu) going to [[Special:WhatLinksHere]].',
@@ -3285,5 +3289,9 @@ Used on [[Special:Tags]]. Verb. Used as display text on a link to create/edit a 
 * stub threshold (appearance tab)
 
 {{Identical|Other}}',
+
+# Add categories per AJAX
+'ajax-confirm-save' => '{{Identical|Save}}',
+'ajax-error-title'  => '{{Identical|Error}}',
 
 );

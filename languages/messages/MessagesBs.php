@@ -865,6 +865,8 @@ Ako ste anonimni korisnik i mislite da su vam upućene nebitne primjedbe, molimo
 'noarticletext'                    => 'Na ovoj stranici trenutno nema teksta.
 Možete [[Special:Search/{{PAGENAME}}|tražiti naslov ove stranice]] na drugim stranicama.
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} tražiti u povezanim zapisima] ili [{{fullurl:{{FULLPAGENAME}}|action=edit}} urediti ovu stranicu]</span>.',
+'noarticletext-nopermission'       => 'Trenutno nema teksta na ovoj stranici.
+Možete [[Special:Search/{{PAGENAME}}|tražiti ovaj naslov stranice]] na drugim stranicama ili <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} pretražiti povezane zapisnike]</span>.',
 'userpage-userdoesnotexist'        => 'Korisnički račun "$1" nije registrovan.
 Molimo provjerite da li želite napraviti/izmijeniti ovu stranicu.',
 'clearyourcache'                   => "'''Pažnja: Nakon što sačuvate izmjene, morate \"osvježiti\" keš memoriju vašeg pretraživača da bi ste vidjeli nova podešenja.'''
@@ -2328,17 +2330,18 @@ $1',
 'month'               => 'Od mjeseca (i ranije):',
 'year'                => 'Od godine (i ranije):',
 
-'sp-contributions-newbies'       => 'Prikaži samo doprinose novih korisnika',
-'sp-contributions-newbies-sub'   => 'Za nove korisnike',
-'sp-contributions-newbies-title' => 'Doprinosi novih korisnika',
-'sp-contributions-blocklog'      => 'Evidencija blokiranja',
-'sp-contributions-deleted'       => 'obrisani doprinosi korisnika',
-'sp-contributions-logs'          => 'zapisnici',
-'sp-contributions-talk'          => 'razgovor',
-'sp-contributions-userrights'    => 'postavke korisničkih prava',
-'sp-contributions-search'        => 'Pretraga doprinosa',
-'sp-contributions-username'      => 'IP adresa ili korisničko ime:',
-'sp-contributions-submit'        => 'Traži',
+'sp-contributions-newbies'        => 'Prikaži samo doprinose novih korisnika',
+'sp-contributions-newbies-sub'    => 'Za nove korisnike',
+'sp-contributions-newbies-title'  => 'Doprinosi novih korisnika',
+'sp-contributions-blocklog'       => 'Evidencija blokiranja',
+'sp-contributions-deleted'        => 'obrisani doprinosi korisnika',
+'sp-contributions-logs'           => 'zapisnici',
+'sp-contributions-talk'           => 'razgovor',
+'sp-contributions-userrights'     => 'postavke korisničkih prava',
+'sp-contributions-blocked-notice' => 'Ovaj korisnik je trenutno blokiran. Posljednje stavke zapisnika blokiranja možete pogledati ispod:',
+'sp-contributions-search'         => 'Pretraga doprinosa',
+'sp-contributions-username'       => 'IP adresa ili korisničko ime:',
+'sp-contributions-submit'         => 'Traži',
 
 # What links here
 'whatlinkshere'            => 'Šta je povezano ovdje',

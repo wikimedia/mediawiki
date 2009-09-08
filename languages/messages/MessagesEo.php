@@ -495,15 +495,15 @@ Eble ankaŭ ĉi tiel indikus problemon de la programaro de {{SITENAME}}.",
 'databaseerror'        => 'Datumbaza eraro',
 'dberrortext'          => 'Sintakseraro okazis dum informpeto al la datumaro.
 Ĝi eble indikas cimon en la programaro.
-Jen la plej laste provita informmendo:
+Jen la plej laste provita informpeto:
 <blockquote><tt>$1</tt></blockquote>
 el la funkcio "<tt>$2</tt>".
 MySQL liveris eraron "<tt>$3: $4</tt>".',
-'dberrortextcl'        => 'Okazis sintaksa eraro dum la informpeto al la datumaro.
-La lasta provita peto estis:
+'dberrortextcl'        => 'Sintaksa eraro de la datumbaza informmendo okazis.
+La lasta provita datumbaza informmendo estis:
 "$1"
 el la funkcio "$2".
-MySQL liveris la erarmesaĝon "$3: $4".',
+Datumbazo liveris la erarmesaĝon "$3: $4".',
 'laggedslavemode'      => 'Avertu: la paĝo eble ne enhavas lastatempajn ĝisdatigojn.',
 'readonly'             => 'Datumaro ŝlosita, nurlega',
 'enterlockreason'      => 'Bonvolu klarigi, kial oni ŝlosas la datumaron, kaj
@@ -759,6 +759,9 @@ Se vi estas anonimulo kaj preferus eviti tiajn mistrafajn komentojn kaj konfuzi�
 Vi povas [[Special:Search/{{PAGENAME}}|serĉi ĉi tiun paĝtitolon]] en aliaj paĝoj,
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} serĉi la rilatajn protokolojn],
 aŭ [{{fullurl:{{FULLPAGENAME}}|action=edit}} redakti ĉi tiun paĝon]</span>.',
+'noarticletext-nopermission'       => 'Estas neniom da teksto en ĉi tiu paĝo.
+Vi povas [[Special:Search/{{PAGENAME}}|serĉi ĉi tiun paĝan titolon]] en aliaj paĝoj,
+aŭ <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} serĉi la rilatajn protokolojn]</span>.',
 'userpage-userdoesnotexist'        => 'Uzula konto "$1" ne estas registrita. Bonvolu konfirmi se vi volas krei/redakti ĉi tiu paĝo.',
 'clearyourcache'                   => "'''Notu:''' Post konservado vi forviŝu la kaŝmemoron de via foliumilo por vidi la ŝanĝojn : '''Mozilo:''' alklaku ''Reŝarĝi'' (aŭ ''Stir-Shift-R''), '''IE / Opera:''' ''Stir-F5'', '''Safari:''' ''Cmd-R'', '''Konqueror''' ''Stir-R''.",
 'usercssyoucanpreview'             => "'''Konsileto:''' Uzu la \"Antaŭrigardan\" butonon por provi vian novan css/js antaŭ konservi.",
@@ -955,7 +958,7 @@ Bonvolu konfirmi ke vi intencias fari ĉi tiel, ke vi komprenas la konsekvencojn
 'revdelete-suppress'          => 'Subpremi datenojn de kaj administrantoj kaj aliaj',
 'revdelete-hide-image'        => 'Kaŝi enhavon de dosieroj',
 'revdelete-unsuppress'        => 'Forigi limigojn al restarigitaj versioj',
-'revdelete-log'               => 'Komento por protokolo:',
+'revdelete-log'               => 'Kialo por forigado:',
 'revdelete-submit'            => 'Apliki al la selektita versio',
 'revdelete-logentry'          => 'ŝanĝis videblecon de versio por [[$1]]',
 'logdelete-logentry'          => 'ŝanĝis eventan videblecon de [[$1]]',
@@ -988,6 +991,11 @@ Vi ne rajtas atingi ĝin.',
 'revdelete-concurrent-change' => 'Eraro ŝanĝante la aĵon de $2, $1: ĝia statuso estis ŝanĝita de alia uzanto dume dum vi provis ŝanĝi ĝin.
 Bonvolu kontroli la protokolojn.',
 'revdelete-only-restricted'   => 'Vi ne povas subpremi aĵojn de vido de administrantoj sen ankaux selekti unu el la aliaj subpremo-opcioj.',
+'revdelete-reason-dropdown'   => '*Oftaj kialoj por forigado
+** Kopirajta malobservo
+** Netaŭga persona informo',
+'revdelete-otherreason'       => 'Alia/aldona kialo:',
+'revdelete-reasonotherlist'   => 'Alia kialo',
 'revdelete-edit-reasonlist'   => 'Redakti kialojn por forigo',
 
 # Suppression log
@@ -1968,7 +1976,7 @@ La retadreso kiun vi enigis en [[Special:Preferences|viaj preferoj]] aperos kiel
 'enotif_rev_info'              => 'Vidu $1 por la nuna versio.',
 'enotif_body'                  => 'Kara $WATCHINGUSERNAME,
 
-La paĝo $PAGETITLE de {{SITENAME}} estis $CHANGEDORCREATED je $PAGEEDITDATEANDTIME de $PAGEEDITOR, vidu $PAGETITLE_URL por la nuna versio.
+La paĝo $PAGETITLE de {{SITENAME}} estis $CHANGEDORCREATED je $PAGEEDITDATEANDTIME de $PAGEEDITOR, $REVINFO
 
 $NEWPAGE
 
@@ -1978,7 +1986,8 @@ Kontaktu la redaktinton:
 retpoŝte: $PAGEEDITOR_EMAIL
 vikie: $PAGEEDITOR_WIKI
 
-Ne estos aliaj avertoj kaze de sekvaj ŝanĝoj krom se vi vizitas la paĝon. Vi povas ankaŭ malaktivigi la avertsignalon por ĉiuj priatentitaj paĝoj de via atentaro.
+Ne estos aliaj avertoj kaze de sekvaj ŝanĝoj krom se vi vizitas la paĝon. 
+Vi povas ankaŭ malaktivigi la avertsignalon por ĉiuj priatentitaj paĝoj de via atentaro.
 
              Sincere via, la avertsistemo de {{SITENAME}}
 
@@ -2023,18 +2032,19 @@ Vidu la paĝon $2 por registro de lastatempaj forigoj.',
 'delete-warning-toobig'  => 'Ĉi tiu paĝo havas grandan redakto-historion, pli ol $1 {{PLURAL:$1|version|versiojn}}. Forigo de ĝi povas disrompigi operacion de {{SITENAME}}; forigu singarde.',
 
 # Rollback
-'rollback'         => 'Restarigi antaŭan redakton',
-'rollback_short'   => 'Malfari',
-'rollbacklink'     => 'malfari',
-'rollbackfailed'   => 'Malfaro malsukcesis',
-'cantrollback'     => 'Neeblas restarigi antaŭan redakton; la redaktinto lasta estas la sola de la paĝo.',
-'alreadyrolled'    => 'Ne eblas restarigi la lastan redakton de [[:$1]] de la [[User:$2|$2]] ([[User talk:$2|diskuto]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]);
+'rollback'          => 'Restarigi antaŭan redakton',
+'rollback_short'    => 'Malfari',
+'rollbacklink'      => 'malfari',
+'rollbackfailed'    => 'Malfaro malsukcesis',
+'cantrollback'      => 'Neeblas restarigi antaŭan redakton; la redaktinto lasta estas la sola de la paĝo.',
+'alreadyrolled'     => 'Ne eblas restarigi la lastan redakton de [[:$1]] de la [[User:$2|$2]] ([[User talk:$2|diskuto]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]);
 pro tio, ke oni intertempe redaktis aŭ restarigis la paĝon. 
 La lasta redaktinto estas [[User:$3|$3]] ([[User talk:$3|diskuto]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'      => "La resumo de la komento estis: \"''\$1''\".",
-'revertpage'       => 'Malfaris redaktojn de [[Special:Contributions/$2|$2]] ([[User talk:$2|diskuto]]) al la lasta versio de [[User:$1|$1]]',
-'rollback-success' => 'Restaris redaktojn de $1; ŝanĝis al lasta versio de $2.',
-'sessionfailure'   => 'Ŝajnas ke estas problemo kun via ensalutado;
+'editcomment'       => "La resumo de la komento estis: \"''\$1''\".",
+'revertpage'        => 'Malfaris redaktojn de [[Special:Contributions/$2|$2]] ([[User talk:$2|diskuto]]) al la lasta versio de [[User:$1|$1]]',
+'revertpage-nouser' => 'Restarigita redaktoj de (salutnomo forigita) al lasta revizio de [[User:$1|$1]]',
+'rollback-success'  => 'Restaris redaktojn de $1; ŝanĝis al lasta versio de $2.',
+'sessionfailure'    => 'Ŝajnas ke estas problemo kun via ensalutado;
 Ĉi ago estis nuligita por malhelpi fiensalutadon.
 Bonvolu alklalki la reirbutonon kaj reŝarĝi la paĝon el kiu vi venas, kaj provu denove.',
 
@@ -2152,7 +2162,7 @@ $1',
 
 # Namespace form on various pages
 'namespace'      => 'Nomspaco:',
-'invert'         => 'Inversi selektaĵon',
+'invert'         => 'Inversigi selektaĵon',
 'blanknamespace' => '(Artikoloj)',
 
 # Contributions
@@ -2165,17 +2175,18 @@ $1',
 'month'               => 'Ekde monato (kaj pli frue):',
 'year'                => 'Ekde jaro (kaj pli frue):',
 
-'sp-contributions-newbies'       => 'Montri nur kontribuojn de novaj kontoj',
-'sp-contributions-newbies-sub'   => 'Kontribuoj de novaj uzantoj. Forigitaj paĝoj ne estas montritaj.',
-'sp-contributions-newbies-title' => 'Uzulaj kontribuoj de novaj kontoj',
-'sp-contributions-blocklog'      => 'Protokolo de forbaroj',
-'sp-contributions-deleted'       => 'forigitaj kontribuoj de uzantoj',
-'sp-contributions-logs'          => 'protokoloj',
-'sp-contributions-talk'          => 'diskuto',
-'sp-contributions-userrights'    => 'administri rajtojn de uzantoj',
-'sp-contributions-search'        => 'Serĉado de kontribuoj',
-'sp-contributions-username'      => 'IP-adreso aŭ uzantonomo:',
-'sp-contributions-submit'        => 'Serĉi',
+'sp-contributions-newbies'        => 'Montri nur kontribuojn de novaj kontoj',
+'sp-contributions-newbies-sub'    => 'Kontribuoj de novaj uzantoj. Forigitaj paĝoj ne estas montritaj.',
+'sp-contributions-newbies-title'  => 'Uzulaj kontribuoj de novaj kontoj',
+'sp-contributions-blocklog'       => 'Protokolo de forbaroj',
+'sp-contributions-deleted'        => 'forigitaj kontribuoj de uzantoj',
+'sp-contributions-logs'           => 'protokoloj',
+'sp-contributions-talk'           => 'diskuto',
+'sp-contributions-userrights'     => 'administri rajtojn de uzantoj',
+'sp-contributions-blocked-notice' => 'La uzanto nune estas forbarita. Jen la lasta blokada listero en protokolo:',
+'sp-contributions-search'         => 'Serĉado de kontribuoj',
+'sp-contributions-username'       => 'IP-adreso aŭ uzantonomo:',
+'sp-contributions-submit'         => 'Serĉi',
 
 # What links here
 'whatlinkshere'            => 'Ligiloj ĉi tien',
@@ -3132,7 +3143,7 @@ Vi povas ankaŭ [[Special:Watchlist/edit|uzu la norman redaktilon]].',
 # Special:FilePath
 'filepath'         => 'Vojo al dosiero',
 'filepath-page'    => 'Dosiero:',
-'filepath-submit'  => 'Pado',
+'filepath-submit'  => 'Vojo',
 'filepath-summary' => 'Ĉi tiu speciala paĝo redonas la kompletan padon por dosiero. Bildoj estas montrataj en alta distingivo, aliaj dosieraj tipoj estas rekte startataj per ties asociita programo.',
 
 # Special:FileDuplicateSearch

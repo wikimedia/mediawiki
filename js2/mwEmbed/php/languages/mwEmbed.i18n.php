@@ -453,6 +453,8 @@ $messages['be-tarask'] = array(
 	'mwe-sequencer_credit_line' => 'Распрацавана <a href="http://kaltura.com">Kaltura, Inc.</a> у садружнасьці з <a href="http://wikimediafoundation.org/wiki/Home">фундацыяй «Вікімэдыя»</a> (<a href="#">падрабязнасьці </a>).',
 	'mwe-loading_txt' => 'загрузка <blink>…</blink>',
 	'mwe-loading_title' => 'Загрузка…',
+	'mwe-error_load_lib' => 'Памылка: mv_embed ня змог загрузіць неабходныя бібліятэкі JavaScript.
+Уставіць скрыпт праз DOM не атрымалася. Калі ласка, паспрабуйце перагрузіць гэту старонку.',
 	'fogg-select_file' => 'Выберыце файл',
 	'fogg-select_new_file' => 'Выберыце новы файл',
 	'fogg-select_url' => 'Выберыце URL-адрас',
@@ -546,8 +548,6 @@ $messages['be-tarask'] = array(
 	'mwe-loading_plugin' => 'Загружаецца дапаўненьне <blink>…</blink>',
 	'mwe-select_playback' => 'Устанавіць настройкі прайграваньня',
 	'mwe-link_back' => 'Адваротная спасылка',
-	'mwe-error_load_lib' => 'Памылка: mv_embed ня змог загрузіць неабходныя бібліятэкі JavaScript.
-Уставіць скрыпт праз DOM не атрымалася. Калі ласка, паспрабуйце перагрузіць гэту старонку.',
 	'mwe-error_swap_vid' => 'Памылка: mv_embed ня змог памяняць відэа тэг для інтэрфэйсу mv_embed',
 	'mwe-add_to_end_of_sequence' => 'Дадаць у канец пасьлядоўнасьці',
 	'mwe-missing_video_stream' => 'Відэа-файл для гэтага струменя адсутнічае',
@@ -1030,6 +1030,8 @@ $messages['fr'] = array(
 	'mwe-sequencer_credit_line' => 'Développé par <a href="http://kaltura.com">Kaltura, Inc.</a> en partenariat avec la <a href="http://wikimediafoundation.org/wiki/Home">Wikimedia Foundation</a> (<a href="#">plus d\'information</a>).',
 	'mwe-loading_txt' => 'chargement <blink>...</blink>',
 	'mwe-loading_title' => 'Chargement...',
+	'mwe-error_load_lib' => "Erreur : mv_embed n'a pas réussi à charger les bibliothèques JavaScript requises.
+Le script d'insertion via DOM a échoué. Veuillez recharger la page.",
 	'fogg-select_file' => 'Sélectionnez un fichier',
 	'fogg-select_new_file' => 'Sélectionnez un nouveau fichier',
 	'fogg-select_url' => 'Sélectionnez une URL',
@@ -1123,8 +1125,6 @@ $messages['fr'] = array(
 	'mwe-loading_plugin' => 'chargement du greffon <blink>...</blink>',
 	'mwe-select_playback' => 'Définir les préférences de lecture',
 	'mwe-link_back' => 'Lien retour',
-	'mwe-error_load_lib' => "Erreur : mv_embed n'a pas réussi à charger les bibliothèques JavaScript requises.
-Le script d'insertion via DOM a échoué. Veuillez recharger la page.",
 	'mwe-error_swap_vid' => "Erreur : mv_embed n'a pas réussi à échanger l'attribut de la vidéo pour l'interface mv_embed",
 	'mwe-add_to_end_of_sequence' => 'Ajouter à la fin de la séquence',
 	'mwe-missing_video_stream' => 'Le fichier vidéo pour ce flux est manquant',
@@ -1241,6 +1241,8 @@ $messages['gl'] = array(
 	'mwe-sequencer_credit_line' => 'Desenvolvido por <a href="http://kaltura.com">Kaltura, Inc.</a> en colaboración coa <a href="http://wikimediafoundation.org/wiki/Portada_galega">Fundación Wikimedia</a> (<a href="#">máis información</a>).',
 	'mwe-loading_txt' => 'cargando<blink>...</blink>',
 	'mwe-loading_title' => 'Cargando...',
+	'mwe-error_load_lib' => 'Erro: mv_embed non puido cargar as librarías JavaScript necesarias.
+Fallou a inserción da escritura a través do DOM. Por favor, intente recargar esta páxina.',
 	'fogg-select_file' => 'Seleccione un ficheiro',
 	'fogg-select_new_file' => 'Seleccione un ficheiro novo',
 	'fogg-select_url' => 'Seleccione un enderezo URL',
@@ -1334,8 +1336,6 @@ $messages['gl'] = array(
 	'mwe-loading_plugin' => 'cargando o complemento<blink>...</blink>',
 	'mwe-select_playback' => 'Configurar as preferencias de reprodución',
 	'mwe-link_back' => 'Ligazón de volta',
-	'mwe-error_load_lib' => 'Erro: mv_embed non puido cargar as librarías JavaScript necesarias.
-Fallou a inserción da escritura a través do DOM. Por favor, intente recargar esta páxina.',
 	'mwe-error_swap_vid' => 'Erro: mv_embed foi incapaz de cambiar a etiqueta do vídeo para a interface mv_embed',
 	'mwe-add_to_end_of_sequence' => 'Engadir ao final da secuencia',
 	'mwe-missing_video_stream' => 'Falta o ficheiro de vídeo para ese fluxo',
@@ -1383,6 +1383,7 @@ Fallou a inserción da escritura a través do DOM. Por favor, intente recargar e
 
 /** Swiss German (Alemannisch)
  * @author Als-Holder
+ * @author Purodha
  */
 $messages['gsw'] = array(
 	'mwe-crop' => 'Bild zueschnyde',
@@ -1452,6 +1453,8 @@ $messages['gsw'] = array(
 	'mwe-sequencer_credit_line' => 'Entwicklet dur <a href="http://kaltura.com">Kaltura, Inc.</a> zämme mit dr <a href="http://wikimediafoundation.org/wiki/Home">Wikimedia Foundation</a> (<a href="#">meh Informatione</a>).',
 	'mwe-loading_txt' => 'Am Lade <blink>...</blink>',
 	'mwe-loading_title' => 'Am Lade ...',
+	'mwe-error_load_lib' => 'Fähler: mv_embed het di notwändige JavaScript-Programmbibliotheke nit chenne lade.
+S Skript zum Yyfiege iber DOM isch fählgschlaa. Bitte versuech s nomol, indäm Du die Syte nej ladsch.',
 	'fogg-select_file' => 'Datei uuswehle',
 	'fogg-select_new_file' => 'Neji Datei uuswehle',
 	'fogg-select_url' => 'URL uuswehle',
@@ -1545,8 +1548,6 @@ $messages['gsw'] = array(
 	'mwe-loading_plugin' => 'Am Lade vum Plugin <blink>...</blink>',
 	'mwe-select_playback' => 'Yystellige fir s Abspile setze',
 	'mwe-link_back' => 'Gleich (Link) retur',
-	'mwe-error_load_lib' => 'Fähler: mv_embed het di notwändige JavaScript-Programmbibliotheke nit chenne lade.
-S Skript zum Yyfiege iber DOM isch fählgschlaa. Bitte versuech s nomol, indäm Du die Syte nej ladsch.',
 	'mwe-error_swap_vid' => 'Fähler: mv_embed het s Video-Tag fir d mv_embed-Oberflechi nit chenne uustusche',
 	'mwe-add_to_end_of_sequence' => 'Am Änd vum Abschnitt yyfiege',
 	'mwe-missing_video_stream' => 'D Videodatei fir dää Strang fählt',
@@ -1667,6 +1668,7 @@ $messages['hsb'] = array(
 	'mwe-size-megabytes' => '$1 MB',
 	'mwe-size-kilobytes' => '$1 KB',
 	'mwe-size-bytes' => '$1 B',
+	'mwe-error_load_lib' => 'Zmylk: JavaScript $1 njeda so wotwołać abo njedefinuje $2',
 	'fogg-select_file' => 'Dataju wubrać',
 	'fogg-select_new_file' => 'Nowu dataju wubrać',
 	'fogg-select_url' => 'URL wubrać',
@@ -1761,8 +1763,6 @@ $messages['hsb'] = array(
 	'mwe-loading_plugin' => 'tykač so začituje <blink>...</blink>',
 	'mwe-select_playback' => 'Nastajenje za playback stajić',
 	'mwe-link_back' => 'Wotkaz wróćo',
-	'mwe-error_load_lib' => 'Zmylk: mv_embed njemóžeše trěbne biblioteki JavaScripta začitać.
-Zasunjenje skripta přez DOM je so njeporadźiło. Prošu spytaj tutu stronu znowa začitać.',
 	'mwe-error_swap_vid' => 'Zmylk: mv_embed njemóžeše widejotafličku za powjerch mv_embed wuměnić',
 	'mwe-add_to_end_of_sequence' => 'Na kóncu sekwency přidać',
 	'mwe-missing_video_stream' => 'Widejowa dataja za tutón prud faluje',
@@ -1806,6 +1806,7 @@ Zasunjenje skripta přez DOM je so njeporadźiło. Prošu spytaj tutu stronu zno
 	'mwe-playerselect' => 'Wothrawaki',
 	'mwe-read_before_embed' => 'Prošu <a href="http://mediawiki.org/wiki/Security_Notes_on_Remote_Embedding" target="_new">čitaj to</a> do zasadźenja!',
 	'mwe-embed_site_or_blog' => 'Na twojim sydle abo blogu zasadźić',
+	'mwe_related_videos' => 'Přiwuzne wideja',
 );
 
 /** Interlingua (Interlingua)
@@ -1915,6 +1916,16 @@ $messages['ia'] = array(
 	'rsd_resource_edit' => 'Modificar le ressource: $1',
 );
 
+/** Indonesian (Bahasa Indonesia)
+ * @author Bennylin
+ * @author Irwangatot
+ */
+$messages['id'] = array(
+	'mwe-insert_image_page' => 'Sisipkan pada halaman',
+	'rsd_results_next' => 'selanjutnya',
+	'rsd_results_prev' => 'sebelumnya',
+);
+
 /** Japanese (日本語)
  * @author Aotake
  * @author Fryed-peach
@@ -1989,6 +2000,8 @@ $messages['ja'] = array(
 	'mwe-sequencer_credit_line' => '本機能は<a href="http://kaltura.com">Kaltura, Inc.</a> が <a href="http://wikimediafoundation.org/wiki/Home">ウィキメディア財団</a>の協力のもと開発しました (<a href="#">詳細情報</a>)。',
 	'mwe-loading_txt' => '読み込み中 <blink>…</blink>',
 	'mwe-loading_title' => '読み込み中…',
+	'mwe-error_load_lib' => 'エラー：mw_embedは動作に必要なJavascriptのライブラリを読み込めませんでした。
+DOMによるスクリプトの挿入に失敗しました。ページを再読み込みしてください。',
 	'fogg-select_file' => 'ファイルを選択',
 	'fogg-select_new_file' => '別のファイルを選択',
 	'fogg-select_url' => 'URLを選択',
@@ -2083,8 +2096,6 @@ $messages['ja'] = array(
 	'mwe-loading_plugin' => 'プラグインを読み込み中 <blink>...</blink>',
 	'mwe-select_playback' => '再生環境を設定',
 	'mwe-link_back' => 'トラックバック',
-	'mwe-error_load_lib' => 'エラー：mw_embedは動作に必要なJavascriptのライブラリを読み込めませんでした。
-DOMによるスクリプトの挿入に失敗しました。ページを再読み込みしてください。',
 	'mwe-error_swap_vid' => 'エラー: mv_embed 形式にあった動画タグに置換できませんでした。',
 	'mwe-add_to_end_of_sequence' => 'シーケンスの終わりに追加',
 	'mwe-missing_video_stream' => 'このストリームに必要な動画ファイルが見つかりません',
@@ -2156,9 +2167,12 @@ $messages['ksh'] = array(
 	'mwe-improve_transcript' => 'Verbessere',
 	'mwe-no_text_tracks_found' => 'Kein Täx-Shpur jefonge',
 	'mwe-remove_transition' => 'Dä Övverjang fott nämme',
+	'mwe-edit_transin' => 'Donn dä Övverjang en dä Ußschnett eren bränge',
+	'mwe-edit_transout' => 'Donn dä Övverjang uß däm Ußschned eruß bränge',
 	'mwe-menu_clipedit' => 'Meedije Ändere',
 	'mwe-menu_transition' => 'Övverjäng un besönder Effäkte',
 	'mwe-menu_cliplib' => 'Alle Meedije',
+	'mwe-menu_resource_overview' => 'Övverseesch',
 	'mwe-menu_options' => 'Ußwahle',
 	'mwe-loading_timeline' => 'En Zick-Reih aam Laade&nbsp;<blink>…</blink>',
 	'mwe-loading_user_rights' => 'Metmaacher-Rääschte aam Laade&nbsp;<blink>…</blink>',
@@ -2192,6 +2206,7 @@ $messages['ksh'] = array(
 	'mwe-size-megabytes' => '$1&nbsp;MB',
 	'mwe-size-kilobytes' => '$1&nbsp;KB',
 	'mwe-size-bytes' => '$1&nbsp;Bytes',
+	'mwe-error_load_lib' => 'Fähler: Dat JavaSkrep „<code lang="en">$1</code>“ wohr nit ze laade udder et leiht „<code lang="en">$2</code>“ nit faß.',
 	'fogg-select_file' => 'Dattei ußwähle',
 	'fogg-select_new_file' => 'Neu Dattei ußwähle',
 	'fogg-select_url' => '<i lang="en">URL</i> ußwähle',
@@ -2229,9 +2244,11 @@ $messages['ksh'] = array(
 	'rsd_local_resource_title' => 'Dä Tittel dofun heh em Wiki',
 	'rsd_do_insert' => 'Ennfööje',
 	'mwe-cc_title' => '<i lang="en">Creative Commons</i>',
+	'mwe-cc_by_title' => 'De Schriiver möße jenannt wääde',
 	'mwe-cc_nc_title' => 'Kein Jeldverdeene met zohjelohße',
 	'mwe-cc_nd_title' => 'Kein afjeleidt Werke zohjelohße',
 	'mwe-cc_sa_title' => 'Afjeleidt Werke onger desellve Bedenunge wigger jävve',
+	'mwe-cc_pd_title' => 'Allmende (jemeinfrei, <i lang="en">public domain</i>)',
 	'mwe-unknown_license' => 'En onbikannte Lizänz',
 	'mwe-no_import_by_url' => 'Heh dä Metmaacher odder heh dat Wiki <b>kann nix</b> vun <i lang="en">URLs</i> vun ußerhallef empotteere.
 
@@ -2250,9 +2267,11 @@ Wann de Rääschte reschtesch jesaz sin, moß mer velleijsh noch <a href="http:/
 	'mwe-update_preview' => 'Vör_Aansesch op der neuste Shtand bränge',
 	'mwe-cancel_import' => 'Empotteere Afbreshe!',
 	'mwe-importing_asset' => 'Ben aam Empotteere',
+	'mwe-preview_insert_resource' => 'Vör_Aansesch övver et Ennfööje vun: $1',
 	'mwe-select_file' => 'Dattei ußsöhke',
 	'mwe-more_licence_options' => 'Mieh Müjjeleschkeite för en Lizänz fengkd_Er op dä <a href="$1">jewööhnlijje Sigg zem Huhlaade</a>.',
 	'mwe-select_ownwork' => 'Esch ben bloß ming eije Werk aam huhlaade, un et darf jebruch wääde onger dä Lizänz:',
+	'mwe-licence_cc-by-sa' => 'Wiggerjävve onger desellve Bedengunge (noh <i lang="en">Creative Commons</i>) (3.0)',
 	'mwe-upload' => 'Dattei huhlaade',
 	'mwe-destfilename' => 'Dä Name för di neu Dattei:',
 	'mwe-summary' => '{{int:Summary}}',
@@ -2276,6 +2295,7 @@ Wann de Rääschte reschtesch jesaz sin, moß mer velleijsh noch <a href="http:/
 	'mwe-fileexists-thumb' => '<center>Datei ald doh</center>',
 	'mwe-ignorewarning' => '{{int:ignorewarning}}',
 	'mwe-file-thumbnail-no' => 'Dä Dattei iere Name fängk met <b><tt>$1</tt></b> aan.',
+	'mwe-go-to-resource' => 'Jank op di Sigg doh drövver',
 	'mwe-upload-misc-error' => 'Dat Huhlaade jing donevve, woröm es nit kloh',
 	'mwe-wgfogg_warning_bad_extension' => 'Do häss_en Dattei met enem onbikannte Datteinamesengk ußjsöhk (<a href="http://commons.wikimedia.org/wiki/Commons:Firefogg#Supported_File_Types">mieh doh drövver</a>).',
 	'mwe-cancel-button' => '{{int:cancel}}',
@@ -2283,9 +2303,6 @@ Wann de Rääschte reschtesch jesaz sin, moß mer velleijsh noch <a href="http:/
 	'mwe-loading_plugin' => 'Ben dat Ongerprojramm aam laade&nbsp;<blink>…</blink>',
 	'mwe-select_playback' => 'Enstellunge för et Affshpelle maache',
 	'mwe-link_back' => 'Lengk retuur',
-	'mwe-error_load_lib' => 'Fähler: <code>mv_embed</code> kunnt de nüüdejje JavaSkrep Projrammbiplijoteeke nit laade.
-Dat Skrepp zom ennfööje övver et <i lang="en">DOM</i> jingk donevve.
-Versöhk ens, di Sigg heh neu ue laade.',
 	'mwe-error_swap_vid' => 'Fähler: <code lang="en">mv_embed</code> kunnt de Etikätte för dä Viddejo för <code lang="en">mv_embed</code> sing Schnetshtäl nit ußtuusche.',
 	'mwe-add_to_end_of_sequence' => 'Aam Engk vun dä Afschpellleß aanfööje',
 	'mwe-missing_video_stream' => 'De Viddejodattei för heh dä Daateshrom fählt',
@@ -2306,9 +2323,11 @@ Versöhk ens, di Sigg heh neu ue laade.',
 	'mwe-download_text' => 'Tex erungerlaade (<i lang="en"><a style="color:white" title="cmml" href="http://wiki.xiph.org/index.php/CMML">CMML</a> XML</i>):',
 	'mwe-download' => 'Eronger laade',
 	'mwe-share' => 'Wigger jävve',
+	'mwe-credits' => 'Aanerkennunge för Beidrääsch',
 	'mwe-clip_linkback' => 'Däm Ußschnett singe Quällsigg',
 	'mwe-chose_player' => 'Donn en Affshpellprojramm för Viddejos ußsöhke',
 	'mwe-share_this_video' => 'Donn dä Viddejo wigger jävve',
+	'mwe-video_credits' => 'Aanerkennunge för Beidrääsch aan dämm Viddejo',
 	'mwe-menu_btn' => 'Ußwahl',
 	'mwe-close_btn' => 'Zohmaache',
 	'mwe-ogg-player-vlc-mozilla' => 'Dat <i lang="en">VLC</i>-Shpeller <i lang="en">plugin</i>',
@@ -2327,6 +2346,7 @@ Versöhk ens, di Sigg heh neu ue laade.',
 	'mwe-playerselect' => 'Affshpellprojramme',
 	'mwe-read_before_embed' => 'Beß esu joot un liß <a href="http://mediawiki.org/wiki/Security_Notes_on_Remote_Embedding" target="_new">övver de Sesherheit bemm Ennfööje övver et Netz</a> iih dat De jet ennfööschß!',
 	'mwe-embed_site_or_blog' => 'En en Websigg udder <i lang="en">Blog</i>_erinndonn',
+	'mwe_related_videos' => 'Verwandte Viddejos',
 );
 
 /** Luxembourgish (Lëtzebuergesch)
@@ -2490,6 +2510,7 @@ Selecteer één te bewerken clip.',
 	'mwe-sequencer_credit_line' => 'Ontwikkeld door <a href="http://kaltura.com">Kaltura, Inc.</a> in samenwerking met de <a href="http://wikimediafoundation.org/wiki/Home">Wikimedia Foundation</a> (<a href="#">meer informatie</a>).',
 	'mwe-loading_txt' => 'bezig met laden <blink>...</blink>',
 	'mwe-loading_title' => 'Laai...',
+	'mwe-error_load_lib' => 'Fout: JavaScript $1 kon niet opgehaald worden of definieert $2 niet',
 	'fogg-select_file' => 'Bestand selecteren',
 	'fogg-select_new_file' => 'Kies nuwe lêer',
 	'fogg-select_url' => 'URL selecteren',
@@ -2583,9 +2604,6 @@ Selecteer één te bewerken clip.',
 	'mwe-loading_plugin' => 'laai uitbreiding <blink>...</blink>',
 	'mwe-select_playback' => 'Afspeelinstellingen instellen',
 	'mwe-link_back' => 'Terugverwijzen',
-	'mwe-error_load_lib' => 'Fout: mv_embed was niet in staat de vereiste JavaScript-bibliotheken te downloaden.
-Het toevoegen van een script via DOM is mislukt.
-Probeer de pagina opnieuw te laden.',
 	'mwe-error_swap_vid' => 'Fout: mv_embed kon de videotag voor de mv_embed-interface niet wisselen',
 	'mwe-add_to_end_of_sequence' => 'Aan het einde van de reeks toevoegen',
 	'mwe-missing_video_stream' => 'Het videobestand voor deze stream is niet aanwezig',
@@ -2630,6 +2648,7 @@ Via <a href="http://commons.wikimedia.org/wiki/Commons:Media_help">afspeelmethod
 	'mwe-playerselect' => 'Mediaspelers',
 	'mwe-read_before_embed' => '<a href="http://mediawiki.org/wiki/Security_Notes_on_Remote_Embedding" target="_new">Lees dit</a> voordat u gaat embedden!',
 	'mwe-embed_site_or_blog' => 'Toevoegen aan website of blog',
+	'mwe_related_videos' => "Gerelateerde video's",
 );
 
 /** Occitan (Occitan)
@@ -2703,6 +2722,8 @@ $messages['oc'] = array(
 	'mwe-sequencer_credit_line' => 'Desvolopat per <a href="http://kaltura.com">Kaltura, Inc.</a> en partenariat amb la <a href="http://wikimediafoundation.org/wiki/Home">Wikimedia Foundation</a> (<a href="#">mai d\'entresenhas</a>).',
 	'mwe-loading_txt' => 'cargament <blink>...</blink>',
 	'mwe-loading_title' => 'Cargament...',
+	'mwe-error_load_lib' => "Error : mv_embed a pas capitat de cargar las bibliotècas JavaScript requeridas.
+L'escript d'insercion via DOM a fracassat. Recargatz la pagina.",
 	'fogg-select_file' => 'Seleccionatz un fichièr',
 	'fogg-select_new_file' => 'Seleccionatz un fichièr novèl',
 	'fogg-select_url' => 'Seleccionatz una URL',
@@ -2796,8 +2817,6 @@ $messages['oc'] = array(
 	'mwe-loading_plugin' => 'cargament del plugin <blink>...</blink>',
 	'mwe-select_playback' => 'Definir las preferéncias de lectura',
 	'mwe-link_back' => 'Ligam retorn',
-	'mwe-error_load_lib' => "Error : mv_embed a pas capitat de cargar las bibliotècas JavaScript requeridas.
-L'escript d'insercion via DOM a fracassat. Recargatz la pagina.",
 	'mwe-error_swap_vid' => "Erreur : mv_embed a pas capitat d'escambiar l'atribut de la vidèo per l'interfàcia mv_embed",
 	'mwe-add_to_end_of_sequence' => 'Apondre a la fin de la sequéncia',
 	'mwe-missing_video_stream' => 'Lo fichièr vidèo per aqueste flus es mancant',
@@ -2930,6 +2949,8 @@ $messages['ru'] = array(
 	'mwe-sequencer_credit_line' => 'Разработано <a href="http://kaltura.com">Kaltura, Inc</a> в сотрудничестве с <a href="http://wikimediafoundation.org/wiki/Home">Фондом Викимедиа</a> (<a href="#">подробнее</a>).',
 	'mwe-loading_txt' => 'загрузка <blink>…</blink>',
 	'mwe-loading_title' => 'Загрузка…',
+	'mwe-error_load_lib' => 'Ошибка: mv_embed не удалось загрузить требуемые библиотеки JavaScript.
+Включить скрипт через DOM не удалось. Пожалуйста, попробуйте перезагрузить эту страницу.',
 	'fogg-select_file' => 'Выберите файл',
 	'fogg-select_new_file' => 'Выберите новый файл',
 	'fogg-select_url' => 'Выберите URL',
@@ -3023,8 +3044,6 @@ $messages['ru'] = array(
 	'mwe-loading_plugin' => 'загрузка плагина <blink>...</blink>',
 	'mwe-select_playback' => 'Установить настройки воспроизведения',
 	'mwe-link_back' => 'Обратная ссылка',
-	'mwe-error_load_lib' => 'Ошибка: mv_embed не удалось загрузить требуемые библиотеки JavaScript.
-Включить скрипт через DOM не удалось. Пожалуйста, попробуйте перезагрузить эту страницу.',
 	'mwe-error_swap_vid' => 'Ошибка: mv_embed не может поменять тег видео для интерфейса mv_embed',
 	'mwe-add_to_end_of_sequence' => 'Добавить в конец последовательности',
 	'mwe-missing_video_stream' => 'Видеофайл для этого потока отсутствует',

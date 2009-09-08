@@ -357,12 +357,12 @@ Quiste pò indicà 'nu bochere jndr'à 'u software.
 L'urteme tendative de inderrogazione sus a 'u database ha state:
 <blockquote><tt>\$1</tt></blockquote>
 cu 'a funzione \"<tt>\$2</tt>\".
-MySQL ha returnate l'errore \"<tt>\$3: \$4</tt>\".",
+'U database ha returnate l'errore \"<tt>\$3: \$4</tt>\".",
 'dberrortextcl'        => 'A assute \'n\'errore de sindasse sus a \'n\'inderrogazione d\'u database.
 L\'urteme tendative de inderrogazione sus a \'u database ha state:
 "$1"
 ausanne \'a funzione "$2".
-MySQL ha returnate l\'errore "$3: $4"',
+\'U database ha returnate l\'errore "$3: $4"',
 'laggedslavemode'      => "Attenzione: 'A pàgene no ge tène cangiaminde recente.",
 'readonly'             => 'Archivie blocchete',
 'enterlockreason'      => "Mitte 'na raggione p'u blocche, 'ncludenne 'na stime de quanne 'u blocche avène luate.",
@@ -480,8 +480,7 @@ Condrolle accume l\'è scritte.',
 Prueve n'otra vote.",
 'wrongpasswordempty'         => "'A passuord 'nzerite jè vianghe.
 Mitta n'otra vota.",
-'passwordtooshort'           => "'A password ca è mise jè troppe piccenne.
-Tu a mettere almene {{PLURAL:$1|1 carattere|$1 carattere}}.",
+'passwordtooshort'           => 'Le password onne a essere almene {{PLURAL:$1|1 carattere|$1 carattere}}.',
 'password-name-match'        => "'A password toje adda essere diverse da 'u nome utende tue.",
 'mailmypassword'             => 'Passuord nova pe e-mail',
 'passwordremindertitle'      => 'Passuord temboranea nova pe {{SITENAME}}',
@@ -842,7 +841,7 @@ Pe piacere conferme ca tu vuè ccu face sta cose, ca tu è capite le conseguenze
 'revdelete-suppress'          => "Live le date da l'amministrature cumme pe l'otre",
 'revdelete-hide-image'        => "Scunne 'u codenute d'u fail",
 'revdelete-unsuppress'        => 'Live le restriziune sus a le revisiune repristinate',
-'revdelete-log'               => 'Archivie de le commende:',
+'revdelete-log'               => 'Mutive pu scangellamende:',
 'revdelete-submit'            => 'Applichesce a le revisiune selezionete',
 'revdelete-logentry'          => "ha state cangete 'a visibbilità d'a revisione de [[$1]]",
 'logdelete-logentry'          => "ha state cangete 'a visibbilità de l'evende de [[$1]]",
@@ -876,6 +875,7 @@ Tu non ge tìne l\'accesse.',
 'revdelete-concurrent-change' => "Errore cangianne le artichele datate $2, $1: 'u state ca combare ha state cangiate da quacchedune otre mendre ca tu stè pruvave a cangiarle.
 Pe piacere condrolle l'archivije.",
 'revdelete-only-restricted'   => "Tu non ge puè sopprimere l'artichele da 'a viste de le amministrature senze ca scacchie pure une de le otre opzione de soppressione.",
+'revdelete-reasonotherlist'   => 'Otre mutive',
 
 # Suppression log
 'suppressionlog'     => 'Archivie de le soppressiune',
@@ -1486,7 +1486,7 @@ Pe piacere condrolle ca 'u site funzione, aspitte 'nu picche e pruève 'n'otra v
 Sinde a me, vue ccu pruève quanne ste mene casine?",
 
 'license'            => 'Licenziete da:',
-'license-header'     => 'Licenziete da:',
+'license-header'     => 'Licenziate da',
 'nolicense'          => 'Ninde selezionete',
 'license-nopreview'  => "(L'andeprime non g'è disponibbile)",
 'upload_source_url'  => " ('na URL, valide e accessibbile pubblicamende)",
@@ -1873,6 +1873,7 @@ Le cangiaminde future a sta pàgene e 'a pàgene de le 'ngazzaminde associete le
 'enotif_impersonal_salutation' => 'Utende de {{SITENAME}}',
 'changed'                      => 'cangete',
 'created'                      => 'ccrejete',
+'deleted'                      => 'scangellate',
 'enotif_subject'               => '\'A pàgene de {{SITENAME}} $PAGETITLE ha state $CHANGEDORCREATED da $PAGEEDITOR',
 'enotif_lastvisited'           => "Vide $1 pe tutte le cangiaminde da l'urtema visita toje.",
 'enotif_lastdiff'              => 'Vide $1 pe vedè stu cangiamende.',
@@ -1880,7 +1881,7 @@ Le cangiaminde future a sta pàgene e 'a pàgene de le 'ngazzaminde associete le
 'enotif_body'                  => 'Care $WATCHINGUSERNAME,
 
 
-\'A pàgene $PAGETITLE de {{SITENAME}} ha state $CHANGEDORCREATED \'u $PAGEEDITDATEANDTIME da $PAGEEDITOR, vide $PAGETITLE_URL pa versina corrende.
+\'A pàgene $PAGETITLE de {{SITENAME}} ha state $CHANGEDORCREATED \'u $PAGEEDITDATEANDTIME da $PAGEEDITOR. $REVINFO
 
 $NEWPAGE
 
@@ -2452,6 +2453,7 @@ Pe piacere ause 'u buttone de l'andeprime apprime de salvà.",
 Puè vedè sulamende 'u sorgende.",
 'tooltip-ca-history'              => 'Versiune passete de sta pàgene',
 'tooltip-ca-protect'              => 'Prutegge sta pàgene',
+'tooltip-ca-unprotect'            => 'Sprotegge sta pàgene',
 'tooltip-ca-delete'               => 'Scangille sta pàgene',
 'tooltip-ca-undelete'             => 'Repristine le cangiaminde fatte a sta pàgene apprime ca evenève scangellate',
 'tooltip-ca-move'                 => 'Spuèste sta pàgene',
@@ -2462,6 +2464,7 @@ Puè vedè sulamende 'u sorgende.",
 'tooltip-search-fulltext'         => 'Cirche le pàggene cu stu teste',
 'tooltip-p-logo'                  => 'Pàgene Prengepàle',
 'tooltip-n-mainpage'              => "Vè vide 'a pàgene prengepàle",
+'tooltip-n-mainpage-description'  => "Visite 'a pàgena prengepàle",
 'tooltip-n-portal'                => "Parkanne d'u proggette, ce puà fà, addò puè acchjà le cose.",
 'tooltip-n-currentevents'         => "Iacchje le 'mbormaziune sus a 'u sfonde de 'u fatte corrende",
 'tooltip-n-recentchanges'         => "'A liste de le cangiaminde recende jndr'à uicchi.",
@@ -2911,6 +2914,7 @@ Otre avènene scunnute pe defolt.
 'watchlistall2'    => 'tutte',
 'namespacesall'    => 'tutte',
 'monthsall'        => 'tutte',
+'limitall'         => 'tutte',
 
 # E-mail address confirmation
 'confirmemail'             => "Conferme l'indirizze e-mail",
@@ -3121,7 +3125,7 @@ Mitte 'u nome d'u file senze 'u \"{{ns:file}}:\" prefisse.",
 'tag-filter-submit'       => 'Filtre',
 'tags-title'              => 'Tag',
 'tags-intro'              => "Sta pàgene elenghe le tag ca 'u software pò marcà cu 'nu cangiamende e 'u lore significate.",
-'tags-tag'                => "Nome d'u tag inderne",
+'tags-tag'                => "Nome d'u tag",
 'tags-display-header'     => "Accumme parene sus 'a liste de le cangiaminde",
 'tags-description-header' => "Descriziona comblete d'u significhete",
 'tags-hitcount-header'    => 'Cangiaminde taggate',
