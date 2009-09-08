@@ -234,8 +234,16 @@ class BackupDumper {
 
 	function backupDb() {
 		global $wgDBadminuser, $wgDBadminpassword;
+		global $wgDBuser, $wgDBpassword;
 		global $wgDBname, $wgDebugDumpSql, $wgDBtype;
 		$flags = ($wgDebugDumpSql ? DBO_DEBUG : 0) | DBO_DEFAULT; // god-damn hack
+		
+		if ( !$wgDBadminuser ) {
+			$wgDBadminuser = $wgDBuser;
+		}
+		if ( !$wgDBadminpassword ) {
+			$wgDBadminpassword = $wgDBpassword;
+		}
 
 		$class = 'Database' . ucfirst($wgDBtype);
 		$db = new $class( $this->backupServer(), $wgDBadminuser, $wgDBadminpassword, $wgDBname, false, $flags );
