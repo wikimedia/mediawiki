@@ -4194,18 +4194,18 @@ Enter the filename without the "{{ns:file}}:" prefix.',
 'htmlform-reset'               => 'Undo changes',
 'htmlform-selectorother-other' => 'Other',
 
-'ajax-add-category'			   => 'Add Category',
-'ajax-add-category-submit'	   => 'Add',
-'ajax-confirm-title'		   => 'Confirm Action',
-'ajax-confirm-prompt'		   => 'Please confirm this action, and enter the reason for it in the
-box below. Once you are happy to submit it, click "Save". Note that repeatedly making false
-edits will result in your being blocked from Wikipedia.',
-'ajax-confirm-save' 		   => 'Save',
+# Add categories per AJAX
+'ajax-add-category'            => 'Add category',
+'ajax-add-category-submit'     => 'Add',
+'ajax-confirm-title'           => 'Confirm action',
+'ajax-confirm-prompt'          => 'You can provide an edit summary below.
+Click "{{int:ajax-confirm-save}}" to save your edit.',
+'ajax-confirm-save'            => 'Save',
 'ajax-add-category-summary'    => 'Add category "$1"',
 'ajax-remove-category-summary' => 'Remove category "$1"',
 'ajax-confirm-actionsummary'   => 'Action to take:',
-'ajax-error-title'			   => 'Error',
-'ajax-error-dismiss'		   => 'OK',
-'ajax-remove-category-error'   => 'It was not possible to remove this category. This usually
-occurs when the category has been added to the page in a template.',
+'ajax-error-title'             => 'Error',
+'ajax-error-dismiss'           => 'OK',
+'ajax-remove-category-error'   => 'It was not possible to remove this category.
+This usually occurs when the category has been added to the page in a template.',
 );

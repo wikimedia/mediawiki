@@ -3126,6 +3126,19 @@ $wgMessageStructure = array(
 		'htmlform-reset',
 		'htmlform-selectorother-other',
 	),
+	'ajax-category' => array(
+		'ajax-add-category',
+		'ajax-add-category-submit',
+		'ajax-confirm-title',
+		'ajax-confirm-prompt',
+		'ajax-confirm-save',
+		'ajax-add-category-summary',
+		'ajax-remove-category-summary',
+		'ajax-confirm-actionsummary',
+		'ajax-error-title',
+		'ajax-error-dismiss',
+		'ajax-remove-category-error',
+	),
 );
 
 /** Comments for each block */
@@ -3333,4 +3346,5 @@ Variants for Chinese language",
 	'special-tags'          => 'Special:Tags',
 	'db-error-messages'     => 'Database error messages',
 	'html-forms'            => 'HTML forms',
+	'ajax-category'         => 'Add categories per AJAX',
 );
