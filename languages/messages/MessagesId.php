@@ -615,7 +615,7 @@ $1',
 Daftar halaman istimewa yang sah dapat dilihat di [[Special:SpecialPages|{{int:specialpages}}]].",
 
 # General errors
-'error'                => 'Galat',
+'error'                => 'Kesalahan',
 'databaseerror'        => 'Kesalahan basis data',
 'dberrortext'          => 'Ada kesalahan sintaks pada permintaan basis data. 
 Kesalahan ini mungkin menandakan adanya sebuah \'\'bug\'\' dalam perangkat lunak. 
@@ -864,6 +864,9 @@ Alamat IP seperti ini mungkin dipakai bersama oleh beberapa pengguna yang berbed
 Jika Anda adalah seorang pengguna anonim dan merasa mendapatkan komentar-komentar yang tidak relevan yang ditujukan langsung kepada Anda, silakan [[Special:UserLogin/signup|membuat akun]] atau [[Special:UserLogin|masuk log]] untuk menghindari kerancuan dengan pengguna anonim lainnya di lain waktu.''",
 'noarticletext'                    => 'Saat ini tidak ada teks dalam halaman ini.
 Anda dapat [[Special:Search/{{PAGENAME}}|melakukan pencarian untuk judul halaman ini]] di halaman-halaman lain, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} mencari log terkait], atau [{{fullurl:{{FULLPAGENAME}}|action=edit}} menyunting halaman ini]</span>.',
+'noarticletext-nopermission'       => 'Tidak ada teks di halaman ini.
+Anda dapat [[Special:Search/{{PAGENAME}}|pencarian judul]] dihalaman lain,
+atau <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} cari log yang berhubungan]</span>.',
 'userpage-userdoesnotexist'        => 'Akun pengguna "$1" tidak terdaftar.',
 'clearyourcache'                   => "'''Catatan:''' Setelah menyimpan preferensi, Anda perlu membersihkan <em>cache</em> penjelajah web Anda untuk melihat perubahan. '''Mozilla / Firefox / Safari:''' tekan ''Ctrl-Shift-R'' (''Cmd-Shift-R'' pada Apple Mac); '''IE:''' tekan ''Ctrl-F5''; '''Konqueror:''': tekan ''F5''; '''Opera''' bersihkan <em>cache</em> melalui menu ''Tools→Preferences''.",
 'usercssyoucanpreview'             => "'''Tips:''' Gunakan tombol 'Lihat pratayang' untuk menguji CSS baru Anda sebelum menyimpannya.",
@@ -2248,17 +2251,18 @@ $1',
 'month'               => 'Sejak bulan (dan sebelumnya):',
 'year'                => 'Sejak tahun (dan sebelumnya):',
 
-'sp-contributions-newbies'       => 'Hanya pengguna-pengguna baru',
-'sp-contributions-newbies-sub'   => 'Untuk pengguna baru',
-'sp-contributions-newbies-title' => 'Kontribusi pengguna baru',
-'sp-contributions-blocklog'      => 'Log pemblokiran',
-'sp-contributions-deleted'       => 'kontribusi pengguna yang dihapus',
-'sp-contributions-logs'          => 'log',
-'sp-contributions-talk'          => 'bicara',
-'sp-contributions-userrights'    => 'pengelolaan hak pengguna',
-'sp-contributions-search'        => 'Cari kontribusi',
-'sp-contributions-username'      => 'Alamat IP atau nama pengguna:',
-'sp-contributions-submit'        => 'Cari',
+'sp-contributions-newbies'        => 'Hanya pengguna-pengguna baru',
+'sp-contributions-newbies-sub'    => 'Untuk pengguna baru',
+'sp-contributions-newbies-title'  => 'Kontribusi pengguna baru',
+'sp-contributions-blocklog'       => 'Log pemblokiran',
+'sp-contributions-deleted'        => 'kontribusi pengguna yang dihapus',
+'sp-contributions-logs'           => 'log',
+'sp-contributions-talk'           => 'bicara',
+'sp-contributions-userrights'     => 'pengelolaan hak pengguna',
+'sp-contributions-blocked-notice' => 'Pengguna ini sedang di blok. log pemblokiran terakhir ditampilkan berikut untuk referensi:',
+'sp-contributions-search'         => 'Cari kontribusi',
+'sp-contributions-username'       => 'Alamat IP atau nama pengguna:',
+'sp-contributions-submit'         => 'Cari',
 
 # What links here
 'whatlinkshere'            => 'Pranala balik',
@@ -3340,5 +3344,20 @@ Keterangan tampilan:
 'htmlform-submit'              => 'Kirim',
 'htmlform-reset'               => 'Batalkan perubahan',
 'htmlform-selectorother-other' => 'Lain-lain',
+
+# Add categories per AJAX
+'ajax-add-category'            => 'Tambah kategori',
+'ajax-add-category-submit'     => 'Tambah',
+'ajax-confirm-title'           => 'Konfirmasi aksi',
+'ajax-confirm-prompt'          => 'Anda dapat menambahkan ringkasan suntingan dibawah.
+Click "Simpan" untuk menyimpan suntingan anda.',
+'ajax-confirm-save'            => 'Simpan',
+'ajax-add-category-summary'    => 'Tambah kategori "$1"',
+'ajax-remove-category-summary' => 'Hapus kategori "$1"',
+'ajax-confirm-actionsummary'   => 'Aksi yang dilakukan:',
+'ajax-error-title'             => 'Kesalahan',
+'ajax-error-dismiss'           => 'Baik',
+'ajax-remove-category-error'   => 'Tidak mungkin menghapus kategori ini.
+Biasanya karena kategori di tambahkan kehalaman melalui templat.',
 
 );

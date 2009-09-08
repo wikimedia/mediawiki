@@ -3246,4 +3246,10 @@ Kirjoita tiedostonimi ilman ”{{ns:file}}:”-etuliitettä.',
 'htmlform-reset'               => 'Kumoa muutokset',
 'htmlform-selectorother-other' => 'Muu',
 
+# Add categories per AJAX
+'ajax-add-category'        => 'Lisää luokka',
+'ajax-add-category-submit' => 'Lisää',
+'ajax-confirm-save'        => 'Tallenna',
+'ajax-error-title'         => 'Virhe',
+
 );

@@ -1009,7 +1009,7 @@ Andre administratorar på {{SITENAME}} kan framleis sjå det gøymde innhaldet o
 'revdelete-suppress'          => 'Fjern informasjon frå administratorar også',
 'revdelete-hide-image'        => 'Skjul filinnhald',
 'revdelete-unsuppress'        => 'Fjern avgrensingane på dei attoppretta versjonane',
-'revdelete-log'               => 'Kommentar:',
+'revdelete-log'               => 'Grunngjeving for sletting:',
 'revdelete-submit'            => 'Utfør på vald versjon',
 'revdelete-logentry'          => 'endra versjonsvisinga til [[$1]]',
 'logdelete-logentry'          => 'endra visinga av loggoppføringane til [[$1]]',
@@ -1042,6 +1042,8 @@ Du har ikkje tilgang til henne.',
 'revdelete-concurrent-change' => 'Feil ved endring av eininga datert $2, $1: statusen ser ut til å ha vorte endra av einkvan annan medan du prøvde å endre ho.
 Sjekk gjerne loggføringa.',
 'revdelete-only-restricted'   => 'Du kan ikkje hindra vising av objekt av administratorar utan å òg velja eit av dei andre alternativa for hindring av vising.',
+'revdelete-otherreason'       => 'Annan årsak, eller tilleggsårsak:',
+'revdelete-reasonotherlist'   => 'Annan grunn',
 'revdelete-edit-reasonlist'   => 'Endre grunnar til sletting',
 
 # Suppression log
@@ -2013,6 +2015,7 @@ Om du seinare vil fjerne sida frå overvakingslista, klikk på «Fjern overvakin
 'enotif_impersonal_salutation' => '{{SITENAME}}-brukar',
 'changed'                      => 'endra',
 'created'                      => 'oppretta',
+'enotif_deletedpagetext'       => 'Denne sida er ikkje lenger tilgjengeleg.',
 'enotif_subject'               => '{{SITENAME}}-sida $PAGETITLE har vorte $CHANGEDORCREATED av $PAGEEDITOR',
 'enotif_lastvisited'           => 'Sjå $1 for alle endringane sidan siste vitjing.',
 'enotif_lastdiff'              => 'Sjå $1 for å sjå denne endringa.',
@@ -2542,6 +2545,7 @@ Vitja [http://www.mediawiki.org/wiki/Localisation MediaWiki Localisation] og [ht
 'tooltip-search-fulltext'         => 'Søk etter sider som inneheld denne teksten',
 'tooltip-p-logo'                  => 'Hovudside',
 'tooltip-n-mainpage'              => 'Gå til hovudsida',
+'tooltip-n-mainpage-description'  => 'Gå til hovudsida',
 'tooltip-n-portal'                => 'Om prosjektet, kva du kan gjera, kvar du finn saker og ting',
 'tooltip-n-currentevents'         => 'Aktuelt',
 'tooltip-n-recentchanges'         => 'Liste over dei siste endringane som er gjort på wikien.',

@@ -15,6 +15,7 @@
  * @author Spacebirdy
  * @author Steinninn
  * @author Urhixidur
+ * @author Ævar Arnfjörð Bjarmason
  * @author לערי ריינהארט
  */
 
@@ -360,6 +361,16 @@ $messages = array(
 'qbspecialpages' => 'Kerfissíður',
 'faq'            => 'Algengar spurningar',
 'faqpage'        => 'Project:Algengar spurningar',
+
+# Vector skin
+'vector-action-delete'    => 'Eyða',
+'vector-action-move'      => 'Færa',
+'vector-action-protect'   => 'Vernda',
+'vector-action-unprotect' => 'Afvernda',
+'vector-namespace-image'  => 'Skrá',
+'vector-view-create'      => 'Skapa',
+'vector-view-edit'        => 'Breyta',
+'vector-view-history'     => 'Breytingaskrá',
 
 # Metadata in edit box
 'metadata_help' => 'Lýsigögn:',
@@ -1670,7 +1681,7 @@ Sjáðu [[Special:ProtectedPages|listann yfir verndaðar síður]] fyrir núvera
 'protect-title'               => 'Vernda „$1“',
 'prot_1movedto2'              => '[[$1]] færð á [[$2]]',
 'protect-legend'              => 'Verndunarstaðfesting',
-'protectcomment'              => 'Ástæða',
+'protectcomment'              => 'Ástæða:',
 'protectexpiry'               => 'Rennur út:',
 'protect_expiry_invalid'      => 'Ógildur tími.',
 'protect_expiry_old'          => 'Tíminn er þegar runninn út.',

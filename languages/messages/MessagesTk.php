@@ -1487,17 +1487,56 @@ Ondan soňraky çykgyt(lar) kadadan çykma hökmünde kabul edilýär, meselem: 
 
 'exif-meteringmode-0' => 'Näbelli',
 
-'exif-lightsource-0'  => 'Näbelli',
-'exif-lightsource-1'  => 'Gündiz ýagtylygy',
-'exif-lightsource-2'  => 'Flýuoressent',
-'exif-lightsource-3'  => 'Gyzdyryş lampasy',
-'exif-lightsource-4'  => 'Wspyşka',
-'exif-lightsource-9'  => 'Gowy howa',
-'exif-lightsource-10' => 'Bulutly howa',
-'exif-lightsource-11' => 'Kölegeli',
-'exif-lightsource-17' => 'Standart ýagtylyk A',
-'exif-lightsource-18' => 'Standart ýagtylyk B',
-'exif-lightsource-19' => 'Standart ýagtylyk C',
+'exif-lightsource-0'   => 'Näbelli',
+'exif-lightsource-1'   => 'Gündiz ýagtylygy',
+'exif-lightsource-2'   => 'Flýuoressent',
+'exif-lightsource-3'   => 'Gyzdyryş lampasy',
+'exif-lightsource-4'   => 'Wspyşka',
+'exif-lightsource-9'   => 'Gowy howa',
+'exif-lightsource-10'  => 'Bulutly howa',
+'exif-lightsource-11'  => 'Kölegeli',
+'exif-lightsource-12'  => 'Gündiz ýagtysy flýuoresent (D 5700 – 7100K)',
+'exif-lightsource-13'  => 'Gündizlik ak flýuoresent (N 4600 – 5400K)',
+'exif-lightsource-14'  => 'Tebigy ak flýuoresent (W 3900 – 4500K)',
+'exif-lightsource-15'  => 'Ak flýuoresent (WW 3200 – 3700K)',
+'exif-lightsource-17'  => 'Standart ýagtylyk A',
+'exif-lightsource-18'  => 'Standart ýagtylyk B',
+'exif-lightsource-19'  => 'Standart ýagtylyk C',
+'exif-lightsource-24'  => 'ISO studiýa lampasy',
+'exif-lightsource-255' => 'Başga ýagtylyk çeşmeleri',
+
+# Flash modes
+'exif-flash-fired-0'    => 'Wspyşka işlemedi',
+'exif-flash-fired-1'    => 'Waspyşka işledi',
+'exif-flash-return-2'   => 'başky wspyşkanyň gaýdyş impulsy kesgitlenmedi',
+'exif-flash-return-3'   => 'başky wspyşkanyň gaýdyş impulsy kesgitlendi',
+'exif-flash-mode-1'     => 'mejbury wspyşka impulsy',
+'exif-flash-mode-2'     => 'mejbury wspyşka ýapyk',
+'exif-flash-mode-3'     => 'awtomatik režim',
+'exif-flash-function-1' => 'Wspyşka ýapyk',
+'exif-flash-redeye-1'   => 'gyzyl göz effektini aýyrmak režimi',
+
+'exif-focalplaneresolutionunit-2' => 'dýuým',
+
+'exif-sensingmethod-1' => 'Kesgitlenmedik',
+'exif-sensingmethod-2' => 'Ýeke çip reňkli matrisaly sensor',
+'exif-sensingmethod-3' => 'Iki çip reňkli matrisaly sensor',
+'exif-sensingmethod-4' => 'Üç çip reňkli matrisaly sensor',
+'exif-sensingmethod-5' => 'Reňk yzygiderlikli matrisaly sensor',
+'exif-sensingmethod-7' => 'Üç reňkli çyzykly sensor',
+'exif-sensingmethod-8' => 'Reňk yzygiderlikli çyzykly sensor',
+
+'exif-scenetype-1' => 'Gönümel düşürilen surat',
+
+'exif-customrendered-0' => 'Adaty',
+'exif-customrendered-1' => 'Hususy proses',
+
+'exif-exposuremode-0' => 'Awtomatik ekspozisiýa',
+'exif-exposuremode-1' => 'El bilen ekspozisiýa',
+'exif-exposuremode-2' => 'Awto brakeraž',
+
+'exif-whitebalance-0' => 'Awtomatik ak balans',
+'exif-whitebalance-1' => 'El bilen ak balans',
 
 'exif-scenecapturetype-0' => 'Standart',
 'exif-scenecapturetype-1' => 'Landşaft',
@@ -1505,8 +1544,27 @@ Ondan soňraky çykgyt(lar) kadadan çykma hökmünde kabul edilýär, meselem: 
 'exif-scenecapturetype-3' => 'Gijeki düşüriş',
 
 'exif-gaincontrol-0' => 'Hiç hili',
+'exif-gaincontrol-1' => 'Pes köpelme',
+'exif-gaincontrol-2' => 'Güýçli köpelme',
+'exif-gaincontrol-3' => 'Pes azalma',
+'exif-gaincontrol-4' => 'Güýçli azalma',
+
+'exif-contrast-0' => 'Adaty',
+'exif-contrast-1' => 'Ýumşak',
+'exif-contrast-2' => 'Gaty',
+
+'exif-saturation-0' => 'Adaty',
+'exif-saturation-1' => 'Pes doýgunluk',
+'exif-saturation-2' => 'Ýokary doýgunluk',
+
+'exif-sharpness-0' => 'Adaty',
+'exif-sharpness-1' => 'Ýumşak',
+'exif-sharpness-2' => 'Gaty',
 
 'exif-subjectdistancerange-0' => 'Näbelli',
+'exif-subjectdistancerange-1' => 'Makro',
+'exif-subjectdistancerange-2' => 'Ýakyndan görüniş',
+'exif-subjectdistancerange-3' => 'Uzakdan görüniş',
 
 # Pseudotags used for GPSLatitudeRef and GPSDestLatitudeRef
 'exif-gpslatitude-n' => 'Demirgazyk giňişlik',
@@ -1516,15 +1574,95 @@ Ondan soňraky çykgyt(lar) kadadan çykma hökmünde kabul edilýär, meselem: 
 'exif-gpslongitude-e' => 'Gündogar uzaklyk',
 'exif-gpslongitude-w' => 'Günbatar uzaklyk',
 
+'exif-gpsstatus-a' => 'Ölçemeklik dowam edýär',
+'exif-gpsstatus-v' => 'Ölçegiň funksional sazlaşygy',
+
+'exif-gpsmeasuremode-2' => '2-ölçegli ölçeg',
+'exif-gpsmeasuremode-3' => '3-ölçegli ölçeg',
+
+# Pseudotags used for GPSSpeedRef
+'exif-gpsspeed-k' => 'km/sagat',
+'exif-gpsspeed-m' => 'mil/sagat',
+'exif-gpsspeed-n' => 'Uzel (deňiz mili)',
+
+# Pseudotags used for GPSTrackRef, GPSImgDirectionRef and GPSDestBearingRef
+'exif-gpsdirection-t' => 'Hakyky ugur',
+'exif-gpsdirection-m' => 'Magnit ugur',
+
 # External editor support
 'edit-externally'      => 'Bu faýly daşarky programmalary ulanyp redaktirläň',
 'edit-externally-help' => '(Has köp maglumat üçin metadaky [http://www.mediawiki.org/wiki/Manual:External_editors gurmak boýunça gollanma] sahypasyna göz aýlaň)',
 
 # 'all' in various places, this might be different for inflected languages
-'imagelistall'  => 'ählisi',
-'watchlistall2' => 'Ählisini görkez',
-'namespacesall' => 'ählisi',
-'monthsall'     => 'ählisi',
+'recentchangesall' => 'ählisi',
+'imagelistall'     => 'ählisi',
+'watchlistall2'    => 'Ählisini görkez',
+'namespacesall'    => 'ählisi',
+'monthsall'        => 'ählisi',
+'limitall'         => 'ählisi',
+
+# E-mail address confirmation
+'confirmemail'             => 'E-poçta adresini tassykla',
+'confirmemail_noemail'     => '[[Special:Preferences|Ulanyjy sazlamalaryňyzda]] bellenilen dogry bir e-poçta adresiňiz ýok.',
+'confirmemail_text'        => '{{SITENAME}} saýtynyň e-poçta amallaryny ulanmak üçin, ilki bilen e-poçta adresiňiziň tassyklanmagy zerurdyr.
+Adresiňize tassyklama e-poçtasyny ibermek üçin aşakdaky düwmä basyň.
+Iberiljek habarda içinde kod ýazylan bir çykgyt bolar;
+e-poçta adresiňiziň dogrudygyny tassyklamak üçin ol çykgydy öz brauzeriňizde açyň.',
+'confirmemail_pending'     => 'Tassyklama kody size eýýäm ugradylypdyr;
+eger hasabyňyzy ýaňy-ýakynda açan bolsaňyz, ol gelýänçä biraz tagapyl ediň, bolmasa täze kod sorap bilersiňiz.',
+'confirmemail_send'        => 'Tassyklama koduny ugrat',
+'confirmemail_sent'        => 'Tassyklama e-poçtasy ugradyldy.',
+'confirmemail_oncreate'    => 'Tassyklama kody e-poçta adresiňize iberildi.
+Sessiýa açmak üçin bu kod gerek däldir, emma bu wikidäki haýsydyr bir bir e-poçta amalyny işletmek üçin muny üpjün etmegiňiz zerurdyr.',
+'confirmemail_sendfailed'  => '{{SITENAME}} tassyklama poçtaňyzy iberip bilmedi. E-poçtaňyz nädogry ýazylan bolmagy ähtimal. Barlap görüň.
+
+Serwer yzyna gaýtardy:$1',
+'confirmemail_invalid'     => 'Nädogry tassyklama kody. Koduň möhleti gutaran bolmagy ahmal.',
+'confirmemail_needlogin'   => 'E-poçta adresiňizi tassyklamak üçin $1-yň.',
+'confirmemail_success'     => 'E-poçta adresiňiz tassyklandy. [[Special:UserLogin|Sessiýa açyň-da]] wikini ulanyberiň.',
+'confirmemail_loggedin'    => 'E-poçta adresiňiz tassyklandy.',
+'confirmemail_error'       => 'Tassyklamaňyz ýazdyrylanda bir ýalňyşlyk boldy.',
+'confirmemail_subject'     => '{{SITENAME}} e-poçta adres tassyklamasy.',
+'confirmemail_body'        => 'Kimdir biri, ähtimal özüňiz, $1 IP adresinden,
+{{SITENAME}} saýtynda bu e-poçta adresi bilen $2 hasabyny açdy.   
+
+Bu hasabyň hakykatdan-da size degişlidigini tassyklamak hem-de {{SITENAME}} saýtyndaky 
+e-poçta amallaryny işjeňleşdirmek üçin aşakdaky çykgydy öz brauzeriňizde açyň.
+
+$3
+
+Eger-de hasaby siz *açmadyk bolsaňyz*, e-poçta adresi tassyklamasyny 
+ýatyrmak üçin aşakdaky çykgydy yzarlaň:
+
+$5
+
+Bu tassyklama kody $4 senesine çenli güýjüni saklaýar.',
+'confirmemail_invalidated' => 'E-poçta tassyklamasy ýatyryldy',
+'invalidateemail'          => 'E-poçta tassyklamasyny ýatyr',
+
+# Scary transclusion
+'scarytranscludedisabled' => '[Wikiara atanaklaýyn girizme ýapyk]',
+'scarytranscludefailed'   => '[$1 üçin şablon äkelmeklik başa barmady]',
+'scarytranscludetoolong'  => '[URL örän uzyn]',
+
+# Trackbacks
+'trackbackbox'      => 'Bu sahypa üçin trackbackler:<br />
+$1',
+'trackbackremove'   => '([$1 Öçür])',
+'trackbacklink'     => 'Trackback',
+'trackbackdeleteok' => 'Trackback şowly öçürildi.',
+
+# Delete conflict
+'deletedwhileediting' => "'''Duýduryş''': Bu sahypa siz redaktirläp başlanyňyzdan soňra öçürildi!",
+'confirmrecreate'     => "Bu sahypany [[User:$1|$1]] ([[User talk:$1|çekişme]]) ulanyjysy siz sahypany redaktirläp otyrkaňyz öçürdi, sebäbi:
+: ''$2''
+Sahypany gaýtadan döretmek isleýän bolsaňyz, tassyklamagyňyzy haýyş edýäris.",
+'recreate'            => 'Gaýtadan döret',
+
+# action=purge
+'confirm_purge_button' => 'Bolýar',
+'confirm-purge-top'    => 'Bu sahypanyň keşini boşatmalymy?',
+'confirm-purge-bottom' => 'Bir sahypany arassalamaklyk keşi boşadýar we iň täze wersiýany görüner ýaly edýär.',
 
 # Multipage image navigation
 'imgmultipageprev' => '← öňki sahypa',

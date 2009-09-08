@@ -903,6 +903,10 @@ $1",
 'revdelete-log-message'       => '$1 vir $2 {{PLURAL:$2|weergawe|weergawes}}',
 'logdelete-log-message'       => '$1 vir $2 {{PLURAL:$2|gebeurtenis|gebeurtenisse}}',
 'revdelete-modify-missing'    => 'Fout met die wysiging van item ID $1: dit is nie in die databasis nie!',
+'revdelete-reason-dropdown'   => '* Algemene redes vir skrapping
+** Skending van outeursreg
+** Onbetaamlike persoonlike inligting',
+'revdelete-otherreason'       => 'Ander rede:',
 'revdelete-reasonotherlist'   => 'Ander rede',
 'revdelete-edit-reasonlist'   => 'Wysig skrap redes',
 
@@ -1997,17 +2001,18 @@ $1',
 'month'               => 'Vanaf maand (en vroeër):',
 'year'                => 'Vanaf jaar (en vroeër):',
 
-'sp-contributions-newbies'       => 'Wys slegs bydraes deur nuwe rekenings',
-'sp-contributions-newbies-sub'   => 'Vir nuwe gebruikers',
-'sp-contributions-newbies-title' => 'Bydraes van nuwe gebruikers',
-'sp-contributions-blocklog'      => 'Blokkeer-logboek',
-'sp-contributions-deleted'       => 'geskrapte gebruikersbydraes',
-'sp-contributions-logs'          => 'logboeke',
-'sp-contributions-talk'          => 'bespreking',
-'sp-contributions-userrights'    => 'bestuur gebruikersregte',
-'sp-contributions-search'        => 'Soek na bydraes',
-'sp-contributions-username'      => 'IP-adres of gebruikersnaam:',
-'sp-contributions-submit'        => 'Vertoon',
+'sp-contributions-newbies'        => 'Wys slegs bydraes deur nuwe rekenings',
+'sp-contributions-newbies-sub'    => 'Vir nuwe gebruikers',
+'sp-contributions-newbies-title'  => 'Bydraes van nuwe gebruikers',
+'sp-contributions-blocklog'       => 'Blokkeer-logboek',
+'sp-contributions-deleted'        => 'geskrapte gebruikersbydraes',
+'sp-contributions-logs'           => 'logboeke',
+'sp-contributions-talk'           => 'bespreking',
+'sp-contributions-userrights'     => 'bestuur gebruikersregte',
+'sp-contributions-blocked-notice' => 'Hierdie gebruiker is tans geblokkeer. Die laaste inskrywing in die blokkeerlogboek word hieronder vertoon:',
+'sp-contributions-search'         => 'Soek na bydraes',
+'sp-contributions-username'       => 'IP-adres of gebruikersnaam:',
+'sp-contributions-submit'         => 'Vertoon',
 
 # What links here
 'whatlinkshere'            => 'Skakels hierheen',
@@ -2630,6 +2635,7 @@ Ander velde sal versteek wees.
 
 'exif-sensingmethod-1' => 'Ongedefineer',
 'exif-sensingmethod-7' => 'Drielynige sensor',
+'exif-sensingmethod-8' => 'Kleurvolgende lynsensor',
 
 'exif-scenetype-1' => "'n Direk gefotografeerde beeld",
 
@@ -2638,6 +2644,9 @@ Ander velde sal versteek wees.
 
 'exif-exposuremode-0' => 'Outomatiese beligting',
 'exif-exposuremode-1' => 'Handmatige beligting',
+
+'exif-whitebalance-0' => 'Outomatiese witbalans',
+'exif-whitebalance-1' => 'Handmatige witbalans',
 
 'exif-scenecapturetype-0' => 'Standaard',
 'exif-scenecapturetype-1' => 'Landskap',
@@ -2695,6 +2704,7 @@ Ander velde sal versteek wees.
 'watchlistall2'    => 'alles',
 'namespacesall'    => 'alle',
 'monthsall'        => 'alle',
+'limitall'         => 'alle',
 
 # E-mail address confirmation
 'confirmemail'             => 'Bevestig e-posadres',
@@ -2903,5 +2913,8 @@ Sleutel die lêernaam in sonder die "{{ns:file}}:" voorvoegsel.',
 'htmlform-submit'              => 'Dien in',
 'htmlform-reset'               => 'Maak wysigings ongedaan',
 'htmlform-selectorother-other' => 'Ander',
+
+# Add categories per AJAX
+'ajax-error-title' => 'Fout',
 
 );
