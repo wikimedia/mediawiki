@@ -62,13 +62,12 @@ class AuthPlugin {
 	/**
 	 * Modify options in the login template.
 	 *
-	 * @param $sp SpecialUserlogin or SpecialCreateAccount object.
-	 * @param $type String 'signup' or 'login'. Redundant because
-	 *    you can just use instanceof to tell the two cases apart.
+	 * @param $template UserLoginTemplate object.
+	 * @param $type String 'signup' or 'login'.
 	 */
-	public function modifyUITemplate( &$sp, $type=null ) {
+	public function modifyUITemplate( &$template, &$type ) {
 		# Override this!
-		$sp->mDomains = false;
+		$template->set( 'usedomain', false );
 	}
 
 	/**

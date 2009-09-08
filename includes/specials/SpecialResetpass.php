@@ -43,6 +43,7 @@ class SpecialResetpass extends SpecialPage {
 				$wgOut->addWikiMsg( 'resetpass_success' );
 				if( !$wgUser->isLoggedIn() ) {
 					$data = array(
+						'action'     => 'submitlogin',
 						'wpName'     => $this->mUserName,
 						'wpPassword' => $this->mNewpass,
 						'returnto'   => $wgRequest->getVal( 'returnto' ),
@@ -51,7 +52,7 @@ class SpecialResetpass extends SpecialPage {
 						$data['wpRemember'] = 1;
 					}
 					$login = new LoginForm( new FauxRequest( $data, true ) );
-					$login->attemptLogin();
+					$login->execute();
 				}
 				$titleObj = Title::newFromText( $wgRequest->getVal( 'returnto' ) );
 				if ( !$titleObj instanceof Title ) {
