@@ -596,7 +596,7 @@ HTML markup cannot be used.",
 {{Identical|Log in}}",
 'nav-login-createaccount'    => "Shown to anonymous users in the upper right corner of the page. When you can't create an account, the message {{msg|login}} is shown.",
 'loginprompt'                => 'A small notice in the log in form.',
-'userlogin'                  => 'Name of special page [[Special:UserLogin]] where a user can log in.',
+'userlogin'                  => 'Name of special page [[Special:UserLogin]] where a user can log in or click to create a user account.',
 'logout'                     => '{{Identical|Log out}}',
 'userlogout'                 => '{{Identical|Log out}}',
 'notloggedin'                => 'This message is displayed in the standard skin when not logged in. The message is placed above the login link in the top right corner of pages.
@@ -604,7 +604,7 @@ HTML markup cannot be used.",
 {{Identical|Not logged in}}',
 'nologin'                    => 'A message shown in the log in form. $1 is a link to the account creation form, and the text of it is "[[MediaWiki:Nologinlink/{{SUBPAGENAME}}|{{int:nologinlink}}]]".',
 'nologinlink'                => 'Text of the link to the account creation form. Before that link, the message [[MediaWiki:Nologin/{{SUBPAGENAME}}]] appears.',
-'createaccount'              => 'The title of Special:CreateAccount, where users can register a new account. Used on Special:SpecialPages, and also on the submit button in the form where you register a new account.',
+'createaccount'              => 'Used on the submit button in the form where you register a new account.',
 'gotaccount'                 => 'A message shown in the account creation form. $1 is a link to the log in form, and the text of it is "[[MediaWiki:Gotaccountlink/{{SUBPAGENAME}}|{{int:gotaccountlink}}]]".',
 'gotaccountlink'             => 'Text of the link to the log in form. Before that link, the message [[MediaWiki:Gotaccount/{{SUBPAGENAME}}]] appears.
 
