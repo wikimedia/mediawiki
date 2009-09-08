@@ -191,14 +191,6 @@ $wgFileStore['deleted']['directory'] = false;///< Defaults to $wgUploadDirectory
 $wgFileStore['deleted']['url'] = null;       ///< Private
 $wgFileStore['deleted']['hash'] = 3;         ///< 3-level subdirectory split
 
-
-/**
- *  used only for img_auth script - see [[Image Authorization]]
- */
-$wgImgAuthDetails   = false; ///< defaults to false - only set to true if you use img_auth and want the user to see details on why access failed
-$wgImgAuthPublicTest = true; ///< defaults to true - if public read is turned on, no need for img_auth, config error unless other access is used
-
-
 /**@{
  * File repository structures
  *
@@ -289,6 +281,7 @@ $wgForeignFileRepos = array();
  */
 $wgLegalTitleChars = " %!\"$&'()*,\\-.\\/0-9:;=?@A-Z\\\\^_`a-z~\\x80-\\xFF+";
 $wgIllegalFileChars = ":";  // These are additional characters that should be replaced with '-' in file names
+
 
 /**
  * The external URL protocols
