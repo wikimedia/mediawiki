@@ -50,8 +50,8 @@
   <!-- if a page is deleted and recreated.                          -->
   <id>1</id>
 
-  <! -- Tag wether this article is a redirect -->
-  <! -- This corresponds to the page_is_redirect in the page table -->
+  <!-- Tag wether this article is a redirect -->
+  <!-- This corresponds to the page_is_redirect in the page table -->
   <redirect />
   
   <!-- If restricted, the ACL is listed here raw. -->
