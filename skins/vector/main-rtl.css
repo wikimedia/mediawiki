@@ -357,11 +357,12 @@ body {
 	#simpleSearch > button#searchButton {
 		height: 100%;
 	}
-	.suggestions-special .search-for {
-		color: green;
+	.suggestions-special .special-label {
+		font-size: 0.8em;
+		color: gray;
 	}
-	.suggestions-special .search-term {
-		color: blue;
+	.suggestions-special .special-query {
+		color: #0645ad;
 		text-decoration: underline;
 	}
 /* Panel */
