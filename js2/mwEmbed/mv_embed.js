@@ -441,6 +441,7 @@ var mvJsLoader = {
 				}else{
 					var scriptPath = puri.path;
 				}
+				js_log('scriptServer Path is: ' + scriptPath + "\n host script path:" + getMvEmbedURL() );
 				var dbug_attr = ( puri.queryKey['debug'] ) ? '&debug=true' : '';
 				this.libs[ last_class ] = scriptPath + '?class=' + class_set +
 					'&urid=' + getMvUniqueReqId() + dbug_attr;
@@ -474,7 +475,7 @@ var mvJsLoader = {
 			}
 		} else {
 			//js_log('checkLoading passed. Running callbacks...');
-			// Only do callbacks if we are in the same instance (weird concurency issue)
+			// Only do callbacks if we are in the same instance (weird concurrency issue)
 			var cb_count=0;
 			for( var i = 0; i < this.callbacks.length; i++ )
 				cb_count++;
@@ -1356,13 +1357,8 @@ function getMvEmbedURL() {
 				( src.indexOf( 'mwScriptLoader.php' ) != -1 || src.indexOf('jsScriptLoader.php') != -1 )
 				&& src.indexOf('mv_embed') != -1) ) //(check for class=mv_embed script_loader call)
 			{
-				if(typeof wgScriptPath != 'undefined' && src.indexOf( 'mwScriptLoader.php' ) != -1 ){
-					_global['mv_embed_url'] = wgScriptPath + '/mwScriptLoader.php';
-					return _global['mv_embed_url']
-				}else{ 
-					_global['mv_embed_url'] = src;
-					return src;
-				}
+				_global['mv_embed_url'] = src;
+				return src;
 			}
 		}
 	}
