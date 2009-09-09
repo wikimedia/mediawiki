@@ -1,5 +1,5 @@
 <?php
-/** Simplified Chinese (‪中文(简体)‬)
+/** Simplified Chinese (‪中文(简化字)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -753,6 +753,8 @@ $2',
 如果您是不小心来到此页面，直接点击您浏览器中的"返回"按钮返回。',
 'anontalkpagetext'                 => "---- ''这是一个还未建立账户的匿名用户的讨论页, 因此我们只能用IP地址来与他或她联络。该IP地址可能由几名用户共享。如果您是一名匿名用户并认为此页上的评语与您无关，请[[Special:UserLogin/signup|创建新账户]]或[[Special:UserLogin|登录]]以避免在未来与其他匿名用户混淆。''",
 'noarticletext'                    => '此页目前没有内容，您可以在其它页[[Special:Search/{{PAGENAME}}|搜索此页标题]]或[{{fullurl:{{NAMESPACE}}:{{PAGENAME}}|action=edit}} 编辑此页]。',
+'noarticletext-nopermission'       => '此页目前没有内容，您可以在其它页[[Special:Search/{{PAGENAME}}|搜索此页标题]]，
+或<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} 搜索有关日志]</span>。',
 'userpage-userdoesnotexist'        => '用户账户“$1”未曾创建。请在创建／编辑这个页面前先检查一下。',
 'clearyourcache'                   => "'''注意 - 在保存以后，您必须清除浏览器的缓存才能看到所作出的改变。'''
 '''Mozilla / Firefox / Safari'''：按住''Shift''再点击''刷新''，或按下''Ctrl-F5''或''Ctrl-R''（在Macintosh上按下''Command-R''）；
@@ -2151,17 +2153,18 @@ $1',
 'month'               => '从该月份 （或更早）：',
 'year'                => '从该年份 （或更早）：',
 
-'sp-contributions-newbies'       => '只显示新创建之用户的贡献',
-'sp-contributions-newbies-sub'   => '新手',
-'sp-contributions-newbies-title' => '新手的用户贡献',
-'sp-contributions-blocklog'      => '封禁日志',
-'sp-contributions-deleted'       => '已删除的用户贡献',
-'sp-contributions-logs'          => '日志',
-'sp-contributions-talk'          => '对话',
-'sp-contributions-userrights'    => '用户权限管理',
-'sp-contributions-search'        => '搜索贡献记录',
-'sp-contributions-username'      => 'IP地址或用户名称：',
-'sp-contributions-submit'        => '搜索',
+'sp-contributions-newbies'        => '只显示新创建之用户的贡献',
+'sp-contributions-newbies-sub'    => '新手',
+'sp-contributions-newbies-title'  => '新手的用户贡献',
+'sp-contributions-blocklog'       => '封禁日志',
+'sp-contributions-deleted'        => '已删除的用户贡献',
+'sp-contributions-logs'           => '日志',
+'sp-contributions-talk'           => '对话',
+'sp-contributions-userrights'     => '用户权限管理',
+'sp-contributions-blocked-notice' => '这位用户现时正在被封锁中。最近的封锁日志项目在下面提供以便参考：',
+'sp-contributions-search'         => '搜索贡献记录',
+'sp-contributions-username'       => 'IP地址或用户名称：',
+'sp-contributions-submit'         => '搜索',
 
 # What links here
 'whatlinkshere'            => '链入页面',
@@ -3234,5 +3237,20 @@ $1',
 'htmlform-submit'              => '提交',
 'htmlform-reset'               => '撤销更改',
 'htmlform-selectorother-other' => '其他',
+
+# Add categories per AJAX
+'ajax-add-category'            => '加入分类',
+'ajax-add-category-submit'     => '加入',
+'ajax-confirm-title'           => '确认动作',
+'ajax-confirm-prompt'          => '您可以在下面提供一个编辑摘要。
+点击“保存”去保存您的编辑。',
+'ajax-confirm-save'            => '保存',
+'ajax-add-category-summary'    => '加入分类“$1”',
+'ajax-remove-category-summary' => '移除分类“$1”',
+'ajax-confirm-actionsummary'   => '已进行的动作：',
+'ajax-error-title'             => '错误',
+'ajax-error-dismiss'           => '好',
+'ajax-remove-category-error'   => '不能移除这个分类。
+通常是发生在一个模板中加入该分类。',
 
 );

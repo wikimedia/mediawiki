@@ -594,6 +594,10 @@ $2',
 誤入者，返前即可。',
 'anontalkpagetext'                 => "----''此匿論也，為未簿或不簿者設，IP俱錄以辨人焉。然IP不獨，恐生亂象，不喜惠[[Special:UserLogin/signup|增]][[Special:UserLogin|登簿]]遠之。",
 'noarticletext'                    => '查無此文。',
+'noarticletext'                    => '查無此文。[[Special:Search/{{PAGENAME}}|尋題]]，
+<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} 尋誌]，
+或[{{fullurl:{{FULLPAGENAME}}|action=edit}} 纂頁]</span>。',
+'noarticletext-nopermission'       => '查無此文。[[Special:Search/{{PAGENAME}}|尋題]]，或<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} 尋誌]</span>。',
 'userpage-userdoesnotexist'        => '"$1"之簿未增也。請建纂本頁前查之。',
 'clearyourcache'                   => "'''註：'''重取頁面，文方新焉。
 '''Mozilla / Firefox / Safari:'''押''Shift''並點''重新載入''，或合鍵''Ctrl-F5''或''Ctrl-R''（Macintosh為''Command-R''）。
@@ -1874,17 +1878,18 @@ $1',
 'month'               => '且不越',
 'year'                => '年不越',
 
-'sp-contributions-newbies'       => '惟列新進',
-'sp-contributions-newbies-sub'   => '予新進',
-'sp-contributions-newbies-title' => '新進之功績',
-'sp-contributions-blocklog'      => '誌禁',
-'sp-contributions-deleted'       => '已刪之積',
-'sp-contributions-logs'          => '誌',
-'sp-contributions-talk'          => '議',
-'sp-contributions-userrights'    => '秉治權任',
-'sp-contributions-search'        => '問勛',
-'sp-contributions-username'      => '簿名或IP址',
-'sp-contributions-submit'        => '問',
+'sp-contributions-newbies'        => '惟列新進',
+'sp-contributions-newbies-sub'    => '予新進',
+'sp-contributions-newbies-title'  => '新進之功績',
+'sp-contributions-blocklog'       => '誌禁',
+'sp-contributions-deleted'        => '已刪之積',
+'sp-contributions-logs'           => '誌',
+'sp-contributions-talk'           => '議',
+'sp-contributions-userrights'     => '秉治權任',
+'sp-contributions-blocked-notice' => '此簿現禁。近誌禁之項如下示之：',
+'sp-contributions-search'         => '問勛',
+'sp-contributions-username'       => '簿名或IP址',
+'sp-contributions-submit'         => '問',
 
 # What links here
 'whatlinkshere'            => '取佐',
@@ -2634,5 +2639,20 @@ $1',
 'htmlform-submit'              => '呈',
 'htmlform-reset'               => '復',
 'htmlform-selectorother-other' => '他',
+
+# Add categories per AJAX
+'ajax-add-category'            => '加類',
+'ajax-add-category-submit'     => '加',
+'ajax-confirm-title'           => '確',
+'ajax-confirm-prompt'          => '爾能給纂要。
+按「存」以存爾纂也。',
+'ajax-confirm-save'            => '存',
+'ajax-add-category-summary'    => '加類「$1」',
+'ajax-remove-category-summary' => '取類「$1」',
+'ajax-confirm-actionsummary'   => '已成之作：',
+'ajax-error-title'             => '錯',
+'ajax-error-dismiss'           => '好',
+'ajax-remove-category-error'   => '無取此類也。
+常於一模入類。',
 
 );
