@@ -42,7 +42,7 @@ class jsScriptLoader {
 		}
 
 		// Setup script loader header info
-		$this->jsout .= 'var mwSlScript = "' . htmlspecialchars( $_SERVER['SCRIPT_NAME'] ) . '";' . "\n";
+		$this->jsout .= 'var mwSlScript = "' .  $_SERVER['SCRIPT_NAME']  . '";' . "\n";
 		$this->jsout .= 'var mwSlGenISODate = "' . date( 'c' ) . '";'  . "\n";
 		$this->jsout .= 'var mwSlURID = "' . htmlspecialchars( $this->urid ) . '";'  . "\n";
 		// Build the output
@@ -91,7 +91,7 @@ class jsScriptLoader {
 			}
 
 			// Dealing with files
-			
+
 			// Check that the filename ends with .js and does not include ../ traversing
 			if ( substr( $file_name, - 3 ) != '.js' ) {
 				$this->error_msg .= "\nError file name must end with .js: " . htmlspecialchars( $file_name ) . " \n ";
@@ -139,7 +139,7 @@ class jsScriptLoader {
 		header( 'Content-Type: ' . $wgJsMimeType );
 		header( 'Pragma: public' );
 		// Cache forever
-		// The point is we never have to revalidate, since we should always change the request URL 
+		// The point is we never have to revalidate, since we should always change the request URL
 		// based on the SVN or article version.
 		$one_year = 60 * 60 * 24 * 365;
 		header( "Expires: " . gmdate( "D, d M Y H:i:s", time() + $one_year ) . " GM" );
@@ -201,14 +201,12 @@ class jsScriptLoader {
 
 					$reqClass = preg_replace( "/[^A-Za-z0-9_\-\.]/", '', $reqClass );
 
-					if ( isset( $wgJSAutoloadLocalClasses[$reqClass] ) ) {
-						$this->jsFileList[$reqClass] = $wgJSAutoloadLocalClasses[$reqClass];
-						$this->rKey .= $reqClass;
-					} else if ( isset( $wgJSAutoloadClasses[$reqClass] ) ) {
-						$this->jsFileList[$reqClass] = $wgJSAutoloadClasses[$reqClass];
-						$this->rKey .= $reqClass;
-					} else {
+					$jsFilePath = self::getJsPathFromClass( $reqClass );
+					if(!$jsFilePath){
 						$this->error_msg .= 'Requested class: ' . htmlspecialchars( $reqClass ) . ' not found' . "\n";
+					}else{
+						$this->jsFileList[ $reqClass ] = $jsFilePath;
+						$this->rKey .= $reqClass;
 					}
 				}
 			}
@@ -248,7 +246,16 @@ class jsScriptLoader {
 			$this->rKey .= '_min';
 		}
 	}
-
+	public static function getJsPathFromClass( $reqClass ){
+		global $wgJSAutoloadLocalClasses, $wgJSAutoloadClasses;
+		if ( isset( $wgJSAutoloadLocalClasses[$reqClass] ) ) {
+			return $wgJSAutoloadLocalClasses[$reqClass];
+		} else if ( isset( $wgJSAutoloadClasses[$reqClass] ) ) {
+			return $wgJSAutoloadClasses[$reqClass];
+		} else {
+			return false;
+		}
+	}
 	function doProcessJsFile( $file_name ) {
 		global $IP, $wgEnableScriptLocalization, $IP;
 
@@ -270,7 +277,7 @@ class jsScriptLoader {
 		if ( $wgEnableScriptLocalization )
 			$str = preg_replace_callback(
 				// @@todo fix: will break down if someone does }) in their msg text
-				'/loadGM\s*\(\s*{(.*)}\s*\)\s*/siU',	
+				'/loadGM\s*\(\s*{(.*)}\s*\)\s*/siU',
 				array( $this, 'languageMsgReplace' ),
 				$str
 			);
@@ -282,14 +289,15 @@ class jsScriptLoader {
 		if ( !isset( $jvar[1] ) )
 			return;
 
-		$jmsg = json_decode( '{' . $jvar[1] . '}', true );
+		$jmsg = FormatJson::decode( '{' . $jvar[1] . '}', true );
+
 		// Do the language lookup
 		if ( $jmsg ) {
 			foreach ( $jmsg as $msgKey => $default_en_value ) {
 				$jmsg[$msgKey] = wfMsgNoTrans( $msgKey );
 			}
 			// Return the updated loadGM JSON with fixed new lines
-			return 'loadGM( ' . json_encode( $jmsg ) . ')';
+			return 'loadGM( ' . FormatJson::encode( $jmsg ) . ')';
 		} else {
 			$this->error_msg .= "Could not parse JSON language msg in File:\n" .
 								htmlspecialchars ( $this->cur_file ) . "\n";
@@ -343,7 +351,7 @@ class simpleFileCache {
 				readfile( $this->filename );
 			} else {
 				/* Send uncompressed. Check if fileCache is in compressed state (ends with .gz)
-				 * We're unlikely to execute this since $wgUseGzip would have created a new file 
+				 * We're unlikely to execute this since $wgUseGzip would have created a new file
 				 * above, but just in case.
 				*/
 				if ( substr( $this->filename, - 3 ) == '.gz' ) {
