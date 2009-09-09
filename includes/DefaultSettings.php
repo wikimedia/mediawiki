@@ -4203,5 +4203,6 @@ $wgMemoryLimit = "50M";
 
 /**
  * Whether or not to use the AJAX categories system.
+ * Note that this requires JS2 and the script loader.
  */
 $wgUseAJAXCategories = false;
