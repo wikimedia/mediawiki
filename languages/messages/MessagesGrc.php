@@ -733,7 +733,7 @@ $2',
 'revdelete-suppress'          => 'Κρύπτειν τὴν ἐμφάνισιν δεδομένων παρὰ τοὺς Γέροντας ἐπἴσης',
 'revdelete-hide-image'        => 'Κρύπτειν περιεχόμενον ἀρχείου',
 'revdelete-unsuppress'        => 'Αἴρειν περιορίσεις ἐπὶ τῶν ἀποκατεστημένων ἐκδόσεων',
-'revdelete-log'               => 'Σχόλιον καταλόγου:',
+'revdelete-log'               => 'Aἰτία διαγραφῆς:',
 'revdelete-submit'            => 'Ἐφαρμογὴ τῇ ἐπειλεγμένῇ ἀναθεωρήσει',
 'revdelete-logentry'          => 'ἠλλαγμένη ἡ ὁρατότης τῆς ἀναθεωρήσεως τοῦ [[$1]]',
 'logdelete-logentry'          => 'ἀλλάττειν τὴν ὁρατότητα τῶν γεγονότων διὰ τὸ [[$1]]',
@@ -2799,5 +2799,10 @@ $1',
 'htmlform-submit'              => 'Ὑποβάλλειν',
 'htmlform-reset'               => 'Ἀναστρέφειν μεταβολάς',
 'htmlform-selectorother-other' => 'Ἄλλον',
+
+# Add categories per AJAX
+'ajax-remove-category-summary' => 'Ἀφαιρεῖν κατηγορίαν "$1"',
+'ajax-confirm-actionsummary'   => 'Πρακτέα:',
+'ajax-error-title'             => 'Σφάλμα',
 
 );

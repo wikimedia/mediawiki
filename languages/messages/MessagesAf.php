@@ -550,7 +550,7 @@ moenie vergeet om u persoonlike voorkeure te stel nie.',
 'login'                      => 'Teken in',
 'nav-login-createaccount'    => 'Teken in',
 'loginprompt'                => 'U blaaier moet koekies toelaat om by {{SITENAME}} te kan aanteken.',
-'userlogin'                  => 'Teken in',
+'userlogin'                  => 'Teken in / registreer',
 'logout'                     => 'Teken uit',
 'userlogout'                 => 'Teken uit',
 'notloggedin'                => 'Nie ingeteken nie',
@@ -722,6 +722,8 @@ Indien u per ongeluk hier is, gebruik u blaaier se '''terug'''- knoppie.",
 'anontalkpagetext'                 => "----''Hierdie is die besprekingsblad vir 'n anonieme gebruiker wat nog nie 'n rekening geskep het nie of wat dit nie gebruik nie. Daarom moet ons sy/haar numeriese IP-adres gebruik vir identifikasie. Só 'n adres kan deur verskeie gebruikers gedeel word. Indien u 'n anonieme gebruiker is wat voel dat ontoepaslike kommentaar teen u gerig is, [[Special:UserLogin|skep 'n rekening of teken in]] om verwarring met ander anonieme gebruikers te voorkom.''",
 'noarticletext'                    => 'Hierdie bladsy bevat geen teks nie.
 U kan [[Special:Search/{{PAGENAME}}|na hierdie bladsytitel in ander bladsye soek]], <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} die verwante logs deursoek], of [{{fullurl:{{FULLPAGENAME}}|action=edit}} hierdie bladsy wysig]</span>.',
+'noarticletext-nopermission'       => 'Daar is tans geen teks in hierdie bladsy nie. U kan vir die bladsytitel [[Special:Search/{{PAGENAME}}|in ander bladsye soek]] of
+<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} die verwante logboeke deursoek]</span>.',
 'userpage-userdoesnotexist'        => 'U is besig om \'n gebruikersblad wat nie bestaan nie te wysig (gebruiker "$1"). Maak asseblief seker of u die bladsy wil skep/ wysig.',
 'clearyourcache'                   => "'''Let wel''': Na die voorkeure gestoor is, moet u blaaier se kasgeheue verfris word om die veranderinge te sien: '''Mozilla:''' klik ''Reload'' (of ''Ctrl-R''), '''IE / Opera:''' ''Ctrl-F5'', '''Safari:''' ''Cmd-R'', '''Konqueror''' ''Ctrl-R''.",
 'usercssyoucanpreview'             => "'''Wenk:''' Gebruik die \"Wys voorskou\"-knoppie om u nuwe CSS te toets voor u stoor.",
@@ -855,11 +857,16 @@ Die rede verskaf deur $3 is ''$2''",
 'history-feed-title'          => 'Weergawegeskiedenis',
 'history-feed-description'    => 'Wysigingsgeskiedenis vir die bladsy op die wiki',
 'history-feed-item-nocomment' => '$1 by $2',
+'history-feed-empty'          => 'Die verlangde bladsy bestaan nie.
+Dit was moontlik geskrap of geskuif.
+[[Special:Search|Deursoek die wiki]] vir relevante bladsye.',
 
 # Revision deletion
 'rev-deleted-comment'         => '(opsomming geskrap)',
 'rev-deleted-user'            => '(gebruikersnaam geskrap)',
 'rev-deleted-event'           => '(stawingsaksie verwyder)',
+'rev-deleted-text-permission' => "Die weergawe van die bladsy is '''verwyder'''. 
+Vir meer besonderhede, raadpleeg die [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} skrapingslogboek].",
 'rev-delundel'                => 'wys/versteek',
 'revisiondelete'              => 'Verwyder/herstel weergawes',
 'revdelete-nooldid-title'     => 'Ongeldige teiken weergawe',
@@ -929,6 +936,7 @@ $1",
 'mergehistory-invalid-destination' => "Bestemmingsbladsy moet 'n geldige titel wees.",
 'mergehistory-autocomment'         => '[[:$1]] saamgevoeg by [[:$2]]',
 'mergehistory-comment'             => '[[:$1]] saamgevoeg by [[:$2]]: $3',
+'mergehistory-same-destination'    => 'Die oorsprong en bestemming kan nie dieselfde wees nie',
 'mergehistory-reason'              => 'Rede:',
 
 # Merge log
@@ -1649,6 +1657,7 @@ Elke ry bevat skakels na die eerste en die tweede aanstuur, asook die eerste re�
 'unusedcategoriestext'    => 'Die volgende kategoriebladsye bestaan alhoewel geen artikel of kategorie hulle gebruik nie.',
 'notargettitle'           => 'Geen teiken',
 'notargettext'            => "U het nie 'n teikenbladsy of gebruiker waarmee hierdie funksie moet werk, gespesifiseer nie.",
+'nopagetitle'             => 'Die bestemming bestaan nie',
 'nopagetext'              => 'Die bladsy wat u wil skuif bestaan nie.',
 'pager-newer-n'           => '{{PLURAL:$1|nuwer 1|nuwer $1}}',
 'pager-older-n'           => '{{PLURAL:$1|ouer 1|ouer $1}}',
@@ -2494,6 +2503,7 @@ Ander velde sal versteek wees.
 'exif-resolutionunit'              => 'Eenheid X en Y resolusie',
 'exif-jpeginterchangeformatlength' => 'Grepe van JPEG-gegewens',
 'exif-transferfunction'            => 'Oordragfunksie',
+'exif-primarychromaticities'       => 'Chromasiteit van primêre kleure',
 'exif-datetime'                    => 'Tydstip laaste lêerwysiging',
 'exif-imagedescription'            => 'Beeldtitel',
 'exif-make'                        => 'Kamera vervaardiger:',
@@ -2852,6 +2862,9 @@ Sleutel die lêernaam in sonder die "{{ns:file}}:" voorvoegsel.',
 
 # Special:FileDuplicateSearch
 'fileduplicatesearch'          => 'Soek duplikaat lêers',
+'fileduplicatesearch-summary'  => 'Soek na duplikaat lêers volgends hul hashwaardes.
+
+Verskaf die lêernaam sonder die "{{ns:file}}:" voorvoegsel.',
 'fileduplicatesearch-legend'   => "Soek vir 'n duplikaat",
 'fileduplicatesearch-filename' => 'Lêernaam:',
 'fileduplicatesearch-submit'   => 'Soek',
@@ -2915,6 +2928,14 @@ Sleutel die lêernaam in sonder die "{{ns:file}}:" voorvoegsel.',
 'htmlform-selectorother-other' => 'Ander',
 
 # Add categories per AJAX
-'ajax-error-title' => 'Fout',
+'ajax-add-category'            => 'Voeg kategorie by',
+'ajax-add-category-submit'     => 'Byvoeg',
+'ajax-confirm-title'           => 'Bevestig aksie',
+'ajax-confirm-save'            => 'Stoor',
+'ajax-add-category-summary'    => 'Voeg kategorie "$1" by',
+'ajax-remove-category-summary' => 'Verwyder kategorie "$1"',
+'ajax-confirm-actionsummary'   => 'Aksie om uit te voer:',
+'ajax-error-title'             => 'Fout',
+'ajax-error-dismiss'           => 'OK',
 
 );

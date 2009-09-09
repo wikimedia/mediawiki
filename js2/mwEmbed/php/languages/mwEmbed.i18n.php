@@ -317,6 +317,7 @@ $messages['af'] = array(
 	'mwe-other_options' => 'Ander opsies',
 	'mwe-loading_txt' => 'laai <blink>...</blink>',
 	'mwe-loading_title' => 'Laai...',
+	'mwe-error_load_lib' => 'Fout: JavaScript $1 kon nie gevind word of definieer nie $2 nie',
 	'fogg-select_file' => 'Kies lêer',
 	'fogg-select_new_file' => 'Kies nuwe lêer',
 	'fogg-select_url' => 'Kies URL',
@@ -453,8 +454,7 @@ $messages['be-tarask'] = array(
 	'mwe-sequencer_credit_line' => 'Распрацавана <a href="http://kaltura.com">Kaltura, Inc.</a> у садружнасьці з <a href="http://wikimediafoundation.org/wiki/Home">фундацыяй «Вікімэдыя»</a> (<a href="#">падрабязнасьці </a>).',
 	'mwe-loading_txt' => 'загрузка <blink>…</blink>',
 	'mwe-loading_title' => 'Загрузка…',
-	'mwe-error_load_lib' => 'Памылка: mv_embed ня змог загрузіць неабходныя бібліятэкі JavaScript.
-Уставіць скрыпт праз DOM не атрымалася. Калі ласка, паспрабуйце перагрузіць гэту старонку.',
+	'mwe-error_load_lib' => 'Памылка: JavaScript $1 не даступны альбо не вызначае $2',
 	'fogg-select_file' => 'Выберыце файл',
 	'fogg-select_new_file' => 'Выберыце новы файл',
 	'fogg-select_url' => 'Выберыце URL-адрас',
@@ -591,6 +591,7 @@ $messages['be-tarask'] = array(
 	'mwe-playerselect' => 'Прайгравальнікі',
 	'mwe-read_before_embed' => 'Калі ласка, <a href="http://mediawiki.org/wiki/Security_Notes_on_Remote_Embedding" target="_new">прачытайце гэта</a> перад устаўкай!',
 	'mwe-embed_site_or_blog' => 'Уставіць на Ваш сайт ці блёг',
+	'mwe_related_videos' => 'Зьвязаныя відэа',
 );
 
 /** Bosnian (Bosanski)
@@ -822,6 +823,7 @@ $messages['el'] = array(
 /** Spanish (Español)
  * @author Antur
  * @author Crazymadlover
+ * @author McDutchie
  */
 $messages['es'] = array(
 	'mwe-insert_image_page' => 'Insertar en la página',
@@ -887,11 +889,11 @@ $messages['es'] = array(
 	'rsd_no_results' => 'Sin resultados de búsqueda para <b>$1</b>',
 	'mwe-upload_tab' => 'Cargar',
 	'rsd_resource_edit' => 'Editar recurso: $1',
-	'rsd_do_insert' => 'No insertar',
+	'rsd_do_insert' => 'Hacer inserción',
 	'mwe-cc_by_title' => 'Atribución',
 	'mwe-cc_nc_title' => 'No comercial',
-	'mwe-cc_nd_title' => 'Obras no derivadas',
-	'mwe-cc_sa_title' => 'Compartir similares',
+	'mwe-cc_nd_title' => 'Sin derivadas',
+	'mwe-cc_sa_title' => 'Compartir bajo la misma licencia',
 	'mwe-cc_pd_title' => 'Dominio público',
 	'mwe-unknown_license' => 'Licencia desconocida',
 	'mwe-your_recent_uploads' => 'Tus cargas recientes',
@@ -1030,8 +1032,7 @@ $messages['fr'] = array(
 	'mwe-sequencer_credit_line' => 'Développé par <a href="http://kaltura.com">Kaltura, Inc.</a> en partenariat avec la <a href="http://wikimediafoundation.org/wiki/Home">Wikimedia Foundation</a> (<a href="#">plus d\'information</a>).',
 	'mwe-loading_txt' => 'chargement <blink>...</blink>',
 	'mwe-loading_title' => 'Chargement...',
-	'mwe-error_load_lib' => "Erreur : mv_embed n'a pas réussi à charger les bibliothèques JavaScript requises.
-Le script d'insertion via DOM a échoué. Veuillez recharger la page.",
+	'mwe-error_load_lib' => "Erreur : JavaScript $1 n'a pas pu être trouvé ou ne définit pas $2",
 	'fogg-select_file' => 'Sélectionnez un fichier',
 	'fogg-select_new_file' => 'Sélectionnez un nouveau fichier',
 	'fogg-select_url' => 'Sélectionnez une URL',
@@ -1168,6 +1169,7 @@ Le script d'insertion via DOM a échoué. Veuillez recharger la page.",
 	'mwe-playerselect' => 'Lecteurs',
 	'mwe-read_before_embed' => 'Veuillez <a href="http://mediawiki.org/wiki/Security_Notes_on_Remote_Embedding" target="_new">lire ceci</a> avant de procéder !',
 	'mwe-embed_site_or_blog' => 'Intégrer sur votre site ou blog',
+	'mwe_related_videos' => 'Vidéos associées',
 );
 
 /** Galician (Galego)
@@ -1241,8 +1243,7 @@ $messages['gl'] = array(
 	'mwe-sequencer_credit_line' => 'Desenvolvido por <a href="http://kaltura.com">Kaltura, Inc.</a> en colaboración coa <a href="http://wikimediafoundation.org/wiki/Portada_galega">Fundación Wikimedia</a> (<a href="#">máis información</a>).',
 	'mwe-loading_txt' => 'cargando<blink>...</blink>',
 	'mwe-loading_title' => 'Cargando...',
-	'mwe-error_load_lib' => 'Erro: mv_embed non puido cargar as librarías JavaScript necesarias.
-Fallou a inserción da escritura a través do DOM. Por favor, intente recargar esta páxina.',
+	'mwe-error_load_lib' => 'Erro: o JavaScript $1 non se puido atopar ou non definía $2',
 	'fogg-select_file' => 'Seleccione un ficheiro',
 	'fogg-select_new_file' => 'Seleccione un ficheiro novo',
 	'fogg-select_url' => 'Seleccione un enderezo URL',
@@ -1250,7 +1251,7 @@ Fallou a inserción da escritura a través do DOM. Por favor, intente recargar e
 	'fogg-check_for_fogg' => 'Examinando en busca do Firefogg<blink>...</blink>',
 	'fogg-installed' => 'O Firefogg está instalado',
 	'fogg-for_improved_uplods' => 'Para cargas melloradas:',
-	'fogg-please_install' => '<a href="$1">Instalar o Firefogg.</a>. Máis información <a href="http://commons.wikimedia.org/wiki/Commons:Firefogg">acerca do Firefogg</a>',
+	'fogg-please_install' => '<a href="$1">Instalar o Firefogg</a>. Máis información <a href="http://commons.wikimedia.org/wiki/Commons:Firefogg">acerca do Firefogg</a>',
 	'fogg-use_latest_fox' => 'Por favor, instale primeiro o <a href="http://gl.www.mozilla.com/gl/">Firefox 3.5</a> (ou superior). <i>Logo diso, volte a esta páxina para instalar a extensión <b>Firefogg</b>.</i>',
 	'fogg-passthrough_mode' => 'O ficheiro que seleccionou xa está en formato Ogg ou non é un ficheiro de vídeo',
 	'fogg-transcoding' => 'Codificando o vídeo en formato Ogg',
@@ -1379,6 +1380,7 @@ Fallou a inserción da escritura a través do DOM. Por favor, intente recargar e
 	'mwe-playerselect' => 'Reprodutores',
 	'mwe-read_before_embed' => 'Por favor, <a href="http://mediawiki.org/wiki/Security_Notes_on_Remote_Embedding" target="_new">olle isto</a> antes da incrustación!',
 	'mwe-embed_site_or_blog' => 'Incrustar na súa páxina web ou blogue',
+	'mwe_related_videos' => 'Vídeos relacionados',
 );
 
 /** Swiss German (Alemannisch)
@@ -1880,6 +1882,7 @@ $messages['ia'] = array(
 	'mwe-sequencer_credit_line' => 'Disveloppate per <a href="http://kaltura.com">Kaltura, Inc.</a> in association con le <a href="http://wikimediafoundation.org/wiki/Home">Fundation Wikimedia</a> (<a href="#">plus information</a>).',
 	'mwe-loading_txt' => 'cargamento <blink>...</blink>',
 	'mwe-loading_title' => 'Cargamento...',
+	'mwe-error_load_lib' => 'Error: JavaScript $1 non esseva recuperabile o non defini $2',
 	'fogg-select_file' => 'Seliger file',
 	'fogg-select_new_file' => 'Seliger nove file',
 	'fogg-select_url' => 'Seliger URL',
@@ -1914,6 +1917,31 @@ $messages['ia'] = array(
 	'mwe-upload_tab' => 'Cargar',
 	'rsd_layout' => 'Disposition:',
 	'rsd_resource_edit' => 'Modificar le ressource: $1',
+	'mwe-resource_description_page' => 'Pagina de description del ressource',
+	'rsd_local_resource_title' => 'Titulo local del ressource',
+	'mwe-cc_by_title' => 'Attribution',
+	'mwe-cc_nc_title' => 'Non commercial',
+	'mwe-cc_nd_title' => 'Nulle obras derivate',
+	'mwe-cc_sa_title' => 'Condivider equalmente',
+	'mwe-cc_pd_title' => 'Dominio public',
+	'mwe-unknown_license' => 'Licentia incognite',
+	'mwe-no_import_by_url' => 'Iste usator o wiki <b>non pote</b> facer importationes ab URLs remote.<p>Debe tu aperir un session?</p><p>Si le permissiones es definite, es possibile que tu debe activar <a href="http://www.mediawiki.org/wiki/Manual:$wgAllowCopyUploads">$wgAllowCopyUploads</a>.</p>',
+	'mwe-results_from' => 'Resultatos ab <a href="$1" target="_new" >$2</a>',
+	'mwe-missing_desc_see_source' => 'Il manca un description a iste ressource. Per favor consulta le [$1 origine] e adjuta a describer lo.',
+	'rsd_config_error' => 'Error de configuration in le assistente pro adder multimedia: $1',
+	'mwe-your_recent_uploads' => 'Tu cargas recente',
+	'mwe-upload_a_file' => 'Cargar un nove file',
+	'mwe-resource_page_desc' => 'Description del pagina de ressource:',
+	'mwe-edit_resource_desc' => 'Modificar le wikitexto del description del ressource:',
+	'mwe-local_resource_title' => 'Titulo local del ressource:',
+	'mwe-watch_this_page' => 'Observar iste pagina',
+	'mwe-do_import_resource' => 'Importar ressource',
+	'mwe-update_preview' => 'Actualisar previsualisation',
+	'mwe-cancel_import' => 'Cancellar importation',
+	'mwe-importing_asset' => 'Importation in curso',
+	'mwe-preview_insert_resource' => 'Previsualiar le insertion del ressource: $1',
+	'mwe-select_file' => 'Seliger file',
+	'mwe-more_licence_options' => 'Pro ulterior optiones de licentia, vide le <a href="$1">pagina de carga normal</a>',
 );
 
 /** Indonesian (Bahasa Indonesia)
@@ -2000,8 +2028,7 @@ $messages['ja'] = array(
 	'mwe-sequencer_credit_line' => '本機能は<a href="http://kaltura.com">Kaltura, Inc.</a> が <a href="http://wikimediafoundation.org/wiki/Home">ウィキメディア財団</a>の協力のもと開発しました (<a href="#">詳細情報</a>)。',
 	'mwe-loading_txt' => '読み込み中 <blink>…</blink>',
 	'mwe-loading_title' => '読み込み中…',
-	'mwe-error_load_lib' => 'エラー：mw_embedは動作に必要なJavascriptのライブラリを読み込めませんでした。
-DOMによるスクリプトの挿入に失敗しました。ページを再読み込みしてください。',
+	'mwe-error_load_lib' => 'エラー：JavaScript $1 は参照不能か、$2 を定義していません。',
 	'fogg-select_file' => 'ファイルを選択',
 	'fogg-select_new_file' => '別のファイルを選択',
 	'fogg-select_url' => 'URLを選択',
@@ -2139,6 +2166,7 @@ DOMによるスクリプトの挿入に失敗しました。ページを再読�
 	'mwe-playerselect' => 'プレイヤー',
 	'mwe-read_before_embed' => '埋め込む前に<a href="http://mediawiki.org/wiki/Security_Notes_on_Remote_Embedding" target="_new">注意事項</a>をお読みください。',
 	'mwe-embed_site_or_blog' => '自分のサイトやブログに埋め込む',
+	'mwe_related_videos' => '関連する動画',
 );
 
 /** Ripoarisch (Ripoarisch)
@@ -2463,12 +2491,14 @@ $messages['nl'] = array(
 	'mwe-set_in_out_points' => 'In-uit-punten instellen',
 	'mwe-start_time' => 'Starttijd',
 	'mwe-end_time' => 'Eindtijd',
+	'mwe-preview_inout' => 'Weergeven/Afspelen van in tot uit',
 	'mwe-select_transcript_set' => 'Lagen selecteren',
 	'mwe-auto_scroll' => 'automatisch scrollen',
 	'mwe-close' => 'sluiten',
 	'mwe-improve_transcript' => 'Verbeteren',
 	'mwe-no_text_tracks_found' => 'Er zijn geen tekstsporen aangetroffen',
 	'mwe-transition_in' => 'Overgangen',
+	'mwe-transition_out' => 'Transistie uit',
 	'mwe-effects' => 'Effecten',
 	'mwe-remove_transition' => 'Overgang verwijderen',
 	'mwe-edit_transin' => 'Overgang in clip bewerken',
@@ -2527,6 +2557,7 @@ Selecteer één te bewerken clip.',
 	'fogg-badtoken' => 'Het token is niet geldig',
 	'mwe-imported_from' => '$1 is geïmporteerd van [$2 $3]. Meer informatie is te vinden op de [$4 originele beschrijvingspagina].',
 	'mwe-stream_title' => '$1 $2 tot $3',
+	'fogg-help-sticky' => 'Help (klik om te laten staan)',
 	'fogg-cg-preset' => 'Instellingen: <strong>$1</strong>',
 	'fogg-cg-quality' => 'Basisinstellingen voor kwaliteit en resolutie',
 	'fogg-cg-meta' => 'Metadata voor de clip',
@@ -2569,6 +2600,7 @@ Selecteer één te bewerken clip.',
 	'mwe-update_preview' => 'Voorvertoning bijwerken',
 	'mwe-cancel_import' => 'Importeren annuleren',
 	'mwe-importing_asset' => 'Bezig met het importeren van het bestand',
+	'mwe-preview_insert_resource' => 'Invoegen van bronbestand weergeven: $1',
 	'mwe-select_file' => 'Bestand selecteren',
 	'mwe-more_licence_options' => 'Gebruik de <a href="$1">reguliere uploadpagina</a> voor meer licentiemogelijkheden',
 	'mwe-select_ownwork' => 'Ik upload mijn eigen werk onder de volgende licentie:',
@@ -2949,8 +2981,7 @@ $messages['ru'] = array(
 	'mwe-sequencer_credit_line' => 'Разработано <a href="http://kaltura.com">Kaltura, Inc</a> в сотрудничестве с <a href="http://wikimediafoundation.org/wiki/Home">Фондом Викимедиа</a> (<a href="#">подробнее</a>).',
 	'mwe-loading_txt' => 'загрузка <blink>…</blink>',
 	'mwe-loading_title' => 'Загрузка…',
-	'mwe-error_load_lib' => 'Ошибка: mv_embed не удалось загрузить требуемые библиотеки JavaScript.
-Включить скрипт через DOM не удалось. Пожалуйста, попробуйте перезагрузить эту страницу.',
+	'mwe-error_load_lib' => 'Ошибка. JavaScript $1 не доступен или не определяет $2',
 	'fogg-select_file' => 'Выберите файл',
 	'fogg-select_new_file' => 'Выберите новый файл',
 	'fogg-select_url' => 'Выберите URL',
@@ -3087,6 +3118,7 @@ $messages['ru'] = array(
 	'mwe-playerselect' => 'Проигрыватели',
 	'mwe-read_before_embed' => 'Пожалуйста, <a href="http://mediawiki.org/wiki/Security_Notes_on_Remote_Embedding" target="_new">прочтите это</a> перед встраиванием!',
 	'mwe-embed_site_or_blog' => 'Вставить на ваш сайт или в блог',
+	'mwe_related_videos' => 'Связанные видео',
 );
 
 /** Slovak (Slovenčina)

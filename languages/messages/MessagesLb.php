@@ -553,7 +553,7 @@ Denkt drun, Är [[Special:Preferences|{{SITENAME}}-Astellungen]] unzepassen.',
 'login'                      => 'Umellen',
 'nav-login-createaccount'    => 'Aloggen',
 'loginprompt'                => "Fir sech op {{SITENAME}} umellen ze kënnen, mussen d'Cookien aktivéiert sinn.",
-'userlogin'                  => 'Aloggen',
+'userlogin'                  => 'Aloggen / Benotzerkont uleeën',
 'logout'                     => 'Ofmellen',
 'userlogout'                 => 'Ausloggen',
 'notloggedin'                => 'Net ageloggt',
@@ -1305,7 +1305,7 @@ Dir kënnt et och zouloossen datt aner Benotzer iech - iwwert e Link op ärer Be
 'right-suppressredirect'      => 'Keng Viruleedung vum alen Numm aus uleeë wann eng Säit geréckelt gëtt',
 'right-upload'                => 'Fichieren eroplueden',
 'right-reupload'              => 'E Fichier iwwerschreiwen',
-'right-reupload-own'          => 'E Fichier iwwerschreiwen dee vum selweschte Benotzer eropgeluede gouf',
+'right-reupload-own'          => 'E Fichier iwwerschreiwen deen Dir selwer eropgelueden hutt',
 'right-reupload-shared'       => 'Lokalt Iwwerschreiwe vun engem Fichier deen an engem gemeinsam benotzte Repertoire steet',
 'right-upload_by_url'         => 'E Fichier vun enger URL-Adress eroplueden',
 'right-purge'                 => 'De Säitecache eidel maachen ouni nozefroen',
@@ -1478,7 +1478,7 @@ Kuckt [[Special:NewFiles|d'Gallerie vun de neie Fichieren]] wann Dir méi e visu
 'ignorewarning'               => 'Warnung ignoréieren an de Fichier nawell späicheren',
 'ignorewarnings'              => 'Ignoréier all Iwwerschreiwungswarnungen',
 'minlength1'                  => "D'Nimm vu Fichiere musse mindestens e Buschtaf am Numm hunn.",
-'illegalfilename'             => 'Am Fichiernumm "$1" sti Schrëftzeechen, déi net am Numm vun enger Säit erlaabt sinn. W.e.g. nennt de Fichier anescht, a probéiert dann nach eng Kéier.',
+'illegalfilename'             => 'Am Fichiersnumm "$1" sti Schrëftzeechen, déi net am Numm vun enger Säit erlaabt sinn. W.e.g. nennt de Fichier anescht, a probéiert dann nach eng Kéier.',
 'badfilename'                 => 'Den Numm vum Fichier gouf an "$1" ëmgeännert.',
 'filetype-badmime'            => 'Fichiere vum MIME-Typ "$1" kënnen net eropgeluede ginn.',
 'filetype-bad-ie-mime'        => 'Dëse Fichier kann net eropgeluede ginn, well den Internet Explorer en als „$1“ erkennt, deen net erlaabt ass well et e potentiell geféierleche Fichierstyp ass.',
@@ -1494,23 +1494,23 @@ Erlaabt {{PLURAL:$3|ass|sinn}}: $2.",
 'filepageexists'              => "Eng Beschreiwungssäit gouf schonns als '''<tt>$1</tt>''' geschriwwen, et gëtt awer kee Fichier mat deem Numm.
 
 Dir kënnt also äre Fichier eroplueden, mee déi Beschreiwung déi dir aginn hutt gëtt net op d'Beschreiwungssäit iwwerholl. D'Beschreiwungssäit musst der nom Eropluede vum Fichier nach manuell änneren.",
-'fileexists-extension'        => "E Fichier mat engem ähnlechen Namen gëtt et schonn:<br />
-Numm vum Fichier den Dir versicht eropzelueden: '''<tt>$1</tt>'''<br />
-Numm vum Fichier den et scho gëtt: '''<tt>$2</tt>'''<br />
-Wielt w.e.g. en anere Numm.",
+'fileexists-extension'        => "E Fichier mat engem ähnlechen Numm gëtt et schonn:<br />
+Numm vum Fichier deen Dir versicht eropzelueden: '''<tt>$1</tt>'''<br />
+Numm vum Fichier deen et scho gëtt: '''<tt>$2</tt>'''<br />
+Wielt w.e.g. en aneren Numm.",
 'fileexists-thumb'            => "<center>'''Dëse Fichier gëtt et'''</center>",
 'fileexists-thumbnail-yes'    => "Beim Fichier schéngt et sech ëm e klengt Bild ''(Miniatur)'' ze handelen.
 Kuckt de Fichier '''<tt>$1</tt>''' w.e.g. no.<br />
 Wann et sech ëm d'Bild an der Originalgréisst handelt, da brauch kee separat Bild als Minitaur eropgelueden ze ginn.",
 'file-thumbnail-no'           => "Den Numm vum Fichier fänkt mat '''<tt>$1</tt>''' unn.
-Da däit drop hin datt et eng Minitaur ''(thumbnail)'' ass.
-Wann Dir dat Bild a méi enger grousser Opléisung hutt, da lued dëst erop, soss ännert den Numm vum Fichier w.e.g.",
-'fileexists-forbidden'        => "Et gëtt schonn e Fichier mat ësem Nummm an dee kann net iwwerschriwwe ginn.
-Wann Dir de fichier nach ëmmer eroplued ,da gitt w.e.g. z'réck a benotzt en neien Numm. [[File:$1|thumb|center|$1]]",
+Da deit drop hin datt et eng Minitaur ''(thumbnail)'' ass.
+Wann Dir dat Bild a méi enger grousser Opléisung hutt, da luet dëst erop, soss ännert den Numm vum Fichier w.e.g.",
+'fileexists-forbidden'        => 'Et gëtt schonn e Fichier mat dësem Numm an dee kann net iwwerschriwwe ginn.
+Wann Dir de Fichier nach ëmmer eropluede wëllt, da gitt w.e.g. zréck a benotzt en neien Numm. [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'E Fichier mat dësem Numm gëtt et schonn an dem gedeelte Repertoire.
-Wann Dir dëse Fichier trotzdem eroplued wellt da gitt w.e.g. zréck a lued dëse Fichier ënner engem anere Numm erop. [[File:$1|thumb|center|$1]]',
+Wann Dir dëse Fichier trotzdeem eropluede wëllt da gitt w.e.g. zréck a luet dëse Fichier ënner engem aneren Numm erop. [[File:$1|thumb|center|$1]]',
 'file-exists-duplicate'       => 'Dëse Fichier schéngt een Doublon vun {{PLURAL:$1|dësem Fichier|dëse Fichieren}} ze sinn:',
-'file-deleted-duplicate'      => 'En identesche Fichier ([[$1]]) gouf virdru geläscht. Kuckt w.e.g. an der Lëscht vum Läsche no, Ier Dir en nach emol eroplued.',
+'file-deleted-duplicate'      => 'En identesche Fichier ([[$1]]) gouf virdru geläscht. Kuckt w.e.g. an der Lëscht vum Läsche no, Ier Dir en nach emol eropluet.',
 'successfulupload'            => 'Eroplueden erfollegräich',
 'uploadwarning'               => 'Opgepasst',
 'savefile'                    => 'Fichier späicheren',
@@ -1519,19 +1519,19 @@ Wann Dir dëse Fichier trotzdem eroplued wellt da gitt w.e.g. zréck a lued dës
 'uploaddisabled'              => "Pardon, d'Eropluede vu Fichieren ass ausgeschalt.",
 'uploaddisabledtext'          => "D'Eropluede vu Fichieren ass ausgeschalt.",
 'php-uploaddisabledtext'      => "D'Eropluede vu Fichieren ass am PHP desaktivéiert. Kuckt w.e.g. d'Astellung ''file_uploads'' no.",
-'uploadscripted'              => 'An dësem Fichier ass HTML- oder Scriptcode, de vun engem Webbrowser falsch interpretéiert kéint ginn.',
+'uploadscripted'              => 'An dësem Fichier ass HTML- oder Scriptcode, dee vun engem Webbrowser falsch interpretéiert kéint ginn.',
 'uploadcorrupt'               => 'De Fichier ass futti oder en huet eng falsch Fichiers-Erweiderung. Kuckt de Fichier w.e.g. no a luet de Fichier nach eng Kéier erop.',
 'uploadvirus'                 => 'An dësem Fichier ass ee Virus! Detailer: $1',
 'sourcefilename'              => 'Numm vum Originalfichier:',
 'destfilename'                => 'Numm ënner deem de Fichier gespäichert gëtt:',
 'upload-maxfilesize'          => 'Maximal Fichiersgréisst: $1',
 'watchthisupload'             => 'Dëse Fichier iwwerwaachen',
-'filewasdeleted'              => 'E Fichier mat dësem Numm gouf schonn eemol eropgelueden an duerno nees geläscht. Kuckt w.e.g op $1 no, ier Dir dee Fichier nach eng Kéier eroplued.',
-'upload-wasdeleted'           => "'''Opgepasst: Dir lued e Fichier erop, dee schonn eng Kéier geläscht ginn ass.'''
+'filewasdeleted'              => 'E Fichier mat dësem Numm gouf schonn eemol eropgelueden an duerno nees geläscht. Kuckt w.e.g op $1 no, ier Dir dee Fichier nach eng Kéier eropluet.',
+'upload-wasdeleted'           => "'''Opgepasst: Dir luet e Fichier erop, dee schonn eng Kéier geläscht gouf.'''
 
-Kuckt w.e.g. genee no, ob d'dat erneit Eroplueden de Richtlinnen entsprecht.
-Zu ärer Informatioun steet hei Läsch-Lëscht mat dem Grond vum viregte Läschen:",
-'filename-bad-prefix'         => "Den Numm vum Fichier fänkt mat '''„$1“''' un. Dësen Numm ass automatesch vun der Kamera gi ginn a seet näischt iwwert dat aus, wat drop ass. Gitt dem Fichier w.e.gl. en Numm, deen den Inhalt besser beschreift, an deen net verwiesselt ka ginn.",
+Kuckt w.e.g. genee no, ob dat neit Eroplueden de Richtlinnen entsprécht.
+Zu Ärer Informatioun steet an der Läsch-Lëscht de Grond vum virege Läschen:",
+'filename-bad-prefix'         => "Den Numm vum Fichier fänkt mat '''„$1“''' un. Dësen Numm krut en automatesch vun der Kamera a seet näischt iwwer dat aus, wat drop ass. Gitt dem Fichier w.e.gl. en Numm, deen den Inhalt besser beschreift, an deen net verwiesselt ka ginn.",
 
 'upload-proto-error'        => 'Falsche Protokoll',
 'upload-proto-error-text'   => "D'URL muss mat <code>http://</code> oder <code>ftp://</code> ufänken.",
@@ -1591,7 +1591,7 @@ Kuckt w.e.g. no op kee Feeler an der URL ass an op de Site och online ass.',
 'filehist-missing'          => 'Fichier feelt',
 'imagelinks'                => 'Linken op Fichieren',
 'linkstoimage'              => 'Dës {{PLURAL:$1|Säit benotzt|Säite benotzen}} dëse Fichier:',
-'linkstoimage-more'         => 'Méi wéi {{PLURAL:$1|eng Säit ass|$1 Säite si}} d¨sem Fichier verlinkt.
+'linkstoimage-more'         => 'Méi wéi {{PLURAL:$1|eng Säit ass|$1 Säite si}} mat dësem Fichier verlinkt.
 Dës Lëscht weist nëmmen {{PLURAL:$1|den éischte Link|déi éischt $1 Linken}} op dëse Fichier.
 Eng [[Special:WhatLinksHere/$2|komplett Lëscht]] ass disponibel.',
 'nolinkstoimage'            => 'Keng Säit benotzt dëse Fichier.',
@@ -1612,12 +1612,12 @@ D'Beschreiwung op senger [$2 Beschreiwungssäit] steet hei ënnedrënner.",
 # File reversion
 'filerevert'                => '"$1" zrécksetzen',
 'filerevert-legend'         => 'De Fichier zrécksetzen.',
-'filerevert-intro'          => "Du setz de Fichier '''[[Media:$1|$1]]''' op d'[$4 Versioun vum $2, $3 Auer] zréck.",
+'filerevert-intro'          => "Dir setzt de Fichier '''[[Media:$1|$1]]''' op d'[$4 Versioun vum $2, $3 Auer] zréck.",
 'filerevert-comment'        => 'Grond:',
 'filerevert-defaultcomment' => "zréckgesat op d'Versioun vum $1, $2 Auer",
 'filerevert-submit'         => 'Zrécksetzen',
 'filerevert-success'        => "'''[[Media:$1|$1]]''' gouf op d'[$4 Versioun vum $2, $3 Auer] zréckgesat.",
-'filerevert-badversion'     => 'Et gët keng Versioun vun deem Fichier mat der Zäitinformatoun déi Dir uginn hutt.',
+'filerevert-badversion'     => 'Et gëtt keng Versioun vun deem Fichier mat der Zäitinformatioun déi Dir uginn hutt.',
 
 # File deletion
 'filedelete'                  => 'Läsch "$1"',
@@ -2122,8 +2122,8 @@ Am [[Special:Log/delete|Läsch-Logbuch]] fannt Dir déi geläscht a restauréier
 'undelete-filename-mismatch'   => "D'Dateiversioun vum $1 konnt net restauréiert ginn: De Fichier gouf net fonnt.",
 'undelete-bad-store-key'       => "D'Versioun vum Fichier mat dem Zäitstempel $1 konnt net restauréiert ginn: De Fichier war scho virum Läschen net méi do.",
 'undelete-cleanup-error'       => 'Feeler beim Läsche vun der onbenotzter Archiv-Versioun $1.',
-'undelete-missing-filearchive' => 'De Fichier mat der Archiv-ID $1 kann net restauréiert ginn, well e net an der Datebank ass. Méiglecherweis gouf e scho restauréiert.',
-'undelete-error-short'         => 'Feeler bäim Restauréiere vum Fichier: $1',
+'undelete-missing-filearchive' => 'De Fichier mat der Archiv-ID $1 kann net restauréiert ginn, well en net an der Datebank ass. Méiglecherweis gouf e scho restauréiert.',
+'undelete-error-short'         => 'Feeler beim Restauréiere vum Fichier: $1',
 'undelete-error-long'          => 'Beim Restauréiere vun engem Fichier goufe Feeler fonnt:
 
 $1',
@@ -2439,7 +2439,7 @@ All Transwiki-Import-Aktioune ginn am [[Special:Log/import|Import-Logbuch]] prot
 'import-upload-filename'     => 'Numm vum Fichier:',
 'import-comment'             => 'Bemierkung:',
 'importtext'                 => 'Exportéiert de Fichier w.e.g vun der Source-Wiki mat der [[Special:Export|Funktioun Export]].
-Späichert en op ärem Computer of a lued en hei nees erop.',
+Späichert en op Ärem Computer of a luet en hei nees erop.',
 'importstart'                => 'Importéier Säiten …',
 'import-revision-count'      => '$1 {{PLURAL:$1|Versioun|Versiounen}}',
 'importnopages'              => "Et gëtt keng Säiten fir z'importéieren.",
@@ -2452,7 +2452,7 @@ Späichert en op ärem Computer of a lued en hei nees erop.',
 'importhistoryconflict'      => 'Et gëtt Konflikter am Historique vun de Versiounen, (méiglecherweis gouf dës Säit virdrun importéiert).',
 'importnosources'            => 'Fir den Transwiki-Import si keng Quellen definéiert an et ass net méiglech fir Säite mat alle Versiounen aus dem Transwiki-Tëschespäicher eropzelueden.',
 'importnofile'               => 'Et gouf keen importéierte Fichier eropgelueden',
-'importuploaderrorsize'      => 'DEropluede vum importéierte Fichier huet net fonctionnéiert. De Fichier ass méi grouss wéi maximal erlaabt.',
+'importuploaderrorsize'      => "D'Eropluede vum importéierte Fichier huet net fonctionnéiert. De Fichier ass méi grouss wéi maximal erlaabt.",
 'importuploaderrorpartial'   => "D'Eropluede vum Fichier huet net geklappt. De Fichier gouf nëmmen deelweis eropgelueden.",
 'importuploaderrortemp'      => "D'Eropluede vum Fichier huet net fonctionnéiert. En temporäre Repertoire feelt.",
 'import-parse-failure'       => 'Feeler bei engem XML-Import',
@@ -2466,7 +2466,7 @@ Späichert en op ärem Computer of a lued en hei nees erop.',
 # Import log
 'importlogpage'                    => 'Lëscht vun den Säitenimporten',
 'importlogpagetext'                => 'Administrativen Import vu Säite mam Historique vun den Ännerungen aus anere Wikien.',
-'import-logentry-upload'           => 'huet [[$1]] vun engem Fichier duerch eroplueden importéiert',
+'import-logentry-upload'           => 'huet [[$1]] vun engem Fichier duerch Eroplueden importéiert',
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|Versioun|Versiounen}}',
 'import-logentry-interwiki'        => 'huet $1 importéiert (Transwiki)',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|Versioun|Versioune}} vum $2',
@@ -2637,9 +2637,9 @@ iwwerpréift déi korrekt Installatioun vu LaTeX, dvips, gs a convert",
 'filedeleteerror-long'            => 'Bäim Läsche vum Fichier si Feeler festgestallt ginn:
 
 $1',
-'filedelete-missing'              => 'De Fichier "$1" kann net geläscht ginn, well et e net gëtt.',
+'filedelete-missing'              => 'De Fichier "$1" kann net geläscht ginn, well et en net gëtt.',
 'filedelete-old-unregistered'     => 'Déi Versioun vum Fichier déi Dir uginn hutt "$1" gëtt et an der Datebank net.',
-'filedelete-current-unregistered' => 'Dee Fichier "$1" ass net an der Datebank.',
+'filedelete-current-unregistered' => 'De Fichier "$1" ass net an der Datebank.',
 'filedelete-archive-read-only'    => 'Op den Archiv-Repertoire „$1“ ka vum Webserver aus näischt geschriwwe ginn.',
 
 # Browsing diffs
@@ -2650,7 +2650,7 @@ $1',
 'visual-comparison' => 'Visuelle Vergläich',
 
 # Media information
-'mediawarning'         => "'''Warnung:''' Dës Zort vu Fichier ka béiswëllegen Programmcode enthalen. Duerch d'Erolueden an Opmaache vum Fichier kann Äre Computer beschiedegt ginn.<hr />",
+'mediawarning'         => "'''Warnung:''' Dës Zort vu Fichier kann e béiswëllege Programmcode enthalen. Duerch d'Eroplueden an d'Opmaache vum Fichier kann Äre Computer beschiedegt ginn.<hr />",
 'imagemaxsize'         => "Maximal Gréisst fir Biller:<br />''(fir Billerbeschreiwungssäiten)''",
 'thumbsize'            => 'Gréisst vun der Miniatur:',
 'widthheightpage'      => '$1×$2, $3 {{PLURAL:$3|Säit|Säiten}}',
@@ -2683,7 +2683,7 @@ Duerno sti Linken déi Ausnamen definéieren, an deenen hirem Kontext dat Bild a
 
 # Metadata
 'metadata'          => 'Metadaten',
-'metadata-help'     => 'An dësem Fichier si weider Informatiounen, déi normalerweis vun der Digitalkamera oder dem benotzte Scanner kommen. Wann de Fichier nodréilech geännert gouf, kann et sinn datt eenzel Detailer net mat dem aktuelle Fichier iwwereestëmmen.',
+'metadata-help'     => 'An dësem Fichier si weider Informatiounen, déi normalerweis vun der Digitalkamera oder dem benotzte Scanner kommen. Wann de Fichier nodréiglech geännert gouf, kann et sinn datt eenzel Detailer net mat dem aktuelle Fichier iwwereneestëmmen.',
 'metadata-expand'   => 'Weis detailléiert Informatiounen',
 'metadata-collapse' => 'Verstopp detailléiert Informatiounen',
 'metadata-fields'   => "Dës Felder vun den EXIF-Metadate ginn op Bildbeschreiwungssäite gewise wann d'Metadatentafel zesummegeklappt ass. Déi aner sinn am Standard verstoppt, kënne awer ugewise ginn.
@@ -3101,7 +3101,7 @@ Dir kënnt och [[Special:Watchlist/raw|déi net formatéiert Iwwerwaachungslësc
 'version-software-version'         => 'Versioun',
 
 # Special:FilePath
-'filepath'         => 'Pad bäi de Fichier',
+'filepath'         => 'Pad bei de Fichier',
 'filepath-page'    => 'Fichier:',
 'filepath-submit'  => 'Pad',
 'filepath-summary' => 'Op dëser Spezialsäit kënnt Dir de komplette Pad vun der aktueller Versioun vun engem engem Fichier direkt offroen. Den ugefrote Fichier gëtt direkt gewise respektiv mat enger verbonner Applikatioun gestart.
@@ -3184,5 +3184,20 @@ Gitt den Numm vum Fichier ouni de Prefix \"{{ns:file}}:\" an.",
 'htmlform-submit'              => 'Späicheren',
 'htmlform-reset'               => 'Ännerungen zrécksetzen',
 'htmlform-selectorother-other' => 'Anerer',
+
+# Add categories per AJAX
+'ajax-add-category'            => 'Kategorie derbäisetzen',
+'ajax-add-category-submit'     => 'Derbäisetzen',
+'ajax-confirm-title'           => 'Aktioun confirméieren',
+'ajax-confirm-prompt'          => 'Dir kënnt e Resumé vun der Ännerung ënnedrënner uginn.
+Klickt "Späicheren" fir Är Ännerung ze späicheren.',
+'ajax-confirm-save'            => 'Späicheren',
+'ajax-add-category-summary'    => 'Kategorie "$1" derbäisetzen',
+'ajax-remove-category-summary' => 'Kategorie "$1" ewechhuelen',
+'ajax-confirm-actionsummary'   => 'Wat soll gemaach ginn:',
+'ajax-error-title'             => 'Feeler',
+'ajax-error-dismiss'           => 'OK',
+'ajax-remove-category-error'   => "Et war net méiglech dës Kategorie ewechzehuelen.
+Dëst geschitt gewéinlech da wann eng Kategorie duerch eng Schabloun op d'Säit derbäi gesat gouf.",
 
 );

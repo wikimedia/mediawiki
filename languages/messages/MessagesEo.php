@@ -206,7 +206,7 @@ $messages = array(
 'tog-forceeditsummary'        => 'Averti min kiam mi konservas malplenan redaktoresumon',
 'tog-watchlisthideown'        => 'Kaŝi miajn redaktojn de la atentaro',
 'tog-watchlisthidebots'       => 'Kaŝu bot-redaktojn de la atentaro',
-'tog-watchlisthideminor'      => 'Kaŝu malgrandajn redaktojn de la atentaro',
+'tog-watchlisthideminor'      => 'Kaŝi malgrandajn redaktojn de la atentaro',
 'tog-watchlisthideliu'        => 'Kaŝi redaktojn de ensalutitaj uzantoj de la atentaro',
 'tog-watchlisthideanons'      => 'Kaŝi redaktojn de anonimuloj de la atentaro',
 'tog-watchlisthidepatrolled'  => 'Kaŝi patrolitajn redaktojn de la atentaro',
@@ -608,7 +608,7 @@ Bonvolu elekti alian nomon.',
 Nomoj por uzantoj estas usklecodistinga.
 Kontrolu vian literumadon, aŭ [[Special:UserLogin/signup|kreu novan konton]].',
 'nosuchusershort'            => 'Ne ekzistas uzanto kun la nomo "<nowiki>$1</nowiki>". Bonvolu kontroli vian ortografion.',
-'nouserspecified'            => 'Vi devas entajpi uzantonomon.',
+'nouserspecified'            => 'Vi devas entajpi salutnomon.',
 'wrongpassword'              => 'Vi tajpis malĝustan pasvorton. Bonvolu provi denove.',
 'wrongpasswordempty'         => 'Vi tajpis malplenan pasvorton. Bonvolu provi denove.',
 'passwordtooshort'           => 'Pasvortoj devas esti almenaŭ  $1 {{PLURAL:$1|1 signon|$1 signojn}}.',
@@ -1005,7 +1005,7 @@ Rigardu la [[Special:IPBlockList|IP-forbarliston]] por la listo de nune operacia
 
 # History merging
 'mergehistory'                     => 'Kunfandigi historiojn de paĝoj',
-'mergehistory-header'              => 'Ĉi paĝo permesas al vi kunigi versiojn de la historio de unu fonta paĝo en pli novan paĝon.
+'mergehistory-header'              => 'Ĉi tiu paĝo permesas al vi kunigi versiojn de la historio de unu fonta paĝo en pli novan paĝon.
 Certigu ke ĉi tiu ŝanĝo tenos kontinuecon de la historia paĝo.',
 'mergehistory-box'                 => 'Kunigi versiojn de du paĝoj:',
 'mergehistory-from'                => 'Fontpaĝo:',
@@ -1036,7 +1036,7 @@ Certigu ke ĉi tiu ŝanĝo tenos kontinuecon de la historia paĝo.',
 'history-title'            => 'Redakto-historio de "$1"',
 'difference'               => '(Malsamoj inter versioj)',
 'lineno'                   => 'Linio $1:',
-'compareselectedversions'  => 'Kompari la selektitajn versiojn',
+'compareselectedversions'  => 'Kompari la elektitajn versiojn',
 'showhideselectedversions' => 'Montri/kaŝi elektitajn versiojn',
 'visualcomparison'         => 'Vida komparo',
 'wikicodecomparison'       => 'Vikiteksta komparo',
@@ -1283,7 +1283,7 @@ Vi povas ankaŭ elekti permesigi aliaj uzantoj kontakti vin per via uzanto-paĝo
 # User rights
 'userrights'                  => 'Prizorgi rajtojn de uzantoj',
 'userrights-lookup-user'      => 'Administri grupojn de uzantoj',
-'userrights-user-editname'    => 'Entajpi uzantonomon:',
+'userrights-user-editname'    => 'Entajpu salutnomon:',
 'editusergroup'               => 'Redakti grupojn de uzantoj',
 'editinguser'                 => "Redaktante uzanto-rajtojn de uzanto '''[[User:$1|$1]]''' ([[User talk:$1|{{int:talkpagelinktext}}]]{{int:pipe-separator}}[[Special:Contributions/$1|{{int:contribslink}}]])",
 'userrights-editusergroup'    => 'Redakti grupojn de uzantoj',
@@ -1564,7 +1564,7 @@ Vi konsideru ĉu taŭgas alŝuti ĉi tiu dosiero.
 jen la protokolo pri forigado por ĉi tiu dosiero por via oportuneco:",
 'filename-bad-prefix'         => "La nomo de la dosiero kiun vi alŝutas komencas kun '''\"\$1\"''', kiu estas nepriskriba nomo ofte aŭtomate donata de ciferecaj fotiloj. Bonvolu elekti pli priskriban nomon por via bildo.",
 
-'upload-proto-error'        => 'Nevalida protokolo',
+'upload-proto-error'        => 'Malvalida protokolo',
 'upload-proto-error-text'   => 'Fora alŝuto devas URL-on komence de <code>http://</code> aŭ <code>ftp://</code>.',
 'upload-file-error'         => 'Interna eraro',
 'upload-file-error-text'    => 'Interna eraro okazis provante krei labordosieron ĉe la servilo. Bonvolu kontakti [[Special:ListUsers/sysop|sistem-administranton]].',
@@ -1584,7 +1584,7 @@ Se la problemo kontinuas, kontaku [[Special:ListUsers/sysop|sisteman administran
 
 'license'            => 'Licencado:',
 'license-header'     => 'Licencado:',
-'nolicense'          => 'Neniu selektita',
+'nolicense'          => 'Neniu elektita',
 'license-nopreview'  => '(Antaŭvido ne montrebla)',
 'upload_source_url'  => ' (valida, publike atingebla URL-o)',
 'upload_source_file' => ' (dosiero en via komputilo)',
@@ -1880,7 +1880,7 @@ Vidu ankaŭ [[Special:WantedCategories|Dezirataj kategorioj]].',
 'newuserlogpagetext'          => 'Jen protokolo de lastaj kreadoj de uzantoj.',
 'newuserlog-byemail'          => 'pasvorto sendita retpoŝte',
 'newuserlog-create-entry'     => 'Nova uzanto',
-'newuserlog-create2-entry'    => 'kreis nova konton por $1',
+'newuserlog-create2-entry'    => 'kreis novan konton $1',
 'newuserlog-autocreate-entry' => 'Konto kreita aŭtomate',
 
 # Special:ListGroupRights
@@ -2162,7 +2162,7 @@ $1',
 
 # Namespace form on various pages
 'namespace'      => 'Nomspaco:',
-'invert'         => 'Inversigi selektaĵon',
+'invert'         => 'Inversigi elektaĵon',
 'blanknamespace' => '(Artikoloj)',
 
 # Contributions
@@ -2185,7 +2185,7 @@ $1',
 'sp-contributions-userrights'     => 'administri rajtojn de uzantoj',
 'sp-contributions-blocked-notice' => 'La uzanto nune estas forbarita. Jen la lasta blokada listero en protokolo:',
 'sp-contributions-search'         => 'Serĉado de kontribuoj',
-'sp-contributions-username'       => 'IP-adreso aŭ uzantonomo:',
+'sp-contributions-username'       => 'IP-adreso aŭ salutnomo:',
 'sp-contributions-submit'         => 'Serĉi',
 
 # What links here
@@ -2297,7 +2297,7 @@ forbarita IP-adreso/nomo la povon enskribi en la vikio.',
 $1 estas jam forbarita. Ĉu vi volas ŝanĝi la opciojn?',
 'ipb_cant_unblock'                => 'Eraro: Forbar-identigo $1 ne estas trovita. Ĝi eble estis jam malforbarita.',
 'ipb_blocked_as_range'            => 'Eraro: La IP-adreso $1 ne estas forbarita rekte kaj ne povas esti malforbarita. Tamen ĝi estas forbarita kiel parto de la intervalo $2, kiu ne povas esti malforbarita.',
-'ip_range_invalid'                => 'Nevalida IP-adresa intervalo.',
+'ip_range_invalid'                => 'Malvalida IP-adresa intervalo.',
 'blockme'                         => 'Forbari min',
 'proxyblocker'                    => 'Forbarilo por prokuriloj.',
 'proxyblocker-disabled'           => 'Ĉi tiu funkcio estas malŝaltita.',
@@ -2554,7 +2554,7 @@ Datoj de versioj kaj nomoj de redaktantoj estos preservitaj.
 'tooltip-t-emailuser'             => 'Sendi retmesaĝon al tiu ĉi uzanto',
 'tooltip-t-upload'                => 'Alŝuti bildojn aŭ dosierojn',
 'tooltip-t-specialpages'          => 'Listo de ĉiuj specialaj paĝoj',
-'tooltip-t-print'                 => 'Printebla versio de ĉi paĝo',
+'tooltip-t-print'                 => 'Printebla versio de ĉi tiu paĝo',
 'tooltip-t-permalink'             => 'Konstanta ligilo al ĉi versio de la paĝo',
 'tooltip-ca-nstab-main'           => 'Vidi la artikolon',
 'tooltip-ca-nstab-user'           => 'Vidi la personan paĝon de la uzanto',
@@ -2875,8 +2875,8 @@ Sekvaj ligilo en la sama linio estas konsiderata kiel esceptoj (paĝoj kiel la b
 'exif-meteringmode-0'   => 'Nekonata',
 'exif-meteringmode-1'   => 'Averaĝo',
 'exif-meteringmode-2'   => 'CentraPezAveraĝo',
-'exif-meteringmode-3'   => 'Eksponometro selekt-angula',
-'exif-meteringmode-4'   => 'eksponometro mult-selekt-angula',
+'exif-meteringmode-3'   => 'Elekt-angula eksponometro (Spot)',
+'exif-meteringmode-4'   => 'Mult-elekt-angula eksponometro (MultiSpot)',
 'exif-meteringmode-5'   => 'Skemo',
 'exif-meteringmode-6'   => 'Parta',
 'exif-meteringmode-255' => 'Alia',
@@ -3222,5 +3222,20 @@ Enigu la dosiernomon sen la "{{ns:file}}:" prefikso.',
 'htmlform-submit'              => 'Ek!',
 'htmlform-reset'               => 'Malfari ŝanĝojn',
 'htmlform-selectorother-other' => 'Alia',
+
+# Add categories per AJAX
+'ajax-add-category'            => 'Aldoni kategorion',
+'ajax-add-category-submit'     => 'Aldoni',
+'ajax-confirm-title'           => 'Konfirmi agon',
+'ajax-confirm-prompt'          => 'Vi povas provizi redaktan resumon suben.
+Klaku butonon "Konservi" por konservi vian redakton.',
+'ajax-confirm-save'            => 'Konservi',
+'ajax-add-category-summary'    => 'Aldoni kategorion "$1"',
+'ajax-remove-category-summary' => 'Forigi kategorion "$1"',
+'ajax-confirm-actionsummary'   => 'Ago por fari:',
+'ajax-error-title'             => 'Eraro',
+'ajax-error-dismiss'           => 'Ek!',
+'ajax-remove-category-error'   => 'Ne eblas forigi ĉi tiun kategorion.
+Ĉi tiel okazas kiam la kategorio estis aldonita al la paĝo per ŝablono.',
 
 );

@@ -635,6 +635,9 @@ E' normale ca essende 'n'indirizze IP pò essere ausete pure da otre utinde ca '
 Ce tu non ge si 'n'utende anonime e pinze ca le commende ca so revolte a te sonde studecarije, pe piacere [[Special:UserLogin/signup|ccreje 'nu cunde utende]] o [[Special:UserLogin|tràse]] pe no fà confusione jndr'à 'u future cu otre utinde anoneme.''",
 'noarticletext'                    => 'Non ge stè scritte ninde jndr\'à sta pàgene.
 Tu puè [[Special:Search/{{PAGENAME}}|cercà pe quiste titele]] jndr\'à otre pàggene, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}}] oppure [{{fullurl:{{FULLPAGENAME}}|action=edit}} cange sta pàgene]</span>.',
+'noarticletext-nopermission'       => "Pe mò non ge stè teste jndr'à sta pàgene.
+Tu puè [[Special:Search/{{PAGENAME}}|cercà pe stu titele]]  jndr'à otre pàggene,
+o <span class=\"plainlinks\">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} cirche jndr'à l'archivije cullegate]</span>.",
 'userpage-userdoesnotexist'        => '\'U cunde utende "$1" non g\'è reggistrete.
 Pe piacere, condrolle ce tu vuè cu ccreje/cange sta pàgene.',
 'clearyourcache'                   => "'''Vide Bbuene - Apprisse 'a reggistrazione, tu puè zumbà 'a cache d'u browser tue pe vedè le cangiaminde.'''
@@ -875,7 +878,12 @@ Tu non ge tìne l\'accesse.',
 'revdelete-concurrent-change' => "Errore cangianne le artichele datate $2, $1: 'u state ca combare ha state cangiate da quacchedune otre mendre ca tu stè pruvave a cangiarle.
 Pe piacere condrolle l'archivije.",
 'revdelete-only-restricted'   => "Tu non ge puè sopprimere l'artichele da 'a viste de le amministrature senze ca scacchie pure une de le otre opzione de soppressione.",
+'revdelete-reason-dropdown'   => "*Mutive comune pa scangellazzione
+** Violazione d'u copyright
+** 'Mbormaziune personale inappropriate",
+'revdelete-otherreason'       => 'Otre/addizionale mutive:',
 'revdelete-reasonotherlist'   => 'Otre mutive',
+'revdelete-edit-reasonlist'   => "Mutive d'a scangellazione d'u cangiamende",
 
 # Suppression log
 'suppressionlog'     => 'Archivie de le soppressiune',
@@ -1874,10 +1882,12 @@ Le cangiaminde future a sta pàgene e 'a pàgene de le 'ngazzaminde associete le
 'changed'                      => 'cangete',
 'created'                      => 'ccrejete',
 'deleted'                      => 'scangellate',
+'enotif_deletedpagetext'       => "Sta pàgene non g'è cchiù disponibbele.",
 'enotif_subject'               => '\'A pàgene de {{SITENAME}} $PAGETITLE ha state $CHANGEDORCREATED da $PAGEEDITOR',
 'enotif_lastvisited'           => "Vide $1 pe tutte le cangiaminde da l'urtema visita toje.",
 'enotif_lastdiff'              => 'Vide $1 pe vedè stu cangiamende.',
 'enotif_anon_editor'           => 'Utende anonime $1',
+'enotif_rev_info'              => 'Vide $1 pa revisiona corrende.',
 'enotif_body'                  => 'Care $WATCHINGUSERNAME,
 
 
@@ -1941,21 +1951,22 @@ Scangellanne pò ccreja casine sus a le operazione d'u database de {{SITENAME}};
 và cunge cunge!",
 
 # Rollback
-'rollback'         => 'Annulle le cangiaminde',
-'rollback_short'   => 'Annulle',
-'rollbacklink'     => "annulle 'u cangiaminde",
-'rollbackfailed'   => 'Annullamende fallite',
-'cantrollback'     => "Non ge se pò annullà stu cangiamende;
+'rollback'          => 'Annulle le cangiaminde',
+'rollback_short'    => 'Annulle',
+'rollbacklink'      => "annulle 'u cangiaminde",
+'rollbackfailed'    => 'Annullamende fallite',
+'cantrollback'      => "Non ge se pò annullà stu cangiamende;
 l'urteme condrebbutore jè sulamende l'autore de sta pàgene.",
-'alreadyrolled'    => "Non ge se pò annulla l'urteme cangiamende de [[:$1]] da [[User:$2|$2]] ([[User talk:$2|'Ngazzaminde]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]);
+'alreadyrolled'     => "Non ge se pò annulla l'urteme cangiamende de [[:$1]] da [[User:$2|$2]] ([[User talk:$2|'Ngazzaminde]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]);
 quacche otre ha cangiate o annullate ggià 'a pàgene.
 
 L'urteme cangiamende d'a pàgene ere de [[User:$3|$3]] ([[User talk:$3|'Ngazzaminde]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).",
-'editcomment'      => "'U riepileghe d'u cangiamende ere: \"''\$1''\".",
-'revertpage'       => "Cangiaminde annullate da [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]) a l'urtema versione da [[User:$1|$1]]",
-'rollback-success' => "Cangiaminde annullate da $1;
+'editcomment'       => "'U riepileghe d'u cangiamende ere: \"''\$1''\".",
+'revertpage'        => "Cangiaminde annullate da [[Special:Contributions/$2|$2]] ([[User talk:$2|Talk]]) a l'urtema versione da [[User:$1|$1]]",
+'revertpage-nouser' => "Le cangiaminde annullate ba (nome utende luate) a l'urtema revisione da [[User:$1|$1]]",
+'rollback-success'  => "Cangiaminde annullate da $1;
 turnate rete a l'urtema versione da $2.",
-'sessionfailure'   => "Pare ca stonne probbleme cu 'a sessiona toje de collegamende;
+'sessionfailure'    => "Pare ca stonne probbleme cu 'a sessiona toje de collegamende;
 st'azione ha state scangellate pe precauzione condre a le 'ngasinaminde d'a sessione.
 Pe piacere cazze \"rete\" e recareche 'a pàgene da addò tu è venute e pruève 'n'otra vote.",
 
@@ -2094,17 +2105,18 @@ $1",
 'month'               => "Da 'u mese (e cchiù recende):",
 'year'                => "Da l'anne (e cchiù recende):",
 
-'sp-contributions-newbies'       => 'Fà vedè sulamende le condrebbute de le utinde nueve',
-'sp-contributions-newbies-sub'   => "Pe l'utinde nuève",
-'sp-contributions-newbies-title' => "Condrebbute de l'utinde pe le cunde utinde nuéve",
-'sp-contributions-blocklog'      => 'Archivije de le Bloccaminde',
-'sp-contributions-deleted'       => "condrebbute de l'utende scangellate",
-'sp-contributions-logs'          => 'archivije',
-'sp-contributions-talk'          => 'parle',
-'sp-contributions-userrights'    => 'Gestione de le deritte utende',
-'sp-contributions-search'        => 'Ricerche pe condrebbute',
-'sp-contributions-username'      => "Indirizze IP o nome de l'utende:",
-'sp-contributions-submit'        => 'Cirche',
+'sp-contributions-newbies'        => 'Fà vedè sulamende le condrebbute de le utinde nueve',
+'sp-contributions-newbies-sub'    => "Pe l'utinde nuève",
+'sp-contributions-newbies-title'  => "Condrebbute de l'utinde pe le cunde utinde nuéve",
+'sp-contributions-blocklog'       => 'Archivije de le Bloccaminde',
+'sp-contributions-deleted'        => "condrebbute de l'utende scangellate",
+'sp-contributions-logs'           => 'archivije',
+'sp-contributions-talk'           => 'parle',
+'sp-contributions-userrights'     => 'Gestione de le deritte utende',
+'sp-contributions-blocked-notice' => "Stu utende jè pe mò bloccate. L'urteme archivije de le bloccaminde se iacchie aqquà sotte pe referimende:",
+'sp-contributions-search'         => 'Ricerche pe condrebbute',
+'sp-contributions-username'       => "Indirizze IP o nome de l'utende:",
+'sp-contributions-submit'         => 'Cirche',
 
 # What links here
 'whatlinkshere'            => 'Appondene aqquà',
@@ -3151,5 +3163,20 @@ Mitte 'u nome d'u file senze 'u \"{{ns:file}}:\" prefisse.",
 'htmlform-submit'              => 'Conferme',
 'htmlform-reset'               => 'Annulle le cangiaminde',
 'htmlform-selectorother-other' => 'Otre',
+
+# Add categories per AJAX
+'ajax-add-category'            => "Aggiunge 'a categorije",
+'ajax-add-category-submit'     => 'Aggiunge',
+'ajax-confirm-title'           => "Conferme l'azione",
+'ajax-confirm-prompt'          => 'Tu puè fà \'nu riepileghe de le cangiaminde aqquà sotte.
+Cazze "Reggistre" pe reggistrà \'u cangiamende tue.',
+'ajax-confirm-save'            => 'Reggistre',
+'ajax-add-category-summary'    => 'Aggiunge \'a categorije "$1"',
+'ajax-remove-category-summary' => 'Live \'a categorije "$1"',
+'ajax-confirm-actionsummary'   => 'Azione da fà:',
+'ajax-error-title'             => 'Errore',
+'ajax-error-dismiss'           => 'OK',
+'ajax-remove-category-error'   => "Non g'è possibbele luà sta categorije.
+Stu fatte normalmende succede quanne 'a categorije ha state aggiunde a 'a pàgene jndr'à 'nu template.",
 
 );

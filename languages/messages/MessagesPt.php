@@ -1788,7 +1788,7 @@ A descrição presente na sua [$2 página de descrição] é mostrada abaixo.',
 # MIME search
 'mimesearch'         => 'Pesquisa MIME',
 'mimesearch-summary' => 'Esta página possibilita que os ficheiros sejam filtrados a partir de seu tipo MIME. Sintaxe de busca: tipo/subtipo (por exemplo, <tt>image/jpeg</tt>).',
-'mimetype'           => 'tipo MIME:',
+'mimetype'           => 'Tipo MIME:',
 'download'           => 'download',
 
 # Unwatched pages

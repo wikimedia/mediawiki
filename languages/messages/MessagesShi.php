@@ -150,9 +150,11 @@ $messages = array(
 'updatedmarker'    => 'Tuybddal z tizrink li iğuran',
 'info_short'       => 'Inɣmisn',
 'printableversion' => 'Tasna nu sugz',
-'permalink'        => 'azday izawmn',
-'edit'             => 'bddl',
+'permalink'        => 'Azday Bdda illan',
+'print'            => 'Siggz',
+'edit'             => 'Bddl',
 'create'           => 'skr',
+'editthispage'     => 'Ara tasna yad',
 'create-this-page' => 'Sker tasna yad',
 'delete'           => 'msḥ',
 'newpage'          => 'tawriqt tamaynut',
@@ -187,21 +189,46 @@ $messages = array(
 'site-rss-feed'      => "$1 lqm n' RSS",
 'site-atom-feed'     => "$1 lqm n' atom",
 'page-rss-feed'      => '"$1" tlqim RSS',
+'red-link-title'     => '$1 (tasnatad ur tlli)',
 
 # Short words for each namespace, by default used in the namespace tab in monobook
-'nstab-user'      => 'tawriqt o-msxdam',
-'nstab-mediawiki' => 'tabrat',
-'nstab-category'  => 'amgrd',
+'nstab-main'      => 'Tasnat',
+'nstab-user'      => 'Tasnat u-msxdam',
+'nstab-media'     => 'Tasnat Ntuzumt',
+'nstab-special'   => 'Tasna tamzlit',
+'nstab-project'   => 'Tasna n tuwuri',
+'nstab-image'     => 'Asdaw',
+'nstab-mediawiki' => 'Tabrat',
+'nstab-template'  => 'Talɣa',
+'nstab-help'      => 'Tasna n-aws',
+'nstab-category'  => 'Taggayt',
+
+# Main script and global functions
+'nosuchaction'      => 'Ur mat iskrn',
+'nosuchactiontext'  => 'Mytuskarn ɣu tansa yad ur tti tgi.
+
+Irwas is turit tansa yad skra mani yadnin ulla azday ur igi amya.
+
+Tzdar attili tmukrist ɣ {{SITENAME}}.',
+'nosuchspecialpage' => 'Urtlla tasna su w-assaɣad',
+'nospecialpagetext' => "<big>'''Trit yat tasna tamzlit ur illan.'''</big>
+
+Tifilit n tasnayin gaddanin ratn taft ɣid [[Special:SpecialPages|{{int:specialpages}}]].",
+
+# General errors
+'error'         => 'Laffut',
+'databaseerror' => 'Laffut ɣ database',
 
 # Login and logout pages
-'welcomecreation'         => '== brrk darnɣ, $1! ==
-
-lcont nk ati styaqyad. ador tot atbadlt {{SITENAME}} lmЗlomat nk.',
+'welcomecreation'         => '== Brrkat,  $1! ==
+lcont nek  tuyskar . 
+ Adur tut atbaddlt [[Special:Preferences|{{SITENAME}} issusmen]]',
 'yourname'                => 'smiyt o-msxdam:',
 'yourpassword'            => 'awal iḥdan:',
 'yourpasswordagain'       => 'Зawd ara awal iḥdan:',
-'remembermypassword'      => 'ktid tassarutenk ɣ lkumpyutrad',
+'remembermypassword'      => 'Askti nu ukcum ɣ lurdinaturad',
 'yourdomainname'          => 'Taɣult nek',
+'externaldberror'         => 'Imma tlla ɣin kra lafut ɣu ukcumnk ulla urak ittuyskar at tsbddelt lkontnk nbrra.',
 'nav-login-createaccount' => 'kchem / qiyd amskhdam amaynu',
 'userlogin'               => 'kchem / qiyd amskhdam amaynu',
 'userlogout'              => 'foɣ',

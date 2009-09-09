@@ -593,7 +593,6 @@ $2',
 'newarticletext'                   => '此頁尚缺。欲補，撰於下，有惑見[[{{MediaWiki:Helppage}}|助]]。
 誤入者，返前即可。',
 'anontalkpagetext'                 => "----''此匿論也，為未簿或不簿者設，IP俱錄以辨人焉。然IP不獨，恐生亂象，不喜惠[[Special:UserLogin/signup|增]][[Special:UserLogin|登簿]]遠之。",
-'noarticletext'                    => '查無此文。',
 'noarticletext'                    => '查無此文。[[Special:Search/{{PAGENAME}}|尋題]]，
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} 尋誌]，
 或[{{fullurl:{{FULLPAGENAME}}|action=edit}} 纂頁]</span>。',
