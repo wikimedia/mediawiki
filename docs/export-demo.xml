@@ -49,6 +49,10 @@
   <!-- Page ID numbers are kept across page moves, but may change   -->
   <!-- if a page is deleted and recreated.                          -->
   <id>1</id>
+
+  <! -- Tag wether this article is a redirect -->
+  <! -- This corresponds to the page_is_redirect in the page table -->
+  <redirect />
   
   <!-- If restricted, the ACL is listed here raw. -->
   <restrictions>edit=sysop:move=sysop</restrictions>
@@ -111,5 +115,20 @@
     <size>12345</size>
   </upload>
 </page>
+
+<logitem>
+  <id>15</id>
+  <timestamp>2008-10-23T03:20:32Z</timestamp>
+  <contributor>
+  <username>Wikimedian</username>
+  <id>12345</id>
+  </contributor>
+  <comment>content was: 'I think this was silly edit'</comment>
+  <type>delete</type>
+  <action>delete</action>
+  <logtitle>Silly page name</logtitle>
+  <params xml:space="preserve" />
+</logitem>
+
 
 </mediawiki>
