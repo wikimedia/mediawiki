@@ -357,6 +357,13 @@ body {
 	#simpleSearch > button#searchButton {
 		height: 100%;
 	}
+	.suggestions-heading .search-for {
+		color: green;
+	}
+	.suggestions-heading .search-term {
+		color: blue;
+		text-decoration: underline;
+	}
 /* Panel */
 #panel {
 	position: absolute;
