@@ -357,10 +357,10 @@ body {
 	#simpleSearch > button#searchButton {
 		height: 100%;
 	}
-	.suggestions-heading .search-for {
+	.suggestions-special .search-for {
 		color: green;
 	}
-	.suggestions-heading .search-term {
+	.suggestions-special .search-term {
 		color: blue;
 		text-decoration: underline;
 	}
