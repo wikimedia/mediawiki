@@ -3846,6 +3846,12 @@ $wgAPIMaxUncachedDiffs = 1;
 $wgAPIRequestLog = false;
 
 /**
+ * Cache the API help text for up to an hour. Disable this during API
+ * debugging and development
+ */
+$wgAPICacheHelp = true;
+
+/**
  * Parser test suite files to be run by parserTests.php when no specific
  * filename is passed to it.
  *
