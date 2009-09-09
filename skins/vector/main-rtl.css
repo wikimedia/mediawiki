@@ -362,8 +362,11 @@ body {
 		color: gray;
 	}
 	.suggestions-special .special-query {
-		color: #0645ad;
-		text-decoration: underline;
+		color: black;
+		font-style: italic;
+	}
+	.suggestions-special .special-hover {
+		background-color: silver;
 	}
 /* Panel */
 #panel {
