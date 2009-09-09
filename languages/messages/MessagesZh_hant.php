@@ -1,5 +1,5 @@
 <?php
-/** Traditional Chinese (‪中文(繁體)‬)
+/** Traditional Chinese (‪中文(傳統字)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -737,6 +737,8 @@ $2',
 'noarticletext'                    => '此頁目前沒有內容，您可以在其它頁[[Special:Search/{{PAGENAME}}|搜索此頁標題]]，
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} 搜索有關日誌]，
 或[{{fullurl:{{FULLPAGENAME}}|action=edit}} 編輯此頁]</span>。',
+'noarticletext-nopermission'       => '此頁目前沒有內容，您可以在其它頁[[Special:Search/{{PAGENAME}}|搜索此頁標題]]，
+或<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} 搜索有關日誌]</span>。',
 'userpage-userdoesnotexist'        => '用戶帳號「$1」未曾創建。請在創建／編輯這個頁面前先檢查一下。',
 'clearyourcache'                   => "'''注意 - 在儲存以後，您必須清除瀏覽器的快取才能看到所作出的改變。'''
 '''Mozilla / Firefox / Safari''': 按著 ''Shift'' 再點擊''重新整理''，或按下''Ctrl-F5''或''Ctrl-R''（在Macintosh上按下''Command-R''）；
@@ -2138,17 +2140,18 @@ $1',
 'month'               => '從該月份 （或更早）:',
 'year'                => '從該年份 （或更早）:',
 
-'sp-contributions-newbies'       => '只顯示新建立之用戶的貢獻',
-'sp-contributions-newbies-sub'   => '新手',
-'sp-contributions-newbies-title' => '新手的用戶貢獻',
-'sp-contributions-blocklog'      => '封禁記錄',
-'sp-contributions-deleted'       => '已刪除的用戶貢獻',
-'sp-contributions-logs'          => '日誌',
-'sp-contributions-talk'          => '對話',
-'sp-contributions-userrights'    => '用戶權限管理',
-'sp-contributions-search'        => '搜尋貢獻記錄',
-'sp-contributions-username'      => 'IP位址或用戶名稱：',
-'sp-contributions-submit'        => '搜尋',
+'sp-contributions-newbies'        => '只顯示新建立之用戶的貢獻',
+'sp-contributions-newbies-sub'    => '新手',
+'sp-contributions-newbies-title'  => '新手的用戶貢獻',
+'sp-contributions-blocklog'       => '封禁記錄',
+'sp-contributions-deleted'        => '已刪除的用戶貢獻',
+'sp-contributions-logs'           => '日誌',
+'sp-contributions-talk'           => '對話',
+'sp-contributions-userrights'     => '用戶權限管理',
+'sp-contributions-blocked-notice' => '這位用戶現時正在被封鎖中。最近的封鎖日誌項目在下面提供以便參考：',
+'sp-contributions-search'         => '搜尋貢獻記錄',
+'sp-contributions-username'       => 'IP位址或用戶名稱：',
+'sp-contributions-submit'         => '搜尋',
 
 # What links here
 'whatlinkshere'            => '鏈入頁面',
@@ -3222,5 +3225,20 @@ $1',
 'htmlform-submit'              => '遞交',
 'htmlform-reset'               => '復原更改',
 'htmlform-selectorother-other' => '其它',
+
+# Add categories per AJAX
+'ajax-add-category'            => '加入分類',
+'ajax-add-category-submit'     => '加入',
+'ajax-confirm-title'           => '確認動作',
+'ajax-confirm-prompt'          => '您可以在下面提供一個編輯摘要。
+點擊「保存」去保存您的編輯。',
+'ajax-confirm-save'            => '保存',
+'ajax-add-category-summary'    => '加入分類「$1」',
+'ajax-remove-category-summary' => '移除分類「$1」',
+'ajax-confirm-actionsummary'   => '已進行的動作：',
+'ajax-error-title'             => '錯誤',
+'ajax-error-dismiss'           => '好',
+'ajax-remove-category-error'   => '不能移除這個分類。
+通常是發生在一個模板中加入該分類。',
 
 );

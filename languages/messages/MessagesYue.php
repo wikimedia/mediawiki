@@ -1,5 +1,5 @@
 <?php
-/** Yue (粵語)
+/** Cantonese (粵語/廣東話)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -713,6 +713,8 @@ $1',
 'noarticletext'                    => '喺呢一頁而家並冇任何嘅文字，你可以喺其它嘅頁面中[[Special:Search/{{PAGENAME}}|搵呢一頁嘅標題]]，
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} 搵有關嘅日誌]，
 或者[{{fullurl:{{FULLPAGENAME}}|action=edit}} 編輯呢一版]</span>。',
+'noarticletext-nopermission'       => '喺呢一頁而家並冇任何嘅文字，你可以喺其它嘅頁面中[[Special:Search/{{PAGENAME}}|搵呢一頁嘅標題]]，
+或者<span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} 搵有關嘅日誌]</span>。',
 'userpage-userdoesnotexist'        => '用戶戶口"$1"重未開。請響䦒／編輯呢版之前先檢查一下。',
 'clearyourcache'                   => "'''注意 - 喺儲存之後，你可能要先略過你嘅瀏覽器快取去睇到更改。'''
 '''Mozilla / Firefox / Safari:''' 㩒住''Shift''掣再撳''重新載入''，又或者㩒''Ctrl-F5''或者''Ctrl-R''（喺Macintosh㩒''Command-R''掣）；
@@ -2105,17 +2107,18 @@ $1',
 'month'               => '由呢個月 (同更早):',
 'year'                => '由呢一年 (同更早):',
 
-'sp-contributions-newbies'       => '只顯示新戶口嘅貢獻',
-'sp-contributions-newbies-sub'   => '新戶口嘅貢獻',
-'sp-contributions-newbies-title' => '新戶口嘅用戶貢獻',
-'sp-contributions-blocklog'      => '封鎖日誌',
-'sp-contributions-deleted'       => '已經刪除咗嘅用戶貢獻',
-'sp-contributions-logs'          => '日誌',
-'sp-contributions-talk'          => '傾偈',
-'sp-contributions-userrights'    => '用戶權限管理',
-'sp-contributions-search'        => '搵貢獻',
-'sp-contributions-username'      => 'IP地址或用戶名：',
-'sp-contributions-submit'        => '搵',
+'sp-contributions-newbies'        => '只顯示新戶口嘅貢獻',
+'sp-contributions-newbies-sub'    => '新戶口嘅貢獻',
+'sp-contributions-newbies-title'  => '新戶口嘅用戶貢獻',
+'sp-contributions-blocklog'       => '封鎖日誌',
+'sp-contributions-deleted'        => '已經刪除咗嘅用戶貢獻',
+'sp-contributions-logs'           => '日誌',
+'sp-contributions-talk'           => '傾偈',
+'sp-contributions-userrights'     => '用戶權限管理',
+'sp-contributions-blocked-notice' => '呢位用戶現時封鎖緊。最近嘅封鎖日誌項目響下面提供以便參考：',
+'sp-contributions-search'         => '搵貢獻',
+'sp-contributions-username'       => 'IP地址或用戶名：',
+'sp-contributions-submit'         => '搵',
 
 # What links here
 'whatlinkshere'            => '有乜嘢連結來呢度',
@@ -3191,5 +3194,20 @@ $1',
 'htmlform-submit'              => '遞交',
 'htmlform-reset'               => '復原更改',
 'htmlform-selectorother-other' => '其它',
+
+# Add categories per AJAX
+'ajax-add-category'            => '加分類',
+'ajax-add-category-submit'     => '加',
+'ajax-confirm-title'           => '確認動作',
+'ajax-confirm-prompt'          => '你可以響下面提供一個編輯摘要。
+撳『儲存』去保存你嘅編輯。',
+'ajax-confirm-save'            => '儲存',
+'ajax-add-category-summary'    => '加入分類「$1」',
+'ajax-remove-category-summary' => '拎走分類「$1」',
+'ajax-confirm-actionsummary'   => '做咗嘅動作：',
+'ajax-error-title'             => '錯誤',
+'ajax-error-dismiss'           => '好',
+'ajax-remove-category-error'   => '唔能夠拎走呢個分類。
+通常係發生響一個模度加入咗嗰個分類。',
 
 );
