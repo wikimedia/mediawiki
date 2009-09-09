@@ -167,7 +167,7 @@ class UploadFromChunks extends UploadBase {
 			// c) (we need the token to validate chunks are coming from a non-xss request)
 			$token = urlencode( $wgUser->editToken() );
 			ob_clean();
-			echo ApiFormatJson::getJsonEncode( array(
+			echo FormatJson::encode( array(
 					'uploadUrl' => wfExpandUrl( wfScript( 'api' ) ) . "?action=upload&".
 									"token={$token}&format=json&enablechunks=true&chunksessionkey=".
 									$this->setupChunkSession( $summary, $comment, $watch ) ) );
@@ -179,7 +179,7 @@ class UploadFromChunks extends UploadBase {
 				// firefogg expects a specific result per:
 				// http://www.firefogg.org/dev/chunk_post.html
 				ob_clean();
-				echo ApiFormatJson::getJsonEncode( array(
+				echo FormatJson::encode( array(
 						'result' => 1,
 						'filesize' => filesize( $this->getRealPath( $this->mTempAppendPath ) )
 					)
@@ -209,7 +209,7 @@ class UploadFromChunks extends UploadBase {
 			// firefogg expects a specific result per:
 			// http://www.firefogg.org/dev/chunk_post.html
 			ob_clean();
-			echo ApiFormatJson::getJsonEncode( array(
+			echo FormatJson::encode( array(
 					'result' => 1,
 					'done' => 1,
 					'resultUrl' => $file->getDescriptionUrl()

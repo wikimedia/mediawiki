@@ -227,34 +227,49 @@ class OutputPage {
 	 * gets the scriptLoader javascript include
 	 * @param $forcClassAry Boolean: false by default
 	 */
-	function getScriptLoaderJs( $forceClassAry = false ){
+	function getScriptLoaderJs( $classAry = array() ){
 		global $wgRequest, $wgDebugJavaScript;
-
-		if( !$forceClassAry ){
-			$class_list = implode( ',', $this->mScriptLoaderClassList );
-		} else {
-			$class_list = implode( ',', $forceClassAry );
+		//if no class array provided use the mScriptLoaderClassList var
+		if( !count($classAry) ){
+			$classAry = $this->mScriptLoaderClassList;
 		}
+		$class_list = implode(',', $classAry);
 
 		$debug_param = ( $wgDebugJavaScript ||
 						 $wgRequest->getVal( 'debug' ) == 'true' ||
 						 $wgRequest->getVal( 'debug' ) == '1' )
 			 		 ? '&debug=true' : '';
 
-		//@@todo intelligent unique id generation based on svn version of file (rather than just grabbing the $wgStyleVersion var)
-		//@@todo we should check the packaged message text in this javascript file for updates and update the $mScriptLoaderURID id (in getJsClassFromPath)
-
-		//generate the unique request param (combine with the most recent revision id of any wiki page with the $wgStyleVersion var)
-
-		return Html::linkedScript( wfScript( 'mwScriptLoader' ) . "?class={$class_list}{$debug_param}&" . $this->getURIDparam() );
+		return Html::linkedScript( wfScript( 'mwScriptLoader' ) . "?class={$class_list}{$debug_param}&" . $this->getURIDparam( $classAry) );
 	}
 
-	function getURIDparam(){
-		global $wgDebugJavaScript, $wgStyleVersion;
+	function getURIDparam( $classAry=array() ){
+		global $wgDebugJavaScript, $wgStyleVersion, $IP, $wgScriptModifiedCheck;
 		if( $wgDebugJavaScript ){
 			return 'urid=' . time();
 		} else {
-			return "urid={$wgStyleVersion}_{$this->mLatestScriptRevID}";
+			$ftime=0;
+			if($wgScriptModifiedCheck){
+				foreach( $classAry as $class ){
+					$js_path =  jsScriptLoader::getJsPathFromClass( $class );
+					if( $js_path ){
+						$cur_ftime = filemtime ( $IP ."/". $js_path );
+						if( $cur_ftime > $ftime )
+							$ftime = $cur_ftime;
+					}
+				}
+			}
+			//set up the urid:
+			$urid = "urid={$wgStyleVersion}";
+
+			//if we have a $this->mLatestScriptRevID (wiki page revision ids)
+			if($this->mLatestScriptRevID != 0 )
+				$urid .= "_{$this->mLatestScriptRevID}";
+
+			if( $ftime != 0 )
+				$urid .= "_".$ftime;
+
+			return $urid;
 		}
 	}
 
