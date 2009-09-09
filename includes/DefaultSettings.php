@@ -2743,6 +2743,18 @@ $wgJSAutoloadClasses = array();
 $wgEnableScriptLoader = false;
 
 /*
+ * $wgScriptModifiedCheck should run a file modified check on javascript files when
+ * generating unique request ids for javascript include using the script-loader
+ *
+ * note this will only check core scripts that are directly included on the page.
+ * (not scripts loaded after the initial page display since after initial page
+ * display scripts inherit the unique request id) 
+ *
+ * and or you can update $wgStyleVersion
+ */
+$wgScriptModifiedCheck = true;
+
+/*
  * enable js2 Script System
  * if enabled we include jquery, mv_embed and js2 versions of editPage.js
  */
