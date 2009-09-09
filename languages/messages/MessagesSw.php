@@ -272,6 +272,7 @@ $messages = array(
 'vector-view-history'        => 'Kufungua historia',
 'vector-view-view'           => 'Kusoma',
 'vector-view-viewsource'     => 'Kuonyesha kodi',
+'actions'                    => 'Vitendo',
 'namespaces'                 => 'Maeneo ya wiki',
 
 'errorpagetitle'    => 'Hitilafu',
@@ -614,9 +615,14 @@ Ufunguo: '''({{int:cur}})''' = tofauti na toleo la sasa, '''({{int:last}})''' = 
 'history-feed-item-nocomment' => '$1 kwenye $2',
 
 # Revision deletion
-'rev-delundel'    => 'onyesha/ficha',
-'revdel-restore'  => 'badilisha mwonekano',
-'revdelete-uname' => 'jina la mtumiaji',
+'rev-delundel'               => 'onyesha/ficha',
+'revdelete-show-file-submit' => 'Ndiyo',
+'revdel-restore'             => 'badilisha mwonekano',
+'pagehist'                   => 'Historia ya ukurasa',
+'revdelete-uname'            => 'jina la mtumiaji',
+'revdelete-otherreason'      => 'Sababu nyingine:',
+'revdelete-reasonotherlist'  => 'Sababu nyingine',
+'revdelete-edit-reasonlist'  => 'Kuhariri sababu za kufuta',
 
 # History merging
 'mergehistory-reason' => 'Sababu:',
@@ -726,6 +732,7 @@ Ukitaka kutafuta kwenye maeneo yote (pamoja na kurasa za majadiliano, vigezo, nk
 'prefs-searchoptions'         => 'Hitiari za kutafuta',
 'prefs-namespaces'            => 'Maeneo ya wiki',
 'prefs-files'                 => 'Mafaili',
+'prefs-emailconfirm-label'    => 'Kuhakikisha barua pepe:',
 'prefs-textboxsize'           => 'Ukubwa wa sanduku la kuhariri',
 'youremail'                   => 'Barua pepe yako:',
 'username'                    => 'Jina la mtumiaji:',
@@ -761,6 +768,10 @@ Pia unaweza kuchagua kuacha watumiaji wengine kuwasiliana nao kwa kutumia ukuras
 'prefs-advancedwatchlist'     => 'Hitiari za hali ya juu',
 'prefs-display'               => 'Hitiari za kutandaza',
 
+# User rights
+'userrights-user-editname' => 'Andika jina la mtumiaji:',
+'editusergroup'            => 'Kuhariri vikundi vya watumiaji',
+
 # Groups
 'group'       => 'Kundi:',
 'group-user'  => 'Watumiaji',
@@ -788,6 +799,9 @@ Pia unaweza kuchagua kuacha watumiaji wengine kuwasiliana nao kwa kutumia ukuras
 'action-edit'       => 'kuhariri ukurasa huu',
 'action-createpage' => 'kuanzisha kurasa',
 'action-move'       => 'kusogeza ukurasa huu',
+'action-movefile'   => 'kusogeza faili hili',
+'action-delete'     => 'kufuta ukurasa huu',
+'action-undelete'   => 'kurudisha ukurasa huu',
 
 # Recent changes
 'nchanges'                       => '{{PLURAL:$1|badiliko|mabadiliko}} $1',
@@ -838,6 +852,7 @@ Kwa kutumia faili katika makala, tumia moja kati ya viungo vifuatavyo:
 * '''<tt><nowiki>[[</nowiki>{{ns:file}}<nowiki>:Picha.png|200px|thumb|left|maelezo ya picha]]</nowiki></tt>''' tumia pixel 200 kwa ukubwa mzuri na sehemu ya 'maelezo ya picha' ikiwa kama maelezo husika na picha iliyopo
 * '''<tt><nowiki>[[</nowiki>{{ns:media}}<nowiki>:File.ogg]]</nowiki></tt>''' kwa kuunga moja kwa moja bila kuonyesga faili",
 'uploadlogpage'     => 'Kumbukumbu ya upakiaji',
+'filename'          => 'Jina la faili',
 'filedesc'          => 'Muhtasari',
 'fileuploadsummary' => 'Muhtasari:',
 'ignorewarning'     => 'Hifadhi bila kujali maonyo yoyote.',

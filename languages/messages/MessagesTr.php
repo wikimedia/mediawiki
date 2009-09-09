@@ -731,6 +731,9 @@ Bu yeni hesap için parola, giriş yapıldıktan sonra ''[[Special:ChangePasswor
 Bu başlığı diğer sayfalarda [[Special:Search/{{PAGENAME}}|arayabilir]],
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} ilgili günlükleri arayabilir],
 ya da bu sayfayı [{{fullurl:{{FULLPAGENAME}}|action=edit}} değiştirebilirsiniz]</span>.',
+'noarticletext-nopermission'       => 'Bu sayfa şu anda boştur.
+Bu başlığı [[Special:Search/{{PAGENAME}}|diğer sayfalarda arayabilir]]
+ya da <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} ilgili günlükleri tarayabilirsiniz].</span>',
 'userpage-userdoesnotexist'        => '"$1" kullanıcı hesabı kayıtlı değil. Bu sayfayı oluşturmak/değiştirmek istiyorsanız lütfen kontrol edin.',
 'clearyourcache'                   => "'''Not:''' Ayarlarınızı kaydettikten sonra, tarayıcınızın belleğini de temizlemeniz gerekmektedir: '''Mozilla / Firefox / Safari:''' ''Shift'' e basılıyken safyayı yeniden yükleyerek veya ''Ctrl-Shift-R'' yaparak (Apple Mac için ''Cmd-Shift-R'');, '''IE:''' ''Ctrl-F5'', '''Konqueror:''' Sadece sayfayı yeniden yükle tuşuna basarak.",
 'usercssyoucanpreview'             => "'''İpucu:''' Sayfayı kaydetmeden önce '''önizlemeyi göster''''e tıklayarak yaptığınız yeni sayfayı gözden geçirin.",
@@ -2161,17 +2164,18 @@ $1',
 'month'               => 'Ay:',
 'year'                => 'Yıl:',
 
-'sp-contributions-newbies'       => 'Sadece yeni hesap açan kullanıcıların katkılarını göster',
-'sp-contributions-newbies-sub'   => 'Yeni kullanıcılar için',
-'sp-contributions-newbies-title' => 'Yeni hesaplar için kullanıcı katkıları',
-'sp-contributions-blocklog'      => 'Engel kaydı',
-'sp-contributions-deleted'       => 'silinen kullanıcı katkıları',
-'sp-contributions-logs'          => 'günlükler',
-'sp-contributions-talk'          => 'tartışma',
-'sp-contributions-userrights'    => 'kullanıcı hakları yönetimi',
-'sp-contributions-search'        => 'Katkıları ara',
-'sp-contributions-username'      => 'IP veya kullanıcı:',
-'sp-contributions-submit'        => 'Ara',
+'sp-contributions-newbies'        => 'Sadece yeni hesap açan kullanıcıların katkılarını göster',
+'sp-contributions-newbies-sub'    => 'Yeni kullanıcılar için',
+'sp-contributions-newbies-title'  => 'Yeni hesaplar için kullanıcı katkıları',
+'sp-contributions-blocklog'       => 'Engel kaydı',
+'sp-contributions-deleted'        => 'silinen kullanıcı katkıları',
+'sp-contributions-logs'           => 'günlükler',
+'sp-contributions-talk'           => 'tartışma',
+'sp-contributions-userrights'     => 'kullanıcı hakları yönetimi',
+'sp-contributions-blocked-notice' => 'Bu kullanıcı engellenmiştir. Referans için en son engellenme kaydı aşağıda belirtilmiştir:',
+'sp-contributions-search'         => 'Katkıları ara',
+'sp-contributions-username'       => 'IP veya kullanıcı:',
+'sp-contributions-submit'         => 'Ara',
 
 # What links here
 'whatlinkshere'            => 'Sayfaya bağlantılar',
@@ -3245,5 +3249,20 @@ Dosya adını "{{ns:file}}:" öneki olmadan gir.',
 'htmlform-submit'              => 'Gönder',
 'htmlform-reset'               => 'Değişiklikleri geri al',
 'htmlform-selectorother-other' => 'Diğer',
+
+# Add categories per AJAX
+'ajax-add-category'            => 'Kategori ekle',
+'ajax-add-category-submit'     => 'Ekle',
+'ajax-confirm-title'           => 'İşlemi onayla',
+'ajax-confirm-prompt'          => 'Aşağıya bir değişiklik özeti yazabilirsiniz. 
+Değişikliğinizi kaydetmek için "Kaydet"e basın.',
+'ajax-confirm-save'            => 'Kaydet',
+'ajax-add-category-summary'    => '"$1" kategorisini ekle',
+'ajax-remove-category-summary' => '"$1" kategorisini kaldır',
+'ajax-confirm-actionsummary'   => 'Yapılacak işlem:',
+'ajax-error-title'             => 'Hata',
+'ajax-error-dismiss'           => 'Tamam',
+'ajax-remove-category-error'   => 'Kategori silinemiyor. 
+Bu genelde kategori sayfaya bir şablon aracılığıyla eklendiğinde meydana gelir.',
 
 );

@@ -993,6 +993,9 @@ $2',
 شما می‌توانید [[Special:Search/{{PAGENAME}}|عنوان این صفحه را در صفحه‌های دیگر جستجو کنید]]،
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} سیاهه‌های مرتبط را جستجو کنید]،
 یا [{{fullurl:{{FULLPAGENAME}}|action=edit}} این صفحه را ویرایش کنید]</span>.',
+'noarticletext-nopermission'       => 'در حال حاضر این صفحه متنی ندارد.
+شما می‌توانید در دیگر صفحه‌ها [[Special:Search/{{PAGENAME}}|دنبال عنوان این صفحه بگردید]]،
+یا <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} سیاهه‌های مرتبط را جستجو کنید]</span>.',
 'userpage-userdoesnotexist'        => 'حساب کاربر «$1» ثبت نشده است. اطمینان حاصلی کنید که می‌خواهید این صفحه را ایجاد یا ویرایش کنید.',
 'clearyourcache'                   => "'''نکته:''' پس از ذخیره‌سازی ممکن است برای دیدن تغییرات نیاز باشد که حافظهٔ نهانی مرورگر خود را خالی کنید. '''موزیلا / فایرفاکس / Safari:'''  کلید '''Shift''' را نگه‌دارید و روی دکمهٔ '''Reload''' کلیک کنید، یا کلید‌های '''Ctrl-Shift-R''' را با هم فشار دهید (در رایانه‌های اپل مکینتاش کلید‌های '''Cmd-Shift-R''')؛ '''اینترنت اکسپلورر:''' کلید '''Ctrl''' نگه‌دارید و روی دکمهٔ '''Refresh''' کلیک‌ کنید، یا کلید‌های '''Ctrl-F5''' را با هم فشار دهید؛ '''Konqueror:''' روی دکمهٔ '''Reload''' کلیک کنید و یا کلید '''F5''' را فشار دهید؛ '''اُپرا:''' کاربران اُپرا ممکن است لازم باشد که بطور کامل حافظهٔ نهانی مرورگر را در منوی ''Tools&rarr;Preferences'' خالی کنند.",
 'usercssyoucanpreview'             => "'''نکته:''' قبل از این که فایل CSS یا JS خود را ذخیره کنید، با استفاده از دکمه '''پیش‌نمایش''' می‌توان آن را آزمایش کنید.",
@@ -2412,17 +2415,18 @@ $1',
 'month'               => 'در این ماه (و قبل از آن)',
 'year'                => 'در این سال (و قبل از آن)',
 
-'sp-contributions-newbies'       => 'فقط مشارکت‌های تازه‌واردان نمایش داده شود',
-'sp-contributions-newbies-sub'   => 'برای تازه‌کاران',
-'sp-contributions-newbies-title' => 'مشارکت‌های کاربری برای حساب‌های تازه‌کار',
-'sp-contributions-blocklog'      => 'سیاههٔ بسته‌شدن‌ها',
-'sp-contributions-deleted'       => 'مشارکت‌های حذف شدهٔ کاربر',
-'sp-contributions-logs'          => 'سیاهه‌ها',
-'sp-contributions-talk'          => 'بحث',
-'sp-contributions-userrights'    => 'مدیریت اختیارات کاربر',
-'sp-contributions-search'        => 'جستجوی مشارکت‌ها',
-'sp-contributions-username'      => 'نشانی آی‌پی یا نام کاربری:',
-'sp-contributions-submit'        => 'جستجو',
+'sp-contributions-newbies'        => 'فقط مشارکت‌های تازه‌واردان نمایش داده شود',
+'sp-contributions-newbies-sub'    => 'برای تازه‌کاران',
+'sp-contributions-newbies-title'  => 'مشارکت‌های کاربری برای حساب‌های تازه‌کار',
+'sp-contributions-blocklog'       => 'سیاههٔ بسته‌شدن‌ها',
+'sp-contributions-deleted'        => 'مشارکت‌های حذف شدهٔ کاربر',
+'sp-contributions-logs'           => 'سیاهه‌ها',
+'sp-contributions-talk'           => 'بحث',
+'sp-contributions-userrights'     => 'مدیریت اختیارات کاربر',
+'sp-contributions-blocked-notice' => 'این کاربر در حال حاضر بسته شده‌است. آخرین سیاههٔ بسته شدن در زیر آمده‌است:',
+'sp-contributions-search'         => 'جستجوی مشارکت‌ها',
+'sp-contributions-username'       => 'نشانی آی‌پی یا نام کاربری:',
+'sp-contributions-submit'         => 'جستجو',
 
 # What links here
 'whatlinkshere'            => 'پیوندهای به این صفحه',
@@ -3528,5 +3532,20 @@ $1',
 'htmlform-submit'              => 'ارسال',
 'htmlform-reset'               => 'خنثی کردن تغییرات',
 'htmlform-selectorother-other' => 'دیگر',
+
+# Add categories per AJAX
+'ajax-add-category'            => 'افزودن رده',
+'ajax-add-category-submit'     => 'افزودن',
+'ajax-confirm-title'           => 'تایید عمل',
+'ajax-confirm-prompt'          => 'شما می‌توانید خلاصهٔ ویرایش را در زیر وارد کنید.
+دکمه «ذخیره» را بزنید تا ویرایش‌تان ذخیره شود.',
+'ajax-confirm-save'            => 'ذخیره',
+'ajax-add-category-summary'    => 'افزودن رده «$1»',
+'ajax-remove-category-summary' => 'حذف رده «$1»',
+'ajax-confirm-actionsummary'   => 'عمل پیش رو:',
+'ajax-error-title'             => 'خطا',
+'ajax-error-dismiss'           => 'تایید',
+'ajax-remove-category-error'   => 'امکان حذف این رده وجود نداشت.
+این اتفاق معمولاً زمانی می‌افتد که رده از طریق یک الگو به صفحه اضافه شده باشد.',
 
 );

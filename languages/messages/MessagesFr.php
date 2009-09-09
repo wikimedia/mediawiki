@@ -3450,4 +3450,19 @@ Entrez le nom du fichier sans le préfixe « {{ns:file}}: ».',
 'htmlform-reset'               => 'Défaire les modifications',
 'htmlform-selectorother-other' => 'Autre',
 
+# Add categories per AJAX
+'ajax-add-category'            => 'Ajouter une catégorie',
+'ajax-add-category-submit'     => 'Ajouter',
+'ajax-confirm-title'           => "Confirmer l'action",
+'ajax-confirm-prompt'          => 'Vous pouvez fournir un résumé de la modification ci-dessous.
+Cliquez sur « Publier » pour enregistrer votre modification.',
+'ajax-confirm-save'            => 'Publier',
+'ajax-add-category-summary'    => 'Ajouter la catégorie « $1 »',
+'ajax-remove-category-summary' => 'Enlever la catégorie « $1 »',
+'ajax-confirm-actionsummary'   => 'Action à mener :',
+'ajax-error-title'             => 'Erreur',
+'ajax-error-dismiss'           => 'OK',
+'ajax-remove-category-error'   => "Il n'a pas été possible de retirer cette catégorie.
+Ceci survient généralement lorsque la catégorie a été ajoutée à la page via un modèle.",
+
 );

@@ -3395,4 +3395,19 @@ Zadejte jméno souboru bez označení "{{ns:file}}:".',
 'htmlform-reset'               => 'Vrátit změny',
 'htmlform-selectorother-other' => 'Jiná hodnota',
 
+# Add categories per AJAX
+'ajax-add-category'            => 'Přidat kategorii',
+'ajax-add-category-submit'     => 'Přidat',
+'ajax-confirm-title'           => 'Potvrdit změnu',
+'ajax-confirm-prompt'          => 'Níže můžete vyplnit shrnutí editace.
+Kliknutím na „Uložit“ se vaše změna uloží.',
+'ajax-confirm-save'            => 'Uložit',
+'ajax-add-category-summary'    => 'Přidání kategorie „$1“',
+'ajax-remove-category-summary' => 'Odebrání kategorie „$1“',
+'ajax-confirm-actionsummary'   => 'Zamýšlená změna:',
+'ajax-error-title'             => 'Chyba',
+'ajax-error-dismiss'           => 'OK',
+'ajax-remove-category-error'   => 'Tuto kategorii se nepodařilo odstranit.
+To se obvykle stává v případě, že byla stránka do kategorie přidána prostřednictvím šablony.',
+
 );

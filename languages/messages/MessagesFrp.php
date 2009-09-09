@@ -2229,21 +2229,22 @@ La suprimar pôt troblar lo fonccionement de la bâsa de balyês de {{SITENAME}}
 a fâre avouéc prudence.',
 
 # Rollback
-'rollback'         => 'Rèvocar los changements',
-'rollback_short'   => 'Rèvocar',
-'rollbacklink'     => 'rèvocar',
-'rollbackfailed'   => 'La rèvocacion at pas reussia',
-'cantrollback'     => 'Empossiblo de rèvocar lo changement ;
+'rollback'          => 'Rèvocar los changements',
+'rollback_short'    => 'Rèvocar',
+'rollbacklink'      => 'rèvocar',
+'rollbackfailed'    => 'La rèvocacion at pas reussia',
+'cantrollback'      => 'Empossiblo de rèvocar lo changement ;
 lo dèrriér contributor est lo solèt ôtor de ceta pâge.',
-'alreadyrolled'    => 'Empossiblo de rèvocar lo dèrriér changement de la pâge « [[:$1]] » fêt per [[User:$2|$2]] ([[User talk:$2|Discutar]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) ;
+'alreadyrolled'     => 'Empossiblo de rèvocar lo dèrriér changement de la pâge « [[:$1]] » fêt per [[User:$2|$2]] ([[User talk:$2|Discutar]]{{int:pipe-separator}}[[Special:Contributions/$2|{{int:contribslink}}]]) ;
 quârqu’un d’ôtro at ja changiê ou ben rèvocâ la pâge.
 
 Lo dèrriér changement de la pâge at étâ fêt per [[User:$3|$3]] ([[User talk:$3|Discutar]]{{int:pipe-separator}}[[Special:Contributions/$3|{{int:contribslink}}]]).',
-'editcomment'      => "Lo rèsumâ du changement ére : « ''$1'' ».",
-'revertpage'       => 'Rèvocacion des changements a [[Special:Contributions/$2|$2]] ([[User talk:$2|Discutar]]) de vers la dèrriére vèrsion a [[User:$1|$1]]',
-'rollback-success' => 'Rèvocacion des changements fêts per $1 ;
+'editcomment'       => "Lo rèsumâ du changement ére : « ''$1'' ».",
+'revertpage'        => 'Rèvocacion des changements a [[Special:Contributions/$2|$2]] ([[User talk:$2|Discutar]]) de vers la dèrriére vèrsion a [[User:$1|$1]]',
+'revertpage-nouser' => 'Rèvocacion des changements per (nom d’utilisator suprimâ) a la dèrriére vèrsion per [[User:$1|$1]]',
+'rollback-success'  => 'Rèvocacion des changements fêts per $1 ;
 rètablissement de la dèrriére vèrsion per $2.',
-'sessionfailure'   => 'Voutra sèance de branchement semble avêr des problèmos ;
+'sessionfailure'    => 'Voutra sèance de branchement semble avêr des problèmos ;
 cela accion at étâ anulâ en prèvencion d’un piratâjo de sèance.
 Volyéd clicar dessus « Devant », rechargiér la pâge de yô que vos vegnéd, et pués tornar èprovar.',
 
@@ -3554,5 +3555,18 @@ Buchiéd lo nom du fichiér sen lo prèfixo « {{ns:file}}: ».',
 'htmlform-submit'              => 'Sometre',
 'htmlform-reset'               => 'Dèfâre los changements',
 'htmlform-selectorother-other' => 'Ôtro',
+
+# Add categories per AJAX
+'ajax-add-category'            => 'Apondre una catègorie',
+'ajax-add-category-submit'     => 'Apondre',
+'ajax-confirm-title'           => 'Confirmar l’accion',
+'ajax-confirm-prompt'          => 'Vos pouede balyér un rèsumâ du changement ce-desot.
+Clicâd dessus « Sôvar » por enregistrar voutron changement.',
+'ajax-confirm-save'            => 'Sôvar',
+'ajax-add-category-summary'    => 'Apondre la catègorie « $1 »',
+'ajax-remove-category-summary' => 'Enlevar la catègorie « $1 »',
+'ajax-confirm-actionsummary'   => 'Accion a menar :',
+'ajax-error-title'             => 'Èrror',
+'ajax-error-dismiss'           => 'D’acôrd',
 
 );

@@ -746,7 +746,7 @@ Vergiss nicht, deine [[Special:Preferences|{{SITENAME}}-Einstellungen]] anzupass
 'login'                      => 'Anmelden',
 'nav-login-createaccount'    => 'Anmelden',
 'loginprompt'                => 'Zur Anmeldung müssen Cookies aktiviert sein.',
-'userlogin'                  => 'Anmelden',
+'userlogin'                  => 'Anmelden / Benutzerkonto erstellen',
 'logout'                     => 'Abmelden',
 'userlogout'                 => 'Abmelden',
 'notloggedin'                => 'Nicht angemeldet',
@@ -915,6 +915,9 @@ Bist du fälschigerweise hier, klicke die '''Zurück'''-Schaltfläche deines Bro
 'noarticletext'                    => 'Diese Seite enthält momentan noch keinen Text.
 Du kannst diesen Titel auf den anderen Seiten [[Special:Search/{{PAGENAME}}|suchen]],
 <span class="plainlinks">in den zugehörigen [{{fullurl:{{#special:Log}}|page={{FULLPAGENAMEE}}}} Logbüchern suchen] oder diese Seite [{{fullurl:{{FULLPAGENAME}}|action=edit}} bearbeiten]</span>.',
+'noarticletext-nopermission'       => 'Diese Seite enthält momentan noch keinen Text.
+Du kannst diesen Titel auf den anderen Seiten [[Special:Search/{{PAGENAME}}|suchen]]
+oder <span class="plainlinks">in den zugehörigen [{{fullurl:{{#special:Log}}|page={{FULLPAGENAMEE}}}} Logbüchern suchen].',
 'userpage-userdoesnotexist'        => 'Das Benutzerkonto „$1“ ist nicht vorhanden. Bitte prüfe, ob du diese Seite wirklich erstellen/bearbeiten willst.',
 'clearyourcache'                   => "'''Hinweis - Leere nach dem Speichern den Browser-Cache, um die Änderungen sehen zu können:''' '''Mozilla/Firefox/Safari:''' ''Shift'' gedrückt halten und auf ''Aktualisieren'' klicken oder alternativ entweder ''Strg-F5'' oder ''Strg-R'' (''Befehlstaste-R'' bei Macintosh) drücken; '''Konqueror: '''Auf ''Aktualisieren'' klicken oder ''F5'' drücken; '''Opera:''' Cache unter ''Extras → Einstellungen'' leeren; '''Internet Explorer:''' ''Strg-F5'' drücken oder ''Strg'' gedrückt halten und dabei ''Aktualisieren'' anklicken.",
 'usercssyoucanpreview'             => "'''Tipp:''' Benutze den Vorschau-Button, um dein neues CSS vor dem Speichern zu testen.",
@@ -2333,17 +2336,18 @@ $1',
 'month'               => 'und Monat:',
 'year'                => 'bis Jahr:',
 
-'sp-contributions-newbies'       => 'Zeige nur Beiträge neuer Benutzer',
-'sp-contributions-newbies-sub'   => 'Für Neulinge',
-'sp-contributions-newbies-title' => 'Benutzerbeiträge von neuen Benutzern',
-'sp-contributions-blocklog'      => 'Sperr-Logbuch',
-'sp-contributions-deleted'       => 'Gelöschte Beiträge',
-'sp-contributions-logs'          => 'Logbücher',
-'sp-contributions-talk'          => 'Diskussion',
-'sp-contributions-userrights'    => 'Benutzerrechteverwaltung',
-'sp-contributions-search'        => 'Suche nach Benutzerbeiträgen',
-'sp-contributions-username'      => 'IP-Adresse oder Benutzername:',
-'sp-contributions-submit'        => 'Suchen',
+'sp-contributions-newbies'        => 'Zeige nur Beiträge neuer Benutzer',
+'sp-contributions-newbies-sub'    => 'Für Neulinge',
+'sp-contributions-newbies-title'  => 'Benutzerbeiträge von neuen Benutzern',
+'sp-contributions-blocklog'       => 'Sperr-Logbuch',
+'sp-contributions-deleted'        => 'Gelöschte Beiträge',
+'sp-contributions-logs'           => 'Logbücher',
+'sp-contributions-talk'           => 'Diskussion',
+'sp-contributions-userrights'     => 'Benutzerrechteverwaltung',
+'sp-contributions-blocked-notice' => 'Dieser Benutzer ist aktuell gesperrt. Es folgt der aktuelle Eintrag aus dem Benutzersperr-Logbuch:',
+'sp-contributions-search'         => 'Suche nach Benutzerbeiträgen',
+'sp-contributions-username'       => 'IP-Adresse oder Benutzername:',
+'sp-contributions-submit'         => 'Suchen',
 
 # What links here
 'whatlinkshere'            => 'Links auf diese Seite',
@@ -3411,5 +3415,20 @@ Die Eingabe muss ohne den Zusatz „{{ns:file}}:“ erfolgen.',
 'htmlform-submit'              => 'Übertragen',
 'htmlform-reset'               => 'Änderungen rückgängig machen',
 'htmlform-selectorother-other' => 'Andere',
+
+# Add categories per AJAX
+'ajax-add-category'            => 'Kategorie hinzufügen',
+'ajax-add-category-submit'     => 'Hinzufügen',
+'ajax-confirm-title'           => 'Aktion bestätigen',
+'ajax-confirm-prompt'          => 'Du kannst unten eine Zusammenfassung eingeben.
+Klicke „Speichern“ um die Bearbeitung zu speichern.',
+'ajax-confirm-save'            => 'Speichern',
+'ajax-add-category-summary'    => 'Kategorie „$1“ hinzufügen',
+'ajax-remove-category-summary' => 'Kategorie „$1“ entfernen',
+'ajax-confirm-actionsummary'   => 'Auszuführende Aktion:',
+'ajax-error-title'             => 'Fehler',
+'ajax-error-dismiss'           => 'OK',
+'ajax-remove-category-error'   => 'Es war nicht möglich, die Kategorie zu entfernen.
+Dies passiert normalerweise, wenn die Kategorie über eine Vorlage eingebunden ist.',
 
 );

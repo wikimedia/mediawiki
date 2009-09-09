@@ -1330,8 +1330,7 @@ $1",
 'prefs-help-gender'             => '선택 사항: 소프트웨어에서 성별에 따른 언어 문제를 해결하기 위해 사용됩니다. 이 정보는 공개됩니다.',
 'email'                         => '이메일',
 'prefs-help-realname'           => '실명 기입은 자유입니다. 실명을 입력할 경우 문서 기여에 자신의 이름이 들어가게 됩니다.',
-'prefs-help-email'              => '이메일 주소 입력은 선택이지만, 비밀번호를 잊었을 때 찾기 위해서는 필요합니다.
-이메일 주소를 공개하지 않고도 사용자 및 사용자토론 문서를 통해 다른 사용자들과 이야기를 할 수 있습니다.',
+'prefs-help-email'              => '이메일 주소 입력은 선택 사항입니다. 이메일을 등록해 두면 비밀번호를 잊었을 때 다른 비밀번호를 받을 수 있으며, 이메일을 공개하지 않고도 다른 사용자에게 메일을 받을 수 있습니다.',
 'prefs-help-email-required'     => '이메일 주소가 필요합니다.',
 'prefs-info'                    => '기본 정보',
 'prefs-i18n'                    => '언어 설정',
@@ -3310,5 +3309,10 @@ $1',
 'htmlform-submit'              => '저장',
 'htmlform-reset'               => '변경한 것을 되돌리기',
 'htmlform-selectorother-other' => '기타',
+
+# Add categories per AJAX
+'ajax-add-category'        => '분류 추가',
+'ajax-add-category-submit' => '추가',
+'ajax-error-dismiss'       => '확인',
 
 );

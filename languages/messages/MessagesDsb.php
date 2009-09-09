@@ -562,7 +562,7 @@ Twójo konto jo se załožyło. Njezabydni změniś swóje [[Special:Preferences
 'login'                      => 'pśizjawiś se',
 'nav-login-createaccount'    => 'Pśizjawiś se',
 'loginprompt'                => 'Za pśizjawjenje do boka {{SITENAME}} muse se cookije dopušćiś.',
-'userlogin'                  => 'pśizjawiś se',
+'userlogin'                  => 'Pśizjawiś/Konto załožyś',
 'logout'                     => 'wótzjawiś se',
 'userlogout'                 => 'wótzjawiś se',
 'notloggedin'                => 'Njepśizjawjony(a)',
@@ -3166,5 +3166,20 @@ Zapódaj datajowe mě bźez prefiksa "{{ns:file}}:".',
 'htmlform-submit'              => 'Wótpósłaś',
 'htmlform-reset'               => 'Změny anulěrowaś',
 'htmlform-selectorother-other' => 'Druge',
+
+# Add categories per AJAX
+'ajax-add-category'            => 'Kategoriju pśidaś',
+'ajax-add-category-submit'     => 'Pśidaś',
+'ajax-confirm-title'           => 'Akciju wobkšuśiś',
+'ajax-confirm-prompt'          => 'Móžoš dołojce wobźěłowańske zespominanje pódaś.
+Klikni na "Składowaś", aby swójo wobźěłanje składował.',
+'ajax-confirm-save'            => 'Składowaś',
+'ajax-add-category-summary'    => 'Kategoriju "$1" pśidaś',
+'ajax-remove-category-summary' => 'Kategoriju "$1" wótpóraś',
+'ajax-confirm-actionsummary'   => 'Akcija, kótaraž ma se wuwjasć:',
+'ajax-error-title'             => 'Zmólka',
+'ajax-error-dismiss'           => 'W pórědku',
+'ajax-remove-category-error'   => 'Njejo móžno było toś tu kategoriju wótpóraś.
+To se zwětšego stawa, gaž kategorija jo se pśidała bokoju w pśedłoze.',
 
 );

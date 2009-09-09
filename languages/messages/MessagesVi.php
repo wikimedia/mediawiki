@@ -2722,7 +2722,7 @@ Lưu nó vào máy tính của bạn rồi tải nó lên đây.',
 # Patrol log
 'patrol-log-page'      => 'Nhật ký tuần tra',
 'patrol-log-header'    => 'Đây là nhật trình tuần tra phiên bản.',
-'patrol-log-line'      => 'đánh dấu tuần tra vào phiên bản $1 của $2 $3',
+'patrol-log-line'      => 'đánh dấu tuần tra vào $1 của $2 $3',
 'patrol-log-auto'      => '(tự động)',
 'patrol-log-diff'      => 'bản $1',
 'log-show-hide-patrol' => '$1 nhật trình tuần tra',
@@ -3354,5 +3354,20 @@ Hãy cho vào tên của tập tin, trừ tiền tố “{{ns:file}}:”.',
 'htmlform-submit'              => 'Đăng',
 'htmlform-reset'               => 'Hủy các thay đổi',
 'htmlform-selectorother-other' => 'Khác',
+
+# Add categories per AJAX
+'ajax-add-category'            => 'Thêm thể loại',
+'ajax-add-category-submit'     => 'Thêm',
+'ajax-confirm-title'           => 'Xác nhận tác vụ',
+'ajax-confirm-prompt'          => 'Bạn có thể thêm tóm lược sửa đổi vào bên dưới.
+Nhấn “Lưu” để lưu sửa đổi của bạn.',
+'ajax-confirm-save'            => 'Lưu',
+'ajax-add-category-summary'    => 'Thêm thể loại “$1”',
+'ajax-remove-category-summary' => 'Bỏ thể loại “$1”',
+'ajax-confirm-actionsummary'   => 'Tác vụ thực hiện:',
+'ajax-error-title'             => 'Lỗi',
+'ajax-error-dismiss'           => 'OK',
+'ajax-remove-category-error'   => 'Không thể bỏ thể loại này.
+Điều này thường xảy ra khi thể loại được thêm vào trang thông qua một tiêu bản.',
 
 );

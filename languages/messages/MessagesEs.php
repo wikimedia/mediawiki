@@ -1591,7 +1591,7 @@ Si todavía quiere subir su archivo, por favor, regrese a la página anterior y 
 'overwroteimage'              => 'subida una nueva versión de «[[$1]]»',
 'uploaddisabled'              => 'Subida de archivos deshabilitada',
 'uploaddisabledtext'          => 'No es posible subir archivos.',
-'php-uploaddisabledtext'      => 'Archivo de cargas PHP está desahilitado. Por favor verifique la configuración file_uploads.',
+'php-uploaddisabledtext'      => 'La subida de archivos está deshabilitada en PHP. Por favor compruebe <code>file_uploads</code> en php.ini.',
 'uploadscripted'              => 'Este archivo contiene script o código HTML que puede ser interpretado erróneamente por un navegador.',
 'uploadcorrupt'               => 'Este archivo está corrupto o la extensión indicada no se corresponde con el tipo de archivo. Por favor, comprueba el archivo y vuelve a subirlo.',
 'uploadvirus'                 => '¡El archivo contiene un virus! Detalles: $1',
@@ -3273,5 +3273,14 @@ Ingrese el nombre del archivo sin el prefijo "{{ns:file}}:".',
 'htmlform-submit'              => 'Enviar',
 'htmlform-reset'               => 'Deshacer cambios',
 'htmlform-selectorother-other' => 'Otro',
+
+# Add categories per AJAX
+'ajax-add-category'          => 'Agregar categoría',
+'ajax-add-category-submit'   => 'Agregar',
+'ajax-confirm-title'         => 'Confirmar acción',
+'ajax-confirm-save'          => 'Grabar',
+'ajax-confirm-actionsummary' => 'Acción a tomar:',
+'ajax-error-title'           => 'Error',
+'ajax-error-dismiss'         => 'OK',
 
 );

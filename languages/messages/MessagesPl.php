@@ -827,7 +827,10 @@ Jeśli jesteś anonimowym użytkownikiem i uważasz, że zamieszczone tu komenta
 'noarticletext'                    => 'Brak strony o tym tytule.
 Możesz [[Special:Search/{{PAGENAME}}|poszukać „{{PAGENAME}}” na innych stronach]],
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} przeszukać log] lub [{{fullurl:{{FULLPAGENAME}}|action=edit}} utworzyć tę stronę]</span>.',
-'userpage-userdoesnotexist'        => 'Użytkownik „$1” nie jest zarejestrowany. Upewnij się, czy na pewno zamierzałeś utworzyć/zmodyfikować właśnie tę stronę.',
+'noarticletext-nopermission'       => 'Na tej stronie nie ma jeszcze artykułu.
+Możesz [[Special:Search/{{PAGENAME}}|wyszukać ten tytuł]] w treści innych stron
+lub <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} przeszukać powiązane logi].</span>',
+'userpage-userdoesnotexist'        => 'Użytkownik „$1” nie jest zarejestrowany. Upewnij się, czy na pewno zamierzałeś utworzyć lub zmodyfikować właśnie tę stronę.',
 'clearyourcache'                   => "'''Uwaga:''' Zmiany po zapisaniu nowych ustawień mogą nie być widoczne. Należy wyczyścić zawartość pamięci podręcznej przeglądarki internetowej.
 *'''Mozilla, Firefox lub Safari –''' przytrzymaj wciśnięty ''Shift'' i kliknij na ''Odśwież'' lub wciśnij ''Ctrl‐F5'' lub ''Ctrl‐R'' (''Cmd‐Shift‐R'' na Macintoshu)
 *'''Konqueror –''' kliknij przycisk ''Odśwież'' lub wciśnij ''F5''
@@ -2272,17 +2275,18 @@ $1',
 'month'               => 'Przed miesiącem (włącznie)',
 'year'                => 'Przed rokiem (włącznie)',
 
-'sp-contributions-newbies'       => 'Pokaż wyłącznie wkład nowych użytkowników',
-'sp-contributions-newbies-sub'   => 'Dla nowych użytkowników',
-'sp-contributions-newbies-title' => 'Wkład nowych użytkowników',
-'sp-contributions-blocklog'      => 'blokady',
-'sp-contributions-deleted'       => 'usunięty wkład użytkownika',
-'sp-contributions-logs'          => 'rejestry',
-'sp-contributions-talk'          => 'dyskusja',
-'sp-contributions-userrights'    => 'zarządzanie uprawnieniami użytkowników',
-'sp-contributions-search'        => 'Szukaj wkładu',
-'sp-contributions-username'      => 'Adres IP lub nazwa użytkownika',
-'sp-contributions-submit'        => 'Szukaj',
+'sp-contributions-newbies'        => 'Pokaż wyłącznie wkład nowych użytkowników',
+'sp-contributions-newbies-sub'    => 'Dla nowych użytkowników',
+'sp-contributions-newbies-title'  => 'Wkład nowych użytkowników',
+'sp-contributions-blocklog'       => 'blokady',
+'sp-contributions-deleted'        => 'usunięty wkład użytkownika',
+'sp-contributions-logs'           => 'rejestry',
+'sp-contributions-talk'           => 'dyskusja',
+'sp-contributions-userrights'     => 'zarządzanie uprawnieniami użytkowników',
+'sp-contributions-blocked-notice' => 'Ten użytkownik jest aktualnie zablokowany. Ostatni wpis rejestru blokad jest pokazany poniżej',
+'sp-contributions-search'         => 'Szukaj wkładu',
+'sp-contributions-username'       => 'Adres IP lub nazwa użytkownika',
+'sp-contributions-submit'         => 'Szukaj',
 
 # What links here
 'whatlinkshere'            => 'Linkujące',
@@ -3400,5 +3404,20 @@ Wpisz nazwę pliku z pominięciem prefiksu „{{ns:file}}:”.',
 'htmlform-submit'              => 'Zapisz',
 'htmlform-reset'               => 'Cofnij zmiany',
 'htmlform-selectorother-other' => 'Inne',
+
+# Add categories per AJAX
+'ajax-add-category'            => 'Dodaj kategorię',
+'ajax-add-category-submit'     => 'Dodaj',
+'ajax-confirm-title'           => 'Potwierdź',
+'ajax-confirm-prompt'          => 'Możesz podać poniżej opis edycji.
+Kliknij „Zapisz”, aby zapisać zmiany.',
+'ajax-confirm-save'            => 'Zapisz',
+'ajax-add-category-summary'    => 'Dodaj kategorię „$1”',
+'ajax-remove-category-summary' => 'Usuń kategorię „$1”',
+'ajax-confirm-actionsummary'   => 'Cel działania',
+'ajax-error-title'             => 'Błąd',
+'ajax-error-dismiss'           => 'OK',
+'ajax-remove-category-error'   => 'Usunięcie strony z tej kategorii nie jest możliwe.
+Problem zazwyczaj występuje, jeśli kategoria została dodana do strony przez szablon.',
 
 );

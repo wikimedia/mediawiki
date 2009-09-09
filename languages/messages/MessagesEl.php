@@ -3379,4 +3379,7 @@ $1',
 'htmlform-reset'               => 'Αναστροφή αλλαγών',
 'htmlform-selectorother-other' => 'Άλλο',
 
+# Add categories per AJAX
+'ajax-confirm-actionsummary' => 'Ενέργεια που είναι να παρθεί:',
+
 );
