@@ -417,9 +417,9 @@ class Skin extends Linker {
 		}
 
 		//if on upload page output the extension list & js_upload
-		if( SpecialPage::resolveAlias( $wgTitle->getDBkey() ) ==  "Upload" ){
+		if( SpecialPage::resolveAlias( $wgTitle->getDBkey() ) ==  "Upload" ) {
 			global $wgFileExtensions, $wgAjaxUploadInterface;
-			$vars['wgFileExtensions'] 	 = $wgFileExtensions;
+			$vars['wgFileExtensions'] = $wgFileExtensions;
 			$vars['wgAjaxUploadInterface'] = $wgAjaxUploadInterface;
 		}
 
@@ -470,8 +470,6 @@ class Skin extends Linker {
 
 		$vars = self::makeGlobalVariablesScript( $this->getSkinName() );
 
-		//moved wikibits to be called earlier on
-		//$out->addScriptFile( "{$wgStylePath}/common/wikibits.js" );
 		if( $wgUseSiteJs ) {
 			$jsCache = $wgUser->isLoggedIn() ? '&smaxage=0' : '';
 			$wgOut->addScriptFile(  self::makeUrl( '-',
@@ -482,9 +480,9 @@ class Skin extends Linker {
 		}
 		if( $out->isUserJsAllowed() && $wgUser->isLoggedIn() ) {
 			$userpage = $wgUser->getUserPage();
-			$userjs =  self::makeUrl(
-				$userpage->getPrefixedText().'/'.$this->getSkinName().'.js',
-				'action=raw&ctype='.$wgJsMimeType );
+			$userjs = self::makeUrl(
+				$userpage->getPrefixedText() . '/' . $this->getSkinName() . '.js',
+				'action=raw&ctype=' . $wgJsMimeType );
 			$wgOut->addScriptFile( $userjs );
 		}
 		return $vars . "\n" . $out->mScripts;
@@ -527,15 +525,15 @@ class Skin extends Linker {
 	 * top.  For now Monobook.js will be maintained, but it should be consi-
 	 * dered deprecated.
 	 *
-	 * @param force_skin  lets you override the skin name
+	 * @param $force_skin string If set, overrides the skin name
 	 *
 	 * @return string
 	 */
-	public function generateUserJs( $skinName = null) {
+	public function generateUserJs( $skinName = null ) {
 		global $wgStylePath;
 
 		wfProfileIn( __METHOD__ );
-		if(!$skinName){
+		if( !$skinName ) {
 			$skinName =	$this->getSkinName();
 		}
 
@@ -551,7 +549,7 @@ class Skin extends Linker {
 		$s .= "\n\n/* MediaWiki:".ucfirst( $skinName ).".js */\n";
 		// avoid inclusion of non defined user JavaScript (with custom skins only)
 		// by checking for default message content
-		$msgKey = ucfirst( $skinName ).'.js';
+		$msgKey = ucfirst( $skinName ) . '.js';
 		$userJS = wfMsgForContent( $msgKey );
 		if ( !wfEmptyMsg( $msgKey, $userJS ) ) {
 			$s .= $userJS;

@@ -98,15 +98,17 @@ class SkinTemplate extends Skin {
 		$out->addStyle( 'common/shared.css', 'screen' );
 		$out->addStyle( 'common/commonPrint.css', 'print' );
 	}
-	/* add specific javascript the base Skin class */
-	function setupSkinUserJs( OutputPage $out ){
+
+	/**
+	 * Add specific JavaScript the base Skin class.
+	 * FIXME: not called from anywhere
+	 */
+	function setupSkinUserJs( OutputPage $out ) {
 		global $wgUseSiteJs;
-		//use site js:
 		if( $wgUseSiteJs ) {
 			$jsCache = $this->loggedin ? '&smaxage=0' : '';
-			$siteGenScriptFile =  self::makeUrl( '-',
-					"action=raw$jsCache&gen=js&useskin=" .
-						urlencode( $this->getSkinName() ) ) ;
+			$siteGenScriptFile = self::makeUrl( '-',
+				"action=raw$jsCache&gen=js&useskin=" . urlencode( $this->getSkinName() ) );
 			$this->jsvarurl = $siteGenScriptFile;
 		}
 	}
@@ -248,9 +250,6 @@ class SkinTemplate extends Skin {
 		$tpl->setRef( 'jsmimetype', $wgJsMimeType );
 		$tpl->setRef( 'charset', $wgOutputEncoding );
 		$tpl->set( 'headlinks', $out->getHeadLinks() );
-
-		//moved headscripts to near end of template header output
-
 		$tpl->set( 'csslinks', $out->buildCssLinks() );
 		$tpl->setRef( 'wgScript', $wgScript );
 		$tpl->setRef( 'skinname', $this->skinname );
@@ -472,7 +471,7 @@ class SkinTemplate extends Skin {
 		$tpl->set( 'sidebar', $this->buildSidebar() );
 		$tpl->set( 'nav_urls', $this->buildNavUrls() );
 
-		//set the head script near the end (in case above actions result in adding scripts)
+		// Set the head scripts near the end, in case the above actions resulted in added scripts
 		$tpl->set( 'headscripts', $out->getScript() );
 
 		// original version by hansm

@@ -385,14 +385,14 @@ class EditPage {
 		}
 
 		if ( wfReadOnly() && $this->save ) {
-				// Force preview
-				$this->save = false;
-				$this->preview = true;
+			// Force preview
+			$this->save = false;
+			$this->preview = true;
 		}
 
 		$wgOut->addScriptFile( 'edit.js' );
 
-		if($wgEnableJS2system)
+		if( $wgEnableJS2system )
 		    $wgOut->addScriptClass( 'editPage' );
 
 		$permErrors = $this->getEditPermissionErrors();

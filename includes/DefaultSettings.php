@@ -459,13 +459,11 @@ $wgMaxUploadSize = 1024*1024*100; # 100MB
 
 
 /**
-* Enable firefogg support
-* add support for in-browser transcoding to ogg theora
-* add support for chunk uploads for large image files
-* add support for client side hash checks
-*
-* (requires the js2 code for the interface)
-*/
+ * Enable Firefogg support. Adds support for in-browser transcoding to Ogg 
+ * Theora, chunked uploads for large image files and client side hash checks.
+ *
+ * Ignored unless $wgEnableJS2system is true.
+ */
 $wgEnableFirefogg = true;
 
 /**
@@ -2726,10 +2724,9 @@ $wgSpecialPages = array();
  */
 $wgAutoloadClasses = array();
 
-
 /*
- * Array mapping javascript class to web path for autoloading js
- * this var is populated in AutoLoader.php
+ * Array mapping JavaScript class to web path for use by the script loader.
+ * This is populated in AutoLoader.php.
  */
 $wgJSAutoloadClasses = array();
 
@@ -2761,17 +2758,20 @@ $wgScriptModifiedCheck = true;
 $wgEnableJS2system = false;
 
 /*
- * boolean; if relative file paths can be used (in addition to the autoload js classes listed in: $wgJSAutoloadClasses
+ * boolean; if relative file paths can be used (in addition to the autoload 
+ * js classes listed in: $wgJSAutoloadClasses)
  */
 $wgEnableScriptLoaderJsFile = false;
 
 /*
- * boolean; if we should minify the output. (note if you send ?debug=true in the page request it will automatically not group and not minify)
+ * boolean; if we should minify the output. (note if you send ?debug=true in 
+ * the page request it will automatically not group and not minify)
  */
 $wgEnableScriptMinify = true;
 
 /*
- * boolean; if we should enable javascript localization (it loads loadGM json call with mediaWiki msgs)
+ * boolean; if we should enable javascript localization (it loads loadGM json 
+ * call with mediaWiki msgs)
  */
 $wgEnableScriptLocalization = true;
 
@@ -2781,10 +2781,9 @@ $wgEnableScriptLocalization = true;
 $wgMwEmbedDirectory = "js2/mwEmbed/";
 
 /*
- * wgDebugJavaScript used to turn on debuging for the javascript script-loader
- * & forces fresh copies of javascript
+ * Turn on debugging for the javascript script-loader & forces fresh copies 
+ * of javascript
  */
-
 $wgDebugJavaScript = false;
 
 
@@ -3614,8 +3613,9 @@ $wgAllowSpecialInclusion = true;
  * default is (default php.ini script time 30s - 5s for everything else)
  */
 $wgSyncHTTPTimeout = 25;
+
 /**
-* Timeout for asynchronous http request that run in a background php proccess
+* Timeout for asynchronous HTTP requests that run in a background PHP process
 * default set to 20 min
 */
 $wgAsyncHTTPTimeout = 60*20;
@@ -3693,7 +3693,8 @@ $wgAjaxWatch = true;
 $wgAjaxUploadDestCheck = true;
 
 /**
- * Enable AJAX upload interface (need for large http uploads & to display progress on uploads for browsers that support it)
+ * Enable the AJAX upload interface (needed for large http uploads & to display 
+ * progress on uploads for browsers that support it)
  */
 $wgAjaxUploadInterface = true;
 
@@ -3758,7 +3759,7 @@ $wgMaxShellFileSize = 102400;
 $wgMaxShellTime = 180;
 
 /**
-* Executable Path of PHP cli client (php/php5)  (should be setup on install)
+* Executable path of the PHP cli binary (php/php5). Should be set up on install.
 */
 $wgPhpCli = '/usr/bin/php';
 

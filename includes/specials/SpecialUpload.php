@@ -23,8 +23,8 @@ class UploadForm extends SpecialPage {
 	# extensions should take care to _append_ to the present value
 	var $uploadFormTextTop;
 	var $uploadFormTextAfterSummary;
-    var $mTokenOk = false;
-    var $mForReUpload = false;
+	var $mTokenOk = false;
+	var $mForReUpload = false;
 	/**#@-*/
 
 	/**
@@ -129,10 +129,10 @@ class UploadForm extends SpecialPage {
 		}
 		//check token if uploading or reUploading
 		if( !$this->mTokenOk && !$this->mReUpload && ($this->mUpload && (
-						'submit' == $this->mAction || $this->mUploadClicked ) )
-		){
-		    $this->mainUploadForm ( wfMsg( 'session_fail_preview' ) );
-		    return ;
+						'submit' == $this->mAction || $this->mUploadClicked ) ) )
+		{
+			$this->mainUploadForm ( wfMsg( 'session_fail_preview' ) );
+			return ;
 		}
 
 
@@ -167,7 +167,7 @@ class UploadForm extends SpecialPage {
 	 *
 	 * @access private
 	 */
-	function processUpload(){
+	function processUpload() {
 		global $wgOut, $wgFileExtensions, $wgLang;
 		$details = $this->internalProcessUpload();
 		switch( $details['status'] ) {
@@ -277,8 +277,8 @@ class UploadForm extends SpecialPage {
 
 		// Fetch the file if required
 		$status = $this->mUpload->fetchFile();
-		if( !$status->isOK() ){
-			return array( 'status' =>UploadBase::BEFORE_PROCESSING, 'error'=>$status->getWikiText() );
+		if( !$status->isOK() ) {
+			return array( 'status' => UploadBase::BEFORE_PROCESSING, 'error'=> $status->getWikiText() );
 		}
 
 		// Check whether this is a sane upload
@@ -656,9 +656,9 @@ wgEnableFirefogg = {$uef};
 wgUploadAutoFill = {$autofill};
 </script>" );
 
-		if( $wgEnableJS2system ){
+		if( $wgEnableJS2system ) {
 			//js2version of upload page:
-		    $wgOut->addScriptClass( 'uploadPage' );
+			$wgOut->addScriptClass( 'uploadPage' );
 		}else{
 			//legacy upload code:
 			$wgOut->addScriptFile( 'upload.js' );
@@ -746,7 +746,7 @@ wgUploadAutoFill = {$autofill};
 				$wgLang->formatSize( $val ) ) .
 				"</div>\n";
 		//add a hidden filed for upload by url (uses the $wgMaxUploadSize var)
-		if( UploadFromUrl::isEnabled() ){
+		if( UploadFromUrl::isEnabled() ) {
 			$maxUploadSize.='<div id="mw-upload-maxfilesize-url" style="display:none">' .
 			wfMsgExt( 'upload-maxfilesize', array( 'parseinline', 'escapenoentities' ),
 				$wgLang->formatSize( $wgMaxUploadSize ) ) .
@@ -754,7 +754,7 @@ wgUploadAutoFill = {$autofill};
 		}
 
 		$sourcefilename = wfMsgExt( 'sourcefilename', array( 'parseinline', 'escapenoentities' ) );
-        $destfilename = wfMsgExt( 'destfilename', array( 'parseinline', 'escapenoentities' ) );
+		$destfilename = wfMsgExt( 'destfilename', array( 'parseinline', 'escapenoentities' ) );
 
 		$msg = ( $this->mForReUpload )  ? 'filereuploadsummary' : 'fileuploadsummary';
 		$summary = wfMsgExt( $msg, 'parseinline' );
@@ -778,17 +778,21 @@ wgUploadAutoFill = {$autofill};
 		// Prepare form for upload or upload/copy
 		//javascript moved from inline calls to setup:
 		if( UploadFromUrl::isEnabled() && $wgUser->isAllowed( 'upload_by_url' ) ) {
-		    if($wgEnableJS2system){
-		        $filename_form =
-		        	Xml::input( 'wpSourceType', false, 'file', array( 'id'=>'wpSourceTypeFile', 'type' => 'radio', 'checked' => 'checked' ) ) .
-		        	Xml::input( 'wpUploadFile', 60, false, array( 'id'=>'wpUploadFile', 'type'=>'file', 'tabindex' => '1' ) ) .
-						wfMsgHTML( 'upload_source_file' ) . "<br/>" .
-					Xml::input( 'wpSourceType', false, 'Url', array( 'id'=>'wpSourceTypeURL', 'type' => 'radio' )) .
-					Xml::input( 'wpUploadFileURL', 60, false, array( 'id'=>'wpUploadFileURL', 'type' => 'text', 'tabindex' => '1')) .
+			if( $wgEnableJS2system ) {
+				$filename_form =
+					Xml::input( 'wpSourceType', false, 'file', 
+						array( 'id' => 'wpSourceTypeFile', 'type' => 'radio', 'checked' => 'checked' ) ) .
+					Xml::input( 'wpUploadFile', 60, false, 
+						array( 'id' => 'wpUploadFile', 'type' => 'file', 'tabindex' => '1' ) ) .
+					wfMsgHTML( 'upload_source_file' ) . "<br/>" .
+					Xml::input( 'wpSourceType', false, 'Url', 
+						array( 'id' => 'wpSourceTypeURL', 'type' => 'radio' ) ) .
+					Xml::input( 'wpUploadFileURL', 60, false, 
+						array( 'id' => 'wpUploadFileURL', 'type' => 'text', 'tabindex' => '1' ) ) .
 				wfMsgHtml( 'upload_source_url' ) ;
-		    }else{
-		         //@@todo depreciate (not needed once $wgEnableJS2system is turned on)
-               $filename_form =
+			} else {
+				//@@todo deprecate (not needed once $wgEnableJS2system is turned on)
+				$filename_form =
 				"<input type='radio' id='wpSourceTypeFile' name='wpSourceType' value='file' " .
 				   "onchange='toggle_element_activation(\"wpUploadFileURL\",\"wpUploadFile\")' checked='checked' />" .
 				 "<input tabindex='1' type='file' name='wpUploadFile' id='wpUploadFile' " .
@@ -806,13 +810,14 @@ wgUploadAutoFill = {$autofill};
 				    "onchange='fillDestFilename(\"wpUploadFileURL\")' size='60' disabled='disabled' />" .
 				wfMsgHtml( 'upload_source_url' ) ;
 
-		    }
+			}
 		} else {
-			if($wgEnableJS2system){
+			if( $wgEnableJS2system ) {
 				$filename_form =
-					Xml::input( 'wpUploadFile', 60, false, array( 'id'=>'wpUploadFile', 'type'=>'file', 'tabindex' => '1' ) ) .
+					Xml::input( 'wpUploadFile', 60, false, 
+						array( 'id' => 'wpUploadFile', 'type' => 'file', 'tabindex' => '1' ) ) .
 					Xml::hidden( 'wpSourceType', 'file');
-			}else{
+			} else {
 				$filename_form =
 				"<input tabindex='1' type='file' name='wpUploadFile' id='wpUploadFile' size='60' ".
 				"onchange='fillDestFilename(\"wpUploadFile\")' />" .
@@ -821,9 +826,9 @@ wgUploadAutoFill = {$autofill};
 		}
 		$warningRow = '';
 		$destOnkeyup = '';
-		if($wgEnableJS2system){
+		if( $wgEnableJS2system ) {
 			$warningRow = "<tr><td colspan='2' id='wpDestFile-warning'>&nbsp;</td></tr>";
-		}else{
+		} else {
 			if ( $useAjaxDestCheck ) {
 				$warningRow = "<tr><td colspan='2' id='wpDestFile-warning'>&nbsp;</td></tr>";
 				$destOnkeyup = 'onchange=\'wgUploadWarningObj.checkNow(this.value);\'';
@@ -834,15 +839,16 @@ wgUploadAutoFill = {$autofill};
 
 		$encComment = htmlspecialchars( $this->mComment );
 
-	    //add the wpEditToken
+		//add the wpEditToken
 		$wgOut->addHTML(
-			 Xml::openElement( 'form', array( 'method' => 'post', 'action' => $titleObj->getLocalURL( 'action=submit' ),
+			Xml::openElement( 'form', 
+			array( 'method' => 'post', 'action' => $titleObj->getLocalURL( 'action=submit' ),
 				 'enctype' => 'multipart/form-data', 'id' => 'mw-upload-form' ) ) .
-			 Xml::hidden('wpEditToken', $wgUser->editToken(), array('id' => 'wpEditToken')) .
-			 Xml::openElement( 'fieldset' ) .
-			 Xml::element( 'legend', null, wfMsg( 'upload' ) ) .
-			 Xml::openElement( 'table', array( 'border' => '0', 'id' => 'mw-upload-table' ) ) .
-			 "<tr>
+			Xml::hidden( 'wpEditToken', $wgUser->editToken(), array( 'id' => 'wpEditToken' ) ) .
+			Xml::openElement( 'fieldset' ) .
+			Xml::element( 'legend', null, wfMsg( 'upload' ) ) .
+			Xml::openElement( 'table', array( 'border' => '0', 'id' => 'mw-upload-table' ) ) .
+			"<tr>
 				{$this->uploadFormTextTop}
 				<td class='mw-label'>
 					<label for='wpUploadFile'>{$sourcefilename}</label>
@@ -1020,7 +1026,7 @@ wgUploadAutoFill = {$autofill};
 		}
 	}
 
-	 /**
+	/**
 	 * Check if a user is the last uploader
 	 *
 	 * @param User $user
@@ -1062,7 +1068,7 @@ wgUploadAutoFill = {$autofill};
 	/**
 	 * Get the initial image page text based on a comment and optional file status information
 	 */
-	static function getInitialPageText( $comment='', $license='', $copyStatus='', $source='' ) {
+	static function getInitialPageText( $comment = '', $license = '', $copyStatus = '', $source = '' ) {
 		global $wgUseCopyrightUpload;
 		if ( $wgUseCopyrightUpload ) {
 			$licensetxt = '';

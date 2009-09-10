@@ -67,7 +67,10 @@ class ApiFormatJson extends ApiFormatBase {
 			$prefix = preg_replace("/[^][.\\'\\\"_A-Za-z0-9]/", "", $callback ) . "(";
 			$suffix = ")";
 		}
-		$this->printText( $prefix . FormatJson::encode( $this->getResultData(),   $this->getIsHtml() )  . $suffix);
+		$this->printText( 
+			$prefix . 
+			FormatJson::encode( $this->getResultData(),	$this->getIsHtml() ) . 
+			$suffix );
 	}
 
 	public function getAllowedParams() {
