@@ -1,5 +1,5 @@
 /*the sequence remote search driver
-	 extends the base remote search driver with sequence specific stuff.		 could seperate this out into seperate lib.
+	 extends the base remote search driver with sequence specific stuff
 */
 
 var seqRemoteSearchDriver = function(iObj){
@@ -95,7 +95,7 @@ seqRemoteSearchDriver.prototype = {
 			if(tClip)
 				var target_order = tClip.order;
 		}
-		//@@todo show watting of sorts.
+		//@@todo show wating of sorts.
 
 		//get target order:
 		var cat = rObj;

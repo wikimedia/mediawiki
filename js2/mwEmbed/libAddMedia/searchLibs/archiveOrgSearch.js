@@ -1,5 +1,5 @@
 //archive.org uses solr engine: 
-//more about solr here: 
+//more about solr here:  
 //http://lucene.apache.org/solr/
 
 var archiveOrgSearch = function ( iObj){
@@ -72,7 +72,7 @@ archiveOrgSearch.prototype = {
 					'desc'		 : resource.description,
 					'src'		  : _this.dnUrl + resource.identifier+'/format=Ogg+video',
 					'mime'		  : 'application/ogg',
-					//set the licence: (rsd is a pointer to the parent remoteSearchDriver )		 
+					//set the license: (rsd is a pointer to the parent remoteSearchDriver )		 
 					'license'	  : this.rsd.getLicenceFromUrl( resource.licenseurl ),
 					'pSobj'		 :_this				
 					

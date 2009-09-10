@@ -52,8 +52,8 @@ mediaWikiSearch.prototype = {
 			'url':this.cp.api_url
 		},function(data){			
 			var titleSet = {};
-			var titleStr=''
-			var pound='';
+			var titleStr = ''
+			var pound = '';
 			//loop over the data and group by title
 			if(data.query && data.query.recentchanges){	
 				for(var i in data.query.recentchanges){
@@ -65,13 +65,14 @@ mediaWikiSearch.prototype = {
 					}
 				}
 			}					
-			//now run the actual query ( too bad we cant use recentchanges as a gennerator
+			//now run the actual query ( too bad we can't use recentchanges as a generator )
+			//bug 20563
 			do_api_req({
 				'data' : {
-					'action':'query',
-					'titles':titleStr,	
-					'prop':'imageinfo|revisions|categories',
-					'iiprop':'url|mime|size',
+					'action'	: 'query',
+					'titles'	: titleStr,	
+					'prop'		: 'imageinfo|revisions|categories',
+					'iiprop'	: 'url|mime|size',
 					'iiurlwidth': parseInt( _this.rsd.thumb_width ),
 					'rvprop':'content'	
 				},
@@ -124,7 +125,7 @@ mediaWikiSearch.prototype = {
 				_this.loading = false;
 		});			
 	},	
-	//same as below but returns your rObj for convience
+	//same as below but returns your rObj for convenience 
 	addSingleResult:function( data ){	
 		return this.addResults(data, true);
 	},
@@ -174,7 +175,7 @@ mediaWikiSearch.prototype = {
 						'categories':page.categories
 					}
 				};			
-				//attempt to parse out some stuff from the teplate: 
+				//attempt to parse out some stuff from the template: 
 				var desc = rObj.desc.match(/\|Description=(([^\n]*\n)*)\|Source=/)
 				if( desc && desc[1] ){					
 					rObj.desc = $j.trim( desc[1] );
@@ -227,7 +228,7 @@ mediaWikiSearch.prototype = {
 				return false;
 			}			
 		}
-		//assuming svg or size is in range: give them requeted size
+		//assuming svg or size is in range: give them requested size
 		callback({ 
 				'url'	: baseImgUrl + '?f=' + rObj.titleKey + '&w='+ size.width,
 				'width'	: size.width,
@@ -331,8 +332,8 @@ mediaWikiSearch.prototype = {
 			return desc;	 
 		}
 		//else return the title since we could not find the desc:
-		js_log('we could not find the Description tag in :' + desc );
-		return rObj.title;
+		js_log('Error: No Description Tag, Using::' + desc );
+		return desc;
 	},
 	parseWikiTemplate: function( text ){
 		//@@todo parse wiki Template return object with properties and values
