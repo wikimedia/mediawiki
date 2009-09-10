@@ -331,4 +331,4 @@ var ctrlBuilder = {
 			}
 		}										
 	}	
-}
+};
