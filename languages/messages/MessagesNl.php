@@ -1789,6 +1789,24 @@ Als het probleem aanhoudt, neem dan contact op met een [[Special:ListUsers/sysop
 'upload-unknown-size'       => 'Onbekende grootte',
 'upload-http-error'         => 'Er is een HTTP-fout opgetreden: $1',
 
+# img_auth script messages
+'img-auth-accessdenied' => 'Toegang geweigerd',
+'img-auth-nopathinfo'   => 'PATH_INFO mist.
+Uw server is niet ingesteld om deze informatie door te geven.
+Misschien gebruikt deze CGI, en dan wordt img_auth niet ondersteund.
+Zie http://www.mediawiki.org/wiki/Manual:Image_Authorization voor meer informatie.',
+'img-auth-notindir'     => 'Het opgevraagde pad is niet de ingestelde uploadmap.',
+'img-auth-badtitle'     => 'Het was niet mogelijk een geldige paginanaam te maken van "$1".',
+'img-auth-nologinnWL'   => 'U bent niet aangemeld en "$1" staat niet op de witte lijst.',
+'img-auth-nofile'       => 'Bestand "$1" bestaat niet.',
+'img-auth-isdir'        => 'U probeert de map "$1" te benaderen.
+Alleen toegang tot bestanden is toegestaan.',
+'img-auth-streaming'    => 'Bezig met het streamen van "$1".',
+'img-auth-public'       => 'Het doel van img_auth.php is de uitvoer van bestanden van een besloten wiki.
+Deze wiki is ingesteld als publieke wiki.
+Om beveiligingsreden is img_auth.php uitgeschakeld.',
+'img-auth-noread'       => 'De gebruiker heeft geen leestoegang tot "$1".',
+
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Kon de URL niet bereiken',
 'upload-curl-error6-text'  => 'De opgegeven URL is niet bereikbaar.

@@ -1671,6 +1671,24 @@ PICT # различные
 'upload-unknown-size'       => 'Неизвестный размер',
 'upload-http-error'         => 'Произошла ошибка HTTP: $1',
 
+# img_auth script messages
+'img-auth-accessdenied' => 'Доступ запрещён',
+'img-auth-nopathinfo'   => 'Отсутствует PATH_INFO.
+Ваш сервер не настроен, для передачи этих сведений.
+Возможно, он работает на основе CGI и не поддерживает img_auth.
+См. http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
+'img-auth-notindir'     => 'Запрашиваемый путь не относится к настроенной папке загрузок.',
+'img-auth-badtitle'     => 'Невозможно построить правильный заголовок из «$1».',
+'img-auth-nologinnWL'   => 'Вы не вошли в систему, а «$1» не входит в белый список.',
+'img-auth-nofile'       => 'Файл «$1» не существует.',
+'img-auth-isdir'        => 'Вы пытаетесь получить доступ к каталогу «$1».
+Разрешён только доступ к файлам.',
+'img-auth-streaming'    => 'Потоковая передача «$1».',
+'img-auth-public'       => 'Назначением img_auth.php является вывод файлов из закрытой вики.
+Эта вики настроена как общедоступная.
+Для оптимизации безопасности img_auth.php отключена.',
+'img-auth-noread'       => 'Участник не имеет доступа на чтение к «$1».',
+
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Невозможно обратить по указанному адресу.',
 'upload-curl-error6-text'  => 'Невозможно обратить по указанному адресу. Пожалуйста, проверьте, что адрес верен, а сайт доступен.',

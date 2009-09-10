@@ -1560,6 +1560,24 @@ Eğer problem tekrarlanırsa, bir [[Special:ListUsers/sysop|yönetici]]yle temas
 'upload-unknown-size'       => 'Bilinmeyen boyut',
 'upload-http-error'         => 'Bir HTTP hatası oluştu: $1',
 
+# img_auth script messages
+'img-auth-accessdenied' => 'Erişim engellendi',
+'img-auth-nopathinfo'   => 'Eksik PATH_INFO.
+Sunucunuz bu bilgiyi geçirmek için ayarlanmamış.
+CGI-tabanlı olabilir ve img_auth desteklenmiyor olabilir.
+http://www.mediawiki.org/wiki/Manual:Image_Authorization sayfasına bakın.',
+'img-auth-notindir'     => 'İstenen yol yapılandırılmış yükleme dizininde değil.',
+'img-auth-badtitle'     => '"$1" ile geçerli bir başlık yapılamıyor.',
+'img-auth-nologinnWL'   => 'Giriş yapmadınız ve "$1" beyaz listede değil.',
+'img-auth-nofile'       => '"$1" dosyası mevcut değil.',
+'img-auth-isdir'        => '"$1" dizinine erişmeye çalışıyorsunuz.
+Sadece dosya erişimine izin veriliyor.',
+'img-auth-streaming'    => '"$1" oynatılıyor.',
+'img-auth-public'       => "img_auth.php'nin fonksiyonu özel bir vikiden dosyaları çıkarmaktır.
+Bu viki genel bir viki olarak ayarlanmış.
+En uygun güvenlik için, img_auth.php devre dışı bırakıldı.",
+'img-auth-noread'       => 'Kullanıcının "$1" dosyasını okumaya erişimi yok.',
+
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => "URL'ye ulaşılamadı",
 'upload-curl-error6-text'  => "Belirtilen URL'ye erişilemiyor.

@@ -1524,6 +1524,10 @@ Se el problema el persiste, contatar un [[Special:ListUsers/sysop|aministrador]]
 'upload-unknown-size'       => 'Dimension sconossiùa',
 'upload-http-error'         => 'Se gà verificà un eròr HTTP: $1',
 
+# img_auth script messages
+'img-auth-accessdenied' => 'Acesso negà',
+'img-auth-nofile'       => 'El file "$1" no l\'esiste mia.',
+
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'URL mìa ragiungibile',
 'upload-curl-error6-text'  => 'Inpossibile ragiùngiar la URL specificà. Verifica che la URL la sia scrita giusta e che el sito in question el sia ativo.',

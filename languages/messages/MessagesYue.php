@@ -1523,6 +1523,24 @@ $1",
 'upload-unknown-size'       => '未知嘅大細',
 'upload-http-error'         => '一個HTTP錯誤發生咗: $1',
 
+# img_auth script messages
+'img-auth-accessdenied' => '拒絕通行',
+'img-auth-nopathinfo'   => 'PATH_INFO唔見咗。
+你嘅伺服器重未設定呢個資料。
+佢可能係CGI為本，唔支援img_auth。
+睇吓 http://www.mediawiki.org/wiki/Manual:Image_Authorization。',
+'img-auth-notindir'     => '所請求嘅路徑唔響個已經設定咗嘅上載目錄。',
+'img-auth-badtitle'     => '唔能夠由"$1"整一個有效標題。',
+'img-auth-nologinnWL'   => '你而家無登入，"$1"唔響個白名單度。',
+'img-auth-nofile'       => '檔案"$1"唔存在。',
+'img-auth-isdir'        => '你試過通行一個目錄"$1"。
+只係可以通行檔案。',
+'img-auth-streaming'    => '串流緊"$1"。',
+'img-auth-public'       => 'img_auth.php 嘅功能係由一個公共 wiki 度輸出檔案。
+呢個 wiki 係設定咗做一個公共 wiki。
+基於保安最佳化，img_auth.php已經停用咗。',
+'img-auth-noread'       => '用戶無通行去讀"$1"。',
+
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => '唔可以到嗰個URL',
 'upload-curl-error6-text'  => '輸入嘅URL唔能夠去到。請重新檢查個URL係正確嘅同埋個網站係已經上綫。',

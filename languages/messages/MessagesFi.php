@@ -1630,6 +1630,10 @@ Harkitse, haluatko jatkaa tämän tiedoston tallentamista. Tiedoston poistoloki 
 'upload-unknown-size'       => 'Tuntematon koko',
 'upload-http-error'         => 'HTTP-virhe: $1',
 
+# img_auth script messages
+'img-auth-accessdenied' => 'Pääsy estetty',
+'img-auth-nofile'       => 'Tiedostoa ”$1” ei ole.',
+
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Toimimaton osoite',
 'upload-curl-error6-text'  => 'Antamaasi osoitteeseen ei saatu yhteyttä. Varmista, että osoite on oikein ja että sivusto on saavutettavissa.',

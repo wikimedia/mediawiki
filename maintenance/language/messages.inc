@@ -1283,6 +1283,21 @@ $wgMessageStructure = array(
 		'upload-unknown-size',
 		'upload-http-error',
 	),
+
+	'img-auth' => array(
+		'img-auth-accessdenied',
+		'img-auth-desc',
+		'img-auth-nopathinfo',
+		'img-auth-notindir',
+		'img-auth-badtitle',
+		'img-auth-nologinnWL',
+		'img-auth-nofile',
+		'img-auth-isdir',
+		'img-auth-streaming',
+		'img-auth-public',
+		'img-auth-noread',
+	),
+
 	'upload-curl-errors' => array(
 		'upload-curl-error6',
 		'upload-curl-error6-text',

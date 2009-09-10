@@ -1632,6 +1632,24 @@ Nếu vẫn còn bị lỗi, xin hãy liên hệ với một [[Special:ListUsers
 'upload-unknown-size'       => 'Không rõ kích thước',
 'upload-http-error'         => 'Xảy ra lỗi HTTP: $1',
 
+# img_auth script messages
+'img-auth-accessdenied' => 'Không cho phép truy cập',
+'img-auth-nopathinfo'   => 'Thiếu PATH_INFO.
+Máy chủ của bạn không được thiết lập để truyền thông tin này.
+Có thể do nó dựa trên CGI và không hỗ trợ img_auth.
+Xem http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
+'img-auth-notindir'     => 'Đường dẫn yêu cầu không nằm trong thư mục cấu hình tải lên.',
+'img-auth-badtitle'     => 'Không thể tạo tựa đề hợp lệ từ “$1”.',
+'img-auth-nologinnWL'   => 'Bạn chưa đăng nhập và “$1” không nằm trong danh sách trắng.',
+'img-auth-nofile'       => 'Không tồn tại tập tin “$1”.',
+'img-auth-isdir'        => 'Bạn đang cố truy cập vào thư mục “$1”.
+Chỉ cho phép truy cập tập tin mà thôi.',
+'img-auth-streaming'    => 'Đang truyền “$1”.',
+'img-auth-public'       => 'Chức năng của img_auth.php là xuất tập tin từ wiki cá nhân.
+Wiki này được cấu hình là wiki công cộng.
+Vì lý do bảo mật, img_auth.php đã bị tắt.',
+'img-auth-noread'       => 'Người dùng không đủ quyền truy cập để đọc “$1”.',
+
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Không thể truy cập URL',
 'upload-curl-error6-text'  => 'Không thể truy cập URL mà bạn đưa vào. Xin hãy kiểm tra xem URL có đúng không và website vẫn còn hoạt động.',

@@ -1601,6 +1601,23 @@ PICT # misc.
 'upload-unknown-size'       => 'Dimensione sconosciuta',
 'upload-http-error'         => 'Si è verificato un errore HTTP: $1',
 
+# img_auth script messages
+'img-auth-accessdenied' => 'Accesso negato',
+'img-auth-nopathinfo'   => 'PATH_INFO mancante.
+Il server non è impostato per passare questa informazione.
+Potrebbe essere basato su CGI e non può supportare img_auth.
+Consultare http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
+'img-auth-notindir'     => 'Il percorso richiesto non si trova nella directory di upload configurata.',
+'img-auth-badtitle'     => 'Impossibile costruire un titolo valido da "$1".',
+'img-auth-nologinnWL'   => 'Non si è effettuato l\'accesso e "$1" non è nella whitelist.',
+'img-auth-nofile'       => 'File "$1" non esiste.',
+'img-auth-isdir'        => 'Si sta tentando di accedere a una directory "$1".
+Solo l\'accesso ai file è consentito.',
+'img-auth-public'       => 'La funzione di img_auth.php è di dare in output file da un sito wiki privato.
+Questo sito è configurato come un wiki pubblico.
+Per una sicurezza ottimale, img_auth.php è disattivato.',
+'img-auth-noread'       => 'L\'utente non ha accesso alla lettura di "$1".',
+
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'URL non raggiungibile',
 'upload-curl-error6-text'  => 'Impossibile raggiungere la URL specificata. Verificare che la URL sia scritta correttamente e che il sito in questione sia attivo.',
