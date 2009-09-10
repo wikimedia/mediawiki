@@ -27,7 +27,7 @@ loadGM({
 	"mwe-set_in_out_points" : "Set in-out points",
 	"mwe-start_time" : "Start time",
 	"mwe-end_time" : "End time",
-	"mwe-preview_inout" : "Preview\/play in-out points"
+	"mwe-preview_inout" : "Preview in-out points"
 });
 
 var default_clipedit_values = {

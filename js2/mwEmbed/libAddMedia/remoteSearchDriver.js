@@ -443,7 +443,7 @@ remoteSearchDriver.prototype = {
 		var _this = this;
 		//add the parent target_container if not provided or missing
 		if(!_this.target_container || $j(_this.target_container).length==0){
-			$j('body').append('<div id="rsd_modal_target" style="position:absolute;top:30px;left:0px;bottom:33px;right:0px;" title="' + gM('mwe-add_media_wizard') + '" ></div>');
+			$j('body').append('<div id="rsd_modal_target" style="position:absolute;top:3em;left:0px;bottom:3em;right:0px;" title="' + gM('mwe-add_media_wizard') + '" ></div>');
 			_this.target_container = '#rsd_modal_target';
 			//js_log('appended: #rsd_modal_target' + $j(_this.target_container).attr('id'));
 			//js_log('added target id:' + $j(_this.target_container).attr('id'));
@@ -1074,7 +1074,7 @@ remoteSearchDriver.prototype = {
 		$j( _this.target_container ).find('#rsd_resource_edit').remove();
 		//add the edit layout window with loading place holders
 		$j( _this.target_container ).append('<div id="rsd_resource_edit" '+
-			'style="position:absolute;top:0px;left:0px;bottom:5px;right:4px;background-color:#FFF;">' +
+			'style="position:absolute;top:0px;left:0px;bottom:0px;right:4px;background-color:#FFF;">' +
 				'<div id="clip_edit_disp" style="position:absolute;' + overflow_style + 'width:100%;height:100%;padding:5px;'+
 					'width:' + (maxWidth) + 'px;" >' +
 						mv_get_loading_img('position:absolute;top:30px;left:30px') +
@@ -1123,18 +1123,14 @@ remoteSearchDriver.prototype = {
 			'cursor':'default',
 			'opacity':0
 		});
-
-
-		//try and keep aspect ratio for the thumbnail that we clicked:
-		var rh = $j('#rsd_edit_img').height();
-		var rw = $j('#rsd_edit_img').width(); 
 		
-		var tRatio = rh / rw;
+		//try and keep aspect ratio for the thumbnail that we clicked:				
+		var tRatio = rObj.orgheight / rObj.orgwidth;
 
 		if(	! tRatio )
 			var tRatio = 1; //set ratio to 1 if tRatio did not work. 
 
-		//js_log('set from ' +  $j('#rsd_edit_img').width() + 'x' + $j('#rsd_edit_img').height() + ' to init thumbimage to ' + maxWidth + ' x ' + parseInt( tRatio * maxWidth) );
+		//js_log('set from ' +  tRatio + ' to init thumbimage to ' + maxWidth + ' x ' + parseInt( tRatio * maxWidth) );
 		//scale up image and to swap with high res version
 		$j('#rsd_edit_img').animate({
 			'opacity':1,

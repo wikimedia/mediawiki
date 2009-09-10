@@ -5,8 +5,7 @@
 loadGM({
 	"mwe-loading_plugin" : "loading plugin <blink>...<\/blink>",
 	"mwe-select_playback" : "Set playback preference",
-	"mwe-link_back" : "Link back",
-	"mwe-error_load_lib" : "Error: JavaScript $1 was not retrievable or does not define $2",
+	"mwe-link_back" : "Link back",	
 	"mwe-error_swap_vid" : "Error: mv_embed was unable to swap the video tag for the mv_embed interface",
 	"mwe-add_to_end_of_sequence" : "Add to end of sequence",
 	"mwe-missing_video_stream" : "The video file for this stream is missing",
@@ -2154,7 +2153,7 @@ embedVideo.prototype = {
 		return this.media_element.selected_source.URLTimeEncoding;
 	},
 	setSliderValue: function(perc, hide_progress){		
-		if(this.controls){		
+		if(this.controls && $j('#mv_play_head_'+this_id).length != 0){		
 			var this_id = (this.pc)?this.pc.pp.id:this.id;
 			var val = parseInt( perc*1000 ); 
 			$j('#mv_play_head_'+this_id).slider('value', val);

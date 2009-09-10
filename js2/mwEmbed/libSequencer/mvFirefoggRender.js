@@ -52,7 +52,7 @@ mvFirefoggRender.prototype = {
 				this.renderOptions[ i ] = default_render_options[i];
 			}
 		}
-		//setup the application options (with defaults) 
+		//Setup the application options (with defaults) 
 		for(var i in default_FirefoggRender_options ){
 			if( iObj[ i ] ){
 				this[ i ] = iObj[ i ];
@@ -60,8 +60,7 @@ mvFirefoggRender.prototype = {
 				this[ i ] = default_FirefoggRender_options[i];
 			}
 		}
-		//set up targets and local vars
-		
+		//Set up targets and local vars		
 		if( iObj.target_startRender ){
 			$j(iObj.target_startRender).click(function(){
 				js_log("Start render");
