@@ -1378,9 +1378,9 @@ Tamén pode deixar que outras persoas se poñan en contacto con vostede desde a 
 'right-movefile'              => 'Mover ficheiros',
 'right-suppressredirect'      => 'Non crear unha redirección dende o nome vello ao mover unha páxina',
 'right-upload'                => 'Cargar ficheiros',
-'right-reupload'              => 'Sobreescribir un ficheiro existente',
-'right-reupload-own'          => 'Sobreescribir un ficheiro existente cargado polo mesmo usuario',
-'right-reupload-shared'       => 'Sobreescribir localmente ficheiros do repositorio multimedia',
+'right-reupload'              => 'Sobrescribir ficheiros existentes',
+'right-reupload-own'          => 'Sobrescribir un ficheiro existente cargado polo mesmo usuario',
+'right-reupload-shared'       => 'Sobrescribir localmente ficheiros do repositorio multimedia',
 'right-upload_by_url'         => 'Cargar un ficheiro dende un enderezo URL',
 'right-purge'                 => 'Purgar a caché dunha páxina do wiki sen a páxina de confirmación',
 'right-autoconfirmed'         => 'Editar páxinas semiprotexidas',
@@ -1443,8 +1443,8 @@ Tamén pode deixar que outras persoas se poñan en contacto con vostede desde a 
 'action-move-rootuserpages'   => 'mover páxinas de usuario raíz',
 'action-movefile'             => 'mover este ficheiro',
 'action-upload'               => 'cargar este ficheiro',
-'action-reupload'             => 'sobreescribir este ficheiro existente',
-'action-reupload-shared'      => 'sobreescribir este ficheiro nun repositorio compartido',
+'action-reupload'             => 'sobrescribir este ficheiro existente',
+'action-reupload-shared'      => 'sobrescribir este ficheiro nun repositorio compartido',
 'action-upload_by_url'        => 'cargar este ficheiro desde un enderezo URL',
 'action-writeapi'             => 'usar a escritura API',
 'action-delete'               => 'borrar esta páxina',
@@ -1579,7 +1579,7 @@ Se o ficheiro seleccionado é a mesma imaxe de tamaño orixinal non é preciso e
 'file-thumbnail-no'           => "O nome do ficheiro comeza por '''<tt>$1</tt>'''.
 Parece tratarse dunha imaxe de tamaño reducido ''(miniatura)''.
 Se dispón dunha versión desta imaxe de maior resolución, se non, múdelle o nome ao ficheiro.",
-'fileexists-forbidden'        => 'Xa existe un ficheiro co mesmo nome e este non pode ser sobreescrito.
+'fileexists-forbidden'        => 'Xa existe un ficheiro co mesmo nome e este non pode ser sobrescrito.
 Se aínda quere cargar o seu ficheiro, por favor, retroceda e use un novo nome. [[File:$1|thumb|center|$1]]',
 'fileexists-shared-forbidden' => 'Xa existe un ficheiro con este nome no repositorio de ficheiros compartidos.
 Se aínda quere cargar o seu ficheiro, por favor, volte atrás e use outro nome. [[File:$1|thumb|center|$1]]',
@@ -2425,7 +2425,7 @@ Se escolle non facelo, asegúrese de verificar que non hai redireccións [[Speci
 Vostede é responsábel de asegurarse de que as ligazóns continúan a apuntar cara a onde se supón que deberían.
 
 Teña en conta que a páxina '''non''' será movida se xa existe unha páxina co novo título, a menos que estea baleira ou sexa unha redirección e que non teña historial de edicións.
-Isto significa que pode volver renomear unha páxina ao seu nome antigo se comete un erro, e que non pode sobreescribir nunha páxina que xa existe.
+Isto significa que pode volver renomear unha páxina ao seu nome antigo se comete un erro, e que non pode sobrescribir unha páxina que xa existe.
 
 '''ATENCIÓN!'''
 Este cambio nunha páxina popular pode ser drástico e inesperado;

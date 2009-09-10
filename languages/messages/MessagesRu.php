@@ -3411,4 +3411,19 @@ $1',
 'htmlform-reset'               => 'Отменить изменения',
 'htmlform-selectorother-other' => 'Иное',
 
+# Add categories per AJAX
+'ajax-add-category'            => 'Добавить категорию',
+'ajax-add-category-submit'     => 'Добавить',
+'ajax-confirm-title'           => 'Подтвердить действие',
+'ajax-confirm-prompt'          => 'Ниже вы можете указать описание изменений.
+Нажмите «Сохранить», чтобы сохранить ваши изменения.',
+'ajax-confirm-save'            => 'Сохранить',
+'ajax-add-category-summary'    => 'Добавлена категория «$1»',
+'ajax-remove-category-summary' => 'Удалена категория «$1»',
+'ajax-confirm-actionsummary'   => 'Предпринимаемые действия:',
+'ajax-error-title'             => 'Ошибка',
+'ajax-error-dismiss'           => 'OK',
+'ajax-remove-category-error'   => 'Не удалось убрать эту категорию.
+Обычно это происходит в случае, когда категория была добавлена через шаблон.',
+
 );

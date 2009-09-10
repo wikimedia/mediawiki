@@ -1550,6 +1550,14 @@ Sletningsloggen for denne fil er gengivet herunder.",
 'upload-unknown-size'       => 'Ukendt størrelse',
 'upload-http-error'         => 'Der opstod en HTTP-fejl: $1',
 
+# img_auth script messages
+'img-auth-accessdenied' => 'Adgang nægtet',
+'img-auth-nologinnWL'   => 'Du er ikke logget ind, og "$1" er ikke på hvidlisten.',
+'img-auth-nofile'       => 'Filen "$1" findes ikke.',
+'img-auth-isdir'        => 'Du forsøger at få adgang til kataloget "$1".
+Kun adgang til filer tillades.',
+'img-auth-noread'       => 'Brugeren har ikke rettigheder til at læse "$1".',
+
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'URL er utilgængelig',
 'upload-curl-error6-text'  => 'Den angivne URL er ikke tilgængelig. Kontroller adressen for fejl samt sidens onlinestatus .',
@@ -3183,5 +3191,7 @@ Klik på "Gem" for at gemme redigeringen.',
 'ajax-confirm-actionsummary'   => 'Handling:',
 'ajax-error-title'             => 'Fejl',
 'ajax-error-dismiss'           => 'O.k.',
+'ajax-remove-category-error'   => 'Det var ikke muligt af fjerne kategorien.
+Det skyldes oftest at kategorien er blevet tilføjet til siden i en skabelon.',
 
 );

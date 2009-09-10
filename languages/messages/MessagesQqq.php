@@ -543,8 +543,8 @@ HTML markup cannot be used.",
 '''Parameters'''
 * $1: Pagename
 * $2: Content of 
-*# {{msg|Missingarticle-rev}} - Permalink with invalid revision#
-*# {{msg|Missingarticle-diff}} - Diff with invalid revision#",
+*# {{msg-mw|Missingarticle-rev}} - Permalink with invalid revision#
+*# {{msg-mw|Missingarticle-diff}} - Diff with invalid revision#",
 'missingarticle-rev'   => 'Parameter $2 of {{msg|Missing-article}}: It is shown after the articlename.
 
 * $1: revision# of the requested id

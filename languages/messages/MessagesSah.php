@@ -625,6 +625,9 @@ IP-аадырыһа эрэ көстөр.
 Бу аат атын ыстатыйалга туттулларын [[Special:Search/{{PAGENAME}}|булуоххун сөп]],
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} сурунаалларга көрдүөххүн сөп],
 эбэтэр [{{fullurl:{{FULLPAGENAME}}|action=edit}} маннык ааттаах саҥа ыстатыйаны суруйуоххун] сөп</span>.',
+'noarticletext-nopermission'       => 'Билигин бу сирэй кураанах.
+Бу [[Special:Search/{{PAGENAME}}|тылы атын сирэйдэргэ көрдөөн көрүөххүн]] сөп,
+эбэтэр <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} сурунаалларга манна сыһыаннаах суруктары булуоххун сөп].',
 'userpage-userdoesnotexist'        => '"$1" аат бэлиэтэммэтэх. Бу сирэйи оҥорор/уларытар баҕалааххын дуо?',
 'clearyourcache'                   => "'''Болҕой - Уларыппыт сирэйгин сөпкө көрөргө интэриниэт бырагыраамматын кээһин ыраастаа.''' '''Mozilla / Firefox / Safari:''' ''Shift'' кнопканы тутан туран ''Reload'' баттаа, эбэтэр ''Ctrl-F5'', ''Ctrl-R'' дуу (Macintosh-ка ''Command-R'') баттаа; '''Konqueror: ''' ''Reload'' ''F5'' эбэтэр баттаа;
 '''Opera:''' кээһин ыраастыырга манна ''Tools → Preferences'' киир; '''Internet Explorer:''' ''Ctrl'' тутан туран ''Refresh'' баттаа, эбэтэр ''Ctrl-F5'' баттаа.",
@@ -2056,17 +2059,18 @@ $1',
 'month'               => 'Ый иһигэр:',
 'year'                => 'Сыл иһигэр:',
 
-'sp-contributions-newbies'       => 'Саҥа эрэ ааттан оҥоһуллубут уларытыылары көрдөр',
-'sp-contributions-newbies-sub'   => 'Саҥа ааттартан',
-'sp-contributions-newbies-title' => 'Саҥа бэйэлэрин билиһиннэрбит дьон уларытыылара',
-'sp-contributions-blocklog'      => 'Бобуу сурунаала',
-'sp-contributions-deleted'       => 'кыттааччы сотуллубут көннөрүүлэрэ',
-'sp-contributions-logs'          => 'сурунааллар',
-'sp-contributions-talk'          => 'ырытыы',
-'sp-contributions-userrights'    => 'кыттааччылар бырааптарын салайыы',
-'sp-contributions-search'        => 'Кыттааччы оҥорбут уларытыыларын көрдөөһүн',
-'sp-contributions-username'      => 'IP аадырыһа эбэтэр аата:',
-'sp-contributions-submit'        => 'Көрдөө',
+'sp-contributions-newbies'        => 'Саҥа эрэ ааттан оҥоһуллубут уларытыылары көрдөр',
+'sp-contributions-newbies-sub'    => 'Саҥа ааттартан',
+'sp-contributions-newbies-title'  => 'Саҥа бэйэлэрин билиһиннэрбит дьон уларытыылара',
+'sp-contributions-blocklog'       => 'Бобуу сурунаала',
+'sp-contributions-deleted'        => 'кыттааччы сотуллубут көннөрүүлэрэ',
+'sp-contributions-logs'           => 'сурунааллар',
+'sp-contributions-talk'           => 'ырытыы',
+'sp-contributions-userrights'     => 'кыттааччылар бырааптарын салайыы',
+'sp-contributions-blocked-notice' => 'Бу кыттааччы бырайыаакка кыттара билигин бобуллубут. Хааччах сурунаалыгар ол туһунан бүтэһик сурук:',
+'sp-contributions-search'         => 'Кыттааччы оҥорбут уларытыыларын көрдөөһүн',
+'sp-contributions-username'       => 'IP аадырыһа эбэтэр аата:',
+'sp-contributions-submit'         => 'Көрдөө',
 
 # What links here
 'whatlinkshere'            => 'Манна сигэнэллэр',
@@ -3111,5 +3115,11 @@ $1',
 'htmlform-submit'              => 'Ыыт',
 'htmlform-reset'               => 'Уларытыыны төннөр',
 'htmlform-selectorother-other' => 'Атын',
+
+# Add categories per AJAX
+'ajax-add-category'        => 'Категория эбии',
+'ajax-add-category-submit' => 'Эп',
+'ajax-error-title'         => 'Алҕас',
+'ajax-error-dismiss'       => 'Сөп',
 
 );
