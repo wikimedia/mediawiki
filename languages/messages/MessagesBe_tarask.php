@@ -1652,6 +1652,24 @@ $1",
 'upload-unknown-size'       => 'Невядомы памер',
 'upload-http-error'         => 'Узьнікла памылка HTTP: $1',
 
+# img_auth script messages
+'img-auth-accessdenied' => 'Доступ забаронены',
+'img-auth-nopathinfo'   => 'Адсутнічае PATH_INFO.
+Ваш сэрвэр не ўстаноўлены на пропуск гэтай інфармацыі.
+Яна можа быць заснавана на CGI і ня можа падтрымліваць img_auth.
+Глядзіце http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
+'img-auth-notindir'     => 'Неабходнага шляху няма ў дырэкторыі загрузкі, пазначанай у канфігурацыі.',
+'img-auth-badtitle'     => 'Немагчыма стварыць слушную назву з «$1».',
+'img-auth-nologinnWL'   => 'Вы не ўвайшлі ў сыстэму, а «$1» не знаходзіцца ў белым сьпісе.',
+'img-auth-nofile'       => 'Файл «$1» не існуе.',
+'img-auth-isdir'        => 'Вы спрабуеце атрымаць доступ да дырэкторыі «$1».
+Дазволены толькі доступ да файлаў.',
+'img-auth-streaming'    => 'Перадача струменя «$1».',
+'img-auth-public'       => 'Функцыя img_auth.php ужываецца для файла выхаду з прыватнай вікі.
+Гэта вікі ўсталявана як публічная вікі.
+Для найлепшай бясьпекі img_auth.php выключана.',
+'img-auth-noread'       => 'Удзельнік ня мае доступу на чытаньне «$1».',
+
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Немагчыма дасягнуць URL-адрас',
 'upload-curl-error6-text'  => 'Немагчыма адкрыць пазначаны URL-адрас.

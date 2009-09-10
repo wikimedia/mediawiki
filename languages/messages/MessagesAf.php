@@ -1453,6 +1453,9 @@ Die verwyderingsinligting van die lêer word vir u gemak hier herhaal:",
 'upload-unknown-size'       => 'Onbekende grootte',
 'upload-http-error'         => "'n HTTP-fout het voorgekom: $1",
 
+# img_auth script messages
+'img-auth-accessdenied' => 'Toegang geweier',
+
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'  => 'Kon nie die URL bereik nie',
 'upload-curl-error28' => 'Oplaai neem te lank',

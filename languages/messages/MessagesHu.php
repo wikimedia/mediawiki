@@ -1706,6 +1706,22 @@ PICT # ált.
 'upload-unknown-size'       => 'Ismeretlen méretű',
 'upload-http-error'         => 'HTTP-hiba történt: $1',
 
+# img_auth script messages
+'img-auth-accessdenied' => 'Hozzáférés megtagadva',
+'img-auth-nopathinfo'   => 'Hiányzó PATH_INFO.
+A szerver nincs beállítva, hogy továbbítsa ezt az információt.
+Lehet, hogy CGI-alapú, és nem támogatja az img_auth-ot.
+Lásd a http://www.mediawiki.org/wiki/Manual:Image_Authorization lapot.',
+'img-auth-notindir'     => 'A kért elérési út nincs a beállított feltöltési könyvtárban.',
+'img-auth-badtitle'     => 'Nem sikerült érvényes címet készíteni a(z) „$1” szövegből.',
+'img-auth-nologinnWL'   => 'Nem vagy bejelentkezve, és a(z) „$1” nincs az engedélyezési listán.',
+'img-auth-nofile'       => 'A fájl („$1”) nem létezik.',
+'img-auth-isdir'        => 'Megpróbáltál hozzáférni a(z) „$1” könyvtárhoz, azonban csak a fájlokhoz lehet.',
+'img-auth-streaming'    => '„$1” továbbítása.',
+'img-auth-public'       => 'Az img_auth.php funkciója az, hogy fájlokat közvetítsen egy privát wikiből.
+Ez a wiki publikus, így a biztonság miatt az img_auth.php ki van kapcsolva.',
+'img-auth-noread'       => 'A szerkesztő nem jogosult a(z) „$1” olvasására.',
+
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Nem érhető el az URL',
 'upload-curl-error6-text'  => 'A megadott URL nem érhető el.  Kérjük, ellenőrizd újra, hogy az URL pontos-e, és a webhely működik-e.',

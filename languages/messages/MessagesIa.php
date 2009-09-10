@@ -1598,6 +1598,24 @@ Si le problema persiste, contacta un [[Special:ListUsers/sysop|administrator]].'
 'upload-unknown-size'       => 'Dimension incognite',
 'upload-http-error'         => 'Un error HTTP occurreva: $1',
 
+# img_auth script messages
+'img-auth-accessdenied' => 'Accesso refusate',
+'img-auth-nopathinfo'   => 'PATH_INFO mancante.
+Le servitor non ha essite configurate pro passar iste information.
+Illo pote esser basate super CGI e non pote supportar img_auth.
+Vide http://www.mediawiki.org/wiki/Manual:Image_Authorization .',
+'img-auth-notindir'     => 'Le cammino requestate non es in le directorio de cargas configurate.',
+'img-auth-badtitle'     => 'Impossibile construer un titulo valide ex "$1".',
+'img-auth-nologinnWL'   => 'Tu non ha aperite un session e "$1" non es in le lista blanc.',
+'img-auth-nofile'       => 'File "$1" non existe.',
+'img-auth-isdir'        => 'Tu tenta acceder a un directorio "$1".
+Solmente le accesso a files es permittite.',
+'img-auth-streaming'    => 'Fluxo de "$1" comenciate.',
+'img-auth-public'       => 'Le function de img_auth.php es de reproducer files ex un wiki private.
+Iste wiki es configurate como un wiki public.
+Pro securitate optimal, img_auth.php es disactivate.',
+'img-auth-noread'       => 'Le usator non ha accesso pro leger "$1".',
+
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Non poteva acceder al URL',
 'upload-curl-error6-text'  => 'Le adresse URL fornite es inaccessibile.

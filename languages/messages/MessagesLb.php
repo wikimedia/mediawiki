@@ -1546,6 +1546,17 @@ Wann de Problem weider besteet, dann un de [[Special:ListUsers/sysop|Administrat
 'upload-unknown-size'       => 'Onbekannte Gréisst',
 'upload-http-error'         => 'Et ass en HTTP-Feeler geschitt: $1',
 
+# img_auth script messages
+'img-auth-accessdenied' => 'Zougang refuséiert',
+'img-auth-notindir'     => 'De gefrote Pad ass net am Upload-Repertoire agestallt.',
+'img-auth-badtitle'     => 'Aus "$1" ka kee valabelen Titel gemaach ginn.',
+'img-auth-nologinnWL'   => 'Dir sidd net ageloggt a(n) "$1" ass net op der Wäisser Lëscht.',
+'img-auth-nofile'       => 'De Fichier "$1" gëtt et net.',
+'img-auth-isdir'        => 'Dir versicht op de Repertoire "$1" zouzegräifen.
+Nèemmen Datenofruff ass erlaabt.',
+'img-auth-streaming'    => '"$1" lueden.',
+'img-auth-noread'       => 'De Benotzer hut keen Zougang fir "$1" ze liesen',
+
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => "URL ass net z'erreechen",
 'upload-curl-error6-text'  => 'Déi URL déi Dir uginn hutt kann net erreecht ginn.

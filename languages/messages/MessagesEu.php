@@ -1459,6 +1459,9 @@ Aukera ezazu, mesedez, fitxategi izen deskriptiboago bat.",
 'upload-unknown-size'       => 'Tamaina ezezaguna',
 'upload-http-error'         => 'HTTP errorea gertatu da: $1',
 
+# img_auth script messages
+'img-auth-accessdenied' => 'Sarbide ukatua',
+
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Ezin izan da URLa eskuratu',
 'upload-curl-error6-text'  => 'Ezin da emandako URLa eskuratu. Mesedez, ziurtatu URLa zuzena dela eta gunea eskuragarri dagoela.',

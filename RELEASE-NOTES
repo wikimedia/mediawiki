@@ -80,6 +80,8 @@ this. Was used when mwEmbed was going to be an extension.
 * $wgExtraRandompageSQL is deprecated, the SpecialRandomGetRandomTitle hook 
   should be used instead
 * (bug 20489) $wgIllegalFileChars added to override the default list of illegal characters in file names.
+* (bug 19646) $wgImgAuthDetails added  to display reason access to uploaded file was denied to users(img_auth only)
+* (bug 19646) $wgImgAuthPublicTest added to test to see if img_auth set up correctly (img_auth only)
 
 === New features in 1.16 ===
 
@@ -207,6 +209,7 @@ this. Was used when mwEmbed was going to be an extension.
 * Show change block / unblock link on Special:Contributions if user is blocked
 * Display note on Special:Contributions if the user is blocked, and provide an 
   excerpt from the block log.
+* (bug 19646) New hook: ImgAuthBeforeStream for tests and functionality before file is streamed to user, but only when using img_auth
 
 === Bug fixes in 1.16 ===
 
