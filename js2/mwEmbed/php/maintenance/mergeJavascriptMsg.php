@@ -112,14 +112,14 @@ function doJsonMerge( $json_txt ) {
 		}
 		// merge the jsLanguage array back in and wrap the output
 		if ( $mergeToJS && $doReplaceFlag ) {
-			$json = json_encode( $jsMsgAry );
+			$json = FormatJson::encode( $jsMsgAry );
 			$json_txt = jsonReadable( $json );
 			// escape $1 for preg replace:
 			$json_txt = str_replace( '$', '\$', $json_txt );
 			// print "json:\n$json_txt \n";
 			$str = preg_replace ( '/loadGM\s*\(\s*{(.*)}\s*\)\s*/siU',
-			"loadGM(" . $json_txt . ")",
-			$jsFileText );
+						"loadGM(" . $json_txt . ")",
+						$jsFileText );
 
 			// print substr($str, 0, 600);
 

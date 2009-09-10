@@ -318,10 +318,14 @@ $wgAutoloadLocalClasses = array(
 	'ApiUserrights' => 'includes/api/ApiUserrights.php',
 	'ApiUpload' => 'includes/api/ApiUpload.php',
 	'ApiWatch' => 'includes/api/ApiWatch.php',
-	'Services_JSON' => 'includes/api/ApiFormatJson_json.php',
-	'Services_JSON_Error' => 'includes/api/ApiFormatJson_json.php',
+
 	'Spyc' => 'includes/api/ApiFormatYaml_spyc.php',
 	'UsageException' => 'includes/api/ApiMain.php',
+
+	# includes/json
+	'Services_JSON' => 'includes/json/Services_JSON.php',
+	'Services_JSON_Error' => 'includes/json/Services_JSON.php',
+	'FormatJson' => 'includes/json/FormatJson.php',
 
 	# includes/db
 	'Blob' => 'includes/db/Database.php',

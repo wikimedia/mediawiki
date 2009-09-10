@@ -206,7 +206,7 @@ class Http {
 		$sd =& $_SESSION['wsDownload'][$upload_session_key];
 		// if error update status:
 		if( !$status->isOK() ) {
-			$sd['apiUploadResult'] = ApiFormatJson::getJsonEncode(
+			$sd['apiUploadResult'] = FormatJson::encode(
 				array( 'error' => $status->getWikiText() )
 			);
 		}

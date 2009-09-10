@@ -16,7 +16,7 @@ class OutputPage {
 
 	var $mScriptLoaderClassList = array();
 
-	// The most recent revision ID of any script that is grouped in the script request
+	// The most recent revision ID of any wikiPage script that is grouped in the script request
 	var $mLatestScriptRevID = 0;
 
 	var $mScripts = '', $mLinkColours, $mPageLinkTitle = '', $mHeadItems = array();
