@@ -23,7 +23,7 @@ class FormatJson{
 			$json = new Services_JSON();
 			$jsonDec = $json->decode($value);
 			if($assoc)
-				$jsonDec = (array) $jsonDec;
+				$jsonDec = wfObjectToArray( $jsonDec );
 			return $jsonDec;
 		} else {
 			return json_decode($value, $assoc);
