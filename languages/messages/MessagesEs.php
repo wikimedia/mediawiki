@@ -806,6 +806,9 @@ La contraseña para esta nueva cuenta puede ser cambiada en la página ''[[Speci
 'newarticletext'                   => 'Ha seguido un enlace a una página que aún no existe. Si lo que quiere es crear esta página, escriba a continuación. Para más información consulte la [[{{MediaWiki:Helppage}}|página de ayuda]]. Si llegó aquí por error, vuelva a la página anterior.',
 'anontalkpagetext'                 => "---- ''Esta es la página de discusión de un usuario anónimo que aún no ha creado una cuenta, o no la usa. Por lo tanto, tenemos que usar su dirección IP para identificarlo. Una dirección IP puede ser compartida por varios usuarios. Si eres un usuario anónimo y crees que se han dirigido a ti con comentarios improcedentes, por favor [[Special:UserLogin/signup|crea una cuenta]] o si ya la tienes [[Special:UserLogin|identifícate]] para evitar confusiones futuras con otros usuarios anónimos.''",
 'noarticletext'                    => 'En este momento no hay texto en esta página. Puedes [[Special:Search/{{PAGENAME}}|buscar el título de esta página]] en otras páginas, <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} buscar en los registros] o [{{fullurl:{{FULLPAGENAME}}|action=edit}} editar esta página]</span>.',
+'noarticletext-nopermission'       => 'No hay actualñmente texto en esta página.
+Puedes [[Special:Search/{{PAGENAME}}|buscar este título de página]] en otras páginas,
+o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} buscar en los registros relacionados]</span>.',
 'userpage-userdoesnotexist'        => 'La cuenta de usuario "$1" no está registrada. Por favor comprueba si quieres crear o editar esta página.',
 'clearyourcache'                   => "'''Nota:''' Tras guardar el archivo, debe refrescar la caché de su navegador para ver los cambios:
 
@@ -2231,17 +2234,18 @@ $1',
 'month'               => 'Desde el mes (y anterior):',
 'year'                => 'Desde el año (y anterior):',
 
-'sp-contributions-newbies'       => 'Mostrar solo las contribuciones de usuarios nuevos',
-'sp-contributions-newbies-sub'   => 'Para cuentas nuevas',
-'sp-contributions-newbies-title' => 'Contribuciones de usuarios nuevos',
-'sp-contributions-blocklog'      => 'registro de bloqueos',
-'sp-contributions-deleted'       => 'contribuciones de usuario borradas',
-'sp-contributions-logs'          => 'registros',
-'sp-contributions-talk'          => 'discusión',
-'sp-contributions-userrights'    => 'administración de derechos de usuarios',
-'sp-contributions-search'        => 'Buscar contribuciones',
-'sp-contributions-username'      => 'Dirección IP o nombre de usuario:',
-'sp-contributions-submit'        => 'Buscar',
+'sp-contributions-newbies'        => 'Mostrar solo las contribuciones de usuarios nuevos',
+'sp-contributions-newbies-sub'    => 'Para cuentas nuevas',
+'sp-contributions-newbies-title'  => 'Contribuciones de usuarios nuevos',
+'sp-contributions-blocklog'       => 'registro de bloqueos',
+'sp-contributions-deleted'        => 'contribuciones de usuario borradas',
+'sp-contributions-logs'           => 'registros',
+'sp-contributions-talk'           => 'discusión',
+'sp-contributions-userrights'     => 'administración de derechos de usuarios',
+'sp-contributions-blocked-notice' => 'Este usuario está actualmente bloqueado. El último bloqueo de ingreso está proveído abajo para referencia:',
+'sp-contributions-search'         => 'Buscar contribuciones',
+'sp-contributions-username'       => 'Dirección IP o nombre de usuario:',
+'sp-contributions-submit'         => 'Buscar',
 
 # What links here
 'whatlinkshere'            => 'Lo que enlaza aquí',
@@ -3285,12 +3289,18 @@ Ingrese el nombre del archivo sin el prefijo "{{ns:file}}:".',
 'htmlform-selectorother-other' => 'Otro',
 
 # Add categories per AJAX
-'ajax-add-category'          => 'Agregar categoría',
-'ajax-add-category-submit'   => 'Agregar',
-'ajax-confirm-title'         => 'Confirmar acción',
-'ajax-confirm-save'          => 'Grabar',
-'ajax-confirm-actionsummary' => 'Acción a tomar:',
-'ajax-error-title'           => 'Error',
-'ajax-error-dismiss'         => 'OK',
+'ajax-add-category'            => 'Agregar categoría',
+'ajax-add-category-submit'     => 'Agregar',
+'ajax-confirm-title'           => 'Confirmar acción',
+'ajax-confirm-prompt'          => 'Puedes proveer un resumen de edición abajo.
+Haz click en "Grabar" para grabar tu edición.',
+'ajax-confirm-save'            => 'Grabar',
+'ajax-add-category-summary'    => 'Agregar categoría "$1"',
+'ajax-remove-category-summary' => 'Remover categoría "$1"',
+'ajax-confirm-actionsummary'   => 'Acción a tomar:',
+'ajax-error-title'             => 'Error',
+'ajax-error-dismiss'           => 'OK',
+'ajax-remove-category-error'   => 'No fue posible remover esta categoría.
+Esto usualmente ocurre cuando la categoría ha sido agregada a la página por una plantilla.',
 
 );

@@ -473,10 +473,11 @@ Ale doét mie éte pu longue éq $1 {{PLURAL:$1|caracter|caractéres}}.',
 'rc-enhanced-hide'               => 'Mucher chés détails',
 
 # Recent changes linked
-'recentchangeslinked'       => 'Darins canjemints érliés',
-'recentchangeslinked-title' => 'Cangemints à pérpos éd "$1"',
-'recentchangeslinked-page'  => 'Nom del pache:',
-'recentchangeslinked-to'    => "Vir putot chés canjemints d'chés paches aveuc un loïen su l'pache-lo",
+'recentchangeslinked'         => 'Darins canjemints érliés',
+'recentchangeslinked-title'   => 'Cangemints à pérpos éd "$1"',
+'recentchangeslinked-summary' => "Ch'est eune lisse d'chés darins canjemints su chés paches qu'ont un loïen aveuc l'pache-lo. Chés paches din vote [[Special:Watchlist|''lisse à suire'']] il sont in '''cros'''.",
+'recentchangeslinked-page'    => 'Nom del pache:',
+'recentchangeslinked-to'      => "Vir putot chés canjemints d'chés paches aveuc un loïen su l'pache-lo",
 
 # Upload
 'upload'        => 'Quértcher chés fichiés',
@@ -567,6 +568,7 @@ Ale doét mie éte pu longue éq $1 {{PLURAL:$1|caracter|caractéres}}.',
 
 # Delete
 'deletepage'            => "Défacer l'pache",
+'confirmdeletetext'     => "Vos alez défacer eune pache ou un fichié aveuc toutes chés antieusses vérchons.<br /> Confreumer éq ch'est cho éq vos voulez foaire, éq vos conprindez chés consécanches et pi éq ch'est bin s'lon el [[{{MediaWiki:Policy-url}}|politique éd MédiaWiki]].",
 'actioncomplete'        => 'Plònne acchon',
 'deletedtext'           => "« <nowiki>$1</nowiki> » o té défacé.
 Vir $2 pou eune lisse d'chés darinnes défachons.",
@@ -740,6 +742,7 @@ Os pouvez vir l'source",
 'tooltip-compareselectedversions' => 'Vir chés diférinches intre chés deus couésies vérchons del pache-lo',
 'tooltip-watch'                   => 'Ajouter chol pache-lo à vo lisse à suire',
 'tooltip-rollback'                => '« Racacher » cancéle aveuc un clic el (ou chés) modificachon(s) del pache-lo pèr sin darin contérbucheu.',
+'tooltip-undo'                    => "« Undo » ( ''démangler'' ) értire ch'canjemint-lo pi ouvre l' fénéte d'édichon din ch'mode ''prévir''. <br /> In put mette un motif din ch'résumé.",
 
 # Browsing diffs
 'previousdiff' => '← Pu vieille édition',

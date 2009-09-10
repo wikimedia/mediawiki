@@ -619,6 +619,7 @@ Ufunguo: '''({{int:cur}})''' = tofauti na toleo la sasa, '''({{int:last}})''' = 
 'revdelete-show-file-submit' => 'Ndiyo',
 'revdel-restore'             => 'badilisha mwonekano',
 'pagehist'                   => 'Historia ya ukurasa',
+'revdelete-summary'          => 'muhtasari ya kuhariri',
 'revdelete-uname'            => 'jina la mtumiaji',
 'revdelete-otherreason'      => 'Sababu nyingine:',
 'revdelete-reasonotherlist'  => 'Sababu nyingine',
@@ -712,11 +713,13 @@ Ukitaka kutafuta kwenye maeneo yote (pamoja na kurasa za majadiliano, vigezo, nk
 'saveprefs'                   => 'Hifadhi',
 'resetprefs'                  => 'Utupe mabadiliko yasijahifadhika',
 'prefs-editing'               => 'Kuhariri',
+'prefs-edit-boxsize'          => 'Ukubwa wa dirisha la kuhariri.',
 'rows'                        => 'Mistari:',
 'columns'                     => 'Safu:',
 'searchresultshead'           => 'Kutafuta',
 'recentchangesdays'           => 'Ionyeshwe siku ngapi kwenye orodha ya mabadiliko ya karibuni?',
 'timezonelegend'              => 'Ukanda saa:',
+'timezoneoffset'              => 'Tofauti ya saa¹:',
 'servertime'                  => 'Saa ya seva:',
 'timezoneregion-africa'       => 'Afrika',
 'timezoneregion-america'      => 'Marekani',
@@ -789,7 +792,9 @@ Pia unaweza kuchagua kuacha watumiaji wengine kuwasiliana nao kwa kutumia ukuras
 'right-createaccount' => 'Kufungua akounti mpya za watumiaji',
 'right-minoredit'     => 'Kutia alama kwamba badiliko ni dogo',
 'right-move'          => 'Kusogeza kurasa',
+'right-movefile'      => 'Kusogeza mafaili',
 'right-upload'        => 'Kupakia mafaili',
+'right-delete'        => 'Kufuta kurasa',
 
 # User rights log
 'rightslog' => 'Kumbukumbu ya vyeo vya watumiaji',
@@ -897,6 +902,7 @@ Kwa kutumia faili katika makala, tumia moja kati ya viungo vifuatavyo:
 'linkstoimage'              => '{{PLURAL:$1|Ukurasa huu|Kurasa hizi $1}} zimeunganishwa na faili hili:',
 'nolinkstoimage'            => 'Hakuna kurasa zozote zilizounganishwa na faili hii.',
 'sharedupload'              => 'Faili hili linatoka $1 na linaweza kushirikiwa na miradi mingine.',
+'filepage-nofile'           => 'Hakuna faili yenye jina hili.',
 'uploadnewversion-linktext' => 'Pakia toleo jipya la faili hii',
 
 # File reversion
@@ -961,7 +967,8 @@ Kwa kutumia faili katika makala, tumia moja kati ya viungo vifuatavyo:
 'brokenredirects-edit'   => 'hariri',
 'brokenredirects-delete' => 'futa',
 
-'withoutinterwiki' => 'Kurasa bila viungo kwenye lugha nyingine',
+'withoutinterwiki'        => 'Kurasa bila viungo kwenye lugha nyingine',
+'withoutinterwiki-submit' => 'Onyesha',
 
 'fewestrevisions' => 'Kurasa zenye masahihisho machache kuliko zote',
 
@@ -1031,7 +1038,9 @@ Kwa kutumia faili katika makala, tumia moja kati ya viungo vifuatavyo:
 'categories' => 'Jamii',
 
 # Special:LinkSearch
-'linksearch' => 'Viungo vya nje',
+'linksearch'    => 'Viungo vya nje',
+'linksearch-ns' => 'Eneo la wiki:',
+'linksearch-ok' => 'Tafuta',
 
 # Special:ListUsers
 'listusersfrom'      => 'Onyesha watumiaji kuanzia:',
@@ -1140,6 +1149,8 @@ Hivi ni vipimo kwa ukurasa '''$1''':",
 'protect-expiring'            => 'itakwisha $1 (UTC)',
 'protect-cascade'             => 'Linda kurasa zinazozingatiwa chini ya ukurasa huu',
 'protect-cantedit'            => 'Huwezi kubadilisha kiwango cha ulindaji wa ukurasa huu, kwa sababu huruhusiwi kuuhariri.',
+'protect-othertime'           => 'Kipindi kingine:',
+'protect-othertime-op'        => 'kipindi kingine',
 'protect-expiry-options'      => 'saa 1:1 hour,siku 1:1 day,wiki 1:1 week,wiki 2:2 weeks,mwezi 1:1 month,miezi 3:3 months,miezi 6:6 months,mwaka 1:1 year,milele:infinite',
 'restriction-type'            => 'Ruhusa:',
 'restriction-level'           => 'Kiwango cha kizuio:',
@@ -1154,6 +1165,7 @@ Hivi ni vipimo kwa ukurasa '''$1''':",
 'viewdeletedpage'        => 'Tazama kurasa zilizofutwa',
 'undeletebtn'            => 'Rudisha',
 'undeletelink'           => 'onyesha/rejesha',
+'undeleteviewlink'       => 'tazama',
 'undeletecomment'        => 'Sababu:',
 'undeletedarticle'       => 'alirudisha "[[$1]]"',
 'undelete-search-submit' => 'Tafuta',
@@ -1199,6 +1211,8 @@ Hivi ni vipimo kwa ukurasa '''$1''':",
 
 # Block/unblock
 'blockip'                  => 'Zuia mtumiaji',
+'ipaddress'                => 'Anwani ya IP:',
+'ipadressorusername'       => 'Anwani ya IP au jina la mtumiaji:',
 'ipbreason'                => 'Sababu:',
 'ipbreasonotherlist'       => 'Sababu nyingine',
 'ipbreason-dropdown'       => '*Sababu za kawaida za kuzuia

@@ -865,6 +865,9 @@ $2',
 Можете да направите [[Special:Search/{{PAGENAME}}|пребарување за овој наслов на страница]] во други страници, 
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} пребарување во дневниците],
 или [{{fullurl:{{FULLPAGENAME}}|action=edit}} да ја уредите оваа страница]</span>.',
+'noarticletext-nopermission'       => 'Нема текст на оваа страница.
+Можете да го [[Special:Search/{{PAGENAME}}|пребарате овој наслов]] во други страници,
+или да ги <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} пребарате соодветните дневници]</span>.',
 'userpage-userdoesnotexist'        => 'Корисничката сметка „$1“ не е регистрирана. 
 Ве молиме размислете дали навистина сакате да ја создадете/уредите оваа страница.',
 'clearyourcache'                   => "'''Забелешка - По секое зачувување морате да го исчистите кешот на вашиот веб прелистувач за да ги видите промените.'''
@@ -1716,6 +1719,24 @@ PICT # misc.
 'upload-unknown-size'       => 'Непозната големина',
 'upload-http-error'         => 'HTTP грешка: $1',
 
+# img_auth script messages
+'img-auth-accessdenied' => 'Оневозможен пристап',
+'img-auth-nopathinfo'   => 'Недостасува PATH_INFO.
+Вашиот опслужувач не е нагоден да ја проследи оваа информација.
+Можеби се базира на CGI и не подржува img_auth.
+Види http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
+'img-auth-notindir'     => 'Бараниот пат не е во конфигурираниот именик за подигнување.',
+'img-auth-badtitle'     => 'Не може да се конструира валиден наслов од "$1".',
+'img-auth-nologinnWL'   => 'Не сте најавени и "$1" не е во листата на допуштени.',
+'img-auth-nofile'       => 'Податотеката "$1" не постои.',
+'img-auth-isdir'        => 'Се обидувате да пристапите до именикот "$1".
+Допуштен е само податотечен пристап.',
+'img-auth-streaming'    => 'Поток "$1".',
+'img-auth-public'       => 'Функцијата на img_auth.php служи за излез на податотеки од приватни викија.
+Ова вики е нагодено како јавно вики.
+Од причини на оптимална сигурност, img_auth.php е оневозможен.',
+'img-auth-noread'       => 'Корисникот нема пристап за читање на "$1".',
+
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Не може да се пристапи до URL-то',
 'upload-curl-error6-text'  => 'Наведеното URL не е достапно.
@@ -2326,17 +2347,18 @@ $1',
 'month'               => 'Од месец (и порано):',
 'year'                => 'Од година (и порано):',
 
-'sp-contributions-newbies'       => 'Прикажи придонеси само на нови корисници',
-'sp-contributions-newbies-sub'   => 'За нови кориснички сметки',
-'sp-contributions-newbies-title' => 'Придонеси на нови корисници',
-'sp-contributions-blocklog'      => 'Дневник на блокирања',
-'sp-contributions-deleted'       => 'избришани кориснички придонеси',
-'sp-contributions-logs'          => 'дневници',
-'sp-contributions-talk'          => 'разговор',
-'sp-contributions-userrights'    => 'раководење со кориснички права',
-'sp-contributions-search'        => 'Пребарување на придонеси',
-'sp-contributions-username'      => 'IP адреса или корисничко име:',
-'sp-contributions-submit'        => 'Пребарај',
+'sp-contributions-newbies'        => 'Прикажи придонеси само на нови корисници',
+'sp-contributions-newbies-sub'    => 'За нови кориснички сметки',
+'sp-contributions-newbies-title'  => 'Придонеси на нови корисници',
+'sp-contributions-blocklog'       => 'Дневник на блокирања',
+'sp-contributions-deleted'        => 'избришани кориснички придонеси',
+'sp-contributions-logs'           => 'дневници',
+'sp-contributions-talk'           => 'разговор',
+'sp-contributions-userrights'     => 'раководење со кориснички права',
+'sp-contributions-blocked-notice' => 'Овој корисник е блокиран. Последните ставки во дневникот на блокирања, за ваша информација се дадени подолу:',
+'sp-contributions-search'         => 'Пребарување на придонеси',
+'sp-contributions-username'       => 'IP адреса или корисничко име:',
+'sp-contributions-submit'         => 'Пребарај',
 
 # What links here
 'whatlinkshere'            => 'Што води овде',
@@ -3480,5 +3502,20 @@ $1',
 'htmlform-submit'              => 'Зачувај',
 'htmlform-reset'               => 'Откажи промени',
 'htmlform-selectorother-other' => 'Друго',
+
+# Add categories per AJAX
+'ajax-add-category'            => 'Додади категорија',
+'ajax-add-category-submit'     => 'Додади',
+'ajax-confirm-title'           => 'Потврди акција',
+'ajax-confirm-prompt'          => 'Подолу можете да дадете краток опис на вашите уредувања.
+Кликнете на копчето "Зачувај страница" за да ги зачувате вашите уредувања.',
+'ajax-confirm-save'            => 'Зачувај',
+'ajax-add-category-summary'    => 'Додади категорија "$1"',
+'ajax-remove-category-summary' => 'Избриши категорија "$1"',
+'ajax-confirm-actionsummary'   => 'Акција која се изведува:',
+'ajax-error-title'             => 'Грешка',
+'ajax-error-dismiss'           => 'ОК',
+'ajax-remove-category-error'   => 'Не беше можно да се избрише оваа категорија.
+Ова вообичаено се случува кога категоријата е додадена на страница преку некој шаблон.',
 
 );
