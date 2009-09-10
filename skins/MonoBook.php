@@ -43,26 +43,27 @@ class SkinMonoBook extends SkinTemplate {
 		$out->addStyle( 'monobook/rtl.css', 'screen', '', 'rtl' );
 
 
-		//@@todo we can move this to the parent once we update all skins
-		if( isset( $this->pagecss ) &&  $this->pagecss)
+		// @todo We can move this to the parent once we update all the skins
+		if( isset( $this->pagecss ) &&  $this->pagecss )
 			$out->addInlineStyle( $this->pagecss );
 
-		if( isset( $this->usercss ) &&  $this->usercss)
+		if( isset( $this->usercss ) &&  $this->usercss )
 			$out->addInlineStyle( $this->usercss );
 
 	}
+
 	function setupSkinUserJs( OutputPage $out ) {
 		parent::setupSkinUserJs( $out );
 		$out->addScriptFile( 'wikibits.js' );
 
-		//@@todo can move to parent once we update all skins (to not include things twice
-		if( isset( $this->jsvarurl ) && $this->jsvarurl)
+		// @todo We can move to parent once we update all the skins (to avoid including things twice)
+		if( isset( $this->jsvarurl ) && $this->jsvarurl )
 			$out->addScriptFile( $this->jsvarurl );
 
-		if( isset( $this->userjs ) && $this->userjs)
+		if( isset( $this->userjs ) && $this->userjs )
 			$out->addScriptFile( $this->userjs );
 
-		if( isset( $this->userjsprev ) && $this->userjsprev)
+		if( isset( $this->userjsprev ) && $this->userjsprev )
 			$out->addInlineScript( $this->userjsprev );
 	}
 }
@@ -88,6 +89,7 @@ class MonoBookTemplate extends QuickTemplate {
 
 		// Suppress warnings to prevent notices about missing indexes in $this->data
 		wfSuppressWarnings();
+
 		# FIXME: What is this?  Should it apply to all skins?
 		$path = htmlspecialchars( $wgStylePath );
 		$wgOut->addScript( <<<HTML

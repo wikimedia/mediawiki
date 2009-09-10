@@ -21,8 +21,8 @@ if (clientPC.indexOf('opera') != -1) {
 	var is_opera_preseven = window.opera && !document.childNodes;
 	var is_opera_seven = window.opera && document.childNodes;
 	var is_opera_95 = /opera\/(9\.[5-9]|[1-9][0-9])/.test( clientPC );
-	var opera6_bugs = is_opera_preseven; 	
-	var opera7_bugs = is_opera_seven && !is_opera_95; 	
+	var opera6_bugs = is_opera_preseven;
+	var opera7_bugs = is_opera_seven && !is_opera_95;
 	var opera95_bugs = /opera\/(9\.5)/.test( clientPC );
 }
 
@@ -467,26 +467,26 @@ function checkboxClickHandler(e) {
 }
 
 function toggle_element_activation(ida,idb) {
-	if (!document.getElementById) {
+	if ( !document.getElementById ) {
 		return;
 	}
-	//hide and show appropriate upload sizes
-	if(idb == 'wpUploadFileURL'){
-		var e = document.getElementById('mw-upload-maxfilesize');
-		if(e) e.style.display = "none";		
-		
-		var e = document.getElementById('mw-upload-maxfilesize-url');
-		if(e) e.style.display = "block";		
+	// Show the appropriate upload size limit message
+	if( idb == 'wpUploadFileURL' ) {
+		var e = document.getElementById( 'mw-upload-maxfilesize' );
+		if( e ) e.style.display = "none";
+
+		var e = document.getElementById( 'mw-upload-maxfilesize-url' );
+		if( e ) e.style.display = "block";
 	}
-	if(idb == 'wpUploadFile'){
-		var e = document.getElementById('mw-upload-maxfilesize-url');
-		if(e) e.style.display =  "none";
-					
-		var e = document.getElementById('mw-upload-maxfilesize');
-		if(e) e.style.display =  "block";
+	if( idb == 'wpUploadFile' ) {
+		var e = document.getElementById( 'mw-upload-maxfilesize-url' );
+		if( e ) e.style.display =  "none";
+
+		var e = document.getElementById( 'mw-upload-maxfilesize' );
+		if( e ) e.style.display =  "block";
 	}
-	document.getElementById(ida).disabled = true;
-	document.getElementById(idb).disabled = false;
+	document.getElementById( ida ).disabled = true;
+	document.getElementById( idb ).disabled = false;
 }
 
 function toggle_element_check(ida,idb) {
@@ -797,7 +797,7 @@ function ts_toLowerCase( s ) {
 	return s.toLowerCase();
 }
 
-function ts_dateToSortKey(date) {	
+function ts_dateToSortKey(date) {
 	// y2k notes: two digit years less than 50 are treated as 20XX, greater than 50 are treated as 19XX
 	if (date.length == 11) {
 		switch (date.substr(3,3).toLowerCase()) {
@@ -844,7 +844,7 @@ function ts_parseFloat( s ) {
 	}
 	if (ts_number_transform_table != false) {
 		var newNum = '', c;
-		
+
 		for ( var p = 0; p < s.length; p++ ) {
 			c = s.charAt( p );
 			if (c in ts_number_transform_table) {
@@ -938,7 +938,7 @@ function jsMsg( message, className ) {
 	if( className ) {
 		messageDiv.setAttribute( 'class', 'mw-js-message-'+className );
 	}
-	
+
 	if (typeof message === 'object') {
 		while (messageDiv.hasChildNodes()) // Remove old content
 			messageDiv.removeChild(messageDiv.firstChild);

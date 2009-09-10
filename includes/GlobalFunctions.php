@@ -2346,19 +2346,19 @@ function wfShellExec( $cmd, &$retval=null ) {
 }
 
 /**
- * Executes a shell command in the background. Returns true of successful. 
+ * Executes a shell command in the background. Returns true if successful.
  *
  * @param $cmd String
  */
-function wfShellBackgroundExec( $cmd ) {	
+function wfShellBackgroundExec( $cmd ) {
 	wfDebug( "wfShellBackgroundExec: $cmd\n" );
-	
-	if ( ! wfShellExecEnabled() ) {
+
+	if ( !wfShellExecEnabled() ) {
 		return false;
 	}
-	
+
 	if ( wfIsWindows() ) {
-		shell_exec( "start /b $cmd >nul");
+		shell_exec( "start /b $cmd >nul" );
 		return true;
 	} else {
 		$pid = shell_exec( "nohup $cmd > /dev/null & echo $!" );
@@ -2367,10 +2367,9 @@ function wfShellBackgroundExec( $cmd ) {
 }
 
 /**
- * Checks if the current instance can execute a shell command
- *
+ * Return true if we can execute a shell command (i.e. not safe mode, etc.)
  */
-function wfShellExecEnabled(){			
+function wfShellExecEnabled() {
 	if( wfIniGetBool( 'safe_mode' ) ) {
 		wfDebug( "wfShellExec can't run in safe_mode, PHP's exec functions are too broken.\n" );
 		return false;
@@ -2809,7 +2808,7 @@ function wfHttpOnlySafe() {
 			}
 		}
 	}
-	
+
 	return true;
 }
 

@@ -12,18 +12,18 @@ function licenseSelectorCheck() {
 }
 
 function wgUploadSetup() {
-	//disable source type if not checked: 
-	var e = document.getElementById('wpSourceTypeURL');
-	if(e){
-		if(!e.checked){
-			var ein = document.getElementById('wpUploadFileURL');
+	// Disable URL box if the URL copy upload source type is not selected
+	var e = document.getElementById( 'wpSourceTypeURL' );
+	if( e ) {
+		if( !e.checked ) {
+			var ein = document.getElementById( 'wpUploadFileURL' );
 			if(ein)
-				ein.setAttribute('disabled', 'disabled');
+				ein.setAttribute( 'disabled', 'disabled' );
 		}
 	}
-	
-	// for MSIE/Mac; non-breaking spaces cause the <option> not to render
-	// but, for some reason, setting the text to itself works
+
+	// For MSIE/Mac: non-breaking spaces cause the <option> not to render.
+	// But for some reason, setting the text to itself works
 	var selector = document.getElementById("wpLicense");
 	if (selector) {
 		var ua = navigator.userAgent;
@@ -53,7 +53,7 @@ var wgUploadWarningObj = {
 
 		this.nameToCheck = destFile.value ;
 
-		// Clear timer 
+		// Clear timer
 		if ( this.timeoutID ) {
 			window.clearTimeout( this.timeoutID );
 		}
@@ -76,18 +76,18 @@ var wgUploadWarningObj = {
 		this.nameToCheck = fname;
 		this.timeout();
 	},
-	
+
 	'timeout' : function() {
 		if ( !wgAjaxUploadDestCheck || !sajax_init_object() ) return;
 		injectSpinner( document.getElementById( 'wpDestFile' ), 'destcheck' );
 
-		// Get variables into local scope so that they will be preserved for the 
-		// anonymous callback. fileName is copied so that multiple overlapping 
+		// Get variables into local scope so that they will be preserved for the
+		// anonymous callback. fileName is copied so that multiple overlapping
 		// ajax requests can be supported.
 		var obj = this;
-		var fileName = this.nameToCheck;		
-		sajax_do_call( 'UploadForm::ajaxGetExistsWarning', [this.nameToCheck], 
-			function (result) {				
+		var fileName = this.nameToCheck;
+		sajax_do_call( 'UploadForm::ajaxGetExistsWarning', [this.nameToCheck],
+			function (result) {
 				obj.processResult(result, fileName)
 			}
 		);
@@ -104,7 +104,7 @@ var wgUploadWarningObj = {
 		var ackElt = document.getElementById( 'wpDestFileWarningAck' );
 		this.setInnerHTML(warningElt, warning);
 
-		// Set a value in the form indicating that the warning is acknowledged and 
+		// Set a value in the form indicating that the warning is acknowledged and
 		// doesn't need to be redisplayed post-upload
 		if ( warning == '' || warning == '&nbsp;' ) {
 			ackElt.value = '';
@@ -127,13 +127,13 @@ function fillDestFilename(id) {
 	if (!document.getElementById) {
 		return;
 	}
-	//remove any previously flagged errors
-	var e = document.getElementById('mw-upload-permitted');
-	if(e) e. className = '';
-	
-	var e = document.getElementById('mw-upload-prohibited');
-	if(e) e.className = '';
-	
+	// Remove any previously flagged errors
+	var e = document.getElementById( 'mw-upload-permitted' );
+	if( e ) e.className = '';
+
+	var e = document.getElementById( 'mw-upload-prohibited' );
+	if( e ) e.className = '';
+
 	var path = document.getElementById(id).value;
 	// Find trailing part
 	var slash = path.lastIndexOf('/');
@@ -146,36 +146,39 @@ function fillDestFilename(id) {
 	} else {
 		fname = path.substring(backslash+1, 10000);
 	}
-	//check for the wgFileExtensions and clear if not a valid fname extension
-	
-	//urls are less likely to have a usefull extension don't include them in the extention check
-	if( wgFileExtensions && id != 'wpUploadFileURL' ){		
-		var found = false;		
-		if( fname.lastIndexOf('.')!=-1 ){		
-			var ext = fname.substr( fname.lastIndexOf('.')+1 );			
-			for(var i=0; i < wgFileExtensions.length; i++){						
-				if(  wgFileExtensions[i].toLowerCase()   ==  ext.toLowerCase() )
+
+	// Clear the filename if it does not have a valid extension.
+	// URLs are less likely to have a useful extension, so don't include them in the 
+	// extension check.
+	if( wgFileExtensions && id != 'wpUploadFileURL' ) {
+		var found = false;
+		if( fname.lastIndexOf( '.' ) != -1 ) {
+			var ext = fname.substr( fname.lastIndexOf( '.' ) + 1 );
+			for( var i = 0; i < wgFileExtensions.length; i++ ) {
+				if( wgFileExtensions[i].toLowerCase() == ext.toLowerCase() ) {
 					found = true;
+					break;
+				}
 			}
 		}
-		if(!found){
-			//clear the upload set mw-upload-permitted to error
+		if( !found ) {
+			// Not a valid extension
+			// Clear the upload and set mw-upload-permitted to error
 			document.getElementById(id).value = '';
-			var e = document.getElementById('mw-upload-permitted');
-			if(e) e. className = 'error';
-			
-			var e = document.getElementById('mw-upload-prohibited');
-			if(e) e.className = 'error';
-			
-			//clear the wpDestFile as well: 
-			var e = document.getElementById('wpDestFile')
-			if(e) e.value = '';
-			
-			//return false
+			var e = document.getElementById( 'mw-upload-permitted' );
+			if( e ) e.className = 'error';
+
+			var e = document.getElementById( 'mw-upload-prohibited' );
+			if( e ) e.className = 'error';
+
+			// Clear wpDestFile as well
+			var e = document.getElementById( 'wpDestFile' )
+			if( e ) e.value = '';
+
 			return false;
-		}		
-	}	
-		
+		}
+	}
+
 	// Capitalise first letter and replace spaces by underscores
 	fname = fname.charAt(0).toUpperCase().concat(fname.substring(1,10000)).replace(/ /g, '_');
 
@@ -199,7 +202,7 @@ function toggleFilenameFiller() {
 }
 
 var wgUploadLicenseObj = {
-	
+
 	'responseCache' : { '' : '' },
 
 	'fetchPreview': function( license ) {
@@ -229,7 +232,7 @@ var wgUploadLicenseObj = {
 		if( previewPanel.innerHTML != preview )
 			previewPanel.innerHTML = preview;
 	}
-	
+
 }
 
 addOnloadHook( wgUploadSetup );
