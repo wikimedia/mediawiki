@@ -789,10 +789,9 @@ class SpecialSearch {
 							'type'=>'button',
 							'id' => 'mw-search-togglenone',
 							'onclick' => 'mwToggleSearchCheckboxes("none");',
-							'value' => wfMsg( 'powersearch-togglenone'
+							'value' => wfMsg( 'powersearch-togglenone' )
 						)
 					)
-				)
 			) .
 			Xml::element( 'div', array( 'class' => 'divider' ), '', false ) .
 			$namespaceTables .
