@@ -1,4 +1,4 @@
-<?
+<?php
 /*
  * simple wrapper for json_econde and json_decode that falls back on Services_JSON class
  */
@@ -30,4 +30,3 @@ class FormatJson{
 		}
 	}
 }
-?>
