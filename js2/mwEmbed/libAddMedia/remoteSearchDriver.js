@@ -73,9 +73,12 @@ var default_remote_search_options = {
 	'p_seq':null,
 	'cFileNS':'File', //What is the canonical namespace prefix for images
 					  //@@todo (should get that from the api or in-page vars)
-
-	'enable_upload_tab':true, // if we want to enable an uploads tab:
-	'upload_api_target'	   : 'http://localhost/wiki_trunk/api.php' // can be local or the url of the upload api.
+	
+	'upload_api_target': 'http://localhost/wiki_trunk/api.php', // can be local or the url of the upload api.
+	
+	'enabled_cps':'all', //can be keyword 'all' or an array of enabled content provider keys
+		
+	'disp_item':'wiki_commons' //sets the default display item:
 }
 
 if(typeof wgServer == 'undefined')
@@ -101,12 +104,7 @@ remoteSearchDriver.prototype = {
 		'advanced_search':{
 			'title': 'Advanced Options'
 		}
-	},
-	/*
-	 * sets the default display item:
-	 * can be any content_providers key or 'all'
-	 */
-	disp_item : 'wiki_commons',
+	},	
 	/** the default content providers list.
 	 *
 	 * (should be note that special tabs like "upload" and "combined" don't go into the content proviers list:
@@ -203,6 +201,12 @@ remoteSearchDriver.prototype = {
 			'remote_embed_ext': false, //if running the remoteEmbed extension no need to copy local
 									   //syntax will be [remoteEmbed:roe_url link title]
 			'tab_img':true
+		},
+		//special cp "upload"
+		'upload':{
+			'enabled':1,
+			'checked':1,
+			'title'	:'Upload'			
 		}
 	},
 	//define the licenses
@@ -310,7 +314,7 @@ remoteSearchDriver.prototype = {
 		};
 	},
 	//some default layout values:
-	thumb_width		 : 80,
+	thumb_width		 	: 80,
 	image_edit_width	: 400,
 	video_edit_width	: 400,
 	insert_text_pos		: 0,	  //insert at the start (will be overwritten by the user cursor pos)
@@ -320,41 +324,28 @@ remoteSearchDriver.prototype = {
 	cEdit				: null,
 	dmodalCss			: {},
 
-	init: function( iObj ){
+	init: function( options ){
 		var _this = this;
 		js_log('remoteSearchDriver:init');
-		for( var i in default_remote_search_options ) {
-			if( iObj[i]){
-				this[ i ] = iObj[i];
-			}else{
-				this[ i ] = default_remote_search_options[i];
-			}
-		}
+		
+		//merge in the options:  
+		//@@todo for cleaner config we should set _this.opt to the provided options) 
+		$j.extend( _this, default_remote_search_options, options);
+		
 		//update the base text:
 		if(_this.target_textbox)
 		   _this.getTexboxSelection();
 
-		//set up the content provider config:
-		if( this.cpconfig ){
-			for(var cpc in cpconfig){
-				for(var cinx in this.cpconfig[cpc]){
-					if( this.content_providers[cpc] )
-						this.content_providers[ cpc ][ cinx ] = this.cpconfig[cpc][ cinx];
+		//modify the content provider config based on options: 
+		if(_this.enabled_cps != 'all'){
+			for(var i in this.content_providers){
+				if( $j.inArray(i, _this.enabled_cps)!= -1){
+					this.content_providers[i].enabled = true;
+				}else{
+					this.content_providers[i].enabled = false;
 				}
 			}
 		}
-
-		//make sure the selected cp has an api to query against (if its a content_provider
-		if( this.content_providers[ this.disp_item ] &&
-			!this.content_providers[ this.disp_item ].api_url  ){
-			for(var inx in this.content_providers){
-				if( this.content_providers[ inx ].api_url ){
-					this.disp_item = inx;
-					break;
-				}
-			}
-		}
-
 
 		//set up the default model config:
 		this.dmodalCss = {
@@ -602,13 +593,13 @@ remoteSearchDriver.prototype = {
 			if( parseUri( document.URL ).host == parseUri( _this.upload_api_target ).host ){
 				mvJsLoader.doLoad(['$j.fn.simpleUploadForm'],function(){
 
-					//get extened info about the file
+					//get extends info about the file
 					var cp = _this.content_providers['this_wiki'];
 					//check for "this_wiki" enabled
-					if(!cp.enabled){
+					/*if(!cp.enabled){
 						$j('#tab-upload').html('error this_wiki not enabled (can\'t get uploaded file info)');
 						return false;
-					}
+					}*/
 
 					//load  this_wiki search system to grab the rObj
 					_this.loadSearchLib(cp, function(){
@@ -672,15 +663,14 @@ remoteSearchDriver.prototype = {
 		js_log("f:runSearch::" + this.disp_item);
 		//draw_direct_flag
 		var draw_direct_flag = true;
-		if( !this.content_providers[this.disp_item] ){
-			//check if its the special upload tab case:
-			if( this.disp_item == 'upload'){
-				this.doUploadInteface();
-			}else{
-				js_log("can't run search for:" + this.disp_item);
-			}
-			return false;
+			
+		//check if its the special upload tab case:
+		if( this.disp_item == 'upload'){
+			this.doUploadInteface();
+			return true;
 		}
+		//else do runSearch			
+		
 		cp = this.content_providers[this.disp_item];
 
 		//check if we need to update:
@@ -956,7 +946,8 @@ remoteSearchDriver.prototype = {
 		p = rid.split('__');
 		var cp_id = p[0];
 		var rid = p[1];
-
+		
+		//Set the upload helper cp_id (to render recent uploads by this user)
 		if(cp_id == 'upload')
 			cp_id = 'this_wiki';
 

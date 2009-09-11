@@ -17,7 +17,9 @@ seqRemoteSearchDriver.prototype = {
 			'local_wiki_api_url': this_seq.getLocalApiUrl(),
 			'instance_name'		: this_seq.instance_name + '.mySearch',
 			'default_query'		: this.pSeq.plObj.title
-		}
+		}		
+		if(typeof this_seq.amw_conf != 'undefined')
+			$j.extend(iObj,  this_seq.amw_conf);
 		//inherit the remoteSearchDriver properties:n
 		var tmpRSD = new remoteSearchDriver( iObj );
 		for(var i in tmpRSD){

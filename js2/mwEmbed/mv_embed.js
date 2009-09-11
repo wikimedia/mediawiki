@@ -23,21 +23,19 @@ if( MV_EMBED_VERSION ){
 var MV_EMBED_VERSION = '1.0r19';
 
 /*
- * Configuration variables (can be set from some preceding script).
- * Set up mwConfig global, override any of the defaultMwConfig values:
- * @@ more config values on the way ;)
+ * Configuration variables should be set by extending mwConfigOptions
+ * here is the default config: 
  */
-var defaultMwConfig = {
+var mwConfig = {
 	'skin_name': 'mvpcf',
 	'jui_skin': 'redmond',
 	'video_size':'400x300'
 }
 
-if( !mwConfig )
-	var mwConfig = {};
+if( !mwConfigOptions )
+	var mwConfigOptions = {};
 
 // Install the default config values for anything not set in mwConfig
-checkDefaultMwConfig();
 
 // Whether or not to load java from an iframe.
 // Note: this is necessary for remote embedding because of Java's security model)
@@ -85,18 +83,10 @@ parseUri.options = {
 	}
 };
 
-
-
 // Get the mv_embed location if it has not been set
 if( !mv_embed_path ) {
 	var mv_embed_path = getMvEmbedPath();
 }
-
-// Set up the skin path
-var mv_jquery_skin_path = mv_embed_path + 'jquery/jquery.ui/themes/' +mwConfig['jui_skin'] + '/';
-var mv_skin_img_path = mv_embed_path + 'skins/' + mwConfig['skin_name'] + '/images/';
-var mv_default_thumb_url = mv_skin_img_path + 'vid_default_thumb.jpg';
-
 
 // Init the global message table if it has not been initialised already
 if( !gMsg ) {
@@ -556,21 +546,35 @@ var mvJsLoader = {
 	 * checks for jQuery and adds the $j noConflict var
 	 */
 	jQueryCheck: function( callback ) {
-		// Skip stuff if $j is already loaded
+		// Skip stuff if $j is already loaded:
 		if( _global['$j'] && callback )
-			callback();
+			callback();					
 		var _this = this;
 		// Load jQuery
 		_this.doLoad([
 			'window.jQuery'
 		], function() {
 			_global['$j'] = jQuery.noConflict();
+			
+			//setup our global settings using the (jQuery helper) 
+			$j.extend( mwConfig, mwConfigOptions);
+			
+			// Set up the skin path
+			_global['mv_jquery_skin_path'] = mv_embed_path + 'jquery/jquery.ui/themes/' +mwConfig['jui_skin'] + '/';
+			_global['mv_skin_img_path'] = mv_embed_path + 'skins/' + mwConfig['skin_name'] + '/images/';
+			_global['mv_default_thumb_url'] = mv_skin_img_path + 'vid_default_thumb.jpg';
+			
+			// Make sure the skin/style sheets are always available:
+			loadExternalCss( mv_jquery_skin_path + 'jquery-ui-1.7.1.custom.css' );
+			loadExternalCss( mv_embed_path + 'skins/' + mwConfig['skin_name'] + '/styles.css' );
+			
 			// Set up AJAX to not send dynamic URLs for loading scripts (we control that with
 			// the scriptLoader)
 			$j.ajaxSetup({
 				cache: true
 			});
-			js_log( 'jquery loaded' );
+			
+			js_log( 'jQuery loaded into $j' );
 			// Set up mvEmbed jQuery bindings:
 			mv_jqueryBindings();
 			// Run the callback
@@ -581,15 +585,11 @@ var mvJsLoader = {
 	},
 	embedVideoCheck:function( callback ) {
 		var _this = this;
-		js_log( 'embedVideoCheck:' );
-		// Set videonojs to loading
-		// Issue a style sheet request to get both mv_embed and jQuery styles:
-		loadExternalCss( mv_jquery_skin_path + 'jquery-ui-1.7.1.custom.css' );
-		loadExternalCss( mv_embed_path + 'skins/'+mwConfig['skin_name'] + '/styles.css' );
-
+		js_log( 'embedVideoCheck:' );		
 		// Make sure we have jQuery
 		_this.jQueryCheck( function() {
 			$j('.videonojs').html( gM('mwe-loading_txt') );
+			//Set up the embed video player class request: 
 			var depReq = [
 				[
 					'$j.ui',
@@ -604,7 +604,7 @@ var mvJsLoader = {
 			// Add PNG fix if needed:
 			if( $j.browser.msie || $j.browser.version < 7 )
 				depReq[0].push( '$j.fn.pngFix' );
-
+			
 			_this.doLoadDepMode( depReq, function() {
 				embedTypes.init();
 				callback();
@@ -685,11 +685,7 @@ function setSwappableToLoading( e ) {
 	//}
 }
 //js2AddOnloadHook: ensure jQuery and the DOM are ready
-function js2AddOnloadHook( func ) {
-	// Make sure the skin/style sheets are always available:
-	loadExternalCss( mv_jquery_skin_path + 'jquery-ui-1.7.1.custom.css' );
-	loadExternalCss( mv_embed_path + 'skins/' + mwConfig['skin_name'] + '/styles.css' );
-
+function js2AddOnloadHook( func ) {	
 	// If we have already run the DOM-ready function, just run the function directly:
 	if( mvJsLoader.doneReadyEvents ) {
 		// Make sure jQuery is there:
@@ -1461,14 +1457,6 @@ function js_log( string ) {
 		}*/
 	}
 	return false;
-}
-
-function checkDefaultMwConfig() {
-	for( var i in defaultMwConfig ) {
-		if( typeof( mwConfig[i] ) == 'undefined' ) {
-			mwConfig[i] = defaultMwConfig[i];
-		}
-	}
 }
 
 function js_error( string ) {

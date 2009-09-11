@@ -97,7 +97,9 @@ var sequencerDefaultValues = {
 	sequenceEditToken:null,
 	//the time the sequence was last touched (grabbed at time of startup)
 	sequenceTouchedTime:null,
-
+	
+	//the default config for the add media wizard
+	amw_conf: {}, 
 
 
 	//Msg are all the language specific values ...
