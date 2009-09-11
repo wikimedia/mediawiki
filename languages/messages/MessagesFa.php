@@ -2222,13 +2222,10 @@ http://www.mediawiki.org/wiki/Manual:Image_Authorization را ببینید.',
 'enotif_impersonal_salutation' => 'کاربر {{SITENAME}}',
 'changed'                      => 'تغییر یافته',
 'created'                      => 'ایجاد شد',
-'deleted'                      => 'حذف شده',
-'enotif_deletedpagetext'       => 'این صفحه دیگر موجود نیست.',
 'enotif_subject'               => 'صفحهٔ «$PAGETITLE» {{SITENAME}} به دست $PAGEEDITOR $CHANGEDORCREATED‌است.',
 'enotif_lastvisited'           => 'برای دیدن همهٔ تغییرات از آخرین باری که سر زده‌اید $1 را ببینید.',
 'enotif_lastdiff'              => 'برای نمایش این تغییر $1 را ببینید.',
 'enotif_anon_editor'           => 'کاربر ناشناس $1',
-'enotif_rev_info'              => '$1 را برای نسخهٔ اخیر ببینید.',
 'enotif_body'                  => 'WATCHINGUSERNAME گرامی،
 
 صفحهٔ «$PAGETITLE» {{SITENAME}} در $PAGEEDITDATEANDTIME به دست $PAGEEDITOR $CHANGEDORCREATED است. $REVINFO
