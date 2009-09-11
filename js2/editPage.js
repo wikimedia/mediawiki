@@ -12,7 +12,7 @@ if( !mwAddMediaConfig )
 			'default_query': wgTitle,
 			'target_title': wgPageName,
 			// Here we can setup the content provider overrides
-			'cpconfig': {},
+			'enabled_cps':['wiki_commons'],   
 			// The local wiki API URL:
 			'local_wiki_api_url': wgServer + wgScriptPath + '/api.php'
 		};
