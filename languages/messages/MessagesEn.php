@@ -2611,17 +2611,14 @@ Future changes to this page and its associated talk page will be listed there, a
 'enotif_impersonal_salutation' => '{{SITENAME}} user',
 'changed'                      => 'changed',
 'created'                      => 'created',
-'deleted'                      => 'deleted',
-'enotif_deletedpagetext'       => 'This page is no longer available.',
 'enotif_subject'               => '{{SITENAME}} page $PAGETITLE has been $CHANGEDORCREATED by $PAGEEDITOR',
 'enotif_lastvisited'           => 'See $1 for all changes since your last visit.',
 'enotif_lastdiff'              => 'See $1 to view this change.',
 'enotif_anon_editor'           => 'anonymous user $1',
-'enotif_rev_info'              => 'See $1 for the current revision.',
 'enotif_body'                  => 'Dear $WATCHINGUSERNAME,
 
 
-The {{SITENAME}} page $PAGETITLE has been $CHANGEDORCREATED on $PAGEEDITDATEANDTIME by $PAGEEDITOR. $REVINFO
+The {{SITENAME}} page $PAGETITLE has been $CHANGEDORCREATED on $PAGEEDITDATE by $PAGEEDITOR, see $PAGETITLE_URL for the current revision.
 
 $NEWPAGE
 
