@@ -840,6 +840,11 @@ function os_disableSuggestionsOn(inputId){
 		// remove descriptor
 		os_map[inputId] = null;
 	}
+	
+	// Remove the element from the os_autoload_* arrays
+	var index = os_autoload_inputs.indexOf(inputId);
+	if ( index >= 0 )
+		os_autoload_inputs[index] = os_autoload_forms[index] = '';
 }
 
 /** Initialization, call upon page onload */
