@@ -1942,7 +1942,7 @@ class Linker {
 	 */
 	public function tooltipAndAccesskey( $name ) {
 		global $wgEnableTooltipsAndAccesskeys;
-		if (!$wgEnableTooltipsAndAccesskeys)
+		if ( !$wgEnableTooltipsAndAccesskeys )
 			return array();
 		# FIXME: If Sanitizer::expandAttributes() treated "false" as "output
 		# no attribute" instead of "output '' as value for attribute", this
@@ -1963,8 +1963,8 @@ class Linker {
 	/** @deprecated Returns raw bits of HTML, use titleAttrib() */
 	public function tooltip( $name, $options = null ) {
 		global $wgEnableTooltipsAndAccesskeys;
-		if ($wgEnableTooltipsAndAccesskeys)
-			return array();
+		if ( !$wgEnableTooltipsAndAccesskeys )
+			return '';
 		# FIXME: If Sanitizer::expandAttributes() treated "false" as "output
 		# no attribute" instead of "output '' as value for attribute", this
 		# would be two lines.
