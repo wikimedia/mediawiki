@@ -1,0 +1,126 @@
+/*
+ * ConditionalShowSection MediaWiki extension
+ *
+ * @author Jean-Lou Dupont
+ * @package MediaWiki
+ * @subpackage Extensions
+ * @licence GNU General Public Licence 2.0
+ * This extension enables to conditionally show/hide a section
+ * of wikitext that appears between the <cshow> </cshow> tags.
+ *
+ * Add to LocalSettings.php
+ * with: require_once("extensions/ConditionalShowSection/ConditionalShowSection.php");
+ *
+ * HISTORY:
+ * 1.1: corrected bug when "ingroup" option not present, wrong results.
+ * 1.2: used "recursiveTagParse" to get cleaner parsing.
+ * 1.3: corrected error with default initialisation of userReqLogged
+ * 1.4: changed to using 'getEffectiveGroups' in order to have also access
+ *      to the implicit '*' group and the default group for logged users 'user'.
+ * 1.5: Allow to check multiple groups - separated by ","
+ */
+
+
+
+{{Extension|templatemode =
+|name          = ConditionalShow
+|status        = stable
+|type1         = tag
+|type2         = user rights 
+|type3         = mywiki 
+|hook1         = ParserFirstCallInit
+|hook2         =
+|username      = [[user:jldupont]]
+|author        =
+|description   = Conditionally show a wikitext section based on user group rights
+|image         =
+|imagesize     =
+|version       = 1.5
+|update        = 2009-09-10
+|mediawiki     = tested on 1.8.2, 1.9.3, 1.10, 1.14, 1.15, 1.16A
+|php           =
+|license       = GNU General Public Licence 2.0
+|download      = [http://wiki.jldupont.com/Extension:ConditionalContent http version <1.5]
+|readme        =
+|changelog     =
+|parameters    =
+|tags          = <cshow>,</cshow>
+|rights        =
+|example       =
+|compatibility =
+}}
+
+==What can this extension do?==
+This extension implementes the <nowiki><cshow></nowiki> tag which conditionally shows wikitext within the tags based on user group rights and certain other parameters.
+
+Using the tags should be to make the user experience less confusing or more useful by only showing information relevant to the user and specific groups that user belongs to.
+<div style="width: 80%; margin-left: auto; margin-right: auto; padding: 4px; border: 2px solid #FF0000; background-color: #FFDDDD; text-align: center;">
+'''PLEASE NOTE!!!'''
+
+This tag does not protect information or instructions from being disclosed to the reader.
+
+The user can still see the information by editing the page or even by "view source".  If you are looking to actually protect information, this is '''NOT''' the extension you want to use!
+
+This extension only helps you selectively show content or navigation based on groups the user belongs to.
+</div>
+==Note==
+
+This extension is not 'cache' friendly; if one requires this feature, then [[Extension:BizzWiki|BizzWiki platform]] provides a solution through [[Extension:ParserPhase2|Parser Phase 2 extension]].
+
+==Usage==
+
+Like other tags, this can be used two ways - by using the tag itself within wikitext, or by using the tag function within templates.
+
+If you are using it within normal wikitext, the <nowiki><cshow>. . .</cshow></nowiki>  syntax suffices.  If you are using it within a template, you will need to use the parser tag function as illustrated [[#Example within a Template | below]].
+
+===Example in Wikitext===
+By default, the section of wikitext within the tags is HIDDEN unless the conditions are met - in this case the user must be logged in and belong the group 'sysops'
+
+<pre>
+<cshow logged=1 ingroup='sysop'> This text will appear if a user with membership to 'sysop' group views this page</cshow>
+</pre>
+
+===Example within a Template===
+
+If you are using this within a template or as part of a template, you need to use the <nowiki>{{##tag: . . .}}</nowiki> syntax.
+
+<pre>
+{{#tag:cshow |
+This text will appear if a user with membership to 'sysop' group views this page
+| logged=1 ingroup='sysop'
+}}
+</pre>
+
+==Arguments==
+
+By default, the tagged section is HIDDEN unless the following conditions are met:
+* Argument: logged = '1' or '0'  
+* Argument: ingroup = 'group XYZ'  (Note, as of version 1.5, you can list multiple groups, e.g. 'sysop,approved'
+
+If no arguments are provided for:
+logged   --> assume 'don't care' 
+innGroup  --> assume ''           (no group)
+
+In other words, if no 'ingroup' parameter is given, then the condition 'ingroup' is never met.
+
+If no "logged" parameter is given, then this condition is always met.
+
+==Download instructions==
+
+The current version is available from SVN.
+
+Source Code and additional information can also be found at [http://bluecortex.com/index.php?title=Bluecortex:ConditionalShow].
+The code should be loaded to:
+
+<code>$IP/extensions/ConditionalShowSection/ConditionalShowSection.php</code>.  ''Note: [[Manual:$IP|$IP]] stands for the root directory of your MediaWiki installation, the same directory that holds [[Manual:LocalSettings.php|LocalSettings.php]]''.
+
+==Installation==
+To install this extension, add the following to [[Manual:LocalSettings.php|LocalSettings.php]]:
+<source lang="php">
+require_once("$IP/extensions/ConditionalShowSection/ConditionalShowSection.php");
+</source>
+
+== Other Options ==
+* [[Extension:ConditionalContent]]
+
+[[Category:View page extensions]]
