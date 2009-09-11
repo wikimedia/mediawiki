@@ -1909,13 +1909,10 @@ Wänn Du d Syte speter wider vu dr Lischt witt stryyche, deno druck eifach uf �
 'enotif_impersonal_salutation' => '{{SITENAME}}-Benutzer',
 'changed'                      => 'gänderet',
 'created'                      => 'aagleit',
-'deleted'                      => 'glescht',
-'enotif_deletedpagetext'       => 'Die Syte git s nimi.',
 'enotif_subject'               => 'D {{SITENAME}} Syte $PAGETITLE isch vum $PAGEEDITOR $CHANGEDORCREATED wore.',
 'enotif_lastvisited'           => '$1 zeigt alli Änderige uf s Mol.',
 'enotif_lastdiff'              => 'Lueg $1 no däre Änderig.',
 'enotif_anon_editor'           => 'Anonyme Benutzer $1',
-'enotif_rev_info'              => 'Di nejscht Version git s uf $1.',
 'enotif_body'                  => 'Liebe/r $WATCHINGUSERNAME,
 
 d {{SITENAME}}-Syte $PAGETITLE isch vum $PAGEEDITOR am $PAGEEDITDATEANDTIME $CHANGEDORCREATED wore. $REVINFO

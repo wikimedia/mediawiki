@@ -2044,13 +2044,10 @@ Os cambios futuros nesta páxina e na súa páxina de conversa asociada serán l
 'enotif_impersonal_salutation' => 'usuario de {{SITENAME}}',
 'changed'                      => 'modificada',
 'created'                      => 'creada',
-'deleted'                      => 'borrada',
-'enotif_deletedpagetext'       => 'Esta páxina xa non está dispoñible.',
 'enotif_subject'               => 'A páxina de {{SITENAME}} chamada "$PAGETITLE" foi $CHANGEDORCREATED por $PAGEEDITOR',
 'enotif_lastvisited'           => 'Vexa $1 para comprobar todos os cambios desde a súa última visita.',
 'enotif_lastdiff'              => 'Vexa $1 para visualizar esta modificación.',
 'enotif_anon_editor'           => 'usuario anónimo $1',
-'enotif_rev_info'              => 'Olle $1 para ver a revisión actual.',
 'enotif_body'                  => 'Estimado $WATCHINGUSERNAME,
 
 a páxina de {{SITENAME}} "$PAGETITLE" foi $CHANGEDORCREATED o $PAGEEDITDATEANDTIME por $PAGEEDITOR. $REVINFO

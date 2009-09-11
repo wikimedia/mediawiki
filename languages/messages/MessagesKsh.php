@@ -2218,13 +2218,10 @@ dann klick op „Nimieh drop oppasse“ wann De die Sigg om Schirm häs.",
 'enotif_impersonal_salutation' => 'Metmaacher en de {{SITENAME}}',
 'changed'                      => 'jeändert',
 'created'                      => 'neu aanjelaht',
-'deleted'                      => 'fottjeschmeße',
-'enotif_deletedpagetext'       => 'Di Sigg es nim_mieh doh.',
 'enotif_subject'               => '{{SITENAME}}: Sigg "$PAGETITLE" vun "$PAGEEDITOR" $CHANGEDORCREATED.',
 'enotif_lastvisited'           => 'Luur unger „$1“ - do fings de all die Änderunge zick Dingem letzte Besoch hee.',
 'enotif_lastdiff'              => 'Loor noh $1 öm di änderung ze sinn.',
 'enotif_anon_editor'           => 'Dä namelose Metmaacher $1',
-'enotif_rev_info'              => 'De neuste Version is op $1 ze fenge.',
 'enotif_body'                  => 'Leeven $WATCHINGUSERNAME,
 
 en de {{SITENAME}} wood die Sigg „$PAGETITLE“ am $PAGEEDITDATEANDTIME vun „$PAGEEDITOR“ $CHANGEDORCREATED.

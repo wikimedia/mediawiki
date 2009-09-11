@@ -1955,13 +1955,10 @@ Template:消除歧義',
 'enotif_impersonal_salutation' => '{{SITENAME}}用戶',
 'changed'                      => '修改了',
 'created'                      => '建立了',
-'deleted'                      => '刪除了',
-'enotif_deletedpagetext'       => '這個頁面已經不再存在。',
 'enotif_subject'               => '{{SITENAME}}有頁面 $PAGETITLE 被 $PAGEEDITOR $CHANGEDORCREATED',
 'enotif_lastvisited'           => '檢視您上次訪問後的所有更改請參閱$1。',
 'enotif_lastdiff'              => '檢視更改請參閱$1。',
 'enotif_anon_editor'           => '匿名用戶$1',
-'enotif_rev_info'              => '請到 $1 檢視當前修訂版本。',
 'enotif_body'                  => '親愛的 $WATCHINGUSERNAME，
 
 $PAGEEDITOR 已經在 $PAGEEDITDATEANDTIME $CHANGEDORCREATED{{SITENAME}}的 $PAGETITLE 頁面。$REVINFO

@@ -2131,13 +2131,10 @@ PICT # misc.
 'enotif_impersonal_salutation' => 'Википедија корисник',
 'changed'                      => 'променет',
 'created'                      => 'создадена',
-'deleted'                      => 'избришано',
-'enotif_deletedpagetext'       => 'Оваа страница повеќе не е достапна.',
 'enotif_subject'               => '{{SITENAME}} страницата $PAGETITLE беше $CHANGEDORCREATED од $PAGEEDITOR',
 'enotif_lastvisited'           => 'Видете $1 за сите промени од вашата последна посета.',
 'enotif_lastdiff'              => 'Видете $1 за да ја видите оваа промена.',
 'enotif_anon_editor'           => 'анонимен корисник $1',
-'enotif_rev_info'              => 'Види $1 за тековна ревизија.',
 'enotif_body'                  => 'Почитуван $WATCHINGUSERNAME,
 
 Страницата $PAGETITLE на {{SITENAME}} беше $CHANGEDORCREATED на $PAGEEDITDATEANDTIME од \'\'\'$PAGEEDITOR\'\'\'. $REVINFO

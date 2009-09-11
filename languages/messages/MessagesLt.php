@@ -1954,7 +1954,6 @@ taip pat bus '''paryškinti''' [[Special:RecentChanges|naujausių keitimų sąra
 'enotif_impersonal_salutation' => '{{SITENAME}} naudotojau',
 'changed'                      => 'pakeitė',
 'created'                      => 'sukurė',
-'deleted'                      => 'ištrintas',
 'enotif_subject'               => '{{SITENAME}} projekte $PAGEEDITOR $CHANGEDORCREATED $PAGETITLE',
 'enotif_lastvisited'           => 'Užeikite į $1, jei norite matyti pakeitimus nuo paskutiniojo apsilankymo.',
 'enotif_lastdiff'              => 'Užeikite į $1, jei norite pamatyti šį pakeitimą.',

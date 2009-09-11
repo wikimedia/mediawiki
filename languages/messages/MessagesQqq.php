@@ -1999,16 +1999,10 @@ Special:EmailUser appears when you click on the link "E-mail this user" in the s
 'watching'   => 'Text displayed when clicked on the watch tab: [[MediaWiki:Watch/{{SUBPAGENAME}}|{{int:watch}}]]. It means the wiki is adding that page to your watchlist.',
 'unwatching' => 'Text displayed when clicked on the unwatch tab: [[MediaWiki:Unwatch/{{SUBPAGENAME}}|{{int:unwatch}}]]. It means the wiki is removing that page from your watchlist.',
 
-'changed'         => 'Possible value for $CHANGEDORCREATED in {{msg|enotif_subject}} and {{msg|enotif_body}}.',
-'created'         => 'Possible value for $CHANGEDORCREATED in {{msg|enotif_subject}} and {{msg|enotif_body}}.',
-'deleted'         => 'Verb in {{msg-mw|Enotif body|notext=1}}
-
-{{Identical|Deleted}}',
-'enotif_subject'  => '$CHANGEDORCREATED can be one of {{msg|changed}} and {{msg|created}}.',
-'enotif_rev_info' => 'Substituted as $REVINFO in {{msg-mw|enotif body|notext=1}}
-
-* $1 is an URL to the page',
-'enotif_body'     => 'Text of a notification e-mail sent when a watched page has been edited or deleted.
+'changed'        => 'Possible value for $CHANGEDORCREATED in {{msg|enotif_subject}} and {{msg|enotif_body}}.',
+'created'        => 'Possible value for $CHANGEDORCREATED in {{msg|enotif_subject}} and {{msg|enotif_body}}.',
+'enotif_subject' => '$CHANGEDORCREATED can be one of {{msg|changed}} and {{msg|created}}.',
+'enotif_body'    => 'Text of a notification e-mail sent when a watched page has been edited or deleted.
 
 * <tt>$CHANGEDORCREATED</tt> can be one of {{msg-mw|changed}}, {{msg-mw|created}}, or {{msg-mw|deleted}}.
 * <tt>$REVINFO</tt> is {{msg-mw|Enotif rev info}} (if the page has not been deleted).',

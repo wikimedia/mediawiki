@@ -2022,13 +2022,10 @@ Cuando quieras eliminar la página de tu lista de seguimiento, presiona «Dejar 
 'enotif_impersonal_salutation' => 'usuario de {{SITENAME}}',
 'changed'                      => 'modificada',
 'created'                      => 'creada',
-'deleted'                      => 'borrado',
-'enotif_deletedpagetext'       => 'Esta página no está disponible más',
 'enotif_subject'               => 'La página $PAGETITLE de {{SITENAME}} ha sido $CHANGEDORCREATED por $PAGEEDITOR',
 'enotif_lastvisited'           => 'Vaya a $1 para ver todos los cambios desde su última visita.',
 'enotif_lastdiff'              => 'Vaya a $1 para ver este cambio.',
 'enotif_anon_editor'           => 'usuario anónimo $1',
-'enotif_rev_info'              => 'Mira $1 para la revisión actual.',
 'enotif_body'                  => 'Estimado/a $WATCHINGUSERNAME,
 
 La página de {{SITENAME}} $PAGETITLE ha sido $CHANGEDORCREATED el $PAGEEDITDATEANDTIME por el usuario $PAGEEDITOR.

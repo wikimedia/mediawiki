@@ -2061,13 +2061,10 @@ $1",
 'enotif_impersonal_salutation' => 'Удзельнік {{GRAMMAR:родны|{{SITENAME}}}}',
 'changed'                      => 'зьмененая',
 'created'                      => 'створаная',
-'deleted'                      => 'выдаленая',
-'enotif_deletedpagetext'       => 'Гэтая старонка больш не даступная.',
 'enotif_subject'               => 'Старонка {{GRAMMAR:родны|{{SITENAME}}}} $PAGETITLE была $CHANGEDORCREATED удзельнікам $PAGEEDITOR',
 'enotif_lastvisited'           => 'Глядзіце на $1 усе апошнія зьмены, якія адбыліся пасьля Вашага апошняга наведваньня.',
 'enotif_lastdiff'              => 'Глядзіце $1, каб пабачыць гэтую зьмену.',
 'enotif_anon_editor'           => 'ананімны ўдзельнік $1',
-'enotif_rev_info'              => 'Глядзіце цяперашнюю вэрсію $1.',
 'enotif_body'                  => 'Шаноўны $WATCHINGUSERNAME,
 
 

@@ -1945,13 +1945,10 @@ Wann dir dës Säit net méi iwwerwaache wëllt, klickt op \"Net méi iwwerwaach
 'enotif_impersonal_salutation' => '{{SITENAME}}-Benotzer',
 'changed'                      => 'geännert',
 'created'                      => 'gemaach',
-'deleted'                      => 'geläscht',
-'enotif_deletedpagetext'       => 'Dës Säit gëtt et net méi.',
 'enotif_subject'               => '[{{SITENAME}}] D\'Säit "$PAGETITLE" gouf vum $PAGEEDITOR $CHANGEDORCREATED',
 'enotif_lastvisited'           => 'All Ännerungen op ee Bléck: $1',
 'enotif_lastdiff'              => 'Kuckt $1 fir dës Ännerung.',
 'enotif_anon_editor'           => 'Anonyme Benotzer $1',
-'enotif_rev_info'              => 'Kuckt $1 fir déi aktuell Versioun.',
 'enotif_body'                  => 'Léiwe $WATCHINGUSERNAME,
 
 D\'{{SITENAME}}-Säit "$PAGETITLE" gouf vum $PAGEEDITOR den $PAGEEDITDATEANDTIME $CHANGEDORCREATED. $REVINFO

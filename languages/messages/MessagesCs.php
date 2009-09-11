@@ -2120,13 +2120,10 @@ E-mailová adresa, kterou máte uvedenu v [[Special:Preferences|nastavení]], se
 'enotif_impersonal_salutation' => 'Uživateli wiki {{SITENAME}}',
 'changed'                      => 'upravil',
 'created'                      => 'vytvořil',
-'deleted'                      => 'smazal',
-'enotif_deletedpagetext'       => 'Tato stránka už není k dispozici.',
 'enotif_subject'               => '$PAGEEDITOR upravil stránku $PAGETITLE na {{grammar:6sg|{{SITENAME}}}}.',
 'enotif_lastvisited'           => 'Vizte $1 pro seznam všech změn od minulé návštěvy.',
 'enotif_lastdiff'              => 'Tuto změnu vizte na $1 .',
 'enotif_anon_editor'           => 'anonymní uživatel $1',
-'enotif_rev_info'              => 'Na $1 můžete vidět aktuální verzi.',
 'enotif_body'                  => 'Vážený uživateli $WATCHINGUSERNAME,
 
 Ve $PAGEEDITDATEANDTIME $CHANGEDORCREATED $PAGEEDITOR stránku $PAGETITLE. $REVINFO

@@ -1986,13 +1986,10 @@ PICT # ផ្សេង​ៗ​
 'enotif_impersonal_salutation' => 'អ្នកប្រើប្រាស់ {{SITENAME}}',
 'changed'                      => 'បានផ្លាស់ប្តូរ',
 'created'                      => 'បានបង្កើត',
-'deleted'                      => 'បានលុបចោល​',
-'enotif_deletedpagetext'       => 'ទំព័រ​នេះ​លែង​មាន​ទៀត​ហើយ​។',
 'enotif_subject'               => 'ទំព័រ $PAGETITLE នៃ {{SITENAME}} ត្រូវបាន $CHANGEDORCREATED ដោយ $PAGEEDITOR',
 'enotif_lastvisited'           => 'ពិនិត្យ $1 ចំពោះគ្រប់បំលាស់ប្តូរ តាំងពីពេលចូលមើល ចុងក្រោយ។',
 'enotif_lastdiff'              => 'សូមពិនិត្យ$1ដើម្បីមើលបំលាស់ប្តូរនេះ។',
 'enotif_anon_editor'           => 'អ្នកប្រើប្រាស់អនាមិក $1',
-'enotif_rev_info'              => 'មើល​ $1 សម្រាប់​កំណែបច្ចុប្បន្ន​។',
 'enotif_body'                  => 'ជូនចំពោះ $WATCHINGUSERNAME ជាទីរាប់អាន,
 
 

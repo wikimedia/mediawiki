@@ -1914,13 +1914,10 @@ Le future modìfeghe a sta pagina e a la relativa pagina de discussion le sarà 
 'enotif_impersonal_salutation' => 'Utente de {{SITENAME}}',
 'changed'                      => 'canbià',
 'created'                      => 'creà',
-'deleted'                      => 'scancelà',
-'enotif_deletedpagetext'       => 'Sta pagina no la xe pi disponibile.',
 'enotif_subject'               => 'La pagina $PAGETITLE de {{SITENAME}} la xe stà $CHANGEDORCREATED da $PAGEEDITOR',
 'enotif_lastvisited'           => 'Varda $1 par tute le modifiche da la to ultima visita.',
 'enotif_lastdiff'              => 'Varda $1 par visualizar la modifica.',
 'enotif_anon_editor'           => 'utente anonimo $1',
-'enotif_rev_info'              => 'Varda $1 par la version corente.',
 'enotif_body'                  => 'Caro $WATCHINGUSERNAME,
 
 ła pàxena $PAGETITLE de {{SITENAME}} la xè stà $CHANGEDORCREATED el $PAGEEDITDATEANDTIME da $PAGEEDITOR. $REVINFO

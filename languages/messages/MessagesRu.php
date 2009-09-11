@@ -2077,13 +2077,10 @@ PICT # различные
 'enotif_impersonal_salutation' => 'Участник {{grammar:genitive|{{SITENAME}}}}',
 'changed'                      => 'изменена',
 'created'                      => 'создана',
-'deleted'                      => 'удалена',
-'enotif_deletedpagetext'       => 'Эта страница больше не доступна.',
 'enotif_subject'               => 'Страница проекта «{{SITENAME}}» $PAGETITLE была $CHANGEDORCREATED участником $PAGEEDITOR',
 'enotif_lastvisited'           => 'См. $1 для просмотра всех изменений, произошедших с вашего последнего посещения.',
 'enotif_lastdiff'              => 'См. $1 для ознакомления с изменением.',
 'enotif_anon_editor'           => 'анонимный участник $1',
-'enotif_rev_info'              => 'Для просмотра текущей версии см. $1.',
 'enotif_body'                  => '$WATCHINGUSERNAME,
 
 $PAGEEDITDATEANDTIME страница проекта «{{SITENAME}}» $PAGETITLE была $CHANGEDORCREATED участником $PAGEEDITOR. $REVINFO

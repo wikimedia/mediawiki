@@ -1833,12 +1833,10 @@ Future changes to this page and its associated talk page will be listed there, a
 'enotif_impersonal_salutation' => '{{SITENAME}} sadasya',
 'changed'                      => 'badal dewa gais hai',
 'created'                      => 'banae dewa gais hai',
-'deleted'                      => 'mitae dewa gais hae',
 'enotif_subject'               => '$PAGEEDITOR {{SITENAME}} panna $PAGETITLE ke badal $CHANGEDORCREATED diis hai',
 'enotif_lastvisited'           => 'Aap ke pichhla visit ke baad ke badlao ke khatir $1 ke dekho.',
 'enotif_lastdiff'              => 'Ii badlao ke dekhe ke khatir $1 ke dekho.',
 'enotif_anon_editor'           => 'bina naam ke sadasya $1',
-'enotif_rev_info'              => 'Abhi ke version ke khatir $1 ke dekho',
 'enotif_body'                  => 'Dear $WATCHINGUSERNAME,
 
 

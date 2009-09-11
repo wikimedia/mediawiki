@@ -1911,13 +1911,10 @@ Jeli chceš stronu pozdźišo ze swojich wobkedźbowankow wotstronić, klikń na
 'enotif_impersonal_salutation' => 'wužiwar {{GRAMMAR:genitiw|{{SITENAME}}}}',
 'changed'                      => 'změnjena',
 'created'                      => 'wutworjena',
-'deleted'                      => 'wušmórnjeny',
-'enotif_deletedpagetext'       => 'Tuta strona hižo k dispoziciji njesteji.',
 'enotif_subject'               => '[{{SITENAME}}] Strona „$PAGETITLE” bu přez wužiwarja $PAGEEDITOR $CHANGEDORCREATED.',
 'enotif_lastvisited'           => 'Hlej $1 za wšě změny po twojim poslednim wopyće.',
 'enotif_lastdiff'              => 'Hlej $1 za tutu změnu.',
 'enotif_anon_editor'           => 'anonymny wužiwar $1',
-'enotif_rev_info'              => 'Hlej $1 za aktualnu wersiju.',
 'enotif_body'                  => 'Luby $WATCHINGUSERNAME,
 
 

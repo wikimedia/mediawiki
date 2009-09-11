@@ -2004,12 +2004,9 @@ Kui tahad seda lehte hiljem jälgimisloendist eemaldada, klõpsa päisenupule "L
 'enotif_impersonal_salutation' => '{{SITENAME}} kasutaja',
 'changed'                      => 'muudetud',
 'created'                      => 'lehekülg loodud',
-'deleted'                      => 'kustutatud',
-'enotif_deletedpagetext'       => 'See lehekülg pole enam saadaval.',
 'enotif_lastvisited'           => 'Kõigi sinu viimase külastuse järel tehtud muudatuste nägemiseks vaata: $1.',
 'enotif_lastdiff'              => 'Muudatus on leheküljel $1.',
 'enotif_anon_editor'           => 'anonüümne kasutaja $1',
-'enotif_rev_info'              => 'Praegune redaktsioon on leheküljel $1.',
 
 # Delete
 'deletepage'             => 'Kustuta lehekülg',

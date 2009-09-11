@@ -2015,13 +2015,10 @@ render lo plus facile de deteger.",
 'enotif_impersonal_salutation' => 'Usator de {{SITENAME}}',
 'changed'                      => 'modificate',
 'created'                      => 'create',
-'deleted'                      => 'delite',
-'enotif_deletedpagetext'       => 'Iste pagina non es plus disponibile.',
 'enotif_subject'               => 'Le pagina $PAGETITLE de {{SITENAME}} ha essite $CHANGEDORCREATED per $PAGEEDITOR',
 'enotif_lastvisited'           => 'Vide $1 pro tote le modificationes depost tu ultime visita.',
 'enotif_lastdiff'              => 'Vide $1 pro revider iste modification.',
 'enotif_anon_editor'           => 'usator anonyme $1',
-'enotif_rev_info'              => 'Vide $1 pro le version actual.',
 'enotif_body'                  => 'Car $WATCHINGUSERNAME,
 
 

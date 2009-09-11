@@ -2135,13 +2135,10 @@ Ako kasnije želite da uklonite stranicu sa vašeg spiska praćenih članaka, kl
 'enotif_impersonal_salutation' => '{{SITENAME}} korisnik',
 'changed'                      => 'promijenjena',
 'created'                      => 'napravljena',
-'deleted'                      => 'obrisana',
-'enotif_deletedpagetext'       => 'Ova stranica više nije dostupna.',
 'enotif_subject'               => '{{SITENAME}} strana $PAGETITLE je bila $CHANGEDORCREATED od strane $PAGEEDITOR',
 'enotif_lastvisited'           => 'Pogledajte $1 za sve izmjene od vaše posljednje posjete.',
 'enotif_lastdiff'              => 'Vidi $1 da pregledate ovu promjenu.',
 'enotif_anon_editor'           => 'anonimni korisnik $1',
-'enotif_rev_info'              => 'Pogledajte $1 za trenutnu reviziju.',
 'enotif_body'                  => 'Dragi $WATCHINGUSERNAME,
 
 {{SITENAME}} strana $PAGETITLE je bila $CHANGEDORCREATED $PAGEEDITDATEANDTIME od strane $PAGEEDITOR. $REVINFO

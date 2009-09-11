@@ -1881,13 +1881,10 @@ Le cangiaminde future a sta pàgene e 'a pàgene de le 'ngazzaminde associete le
 'enotif_impersonal_salutation' => 'Utende de {{SITENAME}}',
 'changed'                      => 'cangete',
 'created'                      => 'ccrejete',
-'deleted'                      => 'scangellate',
-'enotif_deletedpagetext'       => "Sta pàgene non g'è cchiù disponibbele.",
 'enotif_subject'               => '\'A pàgene de {{SITENAME}} $PAGETITLE ha state $CHANGEDORCREATED da $PAGEEDITOR',
 'enotif_lastvisited'           => "Vide $1 pe tutte le cangiaminde da l'urtema visita toje.",
 'enotif_lastdiff'              => 'Vide $1 pe vedè stu cangiamende.',
 'enotif_anon_editor'           => 'Utende anonime $1',
-'enotif_rev_info'              => 'Vide $1 pa revisiona corrende.',
 'enotif_body'                  => 'Care $WATCHINGUSERNAME,
 
 

@@ -1874,7 +1874,6 @@ Jika anda mahu membuang laman tersebut daripada senarai pantau, klik \"Nyahpanta
 'enotif_impersonal_salutation' => 'Pengguna {{SITENAME}}',
 'changed'                      => 'diubah',
 'created'                      => 'dicipta',
-'deleted'                      => 'dihapuskan',
 'enotif_subject'               => 'Laman $PAGETITLE di {{SITENAME}} telah $CHANGEDORCREATED oleh $PAGEEDITOR',
 'enotif_lastvisited'           => 'Lihat $1 untuk semua perubahan sejak kunjungan terakhir anda.',
 'enotif_lastdiff'              => 'Rujuk $1 untuk melihat perubahan ini.',

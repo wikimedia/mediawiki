@@ -2083,13 +2083,10 @@ Promjene na ovoj stranici i njenoj stranici za razgovor bit će tamo prikazani, 
 'enotif_impersonal_salutation' => '{{SITENAME}} suradnik',
 'changed'                      => 'promijenio',
 'created'                      => 'stvorio',
-'deleted'                      => 'izbrisan',
-'enotif_deletedpagetext'       => 'Ova stranica više nije dostupna.',
 'enotif_subject'               => '{{SITENAME}}: Stranicu $PAGETITLE je $CHANGEDORCREATED suradnik $PAGEEDITOR',
 'enotif_lastvisited'           => 'Pogledaj $1 za promjene od zadnjeg posjeta.',
 'enotif_lastdiff'              => 'Pogledajte $1 kako biste mogli vidjeti tu izmjenu.',
 'enotif_anon_editor'           => 'neprijavljeni suradnik $1',
-'enotif_rev_info'              => 'Pogledajte $1 za trenutačnu inačicu.',
 'enotif_body'                  => 'Poštovani $WATCHINGUSERNAME,
 
 stranicu na projektu {{SITENAME}} s naslovom $PAGETITLE je dana $PAGEEDITDATEANDTIME $CHANGEDORCREATED suradnik $PAGEEDITOR. $REVINFO

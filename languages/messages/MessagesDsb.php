@@ -1935,13 +1935,10 @@ Coš-lic bok zasej z twójich wobglědowańkow wulašowaś, kliknij na wótpowě
 'enotif_impersonal_salutation' => '{{SITENAME}}-wužywaŕ',
 'changed'                      => 'změnjone',
 'created'                      => 'wutwórjone',
-'deleted'                      => 'wulašowany',
-'enotif_deletedpagetext'       => 'Toś ten bok wěcej njestoj k dispoziciji.',
 'enotif_subject'               => '[{{SITENAME}}] Bok "$PAGETITLE" jo se wót $PAGEEDITOR $CHANGEDORCREATED',
 'enotif_lastvisited'           => 'Wšykne změny na jadno póglědnjenje: $1',
 'enotif_lastdiff'              => 'Za toś tu změnu glědaj w $1.',
 'enotif_anon_editor'           => 'anonymny wužywaŕ $1',
-'enotif_rev_info'              => 'Glědaj $1 za aktualnu wersiju.',
 'enotif_body'                  => 'Luby/a $WATCHINGUSERNAME,
 
 {{SITENAME}} bok "$PAGETITLE" jo se wót $PAGEEDITOR $PAGEEDITDATEANDTIME $CHANGEDORCREATED.
