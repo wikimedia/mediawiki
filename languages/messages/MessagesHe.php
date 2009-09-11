@@ -2144,7 +2144,7 @@ PICT # שונות
 'enotif_anon_editor'           => 'משתמש אנונימי $1',
 'enotif_body'                  => 'לכבוד $WATCHINGUSERNAME,
 
-הדף $PAGETITLE ב{{grammar:תחילית|{{SITENAME}}}} $CHANGEDORCREATED ב־$PAGEEDITDATEANDTIME על ידי $PAGEEDITOR. $REVINFO
+הדף $PAGETITLE ב{{grammar:תחילית|{{SITENAME}}}} $CHANGEDORCREATED ב־$PAGEEDITDATE על ידי $PAGEEDITOR, ראו $PAGETITLE_URL לגרסה הנוכחית.
 
 $NEWPAGE
 
