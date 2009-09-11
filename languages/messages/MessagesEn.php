@@ -1117,7 +1117,7 @@ Please enter a well-formatted address or empty that field.',
 You should log in and change your password now.
 
 You may ignore this message, if this account was created in error.',
-'login-throttled'            => "You have made too many recent attempts on this account's password.
+'login-throttled'            => "You have made too many recent login attempts.
 Please wait before trying again.",
 'loginlanguagelabel'         => 'Language: $1',
 'loginlanguagelinks'         => '* Deutsch|de
