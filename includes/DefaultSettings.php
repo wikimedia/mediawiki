@@ -4222,3 +4222,6 @@ $wgMemoryLimit = "50M";
  * Note that this requires JS2 and the script loader.
  */
 $wgUseAJAXCategories = false;
+
+// to disable image delete/restore temporarily
+$wgUploadMaintenance = false;
