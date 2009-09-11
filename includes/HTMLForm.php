@@ -717,7 +717,7 @@ class HTMLSelectOrOtherField extends HTMLTextField {
 	static $jsAdded = false;
 
 	function __construct( $params ) {
-		if( !in_array( 'other', $params['options'] ) ) {
+		if( !in_array( 'other', $params['options'], true ) ) {
 			$params['options'][wfMsg( 'htmlform-selectorother-other' )] = 'other';
 		}
 
@@ -748,7 +748,7 @@ class HTMLSelectOrOtherField extends HTMLTextField {
 
 		$select->setAttribute( 'class', 'mw-htmlform-select-or-other' );
 
-		$tbAttribs = array( 'id' => $this->mID . '-other' );
+		$tbAttribs = array( 'id' => $this->mID . '-other', 'size' => $this->getSize() );
 		if( !empty( $this->mParams['disabled'] ) ) {
 			$select->setAttribute( 'disabled', 'disabled' );
 			$tbAttribs['disabled'] = 'disabled';
@@ -761,8 +761,8 @@ class HTMLSelectOrOtherField extends HTMLTextField {
 		}
 
 		$textbox = Html::input( $this->mName . '-other',
-							$this->getSize(),
-							$valInSelect ? 'text' : $value,
+							$valInSelect ? '' : $value,
+							'text',
 							$tbAttribs );
 
 		return "$select<br/>\n$textbox";
