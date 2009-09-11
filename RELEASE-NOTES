@@ -472,6 +472,8 @@ this. Was used when mwEmbed was going to be an extension.
 * (bug 19531) addPortletLink() now wraps inserted labels in a <span> element to be
   compatible with the CSS for the Vector skin
 * (bug 20578) Wrong localized image metadata - duplicated string?
+* (bug 20556) Stub threshold's "other" <input> in Special:Preferences now has a
+  correct type="text" parameter
 
 == API changes in 1.16 ==
 
