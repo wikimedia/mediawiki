@@ -1857,7 +1857,7 @@ Da bo prejemnik lahko odgovoril neposredno vam, bo v glavi sporočila zapisan ''
 'enotif_anon_editor'           => 'anonimni uporabnik $1',
 'enotif_body'                  => '$WATCHINGUSERNAME,
 
-stran v {{GRAMMAR:dajalnik|{{SITENAME}}}} $PAGETITLE je bila $PAGEEDITDATEANDTIME $CHANGEDORCREATED s strani $PAGEEDITOR,
+stran v {{GRAMMAR:dajalnik|{{SITENAME}}}} $PAGETITLE je bila $PAGEEDITDATE $CHANGEDORCREATED s strani $PAGEEDITOR,
 za trenutno redakcijo glejte $PAGETITLE_URL
 
 $NEWPAGE

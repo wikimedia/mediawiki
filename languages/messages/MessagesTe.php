@@ -1812,7 +1812,7 @@ $3 చెప్పిన కారణం: ''$2''",
 'enotif_body'                  => 'ప్రియమైన $WATCHINGUSERNAME,
 
 
-{{SITENAME}} పేజీ, $PAGETITLE ని $PAGEEDITDATEANDTIME తేదీన $PAGEEDITOR గారు $CHANGEDORCREATED. $REVINFO
+{{SITENAME}} పేజీ, $PAGETITLE ని $PAGEEDITDATE తేదీన $PAGEEDITOR గారు $CHANGEDORCREATED. ప్రస్తుత కూర్పు కొరకు $PAGETITLE_URL చూడండి.
 
 $NEWPAGE
 

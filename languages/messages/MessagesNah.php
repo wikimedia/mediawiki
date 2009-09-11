@@ -1012,7 +1012,7 @@ Nō xiquitta [[Special:WantedCategories|neneuhcāyōtl monequi]].',
 'enotif_anon_editor'           => 'ahtōcātlatequitiltilīlli $1',
 'enotif_body'                  => 'Mahuizoh $WATCHINGUSERNAME,
 
-{{SITENAME}} zāzanilli "$PAGETITLE" $CHANGEDORCREATED īpal tlatequitiltilīlli $PAGEEDITOR īpan $PAGEEDITDATEANDTIME.
+{{SITENAME}} zāzanilli "$PAGETITLE" $CHANGEDORCREATED īpal tlatequitiltilīlli $PAGEEDITOR īpan $PAGEEDITDATE.
 Āxcān tlachiyaliztli mopiya īpan {{fullurl:$PAGETITLE}}
 
 $NEWPAGE

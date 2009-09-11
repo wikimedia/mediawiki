@@ -1992,7 +1992,7 @@ Hvis du senere vil fjerne siden fra overvåkningslisten, klikk «Avslutt overvå
 'enotif_anon_editor'           => 'anonym bruker $1',
 'enotif_body'                  => '$WATCHINGUSERNAME,
 
-{{SITENAME}}-siden $PAGETITLE har blitt $CHANGEDORCREATED $PAGEEDITDATEANDTIME av $PAGEEDITOR, se $PAGETITLE_URL for den nåværende versjonen.
+{{SITENAME}}-siden $PAGETITLE har blitt $CHANGEDORCREATED $PAGEEDITDATE av $PAGEEDITOR, se $PAGETITLE_URL for den nåværende versjonen.
 
 $NEWPAGE
 

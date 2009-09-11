@@ -1875,7 +1875,7 @@ Protucolli suppurtati: <tt>$1</tt>',
 'enotif_anon_editor'           => 'utenti anonimu $1',
 'enotif_body'                  => 'Gintili $WATCHINGUSERNAME, 
 
-la pàggina $PAGETITLE di {{SITENAME}} hà stata $CHANGEDORCREATED \'n data $PAGEEDITDATEANDTIME di $PAGEEDITOR; la virsioni attuali s\'attrova a lu ndirizzu $PAGETITLE_URL.
+la pàggina $PAGETITLE di {{SITENAME}} hà stata $CHANGEDORCREATED \'n data $PAGEEDITDATE di $PAGEEDITOR; la virsioni attuali s\'attrova a lu ndirizzu $PAGETITLE_URL.
 
 $NEWPAGE
 

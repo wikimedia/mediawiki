@@ -1272,7 +1272,7 @@ taobh istigh den tréimhse atá roghnaithe agat.',
 'enotif_anon_editor'           => 'úsáideoir gan ainm $1',
 'enotif_body'                  => 'A $WATCHINGUSERNAME, a chara,
 
-$CHANGEDORCREATED $PAGEEDITOR an leathanach $PAGETITLE  ag {{SITENAME}} ar $PAGEEDITDATEANDTIME, féach ar $PAGETITLE_URL chun an leagan reatha a fháil.
+$CHANGEDORCREATED $PAGEEDITOR an leathanach $PAGETITLE  ag {{SITENAME}} ar $PAGEEDITDATE, féach ar $PAGETITLE_URL chun an leagan reatha a fháil.
 
 $NEWPAGE
 

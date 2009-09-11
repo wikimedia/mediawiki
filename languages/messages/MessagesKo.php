@@ -2063,7 +2063,7 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'enotif_anon_editor'           => '익명 사용자 $1',
 'enotif_body'                  => '$WATCHINGUSERNAME님,
 
-{{SITENAME}}의 $PAGETITLE 문서를 $PAGEEDITDATEANDTIME에 $PAGEEDITOR님이 $CHANGEDORCREATED었습니다. $REVINFO
+{{SITENAME}}의 $PAGETITLE 문서를 $PAGEEDITDATE에 $PAGEEDITOR님이 $CHANGEDORCREATED었습니다. 현재의 문서는 $PAGETITLE_URL 에서 볼 수 있습니다.
 
 $NEWPAGE
 

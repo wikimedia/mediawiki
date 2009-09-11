@@ -1573,7 +1573,7 @@ Si paginam ex indice paginarum custoditarum removere vis, imprime \"decustodire\
 'enotif_body'                  => '
 Salve $WATCHINGUSERNAME,
 
-Pagina {{grammar:genitive|{{SITENAME}}}} $PAGETITLE ab $PAGEEDITOR die $PAGEEDITDATEANDTIME $CHANGEDORCREATED est, vide emendationem currentem apud $PAGETITLE_URL
+Pagina {{grammar:genitive|{{SITENAME}}}} $PAGETITLE ab $PAGEEDITOR die $PAGEEDITDATE $CHANGEDORCREATED est, vide emendationem currentem apud $PAGETITLE_URL
 
 $NEWPAGE
 

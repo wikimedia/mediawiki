@@ -1932,7 +1932,7 @@ Template:搞清楚',
 'enotif_anon_editor'           => '匿名用戶$1',
 'enotif_body'                  => '$WATCHINGUSERNAME先生／小姐你好，
 
-{{SITENAME}}嘅頁面$PAGETITLE已經由$PAGEEDITOR喺$PAGEEDITDATEANDTIME$CHANGEDORCREATED。$REVINFO
+{{SITENAME}}嘅頁面$PAGETITLE已經由$PAGEEDITOR喺$PAGEEDITDATE$CHANGEDORCREATED，現時修訂請睇$PAGETITLE_URL。
 
 $NEWPAGE
 

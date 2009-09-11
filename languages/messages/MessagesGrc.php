@@ -1654,7 +1654,7 @@ $1",
 'enotif_body'                  => 'Φίλτατε  $WATCHINGUSERNAME,
 
 
-Ἡ τοῦ {{SITENAME}} δέλτος $PAGETITLE $CHANGEDORCREATED ἐστὶ τῇ $PAGEEDITDATEANDTIME ὑπὸ τοῦ $PAGEEDITOR, $PAGETITLE_URL.
+Ἡ τοῦ {{SITENAME}} δέλτος $PAGETITLE $CHANGEDORCREATED ἐστὶ τῇ $PAGEEDITDATE ὑπὸ τοῦ $PAGEEDITOR, $PAGETITLE_URL.
 
 $NEWPAGE
 
@@ -2800,8 +2800,11 @@ $1',
 'htmlform-selectorother-other' => 'Ἄλλον',
 
 # Add categories per AJAX
+'ajax-add-category-submit'     => 'Προστιθέναι',
+'ajax-confirm-save'            => 'Γράφειν',
 'ajax-remove-category-summary' => 'Ἀφαιρεῖν κατηγορίαν "$1"',
 'ajax-confirm-actionsummary'   => 'Πρακτέα:',
 'ajax-error-title'             => 'Σφάλμα',
+'ajax-error-dismiss'           => 'εἶεν',
 
 );

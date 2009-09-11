@@ -721,7 +721,8 @@ $2',
 'createaccount-text'         => 'Нехта стварыў рахунак «$2» у {{GRAMMAR:месны|{{SITENAME}}}} ($4) для Вашага адрасу электроннай пошты. Пароль для гэтага рахунку — «$3». Вам трэба ўвайсьці і зьмяніць Ваш пароль зараз.
 
 Вы можаце праігнараваць гэты ліст, калі гэты рахунак быў створаны памылкова.',
-'login-throttled'            => 'Вы зрабілі занадта шмат спробаў увесьці пароль для гэтага рахунку. Калі ласка, пачакайце, перад тым, як паспрабаваць ізноў.',
+'login-throttled'            => 'Вы зрабілі занадта шмат спробаў уваходу ў сыстэму.
+Калі ласка, пачакайце, перад тым, як паспрабаваць ізноў.',
 'loginlanguagelabel'         => 'Мова: $1',
 
 # Password reset dialog
@@ -2068,7 +2069,7 @@ $1",
 'enotif_body'                  => 'Шаноўны $WATCHINGUSERNAME,
 
 
-Старонка $PAGETITLE {{GRAMMAR:родны|{{SITENAME}}}} была $CHANGEDORCREATED $PAGEEDITDATEANDTIME удзельнікам $PAGEEDITOR.
+Старонка $PAGETITLE {{GRAMMAR:родны|{{SITENAME}}}} была $CHANGEDORCREATED $PAGEEDITDATE удзельнікам $PAGEEDITOR.
 
 $NEWPAGE
 

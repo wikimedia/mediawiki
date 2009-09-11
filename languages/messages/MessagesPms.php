@@ -507,7 +507,7 @@ Për piasì che a buta n'adrëssa scrita giusta ò che a lassa ël camp veujd.",
 'createaccount-text'         => 'Cheidun a l\'ha dorbù un cont për st\'adrëssa ëd pòsta eletrònica-sì ansima a {{SITENAME}} ($4) butand da stranòm "$2" e da ciav "$3". A dovrìa rintré ant ël sistema e cambiesse soa ciav pì ampressa ch\'a peul.
 
 Se sòn a l\'é rivà për eror, a peul lassé sté e fe gnente sensa problema.',
-'login-throttled'            => "It l'has fàit tròpi tentativ an pòch temp a cost cont.
+'login-throttled'            => "It l'has fàit tròpi tentativ ressent d'intré.
 Për piasì speta prima ëd torna prové.",
 'loginlanguagelabel'         => 'Lenga: $1',
 
@@ -1868,7 +1868,7 @@ Se a vorèissa mai gavé st'articol-sì da 'nt la lista dij ''Sot Euj'', che a s
 'enotif_anon_editor'           => 'utent anònim $1',
 'enotif_body'                  => 'A l\'atension ëd $WATCHINGUSERNAME,
 
-La pàgina $PAGETITLE dël sit {{SITENAME}} a l\'é staita $CHANGEDORCREATED al $PAGEEDITDATEANDTIME da $PAGEEDITOR. $REVINFO
+La pàgina $PAGETITLE dël sit {{SITENAME}} a l\'é staita $CHANGEDORCREATED al $PAGEEDITDATE da $PAGEEDITOR, che a varda $PAGETITLE_URL për la version corenta.
 
 $NEWPAGE
 

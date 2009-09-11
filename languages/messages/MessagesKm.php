@@ -1993,7 +1993,7 @@ PICT # ផ្សេង​ៗ​
 'enotif_body'                  => 'ជូនចំពោះ $WATCHINGUSERNAME ជាទីរាប់អាន,
 
 
-ទំព័រ $PAGETITLE នៃ {{SITENAME}} ត្រូវបាន  $CHANGEDORCREATED ថ្ងៃ $PAGEEDITDATEANDTIME ដោយ $PAGEEDITOR។ $REVINFO
+ទំព័រ $PAGETITLE នៃ {{SITENAME}} ត្រូវបាន  $CHANGEDORCREATED ថ្ងៃ $PAGEEDITDATE ដោយ $PAGEEDITOR។ សូមមើល $PAGETITLE_URL សម្រាប់​កំណែបច្ចុប្បន្ន។
 
 $NEWPAGE
 

@@ -2079,7 +2079,7 @@ Las modificacions venentas d\'aquesta pagina e de la pagina de discussion associ
 'enotif_anon_editor'           => 'utilizaire anonim $1',
 'enotif_body'                  => 'Car $WATCHINGUSERNAME,
 
-La pagina « $PAGETITLE » de {{SITENAME}} es estada $CHANGEDORCREATED lo $PAGEEDITDATEANDTIME per « $PAGEEDITOR ». $REVINFO
+La pagina « $PAGETITLE » de {{SITENAME}} es estada $CHANGEDORCREATED lo $PAGEEDITDATE per « $PAGEEDITOR », vejatz $PAGETITLE_URL per la version actuala.
 
 $NEWPAGE
 

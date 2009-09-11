@@ -137,44 +137,51 @@ $messages = array(
 # Metadata in edit box
 'metadata_help' => 'Metadata:',
 
-'errorpagetitle'   => 'Laffut',
-'returnto'         => 'Urri s $1.',
-'tagline'          => 'Ž {{SITENAME}}',
-'help'             => 'Asaws',
-'search'           => 'Acnubc',
-'searchbutton'     => 'Cabba',
-'go'               => 'Balak',
-'searcharticle'    => 'Balak',
-'history'          => 'Amzruy n tasna',
-'history_short'    => 'Amzruy',
-'updatedmarker'    => 'Tuybddal z tizrink li iğuran',
-'info_short'       => 'Inɣmisn',
-'printableversion' => 'Tasna nu sugz',
-'permalink'        => 'Azday Bdda illan',
-'print'            => 'Siggz',
-'edit'             => 'Bddl',
-'create'           => 'skr',
-'editthispage'     => 'Ara tasna yad',
-'create-this-page' => 'Sker tasna yad',
-'delete'           => 'msḥ',
-'newpage'          => 'tawriqt tamaynut',
-'talkpagelinktext' => 'assays',
-'specialpage'      => 'tawriqt tasebtart',
-'personaltools'    => 'lmatarial ino',
-'talk'             => 'assays',
-'views'            => 'chofass',
-'toolbox'          => "sndoq l'matarial",
-'otherlanguages'   => 's tutlayin yadni',
-'jumpto'           => 'ballak s:',
-'jumptonavigation' => 'artɛom',
-'jumptosearch'     => 'siggl',
+'errorpagetitle'    => 'Laffut',
+'returnto'          => 'Urri s $1.',
+'tagline'           => 'Ž {{SITENAME}}',
+'help'              => 'Asaws',
+'search'            => 'Acnubc',
+'searchbutton'      => 'Cabba',
+'go'                => 'Balak',
+'searcharticle'     => 'Balak',
+'history'           => 'Amzruy n tasna',
+'history_short'     => 'Amzruy',
+'updatedmarker'     => 'Tuybddal z tizrink li iğuran',
+'info_short'        => 'Inɣmisn',
+'printableversion'  => 'Tasna nu sugz',
+'permalink'         => 'Azday Bdda illan',
+'print'             => 'Siggz',
+'edit'              => 'Bddl',
+'create'            => 'Skr',
+'editthispage'      => 'Ara tasna yad',
+'create-this-page'  => 'Sker tasna yad',
+'delete'            => 'Ḥiyd',
+'deletethispage'    => 'Ḥiyd tasna yad',
+'undelete_short'    => 'Yurrid {{PLURAL:$1|yan umbddel|$1 imbddeln}}',
+'protect'           => 'Ḥbu',
+'protect_change'    => 'Abddel',
+'protectthispage'   => 'Ḥbu tasna yad',
+'unprotect'         => 'Kksas aḥbu',
+'unprotectthispage' => 'Kks aḥbu i tasnatad',
+'newpage'           => 'tawriqt tamaynut',
+'talkpagelinktext'  => 'Assays',
+'specialpage'       => 'tawriqt tasebtart',
+'personaltools'     => 'lmatarial ino',
+'talk'              => 'assays',
+'views'             => 'chofass',
+'toolbox'           => "sndoq l'matarial",
+'otherlanguages'    => 's tutlayin yadni',
+'jumpto'            => 'ballak s:',
+'jumptonavigation'  => 'artɛom',
+'jumptosearch'      => 'siggl',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => 'f {{SITENAME}}',
 'aboutpage'            => "Project:f'",
 'disclaimers'          => 'igh ortlla lmsoliya',
 'disclaimerpage'       => 'Project:ortlla lmsoliya iɛomman',
-'mainpage'             => 'tawriqt tamzwarut',
+'mainpage'             => 'Tasana tamzwarut',
 'mainpage-description' => 'tawriqt tamzwarut',
 'privacy'              => "siassa n' lkhossossia",
 'privacypage'          => "Project:ssiast n' lkhossossia",
@@ -204,20 +211,28 @@ $messages = array(
 'nstab-category'  => 'Taggayt',
 
 # Main script and global functions
-'nosuchaction'      => 'Ur mat iskrn',
+'nosuchaction'      => 'Ur illa mat iskrn',
 'nosuchactiontext'  => 'Mytuskarn ɣu tansa yad ur tti tgi.
 
-Irwas is turit tansa yad skra mani yadnin ulla azday ur igi amya.
+Irwas is turit tansa  skra mani yaḍnin, ulla azday ur igi amya.
 
-Tzdar attili tmukrist ɣ {{SITENAME}}.',
-'nosuchspecialpage' => 'Urtlla tasna su w-assaɣad',
+Tzdar attili tamukrist ɣ {{SITENAME}}.',
+'nosuchspecialpage' => 'Urtlla tasna su w-ussaɣad',
 'nospecialpagetext' => "<big>'''Trit yat tasna tamzlit ur illan.'''</big>
 
 Tifilit n tasnayin gaddanin ratn taft ɣid [[Special:SpecialPages|{{int:specialpages}}]].",
 
 # General errors
-'error'         => 'Laffut',
-'databaseerror' => 'Laffut ɣ database',
+'error'           => 'Laffut',
+'databaseerror'   => 'Laffut ɣ database',
+'dberrortext'     => 'Tlla laffut ɣikli s tskert database.
+Ulla mayad kis kra ntmukrist.
+May igguran ittu isigal ɣ mayad igat.
+<blockquote><tt>$1</tt></blockquote>
+S ussiglad "<tt>$2</tt>".
+laffut d yurrin ɣ database "<tt>$3: $4</tt>".',
+'laggedslavemode' => 'Ḥan tasnayad ur gis graygan ambddel amaynu.',
+'readonly'        => 'Tqqn tabase',
 
 # Login and logout pages
 'welcomecreation'         => '== Brrkat,  $1! ==

@@ -2004,8 +2004,7 @@ Special:EmailUser appears when you click on the link "E-mail this user" in the s
 'enotif_subject' => '$CHANGEDORCREATED can be one of {{msg|changed}} and {{msg|created}}.',
 'enotif_body'    => 'Text of a notification e-mail sent when a watched page has been edited or deleted.
 
-* <tt>$CHANGEDORCREATED</tt> can be one of {{msg-mw|changed}}, {{msg-mw|created}}, or {{msg-mw|deleted}}.
-* <tt>$REVINFO</tt> is {{msg-mw|Enotif rev info}} (if the page has not been deleted).',
+* <tt>$CHANGEDORCREATED</tt> can be one of {{msg-mw|changed}}, {{msg-mw|created}}, or {{msg-mw|deleted}}.',
 
 # Delete
 'confirm'                => 'Submit button text for protection confirmation

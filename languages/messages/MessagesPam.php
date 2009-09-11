@@ -1394,7 +1394,7 @@ manibat anyang tawli kang linabas.',
 'enotif_body'                  => 'Kakaluguran kung $WATCHINGUSERNAME,
 
 
-Ining bulung a {{SITENAME}} a maki bansag a $PAGETITLE me$CHANGEDORCREATED ya aniang $PAGEEDITDATEANDTIME kapamilata\'nang $PAGEEDITOR. Lon me ing $PAGETITLE_URL para king salukuyan a bersion.
+Ining bulung a {{SITENAME}} a maki bansag a $PAGETITLE me$CHANGEDORCREATED ya aniang $PAGEEDITDATE kapamilata\'nang $PAGEEDITOR. Lon me ing $PAGETITLE_URL para king salukuyan a bersion.
 
 $NEWPAGE
 

@@ -2127,7 +2127,7 @@ PICT # διάφορα
 'enotif_anon_editor'           => 'ανώνυμος χρήστης $1',
 'enotif_body'                  => 'Αγαπητέ $WATCHINGUSERNAME,
 
-Η σελίδα $PAGETITLE του εγχειρήματος {{SITENAME}} $CHANGEDORCREATED στις $PAGEEDITDATEANDTIME από το χρήστη $PAGEEDITOR. $REVINFO
+Η σελίδα $PAGETITLE του εγχειρήματος {{SITENAME}} $CHANGEDORCREATED στις $PAGEEDITDATE από το χρήστη $PAGEEDITOR -ακολουθήστε το σύνδεσμο $PAGETITLE_URL για να δείτε την τρέχουσα αναθεώρηση.
 
 $NEWPAGE
 
@@ -3388,6 +3388,10 @@ $1',
 'htmlform-selectorother-other' => 'Άλλο',
 
 # Add categories per AJAX
+'ajax-add-category-submit'   => 'Προσθήκη',
+'ajax-confirm-save'          => 'Αποθήκευση',
 'ajax-confirm-actionsummary' => 'Ενέργεια που είναι να παρθεί:',
+'ajax-error-title'           => 'Σφάλμα',
+'ajax-error-dismiss'         => 'Εντάξει',
 
 );

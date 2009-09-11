@@ -733,7 +733,8 @@ $2',
 'createaccount-text'         => 'Кто-то создал учётную запись «$2» на сервере проекта {{SITENAME}} ($4) с паролем «$3», указав ваш адрес электронной почты. Вам следует зайти и изменить пароль.
 
 Проигнорируйте данное сообщение, если учётная запись была создана по ошибке.',
-'login-throttled'            => 'Вы сделали слишком много попыток ввести пароль для этой учётной записи. Пожалуйста, подождите, перед тем, как попробовать снова.',
+'login-throttled'            => 'Вы сделали слишком много попыток представиться системе.
+Пожалуйста, подождите, перед тем, как попробовать снова.',
 'loginlanguagelabel'         => 'Язык: $1',
 
 # Password reset dialog
@@ -2083,7 +2084,7 @@ PICT # различные
 'enotif_anon_editor'           => 'анонимный участник $1',
 'enotif_body'                  => '$WATCHINGUSERNAME,
 
-$PAGEEDITDATEANDTIME страница проекта «{{SITENAME}}» $PAGETITLE была $CHANGEDORCREATED участником $PAGEEDITOR. $REVINFO
+$PAGEEDITDATE страница проекта «{{SITENAME}}» $PAGETITLE была $CHANGEDORCREATED участником $PAGEEDITOR, см. $PAGETITLE_URL для просмотра текущей версии.
 
 $NEWPAGE
 

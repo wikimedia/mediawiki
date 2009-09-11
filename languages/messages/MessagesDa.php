@@ -629,8 +629,8 @@ Derfor kan besøgende ikke oprette flere kontoer fra denne IP-adresse i øjeblik
 Du opfordres til at logge ind og ændre adgangskoden med det samme.
 
 Du kan ignorere denne besked hvis kontoen blev oprettet ved en fejl.',
-'login-throttled'            => 'Du har forsøgt at logge ind med forkert adgangskode til denne konto for mange gange.
-Vent, før du prøver igen.',
+'login-throttled'            => 'Du har forsøgt at logge på for mange gange.
+Vent venligst før du prøver igen.',
 'loginlanguagelabel'         => 'Sprog: $1',
 
 # Password reset dialog
@@ -1552,10 +1552,20 @@ Sletningsloggen for denne fil er gengivet herunder.",
 
 # img_auth script messages
 'img-auth-accessdenied' => 'Adgang nægtet',
+'img-auth-nopathinfo'   => 'PATH_INFO mangler.
+Din server er ikke sat op til at give denne information.
+Den bruger måske CGI og understøtter ikke img_auth.
+Se http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
+'img-auth-notindir'     => 'Den ønskede sti er ikke i det opsatte oplægningskatalog.',
+'img-auth-badtitle'     => 'Kan ikke lave en gyldig titel ud fra "$1".',
 'img-auth-nologinnWL'   => 'Du er ikke logget ind, og "$1" er ikke på hvidlisten.',
 'img-auth-nofile'       => 'Filen "$1" findes ikke.',
 'img-auth-isdir'        => 'Du forsøger at få adgang til kataloget "$1".
 Kun adgang til filer tillades.',
+'img-auth-streaming'    => 'Sender "$1".',
+'img-auth-public'       => "img_auth.php's funktion er at sende filer fra en privat wiki.
+Denne wiki er konfigureret som en offentlig wiki.
+For optimal sikkerhed er img_auth.php deaktiveret.",
 'img-auth-noread'       => 'Brugeren har ikke rettigheder til at læse "$1".',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
@@ -1948,7 +1958,7 @@ Den e-mail-adresse du har angivet i [[Special:Preferences|dine indstillinger]] v
 'enotif_anon_editor'           => 'anonym bruger $1',
 'enotif_body'                  => 'Kære $WATCHINGUSERNAME
 
-{{SITENAME}}-siden $PAGETITLE er blevet $CHANGEDORCREATED $PAGEEDITDATEANDTIME af $PAGEEDITOR. $REVINFO
+{{SITENAME}}-siden $PAGETITLE er blevet $CHANGEDORCREATED $PAGEEDITDATE af $PAGEEDITOR. Se $PAGETITLE_URL for den nyeste version.
 
 $NEWPAGE
 

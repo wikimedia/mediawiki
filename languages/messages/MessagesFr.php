@@ -801,7 +801,7 @@ Entrez une adresse bien formatée ou laissez ce champ vide.',
 Vous devriez ouvrir une session et modifier dès à présent votre mot de passe.
 
 Ignorez ce message si ce compte a été créé par erreur.',
-'login-throttled'            => 'Vous avez tenté un trop grand nombre de mots de passe dernièrement sur ce compte.
+'login-throttled'            => 'Vous avez tenté un trop grand nombre de connexions dernièrement.
 Veuillez attendre avant d’essayer à nouveau.',
 'loginlanguagelabel'         => 'Langue : $1',
 
@@ -2151,7 +2151,7 @@ L’adresse électronique que vous avez indiquée dans [[Special:Preferences|vos
 'enotif_anon_editor'           => 'utilisateur non-enregistré $1',
 'enotif_body'                  => 'Cher $WATCHINGUSERNAME,
 
-La page « $PAGETITLE » de {{SITENAME}} a été $CHANGEDORCREATED le $PAGEEDITDATEANDTIME par « $PAGEEDITOR ». $REVINFO
+La page « $PAGETITLE » de {{SITENAME}} a été $CHANGEDORCREATED le $PAGEEDITDATE par « $PAGEEDITOR », visitez $PAGETITLE_URL pour visualiser la version actuelle.
 
 $NEWPAGE
 

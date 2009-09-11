@@ -765,7 +765,8 @@ A visszaélések elkerülése végett {{PLURAL:$1|egy|$1}} óránként csak egy 
 A hozzátartozó jelszó "$3", melyet a bejelentkezés után minél előbb változtass meg.
 
 Ha nem kértél új azonosítót, és tévedésből kaptad ezt a levelet, nyugodtan hagyd figyelmen kívül.',
-'login-throttled'            => 'Túl sokszor próbálkoztál bejelentkezni ezzel a felhasználói fiókkal. Várj egy kicsit, majd próbáld újra.',
+'login-throttled'            => 'Túl sok hibás bejelentkezés.
+Várj egy kicsit, mielőtt újra próbálkozol.',
 'loginlanguagelabel'         => 'Nyelv: $1',
 
 # Password reset dialog
@@ -2036,7 +2037,7 @@ Az egyes csoportokról további információt [[{{MediaWiki:Listgrouprights-help
 * <span class="listgrouprights-revoked">Elvett jog</span>',
 'listgrouprights-group'                => 'Csoport',
 'listgrouprights-rights'               => 'Jogok',
-'listgrouprights-helppage'             => 'Help:Csoportok jogai',
+'listgrouprights-helppage'             => 'Help:Szerkesztői csoportok jogai',
 'listgrouprights-members'              => '(tagok listája)',
 'listgrouprights-addgroup'             => '{{PLURAL:$2|ehhez a csoporthoz|ezekhez a csoportokhoz}} adhat szerkesztőket: $1',
 'listgrouprights-removegroup'          => '{{PLURAL:$2|ebből a csoportból|ezekből a csoportokból}} távolíthat el szerkesztőket: $1',
@@ -2120,7 +2121,7 @@ Ezután minden, a lapon vagy annak vitalapján történő változást ott fogsz 
 'enotif_body'                  => 'Kedves $WATCHINGUSERNAME!
 
 
-$PAGEEDITOR $PAGEEDITDATEANDTIME-kor $CHANGEDORCREATED a(z) $PAGETITLE című lapot a(z) {{SITENAME}} wikin; $REVINFO
+$PAGEEDITOR $PAGEEDITDATE-kor $CHANGEDORCREATED a(z) $PAGETITLE című lapot a(z) {{SITENAME}} wikin; a jelenlegi verziót a $PAGETITLE_URL webcímen találod.
 
 $NEWPAGE
 

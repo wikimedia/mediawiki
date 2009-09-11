@@ -607,7 +607,8 @@ Inserissi un indirisso valido o svoda la casèła.",
 La password par l\'utente "$2" la xe inpostà a "$3". Xe oportuno eseguir un acesso quanto prima e canbiar la password subito dopo.
 
 Se l\'acesso el xe stà creà par sbaglio, se pol ignorar sto messagio.',
-'login-throttled'            => 'Te ghè fato massa tentativi su la password de sto account. Spèta un tocheto prima de proàr da novo.',
+'login-throttled'            => 'Te ghè fato massa tentativi de autenticarte. 
+Spèta un tocheto prima de proàr da novo.',
 'loginlanguagelabel'         => 'Lengua: $1',
 
 # Password reset dialog
@@ -1920,7 +1921,7 @@ Le future modìfeghe a sta pagina e a la relativa pagina de discussion le sarà 
 'enotif_anon_editor'           => 'utente anonimo $1',
 'enotif_body'                  => 'Caro $WATCHINGUSERNAME,
 
-ła pàxena $PAGETITLE de {{SITENAME}} la xè stà $CHANGEDORCREATED el $PAGEEDITDATEANDTIME da $PAGEEDITOR. $REVINFO
+ła pàxena $PAGETITLE de {{SITENAME}} la xè stà $CHANGEDORCREATED el $PAGEEDITDATE da $PAGEEDITOR, varda $PAGETITLE_URL par ła version atuałe.
 
 $NEWPAGE
 
@@ -2114,17 +2115,18 @@ $1',
 'month'               => 'A partir dal mese (e precedenti):',
 'year'                => "A partir da l'ano (e precedenti):",
 
-'sp-contributions-newbies'       => 'Mostra solo i contributi dei utenti novi',
-'sp-contributions-newbies-sub'   => 'Par i novi utenti',
-'sp-contributions-newbies-title' => 'Contributi dei utenti novi',
-'sp-contributions-blocklog'      => 'registro dei blochi',
-'sp-contributions-deleted'       => 'contributi utente scancelà',
-'sp-contributions-logs'          => 'registri',
-'sp-contributions-talk'          => 'discussion',
-'sp-contributions-userrights'    => 'gestion dei parmessi relativi ai utenti',
-'sp-contributions-search'        => 'Riçerca contributi',
-'sp-contributions-username'      => 'Indirizo IP o nome utente:',
-'sp-contributions-submit'        => 'Riçerca',
+'sp-contributions-newbies'        => 'Mostra solo i contributi dei utenti novi',
+'sp-contributions-newbies-sub'    => 'Par i novi utenti',
+'sp-contributions-newbies-title'  => 'Contributi dei utenti novi',
+'sp-contributions-blocklog'       => 'registro dei blochi',
+'sp-contributions-deleted'        => 'contributi utente scancelà',
+'sp-contributions-logs'           => 'registri',
+'sp-contributions-talk'           => 'discussion',
+'sp-contributions-userrights'     => 'gestion dei parmessi relativi ai utenti',
+'sp-contributions-blocked-notice' => "Sto utente el xe atualmente blocà. L'ultimo elemento del registro dei blochi el xè riportà qua soto par informassion:",
+'sp-contributions-search'         => 'Riçerca contributi',
+'sp-contributions-username'       => 'Indirizo IP o nome utente:',
+'sp-contributions-submit'         => 'Riçerca',
 
 # What links here
 'whatlinkshere'            => 'Pàxene che le punta qua',
@@ -3143,5 +3145,20 @@ Inserissi el nome del file senza el prefisso \"{{ns:file}}:\"",
 'htmlform-submit'              => 'Manda',
 'htmlform-reset'               => 'Scancèla modifiche',
 'htmlform-selectorother-other' => 'Altro',
+
+# Add categories per AJAX
+'ajax-add-category'            => 'Zonta categoria',
+'ajax-add-category-submit'     => 'Zonta',
+'ajax-confirm-title'           => "Conferma l'azion",
+'ajax-confirm-prompt'          => 'Qua soto te pol inserir un comento par la modìfega.
+Struca "Salva" par salvar la to modìfega.',
+'ajax-confirm-save'            => 'Salva',
+'ajax-add-category-summary'    => 'Zonta categoria "$1"',
+'ajax-remove-category-summary' => 'Cava categoria "$1"',
+'ajax-confirm-actionsummary'   => 'Azion da far:',
+'ajax-error-title'             => 'Eròr',
+'ajax-error-dismiss'           => 'Va ben',
+'ajax-remove-category-error'   => 'No se gà podesto cavar sta categoria.
+De solito questo el càpita co che la categoria la xe stà zontà a la pagina par via de un template.',
 
 );

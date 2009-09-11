@@ -744,8 +744,8 @@ Molimo vas da unesete ispravnu adresu ili ostavite prazno polje.',
 Trebali biste se prijaviti i promjeniti šifru.
 
 Možete ignorisati ovu poruku, ako je korisnički račun napravljen greškom.',
-'login-throttled'            => 'Previše puta ste pokušali unijeti šifru za korisnički račun.
-Molimo vas da sačekate prije nego što pokušate ponovo.',
+'login-throttled'            => 'Previše puta ste se pokušali prijaviti.
+Molimo Vas da sačekate prije nego što pokušate ponovo.',
 'loginlanguagelabel'         => 'Jezik: $1',
 
 # Password reset dialog
@@ -2141,7 +2141,8 @@ Ako kasnije želite da uklonite stranicu sa vašeg spiska praćenih članaka, kl
 'enotif_anon_editor'           => 'anonimni korisnik $1',
 'enotif_body'                  => 'Dragi $WATCHINGUSERNAME,
 
-{{SITENAME}} strana $PAGETITLE je bila $CHANGEDORCREATED $PAGEEDITDATEANDTIME od strane $PAGEEDITOR. $REVINFO
+{{SITENAME}} strana $PAGETITLE je bila $CHANGEDORCREATED $PAGEEDITDATE od strane $PAGEEDITOR,
+pogledajte $PAGETITLE_URL za trenutnu verziju.
 
 $NEWPAGE
 

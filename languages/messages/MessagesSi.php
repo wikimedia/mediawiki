@@ -2017,7 +2017,7 @@ PICT # විවිධ.
 'enotif_body'                  => 'සාදර  $WATCHINGUSERNAME,
 
 
-{{SITENAME}} හි  $PAGETITLE පිටුව,  $PAGEEDITDATEANDTIME  දිනදී  $PAGEEDITOR විසින් $CHANGEDORCREATED කර ඇති අතර, වත්මන් අනුවාදය සඳහා $PAGETITLE_URL බලන්න.
+{{SITENAME}} හි  $PAGETITLE පිටුව,  $PAGEEDITDATE  දිනදී  $PAGEEDITOR විසින් $CHANGEDORCREATED කර ඇති අතර, වත්මන් අනුවාදය සඳහා $PAGETITLE_URL බලන්න.
 
 $NEWPAGE
 

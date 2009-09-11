@@ -2022,7 +2022,7 @@ render lo plus facile de deteger.",
 'enotif_body'                  => 'Car $WATCHINGUSERNAME,
 
 
-Le pagina de {{SITENAME}} titulate $PAGETITLE ha essite $CHANGEDORCREATED le $PAGEEDITDATEANDTIME per $PAGEEDITOR. $REVINFO
+Le pagina de {{SITENAME}} titulate $PAGETITLE ha essite $CHANGEDORCREATED le $PAGEEDITDATE per $PAGEEDITOR. Vide $PAGETITLE_URL pro le version actual.
 
 $NEWPAGE
 

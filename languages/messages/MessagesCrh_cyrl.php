@@ -1295,7 +1295,7 @@ $3 мына бойле бир себеп бельгиледи: ''$2''",
 'enotif_body'                  => 'Сайгъылы $WATCHINGUSERNAME,
 
 
-{{SITENAME}} сайтындаки $PAGETITLE серлевалы саифе $PAGEEDITDATEANDTIME тарихында $PAGEEDITOR тарафындан $CHANGEDORCREATED. Шимдики версиягъа $PAGETITLE_URL адресинден етишип оласынъыз.
+{{SITENAME}} сайтындаки $PAGETITLE серлевалы саифе $PAGEEDITDATE тарихында $PAGEEDITOR тарафындан $CHANGEDORCREATED. Шимдики версиягъа $PAGETITLE_URL адресинден етишип оласынъыз.
 
 $NEWPAGE
 

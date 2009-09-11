@@ -278,10 +278,13 @@ $messages['en'] = array(
 /** Message documentation (Message documentation)
  * @author EugeneZelenko
  * @author Fryed-peach
+ * @author Purodha
  * @author Siebrand
  */
 $messages['qqq'] = array(
+	'mwe-sc_inoutpoints' => 'In-out-points are start and end times with reagards to a part of the video that should be shown. So if a video has a length of 60 seconds, the in-point can be at 10 seconds, the out-point at 40 seconds, so that the length of the fragment shown is 30 seconds.',
 	'mwe-sc_duration' => '{{Identical|Duration}}',
+	'mwe-set_in_out_points' => 'In-out-points are start and end times with reagards to a part of the video that should be shown. So if a video has a length of 60 seconds, the in-point can be at 10 seconds, the out-point at 40 seconds, so that the length of the fragment shown is 30 seconds.',
 	'mwe-preview_inout' => 'This message is used for the button that performs the action of previewing the user set start and end time of an audio or video asset.',
 	'mwe-close' => '{{Identical|Close}}',
 	'mwe-transition_out' => 'Transition out describes the button when clicked displays the interface for setting the transition-out of a video clip. The outgoing transition happens at the end of a video clip display.',
@@ -602,13 +605,16 @@ $messages['be-tarask'] = array(
  * @author CERminator
  */
 $messages['bs'] = array(
+	'mwe-crop' => 'Isjecanje slike',
 	'mwe-insert_image_page' => 'Ubaci u stranicu',
 	'mwe-insert_into_sequence' => 'Ubaci u niz',
 	'mwe-preview_insert' => 'Pregled ubacivanja',
 	'mwe-cancel_image_insert' => 'Odustani od ubacivanja',
 	'mwe-sc_audio' => 'Kontrola zvuka',
 	'mwe-sc_duration' => 'Trajanje',
+	'mwe-template_properties' => 'Svojstva šablona',
 	'mwe-custom_title' => 'Prilagođeni naslov',
+	'mwe-edit_properties' => 'Uredi svojstva',
 	'mwe-other_properties' => 'Ostala svojstva',
 	'mwe-resource_page' => 'Izvorna stranica:',
 	'mwe-start_time' => 'Vrijeme početka',
@@ -622,6 +628,7 @@ $messages['bs'] = array(
 	'mwe-menu_cliplib' => 'Dodaj mediju',
 	'mwe-menu_resource_overview' => 'Pregled resursa',
 	'mwe-menu_options' => 'Opcije',
+	'mwe-loading_timeline' => 'Učitavanje vremenske linije <blink>...</blink>',
 	'mwe-loading_user_rights' => 'Učitavanje korisničkih prava <blink>...</blink>',
 	'mwe-save_done' => 'Spremanje završeno',
 	'mwe-edit_cancel_confirm' => 'Da li ste sigurni da želite odustati od Vašeg uređivanja? Izmjene će biti izgubljene.',
@@ -680,6 +687,77 @@ $messages['de'] = array(
 	'mwe-licence_cc-by-sa' => 'Creative Commons Weitergabe unter gleichen Bedingungen (3.0)',
 	'mwe-summary' => 'Zusammenfassung',
 	'mwe-cancel-button' => 'Abbrechen',
+);
+
+/** Lower Sorbian (Dolnoserbski)
+ * @author Michawiki
+ */
+$messages['dsb'] = array(
+	'mwe-insert_image_page' => 'Do boka zasajźiś',
+	'mwe-insert_into_sequence' => 'Do sekwence zasajźiś',
+	'mwe-sc_inoutpoints' => 'Zachopne-kóńcne dypki stajiś',
+	'mwe-template_properties' => 'Kakosći pśedłogi',
+	'mwe-custom_title' => 'Swójski titel',
+	'mwe-edit_properties' => 'Kakosći wobźěłaś',
+	'mwe-other_properties' => 'Druge kakosći',
+	'mwe-resource_page' => 'Resursowy bok:',
+	'mwe-set_in_out_points' => 'Zachopne-kóńcne dypki stajiś',
+	'mwe-start_time' => 'Zachopny cas',
+	'mwe-end_time' => 'Kóńcny cas',
+	'mwe-preview_inout' => 'Zachopne-kóńcne dypki ako pśeglěd pokazaś',
+	'mwe-close' => 'zacyniś',
+	'mwe-improve_transcript' => 'Pólěpšyś',
+	'mwe-menu_options' => 'Opcije',
+	'mwe-edit_clip' => 'Klip wobźěłaś',
+	'mwe-rmclip' => 'Klip wótpóraś',
+	'mwe-other_options' => 'Druge opcije',
+	'fogg-select_file' => 'Dataju wubraś',
+	'fogg-select_new_file' => 'Nowu dataju wubraś',
+	'fogg-select_url' => 'URL wubraś',
+	'fogg-save_local_file' => 'Ogg składowaś',
+	'fogg-installed' => 'Firefogg jo instalěrowany.',
+	'fogg-for_improved_uplods' => 'Za pólěpšone nagraśa:',
+	'fogg-passthrough_mode' => 'Twója wubrana dataja jo južo dataja Ogg abo njejo wideojowa dataja',
+	'fogg-cg-meta' => 'Metadaty za klip',
+	'rsd_results_desc' => 'Wuslědki',
+	'rsd_no_results' => 'Žedne pytańske wuslědki za <b>$1</b>',
+	'mwe-upload_tab' => 'Nagraś',
+	'rsd_resource_edit' => 'Resursu wobźěłaś: $1',
+	'mwe-resource_description_page' => 'Wopisański bok resurse',
+	'rsd_local_resource_title' => 'Titel lokalneje resurse',
+	'mwe-unknown_license' => 'Njeznata licenca',
+	'mwe-do_import_resource' => 'Resursu importěrowaś',
+	'mwe-select_file' => 'Dataju wubraś',
+	'mwe-upload' => 'Dataju nagraś',
+	'mwe-destfilename' => 'Mě celoweje dataje:',
+	'mwe-summary' => 'Zespominanje',
+	'mwe-uploaded-status' => 'Nagraty',
+	'mwe-upload-stats-fileprogres' => '$1 z $2',
+	'mwe-upload_completed' => 'Twójo nagraśe jo dokóńcone.',
+	'mwe-upload-unknown-size' => 'Njeznata wjelikosć',
+	'mwe-successfulupload' => 'Nagraśe wuspěšne',
+	'mwe-uploaderror' => 'Nagrawańska zmólka',
+	'mwe-uploadwarning' => 'Nagrawańske warnowanje',
+	'mwe-unknown-error' => 'Njeznata zmólka:',
+	'mwe-file-exists-duplicate' => 'Toś ta dataja jo duplikat slědujuceje dataje:',
+	'mwe-fileexists-thumb' => '<center><b>Eksistěrujuca dataja</b></center>',
+	'mwe-file-thumbnail-no' => 'Datajowe mě zachopina se z <b><tt>$1</tt></b>',
+	'mwe-upload-misc-error' => 'Njeznata nagrawańska zmólka',
+	'mwe-cancel-button' => 'Pśetergnuś',
+	'mwe-ok-button' => 'W pórědku',
+	'mwe-play_clip' => 'Klip wótegraś',
+	'mwe-pause_clip' => 'Klip zastajiś',
+	'mwe-player_options' => 'Opcije wótegrawaka',
+	'mwe-next_clip_msg' => 'Pśiducy klip wótegraś',
+	'mwe-download_full' => 'Dopołnu wideowu dataju ześěgnuś:',
+	'mwe-download_right_click' => 'Aby ześěgnuł, klikni z pšaweju tastu a wubjeŕ <i>Cel składowaś ako...</i>',
+	'mwe-download_clip' => 'Wideo ześěgnuś',
+	'mwe-download' => 'Ześěgnuś',
+	'mwe-menu_btn' => 'Meni',
+	'mwe-close_btn' => 'Zacyniś',
+	'mwe-ogg-player-selected' => '(wubrany)',
+	'mwe-playerselect' => 'Wótegrawaki',
+	'mwe_related_videos' => 'Pśiwuzne wideo',
 );
 
 /** Greek (Ελληνικά)
@@ -856,6 +934,8 @@ $messages['es'] = array(
 	'mwe-save_done' => 'Grabar completo',
 	'mwe-edit_cancel' => 'Cancelar edición de secuencia',
 	'mwe-edit_cancel_confirm' => 'Estás seguro que deseas cancelar tu edición? Los cambios se perderán.',
+	'mwe-zoom_in' => 'Agrandar',
+	'mwe-zoom_out' => 'Achicar',
 	'mwe-cut_clip' => 'Cortar clips',
 	'mwe-rmclip' => 'Remover clip',
 	'mwe-editor_options' => 'Opciones de editor',
@@ -966,6 +1046,7 @@ $messages['fi'] = array(
 
 /** French (Français)
  * @author IAlex
+ * @author Peter17
  * @author PieRRoMaN
  */
 $messages['fr'] = array(
@@ -989,7 +1070,7 @@ $messages['fr'] = array(
 	'mwe-set_in_out_points' => "Définir des points d'entrée-sortie",
 	'mwe-start_time' => 'Heure de début',
 	'mwe-end_time' => 'Heure de fin',
-	'mwe-preview_inout' => "Prévisualiser/lancer les points d'entrée-sortie",
+	'mwe-preview_inout' => "Prévisualiser les points d'entrée-sortie",
 	'mwe-select_transcript_set' => 'Sélectionner les calques',
 	'mwe-auto_scroll' => 'défilement automatique',
 	'mwe-close' => 'fermer',
@@ -1200,7 +1281,7 @@ $messages['gl'] = array(
 	'mwe-set_in_out_points' => 'Establecer os puntos de entrada-saída',
 	'mwe-start_time' => 'Hora de inicio',
 	'mwe-end_time' => 'Hora de fin',
-	'mwe-preview_inout' => 'Vista previa/reproducir os puntos de entrada-saída',
+	'mwe-preview_inout' => 'Vista previa dos puntos de entrada-saída',
 	'mwe-select_transcript_set' => 'Seleccionar as capas',
 	'mwe-auto_scroll' => 'desprazamento automático',
 	'mwe-close' => 'pechar',
@@ -1385,6 +1466,17 @@ $messages['gl'] = array(
 	'mwe-read_before_embed' => 'Por favor, <a href="http://mediawiki.org/wiki/Security_Notes_on_Remote_Embedding" target="_new">olle isto</a> antes da incrustación!',
 	'mwe-embed_site_or_blog' => 'Incrustar na súa páxina web ou blogue',
 	'mwe_related_videos' => 'Vídeos relacionados',
+);
+
+/** Ancient Greek (Ἀρχαία ἑλληνικὴ)
+ * @author Crazymadlover
+ * @author Omnipaedista
+ */
+$messages['grc'] = array(
+	'rsd_results_next' => 'ἑπομέναι',
+	'rsd_results_prev' => 'προηγούμεναι',
+	'mwe-cancel-button' => 'Ἀκυροῦν',
+	'mwe-ok-button' => 'εἶεν',
 );
 
 /** Swiss German (Alemannisch)
@@ -1680,7 +1772,7 @@ $messages['hsb'] = array(
 	'mwe-preview_insert' => 'Přehlad zasunjenja',
 	'mwe-cancel_image_insert' => 'Zasunjenje přetorhnyć',
 	'mwe-sc_fileopts' => 'Wobdźěłanje klipowych podrobnosćow',
-	'mwe-sc_inoutpoints' => 'Dypki zachoda-wuchada stajić',
+	'mwe-sc_inoutpoints' => 'Spočatne a kónčne dypki stajić',
 	'mwe-sc_overlays' => 'Zablendowanja',
 	'mwe-sc_audio' => 'Awdiowodźenje',
 	'mwe-sc_duration' => 'Traće',
@@ -1689,10 +1781,10 @@ $messages['hsb'] = array(
 	'mwe-edit_properties' => 'Kajkosće wobdźěłać',
 	'mwe-other_properties' => 'Druhe kajkosće',
 	'mwe-resource_page' => 'Resursowa strona:',
-	'mwe-set_in_out_points' => 'Dypki zachoda-wuchada stajić',
+	'mwe-set_in_out_points' => 'Spočatne a kónčne dypki stajić',
 	'mwe-start_time' => 'Startowy čas',
 	'mwe-end_time' => 'Kónčny čas',
-	'mwe-preview_inout' => 'Dypki zachoda-wuchada jako přehlad pokazać/wothrać',
+	'mwe-preview_inout' => 'Spočatne a kónčne dypki jako přehlad pokazać',
 	'mwe-select_transcript_set' => 'Woršty wubrać',
 	'mwe-auto_scroll' => 'awtomatisce kulić',
 	'mwe-close' => 'začinić',
@@ -2027,6 +2119,15 @@ $messages['id'] = array(
 	'rsd_results_prev' => 'sebelumnya',
 );
 
+/** Italian (Italiano)
+ * @author Darth Kule
+ */
+$messages['it'] = array(
+	'mwe-close' => 'chiudi',
+	'mwe-cancel-button' => 'Annulla',
+	'mwe-close_btn' => 'Chiudi',
+);
+
 /** Japanese (日本語)
  * @author Aotake
  * @author Fryed-peach
@@ -2254,6 +2355,7 @@ $messages['ksh'] = array(
 	'mwe-preview_insert' => 'Vör_Aansich för et Ennfööje',
 	'mwe-cancel_image_insert' => 'Et Enfööje avbreche!',
 	'mwe-sc_fileopts' => 'Einzelheit vum Ußschnet ändere',
+	'mwe-sc_inoutpoints' => 'Der En- un Ußschteeschßpunk för et Afschpelle faßlääje',
 	'mwe-sc_overlays' => 'Övverbländunge',
 	'mwe-sc_audio' => 'Enshtällunge för der Tohn',
 	'mwe-sc_duration' => 'Duuer',
@@ -2262,8 +2364,10 @@ $messages['ksh'] = array(
 	'mwe-edit_properties' => 'Eijeschaffte ändere',
 	'mwe-other_properties' => 'Ander Eijeschaffte',
 	'mwe-resource_page' => 'De Sigg dovun:',
+	'mwe-set_in_out_points' => 'En- un Ußschteeschßpunk faßlääje',
 	'mwe-start_time' => 'Aanfangszick',
 	'mwe-end_time' => 'Schloßzick',
+	'mwe-preview_inout' => 'Vör-Aanseesch vum En- un Ußschteeschßpunk',
 	'mwe-select_transcript_set' => 'Nivos ußsöhke',
 	'mwe-auto_scroll' => 'automattesch wigger_rolle',
 	'mwe-close' => 'zohmaache',
@@ -2573,14 +2677,14 @@ $messages['nl'] = array(
 	'mwe-set_in_out_points' => 'In-uit-punten instellen',
 	'mwe-start_time' => 'Starttijd',
 	'mwe-end_time' => 'Eindtijd',
-	'mwe-preview_inout' => 'Weergeven/Afspelen van in tot uit',
+	'mwe-preview_inout' => 'In- en uitpunten weergeven',
 	'mwe-select_transcript_set' => 'Lagen selecteren',
 	'mwe-auto_scroll' => 'automatisch scrollen',
 	'mwe-close' => 'sluiten',
 	'mwe-improve_transcript' => 'Verbeteren',
 	'mwe-no_text_tracks_found' => 'Er zijn geen tekstsporen aangetroffen',
 	'mwe-transition_in' => 'Overgangen',
-	'mwe-transition_out' => 'Transistie uit',
+	'mwe-transition_out' => 'Overgang einde',
 	'mwe-effects' => 'Effecten',
 	'mwe-remove_transition' => 'Overgang verwijderen',
 	'mwe-edit_transin' => 'Overgang in clip bewerken',
@@ -3016,7 +3120,7 @@ $messages['ru'] = array(
 	'mwe-set_in_out_points' => 'Установить очки ввода-вывода',
 	'mwe-start_time' => 'Время начала',
 	'mwe-end_time' => 'Время окончания',
-	'mwe-preview_inout' => 'Просмотр/проигрывание точек ввода-вывода',
+	'mwe-preview_inout' => 'Просмотр точек ввода-вывода',
 	'mwe-select_transcript_set' => 'Выбрать слои',
 	'mwe-auto_scroll' => 'автопрокрутка',
 	'mwe-close' => 'закрыть',

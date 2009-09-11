@@ -610,7 +610,7 @@ Voer asseblief 'n geldige e-posadres in, of laat die veld leeg.",
 U word aangeraai om in te teken so gou as moontlik u wagwoord te verander.
 
 Indien hierdie rekening foutief geskep is, kan u hierdie boodskap ignoreer.',
-'login-throttled'            => "U het te veel kere probeer om met 'n ongeldige wagwoord aan te teken.
+'login-throttled'            => "U het al te veel kere met 'n ongeldige wagwoord probeer aanteken.
 Wag asseblief alvorens u weer probeer.",
 'loginlanguagelabel'         => 'Taal: $1',
 
@@ -1833,7 +1833,7 @@ As u die bladsy later van u dophoulys wil verwyder, kliek \"verwyder van dophoul
 'enotif_anon_editor'           => 'anonieme gebruiker $1',
 'enotif_body'                  => 'Beste $WATCHINGUSERNAME,
 
-Die bladsy $PAGETITLE op {{SITENAME}} is $CHANGEDORCREATED op $PAGEEDITDATEANDTIME deur $PAGEEDITOR. $REVINFO
+Die bladsy $PAGETITLE op {{SITENAME}} is $CHANGEDORCREATED op $PAGEEDITDATE deur $PAGEEDITOR, sien $PAGETITLE_URL vir die nuutste weergawe.
 
 $NEWPAGE
 

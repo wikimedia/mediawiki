@@ -1926,7 +1926,7 @@ PICT # misc.
 'enotif_anon_editor'           => 'ناشناس کاربر $1',
 'enotif_body'                  => 'آزیزین $WATCHINGUSERNAME،
 
-صفحه {{SITENAME}} $PAGETITLE بوتت $CHANGEDORCREATED ته  $PAGEEDITDATEANDTIME گون $PAGEEDITOR، بچار $PAGETITLE_URL په هنوکین نسخه.
+صفحه {{SITENAME}} $PAGETITLE بوتت $CHANGEDORCREATED ته  $PAGEEDITDATE گون $PAGEEDITOR، بچار $PAGETITLE_URL په هنوکین نسخه.
 
 $NEWPAGE
 

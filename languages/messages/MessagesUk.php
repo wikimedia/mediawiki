@@ -2074,7 +2074,7 @@ PICT # різні
 'enotif_anon_editor'           => 'анонімний користувач $1',
 'enotif_body'                  => 'Шановний/на $WATCHINGUSERNAME,
 
-$PAGEEDITDATEANDTIME сторінка проекту «{{SITENAME}}» $PAGETITLE була $CHANGEDORCREATED користувачем $PAGEEDITOR, див. $PAGETITLE_URL, щоб переглянути поточну версію.
+$PAGEEDITDATE сторінка проекту «{{SITENAME}}» $PAGETITLE була $CHANGEDORCREATED користувачем $PAGEEDITOR, див. $PAGETITLE_URL, щоб переглянути поточну версію.
 
 $NEWPAGE
 

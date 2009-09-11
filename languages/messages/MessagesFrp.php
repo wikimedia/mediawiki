@@ -2167,7 +2167,7 @@ Los changements a vegnir de ceta pâge et de sa pâge de discussion y seront lis
 'enotif_body'                  => 'Chier(a) $WATCHINGUSERNAME,
 
 
-la pâge « $PAGETITLE » de {{SITENAME}} at étâ $CHANGEDORCREATED lo $PAGEEDITDATEANDTIME per « $PAGEEDITOR ». $REVINFO
+la pâge « $PAGETITLE » de {{SITENAME}} at étâ $CHANGEDORCREATED lo $PAGEEDITDATE per « $PAGEEDITOR », vêde $PAGETITLE_URL por vêre la vèrsion d’ora.
 
 $NEWPAGE
 

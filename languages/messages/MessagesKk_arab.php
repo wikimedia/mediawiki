@@ -1832,7 +1832,7 @@ URL دۇرىس ەكەندىگىن جانە توراپ ىستەپ تۇرعانى�
 'enotif_body'                  => 'قادىرلى $WATCHINGUSERNAME,
 
 
-{{SITENAME}} جوباسىنىڭ $PAGETITLE اتاۋلى بەتتى $PAGEEDITDATEANDTIME كەزىندە $PAGEEDITOR دەگەن $CHANGEDORCREATED, اعىمدىق نۇسقاسى ٴۇشىن $PAGETITLE_URL قاراڭىز.
+{{SITENAME}} جوباسىنىڭ $PAGETITLE اتاۋلى بەتتى $PAGEEDITDATE كەزىندە $PAGEEDITOR دەگەن $CHANGEDORCREATED, اعىمدىق نۇسقاسى ٴۇشىن $PAGETITLE_URL قاراڭىز.
 
 $NEWPAGE
 

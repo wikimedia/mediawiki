@@ -1794,7 +1794,7 @@ Bul bettiñ jäne baýlanıstı talqılaw betiniñ keleşektegi özgeristeri mı
 'enotif_body'                  => 'Qadirli $WATCHINGUSERNAME,
 
 
-{{SITENAME}} jobasınıñ $PAGETITLE atawlı betti $PAGEEDITDATEANDTIME kezinde $PAGEEDITOR degen $CHANGEDORCREATED, ağımdıq nusqası üşin $PAGETITLE_URL qarañız.
+{{SITENAME}} jobasınıñ $PAGETITLE atawlı betti $PAGEEDITDATE kezinde $PAGEEDITOR degen $CHANGEDORCREATED, ağımdıq nusqası üşin $PAGETITLE_URL qarañız.
 
 $NEWPAGE
 
