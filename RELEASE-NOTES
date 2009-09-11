@@ -20,21 +20,21 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 
 === Configuration changes in 1.16 ===  
 
-* $wgEnableFirefogg enable support for firefogg extension, firefogg supports 
-in-browser transcoding, chunk uploads and client side hash checking. 
+* $wgEnableFirefogg enable support for firefogg extension, firefogg supports
+  in-browser transcoding, chunk uploads and client side hash checking. 
 * $wgEnableTemporalOggUrls enable oggz_chop support a server side ogg seeking
-helper 
+  helper 
 * $wgEnableScriptLoader if the script-loader shoudl be enabled
 * $wgJSAutoloadClasses array of javascript classes to file paths used by
-script-loader to load javascript by class name. 
-* $wgEnableJS2system  if we should include js2 stuff like jquery, 
-mv_embed.js (script-loader helper) and use new interfaces for upload
+  script-loader to load javascript by class name. 
+* $wgEnableJS2system  if we should include js2 stuff like jquery, mv_embed.js
+  (script-loader helper) and use new interfaces for upload
 * $wgEnableScriptLoaderJsFile if we support grabbing js files with the script
-loader. By default we only grab classes in $wgJSAutoloadClasses
+  loader. By default we only grab classes in $wgJSAutoloadClasses
 * $wgEnableScriptMinify if you want the script loader to minify js
 * $wgEnableScriptLocalization if you want the script loader to do msg lookups
 * $wgMwEmbedDirectory the path to MwEmbed Directory (maybe we can depreciate
-this. Was used when mwEmbed was going to be an extension.   
+  this. Was used when mwEmbed was going to be an extension.   
 * $wgDebugJavaScript if we want to enable fresh debug javascript 
 * $wgPhpCliPath Path to php-cli for spinning up background php processes
 * (bug 18222) $wgMinimalPasswordLength default is now 1
@@ -79,9 +79,12 @@ this. Was used when mwEmbed was going to be an extension.
 * $wgMemoryLimit has been added, default value '50M'
 * $wgExtraRandompageSQL is deprecated, the SpecialRandomGetRandomTitle hook 
   should be used instead
-* (bug 20489) $wgIllegalFileChars added to override the default list of illegal characters in file names.
-* (bug 19646) $wgImgAuthDetails added  to display reason access to uploaded file was denied to users(img_auth only)
-* (bug 19646) $wgImgAuthPublicTest added to test to see if img_auth set up correctly (img_auth only)
+* (bug 20489) $wgIllegalFileChars added to override the default list of illegal
+  characters in file names.
+* (bug 19646) $wgImgAuthDetails added  to display reason access to uploaded file
+  was denied to users(img_auth only)
+* (bug 19646) $wgImgAuthPublicTest added to test to see if img_auth set up
+  correctly (img_auth only)
 
 === New features in 1.16 ===
 
@@ -120,14 +123,15 @@ this. Was used when mwEmbed was going to be an extension.
 * (bug 14866) Messages 'recentchangeslinked-toolbox' and
   'recentchangeslinked-toolbox' were added to allow more fine grained
   customisation of the user interface
-* DISPLAYTITLE now accepts a limited amount of wiki markup (the single-quote items)
+* DISPLAYTITLE now accepts a limited amount of wiki markup (the single-quote
+  items)
 * Special:Search now could search terms in all variant-forms. ONLY apply on
   wikis with LanguageConverter
 * Add autopromote condition APCOND_BLOCKED to autopromote blocked users to various
   user groups.
-* Add $wgRevokePermissions as a means of restricting a group's rights. The syntax is
-  identical to $wgGroupPermissions, but users in these groups will have these rights
-  stripped from them.
+* Add $wgRevokePermissions as a means of restricting a group's rights. The
+  syntax is identical to $wgGroupPermissions, but users in these groups will
+  have these rights stripped from them.
 * Added a PHP port of CDB (constant database), for improved local caching when
   the DBA extension is not available.
 * Introduced a new system for localisation caching. The system is based around 
@@ -160,9 +164,12 @@ this. Was used when mwEmbed was going to be an extension.
 * (bug 471) Allow RSS feeds for watchlist, using an opt-in security token
 * (bug 10812) Interwiki links can have names and descriptions, fetched from 
   message 'interwiki-desc-PREFIX', not really used anywhere yet though
-* (bug 9691) Add type (signup or login) parameter to AuthPlugin::ModifyUITemplate()
-* (bug 14454) "Member of group(s)" in Special:Preferences causes language difficulties
-* (bug 16697) Unicode combining characters are difficult to edit in some browsers
+* (bug 9691) Add type (signup or login) parameter to
+  AuthPlugin::ModifyUITemplate()
+* (bug 14454) "Member of group(s)" in Special:Preferences causes language
+  difficulties
+* (bug 16697) Unicode combining characters are difficult to edit in some
+  browsers
 * Parser test supports uploading results to remote CodeReview instance
 * (bug 20013) Added CSS class "mw-version-ext-version" is wrapped on the 
   extension version in Special:Version
@@ -170,7 +177,8 @@ this. Was used when mwEmbed was going to be an extension.
   right name in Special:ListGroupRights
 * (bug 12920) New CoreParserFunction {{nse:...}} as an url-friendly equivalent
   to {{ns:...}}
-* (bug 16322) Allow maintenance scripts to accept DB user/pass over input or params
+* (bug 16322) Allow maintenance scripts to accept DB user/pass over input or
+  params
 * (bug 18566) Maintenance script to un/protect pages
 * (bug 671) The HTML <abbr> tag is now permitted.
 * RecentChanges now has a legend to explain what the Nmb! flags mean, and the
@@ -179,7 +187,8 @@ this. Was used when mwEmbed was going to be an extension.
   but before Mediawiki::performRequestForTitle()
 * wgMainPageTitle variable now available to JavaScript code to identify the main
   page link, so it doesn't have to be extracted from the link URLs.
-* (bug 16836) Display preview of signature in user preferences and describe its use
+* (bug 16836) Display preview of signature in user preferences and describe its
+  use
 * The default output format is now HTML 5 instead of XHTML 1.0 Transitional.
   This can be disabled by setting $wgHtml5 = false;.  Specific features enabled
   if HTML 5 is used:
@@ -209,7 +218,8 @@ this. Was used when mwEmbed was going to be an extension.
 * Show change block / unblock link on Special:Contributions if user is blocked
 * Display note on Special:Contributions if the user is blocked, and provide an 
   excerpt from the block log.
-* (bug 19646) New hook: ImgAuthBeforeStream for tests and functionality before file is streamed to user, but only when using img_auth
+* (bug 19646) New hook: ImgAuthBeforeStream for tests and functionality before
+  file is streamed to user, but only when using img_auth
 
 === Bug fixes in 1.16 ===
 
@@ -316,8 +326,10 @@ this. Was used when mwEmbed was going to be an extension.
   can add/remove *all* groups (have 'userrights' permission).
 * (bug 19294) Always show Sp-contributions-footer(-anon)
 * Attempts to restrict reading of pages while anonymous viewing is allowed
-  via extensions not using the userCan hook and via $wgRevokePermissions now work.
-* (bug 8445) Multiple-character search terms are now handled properly for Chinese
+  via extensions not using the userCan hook and via $wgRevokePermissions now
+  work.
+* (bug 8445) Multiple-character search terms are now handled properly for
+  Chinese
 * (bug 19450) Use formatNum for "Number of edits" in Special:Preferences
 * (bug 11242) Check for MySQL storage engines during installation now checks
   whether the engines are actually available
@@ -357,7 +369,8 @@ this. Was used when mwEmbed was going to be an extension.
 * (bug 19564) Updated docs/hooks.txt
 * (bug 18751) Fix for buggage in profiling setup for some extensions on PHP 5.1
 * (bug 17139) ts_resortTable inconsistent trimming makes date sorting fragile
-* (bug 19445) Change oldimage table to use ON UPDATE CASCADE for FK to image table.
+* (bug 19445) Change oldimage table to use ON UPDATE CASCADE for FK to image
+  table.
 * (bug 14080) Short notation links to subpages didn't work in edit summaries
 * (bug 17374) Special:Export no longer exports multiple copies of pages
 * (bug 19818) Edits to user CSS/JS subpages can now be marked as patrolled by
@@ -465,12 +478,14 @@ this. Was used when mwEmbed was going to be an extension.
   argument
 * (bug 20136) Protection form JavaScript now synchronizes the expiry boxes on
   any change, in addition to onkeyup.
-* Don't link to "edit this page" on MediaWiki:Noarticletext if user is not allowed
-  to create page. Done via new message MediaWiki:Noarticletext-nopermission
-* Improved compatibility between the Vector skin and addPortletLink() from wikibits.js:
-  empty portlets are now present but hidden, adding an element to a portlet unhides it
-* (bug 19531) addPortletLink() now wraps inserted labels in a <span> element to be
-  compatible with the CSS for the Vector skin
+* Don't link to "edit this page" on MediaWiki:Noarticletext if user is not
+  allowed to create page. Done via new message
+  MediaWiki:Noarticletext-nopermission
+* Improved compatibility between the Vector skin and addPortletLink() from
+  wikibits.js: empty portlets are now present but hidden, adding an element to a
+  portlet unhides it
+* (bug 19531) addPortletLink() now wraps inserted labels in a <span> element to
+  be compatible with the CSS for the Vector skin
 * (bug 20578) Wrong localized image metadata - duplicated string?
 * (bug 20556) Stub threshold's "other" <input> in Special:Preferences now has a
   correct type="text" parameter
