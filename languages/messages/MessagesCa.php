@@ -1948,13 +1948,10 @@ Si voleu deixar de vigilar la pàgina, cliqueu sobre l'enllaç de «Desatén» d
 'enotif_impersonal_salutation' => 'usuari de la {{SITENAME}}',
 'changed'                      => 'modificada',
 'created'                      => 'creada',
-'deleted'                      => 'esborrada',
-'enotif_deletedpagetext'       => 'Aquesta pàgina ja no està disponible.',
 'enotif_subject'               => 'La pàgina $PAGETITLE a {{SITENAME}} ha estat $CHANGEDORCREATED per $PAGEEDITOR',
 'enotif_lastvisited'           => "Vegeu $1 per a tots els canvis que s'han fet d'ença de la vostra darrera visita.",
 'enotif_lastdiff'              => 'Consulteu $1 per a visualitzar aquest canvi.',
 'enotif_anon_editor'           => 'usuari anònim $1',
-'enotif_rev_info'              => 'Vegeu $1 per a la versió actual.',
 'enotif_body'                  => 'Benvolgut $WATCHINGUSERNAME,
 
 La pàgina $PAGETITLE del projecte {{SITENAME}} ha estat $CHANGEDORCREATED el dia $PAGEEDITDATEANDTIME per $PAGEEDITOR. $REVINFO

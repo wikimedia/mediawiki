@@ -2003,13 +2003,10 @@ PICT # その他
 'enotif_impersonal_salutation' => '{{SITENAME}} 利用者',
 'changed'                      => '変更',
 'created'                      => '作成',
-'deleted'                      => '削除済み',
-'enotif_deletedpagetext'       => 'このページは利用できません。',
 'enotif_subject'               => '{{SITENAME}} のページ「$PAGETITLE」が $PAGEEDITOR によって$CHANGEDORCREATEDされました',
 'enotif_lastvisited'           => 'あなたが最後に閲覧してからなされたすべての変更を $1 で確認できます。',
 'enotif_lastdiff'              => 'この変更内容を表示するには $1 を見てください。',
 'enotif_anon_editor'           => '匿名利用者 $1',
-'enotif_rev_info'              => '最新版は$1をご覧ください。',
 'enotif_body'                  => '$WATCHINGUSERNAME さん
 
 {{SITENAME}}のページ「$PAGETITLE」が $PAGEEDITDATEANDTIME に

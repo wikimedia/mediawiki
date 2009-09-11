@@ -1942,13 +1942,10 @@ Den e-mail-adresse du har angivet i [[Special:Preferences|dine indstillinger]] v
 'enotif_impersonal_salutation' => '{{SITENAME}} bruger',
 'changed'                      => 'ændret',
 'created'                      => 'oprettet',
-'deleted'                      => 'slettet',
-'enotif_deletedpagetext'       => 'Denne side er ikke længere tilgængelig.',
 'enotif_subject'               => '{{SITENAME}}-siden $PAGETITLE er blevet ændret af $PAGEEDITOR',
 'enotif_lastvisited'           => 'Se $1 for alle ændringer siden dit sidste besøg.',
 'enotif_lastdiff'              => 'Se $1 for at vise denne ændring.',
 'enotif_anon_editor'           => 'anonym bruger $1',
-'enotif_rev_info'              => 'Se $1 for den nyeste version.',
 'enotif_body'                  => 'Kære $WATCHINGUSERNAME
 
 {{SITENAME}}-siden $PAGETITLE er blevet $CHANGEDORCREATED $PAGEEDITDATEANDTIME af $PAGEEDITOR. $REVINFO

@@ -2068,13 +2068,10 @@ Perubahan-perubahan berikutnya pada halaman tersebut dan halaman pembicaraan ter
 'enotif_impersonal_salutation' => 'Pengguna {{SITENAME}}',
 'changed'                      => 'diubah',
 'created'                      => 'dibuat',
-'deleted'                      => 'dihapus',
-'enotif_deletedpagetext'       => 'Halaman ini sudah tidak ada lagi.',
 'enotif_subject'               => 'Halaman $PAGETITLE di {{SITENAME}} telah $CHANGEDORCREATED oleh $PAGEEDITOR',
 'enotif_lastvisited'           => 'Lihat $1 untuk semua perubahan sejak kunjungan terakhir Anda.',
 'enotif_lastdiff'              => 'Kunjungi $1 untuk melihat perubahan ini.',
 'enotif_anon_editor'           => 'pengguna anonim $1',
-'enotif_rev_info'              => 'Lihat $1 untuk revisi saat ini.',
 'enotif_body'                  => 'Halo $WATCHINGUSERNAME,
 
 Halaman $PAGETITLE di {{SITENAME}} telah $CHANGEDORCREATED pada $PAGEEDITDATEANDTIME oleh $PAGEEDITOR. $REVINFO

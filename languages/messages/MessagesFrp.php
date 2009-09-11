@@ -2160,13 +2160,10 @@ Los changements a vegnir de ceta pâge et de sa pâge de discussion y seront lis
 'enotif_impersonal_salutation' => 'Utilisator de {{SITENAME}}',
 'changed'                      => 'changiê',
 'created'                      => 'fêta',
-'deleted'                      => 'suprimâ',
-'enotif_deletedpagetext'       => 'Ceta pâge est pas més disponibla.',
 'enotif_subject'               => 'La pâge « $PAGETITLE » de {{SITENAME}} at étâ $CHANGEDORCREATED per $PAGEEDITOR',
 'enotif_lastvisited'           => 'Vêde $1 por tôs los changements dês voutra dèrriére visita.',
 'enotif_lastdiff'              => 'Vêde $1 por vêre cél changement.',
 'enotif_anon_editor'           => 'utilisator pas enregistrâ $1',
-'enotif_rev_info'              => 'Visitâd $1 por vêre la vèrsion d’ora.',
 'enotif_body'                  => 'Chier(a) $WATCHINGUSERNAME,
 
 

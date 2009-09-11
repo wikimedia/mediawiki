@@ -2121,13 +2121,10 @@ PICT # διάφορα
 'enotif_impersonal_salutation' => 'Χρήστης του ιστοτόπου "{{SITENAME}}"',
 'changed'                      => 'έχει αλλάξει',
 'created'                      => 'δημιουργήθηκε',
-'deleted'                      => 'διαγράφηκε',
-'enotif_deletedpagetext'       => 'Αυτή η σελίδα δεν είναι πλέον διαθέσιμη.',
 'enotif_subject'               => 'Η σελίδα $PAGETITLE του εγχειρήματος {{SITENAME}} $CHANGEDORCREATED από το χρήστη $PAGEEDITOR',
 'enotif_lastvisited'           => 'Δείτε το $1 για όλες τις αλλαγές που έγιναν από την τελευταία σας επίσκεψη.',
 'enotif_lastdiff'              => 'Δείτε το $1 για να εμφανίσετε αυτή την αλλαγή.',
 'enotif_anon_editor'           => 'ανώνυμος χρήστης $1',
-'enotif_rev_info'              => 'Δείτε το $1 για την τωρινή έκδοση.',
 'enotif_body'                  => 'Αγαπητέ $WATCHINGUSERNAME,
 
 Η σελίδα $PAGETITLE του εγχειρήματος {{SITENAME}} $CHANGEDORCREATED στις $PAGEEDITDATEANDTIME από το χρήστη $PAGEEDITOR. $REVINFO

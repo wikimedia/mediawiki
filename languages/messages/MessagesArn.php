@@ -388,7 +388,6 @@ $messages = array(
 'enotif_newpagetext'           => 'Tüfachi ta we pakina',
 'enotif_impersonal_salutation' => '{{SITENAME}} kellufe',
 'created'                      => 'Llituy',
-'deleted'                      => 'ñamümün',
 
 # Delete
 'deletepage'            => 'Ñamümün tüfachi pakina',

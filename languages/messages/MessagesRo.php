@@ -2080,7 +2080,6 @@ Dacă doriţi să eliminaţi această pagină din lista dv. de pagini urmărite 
 'enotif_impersonal_salutation' => '{{SITENAME}} utilizator',
 'changed'                      => 'modificat',
 'created'                      => 'creat',
-'enotif_deletedpagetext'       => 'Această pagină nu mai este disponibilă.',
 'enotif_subject'               => 'Pagina $PAGETITLE de la {{SITENAME}} a fost $CHANGEDORCREATED de $PAGEEDITOR',
 'enotif_lastvisited'           => 'Vedeţi $1 pentru toate modificările de la ultima dvs. vizită.',
 'enotif_lastdiff'              => 'Apasă $1 pentru a vedea această schimbare.',

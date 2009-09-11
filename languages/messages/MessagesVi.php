@@ -2037,13 +2037,10 @@ Nếu bạn muốn cho trang này ra khỏi danh sách theo dõi, nhấn vào "N
 'enotif_impersonal_salutation' => 'thành viên {{SITENAME}}',
 'changed'                      => 'thay đổi',
 'created'                      => 'viết mới',
-'deleted'                      => 'xóa đi',
-'enotif_deletedpagetext'       => 'Trang này không còn tồn tại.',
 'enotif_subject'               => '$PAGETITLE tại {{SITENAME}} đã được $CHANGEDORCREATED bởi $PAGEEDITOR',
 'enotif_lastvisited'           => 'Xem $1 để biết các thay đổi diễn ra từ lần xem cuối cùng của bạn.',
 'enotif_lastdiff'              => 'Vào $1 để xem sự thay đổi này.',
 'enotif_anon_editor'           => 'thành viên vô danh $1',
-'enotif_rev_info'              => 'Xem phiên bản hiện nay tại $1.',
 'enotif_body'                  => '$WATCHINGUSERNAME thân mến,
 
 

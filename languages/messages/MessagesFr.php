@@ -2145,13 +2145,10 @@ L’adresse électronique que vous avez indiquée dans [[Special:Preferences|vos
 'enotif_impersonal_salutation' => 'Utilisateur de {{SITENAME}}',
 'changed'                      => 'modifiée',
 'created'                      => 'créée',
-'deleted'                      => 'supprimée',
-'enotif_deletedpagetext'       => "Cette page n'est plus disponible",
 'enotif_subject'               => 'La page $PAGETITLE de {{SITENAME}} a été $CHANGEDORCREATED par $PAGEEDITOR',
 'enotif_lastvisited'           => 'Voyez $1 pour tous les changements depuis votre dernière visite.',
 'enotif_lastdiff'              => 'Voyez $1 pour visualiser ces changements.',
 'enotif_anon_editor'           => 'utilisateur non-enregistré $1',
-'enotif_rev_info'              => 'Visitez $1 pour visualiser la version actuelle',
 'enotif_body'                  => 'Cher $WATCHINGUSERNAME,
 
 La page « $PAGETITLE » de {{SITENAME}} a été $CHANGEDORCREATED le $PAGEEDITDATEANDTIME par « $PAGEEDITOR ». $REVINFO

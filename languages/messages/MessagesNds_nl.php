@@ -2050,13 +2050,10 @@ Toekomstige wiezigingen op disse pagina en de overlegpagina zullen hier vermeld 
 'enotif_impersonal_salutation' => '{{SITENAME}}-gebruker',
 'changed'                      => 'ewiezig',
 'created'                      => 'an-emaak',
-'deleted'                      => 'vort-edaon',
-'enotif_deletedpagetext'       => 'Disse pagina is neet langer beschikbaor.',
 'enotif_subject'               => '{{SITENAME}}-pagina $PAGETITLE is $CHANGEDORCREATED deur $PAGEEDITOR',
 'enotif_lastvisited'           => 'Zie $1 veur alle wiezigingen sinds joew leste bezeuk.',
 'enotif_lastdiff'              => 'Zie $1 um disse wieziging te bekieken.',
 'enotif_anon_editor'           => 'annenieme gebruker $1',
-'enotif_rev_info'              => "Zie $1 veur de versie zoas 't noen is",
 'enotif_body'                  => 'Beste $WATCHINGUSERNAME,
 
 De pagina $PAGETITLE op {{SITENAME}} is $CHANGEDORCREATED op $PAGEEDITDATEANDTIME deur $PAGEEDITOR. $REVINFO

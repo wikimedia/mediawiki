@@ -2057,13 +2057,10 @@ URL이 맞고 해당 웹사이트가 작동하는지 확인해주세요.',
 'enotif_impersonal_salutation' => '{{SITENAME}} 사용자',
 'changed'                      => '바꾸',
 'created'                      => '만들',
-'deleted'                      => '삭제됨',
-'enotif_deletedpagetext'       => '이 문서는 더 이상 사용할 수 없습니다.',
 'enotif_subject'               => '{{SITENAME}}에서 $PAGEEDITOR 사용자가 $PAGETITLE 문서를 $CHANGEDORCREATED었습니다.',
 'enotif_lastvisited'           => '마지막으로 방문한 뒤 생긴 모든 변경 사항을 보려면 $1을(를) 보십시오.',
 'enotif_lastdiff'              => '이 바뀐 내용을 보려면 $1을 보십시오.',
 'enotif_anon_editor'           => '익명 사용자 $1',
-'enotif_rev_info'              => '현재의 문서는 $1 에서 볼 수 있습니다.',
 'enotif_body'                  => '$WATCHINGUSERNAME님,
 
 {{SITENAME}}의 $PAGETITLE 문서를 $PAGEEDITDATEANDTIME에 $PAGEEDITOR님이 $CHANGEDORCREATED었습니다. $REVINFO

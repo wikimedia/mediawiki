@@ -1494,7 +1494,6 @@ HTML ट्यागहरु जाँच्नुहोस् ।',
 'enotif_impersonal_salutation' => '{{SITENAME}} प्रयोगकर्ता',
 'changed'                      => 'परिवर्तन भइसकेको',
 'created'                      => 'शृजित',
-'deleted'                      => 'मेटियो',
 'enotif_anon_editor'           => 'अज्ञात  प्रयोगकर्ता  $1',
 
 # Delete

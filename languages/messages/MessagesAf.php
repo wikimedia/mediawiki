@@ -1827,13 +1827,10 @@ As u die bladsy later van u dophoulys wil verwyder, kliek \"verwyder van dophoul
 'enotif_impersonal_salutation' => '{{SITENAME}} gebruiker',
 'changed'                      => 'verander',
 'created'                      => 'geskep',
-'deleted'                      => 'geskrap',
-'enotif_deletedpagetext'       => 'Hierdie bladsy is nie meer beskikbaar nie.',
 'enotif_subject'               => 'Bladsy $PAGETITLE op {{SITENAME}} is $CHANGEDORCREATED deur $PAGEEDITOR',
 'enotif_lastvisited'           => 'Sien $1 vir alle wysigings sedert u laaste besoek.',
 'enotif_lastdiff'              => 'Sien $1 om hierdie wysiging te bekyk.',
 'enotif_anon_editor'           => 'anonieme gebruiker $1',
-'enotif_rev_info'              => 'Sien $1 vir die huidige weergawe.',
 'enotif_body'                  => 'Beste $WATCHINGUSERNAME,
 
 Die bladsy $PAGETITLE op {{SITENAME}} is $CHANGEDORCREATED op $PAGEEDITDATEANDTIME deur $PAGEEDITOR. $REVINFO

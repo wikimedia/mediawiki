@@ -1926,13 +1926,10 @@ Template:搞清楚',
 'enotif_impersonal_salutation' => '{{SITENAME}}用戶',
 'changed'                      => '修改過',
 'created'                      => '建立過',
-'deleted'                      => '刪除過',
-'enotif_deletedpagetext'       => '呢一版而家已經唔響度。',
 'enotif_subject'               => '{{SITENAME}}嘅頁面$PAGETITLE已由$PAGEEDITOR$CHANGEDORCREATED',
 'enotif_lastvisited'           => '你上次視察以嚟嘅修改請睇$1。',
 'enotif_lastdiff'              => '睇$1去睇吓呢一次更改。',
 'enotif_anon_editor'           => '匿名用戶$1',
-'enotif_rev_info'              => '現時修訂請睇$1。',
 'enotif_body'                  => '$WATCHINGUSERNAME先生／小姐你好，
 
 {{SITENAME}}嘅頁面$PAGETITLE已經由$PAGEEDITOR喺$PAGEEDITDATEANDTIME$CHANGEDORCREATED。$REVINFO

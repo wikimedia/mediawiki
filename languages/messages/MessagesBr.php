@@ -1908,13 +1908,10 @@ Evit tennañ ar bajenn-mañ a-ziwar ho rollad evezhiañ. klikit war "Paouez da e
 'enotif_impersonal_salutation' => 'implijer {{SITENAME}}',
 'changed'                      => 'kemmet',
 'created'                      => 'Krouet',
-'deleted'                      => 'diverket',
-'enotif_deletedpagetext'       => "N'eo ket hegerz ar bajenn-mañ ken.",
 'enotif_subject'               => '$CHANGEDORCREATED eo bet pajenn $PAGETITLE {{SITENAME}} gant $PAGEEDITOR',
 'enotif_lastvisited'           => 'Sellet ouzh $1 evit gwelet an holl gemmoù abaoe ho selladenn ziwezhañ.',
 'enotif_lastdiff'              => "Gwelet $1 evit sellet ouzh ar c'hemm-mañ.",
 'enotif_anon_editor'           => 'implijer dizanv $1',
-'enotif_rev_info'              => 'Sellet ouzh $1 a-benn gwelet ar stumm red.',
 'enotif_body'                  => '$WATCHINGUSERNAME ker,
 
 $CHANGEDORCREATED eo bet ar bajenn {{SITENAME}} evit $PAGETITLE gant $PAGEEDITOR d\'an $PAGEEDITDATEANDTIME, gwelet $PAGETITLE_URL evit gwelet ar stumm red.

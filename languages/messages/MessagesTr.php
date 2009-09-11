@@ -1969,13 +1969,10 @@ Sayfayı izleme listenizden çıkarmak istediğinizde "sayfayı izlemeyi durdur"
 'enotif_impersonal_salutation' => '{{SITENAME}} kullanıcı',
 'changed'                      => 'değiştirildi',
 'created'                      => 'oluşturuldu',
-'deleted'                      => 'silindi',
-'enotif_deletedpagetext'       => 'Bu sayfa artık mevcut değil.',
 'enotif_subject'               => '{{SITENAME}} sayfası $PAGETITLE, $PAGEEDITOR tarafından $CHANGEDORCREATED',
 'enotif_lastvisited'           => "Son ziyaretinizden bu yana olan tüm değişiklikleri görmek için $1'e bakın.",
 'enotif_lastdiff'              => 'Bu değişikliği görmek için, $1 sayfasına bakınız.',
 'enotif_anon_editor'           => 'anonim kullanıcı $1',
-'enotif_rev_info'              => 'Geçerli revizyon için $1 sayfasına bakın.',
 'enotif_body'                  => 'Sayın $WATCHINGUSERNAME,
 
 {{SITENAME}} sitesindeki $PAGETITLE başlıklı sayfa $PAGEEDITDATEANDTIME tarihinde $PAGEEDITOR tarafından $CHANGEDORCREATED. $REVINFO

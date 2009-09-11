@@ -1862,8 +1862,6 @@ Os ydych am ddiddymu'r dudalen o'r rhestr gwylio, cliciwch ar \"Stopio gwylio\" 
 'enotif_impersonal_salutation' => 'at ddefnyddiwr {{SITENAME}}',
 'changed'                      => 'Newidiwyd',
 'created'                      => 'Crewyd',
-'deleted'                      => 'Dilewyd',
-'enotif_deletedpagetext'       => "Nid yw'r dudalen hon ar gael rhagor.",
 'enotif_subject'               => '$CHANGEDORCREATED y dudalen \'$PAGETITLE\' ar {{SITENAME}} gan $PAGEEDITOR',
 'enotif_lastvisited'           => 'Gwelwch $1 am bob newid ers eich ymweliad blaenorol.',
 'enotif_lastdiff'              => 'Gallwch weld y newid ar $1.',

@@ -2077,13 +2077,10 @@ Każda zmiana treści tej strony lub związanej z nią strony dyskusji zostanie 
 'enotif_impersonal_salutation' => 'użytkownik {{GRAMMAR:D.lp|{{SITENAME}}}}',
 'changed'                      => 'zmieniona',
 'created'                      => 'utworzona',
-'deleted'                      => 'usunięta',
-'enotif_deletedpagetext'       => 'Ta strona nie jest już dostępna.',
 'enotif_subject'               => 'Strona $PAGETITLE w {{GRAMMAR:MS.lp|{{SITENAME}}}} została $CHANGEDORCREATED przez użytkownika $PAGEEDITOR',
 'enotif_lastvisited'           => 'Zobacz na stronie $1 wszystkie zmiany od Twojej ostatniej wizyty.',
 'enotif_lastdiff'              => 'Zobacz na stronie $1 tę zmianę.',
 'enotif_anon_editor'           => 'użytkownik anonimowy $1',
-'enotif_rev_info'              => 'Zobacz aktualną wersją na stronie $1.',
 'enotif_body'                  => 'Szanowny $WATCHINGUSERNAME,
 
 strona $PAGETITLE w {{GRAMMAR:MS.lp|{{SITENAME}}}} została $CHANGEDORCREATED $PAGEEDITDATEANDTIME przez użytkownika $PAGEEDITOR. $REVINFO

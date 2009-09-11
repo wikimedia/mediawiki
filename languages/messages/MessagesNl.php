@@ -2206,13 +2206,10 @@ Toekomstige bewerkingen van deze pagina en de bijbehorende overlegpagina worden 
 'enotif_impersonal_salutation' => 'gebruiker van {{SITENAME}}',
 'changed'                      => 'gewijzigd',
 'created'                      => 'aangemaakt',
-'deleted'                      => 'verwijderd',
-'enotif_deletedpagetext'       => 'Deze pagina is niet langer beschikbaar.',
 'enotif_subject'               => 'Pagina $PAGETITLE op {{SITENAME}} is $CHANGEDORCREATED door $PAGEEDITOR',
 'enotif_lastvisited'           => 'Zie $1 voor alle wijzigingen sinds uw laatste bezoek.',
 'enotif_lastdiff'              => 'Zie $1 om deze wijziging te zien.',
 'enotif_anon_editor'           => 'anonieme gebruiker $1',
-'enotif_rev_info'              => 'Zie $1 voor de huidige versie.',
 'enotif_body'                  => 'Beste $WATCHINGUSERNAME,
 
 De pagina $PAGETITLE op {{SITENAME}} is $CHANGEDORCREATED op $PAGEEDITDATEANDTIME door $PAGEEDITOR. $REVINFO

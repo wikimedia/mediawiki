@@ -1848,13 +1848,10 @@ PICT # misc.
 'enotif_impersonal_salutation' => '{{SITENAME}} кыттааччыта',
 'changed'                      => 'уларыппыт (уларытыллыбыт)',
 'created'                      => 'айыллыбыт',
-'deleted'                      => 'сотулунна',
-'enotif_deletedpagetext'       => 'Бу сирэй билигин көстөр кыаҕа суох.',
 'enotif_subject'               => '«{{SITENAME}}» $PAGETITLE кыттааччыга сыһыаннаах сирэйи $PAGEEDITOR кыттааччы $CHANGEDORCREATED',
 'enotif_lastvisited'           => 'Бутэһик киирииҥ кэнниттэн оҥоһуллубут уларыйыылары барытын көрөргө манна киир: $1.',
 'enotif_lastdiff'              => 'Уларытыыны манна көрүҥ: $1.',
 'enotif_anon_editor'           => 'ааттамматах кыттааччы $1',
-'enotif_rev_info'              => 'Билиҥҥи барылы көрөргө маны көр: $1.',
 'enotif_body'                  => 'Күндү $WATCHINGUSERNAME,
 
 «{{SITENAME}}» $PAGETITLE кыттаачыга сыһыаннаах сирэйи $PAGEEDITDATEANDTIME $PAGEEDITOR кыттааччы $CHANGEDORCREATED. $REVINFO

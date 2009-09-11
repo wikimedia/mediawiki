@@ -2086,7 +2086,6 @@ Framtida ändringar av den här sidan och dess diskussionssida kommer att listas
 'enotif_impersonal_salutation' => '{{SITENAME}}användare',
 'changed'                      => 'ändrad',
 'created'                      => 'skapad',
-'deleted'                      => 'raderad',
 'enotif_subject'               => '{{SITENAME}}-sidan $PAGETITLE har blivit $CHANGEDORCREATED av $PAGEEDITOR',
 'enotif_lastvisited'           => 'På $1 återfinner du alla ändringar sedan ditt senaste besök.',
 'enotif_lastdiff'              => 'Se denna ändring på $1',

@@ -2084,13 +2084,10 @@ Ak budete chcieť neskôr stránku odstrániť zo sledovaných stránok, kliknit
 'enotif_impersonal_salutation' => 'používateľ {{GRAMMAR:genitív|{{SITENAME}}}}',
 'changed'                      => 'zmene',
 'created'                      => 'vytvorení',
-'deleted'                      => 'zmazaniu',
-'enotif_deletedpagetext'       => 'Táto stránka už nie je dostupná.',
 'enotif_subject'               => '{{SITENAME}} - stránka $PAGETITLE bola $CHANGEDORCREATED $PAGEEDITOR',
 'enotif_lastvisited'           => 'Všetky zmeny od vašej poslednej návštevy uvidíte na $1.',
 'enotif_lastdiff'              => 'Zmenu uvidíte v $1.',
 'enotif_anon_editor'           => 'anonymný používateľ $1',
-'enotif_rev_info'              => 'Aktuálnu revíziu nájdete na $1.',
 'enotif_body'                  => 'Drahý $WATCHINGUSERNAME,
 
 na {{GRAMMAR:lokál|{{SITENAME}}}} došlo $PAGEEDITDATEANDTIME k $CHANGEDORCREATED stránky $PAGETITLE používateľom $PAGEEDITOR. $REVINFO

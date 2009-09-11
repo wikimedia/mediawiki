@@ -2068,13 +2068,10 @@ PICT # різні
 'enotif_impersonal_salutation' => 'Користувач {{grammar:genitive|{{SITENAME}}}}',
 'changed'                      => 'змінено',
 'created'                      => 'створено',
-'deleted'                      => 'вилучена',
-'enotif_deletedpagetext'       => 'Ця сторінка більше не доступна.',
 'enotif_subject'               => 'Сторінку проекту «{{SITENAME}}» $PAGETITLE було $CHANGEDORCREATED користувачем $PAGEEDITOR',
 'enotif_lastvisited'           => 'Див. $1 для перегляду всіх змін, що відбулися після вашого останнього перегляду.',
 'enotif_lastdiff'              => 'Див. $1 для ознайомлення з цією зміною.',
 'enotif_anon_editor'           => 'анонімний користувач $1',
-'enotif_rev_info'              => 'Переглянути поточну версію можна тут: $1.',
 'enotif_body'                  => 'Шановний/на $WATCHINGUSERNAME,
 
 $PAGEEDITDATEANDTIME сторінка проекту «{{SITENAME}}» $PAGETITLE була $CHANGEDORCREATED користувачем $PAGEEDITOR, див. $PAGETITLE_URL, щоб переглянути поточну версію.

@@ -1961,12 +1961,10 @@ $2',
 'enotif_impersonal_salutation' => 'Потребител на {{SITENAME}}',
 'changed'                      => 'променена',
 'created'                      => 'създадена',
-'enotif_deletedpagetext'       => 'Тази страница вече не е налична.',
 'enotif_subject'               => 'Страницата $PAGETITLE в {{SITENAME}} е била $CHANGEDORCREATED от $PAGEEDITOR',
 'enotif_lastvisited'           => 'Преглед на всички промени след последното ви посещение: $1.',
 'enotif_lastdiff'              => 'Преглед на тази промяна: $1.',
 'enotif_anon_editor'           => 'анонимен потребител $1',
-'enotif_rev_info'              => 'Вижте $1 за текущата версия.',
 'enotif_body'                  => 'Уважаеми(а) $WATCHINGUSERNAME,
 
 на $PAGEEDITDATEANDTIME страницата „$PAGETITLE“ в {{SITENAME}} е била $CHANGEDORCREATED от $PAGEEDITOR.
