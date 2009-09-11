@@ -281,7 +281,7 @@ class EmailNotification {
 	 * @param $minorEdit
 	 * @param $oldid (default: false)
 	 */
-	function notifyOnPageChange($editor, $title, $timestamp, $summary, $minorEdit, $oldid = false, $deleted = false ) {
+	function notifyOnPageChange($editor, $title, $timestamp, $summary, $minorEdit, $oldid = false) {
 		global $wgEnotifUseJobQ, $wgEnotifWatchlist, $wgShowUpdatedMarker;
 
 		if ($title->getNamespace() < 0)
@@ -328,18 +328,16 @@ class EmailNotification {
 				"summary" => $summary,
 				"minorEdit" => $minorEdit,
 				"oldid" => $oldid,
-				"watchers" => $watchers,
-				"deleted" => $deleted
-			);
+				"watchers" => $watchers);
 			$job = new EnotifNotifyJob( $title, $params );
 			$job->insert();
 		} else {
-			$this->actuallyNotifyOnPageChange( $editor, $title, $timestamp, $summary, $minorEdit, $oldid, $watchers, $deleted );
+			$this->actuallyNotifyOnPageChange( $editor, $title, $timestamp, $summary, $minorEdit, $oldid, $watchers );
 		}
 
 	}
 
-	/**
+	/*
 	 * Immediate version of notifyOnPageChange().
 	 *
 	 * Send emails corresponding to the user $editor editing the page $title.
@@ -352,9 +350,8 @@ class EmailNotification {
 	 * @param $minorEdit bool
 	 * @param $oldid int Revision ID
 	 * @param $watchers array of user IDs
-	 * @param $deleted boolean If page was deleted
 	 */
-	function actuallyNotifyOnPageChange( $editor, $title, $timestamp, $summary, $minorEdit, $oldid, $watchers, $deleted ) {
+	function actuallyNotifyOnPageChange($editor, $title, $timestamp, $summary, $minorEdit, $oldid, $watchers) {
 		# we use $wgPasswordSender as sender's address
 		global $wgEnotifWatchlist;
 		global $wgEnotifMinorEdits, $wgEnotifUserTalk;
@@ -376,7 +373,6 @@ class EmailNotification {
 		$this->minorEdit = $minorEdit;
 		$this->oldid = $oldid;
 		$this->editor = $editor;
-		$this->deleted = $deleted;
 		$this->composed_common = false;
 
 		$userTalkId = false;
@@ -454,10 +450,6 @@ class EmailNotification {
 			$keys['$NEWPAGE'] = wfMsgForContent( 'enotif_lastvisited', $difflink );
 			$keys['$OLDID']   = $this->oldid;
 			$keys['$CHANGEDORCREATED'] = wfMsgForContent( 'changed' );
-		} else if( $this->deleted ) {
-			$keys['$NEWPAGE'] = wfMsgForContent( 'enotif_deletedpagetext' );
-			$keys['$OLDID']   = '';
-			$keys['$CHANGEDORCREATED'] = wfMsgForContent( 'deleted' );
 		} else {
 			$keys['$NEWPAGE'] = wfMsgForContent( 'enotif_newpagetext' );
 			# clear $OLDID placeholder in the message template
@@ -476,8 +468,7 @@ class EmailNotification {
 		$body = strtr( $body, $keys );
 		$pagetitle = $this->title->getPrefixedText();
 		$keys['$PAGETITLE']          = $pagetitle;
-		$keys['$REVINFO'] = $this->deleted ? '' : 
-			wfMsgForContent( 'enotif_rev_info', $this->title->getFullUrl() );
+		$keys['$PAGETITLE_URL']      = $this->title->getFullUrl();
 
 		$keys['$PAGEMINOREDIT']      = $medit;
 		$keys['$PAGESUMMARY']        = $summary;
