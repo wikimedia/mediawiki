@@ -1,0 +1,185 @@
+{{Extension|templatemode=
+|name          = StringFunctionsEscaped
+|status        = beta
+|type1         = parser function
+|type2         =
+|hook1         = LanguageGetMagic
+|hook2         =
+|username      = [[user:jpond | Jack D. Pond ]]
+|author        = 
+|description   = Defines a superset of string parser functions that allow character escaping in the 'search for' and 'replace with' arguments.
+|image         =
+|imagesize     =
+|version       = 1.0.0
+|update        = 2009-09-11
+|mediawiki     = Tested with 1.14,1.15,1.16A, Should work with all
+|php           =
+|license       = GNU Version 2
+|download      = 
+|readme        =
+|changelog     =
+|parameters    = $wgPFEnableStringFunctions
+|tags          = 
+|rights        = 
+|example       =
+|compatibility =
+}}
+
+
+
+==What can this extension do?==
+
+Wikitext allows the imbedding of certain control characters (newline, tab, etc.).  These parser functions allow them to be identified and used with standard c-type escape character sequence (/n,/t, etc.).
+
+These can be used (among other things) to make infoblox-type templates much more WYSIWIG (see Examples) for novice/non-technical users.
+
+==Usage==
+
+These functions are all invoked exactly as their string parser functions would be (except with the '_e' appended to distinguish).
+
+===  pos_e: (string position)===
+
+<nowiki>{{#pos_e:value|key|offset}}</nowiki>
+
+Returns the first position of key inside the given value, or an empty string.
+If offset is defined, this method will not search the first offset characters.
+
+See: http://php.net/manual/function.strpos.php
+
+=== rpos_e: (string position, reverse) ===
+<nowiki>{{#rpos_e:value|key}}</nowiki>
+Returns the last position of key inside the given value, or -1 if the key is not found. When using this to search for the last delimiter, add +1 to the  result to retreive position after the last delimiter. This also works when the delimiter is not found, because "-1 + 1" is zero, which is the beginning of the given value.
+
+See: http://php.net/manual/function.strrpos.php
+
+=== pad_e: (pad string) ===
+<nowiki>{{#pad_e:value|length|with|direction}}</nowiki>
+
+Returns the value padded to the certain length with the given with string.
+If the with string is not given, spaces are used for padding. The direction may be specified as: 'left', 'center' or 'right'.
+
+See: http://php.net/manual/function.str-pad.php
+
+=== replace_e: (string replace) ===
+
+<nowiki>{{#replace_e:value|from|to}}</nowiki> 
+
+Returns the given value with all occurences of 'from' replaced with 'to'.
+
+See: http://php.net/manual/function.str-replace.php
+
+=== explode_e: (explode string) ===
+<nowiki>{{#explode_e:value|delimiter|position}}</nowiki>
+
+Splits the given value into pieces by the given delimiter and returns the position-th piece. Empty string is returned if there are not enough pieces.
+
+Note: Pieces are counted from 0.<br>
+Note: A negative value can be used to count pieces from the end, instead of counting from the beginning. The last piece is at position -1.
+
+See: http://php.net/manual/function.explode.php
+
+==Download instructions==
+<!-- revise these instructions if code is available via a download site -->
+Please cut and paste the code found [[#Code|below]] and place it in <code>$IP/extensions/ExtensionName/ExtensionName.php</code>.  ''Note: [[Manual:$IP|$IP]] stands for the root directory of your MediaWiki installation, the same directory that holds [[Manual:LocalSettings.php|LocalSettings.php]]''.
+
+==Installation==
+String functions were integrated into [[Extension:ParserFunctions]] extension as of [[Special:Code/MediaWiki/50997|r50997]]. This revision of [[Extension:ParserFunctions]] is designed for MediaWiki 1.16, but updating to the trunk version may work on previous versions.  If you are using a prior version of [[Extension:ParserFunctions]], you will also have to include [[Extension:StringFunctions]].
+
+Install and test [[Extension:ParserFunctions]] and (if necessary) [[Extension:StringFunctions]] prior to installing this extension.
+
+This extension must be included AFTER the invocation of the string parser functions.
+To install this extension, add the following to [[Manual:LocalSettings.php|LocalSettings.php]]:
+
+=== For MediaWiki 1.15.1 and before ===
+<source lang="php">
+require_once("$IP/extensions/ParserFunctions/ParserFunctions.php");
+require_once("$IP/extensions/StringFunctions/StringFunctions.php");
+require_once("$IP/extensions/StringFunctionsEscaped/StringFunctionsEscaped.php");
+</source>
+
+=== For MediaWiki 1.16a and after ===
+<source lang="php">
+require_once("$IP/extensions/ParserFunctions/ParserFunctions.php");
+$wgPFEnableStringFunctions = true;  // Note: this must be after ParserFunctions and before StringFunctionsEscaped
+require_once("$IP/extensions/StringFunctionsEscaped/StringFunctionsEscaped.php");
+</source>
+==Examples==
+
+=== pos_e ===
+
+<pre>
+{{#pos_e:Line 1
+Line 2
+Line 3|\n|7}}
+
+Returns:
+
+13
+</pre>
+
+=== rpos_e ===
+<pre>
+{{#rpos_e:Line 1
+Line 2
+Line 3|\n}}
+
+Returns:
+
+13
+</pre>
+
+=== pad_e ===
+<pre>
+~~{{#pad_e:xox|9|\n|center}}~~
+
+Returns:
+
+~~ 
+
+
+xox 
+
+
+~~ 
+</pre>
+
+=== replace_e ===
+<pre>
+{{#replace_e:Line 1
+Line 2
+Line 3|\n|<br>\n}}
+
+Returns:
+
+Line 1<br>
+Line 2<br>
+Line 3
+
+Which would display as:
+
+Line 1
+Line 2
+Line 3
+
+Rather than the unescaped:
+
+Line 1 Line 2 Line 3
+
+</pre>
+
+=== explode_e ===
+<pre>
+{{#explode_e:Line 1
+Line 2
+Line 3|\n|1}}
+
+Returns:
+
+Line 2
+
+</pre>
+==See also==
+
+* [[Extension:ParserFunctions]]
+* [[Extension:StringFunctions]]
+* [[Extension:Lua]]
