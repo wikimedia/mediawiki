@@ -871,7 +871,8 @@ $2',
 شما باید وارد سیستم شوید تا گذرواژهٔ خود را تغییر بدهید.
 
 اگر این حساب اشتباهی ساخته شده است، این پیغام را نادیده بگیرید.',
-'login-throttled'            => 'شما به تازگی چندین بار تلاش کرده‌اید که گذرواژهٔ این حساب کاربری را وارد کنید. لطفاً پیش از آن که دوباره تلاش کنید، صبر کنید.',
+'login-throttled'            => 'شما به تازگی چندین بار برای ورود به سیستم تلاش کرده‌اید.
+لطفاً پیش از آن که دوباره تلاش کنید، صبر کنید.',
 'loginlanguagelabel'         => 'زبان: $1',
 
 # Password reset dialog
@@ -2226,9 +2227,9 @@ http://www.mediawiki.org/wiki/Manual:Image_Authorization را ببینید.',
 'enotif_lastvisited'           => 'برای دیدن همهٔ تغییرات از آخرین باری که سر زده‌اید $1 را ببینید.',
 'enotif_lastdiff'              => 'برای نمایش این تغییر $1 را ببینید.',
 'enotif_anon_editor'           => 'کاربر ناشناس $1',
-'enotif_body'                  => 'WATCHINGUSERNAME گرامی،
+'enotif_body'                  => '$WATCHINGUSERNAME گرامی،
 
-صفحهٔ «$PAGETITLE» {{SITENAME}} در $PAGEEDITDATEANDTIME به دست $PAGEEDITOR $CHANGEDORCREATED است. $REVINFO
+صفحهٔ «$PAGETITLE» {{SITENAME}} در $PAGEEDITDATE به دست $PAGEEDITOR $CHANGEDORCREATED است. برای دیدن نسخهٔ کنونی به $PAGETITLE_URL بروید.
 
 $NEWPAGE
 

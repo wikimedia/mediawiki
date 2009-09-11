@@ -1370,7 +1370,7 @@ Si daboi s'à gana d'eliminà la pàgina da la listha di l'abbaidaddi ippiziarii
 'enotif_body'                  => 'Gintiri $WATCHINGUSERNAME,
 
 
-La pàgina $PAGETITLE di {{SITENAME}} è isthadda $CHANGEDORCREATED in data $PAGEEDITDATEANDTIME da $PAGEEDITOR; la versioni attuari s\'acciappa a l\'indirizzu $PAGETITLE_URL.
+La pàgina $PAGETITLE di {{SITENAME}} è isthadda $CHANGEDORCREATED in data $PAGEEDITDATE da $PAGEEDITOR; la versioni attuari s\'acciappa a l\'indirizzu $PAGETITLE_URL.
 
 $NEWPAGE
 

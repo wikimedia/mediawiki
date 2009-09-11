@@ -1915,7 +1915,7 @@ WÃ¤nn Du d Syte speter wider vu dr Lischt witt stryyche, deno druck eifach uf â€
 'enotif_anon_editor'           => 'Anonyme Benutzer $1',
 'enotif_body'                  => 'Liebe/r $WATCHINGUSERNAME,
 
-d {{SITENAME}}-Syte $PAGETITLE isch vum $PAGEEDITOR am $PAGEEDITDATEANDTIME $CHANGEDORCREATED wore. $REVINFO
+d {{SITENAME}}-Syte $PAGETITLE isch vum $PAGEEDITOR am $PAGEEDITDATE $CHANGEDORCREATED wore, di aktuelli Version isch: $PAGETITLE_URL
 
 
 $NEWPAGE

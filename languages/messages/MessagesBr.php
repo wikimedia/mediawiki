@@ -568,7 +568,8 @@ Merkit ur chomlec'h reizh pe goullonderit ar vaezienn-mañ.",
 Mat e vefe deoc\'h en em lugañ ha cheñch ho ker-tremen bremañ.
 
 Na daolit ket evezh ouzh ar c\'hemenn-mañ m\'eo bet krouet ar gont dre fazi.',
-'login-throttled'            => "Re oc'h eus klasket mont ouzh ger-tremen ar gont-mañ. Gortozit a-raok klask en-dro.",
+'login-throttled'            => "Re oc'h eus klasket en em lugañ en aner. 
+Gortozit a-raok klask en-dro.",
 'loginlanguagelabel'         => 'Yezh : $1',
 
 # Password reset dialog
@@ -1914,7 +1915,7 @@ Evit tennañ ar bajenn-mañ a-ziwar ho rollad evezhiañ. klikit war "Paouez da e
 'enotif_anon_editor'           => 'implijer dizanv $1',
 'enotif_body'                  => '$WATCHINGUSERNAME ker,
 
-$CHANGEDORCREATED eo bet ar bajenn {{SITENAME}} evit $PAGETITLE gant $PAGEEDITOR d\'an $PAGEEDITDATEANDTIME, gwelet $PAGETITLE_URL evit gwelet ar stumm red.
+$CHANGEDORCREATED eo bet ar bajenn {{SITENAME}} evit $PAGETITLE gant $PAGEEDITOR d\'an $PAGEEDITDATE, gwelet $PAGETITLE_URL evit gwelet ar stumm red.
 
 $NEWPAGE
 

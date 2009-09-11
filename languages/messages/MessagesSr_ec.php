@@ -1901,7 +1901,7 @@ $2',
 'enotif_anon_editor'           => 'анонимни корисник $1',
 'enotif_body'                  => 'Драги $WATCHINGUSERNAME,
 
-{{SITENAME}} страна $PAGETITLE је била $CHANGEDORCREATED $PAGEEDITDATEANDTIME од стране $PAGEEDITOR,
+{{SITENAME}} страна $PAGETITLE је била $CHANGEDORCREATED $PAGEEDITDATE од стране $PAGEEDITOR,
 погледајте {{fullurl:$PAGETITLE}} за тренутну верзију.
 
 $NEWPAGE

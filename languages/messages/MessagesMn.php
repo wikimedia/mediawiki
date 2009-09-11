@@ -1779,7 +1779,7 @@ URL нь зөв болон сайт ажиллагаатай байгаа эсэ
 'enotif_anon_editor'           => '$1 бүртгэлгүй хэрэглэгч',
 'enotif_body'                  => '$WATCHINGUSERNAME танаа,
 
-{{SITENAME}}-н $PAGETITLE хуудаст $PAGEEDITOR $PAGEEDITDATEANDTIME-нд $CHANGEDORCREATED үйлдэл хийжээ. Одоогийн засварыг $PAGETITLE_URL хуудсаас харна уу.
+{{SITENAME}}-н $PAGETITLE хуудаст $PAGEEDITOR $PAGEEDITDATE-нд $CHANGEDORCREATED үйлдэл хийжээ. Одоогийн засварыг $PAGETITLE_URL хуудсаас харна уу.
 
 $NEWPAGE
 

@@ -1731,7 +1731,7 @@ Wan du die Artikkel wier fon ju Foulgelieste ou hoalje moatest, klik ap ju Siede
 'enotif_anon_editor'           => 'Anonyme Benutser $1',
 'enotif_body'                  => 'Ljoowe $WATCHINGUSERNAME,
 
-ju {{SITENAME}} Siede $PAGETITLE wuude fon $PAGEEDITOR an dän $PAGEEDITDATE uum $PAGEEDITTIME Uure $CHANGEDORCREATED. $REVINFO
+ju {{SITENAME}} Siede $PAGETITLE wuude fon $PAGEEDITOR an dän $PAGEEDITDATE uum $PAGEEDITTIME Uure $CHANGEDORCREATED
 
 Aktuälle Version: $PAGETITLE_URL
 

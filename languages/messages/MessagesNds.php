@@ -1897,7 +1897,7 @@ Mehr Informatschonen över enkelte Rechten staht ünner [[{{MediaWiki:Listgroupr
 'enotif_anon_editor'           => 'Anonymen Bruker $1',
 'enotif_body'                  => 'Leve/n $WATCHINGUSERNAME,
 
-de {{SITENAME}}-Siet „$PAGETITLE“ is vun $PAGEEDITOR an’n $PAGEEDITDATEANDTIME $CHANGEDORCREATED ännert worrn.
+de {{SITENAME}}-Siet „$PAGETITLE“ is vun $PAGEEDITOR an’n $PAGEEDITDATE $CHANGEDORCREATED ännert worrn.
 
 Aktuelle Version: $PAGETITLE_URL
 

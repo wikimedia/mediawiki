@@ -646,7 +646,8 @@ Enigi bone formatita adreso aŭ malplenigi tiun kampon.',
 'createaccount-text'         => 'Iu kreis konton por via retadreso en {{SITENAME}} ($4) nomata "$2", kun pasvorto "$3". Vi ensalutu kaj ŝanĝu vian pasvorton nun.
 
 Vi povas ignori ĉi mesaĝon, se ĉi konto estis kreita erare.',
-'login-throttled'            => 'Vi tro ofte provis eniri la pasvorton de ĉi tiu konto. Bonvolu ĝisatendi kaj retrovi.',
+'login-throttled'            => 'Vi tro ofte provis eniri la pasvorton por ĉi tiu konto. 
+Bonvolu ĝisatendi antaŭ retrovi.',
 'loginlanguagelabel'         => 'Lingvo: $1',
 
 # Password reset dialog
@@ -1576,6 +1577,24 @@ Se la problemo kontinuas, kontaku [[Special:ListUsers/sysop|sisteman administran
 'upload-unknown-size'       => 'Nekonata grandeco',
 'upload-http-error'         => 'HTTP-eraro okazis: $1',
 
+# img_auth script messages
+'img-auth-accessdenied' => 'Atingo malpermisita',
+'img-auth-nopathinfo'   => 'Mankas PATH_INFO. (Informo pri dosiervojo.)
+Via servilo ne estas konfigurita por sendi ĉi tiun informon.
+Eble ĝi estas CGI-bazita kaj ne subtenas img_auth.
+Vidu http://www.mediawiki.org/wiki/Manual:Image_Authorization. (angle)',
+'img-auth-notindir'     => 'Petita vojo ne estas en la konfigurita alŝuta dosierujo.',
+'img-auth-badtitle'     => 'Ne eblas konstrui validan titolon de "$1".',
+'img-auth-nologinnWL'   => 'Vi ne estas ensalutita kaj "$1" ne estas en la blankalisto.',
+'img-auth-nofile'       => 'Dosiero "$1" ne ekzistas.',
+'img-auth-isdir'        => 'Vi provas atingi dosierujon "$1".
+Nur dosiera atingo estas permesita.',
+'img-auth-streaming'    => 'Elsendfluante "$1".',
+'img-auth-public'       => 'La funkcio de img_auth.php estas eligi dosierojn de privata vikio.
+Ĉi tiu vikio estas konfigurita kiel publika vikio.
+Por optimuma sekureco, img_auth.php estas malŝalta.',
+'img-auth-noread'       => 'Uzanto ne havas atingon por legi "$1".',
+
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'URL-o ne estis atingebla',
 'upload-curl-error6-text'  => 'La donata URL-o ne estis atingita. Bonvolu rekontroli ke la URL-o estas korekta kaj la retejo funkcias.',
@@ -1973,7 +1992,7 @@ La retadreso kiun vi enigis en [[Special:Preferences|viaj preferoj]] aperos kiel
 'enotif_anon_editor'           => 'anonima uzanto $1',
 'enotif_body'                  => 'Kara $WATCHINGUSERNAME,
 
-La paĝo $PAGETITLE de {{SITENAME}} estis $CHANGEDORCREATED je $PAGEEDITDATEANDTIME de $PAGEEDITOR, $REVINFO
+La paĝo $PAGETITLE de {{SITENAME}} estis $CHANGEDORCREATED je $PAGEEDITDATE de $PAGEEDITOR, vidu $PAGETITLE_URL por la nuna versio.
 
 $NEWPAGE
 

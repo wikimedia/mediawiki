@@ -750,7 +750,8 @@ Introduza um endereço correctamente formatado ou esvazie o campo.',
 'createaccount-text'         => 'Alguém criou uma conta de nome $2 para o seu endereço de email no wiki {{SITENAME}} ($4), tendo como palavra-chave #$3". Você deve se autenticar e alterar sua palavra-chave.
 
 Você pode ignorar esta mensagem caso a conta tenha sido criada por engano.',
-'login-throttled'            => 'Você fez muitas tentativas recentes de se autenticar com esta conta. Aguarde antes de tentar novamente.',
+'login-throttled'            => 'Você fez muitas tentativas recentes de se autenticar com esta conta.
+Por favor, aguarde antes de tentar novamente.',
 'loginlanguagelabel'         => 'Idioma: $1',
 
 # Password reset dialog
@@ -2086,7 +2087,7 @@ Modificações futuras em tal página e páginas de discussão a ela associadas 
 'enotif_body'                  => 'Caro $WATCHINGUSERNAME,
 
 
-A página $PAGETITLE na {{SITENAME}} foi $CHANGEDORCREATED a $PAGEEDITDATEANDTIME por $PAGEEDITOR. $REVINFO
+A página $PAGETITLE na {{SITENAME}} foi $CHANGEDORCREATED a $PAGEEDITDATE por $PAGEEDITOR; consulte $PAGETITLE_URL para a versão actual.
 
 $NEWPAGE
 

@@ -698,7 +698,7 @@ Por favor, entre una dirección bien formada, o vacíe ese campo.',
 La contraseña asignada automáticamente es "$3". Por favor entra ahora y cambia tu contraseña.
 
 Puedes ignorar este mensaje si esta cuenta fue creado erróneamente.',
-'login-throttled'            => 'Has intentado demasiadas veces dar la clave de esta cuenta. Por favor espera antes de intentarlo nuevamente.',
+'login-throttled'            => 'Has intentado demasiadas veces iniciar sesión. Por favor espera antes de intentarlo nuevamente.',
 'loginlanguagelabel'         => 'Idioma: $1',
 
 # Password reset dialog
@@ -2028,8 +2028,8 @@ Cuando quieras eliminar la página de tu lista de seguimiento, presiona «Dejar 
 'enotif_anon_editor'           => 'usuario anónimo $1',
 'enotif_body'                  => 'Estimado/a $WATCHINGUSERNAME,
 
-La página de {{SITENAME}} $PAGETITLE ha sido $CHANGEDORCREATED el $PAGEEDITDATEANDTIME por el usuario $PAGEEDITOR.
-$REVINFO
+La página de {{SITENAME}} $PAGETITLE ha sido $CHANGEDORCREATED el $PAGEEDITDATE por el usuario $PAGEEDITOR.
+La versión actual se encuentra en $PAGETITLE_URL
 
 $NEWPAGE
 

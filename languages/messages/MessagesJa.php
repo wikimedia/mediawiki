@@ -741,7 +741,7 @@ $2',
 'createaccount-text'         => 'この電子メールアドレスを連絡先として、{{SITENAME}} ($4) に「$2」という名前のアカウントが作成されました。パスワードは「$3」です。今すぐログインし、パスワードを変更してください。
 
 何かの手違いでアカウントが作成されたと思う場合、このメッセージは無視してください。',
-'login-throttled'            => 'パスワード入力の失敗が制限回数を超えました。しばらく時間をおいてから再度お試しください。',
+'login-throttled'            => 'ログインの失敗が制限回数を超えました。しばらく時間をおいてから再度お試しください。',
 'loginlanguagelabel'         => '言語: $1',
 
 # Password reset dialog
@@ -2009,13 +2009,12 @@ PICT # その他
 'enotif_anon_editor'           => '匿名利用者 $1',
 'enotif_body'                  => '$WATCHINGUSERNAME さん
 
-{{SITENAME}}のページ「$PAGETITLE」が $PAGEEDITDATEANDTIME に
-$PAGEEDITOR によって$CHANGEDORCREATEDされました。
-$REVINFO
+{{SITENAME}}のページ「$PAGETITLE」が $PAGEEDITDATE に
+$PAGEEDITOR によって$CHANGEDORCREATEDされました。現在の版を見るには次のURLにアクセスしてください: $PAGETITLE_URL
 
 $NEWPAGE
 
-編集内容の要約: $PAGESUMMARY($PAGEMINOREDIT)
+編集内容の要約: $PAGESUMMARY ($PAGEMINOREDIT)
 
 投稿者に連絡する:
 メール: $PAGEEDITOR_EMAIL

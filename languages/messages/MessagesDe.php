@@ -805,7 +805,8 @@ Besucher, die diese IP-Adresse verwenden, können momentan keine Benutzerkonten 
 'createaccount-text'         => 'Es wurde für dich ein Benutzerkonto „$2“ auf {{SITENAME}} ($4) erstellt. Das automatisch generierte Passwort für „$2“ ist „$3“. Du solltest dich nun anmelden und das Passwort ändern.
 
 Falls das Benutzerkonto irrtümlich angelegt wurde, kannst du diese Nachricht ignorieren.',
-'login-throttled'            => 'Du hast zu oft vergeblich versucht, dich unter diesem Benutzernamen anzumelden. Bitte warte, bevor du es erneut probierst.',
+'login-throttled'            => 'Du hast zu oft versucht, dich anzumelden.
+Bitte warte, bevor du es erneut probierst.',
 'loginlanguagelabel'         => 'Sprache: $1',
 
 # Password reset dialog
@@ -2157,7 +2158,7 @@ Wenn du die Seite wieder von deiner Beobachtungsliste entfernen möchtest, klick
 'enotif_anon_editor'           => 'Anonymer Benutzer $1',
 'enotif_body'                  => 'Hallo $WATCHINGUSERNAME,
 
-die {{SITENAME}}-Seite „$PAGETITLE“ wurde von $PAGEEDITOR am $PAGEEDITDATE um $PAGEEDITTIME Uhr $CHANGEDORCREATED. $REVINFO
+die {{SITENAME}}-Seite „$PAGETITLE“ wurde von $PAGEEDITOR am $PAGEEDITDATE um $PAGEEDITTIME Uhr $CHANGEDORCREATED.
 
 Aktuelle Version: $PAGETITLE_URL
 

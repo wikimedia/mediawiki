@@ -747,7 +747,8 @@ Tästä johtuen tästä IP-osoitteesta ei voi tällä hetkellä luoda uusia tunn
 Tunnuksen $2 salasana on $3. Kirjaudu sisään ja vaihda salasanasi.
 
 Sinun ei tarvitse huomioida tätä viestiä, jos tunnus on luotu virheellisesti.',
-'login-throttled'            => 'Olet tehnyt liian monta salasanayritystä käyttäjätunnukselle. Odota ennen kuin yrität uudelleen.',
+'login-throttled'            => 'Olet tehnyt liian monta kirjautumisyritystä.
+Odota ennen kuin yrität uudelleen.',
 'loginlanguagelabel'         => 'Kieli: $1',
 
 # Password reset dialog
@@ -2023,7 +2024,7 @@ Lisätietoa yksittäisistä käyttäjäoikeuksista saattaa löytyä [[{{MediaWik
 'enotif_anon_editor'           => 'kirjautumaton käyttäjä $1',
 'enotif_body'                  => 'Käyttäjä $WATCHINGUSERNAME,
 
-{{GRAMMAR:genitive|{{SITENAME}}}} käyttäjä $PAGEEDITOR on $CHANGEDORCREATED $PAGETITLE $PAGEEDITDATEANDTIME. $REVINFO
+{{GRAMMAR:genitive|{{SITENAME}}}} käyttäjä $PAGEEDITOR on $CHANGEDORCREATED $PAGETITLE $PAGEEDITDATE. Nykyinen versio on osoitteessa $PAGETITLE_URL .
 
 $NEWPAGE
 

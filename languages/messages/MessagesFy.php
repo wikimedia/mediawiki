@@ -1852,7 +1852,7 @@ At jo letter in side net mear folgje wolle, dan brûke jo op dy side de keppelin
 'created'                      => 'oanmakke',
 'enotif_body'                  => 'Bêste $WATCHINGUSERNAME,
 
-De {{SITENAME}}side \'$PAGETITLE\' is op $PAGEEDITDATEANDTIME $CHANGEDORCREATED troch meidogger $PAGEEDITOR; 
+De {{SITENAME}}side \'$PAGETITLE\' is op $PAGEEDITDATE $CHANGEDORCREATED troch meidogger $PAGEEDITOR; 
 sjoch $PAGETITLE_URL foar de aktuele ferzje.
 
 $NEWPAGE

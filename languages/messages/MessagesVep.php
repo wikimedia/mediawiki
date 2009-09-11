@@ -1655,7 +1655,7 @@ Kc. mugažo [[Special:WantedCategories|ectud kategorijoiden nimikirjutez]].',
 'enotif_body'                  => 'Kalliž $WATCHINGUSERNAME,
 
 
-{{SITENAME}}-saitan $PAGETITLE-lehtpol\' om $CHANGEDORCREATED datal $PAGEEDITDATEANDTIME. Toižetusen avtor om $PAGEEDITOR. Kc. $PAGETITLE_URL, miše nägištada jäl\'gmäine versii.
+{{SITENAME}}-saitan $PAGETITLE-lehtpol\' om $CHANGEDORCREATED datal $PAGEEDITDATE. Toižetusen avtor om $PAGEEDITOR. Kc. $PAGETITLE_URL, miše nägištada jäl\'gmäine versii.
 
 $NEWPAGE
 

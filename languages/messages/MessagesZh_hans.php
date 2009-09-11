@@ -1975,7 +1975,7 @@ Template:消除歧義',
 'enotif_anon_editor'           => '匿名用户$1',
 'enotif_body'                  => '亲爱的 $WATCHINGUSERNAME，
 
-$PAGEEDITOR已经在$PAGEEDITDATEANDTIME$CHANGEDORCREATED{{SITENAME}}的$PAGETITLE页面。$REVINFO
+$PAGEEDITOR已经在$PAGEEDITDATE$CHANGEDORCREATED{{SITENAME}}的$PAGETITLE页面，请到$PAGETITLE_URL查看当前修订版本。
 
 $NEWPAGE
 

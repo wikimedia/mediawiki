@@ -2021,7 +2021,7 @@ Om du seinare vil fjerne sida frå overvakingslista, klikk på «Fjern overvakin
 'enotif_anon_editor'           => 'anonym brukar $1',
 'enotif_body'                  => 'Hei $WATCHINGUSERNAME,
 
-{{SITENAME}}-sida $PAGETITLE har vorte $CHANGEDORCREATED $PAGEEDITDATEANDTIME av $PAGEEDITOR, sjå $PAGETITLE_URL for den gjeldande versjonen.
+{{SITENAME}}-sida $PAGETITLE har vorte $CHANGEDORCREATED $PAGEEDITDATE av $PAGEEDITOR, sjå $PAGETITLE_URL for den gjeldande versjonen.
 
 $NEWPAGE
 

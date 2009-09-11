@@ -616,7 +616,7 @@ Woglědowarje, kótarež wužywaju toś tu IP-adresu njamógu tuchylu dalšne ko
 'createaccount-text'         => 'Něchten jo konto za twóje e-mailowu adresu na {{GRAMMAR:lokatiw|{{SITENAME}}}} ($4) z mjenim "$2", z pótajmnym słowom "$3", wutwórił. Dejš se pśizjawiś a swóje pótajmne słowo něnt změniś.
 
 Móžoš toś te zdźělenje ignorowaś, jolic toś te konto jo se jano zamólnje wutwóriło.',
-'login-throttled'            => 'Sy pśecesto wopytał gronidło konta zapódaś. Pócakaj pšosym, nježli až wopytajoš znowego.',
+'login-throttled'            => 'Sy pśecesto wopytał se pśizjawiś. Pócakaj pšosym, nježli až wopytajoš znowego.',
 'loginlanguagelabel'         => 'Rěc: $1',
 
 # Password reset dialog
@@ -1941,8 +1941,8 @@ Coš-lic bok zasej z twójich wobglědowańkow wulašowaś, kliknij na wótpowě
 'enotif_anon_editor'           => 'anonymny wužywaŕ $1',
 'enotif_body'                  => 'Luby/a $WATCHINGUSERNAME,
 
-{{SITENAME}} bok "$PAGETITLE" jo se wót $PAGEEDITOR $PAGEEDITDATEANDTIME $CHANGEDORCREATED.
-$REVINFO
+{{SITENAME}} bok "$PAGETITLE" jo se wót $PAGEEDITOR $PAGEEDITDATE $CHANGEDORCREATED.
+Aktualna wersija: $PAGETITLE_URL
 
 $NEWPAGE
 

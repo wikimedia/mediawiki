@@ -1881,7 +1881,7 @@ Jika anda mahu membuang laman tersebut daripada senarai pantau, klik \"Nyahpanta
 'enotif_body'                  => 'Saudara/saudari $WATCHINGUSERNAME,
 
 
-Laman $PAGETITLE di {{SITENAME}} telah $CHANGEDORCREATED pada $PAGEEDITDATEANDTIME oleh $PAGEEDITOR. $REVINFO
+Laman $PAGETITLE di {{SITENAME}} telah $CHANGEDORCREATED pada $PAGEEDITDATE oleh $PAGEEDITOR, sila lihat $PAGETITLE_URL untuk versi semasa.
 
 $NEWPAGE
 

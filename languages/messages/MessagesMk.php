@@ -2137,7 +2137,7 @@ PICT # misc.
 'enotif_anon_editor'           => 'анонимен корисник $1',
 'enotif_body'                  => 'Почитуван $WATCHINGUSERNAME,
 
-Страницата $PAGETITLE на {{SITENAME}} беше $CHANGEDORCREATED на $PAGEEDITDATEANDTIME од \'\'\'$PAGEEDITOR\'\'\'. $REVINFO
+Страницата $PAGETITLE на {{SITENAME}} беше $CHANGEDORCREATED на $PAGEEDITDATE од $PAGEEDITOR, видете $PAGETITLE_URL.
 
 $NEWPAGE
 

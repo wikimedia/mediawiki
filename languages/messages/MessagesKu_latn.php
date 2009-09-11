@@ -1123,7 +1123,7 @@ Li rûpela [[Special:RecentChanges|Guherandinên dawî]] jî ji bo hasan dîtina
 'enotif_body'                  => '$WATCHINGUSERNAME,
 
 
-Rûpelê {{SITENAME}} $PAGETITLE hate $CHANGEDORCREATED di rojê $PAGEEDITDATEANDTIME da ji $PAGEEDITOR, xêra xwe li $PAGETITLE_URL ji versyonê niha ra seke.
+Rûpelê {{SITENAME}} $PAGETITLE hate $CHANGEDORCREATED di rojê $PAGEEDITDATE da ji $PAGEEDITOR, xêra xwe li $PAGETITLE_URL ji versyonê niha ra seke.
 
 $NEWPAGE
 

@@ -2005,7 +2005,7 @@ Qampa [[Special:Preferences|allinkachinaykikunapi]] qillqakamachisqayki imamayta
 'enotif_anon_editor'           => 'sutinnaq ruraq $1',
 'enotif_body'                  => 'Munakusqa $WATCHINGUSERNAME,
 
-{{SITENAME}}pi $PAGETITLE sutiyuq p\'anqataqa $PAGEEDITOR sutiyuq ruraqmi $CHANGEDORCREATED $PAGEEDITDATEANDTIME pachapi, $PAGETITLE_URL sutiyuq p\'anqata qhaway kunan hukchasqata rikunaykipaq.
+{{SITENAME}}pi $PAGETITLE sutiyuq p\'anqataqa $PAGEEDITOR sutiyuq ruraqmi $CHANGEDORCREATED $PAGEEDITDATE pachapi, $PAGETITLE_URL sutiyuq p\'anqata qhaway kunan hukchasqata rikunaykipaq.
 
 $NEWPAGE
 

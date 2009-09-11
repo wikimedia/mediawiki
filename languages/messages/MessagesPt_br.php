@@ -2067,7 +2067,7 @@ Modificações futuras em tal página e páginas de discussão a ela associadas 
 'enotif_body'                  => 'Caro $WATCHINGUSERNAME,
 
 
-A página $PAGETITLE na {{SITENAME}} foi $CHANGEDORCREATED a $PAGEEDITDATEANDTIME por $PAGEEDITOR. $REVINFO
+A página $PAGETITLE na {{SITENAME}} foi $CHANGEDORCREATED a $PAGEEDITDATE por $PAGEEDITOR; consulte $PAGETITLE_URL para a versão atual.
 
 $NEWPAGE
 

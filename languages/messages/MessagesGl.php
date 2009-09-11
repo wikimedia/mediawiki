@@ -528,7 +528,7 @@ A última consulta á base de datos foi:
 "$1"
 desde a función "$2".
 A base de datos devolveu o erro "$3: $4"',
-'laggedslavemode'      => 'Aviso: a páxina pode non conter actualizacións recentes.',
+'laggedslavemode'      => "'''Aviso:''' a páxina pode non conter as actualizacións recentes.",
 'readonly'             => 'Base de datos fechada',
 'enterlockreason'      => 'Dea unha razón para o fechamento, incluíndo unha estimación de até cando se manterá.',
 'readonlytext'         => 'Nestes intres a base de datos está pechada a novas entradas e outras modificacións, probabelmente debido a rutinas de mantemento, tras as que voltará á normalidade.
@@ -595,7 +595,7 @@ A razón dada foi ''$2''.",
 'logouttext'                 => "'''Agora está fóra do sistema.'''
 
 Pode continuar usando {{SITENAME}} de xeito anónimo, ou pode [[Special:UserLogin|acceder de novo]] co mesmo nome de usuario ou con outro.
-Teña en conta que mentres non se limpa a memoria caché do seu navegador algunhas páxinas poden continuar a ser amosadas como se aínda estivesen dentro do sistema.",
+Teña en conta que mentres non se limpa a memoria caché do seu navegador algunhas páxinas poden continuar a ser amosadas como se aínda estivese dentro do sistema.",
 'welcomecreation'            => '== Reciba a nosa benvida, $1! ==
 A súa conta foi creada correctamente.
 Non esqueza personalizar as súas [[Special:Preferences|preferencias de {{SITENAME}}]].',
@@ -665,8 +665,8 @@ Como resultado, os visitantes que usen este enderezo IP non poden crear máis co
 'emailnotauthenticated'      => 'O seu enderezo de correo electrónico aínda <strong>non foi autenticado</strong>. Non se enviou ningunha mensaxe por algunha das seguintes razóns.',
 'noemailprefs'               => 'Especifique un enderezo de correo electrónico se quere que funcione esta opción.',
 'emailconfirmlink'           => 'Confirmar o enderezo de correo electrónico',
-'invalidemailaddress'        => 'Non se pode aceptar o enderezo de correo electrónico porque parece ter un formato incorrecto.
-Introduza un enderezo cun formato válido ou limpe ese campo.',
+'invalidemailaddress'        => 'Non se pode aceptar o enderezo de correo electrónico porque semella ter un formato incorrecto.
+Insira un enderezo cun formato válido ou baleire ese campo.',
 'accountcreated'             => 'Conta creada',
 'accountcreatedtext'         => 'A conta de usuario para $1 foi creada.',
 'createaccount-title'        => 'Creación dunha conta para {{SITENAME}}',
@@ -674,8 +674,9 @@ Introduza un enderezo cun formato válido ou limpe ese campo.',
 Debe acceder ao sistema e mudar o contrasinal agora.
 
 Pode facer caso omiso desta mensaxe se se creou esta conta por erro.',
-'login-throttled'            => 'Recentemente fixo demasiados intentos de inserir o contrasinal correspondente a esta conta. Por favor, agarde antes de probar outra vez.',
-'loginlanguagelabel'         => 'Linguas: $1',
+'login-throttled'            => 'Fixo demasiados intentos de inserir o contrasinal.
+Por favor, agarde antes de probar outra vez.',
+'loginlanguagelabel'         => 'Lingua: $1',
 
 # Password reset dialog
 'resetpass'                 => 'Cambiar o contrasinal',
@@ -846,9 +847,8 @@ Do mesmo xeito, comprométese a que o que vostede escriba sexa da súa autoría 
 'longpagewarning'                  => "'''ATENCIÓN: esta páxina ten $1 kilobytes;
 algúns navegadores poden ter problemas editando páxinas de 32kb ou máis.
 Por favor, considere partir a páxina en seccións máis pequenas.'''",
-'longpageerror'                    => "'''ERRO: o texto que pretende gardar supera en $1 kilobytes o permitido.
-Hai un límite máximo de $2 kilobytes;
-polo tanto, non se pode gardar.'''",
+'longpageerror'                    => "'''Erro: o texto que pretende gardar ocupa $1 kilobytes, e existe un límite dun máximo de $2 kilobytes.'''
+Polo tanto, non se pode gardar.",
 'readonlywarning'                  => "'''ATENCIÓN: a base de datos foi fechada para facer mantemento, polo que non vai poder gardar as súas edicións polo de agora.
 Se cadra, pode cortar e pegar o texto nun ficheiro de texto e gardalo para despois.'''
 
@@ -1003,7 +1003,7 @@ Por favor, confirme que esta é a súa intención, que comprende as consecuencia
 'revdelete-success'           => "'''Configurouse sen problemas a visibilidade da revisión.'''",
 'revdelete-failure'           => "'''A visibilidade da revisión non pode ser fixada:'''
 $1",
-'logdelete-success'           => "'''Configurouse a visibilidade do rexistro sen problemas.'''",
+'logdelete-success'           => "'''Configurouse sen problemas a visibilidade do rexistro.'''",
 'logdelete-failure'           => "'''A visibilidade do rexistro non pode ser fixada:'''
 $1",
 'revdel-restore'              => 'Cambiar a visibilidade',
@@ -1195,7 +1195,7 @@ Probe a fixar a súa petición con ''all:'' para procurar en todo o contido (inc
 'powersearch-ns'                   => 'Procurar nos espazos de nomes:',
 'powersearch-redir'                => 'Listar as redireccións',
 'powersearch-field'                => 'Procurar por',
-'powersearch-togglelabel'          => 'Comprobar:',
+'powersearch-togglelabel'          => 'Seleccionar:',
 'powersearch-toggleall'            => 'Todos',
 'powersearch-togglenone'           => 'Ningún',
 'search-external'                  => 'Procura externa',
@@ -1830,7 +1830,7 @@ As entradas <s>riscadas</s> xa foron resoltas.',
 'nviews'                  => 'vista {{PLURAL:$1|unha vez|$1 veces}}',
 'specialpage-empty'       => 'Non hai resultados para o que solicitou.',
 'lonelypages'             => 'Páxinas orfas',
-'lonelypagestext'         => 'As seguintes páxinas non teñen ningunha ligazón que apunte cara a ela noutra páxina de {{SITENAME}}.',
+'lonelypagestext'         => 'As seguintes páxinas non teñen ningunha ligazón que apunte cara a elas desde outra páxina de {{SITENAME}}.',
 'uncategorizedpages'      => 'Páxinas sen categorías',
 'uncategorizedcategories' => 'Categorías sen categorías',
 'uncategorizedimages'     => 'Ficheiros sen categorizar',
@@ -1935,13 +1935,14 @@ Olle tamén as [[Special:WantedCategories|categorías requiridas]].',
 'linksearch-pat'   => 'Patrón de procura:',
 'linksearch-ns'    => 'Espazo de nomes:',
 'linksearch-ok'    => 'Procurar',
-'linksearch-text'  => 'Extensións como "*.wikipedia.org" poden ser usadas.<br />Protocolos soportados: <tt>$1</tt>',
-'linksearch-line'  => '$1 ligado dende $2',
-'linksearch-error' => 'Os comodíns só poden aparecer ao principio do nome do servidor.',
+'linksearch-text'  => 'Pódense usar caracteres comodín como "*.wikipedia.org".<br />
+Protocolos soportados: <tt>$1</tt>',
+'linksearch-line'  => '$1 é ligado desde $2',
+'linksearch-error' => 'Os caracteres comodín só poden aparecer ao principio do nome do servidor.',
 
 # Special:ListUsers
 'listusersfrom'      => 'Mostrar os usuarios que comecen por:',
-'listusers-submit'   => 'Amosar',
+'listusers-submit'   => 'Mostrar',
 'listusers-noresult' => 'Non se atopou ningún usuario.',
 'listusers-blocked'  => '(bloqueado)',
 
@@ -2050,7 +2051,7 @@ Os cambios futuros nesta páxina e na súa páxina de conversa asociada serán l
 'enotif_anon_editor'           => 'usuario anónimo $1',
 'enotif_body'                  => 'Estimado $WATCHINGUSERNAME,
 
-a páxina de {{SITENAME}} "$PAGETITLE" foi $CHANGEDORCREATED o $PAGEEDITDATEANDTIME por $PAGEEDITOR. $REVINFO
+a páxina de {{SITENAME}} "$PAGETITLE" foi $CHANGEDORCREATED o $PAGEEDITDATE por $PAGEEDITOR, vexa $PAGETITLE_URL para comprobar a versión actual.
 
 $NEWPAGE
 
@@ -2295,7 +2296,7 @@ Isto debería facerse só para previr vandalismo, e de acordo coa [[{{MediaWiki:
 Explique a razón específica do bloqueo (por exemplo, citando as páxinas concretas que sufriron vandalismo).',
 'ipaddress'                       => 'Enderezo IP:',
 'ipadressorusername'              => 'Enderezo IP ou nome de usuario:',
-'ipbexpiry'                       => 'Remate:',
+'ipbexpiry'                       => 'Duración:',
 'ipbreason'                       => 'Razón:',
 'ipbreasonotherlist'              => 'Outro motivo',
 'ipbreason-dropdown'              => '*Mensaxes de bloqueo comúns
@@ -2395,8 +2396,8 @@ Por favor, contacte co seu fornecedor de acceso á Internet ou co seu soporte t�
 # Developer tools
 'lockdb'              => 'Fechar base de datos',
 'unlockdb'            => 'Desbloquear a base de datos',
-'lockdbtext'          => 'Fechar a base de datos vai quitarlles aos usuarios a posibilidade de editar páxinas,cambiar as súas preferencias, editar as súas listas de vixilancia e outras cousas que requiren cambios na base de datos.
-Por favor confirme que é o que realmente quere facer, e que vai quitar o fechamento da base de datos cando o mantemento estea rematado.',
+'lockdbtext'          => 'Ao fechar a base de datos quitaralles aos usuarios a posibilidade de editar páxinas, cambiar as súas preferencias, editar as súas listas de vixilancia e outras cousas que requiren cambios na base de datos.
+Por favor, confirme que isto é o que realmente quere facer e que retirará o bloqueo da base de datos cando remate co mantemento.',
 'unlockdbtext'        => 'O desbloqueo da base de datos vai permitir que os usuarios poidan editar páxinas, cambiar as súas preferencias, editar as súas listas de vixilancia e outras accións que requiran cambios na base de datos.
 Por favor confirme que isto é o que quere facer.',
 'lockconfirm'         => 'Si, realmente quero fechar a base de datos.',
@@ -2406,7 +2407,7 @@ Por favor confirme que isto é o que quere facer.',
 'locknoconfirm'       => 'Vostede non marcou o sinal de confirmación.',
 'lockdbsuccesssub'    => 'A base de datos foi fechada con éxito',
 'unlockdbsuccesssub'  => 'Quitouse a protección da base de datos',
-'lockdbsuccesstext'   => 'A base de datos foi fechada.<br />
+'lockdbsuccesstext'   => 'Fechouse a base de datos.<br />
 Lembre [[Special:UnlockDB|eliminar o bloqueo]] unha vez completado o seu mantemento.',
 'unlockdbsuccesstext' => 'A base de datos foi desbloqueada.',
 'lockfilenotwritable' => 'Non se pode escribir no ficheiro de bloqueo da base de datos. Para bloquear ou desbloquear a base de datos, o servidor web ten que poder escribir neste ficheiro.',
@@ -2455,7 +2456,7 @@ Por favor, escolla outro nome.',
 'movetalk'                     => 'Mover a páxina de conversa, se cómpre',
 'move-subpages'                => 'Mover as subpáxinas (ata $1)',
 'move-talk-subpages'           => 'Mover as subpáxinas da páxina de conversa (ata $1)',
-'movepage-page-exists'         => 'A páxina "$1" xa existe e non pode ser sobreescrita automaticamente.',
+'movepage-page-exists'         => 'A páxina "$1" xa existe e non pode ser sobrescrita automaticamente.',
 'movepage-page-moved'          => 'A páxina "$1" foi movida a "$2".',
 'movepage-page-unmoved'        => 'A páxina "$1" non pode ser movida a "$2".',
 'movepage-max-pages'           => 'Foi movido o número máximo {{PLURAL:$1|dunha páxina|de $1 páxinas}} e non poderán ser movidas automaticamente máis.',
@@ -2541,7 +2542,7 @@ Por favor, visite a [http://www.mediawiki.org/wiki/Localisation localización Me
 'import'                     => 'Importar páxinas',
 'importinterwiki'            => 'Importación transwiki',
 'import-interwiki-text'      => 'Seleccione o wiki e o título da páxina que queira importar.
-As datas das revisións e os nomes dos editores mantéranse.
+As datas das revisións e os nomes dos editores manteranse.
 Todas as accións relacionadas coa importación entre wikis poden verse no [[Special:Log/import|rexistro de importacións]].',
 'import-interwiki-source'    => 'Wiki/Páxina de orixe:',
 'import-interwiki-history'   => 'Copiar todas as versións que hai no historial desta páxina',
@@ -2550,19 +2551,19 @@ Todas as accións relacionadas coa importación entre wikis poden verse no [[Spe
 'import-interwiki-namespace' => 'Espazo de nomes de destino:',
 'import-upload-filename'     => 'Nome do ficheiro:',
 'import-comment'             => 'Comentario:',
-'importtext'                 => 'Por favor, exporte o ficheiro do wiki de orixe usando a [[Special:Export|ferramenta para exportar]].
-Gráveo no seu disco duro e cárgueo aquí.',
+'importtext'                 => 'Por favor, exporte o ficheiro do wiki de orixe usando a [[Special:Export|ferramenta de exportación]].
+Gárdeo no seu disco duro e cárgueo aquí.',
 'importstart'                => 'Importando páxinas...',
 'import-revision-count'      => '$1 {{PLURAL:$1|revisión|revisións}}',
 'importnopages'              => 'Non hai páxinas para importar.',
 'importfailed'               => 'A importación fallou: $1',
 'importunknownsource'        => 'Fonte de importación descoñecida',
 'importcantopen'             => 'Non se pode abrir o ficheiro importado',
-'importbadinterwiki'         => 'Ligazón entre wikis incorrecta',
+'importbadinterwiki'         => 'Ligazón interwiki incorrecta',
 'importnotext'               => 'Texto baleiro ou inexistente',
 'importsuccess'              => 'A importación rematou!',
 'importhistoryconflict'      => 'Existe un conflito no historial de revisións (por ter importado esta páxina antes)',
-'importnosources'            => 'Non se definiron fontes de importación transwiki e están desactivados os envíos directos dos historiais.',
+'importnosources'            => 'Non se defininiu ningunha fonte de importación transwiki e os envíos directos dos historiais están desactivados.',
 'importnofile'               => 'Non se enviou ningún ficheiro de importación.',
 'importuploaderrorsize'      => 'Fallou o envío do ficheiro de importación. O ficheiro é máis grande que o tamaño de envío permitido.',
 'importuploaderrorpartial'   => 'Fallou o envío do ficheiro de importación. O ficheiro só se enviou parcialmente.',
@@ -2580,7 +2581,7 @@ Gráveo no seu disco duro e cárgueo aquí.',
 'importlogpagetext'                => 'Rexistro de importación de páxinas xunto co seu historial de edicións procedentes doutros wikis.',
 'import-logentry-upload'           => 'importou "[[$1]]" mediante a carga dun ficheiro',
 'import-logentry-upload-detail'    => '$1 {{PLURAL:$1|revisión|revisións}}',
-'import-logentry-interwiki'        => 'importada $1',
+'import-logentry-interwiki'        => 'importou "$1"',
 'import-logentry-interwiki-detail' => '$1 {{PLURAL:$1|revisión|revisións}} de $2',
 
 # Tooltip help for the actions
@@ -3170,8 +3171,7 @@ Por favor, confirme que realmente quere recrear esta páxina.",
 # Live preview
 'livepreview-loading' => 'Cargando…',
 'livepreview-ready'   => 'Cargando… Listo!',
-'livepreview-failed'  => 'Fallou a vista previa en tempo real!
-Tente a vista previa normal.',
+'livepreview-failed'  => 'Fallou a vista previa en tempo real! Inténteo coa vista previa normal.',
 'livepreview-error'   => 'Fallou a conexión: $1 "$2"
 Tente a vista previa normal.',
 

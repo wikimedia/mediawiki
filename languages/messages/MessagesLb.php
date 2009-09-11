@@ -614,7 +614,8 @@ Gitt eng valabel E-Mailadress an oder loosst dëst Feld eidel.',
 Dir sollt Iech aloggen an Ärt Passwuert elo änneren.
 
 Falls dëse Benotzerkont ongewollt ugeluecht ginn ass kënnt Dir dës Noriicht einfach ignoréieren.',
-'login-throttled'            => "Dir hutt zevill dacks versicht d'Passwuert vun dësem Benotzerkont anzeginn. Waart w.e.g. ier Dir et nach eng Kéier versicht.",
+'login-throttled'            => "Dir hutt zevill dacks versicht d'Passwuert vun dësem Benotzerkont anzeginn.
+Waart w.e.g. ier Dir et nach eng Kéier versicht.",
 'loginlanguagelabel'         => 'Sprooch: $1',
 
 # Password reset dialog
@@ -1951,7 +1952,7 @@ Wann dir dës Säit net méi iwwerwaache wëllt, klickt op \"Net méi iwwerwaach
 'enotif_anon_editor'           => 'Anonyme Benotzer $1',
 'enotif_body'                  => 'Léiwe $WATCHINGUSERNAME,
 
-D\'{{SITENAME}}-Säit "$PAGETITLE" gouf vum $PAGEEDITOR den $PAGEEDITDATEANDTIME $CHANGEDORCREATED. $REVINFO
+D\'{{SITENAME}}-Säit "$PAGETITLE" gouf vum $PAGEEDITOR den $PAGEEDITDATE $CHANGEDORCREATED. Aktuell Versioun: $PAGETITLE_URL
 
 $NEWPAGE
 

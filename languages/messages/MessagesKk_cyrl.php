@@ -1794,7 +1794,7 @@ URL дұрыс екендігін және торап істеп тұрғаны�
 'enotif_body'                  => 'Қадірлі $WATCHINGUSERNAME,
 
 
-{{SITENAME}} жобасының $PAGETITLE атаулы бетті $PAGEEDITDATEANDTIME кезінде $PAGEEDITOR деген $CHANGEDORCREATED, ағымдық нұсқасы үшін $PAGETITLE_URL қараңыз.
+{{SITENAME}} жобасының $PAGETITLE атаулы бетті $PAGEEDITDATE кезінде $PAGEEDITOR деген $CHANGEDORCREATED, ағымдық нұсқасы үшін $PAGETITLE_URL қараңыз.
 
 $NEWPAGE
 

@@ -1458,7 +1458,7 @@ $messages = array(
 'enotif_body'                  => 'Мӯҳтарам $WATCHINGUSERNAME,
 
 
-Саҳифаи $PAGETITLE дар {{SITENAME}} аз тарафаи $PAGEEDITOR дар $PAGEEDITDATEANDTIME  $CHANGEDORCREATED шуд, барои нусхаи кунунӣ, нигаред ба $PAGETITLE_URL.
+Саҳифаи $PAGETITLE дар {{SITENAME}} аз тарафаи $PAGEEDITOR дар $PAGEEDITDATE  $CHANGEDORCREATED шуд, барои нусхаи кунунӣ, нигаред ба $PAGETITLE_URL.
 
 $NEWPAGE
 

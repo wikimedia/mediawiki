@@ -1875,7 +1875,7 @@ Ako kasnije želite da uklonite stranicu sa vašeg spiska nadgledanja, kliknite 
 'enotif_anon_editor'           => 'anonimni korisnik $1',
 'enotif_body'                  => 'Dragi $WATCHINGUSERNAME,
 
-{{SITENAME}} stranicaa $PAGETITLE je bila $CHANGEDORCREATED ($PAGEEDITDATEANDTIME) od strane $PAGEEDITOR,
+{{SITENAME}} stranicaa $PAGETITLE je bila $CHANGEDORCREATED ($PAGEEDITDATE) od strane $PAGEEDITOR,
 pogledajte $PAGETITLE_URL za trenutnu verziju.
 
 $NEWPAGE

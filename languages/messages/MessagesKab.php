@@ -1036,7 +1036,7 @@ Ma tebɣiḍ ad tekkseḍ asebter seg wumuɣ n uɛessi inek, wekki ɣef \"Fakk a
 'enotif_lastdiff'              => 'Ẓer $1 akken ad tmuqleḍ abeddel.',
 'enotif_body'                  => 'Ay $WATCHINGUSERNAME,
 
-Asebter n {{SITENAME}} $PAGETITLE $CHANGEDORCREATED deg wass $PAGEEDITDATEANDTIME sɣur $PAGEEDITOR, ẓer $PAGETITLE_URL i tasiwelt n tura.
+Asebter n {{SITENAME}} $PAGETITLE $CHANGEDORCREATED deg wass $PAGEEDITDATE sɣur $PAGEEDITOR, ẓer $PAGETITLE_URL i tasiwelt n tura.
 
 $NEWPAGE
 

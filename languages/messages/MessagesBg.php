@@ -1967,7 +1967,7 @@ $2',
 'enotif_anon_editor'           => 'анонимен потребител $1',
 'enotif_body'                  => 'Уважаеми(а) $WATCHINGUSERNAME,
 
-на $PAGEEDITDATEANDTIME страницата „$PAGETITLE“ в {{SITENAME}} е била $CHANGEDORCREATED от $PAGEEDITOR.
+на $PAGEEDITDATE страницата „$PAGETITLE“ в {{SITENAME}} е била $CHANGEDORCREATED от $PAGEEDITOR.
 
 Текуща версия: $PAGETITLE_URL
 

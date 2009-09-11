@@ -1841,7 +1841,7 @@ Jarraipen zerrendatik artikulua kentzeko, artikuluan ''ez jarraitu''ri eman.",
 'enotif_anon_editor'           => '$1 erabiltzaile anonimoa',
 'enotif_body'                  => 'Kaixo $WATCHINGUSERNAME,
 
-{{SITENAME}}(e)ko $PAGETITLE orrialdea $CHANGEDORCREATED egin du $PAGEEDITOR(e)k une honetan: $PAGEEDITDATEANDTIME, ikus $PAGETITLE_URL azken bertsiorako.
+{{SITENAME}}(e)ko $PAGETITLE orrialdea $CHANGEDORCREATED egin du $PAGEEDITOR(e)k une honetan: $PAGEEDITDATE, ikus $PAGETITLE_URL azken bertsiorako.
 
 $NEWPAGE
 

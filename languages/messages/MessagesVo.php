@@ -1740,7 +1740,7 @@ If vilol poso moükön padi de galädalised olik, välolös lä on knopi: „neg
 'enotif_body'                  => 'O $WATCHINGUSERNAME löfik!
 
 
-Pad: $PAGETITLE in {{SITENAME}} $CHANGEDORCREATED tü $PAGEEDITDATEANDTIME fa geban: $PAGEEDITOR; otuvol fomami anuik in $PAGETITLE_URL.
+Pad: $PAGETITLE in {{SITENAME}} $CHANGEDORCREATED tü $PAGEEDITDATE fa geban: $PAGEEDITOR; otuvol fomami anuik in $PAGETITLE_URL.
 
 $NEWPAGE
 

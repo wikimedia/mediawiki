@@ -596,7 +596,7 @@ Prjedy hač so druha mejlka ke kontu pósćele, dyrbiš so po instrukcijach w me
 'createaccount-text'         => 'Něchtó je wužiwarske konto za twoju e-mejlowu adresu na {{SITENAME}} ($4) z mjenom "$2" z hesłom "$3" wutworił. Ty měł so nětko přizjewić a swoje hesło změnić.
 
 Móžeš tutu zdźělenku ignorować, jeli so wužiwarske konto zmylnje wutworiło.',
-'login-throttled'            => 'Sy přehusto spytał wopačne hesło zapodać. Počakaj prošu, prjedy hač spytaj znowa.',
+'login-throttled'            => 'Sy přehusto spytał so přizjewić. Počakaj prošu, prjedy hač znowa spytaš.',
 'loginlanguagelabel'         => 'Rěč: $1',
 
 # Password reset dialog
@@ -1918,12 +1918,11 @@ Jeli chceš stronu pozdźišo ze swojich wobkedźbowankow wotstronić, klikń na
 'enotif_body'                  => 'Luby $WATCHINGUSERNAME,
 
 
-Strona we {{GRAMMAR:lokatiw|{{SITENAME}}}} z mjenom $PAGETITLE bu dnja $PAGEEDITDATEANDTIME wot $PAGEEDITOR $CHANGEDORCREATED.
-$REVINFO
+Strona we {{GRAMMAR:lokatiw|{{SITENAME}}}} z mjenom $PAGETITLE bu dnja $PAGEEDITDATE wot $PAGEEDITOR $CHANGEDORCREATED, hlej $PAGETITLE_URL za aktualnu wersiju.
 
 $NEWPAGE
 
-Zjeće wobdźěłaćerja běše: $PAGESUMMARY $PAGEMINOREDIT
+Zjeće wobdźěłaćerja: $PAGESUMMARY $PAGEMINOREDIT
 
 Skontaktuj wobdźěłarja:
 e-mejl: $PAGEEDITOR_EMAIL

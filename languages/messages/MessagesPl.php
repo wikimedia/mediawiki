@@ -2083,7 +2083,7 @@ Każda zmiana treści tej strony lub związanej z nią strony dyskusji zostanie 
 'enotif_anon_editor'           => 'użytkownik anonimowy $1',
 'enotif_body'                  => 'Szanowny $WATCHINGUSERNAME,
 
-strona $PAGETITLE w {{GRAMMAR:MS.lp|{{SITENAME}}}} została $CHANGEDORCREATED $PAGEEDITDATEANDTIME przez użytkownika $PAGEEDITOR. $REVINFO
+strona $PAGETITLE w {{GRAMMAR:MS.lp|{{SITENAME}}}} została $CHANGEDORCREATED $PAGEEDITDATE przez użytkownika $PAGEEDITOR. Zobacz na stronie $PAGETITLE_URL aktualną wersję.
 
 $NEWPAGE
 

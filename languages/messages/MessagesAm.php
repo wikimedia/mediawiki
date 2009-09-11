@@ -1383,7 +1383,7 @@ $1ን ወይም ማንም ሌላ [[{{MediaWiki:Grouppage-sysop}}|መጋቢ]] ስ
 'enotif_body'                  => 'ለ$WATCHINGUSERNAME ይድረስ፣
 
 
-የ{{SITENAME}} ገጽ $PAGETITLE በ$PAGEEDITDATEANDTIME በ$PAGEEDITOR $CHANGEDORCREATED፤ ለአሁኑኑ እትም $PAGETITLE_URL ይዩ።
+የ{{SITENAME}} ገጽ $PAGETITLE በ$PAGEEDITDATE በ$PAGEEDITOR $CHANGEDORCREATED፤ ለአሁኑኑ እትም $PAGETITLE_URL ይዩ።
 
 $NEWPAGE
 

@@ -1306,7 +1306,7 @@ Si quieis ehal de vehilal la páhina, pursa sobri \"Ehal de vehilal\".",
 'enotif_body'                  => 'Estimau $WATCHINGUSERNAME,
 
 
-S\'á $CHANGEDORCREATED el artículu $PAGETITLE (de {{SITENAME}}) el $PAGEEDITDATEANDTIME, siendu el su autol  $PAGEEDITOR. Consurta la $PAGETITLE_URL pa leyel la nueva velsión.
+S\'á $CHANGEDORCREATED el artículu $PAGETITLE (de {{SITENAME}}) el $PAGEEDITDATE, siendu el su autol  $PAGEEDITOR. Consurta la $PAGETITLE_URL pa leyel la nueva velsión.
 
 $NEWPAGE
 

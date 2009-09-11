@@ -1854,7 +1854,7 @@ PICT # misc.
 'enotif_anon_editor'           => 'ааттамматах кыттааччы $1',
 'enotif_body'                  => 'Күндү $WATCHINGUSERNAME,
 
-«{{SITENAME}}» $PAGETITLE кыттаачыга сыһыаннаах сирэйи $PAGEEDITDATEANDTIME $PAGEEDITOR кыттааччы $CHANGEDORCREATED. $REVINFO
+«{{SITENAME}}» $PAGETITLE кыттаачыга сыһыаннаах сирэйи $PAGEEDITDATE $PAGEEDITOR кыттааччы $CHANGEDORCREATED. Сирэй билиҥҥи туругун манна көр: $PAGETITLE_URL.
 
 $NEWPAGE
 

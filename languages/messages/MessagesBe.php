@@ -1684,7 +1684,7 @@ $2',
 'enotif_body'                  => 'Шаноўны $WATCHINGUSERNAME,
 
 
-Старонка {{SITENAME}} з назвай $PAGETITLE была $CHANGEDORCREATED ($PAGEEDITDATEANDTIME) удзельнікам $PAGEEDITOR, гл. $PAGETITLE_URL каб бачыць актуальную версію.
+Старонка {{SITENAME}} з назвай $PAGETITLE была $CHANGEDORCREATED ($PAGEEDITDATE) удзельнікам $PAGEEDITOR, гл. $PAGETITLE_URL каб бачыць актуальную версію.
 
 $NEWPAGE
 

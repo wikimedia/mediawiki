@@ -1556,7 +1556,7 @@ $3-এর দেয়া কারণ হল ''$2''",
 'enotif_anon_editor'           => 'বেনামী ব্যবহারকারী $1',
 'enotif_body'                  => 'প্রিয় $WATCHINGUSERNAME,
 
-{{SITENAME}}-এর $PAGETITLE শিরোনামের পাতাটি $PAGEEDITDATEANDTIME তারিখে $PAGEEDITOR $CHANGEDORCREATED করেছেন। পাতাটির বর্তমান সংস্করণের জন্য $PAGETITLE_URL দেখুন।
+{{SITENAME}}-এর $PAGETITLE শিরোনামের পাতাটি $PAGEEDITDATE তারিখে $PAGEEDITOR $CHANGEDORCREATED করেছেন। পাতাটির বর্তমান সংস্করণের জন্য $PAGETITLE_URL দেখুন।
 
 $NEWPAGE
 

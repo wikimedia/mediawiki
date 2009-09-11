@@ -1840,7 +1840,7 @@ Future changes to this page and its associated talk page will be listed there, a
 'enotif_body'                  => 'Dear $WATCHINGUSERNAME,
 
 
-{{SITENAME}} panna $PAGETITLE ke $CHANGEDORCREATED kar dewa gais hai $PAGEEDITDATEANDTIME ke din, $PAGEEDITOR ke dwara, current version ke khatir $PAGETITLE_URL ke dekho.
+{{SITENAME}} panna $PAGETITLE ke $CHANGEDORCREATED kar dewa gais hai $PAGEEDITDATE ke din, $PAGEEDITOR ke dwara, current version ke khatir $PAGETITLE_URL ke dekho.
 
 $NEWPAGE
 

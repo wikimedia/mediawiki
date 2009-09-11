@@ -1954,7 +1954,7 @@ Si voleu deixar de vigilar la pàgina, cliqueu sobre l'enllaç de «Desatén» d
 'enotif_anon_editor'           => 'usuari anònim $1',
 'enotif_body'                  => 'Benvolgut $WATCHINGUSERNAME,
 
-La pàgina $PAGETITLE del projecte {{SITENAME}} ha estat $CHANGEDORCREATED el dia $PAGEEDITDATEANDTIME per $PAGEEDITOR. $REVINFO
+La pàgina $PAGETITLE del projecte {{SITENAME}} ha estat $CHANGEDORCREATED el dia $PAGEEDITDATE per $PAGEEDITOR, vegeu $PAGETITLE_URL per la versió actual.
 
 $NEWPAGE
 

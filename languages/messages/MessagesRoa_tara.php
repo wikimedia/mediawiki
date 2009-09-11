@@ -515,8 +515,8 @@ Pe piacere mitte l'indirizze a cumme criste cumanne, ce nò no 'u scè mettènne
 Tu, mò, t\'avisse a collegà e cangià \'a password toje.
 
 Tu puè pure cacà stu messagge, ce stu cunde utende ha state ccrejete pe errore.',
-'login-throttled'            => "Urtemamende tu è pruvete troppe vote a mettere 'a password d'u cunde tue.
-Pe piacere vide c'aspitte 'nu picche de timbe prima de pruvà 'n'otra vote e a prossema vote, vide ce ta signe 'a password.",
+'login-throttled'            => "Urtemamende tu è pruvate troppe vote a trasè jndr'à Uicchipèdie
+Pe piacere vide c'aspitte 'nu picche de timbe apprime de pruvà 'n'otra vote.",
 'loginlanguagelabel'         => 'Lénga: $1',
 
 # Password reset dialog
@@ -1484,6 +1484,9 @@ Ce 'u probbleme angore jè presende, condatte 'n'[[Special:ListUsers/sysop|ammin
 'upload-unknown-size'       => 'Dimenziona scanusciute',
 'upload-http-error'         => "S'a verificate 'n'errore HTTP: $1",
 
+# img_auth script messages
+'img-auth-accessdenied' => 'Accesse negate',
+
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => "Non ge riesche a raggiungere l'URL",
 'upload-curl-error6-text'  => "'A URL ca è scritte non ge se pò raggiungere.
@@ -1888,7 +1891,7 @@ Le cangiaminde future a sta pàgene e 'a pàgene de le 'ngazzaminde associete le
 'enotif_body'                  => 'Care $WATCHINGUSERNAME,
 
 
-\'A pàgene $PAGETITLE de {{SITENAME}} ha state $CHANGEDORCREATED \'u $PAGEEDITDATEANDTIME da $PAGEEDITOR. $REVINFO
+\'A pàgene $PAGETITLE de {{SITENAME}} ha state $CHANGEDORCREATED \'u $PAGEEDITDATE da $PAGEEDITOR, vide $PAGETITLE_URL pa versina corrende.
 
 $NEWPAGE
 
