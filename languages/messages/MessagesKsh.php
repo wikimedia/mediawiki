@@ -3051,7 +3051,7 @@ Donoh kumme, en däsellve Reih, Links op Sigge wo die Datei trotz dämm jenehm e
 'exif-subsectimeoriginal'          => 'Honderstel Sekonde fun däm Zickpunk fun de Opzeichnung fun de Date',
 'exif-subsectimedigitized'         => 'Honderstel Sekonde fun däm Zickpunk fun de Dijjitalisierong fun de Date',
 'exif-exposuretime'                => 'Beleeshtungsduur',
-'exif-exposuretime-format'         => '$1 Sekund{{PLURAL:$1||e|Sekund}} ($2)',
+'exif-exposuretime-format'         => '$1 sek ($2)',
 'exif-fnumber'                     => 'Blende',
 'exif-exposureprogram'             => 'Beleeshtungsprojramm',
 'exif-spectralsensitivity'         => 'Emfendleschkeit för et Färvespäktrom',

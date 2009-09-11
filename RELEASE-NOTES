@@ -471,6 +471,7 @@ this. Was used when mwEmbed was going to be an extension.
   empty portlets are now present but hidden, adding an element to a portlet unhides it
 * (bug 19531) addPortletLink() now wraps inserted labels in a <span> element to be
   compatible with the CSS for the Vector skin
+* (bug 20578) Wrong localized image metadata - duplicated string?
 
 == API changes in 1.16 ==
 
