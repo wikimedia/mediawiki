@@ -720,6 +720,13 @@ EOT
 	 * Delete the file, or an earlier version of it
 	 */
 	public function delete() {
+		global $wgUploadMaintenance;
+		if( $wgUploadMaintenance && $this->mTitle && $this->mTitle->getNamespace() == NS_FILE ) {
+			global $wgOut;
+			$wgOut->addWikiText('Deletion and restoration of images temporarily disabled during maintenance.' );
+			return;
+		}
+
 		$this->loadFile();
 		if( !$this->img->exists() || !$this->img->isLocal() || $this->img->getRedirected() ) {
 			// Standard article deletion

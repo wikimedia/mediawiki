@@ -646,6 +646,11 @@ class UndeleteForm {
 			}
 		}
 		if( $this->mRestore && $this->mAction == "submit" ) {
+			global $wgUploadMaintenance;
+			if( $wgUploadMaintenance && $this->mTargetObj && $this->mTargetObj->getNamespace() == NS_FILE ) {
+				$wgOut->addWikiText('Deletion and restoration of images temporarily disabled during maintenance.' );
+				return;
+			}
 			return $this->undelete();
 		}
 		if( $this->mInvert && $this->mAction == "submit" ) {
