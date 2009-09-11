@@ -58,7 +58,8 @@ if ( file_exists( "$IP/StartProfiler.php" ) ) {
 }
 
 // Load settings, using wikimedia-mode if needed
-if( file_exists( dirname(__FILE__).'/wikimedia-mode' ) ) {
+// Fixme: replace this hack with general farm-friendly code
+if( file_exists( "$IP/wmf-config/wikimedia-mode" ) ) {
 	# TODO FIXME! Wikimedia-specific stuff needs to go away to an ext
 	# Maybe a hook?
 	global $cluster;
@@ -66,10 +67,10 @@ if( file_exists( dirname(__FILE__).'/wikimedia-mode' ) ) {
 	$cluster = 'pmtpa';
 	require_once( "$IP/includes/AutoLoader.php" );
 	require_once( "$IP/includes/SiteConfiguration.php" );
-	require( "$IP/wgConf.php" );
+	require( "$IP/wmf-config/wgConf.php" );
 	$maintenance->loadWikimediaSettings();
 	require( $IP.'/includes/Defines.php' );
-	require( $IP.'/CommonSettings.php' );
+	require( $IP.'/wmf-config/CommonSettings.php' );
 } else {
 	require_once( "$IP/includes/AutoLoader.php" );
 	require_once( "$IP/includes/Defines.php" );
