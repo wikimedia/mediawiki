@@ -1,5 +1,5 @@
 <?php
-/** Yue (粵語)
+/** Cantonese (粵語/廣東話)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -607,7 +607,7 @@ $1',
 'createaccount-text'         => '有人響{{SITENAME}}度用咗你個電郵開咗個名叫 "$2" 嘅新戶口 ($4)，密碼係 "$3" 。你應該而家登入，改埋個密碼。
 
 如果個戶口係開錯咗嘅話，你可以唔埋呢篇信。',
-'login-throttled'            => '你已經試咗太多次響呢個戶口嘅密碼度。請等多一陣再試過。',
+'login-throttled'            => '你已經試咗太多次登入動作。請等多一陣再試過。',
 'loginlanguagelabel'         => '語言：$1',
 
 # Password reset dialog
@@ -1633,6 +1633,7 @@ $1",
 ** 侵犯版權
 ** 重覆檔案',
 'filedelete-edit-reasonlist'  => '編輯刪除原因',
+'filedelete-maintenance'      => '響維護嗰陣已經暫時停用檔案刪除同恢復。',
 
 # MIME search
 'mimesearch'         => 'MIME 搜尋',
