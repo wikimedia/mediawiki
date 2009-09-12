@@ -708,7 +708,8 @@ Wpisz poprawny adres e‐mail lub wyczyść pole.',
 Zaloguj się teraz i je zmień.
 
 Możesz zignorować tę wiadomość, jeśli konto zostało utworzone przez pomyłkę.',
-'login-throttled'            => 'Wykonałeś zbyt wiele prób zalogowania się na to konto. Odczekaj chwilę przez spróbowaniem ponownie.',
+'login-throttled'            => 'Zbyt wiele razy próbowałeś zalogować się na to konto.
+Odczekaj chwilę zanim ponowisz próbę.',
 'loginlanguagelabel'         => 'Język: $1',
 
 # Password reset dialog
@@ -1779,6 +1780,7 @@ Poniżej znajdują się informacje ze [$2 strony opisu] tego pliku.',
 ** Naruszenie praw autorskich
 ** Kopia już istniejącego pliku',
 'filedelete-edit-reasonlist'  => 'Edycja listy powodów usunięcia pliku',
+'filedelete-maintenance'      => 'Usuwanie i odtwarzanie plików zostało tymczasowo wyłączone z powodu konserwacji.',
 
 # MIME search
 'mimesearch'         => 'Wyszukiwanie MIME',

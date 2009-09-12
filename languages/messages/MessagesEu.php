@@ -869,7 +869,7 @@ Mesedez berretsi ezazu hau egin nahi zenuela, ondorioak ulertzen dituzula eta [[
 'revdelete-suppress'          => 'Administratzaileen eta bestelakoen datuak kendu',
 'revdelete-hide-image'        => 'Fitxategiaren edukia ezkutatu',
 'revdelete-unsuppress'        => 'Berrezarritako aldaketen mugak kendu',
-'revdelete-log'               => 'Erregistroaren iruzkina:',
+'revdelete-log'               => 'Ezabatzeko arrazoia:',
 'revdelete-submit'            => 'Hautatutako berrikuspenari aplikatu',
 'revdelete-logentry'          => '[[$1]](r)entzako berriskupen ikusgaitasuna aldatu da',
 'logdelete-logentry'          => '[[$1]]en gertakarien ikusgarritasuna aldatu da',
@@ -1461,6 +1461,8 @@ Aukera ezazu, mesedez, fitxategi izen deskriptiboago bat.",
 
 # img_auth script messages
 'img-auth-accessdenied' => 'Sarbide ukatua',
+'img-auth-nofile'       => 'Ez dago "$1" fitxategirik.',
+'img-auth-streaming'    => '"$1" sekuentziatzen.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Ezin izan da URLa eskuratu',
@@ -3098,5 +3100,16 @@ Fitxategiaren izena sartu "{{ns:file}}:" aurrizkia gabe.',
 'htmlform-submit'              => 'Bidali',
 'htmlform-reset'               => 'Aldaketak desegin',
 'htmlform-selectorother-other' => 'Beste bat',
+
+# Add categories per AJAX
+'ajax-add-category'            => 'Kategoria gehitu',
+'ajax-add-category-submit'     => 'Gehitu',
+'ajax-confirm-title'           => 'Ekintza egiaztatu',
+'ajax-confirm-save'            => 'Gorde',
+'ajax-add-category-summary'    => '"$1" kategoria gehitu',
+'ajax-remove-category-summary' => '"$1" kategoria ezabatu',
+'ajax-confirm-actionsummary'   => 'Egin beharrekoa:',
+'ajax-error-title'             => 'Akatsa',
+'ajax-error-dismiss'           => 'OK',
 
 );

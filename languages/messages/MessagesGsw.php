@@ -588,7 +588,7 @@ Bitte gib ä neiji Adress in nem gültige Format ii, odr tue s Feld leere.',
 'createaccount-text'         => 'Fir Dii isch e Benutzerkonto "$2" uf {{SITENAME}} ($4) aaglait wore. S Passwort fir "$2" , wu automatisch generiert woren isch, isch "$3". Du sottsch Di jetz aamälde un s Passwort ändere.
 
 Wänn s Benutzerkonto us Versäh aaglait woren isch, chasch die Nochricht ignoriere.',
-'login-throttled'            => 'Du hesch z vilmol vergebli versuecht, Di unter däm Benutzername aazmälde. Bitte wart, voreb Du s non emol versuechsch.',
+'login-throttled'            => 'Du hesch z vilmol vergebli versuecht, Di aazmälde. Bitte wart, voreb Du s non emol versuechsch.',
 'loginlanguagelabel'         => 'Sproch: $1',
 
 # Password reset dialog
@@ -701,6 +701,9 @@ Wänn do nid hesch welle aane goh, no druck in Dyynem Browser uf '''Zruck'''.",
 'anontalkpagetext'                 => "''Des isch e Diskussionssyte vo me anonyme Benutzer, wo kei Zuegang aaglait het oder wo ne nit bruucht. Sälleweg muen mir di numerischi IP-Adräss bruuche zum ihn oder si z identifiziere. Sone IP-Adräss cha au vo mehrere Benutzer deilt werde. Wenn Si en anonyme Benutzer sin un s Gfiehl hen, dass do irrelevanti Kommentar an Si grichtet wärde, derno [[Special:UserLogin|lege Si sich bitte en Zuegang aa odr mälde sich aa]] zum in Zuekunft Verwirrige mit andere anonyme Benutzer z vermide.''",
 'noarticletext'                    => 'Uf däre Syte het s no kei Täxt. Du chasch uf andere Syte [[Special:Search/{{PAGENAME}}|dä Yytrag sueche]], <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} dr Logbuechyytrag sueche, wo dezue ghert],
 oder [{{fullurl:{{FULLPAGENAME}}|action=edit}} die Syte bearbeite]</span>.',
+'noarticletext-nopermission'       => 'In däre Syte het s zur Zyt no kei Text.
+Du chasch dää Titel uf andre Syte [[Special:Search/{{PAGENAME}}|sueche]]
+oder <span class="plainlinks">in dr zuegherige [{{fullurl:{{#special:Log}}|page={{FULLPAGENAMEE}}}} Logbiecher sueche].',
 'userpage-userdoesnotexist'        => 'S Benutzerkonto „$1“ git s nit. Bitte prief, eb Du die Syte wirkli wit aalege/bearbeite.',
 'clearyourcache'                   => "'''Hywys:''' Noch dynere Änderig muess no der Browser-Cache gläärt wäre!<br />'''Mozilla/Safari/Konqueror:''' ''Strg-Umschalttaschte-R'' (oder ''Umschalttasche'' druckt halte und uf s ''Nei-Lade''-Symbol klicke), '''IE:''' ''Strg-F5'', '''Opera/Firefox:''' ''F5''",
 'usercssyoucanpreview'             => "'''Tipp:''' Nimm dr Vorschau-Chnopf, zum Dyy nej CSS vor em Spichere z teschte.",
@@ -1613,6 +1616,7 @@ E [[Special:WhatLinksHere/$2|vollständigi Lischt]] isch verfiegbar.',
 ** Urheberrächtsverletzig
 ** Duplikat',
 'filedelete-edit-reasonlist'  => 'Leschgrind bearbeite',
+'filedelete-maintenance'      => 'S Leschen un Widerhärstelle vu Dateie isch wäge Wartigsarbete e Zytlang deaktiviert.',
 
 # MIME search
 'mimesearch'         => 'MIME-Suechi',
@@ -2107,17 +2111,18 @@ $1',
 'month'               => 'u Monet:',
 'year'                => 'bis Jahr:',
 
-'sp-contributions-newbies'       => 'Zeig nume Biträg vo neie Benutzer',
-'sp-contributions-newbies-sub'   => 'vo nöji Benützer',
-'sp-contributions-newbies-title' => 'Benutzerbyytreg vu neije Benutzer',
-'sp-contributions-blocklog'      => 'Sperrlogbuech',
-'sp-contributions-deleted'       => 'gleschti Bytreg',
-'sp-contributions-logs'          => 'Logbiecher',
-'sp-contributions-talk'          => 'Diskussion',
-'sp-contributions-userrights'    => 'Benutzerrächtsverwaltig',
-'sp-contributions-search'        => 'Suech no Benutzerbiträg',
-'sp-contributions-username'      => 'IP-Adress oder Benutzername:',
-'sp-contributions-submit'        => 'Sueche',
+'sp-contributions-newbies'        => 'Zeig nume Biträg vo neie Benutzer',
+'sp-contributions-newbies-sub'    => 'vo nöji Benützer',
+'sp-contributions-newbies-title'  => 'Benutzerbyytreg vu neije Benutzer',
+'sp-contributions-blocklog'       => 'Sperrlogbuech',
+'sp-contributions-deleted'        => 'gleschti Bytreg',
+'sp-contributions-logs'           => 'Logbiecher',
+'sp-contributions-talk'           => 'Diskussion',
+'sp-contributions-userrights'     => 'Benutzerrächtsverwaltig',
+'sp-contributions-blocked-notice' => 'Dää Benutzer isch zur Zyt gsperrt. Do chunnt dr aktuäll Yytrag us em Benutzersperr-Logbuech:',
+'sp-contributions-search'         => 'Suech no Benutzerbiträg',
+'sp-contributions-username'       => 'IP-Adress oder Benutzername:',
+'sp-contributions-submit'         => 'Sueche',
 
 # What links here
 'whatlinkshere'            => 'Was verwyst do druff?',
@@ -3116,5 +3121,19 @@ D Yygab muess ohni dr Zuesatz „{{ns:file}}:“ erfolge.',
 'htmlform-submit'              => 'Ibertrage',
 'htmlform-reset'               => 'Änderige ruckgängig mache',
 'htmlform-selectorother-other' => 'Anderi',
+
+# Add categories per AJAX
+'ajax-add-category'            => 'Kategorii zuefiege',
+'ajax-add-category-submit'     => 'Zuefiege',
+'ajax-confirm-title'           => 'Aktion bstetige',
+'ajax-confirm-prompt'          => 'Du chasch unte ne Zämmefassig yygee.
+Druck uf „Spychere“ go d Bearbeitig spychere.',
+'ajax-confirm-save'            => 'Spychere',
+'ajax-add-category-summary'    => 'Kategorii „$1“ zuefiege',
+'ajax-remove-category-summary' => 'Kategorii „$1“ uuseneh',
+'ajax-confirm-actionsummary'   => 'Aktion, wu soll uusgfiert wäre:',
+'ajax-error-title'             => 'Fähler',
+'ajax-error-dismiss'           => 'In Ornig',
+'ajax-remove-category-error'   => 'S isch nit megli gsi, die Kategorii uusezneh. Normalerwys git s des, wänn d Kategorii iber e Vorlag yybunden isch.',
 
 );

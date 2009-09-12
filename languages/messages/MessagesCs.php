@@ -1826,6 +1826,7 @@ Níže jsou zobrazeny informace, které obsahuje jeho [$2 tamější stránka s 
 ** Porušení autorských práv
 ** Nadbytečná kopie',
 'filedelete-edit-reasonlist'  => 'Editovat důvody smazání',
+'filedelete-maintenance'      => 'Mazání a obnovování souborů je kvůli údržbě dočasně vypnuto.',
 
 # MIME search
 'mimesearch'         => 'Hledání podle MIME typu',

@@ -162,6 +162,7 @@ $messages = array(
 'tog-enotifminoredits'        => 'પાનામાં નાનાં ફેરફાર થાય ત્યારે પણ મને ઇ-મેલ મોકલો',
 'tog-enotifrevealaddr'        => 'નોટીફીકેશનના ઇમેલમાં મારૂ ઇમેલ એડ્રેસ બતાવો',
 'tog-shownumberswatching'     => 'ધ્યાનમાં રાખતા સભ્યોની સંખ્યા બતાવો',
+'tog-oldsig'                  => 'વિદ્યમાન હસ્તાક્ષરનું પૂર્વદર્શન:',
 'tog-fancysig'                => 'સ્વાચાલિત કડી વગરની (કાચી) સહી',
 'tog-externaleditor'          => 'બીજું એડીટર વાપરો. (ફક્ત એકસપર્ટ માટે, તમારા કમ્પ્યુટરમાં સેટીંગ્સ બદલવા પડશે)',
 'tog-externaldiff'            => 'ડીફોલ્ટ તરીકે એક્સટર્નલ ભેદ વાપરો (ફક્ત એક્ષપર્ટ માટે, તમારા કમ્પ્યુટરમાં સેટીંગ્સ બદલવા જરૂરી)',
@@ -183,6 +184,9 @@ $messages = array(
 'underline-always'  => 'હંમેશાં',
 'underline-never'   => 'કદી નહિ',
 'underline-default' => 'બ્રાઉઝરના સેટીંગ્સ પ્રમાણે',
+
+# Font style option in Special:Preferences
+'editfont-style' => 'ક્ષેત્ર લિપિ શૈલીનું સંપાદન:',
 
 # Dates
 'sunday'        => 'રવિવાર',
@@ -289,9 +293,11 @@ $messages = array(
 'vector-action-delete'       => 'રદ કરો',
 'vector-action-move'         => 'ખસેડો',
 'vector-action-protect'      => 'સુરક્ષિત કરો',
+'vector-action-undelete'     => 'રદ કરેલું પાછું વાળો',
 'vector-action-unprotect'    => 'અસુરક્ષિત',
 'vector-namespace-category'  => 'શ્રેણી',
 'vector-namespace-help'      => 'મદદ માટેનું પાનું',
+'vector-namespace-image'     => 'ફાઇલ',
 'vector-namespace-main'      => 'પાનું',
 'vector-namespace-media'     => 'માધ્યમ પાનું',
 'vector-namespace-mediawiki' => 'સંદેશ',
@@ -305,6 +311,9 @@ $messages = array(
 'vector-view-history'        => 'ઈતિહાસ જુઓ',
 'vector-view-view'           => 'વાંચો',
 'vector-view-viewsource'     => 'સ્ત્રોત જુઓ',
+'actions'                    => 'ક્રિયાઓ',
+'namespaces'                 => 'નામાવકાશો',
+'variants'                   => 'ભિન્ન રૂપો',
 
 # Metadata in edit box
 'metadata_help' => 'મેટાડેટા:',
@@ -364,6 +373,13 @@ $messages = array(
 'jumpto'            => 'સીધા આના પર જાઓ:',
 'jumptonavigation'  => 'ભ્રમણ',
 'jumptosearch'      => 'શોધો',
+'view-pool-error'   => 'માફ કરશો, આ સમયે સર્વર અતિબોજા હેઠળ છે.
+
+ઘણા બધા વપરાશકર્તાઓ આ પાનું જોવાની કોશિશ કરી રહ્યા છે.
+
+આ પાનું ફરી જોતા પહેલાં કૃપયા થોડો સમય પ્રતિક્ષા કરો.
+
+$1',
 
 # All link text and link target definitions of links into project namespace that get used by other message strings, with the exception of user group pages (see grouppage) and the disambiguation template definition (see disambiguations).
 'aboutsite'            => '{{SITENAME}} વિષે',
@@ -462,6 +478,7 @@ $messages = array(
 'missingarticle-diff'  => '(ભેદ: $1, $2)',
 'internalerror'        => 'આંતરિક ત્રુટિ',
 'internalerror_info'   => 'આંતરિક ત્રુટિ: $1',
+'fileappenderror'      => '"$1" ને "$2" શાથે જોડી શકાશે નહીં.',
 'filecopyerror'        => '"$1" થી "$2"માં નકલ નાકામયાબ.',
 'filerenameerror'      => '"$1" નું નામ બદલીને "$2" કરવામાં નાકામયાબ.',
 'filedeleteerror'      => '"$1" ફાઇલ હટાવી ન શકાઇ.',
@@ -556,8 +573,8 @@ $messages = array(
 ફરીથી પ્રયત્ન કરો.',
 'wrongpasswordempty'      => 'તમે ગુપ્ત સંજ્ઞા લખવાનું ભુલી ગયા લાગો છો.
 ફરીથી પ્રયત્ન કરો.',
-'passwordtooshort'        => 'તમે દાખલ કરેલી ગુપ્ત સંજ્ઞા ખુબજ ટુંકી છે અથવા અસ્વિકાર્ય છે.
-તેમાં ઓછામાં {{PLURAL:$1|ઓછો એક અક્ષર હોવો |ઓછા $1 અક્ષર હોવા}} જોઇએ અને તેમાં તમારા સભ્ય નામનો સમાવેશ ના થવો જોઇએ.',
+'passwordtooshort'        => 'ગુપ્ત સંજ્ઞામાં ઓછામાં {{PLURAL:$1|ઓછો એક અક્ષર હોવો |ઓછા $1 અક્ષર હોવા}} જોઇએ.',
+'password-name-match'     => 'તમારી ગુપ્તસંજ્ઞા તમારા સભ્યનામ કરતાં અલગ જ હોવી જોઇએ.',
 'mailmypassword'          => 'પાસવર્ડ ઇ-મેલમાં મોકલો',
 'passwordremindertitle'   => '{{SITENAME}} માટેની નવી કામચલાઉ ગુપ્ત સંજ્ઞા',
 'passwordremindertext'    => 'કોઇકે (કદાચ તમે IP એડ્રેસ $1 પરથી) {{SITENAME}} ($4) માટે નવી ગુપ્ત સજ્ઞા (પાસવર્ડ) માટે વિનંતી કરેલ છે.
@@ -576,6 +593,12 @@ Please log in again after you receive it.
 'throttled-mailpassword'  => 'ગુપ્ત સંજ્ઞા યાદ અપાવતી ઇમેઇલ છેલ્લા {{PLURAL:$1|કલાક|$1 કલાકમાં}} મોકલેલી છે.
 દૂરુપયોગ રોકવા માટે, {{PLURAL:$1|કલાક|$1 કલાકમાં}} ફક્ત એક જ આવી મેઇલ કરવામાં આવે છે.',
 'mailerror'               => 'મેઇલ મોકલવામાં ત્રુટિ: $1',
+'emailauthenticated'      => 'તમારૂં ઇ-મેઇલ સરનામું $2 ના $3 સમયે પ્રમાણિત કરેલું છે.',
+'emailnotauthenticated'   => 'તમારૂં ઇ-મેઇલ સરનામું હજુ સુધી પ્રમાણિત થયેલું નથી.
+
+નિમ્નલિખિત વિશેષતાઓમાંથી કોઇ માટે ઇ-મેઇલ મોકલવામાં આવશે નહીં.',
+'noemailprefs'            => "આ વિશેષતાઓ કાર્ય કરી શકે તે માટે 'તમારી પસંદ'માં ઇ-મેઇલ સરનામું દર્શાવો.",
+'emailconfirmlink'        => 'તમારા ઇ-મેઇલ સરનામાની પુષ્ટિ કરો',
 'accountcreated'          => 'ખાતું ખોલવામાં આવ્યું છે',
 'accountcreatedtext'      => '$1 માટે સભ્ય ખાતુ બનાવ્યું.',
 'createaccount-title'     => '{{SITENAME}} માટે ખાતુ બનાવ્યું',
@@ -584,8 +607,8 @@ Please log in again after you receive it.
 તમે હવે પ્રવેશ કરી અને ગુપ્તસંજ્ઞા બદલી શકો છો.
 
 જો આ ખાતુ ભુલથી બનેલું હોય તો,આ સંદેશને અવગણી શકો છો.',
-'login-throttled'         => 'આ ખાતામાં પાસવર્ડ આપી પ્રવેશ કરવાના તમે હાલમાં જ ઘણા પ્રયત્નો કર્યા.
-કૃપા કરી થોડો સમય રાહ જુઓ.',
+'login-throttled'         => 'તમે હાલમાં જ ઘણા પ્રવેશ પ્રયત્નો કર્યા.
+કૃપા કરી ફરી પ્રયાસ પહેલાં થોડી રાહ જુઓ.',
 'loginlanguagelabel'      => 'ભાષા: $1',
 
 # Password reset dialog
@@ -599,6 +622,7 @@ Please log in again after you receive it.
 'retypenew'                 => 'નવી ગુપ્ત સંજ્ઞા (પાસવર્ડ) ફરી લખો:',
 'resetpass_submit'          => 'ગુપ્તસંજ્ઞા બદલીને પ્રવેશ કરો.',
 'resetpass_success'         => 'તમારી ગુપ્તસંજ્ઞા સફળતાપૂર્વક બદલાઇ ગઇ! હવે તમે ...માં પ્રવેશ કરી શકો છો',
+'resetpass_forbidden'       => 'ગુપ્તસંજ્ઞા બદલી શકાશે નહીં',
 'resetpass-submit-loggedin' => 'ગુપ્તસંજ્ઞા બદલો',
 'resetpass-temp-password'   => 'કામચલાવ ગુપ્તસંજ્ઞા:',
 
@@ -733,7 +757,23 @@ Please log in again after you receive it.
 # Revision deletion
 'rev-delundel'              => 'બતાવો/છુપાવો',
 'revdel-restore'            => 'વિઝિબિલિટિ બદલો',
+'pagehist'                  => 'પાનાનો ઇતિહાસ',
+'deletedhist'               => 'રદ કરેલનો ઇતિહાસ',
+'revdelete-content'         => 'સામગ્રી',
+'revdelete-summary'         => 'સંપાદનનો સંક્ષિપ્ત અહેવાલ',
+'revdelete-uname'           => 'સભ્યનામ',
+'revdelete-hid'             => 'છુપાવો $1',
+'revdelete-unhid'           => 'દર્શાવો $1',
+'revdelete-otherreason'     => 'અન્ય/વધારાનું કારણ:',
+'revdelete-reasonotherlist' => 'અન્ય કારણ',
 'revdelete-edit-reasonlist' => 'ભુંસવાનું કારણ બદલો.',
+
+# Suppression log
+'suppressionlog' => 'દાબ નોંધ',
+
+# History merging
+'mergehistory'      => 'પાનાનાં ઇતિહાસોનું વિલીનીકરણ',
+'mergehistory-from' => 'સ્ત્રોત પાનું',
 
 # Merge log
 'revertmerge' => 'છુટુ પાડો',
@@ -745,6 +785,20 @@ Please log in again after you receive it.
 'compareselectedversions' => 'પસંદ કરેલા સરખાવો',
 'editundo'                => 'રદ કરો',
 'diff-multi'              => '({{PLURAL:$1|વચગાળાનું એક પુનરાવર્તન|વચગાળાનાં $1 પુનરાવર્તનો}} દર્શાવેલ નથી.)',
+'diff-img'                => "'''ચિત્ર'''",
+'diff-span'               => "'''ગાળો'''",
+'diff-a'                  => "'''કડી'''",
+'diff-i'                  => "'''ત્રાંસા'''",
+'diff-b'                  => "'''ઘાટા'''",
+'diff-strong'             => "'''સશકત'''",
+'diff-em'                 => "'''પ્રાધાન્ય'''",
+'diff-font'               => "'''લિપિ'''",
+'diff-big'                => "'''મોટા'''",
+'diff-del'                => "'''રદ કરેલ'''",
+'diff-tt'                 => "'''નિયત પહોળાઇ'''",
+'diff-sub'                => "'''ઉપલિપિ'''",
+'diff-sup'                => "'''અતિલિપિ'''",
+'diff-strike'             => "'''આરપારરેખાકૃત'''",
 
 # Search results
 'searchresults'             => 'પરિણામોમાં શોધો',
@@ -796,6 +850,18 @@ Please log in again after you receive it.
 'searchresultshead'         => 'શોધો',
 'timezonelegend'            => 'સમય ક્ષેત્ર:',
 'localtime'                 => 'સ્થાનીક સમય:',
+'servertime'                => 'સર્વર સમય:',
+'guesstimezone'             => 'બ્રાઉઝરમાંથી દાખલ કરો',
+'timezoneregion-africa'     => 'આફ્રિકા',
+'timezoneregion-america'    => 'અમેરિકા',
+'timezoneregion-antarctica' => 'એન્ટાર્કટિકા',
+'timezoneregion-arctic'     => 'આર્કટિક',
+'timezoneregion-asia'       => 'એશિયા',
+'timezoneregion-atlantic'   => 'એટલાંટિક મહાસાગર',
+'timezoneregion-australia'  => 'ઔસ્ટ્રેલિયા',
+'timezoneregion-europe'     => 'યુરોપ',
+'timezoneregion-indian'     => 'હિંદ મહાસાગર',
+'timezoneregion-pacific'    => 'પ્રશાંત મહાસાગર',
 'prefs-searchoptions'       => 'શોધ વિકલ્પો',
 'prefs-emailconfirm-label'  => 'ઇ-મેલ પુષ્ટી',
 'youremail'                 => 'ઇ-મેઇલ:',
@@ -1105,7 +1171,7 @@ Please log in again after you receive it.
 'protectedarticle'            => 'સુરક્ષિત "[[$1]]"',
 'modifiedarticleprotection'   => '"[[$1]]"નું સુરક્ષાસ્તર બદલ્યું',
 'prot_1movedto2'              => '[[$1]] નું નામ બદલી ને [[$2]] કરવામાં આવ્યું છે.',
-'protectcomment'              => 'ટિપ્પણી:',
+'protectcomment'              => 'કારણ:',
 'protectexpiry'               => 'સમાપ્તિ:',
 'protect_expiry_invalid'      => 'સમાપ્તિનો સમય માન્ય નથી.',
 'protect_expiry_old'          => 'સમાપ્તિનો સમય ભૂતકાળમાં છે.',
@@ -1113,10 +1179,14 @@ Please log in again after you receive it.
 'protect-text'                => "અહિં તમે પાનાં '''<nowiki>$1</nowiki>'''નું સુરક્ષા સ્તર જોઈ શકો છો અને તેમાં ફેરફાર પણ કરી શકશો.",
 'protect-locked-access'       => "તમને પાનાંની સુરક્ષાનાં સ્તરમાં ફેરફાર કરવાની પરવાનગી નથી.
 પાનાં '''$1'''નું હાલનું સેટીંગ અહિં જોઈ શકો છો:",
+'protect-cascadeon'           => 'આ પાનું હાલમાં સંરક્ષિત છે કારણકે તે {{PLURAL:$1|પાનું,|પાનાઓ,}} જેમાં ધોધાકાર સંરક્ષણ ચાલુ છે, તેમાં છે.
+
+તમે આ પાનાઓનું સંરક્ષણ સ્તર બદલી શકો છો, પરંતુ તેની અસર ધોધાકાર સંરક્ષણ પર પડવી જોઇએ નહીં.',
 'protect-default'             => 'બધા સભ્યોને પરવાનગી',
 'protect-fallback'            => '"$1" પરવાનગી જરૂરી',
 'protect-level-autoconfirmed' => 'નવા અને નહી નોંધાયેલા સભ્યો પર પ્રતિબંધ',
 'protect-level-sysop'         => 'માત્ર પ્રબંધકો',
+'protect-summary-cascade'     => 'ધોધાકાર',
 'protect-expiring'            => '$1 (UTC) એ સમાપ્ત થાય છે',
 'protect-cascade'             => 'આ પાનાંમાં સમાવિષ્ટ પેટા પાનાં પણ સુરક્ષિત કરો (કૅસ્કેડીંગ સુરક્ષા)',
 'protect-cantedit'            => 'આપ આ પાનાનાં સુરક્ષા સ્તરમાં ફેરફાર ના કરી શકો, કેમકે આપને અહિં ફેરફાર કરવાની પરવાનગી નથી.',
@@ -1267,6 +1337,7 @@ Please log in again after you receive it.
 'tooltip-search-fulltext'         => 'આ લખાણ વાળા પાનાઓ શોધો',
 'tooltip-p-logo'                  => 'મુખપૃષ્ઠ',
 'tooltip-n-mainpage'              => 'મુખપૃષ્ઠ પર જાઓ',
+'tooltip-n-mainpage-description'  => 'મુખ્ય પાના પર જાઓ',
 'tooltip-n-portal'                => 'પરિયોજના વિષે, આપ શું કરી શકો અને વસ્તુઓ ક્યાં શોધશો',
 'tooltip-n-currentevents'         => 'પ્રસ્તુત ઘટનાની પૃષ્ઠભૂમિની માહિતિ શોધો',
 'tooltip-n-recentchanges'         => 'વિકિમાં હાલમા થયેલા ફેરફારોની સૂચિ.',

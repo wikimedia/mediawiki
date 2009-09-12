@@ -1562,6 +1562,7 @@ La descrission an sla soa [$2 pàgina ëd dëscrission dël file] a l'é mostà 
 ** violassion dij drit d'autor
 ** duplicassion (visadì ch'a-i era già)",
 'filedelete-edit-reasonlist'  => 'Modifiché la rason ëd lë scancelament',
+'filedelete-maintenance'      => 'Scanselassion e restaur ëd file disabilità temporaneament an mente dla manutension.',
 
 # MIME search
 'mimesearch'         => 'Arsërca për sòrt MIME',

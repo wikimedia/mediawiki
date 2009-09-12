@@ -1606,6 +1606,7 @@ Diskouezet eo deskrivadur he [$2 fajenn zeskrivañ] amañ dindan.',
 ** Gaou ouzh ar gwirioù perc'hennañ
 ** Restr zo anezhi dija",
 'filedelete-edit-reasonlist'  => 'Kemmañ a ra an abegoù diverkañ',
+'filedelete-maintenance'      => "Evit ar mare eo diweredekaet an diverkañ hag an assevel restroù, amzer d'ober un tamm trezalc'h.",
 
 # MIME search
 'mimesearch'         => 'Klask MIME',

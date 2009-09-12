@@ -1292,6 +1292,10 @@ $1",
 'upload-unknown-size'       => 'Ἄγνωτον μέγεθος',
 'upload-http-error'         => 'Συνέβη σφάλμα τι τῆς HTTP: $1',
 
+# img_auth script messages
+'img-auth-accessdenied' => 'Οὐκ ἐπετράπη ἡ πρόσβασις',
+'img-auth-nofile'       => 'Τὸ ἀρχεῖον "$1" οὐχ ὑπάρχει.',
+
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'  => 'URL ἀπρόσβατος',
 'upload-curl-error28' => 'Λῆξις χρόνου ἀναμονῆς τῆς ἐπιφορτίσεως',
@@ -2800,8 +2804,11 @@ $1',
 'htmlform-selectorother-other' => 'Ἄλλον',
 
 # Add categories per AJAX
+'ajax-add-category'            => 'Προστιθέναι κατηγορίαν',
 'ajax-add-category-submit'     => 'Προστιθέναι',
+'ajax-confirm-title'           => 'Καταβεβαιοῦν δρᾶσιν',
 'ajax-confirm-save'            => 'Γράφειν',
+'ajax-add-category-summary'    => 'Προστιθέναι κατηγορίαν "$1"',
 'ajax-remove-category-summary' => 'Ἀφαιρεῖν κατηγορίαν "$1"',
 'ajax-confirm-actionsummary'   => 'Πρακτέα:',
 'ajax-error-title'             => 'Σφάλμα',

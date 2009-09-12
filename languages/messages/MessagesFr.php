@@ -1847,6 +1847,7 @@ Une [[Special:WhatLinksHere/$2|liste complète]] est disponible.',
 ** Violation du droit d’auteur
 ** Fichier dupliqué',
 'filedelete-edit-reasonlist'  => 'Modifier les motifs fréquents de suppression',
+'filedelete-maintenance'      => 'La suppression et restauration de fichiers est temporairement désactivée durant la maintenance.',
 
 # MIME search
 'mimesearch'         => 'Recherche par type de contenu MIME',

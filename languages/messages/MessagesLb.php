@@ -1648,6 +1648,7 @@ D'Beschreiwung op senger [$2 Beschreiwungssäit] steet hei ënnedrënner.",
 ** Verletzung vun den Droits d'auteur
 ** De Fichier gëtt et nach eng Kéier an der Datebank",
 'filedelete-edit-reasonlist'  => 'Läschgrënn änneren',
+'filedelete-maintenance'      => 'Läschen a Restauréiere vu Fichieren temporär ausgeschalt wéinst Maintenance.',
 
 # MIME search
 'mimesearch'         => 'Sich no MIME-Zort',

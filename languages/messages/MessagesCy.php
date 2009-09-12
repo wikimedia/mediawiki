@@ -580,7 +580,7 @@ Felly ni chaiff defnyddwyr sy'n defnyddio'r cyfeiriad IP hwn greu rhagor o gyfri
 'createaccount-text'         => 'Creodd rhywun gyfrif o\'r enw $2 ar {{SITENAME}} ($4) ar gyfer y cyfeiriad e-bost hwn. "$3" yw\'r cyfrinair ar gyfer "$2". Dylech fewngofnodi a newid eich cyfrinair yn syth.
 
 Rhydd ichi anwybyddu\'r neges hon os mai camgymeriad oedd creu\'r cyfrif.',
-'login-throttled'            => 'Rydych wedi ceisio defnyddio cyfrinair y cyfrif hwn gormod o weithiau ar unwaith.
+'login-throttled'            => 'Rydych wedi ceisio mewngofnodi gormod o weithiau ar unwaith.
 Oedwch ychydig cyn mentro eto.',
 'loginlanguagelabel'         => 'Iaith: $1',
 
@@ -850,6 +850,7 @@ Gan eich bod yn weinyddwr gallwch ei weld; gall fod manylion yn y [{{fullurl:{{#
 'revdelete-nologtype-title'   => 'Ni nodwyd y math o lòg',
 'revdelete-nologtype-text'    => "Nid ydych wedi enwi'r math o lòg yr ydych am weithredu arno.",
 'revdelete-nologid-title'     => 'Cofnod lòg annilys',
+'revdelete-nologid-text'      => "Ni enwyd y lòg yr ydych am weithio arno ynteu nid yw'r lòg a enwyd yn bod.",
 'revdelete-no-file'           => "Nid yw'r ffeil a nodwyd yn bod.",
 'revdelete-show-file-submit'  => 'Ydw',
 'revdelete-selected'          => "'''Y {{PLURAL:$2|golygiad|golygiad|golygiadau|golygiadau|golygiadau|golygiadau}} dewisedig o [[:$1]]:'''",
@@ -3092,7 +3093,23 @@ Rhowch enw\'r ffeil heb y rhagddodiad "{{ns:file}}:".',
 'dberr-cachederror' => "Dyma gopi o'r dudalen a ofynnwyd amdani, a dynnwyd o'r celc. Mae'n bosib nad y fersiwn diweddaraf yw'r copi hwn.",
 
 # HTML forms
+'htmlform-invalid-input'       => "Mae problemau gyda pheth o'ch mewnbwn",
 'htmlform-reset'               => 'Datod y newidiadau',
 'htmlform-selectorother-other' => 'Arall',
+
+# Add categories per AJAX
+'ajax-add-category'            => 'Ychwanegu categori',
+'ajax-add-category-submit'     => 'Ychwanegu',
+'ajax-confirm-title'           => "Cadarnhau'r weithred",
+'ajax-confirm-prompt'          => 'Gallwch ysgrifennu crynodeb o\'r golygiad isod.
+Pwyswch ar "Cadw" i roi\'ch golygiad ar gadw.',
+'ajax-confirm-save'            => 'Cadw',
+'ajax-add-category-summary'    => 'Ychwanegu\'r categori "$1"',
+'ajax-remove-category-summary' => 'Tynnu\'r categori "$1"',
+'ajax-confirm-actionsummary'   => 'Dewiswch weithred:',
+'ajax-error-title'             => 'Gwall',
+'ajax-error-dismiss'           => 'Iawn',
+'ajax-remove-category-error'   => "Nid oedd yn bosibl tynnu'r categori hwn i ffwrdd.
+Mae hyn fel arfer yn golygu bod y categori wedi ei gynnwys yn y dudalen oddi mewn i nodyn.",
 
 );

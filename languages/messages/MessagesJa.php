@@ -1716,6 +1716,7 @@ PICT # その他
 ** 著作権侵害
 ** ファイルの重複',
 'filedelete-edit-reasonlist'  => '削除理由を編集する',
+'filedelete-maintenance'      => 'メンテナンス中のため、ファイルの削除と復帰は一時的に無効化されています。',
 
 # MIME search
 'mimesearch'         => 'MIMEタイプ検索',
