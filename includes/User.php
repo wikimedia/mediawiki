@@ -2483,7 +2483,7 @@ class User {
 		$user = new User;
 		$user->load();
 		if ( isset( $params['options'] ) ) {
-			$user->mOptions = $params['options'] + $user->mOptions;
+			$user->mOptions = $params['options'] + (array)$user->mOptions;
 			unset( $params['options'] );
 		}
 		$dbw = wfGetDB( DB_MASTER );
