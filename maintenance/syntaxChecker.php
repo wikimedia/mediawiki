@@ -125,7 +125,7 @@ class SyntaxChecker extends Maintenance {
 	 * @return boolean
 	 */
 	private function checkFileWithCli( $file ) {
-		$res = exec( 'php -l ' . $file ); 
+		$res = exec( 'php -l ' . wfEscapeShellArg( $file ) ); 
 		if( strpos( $res, 'No syntax errors detected' ) === false ) {
 			$this->mFailures[$file] = $res;
 			$this->output( $res . "\n" );
