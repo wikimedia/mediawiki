@@ -181,6 +181,14 @@ class OldLocalFile extends LocalFile {
 	}
 
 	/**
+	 * Returns bitfield value
+	 * @return int
+	 */
+	function getVisibility() {
+		return (int)$this->deleted;
+	}
+
+	/**
 	 * Determine if the current user is allowed to view a particular
 	 * field of this image file, if it's marked as deleted.
 	 * @param int $field
