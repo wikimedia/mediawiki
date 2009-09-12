@@ -1,5 +1,5 @@
 <?php
-/** Simplified Chinese (‪中文(简体)‬)
+/** Simplified Chinese (‪中文(简化字)‬)
  *
  * See MessagesQqq.php for message documentation incl. usage of parameters
  * To improve a translation please visit http://translatewiki.net
@@ -651,7 +651,8 @@ $2',
 'createaccount-text'         => '有人在{{SITENAME}}中利用您的邮箱创建了一个名为 "$2" 的新帐户（$4），密码是 "$3" 。您应该立即登录并更改密码。
 
 如果该账户创建错误的话，您可以忽略此信息。',
-'login-throttled'            => '您已经尝试多次在这个账户的密码上。请稍等多一会再试。',
+'login-throttled'            => '您已经尝试多次的登录动作。
+请稍等多一会再试。',
 'loginlanguagelabel'         => '语言：$1',
 
 # Password reset dialog
@@ -1667,6 +1668,7 @@ $1",
 ** 侵犯版权
 ** 重复文件',
 'filedelete-edit-reasonlist'  => '编辑删除埋由',
+'filedelete-maintenance'      => '当在维护时已经暂时停用文件删除和恢复。',
 
 # MIME search
 'mimesearch'         => 'MIME 搜索',
