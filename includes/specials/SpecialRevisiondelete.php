@@ -1132,7 +1132,7 @@ class RevDel_RevisionItem extends RevDel_Item {
 	 */
 	protected function getRevisionLink() {
 		global $wgLang;
-		$date = $wgLang->timeanddate( $this->revision->getTimestamp() );
+		$date = $wgLang->timeanddate( $this->revision->getTimestamp(), true );
 		if ( $this->isDeleted() && !$this->canView() ) {
 			return $date;
 		}
@@ -1254,7 +1254,7 @@ class RevDel_ArchiveItem extends RevDel_RevisionItem {
 	protected function getRevisionLink() {
 		global $wgLang;
 		$undelete = SpecialPage::getTitleFor( 'Undelete' );
-		$date = $wgLang->timeanddate( $this->revision->getTimestamp() );
+		$date = $wgLang->timeanddate( $this->revision->getTimestamp(), true );
 		if ( $this->isDeleted() && !$this->canView() ) {
 			return $date;
 		}
