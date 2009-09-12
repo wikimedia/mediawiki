@@ -938,6 +938,14 @@ abstract class File {
 	function isDeleted( $field ) {
 		return false;
 	}
+	
+	/**
+	 * Return the deletion bitfield
+	 * STUB
+	 */	
+	function getVisibility() {
+		return 0;
+	}
 
 	/**
 	 * Was this file ever deleted from the wiki?
