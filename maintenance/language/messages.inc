@@ -1386,6 +1386,7 @@ $wgMessageStructure = array(
 		'filedelete-reason-otherlist',
 		'filedelete-reason-dropdown',
 		'filedelete-edit-reasonlist',
+		'filedelete-maintenance',
 	),
 	'mimesearch' => array(
 		'mimesearch',

@@ -2264,6 +2264,7 @@ The description on its [$2 file description page] there is shown below.',
 ** Copyright violation
 ** Duplicated file',
 'filedelete-edit-reasonlist'  => 'Edit delete reasons',
+'filedelete-maintenance'      => 'Deletion and restoration of files temporarily disabled during maintenance.',
 
 # MIME search
 'mimesearch'         => 'MIME search',

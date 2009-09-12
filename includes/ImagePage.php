@@ -723,7 +723,7 @@ EOT
 		global $wgUploadMaintenance;
 		if( $wgUploadMaintenance && $this->mTitle && $this->mTitle->getNamespace() == NS_FILE ) {
 			global $wgOut;
-			$wgOut->addWikiText('Deletion and restoration of images temporarily disabled during maintenance.' );
+			$wgOut->wrapWikiMsg( "<div class='error'>\n$1</div>\n", array( 'filedelete-maintenance' ) );
 			return;
 		}
 
