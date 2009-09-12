@@ -658,6 +658,11 @@ class ContribsPager extends ReverseChronologicalPager {
 		}
 
 		$ret = "{$del}{$d} {$histlink} {$difftext} {$nflag}{$mflag} {$link}{$userlink} {$comment} {$topmarktext}";
+		
+		# Denote if username is redacted for this edit
+		if( $rev->getVisibility() & Revision::DELETED_USER ) {
+			$ret .= " <strong>" . wfMsgHtml('rev-deleted-user') . "</strong>";
+		}
 
 		# Tags, if any.
 		list($tagSummary, $newClasses) = ChangeTags::formatSummaryRow( $row->ts_tags, 'contributions' );
