@@ -1454,6 +1454,7 @@ Other administrators on {{SITENAME}} will still be able to access the hidden con
 
 Please confirm that you intend to do this, that you understand the consequences, and that you are doing this in accordance with [[{{MediaWiki:Policy-url}}|the policy]].",
 'revdelete-suppress-text'     => "Suppression should '''only''' be used for the following cases:
+* Potentially libelous information
 * Inappropriate personal information
 *: ''home addresses and telephone numbers, social security numbers, etc.''",
 'revdelete-legend'            => 'Set visibility restrictions',
@@ -1500,7 +1501,8 @@ Please check the logs.',
 'revdelete-only-restricted'   => 'You cannot suppress items from view by administrators without also selecting one of the other suppression options.',
 'revdelete-reason-dropdown'   => '*Common delete reasons
 ** Copyright violation
-** Inappropriate personal information',
+** Inappropriate personal information
+** Potentially libelous information',
 'revdelete-otherreason'       => 'Other/additional reason:',
 'revdelete-reasonotherlist'   => 'Other reason',
 'revdelete-edit-reasonlist'   => 'Edit delete reasons',
