@@ -163,6 +163,7 @@ function changeText(el, newText) {
 }
 
 function toggleToc() {
+	var tocmain = document.getElementById('toc');
 	var toc = document.getElementById('toc').getElementsByTagName('ul')[0];
 	var toggleLink = document.getElementById('togglelink');
 
@@ -170,10 +171,12 @@ function toggleToc() {
 		changeText(toggleLink, tocHideText);
 		toc.style.display = 'block';
 		document.cookie = "hidetoc=0";
+		tocmain.className = '';
 	} else {
 		changeText(toggleLink, tocShowText);
 		toc.style.display = 'none';
 		document.cookie = "hidetoc=1";
+		tocmain.className = 'tochidden';
 	}
 }
 
