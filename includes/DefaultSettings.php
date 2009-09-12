@@ -4223,5 +4223,7 @@ $wgMemoryLimit = "50M";
  */
 $wgUseAJAXCategories = false;
 
-// to disable image delete/restore temporarily
+/**
+ * To disable file delete/restore temporarily
+ */
 $wgUploadMaintenance = false;

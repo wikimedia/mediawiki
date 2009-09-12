@@ -85,6 +85,8 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
   was denied to users(img_auth only)
 * (bug 19646) $wgImgAuthPublicTest added to test to see if img_auth set up
   correctly (img_auth only)
+* $wgUploadMaintenance added to disable file deletions and restorations during
+  maintenance
 
 === New features in 1.16 ===
 
