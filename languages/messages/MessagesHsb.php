@@ -1619,6 +1619,7 @@ Slědowaca lisćina pokazuje jenož {{PLURAL:$1|prěni wotkaz strony|prěnjej $1
 ** Zranjenje awtorksich prawow
 ** Dwójna dataja',
 'filedelete-edit-reasonlist'  => 'Přičiny za wušmórnjenje wobdźěłać',
+'filedelete-maintenance'      => 'Wušmórnjenje a wobnowjenje datajow stej wothladowanja dla nachilu znjemóžnjenej.',
 
 # MIME search
 'mimesearch'         => 'Pytanje za typom MIME',

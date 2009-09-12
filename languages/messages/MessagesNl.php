@@ -1901,6 +1901,7 @@ De [$2 pagina met de bestandsbeschrijving] wordt hieronder weergegeven.',
 ** Auteursrechtenschending
 ** Duplicaatbestand',
 'filedelete-edit-reasonlist'  => 'Redenen voor verwijderen bewerken',
+'filedelete-maintenance'      => 'Het verwijderen en terugplaatsen is tijdelijk niet mogelijk wegens onderhoudswerkzaamheden.',
 
 # MIME search
 'mimesearch'         => 'Zoeken op MIME-type',

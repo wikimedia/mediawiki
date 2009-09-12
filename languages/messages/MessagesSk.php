@@ -752,7 +752,8 @@ Z tohto dôvodu nemôžu návštevníci z tejto IP adresy momentálne vytvoriť 
 ($4) s názvom „$2“, s heslom „$3“. Mali by ste sa prihlásiť a svoje heslo teraz zmeniť.
 
 Ak bol účet vytvorený omylom, túto správu môžete ignorovať.',
-'login-throttled'            => 'Nedávno ste uskutočnili príliš mnoho neúspešných pokusov zadať heslo tohto účtu. Prosím, počkajte predtým, než to skúsite znova.',
+'login-throttled'            => 'Nedávno ste uskutočnili príliš mnoho neúspešných pokusov o prihlásenie.
+Prosím, počkajte predtým, než to skúsite znova.',
 'loginlanguagelabel'         => 'Jazyk: $1',
 
 # Password reset dialog
@@ -868,6 +869,9 @@ Ak ste anonymný používateľ a máte pocit, že vám boli adresované irelevan
 Môžete [[Special:Search/{{PAGENAME}}|vyhľadávať názov tejto stránky]] v obsahu iných stránok,
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} vyhľadávať v súvisiacich záznamoch],
 alebo [{{fullurl:{{FULLPAGENAME}}|action=edit}} upravovať túto stránku].',
+'noarticletext-nopermission'       => 'Táto stránka momentálne neobsahuje žiadny text.
+Môžete [[Special:Search/{{PAGENAME}}|hľadať názov tejto stránky]] v texte iných stránok
+alebo <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} si pozrieť súvisiace záznamy]</span>.',
 'userpage-userdoesnotexist'        => 'Používateľský účet „$1“ nie je registrovaný. Prosím, zaškrtnite ak chcete vytvoriť/upravovať túto stránku.',
 'clearyourcache'                   => "'''Poznámka: Aby sa zmeny prejavili, po uložení musíte vymazať vyrovnávaciu pamäť vášho prehliadača.'''
 '''Mozilla / Firefox / Safari:''' držte stlačený ''Shift'' a kliknite na ''Reload'' alebo stlačte buď ''Ctrl-F5'' alebo ''Ctrl-R'' (''Comand-R'' na Macintosh); '''Konqueror:''': kliknite na tlačidlo ''Reload'' alebo stlačte ''F5''; '''Opera''' vymazať vyrovnávaciu pamäť prehliadača v ponuke ''Tools→Preferences''; '''Internet Explorer:''' držte ''Ctrl'' a kliknite na ''Refresh'' alebo stlačte ''Ctrl-F5'';",
@@ -1696,6 +1700,24 @@ Ak problém pretrváva, kontaktujte [[Special:ListUsers/sysop|správcu systému]
 'upload-unknown-size'       => 'Neznáma veľkosť',
 'upload-http-error'         => 'Vyskytla sa chyba HTTP: $1',
 
+# img_auth script messages
+'img-auth-accessdenied' => 'Prístup zamietnutý',
+'img-auth-nopathinfo'   => 'Chýba PATH_INFO.
+Váš server nie je nastavený tak, aby poskytoval tieto informácie.
+Môže byť založený na CGI a nedokáže podporovať img_auth.
+Pozri http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
+'img-auth-notindir'     => 'Požadovaná cesta nie je v nastavenom adresári na nahrávanie.',
+'img-auth-badtitle'     => 'Nepodarilo sa zostaviť platný názov z „$1“.',
+'img-auth-nologinnWL'   => 'Nie ste prihlásený a „$1“ nie je na bielej listine.',
+'img-auth-nofile'       => 'Súbor „$1“ neexistuje.',
+'img-auth-isdir'        => 'Pokúšate sa o prístup k adresáru „$1“.
+Je povolený iba prístup k súborom.',
+'img-auth-streaming'    => 'Streamovanie „$1“.',
+'img-auth-public'       => 'Funkciou img_auth.php je výstup súborov zo súkromnej wiki.
+Nastavená wiki je verejná.
+Aby bolo zabezpečenie optimálne, img_auth.php je vypnutý.',
+'img-auth-noread'       => 'Používateľ nemá prístup na čítanie „$1“.',
+
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Nedostupný URL',
 'upload-curl-error6-text'  => 'Poskytnutý URL nebol dostupný. Prosím, skontrolujte znova, že URL je správny a lokalita je dostupná.',
@@ -1785,6 +1807,7 @@ Môžete si pozrieť [[Special:WhatLinksHere/$2|úplný zoznam]].',
 ** Porušenie autorských práv
 ** Duplicitný súbor',
 'filedelete-edit-reasonlist'  => 'Upraviť dôvody zmazania',
+'filedelete-maintenance'      => 'Mazanie a obnovovanie súborov je počas údržby dočasne vypnuté.',
 
 # MIME search
 'mimesearch'         => 'MIME vyhľadávanie',
@@ -2286,17 +2309,18 @@ $1',
 'month'               => 'Mesiac:',
 'year'                => 'Rok:',
 
-'sp-contributions-newbies'       => 'Zobraziť len príspevky nových účtov',
-'sp-contributions-newbies-sub'   => 'Príspevky nováčikov',
-'sp-contributions-newbies-title' => 'Príspevky nových používateľov',
-'sp-contributions-blocklog'      => 'záznam blokovaní',
-'sp-contributions-deleted'       => 'zmazané príspevky používateľa',
-'sp-contributions-logs'          => 'záznamy',
-'sp-contributions-talk'          => 'diskusia',
-'sp-contributions-userrights'    => 'spravovanie používateľských práv',
-'sp-contributions-search'        => 'Hľadať príspevky',
-'sp-contributions-username'      => 'IP adresa alebo meno používateľa:',
-'sp-contributions-submit'        => 'Hľadať',
+'sp-contributions-newbies'        => 'Zobraziť len príspevky nových účtov',
+'sp-contributions-newbies-sub'    => 'Príspevky nováčikov',
+'sp-contributions-newbies-title'  => 'Príspevky nových používateľov',
+'sp-contributions-blocklog'       => 'záznam blokovaní',
+'sp-contributions-deleted'        => 'zmazané príspevky používateľa',
+'sp-contributions-logs'           => 'záznamy',
+'sp-contributions-talk'           => 'diskusia',
+'sp-contributions-userrights'     => 'spravovanie používateľských práv',
+'sp-contributions-blocked-notice' => 'Tento používateľ je momentálne zablokovaný. Dolu je uvedená posledná položka zo záznamu blokovaní:',
+'sp-contributions-search'         => 'Hľadať príspevky',
+'sp-contributions-username'       => 'IP adresa alebo meno používateľa:',
+'sp-contributions-submit'         => 'Hľadať',
 
 # What links here
 'whatlinkshere'            => 'Odkazy na túto stránku',
@@ -3375,5 +3399,20 @@ Zadajte názov súboru bez predpony „{{ns:file}}:“.',
 'htmlform-submit'              => 'Odoslať',
 'htmlform-reset'               => 'Vrátiť zmeny',
 'htmlform-selectorother-other' => 'Iné',
+
+# Add categories per AJAX
+'ajax-add-category'            => 'Pridať kategóriu',
+'ajax-add-category-submit'     => 'Pridať',
+'ajax-confirm-title'           => 'Potvrdiť operáciu',
+'ajax-confirm-prompt'          => 'Dolu môžete napísať zhrnutie úprav.
+Svoje úpravy uložíte kliknutím na „Uložiť“.',
+'ajax-confirm-save'            => 'Uložiť',
+'ajax-add-category-summary'    => 'Pridať kategóriu „$1“',
+'ajax-remove-category-summary' => 'Odstrániť kategóriu „$1“',
+'ajax-confirm-actionsummary'   => 'Vykonať operáciu:',
+'ajax-error-title'             => 'Chyba',
+'ajax-error-dismiss'           => 'OK',
+'ajax-remove-category-error'   => 'Nebolo možné odstrániť túto kategóriu.
+To sa zvyčajne stane, keď bola kategória pridaná na stránku v pomocou šablóny.',
 
 );

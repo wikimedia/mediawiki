@@ -1774,6 +1774,7 @@ Deskripsi dari [$2 halaman deskripsinya] ditunjukkan di bawah ini.',
 ** Pelanggaran hak cipta
 ** Berkas duplikat',
 'filedelete-edit-reasonlist'  => 'Alasan penghapusan suntingan',
+'filedelete-maintenance'      => 'Penghapusan dan pengembalian berkas sementara dinonaktifkan selama perawatan.',
 
 # MIME search
 'mimesearch'         => 'Pencarian MIME',

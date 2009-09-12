@@ -729,7 +729,7 @@ $2',
 'createaccount-text'         => '{{SITENAME}}($4)에서 계정 이름 ‘$2’, 비밀번호 ‘$3’으로 계정을 만들었습니다. 로그인을 한 다음 암호를 바꾸어 주세요.
 
 계정을 잘못 만들었다면 이 메시지는 무시해도 됩니다.',
-'login-throttled'            => '로그인 하려는 계정의 비밀번호를 연속으로 잘못 입력하였습니다.
+'login-throttled'            => '로그인에 연속으로 실패하였습니다.
 잠시 후에 다시 시도해주세요.',
 'loginlanguagelabel'         => '언어: $1',
 
@@ -3321,6 +3321,8 @@ $1',
 # Add categories per AJAX
 'ajax-add-category'        => '분류 추가',
 'ajax-add-category-submit' => '추가',
+'ajax-confirm-save'        => '저장',
+'ajax-error-title'         => '오류',
 'ajax-error-dismiss'       => '확인',
 
 );

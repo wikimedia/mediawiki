@@ -1853,6 +1853,7 @@ Eine [[Special:WhatLinksHere/$2|vollständige Liste]] ist verfügbar.',
 ** Urheberrechtsverletzung
 ** Duplikat',
 'filedelete-edit-reasonlist'  => 'Löschgründe bearbeiten',
+'filedelete-maintenance'      => 'Das Löschen und Wiederherstellen von Dateien ist aufgrund von Wartungsarbeiten vorübergehend deaktiviert.',
 
 # MIME search
 'mimesearch'         => 'Suche nach MIME-Typ',

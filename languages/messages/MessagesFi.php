@@ -1724,6 +1724,7 @@ Tiedot [$2 tiedoston kuvaussivulta] näkyvät alla.',
 ** Kaksoiskappale
 ** Tekijänoikeusrikkomus',
 'filedelete-edit-reasonlist'  => 'Muokkaa poistosyitä',
+'filedelete-maintenance'      => 'Tiedostojen poisto ja palautus on väliaikaisesti poistettu käytöstä huoltotoimien vuoksi.',
 
 # MIME search
 'mimesearch'         => 'MIME-haku',

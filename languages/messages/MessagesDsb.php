@@ -1640,6 +1640,7 @@ Slědujuca lisćina pokazujo jano {{PLURAL:$1|prědny wótkaz|prědnej $1 wótka
 ** Pśekśiwjenje stworiśelskego pšawa
 ** Dwójna dataja',
 'filedelete-edit-reasonlist'  => 'Pśicyny za lašowanje wobźěłaś',
+'filedelete-maintenance'      => 'Wulašowanje a wótnowjenje datajow stej wótwardowanja dla nachylu znjemóžnjonej.',
 
 # MIME search
 'mimesearch'         => 'MIME-typ pytaś',

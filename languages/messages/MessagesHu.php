@@ -1814,6 +1814,7 @@ A [$2 fájl ottani leírólapjának] másolata alább látható.',
 ** Szerzői jog megsértése
 ** Duplikátum',
 'filedelete-edit-reasonlist'  => 'Törlési okok szerkesztése',
+'filedelete-maintenance'      => 'A fájlok törlése és helyreállítása ideiglenesen le van tiltva karbantartás miatt.',
 
 # MIME search
 'mimesearch'         => 'Keresés MIME-típus alapján',

@@ -164,6 +164,18 @@ $messages = array(
 'qbmyoptions'    => 'Мæ фæрстæ',
 'qbspecialpages' => 'Сæрмагонд фæрстæ',
 
+# Vector skin
+'vector-namespace-category' => 'Категори',
+'vector-namespace-image'    => 'Файл',
+'vector-namespace-main'     => 'Фарс',
+'vector-namespace-project'  => 'Проекты фарс',
+'vector-namespace-user'     => 'Архайæджы фарс',
+'vector-view-create'        => 'Скæн æй',
+'vector-view-edit'          => 'Фен æй',
+'vector-view-history'       => 'Истори',
+'vector-view-view'          => 'Кæс',
+'vector-view-viewsource'    => 'Йæ код фен',
+
 'errorpagetitle'    => 'Рæдыд',
 'returnto'          => '$1 фарсмæ раздæх.',
 'tagline'           => 'Сæрибар энциклопеди Википедийы æрмæг.',
@@ -342,31 +354,32 @@ $messages = array(
 'math_tip'        => 'Математикон формулæ (формат LaTeX)',
 
 # Edit pages
-'summary'            => 'Ивддзинæдты мидис:',
-'subject'            => 'Темæ/сæргонд:',
-'minoredit'          => 'Ай чысыл ивддзинад у.',
-'watchthis'          => 'Ацы фарсмæ дæ цæст æрдар',
-'savearticle'        => 'Афтæ уæд!',
-'preview'            => 'Разæркаст',
-'showpreview'        => 'Фен уал æй',
-'showlivepreview'    => 'Тагъд разæркаст',
-'showdiff'           => 'Цы баивтай ацы тексты, уый фен',
-'summary-preview'    => 'Ивддзинады афыст уыдзæн:',
-'blockedtitle'       => 'Архайæг хъодыгонд æрцыд',
-'blockednoreason'    => 'аххос амынд не ’рцыд',
-'accmailtitle'       => 'Пароль рарвыст у.',
-'newarticle'         => '(Ног)',
-'note'               => "'''Бафиппай:'''",
-'editing'            => 'Ивыс: $1',
-'editingsection'     => 'Ивыс $1 (фарсы хай)',
-'editconflict'       => 'Ивыны конфликт: $1',
-'yourtext'           => 'Дæхи текст',
-'longpagewarning'    => "'''РАГФÆДЗАХСТ: Ацы фарсы бæрцуат у $1 килобайты.
+'summary'                => 'Ивддзинæдты мидис:',
+'subject'                => 'Темæ/сæргонд:',
+'minoredit'              => 'Ай чысыл ивддзинад у.',
+'watchthis'              => 'Ацы фарсмæ дæ цæст æрдар',
+'savearticle'            => 'Афтæ уæд!',
+'preview'                => 'Разæркаст',
+'showpreview'            => 'Фен уал æй',
+'showlivepreview'        => 'Тагъд разæркаст',
+'showdiff'               => 'Цы баивтай ацы тексты, уый фен',
+'summary-preview'        => 'Ивддзинады афыст уыдзæн:',
+'blockedtitle'           => 'Архайæг хъодыгонд æрцыд',
+'blockednoreason'        => 'аххос амынд не ’рцыд',
+'accmailtitle'           => 'Пароль рарвыст у.',
+'newarticle'             => '(Ног)',
+'note'                   => "'''Бафиппай:'''",
+'editing'                => 'Ивыс: $1',
+'editingsection'         => 'Ивыс $1 (фарсы хай)',
+'editconflict'           => 'Ивыны конфликт: $1',
+'yourtext'               => 'Дæхи текст',
+'longpagewarning'        => "'''РАГФÆДЗАХСТ: Ацы фарсы бæрцуат у $1 килобайты.
 Сæ бæрцуат 32 килобайтæй фылдæр кæмæн у, ахæм фæрстæ иуæй-иу браузерты раст нæ зынынц.
 Кæд ахæм вариант и, уæд ацы фарсæй цалдæр фарсы скæн.'''",
-'templatesused'      => 'Ацы фарсы шаблонтæ:',
-'template-protected' => '(æхгæд)',
-'edit-conflict'      => 'Иввдзинæдты конфликт.',
+'templatesused'          => 'Ацы фарсы шаблонтæ:',
+'template-protected'     => '(æхгæд)',
+'template-semiprotected' => '(æрдæг-æхгæд)',
+'edit-conflict'          => 'Иввдзинæдты конфликт.',
 
 # History pages
 'viewpagelogs'           => 'Ацы фарсæн йæ логтæ равдис',
@@ -535,6 +548,7 @@ $3',
 'recentchangeslinked'         => 'Баст ивддзинæдтæ',
 'recentchangeslinked-feed'    => 'Баст ивддзинæдтæ',
 'recentchangeslinked-toolbox' => 'Баст ивддзинæдтæ',
+'recentchangeslinked-page'    => 'Фарсы ном:',
 
 # Upload
 'upload'           => 'Ног файл сæвæр',
@@ -639,13 +653,15 @@ $3',
 'special-categories-sort-abc'   => 'алфавитмæ гæсгæ равæр',
 
 # Special:LinkSearch
+'linksearch'    => 'Æддаг æрвитæнтæ',
 'linksearch-ok' => 'Агур',
 
 # Special:ListUsers
 'listusers-submit' => 'Равдис',
 
 # Special:ListGroupRights
-'listgrouprights-group' => 'Къорд',
+'listgrouprights-group'   => 'Къорд',
+'listgrouprights-members' => '(уæнгты номхыгъд)',
 
 # E-mail user
 'mailnologintext' => 'Фыстæгтæ æрвитынмæ хъуамæ [[Special:UserLogin|системæйæн дæхи бавдисай]] æмæ дæ бæлвырд электронон посты адрис [[Special:Preferences|ныффыссай]].',

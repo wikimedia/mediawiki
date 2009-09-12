@@ -1782,6 +1782,7 @@ Slijedeći popis prikazuje {{PLURAL:$1|stranice koje|prvih $1 stranica koje}} vo
 ** Dupla datoteka
 ** Nekorištena datoteka',
 'filedelete-edit-reasonlist'  => 'Uredi razloge za brisanje',
+'filedelete-maintenance'      => 'Brisanje i vraćanje datoteka privremeno je onemogućeno zbog održavanja.',
 
 # MIME search
 'mimesearch'         => 'MIME tražilica',
