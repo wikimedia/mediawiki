@@ -491,6 +491,7 @@ it from source control: http://www.mediawiki.org/wiki/Download_from_SVN
 * (bug 20578) Wrong localized image metadata - duplicated string?
 * (bug 20556) Stub threshold's "other" <input> in Special:Preferences now has a
   correct type="text" parameter
+* (bug 482) Don't include TOC in the printable version if it has been hidden
 
 == API changes in 1.16 ==
 
