@@ -31,8 +31,8 @@ class ChangesList {
 	* Changeslist contructor
 	* @param Skin $skin
 	*/
-	public function __construct( &$skin ) {
-		$this->skin =& $skin;
+	public function __construct( $skin ) {
+		$this->skin = $skin;
 		$this->preCacheMessages();
 	}
 
