@@ -1200,8 +1200,23 @@ class Article {
 	 */
 	public function showMissingArticle() {
 		global $wgOut, $wgRequest, $wgUser;
+
+		# Show info in user (talk) namespace. Does the user exist and if not, has he been renamed.
+		if ( $this->mTitle->getNamespace() == NS_USER || $this->mTitle->getNamespace() == NS_USER_TALK ) {
+			$id = User::idFromName( $this->mTitle->getBaseText() );
+			$ip = User::isIP( $this->mTitle->getBaseText() );
+			if ( $id == 0 && !$ip ) { # User does not exist
+				$wgOut->wrapWikiMsg( '<div class="mw-userpage-userdoesnotexist error">$1</div>',
+					array( 'userpage-userdoesnotexist-view', $this->mTitle->getBaseText() ) );
+
+				# Show rename log because user does not exist. 
+				$parent = $this->mTitle->getNsText() . ":" . $this->mTitle->getBaseText();
+				$wgOut->showLogs( $parent, '', array( 'renameuser' ), 'renamed-notice' );
+			}
+
+		}
 		# Show delete and move logs
-		$this->showLogs();
+		$wgOut->showLogs( $this->mTitle->getPrefixedText(), '', array( 'delete', 'move' ), 'moveddeleted-notice' );
 
 		# Show error message
 		$oldid = $this->getOldID();
@@ -1263,36 +1278,6 @@ class Article {
 				'rev-suppressed-text-view' : 'rev-deleted-text-view';
 			$wgOut->wrapWikiMsg( "<div class='mw-warning plainlinks'>\n$1</div>\n", $msg );
 			return true;
-		}
-	}
-
-	/**
-	 * Show an excerpt from the deletion and move logs. To be called from the 
-	 * header section on page views of missing pages.
-	 */
-	public function showLogs() {
-		global $wgUser, $wgOut;
-		$loglist = new LogEventsList( $wgUser->getSkin(), $wgOut );
-		$pager = new LogPager( $loglist, array('move', 'delete'), false,
-			$this->mTitle->getPrefixedText(), '', array( "log_action != 'revision'" ) );
-		if( $pager->getNumRows() > 0 ) {
-			$pager->mLimit = 10;
-			$wgOut->addHTML( '<div class="mw-warning-with-logexcerpt">' );
-			$wgOut->addWikiMsg( 'moveddeleted-notice' );
-			$wgOut->addHTML(
-				$loglist->beginLogEventsList() .
-				$pager->getBody() .
-				$loglist->endLogEventsList()
-			);
-			if( $pager->getNumRows() > 10 ) {
-				$wgOut->addHTML( $wgUser->getSkin()->link(
-					SpecialPage::getTitleFor( 'Log' ),
-					wfMsgHtml( 'log-fulllog' ),
-					array(),
-					array( 'page' => $this->mTitle->getPrefixedText() )
-				) );
-			}
-			$wgOut->addHTML( '</div>' );
 		}
 	}
 

@@ -1253,6 +1253,7 @@ or <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLP
 'noarticletextanon'                => '{{int:noarticletext}}', # do not translate or duplicate this message to other languages
 'userpage-userdoesnotexist'        => 'User account "$1" is not registered.
 Please check if you want to create/edit this page.',
+'userpage-userdoesnotexist-view'        => 'User account "$1" is not registered.',
 'clearyourcache'                   => "'''Note - After saving, you may have to bypass your browser's cache to see the changes.'''
 '''Mozilla / Firefox / Safari:''' hold ''Shift'' while clicking ''Reload'', or press either ''Ctrl-F5'' or ''Ctrl-R'' (''Command-R'' on a Macintosh);
 '''Konqueror: '''click ''Reload'' or press ''F5'';
@@ -1341,6 +1342,8 @@ You should consider whether it is appropriate to continue editing this page.
 The deletion and move log for this page are provided here for convenience:",
 'moveddeleted-notice'              => 'This page has been deleted.
 The deletion and move log for the page are provided below for reference.',
+'renamed-notice'                   => 'This user has been renamed.
+The rename log is provided below for reference.',
 'log-fulllog'                      => 'View full log',
 'edit-hook-aborted'                => 'Edit aborted by hook.
 It gave no explanation.',
