@@ -639,6 +639,7 @@ Tö voit [[Special:Search/{{PAGENAME}}|ectä nece nimi]] toižil lehtpolil,
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} ectä pojavid aigkirjoiden kirjutesid],
 vai [{{fullurl:{{FULLPAGENAME}}|action=edit}} redaktiruida nece lehtpol\']</span>.',
 'userpage-userdoesnotexist'        => "Kävutajan nimed «$1» ei ole. Todeks-ik tahtoit säta vai toižetada nece lehtpol'?",
+'userpage-userdoesnotexist-view'   => '"$1"-kävutai ei ole registriruidud.',
 'usercssyoucanpreview'             => "'''Nevond:''' Kävutagat 'Ozutada ezikacund'-kingitim, miše kodvda teiden uz' CSS edel mušthopanendad.",
 'userjsyoucanpreview'              => "'''Nevond:''' Kävutagat 'Ozutada ezikacund'-kingitim, miše kodvda teiden uz' JS edel mušthopanendad.",
 'usercsspreview'                   => "'''Muštkat, miše nece om vaiše teiden CSS-failan ezikacund, se ei ole völ kirjutadud muštho!'''",
@@ -678,6 +679,7 @@ Ei voi kirjutada muštho.",
 'cascadeprotectedwarning'          => "'''Homaikat:''' Nece lehtpol' om luklostadud muga, miše vaiše kävutajad administratoriden privilegijoidenke voidas 
 redaktiruida sidä, sikš miše se oli mülütadud {{PLURAL:$1|neche lehtpol'he, kudamban|nenihe lehtpolihe, kudambiden}} 
 täht oli sätud kaskadkaičend:",
+'titleprotectedwarning'            => "'''Homaikat: Nece lehtpol' om luklostadud, sikš pidab sada [[Special:ListGroupRights|specialižed oiktused]], miše säta se.'''",
 'templatesused'                    => 'Necil lehtpolel kävutadud šablonad:',
 'templatesusedpreview'             => 'Ezikactud lehtpolel kävutadud šablonad:',
 'templatesusedsection'             => 'Šablonad, kudambad kävutadas neciš sekcijas:',
@@ -768,6 +770,7 @@ Detalid voidas olda [{{fullurl:{{#Special:Log}}/delete|page={{FULLPAGENAMEE}}}} 
 'revdelete-nologtype-text'    => 'Tö et olgoi andnuded aigkirjan tipad, kudambas pidab tehta se tegend.',
 'revdelete-nologid-title'     => 'Vär kirjutez aigkirjas',
 'revdelete-nologid-text'      => 'Tö et olgoi andnuded aigkirjan metkirjutest tegendan tehtes vai anttud kirjutest ei ole.',
+'revdelete-show-file-submit'  => 'Ka',
 'revdelete-selected'          => "'''{{PLURAL:$2|Valitud versii|Valitud versijad}} lehtpolišpäi [[:$1]]:'''",
 'logdelete-selected'          => "'''{{PLURAL:$1|Valitud kirjutez aigkirjas|Valitud kirjutesed aigkirjas}}:'''",
 'revdelete-text'              => "'''Čutud versijad ozutadas lehtpolen istorijas da aigkirjoiš, no järgeližed lugijad ei voiškakoi nähta niiden südäimišton erasid paloid.'''
@@ -991,6 +994,7 @@ Otkat sil'mnägubale üks-se, miše {{SITENAME}}-saitan sädäimišt voib olda v
 'prefs-watchlist-days-max'    => '(ei enamba 7 päiväd)',
 'prefs-watchlist-edits'       => 'Maksimaline toižetusiden lugu levitoittud kaclendnimikirjuteses:',
 'prefs-watchlist-edits-max'   => '(maksimaline lugu: 1000)',
+'prefs-watchlist-token'       => 'Kaclendan nimikirjutesen token',
 'prefs-misc'                  => 'Toine',
 'prefs-resetpass'             => 'Toižetada peitsana',
 'prefs-email'                 => 'E-počtan opcijad',
@@ -1045,7 +1049,7 @@ Otkat sil'mnägubale üks-se, miše {{SITENAME}}-saitan sädäimišt voib olda v
 'yourvariant'                 => 'Kelenvariant:',
 'yournick'                    => 'Allekirjutez:',
 'badsig'                      => 'Vär allekirjutez.
-Kodvgat HTML-tegad.',
+Kodvgat HTML-virgad.',
 'badsiglength'                => "Pit'kähk allekirjutez.
 Pidab tehta se $1 {{PLURAL:$1|simvolaspäi|simvoloišpäi}}.",
 'yourgender'                  => 'Sugu:',
@@ -1061,6 +1065,7 @@ Ku tö kirjutat sen, nece nimi kävutadas, miše ozutada lehtpolen toižetajad.'
 'prefs-i18n'                  => 'Internacionalizacii',
 'prefs-signature'             => 'Allekirjutez',
 'prefs-dateformat'            => 'Datan format',
+'prefs-timeoffset'            => 'Aigan sirdand',
 'prefs-advancedediting'       => 'Ližaopcijad',
 'prefs-advancedrc'            => 'Ližaopcijad',
 'prefs-advancedrendering'     => 'Ližaopcijad',
@@ -1213,6 +1218,7 @@ Ku tö kirjutat sen, nece nimi kävutadas, miše ozutada lehtpolen toižetajad.'
 'recentchanges-feed-description'    => "Kacelta jäl'gmäižid toižetusid wikiš neciš valus.",
 'recentchanges-label-legend'        => 'Legend: $1.',
 'recentchanges-legend-newpage'      => "$1 - uz' lehtpol'",
+'recentchanges-label-newpage'       => 'Nece redakcii sädi uden lehtpolen',
 'recentchanges-legend-minor'        => '$1 - penikaine redakcii',
 'recentchanges-label-minor'         => 'Nece redakcii om penikaine',
 'recentchanges-legend-bot'          => '$1 - botan redakcii',
@@ -1312,6 +1318,9 @@ Lasktud {{PLURAL:\$3|failan tip om|failoiden tipad oma}} \$2.",
 Olgat hüväd, kodvgat, om-ik URL oiged i voib-ik säta sido sen purtkenke, sid' toštkat jügutoituz.
 Ku problem jäb jäl'ghepäi-ki, säkat pagin [[Special:ListUsers/sysop|sistemadministratoranke]].",
 
+# img_auth script messages
+'img-auth-accessdenied' => "Pästand tänna om kel'tud",
+
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'      => 'Ei voi säta sidod URL:anke',
 'upload-curl-error6-text' => 'Ei voi säta sidod anttud URL:anke.
@@ -1319,7 +1328,7 @@ Olgat hüväd, kodvgat, om-ik adres oiged i voib-ik säta sido saitanke.',
 'upload-curl-error28'     => 'Jügutoitandan aig om männu',
 
 'license'            => 'Licenzii:',
-'license-header'     => 'Licenzii:',
+'license-header'     => 'Licenzii',
 'nolicense'          => 'Ei ole licenzijoid',
 'license-nopreview'  => '(Ei voi ezikacta)',
 'upload_source_file' => ' (fail teiden kompjuteras)',
@@ -1354,6 +1363,7 @@ Plok pachan pälkirjutesele toižetab sortiruindan järgenduz.',
 'filehist-dimensions'       => 'Objektan suruz',
 'filehist-filesize'         => 'Failan suruz',
 'filehist-comment'          => 'Homaičend',
+'filehist-missing'          => 'Ei ole failad',
 'imagelinks'                => 'Kosketused failale',
 'linkstoimage'              => "{{PLURAL:$1|Nece lehtpol' kosketab|$1 Nened lehtpoled kosketadas}} necidä failad:",
 'nolinkstoimage'            => 'Ei ole necidä failad kosketajid lehtpolid.',
@@ -1409,7 +1419,7 @@ Plok pachan pälkirjutesele toižetab sortiruindan järgenduz.',
 
 # Random page
 'randompage'         => "Statjaline lehtpol'",
-'randompage-nopages' => '"$1"-nimiavaruses ei ole lehtpolid.',
+'randompage-nopages' => '"$1"-{{PLURAL:$2|Nimiavarudes|Nimiavaruziš}} ei ole lehtpolid.',
 
 # Random redirect
 'randomredirect'         => 'Statjaline läbikosketuz',
@@ -1421,6 +1431,7 @@ Plok pachan pälkirjutesele toižetab sortiruindan järgenduz.',
 'statistics-header-edits'  => 'Redaktiruida statistikad',
 'statistics-header-views'  => 'Kacta statistikha',
 'statistics-header-users'  => 'Kävutajiden statistik',
+'statistics-header-hooks'  => 'Toine statistik',
 'statistics-articles'      => "Südäimištlehtpol't",
 'statistics-pages'         => "Lehtpol't",
 'statistics-pages-desc'    => 'Kaik lehtpoled wikiš, lodulehtpolid da läbioigendusid mülütaden, i m. e.',
@@ -1526,7 +1537,7 @@ Plok pachan pälkirjutesele toižetab sortiruindan järgenduz.',
 'specialloguserlabel'  => 'Kävutai:',
 'speciallogtitlelabel' => 'Pälkirjutez:',
 'log'                  => 'Aigkirjad',
-'all-logs-page'        => 'Kaik aigkirjad',
+'all-logs-page'        => 'Kaik avoinuded aigkirjad',
 'logempty'             => 'Ei ole sättujid kirjutesid aigkirjas.',
 'log-title-wildcard'   => 'Ectä pälkirjutesid, kudambil augoitišes om ningomid simvoloid',
 
@@ -1548,7 +1559,7 @@ Plok pachan pälkirjutesele toižetab sortiruindan järgenduz.',
 
 # Special:Categories
 'categories'                    => 'Kategorijad',
-'categoriespagetext'            => 'Neniš kategorijoiš om lehtpolid vai mediafailoid.
+'categoriespagetext'            => '{{PLURAL:$1|Neciš kategorijas|Neniš kategorijoiš }} om lehtpolid vai mediafailoid.
 [[Special:UnusedCategories|Kävumatomid kategorijoid]] ei ozutagoi naku.
 Kc. mugažo [[Special:WantedCategories|ectud kategorijoiden nimikirjutez]].',
 'categoriesfrom'                => 'Ozutada kategorijad, necišpäi augotaden:',
@@ -1571,6 +1582,11 @@ Kc. mugažo [[Special:WantedCategories|ectud kategorijoiden nimikirjutez]].',
 'listusersfrom'      => 'Ozutada kävutajid augotaden kävutajaspäi:',
 'listusers-submit'   => 'Ozutada',
 'listusers-noresult' => 'Kävutajad ei olgoi löutud.',
+'listusers-blocked'  => '(blokiruidud)',
+
+# Special:ActiveUsers
+'activeusers'          => 'Aktivižiden kävutajiden nimikirjutez',
+'activeusers-noresult' => 'Kävutajad ei olgoi löutud.',
 
 # Special:Log/newusers
 'newuserlogpage'              => 'Kävutajiden registracijan aigkirj',
@@ -1802,6 +1818,7 @@ Sab toižetada necen lehtpolen kaičendpind, no se ei voi toižetada kaskadkaič
 'undelete-nodiff'            => 'Ei voi löuta edelišt versijad.',
 'undeletebtn'                => 'Endištada',
 'undeletelink'               => 'endištada',
+'undeleteviewlink'           => 'nähta',
 'undeletereset'              => 'Puhtastada',
 'undeletecomment'            => 'Kommentarii:',
 'undeletedarticle'           => 'om endištanu "[[$1]]"',
@@ -1925,7 +1942,7 @@ Kc. [[Special:IPBlockList|blokiruidud IP-adresoiden nimikirjuteshe]].',
 'ipblocklist-submit'              => 'Ecind',
 'blocklistline'                   => '$1, $2 om blokiruinu kävutajad $3 ($4)',
 'infiniteblock'                   => 'strokutoi blokiruind',
-'expiringblock'                   => 'blokiruind lopiše $1 $2',
+'expiringblock'                   => 'lopiše $1 $2',
 'anononlyblock'                   => 'vaiše anonimad',
 'noautoblockblock'                => 'avtoblokiruind om sauptud',
 'createaccountblock'              => 'Uziden kävutajiden registriruind om blokiruidud',
@@ -2044,10 +2061,18 @@ Nenil statjoil tegese sirta vai ühtenzoitta lehtpoled ičeksaz.",
 'export-templates'  => 'Mülütada šablonad',
 
 # Namespace 8 related
-'allmessages'        => 'Sisteman tedotused',
-'allmessagesname'    => 'Nimi',
-'allmessagesdefault' => 'Tekst augotižjärgendusen mödhe',
-'allmessagescurrent' => 'Nügüdläine tekst',
+'allmessages'                   => 'Sisteman tedotused',
+'allmessagesname'               => 'Nimi',
+'allmessagesdefault'            => 'Tekst augotižjärgendusen mödhe',
+'allmessagescurrent'            => 'Nügüdläine tekst',
+'allmessages-filter-legend'     => "Fil'tr",
+'allmessages-filter'            => "Fil'tr toižetusen statusan mödhe:",
+'allmessages-filter-unmodified' => 'Toižetamatomad',
+'allmessages-filter-all'        => 'Kaik',
+'allmessages-filter-modified'   => 'Toižetadud',
+'allmessages-prefix'            => "Fil'tr prefiksan mödhe:",
+'allmessages-language'          => "Kel'",
+'allmessages-filter-submit'     => 'Mäne',
 
 # Thumbnails
 'thumbnail-more'           => 'Tobjeta',
@@ -2247,6 +2272,8 @@ kc. math/README järgendamižen täht.',
 'svg-long-desc'        => '(SVG-fail, nominaližikš $1 × $2 pikselid, failan suruz: $3)',
 'show-big-image'       => 'Korgedtarkoiktuseline kuvan versii',
 'show-big-image-thumb' => '<small>Ezikacundan suruz: $1 × $2 pixels</small>',
+'file-info-gif-looped' => 'toštase',
+'file-info-gif-frames' => '$1 {{PLURAL:$1|freim|freimad}}',
 
 # Special:NewFiles
 'newimages'             => 'Uziden failoiden galerei',
@@ -2328,6 +2355,7 @@ Ku fail redaktiruidihe sändan polhe, erased parametrad voidas erineda nügüdl�
 'exif-componentsconfiguration'   => 'Mujukomponentoiden konfiguracii',
 'exif-compressedbitsperpixel'    => "Mujun süvuz ahtištusen jäl'ghe",
 'exif-pixelydimension'           => "Kuvan täuz' korktuz",
+'exif-makernote'                 => 'Tegijan ližaandmused',
 'exif-usercomment'               => 'Kävutajan homaičendad',
 'exif-exposuretime'              => 'Ekspozicijan aig',
 'exif-exposuretime-format'       => '$1 sek ($2)',
@@ -2510,6 +2538,7 @@ Ku fail redaktiruidihe sändan polhe, erased parametrad voidas erineda nügüdl�
 'watchlistall2'    => 'kaik',
 'namespacesall'    => 'kaik',
 'monthsall'        => 'kaik',
+'limitall'         => 'kaik',
 
 # E-mail address confirmation
 'confirmemail'             => 'Vahvištoitta e-počtan adres',
@@ -2694,7 +2723,7 @@ Kävutagat normaline ezikacund.',
 'tag-filter-submit'       => "Fil'tr",
 'tags-title'              => 'Virgad',
 'tags-intro'              => 'Necil lehtpolel om virgoiden nimikirj i neniden virgoiden znamoičendad. Programmad znamoitas virgoil toižetusid.',
-'tags-tag'                => 'Virgan südäinimi',
+'tags-tag'                => 'Tegan (virgan) nimi',
 'tags-display-header'     => 'Nägu toižetisiden aigkirjoiš',
 'tags-description-header' => "Znamoičendan täuz' ümbrikirjutand",
 'tags-hitcount-header'    => 'Virgastadud redakcijad',
@@ -2709,5 +2738,14 @@ Kävutagat normaline ezikacund.',
 'dberr-usegoogle'   => "Täl aigal tö voit ectä Google'an abul.",
 'dberr-outofdate'   => "Google'an indeks voib olda vanhtunuden.",
 'dberr-cachederror' => 'Naku om ectud lehtpolen keširuidud versii. Voib olda, siš ei ole tantoižid toižetusid.',
+
+# HTML forms
+'htmlform-selectorother-other' => 'Toine',
+
+# Add categories per AJAX
+'ajax-add-category'        => 'Ližata kategorii',
+'ajax-add-category-submit' => 'Ližata',
+'ajax-error-title'         => 'Petuz',
+'ajax-error-dismiss'       => 'OK',
 
 );

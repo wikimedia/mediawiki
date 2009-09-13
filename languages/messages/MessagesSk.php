@@ -873,6 +873,7 @@ alebo [{{fullurl:{{FULLPAGENAME}}|action=edit}} upravovať túto stránku].',
 Môžete [[Special:Search/{{PAGENAME}}|hľadať názov tejto stránky]] v texte iných stránok
 alebo <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} si pozrieť súvisiace záznamy]</span>.',
 'userpage-userdoesnotexist'        => 'Používateľský účet „$1“ nie je registrovaný. Prosím, zaškrtnite ak chcete vytvoriť/upravovať túto stránku.',
+'userpage-userdoesnotexist-view'   => 'Používateľský účet „$1“ nie je registrovaný.',
 'clearyourcache'                   => "'''Poznámka: Aby sa zmeny prejavili, po uložení musíte vymazať vyrovnávaciu pamäť vášho prehliadača.'''
 '''Mozilla / Firefox / Safari:''' držte stlačený ''Shift'' a kliknite na ''Reload'' alebo stlačte buď ''Ctrl-F5'' alebo ''Ctrl-R'' (''Comand-R'' na Macintosh); '''Konqueror:''': kliknite na tlačidlo ''Reload'' alebo stlačte ''F5''; '''Opera''' vymazať vyrovnávaciu pamäť prehliadača v ponuke ''Tools→Preferences''; '''Internet Explorer:''' držte ''Ctrl'' a kliknite na ''Refresh'' alebo stlačte ''Ctrl-F5'';",
 'usercssyoucanpreview'             => "'''Tip:''' Váš nový CSS pred uložením otestujete stlačením tlačidla „Zobraziť náhľad“.",
@@ -952,6 +953,8 @@ Mali by ste zvážiť, či je vhodné pokračovať v úpravách tejto stránky.
 Ďalšie informácie si môžete pozrieť v zázname zmazaní a presunutí:",
 'moveddeleted-notice'              => 'Táto stránka bola zmazaná.
 Ďalšie informácie si môžete pozrieť v zázname zmazaní a presunutí.',
+'renamed-notice'                   => 'Tento používateľ bol premenovaný.
+Dolu nájdete záznam premenovaní.',
 'log-fulllog'                      => 'Zobraziť úplný záznam',
 'edit-hook-aborted'                => 'Úpravu zrušila prídavná funkcia (prípojný bod syntaktického analyzátora).
 Neudala vysvetlenie.',

@@ -620,6 +620,7 @@ o purament [{{fullurl:{{FULLPAGENAME}}|action=edit}} modìfiché la pàgina ades
 It peule [[Special:Search/{{PAGENAME}}|sërché sto tìtol ëd pàgina-sì]] an d\'àutre pàgine,
 o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} sërché le argistrassion colegà]</span>.',
 'userpage-userdoesnotexist'        => 'Lë stranòm "$1" a l\'é pa registrà. Për piasì ch\'a varda se da bon a veul creé/modifiché sta pàgina.',
+'userpage-userdoesnotexist-view'   => 'Ël cont utent "$1" a l\'é pa registrà.',
 'clearyourcache'                   => "'''Nòta:''' na vira che i l'ha salvà, a peul esse che a-j fasa da manca da passé via la memorisassion (cache) dël sò programa ëd navigassion (browser) për podej ës-ciairé le modìfiche.
 *'''Mozilla / Firefox / Safari:''' Che a ten-a sgnacà ''Shift'' antramentr che a sgnaca col rat ansima a ''Reload'', ò pura che a sgnaca tut ansema ''Ctrl-Shift-R'' (''Cmd-Shift-R'' ansima a j'Apple Mac);
 *'''IE:''' che a ten-a sgnacà ''Ctrl'' antramentr che a sgnaca col rat ansima a ''Refresh'', ò pura che a sgnaca tut ansema ''Ctrl-F5'';
@@ -701,6 +702,8 @@ Ch'a varda d'esse sigur ch'a vala la pen-a ëd travajé ans na pàgina parèj.
 Për soa comodità i-j mostroma la lista djë scancelament ch'a toco sta pàgina-sì:",
 'moveddeleted-notice'              => "Sta pàgina-sì a l'é stàita scanselà.
 Ël registr ëd la scanselassion e dij spostament a l'é arportà sota për arferiment.",
+'renamed-notice'                   => "St'utent-sì a l'é stàit arnominà.
+Ël registr ëd l'arnòmina a l'é dàit sota për arferiment.",
 'log-fulllog'                      => 'Varda tut ël registr',
 'edit-hook-aborted'                => "Mod'fica anulà da l'hook.
 A-i é pa gnun-e spiegassion.",

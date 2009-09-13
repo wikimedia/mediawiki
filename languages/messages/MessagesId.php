@@ -869,6 +869,7 @@ Anda dapat [[Special:Search/{{PAGENAME}}|melakukan pencarian untuk judul halaman
 Anda dapat [[Special:Search/{{PAGENAME}}|pencarian judul]] dihalaman lain,
 atau <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} cari log yang berhubungan]</span>.',
 'userpage-userdoesnotexist'        => 'Akun pengguna "$1" tidak terdaftar.',
+'userpage-userdoesnotexist-view'   => 'Pengguna "$1" tidak terdaftar.',
 'clearyourcache'                   => "'''Catatan:''' Setelah menyimpan preferensi, Anda perlu membersihkan <em>cache</em> penjelajah web Anda untuk melihat perubahan. '''Mozilla / Firefox / Safari:''' tekan ''Ctrl-Shift-R'' (''Cmd-Shift-R'' pada Apple Mac); '''IE:''' tekan ''Ctrl-F5''; '''Konqueror:''': tekan ''F5''; '''Opera''' bersihkan <em>cache</em> melalui menu ''Tools→Preferences''.",
 'usercssyoucanpreview'             => "'''Tips:''' Gunakan tombol 'Lihat pratayang' untuk menguji CSS baru Anda sebelum menyimpannya.",
 'userjsyoucanpreview'              => "'''Tips:''' Gunakan tombol 'Lihat pratayang' untuk menguji JS baru Anda sebelum menyimpannya.",
@@ -936,6 +937,8 @@ Harap pertimbangkan apakah layak untuk melanjutkan suntingan Anda.
 Berikut adalah log penghapusan dan pemindahan dari halaman ini:",
 'moveddeleted-notice'              => 'Halaman ini telah dihapus.
 Sebagai referensi, berikut adalah log penghapusan dan pemindahan halaman ini.',
+'renamed-notice'                   => 'Penguna ini telah berganti nama.
+Log pergantian nama disediakan dibawah untuk referensi.',
 'log-fulllog'                      => 'Lihat seluruh log',
 'edit-hook-aborted'                => 'Suntingan dibatalkan oleh kait parser
 tanpa ada keterangan.',

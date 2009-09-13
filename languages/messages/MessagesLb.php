@@ -733,6 +733,7 @@ Dir kënnt op anere Säiten no [[Special:Search/{{PAGENAME}}|dësem Säitentitel
 Dir kënnt op anere Säiten [[Special:Search/{{PAGENAME}}|no dësem Sàitentitel sichen]],
 oder <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} an de Logbicher sichen]</span>.',
 'userpage-userdoesnotexist'        => 'De Benotzerkont "$1" gëtt et net. Iwwerpréift w.e.g. op Dir dës Säit erschafe/ännere wëllt.',
+'userpage-userdoesnotexist-view'   => 'De Benotzerkont "$1" ass net registréiert.',
 'clearyourcache'                   => "'''Opgepasst - Nom Späichere muss der Ärem Browser seng Cache eidel maachen, fir d'Ännerungen ze gesinn.''' '''Mozilla / Firefox / Safari: ''' dréckt op ''Shift'' während Dir ''reload'' klickt oder dréckt ''Ctrl-F5'' oder ''Ctrl-R''(''Command-R'' op engem Macintosh);'''Konqueror: ''' klickt  ''Reload'' oder dréckt ''F5'' '''Opera:''' maacht de Cache eidel an ''Tools → Preferences;'' '''Internet Explorer:''' dréckt ''Ctrl'' während Dir op ''Refresh'' klickt oder dréckt ''Ctrl-F5.''",
 'usercssyoucanpreview'             => "'''Tipp:''' Benotzt de ''Kucken ouni ze späichere''-Knäppchen, fir Ären neien CSS virum Späicheren ze testen.",
 'userjsyoucanpreview'              => "'''Tipp:''' Benotzt de ''Kucken ouni ze späichere''-Knäppchen, fir Ären neie JS virum Späicheren ze testen.",
@@ -807,6 +808,8 @@ Frot Iech ob et wierklech sënnvoll ass dës Säit nees nei ze schafen.
 Fir Iech z'informéieren fannt Dir hei d'Logbuch vum Läsche mam Grond:",
 'moveddeleted-notice'              => 'Dës Säit gouf geläscht.
 Hei ass den Extrait aus dem Logbuch vum Réckelen a Läsche fir déi Säit.',
+'renamed-notice'                   => "Dëse Benotzer gouf ëmbenannt.
+D'Logbuch mat den Ëmbenunngen ass hei ënnendrënner.",
 'log-fulllog'                      => 'Dat ganzt Logbuch weisen',
 'edit-hook-aborted'                => "D'Ännerung gouf ouni Erklärung vun enger Schnëttstell (hook) ofgebrach.",
 'edit-gone-missing'                => "D'Säit konnt net aktualiséiert ginn.

@@ -793,6 +793,7 @@ ou [{{fullurl:{{FULLPAGENAME}}|action=edit}} editar a páxina]</span>.',
 Pode [[Special:Search/{{PAGENAME}}|procurar polo título desta páxina]] noutras páxinas
 ou <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} ollar os rexistros relacionados]</span>.',
 'userpage-userdoesnotexist'        => 'A conta do usuario "$1" non está rexistrada. Comprobe se desexa crear/editar esta páxina.',
+'userpage-userdoesnotexist-view'   => 'A conta de usuario "$1" non está rexistrada.',
 'clearyourcache'                   => "'''Nota: despois de gravar cómpre limpar a memoria caché do seu navegador para ver os cambios.'''
 '''Mozilla / Firefox / Safari:''' prema ''Maiúsculas'' á vez que en ''Recargar'', ou prema en ''Ctrl-F5'' ou ''Ctrl-R'' (''Command-R'' nos Macintosh);
 '''Konqueror:''' faga clic en ''Recargar'' ou prema en ''F5'';
@@ -877,6 +878,8 @@ Debería considerar se é apropiado continuar a editar esta páxina.
 Velaquí están o rexistro de borrados e mais o de traslados desta páxina, por se quere consultalos:",
 'moveddeleted-notice'              => 'Esta páxina foi borrada.
 A continuación pódese ver o rexistro de borrados e traslados desta páxina, por se os quere consultar.',
+'renamed-notice'                   => 'Este usuario foi renomeado.
+Velaquí está o rexistro de cambios de nome de usuario por se quere consultalo.',
 'log-fulllog'                      => 'Ver o rexistro completo',
 'edit-hook-aborted'                => "A edición foi abortada polo ''hook''.
 Este non deu ningunha explicación.",

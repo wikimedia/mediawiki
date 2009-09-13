@@ -1721,7 +1721,7 @@ Vos devriâd controlar lo jornal de les suprèssions de cél fichiér devant que
 'uploaddisabledtext'          => 'Lo tèlèchargement de fichiérs est dèsactivâ.',
 'php-uploaddisabledtext'      => 'Lo tèlèchargement de fichiérs at étâ dèsactivâ dens PHP.
 Volyéd controlar lo chouèx de configuracion « file_uploads ».',
-'uploadscripted'              => 'Cél fichiér contint de code HTML ou ben un script que porrêt étre entèrprètâ de façon fôssa per un navigator Malyâjo.',
+'uploadscripted'              => 'Cél fichiér contint de code HTML ou ben un scripte que porrêt étre entèrprètâ de façon fôssa per un navigator vouèbe.',
 'uploadcorrupt'               => 'Cél fichiér est corrompu, il at una talye nula ou ben una èxtension envalida.
 Volyéd controlar lo fichiér devant que lo tornar tèlèchargiér.',
 'uploadvirus'                 => 'Cél fichiér contint un virus ! Por més de dètalys, vêde : $1',
@@ -3243,10 +3243,10 @@ Los ôtros champs seront cachiês per dèfôt.
 # E-mail address confirmation
 'confirmemail'             => 'Confirmar l’adrèce de mèl',
 'confirmemail_noemail'     => 'Vos éd pas dèfeni una adrèce de mèl valida dens voutres [[Special:Preferences|prèferences]].',
-'confirmemail_text'        => '{{SITENAME}} at fôta du contrôlo de voutra adrèce de mèl devant que povêr utilisar tota fonccion de mèssageria.
-Utilisâd lo boton ce-desot por mandar un mèl de confirmacion a voutra adrèce.
-Lo mèl encllurat un lim que contint un code a usâjo solèt et limitâ dens lo temps ;
-chargiéd cél lim dens voutron navigator por confirmar que voutra adrèce de mèl est valida.',
+'confirmemail_text'        => '{{SITENAME}} at fôta du contrôlo de voutra adrèce èlèctronica devant que povêr utilisar tota fonccion de mèssageria.
+Utilisâd lo boton ce-desot por mandar un mèssâjo de confirmacion a voutra adrèce.
+Lo mèssâjo encllurat un lim que contint un code a usâjo solèt et limitâ dens lo temps ;
+chargiéd cél lim dens voutron navigator por confirmar que voutra adrèce èlèctronica est valida.',
 'confirmemail_pending'     => 'Un code de confirmacion vos at ja étâ mandâ per mèl ;
 se vos vegnéd de fâre voutron compto, volyéd atendre doux-três menutes que lo mèl arreve devant que demandar un code novél.',
 'confirmemail_send'        => 'Mandar un code de confirmacion',
@@ -3266,7 +3266,7 @@ Ora, vos vos pouede [[Special:UserLogin|branchiér]] et profitar du vouiqui.',
 'confirmemail_error'       => 'Un problèmo est arrevâ pendent l’enregistrament de voutra confirmacion.',
 'confirmemail_subject'     => 'Confirmacion d’adrèce de mèl por {{SITENAME}}',
 'confirmemail_body'        => 'Quârqu’un, probâblament vos, avouéc l’adrèce IP $1,
-at enregistrâ un compto « $2 » avouéc ceta adrèce de mèl sur lo seto {{SITENAME}}.
+at enregistrâ un compto « $2 » avouéc ceta adrèce èlèctronica sur lo seto {{SITENAME}}.
 
 Por confirmar que cél compto est franc a vos et por
 activar les fonccions de mèssageria dessus {{SITENAME}},
@@ -3276,7 +3276,7 @@ $3
 
 Se vos éd *pas* enregistrâ cél compto, uvréd pas ceti lim ;
 vos pouede siuvre l’ôtro lim ce-desot por anular la
-confirmacion de voutra adrèce de mèl :
+confirmacion de voutra adrèce èlèctronica :
 
 $5
 

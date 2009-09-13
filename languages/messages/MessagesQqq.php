@@ -3296,9 +3296,10 @@ Used on [[Special:Tags]]. Verb. Used as display text on a link to create/edit a 
 {{Identical|Other}}',
 
 # Add categories per AJAX
-'ajax-add-category-submit' => '{{Identical|Add}}',
-'ajax-confirm-save'        => '{{Identical|Save}}',
-'ajax-error-title'         => '{{Identical|Error}}',
-'ajax-error-dismiss'       => '{{Identical|OK}}',
+'ajax-add-category-submit'   => '{{Identical|Add}}',
+'ajax-confirm-save'          => '{{Identical|Save}}',
+'ajax-confirm-actionsummary' => 'This message is followed by one of the following messages; {{msg-mw|ajax-add-category-summary}}, {{msg-mw|ajax-remove-category-summary}}.',
+'ajax-error-title'           => '{{Identical|Error}}',
+'ajax-error-dismiss'         => '{{Identical|OK}}',
 
 );

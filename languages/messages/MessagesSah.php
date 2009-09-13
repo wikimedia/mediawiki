@@ -510,7 +510,7 @@ $2',
 'createaccount-text'         => 'Ким эрэ {{SITENAME}} бырайыакка ($4) саҥа $2 ааты бэлиэтээбит. "$2" киирии тыла "$3". Билигин киирэн киирии тылгын уларытыаххын наада.
 
 Саҥа аат сыыһа оҥоһуллубут буоллаҕына тугу да гыныа суоххун сөп.',
-'login-throttled'            => 'Киирии тылы наһаа элбэхтик киллэрэ сатаатыҥ.
+'login-throttled'            => 'Наһаа элбэхтик бэйэҥ ааккын билиһиннэрэ сатаатыҥ.
 Бука диэн кыратык тохтуу түһэн баран өссө боруобалаа.',
 'loginlanguagelabel'         => 'Омугун тыла: $1',
 
@@ -1459,6 +1459,24 @@ PICT # misc.
 'upload-too-many-redirects' => 'URL наһаа элбэх утаарыылаах',
 'upload-unknown-size'       => 'Биллибэт кээмэй',
 'upload-http-error'         => 'HTTP алҕаһа таҕыста: $1',
+
+# img_auth script messages
+'img-auth-accessdenied' => 'Киирии бобуллубут',
+'img-auth-nopathinfo'   => 'PATH_INFO суох.
+Эн сиэбэрин маннык сибидиэнньэни ыытар курдук туруоруута суох.
+Баҕар кини CGI олоҕурара буолуо ол иһин img_auth өйөөбөтө буолуо.
+Көр http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
+'img-auth-notindir'     => 'Көрдөөбүт суолуҥ эрдэттэн туруоруллубут хачайдыыр паапкаҕа сыһыана суох.',
+'img-auth-badtitle'     => 'Мантан «$1» сөптөөх ааты оҥорор кыах суох.',
+'img-auth-nologinnWL'   => 'Эн тиһиликкэ киирбэтэххин, уонна «$1» үрүҥ (көҥүллэммит) тиһиккэ киирбэт эбит.',
+'img-auth-nofile'       => '«$1» билэ суох.',
+'img-auth-isdir'        => 'Бу паапакаҕа «$1» киирэ сатыыгын.
+Билэлэргэ эрэ киирэр көҥүллэммит.',
+'img-auth-streaming'    => 'Ботуогунан биэрии «$1».',
+'img-auth-public'       => 'img_auth.php аналынан билэлэри сабыылаах биикиттэн таһаарыы буолар.
+Бу биики аһаҕас.
+Онон img_auth.php араарыллыбыт.',
+'img-auth-noread'       => 'Кыттааччы «$1» ааҕарга көҥүлэ суох.',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'Бу URL-га кыайан тахсыбата',
@@ -3114,9 +3132,18 @@ $1',
 'htmlform-selectorother-other' => 'Атын',
 
 # Add categories per AJAX
-'ajax-add-category'        => 'Категория эбии',
-'ajax-add-category-submit' => 'Эп',
-'ajax-error-title'         => 'Алҕас',
-'ajax-error-dismiss'       => 'Сөп',
+'ajax-add-category'            => 'Категория эбии',
+'ajax-add-category-submit'     => 'Эп',
+'ajax-confirm-title'           => 'Дьайыыны бигэргэт',
+'ajax-confirm-prompt'          => 'Аллара уларытыыҥ туһунан суруйуоххун сөп.
+"Бигэргэт" диэни баттаан уларытыыгын бигэргэт.',
+'ajax-confirm-save'            => 'Бигэргэт',
+'ajax-add-category-summary'    => '«$1» категория эбилиннэ',
+'ajax-remove-category-summary' => '«$1» категория сотулунна',
+'ajax-confirm-actionsummary'   => 'Оҥоһуллар дьайыылар:',
+'ajax-error-title'             => 'Алҕас',
+'ajax-error-dismiss'           => 'Сөп',
+'ajax-remove-category-error'   => 'Бу категорияны сотор табыллыбата.
+Үксүгэр категория халыып нөҥүө эбиллибит түгэнигэр итинник буолар.',
 
 );

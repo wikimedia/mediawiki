@@ -723,7 +723,11 @@ Se te sì un utente anonimo e te ghè ricevù dei messagi che te secondo ti i xe
 Se pol [[Special:Search/{{PAGENAME}}|sercar sto titoło]] ne łe altre pàxene,
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} sercar i registri relativi],
 opure [{{fullurl:{{FULLPAGENAME}}|action=edit}} modificar ła pàxena desso].',
+'noarticletext-nopermission'       => 'In sto momento no ghe xe nissun testo su sta pagina.
+Te pol [[Special:Search/{{PAGENAME}}|sercar el titolo de sta pagina]] in altre pagine,
+o <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} sercar in tei registri ligà a sta pagina]</span>.',
 'userpage-userdoesnotexist'        => 'L\'account "$1" no\'l corisponde mìa a un utente registrà. Verifica se te voli dal bon crear o modificar sta pagina.',
+'userpage-userdoesnotexist-view'   => 'L\'utensa "$1" no la xe gnancora registrà.',
 'clearyourcache'                   => "'''Ocio: dopo aver salvà, te ghè da netar la cache del to browser par védar i canbiamenti.''' Par '''Mozilla / Firefox / Safari:''' tien macà el boton de le majuscole e schiza \"Ricarica\", o senò maca ''Ctrl-F5'' o ''Ctrl-R'' (''Command-R'' se te ghè el Macintosh); par '''Konqueror:''' schiza \"Ricarica\" o maca ''F5;'' par '''Opera:''' néta la cache in ''Strumenti → Preferenze;'' par '''Internet Explorer:''' tien macà ''Ctrl'' fin che te schizi ''Ricarica'', o maca ''Ctrl-F5.''",
 'usercssyoucanpreview'             => "'''Sugerimento:''' se consiglia de doparar el boton 'Visualiza anteprima' par proàr i novi CSS o JavaScript prima de salvarli.",
 'userjsyoucanpreview'              => "'''Sugerimento:''' se consiglia de doparar el boton 'Visualiza anteprima' par proàr i novi CSS o JavaScript prima de salvarli.",
@@ -795,6 +799,8 @@ Par piaser assicùrete che sia dal bon el caso de 'ndar vanti a modificar sta pa
 L'elenco de i relativi spostamenti e scancelazion el vien riportà qua de seguito par comodità:",
 'moveddeleted-notice'              => "Sta pàxena la xe stà scancelà.
 L'elenco dei relativi spostamenti e scancelassion el vien riportà qua soto par informassion.",
+'renamed-notice'                   => 'Sto utente el gà canbià nome.
+Qua soto ghe xe el riferimento sul registro de rinomina.',
 'log-fulllog'                      => 'Varda registro conpleto',
 'edit-hook-aborted'                => "Modifica abortìa da parte de l'hook.
 No xe stà dà nissuna spiegazion in merito.",
@@ -1527,7 +1533,11 @@ Se el problema el persiste, contatar un [[Special:ListUsers/sysop|aministrador]]
 
 # img_auth script messages
 'img-auth-accessdenied' => 'Acesso negà',
+'img-auth-notindir'     => "El percorso richiesto no'l se cata in te la cartèla de caricamento configurà.",
+'img-auth-badtitle'     => 'No se riesse a costruir un titolo valido da "$1".',
 'img-auth-nofile'       => 'El file "$1" no l\'esiste mia.',
+'img-auth-streaming'    => 'Streaming de "$1".',
+'img-auth-noread'       => 'L\'utente no\'l gà mia dirito de lèzar "$1".',
 
 # Some likely curl errors. More could be added from <http://curl.haxx.se/libcurl/c/libcurl-errors.html>
 'upload-curl-error6'       => 'URL mìa ragiungibile',
@@ -1620,6 +1630,7 @@ Qua soto vien mostrà la descrission presente in te la [$2 pàxena de descrissio
 ** Violazion de copyright
 ** File duplicà',
 'filedelete-edit-reasonlist'  => 'Modifica le motivazion par la scancelazion',
+'filedelete-maintenance'      => 'La scancelassion e el riprìstino dei file i xe disabilità par un tocheto par manutension.',
 
 # MIME search
 'mimesearch'         => 'Serca in base al tipo MIME',

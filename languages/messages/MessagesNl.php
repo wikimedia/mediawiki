@@ -927,6 +927,7 @@ U kunt [[Special:Search/{{PAGENAME}}|naar deze term zoeken]] in andere pagina\'s
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} de logboeken doorzoeken]</span>.',
 'userpage-userdoesnotexist'        => 'U bewerkt een gebruikerspagina van een gebruiker die niet bestaat (gebruiker "$1").
 Controleer of u deze pagina wel wilt aanmaken/bewerken.',
+'userpage-userdoesnotexist-view'   => 'De gebruiker "$1" is niet geregistreerd.',
 'clearyourcache'                   => "'''Let op! Nadat u de wijzigingen hebt opgeslagen is het wellicht nodig uw browsercache te legen.'''
 
 '''Mozilla / Firefox / Safari:''' houd ''Shift'' ingedrukt terwijl u op ''Huidige pagina vernieuwen'' klikt, of typ ''Ctrl-F5'' of ''Ctrl-R'' (''Command-R'' op eenMacintosh); '''Konqueror: '''klik ''Reload'' of typ ''F5;'' '''Opera:''' leeg uw cache in ''Extra → Voorkeuren;'' '''Internet Explorer:''' houd ''Ctrl'' ingedrukt terwijl u op ''Vernieuwen'' klikt of type ''Ctrl-F5.''",
@@ -1011,6 +1012,8 @@ Overweeg of het terecht is dat u verder werkt aan deze pagina.
 Voor uw gemak staan hieronder het verwijderingslogboek en het hernoemingslogboek voor deze pagina:",
 'moveddeleted-notice'              => 'Deze pagina is verwijderd.
 Ter informatie worden het verwijderingslogboek en het hernoemingslogboek van deze pagina hieronder weergegeven.',
+'renamed-notice'                   => 'Deze gebruiker is hernoemd.
+Relevante regels uit het logboek gebruikersnaamwijzigingen worden hieronder ter referentie weergegeven.',
 'log-fulllog'                      => 'Het volledige logboek bekijken',
 'edit-hook-aborted'                => 'De bewerking is afgebroken door een hook.
 Er is geen toelichting beschikbaar.',
@@ -1117,16 +1120,17 @@ Als beheerder kunt u [$1 de verschillen bekijken] als u wilt.",
 'logdelete-selected'          => "'''{{PLURAL:$1|Geselecteerde logboekhandeling|Geselecteerde logboekhandelingen}}:'''",
 'revdelete-text'              => "'''Verwijderde bewerkingen zijn zichtbaar in de geschiedenis en logboeken, maar delen van de inhoud zijn niet langer publiek toegankelijk.'''
 
-Andere beheerders van {{SITENAME}} kunnen de verborgen inhoud benaderen en de verwijdering ongedaan maken met behulp van dit scherm, tenzij er aanvullende beperkingen gelden die zijn ingesteld door de systeembeheerder.
+Andere beheerders van {{SITENAME}} kunnen de verborgen inhoud benaderen en de verwijdering ongedaan maken met behulp van dit formulier, tenzij er aanvullende beperkingen gelden die zijn ingesteld door de systeembeheerder.
+
 Bevestig dat u dit wilde doen, dat u de consequenties begrijpt en dat u dit doet in overeenstemming met het geldende [[{{MediaWiki:Policy-url}}|beleid]].",
 'revdelete-suppress-text'     => "Versies verbergen dient '''alleen''' gebruikt te worden in de volgende gevallen:
 * Ongepaste persoonlijke informatie
 *: ''woonadres, telefoonnummers, Burger Service Nummers, enzovoort.''",
 'revdelete-legend'            => 'Zichtbaarheidsbeperkingen instellen',
-'revdelete-hide-text'         => 'De bewerkte tekst verbergen',
+'revdelete-hide-text'         => 'Bewerkte tekst verbergen',
 'revdelete-hide-name'         => 'Actie en doel verbergen',
-'revdelete-hide-comment'      => 'De bewerkingssamenvatting verbergen',
-'revdelete-hide-user'         => 'Gebruikersnaam/IP van de gebruiker verbergen',
+'revdelete-hide-comment'      => 'Bewerkingssamenvatting verbergen',
+'revdelete-hide-user'         => 'Gebruikersnaam/IP-adres van de gebruiker verbergen',
 'revdelete-hide-restricted'   => 'Deze beperkingen ook op beheerders toepassen',
 'revdelete-suppress'          => 'Gegevens voor zowel beheerders als anderen onderdrukken',
 'revdelete-hide-image'        => 'Bestandsinhoud verbergen',
@@ -1142,8 +1146,8 @@ $1",
 'logdelete-failure'           => "'''De zichtbaarheid van de logboekregel kon niet ingesteld worden:'''
 $1",
 'revdel-restore'              => 'Zichtbaarheid wijzigen',
-'pagehist'                    => 'Paginageschiedenis',
-'deletedhist'                 => 'Verwijderde geschiedenis',
+'pagehist'                    => 'paginageschiedenis',
+'deletedhist'                 => 'verwijderde geschiedenis',
 'revdelete-content'           => 'inhoud',
 'revdelete-summary'           => 'samenvatting bewerken',
 'revdelete-uname'             => 'gebruikersnaam',

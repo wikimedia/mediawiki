@@ -908,6 +908,7 @@ $2',
 <span class="plainlinks">[{{fullurl:{{#Special:Log}}|page={{urlencode:{{FULLPAGENAME}}}}}} να αναζητήσετε τα σχετικά ιστορικά],
 ή να [{{fullurl:{{FULLPAGENAME}}|action=edit}} επεξεργαστείτε τη σελίδα αυτή].',
 'userpage-userdoesnotexist'        => 'Ο Λογαριασμός του χρήστη "$1" δεν είναι καταχωρημένος. Παρακαλώ δείτε αν θα θέλατε να δημιουργήσετε/επεξεργαστείτε αυτή τη σελίδα.',
+'userpage-userdoesnotexist-view'   => 'Ο λογαριασμός χρήστη "$1" δεν είναι εγγεγραμμένος.',
 'clearyourcache'                   => "'''Σημείωση:''' Μετά την αποθήκευση, θα χρειαστεί να καθαρίσετε την cache στον browser σας για να μπορέσετε να δείτε τις αλλαγές: '''Mozilla / Firefox / Safari:''' κρατώντας το ''Shift'' κάντε κλικ στο ''Ανανέωση'', ή πατήστε ''Ctrl-F5'' ή ''Ctrl-R''. '''Konqueror:''' κάντε κλικ στο ''Reload'' ή πατήστε ''F5''. '''Opera:''' : Πηγαίνετε ''Εργαλεία → Προτιμήσεις''. '''Internet Explorer:''' κρατώντας το ''Ctrl'' κάντε κλικ στο ''Ανανέωση'' ή πατήστε ''Ctrl-F5''.",
 'usercssyoucanpreview'             => "'''Χρήσιμη συμβουλή:''' Χρησιμοποιήστε το κουμπί \"Προεπισκόπηση\" για να ελέγξτε τα νέα σας CSS πριν τα αποθηκεύσετε.",
 'userjsyoucanpreview'              => "'''Χρήσιμη συμβουλή:''' Χρησιμοποιήστε το κουμπί \"Προεπισκόπηση\" για να ελέγξτε τα νέα σας JS πριν τα αποθηκεύσετε.",
@@ -1725,6 +1726,10 @@ PICT # διάφορα
 
 # img_auth script messages
 'img-auth-accessdenied' => 'Δεν επετράπη η πρόσβαση',
+'img-auth-nopathinfo'   => 'Υπολείπεται το PATH_INFO.
+Ο διακομιστής σας δεν είναι παραμετροποιημένος για να περάσει αυτές τις πληροφορίες.
+Μπορεί να είναι βασισμένος σε CGI και να μην υποστηρίζει img_atuh.
+Συμβουλευτείτε το http://www.mediawiki.org/wiki/Manual:Image_Authorization.',
 'img-auth-notindir'     => 'Η ζητούμενη διαδρομή δεν βρίσκεται στον διαμορφωμένο αρχειοκατάλογο επιφορτώσεων',
 'img-auth-badtitle'     => 'Αδύνατη η κατασκευή έγκυρου τίτλου από "$1".',
 'img-auth-nologinnWL'   => 'Δεν έχετε συνδεθεί και η "$1" δεν είναι στην άσπρη λίστα.',
@@ -3388,13 +3393,14 @@ $1',
 'htmlform-selectorother-other' => 'Άλλο',
 
 # Add categories per AJAX
-'ajax-add-category'          => 'Προσθήκη κατηγορίας',
-'ajax-add-category-submit'   => 'Προσθήκη',
-'ajax-confirm-title'         => 'Επιβεβαίωση ενέργειας',
-'ajax-confirm-save'          => 'Αποθήκευση',
-'ajax-add-category-summary'  => 'Προσθήκη κατηγορίας "$1"',
-'ajax-confirm-actionsummary' => 'Ενέργεια που είναι να παρθεί:',
-'ajax-error-title'           => 'Σφάλμα',
-'ajax-error-dismiss'         => 'Εντάξει',
+'ajax-add-category'            => 'Προσθήκη κατηγορίας',
+'ajax-add-category-submit'     => 'Προσθήκη',
+'ajax-confirm-title'           => 'Επιβεβαίωση ενέργειας',
+'ajax-confirm-save'            => 'Αποθήκευση',
+'ajax-add-category-summary'    => 'Προσθήκη κατηγορίας "$1"',
+'ajax-remove-category-summary' => 'Αφαίρεση κατηγορίας "$1"',
+'ajax-confirm-actionsummary'   => 'Ενέργεια που είναι να παρθεί:',
+'ajax-error-title'             => 'Σφάλμα',
+'ajax-error-dismiss'           => 'Εντάξει',
 
 );
