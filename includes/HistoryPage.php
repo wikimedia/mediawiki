@@ -446,18 +446,10 @@ class HistoryPager extends ReverseChronologicalPager {
 			// If revision was hidden from sysops
 			if( !$rev->userCan( Revision::DELETED_RESTRICTED ) ) {
 				$del = Xml::check( 'deleterevisions', false, array('disabled' => 'disabled') );
-				$del .= Xml::tags( 'span', array( 'class'=>'mw-revdelundel-link' ),
-					'(' . $this->historyPage->message['rev-delundel'] . ')' );
 			// Otherwise, show the link...
 			} else {
 				$id = $rev->getId();
 				$del = Xml::check( 'showhiderevisions', false, array( 'name' => "ids[$id]" ) );
-				$query = array(
-					'type' => 'revision',
-					'target' => $this->title->getPrefixedDbkey(),
-					'ids' => $id );
-				$del .= $this->getSkin()->revDeleteLink( $query,
-					$rev->isDeleted( Revision::DELETED_RESTRICTED ) );
 			}
 			$s .= " $del ";
 		}
